@@ -1650,7 +1650,7 @@
 	"rcfilters-filter-major-label": "Edições não menores",
 	"rcfilters-filter-major-description": "Edições não rotuladas como menores.",
 	"rcfilters-filtergroup-watchlist": "Páginas vigiadas",
-	"rcfilters-filter-watchlist-watched-label": "Na Páginas vigiadas",
+	"rcfilters-filter-watchlist-watched-label": "Na lista de páginas vigiadas",
 	"rcfilters-filter-watchlist-watched-description": "Modificações de páginas vigiadas.",
 	"rcfilters-filter-watchlist-watchednew-label": "Modificações novas de páginas vigiadas",
 	"rcfilters-filter-watchlist-watchednew-description": "Modificações de páginas vigiadas que ainda não visitou depois de serem modificadas.",

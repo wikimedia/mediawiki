@@ -1641,7 +1641,7 @@
 	"rcfilters-liveupdates-button-title-on": "خاموش کردن به‌روزرسانی خودکار",
 	"rcfilters-liveupdates-button-title-off": "نمایش تغییرات جدید همچنان که رخ می‌دهند",
 	"rcfilters-watchlist-markseen-button": "نشانه‌گذاری تمام تغییرات به‌عنوان خوانده‌شده",
-	"rcfilters-watchlist-edit-watchlist-button": "ویرایش فهرست صفحه‌های پی‌گیری‌هایتان",
+	"rcfilters-watchlist-edit-watchlist-button": "ویرایش فهرست صفحه‌های پیگیری‌هایتان",
 	"rcfilters-watchlist-showupdated": "تغییرات صفحاتی که شما از زمانی که تغییر یافتند بازدیدشان نکرده‌اید به صورت <strong>پررنگ</strong> و با نشانگر توپر نمایش می‌یابد.",
 	"rcfilters-preference-label": "استفاده واسط بدون جاوااسکریپت",
 	"rcfilters-preference-help": "نمایش [[{{#special:RecentChanges}}|تغییرات اخیر]]یا [[{{#special:RecentChangesLinked}}|تغییرات مرتبط]] بدون جستجوی پالایش‌شده یا با قابلیت برجسته‌سازی.",
