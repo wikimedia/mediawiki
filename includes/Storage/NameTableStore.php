@@ -109,11 +109,10 @@ class NameTableStore {
 	/**
 	 * @param int $index A database index, like DB_PRIMARY or DB_REPLICA
 	 * @param int $flags Database connection flags
-	 *
 	 * @return IDatabase
 	 */
 	private function getDBConnection( $index, $flags = 0 ) {
-		return $this->loadBalancer->getConnectionRef( $index, [], $this->domain, $flags );
+		return $this->loadBalancer->getConnection( $index, [], $this->domain, $flags );
 	}
 
 	/**
