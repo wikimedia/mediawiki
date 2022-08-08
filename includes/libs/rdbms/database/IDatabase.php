@@ -114,13 +114,13 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	/** @var string Field for getLBInfo()/setLBInfo() */
 	public const LB_READ_ONLY_REASON = 'readOnlyReason';
 
-	/** @var string primary DB server than can stream OLTP updates to replica servers */
+	/** @var string Primary server than can stream writes to replica servers */
 	public const ROLE_STREAMING_MASTER = 'streaming-master';
-	/** @var string Replica server that streams OLTP updates from the primary DB server */
+	/** @var string Replica server that receives writes from a primary server */
 	public const ROLE_STREAMING_REPLICA = 'streaming-replica';
-	/** @var string Replica server of a static dataset that does not get OLTP updates */
-	public const ROLE_STATIC_CLONE = 'static-clone';
-	/** @var string Unknown replication topology role */
+	/** @var string Replica server within a static dataset */
+	public const ROLE_STATIC_CLONE = 'static-static';
+	/** @var string Server with unknown topology role */
 	public const ROLE_UNKNOWN = 'unknown';
 
 	/**

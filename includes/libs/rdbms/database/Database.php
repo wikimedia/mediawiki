@@ -1298,7 +1298,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$priorSessInfo = $this->getCriticalSessionInfo();
 
 		// Get the transaction-aware SQL string used for profiling
-		$prefix = ( $this->topologyRole === self::ROLE_STREAMING_MASTER ) ? 'query-m: ' : 'query: ';
+		$prefix = ( $this->topologyRole === self::ROLE_STREAMING_MASTER ) ? 'role-primary: ' : '';
 		$generalizedSql = new GeneralizedSql( $summarySql, $prefix );
 
 		$startTime = microtime( true );
