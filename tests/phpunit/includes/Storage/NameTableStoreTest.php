@@ -50,7 +50,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getMockLoadBalancer( $db ) {
 		$mock = $this->createMock( LoadBalancer::class );
-		$mock->method( 'getConnectionRef' )->willReturn( $db );
+		$mock->method( 'getConnection' )->willReturn( $db );
 		return $mock;
 	}
 
@@ -391,7 +391,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 			} );
 
 		$lb = $this->createMock( LoadBalancer::class );
-		$lb->method( 'getConnectionRef' )
+		$lb->method( 'getConnection' )
 			->willReturn( $db );
 
 		// Two instances hitting the real database using separate caches.
