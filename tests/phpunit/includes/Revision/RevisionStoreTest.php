@@ -10,7 +10,6 @@ use MediaWikiIntegrationTestCase;
 use MWException;
 use MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
-use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
@@ -42,8 +41,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			[ 'getConnectionRef', 'getLocalDomainID', 'reuseConnection' ]
 		);
 
-		$dbRef = new DBConnRef( $lb, $db, DB_PRIMARY );
-		$lb->method( 'getConnectionRef' )->willReturn( $dbRef );
+		$lb->method( 'getConnectionRef' )->willReturn( $db );
 		$lb->method( 'getLocalDomainID' )->willReturn( 'fake' );
 
 		$lbf = $this->createNoOpMock( LBFactory::class, [ 'getMainLB', 'getLocalDomainID' ] );

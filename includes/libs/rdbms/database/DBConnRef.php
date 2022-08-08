@@ -55,28 +55,25 @@ class DBConnRef implements IMaintainableDatabase {
 
 	/**
 	 * @param ILoadBalancer $lb Connection manager for $conn
-	 * @param IDatabase|array $conn Database or (server index, query groups, domain, flags)
+	 * @param array $params [server index, query groups, domain, flags]
 	 * @param int $role The type of connection asked for; one of DB_PRIMARY/DB_REPLICA
 	 * @param null|int &$modcount Reference to a modification counter for invalidating
 	 *        any wrapped connection and forcing a new connection to be acquired.
 	 *
 	 * @internal This method should not be called outside of LoadBalancer
 	 */
-	public function __construct( ILoadBalancer $lb, $conn, $role, &$modcount = 0 ) {
+	public function __construct( ILoadBalancer $lb, $params, $role, &$modcount = 0 ) {
+		if ( is_array( $params ) && count( $params ) >= 4 && $params[self::FLD_DOMAIN] !== false ) {
+			$this->params = $params;
+		} else {
+			throw new InvalidArgumentException( "Missing lazy connection arguments." );
+		}
 		$this->lb = $lb;
 		$this->role = $role;
 
 		// $this->conn is valid as long as $this->modCountRef and $this->modCountFix are the same.
 		$this->modCountRef = &$modcount; // remember reference
 		$this->modCountFix = $modcount;  // remember current value
-
-		if ( $conn instanceof IDatabase && !( $conn instanceof DBConnRef ) ) {
-			$this->conn = $conn; // live handle
-		} elseif ( is_array( $conn ) && count( $conn ) >= 4 && $conn[self::FLD_DOMAIN] !== false ) {
-			$this->params = $conn;
-		} else {
-			throw new InvalidArgumentException( "Missing lazy connection arguments." );
-		}
 	}
 
 	/**
