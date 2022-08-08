@@ -115,7 +115,7 @@ function init() {
 	if ( specialPage === 'Recentchanges' ) {
 		$topSection = $( '.mw-recentchanges-toplinks' ).detach();
 	} else if ( specialPage === 'Watchlist' ) {
-		$( '#contentSub, form#mw-watchlist-resetbutton' ).remove();
+		$( '.mw-watchlist-owner, .mw-watchlist-toollinks, form#mw-watchlist-resetbutton' ).remove();
 		$topSection = $( '.watchlistDetails' ).detach().contents();
 	} else if ( specialPage === 'Recentchangeslinked' ) {
 		conditionalViews.recentChangesLinked = {
