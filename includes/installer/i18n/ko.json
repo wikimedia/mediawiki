@@ -228,7 +228,7 @@
 	"config-logo-summary": "각 필드에 대해 적절한 크기의 이미지를 업로드하고 아래 상자에 URL을 입력해야 합니다. 로고가 해당 경로에 상대적인 경우 <code>$wgStylePath</code> 또는 <code>$wgScriptPath</code>를 사용할 수 있습니다. 이러한 상자는 비워 둘 수 있습니다. \n\n지원되는 브라우저에서 파일 시스템의 이미지 파일을 입력 상자나 미리보기 영역으로 드래그할 수도 있습니다.",
 	"config-logo-preview-main": "주 문서",
 	"config-logo-icon": "로고 (아이콘)",
-	"config-logo-icon-help": "로고 아이콘은 사각이면서 이상적으로는 50px을 초과하거나 SVG인 것이 좋습니다.",
+	"config-logo-icon-help": "로고 아이콘은 정사각형이면서 이상적으로는 50px을 초과하거나 SVG인 것이 좋습니다.",
 	"config-logo-wordmark": "워드마크 (선택사항)",
 	"config-logo-wordmark-help": "사이트 이름입니다. 정의하지 않으면 일반적으로 텍스트로 대체됩니다. 높이가 30픽셀 이하인 SVG가 이상적입니다.",
 	"config-logo-tagline": "태그라인 (선택사항)",

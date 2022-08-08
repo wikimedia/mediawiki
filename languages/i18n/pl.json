@@ -1347,7 +1347,7 @@
 	"right-block": "Blokowanie użytkownikom możliwości edycji",
 	"right-blockemail": "Blokowanie użytkownikom możliwości wysyłania wiadomości",
 	"right-hideuser": "Blokowanie użytkownika i ukrywanie od publiczności",
-	"right-ipblock-exempt": "Obejście blokad, automatycznych blokad i blokad zakresów adresów IP",
+	"right-ipblock-exempt": "Obejście blokad adresów IP, automatycznych blokad i blokad zakresów adresów IP",
 	"right-unblockself": "Odblokowanie samego siebie",
 	"right-protect": "Zmiana ustawień zabezpieczeń i edycja stron zabezpieczonych kaskadowo",
 	"right-editprotected": "Edycja stron zabezpieczonych na poziomie „{{int:protect-level-sysop}}”",
