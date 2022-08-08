@@ -11,12 +11,10 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @group ResourceLoader
+ * @covers \MediaWiki\ResourceLoader\OOUIImageModule
  */
 class OOUIImageModuleTest extends ResourceLoaderTestCase {
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\OOUIImageModule::loadFromDefinition
-	 */
 	public function testNonDefaultSkin() {
 		$module = new OOUIImageModule( [
 			'class' => OOUIImageModule::class,

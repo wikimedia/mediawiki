@@ -8,6 +8,9 @@ use MediaWiki\ResourceLoader\StartUpModule;
 use ResourceLoaderTestCase;
 use ResourceLoaderTestModule;
 
+/**
+ * @covers \MediaWiki\ResourceLoader\StartUpModule
+ */
 class StartUpModuleTest extends ResourceLoaderTestCase {
 
 	protected static function expandPlaceholders( $text ) {
@@ -683,8 +686,6 @@ mw.loader.register([
 
 	/**
 	 * @dataProvider provideGetModuleRegistrations
-	 * @covers \MediaWiki\ResourceLoader\StartUpModule
-	 * @covers \MediaWiki\ResourceLoader\ResourceLoader::makeLoaderRegisterScript
 	 */
 	public function testGetModuleRegistrations( $case ) {
 		$extraQuery = $case['extraQuery'] ?? [];
@@ -758,8 +759,6 @@ mw.loader.register([
 
 	/**
 	 * @dataProvider provideGetModuleRegistrationsProduction
-	 * @covers \MediaWiki\ResourceLoader\StartUpModule
-	 * @covers \MediaWiki\ResourceLoader\ResourceLoader
 	 */
 	public function testGetModuleRegistrationsProduction( array $case ) {
 		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
@@ -799,7 +798,6 @@ mw.loader.register([
 	}
 
 	/**
-	 * @covers \MediaWiki\ResourceLoader\StartUpModule::getModuleRegistrations
 	 * @dataProvider provideRegistrations
 	 */
 	public function testRegistrationsMinified( $modules ) {
@@ -825,7 +823,6 @@ mw.loader.register([
 	}
 
 	/**
-	 * @covers \MediaWiki\ResourceLoader\StartUpModule::getModuleRegistrations
 	 * @dataProvider provideRegistrations
 	 */
 	public function testRegistrationsUnminified( $modules ) {
@@ -864,9 +861,6 @@ mw.loader.register([
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\StartUpModule
-	 */
 	public function testGetVersionHash_varyConfig() {
 		$context = $this->getResourceLoaderContext();
 
@@ -885,9 +879,6 @@ mw.loader.register([
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\StartUpModule
-	 */
 	public function testGetVersionHash_varyModule() {
 		$context1 = $this->getResourceLoaderContext( [
 			'debug' => 'false',
@@ -941,9 +932,6 @@ mw.loader.register([
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\StartUpModule
-	 */
 	public function testGetVersionHash_varyDeps() {
 		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
 		$rl = $context->getResourceLoader();
