@@ -8,7 +8,7 @@
 		"hallowelt/filter-special-pages": "dev-REL1_35",
 		"mediawiki/invite-signup": "dev-REL1_35",
 		"mediawiki/arrays": "dev-REL1_35",
-		"mediawiki/dynamic-page-list3": "3.4.*",
+		"universal-omega/dynamic-page-list3": "3.4.*",
 		"mediawiki/echo": "dev-REL1_35",
 		"mediawiki/embed-video": "2.7.4",
 		"mediawiki/flexiskin": "dev-REL1_35",
