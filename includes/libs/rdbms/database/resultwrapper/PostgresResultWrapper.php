@@ -2,8 +2,6 @@
 
 namespace Wikimedia\Rdbms;
 
-use Wikimedia\AtEase\AtEase;
-
 class PostgresResultWrapper extends ResultWrapper {
 	/** @var DatabasePostgres */
 	private $db;
@@ -29,17 +27,13 @@ class PostgresResultWrapper extends ResultWrapper {
 	}
 
 	protected function doFetchObject() {
-		AtEase::suppressWarnings();
-		$row = pg_fetch_object( $this->result );
-		AtEase::restoreWarnings();
-		return $row;
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		return @pg_fetch_object( $this->result );
 	}
 
 	protected function doFetchRow() {
-		AtEase::suppressWarnings();
-		$row = pg_fetch_array( $this->result );
-		AtEase::restoreWarnings();
-		return $row;
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		return @pg_fetch_array( $this->result );
 	}
 
 	protected function doSeek( $pos ) {

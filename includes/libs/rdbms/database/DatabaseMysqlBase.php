@@ -1,7 +1,5 @@
 <?php
 /**
- * This is the MySQL database abstraction layer.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
 namespace Wikimedia\Rdbms;
 
@@ -29,11 +26,12 @@ use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\Platform\MySQLPlatform;
 
 /**
- * Database abstraction object for MySQL.
- * Defines methods independent on used MySQL extension.
+ * MySQL database abstraction layer.
+ *
+ * Defines methods independent of the used MySQL extension.
  *
  * TODO: This could probably be merged with DatabaseMysqli.
- * The split was created to support a transition from the old "mysql" extension
+ * The classees were split to support a transition from the old "mysql" extension
  * to mysqli, and there may be an argument for retaining it in order to support
  * some future transition to something else, but it's complexity and YAGNI.
  *

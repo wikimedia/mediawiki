@@ -16,15 +16,14 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 use RuntimeException;
 
 /**
  * Database error base class
+ *
  * @newable
  * @stable to extend
  * @ingroup Database

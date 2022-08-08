@@ -1,8 +1,5 @@
 <?php
-
 /**
- * Database load balancing interface
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,17 +16,15 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 use Exception;
-use InvalidArgumentException;
 
 /**
- * Interface for internal LoadBalancer methods, suitable for use on untracked
- * objects returned by newMainLB() or for internal use by LBFactory.
+ * Internal interface for LoadBalancer methods used by LBFactory
+ *
+ * Used by untracked objects returned from newMainLB().
  *
  * @internal
  * @since 1.39
@@ -42,8 +37,6 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	public const STAGE_POSTROLLBACK_CALLBACKS = 'stage-postrollback-callbacks';
 
 	/**
-	 * Construct a manager of IDatabase connection objects
-	 *
 	 * @param array $params Parameter map with keys:
 	 *  - servers : List of server info structures
 	 *  - localDomain: A DatabaseDomain or domain ID string
@@ -69,7 +62,6 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	 *  - roundStage: STAGE_POSTCOMMIT_* class constant; for internal use [optional]
 	 *  - clusterName: The logical name of the DB cluster [optional]
 	 *  - criticalSectionProvider: CriticalSectionProvider instance [optional]
-	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $params );
 

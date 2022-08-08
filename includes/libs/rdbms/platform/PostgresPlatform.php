@@ -17,7 +17,6 @@
  *
  * @file
  */
-
 namespace Wikimedia\Rdbms\Platform;
 
 use Wikimedia\Timestamp\ConvertibleTimestamp;

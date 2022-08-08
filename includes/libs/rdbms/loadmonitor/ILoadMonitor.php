@@ -1,7 +1,5 @@
 <?php
 /**
- * Database load monitoring interface
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,9 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 use BagOStuff;
@@ -29,7 +25,7 @@ use StatsdAwareInterface;
 use WANObjectCache;
 
 /**
- * An interface for database load monitoring
+ * Database load monitoring interface
  *
  * @ingroup Database
  */

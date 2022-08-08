@@ -30,10 +30,10 @@ use Wikimedia\ScopedCallback;
  * This group deals with database interface functions
  * and query specifics/optimisations.
  */
+
 /**
  * Basic database interface for live and lazy-loaded relation database handles
  *
- * @note IDatabase and DBConnRef should be updated to reflect any changes
  * @ingroup Database
  */
 interface IDatabase extends ISQLPlatform, DbQuoter {

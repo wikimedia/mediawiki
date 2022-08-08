@@ -1,7 +1,5 @@
 <?php
 /**
- * Simple generator of database connections that always returns the same object.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,16 +16,16 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 use BadMethodCallException;
 use InvalidArgumentException;
 
 /**
- * An LBFactory class that always returns a single database object.
+ * Manage a single hardcoded database connection.
+ *
+ * @ingroup Database
  */
 class LBFactorySingle extends LBFactory {
 	/** @var LoadBalancerSingle */
