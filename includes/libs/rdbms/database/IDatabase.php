@@ -801,38 +801,6 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	);
 
 	/**
-	 * Determines whether a field exists in a table
-	 *
-	 * @param string $table Table name
-	 * @param string $field Field to check on that table
-	 * @param string $fname Calling function name (optional)
-	 * @return bool Whether $table has field $field
-	 * @throws DBError If an error occurs, {@see query}
-	 */
-	public function fieldExists( $table, $field, $fname = __METHOD__ );
-
-	/**
-	 * Determines whether an index exists
-	 *
-	 * @param string $table
-	 * @param string $index
-	 * @param string $fname
-	 * @return bool|null
-	 * @throws DBError If an error occurs, {@see query}
-	 */
-	public function indexExists( $table, $index, $fname = __METHOD__ );
-
-	/**
-	 * Query whether a given table exists
-	 *
-	 * @param string $table
-	 * @param string $fname
-	 * @return bool
-	 * @throws DBError If an error occurs, {@see query}
-	 */
-	public function tableExists( $table, $fname = __METHOD__ );
-
-	/**
 	 * Insert row(s) into a table, in the provided order
 	 *
 	 * @param string $table Table name

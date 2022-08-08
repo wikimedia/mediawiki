@@ -19,12 +19,12 @@
  * @ingroup Testing
  */
 
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 class DbTestPreviewer extends TestRecorder {
 	/** @var callable|false Test name filter callback */
 	protected $filter;
-	/** @var IDatabase Database connection to the main DB */
+	/** @var IMaintainableDatabase Database connection to the main DB */
 	protected $db;
 	/** @var int run ID number for the current run */
 	protected $curRun;
@@ -35,7 +35,7 @@ class DbTestPreviewer extends TestRecorder {
 
 	/**
 	 * This should be called before the table prefix is changed
-	 * @param IDatabase $db
+	 * @param IMaintainableDatabase $db
 	 * @param callable|false $filter
 	 */
 	public function __construct( $db, $filter = false ) {
