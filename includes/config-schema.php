@@ -564,6 +564,7 @@ return [
 			],
 			'HTCPMulticastTTL' => 1,
 			'UsePrivateIPs' => false,
+			'CdnMatchParameterOrder' => true,
 			'LanguageCode' => 'en',
 			'GrammarForms' => [
 			],

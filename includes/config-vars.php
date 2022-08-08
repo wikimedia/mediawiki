@@ -1721,6 +1721,12 @@ $wgHTCPMulticastTTL = null;
 $wgUsePrivateIPs = null;
 
 /**
+ * Config variable stub for the CdnMatchParameterOrder setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::CdnMatchParameterOrder
+ */
+$wgCdnMatchParameterOrder = null;
+
+/**
  * Config variable stub for the LanguageCode setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::LanguageCode
  */
