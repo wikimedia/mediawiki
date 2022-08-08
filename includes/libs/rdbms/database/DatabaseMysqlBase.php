@@ -25,7 +25,6 @@ namespace Wikimedia\Rdbms;
 use InvalidArgumentException;
 use RuntimeException;
 use stdClass;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\Platform\MySQLPlatform;
 
@@ -241,13 +240,11 @@ abstract class DatabaseMysqlBase extends Database {
 	 */
 	public function lastError() {
 		if ( $this->conn ) {
-			# Even if it's non-zero, it can still be invalid
-			AtEase::suppressWarnings();
+			// Even if it's non-zero, it can still be invalid
 			$error = $this->mysqlError( $this->conn );
 			if ( !$error ) {
 				$error = $this->mysqlError();
 			}
-			AtEase::restoreWarnings();
 		} else {
 			$error = $this->mysqlError();
 		}
