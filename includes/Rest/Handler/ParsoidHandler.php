@@ -38,7 +38,6 @@ use MobileContext;
 use ParserOutput;
 use RequestContext;
 use Title;
-use UIDGenerator;
 use WikiMap;
 use Wikimedia\Http\HttpAcceptParser;
 use Wikimedia\Message\DataMessageValue;
@@ -754,10 +753,9 @@ abstract class ParsoidHandler extends Handler {
 				$response->setHeader( 'Content-Language', $headers['content-language'] );
 				$response->addHeader( 'Vary', $headers['vary'] );
 			}
-			if ( $request->getMethod() === 'GET' ) {
-				$tid = UIDGenerator::newUUIDv1();
-				$response->addHeader( 'Etag', "\"{$oldid}/{$tid}\"" );
-			}
+
+			// NOTE: We used to generate an ETag here, but since it was random every time and the
+			//       output wasn't stored anywhere, it could not possibly match anything, ever.
 
 			// FIXME: For pagebundle requests, this can be somewhat inflated
 			// because of pagebundle json-encoding overheads
