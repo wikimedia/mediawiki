@@ -57,6 +57,7 @@ class BasicSearchResultSetWidget {
 		}
 
 		$out = '';
+
 		if ( $hasTitle ) {
 			$out .= $this->header( $this->specialPage->msg( 'titlematches' ) )
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable titleResultSet is set when used here
