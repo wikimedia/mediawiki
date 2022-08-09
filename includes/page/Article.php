@@ -467,8 +467,12 @@ class Article implements Page {
 			return;
 		}
 
-		# Set page title (may be overridden by DISPLAYTITLE)
-		$outputPage->setPageTitle( $this->getTitle()->getPrefixedText() );
+		# Set page title (may be overridden from ParserOutput if title conversion is enabled or DISPLAYTITLE is used)
+		$outputPage->setPageTitle( Parser::formatPageTitle(
+			$this->getTitle()->getNsText(),
+			':',
+			$this->getTitle()->getText()
+		) );
 
 		$outputPage->setArticleFlag( true );
 		# Allow frames by default

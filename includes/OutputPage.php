@@ -1135,6 +1135,8 @@ class OutputPage extends ContextSource {
 	/**
 	 * Returns page display title without namespace prefix if possible.
 	 *
+	 * This method is unreliable and best avoided. (T314399)
+	 *
 	 * @since 1.32
 	 * @return string HTML
 	 */
@@ -1143,6 +1145,20 @@ class OutputPage extends ContextSource {
 		$languageConverter = $service->getLanguageConverterFactory()
 			->getLanguageConverter( $service->getContentLanguage() );
 		$text = $this->getDisplayTitle();
+
+		// Create a regexp with matching groups as placeholders for the namespace, separator and main text
+		$pageTitleRegexp = "/^" . str_replace(
+			preg_quote( '(.+?)', '/' ),
+			'(.+?)',
+			preg_quote( Parser::formatPageTitle( '(.+?)', '(.+?)', '(.+?)' ), '/' )
+		) . "$/";
+		$matches = [];
+		if ( preg_match( $pageTitleRegexp, $text, $matches ) ) {
+			// The regexp above could be manipulated by malicious user input,
+			// sanitize the result just in case
+			return Sanitizer::removeSomeTags( $matches[3] );
+		}
+
 		$nsPrefix = $languageConverter->convertNamespace(
 			$this->getTitle()->getNamespace()
 		) . ':';

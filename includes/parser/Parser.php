@@ -741,8 +741,10 @@ class Parser {
 			if ( $titleText !== false ) {
 				$titleText = Sanitizer::removeSomeTags( $titleText );
 			} else {
-				$titleText = $this->getTargetLanguageConverter()->convertTitle( $page );
-				$titleText = htmlspecialchars( $titleText, ENT_NOQUOTES );
+				[ $nsText, $nsSeparator, $mainText ] = $this->getTargetLanguageConverter()->convertSplitTitle( $page );
+				// In the future, those three pieces could be stored separately rather than joined into $titleText,
+				// and OutputPage would format them and join them together, to resolve T314399.
+				$titleText = self::formatPageTitle( $nsText, $nsSeparator, $mainText );
 			}
 			$this->mOutput->setTitleText( $titleText );
 		}
@@ -6482,6 +6484,26 @@ class Parser {
 			$html = $m[1];
 		}
 
+		return $html;
+	}
+
+	/**
+	 * Add HTML tags marking the parts of a page title, to be displayed in the first heading of the page.
+	 *
+	 * @internal
+	 * @since 1.39
+	 * @param string|HtmlArmor $nsText
+	 * @param string|HtmlArmor $nsSeparator
+	 * @param string|HtmlArmor $mainText
+	 * @return string HTML
+	 */
+	public static function formatPageTitle( $nsText, $nsSeparator, $mainText ): string {
+		$html = '';
+		if ( $nsText !== '' ) {
+			$html .= '<span class="mw-page-title-namespace">' . HtmlArmor::getHtml( $nsText ) . '</span>';
+			$html .= '<span class="mw-page-title-separator">' . HtmlArmor::getHtml( $nsSeparator ) . '</span>';
+		}
+		$html .= '<span class="mw-page-title-main">' . HtmlArmor::getHtml( $mainText ) . '</span>';
 		return $html;
 	}
 

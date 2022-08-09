@@ -116,6 +116,17 @@ interface ILanguageConverter {
 
 	/**
 	 * Auto convert a LinkTarget or PageReference to a readable string in the
+	 * preferred variant, separating the namespace and the main part of the title.
+	 *
+	 * @since 1.39
+	 * @param LinkTarget|PageReference $title
+	 * @return string[] Three elements: converted namespace text, converted namespace separator,
+	 *   and converted main part of the title
+	 */
+	public function convertSplitTitle( $title );
+
+	/**
+	 * Auto convert a LinkTarget or PageReference to a readable string in the
 	 * preferred variant.
 	 *
 	 * @param LinkTarget|PageReference $title

@@ -22059,7 +22059,7 @@ language=zh variant=zh title=[[ZH]] showtitle
 !! wikitext
 -{T|zh-cn:CN;zh-tw:TW}-
 !! html/php
-ZH
+<span class="mw-page-title-main">ZH</span>
 <p class="mw-empty-elt">
 </p>
 !! html/parsoid
@@ -22073,7 +22073,7 @@ language=zh variant=zh title=[[ZH]] showtitle
 !! wikitext
 -{T|TW}-
 !! html/php
-ZH
+<span class="mw-page-title-main">ZH</span>
 <p class="mw-empty-elt">
 </p>
 !! html/parsoid
@@ -23401,7 +23401,7 @@ wgRestrictDisplayTitle=false
 !! wikitext
 this is not the title
 !! html/php
-Parser test
+<span class="mw-page-title-main">Parser test</span>
 <p>this is not the title
 </p>
 !! end
@@ -23435,7 +23435,7 @@ wgRestrictDisplayTitle=true
 this is not the title
 {{DISPLAYTITLE:whatever}}
 !! html/php
-Screen
+<span class="mw-page-title-main">Screen</span>
 <p>this is not the title
 </p>
 !! end
@@ -23468,7 +23468,7 @@ wgAllowDisplayTitle=false
 this is not the title
 {{DISPLAYTITLE:screen}}
 !! html/php
-Screen
+<span class="mw-page-title-main">Screen</span>
 <p>this is not the title
 <a href="/index.php?title=Template:DISPLAYTITLE:screen&amp;action=edit&amp;redlink=1" class="new" title="Template:DISPLAYTITLE:screen (page does not exist)">Template:DISPLAYTITLE:screen</a>
 </p>
@@ -23484,7 +23484,7 @@ wgAllowDisplayTitle=false
 !! wikitext
 this is not the title
 !! html/php
-Screen
+<span class="mw-page-title-main">Screen</span>
 <p>this is not the title
 </p>
 !! end
@@ -23568,7 +23568,7 @@ wgRestrictDisplayTitle=true
 !! wikitext
 this is not the title
 !! html/php
-Art&amp;copy
+<span class="mw-page-title-main">Art&amp;copy</span>
 <p>this is not the title
 </p>
 !! end

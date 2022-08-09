@@ -80,8 +80,29 @@ class TrivialLanguageConverter implements ILanguageConverter {
 	}
 
 	/**
+	 * @since 1.39
 	 * @param LinkTarget|PageReference $title
-	 * @return mixed
+	 * @return string[]
+	 */
+	public function convertSplitTitle( $title ) {
+		$mainText = $this->titleFormatter->getText( $title );
+
+		$index = $title->getNamespace();
+		try {
+			$nsWithUnderscores = $this->titleFormatter->getNamespaceName( $index, $mainText );
+		} catch ( InvalidArgumentException $e ) {
+			// T165149: see MediaWikiTitleCodec::formatTitle()
+			$nsWithUnderscores = $this->language->getNsText( NS_SPECIAL );
+			$mainText = "Badtitle/NS$index:$mainText";
+		}
+		$nsText = str_replace( '_', ' ', $nsWithUnderscores );
+
+		return [ $nsText, ':', $mainText ];
+	}
+
+	/**
+	 * @param LinkTarget|PageReference $title
+	 * @return string
 	 */
 	public function convertTitle( $title ) {
 		return $this->titleFormatter->getPrefixedText( $title );
