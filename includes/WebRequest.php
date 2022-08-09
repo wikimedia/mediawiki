@@ -23,6 +23,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
@@ -1424,5 +1425,51 @@ class WebRequest {
 	 */
 	public function markAsSafeRequest() {
 		$this->markedAsSafe = true;
+	}
+
+	/**
+	 * Determine if the request URL matches one of a given set of canonical CDN URLs.
+	 *
+	 * MediaWiki uses this to determine whether to set a long 'Cache-Control: s-maxage='
+	 * header on the response. {@see MainConfigNames::CdnMatchParameterOrder} controls whether
+	 * the matching is sensitive to the order of query parameters.
+	 *
+	 * @param string[] $cdnUrls URLs to match against
+	 * @return bool
+	 * @since 1.39
+	 */
+	public function matchURLForCDN( array $cdnUrls ) {
+		$reqUrl = wfExpandUrl( $this->getRequestURL(), PROTO_INTERNAL );
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		if ( $config->get( MainConfigNames::CdnMatchParameterOrder ) ) {
+			// Strict matching
+			return in_array( $reqUrl, $cdnUrls, true );
+		}
+
+		// Loose matching (order of query parameters is ignored)
+		$reqUrlParts = explode( '?', $reqUrl, 2 );
+		$reqUrlBase = $reqUrlParts[0];
+		$reqUrlParams = count( $reqUrlParts ) === 2 ? explode( '&', $reqUrlParts[1] ) : [];
+		// The order of parameters after the sort() call below does not match
+		// the order set by the CDN, and does not need to. The CDN needs to
+		// take special care to preserve the relative order of duplicate keys
+		// and array-like parameters.
+		sort( $reqUrlParams );
+		foreach ( $cdnUrls as $cdnUrl ) {
+			if ( strlen( $reqUrl ) !== strlen( $cdnUrl ) ) {
+				continue;
+			}
+			$cdnUrlParts = explode( '?', $cdnUrl, 2 );
+			$cdnUrlBase = $cdnUrlParts[0];
+			if ( $reqUrlBase !== $cdnUrlBase ) {
+				continue;
+			}
+			$cdnUrlParams = count( $cdnUrlParts ) === 2 ? explode( '&', $cdnUrlParts[1] ) : [];
+			sort( $cdnUrlParams );
+			if ( $reqUrlParams === $cdnUrlParams ) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
