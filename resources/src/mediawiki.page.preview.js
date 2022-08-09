@@ -242,7 +242,7 @@
 		var params = {
 			formatversion: 2,
 			action: 'parse',
-			title: mw.config.get( 'wgPageName' ),
+			title: config.title,
 			summary: config.summary,
 			prop: ''
 		};
@@ -340,6 +340,7 @@
 	 * @param {boolean} [config.showDiff=false] Shows a diff in the preview area instead of the content.
 	 * @param {Array} [config.loadingSelectors=getLoadingSelectors()] An array of query selectors
 	 *   (i.e. '#catlinks') that should be grayed out while the preview is being generated.
+	 * @param {string} [title=mw.config.get( 'wgPageName' )] The title of the page being previewed
 	 * @return {jQuery.Promise}
 	 */
 	function doPreview( config ) {
@@ -351,6 +352,7 @@
 			$spinnerNode: $( '.mw-spinner-preview' ),
 			summary: null,
 			showDiff: false,
+			title: mw.config.get( 'wgPageName' ),
 			loadingSelectors: getLoadingSelectors()
 		}, config );
 
@@ -387,8 +389,8 @@
 
 			var diffPar = {
 				action: 'compare',
-				fromtitle: mw.config.get( 'wgPageName' ),
-				totitle: mw.config.get( 'wgPageName' ),
+				fromtitle: config.title,
+				totitle: config.title,
 				toslots: 'main',
 				// Remove trailing whitespace for consistency with EditPage diffs.
 				// TODO trimEnd() when we can use that.
