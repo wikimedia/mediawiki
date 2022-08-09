@@ -532,13 +532,7 @@ class MediaWiki {
 			// Also unconditionally cache page views.
 			if ( $this->config->get( MainConfigNames::UseCdn ) ) {
 				$htmlCacheUpdater = $services->getHtmlCacheUpdater();
-				if (
-					in_array(
-						// Use PROTO_INTERNAL because that's what HtmlCacheUpdater::getUrls() uses
-						wfExpandUrl( $request->getRequestURL(), PROTO_INTERNAL ),
-						$htmlCacheUpdater->getUrls( $requestTitle )
-					)
-				) {
+				if ( $request->matchUrlForCdn( $htmlCacheUpdater->getUrls( $requestTitle ) ) ) {
 					$output->setCdnMaxage( $this->config->get( MainConfigNames::CdnMaxAge ) );
 				} elseif ( $action instanceof ViewAction ) {
 					$output->setCdnMaxage( 3600 );

@@ -1737,6 +1737,12 @@ class MainConfigNames {
 	public const UsePrivateIPs = 'UsePrivateIPs';
 
 	/**
+	 * Name constant for the CdnMatchParameterOrder setting, for use with Config::get()
+	 * @see MainConfigSchema::CdnMatchParameterOrder
+	 */
+	public const CdnMatchParameterOrder = 'CdnMatchParameterOrder';
+
+	/**
 	 * Name constant for the LanguageCode setting, for use with Config::get()
 	 * @see MainConfigSchema::LanguageCode
 	 */

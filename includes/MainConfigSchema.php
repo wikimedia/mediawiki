@@ -4527,6 +4527,21 @@ class MainConfigSchema {
 		'default' => false,
 	];
 
+	/**
+	 * Set this to false if MediaWiki is behind a CDN that re-orders query
+	 * parameters on incoming requests.
+	 *
+	 * MediaWiki sets a large 'Cache-Control: s-maxage=' directive on page
+	 * views only if the request URL matches one of the normal CDN URL forms.
+	 * When 'CdnMatchParameterOrder' is false, the matching algorithm ignores
+	 * the order of URL parameters.
+	 *
+	 * @since 1.39
+	 */
+	public const CdnMatchParameterOrder = [
+		'default' => true,
+	];
+
 	// endregion -- end of HTTP proxy settings
 
 	/***************************************************************************/
