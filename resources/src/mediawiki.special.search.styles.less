@@ -16,7 +16,6 @@
 	font-size: 1.2em;
 }
 
-.searchdidyoumean em,
 .searchmatch {
 	font-weight: bold;
 }
@@ -172,10 +171,12 @@
 }
 
 .searchdidyoumean {
-	font-size: 127%;
+	font-size: 114%;
 	margin-top: 0.8em;
-	/* Note that this color won't affect the link, as desired. */
-	color: #d33;
+
+	em {
+		font-style: normal;
+	}
 }
 
 #mw-search-togglebox {
