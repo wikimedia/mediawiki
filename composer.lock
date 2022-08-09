@@ -3768,16 +3768,16 @@
         },
         {
             "name": "wikimedia/smash-pig",
-            "version": "v0.8.2.1",
+            "version": "v0.8.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig.git",
-                "reference": "62144adb54e6d14349fb60cf333719041a0c2d85"
+                "reference": "632fbda35a712fdbcff4c5d35fffe0efe66541aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/wikimedia-fundraising-SmashPig/zipball/62144adb54e6d14349fb60cf333719041a0c2d85",
-                "reference": "62144adb54e6d14349fb60cf333719041a0c2d85",
+                "url": "https://api.github.com/repos/wikimedia/wikimedia-fundraising-SmashPig/zipball/632fbda35a712fdbcff4c5d35fffe0efe66541aa",
+                "reference": "632fbda35a712fdbcff4c5d35fffe0efe66541aa",
                 "shasum": ""
             },
             "require": {
@@ -3852,7 +3852,10 @@
                 "donations",
                 "payments"
             ],
-            "time": "2022-07-29T00:32:53+00:00"
+            "support": {
+                "source": "https://github.com/wikimedia/wikimedia-fundraising-SmashPig/tree/v0.8.2.2"
+            },
+            "time": "2022-08-05T02:49:24+00:00"
         },
         {
             "name": "wikimedia/timestamp",
@@ -7973,10 +7976,10 @@
         "ext-dom": "*",
         "ext-fileinfo": "*",
         "ext-iconv": "*",
-        "ext-json": "*, *",
+        "ext-json": "*",
         "ext-mbstring": "*",
         "ext-xml": "*",
-        "php": ">=7.3.19, >=7.3.19, >= 7.2.9, >=7.1",
+        "php": ">=7.3.19",
         "ext-curl": "*"
     },
     "platform-dev": {
@@ -7985,5 +7988,5 @@
     "platform-overrides": {
         "php": "7.3.19"
     },
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.3.0"
 }
