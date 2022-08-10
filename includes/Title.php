@@ -3022,16 +3022,24 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			$db = wfGetDB( DB_REPLICA );
 		}
 
-		$res = $db->select(
-			[ 'page', $table ],
-			LinkCache::getSelectFields(),
-			[
-				"{$prefix}_from=page_id",
+		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+		if ( isset( $linksMigration::$mapping[$table] ) ) {
+			$titleConds = $linksMigration->getLinksConditions( $table, $this );
+		} else {
+			$titleConds = [
 				"{$prefix}_namespace" => $this->mNamespace,
-				"{$prefix}_title" => $this->mDbkeyform ],
-			__METHOD__,
-			$options
-		);
+				"{$prefix}_title" => $this->mDbkeyform
+			];
+		}
+
+		$res = $db->newSelectQueryBuilder()
+			->select( LinkCache::getSelectFields() )
+			->from( $table )
+			->join( 'page', null, "{$prefix}_from=page_id" )
+			->where( $titleConds )
+			->options( $options )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$retVal = [];
 		if ( $res->numRows() ) {
