@@ -140,27 +140,39 @@ class DBConnRef implements IMaintainableDatabase {
 	}
 
 	public function tablePrefix( $prefix = null ) {
-		if ( $this->conn === null && $prefix === null ) {
-			$domain = DatabaseDomain::newFromId( $this->params[self::FLD_DOMAIN] );
+		if ( $prefix !== null ) {
+			// Disallow things that might confuse the LoadBalancer tracking
+			throw $this->getDomainChangeException();
+		}
+
+		if ( $this->conn === null ) {
 			// Avoid triggering a database connection
-			return $domain->getTablePrefix();
+			$domain = DatabaseDomain::newFromId( $this->params[self::FLD_DOMAIN] );
+			$prefix = $domain->getTablePrefix();
 		} else {
 			// This will just return the prefix
-			return $this->__call( __FUNCTION__, func_get_args() );
+			$prefix = $this->__call( __FUNCTION__, func_get_args() );
 		}
+
+		return $prefix;
 	}
 
 	public function dbSchema( $schema = null ) {
-		if ( $this->conn === null && $schema === null ) {
-			$domain = DatabaseDomain::newFromId( $this->params[self::FLD_DOMAIN] );
-			// Avoid triggering a database connection
-			return $domain->getSchema();
-		} elseif ( $this->conn !== null && $schema === null ) {
-			// This will just return the schema
-			return $this->__call( __FUNCTION__, func_get_args() );
+		if ( $schema !== null ) {
+			// Disallow things that might confuse the LoadBalancer tracking
+			throw $this->getDomainChangeException();
 		}
-		// Disallow things that might confuse the LoadBalancer tracking
-		throw $this->getDomainChangeException();
+
+		if ( $this->conn === null ) {
+			// Avoid triggering a database connection
+			$domain = DatabaseDomain::newFromId( $this->params[self::FLD_DOMAIN] );
+			$schema = (string)$domain->getSchema();
+		} else {
+			// This will just return the schema
+			$schema = $this->__call( __FUNCTION__, func_get_args() );
+		}
+
+		return $schema;
 	}
 
 	public function getLBInfo( $name = null ) {
