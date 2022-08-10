@@ -1,7 +1,5 @@
 <?php
 /**
- * This is the Postgres database abstraction layer.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
 namespace Wikimedia\Rdbms;
 
@@ -27,6 +24,8 @@ use Wikimedia\Rdbms\Platform\PostgresPlatform;
 use Wikimedia\WaitConditionLoop;
 
 /**
+ * Postgres database abstraction layer.
+ *
  * @ingroup Database
  */
 class DatabasePostgres extends Database {

@@ -16,9 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 /**
@@ -38,7 +36,7 @@ namespace Wikimedia\Rdbms;
  * operations to the primary database server).
  *
  * @since 1.29
- *
+ * @ingroup Database
  * @author Daniel Kinzler
  * @author Addshore
  */

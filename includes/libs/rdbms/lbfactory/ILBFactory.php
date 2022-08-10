@@ -1,7 +1,5 @@
 <?php
 /**
- * Generator and manager of database load balancing instances
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,16 +16,15 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 use Generator;
 use InvalidArgumentException;
 
 /**
- * An interface for generating database load balancers
+ * Manager of ILoadBalancer objects, and indirectly of IDatabase connections.
+ *
  * @ingroup Database
  * @since 1.28
  */
@@ -41,9 +38,7 @@ interface ILBFactory {
 	public const CLUSTER_MAIN_DEFAULT = 'DEFAULT';
 
 	/**
-	 * Construct a manager of ILoadBalancer instances
-	 *
-	 * Sub-classes will extend the required keys in $conf with additional parameters
+	 * Sub-classes may extend the required keys in $conf with additional parameters
 	 *
 	 * @param array $conf Array with keys:
 	 *  - localDomain: A DatabaseDomain or database domain ID string.
@@ -65,7 +60,6 @@ interface ILBFactory {
 	 *  - deprecationLogger: Callback to log a deprecation warning. [optional]
 	 *  - secret: Secret string to use for HMAC hashing [optional]
 	 *  - criticalSectionProvider: CriticalSectionProvider instance [optional]
-	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $conf );
 

@@ -1,7 +1,5 @@
 <?php
 /**
- * Generator of database load balancing objects.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,9 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 use BagOStuff;
@@ -131,6 +127,7 @@ use Wikimedia\WaitConditionLoop;
  *   that writes may be slower (due to cross-dc latency).
  *   See [T91820](https://phabricator.wikimedia.org/T91820) for %Wikimedia Foundation's routing.
  *
+ * @ingroup Database
  * @internal
  */
 class ChronologyProtector implements LoggerAwareInterface {

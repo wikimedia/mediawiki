@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
 namespace Wikimedia\Rdbms;
 
@@ -36,6 +35,8 @@ use InvalidArgumentException;
  *
  * The above criteria should determine how components should map to RDBMS specific keywords
  * rather than "database"/"schema" always mapping to "DATABASE"/"SCHEMA" as used by the RDBMS.
+ *
+ * @ingroup Database
  */
 class DatabaseDomain {
 	/** @var string|null */
