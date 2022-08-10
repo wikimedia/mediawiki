@@ -318,7 +318,7 @@ interface ILoadBalancer {
 
 	/**
 	 * @internal Only to be used by DBConnRef
-	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
+	 * @param int $i Specific (overrides $groups) or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
 	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)

@@ -931,14 +931,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return $this->getConnectionRef( $i, $groups, $domain, $flags );
 	}
 
-	/**
-	 * @internal
-	 * @param int $i Specific (overrides $groups) or virtual (DB_PRIMARY/DB_REPLICA) server index
-	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
-	 * @param string|false $domain DB domain ID or false for the local domain
-	 * @param int $flags Bitfield of CONN_* class constants
-	 * @return IDatabase
-	 */
 	public function getConnectionInternal( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase {
 		$domain = $this->resolveDomainID( $domain );
 		$groups = $this->resolveGroups( $groups, $i );
@@ -963,6 +955,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				: 'The database is read-only until replica database servers becomes reachable.';
 			$conn->setLBInfo( $conn::LB_READ_ONLY_REASON, $reason );
 		}
+
 		return $conn;
 	}
 
