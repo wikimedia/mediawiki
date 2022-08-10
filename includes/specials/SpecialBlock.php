@@ -272,6 +272,7 @@ class SpecialBlock extends FormSpecialPage {
 			'exists' => true,
 			'max' => 10,
 			'cssclass' => 'mw-block-partial-restriction',
+			'default' => '',
 			'showMissing' => false,
 			'excludeDynamicNamespaces' => true,
 			'input' => [
@@ -285,6 +286,7 @@ class SpecialBlock extends FormSpecialPage {
 			'label' => $this->msg( 'ipb-namespaces-label' )->text(),
 			'exists' => true,
 			'cssclass' => 'mw-block-partial-restriction',
+			'default' => '',
 			'input' => [
 				'autocomplete' => false
 			],
