@@ -20,13 +20,12 @@
 	 * @param {Object} response
 	 */
 	function showEditSummary( $formNode, response ) {
+		var $summaryPreview = $formNode.find( '.mw-summary-preview' ).empty();
 		var parse = response.parse;
 
 		if ( !parse || !parse.parsedsummary ) {
 			return;
 		}
-
-		var $summaryPreview = $formNode.find( '.mw-summary-preview' ).empty();
 
 		$summaryPreview.append(
 			mw.message( 'summary-preview' ).parse(),
