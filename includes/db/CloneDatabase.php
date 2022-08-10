@@ -49,8 +49,12 @@ class CloneDatabase {
 	 * @param string|null $oldTablePrefix Prefix on current tables, if not $wgDBprefix
 	 * @param bool $dropCurrentTables
 	 */
-	public function __construct( IMaintainableDatabase $db, array $tablesToClone,
-		$newTablePrefix, $oldTablePrefix = null, $dropCurrentTables = true
+	public function __construct(
+		IMaintainableDatabase $db,
+		array $tablesToClone,
+		string $newTablePrefix,
+		string $oldTablePrefix = null,
+		bool $dropCurrentTables = true
 	) {
 		if ( !$tablesToClone ) {
 			throw new InvalidArgumentException( 'Empty list of tables to clone' );

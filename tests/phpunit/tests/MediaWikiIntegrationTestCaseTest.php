@@ -325,6 +325,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWikiIntegrationTestCase::copyTestData
 	 */
 	public function testCopyTestData() {
+		// Avoid self-deadlocks with Sqlite
 		$this->markTestSkippedIfDbType( 'sqlite' );
 
 		$this->tablesUsed[] = 'objectcache';
@@ -334,9 +335,9 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 			__METHOD__
 		);
 
-		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
-		$lb = $lbFactory->newMainLB();
-		$db = $lb->getConnection( DB_PRIMARY );
+		// Make an untracked DB_PRIMARY connection
+		$lb = $this->getServiceContainer()->getDBLoadBalancerFactory()->newMainLB();
+		$db = $lb->getConnectionInternal( DB_PRIMARY );
 
 		$this->assertNotSame( $this->db, $db );
 
@@ -350,6 +351,8 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 		$value = $db->selectField( 'objectcache', 'value', [ 'keyname' => __METHOD__ ], __METHOD__ );
 		$this->assertSame( 'TEST', $value, 'Copied Data' );
+
+		$lb->closeAll( __METHOD__ );
 	}
 
 	/**
