@@ -170,7 +170,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Fraxinus.cs",
-			"Le Loi"
+			"Le Loi",
+			"MirandaBlack"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -758,6 +759,7 @@
 	"changeemail-submit": "Изменить адрес",
 	"changeemail-throttled": "Вы сделали слишком много попыток представиться системе.\nПожалуйста, подождите $1 перед тем, как попробовать снова.",
 	"changeemail-nochange": "Пожалуйста, введите иной новый адрес электронной почты.",
+	"changeemail-maxlength": "Ваш адрес электронной почты должен содержать не более 255 символов.",
 	"resettokens": "Сбросить токены",
 	"resettokens-text": "Вы можете сбросить токены, позволяющие получить доступ к некоторым личным данным, связанным с вашей учётной записью на этом сайте.\n\nВам необходимо сделать это, если вы случайно поделились ими с кем-то, или если ваша учётная запись была взломана.",
 	"resettokens-no-tokens": "Нет токенов для сброса.",
@@ -2282,11 +2284,11 @@
 	"booksources-search": "Найти",
 	"booksources-text": "На этой странице приведён список ссылок на сайты, где вы, возможно, найдёте дополнительную информацию о книге. Это интернет-магазины и системы поиска в библиотечных каталогах.",
 	"booksources-invalid-isbn": "Указанный номер ISBN, судя по всему, содержит ошибку. Пожалуйста, проверьте, что при переносе номера из первоисточника не возникло искажений.",
-	"magiclink-tracking-rfc": "RFC анашанатә зхьарԥшқәа рдаҟьақәа",
+	"magiclink-tracking-rfc": "Страницы, использующие волшебные ссылки RFC",
 	"magiclink-tracking-rfc-desc": "Эта страница использует волшебные ссылки RFC. См. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] о том, как осуществить перенос.",
-	"magiclink-tracking-pmid": "PMID анашанатә зхьарԥшқәа рдаҟьақәа",
+	"magiclink-tracking-pmid": "Страницы, использующие волшебные ссылки PMID",
 	"magiclink-tracking-pmid-desc": "Эта страница использует волшебные ссылки PMID. См. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] о том, как осуществить перенос.",
-	"magiclink-tracking-isbn": "ISBN анашанатә зхьарԥшқәа рдаҟьақәа",
+	"magiclink-tracking-isbn": "Страницы, использующие волшебные ссылки ISBN",
 	"magiclink-tracking-isbn-desc": "Эта страница использует волшебные ссылки ISBN. См. [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Magic_links mediawiki.org] о том, как осуществить перенос.",
 	"specialloguserlabel": "Исполнитель:",
 	"speciallogtitlelabel": "Цель (название страницы или «{{ns:user}}:Имя участника»):",
