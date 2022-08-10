@@ -257,7 +257,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		foreach ( $links as $link ) {
-			$this->assertNull( $wrappedlinkCache->badLinks->get( $link ) );
+			$this->assertNull( $wrappedlinkCache->entries->get( $link ) );
 		}
 
 		$row = (object)[
@@ -273,7 +273,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$pager->preprocessResults( new FakeResultWrapper( [ $row ] ) );
 
 		foreach ( $links as $link ) {
-			$this->assertSame( 1, $wrappedlinkCache->badLinks->get( $link ), "Bad link [[$link]]" );
+			$this->assertTrue( $wrappedlinkCache->isBadLink( $link ), "Bad link [[$link]]" );
 		}
 
 		// Test sitewide blocks.
