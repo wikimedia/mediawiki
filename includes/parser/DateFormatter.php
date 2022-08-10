@@ -179,20 +179,20 @@ class DateFormatter {
 	 */
 	public function reformat( $preference, $text, $options = [] ) {
 		if ( isset( $this->preferenceIDs[$preference] ) ) {
-			$preference = $this->preferenceIDs[$preference];
+			$userFormatId = $this->preferenceIDs[$preference];
 		} else {
-			$preference = self::NONE;
+			$userFormatId = self::NONE;
 		}
 		for ( $source = 1; $source <= self::LAST; $source++ ) {
-			if ( isset( $this->rules[$preference][$source] ) ) {
+			if ( isset( $this->rules[$userFormatId][$source] ) ) {
 				# Specific rules
-				$target = $this->rules[$preference][$source];
+				$target = $this->rules[$userFormatId][$source];
 			} elseif ( isset( $this->rules[self::ALL][$source] ) ) {
 				# General rules
 				$target = $this->rules[self::ALL][$source];
-			} elseif ( $preference ) {
+			} elseif ( $userFormatId ) {
 				# User preference
-				$target = $preference;
+				$target = $userFormatId;
 			} else {
 				# Default
 				$target = $source;
