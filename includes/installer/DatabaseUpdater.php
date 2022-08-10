@@ -1112,12 +1112,9 @@ abstract class DatabaseUpdater {
 
 		// ResourceLoader: Message cache
 		$services = MediaWikiServices::getInstance();
-		$blobStore = new MessageBlobStore(
-			$services->getResourceLoader(),
-			null,
+		MessageBlobStore::clearGlobalCacheEntry(
 			$services->getMainWANObjectCache()
 		);
-		$blobStore->clear();
 
 		// ResourceLoader: File-dependency cache
 		$this->db->delete( 'module_deps', '*', __METHOD__ );
