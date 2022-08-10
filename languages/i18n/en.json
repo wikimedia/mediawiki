@@ -2703,6 +2703,7 @@
 	"whatlinkshere-page": "Page:",
 	"linkshere": "The following pages link to <strong>$2</strong>:",
 	"nolinkshere": "No pages link to <strong>$2</strong>.",
+	"nolinkshere-filter": "No pages link to <strong>$2</strong> with the current search settings.",
 	"nolinkshere-ns": "No pages link to <strong>$2</strong> in the chosen namespace.",
 	"isredirect": "redirect page",
 	"istemplate": "transclusion",

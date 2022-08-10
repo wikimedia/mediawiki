@@ -347,7 +347,13 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			if ( $level == 0 && !$this->including() ) {
 				$out->addHTML( $this->whatlinkshereForm() );
 
-				$msgKey = is_int( $namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
+				if ( $hidelinks || $hidetrans || $hideredirs ) {
+					$msgKey = 'nolinkshere-filter';
+				} elseif ( is_int( $namespace ) ) {
+					$msgKey = 'nolinkshere-ns';
+				} else {
+					$msgKey = 'nolinkshere';
+				}
 				$link = $this->getLinkRenderer()->makeLink(
 					$this->target,
 					null,
