@@ -886,8 +886,6 @@
 	"search-file-match": "(minatampad sa laog kan file)",
 	"search-suggest": "Buot mo daw sabihon: $1",
 	"search-rewritten": "Nagpahiling nin resulta para sa $1. Naghanap nin bako sa $2.",
-	"search-interwiki-caption": "Tugang na mga proyekto",
-	"search-interwiki-default": "$1 na mga resulta:",
 	"search-interwiki-more": "(dakol pa)",
 	"search-interwiki-more-results": "Dakul pang resulta",
 	"search-relatedarticle": "Kauyon",

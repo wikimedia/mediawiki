@@ -1060,8 +1060,6 @@
 	"search-file-match": "(coincide com o conteúdo do ficheiro)",
 	"search-suggest": "Será que quis dizer: $1",
 	"search-rewritten": "A mostrar resultados para $1. Não foram encontrados resultados para $2.",
-	"search-interwiki-caption": "Resultados de projetos irmãos",
-	"search-interwiki-default": "Resultados de $1:",
 	"search-interwiki-more": "(mais)",
 	"search-interwiki-more-results": "mais resultados",
 	"search-relatedarticle": "Relacionado",

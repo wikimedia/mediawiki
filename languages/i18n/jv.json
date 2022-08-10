@@ -871,8 +871,6 @@
 	"search-file-match": "(cocog karo isi berkas)",
 	"search-suggest": "Apa kang panjenengan karsakaké iki: $1",
 	"search-rewritten": "Tuduhaké kasilé $1, nanging golèkaké $2.",
-	"search-interwiki-caption": "Kasil saka proyèk-proyèk sababon",
-	"search-interwiki-default": "Wohing panggolèk $1:",
 	"search-interwiki-more": "(luwih akèh)",
 	"search-interwiki-more-results": "kasil liyané",
 	"search-relatedarticle": "Magepokan",

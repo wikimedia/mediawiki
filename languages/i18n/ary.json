@@ -742,8 +742,6 @@
 	"search-category": "(التصنيف $1)",
 	"search-file-match": "(كيطابق محتوى لفيشي)",
 	"search-suggest": "واش كتقصد: $1",
-	"search-interwiki-caption": "نتائج من لمشاريع لخوت",
-	"search-interwiki-default": "نتائج ديال $1:",
 	"search-interwiki-more": "(كتر)",
 	"search-interwiki-more-results": "نتائج كتر",
 	"search-relatedarticle": "مرتابطة",

@@ -712,8 +712,6 @@
 	"search-redirect": "(pangalihan $1)",
 	"search-section": "(bagiyan $1)",
 	"search-suggest": "Apa maksude Rika kuwe: $1",
-	"search-interwiki-caption": "Proyek liyane",
-	"search-interwiki-default": "Hasil $1:",
 	"search-interwiki-more": "(terusane)",
 	"search-relatedarticle": "Kagandhèng",
 	"searchrelated": "kagandhèng",

@@ -892,8 +892,6 @@
 	"search-file-match": "(ফাইলৰ বিষয়বস্তুৰ লগত মিল পোৱা গৈছে)",
 	"search-suggest": "আপুনি $1 বুজাব খুজিছে নেকি?",
 	"search-rewritten": "$1ৰ ফলাফল দেখুৱাই থকা হৈছে। $2ৰ কোনো ফলাফল পোৱা নগ'ল।",
-	"search-interwiki-caption": "ভগ্নী প্ৰকল্পৰ ফলাফলসমূহ",
-	"search-interwiki-default": "$1ৰ ফলাফলসমূহ:",
 	"search-interwiki-more": "(অধিক)",
 	"search-interwiki-more-results": "অধিক ফলাফল",
 	"search-relatedarticle": "সম্পৰ্কিত",

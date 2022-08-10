@@ -916,8 +916,6 @@
 	"search-category": "(श्रेणी $1)",
 	"search-file-match": "(भेटिएका फाइल सामाग्री)",
 	"search-suggest": "कतै तपाईंको खोजाई : $1 त होइन ?",
-	"search-interwiki-caption": "भ्रातृ परियोजनाहरूबाट परिणामहरू",
-	"search-interwiki-default": "$1देखिका नतिजाहरू:",
 	"search-interwiki-more": "(अझै)",
 	"search-interwiki-more-results": "धेरै परिणामहरू",
 	"search-relatedarticle": "सम्बन्धित",

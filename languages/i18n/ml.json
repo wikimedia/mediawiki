@@ -959,8 +959,6 @@
 	"search-file-match": "(പ്രമാണ ഉള്ളടക്കവുമായി ഒത്തുപോകുന്നുണ്ട്)",
 	"search-suggest": "താങ്കൾ ഉദ്ദേശിച്ചത് $1 എന്നാണോ",
 	"search-rewritten": "$1 എന്നതിനുള്ള ഫലങ്ങൾ കാണിക്കുന്നു. $2 എന്നതിന് ഫലങ്ങൾ കണ്ടെത്താനായില്ല.",
-	"search-interwiki-caption": "സഹോദര സംരംഭങ്ങളിൽനിന്നുള്ള ഫലങ്ങൾ",
-	"search-interwiki-default": "$1 വിക്കിയിൽ നിന്നുള്ള ഫലങ്ങൾ:",
 	"search-interwiki-more": "(കൂടുതൽ)",
 	"search-interwiki-more-results": "കൂടുതൽ ഫലങ്ങൾ",
 	"search-relatedarticle": "ബന്ധപ്പെട്ടവ",

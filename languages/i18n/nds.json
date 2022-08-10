@@ -621,8 +621,6 @@
 	"search-redirect": "(Redirect $1)",
 	"search-section": "(Afsnitt $1)",
 	"search-suggest": "Hest du „$1“ meent?",
-	"search-interwiki-caption": "Süsterprojekten",
-	"search-interwiki-default": "$1 Resultaten:",
 	"search-interwiki-more": "(mehr)",
 	"search-relatedarticle": "Verwandt",
 	"searchrelated": "verwandt",

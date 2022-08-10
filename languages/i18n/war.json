@@ -788,8 +788,6 @@
 	"search-category": "(kaarangay $1)",
 	"search-file-match": "(nakaigo hin pareho nga file content)",
 	"search-suggest": "Buot sidngon mo ba: $1",
-	"search-interwiki-caption": "Mga resulta tikang han bugto nga mga proyekto",
-	"search-interwiki-default": "Mga resulta tikang han $1:",
 	"search-interwiki-more": "(damo pa)",
 	"search-relatedarticle": "kasumapy",
 	"searchrelated": "kadugtong",

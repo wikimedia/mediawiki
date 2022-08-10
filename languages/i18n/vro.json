@@ -631,8 +631,6 @@
 	"search-section": "(alljago $1)",
 	"search-file-match": "(vastas faili sisulõ)",
 	"search-suggest": "Kas mõtlit: $1",
-	"search-interwiki-caption": "Sõsarprojektiq",
-	"search-interwiki-default": "$1 tulõmiq:",
 	"search-interwiki-more": "(viil)",
 	"search-relatedarticle": "Otsiq samasugutsit lehti",
 	"searchrelated": "samasugunõ",

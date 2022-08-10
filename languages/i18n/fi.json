@@ -1054,8 +1054,6 @@
 	"search-file-match": "(vastaa tiedoston sisältöä)",
 	"search-suggest": "Tarkoititko: $1",
 	"search-rewritten": "Näytetään tulokset haulla $1. Haulla $2 ei löytynyt tuloksia.",
-	"search-interwiki-caption": "Tulokset sisarhankkeista",
-	"search-interwiki-default": "Tulokset osoitteesta $1:",
 	"search-interwiki-more": "(lisää)",
 	"search-interwiki-more-results": "lisää tuloksia",
 	"search-relatedarticle": "Hae samankaltaisia sivuja",

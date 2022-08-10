@@ -742,8 +742,6 @@
 	"search-section": "($1 бёлюм)",
 	"search-file-match": "(файлны ичиндегиси бла бирди)",
 	"search-suggest": "Муну излей болурмусуз: $1",
-	"search-interwiki-caption": "Джууукъ проектле",
-	"search-interwiki-default": "$1 сайтдан эсебле:",
 	"search-interwiki-more": "(дагъыда)",
 	"search-relatedarticle": "Байламлы",
 	"searchrelated": "бейламлы",

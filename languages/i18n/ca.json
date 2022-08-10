@@ -1045,8 +1045,6 @@
 	"search-file-match": "(coincideix amb el contingut del fitxer)",
 	"search-suggest": "Volíeu dir: $1",
 	"search-rewritten": "Tot seguit es mostren els resultats de $1. No s'han trobat resultats per $2.",
-	"search-interwiki-caption": "Resultats dels projectes germans",
-	"search-interwiki-default": "Resultats de $1:",
 	"search-interwiki-more": "(més)",
 	"search-interwiki-more-results": "més resultats",
 	"search-relatedarticle": "Relacionat",

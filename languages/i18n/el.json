@@ -1034,8 +1034,6 @@
 	"search-file-match": "(ταιριάζει με το περιεχόμενο του αρχείου)",
 	"search-suggest": "Μήπως εννοούσατε: $1",
 	"search-rewritten": "Εμφανίζονται αποτελέσματα για $1. Δεν βρέθηκαν αποτελέσματα για $2.",
-	"search-interwiki-caption": "Αποτελέσματα από αδελφικά εγχειρήματα",
-	"search-interwiki-default": "$1 αποτελέσματα:",
 	"search-interwiki-more": "(περισσότερα)",
 	"search-interwiki-more-results": "περισσότερα αποτελέσματα",
 	"search-relatedarticle": "Σχετικά",

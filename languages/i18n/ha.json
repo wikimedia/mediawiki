@@ -446,8 +446,6 @@
 	"search-section": "(sashe $1)",
 	"search-file-match": "(ya dace da kunshiyar fayil)",
 	"search-suggest": "Kuna nufin: $1",
-	"search-interwiki-caption": "Sakamako daga ƴan uwan ayyuka",
-	"search-interwiki-default": "Sakamakon daga $1:",
 	"search-interwiki-more": "(ƙari)",
 	"searchall": "duka",
 	"search-showingresults": "{{PLURAL:$4|Sakamako <strong>$1</strong> na <strong>$3</strong>|Sakamakoki <strong>$1 – $2</strong> na <strong>$3</strong>}}",

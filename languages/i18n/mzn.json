@@ -434,7 +434,6 @@
 	"search-redirect": "(بَرسی‌یه $1 جه)",
 	"search-section": "(تیکه $1)",
 	"search-suggest": "شما اینتا ره نخاسنی: $1",
-	"search-interwiki-caption": "خاخر پروژه‌ئون",
 	"search-interwiki-more": "(ویشتر)",
 	"searchall": "همه",
 	"search-showingresults": "{{PLURAL:$4|نتایج <strong>$1</strong> از <strong>$3</strong>|نتایج <strong>$1 - $2</strong> از <strong>$3</strong>}}",

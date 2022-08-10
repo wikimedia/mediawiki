@@ -583,8 +583,6 @@
 	"search-section": "(विभाग $1)",
 	"search-file-match": "(फ़ाइल सामग्री सँ मेल खाय छै)",
 	"search-suggest": "की आपनै के मतलब $1 छेलै?",
-	"search-interwiki-caption": "अन्य प्रकल्प सिनी सँ परिणाम",
-	"search-interwiki-default": "$1 सँ परिणाम:",
 	"search-interwiki-more": "(आरू)",
 	"searchall": "सब्भे",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> मं॑ स॑ <strong>$1</strong> परिणाम|<strong>$3</strong> मं॑ स॑ परिणाम <strong>$1 - $2</strong>}}",

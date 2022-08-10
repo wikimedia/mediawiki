@@ -937,8 +937,6 @@
 	"search-file-match": "(संचिका आशयाशी अनुरुपते)",
 	"search-suggest": "तुम्हाला हेच म्हणायचे का: $1",
 	"search-rewritten": "$1 साठीचे निकाल दाखवित आहे.त्याऐवजी $2 चा शोध घ्या.",
-	"search-interwiki-caption": "सह-प्रकल्पांपासून प्राप्त निकाल",
-	"search-interwiki-default": "$1चे निकाल:",
 	"search-interwiki-more": "(आणखी)",
 	"search-interwiki-more-results": "अधिक निकाल",
 	"search-relatedarticle": "जवळील",

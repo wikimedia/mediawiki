@@ -749,8 +749,6 @@
 	"search-file-match": "(فایلی محتوایی یکرنگی)",
 	"search-suggest": "آیا شمی منظور ایش ات: $1",
 	"search-rewritten": "$1‌ئی نتیجه‌ئانی نشان داتین. گشتین په $2‌ئی جاگا.",
-	"search-interwiki-caption": "گوارین پروژه ئان",
-	"search-interwiki-default": "نتایج شه $1 :",
 	"search-interwiki-more": "(گیشتیر)",
 	"search-relatedarticle": "مرتبط",
 	"searchrelated": "مرتبط",

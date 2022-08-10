@@ -762,8 +762,6 @@
 	"search-section": "(raki $1)",
 	"search-file-match": "(willañiqip samiqninta taripan)",
 	"search-suggest": "Kaytachu niyta munanki? - $1",
-	"search-interwiki-caption": "Ñaña ruraykamaykuna",
-	"search-interwiki-default": "$1-manta taripasqakuna:",
 	"search-interwiki-more": "(aswan)",
 	"search-relatedarticle": "Apanakuq",
 	"searchrelated": "apanakuq",

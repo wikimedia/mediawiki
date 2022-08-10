@@ -472,8 +472,6 @@
 	"search-section": "(cacho $1)",
 	"search-file-match": "(coincide cul cuntenido de l fexeiro)",
 	"search-suggest": "Será que queries dezir: $1",
-	"search-interwiki-caption": "Resultados de porjetos armanos",
-	"search-interwiki-default": "Resultados de $1:",
 	"search-interwiki-more": "(mais)",
 	"searchall": "todos",
 	"showingresultsinrange": "Apersenta-se ambaixo {{PLURAL:$1|<strong>1</strong> resultado|anté <strong>$1</strong> resultados}} ne l'anterbalo #<strong>$2</strong> a #<strong>$3</strong>.",

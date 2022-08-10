@@ -947,8 +947,6 @@
 	"search-file-match": "(atitinka rinkmenos turinį)",
 	"search-suggest": "Galbūt norėjote ieškoti: $1",
 	"search-rewritten": "Rodomi $1 rezultatai. Nerasta jokių $2 rezultatų.",
-	"search-interwiki-caption": "Kitų projektų rezultatai",
-	"search-interwiki-default": "Rezultatai iš $1:",
 	"search-interwiki-more": "(daugiau)",
 	"search-interwiki-more-results": "daugiau rezultatų",
 	"search-relatedarticle": "Susiję",

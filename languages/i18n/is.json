@@ -931,8 +931,6 @@
 	"search-file-match": "(passar við innihald skráa)",
 	"search-suggest": "Varstu að leita að: $1",
 	"search-rewritten": "Sýni niðurstöður $1. Ekkert fannst fyrir $2.",
-	"search-interwiki-caption": "Niðurstöður úr systurverkefnum",
-	"search-interwiki-default": "Útkomur frá $1:",
 	"search-interwiki-more": "(fleiri)",
 	"search-interwiki-more-results": "fleiri niðurstöður",
 	"search-relatedarticle": "Tengt",

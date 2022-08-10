@@ -521,8 +521,6 @@
 	"search-section": "(seksion $1)",
 	"search-category": "(kategorya $1)",
 	"search-suggest": "Ing buri mung sabian: $1",
-	"search-interwiki-caption": "Kapatad a proyektu",
-	"search-interwiki-default": "$1 linual/resulta:",
 	"search-interwiki-more": "(dakal pa)",
 	"search-relatedarticle": "Kamaganak",
 	"searchrelated": "kaugne",

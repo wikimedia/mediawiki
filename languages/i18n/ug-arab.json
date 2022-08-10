@@ -852,8 +852,6 @@
 	"search-category": "(تۈر $1)",
 	"search-file-match": "(ھۆججەت مەزمۇنى ماس كەلگەن)",
 	"search-suggest": "ئىزدىمەكچى بولغىنىڭىز: $1",
-	"search-interwiki-caption": "ھەمشىرە قۇرۇلۇشلار",
-	"search-interwiki-default": "$1 دىكى نەتىجە:",
 	"search-interwiki-more": "(تېخىمۇ كۆپ)",
 	"search-interwiki-more-results": "تېخىمۇ كۆپ نەتىجە",
 	"search-relatedarticle": "ئالاقىدار",

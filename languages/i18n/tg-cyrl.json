@@ -739,8 +739,6 @@
 	"search-section": "(қисмат $1)",
 	"search-category": "(гурӯҳи $1)",
 	"search-suggest": "Оё шумо инро дар назар доред: $1",
-	"search-interwiki-caption": "Лоиҳаҳои хоҳарӣ",
-	"search-interwiki-default": "Натоиҷ аз $1:",
 	"search-interwiki-more": "(бештар)",
 	"search-interwiki-more-results": "натиҷаи бештар",
 	"search-relatedarticle": "Алоқаманд",

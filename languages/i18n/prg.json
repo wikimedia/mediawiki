@@ -593,8 +593,6 @@
 	"search-section": "(sekciōni $1)",
 	"search-file-match": "(passaui prei zūrbrukes ēnturan)",
 	"search-suggest": "Mīriwuns(si) tū ezze: $1",
-	"search-interwiki-caption": "Paligwāi prōjaktai",
-	"search-interwiki-default": "Rezultātai per $1:",
 	"search-interwiki-more": "(tūls)",
 	"search-relatedarticle": "Ristan",
 	"searchrelated": "gintawai",

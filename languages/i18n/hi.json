@@ -1038,8 +1038,6 @@
 	"search-file-match": "(चित्र की सामग्री से मेल खाता है)",
 	"search-suggest": "कहीं आपका मतलब $1 तो नहीं था?",
 	"search-rewritten": "$1 हेतु खोज परिणाम निम्न हैं। $2 हेतु खोज खोजें।",
-	"search-interwiki-caption": "अन्य प्रकल्पों से परिणाम",
-	"search-interwiki-default": "$1 से परिणाम:",
 	"search-interwiki-more": "(और)",
 	"search-interwiki-more-results": "अधिक परिणाम",
 	"search-relatedarticle": "सम्बंधित",

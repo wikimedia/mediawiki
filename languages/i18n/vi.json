@@ -1029,8 +1029,6 @@
 	"search-file-match": "(khớp nội dung tập tin)",
 	"search-suggest": "Có phải bạn muốn tìm: $1",
 	"search-rewritten": "Đang xem các kết quả cho $1. Không tìm thấy kết quả nào cho $2.",
-	"search-interwiki-caption": "Kết quả từ các dự án liên quan",
-	"search-interwiki-default": "Kết quả từ $1:",
 	"search-interwiki-more": "(thêm)",
 	"search-interwiki-more-results": "thêm kết quả",
 	"search-relatedarticle": "Liên quan",

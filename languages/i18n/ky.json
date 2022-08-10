@@ -589,8 +589,6 @@
 	"search-category": "($1 категория)",
 	"search-file-match": "(файлдын мазмунуна дал келет)",
 	"search-suggest": "Балким, издегениңиз бул: $1",
-	"search-interwiki-caption": "Тектеш долбоорлор",
-	"search-interwiki-default": "$1 жыйын.:",
 	"search-interwiki-more": "(көбүрөөк)",
 	"search-relatedarticle": "Байланыштуу",
 	"searchrelated": "байланыштуу",

@@ -1073,8 +1073,6 @@
 	"search-file-match": "(يطابق محتوى الملف)",
 	"search-suggest": "أتقصد: $1",
 	"search-rewritten": "إظهار النتائج ل$1،  لم يتم العثور على نتائج ل$2.",
-	"search-interwiki-caption": "نتائج من المشاريع الشقيقة",
-	"search-interwiki-default": "نتائح من $1:",
 	"search-interwiki-more": "(المزيد)",
 	"search-interwiki-more-results": "المزيد من النتائج",
 	"search-relatedarticle": "مرتبطة",

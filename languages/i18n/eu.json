@@ -980,8 +980,6 @@
 	"search-file-match": "(fitxategiaren edukiarekin bat dator)",
 	"search-suggest": "$1 esan nahi zenuen",
 	"search-rewritten": "\"$1\" bilaketaren emaitzak erakusten. Ez da aurkitu \"$2\" bilaketaren emaitzarik.",
-	"search-interwiki-caption": "Beste pareko proiektuen emaitzak",
-	"search-interwiki-default": "$1(r)en emaitzak:",
 	"search-interwiki-more": "(gehiago)",
 	"search-interwiki-more-results": "emaitza gehiago",
 	"search-relatedarticle": "Erlazionatua",

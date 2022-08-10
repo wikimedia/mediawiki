@@ -1059,8 +1059,6 @@
 	"search-file-match": "(cocok dengan isi berkas)",
 	"search-suggest": "Mungkin maksud Anda adalah: $1",
 	"search-rewritten": "Menampilkan hasil untuk $1. Tidak ditemukan hasil untuk $2.",
-	"search-interwiki-caption": "Hasil dari proyek lain",
-	"search-interwiki-default": "Hasil dari $1:",
 	"search-interwiki-more": "(selanjutnya)",
 	"search-interwiki-more-results": "hasil lainnya",
 	"search-relatedarticle": "Terkait",

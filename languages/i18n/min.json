@@ -948,8 +948,6 @@
 	"search-file-match": "(isi berkas nan sasuai)",
 	"search-suggest": "Mungkin makasuiknyo: $1",
 	"search-rewritten": "Manampilan hasil untuak $1. Cari selain $2.",
-	"search-interwiki-caption": "Hasil dari proyek lain",
-	"search-interwiki-default": "Hasil dari $1:",
 	"search-interwiki-more": "(salanjuiknyo)",
 	"search-interwiki-more-results": "hasil lainnyo",
 	"search-relatedarticle": "Bakaitan",

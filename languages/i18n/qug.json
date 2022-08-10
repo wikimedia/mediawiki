@@ -336,8 +336,6 @@
 	"search-redirect": "($1-manta pushashka)",
 	"search-section": "(raki $1)",
 	"search-suggest": "$1 maskankapa munankichu ?",
-	"search-interwiki-caption": "Ñaña ruraykamaykuna",
-	"search-interwiki-default": "$1 tarishka imakuna:",
 	"search-interwiki-more": "(ashtawan)",
 	"searchrelated": "tinkishka",
 	"searchall": "tukuy",

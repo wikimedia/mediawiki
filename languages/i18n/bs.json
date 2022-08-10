@@ -948,8 +948,6 @@
 	"search-file-match": "(podudara se sadržaj datoteke)",
 	"search-suggest": "Jeste li mislili: $1",
 	"search-rewritten": "Prikazujem rezultate za $1. Nema rezultata za $2.",
-	"search-interwiki-caption": "Rezultati s bratskih projekata",
-	"search-interwiki-default": "Rezultati sa $1:",
 	"search-interwiki-more": "(više)",
 	"search-interwiki-more-results": "više rezultata",
 	"search-relatedarticle": "Povezano",

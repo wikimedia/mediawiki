@@ -272,7 +272,6 @@
 	"searchprofile-articles-tooltip": "Sosa na $1",
 	"search-result-size": "$1 ({{PLURAL:$2|mpovo 1|bampovo $2}})",
 	"search-section": "(kibuku $1)",
-	"search-interwiki-default": "Bandându $1:",
 	"search-interwiki-more": "(dyaka)",
 	"searchall": "nyonso",
 	"powersearch-toggleall": "Nyonso",

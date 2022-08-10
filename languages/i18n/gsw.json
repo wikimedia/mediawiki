@@ -857,8 +857,6 @@
 	"search-file-match": "(Resultat us em Inhalt vo Dateie)",
 	"search-suggest": "Hesch „$1“ gmeint?",
 	"search-rewritten": "Resultat für $1 sy azeigt. Würklech nach $2 sueche.",
-	"search-interwiki-caption": "Schweschterprojäkt",
-	"search-interwiki-default": "Ergäbnis us $1:",
 	"search-interwiki-more": "(meh)",
 	"search-relatedarticle": "Verwandti",
 	"searchrelated": "verwandt",

@@ -715,8 +715,6 @@
 	"search-section": "(sekcyjŏ $1)",
 	"search-file-match": "(ôdpowiadŏ zawartości zbioru)",
 	"search-suggest": "Niy rozchodzi sie ô: $1",
-	"search-interwiki-caption": "Śostrzane projekty",
-	"search-interwiki-default": "$1 wyńiki:",
 	"search-interwiki-more": "(wjyncyj)",
 	"search-relatedarticle": "Podane",
 	"searchrelated": "podane",

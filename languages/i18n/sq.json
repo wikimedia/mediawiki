@@ -912,8 +912,6 @@
 	"search-file-match": "(përputhet me përmbajtjen e skedarit)",
 	"search-suggest": "Mos kishit në mendje: $1",
 	"search-rewritten": "Duke shfaqur rezultatet për $1. Nuk u gjet asnjë rezultat për $2.",
-	"search-interwiki-caption": "Rezultate nga projekte simotra",
-	"search-interwiki-default": "Rezultatet nga $1:",
 	"search-interwiki-more": "(më shumë)",
 	"search-interwiki-more-results": "më shumë rezultate",
 	"search-relatedarticle": "Të ngjashme",

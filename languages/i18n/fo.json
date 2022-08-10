@@ -758,8 +758,6 @@
 	"search-file-match": "(svarar til innihaldið av fíluni)",
 	"search-suggest": "Meinti tú: $1",
 	"search-rewritten": "Vísir úrslit fyri $1. Leita í staðin eftir $2.",
-	"search-interwiki-caption": "Líknandi verkætlanir",
-	"search-interwiki-default": "Úrslit frá $1:",
 	"search-interwiki-more": "(meira)",
 	"search-relatedarticle": "Líknandi",
 	"searchrelated": "líknandi",

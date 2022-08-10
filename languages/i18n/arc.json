@@ -444,8 +444,6 @@
 	"search-redirect": "(ܨܝܒ $1)",
 	"search-section": "(ܡܢܬܐ $1)",
 	"search-suggest": "ܐܪܐ ܣܟܠܬ ܗܘܐ: $1",
-	"search-interwiki-caption": "ܬܪ̈ܡܝܬܐ ܐܚܘܬ̈ܐ",
-	"search-interwiki-default": "ܦܠܛ̈ܐ ܕ $1:",
 	"search-interwiki-more": "(ܝܬܝܪ)",
 	"search-relatedarticle": "ܐܚܝܢܝ̈ܐ",
 	"searchrelated": "ܐܚܝܢܝ̈ܐ",

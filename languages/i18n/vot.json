@@ -269,8 +269,6 @@
 	"search-redirect": "(mešaituz $1)",
 	"search-section": "(alajako $1)",
 	"search-suggest": "Tähetidko: $1",
-	"search-interwiki-caption": "Sõzarprojektid",
-	"search-interwiki-default": "tulõmuhsõd $1:",
 	"search-interwiki-more": "(lisä)",
 	"searchrelated": "sittu",
 	"searchall": "kõik",

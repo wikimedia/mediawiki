@@ -842,8 +842,6 @@
 	"search-category": "(وېشنيزه $1)",
 	"search-file-match": "(د دوتنو مېنځپانگې سره ورته دي)",
 	"search-suggest": "آيا همدا مو موخه وه: $1",
-	"search-interwiki-caption": "د خورلڼو پروژو پایلې",
-	"search-interwiki-default": "پايلې له $1 څخه:",
 	"search-interwiki-more": "(نور)",
 	"search-interwiki-more-results": "نورې پايلې",
 	"search-relatedarticle": "اړونده",

@@ -940,8 +940,6 @@
 	"search-file-match": "(файл эстәлеге менән тура килә)",
 	"search-suggest": "Бәлки, ошоно эҙләйһегеҙҙер: $1",
 	"search-rewritten": "$1 нәтижәһе күрһәтелгән. $2 урынына эҙләргә.",
-	"search-interwiki-caption": "Туғандаш проекттар һөҙөмтәләре",
-	"search-interwiki-default": "$1 һөҙөмтәһе:",
 	"search-interwiki-more": "(тағы)",
 	"search-interwiki-more-results": "Күберәк һөҙөмтә кәрәк",
 	"search-relatedarticle": "Ҡағылышлы",

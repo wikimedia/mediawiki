@@ -1099,8 +1099,6 @@
 	"search-file-match": "(符合檔案內容)",
 	"search-suggest": "您指的是不是：$1",
 	"search-rewritten": "顯示$1的結果，找不到$2的結果。",
-	"search-interwiki-caption": "源自姊妹專案的結果",
-	"search-interwiki-default": "來自 $1 的結果：",
 	"search-interwiki-more": "(更多)",
 	"search-interwiki-more-results": "更多結果",
 	"search-relatedarticle": "相關",

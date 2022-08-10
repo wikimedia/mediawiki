@@ -574,8 +574,6 @@
 	"search-redirect": "(ёллама $1)",
 	"search-section": "(болюк $1)",
 	"search-suggest": "Бунымы демеге истединъиз: $1",
-	"search-interwiki-caption": "Къардаш лейхалар",
-	"search-interwiki-default": "$1 нетидже:",
 	"search-interwiki-more": "(даа чокъ)",
 	"search-relatedarticle": "Багълы",
 	"searchrelated": "багълы",

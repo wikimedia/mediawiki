@@ -1103,8 +1103,6 @@
 	"search-file-match": "(ファイルの内容との一致)",
 	"search-suggest": "もしかして: $1",
 	"search-rewritten": "$1 の結果を表示しています。$2 の結果は見つかりませんでした。",
-	"search-interwiki-caption": "姉妹プロジェクトの結果",
-	"search-interwiki-default": "$1からの結果:",
 	"search-interwiki-more": "(続き)",
 	"search-interwiki-more-results": "結果をさらに取得",
 	"search-relatedarticle": "関連",

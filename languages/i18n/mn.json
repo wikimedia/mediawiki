@@ -792,8 +792,6 @@
 	"search-category": "($1 категори)",
 	"search-file-match": "(файлын агуулгад тохирно)",
 	"search-suggest": "Та $1 гэж хайя гэсэн үү?",
-	"search-interwiki-caption": "Ах дүү төслүүд",
-	"search-interwiki-default": "$1 -ын үр дүн:",
 	"search-interwiki-more": "（илүү их）",
 	"search-relatedarticle": "Холбоотой",
 	"searchrelated": "холбоотой",

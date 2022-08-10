@@ -841,8 +841,6 @@
 	"search-file-match": "(لەگەڵ ناوەڕۆکی پەرگەدا دەگونجێت)",
 	"search-suggest": "ئایا مەبەستت ئەمە بوو: $1",
 	"search-rewritten": "نیشاندانی ئاکامەکان بۆ $1. لە جیات ئەو لە $2 بگەڕێ.",
-	"search-interwiki-caption": "ئەنجامەکان لە پرۆژە خوشکەکان",
-	"search-interwiki-default": "ئاکام لە $1:",
 	"search-interwiki-more": "(زیاتر)",
 	"search-interwiki-more-results": "ئەنجامی زیاتر",
 	"search-relatedarticle": "پەیوەست",

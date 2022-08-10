@@ -1063,8 +1063,6 @@
 	"search-file-match": "(تشابه محتوای پرونده)",
 	"search-suggest": "آیا منظورتان $1 بود؟",
 	"search-rewritten": "نمایش نتایج $1. نتیجه‌ای برای $2 یافت نشد.",
-	"search-interwiki-caption": "نتایج از پروژه‌های خواهر",
-	"search-interwiki-default": "نتایج از $1:",
 	"search-interwiki-more": "(بیشتر)",
 	"search-interwiki-more-results": "نتایج بیشتر",
 	"search-relatedarticle": "مرتبط",

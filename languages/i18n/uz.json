@@ -649,8 +649,6 @@
 	"search-file-match": "(fayl kontentiga mos)",
 	"search-suggest": "Balki buni nazarda tutgandirsiz: $1",
 	"search-rewritten": "$1 uchun natijalar koʻrsatilyapdi. $2 uchun natijalar topilmadi.",
-	"search-interwiki-caption": "Aloqador loyihalar",
-	"search-interwiki-default": "$1 natijalar:",
 	"search-interwiki-more": "(yana)",
 	"search-interwiki-more-results": "yana natijalar",
 	"search-relatedarticle": "Bog'liq",

@@ -891,8 +891,6 @@
 	"search-file-match": "(trovada en contenida de fix)",
 	"search-suggest": "Esce tu ia vole dise: $1",
 	"search-rewritten": "Resultas es mostrada per $1. Xerca $2 en loca.",
-	"search-interwiki-caption": "Resultas de projetas relatada",
-	"search-interwiki-default": "Resultas de $1:",
 	"search-interwiki-more": "(plu)",
 	"search-interwiki-more-results": "plu resultas",
 	"search-relatedarticle": "Relatada",

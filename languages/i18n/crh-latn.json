@@ -623,8 +623,6 @@
 	"search-file-match": "(fayl içerine uyğun)",
 	"search-suggest": "Bunımı demege istediñiz: $1",
 	"search-rewritten": "$1 içün netice kösterile. $2 içün netice tapılmadı.",
-	"search-interwiki-caption": "Qardaş leyhalardan neticeler",
-	"search-interwiki-default": "$1 netice:",
 	"search-interwiki-more": "(daa çoq)",
 	"search-interwiki-more-results": "Daa köp neticeler",
 	"search-relatedarticle": "Bağlı",

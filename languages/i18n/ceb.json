@@ -477,8 +477,6 @@
 	"search-redirect": "(redirek gikan sa $1)",
 	"search-section": "(bahin $1)",
 	"search-suggest": "Imo bang buot ipasabot: $1",
-	"search-interwiki-caption": "Mga kaubang proyekto",
-	"search-interwiki-default": "$1 ka mga resulta:",
 	"search-interwiki-more": "(dugang pa)",
 	"search-nonefound": "Walay mga resulta nga nag-match sa gipangita.",
 	"powersearch-legend": "Abansadong pagpangita",

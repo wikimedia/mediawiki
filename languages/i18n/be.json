@@ -1011,8 +1011,6 @@
 	"search-file-match": "(адпавядае змесціву файла)",
 	"search-suggest": "Ці хацелі вы сказаць: $1",
 	"search-rewritten": "Паказаны вынікі для $1. Замест гэтага шукаць $2.",
-	"search-interwiki-caption": "Вынікі з роднасных праектаў",
-	"search-interwiki-default": "Вынікі з $1:",
 	"search-interwiki-more": "(яшчэ)",
 	"search-interwiki-more-results": "больш вынікаў",
 	"search-relatedarticle": "Дачыняюцца*",

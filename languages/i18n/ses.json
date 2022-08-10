@@ -823,8 +823,6 @@
 	"search-category": "(dumi $1)",
 	"search-file-match": "(ga tenji nda tuku gundekuna)",
 	"search-suggest": "War n' ka tammahãa: $1",
-	"search-interwiki-caption": "Porože ɲayzey hunhayey",
-	"search-interwiki-default": "Hunyaney $1 ga:",
 	"search-interwiki-more": "(tontoni)",
 	"search-relatedarticle": "Himante",
 	"searchrelated": "himante",

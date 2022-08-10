@@ -534,8 +534,6 @@
 	"search-section": "(gearradh $1)",
 	"search-suggest": "An raibh $1 á lorg agat?",
 	"search-rewritten": "Ag taispeáint torthaí le haghaidh $1. Ina ionad sin, cuardaigh le haghaidh $2.",
-	"search-interwiki-caption": "Comhthionscadail",
-	"search-interwiki-default": "Torthaí ó $1:",
 	"search-interwiki-more": "(níos mó)",
 	"search-relatedarticle": "Gaolmhar",
 	"searchrelated": "gaolmhara",

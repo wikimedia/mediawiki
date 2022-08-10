@@ -931,8 +931,6 @@
 	"search-file-match": "(билэ иһинээҕитин кытта сөп түбэһэр)",
 	"search-suggest": "Баҕар маннык диэри гыммытыҥ буолуо: $1",
 	"search-rewritten": "Бу түмүктэрэ көстөллөр: $1. Ол оннугар маны көрдөт: $2.",
-	"search-interwiki-caption": "Уруулуу бырайыактарга",
-	"search-interwiki-default": "$1 түмүгэ:",
 	"search-interwiki-more": "(өссө)",
 	"search-interwiki-more-results": "эбии көстүбүт",
 	"search-relatedarticle": "Сигэнэр",

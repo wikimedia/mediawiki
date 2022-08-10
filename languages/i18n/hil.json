@@ -718,8 +718,6 @@
 	"search-redirect": "(ginpadulong halin sa $1)",
 	"search-section": "(seksiyon $1)",
 	"search-suggest": "Ang buot mo silingon: $1",
-	"search-interwiki-caption": "Mga Utod proyekto",
-	"search-interwiki-default": "$1 mga resulta:",
 	"search-interwiki-more": "(damu)",
 	"search-relatedarticle": "Konektado",
 	"searchrelated": "konektado",

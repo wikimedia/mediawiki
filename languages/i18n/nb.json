@@ -1028,8 +1028,6 @@
 	"search-file-match": "(matcher filinnhold)",
 	"search-suggest": "Mente du: $1",
 	"search-rewritten": "Viser resultater for $1. Ingen resultater funnet for $2.",
-	"search-interwiki-caption": "Resultater fra søsterprosjekter",
-	"search-interwiki-default": "Resultater fra $1:",
 	"search-interwiki-more": "(mer)",
 	"search-interwiki-more-results": "flere resultater",
 	"search-relatedarticle": "Relatert",

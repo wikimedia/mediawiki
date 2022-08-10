@@ -921,8 +921,6 @@
 	"search-file-match": "(yn cyfateb i gynnwys y ffeil)",
 	"search-suggest": "Ai am hyn y chwiliwch: $1",
 	"search-rewritten": "Dangosir canlyniadauar gyfer $1. Chwiliwch am $2.",
-	"search-interwiki-caption": "Canlyniadau o chhwaer-brosiectau",
-	"search-interwiki-default": "Y canlyniadau o $1:",
 	"search-interwiki-more": "(rhagor)",
 	"search-interwiki-more-results": "rhagor o ganlyniadau",
 	"search-relatedarticle": "Erthyglau eraill tebyg",

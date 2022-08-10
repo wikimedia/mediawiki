@@ -928,8 +928,6 @@
 	"search-file-match": "(ემთხვევა ფაილის შინაარსს)",
 	"search-suggest": "ხომ არ იგულისხმეთ: $1?",
 	"search-rewritten": "ნაჩვენებია შედეგები $1-სთვის. $2-ისთვის არცერთი შედეგი არ მოიძებნა.",
-	"search-interwiki-caption": "შედეგები დობილი პროექტებიდან",
-	"search-interwiki-default": "შედეგები $1-დან:",
 	"search-interwiki-more": "(გაგრძელება)",
 	"search-interwiki-more-results": "მეტი შედეგი",
 	"search-relatedarticle": "დაკავშირებული",

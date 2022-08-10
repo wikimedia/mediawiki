@@ -543,8 +543,6 @@
 	"search-section": "(maqaalka $1)",
 	"search-category": "(qaybta $1)",
 	"search-suggest": "Ma waxaad ulajeeday: $1",
-	"search-interwiki-caption": "Mashaariicda walaalaha",
-	"search-interwiki-default": "$1 natiijooyinka:",
 	"search-interwiki-more": "(wax kale)",
 	"search-relatedarticle": "La xiriiro",
 	"searchrelated": "La xiriiro",

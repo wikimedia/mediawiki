@@ -912,8 +912,6 @@
 	"search-file-match": "(файлдың мазмұны сәйкес келеді)",
 	"search-suggest": "Мүмкін осы болар: $1",
 	"search-rewritten": "$1 дегенге қатысты нәтижелер көрсетілуде. $2 дегенмен бірге іздеу.",
-	"search-interwiki-caption": "Бауырлас жобалар",
-	"search-interwiki-default": "$1 дегеннен нәтиже:",
 	"search-interwiki-more": "(көбірек)",
 	"search-relatedarticle": "Қатысты",
 	"searchrelated": "қатысты",

@@ -833,8 +833,6 @@
 	"search-category": "(वर्गः $1)",
 	"search-file-match": "(सञ्चिकापाठेन सह मेलः अस्ति)",
 	"search-suggest": "किं भवतः/भवत्याः आशयः एवमस्ति : $1",
-	"search-interwiki-caption": "बन्धु-प्रकल्पाः",
-	"search-interwiki-default": "$1 तः परिणामाः :",
 	"search-interwiki-more": "(अधिकानि)",
 	"search-relatedarticle": "सम्बद्धानि",
 	"searchrelated": "सम्बद्धानि",

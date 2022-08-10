@@ -972,8 +972,6 @@
 	"search-file-match": "(odgovara sadržaju datoteke)",
 	"search-suggest": "Da li ste mislili: $1",
 	"search-rewritten": "Prikazujem rezultate za $1. Nema rezultata za $2.",
-	"search-interwiki-caption": "Ishod s bratskih projekata",
-	"search-interwiki-default": "Rezultati od $1:",
 	"search-interwiki-more": "(više)",
 	"search-interwiki-more-results": "više stavka",
 	"search-relatedarticle": "Povezano",

@@ -719,8 +719,6 @@
 	"search-file-match": "(bi naveroka dosye re lê te)",
 	"search-suggest": "Gelo mebesta te ev bû: $1",
 	"search-rewritten": "Encamên ji bo $1 tên nîşandan. Ti encam ji bo $2 nehat dîtin.",
-	"search-interwiki-caption": "Netîceyên ji projeyên hevçeng",
-	"search-interwiki-default": "Encamên ji $1:",
 	"search-interwiki-more": "(bêhtir)",
 	"search-interwiki-more-results": "bêhtir encam",
 	"search-relatedarticle": "Pêwendîdar",

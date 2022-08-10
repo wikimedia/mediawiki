@@ -492,8 +492,6 @@
 	"search-redirect": "(riidirek $1)",
 	"search-section": "(sekshan $1)",
 	"search-suggest": "Yu wehn miin: $1",
-	"search-interwiki-caption": "Sista prajek",
-	"search-interwiki-default": "$1 rizoltdem:",
 	"search-interwiki-more": "(muo)",
 	"searchall": "aal",
 	"search-showingresults": "{{PLURAL:$4|Rizolt <strong>$1</strong> a <strong>$3</strong>|Rizoltdem <strong>$1 - $2</strong> a <strong>$3</strong>}}‎",

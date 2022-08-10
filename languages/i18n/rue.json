@@ -779,8 +779,6 @@
 	"search-redirect": "(напрямити $1)",
 	"search-section": "(секція $1)",
 	"search-suggest": "Може сьте мали на мыслї: $1",
-	"search-interwiki-caption": "Сестерьскы проєкты",
-	"search-interwiki-default": "$1 резултаты:",
 	"search-interwiki-more": "(веце)",
 	"search-relatedarticle": "Звязаный",
 	"searchrelated": "звязаный",

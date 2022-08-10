@@ -644,8 +644,6 @@
 	"search-redirect": "(potilombuso hilo $1)",
 	"search-section": "(bogian $1)",
 	"search-suggest": "$1 ot komoyonnu?",
-	"search-interwiki-caption": "Taka do purujik",
-	"search-interwiki-default": "Kootuson $1:",
 	"search-interwiki-more": "(lobi)",
 	"search-relatedarticle": "Kompinaian",
 	"searchrelated": "kompinaian",

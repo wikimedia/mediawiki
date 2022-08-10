@@ -1063,8 +1063,6 @@
 	"search-file-match": "(збігається із вмістом файлу)",
 	"search-suggest": "Можливо, ви мали на увазі: $1",
 	"search-rewritten": "Показано результати для $1. Не знайдено результатів для $2.",
-	"search-interwiki-caption": "Результати із сестринських проєктів",
-	"search-interwiki-default": "Результати із $1:",
 	"search-interwiki-more": "(більше)",
 	"search-interwiki-more-results": "більше результатів",
 	"search-relatedarticle": "Пов'язаний",

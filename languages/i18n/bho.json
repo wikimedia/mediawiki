@@ -910,8 +910,6 @@
 	"search-file-match": "(फाइल सामग्री से मैच करत बा)",
 	"search-suggest": "का राउर मतलब बा: $1",
 	"search-rewritten": "$1 खातिर रिजल्ट। एकरे जगह $2 खातिर खोज करीं।",
-	"search-interwiki-caption": "साथी प्रोजेक्ट सभ से रिजल्ट",
-	"search-interwiki-default": "$1 से परिणाम:",
 	"search-interwiki-more": "(अउर)",
 	"search-interwiki-more-results": "अउरी रिजल्ट",
 	"search-relatedarticle": "संबंधित",

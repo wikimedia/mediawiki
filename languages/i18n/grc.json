@@ -621,8 +621,6 @@
 	"search-redirect": "(ἀναδιευθύνειν ἐκ $1)",
 	"search-section": "(τμῆμα $1)",
 	"search-suggest": "Συνίης: $1",
-	"search-interwiki-caption": "Ἐκ τῶν ἀδελφῶν ἐγχειρημάτων ἀποτελέσματα",
-	"search-interwiki-default": "$1 ἀποτελέσματα:",
 	"search-interwiki-more": "(πλείω)",
 	"search-relatedarticle": "Σχετικά",
 	"searchrelated": "σχετικά",

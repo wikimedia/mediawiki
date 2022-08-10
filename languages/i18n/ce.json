@@ -841,8 +841,6 @@
 	"search-file-match": "(файлан чулацаме тера хилар)",
 	"search-suggest": "Хила мега ахьа лоьхарг: $1",
 	"search-rewritten": "Гайтина карийнарш $1. Цуна метта лаха $2.",
-	"search-interwiki-caption": "Гергара проекташ",
-	"search-interwiki-default": "$1 хилам:",
 	"search-interwiki-more": "(кхин а)",
 	"search-interwiki-more-results": "Кхин каринарш",
 	"search-relatedarticle": "ХӀоттаделларг",

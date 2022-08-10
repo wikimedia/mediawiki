@@ -856,8 +856,6 @@
 	"search-category": "(kategorya $1)",
 	"search-file-match": "(tumutugma sa nilalaman ng file)",
 	"search-suggest": "Ibig mo bang sabihin: $1",
-	"search-interwiki-caption": "Kapatid na mga proyekto",
-	"search-interwiki-default": "$1 mga resulta:",
 	"search-interwiki-more": "(mas marami pa)",
 	"search-relatedarticle": "Kaugnay",
 	"searchrelated": "kaugnay",

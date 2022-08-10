@@ -1009,8 +1009,6 @@
 	"search-file-match": "(ఫైలు విషయంతో సరిపోలుతోంది)",
 	"search-suggest": "మీరు అంటున్నది ఇదా: $1",
 	"search-rewritten": "$1 కు ఫలితాలు చూపిస్తున్నాం. $2 కు ఫలితాలేమీ దొరకలేదు.",
-	"search-interwiki-caption": "సోదర ప్రాజెక్టులలోని ఫలితాలు",
-	"search-interwiki-default": "$1 నుండి ఫలితాలు:",
 	"search-interwiki-more": "(మరిన్ని)",
 	"search-interwiki-more-results": "మరిన్ని ఫలితాలు",
 	"search-relatedarticle": "సంబంధించినవి",

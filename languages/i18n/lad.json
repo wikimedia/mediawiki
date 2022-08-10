@@ -517,8 +517,6 @@
 	"search-section": "(kapítolo $1)",
 	"search-file-match": "(coinside con el kontenido de la dosya)",
 	"search-suggest": "Quijites dezir: $1",
-	"search-interwiki-caption": "Proyectos hermanos",
-	"search-interwiki-default": "Los resultados de $1:",
 	"search-interwiki-more": "(mas)",
 	"searchrelated": "lisionado",
 	"searchall": "todos",

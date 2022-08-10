@@ -586,8 +586,6 @@
 	"search-section": "(pars $1)",
 	"search-suggest": "Nonne dicere voluisti: $1",
 	"search-rewritten": "Ostenduntur, quae per \"$1\" inveniuntur. Profecto scrutinari, ubi \"$2\" contineatur!",
-	"search-interwiki-caption": "Alia incepta",
-	"search-interwiki-default": "Inventa apud $1:",
 	"search-interwiki-more": "(plus)",
 	"search-relatedarticle": "Relata",
 	"searchrelated": "relata",

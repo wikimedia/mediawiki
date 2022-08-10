@@ -872,8 +872,6 @@
 	"search-file-match": "(faýlyň materialy bilen deň gelýär)",
 	"search-suggest": "Şeýle diýjek bolduňyzmy: $1",
 	"search-rewritten": "$1 üçin netijeler. $2 üçin hiç hili netije tapylmady",
-	"search-interwiki-caption": "Dogan taslamalarynyň netijeleri",
-	"search-interwiki-default": "$1 netijeler:",
 	"search-interwiki-more": "(has-da köp)",
 	"search-interwiki-more-results": "has köp netijeler",
 	"search-relatedarticle": "Baglanyşykly",

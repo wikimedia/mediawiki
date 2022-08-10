@@ -657,8 +657,6 @@
 	"search-file-match": "( va cek ke iyeltak aneyar )",
 	"search-suggest": "Va $1 sugdalayal ?",
 	"search-rewritten": "Nedira va trasiks va $1. Va $2 ikaon aneyal !!",
-	"search-interwiki-caption": "Beraf abdumimakseem",
-	"search-interwiki-default": "$1 trasiks :",
 	"search-interwiki-more": "(loon)",
 	"search-interwiki-more-results": "Lo trasiks",
 	"search-relatedarticle": "Skedaf",
