@@ -51,7 +51,9 @@ $( function () {
 			// Also reset expiry selection to keep it in sync
 			if ( isWatched ) {
 				var expiryCheckbox = document.getElementById( 'wpWatchlistExpiryWidget' );
-				OO.ui.infuse( expiryCheckbox ).setValue( expirySelected );
+				if ( expiryCheckbox ) {
+					OO.ui.infuse( expiryCheckbox ).setValue( expirySelected );
+				}
 			}
 		}
 	} );
