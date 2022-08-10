@@ -1,7 +1,5 @@
 <?php
 /**
- * Generator and manager of database load balancing objects
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,9 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 use BagOStuff;
@@ -39,7 +35,7 @@ use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\ScopedCallback;
 
 /**
- * An interface for generating database load balancers
+ * @see ILBFactory
  * @ingroup Database
  */
 abstract class LBFactory implements ILBFactory {
@@ -157,7 +153,6 @@ abstract class LBFactory implements ILBFactory {
 
 	/**
 	 * @param array $conf
-	 *
 	 * @return void
 	 */
 	protected function configure( array $conf ): void {

@@ -1,7 +1,5 @@
 <?php
 /**
- * Generator of database load balancing objects.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,15 +16,15 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
 
 /**
- * A simple single-primary DB LBFactory that gets its configuration from the b/c globals
+ * Manage a simple setup with one primary database and optionally some replicas.
+ *
+ * @ingroup Database
  */
 class LBFactorySimple extends LBFactory {
 	/** @var LoadBalancer */

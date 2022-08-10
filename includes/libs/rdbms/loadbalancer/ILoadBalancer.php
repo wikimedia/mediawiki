@@ -1,7 +1,5 @@
 <?php
 /**
- * Database load balancing interface
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,16 +16,18 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
 namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
 
 /**
- * Database cluster connection, tracking, load balancing, and transaction manager interface
+ * Create and track the database connections and transactions for a given database cluster.
  *
- * A "cluster" is considered to be one primary database and zero or more replica databases.
+ * This class is a delegate to ILBFactory for a given database cluster (separated for the
+ * LBFactoryMulti use case).
+ *
+ * A "cluster" is defined as a primary database with zero or more replica databases.
  * Typically, the replica DBs replicate from the primary asynchronously. The first node in the
  * "servers" configuration array is always considered the "primary". However, this class can still
  * be used when all or some of the "replica" DBs are multi-primary peers of the primary or even

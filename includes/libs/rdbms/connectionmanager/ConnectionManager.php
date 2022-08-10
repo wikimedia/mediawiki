@@ -16,9 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
@@ -29,7 +27,7 @@ use InvalidArgumentException;
  * This manages access to primary and replica databases.
  *
  * @since 1.29
- *
+ * @ingroup Database
  * @author Addshore
  */
 class ConnectionManager {
