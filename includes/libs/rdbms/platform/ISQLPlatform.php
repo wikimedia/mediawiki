@@ -484,11 +484,15 @@ interface ISQLPlatform {
 	public function tableName( $name, $format = 'quoted' );
 
 	/**
-	 * Fetch a number of table names into an array
-	 * This is handy when you need to construct SQL for joins
+	 * Fetch a number of table names into an associative array
 	 *
-	 * Example:
-	 * list( $user, $watchlist ) = $dbr->tableNames( 'user', 'watchlist' ) );
+	 * Much like {@link tableName()}, this is only needed when calling
+	 * {@link query()} directly. Prefer calling other methods,
+	 * or using {@link SelectQueryBuilder}.
+	 *
+	 * Theoretical example (which really does not require raw SQL):
+	 * [ 'user' => $user, 'watchlist' => $watchlist ] =
+	 *     $dbr->tableNames( 'user', 'watchlist' );
 	 * $sql = "SELECT wl_namespace, wl_title FROM $watchlist, $user
 	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
 	 *
@@ -498,11 +502,15 @@ interface ISQLPlatform {
 	public function tableNames( ...$tables );
 
 	/**
-	 * Fetch a number of table names into an zero-indexed numerical array
-	 * This is handy when you need to construct SQL for joins
+	 * Fetch a number of table names into a zero-indexed numerical array
 	 *
-	 * Example:
-	 * list( $user, $watchlist ) = $dbr->tableNamesN( 'user', 'watchlist' );
+	 * Much like {@link tableName()}, this is only needed when calling
+	 * {@link query()} directly. It is slightly more convenient than
+	 * {@link tableNames()}, but you should still prefer calling other
+	 * methods, or using {@link SelectQueryBuilder}.
+	 *
+	 * Theoretical example (which really does not require raw SQL):
+	 * [ $user, $watchlist ] = $dbr->tableNamesN( 'user', 'watchlist' );
 	 * $sql = "SELECT wl_namespace,wl_title FROM $watchlist,$user
 	 *         WHERE wl_user=user_id AND wl_user=$nameWithQuotes";
 	 *
