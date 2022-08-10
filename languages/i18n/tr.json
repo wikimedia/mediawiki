@@ -1095,8 +1095,6 @@
 	"search-file-match": "(dosya içeriğiyle eşleşiyor)",
 	"search-suggest": "Bunu mu demek istediniz: $1",
 	"search-rewritten": "$1 için sonuçlar gösteriliyor. $2 için sonuç bulunamadı.",
-	"search-interwiki-caption": "Kardeş projelerden sonuçlar",
-	"search-interwiki-default": "$1 sonuçları:",
 	"search-interwiki-more": "(fazlası)",
 	"search-interwiki-more-results": "daha fazla sonuç",
 	"search-relatedarticle": "ilgili",

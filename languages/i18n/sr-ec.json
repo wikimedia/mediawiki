@@ -1011,8 +1011,6 @@
 	"search-file-match": "(подудара се садржина датотеке)",
 	"search-suggest": "Јесте ли мислили на „$1”",
 	"search-rewritten": "Приказују се резултати за „$1”. Ниједан резултат није пронађен за „$2”.",
-	"search-interwiki-caption": "Резултати са сродних пројеката",
-	"search-interwiki-default": "Резултати са $1:",
 	"search-interwiki-more": "(више)",
 	"search-interwiki-more-results": "још резултата",
 	"search-relatedarticle": "Повезано",

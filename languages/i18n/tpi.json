@@ -263,7 +263,6 @@
 	"search-redirect": "(nupela rot long $1)",
 	"search-section": "(seksen $1)",
 	"search-suggest": "Yu laik tok: $1",
-	"search-interwiki-default": "$1 ol painim:",
 	"search-interwiki-more": "(moa)",
 	"searchall": "olgeta",
 	"powersearch-legend": "Mobeta Painim",

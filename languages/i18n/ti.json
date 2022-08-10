@@ -317,7 +317,6 @@
 	"search-category": "(መደብ $1)",
 	"search-suggest": "ምናልባት $1 ክትደሊ ትኽእል ኢኻ",
 	"search-rewritten": "ን$1 ውጽኢት የርእይ ኣሎ። ን$2 ዝተረኽበ ውጽኢት የለን።",
-	"search-interwiki-default": "ውጽኢታት ካብ $1፦",
 	"search-interwiki-more": "(ተወሳኺ)",
 	"searchall": "ምሉእ",
 	"search-showingresults": "{{PLURAL:$4|ውጽኢት <strong>$1</strong> ናይ <strong>$3</strong>|ውጽኢታት <strong>$1 – $2</strong> ናይ <strong>$3</strong>}}",

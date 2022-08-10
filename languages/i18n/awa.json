@@ -959,8 +959,6 @@
 	"search-file-match": "(फ़ाइल सामग्री से मिलत है)",
 	"search-suggest": "आप कय मतलब ई तव नाई रहा:$1",
 	"search-rewritten": "$1 कय खोज परिणाम देखावत अहय। $2 के बरे कउनो परिणाम नही मिला।",
-	"search-interwiki-caption": "बहिन परियोजना से परिणाम",
-	"search-interwiki-default": "$1 से परिणाम:",
 	"search-interwiki-more": "(अउर)",
 	"search-interwiki-more-results": "जादा रिजल्ट",
 	"search-relatedarticle": "सम्बंधित",

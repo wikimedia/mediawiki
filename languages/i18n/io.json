@@ -983,8 +983,6 @@
 	"search-file-match": "(kongruanta kun la kontenajo)",
 	"search-suggest": "Ka vu volis dicar: $1",
 	"search-rewritten": "Montranta rezulti por \"$1\". Nula rezulti trovita por \"$2\".",
-	"search-interwiki-caption": "Rezulti de fratala projeti",
-	"search-interwiki-default": "Rezultaji de $1:",
 	"search-interwiki-more": "(plusa)",
 	"search-interwiki-more-results": "plusa rezultajo",
 	"search-relatedarticle": "Relatata",

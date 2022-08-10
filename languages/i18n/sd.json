@@ -756,8 +756,6 @@
 	"search-file-match": "(فائيل جي مواد سان ملي ٿو)",
 	"search-suggest": "ڇا توهان جو مطلب ھيو: $1",
 	"search-rewritten": "$1 لاءِ نتيجا ڏيکاريندي. ان بجاءِ $2 ڳوليو.",
-	"search-interwiki-caption": "برادر رٿائن مان نتيجا",
-	"search-interwiki-default": "$1 مان نتيجا",
 	"search-interwiki-more": "(وڌيڪ)",
 	"search-interwiki-more-results": "وڌيڪ نتيجا",
 	"search-relatedarticle": "لاڳاپيل",

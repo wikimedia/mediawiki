@@ -591,8 +591,6 @@
 	"search-section": "(seccion $1)",
 	"search-file-match": "(våt pol contnou do fitchî)",
 	"search-suggest": "Sayîz motoit çoula: $1",
-	"search-interwiki-caption": "Adierças so les ôtes pordjets frés",
-	"search-interwiki-default": "Adierças so $1 :",
 	"search-interwiki-more": "(dipus)",
 	"searchall": "totafwait",
 	"showingresults": "Cial pa dzo {{PLURAL:$1|'''1''' rizultat|'''$1''' rizultats}} a pårti do limero '''$2'''.",

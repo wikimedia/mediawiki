@@ -770,8 +770,6 @@
 	"search-category": "(կատեգորիա  $1)",
 	"search-file-match": "(համապատասխանում է նիշքի բովանդակությանը)",
 	"search-suggest": "Գուցե նկատի ունե՞ք՝ $1",
-	"search-interwiki-caption": "Կից նախագծերից արդյունքները",
-	"search-interwiki-default": "$1 արդյունք.",
 	"search-interwiki-more": "(էլի)",
 	"search-interwiki-more-results": "ավելի շատ արդյունքներ",
 	"search-relatedarticle": "Հարակից",

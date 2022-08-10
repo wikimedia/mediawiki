@@ -1004,8 +1004,6 @@
 	"search-file-match": "(се совпаѓа со содржината на податотеката)",
 	"search-suggest": "Дали мислевте на: $1",
 	"search-rewritten": "Исход од $1. Не најдов ништо за $2.",
-	"search-interwiki-caption": "Исход од збратимените проекти",
-	"search-interwiki-default": "Најдено на $1:",
 	"search-interwiki-more": "(уште)",
 	"search-interwiki-more-results": "повеќе ставки",
 	"search-relatedarticle": "Поврзано",

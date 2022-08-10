@@ -878,8 +878,6 @@
 	"search-category": "(ᥙᥫᥒᥴᥗᥣᥢᥲ $1)",
 	"search-file-match": "(ᥘᥛᥰ ᥘᥬᥰ ᥜᥣᥭᥱ ᥟᥢ ᥛᥦᥢ ᥐᥢ)",
 	"search-suggest": "ᥑᥬᥲ ᥝᥣ $1 ᥘᥭᥴ ᥝᥣ",
-	"search-interwiki-caption": "ᥚᥩᥢᥰᥘᥭᥲ ᥐᥣᥲᥖᥤᥲ ᥢᥣᥲᥐᥣᥢᥴ ᥙᥤᥲᥢᥩᥒᥳᥐᥢᥴ",
-	"search-interwiki-default": "ᥚᥩᥢᥰᥘᥭᥲ ᥐᥣᥲᥖᥤᥲ $1:",
 	"search-interwiki-more": "(ᥘᥫᥴ)",
 	"search-interwiki-more-results": "ᥚᥩᥢᥰᥘᥭᥲ ᥟᥢᥴᥢᥛᥴᥘᥫᥴ",
 	"search-relatedarticle": "ᥓᥫᥰᥐᥙᥰᥐᥣᥭᥱ",

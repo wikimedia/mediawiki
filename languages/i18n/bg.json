@@ -1015,8 +1015,6 @@
 	"search-file-match": "(съвпада със съдържанието на файла)",
 	"search-suggest": "Вероятно имахте предвид: $1",
 	"search-rewritten": "Показани са резултати за $1. Няма резултати за $2.",
-	"search-interwiki-caption": "Резултати от сродни проекти",
-	"search-interwiki-default": "Резултати от $1:",
 	"search-interwiki-more": "(още)",
 	"search-interwiki-more-results": "повече резултати",
 	"search-relatedarticle": "Свързани",

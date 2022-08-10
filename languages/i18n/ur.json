@@ -945,8 +945,6 @@
 	"search-file-match": "فائل مواد سے ملتا ہے",
 	"search-suggest": "کیا آپ کی مراد «$1» ہے؟",
 	"search-rewritten": "$1 کے نتائج کی نمائش۔ $2 کا کوئی نتیجہ نہیں مل سکا۔",
-	"search-interwiki-caption": "ساتھی منصوبوں سے اخذ کردہ نتائج",
-	"search-interwiki-default": "$1 نتائج:",
 	"search-interwiki-more": "(مزید)",
 	"search-interwiki-more-results": "مزید نتائج",
 	"search-relatedarticle": "متعلقہ",

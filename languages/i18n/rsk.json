@@ -968,8 +968,6 @@
 	"search-file-match": "(змист файла конґруенти)",
 	"search-suggest": "Чи сце, можебуц, мали у оглядзе $1",
 	"search-rewritten": "Указани резултати за „$1”. Анї єден резултат нє пренайдзени за „$2”.",
-	"search-interwiki-caption": "Резултати зоз зродних проєктох",
-	"search-interwiki-default": "Резултати зоз $1:",
 	"search-interwiki-more": "(вецей)",
 	"search-interwiki-more-results": "ище вецей резултати",
 	"search-relatedarticle": "У вязи зоз",

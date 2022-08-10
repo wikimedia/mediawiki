@@ -937,8 +937,6 @@
 	"search-file-match": "(கோப்பு உள்ளடக்கத்துடன் பொருந்துகிறது)",
 	"search-suggest": "நீங்கள் கருதியது இதையா: $1",
 	"search-rewritten": "$1-இற்கான முடிவுகள் காட்டப்படுகின்றன. $2-இற்கு பதிலாக தேடப்படுகிறது.",
-	"search-interwiki-caption": "உறவுத் திட்டங்களில் இருந்து முடிவுகள்",
-	"search-interwiki-default": "$1 தளத்திலிருந்து முடிவுகள்:",
 	"search-interwiki-more": "(மேலும்)",
 	"search-interwiki-more-results": "மேலும் முடிவுகள்",
 	"search-relatedarticle": "தொடர்புடையவை",

@@ -664,8 +664,6 @@
 	"search-redirect": "(reindiritzadu $1)",
 	"search-section": "(setzione $1)",
 	"search-suggest": "Fortzis fias chirchende: $1",
-	"search-interwiki-caption": "Progetos frades",
-	"search-interwiki-default": "Resurtados dae $1:",
 	"search-interwiki-more": "(àteru)",
 	"searchall": "totu",
 	"showingresults": "Inoghe sighende {{PLURAL:$1|benit ammustradu '''1''' resurtadu|benint ammustrados '''$1''' resurtados}} incumentzende dae su nùmeru '''$2'''.",

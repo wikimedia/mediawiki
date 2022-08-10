@@ -694,8 +694,6 @@
 	"search-section": "(хай $1)",
 	"search-category": "(категори $1)",
 	"search-suggest": "Кæд мыййаг агурыс: $1",
-	"search-interwiki-caption": "Æрвадæл проекттæй фæстиуджытæ",
-	"search-interwiki-default": "{{grammar:ablative|$1}} фæстиуджытæ:",
 	"search-interwiki-more": "(нодзы)",
 	"search-interwiki-more-results": "фылдæр фæстиуджытæ",
 	"search-relatedarticle": "Хæстæг",

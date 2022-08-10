@@ -331,8 +331,6 @@
 	"search-section": "(burme $1)",
 	"search-file-match": "(dosya içeriğiyle eşleşiyor)",
 	"search-suggest": "Aya çʼari-i: $1",
-	"search-interwiki-caption": "Cuma projepe",
-	"search-interwiki-default": "$1'işi sonucepe:",
 	"search-interwiki-more": "(çkva)",
 	"searchall": "mteli",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> için sonuç|<strong>$3</strong> için <strong>$1 - $2</strong> sonuçlar}}",

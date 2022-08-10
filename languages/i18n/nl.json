@@ -1081,8 +1081,6 @@
 	"search-file-match": "(komt overeen met de inhoud van het bestand)",
 	"search-suggest": "Bedoelde u: $1",
 	"search-rewritten": "De resultaten voor $1 worden weergegeven. Geen resultaten gevonden voor $2.",
-	"search-interwiki-caption": "Resultaten van zusterprojecten",
-	"search-interwiki-default": "Resultaten van $1:",
 	"search-interwiki-more": "(meer)",
 	"search-interwiki-more-results": "meer resultaten",
 	"search-relatedarticle": "Gerelateerd",

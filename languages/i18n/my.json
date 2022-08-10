@@ -798,8 +798,6 @@
 	"search-file-match": "(ကိုက်ညီသော ဖိုင်အကြောင်းအရာ)",
 	"search-suggest": "$1 ဟု ဆိုလိုပါသလား။",
 	"search-rewritten": "$1 အတွက် ရလဒ်များ ပြသခြင်း။ $2 အတွက် ရလဒ်များ မတွေ့ရှိပါ။",
-	"search-interwiki-caption": "ညီအစ်မ ပရောဂျက်များမှ ရလဒ်များ",
-	"search-interwiki-default": "$1 မှ ရလဒ်များ -",
 	"search-interwiki-more": "(နောက်ထပ်)",
 	"search-interwiki-more-results": "ရလဒ်များ ပို၍",
 	"search-relatedarticle": "ဆက်နွယ်သော",

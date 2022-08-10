@@ -987,8 +987,6 @@
 	"search-file-match": "(corresponde al contento del file)",
 	"search-suggest": "Esque tu vole dicer: $1",
 	"search-rewritten": "Es monstrate le resultatos pro $1. Nulle resultato trovate pro $2.",
-	"search-interwiki-caption": "Resultatos de projectos affin",
-	"search-interwiki-default": "Resultatos de $1:",
 	"search-interwiki-more": "(plus)",
 	"search-interwiki-more-results": "plus resultatos",
 	"search-relatedarticle": "Connexe",

@@ -724,8 +724,6 @@
 	"search-section": "(جزء $1)",
 	"search-file-match": "(يطابق محتوى اللفايل)",
 	"search-suggest": "قصدك: $1",
-	"search-interwiki-caption": "المشاريع الشقيقة",
-	"search-interwiki-default": "$1 نتيجة:",
 	"search-interwiki-more": "(اأكتر)",
 	"search-relatedarticle": "مرتبطه",
 	"searchrelated": "مرتبطه",

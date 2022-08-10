@@ -910,8 +910,6 @@
 	"search-file-match": "(matches file content.)",
 	"search-suggest": "Did ye mean: $1",
 	"search-rewritten": "Shawin results for $1. Sairch insteid for $2.",
-	"search-interwiki-caption": "Results frae sister projects",
-	"search-interwiki-default": "Ootcomes fae $1:",
 	"search-interwiki-more": "(mair)",
 	"search-interwiki-more-results": "mair results",
 	"search-relatedarticle": "Relatit",

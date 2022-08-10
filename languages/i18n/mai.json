@@ -883,8 +883,6 @@
 	"search-file-match": "(फाइल सामग्रीसे मेल खेलक अछि)",
 	"search-suggest": "अहाँ मोने अछि जे:$1",
 	"search-rewritten": "$1 क परिणाम देखाए रहल अछि। ई $2 हेतु खोजि रहल अछि।",
-	"search-interwiki-caption": "अन्य प्रकल्प",
-	"search-interwiki-default": "$1 सँ परिणाम:",
 	"search-interwiki-more": "(आर)",
 	"search-interwiki-more-results": "अधिक परिणाम",
 	"search-relatedarticle": "सम्बन्धी",

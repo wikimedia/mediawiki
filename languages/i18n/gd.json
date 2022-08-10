@@ -865,8 +865,6 @@
 	"search-category": "(roinn-seòrsa $1)",
 	"search-file-match": "(a' freagairt ri susbaint an fhaidhle)",
 	"search-suggest": "An e na leanas a bha fa-near dhut: $1",
-	"search-interwiki-caption": "Pròiseactan co-cheangailte",
-	"search-interwiki-default": "Toraidhean o $1:",
 	"search-interwiki-more": "(barrachd)",
 	"search-relatedarticle": "Co-cheangailte",
 	"searchrelated": "co-cheangailte",

@@ -783,8 +783,6 @@
 	"search-file-match": "(файл эчтәлеге белән туры килә)",
 	"search-suggest": "Бәлки, сез моны эзлисез: $1",
 	"search-rewritten": "Нәтиҗәләр $1 өчен күрсәтелде. $2 өчен эзләргә.",
-	"search-interwiki-caption": "Тугандаш проектлар нәтиҗәсе",
-	"search-interwiki-default": "$1 нәтиҗәләре:",
 	"search-interwiki-more": "(тагын)",
 	"search-interwiki-more-results": "күбрәк нәтиҗәләр",
 	"search-relatedarticle": "Бәйле",

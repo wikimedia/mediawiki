@@ -710,8 +710,6 @@
 	"search-redirect": "(renviament da $1)",
 	"search-section": "(chapitel $1)",
 	"search-suggest": "Has ti manegià: $1",
-	"search-interwiki-caption": "Projects sumegliants",
-	"search-interwiki-default": "$1 resultats:",
 	"search-interwiki-more": "(dapli)",
 	"search-relatedarticle": "Sumegliant",
 	"searchrelated": "sumegliant",

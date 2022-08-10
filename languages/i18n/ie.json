@@ -709,8 +709,6 @@
 	"search-file-match": "(coresponde che li contenete del file)",
 	"search-suggest": "Vu carit dir: $1",
 	"search-rewritten": "Monstrant resultates por $1. Nequant resultates constatat por $2.",
-	"search-interwiki-caption": "Resultates de projectes fratre",
-	"search-interwiki-default": "Resultates de $1.",
 	"search-interwiki-more": "(plu)",
 	"search-interwiki-more-results": "plu resultates",
 	"search-invalid-sort-order": "Li ordination $1 ne es reconosset, li ordination per contumacie va esser aplicat. Li ordinationes valid es: $2",

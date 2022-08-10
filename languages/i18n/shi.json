@@ -511,8 +511,6 @@
 	"search-category": "(taggayt $1)",
 	"search-file-match": "(imsasa d tumayt n ufaylu)",
 	"search-suggest": "Is trit ad tinit: $1",
-	"search-interwiki-caption": "Tiyafutin zɣ isnfarn aytmatn",
-	"search-interwiki-default": "Tiyafutin n $1:",
 	"search-interwiki-more": "(uggar)",
 	"search-relatedarticle": "Tzdi",
 	"searchrelated": "Tuyzday",

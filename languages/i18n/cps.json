@@ -397,8 +397,6 @@
 	"search-redirect": "(i-ubay ang $1)",
 	"search-section": "(seksyon nga $1)",
 	"search-suggest": "Ambot mo silingon: $1",
-	"search-interwiki-caption": "Mga utod nga proyekto",
-	"search-interwiki-default": "$1 mga resulta:",
 	"search-interwiki-more": "(mas damu pa)",
 	"searchall": "tanan",
 	"search-nonefound": "Wala sang mga resulta nga nagatugma sa pamangkot/pagpamangkot.",

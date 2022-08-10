@@ -621,8 +621,6 @@
 	"search-section": "(diläd: $1)",
 	"search-category": "(klad: $1)",
 	"search-suggest": "Ediseinol-li: $1 ?",
-	"search-interwiki-caption": "Svistaproyegs",
-	"search-interwiki-default": "Seks se $1:",
 	"search-interwiki-more": "(pluikos)",
 	"search-relatedarticle": "Tefik",
 	"searchrelated": "tefik",

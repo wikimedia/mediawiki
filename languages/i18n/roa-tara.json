@@ -952,8 +952,6 @@
 	"search-file-match": "(combronde 'u condenute d'u file)",
 	"search-suggest": "Ce signifeche: $1",
 	"search-rewritten": "Stoche a fazze 'ndrucà le resultate pe $1. Nisciune resultate acchiate pe $2.",
-	"search-interwiki-caption": "Resultate da le pruggette sorelle",
-	"search-interwiki-default": "Resultate da $1:",
 	"search-interwiki-more": "(de cchiù)",
 	"search-interwiki-more-results": "cchiù resultate",
 	"search-relatedarticle": "Colleghete",

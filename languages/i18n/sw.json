@@ -817,8 +817,6 @@
 	"search-category": "(Kusanyiko $1)",
 	"search-file-match": "(inafanana na yalioymo katika faili)",
 	"search-suggest": "Je, ulitaka kutafuta: $1",
-	"search-interwiki-caption": "Miradi ya jumuia",
-	"search-interwiki-default": "Matokeo kutoka $1:",
 	"search-interwiki-more": "(zaidi)",
 	"search-interwiki-more-results": "zaidi matokeo",
 	"search-relatedarticle": "Zingine zinazofanana",

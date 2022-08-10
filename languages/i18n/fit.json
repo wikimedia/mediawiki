@@ -952,8 +952,6 @@
 	"search-file-match": "(vastaa failin sisältöä)",
 	"search-suggest": "Tarkoititko: $1",
 	"search-rewritten": "Näytethään resyltaatit haulla $1. Haulla $2 ei löytyny resyltaatteja.",
-	"search-interwiki-caption": "Resyltaatit sisarprujekteista",
-	"search-interwiki-default": "Resyltaatit atressista $1:",
 	"search-interwiki-more": "(lissää)",
 	"search-interwiki-more-results": "lissää resyltaatteja",
 	"search-relatedarticle": "relateerattu",

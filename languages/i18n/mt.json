@@ -875,8 +875,6 @@
 	"search-file-match": "(jaqbel mal-kontenut tal-fajl)",
 	"search-suggest": "Trid tfisser: $1",
 	"search-rewritten": "Qed jintwerew ir-riżultati għal $1. M'hemmx riżultati għal $2.",
-	"search-interwiki-caption": "Riżultati minn proġetti aħwija",
-	"search-interwiki-default": "Riżultati minn $1:",
 	"search-interwiki-more": "(aktar)",
 	"search-interwiki-more-results": "aktar riżultati",
 	"search-relatedarticle": "Relatati",

@@ -1020,8 +1020,6 @@
 	"search-file-match": "(kongruas kun dosiera enhavo)",
 	"search-suggest": "Ĉu vi intencis: „$1“?",
 	"search-rewritten": "Ni montras rezultojn por $1. Nenio troviĝis por $2.",
-	"search-interwiki-caption": "Kunprojektoj",
-	"search-interwiki-default": "Rezultoj de $1:",
 	"search-interwiki-more": "(plu)",
 	"search-interwiki-more-results": "pliaj rezultoj",
 	"search-relatedarticle": "Relataj",

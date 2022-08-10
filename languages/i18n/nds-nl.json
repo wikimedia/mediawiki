@@ -796,8 +796,6 @@
 	"search-section": "(underwarp $1)",
 	"search-file-match": "(kümt oavereyne mid de inhold van et bestand)",
 	"search-suggest": "Bedoolde jy: $1",
-	"search-interwiki-caption": "Resultaten van süsterprojekten",
-	"search-interwiki-default": "Resultaoten van $1:",
 	"search-interwiki-more": "(meyr)",
 	"search-relatedarticle": "Verwaant",
 	"searchrelated": "verwaant",

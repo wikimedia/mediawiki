@@ -618,8 +618,6 @@
 	"search-redirect": "(redireksyon depi $1)",
 	"search-section": "(seksyon $1)",
 	"search-suggest": "Eseye ak òtograf sa : $1",
-	"search-interwiki-caption": "Pwojè frè, ki ansanm oubyen ki ap deplwaye ansanm",
-	"search-interwiki-default": "Rezilta yo pou $1 :",
 	"search-interwiki-more": "(plis)",
 	"searchall": "tout",
 	"search-showingresults": "{{PLURAL:$4|Rezilta <strong>$1</strong> nan <strong>$3</strong> |Rezilta <strong>$1 – $2</strong> nan <strong>$3</strong>}}",

@@ -842,8 +842,6 @@
 	"search-file-match": "(ôni floua nga i noun ndè fa bé woun)",
 	"search-suggest": "A kounndè sé kè: $1",
 	"search-rewritten": "Klé $1 i liké kounndèlè moun bé nouan. Ba wounman liké fi $2 i liké kounndèlè sou.",
-	"search-interwiki-caption": "Aniaan djouman moun bé liké kounndèlè moun bé nouan",
-	"search-interwiki-default": "$1 i sou liké kounndèlè moun bé nouan:",
 	"search-interwiki-more": "(ékoun)",
 	"search-interwiki-more-results": "bé nouan ndè ouflè ékoun moun",
 	"search-relatedarticle": "Bé kô likawlè",

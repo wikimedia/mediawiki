@@ -1169,8 +1169,6 @@
 	"search-file-match": "(correspond au contenu du fichier)",
 	"search-suggest": "Essayez avec cette orthographe : $1",
 	"search-rewritten": "Résultats affichés pour $1. Aucun résultat trouvé pour $2.",
-	"search-interwiki-caption": "Résultats des projets frères",
-	"search-interwiki-default": "Résultats pour $1 :",
 	"search-interwiki-more": "(plus)",
 	"search-interwiki-more-results": "résultats supplémentaires",
 	"search-relatedarticle": "Reliés",

@@ -1078,8 +1078,6 @@
 	"search-file-match": "(odpowiada zawartości pliku)",
 	"search-suggest": "Czy chodziło Ci o: $1",
 	"search-rewritten": "Wyświetlone wyniki dla $1. Nie znaleziono wyników dla $2.",
-	"search-interwiki-caption": "Wyniki z projektów siostrzanych",
-	"search-interwiki-default": "Wyniki od $1:",
 	"search-interwiki-more": "(więcej)",
 	"search-interwiki-more-results": "Więcej wyników",
 	"search-relatedarticle": "Pokrewne",

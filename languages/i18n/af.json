@@ -865,8 +865,6 @@
 	"search-file-match": "(stem ooreen met die inhoud van die leêr)",
 	"search-suggest": "Het u $1 bedoel?",
 	"search-rewritten": "Wys resultate vir $1 . Geen resultate gevind vir $2 nie.",
-	"search-interwiki-caption": "Resultate vanaf susterprojekte",
-	"search-interwiki-default": "Resultate van $1:",
 	"search-interwiki-more": "(meer)",
 	"search-interwiki-more-results": "meer resultate",
 	"search-relatedarticle": "Verwante",

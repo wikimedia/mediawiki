@@ -765,8 +765,6 @@
 	"search-category": "(Kategorie $1)",
 	"search-file-match": "(treffende Dateiinhalte)",
 	"search-suggest": "Host du gemeent „$1“?",
-	"search-interwiki-caption": "Schwesterprojekte",
-	"search-interwiki-default": "Ergebnisse von $1:",
 	"search-interwiki-more": "(weitre)",
 	"search-relatedarticle": "Verwandte",
 	"searchrelated": "verwandt",

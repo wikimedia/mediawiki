@@ -473,8 +473,6 @@
 	"search-redirect": "(daskevarwodhyans a $1)",
 	"search-section": "(tregh $1)",
 	"search-suggest": "Esewgh hwi ow menya: $1",
-	"search-interwiki-caption": "Ragdresow hwor",
-	"search-interwiki-default": "$1 sewyansow:",
 	"search-interwiki-more": "(moy)",
 	"search-relatedarticle": "Kelmys",
 	"searchrelated": "kelmys",

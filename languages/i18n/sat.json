@@ -654,8 +654,6 @@
 	"search-category": "(ᱛᱷᱚᱠ $1)",
 	"search-file-match": "(ᱢᱤᱫᱩᱜᱟᱜ ᱨᱮᱫ ᱩᱱᱩᱫᱩᱜ)",
 	"search-suggest": "ᱪᱮᱫ ᱮᱢ ᱢᱮᱱ ᱚᱪᱚᱭᱮᱫᱟ: $1",
-	"search-interwiki-caption": "ᱥᱟᱶᱛᱮᱱ ᱯᱨᱚᱡᱮᱠᱴ ᱠᱷᱚᱱ ᱚᱨᱡᱚ",
-	"search-interwiki-default": "$1 ᱠᱷᱚᱱ ᱚᱨᱡᱚ:",
 	"search-interwiki-more": "(ᱵᱟᱹᱲᱛᱤ)",
 	"search-interwiki-more-results": "ᱵᱟᱹᱲᱛᱤ ᱚᱨᱡᱚᱠᱚ",
 	"search-relatedarticle": "ᱥᱟᱹᱜᱟᱹᱭᱟᱱ",

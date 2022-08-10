@@ -999,8 +999,6 @@
 	"search-file-match": "(výskyt v obsahu súboru)",
 	"search-suggest": "Mali ste na mysli „$1“?",
 	"search-rewritten": "Zobrazujú sa výsledky pre $1. Pre $2 sa nenašli žiadne výsledky.",
-	"search-interwiki-caption": "Výsledky zo sesterských projektov",
-	"search-interwiki-default": "Výsledky z $1:",
 	"search-interwiki-more": "(viac)",
 	"search-interwiki-more-results": "ďalšie výsledky",
 	"search-relatedarticle": "Súvisiace",

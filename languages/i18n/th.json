@@ -1002,8 +1002,6 @@
 	"search-file-match": "(เนื้อหาไฟล์ตรง)",
 	"search-suggest": "คุณอาจหมายถึง: $1",
 	"search-rewritten": "กำลังแสดงผลลัพธ์สำหรับ $1 แทน ไม่พบผลลัพธ์สำหรับ $2",
-	"search-interwiki-caption": "ผลลัพธ์จากโครงการพี่น้อง",
-	"search-interwiki-default": "ผลลัพธ์จาก $1:",
 	"search-interwiki-more": "(เพิ่มเติม)",
 	"search-interwiki-more-results": "ผลลัพธ์เพิ่มเติม",
 	"search-relatedarticle": "สัมพันธ์",

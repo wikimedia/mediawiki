@@ -875,8 +875,6 @@
 	"search-file-match": "(atbilst faila saturam)",
 	"search-suggest": "Vai jūs domājāt: $1",
 	"search-rewritten": "Rāda rezultātus frāzei \"$1\". Meklēt pēc \"$2\".",
-	"search-interwiki-caption": "Rezultāti no citiem projektiem",
-	"search-interwiki-default": "Rezultāti no $1:",
 	"search-interwiki-more": "(vairāk)",
 	"search-interwiki-more-results": "vairāk rezultātu",
 	"search-relatedarticle": "Saistītais",

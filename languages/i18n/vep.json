@@ -635,8 +635,6 @@
 	"search-redirect": "(oigenduz $1)",
 	"search-section": "(jaguz $1)",
 	"search-suggest": "Tahtoižit-ik löuta: $1",
-	"search-interwiki-caption": "Heimolaižed projektad",
-	"search-interwiki-default": "$1 rezul'tatad:",
 	"search-interwiki-more": "(völ)",
 	"search-relatedarticle": "Sidotud lehtpoled",
 	"searchrelated": "sidotud",

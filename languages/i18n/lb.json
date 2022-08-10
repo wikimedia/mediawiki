@@ -935,8 +935,6 @@
 	"search-file-match": "(Inhalt vum Fichier passt)",
 	"search-suggest": "Mengt Dir: $1",
 	"search-rewritten": "D'Resultater fir $1 gi gewisen. näischt fonnt fir $2.",
-	"search-interwiki-caption": "Resultater vu Schwësterprojeten",
-	"search-interwiki-default": "Resultater vu(n) $1:",
 	"search-interwiki-more": "(méi)",
 	"search-interwiki-more-results": "méi Resultater",
 	"search-relatedarticle": "A Verbindung",

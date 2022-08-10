@@ -450,8 +450,6 @@
 	"search-redirect": "($1རིམ་འགྲེམ།)",
 	"search-section": "(ཚན་པ $1)",
 	"search-suggest": "$1 ལ་ཟེར་བ་ཡིན་ནམ།",
-	"search-interwiki-caption": "སྲིང་མོའི་ལས་འཆར།",
-	"search-interwiki-default": "$1 ནས་འབྱུང་བའི་གྲུབ་འབྲས།",
 	"search-interwiki-more": "（དེ་ལས་མང་བ།）",
 	"search-relatedarticle": "འབྲེལ་ཡོད།",
 	"searchrelated": "འབྲེལ་ཡོད།",

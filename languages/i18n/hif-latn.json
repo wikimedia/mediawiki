@@ -868,8 +868,6 @@
 	"search-file-match": "(file content ke match kare hae)",
 	"search-suggest": "Ka aap ke matlab rahaa: $1",
 	"search-rewritten": "$1 ke result dekhawa jaae hai. Iske jagah $2 ke khojo.",
-	"search-interwiki-caption": "Saathe ke project se",
-	"search-interwiki-default": "$1 ke result:",
 	"search-interwiki-more": "(aur)",
 	"search-interwiki-more-results": "aur result",
 	"search-relatedarticle": "sambandh rakkhe hai",

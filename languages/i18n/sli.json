@@ -570,7 +570,6 @@
 	"search-section": "(Obschniet $1)",
 	"search-file-match": "(treffende Dateiinhalte)",
 	"search-suggest": "Meitest du „$1“?",
-	"search-interwiki-caption": "Schwasterprujätte",
 	"searchrelated": "verwandt",
 	"searchall": "olle",
 	"showingresults": "Hier {{PLURAL:$1|ies '''1''' Ergebnis|sein '''$1''' Ergebnisse}}, beginnend miet Nummer '''$2.'''",

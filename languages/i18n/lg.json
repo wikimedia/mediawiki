@@ -502,8 +502,6 @@
 	"search-redirect": "(olupapula '$1' lukuggusiza wano)",
 	"search-section": "(ekitundu ekya $1)",
 	"search-suggest": "Obadde onoonya $1 ?",
-	"search-interwiki-caption": "Pulojekiti ezikolagana n'eno",
-	"search-interwiki-default": "ebizuulidwa ku $1:",
 	"search-interwiki-more": "(ebikyaliyo)",
 	"searchall": "",
 	"powersearch-legend": "Noonya mu ngeri esunsula",

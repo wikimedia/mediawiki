@@ -857,8 +857,6 @@
 	"search-category": "(ප්‍රවර්ගය $1)",
 	"search-file-match": "(ගොනු දත්ත සැසදේ)",
 	"search-suggest": "ඔබ අදහස් කළේ මෙයද: $1",
-	"search-interwiki-caption": "සොයුරු ව්‍යාපෘති",
-	"search-interwiki-default": "$1 වෙතින් ප්‍රතිඵල:",
 	"search-interwiki-more": "(තවත්)",
 	"search-relatedarticle": "සහසම්බන්ධිත",
 	"searchrelated": "ආශ්‍රිත",

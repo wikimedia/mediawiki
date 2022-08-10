@@ -937,8 +937,6 @@
 	"search-file-match": "(klotañ a ra gant endalc'had ar restr)",
 	"search-suggest": "N'hoc'h eus ket soñjet kentoc'h e : $1",
 	"search-rewritten": "O tiskouez disoc'hoù evit $1. Disoc'h ebet kavet evit $2.",
-	"search-interwiki-caption": "Disoc'hoù diwar raktresoù kar",
-	"search-interwiki-default": "Disoc'hoù eus $1 :",
 	"search-interwiki-more": "(muioc'h)",
 	"search-interwiki-more-results": "Disoc'hoù ouzhpenn",
 	"search-relatedarticle": "Disoc'hoù kar",

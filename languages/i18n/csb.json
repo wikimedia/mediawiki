@@ -512,8 +512,6 @@
 	"search-section": "(dzél $1)",
 	"search-file-match": "(pasëje do zamkłoscë lopka)",
 	"search-suggest": "Të mëszlôł ò: $1",
-	"search-interwiki-caption": "Skùtczi ze sostrnych ùdbów",
-	"search-interwiki-default": "Wëniczi òd $1:",
 	"search-interwiki-more": "(wicy)",
 	"searchall": "wszëtczé",
 	"search-showingresults": "{{PLURAL:$4|Skùtk szëkbë <strong>$1</strong> za <strong>$3</strong>|Skùtczi szëkbë <strong>$1 - $2</strong> za <strong>$3</strong>}}",

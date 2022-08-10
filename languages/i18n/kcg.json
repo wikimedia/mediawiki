@@ -778,8 +778,6 @@
 	"search-category": "(sa $1)",
 	"search-file-match": "(ku tai kyangmami fail hu)",
 	"search-suggest": "Kyang hu a fa a̱ni hwa hu a?: $1",
-	"search-interwiki-caption": "Záng neet nta̱m na̱ yet a̱na̱nyiuk a̱ni",
-	"search-interwiki-default": "Záng neet ma $1:",
 	"search-interwiki-more": "(á̱ghyang)",
 	"search-interwiki-more-results": "záng njhyang",
 	"search-relatedarticle": "Á̱ bwuo bi̱n",

@@ -813,8 +813,6 @@
 	"search-file-match": "(ខ្លឹមសារឯកសារត្រូវគ្នា)",
 	"search-suggest": "ប្រហែលជាអ្នកចង់រក៖ $1",
 	"search-rewritten": "បង្ហាញលទ្ធផលស្វែងរក $1។ រកមិនឃើញលទ្ធផលរបស់ $2 ទេ។",
-	"search-interwiki-caption": "លទ្ធផលស្វែងរកក្នុងគម្រោងជាបងប្អូន",
-	"search-interwiki-default": "លទ្ធផលពី$1៖",
 	"search-interwiki-more": "(បន្ថែមទៀត)",
 	"search-interwiki-more-results": "លទ្ធផលបន្ថែមទៀត",
 	"search-relatedarticle": "ទាក់ទិន",

@@ -399,8 +399,6 @@
 	"search-redirect": "(aa-enmyssit ass $1)",
 	"search-section": "(rheynn $1)",
 	"search-suggest": "R'ou çheet er: $1",
-	"search-interwiki-caption": "Shuyr-haleeghyn",
-	"search-interwiki-default": "{{PLURAL:$1|$1 eiyrtys|$1 eiyrtys|$1 eiyrtys|$1 eiyrtyssyn}}:",
 	"search-interwiki-more": "(ny smoo)",
 	"search-relatedarticle": "Bentyn rish",
 	"searchrelated": "bentyn rish",

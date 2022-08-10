@@ -1031,8 +1031,6 @@
 	"search-file-match": "(odpovídá obsahu souboru)",
 	"search-suggest": "Mysleli jste: $1",
 	"search-rewritten": "Zobrazeny výsledky pro $1. Pro $2 nenalezeny žádné.",
-	"search-interwiki-caption": "Výsledky ze sesterských projektů",
-	"search-interwiki-default": "Výsledky z $1:",
 	"search-interwiki-more": "(více)",
 	"search-interwiki-more-results": "další výsledky",
 	"search-relatedarticle": "Související",

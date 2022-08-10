@@ -387,8 +387,6 @@
 	"search-redirect": "(redirect $1)",
 	"search-section": "(sekga $1)",
 	"search-suggest": "O be o nyaka gore: $1",
-	"search-interwiki-caption": "Diprojeke tša moloko",
-	"search-interwiki-default": "Dipheto gotšwa $1:",
 	"search-interwiki-more": "(gape)",
 	"searchrelated": "tswalana",
 	"searchall": "tšohle",

@@ -1160,8 +1160,6 @@
 	"search-file-match": "（匹配文件内容）",
 	"search-suggest": "您是不是要找：$1",
 	"search-rewritten": "显示$1的搜索的结果。而不是$2的结果。",
-	"search-interwiki-caption": "来自姊妹项目的结果",
-	"search-interwiki-default": "来自$1的结果：",
 	"search-interwiki-more": "（更多）",
 	"search-interwiki-more-results": "更多结果",
 	"search-relatedarticle": "相关",

@@ -429,7 +429,6 @@
 	"search-redirect": "(gävvim $1 rájest)",
 	"search-section": "(åsse: $1)",
 	"search-category": "(kategorijja $1)",
-	"search-interwiki-default": "Tjuvvusa $1 rájest:",
 	"search-interwiki-more": "(ienap)",
 	"searchall": "gájjka",
 	"search-nonefound": "Iellam akktak tjuvvusa ma svärruji gatjalvasav.",

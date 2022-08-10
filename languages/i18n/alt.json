@@ -966,8 +966,6 @@
 	"search-file-match": "(файлдыҥ толынтызыла тӱҥей)",
 	"search-suggest": "Слерге бу керек болгон бо: $1",
 	"search-rewritten": "$1 турулталары кӧргӱзилген. $2 турулталар табылбады.",
-	"search-interwiki-caption": "Тӧрӧӧн проектердиҥ турулталары",
-	"search-interwiki-default": "$1 сайттыҥ турулталары:",
 	"search-interwiki-more": "(база)",
 	"search-interwiki-more-results": "база турулталар",
 	"search-relatedarticle": "Тудуш",

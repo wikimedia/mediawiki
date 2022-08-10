@@ -970,8 +970,6 @@
 	"search-file-match": "（符合檔案內容）",
 	"search-suggest": "你係唔係搵: $1",
 	"search-rewritten": "顯示緊 $1 嘅搵嘢結果。搵 $2 搵唔到任何嘢。",
-	"search-interwiki-caption": "兄弟計劃嘅結果",
-	"search-interwiki-default": "嚟自$1嘅結果：",
 	"search-interwiki-more": "(多啲)",
 	"search-interwiki-more-results": "多啲結果",
 	"search-relatedarticle": "有拏褦",

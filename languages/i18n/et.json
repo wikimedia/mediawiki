@@ -1003,8 +1003,6 @@
 	"search-file-match": "(vastab faili sisule)",
 	"search-suggest": "Kas mõtlesid: $1",
 	"search-rewritten": "Vasted otsingule $1. Otsingule $2 ei leidunud vasteid.",
-	"search-interwiki-caption": "Tulemused sõsarprojektidest",
-	"search-interwiki-default": "Tulemused asukohast $1:",
 	"search-interwiki-more": "(veel)",
 	"search-interwiki-more-results": "veel tulemusi",
 	"search-relatedarticle": "Seotud",

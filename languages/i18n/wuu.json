@@ -976,8 +976,6 @@
 	"search-file-match": "（匹配文件内容）",
 	"search-suggest": "你阿是要寻：$1",
 	"search-rewritten": "显示搜寻$1个结果。寻弗着$2个结果。",
-	"search-interwiki-caption": "来自姊妹项目个结果",
-	"search-interwiki-default": "来自$1个结果：",
 	"search-interwiki-more": "（更多）",
 	"search-interwiki-more-results": "更多结果",
 	"search-relatedarticle": "相关",

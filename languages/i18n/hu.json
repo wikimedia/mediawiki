@@ -1013,8 +1013,6 @@
 	"search-file-match": "(fájl tartalma egyezik)",
 	"search-suggest": "Keresési javaslat: $1",
 	"search-rewritten": "Találatok mutatása a következőre: $1. Nincsenek találatok a(z) $2 keresőkifejezésre.",
-	"search-interwiki-caption": "Találatok társlapokról",
-	"search-interwiki-default": "$1 találatok:",
 	"search-interwiki-more": "(több)",
 	"search-interwiki-more-results": "további eredmények",
 	"search-relatedarticle": "Kapcsolódó",
