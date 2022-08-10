@@ -371,14 +371,29 @@ class NamespaceDupes extends Maintenance {
 
 		$batchConds = [];
 		$fromField = "{$fieldPrefix}_from";
-		$namespaceField = "{$fieldPrefix}_namespace";
-		$titleField = "{$fieldPrefix}_title";
 		$batchSize = 500;
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+		if ( isset( $linksMigration::$mapping[$table] ) ) {
+			$queryInfo = $linksMigration->getQueryInfo( $table );
+			list( $namespaceField, $titleField ) = $linksMigration->getTitleFields( $table );
+		} else {
+			$queryInfo = [
+				'tables' => [ $table ],
+				'fields' => [
+					"{$fieldPrefix}_namespace",
+					"{$fieldPrefix}_title"
+				],
+				'joins' => []
+			];
+			$namespaceField = "{$fieldPrefix}_namespace";
+			$titleField = "{$fieldPrefix}_title";
+		}
+
 		while ( true ) {
 			$res = $dbw->select(
-				$table,
-				[ $fromField, $namespaceField, $titleField ],
+				$queryInfo['tables'],
+				array_merge( [ $fromField ], $queryInfo['fields'] ),
 				array_merge(
 					$batchConds,
 					$extraConds,
@@ -391,7 +406,8 @@ class NamespaceDupes extends Maintenance {
 				[
 					'ORDER BY' => [ $titleField, $fromField ],
 					'LIMIT' => $batchSize
-				]
+				],
+				$queryInfo['joins']
 			);
 
 			if ( $res->numRows() == 0 ) {
@@ -417,28 +433,42 @@ class NamespaceDupes extends Maintenance {
 					continue;
 				}
 
-				$dbw->update( $table,
-					// SET
-					[
+				if ( isset( $linksMigration::$mapping[$table] ) ) {
+					$setValue = $linksMigration->getLinksConditions( $table, $destTitle );
+					$whereCondition = $linksMigration->getLinksConditions(
+						$table,
+						new TitleValue( 0, $row->$titleField )
+					);
+					$deleteCondition = $linksMigration->getLinksConditions(
+						$table,
+						new TitleValue( (int)$row->$namespaceField, $row->$titleField )
+					);
+				} else {
+					$setValue = [
 						$namespaceField => $destTitle->getNamespace(),
 						$titleField => $destTitle->getDBkey()
-					],
-					// WHERE
-					[
+					];
+					$whereCondition = [
 						$namespaceField => 0,
+						$titleField => $row->$titleField
+					];
+					$deleteCondition = [
+						$namespaceField => $row->$namespaceField,
 						$titleField => $row->$titleField,
-						$fromField => $row->$fromField
-					],
+					];
+				}
+
+				$dbw->update( $table,
+					// SET
+					$setValue,
+					// WHERE
+					array_merge( [ $fromField => $row->$fromField ], $whereCondition ),
 					__METHOD__,
 					[ 'IGNORE' ]
 				);
 
 				$rowsToDeleteIfStillExists[] = $dbw->makeList(
-					[
-						$fromField => $row->$fromField,
-						$namespaceField => $row->$namespaceField,
-						$titleField => $row->$titleField,
-					],
+					array_merge( [ $fromField => $row->$fromField ], $deleteCondition ),
 					IDatabase::LIST_AND
 				);
 
