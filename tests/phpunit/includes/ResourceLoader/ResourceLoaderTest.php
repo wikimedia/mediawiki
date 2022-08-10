@@ -1064,6 +1064,24 @@ END
 		$rl->respond( $context );
 	}
 
+	public function testRespondMissingModule() {
+		$rl = $this->getMockBuilder( EmptyResourceLoader::class )
+			->onlyMethods( [
+				'measureResponseTime',
+				'tryRespondNotModified',
+				'sendResponseHeaders',
+			] )
+			->getMock();
+		$context = $this->getResourceLoaderContext(
+			[ 'modules' => 'unknown', 'only' => null ],
+			$rl
+		);
+
+		$this->expectOutputRegex( '/mw\.loader\.state.*"unknown": "missing"/s' );
+
+		$rl->respond( $context );
+	}
+
 	/**
 	 * Refuse requests for private modules.
 	 */
