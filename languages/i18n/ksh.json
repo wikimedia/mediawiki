@@ -2164,7 +2164,6 @@
 	"ip_range_toolarge": "Berette övver /$1 ze sperre is nit zohjelohße, bloß kleiner.",
 	"proxyblocker": "Open_Proxy_Blocker",
 	"proxyblockreason": "Unger Ding IP_Adress läuf ene offe Proxy.\nDröm kanns De heh em Wiki nix maache.\nSchwaad met Dingem System-Minsch udder Netzwerk-Techniker udder ISP (<i lang=\"en\">Internet Service Provider</i>)\nun verzäll dänne vun däm ärrje Risiko för de Secherheit fun dänne ehr Rääschnere!",
-	"sorbs": "<i lang=\"en\">DNSBL</i>",
 	"sorbsreason": "Ding IP-Adress weed en de DNSbl als ene offe Proxy jeliss. Schwaad met Dingem System-Minsch oder Netzwerk-Techniker (ISP Internet Service Provider) drüvver, un verzäll dänne vun däm Risiko för ehr Secherheit!",
 	"sorbs_create_account_reason": "Ding IP-Adress weed en de DNSbl als ene offe Proxy jeliss. Dröm kanns De Dich heh em Wiki nit als ene neue Metmaacher aanmelde. Schwaad met Dingem System-Minsch oder Netzwerk-Techniker oder (ISP Internet Service Provider) drüvver, un verzäll dänne vun däm Risiko för ehr Secherheit!",
 	"xffblockreason": "En <i lang=\"en\">IP-</i>Adräs en ener <code lang=\"en\">X-Forwarded-For</i> Koppreih es jeschpächt: Et künnt de Dinge udder enem <i lang=\"en\">proxy</i>_ẞööver zweschedren sing Adräß sin. Der Jrond för et Schpärre woh orschprönglesch: $1",

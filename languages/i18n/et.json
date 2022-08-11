@@ -3292,7 +3292,6 @@
 	"version-parser-function-hooks": "Parserifunktsioonid",
 	"version-hook-name": "Haagi nimi",
 	"version-hook-subscribedby": "Tellijad",
-	"version-version": "($1)",
 	"version-no-ext-name": "[nimi puudub]",
 	"version-license": "MediaWiki litsents",
 	"version-ext-license": "Litsents",

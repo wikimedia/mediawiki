@@ -1358,7 +1358,6 @@
 	"version-parser-extensiontags": "解析器擴展標籤",
 	"version-hook-name": "鉤子名",
 	"version-hook-subscribedby": "訂閱人",
-	"version-version": "($1)",
 	"version-license": "許可證",
 	"version-poweredby-credits": "箇隻 Wiki 由 '''[https://www.mediawiki.org/ MediaWiki]''' 驅動，版權所有 © 2001-$1 $2。",
 	"version-software": "裝正嗰軟件",

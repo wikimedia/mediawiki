@@ -2795,7 +2795,6 @@
 	"version-parser-function-hooks": "Parser goditjet e funksionit",
 	"version-hook-name": "Emri i goditjes",
 	"version-hook-subscribedby": "Abonuar nga",
-	"version-version": "($1)",
 	"version-no-ext-name": "[pa emër]",
 	"version-license": " Liçenca MediaWiki",
 	"version-ext-license": "Licenca",

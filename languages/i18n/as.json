@@ -2652,7 +2652,6 @@
 	"version-parser-function-hooks": "পাৰ্চাৰ ফাংচন হুকসমূহ",
 	"version-hook-name": "হুক নাম",
 	"version-hook-subscribedby": "পাঠকভুক্ত হৈছে",
-	"version-version": "($1)",
 	"version-no-ext-name": "[নাম নাই]",
 	"version-license": "অনুজ্ঞাপত্ৰ",
 	"version-ext-license": "অনুজ্ঞাপত্ৰ",

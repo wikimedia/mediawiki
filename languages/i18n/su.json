@@ -2729,7 +2729,6 @@
 	"version-parser-function-hooks": "Kait fungsi parser",
 	"version-hook-name": "Ngaran kait",
 	"version-hook-subscribedby": "Didaptarkeun ku",
-	"version-version": "($1)",
 	"version-no-ext-name": "[tanpa ngaran]",
 	"version-license": "Lisénsi MediaWiki",
 	"version-ext-license": "Lisénsi",

@@ -1528,7 +1528,6 @@
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|arotus]])",
 	"duplicate-defaultsort": "'''Hoiatus:''' Sortmisvõti \"$2\" tühistäs ärq innembädse sortmisvõtmõ \"$1\".",
 	"version": "Kujo",
-	"version-version": "($1)",
 	"version-software-version": "Kujo",
 	"redirect": "Ümbresaatminõ teedüstü, pruukja, leheküle, versiooni vai loginumbri perrä",
 	"redirect-summary": "Seo erälehekülg saat ümbre faili (näüdät failinimi), leheküle (näüdät versiooni vai leheküle tunnus), pruukjalehe (näüdät pruukja numbritunnus) vai logisissekandõ (näüdät logitunnus) mano. Pruukminõ: [[{{#Special:Redirect}}/file/Example.jpg]], [[{{#Special:Redirect}}/page/64308]], [[{{#Special:Redirect}}/revision/328429]], [[{{#Special:Redirect}}/user/101]] või [[{{#Special:Redirect}}/logid/186]].",

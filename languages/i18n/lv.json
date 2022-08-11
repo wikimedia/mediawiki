@@ -2672,7 +2672,6 @@
 	"version-other": "Cita",
 	"version-hooks": "Aizķeres",
 	"version-hook-name": "Aizķeres nosaukums",
-	"version-version": "($1)",
 	"version-no-ext-name": "[bez nosaukuma]",
 	"version-license": "MediaWiki licence",
 	"version-ext-license": "Licence",

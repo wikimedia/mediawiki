@@ -1845,7 +1845,6 @@
 	"version-parser-function-hooks": "Sintaksižen analizatoran funkcijoiden sabutajad",
 	"version-hook-name": "Sabustajan nimi",
 	"version-hook-subscribedby": "Ezipakitoitajad",
-	"version-version": "($1)",
 	"version-license": "Licenzii",
 	"version-poweredby-others": "toižed",
 	"version-software": "Seižutadud programmišt",

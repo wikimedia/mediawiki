@@ -2934,7 +2934,6 @@
 	"version-parser-function-hooks": "Estendentes funsional de analisador sintatical",
 	"version-hook-name": "Nom de estendente",
 	"version-hook-subscribedby": "Subscribed by",
-	"version-version": "($1)",
 	"version-no-ext-name": "[no nom]",
 	"version-license": "Lisensa de MediaWiki",
 	"version-ext-license": "Lisensa",

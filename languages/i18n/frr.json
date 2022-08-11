@@ -2584,7 +2584,6 @@
 	"version-parser-function-hooks": "Parser function hooks",
 	"version-hook-name": "Hook nööm",
 	"version-hook-subscribedby": "Aprepen faan",
-	"version-version": "($1)",
 	"version-no-ext-name": "[saner nööm]",
 	"version-license": "MediaWiki-lisens",
 	"version-ext-license": "Lisens",

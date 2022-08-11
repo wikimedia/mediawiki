@@ -2522,7 +2522,6 @@
 	"version-parser-function-hooks": "Hook par funzioni del parser",
 	"version-hook-name": "Nome de l'hook",
 	"version-hook-subscribedby": "Sotoscrizioni",
-	"version-version": "($1)",
 	"version-no-ext-name": "[nissun nome]",
 	"version-license": "Licensa MediaWiki",
 	"version-ext-license": "Licensa",

@@ -3391,7 +3391,6 @@
 	"version-parser-function-hooks": "Parsererweiterungen ''(Funktionen)''",
 	"version-hook-name": "Schnittstellenname",
 	"version-hook-subscribedby": "Aufruf von",
-	"version-version": "($1)",
 	"version-no-ext-name": "[kein Name]",
 	"version-license": "MediaWiki-Lizenz",
 	"version-ext-license": "Lizenz",

@@ -2754,7 +2754,6 @@
 	"version-parser-function-hooks": "Canthèlan fungsi parser",
 	"version-hook-name": "Jeneng canthèlan",
 	"version-hook-subscribedby": "Dilanggani déning",
-	"version-version": "($1)",
 	"version-no-ext-name": "[tanpa jeneng]",
 	"version-license": "Lisènsi MediaWiki",
 	"version-ext-license": "Lisènsi",

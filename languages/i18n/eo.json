@@ -3326,7 +3326,6 @@
 	"version-parser-function-hooks": "Hokoj de sintaksaj funkcioj",
 	"version-hook-name": "Nomo de hoko",
 	"version-hook-subscribedby": "Abonita de",
-	"version-version": "($1)",
 	"version-no-ext-name": "[sen nomo]",
 	"version-license": "Permesilo de MediaWiki",
 	"version-ext-license": "Permesilo",

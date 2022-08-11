@@ -3134,7 +3134,6 @@
 	"version-parser-function-hooks": "Èxtensions de les fonccions parsiors",
 	"version-hook-name": "Nom de l’èxtension",
 	"version-hook-subscribedby": "Abonâs :",
-	"version-version": "($1)",
 	"version-no-ext-name": "[nion nom]",
 	"version-license": "Licence MediaWiki",
 	"version-ext-license": "Licence",

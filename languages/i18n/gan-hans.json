@@ -1365,7 +1365,6 @@
 	"version-parser-extensiontags": "解析器扩展标签",
 	"version-hook-name": "钩子名",
 	"version-hook-subscribedby": "订阅人",
-	"version-version": "($1)",
 	"version-license": "许可证",
 	"version-poweredby-credits": "个只 Wiki 由 '''[https://www.mediawiki.org/ MediaWiki]''' 驱动，版权所有 © 2001-$1 $2。",
 	"version-software": "装正𠮶软件",

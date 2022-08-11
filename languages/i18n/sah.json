@@ -3025,7 +3025,6 @@
 	"version-parser-function-hooks": "Синтаксииһы анаалыстыыр тэрил функциятын перехватчиктара",
 	"version-hook-name": "Перехватчик аата",
 	"version-hook-subscribedby": "Суруттарыыта:",
-	"version-version": "($1)",
 	"version-no-ext-name": "[аата суох]",
 	"version-license": "MediaWiki лиссиэнсийэтэ",
 	"version-ext-license": "Лиссиэнсийэ",

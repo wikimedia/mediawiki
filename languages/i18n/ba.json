@@ -2918,7 +2918,6 @@
 	"version-parser-function-hooks": "Уҡыу ҡоралдары функцияларын эләктереп алыусылар",
 	"version-hook-name": "Эләктереп алыусы исеме",
 	"version-hook-subscribedby": "Яҙҙырылған",
-	"version-version": "($1)",
 	"version-no-ext-name": "[исеме юҡ]",
 	"version-license": "MediaWiki лицензияһы",
 	"version-ext-license": "Лицензия",

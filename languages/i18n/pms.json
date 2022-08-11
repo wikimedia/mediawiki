@@ -3222,7 +3222,6 @@
 	"version-parser-function-hooks": "Gancio për le fonsion dël dëscompositor",
 	"version-hook-name": "Nòm dël gancio",
 	"version-hook-subscribedby": "A son scrivusse",
-	"version-version": "($1)",
 	"version-no-ext-name": "[gnun nòm]",
 	"version-license": "Licensa MediaWiki",
 	"version-ext-license": "Licensa",

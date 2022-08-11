@@ -2784,7 +2784,6 @@
 	"version-parser-function-hooks": "Parserowe funkcije",
 	"version-hook-name": "Mjeno hoki",
 	"version-hook-subscribedby": "Abonowany wot",
-	"version-version": "($1)",
 	"version-no-ext-name": "[žane mjeno]",
 	"version-license": "Licenca MediaWiki",
 	"version-ext-license": "Licenca",

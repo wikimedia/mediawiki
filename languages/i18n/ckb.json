@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Aram",
 			"Aras Noori",
 			"Arastein",
@@ -2054,7 +2055,7 @@
 	"isimage": "بەستەری پەڕگە",
 	"whatlinkshere-prev": "{{PLURAL:$1|پێشتر|$1ی پێشتر}}",
 	"whatlinkshere-next": "{{PLURAL:$1|دیکە|$1ی تر}}",
-	"whatlinkshere-links": "← بەستەرەکان",
+	"whatlinkshere-links": "→ بەستەرەکان",
 	"whatlinkshere-hideredirs": "ڕەوانەکەرەکان بشارەوە",
 	"whatlinkshere-hidetrans": "ھێنانەناوەوەکان بشارەوە",
 	"whatlinkshere-hidelinks": "بەستەرەکان بشارەوە",
@@ -2659,7 +2660,6 @@
 	"version-parser-function-hooks": "Parser function hooks",
 	"version-hook-name": "ناوی قولاپ",
 	"version-hook-subscribedby": "بەشداربوو لە لایەن",
-	"version-version": "($1)",
 	"version-no-ext-name": "[بێ ناو]",
 	"version-license": "مۆڵەتنامە",
 	"version-ext-license": "مۆڵەتنامە",

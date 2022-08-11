@@ -1636,7 +1636,6 @@
 	"version-parser-function-hooks": "Croces de functiones analisatores",
 	"version-hook-name": "Nómine de croc",
 	"version-hook-subscribedby": "Subscrit per",
-	"version-version": "($1)",
 	"version-license": "Licentie MediaWiki",
 	"version-ext-license": "Autorisation",
 	"version-ext-colheader-license": "Autorisation",

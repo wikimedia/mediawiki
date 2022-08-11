@@ -2530,7 +2530,6 @@
 	"version-parser-function-hooks": "Parser-Funktione",
 	"version-hook-name": "Schnittstellename",
 	"version-hook-subscribedby": "Ufruef vu",
-	"version-version": "($1)",
 	"version-no-ext-name": "[kei Name]",
 	"version-license": "Lizänz",
 	"version-ext-license": "Lizänz",

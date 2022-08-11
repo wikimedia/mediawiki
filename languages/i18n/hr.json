@@ -3068,7 +3068,6 @@
 	"version-parser-function-hooks": "Okidači parserskih funkcija",
 	"version-hook-name": "Ime kuke",
 	"version-hook-subscribedby": "Pretplaćeno od",
-	"version-version": "($1)",
 	"version-no-ext-name": "[nema imena]",
 	"version-license": "Licenca",
 	"version-ext-license": "Licenca",

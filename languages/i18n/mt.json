@@ -2842,7 +2842,6 @@
 	"version-parser-function-hooks": "''Hooks'' għal funzjonijiet tal-''parser''",
 	"version-hook-name": "Isem tal-hook",
 	"version-hook-subscribedby": "Reġistrat minn",
-	"version-version": "($1)",
 	"version-no-ext-name": "[mingħajr isem]",
 	"version-license": "Liċenzja ta' MediaWiki",
 	"version-ext-license": "Liċenzja",

@@ -2419,7 +2419,6 @@
 	"version-other": "Òmíràn",
 	"version-hooks": "Àwọn hook",
 	"version-hook-name": "Orúkọ hook",
-	"version-version": "($1)",
 	"version-license": "Ìwé-àṣẹ MediaWiki",
 	"version-ext-license": "Ìwé-àṣe",
 	"version-poweredby-credits": "Agbára ìṣiṣẹ́ wiki yìí wá látọwọ́ '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",

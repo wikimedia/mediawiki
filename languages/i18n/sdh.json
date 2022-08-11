@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Ashkan P.",
 			"Calak",
 			"DannyS712",
@@ -496,7 +497,7 @@
 	"isimage": "بەسیار پەڕگە",
 	"whatlinkshere-prev": "{{PLURAL:$1|پێشتر|$1 پێشتر}}",
 	"whatlinkshere-next": "{{PLURAL:$1|دیگە|$1 تر}}",
-	"whatlinkshere-links": "← بەسیارەگان",
+	"whatlinkshere-links": "→ بەسیارەگان",
 	"whatlinkshere-hideredirs": "ڕەوانەکەرەگان $1",
 	"whatlinkshere-hidetrans": "ناوتەپیاێەگان (transclusions) $1",
 	"whatlinkshere-hidelinks": "$1 بەسیار",
