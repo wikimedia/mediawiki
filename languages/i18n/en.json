@@ -2485,6 +2485,7 @@
 	"actioncomplete": "Action complete",
 	"actionfailed": "Action failed",
 	"deletedtext": "\"$1\" has been deleted.\nSee $2 for a record of recent deletions.",
+	"deleted-page-and-talkpage": "\"$1\" and \"$2\" have been deleted.\nSee $3 for a record of recent deletions.",
 	"dellogpage": "Deletion log",
 	"dellogpagetext": "Below is a list of the most recent deletions.",
 	"deletionlog": "deletion log",
