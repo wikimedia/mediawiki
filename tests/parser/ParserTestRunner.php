@@ -219,7 +219,6 @@ class ParserTestRunner {
 			'knownFailures' => true,
 			'updateKnownFailures' => false,
 			'changetree' => null,
-			'selser' => true, // Test.php in Parsoid accesses this
 			// Options can also match those in ParserTestModes::TEST_MODES
 			// but we don't need to initialize those here; they will be
 			// accessed via $this->requestedTestModes instead.
