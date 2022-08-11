@@ -377,9 +377,7 @@ function bindDismissOnFocusLoss( window, checkbox, button, target ) {
  * Dismiss the target when clicking on a link to prevent the target from being open
  * when navigating to a new page.
  *
- * @param {Window} window
  * @param {HTMLInputElement} checkbox
- * @param {HTMLElement} button
  * @param {Node} target
  * @return {function(): void} Cleanup function that removes the added event listeners.
  * @ignore
