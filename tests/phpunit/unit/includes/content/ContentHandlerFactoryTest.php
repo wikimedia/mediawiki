@@ -48,7 +48,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		array $handlerSpecs, string $contentHandlerClass
 	): void {
 		$contentHandlerExpected = new $contentHandlerClass( 'dummy' );
-		$objectFactory = $this->createMockObjectFactory();
+		$objectFactory = $this->createMock( ObjectFactory::class );
 		$hookContainer = $this->createMock( HookContainer::class );
 
 		$factory = new ContentHandlerFactory(
@@ -93,7 +93,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		$hookContainer = $this->createHookContainer();
 		$factory = new ContentHandlerFactory(
 			[],
-			$this->createMockObjectFactory(),
+			$this->createMock( ObjectFactory::class ),
 			$hookContainer,
 			$this->logger
 		);
@@ -164,7 +164,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		/**
 		 * @var Exception $exceptionExpected
 		 */
-		$objectFactory = $this->createMockObjectFactory();
+		$objectFactory = $this->createMock( ObjectFactory::class );
 		$objectFactory->method( 'createObject' )
 			->willThrowException( $this->createMock( $exceptionClassName ) );
 		$factory = new ContentHandlerFactory(
@@ -193,7 +193,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		$this->expectException( MWUnknownContentModelException::class );
 		$factory = new ContentHandlerFactory(
 			[],
-			$this->createMockObjectFactory(),
+			$this->createMock( ObjectFactory::class ),
 			$this->createMock( HookContainer::class ),
 			$this->logger
 		);
@@ -209,7 +209,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Content\ContentHandlerFactory::isDefinedModel
 	 */
 	public function testDefineContentHandler_flow_throwsException() {
-		$objectFactory = $this->createMockObjectFactory();
+		$objectFactory = $this->createMock( ObjectFactory::class );
 		$objectFactory
 			->method( 'createObject' )
 			->willReturn( $this->createMock( DummyContentHandlerForTesting::class ) );
@@ -243,7 +243,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 				$name1 => DummyContentHandlerForTesting::class,
 				$name2 => DummyContentHandlerForTesting::class,
 			],
-			$this->createMockObjectFactory(),
+			$this->createMock( ObjectFactory::class ),
 			$hookContainer,
 			$this->logger
 		);
@@ -286,7 +286,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 				$name1 => DummyContentHandlerForTesting::class,
 				$name2 => DummyContentHandlerForTesting::class,
 			],
-			$this->createMockObjectFactory(),
+			$this->createMock( ObjectFactory::class ),
 			$hookContainer,
 			$this->logger
 		);
@@ -339,7 +339,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	public function testGetContentModels_empty_empty() {
 		$factory = new ContentHandlerFactory(
 			[],
-			$this->createMockObjectFactory(),
+			$this->createMock( ObjectFactory::class ),
 			$this->createMock( HookContainer::class ),
 			$this->logger
 		);
@@ -361,7 +361,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		$contentHandler3 = $this->createMock( DummyContentHandlerForTesting::class );
 		$contentHandler3->method( 'getSupportedFormats' )->willReturn( [ 'format 3' ] );
 
-		$objectFactory = $this->createMockObjectFactory();
+		$objectFactory = $this->createMock( ObjectFactory::class );
 		$objectFactory->expects( $this->at( 0 ) )
 			->method( 'createObject' )
 			->willReturn( $contentHandler1 );
@@ -387,9 +387,9 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		);
 
 		$this->assertArrayEquals( [
-			'format 1',
-			'format 0',
-		],
+				'format 1',
+				'format 0',
+			],
 			$factory->getAllContentFormats() );
 
 		$factory->defineContentHandler( 'some new name',
@@ -398,17 +398,11 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 			} );
 
 		$this->assertArrayEquals( [
-			'format 1',
-			'format 0',
-			'format 3',
-		],
+				'format 1',
+				'format 0',
+				'format 3',
+			],
 			$factory->getAllContentFormats() );
 	}
 
-	/**
-	 * @return ObjectFactory|\PHPUnit\Framework\MockObject\MockObject
-	 */
-	private function createMockObjectFactory(): ObjectFactory {
-		return $this->createMock( ObjectFactory::class );
-	}
 }

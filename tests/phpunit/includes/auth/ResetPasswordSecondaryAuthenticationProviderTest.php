@@ -5,6 +5,7 @@ namespace MediaWiki\Auth;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
+use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -91,17 +92,13 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 			],
 		] );
 		$mwServices = $this->getServiceContainer();
-		$services = $this->createNoOpAbstractMock( ContainerInterface::class );
-		$objectFactory = new \Wikimedia\ObjectFactory\ObjectFactory( $services );
-		$hookContainer = $this->createHookContainer();
-		$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
 		$manager = new AuthManager(
 			new \FauxRequest,
 			$config,
-			$objectFactory,
-			$hookContainer,
+			new ObjectFactory( $this->createNoOpAbstractMock( ContainerInterface::class ) ),
+			$this->createHookContainer(),
 			$mwServices->getReadOnlyMode(),
-			$userNameUtils,
+			$this->createNoOpMock( UserNameUtils::class ),
 			$mwServices->getBlockManager(),
 			$mwServices->getWatchlistManager(),
 			$mwServices->getDBLoadBalancer(),

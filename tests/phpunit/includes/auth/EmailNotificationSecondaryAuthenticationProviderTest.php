@@ -6,6 +6,7 @@ use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -88,14 +89,12 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiInt
 
 	public function testBeginSecondaryAccountCreation() {
 		$mwServices = $this->getServiceContainer();
-		$services = $this->createNoOpAbstractMock( ContainerInterface::class );
-		$objectFactory = new \Wikimedia\ObjectFactory\ObjectFactory( $services );
 		$hookContainer = $this->createHookContainer();
 		$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
 		$authManager = new AuthManager(
 			new \FauxRequest(),
 			new \HashConfig(),
-			$objectFactory,
+			new ObjectFactory( $this->createNoOpAbstractMock( ContainerInterface::class ) ),
 			$hookContainer,
 			$mwServices->getReadOnlyMode(),
 			$userNameUtils,
@@ -110,24 +109,24 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiInt
 			$mwServices->getUserOptionsManager()
 		);
 
-		$creator = $this->getMockBuilder( \User::class )->getMock();
-		$userWithoutEmail = $this->getMockBuilder( \User::class )->getMock();
+		$creator = $this->createMock( \User::class );
+		$userWithoutEmail = $this->createMock( \User::class );
 		$userWithoutEmail->method( 'getEmail' )->willReturn( '' );
 		$userWithoutEmail->method( 'getInstanceForUpdate' )->willReturnSelf();
 		$userWithoutEmail->expects( $this->never() )->method( 'sendConfirmationMail' );
-		$userWithEmailError = $this->getMockBuilder( \User::class )->getMock();
+		$userWithEmailError = $this->createMock( \User::class );
 		$userWithEmailError->method( 'getEmail' )->willReturn( 'foo@bar.baz' );
 		$userWithEmailError->method( 'getInstanceForUpdate' )->willReturnSelf();
 		$userWithEmailError->method( 'sendConfirmationMail' )
 			->willReturn( \Status::newFatal( 'fail' ) );
-		$userExpectsConfirmation = $this->getMockBuilder( \User::class )->getMock();
+		$userExpectsConfirmation = $this->createMock( \User::class );
 		$userExpectsConfirmation->method( 'getEmail' )
 			->willReturn( 'foo@bar.baz' );
 		$userExpectsConfirmation->method( 'getInstanceForUpdate' )
 			->willReturnSelf();
 		$userExpectsConfirmation->expects( $this->once() )->method( 'sendConfirmationMail' )
 			->willReturn( \Status::newGood() );
-		$userNotExpectsConfirmation = $this->getMockBuilder( \User::class )->getMock();
+		$userNotExpectsConfirmation = $this->createMock( \User::class );
 		$userNotExpectsConfirmation->method( 'getEmail' )
 			->willReturn( 'foo@bar.baz' );
 		$userNotExpectsConfirmation->method( 'getInstanceForUpdate' )
