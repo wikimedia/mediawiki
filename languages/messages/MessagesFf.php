@@ -11,3 +11,5 @@ $fallback = 'fr';
 
 // Remove French aliases
 $namespaceGenderAliases = [];
+
+$linkTrail = '/^([a-zàâçéèêîôûäëïöüùÇÉÂÊÎÔÛÄËÏÖÜÀÈÙƁƊŊƝƳɓɗŋɲƴ]+)(.*)$/sDu';
