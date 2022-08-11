@@ -1669,7 +1669,6 @@
 	"version-parser-function-hooks": "Синтаксонь анализаторть функциензон кярьмодихне",
 	"version-hook-name": "Кярьмодинь лемоц",
 	"version-hook-subscribedby": "Сёрматфтсь",
-	"version-version": "($1)",
 	"version-license": "Лицензие",
 	"version-software": "Нолдаф програпне",
 	"version-software-product": "Нолдафкс",

@@ -3224,7 +3224,6 @@
 	"version-parser-function-hooks": "पार्सर कार्य हूक",
 	"version-hook-name": "हूक नाम",
 	"version-hook-subscribedby": "ने सदस्यत्व लिया",
-	"version-version": "($1)",
 	"version-no-ext-name": "[कोई नाम नहीं]",
 	"version-license": "मीडियाविकि अनुज्ञापत्र",
 	"version-ext-license": "लाइसेंस",

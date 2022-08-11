@@ -3071,7 +3071,6 @@
 	"version-parser-function-hooks": "Parserfunktioner",
 	"version-hook-name": "Navn",
 	"version-hook-subscribedby": "Brugt af",
-	"version-version": "($1)",
 	"version-no-ext-name": "[intet navn]",
 	"version-license": "MediaWiki Licens",
 	"version-ext-license": "Licens",

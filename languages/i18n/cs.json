@@ -3372,7 +3372,6 @@
 	"version-parser-function-hooks": "Funkce parseru",
 	"version-hook-name": "Název přípojného bodu",
 	"version-hook-subscribedby": "Volán z",
-	"version-version": "($1)",
 	"version-no-ext-name": "[bez názvu]",
 	"version-license": "Licence MediaWiki",
 	"version-ext-license": "Licence",

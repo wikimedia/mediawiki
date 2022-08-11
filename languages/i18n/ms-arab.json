@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Tofeiku"
 		]
 	},
@@ -629,7 +630,7 @@
 	"isimage": "ڤاءوتن فاءيل",
 	"whatlinkshere-prev": "{{PLURAL:$1|سبلومڽ|$1 سبلومڽ}}",
 	"whatlinkshere-next": "{{PLURAL:$1|برايکوتڽ|$1 برايکوتڽ}}",
-	"whatlinkshere-links": "← ڤاءوتن",
+	"whatlinkshere-links": "→ ڤاءوتن",
 	"whatlinkshere-hideredirs": "$1 لينچوڠن",
 	"whatlinkshere-hidetrans": "$1 ڤڽرتاءن",
 	"whatlinkshere-hidelinks": "$1 ڤاءوتن",

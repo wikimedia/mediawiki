@@ -3196,7 +3196,6 @@
 	"version-parser-function-hooks": "Prípojné body funkcií syntaktického analyzátora",
 	"version-hook-name": "Názov prípojného bodu",
 	"version-hook-subscribedby": "Pripojené",
-	"version-version": "($1)",
 	"version-no-ext-name": "[bez názvu]",
 	"version-license": "Licencia",
 	"version-ext-license": "Licencia",

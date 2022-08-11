@@ -1149,7 +1149,6 @@
 	"version-parser-function-hooks": "Parserfunkziónen",
 	"version-hook-name": "Schnidstönnaum",
 	"version-hook-subscribedby": "Aufruaff voh",
-	"version-version": "($1)",
 	"version-license": "Lizenz",
 	"version-poweredby-credits": "Dé Nétzseiten braucht '''[https://www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
 	"version-poweredby-others": "åndre",

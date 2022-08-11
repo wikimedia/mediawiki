@@ -2962,7 +2962,6 @@
 	"version-parser-function-hooks": "語法函數鈎",
 	"version-hook-name": "鈎名",
 	"version-hook-subscribedby": "利用於",
-	"version-version": "($1)",
 	"version-no-ext-name": "[無名]",
 	"version-license": "MediaWiki牌照",
 	"version-ext-license": "牌照",

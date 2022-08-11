@@ -3372,7 +3372,6 @@
 	"version-parser-function-hooks": "পার্সার ফাংশন হুক",
 	"version-hook-name": "হুকের নাম",
 	"version-hook-subscribedby": "সাবস্ক্রাইব করেছেন",
-	"version-version": "($1)",
 	"version-no-ext-name": "[নাম নেই]",
 	"version-license": "মিডিয়াউইকি লাইসেন্স",
 	"version-ext-license": "লাইসেন্স",

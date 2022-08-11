@@ -3276,7 +3276,6 @@
 	"version-parser-function-hooks": "Az értelmező függvényeinek hookjai",
 	"version-hook-name": "Hook neve",
 	"version-hook-subscribedby": "Használja",
-	"version-version": "($1)",
 	"version-no-ext-name": "[nincs név]",
 	"version-license": "MediaWiki licenc",
 	"version-ext-license": "Licenc",

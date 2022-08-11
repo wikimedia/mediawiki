@@ -3396,7 +3396,6 @@
 	"version-parser-function-hooks": "語法分析函數掛鉤",
 	"version-hook-name": "掛鉤名稱",
 	"version-hook-subscribedby": "署名",
-	"version-version": "($1)",
 	"version-no-ext-name": "[未命名]",
 	"version-license": "MediaWiki 授權條款",
 	"version-ext-license": "授權條款",

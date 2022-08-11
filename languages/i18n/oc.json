@@ -2883,7 +2883,6 @@
 	"version-parser-function-hooks": "Croquets de las foncions del parser",
 	"version-hook-name": "Nom del croquet",
 	"version-hook-subscribedby": "Definit per",
-	"version-version": "($1)",
 	"version-no-ext-name": "[sens nom]",
 	"version-license": "Licéncia de MediaWiki",
 	"version-ext-license": "Licéncia",

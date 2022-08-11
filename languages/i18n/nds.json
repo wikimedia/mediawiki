@@ -1811,7 +1811,6 @@
 	"version-parser-function-hooks": "Parser-Funkschonen",
 	"version-hook-name": "Hook-Naam",
 	"version-hook-subscribedby": "Opropen vun",
-	"version-version": "($1)",
 	"version-license": "Lizenz",
 	"version-poweredby-credits": "Dit Wiki bruukt '''[https://www.mediawiki.org/ MediaWiki]''', Copyright © 2001–$1 $2.",
 	"version-poweredby-others": "annere",

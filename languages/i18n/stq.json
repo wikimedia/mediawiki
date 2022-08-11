@@ -1909,7 +1909,6 @@
 	"version-parser-function-hooks": "Parser-Funktione",
 	"version-hook-name": "Snitsteedennoome",
 	"version-hook-subscribedby": "Aproup fon",
-	"version-version": "($1)",
 	"version-license": "Lizenz",
 	"version-poweredby-credits": "Disse Website nutset '''[https://www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
 	"version-poweredby-others": "uur",

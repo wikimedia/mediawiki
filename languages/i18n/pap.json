@@ -618,7 +618,7 @@
 	"isimage": "link pa fail",
 	"whatlinkshere-prev": "{{PLURAL:$1|$1 previo}}",
 	"whatlinkshere-next": "{{PLURAL:$1|próksimo $1}}",
-	"whatlinkshere-links": "link",
+	"whatlinkshere-links": "← link",
 	"whatlinkshere-hideredirs": "Skonde redirekshon",
 	"whatlinkshere-hidetrans": "Skonde transklushon",
 	"whatlinkshere-hidelinks": "Skonde lenk",

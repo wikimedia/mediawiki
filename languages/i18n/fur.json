@@ -1248,7 +1248,6 @@
 	"duplicate-defaultsort": "'''Avîs:''' La clâf predeterminade par l'ordenament \"$2\" invalide la clâf predeterminade precedente \"$1\".",
 	"version": "Version",
 	"version-variables": "Variabilis",
-	"version-version": "($1)",
 	"version-license": "Licence",
 	"version-software-version": "Version",
 	"redirect-submit": "Va",

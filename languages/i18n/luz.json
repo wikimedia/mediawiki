@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Bluehamed",
 			"Bonevarluri",
 			"Hosseinblue",
@@ -642,7 +643,7 @@
 	"isimage": "لینک ھ فایل",
 	"whatlinkshere-prev": "{{PLURAL:$1|قأبلی |مۉرید قأبلی$1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|بأعدی |مۉرید بأعدی $1}}",
-	"whatlinkshere-links": "← لینکٱل",
+	"whatlinkshere-links": "→ لینکٱل",
 	"whatlinkshere-hideredirs": "$1 زوئراٛئسٱن",
 	"whatlinkshere-hidetrans": "$1 استفاده وابیده من ولاگ",
 	"whatlinkshere-hidelinks": "$1 لینکئل",

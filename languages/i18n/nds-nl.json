@@ -2460,7 +2460,6 @@
 	"version-parser-function-hooks": "Parserfunksiehoeken",
 	"version-hook-name": "Hooknaam",
 	"version-hook-subscribedby": "In-eschreven deur",
-	"version-version": "($1)",
 	"version-license": "MediaWiki-licensy",
 	"version-ext-license": "Licensy",
 	"version-ext-colheader-version": "Versy",

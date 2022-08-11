@@ -2987,7 +2987,6 @@
 	"version-parser-function-hooks": "Dagiti kawit nga annong ti parser",
 	"version-hook-name": "Nagan ti kawit",
 	"version-hook-subscribedby": "Umanamong babaen ti",
-	"version-version": "($1)",
 	"version-no-ext-name": "[awan nagan]",
 	"version-license": "Lisensia ti MediaWiki",
 	"version-ext-license": "Lisensia",

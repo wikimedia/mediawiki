@@ -2754,7 +2754,6 @@
 	"version-parser-function-hooks": "Mga panpunksyong pangawil kan Parser",
 	"version-hook-name": "Ngaran kan pangawil",
 	"version-hook-subscribedby": "Pinaghaguhot ni",
-	"version-version": "($1)",
 	"version-no-ext-name": "[mayong ngaran]",
 	"version-license": "Lisensiya kan MediaWiki",
 	"version-ext-license": "Lisensiya",

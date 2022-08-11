@@ -3347,7 +3347,6 @@
 	"version-parser-function-hooks": "Parserfunktioner",
 	"version-hook-name": "Namn på hook",
 	"version-hook-subscribedby": "Används av",
-	"version-version": "($1)",
 	"version-no-ext-name": "[inget namn]",
 	"version-license": "MediaWiki-licens",
 	"version-ext-license": "Licens",

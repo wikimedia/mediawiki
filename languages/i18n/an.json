@@ -2079,7 +2079,6 @@
 	"version-parser-function-hooks": "Grifios d'as funcions d'o parseyador",
 	"version-hook-name": "Nombre d'o grifio",
 	"version-hook-subscribedby": "Suscrito por",
-	"version-version": "($1)",
 	"version-license": "Licencia",
 	"version-poweredby-credits": "Iste wiki funciona gracias a '''[https://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 	"version-poweredby-others": "atros",

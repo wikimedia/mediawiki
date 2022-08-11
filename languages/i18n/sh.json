@@ -3134,7 +3134,6 @@
 	"version-parser-function-hooks": "Kuke parserske funkcije",
 	"version-hook-name": "Naziv kuke",
 	"version-hook-subscribedby": "Pretplaćeno od",
-	"version-version": "($1)",
 	"version-no-ext-name": "[nema imena]",
 	"version-license": "MediaWiki licenca",
 	"version-ext-license": "Licenca",

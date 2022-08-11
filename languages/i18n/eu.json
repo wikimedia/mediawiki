@@ -3149,7 +3149,6 @@
 	"version-parser-function-hooks": "Parser funtzio estentsioak",
 	"version-hook-name": "Estentsioaren izena",
 	"version-hook-subscribedby": "Hauen harpidetzarekin",
-	"version-version": "($1)",
 	"version-no-ext-name": "[izenik gabe]",
 	"version-license": "MediaWiki Lizentzia",
 	"version-ext-license": "Lizentzia",

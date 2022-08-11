@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Abanima",
+			"Amire80",
 			"Aħmedbaɛl",
 			"Csisc",
 			"DannyS712",
@@ -681,7 +682,7 @@
 	"istemplate": "مضمن",
 	"isimage": "وصلة ملف",
 	"whatlinkshere-next": "{{PLURAL:$1|التالية|ال$1 التالية}}",
-	"whatlinkshere-links": "← وصلات",
+	"whatlinkshere-links": "→ وصلات",
 	"whatlinkshere-hideredirs": "$1 تحويلات",
 	"whatlinkshere-hidetrans": "$1 التضمينات",
 	"whatlinkshere-hidelinks": "$1 ليانات",

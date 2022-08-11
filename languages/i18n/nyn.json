@@ -515,7 +515,7 @@
 	"isimage": "Ebikwatirine na fayiro",
 	"whatlinkshere-prev": "{{PLURAL:$1|ekyarugaho|ebyarugaho $1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|Ekyindi|Ebindi $1}}",
-	"whatlinkshere-links": "Ebikwatirine naha",
+	"whatlinkshere-links": "← ebikwatirine naha",
 	"whatlinkshere-hideredirs": "$1 ebirikuretwa",
 	"whatlinkshere-hidetrans": "$1 Ebirimu",
 	"whatlinkshere-hidelinks": "$1 obukwatane",

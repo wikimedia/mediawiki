@@ -2947,7 +2947,6 @@
 	"version-parser-function-hooks": "Parserfunctieheuk",
 	"version-hook-name": "Hooknaam",
 	"version-hook-subscribedby": "Geabonneerd door",
-	"version-version": "($1)",
 	"version-no-ext-name": "[geine naam]",
 	"version-license": "MediaWiki-licentie",
 	"version-ext-license": "Licentie",
