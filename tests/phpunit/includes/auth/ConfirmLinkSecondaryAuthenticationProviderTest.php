@@ -5,6 +5,7 @@ namespace MediaWiki\Auth;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
+use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -115,11 +116,11 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$mb = $this->getMockBuilder( AuthenticationRequest::class )
 			->onlyMethods( [ 'getUniqueId' ] );
 		for ( $i = 1; $i <= 3; $i++ ) {
+			$uid = "Request$i";
 			$req = $mb->getMockForAbstractClass();
-			$req->method( 'getUniqueId' )
-				->willReturn( "Request$i" );
+			$req->method( 'getUniqueId' )->willReturn( $uid );
 			$req->id = $i - 1;
-			$reqs[$req->getUniqueId()] = $req;
+			$reqs[$uid] = $req;
 		}
 
 		return $reqs;
@@ -137,6 +138,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 		$request = new \FauxRequest();
 		$mwServices = $this->getServiceContainer();
+
 		$manager = $this->getMockBuilder( AuthManager::class )
 			->onlyMethods( [ 'allowsAuthenticationDataChange' ] )
 			->setConstructorArgs( [
@@ -245,19 +247,14 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			],
 		] );
 		$request = new \FauxRequest();
-		$services = $this->createNoOpMock( ContainerInterface::class );
-		$objectFactory = new \Wikimedia\ObjectFactory\ObjectFactory( $services );
 		$mwServices = $this->getServiceContainer();
-		$hookContainer = $mwServices->getHookContainer();
-		$readOnlyMode = $mwServices->getReadOnlyMode();
-		$userNameUtils = $mwServices->getUserNameUtils();
 		$manager = new AuthManager(
 			$request,
 			$config,
-			$objectFactory,
-			$hookContainer,
-			$readOnlyMode,
-			$userNameUtils,
+			new ObjectFactory( $this->createNoOpMock( ContainerInterface::class ) ),
+			$mwServices->getHookContainer(),
+			$mwServices->getReadOnlyMode(),
+			$mwServices->getUserNameUtils(),
 			$mwServices->getBlockManager(),
 			$mwServices->getWatchlistManager(),
 			$mwServices->getDBLoadBalancer(),

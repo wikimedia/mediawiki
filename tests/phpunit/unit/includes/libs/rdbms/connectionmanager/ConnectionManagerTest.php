@@ -2,7 +2,6 @@
 
 namespace Wikimedia\Tests\Rdbms;
 
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Rdbms\ConnectionManager;
 use Wikimedia\Rdbms\DBConnRef;
@@ -16,30 +15,10 @@ use Wikimedia\Rdbms\LoadBalancer;
  * @author Daniel Kinzler
  */
 class ConnectionManagerTest extends TestCase {
-	/**
-	 * @return IDatabase&MockObject
-	 */
-	private function getIDatabaseMock() {
-		return $this->createMock( IDatabase::class );
-	}
-
-	/**
-	 * @return DBConnRef&MockObject
-	 */
-	private function getDBConnRefMock() {
-		return $this->createMock( DBConnRef::class );
-	}
-
-	/**
-	 * @return LoadBalancer&MockObject
-	 */
-	private function getLoadBalancerMock() {
-		return $this->createMock( LoadBalancer::class );
-	}
 
 	public function testGetReadConnection_nullGroups() {
-		$database = $this->getIDatabaseMock();
-		$lb = $this->getLoadBalancerMock();
+		$database = $this->createMock( IDatabase::class );
+		$lb = $this->createMock( LoadBalancer::class );
 
 		$lb->expects( $this->once() )
 			->method( 'getConnection' )
@@ -53,8 +32,8 @@ class ConnectionManagerTest extends TestCase {
 	}
 
 	public function testGetReadConnection_withGroupsAndFlags() {
-		$database = $this->getIDatabaseMock();
-		$lb = $this->getLoadBalancerMock();
+		$database = $this->createMock( IDatabase::class );
+		$lb = $this->createMock( LoadBalancer::class );
 
 		$lb->expects( $this->once() )
 			->method( 'getConnection' )
@@ -68,8 +47,8 @@ class ConnectionManagerTest extends TestCase {
 	}
 
 	public function testGetWriteConnection() {
-		$database = $this->getIDatabaseMock();
-		$lb = $this->getLoadBalancerMock();
+		$database = $this->createMock( IDatabase::class );
+		$lb = $this->createMock( LoadBalancer::class );
 
 		$lb->expects( $this->once() )
 			->method( 'getConnection' )
@@ -83,8 +62,8 @@ class ConnectionManagerTest extends TestCase {
 	}
 
 	public function testGetWriteConnection_withFlags() {
-		$database = $this->getIDatabaseMock();
-		$lb = $this->getLoadBalancerMock();
+		$database = $this->createMock( IDatabase::class );
+		$lb = $this->createMock( LoadBalancer::class );
 
 		$lb->expects( $this->once() )
 			->method( 'getConnection' )
@@ -98,8 +77,8 @@ class ConnectionManagerTest extends TestCase {
 	}
 
 	public function testReleaseConnection() {
-		$database = $this->getIDatabaseMock();
-		$lb = $this->getLoadBalancerMock();
+		$database = $this->createMock( IDatabase::class );
+		$lb = $this->createMock( LoadBalancer::class );
 
 		$lb->expects( $this->once() )
 			->method( 'reuseConnection' )
@@ -111,8 +90,8 @@ class ConnectionManagerTest extends TestCase {
 	}
 
 	public function testGetReadConnectionRef_nullGroups() {
-		$database = $this->getDBConnRefMock();
-		$lb = $this->getLoadBalancerMock();
+		$database = $this->createMock( DBConnRef::class );
+		$lb = $this->createMock( LoadBalancer::class );
 
 		$lb->expects( $this->once() )
 			->method( 'getConnectionRef' )
@@ -126,8 +105,8 @@ class ConnectionManagerTest extends TestCase {
 	}
 
 	public function testGetReadConnectionRef_withGroups() {
-		$database = $this->getDBConnRefMock();
-		$lb = $this->getLoadBalancerMock();
+		$database = $this->createMock( DBConnRef::class );
+		$lb = $this->createMock( LoadBalancer::class );
 
 		$lb->expects( $this->once() )
 			->method( 'getConnectionRef' )
@@ -142,7 +121,7 @@ class ConnectionManagerTest extends TestCase {
 
 	public function testGetLazyWriteConnectionRef() {
 		$database = $this->createMock( DBConnRef::class );
-		$lb = $this->getLoadBalancerMock();
+		$lb = $this->createMock( LoadBalancer::class );
 
 		$lb->expects( $this->once() )
 			->method( 'getConnectionRef' )
@@ -157,7 +136,7 @@ class ConnectionManagerTest extends TestCase {
 
 	public function testGetLazyReadConnectionRef_nullGroups() {
 		$database = $this->createMock( DBConnRef::class );
-		$lb = $this->getLoadBalancerMock();
+		$lb = $this->createMock( LoadBalancer::class );
 
 		$lb->expects( $this->once() )
 			->method( 'getConnectionRef' )
@@ -172,7 +151,7 @@ class ConnectionManagerTest extends TestCase {
 
 	public function testGetLazyReadConnectionRef_withGroups() {
 		$database = $this->createMock( DBConnRef::class );
-		$lb = $this->getLoadBalancerMock();
+		$lb = $this->createMock( LoadBalancer::class );
 
 		$lb->expects( $this->once() )
 			->method( 'getConnectionRef' )
@@ -186,8 +165,8 @@ class ConnectionManagerTest extends TestCase {
 	}
 
 	public function testGetWriteConnectionRef() {
-		$database = $this->getDBConnRefMock();
-		$lb = $this->getLoadBalancerMock();
+		$database = $this->createMock( DBConnRef::class );
+		$lb = $this->createMock( LoadBalancer::class );
 
 		$lb->expects( $this->once() )
 			->method( 'getConnectionRef' )

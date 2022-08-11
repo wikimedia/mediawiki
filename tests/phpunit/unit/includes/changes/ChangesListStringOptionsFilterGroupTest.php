@@ -165,18 +165,11 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiUnitTestCase {
 		];
 	}
 
-	protected function getSpecialPage() {
-		return $this->getMockBuilder( ChangesListSpecialPage::class )
-			->disableOriginalConstructor()
-			->getMockForAbstractClass();
-	}
-
 	/**
 	 * @param array $groupDefinition
 	 * @param string $input Value in URL
 	 */
 	protected function modifyQueryHelper( $groupDefinition, $input ) {
-		$ctx = $this->createMock( IContextSource::class );
 		$dbr = $this->createMock( IDatabase::class );
 		$tables = [];
 		$fields = [];
@@ -186,13 +179,12 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiUnitTestCase {
 
 		$group = new ChangesListStringOptionsFilterGroup( $groupDefinition );
 
-		$specialPage = $this->getSpecialPage();
 		$opts = new FormOptions();
 		$opts->add( $groupDefinition[ 'name' ], $input );
 
 		$group->modifyQuery(
 			$dbr,
-			$specialPage,
+			$this->createNoOpAbstractMock( ChangesListSpecialPage::class ),
 			$tables,
 			$fields,
 			$conds,
