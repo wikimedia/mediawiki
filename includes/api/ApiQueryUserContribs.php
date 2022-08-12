@@ -247,14 +247,17 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				$limit = 501;
 
 				do {
-					$res = $dbSecondary->select(
-						'ip_changes',
-						'ipc_hex',
-						'ipc_hex BETWEEN ' . $dbSecondary->addQuotes( $start ) .
-								' AND ' . $dbSecondary->addQuotes( $end ),
-						$fname,
-						[ 'GROUP BY' => [ "ipc_hex" ], 'ORDER BY' => "ipc_hex $sort", 'LIMIT' => $limit ]
-					);
+					$res = $dbSecondary->newSelectQueryBuilder()
+						->select( 'ipc_hex' )
+						->from( 'ip_changes' )
+						->where( [ 'ipc_hex BETWEEN ' . $dbSecondary->addQuotes( $start ) .
+							' AND ' . $dbSecondary->addQuotes( $end )
+						] )
+						->groupBy( 'ipc_hex' )
+						->orderBy( 'ipc_hex', $sort )
+						->limit( $limit )
+						->caller( $fname )
+						->fetchResultSet();
 
 					$count = 0;
 					$fromName = false;

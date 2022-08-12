@@ -200,13 +200,12 @@ class DateFormatter {
 				# Default
 				$target = $source;
 			}
+			// @phan-suppress-next-line PhanTypeMismatchDimFetchNullable
+			$format = self::TARGET_FORMATS[$target];
 			$regex = $this->regexes[$source];
 
 			$text = preg_replace_callback( $regex,
-				function ( $match ) use ( $target ) {
-					// @phan-suppress-next-line PhanTypeMismatchDimFetchNullable
-					$format = self::TARGET_FORMATS[$target];
-
+				function ( $match ) use ( $format ) {
 					$text = '';
 
 					// Pre-generate y/Y stuff because we need the year for the <span> title.
