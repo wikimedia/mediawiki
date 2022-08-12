@@ -498,7 +498,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * convertTo().
 	 *
 	 * @param string $text The text to be converted
-	 * @param bool|string $toVariant The target language code
+	 * @param string|false $toVariant The target language code
 	 * @return string The converted text
 	 */
 	public function autoConvert( $text, $toVariant = false ) {

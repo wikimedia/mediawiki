@@ -66,6 +66,7 @@ class Language {
 	 */
 	public const SUPPORTED = LanguageNameUtils::SUPPORTED;
 
+	/** @var string */
 	public $mCode;
 
 	/**
@@ -73,24 +74,29 @@ class Language {
 	 */
 	public $mMagicExtensions = [];
 
+	/** @var string|null */
 	private $mHtmlCode = null;
 
 	/**
 	 * memoize
+	 * @var string[][]
 	 * @deprecated since 1.35, must be private
 	 */
 	public $dateFormatStrings = [];
 
 	/**
 	 * memoize
-	 * @var array[]
+	 * @var string[][]|null
 	 * @deprecated since 1.35, must be protected
 	 */
 	public $mExtendedSpecialPageAliases;
 
-	/** @var array|null */
+	/** @var array<int,string>|null Indexed by numeric namespace ID */
 	protected $namespaceNames;
-	protected $mNamespaceIds, $namespaceAliases;
+	/** @var array<string,int>|null Indexed by localized lower-cased namespace name */
+	protected $mNamespaceIds;
+	/** @var array<string,int>|null Map from alias to namespace ID */
+	protected $namespaceAliases;
 
 	/**
 	 * @var ReplacementArray[]
@@ -255,7 +261,7 @@ class Language {
 	/**
 	 * @deprecated since 1.35, use the DURATION_INTERVALS constant
 	 * @since 1.20
-	 * @var array
+	 * @var int[]
 	 */
 	public static $durationIntervals = self::DURATION_INTERVALS;
 
@@ -512,7 +518,7 @@ class Language {
 	 * Returns an array of localised namespaces indexed by their numbers. If the namespace is not
 	 * available in localised form, it will be included in English.
 	 *
-	 * @return string[] List of localized namespace names, indexed by numeric namespace ID.
+	 * @return array<int,string> List of localized namespace names, indexed by numeric namespace ID.
 	 */
 	public function getNamespaces() {
 		if ( $this->namespaceNames === null ) {
@@ -555,7 +561,7 @@ class Language {
 
 	/**
 	 * Arbitrarily set all of the namespace names at once. Mainly used for testing
-	 * @param array $namespaces Array of namespaces (id => name)
+	 * @param string[] $namespaces Array of namespaces (id => name)
 	 */
 	public function setNamespaces( array $namespaces ) {
 		$this->namespaceNames = $namespaces;
@@ -576,7 +582,7 @@ class Language {
 	 * A convenience function that returns getNamespaces() with spaces instead of underscores
 	 * in values. Useful for producing output to be displayed e.g. in `<select>` forms.
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function getFormattedNamespaces() {
 		$ns = $this->getNamespaces();
@@ -595,7 +601,7 @@ class Language {
 	 * </code>
 	 *
 	 * @param int $index The array key of the namespace to return
-	 * @return string|bool String if the namespace value exists, otherwise false
+	 * @return string|false String if the namespace value exists, otherwise false
 	 */
 	public function getNsText( $index ) {
 		$ns = $this->getNamespaces();
@@ -617,7 +623,7 @@ class Language {
 	 */
 	public function getFormattedNsText( $index ) {
 		$ns = $this->getNsText( $index );
-		return strtr( $ns, '_', ' ' );
+		return strtr( (string)$ns, '_', ' ' );
 	}
 
 	/**
@@ -625,7 +631,7 @@ class Language {
 	 * See https://www.mediawiki.org/wiki/Manual:$wgExtraGenderNamespaces
 	 * @param int $index Namespace index
 	 * @param string $gender Gender key (male, female... )
-	 * @return string
+	 * @return string|false
 	 * @since 1.18
 	 */
 	public function getGenderNsText( $index, $gender ) {
@@ -733,7 +739,7 @@ class Language {
 	}
 
 	/**
-	 * @return array
+	 * @return array<string,int> indexed by localized lower-cased namespace name
 	 */
 	public function getNamespaceIds() {
 		if ( $this->mNamespaceIds === null ) {
@@ -757,7 +763,7 @@ class Language {
 	 * names override custom ones defined for the current language.
 	 *
 	 * @param string $text
-	 * @return int|bool An integer if $text is a valid value otherwise false
+	 * @return int|false An integer if $text is a valid value otherwise false
 	 */
 	public function getNsIndex( $text ) {
 		$lctext = $this->lc( $text );
@@ -791,21 +797,21 @@ class Language {
 	}
 
 	/**
-	 * @return string[]|bool List of date format preference keys, or false if disabled.
+	 * @return string[]|false List of date format preference keys, or false if disabled.
 	 */
 	public function getDatePreferences() {
 		return $this->localisationCache->getItem( $this->mCode, 'datePreferences' );
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	public function getDateFormats() {
 		return $this->localisationCache->getItem( $this->mCode, 'dateFormats' );
 	}
 
 	/**
-	 * @return array|string
+	 * @return string
 	 */
 	public function getDefaultDateFormat() {
 		$df = $this->localisationCache->getItem( $this->mCode, 'defaultDateFormat' );
@@ -817,7 +823,7 @@ class Language {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	public function getDatePreferenceMigrationMap() {
 		return $this->localisationCache->getItem( $this->mCode, 'datePreferenceMigrationMap' );
@@ -835,7 +841,7 @@ class Language {
 	 *               MediaWiki or wgExtraLanguageNames (default)
 	 * 		LanguageNameUtils::SUPPORTED only if the language is in
 	 *               LanguageNameUtils::DEFINED *and* has a message file
-	 * @return array Language code => language name (sorted by key)
+	 * @return string[] Language code => language name (sorted by key)
 	 * @since 1.20
 	 */
 	public static function fetchLanguageNames(
@@ -886,7 +892,7 @@ class Language {
 	}
 
 	/**
-	 * @param int $key
+	 * @param int $key Number from 1 to 12
 	 * @return string
 	 */
 	public function getMonthName( $key ) {
@@ -894,18 +900,18 @@ class Language {
 	}
 
 	/**
-	 * @return array
+	 * @return string[] Indexed from 0 to 11
 	 */
 	public function getMonthNamesArray() {
 		$monthNames = [ '' ];
-		for ( $i = 1; $i < 13; $i++ ) {
+		for ( $i = 1; $i <= 12; $i++ ) {
 			$monthNames[] = $this->getMonthName( $i );
 		}
 		return $monthNames;
 	}
 
 	/**
-	 * @param int $key
+	 * @param int $key Number from 1 to 12
 	 * @return string
 	 */
 	public function getMonthNameGen( $key ) {
@@ -913,7 +919,7 @@ class Language {
 	}
 
 	/**
-	 * @param int $key
+	 * @param int $key Number from 1 to 12
 	 * @return string
 	 */
 	public function getMonthAbbreviation( $key ) {
@@ -921,18 +927,18 @@ class Language {
 	}
 
 	/**
-	 * @return array
+	 * @return string[] Indexed from 0 to 11
 	 */
 	public function getMonthAbbreviationsArray() {
 		$monthNames = [ '' ];
-		for ( $i = 1; $i < 13; $i++ ) {
+		for ( $i = 1; $i <= 12; $i++ ) {
 			$monthNames[] = $this->getMonthAbbreviation( $i );
 		}
 		return $monthNames;
 	}
 
 	/**
-	 * @param int $key
+	 * @param int $key Number from 1 to 7
 	 * @return string
 	 */
 	public function getWeekdayName( $key ) {
@@ -940,7 +946,7 @@ class Language {
 	}
 
 	/**
-	 * @param int $key
+	 * @param int $key Number from 1 to 7
 	 * @return string
 	 */
 	public function getWeekdayAbbreviation( $key ) {
@@ -948,7 +954,7 @@ class Language {
 	}
 
 	/**
-	 * @param int $key
+	 * @param int $key Number from 1 to 12
 	 * @return string
 	 */
 	private function getIranianCalendarMonthName( $key ) {
@@ -956,7 +962,7 @@ class Language {
 	}
 
 	/**
-	 * @param int $key
+	 * @param int $key Number from 1 to 14
 	 * @return string
 	 */
 	private function getHebrewCalendarMonthName( $key ) {
@@ -964,7 +970,7 @@ class Language {
 	}
 
 	/**
-	 * @param int $key
+	 * @param int $key Number from 1 to 14
 	 * @return string
 	 */
 	private function getHebrewCalendarMonthNameGen( $key ) {
@@ -972,7 +978,7 @@ class Language {
 	}
 
 	/**
-	 * @param int $key
+	 * @param int $key Number from 1 to 12
 	 * @return string
 	 */
 	private function getHijriCalendarMonthName( $key ) {
@@ -981,9 +987,9 @@ class Language {
 
 	/**
 	 * Pass through result from $dateTimeObj->format()
-	 * @param DateTime|bool|null &$dateTimeObj
+	 * @param DateTime|false|null &$dateTimeObj
 	 * @param string $ts
-	 * @param DateTimeZone|bool|null $zone
+	 * @param DateTimeZone|false|null $zone
 	 * @param string $code
 	 * @return string
 	 */
@@ -2230,7 +2236,7 @@ class Language {
 	 * @param bool $adj Whether to adjust the time output according to the
 	 *   user configured offset ($timecorrection)
 	 * @param mixed $format True to use user's date format preference
-	 * @param string|bool $timecorrection The time offset as returned by
+	 * @param string|false $timecorrection The time offset as returned by
 	 *   validateTimeZone() in Special:Preferences
 	 * @return string
 	 */
@@ -2249,7 +2255,7 @@ class Language {
 	 * @param bool $adj Whether to adjust the time output according to the
 	 *   user configured offset ($timecorrection)
 	 * @param mixed $format True to use user's date format preference
-	 * @param string|bool $timecorrection The time offset as returned by
+	 * @param string|false $timecorrection The time offset as returned by
 	 *   validateTimeZone() in Special:Preferences
 	 * @return string
 	 */
@@ -2269,7 +2275,7 @@ class Language {
 	 *   user configured offset ($timecorrection)
 	 * @param mixed $format What format to return, if it's false output the
 	 *   default one (default true)
-	 * @param string|bool $timecorrection The time offset as returned by
+	 * @param string|false $timecorrection The time offset as returned by
 	 *   validateTimeZone() in Special:Preferences
 	 * @return string
 	 */
@@ -2316,7 +2322,7 @@ class Language {
 	 * @param int $seconds The amount of seconds.
 	 * @param array $chosenIntervals The intervals to enable.
 	 *
-	 * @return array
+	 * @return int[]
 	 */
 	public function getDurationIntervals( $seconds, array $chosenIntervals = [] ) {
 		if ( empty( $chosenIntervals ) ) {
@@ -2628,7 +2634,7 @@ class Language {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	public function getAllMessages() {
 		return $this->localisationCache->getItem( $this->mCode, 'messages' );
@@ -3130,7 +3136,7 @@ class Language {
 
 	/**
 	 * Get all magic words from cache.
-	 * @return array
+	 * @return string[][]
 	 */
 	public function getMagicWords() {
 		return $this->localisationCache->getItem( $this->mCode, 'magicWords' );
@@ -3156,7 +3162,7 @@ class Language {
 	/**
 	 * Get special page names, as an associative array
 	 *   canonical name => array of valid names, including aliases
-	 * @return array
+	 * @return string[][]
 	 */
 	public function getSpecialPageAliases() {
 		// Cache aliases because it may be slow to load them
@@ -3437,14 +3443,14 @@ class Language {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	public function digitTransformTable() {
 		return $this->localisationCache->getItem( $this->mCode, 'digitTransformTable' );
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	public function separatorTransformTable() {
 		return $this->localisationCache->getItem( $this->mCode, 'separatorTransformTable' );
@@ -4027,9 +4033,9 @@ class Language {
 	 * @since 1.23
 	 *
 	 * @param int $count Non-localized number
-	 * @param array $forms Different plural forms
+	 * @param string[] $forms Different plural forms
 	 *
-	 * @return array|string
+	 * @return string[]|string
 	 */
 	protected function handleExplicitPluralForms( $count, array $forms ) {
 		foreach ( $forms as $index => $form ) {
@@ -4175,7 +4181,7 @@ class Language {
 	 * @deprecated since 1.35 use LanguageConverter::autoConvert
 	 *
 	 * @param string $text text to convert
-	 * @param string|bool $variant variant to convert to, or false to use the user's preferred
+	 * @param string|false $variant variant to convert to, or false to use the user's preferred
 	 *      variant (if logged in), or the project default variant
 	 * @return string the converted string
 	 */
@@ -4475,7 +4481,7 @@ class Language {
 	 * @param int $mode Fallback mode, either MESSAGES_FALLBACKS (which always falls back to 'en'),
 	 *   or STRICT_FALLBACKS (which only falls back to 'en' when explicitly defined)
 	 * @throws InvalidArgumentException
-	 * @return array List of language codes
+	 * @return string[] List of language codes
 	 */
 	public static function getFallbacksFor( $code, $mode = LanguageFallback::MESSAGES ) {
 		return MediaWikiServices::getInstance()->getLanguageFallback()->getAll( $code, $mode );
@@ -4489,7 +4495,7 @@ class Language {
 	 *
 	 * @since 1.22
 	 * @param string $code Language code
-	 * @return array [ fallbacks, site fallbacks ]
+	 * @return string[][] [ fallbacks, site fallbacks ]
 	 */
 	public static function getFallbacksIncludingSiteLanguage( $code ) {
 		return MediaWikiServices::getInstance()->getLanguageFallback()
@@ -4533,7 +4539,7 @@ class Language {
 	 *
 	 * @since 1.19
 	 * @param string $code Language code
-	 * @return array Array of message keys (strings)
+	 * @return string[] Array of message keys (strings)
 	 */
 	public static function getMessageKeysFor( $code ) {
 		return self::getLocalisationCache()->getSubitemList( $code, 'messages' );
@@ -4568,7 +4574,7 @@ class Language {
 	 * Decode an expiry (block, protection, etc) which has come from the DB
 	 *
 	 * @param string $expiry Database expiry String
-	 * @param bool|int $format True to process using language functions, or TS_ constant
+	 * @param true|int $format True to process using language functions, or TS_ constant
 	 *     to return the expiry in a given timestamp
 	 * @param string $infinity If $format is not true, use this string for infinite expiry
 	 * @param UserIdentity|null $user If $format is true, use this user for date format
