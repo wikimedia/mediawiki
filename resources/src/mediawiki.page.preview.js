@@ -337,9 +337,9 @@
 	 * @param {string} [config.summary=null] The edit summary. If no value is given, the summary is
 	 *   fetched from `$( '#wpSummaryWidget' )`.
 	 * @param {boolean} [config.showDiff=false] Shows a diff in the preview area instead of the content.
+	 * @param {string} [config.title=mw.config.get( 'wgPageName' )] The title of the page being previewed
 	 * @param {Array} [config.loadingSelectors=getLoadingSelectors()] An array of query selectors
 	 *   (i.e. '#catlinks') that should be grayed out while the preview is being generated.
-	 * @param {string} [title=mw.config.get( 'wgPageName' )] The title of the page being previewed
 	 * @return {jQuery.Promise}
 	 */
 	function doPreview( config ) {
