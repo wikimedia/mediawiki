@@ -287,7 +287,6 @@ class HookRunner implements
 	\MediaWiki\Hook\ParserFirstCallInitHook,
 	\MediaWiki\Hook\ParserGetVariableValueSwitchHook,
 	\MediaWiki\Hook\ParserGetVariableValueTsHook,
-	\MediaWiki\Hook\ParserGetVariableValueVarCacheHook,
 	\MediaWiki\Hook\ParserLimitReportFormatHook,
 	\MediaWiki\Hook\ParserLimitReportPrepareHook,
 	\MediaWiki\Hook\ParserLogLinterDataHook,
@@ -2904,13 +2903,6 @@ class HookRunner implements
 		return $this->container->run(
 			'ParserGetVariableValueTs',
 			[ $parser, &$time ]
-		);
-	}
-
-	public function onParserGetVariableValueVarCache( $parser, &$varCache ) {
-		return $this->container->run(
-			'ParserGetVariableValueVarCache',
-			[ $parser, &$varCache ]
 		);
 	}
 
