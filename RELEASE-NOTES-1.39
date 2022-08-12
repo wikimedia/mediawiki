@@ -394,6 +394,9 @@ because of Phabricator reports.
   of accessing this configuration setting directly.
 * The following hook, deprecated in 1.35, has been removed:
      - ParserGetVariableValueVarCache: ParserGetVariableValueVarCacheHook
+* The $variableCache parameter to the ParserGetVariableValueSwitch hook is
+  no longer used; non-standard use of this parameter has been deprecated since
+  1.35.
 * These methods have been moved from IDatabase to IMaintainableDatabase:
   - IDatabase::fieldExists -> IMaintainableDatabase::fieldExists
   - IDatabase::indexExists -> IMaintainableDatabase::indexExists
