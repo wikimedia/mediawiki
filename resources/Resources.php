@@ -105,13 +105,6 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
-	'mediawiki.skinning.content.externallinks' => [
-		'deprecated' => 'Your default skin ResourceLoader class should use '
-			. 'the "content-links" feature in \MediaWiki\ResourceLoader\SkinModule::class',
-		'class' => SkinModule::class,
-		'features' => [ 'content-links' ],
-	],
-
 	/* Base modules */
 	// These modules' dependencies MUST also be included in StartUpModule::getBaseModules().
 	// These modules' dependencies MUST be dependency-free (having dependencies would cause recursion).

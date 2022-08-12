@@ -1059,6 +1059,7 @@
 	"search-file-match": "(내용이 일치하는 파일 있음)",
 	"search-suggest": "$1 문서를 찾고 있으신가요?",
 	"search-rewritten": "$1의 결과를 보여주고 있습니다. $2의 결과가 없습니다.",
+	"search-interwiki-resultset-link": "모든 결과 보기",
 	"search-interwiki-more": "(더 보기)",
 	"search-interwiki-more-results": "더 많은 결과",
 	"search-relatedarticle": "관련",

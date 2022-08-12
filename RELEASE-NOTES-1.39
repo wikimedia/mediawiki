@@ -238,6 +238,9 @@ because of Phabricator reports.
     SkinTemplateNavigation::Universal:
      - SkinTemplateNavigation::SpecialPage
      - SkinTemplateNavigation
+  - The mediawiki.skinning.content.externallinks module, which was
+    deprecated in 1.36 has been removed. Skins that still rely on it
+    will lose the icon styling of external links by type.
 * Experimental wiki farm support: Automatic detection of the requested site
   within a wiki farm based on the requested domain has been removed.
   Use the MW_WIKI_NAME environment variable to specify the name of the site
