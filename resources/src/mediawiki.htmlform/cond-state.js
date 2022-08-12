@@ -62,7 +62,7 @@
 	 * @return {Function} return.1 Test function
 	 */
 	function conditionParse( $root, spec ) {
-		var i, v, $field, fields, func;
+		var v, fields, func;
 
 		var op = spec[ 0 ];
 		var l = spec.length;
@@ -73,7 +73,7 @@
 			case 'NOR':
 				var funcs = [];
 				fields = [];
-				for ( i = 1; i < l; i++ ) {
+				for ( var i = 1; i < l; i++ ) {
 					if ( !Array.isArray( spec[ i ] ) ) {
 						throw new Error( op + ' parameters must be arrays' );
 					}
@@ -115,7 +115,7 @@
 				if ( l !== 3 ) {
 					throw new Error( op + ' takes exactly two parameters' );
 				}
-				$field = conditionGetField( $root, spec[ 1 ] );
+				var $field = conditionGetField( $root, spec[ 1 ] );
 				if ( !$field ) {
 					return [ [], function () {
 						return false;
