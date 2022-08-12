@@ -13,19 +13,17 @@
 	 * @param {jQuery} $createButton
 	 */
 	function appendToCloner( $createButton ) {
-		var $li,
-			$ul = $createButton.prev( 'ul.mw-htmlform-cloner-ul' ),
+		var $ul = $createButton.prev( 'ul.mw-htmlform-cloner-ul' ),
 			cloneRegex = new RegExp( mw.util.escapeRegExp( $ul.data( 'uniqueId' ) ), 'g' ),
 			// Assume the ids that need to be made unique will start with 'ooui-php-'. See T274533
-			inputIdRegex = new RegExp( /(ooui-php-[0-9]*)/, 'gm' ),
-			html;
+			inputIdRegex = new RegExp( /(ooui-php-[0-9]*)/, 'gm' );
 
 		++cloneCounter;
-		html = $ul.data( 'template' )
+		var html = $ul.data( 'template' )
 			.replace( cloneRegex, 'clone' + cloneCounter )
 			.replace( inputIdRegex, '$1-clone' + cloneCounter );
 
-		$li = $( '<li>' )
+		var $li = $( '<li>' )
 			.addClass( 'mw-htmlform-cloner-li' )
 			.html( html )
 			.appendTo( $ul );
@@ -38,12 +36,11 @@
 			$createElement = $root.find( '.mw-htmlform-cloner-create-button' );
 
 		$deleteElement.each( function () {
-			var $element = $( this ),
-				deleteButton;
+			var $element = $( this );
 
 			// eslint-disable-next-line no-jquery/no-class-state
 			if ( $element.hasClass( 'oo-ui-widget' ) ) {
-				deleteButton = OO.ui.infuse( $element );
+				var deleteButton = OO.ui.infuse( $element );
 				deleteButton.on( 'click', function () {
 					deleteButton.$element.closest( 'li.mw-htmlform-cloner-li' ).remove();
 				} );
@@ -57,12 +54,11 @@
 		} );
 
 		$createElement.each( function () {
-			var $element = $( this ),
-				createButton;
+			var $element = $( this );
 
 			// eslint-disable-next-line no-jquery/no-class-state
 			if ( $element.hasClass( 'oo-ui-widget' ) ) {
-				createButton = OO.ui.infuse( $element );
+				var createButton = OO.ui.infuse( $element );
 				createButton.on( 'click', function () {
 					appendToCloner( createButton.$element );
 				} );
