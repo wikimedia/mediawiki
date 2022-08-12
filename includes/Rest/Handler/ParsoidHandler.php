@@ -26,6 +26,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\Parsoid\HTMLTransform;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -48,7 +49,6 @@ use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
-use Wikimedia\Parsoid\Core\SelserData;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
@@ -268,24 +268,29 @@ abstract class ParsoidHandler extends Handler {
 		return $this->requestAttributes;
 	}
 
-	protected function getHTMLTransformInput( array $attribs, string $html ) {
-		$input = new HTMLTransformInput( $html );
+	protected function getHTMLTransform(
+		array $attribs,
+		string $html,
+		PageConfig $pageConfig,
+		array $parsoidSettings
+	): HTMLTransform {
+		$transform = new HTMLTransform( $html, $pageConfig, $this->newParsoid(), $parsoidSettings );
 
 		if ( $this->metrics ) {
-			$input->setMetrics( $this->metrics );
+			$transform->setMetrics( $this->metrics );
 		}
 
-		$input->setOptions( [
+		$transform->setOptions( [
 			'contentmodel' => $attribs['opts']['contentmodel'] ?? null,
 			'offsetType' => $attribs['offsetType'] ?? 'byte',
 		] );
 
 		if ( isset( $attribs['oldid'] ) ) {
-			$input->setOriginalRevisionId( $attribs['oldid'] );
+			$transform->setOriginalRevisionId( $attribs['oldid'] );
 		}
 
 		if ( isset( $attribs['opts']['data-mw']['body'] ) ) {
-			$input->setModifiedDataMW( $attribs['opts']['data-mw']['body'] );
+			$transform->setModifiedDataMW( $attribs['opts']['data-mw']['body'] );
 		}
 
 		if ( !empty( $attribs['opts']['original'] ) ) {
@@ -300,10 +305,10 @@ abstract class ParsoidHandler extends Handler {
 
 			// XXX: We could create a PageBundle object here, instead of passing
 			//      an array.
-			$input->setOriginalData( $original );
+			$transform->setOriginalData( $original );
 		}
 
-		return $input;
+		return $transform;
 	}
 
 	/**
@@ -843,11 +848,8 @@ abstract class ParsoidHandler extends Handler {
 		PageConfig $pageConfig, array $attribs, string $html
 	) {
 		try {
-			$input = $this->getHTMLTransformInput( $attribs, $html );
-			$wikitext = $this->transformHtmlToWikitext(
-				$pageConfig,
-				$input
-			);
+			$transform = $this->getHTMLTransform( $attribs, $html, $pageConfig, $this->parsoidSettings );
+			$wikitext = $transform->htmlToWikitext();
 
 			$response = $this->getResponseFactory()->create();
 			ParsoidFormatHelper::setContentType( $response, ParsoidFormatHelper::FORMAT_WIKITEXT );
@@ -857,99 +859,6 @@ abstract class ParsoidHandler extends Handler {
 		} catch ( ClientError $e ) {
 			throw new HttpException( $e->getMessage(), 400 );
 		}
-	}
-
-	/**
-	 * Get selected serialization data from old HTML.
-	 *
-	 * @param HTMLTransformInput $input
-	 * @param PageConfig $pageConfig
-	 *
-	 * @return SelserData|null
-	 * @throws HttpException
-	 */
-	private function getSelserData(
-		HTMLTransformInput $input,
-		PageConfig $pageConfig
-	): ?SelserData {
-		$oldhtml = $input->getOriginalHtml();
-
-		// As per https://www.mediawiki.org/wiki/Parsoid/API#v1_API_entry_points
-		//   "Both it and the oldid parameter are needed for
-		//    clean round-tripping of HTML retrieved earlier with"
-		// So, no oldid => no selser
-		$hasOldId = ( $input->getOriginalRevisionId() !== null );
-
-		if ( $hasOldId && !empty( $this->parsoidSettings['useSelser'] ) ) {
-			if ( !$pageConfig->getRevisionContent() ) {
-				throw new HttpException( 'Could not find previous revision. Has the page been locked / deleted?',
-					409 );
-			}
-
-			// FIXME: T234548/T234549 - $pageConfig->getPageMainContent() is deprecated:
-			// should use $env->topFrame->getSrcText()
-			$selserData = new SelserData( $pageConfig->getPageMainContent(),
-				$oldhtml );
-		} else {
-			$selserData = null;
-		}
-
-		return $selserData;
-	}
-
-	protected function transformHtmlToWikitext(
-		PageConfig $pageConfig,
-		HTMLTransformInput $input
-	): string {
-		$metrics = $this->metrics;
-
-		// Performance Timing options
-		$timing = Timing::start( $metrics );
-
-		$doc = $input->getModifiedDocument();
-		$htmlSize = $input->getModifiedHtmlSize();
-
-		// Send input size to statsd/Graphite
-		$metrics->timing( 'html2wt.size.input', $htmlSize );
-
-		$inputContentVersion = $input->getSchemaVersion();
-
-		$metrics->increment(
-			'html2wt.original.version.' . $inputContentVersion
-		);
-
-		$selserData = $this->getSelserData(
-			$input,
-			$pageConfig
-		);
-
-		$parsoid = $this->newParsoid();
-
-		$timing->end( 'html2wt.init' );
-
-		try {
-			$wikitext = $parsoid->dom2wikitext( $pageConfig, $doc, [
-				'inputContentVersion' => $inputContentVersion,
-				'offsetType' => $input->getOffsetType(),
-				'contentmodel' => $input->getContentModel(),
-				'htmlSize' => $htmlSize, // used to trigger status 413 if the input is too big
-			], $selserData );
-		} catch ( ClientError $e ) {
-			throw new HttpException( $e->getMessage(), 400 );
-		} catch ( ResourceLimitExceededException $e ) {
-			throw new HttpException( $e->getMessage(), 413 );
-		}
-
-		if ( $htmlSize ) {  // Avoid division by zero
-			$total = $timing->end( 'html2wt.total' );
-			$metrics->timing( 'html2wt.size.output', strlen( $wikitext ) );
-
-			// NOTE: the name timePerInputKB is misleading, since $htmlSize is
-			//       in characters, not bytes.
-			$metrics->timing( 'html2wt.timePerInputKB', $total * 1024 / $htmlSize );
-		}
-
-		return $wikitext;
 	}
 
 	/**

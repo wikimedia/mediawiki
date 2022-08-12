@@ -1,12 +1,18 @@
 <?php
 
-namespace MediaWiki\Rest\Handler;
+namespace MediaWiki\Parser\Parsoid;
 
 use Composer\Semver\Semver;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Rest\Handler\ParsoidFormatHelper;
+use MediaWiki\Rest\HttpException;
+use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
+use Wikimedia\Parsoid\Core\SelserData;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\DOM\Element;
 use Wikimedia\Parsoid\Parsoid;
@@ -18,7 +24,7 @@ use Wikimedia\Parsoid\Utils\Timing;
 /**
  * @unstable
  */
-class HTMLTransformInput {
+class HTMLTransform {
 	/** @var array */
 	private $original = [];
 
@@ -56,11 +62,31 @@ class HTMLTransformInput {
 	/** @var string */
 	private $html;
 
+	/** @var PageConfig */
+	private $pageConfig;
+
+	/** @var Parsoid */
+	private $parsoid;
+
+	/** @var array */
+	private $parsoidSettings;
+
 	/**
 	 * @param string $html
+	 * @param PageConfig $pageConfig
+	 * @param Parsoid $parsoid
+	 * @param array $parsoidSettings
 	 */
-	public function __construct( string $html ) {
+	public function __construct(
+		string $html,
+		PageConfig $pageConfig,
+		Parsoid $parsoid,
+		array $parsoidSettings
+	) {
 		$this->html = $html;
+		$this->pageConfig = $pageConfig;
+		$this->parsoid = $parsoid;
+		$this->parsoidSettings = $parsoidSettings;
 	}
 
 	/**
@@ -394,6 +420,90 @@ class HTMLTransformInput {
 				. 'different type, and no path to downgrade.'
 			);
 		}
+	}
+
+	/**
+	 * Get a selective serialization (selser) data object. This
+	 * can be null if selser is not enabled or oldid is not available.
+	 *
+	 * @return SelserData|null
+	 * @throws HttpException
+	 */
+	private function getSelserData(): ?SelserData {
+		$oldhtml = $this->getOriginalHtml();
+
+		// As per https://www.mediawiki.org/wiki/Parsoid/API#v1_API_entry_points
+		//   "Both it and the oldid parameter are needed for
+		//    clean round-tripping of HTML retrieved earlier with"
+		// So, no oldid => no selser
+		$hasOldId = ( $this->getOriginalRevisionId() !== null );
+
+		if ( $hasOldId && !empty( $this->parsoidSettings['useSelser'] ) ) {
+			if ( !$this->pageConfig->getRevisionContent() ) {
+				throw new HttpException( 'Could not find previous revision. Has the page been locked / deleted?',
+					409 );
+			}
+
+			// FIXME: T234548/T234549 - $pageConfig->getPageMainContent() is deprecated:
+			// should use $env->topFrame->getSrcText()
+			$selserData = new SelserData( $this->pageConfig->getPageMainContent(),
+				$oldhtml );
+		} else {
+			$selserData = null;
+		}
+
+		return $selserData;
+	}
+
+	public function htmlToWikitext(): string {
+		if ( $this->metrics ) {
+			$metrics = $this->metrics;
+		} else {
+			$metrics = MediaWikiServices::getInstance()->getParsoidSiteConfig()->metrics();
+		}
+
+		// Performance Timing options
+		$timing = Timing::start( $metrics );
+
+		$doc = $this->getModifiedDocument();
+		$htmlSize = $this->getModifiedHtmlSize();
+
+		// Send input size to statsd/Graphite
+		$metrics->timing( 'html2wt.size.input', $htmlSize );
+
+		$inputContentVersion = $this->getSchemaVersion();
+
+		$metrics->increment(
+			'html2wt.original.version.' . $inputContentVersion
+		);
+
+		$selserData = $this->getSelserData();
+
+		$timing->end( 'html2wt.init' );
+
+		try {
+			$wikitext = $this->parsoid->dom2wikitext( $this->pageConfig, $doc, [
+				'inputContentVersion' => $inputContentVersion,
+				'offsetType' => $this->getOffsetType(),
+				'contentmodel' => $this->getContentModel(),
+				'htmlSize' => $htmlSize, // used to trigger status 413 if the input is too big
+			], $selserData );
+		} catch ( ClientError $e ) {
+			throw new HttpException( $e->getMessage(), 400 );
+		} catch ( ResourceLimitExceededException $e ) {
+			throw new HttpException( $e->getMessage(), 413 );
+		}
+
+		$total = $timing->end( 'html2wt.total' );
+		$metrics->timing( 'html2wt.size.output', strlen( $wikitext ) );
+
+		if ( $htmlSize ) {  // Avoid division by zero
+			// NOTE: the name timePerInputKB is misleading, since $htmlSize is
+			//       in characters, not bytes.
+			$metrics->timing( 'html2wt.timePerInputKB', $total * 1024 / $htmlSize );
+		}
+
+		return $wikitext;
 	}
 
 }
