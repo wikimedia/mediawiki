@@ -985,11 +985,14 @@ class ApiPageSet extends ApiBase {
 		}
 
 		$db = $this->getDB();
-		$set = $linkBatch->constructSet( 'page', $db );
 
 		// Get pageIDs data from the `page` table
-		$res = $db->select( 'page', $this->getPageTableFields(), $set,
-			__METHOD__ );
+		$res = $db->newSelectQueryBuilder()
+			->select( $this->getPageTableFields() )
+			->from( 'page' )
+			->where( $linkBatch->constructSet( 'page', $db ) )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		// Hack: get the ns:titles stored in [ ns => [ titles ] ] format
 		$this->initFromQueryResult( $res, $linkBatch->data, true ); // process Titles
@@ -1017,14 +1020,15 @@ class ApiPageSet extends ApiBase {
 
 		$res = null;
 		if ( !empty( $pageids ) ) {
-			$set = [
-				'page_id' => $pageids
-			];
 			$db = $this->getDB();
 
 			// Get pageIDs data from the `page` table
-			$res = $db->select( 'page', $this->getPageTableFields(), $set,
-				__METHOD__ );
+			$res = $db->newSelectQueryBuilder()
+				->select( $this->getPageTableFields() )
+				->from( 'page' )
+				->where( [ 'page_id' => $pageids ] )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 		}
 
 		$this->initFromQueryResult( $res, $remaining, false ); // process PageIDs
@@ -1126,12 +1130,16 @@ class ApiPageSet extends ApiBase {
 		$goodRemaining = array_fill_keys( $revids, true );
 
 		if ( $revids ) {
-			$tables = [ 'revision', 'page' ];
 			$fields = [ 'rev_id', 'rev_page' ];
-			$where = [ 'rev_id' => $revids, 'rev_page = page_id' ];
 
 			// Get pageIDs data from the `page` table
-			$res = $db->select( $tables, $fields, $where, __METHOD__ );
+			$res = $db->newSelectQueryBuilder()
+				->select( $fields )
+				->from( 'page' )
+				->where( [ 'rev_id' => $revids ] )
+				->join( 'revision', null, [ 'rev_page = page_id' ] )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 			foreach ( $res as $row ) {
 				$revid = (int)$row->rev_id;
 				$pageid = (int)$row->rev_page;
@@ -1151,11 +1159,14 @@ class ApiPageSet extends ApiBase {
 		// ar_page_id because deleted revisions are tied by title, not page_id.
 		if ( $goodRemaining &&
 			$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
-			$tables = [ 'archive' ];
-			$fields = [ 'ar_rev_id', 'ar_namespace', 'ar_title' ];
-			$where = [ 'ar_rev_id' => array_keys( $goodRemaining ) ];
 
-			$res = $db->select( $tables, $fields, $where, __METHOD__ );
+			$res = $db->newSelectQueryBuilder()
+				->select( [ 'ar_rev_id', 'ar_namespace', 'ar_title' ] )
+				->from( 'archive' )
+				->where( [ 'ar_rev_id' => array_keys( $goodRemaining ) ] )
+				->caller( __METHOD__ )
+				->fetchResultSet();
+
 			$titles = [];
 			foreach ( $res as $row ) {
 				$revid = (int)$row->ar_rev_id;
@@ -1198,7 +1209,6 @@ class ApiPageSet extends ApiBase {
 	private function resolvePendingRedirects() {
 		if ( $this->mResolveRedirects ) {
 			$db = $this->getDB();
-			$pageFlds = $this->getPageTableFields();
 
 			// Repeat until all redirects have been resolved
 			// The infinite loop is prevented by keeping all known pages in $this->mAllPages
@@ -1217,7 +1227,12 @@ class ApiPageSet extends ApiBase {
 				}
 
 				// Get pageIDs data from the `page` table
-				$res = $db->select( 'page', $pageFlds, $set, __METHOD__ );
+				$res = $db->newSelectQueryBuilder()
+					->select( $this->getPageTableFields() )
+					->from( 'page' )
+					->where( $set )
+					->caller( __METHOD__ )
+					->fetchResultSet();
 
 				// Hack: get the ns:titles stored in [ns => array(titles)] format
 				$this->initFromQueryResult( $res, $linkBatch->data, true );
@@ -1237,17 +1252,19 @@ class ApiPageSet extends ApiBase {
 		$db = $this->getDB();
 
 		if ( $this->mPendingRedirectIDs ) {
-			$res = $db->select(
-				'redirect',
-				[
+			$res = $db->newSelectQueryBuilder()
+				->select( [
 					'rd_from',
 					'rd_namespace',
 					'rd_fragment',
 					'rd_interwiki',
 					'rd_title'
-				], [ 'rd_from' => array_keys( $this->mPendingRedirectIDs ) ],
-					__METHOD__
-				);
+				] )
+				->from( 'redirect' )
+				->where( [ 'rd_from' => array_keys( $this->mPendingRedirectIDs ) ] )
+				->caller( __METHOD__ )
+				->fetchResultSet();
+
 			foreach ( $res as $row ) {
 				$rdfrom = (int)$row->rd_from;
 				$from = $this->mPendingRedirectIDs[$rdfrom]->getPrefixedText();
