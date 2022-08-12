@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
@@ -1534,7 +1535,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$ip, $mwuser, $sessionData, $expectedSessionData, $expectedLogLevel
 	) {
 		\MWTimestamp::setFakeTime( 1234567 );
-		$this->setMwGlobals( 'wgSuspiciousIpExpiry', 600 );
+		$this->overrideConfigValue( MainConfigNames::SuspiciousIpExpiry, 600 );
 		$manager = new SessionManager();
 		$logger = $this->createMock( LoggerInterface::class );
 		$this->setLogger( 'session-ip', $logger );

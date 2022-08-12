@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -90,7 +91,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 			// Test case 1
 			[
 				[
-					'wgFooterIcons' => [],
+					MainConfigNames::FooterIcons => [],
 				],
 				[],
 				'Empty list'
@@ -98,7 +99,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 			// Test case 2
 			[
 				[
-					'wgFooterIcons' => [
+					MainConfigNames::FooterIcons => [
 						'poweredby' => [
 							'mediawiki' => [
 								'src' => '/w/resources/assets/poweredby_mediawiki_88x31.png',
@@ -128,7 +129,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 			// Test case 3
 			[
 				[
-					'wgFooterIcons' => [
+					MainConfigNames::FooterIcons => [
 						'copyright' => [
 							'copyright' => [],
 						],
@@ -140,7 +141,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 			// Test case 4
 			[
 				[
-					'wgFooterIcons' => [
+					MainConfigNames::FooterIcons => [
 						'copyright' => [
 							'copyright' => [
 								'alt' => 'Wikimedia Foundation',
@@ -160,7 +161,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetFooterIcons
 	 */
 	public function testGetFooterIcons( $globals, $expected, $msg ) {
-		$this->setMwGlobals( $globals );
+		$this->overrideConfigValues( $globals );
 		$wrapper = TestingAccessWrapper::newFromObject( new SkinTemplate() );
 		$icons = $wrapper->getFooterIcons();
 
