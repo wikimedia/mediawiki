@@ -3,6 +3,7 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
@@ -432,7 +433,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$store = new TestBagOStuff();
 
 		// For User::requiresHTTPS
-		$this->setMwGlobals( [ 'wgForceHTTPS' => $forceHTTPS ] );
+		$this->overrideConfigValue( MainConfigNames::ForceHTTPS, $forceHTTPS );
 
 		$user = static::getTestSysop()->getUser();
 		$anon = new User;
@@ -518,9 +519,9 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $forceHTTPS
 	 */
 	public function testCookieData( $secure, $remember, $forceHTTPS ) {
-		$this->setMwGlobals( [
-			'wgSecureLogin' => false,
-			'wgForceHTTPS' => $forceHTTPS,
+		$this->overrideConfigValues( [
+			MainConfigNames::SecureLogin => false,
+			MainConfigNames::ForceHTTPS => $forceHTTPS,
 		] );
 
 		$provider = new CookieSessionProvider( [
@@ -641,7 +642,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->initProvider( $provider, null, $this->getConfig(), SessionManager::singleton(), $hookContainer );
 
 		// For User::requiresHTTPS
-		$this->setMwGlobals( [ 'wgForceHTTPS' => false ] );
+		$this->overrideConfigValue( MainConfigNames::ForceHTTPS, false );
 
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 		$store = new TestBagOStuff();

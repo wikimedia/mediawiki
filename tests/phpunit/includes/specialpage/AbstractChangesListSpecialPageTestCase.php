@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * Abstract base class for shared logic when testing ChangesListSpecialPage
  * and subclasses
@@ -19,9 +21,9 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiIntegrati
 		global $wgGroupPermissions;
 
 		parent::setUp();
-		$this->setMwGlobals( [
-			'wgRCWatchCategoryMembership' => true,
-			'wgUseRCPatrol' => true,
+		$this->overrideConfigValues( [
+			MainConfigNames::RCWatchCategoryMembership => true,
+			MainConfigNames::UseRCPatrol => true,
 		] );
 
 		if ( isset( $wgGroupPermissions['patrollers'] ) ) {

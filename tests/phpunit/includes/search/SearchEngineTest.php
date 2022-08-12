@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\LoadBalancerSingle;
 
 /**
@@ -33,10 +34,10 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		}
 
 		$searchType = SearchEngineFactory::getSearchEngineClass( $this->db );
-		$this->setMwGlobals( [
-			'wgSearchType' => $searchType,
-			'wgCapitalLinks' => true,
-			'wgCapitalLinkOverrides' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::SearchType => $searchType,
+			MainConfigNames::CapitalLinks => true,
+			MainConfigNames::CapitalLinkOverrides => [
 				NS_CATEGORY => false // for testCompletionSearchMustRespectCapitalLinkOverrides
 			],
 		] );
@@ -60,10 +61,10 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 
 		// Reset the search type back to default - some extensions may have
 		// overridden it.
-		$this->setMwGlobals( [
-			'wgSearchType' => null,
-			'wgCapitalLinks' => true,
-			'wgCapitalLinkOverrides' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::SearchType => null,
+			MainConfigNames::CapitalLinks => true,
+			MainConfigNames::CapitalLinkOverrides => [
 				NS_CATEGORY => false // for testCompletionSearchMustRespectCapitalLinkOverrides
 			],
 		] );
