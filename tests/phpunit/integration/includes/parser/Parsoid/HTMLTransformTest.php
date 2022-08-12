@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Parser\Parsoid;
 
+use Composer\Semver\Semver;
 use Exception;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
@@ -217,7 +218,8 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 		$oldBody = $transform->getOriginalBody();
 
 		// all getters should now reflect the state after the downgrade.
-		$this->assertSame( '2.5.0', $transform->getOriginalSchemaVersion() );
+		// we expect a version >= 2.4.0 and < 3.0.0. So use ^2.4.0
+		Semver::satisfies( $transform->getOriginalSchemaVersion(), '^2.4.0' );
 		$this->assertNotSame( $html, $transform->getOriginalHtml() );
 		$this->assertNotSame( $oldBody, ContentUtils::toXML( $transform->getOriginalBody() ) );
 	}

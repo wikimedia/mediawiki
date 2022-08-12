@@ -11,6 +11,7 @@ use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\StringStream;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\Parsoid\Parsoid;
 
 /**
  * @group Database
@@ -19,7 +20,7 @@ class TransformHandlerTest extends MediaWikiIntegrationTestCase {
 	use HandlerTestTrait;
 
 	public function provideRequest() {
-		$profileVersion = '2.5.0';
+		$profileVersion = Parsoid::AVAILABLE_VERSIONS[0];
 		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;
 		$wikitextProfileUri = 'https://www.mediawiki.org/wiki/Specs/wikitext/1.0.0';
 
