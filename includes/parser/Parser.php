@@ -3075,6 +3075,12 @@ class Parser {
 		if ( !$found && $args->getLength() == 0 ) {
 			$id = $this->mVariables->matchStartToEnd( $part1 );
 			if ( $id !== false ) {
+				if ( strpos( $part1, ':' ) !== false ) {
+					wfDeprecatedMsg(
+						'Registering a magic variable with a name including a colon',
+						'1.39', false, false
+					);
+				}
 				$text = $this->expandMagicVariable( $id, $frame );
 				if ( $this->magicWordFactory->getCacheTTL( $id ) > -1 ) {
 					$this->mOutput->updateCacheExpiry(
