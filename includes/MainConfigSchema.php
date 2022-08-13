@@ -3629,7 +3629,6 @@ class MainConfigSchema {
 	 * Otherwise it can cause inaccuracy in data.
 	 *
 	 * @since 1.39
-	 * @warning EXPERIMENTAL!
 	 */
 	public const MultiShardSiteStats = [
 		'default' => false,
