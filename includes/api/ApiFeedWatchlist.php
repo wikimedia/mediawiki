@@ -140,7 +140,7 @@ class ApiFeedWatchlist extends ApiBase {
 				}
 			}
 
-			$msg = wfMessage( 'watchlist' )->inContentLanguage()->text();
+			$msg = $this->msg( 'watchlist' )->inContentLanguage()->text();
 
 			$feedTitle = $this->getConfig()->get( MainConfigNames::Sitename ) . ' - ' . $msg .
 				' [' . $this->getConfig()->get( MainConfigNames::LanguageCode ) . ']';
@@ -159,12 +159,12 @@ class ApiFeedWatchlist extends ApiBase {
 
 			// @todo FIXME: Localise  brackets
 			$feedTitle = $this->getConfig()->get( MainConfigNames::Sitename ) . ' - Error - ' .
-				wfMessage( 'watchlist' )->inContentLanguage()->text() .
+				$this->msg( 'watchlist' )->inContentLanguage()->text() .
 				' [' . $this->getConfig()->get( MainConfigNames::LanguageCode ) . ']';
 			$feedUrl = SpecialPage::getTitleFor( 'Watchlist' )->getFullURL();
 
 			$feedFormat = $params['feedformat'] ?? 'rss';
-			$msg = wfMessage( 'watchlist' )->inContentLanguage()->escaped();
+			$msg = $this->msg( 'watchlist' )->inContentLanguage()->escaped();
 			$feed = new $feedClasses[$feedFormat] ( $feedTitle, $msg, $feedUrl );
 
 			if ( $e instanceof ApiUsageException ) {
