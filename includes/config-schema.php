@@ -2406,6 +2406,7 @@ return [
 				0 => 'vector-2022',
 				1 => 'vector',
 			],
+			'SpecialPreferencesUseMobileLayout' => false,
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
@@ -2866,6 +2867,7 @@ return [
 			'ReportToEndpoints' => 'array',
 			'FeaturePolicyReportOnly' => 'array',
 			'SkinsPreferred' => 'array',
+			'SpecialPreferencesUseMobileLayout' => 'boolean',
 		],
 		'mergeStrategy' => [
 			'TiffThumbnailType' => 'replace',

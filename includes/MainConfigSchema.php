@@ -70,6 +70,7 @@ use ReplicatedBagOStuff;
 use RevertedTagUpdateJob;
 use RightsLogFormatter;
 use SiteStatsUpdate;
+use SpecialPreferencesUseMobileLayout;
 use SqlBagOStuff;
 use TagLogFormatter;
 use TextContentHandler;
@@ -12368,6 +12369,16 @@ class MainConfigSchema {
 	public const SkinsPreferred = [
 		'default' => [ 'vector-2022', 'vector' ],
 		'type' => 'list',
+	];
+
+	/**
+	 * Whether a user is shown the mobile layout in Special:Preferences
+	 *
+	 * @since 1.39
+	 */
+	public const SpecialPreferencesUseMobileLayout = [
+		'default' => false,
+		'type' => 'boolean',
 	];
 
 	// endregion -- End Miscellaneous
