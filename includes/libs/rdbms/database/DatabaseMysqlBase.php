@@ -87,10 +87,11 @@ abstract class DatabaseMysqlBase extends Database {
 	 *       pt-heartbeat assumes the table is at heartbeat.heartbeat
 	 *       and uses UTC timestamps in the heartbeat.ts column.
 	 *       (https://www.percona.com/doc/percona-toolkit/2.2/pt-heartbeat.html)
-	 *   - lagDetectionOptions : if using pt-heartbeat, this can be set to an array map to change
-	 *       the default behavior. Normally, the heartbeat row with the server
-	 *       ID of this server's primary DB will be used. Set the "conds" field to
-	 *       override the query conditions, e.g. ['shard' => 's1'].
+	 *   - lagDetectionOptions : if using pt-heartbeat, this can be set to an array map.
+	 *       The "conds" key overrides the WHERE clause used to find the relevant row in the
+	 *       `heartbeat` table, e.g. ['shard' => 's1']. By default, the row used is the newest
+	 *       row having a server_id matching that of the immediate replication source server
+	 *       for the given replica.
 	 *   - useGTIDs : use GTID methods like MASTER_GTID_WAIT() when possible.
 	 *   - insertSelectIsSafe : force that native INSERT SELECT is or is not safe [default: null]
 	 *   - sslKeyPath : path to key file [default: null]
@@ -507,12 +508,17 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		if ( isset( $options['conds'] ) ) {
-			// Best method for multi-DC setups: use logical channel names
-			$ago = $this->fetchSecondsSinceHeartbeat( $options['conds'] );
+			// Custom/explicit method: specify the server_id or use logical channel names.
+			// This works well for multi-datacenter setups with read-only "standby masters"
+			// in secondary datacenters that are used as replication sources. The `heartbeat`
+			// row for the primary server can be found without resorting to slow queries to
+			// fetch the server_id of the primary.
+			$conds = $options['conds'];
 		} else {
-			// Standard method: use primary server ID (works with stock pt-heartbeat)
-			$masterInfo = $this->getPrimaryServerInfo();
-			if ( !$masterInfo ) {
+			// Standard method: determine source server ID (works with stock pt-heartbeat).
+			// This assumes that the immediate source server is the primary server.
+			$sourceInfo = $this->getSourceServerInfo();
+			if ( !$sourceInfo ) {
 				$this->queryLogger->error(
 					"Unable to query primary of {db_server} for server ID",
 					$this->getLogContext( [
@@ -523,10 +529,10 @@ abstract class DatabaseMysqlBase extends Database {
 				return false; // could not get primary server ID
 			}
 
-			$conds = [ 'server_id' => intval( $masterInfo['serverId'] ) ];
-			$ago = $this->fetchSecondsSinceHeartbeat( $conds );
+			$conds = [ 'server_id' => $sourceInfo['serverId'] ];
 		}
 
+		$ago = $this->fetchSecondsSinceHeartbeat( $conds );
 		if ( $ago !== null ) {
 			return max( $ago, 0.0 );
 		}
@@ -541,52 +547,26 @@ abstract class DatabaseMysqlBase extends Database {
 		return false;
 	}
 
-	protected function getPrimaryServerInfo() {
-		if ( !$this->topologicalPrimaryConnRef ) {
-			return false; // something is misconfigured
+	/**
+	 * Get information about the direct replication source server for this replica server
+	 *
+	 * This only queries the replica itself, avoiding outages due to primary failure
+	 *
+	 * @return array<string,mixed>|false Map or false on failure
+	 */
+	protected function getSourceServerInfo() {
+		$row = $this->getServerRoleStatus( 'SLAVE', __METHOD__ );
+		if ( $row ) {
+			// MariaDB uses Master_Server_Id; MySQL uses Source_Server_Id
+			// https://mariadb.com/kb/en/show-replica-status/
+			// https://dev.mysql.com/doc/refman/8.0/en/show-replica-status.html
+			$id = (int)( $row['Master_Server_Id'] ?? $row['Source_Server_Id'] ?? 0 );
+		} else {
+			$id = 0;
 		}
 
-		$cache = $this->srvCache;
-		$key = $cache->makeGlobalKey(
-			'mysql',
-			'master-info',
-			// Using one key for all cluster replica DBs is preferable
-			$this->topologicalPrimaryConnRef->getServerName()
-		);
-		$fname = __METHOD__;
-
-		return $cache->getWithSetCallback(
-			$key,
-			$cache::TTL_INDEFINITE,
-			function () use ( $cache, $key, $fname ) {
-				// Get and leave a lock key in place for a short period
-				if ( !$cache->lock( $key, 0, 10 ) ) {
-					return false; // avoid primary DB connection spike slams
-				}
-
-				$flags = self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
-				// Connect to and query the primary DB; catch errors to avoid outages
-				try {
-					$res = $this->topologicalPrimaryConnRef->query(
-						'SELECT @@server_id AS id',
-						$fname,
-						$flags
-					);
-					$row = $res ? $res->fetchObject() : false;
-					$id = $row ? (int)$row->id : 0;
-				} catch ( DBError $e ) {
-					$id = 0;
-				}
-
-				// Cache the ID if it was retrieved
-				return $id ? [ 'serverId' => $id, 'asOf' => time() ] : false;
-			}
-		);
-	}
-
-	protected function getMasterServerInfo() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->getPrimaryServerInfo();
+		// Cache the ID if it was retrieved
+		return $id ? [ 'serverId' => $id, 'asOf' => time() ] : false;
 	}
 
 	/**
@@ -880,13 +860,14 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * @param string $role One of "MASTER"/"SLAVE"
 	 * @param string $fname
-	 * @return string[] Latest available server status row
+	 * @return array<string,mixed>|null Latest available server status row; false on failure
 	 */
 	protected function getServerRoleStatus( $role, $fname = __METHOD__ ) {
-		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
+		$flags = self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 		$res = $this->query( "SHOW $role STATUS", $fname, $flags );
+		$row = $res ? $res->fetchRow() : false;
 
-		return $res->fetchRow() ?: [];
+		return ( $row ?: null );
 	}
 
 	public function serverIsReadOnly() {
