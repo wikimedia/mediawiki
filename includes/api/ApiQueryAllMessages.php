@@ -201,7 +201,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 					}
 				}
 
-				$msg = wfMessage( $message, $args )->inLanguage( $langObj );
+				$msg = $this->msg( $message, $args )->inLanguage( $langObj );
 
 				if ( !$msg->exists() ) {
 					$a['missing'] = true;
@@ -217,7 +217,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 						ApiResult::setContentValue( $a, 'content', $msgString );
 					}
 					if ( isset( $prop['default'] ) ) {
-						$default = wfMessage( $message )->inLanguage( $langObj )->useDatabase( false );
+						$default = $this->msg( $message )->inLanguage( $langObj )->useDatabase( false );
 						if ( !$default->exists() ) {
 							$a['defaultmissing'] = true;
 						} elseif ( $default->plain() != $msgString ) {

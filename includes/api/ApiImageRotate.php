@@ -126,7 +126,7 @@ class ApiImageRotate extends ApiBase {
 				'rotation' => $rotation
 			] );
 			if ( !$err ) {
-				$comment = wfMessage(
+				$comment = $this->msg(
 					'rotate-comment'
 				)->numParams( $rotation )->inContentLanguage()->text();
 				// @phan-suppress-next-line PhanUndeclaredMethod

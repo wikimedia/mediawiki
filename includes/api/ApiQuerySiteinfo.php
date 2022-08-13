@@ -536,12 +536,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			if ( $interwikiMagic && in_array( $prefix, $extraLangPrefixes ) ) {
 				$val['extralanglink'] = true;
 
-				$linktext = wfMessage( "interlanguage-link-$prefix" );
+				$linktext = $this->msg( "interlanguage-link-$prefix" );
 				if ( !$linktext->isDisabled() ) {
 					$val['linktext'] = $linktext->text();
 				}
 
-				$sitename = wfMessage( "interlanguage-link-sitename-$prefix" );
+				$sitename = $this->msg( "interlanguage-link-sitename-$prefix" );
 				if ( !$sitename->isDisabled() ) {
 					$val['sitename'] = $sitename->text();
 				}
