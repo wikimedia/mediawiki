@@ -850,7 +850,7 @@ class ApiParse extends ApiBase {
 				$summary = $params['sectiontitle'];
 			}
 			if ( $summary !== '' ) {
-				$summary = wfMessage( 'newsectionsummary' )
+				$summary = $this->msg( 'newsectionsummary' )
 					->rawParams( $this->parser->stripSectionName( $summary ) )
 					->inContentLanguage()->text();
 			}

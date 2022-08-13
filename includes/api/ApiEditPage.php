@@ -338,7 +338,7 @@ class ApiEditPage extends ApiBase {
 				$nextRev = $this->revisionLookup->getNextRevision( $undoafterRev );
 				if ( $nextRev && $nextRev->getId() == $params['undo'] ) {
 					$undoRevUser = $undoRev->getUser();
-					$params['summary'] = wfMessage( 'undo-summary' )
+					$params['summary'] = $this->msg( 'undo-summary' )
 						->params( $params['undo'], $undoRevUser ? $undoRevUser->getName() : '' )
 						->inContentLanguage()->text();
 				}
