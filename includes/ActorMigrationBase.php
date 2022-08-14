@@ -236,9 +236,9 @@ class ActorMigrationBase {
 	 * @param string $key A key such as "rev_user" identifying the actor
 	 *  field being fetched.
 	 * @return array[] With three keys:
-	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
-	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
-	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()` or `SelectQueryBuilder::fields`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()` or `SelectQueryBuilder::joinConds`
 	 *  All tables, fields, and joins are aliased, so `+` is safe to use.
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
@@ -424,16 +424,17 @@ class ActorMigrationBase {
 	 * @param bool $useId If false, don't try to query by the user ID.
 	 *  Intended for use with rc_user since it has an index on
 	 *  (rc_user_text,rc_timestamp) but not (rc_user,rc_timestamp).
-	 * @return array With three keys:
-	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
-	 *   - conds: (string) to include in the `$cond` to `IDatabase->select()`
+	 * @return array With four keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
+	 *   - conds: (string) to include in the `$cond` to `IDatabase->select()` or `SelectQueryBuilder::conds`
 	 *   - orconds: (array[]) array of alternatives in case a union of multiple
 	 *     queries would be more efficient than a query with OR. May have keys
 	 *     'actor', 'userid', 'username'.
 	 *     Since 1.32, this is guaranteed to contain just one alternative if
 	 *     $users contains a single user.
-	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()` or `SelectQueryBuilder::joinConds`
 	 *  All tables and joins are aliased, so `+` is safe to use.
+	 * @phan-return array{tables:string[],conds:string,orconds:array[],joins:array}
 	 */
 	public function getWhere( IDatabase $db, $key, $users, $useId = true ) {
 		$this->checkDeprecation( $key );
