@@ -114,7 +114,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 			'`PageWithTextThatIsNotValidJSON` should be wikitext at first'
 		);
 
-		$this->setExpectedApiException( 'invalid-content-data' );
+		$this->setExpectedApiException( wfMessage( 'invalid-json-data', wfMessage( 'json-error-syntax' ) ) );
 		$this->doApiRequestWithToken( [
 				'action' => 'changecontentmodel',
 				'summary' => __METHOD__,
