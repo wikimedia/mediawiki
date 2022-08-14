@@ -391,7 +391,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			}
 			if ( !( $revDel & self::CANNOT_VIEW ) ) {
 				$comment = $revision->getComment( RevisionRecord::RAW );
-				$comment = $comment ? $comment->text : '';
+				$comment = $comment->text ?? '';
 
 				if ( $this->fld_comment ) {
 					$vals['comment'] = $comment;

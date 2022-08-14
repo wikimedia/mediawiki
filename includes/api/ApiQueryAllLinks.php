@@ -224,15 +224,13 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$res = $this->select( __METHOD__ );
 
 		// Get gender information
-		if ( $res->numRows() && $resultPageSet === null ) {
-			if ( $this->namespaceInfo->hasGenderDistinction( $namespace ) ) {
-				$users = [];
-				foreach ( $res as $row ) {
-					$users[] = $row->pl_title;
-				}
-				if ( $users !== [] ) {
-					$this->genderCache->doQuery( $users, __METHOD__ );
-				}
+		if ( $resultPageSet === null && $res->numRows() && $this->namespaceInfo->hasGenderDistinction( $namespace ) ) {
+			$users = [];
+			foreach ( $res as $row ) {
+				$users[] = $row->pl_title;
+			}
+			if ( $users !== [] ) {
+				$this->genderCache->doQuery( $users, __METHOD__ );
 			}
 		}
 

@@ -191,13 +191,13 @@ class ApiLogin extends ApiBase {
 					// Hope it's not a PreAuthenticationProvider that failed...
 					$authRes = 'Failed';
 					$message = $res->message;
-					\MediaWiki\Logger\LoggerFactory::getInstance( 'authentication' )
+					LoggerFactory::getInstance( 'authentication' )
 						->info( __METHOD__ . ': Authentication failed: '
 						. $message->inLanguage( 'en' )->plain() );
 					break;
 
 				default:
-					\MediaWiki\Logger\LoggerFactory::getInstance( 'authentication' )
+					LoggerFactory::getInstance( 'authentication' )
 						->info( __METHOD__ . ': Authentication failed due to unsupported response type: '
 						. $res->status, $this->getAuthenticationResponseLogData( $res ) );
 					$authRes = 'Aborted';

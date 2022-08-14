@@ -55,11 +55,7 @@ abstract class ApiQueryGeneratorBase extends ApiQueryBase {
 	 * @return ApiPageSet
 	 */
 	protected function getPageSet() {
-		if ( $this->mGeneratorPageSet !== null ) {
-			return $this->mGeneratorPageSet;
-		}
-
-		return parent::getPageSet();
+		return $this->mGeneratorPageSet ?? parent::getPageSet();
 	}
 
 	/**

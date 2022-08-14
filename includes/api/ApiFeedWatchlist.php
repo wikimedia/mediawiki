@@ -303,7 +303,7 @@ class ApiFeedWatchlist extends ApiBase {
 				$ret[$to] = $p;
 			}
 		} else {
-			foreach ( $copyParams as $from => $to ) {
+			foreach ( $copyParams as $to ) {
 				$ret[$to] = null;
 			}
 		}
