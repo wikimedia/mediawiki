@@ -4,6 +4,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -181,12 +182,13 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideQueryableRanges
 	 */
 	public function testQueryableRanges( $ipRange ) {
-		$this->setMwGlobals( [
-			'wgRangeContributionsCIDRLimit' => [
+		$this->overrideConfigValue(
+			MainConfigNames::RangeContributionsCIDRLimit,
+			[
 				'IPv4' => 16,
 				'IPv6' => 32,
-			],
-		] );
+			]
+		);
 
 		$this->assertTrue(
 			$this->pager->isQueryableRange( $ipRange ),
@@ -208,12 +210,13 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideUnqueryableRanges
 	 */
 	public function testUnqueryableRanges( $ipRange ) {
-		$this->setMwGlobals( [
-			'wgRangeContributionsCIDRLimit' => [
+		$this->overrideConfigValue(
+			MainConfigNames::RangeContributionsCIDRLimit,
+			[
 				'IPv4' => 16,
 				'IPv6' => 32,
-			],
-		] );
+			]
+		);
 
 		$this->assertFalse(
 			$this->pager->isQueryableRange( $ipRange ),

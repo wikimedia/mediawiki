@@ -9,6 +9,7 @@ use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -172,9 +173,9 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::getRestrictionListHTML
 	 */
 	public function testFormatValueRestrictions() {
-		$this->setMwGlobals( [
-			'wgArticlePath' => '/wiki/$1',
-			'wgScript' => '/w/index.php',
+		$this->overrideConfigValues( [
+			MainConfigNames::ArticlePath => '/wiki/$1',
+			MainConfigNames::Script => '/w/index.php',
 		] );
 
 		$pager = $this->getBlockListPager();

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
@@ -19,14 +20,14 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgEnableBotPasswords' => true,
-			'wgBotPasswordsDatabase' => false,
-			'wgCentralIdLookupProvider' => 'BotPasswordTest OkMock',
-			'wgGrantPermissions' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::EnableBotPasswords => true,
+			MainConfigNames::BotPasswordsDatabase => false,
+			MainConfigNames::CentralIdLookupProvider => 'BotPasswordTest OkMock',
+			MainConfigNames::GrantPermissions => [
 				'test' => [ 'read' => true ],
 			],
-			'wgUserrightsInterwikiDelimiter' => '@',
+			MainConfigNames::UserrightsInterwikiDelimiter => '@',
 		] );
 
 		$this->testUser = $this->getMutableTestUser();
@@ -103,15 +104,11 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertNull( BotPassword::newFromUser( $user, 'DoesNotExist' ) );
 
-		$this->setMwGlobals( [
-			'wgCentralIdLookupProvider' => 'BotPasswordTest FailMock'
-		] );
+		$this->overrideConfigValue( MainConfigNames::CentralIdLookupProvider, 'BotPasswordTest FailMock' );
 		$this->assertNull( BotPassword::newFromUser( $user, 'BotPassword' ) );
 
 		$this->assertSame( '@', BotPassword::getSeparator() );
-		$this->setMwGlobals( [
-			'wgUserrightsInterwikiDelimiter' => '#',
-		] );
+		$this->overrideConfigValue( MainConfigNames::UserrightsInterwikiDelimiter, '#' );
 		$this->assertSame( '#', BotPassword::getSeparator() );
 	}
 
@@ -258,10 +255,10 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 
 	public function testLogin() {
 		// Test failure when bot passwords aren't enabled
-		$this->setMwGlobals( 'wgEnableBotPasswords', false );
+		$this->overrideConfigValue( MainConfigNames::EnableBotPasswords, false );
 		$status = BotPassword::login( "{$this->testUserName}@BotPassword", 'foobaz', new FauxRequest );
 		$this->assertEquals( Status::newFatal( 'botpasswords-disabled' ), $status );
-		$this->setMwGlobals( 'wgEnableBotPasswords', true );
+		$this->overrideConfigValue( MainConfigNames::EnableBotPasswords, true );
 
 		// Test failure when BotPasswordSessionProvider isn't configured
 		$manager = new SessionManager( [

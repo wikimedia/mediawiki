@@ -11,6 +11,7 @@ use DummyContentHandlerForTesting;
 use JavaScriptContent;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -583,12 +584,13 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testAvoidSecondaryDataUpdatesOnNonHTMLContentHandlers() {
-		$this->setMwGlobals( [
-			'wgContentHandlers' => [
+		$this->overrideConfigValue(
+			MainConfigNames::ContentHandlers,
+			[
 				CONTENT_MODEL_WIKITEXT => WikitextContentHandler::class,
 				'testing' => DummyContentHandlerForTesting::class,
-			],
-		] );
+			]
+		);
 
 		$user = $this->getTestUser()->getUser();
 		$page = $this->getPage( __METHOD__ );
@@ -1005,7 +1007,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$revisionVisibility,
 		$isCountable
 	) {
-		$this->setMwGlobals( [ 'wgArticleCountMethod' => $articleCountMethod ] );
+		$this->overrideConfigValue( MainConfigNames::ArticleCountMethod, $articleCountMethod );
 		$title = $this->getTitle( 'Main_Page' );
 		$content = new WikitextContent( $wikitextContent );
 		$update = new RevisionSlotsUpdate();
@@ -1244,10 +1246,13 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParsoidCacheUpdate()
 	 */
 	public function testDoParserCacheUpdate() {
-		$this->setMwGlobals( 'wgParsoidCacheConfig', [
-			'CacheThresholdTime' => 0.0,
-			'WarmParsoidParserCache' => true, // enable caching
-		] );
+		$this->overrideConfigValue(
+			MainConfigNames::ParsoidCacheConfig,
+			[
+				'CacheThresholdTime' => 0.0,
+				'WarmParsoidParserCache' => true, // enable caching
+			]
+		);
 
 		$slotRoleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
 		if ( !$slotRoleRegistry->isDefinedRole( 'aux' ) ) {
@@ -1332,10 +1337,13 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParsoidCacheUpdate()
 	 */
 	public function testDoParserCacheUpdateForJavaScriptContent() {
-		$this->setMwGlobals( 'wgParsoidCacheConfig', [
-			'CacheThresholdTime' => 0.0,
-			'WarmParsoidParserCache' => true, // enable caching
-		] );
+		$this->overrideConfigValue(
+			MainConfigNames::ParsoidCacheConfig,
+			[
+				'CacheThresholdTime' => 0.0,
+				'WarmParsoidParserCache' => true, // enable caching
+			]
+		);
 
 		$page = $this->getPage( __METHOD__ );
 		$this->createRevision( $page, 'Dummy' );
