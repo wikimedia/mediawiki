@@ -947,11 +947,11 @@ class UserGroupManager implements IDBAccessObject {
 	 * using newGroupMembershipFromRow method.
 	 *
 	 * @return array[] With three keys:
-	 *  - tables: (string[]) to include in the `$table` to `IDatabase->select()`
-	 *  - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
-	 *  - joins: (string[]) to include in the `$joins` to `IDatabase->select()`
+	 *  - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
+	 *  - fields: (string[]) to include in the `$vars` to `IDatabase->select()` or `SelectQueryBuilder::fields`
+	 *  - joins: (array) to include in the `$join_conds` to `IDatabase->select()` or `SelectQueryBuilder::joinConds`
 	 * @internal
-	 * @phan-return array{tables:string[],fields:string[],joins:string[]}
+	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public function getQueryInfo(): array {
 		return [
