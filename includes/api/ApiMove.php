@@ -183,10 +183,7 @@ class ApiMove extends ApiBase {
 			}
 		}
 
-		$watch = 'preferences';
-		if ( isset( $params['watchlist'] ) ) {
-			$watch = $params['watchlist'];
-		}
+		$watch = $params['watchlist'] ?? 'preferences';
 		$watchlistExpiry = $this->getExpiryFromParams( $params );
 
 		// Watch pages

@@ -1308,7 +1308,7 @@ class ApiPageSet extends ApiBase {
 		}
 
 		if ( $this->mPendingRedirectSpecialPages ) {
-			foreach ( $this->mPendingRedirectSpecialPages as $key => list( $from, $to ) ) {
+			foreach ( $this->mPendingRedirectSpecialPages as [ $from, $to ] ) {
 				/** @var Title $from */
 				$fromKey = $from->getPrefixedText();
 				$this->mResolvedRedirectTitles[$fromKey] = $from;

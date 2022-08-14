@@ -55,7 +55,7 @@ class ApiAMCreateAccount extends ApiBase {
 			$this->getModuleName(),
 			$this->getModulePath(),
 			AuthManager::ACTION_CREATE,
-			self::needsToken(),
+			$this->needsToken(),
 		] );
 		return $msgs;
 	}

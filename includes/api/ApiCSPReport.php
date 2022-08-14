@@ -220,10 +220,9 @@ class ApiCSPReport extends ApiBase {
 		$line = isset( $report['line-number'] )
 			? ':' . $report['line-number']
 			: '';
-		$warningText = $flagText .
+		return $flagText .
 			' Received CSP report: <' . $blockedOrigin . '>' .
 			' blocked from being loaded on <' . $page . '>' . $line;
-		return $warningText;
 	}
 
 	/**
@@ -234,9 +233,8 @@ class ApiCSPReport extends ApiBase {
 		$bits = wfParseUrl( $url );
 		unset( $bits['user'], $bits['pass'], $bits['query'], $bits['fragment'] );
 		$bits['path'] = '';
-		$serverUrl = wfAssembleUrl( $bits );
 		// e.g. "https://example.org" from "https://example.org/foo/b?a#r"
-		return $serverUrl;
+		return wfAssembleUrl( $bits );
 	}
 
 	/**

@@ -148,9 +148,7 @@ trait ApiWatchlistTrait {
 				// Watch the article based on the user preference
 				return $this->userOptionsLookup->getBoolOption( $user, $userOption );
 
-			case 'nochange':
-				return $userWatching;
-
+			// case 'nochange':
 			default:
 				return $userWatching;
 		}

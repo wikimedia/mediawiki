@@ -1161,15 +1161,10 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		$webUiSalt = $this->getWebUITokenSalt( $params );
-		if ( $webUiSalt !== null && $this->getUser()->matchEditToken(
-			$token,
-			$webUiSalt,
-			$this->getRequest()
-		) ) {
-			return true;
-		}
 
-		return false;
+		return $webUiSalt !== null && $this->getUser()->matchEditToken(
+			$token, $webUiSalt, $this->getRequest()
+		);
 	}
 
 	// endregion -- end of parameter handling
@@ -1745,12 +1740,11 @@ abstract class ApiBase extends ContextSource {
 	 * @return Message
 	 */
 	public function getFinalSummary() {
-		$msg = self::makeMessage( $this->getSummaryMessage(), $this->getContext(), [
+		return self::makeMessage( $this->getSummaryMessage(), $this->getContext(), [
 			$this->getModulePrefix(),
 			$this->getModuleName(),
 			$this->getModulePath(),
 		] );
-		return $msg;
 	}
 
 	/**

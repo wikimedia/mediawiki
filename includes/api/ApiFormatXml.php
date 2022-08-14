@@ -119,8 +119,7 @@ class ApiFormatXml extends ApiFormatBase {
 				: '_v';
 			$bcBools = $value[ApiResult::META_BC_BOOLS] ?? [];
 			$indexSubelements = isset( $value[ApiResult::META_TYPE] )
-				? $value[ApiResult::META_TYPE] !== 'array'
-				: false;
+				&& $value[ApiResult::META_TYPE] !== 'array';
 
 			$content = null;
 			$subelements = [];

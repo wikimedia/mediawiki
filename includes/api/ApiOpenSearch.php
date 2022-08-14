@@ -200,7 +200,7 @@ class ApiOpenSearch extends ApiBase {
 					$resultId = $title->getArticleID();
 					if ( $resultId === 0 ) {
 						$resultId = $nextSpecialPageId;
-						$nextSpecialPageId -= 1;
+						$nextSpecialPageId--;
 					}
 					$results[$resultId] = [
 						'title' => $title,
@@ -217,7 +217,7 @@ class ApiOpenSearch extends ApiBase {
 				$resultId = $title->getArticleID();
 				if ( $resultId === 0 ) {
 					$resultId = $nextSpecialPageId;
-					$nextSpecialPageId -= 1;
+					$nextSpecialPageId--;
 				}
 				$results[$resultId] = [
 					'title' => $title,

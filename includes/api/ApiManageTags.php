@@ -68,7 +68,7 @@ class ApiManageTags extends ApiBase {
 				break;
 			default:
 				// unreachable
-				throw new \UnexpectedValueException( 'invalid operation' );
+				throw new UnexpectedValueException( 'invalid operation' );
 		}
 		if ( !$status->isOK() ) {
 			$this->dieStatus( $status );
