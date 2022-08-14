@@ -84,7 +84,7 @@ class ApiFormatJson extends ApiFormatBase {
 				default:
 					// Should have been caught during parameter validation
 					// @codeCoverageIgnoreStart
-					$this->dieDebug( __METHOD__, 'Unknown value for \'formatversion\'' );
+					self::dieDebug( __METHOD__, 'Unknown value for \'formatversion\'' );
 					// @codeCoverageIgnoreEnd
 			}
 		}
@@ -94,7 +94,7 @@ class ApiFormatJson extends ApiFormatBase {
 			// This should never happen, but it's a bug which could crop up
 			// if you use ApiResult::NO_VALIDATE for instance.
 			// @codeCoverageIgnoreStart
-			$this->dieDebug( __METHOD__, 'Unable to encode API result as JSON' );
+			self::dieDebug( __METHOD__, 'Unable to encode API result as JSON' );
 			// @codeCoverageIgnoreEnd
 		}
 

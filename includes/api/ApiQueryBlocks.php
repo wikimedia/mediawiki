@@ -22,6 +22,7 @@
 
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use Wikimedia\IPUtils;
@@ -314,7 +315,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$id = $restriction->getBlockId();
 			switch ( $restriction->getType() ) {
 				case 'page':
-					/** @var \MediaWiki\Block\Restriction\PageRestriction $restriction */
+					/** @var PageRestriction $restriction */
 					'@phan-var \MediaWiki\Block\Restriction\PageRestriction $restriction';
 					$value = [ 'id' => $restriction->getValue() ];
 					if ( $restriction->getTitle() ) {

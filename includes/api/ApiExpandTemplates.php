@@ -94,11 +94,9 @@ class ApiExpandTemplates extends ApiBase {
 			}
 			$pTitleObj = $titleObj;
 			$titleObj = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
-			if ( $titleProvided ) {
-				if ( !$titleObj->equals( $pTitleObj ) ) {
-					$this->addWarning( [ 'apierror-revwrongpage', $rev->getId(),
-						wfEscapeWikiText( $pTitleObj->getPrefixedText() ) ] );
-				}
+			if ( $titleProvided && !$titleObj->equals( $pTitleObj ) ) {
+				$this->addWarning( [ 'apierror-revwrongpage', $rev->getId(),
+					wfEscapeWikiText( $pTitleObj->getPrefixedText() ) ] );
 			}
 		}
 

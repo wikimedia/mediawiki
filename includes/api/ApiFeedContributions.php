@@ -289,7 +289,7 @@ class ApiFeedContributions extends ApiBase {
 		$comment = $revision->getComment();
 
 		return '<p>' . htmlspecialchars( $this->feedItemAuthor( $revision ) ) . $msg .
-			htmlspecialchars( FeedItem::stripComment( $comment ? $comment->text : '' ) ) .
+			htmlspecialchars( FeedItem::stripComment( $comment->text ?? '' ) ) .
 			"</p>\n<hr />\n<div>" . $html . '</div>';
 	}
 

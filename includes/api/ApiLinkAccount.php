@@ -55,7 +55,7 @@ class ApiLinkAccount extends ApiBase {
 			$this->getModuleName(),
 			$this->getModulePath(),
 			AuthManager::ACTION_LINK,
-			self::needsToken(),
+			$this->needsToken(),
 		] );
 		return $msgs;
 	}

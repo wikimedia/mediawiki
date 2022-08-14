@@ -150,7 +150,7 @@ class ApiFeedRecentChanges extends ApiBase {
 		$config = $this->getConfig();
 		$feedFormatNames = array_keys( $config->get( MainConfigNames::FeedClasses ) );
 
-		$ret = [
+		return [
 			'feedformat' => [
 				ParamValidator::PARAM_DEFAULT => 'rss',
 				ParamValidator::PARAM_TYPE => $feedFormatNames,
@@ -194,8 +194,6 @@ class ApiFeedRecentChanges extends ApiBase {
 			],
 			'showlinkedto' => false,
 		];
-
-		return $ret;
 	}
 
 	protected function getExamplesMessages() {

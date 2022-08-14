@@ -54,7 +54,7 @@ class ApiFormatPhp extends ApiFormatBase {
 
 			default:
 				// Should have been caught during parameter validation
-				$this->dieDebug( __METHOD__, 'Unknown value for \'formatversion\'' );
+				self::dieDebug( __METHOD__, 'Unknown value for \'formatversion\'' );
 		}
 		$this->printText( serialize( $this->getResult()->getResultData( null, $transforms ) ) );
 	}

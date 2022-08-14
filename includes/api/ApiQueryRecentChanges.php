@@ -193,10 +193,8 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 
 			// Check permissions
-			if ( $this->includesPatrollingFlags( $show ) ) {
-				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
-					$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
-				}
+			if ( $this->includesPatrollingFlags( $show ) && !$user->useRCPatrol() && !$user->useNPPatrol() ) {
+				$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
 			}
 
 			/* Add additional conditions to query depending upon parameters. */
@@ -377,7 +375,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		if ( $params['slot'] !== null ) {
 			try {
 				$slotId = $this->slotRoleStore->getId( $params['slot'] );
-			} catch ( \Exception $e ) {
+			} catch ( Exception $e ) {
 				$slotId = null;
 			}
 
