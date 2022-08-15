@@ -4087,6 +4087,9 @@ class Parser {
 
 			# Only keep the first one.
 			$text = $mw->replace( '', $text );
+			# For consistency with all other double-underscores
+			# (see below)
+			$this->mOutput->setPageProperty( 'toc', '' );
 		}
 
 		# Now match and remove the rest of them
