@@ -152,6 +152,24 @@
 		} );
 	} );
 
+	QUnit.test.each( 'percentDecodeFragment', [
+		[ '', '' ],
+		[ 'foo+bar', 'foo+bar' ],
+		[ 'foo bar', 'foo bar' ],
+		[ 'foo%2Bbar', 'foo+bar' ],
+		[ 'foo%20bar', 'foo bar' ],
+		[ 'foo%20bar%A', 'foo bar%A' ],
+		[ 'Romeo+Juliet_%A_Ó_%2520', 'Romeo+Juliet_%A_Ó_%20' ],
+		[ 'Romeo&Juliet=%A', 'Romeo&Juliet=%A' ],
+		[ 'Romeo&Juliet=%20', 'Romeo&Juliet= ' ],
+		[ '%2B%26%3D%23', '+&=#' ],
+		[ '===', '===' ],
+		[ '&&&', '&&&' ],
+		[ '###', '###' ]
+	], function ( assert, data ) {
+		assert.strictEqual( util.percentDecodeFragment( data[ 0 ] ), data[ 1 ], data[ 0 ] );
+	} );
+
 	QUnit.test.each( 'wikiUrlencode', [
 		[ 'Test:A & B/Here', 'Test:A_%26_B/Here' ],
 
