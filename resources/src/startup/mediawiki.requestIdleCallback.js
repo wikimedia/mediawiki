@@ -5,7 +5,7 @@ mw.requestIdleCallbackInternal = function ( callback ) {
 		callback( {
 			didTimeout: false,
 			timeRemaining: function () {
-				// Hard a target maximum busy time of 50 milliseconds
+				// Hard code a target maximum busy time of 50 milliseconds
 				return Math.max( 0, 50 - ( mw.now() - start ) );
 			}
 		} );
