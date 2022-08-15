@@ -1429,7 +1429,7 @@ class FormatMetadata extends ContextSource {
 		/*
 			// https://en.wikipedia.org/wiki/Euclidean_algorithm
 			// Recursive form would be:
-			if( $b == 0 )
+			if ( $b == 0 )
 				return $a;
 			else
 				return gcd( $b, $a % $b );

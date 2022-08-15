@@ -36,10 +36,7 @@ class PoolCounterTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testHashKeyIntoSlots() {
-		$poolCounter = $this->getMockBuilder( PoolCounterAbstractMock::class )
-			->onlyMethods( [] )
-			->disableOriginalConstructor()
-			->getMockForAbstractClass();
+		$poolCounter = $this->createMock( PoolCounterAbstractMock::class );
 
 		$hashKeyIntoSlots = new ReflectionMethod( $poolCounter, 'hashKeyIntoSlots' );
 		$hashKeyIntoSlots->setAccessible( true );

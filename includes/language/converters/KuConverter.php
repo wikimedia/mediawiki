@@ -210,25 +210,25 @@ class KuConverter extends LanguageConverterSpecific {
 
 		$reg = '/^'.$roman.'$|^'.$roman.$breaks.'|'.$breaks.$roman.'$|'.$breaks.$roman.$breaks.'/';
 
-		$matches = preg_split($reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE);
+		$matches = preg_split( $reg, $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
 
-		$m = array_shift($matches);
-		if( !isset( $this->mTables[$toVariant] ) ) {
-			throw new MWException( "Broken variant table: " . implode( ',', array_keys( $this->mTables ) ) );
+		$m = array_shift( $matches );
+		if ( !isset( $this->mTables[$toVariant] ) ) {
+			throw new MWException( 'Broken variant table: ' . implode( ',', array_keys( $this->mTables ) ) );
 		}
 		$ret = $this->mTables[$toVariant]->replace( $m[0] );
-		$mstart = $m[1]+strlen($m[0]);
-		foreach($matches as $m) {
-			$ret .= substr($text, $mstart, $m[1]-$mstart);
-			$ret .= parent::translate($m[0], $toVariant);
-			$mstart = $m[1] + strlen($m[0]);
+		$mstart = $m[1] + strlen( $m[0] );
+		foreach ( $matches as $m ) {
+			$ret .= substr( $text, $mstart, $m[1] - $mstart );
+			$ret .= parent::translate( $m[0], $toVariant );
+			$mstart = $m[1] + strlen( $m[0] );
 		}
 
 		return $ret;
 		*/
 
 		if ( !isset( $this->mTables[$toVariant] ) ) {
-			throw new MWException( "Broken variant table: " . implode( ',', array_keys( $this->mTables ) ) );
+			throw new MWException( 'Broken variant table: ' . implode( ',', array_keys( $this->mTables ) ) );
 		}
 
 		return parent::translate( $text, $toVariant );

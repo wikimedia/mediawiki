@@ -27,7 +27,7 @@ variable MW_INSTALL_PATH in case the extension is not in the default location.
 The following code snippet lets you override the default path:
 
  $IP = getenv( 'MW_INSTALL_PATH' );
- if( $IP === false ) {
+ if ( $IP === false ) {
 	$IP = __DIR__ . '/../..';
  }
  require_once "$IP/maintenance/Maintenance.php"; // a MediaWiki core file

@@ -652,10 +652,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	 * @param int $flag
 	 */
 	public function testDBOCannotSet( $flag ) {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
-			->disableOriginalConstructor()
-			->onlyMethods( [] )
-			->getMock();
+		$db = $this->createPartialMock( DatabaseMysqli::class, [] );
 
 		$this->expectException( DBUnexpectedError::class );
 		$db->setFlag( $flag );
@@ -667,10 +664,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	 * @param int $flag
 	 */
 	public function testDBOCannotClear( $flag ) {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
-			->disableOriginalConstructor()
-			->onlyMethods( [] )
-			->getMock();
+		$db = $this->createPartialMock( DatabaseMysqli::class, [] );
 
 		$this->expectException( DBUnexpectedError::class );
 		$db->clearFlag( $flag );
