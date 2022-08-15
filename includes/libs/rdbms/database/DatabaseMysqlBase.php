@@ -585,6 +585,8 @@ abstract class DatabaseMysqlBase extends Database {
 			"ON DUPLICATE KEY UPDATE $sqlColumnAssignments";
 		$query = new Query( $sql, self::QUERY_CHANGE_ROWS, 'INSERT', $table );
 		$this->query( $query, $fname );
+		// Count updates of conflicting rows and row inserts equally toward the change count
+		$this->lastQueryAffectedRows = min( $this->lastQueryAffectedRows, count( $rows ) );
 	}
 
 	protected function doReplace( $table, array $identityKey, array $rows, $fname ) {
