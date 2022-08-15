@@ -1028,6 +1028,9 @@ return [
 	'mediawiki.storage' => [
 		'scripts' => 'resources/src/mediawiki.storage.js',
 		'targets' => [ 'desktop', 'mobile' ],
+		'dependencies' => [
+			'mediawiki.util',
+		],
 	],
 	'mediawiki.Title' => [
 		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.Title",
