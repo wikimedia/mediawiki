@@ -1680,7 +1680,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					$table
 				);
 				$this->query( $query, $fname );
-				$affectedRowCount += $this->lastQueryAffectedRows;
 				// Insert the new row
 				$query = new Query(
 					$this->platform->dispatchingInsertSqlText( $table, $row, [] ),
