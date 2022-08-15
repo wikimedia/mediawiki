@@ -155,7 +155,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			$forceNameTitleIndex = false;
 		}
 
-		if ( isset( $params['maxsize'] ) ) {
+		if ( !$miserMode && isset( $params['maxsize'] ) ) {
 			$this->addWhere( 'page_len<=' . (int)$params['maxsize'] );
 			$forceNameTitleIndex = false;
 		}
@@ -364,6 +364,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 
 		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$ret['filterredir'][ApiBase::PARAM_HELP_MSG_APPEND] = [ 'api-help-param-limited-in-miser-mode' ];
+			$ret['maxsize'][ApiBase::PARAM_HELP_MSG_APPEND] = [ 'api-help-param-disabled-in-miser-mode' ];
 		}
 
 		return $ret;
