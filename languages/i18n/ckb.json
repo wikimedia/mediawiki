@@ -28,7 +28,8 @@
 			"아라",
 			"Halbast",
 			"Roj im",
-			"Aram"
+			"Aram",
+			"Amire80"
 		]
 	},
 	"tog-underline": "ھێڵھێنان بەژێر بەستەرەکان:",
@@ -2068,7 +2069,7 @@
 	"isimage": "بەستەری پەڕگە",
 	"whatlinkshere-prev": "{{PLURAL:$1|پێشتر|$1ی پێشتر}}",
 	"whatlinkshere-next": "{{PLURAL:$1|دیکە|$1ی تر}}",
-	"whatlinkshere-links": "← بەستەرەکان",
+	"whatlinkshere-links": "→ بەستەرەکان",
 	"whatlinkshere-hideredirs": "ڕەوانەکەرەکان $1",
 	"whatlinkshere-hidetrans": "ھێنانەناوەوەکان $1",
 	"whatlinkshere-hidelinks": "بەستەرەکان $1",

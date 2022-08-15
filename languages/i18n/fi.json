@@ -681,6 +681,7 @@
 	"changeemail-submit": "Muuta sähköpostiosoite",
 	"changeemail-throttled": "Olet tehnyt liian monta kirjautumisyritystä.\nOdota $1 ennen kuin yrität uudelleen.",
 	"changeemail-nochange": "Anna joku toinen sähköpostiosoite.",
+	"changeemail-maxlength": "Sähköpostiosoitteesi saa olla enintään 255 merkkiä pitkä.",
 	"resettokens": "Uudista avaimet",
 	"resettokens-text": "Tällä sivulla voit uudistaa avaimesi (''eng.'' reset tokens), jotka mahdollistavat pääsyn käyttäjätunnukseesi liittyviin tiettyihin yksityisiin tietoihin.\n\nSinun pitäisi tehdä tämä, jos olet vahingossa jakanut avaimet jonkun kanssa tai jos käyttäjätunnuksesi on vaarannettu.",
 	"resettokens-no-tokens": "Avaimia ei ole uudistettavaksi.",

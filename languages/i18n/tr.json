@@ -717,6 +717,7 @@
 	"changeemail-submit": "E-postayı değiştir",
 	"changeemail-throttled": "Çok fazla oturum açma girişiminde bulundunuz.\nLütfen tekrar denemeden önce $1 bekleyin.",
 	"changeemail-nochange": "Lütfen farklı bir yeni e-posta adresi giriniz.",
+	"changeemail-maxlength": "Eposta adresiniz en fazla 255 karakter olabilir.",
 	"resettokens": "Anahtarları sıfırla",
 	"resettokens-text": "Burada hesabınızla ilişkili bazı özel verilere erişim izin anahtarları sıfırlayabilirsiniz.\n\n\nBunu yanlışlıkla biriyle paylaştıysanız veya hesabınızın güvenliği ihlal edilmişse, yapmalısınız.",
 	"resettokens-no-tokens": "Sıfırlamak için hiç bir anahtar bulunmuyor.",

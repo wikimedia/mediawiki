@@ -1419,7 +1419,7 @@
 	"autosumm-blank": "Chhù-chhîn só-yû ke hong-mien nui-yùng",
 	"autosumm-replace": "用“$1”替換內容",
 	"autoredircomment": "Chang-chhai chhûng-thin hiong to [[$1]]",
-	"autosumm-new": "Sîn hong-mien: $1",
+	"autosumm-new": "Khôi sîn ya̍p-mien \"$1\"",
 	"size-bytes": "$1 Vi-ngièn-chû",
 	"lag-warn-normal": "Tô-yî $1-méu ke kiên-kói khó-nèn put-voi chhai liá-ke chhîn-tân chûng hién-sṳ.",
 	"lag-warn-high": "Yù-yî chṳ̂-liau-khu ke ko-thu yèn-chhṳ̀, tô-yî $1-méu ke kiên-kói khó-nèn put-voi chhai liá-ke chhîn-tân chûng hién-sṳ.",

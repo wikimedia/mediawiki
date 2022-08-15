@@ -8,6 +8,8 @@
 			"ꠢꠣꠍꠘ ꠞꠣꠎꠣ"
 		]
 	},
+	"underline-always": "ꠢꠈꠟ ꠡꠝꠄ",
+	"underline-never": "ꠇꠥꠘꠥ ꠡꠝꠄ ꠅ ꠘꠣ",
 	"sunday": "ꠞꠁꠛꠣꠞ",
 	"monday": "ꠡꠝꠛꠣꠞ",
 	"tuesday": "ꠝꠋꠉꠟꠛꠣꠞ",
@@ -542,7 +544,7 @@
 	"show-big-image-preview": "ꠅꠃ ꠀꠉꠥꠀꠘ ꠖꠦꠈꠣꠞ ꠀꠇꠣꠞ: $1",
 	"show-big-image-other": "ꠛꠣꠇꠤ {{PLURAL:$2|ꠊꠘꠔ꠆ꠔ|ꠊꠘꠔ꠆ꠔꠣꠁꠘ}}: $1.",
 	"show-big-image-size": "$1 × $2 ꠙꠤꠇꠍꠦꠟ",
-	"yesterday-at": "ꠅꠄ",
+	"yesterday-at": "ꠉꠦꠍꠦꠈꠣꠁꠟ $1-ꠐꠣꠔ",
 	"metadata": "ꠝꠦꠐꠣꠒꠦꠁꠐꠣ",
 	"metadata-help": "ꠁ ꠚꠣꠁꠟꠧ ꠖꠦꠞꠤ ꠔꠂꠔ꠆ꠔ ꠀꠍꠦ, ꠢꠄꠔꠧ ꠁꠔꠣ ꠔꠣꠁꠀꠞꠤ ꠛꠣ ꠒꠤꠎꠤꠐꠣꠁꠎꠧ ꠛꠦꠛꠀꠞ ꠈꠞꠣ ꠒꠤꠎꠤꠐꠣꠟ ꠇꠦꠝꠦꠞꠣ ꠛꠣ ꠁꠍꠇꠦꠘꠣꠞ ꠔꠘꠦ ꠎꠥꠉ ꠈꠞꠣ ꠅꠁꠍꠦ.\nꠎꠥꠖꠤꠘ ꠚꠣꠁꠟꠉꠥ ꠁꠇꠐꠣꠞ ꠀꠡꠟ ꠅꠛꠍꠔꠣ ꠔꠘꠦ ꠛꠖꠟꠤꠀ ꠔꠣꠈꠦ, ꠔꠦ ꠇꠤꠍꠥ ꠛꠤꠛꠞꠘ ꠛꠖꠟꠤꠟ ꠚꠣꠁꠟꠉꠥꠞꠦ ꠙꠥꠞꠣꠘ ꠛꠥꠏꠣꠤꠔꠧ ꠘꠣ ꠅ ꠚꠣꠞꠦ.",
 	"metadata-fields": "Image metadata fields listed in this message will be included on image page display when the metadata table is collapsed.\nOthers will be hidden by default.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",

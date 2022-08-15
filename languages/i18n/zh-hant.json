@@ -722,6 +722,7 @@
 	"changeemail-submit": "變更電子郵件",
 	"changeemail-throttled": "您最近嘗試了太多次登入。\n請等待 $1 後再試。",
 	"changeemail-nochange": "請輸入不同的新電子郵件地址。",
+	"changeemail-maxlength": "您的電子郵件地址最多只應包含 255 個字元。",
 	"resettokens": "重設金鑰",
 	"resettokens-text": "您可以在此重設用來存取您帳號相關隱私資料的密鑰。\n\n若您不小心將您的密鑰分享給其他人或您的帳號已遭到入侵、破壞，應該要重設此密鑰。",
 	"resettokens-no-tokens": "沒有可重設的金鑰。",

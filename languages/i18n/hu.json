@@ -649,6 +649,7 @@
 	"changeemail-submit": "E-mail-cím megváltoztatása",
 	"changeemail-throttled": "Túl sok hibás bejelentkezés.\n$1 múlva próbálkozz újra.",
 	"changeemail-nochange": "Kérjük, adj meg egy másik új e-mail-címet.",
+	"changeemail-maxlength": "Az Az e-mail címed legfeljebb 255 karakterből állhat.",
 	"resettokens": "Tokenek újragenerálása",
 	"resettokens-text": "Újragenerálhatod a tokeneket, amely a fiókodhoz rendelt bizonyos magánadatokhoz enged hozzáférést.\n\nEzt akkor érdemes használnod, hogy véletlenül megosztottad a tokeneket valakivel, vagy ha valaki feltörte a fiókodat.",
 	"resettokens-no-tokens": "Nincs újragenerálható token.",

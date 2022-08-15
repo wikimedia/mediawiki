@@ -90,7 +90,9 @@
 			"아라",
 			"Maol",
 			"Pyscowicz",
-			"Sabelöga"
+			"Sabelöga",
+			"JohanahoJ",
+			"Myskoxen"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -681,6 +683,7 @@
 	"changeemail-submit": "Ändra e-post",
 	"changeemail-throttled": "Du har gjort för många inloggningsförsök.\nVänta $1 innan du försöker igen.",
 	"changeemail-nochange": "Ange en annan ny e-postadress.",
+	"changeemail-maxlength": "Din e-postadress bör ha max 255 tecken.",
 	"resettokens": "Återställ nycklar",
 	"resettokens-text": "Du kan återställa nycklar som tillåter åtkomst till vissa privata uppgifter som är associerade till ditt konto här.\n\nDu bör återställa om du av misstag delade dem med någon eller om ditt konto har äventyrats.",
 	"resettokens-no-tokens": "Det finns inga nycklar att återställa.",

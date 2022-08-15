@@ -1779,7 +1779,7 @@
 	"listduplicatedfiles-summary": "Dit is 'n lies mit bestenj wovan de litste versie e duplikaot is van de recènste versie van 'n anger bestandj. Allein weurt gerapporteerd euver lokaal bestenj.",
 	"listduplicatedfiles-entry": "[[:File:$1|$1]] haet [[$3|{{PLURAL:$2|ei duplikaot|$2 duplikaote}}]].",
 	"unusedtemplates": "Óngebroekde sjablone",
-	"unusedtemplatestext": "Deze pagina guf alle pagina's weer in de {{nas:template}}naamruumde die op gein inkele pagina gebroek waere. Vergaet neet de \"Links nao deze pagina\" te controlere veures dit sjabloon te wösse.",
+	"unusedtemplatestext": "Dees pagina tuint alle pagina's in de {{ns:template}}-naamruumde die op gein inkel pagina gebroek waere. Vergaet neet de \"Links nao dees pagina\" te kónterlere veurs te dit sjabloon ewegsjafs.",
 	"unusedtemplateswlh": "anger links",
 	"randompage": "Willekäörige pagina",
 	"randompage-nopages": "d'r zeen gein pagina's in dees {{PLURAL:$2|naamruumde|naamruumde}}: \"$1\".",

@@ -668,6 +668,7 @@
 	"changeemail-submit": "Canvia de correu electrònic",
 	"changeemail-throttled": "Heu realitzat massa intents d'inici de sessió.\nEspereu $1 abans de tornar-ho a provar.",
 	"changeemail-nochange": "Introduïu una adreça electrònica distinta.",
+	"changeemail-maxlength": "L'adreça electrònica ha de tenir com a molt 255 caràcters.",
 	"resettokens": "Reinicia els testimonis",
 	"resettokens-text": "Des d'aquí podeu reiniciar els testimonis que permeten l'accés a certes dades privades associades amb el vostre compte.\n\nHo hauríeu de fer si accidentalment els heu compartit amb algú o si el vostre compte ha estat compromès.",
 	"resettokens-no-tokens": "No hi ha testimonis per reiniciar.",

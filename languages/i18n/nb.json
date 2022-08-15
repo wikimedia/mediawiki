@@ -650,6 +650,7 @@
 	"changeemail-submit": "Endre e-post",
 	"changeemail-throttled": "Du har foretatt for mange innloggingsforsøk.\nVent $1 før du prøver igjen.",
 	"changeemail-nochange": "Vennligst angi en ny epostadresse.",
+	"changeemail-maxlength": "E-postadressen din bør ha maks 255 tegn.",
 	"resettokens": "Nullstill nøkler",
 	"resettokens-text": "Du kan nullstille nøklene som gir adgang til visse private data knyttet kontoen din.\n\nDu bør gjøre det hvis du ved uhell har delt dem med noen eller hvis kontoen din har blitt kompromittert.",
 	"resettokens-no-tokens": "Det finnes ingen nøkler å nullstille.",

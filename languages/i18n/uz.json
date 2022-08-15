@@ -910,7 +910,7 @@
 	"recentchanges-label-unpatrolled": "Bu tahrir hali tekshirib chiqilmagan",
 	"recentchanges-label-plusminus": "Sahifa hajmi necha baytga oʻzgargani",
 	"recentchanges-legend-heading": "<strong>Izoh:</strong>",
-	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (sh. qarang: [[Special:NewPages|alohida roʻyxat]])",
+	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (yana qarang: [[Special:NewPages|alohida roʻyxat]])",
 	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-legend-watchlistexpiry": "Vaqtincha kuzatilinayotgan sahifa",
 	"recentchanges-submit": "Koʻrsat",

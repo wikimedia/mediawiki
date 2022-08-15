@@ -683,6 +683,7 @@
 	"changeemail-submit": "Ubah surel",
 	"changeemail-throttled": "Anda sudah terlalu banyak mencoba masuk log.\nSilakan menunggu $1 sebelum mencoba lagi.",
 	"changeemail-nochange": "Masukkan alamat surel yang berbeda.",
+	"changeemail-maxlength": "Alamat surel Anda bisa memiliki paling banyak 255 karakter",
 	"resettokens": "Ubah token",
 	"resettokens-text": "Anda dapat me-reset Token yang memungkinkan akses ke data pribadi tertentu yang terkait dengan akun Anda di sini.\n\nAnda harus melakukannya jika Anda secara tidak sengaja berbagi dengan seseorang atau jika akun Anda telah disusupi.",
 	"resettokens-no-tokens": "Tidak ada token untuk di-reset.",

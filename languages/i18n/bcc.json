@@ -1773,7 +1773,7 @@
 	"isimage": "لینک عکس",
 	"whatlinkshere-prev": "{{PLURAL:$1|پیشگین|پیشگین $1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|اݔدگہ|اݔدگہ $1}}",
-	"whatlinkshere-links": "← لینکان",
+	"whatlinkshere-links": "→ لینکان",
 	"whatlinkshere-hideredirs": "$1 غیر مستقیم",
 	"whatlinkshere-hidetrans": "$1 بین اضاف",
 	"whatlinkshere-hidelinks": "$1 لینکان",

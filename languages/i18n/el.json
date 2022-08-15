@@ -2256,6 +2256,7 @@
 	"trackingcategories-name": "Όνομα μηνύματος",
 	"trackingcategories-desc": "Κριτήρια συμπερίληψης στην κατηγορία",
 	"restricted-displaytitle-ignored": "Σελίδες με αγνοημένη προβολή τίτλου",
+	"restricted-displaytitle-ignored-desc": "Η σελίδα έχει αγνοημένο <nowiki><code>{{DISPLAYTITLE}}</code></nowiki> γιατί δεν ισοδυναμεί με τον πραγματικό τίτλο της σελίδας.",
 	"noindex-category-desc": "Η σελίδα δεν καταλογογραφείται από ρομπότ, επειδή έχει τη μαγική λέξη <code><nowiki>__NOINDEX__</nowiki></code> σε αυτή και είναι σε ένα χώρο ονομάτων όπου αυτή η ετικέτα επιτρέπεται.",
 	"index-category-desc": "Η σελίδα περιέχει στον κώδικά της ένα <code><nowiki>__INDEX__</nowiki></code> (και βρίσκεται σε έναν ονοματοχώρο όπου αυτή η σήμανση επιτρέπεται) και ως εκ τούτου καταλογογραφείται από ρομπότ, ενώ κανονικά δεν θα καταλογογραφείτο.",
 	"post-expand-template-inclusion-category-desc": "Το μέγεθος της σελίδας είναι μεγαλύτερο από <code>$wgMaxArticleSize</code> μετά την επέκταση όλων των προτύπων, έτσι ώστε ορισμένα πρότυπα δεν έχουν αναπτυχθεί.",

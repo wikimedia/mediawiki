@@ -13,7 +13,8 @@
 			"Nemo bis",
 			"Shbib Al-Subaie",
 			"علاء",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-usenewrc": ")جمّع التعديلات حسب الصفحة في أحدث التغييرات وقائمة المراقبة (يتطلب جافاسكربت",
@@ -684,7 +685,7 @@
 	"istemplate": "مضمن",
 	"isimage": "وصلة ملف",
 	"whatlinkshere-next": "{{PLURAL:$1|التالية|ال$1 التالية}}",
-	"whatlinkshere-links": "← وصلات",
+	"whatlinkshere-links": "→ وصلات",
 	"whatlinkshere-hideredirs": "$1 تحويلات",
 	"whatlinkshere-hidetrans": "$1 التضمينات",
 	"whatlinkshere-hidelinks": "$1 ليانات",

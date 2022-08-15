@@ -703,6 +703,7 @@
 	"changeemail-submit": "E-mailadres wijzigen",
 	"changeemail-throttled": "U hebt te veel aanmeldpogingen gedaan.\nWacht alstublieft $1 voordat u het opnieuw probeert.",
 	"changeemail-nochange": "Geef een ander e-mailadres op.",
+	"changeemail-maxlength": "Uw e-mailadres mag maximaal 255 tekens bevatten.",
 	"resettokens": "Tokens opnieuw instellen",
 	"resettokens-text": "U kunt hier tokens die toegang geven tot bepaalde aan uw account gekoppelde privégegevens opnieuw instellen.\n\nU zou dit moeten doen als u ze per ongeluk met anderen hebt gedeeld of als onbevoegden toegang tot uw account hebben gehad.",
 	"resettokens-no-tokens": "Er zijn geen tokens om opnieuw in te stellen.",

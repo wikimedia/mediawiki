@@ -740,6 +740,7 @@
 	"changeemail-submit": "Modifica email",
 	"changeemail-throttled": "Sono stati effettuati troppi tentativi di accesso.\nAttendi $1 e riprova in seguito.",
 	"changeemail-nochange": "Per favore inserisci un nuovo indirizzo email.",
+	"changeemail-maxlength": "Il tuo indirizzo di posta elettronica deve contenere al massimo 255 caratteri.",
 	"resettokens": "Reimposta token",
 	"resettokens-text": "Qui puoi reimpostare le chiavi che permettono l'accesso a determinati dati privati associati alla tua utenza.\n\nDovresti farlo se le hai accidentalmente condivise con qualcuno o se la tua utenza è stato compromessa.",
 	"resettokens-no-tokens": "Non ci sono token da reimpostare.",

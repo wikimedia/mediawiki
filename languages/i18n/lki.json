@@ -17,7 +17,8 @@
 			"Miladrahimi",
 			"Mjbmr",
 			"Physicsch",
-			"Process cq"
+			"Process cq",
+			"Amire80"
 		]
 	},
 	"tog-underline": "خط کیشائن ژێر پیوندەل:",
@@ -2030,7 +2031,7 @@
 	"isimage": "پیوند پرونده",
 	"whatlinkshere-prev": "{{PLURAL:$1|previous|previous $1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|next|next $1}}",
-	"whatlinkshere-links": "← پیوند",
+	"whatlinkshere-links": "→ پیوند",
 	"whatlinkshere-hideredirs": "$1 تغییرمسیر",
 	"whatlinkshere-hidetrans": "$1 تراگنجانش‌ها",
 	"whatlinkshere-hidelinks": "$1 پیوند",

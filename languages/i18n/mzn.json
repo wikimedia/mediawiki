@@ -14,7 +14,8 @@
 			"Spacebirdy",
 			"محک",
 			"아라",
-			"فیروز"
+			"فیروز",
+			"Amire80"
 		]
 	},
 	"tog-underline": "پیوندون زیر خط دکشی بواشه",
@@ -651,7 +652,7 @@
 	"isimage": "فایل ِلینک",
 	"whatlinkshere-prev": "{{PLURAL:$1|پـیـشـیـن|$1 تـای پـیـشـیـن}}",
 	"whatlinkshere-next": "{{PLURAL:$1|پَس|$1 تا پَس‌تر}}",
-	"whatlinkshere-links": "← لـیـنـک‌ئون",
+	"whatlinkshere-links": "→ لـیـنـک‌ئون",
 	"whatlinkshere-hideredirs": "$1 دکشی‌یه",
 	"whatlinkshere-hidetrans": "$1 تراگنجانشون",
 	"whatlinkshere-hidelinks": "$1 لینک",

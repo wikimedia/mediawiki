@@ -655,6 +655,7 @@
 	"changeemail-submit": "Đổi địa chỉ",
 	"changeemail-throttled": "Bạn đã thử đăng nhập nhiều lần quá. Xin chờ $1 trước khi bạn thử lần nữa.",
 	"changeemail-nochange": "Xin hãy nhập một địa chỉ thư điện tử mới khác.",
+	"changeemail-maxlength": "Địa chỉ email của bạn phải không dài quá 255 ký tự.",
 	"resettokens": "Đặt lại token",
 	"resettokens-text": "Bạn có thể đặt lại token cho phép truy cập những dữ liệu riêng tư của tài khoản của bạn tại đây.\n\nBạn nên sử dụng chức năng này nếu đã vô tình chia sẻ chìa khóa với người khác hoặc tài khoản bị xâm nhập.",
 	"resettokens-no-tokens": "Không có token, không thể đặt lại.",

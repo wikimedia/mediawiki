@@ -779,6 +779,7 @@
 	"changeemail-submit": "更改电子邮件地址",
 	"changeemail-throttled": "您最近尝试了太多次登录。\n请等待$1后再试。",
 	"changeemail-nochange": "请输入一个不同的新的电子邮件地址。",
+	"changeemail-maxlength": "你的电子邮件地址最多应包含255个字符。",
 	"resettokens": "重置密钥",
 	"resettokens-text": "您可以在这里重置允许访问与您的账户有关的特定私人数据的密钥。\n\n如果您意外将它们分享给他人，或是您的账户已经被入侵，您应该重置它们。",
 	"resettokens-no-tokens": "没有可以重置的密钥。",

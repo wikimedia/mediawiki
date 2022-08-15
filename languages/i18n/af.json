@@ -360,6 +360,7 @@
 	"badtitle": "Ongeldige titel",
 	"badtitletext": "Die bladsytitel waarvoor gevra is, is ongeldig, leeg, of\n'n verkeerd geskakelde tussen-taal of tussen-wiki titel.",
 	"title-invalid": "Die gevraagde bladsytitel is ongeldig",
+	"title-invalid-utf8": "Die gevraagde bladsytitel bevat 'n ongeldige UTF-8-reeks.",
 	"title-invalid-leading-colon": "Die gevraagde bladsytitel bevat 'n ongeldige dubbelpunt aan die begin.",
 	"perfcached": "Die volgende inligting is gekas en mag dalk nie op datum wees nie. 'n Maksimum van {{PLURAL:$1|een resultaat|$1 resultate}} is in die kas beskikbaar.",
 	"perfcachedts": "Die volgende data is gekas en is laas op $2 om $3 bygewerk. 'n Maksimum van {{PLURAL:$4|een resultaat|$4 resultate}} is in die kas beskikbaar.",

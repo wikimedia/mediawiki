@@ -654,6 +654,7 @@
 	"changeemail-submit": "Změnit e-mail",
 	"changeemail-throttled": "Provedli jste příliš mnoho pokusů o přihlášení.\nČekejte prosím $1 a zkuste to znovu.",
 	"changeemail-nochange": "Zadejte prosím odlišnou e-mailovou adresu.",
+	"changeemail-maxlength": "Vaše e-mailová adresa by měla mít maximálně 255 znaků.",
 	"resettokens": "Reinicializace klíčů",
 	"resettokens-text": "Na této stránce můžete reinicializovat klíče, které umožňují přístup k jistým soukromým údajům spojeným s vaším účtem.\n\n{{GENDER:|Měl|Měla|Měli}} byste to provést v případě, že jste je omylem někomu {{GENDER:|prozradil|prozradila|prozradili}}, nebo byl váš účet narušen.",
 	"resettokens-no-tokens": "Neexistují žádné klíče, které by bylo možno reinicializovat.",

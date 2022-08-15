@@ -617,7 +617,7 @@
 	"isimage": "link pa fail",
 	"whatlinkshere-prev": "{{PLURAL:$1|$1 previo}}",
 	"whatlinkshere-next": "{{PLURAL:$1|próksimo $1}}",
-	"whatlinkshere-links": "link",
+	"whatlinkshere-links": "← link",
 	"whatlinkshere-hidelinks": "$1 lenk",
 	"whatlinkshere-filters": "Felter",
 	"blockip": "Blokia uzadó",

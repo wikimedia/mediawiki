@@ -609,6 +609,7 @@
 	"changeemail-submit": "Cambiar e-mail",
 	"changeemail-throttled": "Tu ha facite troppo de tentativas de aperir session.\nPer favor attende $1 ante de probar lo novemente.",
 	"changeemail-nochange": "Per favor entra un altere nove adresse de e-mail.",
+	"changeemail-maxlength": "Tu adresse de e-mail pote continer al maximo 255 characteres.",
 	"resettokens": "Reinitialisar tokens",
 	"resettokens-text": "Hic tu pote reinitialisar le tokens que permitte le accesso a certe datos private associate a tu conto.\n\nTu deberea facer lo si tu los ha accidentalmente divulgate a un altere persona o si tu conto ha essite compromittite.",
 	"resettokens-no-tokens": "Il non ha tokens a reinitialisar.",

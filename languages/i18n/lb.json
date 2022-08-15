@@ -599,6 +599,7 @@
 	"changeemail-submit": "Mailadress änneren",
 	"changeemail-throttled": "Dir hutt zevill dacks versicht Iech anzeloggen.\nWaart wgl. $1 ier Dir et nach eng Kéier probéiert.",
 	"changeemail-nochange": "Gitt wgl. eng aner nei E-Mail-Adress an.",
+	"changeemail-maxlength": "Är Email-Adress soll maximal 255 Zeechen hunn.",
 	"resettokens": "Token zrécksetzen",
 	"resettokens-no-tokens": "Et gëtt keng Tokens fir zréck ze setzen.",
 	"resettokens-tokens": "Token:",

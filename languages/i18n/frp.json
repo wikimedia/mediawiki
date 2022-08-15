@@ -602,6 +602,7 @@
 	"changeemail-submit": "Changiér l’adrèce èlèctronica",
 	"changeemail-throttled": "Vos éd èprovâ un mouél de branchements.\nSe vos plét, atende-vos $1 devant que tornar èprovar.",
 	"changeemail-nochange": "Se vos plét, buchiéd na novèl’adrèce èlèctronica difèrenta.",
+	"changeemail-maxlength": "Voutron adrèce èlèctronica dêt contegnir u més 255 caractèros.",
 	"resettokens": "Tornar dèfenir los jetons",
 	"resettokens-text": "Ique, vos pouede tornar dèfenir los jetons que pèrmètont d’arrevar a quârques balyês privâyes associyêes a voutron comptio.\n\nVos o devriâd fâre se vos los éd partagiês per accident avouéc yon ou ben se voutron comptio est étâ comprometu.",
 	"resettokens-no-tokens": "Y at gins de jeton a tornar dèfenir.",

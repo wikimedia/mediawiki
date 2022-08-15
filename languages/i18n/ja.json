@@ -127,7 +127,10 @@
 			"ひまり",
 			"MathXplore",
 			"Yamagata Yusuke",
-			"あたまボーズ"
+			"あたまボーズ",
+			"Funa-enpitu",
+			"Makoto Asai",
+			"Skskbooi"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -724,6 +727,7 @@
 	"changeemail-submit": "メールアドレスを変更",
 	"changeemail-throttled": "ログインの試行回数が多すぎます。\n$1、待ってから再度試してください。",
 	"changeemail-nochange": "異なる新しいメールアドレスを入力してください。",
+	"changeemail-maxlength": "メールアドレスは最大255文字である必要があります。",
 	"resettokens": "トークンの再設定",
 	"resettokens-text": "ここでは、アカウントに関連付けられた特定の非公開データにアクセスするためのトークンを再設定できます。\n\nトークンを誤って他人に教えてしまった場合やあなたのアカウントが侵害された場合は、必ず再設定してください。",
 	"resettokens-no-tokens": "再設定できるトークンはありません。",
