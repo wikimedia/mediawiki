@@ -675,8 +675,8 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		$sql = $db->selectSQLText(
 			'zend', 'field', [ 'a' => 'x' ], __METHOD__, [ 'USE INDEX' => 'a_b_idx' ] );
 
-		$this->assertEquals(
-			"SELECT  field  FROM `zend`  FORCE INDEX (a_c_idx)  WHERE a = 'x'  ",
+		$this->assertSameSql(
+			"SELECT  field  FROM `zend` FORCE INDEX (a_c_idx)    WHERE a = 'x'  ",
 			$sql
 		);
 
@@ -684,8 +684,8 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		$sql = $db->selectSQLText(
 			'zend', 'field', [ 'a' => 'x' ], __METHOD__, [ 'USE INDEX' => 'a_b_idx' ] );
 
-		$this->assertEquals(
-			"SELECT  field  FROM `zend`  FORCE INDEX (a_b_idx)  WHERE a = 'x'  ",
+		$this->assertSameSql(
+			"SELECT  field  FROM `zend` FORCE INDEX (a_b_idx)    WHERE a = 'x'",
 			$sql
 		);
 	}
@@ -712,7 +712,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		] );
 		$sql = $db->selectSQLText( 'meow', 'field', [ 'a' => 'x' ], __METHOD__ );
 
-		$this->assertEquals(
+		$this->assertSameSql(
 			"SELECT  field  FROM `feline`.`cat_meow`    WHERE a = 'x'  ",
 			$sql
 		);
@@ -720,7 +720,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		$db->setTableAliases( [] );
 		$sql = $db->selectSQLText( 'meow', 'field', [ 'a' => 'x' ], __METHOD__ );
 
-		$this->assertEquals(
+		$this->assertSameSql(
 			"SELECT  field  FROM `meow`    WHERE a = 'x'  ",
 			$sql
 		);
@@ -746,7 +746,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			[ 'MAX_EXECUTION_TIME' => 1 ]
 		);
 
-		$this->assertEquals(
+		$this->assertSameSql(
 			"SET STATEMENT max_statement_time=0.001 FOR SELECT  img_metadata  FROM `image`     ",
 			$sql
 		);
@@ -768,5 +768,9 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		$newLine = 'JUST A TEST!!!';
 		$this->assertTrue( $db->streamStatementEnd( $sql, $newLine ) );
 		$this->assertSame( 'JUST A TEST!', $newLine );
+	}
+
+	private function assertSameSql( $expected, $actual, $message = '' ) {
+		$this->assertSame( trim( $expected ), trim( $actual ), $message );
 	}
 }

@@ -66,7 +66,8 @@ class DatabasePostgres extends Database {
 		$this->platform = new PostgresPlatform(
 			$this,
 			$params['queryLogger'],
-			$this->currentDomain
+			$this->currentDomain,
+			$this->errorLogger
 		);
 	}
 
