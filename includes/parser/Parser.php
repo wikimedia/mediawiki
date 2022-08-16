@@ -2859,31 +2859,15 @@ class Parser {
 
 		if ( $value === null ) {
 			// Not a defined core magic word
-			$ret = null;
-			$originalIndex = $index;
+			// Don't give this hook unrestricted access to mVarCache
+			$fakeCache = [];
 			$this->hookRunner->onParserGetVariableValueSwitch(
-				// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
-				$this, $this->mVarCache, $index, $ret, $frame
+				// @phan-suppress-next-line PhanTypeMismatchArgument $value is passed as null but returned as string
+				$this, $fakeCache, $index, $value, $frame
 			);
-			if ( $index !== $originalIndex ) {
-				wfDeprecatedMsg(
-					'A ParserGetVariableValueSwitch hook handler modified $index, ' .
-					'this is deprecated since MediaWiki 1.35',
-					'1.35', false, false
-				);
-			}
-			if ( !isset( $this->mVarCache[$originalIndex] ) ||
-				$this->mVarCache[$originalIndex] !== $ret
-			) {
-				wfDeprecatedMsg(
-					'A ParserGetVariableValueSwitch hook handler bypassed the cache, ' .
-					'this is deprecated since MediaWiki 1.35', '1.35', false, false
-				);
-			}
-			// FIXME: in the future, don't give this hook unrestricted
-			// access to mVarCache; we can cache it ourselves by falling
-			// through here.
-			return $ret;
+			// Cache the value returned by the hook by falling through here.
+			// Assert the the hook returned a non-null value for this MV
+			'@phan-var string $value';
 		}
 
 		$this->mVarCache[$index] = $value;
