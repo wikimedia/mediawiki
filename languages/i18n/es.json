@@ -1204,6 +1204,7 @@
 	"search-file-match": "(coincide con el contenido del archivo)",
 	"search-suggest": "Quizás quieres buscar: $1",
 	"search-rewritten": "Se muestran los resultados de $1. No se han encontrado resultados por $2.",
+	"search-interwiki-resultset-link": "Ver todos los resultados",
 	"search-interwiki-more": "(más)",
 	"search-interwiki-more-results": "más resultados",
 	"search-relatedarticle": "Relacionado",

@@ -325,6 +325,7 @@
 	"undo-summary": "Õõʹnni [[Special:Contributions/$2|$2]] ([[User talk:$2|saǥstõõllmõš]]) muuttâs $1 lij kååʹmtum",
 	"undo-summary-anon": "Õõʹnni [[Special:Contributions/$2|$2]] muuttâs $1 lij kååʹmtum",
 	"undo-summary-username-hidden": "Čiõkkum õõʹnni muuttâs $1 lij kååʹmtum",
+	"nohistory": "Tän seeidast ij leäkku muʹttemhistoria.",
 	"currentrev": "Ânnʼjõž versio",
 	"currentrev-asof": "Ânnʼjõž versio $1",
 	"revisionasof": "Versio $1",
