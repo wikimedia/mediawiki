@@ -29,17 +29,30 @@ use Wikimedia\AtEase\AtEase;
  * @since 1.32
  */
 class ForeignResourceManager {
+	/** @var string */
 	private $defaultAlgo = 'sha384';
+
+	/** @var bool */
 	private $hasErrors = false;
+
+	/** @var string */
 	private $registryFile;
+
+	/** @var string */
 	private $libDir;
+
+	/** @var string */
 	private $tmpParentDir;
+
+	/** @var string */
 	private $cacheDir;
+
 	/**
 	 * @var callable|Closure
 	 * @phan-var callable(string):void
 	 */
 	private $infoPrinter;
+
 	/**
 	 * @var callable|Closure
 	 * @phan-var callable(string):void
@@ -50,7 +63,10 @@ class ForeignResourceManager {
 	 * @phan-var callable(string):void
 	 */
 	private $verbosePrinter;
+
+	/** @var string */
 	private $action;
+
 	/** @var array[] */
 	private $registry;
 
@@ -161,6 +177,12 @@ class ForeignResourceManager {
 		return true;
 	}
 
+	/**
+	 * @param string $src
+	 * @param string $integrity
+	 *
+	 * @return string
+	 */
 	private function cacheKey( $src, $integrity ) {
 		$key = basename( $src ) . '_' . substr( $integrity, -12 );
 		$key = preg_replace( '/[.\/+?=_-]+/', '_', $key );
@@ -175,11 +197,21 @@ class ForeignResourceManager {
 		return AtEase::quietCall( 'file_get_contents', "{$this->cacheDir}/$key.data" );
 	}
 
+	/**
+	 * @param string $key
+	 * @param mixed $data
+	 */
 	private function cacheSet( $key, $data ) {
 		wfMkdirParents( $this->cacheDir );
 		file_put_contents( "{$this->cacheDir}/$key.data", $data, LOCK_EX );
 	}
 
+	/**
+	 * @param string $src
+	 * @param string $integrity
+	 *
+	 * @return string
+	 */
 	private function fetch( $src, $integrity ) {
 		$key = $this->cacheKey( $src, $integrity );
 		$data = $this->cacheGet( $key );
@@ -213,6 +245,11 @@ class ForeignResourceManager {
 		return $data;
 	}
 
+	/**
+	 * @param string $moduleName
+	 * @param string $destDir
+	 * @param array $info
+	 */
 	private function handleTypeFile( $moduleName, $destDir, array $info ) {
 		if ( !isset( $info['src'] ) ) {
 			throw new Exception( "Module '$moduleName' must have a 'src' key." );
@@ -229,6 +266,11 @@ class ForeignResourceManager {
 		}
 	}
 
+	/**
+	 * @param string $moduleName
+	 * @param string $destDir
+	 * @param array $info
+	 */
 	private function handleTypeMultiFile( $moduleName, $destDir, array $info ) {
 		if ( !isset( $info['files'] ) ) {
 			throw new Exception( "Module '$moduleName' must have a 'files' key." );
@@ -248,6 +290,11 @@ class ForeignResourceManager {
 		}
 	}
 
+	/**
+	 * @param string $moduleName
+	 * @param string $destDir
+	 * @param array $info
+	 */
 	private function handleTypeTar( $moduleName, $destDir, array $info ) {
 		$info += [ 'src' => null, 'integrity' => null, 'dest' => null ];
 		if ( $info['src'] === null ) {
@@ -313,14 +360,23 @@ class ForeignResourceManager {
 		}
 	}
 
+	/**
+	 * @param string $text
+	 */
 	private function verbose( $text ) {
 		( $this->verbosePrinter )( $text );
 	}
 
+	/**
+	 * @param string $text
+	 */
 	private function output( $text ) {
 		( $this->infoPrinter )( $text );
 	}
 
+	/**
+	 * @param string $text
+	 */
 	private function error( $text ) {
 		( $this->errorPrinter )( $text );
 	}
