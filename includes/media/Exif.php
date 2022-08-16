@@ -120,162 +120,279 @@ class Exif {
 			# TIFF Rev. 6.0 Attribute Information (p22)
 			'IFD0' => [
 				# Tags relating to image structure
-				'ImageWidth' => self::SHORT_OR_LONG, # Image width
-				'ImageLength' => self::SHORT_OR_LONG, # Image height
-				'BitsPerSample' => [ self::SHORT, 3 ], # Number of bits per component
+				# Image width
+				'ImageWidth' => self::SHORT_OR_LONG,
+				# Image height
+				'ImageLength' => self::SHORT_OR_LONG,
+				# Number of bits per component
+				'BitsPerSample' => [ self::SHORT, 3 ],
+
 				# "When a primary image is JPEG compressed, this designation is not"
 				# "necessary and is omitted." (p23)
-				'Compression' => self::SHORT, # Compression scheme #p23
-				'PhotometricInterpretation' => self::SHORT, # Pixel composition #p23
-				'Orientation' => self::SHORT, # Orientation of image #p24
-				'SamplesPerPixel' => self::SHORT, # Number of components
-				'PlanarConfiguration' => self::SHORT, # Image data arrangement #p24
-				'YCbCrSubSampling' => [ self::SHORT, 2 ], # Subsampling ratio of Y to C #p24
-				'YCbCrPositioning' => self::SHORT, # Y and C positioning #p24-25
-				'XResolution' => self::RATIONAL, # Image resolution in width direction
-				'YResolution' => self::RATIONAL, # Image resolution in height direction
-				'ResolutionUnit' => self::SHORT, # Unit of X and Y resolution #(p26)
+				# Compression scheme #p23
+				'Compression' => self::SHORT,
+				# Pixel composition #p23
+				'PhotometricInterpretation' => self::SHORT,
+				# Orientation of image #p24
+				'Orientation' => self::SHORT,
+				# Number of components
+				'SamplesPerPixel' => self::SHORT,
+				# Image data arrangement #p24
+				'PlanarConfiguration' => self::SHORT,
+				# Subsampling ratio of Y to C #p24
+				'YCbCrSubSampling' => [ self::SHORT, 2 ],
+				# Y and C positioning #p24-25
+				'YCbCrPositioning' => self::SHORT,
+				# Image resolution in width direction
+				'XResolution' => self::RATIONAL,
+				# Image resolution in height direction
+				'YResolution' => self::RATIONAL,
+				# Unit of X and Y resolution #(p26)
+				'ResolutionUnit' => self::SHORT,
 
 				# Tags relating to recording offset
-				'StripOffsets' => self::SHORT_OR_LONG, # Image data location
-				'RowsPerStrip' => self::SHORT_OR_LONG, # Number of rows per strip
-				'StripByteCounts' => self::SHORT_OR_LONG, # Bytes per compressed strip
-				'JPEGInterchangeFormat' => self::SHORT_OR_LONG, # Offset to JPEG SOI
-				'JPEGInterchangeFormatLength' => self::SHORT_OR_LONG, # Bytes of JPEG data
+				# Image data location
+				'StripOffsets' => self::SHORT_OR_LONG,
+				# Number of rows per strip
+				'RowsPerStrip' => self::SHORT_OR_LONG,
+				# Bytes per compressed strip
+				'StripByteCounts' => self::SHORT_OR_LONG,
+				# Offset to JPEG SOI
+				'JPEGInterchangeFormat' => self::SHORT_OR_LONG,
+				# Bytes of JPEG data
+				'JPEGInterchangeFormatLength' => self::SHORT_OR_LONG,
 
 				# Tags relating to image data characteristics
-				'TransferFunction' => self::IGNORE, # Transfer function
-				'WhitePoint' => [ self::RATIONAL, 2 ], # White point chromaticity
-				'PrimaryChromaticities' => [ self::RATIONAL, 6 ], # Chromaticities of primarities
+				# Transfer function
+				'TransferFunction' => self::IGNORE,
+				# White point chromaticity
+				'WhitePoint' => [ self::RATIONAL, 2 ],
+				# Chromaticities of primarities
+				'PrimaryChromaticities' => [ self::RATIONAL, 6 ],
 				# Color space transformation matrix coefficients #p27
 				'YCbCrCoefficients' => [ self::RATIONAL, 3 ],
-				'ReferenceBlackWhite' => [ self::RATIONAL, 6 ], # Pair of black and white reference values
+				# Pair of black and white reference values
+				'ReferenceBlackWhite' => [ self::RATIONAL, 6 ],
 
 				# Other tags
-				'DateTime' => self::ASCII, # File change date and time
-				'ImageDescription' => self::ASCII, # Image title
-				'Make' => self::ASCII, # Image input equipment manufacturer
-				'Model' => self::ASCII, # Image input equipment model
-				'Software' => self::ASCII, # Software used
-				'Artist' => self::ASCII, # Person who created the image
-				'Copyright' => self::ASCII, # Copyright holder
+				# File change date and time
+				'DateTime' => self::ASCII,
+				# Image title
+				'ImageDescription' => self::ASCII,
+				# Image input equipment manufacturer
+				'Make' => self::ASCII,
+				# Image input equipment model
+				'Model' => self::ASCII,
+				# Software used
+				'Software' => self::ASCII,
+				# Person who created the image
+				'Artist' => self::ASCII,
+				# Copyright holder
+				'Copyright' => self::ASCII,
 			],
 
 			# Exif IFD Attribute Information (p30-31)
 			'EXIF' => [
-				# @todo NOTE: Nonexistence of this field is taken to mean nonconformance
+				# @todo NOTE: Nonexistence of this field is taken to mean non-conformance
 				# to the Exif 2.1 AND 2.2 standards
-				'ExifVersion' => self::UNDEFINED, # Exif version
-				'FlashPixVersion' => self::UNDEFINED, # Supported Flashpix version #p32
+				'ExifVersion' => self::UNDEFINED,
+				# Supported Flashpix version #p32
+				'FlashPixVersion' => self::UNDEFINED,
 
 				# Tags relating to Image Data Characteristics
-				'ColorSpace' => self::SHORT, # Color space information #p32
+				# Color space information #p32
+				'ColorSpace' => self::SHORT,
 
 				# Tags relating to image configuration
-				'ComponentsConfiguration' => self::UNDEFINED, # Meaning of each component #p33
-				'CompressedBitsPerPixel' => self::RATIONAL, # Image compression mode
-				'PixelYDimension' => self::SHORT_OR_LONG, # Valid image height
-				'PixelXDimension' => self::SHORT_OR_LONG, # Valid image width
+				# Meaning of each component #p33
+				'ComponentsConfiguration' => self::UNDEFINED,
+				# Image compression mode
+				'CompressedBitsPerPixel' => self::RATIONAL,
+				# Valid image height
+				'PixelYDimension' => self::SHORT_OR_LONG,
+				# Valid image width
+				'PixelXDimension' => self::SHORT_OR_LONG,
 
 				# Tags relating to related user information
-				'MakerNote' => self::IGNORE, # Manufacturer notes
-				'UserComment' => self::UNDEFINED, # User comments #p34
+				# Manufacturer notes
+				'MakerNote' => self::IGNORE,
+				# User comments #p34
+				'UserComment' => self::UNDEFINED,
 
 				# Tags relating to related file information
-				'RelatedSoundFile' => self::ASCII, # Related audio file
+				# Related audio file
+				'RelatedSoundFile' => self::ASCII,
 
 				# Tags relating to date and time
-				'DateTimeOriginal' => self::ASCII, # Date and time of original data generation #p36
-				'DateTimeDigitized' => self::ASCII, # Date and time of original data generation
-				'SubSecTime' => self::ASCII, # DateTime subseconds
-				'SubSecTimeOriginal' => self::ASCII, # DateTimeOriginal subseconds
-				'SubSecTimeDigitized' => self::ASCII, # DateTimeDigitized subseconds
+				# Date and time of original data generation #p36
+				'DateTimeOriginal' => self::ASCII,
+				# Date and time of original data generation
+				'DateTimeDigitized' => self::ASCII,
+				# DateTime subseconds
+				'SubSecTime' => self::ASCII,
+				# DateTimeOriginal subseconds
+				'SubSecTimeOriginal' => self::ASCII,
+				# DateTimeDigitized subseconds
+				'SubSecTimeDigitized' => self::ASCII,
 
 				# Tags relating to picture-taking conditions (p31)
-				'ExposureTime' => self::RATIONAL, # Exposure time
-				'FNumber' => self::RATIONAL, # F Number
-				'ExposureProgram' => self::SHORT, # Exposure Program #p38
-				'SpectralSensitivity' => self::ASCII, # Spectral sensitivity
-				'ISOSpeedRatings' => self::SHORT, # ISO speed rating
-				'OECF' => self::IGNORE,
+				# Exposure time
+				'ExposureTime' => self::RATIONAL,
+				# F Number
+				'FNumber' => self::RATIONAL,
+				# Exposure Program #p38
+				'ExposureProgram' => self::SHORT,
+				# Spectral sensitivity
+				'SpectralSensitivity' => self::ASCII,
+				# ISO speed rating
+				'ISOSpeedRatings' => self::SHORT,
+
 				# Optoelectronic conversion factor. Note: We don't have support for this atm.
-				'ShutterSpeedValue' => self::SRATIONAL, # Shutter speed
-				'ApertureValue' => self::RATIONAL, # Aperture
-				'BrightnessValue' => self::SRATIONAL, # Brightness
-				'ExposureBiasValue' => self::SRATIONAL, # Exposure bias
-				'MaxApertureValue' => self::RATIONAL, # Maximum land aperture
-				'SubjectDistance' => self::RATIONAL, # Subject distance
-				'MeteringMode' => self::SHORT, # Metering mode #p40
-				'LightSource' => self::SHORT, # Light source #p40-41
-				'Flash' => self::SHORT, # Flash #p41-42
-				'FocalLength' => self::RATIONAL, # Lens focal length
-				'SubjectArea' => [ self::SHORT, 4 ], # Subject area
-				'FlashEnergy' => self::RATIONAL, # Flash energy
-				'SpatialFrequencyResponse' => self::IGNORE, # Spatial frequency response. Not supported atm.
-				'FocalPlaneXResolution' => self::RATIONAL, # Focal plane X resolution
-				'FocalPlaneYResolution' => self::RATIONAL, # Focal plane Y resolution
-				'FocalPlaneResolutionUnit' => self::SHORT, # Focal plane resolution unit #p46
-				'SubjectLocation' => [ self::SHORT, 2 ], # Subject location
-				'ExposureIndex' => self::RATIONAL, # Exposure index
-				'SensingMethod' => self::SHORT, # Sensing method #p46
-				'FileSource' => self::UNDEFINED, # File source #p47
-				'SceneType' => self::UNDEFINED, # Scene type #p47
-				'CFAPattern' => self::IGNORE, # CFA pattern. not supported atm.
-				'CustomRendered' => self::SHORT, # Custom image processing #p48
-				'ExposureMode' => self::SHORT, # Exposure mode #p48
-				'WhiteBalance' => self::SHORT, # White Balance #p49
-				'DigitalZoomRatio' => self::RATIONAL, # Digital zoom ration
-				'FocalLengthIn35mmFilm' => self::SHORT, # Focal length in 35 mm film
-				'SceneCaptureType' => self::SHORT, # Scene capture type #p49
-				'GainControl' => self::SHORT, # Scene control #p49-50
-				'Contrast' => self::SHORT, # Contrast #p50
-				'Saturation' => self::SHORT, # Saturation #p50
-				'Sharpness' => self::SHORT, # Sharpness #p50
-				'DeviceSettingDescription' => self::IGNORE,
+				'OECF' => self::IGNORE,
+
+				# Shutter speed
+				'ShutterSpeedValue' => self::SRATIONAL,
+				# Aperture
+				'ApertureValue' => self::RATIONAL,
+				# Brightness
+				'BrightnessValue' => self::SRATIONAL,
+				# Exposure bias
+				'ExposureBiasValue' => self::SRATIONAL,
+				# Maximum land aperture
+				'MaxApertureValue' => self::RATIONAL,
+				# Subject distance
+				'SubjectDistance' => self::RATIONAL,
+				# Metering mode #p40
+				'MeteringMode' => self::SHORT,
+				# Light source #p40-41
+				'LightSource' => self::SHORT,
+				# Flash #p41-42
+				'Flash' => self::SHORT,
+				# Lens focal length
+				'FocalLength' => self::RATIONAL,
+				# Subject area
+				'SubjectArea' => [ self::SHORT, 4 ],
+				# Flash energy
+				'FlashEnergy' => self::RATIONAL,
+				# Spatial frequency response. Not supported atm.
+				'SpatialFrequencyResponse' => self::IGNORE,
+				# Focal plane X resolution
+				'FocalPlaneXResolution' => self::RATIONAL,
+				# Focal plane Y resolution
+				'FocalPlaneYResolution' => self::RATIONAL,
+				# Focal plane resolution unit #p46
+				'FocalPlaneResolutionUnit' => self::SHORT,
+				# Subject location
+				'SubjectLocation' => [ self::SHORT, 2 ],
+				# Exposure index
+				'ExposureIndex' => self::RATIONAL,
+				# Sensing method #p46
+				'SensingMethod' => self::SHORT,
+				# File source #p47
+				'FileSource' => self::UNDEFINED,
+				# Scene type #p47
+				'SceneType' => self::UNDEFINED,
+				# CFA pattern. not supported atm.
+				'CFAPattern' => self::IGNORE,
+				# Custom image processing #p48
+				'CustomRendered' => self::SHORT,
+				# Exposure mode #p48
+				'ExposureMode' => self::SHORT,
+				# White Balance #p49
+				'WhiteBalance' => self::SHORT,
+				# Digital zoom ratio
+				'DigitalZoomRatio' => self::RATIONAL,
+				# Focal length in 35 mm film
+				'FocalLengthIn35mmFilm' => self::SHORT,
+				# Scene capture type #p49
+				'SceneCaptureType' => self::SHORT,
+				# Scene control #p49-50
+				'GainControl' => self::SHORT,
+				# Contrast #p50
+				'Contrast' => self::SHORT,
+				# Saturation #p50
+				'Saturation' => self::SHORT,
+				# Sharpness #p50
+				'Sharpness' => self::SHORT,
+
 				# Device settings description. This could maybe be supported. Need to find an
 				# example file that uses this to see if it has stuff of interest in it.
-				'SubjectDistanceRange' => self::SHORT, # Subject distance range #p51
+				'DeviceSettingDescription' => self::IGNORE,
 
-				'ImageUniqueID' => self::ASCII, # Unique image ID
+				# Subject distance range #p51
+				'SubjectDistanceRange' => self::SHORT,
+
+				# Unique image ID
+				'ImageUniqueID' => self::ASCII,
 			],
 
 			# GPS Attribute Information (p52)
 			'GPS' => [
 				'GPSVersion' => self::UNDEFINED,
-				# Should be an array of 4 Exif::BYTE's. However php treats it as an undefined
+				# Should be an array of 4 Exif::BYTE's. However, php treats it as an undefined
 				# Note exif standard calls this GPSVersionID, but php doesn't like the id suffix
-				'GPSLatitudeRef' => self::ASCII, # North or South Latitude #p52-53
-				'GPSLatitude' => [ self::RATIONAL, 3 ], # Latitude
-				'GPSLongitudeRef' => self::ASCII, # East or West Longitude #p53
-				'GPSLongitude' => [ self::RATIONAL, 3 ], # Longitude
+				# North or South Latitude #p52-53
+				'GPSLatitudeRef' => self::ASCII,
+				# Latitude
+				'GPSLatitude' => [ self::RATIONAL, 3 ],
+				# East or West Longitude #p53
+				'GPSLongitudeRef' => self::ASCII,
+				# Longitude
+				'GPSLongitude' => [ self::RATIONAL, 3 ],
 				'GPSAltitudeRef' => self::UNDEFINED,
+
 				# Altitude reference. Note, the exif standard says this should be an EXIF::Byte,
 				# but php seems to disagree.
-				'GPSAltitude' => self::RATIONAL, # Altitude
-				'GPSTimeStamp' => [ self::RATIONAL, 3 ], # GPS time (atomic clock)
-				'GPSSatellites' => self::ASCII, # Satellites used for measurement
-				'GPSStatus' => self::ASCII, # Receiver status #p54
-				'GPSMeasureMode' => self::ASCII, # Measurement mode #p54-55
-				'GPSDOP' => self::RATIONAL, # Measurement precision
-				'GPSSpeedRef' => self::ASCII, # Speed unit #p55
-				'GPSSpeed' => self::RATIONAL, # Speed of GPS receiver
-				'GPSTrackRef' => self::ASCII, # Reference for direction of movement #p55
-				'GPSTrack' => self::RATIONAL, # Direction of movement
-				'GPSImgDirectionRef' => self::ASCII, # Reference for direction of image #p56
-				'GPSImgDirection' => self::RATIONAL, # Direction of image
-				'GPSMapDatum' => self::ASCII, # Geodetic survey data used
-				'GPSDestLatitudeRef' => self::ASCII, # Reference for latitude of destination #p56
-				'GPSDestLatitude' => [ self::RATIONAL, 3 ], # Latitude destination
-				'GPSDestLongitudeRef' => self::ASCII, # Reference for longitude of destination #p57
-				'GPSDestLongitude' => [ self::RATIONAL, 3 ], # Longitude of destination
-				'GPSDestBearingRef' => self::ASCII, # Reference for bearing of destination #p57
-				'GPSDestBearing' => self::RATIONAL, # Bearing of destination
-				'GPSDestDistanceRef' => self::ASCII, # Reference for distance to destination #p57-58
-				'GPSDestDistance' => self::RATIONAL, # Distance to destination
-				'GPSProcessingMethod' => self::UNDEFINED, # Name of GPS processing method
-				'GPSAreaInformation' => self::UNDEFINED, # Name of GPS area
-				'GPSDateStamp' => self::ASCII, # GPS date
-				'GPSDifferential' => self::SHORT, # GPS differential correction
+				# Altitude
+				'GPSAltitude' => self::RATIONAL,
+				# GPS time (atomic clock)
+				'GPSTimeStamp' => [ self::RATIONAL, 3 ],
+				# Satellites used for measurement
+				'GPSSatellites' => self::ASCII,
+				# Receiver status #p54
+				'GPSStatus' => self::ASCII,
+				# Measurement mode #p54-55
+				'GPSMeasureMode' => self::ASCII,
+				# Measurement precision
+				'GPSDOP' => self::RATIONAL,
+				# Speed unit #p55
+				'GPSSpeedRef' => self::ASCII,
+				# Speed of GPS receiver
+				'GPSSpeed' => self::RATIONAL,
+				# Reference for direction of movement #p55
+				'GPSTrackRef' => self::ASCII,
+				# Direction of movement
+				'GPSTrack' => self::RATIONAL,
+				# Reference for direction of image #p56
+				'GPSImgDirectionRef' => self::ASCII,
+				# Direction of image
+				'GPSImgDirection' => self::RATIONAL,
+				# Geodetic survey data used
+				'GPSMapDatum' => self::ASCII,
+				# Reference for latitude of destination #p56
+				'GPSDestLatitudeRef' => self::ASCII,
+				# Latitude destination
+				'GPSDestLatitude' => [ self::RATIONAL, 3 ],
+				# Reference for longitude of destination #p57
+				'GPSDestLongitudeRef' => self::ASCII,
+				# Longitude of destination
+				'GPSDestLongitude' => [ self::RATIONAL, 3 ],
+				# Reference for bearing of destination #p57
+				'GPSDestBearingRef' => self::ASCII,
+				# Bearing of destination
+				'GPSDestBearing' => self::RATIONAL,
+				# Reference for distance to destination #p57-58
+				'GPSDestDistanceRef' => self::ASCII,
+				# Distance to destination
+				'GPSDestDistance' => self::RATIONAL,
+				# Name of GPS processing method
+				'GPSProcessingMethod' => self::UNDEFINED,
+				# Name of GPS area
+				'GPSAreaInformation' => self::UNDEFINED,
+				# GPS date
+				'GPSDateStamp' => self::ASCII,
+				# GPS differential correction
+				'GPSDifferential' => self::SHORT,
 			],
 		];
 
@@ -289,7 +406,8 @@ class Exif {
 			// rather small.
 			wfWarn( 'Exif class did not have byte order specified. ' .
 				'Some properties may be decoded incorrectly.' );
-			$this->byteOrder = 'BE'; // BE seems about twice as popular as LE in jpg's.
+			// BE seems about twice as popular as LE in jpg's.
+			$this->byteOrder = 'BE';
 		}
 
 		$this->debugFile( __FUNCTION__, true );
@@ -369,7 +487,7 @@ class Exif {
 			// We know altitude data is a <num>/<denom> from the validation
 			// functions ran earlier. But multiplying such a string by -1
 			// doesn't work well, so convert.
-			list( $num, $denom ) = explode( '/', $this->mFilteredExifData['GPSAltitude'], 2 );
+			[ $num, $denom ] = explode( '/', $this->mFilteredExifData['GPSAltitude'], 2 );
 			$this->mFilteredExifData['GPSAltitude'] = (int)$num / (int)$denom;
 
 			if ( isset( $this->mFilteredExifData['GPSAltitudeRef'] ) ) {
@@ -408,7 +526,8 @@ class Exif {
 			for ( $i = 0; $i < $strLen; $i++ ) {
 				$ccVals[$i] = ord( substr( $val, $i, 1 ) );
 			}
-			$ccVals['_type'] = 'ol'; // this is for formatting later.
+			// this is for formatting later.
+			$ccVals['_type'] = 'ol';
 			$this->mFilteredExifData['ComponentsConfiguration'] = $ccVals;
 		}
 
@@ -471,7 +590,8 @@ class Exif {
 				case "UNICODE\x00":
 					$charset = "UTF-16" . $this->byteOrder;
 					break;
-				default: // ascii or undefined.
+				default:
+					// ascii or undefined.
 					$charset = "";
 					break;
 			}
@@ -482,7 +602,7 @@ class Exif {
 			} else {
 				// if valid utf-8, assume that, otherwise assume windows-1252
 				$valCopy = $val;
-				UtfNormal\Validator::quickIsNFCVerify( $valCopy ); // validates $valCopy.
+				UtfNormal\Validator::quickIsNFCVerify( $valCopy );
 				if ( $valCopy !== $val ) {
 					AtEase::suppressWarnings();
 					$val = iconv( 'Windows-1252', 'UTF-8//IGNORE', $val );
@@ -530,24 +650,27 @@ class Exif {
 		if ( isset( $loc ) && isset( $dir )
 			&& ( $dir === 'N' || $dir === 'S' || $dir === 'E' || $dir === 'W' )
 		) {
-			list( $num, $denom ) = explode( '/', $loc[0], 2 );
+			[ $num, $denom ] = explode( '/', $loc[0], 2 );
 			$res = (int)$num / (int)$denom;
-			list( $num, $denom ) = explode( '/', $loc[1], 2 );
+			[ $num, $denom ] = explode( '/', $loc[1], 2 );
 			$res += ( (int)$num / (int)$denom ) * ( 1 / 60 );
-			list( $num, $denom ) = explode( '/', $loc[2], 2 );
+			[ $num, $denom ] = explode( '/', $loc[2], 2 );
 			$res += ( (int)$num / (int)$denom ) * ( 1 / 3600 );
 
 			if ( $dir === 'S' || $dir === 'W' ) {
-				$res *= -1; // make negative
+				// make negative
+				$res *= -1;
 			}
 		}
 
 		// update the exif records.
 
-		if ( $res !== false ) { // using !== as $res could potentially be 0
+		// using !== as $res could potentially be 0
+		if ( $res !== false ) {
 			$this->mFilteredExifData[$prop] = $res;
 			unset( $this->mFilteredExifData[$prop . 'Ref'] );
-		} else { // if invalid
+		} else {
+			// if invalid
 			unset( $this->mFilteredExifData[$prop] );
 			unset( $this->mFilteredExifData[$prop . 'Ref'] );
 		}
@@ -590,7 +713,7 @@ class Exif {
 	 * @return int
 	 */
 	public static function version() {
-		return 2; // We don't need no bloddy constants!
+		return 2;
 	}
 
 	/**
@@ -604,11 +727,11 @@ class Exif {
 			$this->debug( $in, __FUNCTION__, true );
 
 			return true;
-		} else {
-			$this->debug( $in, __FUNCTION__, false );
-
-			return false;
 		}
+
+		$this->debug( $in, __FUNCTION__, false );
+
+		return false;
 	}
 
 	/**
@@ -644,11 +767,11 @@ class Exif {
 			$this->debug( $in, __FUNCTION__, true );
 
 			return true;
-		} else {
-			$this->debug( $in, __FUNCTION__, false );
-
-			return false;
 		}
+
+		$this->debug( $in, __FUNCTION__, false );
+
+		return false;
 	}
 
 	/**
@@ -660,11 +783,11 @@ class Exif {
 			$this->debug( $in, __FUNCTION__, true );
 
 			return true;
-		} else {
-			$this->debug( $in, __FUNCTION__, false );
-
-			return false;
 		}
+
+		$this->debug( $in, __FUNCTION__, false );
+
+		return false;
 	}
 
 	/**
@@ -679,11 +802,11 @@ class Exif {
 			&& preg_match( '/^(\d+)\/(\d+[1-9]|[1-9]\d*)$/', $in, $m )
 		) {
 			return $this->isLong( $m[1] ) && $this->isLong( $m[2] );
-		} else {
-			$this->debug( $in, __FUNCTION__, 'fed a non-fraction value' );
-
-			return false;
 		}
+
+		$this->debug( $in, __FUNCTION__, 'fed a non-fraction value' );
+
+		return false;
 	}
 
 	/**
@@ -705,11 +828,11 @@ class Exif {
 			$this->debug( $in, __FUNCTION__, true );
 
 			return true;
-		} else {
-			$this->debug( $in, __FUNCTION__, false );
-
-			return false;
 		}
+
+		$this->debug( $in, __FUNCTION__, false );
+
+		return false;
 	}
 
 	/**
@@ -724,11 +847,11 @@ class Exif {
 			preg_match( '/^(-?\d+)\/(\d+[1-9]|[1-9]\d*)$/', $in, $m )
 		) {
 			return $this->isSlong( $m[0] ) && $this->isSlong( $m[1] );
-		} else {
-			$this->debug( $in, __FUNCTION__, 'fed a non-fraction value' );
-
-			return false;
 		}
+
+		$this->debug( $in, __FUNCTION__, 'fed a non-fraction value' );
+
+		return false;
 	}
 
 	/** #@- */
@@ -747,9 +870,10 @@ class Exif {
 		$etype = $this->mExifTags[$section][$tag];
 		$ecount = 1;
 		if ( is_array( $etype ) ) {
-			list( $etype, $ecount ) = $etype;
+			[ $etype, $ecount ] = $etype;
 			if ( $recursive ) {
-				$ecount = 1; // checking individual elements
+				// checking individual elements
+				$ecount = 1;
 			}
 		}
 
