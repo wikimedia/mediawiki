@@ -4853,7 +4853,11 @@ class Parser {
 		return str_replace(
 			self::TOC_PLACEHOLDER,
 			$toc,
-			$text
+			// For forwards compatibility during transition period,
+			// also replace "new" TOC_PLACEHOLDER value (to be used
+			// in the future, but might show up in the cache
+			// during a rollback to this version).
+			str_replace( '<meta property="mw:PageProp/toc" />', $toc, $text )
 		);
 	}
 
