@@ -257,6 +257,26 @@ mw.internalDoTransformFormatForQqx = function ( formatString, parameters ) {
 };
 
 /**
+ * Encode page titles in a way that matches `wfUrlencode` in PHP.
+ *
+ * @see mw.util#wikiUrlencode
+ * @private
+ * @param {string} str
+ * @return {string}
+ */
+mw.internalWikiUrlencode = function ( str ) {
+	return encodeURIComponent( String( str ) )
+		.replace( /'/g, '%27' )
+		.replace( /%20/g, '_' )
+		.replace( /%3B/g, ';' )
+		.replace( /%40/g, '@' )
+		.replace( /%24/g, '$' )
+		.replace( /%2C/g, ',' )
+		.replace( /%2F/g, '/' )
+		.replace( /%3A/g, ':' );
+};
+
+/**
  * Format a string. Replace $1, $2 ... $N with positional arguments.
  *
  * Used by Message#parser().
@@ -626,6 +646,33 @@ mw.html = {
 	Raw: function ( value ) {
 		this.value = value;
 	}
+};
+
+/**
+ * Import a local JS content page, for use by user scripts and site-wide scripts.
+ *
+ * @since 1.12
+ * @param {string} title
+ */
+window.importScript = function ( title ) {
+	mw.loader.load(
+		mw.config.get( 'wgScript' ) + '?title=' + mw.internalWikiUrlencode( title ) +
+			'&action=raw&ctype=text/javascript'
+	);
+};
+
+/**
+ * Import a local CSS content page, for use by user scripts and site-wide scripts.
+ *
+ * @since 1.12
+ * @param {string} title
+ */
+window.importStylesheet = function ( title ) {
+	mw.loader.load(
+		mw.config.get( 'wgScript' ) + '?title=' + mw.internalWikiUrlencode( title ) +
+			'&action=raw&ctype=text/css',
+		'text/css'
+	);
 };
 
 /**

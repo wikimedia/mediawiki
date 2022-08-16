@@ -189,28 +189,18 @@ util = {
 	},
 
 	/**
-	 * Encode page titles for use in a URL
+	 * Encode page titles in a way that matches `wfUrlencode` in PHP.
 	 *
-	 * We want / and : to be included as literal characters in our title URLs
-	 * as they otherwise fatally break the title.
-	 *
-	 * The others are decoded because we can, it's prettier and matches behaviour
-	 * of `wfUrlencode` in PHP.
+	 * This is important both for readability and consistency in the user experience,
+	 * as well as for caching. If URLs are not formatted in the canonical way, they
+	 * may be subject to drastically shorter cache durations and/or miss automatic
+	 * purging after edits, thus leading to stale content being served from a
+	 * non-canonical URL.
 	 *
 	 * @param {string} str String to be encoded.
 	 * @return {string} Encoded string
 	 */
-	wikiUrlencode: function ( str ) {
-		return encodeURIComponent( String( str ) )
-			.replace( /'/g, '%27' )
-			.replace( /%20/g, '_' )
-			.replace( /%3B/g, ';' )
-			.replace( /%40/g, '@' )
-			.replace( /%24/g, '$' )
-			.replace( /%2C/g, ',' )
-			.replace( /%2F/g, '/' )
-			.replace( /%3A/g, ':' );
-	},
+	wikiUrlencode: mw.internalWikiUrlencode,
 
 	/**
 	 * Get the URL to a given local wiki page name,
@@ -723,12 +713,17 @@ util = {
 	 *   Special:Redirect which is less efficient. Otherwise, it is a direct thumbnail URL.
 	 */
 	parseImageUrl: function ( url ) {
-		var i, name, decodedName, width, match, strippedUrl,
-			urlTemplate = null,
-			// thumb.php-generated thumbnails
-			// thumb.php?f=<name>&w[idth]=<width>[px]
-			thumbPhpRegex = /thumb\.php/,
-			regexes = [
+		var name, decodedName, width, urlTemplate;
+
+		// thumb.php-generated thumbnails
+		// thumb.php?f=<name>&w[idth]=<width>[px]
+		if ( /thumb\.php/.test( url ) ) {
+			decodedName = mw.util.getParamValue( 'f', url );
+			name = encodeURIComponent( decodedName );
+			width = mw.util.getParamValue( 'width', url ) || mw.util.getParamValue( 'w', url );
+			urlTemplate = url.replace( /([&?])w(?:idth)?=[^&]+/g, '' ) + '&width={width}';
+		} else {
+			var regexes = [
 				// Thumbnails
 				// /<hash prefix>/<name>/[<options>-]<width>-<name*>[.<ext>]
 				// where <name*> could be the filename, 'thumbnail.<ext>' (for long filenames)
@@ -747,15 +742,8 @@ util = {
 				// /<name>
 				/\/([^\s/]+)$/
 			];
-
-		if ( thumbPhpRegex.test( url ) ) {
-			decodedName = mw.util.getParamValue( 'f', url );
-			name = encodeURIComponent( decodedName );
-			width = mw.util.getParamValue( 'width', url ) || mw.util.getParamValue( 'w', url );
-			urlTemplate = url.replace( /([&?])w(?:idth)?=[^&]+/g, '' ) + '&width={width}';
-		} else {
-			for ( i = 0; i < regexes.length; i++ ) {
-				match = url.match( regexes[ i ] );
+			for ( var i = 0; i < regexes.length; i++ ) {
+				var match = url.match( regexes[ i ] );
 				if ( match ) {
 					name = match[ 1 ];
 					decodedName = decodeURIComponent( name );
@@ -779,7 +767,7 @@ util = {
 			} else if ( width && !urlTemplate ) {
 				// Javascript does not expose regexp capturing group indexes, and the width
 				// part could in theory also occur in the filename so hide that first.
-				strippedUrl = url.replace( name, '{name}' )
+				var strippedUrl = url.replace( name, '{name}' )
 					.replace( name, '{name}' )
 					.replace( width + 'px-', '{width}px-' );
 				urlTemplate = strippedUrl.replace( /\{name\}/g, name );

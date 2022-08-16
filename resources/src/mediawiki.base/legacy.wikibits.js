@@ -1,26 +1,9 @@
 /**
  * MediaWiki legacy wikibits
+ *
+ * See https://www.mediawiki.org/wiki/ResourceLoader/Legacy_JavaScript#wikibits.js
  */
-var msg,
-	loadedScripts = {};
-
-function wikiUrlencode( page ) {
-	return encodeURIComponent( String( page ) )
-		.replace( /'/g, '%27' )
-		.replace( /%20/g, '_' )
-		// wfUrlencode replacements
-		.replace( /%3B/g, ';' )
-		.replace( /%40/g, '@' )
-		.replace( /%24/g, '$' )
-		.replace( /%21/g, '!' )
-		.replace( /%2A/g, '*' )
-		.replace( /%28/g, '(' )
-		.replace( /%29/g, ')' )
-		.replace( /%2C/g, ',' )
-		.replace( /%2F/g, '/' )
-		.replace( /%7E/g, '~' )
-		.replace( /%3A/g, ':' );
-}
+var loadedScripts = {};
 
 /**
  * @deprecated since 1.17 Use jQuery instead
@@ -30,12 +13,6 @@ mw.log.deprecate( window, 'addOnloadHook', function ( fn ) {
 		fn();
 	} );
 }, 'Use jQuery instead.' );
-
-/**
- * Wikipage import methods
- *
- * See https://www.mediawiki.org/wiki/ResourceLoader/Legacy_JavaScript#wikibits.js
- */
 
 /**
  * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
@@ -49,15 +26,9 @@ function importScriptURI( url ) {
 	}
 	loadedScripts[ url ] = true;
 	s = document.createElement( 'script' );
-	s.setAttribute( 'src', url );
+	s.src = url;
 	document.head.appendChild( s );
 	return s;
-}
-
-function importScript( page ) {
-	var uri = mw.config.get( 'wgScript' ) + '?title=' + wikiUrlencode( page ) +
-		'&action=raw&ctype=text/javascript';
-	return importScriptURI( uri );
 }
 
 /**
@@ -77,19 +48,9 @@ function importStylesheetURI( url, media ) {
 	return l;
 }
 
-function importStylesheet( page ) {
-	var uri = mw.config.get( 'wgScript' ) + '?title=' + wikiUrlencode( page ) +
-		'&action=raw&ctype=text/css';
-	return importStylesheetURI( uri );
-}
-
-msg = 'Use mw.loader instead.';
-mw.log.deprecate( window, 'loadedScripts', loadedScripts, msg );
-mw.log.deprecate( window, 'importScriptURI', importScriptURI, msg );
-mw.log.deprecate( window, 'importStylesheetURI', importStylesheetURI, msg );
-// Not quite deprecated yet.
-window.importScript = importScript;
-window.importStylesheet = importStylesheet;
+mw.log.deprecate( window, 'loadedScripts', loadedScripts, 'Use mw.loader instead.' );
+mw.log.deprecate( window, 'importScriptURI', importScriptURI, 'Use mw.loader instead.' );
+mw.log.deprecate( window, 'importStylesheetURI', importStylesheetURI, 'Use mw.loader instead.' );
 
 /**
  * Replace document.write/writeln with basic html parsing that appends
