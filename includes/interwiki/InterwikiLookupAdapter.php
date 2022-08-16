@@ -1,10 +1,5 @@
 <?php
-
-namespace MediaWiki\Interwiki;
-
 /**
- * InterwikiLookupAdapter on top of SiteLookup
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,18 +16,21 @@ namespace MediaWiki\Interwiki;
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- *
- * @since 1.29
- * @ingroup InterwikiLookup
- *
- * @license GPL-2.0-or-later
  */
+
+namespace MediaWiki\Interwiki;
 
 use Interwiki;
 use MediaWikiSite;
 use Site;
 use SiteLookup;
 
+/**
+ * InterwikiLookupAdapter on top of SiteLookup
+ *
+ * @since 1.29
+ * @license GPL-2.0-or-later
+ */
 class InterwikiLookupAdapter implements InterwikiLookup {
 
 	/**

@@ -1,7 +1,5 @@
 <?php
 /**
- * InterwikiLookup implementing the "classic" interwiki storage (hardcoded up to MW 1.26).
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -34,14 +32,15 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
- * InterwikiLookup implementing the "classic" interwiki storage (hardcoded up to MW 1.26).
+ * InterwikiLookup backed by the `interwiki` database table or $wgInterwikiCache.
  *
- * This implements two levels of caching (in-process array and a WANObjectCache)
- * and two storage backends (SQL and plain PHP arrays).
+ * By default this uses the SQL backend (`interwiki` database table) and includes
+ * two levels of caching. When parsing a wiki page, many interwiki lookups may
+ * be required and thus there is in-class caching for repeat lookups. To reduce
+ * database pressure, there is also WANObjectCache for each prefix.
  *
- * All information is loaded on creation when called by $this->fetch( $prefix ).
- * All work is done on replica DB, because this should *never* change (except during
- * schema updates etc, which aren't wiki-related)
+ * Optionally, a pregenerated dataset can be statically set via $wgInterwikiCache,
+ * in which case there are no calls to either database or WANObjectCache.
  *
  * @since 1.28
  */
@@ -118,18 +117,19 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 		$fallbackSite
 	) {
 		$this->localCache = new MapCacheLRU( 1000 );
-
 		$this->contLang = $contLang;
 		$this->objectCache = $objectCache;
+		$this->objectCacheExpiry = $objectCacheExpiry;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->loadBalancer = $loadBalancer;
-		$this->objectCacheExpiry = $objectCacheExpiry;
+
 		if ( is_array( $interwikiData ) ) {
 			$this->data = $interwikiData;
 		} elseif ( $interwikiData ) {
 			throw new MWException(
 				'Setting $wgInterwikiCache to a CDB path is no longer supported' );
 		}
+
 		$this->interwikiScopes = $interwikiScopes;
 		$this->fallbackSite = $fallbackSite;
 	}
@@ -176,16 +176,8 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	}
 
 	/**
-	 * Resets locally cached Interwiki objects. This is intended for use during testing only.
-	 * This does not invalidate entries in the persistent cache, as invalidateCache() does.
-	 * @since 1.27
-	 */
-	public function resetLocalCache() {
-		$this->localCache->clear();
-	}
-
-	/**
 	 * Purge the in-process and object cache for an interwiki prefix
+	 *
 	 * @param string $prefix
 	 */
 	public function invalidateCache( $prefix ) {
@@ -196,9 +188,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	}
 
 	/**
-	 * Fetch interwiki prefix data from local cache in constant database.
-	 *
-	 * @note More logic is explained in docs/Configuration.md.
+	 * Fetch interwiki prefix data from pregenerated cache.
 	 *
 	 * @param string $prefix Interwiki prefix
 	 * @return Interwiki|false
@@ -206,26 +196,22 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	private function fetchPregenerated( $prefix ) {
 		$value = $this->getPregeneratedEntry( $prefix );
 
-		if ( $value ) {
-			// Split values
-			list( $local, $url ) = explode( ' ', $value, 2 );
-			return new Interwiki( $prefix, $url, '', '', (int)$local );
-		} else {
+		if ( !$value ) {
 			return false;
 		}
+		// Split values
+		list( $local, $url ) = explode( ' ', $value, 2 );
+		return new Interwiki( $prefix, $url, '', '', (int)$local );
 	}
 
 	/**
 	 * Get entry from pregenerated data
-	 *
-	 * @note More logic is explained in docs/Configuration.md.
 	 *
 	 * @param string $prefix Database key
 	 * @return bool|string The interwiki entry or false if not found
 	 */
 	private function getPregeneratedEntry( $prefix ) {
 		wfDebug( __METHOD__ . "( $prefix )" );
-
 		$wikiId = WikiMap::getCurrentWikiId();
 
 		// Resolve site name
@@ -320,7 +306,6 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 */
 	private function getAllPrefixesPregenerated( $local ) {
 		wfDebug( __METHOD__ . "()" );
-
 		$wikiId = WikiMap::getCurrentWikiId();
 
 		$data = [];
@@ -367,17 +352,19 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	}
 
 	/**
-	 * Given the array returned by getAllPrefixes(), build a PHP hash which
+	 * Build an array in the format accepted by $wgInterwikiCache.
+	 *
+	 * Given the array returned by getAllPrefixes(), build a PHP array which
 	 * can be given to self::__construct() as $interwikiData, i.e. as the
 	 * value of $wgInterwikiCache.  This is used to construct mock
 	 * interwiki lookup services for testing (in particular, parsertests).
+	 *
 	 * @param array $allPrefixes An array of interwiki information such as
 	 *   would be returned by ::getAllPrefixes()
 	 * @param int $scope The scope at which to insert interwiki prefixes.
 	 *   See the $interwikiScopes parameter to ::__construct().
 	 * @param ?string $thisSite The value of $thisSite, if $scope is 3.
-	 * @return array A PHP associative array suitable to use as
-	 *   $wgInterwikiCache
+	 * @return array
 	 */
 	public static function buildCdbHash(
 		array $allPrefixes, int $scope = 1, ?string $thisSite = null
