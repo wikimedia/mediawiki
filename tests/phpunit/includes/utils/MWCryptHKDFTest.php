@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\MainConfigNames;
+
 /**
  * @group HKDF
  * @covers CryptHKDF
@@ -9,7 +12,7 @@ class MWCryptHKDFTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( 'wgSecretKey', '5bf1945342e67799cb50704a7fa19ac6' );
+		$this->overrideConfigValue( MainConfigNames::SecretKey, '5bf1945342e67799cb50704a7fa19ac6' );
 	}
 
 	/**

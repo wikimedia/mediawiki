@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -30,9 +31,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 	 * @covers SpecialSearch::load
 	 */
 	public function testAlternativeBackend() {
-		$this->setMwGlobals( [
-			'wgSearchTypeAlternatives' => [ 'MockSearchEngine' ],
-		] );
+		$this->overrideConfigValue( MainConfigNames::SearchTypeAlternatives, [ 'MockSearchEngine' ] );
 
 		$ctx = new RequestContext();
 		$ctx->setRequest( new FauxRequest( [
@@ -180,9 +179,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 	public function testSearchTermIsNotExpanded() {
 		// T303046
 		$this->markTestSkippedIfDbType( 'sqlite' );
-		$this->setMwGlobals( [
-			'wgSearchType' => null,
-		] );
+		$this->overrideConfigValue( MainConfigNames::SearchType, null );
 
 		# Initialize [[Special::Search]]
 		$ctx = new RequestContext();
@@ -392,9 +389,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 	 * @covers SpecialSearch::execute
 	 */
 	public function testSubPageRedirect() {
-		$this->setMwGlobals( [
-			'wgScript' => '/w/index.php',
-		] );
+		$this->overrideConfigValue( MainConfigNames::Script, '/w/index.php' );
 
 		$ctx = new RequestContext;
 		$sp = Title::newFromText( 'Special:Search/foo_bar' );

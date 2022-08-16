@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
+use MediaWiki\MainConfigNames;
 
 /**
  * @group Upload
@@ -15,11 +16,12 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 
 		$this->upload = new UploadTestHandler;
 
-		$this->setMwGlobals( [
-			'wgInterwikiCache' => ClassicInterwikiLookup::buildCdbHash( [
+		$this->overrideConfigValue(
+			MainConfigNames::InterwikiCache,
+			ClassicInterwikiLookup::buildCdbHash( [
 				// no entries, no interwiki prefixes
-			] ),
-		] );
+			] )
+		);
 	}
 
 	/**
@@ -110,9 +112,9 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 	 * This method should be abstracted so we can test different settings.
 	 */
 	public function testMaxUploadSize() {
-		$this->setMwGlobals( [
-			'wgMaxUploadSize' => 100,
-			'wgFileExtensions' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::MaxUploadSize => 100,
+			MainConfigNames::FileExtensions => [
 				'txt',
 			],
 		] );

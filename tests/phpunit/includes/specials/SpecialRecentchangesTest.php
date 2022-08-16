@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Wikimedia\TestingAccessWrapper;
 
@@ -180,7 +181,7 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 
 		// Make sure thresholds are passed
 		$page->denseRcSizeThreshold = 0;
-		$this->setMwGlobals( [ 'wgMiserMode' => true ] );
+		$this->overrideConfigValue( MainConfigNames::MiserMode, true );
 
 		( new SpecialPageExecutor() )->executeSpecialPage( $page, '', $req );
 		$this->assertTrue( true );

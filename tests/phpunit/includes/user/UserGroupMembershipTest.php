@@ -5,8 +5,8 @@ class UserGroupMembershipTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgGroupPermissions' => [
+		$this->setGroupPermissions(
+			[
 				'unittesters' => [
 					'runtest' => true,
 				],
@@ -14,7 +14,7 @@ class UserGroupMembershipTest extends MediaWikiIntegrationTestCase {
 					'writetest' => true,
 				]
 			]
-		] );
+		);
 	}
 
 	public function provideInstantiationValidation() {

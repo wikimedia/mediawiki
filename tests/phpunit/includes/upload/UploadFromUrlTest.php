@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -18,9 +19,9 @@ class UploadFromUrlTest extends ApiTestCase {
 		parent::setUp();
 		$this->user = self::$users['sysop']->getUser();
 
-		$this->setMwGlobals( [
-			'wgEnableUploads' => true,
-			'wgAllowCopyUploads' => true,
+		$this->overrideConfigValues( [
+			MainConfigNames::EnableUploads => true,
+			MainConfigNames::AllowCopyUploads => true,
 		] );
 		$this->setGroupPermissions( 'sysop', 'upload_by_url', true );
 
@@ -46,21 +47,21 @@ class UploadFromUrlTest extends ApiTestCase {
 	}
 
 	public function testIsAllowedHostEmpty() {
-		$this->setMwGlobals( [
-			'wgCopyUploadsDomains' => [],
-			'wgCopyUploadAllowOnWikiDomainConfig' => false,
+		$this->overrideConfigValues( [
+			MainConfigNames::CopyUploadsDomains => [],
+			MainConfigNames::CopyUploadAllowOnWikiDomainConfig => false,
 		] );
 
 		$this->assertTrue( UploadFromUrl::isAllowedHost( 'https://foo.bar' ) );
 	}
 
 	public function testIsAllowedHostDirectMatch() {
-		$this->setMwGlobals( [
-			'wgCopyUploadsDomains' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::CopyUploadsDomains => [
 				'foo.baz',
 				'bar.example.baz',
 			],
-			'wgCopyUploadAllowOnWikiDomainConfig' => false,
+			MainConfigNames::CopyUploadAllowOnWikiDomainConfig => false,
 		] );
 
 		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://example.com' ) );
@@ -73,11 +74,11 @@ class UploadFromUrlTest extends ApiTestCase {
 	}
 
 	public function testIsAllowedHostLastWildcard() {
-		$this->setMwGlobals( [
-			'wgCopyUploadsDomains' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::CopyUploadsDomains => [
 				'*.baz',
 			],
-			'wgCopyUploadAllowOnWikiDomainConfig' => false,
+			MainConfigNames::CopyUploadAllowOnWikiDomainConfig => false,
 		] );
 
 		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://baz' ) );
@@ -90,11 +91,11 @@ class UploadFromUrlTest extends ApiTestCase {
 	}
 
 	public function testIsAllowedHostWildcardInMiddle() {
-		$this->setMwGlobals( [
-			'wgCopyUploadsDomains' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::CopyUploadsDomains => [
 				'foo.*.baz',
 			],
-			'wgCopyUploadAllowOnWikiDomainConfig' => false,
+			MainConfigNames::CopyUploadAllowOnWikiDomainConfig => false,
 		] );
 
 		$this->assertFalse( UploadFromUrl::isAllowedHost( 'https://foo.baz' ) );
@@ -107,9 +108,9 @@ class UploadFromUrlTest extends ApiTestCase {
 	}
 
 	public function testOnWikiDomainConfigEnabled() {
-		$this->setMwGlobals( [
-			'wgCopyUploadsDomains' => [ 'example.com' ],
-			'wgCopyUploadAllowOnWikiDomainConfig' => true,
+		$this->overrideConfigValues( [
+			MainConfigNames::CopyUploadsDomains => [ 'example.com' ],
+			MainConfigNames::CopyUploadAllowOnWikiDomainConfig => true,
 		] );
 
 		$messageContent = "example.org # this is a comment\n# this too is commented foo.example.com\nexample.net";
@@ -128,9 +129,9 @@ class UploadFromUrlTest extends ApiTestCase {
 	}
 
 	public function testOnWikiDomainConfigDisabled() {
-		$this->setMwGlobals( [
-			'wgCopyUploadsDomains' => [ 'example.com' ],
-			'wgCopyUploadAllowOnWikiDomainConfig' => false,
+		$this->overrideConfigValues( [
+			MainConfigNames::CopyUploadsDomains => [ 'example.com' ],
+			MainConfigNames::CopyUploadAllowOnWikiDomainConfig => false,
 		] );
 
 		$mock = $this->createMock( MessageCache::class );

@@ -19,6 +19,8 @@
  * @author This, that and the other
  */
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @covers SubpageImportTitleFactory
  *
@@ -31,9 +33,9 @@ class SubpageImportTitleFactoryTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setContentLang( 'en' );
-		$this->setMwGlobals( [
-			'wgNamespacesWithSubpages' => [ 0 => false, 2 => true ],
+		$this->overrideConfigValues( [
+			MainConfigNames::LanguageCode => 'en',
+			MainConfigNames::NamespacesWithSubpages => [ 0 => false, 2 => true ],
 		] );
 	}
 

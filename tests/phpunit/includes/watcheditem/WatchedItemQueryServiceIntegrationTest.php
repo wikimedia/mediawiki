@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserOptionsLookup;
 
 /**
@@ -15,7 +16,7 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 		$this->tablesUsed[] = 'watchlist';
 		$this->tablesUsed[] = 'watchlist_expiry';
 
-		$this->setMwGlobals( 'wgWatchlistExpiry', true );
+		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 	}
 
 	public function testGetWatchedItemsForUser(): void {
@@ -70,7 +71,7 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 	}
 
 	public function testGetWatchedItemsForUserWithExpiriesDisabled() {
-		$this->setMwGlobals( 'wgWatchlistExpiry', false );
+		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, false );
 		$store = $this->getServiceContainer()->getWatchedItemStore();
 		$queryService = $this->getServiceContainer()->getWatchedItemQueryService();
 		$user = self::getTestUser()->getUser();

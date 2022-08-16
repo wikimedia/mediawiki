@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserOptionsManager;
 
 /**
@@ -15,9 +16,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 		parent::setUp();
 
 		$this->userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
-		$this->setMwGlobals( [
-			'wgEnableUserEmailMuteList' => true
-		] );
+		$this->overrideConfigValue( MainConfigNames::EnableUserEmailMuteList, true );
 	}
 
 	/**
@@ -52,9 +51,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 			null
 		);
 
-		$this->setMwGlobals( [
-			'wgEnableUserEmailMuteList' => false
-		] );
+		$this->overrideConfigValue( MainConfigNames::EnableUserEmailMuteList, false );
 
 		$user = $this->getTestUser()->getUser();
 		$this->expectException( ErrorPageError::class );

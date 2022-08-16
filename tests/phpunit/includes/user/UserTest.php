@@ -5,6 +5,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Revision\SlotRecord;
@@ -30,13 +31,13 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgGroupPermissions' => [],
-			'wgRevokePermissions' => [],
-			'wgUseRCPatrol' => true,
-			'wgWatchlistExpiry' => true,
-			'wgAutoConfirmAge' => 0,
-			'wgAutoConfirmCount' => 0,
+		$this->overrideConfigValues( [
+			MainConfigNames::GroupPermissions => [],
+			MainConfigNames::RevokePermissions => [],
+			MainConfigNames::UseRCPatrol => true,
+			MainConfigNames::WatchlistExpiry => true,
+			MainConfigNames::AutoConfirmAge => 0,
+			MainConfigNames::AutoConfirmCount => 0,
 		] );
 
 		$this->setUpPermissionGlobals();
@@ -46,51 +47,48 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function setUpPermissionGlobals() {
-		global $wgGroupPermissions, $wgRevokePermissions;
+		$this->setGroupPermissions( [
+			// Data for regular $wgGroupPermissions test
+			'unittesters' => [
+				'test' => true,
+				'runtest' => true,
+				'writetest' => false,
+				'nukeworld' => false,
+				'autoconfirmed' => false,
+			],
+			'testwriters' => [
+				'test' => true,
+				'writetest' => true,
+				'modifytest' => true,
+				'autoconfirmed' => true,
+			],
+			// For the options and watchlist tests
+			'*' => [
+				'editmyoptions' => true,
+				'editmywatchlist' => true,
+				'viewmywatchlist' => true,
+			],
+			// For patrol tests
+			'patroller' => [
+				'patrol' => true,
+			],
+			// For account creation when blocked test
+			'accountcreator' => [
+				'createaccount' => true,
+				'ipblock-exempt' => true
+			],
+			// For bot and ratelimit tests
+			'bot' => [
+				'bot' => true,
+				'noratelimit' => true,
+			]
+		] );
 
-		# Data for regular $wgGroupPermissions test
-		$wgGroupPermissions['unittesters'] = [
-			'test' => true,
-			'runtest' => true,
-			'writetest' => false,
-			'nukeworld' => false,
-			'autoconfirmed' => false,
-		];
-		$wgGroupPermissions['testwriters'] = [
-			'test' => true,
-			'writetest' => true,
-			'modifytest' => true,
-			'autoconfirmed' => true,
-		];
-
-		# Data for regular $wgRevokePermissions test
-		$wgRevokePermissions['formertesters'] = [
-			'runtest' => true,
-		];
-
-		# For the options and watchlist tests
-		$wgGroupPermissions['*'] = [
-			'editmyoptions' => true,
-			'editmywatchlist' => true,
-			'viewmywatchlist' => true,
-		];
-
-		# For patrol tests
-		$wgGroupPermissions['patroller'] = [
-			'patrol' => true,
-		];
-
-		# For account creation when blocked test
-		$wgGroupPermissions['accountcreator'] = [
-			'createaccount' => true,
-			'ipblock-exempt' => true
-		];
-
-		# For bot and ratelimit tests
-		$wgGroupPermissions['bot'] = [
-			'bot' => true,
-			'noratelimit' => true,
-		];
+		$this->overrideConfigValue(
+			MainConfigNames::RevokePermissions,
+			// Data for regular $wgRevokePermissions test
+			[ 'formertesters' => [ 'runtest' => true ] ]
+		);
 	}
 
 	private function setSessionUser( User $user, WebRequest $request ) {
@@ -322,8 +320,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::isValidPassword()
 	 */
 	public function testCheckPasswordValidity() {
-		$this->setMwGlobals( [
-			'wgPasswordPolicy' => [
+		$this->overrideConfigValue(
+			MainConfigNames::PasswordPolicy,
+			[
 				'policies' => [
 					'sysop' => [
 						'MinimalPasswordLength' => 8,
@@ -345,8 +344,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 					'PasswordCannotMatchDefaults' => 'PasswordPolicyChecks::checkPasswordCannotMatchDefaults',
 					'MaximalPasswordLength' => 'PasswordPolicyChecks::checkMaximalPasswordLength',
 				],
-			],
-		] );
+			]
+		);
 
 		$this->assertTrue( $this->user->isValidPassword( 'Password1234' ) );
 
@@ -591,7 +590,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getBlockedStatus
 	 */
 	public function testSoftBlockRanges() {
-		$this->setMwGlobals( 'wgSoftBlockRanges', [ '10.0.0.0/8' ] );
+		$this->overrideConfigValue( MainConfigNames::SoftBlockRanges, [ '10.0.0.0/8' ] );
 
 		// IP isn't in $wgSoftBlockRanges
 		$user = new User();
@@ -643,7 +642,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		// since we are interested in request IP
 		RequestContext::getMain()->setUser( $user );
 
-		$this->setMwGlobals( 'wgRateLimitsExcludedIPs', $rateLimitExcludeIps );
+		$this->overrideConfigValue( MainConfigNames::RateLimitsExcludedIPs, $rateLimitExcludeIps );
 		if ( $rightOverride ) {
 			$this->overrideUserPermissions( $user, $rightOverride );
 		}
@@ -671,11 +670,11 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideExperienceLevel
 	 */
 	public function testExperienceLevel( $editCount, $memberSince, $expLevel ) {
-		$this->setMwGlobals( [
-			'wgLearnerEdits' => 10,
-			'wgLearnerMemberSince' => 4,
-			'wgExperiencedUserEdits' => 500,
-			'wgExperiencedUserMemberSince' => 30,
+		$this->overrideConfigValues( [
+			MainConfigNames::LearnerEdits => 10,
+			MainConfigNames::LearnerMemberSince => 4,
+			MainConfigNames::ExperiencedUserEdits => 500,
+			MainConfigNames::ExperiencedUserMemberSince => 30,
 		] );
 
 		$db = wfGetDB( DB_PRIMARY );
@@ -1158,9 +1157,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 *  - 'pageRestrictions': (array|null) If non-empty, page restriction titles for the block.
 	 */
 	public function testIsBlockedFrom( $title, $expect, array $options = [] ) {
-		$this->setMwGlobals( [
-			'wgBlockAllowsUTEdit' => $options['blockAllowsUTEdit'] ?? true,
-		] );
+		$this->overrideConfigValue( MainConfigNames::BlockAllowsUTEdit, $options['blockAllowsUTEdit'] ?? true );
 
 		$user = $this->getMutableTestUser()->getUser();
 
@@ -1441,9 +1438,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		$globals = $testOpts['globals'] ?? [];
 		if ( !empty( $testOpts['reserved'] ) ) {
-			$globals['wgReservedUsernames'] = [ $name ];
+			$globals[MainConfigNames::ReservedUsernames] = [ $name ];
 		}
-		$this->setMwGlobals( $globals );
+		$this->overrideConfigValues( $globals );
 		$userNameUtils = $this->getServiceContainer()->getUserNameUtils();
 		$this->assertSame( empty( $testOpts['reserved'] ), $userNameUtils->isUsable( $name ) );
 		$this->assertTrue( $userNameUtils->isValid( $name ) );
@@ -1633,9 +1630,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$startingEmail = 'startingemail@mediawiki.org';
 		$user->setEmail( $startingEmail );
 
-		$this->setMwGlobals( [
-			'wgEnableEmail' => false,
-			'wgEmailAuthentication' => false
+		$this->overrideConfigValues( [
+			MainConfigNames::EnableEmail => false,
+			MainConfigNames::EmailAuthentication => false
 		] );
 		$status = $user->setEmailWithConfirmation( 'test1@mediawiki.org' );
 		$this->assertSame(
@@ -1649,9 +1646,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			'Email has not changed'
 		);
 
-		$this->setMwGlobals( [
-			'wgEnableEmail' => true,
-		] );
+		$this->overrideConfigValue( MainConfigNames::EnableEmail, true );
 		$status = $user->setEmailWithConfirmation( $startingEmail );
 		$this->assertTrue(
 			$status->getValue(),
@@ -1690,9 +1685,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideRequiresHTTPS
 	 */
 	public function testRequiresHTTPS( $preference, bool $expected ) {
-		$this->setMwGlobals( [
-			'wgSecureLogin' => true,
-			'wgForceHTTPS' => false,
+		$this->overrideConfigValues( [
+			MainConfigNames::SecureLogin => true,
+			MainConfigNames::ForceHTTPS => false,
 		] );
 
 		$user = User::newFromName( 'UserWhoMayRequireHTTPS' );
@@ -1719,9 +1714,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::requiresHTTPS
 	 */
 	public function testRequiresHTTPS_disabled() {
-		$this->setMwGlobals( [
-			'wgSecureLogin' => false,
-			'wgForceHTTPS' => false,
+		$this->overrideConfigValues( [
+			MainConfigNames::SecureLogin => false,
+			MainConfigNames::ForceHTTPS => false,
 		] );
 
 		$user = User::newFromName( 'UserWhoMayRequireHTTP' );
@@ -1744,9 +1739,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::requiresHTTPS
 	 */
 	public function testRequiresHTTPS_forced() {
-		$this->setMwGlobals( [
-			'wgSecureLogin' => true,
-			'wgForceHTTPS' => true,
+		$this->overrideConfigValues( [
+			MainConfigNames::SecureLogin => true,
+			MainConfigNames::ForceHTTPS => true,
 		] );
 
 		$user = User::newFromName( 'UserWhoMayRequireHTTP' );
@@ -1840,8 +1835,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function enableAutoCreateTempUser() {
-		$this->setMwGlobals( [
-			'wgAutoCreateTempUser' => [
+		$this->overrideConfigValue(
+			MainConfigNames::AutoCreateTempUser,
+			[
 				'enabled' => true,
 				'actions' => [ 'edit' ],
 				'genPattern' => '*Unregistered $1',
@@ -1849,7 +1845,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 				'serialProvider' => [ 'type' => 'local' ],
 				'serialMapping' => [ 'type' => 'plain-numeric' ],
 			]
-		] );
+		);
 	}
 
 	public static function provideIsTemp() {

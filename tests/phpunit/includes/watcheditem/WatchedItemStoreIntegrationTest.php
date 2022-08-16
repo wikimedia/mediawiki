@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -17,9 +18,9 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		self::$users['WatchedItemStoreIntegrationTestUser']
 			= new TestUser( 'WatchedItemStoreIntegrationTestUser' );
 
-		$this->setMwGlobals( [
-			'wgWatchlistExpiry' => true,
-			'wgWatchlistExpiryMaxDuration' => '6 months',
+		$this->overrideConfigValues( [
+			MainConfigNames::WatchlistExpiry => true,
+			MainConfigNames::WatchlistExpiryMaxDuration => '6 months',
 		] );
 	}
 
