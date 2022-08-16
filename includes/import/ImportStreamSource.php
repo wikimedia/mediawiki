@@ -127,7 +127,7 @@ class ImportStreamSource implements ImportSource {
 			],
 			__METHOD__
 		);
-		if ( $data !== false ) {
+		if ( $data !== null ) {
 			$file = tmpfile();
 			fwrite( $file, $data );
 			fflush( $file );
