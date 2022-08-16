@@ -273,8 +273,8 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'dbDirectory' => $wgSQLiteDataDir,
 					'load' => 0,
 					'groupLoads' => [
-						'recentchanges' => 100,
-						'watchlist' => 100
+						'foo' => 100,
+						'bar' => 100
 					],
 				],
 			// Logging replica DBs
@@ -288,7 +288,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'dbDirectory' => $wgSQLiteDataDir,
 					'load' => 0,
 					'groupLoads' => [
-						'logging' => 100
+						'baz' => 100
 					],
 				],
 			5 => $srvExtra + [
@@ -301,7 +301,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'dbDirectory' => $wgSQLiteDataDir,
 					'load' => 0,
 					'groupLoads' => [
-						'logging' => 100
+						'baz' => 100
 					],
 				],
 			// Maintenance query replica DBs
@@ -742,29 +742,29 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 				"Main index unchanged" );
 		}
 
-		$rRC = $lb->getConnectionRef( DB_REPLICA, [ 'recentchanges' ] );
-		$rWL = $lb->getConnectionRef( DB_REPLICA, [ 'watchlist' ] );
-		$rRCMaint = $lb->getMaintenanceConnectionRef( DB_REPLICA, [ 'recentchanges' ] );
-		$rWLMaint = $lb->getMaintenanceConnectionRef( DB_REPLICA, [ 'watchlist' ] );
+		$rRC = $lb->getConnectionRef( DB_REPLICA, [ 'foo' ] );
+		$rWL = $lb->getConnectionRef( DB_REPLICA, [ 'bar' ] );
+		$rRCMaint = $lb->getMaintenanceConnectionRef( DB_REPLICA, [ 'foo' ] );
+		$rWLMaint = $lb->getMaintenanceConnectionRef( DB_REPLICA, [ 'bar' ] );
 
 		$this->assertEquals( 3, $rRC->getLBInfo( 'serverIndex' ) );
 		$this->assertEquals( 3, $rWL->getLBInfo( 'serverIndex' ) );
 		$this->assertEquals( 3, $rRCMaint->getLBInfo( 'serverIndex' ) );
 		$this->assertEquals( 3, $rWLMaint->getLBInfo( 'serverIndex' ) );
 
-		$rLog = $lb->getConnectionRef( DB_REPLICA, [ 'logging', 'watchlist' ] );
+		$rLog = $lb->getConnectionRef( DB_REPLICA, [ 'baz', 'bar' ] );
 		$logIndexPicked = $rLog->getLBInfo( 'serverIndex' );
 
-		$this->assertEquals( $logIndexPicked, $lbWrapper->getExistingReaderIndex( 'logging' ) );
+		$this->assertEquals( $logIndexPicked, $lbWrapper->getExistingReaderIndex( 'baz' ) );
 		$this->assertContains( $logIndexPicked, [ 4, 5 ] );
 
 		for ( $i = 0; $i < 300; ++$i ) {
-			$rLog = $lb->getConnectionRef( DB_REPLICA, [ 'logging', 'watchlist' ] );
+			$rLog = $lb->getConnectionRef( DB_REPLICA, [ 'baz', 'bar' ] );
 			$this->assertEquals(
 				$logIndexPicked, $rLog->getLBInfo( 'serverIndex' ), "Index unchanged" );
 		}
 
-		$rVslow = $lb->getConnectionRef( DB_REPLICA, [ 'vslow', 'logging' ] );
+		$rVslow = $lb->getConnectionRef( DB_REPLICA, [ 'vslow', 'baz' ] );
 		$vslowIndexPicked = $rVslow->getLBInfo( 'serverIndex' );
 
 		$this->assertEquals( $vslowIndexPicked, $lbWrapper->getExistingReaderIndex( 'vslow' ) );

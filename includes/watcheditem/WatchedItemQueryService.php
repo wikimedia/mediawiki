@@ -120,7 +120,7 @@ class WatchedItemQueryService {
 	 * @return IDatabase
 	 */
 	private function getConnection() {
-		return $this->loadBalancer->getConnectionRef( DB_REPLICA, [ 'watchlist' ] );
+		return $this->loadBalancer->getConnectionRef( DB_REPLICA );
 	}
 
 	/**

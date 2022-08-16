@@ -283,7 +283,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @return IDatabase
 	 */
 	private function getConnectionRef( $dbIndex ): IDatabase {
-		return $this->loadBalancer->getConnectionRef( $dbIndex, [ 'watchlist' ] );
+		return $this->loadBalancer->getConnectionRef( $dbIndex );
 	}
 
 	/**
