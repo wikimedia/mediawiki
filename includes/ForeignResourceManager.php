@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Symfony\Component\Yaml\Yaml;
 use Wikimedia\AtEase\AtEase;
 
 /**
@@ -99,7 +100,7 @@ class ForeignResourceManager {
 		}
 		$this->action = $action;
 
-		$this->registry = $this->parseBasicYaml( file_get_contents( $this->registryFile ) );
+		$this->registry = Yaml::parseFile( $this->registryFile );
 		if ( $module === 'all' ) {
 			$modules = $this->registry;
 		} elseif ( isset( $this->registry[ $module ] ) ) {
@@ -343,62 +344,5 @@ class ForeignResourceManager {
 				unlink( $cacheFile );
 			}
 		}
-	}
-
-	/**
-	 * Basic YAML parser.
-	 *
-	 * Supports only string or object values, and 2 spaces indentation.
-	 *
-	 * @todo Just ship symfony/yaml.
-	 * @param string $input
-	 * @return array
-	 */
-	private function parseBasicYaml( $input ) {
-		$lines = explode( "\n", $input );
-		$root = [];
-		$stack = [ &$root ];
-		$prev = 0;
-		foreach ( $lines as $i => $text ) {
-			$line = $i + 1;
-			$trimmed = ltrim( $text, ' ' );
-			if ( $trimmed === '' || $trimmed[0] === '#' ) {
-				continue;
-			}
-			$indent = strlen( $text ) - strlen( $trimmed );
-			if ( $indent % 2 !== 0 ) {
-				throw new Exception( __METHOD__ . ": Odd indentation on line $line." );
-			}
-			$depth = $indent === 0 ? 0 : ( $indent / 2 );
-			if ( $depth < $prev ) {
-				// Close previous branches we can't re-enter
-				array_splice( $stack, $depth + 1 );
-			}
-			if ( !array_key_exists( $depth, $stack ) ) {
-				throw new Exception( __METHOD__ . ": Too much indentation on line $line." );
-			}
-			if ( strpos( $trimmed, ':' ) === false ) {
-				throw new Exception( __METHOD__ . ": Missing colon on line $line." );
-			}
-			$dest =& $stack[ $depth ];
-			if ( $dest === null ) {
-				// Promote from null to object
-				$dest = [];
-			}
-			list( $key, $val ) = explode( ':', $trimmed, 2 );
-			$val = ltrim( $val, ' ' );
-			if ( $val !== '' ) {
-				// Add string
-				$dest[ $key ] = $val;
-			} else {
-				// Add null (may become an object later)
-				$val = null;
-				$stack[] = &$val;
-				$dest[ $key ] = &$val;
-			}
-			$prev = $depth;
-			unset( $dest, $val );
-		}
-		return $root;
 	}
 }
