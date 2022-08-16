@@ -2842,10 +2842,7 @@ class Parser {
 		 * Some of these require message or data lookups and can be
 		 * expensive to check many times.
 		 */
-		if (
-			$this->hookRunner->onParserGetVariableValueVarCache( $this, $this->mVarCache ) &&
-			isset( $this->mVarCache[$index] )
-		) {
+		if ( isset( $this->mVarCache[$index] ) ) {
 			return $this->mVarCache[$index];
 		}
 

@@ -131,7 +131,7 @@ class LanguageFallback {
 	 *
 	 * @since 1.35
 	 * @param string $code Language code
-	 * @return array [ fallbacks, site fallbacks ]
+	 * @return string[][] [ fallbacks, site fallbacks ]
 	 */
 	public function getAllIncludingSiteLanguage( $code ) {
 		// Usually, we will only store a tiny number of fallback chains, so we cache in a member.
