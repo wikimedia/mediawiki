@@ -33,20 +33,23 @@ class ManageForeignResources extends Maintenance {
 		$this->addDescription( <<<TEXT
 Manage foreign resources registered with ResourceLoader.
 
-This helps developers with downloading, verifying, and updating local copies of upstream
-libraries registered as ResourceLoader modules. See resources/lib/foreign-resources.yaml.
+This helps developers with downloading, verifying, and updating local copies of
+upstream libraries registered as ResourceLoader modules. See
+resources/lib/foreign-resources.yaml.
 
-Use the "update" action to download urls specified in foreign-resources.yaml, and unpack
-them to the resources directory. This will also verify them against the integrity hashes.
+Use the "update" action to download urls specified in foreign-resources.yaml,
+and unpack them to the resources directory. This will also verify them against
+the integrity hashes.
 
-Use the "verify" action to verify the files currently in the resources directory match
-what "update" would replace them with. This is effectively a dry-run and will not change
-any module resources on disk.
+Use the "verify" action to verify the files currently in the resources directory
+match what "update" would replace them with. This is effectively a dry-run and
+will not change any module resources on disk.
 
-Use the "make-sri" action to compute an integrity hash for upstreams that do not publish
-one themselves. Add or update the urls foreign-resources.yaml as needed, but omit (or
-leave empty) the "integrity" key. Then, run the "make-sri" action for the module and
-copy the integrity into the file. Then, you can use "verify" or "update" normally.
+Use the "make-sri" action to compute an integrity hash for upstreams that do not
+publish one themselves. Add or update the urls foreign-resources.yaml as needed,
+but omit (or leave empty) the "integrity" key. Then, run the "make-sri" action
+for the module and copy the integrity into the file. Then, you can use "verify"
+or "update" normally.
 TEXT
 		);
 		$this->addArg( 'action', 'One of "update", "verify" or "make-sri"', true );
