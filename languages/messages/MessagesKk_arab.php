@@ -13,7 +13,7 @@
  * @author Urhixidur
  */
 
-$fallback = 'kk-cyrl';
+$fallback = 'kk, kk-cyrl';
 
 $rtl = true;
 

@@ -8,4 +8,4 @@
  */
 
 # Inherit everything for now
-$fallback = 'kk-latn, kk-cyrl';
+$fallback = 'kk-latn, kk, kk-cyrl';

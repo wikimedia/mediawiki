@@ -971,10 +971,10 @@ class SessionManager implements SessionManagerInterface {
 	 * @return string
 	 */
 	public function generateSessionId() {
-		do {
-			$id = \Wikimedia\base_convert( \MWCryptRand::generateHex( 40 ), 16, 32, 32 );
-			$key = $this->store->makeKey( 'MWSession', $id );
-		} while ( isset( $this->allSessionIds[$id] ) || is_array( $this->store->get( $key ) ) );
+		$id = \Wikimedia\base_convert( \MWCryptRand::generateHex( 40 ), 16, 32, 32 );
+		// Cache non-existence to avoid a later fetch
+		$key = $this->store->makeKey( 'MWSession', $id );
+		$this->store->set( $key, false, 0, BagOStuff::WRITE_CACHE_ONLY );
 		return $id;
 	}
 

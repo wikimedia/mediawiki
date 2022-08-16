@@ -20,6 +20,8 @@
  * @author Welathêja
  */
 
+$fallback = 'ku';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Medya',
 	NS_SPECIAL          => 'Taybet',

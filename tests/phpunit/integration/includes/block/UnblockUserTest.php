@@ -35,12 +35,6 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 		$this->unblockUserFactory = $this->getServiceContainer()->getUnblockUserFactory();
 	}
 
-	private function convertErrorsArray( $arr ) {
-		return array_map( static function ( $el ) {
-			return $el[0];
-		}, $arr );
-	}
-
 	/**
 	 * @covers \MediaWiki\Block\UnblockUser::unblock
 	 */
@@ -81,9 +75,7 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertStatusNotOK( $status );
 		$this->assertContains(
 			'ipb_cant_unblock',
-			$this->convertErrorsArray(
-				$status->getErrorsArray()
-			)
+			array_column( $status->getErrorsArray(), 0 )
 		);
 	}
 }

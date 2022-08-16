@@ -323,12 +323,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 
 		$data = $this->doQuery( 'usergroups', $numInGroup ? [ 'sinumberingroup' => '' ] : [] );
 
-		$names = array_map(
-			static function ( $val ) {
-				return $val['name'];
-			},
-			$data
-		);
+		$names = array_column( $data, 'name' );
 
 		$this->assertSame( array_keys( $wgGroupPermissions ), $names );
 
@@ -689,12 +684,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$expectedNames = $wgHooks;
 		ksort( $expectedNames );
 
-		$actualNames = array_map(
-			static function ( $val ) {
-				return $val['name'];
-			},
-			$this->doQuery( 'showhooks' )
-		);
+		$actualNames = array_column( $this->doQuery( 'showhooks' ), 'name' );
 
 		$this->assertSame( array_keys( $expectedNames ), $actualNames );
 	}
