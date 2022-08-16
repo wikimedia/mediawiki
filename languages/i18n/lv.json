@@ -2956,7 +2956,7 @@
 	"feedback-thanks-title": "Paldies!",
 	"feedback-useragent": "Lietotāja aģents:",
 	"searchsuggest-search": "Meklēt {{SITENAME}}",
-	"searchsuggest-containing": "Meklējamā frāze:",
+	"searchsuggest-containing": "Meklēt lapas, kas satur",
 	"api-clientside-error-http": "Serveris atgrieza kļūdu: HTTP $1.",
 	"api-clientside-error-timeout": "Serveris neatbildēja paredzētajā laikā.",
 	"api-error-unknown-warning": "Nezināms brīdinājums: \"$1\".",
