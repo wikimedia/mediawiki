@@ -1460,9 +1460,9 @@ const _sfc_main = defineComponent({
         onUpdateInputValue(props.initialInputValue, true);
       }
     });
-    watch(toRef(props, "searchResults"), (newVal) => {
+    watch(toRef(props, "searchResults"), () => {
       searchQuery.value = inputValue.value.trim();
-      if (isActive.value && pending.value && newVal.length > 0) {
+      if (isActive.value && pending.value && searchQuery.value.length > 0) {
         expanded.value = true;
       }
       if (pendingDelayId !== void 0) {
