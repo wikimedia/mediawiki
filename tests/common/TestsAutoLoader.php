@@ -38,7 +38,6 @@ $wgAutoloadClasses += [
 	'DjVuSupport' => "$testDir/parser/DjVuSupport.php",
 	'MediaWiki\\Tests\\AnsiTermColorer' => "$testDir/parser/AnsiTermColorer.php",
 	'MediaWiki\\Tests\\DummyTermColorer' => "$testDir/parser/DummyTermColorer.php",
-	'MediaWiki\\Tests\\TestMode' => "$testDir/parser/TestMode.php",
 	'MultiTestRecorder' => "$testDir/parser/MultiTestRecorder.php",
 	'ParserTestMockParser' => "$testDir/parser/ParserTestMockParser.php",
 	'ParserTestParserHook' => "$testDir/parser/ParserTestParserHook.php",
