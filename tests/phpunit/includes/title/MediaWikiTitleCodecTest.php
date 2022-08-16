@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -37,15 +38,15 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgAllowUserJs' => false,
-			'wgDefaultLanguageVariant' => false,
-			'wgMetaNamespace' => 'Project',
-			'wgLocalInterwikis' => [ 'localtestiw' ],
-			'wgCapitalLinks' => true,
+		$this->overrideConfigValues( [
+			MainConfigNames::AllowUserJs => false,
+			MainConfigNames::DefaultLanguageVariant => false,
+			MainConfigNames::MetaNamespace => 'Project',
+			MainConfigNames::LocalInterwikis => [ 'localtestiw' ],
+			MainConfigNames::CapitalLinks => true,
+			MainConfigNames::LanguageCode => 'en',
 		] );
 		$this->setUserLang( 'en' );
-		$this->setContentLang( 'en' );
 	}
 
 	/**

@@ -6,6 +6,8 @@
  * Copyright © 2013, Wikimedia Foundation Inc.
  */
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group Preferences
  * @group Database
@@ -23,7 +25,7 @@ class SpecialPreferencesTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testT43337() {
 		// Set a low limit
-		$this->setMwGlobals( 'wgMaxSigChars', 2 );
+		$this->overrideConfigValue( MainConfigNames::MaxSigChars, 2 );
 		$user = $this->createMock( User::class );
 		$user->method( 'getTitleKey' )
 			->willReturn( __CLASS__ );

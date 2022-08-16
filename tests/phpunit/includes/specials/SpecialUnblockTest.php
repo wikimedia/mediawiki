@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -82,7 +83,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 		}
 
 		if ( !empty( $options['readOnly'] ) ) {
-			$this->setMwGlobals( [ 'wgReadOnly' => true ] );
+			$this->overrideConfigValue( MainConfigNames::ReadOnly, true );
 			$this->expectException( ReadOnlyError::class );
 		}
 

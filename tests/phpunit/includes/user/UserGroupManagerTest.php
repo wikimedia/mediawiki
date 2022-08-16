@@ -24,6 +24,7 @@ use InvalidArgumentException;
 use LogEntryBase;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\SessionManager;
@@ -939,9 +940,10 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 				'USER-AGENT' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:18.0) Gecko/20100101 Firefox/18.0'
 			]
 		];
-		$this->setMwGlobals( [
-			'wgAutopromote' => [ 'test_autoconfirmed' => [ '&', APCOND_BLOCKED ] ],
-		] );
+		$this->overrideConfigValue(
+			MainConfigNames::Autopromote,
+			[ 'test_autoconfirmed' => [ '&', APCOND_BLOCKED ] ]
+		);
 		// Variables are unused but needed to reproduce the failure
 		$sc = RequestContext::importScopedSession( $sinfo ); // load new context
 		$info = $context->exportSession();

@@ -8,6 +8,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use Wikimedia\ScopedCallback;
 
 class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
@@ -1251,26 +1252,26 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetRestrictionLevels( array $expected, $ns, array $groups = null ) {
 		$this->hideDeprecated( 'NamespaceInfo::getRestrictionLevels' );
-		$this->setMwGlobals( [
-			'wgGroupPermissions' => [
-				'*' => [ 'edit' => true ],
-				'autoconfirmed' => [ 'editsemiprotected' => true ],
-				'sysop' => [
-					'editsemiprotected' => true,
-					'editprotected' => true,
-				],
-				'privileged' => [ 'privileged' => true ],
+		$this->setGroupPermissions( [
+			'*' => [ 'edit' => true ],
+			'autoconfirmed' => [ 'editsemiprotected' => true ],
+			'sysop' => [
+				'editsemiprotected' => true,
+				'editprotected' => true,
 			],
-			'wgRevokePermissions' => [
+			'privileged' => [ 'privileged' => true ],
+		] );
+		$this->overrideConfigValues( [
+			MainConfigNames::RevokePermissions => [
 				'noeditsemiprotected' => [ 'editsemiprotected' => true ],
 			],
-			'wgNamespaceProtection' => [
+			MainConfigNames::NamespaceProtection => [
 				NS_MAIN => 'autoconfirmed',
 				NS_USER => 'sysop',
 				101 => [ 'editsemiprotected', 'privileged' ],
 			],
-			'wgRestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
-			'wgAutopromote' => []
+			MainConfigNames::RestrictionLevels => [ '', 'autoconfirmed', 'sysop' ],
+			MainConfigNames::Autopromote => []
 		] );
 		$obj = $this->newObj();
 		$user = $groups === null ? null : $this->getTestUser( $groups )->getUser();

@@ -1,19 +1,21 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 class MWGrantsTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgGrantPermissions' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::GrantPermissions => [
 				'hidden1' => [ 'read' => true, 'autoconfirmed' => false ],
 				'hidden2' => [ 'autoconfirmed' => true ],
 				'normal' => [ 'edit' => true ],
 				'normal2' => [ 'edit' => true, 'create' => true ],
 				'admin' => [ 'protect' => true, 'delete' => true ],
 			],
-			'wgGrantPermissionGroups' => [
+			MainConfigNames::GrantPermissionGroups => [
 				'hidden1' => 'hidden',
 				'hidden2' => 'hidden',
 				'normal' => 'normal-group',
