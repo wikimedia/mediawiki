@@ -726,23 +726,37 @@ abstract class LanguageConverter implements ILanguageConverter {
 
 	/**
 	 * Auto convert a LinkTarget or PageReference to a readable string in the
+	 * preferred variant, separating the namespace and the main part of the title.
+	 *
+	 * @since 1.39
+	 * @param LinkTarget|PageReference $title
+	 * @return string[] Three elements: converted namespace text, converted namespace separator,
+	 *   and converted main part of the title
+	 */
+	public function convertSplitTitle( $title ) {
+		$variant = $this->getPreferredVariant();
+
+		$index = $title->getNamespace();
+		$nsText = $this->convertNamespace( $index, $variant );
+
+		$name = str_replace( '_', ' ', $title->getDBKey() );
+		$mainText = $this->translate( $name, $variant );
+
+		return [ $nsText, ':', $mainText ];
+	}
+
+	/**
+	 * Auto convert a LinkTarget or PageReference to a readable string in the
 	 * preferred variant.
 	 *
 	 * @param LinkTarget|PageReference $title
 	 * @return string Converted title text
 	 */
 	public function convertTitle( $title ) {
-		$variant = $this->getPreferredVariant();
-		$index = $title->getNamespace();
-		if ( $index !== NS_MAIN ) {
-			$text = $this->convertNamespace( $index, $variant ) . ':';
-		} else {
-			$text = '';
-		}
-		$name = str_replace( '_', ' ', $title->getDBKey() );
-		$text .= $this->translate( $name, $variant );
-
-		return $text;
+		[ $nsText, $nsSeparator, $mainText ] = $this->convertSplitTitle( $title );
+		return $nsText !== '' ?
+			$nsText . $nsSeparator . $mainText :
+			$mainText;
 	}
 
 	/**

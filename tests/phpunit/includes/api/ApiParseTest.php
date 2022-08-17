@@ -955,7 +955,7 @@ class ApiParseTest extends ApiTestCase {
 		] );
 
 		$this->assertSame(
-			'Art&amp;copy',
+			'<span class="mw-page-title-main">Art&amp;copy</span>',
 			$res[0]['parse']['displaytitle']
 		);
 	}
