@@ -1,7 +1,5 @@
 <?php
 /**
- * Object for storing information about the effects of an edit.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,8 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- *
- * @author Ostrzyciel
  */
 
 namespace MediaWiki\Storage;
@@ -34,6 +30,7 @@ use JsonSerializable;
  * information about whether the edit was a revert and which edits were reverted.
  *
  * @since 1.35
+ * @author Ostrzyciel
  */
 class EditResult implements JsonSerializable {
 

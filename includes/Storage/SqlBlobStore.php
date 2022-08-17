@@ -1,7 +1,5 @@
 <?php
 /**
- * Service for storing and loading data blobs representing revision content.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -43,7 +41,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * Service for storing and loading Content objects.
+ * Service for storing and loading Content objects representing revision data blobs.
  *
  * @since 1.31
  *

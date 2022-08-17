@@ -1,7 +1,5 @@
 <?php
 /**
- * A handle for managing updates for derived page data on edit, import, purge, etc.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -96,13 +94,12 @@ use WikiPage;
  * require prepareContent or prepareUpdate to have been called first, to initialize the
  * DerivedPageDataUpdater.
  *
- * @see docs/pageupdater.md for more information.
- *
  * MCR migration note: this replaces the relevant methods in WikiPage, and covers the use cases
  * of PreparedEdit.
  *
- * @internal
+ * @see docs/pageupdater.md for more information.
  *
+ * @internal
  * @since 1.32
  * @ingroup Page
  */

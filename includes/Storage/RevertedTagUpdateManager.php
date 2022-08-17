@@ -16,8 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- *
- * @author Ostrzyciel
  */
 
 namespace MediaWiki\Storage;
@@ -32,6 +30,7 @@ use RevertedTagUpdateJob;
  * management extensions.
  *
  * @since 1.36
+ * @author Ostrzyciel
  */
 class RevertedTagUpdateManager {
 

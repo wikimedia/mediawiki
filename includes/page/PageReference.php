@@ -43,8 +43,8 @@ use MediaWiki\DAO\WikiAwareEntity;
  *   another wiki.
  *
  * @stable to type
- *
  * @since 1.37
+ * @ingroup Page
  */
 interface PageReference extends WikiAwareEntity {
 
