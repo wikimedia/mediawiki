@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.44.2
+ * OOUI v0.44.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-07-27T15:22:55Z
+ * Date: 2022-08-17T13:09:39Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -1725,6 +1725,18 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-menuSelectWidget-invisible {
   display: none;
 }
+.oo-ui-menuSelectWidget-screenReaderMode.oo-ui-element-hidden {
+  display: block !important;
+  display: block;
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+}
 
 .oo-ui-menuOptionWidget {
   transition: background-color 100ms, color 100ms;
@@ -2001,7 +2013,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 .oo-ui-progressBarWidget {
   box-sizing: border-box;
   position: relative;
-  z-index: 1;
+  z-index: 0;
   max-width: 50em;
   border: 1px solid #a2a9b1;
   border-radius: 1em;

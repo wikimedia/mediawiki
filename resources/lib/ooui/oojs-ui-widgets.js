@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.44.2
+ * OOUI v0.44.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-07-27T15:22:47Z
+ * Date: 2022-08-17T13:09:28Z
  */
 ( function ( OO ) {
 
@@ -6181,10 +6181,7 @@ OO.ui.SearchWidget.prototype.onQueryKeydown = function ( e ) {
 	var dir = e.which === OO.ui.Keys.DOWN ? 1 : ( e.which === OO.ui.Keys.UP ? -1 : 0 );
 
 	if ( dir ) {
-		var highlightedItem = this.results.findHighlightedItem();
-		if ( !highlightedItem ) {
-			highlightedItem = this.results.findSelectedItem();
-		}
+		var highlightedItem = this.results.findHighlightedItem() || this.results.findSelectedItem();
 		var nextItem = this.results.findRelativeSelectableItem( highlightedItem, dir );
 		// nextItem may be null if there are no results
 		this.results.highlightItem( nextItem );
