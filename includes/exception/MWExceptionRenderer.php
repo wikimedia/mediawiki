@@ -374,8 +374,8 @@ class MWExceptionRenderer {
 	 */
 	private static function reportOutageHTML( Throwable $e ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$showExceptionDetails = $mainConfig->get( 'ShowExceptionDetails' );
-		$showHostnames = $mainConfig->get( 'ShowHostnames' );
+		$showExceptionDetails = $mainConfig->get( MainConfigNames::ShowExceptionDetails );
+		$showHostnames = $mainConfig->get( MainConfigNames::ShowHostnames );
 		$sorry = htmlspecialchars( self::msg(
 			'dberr-problems',
 			'Sorry! This site is experiencing technical difficulties.'
