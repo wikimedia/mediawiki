@@ -76,9 +76,9 @@ class DBConnRef implements IMaintainableDatabase {
 	}
 
 	/**
-	 * Make sure we are using the correct connection.
+	 * Connect to the database if we are not already connected.
 	 */
-	private function ensureConnection() {
+	public function ensureConnection() {
 		if ( $this->modCountFix !== $this->modCountRef ) {
 			// Discard existing connection, unless we are in an ongoing transaction.
 			// This is triggered by LoadBalancer::reconfigure(), to allow changed settings
