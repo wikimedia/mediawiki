@@ -218,7 +218,7 @@ class Names {
 		'ie' => 'Interlingue', # Interlingue (Occidental)
 		'ig' => 'Igbo', # Igbo
 		'ii' => 'ꆇꉙ', # Sichuan Yi
-		'ik' => 'Iñupiak', # Inupiak (Inupiatun, Northwest Alaska / Inupiatun, North Alaskan)
+		'ik' => 'Iñupiatun', # Inupiaq
 		'ike-cans' => 'ᐃᓄᒃᑎᑐᑦ', # Inuktitut, Eastern Canadian (Unified Canadian Aboriginal Syllabics)
 		'ike-latn' => 'inuktitut', # Inuktitut, Eastern Canadian (Latin script)
 		'ilo' => 'Ilokano', # Ilokano
