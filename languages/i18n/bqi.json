@@ -13,7 +13,8 @@
 			"Meno25",
 			"Mjbmr",
 			"Mogoeilor",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "هومپاٛیڤٱندٱل زیر خٱتدار",
@@ -1464,7 +1465,7 @@
 	"isimage": "جانیا هومپاٛیڤٱند",
 	"whatlinkshere-prev": "{{PLURAL:$1|دیندایی|دیندایی$1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|نیایی |نیایی $1}}",
-	"whatlinkshere-links": "← هومپاٛیڤٱند",
+	"whatlinkshere-links": "→ هومپاٛیڤٱند",
 	"whatlinkshere-hideredirs": "$1 ڤاگٱردۊنی",
 	"whatlinkshere-hidetrans": "ڤارو گونجایشدٱل $1",
 	"whatlinkshere-hidelinks": "هومپاٛیڤٱند سی $1",
@@ -1837,7 +1838,6 @@
 	"edit-error-short": "خٱتا: $1",
 	"edit-error-long": "خٱتایٱل:$1",
 	"revid": "ڤانیٱری $1",
-	"view-view-foreign": "میٛن $1 ناْ باْنیٱر",
 	"view-create-local": "یٱ تۉزی ڤولات نشینی اْزاف کونین",
 	"nstab-mainpage": "سرتال",
 	"view-edit-local": "آلشڌکاری اشکافنیڌیٱل بۊمی",
