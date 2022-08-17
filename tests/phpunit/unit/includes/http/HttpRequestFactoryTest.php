@@ -2,6 +2,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\MainConfigNames;
 use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 
@@ -17,15 +18,15 @@ class HttpRequestFactoryTest extends MediaWikiUnitTestCase {
 	private function newFactory( $options = null ) {
 		if ( !$options ) {
 			$options = [
-				'HTTPTimeout' => 1,
-				'HTTPConnectTimeout' => 1,
-				'HTTPMaxTimeout' => INF,
-				'HTTPMaxConnectTimeout' => INF
+				MainConfigNames::HTTPTimeout => 1,
+				MainConfigNames::HTTPConnectTimeout => 1,
+				MainConfigNames::HTTPMaxTimeout => INF,
+				MainConfigNames::HTTPMaxConnectTimeout => INF
 			];
 		}
 		$options += [
-			'LocalVirtualHosts' => [],
-			'LocalHTTPProxy' => false,
+			MainConfigNames::LocalVirtualHosts => [],
+			MainConfigNames::LocalHTTPProxy => false,
 		];
 		return new HttpRequestFactory(
 			new ServiceOptions( HttpRequestFactory::CONSTRUCTOR_OPTIONS, $options ),
@@ -148,10 +149,10 @@ class HttpRequestFactoryTest extends MediaWikiUnitTestCase {
 		return [
 			'normal config defaults' => [
 				[
-					'HTTPTimeout' => 10,
-					'HTTPConnectTimeout' => 20,
-					'HTTPMaxTimeout' => INF,
-					'HTTPMaxConnectTimeout' => INF
+					MainConfigNames::HTTPTimeout => 10,
+					MainConfigNames::HTTPConnectTimeout => 20,
+					MainConfigNames::HTTPMaxTimeout => INF,
+					MainConfigNames::HTTPMaxConnectTimeout => INF
 				],
 				[],
 				[
@@ -161,10 +162,10 @@ class HttpRequestFactoryTest extends MediaWikiUnitTestCase {
 			],
 			'config defaults overridden by max' => [
 				[
-					'HTTPTimeout' => 10,
-					'HTTPConnectTimeout' => 20,
-					'HTTPMaxTimeout' => 9,
-					'HTTPMaxConnectTimeout' => 11
+					MainConfigNames::HTTPTimeout => 10,
+					MainConfigNames::HTTPConnectTimeout => 20,
+					MainConfigNames::HTTPMaxTimeout => 9,
+					MainConfigNames::HTTPMaxConnectTimeout => 11
 				],
 				[],
 				[
@@ -174,10 +175,10 @@ class HttpRequestFactoryTest extends MediaWikiUnitTestCase {
 			],
 			'create option overridden by max config' => [
 				[
-					'HTTPTimeout' => 1,
-					'HTTPConnectTimeout' => 2,
-					'HTTPMaxTimeout' => 9,
-					'HTTPMaxConnectTimeout' => 11
+					MainConfigNames::HTTPTimeout => 1,
+					MainConfigNames::HTTPConnectTimeout => 2,
+					MainConfigNames::HTTPMaxTimeout => 9,
+					MainConfigNames::HTTPMaxConnectTimeout => 11
 				],
 				[
 					'timeout' => 100,
@@ -190,10 +191,10 @@ class HttpRequestFactoryTest extends MediaWikiUnitTestCase {
 			],
 			'create option below max config' => [
 				[
-					'HTTPTimeout' => 1,
-					'HTTPConnectTimeout' => 2,
-					'HTTPMaxTimeout' => 9,
-					'HTTPMaxConnectTimeout' => 11
+					MainConfigNames::HTTPTimeout => 1,
+					MainConfigNames::HTTPConnectTimeout => 2,
+					MainConfigNames::HTTPMaxTimeout => 9,
+					MainConfigNames::HTTPMaxConnectTimeout => 11
 				],
 				[
 					'timeout' => 7,
@@ -206,10 +207,10 @@ class HttpRequestFactoryTest extends MediaWikiUnitTestCase {
 			],
 			'max config overridden by max create option ' => [
 				[
-					'HTTPTimeout' => 1,
-					'HTTPConnectTimeout' => 2,
-					'HTTPMaxTimeout' => 9,
-					'HTTPMaxConnectTimeout' => 11
+					MainConfigNames::HTTPTimeout => 1,
+					MainConfigNames::HTTPConnectTimeout => 2,
+					MainConfigNames::HTTPMaxTimeout => 9,
+					MainConfigNames::HTTPMaxConnectTimeout => 11
 				],
 				[
 					'timeout' => 100,

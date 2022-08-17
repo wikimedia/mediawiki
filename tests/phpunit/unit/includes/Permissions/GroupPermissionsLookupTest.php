@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Unit\Permissions;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWikiUnitTestCase;
 
@@ -14,7 +15,7 @@ class GroupPermissionsLookupTest extends MediaWikiUnitTestCase {
 	private function createGroupPermissionsLookup(): GroupPermissionsLookup {
 		return new GroupPermissionsLookup(
 			new ServiceOptions( GroupPermissionsLookup::CONSTRUCTOR_OPTIONS, [
-				'GroupPermissions' => [
+				MainConfigNames::GroupPermissions => [
 					'unittesters' => [
 						'test' => true,
 						'runtest' => true,
@@ -26,7 +27,7 @@ class GroupPermissionsLookupTest extends MediaWikiUnitTestCase {
 						'modifytest' => true,
 					],
 				],
-				'RevokePermissions' => [
+				MainConfigNames::RevokePermissions => [
 					'unittesters' => [
 						'nukeworld' => true,
 					],
@@ -34,7 +35,7 @@ class GroupPermissionsLookupTest extends MediaWikiUnitTestCase {
 						'runtest' => true,
 					],
 				],
-				'GroupInheritsPermissions' => [
+				MainConfigNames::GroupInheritsPermissions => [
 					'inheritedtesters' => 'unittesters',
 				],
 			] )

@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\User;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;
@@ -25,32 +26,32 @@ class ActorStoreFactoryTest extends MediaWikiUnitTestCase {
 		yield 'local, no shared' => [
 			false, // $domain,
 			[
-				'SharedDB' => false,
-				'SharedTables' => false
+				MainConfigNames::SharedDB => false,
+				MainConfigNames::SharedTables => false
 			], // $config
 			false, // $expectedDomain
 		];
 		yield 'foreign, no shared' => [
 			'acmewiki', // $domain,
 			[
-				'SharedDB' => false,
-				'SharedTables' => false
+				MainConfigNames::SharedDB => false,
+				MainConfigNames::SharedTables => false
 			], //
 			'acmewiki', // $expectedDomain
 		];
 		yield 'local, shared' => [
 			false, // $domain,
 			[
-				'SharedDB' => [ 'sharedwiki' ],
-				'SharedTables' => [ 'user', 'actor' ]
+				MainConfigNames::SharedDB => [ 'sharedwiki' ],
+				MainConfigNames::SharedTables => [ 'user', 'actor' ]
 			], // $config
 			false, // $expectedDomain
 		];
 		yield 'foreign, shared' => [
 			'acmewiki', // $domain,
 			[
-				'SharedDB' => [ 'sharedwiki' ],
-				'SharedTables' => [ 'user', 'actor' ]
+				MainConfigNames::SharedDB => [ 'sharedwiki' ],
+				MainConfigNames::SharedTables => [ 'user', 'actor' ]
 			], // $config
 			false, // $expectedDomain
 		];

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserRigorOptions;
 use Psr\Log\LogLevel;
@@ -59,7 +60,7 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 			->willReturn( 'reserved-user' );
 
 		$utils = $this->getDummyUserNameUtils( [
-			'ReservedUsernames' => [
+			MainConfigNames::ReservedUsernames => [
 				'MediaWiki default',
 				'msg:reserved-user'
 			],

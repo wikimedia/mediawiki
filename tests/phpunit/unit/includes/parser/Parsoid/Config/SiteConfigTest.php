@@ -13,6 +13,7 @@ use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserOptionsLookup;
@@ -33,29 +34,29 @@ use ZhConverter;
 class SiteConfigTest extends MediaWikiUnitTestCase {
 
 	private const DEFAULT_CONFIG = [
-		'GalleryOptions' => [],
-		'AllowExternalImages' => false,
-		'AllowExternalImagesFrom' => '',
-		'Server' => 'localhost',
-		'ArticlePath' => false,
-		'InterwikiMagic' => true,
-		'ExtraInterlanguageLinkPrefixes' => [],
-		'LocalInterwikis' => [],
-		'LanguageCode' => 'qqq',
-		'DisableLangConversion' => false,
-		'NamespaceAliases' => [],
-		'UrlProtocols' => [ 'http://' ],
-		'Script' => false,
-		'ScriptPath' => '/wiki',
-		'LoadScript' => false,
-		'LocalTZoffset' => null,
-		'ThumbLimits' => [ 4242 ],
-		'MaxTemplateDepth' => 42,
-		'LegalTitleChars' => 'abc',
-		'NoFollowLinks' => true,
-		'NoFollowNsExceptions' => [ 5 ],
-		'NoFollowDomainExceptions' => [ 'www.mediawiki.org' ],
-		'ExternalLinkTarget' => false,
+		MainConfigNames::GalleryOptions => [],
+		MainConfigNames::AllowExternalImages => false,
+		MainConfigNames::AllowExternalImagesFrom => '',
+		MainConfigNames::Server => 'localhost',
+		MainConfigNames::ArticlePath => false,
+		MainConfigNames::InterwikiMagic => true,
+		MainConfigNames::ExtraInterlanguageLinkPrefixes => [],
+		MainConfigNames::LocalInterwikis => [],
+		MainConfigNames::LanguageCode => 'qqq',
+		MainConfigNames::DisableLangConversion => false,
+		MainConfigNames::NamespaceAliases => [],
+		MainConfigNames::UrlProtocols => [ 'http://' ],
+		MainConfigNames::Script => false,
+		MainConfigNames::ScriptPath => '/wiki',
+		MainConfigNames::LoadScript => false,
+		MainConfigNames::LocalTZoffset => null,
+		MainConfigNames::ThumbLimits => [ 4242 ],
+		MainConfigNames::MaxTemplateDepth => 42,
+		MainConfigNames::LegalTitleChars => 'abc',
+		MainConfigNames::NoFollowLinks => true,
+		MainConfigNames::NoFollowNsExceptions => [ 5 ],
+		MainConfigNames::NoFollowDomainExceptions => [ 'www.mediawiki.org' ],
+		MainConfigNames::ExternalLinkTarget => false,
 	];
 
 	private function createMockOrOverride( string $class, array $overrides ) {
@@ -105,30 +106,30 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 
 	public function provideConfigParameterPassed(): iterable {
 		yield 'galleryOptions' => [
-			[ 'GalleryOptions' => [ 'blabla' ] ],
+			[ MainConfigNames::GalleryOptions => [ 'blabla' ] ],
 			'galleryOptions',
 			[ 'blabla' ]
 		];
 		yield 'allowedExternalImagePrefixes, false' => [
-			[ 'AllowExternalImages' => true ],
+			[ MainConfigNames::AllowExternalImages => true ],
 			'allowedExternalImagePrefixes',
 			[ '' ]
 		];
 		yield 'allowedExternalImagePrefixes, true' => [
 			[
-				'AllowExternalImages' => false,
-				'AllowExternalImagesFrom' => [ 'blabla' ]
+				MainConfigNames::AllowExternalImages => false,
+				MainConfigNames::AllowExternalImagesFrom => [ 'blabla' ]
 			],
 			'allowedExternalImagePrefixes',
 			[ 'blabla' ]
 		];
 		yield 'interwikiMagic' => [
-			[ 'InterwikiMagic' => true ],
+			[ MainConfigNames::InterwikiMagic => true ],
 			'interwikiMagic',
 			true
 		];
 		yield 'lang' => [
-			[ 'LanguageCode' => 'qqx' ],
+			[ MainConfigNames::LanguageCode => 'qqx' ],
 			'lang',
 			'qqx'
 		];
@@ -145,39 +146,39 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			[ 'enabled' => true, 'threshold' => 10 ]
 		];
 		yield 'script' => [
-			[ 'Script' => 'blabla' ],
+			[ MainConfigNames::Script => 'blabla' ],
 			'script',
 			'blabla'
 		];
 		yield 'scriptpath' => [
-			[ 'ScriptPath' => 'blabla' ],
+			[ MainConfigNames::ScriptPath => 'blabla' ],
 			'scriptpath',
 			'blabla'
 		];
 		yield 'server' => [
-			[ 'Server' => 'blabla' ],
+			[ MainConfigNames::Server => 'blabla' ],
 			'server',
 			'blabla'
 		];
 		yield 'timezoneOffset' => [
-			[ 'LocalTZoffset' => 42 ],
+			[ MainConfigNames::LocalTZoffset => 42 ],
 			'timezoneOffset',
 			42
 		];
 		yield 'getMaxTemplateDepth' => [
-			[ 'MaxTemplateDepth' => 42 ],
+			[ MainConfigNames::MaxTemplateDepth => 42 ],
 			'getMaxTemplateDepth',
 			42
 		];
 		/* $wgLegalTitleChars can't be tested with this mechanism.
 		yield 'legalTitleChars' => [
-			[ 'LegalTitleChars' => 'blabla' ],
+			[ MainConfigNames::LegalTitleChars => 'blabla' ],
 			'legalTitleChars',
 			'blabla'
 		];
 		*/
 		yield 'getProtocols' => [
-			[ 'UrlProtocols' => [ 'blabla' ] ],
+			[ MainConfigNames::UrlProtocols => [ 'blabla' ] ],
 			'getProtocols',
 			[ 'blabla' ]
 		];
@@ -192,7 +193,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			false
 		];
 		yield 'getExternalLinkTargetString' => [
-			[ 'ExternalLinkTarget' => "_blank" ],
+			[ MainConfigNames::ExternalLinkTarget => "_blank" ],
 			'getExternalLinkTarget',
 			"_blank"
 		];
@@ -364,7 +365,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 	public function testArticlePath_exception( string $articlePath ) {
 		$this->expectException( UnexpectedValueException::class );
 		$config = $this->createSiteConfig( [
-			'ArticlePath' => $articlePath
+			MainConfigNames::ArticlePath => $articlePath
 		] );
 		$config->baseURI();
 	}
@@ -376,8 +377,8 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 	 */
 	public function testArticlePath_nopath() {
 		$config = $this->createSiteConfig( [
-			'ArticlePath' => '$1',
-			'Server' => 'https://localhost'
+			MainConfigNames::ArticlePath => '$1',
+			MainConfigNames::Server => 'https://localhost'
 		] );
 		$this->assertSame( 'https://localhost/', $config->baseURI() );
 		$this->assertSame( './', $config->relativeLinkPrefix() );
@@ -390,8 +391,8 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 	 */
 	public function testArticlePath() {
 		$config = $this->createSiteConfig( [
-			'ArticlePath' => '/wiki/$1',
-			'Server' => 'https://localhost'
+			MainConfigNames::ArticlePath => '/wiki/$1',
+			MainConfigNames::Server => 'https://localhost'
 		] );
 		$this->assertSame( './', $config->relativeLinkPrefix() );
 		$this->assertSame( 'https://localhost/wiki/', $config->baseURI() );
@@ -501,8 +502,8 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			->willReturn( false );
 
 		$config = $this->createSiteConfig( [
-			'ExtraInterlanguageLinkPrefixes' => [ 'ru' ],
-			'LocalInterwikis' => [ 'ru' ],
+			MainConfigNames::ExtraInterlanguageLinkPrefixes => [ 'ru' ],
+			MainConfigNames::LocalInterwikis => [ 'ru' ],
 		], [], [
 			InterwikiLookup::class => $interwikiMock,
 			LanguageNameUtils::class => $langNameUtilsMock,
@@ -714,7 +715,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			->with( 'thumbsize' )
 			->willReturn( 'small' );
 		$config = $this->createSiteConfig( [
-			'ThumbLimits' => [ 'small' => 42 ]
+			MainConfigNames::ThumbLimits => [ 'small' => 42 ]
 		], [], [
 			UserOptionsLookup::class => $optionsLookupMock
 		] );
@@ -777,7 +778,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 				'Whatever' => NS_MAIN
 			] );
 		$config = $this->createSiteConfig( [
-			'NamespaceAliases' => [
+			MainConfigNames::NamespaceAliases => [
 				'From Config' => NS_SPECIAL,
 				'Whatever' => NS_MAIN
 			]

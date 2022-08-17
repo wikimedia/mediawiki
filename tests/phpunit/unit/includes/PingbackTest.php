@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\MainConfigNames;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -32,7 +33,7 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		$loadBalancer->method( 'getConnectionRef' )->willReturn( $database );
 
 		$pingback = new MockPingback(
-			new HashConfig( [ 'Pingback' => $enablePingback ] ),
+			new HashConfig( [ MainConfigNames::Pingback => $enablePingback ] ),
 			$loadBalancer,
 			$cache ?? new HashBagOStuff(),
 			$httpRequestFactory,

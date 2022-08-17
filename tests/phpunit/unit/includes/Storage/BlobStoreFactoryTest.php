@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Storage\Unit;
 
 use ExternalStoreAccess;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\SqlBlobStore;
@@ -22,10 +23,10 @@ class BlobStoreFactoryTest extends MediaWikiUnitTestCase {
 		$lbFactory = $this->createMock( ILBFactory::class );
 		$lbFactory->method( 'getMainLB' )->willReturn( $this->createMock( ILoadBalancer::class ) );
 		$options = [
-			'CompressRevisions' => false,
-			'DefaultExternalStore' => false,
-			'LegacyEncoding' => false,
-			'RevisionCacheExpiry' => 86400 * 7,
+			MainConfigNames::CompressRevisions => false,
+			MainConfigNames::DefaultExternalStore => false,
+			MainConfigNames::LegacyEncoding => false,
+			MainConfigNames::RevisionCacheExpiry => 86400 * 7,
 		];
 		return new BlobStoreFactory(
 			$lbFactory,
