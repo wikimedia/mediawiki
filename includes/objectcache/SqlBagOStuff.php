@@ -1190,7 +1190,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$expressionsByColumn['modtoken'] = $db->addQuotes( $mt );
 			foreach ( $expressionsByColumn as $column => $updateExpression ) {
 				$rhs = $db->conditional(
-					$db->addQuotes( substr( $mt, 0, 13 ) ) . ' >= SUBSTR(modtoken,0,13)',
+					$db->addQuotes( substr( $mt, 0, 13 ) ) . ' >= ' .
+						$db->buildSubString( 'modtoken', 1, 13 ),
 					$updateExpression,
 					$column
 				);
