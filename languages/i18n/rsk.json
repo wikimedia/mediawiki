@@ -1878,5 +1878,14 @@
 	"pagelang-name": "Бок",
 	"pagelang-language": "Язик",
 	"pagelang-reason": "Причина",
-	"log-action-filter-upload-revert": "Врациц назад"
+	"log-action-filter-upload-revert": "Врациц назад",
+	"skin-view-create-local": "Додайце локални опис",
+	"nstab-mainpage": "Главни бок",
+	"skin-view-edit-local": "Ушор локални опис",
+	"skin-action-protect": "Защициц",
+	"skin-action-delete": "Посцерай",
+	"skin-action-move": "Премесциц",
+	"newpages-showhide-bots": "$1 ботох",
+	"newpages-showhide-patrolled": "$1 преверени пременки",
+	"newpages-showhide-registered": "$1 реґистровани хаснователє"
 }

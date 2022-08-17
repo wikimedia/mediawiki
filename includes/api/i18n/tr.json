@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Anerka",
 			"BaRaN6161 TURK",
 			"Gorizon",
 			"HakanIST",
@@ -1597,10 +1598,10 @@
 	"apierror-allpages-generator-redirects": "Bir jeneratör olarak <kbd>allpages</kbd> kullanırken <var>redirects</var> yerine <kbd>gapfilterredir=nonredirects</kbd> kullanın.",
 	"apierror-appendnotsupported": "$1 içerik modelini kullanan sayfalara eklenemez.",
 	"apierror-articleexists": "Oluşturmaya çalıştığınız madde zaten oluşturuldu.",
-	"apierror-assertanonfailed": "Artık çıkış yapmadınız, bu nedenle işlem tamamlanamadı.",
+	"apierror-assertanonfailed": "Oturum açıldı, bu nedenle işlem tamamlanamadı.",
 	"apierror-assertbotfailed": "<code>bot</code> hakkınız yok, bu nedenle işlem tamamlanamadı.",
 	"apierror-assertnameduserfailed": "Artık \"$1\" olarak oturum açmadınız, bu nedenle işlem tamamlanamadı.",
-	"apierror-assertuserfailed": "Artık giriş yapmadınız, bu nedenle işlem tamamlanamadı.",
+	"apierror-assertuserfailed": "Oturumunuz kapandı, bu nedenle işlem tamamlanamadı.",
 	"apierror-autoblocked": "IP adresiniz engellenen bir kullanıcı tarafından kullanıldığından otomatik olarak engellendi.",
 	"apierror-bad-badfilecontexttitle": "<var>$1badfilecontexttitle</var> parametresinde geçersiz başlık.",
 	"apierror-badconfig-resulttoosmall": "Bu vikideki <code>$wgAPIMaxResultSize</code> değeri, temel sonuç bilgilerini tutamayacak kadar küçük.",
