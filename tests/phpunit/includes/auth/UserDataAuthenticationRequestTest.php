@@ -57,8 +57,10 @@ class UserDataAuthenticationRequestTest extends AuthenticationRequestTestCase {
 	public function testLoadFromSubmission(
 		array $args, array $data, $expectState, $hiddenPref = null, $enableEmail = null
 	) {
-		$this->overrideConfigValue( MainConfigNames::HiddenPrefs, $hiddenPref );
-		$this->overrideConfigValue( MainConfigNames::EnableEmail, $enableEmail );
+		$this->overrideConfigValues( [
+			MainConfigNames::HiddenPrefs => $hiddenPref,
+			MainConfigNames::EnableEmail => $enableEmail,
+		] );
 		parent::testLoadFromSubmission( $args, $data, $expectState );
 	}
 

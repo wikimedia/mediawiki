@@ -2027,9 +2027,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 */
 	private function assertGetLanguageNames( array $options, $expected, $code, ...$otherArgs ) {
 		if ( $options ) {
-			foreach ( $options as $key => $val ) {
-				$this->overrideConfigValue( $key, $val );
-			}
+			$this->overrideConfigValues( $options );
 		}
 		$this->assertSame( $expected,
 			Language::fetchLanguageNames( ...$otherArgs )[strtolower( $code )] ?? '' );
