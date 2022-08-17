@@ -1253,12 +1253,14 @@ class SkinTemplate extends Skin {
 		$categoriesData = $this->getCategoryPortletsData( $this->getOutput()->getCategoryLinks() );
 		$userPageLink = [];
 		$this->addPersonalPageItem( $userPageLink, '-2' );
+
 		$content_navigation = $categoriesData + [
 			// Modern keys: Please ensure these get unset inside Skin::prepareQuickTemplate
 			'user-interface-preferences' => [],
 			'user-page' => $userPageLink,
 			'user-menu' => $this->buildPersonalUrls( false ),
 			'notifications' => [],
+			'associatedPages' => [],
 			// Legacy keys
 			'namespaces' => [],
 			'views' => [],
@@ -1266,11 +1268,13 @@ class SkinTemplate extends Skin {
 			'variants' => []
 		];
 
+		$associatedPages = [];
+		$namespaces = [];
 		$userCanRead = $this->getAuthority()->probablyCan( 'read', $title );
 
 		// Checks if page is some kind of content
 		if ( $title->canExist() ) {
-			// Gets page objects for the related namespaces
+			// Gets page objects for the associatedPages namespaces
 			$subjectPage = $title->getSubjectPage();
 			$talkPage = $title->getTalkPage();
 
@@ -1309,19 +1313,19 @@ class SkinTemplate extends Skin {
 				array_unshift( $subjectMsg, 'nstab-mainpage' );
 			}
 
-			$content_navigation['namespaces'][$subjectId] = $this->tabAction(
+			$associatedPages[$subjectId] = $this->tabAction(
 				$subjectPage, $subjectMsg, !$isTalk, '', $userCanRead
 			);
-			$content_navigation['namespaces'][$subjectId]['context'] = 'subject';
+			$associatedPages[$subjectId]['context'] = 'subject';
 			// Use the following messages if defined or talk if not:
 			// * nstab-talk, nstab-user_talk, nstab-media_talk, nstab-project_talk
 			// * nstab-image_talk, nstab-mediawiki_talk, nstab-template_talk
 			// * nstab-help_talk, nstab-category_talk,
 			// * nstab-<subject namespace key>_talk
-			$content_navigation['namespaces'][$talkId] = $this->tabAction(
+			$associatedPages[$talkId] = $this->tabAction(
 				$talkPage, [ "nstab-$talkId", "talk" ], $isTalk, '', $userCanRead
 			);
-			$content_navigation['namespaces'][$talkId]['context'] = 'talk';
+			$associatedPages[$talkId]['context'] = 'talk';
 
 			if ( $userCanRead ) {
 				// Adds "view" view link
@@ -1545,6 +1549,7 @@ class SkinTemplate extends Skin {
 					}
 				}
 			}
+			$namespaces = $associatedPages;
 		} else {
 			// If it's not content, and a request URL is set it's got to be a special page
 			try {
@@ -1552,13 +1557,17 @@ class SkinTemplate extends Skin {
 			} catch ( MWException $e ) {
 				$url = false;
 			}
-			$content_navigation['namespaces']['special'] = [
+			$namespaces['special'] = [
 				'class' => 'selected',
 				'text' => $this->msg( 'nstab-special' )->text(),
 				'href' => $url, // @see: T4457, T4510
 				'context' => 'subject'
 			];
+			$associatedPages += $this->getSpecialPageRelatedLinks( $title );
 		}
+
+		$content_navigation['namespaces'] = $namespaces;
+		$content_navigation['associatedPages'] = $associatedPages;
 		$this->runOnSkinTemplateNavigationHooks( $this, $content_navigation );
 
 		// Setup xml ids and tooltip info
@@ -1605,6 +1614,44 @@ class SkinTemplate extends Skin {
 
 		$this->contentNavigationCached = $content_navigation;
 		return $content_navigation;
+	}
+
+	/**
+	 * Return a list of pages that have been marked as related to the special
+	 * page for display.
+	 *
+	 * @param Title $title
+	 * @return array
+	 */
+	private function getSpecialPageRelatedLinks( Title $title ): array {
+		$related = [];
+		$specialFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
+		$special = $specialFactory->getPage( $title->getText() );
+		if ( $special === null ) {
+			// not a valid special page
+			return [];
+		}
+		$specialRelatedLinks = $special->getRelatedNavigationLinks();
+		// If no sub pages we should not render.
+		if ( count( $specialRelatedLinks ) === 0 ) {
+			return [];
+		}
+
+		foreach ( $specialRelatedLinks as $i => $relatedTitleText ) {
+			$relatedTitle = Title::newFromText( $relatedTitleText );
+			$special = $specialFactory->getPage( $relatedTitle->getText() );
+			if ( $special === null ) {
+				$text = $relatedTitle->getText();
+			} else {
+				$text = $special->getShortDescription( $relatedTitle->getSubpageText() );
+			}
+			$related['special-related-link-' . strval( $i ) ] = [
+				'text' => $text,
+				'href' => $relatedTitle->getLocalUrl(),
+				'class' => $relatedTitle->equals( $title ) ? 'selected' : '',
+			];
+		}
+		return $related;
 	}
 
 	/**
