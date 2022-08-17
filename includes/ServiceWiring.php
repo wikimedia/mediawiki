@@ -2189,7 +2189,7 @@ return [
 	'WRStatsFactory' => static function ( MediaWikiServices $services ): WRStatsFactory {
 		return new WRStatsFactory(
 			new BagOStuffStatsStore(
-				ObjectCache::getInstance( $services->getMainConfig()->get( 'StatsCacheType' ) )
+				ObjectCache::getInstance( $services->getMainConfig()->get( MainConfigNames::StatsCacheType ) )
 			)
 		);
 	},

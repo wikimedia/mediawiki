@@ -25,6 +25,7 @@ use InvalidArgumentException;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\Parsoid\HTMLTransform;
 use MediaWiki\Rest\Handler;
@@ -93,7 +94,7 @@ abstract class ParsoidHandler extends Handler {
 		$services = MediaWikiServices::getInstance();
 		// @phan-suppress-next-line PhanTypeInstantiateAbstractStatic
 		return new static(
-			$services->getMainConfig()->get( 'ParsoidSettings' ),
+			$services->getMainConfig()->get( MainConfigNames::ParsoidSettings ),
 			$services->getParsoidSiteConfig(),
 			$services->getParsoidPageConfigFactory(),
 			$services->getParsoidDataAccess()
@@ -131,7 +132,7 @@ abstract class ParsoidHandler extends Handler {
 		// We are cutting some corners here (IDN, non-ASCII casing)
 		// since domain name support is provisional.
 		// TODO use a proper validator instead
-		$server = \RequestContext::getMain()->getConfig()->get( 'Server' );
+		$server = \RequestContext::getMain()->getConfig()->get( MainConfigNames::Server );
 		$expectedDomain = wfParseUrl( $server )['host'] ?? null;
 		if ( !$expectedDomain ) {
 			throw new LogicException( 'Cannot parse $wgServer' );
