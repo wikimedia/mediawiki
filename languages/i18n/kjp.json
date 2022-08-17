@@ -4,7 +4,8 @@
 			"DannyS712",
 			"Ninjastrikers",
 			"Rul1902",
-			"Sawmw"
+			"Sawmw",
+			"Amire80"
 		]
 	},
 	"underline-always": "ကိုဝ်ၜၠင်",
@@ -600,7 +601,7 @@
 	"isimage": "File လင့်",
 	"whatlinkshere-prev": "{{PLURAL:$1|လါင်းခါင့်|လါင်းခါင့် $1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|မေံယာ့ခဝ့်|မေံယာ့ခဝ် $1}}",
-	"whatlinkshere-links": "လင့်ခ်သယ်",
+	"whatlinkshere-links": "← လင့်ခ်သယ်",
 	"whatlinkshere-hideredirs": "$1 ထါင်ၮဲထါင်သယ်လ်ုဖး",
 	"whatlinkshere-hidetrans": "$1 ဆူ့လင်ဍံင်",
 	"whatlinkshere-hidelinks": "$1 လင့်ခ်သယ်",
@@ -810,7 +811,6 @@
 	"log-action-filter-all": "လုက်ဆိင့်",
 	"log-action-filter-contentmodel-change": "ပ်ုယုံ့ခေါဟ်တင်မဝ်ဍယ်ခဝ့် ဆ်ုအင်းလယ်",
 	"authmanager-realname-label": "အ်ုမိင်ယင်ႋ",
-	"view-view-foreign": "မ်ုယောဝ်ႋ $1 ဝယ်",
 	"view-create-local": "အှ်လင်ကၠယ် ဆ်ုတုဂ်ကၠယ် မ်ုဆူ့ဍုဂ်လင်",
 	"nstab-mainpage": "လိက်မေံခၠီ့",
 	"view-edit-local": "အှ်လင်ကၠယ် ဆ်ုတုဂ်ကၠယ် မ်ုအင်းတင်လင်",

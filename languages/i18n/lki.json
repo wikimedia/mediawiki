@@ -17,7 +17,8 @@
 			"Miladrahimi",
 			"Mjbmr",
 			"Physicsch",
-			"Process cq"
+			"Process cq",
+			"Amire80"
 		]
 	},
 	"tog-underline": "خط کیشائن ژێر پیوندەل:",
@@ -2010,7 +2011,7 @@
 	"isimage": "پیوند پرونده",
 	"whatlinkshere-prev": "{{PLURAL:$1|previous|previous $1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|next|next $1}}",
-	"whatlinkshere-links": "← پیوند",
+	"whatlinkshere-links": "→ پیوند",
 	"whatlinkshere-hideredirs": "$1 تغییرمسیر",
 	"whatlinkshere-hidetrans": "$1 تراگنجانش‌ها",
 	"whatlinkshere-hidelinks": "$1 پیوند",
@@ -2998,7 +2999,6 @@
 	"mw-widgets-mediasearch-noresults": "نتیجه‌ای یافت نشد.",
 	"mw-widgets-titleinput-description-new-page": "اێ وەڵگە هەنی(هالی)وجود نِئرێ",
 	"mw-widgets-titleinput-description-redirect": "گؤەڕانن/تغییر مسیر به $1",
-	"view-view-foreign": "مشاهده در $1",
 	"view-create-local": "افزودن توضیحات محلی",
 	"nstab-mainpage": "سەر پەڕە",
 	"view-edit-local": "ویرایش توضیحات محلی",
