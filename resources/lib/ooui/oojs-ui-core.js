@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.44.2
+ * OOUI v0.44.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-07-27T15:22:47Z
+ * Date: 2022-08-17T13:09:28Z
  */
 ( function ( OO ) {
 
@@ -7087,7 +7087,7 @@ OO.ui.SelectWidget.prototype.onFocus = function ( event ) {
 	if ( event.target === this.$element[ 0 ] ) {
 		// This widget was focussed, e.g. by the user tabbing to it.
 		// The styles for focus state depend on one of the items being selected.
-		if ( !this.findSelectedItem() ) {
+		if ( !this.findFirstSelectedItem() ) {
 			item = this.findFirstSelectableItem();
 		}
 	} else {
@@ -7226,10 +7226,7 @@ OO.ui.SelectWidget.prototype.onMouseLeave = function () {
  */
 OO.ui.SelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 	var handled = false,
-		selected = this.findSelectedItems(),
-		currentItem = this.isVisible() && this.findHighlightedItem() || (
-			Array.isArray( selected ) ? selected[ 0 ] : selected
-		);
+		currentItem = this.isVisible() && this.findHighlightedItem() || this.findFirstSelectedItem();
 
 	var nextItem;
 	if ( !this.isDisabled() ) {
@@ -7296,6 +7293,9 @@ OO.ui.SelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 			if ( this.isVisible() && nextItem.constructor.static.highlightable ) {
 				this.highlightItem( nextItem );
 			} else {
+				if ( this.screenReaderMode ) {
+					this.highlightItem( nextItem );
+				}
 				this.chooseItem( nextItem );
 			}
 			this.scrollItemIntoView( nextItem );
@@ -7381,10 +7381,7 @@ OO.ui.SelectWidget.prototype.onDocumentKeyPress = function ( e ) {
 	}
 	this.keyPressBufferTimer = setTimeout( this.clearKeyPressBuffer.bind( this ), 1500 );
 
-	var selected = this.findSelectedItems();
-	var item = this.isVisible() && this.findHighlightedItem() || (
-		Array.isArray( selected ) ? selected[ 0 ] : selected
-	);
+	var item = this.isVisible() && this.findHighlightedItem() || this.findFirstSelectedItem();
 
 	if ( this.keyPressBuffer === c ) {
 		// Common (if weird) special case: typing "xxxx" will cycle through all
@@ -7404,6 +7401,9 @@ OO.ui.SelectWidget.prototype.onDocumentKeyPress = function ( e ) {
 		if ( this.isVisible() && item.constructor.static.highlightable ) {
 			this.highlightItem( item );
 		} else {
+			if ( this.screenReaderMode ) {
+				this.highlightItem( item );
+			}
 			this.chooseItem( item );
 		}
 		this.scrollItemIntoView( item );
@@ -7501,6 +7501,18 @@ OO.ui.SelectWidget.prototype.findTargetItem = function ( e ) {
 };
 
 /**
+ * @return {OO.ui.OptionWidget|null} The first (of possibly many) selected item, if any
+ */
+OO.ui.SelectWidget.prototype.findFirstSelectedItem = function () {
+	for ( var i = 0; i < this.items.length; i++ ) {
+		if ( this.items[ i ].isSelected() ) {
+			return this.items[ i ];
+		}
+	}
+	return null;
+};
+
+/**
  * Find all selected items, if there are any. If the widget allows for multiselect
  * it will return an array of selected options. If the widget doesn't allow for
  * multiselect, it will return the selected option or null if no item is selected.
@@ -7511,13 +7523,13 @@ OO.ui.SelectWidget.prototype.findTargetItem = function ( e ) {
  *  if no item is selected
  */
 OO.ui.SelectWidget.prototype.findSelectedItems = function () {
-	var selected = this.items.filter( function ( item ) {
+	if ( !this.multiselect ) {
+		return this.findFirstSelectedItem();
+	}
+
+	return this.items.filter( function ( item ) {
 		return item.isSelected();
 	} );
-
-	return this.multiselect ?
-		selected :
-		selected[ 0 ] || null;
 };
 
 /**
@@ -8235,6 +8247,7 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	this.lastHighlightedItem = null;
 	this.width = config.width;
 	this.filterMode = config.filterMode;
+	this.screenReaderMode = false;
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-menuSelectWidget' );
@@ -8309,20 +8322,24 @@ OO.ui.MenuSelectWidget.prototype.onDocumentMouseDown = function ( e ) {
  */
 OO.ui.MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 	var handled = false,
-		selected = this.findSelectedItems(),
-		currentItem = this.findHighlightedItem() || (
-			Array.isArray( selected ) ? selected[ 0 ] : selected
-		);
+		currentItem = this.findHighlightedItem() || this.findFirstSelectedItem();
 
 	if ( !this.isDisabled() && this.getVisibleItems().length ) {
 		switch ( e.keyCode ) {
-			case OO.ui.Keys.TAB:
-				if ( currentItem ) {
-					// Was only highlighted, now let's select it. No-op if already selected.
-					this.chooseItem( currentItem );
-					handled = true;
+			case OO.ui.Keys.ENTER:
+				if ( this.isVisible() ) {
+					OO.ui.MenuSelectWidget.super.prototype.onDocumentKeyDown.call( this, e );
 				}
-				this.toggle( false );
+				break;
+			case OO.ui.Keys.TAB:
+				if ( this.isVisible() ) {
+					if ( currentItem ) {
+						// Was only highlighted, now let's select it. No-op if already selected.
+						this.chooseItem( currentItem );
+						handled = true;
+					}
+					this.toggle( false );
+				}
 				break;
 			case OO.ui.Keys.LEFT:
 			case OO.ui.Keys.RIGHT:
@@ -8334,11 +8351,13 @@ OO.ui.MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 				}
 				break;
 			case OO.ui.Keys.ESCAPE:
-				if ( currentItem && !this.multiselect ) {
-					currentItem.setHighlighted( false );
+				if ( this.isVisible() ) {
+					if ( currentItem && !this.multiselect ) {
+						currentItem.setHighlighted( false );
+					}
+					this.toggle( false );
+					handled = true;
 				}
-				this.toggle( false );
-				handled = true;
 				break;
 			default:
 				return OO.ui.MenuSelectWidget.super.prototype.onDocumentKeyDown.call( this, e );
@@ -8545,6 +8564,27 @@ OO.ui.MenuSelectWidget.prototype.clearItems = function () {
 };
 
 /**
+ * Toggle visibility of the menu for screen readers.
+ *
+ * @param {boolean} screenReaderMode
+ */
+OO.ui.MenuSelectWidget.prototype.toggleScreenReaderMode = function ( screenReaderMode ) {
+	screenReaderMode = !!screenReaderMode;
+	this.screenReaderMode = screenReaderMode;
+
+	this.$element.toggleClass( 'oo-ui-menuSelectWidget-screenReaderMode', this.screenReaderMode );
+
+	if ( screenReaderMode ) {
+		this.bindDocumentKeyDownListener();
+		this.bindDocumentKeyPressListener();
+	} else {
+		this.$focusOwner.removeAttr( 'aria-activedescendant' );
+		this.unbindDocumentKeyDownListener();
+		this.unbindDocumentKeyPressListener();
+	}
+};
+
+/**
  * Toggle visibility of the menu. The menu is initially hidden and must be shown by calling
  * `.toggle( true )` after its #$element is attached to the DOM.
  *
@@ -8594,8 +8634,10 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			this.togglePositioning( !!this.$floatableContainer );
 			this.toggleClipping( true );
 
-			this.bindDocumentKeyDownListener();
-			this.bindDocumentKeyPressListener();
+			if ( !this.screenReaderMode ) {
+				this.bindDocumentKeyDownListener();
+				this.bindDocumentKeyPressListener();
+			}
 
 			if (
 				( this.isClippedVertically() || this.isFloatableOutOfView() ) &&
@@ -8619,9 +8661,10 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			// later (e.g. after the user scrolls), that seems like it would be annoying
 
 			this.$focusOwner.attr( 'aria-expanded', 'true' );
+			this.$focusOwner.attr( 'aria-owns', this.getElementId() );
 
-			var selectedItem = this.findSelectedItem();
-			if ( !this.multiselect && selectedItem ) {
+			var selectedItem = !this.multiselect && this.findSelectedItem();
+			if ( selectedItem ) {
 				// TODO: Verify if this is even needed; This is already done on highlight changes
 				// in SelectWidget#highlightItem, so we should just need to highlight the item
 				// we need to highlight here and not bother with attr or checking selections.
@@ -8637,9 +8680,12 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			this.emit( 'ready' );
 		} else {
 			this.$focusOwner.removeAttr( 'aria-activedescendant' );
-			this.unbindDocumentKeyDownListener();
-			this.unbindDocumentKeyPressListener();
+			if ( !this.screenReaderMode ) {
+				this.unbindDocumentKeyDownListener();
+				this.unbindDocumentKeyPressListener();
+			}
 			this.$focusOwner.attr( 'aria-expanded', 'false' );
+			this.$focusOwner.removeAttr( 'aria-owns' );
 			this.getElementDocument().removeEventListener( 'mousedown', this.onDocumentMouseDownHandler, true );
 			this.togglePositioning( false );
 			this.toggleClipping( false );
@@ -8748,7 +8794,7 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	this.$handle.on( {
 		click: this.onClick.bind( this ),
 		keydown: this.onKeyDown.bind( this ),
-		keypress: this.onKeyPress.bind( this ),
+		focus: this.onFocus.bind( this ),
 		blur: this.onBlur.bind( this )
 	} );
 	this.menu.connect( this, {
@@ -8772,7 +8818,6 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 			'aria-autocomplete': 'list',
 			'aria-expanded': 'false',
 			'aria-haspopup': 'true',
-			'aria-owns': this.menu.getElementId(),
 			'aria-labelledby': labelId
 		} );
 	this.$element
@@ -8870,32 +8915,18 @@ OO.ui.DropdownWidget.prototype.onKeyDown = function ( e ) {
 					return false;
 				}
 				break;
-			case OO.ui.Keys.UP:
-			case OO.ui.Keys.LEFT:
-			case OO.ui.Keys.DOWN:
-			case OO.ui.Keys.RIGHT:
-			case OO.ui.Keys.HOME:
-			case OO.ui.Keys.END:
-			case OO.ui.Keys.PAGEUP:
-			case OO.ui.Keys.PAGEDOWN:
-				// Hack? Handle keyboard events the same as MenuSelectWidget would, even
-				// when menu is not expanded and therefore not handling events.
-				return this.menu.onDocumentKeyDown( e );
 		}
 	}
 };
 
 /**
- * Handle key press events.
+ * Handle focus events.
  *
  * @private
- * @param {jQuery.Event} e Key press event
- * @return {undefined|boolean} False to prevent default if event is handled
+ * @param {jQuery.Event} e Focus event
  */
-OO.ui.DropdownWidget.prototype.onKeyPress = function ( e ) {
-	// Hack? Handle keyboard events the same as MenuSelectWidget would, even
-	// when menu is not expanded and therefore not handling events.
-	return this.menu.onDocumentKeyPress( e );
+OO.ui.DropdownWidget.prototype.onFocus = function () {
+	this.menu.toggleScreenReaderMode( true );
 };
 
 /**
@@ -8905,7 +8936,7 @@ OO.ui.DropdownWidget.prototype.onKeyPress = function ( e ) {
  * @param {jQuery.Event} e Blur event
  */
 OO.ui.DropdownWidget.prototype.onBlur = function () {
-	this.menu.clearKeyPressBuffer();
+	this.menu.toggleScreenReaderMode( false );
 };
 
 /**
