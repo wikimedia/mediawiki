@@ -1718,11 +1718,11 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	/**
-	 * @param DBError $exception
+	 * @param DBError $e
 	 */
-	private function setAndLogDBError( DBError $exception ) {
-		$this->logger->error( "DBError: {$exception->getMessage()}" );
-		if ( $exception instanceof DBConnectionError ) {
+	private function setAndLogDBError( DBError $e ) {
+		$this->logger->error( "DBError: {$e->getMessage()}", [ 'exception' => $e ] );
+		if ( $e instanceof DBConnectionError ) {
 			$this->setLastError( self::ERR_UNREACHABLE );
 			$this->logger->warning( __METHOD__ . ": ignoring connection error" );
 		} else {
