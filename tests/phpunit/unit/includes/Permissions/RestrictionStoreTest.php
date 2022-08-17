@@ -6,6 +6,7 @@ use DatabaseTestHelper;
 use LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinksMigration;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReferenceValue;
@@ -80,10 +81,10 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	private function newRestrictionStore( array $options = [] ): RestrictionStore {
 		return new RestrictionStore(
 			new ServiceOptions( RestrictionStore::CONSTRUCTOR_OPTIONS, $options + [
-				'NamespaceProtection' => [],
-				'RestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
-				'RestrictionTypes' => self::DEFAULT_RESTRICTION_TYPES,
-				'SemiprotectedRestrictionLevels' => [ 'autoconfirmed' ],
+				MainConfigNames::NamespaceProtection => [],
+				MainConfigNames::RestrictionLevels => [ '', 'autoconfirmed', 'sysop' ],
+				MainConfigNames::RestrictionTypes => self::DEFAULT_RESTRICTION_TYPES,
+				MainConfigNames::SemiprotectedRestrictionLevels => [ 'autoconfirmed' ],
 			] ),
 			$this->createNoOpMock( WANObjectCache::class ),
 			$this->newMockLoadBalancer( $options['db'] ?? [] ),
@@ -259,7 +260,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 					(object)[ 'pr_type' => 'move', 'pr_level' => 'sysop',
 						'pr_expiry' => 'infinity', 'pr_cascade' => 0 ],
 				],
-				[ 'RestrictionTypes' => [ 'create', 'edit', 'upload' ] ],
+				[ MainConfigNames::RestrictionTypes => [ 'create', 'edit', 'upload' ] ],
 			],
 			'Expired protection' => [
 				[ 'edit' => [], 'move' => [ 'sysop' ] ],
@@ -531,13 +532,13 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 				false,
 				[ (object)[ 'pr_type' => 'edit', 'pr_level' => 'autoconfirmed',
 						'pr_expiry' => 'infinity', 'pr_cascade' => '0' ] ],
-				[ 'SemiprotectedRestrictionLevels' => [] ],
+				[ MainConfigNames::SemiprotectedRestrictionLevels => [] ],
 			],
 			'Config with editsemiprotected' => [
 				true,
 				[ (object)[ 'pr_type' => 'edit', 'pr_level' => 'autoconfirmed',
 						'pr_expiry' => 'infinity', 'pr_cascade' => '0' ] ],
-				[ 'SemiprotectedRestrictionLevels' => [ 'editsemiprotected' ] ],
+				[ MainConfigNames::SemiprotectedRestrictionLevels => [ 'editsemiprotected' ] ],
 			],
 			'Data with editsemiprotected' => [
 				true,
@@ -548,20 +549,20 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 				true,
 				[ (object)[ 'pr_type' => 'edit', 'pr_level' => 'editsemiprotected',
 						'pr_expiry' => 'infinity', 'pr_cascade' => '0' ] ],
-				[ 'SemiprotectedRestrictionLevels' => [ 'editsemiprotected' ] ],
+				[ MainConfigNames::SemiprotectedRestrictionLevels => [ 'editsemiprotected' ] ],
 			],
 			'Semiprotection plus other protection level' => [
 				false,
 				[ (object)[ 'pr_type' => 'edit', 'pr_level' => 'autoconfirmed,superman',
 						'pr_expiry' => 'infinity', 'pr_cascade' => '0' ] ],
-				[ 'RestrictionLevels' => [ '', 'autoconfirmed', 'sysop', 'superman' ] ],
+				[ MainConfigNames::RestrictionLevels => [ '', 'autoconfirmed', 'sysop', 'superman' ] ],
 			],
 			'Two semiprotections' => [
 				true,
 				[ (object)[ 'pr_type' => 'edit', 'pr_level' => 'autoconfirmed,superman',
 						'pr_expiry' => 'infinity', 'pr_cascade' => '0' ] ],
-				[ 'RestrictionLevels' => [ '', 'autoconfirmed', 'sysop', 'superman' ],
-					'SemiprotectedRestrictionLevels' => [ 'autoconfirmed', 'superman' ] ],
+				[ MainConfigNames::RestrictionLevels => [ '', 'autoconfirmed', 'sysop', 'superman' ],
+					MainConfigNames::SemiprotectedRestrictionLevels => [ 'autoconfirmed', 'superman' ] ],
 			],
 		];
 	}
@@ -631,7 +632,7 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 				true,
 				[ (object)[ 'pr_type' => 'custom', 'pr_level' => 'sysop',
 					'pr_expiry' => 'infinity', 'pr_cascade' => '0' ], ],
-				[ 'action' => 'custom', 'RestrictionTypes' =>
+				[ 'action' => 'custom', MainConfigNames::RestrictionTypes =>
 					array_merge( self::DEFAULT_RESTRICTION_TYPES, [ 'custom' ] ) ],
 			],
 			'Check custom protection level' => [
@@ -732,48 +733,48 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 			'Nonexistent page with no create' => [
 				[],
 				PageIdentityValue::localIdentity( 0, NS_MAIN, 'X' ),
-				[ 'RestrictionTypes' => [ 'edit', 'move', 'upload' ] ],
+				[ MainConfigNames::RestrictionTypes => [ 'edit', 'move', 'upload' ] ],
 			],
 			'Existing page with no move' => [
 				[ 'edit' ],
 				PageIdentityValue::localIdentity( 1, NS_MAIN, 'X' ),
-				[ 'RestrictionTypes' => [ 'create', 'edit', 'upload' ] ],
+				[ MainConfigNames::RestrictionTypes => [ 'create', 'edit', 'upload' ] ],
 			],
 			'Nonexistent file with no upload' => [
 				[ 'create' ],
 				PageIdentityValue::localIdentity( 0, NS_FILE, 'X' ),
-				[ 'RestrictionTypes' => [ 'create', 'edit', 'move' ] ],
+				[ MainConfigNames::RestrictionTypes => [ 'create', 'edit', 'move' ] ],
 			],
 
 			'Special page with extra type' => [
 				[],
 				self::newImproperPageIdentity( NS_SPECIAL, 'X' ),
-				[ 'RestrictionTypes' => $expandedRestrictions ],
+				[ MainConfigNames::RestrictionTypes => $expandedRestrictions ],
 			],
 			'Media page with extra type' => [
 				[],
 				self::newImproperPageIdentity( NS_MEDIA, 'X' ),
-				[ 'RestrictionTypes' => $expandedRestrictions ],
+				[ MainConfigNames::RestrictionTypes => $expandedRestrictions ],
 			],
 			'Nonexistent page with extra type' => [
 				[ 'create' ],
 				PageIdentityValue::localIdentity( 0, NS_MAIN, 'X' ),
-				[ 'RestrictionTypes' => $expandedRestrictions ],
+				[ MainConfigNames::RestrictionTypes => $expandedRestrictions ],
 			],
 			'Existing page with extra type' => [
 				[ 'edit', 'move', 'liquify' ],
 				PageIdentityValue::localIdentity( 1, NS_MAIN, 'X' ),
-				[ 'RestrictionTypes' => $expandedRestrictions ],
+				[ MainConfigNames::RestrictionTypes => $expandedRestrictions ],
 			],
 			'Nonexistent file with extra type' => [
 				[ 'create', 'upload' ],
 				PageIdentityValue::localIdentity( 0, NS_FILE, 'X' ),
-				[ 'RestrictionTypes' => $expandedRestrictions ],
+				[ MainConfigNames::RestrictionTypes => $expandedRestrictions ],
 			],
 			'Existing file with extra type' => [
 				[ 'edit', 'move', 'upload', 'liquify' ],
 				PageIdentityValue::localIdentity( 1, NS_FILE, 'X' ),
-				[ 'RestrictionTypes' => $expandedRestrictions ],
+				[ MainConfigNames::RestrictionTypes => $expandedRestrictions ],
 			],
 
 			'Hook' => [
@@ -827,43 +828,43 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 			'Exists with extra restriction type' => [
 				[ 'edit', 'move', 'upload', 'solidify' ],
 				[ true ],
-				[ 'RestrictionTypes' => $expandedRestrictions ],
+				[ MainConfigNames::RestrictionTypes => $expandedRestrictions ],
 			],
 			'Default is exists with extra restriction type' => [
 				[ 'edit', 'move', 'upload', 'solidify' ],
 				[],
-				[ 'RestrictionTypes' => $expandedRestrictions ],
+				[ MainConfigNames::RestrictionTypes => $expandedRestrictions ],
 			],
 			'Nonexistent with extra restriction type' => [
 				[ 'create', 'upload' ],
 				[ false ],
-				[ 'RestrictionTypes' => $expandedRestrictions ],
+				[ MainConfigNames::RestrictionTypes => $expandedRestrictions ],
 			],
 
 			'Exists with no edit' => [
 				[ 'move', 'upload' ],
 				[ true ],
-				[ 'RestrictionTypes' => [ 'create', 'move', 'upload' ] ],
+				[ MainConfigNames::RestrictionTypes => [ 'create', 'move', 'upload' ] ],
 			],
 			'Exists with only create' => [
 				[],
 				[ true ],
-				[ 'RestrictionTypes' => [ 'create' ] ],
+				[ MainConfigNames::RestrictionTypes => [ 'create' ] ],
 			],
 			'Nonexistent with no create' => [
 				[ 'upload' ],
 				[ false ],
-				[ 'RestrictionTypes' => [ 'edit', 'move', 'upload', 'solidify' ] ],
+				[ MainConfigNames::RestrictionTypes => [ 'edit', 'move', 'upload', 'solidify' ] ],
 			],
 			'Nonexistent with no upload' => [
 				[ 'create' ],
 				[ false ],
-				[ 'RestrictionTypes' => [ 'create', 'edit', 'move', 'solidify' ] ],
+				[ MainConfigNames::RestrictionTypes => [ 'create', 'edit', 'move', 'solidify' ] ],
 			],
 			'Nonexistent with no create or upload' => [
 				[],
 				[ false ],
-				[ 'RestrictionTypes' => [ 'edit', 'move', 'solidify' ] ],
+				[ MainConfigNames::RestrictionTypes => [ 'edit', 'move', 'solidify' ] ],
 			],
 		];
 	}

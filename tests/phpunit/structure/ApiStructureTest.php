@@ -64,16 +64,10 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 	 * @param array $globals Globals to set
 	 */
 	public function testDocumentationExists( $path, array $globals ) {
-		$main = self::getMain();
-
 		// Set configuration variables
-		$main->getContext()->setConfig( new MultiConfig( [
-			new HashConfig( $globals ),
-			$this->getServiceContainer()->getMainConfig(),
-		] ) );
-		foreach ( $globals as $k => $v ) {
-			$this->overrideConfigValue( $k, $v );
-		}
+		$this->overrideConfigValues( $globals );
+
+		$main = self::getMain();
 
 		// Fetch module.
 		$module = TestingAccessWrapper::newFromObject( $main->getModuleFromPath( $path ) );

@@ -482,7 +482,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	 * @return IDatabase
 	 */
 	protected function getDB() {
-		return $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA, 'watchlist' );
+		return $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 	}
 
 	public function outputFeedLinks() {

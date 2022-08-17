@@ -1,4 +1,5 @@
 <?php
+use MediaWiki\MainConfigNames;
 use MediaWiki\Skin\SkinComponentSearch;
 
 /**
@@ -15,9 +16,9 @@ class SkinComponentSearchTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetTemplateData() {
 		$config = new HashConfig( [
-			'Script' => '/w/index.php',
-			'CapitalLinks' => true,
-			'WatchlistExpiry' => false,
+			MainConfigNames::Script => '/w/index.php',
+			MainConfigNames::CapitalLinks => true,
+			MainConfigNames::WatchlistExpiry => false,
 		] );
 		$user = new User();
 		$msg = $this->createMock( Message::class );

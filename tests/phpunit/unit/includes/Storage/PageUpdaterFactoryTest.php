@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Unit\Storage;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\PageUpdater;
@@ -22,13 +23,13 @@ class PageUpdaterFactoryTest extends MediaWikiUnitTestCase {
 
 	private function getPageUpdaterFactory() {
 		$config = [
-			'ArticleCountMethod' => null,
-			'RCWatchCategoryMembership' => null,
-			'PageCreationLog' => null,
-			'UseAutomaticEditSummaries' => null,
-			'ManualRevertSearchRadius' => null,
-			'UseRCPatrol' => null,
-			'ParsoidCacheConfig' => [
+			MainConfigNames::ArticleCountMethod => null,
+			MainConfigNames::RCWatchCategoryMembership => null,
+			MainConfigNames::PageCreationLog => null,
+			MainConfigNames::UseAutomaticEditSummaries => null,
+			MainConfigNames::ManualRevertSearchRadius => null,
+			MainConfigNames::UseRCPatrol => null,
+			MainConfigNames::ParsoidCacheConfig => [
 				'WarmParsoidParserCache' => false
 			],
 		];

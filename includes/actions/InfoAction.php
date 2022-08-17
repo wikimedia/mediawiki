@@ -938,11 +938,7 @@ class InfoAction extends FormlessAction {
 				$id = $title->getArticleID();
 
 				$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-				$dbrWatchlist = $this->loadBalancer->getConnectionRef(
-					DB_REPLICA,
-					[ 'watchlist' ]
-				);
-				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
+				$setOpts += Database::getCacheSetOptions( $dbr );
 
 				$tables = [ 'revision' ];
 				$field = 'rev_actor';

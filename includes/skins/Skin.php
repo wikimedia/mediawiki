@@ -2583,7 +2583,33 @@ abstract class Skin extends ContextSource {
 			// the <html>, <head> and <body> tags. For SkinMustache this is always true and
 			// ignored.
 			'bodyOnly' => false,
+			'menus' => [
+				// Modern keys
+				'user-interface-preferences',
+				'user-page',
+				'user-menu',
+				'notifications',
+				// Legacy keys that are enabled by default for backwards compatibility
+				'namespaces',
+				'views',
+				'actions',
+				'variants',
+				// Opt-in menus
+				// * 'associatedPages'
+			]
 		];
+	}
+
+	/**
+	 * Does the skin support the named menu?
+	 *
+	 * @since 1.39
+	 * @param string $menu See Skin::getOptions for menu names.
+	 * @return bool
+	 */
+	public function supportsMenu( string $menu ): bool {
+		$options = $this->getOptions();
+		return in_array( $menu, $options['menus'] );
 	}
 
 	/**

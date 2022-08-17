@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Unit\Permissions;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWikiUnitTestCase;
 
@@ -18,14 +19,14 @@ class GrantsInfoTest extends MediaWikiUnitTestCase {
 		parent::setUp();
 
 		$config = [
-			'GrantPermissions' => [
+			MainConfigNames::GrantPermissions => [
 				'hidden1' => [ 'read' => true, 'autoconfirmed' => false ],
 				'hidden2' => [ 'autoconfirmed' => true ],
 				'normal' => [ 'edit' => true ],
 				'normal2' => [ 'edit' => true, 'create' => true ],
 				'admin' => [ 'protect' => true, 'delete' => true ],
 			],
-			'GrantPermissionGroups' => [
+			MainConfigNames::GrantPermissionGroups => [
 				'hidden1' => 'hidden',
 				'hidden2' => 'hidden',
 				'normal' => 'normal-group',

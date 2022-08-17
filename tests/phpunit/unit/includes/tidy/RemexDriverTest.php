@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 
 class RemexDriverTest extends MediaWikiUnitTestCase {
 	private static $remexTidyTestData = [
@@ -353,7 +354,7 @@ MathML;
 		$r = new MediaWiki\Tidy\RemexDriver(
 			new ServiceOptions(
 				MediaWiki\Tidy\RemexDriver::CONSTRUCTOR_OPTIONS,
-				new HashConfig( [ 'TidyConfig' => [] ] )
+				new HashConfig( [ MainConfigNames::TidyConfig => [] ] )
 			)
 		);
 		$result = $r->tidy( $input );
@@ -382,7 +383,7 @@ MathML;
 		$r = new MediaWiki\Tidy\RemexDriver(
 			new ServiceOptions(
 				MediaWiki\Tidy\RemexDriver::CONSTRUCTOR_OPTIONS,
-				new HashConfig( [ 'TidyConfig' => [] ] )
+				new HashConfig( [ MainConfigNames::TidyConfig => [] ] )
 			)
 		);
 		$result = $r->tidy( $input );

@@ -2,6 +2,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
+use MediaWiki\MainConfigNames;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
@@ -13,10 +14,10 @@ class JobQueueGroupFactoryTest extends MediaWikiUnitTestCase {
 			new ServiceOptions(
 				JobQueueGroupFactory::CONSTRUCTOR_OPTIONS,
 				new HashConfig( [
-					'LocalDatabases' => [],
-					'JobClasses' => [],
-					'JobTypeConf' => [],
-					'JobTypesExcludedFromDefaultQueue' => []
+					MainConfigNames::LocalDatabases => [],
+					MainConfigNames::JobClasses => [],
+					MainConfigNames::JobTypeConf => [],
+					MainConfigNames::JobTypesExcludedFromDefaultQueue => []
 				] )
 			),
 			$this->createMock( ConfiguredReadOnlyMode::class ),

@@ -609,6 +609,17 @@ class SpecialPage implements MessageLocalizer {
 	}
 
 	/**
+	 * Return an array of strings representing page titles that are discoverable to end users via UI.
+	 *
+	 * @since 1.39
+	 * @stable to call or override
+	 * @return string[] strings representing page titles that can be rendered by skins if required.
+	 */
+	public function getRelatedNavigationLinks() {
+		return [];
+	}
+
+	/**
 	 * Perform a regular substring search for prefixSearchSubpages
 	 * @since 1.36 Added $searchEngineFactory parameter
 	 * @param string $search Prefix to search for
@@ -774,6 +785,25 @@ class SpecialPage implements MessageLocalizer {
 	 */
 	public function getDescription() {
 		return $this->msg( strtolower( $this->mName ) )->text();
+	}
+
+	/**
+	 * Similar to getDescription but takes into account sub pages and designed for display
+	 * in tabs.
+	 *
+	 * @since 1.39
+	 * @stable to override if special page has complex parameter handling. Use default message keys
+	 * where possible.
+	 *
+	 * @param string $path (optional)
+	 * @return string
+	 */
+	public function getShortDescription( string $path = '' ): string {
+		$lowerPath = strtolower( str_replace( '/', '-', $path ) );
+		$shortKey = 'special-tab-' . $lowerPath;
+		$shortKey .= '-short';
+		$msgShort = $this->msg( $shortKey );
+		return $msgShort->text();
 	}
 
 	/**

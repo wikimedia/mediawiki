@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Storage;
 use BagOStuff;
 use FormatJson;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultCache;
 use MediaWikiUnitTestCase;
@@ -59,7 +60,7 @@ class EditResultCacheTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( ILoadBalancer::class ),
 			new ServiceOptions(
 				EditResultCache::CONSTRUCTOR_OPTIONS,
-				[ 'RCMaxAge' => BagOStuff::TTL_MONTH ]
+				[ MainConfigNames::RCMaxAge => BagOStuff::TTL_MONTH ]
 			)
 		);
 
@@ -87,7 +88,7 @@ class EditResultCacheTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( ILoadBalancer::class ),
 			new ServiceOptions(
 				EditResultCache::CONSTRUCTOR_OPTIONS,
-				[ 'RCMaxAge' => BagOStuff::TTL_MONTH ]
+				[ MainConfigNames::RCMaxAge => BagOStuff::TTL_MONTH ]
 			)
 		);
 		$res = $erCache->get( 126 );
@@ -124,7 +125,7 @@ class EditResultCacheTest extends MediaWikiUnitTestCase {
 			$loadBalancer,
 			new ServiceOptions(
 				EditResultCache::CONSTRUCTOR_OPTIONS,
-				[ 'RCMaxAge' => BagOStuff::TTL_MONTH ]
+				[ MainConfigNames::RCMaxAge => BagOStuff::TTL_MONTH ]
 			)
 		);
 		$res = $erCache->get( 126 );
@@ -159,7 +160,7 @@ class EditResultCacheTest extends MediaWikiUnitTestCase {
 			$loadBalancer,
 			new ServiceOptions(
 				EditResultCache::CONSTRUCTOR_OPTIONS,
-				[ 'RCMaxAge' => BagOStuff::TTL_MONTH ]
+				[ MainConfigNames::RCMaxAge => BagOStuff::TTL_MONTH ]
 			)
 		);
 		$res = $erCache->get( 126 );

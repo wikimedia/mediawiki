@@ -97,8 +97,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	 * @return void
 	 */
 	private function run( $resultPageSet = null ) {
-		$this->selectNamedDB( 'watchlist', DB_REPLICA, 'watchlist' );
-
 		$params = $this->extractRequestParams();
 
 		$user = $this->getUser();

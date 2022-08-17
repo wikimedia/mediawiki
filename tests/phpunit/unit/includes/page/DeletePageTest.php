@@ -10,6 +10,7 @@ use JobQueueGroup;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -69,8 +70,8 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		return new ServiceOptions(
 			DeletePage::CONSTRUCTOR_OPTIONS,
 			[
-				'DeleteRevisionsBatchSize' => 100,
-				'DeleteRevisionsLimit' => $deleteLimit
+				MainConfigNames::DeleteRevisionsBatchSize => 100,
+				MainConfigNames::DeleteRevisionsLimit => $deleteLimit
 			]
 		);
 	}

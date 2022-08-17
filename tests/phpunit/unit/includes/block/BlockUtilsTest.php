@@ -3,6 +3,7 @@
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
@@ -28,7 +29,7 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 		UserIdentityLookup $userIdentityLookup = null
 	) {
 		$baseOptions = [
-			'BlockCIDRLimit' => [
+			MainConfigNames::BlockCIDRLimit => [
 				'IPv4' => 16,
 				'IPv6' => 19
 			]

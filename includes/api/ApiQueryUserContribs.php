@@ -204,7 +204,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		} elseif ( isset( $this->params['iprange'] ) ) {
 			// Make sure it is a valid range and within the CIDR limit
 			$ipRange = $this->params['iprange'];
-			$contribsCIDRLimit = $this->getConfig()->get( 'RangeContributionsCIDRLimit' );
+			$contribsCIDRLimit = $this->getConfig()->get( MainConfigNames::RangeContributionsCIDRLimit );
 			if ( IPUtils::isIPv4( $ipRange ) ) {
 				$type = 'IPv4';
 				$cidrLimit = $contribsCIDRLimit['IPv4'];
