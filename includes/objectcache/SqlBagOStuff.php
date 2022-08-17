@@ -954,16 +954,21 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			// "consistent reads". This way, the exact post-increment value can be returned.
 			// The "live key exists" check can go inside the write query and remain safe for
 			// replication since the TTL for such keys is either indefinite or very short.
-			$db->startAtomic( __METHOD__ );
-			$db->upsert(
-				$ptable,
-				$this->buildUpsertRow( $db, $key, $init, $expiry, $mt ),
-				[ [ 'keyname' ] ],
-				$this->buildIncrUpsertSet( $db, $step, $init, $expiry, $mt, (int)$mtime ),
-				__METHOD__
-			);
-			$affectedCount = $db->affectedRows();
-			$row = $db->selectRow( $ptable, 'value', [ 'keyname' => $key ], __METHOD__ );
+			$atomic = $db->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
+			try {
+				$db->upsert(
+					$ptable,
+					$this->buildUpsertRow( $db, $key, $init, $expiry, $mt ),
+					[ [ 'keyname' ] ],
+					$this->buildIncrUpsertSet( $db, $step, $init, $expiry, $mt, (int)$mtime ),
+					__METHOD__
+				);
+				$affectedCount = $db->affectedRows();
+				$row = $db->selectRow( $ptable, 'value', [ 'keyname' => $key ], __METHOD__ );
+			} catch ( Exception $e ) {
+				$db->cancelAtomic( __METHOD__, $atomic );
+				throw $e;
+			}
 			$db->endAtomic( __METHOD__ );
 
 			if ( !$affectedCount || $row === false ) {
@@ -1669,6 +1674,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			);
 		}
 
+		// Make sure any errors are thrown now while we can more easily handle them
+		$conn->ensureConnection();
 		return $conn;
 	}
 
