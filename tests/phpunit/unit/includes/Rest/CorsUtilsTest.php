@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Rest;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\CorsUtils;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\RequestInterface;
@@ -18,12 +19,12 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 
 	private function createServiceOptions( array $options = [] ) {
 		$defaults = [
-			'AllowedCorsHeaders' => [],
-			'AllowCrossOrigin' => false,
-			'RestAllowCrossOriginCookieAuth' => false,
-			'CanonicalServer' => 'https://example.com',
-			'CrossSiteAJAXdomains' => [],
-			'CrossSiteAJAXdomainExceptions' => [],
+			MainConfigNames::AllowedCorsHeaders => [],
+			MainConfigNames::AllowCrossOrigin => false,
+			MainConfigNames::RestAllowCrossOriginCookieAuth => false,
+			MainConfigNames::CanonicalServer => 'https://example.com',
+			MainConfigNames::CrossSiteAJAXdomains => [],
+			MainConfigNames::CrossSiteAJAXdomainExceptions => [],
 		];
 
 		return new ServiceOptions( CorsUtils::CONSTRUCTOR_OPTIONS, array_merge( $defaults, $options ) );
@@ -35,7 +36,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 	public function testAuthorizeAllowOrigin( bool $isRegistered, bool $needsWriteAccess, string $origin ) {
 		$cors = new CorsUtils(
 			$this->createServiceOptions( [
-				'CrossSiteAJAXdomains' => [
+				MainConfigNames::CrossSiteAJAXdomains => [
 					'www.mediawiki.org',
 				],
 			] ),
@@ -147,7 +148,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 	public function testModifyResponseAllowOrigin() {
 		$cors = new CorsUtils(
 			$this->createServiceOptions( [
-				'AllowCrossOrigin' => true,
+				MainConfigNames::AllowCrossOrigin => true,
 			] ),
 			$this->createNoOpMock( ResponseFactory::class ),
 			new UserIdentityValue( 0, __CLASS__ )
@@ -174,8 +175,8 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 	public function testModifyResponseAllowTrustedOriginCookieAuth( string $requestMethod, bool $isRegistered ) {
 		$cors = new CorsUtils(
 			$this->createServiceOptions( [
-				'AllowCrossOrigin' => true,
-				'RestAllowCrossOriginCookieAuth' => true,
+				MainConfigNames::AllowCrossOrigin => true,
+				MainConfigNames::RestAllowCrossOriginCookieAuth => true,
 			] ),
 			$this->createNoOpMock( ResponseFactory::class ),
 			new UserIdentityValue( (int)$isRegistered, __CLASS__ )
@@ -229,8 +230,8 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 	) {
 		$cors = new CorsUtils(
 			$this->createServiceOptions( [
-				'AllowCrossOrigin' => true,
-				'RestAllowCrossOriginCookieAuth' => true,
+				MainConfigNames::AllowCrossOrigin => true,
+				MainConfigNames::RestAllowCrossOriginCookieAuth => true,
 			] ),
 			$this->createNoOpMock( ResponseFactory::class ),
 			new UserIdentityValue( (int)$isRegistered, __CLASS__ )
@@ -307,7 +308,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 
 		$cors = new CorsUtils(
 			$this->createServiceOptions( [
-				'AllowedCorsHeaders' => [ 'Authorization', 'BlaHeader', ],
+				MainConfigNames::AllowedCorsHeaders => [ 'Authorization', 'BlaHeader', ],
 			] ),
 			$responseFactory,
 			new UserIdentityValue( 0, __CLASS__ )

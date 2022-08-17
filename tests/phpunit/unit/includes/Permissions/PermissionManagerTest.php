@@ -6,6 +6,7 @@ use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
@@ -34,18 +35,18 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 	private function getPermissionManager( $options = [] ) {
 		$overrideConfig = $options['config'] ?? [];
 		$baseConfig = [
-			'WhitelistRead' => false,
-			'WhitelistReadRegexp' => false,
-			'EmailConfirmToEdit' => false,
-			'BlockDisablesLogin' => false,
-			'EnablePartialActionBlocks' => false,
-			'GroupPermissions' => [],
-			'RevokePermissions' => [],
-			'GroupInheritsPermissions' => [],
-			'AvailableRights' => [],
-			'NamespaceProtection' => [ NS_MEDIAWIKI => 'editinterface' ],
-			'RestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
-			'DeleteRevisionsLimit' => false,
+			MainConfigNames::WhitelistRead => false,
+			MainConfigNames::WhitelistReadRegexp => false,
+			MainConfigNames::EmailConfirmToEdit => false,
+			MainConfigNames::BlockDisablesLogin => false,
+			MainConfigNames::EnablePartialActionBlocks => false,
+			MainConfigNames::GroupPermissions => [],
+			MainConfigNames::RevokePermissions => [],
+			MainConfigNames::GroupInheritsPermissions => [],
+			MainConfigNames::AvailableRights => [],
+			MainConfigNames::NamespaceProtection => [ NS_MEDIAWIKI => 'editinterface' ],
+			MainConfigNames::RestrictionLevels => [ '', 'autoconfirmed', 'sysop' ],
+			MainConfigNames::DeleteRevisionsLimit => false,
 		];
 		$config = $overrideConfig + $baseConfig;
 		$specialPageFactory = $options['specialPageFactory'] ??
@@ -369,7 +370,7 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 
 		// Overrides needed in case `groupHasPermission` is called
 		$config = [
-			'GroupPermissions' => [
+			MainConfigNames::GroupPermissions => [
 				'autoconfirmed' => [
 					'move' => true
 				]

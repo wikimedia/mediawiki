@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
@@ -48,7 +49,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	private function getManager( array $params = [] ) {
 		$config = $params['config'] ?? [
 			'UseEnotif' => false,
-			'ShowUpdatedMarker' => false,
+			MainConfigNames::ShowUpdatedMarker => false,
 		];
 		$options = new ServiceOptions(
 			WatchlistManager::CONSTRUCTOR_OPTIONS,
@@ -180,7 +181,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$config = [
 			'UseEnotif' => true,
-			'ShowUpdatedMarker' => true
+			MainConfigNames::ShowUpdatedMarker => true
 		];
 
 		$userIdentity = new UserIdentityValue( 0, 'User Name' );
@@ -209,7 +210,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$config = [
 			'UseEnotif' => true,
-			'ShowUpdatedMarker' => true
+			MainConfigNames::ShowUpdatedMarker => true
 		];
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
@@ -336,7 +337,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$config = [
 			'UseEnotif' => true,
-			'ShowUpdatedMarker' => true
+			MainConfigNames::ShowUpdatedMarker => true
 		];
 
 		$userIdentity = new UserIdentityValue( 0, 'User Name' );
@@ -370,7 +371,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$config = [
 			'UseEnotif' => true,
-			'ShowUpdatedMarker' => true
+			MainConfigNames::ShowUpdatedMarker => true
 		];
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );

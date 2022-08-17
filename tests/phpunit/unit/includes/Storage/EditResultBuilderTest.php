@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Storage;
 
 use DummyContentForTesting;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -377,7 +378,7 @@ class EditResultBuilderTest extends MediaWikiUnitTestCase {
 
 		$options = new ServiceOptions(
 			EditResultBuilder::CONSTRUCTOR_OPTIONS,
-			[ 'ManualRevertSearchRadius' => $manualRevertSearchRadius ]
+			[ MainConfigNames::ManualRevertSearchRadius => $manualRevertSearchRadius ]
 		);
 
 		return new EditResultBuilder(

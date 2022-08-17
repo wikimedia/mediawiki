@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Unit\Page;
 
 use ContentModelChange;
 use HashConfig;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\PageCommandFactory;
 use MediaWiki\Page\PageIdentity;
@@ -31,16 +32,16 @@ class PageCommandFactoryTest extends MediaWikiUnitTestCase {
 		// Create a PageCommandFactory with all of the services needed
 		$config = new HashConfig( [
 			// RollbackPage
-			'UseRCPatrol' => true,
-			'DisableAnonTalk' => false,
+			MainConfigNames::UseRCPatrol => true,
+			MainConfigNames::DisableAnonTalk => false,
 
 			// MovePage
-			'CategoryCollation' => 'uppercase',
-			'MaximumMovedPages' => 100,
+			MainConfigNames::CategoryCollation => 'uppercase',
+			MainConfigNames::MaximumMovedPages => 100,
 
 			// DeletePage
-			'DeleteRevisionsBatchSize' => 10,
-			'DeleteRevisionsLimit' => 10,
+			MainConfigNames::DeleteRevisionsBatchSize => 10,
+			MainConfigNames::DeleteRevisionsLimit => 10,
 		] );
 
 		// Helper method from MockServiceDependenciesTrait

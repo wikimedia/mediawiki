@@ -3,6 +3,7 @@
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -71,10 +72,10 @@ trait FileBackendGroupTestTrait {
 
 	private static function getDefaultOptions() {
 		return [
-			'DirectoryMode' => 0775,
-			'FileBackends' => [],
-			'ForeignFileRepos' => [],
-			'LocalFileRepo' => self::getDefaultLocalFileRepo(),
+			MainConfigNames::DirectoryMode => 0775,
+			MainConfigNames::FileBackends => [],
+			MainConfigNames::ForeignFileRepos => [],
+			MainConfigNames::LocalFileRepo => self::getDefaultLocalFileRepo(),
 			'fallbackWikiId' => self::getWikiID(),
 		];
 	}
@@ -83,7 +84,7 @@ trait FileBackendGroupTestTrait {
 	 * @covers ::__construct
 	 */
 	public function testConstructor_overrideImplicitBackend() {
-		$obj = $this->newObj( [ 'FileBackends' =>
+		$obj = $this->newObj( [ MainConfigNames::FileBackends =>
 			[ [ 'name' => 'local-backend', 'class' => '', 'lockManager' => 'fsLockManager' ] ]
 		] );
 		$this->assertSame( '', $obj->config( 'local-backend' )['class'] );
@@ -95,7 +96,7 @@ trait FileBackendGroupTestTrait {
 	public function testConstructor_backendObject() {
 		// 'backend' being an object makes that repo from configuration ignored
 		// XXX This is not documented in MainConfigSchema, does it do anything useful?
-		$obj = $this->newObj( [ 'ForeignFileRepos' => [ [ 'backend' => (object)[] ] ] ] );
+		$obj = $this->newObj( [ MainConfigNames::ForeignFileRepos => [ [ 'backend' => (object)[] ] ] ] );
 		$this->assertSame( FSFileBackend::class, $obj->config( 'local-backend' )['class'] );
 	}
 
@@ -119,7 +120,7 @@ trait FileBackendGroupTestTrait {
 			$otherExtraOptions['lmgFactory'] = $this->getLockManagerGroupFactory( $expected );
 		}
 		$obj = $this->newObj( $otherExtraOptions + [
-			'FileBackends' => [
+			MainConfigNames::FileBackends => [
 				$extraBackendsOptions + [
 					'name' => 'myname', 'class' => '', 'lockManager' => 'fsLockManager'
 				]
@@ -169,7 +170,7 @@ trait FileBackendGroupTestTrait {
 	public function testRegister_exception( $fileBackends, $class, $msg ) {
 		$this->expectException( $class );
 		$this->expectExceptionMessage( $msg );
-		$this->newObj( [ 'FileBackends' => $fileBackends ] );
+		$this->newObj( [ MainConfigNames::FileBackends => $fileBackends ] );
 	}
 
 	public static function provideRegister_exception() {
@@ -278,7 +279,7 @@ trait FileBackendGroupTestTrait {
 		$config = self::getDefaultLocalFileRepo();
 		$config[$inputName] = null;
 
-		$result = $this->newObj( [ 'LocalFileRepo' => $config ] )->config( 'local-backend' );
+		$result = $this->newObj( [ MainConfigNames::LocalFileRepo => $config ] )->config( 'local-backend' );
 
 		$actual = is_string( $key ) ? $result[$key] : $result[$key[0]][$key[1]];
 
@@ -298,7 +299,7 @@ trait FileBackendGroupTestTrait {
 		$config = self::getDefaultLocalFileRepo();
 		unset( $config[$inputName] );
 
-		$result = $this->newObj( [ 'LocalFileRepo' => $config ] )->config( 'local-backend' );
+		$result = $this->newObj( [ MainConfigNames::LocalFileRepo => $config ] )->config( 'local-backend' );
 
 		$actual = is_string( $key ) ? $result[$key] : $result[$key[0]][$key[1]];
 
@@ -332,7 +333,7 @@ trait FileBackendGroupTestTrait {
 	 * @param string $storagePath
 	 */
 	public function testBackendFromPath( $expected, $storagePath ) {
-		$obj = $this->newObj( [ 'FileBackends' => [
+		$obj = $this->newObj( [ MainConfigNames::FileBackends => [
 			[ 'name' => '', 'class' => stdClass::class, 'lockManager' => 'fsLockManager' ],
 			[ 'name' => 'a', 'class' => stdClass::class, 'lockManager' => 'fsLockManager' ],
 			[ 'name' => 'b', 'class' => stdClass::class, 'lockManager' => 'fsLockManager' ],
