@@ -43,7 +43,7 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 
 		$loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		$dbw = $loadBalancer->getConnectionRef( DB_PRIMARY );
-		$dbr = $loadBalancer->getConnectionRef( DB_REPLICA, [ 'watchlist' ] );
+		$dbr = $loadBalancer->getConnectionRef( DB_REPLICA );
 
 		// Wait before lock to try to reduce time waiting in the lock.
 		if ( !$loadBalancer->waitForPrimaryPos( $dbr ) ) {
