@@ -22,6 +22,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ResourceLoader\CodexModule;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\FilePath;
 use MediaWiki\ResourceLoader\ForeignApiModule;
@@ -150,7 +151,7 @@ return [
 			'errorLogger.js',
 
 			// (not this though)
-			[ 'name' => 'config.json', 'callback' => 'ResourceLoader::getSiteConfigSettings' ],
+			[ 'name' => 'config.json', 'callback' => [ ResourceLoader::class, 'getSiteConfigSettings' ] ],
 			[
 				'name' => 'user.json',
 				'callback' => static function ( Context $context ) {
@@ -678,7 +679,7 @@ return [
 	],
 
 	'@wikimedia/codex' => [
-		'class' => '\MediaWiki\ResourceLoader\CodexModule',
+		'class' => CodexModule::class,
 		'targets' => [ 'desktop', 'mobile' ],
 		'packageFiles' => [
 			'resources/src/codex/codex.js',
@@ -698,7 +699,7 @@ return [
 	],
 
 	'@wikimedia/codex-search' => [
-		'class' => '\MediaWiki\ResourceLoader\CodexModule',
+		'class' => CodexModule::class,
 		'targets' => [ 'desktop', 'mobile' ],
 		'packageFiles' => [
 			'resources/src/codex-search/codex-search.js',
@@ -1241,7 +1242,7 @@ return [
 				MainConfigNames::GenerateThumbnailOnParse,
 				MainConfigNames::LoadScript,
 			] ],
-			[ 'name' => 'portletLinkOptions.json', 'callback' => 'Skin::getPortletLinkOptions' ],
+			[ 'name' => 'portletLinkOptions.json', 'callback' => [ Skin::class, 'getPortletLinkOptions' ] ],
 		],
 		'dependencies' => [
 			'jquery.client',
@@ -1831,8 +1832,8 @@ return [
 			'ui/RclToOrFromWidget.js',
 			'ui/WatchlistTopSectionWidget.js',
 			[ 'name' => 'config.json',
-				'versionCallback' => 'ChangesListSpecialPage::getRcFiltersConfigSummary',
-				'callback' => 'ChangesListSpecialPage::getRcFiltersConfigVars',
+				'versionCallback' => [ ChangesListSpecialPage::class, 'getRcFiltersConfigSummary' ],
+				'callback' => [ ChangesListSpecialPage::class, 'getRcFiltersConfigVars' ],
 			],
 		],
 		'styles' => [
