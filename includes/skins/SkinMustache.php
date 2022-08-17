@@ -73,7 +73,14 @@ class SkinMustache extends SkinTemplate {
 	 */
 	public function getTemplateData() {
 		$out = $this->getOutput();
-		$printSource = Html::rawElement( 'div', [ 'class' => 'printfooter' ], $this->printSource() );
+		$printSource = Html::rawElement(
+			'div',
+			[
+				'class' => 'printfooter',
+				'data-nosnippet' => ''
+			],
+			$this->printSource()
+		);
 		$bodyContent = $out->getHTML() . "\n" . $printSource;
 
 		$newTalksHtml = $this->getNewtalks() ?: null;
