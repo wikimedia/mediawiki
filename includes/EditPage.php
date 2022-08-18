@@ -2920,24 +2920,10 @@ class EditPage implements IEditObject {
 
 		$out = $this->context->getOutput();
 		$namespace = $this->mTitle->getNamespace();
+		$intro = $this->getCodeEditingIntro();
+		$out->addHTML( $intro );
 
-		if ( $namespace === NS_MEDIAWIKI ) {
-			# Show a warning if editing an interface message
-			$out->wrapWikiMsg( "<div class='mw-editinginterface'>\n$1\n</div>", 'editinginterface' );
-			# If this is a default message (but not css, json, or js),
-			# show a hint that it is translatable on translatewiki.net
-			if (
-				!$this->mTitle->hasContentModel( CONTENT_MODEL_CSS )
-				&& !$this->mTitle->hasContentModel( CONTENT_MODEL_JSON )
-				&& !$this->mTitle->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
-			) {
-				$defaultMessageText = $this->mTitle->getDefaultMessageText();
-				if ( $defaultMessageText !== false ) {
-					$out->wrapWikiMsg( "<div class='mw-translateinterface'>\n$1\n</div>",
-						'translateinterface' );
-				}
-			}
-		} elseif ( $namespace === NS_FILE ) {
+		if ( $namespace === NS_FILE ) {
 			# Show a hint to shared repo
 			$file = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $this->mTitle );
 			if ( $file && !$file->isLocal() ) {
@@ -3616,16 +3602,6 @@ class EditPage implements IEditObject {
 				$isUserJsonConfig = $this->mTitle->isUserJsonConfigPage();
 				$isUserJsConfig = $this->mTitle->isUserJsConfigPage();
 
-				$warning = $isUserCssConfig
-					? 'usercssispublic'
-					: ( $isUserJsonConfig ? 'userjsonispublic' : 'userjsispublic' );
-
-				$out->wrapWikiMsg( '<div class="mw-userconfigpublic">$1</div>', $warning );
-
-				if ( $isUserJsConfig ) {
-					$out->wrapWikiMsg( '<div class="mw-userconfigdangerous">$1</div>', 'userjsdangerous' );
-				}
-
 				if ( $this->formtype !== 'preview' ) {
 					$config = $this->context->getConfig();
 					if ( $isUserCssConfig && $config->get( MainConfigNames::AllowUserCss ) ) {
@@ -3654,6 +3630,73 @@ class EditPage implements IEditObject {
 
 		# Add header copyright warning
 		$this->showHeaderCopyrightWarning();
+	}
+
+	/**
+	 * Adds introduction to code editing.
+	 *
+	 * @return string
+	 */
+	private function getCodeEditingIntro(): string {
+		$title = $this->mTitle;
+		$ctx = $this->context;
+		$isUserJsConfig = $title->isUserJsConfigPage();
+		$namespace = $title->getNamespace();
+		$intro = '';
+		$user = $this->context->getUser();
+
+		if ( $title->isUserConfigPage() ) {
+			if ( $title->isSubpageOf( $user->getUserPage() ) ) {
+				$isUserCssConfig = $title->isUserCssConfigPage();
+				$isUserJsonConfig = $title->isUserJsonConfigPage();
+				$isUserJsConfig = $title->isUserJsConfigPage();
+
+				$warning = $isUserCssConfig
+					? 'usercssispublic'
+					: ( $isUserJsonConfig ? 'userjsonispublic' : 'userjsispublic' );
+
+				$intro .= Html::rawElement(
+					'div',
+					[ 'class' => 'mw-userconfigpublic' ],
+					$ctx->msg( $warning )->parse()
+				);
+			}
+		}
+
+		if ( $namespace === NS_MEDIAWIKI ) {
+			# Show a warning if editing an interface message
+			$intro .= Html::rawElement(
+				'div',
+				[ 'class' => 'mw-editinginterface' ],
+				$ctx->msg( 'editinginterface' )->parse()
+			);
+			# If this is a default message (but not css, json, or js),
+			# show a hint that it is translatable on translatewiki.net
+			if (
+				!$title->hasContentModel( CONTENT_MODEL_CSS )
+				&& !$title->hasContentModel( CONTENT_MODEL_JSON )
+				&& !$title->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
+			) {
+				$defaultMessageText = $title->getDefaultMessageText();
+				if ( $defaultMessageText !== false ) {
+					$intro .= Html::rawElement(
+						'div',
+						[ 'class' => 'mw-translateinterface' ],
+						$ctx->msg( 'translateinterface' )->parse()
+					);
+				}
+			}
+		}
+
+		if ( $isUserJsConfig ) {
+			$intro .= Html::rawElement(
+				'div',
+				[ 'class' => 'mw-userconfigdangerous' ],
+				$ctx->msg( 'userjsdangerous' )->parse()
+			);
+		}
+
+		return $intro;
 	}
 
 	/**
