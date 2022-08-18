@@ -46,8 +46,9 @@ class EditPageTest extends MediaWikiLangTestCase {
 			[
 				NS_USER,
 				'Bob/vector.js',
-				'<div class="mw-message-box-error mw-message-box"><div class="mw-userconfigdangerous">(userjsdangerous)</div></div>',
-				'JavaScript requires alert'
+				'<div class="mw-message-box-error mw-message-box"><div class="mw-userconfigdangerous">(userjsdangerous)</div>'
+					. '<p>(editpage-code-message)',
+				'JavaScript requires alert as well as code-specific message'
 			],
 			[
 				NS_MEDIAWIKI,
@@ -81,7 +82,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 			$title,
 			$context
 		);
-		$this->assertEquals(
+		$this->assertStringContainsString(
 			$result,
 			$intro,
 			$reason
@@ -92,6 +93,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * @covers EditPage::getCodeEditingIntro
 	 */
 	public function testGetCodeEditingIntroForUser() {
+		$guidelines = '<p>(editpage-code-message)';
 		$editPageMock = $this->getMockBuilder( EditPage::class )
 			->disableOriginalConstructor()
 			->getMock();
@@ -104,12 +106,12 @@ class EditPageTest extends MediaWikiLangTestCase {
 			$title,
 			$context
 		);
-		$this->assertEquals(
+		$this->assertStringContainsString(
 			'<div class="mw-message-box-error mw-message-box">'
 				. '<div class="mw-userconfigpublic">(userjsispublic)</div>'
-				. '<div class="mw-userconfigdangerous">(userjsdangerous)</div></div>',
+				. '<div class="mw-userconfigdangerous">(userjsdangerous)</div>' . $guidelines,
 			$intro,
-			'Inform users that their JS is public'
+			'Inform users that their JS is public and suggest guidelines'
 		);
 	}
 
