@@ -6,6 +6,7 @@ use LinkCacheTestTrait;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentParser;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use SiteConfiguration;
 use Title;
@@ -57,12 +58,12 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 			],
 		];
 		$conf->suffixes = [ 'wiki' ];
-		$this->setMwGlobals( [
-			'wgScript' => '/wiki/index.php',
-			'wgArticlePath' => '/wiki/$1',
-			'wgCapitalLinks' => true,
-			'wgConf' => $conf,
-			'wgLanguageCode' => 'en',
+		$this->setMwGlobals( 'wgConf', $conf );
+		$this->overrideConfigValues( [
+			MainConfigNames::Script => '/wiki/index.php',
+			MainConfigNames::ArticlePath => '/wiki/$1',
+			MainConfigNames::CapitalLinks => true,
+			MainConfigNames::LanguageCode => 'en',
 		] );
 	}
 
@@ -285,14 +286,14 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 		];
 		$conf->suffixes = [ 'wiki' ];
 
-		$this->setMwGlobals( [
-			'wgScript' => '/wiki/index.php',
-			'wgArticlePath' => '/wiki/$1',
-			'wgCapitalLinks' => true,
-			'wgConf' => $conf,
+		$this->setMwGlobals( 'wgConf', $conf );
+		$this->overrideConfigValues( [
+			MainConfigNames::Script => '/wiki/index.php',
+			MainConfigNames::ArticlePath => '/wiki/$1',
+			MainConfigNames::CapitalLinks => true,
 			// TODO: update tests when the default changes
-			'wgFragmentMode' => [ 'legacy' ],
-			'wgLanguageCode' => 'en',
+			MainConfigNames::FragmentMode => [ 'legacy' ],
+			MainConfigNames::LanguageCode => 'en',
 		] );
 
 		$this->setupInterwiki();

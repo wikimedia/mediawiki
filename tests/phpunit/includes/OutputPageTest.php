@@ -2812,10 +2812,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		}
 		$this->setMwGlobals( 'IP', $baseDir );
 		$conf = new HashConfig( [
-			'ResourceBasePath' => $basePath,
-			'UploadDirectory' => $uploadDir,
-			'UploadPath' => $uploadPath,
-			'BaseDirectory' => $baseDir
+			MainConfigNames::ResourceBasePath => $basePath,
+			MainConfigNames::UploadDirectory => $uploadDir,
+			MainConfigNames::UploadPath => $uploadPath,
+			MainConfigNames::BaseDirectory => $baseDir
 		] );
 
 		// Some of these paths don't exist and will cause warnings
