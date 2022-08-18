@@ -115,11 +115,16 @@ CLDRPluralRuleParser:
   license: MIT
   homepage: https://github.com/santhoshtr/CLDRPluralRuleParser
   authors: Santhosh Thottingal
-  version: 1.3.1-0dda851
-  purl: pkg:github/santhoshtr/CLDRPluralRuleParser@0dda851#src/CLDRPluralRuleParser.js
-  type: file
-  src: https://raw.githubusercontent.com/santhoshtr/CLDRPluralRuleParser/0dda851/src/CLDRPluralRuleParser.js
-  integrity: sha384-M4taeYYG2+9Ob1/La16iO+zlRRmBV5lBR3xUKkQT6kfkJ0aLbCi6yc0RYI1BDzdh
+  version: 1.6.5
+  purl: pkg:npm/santhoshtr/CLDRPluralRuleParser@1.6.5
+  type: tar
+  src: https://registry.npmjs.org/cldrpluralruleparser/-/cldrpluralruleparser-1.6.5.tgz
+  integrity: sha384-2X605FbWe/KeH5YGArppcb6YNh94K20RVin0MdFjIZpTE79G0LW9CHhIdJhL0ReK
+  dest:
+    package/dist/cjs/*: cjs
+    package/src/*: src
+    package/README.md:
+    package/LICENSE.txt:
 
 codex:
   license: GPL-2.0+

@@ -1619,7 +1619,7 @@ return [
 
 	'mediawiki.libs.pluralruleparser' => [
 		'scripts' => [
-			'resources/lib/CLDRPluralRuleParser/CLDRPluralRuleParser.js',
+			'resources/lib/CLDRPluralRuleParser/cjs/cldrpluralruleparser.js',
 			'resources/src/mediawiki.libs.pluralruleparser/export.js',
 		],
 	],

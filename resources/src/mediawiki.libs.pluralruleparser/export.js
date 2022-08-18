@@ -3,7 +3,6 @@
  *
  * @exports mediawiki.libs.pluralruleparser
  */
-module.exports = window.pluralRuleParser;
 
 // Back-compat: Also expose via mw.lib
-mw.libs.pluralRuleParser = window.pluralRuleParser;
+window.pluralRuleParser = mw.libs.pluralRuleParser = module.exports;
