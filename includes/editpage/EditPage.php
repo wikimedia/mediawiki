@@ -2973,7 +2973,10 @@ class EditPage implements IEditObject {
 
 		$out = $this->context->getOutput();
 		$namespace = $this->mTitle->getNamespace();
-		$intro = $this->getCodeEditingIntro();
+		$intro = $this->getCodeEditingIntro(
+			$this->mTitle,
+			$this->context
+		);
 		$out->addHTML( $intro );
 
 		if ( $namespace === NS_FILE ) {
@@ -3691,17 +3694,30 @@ class EditPage implements IEditObject {
 	}
 
 	/**
+	 * Compares parsed and text only version of a message to see
+	 * whether they return the same result.
+	 *
+	 * @param IContextSource $ctx
+	 * @param string $key
+	 * @return bool
+	 */
+	private function isMsgSameWhenParsed( IContextSource $ctx, string $key ): bool {
+		return $ctx->msg( $key )->parse() === $ctx->msg( $key )->text();
+	}
+
+	/**
 	 * Adds introduction to code editing.
 	 *
+	 * @param Title $title
+	 * @param IContextSource $ctx
 	 * @return string
 	 */
-	private function getCodeEditingIntro(): string {
-		$title = $this->mTitle;
-		$ctx = $this->context;
+	private function getCodeEditingIntro( Title $title, IContextSource $ctx ): string {
 		$isUserJsConfig = $title->isUserJsConfigPage();
 		$namespace = $title->getNamespace();
 		$intro = '';
-		$user = $this->context->getUser();
+		$user = $ctx->getUser();
+		$isIntroPlaintext = true;
 
 		if ( $title->isUserConfigPage() ) {
 			if ( $title->isSubpageOf( $user->getUserPage() ) ) {
@@ -3718,6 +3734,8 @@ class EditPage implements IEditObject {
 					[ 'class' => 'mw-userconfigpublic' ],
 					$ctx->msg( $warning )->parse()
 				);
+
+				$isIntroPlaintext = $this->isMsgSameWhenParsed( $ctx, $warning );
 			}
 		}
 
@@ -3742,6 +3760,8 @@ class EditPage implements IEditObject {
 						[ 'class' => 'mw-translateinterface' ],
 						$ctx->msg( 'translateinterface' )->parse()
 					);
+					$isIntroPlaintext = $isIntroPlaintext &&
+						$this->isMsgSameWhenParsed( $ctx, 'translateinterface' );
 				}
 			}
 		}
@@ -3752,6 +3772,20 @@ class EditPage implements IEditObject {
 				[ 'class' => 'mw-userconfigdangerous' ],
 				$ctx->msg( 'userjsdangerous' )->parse()
 			);
+			$isIntroPlaintext = $isIntroPlaintext &&
+				$this->isMsgSameWhenParsed( $ctx, 'userjsdangerous' );
+		}
+
+		// If the message is plaintext, (which is the default for a MediaWiki
+		// install) wrap it. If not, then local wiki customizations should be
+		// respected.
+		if ( $isIntroPlaintext && !empty( $intro ) ) {
+			// While semantically this is a warning, given the impact of editing
+			// these pages,
+			// it's best to deter users who don't understand what they are doing by
+			// acknowledging the danger here. This is a potentially destructive action
+			// so requires destructive coloring.
+			$intro = Html::errorBox( $intro );
 		}
 
 		return $intro;

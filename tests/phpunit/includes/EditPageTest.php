@@ -35,6 +35,84 @@ class EditPageTest extends MediaWikiLangTestCase {
 		$this->setMainCache( CACHE_NONE );
 	}
 
+	public static function provideGetCodeEditingIntro() {
+		return [
+			[
+				NS_MAIN,
+				'Hello',
+				'',
+				'Hello does not require a code editing message box'
+			],
+			[
+				NS_USER,
+				'Bob/vector.js',
+				'<div class="mw-message-box-error mw-message-box"><div class="mw-userconfigdangerous">(userjsdangerous)</div></div>',
+				'JavaScript requires alert'
+			],
+			[
+				NS_MEDIAWIKI,
+				'Map.json',
+				'<div class="mw-message-box-error mw-message-box"><div class="mw-editinginterface">(editinginterface)</div></div>',
+				'JSON requires alert'
+			],
+			[
+				NS_MEDIAWIKI,
+				'Message',
+				'<div class="mw-message-box-error mw-message-box"><div class="mw-editinginterface">(editinginterface)</div></div>',
+				'Messages requires alert'
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetCodeEditingIntro
+	 * @covers EditPage::getCodeEditingIntro
+	 */
+	public function testGetCodeEditingIntro( $ns, $title, $result, $reason ) {
+		$editPageMock = $this->getMockBuilder( EditPage::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$title = Title::makeTitle( $ns, $title );
+		$context = new RequestContext();
+		$user = $this->getTestUser()->getUser();
+		$context->setUser( $user );
+		$context->setLanguage( 'qqx' );
+		$intro = TestingAccessWrapper::newFromObject( $editPageMock )->getCodeEditingIntro(
+			$title,
+			$context
+		);
+		$this->assertEquals(
+			$result,
+			$intro,
+			$reason
+		);
+	}
+
+	/**
+	 * @covers EditPage::getCodeEditingIntro
+	 */
+	public function testGetCodeEditingIntroForUser() {
+		$editPageMock = $this->getMockBuilder( EditPage::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$user = $this->getTestUser()->getUser();
+		$title = Title::makeTitle( NS_USER, $user->getName() . '/common.js' );
+		$context = new RequestContext();
+		$context->setUser( $user );
+		$context->setLanguage( 'qqx' );
+		$intro = TestingAccessWrapper::newFromObject( $editPageMock )->getCodeEditingIntro(
+			$title,
+			$context
+		);
+		$this->assertEquals(
+			'<div class="mw-message-box-error mw-message-box">'
+				. '<div class="mw-userconfigpublic">(userjsispublic)</div>'
+				. '<div class="mw-userconfigdangerous">(userjsdangerous)</div></div>',
+			$intro,
+			'Inform users that their JS is public'
+		);
+	}
+
 	/**
 	 * @dataProvider provideExtractSectionTitle
 	 * @covers EditPage::extractSectionTitle
