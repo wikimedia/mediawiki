@@ -4784,11 +4784,9 @@ config-schema:
     BlockDisablesLogin:
         default: false
         description: |-
-            If true, blocked users will not be allowed to login. When using this with
-            a public wiki, the effect of logging out blocked users may actually be
-            avers: unless the user's address is also blocked (e.g. auto-block),
-            logging the user out will again allow reading and editing, just as for
-            anonymous visitors.
+            If true, sitewide blocked users will not be allowed to login. (Direct
+            blocks only; IP blocks are ignored.) This can be used to remove users'
+            read access on a private wiki.
     EnablePartialActionBlocks:
         default: false
         type: boolean
