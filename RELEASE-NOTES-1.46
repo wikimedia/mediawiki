@@ -161,6 +161,7 @@ For notes on 1.45.x and older releases, see HISTORY.
 * Updated wikimedia/timestamp from 5.0.0 to 5.1.0.
 * Updated wikimedia/wrappedstring from 4.0.1 to 4.1.0.
 * Updated wikimedia/xmp-reader from 0.10.2 to 0.10.3.
+* Updated CLDRPluralRuleParser from v1.3.2-pre to v1.6.5.
 * …
 
 ===== Changed development-only external libraries =====
