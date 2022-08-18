@@ -1,7 +1,7 @@
 <?php
 
-use MediaWiki\Tests\TestMode as ParserTestMode;
 use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
+use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
 
 /**
  * This is a TestRecorder representing a collection of other TestRecorders.

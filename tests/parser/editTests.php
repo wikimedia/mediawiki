@@ -2,9 +2,9 @@
 
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Tests\AnsiTermColorer;
-use MediaWiki\Tests\TestMode as ParserTestMode;
 use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
 use Wikimedia\Parsoid\ParserTests\TestFileReader;
+use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 

@@ -1,7 +1,7 @@
 <?php
 
-use MediaWiki\Tests\TestMode as ParserTestMode;
 use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
+use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
 
 /**
  * This is the TestCase subclass for running a single parser test via the
