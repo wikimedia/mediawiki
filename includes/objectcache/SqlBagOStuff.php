@@ -30,6 +30,7 @@ use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IMaintainableDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -489,14 +490,15 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			try {
 				$db = $this->getConnection( $shardIndex );
 				foreach ( $serverKeys as $partitionTable => $tableKeys ) {
-					$res = $db->select(
-						$partitionTable,
-						$getCasToken
+					$res = $db->newSelectQueryBuilder()
+						->select(
+							$getCasToken
 							? $this->addCasTokenFields( $db, [ 'keyname', 'value', 'exptime' ] )
-							: [ 'keyname', 'value', 'exptime' ],
-						$this->buildExistenceConditions( $db, $tableKeys, $readTime ),
-						__METHOD__
-					);
+							: [ 'keyname', 'value', 'exptime' ] )
+						->from( $partitionTable )
+						->where( $this->buildExistenceConditions( $db, $tableKeys, $readTime ) )
+						->caller( __METHOD__ )
+						->fetchResultSet();
 					foreach ( $res as $row ) {
 						$row->shardIndex = $shardIndex;
 						$row->tableName = $partitionTable;
@@ -736,12 +738,12 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$mt = $this->makeTimestampedModificationToken( $mtime, $db );
 
 		// This check must happen outside the write query to respect eventual consistency
-		$existingKeys = $db->selectFieldValues(
-			$ptable,
-			'keyname',
-			$this->buildExistenceConditions( $db, array_keys( $argsByKey ), (int)$mtime ),
-			__METHOD__
-		);
+		$existingKeys = $db->newSelectQueryBuilder()
+			->select( 'keyname' )
+			->from( $ptable )
+			->where( $this->buildExistenceConditions( $db, array_keys( $argsByKey ), (int)$mtime ) )
+			->caller( __METHOD__ )
+			->fetchFieldValues();
 		$existingByKey = array_fill_keys( $existingKeys, true );
 
 		// @TODO: use multi-row upsert() with VALUES() once supported in Database
@@ -800,12 +802,12 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$mt = $this->makeTimestampedModificationToken( $mtime, $db );
 
 		// This check must happen outside the write query to respect eventual consistency
-		$res = $db->select(
-			$ptable,
-			$this->addCasTokenFields( $db, [ 'keyname' ] ),
-			$this->buildExistenceConditions( $db, array_keys( $argsByKey ), (int)$mtime ),
-			__METHOD__
-		);
+		$res = $db->newSelectQueryBuilder()
+			->select( $this->addCasTokenFields( $db, [ 'keyname' ] ) )
+			->from( $ptable )
+			->where( $this->buildExistenceConditions( $db, array_keys( $argsByKey ), (int)$mtime ) )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$curTokensByKey = [];
 		foreach ( $res as $row ) {
@@ -871,12 +873,12 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		if ( $this->multiPrimaryMode ) {
 			$mt = $this->makeTimestampedModificationToken( $mtime, $db );
 
-			$res = $db->select(
-				$ptable,
-				[ 'keyname', 'value' ],
-				$this->buildExistenceConditions( $db, array_keys( $argsByKey ), (int)$mtime ),
-				__METHOD__
-			);
+			$res = $db->newSelectQueryBuilder()
+				->select( [ 'keyname', 'value' ] )
+				->from( $ptable )
+				->where( $this->buildExistenceConditions( $db, array_keys( $argsByKey ), (int)$mtime ) )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 			// @TODO: use multi-row upsert() with VALUES() once supported in Database
 			foreach ( $res as $curRow ) {
 				$key = $curRow->keyname;
@@ -964,7 +966,12 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					__METHOD__
 				);
 				$affectedCount = $db->affectedRows();
-				$row = $db->selectRow( $ptable, 'value', [ 'keyname' => $key ], __METHOD__ );
+				$row = $db->newSelectQueryBuilder()
+					->select( 'value' )
+					->from( $ptable )
+					->where( [ 'keyname' => $key ] )
+					->caller( __METHOD__ )
+					->fetchRow();
 			} catch ( Exception $e ) {
 				$db->cancelAtomic( __METHOD__, $atomic );
 				throw $e;
@@ -1464,16 +1471,19 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$totalSeconds = null;
 
 			do {
-				$res = $db->select(
-					$this->getTableNameByShard( $tableIndex ),
-					[ 'keyname', 'exptime' ],
-					array_merge(
-						[ 'exptime < ' . $db->addQuotes( $db->timestamp( $cutoffUnix ) ) ],
-						$maxExp ? [ 'exptime >= ' . $db->addQuotes( $maxExp ) ] : []
-					),
-					__METHOD__,
-					[ 'LIMIT' => $batchSize, 'ORDER BY' => 'exptime ASC' ]
-				);
+				$res = $db->newSelectQueryBuilder()
+					->select( [ 'keyname', 'exptime' ] )
+					->from( $this->getTableNameByShard( $tableIndex ) )
+					->where(
+						array_merge(
+							[ 'exptime < ' . $db->addQuotes( $db->timestamp( $cutoffUnix ) ) ],
+							$maxExp ? [ 'exptime >= ' . $db->addQuotes( $maxExp ) ] : []
+						)
+					)
+					->orderBy( 'exptime', SelectQueryBuilder::SORT_ASC )
+					->limit( $batchSize )
+					->caller( __METHOD__ )
+					->fetchResultSet();
 
 				if ( $res->numRows() ) {
 					$row = $res->current();
