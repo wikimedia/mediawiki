@@ -5,6 +5,7 @@ namespace phpunit\unit\includes\Settings;
 use BagOStuff;
 use ExtensionRegistry;
 use InvalidArgumentException;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\MergeStrategy;
@@ -584,7 +585,7 @@ class SettingsBuilderTest extends TestCase {
 			$schema->getDefaultFor( 'StyleDirectory' )
 		);
 		$this->assertSame(
-			[ 'callback' => [ 'MainConfigSchema', 'getDefaultUsePathInfo' ] ],
+			[ 'callback' => [ MainConfigSchema::class, 'getDefaultUsePathInfo' ] ],
 			$schema->getDynamicDefaultDeclarationFor( 'UsePathInfo' )
 		);
 		$this->assertSame(
@@ -596,11 +597,11 @@ class SettingsBuilderTest extends TestCase {
 			$schema->getDefaultFor( 'ExtensionDirectory' )
 		);
 		$this->assertSame(
-			[ 'use' => [ 'ScriptPath' ], 'callback' => [ 'MainConfigSchema', 'getDefaultRestPath' ] ],
+			[ 'use' => [ 'ScriptPath' ], 'callback' => [ MainConfigSchema::class, 'getDefaultRestPath' ] ],
 			$schema->getDynamicDefaultDeclarationFor( 'RestPath' )
 		);
 		$this->assertSame(
-			[ 'use' => [ 'ScriptPath' ], 'callback' => [ 'MainConfigSchema', 'getDefaultRestPath' ] ],
+			[ 'use' => [ 'ScriptPath' ], 'callback' => [ MainConfigSchema::class, 'getDefaultRestPath' ] ],
 			$schema->getDynamicDefaultDeclarationFor( 'RestPath' )
 		);
 		$this->assertSame(

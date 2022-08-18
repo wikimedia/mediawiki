@@ -12,7 +12,7 @@
 		"UsePathInfo": {
 			"default": null,
 			"dynamicDefault": {
-				"callback": [ "MainConfigSchema", "getDefaultUsePathInfo" ]
+				"callback": [ "MediaWiki\\MainConfigSchema", "getDefaultUsePathInfo" ]
 			}
 		},
 		"LBFactoryConf": {
@@ -32,7 +32,7 @@
 		"dynamicDefault": {
 			"RestPath": {
 				"use": [ "ScriptPath" ],
-				"callback": [ "MainConfigSchema", "getDefaultRestPath" ]
+				"callback": [ "MediaWiki\\MainConfigSchema", "getDefaultRestPath" ]
 			}
 		},
 		"mergeStrategy": {

@@ -121,11 +121,11 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			'WANObjectCaches' => [
 				// XXX Is this duplication really intentional? Isn't the first entry unused?
 				0 => [
-					'class' => 'WANObjectCache',
+					'class' => WANObjectCache::class,
 					'cacheId' => 0,
 				],
 				'mediawiki-main-default' => [
-					'class' => 'WANObjectCache',
+					'class' => WANObjectCache::class,
 					'cacheId' => 0,
 				],
 			],
@@ -277,11 +277,11 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'MainCacheType' => 7,
 				'WANObjectCaches' => [
 					0 => [
-						'class' => 'WANObjectCache',
+						'class' => WANObjectCache::class,
 						'cacheId' => 0,
 					],
 					'mediawiki-main-default' => [
-						'class' => 'WANObjectCache',
+						'class' => WANObjectCache::class,
 						'cacheId' => 7,
 					],
 				],
@@ -293,7 +293,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				'MainWANCache' => 'my-cache',
 				// XXX Is this intentional? Customizing MainWANCache without adding it to
 				// WANObjectCaches seems like it will break everything?
-				'WANObjectCaches' => [ [ 'class' => 'WANObjectCache', 'cacheId' => 0 ] ],
+				'WANObjectCaches' => [ [ 'class' => WANObjectCache::class, 'cacheId' => 0 ] ],
 			],
 		];
 		yield '$wgProhibitedFileExtensions set' => [
