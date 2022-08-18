@@ -1563,7 +1563,7 @@ class SkinTemplate extends Skin {
 				'href' => $url, // @see: T4457, T4510
 				'context' => 'subject'
 			];
-			$associatedPages += $this->getSpecialPageRelatedLinks( $title );
+			$associatedPages += $this->getSpecialPageAssociatedNavigationLinks( $title );
 		}
 
 		$content_navigation['namespaces'] = $namespaces;
@@ -1617,27 +1617,27 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * Return a list of pages that have been marked as related to the special
-	 * page for display.
+	 * Return a list of pages that have been marked as related to/associated with
+	 * the special page for display.
 	 *
 	 * @param Title $title
 	 * @return array
 	 */
-	private function getSpecialPageRelatedLinks( Title $title ): array {
-		$related = [];
+	private function getSpecialPageAssociatedNavigationLinks( Title $title ): array {
+		$specialAssociatedNavigationLinks = [];
 		$specialFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
 		$special = $specialFactory->getPage( $title->getText() );
 		if ( $special === null ) {
 			// not a valid special page
 			return [];
 		}
-		$specialRelatedLinks = $special->getRelatedNavigationLinks();
+		$associatedNavigationLinks = $special->getAssociatedNavigationLinks();
 		// If no sub pages we should not render.
-		if ( count( $specialRelatedLinks ) === 0 ) {
+		if ( count( $associatedNavigationLinks ) === 0 ) {
 			return [];
 		}
 
-		foreach ( $specialRelatedLinks as $i => $relatedTitleText ) {
+		foreach ( $associatedNavigationLinks as $i => $relatedTitleText ) {
 			$relatedTitle = Title::newFromText( $relatedTitleText );
 			$special = $specialFactory->getPage( $relatedTitle->getText() );
 			if ( $special === null ) {
@@ -1645,13 +1645,13 @@ class SkinTemplate extends Skin {
 			} else {
 				$text = $special->getShortDescription( $relatedTitle->getSubpageText() );
 			}
-			$related['special-related-link-' . strval( $i ) ] = [
+			$specialAssociatedNavigationLinks['special-specialAssociatedNavigationLinks-link-' . strval( $i ) ] = [
 				'text' => $text,
 				'href' => $relatedTitle->getLocalUrl(),
 				'class' => $relatedTitle->equals( $title ) ? 'selected' : '',
 			];
 		}
-		return $related;
+		return $specialAssociatedNavigationLinks;
 	}
 
 	/**
