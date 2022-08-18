@@ -615,7 +615,7 @@ class SpecialPage implements MessageLocalizer {
 	 * @stable to call or override
 	 * @return string[] strings representing page titles that can be rendered by skins if required.
 	 */
-	public function getRelatedNavigationLinks() {
+	public function getAssociatedNavigationLinks() {
 		return [];
 	}
 
