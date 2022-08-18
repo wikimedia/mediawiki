@@ -41,5 +41,7 @@
 	"rest-update-cannot-create-page": "頁面「$1」已存在，因此無法建立。要更新現有的頁面，請在請求正文中「latest」鍵的結構裡提供基本修訂 ID。",
 	"rest-extraneous-csrf-token": "發現到外來的 CSRF 權杖。當使用像是 OAuth 這種可抵擋 CSRF 攻擊的驗證機制時，不可使用 CSRF 權杖。",
 	"rest-cannot-load-file": "標題「$1」的檔案無法載入。",
-	"rest-cross-origin-anon-write": "不允許匿名跨來源寫入請求"
+	"rest-cross-origin-anon-write": "不允許匿名跨來源寫入請求",
+	"rest-requires-safe-against-csrf": "此端點需要一個 CSRF 安全的 session 提供者。",
+	"rest-badtoken": "提供的 CSRF 權杖無效。"
 }

@@ -1018,7 +1018,7 @@
 	"mergehistory-submit": "Vereinige Versionen",
 	"mergehistory-empty": "Es können keine Versionen vereinigt werden.",
 	"mergehistory-done": "{{PLURAL:$4|Eine Version wurde|$4 Versionen wurden}} von „$1“ nach „[[:$2]]“ vereinigt.\n$3.",
-	"mergehistory-fail": "Versionsvereinigung nicht möglich, bitte prüfe die Seite und die Zeitangaben.",
+	"mergehistory-fail": "Versionsvereinigung nicht möglich. Bitte prüfe die Seite und die Zeitangaben.",
 	"mergehistory-fail-bad-timestamp": "Ungültiger Zeitstempel.",
 	"mergehistory-fail-invalid-source": "Ungültige Quellseite.",
 	"mergehistory-fail-invalid-dest": "Ungültige Zielseite.",
