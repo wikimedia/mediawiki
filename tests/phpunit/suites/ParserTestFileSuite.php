@@ -1,8 +1,8 @@
 <?php
 
-use MediaWiki\Tests\TestMode as ParserTestMode;
 use PHPUnit\Framework\TestSuite;
 use Wikimedia\Parsoid\ParserTests\TestFileReader;
+use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
 use Wikimedia\ScopedCallback;
 
 /**

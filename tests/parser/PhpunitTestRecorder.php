@@ -1,8 +1,8 @@
 <?php
 
-use MediaWiki\Tests\TestMode as ParserTestMode;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
+use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
 
 class PhpunitTestRecorder extends TestRecorder {
 	/** @var TestCase */

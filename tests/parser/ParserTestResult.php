@@ -5,8 +5,8 @@
  * @copyright Copyright © 2013, Antoine Musso
  * @copyright Copyright © 2013, Wikimedia Foundation Inc.
  */
-use MediaWiki\Tests\TestMode as ParserTestMode;
 use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
+use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
 
 /**
  * Represent the result of a parser test.
