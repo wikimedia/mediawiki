@@ -3725,6 +3725,7 @@
 	"searchsuggest-search": "Hae {{GRAMMAR:elative|{{SITENAME}}}}",
 	"searchsuggest-containing": "Etsi sivuja joissa on",
 	"search-match-redirect-label": "Ohjaa tarkat hakuosumat",
+	"searchlimit-label": "Hakutulosten lukumäärä sivulla:",
 	"searchlimit-help": "Enimmäismäärä: 500",
 	"api-clientside-error-noconnect": "Palvelimeen ei saatu yhteyttä. Varmista internet-yhteytesi toimivuus ja yritä uudelleen.",
 	"api-clientside-error-http": "Palvelin palautti virheen: HTTP $1.",

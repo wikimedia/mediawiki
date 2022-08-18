@@ -1059,6 +1059,7 @@
 	"search-file-match": "(cocok dengan isi berkas)",
 	"search-suggest": "Mungkin maksud Anda adalah: $1",
 	"search-rewritten": "Menampilkan hasil untuk $1. Tidak ditemukan hasil untuk $2.",
+	"search-interwiki-resultset-link": "Lihat semua hasil",
 	"search-interwiki-more": "(selanjutnya)",
 	"search-interwiki-more-results": "hasil lainnya",
 	"search-relatedarticle": "Terkait",
@@ -2555,7 +2556,7 @@
 	"undeletehistorynoadmin": "Halaman ini telah dihapus.\nAlasan penghapusan diberikan pada ringkasan di bawah ini, beserta rincian pengguna yang telah melakukan penyuntingan di halaman ini sebelum dihapus.\nIsi terakhir dari revisi yang telah dihapus ini hanya tersedia untuk pengurus.",
 	"undelete-revision": "Revisi yang telah dihapus dari $1 (pada $5, $4) oleh $3:",
 	"undeleterevision-missing": "Revisi salah atau tak ditemukan. Anda mungkin mengikuti pranala yang salah, atau revisi tersebut telah dipulihkan atau dibuang dari arsip.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Sebuah revisi|$1 revisi}} tidak dapat dipulihkan, karena <code>rev_id</code> {{PLURAL:$1|mereka|mereka}} telah digunakan.",
+	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Sebuah revisi|$1 revisi}} tidak dapat dipulihkan, karena  <code>rev_id</code>-nya telah digunakan.",
 	"undelete-nodiff": "Tidak ada revisi yang lebih lama.",
 	"undeletebtn": "Pulihkan",
 	"undeletelink": "lihat/pulihkan",
@@ -2646,6 +2647,7 @@
 	"autoblockid": "Blokir otomatis #$1",
 	"block": "Blokir pengguna",
 	"unblock": "Buka blokir pengguna",
+	"changeblockip": "Ubah pembatasan",
 	"blockip": "Blokir {{GENDER:$1|pengguna}}",
 	"blockiptext": "Gunakan formulir di bawah untuk memblokir akses penulisan dari sebuah alamat IP atau pengguna tertentu.\nIni hanya boleh dilakukan untuk mencegah vandalisme, dan sejalan dengan [[{{MediaWiki:Policy-url}}|kebijakan]].\nMasukkan alasan Anda di bawah (contoh, menuliskan nama halaman yang telah divandalisasi).\nAnda dapat memblok rentang IP menggunakan [https://id.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR] syntax; kisaran terbesar yang diizinkan adalah /$1 untuk IPv4 dan /$2 untuk IPv6.",
 	"ipaddressorusername": "Alamat IP, nama pengguna atau blok ID:",
@@ -4133,5 +4135,10 @@
 	"skin-action-delete": "Hapus",
 	"skin-action-move": "Pindahkan",
 	"parsoid-stash-rate-limit-error": "Gagal menyimpan karena batas tarif telah dilampaui. Silahkan coba lagi nanti.",
-	"newpages-showhide-bots": "$1 bot"
+	"parsoid-resource-limit-exceeded": "Batas sumber daya parsoid melampaui: $1",
+	"parsoid-client-error": "Parsoid masukan tidak valid: $1",
+	"newpages-showhide-bots": "$1 bot",
+	"newpages-showhide-patrolled": "$1 suntingan terpatroli",
+	"newpages-showhide-redirect": "$1 pengalihan",
+	"newpages-showhide-registered": "$1 pengguna terdaftar"
 }
