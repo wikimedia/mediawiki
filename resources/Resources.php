@@ -2225,7 +2225,10 @@ return [
 			'watchlist-expiry-hours-left',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
-		'dependencies' => [ 'mediawiki.special' ],
+		'dependencies' => [
+			'mediawiki.special',
+			'oojs-ui.styles.icons-interactions'
+		],
 	],
 	'mediawiki.special.changeslist.enhanced' => [
 		'styles' => 'resources/src/mediawiki.special.changeslist.enhanced.less',
