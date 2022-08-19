@@ -402,13 +402,13 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		return $result;
 	}
 
-	protected function doAdd( $key, $value, $expiry = 0, $flags = 0 ) {
+	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		$conn = $this->getConnection( $key );
 		if ( !$conn ) {
 			return false;
 		}
 
-		$ttl = $this->getExpirationAsTTL( $expiry );
+		$ttl = $this->getExpirationAsTTL( $exptime );
 		$serialized = $this->getSerialized( $value, $key );
 		$valueSize = strlen( $serialized );
 
