@@ -723,7 +723,7 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * The URL path of the shortcut icon.
+	 * The URL path of the icon.
 	 *
 	 * @since 1.6
 	 */
