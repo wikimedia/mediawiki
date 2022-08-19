@@ -318,7 +318,7 @@ config-schema:
     Favicon:
         default: /favicon.ico
         description: |-
-            The URL path of the shortcut icon.
+            The URL path of the icon.
             @since 1.6
     AppleTouchIcon:
         default: false
