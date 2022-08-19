@@ -49,6 +49,14 @@ class ParsoidTestFileSuite extends TestSuite {
 
 		$validTestModes = $this->ptRunner->getRequestedTestModes();
 		$skipMode = new ParserTestMode( $validTestModes[0] );
+		$modeRestriction = $this->ptFileInfo->fileOptions['parsoid-compatible'] ?? false;
+		if ( $modeRestriction !== false ) {
+			if ( is_string( $modeRestriction ) ) {
+				// shorthand
+				$modeRestriction = [ $modeRestriction ];
+			}
+			$validTestModes = array_intersect( $validTestModes, $modeRestriction );
+		}
 
 		$suite = $this;
 		foreach ( $this->ptFileInfo->testCases as $t ) {
