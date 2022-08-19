@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\SlotRecord;
 
 /**
@@ -29,13 +30,13 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		return self::$users['ApiQueryWatchlistIntegrationTestUser2']->getUser();
 	}
 
-	private function doPageEdit( User $user, LinkTarget $target, $content, $summary ) {
+	private function doPageEdit( Authority $performer, LinkTarget $target, $content, $summary ) {
 		$this->editPage(
 			$target,
 			$content,
 			$summary,
 			NS_MAIN,
-			$user
+			$performer
 		);
 	}
 

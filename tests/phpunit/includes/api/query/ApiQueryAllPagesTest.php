@@ -20,7 +20,7 @@ class ApiQueryAllPagesTest extends ApiTestCase {
 			'Some text',
 			'inserting content',
 			NS_MAIN,
-			$this->getTestSysop()->getUser()
+			$this->getTestSysop()->getAuthority()
 		);
 
 		$result = $this->doApiRequest( [

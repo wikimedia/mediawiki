@@ -11,27 +11,27 @@ class ApiFormatXmlTest extends ApiFormatTestBase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$user = self::getTestSysop()->getUser();
+		$performer = self::getTestSysop()->getAuthority();
 		$this->editPage(
 			Title::makeTitle( NS_MEDIAWIKI, 'ApiFormatXmlTest.xsl' ),
 			'<?xml version="1.0"?><xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" />',
 			'Summary',
 			NS_MAIN,
-			$user
+			$performer
 		);
 		$this->editPage(
 			Title::makeTitle( NS_MEDIAWIKI, 'ApiFormatXmlTest' ),
 			'Bogus',
 			'Summary',
 			NS_MAIN,
-			$user
+			$performer
 		);
 		$this->editPage(
 			Title::makeTitle( NS_MAIN, 'ApiFormatXmlTest' ),
 			'Bogus',
 			'Summary',
 			NS_MAIN,
-			$user
+			$performer
 		);
 	}
 

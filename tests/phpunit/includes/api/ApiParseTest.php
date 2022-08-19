@@ -230,7 +230,7 @@ class ApiParseTest extends ApiTestCase {
 		$this->doApiRequest( [
 			'action' => 'parse',
 			'oldid' => self::$revIds['revdel'],
-		], null, null, static::getTestUser()->getUser() );
+		], null, null, static::getTestUser()->getAuthority() );
 	}
 
 	public function testSuppressed() {
