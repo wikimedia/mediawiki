@@ -497,6 +497,7 @@ because of Phabricator reports.
 * Parser::getFreshParser() is deprecated, use ParserFactory::getInstance().
 * CoreParserFunctions::mwnamespace() is deprecated and emits deprecation
   warnings, use CoreParserFunctions::namespace() instead.
+* Registering magic variables whose names include a colon is deprecated.
 * User::blockedFor(), deprecated in 1.35, now emits deprecation warnings.
 * Access to previously public properties AbstractBlock::$mExpiry,
   AbstractBlock::$mHideName, AbstractBlock::$mTimestamp, DatabaseBlock::$mAuto,
