@@ -99,7 +99,7 @@ class AllMessagesTablePager extends TablePager {
 
 		$lang = $opts->getValue( 'lang' );
 		$this->lang = $languageNameUtils->isKnownLanguageTag( $lang ) ?
-			$languageFactory->getLanguage( $lang ) :
+			$languageFactory->getRawLanguage( $lang ) :
 			$contentLanguage;
 
 		$this->langcode = $this->lang->getCode();
