@@ -219,11 +219,12 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		$title = Title::newFromText( 'Dummy:NoDirectEditing' );
 
 		$dummyContent = ContentHandler::getForModelID( 'testing' )->makeEmptyContent();
-		WikiPage::factory( $title )->doUserEditContent(
+		$this->editPage(
+			$title,
 			$dummyContent,
-			$this->getTestSysop()->getUser(),
 			'EditSummaryForThisTest',
-			EDIT_NEW | EDIT_SUPPRESS_RC
+			NS_MAIN,
+			$this->getTestSysop()->getUser()
 		);
 		$this->assertSame(
 			'testing',

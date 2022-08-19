@@ -14,13 +14,17 @@ class ApiComparePagesTest extends ApiTestCase {
 	protected static $repl = [];
 
 	protected function addPage( $page, $text, $model = CONTENT_MODEL_WIKITEXT ) {
-		$title = Title::newFromText( 'ApiComparePagesTest ' . $page );
-		$content = ContentHandler::makeContent( $text, $title, $model );
-
-		$page = WikiPage::factory( $title );
+		$title = Title::makeTitle( NS_MAIN, 'ApiComparePagesTest ' . $page );
+		$content = $this->getServiceContainer()->getContentHandlerFactory()
+			->getContentHandler( $model )
+			->unserializeContent( $text );
 		$user = static::getTestSysop()->getUser();
-		$status = $page->doUserEditContent(
-			$content, $user, 'Test for ApiComparePagesTest: ' . $text
+		$status = $this->editPage(
+			$title,
+			$content,
+			'Test for ApiComparePagesTest: ' . $text,
+			NS_MAIN,
+			$user
 		);
 		if ( !$status->isOK() ) {
 			$this->fail( "Failed to create $title: " . $status->getWikiText( false, false, 'en' ) );
