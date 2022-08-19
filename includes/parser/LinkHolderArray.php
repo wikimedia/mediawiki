@@ -217,12 +217,12 @@ class LinkHolderArray {
 			}
 		}
 		if ( !$lb->isEmpty() ) {
-			$res = $dbr->select(
-				'page',
-				LinkCache::getSelectFields(),
-				$lb->constructSet( 'page', $dbr ),
-				__METHOD__
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( LinkCache::getSelectFields() )
+				->from( 'page' )
+				->where( [ $lb->constructSet( 'page', $dbr ) ] )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 
 			# Fetch data and form into an associative array
 			# non-existent = broken
@@ -413,11 +413,12 @@ class LinkHolderArray {
 			// construct query
 			$dbr = wfGetDB( DB_REPLICA );
 
-			$varRes = $dbr->select( 'page',
-				LinkCache::getSelectFields(),
-				$linkBatch->constructSet( 'page', $dbr ),
-				__METHOD__
-			);
+			$varRes = $dbr->newSelectQueryBuilder()
+				->select( LinkCache::getSelectFields() )
+				->from( 'page' )
+				->where( [ $linkBatch->constructSet( 'page', $dbr ) ] )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 
 			$pagemap = [];
 			$linkRenderer = $this->parent->getLinkRenderer();

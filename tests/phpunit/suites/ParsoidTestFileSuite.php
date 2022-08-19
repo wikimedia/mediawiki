@@ -48,7 +48,9 @@ class ParsoidTestFileSuite extends TestSuite {
 		}
 
 		$validTestModes = $this->ptRunner->getRequestedTestModes();
-		$skipMode = new ParserTestMode( $validTestModes[0] );
+		// Dummy mode, for the purpose of satisfying the signature of getTestSkipMessage
+		// Only used for an isLegacy check, which should always be false for this file
+		$skipMode = new ParserTestMode( 'not-legacy' );
 		$modeRestriction = $this->ptFileInfo->fileOptions['parsoid-compatible'] ?? false;
 		if ( $modeRestriction !== false ) {
 			if ( is_string( $modeRestriction ) ) {
