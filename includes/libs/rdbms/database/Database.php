@@ -28,6 +28,7 @@ use Psr\Log\NullLogger;
 use RuntimeException;
 use Throwable;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Rdbms\Database\DatabaseFlags;
 use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\CriticalSectionScope;
@@ -62,6 +63,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var DatabaseDomain */
 	protected $currentDomain;
+	/** @var DatabaseFlags */
+	protected $flagsHolder;
 
 	// phpcs:ignore MediaWiki.Commenting.PropertyDocumentation.ObjectTypeHintVar
 	/** @var object|resource|null Database connection */
@@ -91,8 +94,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var int Row batch size to use for emulated INSERT SELECT queries */
 	protected $nonNativeInsertSelectBatchSize;
 
-	/** @var int Current bit field of class DBO_* constants */
-	protected $flags;
 	/** @var bool Whether to use SSL connections */
 	protected $ssl;
 	/** @var array Current LoadBalancer tracking information */
@@ -102,8 +103,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var string|bool|null Stashed value of html_errors INI setting */
 	private $htmlErrors;
-	/** @var int[] Prior flags member variable values */
-	private $priorFlags = [];
 
 	/** @var array<string,array> Map of (name => (UNIX time,trx ID)) for current lock() mutexes */
 	protected $sessionNamedLocks = [];
@@ -180,18 +179,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var string Dummy SQL query */
 	private const PING_QUERY = 'SELECT 1 AS ping';
 
-	/** @var string[] List of DBO_* flags that can be changed after connection */
-	protected const MUTABLE_FLAGS = [
-		'DBO_DEBUG',
-		'DBO_NOBUFFER',
-		'DBO_TRX',
-		'DBO_DDLMODE',
-	];
-	/** @var int Bit field of all DBO_* flags that can be changed after connection */
-	protected const DBO_MUTABLE = (
-		self::DBO_DEBUG | self::DBO_NOBUFFER | self::DBO_TRX | self::DBO_DDLMODE
-	);
-
 	/** Hostname or IP address to use on all connections */
 	protected const CONN_HOST = 'host';
 	/** Database server username to use on all connections */
@@ -242,9 +229,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( is_string( $params['sqlMode'] ?? null ) ) {
 			$this->connectionVariables['sql_mode'] = $params['sqlMode'];
 		}
-
-		$this->flags = (int)$params['flags'];
-		$this->ssl = $params['ssl'] ?? (bool)( $this->flags & self::DBO_SSL );
+		$flags = (int)$params['flags'];
+		$this->flagsHolder = new DatabaseFlags( $flags );
+		$this->ssl = $params['ssl'] ?? (bool)( $flags & self::DBO_SSL );
 		$this->cliMode = (bool)$params['cliMode'];
 		$this->agent = (string)$params['agent'];
 		$this->serverName = $params['serverName'];
@@ -525,7 +512,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return string|null ID of the active explicit transaction round being participating in
 	 */
 	final protected function getTransactionRoundId() {
-		if ( $this->getFlag( self::DBO_TRX ) ) {
+		if ( $this->flagsHolder->hasImplicitTrxFlag() ) {
 			// LoadBalancer transaction round participation is enabled for this DB handle;
 			// get the ID of the active explicit transaction round (if any)
 			$id = $this->getLBInfo( self::LB_TRX_ROUND_ID );
@@ -538,53 +525,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function isOpen() {
 		return (bool)$this->conn;
-	}
-
-	public function setFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
-		if ( $flag & ~static::DBO_MUTABLE ) {
-			throw new DBUnexpectedError(
-				$this,
-				"Got $flag (allowed: " . implode( ', ', static::MUTABLE_FLAGS ) . ')'
-			);
-		}
-
-		if ( $remember === self::REMEMBER_PRIOR ) {
-			$this->priorFlags[] = $this->flags;
-		}
-
-		$this->flags |= $flag;
-	}
-
-	public function clearFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
-		if ( $flag & ~static::DBO_MUTABLE ) {
-			throw new DBUnexpectedError(
-				$this,
-				"Got $flag (allowed: " . implode( ', ', static::MUTABLE_FLAGS ) . ')'
-			);
-		}
-
-		if ( $remember === self::REMEMBER_PRIOR ) {
-			$this->priorFlags[] = $this->flags;
-		}
-
-		$this->flags &= ~$flag;
-	}
-
-	public function restoreFlags( $state = self::RESTORE_PRIOR ) {
-		if ( !$this->priorFlags ) {
-			return;
-		}
-
-		if ( $state === self::RESTORE_INITIAL ) {
-			$this->flags = reset( $this->priorFlags );
-			$this->priorFlags = [];
-		} else {
-			$this->flags = array_pop( $this->priorFlags );
-		}
-	}
-
-	public function getFlag( $flag ) {
-		return ( ( $this->flags & $flag ) === $flag );
 	}
 
 	public function getDomainID() {
@@ -944,9 +884,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// An error occurred; log and report it as needed. Errors that corrupt the state of
 			// the transaction/session cannot be silenced from the client.
 			$ignore = (
-				$this->fieldHasBit( $flags, self::QUERY_SILENCE_ERRORS ) &&
-				!$this->fieldHasBit( $qs->flags, self::ERR_ABORT_SESSION ) &&
-				!$this->fieldHasBit( $qs->flags, self::ERR_ABORT_TRX )
+				$this->flagsHolder::contains( $flags, self::QUERY_SILENCE_ERRORS ) &&
+				!$this->flagsHolder::contains( $qs->flags, self::ERR_ABORT_SESSION ) &&
+				!$this->flagsHolder::contains( $qs->flags, self::ERR_ABORT_TRX )
 			);
 			// Throw an error unless both the ignore flag was set and a rollback is not needed
 			$this->reportQueryError( $qs->message, $qs->code, $sql, $fname, $ignore );
@@ -989,9 +929,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				// An error occurred; log and report it as needed. Errors that corrupt the state of
 				// the transaction/session cannot be silenced from the client.
 				$ignore = (
-					$this->fieldHasBit( $flags, self::QUERY_SILENCE_ERRORS ) &&
-					!$this->fieldHasBit( $qs->flags, self::ERR_ABORT_SESSION ) &&
-					!$this->fieldHasBit( $qs->flags, self::ERR_ABORT_TRX )
+					$this->flagsHolder::contains( $flags, self::QUERY_SILENCE_ERRORS ) &&
+					!$this->flagsHolder::contains( $qs->flags, self::ERR_ABORT_SESSION ) &&
+					!$this->flagsHolder::contains( $qs->flags, self::ERR_ABORT_TRX )
 				);
 				$this->reportQueryError(
 					$qs->message,
@@ -1055,7 +995,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 						"Cannot issue CREATE/DROP as part of multi-queries"
 					);
 				}
-				$pseudoPermanent = $this->fieldHasBit( $flags, self::QUERY_PSEUDO_PERMANENT );
+				$pseudoPermanent = $this->flagsHolder::contains( $flags, self::QUERY_PSEUDO_PERMANENT );
 				$tempTableChanges = $this->getTempTableWrites( $sql, $pseudoPermanent );
 				$isPermWrite = !$tempTableChanges;
 				foreach ( $tempTableChanges as list( $tmpType ) ) {
@@ -1066,7 +1006,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				if ( $isPermWrite ) {
 					$this->assertIsWritablePrimary();
 					// DBConnRef uses QUERY_REPLICA_ROLE to enforce replica roles during query()
-					if ( $this->fieldHasBit( $flags, self::QUERY_REPLICA_ROLE ) ) {
+					if ( $this->flagsHolder::contains( $flags, self::QUERY_REPLICA_ROLE ) ) {
 						throw new DBReadOnlyRoleError(
 							$this,
 							"Cannot write; target role is DB_REPLICA"
@@ -1084,7 +1024,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		// Whether a silent retry attempt is left for recoverable connection loss errors
-		$retryLeft = !$this->fieldHasBit( $flags, self::QUERY_NO_RETRY );
+		$retryLeft = !$this->flagsHolder::contains( $flags, self::QUERY_NO_RETRY );
 		$firstStatement = reset( $statementsById );
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
@@ -1111,7 +1051,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// Query had at least one statement
 			( $firstQs = reset( $statusByStatementId ) ) &&
 			// An error occurred that can be recovered from via query retry
-			$this->fieldHasBit( $firstQs->flags, self::ERR_RETRY_QUERY ) &&
+			$this->flagsHolder::contains( $firstQs->flags, self::ERR_RETRY_QUERY ) &&
 			// The retry has not been exhausted (consume it now)
 			$retryLeft && !( $retryLeft = false )
 		);
@@ -1290,7 +1230,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		);
 
 		// Avoid the overhead of logging calls unless debug mode is enabled
-		if ( $this->getFlag( self::DBO_DEBUG ) ) {
+		if ( $this->flagsHolder->getFlag( self::DBO_DEBUG ) ) {
 			$this->queryLogger->debug(
 				"{method} [{runtime}s] {db_server}: {sql}",
 				$this->getLogContext( [
@@ -1332,9 +1272,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	private function beginIfImplied( $sql, $fname, $flags ) {
 		if (
-			!$this->fieldHasBit( $flags, self::QUERY_IGNORE_DBO_TRX ) &&
+			!$this->flagsHolder::contains( $flags, self::QUERY_IGNORE_DBO_TRX ) &&
 			!$this->trxLevel() &&
-			$this->getFlag( self::DBO_TRX ) &&
+			$this->flagsHolder->hasImplicitTrxFlag() &&
 			$this->platform->isTransactableQuery( $sql )
 		) {
 			$this->begin( __METHOD__ . " ($fname)", self::TRANSACTION_INTERNAL );
@@ -1779,7 +1719,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function lockForUpdate(
 		$table, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
-		if ( !$this->trxLevel() && !$this->getFlag( self::DBO_TRX ) ) {
+		if ( !$this->trxLevel() && !$this->flagsHolder->hasImplicitTrxFlag() ) {
 			throw new DBUnexpectedError(
 				$this,
 				__METHOD__ . ': no transaction is active nor is DBO_TRX set'
@@ -2487,13 +2427,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 
 		$count = 0;
-		$autoTrx = $this->getFlag( self::DBO_TRX ); // automatic begin() enabled?
+		$autoTrx = $this->flagsHolder->hasImplicitTrxFlag(); // automatic begin() enabled?
 		// Drain the queues of transaction "idle" and "end" callbacks until they are empty
 		do {
 			$callbackEntries = $this->transactionManager->consumeEndCallbacks( $trigger );
 			$count += count( $callbackEntries );
 			foreach ( $callbackEntries as $entry ) {
-				$this->clearFlag( self::DBO_TRX ); // make each query its own transaction
+				$this->flagsHolder->clearFlag( self::DBO_TRX ); // make each query its own transaction
 				try {
 					$entry[0]( $trigger, $this );
 				} catch ( DBError $ex ) {
@@ -2506,9 +2446,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					}
 				} finally {
 					if ( $autoTrx ) {
-						$this->setFlag( self::DBO_TRX ); // restore automatic begin()
+						$this->flagsHolder->setFlag( self::DBO_TRX ); // restore automatic begin()
 					} else {
-						$this->clearFlag( self::DBO_TRX ); // restore auto-commit
+						$this->flagsHolder->clearFlag( self::DBO_TRX ); // restore auto-commit
 					}
 				}
 			}
@@ -2592,7 +2532,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->completeCriticalSection( __METHOD__, $cs );
 				throw $e;
 			}
-			if ( $this->getFlag( self::DBO_TRX ) ) {
+			if ( $this->flagsHolder->hasImplicitTrxFlag() ) {
 				// This DB handle participates in LoadBalancer transaction rounds; all atomic
 				// sections should be buffered into one transaction (e.g. to keep web requests
 				// transactional). Note that an implicit transaction round is considered to be
@@ -2770,7 +2710,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Protect against mismatched atomic section, transaction nesting, and snapshot loss
 		if ( $this->trxLevel() ) {
 			$this->transactionManager->onBeginTransaction( $this, $fname );
-		} elseif ( $this->getFlag( self::DBO_TRX ) && $mode !== self::TRANSACTION_INTERNAL ) {
+		} elseif ( $this->flagsHolder->hasImplicitTrxFlag() && $mode !== self::TRANSACTION_INTERNAL ) {
 			$msg = "$fname: implicit transaction expected (DBO_TRX set)";
 			throw new DBUnexpectedError( $this, $msg );
 		}
@@ -2859,7 +2799,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if (
 			$flush !== self::FLUSHING_INTERNAL &&
 			$flush !== self::FLUSHING_ALL_PEERS &&
-			$this->getFlag( self::DBO_TRX )
+			$this->flagsHolder->hasImplicitTrxFlag()
 		) {
 			throw new DBUnexpectedError(
 				$this,
@@ -2918,7 +2858,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if (
 			$flush !== self::FLUSHING_INTERNAL &&
 			$flush !== self::FLUSHING_ALL_PEERS &&
-			$this->getFlag( self::DBO_TRX )
+			$this->flagsHolder->hasImplicitTrxFlag()
 		) {
 			throw new DBUnexpectedError(
 				$this,
@@ -3391,7 +3331,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			);
 		}
 
-		return $this->fieldHasBit( $flags, self::LOCK_TIMESTAMP ) ? $lockTsUnix : $locked;
+		return $this->flagsHolder::contains( $flags, self::LOCK_TIMESTAMP ) ? $lockTsUnix : $locked;
 	}
 
 	/**
@@ -3543,16 +3483,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		return false;
-	}
-
-	/**
-	 * @param int $flags A bitfield of flags
-	 * @param int $bit Bit flag constant
-	 * @return bool Whether the bit field has the specified bit flag set
-	 * @since 1.34
-	 */
-	final protected function fieldHasBit( int $flags, int $bit ) {
-		return ( ( $flags & $bit ) === $bit );
 	}
 
 	/**
@@ -3766,6 +3696,26 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->conn = null;
 		}
 	}
+
+	/* Start of methods delegated to DatabaseFlags. Avoid using them outside of rdbms library */
+
+	public function setFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
+		$this->flagsHolder->setFlag( $flag, $remember );
+	}
+
+	public function clearFlag( $flag, $remember = self::REMEMBER_NOTHING ) {
+		$this->flagsHolder->clearFlag( $flag, $remember );
+	}
+
+	public function restoreFlags( $state = self::RESTORE_PRIOR ) {
+		$this->flagsHolder->restoreFlags( $state );
+	}
+
+	public function getFlag( $flag ) {
+		return $this->flagsHolder->getFlag( $flag );
+	}
+
+	/* End of methods delegated to DatabaseFlags. */
 
 	/* Start of methods delegated to TransactionManager. Avoid using them outside of rdbms library */
 
