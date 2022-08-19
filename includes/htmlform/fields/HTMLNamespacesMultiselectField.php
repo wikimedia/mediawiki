@@ -29,25 +29,33 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 	}
 
 	public function validate( $value, $alldata ) {
-		if ( !$this->mParams['exists'] || $value === '' ) {
-			return true;
-		}
-
 		if ( $value === null ) {
 			return false;
+		}
+
+		if ( isset( $this->mParams['required'] )
+			&& $this->mParams['required'] !== false
+			&& $value === ''
+		) {
+			return $this->msg( 'htmlform-required' );
 		}
 
 		// $value is a string, because HTMLForm fields store their values as strings
 		$namespaces = explode( "\n", $value );
 
-		if ( isset( $this->mParams['max'] ) && ( count( $namespaces ) > $this->mParams['max'] ) ) {
-			return $this->msg( 'htmlform-multiselect-toomany', $this->mParams['max'] );
+		if ( isset( $this->mParams['max'] ) && count( $namespaces ) > $this->mParams['max'] ) {
+			return $this->msg( 'htmlform-multiselect-toomany' )->numParams( $this->mParams['max'] );
 		}
 
 		foreach ( $namespaces as $namespace ) {
+			if ( !is_numeric( $namespace ) ) {
+				return $this->msg( 'htmlform-select-badoption' );
+			}
+			$intNamespace = (int)$namespace;
 			if (
-				$namespace < 0 ||
-				!MediaWikiServices::getInstance()->getNamespaceInfo()->exists( (int)$namespace )
+				$intNamespace < 0 ||
+				( $this->mParams['exists']
+					&& !MediaWikiServices::getInstance()->getNamespaceInfo()->exists( $intNamespace ) )
 			) {
 				return $this->msg( 'htmlform-select-badoption' );
 			}

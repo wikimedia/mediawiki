@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Language\RawMessage;
 use MediaWiki\Widget\TitlesMultiselectWidget;
 
 /**
@@ -47,28 +48,44 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 	}
 
 	public function validate( $value, $alldata ) {
-		if ( !$this->mParams['exists'] ) {
-			return true;
-		}
-
 		if ( $value === null ) {
 			return false;
+		}
+
+		if ( isset( $this->mParams['required'] )
+			&& $this->mParams['required'] !== false
+			&& $value === ''
+		) {
+			return $this->msg( 'htmlform-required' );
 		}
 
 		// $value is a string, because HTMLForm fields store their values as strings
 		$titlesArray = explode( "\n", $value );
 
-		if ( isset( $this->mParams['max'] ) && ( count( $titlesArray ) > $this->mParams['max'] ) ) {
-			return $this->msg( 'htmlform-multiselect-toomany', $this->mParams['max'] );
+		if ( isset( $this->mParams['max'] ) && count( $titlesArray ) > $this->mParams['max'] ) {
+			return $this->msg( 'htmlform-multiselect-toomany' )->numParams( $this->mParams['max'] );
 		}
 
+		$resultArray = [];
 		foreach ( $titlesArray as $title ) {
 			$result = parent::validate( $title, $alldata );
 			if ( $result !== true ) {
-				return $result;
+				if ( $result === false ) {
+					// Nothing to display, no further validation needed
+					return $result;
+				}
+				$resultArray[] = $result;
 			}
 		}
 
+		if ( $resultArray !== [] ) {
+			if ( count( $resultArray ) === 1 ) {
+				return reset( $resultArray );
+			}
+			// Show error as bullet point list
+			$key = '* $' . implode( "\n* $", range( 1, count( $resultArray ) ) );
+			return ( new RawMessage( $key ) )->params( $resultArray );
+		}
 		return true;
 	}
 
