@@ -3821,7 +3821,7 @@ class OutputPage extends ContextSource {
 
 		if ( $config->get( MainConfigNames::Favicon ) !== false ) {
 			$tags['favicon'] = Html::element( 'link', [
-				'rel' => 'shortcut icon',
+				'rel' => 'icon',
 				'href' => $config->get( MainConfigNames::Favicon )
 			] );
 		}
