@@ -11,9 +11,9 @@ use Wikimedia\TestingAccessWrapper;
  */
 abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 	/** @var BagOStuff */
-	private $cache;
+	protected $cache;
 
-	private const TEST_TIME = 1563892142;
+	protected const TEST_TIME = 1563892142;
 
 	protected function setUp(): void {
 		parent::setUp();
