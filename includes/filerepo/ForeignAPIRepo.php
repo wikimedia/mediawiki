@@ -592,7 +592,10 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 		}
 
 		return $this->wanCache->getWithSetCallback(
-			$this->getLocalCacheKey( $attribute, sha1( $url ) ),
+			// Allow reusing the same cached data across wikis (T285271).
+			// This does not use getSharedCacheKey() because caching here
+			// is transparent to client wikis (which are not expected to issue purges).
+			$this->wanCache->makeGlobalKey( "filerepo-$attribute", sha1( $url ) ),
 			$cacheTTL,
 			function ( $curValue, &$ttl ) use ( $url ) {
 				$html = self::httpGet( $url, 'default', [], $mtime );

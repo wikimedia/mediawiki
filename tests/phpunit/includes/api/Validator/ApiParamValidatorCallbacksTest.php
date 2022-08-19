@@ -19,7 +19,7 @@ use Wikimedia\TestingAccessWrapper;
 class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 
 	private function getCallbacks( FauxRequest $request ): array {
-		$context = $this->apiContext->newTestContext( $request, $this->getTestUser()->getUser() );
+		$context = $this->apiContext->newTestContext( $request, $this->getTestUser()->getAuthority() );
 		$main = new ApiMain( $context );
 		return [ new ApiParamValidatorCallbacks( $main ), $main ];
 	}
@@ -278,7 +278,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 	}
 
 	public function testUseHighLimits(): void {
-		$context = $this->apiContext->newTestContext( new FauxRequest, $this->getTestUser()->getUser() );
+		$context = $this->apiContext->newTestContext( new FauxRequest, $this->getTestUser()->getAuthority() );
 		$main = $this->getMockBuilder( ApiMain::class )
 			->setConstructorArgs( [ $context ] )
 			->onlyMethods( [ 'canApiHighLimits' ] )

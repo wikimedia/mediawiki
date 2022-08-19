@@ -11,16 +11,28 @@ class ApiFormatXmlTest extends ApiFormatTestBase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$page = WikiPage::factory( Title::newFromText( 'MediaWiki:ApiFormatXmlTest.xsl' ) );
-		$user = self::getTestSysop()->getUser();
-		$page->doUserEditContent( new WikitextContent(
-			'<?xml version="1.0"?><xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" />'
-		), $user, 'Summary' );
-		// phpcs:enable
-		$page = WikiPage::factory( Title::newFromText( 'MediaWiki:ApiFormatXmlTest' ) );
-		$page->doUserEditContent( new WikitextContent( 'Bogus' ), $user, 'Summary' );
-		$page = WikiPage::factory( Title::newFromText( 'ApiFormatXmlTest' ) );
-		$page->doUserEditContent( new WikitextContent( 'Bogus' ), $user, 'Summary' );
+		$performer = self::getTestSysop()->getAuthority();
+		$this->editPage(
+			Title::makeTitle( NS_MEDIAWIKI, 'ApiFormatXmlTest.xsl' ),
+			'<?xml version="1.0"?><xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" />',
+			'Summary',
+			NS_MAIN,
+			$performer
+		);
+		$this->editPage(
+			Title::makeTitle( NS_MEDIAWIKI, 'ApiFormatXmlTest' ),
+			'Bogus',
+			'Summary',
+			NS_MAIN,
+			$performer
+		);
+		$this->editPage(
+			Title::makeTitle( NS_MAIN, 'ApiFormatXmlTest' ),
+			'Bogus',
+			'Summary',
+			NS_MAIN,
+			$performer
+		);
 	}
 
 	public static function provideGeneralEncoding() {

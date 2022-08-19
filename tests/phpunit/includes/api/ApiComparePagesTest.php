@@ -14,13 +14,17 @@ class ApiComparePagesTest extends ApiTestCase {
 	protected static $repl = [];
 
 	protected function addPage( $page, $text, $model = CONTENT_MODEL_WIKITEXT ) {
-		$title = Title::newFromText( 'ApiComparePagesTest ' . $page );
-		$content = ContentHandler::makeContent( $text, $title, $model );
-
-		$page = WikiPage::factory( $title );
-		$user = static::getTestSysop()->getUser();
-		$status = $page->doUserEditContent(
-			$content, $user, 'Test for ApiComparePagesTest: ' . $text
+		$title = Title::makeTitle( NS_MAIN, 'ApiComparePagesTest ' . $page );
+		$content = $this->getServiceContainer()->getContentHandlerFactory()
+			->getContentHandler( $model )
+			->unserializeContent( $text );
+		$performer = static::getTestSysop()->getAuthority();
+		$status = $this->editPage(
+			$title,
+			$content,
+			'Test for ApiComparePagesTest: ' . $text,
+			NS_MAIN,
+			$performer
 		);
 		if ( !$status->isOK() ) {
 			$this->fail( "Failed to create $title: " . $status->getWikiText( false, false, 'en' ) );
@@ -148,19 +152,19 @@ class ApiComparePagesTest extends ApiTestCase {
 			'errorformat' => 'none',
 		];
 
-		$user = $sysop
-			? static::getTestSysop()->getUser()
-			: static::getTestUser()->getUser();
+		$performer = $sysop
+			? static::getTestSysop()->getAuthority()
+			: static::getTestUser()->getAuthority();
 		if ( $exceptionCode ) {
 			try {
-				$this->doApiRequest( $params, null, false, $user );
+				$this->doApiRequest( $params, null, false, $performer );
 				$this->fail( 'Expected exception not thrown' );
 			} catch ( ApiUsageException $ex ) {
 				$this->assertTrue( $this->apiExceptionHasCode( $ex, $exceptionCode ),
 					"Exception with code $exceptionCode" );
 			}
 		} else {
-			$apiResult = $this->doApiRequest( $params, null, false, $user );
+			$apiResult = $this->doApiRequest( $params, null, false, $performer );
 			$apiResult = $apiResult[0];
 			$this->doReplacements( $expect );
 			$this->assertEquals( $expect, $apiResult );
