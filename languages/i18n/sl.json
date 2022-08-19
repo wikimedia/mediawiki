@@ -918,7 +918,7 @@
 	"mergehistory-submit": "Združi redakcije",
 	"mergehistory-empty": "Redakcij ni moč združiti.",
 	"mergehistory-done": "$4 {{PLURAL:$4|redakcija|redakciji|redakcije|redakcij}} $1 {{PLURAL:$4|smo}} spojili v [[:$2]].\n$3.",
-	"mergehistory-fail": "Ne morem izvesti združitev zgodovine, prosimo, ponovno preverite strani in parametre časa.",
+	"mergehistory-fail": "Ne moremo izvesti združitev zgodovine, prosimo, ponovno preverite stran in časovne parametre.",
 	"mergehistory-fail-bad-timestamp": "Časovni žig je neveljaven.",
 	"mergehistory-fail-invalid-source": "Izvorna strani je neveljavna.",
 	"mergehistory-fail-invalid-dest": "Ciljna stran je neveljavna.",

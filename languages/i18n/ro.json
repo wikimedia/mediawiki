@@ -1013,6 +1013,7 @@
 	"search-file-match": "(se regăsește în conținutul fișierului)",
 	"search-suggest": "V-ați referit la: $1",
 	"search-rewritten": "Se afișează rezultatele pentru $1. Nu au fost găsite rezultate pentru $2.",
+	"search-interwiki-resultset-link": "Vezi toate rezultatele",
 	"search-interwiki-more": "(mai mult)",
 	"search-interwiki-more-results": "Mai multe rezultate",
 	"search-relatedarticle": "Relaționat",

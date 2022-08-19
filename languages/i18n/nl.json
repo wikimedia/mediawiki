@@ -1011,7 +1011,7 @@
 	"mergehistory-submit": "Versies samenvoegen",
 	"mergehistory-empty": "Er zijn geen versies die samengevoegd kunnen worden.",
 	"mergehistory-done": "$4 {{PLURAL:$4|versie|versies}} van $1 {{PLURAL:$4|is|zijn}} samengevoegd naar [[:$2]].\n$3.",
-	"mergehistory-fail": "Kan geen geschiedenis samenvoegen, controleer opnieuw de pagina- en tijdinstellingen.",
+	"mergehistory-fail": "Kan geen geschiedenis samenvoegen. Controleer opnieuw de pagina- en tijdinstellingen.",
 	"mergehistory-fail-bad-timestamp": "Het tijdstempel is ongeldig.",
 	"mergehistory-fail-invalid-source": "De bronpagina is ongeldig.",
 	"mergehistory-fail-invalid-dest": "De doelpagina is ongeldig.",

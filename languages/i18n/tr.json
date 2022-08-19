@@ -138,7 +138,7 @@
 	"tog-watchdeletion": "Sildiğim sayfaları ve dosyaları izleme listeme ekle",
 	"tog-watchuploads": "Yüklediğim yeni dosyaları izleme listeme ekle",
 	"tog-watchrollback": "Eski hâline getirdiğim sayfaları izleme listeme ekle",
-	"tog-minordefault": "Tüm düzenlemeleri varsayılan olarak küçük düzenleme olarak işaretle",
+	"tog-minordefault": "Tüm değişiklikleri varsayılan olarak küçük değişiklik olarak işaretle",
 	"tog-previewontop": "Düzenleme kutusu öncesinde önizleme göster",
 	"tog-previewonfirst": "İlk düzenlemede önizleme göster",
 	"tog-enotifwatchlistpages": "İzleme listemdeki bir sayfa veya dosya değiştirilirse bana e-posta gönder",
