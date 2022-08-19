@@ -27,12 +27,12 @@ class WikiMapTest extends MediaWikiLangTestCase {
 			],
 		];
 		$conf->suffixes = [ 'wiki' ];
-		$this->setMwGlobals( [
-			'wgConf' => $conf,
-			'wgLocalDatabases' => [ 'enwiki', 'ruwiki', 'nopathwiki' ],
-			'wgCanonicalServer' => '//this.wiki.org',
-			'wgDBname' => 'thiswiki',
-			'wgDBprefix' => ''
+		$this->setMwGlobals( 'wgConf', $conf );
+		$this->overrideConfigValues( [
+			MainConfigNames::LocalDatabases => [ 'enwiki', 'ruwiki', 'nopathwiki' ],
+			MainConfigNames::CanonicalServer => '//this.wiki.org',
+			MainConfigNames::DBname => 'thiswiki',
+			MainConfigNames::DBprefix => ''
 		] );
 
 		TestSites::insertIntoDb();

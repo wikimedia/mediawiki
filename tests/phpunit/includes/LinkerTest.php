@@ -274,14 +274,14 @@ class LinkerTest extends MediaWikiLangTestCase {
 			],
 		];
 		$conf->suffixes = [ 'wiki' ];
+		$this->setMwGlobals( 'wgConf', $conf );
 
-		$this->setMwGlobals( [
-			'wgScript' => '/wiki/index.php',
-			'wgArticlePath' => '/wiki/$1',
-			'wgCapitalLinks' => true,
-			'wgConf' => $conf,
+		$this->overrideConfigValues( [
+			MainConfigNames::Script => '/wiki/index.php',
+			MainConfigNames::ArticlePath => '/wiki/$1',
+			MainConfigNames::CapitalLinks => true,
 			// TODO: update tests when the default changes
-			'wgFragmentMode' => [ 'legacy' ],
+			MainConfigNames::FragmentMode => [ 'legacy' ],
 		] );
 
 		if ( $title === false ) {
@@ -492,11 +492,11 @@ class LinkerTest extends MediaWikiLangTestCase {
 			],
 		];
 		$conf->suffixes = [ 'wiki' ];
-		$this->setMwGlobals( [
-			'wgScript' => '/wiki/index.php',
-			'wgArticlePath' => '/wiki/$1',
-			'wgCapitalLinks' => true,
-			'wgConf' => $conf,
+		$this->setMwGlobals( 'wgConf', $conf );
+		$this->overrideConfigValues( [
+			MainConfigNames::Script => '/wiki/index.php',
+			MainConfigNames::ArticlePath => '/wiki/$1',
+			MainConfigNames::CapitalLinks => true,
 		] );
 
 		$this->assertEquals(
@@ -666,11 +666,11 @@ class LinkerTest extends MediaWikiLangTestCase {
 			],
 		];
 		$conf->suffixes = [ 'wiki' ];
-		$this->setMwGlobals( [
-			'wgScript' => '/wiki/index.php',
-			'wgArticlePath' => '/wiki/$1',
-			'wgCapitalLinks' => true,
-			'wgConf' => $conf,
+		$this->setMwGlobals( 'wgConf', $conf );
+		$this->overrideConfigValues( [
+			MainConfigNames::Script => '/wiki/index.php',
+			MainConfigNames::ArticlePath => '/wiki/$1',
+			MainConfigNames::CapitalLinks => true,
 		] );
 
 		$this->assertEquals( $expected, Linker::commentBlock( $comment, $title, $local, $wikiId, $useParentheses ) );
