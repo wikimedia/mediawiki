@@ -1115,6 +1115,7 @@
 	"search-file-match": "(corrispondenza nel contenuto del file)",
 	"search-suggest": "Forse cercavi: $1",
 	"search-rewritten": "Mostro i risultati per $1. Nessun risultato trovato per $2.",
+	"search-interwiki-resultset-link": "Vedere tutti i risultati",
 	"search-interwiki-more": "(altro)",
 	"search-interwiki-more-results": "altri risultati",
 	"search-relatedarticle": "Risultati correlati",
