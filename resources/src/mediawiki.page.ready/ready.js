@@ -51,26 +51,6 @@ mw.hook( 'wikipage.content' ).add( function ( $content ) {
 
 // Handle elements outside the wikipage content
 $( function () {
-	/**
-	 * There is a bug on iPad and maybe other browsers where if initial-scale is not set
-	 * the page cannot be zoomed. If the initial-scale is set on the server side, this will result
-	 * in an unwanted zoom on mobile devices. To avoid this we check innerWidth and set the initial-scale
-	 * on the client where needed. The width must be synced with the value in Skin::initPage.
-	 * More information on this bug in [[phab:T311795]].
-	 * @ignore
-	 */
-	function fixViewportForTabletDevices() {
-		var $viewport = $( 'meta[name=viewport]' );
-		var content = $viewport.attr( 'content' );
-		var scale = window.outerWidth / window.innerWidth;
-		// This adjustment is limited to tablet devices. It must be a non-zero value to work.
-		// (these values correspond to @width-breakpoint-tablet and @width-breakpoint-desktop
-		if ( window.innerWidth >= 720 && window.innerWidth < 1000 && content.indexOf( 'initial-scale' ) === -1 ) {
-			// Note: If the value is 1 the font-size adjust feature will not work on iPad
-			$viewport.attr( 'content', 'width=1000,initial-scale=' + scale );
-		}
-		window.scrollTo( 0, 0 );
-	}
 
 	// Add accesskey hints to the tooltips
 	$( '[accesskey]' ).updateTooltipAccessKeys();
@@ -173,7 +153,6 @@ $( function () {
 		);
 		e.preventDefault();
 	} );
-	fixViewportForTabletDevices();
 } );
 
 /**
