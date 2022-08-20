@@ -48,7 +48,8 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 	private function getManager( array $params = [] ) {
 		$config = $params['config'] ?? [
-			'UseEnotif' => false,
+			MainConfigNames::EnotifUserTalk => false,
+			MainConfigNames::EnotifWatchlist => false,
 			MainConfigNames::ShowUpdatedMarker => false,
 		];
 		$options = new ServiceOptions(
@@ -149,7 +150,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 	public function testClearAllUserNotifications_configDisabled() {
 		// ********** Code path #3 **********
-		// Early return: config with `UseEnotif` and `ShowUpdatedMarker` both false
+		// Early return: config with `EnotifUserTalk`, `EnotifWatchlist` and `ShowUpdatedMarker` are false
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
@@ -180,7 +181,8 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		// Early return: user's id is falsey
 
 		$config = [
-			'UseEnotif' => true,
+			MainConfigNames::EnotifUserTalk => true,
+			MainConfigNames::EnotifWatchlist => true,
 			MainConfigNames::ShowUpdatedMarker => true
 		];
 
@@ -209,7 +211,8 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		// No early returns
 
 		$config = [
-			'UseEnotif' => true,
+			MainConfigNames::EnotifUserTalk => true,
+			MainConfigNames::EnotifWatchlist => true,
 			MainConfigNames::ShowUpdatedMarker => true
 		];
 
@@ -303,7 +306,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	 */
 	public function testClearTitleUserNotifications_configDisabled( $testPageFactory ) {
 		// ********** Code path #3 **********
-		// Early return: config with `UseEnotif` and `ShowUpdatedMarker` both false
+		// Early return: config with `EnotifUserTalk` and `ShowUpdatedMarker` both false
 
 		$title = $testPageFactory( 100, NS_USER_TALK, 'PageTitleGoesHere' );
 
@@ -336,7 +339,8 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$title = $testPageFactory( 100, NS_USER_TALK, 'PageTitleGoesHere' );
 
 		$config = [
-			'UseEnotif' => true,
+			MainConfigNames::EnotifUserTalk => true,
+			MainConfigNames::EnotifWatchlist => true,
 			MainConfigNames::ShowUpdatedMarker => true
 		];
 
@@ -370,7 +374,8 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$title = $testPageFactory( 100, NS_USER_TALK, 'PageTitleGoesHere' );
 
 		$config = [
-			'UseEnotif' => true,
+			MainConfigNames::EnotifUserTalk => true,
+			MainConfigNames::EnotifWatchlist => true,
 			MainConfigNames::ShowUpdatedMarker => true
 		];
 
