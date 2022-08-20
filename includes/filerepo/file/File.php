@@ -301,11 +301,13 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * Split an internet media type into its two components; if not
 	 * a two-part name, set the minor type to 'unknown'.
 	 *
-	 * @param string $mime "text/html" etc
+	 * @param ?string $mime "text/html" etc
 	 * @return string[] ("text", "html") etc
 	 */
-	public static function splitMime( $mime ) {
-		if ( strpos( $mime, '/' ) !== false ) {
+	public static function splitMime( ?string $mime ) {
+		if ( $mime === null ) {
+			return [ 'unknown', 'unknown' ];
+		} elseif ( strpos( $mime, '/' ) !== false ) {
 			return explode( '/', $mime, 2 );
 		} else {
 			return [ $mime, 'unknown' ];
