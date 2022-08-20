@@ -55,7 +55,8 @@ class WatchlistManager {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'UseEnotif',
+		MainConfigNames::EnotifUserTalk,
+		MainConfigNames::EnotifWatchlist,
 		MainConfigNames::ShowUpdatedMarker,
 	];
 
@@ -164,7 +165,8 @@ class WatchlistManager {
 
 		$user = $performer->getUser();
 
-		if ( !$this->options->get( 'UseEnotif' ) &&
+		if ( !$this->options->get( MainConfigNames::EnotifUserTalk ) &&
+			!$this->options->get( MainConfigNames::EnotifWatchlist ) &&
 			!$this->options->get( MainConfigNames::ShowUpdatedMarker )
 		) {
 			$this->talkPageNotificationManager->removeUserHasNewMessages( $user );
@@ -229,7 +231,8 @@ class WatchlistManager {
 			$this->talkPageNotificationManager->clearForPageView( $userIdentity, $oldRev );
 		}
 
-		if ( !$this->options->get( 'UseEnotif' ) &&
+		if ( !$this->options->get( MainConfigNames::EnotifUserTalk ) &&
+			!$this->options->get( MainConfigNames::EnotifWatchlist ) &&
 			!$this->options->get( MainConfigNames::ShowUpdatedMarker )
 		) {
 			return;
