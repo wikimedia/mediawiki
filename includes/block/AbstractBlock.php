@@ -425,7 +425,9 @@ abstract class AbstractBlock implements Block {
 	 *  build the array using Message::getKey and Message::getParams.
 	 * @since 1.22
 	 * @param IContextSource $context
-	 * @return array
+	 * @return array A message array: either a list of strings, the first of which
+	 *  is the message key and the remaining ones the parameters, or an array with
+	 *  a single MessageSpecifier object.
 	 */
 	public function getPermissionsError( IContextSource $context ) {
 		$message = MediaWikiServices::getInstance()
@@ -435,7 +437,7 @@ abstract class AbstractBlock implements Block {
 				$context->getLanguage(),
 				$context->getRequest()->getIP()
 			);
-		return array_merge( [ [ $message->getKey() ], $message->getParams() ] );
+		return array_merge( [ $message->getKey() ], $message->getParams() );
 	}
 
 	/**
