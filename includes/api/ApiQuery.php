@@ -575,16 +575,21 @@ class ApiQuery extends ApiBase {
 	}
 
 	/**
-	 * Get the query database connection with the given name.
+	 * Get a cached database connection with a given name.
+	 *
 	 * If no such connection has been requested before, it will be created.
 	 * Subsequent calls with the same $name will return the same connection
-	 * as the first, regardless of the values of $db and $groups
+	 * as the first, regardless of the values of $db and $groups.
+	 *
+	 * @deprecated since 1.39 Use or override ApiBase::getDB() and optionally
+	 *  pass a query group to wfGetDB() or ILoadBalancer::getConnectionRef().
 	 * @param string $name Name to assign to the database connection
 	 * @param int $db One of the DB_* constants
 	 * @param string|string[] $groups Query groups
 	 * @return IDatabase
 	 */
 	public function getNamedDB( $name, $db, $groups ) {
+		wfDeprecated( __METHOD__, '1.39' );
 		if ( !array_key_exists( $name, $this->mNamedDB ) ) {
 			$this->mNamedDB[$name] = $this->loadBalancer->getConnectionRef( $db, $groups );
 		}
