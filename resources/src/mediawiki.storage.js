@@ -193,7 +193,10 @@
 			mw.requestIdleCallback( function ( deadline ) {
 				var prefixLength = EXPIRY_PREFIX.length;
 				var keys = [];
-				var length = store ? store.length : 0;
+				var length = 0;
+				try {
+					length = store.length;
+				} catch ( e ) {}
 
 				// Optimization: If time runs out, degrade to checking fewer keys.
 				// We will get another chance during a future page view. Iterate forward
@@ -204,7 +207,10 @@
 				// But, we might still run out of time when other tasks run before this,
 				// or when the device receives UI events (especially on low-end devices).
 				for ( var i = 0; ( i < length && deadline.timeRemaining() > MIN_WORK_TIME ); i++ ) {
-					var key = store.key( i );
+					var key = null;
+					try {
+						key = store.key( i );
+					} catch ( e ) {}
 					if ( key !== null && key.slice( 0, prefixLength ) === EXPIRY_PREFIX ) {
 						keys.push( key.slice( prefixLength ) );
 					}
