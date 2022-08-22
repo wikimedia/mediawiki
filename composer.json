@@ -85,7 +85,7 @@
 		"nmred/kafka-php": "0.1.5",
 		"php-parallel-lint/php-console-highlighter": "0.5",
 		"php-parallel-lint/php-parallel-lint": "1.2.0",
-		"phpunit/phpunit": "^8.5",
+		"phpunit/phpunit": "8.5.28",
 		"pimple/pimple": "3.3.1",
 		"psy/psysh": "0.10.4",
 		"seld/jsonlint": "1.8.3",
