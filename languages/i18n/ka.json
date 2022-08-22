@@ -1363,7 +1363,7 @@
 	"rcfilters-savedqueries-add-new-title": "ამჟამინდელი ფილტრის კონფიგურაციის შენახვა",
 	"rcfilters-restore-default-filters": "ნაგულისხმევი ფილტრების აღდგენა",
 	"rcfilters-clear-all-filters": "ყველა ფილტრის გაწმენდა",
-	"rcfilters-show-new-changes": "ახალი ცვლილებების ნახვა",
+	"rcfilters-show-new-changes": "ახალი ცვლილებების ნახვა, დაწყებული $1-დან",
 	"rcfilters-search-placeholder": "ცვლილებების გაფილტვრა (გამოიყენეთ მენიუ ან მოძებნეთ ფილტრის სახელი)",
 	"rcfilters-invalid-filter": "არასწორი ფილტრი",
 	"rcfilters-empty-filter": "აქტიური ფილტრები არ არის. აისახება ყველა წვლილი.",

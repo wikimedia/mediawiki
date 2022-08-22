@@ -735,7 +735,7 @@
 	"apihelp-query+duplicatefiles-param-localonly": "חיפוש אחר קבצים במאגר המקומי בלבד.",
 	"apihelp-query+duplicatefiles-example-simple": "חיפוש אחר כפילויות של [[:קובץ:Albert Einstein Head.jpg]].",
 	"apihelp-query+duplicatefiles-example-generated": "חיפוש אחר כפילויות בין כל הקבצים.",
-	"apihelp-query+embeddedin-summary": "חיפוש כל הדפים שמטמיעים (מכלילים) את הכותרת הנתונה.",
+	"apihelp-query+embeddedin-summary": "חיפוש כל הדפים שמטביעים (מכלילים) את הכותרת הנתונה.",
 	"apihelp-query+embeddedin-param-title": "איזו כותרת לחפש. לא ניתן להשתמש בזה יחד עם $1pageid.",
 	"apihelp-query+embeddedin-param-pageid": "מזהה דף לחיפוש. לא יכול לשמש יחד עם $1title.",
 	"apihelp-query+embeddedin-param-namespace": "איזה מרחב שם למנות.",

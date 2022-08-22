@@ -528,6 +528,7 @@
 	"prefs-help-email-others": "Дастәк бәка бә ҹо иштироәкон шымә е-номә адрес оныкарде, че шымә шәхси сәһифәдә быә линки де шымә әлоғә огәтеј. Ијән шымә електронә почти бә һички доә ныбәбе.",
 	"prefs-signature": "İmzo",
 	"userrights-reason": "Səbəb:",
+	"userrights-cannot-shorten-expiry": "You cannot bring forward the expiry of membership in group \"$1\". Only users with permission to add and remove this group can varde forward expiry times.",
 	"group-user": "İştirakəkon",
 	"group-bot": "Boton",
 	"group-sysop": "Мудирон",

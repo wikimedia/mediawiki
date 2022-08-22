@@ -3069,6 +3069,7 @@
 	"mw-widgets-dateinput-placeholder-day": "ÅÅÅÅ-MM-DD",
 	"mw-widgets-dateinput-placeholder-month": "ÅÅÅÅ-MM",
 	"mw-widgets-mediasearch-input-placeholder": "Søk etter mediefiler",
+	"mw-widgets-mediasearch-recent-uploads": "Dei siste opplastingane {{GENDER:$1|dine}}",
 	"mw-widgets-mediasearch-noresults": "Fann ingen resultat.",
 	"mw-widgets-titleinput-description-new-page": "sida finst ikkje enno",
 	"mw-widgets-titleinput-description-redirect": "omdirigering til $1",
