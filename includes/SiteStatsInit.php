@@ -169,26 +169,58 @@ class SiteStatsInit {
 		}
 	}
 
+	private function getShardedValue( $value, $noShards, $rowId ) {
+		$remainder = $value % $noShards;
+		$quotient = (int)( ( $value - $remainder ) / $noShards );
+		// Add the reminder to the first row
+		if ( $rowId === 1 ) {
+			return $quotient + $remainder;
+		}
+		return $quotient;
+	}
+
 	/**
 	 * Refresh site_stats
 	 */
 	public function refresh() {
-		$set = [
-			'ss_total_edits' => $this->edits ?? $this->edits(),
-			'ss_good_articles' => $this->articles ?? $this->articles(),
-			'ss_total_pages' => $this->pages ?? $this->pages(),
-			'ss_users' => $this->users ?? $this->users(),
-			'ss_images' => $this->files ?? $this->files(),
-		];
-		$row = [ 'ss_row_id' => 1 ] + $set;
+		if ( MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::MultiShardSiteStats ) ) {
+			$shardCnt = SiteStatsUpdate::SHARDS_ON;
+			for ( $i = 1; $i <= $shardCnt; $i++ ) {
+				$set = [
+					'ss_total_edits' => $this->getShardedValue( $this->edits ?? $this->edits(), $shardCnt, $i ),
+					'ss_good_articles' => $this->getShardedValue( $this->articles ?? $this->articles(), $shardCnt, $i ),
+					'ss_total_pages' => $this->getShardedValue( $this->pages ?? $this->pages(), $shardCnt, $i ),
+					'ss_users' => $this->getShardedValue( $this->users ?? $this->users(), $shardCnt, $i ),
+					'ss_images' => $this->getShardedValue( $this->files ?? $this->files(), $shardCnt, $i ),
+				];
+				$row = [ 'ss_row_id' => $i ] + $set;
 
-		self::getDB( DB_PRIMARY )->upsert(
-			'site_stats',
-			$row,
-			'ss_row_id',
-			$set,
-			__METHOD__
-		);
+				self::getDB( DB_PRIMARY )->upsert(
+					'site_stats',
+					$row,
+					'ss_row_id',
+					$set,
+					__METHOD__
+				);
+			}
+		} else {
+			$set = [
+				'ss_total_edits' => $this->edits ?? $this->edits(),
+				'ss_good_articles' => $this->articles ?? $this->articles(),
+				'ss_total_pages' => $this->pages ?? $this->pages(),
+				'ss_users' => $this->users ?? $this->users(),
+				'ss_images' => $this->files ?? $this->files(),
+			];
+			$row = [ 'ss_row_id' => 1 ] + $set;
+
+			self::getDB( DB_PRIMARY )->upsert(
+				'site_stats',
+				$row,
+				'ss_row_id',
+				$set,
+				__METHOD__
+			);
+		}
 	}
 
 	/**
