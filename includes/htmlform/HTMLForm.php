@@ -725,6 +725,9 @@ class HTMLForm extends ContextSource {
 		$res = call_user_func( $callback, $data, $this );
 		if ( $res === false ) {
 			$this->mWasSubmitted = false;
+		} elseif ( $res instanceof StatusValue ) {
+			// DWIM - callbacks are not supposed to return a StatusValue but it's easy to mix up.
+			$res = Status::wrap( $res );
 		}
 
 		return $res;
