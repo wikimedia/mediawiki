@@ -769,16 +769,19 @@ class WANObjectCache implements
 	 *      and its as-of time to the callback. This is useful if adaptiveTTL() is used
 	 *      on the old value's as-of time when it is verified as still being correct.
 	 *      Default: WANObjectCache::STALE_TTL_NONE
+	 *   - segmentable: Allow partitioning of the value if it is a large string.
+	 *      Default: false.
 	 *   - creating: Optimize for the case where the key does not already exist.
 	 *      Default: false
 	 *   - version: Integer version number signifying the format of the value.
 	 *      Default: null
 	 *   - walltime: How long the value took to generate in seconds. Default: null
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{lag?:float|int,since?:float|int,pending?:bool,lockTSE?:int,staleTTL?:int,creating?:bool,version?:int,walltime?:int|float} $opts
+	 * @phan-param array{lag?:float|int,since?:float|int,pending?:bool,lockTSE?:int,staleTTL?:int,creating?:bool,version?:int,walltime?:int|float,segmentable?:bool} $opts
 	 * @note Options added in 1.28: staleTTL
 	 * @note Options added in 1.33: creating
 	 * @note Options added in 1.34: version, walltime
+	 * @note Options added in 1.40: segmentable
 	 * @return bool Success
 	 */
 	final public function set( $key, $value, $ttl = self::TTL_INDEFINITE, array $opts = [] ) {
@@ -795,6 +798,7 @@ class WANObjectCache implements
 			$opts['pending'] ?? false,
 			$opts['lockTSE'] ?? self::TSE_NONE,
 			$opts['staleTTL'] ?? self::STALE_TTL_NONE,
+			$opts['segmentable'] ?? false,
 			$opts['creating'] ?? false
 		);
 
@@ -814,6 +818,7 @@ class WANObjectCache implements
 	 * @param bool $dataPendingCommit
 	 * @param int $lockTSE
 	 * @param int $staleTTL
+	 * @param bool $segmentable
 	 * @param bool $creating
 	 * @return bool Success
 	 */
@@ -828,6 +833,7 @@ class WANObjectCache implements
 		bool $dataPendingCommit,
 		int $lockTSE,
 		int $staleTTL,
+		bool $segmentable,
 		bool $creating
 	) {
 		if ( $ttl < 0 ) {
@@ -934,11 +940,17 @@ class WANObjectCache implements
 		$wrapped = $this->wrap( $value, $logicalTTL ?: $ttl, $version, $now, $walltime );
 		$storeTTL = $ttl + $staleTTL;
 
+		$flags = 0;
+		if ( $segmentable ) {
+			$flags |= ( $this->cache )::WRITE_ALLOW_SEGMENTS;
+		}
+
 		if ( $creating ) {
 			$ok = $this->cache->add(
 				$this->makeSisterKey( $key, self::TYPE_VALUE ),
 				$wrapped,
-				$storeTTL
+				$storeTTL,
+				$flags
 			);
 		} else {
 			$ok = $this->cache->merge(
@@ -948,7 +960,8 @@ class WANObjectCache implements
 					return ( is_string( $cWrapped ) ) ? false : $wrapped;
 				},
 				$storeTTL,
-				( $this->cache )::MAX_CONFLICTS_ONE
+				( $this->cache )::MAX_CONFLICTS_ONE,
+				$flags
 			);
 		}
 
@@ -1672,6 +1685,7 @@ class WANObjectCache implements
 		$lockTSE = $opts['lockTSE'] ?? self::TSE_NONE;
 		$busyValue = $opts['busyValue'] ?? null;
 		$staleTTL = $opts['staleTTL'] ?? self::STALE_TTL_NONE;
+		$segmentable = $opts['segmentable'] ?? false;
 		$version = $opts['version'] ?? null;
 
 		// Determine whether one thread per datacenter should handle regeneration at a time
@@ -1765,6 +1779,7 @@ class WANObjectCache implements
 					$lockTSE,
 					$version,
 					$walltime,
+					$segmentable
 				);
 			} else {
 				$this->setMainValue(
@@ -1779,9 +1794,10 @@ class WANObjectCache implements
 					$setOpts['since'] ?? $preCallbackTime,
 					// @phan-suppress-next-line PhanCoalescingAlwaysNull
 					$setOpts['pending'] ?? false,
-					$lockTSE, // informs lag vs performance trade-offs
+					$lockTSE,
 					$staleTTL,
-					( $curValue === false ) // optimization
+					$segmentable,
+					( $curValue === false )
 				);
 			}
 		}
@@ -2019,6 +2035,7 @@ class WANObjectCache implements
 	 * @param int|float $ttl
 	 * @param int|null $version Value version number
 	 * @param float $walltime How long it took to generate the value in seconds
+	 * @param bool $segmentable
 	 * @return bool Success
 	 */
 	private function setInterimValue(
@@ -2026,17 +2043,25 @@ class WANObjectCache implements
 		$value,
 		$ttl,
 		?int $version,
-		float $walltime
+		float $walltime,
+		bool $segmentable
 	) {
 		$now = $this->getCurrentTime();
 		$ttl = max( self::INTERIM_KEY_TTL, (int)$ttl );
 
+		// Wrap that value with time/TTL/version metadata
 		$wrapped = $this->wrap( $value, $ttl, $version, $now, $walltime );
+
+		$flags = 0;
+		if ( $segmentable ) {
+			$flags |= ( $this->cache )::WRITE_ALLOW_SEGMENTS;
+		}
 
 		return $this->cache->set(
 			$this->makeSisterKey( $key, self::TYPE_INTERIM ),
 			$wrapped,
-			$ttl
+			$ttl,
+			$flags
 		);
 	}
 
