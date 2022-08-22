@@ -225,13 +225,12 @@
 	 *
 	 * @private
 	 * @param {string} key Key name
-	 * @param {boolean} [isRawKey=false] If this is the raw expiry key, i.e. it includes EXPIRY_PREFIX
 	 * @return {boolean} Whether key is expired
 	 */
-	SafeStorage.prototype.isExpired = function ( key, isRawKey ) {
+	SafeStorage.prototype.isExpired = function ( key ) {
 		var expiry;
 		try {
-			expiry = this.store.getItem( ( isRawKey ? '' : EXPIRY_PREFIX ) + key );
+			expiry = this.store.getItem( EXPIRY_PREFIX + key );
 		} catch ( e ) {
 			return false;
 		}
