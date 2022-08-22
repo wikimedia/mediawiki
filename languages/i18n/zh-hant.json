@@ -1029,7 +1029,7 @@
 	"mergehistory-submit": "合併修訂",
 	"mergehistory-empty": "沒有可以合併的修訂",
 	"mergehistory-done": "$1 的 $4 個{{PLURAL:$4|修訂}}{{PLURAL:$4|被}}合併到[[:$2]]。\n$3。",
-	"mergehistory-fail": "無法進行歷史合併，請重新檢查該頁面及時間參數。",
+	"mergehistory-fail": "無法進行歷史合併。請重新檢查該頁面及時間參數。",
 	"mergehistory-fail-bad-timestamp": "時間值無效。",
 	"mergehistory-fail-invalid-source": "來源頁面無效。",
 	"mergehistory-fail-invalid-dest": "目標頁面無效。",
