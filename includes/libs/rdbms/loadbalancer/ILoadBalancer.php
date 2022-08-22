@@ -19,8 +19,6 @@
  */
 namespace Wikimedia\Rdbms;
 
-use InvalidArgumentException;
-
 /**
  * Create and track the database connections and transactions for a given database cluster.
  *
@@ -49,7 +47,7 @@ use InvalidArgumentException;
  * hold across separate queries in the DB transaction since the data appears within a consistent
  * point-in-time snapshot.
  *
- * The typical caller will use LoadBalancer::getConnection( DB_* ) to yield a live database
+ * The typical caller will use LoadBalancer::getConnection( DB_* ) to yield a database
  * connection handle. The choice of which DB server to use is based on pre-defined loads for
  * weighted random selection, adjustments thereof by LoadMonitor, and the amount of replication
  * lag on each DB server. Lag checks might cause problems in certain setups, so they should be
@@ -171,12 +169,12 @@ interface ILoadBalancer {
 	 *
 	 * @param string|false $group Query group or false for the generic group
 	 * @param string|false $domain DB domain ID or false for the local domain
-	 * @return int|false Specific server index, or false if no live handle can be obtained
+	 * @return int|false Specific server index, or false if no DB handle can be obtained
 	 */
 	public function getReaderIndex( $group = false, $domain = false );
 
 	/**
-	 * Set the primary position to reach before the next generic group DB handle query
+	 * Set the primary position to reach before the next generic group DB query
 	 *
 	 * If a generic replica DB connection is already open then this immediately waits
 	 * for that DB to catch up to the specified replication position. Otherwise, it will
@@ -203,14 +201,15 @@ interface ILoadBalancer {
 	public function waitForAll( $pos, $timeout = null );
 
 	/**
-	 * Get an existing live handle to the given server index (on any domain)
+	 * Get an existing DB handle to the given server index (on any domain)
 	 *
 	 * Use the CONN_TRX_AUTOCOMMIT flag to only look for connections opened with that flag.
 	 *
 	 * Avoid the use of begin()/commit() and startAtomic()/endAtomic() on any handle returned.
-	 * This method is largely intended for internal by RDBMs callers that issue queries that do
+	 * This method is intended for internal RDBMS callers that issue queries that do
 	 * not affect any current transaction.
 	 *
+	 * @internal For use by Rdbms classes only
 	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param int $flags Bitfield of CONN_* class constants
 	 * @return Database|false False if no such connection is open
@@ -218,7 +217,7 @@ interface ILoadBalancer {
 	public function getAnyOpenConnection( $i, $flags = 0 );
 
 	/**
-	 * Get a lazy handle for a specific or virtual (DB_PRIMARY/DB_REPLICA) server index
+	 * Get a lazy-connecting database handle for a specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 *
 	 * The server index, $i, can be one of the following:
 	 *   - DB_REPLICA: a server index will be selected by the load balancer based on read
@@ -265,32 +264,29 @@ interface ILoadBalancer {
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
 	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants
-	 *
-	 * @note This method throws DBAccessError if ILoadBalancer::disable() was called
-	 *
 	 * @return IDatabase|false This returns false on failure if CONN_SILENCE_ERRORS is set
-	 * @throws DBError If no live handle could be obtained and CONN_SILENCE_ERRORS is not set
-	 * @throws DBAccessError If disable() was previously called
-	 * @throws InvalidArgumentException
 	 */
 	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 );
 
 	/**
-	 * Get a live handle for a specific server index
+	 * Get a DB handle for a specific server index
 	 *
-	 * This is a simpler version of getConnection() that does not accept virtual server
-	 * indexes (e.g. DB_PRIMARY/DB_REPLICA), does not assure that primary DB handles have
-	 * read-only mode when there is high replication lag, and can only trigger attempts
-	 * to connect to a single server (the one with the specified server index).
+	 * This is an internal utility method for methods like LoadBalancer::getConnectionInternal()
+	 * and DBConnRef to create the underlying connection to a concrete server.
+	 *
+	 * The following is the responsibility of the caller:
+	 *
+	 * - translate any virtual server indexes (DB_PRIMARY/DB_REPLICA) to a real server index.
+	 * - enforce read-only mode on primary DB handle if there is high replication lag.
 	 *
 	 * @see ILoadBalancer::getConnection()
 	 *
+	 * @internal Only for use within ILoadBalancer/ILoadMonitor
 	 * @param int $i Specific server index
 	 * @param string $domain Resolved DB domain
 	 * @param int $flags Bitfield of class CONN_* constants
 	 * @return IDatabase|false This returns false on failure if CONN_SILENCE_ERRORS is set
-	 * @throws DBError If no live handle could be obtained and CONN_SILENCE_ERRORS is not set
-	 * @internal Only for use within ILoadBalancer/ILoadMonitor
+	 * @throws DBError If no DB handle could be obtained and CONN_SILENCE_ERRORS is not set
 	 */
 	public function getServerConnection( $i, $domain, $flags = 0 );
 
@@ -301,7 +297,7 @@ interface ILoadBalancer {
 	public function reuseConnection( IDatabase $conn );
 
 	/**
-	 * @internal Only to be used by DBConnRef
+	 * @internal Only for use within DBConnRef
 	 * @param IDatabase $conn
 	 */
 	public function reuseConnectionInternal( IDatabase $conn );
@@ -327,32 +323,27 @@ interface ILoadBalancer {
 	public function getConnectionInternal( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase;
 
 	/**
-	 * Get a lazy-connecting database handle reference for a server index
-	 *
-	 * The handle's methods simply proxy to those of an underlying IDatabase handle which
-	 * takes care of the actual connection and query logic.
+	 * Get a lazy-connecting database handle for a server index
 	 *
 	 * The CONN_TRX_AUTOCOMMIT flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
 	 * (e.g. sqlite) in order to avoid deadlocks. getServerAttributes()
 	 * can be used to check such flags beforehand. Avoid the use of begin() or startAtomic()
 	 * on any CONN_TRX_AUTOCOMMIT connections.
 	 *
-	 * @see ILoadBalancer::getConnection() for parameter information
 	 * @deprecated since 1.38, use ILoadBalancer::getConnectionRef() instead.
+	 * @see ILoadBalancer::getConnection() for parameter information
 	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
 	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants
-	 * @return IDatabase Live connection handle
-	 * @throws DBError If no live handle could be obtained
-	 * @throws DBAccessError If disable() was previously called
+	 * @return IDatabase
 	 */
 	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase;
 
 	/**
-	 * Get a live database handle, suitable for migrations and schema changes, for a server index
+	 * Get a DB handle, suitable for migrations and schema changes, for a server index
 	 *
-	 * The handle's methods simply proxy to those of an underlying IDatabase handle which
+	 * The DBConnRef methods simply proxy an underlying IDatabase object which
 	 * takes care of the actual connection and query logic.
 	 *
 	 * The CONN_TRX_AUTOCOMMIT flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
@@ -361,14 +352,11 @@ interface ILoadBalancer {
 	 * on any CONN_TRX_AUTOCOMMIT connections.
 	 *
 	 * @see ILoadBalancer::getConnection() for parameter information
-	 *
 	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
 	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
-	 * @return DBConnRef Live connection handle
-	 * @throws DBError If no live handle could be obtained
-	 * @throws DBAccessError If disable() was previously called
+	 * @return DBConnRef
 	 */
 	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): DBConnRef;
 
