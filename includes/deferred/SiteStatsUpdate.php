@@ -38,7 +38,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 	protected $images = 0;
 
 	private const SHARDS_OFF = 1;
-	private const SHARDS_ON = 10;
+	public const SHARDS_ON = 10;
 
 	/** @var string[] Map of (table column => counter type) */
 	private const COUNTERS = [
