@@ -93,7 +93,7 @@
 		"nikic/php-parser": "^4.10.2",
 		"php-parallel-lint/php-console-highlighter": "0.5",
 		"php-parallel-lint/php-parallel-lint": "1.3.1",
-		"phpunit/phpunit": "^8.5",
+		"phpunit/phpunit": "8.5.28",
 		"psy/psysh": "^0.11.1",
 		"seld/jsonlint": "1.8.3",
 		"wikimedia/alea": "^0.9.3",
