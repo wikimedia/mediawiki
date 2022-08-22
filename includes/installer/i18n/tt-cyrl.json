@@ -96,7 +96,7 @@
 	"config-install-schema": "Схема төзелә",
 	"config-install-user-alreadyexists": "Кулланучы «$1» бар инде",
 	"config-install-user-create-failed": "«$1» кулланучыны китереп булмады: $2",
-	"config-install-tables": "Җәдвәлләр төзелә",
+	"config-install-tables": "Җәдвәлләрне төзү, беренче адым",
 	"config-install-stats": "Инициализация статистикасы",
 	"config-download-localsettings": "<code>LocalSettings.php</code> күчереп алу",
 	"config-help": "белешмә",

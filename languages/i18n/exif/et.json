@@ -3,6 +3,7 @@
 		"authors": [
 			"Avjoska",
 			"Cylly1512",
+			"Kareyac",
 			"Oop",
 			"Pikne",
 			"Silvar",
@@ -354,5 +355,6 @@
 	"exif-urgency-normal": "Harilik ($1)",
 	"exif-urgency-low": "Madal ($1)",
 	"exif-urgency-high": "Kõrge ($1)",
-	"exif-urgency-other": "Kasutaja määratud tähtsus ($1)"
+	"exif-urgency-other": "Kasutaja määratud tähtsus ($1)",
+	"exif-usepanoramaviewer-true": "Jah"
 }

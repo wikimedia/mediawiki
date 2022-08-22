@@ -40,5 +40,7 @@
 	"rest-update-cannot-create-page": "Siden «$1» kan ikke opprettes fordi den allerede finnes. For å oppdatere den eksisterende siden, angi grunnrevisjons-ID-en i strukturen under «latest»-nøkkelen i forespørselsinnholdet.",
 	"rest-extraneous-csrf-token": "Overflødig CSRF-nøkkel funnet. CSRF-nøkler må ikke brukes når man bruker autentiseringsmekanismer som OAuth som er trygge mot CSRF-angrep.",
 	"rest-cannot-load-file": "Fila for tittelen «$1» kan ikke lastes.",
-	"rest-cross-origin-anon-write": "Anonyme skriveforespørsler fra andre nettsteder tillates ikke"
+	"rest-cross-origin-anon-write": "Anonyme skriveforespørsler fra andre nettsteder tillates ikke",
+	"rest-requires-safe-against-csrf": "Dette endepunktet krever en CSRF-trygg øktleverandør.",
+	"rest-badtoken": "Den gitte CSRF-nøkkelen er ugyldig."
 }
