@@ -17,7 +17,8 @@
 			"MuratTheTurkish",
 			"Rapsar",
 			"SaldırganSincap",
-			"Uncitoyen"
+			"Uncitoyen",
+			"Anerka"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Belgelendirme]]\n* [[mw:Special:MyLanguage/API:FAQ|SSS]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Posta listesi]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API Duyuruları]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Hatalar ve talepler]\n</div>\n<strong>Durum:</strong> MediaWiki API, aktif olarak desteklenen ve geliştirilen olgun ve kararlı bir arayüzdür. Bundan kaçınmaya çalışırken, zaman zaman kırılma değişiklikleri yapmamız gerekebilir; güncellemeleri bildirmek için [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ posta listesine] abone olun.\n\n<strong>Hatalı istekler:</strong> API'ya hatalı istekler gönderildiğinde, \"MediaWiki-API-Error\" anahtarını içeren bir HTTP başlığı gönderilir ve daha sonra hem başlığın değeri hem de geri gönderilen hata kodu olarak ayarlanır. aynı değer. Daha fazla bilgi için [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Hatalar ve uyarılar]] sayfasına bakın.\n\n<p class=\"mw-apisandbox-link\"><strong>Deneme:</strong> API isteklerini test etme kolaylığı için, [[Special:ApiSandbox]] sayfasına bakın.</p>",
@@ -1579,10 +1580,10 @@
 	"apierror-allpages-generator-redirects": "Bir jeneratör olarak <kbd>allpages</kbd> kullanırken <var>redirects</var> yerine <kbd>gapfilterredir=nonredirects</kbd> kullanın.",
 	"apierror-appendnotsupported": "$1 içerik modelini kullanan sayfalara eklenemez.",
 	"apierror-articleexists": "Oluşturmaya çalıştığınız madde zaten oluşturuldu.",
-	"apierror-assertanonfailed": "Artık çıkış yapmadınız, bu nedenle işlem tamamlanamadı.",
+	"apierror-assertanonfailed": "Oturum açıldı, bu nedenle işlem tamamlanamadı.",
 	"apierror-assertbotfailed": "<code>bot</code> hakkınız yok, bu nedenle işlem tamamlanamadı.",
 	"apierror-assertnameduserfailed": "Artık \"$1\" olarak oturum açmadınız, bu nedenle işlem tamamlanamadı.",
-	"apierror-assertuserfailed": "Artık giriş yapmadınız, bu nedenle işlem tamamlanamadı.",
+	"apierror-assertuserfailed": "Oturumunuz kapandı, bu nedenle işlem tamamlanamadı.",
 	"apierror-autoblocked": "IP adresiniz engellenen bir kullanıcı tarafından kullanıldığından otomatik olarak engellendi.",
 	"apierror-bad-badfilecontexttitle": "<var>$1badfilecontexttitle</var> parametresinde geçersiz başlık.",
 	"apierror-badconfig-resulttoosmall": "Bu vikideki <code>$wgAPIMaxResultSize</code> değeri, temel sonuç bilgilerini tutamayacak kadar küçük.",

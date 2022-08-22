@@ -3980,6 +3980,7 @@
 	"userjsispublic": "Huomio: JavaScript-alasivuilla ei tulisi olla luottamuksellisia tietoja, koska muut käyttäjät voivat nähdä ne.",
 	"userjsonispublic": "Huomio: JSON-alasivuilla ei tulisi olla luottamuksellisia tietoja, koska muut käyttäjät voivat nähdä ne.",
 	"usercssispublic": "Huomio: CSS-alasivuilla ei tulisi olla luottamuksellisia tietoja, koska muut käyttäjät voivat nähdä ne.",
+	"userjsdangerous": "Ota huomioon: Tällä sivulla olevat komentosarjat suoritetaan joka kerta, kun lataat sivun. Tänne lisätty pahantahtoinen koodi voi johtaa käyttäjätilin vaarantumiseen. Koodi suoritetaan, kun esikatselet tälle sivulle tekemiäsi muutoksia.",
 	"restrictionsfield-badip": "Virheellinen IP-osoite tai alue: $1",
 	"restrictionsfield-label": "Sallitut IP-alueet:",
 	"restrictionsfield-help": "Yksi IP-osoite tai CIDR-alue per rivi. Ottaaksesi kaiken käyttöön, käytä:<pre>0.0.0.0/0\n::/0</pre>",
