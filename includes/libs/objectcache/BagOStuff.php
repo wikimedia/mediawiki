@@ -89,14 +89,13 @@ abstract class BagOStuff implements
 	protected $logger;
 	/** @var callable|null */
 	protected $asyncHandler;
+	/** @var int[] Map of (BagOStuff:ATTR_* constant => BagOStuff:QOS_* constant) */
+	protected $attrMap = [];
 	/**
 	 * @var array<string,array> Cache key processing callbacks and info for metrics
 	 * @phan-var array<string,array{0:string,1:callable}>
 	 */
 	protected $wrapperInfoByPrefix = [];
-
-	/** @var int[] Map of (BagOStuff:ATTR_* constant => BagOStuff:QOS_* constant) */
-	protected $attrMap = [];
 
 	/** @var string Default keyspace; used by makeKey() */
 	protected $keyspace;
@@ -121,7 +120,7 @@ abstract class BagOStuff implements
 	/** Bitfield constants for set()/merge(); these are only advisory */
 	/** Only change state of the in-memory cache */
 	public const WRITE_CACHE_ONLY = 8;
-	/** Allow partitioning of the value if it is large */
+	/** Allow partitioning of the value if it is a large string */
 	public const WRITE_ALLOW_SEGMENTS = 16;
 	/** Delete all the segments if the value is partitioned */
 	public const WRITE_PRUNE_SEGMENTS = 32;
