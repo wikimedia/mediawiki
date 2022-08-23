@@ -20,7 +20,7 @@ interface UserClearNewTalkNotificationHook {
 	 * is on the viewer's watchlist then WatchlistManager will also _not_ update the
 	 * "seen" marker.
 	 *
-	 * @see MediaWiki\Watchlist\WatchlistManager::clearTitleUserNotifications
+	 * @see \MediaWiki\Watchlist\WatchlistManager::clearTitleUserNotifications
 	 * @since 1.35
 	 * @param UserIdentity $userIdentity User that will clear the message
 	 * @param int $oldid Revision ID of the talk page being viewed (0 means the most recent one)
