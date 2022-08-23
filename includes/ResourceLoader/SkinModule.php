@@ -149,16 +149,34 @@ class SkinModule extends LessVarFileModule {
 			'screen' => [ 'resources/src/mediawiki.skinning/content.tables.less' ],
 			'print' => [ 'resources/src/mediawiki.skinning/content.tables-print.less' ]
 		],
-		'interface' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/interface.less' ],
-			'print' => [ 'resources/src/mediawiki.skinning/interface-print.less' ],
-		],
+		// Legacy shorthand for 6 features: interface-core, interface-edit-section-links,
+		// interface-indicators, interface-subtitle, interface-site-notice, interface-user-message
+		'interface' => [],
 		'interface-category' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/interface.category.less' ],
 			'print' => [ 'resources/src/mediawiki.skinning/interface.category-print.less' ],
 		],
+		'interface-core' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/interface.less' ],
+			'print' => [ 'resources/src/mediawiki.skinning/interface-print.less' ],
+		],
+		'interface-edit-section-links' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/interface-edit-section-links.less' ],
+		],
+		'interface-indicators' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/interface-indicators.less' ],
+		],
+		'interface-site-notice' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/interface-site-notice.less' ],
+		],
+		'interface-subtitle' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/interface-subtitle.less' ],
+		],
 		'interface-message-box' => [
 			'all' => [ 'resources/src/mediawiki.skinning/messageBoxes.less' ],
+		],
+		'interface-user-message' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/interface-user-message.less' ],
 		],
 		'elements' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/elements.less' ],
@@ -196,6 +214,7 @@ class SkinModule extends LessVarFileModule {
 	private const DEFAULT_FEATURES_SPECIFIED = [
 		'accessibility' => true,
 		'content-body' => true,
+		'interface-core' => true,
 		'toc' => true,
 	];
 
@@ -335,6 +354,16 @@ class SkinModule extends LessVarFileModule {
 			unset( $features[ 'content-parser-output' ] );
 		}
 
+		// The interface module is a short hand for several modules. Enable them now.
+		if ( isset( $features[ 'interface' ] ) && $features[ 'interface' ] ) {
+			unset( $features[ 'interface' ] );
+			$features[ 'interface-core' ] = true;
+			$features[ 'interface-indicators' ] = true;
+			$features[ 'interface-subtitle' ] = true;
+			$features[ 'interface-user-message' ] = true;
+			$features[ 'interface-site-notice' ] = true;
+			$features[ 'interface-edit-section-links' ] = true;
+		}
 		return $features;
 	}
 
