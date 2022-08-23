@@ -49,10 +49,10 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	/** @var array[] Map of (key => (PHP variable value, serialized value)) */
 	protected $preparedValues = [];
 
-	/** @var string Component to use for key construction of blob segment keys */
+	/** Component to use for key construction of blob segment keys */
 	private const SEGMENT_COMPONENT = 'segment';
 
-	/** @var int Idiom for doGet() to return extra information by reference */
+	/** Idiom for doGet() to return extra information by reference */
 	protected const PASS_BY_REF = -1;
 
 	protected const METRIC_OP_GET = 'get';
@@ -172,9 +172,9 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @return bool Success
 	 */
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
-		list( $entry, $usable ) = $this->makeValueOrSegmentList( $key, $value, $exptime, $flags );
+		$entry = $this->makeValueOrSegmentList( $key, $value, $exptime, $flags, $ok );
 		// Only when all segments (if any) are stored should the main key be changed
-		return $usable ? $this->doSet( $key, $entry, $exptime, $flags ) : false;
+		return $ok ? $this->doSet( $key, $entry, $exptime, $flags ) : false;
 	}
 
 	/**
@@ -234,9 +234,9 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	abstract protected function doDelete( $key, $flags = 0 );
 
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
-		list( $entry, $usable ) = $this->makeValueOrSegmentList( $key, $value, $exptime, $flags );
+		$entry = $this->makeValueOrSegmentList( $key, $value, $exptime, $flags, $ok );
 		// Only when all segments (if any) are stored should the main key be changed
-		return $usable ? $this->doAdd( $key, $entry, $exptime, $flags ) : false;
+		return $ok ? $this->doAdd( $key, $entry, $exptime, $flags ) : false;
 	}
 
 	/**
@@ -356,9 +356,9 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			return false;
 		}
 
-		list( $entry, $usable ) = $this->makeValueOrSegmentList( $key, $value, $exptime, $flags );
+		$entry = $this->makeValueOrSegmentList( $key, $value, $exptime, $flags, $ok );
 		// Only when all segments (if any) are stored should the main key be changed
-		return $usable ? $this->doCas( $casToken, $key, $entry, $exptime, $flags ) : false;
+		return $ok ? $this->doCas( $casToken, $key, $entry, $exptime, $flags ) : false;
 	}
 
 	/**
@@ -835,28 +835,60 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	}
 
 	/**
-	 * Determine the entry (inline or segment list) to store under a key to save the value
+	 * Check if a value should use a segmentation wrapper due to its size
+	 *
+	 * In order to avoid extra serialization and/or twice-serialized wrappers, just check if
+	 * the value is a large string. Support cache wrappers (e.g. WANObjectCache) that use 2D
+	 * arrays to wrap values. This does not recurse in order to avoid overhead from complex
+	 * structures and the risk of infinite loops (due to references).
+	 *
+	 * @param mixed $value
+	 * @param int $flags
+	 * @return bool
+	 */
+	private function useSegmentationWrapper( $value, $flags ) {
+		if (
+			$this->segmentationSize === INF ||
+			!$this->fieldHasFlags( $flags, self::WRITE_ALLOW_SEGMENTS )
+		) {
+			return false;
+		}
+
+		if ( is_string( $value ) ) {
+			return ( strlen( $value ) >= $this->segmentationSize );
+		}
+
+		if ( is_array( $value ) ) {
+			// Expect that the contained value will be one of the first array entries
+			foreach ( array_slice( $value, 0, 4 ) as $v ) {
+				if ( is_string( $v ) && strlen( $v ) >= $this->segmentationSize ) {
+					return true;
+				}
+			}
+		}
+
+		// Avoid breaking functions for incrementing/decrementing integer key values
+		return false;
+	}
+
+	/**
+	 * Make the entry to store at a key (inline or segment list), storing any segments
 	 *
 	 * @param string $key
 	 * @param mixed $value
 	 * @param int $exptime
 	 * @param int $flags
-	 * @return array (inline value or segment list, whether the entry is usable)
+	 * @param mixed|null &$ok Whether the entry is usable (e.g. no missing segments) [returned]
+	 * @return mixed The entry (inline value, wrapped inline value, or wrapped segment list)
 	 * @since 1.34
 	 */
-	final protected function makeValueOrSegmentList( $key, $value, $exptime, $flags ) {
+	final protected function makeValueOrSegmentList( $key, $value, $exptime, $flags, &$ok ) {
 		$entry = $value;
-		$usable = true;
+		$ok = true;
 
-		if (
-			$this->fieldHasFlags( $flags, self::WRITE_ALLOW_SEGMENTS ) &&
-			// avoid breaking incr()/decr()
-			!is_int( $value ) &&
-			is_finite( $this->segmentationSize )
-		) {
+		if ( $this->useSegmentationWrapper( $value, $flags ) ) {
 			$segmentSize = $this->segmentationSize;
 			$maxTotalSize = $this->segmentedValueMaxSize;
-
 			$serialized = $this->getSerialized( $value, $key );
 			$size = strlen( $serialized );
 			if ( $size > $maxTotalSize ) {
@@ -864,9 +896,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 					"Value for {key} exceeds $maxTotalSize bytes; cannot segment.",
 					[ 'key' => $key ]
 				);
-			} elseif ( $size <= $segmentSize ) {
-				// The serialized value was already computed, so just use it inline
-				$entry = SerializedValueContainer::newUnified( $serialized );
 			} else {
 				// Split the serialized value into chunks and store them at different keys
 				$chunksByKey = [];
@@ -880,12 +909,12 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 					$segmentHashes[] = $hash;
 				}
 				$flags &= ~self::WRITE_ALLOW_SEGMENTS;
-				$usable = $this->setMulti( $chunksByKey, $exptime, $flags );
+				$ok = $this->setMulti( $chunksByKey, $exptime, $flags );
 				$entry = SerializedValueContainer::newSegmented( $segmentHashes );
 			}
 		}
 
-		return [ $entry, $usable ];
+		return $entry;
 	}
 
 	/**
