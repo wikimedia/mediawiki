@@ -266,19 +266,24 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 				$queryBuilder->limit( $limit );
 			}
 
-			$subsql[] = $queryBuilder->getSQL();
+			$subsql[] = $queryBuilder;
 		}
 
 		if ( count( $subsql ) == 0 ) {
 			return false; // should never happen
 		}
 		if ( count( $subsql ) == 1 && $dbr->unionSupportsOrderAndLimit() ) {
-			$sql = $subsql[0];
+			$sql = $subsql[0]
+				->setMaxExecutionTime( $this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )
+				->getSQL();
 		} else {
+			$sqls = array_map( static function ( $queryBuilder ) {
+				return $queryBuilder->getSQL();
+			}, $subsql );
 			$queryBuilder = $dbr->newSelectQueryBuilder()
 				->select( '*' )
 				->from(
-					(string)( new Subquery( $dbr->unionQueries( $subsql, $dbr::UNION_DISTINCT ) ) ),
+					(string)( new Subquery( $dbr->unionQueries( $sqls, $dbr::UNION_DISTINCT ) ) ),
 					'main'
 				)
 				->orderBy( 'rc_timestamp', SelectQueryBuilder::SORT_DESC )
