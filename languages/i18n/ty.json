@@ -5,7 +5,9 @@
 			"Sab",
 			"Sainte-Rose (on ty.wikipedia.org)",
 			"TMg",
-			"Tahitoa (on ty.wikipedia.org)"
+			"Tahitoa (on ty.wikipedia.org)",
+			"Amire80",
+			"Tok Pisin"
 		]
 	},
 	"sunday": "tāpati",
@@ -95,7 +97,7 @@
 	"history-feed-title": "Parau tuatāpapa",
 	"prefs-rc": "Te mau fa’ahuru-’ē-ra’a ’āpī",
 	"prefs-files": "Te mau putu’ite",
-	"youremail": "Tā’u ’āfata rata uira",
+	"youremail": "Tā’u ’āfata rata uira :",
 	"yourlanguage": "Te reo:",
 	"email": "’Imere",
 	"recentchanges": "Te mau fa’ahuru-’ē-ra’a ’āpī",
@@ -105,7 +107,7 @@
 	"randompage": "’Api mā’iti-haere-noa",
 	"specialloguserlabel": "Ta’ata fa’a’ohipa :",
 	"allpagessubmit": "Haere",
-	"categories": "Te mau huru o te ’api",
+	"categories": "{{PLURAL:$1|Te huru o te ’api |Te mau huru o te ’api }}",
 	"watch": "Ha’apa’o",
 	"prot_1movedto2": "’Ua tāhitihia te ’api [[$1]] e ana i te ’api ’āpī [[$2]]",
 	"restriction-edit": "Fa’ahuru ’ē",
