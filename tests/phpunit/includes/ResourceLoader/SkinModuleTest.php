@@ -14,6 +14,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group ResourceLoader
+ * @covers \MediaWiki\ResourceLoader\SkinModule
  */
 class SkinModuleTest extends ResourceLoaderTestCase {
 	public static function provideApplyFeaturesCompatibility() {
@@ -110,7 +111,6 @@ class SkinModuleTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @dataProvider provideApplyFeaturesCompatibility
-	 * @covers \MediaWiki\ResourceLoader\SkinModule::applyFeaturesCompatibility
 	 */
 	public function testApplyFeaturesCompatibility( array $features, array $expected, bool $optInPolicy, $msg ) {
 		// Test protected method
@@ -235,7 +235,6 @@ CSS
 
 	/**
 	 * @dataProvider provideGetStyles
-	 * @covers       \MediaWiki\ResourceLoader\SkinModule
 	 */
 	public function testGetStyles( $parent, $logo, $expected ) {
 		$module = $this->getMockBuilder( SkinModule::class )
@@ -259,16 +258,12 @@ CSS
 
 	/**
 	 * @dataProvider provideGetAvailableLogos
-	 * @covers \MediaWiki\ResourceLoader\SkinModule::getAvailableLogos
 	 */
 	public function testGetAvailableLogos( $config, $expected ) {
 		$logos = SkinModule::getAvailableLogos( new HashConfig( $config ) );
 		$this->assertSame( $expected, $logos );
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\SkinModule::getAvailableLogos
-	 */
 	public function testGetAvailableLogosRuntimeException() {
 		$logos = SkinModule::getAvailableLogos( new HashConfig( [
 			'Logo' => false,
@@ -278,9 +273,6 @@ CSS
 		$this->assertSame( [], $logos );
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\SkinModule::isKnownEmpty
-	 */
 	public function testIsKnownEmpty() {
 		$module = new SkinModule();
 		$ctx = $this->createMock( Context::class );
@@ -290,7 +282,6 @@ CSS
 
 	/**
 	 * @dataProvider provideGetLogoData
-	 * @covers \MediaWiki\ResourceLoader\SkinModule::getLogoData
 	 */
 	public function testGetLogoData( $config, $expected ) {
 		// Allow testing of protected method
@@ -405,8 +396,6 @@ CSS
 
 	/**
 	 * @dataProvider providePreloadLinks
-	 * @covers \MediaWiki\ResourceLoader\SkinModule::getPreloadLinks
-	 * @covers \MediaWiki\ResourceLoader\SkinModule::getLogoData
 	 */
 	public function testPreloadLinkHeaders( $config, $lang, $result ) {
 		$ctx = $this->createMock( Context::class );
@@ -506,9 +495,6 @@ CSS
 		];
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\SkinModule::getPreloadLinks
-	 */
 	public function testNoPreloadLogos() {
 		$module = new SkinModule( [ 'features' => [ 'logo' => false ] ] );
 		$context =
@@ -517,9 +503,6 @@ CSS
 		$this->assertArrayEquals( [], $preloadLinks );
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\SkinModule::getPreloadLinks
-	 */
 	public function testPreloadLogos() {
 		$module = new SkinModule();
 		$module->setConfig( self::getMinimalConfig() );
@@ -533,8 +516,6 @@ CSS
 	 * Covers SkinModule::FEATURE_FILES, but not annotatable.
 	 *
 	 * @dataProvider provideFeatureFiles
-	 * @coversNothing
-	 *
 	 * @param string $file
 	 */
 	public function testFeatureFilesExist( string $file ): void {
@@ -630,7 +611,6 @@ CSS
 	}
 
 	/**
-	 * @covers \MediaWiki\ResourceLoader\SkinModule::getStyleFiles
 	 * @dataProvider provideGetStyleFilesFeatureStylesOrder
 	 * @param array $features
 	 * @param array $styles
@@ -688,7 +668,6 @@ CSS
 	}
 
 	/**
-	 * @covers       \MediaWiki\ResourceLoader\SkinModule
 	 * @dataProvider provideInvalidFeatures
 	 */
 	public function testConstructInvalidFeatures( array $features ) {

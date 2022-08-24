@@ -12,11 +12,11 @@ use ResourceLoaderFileModuleTestingSubclass;
 use ResourceLoaderTestCase;
 use ResourceLoaderTestModule;
 
+/**
+ * @covers \MediaWiki\ResourceLoader\Module
+ */
 class ModuleTest extends ResourceLoaderTestCase {
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\Module::getVersionHash
-	 */
 	public function testGetVersionHash() {
 		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
 
@@ -82,9 +82,6 @@ class ModuleTest extends ResourceLoaderTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\Module::getVersionHash
-	 */
 	public function testGetVersionHash_debug() {
 		$module = new ResourceLoaderTestModule( [ 'script' => 'foo();' ] );
 		$module->setName( "" );
@@ -92,9 +89,6 @@ class ModuleTest extends ResourceLoaderTestCase {
 		$this->assertSame( '', $module->getVersionHash( $context ) );
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\Module::getVersionHash
-	 */
 	public function testGetVersionHash_length() {
 		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
 		$module = new ResourceLoaderTestModule( [
@@ -105,9 +99,6 @@ class ModuleTest extends ResourceLoaderTestCase {
 		$this->assertSame( ResourceLoader::HASH_LENGTH, strlen( $version ), 'Hash length' );
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\Module::getVersionHash
-	 */
 	public function testGetVersionHash_parentDefinition() {
 		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
 		$module = $this->getMockBuilder( Module::class )
@@ -121,9 +112,8 @@ class ModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\ResourceLoader\Module::getScriptURLsForDebug
+	 * @covers \MediaWiki\ResourceLoader\Module
 	 * @covers \MediaWiki\ResourceLoader\ResourceLoader
-	 * @covers \MediaWiki\ResourceLoader\Module::getScriptURLsForDebug
 	 */
 	public function testGetURLsForDebug() {
 		$module = new ResourceLoaderTestModule( [
@@ -166,9 +156,6 @@ class ModuleTest extends ResourceLoaderTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\Module::validateScriptFile
-	 */
 	public function testValidateScriptFile() {
 		$this->overrideConfigValue( MainConfigNames::ResourceLoaderValidateJS, true );
 
@@ -233,7 +220,6 @@ class ModuleTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @dataProvider provideBuildContentScripts
-	 * @covers \MediaWiki\ResourceLoader\Module::buildContent
 	 */
 	public function testBuildContentScripts( $raw, $build, $message = '' ) {
 		$context = $this->getResourceLoaderContext();
@@ -249,10 +235,6 @@ class ModuleTest extends ResourceLoaderTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\Module::getRelativePaths
-	 * @covers \MediaWiki\ResourceLoader\Module::expandRelativePaths
-	 */
 	public function testPlaceholderize() {
 		$getRelativePaths = new ReflectionMethod( Module::class, 'getRelativePaths' );
 		$getRelativePaths->setAccessible( true );
@@ -286,10 +268,6 @@ class ModuleTest extends ResourceLoaderTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\Module::getHeaders
-	 * @covers \MediaWiki\ResourceLoader\Module::getPreloadLinks
-	 */
 	public function testGetHeaders() {
 		$context = $this->getResourceLoaderContext();
 

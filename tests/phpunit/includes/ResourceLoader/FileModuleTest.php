@@ -17,6 +17,7 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @group ResourceLoader
+ * @covers \MediaWiki\ResourceLoader\FileModule
  */
 class FileModuleTest extends ResourceLoaderTestCase {
 
@@ -120,8 +121,6 @@ class FileModuleTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @dataProvider providerTemplateDependencies
-	 * @covers \MediaWiki\ResourceLoader\FileModule::__construct
-	 * @covers \MediaWiki\ResourceLoader\FileModule::getDependencies
 	 */
 	public function testTemplateDependencies( $module, $expected ) {
 		$rl = new FileModule( $module );
@@ -147,7 +146,6 @@ class FileModuleTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @dataProvider providerDeprecatedModules
-	 * @covers \MediaWiki\ResourceLoader\FileModule::getScript
 	 */
 	public function testDeprecatedModules( $name, $expected ) {
 		$modules = self::getModules();
@@ -157,11 +155,6 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		$this->assertEquals( $expected, $module->getScript( $ctx ) );
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\FileModule::getScript
-	 * @covers \MediaWiki\ResourceLoader\FileModule::getScriptFiles
-	 * @covers \MediaWiki\ResourceLoader\FileModule::readScriptFiles
-	 */
 	public function testGetScript() {
 		$module = new FileModule( [
 			'localBasePath' => __DIR__ . '/../../data/resourceloader',
@@ -195,8 +188,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 	/**
 	 * @covers \MediaWiki\ResourceLoader\FileModule
 	 * @covers \MediaWiki\ResourceLoader\Module
-	 * @covers \MediaWiki\ResourceLoader\ResourceLoader::createLoaderURL
-	 * @covers \MediaWiki\ResourceLoader\ResourceLoader::expandUrl
+	 * @covers \MediaWiki\ResourceLoader\ResourceLoader
 	 */
 	public function testGetURLsForDebug() {
 		$ctx = $this->getResourceLoaderContext();
@@ -225,9 +217,6 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\FileModule
-	 */
 	public function testGetAllSkinStyleFiles() {
 		$baseParams = [
 			'scripts' => [
@@ -284,8 +273,8 @@ class FileModuleTest extends ResourceLoaderTestCase {
 	 * into the module, and have their file contents read correctly from their
 	 * own (out-of-module) directories.
 	 *
-	 * @covers \MediaWiki\ResourceLoader\ResourceLoader
 	 * @covers \MediaWiki\ResourceLoader\FileModule
+	 * @covers \MediaWiki\ResourceLoader\ResourceLoader
 	 */
 	public function testInjectSkinStyles() {
 		$moduleDir = __DIR__ . '/../../data/resourceloader';
@@ -314,13 +303,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 	}
 
 	/**
-	 * What happens when you mix @embed and @noflip?
-	 * This really is an integration test, but oh well.
-	 *
-	 * @covers \MediaWiki\ResourceLoader\FileModule::getStyles
-	 * @covers \MediaWiki\ResourceLoader\FileModule::getStyleFiles
-	 * @covers \MediaWiki\ResourceLoader\FileModule::readStyleFiles
-	 * @covers \MediaWiki\ResourceLoader\FileModule::readStyleFile
+	 * Verify what happens when you mix @embed and @noflip.
 	 */
 	public function testMixedCssAnnotations() {
 		$basePath = __DIR__ . '/../../data/css';
@@ -358,9 +341,6 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\FileModule
-	 */
 	public function testCssFlipping() {
 		$plain = new ResourceLoaderFileTestModule( [
 			'localBasePath' => __DIR__ . '/../../data/resourceloader',
@@ -400,9 +380,6 @@ class FileModuleTest extends ResourceLoaderTestCase {
 	 * The use of ResourceLoaderFilePath objects resembles the way that ResourceLoader::getModule()
 	 * injects additional files when 'ResourceModuleSkinStyles' or 'OOUIThemePaths' skin attributes
 	 * apply to a given module.
-	 *
-	 * @covers \MediaWiki\ResourceLoader\FilePath::getLocalBasePath
-	 * @covers \MediaWiki\ResourceLoader\FilePath::getRemoteBasePath
 	 */
 	public function testResourceLoaderFilePath() {
 		$basePath = __DIR__ . '/../../data/blahblah';
@@ -475,7 +452,6 @@ class FileModuleTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @dataProvider providerGetTemplates
-	 * @covers \MediaWiki\ResourceLoader\FileModule::getTemplates
 	 */
 	public function testGetTemplates( $module, $expected ) {
 		$rl = new FileModule( $module );
@@ -489,9 +465,6 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		}
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\FileModule::stripBom
-	 */
 	public function testBomConcatenation() {
 		$basePath = __DIR__ . '/../../data/css';
 		$testModule = new ResourceLoaderFileTestModule( [
@@ -513,9 +486,6 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		);
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\FileModule
-	 */
 	public function testLessFileCompilation() {
 		$context = $this->getResourceLoaderContext();
 		$basePath = __DIR__ . '/../../data/less/module';
@@ -614,8 +584,6 @@ class FileModuleTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @dataProvider provideGetVersionHash
-	 * @covers \MediaWiki\ResourceLoader\FileModule::getDefinitionSummary
-	 * @covers \MediaWiki\ResourceLoader\FileModule::getFileHashes
 	 */
 	public function testGetVersionHash( $a, $b, $isEqual ) {
 		$context = $this->getResourceLoaderContext( [ 'debug' => 'false' ] );
@@ -965,9 +933,6 @@ class FileModuleTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @dataProvider provideGetScriptPackageFiles
-	 * @covers \MediaWiki\ResourceLoader\FileModule::getScript
-	 * @covers \MediaWiki\ResourceLoader\FileModule::getPackageFiles
-	 * @covers \MediaWiki\ResourceLoader\FileModule::expandPackageFiles
 	 */
 	public function testGetScriptPackageFiles( $moduleDefinition, $expected, $contextOptions = [] ) {
 		$module = new FileModule( $moduleDefinition );
@@ -986,9 +951,6 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		}
 	}
 
-	/**
-	 * @covers \MediaWiki\ResourceLoader\FileModule::requiresES6
-	 */
 	public function testRequiresES6() {
 		$module = new FileModule();
 		$this->assertFalse( $module->requiresES6(), 'requiresES6 defaults to false' );
