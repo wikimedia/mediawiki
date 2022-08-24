@@ -1,10 +1,13 @@
 <?php
 
 use MediaWiki\Content\ValidationParams;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Title\TitleFactory;
 use Wikimedia\TestingAccessWrapper;
+use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * @group ContentHandler
@@ -26,7 +29,16 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 				12312 => 'testing',
 			],
 			MainConfigNames::ContentHandlers => [
-				CONTENT_MODEL_WIKITEXT => WikitextContentHandler::class,
+				CONTENT_MODEL_WIKITEXT => [
+					'class' => WikitextContentHandler::class,
+					'services' => [
+						'TitleFactory',
+						'ParserFactory',
+						'GlobalIdGenerator',
+						'LanguageNameUtils',
+						'MagicWordFactory',
+					],
+				],
 				CONTENT_MODEL_JAVASCRIPT => JavaScriptContentHandler::class,
 				CONTENT_MODEL_JSON => JsonContentHandler::class,
 				CONTENT_MODEL_CSS => CssContentHandler::class,
@@ -487,7 +499,14 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		// test default renderer
-		$contentHandler = new WikitextContentHandler( CONTENT_MODEL_WIKITEXT );
+		$contentHandler = new WikitextContentHandler(
+			CONTENT_MODEL_WIKITEXT,
+			$this->createMock( TitleFactory::class ),
+			$this->createMock( ParserFactory::class ),
+			$this->createMock( GlobalIdGenerator::class ),
+			$this->createMock( LanguageNameUtils::class ),
+			$this->createMock( MagicWordFactory::class )
+		);
 		$slotDiffRenderer = $contentHandler->getSlotDiffRenderer( RequestContext::getMain() );
 		$this->assertInstanceOf( TextSlotDiffRenderer::class, $slotDiffRenderer );
 	}

@@ -587,7 +587,16 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue(
 			MainConfigNames::ContentHandlers,
 			[
-				CONTENT_MODEL_WIKITEXT => WikitextContentHandler::class,
+				CONTENT_MODEL_WIKITEXT => [
+					'class' => WikitextContentHandler::class,
+					'services' => [
+						'TitleFactory',
+						'ParserFactory',
+						'GlobalIdGenerator',
+						'LanguageNameUtils',
+						'MagicWordFactory',
+					],
+				],
 				'testing' => DummyContentHandlerForTesting::class,
 			]
 		);

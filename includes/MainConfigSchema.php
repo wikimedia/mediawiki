@@ -3260,7 +3260,7 @@ class MainConfigSchema {
 	/**
 	 * Plugins for page content model handling.
 	 *
-	 * Each entry in the array maps a model id to a class name or callback
+	 * Each entry in the array maps a model id to an ObjectFactory specification
 	 * that creates an instance of the appropriate ContentHandler subclass.
 	 *
 	 * @since 1.21
@@ -3269,7 +3269,16 @@ class MainConfigSchema {
 		'default' =>
 			[
 				// the usual case
-				CONTENT_MODEL_WIKITEXT => WikitextContentHandler::class,
+				CONTENT_MODEL_WIKITEXT => [
+					'class' => WikitextContentHandler::class,
+					'services' => [
+						'TitleFactory',
+						'ParserFactory',
+						'GlobalIdGenerator',
+						'LanguageNameUtils',
+						'MagicWordFactory',
+					],
+				],
 				// dumb version, no syntax highlighting
 				CONTENT_MODEL_JAVASCRIPT => JavaScriptContentHandler::class,
 				// simple implementation, for use by extensions, etc.

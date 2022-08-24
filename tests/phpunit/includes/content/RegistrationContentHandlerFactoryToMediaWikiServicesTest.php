@@ -13,7 +13,16 @@ class RegistrationContentHandlerFactoryToMediaWikiServicesTest extends MediaWiki
 		$this->overrideConfigValue(
 			MainConfigNames::ContentHandlers,
 			[
-				CONTENT_MODEL_WIKITEXT => WikitextContentHandler::class,
+				CONTENT_MODEL_WIKITEXT => [
+					'class' => WikitextContentHandler::class,
+					'services' => [
+						'TitleFactory',
+						'ParserFactory',
+						'GlobalIdGenerator',
+						'LanguageNameUtils',
+						'MagicWordFactory',
+					],
+				],
 				CONTENT_MODEL_JAVASCRIPT => JavaScriptContentHandler::class,
 				CONTENT_MODEL_JSON => JsonContentHandler::class,
 				CONTENT_MODEL_CSS => CssContentHandler::class,
