@@ -23,6 +23,7 @@
  * @copyright © 2013 Wikimedia Foundation Inc.
  */
 
+use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
@@ -388,6 +389,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			'hostsByName' => [
 				'test-db1' => $wgDBserver,
 			],
+			'replLogger' => LoggerFactory::getInstance( 'DBReplication' ),
 			'loadMonitor' => [ 'class' => LoadMonitorNull::class ],
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $wgDBprefix ),
 			'agent' => 'MW-UNIT-TESTS'
@@ -781,17 +783,22 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		] );
 		$lbFactory->setRequestInfo( [ 'ChronologyClientId' => 'ii' ] );
 
-		$mockWallClock = 1549343530.2053;
+		// 2019-02-05T05:03:20Z
+		$mockWallClock = 1549343000.0;
 		$priorTime = $mockWallClock; // reference time
 		$lbFactory->setMockTime( $mockWallClock );
 
-		$key = $store->makeGlobalKey( ChronologyProtector::class, 'ii', 'v2' );
-		$store->set(
-			$key,
-			[
-				'positions' => [],
-				'timestamps' => [ $lbFactory::CLUSTER_MAIN_DEFAULT => $priorTime ]
-			],
+		$lbWrap = TestingAccessWrapper::newFromObject( $lbFactory );
+		$cpWrap = TestingAccessWrapper::newFromObject( $lbWrap->getChronologyProtector() );
+		$cpWrap->store->set(
+			$cpWrap->key,
+			$cpWrap->mergePositions(
+				false,
+				[],
+				[
+					$lbFactory::CLUSTER_MAIN_DEFAULT => $priorTime
+				]
+			),
 			3600
 		);
 

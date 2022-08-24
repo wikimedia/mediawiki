@@ -23,7 +23,6 @@ use BagOStuff;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Wikimedia\WaitConditionLoop;
 
 /**
  * Provide a given client with protection against visible database lag.
@@ -168,8 +167,6 @@ class ChronologyProtector implements LoggerAwareInterface {
 	public const POSITION_COOKIE_TTL = 10;
 	/** Seconds to store replication positions */
 	private const POSITION_STORE_TTL = 60;
-	/** Max seconds to wait for positions write indexes to appear (e.g. replicate) in storage */
-	private const POSITION_INDEX_WAIT_TIMEOUT = 5;
 
 	/** Lock timeout to use for key updates */
 	private const LOCK_TIMEOUT = 3;
@@ -427,73 +424,42 @@ class ChronologyProtector implements LoggerAwareInterface {
 		}
 
 		$this->startupTimestamp = $this->getCurrentTime();
-		$this->logger->debug(
-			'ChronologyProtector using store {class}',
-			[ 'class' => get_class( $this->store ) ]
-		);
-		$this->logger->debug(
-			__METHOD__ .
-			": client ID is {$this->clientId}; key is {$this->key}"
-		);
+		$this->logger->debug( 'ChronologyProtector using store ' . get_class( $this->store ) );
+		$this->logger->debug( "ChronologyProtector fetching positions for {$this->clientId}" );
 
-		// If there is an expectation to see primary positions from a certain write
-		// index or higher, then block until it appears, or until a timeout is reached.
-		// Since the write index restarts each time the key is created, it is possible that
-		// a lagged store has a matching key write index. However, in that case, it should
-		// already be expired and thus treated as non-existing, maintaining correctness.
-		if ( $this->positionWaitsEnabled && $this->waitForPosIndex > 0 ) {
-			$data = null;
-			$indexReached = null; // highest index reached in the position store
-			$loop = new WaitConditionLoop(
-				function () use ( &$data, &$indexReached ) {
-					$data = $this->store->get( $this->key );
-					if ( !is_array( $data ) ) {
-						return WaitConditionLoop::CONDITION_CONTINUE; // not found yet
-					} elseif ( !isset( $data[self::FLD_WRITE_INDEX] ) ) {
-						return WaitConditionLoop::CONDITION_REACHED; // b/c
-					}
-					$indexReached = max( $data[self::FLD_WRITE_INDEX], $indexReached );
-
-					return ( $data[self::FLD_WRITE_INDEX] >= $this->waitForPosIndex )
-						? WaitConditionLoop::CONDITION_REACHED
-						: WaitConditionLoop::CONDITION_CONTINUE;
-				},
-				self::POSITION_INDEX_WAIT_TIMEOUT
-			);
-			$result = $loop->invoke();
-			$waitedMs = $loop->getLastWaitTime() * 1e3;
-
-			if ( $result == $loop::CONDITION_REACHED ) {
-				$this->logger->debug(
-					__METHOD__ . ": expected and found position index {cpPosIndex}.",
-					[
-						'cpPosIndex' => $this->waitForPosIndex,
-						'waitTimeMs' => $waitedMs
-					] + $this->clientLogInfo
-				);
-			} else {
-				$this->logger->warning(
-					__METHOD__ . ": expected but failed to find position index {cpPosIndex}.",
-					[
-						'cpPosIndex' => $this->waitForPosIndex,
-						'indexReached' => $indexReached,
-						'waitTimeMs' => $waitedMs
-					] + $this->clientLogInfo
-				);
-			}
-		} else {
-			$data = $this->store->get( $this->key );
-			$indexReached = $data[self::FLD_WRITE_INDEX] ?? null;
-			if ( $indexReached ) {
-				$this->logger->debug(
-					__METHOD__ . ": found position/timestamp data with index {indexReached}.",
-					[ 'indexReached' => $indexReached ] + $this->clientLogInfo
-				);
-			}
-		}
+		$data = $this->store->get( $this->key );
 
 		$this->startupPositionsByMaster = $data ? $data[self::FLD_POSITIONS] : [];
 		$this->startupTimestampsByCluster = $data[self::FLD_TIMESTAMPS] ?? [];
+
+		// When a stored array expires and is re-created under the same (deterministic) key,
+		// the array value naturally starts again from index zero. As such, it is possible
+		// that if certain store writes were lost (e.g. store down), that we unintentionally
+		// point to an offset in an older incarnation of the array.
+		// We don't try to detect or do something about this because:
+		// 1. Waiting for an older offset is harmless and generally no-ops.
+		// 2. The older value will have expired by now and thus treated as non-existing,
+		//    which means we wouldn't even "see" it here.
+		$indexReached = is_array( $data ) ? $data[self::FLD_WRITE_INDEX] : null;
+		if ( $this->positionWaitsEnabled && $this->waitForPosIndex > 0 ) {
+			if ( $indexReached >= $this->waitForPosIndex ) {
+				$this->logger->debug( 'expected and found position index {cpPosIndex}', [
+					'cpPosIndex' => $this->waitForPosIndex,
+				] + $this->clientLogInfo );
+			} else {
+				$this->logger->warning( 'expected but failed to find position index {cpPosIndex}', [
+					'cpPosIndex' => $this->waitForPosIndex,
+					'indexReached' => $indexReached,
+					'exception' => new \RuntimeException(),
+				] + $this->clientLogInfo );
+			}
+		} else {
+			if ( $indexReached ) {
+				$this->logger->debug( 'found position data with index {indexReached}', [
+					'indexReached' => $indexReached
+				] + $this->clientLogInfo );
+			}
+		}
 	}
 
 	/**
