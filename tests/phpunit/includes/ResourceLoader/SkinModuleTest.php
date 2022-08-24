@@ -576,6 +576,7 @@ CSS
 					'content-body' => false,
 					'elements' => true,
 					'normalize' => true,
+					'interface-core' => false,
 					'toc' => false,
 				],
 				[
