@@ -317,8 +317,8 @@ class ClientHtmlTest extends \PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideMakeLoad
-	 * @covers       \MediaWiki\ResourceLoader\ClientHtml
-	 * @covers \MediaWiki\ResourceLoader\Module::getModuleContent
+	 * @covers \MediaWiki\ResourceLoader\ClientHtml
+	 * @covers \MediaWiki\ResourceLoader\Module
 	 * @covers \MediaWiki\ResourceLoader\ResourceLoader
 	 */
 	public function testMakeLoad(

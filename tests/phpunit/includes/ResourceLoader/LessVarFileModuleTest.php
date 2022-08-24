@@ -41,7 +41,6 @@ class LessVarFileModuleTest extends ResourceLoaderTestCase {
 
 	/**
 	 * @dataProvider providerWrapAndEscapeMessage
-	 * @covers \MediaWiki\ResourceLoader\LessVarFileModule::wrapAndEscapeMessage
 	 */
 	public function testEscapeMessage( $msg, $expected ) {
 		$method = new ReflectionMethod( LessVarFileModule::class, 'wrapAndEscapeMessage' );
