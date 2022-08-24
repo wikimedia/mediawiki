@@ -1158,17 +1158,20 @@ class SkinTemplate extends Skin {
 			$onPage && ( $isWatchMode || $action == 'unwatch' ) ? 'selected' : ''
 			);
 
+		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
+		$watchIcon = $watchlistManager->isWatched( $performer, $title ) ? 'unStar' : 'star';
 		// Add class identifying the page is temporarily watched, if applicable.
 		if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) &&
-			MediaWikiServices::getInstance()->getWatchlistManager()->isTempWatched( $performer, $title )
+			$watchlistManager->isTempWatched( $performer, $title )
 		) {
 			$class .= ' mw-watchlink-temp';
+			$watchIcon = 'halfStar';
 		}
 
 		return [
 			'class' => $class,
 			'button' => true,
-			'icon' => $isWatchMode ? 'star' : 'unStar',
+			'icon' => $watchIcon,
 			// uses 'watch' or 'unwatch' message
 			'text' => $this->msg( $mode )->text(),
 			'href' => $title->getLocalURL( [ 'action' => $mode ] ),
