@@ -469,7 +469,7 @@ class Article implements Page {
 
 		# Set page title (may be overridden from ParserOutput if title conversion is enabled or DISPLAYTITLE is used)
 		$outputPage->setPageTitle( Parser::formatPageTitle(
-			$this->getTitle()->getNsText(),
+			str_replace( '_', ' ', $this->getTitle()->getNsText() ),
 			':',
 			$this->getTitle()->getText()
 		) );
