@@ -215,7 +215,7 @@
 	"redirectedfrom": "(تحولات من $1)",
 	"redirectpagesub": "صفحة تحويل",
 	"redirectto": "تحويل لـ:",
-	"lastmodifiedat": ".أخر مرة تعدلات فيها هاد الصفحة كان نهار $1، الساعة $2",
+	"lastmodifiedat": "أخر مرة تعدلات فيها هاد الصفحة كان نهار $1، الساعة $2.",
 	"viewcount": "هاد صفحة تشافت {{PLURAL:$1|مرة وحدا|$1 مرات}}.",
 	"protectedpage": "صفحة محمية",
 	"jumpto": "سير لـ:",
