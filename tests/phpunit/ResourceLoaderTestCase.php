@@ -97,11 +97,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 	final protected function mediaWikiResourceLoaderSetUp(): void {
 		ResourceLoader::clearCache();
 
-		$globals = [];
-		foreach ( self::getSettings() as $key => $value ) {
-			$globals['wg' . $key] = $value;
-		}
-		$this->setMwGlobals( $globals );
+		$this->overrideConfigValues( self::getSettings() );
 	}
 }
 
