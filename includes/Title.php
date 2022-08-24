@@ -1155,7 +1155,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Get the namespace text
 	 *
-	 * @return string|false Namespace text
+	 * @return string|false Namespace name with underscores (not spaces), e.g. 'User_talk'
 	 */
 	public function getNsText() {
 		if ( $this->isExternal() ) {
@@ -1185,7 +1185,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Get the namespace text of the subject (rather than talk) page
 	 *
-	 * @return string Namespace text
+	 * @return string Namespace name with underscores (not spaces)
 	 */
 	public function getSubjectNsText() {
 		$services = MediaWikiServices::getInstance();
@@ -1196,7 +1196,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Get the namespace text of the talk page
 	 *
-	 * @return string Namespace text
+	 * @return string Namespace name with underscores (not spaces)
 	 */
 	public function getTalkNsText() {
 		$services = MediaWikiServices::getInstance();

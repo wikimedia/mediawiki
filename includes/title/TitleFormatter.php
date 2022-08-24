@@ -97,7 +97,7 @@ interface TitleFormatter {
 	 * @param string $text
 	 *
 	 * @throws InvalidArgumentException
-	 * @return string
+	 * @return string Namespace name with underscores (not spaces), e.g. 'User_talk'
 	 */
 	public function getNamespaceName( $namespace, $text );
 }
