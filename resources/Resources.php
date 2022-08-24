@@ -650,6 +650,7 @@ return [
 	],
 
 	'wvui' => [
+		'deprecated' => 'Deprecated in 1.39. Use `@wikimedia/codex` instead.',
 		'packageFiles' => [
 			'resources/src/wvui/wvui.js',
 			'resources/lib/wvui/wvui.commonjs2.js',
