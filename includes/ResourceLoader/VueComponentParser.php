@@ -249,7 +249,8 @@ class VueComponentParser {
 						// Don't touch <pre>/<listing>/<textarea> nodes
 						$node->namespace !== HTMLData::NS_HTML ||
 						!isset( $this->prefixLfElements[ $node->name ] )
-					)
+					) &&
+					$contents !== null
 				) {
 					// Remove leading and trailing whitespace
 					$contents = preg_replace( '/(^[ \r\n\t]+)|([\r\n\t ]+$)/', '', $contents );
