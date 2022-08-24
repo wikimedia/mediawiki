@@ -938,7 +938,7 @@
 	"mergehistory-submit": "కూర్పులను విలీనం చెయ్యి",
 	"mergehistory-empty": "ఏ కూర్పులనూ విలీనం చెయ్యలేము.",
 	"mergehistory-done": "$1 యొక్క $4 {{PLURAL:$4|కూర్పును|కూర్పులను}} [[:$2]] లో విలీనం {{PLURAL:$4|చేసాం}}.\n$3.",
-	"mergehistory-fail": "చరితాన్ని విలీనం చెయ్యలేకపోయాం. పేజీని, సమయాలను సరిచూసుకోండి.",
+	"mergehistory-fail": "చరితాన్ని విలీనం చెయ్యలేకపోయాం. పేజీని, సమయం పరామితులను సరిచూసుకోండి.",
 	"mergehistory-fail-bad-timestamp": "కాలముద్ర చెల్లదు.",
 	"mergehistory-fail-invalid-source": "మూలపు పేజీ సరైనది కాదు.",
 	"mergehistory-fail-invalid-dest": "లక్ష్యిత పేజీ సరైనది కాదు.",
