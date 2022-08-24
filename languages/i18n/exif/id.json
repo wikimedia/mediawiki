@@ -10,7 +10,8 @@
 			"Kenrick95",
 			"Meursault2004",
 			"Rachmat04",
-			"Rex"
+			"Rex",
+			"Veracious"
 		]
 	},
 	"exif-imagewidth": "Lebar",
@@ -25,7 +26,7 @@
 	"exif-ycbcrpositioning": "Penempatan Y dan C",
 	"exif-xresolution": "Resolusi horizontal",
 	"exif-yresolution": "Resolusi vertikal",
-	"exif-stripoffsets": "Lokasi data gambar",
+	"exif-stripoffsets": "Data lokasi gambar",
 	"exif-rowsperstrip": "Jumlah baris per strip",
 	"exif-stripbytecounts": "Bita per strip kompresi",
 	"exif-jpeginterchangeformat": "Ofset ke JPEG SOI",

@@ -1878,5 +1878,9 @@
 	"pagelang-name": "Бок",
 	"pagelang-language": "Язик",
 	"pagelang-reason": "Причина",
-	"log-action-filter-upload-revert": "Врациц назад"
+	"log-action-filter-upload-revert": "Врациц назад",
+	"nstab-mainpage": "Главни бок",
+	"skin-action-protect": "Защициц",
+	"skin-action-delete": "Посцерай",
+	"skin-action-move": "Премесциц"
 }
