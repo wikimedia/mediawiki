@@ -205,7 +205,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 				'schema' => '',
 				'cliMode' => true,
 				'topologyRole' => Database::ROLE_STREAMING_MASTER,
-				'topologicalMaster' => null,
 				'agent' => '',
 				'serverName' => '*dummy*',
 				'load' => 100,

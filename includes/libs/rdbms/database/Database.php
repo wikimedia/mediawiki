@@ -68,8 +68,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var object|resource|null Database connection */
 	protected $conn;
 
-	/** @var IDatabase|null Lazy handle to the primary DB this server replicates from */
-	private $lazyMasterHandle;
+	/** @var ?IDatabase Lazy handle to the most authoritative primary server for the dataset */
+	protected $topologicalPrimaryConnRef;
 
 	/** @var string|null Server that this instance is currently connected to */
 	protected $server;
@@ -85,8 +85,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $agent;
 	/** @var string Replication topology role of the server; one of the class ROLE_* constants */
 	protected $topologyRole;
-	/** @var string|null Host (or address) of the root primary server for the replication topology */
-	protected $topologyRootMaster;
 	/** @var array<string,mixed> Connection parameters used by initConnection() and open() */
 	protected $connectionParams;
 	/** @var string[]|int[]|float[] SQL variables values to use for all new connections */
@@ -239,7 +237,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		];
 
 		$this->lbInfo = $params['lbInfo'] ?? [];
-		$this->lazyMasterHandle = $params['lazyMasterHandle'] ?? null;
+		$this->topologicalPrimaryConnRef = $params['topologicalPrimaryConnRef'] ?? null;
 		$this->connectionVariables = $params['variables'] ?? [];
 		// Set SQL mode, default is turning them all off, can be overridden or skipped with null
 		if ( is_string( $params['sqlMode'] ?? null ) ) {
@@ -252,7 +250,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->agent = (string)$params['agent'];
 		$this->serverName = $params['serverName'];
 		$this->topologyRole = $params['topologyRole'];
-		$this->topologyRootMaster = $params['topologicalMaster'];
 		$this->nonNativeInsertSelectBatchSize = $params['nonNativeInsertSelectBatchSize'] ?? 10000;
 
 		$this->srvCache = $params['srvCache'];
@@ -353,12 +350,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *      used to adjust lock timeouts or encoding modes and the like.
 	 *   - serverName : Optional readable name for the database server.
 	 *   - topologyRole: Optional IDatabase::ROLE_* constant for the database server.
-	 *   - topologicalMaster: Optional name of the primary server within the replication topology.
 	 *   - lbInfo: Optional map of field/values for the managing load balancer instance.
 	 *      The "master" and "replica" fields are used to flag the replication role of this
 	 *      database server and whether methods like getLag() should actually issue queries.
-	 *   - lazyMasterHandle: lazy-connecting IDatabase handle to the primary DB for the cluster
-	 *      that this database belongs to. This is used for replication status purposes.
+	 *   - topologicalPrimaryConnRef: lazy-connecting IDatabase handle to the most authoritative
+	 *      primary database server for the cluster that this database belongs to. This hande is
+	 *      used for replication status purposes. This is generally managed by LoadBalancer.
 	 *   - connLogger: Optional PSR-3 logger interface instance.
 	 *   - queryLogger: Optional PSR-3 logger interface instance.
 	 *   - profiler : Optional callback that takes a section name argument and returns
@@ -397,9 +394,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				'agent' => '',
 				'serverName' => null,
 				'topologyRole' => null,
-				'topologicalMaster' => null,
 				// Objects and callbacks
-				'lazyMasterHandle' => $params['lazyMasterHandle'] ?? null,
+				'topologicalPrimaryConnRef' => $params['topologicalPrimaryConnRef'] ?? null,
 				'srvCache' => $params['srvCache'] ?? new HashBagOStuff(),
 				'profiler' => $params['profiler'] ?? null,
 				'trxProfiler' => $params['trxProfiler'] ?? new TransactionProfiler(),
@@ -534,10 +530,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->topologyRole;
 	}
 
-	public function getTopologyRootPrimary() {
-		return $this->topologyRootMaster;
-	}
-
 	/**
 	 * Get important session state that cannot be recovered upon connection loss
 	 *
@@ -616,16 +608,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} else {
 			throw new InvalidArgumentException( "Got non-string key" );
 		}
-	}
-
-	/**
-	 * Get a handle to the primary DB server of the cluster to which this server belongs
-	 *
-	 * @return IDatabase|null
-	 * @since 1.27
-	 */
-	protected function getLazyMasterHandle() {
-		return $this->lazyMasterHandle;
 	}
 
 	public function lastQuery() {

@@ -159,19 +159,6 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	public function getTopologyRole();
 
 	/**
-	 * Get the readable name of the sole root primary DB server for the replication topology
-	 *
-	 * A replication topology defines which servers can originate changes to a given dataset
-	 * and how those changes propagate among database servers. It is assumed that the server
-	 * only participates in the replication of a single relevant dataset.
-	 *
-	 * @return string|null Readable server name; null if unknown or if co-primaries are defined
-	 * @throws DBQueryError
-	 * @since 1.37
-	 */
-	public function getTopologyRootPrimary();
-
-	/**
 	 * Gets the current transaction level.
 	 *
 	 * Historically, transactions were allowed to be "nested". This is no

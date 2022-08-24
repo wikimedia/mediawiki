@@ -57,7 +57,6 @@ class DatabaseTestHelper extends Database {
 			'agent' => '',
 			'serverName' => null,
 			'topologyRole' => null,
-			'topologicalMaster' => null,
 			'srvCache' => new HashBagOStuff(),
 			'profiler' => null,
 			'trxProfiler' => new TransactionProfiler(),

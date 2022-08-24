@@ -51,7 +51,6 @@ class DatabaseSqliteUpgradeTest extends \MediaWikiIntegrationTestCase {
 				'variables' => [ 'synchronous' => 'NORMAL', 'temp_store' => 'MEMORY' ],
 				'profiler' => null,
 				'topologyRole' => Database::ROLE_STREAMING_MASTER,
-				'topologicalMaster' => null,
 				'trxProfiler' => new TransactionProfiler(),
 				'connLogger' => new NullLogger(),
 				'queryLogger' => new NullLogger(),
