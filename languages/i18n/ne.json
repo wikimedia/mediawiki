@@ -2153,6 +2153,7 @@
 	"sp-contributions-newonly": "पृष्ठ निर्माण सम्बन्धि सम्पादनहरू मात्रै देखाउनुहोस्",
 	"sp-contributions-submit": "खोज्नुहोस्",
 	"whatlinkshere": "यहाँ के जोडिन्छ",
+	"whatlinkshere-count": "$1 {{PLURAL:$1|पृष्ठ|पृष्ठहरू}} देखाइएको छ।",
 	"whatlinkshere-title": "$1 सँग जोडिएका पानाहरू",
 	"whatlinkshere-page": "पृष्ठ:",
 	"linkshere": "निम्न पृष्ठहरू '''$2''' मा जोडिन्छ :",

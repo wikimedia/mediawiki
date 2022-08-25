@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Fulup",
+			"Huñvreüs",
 			"Y-M D"
 		]
 	},
@@ -46,13 +47,13 @@
 	"apihelp-edit-param-sectiontitle": "Titl ur rannbennad nevez.",
 	"apihelp-edit-param-text": "Danvez ar bajenn.",
 	"apihelp-edit-param-tags": "Cheñch an tikedennoù d'o lakaat da dalvezout evit ar stumm gwiriet.",
-	"apihelp-edit-param-minor": "Kemmig dister.",
-	"apihelp-edit-param-notminor": "Kemmoù n'eo ket dister",
+	"apihelp-edit-param-minor": "Merkañ ar c’hemm-mañ evel ur c’hemm dister.",
+	"apihelp-edit-param-notminor": "Chom hep merkañ ar c’hemm-mañ evel ur c’hemm dister ha pa vefe gweredekaet an dibab implijer \"{{int:tog-minordefault}}\"",
 	"apihelp-edit-param-bot": "Merkañ ar c'hemm-mañ evel ur c'hemm robot.",
 	"apihelp-edit-param-createonly": "Arabat kemmañ ar bajenn ma'z eus anezhi c'hoazh.",
 	"apihelp-edit-param-nocreate": "Krouiñ ur fazi ma n'eus ket eus ur bajenn.",
 	"apihelp-edit-param-watch": "Ouzhpennañ ar bajenn da roll evezhiañ an evezhier.",
-	"apihelp-edit-param-prependtext": "Ouzhpennañ an destenn-mañ e penn-kentañ ar bajenn. Frikañ a ra $1text.",
+	"apihelp-edit-param-prependtext": "Ouzhpennañ an destenn-mañ e penn-kentañ ar bajenn pe rannbennad. Frikañ a ra $1text.",
 	"apihelp-edit-param-redirect": "Diskoulmañ an adkasoù ent emgefre",
 	"apihelp-edit-example-edit": "Kemmañ ur bajenn.",
 	"apihelp-emailuser-summary": "Kas ur postel d'un implijer.",
