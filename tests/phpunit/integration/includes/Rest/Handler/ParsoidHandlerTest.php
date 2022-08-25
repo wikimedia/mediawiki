@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use Exception;
+use Generator;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\PageIdentity;
@@ -14,6 +15,7 @@ use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Rest\RestTestTrait;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
@@ -1313,6 +1315,114 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->expectExceptionMessage( $expectedException->getMessage() );
 
 		$handler->html2wt( $pageConfig, $attribs, $html );
+	}
+
+	/** @return Generator */
+	public function provideTryToCreatPageConfigData() {
+		yield 'Default attribs for tryToCreatePageConfig()' => [
+			'attribs' => [ 'oldid' => 1, 'pageName' => 'Test', 'pagelanguage' => 'en' ],
+			'wikitext' => null,
+			'html2WtMode' => false,
+			'expectedWikitext' => 'UTContent',
+			'expectedPageLanguage' => 'en',
+		];
+
+		yield 'tryToCreatePageConfig with wikitext' => [
+			'attribs' => [ 'oldid' => 1, 'pageName' => 'Test', 'pagelanguage' => 'en' ],
+			'wikitext' => "=test=",
+			'html2WtMode' => false,
+			'expected wikitext' => '=test=',
+			'expected page language' => 'en',
+		];
+
+		yield 'tryToCreatePageConfig with html2WtMode set to true' => [
+			'attribs' => [ 'oldid' => 1, 'pageName' => 'Test', 'pagelanguage' => null ],
+			'wikitext' => null,
+			'html2WtMode' => true,
+			'expected wikitext' => 'UTContent',
+			'expected page language' => 'en',
+		];
+
+		yield 'tryToCreatePageConfig with both wikitext and html2WtMode' => [
+			'attribs' => [ 'oldid' => 1, 'pageName' => 'Test', 'pagelanguage' => 'ar' ],
+			'wikitext' => "=header=",
+			'html2WtMode' => true,
+			'expected wikitext' => '=header=',
+			'expected page language' => 'ar',
+		];
+
+		yield 'Try to create a page config with pageName set to empty string' => [
+			'attribs' => [ 'oldid' => 1, 'pageName' => '', 'pagelanguage' => 'de' ],
+			'wikitext' => null,
+			'html2WtMode' => false,
+			'expected wikitext' => 'UTContent',
+			'expected page language' => 'de',
+		];
+
+		yield 'Try to create a page config with no page language' => [
+			'attribs' => [ 'oldid' => 1, 'pageName' => '', 'pagelanguage' => null ],
+			'wikitext' => null,
+			false,
+			'expected wikitext' => 'UTContent',
+			'expected page language' => 'en',
+		];
+	}
+
+	/**
+	 * @covers \MediaWiki\Rest\Handler\ParsoidHandler::tryToCreatePageConfig
+	 *
+	 * @dataProvider provideTryToCreatPageConfigData
+	 */
+	public function testTryToCreatePageConfig(
+		array $attribs,
+		$wikitext,
+		$html2WtMode,
+		$expectedWikitext,
+		$expectedLanguage
+	) {
+		$pageConfig = $this->newParsoidHandler()->tryToCreatePageConfig( $attribs, $wikitext, $html2WtMode );
+
+		$this->assertSame(
+			$expectedWikitext,
+			$pageConfig->getRevisionContent()->getContent( SlotRecord::MAIN )
+		);
+
+		$this->assertSame( $expectedLanguage, $pageConfig->getPageLanguage() );
+	}
+
+	/** @return Generator */
+	public function provideTryToCreatPageConfigDataThrows() {
+		yield "PageConfig with oldid that doesn't exist" => [
+			'attribs' => [ 'oldid' => null, 'pageName' => 'Test', 'pagelanguage' => 'en' ],
+			'wikitext' => null,
+			'html2WtMode' => false,
+		];
+
+		yield 'PageConfig with a bad title' => [
+			[ 'oldid' => null, 'pageName' => 'Special:Badtitle', 'pagelanguage' => 'en' ],
+			'wikitext' => null,
+			'html2WtMode' => false,
+		];
+
+		yield "PageConfig with a revision that doesn't exist" => [
+			// 'oldid' is so large because we want to emulate a revision
+			// that doesn't exist.
+			[ 'oldid' => 12345678, 'pageName' => 'Test', 'pagelanguage' => 'en' ],
+			'wikitext' => null,
+			'html2WtMode' => false,
+		];
+	}
+
+	/**
+	 * @covers \MediaWiki\Rest\Handler\ParsoidHandler::tryToCreatePageConfig
+	 *
+	 * @dataProvider provideTryToCreatPageConfigDataThrows
+	 */
+	public function testTryToCreatePageConfigThrows( array $attribs, $wikitext, $html2WtMode ) {
+		$this->expectException( HttpException::class );
+		$this->expectExceptionCode( 404 );
+
+		$this->newParsoidHandler()->tryToCreatePageConfig( $attribs, $wikitext, $html2WtMode );
 	}
 
 	public function provideRoundTripNoSelser() {
