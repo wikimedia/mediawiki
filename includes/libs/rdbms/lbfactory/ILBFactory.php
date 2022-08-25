@@ -49,8 +49,8 @@ interface ILBFactory {
 	 *  - wanCache: WANObjectCache instance [optional]
 	 *  - cliMode: Whether the execution context is a CLI script. [optional]
 	 *  - maxLag: Try to avoid DB replicas with lag above this many seconds [optional]
-	 *  - profiler: Callback that takes a section name argument and returns
-	 *      a ScopedCallback instance that ends the profile section in its destructor [optional]
+	 *  - profiler: Callback that takes a profile section name and returns a ScopedCallback
+	 *     that ends the profile section in its destructor [optional]
 	 *  - trxProfiler: TransactionProfiler instance. [optional]
 	 *  - replLogger: PSR-3 logger instance. [optional]
 	 *  - connLogger: PSR-3 logger instance. [optional]
