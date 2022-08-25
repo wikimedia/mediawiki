@@ -4005,9 +4005,11 @@ class Parser {
 		$marker = self::MARKER_PREFIX . "-$name-"
 			. sprintf( '%08X', $this->mMarkerIndex++ ) . self::MARKER_SUFFIX;
 
-		$markerType = 'general';
-		if ( $this->ot['html'] || ( $processNowiki && $name === 'nowiki' ) ) {
-			$name = strtolower( $name );
+		$normalizedName = strtolower( $name );
+		$isNowiki = $normalizedName === 'nowiki';
+		$markerType = $isNowiki ? 'nowiki' : 'general';
+		if ( $this->ot['html'] || ( $processNowiki && $isNowiki ) ) {
+			$name = $normalizedName;
 			$attributes = Sanitizer::decodeTagAttributes( $attrText );
 			if ( isset( $params['attributes'] ) ) {
 				$attributes += $params['attributes'];
