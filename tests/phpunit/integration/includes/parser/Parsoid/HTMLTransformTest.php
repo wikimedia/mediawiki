@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\Parser\Parsoid;
 
 use Composer\Semver\Semver;
-use Exception;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Parser\Parsoid\HTMLTransform;
@@ -32,37 +31,12 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 		] ]
 	] ] ];
 
-	private function getOriginalData() {
-		$profileVersion = '2.4.0';
-		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;
-		$dataParsoidProfileUri = 'https://www.mediawiki.org/wiki/Specs/data-parsoid/' . $profileVersion;
-		$dataMwProfileUri = 'https://www.mediawiki.org/wiki/Specs/data-mw/' . $profileVersion;
-
-		$htmlContentType = "text/html;profile=\"$htmlProfileUri\"";
-		$dataParsoidContentType = "application/json;profile=\"$dataParsoidProfileUri\"";
-		$dataMwContentType = "application/json;profile=\"$dataMwProfileUri\"";
-
-		return [
-			'revid' => 1,
-			'html' => [
-				'body' => self::ORIG_HTML,
-				'headers' => [
-					'content-type' => $htmlContentType,
-				],
-			],
-			'data-mw' => [
-				'body' => self::ORIG_DATA_MW,
-				'headers' => [
-					'content-type' => $dataMwContentType,
-				],
-			],
-			'data-parsoid' => [
-				'body' => self::ORIG_DATA_PARSOID,
-				'headers' => [
-					'content-type' => $dataParsoidContentType,
-				],
-			],
-		];
+	private function setOriginalData( HTMLTransform $transform ) {
+		$transform->setOriginalRevisionId( 1 );
+		$transform->setOriginalSchemaVersion( '2.4.0' );
+		$transform->setOriginalHtml( self::ORIG_HTML );
+		$transform->setOriginalDataMW( self::ORIG_DATA_MW );
+		$transform->setOriginalDataParsoid( self::ORIG_DATA_PARSOID );
 	}
 
 	private function createHTMLTransformWithHTML( $html = '' ) {
@@ -79,7 +53,6 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 
 	private function newHTMLTransform() {
 		$transform = $this->createHTMLTransformWithHTML();
-		$originalData = $this->getOriginalData();
 
 		// Set some options to assert on $transform object.
 		$transform->setOptions( [
@@ -87,54 +60,28 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 			'offsetType' => 'byte',
 		] );
 
-		$transform->setOriginalRevisionId( $originalData['revid'] );
-		$transform->setOriginalData( $originalData );
+		$this->setOriginalData( $transform );
 
 		return $transform;
 	}
 
-	public function provideBadOriginalData() {
-		$base = $this->getOriginalData();
+	public function testGetOriginalBodyRequiresValidDataParsoid() {
+		$transform = $this->createHTMLTransformWithHTML( self::ORIG_HTML );
+		$transform->setOriginalSchemaVersion( '2.4.0' );
+		$transform->setOriginalHtml( self::ORIG_HTML );
 
-		$orig = $base;
-		unset( $orig['html']['headers']['content-type'] );
-		yield 'no html content type' => [
-			$orig,
-			new ClientError( 'Content-type of original html is missing.' )
-		];
+		// Invalid data-parsoid structure!
+		$transform->setOriginalDataParsoid( [ 'foo' => 'bar' ] );
 
-		$orig = $base;
-		$orig['html']['headers']['content-type'] = 'xyz';
-		yield 'bad html content type' => [
-			$orig,
-			new ClientError( 'Content-type of original html is missing.' )
-		];
-
-		$orig = $base;
-		unset( $orig['data-parsoid']['body']['ids'] );
-		yield 'missing ids key in data-parsoid' => [
-			$orig,
-			new ClientError( 'Invalid data-parsoid was provided.' )
-		];
-	}
-
-	/**
-	 * @dataProvider provideBadOriginalData
-	 *
-	 * @param array $original
-	 * @param Exception $exception
-	 *
-	 * @return void
-	 * @throws ClientError
-	 */
-	public function testBadOriginalData( array $original, Exception $exception ) {
-		$transform = $this->createHTMLTransformWithHTML();
-
+		$exception = new ClientError( 'Invalid data-parsoid was provided.' );
 		$this->expectException( get_class( $exception ) );
 		$this->expectExceptionMessage( $exception->getMessage() );
-		$transform->setOriginalData( $original );
-		$transform->getOriginalSchemaVersion();
-		$transform->getOriginalPageBundle();
+
+		// Should throw because setOriginalDataParsoid got bad data.
+		// Note that setOriginalDataParsoid can't validate immediately, because it
+		// may not know the schema version. The order in which the setters are called
+		// should not matter. All checks happen in getters.
+		$transform->getOriginalBody();
 	}
 
 	public function testHasOriginalHtml() {
@@ -155,14 +102,6 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 	public function testHasOriginalDataParsoid() {
 		$ctx = $this->newHTMLTransform();
 		$this->assertTrue( $ctx->hasOriginalDataParsoid() );
-	}
-
-	public function testGetOriginalPageBundle() {
-		$ctx = $this->newHTMLTransform();
-		$this->assertSame(
-			self::ORIG_HTML,
-			$ctx->getOriginalPageBundle()->html
-		);
 	}
 
 	public function testGetOriginalHtml() {
@@ -204,15 +143,9 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 		$html = $this->getTextFromFile( 'Minimal.html' ); // Uses profile version 2.4.0
 		$transform = $this->createHTMLTransformWithHTML( $html );
 
-		$original = $this->getOriginalData();
-
-		// Specify newer profile version for original HTML
-		$original['html']['headers']['content-type'] = 'text/html;profile="https://www.mediawiki.org/wiki/Specs/HTML/999.0.0"';
-
-		// The profile version given inline in the original HTML doesn't matter, it's ignored
-		$original['html']['body'] = $html;
-
-		$transform->setOriginalData( $original );
+		$transform->setOriginalSchemaVersion( '999.0.0' );
+		$transform->setOriginalHtml( $html );
+		$transform->setOriginalDataParsoid( self::ORIG_DATA_PARSOID );
 
 		// should automatically apply downgrade
 		$oldBody = $transform->getOriginalBody();
@@ -228,11 +161,9 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 		$html = $this->getTextFromFile( 'Minimal-999.html' ); // Uses profile version 2.4.0
 		$transform = $this->createHTMLTransformWithHTML( $html );
 
-		$original = $this->getOriginalData();
-
-		$transform->setOriginalData( $original );
+		$transform->setOriginalHtml( self::ORIG_HTML );
+		$transform->setOriginalDataParsoid( self::ORIG_DATA_PARSOID );
 		$transform->setModifiedDataMW( self::MODIFIED_DATA_MW );
-
 		// should automatically apply downgrade
 		$doc = $transform->getModifiedDocument();
 		$html = ContentUtils::toXML( $doc );
@@ -262,53 +193,19 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 31, $transform->getModifiedHtmlSize() );
 	}
 
-	public function testSetOriginalWikitext() {
-		$html = '<html><body>xyz</body></html>'; // no schema version!
-		$transform = $this->createHTMLTransformWithHTML( $html );
-
-		$originalData = [
-			'wikitext' => [ 'body' => 'hi' ],
-		];
-
-		// mainly check that this doesn't explode.
-		$transform->setOriginalData( $originalData );
-
-		$this->assertFalse( $transform->hasOriginalHtml() );
-		$this->assertFalse( $transform->hasOriginalDataParsoid() );
-	}
-
 	public function testSetOriginalHTML() {
 		$html = '<html><body>xyz</body></html>'; // no schema version!
 		$transform = $this->createHTMLTransformWithHTML( $html );
 
-		$originalData = [
-			'html' => [
-				'headers' => [
-					'content-type' => 'text/html;profile="https://www.mediawiki.org/wiki/Specs/HTML/999.0.0"',
-				],
-				'body' => 'hi',
-			],
-		];
-
 		// mainly check that this doesn't explode.
-		$transform->setOriginalData( $originalData );
+		$transform->setOriginalSchemaVersion( '999.0.0' );
+		$transform->setOriginalHtml( 'hi' );
 
 		$this->assertTrue( $transform->hasOriginalHtml() );
 		$this->assertFalse( $transform->hasOriginalDataParsoid() );
 	}
 
-	public function testSetOriginalDataTwice() {
-		$html = '<html><body>xyz</body></html>'; // no schema version!
-		$transform = $this->createHTMLTransformWithHTML( $html );
-
-		$originalData = $this->getOriginalData();
-		$transform->setOriginalData( $originalData );
-
-		$this->expectException( LogicException::class );
-		$transform->setOriginalData( $originalData );
-	}
-
-	public function testSetOriginalDataAfterGetModified() {
+	public function testSetOriginalDataParsoidAfterGetModified() {
 		// Use HTML that contains a schema version!
 		// Otherwise, we won't trigger the right error.
 		$html = $this->getTextFromFile( 'Minimal.html' );
@@ -319,13 +216,12 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 		$this->expectException( LogicException::class );
 		$this->expectExceptionMessage( 'getModifiedDocument()' );
 
-		$originalData = $this->getOriginalData();
-		$transform->setOriginalData( $originalData );
+		$transform->setOriginalDataParsoid( [] );
 	}
 
 	public function testOffsetTypeMismatch() {
-		$transform = $this->createHTMLTransformWithHTML();
-		$originalData = $this->getOriginalData();
+		$transform = $this->createHTMLTransformWithHTML( self::ORIG_HTML );
+		$this->setOriginalData( $transform );
 
 		// Set some options to assert on $transform.
 		$transform->setOptions( [
@@ -333,11 +229,12 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 			'offsetType' => 'byte',
 		] );
 
-		$originalData['data-parsoid']['body']['offsetType'] = 'UCS2';
+		$dataParsoid = self::ORIG_DATA_PARSOID;
+		$dataParsoid['offsetType'] = 'UCS2';
 
-		$transform->setOriginalData( $originalData );
+		$transform->setOriginalDataParsoid( $dataParsoid );
 
 		$this->expectException( ClientError::class );
-		$transform->getOriginalPageBundle();
+		$transform->getOriginalBody();
 	}
 }

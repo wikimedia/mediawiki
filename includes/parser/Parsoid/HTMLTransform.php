@@ -6,7 +6,6 @@ use Composer\Semver\Semver;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Rest\Handler\ParsoidFormatHelper;
 use MediaWiki\Rest\HttpException;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Core\ClientError;
@@ -26,9 +25,6 @@ use Wikimedia\Parsoid\Utils\Timing;
  */
 class HTMLTransform {
 	/** @var array */
-	private $original = [];
-
-	/** @var array */
 	private $options = [];
 
 	/** @var ?int */
@@ -44,23 +40,17 @@ class HTMLTransform {
 	/** @var ?Document */
 	private $doc = null;
 
-	/** @var ?string */
-	private $docVersion = null;
-
-	/** @var ?array */
-	private $modifiedDataMW = null;
-
 	/** @var ?Element */
 	private $originalBody = null;
 
 	/** @var ?StatsdDataFactoryInterface A statistics aggregator */
 	protected $metrics = null;
 
-	/** @var ?PageBundle */
-	private $originalPageBundle = null;
+	/** @var PageBundle */
+	private $modifiedPageBundle;
 
-	/** @var string */
-	private $html;
+	/** @var PageBundle */
+	private $originalPageBundle;
 
 	/** @var PageConfig */
 	private $pageConfig;
@@ -72,21 +62,22 @@ class HTMLTransform {
 	private $parsoidSettings;
 
 	/**
-	 * @param string $html
+	 * @param string $modifiedHTML
 	 * @param PageConfig $pageConfig
 	 * @param Parsoid $parsoid
 	 * @param array $parsoidSettings
 	 */
 	public function __construct(
-		string $html,
+		string $modifiedHTML,
 		PageConfig $pageConfig,
 		Parsoid $parsoid,
 		array $parsoidSettings
 	) {
-		$this->html = $html;
 		$this->pageConfig = $pageConfig;
 		$this->parsoid = $parsoid;
 		$this->parsoidSettings = $parsoidSettings;
+		$this->modifiedPageBundle = new PageBundle( $modifiedHTML );
+		$this->originalPageBundle = new PageBundle( '' );
 	}
 
 	/**
@@ -111,68 +102,85 @@ class HTMLTransform {
 	}
 
 	/**
-	 * @param array $dataMW
-	 */
-	public function setModifiedDataMW( array $dataMW ): void {
-		$this->modifiedDataMW = $dataMW;
-	}
-
-	/**
 	 * @param int $oldid
 	 */
 	public function setOriginalRevisionId( int $oldid ): void {
 		$this->oldid = $oldid;
 	}
 
-	/**
-	 * @param array $originalData
-	 *
-	 * @return void
-	 */
-	public function setOriginalData( array $originalData ) {
-		if ( $this->originalPageBundle ) {
-			throw new LogicException( 'setOriginalData must be called only once.' );
+	private function validatePageBundle( PageBundle $pb ) {
+		if ( !$pb->version ) {
+			return;
 		}
 
+		$errorMessage = '';
+		if ( !$pb->validate( $pb->version, $errorMessage ) ) {
+			throw new ClientError( $errorMessage );
+		}
+	}
+
+	/**
+	 * @note Call this after all original data has been set!
+	 *
+	 * @param array $modifiedDataMW
+	 */
+	public function setModifiedDataMW( array $modifiedDataMW ): void {
+		// Relies on setOriginalSchemaVersion having been called already.
+		if ( !Semver::satisfies( $this->getSchemaVersion(), '^999.0.0' ) ) {
+			throw new ClientError( 'Modified data-mw is not supported by schema version '
+				. $this->getSchemaVersion() );
+		}
+
+		$this->modifiedPageBundle->mw = $modifiedDataMW;
+	}
+
+	/**
+	 * @param string $originalSchemaVeraion
+	 */
+	public function setOriginalSchemaVersion( string $originalSchemaVeraion ): void {
+		$this->originalPageBundle->version = $originalSchemaVeraion;
+	}
+
+	/**
+	 * @param string $originalHtml
+	 */
+	public function setOriginalHtml( string $originalHtml ): void {
 		if ( $this->doc ) {
-			throw new LogicException( 'setOriginalData() cannot be called after' .
+			throw new LogicException( __FUNCTION__ . ' cannot be called after' .
 				' getModifiedDocument()' );
 		}
 
-		$this->original = $originalData;
+		$this->originalPageBundle->html = $originalHtml;
+	}
 
-		$vOriginal = ParsoidFormatHelper::parseContentTypeHeader(
-			$originalData['html']['headers']['content-type'] ?? ''
-		);
-
-		if ( $vOriginal === null && isset( $this->original['html']['body'] ) ) {
-			throw new ClientError(
-				'Content-type of original html is missing.'
-			);
+	/**
+	 * @param array $originalDataMW
+	 */
+	public function setOriginalDataMW( array $originalDataMW ): void {
+		if ( $this->doc ) {
+			throw new LogicException( __FUNCTION__ . ' cannot be called after getModifiedDocument()' );
 		}
 
-		// NOTE: This may be a "partial" PageBundle with only the HTML and version set,
-		//       or a "full" PageBundle that includes data-parsoid and data-mw.
-		$this->originalPageBundle = new PageBundle(
-			$this->original['html']['body'] ?? '',
-			$this->original['data-parsoid']['body'] ?? null,
-			$this->original['data-mw']['body'] ?? null,
-			$vOriginal
-		);
+		$this->originalPageBundle->mw = $originalDataMW;
 
-		$errorMessage = '';
-
-		// If we have a full page bundle, validate it.
-		if ( $this->originalPageBundle->parsoid !== null || $this->originalPageBundle->mw !== null ) {
-			if ( !$vOriginal ) {
-				// NOTE: can't call getSchemaVersion, since that relies on getOriginalPageBundle.
-				$vOriginal = $this->docVersion ?: Parsoid::defaultHTMLVersion();
-			}
-
-			if ( !$this->originalPageBundle->validate( $vOriginal, $errorMessage ) ) {
-				throw new ClientError( $errorMessage );
-			}
+		// Modified data-mw is going to be the same as original data-mw,
+		// unless specified otherwise.
+		if ( $this->modifiedPageBundle->mw === null ) {
+			$this->modifiedPageBundle->mw = $originalDataMW;
 		}
+	}
+
+	/**
+	 * @param array $originalDataParsoid
+	 */
+	public function setOriginalDataParsoid( array $originalDataParsoid ): void {
+		if ( $this->doc ) {
+			throw new LogicException( __FUNCTION__ . ' cannot be called after getModifiedDocument()' );
+		}
+
+		// data-parsoid is going to be the same for original and modified.
+		$this->originalPageBundle->parsoid = $originalDataParsoid;
+		$this->modifiedPageBundle->parsoid = $originalDataParsoid;
 	}
 
 	/**
@@ -181,13 +189,13 @@ class HTMLTransform {
 	 * @return int
 	 */
 	public function getModifiedHtmlSize(): int {
-		return mb_strlen( $this->html );
+		return mb_strlen( $this->modifiedPageBundle->html );
 	}
 
 	private function getModifiedDocumentRaw(): Document {
 		if ( !$this->doc ) {
-			$this->doc = $this->parseHTML( $this->html, true );
-			$this->docVersion = DOMUtils::extractInlinedContentVersion( $this->doc );
+			$this->doc = $this->parseHTML( $this->modifiedPageBundle->html, true );
+			$this->modifiedPageBundle->version = DOMUtils::extractInlinedContentVersion( $this->doc );
 		}
 
 		return $this->doc;
@@ -197,10 +205,8 @@ class HTMLTransform {
 		$doc = $this->getModifiedDocumentRaw();
 
 		if ( !$this->docHasBeenProcessed ) {
-			$vEdited = $this->docVersion ?: Parsoid::defaultHTMLVersion();
-			$pb = $this->getPageBundleForModifiedDocument( $vEdited );
+			$this->applyPageBundle( $this->doc, $this->modifiedPageBundle );
 
-			PageBundle::apply( $doc, $pb );
 			$this->docHasBeenProcessed = true;
 		}
 
@@ -214,8 +220,7 @@ class HTMLTransform {
 	 * @return bool
 	 */
 	public function hasOriginalHtml(): bool {
-		return isset( $this->originalPageBundle->html ) &&
-			$this->originalPageBundle->html !== '';
+		return $this->originalPageBundle->html !== null && $this->originalPageBundle->html !== '';
 	}
 
 	/**
@@ -225,18 +230,38 @@ class HTMLTransform {
 	 * @return bool
 	 */
 	public function hasOriginalDataParsoid(): bool {
-		return isset( $this->originalPageBundle->parsoid );
+		return $this->originalPageBundle->parsoid !== null;
 	}
 
 	/**
-	 * NOTE: The return value of this method depends on
-	 *    setOriginalData() having been called first.
+	 * Returns the original HTML, with any necessary processing applied.
+	 *
+	 * @todo Make this method redundant, nothing should operate on HTML strings.
 	 *
 	 * @return string
 	 */
 	public function getOriginalHtml(): string {
-		// TODO: keep in a field
-		return $this->hasOriginalHtml() ? ContentUtils::toXML( $this->getOriginalBody() ) : '';
+		// NOTE: Schema version should have been set explicitly,
+		//       so don't call getOriginalSchemaVersion,
+		//       which will silently fall back to the default.
+		if ( !$this->originalPageBundle->version ) {
+			throw new ClientError(
+				'Content-type of original html is missing.'
+			);
+		}
+
+		if ( !$this->originalBody ) {
+			// NOTE: Make sure we called getOriginalBody() at least once before we
+			//       return the original HTML, so downgrades can be applied,
+			//       data-parsoid can be injected, and $this->originalPageBundle->html
+			//       is updated accordingly.
+
+			if ( $this->hasOriginalDataParsoid() || $this->needsDowngrade( $this->originalPageBundle ) ) {
+				$this->getOriginalBody();
+			}
+		}
+
+		return $this->originalPageBundle->html ?: '';
 	}
 
 	/**
@@ -264,55 +289,37 @@ class HTMLTransform {
 			);
 		}
 
-		if ( !$this->originalBody && $this->hasOriginalHtml() ) {
-			$this->downgradeOriginalData( $this->getSchemaVersion() );
-
-			$pb = $this->getOriginalPageBundle();
-			$doc = $this->parseHTML( $pb->html );
-
-			PageBundle::apply( $doc, $pb );
-			$this->originalBody = DOMCompat::getBody( $doc );
+		if ( $this->originalBody ) {
+			return $this->originalBody;
 		}
+
+		// NOTE: Schema version should have been set explicitly,
+		//       so don't call getOriginalSchemaVersion,
+		//       which will silently fall back to the default.
+		if ( !$this->originalPageBundle->version ) {
+			throw new ClientError(
+				'Content-type of original html is missing.'
+			);
+		}
+
+		if ( $this->needsDowngrade( $this->originalPageBundle ) ) {
+			$this->downgradeOriginalData( $this->originalPageBundle, $this->getSchemaVersion() );
+		}
+
+		$doc = $this->parseHTML( $this->originalPageBundle->html );
+
+		$this->applyPageBundle( $doc, $this->originalPageBundle );
+
+		$this->originalBody = DOMCompat::getBody( $doc );
+
+		// XXX: use a separate field??
+		$this->originalPageBundle->html = ContentUtils::toXML( $this->originalBody );
 
 		return $this->originalBody;
 	}
 
-	public function getOriginalSchemaVersion(): ?string {
-		return $this->originalPageBundle ? $this->originalPageBundle->version : null;
-	}
-
-	/**
-	 * Returns a PageBundle representing the original data.
-	 *
-	 * @note This may be a full page bundle with data-parsoid and data-mw,
-	 * or a partial page bundle with just html, or it may be
-	 * entirely empty.
-	 *
-	 * @return PageBundle
-	 * @throws ClientError
-	 */
-	public function getOriginalPageBundle(): PageBundle {
-		if ( !$this->originalPageBundle ) {
-			throw new LogicException(
-				'No original data supplied, call hasOriginalHtml' .
-				'or hasOriginalDataParsoid first.'
-			);
-		}
-
-		// Verify that the top-level parsoid object either doesn't contain
-		// offsetType, or that it matches the conversion that has been
-		// explicitly requested.
-		if ( isset( $this->originalPageBundle->parsoid['offsetType'] ) ) {
-			$offsetType = $this->getOffsetType();
-			$origOffsetType = $this->originalPageBundle->parsoid['offsetType'] ?? $offsetType;
-			if ( $origOffsetType !== $offsetType ) {
-				throw new ClientError(
-					'DSR offsetType mismatch: ' . $origOffsetType . ' vs ' . $offsetType
-				);
-			}
-		}
-
-		return $this->originalPageBundle;
+	public function getOriginalSchemaVersion(): string {
+		return $this->originalPageBundle->version ?: $this->getSchemaVersion();
 	}
 
 	/**
@@ -322,52 +329,17 @@ class HTMLTransform {
 	 * @return string
 	 */
 	public function getSchemaVersion(): string {
-		if ( $this->docVersion ) {
-			return $this->docVersion;
-		}
-
-		// will initialize $this->docVersion
+		// Get the content version of the edited doc, if available.
+		// Make sure $this->modifiedPageBundle->version is initialized.
 		$this->getModifiedDocumentRaw();
+		$inputContentVersion = $this->modifiedPageBundle->version;
 
-		if ( !$this->docVersion ) {
-			$this->docVersion = $this->getOriginalSchemaVersion();
+		if ( !$inputContentVersion ) {
 			$this->incrementMetrics( 'html2wt.original.version.notinline' );
+			$inputContentVersion = $this->originalPageBundle->version ?: Parsoid::defaultHTMLVersion();
 		}
 
-		if ( !$this->docVersion ) {
-			$this->docVersion = Parsoid::defaultHTMLVersion();
-		}
-
-		return $this->docVersion;
-	}
-
-	private function getPageBundleForModifiedDocument( string $schemaVersion ): PageBundle {
-		// NOTE: we must take $schemaVersion as a param, because
-		//   getSchemaVersion() would call getModifiedDocument(), and getModifiedDocument()
-		//   would call getPageBundleForModifiedDocument() again, causing a stack overflow.
-
-		if ( $this->modifiedDataMW ) {
-			if ( !Semver::satisfies( $this->getSchemaVersion(), '^999.0.0' ) ) {
-				throw new ClientError( 'Modified data-mw is not supported by schema version '
-					. $this->getSchemaVersion() );
-			}
-		}
-
-		$origPb = $this->hasOriginalDataParsoid() ? $this->getOriginalPageBundle() : null;
-
-		$pb = new PageBundle(
-			$origPb->html ?? '',
-			$origPb->parsoid ?? [ 'ids' => [] ],
-			$this->modifiedDataMW ?? ( $origPb->mw ?? [ 'ids' => [] ] )
-		);
-
-		$errorMessage = '';
-
-		if ( !$pb->validate( $schemaVersion, $errorMessage ) ) {
-			throw new ClientError( $errorMessage );
-		}
-
-		return $pb;
+		return $inputContentVersion;
 	}
 
 	public function getOriginalRevisionId(): ?int {
@@ -382,44 +354,78 @@ class HTMLTransform {
 		return $this->options['offsetType'];
 	}
 
-	private function downgradeOriginalData( string $targetSchemaVersion ) {
-		$vOriginal = $this->getOriginalSchemaVersion();
+	private function needsDowngrade( PageBundle $pb ): bool {
+		$vOriginal = $pb->version;
+		$vEdited = $this->getSchemaVersion();
 
-		if ( $vOriginal === null ) {
-			throw new LogicException( 'This can only be called after setOriginalData()' );
+		return $vOriginal !== null && $vOriginal !== $vEdited;
+	}
+
+	private function downgradeOriginalData( PageBundle $pb, string $targetSchemaVersion ) {
+		if ( $pb->version === null ) {
+			throw new ClientError( 'Missing schema version' );
 		}
 
-		if ( $targetSchemaVersion === $vOriginal ) {
+		if ( $targetSchemaVersion === $pb->version ) {
 			// nothing to do.
 			return;
 		}
 
+		if ( !$pb->parsoid ) {
+			// XXX: Should we also support downgrades if $pb->html has everything inlined?
+			// XXX: The downgrade should really be an operation on the DOM.
+			return;
+		}
+
 		// We need to downgrade the original to match the edited doc's version.
-		$downgrade = Parsoid::findDowngrade( $vOriginal, $targetSchemaVersion );
+		$downgrade = Parsoid::findDowngrade( $pb->version, $targetSchemaVersion );
 
-		// Downgrades are only for pagebundle
-		if ( $downgrade && $this->hasOriginalDataParsoid() ) {
-			$pb = $this->getOriginalPageBundle();
-
-			$this->incrementMetrics(
-				"downgrade.from.{$downgrade['from']}.to.{$downgrade['to']}"
-			);
-			$downgradeTiming = $this->startTiming();
-			Parsoid::downgrade( $downgrade, $pb );
-			$downgradeTiming->end( 'downgrade.time' );
-
-			// XXX: Parsoid::downgrade operates on the parsed Document, would be nice
-			//      if we could get that instead of getting back HTML which we have to
-			//      parse again!
-			// XXX: We could just set $this->originalBody to null and leave it to
-			//      getOriginalBody() to parse the HTML on demand.
-			$this->originalBody = DOMCompat::getBody( $this->parseHTML( $pb->html ) );
-		} else {
+		if ( !$downgrade ) {
 			throw new ClientError(
-				"Modified ({$targetSchemaVersion}) and original ({$vOriginal}) html are of "
-				. 'different type, and no path to downgrade.'
+				"No downgrade possible from schema version {$pb->version} to {$targetSchemaVersion}."
 			);
 		}
+
+		$this->incrementMetrics(
+			"downgrade.from.{$downgrade['from']}.to.{$downgrade['to']}"
+		);
+		$downgradeTiming = $this->startTiming();
+		Parsoid::downgrade( $downgrade, $pb );
+		$downgradeTiming->end( 'downgrade.time' );
+
+		// NOTE: Set $this->originalBody to null so getOriginalBody() will re-generate it.
+		// XXX: Parsoid::downgrade operates on the parsed Document, would be nice
+		//      if we could get that instead of getting back HTML which we have to
+		//      parse again!
+		$this->originalBody = null;
+	}
+
+	/**
+	 * @param Document $doc
+	 * @param PageBundle $pb
+	 *
+	 * @throws ClientError
+	 */
+	private function applyPageBundle( Document $doc, PageBundle $pb ): void {
+		if ( $pb->parsoid === null && $pb->mw === null ) {
+			return;
+		}
+
+		// Verify that the top-level parsoid object either doesn't contain
+		// offsetType, or that it matches the conversion that has been
+		// explicitly requested.
+		if ( isset( $pb->parsoid['offsetType'] ) ) {
+			$offsetType = $this->getOffsetType();
+			$origOffsetType = $pb->parsoid['offsetType'] ?? $offsetType;
+			if ( $origOffsetType !== $offsetType ) {
+				throw new ClientError(
+					'DSR offsetType mismatch: ' . $origOffsetType . ' vs ' . $offsetType
+				);
+			}
+		}
+
+		$this->validatePageBundle( $pb );
+		PageBundle::apply( $doc, $pb );
 	}
 
 	/**
@@ -430,6 +436,11 @@ class HTMLTransform {
 	 * @throws HttpException
 	 */
 	private function getSelserData(): ?SelserData {
+		if ( !$this->hasOriginalHtml() ) {
+			// No original HTML, no selser.
+			return null;
+		}
+
 		$oldhtml = $this->getOriginalHtml();
 
 		// As per https://www.mediawiki.org/wiki/Parsoid/API#v1_API_entry_points
