@@ -318,7 +318,7 @@ abstract class LBFactory implements ILBFactory {
 
 		$chronProt = $this->getChronologyProtector();
 		if ( ( $flags & self::SHUTDOWN_NO_CHRONPROT ) != self::SHUTDOWN_NO_CHRONPROT ) {
-			$this->shutdownChronologyProtector( $chronProt, $workCallback, $cpIndex );
+			$this->shutdownChronologyProtector( $chronProt, $cpIndex );
 			$this->replLogger->debug( __METHOD__ . ': finished ChronologyProtector shutdown' );
 		}
 		$cpClientId = $chronProt->getClientId();
@@ -705,32 +705,17 @@ abstract class LBFactory implements ILBFactory {
 	 * Get and record all of the staged DB positions into persistent memory storage
 	 *
 	 * @param ChronologyProtector $cp
-	 * @param callable|null $workCallback Work to do instead of waiting on syncing positions
 	 * @param int|null &$cpIndex DB position key write counter; incremented on update [returned]
 	 */
 	protected function shutdownChronologyProtector(
-		ChronologyProtector $cp, $workCallback, &$cpIndex = null
+		ChronologyProtector $cp, &$cpIndex = null
 	) {
 		// Remark all of the relevant DB primary positions
 		foreach ( $this->getLBsForOwner() as $lb ) {
 			$cp->stageSessionReplicationPosition( $lb );
 		}
 		// Write the positions to the persistent stash
-		$unsavedPositions = $cp->persistSessionReplicationPositions( $cpIndex );
-		if ( $unsavedPositions && $workCallback ) {
-			// Invoke callback in case it did not cache the result yet
-			$workCallback();
-		}
-		// If the positions failed to write to the stash, then wait on the local datacenter
-		// replica DBs to catch up before sending an HTTP response. As long as the request that
-		// caused such DB writes occurred in the primary datacenter, and clients are temporarily
-		// pinned to the primary datacenter after causing DB writes, then this should suffice.
-		foreach ( $this->getLBsForOwner() as $lb ) {
-			$primaryName = $lb->getServerName( $lb->getWriterIndex() );
-			if ( isset( $unsavedPositions[$primaryName] ) ) {
-				$lb->waitForAll( $unsavedPositions[$primaryName] );
-			}
-		}
+		$cp->persistSessionReplicationPositions( $cpIndex );
 	}
 
 	/**

@@ -1020,7 +1020,11 @@ class DifferenceEngine extends ContextSource {
 					if ( $this->hookRunner->onDifferenceEngineRenderRevisionAddParserOutput(
 						$this, $out, $parserOutput, $wikiPage )
 					) {
+						$skinOptions = $this->getSkin()->getOptions();
+						$out->setSections( $parserOutput->getSections() );
 						$out->addParserOutput( $parserOutput, [
+							// phab:T311529 - diffs should respect skin
+							'injectTOC' => $skinOptions['toc'],
 							'enableSectionEditLinks' => $this->mNewRevisionRecord->isCurrent()
 								&& $this->getAuthority()->probablyCan(
 									'edit',
