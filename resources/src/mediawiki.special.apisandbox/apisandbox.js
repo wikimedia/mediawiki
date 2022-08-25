@@ -11,6 +11,7 @@
 		updatingBooklet = false,
 		pages = {},
 		moduleInfoCache = {},
+		baseRequestParams = {},
 		OptionalParamWidget = require( './OptionalParamWidget.js' ),
 		ParamLabelWidget = require( './ParamLabelWidget.js' ),
 		BooleanToggleSwitchParamWidget = require( './BooleanToggleSwitchParamWidget.js' ),
@@ -926,7 +927,6 @@
 				} );
 			}
 
-			var baseRequestParams;
 			if ( !paramsAreForced ) {
 				// forced params means we are continuing a query; the base query should be preserved
 				baseRequestParams = $.extend( {}, params );
