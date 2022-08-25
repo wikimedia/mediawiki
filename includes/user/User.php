@@ -2169,7 +2169,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			return false;
 		}
 
-		$token = $this->getOption( $oname );
+		$userOptionsLookup = MediaWikiServices::getInstance()
+			->getUserOptionsLookup();
+		$token = $userOptionsLookup->getOption( $this, (string)$oname );
 		if ( !$token ) {
 			// Default to a value based on the user token to avoid space
 			// wasted on storing tokens for all users. When this option
@@ -2211,7 +2213,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		// Important migration for old data rows
 		if ( $this->mDatePreference === null ) {
 			global $wgLang;
-			$value = $this->getOption( 'date' );
+			$userOptionsLookup = MediaWikiServices::getInstance()
+				->getUserOptionsLookup();
+			$value = $userOptionsLookup->getOption( $this, 'date' );
 			$map = $wgLang->getDatePreferenceMigrationMap();
 			if ( isset( $map[$value] ) ) {
 				$value = $map[$value];
@@ -3218,7 +3222,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public function canReceiveEmail() {
-		return $this->isEmailConfirmed() && !$this->getOption( 'disablemail' );
+		$userOptionsLookup = MediaWikiServices::getInstance()
+			->getUserOptionsLookup();
+		return $this->isEmailConfirmed() && !$userOptionsLookup->getOption( $this, 'disablemail' );
 	}
 
 	/**

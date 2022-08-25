@@ -378,7 +378,8 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$form = $prefFactory->getForm( $user, $this->context );
 		$form->show();
 		$form->trySubmit();
-		$this->assertEquals( 12, $user->getOption( 'rclimit' ) );
+		$userOptionsLookup = $this->getServiceContainer()->getUserOptionsLookup();
+		$this->assertEquals( 12, $userOptionsLookup->getOption( $user, 'rclimit' ) );
 	}
 
 	/**

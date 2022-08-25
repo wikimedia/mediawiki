@@ -1149,10 +1149,11 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		// Case where user does not have canonical parser options
 		$user = $this->getMutableTestUser()->getUser();
 		$services = $this->getServiceContainer();
-		$services->getUserOptionsManager()->setOption(
+		$userOptionsManager = $services->getUserOptionsManager();
+		$userOptionsManager->setOption(
 			$user,
 			'thumbsize',
-			$user->getOption( 'thumbsize' ) + 1
+			$userOptionsManager->getOption( $user, 'thumbsize' ) + 1
 		);
 		$content = [ 'main' => new WikitextContent( 'rev ID ver #2: {{REVISIONID}}' ) ];
 		$rev = $this->createRevision( $page, 'first', $content, $user );
