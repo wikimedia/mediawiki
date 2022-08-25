@@ -7,6 +7,7 @@
  */
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\User\UserOptionsLookup;
 
 /**
  * @group Preferences
@@ -35,11 +36,13 @@ class SpecialPreferencesTest extends MediaWikiIntegrationTestCase {
 			->willReturn( true );
 
 		# The mocked user has a long nickname
-		$user->method( 'getOption' )
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getOption' )
 			->willReturnMap( [
-				[ 'nickname', null, false, 'superlongnickname' ],
+				[ $user, 'nickname', null, false, UserOptionsLookup::READ_NORMAL, 'superlongnickname' ],
 			]
 			);
+		$this->setService( 'UserOptionsLookup', $userOptionsLookup );
 
 		// isAnyAllowed used to return null from the mock,
 		// thus revoke it's permissions.

@@ -116,13 +116,13 @@ The new option is NOT validated.' );
 					$this->fatalError( "Invalid user option. Use --list to see valid choices\n" );
 				}
 
-				$userValue = $user->getOption( $option );
+				$userValue = $userOptionsLookup->getOption( $user, $option );
 				if ( $userValue <> $defaultOptions[$option] ) {
 					$ret[$option][$userValue] = ( $ret[$option][$userValue] ?? 0 ) + 1;
 				}
 			} else {
 				foreach ( $defaultOptions as $name => $defaultValue ) {
-					$userValue = $user->getOption( $name );
+					$userValue = $userOptionsLookup->getOption( $user, $name );
 					if ( $userValue != $defaultValue ) {
 						$ret[$name][$userValue] = ( $ret[$name][$userValue] ?? 0 ) + 1;
 					}
