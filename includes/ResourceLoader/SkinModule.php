@@ -92,16 +92,35 @@ class SkinModule extends LessVarFileModule {
 	 *     Styles .wikitable style tables.
 	 *
 	 * "interface":
-	 *     The highest level, this stylesheet contains extra common styles for classes like
-	 *     .firstHeading, #contentSub, et cetera which are not outputted by MediaWiki but are common
+	 *     Shorthand for a set of styles that are common
 	 *     to skins like MonoBook, Vector, etc... Essentially this level is for styles that are
 	 *     common to MonoBook clones.
+	 *     This enables interface-core, interface-indicators, interface-subtitle,
+	 *      interface-user-message, interface-site-notice and interface-edit-section-links.
 	 *
 	 * "interface-category":
 	 *     Styles used for styling the categories in a horizontal bar at the bottom of the content.
 	 *
+	 * "interface-core":
+	 *     Required interface core styles. Disabling these is not recommended.
+	 *
+	 * "interface-edit-section-links":
+	 *     Default interface styling for edit section links.
+	 *
+	 * "interface-indicators":
+	 *     Default interface styling for indicators.
+	 *
 	 * "interface-message-box":
 	 *     Styles for message boxes.
+	 *
+	 * "interface-site-notice":
+	 *     Default interface styling for site notices.
+	 *
+	 * "interface-subtitle":
+	 *     Default interface styling for subtitle area.
+	 *
+	 * "interface-user-message":
+	 *     Default interface styling for html-user-message (you have new talk page messages box)
 	 *
 	 * "i18n-ordered-lists":
 	 *     Styles for ordered lists elements that support mixed language content.
