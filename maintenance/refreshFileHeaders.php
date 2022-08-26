@@ -68,22 +68,22 @@ class RefreshFileHeaders extends Maintenance {
 		$fileQuery = LocalFile::getQueryInfo();
 
 		do {
-			$conds = [ "img_name > {$dbr->addQuotes( $start )}" ];
+			$conds = [ 'img_name > ' . $dbr->addQuotes( $start ) ];
 
 			if ( strlen( $end ) ) {
-				$conds[] = "img_name <= {$dbr->addQuotes( $end )}";
+				$conds[] = 'img_name <= ' . $dbr->addQuotes( $end );
 			}
 
 			if ( strlen( $media_type ) ) {
-				$conds[] = "img_media_type = {$dbr->addQuotes( $media_type )}";
+				$conds['img_media_type'] = $media_type;
 			}
 
 			if ( strlen( $major_mime ) ) {
-				$conds[] = "img_major_mime = {$dbr->addQuotes( $major_mime )}";
+				$conds['img_major_mime'] = $major_mime;
 			}
 
 			if ( strlen( $minor_mime ) ) {
-				$conds[] = "img_minor_mime = {$dbr->addQuotes( $minor_mime )}";
+				$conds['img_minor_mime'] = $minor_mime;
 			}
 
 			$res = $dbr->select( $fileQuery['tables'],

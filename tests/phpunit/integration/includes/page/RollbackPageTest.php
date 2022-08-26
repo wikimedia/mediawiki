@@ -400,11 +400,15 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		$currentTimestamp = $this->getServiceContainer()
 			->getContentLanguage()
 			->timeanddate( $revisions['revision-two']->getTimestamp() );
-		$expectedSummary = "TEST! {$admin->getName()} {$user1->getName()}" .
-			" {$revisions['revision-one']->getId()}" .
-			" {$targetTimestamp}" .
-			" {$revisions['revision-two']->getId()}" .
-			" {$currentTimestamp}";
+		$expectedSummary = implode( ' ', [
+			'TEST!',
+			$admin->getName(),
+			$user1->getName(),
+			$revisions['revision-one']->getId(),
+			$targetTimestamp,
+			$revisions['revision-two']->getId(),
+			$currentTimestamp
+		] );
 		$this->assertSame( $expectedSummary, $page->getRevisionRecord()->getComment()->text );
 		$rc = $this->getServiceContainer()->getRevisionStore()->getRecentChange( $page->getRevisionRecord() );
 		$this->assertNotNull( $rc );

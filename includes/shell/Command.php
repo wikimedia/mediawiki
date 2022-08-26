@@ -237,6 +237,6 @@ class Command extends UnboxedCommand {
 	 * @return string
 	 */
 	public function __toString(): string {
-		return "#Command: {$this->getCommandString()}";
+		return '#Command: ' . $this->getCommandString();
 	}
 }

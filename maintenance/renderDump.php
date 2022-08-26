@@ -60,7 +60,7 @@ class DumpRenderer extends Maintenance {
 		$this->startTime = microtime( true );
 
 		if ( $this->hasOption( 'parser' ) ) {
-			$this->prefix .= "-{$this->getOption( 'parser' )}";
+			$this->prefix .= '-' . $this->getOption( 'parser' );
 			// T236809: We'll need to provide an alternate ParserFactory
 			// service to make this work.
 			$this->fatalError( 'Parser class configuration temporarily disabled.' );

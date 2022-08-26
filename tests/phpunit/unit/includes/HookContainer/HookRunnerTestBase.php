@@ -39,7 +39,7 @@ abstract class HookRunnerTestBase extends MediaWikiUnitTestCase {
 				}
 			);
 			$this->assertCount( 1, $interfacesWithMethod,
-				"Exactly one hook interface must have method {$method->getName()}" );
+				'Exactly one hook interface must have method ' . $method->getName() );
 		}
 	}
 
