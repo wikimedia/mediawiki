@@ -322,7 +322,7 @@ function wfStreamThumb( array $params ) {
 
 	// Suggest a good name for users downloading this thumbnail
 	$headers[] =
-		"Content-Disposition: {$img->getThumbDisposition( $thumbName, $dispositionType )}";
+		'Content-Disposition: ' . $img->getThumbDisposition( $thumbName, $dispositionType );
 
 	if ( count( $varyHeader ) ) {
 		$headers[] = 'Vary: ' . implode( ', ', $varyHeader );

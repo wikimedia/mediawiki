@@ -115,7 +115,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( \InvalidArgumentException $ex ) {
 			$this->assertSame(
-				"Refusing to create session for unverified user {$info->getUserInfo()}",
+				'Refusing to create session for unverified user ' . $info->getUserInfo(),
 				$ex->getMessage()
 			);
 		}

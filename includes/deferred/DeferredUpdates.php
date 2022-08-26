@@ -386,7 +386,7 @@ class DeferredUpdates {
 		JobQueueGroupFactory $jobQueueGroupFactory,
 		$httpMethod
 	): ?Throwable {
-		$suffix = ( $update instanceof DeferrableCallback ) ? "_{$update->getOrigin()}" : '';
+		$suffix = $update instanceof DeferrableCallback ? '_' . $update->getOrigin() : '';
 		$type = get_class( $update ) . $suffix;
 		$stats->increment( "deferred_updates.$httpMethod.$type" );
 		$updateId = spl_object_id( $update );

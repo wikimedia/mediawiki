@@ -454,7 +454,7 @@ abstract class Job implements RunnableJob {
 
 		$s = $this->command;
 		if ( is_object( $this->title ) ) {
-			$s .= " {$this->title->getPrefixedDBkey()}";
+			$s .= ' ' . $this->title->getPrefixedDBkey();
 		}
 		if ( $paramString != '' ) {
 			$s .= " $paramString";
