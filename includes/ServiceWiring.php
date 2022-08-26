@@ -1391,6 +1391,7 @@ return [
 			$services->getLanguageFactory(),
 			$services->getLanguageConverterFactory(),
 			$services->getLanguageNameUtils(),
+			$services->getUrlUtils(),
 			// These arguments are temporary and will be removed once
 			// better solutions are found.
 			$services->getParser(), // T268776
