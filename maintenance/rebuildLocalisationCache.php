@@ -48,6 +48,7 @@ class RebuildLocalisationCache extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Rebuild the localisation cache' );
+		$this->addOption( 'dry-run', 'Determine what languages need to be rebuilt without changing anything' );
 		$this->addOption( 'force', 'Rebuild all files, even ones not out of date' );
 		$this->addOption( 'threads', 'Fork more than one thread', false, true );
 		$this->addOption( 'outdir', 'Override the output directory (normally $wgCacheDirectory)',
@@ -245,12 +246,16 @@ class RebuildLocalisationCache extends Maintenance {
 	 */
 	private function doRebuild( $codes, $lc, $force ) {
 		$numRebuilt = 0;
+		$operation = $this->hasOption( 'dry-run' ) ? "Would rebuild" : "Rebuilding";
+
 		foreach ( $codes as $code ) {
 			if ( $force || $lc->isExpired( $code ) ) {
 				if ( !$this->hasOption( 'no-progress' ) ) {
-					$this->output( "Rebuilding $code...\n" );
+					$this->output( "$operation $code...\n" );
 				}
-				$lc->recache( $code );
+				if ( !$this->hasOption( 'dry-run' ) ) {
+					$lc->recache( $code );
+				}
 				$numRebuilt++;
 			}
 		}
