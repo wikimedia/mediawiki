@@ -12,12 +12,12 @@ MediaWiki provides an extendable local development environment based on Docker C
 
 More documentation, examples, and configuration recipes are available at [mediawiki.org/wiki/MediaWiki-Docker][mw-docker].
 
-Support is available on the [Libera IRC network][libera-home] in the [`#mediawiki` channel][libera-webchat], and on Phabricator by creating tasks with the [MediaWiki-Docker][mw-docker-phab] tag.
+Support is available on the [Libera IRC network][libera-home] in the [#mediawiki channel][libera-webchat], and on Phabricator by creating tasks with the [MediaWiki-Docker][mw-docker-phab] tag.
 
 [mw-docker]: https://www.mediawiki.org/wiki/MediaWiki-Docker
 [mw-docker-phab]: https://phabricator.wikimedia.org/tag/mediawiki-docker/
 [libera-home]: https://libera.chat/
-[libera-webhcat]: https://web.libera.chat/#mediawiki
+[libera-webchat]: https://web.libera.chat/#mediawiki
 
 ## Quickstart
 
