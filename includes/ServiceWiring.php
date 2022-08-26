@@ -119,6 +119,7 @@ use MediaWiki\Parser\ParserObserver;
 use MediaWiki\Parser\Parsoid\Config\DataAccess as MWDataAccess;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory as MWPageConfigFactory;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig as MWSiteConfig;
+use MediaWiki\Parser\Parsoid\HTMLTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
@@ -724,6 +725,14 @@ return [
 			$config->get( MainConfigNames::CdnReboundPurgeDelay ),
 			$config->get( MainConfigNames::UseFileCache ),
 			$config->get( MainConfigNames::CdnMaxAge )
+		);
+	},
+
+	'HTMLTransformFactory' => static function ( MediaWikiServices $services ): HTMLTransformFactory {
+		return new HTMLTransformFactory(
+			$services->getService( '_Parsoid' ),
+			$services->getMainConfig()->get( MainConfigNames::ParsoidSettings ),
+			$services->getParsoidPageConfigFactory()
 		);
 	},
 
@@ -1346,10 +1355,7 @@ return [
 			$services->getRevisionLookup(),
 			$services->getGlobalIdGenerator(),
 			$services->getStatsdDataFactory(),
-			new Parsoid(
-				$services->getParsoidSiteConfig(),
-				$services->getParsoidDataAccess()
-			),
+			$services->getService( '_Parsoid' ),
 			$services->getParsoidSiteConfig(),
 			$services->getParsoidPageConfigFactory()
 		);
@@ -2277,6 +2283,13 @@ return [
 
 	'_ParserObserver' => static function ( MediaWikiServices $services ): ParserObserver {
 		return new ParserObserver( LoggerFactory::getInstance( 'DuplicateParse' ) );
+	},
+
+	'_Parsoid' => static function ( MediaWikiServices $services ): Parsoid {
+		return new Parsoid(
+			$services->getParsoidSiteConfig(),
+			$services->getParsoidDataAccess()
+		);
 	},
 
 	'_SqlBlobStore' => static function ( MediaWikiServices $services ): SqlBlobStore {
