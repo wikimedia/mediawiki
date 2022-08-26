@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Church of emacs",
+			"Didym",
 			"Kghbln",
 			"Metalhead64",
 			"MichaelFrey",
@@ -336,7 +337,7 @@
 	"exif-gpsdirection-t": "Tatsächliche Richtung",
 	"exif-gpsdirection-m": "Magnetische Richtung",
 	"exif-ycbcrpositioning-1": "Zentriert",
-	"exif-ycbcrpositioning-2": "Benachbaart",
+	"exif-ycbcrpositioning-2": "Benachbart",
 	"exif-dc-contributor": "Beteiligte",
 	"exif-dc-coverage": "Örtlicher oder zeitlicher Rahmen des Mediums",
 	"exif-dc-date": "Datumsangaben",

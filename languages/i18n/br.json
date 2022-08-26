@@ -1553,7 +1553,7 @@
 	"upload-permitted": "{{PLURAL:$2|Seurt|Seurtoù}} restr aotreet : $1.",
 	"upload-preferred": "{{PLURAL:$2|Seurt|Seurtoù}} restr karetañ : $1.",
 	"upload-prohibited": "{{PLURAL:$2|Seurt|Seurtoù}} restr berzet : $1.",
-	"uploadlogpage": "Marilh ar pellgargerezhioù",
+	"uploadlogpage": "Marilh ar pellgaserezhioù",
 	"uploadlogpagetext": "Setu a-is marilh ar restroù diwezhañ bet karget war ar servijer.\nS.o [[Special:NewFiles|rann ar skeudennoù nevez]] evit kaout ur sell gwiroc'h",
 	"filename": "Anv ar restr",
 	"filedesc": "Diverradur",
