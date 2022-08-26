@@ -27,6 +27,7 @@ use LogicException;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Parsoid\HTMLTransform;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
@@ -272,10 +273,12 @@ abstract class ParsoidHandler extends Handler {
 	protected function getHTMLTransform(
 		array $attribs,
 		string $html,
-		PageConfig $pageConfig,
-		array $parsoidSettings
+		PageIdentity $page
 	): HTMLTransform {
-		$transform = new HTMLTransform( $html, $pageConfig, $this->newParsoid(), $parsoidSettings );
+		// NOTE: The Parsoid extension is using the constructor, so we can't easily modify it and inject
+		//       the factory. Since we are planning to extract this logic anyway, this should, be ok for now.
+		$factory = MediaWikiServices::getInstance()->getHTMLTransformFactory();
+		$transform = $factory->getHTMLTransform( $html, $page );
 
 		if ( $this->metrics ) {
 			$transform->setMetrics( $this->metrics );
@@ -288,6 +291,10 @@ abstract class ParsoidHandler extends Handler {
 
 		if ( isset( $attribs['oldid'] ) ) {
 			$transform->setOriginalRevisionId( $attribs['oldid'] );
+		}
+
+		if ( isset( $attribs['pagelanguage'] ) ) {
+			$transform->setContentLanguage( $attribs['pagelanguage'] );
 		}
 
 		$original = $attribs['opts']['original'] ?? [];
@@ -306,6 +313,11 @@ abstract class ParsoidHandler extends Handler {
 
 		if ( isset( $original['html']['body'] ) ) {
 			$transform->setOriginalHtml( $original['html']['body'] );
+		}
+
+		if ( isset( $original['wikitext']['body'] ) ) {
+			// FIXME: do we really have to support wikitext overrides?
+			$transform->setOriginalWikitext( $original['wikitext']['body'] );
 		}
 
 		if ( $attribs['opts']['from'] === ParsoidFormatHelper::FORMAT_PAGEBUNDLE ) {
@@ -535,6 +547,33 @@ abstract class ParsoidHandler extends Handler {
 
 		// All good!
 		return $pageConfig;
+	}
+
+	/**
+	 * Try to create a PageIdentity object.
+	 * If no page is specified in the request, this will return the wiki's main page.
+	 * If an invalid page is requested, this throws an appropriate HTTPException.
+	 *
+	 * @param array $attribs
+	 * @return PageIdentity
+	 * @throws HttpException
+	 */
+	protected function tryToCreatePageIdentity( array $attribs ): PageIdentity {
+		if ( !isset( $attribs['pageName'] ) || $attribs['pageName'] === '' ) {
+			return Title::newMainPage();
+		}
+
+		// XXX: Should be injected, but the Parsoid extension relies on the
+		//      constructor signature. Also, ParsoidHandler should go away soon anyway.
+		$pageStore = MediaWikiServices::getInstance()->getPageStore();
+
+		$page = $pageStore->getPageByText( $attribs['pageName'] );
+
+		if ( !$page ) {
+			throw new HttpException( 'Bad page name: ' . $attribs['pageName'], 400 );
+		}
+
+		return $page;
 	}
 
 	/**
@@ -851,7 +890,7 @@ abstract class ParsoidHandler extends Handler {
 	}
 
 	/**
-	 * @param PageConfig $pageConfig
+	 * @param PageConfig|PageIdentity $page
 	 * @param array $attribs Attributes gotten from requests
 	 * @param string $html Original HTML
 	 *
@@ -859,10 +898,17 @@ abstract class ParsoidHandler extends Handler {
 	 * @throws HttpException
 	 */
 	protected function html2wt(
-		PageConfig $pageConfig, array $attribs, string $html
+		$page, array $attribs, string $html
 	) {
+		if ( $page instanceof PageConfig ) {
+			// TODO: Deprecate passing a PageConfig.
+			//       Ideally, callers would use HTMLTransform directly.
+			// FIXME: This is slow, and we already have the parsed title and ID inside the PageConfig...
+			$page = Title::newFromTextThrow( $page->getTitle() );
+		}
+
 		try {
-			$transform = $this->getHTMLTransform( $attribs, $html, $pageConfig, $this->parsoidSettings );
+			$transform = $this->getHTMLTransform( $attribs, $html, $page );
 			$wikitext = $transform->htmlToWikitext();
 
 			$response = $this->getResponseFactory()->create();

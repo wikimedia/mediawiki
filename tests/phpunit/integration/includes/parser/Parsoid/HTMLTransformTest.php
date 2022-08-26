@@ -5,8 +5,11 @@ namespace MediaWiki\Tests\Parser\Parsoid;
 use Composer\Semver\Semver;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
+use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\Parsoid\HTMLTransform;
 use MediaWikiIntegrationTestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Mocks\MockPageConfig;
 use Wikimedia\Parsoid\Parsoid;
@@ -20,7 +23,7 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 	'<meta charset="utf-8"/><meta property="mw:htmlVersion" content="2.4.0"/></head>' .
 	'<body>Modified HTML</body></html>';
 
-	private const ORIG_BODY = '<body>Original HTML</body>';
+	private const ORIG_BODY = '<body>Original Content</body>';
 	private const ORIG_HTML = '<html>' . self::ORIG_BODY . '</html>';
 	private const ORIG_DATA_MW = [ 'ids' => [ 'mwAQ' => [] ] ];
 	private const ORIG_DATA_PARSOID = [ 'ids' => [ 'mwAQ' => [ 'pi' => [ [ [ 'k' => '1' ] ] ] ] ] ];
@@ -43,14 +46,19 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function createHTMLTransform( $html = '' ) {
+		/** @var PageConfigFactory|MockObject $pageConfigFactory */
+		$pageConfigFactory = $this->createNoOpMock( PageConfigFactory::class, [ 'create' ] );
+		$pageConfigFactory->method( 'create' )->willReturn( new MockPageConfig( [], null ) );
+
 		return new HTMLTransform(
 			$html ?? self::ORIG_HTML,
-			new MockPageConfig( [], null ),
+			PageIdentityValue::localIdentity( 7, NS_MAIN, 'Test' ),
 			new Parsoid(
 				$this->getServiceContainer()->getParsoidSiteConfig(),
 				$this->getServiceContainer()->getParsoidDataAccess()
 			),
-			[]
+			[],
+			$pageConfigFactory
 		);
 	}
 
@@ -272,5 +280,18 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectException( ClientError::class );
 		$transform->getOriginalBody();
+	}
+
+	public function testHtmlToWikitext() {
+		$transform = $this->createHTMLTransform( self::ORIG_HTML );
+
+		// Set some options to assert on $transform.
+		$transform->setOptions( [
+			'contentmodel' => 'wikitext',
+			'offsetType' => 'byte',
+		] );
+
+		$wikitext = $transform->htmlToWikitext();
+		$this->assertStringContainsString( 'Original Content', $wikitext );
 	}
 }

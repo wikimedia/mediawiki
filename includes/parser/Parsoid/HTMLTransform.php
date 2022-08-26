@@ -6,7 +6,12 @@ use Composer\Semver\Semver;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionAccessException;
+use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
@@ -19,6 +24,7 @@ use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\Parsoid\Utils\Timing;
+use WikitextContent;
 
 /**
  * @unstable
@@ -29,6 +35,12 @@ class HTMLTransform {
 
 	/** @var ?int */
 	private $oldid = null;
+
+	/** @var ?string */
+	private $contentLanguage = null;
+
+	/** @var ?string */
+	private $originalWikitext = null;
 
 	/**
 	 * Whether $this->doc has had any necessary processing applied,
@@ -52,8 +64,8 @@ class HTMLTransform {
 	/** @var PageBundle */
 	private $originalPageBundle;
 
-	/** @var PageConfig */
-	private $pageConfig;
+	/** @var ?PageConfig */
+	private $pageConfig = null;
 
 	/** @var Parsoid */
 	private $parsoid;
@@ -61,23 +73,32 @@ class HTMLTransform {
 	/** @var array */
 	private $parsoidSettings;
 
+	/** @var PageIdentity */
+	private $page;
+
+	/** @var PageConfigFactory */
+	private $pageConfigFactory;
+
 	/**
 	 * @param string $modifiedHTML
-	 * @param PageConfig $pageConfig
+	 * @param PageIdentity $page
 	 * @param Parsoid $parsoid
 	 * @param array $parsoidSettings
+	 * @param PageConfigFactory $pageConfigFactory
 	 */
 	public function __construct(
 		string $modifiedHTML,
-		PageConfig $pageConfig,
+		PageIdentity $page,
 		Parsoid $parsoid,
-		array $parsoidSettings
+		array $parsoidSettings,
+		PageConfigFactory $pageConfigFactory
 	) {
-		$this->pageConfig = $pageConfig;
 		$this->parsoid = $parsoid;
 		$this->parsoidSettings = $parsoidSettings;
 		$this->modifiedPageBundle = new PageBundle( $modifiedHTML );
 		$this->originalPageBundle = new PageBundle( '' );
+		$this->page = $page;
+		$this->pageConfigFactory = $pageConfigFactory;
 	}
 
 	/**
@@ -105,7 +126,33 @@ class HTMLTransform {
 	 * @param int $oldid
 	 */
 	public function setOriginalRevisionId( int $oldid ): void {
+		if ( $this->pageConfig ) {
+			throw new LogicException( 'Cannot set revision ID after using the PageConfig' );
+		}
+
 		$this->oldid = $oldid;
+	}
+
+	/**
+	 * @param string $lang
+	 */
+	public function setContentLanguage( string $lang ): void {
+		if ( $this->pageConfig ) {
+			throw new LogicException( 'Cannot set content language after using the PageConfig' );
+		}
+
+		$this->contentLanguage = $lang;
+	}
+
+	/**
+	 * @param string $wikitext
+	 */
+	public function setOriginalWikitext( string $wikitext ): void {
+		if ( $this->pageConfig ) {
+			throw new LogicException( 'Cannot set wikitext after using the PageConfig' );
+		}
+
+		$this->originalWikitext = $wikitext;
 	}
 
 	private function validatePageBundle( PageBundle $pb ) {
@@ -181,6 +228,50 @@ class HTMLTransform {
 		// data-parsoid is going to be the same for original and modified.
 		$this->originalPageBundle->parsoid = $originalDataParsoid;
 		$this->modifiedPageBundle->parsoid = $originalDataParsoid;
+	}
+
+	/**
+	 * @return PageConfig
+	 */
+	private function getPageConfig(): PageConfig {
+		if ( !$this->pageConfig ) {
+
+			// XXX: do we even have to support wikitext overrides? What's the use case?
+			if ( $this->originalWikitext ) {
+				// Create a mutable revision record point to the same revision
+				// and set to the desired wikitext.
+				$revision = new MutableRevisionRecord( $this->page );
+				if ( $this->oldid ) {
+					$revision->setId( $this->oldid );
+				}
+				$revision->setSlot(
+					SlotRecord::newUnsaved(
+						SlotRecord::MAIN,
+						new WikitextContent( $this->originalWikitext )
+					)
+				);
+
+			} else {
+				$revision = $this->oldid;
+			}
+
+			try {
+				$this->pageConfig = $this->pageConfigFactory->create(
+					$this->page,
+					null,
+					$revision,
+					null,
+					$this->contentLanguage,
+					$this->parsoidSettings
+				);
+			} catch ( RevisionAccessException $exception ) {
+				// TODO: Throw a different exception, this class should not know
+				//       about HTTP status codes.
+				throw new HttpException( 'The specified revision is deleted or suppressed.', 404 );
+			}
+		}
+
+		return $this->pageConfig;
 	}
 
 	/**
@@ -445,14 +536,14 @@ class HTMLTransform {
 		$hasOldId = ( $this->getOriginalRevisionId() !== null );
 
 		if ( $hasOldId && !empty( $this->parsoidSettings['useSelser'] ) ) {
-			if ( !$this->pageConfig->getRevisionContent() ) {
+			if ( !$this->getPageConfig()->getRevisionContent() ) {
 				throw new HttpException( 'Could not find previous revision. Has the page been locked / deleted?',
 					409 );
 			}
 
-			// FIXME: T234548/T234549 - $pageConfig->getPageMainContent() is deprecated:
-			// should use $env->topFrame->getSrcText()
-			$selserData = new SelserData( $this->pageConfig->getPageMainContent(),
+			// TODO: T234548/T234549 - $pageConfig->getPageMainContent() is deprecated:
+			//       should use $env->topFrame->getSrcText()
+			$selserData = new SelserData( $this->getPageConfig()->getPageMainContent(),
 				$oldhtml );
 		} else {
 			$selserData = null;
@@ -488,7 +579,7 @@ class HTMLTransform {
 		$timing->end( 'html2wt.init' );
 
 		try {
-			$wikitext = $this->parsoid->dom2wikitext( $this->pageConfig, $doc, [
+			$wikitext = $this->parsoid->dom2wikitext( $this->getPageConfig(), $doc, [
 				'inputContentVersion' => $inputContentVersion,
 				'offsetType' => $this->getOffsetType(),
 				'contentmodel' => $this->getContentModel(),

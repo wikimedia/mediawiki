@@ -116,14 +116,14 @@ class TransformHandler extends ParsoidHandler {
 				throw new HttpException( 'No html was supplied.',
 					400 );
 			}
-			$wikitext = $attribs['opts']['original']['wikitext']['body'] ?? null;
-			$pageConfig = $this->tryToCreatePageConfig( $attribs,
-				$wikitext,
-				true );
 
-			return $this->html2wt( $pageConfig,
+			$page = $this->tryToCreatePageIdentity( $attribs );
+
+			return $this->html2wt(
+				$page,
 				$attribs,
-				$html );
+				$html
+			);
 		} else {
 			return $this->pb2pb( $attribs );
 		}
