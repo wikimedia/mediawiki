@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Vlad5250"
+		]
+	},
+	"rest-prefix-mismatch": "Tražena staza ($1) nije bila unutar REST korijenske priložničke staze ($2)",
+	"rest-wrong-method": "Metoda zahtjeva ($1) {{PLURAL:$3|nije dopuštena za ovaj put|nije jedna od dopuštenih za ovaj put}} ($2)",
+	"rest-no-match": "Traženi relativni put ($1) ne odgovara poznatom rukovatelju",
+	"rest-nonexistent-title": "Navedeni naslov ($1) ne postoji",
+	"rest-nonexistent-title-revision": "Navedena izmjena ($1) ne postoji za navedenu stranicu ($2)",
+	"rest-nonexistent-revision": "Navedena izmjena ($1) ne postoji",
+	"rest-nonexistent-user": "Navedeni korisnik ($1) ne postoji",
+	"rest-invalid-user": "Navedeno korisničko ime ($1) ne postoji",
+	"rest-permission-denied-anon": "Nedostupno anonimnom korisniku",
+	"rest-permission-denied-title": "Korisnik nema pravo čitati naslov ($1)",
+	"rest-permission-denied-revision": "Korisnik nema pristup traženoj izmjeni ($1).",
+	"rest-resource-limit-exceeded": "Obrada zahtjeva premašila je ograničenje resursa.",
+	"rest-pagehistory-incompatible-params": "Ne mogu se navesti oba parametra \"older_than\" i \"newer_than\""
+}
