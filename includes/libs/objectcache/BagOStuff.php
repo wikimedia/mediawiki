@@ -728,7 +728,7 @@ abstract class BagOStuff implements
 				$key .= ':';
 			}
 			// Escape delimiter (":") and escape ("%") characters
-			$key .= strtr( (string)$component, [ '%' => '%25', ':' => '%3A' ] );
+			$key .= strtr( $component, [ '%' => '%25', ':' => '%3A' ] );
 		}
 
 		return $key;
