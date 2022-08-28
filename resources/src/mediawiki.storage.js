@@ -245,26 +245,31 @@
 	 *
 	 * **Note**: Storage keys are not automatically prefixed in relation to
 	 * MediaWiki and/or the current wiki. Always **prefix your keys** with "mw" to
-	 * avoid conflicts with other JavaScript libraries, gadgets, or third-party
-	 * JavaScript.
+	 * avoid conflicts with gadgets, JavaScript libraries, browser extensions,
+	 * internal CDN or webserver cookies, and third-party applications that may
+	 * be embedded on the page.
 	 *
-	 * **Warning**: There is no expiry feature in this API. This means **keys
-	 * are stored forever**, unless you re-discover and delete them manually.
-	 * Avoid keys with variable components. Instead store dynamic values
-	 * together under a single key so that you avoid leaving garbage behind,
-	 * which would fill up the limited space available.
+	 * **Warning**: This API has limited storage space and does not use an expiry
+	 * by default. This means unused **keys are stored forever**, unless you
+	 * opt-in to the `expiry` parameter or otherwise make sure that your code
+	 * can rediscover and delete keys you created in the past.
+	 *
+	 * If you don't use the `expiry` parameter, avoid keys with variable
+	 * components as this leads to untracked keys that your code has no way
+	 * to know about and delete when the data is no longer needed. Instead,
+	 * store dynamic values in an object under a single constant key that you
+	 * manage or replace over time.
 	 * See also <https://phabricator.wikimedia.org/T121646>.
 	 *
 	 * Example:
 	 *
-	 *     mw.storage.set( key, value );
 	 *     mw.storage.set( key, value, expiry );
+	 *     mw.storage.set( key, value ); // stored indefinitely
 	 *     mw.storage.get( key );
 	 *
 	 * Example:
 	 *
 	 *     var local = require( 'mediawiki.storage' ).local;
-	 *     local.set( key, value );
 	 *     local.set( key, value, expiry );
 	 *     local.get( key );
 	 *
@@ -286,13 +291,13 @@
 	 *
 	 * Example:
 	 *
-	 *     mw.storage.session.set( key, value, [expiry] );
+	 *     mw.storage.session.set( key, value );
 	 *     mw.storage.session.get( key );
 	 *
 	 * Example:
 	 *
 	 *     var session = require( 'mediawiki.storage' ).session;
-	 *     session.set( key, value, [expiry] );
+	 *     session.set( key, value );
 	 *     session.get( key );
 	 *
 	 * @class
