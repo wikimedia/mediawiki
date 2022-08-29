@@ -615,6 +615,7 @@ return [
 		'dependencies' => [
 			'vue'
 		],
+		'es6' => true,
 		'targets' => [ 'desktop', 'mobile' ]
 	],
 
@@ -662,6 +663,7 @@ return [
 			'vue',
 			'@vue/composition-api',
 		],
+		'es6' => true,
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
@@ -676,6 +678,7 @@ return [
 		'dependencies' => [
 			'vue'
 		],
+		'es6' => true,
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
