@@ -6,9 +6,11 @@ use Article;
 use Config;
 use File;
 use IContextSource;
+use JsonContent;
 use ManualLogEntry;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\ResourceLoader as RL;
@@ -71,6 +73,7 @@ class HookRunner implements
 	\MediaWiki\Content\Hook\GetContentModelsHook,
 	\MediaWiki\Content\Hook\GetDifferenceEngineHook,
 	\MediaWiki\Content\Hook\GetSlotDiffRendererHook,
+	\MediaWiki\Content\Hook\JsonValidateSaveHook,
 	\MediaWiki\Content\Hook\PageContentLanguageHook,
 	\MediaWiki\Content\Hook\PlaceNewSectionHook,
 	\MediaWiki\Content\Hook\SearchDataForIndexHook,
@@ -2223,6 +2226,13 @@ class HookRunner implements
 		return $this->container->run(
 			'isValidPassword',
 			[ $password, &$result, $user ]
+		);
+	}
+
+	public function onJsonValidateSave( JsonContent $content, PageIdentity $pageIdentity, StatusValue $status ) {
+		return $this->container->run(
+			'JsonValidateSave',
+			[ $content, $pageIdentity, &$status ]
 		);
 	}
 

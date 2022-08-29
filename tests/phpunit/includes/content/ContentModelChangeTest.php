@@ -101,10 +101,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 			__METHOD__ . ' comment',
 			false
 		);
-		$this->assertSame(
-			'invalid-content-data',
-			$status->getErrors()[0]['message']
-		);
+		$this->assertStatusError( 'invalid-json-data', $status );
 	}
 
 	/**
