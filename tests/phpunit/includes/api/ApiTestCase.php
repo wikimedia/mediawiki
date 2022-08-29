@@ -3,8 +3,6 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Session\SessionManager;
-use PHPUnit\Framework\Assert;
-use PHPUnit\Util\Test;
 
 abstract class ApiTestCase extends MediaWikiLangTestCase {
 	protected static $apiUrl;
@@ -180,20 +178,6 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			static function ( $e ) use ( $code ) {
 				return is_array( $e ) && $e['code'] === $code;
 			}
-		);
-	}
-
-	/**
-	 * @coversNothing
-	 */
-	public function testApiTestGroup() {
-		$groups = Test::getGroups( static::class );
-		$constraint = Assert::logicalOr(
-			$this->contains( 'medium' ),
-			$this->contains( 'large' )
-		);
-		$this->assertThat( $groups, $constraint,
-			'ApiTestCase::setUp can be slow, tests must be "medium" or "large"'
 		);
 	}
 
