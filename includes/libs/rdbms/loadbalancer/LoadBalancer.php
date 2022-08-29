@@ -1328,7 +1328,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			array_merge( $server, [
 				// Basic replication role information
 				'topologyRole' => $this->getTopologyRole( $i, $server ),
-				'topologicalMaster' => $this->getPrimaryServerName(),
 				// Use the database specified in $domain (null means "none or entrypoint DB");
 				// fallback to the $server default if the RDBMs is an embedded library using a
 				// file on disk since there would be nothing to access to without a DB/file name.
@@ -1345,7 +1344,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				'cliMode' => $this->cliMode,
 				'agent' => $this->agent,
 				// Inject object and callback dependencies
-				'lazyMasterHandle' => $this->getConnectionRef(
+				'topologicalPrimaryConnRef' => $this->getConnectionRef(
 					self::DB_PRIMARY,
 					[],
 					$domain->getId()

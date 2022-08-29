@@ -123,10 +123,6 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function getTopologyRootPrimary() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function trxLevel() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
@@ -250,11 +246,7 @@ class DBConnRef implements IMaintainableDatabase {
 	public function getType() {
 		if ( $this->conn === null ) {
 			// Avoid triggering a database connection
-			if ( $this->params[self::FLD_INDEX] === ILoadBalancer::DB_PRIMARY ) {
-				$index = $this->lb->getWriterIndex();
-			} else {
-				$index = $this->params[self::FLD_INDEX];
-			}
+			$index = $this->normalizeServerIndex( $this->params[self::FLD_INDEX] );
 			if ( $index >= 0 ) {
 				// In theory, if $index is DB_REPLICA, the type could vary
 				return $this->lb->getServerType( $index );
@@ -491,6 +483,15 @@ class DBConnRef implements IMaintainableDatabase {
 	}
 
 	public function getServerName() {
+		if ( $this->conn === null ) {
+			// Avoid triggering a database connection
+			$index = $this->normalizeServerIndex( $this->params[self::FLD_INDEX] );
+			if ( $index >= 0 ) {
+				// If $index is DB_REPLICA, the server name could vary
+				return $this->lb->getServerName( $index );
+			}
+		}
+
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -905,6 +906,14 @@ class DBConnRef implements IMaintainableDatabase {
 			"is owned by a LoadBalancer instance and possibly shared with other callers. " .
 			"LoadBalancer automatically manages DB domain re-selection of unused handles."
 		);
+	}
+
+	/**
+	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
+	 * @return int|mixed
+	 */
+	protected function normalizeServerIndex( $i ) {
+		return ( $i === ILoadBalancer::DB_PRIMARY ) ? $this->lb->getWriterIndex() : $i;
 	}
 
 	/**
