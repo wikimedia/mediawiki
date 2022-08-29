@@ -1001,24 +1001,7 @@ class LocalisationCache {
 		# Replace spaces with underscores in namespace names
 		$allData['namespaceNames'] = str_replace( ' ', '_', $allData['namespaceNames'] );
 
-		# Search messages for aliases and add them when found. (T89947)
-		foreach ( $allData['messages'] as $key => $msg ) {
-			if ( strpos( $key, 'special-page-alias' ) === 0 ) {
-				[ $prefix, $name ] = explode( 'special-page-alias-', $key );
-				$aliases = explode( "\n", trim( $msg ) );
-				if ( array_key_exists( $name, $allData['specialPageAliases'] ) ) {
-					$allData['specialPageAliases'][$name] = array_merge(
-						$allData['specialPageAliases'][$name],
-						$aliases
-					);
-				} else {
-					$allData['specialPageAliases'][$name] = $aliases;
-				}
-			}
-		}
-
 		# And do the same for special page aliases. $page is an array.
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset phan #3569
 		foreach ( $allData['specialPageAliases'] as &$page ) {
 			$page = str_replace( ' ', '_', $page );
 		}
