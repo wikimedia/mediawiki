@@ -3,6 +3,12 @@
 use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
+// phpcs:ignore MediaWiki.Files.ClassMatchesFilename.NotMatch
+class SkinQuickTemplateTest extends QuickTemplate {
+	public function execute() {
+	}
+}
+
 /**
  * @covers SkinTemplate
  *
@@ -303,4 +309,19 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	/**
+	 * @covers SkinTemplate::prepareQuickTemplate
+	 * @covers SkinTemplate::generateHTML
+	 */
+	public function testGenerateHTML() {
+		$wrapper = TestingAccessWrapper::newFromObject(
+			new SkinTemplate( [ 'template' => 'SkinQuickTemplateTest', 'name' => 'test' ] )
+		);
+
+		$wrapper->getContext()->setTitle( Title::newFromText( 'PrepareQuickTemplateTest' ) );
+		$tpl = $wrapper->prepareQuickTemplate();
+		$contentNav = $tpl->get( 'content_navigation' );
+
+		$this->assertEquals( array_keys( $contentNav ), [ 'namespaces', 'views', 'actions', 'variants' ] );
+	}
 }

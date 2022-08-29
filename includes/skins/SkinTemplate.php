@@ -351,14 +351,15 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'personal_urls', $this->makeSkinTemplatePersonalUrls( $content_navigation ) );
 		// The user-menu, notifications, and user-interface-preferences are new content navigation entries which aren't
 		// expected to be part of content_navigation or content_actions. Adding them in there breaks skins that do not
-		// expect it.
+		// expect it. (See T316196)
 		unset(
 			$content_navigation['user-menu'],
 			$content_navigation['notifications'],
 			$content_navigation['user-page'],
 			$content_navigation['user-interface-preferences'],
 			$content_navigation['category-normal'],
-			$content_navigation['category-hidden']
+			$content_navigation['category-hidden'],
+			$content_navigation['associated-pages']
 		);
 		$content_actions = $this->buildContentActionUrls( $content_navigation );
 		$tpl->set( 'content_navigation', $content_navigation );
