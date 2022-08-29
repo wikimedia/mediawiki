@@ -179,25 +179,10 @@ class DeleteAction extends FormlessAction {
 				);
 			}
 
-			$deleted = $this->getTitle()->getPrefixedText();
-			if ( $deletePage->deletionsWereScheduled()[DeletePage::PAGE_BASE] ) {
-				$outputPage->addWikiMsg( 'delete-scheduled', wfEscapeWikiText( $deleted ) );
-			} elseif ( $deletePage->getSuccessfulDeletionsIDs()[DeletePage::PAGE_BASE] !== null ) {
-				$loglink = '[[Special:Log/delete|' . $this->msg( 'deletionlog' )->text() . ']]';
-				$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
-				$this->getHookRunner()->onArticleDeleteAfterSuccess( $this->getTitle(), $outputPage );
-			}
-			if ( $shouldDeleteTalk ) {
-				$talkPage = $this->titleFormatter->getPrefixedText(
-					$this->namespaceInfo->getTalkPage( $this->getTitle() )
-				);
-				if ( $deletePage->deletionsWereScheduled()[DeletePage::PAGE_TALK] ) {
-					$outputPage->addWikiMsg( 'delete-scheduled', wfEscapeWikiText( $talkPage ) );
-				} elseif ( $deletePage->getSuccessfulDeletionsIDs()[DeletePage::PAGE_TALK] !== null ) {
-					$loglink = '[[Special:Log/delete|' . $this->msg( 'deletionlog' )->text() . ']]';
-					$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $talkPage ), $loglink );
-				}
-			}
+			$this->showSuccessMessages(
+				$deletePage->getSuccessfulDeletionsIDs(),
+				$deletePage->deletionsWereScheduled()
+			);
 
 			if ( !$status->isGood() ) {
 				$this->showLogEntries();
@@ -214,6 +199,51 @@ class DeleteAction extends FormlessAction {
 		}
 
 		$this->watchlistManager->setWatch( $request->getCheck( 'wpWatch' ), $context->getAuthority(), $title );
+	}
+
+	/**
+	 * Display success messages
+	 *
+	 * @param array $deleted
+	 * @param array $scheduled
+	 * @return void
+	 */
+	private function showSuccessMessages( array $deleted, array $scheduled ): void {
+		$outputPage = $this->getContext()->getOutput();
+		$loglink = '[[Special:Log/delete|' . $this->msg( 'deletionlog' )->text() . ']]';
+		$pageBaseDisplayTitle = wfEscapeWikiText( $this->getTitle()->getPrefixedText() );
+		$pageTalkDisplayTitle = wfEscapeWikiText( $this->titleFormatter->getPrefixedText(
+			$this->namespaceInfo->getTalkPage( $this->getTitle() )
+		) );
+
+		$deletedTalk = $deleted[DeletePage::PAGE_TALK] ?? false;
+		$deletedBase = $deleted[DeletePage::PAGE_BASE];
+		$scheduledTalk = $scheduled[DeletePage::PAGE_TALK] ?? false;
+		$scheduledBase = $scheduled[DeletePage::PAGE_BASE];
+
+		if ( $deletedBase && $deletedTalk ) {
+			$outputPage->addWikiMsg( 'deleted-page-and-talkpage',
+				$pageBaseDisplayTitle,
+				$pageTalkDisplayTitle,
+				$loglink );
+		} elseif ( $deletedBase ) {
+			$outputPage->addWikiMsg( 'deletedtext', $pageBaseDisplayTitle, $loglink );
+		} elseif ( $deletedTalk ) {
+			$outputPage->addWikiMsg( 'deletedtext', $pageTalkDisplayTitle, $loglink );
+		}
+
+		// run hook if article was deleted
+		if ( $deletedBase ) {
+			$this->getHookRunner()->onArticleDeleteAfterSuccess( $this->getTitle(), $outputPage );
+		}
+
+		if ( $scheduledBase ) {
+			$outputPage->addWikiMsg( 'delete-scheduled', $pageBaseDisplayTitle );
+		}
+
+		if ( $scheduledTalk ) {
+			$outputPage->addWikiMsg( 'delete-scheduled', $pageTalkDisplayTitle );
+		}
 	}
 
 	private function showHistoryWarnings(): void {
