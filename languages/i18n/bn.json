@@ -3140,7 +3140,7 @@
 	"months": "{{PLURAL:$1|$1 মাস}}",
 	"years": "{{PLURAL:$1|$1 বছর}}",
 	"ago": "$1 আগে",
-	"just-now": "এখনই",
+	"just-now": "এইমাত্র",
 	"hours-ago": "$1 {{PLURAL:$1|ঘণ্টা}} পূর্বে",
 	"minutes-ago": "$1 {{PLURAL:$1|মিনিট}} পূর্বে",
 	"seconds-ago": "$1 {{PLURAL:$1|সেকেন্ড}} পূর্বে",

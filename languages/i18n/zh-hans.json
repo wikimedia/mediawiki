@@ -513,7 +513,7 @@
 	"delete-hook-aborted": "删除被扩展钩子取消。\n钩子并没有给出解释。",
 	"no-null-revision": "无法创建对“$1”页面新的空白版本",
 	"badtitle": "标题无效",
-	"badtitletext": "您请求了个无效、不存在或者跨语言或跨wiki链接标题错误的页面。它可能包含一个或多个不能用于标题的字符。",
+	"badtitletext": "请求的页面标题无效、为空，或者是错误链接的跨语言/跨wiki标题。\n标题可能包含一个或多个不能用于标题的字符。",
 	"title-invalid": "请求的页面标题无效",
 	"title-invalid-empty": "请求的页面标题为空，或只包含命名空间名称。",
 	"title-invalid-utf8": "请求的页面标题包含一个无效的UTF-8序列。",

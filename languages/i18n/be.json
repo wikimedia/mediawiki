@@ -2086,7 +2086,7 @@
 	"apisandbox-dynamic-parameters": "Дадатковыя параметры",
 	"apisandbox-dynamic-parameters-add-label": "Дадаць параметр:",
 	"apisandbox-dynamic-parameters-add-placeholder": "Назва параметра",
-	"apisandbox-dynamic-error-exists": "Параметр з назвай \"$1\" ужо існуе.",
+	"apisandbox-dynamic-error-exists": "Параметр з назвай \"$1\" ужо ёсць.",
 	"apisandbox-templated-parameter-reason": "Гэты [[Special:ApiHelp/main#main/templatedparams|шаблонны параметр]] прапануецца паводле {{PLURAL:$1|1=значэння|значэнняў}} $2.",
 	"apisandbox-deprecated-parameters": "Састарэлыя параметры",
 	"apisandbox-fetch-token": "Аўтазапаўненне токена",

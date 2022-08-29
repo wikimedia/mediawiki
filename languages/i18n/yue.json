@@ -3162,7 +3162,7 @@
 	"duration-seconds": "$1秒",
 	"duration-minutes": "$1分鐘",
 	"duration-hours": "$1個鐘頭",
-	"duration-days": "$1日",
+	"duration-days": "$1{{PLURAL:$1|日}}",
 	"duration-weeks": "$1個禮拜",
 	"duration-years": "$1年",
 	"duration-decades": "$1個年代",

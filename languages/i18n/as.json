@@ -1750,7 +1750,7 @@
 	"listusers-creationsort": "সৃষ্টিৰ তাৰিখমতে সজাওক",
 	"listusers-desc": "নিম্নক্ৰমত সজাওক",
 	"usereditcount": "$1 {{PLURAL:$1|টা সম্পাদনা|টা সম্পাদনা}}",
-	"usercreated": "$1 তাৰিখে $2 সময়ত {{GENDER:$3|য়ে সৃষ্টি কৰিছে}}",
+	"usercreated": "{{GENDER:$3|সৃষ্টি কৰা হৈছে}} $1 তাৰিখৰ $2 বজাত",
 	"newpages": "নতুন পৃষ্ঠাসমূহ",
 	"newpages-submit": "দেখুৱাওক",
 	"newpages-username": "সদস্যনাম:",

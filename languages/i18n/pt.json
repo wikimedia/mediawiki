@@ -685,6 +685,7 @@
 	"changeemail-submit": "Alterar correio eletrónico",
 	"changeemail-throttled": "Realizou demasiadas tentativas de início de sessão.\nAguarde $1 antes de tentar novamente, por favor.",
 	"changeemail-nochange": "Insira um novo endereço de correio eletrónico, por favor.",
+	"changeemail-maxlength": "O seu correio eletrónico deve ter no máximo 255 carateres.",
 	"resettokens": "Redefinir chaves",
 	"resettokens-text": "Pode redefinir aqui as chaves de acesso a certos dados privados associados à sua conta.\n\nDeve fazê-lo se as divulgou acidentalmente a alguém ou se a sua conta tiver sido comprometida.",
 	"resettokens-no-tokens": "Não há chaves para redefinir.",
