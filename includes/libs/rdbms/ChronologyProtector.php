@@ -151,10 +151,10 @@ class ChronologyProtector implements LoggerAwareInterface {
 	/** @var float|null UNIX timestamp when the client data was loaded */
 	protected $startupTimestamp;
 
-	/** @var array<string,DBPrimaryPos> Map of (DB primary name => position) */
-	protected $startupPositionsByMaster = [];
-	/** @var array<string,DBPrimaryPos> Map of (DB primary name => position) */
-	protected $shutdownPositionsByMaster = [];
+	/** @var array<string,DBPrimaryPos> Map of (primary server name => position) */
+	protected $startupPositionsByPrimary = [];
+	/** @var array<string,DBPrimaryPos> Map of (primary server name => position) */
+	protected $shutdownPositionsByPrimary = [];
 	/** @var array<string,float> Map of (DB cluster name => UNIX timestamp) */
 	protected $startupTimestampsByCluster = [];
 	/** @var array<string,float> Map of (DB cluster name => UNIX timestamp) */
@@ -243,9 +243,9 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 * Apply client "session consistency" replication position to a new ILoadBalancer
 	 *
 	 * If the stash has a previous primary position recorded, this will try to make
-	 * sure that the next query to a replica DB of that primary DB will see changes up
+	 * sure that the next query to a replica server of that primary will see changes up
 	 * to that position by delaying execution. The delay may timeout and allow stale
-	 * data if no non-lagged replica DBs are available.
+	 * data if no non-lagged replica servers are available.
 	 *
 	 * @internal This method should only be called from LBFactory.
 	 *
@@ -258,14 +258,14 @@ class ChronologyProtector implements LoggerAwareInterface {
 		}
 
 		$cluster = $lb->getClusterName();
-		$masterName = $lb->getServerName( $lb->getWriterIndex() );
+		$primaryName = $lb->getServerName( $lb->getWriterIndex() );
 
-		$pos = $this->getStartupSessionPositions()[$masterName] ?? null;
+		$pos = $this->getStartupSessionPositions()[$primaryName] ?? null;
 		if ( $pos instanceof DBPrimaryPos ) {
-			$this->logger->debug( __METHOD__ . ": $cluster ($masterName) position is '$pos'" );
+			$this->logger->debug( __METHOD__ . ": $cluster ($primaryName) position is '$pos'" );
 			$lb->waitFor( $pos );
 		} else {
-			$this->logger->debug( __METHOD__ . ": $cluster ($masterName) has no position" );
+			$this->logger->debug( __METHOD__ . ": $cluster ($primaryName) has no position" );
 		}
 	}
 
@@ -292,7 +292,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 			$pos = $lb->getReplicaResumePos();
 			if ( $pos ) {
 				$this->logger->debug( __METHOD__ . ": $cluster ($masterName) position now '$pos'" );
-				$this->shutdownPositionsByMaster[$masterName] = $pos;
+				$this->shutdownPositionsByPrimary[$masterName] = $pos;
 				$this->shutdownTimestampsByCluster[$cluster] = $pos->asOfTime();
 			} else {
 				$this->logger->debug( __METHOD__ . ": $cluster ($masterName) position unknown" );
@@ -329,7 +329,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 				$this->key,
 				$this->mergePositions(
 					$this->store->get( $this->key ),
-					$this->shutdownPositionsByMaster,
+					$this->shutdownPositionsByPrimary,
 					$this->shutdownTimestampsByCluster,
 					$clientPosIndex
 				),
@@ -350,7 +350,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 		} else {
 			$clientPosIndex = null; // nothing saved
-			$bouncedPositions = $this->shutdownPositionsByMaster;
+			$bouncedPositions = $this->shutdownPositionsByPrimary;
 			// Raced out too many times or stash is down
 			$this->logger->warning(
 				__METHOD__ . ": failed to save primary positions for DB cluster(s) $clusterList"
@@ -401,7 +401,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	protected function getStartupSessionPositions() {
 		$this->lazyStartup();
 
-		return $this->startupPositionsByMaster;
+		return $this->startupPositionsByPrimary;
 	}
 
 	/**
@@ -429,7 +429,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 		$data = $this->store->get( $this->key );
 
-		$this->startupPositionsByMaster = $data ? $data[self::FLD_POSITIONS] : [];
+		$this->startupPositionsByPrimary = $data ? $data[self::FLD_POSITIONS] : [];
 		$this->startupTimestampsByCluster = $data[self::FLD_TIMESTAMPS] ?? [];
 
 		// When a stored array expires and is re-created under the same (deterministic) key,
