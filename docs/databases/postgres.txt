@@ -11,68 +11,15 @@ about through the work of creating Postgres support.
 
 == Required versions ==
 
-The current minimum version of PostgreSQL for MediaWiki is 9.2
+The current minimum version of PostgreSQL for MediaWiki is 10.
 
 == Database schema ==
 
-Postgres has its own schema file at maintenance/postgres/tables.sql.
+PostgreSQL schema is automatically generated from the abstract schema.
+You can see the generated schema in maintenance/postgres/tables-generated.sql
 
-The goal is to keep this file as close as possible to the canonical
-schema at maintenance/tables.sql, but without copying over
-all the usage comments. General notes on the conversion:
-
-* The use of a true TIMESTAMP rather than the text string that
-MySQL uses is highly encouraged. There are still places in the
-code (especially extensions) which make assumptions about the
-textual nature of timestamp fields, but these can almost always
-be programmed around.
-
-* Although Postgres has a true BOOLEAN type, boolean columns
-are always mapped to SMALLINT, as the code does not always treat
-the column as a boolean (which is limited to accepting true,
-false, 0, 1, t, or f)
-
-* The default data type for all VARCHAR, CHAR, and VARBINARY
-columns should simply be TEXT. The only exception is
-when VARBINARY is used to store true binary data, such as
-the math_inputhash column, in which case BYTEA should be used.
-
-* All integer variants should generally be mapped to INTEGER.
-There is small-to-no advantage in using SMALLINT versus
-INTEGER in Postgres, and the possibility of running out of
-room outweighs such concerns. The columns that are BIGINT
-in other schemas should be INTEGER as well, as none of them
-so far are even remotely likely to reach the 32 billion
-limit of an INTEGER.
-
-* Blobs (blob, tinyblog, mediumblob) should be mapped to TEXT
-whenever possible, and to BYTEA if they are known to contain
-binary data.
-
-* All length modifiers on data types should be removed. If
-they are on an INTEGER, it's probably an error, and if on
-any text-based field, simply using TEXT is preferred.
-
-* Sequences should be explicitly named rather than using
-SERIAL, as the code can depend on having a specific name.
-
-* Foreign keys should be used when possible. This makes things
-both easier and harder in the code, but most of the major
-problems have now been overcome. Always add an explicit ON DELETE
-clause, and consider carefully what choice to use (all things
-considered, prefer CASCADE).
-
-* The use of CIDR should be done very carefully, because the code
-will sometimes want to store things such as an empty string or
-other non-IP value in the column. When in doubt, use TEXT.
-
-* Indexes should be created using the original MySQL tables.sql
-as a guide, but keeping in mind the ability of Postgres to use
-partial indexes, functional indexes, and bitmaps. The index names
-should be logical but are not too important, as they are never
-referenced directly by the code (unlike sequence names). Most of
-the indexes in the file as of this writing are there due to production
-testing of expensive queries on a busy wiki.
+For more information on abstract schema see:
+https://www.mediawiki.org/wiki/Manual:Schema_changes
 
 == MySQL differences ==
 
