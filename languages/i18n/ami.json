@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"1233qwer1234qwer4",
 			"Akamycoco",
 			"Alofay",
 			"Amire80",
@@ -701,7 +702,7 @@
 	"tag-filter": "[[Special:Tags|sakacipinang a ’otoc]] misolap：",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|sakacipinang a ’otoc}}]]: $2",
 	"tag-mw-rollback": " patatikol",
-	"tag-mw-undo": " patikor",
+	"tag-mw-undo": "patikor",
 	"tags-source-header": "lalengatan",
 	"tags-active-yes": "hay",
 	"tags-active-no": "caay",

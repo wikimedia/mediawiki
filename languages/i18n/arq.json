@@ -3,6 +3,7 @@
 		"authors": [
 			"Amire80",
 			"Bachounda",
+			"Cigaryno",
 			"GeekEmad",
 			"Macofe",
 			"Matma Rex",
@@ -269,7 +270,7 @@
 	"sort-descending": "رتّب بل نازولي",
 	"sort-ascending": "رتّب بل طالوعي",
 	"nstab-main": "صفحة",
-	"nstab-user": "باجة{{GENDER:{{BASEPAGENAME}}|المستخدم|المستخدمة}}",
+	"nstab-user": "{{GENDER:$1|المستخدم|المستخدمة}}",
 	"nstab-media": "باجة تاع ميديا",
 	"nstab-special": "باجه خوصوصيّة",
 	"nstab-project": "باجه مشروع",
