@@ -162,7 +162,13 @@ class DatabaseSqlite extends Database {
 			throw $this->newExceptionAfterConnectError( "Got mode '{$this->trxMode}' for BEGIN" );
 		}
 
-		$attributes = [ PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT ];
+		$attributes = [
+			PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
+			// Starting with PHP 8.1, The SQLite PDO returns proper types instead
+			// of strings or null for everything. We cast every non-null value to
+			// string to restore the old behavior.
+			PDO::ATTR_STRINGIFY_FETCHES => true
+		];
 		if ( $this->getFlag( self::DBO_PERSISTENT ) ) {
 			// Persistent connections can avoid some schema index reading overhead.
 			// On the other hand, they can cause horrible contention with DBO_TRX.
