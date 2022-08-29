@@ -20,11 +20,12 @@
 
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
+use MediaWiki\Content\ValidationParams;
 
 /**
  * Content handler for JSON text.
  *
- * Useful for maintaining JSON that can be viewed and edit directly by users.
+ * Useful for maintaining JSON that can be viewed and edited directly by users.
  *
  * @author Ori Livneh <ori@wikimedia.org>
  * @author Kunal Mehta <legoktm@gmail.com>
@@ -63,6 +64,25 @@ class JsonContentHandler extends CodeContentHandler {
 	 */
 	public function supportsPreloadContent(): bool {
 		return true;
+	}
+
+	/**
+	 * @param Content $content
+	 * @param ValidationParams $validationParams
+	 * @return StatusValue
+	 */
+	public function validateSave( Content $content, ValidationParams $validationParams ) {
+		$status = parent::validateSave( $content, $validationParams );
+		'@phan-var JsonContent $content';
+		if ( !$status->isOK() ) {
+			if ( !$content->getData()->isGood() ) {
+				return StatusValue::newFatal( $content->getData()->getMessage( 'invalid-json-data' ) );
+			} else {
+				return $status;
+			}
+		}
+		$this->getHookRunner()->onJsonValidateSave( $content, $validationParams->getPageIdentity(), $status );
+		return $status;
 	}
 
 	public function preSaveTransform(

@@ -1,5 +1,9 @@
 <?php
 
+use MediaWiki\Content\ValidationParams;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
+
 class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 
 	public function provideDataAndParserText() {
@@ -63,5 +67,39 @@ class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 		);
 		$this->assertInstanceOf( ParserOutput::class, $parserOutput );
 		$this->assertEquals( $expected, $parserOutput->getText() );
+	}
+
+	/**
+	 * @covers JsonContentHandler::validateSave
+	 */
+	public function testValidateSave() {
+		$handler = new JsonContentHandler();
+		$validationParams = new ValidationParams(
+			PageIdentityValue::localIdentity( 123, NS_MEDIAWIKI, 'Config.json' ),
+			0
+		);
+
+		$validJson = new JsonContent( FormatJson::encode( [ 'test' => 'value' ] ) );
+		$invalidJson = new JsonContent( '{"key":' );
+
+		$this->assertStatusGood( $handler->validateSave( $validJson, $validationParams ) );
+		$this->assertStatusNotOK( $handler->validateSave( $invalidJson, $validationParams ) );
+
+		$this->setTemporaryHook(
+			'JsonValidateSave',
+			static function ( JsonContent $content, PageIdentity $pageIdentity, StatusValue $status )
+			{
+				if ( $pageIdentity->getDBkey() === 'Config.json' &&
+					!isset( $content->getData()->getValue()->foo ) ) {
+					$status->fatal( 'missing-key-foo' );
+				}
+			}
+		);
+
+		$this->assertStatusNotOK( $handler->validateSave( $validJson, $validationParams ) );
+		$this->assertStatusError( 'invalid-json-data',
+			$handler->validateSave( $invalidJson, $validationParams ) );
+		$this->assertStatusError( 'missing-key-foo',
+			$handler->validateSave( $validJson, $validationParams ) );
 	}
 }
