@@ -119,7 +119,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	/** @var string Replica server that receives writes from a primary server */
 	public const ROLE_STREAMING_REPLICA = 'streaming-replica';
 	/** @var string Replica server within a static dataset */
-	public const ROLE_STATIC_CLONE = 'static-static';
+	public const ROLE_STATIC_CLONE = 'static-clone';
 	/** @var string Server with unknown topology role */
 	public const ROLE_UNKNOWN = 'unknown';
 
