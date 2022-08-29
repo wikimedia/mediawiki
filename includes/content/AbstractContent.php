@@ -175,6 +175,27 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
+	 * Returns native representation of the data. Interpretation depends on
+	 * the data model used, as given by getDataModel().
+	 *
+	 * @stable to override
+	 * @since 1.21
+	 *
+	 * @deprecated since 1.33 use getText() for TextContent instances.
+	 *             For other content models, use specialized getters.
+	 *
+	 * @return mixed The native representation of the content. Could be a
+	 *    string, a nested array structure, an object, a binary blob...
+	 *    anything, really.
+	 * @throws LogicException
+	 *
+	 * @note Caller must be aware of content model!
+	 */
+	public function getNativeData() {
+		throw new LogicException( __METHOD__ . ': not implemented' );
+	}
+
+	/**
 	 * @stable to override
 	 * @since 1.21
 	 *
