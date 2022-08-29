@@ -255,13 +255,12 @@ class DeleteAction extends FormlessAction {
 		// This, as a side-effect, also makes sure that the following query isn't being run for
 		// pages with a larger history, unless the user has the 'bigdelete' right
 		// (and is about to delete this page).
-		$dbr = wfGetDB( DB_REPLICA );
-		$revisions = (int)$dbr->selectField(
-			'revision',
-			'COUNT(rev_page)',
-			[ 'rev_page' => $title->getArticleID() ],
-			__METHOD__
-		);
+		$revisions = (int)wfGetDB( DB_REPLICA )->newSelectQueryBuilder()
+			->select( 'COUNT(rev_page)' )
+			->from( 'revision' )
+			->where( [ 'rev_page' => $title->getArticleID() ] )
+			->caller( __METHOD__ )
+			->fetchField();
 
 		// @todo i18n issue/patchwork message
 		$context->getOutput()->addHTML(
@@ -659,16 +658,16 @@ class DeleteAction extends FormlessAction {
 	 */
 	private function pageHasHistory(): bool {
 		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->selectRowCount(
-			'revision',
-			'*',
-			[
-				'rev_page' => $this->getTitle()->getArticleID(),
-				$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0'
-			],
-			__METHOD__,
-			[ 'LIMIT' => 2 ]
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'revision' )
+			->where( [ 'rev_page' => $this->getTitle()->getArticleID() ] )
+			->andWhere(
+				[ $dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0' ]
+			)->limit( 2 )
+			->caller( __METHOD__ )
+			->fetchRowCount();
+
 		return $res > 1;
 	}
 
