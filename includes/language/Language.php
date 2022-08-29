@@ -320,7 +320,7 @@ class Language {
 	 * language, script or variant codes actually exist in the repositories.
 	 *
 	 * Based on regexes by Mark Davis of the Unicode Consortium:
-	 * https://www.unicode.org/repos/cldr/trunk/tools/java/org/unicode/cldr/util/data/langtagRegex.txt
+	 * https://github.com/unicode-org/icu/blob/37e295627156bc334e1f1e88807025fac984da0e/icu4j/main/tests/translit/src/com/ibm/icu/dev/test/translit/langtagRegex.txt
 	 *
 	 * @param string $code
 	 * @param bool $lenient Whether to allow '_' as separator. The default is only '-'.
@@ -343,13 +343,14 @@ class Language {
 		$extension = "$singleton(?:$s$alphanum{2,8})+";
 		$privateUse = "$x(?:$s$alphanum{1,8})+";
 
-		# Define certain grandfathered codes, since otherwise the regex is pretty useless.
+		# Define certain legacy language tags (marked as “Type: grandfathered” in BCP 47),
+		# since otherwise the regex is pretty useless.
 		# Since these are limited, this is safe even later changes to the registry --
 		# the only oddity is that it might change the type of the tag, and thus
 		# the results from the capturing groups.
 		# https://www.iana.org/assignments/language-subtag-registry
 
-		$grandfathered = "en{$s}GB{$s}oed"
+		$legacy = "en{$s}GB{$s}oed"
 			. "|i{$s}(?:ami|bnn|default|enochian|hak|klingon|lux|mingo|navajo|pwn|tao|tay|tsu)"
 			. "|no{$s}(?:bok|nyn)"
 			. "|sgn{$s}(?:BE{$s}(?:fr|nl)|CH{$s}de)"
@@ -365,10 +366,10 @@ class Language {
 			. "(?:$s$extensionList)?"
 			. "(?:$s$privateUse)?)";
 
-		# The final breakdown, with capturing groups for each of these components
-		# The variants, extensions, grandfathered, and private-use may have interior '-'
+		# Here is the final breakdown, with capturing groups for each of these components
+		# The variants, extensions, legacy, and private-use may have interior '-'
 
-		$root = "^(?:$langtag|$privateUse|$grandfathered)$";
+		$root = "^(?:$langtag|$privateUse|$legacy)$";
 
 		return (bool)preg_match( "/$root/", strtolower( $code ) );
 	}
