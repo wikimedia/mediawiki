@@ -100,20 +100,29 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb = $factory->getMainLB();
 
 		$dbw = $lb->getConnection( DB_PRIMARY );
+		$dbw->ensureConnection();
+		$wConn = TestingAccessWrapper::newFromObject( $dbw )->conn;
+		$wConnWrap = TestingAccessWrapper::newFromObject( $wConn );
+
 		$this->assertEquals(
 			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'primary shows as primary' );
+		$this->assertInstanceOf( IDatabase::class, $wConnWrap->topologicalPrimaryConnRef );
 		$this->assertEquals(
 			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
-			$dbw->getTopologyRootPrimary(),
+			$wConnWrap->topologicalPrimaryConnRef->getServerName(),
 			'cluster primary is set' );
 
 		$dbr = $lb->getConnection( DB_REPLICA );
-		$this->assertEquals(
-			$dbr::ROLE_STREAMING_REPLICA, $dbr->getTopologyRole(), 'replica shows as replica' );
+		$dbr->ensureConnection();
+		$rConn = TestingAccessWrapper::newFromObject( $dbr )->conn;
+		$rConnWrap = TestingAccessWrapper::newFromObject( $rConn );
 
 		$this->assertEquals(
+			$dbr::ROLE_STREAMING_REPLICA, $dbr->getTopologyRole(), 'replica shows as replica' );
+		$this->assertInstanceOf( IDatabase::class, $rConnWrap->topologicalPrimaryConnRef );
+		$this->assertEquals(
 			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
-			$dbr->getTopologyRootPrimary(),
+			$rConnWrap->topologicalPrimaryConnRef->getServerName(),
 			'cluster primary is set'
 		);
 

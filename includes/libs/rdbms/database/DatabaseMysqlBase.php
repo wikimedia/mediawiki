@@ -542,12 +542,16 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	protected function getPrimaryServerInfo() {
+		if ( !$this->topologicalPrimaryConnRef ) {
+			return false; // something is misconfigured
+		}
+
 		$cache = $this->srvCache;
 		$key = $cache->makeGlobalKey(
 			'mysql',
 			'master-info',
 			// Using one key for all cluster replica DBs is preferable
-			$this->topologyRootMaster ?? $this->getServerName()
+			$this->topologicalPrimaryConnRef->getServerName()
 		);
 		$fname = __METHOD__;
 
@@ -560,15 +564,14 @@ abstract class DatabaseMysqlBase extends Database {
 					return false; // avoid primary DB connection spike slams
 				}
 
-				$conn = $this->getLazyMasterHandle();
-				if ( !$conn ) {
-					return false; // something is misconfigured
-				}
-
 				$flags = self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 				// Connect to and query the primary DB; catch errors to avoid outages
 				try {
-					$res = $conn->query( 'SELECT @@server_id AS id', $fname, $flags );
+					$res = $this->topologicalPrimaryConnRef->query(
+						'SELECT @@server_id AS id',
+						$fname,
+						$flags
+					);
 					$row = $res ? $res->fetchObject() : false;
 					$id = $row ? (int)$row->id : 0;
 				} catch ( DBError $e ) {
