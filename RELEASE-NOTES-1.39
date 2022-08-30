@@ -164,6 +164,7 @@ because of Phabricator reports.
 * (T310040) Added language support for Fante (fat).
 * (T311034) Added language support for Campidanese Sardinian (sro).
 * (T315406) Fix the autonym of the Iñupiaq language to "Iñupiatun".
+* (T315677) Removed French fallback from the Fula language (ff).
 * (T304920) In Swahili, The "Media" namespace is now "Media", as in English,
   and the "File" namespace is now "Faili". The old name of the "File" namespace
   was "Picha", and it's kept for backwards compatibility. If you manage a wiki
