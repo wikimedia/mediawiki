@@ -1,7 +1,5 @@
 <?php
 /**
- * Special page which uses a ChangesList to show query results.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup SpecialPage
  */
 
 use MediaWiki\Logger\LoggerFactory;
@@ -34,7 +31,8 @@ use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Special page which uses a ChangesList to show query results.
- * @todo Way too many public functions, most of them should be protected
+ *
+ * @todo Most of the functions here should be protected instead of public.
  *
  * @ingroup SpecialPage
  */
@@ -754,7 +752,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * @see docs/Configuration.md for information on the RCLinkDays and RCFilterByAge settings.
+	 * @see \MediaWiki\MainConfigSchema::RCLinkDays and \MediaWiki\MainConfigSchema::RCFilterByAge.
 	 * @return int[]
 	 */
 	protected function getLinkDays() {

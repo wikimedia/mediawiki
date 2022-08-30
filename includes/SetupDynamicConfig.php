@@ -81,18 +81,14 @@ if ( isset( $wgFooterIcons['poweredby'] )
 		"$wgResourceBasePath/resources/assets/poweredby_mediawiki_176x62.png 2x";
 }
 
-/**
- * Unconditional protection for NS_MEDIAWIKI since otherwise it's too easy for a
- * sysadmin to set $wgNamespaceProtection incorrectly and leave the wiki insecure.
- *
- * Note that this is the definition of editinterface and it can be granted to
- * all users if desired.
- */
+// Unconditional protection for NS_MEDIAWIKI since otherwise it's too easy for a
+// sysadmin to set $wgNamespaceProtection incorrectly and leave the wiki insecure.
+//
+// Note that this is the definition of editinterface and it can be granted to
+// all users if desired.
 $wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
 
-/**
- * Initialise $wgLockManagers to include basic FS version
- */
+// Initialise $wgLockManagers to include basic FS version
 $wgLockManagers[] = [
 	'name' => 'fsLockManager',
 	'class' => FSLockManager::class,
@@ -103,10 +99,8 @@ $wgLockManagers[] = [
 	'class' => NullLockManager::class,
 ];
 
-/**
- * Default parameters for the "<gallery>" tag.
- * @see docs/Configuration.md for description of the fields.
- */
+// Default parameters for the "<gallery>" tag.
+// See \MediaWiki\MainConfigSchema::GalleryOptions
 $wgGalleryOptions += [
 	'imagesPerRow' => 0,
 	'imageWidth' => 120,
