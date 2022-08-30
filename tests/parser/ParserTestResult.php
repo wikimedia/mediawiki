@@ -45,7 +45,6 @@ class ParserTestResult {
 	}
 
 	public function getDescription() {
-		return ( $this->test->comment ?? '' ) .
-			"{$this->test->testName} [{$this->mode}]";
+		return "{$this->test->testName} [{$this->mode}]";
 	}
 }
