@@ -4,6 +4,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\SlotRecord;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -307,4 +308,86 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$access = $this->getParsoidOutputAccessWithCache( 0 );
 		$this->assertSame( $expected, $access->supportsContentModel( $model ) );
 	}
+
+	/**
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parse
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parseInternal
+	 */
+	public function testParseWithPageRecordAndNoRevision() {
+		$pageRecord = $this->getExistingTestPage( __METHOD__ )->toPageRecord();
+		$pOpts = ParserOptions::newFromAnon();
+
+		$parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
+		$status = $parsoidOutputAccess->parse( $pageRecord, $pOpts, null );
+
+		$this->assertInstanceOf( Status::class, $status );
+		$this->assertTrue( $status->isOK() );
+		$this->assertInstanceOf( ParserOutput::class, $status->getValue() );
+
+		/** @var ParserOutput $parserOutput */
+		$parserOutput = $status->getValue();
+		$this->assertStringContainsString( __METHOD__, $parserOutput->getText() );
+		$this->assertNotEmpty( $parserOutput->getExtensionData( 'parsoid-render-id' ) );
+		$this->assertNotEmpty( $parserOutput->getCacheRevisionId() );
+		$this->assertNotEmpty( $parserOutput->getCacheTime() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parse
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parseInternal
+	 */
+	public function testParseWithPageRecordAndRevision() {
+		$page = $this->getExistingTestPage( __METHOD__ );
+		$pageRecord = $page->toPageRecord();
+		$pOpts = ParserOptions::newFromAnon();
+		$revRecord = $page->getRevisionRecord();
+
+		$parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
+		$status = $parsoidOutputAccess->parse( $pageRecord, $pOpts, $revRecord );
+
+		$this->assertInstanceOf( Status::class, $status );
+		$this->assertTrue( $status->isOK() );
+		$this->assertInstanceOf( ParserOutput::class, $status->getValue() );
+
+		/** @var ParserOutput $parserOutput */
+		$parserOutput = $status->getValue();
+		$this->assertStringContainsString( __METHOD__, $parserOutput->getText() );
+		$this->assertNotEmpty( $parserOutput->getExtensionData( 'parsoid-render-id' ) );
+		$this->assertNotEmpty( $parserOutput->getCacheRevisionId() );
+		$this->assertNotEmpty( $parserOutput->getCacheTime() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parse
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parseInternal
+	 */
+	public function testParseWithNonExistingPageAndFakeRevision() {
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$pOpts = ParserOptions::newFromAnon();
+
+		// Create a fake revision record
+		$revRecord = new MutableRevisionRecord( $page->getTitle() );
+		$revRecord->setId( 0 );
+		$revRecord->setPageId( $page->getId() );
+		$revRecord->setContent(
+			SlotRecord::MAIN,
+			new WikitextContent( 'test' )
+		);
+
+		$parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
+		$status = $parsoidOutputAccess->parse( $page, $pOpts, $revRecord );
+
+		$this->assertInstanceOf( Status::class, $status );
+		$this->assertTrue( $status->isOK() );
+		$this->assertInstanceOf( ParserOutput::class, $status->getValue() );
+
+		/** @var ParserOutput $parserOutput */
+		$parserOutput = $status->getValue();
+		$this->assertStringContainsString( __METHOD__, $parserOutput->getText() );
+		$this->assertNotEmpty( $parserOutput->getExtensionData( 'parsoid-render-id' ) );
+		// The revision ID is set to 0, so that's what is in the cache.
+		$this->assertSame( 0, $parserOutput->getCacheRevisionId() );
+		$this->assertNotEmpty( $parserOutput->getCacheTime() );
+	}
+
 }

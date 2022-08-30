@@ -15,7 +15,9 @@ use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Rest\Handler\ParsoidHTMLHelper;
 use MediaWiki\Rest\LocalizedHttpException;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
 use NullStatsdDataFactory;
@@ -29,6 +31,7 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
+use WikitextContent;
 
 /**
  * @covers \MediaWiki\Rest\Handler\ParsoidHTMLHelper
@@ -164,6 +167,18 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		return [ $page, $revisions ];
 	}
 
+	private function getNonExistingPageWithFakeRevision( $name ) {
+		$page = $this->getNonexistingTestPage( $name );
+		MWTimestamp::setFakeTime( self::TIMESTAMP_OLD );
+
+		$content = new WikitextContent( 'test' );
+		$rev = new MutableRevisionRecord( $page->getTitle() );
+		$rev->setPageId( $page->getId() );
+		$rev->setContent( SlotRecord::MAIN, $content );
+
+		return [ $page, $rev ];
+	}
+
 	public function provideRevisionReferences() {
 		return [
 			'current' => [ null, [ 'html' => self::HTML, 'timestamp' => self::TIMESTAMP ] ],
@@ -174,7 +189,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideRevisionReferences()
 	 */
-	public function testGetHtml( $revRef, $revInfo ) {
+	public function testGetHtml( $revRef ) {
 		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
 		$rev = $revRef ? $revisions[ $revRef ] : null;
 
@@ -220,7 +235,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideRevisionReferences()
 	 */
-	public function testEtagLastModified( $revRef, $revInfo ) {
+	public function testEtagLastModified( $revRef ) {
 		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
 		$rev = $revRef ? $revisions[ $revRef ] : null;
 
@@ -256,6 +271,45 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame( $etag, $helper->getETag() );
 		$this->assertSame(
 			MWTimestamp::convert( TS_MW, $now ),
+			MWTimestamp::convert( TS_MW, $helper->getLastModified() )
+		);
+	}
+
+	/**
+	 * @covers ParsoidHTMLHelper::init
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parse
+	 */
+	public function testEtagLastModifiedWithPageIdentity() {
+		[ $fakePage, $fakeRevision ] = $this->getNonExistingPageWithFakeRevision( __METHOD__ );
+		$poa = $this->createMock( ParsoidOutputAccess::class );
+		$poa->expects( $this->once() )
+			->method( 'parse' )
+			->willReturnCallback( static function (
+				PageRecord $page,
+				ParserOptions $parserOpts,
+				?RevisionRecord $rev = null
+			) use ( $fakePage, $fakeRevision ) {
+				self::assertSame( $page, $fakePage, '$page and $fakePage should be the same' );
+				self::assertSame( $rev, $fakeRevision, '$rev and $fakeRevision should be the same' );
+
+				$pout = new ParserOutput( self::MOCK_HTML );
+				$pout->setCacheRevisionId( $rev ? $rev->getId() : $page->getLatest() );
+				$pout->setCacheTime( wfTimestampNow() ); // will use fake time
+				return Status::newGood( $pout );
+			} );
+		$poa->method( 'getParsoidRenderID' )
+			->willReturnCallback( static function ( ParserOutput $pout ) {
+				return new ParsoidRenderID( 1, $pout->getCacheTime() );
+			} );
+
+		$helper = $this->newHelper( null, $poa );
+		$helper->init( $fakePage, self::PARAM_DEFAULTS, $this->newUser(), $fakeRevision );
+		$etag = $helper->getETag();
+		$lastModified = $helper->getLastModified();
+
+		$this->assertSame( $etag, $helper->getETag() );
+		$this->assertSame(
+			MWTimestamp::convert( TS_MW, $lastModified ),
 			MWTimestamp::convert( TS_MW, $helper->getLastModified() )
 		);
 	}

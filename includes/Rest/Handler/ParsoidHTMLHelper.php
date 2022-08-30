@@ -24,6 +24,7 @@ namespace MediaWiki\Rest\Handler;
 use IBufferingStatsdDataFactory;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
@@ -56,7 +57,7 @@ class ParsoidHTMLHelper {
 	/** @var ParsoidOutputStash */
 	private $parsoidOutputStash;
 
-	/** @var PageRecord|null */
+	/** @var PageIdentity|null */
 	private $page = null;
 
 	/** @var RevisionRecord|null */
@@ -96,13 +97,13 @@ class ParsoidHTMLHelper {
 	}
 
 	/**
-	 * @param PageRecord $page
+	 * @param PageIdentity $page
 	 * @param array $parameters
 	 * @param User $user
 	 * @param RevisionRecord|null $revision
 	 */
 	public function init(
-		PageRecord $page,
+		PageIdentity $page,
 		array $parameters,
 		User $user,
 		?RevisionRecord $revision = null
@@ -201,11 +202,19 @@ class ParsoidHTMLHelper {
 	 */
 	private function getParserOutput(): ParserOutput {
 		if ( !$this->parserOutput ) {
-			$status = $this->parsoidOutputAccess->getParserOutput(
-				$this->page,
-				ParserOptions::newFromAnon(),
-				$this->revision
-			);
+			if ( $this->page instanceof PageRecord && $this->page->exists() ) {
+				$status = $this->parsoidOutputAccess->getParserOutput(
+					$this->page,
+					ParserOptions::newFromAnon(),
+					$this->revision
+				);
+			} else {
+				$status = $this->parsoidOutputAccess->parse(
+					$this->page,
+					ParserOptions::newFromAnon(),
+					$this->revision
+				);
+			}
 
 			if ( !$status->isOK() ) {
 				if ( $status->hasMessage( 'parsoid-client-error' ) ) {
