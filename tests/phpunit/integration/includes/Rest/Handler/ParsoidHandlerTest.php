@@ -11,9 +11,11 @@ use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\Parsoid\HTMLTransform;
 use MediaWiki\Parser\Parsoid\HTMLTransformFactory;
 use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\Rest\Handler\HtmlInputTransformHelper;
 use MediaWiki\Rest\Handler\ParsoidFormatHelper;
 use MediaWiki\Rest\Handler\ParsoidHandler;
 use MediaWiki\Rest\HttpException;
+use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
@@ -21,7 +23,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Rest\RestTestTrait;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
-use PHPUnit\Framework\Assert;
+use NullStatsdDataFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
@@ -73,33 +75,6 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			'authority' => $authority,
 			'request' => $request,
 		] );
-	}
-
-	private function newHTMLTransform( $html, $methodOverrides = [] ): HTMLTransform {
-		$page = $this->getExistingTestPage();
-
-		$pageConfigFactory = $this->getPageConfigFactory( $page );
-
-		$transform = $this->getMockBuilder( HTMLTransform::class )
-			->onlyMethods( array_keys( $methodOverrides ) )
-			->setConstructorArgs( [
-				$html,
-				$page,
-				new Parsoid(
-					$this->getServiceContainer()->getParsoidSiteConfig(),
-					$this->getServiceContainer()->getParsoidDataAccess()
-				),
-				[],
-				$pageConfigFactory,
-				$this->getServiceContainer()->getContentHandlerFactory()
-			] )
-			->getMock();
-
-		foreach ( $methodOverrides as $method => $callback ) {
-			$transform->method( $method )->willReturnCallback( $callback );
-		}
-
-		return $transform;
 	}
 
 	private function newParsoidHandler( $methodOverrides = [] ): ParsoidHandler {
@@ -157,16 +132,16 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 				return parent::newParsoid();
 			}
 
-			protected function getHTMLTransform(
+			protected function getHtmlInputTransformHelper(
 				array $attribs,
 				string $html,
-				PageIdentity $page
-			): HTMLTransform {
-				if ( isset( $this->overrides['getHTMLTransform'] ) ) {
-					return $this->overrides['getHTMLTransform']();
+				$page
+			): HtmlInputTransformHelper {
+				if ( isset( $this->overrides['getHtmlInputHelper'] ) ) {
+					return $this->overrides['getHtmlInputHelper']();
 				}
 
-				return parent::getHTMLTransform(
+				return parent::getHtmlInputTransformHelper(
 					$attribs,
 					$html,
 					$page
@@ -952,7 +927,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( $value, $response->getHeaderLine( $name ) );
 		}
 
-		foreach ( $expectedText as $exp ) {
+		foreach ( (array)$expectedText as $exp ) {
 			$this->assertStringContainsString( $exp, $wikitext );
 		}
 	}
@@ -987,8 +962,10 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		yield 'Content-type of original html is missing' => [
 			$attribs,
 			$html,
-			new HttpException(
-				'Content-type of original html is missing.', 400
+			new LocalizedHttpException(
+				new MessageValue( 'rest-html-backend-error' ),
+				400,
+				[ 'reason' => 'Content-type of original html is missing.' ]
 			)
 		];
 
@@ -1013,8 +990,10 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		yield 'should fail to downgrade the original version for an unknown transition' => [
 			$attribs,
 			$htmlOfMinimal,
-			new HttpException(
-				'No downgrade possible from schema version 2222.0.0 to 2.4.0.', 400
+			new LocalizedHttpException(
+				new MessageValue( 'rest-html-backend-error' ),
+				400,
+				[ 'reason' => 'No downgrade possible from schema version 2222.0.0 to 2.4.0.' ]
 			)
 		];
 
@@ -1043,9 +1022,10 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		yield 'DSR offsetType mismatch: UCS2 vs byte' => [
 			$attribs,
 			$html,
-			new HttpException(
-				'DSR offsetType mismatch: UCS2 vs byte',
-				400
+			new LocalizedHttpException(
+				new MessageValue( 'rest-html-backend-error' ),
+				400,
+				[ 'reason' => 'DSR offsetType mismatch: UCS2 vs byte' ]
 			)
 		];
 
@@ -1075,9 +1055,10 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		yield 'DSR offsetType mismatch: byte vs UCS2' => [
 			$attribs,
 			$html,
-			new HttpException(
-				'DSR offsetType mismatch: byte vs UCS2',
-				400
+			new LocalizedHttpException(
+				new MessageValue( 'rest-html-backend-error' ),
+				400,
+				[ 'reason' => 'DSR offsetType mismatch: byte vs UCS2' ]
 			)
 		];
 
@@ -1149,9 +1130,10 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		yield 'should return a 400 for not supplying data-mw' => [
 			$attribs,
 			$html,
-			new HttpException(
-				'Invalid data-mw was provided',
-				400
+			new LocalizedHttpException(
+				new MessageValue( 'rest-html-backend-error' ),
+				400,
+				[ 'reason' => 'Invalid data-mw was provided.' ]
 			)
 		];
 
@@ -1205,9 +1187,10 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		yield 'should return http 400 if supplied data-parsoid is empty' => [
 			$attribs,
 			$html,
-			new HttpException(
-				'Invalid data-parsoid was provided.',
-				400
+			new LocalizedHttpException(
+				new MessageValue( 'rest-html-backend-error' ),
+				400,
+				[ 'reason' => 'Invalid data-parsoid was provided.' ]
 			)
 		];
 
@@ -1245,11 +1228,20 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$handler = $this->newParsoidHandler();
 
-		$this->expectException( get_class( $expectedException ) );
-		$this->expectExceptionCode( $expectedException->getCode() );
-		$this->expectExceptionMessage( $expectedException->getMessage() );
+		try {
+			$handler->html2wt( $pageConfig, $attribs, $html );
+			$this->fail( 'Expected exception: ' . $expectedException );
+		} catch ( Exception $e ) {
+			$this->assertInstanceOf( get_class( $expectedException ), $e );
+			$this->assertSame( $expectedException->getCode(), $e->getCode() );
 
-		$handler->html2wt( $pageConfig, $attribs, $html );
+			if ( $expectedException instanceof HttpException ) {
+				/** @var HttpException $e */
+				$this->assertSame( $expectedException->getErrorData(), $e->getErrorData() );
+			}
+
+			$this->assertSame( $expectedException->getMessage(), $e->getMessage() );
+		}
 	}
 
 	public function provideDom2wikitextException() {
@@ -1282,10 +1274,13 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			]
 		] + self::DEFAULT_ATTRIBS;
 
+		// Make a fake Parsoid that throws
 		/** @var Parsoid|MockObject $parsoid */
 		$parsoid = $this->createNoOpMock( Parsoid::class, [ 'dom2wikitext' ] );
 		$parsoid->method( 'dom2wikitext' )->willThrowException( $throw );
 
+		// Make a fake HTMLTransformFactory that returns an HTMLTransform that uses the fake Parsoid.
+		/** @var HTMLTransformFactory|MockObject $factory */
 		$factory = $this->createNoOpMock( HTMLTransformFactory::class, [ 'getHTMLTransform' ] );
 		$factory->method( 'getHTMLTransform' )->willReturn( new HTMLTransform(
 			$html,
@@ -1296,48 +1291,26 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getContentHandlerFactory()
 		) );
 
-		$this->setService( 'HTMLTransformFactory', $factory );
-		$handler = $this->newParsoidHandler();
+		// Use an HtmlInputTransformHelper that uses the fake HTMLTransformFactory, so it ends up
+		// using the HTMLTransform that has the fake Parsoid which throws an exception.
+		$handler = $this->newParsoidHandler( [
+			'getHtmlInputHelper' => static function () use ( $factory, $page, $html ) {
+				$helper = new HtmlInputTransformHelper(
+					new NullStatsdDataFactory(),
+					$factory
+				);
 
+				$helper->init( $page, [ 'html' => $html ], [] );
+				return $helper;
+			}
+		] );
+
+		// Check that the exception thrown by Parsoid gets converted as expected.
 		$this->expectException( get_class( $expectedException ) );
 		$this->expectExceptionCode( $expectedException->getCode() );
 		$this->expectExceptionMessage( $expectedException->getMessage() );
 
 		$handler->html2wt( $page, $attribs, $html );
-	}
-
-	public function testHtml2wtHandlesParseHtmlException() {
-		$html = '<p>hi</p>';
-		$page = $this->getExistingTestPage();
-		$pageConfig = $this->getPageConfig( $page );
-		$attribs = [
-				'opts' => [
-					'from' => ParsoidFormatHelper::FORMAT_HTML
-				]
-			] + self::DEFAULT_ATTRIBS;
-
-		$transform = $this->newHTMLTransform( $html, [
-			'parseHTML' => static function ( $html, $validate ) {
-				Assert::assertTrue( $validate, '$validate' );
-				throw new ClientError( 'test' );
-			}
-		] );
-
-		$handler = $this->newParsoidHandler( [
-			'parseHTML' => static function () {
-				throw new ClientError( 'test' );
-			},
-			'getHTMLTransform' => static function () use ( $transform ) {
-				return $transform;
-			},
-		] );
-
-		$expectedException = new HttpException( 'test', 400 );
-		$this->expectException( get_class( $expectedException ) );
-		$this->expectExceptionCode( $expectedException->getCode() );
-		$this->expectExceptionMessage( $expectedException->getMessage() );
-
-		$handler->html2wt( $pageConfig, $attribs, $html );
 	}
 
 	/** @return Generator */
