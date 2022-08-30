@@ -1138,6 +1138,7 @@
 	"grouppage-autoconfirmed": "{{ns:project}}:Sjálfvirkt staðfestir notendur",
 	"grouppage-bot": "{{ns:project}}:Vélmenni",
 	"grouppage-sysop": "{{ns:project}}:Stjórnendur",
+	"grouppage-interface-admin": "{{ns:project}}: Viðmótsstjórnendur",
 	"grouppage-bureaucrat": "{{ns:project}}:Möppudýr",
 	"grouppage-suppress": "{{ns:project}}:Bælandi",
 	"right-read": "Lesa síður",

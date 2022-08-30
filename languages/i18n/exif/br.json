@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Fohanno",
-			"Fulup"
+			"Fulup",
+			"Huñvreüs"
 		]
 	},
 	"exif-imagewidth": "Ledander",
@@ -238,9 +239,9 @@
 	"exif-lightsource-255": "Mammenn c'houloù all",
 	"exif-flash-fired-0": "Tamm luc'h ebet",
 	"exif-flash-fired-1": "Luc'h taolet",
-	"exif-flash-return-0": "ne zistro arc'hwel detektiñ ebet gant stroboskop ebet",
-	"exif-flash-return-2": "disteuler a ra ar stroboskop ur goulou n'eo ket deteket",
-	"exif-flash-return-3": "ur goulou detektet a zistro gant ar stroboskop",
+	"exif-flash-return-0": "arc’hwel detektiñ distro gouloù al luc’h ebet",
+	"exif-flash-return-2": "distro gouloù al luc’h n’eo ket detektet",
+	"exif-flash-return-3": "distro gouloù al luc’h detektet",
 	"exif-flash-mode-1": "Taol luc'h dre ret",
 	"exif-flash-mode-2": "tennañ an taol luc'h dre ret",
 	"exif-flash-mode-3": "Mod emgefre",
