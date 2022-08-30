@@ -178,7 +178,7 @@ class ShiConverter extends LanguageConverterSpecific {
 	 */
 	public function getVariantsFallbacks(): array {
 		return [
-			'shi' => 'shi-tfng',
+			'shi' => [ 'shi-latn', 'shi-tfng' ],
 			'shi-tfng' => 'shi',
 			'shi-latn' => 'shi',
 		];
