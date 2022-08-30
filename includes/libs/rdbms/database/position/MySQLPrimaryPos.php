@@ -70,12 +70,12 @@ class MySQLPrimaryPos implements DBPrimaryPos {
 					throw new InvalidArgumentException( "Invalid GTID '$gtid'." );
 				}
 
-				list( $domain, $eventNumber ) = $components;
+				[ $domain, $eventNumber ] = $components;
 				if ( isset( $this->gtids[$domain] ) ) {
 					// For MySQL, handle the case where some past issue caused a gap in the
 					// executed GTID set, e.g. [last_purged+1,N-1] and [N+1,N+2+K]. Ignore the
 					// gap by using the GTID with the highest ending event number.
-					list( , $otherEventNumber ) = self::parseGTID( $this->gtids[$domain] );
+					[ , $otherEventNumber ] = self::parseGTID( $this->gtids[$domain] );
 					if ( $eventNumber > $otherEventNumber ) {
 						$this->gtids[$domain] = $gtid;
 					}
@@ -266,7 +266,7 @@ class MySQLPrimaryPos implements DBPrimaryPos {
 		$gtidInfos = [];
 
 		foreach ( $this->gtids as $gtid ) {
-			list( $domain, $pos, $server ) = self::parseGTID( $gtid );
+			[ $domain, $pos, $server ] = self::parseGTID( $gtid );
 
 			$ignore = false;
 			// Filter out GTIDs from non-active replication domains
@@ -361,6 +361,18 @@ class MySQLPrimaryPos implements DBPrimaryPos {
 		}
 	}
 
+	public static function newFromArray( array $data ) {
+		$pos = new self( $data['position'], $data['asOfTime'] );
+		$pos->__unserialize( $data );
+		return $pos;
+	}
+
+	public function toArray(): array {
+		$data = $this->__serialize();
+		$data['_type_'] = get_class( $this );
+		return $data;
+	}
+
 	/**
 	 * @return string GTID set or <binary log file>/<position> (e.g db1034-bin.000976/843431247)
 	 */
@@ -370,6 +382,7 @@ class MySQLPrimaryPos implements DBPrimaryPos {
 			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
 			: $this->getLogFile() . "/{$this->logPos[self::CORD_EVENT]}";
 	}
+
 }
 
 /**

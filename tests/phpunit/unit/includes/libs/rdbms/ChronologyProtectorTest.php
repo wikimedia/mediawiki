@@ -22,10 +22,12 @@
  */
 
 use Wikimedia\Rdbms\ChronologyProtector;
+use Wikimedia\Rdbms\DBPrimaryPos;
+use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\MySQLPrimaryPos;
 
 /**
- * @covers \Wikimedia\Rdbms\ChronologyProtector::__construct
- * @covers \Wikimedia\Rdbms\ChronologyProtector::getClientId
+ * @covers \Wikimedia\Rdbms\ChronologyProtector
  */
 class ChronologyProtectorTest extends PHPUnit\Framework\TestCase {
 	/**
@@ -77,4 +79,54 @@ class ChronologyProtectorTest extends PHPUnit\Framework\TestCase {
 			]
 		];
 	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\ChronologyProtector
+	 * @covers \Wikimedia\Rdbms\MySQLPrimaryPos
+	 */
+	public function testPositionMarshalling() {
+		$replicationPos = '1-2-3';
+		$time = 100;
+
+		$lb = $this->createMock( ILoadBalancer::class );
+		$lb->method( 'getClusterName' )->willReturn( 'test' );
+		$lb->method( 'getServerName' )->willReturn( 'primary' );
+		$lb->method( 'hasOrMadeRecentPrimaryChanges' )->willReturn( true );
+		$lb->method( 'hasStreamingReplicaServers' )->willReturn( true );
+		$lb->method( 'getReplicaResumePos' )->willReturnCallback(
+			static function () use ( &$replicationPos, &$time ) {
+				return new MySQLPrimaryPos( $replicationPos, $time );
+			}
+		);
+
+		$client = [
+			'ip' => '127.0.0.1',
+			'agent' => "Burninator"
+		];
+
+		$secret = '0815';
+
+		$bag = new HashBagOStuff();
+		$cp = new ChronologyProtector( $bag, $client, null, $secret );
+
+		$clientPostIndex = 0;
+		$cp->stageSessionReplicationPosition( $lb );
+		$cp->persistSessionReplicationPositions( $clientPostIndex );
+
+		// Do it a second time so the values that were written the first
+		// time get read from the cache.
+		$replicationPos = '3-4-5';
+		$time++;
+		$cp->stageSessionReplicationPosition( $lb );
+		$cp->persistSessionReplicationPositions( $clientPostIndex );
+
+		$lb->method( 'waitFor' )->willReturnCallback(
+			function ( DBPrimaryPos $pos ) use ( &$replicationPos, &$time ) {
+				$this->assertSame( $time, $pos->asOfTime() );
+				$this->assertSame( "$replicationPos", "$pos" );
+			}
+		);
+		$cp->applySessionReplicationPosition( $lb );
+	}
+
 }
