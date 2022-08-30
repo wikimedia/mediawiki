@@ -47,7 +47,7 @@ Example test run in [Fresh](https://gerrit.wikimedia.org/g/fresh).
 
     fresh-node -env -net
     export DISPLAY=:1
-    Xvfb "$DISPLAY" -screen 0 1280x1024x24 &
+    Xvfb "$DISPLAY" -screen 0 1920x1080x24 &
     npm run selenium-test
 
 #### Filter

@@ -1,3 +1,7 @@
+## 2.2.0 / 2022-07-29
+
+* selenium: Default to larger window size (T314115)
+
 ## 2.1.0 / 2022-05-19
 
 * Use @wdio/spec-reporter.
