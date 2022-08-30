@@ -37,6 +37,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\Utils\UrlUtils;
 use MutableConfig;
 use MWException;
 use NamespaceInfo;
@@ -137,6 +138,9 @@ class SiteConfig extends ISiteConfig {
 	/** @var LanguageNameUtils */
 	private $languageNameUtils;
 
+	/** @var UrlUtils */
+	private $urlUtils;
+
 	/** @var string|null */
 	private $baseUri;
 
@@ -166,6 +170,7 @@ class SiteConfig extends ISiteConfig {
 	 * @param LanguageFactory $languageFactory
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 * @param LanguageNameUtils $languageNameUtils
+	 * @param UrlUtils $urlUtils
 	 * @param Parser $parser
 	 * @param Config $optionalConfig
 	 */
@@ -183,6 +188,7 @@ class SiteConfig extends ISiteConfig {
 		LanguageFactory $languageFactory,
 		LanguageConverterFactory $languageConverterFactory,
 		LanguageNameUtils $languageNameUtils,
+		UrlUtils $urlUtils,
 		// These arguments are temporary and will be removed once
 		// better solutions are found.
 		Parser $parser, // T268776
@@ -207,6 +213,7 @@ class SiteConfig extends ISiteConfig {
 		$this->languageFactory = $languageFactory;
 		$this->languageConverterFactory = $languageConverterFactory;
 		$this->languageNameUtils = $languageNameUtils;
+		$this->urlUtils = $urlUtils;
 
 		// Override parent default
 		// Override parent default
@@ -438,7 +445,7 @@ class SiteConfig extends ISiteConfig {
 			// ApiQuerySiteInfo::appendInterwikiMap uses PROTO_CURRENT here,
 			// but that's the 'current' protocol *of the API request*; use
 			// PROTO_CANONICAL instead.
-			$val['url'] = wfExpandUrl( $row['iw_url'], PROTO_CANONICAL );
+			$val['url'] = $this->urlUtils->expand( $row['iw_url'], PROTO_CANONICAL ) ?? false;
 
 			// Fix up broken interwiki hrefs that are missing a $1 placeholder
 			// Just append the placeholder at the end.

@@ -1260,7 +1260,7 @@ class SkinTemplate extends Skin {
 			'user-page' => $userPageLink,
 			'user-menu' => $this->buildPersonalUrls( false ),
 			'notifications' => [],
-			'associatedPages' => [],
+			'associated-pages' => [],
 			// Legacy keys
 			'namespaces' => [],
 			'views' => [],
@@ -1567,7 +1567,7 @@ class SkinTemplate extends Skin {
 		}
 
 		$content_navigation['namespaces'] = $namespaces;
-		$content_navigation['associatedPages'] = $associatedPages;
+		$content_navigation['associated-pages'] = $associatedPages;
 		$this->runOnSkinTemplateNavigationHooks( $this, $content_navigation );
 
 		// Setup xml ids and tooltip info

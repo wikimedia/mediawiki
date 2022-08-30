@@ -595,9 +595,11 @@ class Language {
 	/**
 	 * Get a namespace value by key
 	 *
+	 * Namespace name uses underscores (not spaces), e.g. 'MediaWiki_talk'.
+	 *
 	 * <code>
-	 * $mw_ns = $lang->getNsText( NS_MEDIAWIKI );
-	 * echo $mw_ns; // prints 'MediaWiki'
+	 * $mw_ns = $lang->getNsText( NS_MEDIAWIKI_TALK );
+	 * echo $mw_ns; // prints 'MediaWiki_talk'
 	 * </code>
 	 *
 	 * @param int $index The array key of the namespace to return

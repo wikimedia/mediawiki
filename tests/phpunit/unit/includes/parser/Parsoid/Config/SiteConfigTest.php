@@ -17,6 +17,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\Utils\UrlUtils;
 use MediaWikiUnitTestCase;
 use MessageCache;
 use MWException;
@@ -99,6 +100,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			$this->createMockOrOverride( LanguageFactory::class, $serviceOverrides ),
 			$this->createMockOrOverride( LanguageConverterFactory::class, $serviceOverrides ),
 			$this->createMockOrOverride( LanguageNameUtils::class, $serviceOverrides ),
+			$this->createMockOrOverride( UrlUtils::class, $serviceOverrides ),
 			$this->createMockOrOverride( Parser::class, $serviceOverrides ),
 			new HashConfig( $configOverrides )
 		);
@@ -500,6 +502,11 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 		$messageCacheMock
 			->method( 'get' )
 			->willReturn( false );
+		$urlUtilsMock = $this->createMock( UrlUtils::class );
+		$urlUtilsMock
+			->method( 'expand' )
+			->with( '//test/', 1 )
+			->willReturn( 'http://test/' );
 
 		$config = $this->createSiteConfig( [
 			MainConfigNames::ExtraInterlanguageLinkPrefixes => [ 'ru' ],
@@ -508,6 +515,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 			InterwikiLookup::class => $interwikiMock,
 			LanguageNameUtils::class => $langNameUtilsMock,
 			MessageCache::class => $messageCacheMock,
+			UrlUtils::class => $urlUtilsMock
 		] );
 		$this->assertSame( [
 			'ru' => [
