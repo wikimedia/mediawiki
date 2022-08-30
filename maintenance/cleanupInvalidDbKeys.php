@@ -137,6 +137,14 @@ TEXT
 		// the hypothesis that invalid rows will be old and in all likelihood
 		// unreferenced, we should be fine to do it like this.
 		$dbr = $this->getDB( DB_REPLICA, 'vslow' );
+		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+		$joinConds = [];
+		$tables = [ $table ];
+		if ( isset( $linksMigration::$mapping[$table] ) ) {
+			list( $nsField,$titleField ) = $linksMigration->getTitleFields( $table );
+			$joinConds = $linksMigration->getQueryInfo( $table )['joins'];
+			$tables = $linksMigration->getQueryInfo( $table )['tables'];
+		}
 
 		// Find all TitleValue-invalid titles.
 		$percent = $dbr->anyString();
@@ -146,7 +154,7 @@ TEXT
 				'ns' => $nsField,
 				'title' => $titleField,
 			] )
-			->from( $table )
+			->tables( $tables )
 			// The REGEXP operator is not cross-DBMS, so we have to use lots of LIKEs
 			->where( $dbr->makeList( [
 				$titleField . $dbr->buildLike( $percent, ' ', $percent ),
@@ -156,6 +164,7 @@ TEXT
 				$titleField . $dbr->buildLike( '_', $percent ),
 				$titleField . $dbr->buildLike( $percent, '_' ),
 			], LIST_OR ) )
+			->joinConds( $joinConds )
 			->limit( $this->getBatchSize() )
 			->caller( __METHOD__ )
 			->fetchResultSet();
@@ -274,15 +283,24 @@ TEXT
 				// located. If the invalid rows don't go away after these jobs go through,
 				// they're probably being added by a buggy hook.
 				$this->outputStatus( "Queueing link update jobs for the pages in $idField...\n" );
+				$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 				$wikiPageFactory = $services->getWikiPageFactory();
 				foreach ( $res as $row ) {
 					$wp = $wikiPageFactory->newFromID( $row->id );
 					if ( $wp ) {
 						RefreshLinks::fixLinksFromArticle( $row->id );
 					} else {
+						if ( isset( $linksMigration::$mapping[$table] ) ) {
+							$conds = $linksMigration->getLinksConditions(
+								$table,
+								Title::makeTitle( $row->ns, $row->title )
+							);
+						} else {
+							$conds = [ $nsField => $row->ns, $titleField => $row->title ];
+						}
 						// This link entry points to a nonexistent page, so just get rid of it
 						$dbw->delete( $table,
-							[ $idField => $row->id, $nsField => $row->ns, $titleField => $row->title ],
+							array_merge( [ $idField => $row->id ], $conds ),
 							__METHOD__ );
 					}
 				}
