@@ -2597,7 +2597,7 @@ abstract class Skin extends ContextSource {
 				'actions',
 				'variants',
 				// Opt-in menus
-				// * 'associatedPages'
+				// * 'associated-pages'
 			]
 		];
 	}
