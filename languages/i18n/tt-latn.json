@@ -14,7 +14,8 @@
 			"Reedy",
 			"Urhixidur",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Ерней"
 		]
 	},
 	"tog-underline": "Sıltamalarnıñ astına sızu:",
@@ -250,7 +251,7 @@
 	"feed-rss": "RSS-tasması",
 	"red-link-title": "$1 (mondıy bit yuq)",
 	"nstab-main": "Bit",
-	"nstab-user": "Qullanuçı bite",
+	"nstab-user": "{{GENDER:$1|Qullanuçı bite}}",
 	"nstab-media": "Multimedia",
 	"nstab-special": "Maxsus bit",
 	"nstab-project": "Proyekt bite",
