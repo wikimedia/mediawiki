@@ -2067,6 +2067,9 @@ class ParserTestRunner {
 			$mwServices->resetServiceForTesting( 'ParsoidSiteConfig' );
 			// DataAccess depends on config vars, so reset it
 			$mwServices->resetServiceForTesting( 'ParsoidDataAccess' );
+			// Tidy service depends on $wgParserEnableLegacyMediaDOM, which can
+			// be configured per test
+			$mwServices->resetServiceForTesting( 'Tidy' );
 		};
 		$setup[] = $reset;
 		$teardown[] = $reset;

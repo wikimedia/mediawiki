@@ -354,7 +354,10 @@ MathML;
 		$r = new MediaWiki\Tidy\RemexDriver(
 			new ServiceOptions(
 				MediaWiki\Tidy\RemexDriver::CONSTRUCTOR_OPTIONS,
-				new HashConfig( [ MainConfigNames::TidyConfig => [] ] )
+				new HashConfig( [
+					MainConfigNames::TidyConfig => [],
+					MainConfigNames::ParserEnableLegacyMediaDOM => false,
+				] )
 			)
 		);
 		$result = $r->tidy( $input );
@@ -383,7 +386,10 @@ MathML;
 		$r = new MediaWiki\Tidy\RemexDriver(
 			new ServiceOptions(
 				MediaWiki\Tidy\RemexDriver::CONSTRUCTOR_OPTIONS,
-				new HashConfig( [ MainConfigNames::TidyConfig => [] ] )
+				new HashConfig( [
+					MainConfigNames::TidyConfig => [],
+					MainConfigNames::ParserEnableLegacyMediaDOM => false,
+				] )
 			)
 		);
 		$result = $r->tidy( $input );

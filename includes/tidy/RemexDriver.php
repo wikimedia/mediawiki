@@ -17,10 +17,12 @@ class RemexDriver extends TidyDriverBase {
 	private $serializerTrace;
 	private $mungerTrace;
 	private $pwrap;
+	private $enableLegacyMediaDOM;
 
 	/** @internal */
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::TidyConfig,
+		MainConfigNames::ParserEnableLegacyMediaDOM,
 	];
 
 	/**
@@ -33,6 +35,7 @@ class RemexDriver extends TidyDriverBase {
 		} else {
 			$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 			$config = $options->get( MainConfigNames::TidyConfig );
+			$this->enableLegacyMediaDOM = $options->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 		}
 		$config += [
 			'treeMutationTrace' => false,
@@ -68,7 +71,8 @@ class RemexDriver extends TidyDriverBase {
 		} else {
 			$tracer = $munger;
 		}
-		$treeBuilder = new TreeBuilder( $tracer, [
+		$treeBuilderClass = $this->enableLegacyMediaDOM ? TreeBuilder::class : RemexCompatBuilder::class;
+		$treeBuilder = new $treeBuilderClass( $tracer, [
 			'ignoreErrors' => true,
 			'ignoreNulls' => true,
 		] );
