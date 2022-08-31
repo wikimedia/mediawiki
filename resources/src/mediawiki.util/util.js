@@ -106,6 +106,75 @@ util = {
 	},
 
 	/**
+	 * Get the target element from a link hash
+	 *
+	 * This is the same element as you would get from
+	 * document.querySelectorAll(':target'), but can be used on
+	 * an arbitrary hash fragment, or after pushState/replaceState
+	 * has been used.
+	 *
+	 * Link fragments can be unencoded, fully encoded or partially
+	 * encoded, as defined in the spec.
+	 *
+	 * We can't just use decodeURI as that assumes the fragment
+	 * is fully encoded, and throws an error on a string like '%A',
+	 * so we use the percent-decode.
+	 *
+	 * @param {string} [hash] Hash fragment, without the leading '#'.
+	 *  Taken from location.hash if omitted.
+	 * @return {HTMLElement|null} Element, if found
+	 */
+	getTargetFromFragment: function ( hash ) {
+		hash = hash || location.hash.slice( 1 );
+		if ( !hash ) {
+			// Firefox emits a console warning if you pass an empty string
+			// to getElementById (T272844).
+			return null;
+		}
+		// Per https://html.spec.whatwg.org/multipage/browsing-the-web.html#target-element
+		// we try the raw fragment first, then the percent-decoded fragment.
+		var element = document.getElementById( hash );
+		if ( element ) {
+			return element;
+		}
+		var decodedHash = this.percentDecodeFragment( hash );
+		if ( !decodedHash ) {
+			// decodedHash can return null, calling getElementById would cast it to a string
+			return null;
+		}
+		return document.getElementById( decodedHash );
+	},
+
+	/**
+	 * Percent-decode a string, as found in a URL hash fragment
+	 *
+	 * Implements the percent-decode method as defined in
+	 * https://url.spec.whatwg.org/#percent-decode.
+	 *
+	 * URLSearchParams implements https://url.spec.whatwg.org/#concept-urlencoded-parser
+	 * which performs a '+' to ' ' substitution before running percent-decode.
+	 *
+	 * To get the desired behaviour we percent-encode any '+' in the fragment
+	 * to effectively expose the percent-decode implementation.
+	 *
+	 * @param {string} text Text to decode
+	 * @return {string|null} Decoded text, null if decoding failed
+	 */
+	percentDecodeFragment: function ( text ) {
+		var params = new URLSearchParams(
+			'q=' +
+			text
+				// Query string param decoding replaces '+' with ' ' before doing the
+				// percent_decode, so encode '+' to prevent this.
+				.replace( /\+/g, '%2B' )
+				// Query strings are split on '&' and then '=' so encode these too.
+				.replace( /&/g, '%26' )
+				.replace( /=/g, '%3D' )
+		);
+		return params.get( 'q' );
+	},
+
+	/**
 	 * Return a function, that, as long as it continues to be invoked, will not
 	 * be triggered. The function will be called after it stops being called for
 	 * N milliseconds. If `immediate` is passed, trigger the function on the

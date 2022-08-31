@@ -1,5 +1,11 @@
 {
 	"rules": {
 		"no-implicit-globals": "off"
+	},
+	"settings": {
+		"polyfills": [
+			"URL",
+			"URLSearchParams"
+		]
 	}
 }
