@@ -36,8 +36,6 @@
 class APCUBagOStuff extends MediumSpecificBagOStuff {
 	/** @var bool Whether to trust the APC implementation to serialization */
 	private $nativeSerialize;
-	/** @var bool */
-	private $useIncrTTLArg;
 
 	/**
 	 * @var string String to append to each APC key. This may be changed
@@ -55,7 +53,6 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		parent::__construct( $params );
 		// The extension serializer is still buggy, unlike "php" and "igbinary"
 		$this->nativeSerialize = ( ini_get( 'apc.serializer' ) !== 'default' );
-		$this->useIncrTTLArg = version_compare( phpversion( 'apcu' ), '5.1.12', '>=' );
 		// Avoid back-dated values that expire too soon. In particular, regenerating a hot
 		// key before it expires should never have the end-result of purging that key. Using
 		// the web request time becomes increasingly problematic the longer the request lasts.
@@ -150,7 +147,7 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
 		// Use apcu 5.1.12 $ttl argument if apcu_inc() will initialize to $init:
 		// https://www.php.net/manual/en/function.apcu-inc.php
-		if ( $step === $init && $this->useIncrTTLArg ) {
+		if ( $step === $init ) {
 			/** @noinspection PhpMethodParametersCountMismatchInspection */
 			$ttl = $this->getExpirationAsTTL( $exptime );
 			$result = apcu_inc( $key . self::KEY_SUFFIX, $step, $success, $ttl );
