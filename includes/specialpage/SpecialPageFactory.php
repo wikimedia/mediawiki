@@ -1101,7 +1101,9 @@ class SpecialPageFactory {
 						'InterwikiLookup',
 						'ReadOnlyMode',
 						'UserOptionsManager',
-						'LanguageConverterFactory'
+						'LanguageConverterFactory',
+						'RepoGroup',
+						'SearchResultThumbnailProvider',
 					]
 				];
 			}

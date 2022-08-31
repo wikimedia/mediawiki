@@ -142,6 +142,7 @@ use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Settings\Config\ConfigSchema;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Shell\ShellboxClientFactory;
@@ -1710,6 +1711,13 @@ return [
 			$services->getSearchEngineConfig(),
 			$services->getHookContainer(),
 			$services->getDBLoadBalancer()
+		);
+	},
+
+	'SearchResultThumbnailProvider' => static function ( MediaWikiServices $services ): SearchResultThumbnailProvider {
+		return new SearchResultThumbnailProvider(
+			$services->getRepoGroup(),
+			$services->getHookContainer()
 		);
 	},
 

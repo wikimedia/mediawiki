@@ -119,6 +119,7 @@ use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Settings\Config\ConfigSchema;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Shell\ShellboxClientFactory;
@@ -1682,6 +1683,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getSearchEngineFactory(): SearchEngineFactory {
 		return $this->getService( 'SearchEngineFactory' );
+	}
+
+	/**
+	 * @since 1.40
+	 * @return SearchResultThumbnailProvider
+	 */
+	public function getSearchResultThumbnailProvider(): SearchResultThumbnailProvider {
+		return $this->getService( 'SearchResultThumbnailProvider' );
 	}
 
 	/**

@@ -22,6 +22,9 @@ For notes on 1.39.x and older releases, see HISTORY.
 * …
 
 ==== New configuration ====
+* $wgThumbnailNamespaces - Defines what namespaces thumbnails will be displayed
+  for in Special:Search. This is the list of namespaces for which thumbnails
+  (or a placeholder in the absence of a thumbnail) will be shown.
 * …
 
 ==== Changed configuration ====
@@ -36,6 +39,8 @@ For notes on 1.39.x and older releases, see HISTORY.
 * …
 
 === New user-facing features in 1.40 ===
+* Ability to show thumbnails (provided via onSearchResultProvideThumbnail
+  hook) for more than NS_FILE titles in Special:Search results.
 * …
 
 === New developer features in 1.40 ===

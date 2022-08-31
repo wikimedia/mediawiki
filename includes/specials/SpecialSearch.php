@@ -27,6 +27,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Search\SearchWidgets\BasicSearchResultSetWidget;
 use MediaWiki\Search\SearchWidgets\FullSearchResultWidget;
 use MediaWiki\Search\SearchWidgets\InterwikiSearchResultSetWidget;
@@ -117,6 +118,12 @@ class SpecialSearch extends SpecialPage {
 	/** @var LanguageConverterFactory */
 	private $languageConverterFactory;
 
+	/** @var RepoGroup */
+	private $repoGroup;
+
+	/** @var SearchResultThumbnailProvider */
+	private $thumbnailProvider;
+
 	/**
 	 * @var Status Holds any parameter validation errors that should
 	 *  be displayed back to the user.
@@ -134,6 +141,8 @@ class SpecialSearch extends SpecialPage {
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param UserOptionsManager $userOptionsManager
 	 * @param LanguageConverterFactory $languageConverterFactory
+	 * @param RepoGroup $repoGroup
+	 * @param SearchResultThumbnailProvider $thumbnailProvider
 	 */
 	public function __construct(
 		SearchEngineConfig $searchConfig,
@@ -143,7 +152,9 @@ class SpecialSearch extends SpecialPage {
 		InterwikiLookup $interwikiLookup,
 		ReadOnlyMode $readOnlyMode,
 		UserOptionsManager $userOptionsManager,
-		LanguageConverterFactory $languageConverterFactory
+		LanguageConverterFactory $languageConverterFactory,
+		RepoGroup $repoGroup,
+		SearchResultThumbnailProvider $thumbnailProvider
 	) {
 		parent::__construct( 'Search' );
 		$this->searchConfig = $searchConfig;
@@ -154,6 +165,8 @@ class SpecialSearch extends SpecialPage {
 		$this->readOnlyMode = $readOnlyMode;
 		$this->userOptionsManager = $userOptionsManager;
 		$this->languageConverterFactory = $languageConverterFactory;
+		$this->repoGroup = $repoGroup;
+		$this->thumbnailProvider = $thumbnailProvider;
 	}
 
 	/**
@@ -541,7 +554,12 @@ class SpecialSearch extends SpecialPage {
 		// results to display.
 		$linkRenderer = $this->getLinkRenderer();
 		$mainResultWidget = new FullSearchResultWidget(
-			$this, $linkRenderer, $this->getHookContainer() );
+			$this,
+			$linkRenderer,
+			$this->getHookContainer(),
+			$this->repoGroup,
+			$this->thumbnailProvider
+		);
 
 		// Default (null) on. Can be explicitly disabled.
 		if ( $engine->getFeatureData( 'enable-new-crossproject-page' ) !== false ) {

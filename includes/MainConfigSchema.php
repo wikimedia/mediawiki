@@ -2278,6 +2278,17 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Defines what namespaces thumbnails will be displayed for in Special:Search.
+	 * This is the list of namespaces for which thumbnails (or a placeholder in
+	 * the absence of a thumbnail) will be shown:
+	 */
+	public const ThumbnailNamespaces = [
+		'default' => [ NS_FILE ],
+		'type' => 'list',
+		'items' => [ 'type' => 'integer', ],
+	];
+
+	/**
 	 * When defined, is an array of image widths used as buckets for thumbnail generation.
 	 *
 	 * The goal is to save resources by generating thumbnails based on reference buckets instead of

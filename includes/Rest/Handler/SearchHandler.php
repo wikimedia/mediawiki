@@ -15,6 +15,7 @@ use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
+use MediaWiki\Search\SearchResultThumbnailProvider;
 use SearchEngine;
 use SearchEngineConfig;
 use SearchEngineFactory;
@@ -36,6 +37,9 @@ class SearchHandler extends Handler {
 
 	/** @var SearchEngineConfig */
 	private $searchEngineConfig;
+
+	/** @var SearchResultThumbnailProvider */
+	private $searchResultThumbnailProvider;
 
 	/** @var PermissionManager */
 	private $permissionManager;
@@ -90,6 +94,7 @@ class SearchHandler extends Handler {
 	 * @param Config $config
 	 * @param SearchEngineFactory $searchEngineFactory
 	 * @param SearchEngineConfig $searchEngineConfig
+	 * @param SearchResultThumbnailProvider $searchResultThumbnailProvider
 	 * @param PermissionManager $permissionManager
 	 * @param RedirectLookup $redirectLookup
 	 * @param PageStore $pageStore
@@ -99,6 +104,7 @@ class SearchHandler extends Handler {
 		Config $config,
 		SearchEngineFactory $searchEngineFactory,
 		SearchEngineConfig $searchEngineConfig,
+		SearchResultThumbnailProvider $searchResultThumbnailProvider,
 		PermissionManager $permissionManager,
 		RedirectLookup $redirectLookup,
 		PageStore $pageStore,
@@ -106,6 +112,7 @@ class SearchHandler extends Handler {
 	) {
 		$this->searchEngineFactory = $searchEngineFactory;
 		$this->searchEngineConfig = $searchEngineConfig;
+		$this->searchResultThumbnailProvider = $searchResultThumbnailProvider;
 		$this->permissionManager = $permissionManager;
 		$this->redirectLookup = $redirectLookup;
 		$this->pageStore = $pageStore;
@@ -363,9 +370,8 @@ class SearchHandler extends Handler {
 	 * @return array
 	 */
 	private function buildThumbnailsFromPageIdentities( array $pageIdentities ) {
-		$thumbnails = array_fill_keys( array_keys( $pageIdentities ), null );
-
-		$this->getHookRunner()->onSearchResultProvideThumbnail( $pageIdentities, $thumbnails );
+		$thumbnails = $this->searchResultThumbnailProvider->getThumbnails( $pageIdentities );
+		$thumbnails += array_fill_keys( array_keys( $pageIdentities ), null );
 
 		return array_map( function ( $thumbnail ) {
 			return [ 'thumbnail' => $this->serializeThumbnail( $thumbnail ) ];

@@ -1375,6 +1375,16 @@ config-schema:
             Adjust thumbnails on image pages according to a user setting. In order to
             reduce disk usage, the values can only be selected from a list. This is the
             list of settings the user can choose from:
+    ThumbnailNamespaces:
+        default:
+            - 6
+        type: array
+        items:
+            type: integer
+        description: |-
+            Defines what namespaces thumbnails will be displayed for in Special:Search.
+            This is the list of namespaces for which thumbnails (or a placeholder in
+            the absence of a thumbnail) will be shown:
     ThumbnailBuckets:
         default: null
         type:

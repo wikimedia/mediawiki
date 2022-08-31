@@ -23,7 +23,9 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			$services->getInterwikiLookup(),
 			$services->getReadOnlyMode(),
 			$services->getUserOptionsManager(),
-			$services->getLanguageConverterFactory()
+			$services->getLanguageConverterFactory(),
+			$services->getRepoGroup(),
+			$services->getSearchResultThumbnailProvider()
 		);
 	}
 
@@ -282,7 +284,9 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 				$services->getInterwikiLookup(),
 				$services->getReadOnlyMode(),
 				$services->getUserOptionsManager(),
-				$services->getLanguageConverterFactory()
+				$services->getLanguageConverterFactory(),
+				$services->getRepoGroup(),
+				$services->getSearchResultThumbnailProvider()
 			] )
 			->onlyMethods( [ 'getSearchEngine' ] )
 			->getMock();
@@ -340,7 +344,9 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 				$services->getInterwikiLookup(),
 				$services->getReadOnlyMode(),
 				$userOptionsManager,
-				$services->getLanguageConverterFactory()
+				$services->getLanguageConverterFactory(),
+				$services->getRepoGroup(),
+				$services->getSearchResultThumbnailProvider()
 			] )
 			->onlyMethods( [ 'getSearchEngine' ] )
 			->getMock();
@@ -448,7 +454,9 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 				$services->getInterwikiLookup(),
 				$services->getReadOnlyMode(),
 				$services->getUserOptionsManager(),
-				$services->getLanguageConverterFactory()
+				$services->getLanguageConverterFactory(),
+				$services->getRepoGroup(),
+				$services->getSearchResultThumbnailProvider()
 			] )
 			->onlyMethods( [ 'getSearchEngine' ] )
 			->getMock();
@@ -515,7 +523,9 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 				$services->getInterwikiLookup(),
 				$services->getReadOnlyMode(),
 				$services->getUserOptionsManager(),
-				$languageConverterFactory
+				$languageConverterFactory,
+				$services->getRepoGroup(),
+				$services->getSearchResultThumbnailProvider()
 			);
 			$context = new RequestContext();
 			$context->setRequest( new FauxRequest() );
