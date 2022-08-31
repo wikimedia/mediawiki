@@ -101,7 +101,7 @@ For notes on 1.38.x and older releases, see HISTORY.
 === External library changes in 1.39 ===
 
 ==== New external libraries ====
-* Added Codex v0.1.0-alpha.10. This replaces the now deprecated wvui library.
+* Added Codex v0.1.1. This replaces the now deprecated wvui library.
 * …
 
 ===== New development-only external libraries =====
