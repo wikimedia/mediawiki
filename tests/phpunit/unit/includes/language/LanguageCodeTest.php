@@ -299,6 +299,7 @@ class LanguageCodeTest extends MediaWikiUnitTestCase {
 			[ 'aabbccddE', 'tag too long' ],
 			[ 'pa_guru', 'A tag with underscore is invalid in strict mode' ],
 			[ 'de-f', 'subtag too short' ],
+			[ 'zh-classical', 'internal language code zh-classical is not a well-formed language tag' ],
 		];
 	}
 
