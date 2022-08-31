@@ -447,6 +447,35 @@ util = {
 	},
 
 	/**
+	 * Clears the entire subtitle if present in the page. Used for refreshing subtitle
+	 * after edit with response from parse API.
+	 */
+	clearSubtitle: function () {
+		var subtitle = document.getElementById( 'mw-content-subtitle' );
+		if ( subtitle ) {
+			subtitle.innerHTML = '';
+		}
+	},
+
+	/**
+	 * Add content to the subtitle of the skin.
+	 *
+	 * @param {HTMLElement|string} nodeOrHTMLString
+	 */
+	addSubtitle: function ( nodeOrHTMLString ) {
+		var subtitle = document.getElementById( 'mw-content-subtitle' );
+		if ( subtitle ) {
+			if ( typeof nodeOrHTMLString === 'string' ) {
+				subtitle.innerHTML += nodeOrHTMLString;
+			} else {
+				subtitle.appendChild( nodeOrHTMLString );
+			}
+		} else {
+			throw new Error( 'This skin does not support additions to the subtitle.' );
+		}
+	},
+
+	/**
 	 * Add a link to a portlet menu on the page, such as:
 	 *
 	 * - p-cactions (Content actions),

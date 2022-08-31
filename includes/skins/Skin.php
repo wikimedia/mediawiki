@@ -2188,7 +2188,9 @@ abstract class Skin extends ContextSource {
 		if ( $subpagestr !== '' ) {
 			$subpagestr = Html::rawElement( 'div', [ 'class' => 'subpages' ], $subpagestr );
 		}
-		return $subpagestr . $out->getSubtitle();
+		return Html::rawElement( 'div', [
+			'id' => 'mw-content-subtitle',
+		] + $this->getUserLanguageAttributes(), $subpagestr . $out->getSubtitle() );
 	}
 
 	/**
