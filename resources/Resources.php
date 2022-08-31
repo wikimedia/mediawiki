@@ -1247,6 +1247,7 @@ return [
 		],
 		'dependencies' => [
 			'jquery.client',
+			'web2017-polyfills',
 		],
 		'messages' => [ 'brackets', 'word-separator' ],
 		'targets' => [ 'desktop', 'mobile' ],

@@ -92,6 +92,10 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
+		if ( apcu_exists( $key . self::KEY_SUFFIX ) ) {
+			return false;
+		}
+
 		$blob = $this->nativeSerialize ? $value : $this->getSerialized( $value, $key );
 		$ttl = $this->getExpirationAsTTL( $exptime );
 		return apcu_add( $key . self::KEY_SUFFIX, $blob, $ttl );
