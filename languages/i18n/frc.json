@@ -663,7 +663,7 @@
 	"filereuploadsummary": "Changements du fichier:",
 	"filestatus": "Statut du droit d'auteur:",
 	"filesource": "Source:",
-	"ignorewarning": "Ignorer l'avertissement et sauvegarder le fichier quand même",
+	"ignorewarning": "Ignorer l’avertissement et enregistrer le fichier quand même",
 	"ignorewarnings": "Ignorer les avertissements",
 	"backend-fail-notexists": "Le fichier $1 existe pas.",
 	"imgfile": "fichier",

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bada Kaji",
 			"Bhawani Gautam",
 			"Krish Dulal",
 			"Nirjal stha",
@@ -30,7 +31,7 @@
 	"exif-jpeginterchangeformatlength": "JPEG आँकड़ाको बाइट",
 	"exif-whitepoint": "सेतो बिंदु क्रोम्यासिटी(chromaticity)",
 	"exif-primarychromaticities": "क्रोमेटिसिटीज अफ प्राईमरिटीज",
-	"exif-ycbcrcoefficients": "रङ स्पेस परिवर्तन म्याट्रिक्स गुणाङ्क",
+	"exif-ycbcrcoefficients": "रङ्ग स्पेस परिवर्तन म्याट्रिक्स गुणाङ्क",
 	"exif-referenceblackwhite": "कालो र सेतो सन्दर्भ मानहरूको जोडी",
 	"exif-datetime": "फाइल परिवर्तन मिति तथा समय",
 	"exif-imagedescription": "चित्र नाम",
