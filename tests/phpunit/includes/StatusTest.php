@@ -283,9 +283,13 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status = new Status();
 		$status->fatal( 'bad' );
 		$status->fatal( wfMessage( 'bad-msg' ) );
+		$status->fatal( new MessageValue( 'bad-msg-value' ) );
 		$this->assertTrue( $status->hasMessage( 'bad' ) );
 		$this->assertTrue( $status->hasMessage( 'bad-msg' ) );
 		$this->assertTrue( $status->hasMessage( wfMessage( 'bad-msg' ) ) );
+		$this->assertTrue( $status->hasMessage( wfMessage( 'bad-msg-value' ) ) );
+		$this->assertTrue( $status->hasMessage( new MessageValue( 'bad-msg' ) ) );
+		$this->assertTrue( $status->hasMessage( new MessageValue( 'bad-msg-value' ) ) );
 		$this->assertFalse( $status->hasMessage( 'good' ) );
 	}
 
@@ -508,8 +512,8 @@ class StatusTest extends MediaWikiLangTestCase {
 		];
 
 		$status = new Status();
-		$status->warning( new Message( 'fooBar!', [ 'foo', 'bar' ] ) );
-		$status->warning( new Message( 'fooBar2!' ) );
+		$status->warning( new MessageValue( 'fooBar!', [ 'foo', 'bar' ] ) );
+		$status->warning( new MessageValue( 'fooBar2!' ) );
 		$testCases['2MessageWarnings'] = [
 			$status,
 			[
