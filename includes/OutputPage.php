@@ -305,6 +305,9 @@ class OutputPage extends ContextSource {
 	/** @var int|null To include the variable {{REVISIONID}} */
 	private $mRevisionId = null;
 
+	/** @var bool|null */
+	private $mRevisionIsCurrent = null;
+
 	/** @var string */
 	private $mRevisionTimestamp = null;
 
@@ -1851,13 +1854,27 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Set whether the revision displayed (as set in ::setRevisionId())
+	 * is the latest revision of the page.
+	 *
+	 * @param bool $isCurrent
+	 */
+	public function setRevisionIsCurrent( bool $isCurrent ): void {
+		$this->mRevisionIsCurrent = $isCurrent;
+	}
+
+	/**
 	 * Whether the revision displayed is the latest revision of the page
 	 *
 	 * @since 1.34
 	 * @return bool
 	 */
-	public function isRevisionCurrent() {
-		return $this->mRevisionId == 0 || $this->mRevisionId == $this->getTitle()->getLatestRevID();
+	public function isRevisionCurrent(): bool {
+		return $this->mRevisionId == 0 || (
+			$this->mRevisionIsCurrent ?? (
+				$this->mRevisionId == $this->getTitle()->getLatestRevID()
+			)
+		);
 	}
 
 	/**

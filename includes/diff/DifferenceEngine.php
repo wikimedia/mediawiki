@@ -992,6 +992,7 @@ class DifferenceEngine extends ContextSource {
 			}
 
 			$out->setRevisionId( $this->mNewid );
+			$out->setRevisionIsCurrent( $this->mNewRevisionRecord->isCurrent() );
 			$out->setRevisionTimestamp( $this->mNewRevisionRecord->getTimestamp() );
 			$out->setArticleFlag( true );
 
