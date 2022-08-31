@@ -118,7 +118,7 @@ approach. For each IntersectionObserverEntry for the iframe it will forward
 intersection data to the iframe via messaging.
 3. The iframe will load the polyfill and configure it by calling the
 `_setupCrossOriginUpdater()` method. It will call the provided callback
-whenever it receives the intersection data from the parent via messaging.
+whenever it receives the intersection data from the the parent via messaging.
 
 A hypothetical host code:
 

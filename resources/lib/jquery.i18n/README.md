@@ -46,6 +46,19 @@ npm install
 
 To run tests locally, run `npm test`, and this will run the tests.
 
+Running demo
+-------
+
+```bash
+# If you're using python3, open demo as a local server using port 8000
+python -m http.server
+# If you're using python2, use this command instead
+# python -m SimpleHTTPServer  
+
+```
+Open `localhost:8000/demo` in your browser, you can see the demo index page.
+
+
 Message File Format
 ===================
 
