@@ -64,7 +64,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	public static $users;
 
 	/**
-	 * Primary database
+	 * DB_PRIMARY handle to the main database connection used for integration tests
+	 *
+	 * Test classes should generally use {@link getDb()} instead of this property
 	 *
 	 * @var Database
 	 * @since 1.18
@@ -207,6 +209,20 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		if ( !self::$originalServices ) {
 			self::$originalServices = MediaWikiServices::getInstance();
 		}
+	}
+
+	/**
+	 * Get a DB_PRIMARY database connection reference on the current testing domain
+	 *
+	 * Since temporary tables are typically used, it is important to stick to a single
+	 * underlying connection. DBConnRef balance this concern while making sure that the
+	 * DB domain used for each caller matches expecations.
+	 *
+	 * @return IDatabase
+	 * @since 1.39
+	 */
+	protected function getDb() {
+		return MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 	}
 
 	/**
