@@ -38,9 +38,6 @@ class ParserEditTests extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'session-data', 'internal option, do not use', false, true );
-		$this->addOption( 'use-tidy-config',
-			'Use the wiki\'s Tidy configuration instead of known-good' .
-			'defaults.' );
 	}
 
 	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
@@ -59,9 +56,6 @@ class ParserEditTests extends Maintenance {
 			$this->session = json_decode( $this->getOption( 'session-data' ), true );
 		} else {
 			$this->session = [ 'options' => [] ];
-		}
-		if ( $this->hasOption( 'use-tidy-config' ) ) {
-			$this->session['options']['use-tidy-config'] = true;
 		}
 		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable options always set
 		$this->runner = new ParserTestRunner( $this->recorder, $this->session['options'] );
