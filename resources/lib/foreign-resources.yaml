@@ -197,18 +197,21 @@ jquery.client:
     package/LICENSE-MIT:
     package/README.md:
 
-jquery.cookie:
-  type: multi-file
-  files:
-    jquery.cookie.js:
-      src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/jquery.cookie.js
-      integrity: sha384-Xxq63E9KDgzUJ6WPNPqVeOtRIwZyx6y9DzEwY2u6LYKSnWrjSoGtWSKmTindYBf2
-    MIT-LICENSE.txt:
-      src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/MIT-LICENSE.txt
-      integrity: sha384-zYsGf3KJ7S0AhOICjcoh0kkn7aGZlzYUXXX5xz8dwR9KjLMM+/JPR2g/jVOGGeId
-    CHANGELOG.md:
-      src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/CHANGELOG.md
-      integrity: sha384-SQOHhLc7PHxHDQpGE/zv9XfXKL0A7OBu8kuyVDnHVp+zSoWyRw4xUJ+LSm5ql4kS
+# # PATCHED:
+# # Changed to support SameSite and change decode logic. Seems permanent with upstream archived.
+# # Move to src instead?
+# jquery.cookie:
+#   type: multi-file
+#   files:
+#     jquery.cookie.js:
+#       src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/jquery.cookie.js
+#       integrity: sha384-Xxq63E9KDgzUJ6WPNPqVeOtRIwZyx6y9DzEwY2u6LYKSnWrjSoGtWSKmTindYBf2
+#     MIT-LICENSE.txt:
+#       src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/MIT-LICENSE.txt
+#       integrity: sha384-zYsGf3KJ7S0AhOICjcoh0kkn7aGZlzYUXXX5xz8dwR9KjLMM+/JPR2g/jVOGGeId
+#     CHANGELOG.md:
+#       src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/CHANGELOG.md
+#       integrity: sha384-SQOHhLc7PHxHDQpGE/zv9XfXKL0A7OBu8kuyVDnHVp+zSoWyRw4xUJ+LSm5ql4kS
 
 jquery.form:
   type: file
@@ -227,15 +230,15 @@ jquery.hoverIntent:
 
 jquery.i18n:
   type: tar
-  src: https://codeload.github.com/wikimedia/jquery.i18n/tar.gz/v1.0.7
-  integrity: sha384-vUuZNwEm0k4d/JGRa8uoscyxTL6e1BZ0a+fTS/jtjjS+3pOcwcMo9BjzMbe6reEv
+  src: https://codeload.github.com/wikimedia/jquery.i18n/tar.gz/70b5ee20a638cb8fe36baef8d51ac2eb577ce012
+  integrity: sha384-/Upo+6ih5h5v7/GW4zzuaMNZfAHmV7cYVhORdjwT9qFTHzmIStN9mPQ+VD0niknE
   dest:
-    jquery.i18n-1.0.7/CODE_OF_CONDUCT.md:
-    jquery.i18n-1.0.7/CREDITS:
-    jquery.i18n-1.0.7/GPL-LICENSE:
-    jquery.i18n-1.0.7/MIT-LICENSE:
-    jquery.i18n-1.0.7/README.md:
-    jquery.i18n-1.0.7/src:
+    jquery.i18n-*/CODE_OF_CONDUCT.md:
+    jquery.i18n-*/CREDITS:
+    jquery.i18n-*/GPL-LICENSE:
+    jquery.i18n-*/MIT-LICENSE:
+    jquery.i18n-*/README.md:
+    jquery.i18n-*/src:
 
 jquery.throttle-debounce:
   type: file

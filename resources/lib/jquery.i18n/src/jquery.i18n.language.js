@@ -298,7 +298,7 @@
 			var pluralRules,
 				pluralFormIndex,
 				index,
-				explicitPluralPattern = new RegExp( '\\d+=', 'i' ),
+				explicitPluralPattern = /\d+=/i,
 				formCount,
 				form;
 
