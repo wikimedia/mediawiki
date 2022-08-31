@@ -648,14 +648,29 @@ mw.html = {
 	}
 };
 
+var loadedScripts = {};
+
+function importScriptURI( url ) {
+	if ( loadedScripts[ url ] ) {
+		return null;
+	}
+	loadedScripts[ url ] = true;
+	return mw.loader.addScriptTag( url );
+}
+
 /**
  * Import a local JS content page, for use by user scripts and site-wide scripts.
  *
- * @since 1.12
+ * Note that if the same title is imported multiple times, it will only
+ * be loaded and executed once.
+ *
+ * @since 1.12.2
+ * @member global
  * @param {string} title
+ * @return {HTMLElement|null} Script tag, or null if it was already imported before
  */
 window.importScript = function ( title ) {
-	mw.loader.load(
+	return importScriptURI(
 		mw.config.get( 'wgScript' ) + '?title=' + mw.internalWikiUrlencode( title ) +
 			'&action=raw&ctype=text/javascript'
 	);
@@ -664,16 +679,42 @@ window.importScript = function ( title ) {
 /**
  * Import a local CSS content page, for use by user scripts and site-wide scripts.
  *
- * @since 1.12
+ * @since 1.12.2
+ * @member global
  * @param {string} title
+ * @return {HTMLElement} Link tag
  */
 window.importStylesheet = function ( title ) {
-	mw.loader.load(
+	return mw.loader.addLinkTag(
 		mw.config.get( 'wgScript' ) + '?title=' + mw.internalWikiUrlencode( title ) +
-			'&action=raw&ctype=text/css',
-		'text/css'
+			'&action=raw&ctype=text/css'
 	);
 };
+
+mw.log.deprecate( window, 'loadedScripts', loadedScripts, 'Use mw.loader instead.' );
+
+/**
+ * @since 1.12.2
+ * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
+ * @method importScriptURI
+ * @member global
+ * @param {string} url
+ * @return {HTMLElement} Script tag
+ */
+mw.log.deprecate( window, 'importScriptURI', importScriptURI, 'Use mw.loader instead.' );
+
+/**
+ * @since 1.12.2
+ * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
+ * @member global
+ * @param {string} url
+ * @param {string} media
+ * @return {HTMLElement} Link tag
+ */
+function importStylesheetURI( url, media ) {
+	return mw.loader.addLinkTag( url, media );
+}
+mw.log.deprecate( window, 'importStylesheetURI', importStylesheetURI, 'Use mw.loader instead.' );
 
 /**
  * Get the names of all registered ResourceLoader modules.

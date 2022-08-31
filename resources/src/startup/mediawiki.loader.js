@@ -727,6 +727,7 @@
 	 * @private
 	 * @param {string} src URL to script, will be used as the src attribute in the script tag
 	 * @param {Function} [callback] Callback to run after request resolution
+	 * @return {HTMLElement}
 	 */
 	function addScript( src, callback ) {
 		// Use a <script> element rather than XHR. Using XHR changes the request
@@ -747,6 +748,7 @@
 			}
 		};
 		document.head.appendChild( script );
+		return script;
 	}
 
 	/**
@@ -793,6 +795,7 @@
 	 * @param {string} url URL
 	 * @param {string} [media] Media attribute
 	 * @param {Node|null} [nextNode]
+	 * @return {HTMLElement}
 	 */
 	function addLink( url, media, nextNode ) {
 		var el = document.createElement( 'link' );
@@ -806,6 +809,7 @@
 		el.href = url;
 
 		addToHead( el, nextNode );
+		return el;
 	}
 
 	/**
@@ -1384,6 +1388,10 @@
 		 * @method
 		 */
 		addStyleTag: newStyleTag,
+
+		// Exposed for internal use only. Documented as @private.
+		addScriptTag: addScript,
+		addLinkTag: addLink,
 
 		enqueue: enqueue,
 
