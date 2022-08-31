@@ -27,6 +27,7 @@ use HTMLMultiSelectField;
 use IContextSource;
 use InvalidArgumentException;
 use LanguageCode;
+use LanguageConverter;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -625,8 +626,17 @@ class UserOptionsManager extends UserOptionsLookup {
 		}
 
 		$options = $this->loadOptionsFromDb( $user, $queryFlags, $data ) + $defaultOptions;
+
 		// Replace deprecated language codes
 		$options['language'] = LanguageCode::replaceDeprecatedCodes( $options['language'] );
+		$options['variant'] = LanguageCode::replaceDeprecatedCodes( $options['variant'] );
+		foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
+			$variant = "variant-$langCode";
+			if ( isset( $options[$variant] ) ) {
+				$options[$variant] = LanguageCode::replaceDeprecatedCodes( $options[$variant] );
+			}
+		}
+
 		// Fix up timezone offset (Due to DST it can change from what was stored in the DB)
 		// ZoneInfo|offset|TimeZoneName
 		if ( isset( $options['timecorrection'] ) ) {
