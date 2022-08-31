@@ -344,6 +344,7 @@
 	"querypage-no-updates": "Aġġornamenti għal din il-paġna huma temporalment sospesi. L-Informazzjoni hawnhekk preżentament mhux qiegħed jiġi aġġornat.",
 	"querypage-updates-periodical": "Aġġornamenti fuq din il-paġna jiġu esegwiti perjodikament.",
 	"viewsource": "Ara s-sors",
+	"skin-action-viewsource": "Ara s-sors",
 	"viewsource-title": "Ara s-sors ta' $1",
 	"actionthrottled": "Azzjoni miżmuma",
 	"actionthrottledtext": "Bħala miżura għal kontra l-ispam, inti limitat li tagħmel din l-azzjoni għal ħafna drabi f'spazju ta' ħin żgħir, u inti qbiżt dan il-limitu.\nJekk jogħġbok erġa' prova fi ftit minuti oħra.",
