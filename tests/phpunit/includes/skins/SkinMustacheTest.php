@@ -40,8 +40,8 @@ class SkinMustacheTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $mockContentSecurityPolicy );
 		$mock->method( 'isTOCEnabled' )
 			->willReturn( true );
-		$mock->method( 'getSections' )
-			->willReturn( [] );
+		$mock->method( 'getTOCData' )
+			->willReturn( null );
 		return $mock;
 	}
 

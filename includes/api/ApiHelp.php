@@ -321,6 +321,7 @@ class ApiHelp extends ApiBase {
 
 				$headerAttr['id'] = $anchor;
 
+				// T326687: Maybe transition to using a SectionMetadata object?
 				$haveModules[$anchor] = [
 					'toclevel' => count( $tocnumber ),
 					'level' => $level,

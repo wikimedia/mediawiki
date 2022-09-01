@@ -13,6 +13,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutputFlags;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\ContentMetadataCollectorCompat;
+use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Reflection\GhostFieldAccessTrait;
 
 /**
@@ -201,9 +202,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mWarningMsgs = [];
 
 	/**
-	 * @var array Table of contents
+	 * @var ?TOCData Table of contents data, or null if it hasn't been set.
 	 */
-	private $mSections = [];
+	private $mTOCData;
 
 	/**
 	 * @var array Name/value pairs to be cached in the DB.
@@ -727,10 +728,23 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
+	 * @return ?TOCData the table of contents data, or null if it hasn't been
+	 * set.
+	 */
+	public function getTOCData(): ?TOCData {
+		return $this->mTOCData;
+	}
+
+	/**
+	 * @internal
 	 * @return array
 	 */
-	public function getSections() {
-		return $this->mSections;
+	public function getSections(): array {
+		if ( $this->mTOCData !== null ) {
+			return $this->mTOCData->toLegacy();
+		}
+		// For compatibility
+		return [];
 	}
 
 	public function &getLinks() {
@@ -905,8 +919,21 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return wfSetVar( $this->mTitleText, $t );
 	}
 
-	public function setSections( $toc ) {
-		return wfSetVar( $this->mSections, $toc );
+	/**
+	 * @param TOCData $tocData Table of contents data for the page
+	 */
+	public function setTOCData( TOCData $tocData ): void {
+		$this->mTOCData = $tocData;
+	}
+
+	/**
+	 * @param array $sectionArray
+	 * @return array Previous value of ::getSections()
+	 */
+	public function setSections( array $sectionArray ) {
+		$oldValue = $this->getSections();
+		$this->setTOCData( TOCData::fromLegacy( $sectionArray ) );
+		return $oldValue;
 	}
 
 	public function setIndexPolicy( $policy ): string {
@@ -2157,8 +2184,22 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mEnableOOUI = $this->mEnableOOUI || $source->getEnableOOUI();
 		$this->mPreventClickjacking = $this->mPreventClickjacking || $source->getPreventClickjacking();
 
-		// TODO: we'll have to be smarter about this!
-		$this->mSections = array_merge( $this->mSections, $source->getSections() );
+		$tocData = $this->getTOCData();
+		$sourceTocData = $source->getTOCData();
+		if ( $tocData !== null ) {
+			if ( $sourceTocData !== null ) {
+				// T327429: Section merging is broken, since it doesn't respect
+				// global numbering, but there are tests which expect section
+				// metadata to be concatendated.
+				// There should eventually be a deprecation warning here.
+				foreach ( $sourceTocData->getSections() as $s ) {
+					$tocData->addSection( $s );
+				}
+			}
+		} elseif ( $sourceTocData !== null ) {
+			$this->setTOCData( $sourceTocData );
+		}
+		// T327429/T293513: This is also bogus.
 		$this->mTOCHTML .= $source->mTOCHTML;
 
 		// XXX: we don't want to concatenate title text, so first write wins.
@@ -2446,7 +2487,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'JsConfigVars' => $this->mJsConfigVars,
 			'OutputHooks' => $this->mOutputHooks,
 			'Warnings' => $this->mWarnings,
-			'Sections' => $this->mSections,
+			'Sections' => $this->getSections(),
 			'Properties' => self::detectAndEncodeBinary( $this->mProperties ),
 			'TOCHTML' => $this->mTOCHTML,
 			'Timestamp' => $this->mTimestamp,
@@ -2462,7 +2503,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'ExtraScriptSrcs' => $this->mExtraScriptSrcs,
 			'ExtraDefaultSrcs' => $this->mExtraDefaultSrcs,
 			'ExtraStyleSrcs' => $this->mExtraStyleSrcs,
-			'Flags' => $this->mFlags,
+			'Flags' => $this->mFlags + (
+				// backward-compatibility: distinguish "no sections" from
+				// "sections not set" (Will be unnecessary after T327439.)
+				$this->mTOCData === null ? [] : [ 'mw:toc-set' => true ]
+			),
 			'SpeculativeRevId' => $this->mSpeculativeRevId,
 			'SpeculativePageIdUsed' => $this->speculativePageIdUsed,
 			'RevisionTimestampUsed' => $this->revisionTimestampUsed,
@@ -2522,7 +2567,16 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mJsConfigVars = $jsonData['JsConfigVars'];
 		$this->mOutputHooks = $jsonData['OutputHooks'];
 		$this->mWarnings = $jsonData['Warnings'];
-		$this->mSections = $jsonData['Sections'];
+		$this->mFlags = $jsonData['Flags'];
+		if (
+			$jsonData['Sections'] !== [] ||
+			// backward-compatibility: distinguish "no sections" from
+			// "sections not set" (Will be unnecessary after T327439.)
+			$this->getOutputFlag( 'mw:toc-set' )
+		) {
+			$this->setSections( $jsonData['Sections'] );
+			unset( $this->mFlags['mw:toc-set'] );
+		}
 		$this->mProperties = self::detectAndDecodeBinary( $jsonData['Properties'] );
 		$this->mTOCHTML = $jsonData['TOCHTML'];
 		$this->mTimestamp = $jsonData['Timestamp'];
@@ -2537,7 +2591,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mExtraScriptSrcs = $jsonData['ExtraScriptSrcs'];
 		$this->mExtraDefaultSrcs = $jsonData['ExtraDefaultSrcs'];
 		$this->mExtraStyleSrcs = $jsonData['ExtraStyleSrcs'];
-		$this->mFlags = $jsonData['Flags'];
 		$this->mSpeculativeRevId = $jsonData['SpeculativeRevId'];
 		$this->speculativePageIdUsed = $jsonData['SpeculativePageIdUsed'];
 		$this->revisionTimestampUsed = $jsonData['RevisionTimestampUsed'];
@@ -2601,6 +2654,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$priorIndexPolicy = $this->getGhostFieldValue( 'mIndexPolicy' );
 		if ( $priorIndexPolicy ) {
 			$this->setIndexPolicy( $priorIndexPolicy );
+		}
+		// Backwards compatibility, pre 1.40
+		$mSections = $this->getGhostFieldValue( 'mSections' );
+		if ( $mSections !== null && $mSections !== [] ) {
+			$this->setSections( $mSections );
 		}
 	}
 
