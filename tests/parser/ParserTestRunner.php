@@ -1117,6 +1117,48 @@ class ParserTestRunner {
 	}
 
 	/**
+	 * @param string $wikitext
+	 * @return array
+	 */
+	private function getRevRecordProperties( string $wikitext ): array {
+		return [
+			'pageid' => 187, // Some random fake page id
+			'revid' => 1337, // see Parser::getRevisionId()
+			'timestamp' => $this->getFakeTimestamp(),
+			'wikitext' => $wikitext
+		];
+	}
+
+	/**
+	 * Create a mutable rev record for test use.
+	 *
+	 * @param Title $title
+	 * @param User $user
+	 * @param array $revProps
+	 * @return RevisionRecord
+	 */
+	private function createRevRecord( Title $title, User $user, array $revProps ): RevisionRecord {
+		$content = new WikitextContent( $revProps['wikitext'] );
+		$title = Title::newFromRow( (object)[
+			'page_id' => $revProps['pageid'],
+			'page_len' => $content->getSize(),
+			'page_latest' => $revProps['revid'],
+			'page_namespace' => $title->getNamespace(),
+			'page_title' => $title->getDBkey(),
+			'page_is_redirect' => 0
+		] );
+
+		$revRecord = new MutableRevisionRecord( $title );
+		$revRecord->setContent( SlotRecord::MAIN, $content )
+			->setUser( $user )
+			->setTimestamp( strval( $revProps['timestamp'] ) )
+			->setPageId( $title->getArticleID() )
+			->setId( $title->getLatestRevID() );
+
+		return $revRecord;
+	}
+
+	/**
 	 * Shared code to initialize ParserOptions based on the $test object,
 	 * used by both the legacy Parser and the Parsoid parser.
 	 * @param ParserTest $test
@@ -1128,38 +1170,25 @@ class ParserTestRunner {
 	private function setupParserOptions( ParserTest $test, callable $parserOptionsCallback ) {
 		$opts = $test->options;
 		$context = RequestContext::getMain();
+		$wikitext = $test->wikitext;
+		'@phan-var string $wikitext'; // assert that this is not null
+		$revProps = $this->getRevRecordProperties( $wikitext );
 		$user = $context->getUser();
-		$revId = 1337; // see Parser::getRevisionId()
 		$title = isset( $opts['title'] )
 			? Title::newFromText( $opts['title'] )
 			: $this->defaultTitle;
-		$wikitext = $test->wikitext;
-		'@phan-var string $wikitext'; // assert that this is not null
 
-		$options = $parserOptionsCallback(
-			$context, $title, $revId, $wikitext
-		);
-		$options->setTimestamp( $this->getFakeTimestamp() );
+		$revRecord = null;
+		if ( isset( $opts['lastsavedrevision'] ) ) {
+			$revRecord = $this->createRevRecord( $title, $user, $revProps );
+			$revProps['rev'] = $revRecord;
+		}
+
+		$options = $parserOptionsCallback( $context, $title, $revProps );
+		$options->setTimestamp( $revProps['timestamp'] );
 		$options->setUserLang( $context->getLanguage() );
 
 		if ( isset( $opts['lastsavedrevision'] ) ) {
-			$content = new WikitextContent( $wikitext );
-			$title = Title::newFromRow( (object)[
-				'page_id' => 187,
-				'page_len' => $content->getSize(),
-				'page_latest' => 1337,
-				'page_namespace' => $title->getNamespace(),
-				'page_title' => $title->getDBkey(),
-				'page_is_redirect' => 0
-			] );
-
-			$revRecord = new MutableRevisionRecord( $title );
-			$revRecord->setContent( SlotRecord::MAIN, $content )
-				->setUser( $user )
-				->setTimestamp( strval( $this->getFakeTimestamp() ) )
-				->setPageId( $title->getArticleID() )
-				->setId( $title->getLatestRevID() );
-
 			$oldCallback = $options->getCurrentRevisionRecordCallback();
 			$options->setCurrentRevisionRecordCallback(
 				static function ( Title $t, $parser = null ) use ( $title, $revRecord, $oldCallback ) {
@@ -1179,7 +1208,7 @@ class ParserTestRunner {
 			$options->setMaxTemplateDepth( $opts['maxtemplatedepth'] );
 		}
 
-		return [ $title, $options, $revId ];
+		return [ $title, $options, $revProps['revid'] ];
 	}
 
 	/**
@@ -1245,7 +1274,7 @@ class ParserTestRunner {
 		$teardownGuard = $this->perTestSetup( $test );
 		[ $title, $options, $revId ] = $this->setupParserOptions(
 			$test,
-			static function ( $context, $title, $revId, $wikitext ) {
+			static function ( $context, $title, $revProps ) {
 				return ParserOptions::newFromContext( $context );
 			}
 		);
@@ -1812,23 +1841,15 @@ class ParserTestRunner {
 		$runner = $this;
 		[ $title, $options, $revId ] = $this->setupParserOptions(
 			$test,
-			static function ( $context, $title, $revId, $wikitext ) use ( $runner, $pageConfigFactory, &$pageConfig ) {
+			static function ( $context, $title, $revProps ) use ( $runner, $pageConfigFactory, &$pageConfig ) {
 				$user = $context->getUser();
-				$content = new WikitextContent( $wikitext );
-				$title = Title::newFromRow( (object)[
-					'page_id' => 187,
-					'page_len' => $content->getSize(),
-					'page_latest' => 1337,
-					'page_namespace' => $title->getNamespace(),
-					'page_title' => $title->getDBkey(),
-					'page_is_redirect' => 0
-				] );
-				$revRecord = new MutableRevisionRecord( $title );
-				$revRecord->setContent( SlotRecord::MAIN, $content )
-					->setUser( $user )
-					->setTimestamp( strval( $runner->getFakeTimestamp() ) )
-					->setPageId( $title->getArticleID() )
-					->setId( $title->getLatestRevID() );
+				$revRecord = $revProps['rev'] ?? null;
+				if ( !$revRecord ) {
+					// Unlike the legacy parser which doesn't need an actual revrecord to parse
+					// wikitext, Parsoid creates a PageConfig which needs an actual revrecord.
+					// So create a fake mutable on here.
+					$revRecord = $runner->createRevRecord( $title, $user, $revProps );
+				}
 				$pageConfig = $pageConfigFactory->create(
 					$title, $user, $revRecord, null, $context->getLanguage()->getCode()
 				);
