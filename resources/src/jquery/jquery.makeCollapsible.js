@@ -163,7 +163,7 @@
 	 * @private
 	 */
 	function hashHandler() {
-		var fragment = document.querySelector( ':target' );
+		var fragment = mw.util.getTargetFromFragment();
 		if ( !fragment ) {
 			// The fragment doesn't exist
 			return;
