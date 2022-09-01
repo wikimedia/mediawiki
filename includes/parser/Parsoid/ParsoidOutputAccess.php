@@ -27,6 +27,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
@@ -200,49 +201,17 @@ class ParsoidOutputAccess {
 			}
 		}
 
-		$startTime = microtime( true );
-		$status = $this->parse( $page, $revision );
-		$time = microtime( true ) - $startTime;
-
-		if ( !$status->isOK() ) {
-			return $status;
-		}
-
-		$parserOutput = $status->getValue();
-
-		// TODO: when we make tighter integration with Parsoid, render ID should become
-		// a standard ParserOutput property. Nothing else needs it now, so don't generate
-		// it in ParserCache just yet.
-		$parsoidRenderId = new ParsoidRenderID( $revId, $this->globalIdGenerator->newUUIDv1() );
-		$parserOutput->setExtensionData( self::RENDER_ID_KEY, $parsoidRenderId->getKey() );
-
-		// XXX: ParserOutput should just always record the revision ID and timestamp
-		$now = wfTimestampNow();
-		$parserOutput->setCacheRevisionId( $revId );
-		$parserOutput->setCacheTime( $now );
-
-		if ( $time > $this->parsoidCacheConfig->get( 'CacheThresholdTime' ) ) {
-			if ( $isOld ) {
-				$this->revisionOutputCache->save( $parserOutput, $revision, $parserOpts, $now );
-			} else {
-				$this->parserCache->save( $parserOutput, $page, $parserOpts, $now );
-			}
-			$this->stats->increment( $statsKey . '.save.ok' );
-		} else {
-			$this->stats->increment( $statsKey . '.save.skipfast' );
-		}
-
-		return $status;
+		return $this->parse( $page, $parserOpts, $revision );
 	}
 
 	/**
-	 * @param PageRecord $page
+	 * @param PageIdentity $page
 	 * @param ?RevisionRecord $revision
 	 *
 	 * @return Status<ParserOutput>
 	 * @throws LocalizedHttpException
 	 */
-	private function parse( PageRecord $page, ?RevisionRecord $revision = null ): Status {
+	private function parseInternal( PageIdentity $page, ?RevisionRecord $revision = null ): Status {
 		try {
 			$pageConfig = $this->parsoidPageConfigFactory->create(
 				$page,
@@ -250,9 +219,10 @@ class ParsoidOutputAccess {
 				$revision
 			);
 			$startTime = microtime( true );
-			$pageBundle = $this->parsoid->wikitext2html( $pageConfig, [
-				'pageBundle' => true,
-			] );
+			$pageBundle = $this->parsoid->wikitext2html(
+				$pageConfig,
+				[ 'pageBundle' => true ]
+			);
 			$parserOutput = $this->createParserOutputFromPageBundle( $pageBundle );
 			$time = microtime( true ) - $startTime;
 			if ( $time > 3 ) {
@@ -369,5 +339,53 @@ class ParsoidOutputAccess {
 			$this->stats->increment( $statsKey . '.get.miss' );
 			return null;
 		}
+	}
+
+	/**
+	 * @param PageRecord $page
+	 * @param ParserOptions $parserOpts
+	 * @param RevisionRecord|null $revision
+	 * @return Status
+	 * @throws LocalizedHttpException
+	 */
+	public function parse( PageRecord $page, ParserOptions $parserOpts, ?RevisionRecord $revision ): Status {
+		$revId = $revision ? $revision->getId() : $page->getLatest();
+		$isOld = $revId !== $page->getLatest();
+		$statsKey = $isOld ? 'ParsoidOutputAccess.Cache.revision' : 'ParsoidOutputAccess.Cache.parser';
+
+		$startTime = microtime( true );
+		$status = $this->parseInternal( $page, $revision );
+		$time = microtime( true ) - $startTime;
+
+		if ( !$status->isOK() ) {
+			return $status;
+		}
+
+		$parserOutput = $status->getValue();
+
+		// TODO: when we make tighter integration with Parsoid, render ID should become
+		// a standard ParserOutput property. Nothing else needs it now, so don't generate
+		// it in ParserCache just yet.
+		$parsoidRenderId = new ParsoidRenderID( $revId, $this->globalIdGenerator->newUUIDv1() );
+		$parserOutput->setExtensionData( self::RENDER_ID_KEY, $parsoidRenderId->getKey() );
+
+		// XXX: ParserOutput should just always record the revision ID and timestamp
+		$now = wfTimestampNow();
+		$parserOutput->setCacheRevisionId( $revId );
+		$parserOutput->setCacheTime( $now );
+
+		if ( $time > $this->parsoidCacheConfig->get( 'CacheThresholdTime' ) ) {
+			if ( $isOld ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable $revision can't be null here.
+				$this->revisionOutputCache->save( $parserOutput, $revision, $parserOpts, $now );
+			} else {
+				$this->parserCache->save( $parserOutput, $page, $parserOpts, $now );
+			}
+			$this->stats->increment( $statsKey . '.save.ok' );
+		} else {
+			$this->stats->increment( $statsKey . '.save.skipfast' );
+		}
+
+		return $status;
 	}
 }
