@@ -300,13 +300,13 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
 			->onlyMethods( [
-				'getLagDetectionMethod', 'fetchSecondsSinceHeartbeat', 'getPrimaryServerInfo' ] )
+				'getLagDetectionMethod', 'fetchSecondsSinceHeartbeat', 'getSourceServerInfo' ] )
 			->getMock();
 
 		$db->method( 'getLagDetectionMethod' )
 			->willReturn( 'pt-heartbeat' );
 
-		$db->method( 'getPrimaryServerInfo' )
+		$db->method( 'getSourceServerInfo' )
 			->willReturn( [ 'serverId' => 172, 'asOf' => time() ] );
 
 		$db->setLBInfo( 'replica', true );
