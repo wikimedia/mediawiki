@@ -1418,10 +1418,12 @@ function wfClearOutputBuffers() {
 /**
  * Get a timestamp string in one of various formats
  *
- * @param mixed $outputtype A timestamp in one of the supported formats, the
- *   function will autodetect which format is supplied and act accordingly.
- * @param mixed $ts Optional timestamp to convert, default 0 for the current time
- * @return string|false The same date in the format specified in $outputtype or false
+ * @param mixed $outputtype Output format, one of the TS_* constants. Defaults to
+ *   Unix timestamp.
+ * @param mixed $ts A timestamp in any supported format. The
+ *   function will autodetect which format is supplied and act accordingly. Use 0 or
+ *   omit to use current time
+ * @return string|false The date in the specified format, or false on error.
  */
 function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 	$ret = MWTimestamp::convert( $outputtype, $ts );
