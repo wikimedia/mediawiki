@@ -32,7 +32,6 @@ use MediaWiki\Page\PageRecord;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\RevisionOutputCache;
-use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -159,7 +158,6 @@ class ParsoidOutputAccess {
 	 * @param int $options See the OPT_XXX constants
 	 *
 	 * @return Status<ParserOutput>
-	 * @throws LocalizedHttpException
 	 */
 	public function getParserOutput(
 		PageRecord $page,
@@ -201,7 +199,29 @@ class ParsoidOutputAccess {
 			}
 		}
 
-		return $this->parse( $page, $parserOpts, $revision );
+		$startTime = microtime( true );
+		$status = $this->parse( $page, $parserOpts, $revision );
+		$time = microtime( true ) - $startTime;
+
+		if ( $status->isOK() ) {
+			if ( $time > $this->parsoidCacheConfig->get( 'CacheThresholdTime' ) ) {
+				$parserOutput = $status->getValue();
+				$now = $parserOutput->getCacheTime();
+
+				if ( $isOld ) {
+					$this->revisionOutputCache->save( $parserOutput, $revision, $parserOpts, $now );
+				} else {
+					$this->parserCache->save( $parserOutput, $page, $parserOpts, $now );
+				}
+				$this->stats->increment( $statsKey . '.save.ok' );
+			} else {
+				$this->stats->increment( $statsKey . '.save.skipfast' );
+			}
+		} else {
+			$this->stats->increment( $statsKey . '.save.notok' );
+		}
+
+		return $status;
 	}
 
 	/**
@@ -209,7 +229,6 @@ class ParsoidOutputAccess {
 	 * @param ?RevisionRecord $revision
 	 *
 	 * @return Status<ParserOutput>
-	 * @throws LocalizedHttpException
 	 */
 	private function parseInternal( PageIdentity $page, ?RevisionRecord $revision = null ): Status {
 		try {
@@ -346,16 +365,11 @@ class ParsoidOutputAccess {
 	 * @param ParserOptions $parserOpts
 	 * @param RevisionRecord|null $revision
 	 * @return Status
-	 * @throws LocalizedHttpException
 	 */
 	public function parse( PageRecord $page, ParserOptions $parserOpts, ?RevisionRecord $revision ): Status {
 		$revId = $revision ? $revision->getId() : $page->getLatest();
-		$isOld = $revId !== $page->getLatest();
-		$statsKey = $isOld ? 'ParsoidOutputAccess.Cache.revision' : 'ParsoidOutputAccess.Cache.parser';
 
-		$startTime = microtime( true );
 		$status = $this->parseInternal( $page, $revision );
-		$time = microtime( true ) - $startTime;
 
 		if ( !$status->isOK() ) {
 			return $status;
@@ -373,18 +387,6 @@ class ParsoidOutputAccess {
 		$now = wfTimestampNow();
 		$parserOutput->setCacheRevisionId( $revId );
 		$parserOutput->setCacheTime( $now );
-
-		if ( $time > $this->parsoidCacheConfig->get( 'CacheThresholdTime' ) ) {
-			if ( $isOld ) {
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable $revision can't be null here.
-				$this->revisionOutputCache->save( $parserOutput, $revision, $parserOpts, $now );
-			} else {
-				$this->parserCache->save( $parserOutput, $page, $parserOpts, $now );
-			}
-			$this->stats->increment( $statsKey . '.save.ok' );
-		} else {
-			$this->stats->increment( $statsKey . '.save.skipfast' );
-		}
 
 		return $status;
 	}
