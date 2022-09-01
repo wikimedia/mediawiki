@@ -264,7 +264,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		$title = ( $title === null ) ? 'UTPage' : $title;
 		$title = is_string( $title ) ? Title::newFromText( $title ) : $title;
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		if ( !$page->exists() ) {
 			$user = static::getTestSysop()->getUser();
@@ -1532,7 +1532,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 		$comment = __METHOD__ . ': Sample page for unit test.';
 
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$page->doUserEditContent( ContentHandler::makeContent( $text, $title ), $user, $comment );
 
 		return [
@@ -1583,7 +1583,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$user = static::getTestSysop()->getUser();
 
 		// Make 1 page with 1 revision
-		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
+		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( Title::newFromText( 'UTPage' ) );
 		if ( $page->getId() == 0 ) {
 			$page->doUserEditContent(
 				new WikitextContent( 'UTContent' ),

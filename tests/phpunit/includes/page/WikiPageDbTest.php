@@ -453,7 +453,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 */
 	public function testDoUserEditContent_twice() {
 		$title = Title::newFromText( __METHOD__ );
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$content = ContentHandler::makeContent( '$1 van $2', $title );
 
 		$user = $this->getTestUser()->getUser();
@@ -1388,7 +1388,7 @@ more stuff
 	 */
 	public function testLoadPageData() {
 		$title = Title::makeTitle( NS_MAIN, 'SomePage' );
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		$this->assertFalse( $page->wasLoadedFrom( IDBAccessObject::READ_NORMAL ) );
 		$this->assertFalse( $page->wasLoadedFrom( IDBAccessObject::READ_LATEST ) );

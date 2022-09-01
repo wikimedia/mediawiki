@@ -93,7 +93,7 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 
 	private function getPage(): WikiPage {
 		$title = Title::makeTitle( 0, 'Title' );
-		return WikiPage::factory( $title );
+		return $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 	}
 
 	/**

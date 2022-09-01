@@ -2604,7 +2604,9 @@ class ParserTestRunner {
 
 		$newContent = ContentHandler::makeContent( $text, $title );
 
-		$page = WikiPage::factory( $title );
+		$services = MediaWikiServices::getInstance();
+
+		$page = $services->getWikiPageFactory()->newFromTitle( $title );
 		$page->loadPageData( WikiPage::READ_LATEST );
 
 		if ( $page->exists() ) {
@@ -2618,8 +2620,6 @@ class ParserTestRunner {
 				"duplicate article '$name' with different content at $file:$line\n"
 			);
 		}
-
-		$services = MediaWikiServices::getInstance();
 
 		// Optionally use mock parser, to make debugging of actual parser tests simpler.
 		// But initialise the MessageCache clone first, don't let MessageCache

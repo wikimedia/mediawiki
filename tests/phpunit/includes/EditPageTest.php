@@ -138,7 +138,8 @@ class EditPageTest extends MediaWikiLangTestCase {
 			$user = $this->getTestUser()->getUser();
 		}
 
-		$page = WikiPage::factory( $title );
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+		$page = $wikiPageFactory->newFromTitle( $title );
 
 		if ( $baseText !== null ) {
 			$content = ContentHandler::makeContent( $baseText, $title );
@@ -195,7 +196,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 				"Expected result code mismatch. $message" );
 		}
 
-		$page = WikiPage::factory( $title );
+		$page = $wikiPageFactory->newFromTitle( $title );
 
 		if ( $expectedText !== null ) {
 			// check resulting page text

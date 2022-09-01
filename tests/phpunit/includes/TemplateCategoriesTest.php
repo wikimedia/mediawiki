@@ -11,9 +11,10 @@ class TemplateCategoriesTest extends MediaWikiIntegrationTestCase {
 	public function testTemplateCategories() {
 		$user = new User();
 		$this->overrideUserPermissions( $user, [ 'createpage', 'edit', 'purge', 'delete' ] );
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 
 		$title = Title::newFromText( "Categorized from template" );
-		$page = WikiPage::factory( $title );
+		$page = $wikiPageFactory->newFromTitle( $title );
 		$page->doUserEditContent(
 			new WikitextContent( '{{Categorising template}}' ),
 			$user,
@@ -27,7 +28,7 @@ class TemplateCategoriesTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// Create template
-		$template = WikiPage::factory( Title::newFromText( 'Template:Categorising template' ) );
+		$template = $wikiPageFactory->newFromTitle( Title::newFromText( 'Template:Categorising template' ) );
 		$template->doUserEditContent(
 			new WikitextContent( '[[Category:Solved bugs]]' ),
 			$user,

@@ -25,7 +25,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 			"When a title is first set WikiPage should be created on-demand for that title." );
 
 		$curTitle = Title::makeTitle( NS_MAIN, "B" );
-		$context->setWikiPage( WikiPage::factory( $curTitle ) );
+		$context->setWikiPage( $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $curTitle ) );
 		$this->assertTrue( $curTitle->equals( $context->getTitle() ),
 			"Title must be updated when a new WikiPage is provided." );
 
