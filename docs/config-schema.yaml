@@ -3648,12 +3648,6 @@ config-schema:
         description: |-
             The default debug mode (on/off) for of ResourceLoader requests.
             This will still be overridden when the debug URL parameter is used.
-    IncludeLegacyJavaScript:
-        default: false
-        description: |-
-            Whether to ensure the mediawiki.legacy library is loaded before other modules.
-            @note Discouraged since 1.26: Always declare dependencies.
-                  May be needed on some wikis for backwards compatibility.
     ResourceLoaderMaxQueryLength:
         default: false
         type:

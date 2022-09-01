@@ -69,6 +69,10 @@ For notes on 1.38.x and older releases, see HISTORY.
   and disabled by default.
 * $wgPriorityHints and $wgPriorityHintsRatio have been removed.
   This feature was experimental, and disabled by default.
+* $wgIncludeLegacyJavaScript has been removed. Note that no functionality
+  was removed in this release. Most former "wikibits" functions were removed
+  after deprecation in previous releases. The remaining functions, such as
+  importScript, are available unconditionally.
 * $wgActorTableSchemaMigrationStage has been removed. Migration is over.
 * In $wgObjectCaches, globalKeyLB and localKeyLB are no longer supported.
 * $wgLegacySchemaConversion - This global configuration has been
