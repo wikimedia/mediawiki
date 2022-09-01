@@ -2563,6 +2563,17 @@ class ParserTestRunner {
 			$page = $wikiPageFactory->newFromTitle( $title );
 			$delPageFactory->newDeletePage( $page, $user )->deleteUnsafe( 'cleaning up' );
 		}
+
+		// Clear the static cache that Title class maintains.
+		// This ensures that Parsoid test runs that follow legacy parser test runs
+		// don't reuse titles. This matters because it looks like legacy test run
+		// and Parsoid test run differ in the number of articles they create in the db.
+		// We need to investigate that separately, but given that they differ, titles
+		// will get different article and revision ids across test runs.
+		// While we could add this to resetTitleServices(), there is really
+		// no reason to clear this for every test. Sufficient to clear this
+		// once per test file.
+		Title::clearCaches();
 	}
 
 	/**
