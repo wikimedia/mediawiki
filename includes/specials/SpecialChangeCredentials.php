@@ -72,8 +72,9 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 			return;
 		}
 
-		$this->getOutput()->addBacklinkSubtitle( $this->getPageTitle() );
-
+		$out = $this->getOutput();
+		$out->addModules( 'mediawiki.special.changecredentials' );
+		$out->addBacklinkSubtitle( $this->getPageTitle() );
 		$status = $this->trySubmit();
 
 		if ( $status === false || !$status->isOK() ) {
@@ -189,7 +190,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 		// messages used: changecredentials-submit removecredentials-submit
 		$form->setSubmitTextMsg( static::$messagePrefix . '-submit' );
 		$form->showCancel()->setCancelTarget( $this->getReturnUrl() ?: Title::newMainPage() );
-
+		$form->setSubmitID( 'change_credentials_submit' );
 		return $form;
 	}
 
