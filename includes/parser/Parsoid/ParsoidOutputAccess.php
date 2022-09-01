@@ -23,6 +23,7 @@ use Config;
 use HashConfig;
 use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
+use Language;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
@@ -227,15 +228,23 @@ class ParsoidOutputAccess {
 	/**
 	 * @param PageIdentity $page
 	 * @param ?RevisionRecord $revision
+	 * @param Language|null $languageOverride
 	 *
 	 * @return Status<ParserOutput>
 	 */
-	private function parseInternal( PageIdentity $page, ?RevisionRecord $revision = null ): Status {
+	private function parseInternal(
+		PageIdentity $page,
+		?RevisionRecord $revision = null,
+		Language $languageOverride = null
+	): Status {
 		try {
+			$langCode = $languageOverride ? $languageOverride->getCode() : null;
 			$pageConfig = $this->parsoidPageConfigFactory->create(
 				$page,
 				null,
-				$revision
+				$revision,
+				null,
+				$langCode
 			);
 			$startTime = microtime( true );
 			$pageBundle = $this->parsoid->wikitext2html(
@@ -369,7 +378,7 @@ class ParsoidOutputAccess {
 	public function parse( PageRecord $page, ParserOptions $parserOpts, ?RevisionRecord $revision ): Status {
 		$revId = $revision ? $revision->getId() : $page->getLatest();
 
-		$status = $this->parseInternal( $page, $revision );
+		$status = $this->parseInternal( $page, $revision, $parserOpts->getTargetLanguage() );
 
 		if ( !$status->isOK() ) {
 			return $status;
