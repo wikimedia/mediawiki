@@ -8,7 +8,6 @@ mw.config.set( require( './config.json' ) );
 // Load other files in the package
 require( './log.js' );
 require( './errorLogger.js' );
-require( './legacy.wikibits.js' );
 
 /**
  * Object constructor for messages.
@@ -648,15 +647,35 @@ mw.html = {
 	}
 };
 
+/**
+ * Schedule a function to run once the page is ready (DOM loaded).
+ *
+ * @since 1.5.8
+ * @member global
+ * @param {Function} fn
+ */
+window.addOnloadHook = function ( fn ) {
+	$( function () {
+		fn();
+	} );
+};
+
 var loadedScripts = {};
 
-function importScriptURI( url ) {
+/**
+ * @since 1.12.2
+ * @method importScriptURI
+ * @member global
+ * @param {string} url
+ * @return {HTMLElement|null} Script tag, or null if it was already imported before
+ */
+window.importScriptURI = function ( url ) {
 	if ( loadedScripts[ url ] ) {
 		return null;
 	}
 	loadedScripts[ url ] = true;
 	return mw.loader.addScriptTag( url );
-}
+};
 
 /**
  * Import a local JS content page, for use by user scripts and site-wide scripts.
@@ -670,7 +689,7 @@ function importScriptURI( url ) {
  * @return {HTMLElement|null} Script tag, or null if it was already imported before
  */
 window.importScript = function ( title ) {
-	return importScriptURI(
+	return window.importScriptURI(
 		mw.config.get( 'wgScript' ) + '?title=' + mw.internalWikiUrlencode( title ) +
 			'&action=raw&ctype=text/javascript'
 	);
@@ -693,26 +712,14 @@ window.importStylesheet = function ( title ) {
 
 /**
  * @since 1.12.2
- * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
- * @method importScriptURI
- * @member global
- * @param {string} url
- * @return {HTMLElement} Script tag
- */
-mw.log.deprecate( window, 'importScriptURI', importScriptURI, 'Use mw.loader instead.' );
-
-/**
- * @since 1.12.2
- * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
  * @member global
  * @param {string} url
  * @param {string} media
  * @return {HTMLElement} Link tag
  */
-function importStylesheetURI( url, media ) {
+window.importStylesheetURI = function ( url, media ) {
 	return mw.loader.addLinkTag( url, media );
-}
-mw.log.deprecate( window, 'importStylesheetURI', importStylesheetURI, 'Use mw.loader instead.' );
+};
 
 /**
  * Get the names of all registered ResourceLoader modules.
@@ -855,3 +862,16 @@ window.RLQ = {
 while ( queue[ 0 ] ) {
 	window.RLQ.push( queue.shift() );
 }
+
+/**
+ * Replace document.write/writeln with basic html parsing that appends
+ * to the `<body>` to avoid blanking pages. Added JavaScript will not run.
+ *
+ * @ignore
+ * @deprecated since 1.26
+ */
+[ 'write', 'writeln' ].forEach( function ( func ) {
+	mw.log.deprecate( document, func, function () {
+		$( document.body ).append( $.parseHTML( slice.call( arguments ).join( '' ) ) );
+	}, 'Use jQuery or mw.loader.load instead.', 'document.' + func );
+} );

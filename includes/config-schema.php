@@ -661,7 +661,6 @@ return [
 			],
 			'ResourceLoaderUseObjectCacheForDeps' => false,
 			'ResourceLoaderDebug' => false,
-			'IncludeLegacyJavaScript' => false,
 			'ResourceLoaderMaxQueryLength' => false,
 			'ResourceLoaderValidateJS' => true,
 			'ResourceLoaderEnableJSProfiler' => false,
