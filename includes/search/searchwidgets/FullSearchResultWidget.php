@@ -70,7 +70,8 @@ class FullSearchResultWidget implements SearchResultWidget {
 		list( $file, $desc, $thumb ) = $this->generateFileHtml( $result );
 		$snippet = $result->getTextSnippet();
 		if ( $snippet ) {
-			$extract = Html::rawElement( 'div', [ 'class' => 'searchresult' ], $snippet );
+			$snippetWithEllipsis = $snippet . $this->specialPage->msg( 'ellipsis' );
+			$extract = Html::rawElement( 'div', [ 'class' => 'searchresult' ], $snippetWithEllipsis );
 		} else {
 			$extract = '';
 		}

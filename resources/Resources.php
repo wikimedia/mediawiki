@@ -2340,6 +2340,14 @@ return [
 	],
 	'mediawiki.special.search.styles' => [
 		'styles' => 'resources/src/mediawiki.special.search.styles.less',
+		'skinStyles' => [
+			'vector' => [
+				'resources/src/mediawiki.special.search.vector.styles.less',
+			],
+			'vector-2022' => [
+				'resources/src/mediawiki.special.search.vector-2022.styles.less',
+			]
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.unwatchedPages' => [
