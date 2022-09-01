@@ -263,7 +263,10 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'jquery.makeCollapsible' => [
-		'dependencies' => [ 'jquery.makeCollapsible.styles' ],
+		'dependencies' => [
+			'jquery.makeCollapsible.styles',
+			'mediawiki.util',
+		],
 		'scripts' => 'resources/src/jquery/jquery.makeCollapsible.js',
 		'styles' => 'resources/src/jquery/jquery.makeCollapsible.css',
 		'messages' => [ 'collapsible-expand', 'collapsible-collapse' ],
