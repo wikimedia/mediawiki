@@ -343,6 +343,11 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 				'enwiki',
 			],
 			[
+				'<a class="external" rel="nofollow" href="//en.example.org/w/Foo$100bar">Foo$100bar</a>',
+				'[[Foo$100bar]]',
+				'enwiki',
+			],
+			[
 				'foo bar <a class="external" rel="nofollow" href="//en.example.org/w/Special:BlankPage">Special:BlankPage</a>',
 				'foo bar [[Special:BlankPage]]',
 				'enwiki',
