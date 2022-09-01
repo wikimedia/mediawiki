@@ -3891,8 +3891,8 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 	/**
 	 * Returns the page language code saved in the database, if $wgPageLanguageUseDB is set
-	 * to true in LocalSettings.php, otherwise returns false. If there is no language saved in
-	 * the db, it will return NULL.
+	 * to true in LocalSettings.php, otherwise returns null. If there is no language saved in
+	 * the database, it will return null.
 	 *
 	 * @param int $flags
 	 *
