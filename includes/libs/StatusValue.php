@@ -18,6 +18,9 @@
  * @file
  */
 
+use MediaWiki\Message\Converter;
+use Wikimedia\Message\MessageValue;
+
 /**
  * Generic operation result class
  * Has warning/error list, boolean status and arbitrary value
@@ -227,11 +230,13 @@ class StatusValue {
 	/**
 	 * Add a new warning
 	 *
-	 * @param string|MessageSpecifier $message Message key or object
+	 * @param string|MessageSpecifier|MessageValue $message Message key or object
 	 * @param mixed ...$parameters
 	 * @return $this
 	 */
 	public function warning( $message, ...$parameters ) {
+		$message = $this->normalizeMessage( $message, $parameters );
+
 		return $this->addError( [
 			'type' => 'warning',
 			'message' => $message,
@@ -243,11 +248,13 @@ class StatusValue {
 	 * Add an error, do not set fatal flag
 	 * This can be used for non-fatal errors
 	 *
-	 * @param string|MessageSpecifier $message Message key or object
+	 * @param string|MessageSpecifier|MessageValue $message Message key or object
 	 * @param mixed ...$parameters
 	 * @return $this
 	 */
 	public function error( $message, ...$parameters ) {
+		$message = $this->normalizeMessage( $message, $parameters );
+
 		return $this->addError( [
 			'type' => 'error',
 			'message' => $message,
@@ -259,7 +266,7 @@ class StatusValue {
 	 * Add an error and set OK to false, indicating that the operation
 	 * as a whole was fatal
 	 *
-	 * @param string|MessageSpecifier $message Message key or object
+	 * @param string|MessageSpecifier|MessageValue $message Message key or object
 	 * @param mixed ...$parameters
 	 * @return $this
 	 */
@@ -312,14 +319,17 @@ class StatusValue {
 	/**
 	 * Returns true if the specified message is present as a warning or error
 	 *
-	 * @param string|MessageSpecifier $message Message key or object to search for
+	 * @param string|MessageSpecifier|MessageValue $message Message key or object to search for
 	 *
 	 * @return bool
 	 */
 	public function hasMessage( $message ) {
 		if ( $message instanceof MessageSpecifier ) {
 			$message = $message->getKey();
+		} elseif ( $message instanceof MessageValue ) {
+			$message = $message->getKey();
 		}
+
 		foreach ( $this->errors as $error ) {
 			if ( $error['message'] instanceof MessageSpecifier
 				&& $error['message']->getKey() === $message
@@ -340,12 +350,15 @@ class StatusValue {
 	 * Note, due to the lack of tools for comparing IStatusMessage objects, this
 	 * function will not work when using such an object as the search parameter.
 	 *
-	 * @param MessageSpecifier|string $source Message key or object to search for
-	 * @param MessageSpecifier|string $dest Replacement message key or object
+	 * @param MessageSpecifier|MessageValue|string $source Message key or object to search for
+	 * @param MessageSpecifier|MessageValue|string $dest Replacement message key or object
 	 * @return bool Return true if the replacement was done, false otherwise.
 	 */
 	public function replaceMessage( $source, $dest ) {
 		$replaced = false;
+
+		$source = $this->normalizeMessage( $source );
+		$dest = $this->normalizeMessage( $dest );
 
 		foreach ( $this->errors as $index => $error ) {
 			if ( $error['message'] === $source ) {
@@ -476,5 +489,20 @@ class StatusValue {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * @param MessageSpecifier|MessageValue|string $message
+	 * @param array $parameters
+	 *
+	 * @return MessageSpecifier|string
+	 */
+	private function normalizeMessage( $message, array $parameters = [] ) {
+		if ( $message instanceof MessageValue ) {
+			$converter = new Converter();
+			return $converter->convertMessageValue( $message );
+		}
+
+		return $message;
 	}
 }
