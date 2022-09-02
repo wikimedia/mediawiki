@@ -130,8 +130,6 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$revRenderer = $this->getServiceContainer()->getRevisionRenderer();
-		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
-		$stats = new NullStatsdDataFactory();
 
 		if ( $maxRenderCalls ) {
 			$realRevRenderer = $revRenderer;
@@ -148,8 +146,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$revisionOutputCache,
 			$this->getServiceContainer()->getRevisionLookup(),
 			$revRenderer,
-			$stats,
-			$lbFactory,
+			new NullStatsdDataFactory(),
+			$this->getServiceContainer()->getDBLoadBalancerFactory(),
 			$this->getLoggerSpi(),
 			$this->getServiceContainer()->getWikiPageFactory(),
 			$this->getServiceContainer()->getTitleFormatter()
