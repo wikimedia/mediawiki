@@ -104,7 +104,7 @@ class DatabaseSqlite extends Database {
 		);
 	}
 
-	protected static function getAttributes() {
+	public static function getAttributes() {
 		return [
 			self::ATTR_DB_IS_FILE => true,
 			self::ATTR_DB_LEVEL_LOCKING => true

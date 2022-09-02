@@ -20,7 +20,6 @@
 namespace Wikimedia\Rdbms;
 
 use BagOStuff;
-use HashBagOStuff;
 use InvalidArgumentException;
 use LogicException;
 use Psr\Log\LoggerAwareInterface;
@@ -354,7 +353,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *      The "master" and "replica" fields are used to flag the replication role of this
 	 *      database server and whether methods like getLag() should actually issue queries.
 	 *   - topologicalPrimaryConnRef: lazy-connecting IDatabase handle to the most authoritative
-	 *      primary database server for the cluster that this database belongs to. This hande is
+	 *      primary database server for the cluster that this database belongs to. This handle is
 	 *      used for replication status purposes. This is generally managed by LoadBalancer.
 	 *   - connLogger: Optional PSR-3 logger interface instance.
 	 *   - queryLogger: Optional PSR-3 logger interface instance.
@@ -373,53 +372,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param int $connect One of the class constants (NEW_CONNECTED, NEW_UNCONNECTED) [optional]
 	 * @return Database|null If the database driver or extension cannot be found
 	 * @throws InvalidArgumentException If the database driver or extension cannot be found
+	 * @deprecated since 1.39, use DatabaseFactory::create instead
 	 * @since 1.18
 	 */
 	final public static function factory( $type, $params = [], $connect = self::NEW_CONNECTED ) {
-		$class = self::getClass( $type, $params['driver'] ?? null );
-
-		if ( class_exists( $class ) && is_subclass_of( $class, IDatabase::class ) ) {
-			$params += [
-				// Default configuration
-				'host' => null,
-				'user' => null,
-				'password' => null,
-				'dbname' => null,
-				'schema' => null,
-				'tablePrefix' => '',
-				'flags' => 0,
-				'variables' => [],
-				'lbInfo' => [],
-				'cliMode' => ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ),
-				'agent' => '',
-				'serverName' => null,
-				'topologyRole' => null,
-				// Objects and callbacks
-				'topologicalPrimaryConnRef' => $params['topologicalPrimaryConnRef'] ?? null,
-				'srvCache' => $params['srvCache'] ?? new HashBagOStuff(),
-				'profiler' => $params['profiler'] ?? null,
-				'trxProfiler' => $params['trxProfiler'] ?? new TransactionProfiler(),
-				'connLogger' => $params['connLogger'] ?? new NullLogger(),
-				'queryLogger' => $params['queryLogger'] ?? new NullLogger(),
-				'replLogger' => $params['replLogger'] ?? new NullLogger(),
-				'errorLogger' => $params['errorLogger'] ?? static function ( Throwable $e ) {
-					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
-				},
-				'deprecationLogger' => $params['deprecationLogger'] ?? static function ( $msg ) {
-					trigger_error( $msg, E_USER_DEPRECATED );
-				}
-			];
-
-			/** @var Database $conn */
-			$conn = new $class( $params );
-			if ( $connect === self::NEW_CONNECTED ) {
-				$conn->initConnection();
-			}
-		} else {
-			$conn = null;
-		}
-
-		return $conn;
+		return ( new DatabaseFactory() )->create( $type, $params, $connect );
 	}
 
 	/**
@@ -427,75 +384,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string|null $driver Optional name of a specific DB client driver
 	 * @return array Map of (Database::ATTR_* constant => value) for all such constants
 	 * @throws DBUnexpectedError
+	 * @deprecated since 1.39, use DatabaseFactory::attributesFromType instead
 	 * @since 1.31
 	 */
 	final public static function attributesFromType( $dbType, $driver = null ) {
-		static $defaults = [
-			self::ATTR_DB_IS_FILE => false,
-			self::ATTR_DB_LEVEL_LOCKING => false,
-			self::ATTR_SCHEMAS_AS_TABLE_GROUPS => false
-		];
-
-		$class = self::getClass( $dbType, $driver );
-		if ( class_exists( $class ) ) {
-			return call_user_func( [ $class, 'getAttributes' ] ) + $defaults;
-		} else {
-			throw new DBUnexpectedError( null, "$dbType is not a supported database type." );
-		}
-	}
-
-	/**
-	 * @param string $dbType A possible DB type (sqlite, mysql, postgres,...)
-	 * @param string|null $driver Optional name of a specific DB client driver
-	 * @return string Database subclass name to use
-	 * @throws InvalidArgumentException
-	 */
-	private static function getClass( $dbType, $driver = null ) {
-		// For database types with built-in support, the below maps type to IDatabase
-		// implementations. For types with multiple driver implementations (PHP extensions),
-		// an array can be used, keyed by extension name. In case of an array, the
-		// optional 'driver' parameter can be used to force a specific driver. Otherwise,
-		// we auto-detect the first available driver. For types without built-in support,
-		// an class named "Database<Type>" us used, eg. DatabaseFoo for type 'foo'.
-		static $builtinTypes = [
-			'mysql' => [ 'mysqli' => DatabaseMysqli::class ],
-			'sqlite' => DatabaseSqlite::class,
-			'postgres' => DatabasePostgres::class,
-		];
-
-		$dbType = strtolower( $dbType );
-
-		if ( !isset( $builtinTypes[$dbType] ) ) {
-			// Not a built in type, assume standard naming scheme
-			return 'Database' . ucfirst( $dbType );
-		}
-
-		$class = false;
-		$possibleDrivers = $builtinTypes[$dbType];
-		if ( is_string( $possibleDrivers ) ) {
-			$class = $possibleDrivers;
-		} elseif ( (string)$driver !== '' ) {
-			if ( !isset( $possibleDrivers[$driver] ) ) {
-				throw new InvalidArgumentException( __METHOD__ .
-					" type '$dbType' does not support driver '{$driver}'" );
-			}
-
-			$class = $possibleDrivers[$driver];
-		} else {
-			foreach ( $possibleDrivers as $posDriver => $possibleClass ) {
-				if ( extension_loaded( $posDriver ) ) {
-					$class = $possibleClass;
-					break;
-				}
-			}
-		}
-
-		if ( $class === false ) {
-			throw new InvalidArgumentException( __METHOD__ .
-				" no viable database extension found for type '$dbType'" );
-		}
-
-		return $class;
+		return ( new DatabaseFactory() )->attributesFromType( $dbType, $driver );
 	}
 
 	/**
@@ -503,7 +396,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return array Map of (Database::ATTR_* constant => value)
 	 * @since 1.31
 	 */
-	protected static function getAttributes() {
+	public static function getAttributes() {
 		return [];
 	}
 
