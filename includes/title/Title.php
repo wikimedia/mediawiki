@@ -3897,9 +3897,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Returns the Language object from the page language code saved in the database.
 	 * If $wgPageLanguageUseDB is set to false or there is no language saved in the database
-	 * it will return null.
-	 * If the language code in the database is invalid or unsupported, it will return the
-	 * content language.
+	 * or the language code in the database is invalid or unsupported, it will return null.
 	 *
 	 * @return Language|null
 	 */
@@ -3910,7 +3908,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		}
 		$services = MediaWikiServices::getInstance();
 		if ( !$services->getLanguageNameUtils()->isKnownLanguageTag( $languageCode ) ) {
-			return $services->getContentLanguage();
+			return null;
 		}
 		return $services->getLanguageFactory()->getLanguage( $languageCode );
 	}
