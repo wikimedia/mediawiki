@@ -5,8 +5,6 @@ use MediaWiki\Tests\Unit\Libs\Rdbms\SQLPlatformTestHelper;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DatabaseMysqli;
-use Wikimedia\Rdbms\DatabasePostgres;
-use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\DBReadOnlyRoleError;
 use Wikimedia\Rdbms\DBTransactionStateError;
 use Wikimedia\Rdbms\DBUnexpectedError;
@@ -28,35 +26,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 	protected function setUp(): void {
 		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );
-	}
-
-	/**
-	 * @covers Wikimedia\Rdbms\Database::factory
-	 */
-	public function testFactory() {
-		$m = Database::NEW_UNCONNECTED; // no-connect mode
-		$p = [
-			'host' => 'localhost',
-			'serverName' => 'localdb',
-			'user' => 'me',
-			'password' => 'myself',
-			'dbname' => 'i'
-		];
-
-		$this->assertInstanceOf( DatabaseMysqli::class, Database::factory( 'mysqli', $p, $m ) );
-		$this->assertInstanceOf( DatabaseMysqli::class, Database::factory( 'MySqli', $p, $m ) );
-		$this->assertInstanceOf( DatabaseMysqli::class, Database::factory( 'MySQLi', $p, $m ) );
-		$this->assertInstanceOf( DatabasePostgres::class, Database::factory( 'postgres', $p, $m ) );
-		$this->assertInstanceOf( DatabasePostgres::class, Database::factory( 'Postgres', $p, $m ) );
-
-		$x = $p + [ 'dbFilePath' => 'some/file.sqlite' ];
-		$this->assertInstanceOf( DatabaseSqlite::class, Database::factory( 'sqlite', $x, $m ) );
-		$x = $p + [ 'dbDirectory' => 'some/file' ];
-		$this->assertInstanceOf( DatabaseSqlite::class, Database::factory( 'sqlite', $x, $m ) );
-
-		$conn = Database::factory( 'sqlite', $p, $m );
-		$this->assertEquals( 'localhost', $conn->getServer() );
-		$this->assertEquals( 'localdb', $conn->getServerName() );
 	}
 
 	public static function provideAddQuotes() {

@@ -189,6 +189,7 @@ use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Parsoid\Config\DataAccess;
 use Wikimedia\Parsoid\Config\SiteConfig;
+use Wikimedia\Rdbms\DatabaseFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
@@ -916,6 +917,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDatabaseBlockStore(): DatabaseBlockStore {
 		return $this->getService( 'DatabaseBlockStore' );
+	}
+
+	/**
+	 * @since 1.39
+	 * @return DatabaseFactory
+	 */
+	public function getDatabaseFactory(): DatabaseFactory {
+		return $this->getService( 'DatabaseFactory' );
 	}
 
 	/**

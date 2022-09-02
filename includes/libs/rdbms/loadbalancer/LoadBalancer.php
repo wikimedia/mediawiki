@@ -50,6 +50,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private $srvCache;
 	/** @var WANObjectCache */
 	private $wanCache;
+	/** @var DatabaseFactory */
+	private $databaseFactory;
 	/**
 	 * @var callable|null An optional callback that returns a ScopedCallback instance,
 	 * meant to profile the actual query execution in {@see Database::doQuery}
@@ -234,6 +236,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		$this->srvCache = $params['srvCache'] ?? new EmptyBagOStuff();
 		$this->wanCache = $params['wanCache'] ?? WANObjectCache::newEmpty();
+		$this->databaseFactory = $params['databaseFactory'] ?? new DatabaseFactory();
 		$this->errorLogger = $params['errorLogger'] ?? static function ( Throwable $e ) {
 				trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 		};
@@ -1288,7 +1291,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	public function getServerAttributes( $i ) {
-		return Database::attributesFromType(
+		return $this->databaseFactory->attributesFromType(
 			$this->getServerType( $i ),
 			$this->servers[$i]['driver'] ?? null
 		);
@@ -1323,7 +1326,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		$server = $this->getServerInfoStrict( $i );
 
-		$conn = Database::factory(
+		$conn = $this->databaseFactory->create(
 			$server['type'],
 			array_merge( $server, [
 				// Basic replication role information

@@ -20,6 +20,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\DatabaseFactory;
 use Wikimedia\Rdbms\LBFactorySimple;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\RequestTimeout;
@@ -39,7 +40,8 @@ class MWLBFactoryTest extends MediaWikiUnitTestCase {
 			new EmptyBagOStuff(),
 			new WANObjectCache( [ 'cache' => new EmptyBagOStuff() ] ),
 			new CriticalSectionProvider( RequestTimeout::singleton(), 1, null, null ),
-			new NullStatsdDataFactory()
+			new NullStatsdDataFactory(),
+			new DatabaseFactory()
 		);
 	}
 

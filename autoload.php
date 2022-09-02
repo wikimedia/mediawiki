@@ -1804,6 +1804,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\DBUnexpectedError' => __DIR__ . '/includes/libs/rdbms/exception/DBUnexpectedError.php',
 	'Wikimedia\\Rdbms\\Database' => __DIR__ . '/includes/libs/rdbms/database/Database.php',
 	'Wikimedia\\Rdbms\\DatabaseDomain' => __DIR__ . '/includes/libs/rdbms/database/domain/DatabaseDomain.php',
+	'Wikimedia\\Rdbms\\DatabaseFactory' => __DIR__ . '/includes/libs/rdbms/database/DatabaseFactory.php',
 	'Wikimedia\\Rdbms\\DatabaseMysqlBase' => __DIR__ . '/includes/libs/rdbms/database/DatabaseMysqlBase.php',
 	'Wikimedia\\Rdbms\\DatabaseMysqli' => __DIR__ . '/includes/libs/rdbms/database/DatabaseMysqli.php',
 	'Wikimedia\\Rdbms\\DatabasePostgres' => __DIR__ . '/includes/libs/rdbms/database/DatabasePostgres.php',
