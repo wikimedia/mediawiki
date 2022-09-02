@@ -2932,8 +2932,14 @@ class OutputPage extends ContextSource {
 	 * @param string|Message $title Message key (string) for page title, or a Message object
 	 * @param string|Message $msg Message key (string) for page text, or a Message object
 	 * @param array $params Message parameters; ignored if $msg is a Message object
+	 * @param PageReference|LinkTarget|string|null $returnto Page to show a return link to;
+	 *   defaults to the 'returnto' URL parameter
+	 * @param string|null $returntoquery Query string for the return to link;
+	 *   defaults to the 'returntoquery' URL parameter
 	 */
-	public function showErrorPage( $title, $msg, $params = [] ) {
+	public function showErrorPage(
+		$title, $msg, $params = [], $returnto = null, $returntoquery = null
+	) {
 		if ( !$title instanceof Message ) {
 			$title = $this->msg( $title );
 		}
@@ -2951,7 +2957,7 @@ class OutputPage extends ContextSource {
 			$this->addWikiMsgArray( $msg, $params );
 		}
 
-		$this->returnToMain();
+		$this->returnToMain( null, $returnto, $returntoquery );
 	}
 
 	/**
