@@ -542,6 +542,10 @@
 					"items": {
 						"type": "string"
 					}
+				},
+				"es6": {
+					"type": "boolean",
+					"description": "Whether the module requires ES6 or depends on a module which does"
 				}
 			}
 		},
