@@ -13,16 +13,15 @@ class SpecialMyLanguageTest extends MediaWikiIntegrationTestCase {
 			'Page/Another/ru',
 			'Page/Another/zh',
 		];
+		$user = $this->getTestSysop()->getAuthority();
 		foreach ( $titles as $title ) {
-			$page = WikiPage::factory( Title::newFromText( $title ) );
-			if ( $page->getId() == 0 ) {
-				$page->doUserEditContent(
-					new WikitextContent( 'UTContent' ),
-					User::newFromName( 'UTSysop' ),
-					'UTPageSummary',
-					EDIT_NEW
-				);
-			}
+			$this->editPage(
+				$title,
+				new WikitextContent( 'UTContent' ),
+				'UTPageSummary',
+				NS_MAIN,
+				$user
+			);
 		}
 	}
 
