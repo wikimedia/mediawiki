@@ -116,7 +116,7 @@ class PostgresPlatform extends SQLPlatform {
 
 	protected function makeSelectOptions( array $options ) {
 		$preLimitTail = $postLimitTail = '';
-		$startOpts = $useIndex = $ignoreIndex = '';
+		$startOpts = '';
 
 		$noKeyOptions = [];
 		foreach ( $options as $key => $option ) {
@@ -140,7 +140,7 @@ class PostgresPlatform extends SQLPlatform {
 			$startOpts .= 'DISTINCT';
 		}
 
-		return [ $startOpts, $useIndex, $preLimitTail, $postLimitTail, $ignoreIndex ];
+		return [ $startOpts, $preLimitTail, $postLimitTail ];
 	}
 
 	protected function relationSchemaQualifier() {
