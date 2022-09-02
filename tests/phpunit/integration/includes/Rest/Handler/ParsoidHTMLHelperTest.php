@@ -7,7 +7,9 @@ use DeferredUpdates;
 use EmptyBagOStuff;
 use Exception;
 use ExtensionRegistry;
+use Generator;
 use HashBagOStuff;
+use Language;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageRecord;
@@ -171,7 +173,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getNonexistingTestPage( $name );
 		MWTimestamp::setFakeTime( self::TIMESTAMP_OLD );
 
-		$content = new WikitextContent( 'test' );
+		$content = new WikitextContent( self::WIKITEXT_OLD );
 		$rev = new MutableRevisionRecord( $page->getTitle() );
 		$rev->setPageId( $page->getId() );
 		$rev->setContent( SlotRecord::MAIN, $content );
@@ -276,7 +278,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ParsoidHTMLHelper::init
+	 * @covers \MediaWiki\Rest\Handler\ParsoidHTMLHelper::init
 	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parse
 	 */
 	public function testEtagLastModifiedWithPageIdentity() {
@@ -394,6 +396,82 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectExceptionObject( $expectedException );
 		$helper->getHtml();
+	}
+
+	/**
+	 * Mock the language class based on a language code.
+	 *
+	 * @param string $langCode
+	 *
+	 * @return Language|Language&MockObject|MockObject
+	 */
+	private function getLanguageMock( string $langCode ) {
+		$language = $this->createMock( Language::class );
+		$language->method( 'getCode' )->willReturn( $langCode );
+
+		return $language;
+	}
+
+	/** @return Generator */
+	public function provideParserOptions() {
+		$langCode = 'de';
+		$parserOptions = $this->createMock( ParserOptions::class );
+		$parserOptions->method( 'getTargetLanguage' )
+			->willReturn( $this->getLanguageMock( $langCode ) );
+		yield 'ParserOptions for "de" language' => [ $parserOptions, $langCode ];
+
+		$langCode = 'ar';
+		$parserOptions = $this->createMock( ParserOptions::class );
+		$parserOptions->method( 'getTargetLanguage' )
+			->willReturn( $this->getLanguageMock( $langCode ) );
+		yield 'ParserOptions for "ar" language' => [ $parserOptions, $langCode ];
+	}
+
+	/**
+	 * @covers \MediaWiki\Rest\Handler\ParsoidHTMLHelper::getParserOutput
+	 * @dataProvider provideParserOptions
+	 */
+	public function testGetParserOutputWithLanguageOverride( $parserOptions, $expectedLangCode ) {
+		$services = $this->getServiceContainer();
+		$parserOutputAccess = $services->getParsoidOutputAccess();
+
+		[ $page, $revision ] = $this->getNonExistingPageWithFakeRevision( __METHOD__ );
+		// set oldid=0 for page creation
+		$revision->setId( 0 );
+
+		/** @var Status $status */
+		$status = $parserOutputAccess->getParserOutput( $page, $parserOptions, $revision );
+
+		$this->assertTrue( $status->isOK() );
+		// assert page title in parsoid output HTML
+		$this->assertStringContainsString( __METHOD__, $status->getValue()->getText() );
+
+		if ( $parserOptions->getTargetLanguage() !== null ) {
+			$targetLanguage = $parserOptions->getTargetLanguage()->getCode();
+			$this->assertSame( $expectedLangCode, $targetLanguage );
+			$this->assertInstanceOf( Language::class, $parserOptions->getTargetLanguage() );
+		} else {
+			$this->assertNull( $parserOptions->getTargetLanguage() );
+			$this->assertNull( $expectedLangCode );
+			// the default target language is english.
+			$targetLanguage = 'en';
+		}
+
+		// assert the page language in parsoid output HTML
+		$this->assertStringContainsString(
+			'lang="' . $targetLanguage . '"',
+			$status->getValue()->getText()
+		);
+
+		// assert the content language in parsoid output HTML
+		$this->assertStringContainsString(
+			'content="' . $targetLanguage . '"',
+			$status->getValue()->getText()
+		);
+
+		// also check that the correct wiki text content is returned in <section> tags
+		$this->assertStringContainsString( 'Hello ', $status->getValue()->getText() );
+		$this->assertStringContainsString( 'Goat', $status->getValue()->getText() );
 	}
 
 }

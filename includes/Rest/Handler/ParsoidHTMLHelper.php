@@ -22,6 +22,7 @@
 namespace MediaWiki\Rest\Handler;
 
 use IBufferingStatsdDataFactory;
+use Language;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
@@ -63,6 +64,9 @@ class ParsoidHTMLHelper {
 	/** @var RevisionRecord|null */
 	private $revision = null;
 
+	/** @var Language|null */
+	private $pageLanguage = null;
+
 	/** @var ?string [ 'view', 'stash' ] are the supported flavors for now */
 	private $flavor = null;
 
@@ -101,16 +105,19 @@ class ParsoidHTMLHelper {
 	 * @param array $parameters
 	 * @param User $user
 	 * @param RevisionRecord|null $revision
+	 * @param Language|null $pageLanguage
 	 */
 	public function init(
 		PageIdentity $page,
 		array $parameters,
 		User $user,
-		?RevisionRecord $revision = null
+		?RevisionRecord $revision = null,
+		?Language $pageLanguage = null
 	) {
 		$this->page = $page;
 		$this->user = $user;
 		$this->revision = $revision;
+		$this->pageLanguage = $pageLanguage;
 		$this->stash = $parameters['stash'];
 		$this->flavor = $parameters['stash'] ? 'stash' : 'view'; // more to come, T308743
 	}
@@ -202,16 +209,22 @@ class ParsoidHTMLHelper {
 	 */
 	private function getParserOutput(): ParserOutput {
 		if ( !$this->parserOutput ) {
+			$parserOptions = ParserOptions::newFromAnon();
+
+			if ( $this->pageLanguage ) {
+				$parserOptions->setTargetLanguage( $this->pageLanguage );
+			}
+
 			if ( $this->page instanceof PageRecord && $this->page->exists() ) {
 				$status = $this->parsoidOutputAccess->getParserOutput(
 					$this->page,
-					ParserOptions::newFromAnon(),
+					$parserOptions,
 					$this->revision
 				);
 			} else {
 				$status = $this->parsoidOutputAccess->parse(
 					$this->page,
-					ParserOptions::newFromAnon(),
+					$parserOptions,
 					$this->revision
 				);
 			}
