@@ -140,7 +140,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				);
 			}
 
-			$this->addOption( 'USE INDEX', 'cl_timestamp' );
+			$this->addOption( 'USE INDEX', [ 'categorylinks' => 'cl_timestamp' ] );
 		} else {
 			if ( $params['continue'] ) {
 				$cont = explode( '|', $params['continue'], 3 );
@@ -193,7 +193,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					$endsortkey );
 				$this->addWhereRange( 'cl_from', $dir, null, null );
 			}
-			$this->addOption( 'USE INDEX', 'cl_sortkey' );
+			$this->addOption( 'USE INDEX', [ 'categorylinks' => 'cl_sortkey' ] );
 		}
 
 		$this->addWhere( 'cl_from=page_id' );

@@ -445,7 +445,7 @@ interface ISQLPlatform {
 	 *
 	 * @see IDatabase::select()
 	 *
-	 * @param string|array $table Table name
+	 * @param string|array $table Table name(s)
 	 * @param string|array $vars Field names
 	 * @param string|array $conds Conditions
 	 * @param string $fname Caller function name

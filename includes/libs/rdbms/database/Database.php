@@ -270,7 +270,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->platform = new SQLPlatform(
 			$this,
 			$params['queryLogger'],
-			$this->currentDomain
+			$this->currentDomain,
+			$this->errorLogger
 		);
 	}
 

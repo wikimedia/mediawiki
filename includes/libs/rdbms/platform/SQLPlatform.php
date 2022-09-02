@@ -23,6 +23,7 @@ use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
+use Throwable;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\Database\DbQuoter;
 use Wikimedia\Rdbms\DatabaseDomain;
@@ -51,15 +52,22 @@ class SQLPlatform implements ISQLPlatform {
 	protected $quoter;
 	/** @var LoggerInterface */
 	protected $logger;
+	/** @var callable Error logging callback */
+	protected $errorLogger;
 
 	public function __construct(
 		DbQuoter $quoter,
 		LoggerInterface $logger = null,
-		DatabaseDomain $currentDomain = null
+		DatabaseDomain $currentDomain = null,
+		$errorLogger = null
+
 	) {
 		$this->quoter = $quoter;
 		$this->logger = $logger ?? new NullLogger();
 		$this->currentDomain = $currentDomain;
+		$this->errorLogger = $errorLogger ?? static function ( Throwable $e ) {
+			trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
+		};
 	}
 
 	/**
@@ -605,6 +613,16 @@ class SQLPlatform implements ISQLPlatform {
 	public function selectSQLText(
 		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
+		if ( is_array( $table ) ) {
+			$tables = $table;
+		} elseif ( $table === '' || $table === null || $table === false ) {
+			$tables = [];
+		} elseif ( is_string( $table ) ) {
+			$tables = [ $table ];
+		} else {
+			throw new DBLanguageError( __METHOD__ . ' called with incorrect table parameter' );
+		}
+
 		if ( is_array( $vars ) ) {
 			$fields = implode( ',', $this->fieldNamesWithAlias( $vars ) );
 		} else {
@@ -612,15 +630,26 @@ class SQLPlatform implements ISQLPlatform {
 		}
 
 		$options = (array)$options;
-		$useIndexes = ( isset( $options['USE INDEX'] ) && is_array( $options['USE INDEX'] ) )
-			? $options['USE INDEX']
-			: [];
-		$ignoreIndexes = (
-			isset( $options['IGNORE INDEX'] ) &&
-			is_array( $options['IGNORE INDEX'] )
-		)
-			? $options['IGNORE INDEX']
-			: [];
+
+		$useIndexByTable = $options['USE INDEX'] ?? [];
+		if ( !is_array( $useIndexByTable ) ) {
+			if ( count( $tables ) <= 1 ) {
+				$useIndexByTable = [ reset( $tables ) => $useIndexByTable ];
+			} else {
+				$e = new DBLanguageError( __METHOD__ . " got ambiguous USE INDEX ($fname)" );
+				( $this->errorLogger )( $e );
+			}
+		}
+
+		$ignoreIndexByTable = $options['IGNORE INDEX'] ?? [];
+		if ( !is_array( $ignoreIndexByTable ) ) {
+			if ( count( $tables ) <= 1 ) {
+				$ignoreIndexByTable = [ reset( $tables ) => $ignoreIndexByTable ];
+			} else {
+				$e = new DBLanguageError( __METHOD__ . " got ambiguous IGNORE INDEX ($fname)" );
+				( $this->errorLogger )( $e );
+			}
+		}
 
 		if (
 			$this->selectOptionsIncludeLocking( $options ) &&
@@ -633,30 +662,23 @@ class SQLPlatform implements ISQLPlatform {
 			);
 		}
 
-		if ( is_array( $table ) ) {
-			if ( count( $table ) === 0 ) {
-				$from = '';
-			} else {
-				$from = ' FROM ' .
-					$this->tableNamesWithIndexClauseOrJOIN(
-						$table, $useIndexes, $ignoreIndexes, $join_conds );
-			}
-		} elseif ( $table != '' ) {
-			$from = ' FROM ' .
-				$this->tableNamesWithIndexClauseOrJOIN(
-					[ $table ], $useIndexes, $ignoreIndexes, [] );
+		if ( count( $tables ) ) {
+			$from = ' FROM ' . $this->tableNamesWithIndexClauseOrJOIN(
+				$tables,
+				$useIndexByTable,
+				$ignoreIndexByTable,
+				$join_conds
+			);
 		} else {
 			$from = '';
 		}
 
-		list( $startOpts, $useIndex, $preLimitTail, $postLimitTail, $ignoreIndex ) =
-			$this->makeSelectOptions( $options );
+		list( $startOpts, $preLimitTail, $postLimitTail ) = $this->makeSelectOptions( $options );
 
 		if ( is_array( $conds ) ) {
-			$conds = $this->makeList( $conds, self::LIST_AND );
-		}
-
-		if ( $conds === null || $conds === false ) {
+			$where = $this->makeList( $conds, self::LIST_AND );
+		} elseif ( $conds === null || $conds === false ) {
+			$where = '';
 			$this->logger->warning(
 				__METHOD__
 				. ' called from '
@@ -664,21 +686,21 @@ class SQLPlatform implements ISQLPlatform {
 				. ' with incorrect parameters: $conds must be a string or an array',
 				[ 'db_log_category' => 'sql' ]
 			);
-			$conds = '';
-		}
-
-		if ( $conds === '' || $conds === '*' ) {
-			$sql = "SELECT $startOpts $fields $from $useIndex $ignoreIndex $preLimitTail";
 		} elseif ( is_string( $conds ) ) {
-			$sql = "SELECT $startOpts $fields $from $useIndex $ignoreIndex " .
-				"WHERE $conds $preLimitTail";
+			$where = $conds;
 		} else {
 			throw new DBLanguageError( __METHOD__ . ' called with incorrect parameters' );
 		}
 
+		// Keep historical extra spaces after FROM to avoid testing failures
+		if ( $where === '' || $where === '*' ) {
+			$sql = "SELECT $startOpts $fields $from   $preLimitTail";
+		} else {
+			$sql = "SELECT $startOpts $fields $from   WHERE $where $preLimitTail";
+		}
+
 		if ( isset( $options['LIMIT'] ) ) {
-			$sql = $this->limitResult( $sql, $options['LIMIT'],
-				$options['OFFSET'] ?? false );
+			$sql = $this->limitResult( $sql, $options['LIMIT'], $options['OFFSET'] ?? false );
 		}
 		$sql = "$sql $postLimitTail";
 
@@ -1132,7 +1154,7 @@ class SQLPlatform implements ISQLPlatform {
 	 * @stable to override
 	 * @param array $options Associative array of options to be turned into
 	 *   an SQL query, valid keys are listed in the function.
-	 * @return array
+	 * @return string[] (START OPTIONS, PRE-LIMIT TAIL, POST-LIMIT TAIL)
 	 */
 	protected function makeSelectOptions( array $options ) {
 		$preLimitTail = $postLimitTail = '';
@@ -1183,18 +1205,7 @@ class SQLPlatform implements ISQLPlatform {
 			$startOpts .= ' SQL_CALC_FOUND_ROWS';
 		}
 
-		if ( isset( $options['USE INDEX'] ) && is_string( $options['USE INDEX'] ) ) {
-			$useIndex = $this->useIndexClause( $options['USE INDEX'] );
-		} else {
-			$useIndex = '';
-		}
-		if ( isset( $options['IGNORE INDEX'] ) && is_string( $options['IGNORE INDEX'] ) ) {
-			$ignoreIndex = $this->ignoreIndexClause( $options['IGNORE INDEX'] );
-		} else {
-			$ignoreIndex = '';
-		}
-
-		return [ $startOpts, $useIndex, $preLimitTail, $postLimitTail, $ignoreIndex ];
+		return [ $startOpts, $preLimitTail, $postLimitTail ];
 	}
 
 	/**
