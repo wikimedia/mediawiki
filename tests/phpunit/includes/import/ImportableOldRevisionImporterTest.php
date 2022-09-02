@@ -50,11 +50,10 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$result = $importer->import( $revision );
 		$this->assertTrue( $result );
 
-		$page = WikiPage::factory( $title );
 		$tags = ChangeTags::getTags(
 			$services->getDBLoadBalancer()->getConnection( DB_PRIMARY ),
 			null,
-			$page->getLatest()
+			$title->getLatestRevID()
 		);
 		$this->assertSame( $expectedTags, $tags );
 	}
