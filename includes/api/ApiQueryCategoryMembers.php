@@ -129,15 +129,14 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			if ( $params['continue'] !== null ) {
 				$cont = explode( '|', $params['continue'] );
 				$this->dieContinueUsageIf( count( $cont ) != 2 );
-				$op = ( $dir === 'newer' ? '>' : '<' );
+				$op = ( $dir === 'newer' ? '>=' : '<=' );
 				$db = $this->getDB();
-				$continueTimestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
 				$continueFrom = (int)$cont[1];
 				$this->dieContinueUsageIf( $continueFrom != $cont[1] );
-				$this->addWhere( "cl_timestamp $op $continueTimestamp OR " .
-					"(cl_timestamp = $continueTimestamp AND " .
-					"cl_from $op= $continueFrom)"
-				);
+				$this->addWhere( $db->buildComparison( $op, [
+					'cl_timestamp' => $db->timestamp( $cont[0] ),
+					'cl_from' => (int)$cont[1],
+				] ) );
 			}
 
 			$this->addOption( 'USE INDEX', [ 'categorylinks' => 'cl_timestamp' ] );

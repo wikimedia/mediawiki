@@ -148,20 +148,12 @@ class TableCleanup extends Maintenance {
 			}
 
 			// Update the conditions to select the next batch.
-			// Construct a condition string by starting with the least significant part
-			// of the index, and adding more significant parts progressively to the left
-			// of the string.
-			$nextCond = '';
-			foreach ( array_reverse( $index ) as $field ) {
+			$conds = [];
+			foreach ( $index as $field ) {
 				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $res has at at least one item
-				$encValue = $dbr->addQuotes( $row->$field );
-				if ( $nextCond === '' ) {
-					$nextCond = "$field > $encValue";
-				} else {
-					$nextCond = "$field > $encValue OR ($field = $encValue AND ($nextCond))";
-				}
+				$conds[ $field ] = $row->$field;
 			}
-			$indexConds = [ $nextCond ];
+			$indexConds = [ $dbr->buildComparison( '>', $conds ) ];
 		}
 
 		$this->output( "Finished $table... $this->updated of $this->processed rows updated\n" );

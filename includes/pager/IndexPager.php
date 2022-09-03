@@ -511,29 +511,6 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * single column or multiple columns. Where we paginate on multiple columns,
 	 * the sort order is defined by the order of the columns in $mIndexField.
 	 *
-	 * Some examples, with up to three columns. Each condition consists of inner
-	 * conditions, at least one of which must be true (joined by OR):
-	 *
-	 * - column X, with offset value 'x':
-	 *     WHERE X>'x'
-	 *
-	 * - columns X and Y, with offsets 'x' and 'y':
-	 *     WHERE X>'x'
-	 *     OR ( X='x' AND Y>'y' )
-	 *
-	 * - columns X, Y and Z, with offsets 'x', 'y' and 'z':
-	 *     WHERE X>'x'
-	 *     OR ( X='x' AND Y>'y' )
-	 *     OR ( X='x' AND Y='y' AND Z>'z' )
-	 *
-	 * - and so on...
-	 *
-	 * (The examples assume we want the next page and do not want to include the
-	 * offset in the results; otherwise the operators will be slightly different,
-	 * as handled in buildQueryInfo.)
-	 *
-	 * Note that the above performs better than: WHERE (X,Y,Z)>('x','y','z').
-	 *
 	 * @param string[] $offsets The offset for each index field
 	 * @param string[] $columns The name of each index field
 	 * @param string $operator Operator for the final part of each inner
@@ -543,42 +520,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @return string The conditions for getting results from the offset
 	 */
 	private function buildOffsetConds( $offsets, $columns, $operator ) {
-		$innerConds = [];
-		// $offsets and $columns are the same length
-		for ( $i = 1; $i <= count( $offsets ); $i++ ) {
-			$innerConds[] = $this->buildOffsetInnerConds(
-				array_slice( $offsets, 0, $i ),
-				array_slice( $columns, 0, $i ),
-				// When weak inequality is requested, only use the weak operator for the last item, because
-				//   (A, B) >= (1, 2)
-				// is equivalent to:
-				//   ((A > 1) OR (A = 1 AND B >= 2))
-				// and not:
-				//   ((A >= 1) OR (A = 1 AND B >= 2))
-				$i === count( $offsets ) ? $operator : rtrim( $operator, '=' )
-			);
-		}
-		return $this->mDb->makeList( $innerConds, IDatabase::LIST_OR );
-	}
-
-	/**
-	 * Build an inner part of an offset condition, consisting of inequalities
-	 * joined by AND, as described in buildOffsetConds.
-	 *
-	 * @param string[] $offsets
-	 * @param string[] $columns
-	 * @param string $operator
-	 * @return string The inner condition; to be concatenated in buildOffsetConds
-	 */
-	private function buildOffsetInnerConds( $offsets, $columns, $operator ) {
-		$conds = [];
-		while ( count( $offsets ) > 1 ) {
-			$conds[] = $columns[0] . '=' . $this->mDb->addQuotes( $offsets[0] );
-			array_shift( $columns );
-			array_shift( $offsets );
-		}
-		$conds[] = $columns[0] . $operator . $this->mDb->addQuotes( $offsets[0] );
-		return $this->mDb->makeList( $conds, IDatabase::LIST_AND );
+		$conds = array_combine( $columns, $offsets );
+		return $this->mDb->buildComparison( $operator, $conds );
 	}
 
 	/**

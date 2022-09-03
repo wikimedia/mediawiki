@@ -387,6 +387,10 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function buildComparison( string $op, array $conds ): string {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function makeList( array $a, $mode = self::LIST_COMMA ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

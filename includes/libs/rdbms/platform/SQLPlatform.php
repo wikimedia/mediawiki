@@ -157,6 +157,49 @@ class SQLPlatform implements ISQLPlatform {
 		return $sqlfunc . '(' . implode( ',', $encValues ) . ')';
 	}
 
+	public function buildComparison( string $op, array $conds ): string {
+		if ( !in_array( $op, [ '>', '>=', '<', '<=' ] ) ) {
+			throw new InvalidArgumentException( "Comparison operator must be one of '>', '>=', '<', '<='" );
+		}
+		if ( count( $conds ) === 0 ) {
+			throw new InvalidArgumentException( "Empty input" );
+		}
+
+		// Construct a condition string by starting with the least significant part of the index, and
+		// adding more significant parts progressively to the left of the string.
+		//
+		// For example, given $conds = [ 'a' => 4, 'b' => 7, 'c' => 1 ], this will generate a condition
+		// like this:
+		//
+		//   WHERE  a > 4
+		//      OR (a = 4 AND (b > 7
+		//                 OR (b = 7 AND (c > 1))))
+		//
+		// …which is equivalent to the following, which might be easier to understand:
+		//
+		//   WHERE a > 4
+		//      OR a = 4 AND b > 7
+		//      OR a = 4 AND b = 7 AND c > 1
+		//
+		// …and also equivalent to the following, using tuple comparison syntax, which is most intuitive
+		// but apparently performs worse:
+		//
+		//   WHERE (a, b, c) > (4, 7, 1)
+
+		$sql = '';
+		foreach ( array_reverse( $conds ) as $field => $value ) {
+			$encValue = $this->quoter->addQuotes( $value );
+			if ( $sql === '' ) {
+				$sql = "$field $op $encValue";
+				// Change '>=' to '>' etc. for remaining fields, as the equality is handled separately
+				$op = rtrim( $op, '=' );
+			} else {
+				$sql = "$field $op $encValue OR ($field = $encValue AND ($sql))";
+			}
+		}
+		return $sql;
+	}
+
 	public function makeList( array $a, $mode = self::LIST_COMMA ) {
 		$first = true;
 		$list = '';

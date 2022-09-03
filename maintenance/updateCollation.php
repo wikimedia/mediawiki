@@ -271,31 +271,19 @@ TEXT
 		} else {
 			$fields = [ 'cl_collation', 'cl_to', 'cl_type', 'cl_from' ];
 		}
-		$first = true;
-		$cond = false;
-		$prefix = false;
+		$conds = [];
 		foreach ( $fields as $field ) {
 			if ( $dbw->getType() === 'mysql' && $field === 'cl_type' ) {
 				// Range conditions with enums are weird in mysql
 				// This must be a numeric literal, or it won't work.
-				$encValue = intval( $row->cl_type_numeric );
+				$value = intval( $row->cl_type_numeric );
 			} else {
-				$encValue = $dbw->addQuotes( $row->$field );
+				$value = $row->$field;
 			}
-			$inequality = "$field > $encValue";
-			$equality = "$field = $encValue";
-			if ( $first ) {
-				$cond = $inequality;
-				$prefix = $equality;
-				$first = false;
-			} else {
-				// @phan-suppress-next-line PhanTypeSuspiciousStringExpression False positive
-				$cond .= " OR ($prefix AND $inequality)";
-				$prefix .= " AND $equality";
-			}
+			$conds[ $field ] = $value;
 		}
 
-		return $cond;
+		return $dbw->buildComparison( '>', $conds );
 	}
 
 	/**

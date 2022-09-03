@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\Platform\SQLPlatform;
+
 /**
  * Tests for BatchRowUpdate and its components
  *
@@ -145,7 +147,7 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 			[
 				"With single primary key must generate id > 'value'",
 				// Expected second iteration
-				[ "( id_field > '3' )" ],
+				[ "id_field > '3'" ],
 				// Primary key(s)
 				'id_field',
 			],
@@ -154,7 +156,7 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 				'With multiple primary keys the first conditions ' .
 					'must use >= and the final condition must use >',
 				// Expected second iteration
-				[ "( id_field = '3' AND foo > '103' ) OR ( id_field > '3' )" ],
+				[ "id_field > '3' OR (id_field = '3' AND (foo > '103'))" ],
 				// Primary key(s)
 				[ 'id_field', 'foo' ],
 			],
@@ -234,11 +236,17 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 
 	protected function mockDb( $methods = [] ) {
 		// @TODO: mock from Database
-		// FIXME: the constructor normally sets mAtomicLevels and mSrvCache
+		// FIXME: the constructor normally sets mAtomicLevels and mSrvCache, and platform
 		$databaseMysql = $this->getMockBuilder( Wikimedia\Rdbms\DatabaseMysqli::class )
 			->disableOriginalConstructor()
 			->onlyMethods( array_merge( [ 'isOpen', 'getApproximateLagStatus' ], $methods ) )
 			->getMock();
+
+		$reflection = new ReflectionClass( $databaseMysql );
+		$reflectionProperty = $reflection->getProperty( 'platform' );
+		$reflectionProperty->setAccessible( true );
+		$reflectionProperty->setValue( $databaseMysql, new SQLPlatform( $databaseMysql ) );
+
 		$databaseMysql->method( 'isOpen' )
 			->willReturn( true );
 		$databaseMysql->method( 'getApproximateLagStatus' )

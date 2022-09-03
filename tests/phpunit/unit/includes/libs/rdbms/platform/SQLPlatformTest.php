@@ -92,6 +92,69 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
+	 * @dataProvider provideBuildComparison
+	 * @covers Wikimedia\Rdbms\Database::buildComparison
+	 */
+	public function testBuildComparison( string $op, array $conds, string $sqlText ) {
+		$this->assertEquals(
+			$sqlText,
+			$this->platform->buildComparison( $op, $conds )
+		);
+	}
+
+	public static function provideBuildComparison() {
+		return [
+			"Simple '>'" => [
+				'>',
+				[ 'a' => 1 ],
+				'a > 1',
+			],
+			"Simple '>='" => [
+				'>=',
+				[ 'a' => 1 ],
+				'a >= 1',
+			],
+			"Simple '<'" => [
+				'<',
+				[ 'a' => 1 ],
+				'a < 1',
+			],
+			"Simple '<='" => [
+				'<=',
+				[ 'a' => 1 ],
+				'a <= 1',
+			],
+			"Complex '>'" => [
+				'>',
+				[ 'a' => 1, 'b' => 2, 'c' => 3 ],
+				'a > 1 OR (a = 1 AND (b > 2 OR (b = 2 AND (c > 3))))',
+			],
+			"Complex '>='" => [
+				'>=',
+				[ 'a' => 1, 'b' => 2, 'c' => 3 ],
+				'a > 1 OR (a = 1 AND (b > 2 OR (b = 2 AND (c >= 3))))',
+			],
+			"Complex '<'" => [
+				'<',
+				[ 'a' => 1, 'b' => 2, 'c' => 3 ],
+				'a < 1 OR (a = 1 AND (b < 2 OR (b = 2 AND (c < 3))))',
+			],
+			"Complex '<='" => [
+				'<=',
+				[ 'a' => 1, 'b' => 2, 'c' => 3 ],
+				'a < 1 OR (a = 1 AND (b < 2 OR (b = 2 AND (c <= 3))))',
+			],
+			"Quoting: fields are SQL identifiers, values are values" => [
+				// Note that the quoting here doesn't match any real database because
+				// SQLPlatformTestHelper overrides it
+				'>',
+				[ '`quoted\'as"field' => '`quoted\'as"value' ],
+				'`quoted\'as"field > \'`quoted\\\'as"value\'',
+			],
+		];
+	}
+
+	/**
 	 * @dataProvider provideBuildLike
 	 * @covers Wikimedia\Rdbms\Database::buildLike
 	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::escapeLikeInternal

@@ -133,6 +133,34 @@ interface ISQLPlatform {
 	public function buildLeast( $fields, $values );
 
 	/**
+	 * Build a condition comparing multiple values, for use with indexes that cover
+	 * multiple fields, common when e.g. paging through results or doing batch operations.
+	 *
+	 * For example, you might be displaying a list of people ordered alphabetically by their last
+	 * and first name, split across multiple pages. The first page of the results ended at Jane Doe.
+	 * When building the query for the next page, you would use:
+	 *
+	 *     $queryBuilder->where( $db->buildComparison( '>', [ 'last' => 'Doe', 'first' => 'Jane' ] ) );
+	 *
+	 * This will return people whose last name follows Doe, or whose last name is Doe and first name
+	 * follows Jane.
+	 *
+	 * Note that the order of keys in the associative array $conds is significant,
+	 * and must match the order of fields used by the index.
+	 *
+	 * You might also use it to generate a simple comparison without writing raw SQL:
+	 *
+	 *     $db->buildComparison( '<=', [ 'key' => $val ] )
+	 *     // equivalent to:
+	 *     'key <= ' . $db->addQuotes( $val )
+	 *
+	 * @param string $op Comparison operator, one of '>', '>=', '<', '<='
+	 * @param array $conds Map of field names to their values to use in the comparison
+	 * @return string SQL code
+	 */
+	public function buildComparison( string $op, array $conds ): string;
+
+	/**
 	 * Makes an encoded list of strings from an array
 	 *
 	 * These can be used to make conjunctions or disjunctions on SQL condition strings
