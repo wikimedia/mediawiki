@@ -549,7 +549,13 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$innerConds[] = $this->buildOffsetInnerConds(
 				array_slice( $offsets, 0, $i ),
 				array_slice( $columns, 0, $i ),
-				$operator
+				// When weak inequality is requested, only use the weak operator for the last item, because
+				//   (A, B) >= (1, 2)
+				// is equivalent to:
+				//   ((A > 1) OR (A = 1 AND B >= 2))
+				// and not:
+				//   ((A >= 1) OR (A = 1 AND B >= 2))
+				$i === count( $offsets ) ? $operator : rtrim( $operator, '=' )
 			);
 		}
 		return $this->mDb->makeList( $innerConds, IDatabase::LIST_OR );
