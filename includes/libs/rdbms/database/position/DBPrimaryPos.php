@@ -2,8 +2,6 @@
 
 namespace Wikimedia\Rdbms;
 
-use Serializable;
-
 /**
  * An object representing a primary or replica DB position in a replicated setup.
  *
@@ -12,7 +10,7 @@ use Serializable;
  * @since 1.37
  * @stable to implement
  */
-interface DBPrimaryPos extends Serializable {
+interface DBPrimaryPos {
 	/**
 	 * @since 1.25
 	 * @return float UNIX timestamp
