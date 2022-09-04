@@ -110,6 +110,9 @@ class HTMLFileCache extends FileCacheBase {
 			// Below are header setting params
 			} elseif ( $query === 'maxage' || $query === 'smaxage' ) {
 				continue;
+			// Uselang value is checked below
+			} elseif ( $query === 'uselang' ) {
+				continue;
 			}
 
 			return false;
