@@ -14,28 +14,28 @@ use Serializable;
  */
 interface DBPrimaryPos extends Serializable {
 	/**
-	 * @return float UNIX timestamp
 	 * @since 1.25
+	 * @return float UNIX timestamp
 	 */
 	public function asOfTime();
 
 	/**
+	 * @since 1.27
 	 * @param DBPrimaryPos $pos
 	 * @return bool Whether this position is at or higher than $pos
-	 * @since 1.27
 	 */
 	public function hasReached( DBPrimaryPos $pos );
 
 	/**
+	 * @since 1.27
 	 * @param DBPrimaryPos $pos
 	 * @return bool Whether this position appears to be for the same channel as another
-	 * @since 1.27
 	 */
 	public function channelsMatch( DBPrimaryPos $pos );
 
 	/**
-	 * @return string
 	 * @since 1.27
+	 * @return string
 	 */
 	public function __toString();
 
