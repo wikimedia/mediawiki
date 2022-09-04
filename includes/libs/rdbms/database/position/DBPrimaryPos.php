@@ -38,4 +38,22 @@ interface DBPrimaryPos extends Serializable {
 	 * @since 1.27
 	 */
 	public function __toString();
+
+	/**
+	 * Deserialization from storage
+	 *
+	 * @since 1.39
+	 * @param array $data Representation as returned from ::toArray()
+	 * @return DBPrimaryPos
+	 */
+	public static function newFromArray( array $data );
+
+	/**
+	 * Serialization for storage
+	 *
+	 * @since 1.39
+	 * @return array Representation for use by ::newFromArray()
+	 */
+	public function toArray(): array;
+
 }

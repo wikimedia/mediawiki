@@ -199,7 +199,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 				? hash_hmac( 'md5', $client['ip'] . "\n" . $client['agent'], $secret )
 				: md5( $client['ip'] . "\n" . $client['agent'] );
 		}
-		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId, 'v2' );
+		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId, 'v3' );
 		$this->waitForPosIndex = $clientPosIndex;
 
 		$this->clientLogInfo = [
@@ -325,14 +325,16 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 		$scopeLock = $this->store->getScopedLock( $this->key, self::LOCK_TIMEOUT, self::LOCK_TTL );
 		if ( $scopeLock ) {
+			$positions = $this->mergePositions(
+				$this->unmarshalPositions( $this->store->get( $this->key ) ),
+				$this->shutdownPositionsByPrimary,
+				$this->shutdownTimestampsByCluster,
+				$clientPosIndex
+			);
+
 			$ok = $this->store->set(
 				$this->key,
-				$this->mergePositions(
-					$this->store->get( $this->key ),
-					$this->shutdownPositionsByPrimary,
-					$this->shutdownTimestampsByCluster,
-					$clientPosIndex
-				),
+				$this->marshalPositions( $positions ),
 				self::POSITION_STORE_TTL
 			);
 			unset( $scopeLock );
@@ -427,7 +429,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 		$this->logger->debug( 'ChronologyProtector using store ' . get_class( $this->store ) );
 		$this->logger->debug( "ChronologyProtector fetching positions for {$this->clientId}" );
 
-		$data = $this->store->get( $this->key );
+		$data = $this->unmarshalPositions( $this->store->get( $this->key ) );
 
 		$this->startupPositionsByPrimary = $data ? $data[self::FLD_POSITIONS] : [];
 		$this->startupTimestampsByCluster = $data[self::FLD_TIMESTAMPS] ?? [];
@@ -534,5 +536,37 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 */
 	public function setMockTime( &$time ) {
 		$this->wallClockOverride =& $time;
+	}
+
+	private function marshalPositions( $positions ) {
+		if ( !$positions || empty( $positions[ self::FLD_POSITIONS ] ) ) {
+			return $positions;
+		}
+
+		foreach ( $positions[ self::FLD_POSITIONS ] as $key => $pos ) {
+			$positions[ self::FLD_POSITIONS ][ $key ] = $pos->toArray();
+		}
+
+		return $positions;
+	}
+
+	private function unmarshalPositions( $positions ) {
+		if ( !$positions || empty( $positions[ self::FLD_POSITIONS ] ) ) {
+			return $positions;
+		}
+
+		foreach ( $positions[ self::FLD_POSITIONS ] as $key => $pos ) {
+			if ( !is_array( $pos ) ) {
+				// Only needed when transitioning from earlier versions of the code that used
+				// native PHP serialization, so we'd encounter DBPrimaryPos objects here.
+				// Removing this would cause intermittent errors when updating to 1.39 or higher.
+				continue;
+			}
+
+			$class = $pos[ '_type_' ];
+			$positions[ self::FLD_POSITIONS ][ $key ] = $class::newFromArray( $pos );
+		}
+
+		return $positions;
 	}
 }
