@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
 namespace Wikimedia\Rdbms;
 
@@ -29,6 +28,7 @@ use Throwable;
  * Constructs Database objects
  *
  * @since 1.39
+ * @ingroup Database
  */
 class DatabaseFactory {
 
