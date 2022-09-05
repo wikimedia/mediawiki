@@ -691,8 +691,6 @@ window.importStylesheet = function ( title ) {
 	);
 };
 
-mw.log.deprecate( window, 'loadedScripts', loadedScripts, 'Use mw.loader instead.' );
-
 /**
  * @since 1.12.2
  * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
