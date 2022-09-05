@@ -2835,7 +2835,7 @@
 	"logentry-delete-delete": "$1 پەڕەی $3ی {{GENDER:$2|سڕییەوە}}",
 	"logentry-delete-delete_redir": "$1 {{GENDER:$2|ڕەوانەکەری}} $3 سڕیەوە",
 	"logentry-delete-restore": "$1 پەڕەی $3ی {{GENDER:$2|ھێنایەوە}} ($4)",
-	"restore-count-revisions": "{{PLURAL:$1|$1 پێداچوونەوە}} هێنرایەوە",
+	"restore-count-revisions": "{{PLURAL:$1|1 پێداچوونەوە|$1 پێداچوونەوە}}",
 	"logentry-delete-revision": "$1 دەرکەوتنی {{PLURAL:$5|پێداچوونەوەیەکی|$5 پێداچوونەوەی}} پەڕەی $3ی {{GENDER:$2|گۆڕیی}}: $4",
 	"logentry-suppress-delete": "$1 پەڕەی $3 {{GENDER:$2|بەرگری کرد}}.",
 	"revdelete-content-hid": "ناوەرۆک شاردراوە",

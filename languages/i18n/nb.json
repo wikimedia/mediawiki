@@ -58,7 +58,8 @@
 			"4ing",
 			"Abuluntu",
 			"Mn00ch",
-			"Yupik"
+			"Yupik",
+			"Gabriel Kielland"
 		]
 	},
 	"tog-underline": "Strek under lenker:",
@@ -1750,7 +1751,7 @@
 	"upload-description": "Filbeskrivelse",
 	"upload-options": "Opplastingsvalg",
 	"watchthisupload": "Overvåk denne filen",
-	"filewasdeleted": "Ei fil ved dette navnet har blitt lastet opp tidligere, og så slettet. Sjekk $1 før du forsøker å laste det opp igjen.",
+	"filewasdeleted": "Ei fil ved dette navnet har blitt lastet opp tidligere, og så slettet. Sjekk $1 før du forsøker å laste den opp igjen.",
 	"filename-thumb-name": "Dette ser ut som tittelen til et miniatyrbilde (thumbnail). Miniatyrbilder skal ikke lastes opp igjen til den samme wikien. Hvis det ikke er et miniatyrbilde må du endre filnavnet til noe mer meningsfullt og fjerne miniatyrbilde-prefikset.",
 	"filename-bad-prefix": "Navnet på filen du laster opp begynner med <strong>«$1»</strong>, som er et ikke-beskrivende navn som vanligvis brukes automatisk av digitalkameraer. Vennligst bruk et mer beskrivende navn på filen.",
 	"filename-prefix-blacklist": " #<!-- leave this line exactly as it is --> <pre>\n# Syntaksen er som følger:\n#   * Alt fra tegnet «#» til slutten av linja er en kommentar\n#   * Alle linjer som ikke er blanke er et prefiks som vanligvis brukes automatisk av digitale kameraer\nCIMG # Casio\nDSC_ # Nikon\nDSCF # Fuji\nDSCN # Nikon\nDUW # noen mobiltelefontyper\nIMG # generisk\nJD # Jenoptik\nMGP # Pentax\nPICT # div.\n #</pre> <!-- leave this line exactly as it is -->",
@@ -3442,7 +3443,7 @@
 	"tags-create-warnings-below": "Ønsker du å fortsette å opprette taggen?",
 	"tags-delete-title": "Slett tagen",
 	"tags-delete-explanation-initial": "Du er i ferd med å slette taggen «$1» fra databasen.",
-	"tags-delete-explanation-in-use": "Den vil bli fjernet fra {{PLURAL:$2|$2 revisjon eller loggoppføring|2=begge revisjonene/loggoppføringene|alle $2 revisjoner og/eller loggoppføringer}} den er i bruk på.",
+	"tags-delete-explanation-in-use": "Den vil bli fjernet fra {{PLURAL:$2|$2 revisjon eller loggoppføring|2=begge revisjonene/loggoppføringene|alle $2 revisjoner og/eller loggoppføringer}} der den er i bruk.",
 	"tags-delete-explanation-warning": "Derne handlingen <strong>kan ikke gjøres om</strong>, ikke engang av administratorer. Vær helt sikker på at dette er taggen du mente å slette.",
 	"tags-delete-explanation-active": "<strong>Taggen «$1» er fortsatt aktiv, og vil fortsatt bli brukt i framtiden.</strong> For å hindre dette fra å skje, gå til stedet/stedene der taggen er satt til å brukes, og slå den av derfra.",
 	"tags-delete-reason": "Årsak:",

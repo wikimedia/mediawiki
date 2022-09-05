@@ -107,7 +107,8 @@
 			"ThisIsACreeper0101",
 			"पदाति",
 			"AnupamM",
-			"Saurmandal"
+			"Saurmandal",
+			"Sharmaji"
 		]
 	},
 	"tog-underline": "रेखांकित कड़ियाँ:",
@@ -684,7 +685,7 @@
 	"passwordreset-nosuchcaller": "कॉलर मौजूद नहीं है: $1",
 	"passwordreset-ignored": "पासवर्ड रीसेट नहीं संभाला गया। हो सकता है कि कोई प्रदाता कॉन्फ़िगर नही किया गया हो?",
 	"passwordreset-nodata": "न तो यूजर नाम और न ही ईमेल पता आपूर्ति की गई",
-	"changeemail": "ई-मेल पता परिवर्तित करें",
+	"changeemail": "ईमेल पता बदलें या हटाएँ",
 	"changeemail-header": "अपना ईमेल पता परिवर्तन हेतु इसे पूरा करें। यदि आप अपना वर्तमान ईमेल पता हटाना चाहते हैं, तो इसे खाली छोड़ दें और इसे भेजें।",
 	"changeemail-no-info": "इस पृष्ठ का सीधे प्रयोग करने के लिए आपको लॉग इन करना होगा।",
 	"changeemail-oldemail": "वर्तमान ई-मेल पता:",
@@ -1097,7 +1098,7 @@
 	"prefs-watchlist-managetokens": "टोकन प्रबंधित करें",
 	"prefs-misc": "अन्य",
 	"prefs-resetpass": "पासवर्ड बदलें",
-	"prefs-changeemail": "ई-मेल पता परिवर्तित करें",
+	"prefs-changeemail": "ईमेल पता बदलें या हटाएँ",
 	"prefs-setemail": "ई-मेल पता सेट करें",
 	"prefs-email": "ईमेल विकल्प",
 	"prefs-rendering": "दिखावट",

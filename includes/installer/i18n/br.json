@@ -109,7 +109,7 @@
 	"config-support-info": "Skoret eo ar reizhiadoù diaz titouroù da-heul gant MediaWiki :\n\n$1\n\nMa ne welit ket amañ dindan ar reizhiad diaz titouroù a fell deoc'h ober ganti, heuilhit an titouroù a-us (s.o. al liammoù) evit gweredekaat ar skorañ.",
 	"config-dbsupport-mysql": "* [{{int:version-db-mysql-url}} MySQL] eo an dibab kentañ evit MediaWiki hag an hini skoret ar gwellañ. Mont a ra MediaWiki en-dro gant [{{int:version-db-mariadb-url}} MariaDB] ha [{{int:version-db-percona-url}} Percona Server] ivez, kenglotus o-daou gant MySQL. ([https://www.php.net/manual/en/mysqli.installation.php Penaos kempunañ PHP gant skor MySQL])",
 	"config-dbsupport-postgres": "* [{{int:version-db-postgres-url}} PostgreSQL] zo anezhi ur reizhiad diaz roadennoù frank a wirioù brudet-mat a c'haller ober gantañ e plas MySQL. ([https://www.php.net/manual/en/pgsql.installation.php Penaos kempunañ PHP gant skor PostgreSQL])",
-	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] zo anezhi ur reizhiad diaz roadennoù skañv skoret eus ar c'hentañ. ([http://www.php.net/manual/en/pdo.installation.php Penaos kempunañ PHP gant skor SQLite], implijout a ra PDO)",
+	"config-dbsupport-sqlite": "* [{{int:version-db-sqlite-url}} SQLite] zo anezhi ur reizhiad diaz roadennoù skañv skoret eus ar c'hentañ. ([https://www.php.net/manual/en/pdo.installation.php Penaos kempunañ PHP gant skor SQLite], implijout a ra PDO)",
 	"config-header-mysql": "Arventennoù MariaDB/MySQL",
 	"config-header-postgres": "Arventennoù PostgreSQL",
 	"config-header-sqlite": "Arventennoù SQLite",

@@ -681,6 +681,7 @@
 	"post-expand-template-argument-category": "Кепийн аргументаш йукъахь йитина агӀонаш",
 	"parser-template-loop-warning": "Карийна кепаш йукъахь хилла шад: [[$1]]",
 	"template-loop-category": "Шеддаш болу кепаш йолу агӀонаш",
+	"template-loop-warning": "<strong>ДӀахьедар:</strong> ХӀокху агӀоно кхойкху [[:$1]], цо хуьлуьйту кепан чохь цикл (чакхейоцу рекурсиван кхайкхам).",
 	"parser-template-recursion-depth-warning": "Дозанал хьаладаьлла кӀоргенца йух-йуха дина кеп ($1)",
 	"node-count-exceeded-category": "Шедийн дукхалла сов даьлла агӀонаш",
 	"node-count-exceeded-warning": "Шедийн дукхалла сов даьлла агӀонаш",

@@ -1592,7 +1592,7 @@
 	"ignorewarning": "Lassa perder l'avis e salva el fail comunque",
 	"ignorewarnings": "Ignora tucc i avertiment",
 	"minlength1": "El nome del fail el gh'hà de vesser longh almanch vun carater",
-	"illegalfilename": "El nom del fail \"$1\" el gh'hà dent di carater minga permetud in di titoi di pagine. Dagh al fail on alter nom e prova a caregall su anmò.",
+	"illegalfilename": "El nom del fail \"$1\" el gh'ha dent di carater minga permetud in di titoi di pagine. Dàgh on alter nom  al fail e proeuva a caregàll su an'mò.",
 	"filename-toolong": "I nom di fail poden no vesser pussee longh de 240 bytes",
 	"badfilename": "El nom del fail l'è stad cambiad in \"$1\".",
 	"filetype-mime-mismatch": "L'estension del fail \".$1\" la corispond minga al tipo MIME del fail ($2).",

@@ -2908,6 +2908,7 @@
 	"logentry-newusers-create2": "La konto dil uzero $3 kreesis da $1",
 	"logentry-newusers-byemail": "La konto dil uzero $3 kreesis da $1, e la pasovorto sendesis per e-posto",
 	"logentry-newusers-autocreate": "L'uzanto $1 {{GENDER:$2|kreesis}} automatale",
+	"logentry-protect-move_prot": "$1 {{GENDER:$2|modifikis}} la protekto-formo di ca artiklo de $4 a $3",
 	"logentry-protect-unprotect": "$1 {{GENDER:$2|desprotektis}} l'artiklo $3",
 	"logentry-protect-protect": "$1 protektis la pagino $3 $4",
 	"logentry-protect-modify": "$1 {{GENDER:$2|modifikis}} la nivelo di protekto por $3 $4",

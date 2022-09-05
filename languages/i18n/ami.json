@@ -7,7 +7,8 @@
 			"Alofay",
 			"Ljying",
 			"Panay Masaw",
-			"嚴美鳳"
+			"嚴美鳳",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "malaliting to la^noay a konis.",
@@ -700,7 +701,7 @@
 	"tag-filter": "[[Special:Tags|sakacipinang a ’otoc]] misolap：",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|sakacipinang a ’otoc}}]]: $2",
 	"tag-mw-rollback": " patatikol",
-	"tag-mw-undo": " patikor",
+	"tag-mw-undo": "patikor",
 	"tags-source-header": "lalengatan",
 	"tags-active-yes": "hay",
 	"tags-active-no": "caay",
