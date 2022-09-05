@@ -149,7 +149,7 @@
 	"tog-watchrollback": "將我曾經回退的頁面加入監視清單",
 	"tog-minordefault": "預設將所有編輯標記為次要修訂",
 	"tog-previewontop": "於編輯框上方顯示預覽",
-	"tog-previewonfirst": "第一次編輯時顯示預覽",
+	"tog-previewonfirst": "開始編輯時顯示預覽",
 	"tog-enotifwatchlistpages": "當我的監視清單中的頁面或檔案有變更時，傳送電子郵件通知我",
 	"tog-enotifusertalkpages": "當我的使用者討論頁有變更時，傳送電子郵件通知我",
 	"tog-enotifminoredits": "當頁面與檔案有次要修訂時，傳送電子郵件通知我",
