@@ -1035,22 +1035,17 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers User::getBlockedStatus
-	 * @covers User::getBlockId
 	 * @covers User::getBlock
-	 * @covers User::blockedBy
 	 * @covers User::blockedFor
 	 * @covers User::isHidden
 	 * @covers User::isBlockedFrom
 	 */
 	public function testBlockInstanceCache() {
-		$this->hideDeprecated( 'User::blockedBy' );
 		$this->hideDeprecated( 'User::blockedFor' );
-		$this->hideDeprecated( 'User::getBlockId' );
 		// First, check the user isn't blocked
 		$user = $this->getMutableTestUser()->getUser();
 		$ut = Title::makeTitle( NS_USER_TALK, $user->getName() );
 		$this->assertNull( $user->getBlock( false ) );
-		$this->assertSame( '', $user->blockedBy() );
 		$this->assertSame( '', $user->blockedFor() );
 		$this->assertFalse( $user->isHidden() );
 		$this->assertFalse( $user->isBlockedFrom( $ut ) );
@@ -1071,11 +1066,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		// Clear cache and confirm it loaded the block properly
 		$user->clearInstanceCache();
 		$this->assertInstanceOf( DatabaseBlock::class, $user->getBlock( false ) );
-		$this->assertSame( $blocker->getName(), $user->blockedBy() );
 		$this->assertSame( 'Because', $user->blockedFor() );
 		$this->assertTrue( $user->isHidden() );
 		$this->assertTrue( $user->isBlockedFrom( $ut ) );
-		$this->assertSame( $res['id'], $user->getBlockId() );
 
 		// Unblock
 		$blockStore->deleteBlock( $block );
@@ -1083,11 +1076,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		// Clear cache and confirm it loaded the not-blocked properly
 		$user->clearInstanceCache();
 		$this->assertNull( $user->getBlock( false ) );
-		$this->assertSame( '', $user->blockedBy() );
 		$this->assertSame( '', $user->blockedFor() );
 		$this->assertFalse( $user->isHidden() );
 		$this->assertFalse( $user->isBlockedFrom( $ut ) );
-		$this->assertFalse( $user->getBlockId() );
 	}
 
 	/**
