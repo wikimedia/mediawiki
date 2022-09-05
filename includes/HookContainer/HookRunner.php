@@ -487,7 +487,6 @@ class HookRunner implements
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderJqueryMsgModuleMagicWordsHook,
 	\MediaWiki\Rest\Hook\SearchResultProvideDescriptionHook,
-	\MediaWiki\Rest\Hook\SearchResultProvideThumbnailHook,
 	\MediaWiki\Revision\Hook\ContentHandlerDefaultModelForHook,
 	\MediaWiki\Revision\Hook\RevisionRecordInsertedHook,
 	\MediaWiki\Search\Hook\PrefixSearchBackendHook,
@@ -499,6 +498,7 @@ class HookRunner implements
 	\MediaWiki\Search\Hook\SearchGetNearMatchHook,
 	\MediaWiki\Search\Hook\SearchIndexFieldsHook,
 	\MediaWiki\Search\Hook\SearchResultInitFromTitleHook,
+	\MediaWiki\Search\Hook\SearchResultProvideThumbnailHook,
 	\MediaWiki\Search\Hook\SearchResultsAugmentHook,
 	\MediaWiki\Search\Hook\ShowSearchHitHook,
 	\MediaWiki\Search\Hook\ShowSearchHitTitleHook,
@@ -3313,10 +3313,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onSearchResultProvideThumbnail( array $pageIdentities, &$thumbnails ) {
+	public function onSearchResultProvideThumbnail( array $pageIdentities, &$thumbnails, int $size = null ) {
 		return $this->container->run(
 			'SearchResultProvideThumbnail',
-			[ $pageIdentities, &$thumbnails ]
+			[ $pageIdentities, &$thumbnails, $size ]
 		);
 	}
 

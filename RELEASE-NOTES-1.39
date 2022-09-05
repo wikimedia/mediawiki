@@ -91,6 +91,9 @@ For notes on 1.38.x and older releases, see HISTORY.
 * …
 
 === New developer features in 1.39 ===
+* Added optional $size param to SearchResultProvideThumbnail hook.
+* SearchResultProvideThumbnail hook interface moved from MediaWiki\Rest\Hook
+  namespace to MediaWiki\Search\Hook.
 * JsonValidateSaveHook has been added to allow extensions to set additional
   pre-save validations for specific JSON pages (T313254)
 * Added 'PermissionErrorAudit' hook, enabling extensions to audit permission
