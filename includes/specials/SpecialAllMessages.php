@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -32,6 +34,12 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class SpecialAllMessages extends SpecialPage {
 
+	/** @var LanguageFactory */
+	private $languageFactory;
+
+	/** @var LanguageNameUtils */
+	private $languageNameUtils;
+
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
@@ -39,14 +47,20 @@ class SpecialAllMessages extends SpecialPage {
 	private $localisationCache;
 
 	/**
+	 * @param LanguageFactory $languageFactory
+	 * @param LanguageNameUtils $languageNameUtils
 	 * @param LocalisationCache $localisationCache
 	 * @param ILoadBalancer $loadBalancer
 	 */
 	public function __construct(
+		LanguageFactory $languageFactory,
+		LanguageNameUtils $languageNameUtils,
 		LocalisationCache $localisationCache,
 		ILoadBalancer $loadBalancer
 	) {
 		parent::__construct( 'Allmessages' );
+		$this->languageFactory = $languageFactory;
+		$this->languageNameUtils = $languageNameUtils;
 		$this->localisationCache = $localisationCache;
 		$this->loadBalancer = $loadBalancer;
 	}
@@ -84,6 +98,8 @@ class SpecialAllMessages extends SpecialPage {
 		$pager = new AllMessagesTablePager(
 			$this->getContext(),
 			$this->getContentLanguage(),
+			$this->languageFactory,
+			$this->languageNameUtils,
 			$this->getLinkRenderer(),
 			$this->loadBalancer,
 			$this->localisationCache,

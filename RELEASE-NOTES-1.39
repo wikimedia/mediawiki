@@ -91,6 +91,9 @@ For notes on 1.38.x and older releases, see HISTORY.
 * …
 
 === New developer features in 1.39 ===
+* Added optional $size param to SearchResultProvideThumbnail hook.
+* SearchResultProvideThumbnail hook interface moved from MediaWiki\Rest\Hook
+  namespace to MediaWiki\Search\Hook.
 * JsonValidateSaveHook has been added to allow extensions to set additional
   pre-save validations for specific JSON pages (T313254)
 * Added 'PermissionErrorAudit' hook, enabling extensions to audit permission
@@ -416,6 +419,8 @@ because of Phabricator reports.
 * DBConnRef doesn't accept live connection in constructor anymore.
   Only parameters for getting connection should be provided.
 * IDatabase::getTopologyRootPrimary() was removed.
+* User::blockedBy(), deprecated since 1.38, has been removed.
+* User::getBlockId(), deprecated since 1.38, has been removed.
 * …
 
 === Deprecations in 1.39 ===

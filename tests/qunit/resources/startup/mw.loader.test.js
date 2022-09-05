@@ -861,7 +861,7 @@
 	QUnit.test( 'importScript()', function ( assert ) {
 		/* global importScript */
 		mw.config.set( 'wgScript', '/w/index.php' );
-		var stub = this.sandbox.stub( mw.loader, 'load' );
+		var stub = this.sandbox.stub( mw.loader, 'addScriptTag' );
 
 		importScript( 'User:Foo bar!/Scripts=Love/example@2.js' );
 		assert.deepEqual( stub.getCall( 0 ).args, [
@@ -872,12 +872,11 @@
 	QUnit.test( 'importStylesheet()', function ( assert ) {
 		/* global importStylesheet */
 		mw.config.set( 'wgScript', '/w/index.php' );
-		var stub = this.sandbox.stub( mw.loader, 'load' );
+		var stub = this.sandbox.stub( mw.loader, 'addLinkTag' );
 
 		importStylesheet( 'User:Foo bar!/Scripts=Love/example@2.css' );
 		assert.deepEqual( stub.getCall( 0 ).args, [
-			'/w/index.php?title=User:Foo_bar!/Scripts%3DLove/example@2.css&action=raw&ctype=text/css',
-			'text/css'
+			'/w/index.php?title=User:Foo_bar!/Scripts%3DLove/example@2.css&action=raw&ctype=text/css'
 		] );
 	} );
 

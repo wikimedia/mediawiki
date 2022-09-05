@@ -662,6 +662,8 @@ class SpecialPageFactory {
 		'Allmessages' => [
 			'class' => \SpecialAllMessages::class,
 			'services' => [
+				'LanguageFactory',
+				'LanguageNameUtils',
 				'LocalisationCache',
 				'DBLoadBalancer',
 			]

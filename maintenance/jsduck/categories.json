@@ -5,6 +5,7 @@
 			{
 				"name": "Base",
 				"classes": [
+					"global",
 					"mw",
 					"mw.Message",
 					"mw.loader",
