@@ -203,7 +203,7 @@
 	"tog-watchrollback": "将我执行过回退的页面添加到我的监视列表",
 	"tog-minordefault": "默认标记所有编辑为小编辑",
 	"tog-previewontop": "在编辑框上方显示预览",
-	"tog-previewonfirst": "首次编辑时显示预览",
+	"tog-previewonfirst": "开始编辑时显示预览",
 	"tog-enotifwatchlistpages": "当我的监视列表中的页面或文件发生更改时发送电子邮件通知我",
 	"tog-enotifusertalkpages": "当我的用户讨论页发生更改时发送电子邮件通知我",
 	"tog-enotifminoredits": "当我的监视列表中的页面和文件有小编辑时也发送电子邮件通知我",
