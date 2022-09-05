@@ -117,6 +117,7 @@ class LanguageFactory {
 
 	/**
 	 * Get a cached or new language object for a given language code
+	 * with normalization of the language code.
 	 * @param string $code
 	 * @throws MWException if the language code contains dangerous characters, e.g. HTML special
 	 *  characters or characters illegal in MediaWiki titles.
@@ -124,6 +125,19 @@ class LanguageFactory {
 	 */
 	public function getLanguage( $code ): Language {
 		$code = $this->options->get( MainConfigNames::DummyLanguageCodes )[$code] ?? $code;
+		return $this->getRawLanguage( $code );
+	}
+
+	/**
+	 * Get a cached or new language object for a given language code
+	 * without normalization of the language code.
+	 * @param string $code
+	 * @throws MWException if the language code contains dangerous characters, e.g. HTML special
+	 *  characters or characters illegal in MediaWiki titles.
+	 * @return Language
+	 * @since 1.39
+	 */
+	public function getRawLanguage( $code ): Language {
 		return $this->langObjCache->getWithSetCallback(
 			$code,
 			function () use ( $code ) {
