@@ -34,6 +34,9 @@ use Wikimedia\Rdbms\MySQLPrimaryPos;
 use Wikimedia\Rdbms\Platform\MySQLPlatform;
 use Wikimedia\TestingAccessWrapper;
 
+/**
+ * @covers \Wikimedia\Rdbms\DatabaseMysqlBase
+ */
 class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
@@ -56,9 +59,6 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		return $db;
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::listViews
-	 */
 	public function testListviews() {
 		$db = $this->getMockForViews();
 
@@ -82,7 +82,6 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testBinLogName() {
 		$pos = new MySQLPrimaryPos( "db1052.2424/4643", 1 );
 
-		$this->assertEquals( "db1052", $pos->getLogName() );
 		$this->assertEquals( "db1052.2424", $pos->getLogFile() );
 		$this->assertEquals( [ 2424, 4643 ], $pos->getLogPosition() );
 	}
@@ -293,8 +292,6 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideLagAmounts
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::getLag
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::getLagFromPtHeartbeat
 	 */
 	public function testPtHeartbeat( $lag ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
@@ -339,8 +336,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @dataProvider provideGtidData
 	 * @covers \Wikimedia\Rdbms\MySQLPrimaryPos
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::getReplicaPos
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::getPrimaryPos
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase
 	 */
 	public function testServerGtidTable( $gtable, $rBLtable, $mBLtable, $rGTIDs, $mGTIDs ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
@@ -507,7 +503,6 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::isInsertSelectSafe
 	 * @dataProvider provideInsertSelectCases
 	 */
 	public function testInsertSelectIsSafe( $insertOpts, $selectOpts, $row, $safe ) {
@@ -600,9 +595,6 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		];
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::buildIntegerCast
-	 */
 	public function testBuildIntegerCast() {
 		$db = $this->createPartialMock( DatabaseMysqli::class, [] );
 		TestingAccessWrapper::newFromObject( $db )->platform = new MySQLPlatform( new AddQuoterMock() );
@@ -613,7 +605,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform::normalizeJoinType
+	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
 	 */
 	public function testNormalizeJoinType() {
 		$platform = new MySQLPlatform( new AddQuoterMock() );
@@ -632,7 +624,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform::normalizeJoinType
+	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
 	 */
 	public function testNormalizeJoinTypeSqb() {
 		$db = $this->createPartialMock( DatabaseMysqli::class, [] );
@@ -655,7 +647,9 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\Database::setIndexAliases
+	 * @covers \Wikimedia\Rdbms\Database
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase
+	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
 	 */
 	public function testIndexAliases() {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
@@ -691,7 +685,9 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\Database::setTableAliases
+	 * @covers \Wikimedia\Rdbms\Database
+	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform
+	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
 	 */
 	public function testTableAliases() {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
@@ -727,7 +723,9 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::selectSQLText
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase
+	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform
+	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
 	 */
 	public function testMaxExecutionTime() {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
@@ -753,8 +751,8 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers \Wikimedia\Rdbms\Database::streamStatementEnd
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::streamStatementEnd
+	 * @covers \Wikimedia\Rdbms\Database
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase
 	 */
 	public function testStreamStatementEnd() {
 		/** @var DatabaseMysqlBase $db */

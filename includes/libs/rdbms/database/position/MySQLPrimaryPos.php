@@ -6,16 +6,17 @@ use InvalidArgumentException;
 use UnexpectedValueException;
 
 /**
- * DBPrimaryPos class for MySQL/MariaDB
+ * DBPrimaryPos implementation for MySQL and MariaDB.
  *
  * Note that primary positions and sync logic here make some assumptions:
- *  - Binlog-based usage assumes single-source replication and non-hierarchical replication.
- *  - GTID-based usage allows getting/syncing with multi-source replication. It is assumed
- *    that GTID sets are complete (e.g. include all domains on the server).
+ *
+ * - Binlog-based usage assumes single-source replication and non-hierarchical replication.
+ * - GTID-based usage allows getting/syncing with multi-source replication. It is assumed
+ *   that GTID sets are complete (e.g. include all domains on the server).
  *
  * @see https://mariadb.com/kb/en/library/gtid/
  * @see https://dev.mysql.com/doc/refman/5.6/en/replication-gtids-concepts.html
- * @since 1.37
+ * @internal
  */
 class MySQLPrimaryPos implements DBPrimaryPos {
 	/** @var string One of (BINARY_LOG, GTID_MYSQL, GTID_MARIA) */
@@ -156,14 +157,6 @@ class MySQLPrimaryPos implements DBPrimaryPos {
 		$thatBinPos = $pos->getBinlogCoordinates();
 
 		return ( $thisBinPos && $thatBinPos && $thisBinPos['binlog'] === $thatBinPos['binlog'] );
-	}
-
-	/**
-	 * @return string|null Base name of binary log files
-	 * @since 1.31
-	 */
-	public function getLogName() {
-		return $this->gtids ? null : $this->binLog;
 	}
 
 	/**
