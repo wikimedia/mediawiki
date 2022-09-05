@@ -160,14 +160,6 @@ class MySQLPrimaryPos implements DBPrimaryPos {
 	}
 
 	/**
-	 * @return string|null Base name of binary log files
-	 * @since 1.31
-	 */
-	public function getLogName() {
-		return $this->gtids ? null : $this->binLog;
-	}
-
-	/**
 	 * @return array<int,int|string>|null Tuple of (binary log file number, 64 bit event number)
 	 * @since 1.31
 	 */
