@@ -24262,7 +24262,7 @@ Security:
 * Added detection for WMF files (application/x-msmetafile), added this
   MIME type to the default blacklist. Prevented inline display of images
   which are not of known image types. This is in response to
-  http://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
+  https://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
 * Blocked users can no longer roll back, change the protection of, or
   delete/undelete pages
 * Protect against spoofing of X-Forwarded-For header
@@ -24552,7 +24552,7 @@ fully support the editing toolbar, but was found to be too confusing.
 * Add ".deps.php" include-file preloaders for some dynamically-loaded
   language and skin classes. Should help with the broken base-class
   problem under PHP 5 with APC as opcode cache. See details:
-  http://mail.wikipedia.org/pipermail/wikitech-l/2006-January/033660.html
+  https://lists.wikimedia.org/hyperkitty/list/wikitech-l@lists.wikimedia.org/thread/4NVSC4LAZX6ACO77QVLRQYAWULAJCKJ2/
 * Small changes to tabs in Monobook skin c/o Chris Ware
 * (bug 4679) Work around buggy basename() function in PHP5, which breaks
   uploads of files starting with multibyte characters on Linux.
@@ -24809,7 +24809,7 @@ that malicious .wmf files can't be uploaded with a fake extension;
 such files could put visitors to the site at risk.
 
 For more details on this, see:
-http://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
+https://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
 
 Additionally, a maintenance script removeUnusedAccounts.php has been added;
 this replaces an older Perl script which had not been updated for the new
@@ -25231,7 +25231,7 @@ Various bugfixes, small features, and a few experimental things:
 * (bug 1662) A new magicword, {{CURRENTMONTHABBREV}} returns the abbreviation of
   the current month
 * (bug 1668) 'Date format' supported for other languages than English, see:
-  http://mail.wikipedia.org/pipermail/wikitech-l/2005-March/028364.html
+  https://lists.wikimedia.org/hyperkitty/list/wikitech-l@lists.wikimedia.org/thread/5SH5IDCNYZTRBQQZ33GS7WYDEJ3PSEZE/
 * (bug 1739) A new magicword, {{REVISIONID}} give you the article or diff
   database revision id, useful for proper citation.
 * (bug 1998) Updated the Russian translation.
@@ -25814,7 +25814,7 @@ of MediaWiki:Newpagetext) to &action=edit, if page is new.
 * Added detection for WMF files (application/x-msmetafile), added this
   MIME type to the default blacklist. Prevented inline display of images
   which are not of known image types. This is in response to
-  http://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
+  https://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
 
 === Changes since 1.5.5 ===
 
@@ -25912,7 +25912,7 @@ Windows operating systems. Sites which have enabled uploads and added
 non-standard file types (such as .ogg, .doc, or .pdf) should upgrade to this
 release to ensure that malicious .wmf files can't be uploaded with a fake
 extension; such files could put visitors to the site at risk. For more details
-on this, see: http://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
+on this, see: https://en.wikipedia.org/wiki/Windows_Metafile_vulnerability
 
 == MediaWiki 1.4.12 ==
 (released 2005-11-02) MediaWiki 1.4.12 is a bugfix and security maintenance

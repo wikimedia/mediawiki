@@ -119,7 +119,7 @@ class ImportImages extends Maintenance {
 		$this->addOption( 'unprotect', 'Unprotects all uploaded images' );
 		$this->addOption( 'source-wiki-url',
 			'If specified, take User and Comment data for each imported file from this URL. '
-				. 'For example, --source-wiki-url="http://en.wikipedia.org/',
+				. 'For example, --source-wiki-url="https://en.wikipedia.org/w/',
 			false,
 			true
 		);
