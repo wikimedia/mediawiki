@@ -234,7 +234,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
 			[
 				'Prev/next links are using the rewritten query',
-				'/search=rewritten\+query" title="Next 20 results"/',
+				'/search=rewritten\+query" rel="next" title="Next 20 results"/',
 				'original query',
 				'rewritten query',
 				array_fill( 0, 100, Title::newMainPage() )

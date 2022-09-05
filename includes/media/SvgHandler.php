@@ -539,7 +539,7 @@ class SvgHandler extends ImageHandler {
 		if ( $name == 'lang' ) {
 			// Validate $code
 			if ( $value === ''
-				|| !Language::isWellFormedLanguageTag( $value )
+				|| !LanguageCode::isWellFormedLanguageTag( $value )
 			) {
 				return false;
 			}
@@ -572,7 +572,7 @@ class SvgHandler extends ImageHandler {
 		$m = false;
 		// Language codes are supposed to be lowercase
 		if ( preg_match( '/^lang([a-z]+(?:-[a-z]+)*)-(\d+)px$/', $str, $m ) ) {
-			if ( Language::isWellFormedLanguageTag( $m[1] ) ) {
+			if ( LanguageCode::isWellFormedLanguageTag( $m[1] ) ) {
 				return [ 'width' => array_pop( $m ), 'lang' => $m[1] ];
 			}
 			return [ 'width' => array_pop( $m ), 'lang' => self::SVG_DEFAULT_RENDER_LANG ];
