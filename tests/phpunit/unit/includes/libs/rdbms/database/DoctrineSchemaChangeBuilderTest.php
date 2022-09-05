@@ -2,7 +2,6 @@
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Platforms\MySQLPlatform;
-use Doctrine\DBAL\Platforms\SqlitePlatform;
 use Wikimedia\Rdbms\DoctrineSchemaChangeBuilder;
 use Wikimedia\Rdbms\MWPostgreSqlPlatform;
 
@@ -39,9 +38,10 @@ class DoctrineSchemaChangeBuilderTest extends MediaWikiUnitTestCase {
 			'/data/db/postgres/patch-drop-ct_tag.sql'
 		];
 
-		yield 'SQLite schema tables' => [
-			new SqlitePlatform,
-			'/data/db/sqlite/patch-drop-ct_tag.sql'
-		];
+		// See gerrit 827510
+		// yield 'SQLite schema tables' => [
+		// 	new SqlitePlatform,
+		// 	'/data/db/sqlite/patch-drop-ct_tag.sql'
+		// ];
 	}
 }
