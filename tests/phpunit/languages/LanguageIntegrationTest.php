@@ -458,7 +458,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * The test cases are based on the tests in the GaBuZoMeu parser
 	 * written by Stéphane Bortzmeyer <bortzmeyer@nic.fr>
 	 * and distributed as free software, under the GNU General Public Licence.
-	 * http://www.bortzmeyer.org/gabuzomeu-parsing-language-tags.html
+	 * https://www.bortzmeyer.org/gabuzomeu-parsing-language-tags.html
 	 */
 	public static function provideWellFormedLanguageTags() {
 		return [
