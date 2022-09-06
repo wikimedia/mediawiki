@@ -3038,6 +3038,7 @@
 	"allmessagescurrent": "Current message text",
 	"allmessagestext": "This is a list of system messages available in the MediaWiki namespace.\nPlease visit [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki Localisation] and [https://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.",
 	"allmessages-not-supported-database": "This page cannot be used because <strong>$wgUseDatabaseMessages</strong> has been disabled.",
+	"allmessages-unknown-language": "The language code <code>$1</code> is unknown.",
 	"allmessages-filter-legend": "Filter",
 	"allmessages-filter": "Filter by customization state:",
 	"allmessages-filter-unmodified": "Unmodified",

@@ -27,6 +27,7 @@ use AllMessagesTablePager;
 use HTMLForm;
 use LocalisationCache;
 use MediaWiki\Html\FormOptions;
+use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
@@ -102,11 +103,22 @@ class SpecialAllMessages extends SpecialPage {
 		$opts->fetchValuesFromRequest( $this->getRequest() );
 		$opts->validateIntBounds( 'limit', 0, 5000 );
 
+		if ( !$this->languageNameUtils->isKnownLanguageTag( $opts->getValue( 'lang' ) ) ) {
+			// Show a warning message and fallback to content language
+			$out->addHTML(
+				Html::warningBox(
+					$this->msg( 'allmessages-unknown-language' )
+						->plaintextParams( $opts->getValue( 'lang' ) )
+						->parse()
+				)
+			);
+			$opts->setValue( 'lang', $contLangCode );
+		}
+
 		$pager = new AllMessagesTablePager(
 			$this->getContext(),
 			$this->getContentLanguage(),
 			$this->languageFactory,
-			$this->languageNameUtils,
 			$this->getLinkRenderer(),
 			$this->dbProvider,
 			$this->localisationCache,
