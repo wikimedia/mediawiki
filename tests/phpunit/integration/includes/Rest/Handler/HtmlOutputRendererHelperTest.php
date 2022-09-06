@@ -15,7 +15,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
-use MediaWiki\Rest\Handler\ParsoidHTMLHelper;
+use MediaWiki\Rest\Handler\HtmlOutputRendererHelper;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -36,10 +36,10 @@ use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use WikitextContent;
 
 /**
- * @covers \MediaWiki\Rest\Handler\ParsoidHTMLHelper
+ * @covers \MediaWiki\Rest\Handler\HtmlOutputRendererHelper
  * @group Database
  */
-class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
+class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	private const CACHE_EPOCH = '20001111010101';
 
 	private const TIMESTAMP_OLD = '20200101112233';
@@ -138,14 +138,18 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param BagOStuff|null $cache
 	 * @param ?ParsoidOutputAccess $access
-	 * @return ParsoidHTMLHelper
+	 *
+	 * @return HtmlOutputRendererHelper
 	 * @throws Exception
 	 */
-	private function newHelper( BagOStuff $cache = null, ?ParsoidOutputAccess $access = null ): ParsoidHTMLHelper {
+	private function newHelper(
+		BagOStuff $cache = null,
+		?ParsoidOutputAccess $access = null
+	): HtmlOutputRendererHelper {
 		$cache = $cache ?: new EmptyBagOStuff();
 		$stash = new SimpleParsoidOutputStash( $cache, 1 );
 
-		$helper = new ParsoidHTMLHelper(
+		$helper = new HtmlOutputRendererHelper(
 			$stash,
 			new NullStatsdDataFactory(),
 			$access ?? $this->newMockParsoidOutputAccess()
@@ -278,7 +282,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Rest\Handler\ParsoidHTMLHelper::init
+	 * @covers \MediaWiki\Rest\Handler\HtmlOutputRendererHelper::init
 	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parse
 	 */
 	public function testEtagLastModifiedWithPageIdentity() {
@@ -428,7 +432,7 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Rest\Handler\ParsoidHTMLHelper::getParserOutput
+	 * @covers \MediaWiki\Rest\Handler\HtmlOutputRendererHelper::getParserOutput
 	 * @dataProvider provideParserOptions
 	 */
 	public function testGetParserOutputWithLanguageOverride( $parserOptions, $expectedLangCode ) {

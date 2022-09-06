@@ -46,7 +46,7 @@ use Wikimedia\ParamValidator\ParamValidator;
  * @unstable Pending consolidation of the Parsoid extension with core code.
  *           Part of this class should probably become a service.
  */
-class ParsoidHTMLHelper {
+class HtmlOutputRendererHelper {
 	/**
 	 * @internal
 	 * @var string[]
@@ -147,14 +147,14 @@ class ParsoidHTMLHelper {
 				$this->parsoidOutputAccess->getParsoidPageBundle( $parserOutput )
 			);
 			if ( !$stashSuccess ) {
-				$this->stats->increment( 'parsoidhtmlhelper.stash.fail' );
+				$this->stats->increment( 'htmloutputrendererhelper.stash.fail' );
 				throw new LocalizedHttpException(
 					MessageValue::new( 'rest-html-backend-error' ),
 					500,
 					[ 'reason' => 'Failed to stash parser output' ]
 				);
 			}
-			$this->stats->increment( 'parsoidhtmlhelper.stash.save' );
+			$this->stats->increment( 'htmloutputrendererhelper.stash.save' );
 		}
 
 		return $parserOutput;
