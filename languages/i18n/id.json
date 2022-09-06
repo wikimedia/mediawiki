@@ -3785,7 +3785,7 @@
 	"feedback-thanks-title": "Terima kasih!",
 	"feedback-useragent": "Agen pengguna:",
 	"searchsuggest-search": "Telusuri {{SITENAME}}",
-	"searchsuggest-containing": "Cari halaman yang berisi istilah ini",
+	"searchsuggest-containing": "Cari halaman yang berisi istilah",
 	"search-match-redirect-label": "Arahkan ulang ke pencocokan yang tepat saat mencari",
 	"search-match-redirect-help": "Pilih untuk dialihkan ke halaman saat judul halaman itu cocok dengan apa yang Anda cari",
 	"searchlimit-label": "Banyak hasil pencarian yang ditampilkan per halaman:",
