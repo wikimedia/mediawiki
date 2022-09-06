@@ -186,16 +186,7 @@ CREATE TABLE templatelinks (
   tl_from INT DEFAULT 0 NOT NULL,
   tl_target_id BIGINT NOT NULL,
   tl_from_namespace INT DEFAULT 0 NOT NULL,
-  tl_namespace INT DEFAULT 0 NOT NULL,
-  tl_title TEXT DEFAULT '' NOT NULL,
   PRIMARY KEY(tl_from, tl_target_id)
-);
-
-CREATE INDEX tl_namespace ON templatelinks (tl_namespace, tl_title, tl_from);
-
-CREATE INDEX tl_backlinks_namespace ON templatelinks (
-  tl_from_namespace, tl_namespace,
-  tl_title, tl_from
 );
 
 CREATE INDEX tl_target_id ON templatelinks (tl_target_id, tl_from);

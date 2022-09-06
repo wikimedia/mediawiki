@@ -3212,7 +3212,7 @@ class MainConfigSchema {
 	 *     and support for SCHEMA_COMPAT_OLD is dropped.
 	 */
 	public const TemplateLinksSchemaMigrationStage = [
-		'default' => SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
+		'default' => SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_NEW,
 		'type' => 'integer',
 	];
 
