@@ -27,7 +27,7 @@ use Wikimedia\Assert\Assert;
  */
 class RevisionHTMLHandler extends SimpleHandler {
 
-	/** @var ParsoidHTMLHelper */
+	/** @var HtmlOutputRendererHelper */
 	private $htmlHelper;
 
 	/** @var RevisionContentHelper */
@@ -48,7 +48,7 @@ class RevisionHTMLHandler extends SimpleHandler {
 			$titleFormatter,
 			$pageLookup
 		);
-		$this->htmlHelper = new ParsoidHTMLHelper(
+		$this->htmlHelper = new HtmlOutputRendererHelper(
 			$parsoidOutputStash,
 			$statsDataFactory,
 			$parsoidOutputAccess
