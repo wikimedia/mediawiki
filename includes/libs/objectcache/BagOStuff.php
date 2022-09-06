@@ -544,21 +544,6 @@ abstract class BagOStuff implements
 	abstract public function addBusyCallback( callable $workCallback );
 
 	/**
-	 * Make a cache key for the given keyspace and components
-	 *
-	 * Long components might be converted to respective hashes due to size constraints.
-	 * In extreme cases, all of them might be combined into a single hash component.
-	 *
-	 * @internal This method should not be used outside of BagOStuff (since 1.36)
-	 *
-	 * @param string $keyspace Keyspace component
-	 * @param string[]|int[] $components Key components (key collection name first)
-	 * @return string Keyspace-prepended list of encoded components as a colon-separated value
-	 * @since 1.27
-	 */
-	abstract public function makeKeyInternal( $keyspace, $components );
-
-	/**
 	 * Make a cache key for the default keyspace and given components
 	 *
 	 * @see IStoreKeyEncoder::makeGlobalKey()
