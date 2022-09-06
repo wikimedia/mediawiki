@@ -191,13 +191,6 @@ class PageHistoryHandler extends SimpleHandler {
 		];
 
 		if ( $params['filter'] ) {
-			// This redundant join condition tells MySQL that rev_page and revactor_page are the
-			// same, so it can propagate the condition
-			if ( isset( $revQuery['tables']['temp_rev_user'] ) /* SCHEMA_COMPAT_READ_TEMP */ ) {
-				$revQuery['joins']['temp_rev_user'][1] =
-					"temp_rev_user.revactor_rev = rev_id AND revactor_page = rev_page";
-			}
-
 			// The validator ensures this value, if present, is one of the expected values
 			switch ( $params['filter'] ) {
 				case 'bot':
@@ -258,7 +251,6 @@ class PageHistoryHandler extends SimpleHandler {
 		$limit = self::REVISIONS_RETURN_LIMIT + 1;
 
 		$res = $dbr->select(
-			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			$revQuery['tables'],
 			$revQuery['fields'],
 			$cond,
