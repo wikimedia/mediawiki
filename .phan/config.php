@@ -104,6 +104,18 @@ $cfg['exclude_analysis_directory_list'] = [
 	'includes/PHPVersionCheck.php',
 ];
 
+if ( version_compare( PHP_VERSION, '7.4.0', '<' ) ) {
+	$cfg['exclude_analysis_directory_list'] = array_merge(
+		$cfg['exclude_analysis_directory_list'],
+		[
+			'includes/libs/rdbms/dbal/MWMySQLPlatform.php',
+			'includes/libs/rdbms/dbal/MWMySQLPlatformCompat.php',
+			'includes/libs/rdbms/dbal/MWPostgreSqlPlatform.php',
+			'includes/libs/rdbms/dbal/MWPostgreSqlPlatformCompat.php',
+		]
+	);
+}
+
 // Do not use aliases in core.
 // Use the correct name, because we don't need backward compatibility
 $cfg['enable_class_alias_support'] = false;
