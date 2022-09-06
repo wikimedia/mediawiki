@@ -146,8 +146,6 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 		);
 		$targetRow = [
 			'tl_target_id' => $targetId,
-			'tl_namespace' => 0,
-			'tl_title' => 'BLCTest1234',
 		];
 		$this->db->insert( 'templatelinks', [
 			[ 'tl_from' => 56890, 'tl_from_namespace' => 0 ] + $targetRow,

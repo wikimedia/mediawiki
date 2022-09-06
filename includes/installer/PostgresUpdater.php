@@ -286,11 +286,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropPgIndex', 'pagelinks', 'pagelink_unique' ],
 			[ 'dropPgIndex', 'pagelinks', 'pagelinks_title' ],
 			[ 'dropFkey', 'templatelinks', 'tl_from' ],
-			[ 'changeField', 'templatelinks', 'tl_namespace', 'INT', 'tl_namespace::INT DEFAULT 0' ],
-			[ 'setDefault', 'templatelinks', 'tl_title', '' ],
-			[ 'addPgIndex', 'templatelinks', 'tl_namespace', '(tl_namespace,tl_title,tl_from)' ],
-			[ 'addPgIndex', 'templatelinks', 'tl_backlinks_namespace',
-				'(tl_from_namespace,tl_namespace,tl_title,tl_from)' ],
 			[ 'dropPgIndex', 'templatelinks', 'templatelinks_unique' ],
 			[ 'dropPgIndex', 'templatelinks', 'templatelinks_from' ],
 			[ 'dropFkey', 'imagelinks', 'il_from' ],
@@ -603,6 +598,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'migrateTemplatelinks' ],
 			[ 'changeNullableField', 'templatelinks', 'tl_target_id', 'NOT NULL', true ],
 			[ 'changePrimaryKey', 'templatelinks', [ 'tl_from', 'tl_target_id' ], 'templatelinks_pk' ],
+			[ 'dropField', 'templatelinks', 'tl_title', 'patch-templatelinks-drop-tl_title.sql' ],
 		];
 	}
 

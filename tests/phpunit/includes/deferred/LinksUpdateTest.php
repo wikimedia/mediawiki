@@ -4,6 +4,7 @@ use MediaWiki\Deferred\LinksUpdate\LinksTable;
 use MediaWiki\Deferred\LinksUpdate\LinksTableGroup;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
@@ -534,6 +535,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	public function testUpdate_templatelinks() {
 		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		$linkTargetLookup = MediaWikiServices::getInstance()->getLinkTargetLookup();
 
 		$target1 = Title::newFromText( "Template:T1" );
 		$target2 = Title::newFromText( "Template:T2" );
@@ -546,11 +548,11 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'templatelinks',
-			[ 'tl_namespace', 'tl_title' ],
+			[ 'tl_target_id' ],
 			'tl_from = ' . self::$testingPageId,
 			[
-				[ NS_TEMPLATE, 'T1' ],
-				[ NS_TEMPLATE, 'T2' ],
+				[ $linkTargetLookup->acquireLinkTargetId( $target1, $this->db ) ],
+				[ $linkTargetLookup->acquireLinkTargetId( $target2, $this->db ) ],
 			]
 		);
 
@@ -564,11 +566,11 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'templatelinks',
-			[ 'tl_namespace', 'tl_title' ],
+			[ 'tl_target_id' ],
 			'tl_from = ' . self::$testingPageId,
 			[
-				[ NS_TEMPLATE, 'T2' ],
-				[ NS_TEMPLATE, 'T3' ],
+				[ $linkTargetLookup->acquireLinkTargetId( $target2, $this->db ) ],
+				[ $linkTargetLookup->acquireLinkTargetId( $target3, $this->db ) ],
 			]
 		);
 	}

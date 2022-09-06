@@ -44,6 +44,10 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 			return false;
 		}
 		$targetColumn = $mapping[$table]['target_id'];
+		if ( !$dbw->fieldExists( $table, $mapping[$table]['title'], __METHOD__ ) ) {
+			$this->output( "Old fields don't exist. There is no need to run this script\n" );
+			return true;
+		}
 		if ( !$dbw->fieldExists( $table, $targetColumn, __METHOD__ ) ) {
 			$this->output( "Run update.php to create the $targetColumn column.\n" );
 			return false;

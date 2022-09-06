@@ -3,6 +3,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Rest\Handler\MediaTestTrait;
@@ -516,7 +517,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	 * Assert that links tables are updated after cross namespace page move (T299275).
 	 */
 	public function testCrossNamespaceLinksUpdate() {
-		$this->getExistingTestPage( Title::makeTitle( NS_TEMPLATE, 'Test' ) );
+		$title = Title::makeTitle( NS_TEMPLATE, 'Test' );
+		$this->getExistingTestPage( $title );
 
 		$wikitext = "[[Test]], [[Image:Existent.jpg]], {{Test}}";
 
@@ -543,12 +545,13 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				[ NS_MAIN, 'Test', NS_PROJECT ]
 			]
 		);
+		$targetId = MediaWikiServices::getInstance()->getLinkTargetLookup()->getLinkTargetId( $title );
 		$this->assertSelect(
 			'templatelinks',
-			[ 'tl_namespace', 'tl_title', 'tl_from_namespace' ],
+			[ 'tl_target_id', 'tl_from_namespace' ],
 			[ 'tl_from' => $pageId ],
 			[
-				[ NS_TEMPLATE, 'Test', NS_PROJECT ]
+				[ $targetId, NS_PROJECT ]
 			]
 		);
 		$this->assertSelect(
