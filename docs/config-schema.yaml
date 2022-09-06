@@ -1957,7 +1957,7 @@ config-schema:
             in milliseconds.
             @since 1.38
     TemplateLinksSchemaMigrationStage:
-        default: 259
+        default: 768
         type: integer
         description: |-
             Templatelinks table schema migration stage, for normalizing tl_namespace and tl_title fields.

@@ -222,6 +222,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropField', 'page', 'page_restrictions', 'patch-page-drop-page_restrictions.sql' ],
 			[ 'migrateTemplatelinks' ],
 			[ 'modifyField', 'templatelinks', 'tl_namespace', 'patch-templatelinks-tl_title-nullable.sql' ],
+			[ 'dropField', 'templatelinks', 'tl_title', 'patch-templatelinks-drop-tl_title.sql' ],
 		];
 	}
 

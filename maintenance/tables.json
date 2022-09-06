@@ -555,16 +555,6 @@
 				"options": { "notnull": true, "default": 0 }
 			},
 			{
-				"name": "tl_namespace",
-				"type": "integer",
-				"options": { "default": 0 }
-			},
-			{
-				"name": "tl_title",
-				"type": "binary",
-				"options": { "length": 255, "default": "" }
-			},
-			{
 				"name": "tl_target_id",
 				"type": "bigint",
 				"comment": "Foreign key to linktarget.lt_id",
@@ -572,18 +562,6 @@
 			}
 		],
 		"indexes": [
-			{
-				"name": "tl_namespace",
-				"columns": [ "tl_namespace", "tl_title", "tl_from" ],
-				"comment": "Reverse index, for Special:Whatlinkshere",
-				"unique": false
-			},
-			{
-				"name": "tl_backlinks_namespace",
-				"columns": [ "tl_from_namespace", "tl_namespace", "tl_title", "tl_from" ],
-				"comment": "Index for Special:Whatlinkshere with namespace filter",
-				"unique": false
-			},
 			{
 				"name": "tl_target_id",
 				"columns": [ "tl_target_id", "tl_from" ],

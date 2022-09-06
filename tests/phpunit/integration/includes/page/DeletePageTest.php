@@ -7,6 +7,7 @@ use Content;
 use ContentHandler;
 use DeferredUpdates;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
@@ -187,6 +188,9 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function assertLinksUpdateSetup( int $pageID ): void {
+		$linkTarget = MediaWikiServices::getInstance()->getLinkTargetLookup()->getLinkTargetId(
+			Title::makeTitle( NS_TEMPLATE, 'Multiple_issues' )
+		);
 		$this->assertSelect(
 			'pagelinks',
 			[ 'pl_namespace', 'pl_title' ],
@@ -195,9 +199,9 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertSelect(
 			'templatelinks',
-			[ 'tl_namespace', 'tl_title' ],
+			[ 'tl_target_id' ],
 			[ 'tl_from' => $pageID ],
-			[ [ NS_TEMPLATE, 'Multiple_issues' ] ]
+			[ [ $linkTarget ] ]
 		);
 		$this->assertSelect(
 			'categorylinks',
@@ -226,7 +230,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertSelect(
 			'templatelinks',
-			[ 'tl_namespace', 'tl_title' ],
+			[ 'tl_target_id' ],
 			[ 'tl_from' => $pageID ],
 			[]
 		);

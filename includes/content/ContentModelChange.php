@@ -110,11 +110,11 @@ class ContentModelChange {
 	}
 
 	/**
-	 * Check whether $performer can execute the move.
+	 * Check whether $performer can execute the content model change.
 	 *
 	 * @note this method does not guarantee full permissions check, so it should
-	 * only be used to to decide whether to show a move form. To authorize the move
-	 * action use {@link self::authorizeChange} instead.
+	 * only be used to to decide whether to show a content model change form.
+	 * To authorize the content model change action use {@link self::authorizeChange} instead.
 	 *
 	 * @return PermissionStatus
 	 */
@@ -127,10 +127,10 @@ class ContentModelChange {
 	}
 
 	/**
-	 * Authorize the move by $performer.
+	 * Authorize the content model change by $performer.
 	 *
-	 * @note this method should be used right before the actual move is performed.
-	 * To check whether a current performer has the potential to move the page,
+	 * @note this method should be used right before the actual content model change is performed.
+	 * To check whether a current performer has the potential to change the content model of the page,
 	 * use {@link self::probablyCanChange} instead.
 	 *
 	 * @return PermissionStatus
