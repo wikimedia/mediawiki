@@ -6,6 +6,7 @@
 			"Benel",
 			"Bunukwiki",
 			"DannyS712",
+			"Iyumu",
 			"Matma Rex",
 			"Tokoabibi",
 			"Xiplus"
@@ -558,6 +559,8 @@
 	"publishpage": "patiyak kasabelih",
 	"publishchanges": "patiyak misumad",
 	"savearticle-start": "misuped kasabelih...",
+	"publishpage-start": "patiyak kasabelih",
+	"publishchanges-start": "patiyak misumad",
 	"preview": "pataayaway miazih",
 	"showpreview": "paazih pataayaway miazih",
 	"showdiff": "paazih ku masumaday",
