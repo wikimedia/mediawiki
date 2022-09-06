@@ -538,11 +538,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 		$this->wallClockOverride =& $time;
 	}
 
-	private function marshalPositions( $positions ) {
-		if ( !$positions || empty( $positions[ self::FLD_POSITIONS ] ) ) {
-			return $positions;
-		}
-
+	private function marshalPositions( array $positions ) {
 		foreach ( $positions[ self::FLD_POSITIONS ] as $key => $pos ) {
 			$positions[ self::FLD_POSITIONS ][ $key ] = $pos->toArray();
 		}
@@ -550,19 +546,16 @@ class ChronologyProtector implements LoggerAwareInterface {
 		return $positions;
 	}
 
+	/**
+	 * @param array|false $positions
+	 * @return array|false
+	 */
 	private function unmarshalPositions( $positions ) {
-		if ( !$positions || empty( $positions[ self::FLD_POSITIONS ] ) ) {
+		if ( !$positions ) {
 			return $positions;
 		}
 
 		foreach ( $positions[ self::FLD_POSITIONS ] as $key => $pos ) {
-			if ( !is_array( $pos ) ) {
-				// Only needed when transitioning from earlier versions of the code that used
-				// native PHP serialization, so we'd encounter DBPrimaryPos objects here.
-				// Removing this would cause intermittent errors when updating to 1.39 or higher.
-				continue;
-			}
-
 			$class = $pos[ '_type_' ];
 			$positions[ self::FLD_POSITIONS ][ $key ] = $class::newFromArray( $pos );
 		}
