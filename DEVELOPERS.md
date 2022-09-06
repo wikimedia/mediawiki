@@ -26,21 +26,19 @@ Support is available on the [Libera IRC network][libera-home] in the [#mediawiki
 You'll need to have Docker installed:
 
 * [Docker Desktop][docker-install] for macOS or Windows.
-* [docker][docker-linux] and [docker-compose][docker-compose] for Linux.
+* [Docker engine][docker-linux] for Linux.
 
 [docker-install]: https://docs.docker.com/get-docker/
 [docker-linux]: https://docs.docker.com/engine/install/
-[docker-compose]: https://docs.docker.com/compose/install/
 
 **Linux users**:
 
-* We recommend installing `docker-compose` by [downloading the binary
-  release][dc-release]. You can also use `pip`, your OS package manager, or
-  even run it in a container, but downloading the binary release is the easiest
-  method.
+* We recommend installing `docker-ce`, `docker-ce-cli`, `containerd.io`, and `docker-compose-plugin` by [downloading the server
+  releases][dc-release] for your distribution rather than Docker Desktop. You can also install the [binaries][dc-binaries]. 
 * Follow the instructions to ["Manage Docker as a non-root user"][dc-non-root]
 
-[dc-release]: https://docs.docker.com/compose/install/#install-compose-on-linux-systems
+[dc-release]: https://docs.docker.com/engine/install/
+[dc-binaries]: https://docs.docker.com/engine/install/binaries/
 [dc-non-root]: https://docs.docker.com/install/linux/linux-postinstall/#manage-docker-as-a-non-root-user
 
 ### 2. Prepare `.env` file
@@ -81,7 +79,7 @@ services:
 
 * Start the containers:
   ```sh
-  docker-compose up -d
+  docker compose up -d
   ```
   The "up" command makes sure that the PHP and webserver containers are running (and any others in the `docker-compose.yml` file). It is safe to run at any time, and will do nothing if the containers are already running.
 
@@ -93,12 +91,12 @@ services:
 
 * Install PHP dependencies from Composer:
   ```sh
-  docker-compose exec mediawiki composer update
+  docker compose exec mediawiki composer update
   ```
 
 * Install MediaWiki:
   ```sh
-  docker-compose exec mediawiki /bin/bash /docker/install.sh
+  docker compose exec mediawiki /bin/bash /docker/install.sh
   ```
 
 Done! The wiki should now be available for you at <http://localhost:8080>.
@@ -107,19 +105,19 @@ Done! The wiki should now be available for you at <http://localhost:8080>.
 
 ### Running commands
 
-You can use `docker-compose exec mediawiki bash` to open a bash shell in the
+You can use `docker compose exec mediawiki bash` to open a bash shell in the
 MediaWiki container. You can then run one or more commands as needed and stay
 within the container shell.
 
 You can also run a single command in the container directly from your host
-shell, for example: `docker-compose exec mediawiki php maintenance/update.php`.
+shell, for example: `docker compose exec mediawiki php maintenance/update.php`.
 
 ### PHPUnit
 
 Run a single PHPUnit file or directory:
 
 ```sh
-docker-compose exec mediawiki bash
+docker compose exec mediawiki bash
 instance:/w$ cd tests/phpunit
 instance:/w/tests/phpunit$ php phpunit.php path/to/my/test/
 ```
@@ -169,14 +167,14 @@ file, and make use of those overrides by changing `LocalSettings.php`.
 Example overrides and configurations can be found under
 [MediaWiki-Docker on mediawiki.org][mw-docker].
 
-After updating `docker-compose.override.yml`, run `docker-compose down`
-followed by `docker-compose up -d` for changes to take effect.
+After updating `docker-compose.override.yml`, run `docker compose down`
+followed by `docker compose up -d` for changes to take effect.
 
 ### Install extra packages
 
 If you need root on the container to install system packages with `apt-get` for
 troubleshooting, you can open a shell as root with
-`docker-compose exec --user root mediawiki bash`.
+`docker compose exec --user root mediawiki bash`.
 
 ### Install extensions and skins
 
@@ -255,10 +253,10 @@ documentation](https://xdebug.org/docs/all_settings) for available settings.
 
 Stop the environment, perhaps to reduce load when working on something
 else. This preserves the containers, to be restarted later quickly with
-the `docker-compose up -d` command.
+the `docker compose up -d` command.
 
 ```sh
-docker-compose stop
+docker compose stop
 ```
 
 Destroy and re-create the environment. This will delete the containers,
@@ -266,8 +264,8 @@ including any logs, caches, and other modifications you may have made
 via the shell.
 
 ```sh
-docker-compose down
-docker-compose up -d
+docker compose down
+docker compose up -d
 ```
 
 ### Re-install the database
@@ -278,7 +276,7 @@ To empty the wiki database and re-install it:
 * Delete the `cache/sqlite` directory.
 * Re-run the "Install MediaWiki database" command.
 
-You can now restore or copy over any modifications you had in your previous `LocalSettings.php` file. And if you have additonal extensions installed that required a database table, then also run: `docker-compose exec mediawiki php maintenance/update.php`.
+You can now restore or copy over any modifications you had in your previous `LocalSettings.php` file. And if you have additonal extensions installed that required a database table, then also run: `docker compose exec mediawiki php maintenance/update.php`.
 
 ## Troubleshooting
 
@@ -339,7 +337,7 @@ services:
 With the latest version of Docker on Linux hosts, this _should_ work
 transparently as long as you're using the recommended
 `docker-compose.override.yml`.  If it doesn't, first check `docker version` to
-make sure you're running Docker 20.10.2 or above, and `docker-compose version`
+make sure you're running Docker 20.10.2 or above, and `docker compose version`
 to make sure it's 1.27.4 or above.
 
 If Xdebug still doesn't work, try specifying the hostname or IP address of your
@@ -352,7 +350,7 @@ like `XDEBUG_CONFIG=remote_host=172.17.0.1`
 Switching on the remote log for Xdebug comes at a performance cost so only
 use it while troubleshooting. You can enable it like so: `XDEBUG_CONFIG=remote_log=/tmp/xdebug.log`
 
-### "(Permission Denied)" errors on running docker-compose
+### "(Permission Denied)" errors on running docker compose
 
 See if you're able to run any docker commands to start with. Try running
 `docker container ls`, which should also throw a permission error. If not,
