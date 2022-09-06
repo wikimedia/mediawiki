@@ -363,6 +363,7 @@ class Language {
 	 * @deprecated since 1.39, use LanguageCode::isWellFormedLanguageTag
 	 */
 	public static function isWellFormedLanguageTag( $code, $lenient = false ) {
+		wfDeprecated( __METHOD__, '1.39' );
 		return LanguageCode::isWellFormedLanguageTag( $code, $lenient );
 	}
 

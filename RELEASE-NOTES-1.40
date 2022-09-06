@@ -257,6 +257,8 @@ because of Phabricator reports.
   Use GetUserBlockHook instead.
 * The SystemBlock type global-block is deprecated.
   GlobalBlocks are now added into CompositeBlocks via the GetUserBlock hook.
+* Language::isWellFormedLanguageTag(), deprecated in 1.39, now emits deprecation
+  notices. Please use LanguageCode::isWellFormedLanguageTag() instead.
 * …
 
 === Other changes in 1.40 ===
