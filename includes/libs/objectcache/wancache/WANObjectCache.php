@@ -1879,10 +1879,14 @@ class WANObjectCache implements
 	 * @return bool Whether it is OK to proceed with a key set operation
 	 */
 	private function checkAndSetCooloff( $key, $kClass, $value, $elapsed, $hasLock ) {
-		$valueSisterKey = $this->makeSisterKey( $key, self::TYPE_VALUE );
-		list( $estimatedSize ) = $this->cache->setNewPreparedValues( [
-			$valueSisterKey => $value
-		] );
+		// Roughly estimate the size of the value once serialized. This does not account
+		// for the use of non-PHP serialization (e.g. igbinary/msgpack/json), compression
+		// (e.g. gzip/lzma), nor protocol overhead.
+		if ( is_string( $value ) ) {
+			$estimatedSize = strlen( $value );
+		} else {
+			$estimatedSize = strlen( serialize( $value ) );
+		}
 
 		if ( !$hasLock ) {
 			// Suppose that this cache key is very popular (KEY_HIGH_QPS reads/second).
