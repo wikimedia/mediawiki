@@ -2647,7 +2647,6 @@ return [
 			'InterwikiCache' => [
 				0 => 'boolean',
 				1 => 'object',
-				2 => 'string',
 			],
 			'SiteTypes' => 'object',
 			'UrlProtocols' => 'array',
