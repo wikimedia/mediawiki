@@ -334,8 +334,8 @@ class RestrictionStore {
 			return array_values( array_diff( $types, [ 'create' ] ) );
 		}
 
-		// Only the create and upload restrictions apply to non-existing titles
-		return array_values( array_intersect( $types, [ 'create', 'upload' ] ) );
+		// Only the create restrictions apply to non-existing titles
+		return array_values( array_intersect( $types, [ 'create' ] ) );
 	}
 
 	/**
