@@ -921,10 +921,10 @@ class SwiftFileBackend extends FileBackendStore {
 	 *
 	 * @param string $fullCont Resolved container name
 	 * @param string $dir Resolved storage directory with no trailing slash
-	 * @param string|null &$after Resolved container relative path to list items after
+	 * @param string|null &$after Resolved container relative path used for continuation paging
 	 * @param int $limit Max number of items to list
-	 * @param array $params Parameters for getDirectoryList()
-	 * @return array List of container relative resolved paths of directories directly under $dir
+	 * @param array $params Parameters for {@link getDirectoryList()}
+	 * @return string[] List of resolved container relative directories directly under $dir
 	 * @throws FileBackendError
 	 */
 	public function getDirListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
@@ -1006,12 +1006,12 @@ class SwiftFileBackend extends FileBackendStore {
 	 * @param string $dir Resolved storage directory with no trailing slash
 	 * @param string|null &$after Resolved container relative path of file to list items after
 	 * @param int $limit Max number of items to list
-	 * @param array $params Parameters for getDirectoryList()
-	 * @return array List of resolved container relative paths of files under $dir
+	 * @param array $params Parameters for {@link getFileList()}
+	 * @return array[] List of (name, stat map or null) tuples under $dir
 	 * @throws FileBackendError
 	 */
 	public function getFileListPageInternal( $fullCont, $dir, &$after, $limit, array $params ) {
-		$files = []; // list of (path, stat array or null) entries
+		$files = []; // list of (path, stat map or null) entries
 		if ( $after === INF ) {
 			return $files; // nothing more
 		}
@@ -1037,7 +1037,7 @@ class SwiftFileBackend extends FileBackendStore {
 			}
 		}
 
-		// Reformat this list into a list of (name, stat array or null) entries
+		// Reformat this list into a list of (name, stat map or null) entries
 		if ( !$status->isOK() ) {
 			throw new FileBackendError( "Iterator page I/O error." );
 		}
@@ -1061,7 +1061,7 @@ class SwiftFileBackend extends FileBackendStore {
 	 * and extracting any stat info if provided in $objects
 	 *
 	 * @param stdClass[]|string[] $objects List of stdClass items or object names
-	 * @return array List of (names,stat array or null) entries
+	 * @return array[] List of (name, stat map or null) entries
 	 */
 	private function buildFileObjectListing( array $objects ) {
 		$names = [];
@@ -1451,7 +1451,7 @@ class SwiftFileBackend extends FileBackendStore {
 	}
 
 	/**
-	 * Get a Swift container stat array, possibly from process cache.
+	 * Get a Swift container stat map, possibly from process cache.
 	 * Use $reCache if the file count or byte count is needed.
 	 *
 	 * @param string $container Container name
@@ -1699,7 +1699,7 @@ class SwiftFileBackend extends FileBackendStore {
 				if ( !empty( $params['requireSHA1'] ) ) {
 					$rhdrs = $this->addMissingHashMetadata( $rhdrs, $path );
 				}
-				// Load the stat array from the headers
+				// Load the stat map from the headers
 				$stat = $this->getStatFromHeaders( $rhdrs );
 				if ( $this->isRGW ) {
 					$stat['latest'] = true; // strong consistency
