@@ -401,6 +401,10 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		$this->addJoinConds( $revQuery['joins'] );
 		$this->addFields( $revQuery['fields'] );
 		$this->addWhere( $revWhere['conds'] );
+		// Force the appropriate index to avoid bad query plans (T307815 and T307295)
+		if ( isset( $revWhere['orconds']['newactor'] ) ) {
+			$this->addOption( 'USE INDEX', [ 'revision' => 'rev_actor_timestamp' ] );
+		}
 
 		// Handle continue parameter
 		if ( $this->params['continue'] !== null ) {
