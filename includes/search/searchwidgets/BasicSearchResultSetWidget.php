@@ -56,7 +56,7 @@ class BasicSearchResultSetWidget {
 			return '';
 		}
 
-		$out = '';
+		$out = '<div class="mw-search-results-container">';
 
 		if ( $hasTitle ) {
 			$out .= $this->header( $this->specialPage->msg( 'titlematches' ) )
@@ -87,6 +87,9 @@ class BasicSearchResultSetWidget {
 				$out .= $this->renderResultSet( $results, $offset );
 			}
 		}
+
+		// Close <div class='mw-search-results-container'>
+		$out .= '</div>';
 
 		if ( $hasSecondary ) {
 			$out .= $this->sidebarWidget->render(
