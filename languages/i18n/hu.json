@@ -58,7 +58,9 @@
 			"Xbspiro",
 			"아라",
 			"Balint36",
-			"Blua lago"
+			"Blua lago",
+			"1233qwer1234qwer4",
+			"Mmarci72"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -2537,7 +2539,7 @@
 	"month": "E hónap végéig:",
 	"year": "Eddig az évig:",
 	"date": "Eddig a dátumig:",
-	"sp-contributions-blocklog": "Blokkolási napló",
+	"sp-contributions-blocklog": "blokkolási napló",
 	"sp-contributions-suppresslog": "elrejtett {{GENDER:$1|felhasználók}} közreműködései",
 	"sp-contributions-deleted": "törölt {{GENDER:$1|szerkesztések}}",
 	"sp-contributions-uploads": "feltöltések",
@@ -3646,7 +3648,7 @@
 	"feedback-thanks-title": "Köszönjük!",
 	"feedback-useragent": "User agent:",
 	"searchsuggest-search": "Keresés ezen: {{SITENAME}}",
-	"searchsuggest-containing": "tartalmazza…",
+	"searchsuggest-containing": "Olyan oldalak keresése, amik tartalmazzák",
 	"search-match-redirect-label": "Átirányítás a pontos találatokra kereséskor",
 	"search-match-redirect-help": "Pipáld ki, ha szeretnél átirányítódni egy lapra, ha a címe pontosan megegyezik azzal, amit a keresőmezőbe írtál",
 	"searchlimit-label": "Az egyes találati lapokon megjelenítendő találatok száma:",

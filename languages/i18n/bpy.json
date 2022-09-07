@@ -9,7 +9,8 @@
 			"Usingha",
 			"Uttam Singha, Dec 2006",
 			"আফতাবুজ্জামান",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "লিঙ্কর তলে দুরগ দিক:",
@@ -591,7 +592,7 @@
 	"datedefault": "পছন করাতা নেই",
 	"prefs-labs": "পরীক্ষাগারর বৈশিষ্টহানি",
 	"prefs-rc": "হাদি এহানর পতানি",
-	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|day|days}}",
+	"prefs-watchlist-days-max": "বপিলে $1 {{PLURAL:$1|দিন পেয়া}}",
 	"prefs-misc": "নানন",
 	"prefs-resetpass": "খন্তাচাবি সিলকর",
 	"prefs-email": "ই-মেইল অপশনহানি",
@@ -1226,7 +1227,6 @@
 	"special-characters-group-thai": "থাই",
 	"special-characters-group-lao": "লাও",
 	"special-characters-group-khmer": "খেমার",
-	"view-view-foreign": "$1-এহাত চা",
 	"nstab-mainpage": "পয়লা পাতা",
 	"skin-action-protect": "লুকর",
 	"skin-action-undelete": "নাপুসি",
