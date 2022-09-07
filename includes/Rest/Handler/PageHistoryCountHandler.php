@@ -463,13 +463,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 
 		$revQuery = $this->actorMigration->getJoin( 'rev_user' );
 
-		// This redundant join condition tells MySQL that rev_page and revactor_page are the
-		// same, so it can propagate the condition
-		if ( isset( $revQuery['tables']['temp_rev_user'] ) /* SCHEMA_COMPAT_READ_TEMP */ ) {
-			$revQuery['joins']['temp_rev_user'][1] =
-				"temp_rev_user.revactor_rev = rev_id AND revactor_page = rev_page";
-		}
-
 		$cond = [
 			'rev_page=' . intval( $pageId ),
 			$dbr->bitAnd( 'rev_deleted',
@@ -496,7 +489,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 		$edits = $dbr->selectRowCount(
 			[
 				'revision',
-				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			] + $revQuery['tables'],
 			'1',
 			$cond,
