@@ -358,6 +358,8 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$block = $this->createMock( DatabaseBlock::class );
 		$block->method( 'getId' )
 			->willReturn( null );
+		$block->method( 'getWikiId' )
+			->willReturn( DatabaseBlock::LOCAL );
 
 		$this->expectException( MWException::class );
 		$this->expectExceptionMessage( 'delete' );
