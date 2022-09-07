@@ -244,11 +244,9 @@ class LocalisationCache {
 	];
 
 	/**
-	 * For constructor parameters, see the documentation for the LocalisationCacheConf
-	 * setting in docs/Configuration.md.
+	 * For constructor parameters, @ref \MediaWiki\MainConfigSchema::LocalisationCacheConf.
 	 *
-	 * Do not construct this directly. Use MediaWikiServices.
-	 *
+	 * @internal Do not construct directly, use MediaWikiServices instead.
 	 * @param ServiceOptions $options
 	 * @param LCStore $store What backend to use for storage
 	 * @param LoggerInterface $logger
@@ -257,7 +255,6 @@ class LocalisationCache {
 	 *   MessageBlobStore.
 	 * @param LanguageNameUtils $langNameUtils
 	 * @param HookContainer $hookContainer
-	 * @throws MWException
 	 */
 	public function __construct(
 		ServiceOptions $options,
