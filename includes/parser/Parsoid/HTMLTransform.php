@@ -436,12 +436,7 @@ class HTMLTransform {
 	 * @throws HttpException
 	 */
 	private function getSelserData(): ?SelserData {
-		if ( !$this->hasOriginalHtml() ) {
-			// No original HTML, no selser.
-			return null;
-		}
-
-		$oldhtml = $this->getOriginalHtml();
+		$oldhtml = $this->hasOriginalHtml() ? $this->getOriginalHtml() : null;
 
 		// As per https://www.mediawiki.org/wiki/Parsoid/API#v1_API_entry_points
 		//   "Both it and the oldid parameter are needed for
