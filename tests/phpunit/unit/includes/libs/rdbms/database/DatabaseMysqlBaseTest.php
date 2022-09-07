@@ -94,8 +94,6 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		MySQLPrimaryPos $lowerPos, MySQLPrimaryPos $higherPos, $match, $hetero
 	) {
 		if ( $match ) {
-			$this->assertTrue( $lowerPos->channelsMatch( $higherPos ) );
-
 			if ( $hetero ) {
 				// Each position is has one channel higher than the other
 				$this->assertFalse( $higherPos->hasReached( $lowerPos ) );
@@ -106,7 +104,6 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			$this->assertTrue( $higherPos->hasReached( $higherPos ) );
 			$this->assertFalse( $lowerPos->hasReached( $higherPos ) );
 		} else { // channels don't match
-			$this->assertFalse( $lowerPos->channelsMatch( $higherPos ) );
 
 			$this->assertFalse( $higherPos->hasReached( $lowerPos ) );
 			$this->assertFalse( $lowerPos->hasReached( $higherPos ) );
@@ -208,45 +205,6 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 				new MySQLPrimaryPos( '253-11-999,255-11-999', $now ),
 				new MySQLPrimaryPos( '254-11-1000', $now ),
 				false,
-				false
-			],
-		];
-	}
-
-	/**
-	 * @dataProvider provideChannelPositions
-	 * @covers \Wikimedia\Rdbms\MySQLPrimaryPos
-	 */
-	public function testChannelsMatch( MySQLPrimaryPos $pos1, MySQLPrimaryPos $pos2, $matches ) {
-		$this->assertEquals( $matches, $pos1->channelsMatch( $pos2 ) );
-		$this->assertEquals( $matches, $pos2->channelsMatch( $pos1 ) );
-
-		$roundtripPos = new MySQLPrimaryPos( (string)$pos1, 1 );
-		$this->assertEquals( (string)$pos1, (string)$roundtripPos );
-	}
-
-	public static function provideChannelPositions() {
-		$now = microtime( true );
-
-		return [
-			[
-				new MySQLPrimaryPos( 'db1034-bin.000876/44', $now ),
-				new MySQLPrimaryPos( 'db1034-bin.000976/74', $now ),
-				true
-			],
-			[
-				new MySQLPrimaryPos( 'db1052-bin.000976/999', $now ),
-				new MySQLPrimaryPos( 'db1052-bin.000976/1000', $now ),
-				true
-			],
-			[
-				new MySQLPrimaryPos( 'db1066-bin.000976/9999', $now ),
-				new MySQLPrimaryPos( 'db1035-bin.000976/10000', $now ),
-				false
-			],
-			[
-				new MySQLPrimaryPos( 'db1066-bin.000976/9999', $now ),
-				new MySQLPrimaryPos( 'trump2016.000976/10000', $now ),
 				false
 			],
 		];
