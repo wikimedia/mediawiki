@@ -149,6 +149,19 @@ $( function () {
 		e.preventDefault();
 	} );
 
+	var $permanentLink = $( '#t-permalink a' );
+	function updatePermanentLinkHash() {
+		if ( mw.util.getTargetFromFragment() ) {
+			$permanentLink[ 0 ].hash = location.hash;
+		} else {
+			$permanentLink[ 0 ].hash = '';
+		}
+	}
+	if ( $permanentLink.length ) {
+		$( window ).on( 'hashchange', updatePermanentLinkHash );
+		updatePermanentLinkHash();
+	}
+
 	// Turn logout to a POST action
 	$( config.selectorLogoutLink ).on( 'click', function ( e ) {
 		mw.notify(
