@@ -308,16 +308,6 @@ class CachedBagOStuff extends BagOStuff {
 		$this->store->addBusyCallback( $workCallback );
 	}
 
-	public function setNewPreparedValues( array $valueByKey ) {
-		return $this->store->proxyCall(
-			__FUNCTION__,
-			self::ARG0_KEYMAP,
-			self::RES_NONKEY,
-			func_get_args(),
-			$this
-		);
-	}
-
 	public function setMockTime( &$time ) {
 		parent::setMockTime( $time );
 		$this->procCache->setMockTime( $time );

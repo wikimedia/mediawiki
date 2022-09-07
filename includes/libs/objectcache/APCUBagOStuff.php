@@ -177,13 +177,6 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		return $result;
 	}
 
-	public function setNewPreparedValues( array $valueByKey ) {
-		// Do not bother staging serialized values if the PECL driver does the serializing
-		return $this->nativeSerialize
-			? $this->guessSerialSizeOfValues( $valueByKey )
-			: parent::setNewPreparedValues( $valueByKey );
-	}
-
 	public function makeKeyInternal( $keyspace, $components ) {
 		return $this->genericKeyFromComponents( $keyspace, ...$components );
 	}

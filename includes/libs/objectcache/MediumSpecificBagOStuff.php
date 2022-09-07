@@ -46,9 +46,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	/** @var bool */
 	private $dupeTrackScheduled = false;
 
-	/** @var array[] Map of (key => (PHP variable value, serialized value)) */
-	protected $preparedValues = [];
-
 	/** Component to use for key construction of blob segment keys */
 	private const SEGMENT_COMPONENT = 'segment';
 
@@ -1036,89 +1033,18 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return $this->segmentedValueMaxSize;
 	}
 
-	public function setNewPreparedValues( array $valueByKey ) {
-		$this->preparedValues = [];
-
-		$sizes = [];
-		foreach ( $valueByKey as $key => $value ) {
-			if ( $value === false ) {
-				// not storable, don't bother
-				$sizes[] = null;
-				continue;
-			}
-
-			$serialized = $this->serialize( $value );
-			$sizes[] = ( $serialized !== false ) ? strlen( $serialized ) : null;
-
-			$this->preparedValues[$key] = [ $value, $serialized ];
-		}
-
-		return $sizes;
-	}
-
 	/**
-	 * Get the serialized form a value, using any applicable prepared value
-	 *
-	 * @see BagOStuff::setNewPreparedValues()
+	 * Get the serialized form a value, logging a warning if it involves custom classes
 	 *
 	 * @param mixed $value
 	 * @param string $key
-	 * @return string|int String/integer representation
+	 * @return string|int String/integer representation of value
 	 * @since 1.35
 	 */
 	protected function getSerialized( $value, $key ) {
-		// Reuse any available prepared (serialized) value
-		if ( array_key_exists( $key, $this->preparedValues ) ) {
-			list( $prepValue, $prepSerialized ) = $this->preparedValues[$key];
-			// Normally, this comparison should only take a few microseconds to confirm a match.
-			// Using "===" on variables of different types is always fast. It is also fast for
-			// variables of matching type int, float, bool, null, and object. Lastly, it is fast
-			// for comparing arrays/strings if they are copy-on-write references, which should be
-			// the case at this point, assuming prepareValues() was called correctly.
-			if ( $prepValue === $value ) {
-				unset( $this->preparedValues[$key] );
-
-				return $prepSerialized;
-			}
-		}
-
 		$this->checkValueSerializability( $value, $key );
 
 		return $this->serialize( $value );
-	}
-
-	/**
-	 * Estimate the size of a variable once serialized
-	 *
-	 * @param mixed $value
-	 * @param int $depth Current stack depth
-	 * @param int &$loops Number of iterable nodes visited
-	 * @return int|null Size in bytes; null for unsupported variable types
-	 * @since 1.35
-	 */
-	protected function guessSerialValueSize( $value, $depth = 0, &$loops = 0 ) {
-		if ( is_string( $value ) ) {
-			// E.g. "<type><delim1><quote><value><quote><delim2>"
-			return strlen( $value ) + 5;
-		} else {
-			return strlen( serialize( $value ) );
-		}
-	}
-
-	/**
-	 * Estimate the size of a each variable once serialized
-	 *
-	 * @param array $values List/map with PHP variable values to serialize
-	 * @return int[]|null[] Corresponding list of size estimates (null for invalid values)
-	 * @since 1.39
-	 */
-	protected function guessSerialSizeOfValues( array $values ) {
-		$sizes = [];
-		foreach ( $values as $value ) {
-			$sizes[] = $this->guessSerialValueSize( $value );
-		}
-
-		return $sizes;
 	}
 
 	/**

@@ -637,30 +637,28 @@ abstract class BagOStuff implements
 	/**
 	 * Stage a set of new key values for storage and estimate the amount of bytes needed
 	 *
-	 * All previously prepared values will be cleared. Each of the new prepared values will be
-	 * individually cleared as they get used by write operations for that key. This is done to
-	 * avoid unchecked growth in PHP memory usage.
-	 *
-	 * Example usage:
-	 * @code
-	 *     $valueByKey = [ $key1 => $value1, $key2 => $value2, $key3 => $value3 ];
-	 *     $cache->setNewPreparedValues( $valueByKey );
-	 *     $cache->set( $key1, $value1, $cache::TTL_HOUR );
-	 *     $cache->setMulti( [ $key2 => $value2, $key3 => $value3 ], $cache::TTL_HOUR );
-	 * @endcode
-	 *
-	 * This is only useful if the caller needs an estimate of the serialized object sizes,
-	 * such as cache wrappers with adaptive write slam avoidance or store wrappers with metrics.
-	 * The caller cannot know the serialization format and even if it did, it could be expensive
-	 * to serialize complex values twice just to get the size information before writing them to
-	 * cache. This method solves both problems by making the cache instance do the serialization
-	 * and having it reuse the result when the cache write happens.
-	 *
 	 * @param array $valueByKey Map of (cache key => PHP variable value to serialize)
 	 * @return int[]|null[] Corresponding list of size estimates (null for invalid values)
 	 * @since 1.35
+	 * @deprecated Since 1.40
 	 */
-	abstract public function setNewPreparedValues( array $valueByKey );
+	public function setNewPreparedValues( array $valueByKey ) {
+		$sizes = [];
+		foreach ( $valueByKey as $value ) {
+			// Roughly estimate the size of the value once serialized. This does not account
+			// for the use of non-PHP serialization (e.g. igbinary/msgpack/json), compression
+			// (e.g. gzip/lzma), nor protocol/storage metadata.
+			if ( is_string( $value ) ) {
+				// E.g. "<type><delim1><quote><value><quote><delim2>"
+				$size = strlen( $value ) + 5;
+			} else {
+				$size = strlen( serialize( $value ) );
+			}
+			$sizes[] = $size;
+		}
+
+		return $sizes;
+	}
 
 	/**
 	 * Register info about a caching layer class that uses BagOStuff as a backing store
