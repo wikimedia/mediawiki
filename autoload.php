@@ -1266,6 +1266,7 @@ $wgAutoloadLocalClasses = [
 	'ProtectionForm' => __DIR__ . '/includes/ProtectionForm.php',
 	'ProxyLookup' => __DIR__ . '/includes/ProxyLookup.php',
 	'PruneFileCache' => __DIR__ . '/maintenance/pruneFileCache.php',
+	'PruneUnusedLinkTargetRows' => __DIR__ . '/maintenance/pruneUnusedLinkTargetRows.php',
 	'PublishStashedFileJob' => __DIR__ . '/includes/jobqueue/jobs/PublishStashedFileJob.php',
 	'PurgeAction' => __DIR__ . '/includes/actions/PurgeAction.php',
 	'PurgeChangedFiles' => __DIR__ . '/maintenance/purgeChangedFiles.php',
