@@ -1,16 +1,18 @@
 <?php
 
+/**
+ * @phan-file-suppress PhanCommentAbstractOnInheritedMethod T298571
+ */
+
 namespace Wikimedia\Rdbms;
 
+use Doctrine\DBAL\Platforms\PostgreSQL94Platform;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
-/**
- * @suppress PhanRedefinedExtendedClass
- */
-class MWPostgreSqlPlatform extends MWPostgreSqlPlatformCompat {
+class MWPostgreSqlPlatform extends PostgreSQL94Platform {
+
 	/**
 	 * Handles Postgres unique timestamp format
-	 * @suppress PhanRedefinedClassReference
 	 * @inheritDoc
 	 *
 	 * @param mixed[] $column The column definition array.
@@ -38,7 +40,6 @@ class MWPostgreSqlPlatform extends MWPostgreSqlPlatformCompat {
 	}
 
 	/**
-	 * @suppress PhanRedefinedClassReference
 	 * @inheritDoc
 	 * phpcs:disable PSR2.Methods.MethodDeclaration.Underscore
 	 */
