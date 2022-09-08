@@ -6517,7 +6517,7 @@ config-schema:
             and the purgeExpiredWatchlistItems.php maintenance script should be run periodically.
             @since 1.35
     WatchlistExpiryMaxDuration:
-        default: '6 months'
+        default: '1 year'
         type:
             - string
             - 'null'

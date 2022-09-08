@@ -3497,7 +3497,7 @@
 	"confirm-watch-button": "OK",
 	"confirm-watch-top": "Add this page to your watchlist?",
 	"confirm-watch-label": "Watchlist time period:",
-	"watchlist-expiry-options": "Permanent:infinite,1 week:1 week,1 month:1 month,3 months:3 months,6 months:6 months",
+	"watchlist-expiry-options": "Permanent:infinite,1 week:1 week,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year",
 	"watchlist-expires-in-aria-label": "Expiring watchlist item",
 	"confirm-watch-button-expiry": "Watch",
 	"confirm-unwatch-button": "OK",
