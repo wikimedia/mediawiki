@@ -1907,21 +1907,23 @@ class OutputPage extends ContextSource {
 			$this->getCSP()->addStyleSrc( $src );
 		}
 
-		// If $wgImagePreconnect is true, and if the output contains
-		// images, give the user-agent a hint about foreign repos from
-		// which those images may be served.  See T123582.
-		//
-		// TODO: We don't have an easy way to know from which remote(s)
-		// the image(s) will be served.  For now, we only hint the first
-		// valid one.
+		// If $wgImagePreconnect is true, and if the output contains images, give the user-agent
+		// a hint about a remote hosts from which images may be served. Launched in T123582.
 		if ( $this->getConfig()->get( 'ImagePreconnect' ) && count( $parserOutput->getImages() ) ) {
 			$preconnect = [];
+			// Optimization: Instead of processing each image, assume that wikis either serve both
+			// foreign and local from the same remote hostname (e.g. public wikis at WMF), or that
+			// foreign images are common enough to be worth the preconnect (e.g. private wikis).
 			$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
 			$repoGroup->forEachForeignRepo( function ( $repo ) use ( &$preconnect ) {
-				$preconnect[] = wfParseUrl( $repo->getZoneUrl( 'thumb' ) )['host'];
+				$preconnect[] = $repo->getZoneUrl( 'thumb' );
 			} );
-			$preconnect[] = wfParseUrl( $repoGroup->getLocalRepo()->getZoneUrl( 'thumb' ) )['host'];
-			foreach ( $preconnect as $host ) {
+			// Consider both foreign and local repos. While LocalRepo by default uses a relative
+			// path on the same domain, wiki farms may configure it to use a dedicated hostname.
+			$preconnect[] = $repoGroup->getLocalRepo()->getZoneUrl( 'thumb' );
+			foreach ( $preconnect as $url ) {
+				$host = parse_url( $url, PHP_URL_HOST );
+				// It is expected that file URLs are often path-only, without hostname (T317329).
 				if ( $host ) {
 					$this->addLink( [ 'rel' => 'preconnect', 'href' => '//' . $host ] );
 					break;
