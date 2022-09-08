@@ -2145,6 +2145,7 @@
 	"uctop": "वर्तमान",
 	"month": "महिना देखि (र पहिले):",
 	"year": "वर्ष देखि( र पहिले):",
+	"date": "मिति देखि (र पहिले):",
 	"sp-contributions-blocklog": "निषेध अभिलेखहरू",
 	"sp-contributions-suppresslog": "प्रयोगकर्ताको योगदानहरू दबाइएको छ ।",
 	"sp-contributions-deleted": "{{GENDER:$1|प्रयोगकर्ता}}को योगदानहरू मेटाइयो",
