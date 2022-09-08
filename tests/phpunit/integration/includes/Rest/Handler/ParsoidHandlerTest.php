@@ -19,12 +19,14 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Rest\RestTestTrait;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use NullStatsdDataFactory;
 use PHPUnit\Framework\MockObject\MockObject;
+use TitleValue;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Config\DataAccess;
@@ -70,6 +72,12 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			'outputContentVersion' => Parsoid::AVAILABLE_VERSIONS[0],
 		],
 	];
+
+	/** @var string Imperfect wikitext to be preserved if selser is applied. Corresponds to Selser.html. */
+	private const IMPERFECT_WIKITEXT = "<div  >Turaco</DIV>";
+
+	/** @var string Normalized version of IMPERFECT_WIKITEXT, expected when no selser is applied. */
+	private const NORMALIZED_WIKITEXT = "<div>Turaco</div>";
 
 	public function setUp(): void {
 		// enable Pig Latin variant conversion
@@ -327,7 +335,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideHtml2wt() {
-		$profileVersion = '2.4.0';
+		$profileVersion = '2.6.0';
 		$wikitextProfileUri = 'https://www.mediawiki.org/wiki/Specs/wikitext/1.0.0';
 		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;
 		$dataParsoidProfileUri = 'https://www.mediawiki.org/wiki/Specs/data-parsoid/' . $profileVersion;
@@ -474,11 +482,19 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		// Return original wikitext when HTML doesn't change ////////////////////////////
 		// New and old html are identical, which should produce no diffs
 		// and reuse the original wikitext.
-		$html = '<html><body id="mwAA"><div id="mwBB">Selser test</div></body></html>';
-		$dataParsoid = [
+		$html = $this->getTextFromFile( 'Selser.html' );
+
+		// Original wikitext (to be preserved by selser)
+		$originalWikitext = self::IMPERFECT_WIKITEXT;
+
+		// Normalized wikitext (when no selser is applied)
+		$normalizedWikitext = self::NORMALIZED_WIKITEXT;
+
+		$dataParsoid = [ // Per Selser.html
 			'ids' => [
-				'mwAA' => [],
-				'mwBB' => [ 'autoInsertedEnd' => true, 'stx' => 'html' ]
+				'mwAA' => [ 'dsr' => [ 0, 19, 0, 0 ] ],
+				'mwAg' => [ 'stx' => 'html', 'dsr' => [ 0, 19, 7, 6 ] ],
+				'mwAQ' => []
 			]
 		];
 
@@ -498,10 +514,18 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 				]
 			],
 		];
-		yield 'should use selser with supplied wikitext' => [
+
+		yield 'selser should return original wikitext if the HTML didn\'t change (original HTML given)' => [
 			$attribs,
 			$html,
-			[ 'UTContent' ], // Returns original wikitext, because HTML didn't change.
+			[ $originalWikitext ], // Returns original wikitext, because HTML didn't change.
+		];
+
+		unset( $attribs['opts']['original'] );
+		yield 'selser should return original wikitext if the HTML didn\'t change (original HTML from ParserCache)' => [
+			$attribs,
+			$html,
+			[ $originalWikitext ], // Returns original wikitext, because HTML didn't change.
 		];
 
 		// Should fall back to non-selective serialization. //////////////////
@@ -522,13 +546,19 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 				]
 			],
 		];
-		yield 'Should fallback to non-selective serialization' => [
+		yield 'Should fall back to non-selective serialization' => [
 			$attribs,
 			$html,
-			[ '<div>Selser test' ],
+			[ $normalizedWikitext ],
 		];
 
 		// should apply data-parsoid to duplicated ids /////////////////////////
+		$dataParsoid = [
+			'ids' => [
+				'mwAA' => [],
+				'mwBB' => [ 'autoInsertedEnd' => true, 'stx' => 'html' ]
+			]
+		];
 		$html = '<html><body id="mwAA"><div id="mwBB">data-parsoid test</div>' .
 			'<div id="mwBB">data-parsoid test</div></body></html>';
 		$originalHtml = '<html><body id="mwAA"><div id="mwBB">data-parsoid test</div></body></html>';
@@ -891,6 +921,20 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	private function makePage( $title, $wikitext ): RevisionRecord {
+		$title = new TitleValue( NS_MAIN, $title );
+		$rev = $this->getServiceContainer()->getRevisionLookup()->getRevisionByTitle( $title );
+
+		if ( $rev ) {
+			return $rev;
+		}
+
+		/** @var RevisionRecord $rev */
+		[ 'revision-record' => $rev ] = $this->editPage( 'Test_html2wt', $wikitext )->getValue();
+
+		return $rev;
+	}
+
 	/**
 	 * @dataProvider provideHtml2wt
 	 *
@@ -898,6 +942,9 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @param string $html
 	 * @param string[] $expectedText
 	 * @param string[] $expectedHeaders
+	 *
+	 * @covers MediaWiki\Parser\Parsoid\HtmlToContentTransform
+	 * @covers MediaWiki\Rest\Handler\ParsoidHandler::html2wt
 	 */
 	public function testHtml2wt(
 		array $attribs,
@@ -910,7 +957,11 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			'content-type' => "text/plain; charset=utf-8; profile=\"$wikitextProfileUri\"",
 		];
 
-		$page = $this->getExistingTestPage();
+		$wikitext = self::IMPERFECT_WIKITEXT;
+
+		$rev = $this->makePage( 'Test_html2wt', $wikitext );
+		$page = $rev->getPage();
+
 		$pageConfig = $this->getPageConfig( $page );
 
 		$attribs += self::DEFAULT_ATTRIBS;
@@ -920,7 +971,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		if ( $attribs['oldid'] ) {
 			// Set the actual ID of an existing revision
-			$attribs['oldid'] = $page->getLatest();
+			$attribs['oldid'] = $rev->getId();
 		}
 
 		$handler = $this->newParsoidHandler();
