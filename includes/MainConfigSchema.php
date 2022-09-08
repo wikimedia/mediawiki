@@ -10459,7 +10459,7 @@ class MainConfigSchema {
 	 * @since 1.35
 	 */
 	public const WatchlistExpiryMaxDuration = [
-		'default' => '6 months',
+		'default' => '1 year',
 		'type' => '?string',
 	];
 
