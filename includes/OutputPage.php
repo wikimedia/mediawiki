@@ -2217,6 +2217,13 @@ class OutputPage extends ContextSource {
 	 * @param array $poOptions Options to ParserOutput::getText()
 	 */
 	public function addParserOutputText( ParserOutput $parserOutput, $poOptions = [] ) {
+		// Add default options from the skin
+		$skin = $this->getSkin();
+		$skinOptions = $skin->getOptions();
+		$poOptions += [
+			'skin' => $skin,
+			'injectTOC' => $skinOptions['toc'],
+		];
 		$text = $parserOutput->getText( $poOptions );
 		$this->getHookRunner()->onOutputPageBeforeHTML( $this, $text );
 		$this->addHTML( $text );

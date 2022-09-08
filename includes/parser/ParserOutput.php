@@ -425,6 +425,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			// TODO: Skin should not be required.
 			// It would be better to define one or more narrow interfaces to use here,
 			// so this code doesn't have to depend on all of Skin.
+			// See OutputPage::addParserOutputText()
 			$skin = $options['skin'] ?: RequestContext::getMain()->getSkin();
 
 			$text = preg_replace_callback(
