@@ -135,29 +135,6 @@ class MySQLPrimaryPos implements DBPrimaryPos {
 		return false;
 	}
 
-	public function channelsMatch( DBPrimaryPos $pos ) {
-		if ( !( $pos instanceof self ) ) {
-			throw new InvalidArgumentException( "Position not an instance of " . __CLASS__ );
-		}
-
-		// Prefer GTID comparisons, which work with multi-tier replication
-		$thisPosDomains = array_keys( $this->getActiveGtidCoordinates() );
-		$thatPosDomains = array_keys( $pos->getActiveGtidCoordinates() );
-		if ( $thisPosDomains && $thatPosDomains ) {
-			// Check that $this has a GTID for at least one domain also in $pos; due to MariaDB
-			// quirks, prior primary switch-overs may result in inactive garbage GTIDs that cannot
-			// easily be cleaned up. Assume that the domains in both this and $pos cover the
-			// relevant active channels.
-			return array_intersect( $thatPosDomains, $thisPosDomains ) ? true : false;
-		}
-
-		// Fallback to the binlog file comparisons
-		$thisBinPos = $this->getBinlogCoordinates();
-		$thatBinPos = $pos->getBinlogCoordinates();
-
-		return ( $thisBinPos && $thatBinPos && $thisBinPos['binlog'] === $thatBinPos['binlog'] );
-	}
-
 	/**
 	 * @return array<int,int|string>|null Tuple of (binary log file number, 64 bit event number)
 	 * @since 1.31

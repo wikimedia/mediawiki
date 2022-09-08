@@ -26,13 +26,6 @@ interface DBPrimaryPos {
 
 	/**
 	 * @since 1.27
-	 * @param DBPrimaryPos $pos
-	 * @return bool Whether this position appears to be for the same channel as another
-	 */
-	public function channelsMatch( DBPrimaryPos $pos );
-
-	/**
-	 * @since 1.27
 	 * @return string
 	 */
 	public function __toString();
