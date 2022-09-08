@@ -478,14 +478,8 @@ class Article implements Page {
 		# Allow frames by default
 		$outputPage->setPreventClickjacking( false );
 
-		$skin = $context->getSkin();
-		$skinOptions = $skin->getOptions();
-
 		$parserOptions = $this->getParserOptions();
-		$poOptions = [
-			'skin' => $skin,
-			'injectTOC' => $skinOptions['toc'],
-		];
+		$poOptions = [];
 		# Allow extensions to vary parser options used for article rendering
 		Hooks::runner()->onArticleParserOptions( $this, $parserOptions );
 		# Render printable version, use printable version cache
