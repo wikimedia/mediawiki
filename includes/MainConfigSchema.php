@@ -2419,12 +2419,20 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * On pages containing images, tell the user agent to pre-connect to hosts from
-	 * $wgForeignFileRepos.  This speeds up rendering, but may create unwanted
-	 * traffic if there are many possible URLs from which images are served.
+	 * Add a preconnect link for browsers to a remote FileRepo host.
+	 *
+	 * This is an optional performance enhancement designed for wiki farm where
+	 * $wgForeignFileRepos or $wgLocalFileRepo is set to serve thumbnails from a
+	 * separate hostname (e.g. not local `/w/images`). The feature expects at most
+	 * a single remote hostname to be used.
+	 *
+	 * If multiple foreign repos are registered that serve images from different hostnames,
+	 * only the first will be preconnected.
+	 *
+	 * This may cause unneeded HTTP connections in browsers on wikis where a foreign repo is
+	 * enabled but where a local repo is more commonly used.
 	 *
 	 * @since 1.35
-	 * @warning EXPERIMENTAL!
 	 */
 	public const ImagePreconnect = [
 		'default' => false,
