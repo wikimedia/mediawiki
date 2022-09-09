@@ -28,6 +28,7 @@ use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -573,7 +574,7 @@ class ApiParse extends ApiBase {
 		}
 		if ( isset( $prop['sections'] ) ) {
 			$result_array['sections'] = $p_result->getSections();
-			$result_array['showtoc'] = (bool)$p_result->getTOCHTML();
+			$result_array['showtoc'] = $p_result->getOutputFlag( ParserOutputFlags::SHOW_TOC );
 		}
 		if ( isset( $prop['parsewarnings'] ) ) {
 			$result_array['parsewarnings'] = $p_result->getWarnings();
