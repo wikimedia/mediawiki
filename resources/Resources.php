@@ -299,12 +299,6 @@ return [
 		'dependencies' => 'jquery.client',
 		'targets' => [ 'mobile', 'desktop' ],
 	],
-	'jquery.throttle-debounce' => [
-		'deprecated' => 'Please use OO.ui.throttle/debounce instead. See '
-			. 'https://phabricator.wikimedia.org/T213426',
-		'scripts' => 'resources/lib/jquery.throttle-debounce/jquery.ba-throttle-debounce.js',
-		'targets' => [ 'desktop', 'mobile' ],
-	],
 
 	/* jQuery Tipsy */
 

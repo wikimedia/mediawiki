@@ -53,6 +53,7 @@ For notes on 1.39.x and older releases, see HISTORY.
 * …
 
 ==== Removed external libraries ====
+* jquery.throttle-debounce, deprecated since MediaWiki 1.33.
 * …
 
 === Bug fixes in 1.40 ===
