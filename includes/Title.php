@@ -3904,7 +3904,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		// check, if the page language could be saved in the database, and if so and
 		// the value is not requested already, lookup the page language using PageStore
 		if ( $wgPageLanguageUseDB && $this->mDbPageLanguage === false ) {
-			$this->mDbPageLanguage = $this->getFieldFromPageStore( 'page_lang', $flags );
+			$this->mDbPageLanguage = $this->getFieldFromPageStore( 'page_lang', $flags ) ?: null;
 		}
 
 		return $this->mDbPageLanguage ?: null;
