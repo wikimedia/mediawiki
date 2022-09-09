@@ -3221,7 +3221,7 @@
 	"confirm-watch-button": "אישור",
 	"confirm-watch-top": "להוסיף את הדף הזה לרשימת המעקב שלך?",
 	"confirm-watch-label": "לכמה זמן לעקוב:",
-	"watchlist-expiry-options": "לתמיד:infinite,לשבוע:1 week,לחודש:1 month,לשלושה חודשים:3 months,לשישה חודשים:6 months",
+	"watchlist-expiry-options": "לתמיד:infinite,לשבוע:1 week,לחודש:1 month,לשלושה חודשים:3 months,לשישה חודשים:6 months,לשנה:1 year",
 	"watchlist-expires-in-aria-label": "פריט רשימת מעקב עם תאריך תפוגה",
 	"confirm-watch-button-expiry": "מעקב",
 	"confirm-unwatch-button": "אישור",

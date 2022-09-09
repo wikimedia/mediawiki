@@ -3144,7 +3144,7 @@
 	"confirm-watch-button": "U redu",
 	"confirm-watch-top": "Dodati ovu stranicu na Vaš spisak praćenja?",
 	"confirm-watch-label": "Razdoblje praćenja:",
-	"watchlist-expiry-options": "Trajno:infinite,1 sedmica:1 week,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months",
+	"watchlist-expiry-options": "Trajno:infinite,1 sedmica:1 week,1 mjesec:1 month,3 mjeseca:3 months,6 mjeseci:6 months,1 godina:1 year",
 	"watchlist-expires-in-aria-label": "Istječuća stavka popisa praćenih stranica",
 	"confirm-watch-button-expiry": "Prati",
 	"confirm-unwatch-button": "U redu",
