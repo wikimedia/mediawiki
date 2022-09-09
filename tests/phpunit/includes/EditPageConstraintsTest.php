@@ -72,7 +72,8 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		}
 		$this->assertNotNull( $title );
 
-		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+		$page = $wikiPageFactory->newFromTitle( $title );
 
 		if ( $user == null ) {
 			$user = $this->getTestUser()->getUser();
@@ -146,7 +147,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			"Expected result code mismatch. $message"
 		);
 
-		return WikiPage::factory( $title );
+		return $wikiPageFactory->newFromTitle( $title );
 	}
 
 	/** AccidentalRecreationConstraint integration */

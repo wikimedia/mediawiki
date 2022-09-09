@@ -21,7 +21,7 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 		$this->insertPage( 'BacklinkCacheTest_5', '[[BacklinkCacheTest_1]]' );
 
 		$cascade = 1;
-		WikiPage::factory( self::$backlinkCacheTest['title'] )->doUpdateRestrictions(
+		$this->getServiceContainer()->getWikiPageFactory()->newFromTitle( self::$backlinkCacheTest['title'] )->doUpdateRestrictions(
 			[ 'edit' => 'sysop' ],
 			[],
 			$cascade,

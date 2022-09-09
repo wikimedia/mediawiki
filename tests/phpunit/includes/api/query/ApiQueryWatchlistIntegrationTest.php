@@ -42,7 +42,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 	private function doMinorPageEdit( User $user, LinkTarget $target, $content, $summary ) {
 		$title = Title::newFromLinkTarget( $target );
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$page->doUserEditContent(
 			ContentHandler::makeContent( $content, $title ),
 			$user,
@@ -53,7 +53,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 	private function doBotPageEdit( User $user, LinkTarget $target, $content, $summary ) {
 		$title = Title::newFromLinkTarget( $target );
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$page->doUserEditContent(
 			ContentHandler::makeContent( $content, $title ),
 			$user,
@@ -81,7 +81,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	) {
 		$title = Title::newFromLinkTarget( $target );
 		$summary = CommentStoreComment::newUnsavedComment( trim( $summary ) );
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		$updater = $page->newPageUpdater( $user );
 		$updater->setContent( SlotRecord::MAIN, ContentHandler::makeContent( $content, $title ) );

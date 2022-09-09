@@ -68,7 +68,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	private function getPage( $title ) {
 		$title = ( $title instanceof Title ) ? $title : $this->getTitle( $title );
 
-		return WikiPage::factory( $title );
+		return $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 	}
 
 	/**
