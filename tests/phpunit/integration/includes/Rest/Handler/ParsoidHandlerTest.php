@@ -1299,10 +1299,11 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		// Use an HtmlInputTransformHelper that uses the fake HTMLTransformFactory, so it ends up
 		// using the HTMLTransform that has the fake Parsoid which throws an exception.
 		$handler = $this->newParsoidHandler( [
-			'getHtmlInputHelper' => static function () use ( $factory, $page, $html ) {
+			'getHtmlInputHelper' => function () use ( $factory, $page, $html ) {
 				$helper = new HtmlInputTransformHelper(
 					new NullStatsdDataFactory(),
-					$factory
+					$factory,
+					$this->getServiceContainer()->getParsoidOutputStash()
 				);
 
 				$helper->init( $page, [ 'html' => $html ], [] );

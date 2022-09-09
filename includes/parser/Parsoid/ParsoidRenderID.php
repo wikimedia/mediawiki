@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Parser\Parsoid;
 
+use InvalidArgumentException;
+
 /**
  * Represents the identity of a specific rendering of a specific revision
  * at some point in time.
@@ -39,8 +41,12 @@ class ParsoidRenderID {
 	 *
 	 */
 	public static function newFromKey( string $key ): self {
-		[ $revisionID, $uniqueID ] = explode( '/',
-			$key, 2 );
+		[ $revisionID, $uniqueID ] = explode( '/', $key, 2 );
+
+		if ( $revisionID === null || $uniqueID === null ) {
+			throw new InvalidArgumentException( 'Bad key: ' . $key );
+		}
+
 		return new self( (int)$revisionID, $uniqueID );
 	}
 
@@ -60,6 +66,11 @@ class ParsoidRenderID {
 	 */
 	public static function newFromETag( string $eTag ): self {
 		[ $revisionID, $uniqueID ] = explode( '/', trim( $eTag, '"' ) );
+
+		if ( $revisionID === null || $uniqueID === null ) {
+			throw new InvalidArgumentException( 'Bad ETag: ' . $eTag );
+		}
+
 		return new self( (int)$revisionID, $uniqueID );
 	}
 

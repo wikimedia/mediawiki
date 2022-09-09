@@ -117,6 +117,8 @@ class TransformHandler extends ParsoidHandler {
 					400 );
 			}
 
+			// TODO: use ETag from If-Match header, for compat!
+
 			$page = $this->tryToCreatePageIdentity( $attribs );
 
 			return $this->html2wt(

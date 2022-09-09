@@ -224,6 +224,17 @@ abstract class ParsoidHandler extends Handler {
 			'pagelanguage' => $request->getHeaderLine( 'Content-Language' ) ?: null,
 		];
 
+		// If the use-stash parameter is set, loop it through.
+		$opts['use-stash'] = $request->getQueryParams()['use-stash'] ?? false;
+
+		// If we get an ETag in the If-Match header, attempt to use it for loading
+		// stashed original content.
+		$stashKey = $request->getHeaderLine( 'If-Match' );
+		if ( $stashKey !== '' ) {
+			// use-stash is recognized as a query parameter by HtmlInputHelper
+			$opts['use-stash'] = $stashKey;
+		}
+
 		if ( $request->getMethod() === 'POST' ) {
 			if ( isset( $opts['original']['revid'] ) ) {
 				$attribs['oldid'] = $opts['original']['revid'];
@@ -297,6 +308,7 @@ abstract class ParsoidHandler extends Handler {
 		$helper = new HtmlInputTransformHelper(
 			$services->getStatsdDataFactory(),
 			$services->getHTMLTransformFactory(),
+			$services->getParsoidOutputStash(),
 			$attribs['envOptions']
 		);
 
