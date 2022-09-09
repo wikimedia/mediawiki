@@ -520,7 +520,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 
 		$this->assertSame( 0, Title::newFromText( $title )->getArticleID() );
 		$pageData = $this->insertPage( $title );
-		$page = WikiPage::factory( $pageData['title'] );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $pageData['title'] );
 
 		$summary = CommentStoreComment::newUnsavedComment( 'Some comment!' );
 		$page->newPageUpdater( $user )

@@ -168,7 +168,8 @@ class ApiEditPageTest extends ApiTestCase {
 	 */
 	public function testEditSection() {
 		$name = 'Help:ApiEditPageTest_testEditSection';
-		$page = WikiPage::factory( Title::newFromText( $name ) );
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+		$page = $wikiPageFactory->newFromTitle( Title::newFromText( $name ) );
 		$text = "==section 1==\ncontent 1\n==section 2==\ncontent2";
 		// Preload the page with some text
 		$page->doUserEditContent(
@@ -184,7 +185,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'text' => "==section 1==\nnew content 1",
 		] );
 		$this->assertSame( 'Success', $re['edit']['result'] );
-		$newtext = WikiPage::factory( Title::newFromText( $name ) )
+		$newtext = $wikiPageFactory->newFromTitle( Title::newFromText( $name ) )
 			->getContent( RevisionRecord::RAW )
 			->getText();
 		$this->assertSame( "==section 1==\nnew content 1\n\n==section 2==\ncontent2", $newtext );
@@ -211,6 +212,7 @@ class ApiEditPageTest extends ApiTestCase {
 	 */
 	public function testEditNewSection() {
 		$name = 'Help:ApiEditPageTest_testEditNewSection';
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 
 		// Test on a page that does not already exist
 		$this->assertFalse( Title::newFromText( $name )->exists() );
@@ -224,7 +226,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->assertSame( 'Success', $re['edit']['result'] );
 		// Check the page text is correct
-		$text = WikiPage::factory( Title::newFromText( $name ) )
+		$text = $wikiPageFactory->newFromTitle( Title::newFromText( $name ) )
 			->getContent( RevisionRecord::RAW )
 			->getText();
 		$this->assertSame( "== header ==\n\ntest", $text );
@@ -240,7 +242,7 @@ class ApiEditPageTest extends ApiTestCase {
 		] );
 
 		$this->assertSame( 'Success', $re2['edit']['result'] );
-		$text = WikiPage::factory( Title::newFromText( $name ) )
+		$text = $wikiPageFactory->newFromTitle( Title::newFromText( $name ) )
 			->getContent( RevisionRecord::RAW )
 			->getText();
 		$this->assertSame( "== header ==\n\ntest\n\n== header ==\n\ntest", $text );
@@ -271,7 +273,8 @@ class ApiEditPageTest extends ApiTestCase {
 			'summary' => $summary,
 		] );
 
-		$wikiPage = WikiPage::factory( Title::newFromText( $name ) );
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+		$wikiPage = $wikiPageFactory->newFromTitle( Title::newFromText( $name ) );
 
 		// Check the page text is correct
 		$savedText = $wikiPage->getContent( RevisionRecord::RAW )->getText();
@@ -297,7 +300,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'summary' => $summary,
 		] );
 
-		$wikiPage = WikiPage::factory( Title::newFromText( $name ) );
+		$wikiPage = $wikiPageFactory->newFromTitle( Title::newFromText( $name ) );
 
 		// Check the page text is correct
 		$savedText = $wikiPage->getContent( RevisionRecord::RAW )->getText();
@@ -369,11 +372,12 @@ class ApiEditPageTest extends ApiTestCase {
 		// assume NS_HELP defaults to wikitext
 		$name = "Help:ApiEditPageTest_testEdit_redirect_$count";
 		$title = Title::newFromText( $name );
-		$page = WikiPage::factory( $title );
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+		$page = $wikiPageFactory->newFromTitle( $title );
 
 		$rname = "Help:ApiEditPageTest_testEdit_redirect_r$count";
 		$rtitle = Title::newFromText( $rname );
-		$rpage = WikiPage::factory( $rtitle );
+		$rpage = $wikiPageFactory->newFromTitle( $rtitle );
 
 		// base edit for content
 		$page->doUserEditContent(
@@ -430,11 +434,12 @@ class ApiEditPageTest extends ApiTestCase {
 		// assume NS_HELP defaults to wikitext
 		$name = "Help:ApiEditPageTest_testEdit_redirectText_$count";
 		$title = Title::newFromText( $name );
-		$page = WikiPage::factory( $title );
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+		$page = $wikiPageFactory->newFromTitle( $title );
 
 		$rname = "Help:ApiEditPageTest_testEdit_redirectText_r$count";
 		$rtitle = Title::newFromText( $rname );
-		$rpage = WikiPage::factory( $rtitle );
+		$rpage = $wikiPageFactory->newFromTitle( $rtitle );
 
 		// base edit for content
 		$page->doUserEditContent(
@@ -491,7 +496,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$name = "Help:ApiEditPageTest_testEditConflict_$count";
 		$title = Title::newFromText( $name );
 
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		// base edit
 		$page->doUserEditContent(
@@ -537,7 +542,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$name = "Help:ApiEditPageTest_testEditConflict_$count";
 		$title = Title::newFromText( $name );
 
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		// base edit
 		$page->doUserEditContent(
@@ -586,7 +591,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$name = "Help:ApiEditPageTest_testEditConflict_newSection_$count";
 		$title = Title::newFromText( $name );
 
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		// base edit
 		$page->doUserEditContent(
@@ -635,11 +640,12 @@ class ApiEditPageTest extends ApiTestCase {
 		// assume NS_HELP defaults to wikitext
 		$name = "Help:ApiEditPageTest_testEditConflict_redirect_T43990_$count";
 		$title = Title::newFromText( $name );
-		$page = WikiPage::factory( $title );
+		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
+		$page = $wikiPageFactory->newFromTitle( $title );
 
 		$rname = "Help:ApiEditPageTest_testEditConflict_redirect_T43990_r$count";
 		$rtitle = Title::newFromText( $rname );
-		$rpage = WikiPage::factory( $rtitle );
+		$rpage = $wikiPageFactory->newFromTitle( $rtitle );
 
 		// base edit for content
 		$page->doUserEditContent(
@@ -735,7 +741,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'pageid', $apiResult['edit'] );
 
 		// validate resulting revision
-		$page = WikiPage::factory( Title::newFromText( $name ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( $name ) );
 		$this->assertSame( "testing-nontext", $page->getContentModel() );
 		$this->assertSame( $data, $page->getContent()->serialize() );
 	}
@@ -1822,7 +1828,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 		$title = Title::newFromText( $name );
 
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		// base edit, currently in Wikitext
 		$page->doUserEditContent(
