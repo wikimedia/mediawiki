@@ -242,7 +242,7 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 	 * @covers ParserOutput::getText
 	 * @dataProvider provideGetText
 	 * @dataProvider provideGetTextBackCompat
-	 * @dataProvider provideGetTextForwardCompat
+	 * @dataProvider provideGetTextBackCompat2
 	 * @param array $options Options to getText()
 	 * @param string $text Parser text
 	 * @param string $expect Expected output
@@ -383,15 +383,14 @@ EOF
 		// phpcs:enable
 	}
 
-		// Remove this once we've transitioned the cache to the new
-		// TOC_PLACEHOLDER
-	public static function provideGetTextForwardCompat() {
+	// REMOVE THIS ONCE ParserCache is transitioned to <meta> placeholder
+	public static function provideGetTextBackCompat2() {
 		// phpcs:disable Generic.Files.LineLength
 		$toc = self::provideGetTextToc();
 		$text = <<<EOF
 <p>Test document.
 </p>
-<meta property="mw:PageProp/toc" />
+<mw:tocplace></mw:tocplace>
 <h2><span class="mw-headline" id="Section_1">Section 1</span><mw:editsection page="Test Page" section="1">Section 1</mw:editsection></h2>
 <p>One
 </p>
@@ -495,7 +494,7 @@ EOF
 		$text = <<<EOF
 <p>Test document.
 </p>
-<mw:tocplace></mw:tocplace>
+<meta property="mw:PageProp/toc" />
 <h2><span class="mw-headline" id="Section_1">Section 1</span><mw:editsection page="Test Page" section="1">Section 1</mw:editsection></h2>
 <p>One
 </p>

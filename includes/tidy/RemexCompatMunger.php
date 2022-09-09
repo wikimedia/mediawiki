@@ -84,6 +84,8 @@ class RemexCompatMunger implements TreeHandler {
 		'style' => true,
 		'script' => true,
 		'link' => true,
+		// Except for the TableOfContentsMarker (see ::isTableOfContentsMarker()
+		// and Parser::TOC_PLACEHOLDER) which should break a paragraph.
 		'meta' => true,
 	];
 
@@ -275,7 +277,9 @@ class RemexCompatMunger implements TreeHandler {
 		$inline = isset( self::$onlyInlineElements[$elementName] );
 		$under = $preposition === TreeBuilder::UNDER;
 
-		if ( isset( self::$metadataElements[$elementName] ) ) {
+		if ( isset( self::$metadataElements[$elementName] )
+			&& !self::isTableOfContentsMarker( $element )
+		) {
 			// The element is a metadata element, that we allow to appear in
 			// both inline and block contexts.
 			$this->trace( 'insert metadata' );
@@ -528,5 +532,21 @@ class RemexCompatMunger implements TreeHandler {
 			}
 		}
 		$newParentNode->children = $children;
+	}
+
+	/**
+	 * Helper function to match the Parser::TOC_PLACEHOLDER.
+	 * Note that Parsoid's version of this placeholder might
+	 * include additional attributes.
+	 * @param Element $element
+	 * @return bool If the given element is a Parser::TOC_PLACEHOLDER
+	 */
+	private function isTableOfContentsMarker( Element $element ): bool {
+		// Keep this in sync with Parser::TOC_PLACEHOLDER
+		return (
+			$element->htmlName === 'meta' &&
+			isset( $element->attrs['property'] ) &&
+			$element->attrs['property'] === 'mw:PageProp/toc'
+		);
 	}
 }

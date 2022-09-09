@@ -328,7 +328,9 @@ class BlockLevelPass {
 					'/<('
 						. "\\/({$blockElems})|({$antiBlockElems})|"
 						// Never suppresses
-						. '\\/?(center|blockquote|div|hr|mw:|aside|figure)'
+						. '\\/?(center|blockquote|div|hr|mw:|aside|figure)|'
+						// Used as Parser::TOC_PLACEHOLDER
+						. 'meta property="mw:'
 						. ')\\b/iS',
 					$t
 				);
