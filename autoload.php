@@ -255,6 +255,7 @@ $wgAutoloadLocalClasses = [
 	'CleanupEmptyCategories' => __DIR__ . '/maintenance/cleanupEmptyCategories.php',
 	'CleanupImages' => __DIR__ . '/maintenance/cleanupImages.php',
 	'CleanupInvalidDbKeys' => __DIR__ . '/maintenance/cleanupInvalidDbKeys.php',
+	'CleanupPageLang' => __DIR__ . '/maintenance/cleanupPageLang.php',
 	'CleanupPreferences' => __DIR__ . '/maintenance/cleanupPreferences.php',
 	'CleanupRemovedModules' => __DIR__ . '/maintenance/cleanupRemovedModules.php',
 	'CleanupSpam' => __DIR__ . '/maintenance/cleanupSpam.php',
