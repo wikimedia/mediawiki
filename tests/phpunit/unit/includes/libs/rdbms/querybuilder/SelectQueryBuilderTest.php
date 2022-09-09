@@ -2,6 +2,7 @@
 
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Rdbms\Subquery;
 
 /**
  * @covers \Wikimedia\Rdbms\SelectQueryBuilder
@@ -96,6 +97,20 @@ class SelectQueryBuilderTest extends PHPUnit\Framework\TestCase {
 			)
 			->field( 'sq.f' );
 		$this->assertSQL( 'SELECT sq.f FROM (SELECT f FROM t FORCE INDEX (i) ) sq' );
+	}
+
+	public function testSubqueryAsObject() {
+		$this->sqb
+			->table(
+				new Subquery( $this->sqb->newSubquery()
+					->field( 'f' )
+					->from( 'ta' )
+					->useIndex( 'i' )
+				->getSQL() ),
+				'sq'
+			)
+			->field( 'sq.f' );
+		$this->assertSQL( 'SELECT sq.f FROM (SELECT f FROM ta FORCE INDEX (i) ) sq' );
 	}
 
 	public function testTablesFields() {

@@ -283,7 +283,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 			$queryBuilder = $dbr->newSelectQueryBuilder()
 				->select( '*' )
 				->from(
-					(string)( new Subquery( $dbr->unionQueries( $sqls, $dbr::UNION_DISTINCT ) ) ),
+					new Subquery( $dbr->unionQueries( $sqls, $dbr::UNION_DISTINCT ) ),
 					'main'
 				)
 				->orderBy( 'rc_timestamp', SelectQueryBuilder::SORT_DESC )
