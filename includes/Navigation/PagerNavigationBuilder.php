@@ -21,9 +21,9 @@ class PagerNavigationBuilder {
 	private $messageLocalizer;
 
 	/** @var PageReference */
-	private $page;
+	protected $page;
 	/** @var array<string,string> */
-	private $linkQuery = [];
+	protected $linkQuery = [];
 
 	/** @var array<string,string>|null */
 	private $prevLinkQuery = null;
@@ -64,6 +64,11 @@ class PagerNavigationBuilder {
 
 	/** @var string Additional HTML to display after the pager links */
 	private $extra = '';
+
+	/** @var callable|null $callback Function to call instead of makeLink().
+	 *   See IndexPager::makeLink() for the expected signature.
+	 */
+	private $makeLinkCallback = null;
 
 	/**
 	 * @param MessageLocalizer $messageLocalizer
@@ -244,6 +249,17 @@ class PagerNavigationBuilder {
 	}
 
 	/**
+	 * @deprecated since 1.39
+	 * @param callable|null $callback Function to call instead of makeLink().
+	 *   See IndexPager::makeLink() for the expected signature.
+	 * @return $this
+	 */
+	public function setMakeLinkCallback( ?callable $callback ): PagerNavigationBuilder {
+		$this->makeLinkCallback = $callback;
+		return $this;
+	}
+
+	/**
 	 * @param mixed $key
 	 * @param mixed ...$params
 	 * @return Message
@@ -255,6 +271,7 @@ class PagerNavigationBuilder {
 	}
 
 	/**
+	 * @stable to override
 	 * @param array|null $query
 	 * @param string|null $class
 	 * @param string $text
@@ -262,9 +279,14 @@ class PagerNavigationBuilder {
 	 * @param string|null $rel
 	 * @return string HTML
 	 */
-	private function makeLink(
+	protected function makeLink(
 		?array $query, ?string $class, string $text, ?string $tooltip, ?string $rel = null
 	): string {
+		if ( $this->makeLinkCallback ) {
+			$type = substr( $class, strlen( 'mw-' ), -strlen( 'link' ) );
+			return ( $this->makeLinkCallback )( $text, $query, $type );
+		}
+
 		if ( $query !== null ) {
 			$title = Title::castFromPageReference( $this->page );
 			return Html::element(
