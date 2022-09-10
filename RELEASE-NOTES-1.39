@@ -572,9 +572,10 @@ because of Phabricator reports.
   LanguageCode::isWellFormedLanguageTag().
 * The PrevNextNavigationRenderer helper class has been deprecated in favor of
   the new PagerNavigationBuilder one.
-* IndexPager::getPagingLinks(), IndexPager::getLimitLinks() and
+* The methods IndexPager::getPagingLinks(), IndexPager::getLimitLinks() and
   IndexPager::buildPrevNextNavigation() have been deprecated in favor of
   IndexPager::getNavigationBuilder().
+* Overriding the method IndexPager::makeLink() has been deprecated.
 * …
 
 === Other changes in 1.39 ===
