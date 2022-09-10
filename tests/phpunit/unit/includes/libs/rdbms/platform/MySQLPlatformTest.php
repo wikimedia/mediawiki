@@ -25,13 +25,20 @@ class MySQLPlatformTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
+	/** @var SqlitePlatform */
+	private $platform;
+
+	protected function setUp(): void {
+		parent::setUp();
+		$this->platform = new MySQLPlatform( new AddQuoterMock() );
+	}
+
 	/**
 	 * @dataProvider provideDiapers
 	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform::addIdentifierQuotes
 	 */
 	public function testAddIdentifierQuotes( $expected, $in ) {
-		$platform = new MySQLPlatform( new AddQuoterMock() );
-		$quoted = $platform->addIdentifierQuotes( $in );
+		$quoted = $this->platform->addIdentifierQuotes( $in );
 		$this->assertEquals( $expected, $quoted );
 	}
 
@@ -39,9 +46,8 @@ class MySQLPlatformTest extends PHPUnit\Framework\TestCase {
 	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform::addIdentifierQuotes
 	 */
 	public function testAddIdentifierQuotesNull() {
-		$platform = new MySQLPlatform( new AddQuoterMock() );
 		// Ignore PHP 8.1+ warning about null to str_replace()
-		$quoted = @$platform->addIdentifierQuotes( null );
+		$quoted = @$this->platform->addIdentifierQuotes( null );
 		$this->assertEquals( '``', $quoted );
 	}
 
