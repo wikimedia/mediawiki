@@ -1,14 +1,19 @@
 <?php
 
 use MediaWiki\Settings\SettingsBuilder;
+use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
 use Wikimedia\ScopedCallback;
 
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
 class ParserFuzzTest extends Maintenance {
+	/** @var ParserTestRunner */
 	private $parserTest;
+	/** @var int */
 	private $maxFuzzTestLength = 300;
+	/** @var int */
 	private $memoryLimit = 100;
+	/** @var int */
 	private $seed;
 
 	public function __construct() {
@@ -52,15 +57,15 @@ class ParserFuzzTest extends Maintenance {
 		$teardown = $this->parserTest->setupDatabase( $teardown );
 		$teardown = $this->parserTest->setupUploads( $teardown );
 
-		$fakeTest = [
-			'test' => '',
-			'desc' => '',
-			'input' => '',
-			'result' => '',
-			'options' => '',
-			'config' => ''
-		];
+		$fakeTest = new ParserTest( [
+			'testName' => '',
+			'wikitext' => '',
+			'html' => '',
+			'options' => [],
+			'config' => [],
+		], [], '' );
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 		ini_set( 'memory_limit', $this->memoryLimit * 1048576 * 2 );
 
 		$numTotal = 0;
@@ -88,18 +93,12 @@ class ParserFuzzTest extends Maintenance {
 			// Run the test
 			try {
 				$parser->parse( $input, $title, $opts );
-				$fail = false;
+				$numSuccess++;
 			} catch ( Exception $exception ) {
-				$fail = true;
-			}
-
-			if ( $fail ) {
 				echo "Test failed with seed {$this->seed}\n";
 				echo "Input:\n";
 				printf( "string(%d) \"%s\"\n\n", strlen( $input ), $input );
 				echo "$exception\n";
-			} else {
-				$numSuccess++;
 			}
 
 			$numTotal++;

@@ -182,4 +182,27 @@ interface Authority {
 		PermissionStatus $status = null
 	): bool;
 
+	/**
+	 * Get whether the user is registered.
+	 *
+	 * @return bool
+	 * @since 1.39
+	 */
+	public function isRegistered(): bool;
+
+	/**
+	 * Is the user an autocreated temporary user?
+	 *
+	 * @since 1.39
+	 * @return bool
+	 */
+	public function isTemp(): bool;
+
+	/**
+	 * Is the user a normal non-temporary registered user?
+	 *
+	 * @since 1.39
+	 * @return bool
+	 */
+	public function isNamed(): bool;
 }

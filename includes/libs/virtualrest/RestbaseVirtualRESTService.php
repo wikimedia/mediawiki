@@ -61,6 +61,7 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 			'fixedUrl' => false,
 		], $params );
 		// Ensure that the url parameter has a trailing slash.
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal url has default value
 		if ( substr( $mparams['url'], -1 ) !== '/' ) {
 			$mparams['url'] .= '/';
 		}
@@ -70,6 +71,7 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 		$mparams['domain'] = preg_replace(
 			'/^((https?:)?\/\/)?([^\/:]+?)(:\d+)?\/?$/',
 			'$3',
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal domain has default value
 			$mparams['domain']
 		);
 		parent::__construct( $mparams );

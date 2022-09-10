@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 
 /**
@@ -17,19 +18,19 @@ class TitleUrlTest extends MediaWikiLangTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( [
-			'wgServer' => '//m.xx.wiki.test',
-			'wgCanonicalServer' => 'https://xx.wiki.test',
-			'wgInternalServer' => 'http://app23.internal',
-			'wgArticlePath' => '/wiki/$1',
-			'wgExternalInterwikiFragmentMode' => 'html5',
-			'wgFragmentMode' => [ 'legacy', 'html5' ],
-			'wgMainPageIsDomainRoot' => true,
-			'wgActionPaths' => [ 'edit' => '/m/edit/$1' ],
-			'wgVariantArticlePath' => '/$2/$1',
-			'wgScriptPath' => '/m',
-			'wgScript' => '/m/index.php',
-			'wgUsePigLatinVariant' => true,
+		$this->overrideConfigValues( [
+			MainConfigNames::Server => '//m.xx.wiki.test',
+			MainConfigNames::CanonicalServer => 'https://xx.wiki.test',
+			MainConfigNames::InternalServer => 'http://app23.internal',
+			MainConfigNames::ArticlePath => '/wiki/$1',
+			MainConfigNames::ExternalInterwikiFragmentMode => 'html5',
+			MainConfigNames::FragmentMode => [ 'legacy', 'html5' ],
+			MainConfigNames::MainPageIsDomainRoot => true,
+			MainConfigNames::ActionPaths => [ 'edit' => '/m/edit/$1' ],
+			MainConfigNames::VariantArticlePath => '/$2/$1',
+			MainConfigNames::ScriptPath => '/m',
+			MainConfigNames::Script => '/m/index.php',
+			MainConfigNames::UsePigLatinVariant => true,
 		] );
 
 		// Some tests use interwikis - define valid prefixes and their configuration
@@ -505,7 +506,7 @@ class TitleUrlTest extends MediaWikiLangTestCase {
 		);
 
 		// Test $wgFragmentMode
-		$this->setMwGlobals( 'wgFragmentMode', [ 'html5', 'legacy' ] );
+		$this->overrideConfigValue( MainConfigNames::FragmentMode, [ 'html5', 'legacy' ] );
 		$fragment = 'Sectiön';
 
 		$this->assertSame(
@@ -804,8 +805,10 @@ class TitleUrlTest extends MediaWikiLangTestCase {
 		);
 
 		// Test $wgFragmentMode
-		$this->setMwGlobals( 'wgFragmentMode', [ 'html5', 'legacy' ] );
-		$this->setMwGlobals( 'wgExternalInterwikiFragmentMode', 'legacy' );
+		$this->overrideConfigValues( [
+			MainConfigNames::FragmentMode => [ 'html5', 'legacy' ],
+			MainConfigNames::ExternalInterwikiFragmentMode => 'legacy',
+		] );
 		$section = 'Secti.C3.B6n';
 
 		$this->assertSame(
@@ -946,8 +949,10 @@ class TitleUrlTest extends MediaWikiLangTestCase {
 		);
 
 		// Test $wgFragmentMode
-		$this->setMwGlobals( 'wgFragmentMode', [ 'html5', 'legacy' ] );
-		$this->setMwGlobals( 'wgExternalInterwikiFragmentMode', 'legacy' );
+		$this->overrideConfigValues( [
+			MainConfigNames::FragmentMode => [ 'html5', 'legacy' ],
+			MainConfigNames::ExternalInterwikiFragmentMode => 'legacy',
+		] );
 		$section = 'Sectiön';
 
 		$this->assertSame(
@@ -967,8 +972,10 @@ class TitleUrlTest extends MediaWikiLangTestCase {
 		$name = $title->getPrefixedURL();
 
 		// NOTE: $wgHttpsPort is only supported if $wgCanonicalServer does not use HTTPS
-		$this->setMwGlobals( 'wgCanonicalServer', 'http://xx.wiki.test' );
-		$this->setMwGlobals( 'wgHttpsPort', '4444' );
+		$this->overrideConfigValues( [
+			MainConfigNames::CanonicalServer => 'http://xx.wiki.test',
+			MainConfigNames::HttpsPort => '4444',
+		] );
 
 		// Test getFullURL()
 		$this->assertSame(

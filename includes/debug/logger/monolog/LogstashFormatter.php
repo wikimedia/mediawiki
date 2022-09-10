@@ -33,7 +33,7 @@ class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 	protected $version;
 
 	/**
-	 * See T247675 for removing this override.
+	 * TODO: See T247675 for removing this override.
 	 *
 	 * @param string $applicationName The application that sends the data, used as the "type"
 	 * field of logstash
@@ -57,6 +57,8 @@ class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 			$message = $this->formatv1( $record );
 		} elseif ( $this->version === self::V0 ) {
 			$message = $this->formatV0( $record );
+		} else {
+			$message = __METHOD__ . ' unknown version ' . $this->version;
 		}
 
 		return $this->toJson( $message ) . "\n";
@@ -196,8 +198,8 @@ class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 	}
 
 	/**
-	 * Check whether some context field would overwrite another message key. If so, rename
-	 * and flag.
+	 * Rename any context field that would otherwise overwrite a message key.
+	 *
 	 * @param array $fields Fields to be sent to logstash
 	 * @param array $context Copy of the original $record['context']
 	 * @return array Updated version of $fields
@@ -217,7 +219,8 @@ class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 	}
 
 	/**
-	 * Use a more user-friendly trace format than NormalizerFormatter
+	 * Use a more user-friendly trace format than Monolog\Formatter\NormalizerFormatter.
+	 *
 	 * @param \Throwable $e
 	 * @param int $depth
 	 * @return array

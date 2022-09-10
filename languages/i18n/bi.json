@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Iketsi",
 			"MinecraftAustralia",
 			"Sotiale",
-			"Ushanka",
-			"Amire80"
+			"Ushanka"
 		]
 	},
 	"underline-always": "Oltaem",
@@ -58,12 +58,12 @@
 	"mytalk": "Tingting blong",
 	"and": "&#32;mo",
 	"search": "Faenem samting",
-	"view-history": "Lukluk histri",
+	"skin-view-history": "Lukluk histri",
 	"history": "Pej histri",
 	"history_short": "Histri",
-	"view-view": "Rid",
+	"skin-view-view": "Rid",
 	"edit": "Jenisim hem",
-	"view-edit": "Jenisim hem",
+	"skin-view-edit": "Jenisim hem",
 	"newpage": "Mekem niu pej",
 	"talkpagelinktext": "toktok",
 	"specialpage": "Spesel Pej",

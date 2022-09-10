@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group Media
  * @covers ExifBitmapHandler
@@ -15,7 +17,7 @@ class ExifBitmapTest extends MediaWikiMediaTestCase {
 		parent::setUp();
 		$this->checkPHPExtension( 'exif' );
 
-		$this->setMwGlobals( 'wgShowEXIF', true );
+		$this->overrideConfigValue( MainConfigNames::ShowEXIF, true );
 
 		$this->handler = new ExifBitmapHandler;
 	}

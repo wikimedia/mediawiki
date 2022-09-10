@@ -18,14 +18,15 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 			User::newFromName( 'IW>' . __CLASS__, false ),
 		];
 
-		$title = Title::newFromText( __CLASS__ );
-		$page = WikiPage::factory( $title );
+		$title = Title::makeTitle( NS_MAIN, 'ApiQueryUserContribsTest' );
 		for ( $i = 0; $i < 3; $i++ ) {
 			foreach ( array_reverse( $users ) as $user ) {
-				$status = $page->doUserEditContent(
-					ContentHandler::makeContent( "Test revision $user #$i", $title ),
-					$user,
-					'Test edit'
+				$status = $this->editPage(
+					$title,
+					"Test revision $user #$i",
+					'Test edit',
+					NS_MAIN,
+					$user
 				);
 				if ( !$status->isOK() ) {
 					$this->fail( "Failed to edit $title: " . $status->getWikiText( false, false, 'en' ) );
@@ -114,6 +115,7 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 			yield "User IDs, $name" => [ [ 'ucuserids' => $users ], $reverse, 9 ];
 			yield "Users by prefix, $name" => [ [ 'ucuserprefix' => __CLASS__ ], $reverse, 9 ];
 			yield "IPs by prefix, $name" => [ [ 'ucuserprefix' => '192.168.2.' ], $reverse, 9 ];
+			yield "IPs by range, $name" => [ [ 'uciprange' => '192.168.2.0/24' ], $reverse, 9 ];
 		}
 	}
 

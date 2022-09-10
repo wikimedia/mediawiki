@@ -2,13 +2,20 @@
 
 namespace MediaWiki\Tests\Integration\Permissions;
 
+use CommentStore;
 use IDBAccessObject;
+use LinkCache;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageStore;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWikiIntegrationTestCase;
 use Title;
+use WANObjectCache;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -31,6 +38,9 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 	/** @var LinkCache */
 	private $linkCache;
 
+	/** @var LinksMigration */
+	private $linksMigration;
+
 	/** @var HookContainer */
 	private $hookContainer;
 
@@ -50,6 +60,7 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 		$this->wanCache = $services->getMainWANObjectCache();
 		$this->loadBalancer = $services->getDBLoadBalancer();
 		$this->linkCache = $services->getLinkCache();
+		$this->linksMigration = $services->getLinksMigration();
 		$this->commentStore = $services->getCommentStore();
 		$this->hookContainer = $services->getHookContainer();
 		$this->pageStore = $services->getPageStore();
@@ -77,6 +88,7 @@ class RestrictionStoreTest extends MediaWikiIntegrationTestCase {
 			$this->wanCache,
 			$this->loadBalancer,
 			$this->linkCache,
+			$this->linksMigration,
 			$this->commentStore,
 			$this->hookContainer,
 			$this->pageStore

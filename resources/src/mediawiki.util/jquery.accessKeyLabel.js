@@ -4,14 +4,10 @@
  * @class jQuery.plugin.accessKeyLabel
  */
 
-var cachedAccessKeyModifiers,
+// Whether to use 'test-' instead of correct prefix (for unit tests)
+var testMode = false;
 
-	// Whether to use 'test-' instead of correct prefix (for unit tests)
-	testMode = false,
-
-	// HTML elements that can have an associated label
-	// https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Form-associated_content
-	labelable = 'button, input, textarea, keygen, meter, output, progress, select';
+var cachedModifiers;
 
 /**
  * Find the modifier keys that need to be pressed together with the accesskey to trigger the input.
@@ -25,13 +21,12 @@ var cachedAccessKeyModifiers,
  * @return {string} Label with dash-separated segments in this order: ctrl, option, alt, shift, esc
  */
 function getAccessKeyModifiers( nav ) {
-	var profile, accessKeyModifiers;
-
-	if ( !nav && cachedAccessKeyModifiers ) {
-		return cachedAccessKeyModifiers;
+	if ( !nav && cachedModifiers ) {
+		return cachedModifiers;
 	}
 
-	profile = $.client.profile( nav );
+	var profile = $.client.profile( nav );
+	var accessKeyModifiers;
 
 	switch ( profile.name ) {
 		// Historical: Opera 8-13 used shift-esc- (Presto engine, no longer supported).
@@ -84,7 +79,7 @@ function getAccessKeyModifiers( nav ) {
 
 	if ( !nav ) {
 		// If not for a custom UA string, cache and re-use
-		cachedAccessKeyModifiers = accessKeyModifiers;
+		cachedModifiers = accessKeyModifiers;
 	}
 	return accessKeyModifiers;
 }
@@ -121,19 +116,17 @@ function getAccessKeyLabel( element ) {
  * @param {HTMLElement} titleElement Element with the title to update (may be the same as `element`)
  */
 function updateTooltipOnElement( element, titleElement ) {
-	var oldTitle, parts, regexp, newTitle, accessKeyLabel,
-		separatorMsg = mw.message( 'word-separator' ).plain();
-
-	oldTitle = titleElement.title;
+	var oldTitle = titleElement.title;
 	if ( !oldTitle ) {
 		// don't add a title if the element didn't have one before
 		return;
 	}
 
-	parts = ( separatorMsg + mw.message( 'brackets' ).plain() ).split( '$1' );
-	regexp = new RegExp( parts.map( mw.util.escapeRegExp ).join( '.*?' ) + '$' );
-	newTitle = oldTitle.replace( regexp, '' );
-	accessKeyLabel = getAccessKeyLabel( element );
+	var separatorMsg = mw.message( 'word-separator' ).plain();
+	var parts = ( separatorMsg + mw.message( 'brackets' ).plain() ).split( '$1' );
+	var regexp = new RegExp( parts.map( mw.util.escapeRegExp ).join( '.*?' ) + '$' );
+	var newTitle = oldTitle.replace( regexp, '' );
+	var accessKeyLabel = getAccessKeyLabel( element );
 
 	if ( accessKeyLabel ) {
 		// Should be build the same as in Linker::titleAttrib
@@ -144,6 +137,10 @@ function updateTooltipOnElement( element, titleElement ) {
 	}
 }
 
+// HTML elements that can have an associated label
+// https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#Form-associated_content
+var labelable = 'button, input, textarea, keygen, meter, output, progress, select';
+
 /**
  * Update the title for an element to show the correct access key label.
  *
@@ -151,23 +148,22 @@ function updateTooltipOnElement( element, titleElement ) {
  * @param {HTMLElement} element Element with the accesskey
  */
 function updateTooltip( element ) {
-	var id, $element, $label, $labelParent;
 	updateTooltipOnElement( element, element );
 
 	// update associated label if there is one
-	$element = $( element );
+	var $element = $( element );
 	if ( $element.is( labelable ) ) {
 		// Search it using 'for' attribute
-		id = element.id.replace( /"/g, '\\"' );
+		var id = element.id.replace( /"/g, '\\"' );
 		if ( id ) {
-			$label = $( 'label[for="' + id + '"]' );
+			var $label = $( 'label[for="' + id + '"]' );
 			if ( $label.length === 1 ) {
 				updateTooltipOnElement( element, $label[ 0 ] );
 			}
 		}
 
 		// Search it as parent, because the form control can also be inside the label element itself
-		$labelParent = $element.parents( 'label' );
+		var $labelParent = $element.parents( 'label' );
 		if ( $labelParent.length === 1 ) {
 			updateTooltipOnElement( element, $labelParent[ 0 ] );
 		}

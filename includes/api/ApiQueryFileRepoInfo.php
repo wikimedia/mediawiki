@@ -21,6 +21,9 @@
  * @since 1.22
  */
 
+use MediaWiki\MainConfigNames;
+use Wikimedia\ParamValidator\ParamValidator;
+
 /**
  * A query action to return meta information about the foreign file repos
  * configured on the wiki.
@@ -54,7 +57,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 
 		$repos = [];
 
-		$foreignTargets = $conf->get( 'ForeignUploadTargets' );
+		$foreignTargets = $conf->get( MainConfigNames::ForeignUploadTargets );
 
 		$this->repoGroup->forEachForeignRepo(
 			static function ( FileRepo $repo ) use ( &$repos, $props, $foreignTargets ) {
@@ -66,7 +69,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 		);
 
 		$localInfo = $this->repoGroup->getLocalRepo()->getInfo();
-		$localInfo['canUpload'] = $conf->get( 'EnableUploads' );
+		$localInfo['canUpload'] = $conf->get( MainConfigNames::EnableUploads );
 		$repos[] = array_intersect_key( $localInfo, $props );
 
 		$result = $this->getResult();
@@ -85,9 +88,9 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 
 		return [
 			'prop' => [
-				ApiBase::PARAM_DFLT => implode( '|', $props ),
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => $props,
+				ParamValidator::PARAM_DEFAULT => implode( '|', $props ),
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => $props,
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 		];

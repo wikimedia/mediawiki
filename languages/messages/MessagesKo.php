@@ -3,8 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author Albamhandae
  * @author Altostratus
@@ -100,6 +100,7 @@ $specialPageAliases = [
 	'CreateAccount'             => [ '계정만들기', '가입' ],
 	'Deadendpages'              => [ '막다른문서' ],
 	'DeletedContributions'      => [ '삭제된기여' ],
+	'DeletePage'                => [ '문서삭제', '삭제' ],
 	'Diff'                      => [ '차이' ],
 	'DoubleRedirects'           => [ '이중넘겨주기' ],
 	'EditPage'                  => [ '문서편집', '편집' ],
@@ -161,6 +162,7 @@ $specialPageAliases = [
 	'Prefixindex'               => [ '접두어찾기' ],
 	'Protectedpages'            => [ '보호된문서' ],
 	'Protectedtitles'           => [ '생성보호된문서', '만들기보호된문서' ],
+	'ProtectPage'               => [ '문서보호', '보호' ],
 	'Purge'                     => [ '새로고침' ],
 	'RandomInCategory'          => [ '분류안의임의문서' ],
 	'Randompage'                => [ '임의문서' ],
@@ -349,8 +351,8 @@ $magicWords = [
 	'server'                    => [ '0', '서버', 'SERVER' ],
 	'servername'                => [ '0', '서버이름', 'SERVERNAME' ],
 	'sitename'                  => [ '1', '사이트이름', 'SITENAME' ],
-	'special'                   => [ '0', '특수기능', 'special' ],
-	'speciale'                  => [ '0', '특수기능E', '특수기능e', 'speciale' ],
+	'special'                   => [ '0', '특수', '특수기능', 'special' ],
+	'speciale'                  => [ '0', '특수E', '특수기능E', '특수기능e', 'speciale' ],
 	'staticredirect'            => [ '1', '__넘겨주기고정__', '__STATICREDIRECT__' ],
 	'stylepath'                 => [ '0', '스타일경로', 'STYLEPATH' ],
 	'subjectpagename'           => [ '1', '본문서이름', 'SUBJECTPAGENAME', 'ARTICLEPAGENAME' ],
@@ -376,7 +378,7 @@ $magicWords = [
 
 $bookstoreList = [
 	'Aladin.co.kr' => 'https://www.aladin.co.kr/catalog/book.asp?ISBN=$1',
-	'National Library of Korea' => 'http://www.nl.go.kr/nl/search/search.jsp?all=on&topF1=cheonggu&kwd=$1',
+	'National Library of Korea' => 'https://www.nl.go.kr/NL/contents/search.do?srchTarget=cheonggu&kwd=$1',
 	'Naver' => 'https://book.naver.com/search/search.nhn?query=$1',
 	'inherit' => true,
 ];

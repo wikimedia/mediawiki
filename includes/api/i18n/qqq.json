@@ -19,8 +19,8 @@
 			"Siebrand",
 			"Tacsipacsi",
 			"Umherirrender",
-			"Zoranzoki21",
-			"Verdy p"
+			"Verdy p",
+			"Zoranzoki21"
 		]
 	},
 	"apihelp-main-summary": "{{doc-apihelp-summary|main}}",
@@ -1245,6 +1245,7 @@
 	"apihelp-query+usercontribs-param-user": "{{doc-apihelp-param|query+usercontribs|user}}",
 	"apihelp-query+usercontribs-param-userprefix": "{{doc-apihelp-param|query+usercontribs|userprefix}}",
 	"apihelp-query+usercontribs-param-userids": "{{doc-apihelp-param|query+usercontribs|userids}}",
+	"apihelp-query+usercontribs-param-iprange": "{{doc-apihelp-param|query+usercontribs|iprange}}",
 	"apihelp-query+usercontribs-param-namespace": "{{doc-apihelp-param|query+usercontribs|namespace}}",
 	"apihelp-query+usercontribs-param-prop": "{{doc-apihelp-param|query+usercontribs|prop|paramvalues=1}}",
 	"apihelp-query+usercontribs-paramvalue-prop-ids": "{{doc-apihelp-paramvalue|query+usercontribs|prop|ids}}",
@@ -1445,6 +1446,7 @@
 	"apihelp-undelete-param-fileids": "{{doc-apihelp-param|undelete|fileids}}",
 	"apihelp-undelete-param-watchlist": "{{doc-apihelp-param|undelete|watchlist}}",
 	"apihelp-undelete-param-watchlistexpiry": "{{doc-apihelp-param|undelete|watchlistexpiry}}",
+	"apihelp-undelete-param-undeletetalk": "{{doc-apihelp-param|undelete|undeletetalk}}",
 	"apihelp-undelete-example-page": "{{doc-apihelp-example|undelete}}",
 	"apihelp-undelete-example-revisions": "{{doc-apihelp-example|undelete}}",
 	"apihelp-unlinkaccount-summary": "{{doc-apihelp-summary|unlinkaccount}}",
@@ -1695,6 +1697,7 @@
 	"apierror-invalid-chunk": "{{doc-apierror}}",
 	"apierror-invalidexpiry": "{{doc-apierror}}\n\nParameters:\n* $1 - Value provided.",
 	"apierror-invalid-file-key": "{{doc-apierror}}",
+	"apierror-invalidiprange": "{{doc-apierror}}\n\nParameters:\n* $1 - Value provided.",
 	"apierror-invalidlang": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.",
 	"apierror-invalidmethod": "{{doc-apierror}}\n\nShown when a user tries to access the API using an HTTP method that is not supported",
 	"apierror-invalidoldimage": "{{doc-apierror}}",
@@ -1709,6 +1712,7 @@
 	"apierror-invalidurlparam": "{{doc-apierror}}\n\nParameters:\n* $1 - Module parameter prefix, e.g. \"bl\".\n* $2 - Key\n* $3 - Value.",
 	"apierror-invaliduser": "{{doc-apierror}}\n\nParameters:\n* $1 - Username that is invalid.",
 	"apierror-invaliduserid": "{{doc-apierror}}",
+	"apierror-ipoutofrange": "{{doc-apierror}}\n\nParameters:\n* $1 - CIDR range provided.\n* $2 - The CIDR limit.",
 	"apierror-maxbytes": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.\n* $2 - Maximum allowed bytes.",
 	"apierror-maxchars": "{{doc-apierror}}\n\nParameters:\n* $1 - Parameter name.\n* $2 - Maximum allowed characters.",
 	"apierror-maxlag-generic": "{{doc-apierror}}\n\nParameters:\n* $1 - Database is lag in seconds.",

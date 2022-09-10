@@ -80,7 +80,7 @@ class TitleArrayFromResult extends TitleArray implements Countable {
 	}
 
 	public function next(): void {
-		$row = $this->res->next();
+		$row = $this->res->fetchObject();
 		$this->setCurrent( $row );
 		$this->key++;
 	}

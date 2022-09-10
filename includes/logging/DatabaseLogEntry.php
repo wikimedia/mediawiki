@@ -67,7 +67,6 @@ class DatabaseLogEntry extends LogEntryBase {
 			'log_params', 'log_deleted',
 			'user_id',
 			'user_name',
-			'user_editcount',
 			'log_actor',
 			'log_user' => 'logging_actor.actor_user',
 			'log_user_text' => 'logging_actor.actor_name'

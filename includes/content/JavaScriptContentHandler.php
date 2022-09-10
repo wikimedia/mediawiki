@@ -20,6 +20,7 @@
 
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -92,7 +93,7 @@ class JavaScriptContentHandler extends CodeContentHandler {
 		}
 
 		$text = $content->getText();
-		$pst = $services->getParser()->preSaveTransform(
+		$pst = $services->getParserFactory()->getInstance()->preSaveTransform(
 			$text,
 			$pstParams->getPage(),
 			$pstParams->getUser(),
@@ -124,15 +125,20 @@ class JavaScriptContentHandler extends CodeContentHandler {
 		ContentParseParams $cpoParams,
 		ParserOutput &$output
 	) {
-		$textModelsToParse = MediaWikiServices::getInstance()->getMainConfig()->get( 'TextModelsToParse' );
-		'@phan-var TextContent $content';
+		$textModelsToParse = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::TextModelsToParse );
+		'@phan-var JavaScriptContent $content';
 		if ( in_array( $content->getModel(), $textModelsToParse ) ) {
 			// parse just to get links etc into the database, HTML is replaced below.
-			$output = MediaWikiServices::getInstance()->getParser()
+			$output = MediaWikiServices::getInstance()->getParserFactory()->getInstance()
 				->parse(
 					$content->getText(),
 					$cpoParams->getPage(),
-					$cpoParams->getParserOptions(),
+					WikiPage::makeParserOptionsFromTitleAndModel(
+						$cpoParams->getPage(),
+						$content->getModel(),
+						'canonical'
+					),
 					true,
 					true,
 					$cpoParams->getRevId()
@@ -147,7 +153,7 @@ class JavaScriptContentHandler extends CodeContentHandler {
 				"\n" . $content->getText() . "\n"
 			) . "\n";
 		} else {
-			$html = '';
+			$html = null;
 		}
 
 		$output->clearWrapperDivClass();

@@ -3,8 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author Ahloubadar
  * @author Ibou
@@ -55,29 +55,29 @@ $namespaceGenderAliases = [];
 
 /** @phpcs-require-sorted-array */
 $specialPageAliases = [
-	'CreateAccount'             => [ 'Sos am sàq' ],
-	'Listfiles'                 => [ 'Limu nataal yi' ],
-	'Listgrouprights'           => [ 'Limu mboolooy jëfandikukat' ],
-	'Listusers'                 => [ 'Limu jëfandikukat yi' ],
-	'Lonelypages'               => [ 'Xëtu jirim' ],
-	'Mycontributions'           => [ 'Samay cëru' ],
-	'Mypage'                    => [ 'Sama xët' ],
-	'Mytalk'                    => [ 'Samay waxtaan' ],
-	'Newimages'                 => [ 'Nataal bu bees' ],
+	'CreateAccount'             => [ 'Sos_am_sàq' ],
+	'Listfiles'                 => [ 'Limu_nataal_yi' ],
+	'Listgrouprights'           => [ 'Limu_mboolooy_jëfandikukat' ],
+	'Listusers'                 => [ 'Limu_jëfandikukat_yi' ],
+	'Lonelypages'               => [ 'Xëtu_jirim' ],
+	'Mycontributions'           => [ 'Samay_cëru' ],
+	'Mypage'                    => [ 'Sama_xët' ],
+	'Mytalk'                    => [ 'Samay_waxtaan' ],
+	'Newimages'                 => [ 'Nataal_bu_bees' ],
 	'Preferences'               => [ 'Tànneef' ],
-	'Randompage'                => [ 'Xët cig mbetteel' ],
-	'Recentchanges'             => [ 'Coppite yu mujj' ],
+	'Randompage'                => [ 'Xët_cig_mbetteel' ],
+	'Recentchanges'             => [ 'Coppite_yu_mujj' ],
 	'Search'                    => [ 'Ceet' ],
-	'Uncategorizedcategories'   => [ 'Wàll yi amul wàll' ],
-	'Uncategorizedimages'       => [ 'Nataal yi amul wàll' ],
-	'Uncategorizedpages'        => [ 'Xët yi amul wàll' ],
-	'Uncategorizedtemplates'    => [ 'Royuwaay yi amul wàll' ],
-	'Unusedcategories'          => [ 'Royuwaay yiñ jëfandikuwul' ],
-	'Unusedimages'              => [ 'Nataal yiñ jëfandikuwul' ],
+	'Uncategorizedcategories'   => [ 'Wàll_yi_amul_wàll' ],
+	'Uncategorizedimages'       => [ 'Nataal_yi_amul_wàll' ],
+	'Uncategorizedpages'        => [ 'Xët_yi_amul_wàll' ],
+	'Uncategorizedtemplates'    => [ 'Royuwaay_yi_amul_wàll' ],
+	'Unusedcategories'          => [ 'Royuwaay_yiñ_jëfandikuwul' ],
+	'Unusedimages'              => [ 'Nataal_yiñ_jëfandikuwul' ],
 	'Upload'                    => [ 'Yeb' ],
 	'Userlogin'                 => [ 'Lonku' ],
 	'Userlogout'                => [ 'Lonkiku' ],
-	'Wantedcategories'          => [ 'Wàll yiñ laaj' ],
-	'Wantedpages'               => [ 'Xët yiñ laaj' ],
-	'Watchlist'                 => [ 'Limu toppte' ],
+	'Wantedcategories'          => [ 'Wàll_yiñ_laaj' ],
+	'Wantedpages'               => [ 'Xët_yiñ_laaj' ],
+	'Watchlist'                 => [ 'Limu_toppte' ],
 ];

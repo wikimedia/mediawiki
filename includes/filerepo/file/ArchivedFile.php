@@ -1,7 +1,5 @@
 <?php
 /**
- * Deleted file in the 'filearchive' table.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,16 +16,17 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup FileAbstraction
  */
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\Rdbms\Blob;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
- * Class representing a row of the 'filearchive' table
+ * Deleted file in the 'filearchive' table.
  *
  * @stable to extend
  * @ingroup FileAbstraction
@@ -38,6 +37,18 @@ class ArchivedFile {
 	public const FOR_PUBLIC = 1;
 	public const FOR_THIS_USER = 2;
 	public const RAW = 3;
+
+	/** @var string Metadata serialization: empty string. This is a compact non-legacy format. */
+	private const MDS_EMPTY = 'empty';
+
+	/** @var string Metadata serialization: some other string */
+	private const MDS_LEGACY = 'legacy';
+
+	/** @var string Metadata serialization: PHP serialize() */
+	private const MDS_PHP = 'php';
+
+	/** @var string Metadata serialization: JSON */
+	private const MDS_JSON = 'json';
 
 	/** @var int Filearchive row ID */
 	private $id;
@@ -63,8 +74,30 @@ class ArchivedFile {
 	/** @var int Height */
 	private $height;
 
-	/** @var string */
-	private $metadata;
+	/** @var array Unserialized metadata */
+	protected $metadataArray = [];
+
+	/** @var bool Whether or not lazy-loaded data has been loaded from the database */
+	protected $extraDataLoaded = false;
+
+	/**
+	 * One of the MDS_* constants, giving the format of the metadata as stored
+	 * in the DB, or null if the data was not loaded from the DB.
+	 *
+	 * @var string|null
+	 */
+	protected $metadataSerializationFormat;
+
+	/** @var string[] Map of metadata item name to blob address */
+	protected $metadataBlobs = [];
+
+	/**
+	 * Map of metadata item name to blob address for items that exist but
+	 * have not yet been loaded into $this->metadataArray
+	 *
+	 * @var string[]
+	 */
+	protected $unloadedMetadataBlobs = [];
 
 	/** @var string MIME type */
 	private $mime;
@@ -107,6 +140,12 @@ class ArchivedFile {
 	/** @var bool */
 	protected $exists;
 
+	/** @var LocalRepo */
+	private $repo;
+
+	/** @var MetadataStorageHelper */
+	private $metadataStorageHelper;
+
 	/**
 	 * @stable to call
 	 * @throws MWException
@@ -125,7 +164,6 @@ class ArchivedFile {
 		$this->bits = 0;
 		$this->width = 0;
 		$this->height = 0;
-		$this->metadata = '';
 		$this->mime = "unknown/unknown";
 		$this->media_type = '';
 		$this->description = '';
@@ -156,6 +194,9 @@ class ArchivedFile {
 		if ( !$id && !$key && !( $title instanceof Title ) && !$sha1 ) {
 			throw new MWException( "No specifications provided to ArchivedFile constructor." );
 		}
+
+		$this->repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
+		$this->metadataStorageHelper = new MetadataStorageHelper( $this->repo );
 	}
 
 	/**
@@ -240,9 +281,10 @@ class ArchivedFile {
 	 * @since 1.31
 	 * @stable to override
 	 * @return array[] With three keys:
-	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
-	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
-	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()` or `SelectQueryBuilder::fields`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()` or `SelectQueryBuilder::joinConds`
+	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public static function getQueryInfo() {
 		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'fa_description' );
@@ -296,7 +338,8 @@ class ArchivedFile {
 		$this->bits = $row->fa_bits;
 		$this->width = $row->fa_width;
 		$this->height = $row->fa_height;
-		$this->metadata = $row->fa_metadata;
+		$this->loadMetadataFromDbFieldValue(
+			$this->repo->getReplicaDB(), $row->fa_metadata );
 		$this->mime = "$row->fa_major_mime/$row->fa_minor_mime";
 		$this->media_type = $row->fa_media_type;
 		$services = MediaWikiServices::getInstance();
@@ -408,13 +451,175 @@ class ArchivedFile {
 	}
 
 	/**
-	 * Get handler-specific metadata
+	 * Get handler-specific metadata as a serialized string
+	 *
+	 * @deprecated since 1.37 use getMetadataArray() or getMetadataItem()
 	 * @return string
 	 */
 	public function getMetadata() {
-		$this->load();
+		$data = $this->getMetadataArray();
+		if ( !$data ) {
+			return '';
+		} elseif ( array_keys( $data ) === [ '_error' ] ) {
+			// Legacy error encoding
+			return $data['_error'];
+		} else {
+			return serialize( $this->getMetadataArray() );
+		}
+	}
 
-		return $this->metadata;
+	/**
+	 * Get unserialized handler-specific metadata
+	 *
+	 * @since 1.39
+	 * @return array
+	 */
+	public function getMetadataArray(): array {
+		$this->load();
+		if ( $this->unloadedMetadataBlobs ) {
+			return $this->getMetadataItems(
+				array_unique( array_merge(
+					array_keys( $this->metadataArray ),
+					array_keys( $this->unloadedMetadataBlobs )
+				) )
+			);
+		}
+		return $this->metadataArray;
+	}
+
+	public function getMetadataItems( array $itemNames ): array {
+		$this->load();
+		$result = [];
+		$addresses = [];
+		foreach ( $itemNames as $itemName ) {
+			if ( array_key_exists( $itemName, $this->metadataArray ) ) {
+				$result[$itemName] = $this->metadataArray[$itemName];
+			} elseif ( isset( $this->unloadedMetadataBlobs[$itemName] ) ) {
+				$addresses[$itemName] = $this->unloadedMetadataBlobs[$itemName];
+			}
+		}
+
+		if ( $addresses ) {
+			$resultFromBlob = $this->metadataStorageHelper->getMetadataFromBlobStore( $addresses );
+			foreach ( $addresses as $itemName => $address ) {
+				unset( $this->unloadedMetadataBlobs[$itemName] );
+				$value = $resultFromBlob[$itemName] ?? null;
+				if ( $value !== null ) {
+					$result[$itemName] = $value;
+					$this->metadataArray[$itemName] = $value;
+				}
+			}
+		}
+		return $result;
+	}
+
+	/**
+	 * Serialize the metadata array for insertion into img_metadata, oi_metadata
+	 * or fa_metadata.
+	 *
+	 * If metadata splitting is enabled, this may write blobs to the database,
+	 * returning their addresses.
+	 *
+	 * @internal
+	 * @param IDatabase $db
+	 * @return string|Blob
+	 */
+	public function getMetadataForDb( IDatabase $db ) {
+		$this->load();
+		if ( !$this->metadataArray && !$this->metadataBlobs ) {
+			$s = '';
+		} elseif ( $this->repo->isJsonMetadataEnabled() ) {
+			$s = $this->getJsonMetadata();
+		} else {
+			$s = serialize( $this->getMetadataArray() );
+		}
+		if ( !is_string( $s ) ) {
+			throw new MWException( 'Could not serialize image metadata value for DB' );
+		}
+		return $db->encodeBlob( $s );
+	}
+
+	/**
+	 * Get metadata in JSON format ready for DB insertion, optionally splitting
+	 * items out to BlobStore.
+	 *
+	 * @return string
+	 */
+	private function getJsonMetadata() {
+		// Directly store data that is not already in BlobStore
+		$envelope = [
+			'data' => array_diff_key( $this->metadataArray, $this->metadataBlobs )
+		];
+
+		// Also store the blob addresses
+		if ( $this->metadataBlobs ) {
+			$envelope['blobs'] = $this->metadataBlobs;
+		}
+
+		list( $s, $blobAddresses ) = $this->metadataStorageHelper->getJsonMetadata( $this, $envelope );
+
+		// Repeated calls to this function should not keep inserting more blobs
+		$this->metadataBlobs += $blobAddresses;
+
+		return $s;
+	}
+
+	/**
+	 * Unserialize a metadata blob which came from the database and store it
+	 * in $this.
+	 *
+	 * @since 1.39
+	 * @param IDatabase $db
+	 * @param string|Blob $metadataBlob
+	 */
+	protected function loadMetadataFromDbFieldValue( IDatabase $db, $metadataBlob ) {
+		$this->loadMetadataFromString( $db->decodeBlob( $metadataBlob ) );
+	}
+
+	/**
+	 * Unserialize a metadata string which came from some non-DB source, or is
+	 * the return value of IDatabase::decodeBlob().
+	 *
+	 * @since 1.37
+	 * @param string $metadataString
+	 */
+	protected function loadMetadataFromString( $metadataString ) {
+		$this->extraDataLoaded = true;
+		$this->metadataArray = [];
+		$this->metadataBlobs = [];
+		$this->unloadedMetadataBlobs = [];
+		$metadataString = (string)$metadataString;
+		if ( $metadataString === '' ) {
+			$this->metadataSerializationFormat = self::MDS_EMPTY;
+			return;
+		}
+		if ( $metadataString[0] === '{' ) {
+			$envelope = $this->metadataStorageHelper->jsonDecode( $metadataString );
+			if ( !$envelope ) {
+				// Legacy error encoding
+				$this->metadataArray = [ '_error' => $metadataString ];
+				$this->metadataSerializationFormat = self::MDS_LEGACY;
+			} else {
+				$this->metadataSerializationFormat = self::MDS_JSON;
+				if ( isset( $envelope['data'] ) ) {
+					$this->metadataArray = $envelope['data'];
+				}
+				if ( isset( $envelope['blobs'] ) ) {
+					$this->metadataBlobs = $this->unloadedMetadataBlobs = $envelope['blobs'];
+				}
+			}
+		} else {
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$data = @unserialize( $metadataString );
+			if ( !is_array( $data ) ) {
+				// Legacy error encoding
+				$data = [ '_error' => $metadataString ];
+				$this->metadataSerializationFormat = self::MDS_LEGACY;
+			} else {
+				$this->metadataSerializationFormat = self::MDS_PHP;
+			}
+			$this->metadataArray = $data;
+		}
 	}
 
 	/**

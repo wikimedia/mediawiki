@@ -66,7 +66,8 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @param int $maxLength Maximum length of the summary text.
+	 * @param int $maxLength Maximum length of the summary text, in bytes.
+	 * Usually implemented using {@link Language::truncateForDatabase()}.
 	 *
 	 * @return string The summary text.
 	 */
@@ -288,49 +289,14 @@ interface Content {
 	// TODO: make RenderOutput and RenderOptions base classes
 
 	/**
-	 * Construct the redirect destination from this content and return an
-	 * array of Titles, or null if this content doesn't represent a redirect.
-	 * The last element in the array is the final destination after all redirects
-	 * have been resolved (up to $wgMaxRedirects times).
-	 *
-	 * @since 1.21
-	 * @deprecated since 1.38 Support for $wgMaxRedirect will be removed
-	 *   soon so this will go away with it. See T296430.
-	 *
-	 * @return Title[]|null List of Titles, with the destination last.
-	 */
-	public function getRedirectChain();
-
-	/**
 	 * Construct the redirect destination from this content and return a Title,
 	 * or null if this content doesn't represent a redirect.
-	 * This will only return the immediate redirect target, useful for
-	 * the redirect table and other checks that don't need full recursion.
 	 *
 	 * @since 1.21
 	 *
 	 * @return Title|null
 	 */
 	public function getRedirectTarget();
-
-	/**
-	 * Construct the redirect destination from this content and return the
-	 * Title, or null if this content doesn't represent a redirect.
-	 *
-	 * This will recurse down $wgMaxRedirects times or until a non-redirect
-	 * target is hit in order to provide (hopefully) the Title of the final
-	 * destination instead of another redirect.
-	 *
-	 * There is usually no need to override the default behavior, subclasses that
-	 * want to implement redirects should override getRedirectTarget().
-	 *
-	 * @since 1.21
-	 * @deprecated since 1.38 Support for $wgMaxRedirect will be removed
-	 *   soon so this will go away with it. See T296430.
-	 *
-	 * @return Title|null
-	 */
-	public function getUltimateRedirectTarget();
 
 	/**
 	 * Returns whether this Content represents a redirect.

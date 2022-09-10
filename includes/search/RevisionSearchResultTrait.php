@@ -14,12 +14,12 @@ use MediaWiki\Revision\SlotRecord;
  */
 trait RevisionSearchResultTrait {
 	/**
-	 * @var RevisionRecord
+	 * @var RevisionRecord|null
 	 */
 	protected $mRevisionRecord = null;
 
 	/**
-	 * @var File
+	 * @var File|null
 	 */
 	protected $mImage = null;
 

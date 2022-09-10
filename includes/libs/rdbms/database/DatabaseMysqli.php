@@ -1,7 +1,5 @@
 <?php
 /**
- * This is the MySQLi database abstraction layer.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
 namespace Wikimedia\Rdbms;
 
@@ -40,16 +37,67 @@ use Wikimedia\IPUtils;
  * @see Database
  */
 class DatabaseMysqli extends DatabaseMysqlBase {
-	/**
-	 * @param string $sql
-	 * @return MysqliResultWrapper|bool
-	 */
-	protected function doQuery( $sql ) {
+	protected function doSingleStatementQuery( string $sql ): QueryStatus {
 		AtEase::suppressWarnings();
 		$res = $this->getBindingHandle()->query( $sql );
 		AtEase::restoreWarnings();
 
-		return $res instanceof mysqli_result ? new MysqliResultWrapper( $this, $res ) : $res;
+		return new QueryStatus(
+			$res instanceof mysqli_result ? new MysqliResultWrapper( $this, $res ) : $res,
+			$this->affectedRows(),
+			$this->lastError(),
+			$this->lastErrno()
+		);
+	}
+
+	protected function doMultiStatementQuery( array $sqls ): array {
+		$qsByStatementId = [];
+
+		$conn = $this->getBindingHandle();
+		// Clear any previously left over result
+		while ( $conn->more_results() && $conn->next_result() ) {
+			$mysqliResult = $conn->store_result();
+			$mysqliResult->free();
+		}
+
+		$combinedSql = implode( ";\n", $sqls );
+		$conn->multi_query( $combinedSql );
+
+		reset( $sqls );
+		$done = false;
+		do {
+			$mysqliResult = $conn->store_result();
+			$statementId = key( $sqls );
+			if ( $statementId !== null ) {
+				// Database uses "true" for successful queries without result sets
+				if ( $mysqliResult === false ) {
+					$res = ( $conn->errno === 0 );
+				} elseif ( $mysqliResult instanceof mysqli_result ) {
+					$res = new MysqliResultWrapper( $this, $mysqliResult );
+				} else {
+					$res = $mysqliResult;
+				}
+				$qsByStatementId[$statementId] = new QueryStatus(
+					$res,
+					$conn->affected_rows,
+					$conn->error,
+					$conn->errno
+				);
+				next( $sqls );
+			}
+			if ( $conn->more_results() ) {
+				$conn->next_result();
+			} else {
+				$done = true;
+			}
+		} while ( !$done );
+		// Fill in status for statements aborted due to prior statement failure
+		while ( ( $statementId = key( $sqls ) ) !== null ) {
+			$qsByStatementId[$statementId] = new QueryStatus( false, 0, 'Query aborted', 0 );
+			next( $sqls );
+		}
+
+		return $qsByStatementId;
 	}
 
 	/**
@@ -97,9 +145,9 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		$mysqli = mysqli_init();
 		// Make affectedRows() for UPDATE reflect the number of matching rows, regardless
 		// of whether any column values changed. This is what callers want to know and is
-		// consistent with what Postgres, SQLite, and SQL Server return.
+		// consistent with what Postgres and SQLite return.
 		$flags = MYSQLI_CLIENT_FOUND_ROWS;
-		if ( $this->getFlag( self::DBO_SSL ) ) {
+		if ( $this->ssl ) {
 			$flags |= MYSQLI_CLIENT_SSL;
 			$mysqli->ssl_set(
 				$this->sslKeyPath,
@@ -125,23 +173,18 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		}
 		$mysqli->options( MYSQLI_OPT_CONNECT_TIMEOUT, 3 );
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal socket seems set when used
 		$ok = $mysqli->real_connect( $realServer, $user, $password, $db, $port, $socket, $flags );
 
 		return $ok ? $mysqli : null;
 	}
 
-	/**
-	 * @return bool
-	 */
 	protected function closeConnection() {
 		$conn = $this->getBindingHandle();
 
 		return $conn->close();
 	}
 
-	/**
-	 * @return int
-	 */
 	public function insertId() {
 		$conn = $this->getBindingHandle();
 
@@ -153,15 +196,12 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 */
 	public function lastErrno() {
 		if ( $this->conn instanceof mysqli ) {
-			return $this->conn->errno;
+			return (int)$this->conn->errno;
 		} else {
 			return mysqli_connect_errno();
 		}
 	}
 
-	/**
-	 * @return int
-	 */
 	protected function fetchAffectedRowCount() {
 		$conn = $this->getBindingHandle();
 
@@ -174,17 +214,12 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 */
 	protected function mysqlError( $conn = null ) {
 		if ( $conn === null ) {
-			return mysqli_connect_error();
+			return (string)mysqli_connect_error();
 		} else {
 			return $conn->error;
 		}
 	}
 
-	/**
-	 * Escapes special characters in a string for use in an SQL statement
-	 * @param string $s
-	 * @return string
-	 */
 	protected function mysqlRealEscapeString( $s ) {
 		$conn = $this->getBindingHandle();
 

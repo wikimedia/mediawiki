@@ -41,57 +41,21 @@ class PostgresUpdater extends DatabaseUpdater {
 	 */
 	protected function getCoreUpdateList() {
 		return [
+			// 1.35 but must come first
+			[ 'addPgField', 'revision', 'rev_actor', 'INTEGER NOT NULL DEFAULT 0' ],
+			[ 'addPgIndex', 'revision', 'rev_actor_timestamp', '(rev_actor,rev_timestamp,rev_id)' ],
+			[ 'addPgIndex', 'revision', 'rev_page_actor_timestamp', '(rev_page,rev_actor,rev_timestamp)' ],
+
 			// Exception to the sequential updates. Renaming pagecontent and mwuser.
 			// Introduced in 1.36.
 			[ 'renameTable', 'pagecontent', 'text' ],
 			// Introduced in 1.37.
 			[ 'renameTable', 'mwuser', 'user' ],
 
-			// 1.29
-			[ 'addPgField', 'externallinks', 'el_index_60', "BYTEA NOT NULL DEFAULT ''" ],
-			[ 'addPgIndex', 'externallinks', 'el_index_60', '( el_index_60, el_id )' ],
-			[ 'addPgIndex', 'externallinks', 'el_from_index_60', '( el_from, el_index_60, el_id )' ],
-			[ 'addPgField', 'user_groups', 'ug_expiry', "TIMESTAMPTZ NULL" ],
-			[ 'addPgIndex', 'user_groups', 'user_groups_expiry', '( ug_expiry )' ],
-
-			// 1.30
-			[ 'addPgEnumValue', 'media_type', '3D' ],
-			[ 'setDefault', 'revision', 'rev_comment', '' ],
-			[ 'changeNullableField', 'revision', 'rev_comment', 'NOT NULL', true ],
-			[ 'setDefault', 'archive', 'ar_comment', '' ],
-			[ 'changeNullableField', 'archive', 'ar_comment', 'NOT NULL', true ],
-			[ 'addPgField', 'archive', 'ar_comment_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'setDefault', 'ipblocks', 'ipb_reason', '' ],
-			[ 'addPgField', 'ipblocks', 'ipb_reason_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'setDefault', 'image', 'img_description', '' ],
-			[ 'setDefault', 'oldimage', 'oi_description', '' ],
-			[ 'changeNullableField', 'oldimage', 'oi_description', 'NOT NULL', true ],
-			[ 'addPgField', 'oldimage', 'oi_description_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'setDefault', 'filearchive', 'fa_deleted_reason', '' ],
-			[ 'changeNullableField', 'filearchive', 'fa_deleted_reason', 'NOT NULL', true ],
-			[ 'addPgField', 'filearchive', 'fa_deleted_reason_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'setDefault', 'filearchive', 'fa_description', '' ],
-			[ 'addPgField', 'filearchive', 'fa_description_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'setDefault', 'recentchanges', 'rc_comment', '' ],
-			[ 'changeNullableField', 'recentchanges', 'rc_comment', 'NOT NULL', true ],
-			[ 'addPgField', 'recentchanges', 'rc_comment_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'setDefault', 'logging', 'log_comment', '' ],
-			[ 'changeNullableField', 'logging', 'log_comment', 'NOT NULL', true ],
-			[ 'addPgField', 'logging', 'log_comment_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'setDefault', 'protected_titles', 'pt_reason', '' ],
-			[ 'changeNullableField', 'protected_titles', 'pt_reason', 'NOT NULL', true ],
-			[ 'addPgField', 'protected_titles', 'pt_reason_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
-			[ 'addTable', 'revision_comment_temp', 'patch-revision_comment_temp-table.sql' ],
-
-			// This field was added in 1.31, but is put here so it can be used by 'migrateComments'
-			[ 'addPgField', 'image', 'img_description_id', 'INTEGER NOT NULL DEFAULT 0' ],
-
-			[ 'migrateComments' ],
-			[ 'addIndex', 'site_stats', 'site_stats_pkey', 'patch-site_stats-pk.sql' ],
-			[ 'addTable', 'ip_changes', 'patch-ip_changes.sql' ],
-
 			// 1.31
+			[ 'addPgField', 'image', 'img_description_id', 'INTEGER NOT NULL DEFAULT 0' ],
+			[ 'migrateComments' ],
+
 			[ 'addTable', 'slots', 'patch-slots-table.sql' ],
 			[ 'dropPgIndex', 'slots', 'slot_role_inherited' ],
 			[ 'dropPgField', 'slots', 'slot_inherited' ],
@@ -107,7 +71,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addTable', 'slot_roles', 'patch-slot_roles-table.sql' ],
 			[ 'migrateArchiveText' ],
 			[ 'addTable', 'actor', 'patch-actor-table.sql' ],
-			[ 'addTable', 'revision_actor_temp', 'patch-revision_actor_temp-table.sql' ],
 			[ 'setDefault', 'revision', 'rev_user', 0 ],
 			[ 'setDefault', 'revision', 'rev_user_text', '' ],
 			[ 'setDefault', 'archive', 'ar_user', 0 ],
@@ -260,9 +223,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'setDefault', 'user_newtalk', 'user_ip', '' ],
 			[ 'changeNullableField', 'user_newtalk', 'user_ip', 'NOT NULL', true ],
 			[ 'setDefault', 'user_newtalk', 'user_id', 0 ],
-			[ 'renameIndex', 'revision_actor_temp', 'rev_actor_timestamp', 'revactor_actor_timestamp' ],
-			[ 'renameIndex', 'revision_actor_temp',
-				'rev_page_actor_timestamp', 'revactor_page_actor_timestamp' ],
 			[ 'dropPgIndex', 'revision', 'rev_user_idx' ],
 			[ 'dropPgIndex', 'revision', 'rev_user_text_idx' ],
 			[ 'dropPgIndex', 'revision', 'rev_text_id_idx' ],
@@ -273,9 +233,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropPgField', 'revision', 'rev_content_model' ],
 			[ 'dropPgField', 'revision', 'rev_content_format' ],
 			[ 'addPgField', 'revision', 'rev_comment_id', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'addPgField', 'revision', 'rev_actor', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'addPgIndex', 'revision', 'rev_actor_timestamp', '(rev_actor,rev_timestamp,rev_id)' ],
-			[ 'addPgIndex', 'revision', 'rev_page_actor_timestamp', '(rev_page,rev_actor,rev_timestamp)' ],
 			[ 'dropPgField', 'archive', 'ar_text_id' ],
 			[ 'dropPgField', 'archive', 'ar_content_model' ],
 			[ 'dropPgField', 'archive', 'ar_content_format' ],
@@ -329,11 +286,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropPgIndex', 'pagelinks', 'pagelink_unique' ],
 			[ 'dropPgIndex', 'pagelinks', 'pagelinks_title' ],
 			[ 'dropFkey', 'templatelinks', 'tl_from' ],
-			[ 'changeField', 'templatelinks', 'tl_namespace', 'INT', 'tl_namespace::INT DEFAULT 0' ],
-			[ 'setDefault', 'templatelinks', 'tl_title', '' ],
-			[ 'addPgIndex', 'templatelinks', 'tl_namespace', '(tl_namespace,tl_title,tl_from)' ],
-			[ 'addPgIndex', 'templatelinks', 'tl_backlinks_namespace',
-				'(tl_from_namespace,tl_namespace,tl_title,tl_from)' ],
 			[ 'dropPgIndex', 'templatelinks', 'templatelinks_unique' ],
 			[ 'dropPgIndex', 'templatelinks', 'templatelinks_from' ],
 			[ 'dropFkey', 'imagelinks', 'il_from' ],
@@ -421,9 +373,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'ip_changes', 'ipc_hex', 'TEXT', "ipc_hex::TEXT DEFAULT ''" ],
 			[ 'setDefault', 'ip_changes', 'ipc_rev_id', 0 ],
 			[ 'changeField', 'revision_comment_temp', 'revcomment_comment_id', 'BIGINT', '' ],
-			[ 'dropFkey', 'revision_actor_temp', 'revactor_page' ],
-			[ 'changeField', 'revision_actor_temp', 'revactor_actor', 'BIGINT', '' ],
-			[ 'changeNullableField', 'revision_actor_temp', 'revactor_page', 'NOT NULL', true ],
 			[ 'renameIndex', 'watchlist', 'namespace_title', 'wl_namespace_title' ],
 			[ 'dropFkey', 'page_props', 'pp_page' ],
 			// page_props primary key change moved from the Schema SQL file to here in 1.36
@@ -639,6 +588,17 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addTable', 'linktarget', 'patch-linktarget.sql' ],
 			[ 'dropIndex', 'revision', 'rev_page_id', 'patch-drop-rev_page_id.sql' ],
 			[ 'addField', 'templatelinks', 'tl_target_id', 'patch-templatelinks-target_id.sql' ],
+
+			// 1.39
+			[ 'addTable', 'user_autocreate_serial', 'patch-user_autocreate_serial.sql' ],
+			[ 'runMaintenance', MigrateRevisionActorTemp::class, 'maintenance/migrateRevisionActorTemp.php' ],
+			[ 'dropTable', 'revision_actor_temp' ],
+			[ 'runMaintenance', UpdateRestrictions::class, 'maintenance/updateRestrictions.php' ],
+			[ 'dropPgField', 'page', 'page_restrictions' ],
+			[ 'migrateTemplatelinks' ],
+			[ 'changeNullableField', 'templatelinks', 'tl_target_id', 'NOT NULL', true ],
+			[ 'changePrimaryKey', 'templatelinks', [ 'tl_from', 'tl_target_id' ], 'templatelinks_pk' ],
+			[ 'dropField', 'templatelinks', 'tl_title', 'patch-templatelinks-drop-tl_title.sql' ],
 		];
 	}
 

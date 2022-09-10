@@ -6,6 +6,8 @@ use CommentStoreComment;
 use Content;
 use ContentHandler;
 use DeferredUpdates;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
@@ -186,6 +188,9 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function assertLinksUpdateSetup( int $pageID ): void {
+		$linkTarget = MediaWikiServices::getInstance()->getLinkTargetLookup()->getLinkTargetId(
+			Title::makeTitle( NS_TEMPLATE, 'Multiple_issues' )
+		);
 		$this->assertSelect(
 			'pagelinks',
 			[ 'pl_namespace', 'pl_title' ],
@@ -194,9 +199,9 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertSelect(
 			'templatelinks',
-			[ 'tl_namespace', 'tl_title' ],
+			[ 'tl_target_id' ],
 			[ 'tl_from' => $pageID ],
-			[ [ NS_TEMPLATE, 'Multiple_issues' ] ]
+			[ [ $linkTarget ] ]
 		);
 		$this->assertSelect(
 			'categorylinks',
@@ -225,7 +230,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertSelect(
 			'templatelinks',
-			[ 'tl_namespace', 'tl_title' ],
+			[ 'tl_target_id' ],
 			[ 'tl_from' => $pageID ],
 			[]
 		);
@@ -269,9 +274,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 
 		if ( !$immediate ) {
 			// Ensure that the job queue can be used
-			$this->setMwGlobals( [
-				'wgDeleteRevisionsBatchSize' => 1
-			] );
+			$this->overrideConfigValue( MainConfigNames::DeleteRevisionsBatchSize, 1 );
 			$this->editPage( $page, "second revision" );
 		}
 
@@ -284,7 +287,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			->setLogSubtype( $logSubtype )
 			->deleteUnsafe( $reason );
 
-		$this->assertTrue( $status->isGood(), 'Deletion should succeed' );
+		$this->assertStatusGood( $status, 'Deletion should succeed' );
 
 		DeferredUpdates::doUpdates();
 

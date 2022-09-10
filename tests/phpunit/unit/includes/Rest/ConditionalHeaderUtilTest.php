@@ -195,14 +195,37 @@ class ConditionalHeaderUtilTest extends \MediaWikiUnitTestCase {
 				412,
 				[ 'ETag' => [ '"a"' ] ]
 			],
-			'im weak' => [
+			// A strong ETag returned by the server may have been "weakened" by
+			// a proxy or middleware, e.g. when applying compression and setting
+			// content-encoding (rather than transfer-encoding). We want to still accept
+			// such ETags, even though that's against the HTTP spec (T238849).
+			// See ConditionalHeaderUtil::setVarnishETagHack.
+			'If-Match weak vs strong' => [
 				'GET',
 				'"a"',
 				null,
 				null,
 				[ 'If-Match' => 'W/"a"' ],
-				412,
+				null,
 				[ 'ETag' => [ '"a"' ] ]
+			],
+			'If-Match strong vs weak' => [
+				'GET',
+				'W/"a"',
+				null,
+				null,
+				[ 'If-Match' => '"a"' ],
+				412,
+				[ 'ETag' => [ 'W/"a"' ] ]
+			],
+			'If-Match weak vs weak' => [
+				'GET',
+				'W/"a"',
+				null,
+				null,
+				[ 'If-Match' => 'W/"a"' ],
+				412,
+				[ 'ETag' => [ 'W/"a"' ] ]
 			],
 			'ims with resource unknown' => [
 				'GET',

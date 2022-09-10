@@ -10,8 +10,8 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		// Avoid 'GetHumanTimestamp' hook and others
-		$this->setMwGlobals( 'wgHooks', [] );
+		// Avoid 'GetHumanTimestamp' hook
+		$this->clearHook( 'GetHumanTimestamp' );
 	}
 
 	private function setMockUserOptions( array $options ) {
@@ -38,6 +38,7 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 		$expectedOutput, // The expected output
 		$desc // Description
 	) {
+		$this->hideDeprecated( 'MWTimestamp::getHumanTimestamp' );
 		$this->setMockUserOptions( [
 			'timecorrection' => $timeCorrection,
 			'date' => $dateFormat
@@ -102,7 +103,7 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 				'20120716193700',
 				'Offset|0',
 				'mdy',
-				'15:15, January 30, 1991',
+				'January 30, 1991',
 				'Different year',
 			],
 			[
@@ -150,7 +151,7 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 				'20120716193700',
 				'Offset|0',
 				'ISO 8601',
-				'1991-01-30T15:15:00',
+				'1991-01-30',
 				'Different year with ISO-8601',
 			],
 		];

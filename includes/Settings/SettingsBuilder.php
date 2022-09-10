@@ -7,9 +7,11 @@ use Config;
 use ExtensionRegistry;
 use HashConfig;
 use MediaWiki\Config\IterableConfig;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Cache\CachedSource;
 use MediaWiki\Settings\Config\ConfigBuilder;
+use MediaWiki\Settings\Config\ConfigSchema;
 use MediaWiki\Settings\Config\ConfigSchemaAggregator;
 use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\Source\ArraySource;
@@ -18,6 +20,7 @@ use MediaWiki\Settings\Source\SettingsFileUtils;
 use MediaWiki\Settings\Source\SettingsIncludeLocator;
 use MediaWiki\Settings\Source\SettingsSource;
 use StatusValue;
+use function array_key_exists;
 
 /**
  * Utility for loading settings files.
@@ -66,6 +69,21 @@ class SettingsBuilder {
 	private $finished = false;
 
 	/**
+	 * Whether we have to apply reverse-merging when applying defaults.
+	 * This will initially be false, and become true once any config settings have been
+	 * assigned a value.
+	 *
+	 * This is used as an optimization, to avoid costly merge logic when loading initial
+	 * defaults before any config variables have been set.
+	 *
+	 * @var bool
+	 */
+	private $defaultsNeedMerging = false;
+
+	/** @var string[] */
+	private $warnings = [];
+
+	/**
 	 * @param string $baseDir
 	 * @param ExtensionRegistry $extensionRegistry
 	 * @param ConfigBuilder $configSink
@@ -89,8 +107,8 @@ class SettingsBuilder {
 		$this->configSchema = new ConfigSchemaAggregator();
 		$this->phpIniSink = $phpIniSink;
 		$this->settingsConfig = [
-			'ExtensionDirectory' => "$baseDir/extensions",
-			'StyleDirectory' => "$baseDir/skins",
+			MainConfigNames::ExtensionDirectory => "$baseDir/extensions",
+			MainConfigNames::StyleDirectory => "$baseDir/skins",
 		];
 		$this->reset();
 	}
@@ -98,14 +116,13 @@ class SettingsBuilder {
 	/**
 	 * Load settings from a {@link SettingsSource}.
 	 *
-	 * @unstable
-	 *
 	 * @param SettingsSource $source
 	 * @return $this
 	 */
 	public function load( SettingsSource $source ): self {
 		$this->assertNotFinished();
 
+		// XXX: We may want to cache the entire batch instead, see T304493.
 		$this->currentBatch[] = $this->wrapSource( $source );
 
 		return $this;
@@ -113,8 +130,6 @@ class SettingsBuilder {
 
 	/**
 	 * Load settings from an array.
-	 *
-	 * @unstable
 	 *
 	 * @param array $newSettings
 	 *
@@ -127,8 +142,6 @@ class SettingsBuilder {
 	/**
 	 * Load settings from a file.
 	 *
-	 * @unstable
-	 *
 	 * @param string $path
 	 * @return $this
 	 */
@@ -139,8 +152,6 @@ class SettingsBuilder {
 	/**
 	 * Checks whether the given file exists relative to the settings builder's
 	 * base directory.
-	 *
-	 * @unstable
 	 *
 	 * @param string $path
 	 * @return bool
@@ -188,7 +199,39 @@ class SettingsBuilder {
 	}
 
 	/**
-	 * Return a Config object with all the default settings loaded so far.
+	 * Detect usage of deprecated settings. A setting is counted as used if
+	 * it has a value other than the default.
+	 *
+	 * @note this is slow, so you probably don't want to do this on every request.
+	 *
+	 * @return array<string,string> an associative array mapping config keys
+	 *         to the deprecation messages from the schema.
+	 */
+	public function detectDeprecatedConfig(): array {
+		$config = $this->getConfig();
+		$keys = $this->getDefinedConfigKeys();
+		$deprecated = [];
+
+		foreach ( $keys as $key ) {
+			$sch = $this->configSchema->getSchemaFor( $key );
+			if ( !isset( $sch['deprecated'] ) ) {
+				continue;
+			}
+
+			$default = $sch['default'] ?? null;
+			$value = $config->get( $key );
+
+			if ( $value !== $default ) {
+				$deprecated[$key] = $sch['deprecated'];
+			}
+		}
+
+		return $deprecated;
+	}
+
+	/**
+	 * Return a Config object with default for all settings from all schemas loaded so far.
+	 * If the schema for a setting doesn't specify a default, null is assumed.
 	 *
 	 * @note This will implicitly call apply()
 	 *
@@ -196,7 +239,22 @@ class SettingsBuilder {
 	 */
 	public function getDefaultConfig(): IterableConfig {
 		$this->apply();
-		return new HashConfig( $this->configSchema->getDefaults() );
+		$defaults = $this->configSchema->getDefaults();
+		$nulls = array_fill_keys( $this->configSchema->getDefinedKeys(), null );
+
+		return new HashConfig( array_merge( $nulls, $defaults ) );
+	}
+
+	/**
+	 * Return the configuration schema.
+	 *
+	 * @note This will implicitly call apply()
+	 *
+	 * @return ConfigSchema
+	 */
+	public function getConfigSchema(): ConfigSchema {
+		$this->apply();
+		return $this->configSchema;
 	}
 
 	/**
@@ -206,13 +264,11 @@ class SettingsBuilder {
 	 */
 	public function getDefinedConfigKeys(): array {
 		$this->apply();
-		return array_keys( $this->configSchema->getSchemas() );
+		return $this->configSchema->getDefinedKeys();
 	}
 
 	/**
 	 * Apply any settings loaded so far to the runtime environment.
-	 *
-	 * @unstable
 	 *
 	 * @note This usually makes all configuration available in global variables.
 	 * This may however not be the case in the future.
@@ -228,13 +284,11 @@ class SettingsBuilder {
 		$this->assertNotFinished();
 		$this->config = null;
 
+		// XXX: We may want to cache the entire batch after merging together
+		//      settings from all sources, see T304493.
 		$allSettings = $this->loadRecursive( $this->currentBatch );
 
 		foreach ( $allSettings as $settings ) {
-			$this->configSchema->addSchemas(
-				$settings['config-schema'] ?? [],
-				$settings['source-name']
-			);
 			$this->applySettings( $settings );
 		}
 		$this->reset();
@@ -294,12 +348,88 @@ class SettingsBuilder {
 	 * @return string
 	 */
 	private function updateSettingsConfig( $config ): string {
+		// No merge strategies are applied, defaults are set in the constructor.
 		foreach ( $this->settingsConfig as $key => $dummy ) {
 			if ( array_key_exists( $key, $config ) ) {
 				$this->settingsConfig[ $key ] = $config[ $key ];
 			}
 		}
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable,PhanPossiblyUndeclaredVariable Always set
 		return $key;
+	}
+
+	/**
+	 * Notify SettingsBuilder that it can no longer assume that is has full knowledge of
+	 * all configuration variables that have been set. This would be the case when other code
+	 * (such as LocalSettings.php) is manipulating global variables which represent config
+	 * values.
+	 *
+	 * This is used for optimization: up until this method is called, default values can be set
+	 * directly for any config values that have not been set yet. This avoids the need to
+	 * run merge logic for all default values during initialization.
+	 *
+	 * @note It is useful to call apply() just before this method, so any settings already queued
+	 * will still benefit from assuming that globals are not dirty.
+	 *
+	 * @return self
+	 */
+	public function assumeDirtyConfig(): SettingsBuilder {
+		$this->defaultsNeedMerging = true;
+		return $this;
+	}
+
+	/**
+	 * Apply schemas from the settings array.
+	 *
+	 * This returns the default values to apply, splits into two two categories:
+	 * "hard" defaults, which can be applied as config overrides without merging.
+	 * And "soft" defaults, which have to be reverse-merged.
+	 * Defaults can be considered "hard" if no config value was yet set for them. However,
+	 * we can only know that as long as we can be sure that nothing has changed config values
+	 * in a way that bypasses SettingsLoader (e.g. by setting global variables in LocalSettings.php).
+	 *
+	 * @param array $settings A settings structure.
+	 */
+	private function applySchemas( array $settings ) {
+		$defaults = [];
+
+		if ( isset( $settings['config-schema-inverse'] ) ) {
+			$defaults = $settings['config-schema-inverse']['default'] ?? [];
+			$this->configSchema->addDefaults(
+				$defaults,
+				$settings['source-name']
+			);
+			$this->configSchema->addMergeStrategies(
+				$settings['config-schema-inverse']['mergeStrategy'] ?? [],
+				$settings['source-name']
+			);
+			$this->configSchema->addTypes(
+				$settings['config-schema-inverse']['type'] ?? [],
+				$settings['source-name']
+			);
+			$this->configSchema->addDynamicDefaults(
+				$settings['config-schema-inverse']['dynamicDefault'] ?? [],
+				$settings['source-name']
+			);
+		}
+
+		if ( isset( $settings['config-schema'] ) ) {
+			foreach ( $settings['config-schema'] as $key => $schema ) {
+				$this->configSchema->addSchema( $key, $schema );
+
+				if ( $this->configSchema->hasDefaultFor( $key ) ) {
+					$defaults[$key] = $this->configSchema->getDefaultFor( $key );
+				}
+			}
+		}
+
+		if ( $this->defaultsNeedMerging ) {
+			$mergeStrategies = $this->configSchema->getMergeStrategies();
+			$this->configSink->setMultiDefault( $defaults, $mergeStrategies );
+		} else {
+			// Optimization: no merge strategy, just override in one go
+			$this->configSink->setMulti( $defaults );
+		}
 	}
 
 	/**
@@ -317,27 +447,24 @@ class SettingsBuilder {
 			$this->updateSettingsConfig( $settings['config-overrides'] );
 		}
 
-		foreach ( $settings['config'] ?? [] as $key => $value ) {
-			$this->configSink->set(
-				$key,
-				$value,
-				$this->configSchema->getMergeStrategyFor( $key )
-			);
+		$this->applySchemas( $settings );
+
+		if ( isset( $settings['config'] ) ) {
+			$mergeStrategies = $this->configSchema->getMergeStrategies();
+			$this->configSink->setMulti( $settings['config'], $mergeStrategies );
 		}
 
-		foreach ( $settings['config-schema'] ?? [] as $key => $schema ) {
-			if ( $this->configSchema->hasDefaultFor( $key ) ) {
-				$this->configSink->setDefault(
-					$key,
-					$this->configSchema->getDefaultFor( $key ),
-					$this->configSchema->getMergeStrategyFor( $key )
-				);
-			}
+		if ( isset( $settings['config-overrides'] ) ) {
+			// no merge strategies, just override in one go
+			$this->configSink->setMulti( $settings['config-overrides'] );
 		}
 
-		foreach ( $settings['config-overrides'] ?? [] as $key => $value ) {
-			// no merge strategy, just override
-			$this->configSink->set( $key, $value );
+		if ( isset( $settings['config'] ) || isset( $settings['config-overrides'] ) ) {
+			// We have set some config variables, we can no longer assume we can blindly set defaults
+			// without merging with existing config variables.
+			// XXX: We could potentially track which config variables have been set, so we can still
+			//      apply defaults for other config vars without merging.
+			$this->defaultsNeedMerging = true;
 		}
 
 		foreach ( $settings['php-ini'] ?? [] as $option => $value ) {
@@ -354,7 +481,7 @@ class SettingsBuilder {
 		//       interoperability with wfLoadExtension() being called from LocalSettings.php.
 
 		if ( isset( $settings['extensions'] ) ) {
-			$extDir = $this->settingsConfig['ExtensionDirectory'];
+			$extDir = $this->settingsConfig[MainConfigNames::ExtensionDirectory];
 			foreach ( $settings['extensions'] ?? [] as $ext ) {
 				$path = "$extDir/$ext/extension.json"; // see wfLoadExtension
 				$this->extensionRegistry->queue( $path );
@@ -362,7 +489,7 @@ class SettingsBuilder {
 		}
 
 		if ( isset( $settings['skins'] ) ) {
-			$skinDir = $this->settingsConfig['StyleDirectory'];
+			$skinDir = $this->settingsConfig[MainConfigNames::StyleDirectory];
 			foreach ( $settings['skins'] ?? [] as $skin ) {
 				$path = "$skinDir/$skin/skin.json"; // see wfLoadSkin
 				$this->extensionRegistry->queue( $path );
@@ -375,7 +502,7 @@ class SettingsBuilder {
 	 * Depending on the variable's specification, the new value may
 	 * be merged with the previous value, or may replace it.
 	 * This is a shorthand for putConfigValues( [ $key => $value ] ).
-	 * @unstable
+	 *
 	 * @see overrideConfigValue
 	 *
 	 * @param string $key the name of the config setting
@@ -392,7 +519,7 @@ class SettingsBuilder {
 	 * Depending on the variables' specification, the new values may
 	 * be merged with the previous values, or they may replace them.
 	 * This is a shorthand for loadArray( [ 'config' => $values ] ).
-	 * @unstable
+	 *
 	 * @see overrideConfigValues
 	 *
 	 * @param array $values An associative array mapping names to values.
@@ -407,7 +534,7 @@ class SettingsBuilder {
 	 * Override the value of a config variable.
 	 * This ignores any merge strategies and discards any previous value.
 	 * This is a shorthand for overrideConfigValues( [ $key => $value ] ).
-	 * @unstable
+	 *
 	 * @see putConfigValue
 	 *
 	 * @param string $key the name of the config setting
@@ -423,7 +550,7 @@ class SettingsBuilder {
 	 * Override the value of multiple config variables.
 	 * This ignores any merge strategies and discards any previous value.
 	 * This is a shorthand for loadArray( [ 'config-overrides' => $values ] ).
-	 * @unstable
+	 *
 	 * @see putConfigValues
 	 *
 	 * @param array $values An associative array mapping names to values.
@@ -439,7 +566,6 @@ class SettingsBuilder {
 	 *
 	 * @note This will implicitly call apply()
 	 *
-	 * @unstable
 	 * @return Config
 	 */
 	public function getConfig(): Config {
@@ -466,7 +592,7 @@ class SettingsBuilder {
 	}
 
 	/**
-	 * Settings can't be loaded & applied after calling this
+	 * Settings can't be loaded and applied after calling this
 	 * method.
 	 *
 	 * @internal Most likely called only in Setup.php.
@@ -477,4 +603,40 @@ class SettingsBuilder {
 		$this->apply();
 		$this->finished = true;
 	}
+
+	/**
+	 * @internal For use in Setup.php, pending a better solution.
+	 * @return ConfigBuilder
+	 */
+	public function getConfigBuilder(): ConfigBuilder {
+		$this->apply();
+		return $this->configSink;
+	}
+
+	/**
+	 * Log a settings related warning, such as a deprecated config variable.
+	 *
+	 * This can be used during bootstrapping, when the regular logger is not yet available.
+	 * The warnings will be passed to a regular logger after bootstrapping is complete.
+	 * In addition, the updater will fail if it finds any warnings.
+	 * This allows us to warn about deprecated settings, and make sure they are
+	 * replaced before the update proceeds.
+	 *
+	 * @param string $msg
+	 */
+	public function warning( string $msg ) {
+		$this->assertNotFinished();
+		$this->warnings[] = trim( $msg );
+	}
+
+	/**
+	 * Returns any warnings logged by calling warning().
+	 *
+	 * @internal
+	 * @return string[]
+	 */
+	public function getWarnings(): array {
+		return $this->warnings;
+	}
+
 }

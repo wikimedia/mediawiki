@@ -10,6 +10,7 @@ use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\ValidationException;
 
 /**
+ * @group Database
  * @covers MediaWiki\ParamValidator\TypeDef\TagsDef
  */
 class TagsDefTest extends MediaWikiIntegrationTestCase {

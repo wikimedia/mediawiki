@@ -23,6 +23,7 @@
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageAssertionException;
 use MediaWiki\Page\PageIdentity;
@@ -139,7 +140,7 @@ class RefreshLinksJob extends Job {
 			// jobs and possibly a recursive RefreshLinks job for the rest of the backlinks
 			$jobs = BacklinkJobUtils::partitionBacklinkJob(
 				$this,
-				$services->getMainConfig()->get( 'UpdateRowsPerJob' ),
+				$services->getMainConfig()->get( MainConfigNames::UpdateRowsPerJob ),
 				1, // job-per-title
 				[ 'params' => $extraParams ]
 			);
@@ -222,6 +223,9 @@ class RefreshLinksJob extends Job {
 			return true;
 		}
 
+		// These can be fairly long-running jobs, while commitAndWaitForReplication
+		// releases primary snapshots, let the replica release their snapshot as well
+		$lbFactory->flushReplicaSnapshots( __METHOD__ );
 		// Parse during a fresh transaction round for better read consistency
 		$lbFactory->beginPrimaryChanges( __METHOD__ );
 		$output = $this->getParserOutput( $renderer, $parserCache, $page, $stats );
@@ -249,14 +253,13 @@ class RefreshLinksJob extends Job {
 	}
 
 	/**
-	 * @param WikiPage $page
-	 * @return bool Whether something updated the backlinks with data newer than this job
+	 * @return string|null Minimum lag-safe TS_MW timestamp with regard to root job creation
 	 */
-	private function isAlreadyRefreshed( WikiPage $page ) {
+	private function getLagAwareRootTimestamp() {
 		// Get the timestamp of the change that triggered this job
 		$rootTimestamp = $this->params['rootJobTimestamp'] ?? null;
 		if ( $rootTimestamp === null ) {
-			return false;
+			return null;
 		}
 
 		if ( !empty( $this->params['isOpportunistic'] ) ) {
@@ -271,7 +274,17 @@ class RefreshLinksJob extends Job {
 			);
 		}
 
-		return ( $page->getLinksTimestamp() > $lagAwareTimestamp );
+		return $lagAwareTimestamp;
+	}
+
+	/**
+	 * @param WikiPage $page
+	 * @return bool Whether something updated the backlinks with data newer than this job
+	 */
+	private function isAlreadyRefreshed( WikiPage $page ) {
+		$lagAwareTimestamp = $this->getLagAwareRootTimestamp();
+
+		return ( $lagAwareTimestamp !== null && $page->getLinksTimestamp() > $lagAwareTimestamp );
 	}
 
 	/**
@@ -384,18 +397,6 @@ class RefreshLinksJob extends Job {
 		$rootTimestamp = $this->params['rootJobTimestamp'] ?? null;
 		if ( $rootTimestamp !== null ) {
 			$opportunistic = !empty( $this->params['isOpportunistic'] );
-			if ( $opportunistic ) {
-				// Neither clock skew nor DB snapshot/replica DB lag matter much for
-				// such updates; focus on reusing the (often recently updated) cache
-				$lagAwareTimestamp = $rootTimestamp;
-			} else {
-				// For transclusion updates, the template changes must be reflected
-				$lagAwareTimestamp = wfTimestamp(
-					TS_MW,
-					(int)wfTimestamp( TS_UNIX, $rootTimestamp ) + self::NORMAL_MAX_LAG
-				);
-			}
-
 			if ( $page->getTouched() >= $rootTimestamp || $opportunistic ) {
 				// Cache is suspected to be up-to-date so it's worth the I/O of checking.
 				// As long as the cache rev ID matches the current rev ID and it reflects
@@ -405,7 +406,7 @@ class RefreshLinksJob extends Job {
 				if (
 					$output &&
 					$output->getCacheRevisionId() == $currentRevision->getId() &&
-					$output->getCacheTime() >= $lagAwareTimestamp
+					$output->getCacheTime() >= $this->getLagAwareRootTimestamp()
 				) {
 					$cachedOutput = $output;
 				}

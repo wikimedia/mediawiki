@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\UltimateAuthority;
 
 /**
@@ -13,12 +14,13 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( [
-			'wgRangeContributionsCIDRLimit' => [
+		$this->overrideConfigValue(
+			MainConfigNames::RangeContributionsCIDRLimit,
+			[
 				'IPv4' => 16,
 				'IPv6' => 32,
 			]
-		] );
+		);
 		$this->setTemporaryHook(
 			'SpecialContributionsBeforeMainOutput',
 			static function () {

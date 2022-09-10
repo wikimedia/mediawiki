@@ -47,9 +47,9 @@ class Sanitizer {
 	 */
 	private const CHAR_REFS_REGEX =
 		'/&([A-Za-z0-9\x80-\xff]+;)
-		 |&\#([0-9]+);
-		 |&\#[xX]([0-9A-Fa-f]+);
-		 |(&)/x';
+		|&\#([0-9]+);
+		|&\#[xX]([0-9A-Fa-f]+);
+		|(&)/x';
 
 	/**
 	 * Acceptable tag name charset from HTML5 parsing spec
@@ -225,7 +225,9 @@ class Sanitizer {
 		# Populate $htmlpairs and $htmlelements with the $extratags and $removetags arrays
 		$extratags = array_fill_keys( $extratags, true );
 		$removetags = array_fill_keys( $removetags, true );
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal The static var is always set
 		$htmlpairs = array_merge( $extratags, $htmlpairsStatic );
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal The static var is always set
 		$htmlelements = array_diff_key( array_merge( $extratags, $htmlelementsStatic ), $removetags );
 
 		$result = [
@@ -395,7 +397,6 @@ class Sanitizer {
 		// These options are @internal:
 		$attrCallback = $options['attrCallback'] ?? null;
 		$attrCallbackArgs = $options['attrCallbackArgs'] ?? [];
-		$tidy = $options['tidy'] ?? true;
 
 		// This disallows HTML5-style "missing trailing semicolon" attributes
 		// In wikitext "clean&copy" does *not* contain an entity.
@@ -780,7 +781,6 @@ class Sanitizer {
 				| image\s*\(
 				| image-set\s*\(
 				| attr\s*\([^)]+[\s,]+url
-				| var\s*\(
 			!ix', $value ) ) {
 			return '/* insecure input */';
 		}
@@ -1308,7 +1308,7 @@ class Sanitizer {
 	}
 
 	/**
-	 * @param int $codepoint
+	 * @param int|string $codepoint
 	 * @return null|string
 	 */
 	private static function decCharReference( $codepoint ) {
@@ -1321,7 +1321,7 @@ class Sanitizer {
 	}
 
 	/**
-	 * @param int $codepoint
+	 * @param string $codepoint
 	 * @return null|string
 	 */
 	private static function hexCharReference( $codepoint ) {
@@ -1824,7 +1824,7 @@ class Sanitizer {
 			$host = preg_replace( $strip, '', $host );
 
 			// IPv6 host names are bracketed with [].  Url-decode these.
-			if ( substr_compare( "//%5B", $host, 0, 5 ) === 0 &&
+			if ( str_starts_with( $host, "//%5B" ) &&
 				preg_match( '!^//%5B([0-9A-Fa-f:.]+)%5D((:\d+)?)$!', $host, $matches )
 			) {
 				$host = '//[' . $matches[1] . ']' . $matches[2];

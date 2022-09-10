@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\ParamValidator\ParamValidator;
+
 /**
  * API XML output formatter
  * @ingroup API
@@ -117,8 +119,7 @@ class ApiFormatXml extends ApiFormatBase {
 				: '_v';
 			$bcBools = $value[ApiResult::META_BC_BOOLS] ?? [];
 			$indexSubelements = isset( $value[ApiResult::META_TYPE] )
-				? $value[ApiResult::META_TYPE] !== 'array'
-				: false;
+				&& $value[ApiResult::META_TYPE] !== 'array';
 
 			$content = null;
 			$subelements = [];
@@ -171,6 +172,7 @@ class ApiFormatXml extends ApiFormatBase {
 
 			if ( $content !== null ) {
 				if ( is_scalar( $content ) ) {
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable name is check for null in other code
 					$retval .= $indstr . Xml::element( $name, $attributes, $content );
 				} else {
 					if ( $name !== null ) {
@@ -205,8 +207,10 @@ class ApiFormatXml extends ApiFormatBase {
 			// to make sure null value doesn't produce unclosed element,
 			// which is what Xml::element( $name, null, null ) returns
 			if ( $value === null ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable name is check for null in other code
 				$retval .= $indstr . Xml::element( $name, $attributes );
 			} else {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable name is check for null in other code
 				$retval .= $indstr . Xml::element( $name, $attributes, $value );
 			}
 		}
@@ -281,7 +285,7 @@ class ApiFormatXml extends ApiFormatBase {
 				ApiBase::PARAM_HELP_MSG => 'apihelp-xml-param-xslt',
 			],
 			'includexmlnamespace' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-xml-param-includexmlnamespace',
 			],
 		];

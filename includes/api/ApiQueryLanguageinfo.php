@@ -22,6 +22,7 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -216,9 +217,9 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 	public function getAllowedParams() {
 		return [
 			'prop' => [
-				self::PARAM_DFLT => 'code',
-				self::PARAM_ISMULTI => true,
-				self::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'code',
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => [
 					'code',
 					'bcp47',
 					'dir',
@@ -230,8 +231,8 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 				self::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			'code' => [
-				self::PARAM_DFLT => '*',
-				self::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_DEFAULT => '*',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'continue' => [
 				self::PARAM_HELP_MSG => 'api-help-param-continue',

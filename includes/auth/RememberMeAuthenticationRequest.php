@@ -53,7 +53,7 @@ class RememberMeAuthenticationRequest extends AuthenticationRequest {
 	public const ALWAYS_REMEMBER = 'always';
 
 	/**
-	 * Indicates that the user will never be rememberd.
+	 * Indicates that the user will never be remembered.
 	 */
 	public const NEVER_REMEMBER = 'never';
 

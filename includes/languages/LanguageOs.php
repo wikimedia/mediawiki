@@ -1,8 +1,5 @@
 <?php
-
 /**
- * Ossetian (Ирон) specific code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -20,15 +17,15 @@
  *
  * @file
  * @author Soslan Khubulov
- * @ingroup Language
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
  * Ossetian (Ирон)
  *
- * @ingroup Language
+ * @ingroup Languages
  */
 class LanguageOs extends Language {
 
@@ -57,7 +54,8 @@ class LanguageOs extends Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		$grammarForms =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::GrammarForms );
 		if ( isset( $grammarForms['os'][$case][$word] ) ) {
 			return $grammarForms['os'][$case][$word];
 		}

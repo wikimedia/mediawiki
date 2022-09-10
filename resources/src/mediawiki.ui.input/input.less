@@ -19,7 +19,7 @@
 .mw-ui-input {
 	background-color: @background-color-base;
 	color: @color-base--emphasized;
-	.box-sizing( border-box );
+	box-sizing: border-box;
 	display: block;
 	width: 100%;
 	border: @border-base;
@@ -52,13 +52,12 @@
 	&:focus {
 		border-color: @border-color-base--focus;
 		box-shadow: @box-shadow-base--focus;
-		/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 		outline: 0;
 	}
 
 	// `:not()` is used exclusively for `transition`s as both are not supported by IE < 9.
 	&:not( :disabled ) {
-		.transition( ~'color 100ms, border-color 100ms, box-shadow 100ms' );
+		transition: color 100ms, border-color 100ms, box-shadow 100ms;
 	}
 
 	&:disabled {

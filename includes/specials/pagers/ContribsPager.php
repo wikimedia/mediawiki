@@ -24,11 +24,12 @@ use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserRigorOptions;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -182,8 +183,9 @@ class ContribsPager extends RangeChronologicalPager {
 			// ContribsPagerTest and does not cause newFromName() to return
 			// false. It's probably not used by any production code.
 			$this->target = $options['target'] ?? '';
+			// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty RIGOR_NONE never returns null
 			$this->targetUser = $services->getUserFactory()->newFromName(
-				$this->target, UserFactory::RIGOR_NONE
+				$this->target, UserRigorOptions::RIGOR_NONE
 			);
 			if ( !$this->targetUser ) {
 				// This can happen if the target contained "#". Callers
@@ -251,19 +253,6 @@ class ContribsPager extends RangeChronologicalPager {
 	}
 
 	/**
-	 * Wrap the navigation bar in a p element with identifying class.
-	 * In future we may want to change the `p` tag to a `div` and upstream
-	 * this to the parent class.
-	 *
-	 * @return string HTML
-	 */
-	public function getNavigationBar() {
-		return Html::rawElement( 'p', [ 'class' => 'mw-pager-navigation-bar' ],
-			parent::getNavigationBar()
-		);
-	}
-
-	/**
 	 * This method basically executes the exact same code as the parent class, though with
 	 * a hook added, to allow extensions to add additional queries.
 	 *
@@ -279,7 +268,8 @@ class ContribsPager extends RangeChronologicalPager {
 			$order
 		);
 
-		$options['MAX_EXECUTION_TIME'] = $this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' );
+		$options['MAX_EXECUTION_TIME'] =
+			$this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries );
 		/*
 		 * This hook will allow extensions to add in additional queries, so they can get their data
 		 * in My Contributions as well. Extensions should append their results to the $data array.
@@ -352,11 +342,6 @@ class ContribsPager extends RangeChronologicalPager {
 			? null : $this->getIpRangeConds( $dbr, $this->target );
 		if ( $ipRangeConds ) {
 			return 'ip_changes';
-		} else {
-			$conds = $this->actorMigration->getWhere( $dbr, 'rev_user', $this->targetUser );
-			if ( isset( $conds['orconds']['actor'] ) ) {
-				return 'revision_actor_temp';
-			}
 		}
 
 		return 'revision';
@@ -386,9 +371,12 @@ class ContribsPager extends RangeChronologicalPager {
 			// tables and joins are already handled by RevisionStore::getQueryInfo()
 			$conds = $this->actorMigration->getWhere( $dbr, 'rev_user', $this->targetUser );
 			$queryInfo['conds'][] = $conds['conds'];
-			// Force the appropriate index to avoid bad query plans (T189026)
+			// Force the appropriate index to avoid bad query plans (T189026 and T307295)
 			if ( isset( $conds['orconds']['actor'] ) ) {
 				$queryInfo['options']['USE INDEX']['temp_rev_user'] = 'actor_timestamp';
+			}
+			if ( isset( $conds['orconds']['newactor'] ) ) {
+				$queryInfo['options']['USE INDEX']['revision'] = 'rev_actor_timestamp';
 			}
 		}
 
@@ -489,7 +477,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 * @since 1.30
 	 */
 	public function isQueryableRange( $ipRange ) {
-		$limits = $this->getConfig()->get( 'RangeContributionsCIDRLimit' );
+		$limits = $this->getConfig()->get( MainConfigNames::RangeContributionsCIDRLimit );
 
 		$bits = IPUtils::parseCIDR( $ipRange )[1];
 		if (
@@ -517,8 +505,6 @@ class ContribsPager extends RangeChronologicalPager {
 				return 'rev_timestamp';
 			case 'ip_changes':
 				return 'ipc_rev_timestamp';
-			case 'revision_actor_temp':
-				return 'revactor_timestamp';
 			default:
 				wfWarn(
 					__METHOD__ . ": Unknown value '$target' from " . static::class . '::getTargetTable()', 0
@@ -569,8 +555,6 @@ class ContribsPager extends RangeChronologicalPager {
 				return [ 'rev_id' ];
 			case 'ip_changes':
 				return [ 'ipc_rev_id' ];
-			case 'revision_actor_temp':
-				return [ 'revactor_rev' ];
 			default:
 				wfWarn(
 					__METHOD__ . ": Unknown value '$target' from " . static::class . '::getTargetTable()', 0
@@ -693,6 +677,7 @@ class ContribsPager extends RangeChronologicalPager {
 			$attribs['data-mw-revid'] = $revRecord->getId();
 
 			$link = $linkRenderer->makeLink(
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$page,
 				$page->getPrefixedText(),
 				[ 'class' => 'mw-contributions-title' ],
@@ -700,14 +685,15 @@ class ContribsPager extends RangeChronologicalPager {
 			);
 			# Mark current revisions
 			$topmarktext = '';
-			$user = $this->getUser();
 
 			if ( $row->rev_id === $row->page_latest ) {
 				$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
 				$classes[] = 'mw-contributions-current';
 				# Add rollback link
 				if ( !$row->page_is_new &&
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 					$this->getAuthority()->probablyCan( 'rollback', $page ) &&
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 					$this->getAuthority()->probablyCan( 'edit', $page )
 				) {
 					$this->setPreventClickjacking( true );
@@ -723,6 +709,7 @@ class ContribsPager extends RangeChronologicalPager {
 				$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() )
 			) {
 				$difftext = $linkRenderer->makeKnownLink(
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 					$page,
 					new HtmlArmor( $this->messages['diff'] ),
 					[ 'class' => 'mw-changeslist-diff' ],
@@ -735,6 +722,7 @@ class ContribsPager extends RangeChronologicalPager {
 				$difftext = $this->messages['diff'];
 			}
 			$histlink = $linkRenderer->makeKnownLink(
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$page,
 				new HtmlArmor( $this->messages['hist'] ),
 				[ 'class' => 'mw-changeslist-history' ],
@@ -774,7 +762,8 @@ class ContribsPager extends RangeChronologicalPager {
 
 			$comment = $lang->getDirMark() . $comment;
 
-			$d = ChangesList::revDateLink( $revRecord, $user, $lang, $page );
+			$authority = $this->getAuthority();
+			$d = ChangesList::revDateLink( $revRecord, $authority, $lang, $page );
 
 			# When querying for an IP range, we want to always show user and user talk links.
 			$userlink = '';
@@ -798,7 +787,8 @@ class ContribsPager extends RangeChronologicalPager {
 				$flags[] = ChangesList::flag( 'minor' );
 			}
 
-			$del = Linker::getRevDeleteLink( $user, $revRecord, $page );
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
+			$del = Linker::getRevDeleteLink( $authority, $revRecord, $page );
 			if ( $del !== '' ) {
 				$del .= ' ';
 			}

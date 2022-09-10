@@ -1,5 +1,5 @@
 {{int:version-credits-summary}} <!--
-MediaWiki 1.38 is a collaborative project released under the
+MediaWiki 1.39 is a collaborative project released under the
 GNU General Public License v2. We would like to recognize the
 following names for their contribution to the product.
 
@@ -9,6 +9,7 @@ The following list can be found parsed under Special:Version/Credits -->
 <!-- Updates to this list made with maintenance/updateCredits.php -->
 <!-- BEGIN CONTRIBUTOR LIST -->
 * 4shadoww
+* 4nn1l2
 * aalekhN
 * Aaron Ball
 * Aaron Pramana
@@ -86,6 +87,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * anjali041
 * ankit
 * ankur
+* Anne Tomasevich
 * AntiCompositeNumber
 * Antoine Musso
 * Antoni Siek
@@ -126,6 +128,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Bergi
 * Bernard Wang
 * Bertrand Grondin
+* bhsd
 * Bill Pirkle
 * Bill Traynor
 * Billinghurst
@@ -234,7 +237,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Devi Krishnan
 * didicodes
 * Diederik van Liere
-* diesel
+* diesel kapasule
 * divadsn
 * diwanshu885
 * Dmitriy Sky
@@ -243,7 +246,9 @@ The following list can be found parsed under Special:Version/Credits -->
 * Dov Alperin
 * DPStokesNZ
 * dr0ptp4kt
+* dreamyjazz
 * drynok
+* dwalden
 * dylsss
 * Ebrahim Byagowi
 * Ed Sanders
@@ -255,6 +260,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * edwintam
 * Egbe Eugene
 * Elisabeth Bauer
+* ELLENR
 * Elliott Eggleston
 * Elvis Stansvik
 * Emad Elwany
@@ -266,6 +272,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * enigmaeth
 * Entlinkt
 * Envel Le Hir
+* EpicPupper
 * Eranroz
 * Eric Evans
 * Eric Gardner
@@ -292,6 +299,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * fomafix
 * Framawiki
 * Fran Rogers
+* Francois Pignon
 * Fred Emmott
 * Func
 * FunPika
@@ -341,9 +349,11 @@ The following list can be found parsed under Special:Version/Credits -->
 * Holger Knust
 * Hoto Cocoa
 * Huji
+* Huñvreüs
 * Hydriz
 * Ian Baker
 * Ian Marlier
+* Ideophagous
 * IijimaYun
 * Ilmari Karonen
 * Inductiveload
@@ -382,6 +392,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Jason Richey
 * JasonCoombs
 * Jayprakash12345
+* Jean Culefort
 * Jeena Huneidi
 * Jeff Hobson
 * Jeff Janes
@@ -400,6 +411,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Jimmy Collins
 * Jimmy Xu
 * JJMC89
+* jmnote
 * jo12bar
 * joakin
 * Joan Creus
@@ -416,6 +428,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Jonathan Wiltshire
 * Jools Wills
 * joseph emmanuel kayode (iemarjay)
+* Joseph Seddon
 * jsahleen
 * Juan Osorio
 * Julian Ostrow
@@ -441,7 +454,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Kim Hyun-Joon
 * kipod
 * kishanio
-* KleinMuci
+* Klein Muçi
 * konarak
 * Kosta Harlan
 * krishna keshav
@@ -452,6 +465,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Kwan Ting Chan
 * Labdajiwa
 * Laurence Parry
+* lectrician1
 * Lee Bousfield
 * Lee Daniel Crocker
 * Lee Worden
@@ -517,11 +531,13 @@ The following list can be found parsed under Special:Version/Credits -->
 * Mark Clements
 * Mark Hershberger
 * Mark Holmquist
+* Mark Shenouda
 * Marko Obrovac
 * Markus Glaser
 * Markus Krötzsch
 * Marooned
 * Martin Urbanec
+* Martin VL
 * Maryum Styles
 * Massaf
 * Máté Szabó
@@ -576,12 +592,14 @@ The following list can be found parsed under Special:Version/Credits -->
 * mjbmr
 * moejoe0000
 * Mogmog123
+* Moh'd Khier Abualruz
 * Mohamed Magdy
 * Molly White
 * montehurd
 * Moriel Schottlender
 * Moritz Oberhauser
 * Mormegil
+* Mortal303
 * Mr. E23
 * MR70
 * MrBlueSky
@@ -594,6 +612,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * mybugs.mail
 * mynk-96
 * MZMcBride
+* na1307
 * nadeesha
 * Nakon
 * Namit
@@ -626,6 +645,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * nomoa
 * nullspoon
 * Nuria Ruiz
+* Nux
 * Nx.devnull
 * Obaid Raza
 * Ocean behind ears
@@ -681,6 +701,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Platonides
 * Pmlineditor
 * pmolina
+* Pols12
 * Porplemontage
 * Ppchelko
 * pppery
@@ -698,6 +719,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * quiddity
 * quietust
 * Quim Gil
+* R4356th
 * Rafid Aslam
 * rahul21
 * rail
@@ -755,6 +777,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Sam Smith
 * Sam Wilson
 * SamanthaNguyen
+* samtar
 * Samuel Guebo
 * Samuel Hilson
 * Santhosh Thottingal
@@ -771,6 +794,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Sebastian Brückner
 * Sébastien Beyou
 * Sébastien Santoro
+* Sergio Gimeno
 * Sergio Santoro
 * Serhio Magpie
 * Sethakill
@@ -847,6 +871,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Thomas Arrow
 * Thomas Bleher
 * Thomas Dalton
+* Thomas Daniels
 * Thomas Gries
 * ThomasV
 * Tim Eulitz
@@ -941,6 +966,7 @@ The following list can be found parsed under Special:Version/Credits -->
 * Zhuyifei1999
 * Zoranzoki21
 * Zppix
+* Zvi "CtrlZvi" Effron
 * Þjarkur
 * محمد شعیب
 * 星耀晨曦

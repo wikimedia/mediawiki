@@ -25,6 +25,7 @@ class Redis {
     const OPT_COMPRESSION_LEVEL = 9;
     const SERIALIZER_NONE = 0;
     const SERIALIZER_PHP = 1;
+    const SERIALIZER_IGBINARY = 2;
     const SERIALIZER_JSON = 4;
     const COMPRESSION_NONE = 0;
     const OPT_SCAN = 4;
@@ -325,6 +326,7 @@ class RedisCluster {
     const OPT_COMPRESSION_LEVEL = 9;
     const SERIALIZER_NONE = 0;
     const SERIALIZER_PHP = 1;
+    const SERIALIZER_IGBINARY = 2;
     const SERIALIZER_JSON = 4;
     const COMPRESSION_NONE = 0;
     const OPT_SCAN = 4;

@@ -21,16 +21,16 @@ class ErrorPageErrorTest extends MediaWikiIntegrationTestCase {
 		$title = 'Foo';
 		$params = [ 'Baz' ];
 
-		$mock = $this->getMockBuilder( OutputPage::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$mock = $this->createMock( OutputPage::class );
 		$mock->expects( $this->once() )
 			->method( 'showErrorPage' )
 			->with( $title, $mockMessage, $params );
 		$mock->expects( $this->once() )
 			->method( 'output' );
-		$this->setMwGlobals( 'wgOut', $mock );
-		$this->setMwGlobals( 'wgCommandLineMode', false );
+		$this->setMwGlobals( [
+			'wgOut' => $mock,
+			'wgCommandLineMode' => false,
+		] );
 
 		$e = new ErrorPageError( $title, $mockMessage, $params );
 		$e->report();

@@ -45,25 +45,26 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
 
-		$blob = wincache_ucache_get( $key );
-		if ( !is_string( $blob ) && !is_int( $blob ) ) {
+		$data = wincache_ucache_get( $key );
+		if ( !is_string( $data ) && !is_int( $data ) ) {
 			return false;
 		}
 
-		$value = $this->unserialize( $blob );
+		$value = $this->unserialize( $data );
 		if ( $getToken && $value !== false ) {
-			$casToken = (string)$blob; // don't bother hashing this
+			$casToken = $data;
 		}
 
 		return $value;
 	}
 
 	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
-		if ( !wincache_lock( $key ) ) { // optimize with FIFO lock
+		// optimize with FIFO lock
+		if ( !wincache_lock( $key ) ) {
 			return false;
 		}
 
-		$curCasToken = self::PASS_BY_REF; // passed by reference
+		$curCasToken = self::PASS_BY_REF;
 		$this->doGet( $key, self::READ_LATEST, $curCasToken );
 		if ( $casToken === $curCasToken ) {
 			$success = $this->set( $key, $value, $exptime, $flags );
@@ -73,7 +74,8 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 				[ 'key' => $key ]
 			);
 
-			$success = false; // mismatched or failed
+			// mismatched or failed
+			$success = false;
 		}
 
 		wincache_unlock( $key );
@@ -93,7 +95,8 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		if ( wincache_ucache_exists( $key ) ) {
-			return false; // avoid warnings
+			// avoid warnings
+			return false;
 		}
 
 		$ttl = $this->getExpirationAsTTL( $exptime );
@@ -140,7 +143,8 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	public function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
-		if ( !wincache_lock( $key ) ) { // optimize with FIFO lock
+		// optimize with FIFO lock
+		if ( !wincache_lock( $key ) ) {
 			return false;
 		}
 
@@ -169,7 +173,8 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	private function doIncr( $key, $value = 1, $flags = 0 ) {
-		if ( !wincache_lock( $key ) ) { // optimize with FIFO lock
+		// optimize with FIFO lock
+		if ( !wincache_lock( $key ) ) {
 			return false;
 		}
 

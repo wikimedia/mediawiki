@@ -16,6 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  */
+use MediaWiki\MainConfigNames;
 use Wikimedia\Purtle\RdfWriter;
 use Wikimedia\Purtle\TurtleRdfWriter;
 use Wikimedia\Rdbms\IDatabase;
@@ -103,7 +104,7 @@ SPARQLD;
 
 		$endTS = new MWTimestamp( $this->getOption( "end" ) );
 		$now = new MWTimestamp();
-		$rcMaxAge = $this->getConfig()->get( 'RCMaxAge' );
+		$rcMaxAge = $this->getConfig()->get( MainConfigNames::RCMaxAge );
 
 		if ( (int)$now->getTimestamp( TS_UNIX ) - (int)$startTS->getTimestamp( TS_UNIX ) > $rcMaxAge ) {
 			$this->error( "Start timestamp too old, maximum RC age is $rcMaxAge!" );

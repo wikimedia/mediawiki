@@ -3,12 +3,11 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
- *
+ * @ingroup Languages
  */
 
-$fallback = 'zh-hant, zh-hans';
+$fallback = 'gan, gan-hans, zh-hant, zh, zh-hans';
 
 $namespaceNames = [
 	NS_TALK             => '談詑',

@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
@@ -166,18 +167,13 @@ class UserrightsPage extends SpecialPage {
 
 			$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
 			$out->addHTML(
-				Html::rawElement(
-					'div',
-					[
-						'class' => 'mw-notify-success successbox',
-						'id' => 'mw-preferences-success',
-						'data-mw-autohide' => 'false',
-					],
+				Html::successBox(
 					Html::element(
 						'p',
 						[],
 						$this->msg( 'savedrights', $this->mFetchedUser->getName() )->text()
-					)
+					),
+					'mw-notify-success'
 				)
 			);
 		}
@@ -506,7 +502,7 @@ class UserrightsPage extends SpecialPage {
 		$logEntry = new ManualLogEntry( 'rights', 'rights' );
 		$logEntry->setPerformer( $this->getUser() );
 		$logEntry->setTarget( $user->getUserPage() );
-		$logEntry->setComment( $reason );
+		$logEntry->setComment( is_string( $reason ) ? $reason : "" );
 		$logEntry->setParameters( [
 			'4::oldgroups' => $oldGroups,
 			'5::newgroups' => $newGroups,
@@ -557,7 +553,8 @@ class UserrightsPage extends SpecialPage {
 	 * @return Status
 	 */
 	public function fetchUser( $username, $writing = true ) {
-		$parts = explode( $this->getConfig()->get( 'UserrightsInterwikiDelimiter' ), $username );
+		$parts = explode( $this->getConfig()->get( MainConfigNames::UserrightsInterwikiDelimiter ),
+			$username );
 		if ( count( $parts ) < 2 ) {
 			$name = trim( $username );
 			$dbDomain = '';
@@ -919,6 +916,8 @@ class UserrightsPage extends SpecialPage {
 		}
 
 		$ret .= "</tr>\n<tr>\n";
+		$uiLanguage = $this->getLanguage();
+		$userName = $user->getName();
 		foreach ( $columns as $column ) {
 			if ( $column === [] ) {
 				continue;
@@ -930,7 +929,7 @@ class UserrightsPage extends SpecialPage {
 					$attr['disabled'] = 'disabled';
 				}
 
-				$member = UserGroupMembership::getGroupMemberName( $group, $user->getName() );
+				$member = $uiLanguage->getGroupMemberName( $group, $userName );
 				if ( $checkbox['irreversible'] ) {
 					$text = $this->msg( 'userrights-irreversible-marker', $member )->text();
 				} elseif ( $checkbox['disabled'] && !$checkbox['disabled-expiry'] ) {
@@ -943,7 +942,6 @@ class UserrightsPage extends SpecialPage {
 
 				if ( $this->canProcessExpiries() ) {
 					$uiUser = $this->getUser();
-					$uiLanguage = $this->getLanguage();
 
 					$currentExpiry = isset( $usergroups[$group] ) ?
 						$usergroups[$group]->getExpiry() :

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Shell\Command;
 use MediaWiki\Shell\Shell;
 
@@ -52,7 +53,7 @@ class ShellTest extends MediaWikiIntegrationTestCase {
 		$hook = null
 	) {
 		// Running tests under Vagrant involves MWMultiVersion that uses the below hook
-		$this->setMwGlobals( 'wgHooks', [] );
+		$this->overrideConfigValue( MainConfigNames::Hooks, [] );
 
 		if ( $hook ) {
 			$this->setTemporaryHook( 'wfShellWikiCmd', $hook );

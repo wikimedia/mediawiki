@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use StatusValue;
 use User;
@@ -60,11 +61,11 @@ class UserDataAuthenticationRequest extends AuthenticationRequest {
 			],
 		];
 
-		if ( !$config->get( 'EnableEmail' ) ) {
+		if ( !$config->get( MainConfigNames::EnableEmail ) ) {
 			unset( $ret['email'] );
 		}
 
-		if ( in_array( 'realname', $config->get( 'HiddenPrefs' ), true ) ) {
+		if ( in_array( 'realname', $config->get( MainConfigNames::HiddenPrefs ), true ) ) {
 			unset( $ret['realname'] );
 		}
 

@@ -8,6 +8,7 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
@@ -109,7 +110,7 @@ class FileRepo {
 	/** @var string|false Public zone URL. */
 	protected $url;
 
-	/** @var string The base thumbnail URL. Defaults to "<url>/thumb". */
+	/** @var string|false The base thumbnail URL. Defaults to "<url>/thumb". */
 	protected $thumbUrl;
 
 	/** @var int The number of directory levels for hash-based division of files */
@@ -215,11 +216,8 @@ class FileRepo {
 		}
 
 		$this->url = $info['url'] ?? false; // a subclass may set the URL (e.g. ForeignAPIRepo)
-		if ( isset( $info['thumbUrl'] ) ) {
-			$this->thumbUrl = $info['thumbUrl'];
-		} else {
-			$this->thumbUrl = $this->url ? "{$this->url}/thumb" : false;
-		}
+		$defaultThumbUrl = $this->url ? $this->url . '/thumb' : false;
+		$this->thumbUrl = $info['thumbUrl'] ?? $defaultThumbUrl;
 		$this->hashLevels = $info['hashLevels'] ?? 2;
 		$this->deletedHashLevels = $info['deletedHashLevels'] ?? $this->hashLevels;
 		$this->transformVia404 = !empty( $info['transformVia404'] );
@@ -1186,7 +1184,7 @@ class FileRepo {
 		$this->assertWritableRepo(); // fail out if read-only
 
 		$temp = $this->getVirtualUrl( 'temp' );
-		if ( substr( $virtualUrl, 0, strlen( $temp ) ) != $temp ) {
+		if ( !str_starts_with( $virtualUrl, $temp ) ) {
 			wfDebug( __METHOD__ . ": Invalid temp virtual URL" );
 
 			return false;
@@ -1735,7 +1733,7 @@ class FileRepo {
 	}
 
 	/**
-	 * Determine if a relative path is valid, i.e. not blank or involving directory traveral
+	 * Determine if a relative path is valid, i.e. not blank or involving directory traversal
 	 *
 	 * @param string $filename
 	 * @return bool
@@ -1840,7 +1838,7 @@ class FileRepo {
 	 * @return string
 	 */
 	public function getDisplayName() {
-		$sitename = MediaWikiServices::getInstance()->getMainConfig()->get( 'Sitename' );
+		$sitename = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::Sitename );
 
 		if ( $this->isLocal() ) {
 			return $sitename;

@@ -3,10 +3,9 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
- *
+ * @ingroup Languages
  */
 
 # Inherit everything for now
-$fallback = 'zh-hk, zh-hant, zh-hans';
+$fallback = 'zh-hk, zh-hant, zh-tw, zh, zh-hans';

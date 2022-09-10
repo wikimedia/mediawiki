@@ -25,12 +25,15 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserRigorOptions;
+use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -127,22 +130,22 @@ class ApiFeedContributions extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		$config = $this->getConfig();
-		if ( !$config->get( 'Feed' ) ) {
+		if ( !$config->get( MainConfigNames::Feed ) ) {
 			$this->dieWithError( 'feed-unavailable' );
 		}
 
-		$feedClasses = $config->get( 'FeedClasses' );
+		$feedClasses = $config->get( MainConfigNames::FeedClasses );
 		if ( !isset( $feedClasses[$params['feedformat']] ) ) {
 			$this->dieWithError( 'feed-invalid' );
 		}
 
-		if ( $params['showsizediff'] && $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $params['showsizediff'] && $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$this->dieWithError( 'apierror-sizediffdisabled' );
 		}
 
-		$msg = wfMessage( 'Contributions' )->inContentLanguage()->text();
-		$feedTitle = $config->get( 'Sitename' ) . ' - ' . $msg .
-			' [' . $config->get( 'LanguageCode' ) . ']';
+		$msg = $this->msg( 'Contributions' )->inContentLanguage()->text();
+		$feedTitle = $config->get( MainConfigNames::Sitename ) . ' - ' . $msg .
+			' [' . $config->get( MainConfigNames::LanguageCode ) . ']';
 
 		$target = $params['user'];
 		if ( ExternalUserNames::isExternal( $target ) ) {
@@ -163,7 +166,7 @@ class ApiFeedContributions extends ApiBase {
 		$params['end'] = '';
 		$params = ContribsPager::processDateFilter( $params );
 
-		$targetUser = $this->userFactory->newFromName( $target, UserFactory::RIGOR_NONE );
+		$targetUser = $this->userFactory->newFromName( $target, UserRigorOptions::RIGOR_NONE );
 
 		$pager = new ContribsPager(
 			$this->getContext(), [
@@ -189,7 +192,7 @@ class ApiFeedContributions extends ApiBase {
 			$this->commentFormatter
 		);
 
-		$feedLimit = $this->getConfig()->get( 'FeedLimit' );
+		$feedLimit = $this->getConfig()->get( MainConfigNames::FeedLimit );
 		if ( $pager->getLimit() > $feedLimit ) {
 			$pager->setLimit( $feedLimit );
 		}
@@ -265,7 +268,7 @@ class ApiFeedContributions extends ApiBase {
 	 * @return string
 	 */
 	protected function feedItemDesc( RevisionRecord $revision ) {
-		$msg = wfMessage( 'colon-separator' )->inContentLanguage()->text();
+		$msg = $this->msg( 'colon-separator' )->inContentLanguage()->text();
 		try {
 			$content = $revision->getContent( SlotRecord::MAIN );
 		} catch ( RevisionAccessException $e ) {
@@ -286,47 +289,47 @@ class ApiFeedContributions extends ApiBase {
 		$comment = $revision->getComment();
 
 		return '<p>' . htmlspecialchars( $this->feedItemAuthor( $revision ) ) . $msg .
-			htmlspecialchars( FeedItem::stripComment( $comment ? $comment->text : '' ) ) .
+			htmlspecialchars( FeedItem::stripComment( $comment->text ?? '' ) ) .
 			"</p>\n<hr />\n<div>" . $html . '</div>';
 	}
 
 	public function getAllowedParams() {
-		$feedFormatNames = array_keys( $this->getConfig()->get( 'FeedClasses' ) );
+		$feedFormatNames = array_keys( $this->getConfig()->get( MainConfigNames::FeedClasses ) );
 
 		$ret = [
 			'feedformat' => [
-				ApiBase::PARAM_DFLT => 'rss',
-				ApiBase::PARAM_TYPE => $feedFormatNames
+				ParamValidator::PARAM_DEFAULT => 'rss',
+				ParamValidator::PARAM_TYPE => $feedFormatNames
 			],
 			'user' => [
-				ApiBase::PARAM_TYPE => 'user',
+				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'cidr', 'id', 'interwiki' ],
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'namespace' => [
-				ApiBase::PARAM_TYPE => 'namespace'
+				ParamValidator::PARAM_TYPE => 'namespace'
 			],
 			'year' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 			'month' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 			'tagfilter' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array_values( ChangeTags::listDefinedTags() ),
-				ApiBase::PARAM_DFLT => '',
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => array_values( ChangeTags::listDefinedTags() ),
+				ParamValidator::PARAM_DEFAULT => '',
 			],
 			'deletedonly' => false,
 			'toponly' => false,
 			'newonly' => false,
 			'hideminor' => false,
 			'showsizediff' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 			],
 		];
 
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$ret['showsizediff'][ApiBase::PARAM_HELP_MSG] = 'api-help-param-disabled-in-miser-mode';
 		}
 

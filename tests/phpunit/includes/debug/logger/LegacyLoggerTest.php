@@ -20,13 +20,14 @@
 
 namespace MediaWiki\Logger;
 
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 
 class LegacyLoggerTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers MediaWiki\Logger\LegacyLogger::interpolate
+	 * @covers \MediaWiki\Logger\LegacyLogger::interpolate
 	 * @dataProvider provideInterpolate
 	 */
 	public function testInterpolate( $message, $context, $expect ) {
@@ -135,11 +136,11 @@ class LegacyLoggerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Logger\LegacyLogger::shouldEmit
+	 * @covers \MediaWiki\Logger\LegacyLogger::shouldEmit
 	 * @dataProvider provideShouldEmit
 	 */
 	public function testShouldEmit( $level, $config, $expected ) {
-		$this->setMwGlobals( 'wgDebugLogGroups', [ 'fakechannel' => $config ] );
+		$this->overrideConfigValue( MainConfigNames::DebugLogGroups, [ 'fakechannel' => $config ] );
 		$this->assertEquals(
 			$expected,
 			LegacyLogger::shouldEmit( 'fakechannel', 'some message', $level, [] )

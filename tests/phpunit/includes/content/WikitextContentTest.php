@@ -25,18 +25,6 @@ more stuff
 		return new WikitextContent( $text );
 	}
 
-	public static function dataGetParserOutput() {
-		return [
-			[
-				"WikitextContentTest_testGetParserOutput",
-				CONTENT_MODEL_WIKITEXT,
-				"hello ''world''\n",
-				"<div class=\"mw-parser-output\"><p>hello <i>world</i>\n</p>\n\n\n</div>"
-			],
-			// TODO: more...?
-		];
-	}
-
 	public static function dataGetSection() {
 		return [
 			[ self::$sections,
@@ -128,8 +116,11 @@ just a test"
 	public function testAddSectionHeader() {
 		$content = $this->newContent( 'hello world' );
 		$content = $content->addSectionHeader( 'test' );
-
 		$this->assertEquals( "== test ==\n\nhello world", $content->getText() );
+
+		$content = $this->newContent( 'hello world' );
+		$content = $content->addSectionHeader( '' );
+		$this->assertEquals( "hello world", $content->getText() );
 	}
 
 	public static function dataPreSaveTransform() {
@@ -306,7 +297,7 @@ just a test"
 		$wikitext = false;
 		$redirectTarget = false;
 		$content = $this->newContent( 'hello world.' );
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$options->setRedirectTarget( $title );
 		$contentRenderer->getParserOutput( $content, $title, null, $options );
 		$this->assertEquals( 'hello world.', $wikitext,
@@ -323,7 +314,7 @@ just a test"
 		$content = $this->newContent(
 			"#REDIRECT [[TestRedirectParserOption/redir]]\nhello redirect."
 		);
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$contentRenderer->getParserOutput( $content, $title, null, $options );
 		$this->assertEquals(
 			'hello redirect.',

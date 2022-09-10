@@ -1,5 +1,11 @@
-SQLite shares the MySQL schema file at maintenance/tables.sql, with a set of 
-compatibility regexes to convert MySQL syntax to SQLite syntax:
+SQLite schema is automatically generated from the abstract schema.
+You can see the generated schema in maintenance/sqlite/tables-generated.sql
+
+For more information on abstract schema see:
+https://www.mediawiki.org/wiki/Manual:Schema_changes
+
+SQLite in MediaWiki also accepts MySQL and there are a set of compatibility
+regexes to convert MySQL syntax to SQLite syntax:
 
 * BINARY() and VARBINARY() fields are converted to BLOB
 * the UNSIGNED modifier is removed

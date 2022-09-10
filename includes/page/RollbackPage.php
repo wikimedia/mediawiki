@@ -26,6 +26,7 @@ use ManualLogEntry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Message\Converter;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
@@ -48,19 +49,19 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
- * Logic for page rollbacks.
+ * Backend logic for performing a page rollback action.
+ *
  * @since 1.37
- * @package MediaWiki\Page
  */
 class RollbackPage {
 
 	/**
-	 * @internal for use in PageCommandFactory only
+	 * @internal For use in PageCommandFactory only
 	 * @var array
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'UseRCPatrol',
-		'DisableAnonTalk',
+		MainConfigNames::UseRCPatrol,
+		MainConfigNames::DisableAnonTalk,
 	];
 
 	/** @var ServiceOptions */
@@ -112,6 +113,7 @@ class RollbackPage {
 	private $tags = [];
 
 	/**
+	 * @internal Create via the RollbackPageFactory service.
 	 * @param ServiceOptions $options
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserFactory $userFactory
@@ -279,10 +281,6 @@ class RollbackPage {
 		}
 
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
-		// T270033 Index renaming
-		$revIndex = $dbw->indexExists( 'revision', 'page_timestamp',  __METHOD__ )
-			? 'page_timestamp'
-			: 'rev_page_timestamp';
 
 		// TODO: move this query to RevisionSelectQueryBuilder when it's available
 		// Get the last edit not by this person...
@@ -297,7 +295,7 @@ class RollbackPage {
 			],
 			__METHOD__,
 			[
-				'USE INDEX' => [ 'revision' => $revIndex ],
+				'USE INDEX' => [ 'revision' => 'rev_page_timestamp' ],
 				'ORDER BY' => [ 'rev_timestamp DESC', 'rev_id DESC' ]
 			],
 			$actorWhere['joins']
@@ -357,7 +355,7 @@ class RollbackPage {
 		// TODO: this logic should not be in the storage layer, it's here for compatibility
 		// with 1.31 behavior. Applying the 'autopatrol' right should be done in the same
 		// place the 'bot' right is handled, which is currently in EditPage::attemptSave.
-		if ( $this->options->get( 'UseRCPatrol' ) &&
+		if ( $this->options->get( MainConfigNames::UseRCPatrol ) &&
 			$this->performer->authorizeWrite( 'autopatrol', $this->page )
 		) {
 			$updater->setRcPatrolStatus( RecentChange::PRC_AUTOPATROLLED );
@@ -427,7 +425,7 @@ class RollbackPage {
 	}
 
 	/**
-	 * Set patrolling and bot flag on the edits, which gets rolled back.
+	 * Set patrolling and bot flag on the edits which get rolled back.
 	 *
 	 * @param IDatabase $dbw
 	 * @param RevisionRecord $current
@@ -438,28 +436,77 @@ class RollbackPage {
 		RevisionRecord $current,
 		RevisionRecord $target
 	) {
-		$set = [];
-		if ( $this->bot ) {
-			// Mark all reverted edits as bot
-			$set['rc_bot'] = 1;
+		$useRCPatrol = $this->options->get( MainConfigNames::UseRCPatrol );
+		if ( !$this->bot && !$useRCPatrol ) {
+			return;
 		}
 
-		if ( $this->options->get( 'UseRCPatrol' ) ) {
-			// Mark all reverted edits as patrolled
-			$set['rc_patrolled'] = RecentChange::PRC_AUTOPATROLLED;
+		$actorId = $this->actorNormalization
+			->acquireActorId( $current->getUser( RevisionRecord::RAW ), $dbw );
+		$timestamp = $dbw->timestamp( $target->getTimestamp() );
+		$rows = $dbw->select(
+			'recentchanges',
+			[ 'rc_id', 'rc_patrolled' ],
+			[
+				'rc_cur_id' => $current->getPageId(),
+				$dbw->makeList( [
+					'rc_timestamp > ' . $dbw->addQuotes( $timestamp ),
+					$dbw->makeList( [
+						'rc_timestamp' => $timestamp,
+						'rc_this_oldid > ' . $dbw->addQuotes( $target->getId() ),
+					], IDatabase::LIST_AND ),
+				], IDatabase::LIST_OR ),
+				'rc_actor' => $actorId,
+			],
+			__METHOD__
+		);
+
+		$all = [];
+		$patrolled = [];
+		$unpatrolled = [];
+		foreach ( $rows as $row ) {
+			$all[] = (int)$row->rc_id;
+			if ( $row->rc_patrolled ) {
+				$patrolled[] = (int)$row->rc_id;
+			} else {
+				$unpatrolled[] = (int)$row->rc_id;
+			}
 		}
 
-		if ( $set ) {
-			$actorId = $this->actorNormalization
-				->acquireActorId( $current->getUser( RevisionRecord::RAW ), $dbw );
+		if ( $useRCPatrol && $this->bot ) {
+			// Mark all reverted edits as if they were made by a bot
+			// Also mark only unpatrolled reverted edits as patrolled
+			if ( $unpatrolled ) {
+				$dbw->update(
+					'recentchanges',
+					[ 'rc_bot' => 1, 'rc_patrolled' => RecentChange::PRC_AUTOPATROLLED ],
+					[ 'rc_id' => $unpatrolled ],
+					__METHOD__
+				);
+			}
+			if ( $patrolled ) {
+				$dbw->update(
+					'recentchanges',
+					[ 'rc_bot' => 1 ],
+					[ 'rc_id' => $patrolled ],
+					__METHOD__
+				);
+			}
+		} elseif ( $useRCPatrol ) {
+			// Mark only unpatrolled reverted edits as patrolled
+			if ( $unpatrolled ) {
+				$dbw->update(
+					'recentchanges',
+					[ 'rc_patrolled' => RecentChange::PRC_AUTOPATROLLED ],
+					[ 'rc_id' => $unpatrolled ],
+					__METHOD__
+				);
+			}
+		} else { // if ( $this->bot )
 			$dbw->update(
 				'recentchanges',
-				$set,
-				[ /* WHERE */
-					'rc_cur_id' => $current->getPageId(),
-					'rc_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $target->getTimestamp() ) ),
-					'rc_actor' => $actorId
-				],
+				[ 'rc_bot' => 1 ],
+				[ 'rc_id' => $all ],
 				__METHOD__
 			);
 		}
@@ -477,7 +524,8 @@ class RollbackPage {
 		if ( $this->summary === '' ) {
 			if ( !$currentEditorForPublic ) { // no public user name
 				$summary = MessageValue::new( 'revertpage-nouser' );
-			} elseif ( $this->options->get( 'DisableAnonTalk' ) && !$currentEditorForPublic->isRegistered() ) {
+			} elseif ( $this->options->get( MainConfigNames::DisableAnonTalk ) &&
+			!$currentEditorForPublic->isRegistered() ) {
 				$summary = MessageValue::new( 'revertpage-anon' );
 			} else {
 				$summary = MessageValue::new( 'revertpage' );

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Revision\MutableRevisionRecord;
+use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -16,9 +17,7 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 	 * @return HistoryPager
 	 */
 	private function getHistoryPager( array $results ) {
-		$wikiPageMock = $this->getMockBuilder( WikiPage::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$wikiPageMock = $this->createMock( WikiPage::class );
 		$contextMock = $this->getMockBuilder( RequestContext::class )
 			->disableOriginalConstructor()
 			->onlyMethods( [ 'getRequest', 'getWikiPage', 'getTitle' ] )
@@ -26,7 +25,7 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 		$contextMock->method( 'getRequest' )->willReturn(
 			new FauxRequest( [] )
 		);
-		$title = Title::newFromText( 'HistoryPagerTest' );
+		$title = Title::makeTitle( NS_MAIN, 'HistoryPagerTest' );
 		$contextMock->method( 'getTitle' )->willReturn( $title );
 
 		$contextMock->method( 'getWikiPage' )->willReturn( $wikiPageMock );
@@ -76,7 +75,7 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 		}, $results );
 
 		$pager->revisions = array_map( static function ( $result ) {
-			$title = Title::newFromText( 'HistoryPagerTest' );
+			$title = Title::makeTitle( NS_MAIN, 'HistoryPagerTest' );
 			$r = new MutableRevisionRecord( $title );
 			$r->setId( $result[ 'rev_id' ] );
 			return $r;
@@ -193,8 +192,9 @@ class HistoryPagerTest extends MediaWikiLangTestCase {
 			]
 		);
 		$html = preg_replace( "/\n+/", '', $pager->getBody() );
-		$finalList = '</ul><ul class="mw-contributions-list">';
-		$this->assertStringContainsString( $finalList, $html,
-			'The last item is always in its own list and there is no header if the date is the same.' );
+		$this->assertSame( 1, substr_count( $html, '<h4' ),
+			'There is exactly one header if the date is the same for all edits' );
+		$this->assertSame( 1, substr_count( $html, '<ul' ),
+			'There is exactly one list if the date is the same for all edits' );
 	}
 }

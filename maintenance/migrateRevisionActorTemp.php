@@ -87,6 +87,7 @@ class MigrateRevisionActorTemp extends LoggedUpdateMaintenance {
 				break;
 			}
 
+			// @phan-suppress-next-line PhanTypeSuspiciousStringExpression last is not-null when used
 			$this->output( "... rev_id=$last, updated $updated\n" );
 			$conds = [ 'rev_id > ' . $dbw->addQuotes( $last ) ];
 

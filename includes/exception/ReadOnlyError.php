@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Show an error when the wiki is locked/read-only and the user tries to do
  * something that requires write access.
@@ -35,7 +37,7 @@ class ReadOnlyError extends ErrorPageError {
 		parent::__construct(
 			'readonly',
 			'readonlytext',
-			wfReadOnlyReason() ?: []
+			MediaWikiServices::getInstance()->getReadOnlyMode()->getReason() ?: []
 		);
 	}
 }

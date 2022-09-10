@@ -29,6 +29,7 @@ use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserFactory;
 use MWException;
@@ -52,9 +53,9 @@ class DatabaseBlockStore {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'PutIPinRC',
-		'BlockDisablesLogin',
-		'UpdateRowsPerQuery',
+		MainConfigNames::PutIPinRC,
+		MainConfigNames::BlockDisablesLogin,
+		MainConfigNames::UpdateRowsPerQuery,
 	];
 
 	/** @var LoggerInterface */
@@ -128,7 +129,7 @@ class DatabaseBlockStore {
 
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$store = $this->blockRestrictionStore;
-		$limit = $this->options->get( 'UpdateRowsPerQuery' );
+		$limit = $this->options->get( MainConfigNames::UpdateRowsPerQuery );
 
 		DeferredUpdates::addUpdate( new AutoCommitUpdate(
 			$dbw,
@@ -247,7 +248,7 @@ class DatabaseBlockStore {
 		if ( $affected ) {
 			$autoBlockIds = $this->doRetroactiveAutoblock( $block );
 
-			if ( $this->options->get( 'BlockDisablesLogin' ) ) {
+			if ( $this->options->get( MainConfigNames::BlockDisablesLogin ) ) {
 				$targetUserIdentity = $block->getTargetUserIdentity();
 				if ( $targetUserIdentity ) {
 					$targetUser = $this->userFactory->newFromUserIdentity( $targetUserIdentity );
@@ -513,7 +514,7 @@ class DatabaseBlockStore {
 	 * @return array
 	 */
 	private function performRetroactiveAutoblock( DatabaseBlock $block ): array {
-		if ( !$this->options->get( 'PutIPinRC' ) ) {
+		if ( !$this->options->get( MainConfigNames::PutIPinRC ) ) {
 			// No IPs in the recent changes table to autoblock
 			return [];
 		}

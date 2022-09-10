@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\MainConfigNames;
 
 /**
  * A checkbox field
@@ -14,8 +14,10 @@ class HTMLCheckField extends HTMLFormField {
 	 * @stable to override
 	 */
 	public function getInputHTML( $value ) {
-		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'UseMediaWikiUIEverywhere' );
+		$useMediaWikiUIEverywhere = false;
+		if ( $this->mParent ) {
+			$useMediaWikiUIEverywhere = $this->mParent->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
+		}
 
 		if ( !empty( $this->mParams['invert'] ) ) {
 			$value = !$value;

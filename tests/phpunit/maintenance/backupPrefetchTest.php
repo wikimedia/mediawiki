@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use BaseDump;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
 
 /**

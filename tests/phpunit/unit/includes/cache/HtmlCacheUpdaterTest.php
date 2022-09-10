@@ -15,9 +15,9 @@ class HtmlCacheUpdaterTest extends MediaWikiUnitTestCase {
 			0, false, 86400 );
 		$title = $this->createMock( Title::class );
 		$title->method( 'canExist' )->willReturn( true );
-		$title->method( 'getInternalURL' )->will( $this->returnCallback( static function ( $query = '' ) {
+		$title->method( 'getInternalURL' )->willReturnCallback( static function ( $query = '' ) {
 			return 'https://test/?title=Example' . ( $query !== '' ? "&$query" : '' );
-		} ) );
+		} );
 
 		$this->assertEquals(
 			[
@@ -37,9 +37,9 @@ class HtmlCacheUpdaterTest extends MediaWikiUnitTestCase {
 
 		$title = $this->createMock( Title::class );
 		$title->method( 'canExist' )->willReturn( true );
-		$title->method( 'getInternalURL' )->will( $this->returnCallback( static function ( $query = '' ) {
+		$title->method( 'getInternalURL' )->willReturnCallback( static function ( $query = '' ) {
 			return 'https://test/?title=User:Example/foo.js' . ( $query !== '' ? "&$query" : '' );
-		} ) );
+		} );
 		$title->method( 'isUserJsConfigPage' )->willReturn( true );
 		$this->assertEquals(
 			[
@@ -53,9 +53,9 @@ class HtmlCacheUpdaterTest extends MediaWikiUnitTestCase {
 
 		$title = $this->createMock( Title::class );
 		$title->method( 'canExist' )->willReturn( true );
-		$title->method( 'getInternalURL' )->will( $this->returnCallback( static function ( $query = '' ) {
+		$title->method( 'getInternalURL' )->willReturnCallback( static function ( $query = '' ) {
 			return 'https://test/?title=MediaWiki:Example.js' . ( $query !== '' ? "&$query" : '' );
-		} ) );
+		} );
 		$title->method( 'isSiteJsConfigPage' )->willReturn( true );
 		$this->assertEquals(
 			[

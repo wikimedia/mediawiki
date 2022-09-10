@@ -13,7 +13,7 @@ use User;
  */
 interface UserAddGroupHook {
 	/**
-	 * This hook is alled when adding a group or changing a group's expiry.
+	 * This hook is called when adding a group or changing a group's expiry.
 	 *
 	 * @since 1.35
 	 *

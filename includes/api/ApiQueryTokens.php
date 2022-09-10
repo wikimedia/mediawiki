@@ -25,6 +25,7 @@
 
 use MediaWiki\Api\ApiHookRunner;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Module to fetch tokens via action=query&meta=tokens
@@ -36,9 +37,6 @@ class ApiQueryTokens extends ApiQueryBase {
 
 	public function execute() {
 		$params = $this->extractRequestParams();
-		$res = [
-			ApiResult::META_TYPE => 'assoc',
-		];
 
 		if ( $this->lacksSameOriginSecurity() ) {
 			$this->addWarning( [ 'apiwarn-tokens-origin' ] );
@@ -48,11 +46,23 @@ class ApiQueryTokens extends ApiQueryBase {
 		$user = $this->getUser();
 		$session = $this->getRequest()->getSession();
 		$salts = self::getTokenTypeSalts();
-		foreach ( $params['type'] as $type ) {
-			$res[$type . 'token'] = self::getToken( $user, $session, $salts[$type] )->toString();
-		}
 
-		$this->getResult()->addValue( 'query', $this->getModuleName(), $res );
+		$done = [];
+		$path = [ 'query', $this->getModuleName() ];
+		$this->getResult()->addArrayType( $path, 'assoc' );
+
+		foreach ( $params['type'] as $type ) {
+			$token = self::getToken( $user, $session, $salts[$type] )->toString();
+			$fit = $this->getResult()->addValue( $path, $type . 'token', $token );
+
+			if ( !$fit ) {
+				// Abuse type as a query-continue parameter and set it to all unprocessed types
+				$this->setContinueEnumParameter( 'type',
+					array_diff( $params['type'], $done ) );
+				break;
+			}
+			$done[] = $type;
+		}
 	}
 
 	/**
@@ -108,10 +118,10 @@ class ApiQueryTokens extends ApiQueryBase {
 	public function getAllowedParams() {
 		return [
 			'type' => [
-				ApiBase::PARAM_DFLT => 'csrf',
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array_keys( self::getTokenTypeSalts() ),
-				ApiBase::PARAM_ALL => true,
+				ParamValidator::PARAM_DEFAULT => 'csrf',
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => array_keys( self::getTokenTypeSalts() ),
+				ParamValidator::PARAM_ALL => true,
 			],
 		];
 	}
@@ -128,10 +138,6 @@ class ApiQueryTokens extends ApiQueryBase {
 	public function isReadMode() {
 		// So login tokens can be fetched on private wikis
 		return false;
-	}
-
-	public function getCacheMode( $params ) {
-		return 'private';
 	}
 
 	public function getHelpUrls() {

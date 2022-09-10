@@ -70,7 +70,9 @@ class SpecialUserLogout extends FormSpecialPage {
 
 	public function alterForm( HTMLForm $form ) {
 		$form->setTokenSalt( 'logoutToken' );
-		$form->addHeaderText( $this->msg( 'userlogout-continue' ) );
+		$form->addHeaderHtml( $this->msg(
+			$this->getUser()->isTemp() ? 'userlogout-temp' : 'userlogout-continue'
+		) );
 
 		$form->addHiddenFields( $this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
 	}
@@ -92,7 +94,7 @@ class SpecialUserLogout extends FormSpecialPage {
 				'cannotlogoutnow-title',
 				'cannotlogoutnow-text',
 				[
-					$session->getProvider()->describe( RequestContext::getMain()->getLanguage() )
+					$session->getProvider()->describe( $this->getLanguage() )
 				]
 			);
 		}

@@ -158,7 +158,7 @@ class ApiQueryImageInfoTest extends ApiTestCase {
 			],
 			null,
 			false,
-			$this->getTestUser()->getUser()
+			$this->getTestUser()->getAuthority()
 		);
 		$image = $this->getImageInfoFromResult( $result );
 		$this->assertSame( MWTimestamp::convert( TS_ISO_8601, self::OLD_IMAGE_TIMESTAMP ), $image['timestamp'] );

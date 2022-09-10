@@ -84,7 +84,7 @@ class MediaHandlerFactory {
 
 	/**
 	 * @param string $type mimetype
-	 * @return bool|MediaHandler
+	 * @return MediaHandler|false
 	 */
 	public function getHandler( $type ) {
 		if ( isset( $this->handlers[$type] ) ) {

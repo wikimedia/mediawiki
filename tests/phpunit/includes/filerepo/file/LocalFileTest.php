@@ -5,6 +5,7 @@
  * @todo Split tests into providers and test methods
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
@@ -51,7 +52,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $info
 	 */
 	public function testGetHashPath( $expected, $capitalLinks, array $info ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getHashPath() );
 	}
@@ -72,7 +73,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $info
 	 */
 	public function testGetRel( $expected, $capitalLinks, array $info ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getRel() );
@@ -94,7 +95,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $info
 	 */
 	public function testGetUrlRel( $expected, $capitalLinks, array $info ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getUrlRel() );
@@ -117,7 +118,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $args
 	 */
 	public function testGetArchivePath( $expected, $capitalLinks, array $info, array $args ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getArchivePath( ...$args ) );
@@ -146,7 +147,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $args
 	 */
 	public function testGetThumbPath( $expected, $capitalLinks, array $info, array $args ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getThumbPath( ...$args ) );
@@ -175,7 +176,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $args
 	 */
 	public function testGetArchiveUrl( $expected, $capitalLinks, array $info, array $args ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getArchiveUrl( ...$args ) );
@@ -199,7 +200,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $args
 	 */
 	public function testGetThumbUrl( $expected, $capitalLinks, array $info, array $args ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getThumbUrl( ...$args ) );
@@ -225,7 +226,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	public function testGetArchiveVirtualUrl(
 		$expected, $capitalLinks, array $info, array $args
 	) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getArchiveVirtualUrl( ...$args ) );
@@ -249,7 +250,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $args
 	 */
 	public function testGetThumbVirtualUrl( $expected, $capitalLinks, array $info, array $args ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getThumbVirtualUrl( ...$args ) );
@@ -272,7 +273,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @param array $info
 	 */
 	public function testGetUrl( $expected, $capitalLinks, array $info ) {
-		$this->setMwGlobals( 'wgCapitalLinks', $capitalLinks );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, $capitalLinks );
 
 		$this->assertSame( $expected, ( new LocalRepo( $info + self::getDefaultInfo() ) )
 			->newFile( 'test!' )->getUrl() );
@@ -283,19 +284,6 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			[ '/testurl/Test%21', true, [ 'hashLevels' => 0 ] ],
 			[ '/testurl/a/a2/Test%21', true, [ 'hashLevels' => 2 ] ],
 		];
-	}
-
-	/**
-	 * @covers ::wfLocalFile
-	 */
-	public function testWfLocalFile() {
-		$this->hideDeprecated( 'wfLocalFile' );
-		$file = wfLocalFile( "File:Some_file_that_probably_doesn't exist.png" );
-		$this->assertInstanceOf(
-			LocalFile::class,
-			$file,
-			'wfLocalFile() returns LocalFile for valid Titles'
-		);
 	}
 
 	/**
@@ -376,7 +364,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			]
 		);
 		$file = OldLocalFile::newFromTitle(
-			Title::newFromText( 'File:Random-11m.png' ),
+			Title::makeTitle( NS_FILE, 'Random-11m.png' ),
 			$this->getServiceContainer()->getRepoGroup()->getLocalRepo(),
 			'20201105235242'
 		);
@@ -576,7 +564,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestSysop()->getUserIdentity();
 		$actorId = $norm->acquireActorId( $user, $dbw );
 		$comment = $services->getCommentStore()->createComment( $dbw, 'comment' );
-		$title = Title::newFromText( 'File:Random-11m.png' );
+		$title = Title::makeTitle( NS_FILE, 'Random-11m.png' );
 
 		if ( $blobs ) {
 			$blobStore = $services->getBlobStore();
@@ -715,7 +703,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			public function __construct( $meta ) {
 				$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 				parent::__construct(
-					Title::newFromText( 'File:TestLegacyMetadataRoundTrip' ),
+					Title::makeTitle( NS_FILE, 'TestLegacyMetadataRoundTrip' ),
 					$repo );
 				$this->loadMetadataFromString( $meta );
 				$this->dataLoaded = true;
@@ -835,7 +823,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				] )
 			] + $conf
 		);
-		$title = Title::newFromText( 'File:Test.jpg' );
+		$title = Title::makeTitle( NS_FILE, 'Test.jpg' );
 		$file = new LocalFile( $title, $repo );
 
 		if ( $props['mime'] === 'application/pdf' ) {
@@ -849,7 +837,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			$this->getTestSysop()->getUser(),
 			$props
 		);
-		$this->assertSame( [], $status->getErrors() );
+		$this->assertStatusGood( $status );
 		// Check properties of the same object immediately after upload
 		$this->assertFileProperties( $props, $file );
 		// Check round-trip through the DB
@@ -872,7 +860,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				] )
 			]
 		);
-		$title = Title::newFromText( 'File:Test.jpg' );
+		$title = Title::makeTitle( NS_FILE, 'Test.jpg' );
 		$file = new LocalFile( $title, $repo );
 		$path = __DIR__ . '/../../../data/media/test.jpg';
 		$status = $file->upload(
@@ -881,7 +869,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			'page text',
 			0
 		);
-		$this->assertSame( [], $status->getErrors() );
+		$this->assertStatusGood( $status );
 
 		// Test reupload
 		$file = new LocalFile( $title, $repo );
@@ -892,7 +880,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			'page text',
 			0
 		);
-		$this->assertSame( [], $status->getErrors() );
+		$this->assertStatusGood( $status );
 	}
 
 	public function provideReserializeMetadata() {
@@ -960,7 +948,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				'basePath' => '/nonexistent'
 			] )
 		] );
-		$title = Title::newFromText( 'File:Test.pdf' );
+		$title = Title::makeTitle( NS_FILE, 'Test.pdf' );
 		$file = new LocalFile( $title, $repo );
 		TestingAccessWrapper::newFromObject( $file )->handler = $this->getMockPdfHandler();
 		$file->load();
@@ -1016,7 +1004,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			]
 		);
 
-		$title = Title::newFromText( 'File:Png-native-test.png' );
+		$title = Title::makeTitle( NS_FILE, 'Png-native-test.png' );
 		$file = new LocalFile( $title, $repo );
 		$file->load();
 		$file->maybeUpgradeRow();

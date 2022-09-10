@@ -5,6 +5,7 @@
 			{
 				"name": "Base",
 				"classes": [
+					"global",
 					"mw",
 					"mw.Message",
 					"mw.loader",
@@ -31,7 +32,6 @@
 					"mw.plugin.*",
 					"mw.cookie",
 					"mw.experiments",
-					"mw.viewport",
 					"mw.visibleTimeout"
 				]
 			},

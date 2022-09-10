@@ -6,6 +6,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -73,6 +74,9 @@ class WatchedItemQueryService {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/**
 	 * @var bool Correlates to $wgWatchlistExpiry feature flag.
 	 */
@@ -88,6 +92,7 @@ class WatchedItemQueryService {
 		CommentStore $commentStore,
 		WatchedItemStoreInterface $watchedItemStore,
 		HookContainer $hookContainer,
+		UserOptionsLookup $userOptionsLookup,
 		bool $expiryEnabled = false,
 		int $maxQueryExecutionTime = 0
 	) {
@@ -95,6 +100,7 @@ class WatchedItemQueryService {
 		$this->commentStore = $commentStore;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->userOptionsLookup = $userOptionsLookup;
 		$this->expiryEnabled = $expiryEnabled;
 		$this->maxQueryExecutionTime = $maxQueryExecutionTime;
 	}
@@ -114,7 +120,7 @@ class WatchedItemQueryService {
 	 * @return IDatabase
 	 */
 	private function getConnection() {
-		return $this->loadBalancer->getConnectionRef( DB_REPLICA, [ 'watchlist' ] );
+		return $this->loadBalancer->getConnectionRef( DB_REPLICA );
 	}
 
 	/**
@@ -131,7 +137,7 @@ class WatchedItemQueryService {
 	 *                                 (defaults to all types), allowed values: RC_EDIT, RC_NEW,
 	 *                                 RC_LOG, RC_EXTERNAL, RC_CATEGORIZE
 	 *        'onlyByUser'          => string only list changes by a specified user
-	 *        'notByUser'           => string do not incluide changes by a specified user
+	 *        'notByUser'           => string do not include changes by a specified user
 	 *        'dir'                 => string in which direction to enumerate, accepted values:
 	 *                                 - DIR_OLDER list newest first
 	 *                                 - DIR_NEWER list oldest first
@@ -139,7 +145,7 @@ class WatchedItemQueryService {
 	 *                                 timestamp to start enumerating from
 	 *        'end'                 => string (format accepted by wfTimestamp) requires 'dir' option,
 	 *                                 timestamp to end enumerating
-	 *        'watchlistOwner'      => User user whose watchlist items should be listed if different
+	 *        'watchlistOwner'      => UserIdentity user whose watchlist items should be listed if different
 	 *                                 than the one specified with $user param, requires
 	 *                                 'watchlistOwnerToken' option
 	 *        'watchlistOwnerToken' => string a watchlist token used to access another user's
@@ -200,7 +206,7 @@ class WatchedItemQueryService {
 		);
 		if ( array_key_exists( 'watchlistOwner', $options ) ) {
 			Assert::parameterType(
-				User::class,
+				UserIdentity::class,
 				$options['watchlistOwner'],
 				'$options[\'watchlistOwner\']'
 			);
@@ -282,7 +288,7 @@ class WatchedItemQueryService {
 	 *                          one of the self::SORT_* constants
 	 *        'namespaceIds' => int[] optional namespace IDs to filter by (defaults to all namespaces)
 	 *        'limit'        => int maximum number of items to return
-	 *        'filter'       => string optional filter, one of the self::FILTER_* contants
+	 *        'filter'       => string optional filter, one of the self::FILTER_* constants
 	 *        'from'         => LinkTarget requires 'sort' key, only return items starting from
 	 *                          those related to the link target
 	 *        'until'        => LinkTarget requires 'sort' key, only return items until
@@ -505,10 +511,10 @@ class WatchedItemQueryService {
 
 	private function getWatchlistOwnerId( UserIdentity $user, array $options ) {
 		if ( array_key_exists( 'watchlistOwner', $options ) ) {
-			/** @var User $watchlistOwner */
+			/** @var UserIdentity $watchlistOwner */
 			$watchlistOwner = $options['watchlistOwner'];
 			$ownersToken =
-				$watchlistOwner->getOption( 'watchlisttoken' );
+				$this->userOptionsLookup->getOption( $watchlistOwner, 'watchlisttoken' );
 			$token = $options['watchlistOwnerToken'];
 			if ( $ownersToken == '' || !hash_equals( $ownersToken, $token ) ) {
 				throw ApiUsageException::newWithMessage( null, 'apierror-bad-watchlist-token', 'bad_wltoken' );

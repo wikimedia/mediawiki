@@ -48,6 +48,17 @@ interface Block extends WikiAwareEntity {
 	public const TYPE_ID = 5;
 
 	/**
+	 * Map block types to strings, to allow convenient logging.
+	 */
+	public const BLOCK_TYPES = [
+		self::TYPE_USER => 'user',
+		self::TYPE_IP => 'ip',
+		self::TYPE_RANGE => 'range',
+		self::TYPE_AUTO => 'autoblock',
+		self::TYPE_ID => 'id',
+	];
+
+	/**
 	 * Get the block ID
 	 *
 	 * @param string|false $wikiId (since 1.38)

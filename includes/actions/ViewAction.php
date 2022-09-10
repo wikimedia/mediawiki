@@ -18,6 +18,7 @@
  * @ingroup Actions
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -53,21 +54,18 @@ class ViewAction extends FormlessAction {
 		MediaWikiServices::getInstance()->getHookContainer()->emitDeprecationWarnings();
 
 		if (
-			!$config->get( 'DebugToolbar' ) && // don't let this get stuck on pages
+			!$config->get( MainConfigNames::DebugToolbar ) && // don't let this get stuck on pages
 			$this->getWikiPage()->checkTouched() // page exists and is not a redirect
 		) {
 			// Include any redirect in the last-modified calculation
 			$redirFromTitle = $this->getArticle()->getRedirectedFrom();
 			if ( !$redirFromTitle ) {
 				$touched = $this->getWikiPage()->getTouched();
-			} elseif ( $config->get( 'MaxRedirects' ) <= 1 ) {
+			} else {
 				$touched = max(
 					$this->getWikiPage()->getTouched(),
 					$redirFromTitle->getTouched()
 				);
-			} else {
-				// Don't bother following the chain and getting the max mtime
-				$touched = null;
 			}
 
 			// Send HTTP 304 if the IMS matches or otherwise set expiry/last-modified headers

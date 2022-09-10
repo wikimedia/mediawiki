@@ -15,6 +15,12 @@ trait MediaWikiTestCaseTrait {
 	/** @var int|null */
 	private $originalPhpErrorFilter;
 
+	/** @var array */
+	private $expectedDeprecations = [];
+
+	/** @var array */
+	private $actualDeprecations = [];
+
 	/**
 	 * Returns a PHPUnit constraint that matches (with `===`) anything other than a fixed set of values.
 	 * This can be used to list accepted values, e.g.
@@ -141,6 +147,32 @@ trait MediaWikiTestCaseTrait {
 	 */
 	public function filterDeprecated( $regex ) {
 		MWDebug::filterDeprecationForTest( $regex );
+	}
+
+	/**
+	 * Expect a deprecation notice, but suppress it and continue operation so we can test that the
+	 * deprecated functionality works as intended for compatibility.
+	 *
+	 * @since 1.39
+	 *
+	 * @param string $regex Deprecation message that must be triggered.
+	 */
+	public function expectDeprecationAndContinue( string $regex ): void {
+		$this->expectedDeprecations[] = $regex;
+		MWDebug::filterDeprecationForTest( $regex, function () use ( $regex ): void {
+			$this->actualDeprecations[] = $regex;
+		} );
+	}
+
+	/**
+	 * @after
+	 */
+	public function checkExpectedDeprecationsOnTearDown(): void {
+		if ( $this->expectedDeprecations ) {
+			$this->assertSame( [],
+				array_diff( $this->expectedDeprecations, $this->actualDeprecations ),
+				'Expected deprecation warning(s) were not emitted' );
+		}
 	}
 
 	/**
@@ -275,9 +307,7 @@ trait MediaWikiTestCaseTrait {
 	 */
 	protected function getMockMessage( $text = '', $params = [] ) {
 		/** @var MockObject $msg */
-		$msg = $this->getMockBuilder( Message::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$msg = $this->createMock( Message::class );
 		$msg->method( 'toString' )->willReturn( $text );
 		$msg->method( '__toString' )->willReturn( $text );
 		$msg->method( 'text' )->willReturn( $text );
@@ -297,5 +327,86 @@ trait MediaWikiTestCaseTrait {
 		$msg->method( 'setContext' )->willReturn( $msg );
 		$msg->method( 'exists' )->willReturn( true );
 		return $msg;
+	}
+
+	private function failStatus( StatusValue $status, $reason, $message = '' ) {
+		$reason = $message === '' ? $reason : "$message\n$reason";
+		$this->fail( "$reason\n$status" );
+	}
+
+	protected function assertStatusOK( StatusValue $status, $message = '' ) {
+		if ( !$status->isOK() ) {
+			$errors = $status->splitByErrorType()[0];
+			$this->failStatus( $errors, 'Status should be OK', $message );
+		} else {
+			$this->addToAssertionCount( 1 );
+		}
+	}
+
+	protected function assertStatusGood( StatusValue $status, $message = '' ) {
+		if ( !$status->isGood() ) {
+			$this->failStatus( $status, 'Status should be Good', $message );
+		} else {
+			$this->addToAssertionCount( 1 );
+		}
+	}
+
+	protected function assertStatusNotOK( StatusValue $status, $message = '' ) {
+		if ( $status->isOK() ) {
+			$this->failStatus( $status, 'Status should not be OK', $message );
+		} else {
+			$this->addToAssertionCount( 1 );
+		}
+	}
+
+	protected function assertStatusNotGood( StatusValue $status, $message = '' ) {
+		if ( $status->isGood() ) {
+			$this->failStatus( $status, 'Status should not be Good', $message );
+		} else {
+			$this->addToAssertionCount( 1 );
+		}
+	}
+
+	protected function assertStatusMessage( $messageKey, StatusValue $status, $message = '' ) {
+		if ( !$status->hasMessage( $messageKey ) ) {
+			$this->failStatus( $status, "Status should have message $messageKey", $message );
+		} else {
+			$this->addToAssertionCount( 1 );
+		}
+	}
+
+	protected function assertStatusValue( $expected, StatusValue $status, $message = 'Status value' ) {
+		$this->assertEquals( $expected, $status->getValue(), $message );
+	}
+
+	protected function assertStatusError( $messageKey, StatusValue $status, $message = '' ) {
+		$this->assertStatusNotOK( $status, $message );
+		$this->assertStatusMessage( $messageKey, $status, $message );
+	}
+
+	protected function assertStatusWarning( $messageKey, StatusValue $status, $message = '' ) {
+		$this->assertStatusNotGood( $status, $message );
+		$this->assertStatusOK( $status, $message );
+		$this->assertStatusMessage( $messageKey, $status, $message );
+	}
+
+	/**
+	 * Put each HTML element on its own line and then equals() the results
+	 *
+	 * Use for nicely formatting of PHPUnit diff output when comparing very
+	 * simple HTML
+	 *
+	 * @since 1.20
+	 * @since 1.39 available in MediaWikiUnitTestCase
+	 *
+	 * @param string $expected HTML on oneline
+	 * @param string $actual HTML on oneline
+	 * @param string $msg Optional message
+	 */
+	protected function assertHTMLEquals( $expected, $actual, $msg = '' ) {
+		$expected = str_replace( '>', ">\n", $expected );
+		$actual = str_replace( '>', ">\n", $actual );
+
+		$this->assertEquals( $expected, $actual, $msg );
 	}
 }

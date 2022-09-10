@@ -4,13 +4,7 @@ class DiffHistoryBlobTest extends MediaWikiUnitTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-
-		$this->checkPHPExtension( 'hash' );
 		$this->checkPHPExtension( 'xdiff' );
-
-		if ( !function_exists( 'xdiff_string_rabdiff' ) ) {
-			$this->markTestSkipped( 'The version of xdiff extension is lower than 1.5.0' );
-		}
 	}
 
 	/**

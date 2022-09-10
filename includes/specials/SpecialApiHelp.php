@@ -68,6 +68,7 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 
 		if ( !$this->including() ) {
 			unset( $options['nolead'], $options['title'] );
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 			$options['modules'] = $moduleName;
 			$link = wfAppendQuery( wfExpandUrl( wfScript( 'api' ), PROTO_CURRENT ), $options );
 			$this->getOutput()->redirect( $link );
@@ -76,9 +77,11 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 
 		$main = new ApiMain( $this->getContext(), false );
 		try {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable,PhanPossiblyUndeclaredVariable False positive
 			$module = $main->getModuleFromPath( $moduleName );
 		} catch ( ApiUsageException $ex ) {
 			$this->getOutput()->addHTML( Html::rawElement( 'span', [ 'class' => 'error' ],
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 				$this->msg( 'apihelp-no-such-module', $moduleName )->inContentLanguage()->parse()
 			) );
 			return;

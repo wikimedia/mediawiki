@@ -24,8 +24,7 @@
 			"Sjoerddebruin",
 			"Southparkfan",
 			"Tjcool007",
-			"아라",
-			"Krinkle"
+			"아라"
 		]
 	},
 	"config-desc": "Het installatieprogramma voor MediaWiki",
@@ -239,7 +238,9 @@
 	"config-logo-summary": "Voor elk van deze velden moet u een afbeelding van het juiste formaat uploaden en de URL in de onderstaande vakken invoeren. U kunt <code>$wgStylePath</code> of <code>$wgScriptPath</code> gebruiken wanneer uw logo relatief is aan die paden. U kunt elk van deze vakken leeg laten. \n\nIn ondersteunde browsers kunt u ook afbeeldingsbestanden van uw computer naar de invoervakken of het voorbeeldgebied slepen.",
 	"config-logo-preview-main": "Hoofdpagina",
 	"config-logo-icon": "Logo (pictogram)",
-	"config-logo-wordmark-help": "De naam van uw site. Als deze niet opgegeven is wordt normaliter op tekst teruggevallen. Dit zou idealiter een SVG met een hoogte van minder dan 30 pixels moeten zijn.",
+	"config-logo-icon-help": "Uw logopictogram moet vierkant zijn en bij voorkeur groter dan 50px of een SVG zijn.",
+	"config-logo-wordmark": "Woordmerk (optioneel):",
+	"config-logo-wordmark-help": "De naam van uw site. Als deze niet opgegeven is wordt normaliter op tekst teruggevallen. Dit zou idealiter een SVG met een hoogte van 30 pixels of minder moeten zijn.",
 	"config-logo-filedrop": "Sleep hier een afbeelding naar toe",
 	"config-instantcommons": "Instant Commons inschakelen",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] is functie die het mogelijk maakt om afbeeldingen, geluidsbestanden en andere mediabestanden te gebruiken van de website [https://commons.wikimedia.org/ Wikimedia Commons].\nHiervoor heeft MediaWiki toegang nodig tot internet.\n\nMeer informatie over deze functie en hoe deze in te stellen voor andere wiki's dan Wikimedia Commons is te vinden in de [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos handleiding].",

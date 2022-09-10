@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Ccaxjoj Iteja Z Iti Poop",
 			"DannyS712",
 			"Kaganer",
@@ -8,8 +9,7 @@
 			"SeriCtam",
 			"Teak",
 			"Urhixidur",
-			"아라",
-			"Amire80"
+			"아라"
 		]
 	},
 	"tog-underline": "Squóráam linkám:",
@@ -173,7 +173,6 @@
 	"ok": "ton",
 	"retrievedfrom": "Paluatlde \"$1\"",
 	"youhavenewmessages": "Mecui $1 ($2).",
-	"youhavenewmessagesmulti": "Mecui huniitom $1 iti",
 	"editsection": "ticpatlöx",
 	"editold": "ticpatlöx",
 	"editsectionhint": "Ticpatlöx partamöx: $1",
@@ -300,7 +299,6 @@
 	"missingcommenttext": "Enterom commentua !-cmaa.",
 	"missingcommentheader": "'''Attencion:''' Me necoccebj providöx subjectua/corridor zode jan commentua. Clickom 'Xuniim páhina' xuniim meticpatlöx sans subjectua/corridor zo.",
 	"summary-preview": "Cuáxiitde abvuatl:",
-	"subject-preview": "Cuáxiitde subjectua/corridor:",
 	"blockedtitle": "Caitom blockámit",
 	"blockedtext": "'''Hexuatl jöx adressade IP cáablockom.'''\n\nBlock zo expondal $1. Rasonna zo coccebj: ''$2''.\n\n* Start block zo: $8\n* Xanzo block zo: $6\n* Jonzicuatl blockam zo: $7\n\nMe contactam $1 jöx pac [[{{MediaWiki:Grouppage-sysop}}|sysop]] discussom iti block zo.\nMe nenusor e-iitom päzxo hab' adressade e-iitom validom coccebj [[Special:Preferences|mequáatlaác]] ö'me neblockomde e-iitom.\nMe adressa IP coccebj $3 ö ID block z coccebj #$5. Includam 1 jöx 2 pac querinám iti.",
 	"autoblockedtext": "Menadressade IP coccebj blocköx auto. Zo coccebj usadad diijömde caitom miii, jan coccebj blocköxde $1.\nRasonna zo coccebj:\n\n:''$2''\n\n* Start block zo: $8\n* Xanzo block zo: $6\n\nMe contactam $1 jöx pac [[{{MediaWiki:Grouppage-sysop}}|sysop]] discussom iti block zo.\n\nMe nenusor e-iitom päzxo hab' adressade e-iitom validom coccebj [[Special:Preferences|mequáatlaác]] ö'me neblockomde e-iitom.\n\nMe IDde block coccebj $5. Includam 1 jöx 2 pac querinám iti.",
@@ -644,7 +642,6 @@
 	"blocklink": "blockom",
 	"unblocklink": "diiblockom",
 	"contribslink": "contribución",
-	"unblocklogentry": "diiblocköx $1",
 	"block-log-flags-noemail": "blocköx e-iitom",
 	"lockdb": "Lockom databse",
 	"unlockdb": "Diilockom database",

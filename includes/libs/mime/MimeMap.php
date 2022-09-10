@@ -59,7 +59,7 @@ class MimeMap {
 		'audio/opus' => [ 'opus', 'ogg', 'oga', 'spx' ],
 		'image/x-bmp' => [ 'bmp' ],
 		'image/gif' => [ 'gif' ],
-		'image/jpeg' => [ 'jpeg', 'jpg', 'jpe' ],
+		'image/jpeg' => [ 'jpeg', 'jpg', 'jpe', 'jps' ],
 		'image/png' => [ 'png', 'apng' ],
 		'image/svg+xml' => [ 'svg' ],
 		'image/svg' => [ 'svg' ],
@@ -137,7 +137,6 @@ class MimeMap {
 			[ 'zip', 'jar', 'xpi', 'sxc', 'stc', 'sxd', 'std', 'sxi', 'sti', 'sxm', 'stm', 'sxw', 'stw' ],
 		'application/x-rar' => [ 'rar' ],
 		'application/font-sfnt' => [ 'ttf' ],
-		'font/sfnt' => [ 'ttf', 'cff', 'otf', 'aat', 'sil' ],
 		'application/font-woff' => [ 'woff' ],
 		'application/font-woff2' => [ 'woff2' ],
 		'application/vnd.ms-fontobject' => [ 'eot' ],
@@ -166,6 +165,7 @@ class MimeMap {
 		'image/webp' => [ 'webp' ],
 		'image/x-cmu-raster' => [ 'ras' ],
 		'image/x-icon' => [ 'ico' ],
+		'image/x-jps' => [ 'jps' ],
 		'image/x-ms-bmp' => [ 'bmp' ],
 		'image/x-portable-anymap' => [ 'pnm' ],
 		'image/x-portable-bitmap' => [ 'pbm' ],
@@ -219,9 +219,6 @@ class MimeMap {
 		'application/vnd.ms-excel.sheet.binary.macroenabled.12' => [ 'xlsb' ],
 		'model/vnd.dwfx+xps' => [ 'dwfx' ],
 		'application/vnd.ms-xpsdocument' => [ 'xps' ],
-		'application/x-opc+zip' => [
-			'docx', 'dotx', 'docm', 'dotm', 'potx', 'ppsx', 'pptx', 'ppam', 'pptm', 'potm', 'ppsm',
-			'xlsx', 'xltx', 'xlsm', 'xltm', 'xlam', 'xlsb', 'dwfx', 'xps' ],
 		'chemical/x-mdl-molfile' => [ 'mol' ],
 		'chemical/x-mdl-sdfile' => [ 'sdf' ],
 		'chemical/x-mdl-rxnfile' => [ 'rxn' ],
@@ -230,6 +227,17 @@ class MimeMap {
 		'application/x-amf' => [ 'amf' ],
 		'application/sla' => [ 'stl' ],
 		'application/wasm' => [ 'wasm' ],
+
+		// Vague pseudo-types should be at the end so that they don't take
+		// precedence over the more specific types above in getMimeTypesFromExtension()
+		'application/x-opc+zip' => [
+			'docx', 'dotx', 'docm', 'dotm', 'potx', 'ppsx', 'pptx', 'ppam', 'pptm', 'potm', 'ppsm',
+			'xlsx', 'xltx', 'xlsm', 'xltm', 'xlam', 'xlsb', 'dwfx', 'xps'
+		],
+		'application/vnd.oasis.opendocument' => [
+			'odt', 'ott', 'odg', 'otg', 'odp', 'otp', 'ods', 'ots', 'odc', 'otc',
+			'odi', 'oti', 'odf', 'otf', 'odm', 'oth',
+		]
 	];
 
 	/** @var array Map of built-in media types and their associated MIME types */
@@ -360,6 +368,7 @@ class MimeMap {
 			'image/x-png',
 			'image/ief',
 			'image/jpeg',
+			'image/x-jps',
 			'image/pjpeg',
 			'image/jp2',
 			'image/jpx',

@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\XMPReader\Reader as XMPReader;
@@ -95,7 +96,7 @@ class BitmapMetadataHandler {
 	 * @param string $byteOrder
 	 */
 	public function getExif( $filename, $byteOrder ) {
-		$showEXIF = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowEXIF' );
+		$showEXIF = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::ShowEXIF );
 		if ( file_exists( $filename ) && $showEXIF ) {
 			$exif = new Exif( $filename, $byteOrder );
 			$data = $exif->getFilteredData();
@@ -225,6 +226,7 @@ class BitmapMetadataHandler {
 			}
 		}
 		unset( $array['text']['xmp'] );
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset xmp is not alone in text, makes text always set
 		$meta->addMetadata( $array['text'], 'native' );
 		unset( $array['text'] );
 		$array['metadata'] = $meta->getMetadataArray();

@@ -107,21 +107,23 @@ class JobQueueGroup {
 	}
 
 	/**
-	 * @deprecated since 1.37 Use JobQueueGroupFactory::makeJobQueueGroup
+	 * @deprecated since 1.37 Use JobQueueGroupFactory::makeJobQueueGroup (hard deprecated since 1.39)
 	 * @param bool|string $domain Wiki domain ID
 	 * @return JobQueueGroup
 	 */
 	public static function singleton( $domain = false ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		return MediaWikiServices::getInstance()->getJobQueueGroupFactory()->makeJobQueueGroup( $domain );
 	}
 
 	/**
 	 * Destroy the singleton instances
 	 *
-	 * @deprecated since 1.37
+	 * @deprecated since 1.37 (hard deprecated since 1.39)
 	 * @return void
 	 */
 	public static function destroySingletons() {
+		wfDeprecated( __METHOD__, '1.37' );
 	}
 
 	/**
@@ -132,11 +134,7 @@ class JobQueueGroup {
 	 */
 	public function get( $type ) {
 		$conf = [ 'domain' => $this->domain, 'type' => $type ];
-		if ( isset( $this->jobTypeConfiguration[$type] ) ) {
-			$conf += $this->jobTypeConfiguration[$type];
-		} else {
-			$conf += $this->jobTypeConfiguration['default'];
-		}
+		$conf += $this->jobTypeConfiguration[$type] ?? $this->jobTypeConfiguration['default'];
 		if ( !isset( $conf['readOnlyReason'] ) ) {
 			$conf['readOnlyReason'] = $this->readOnlyMode->getReason();
 		}

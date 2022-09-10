@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\UserOptionsLookup;
 
@@ -31,18 +32,6 @@ use MediaWiki\User\UserOptionsLookup;
  * @ingroup SpecialPage
  */
 class SpecialExpandTemplates extends SpecialPage {
-
-	/** @var bool Whether or not to show the XML parse tree */
-	protected $generateXML;
-
-	/** @var bool Whether or not to show the raw HTML code */
-	protected $generateRawHtml;
-
-	/** @var bool Whether or not to remove comments in the expanded wikitext */
-	protected $removeComments;
-
-	/** @var bool Whether or not to remove <nowiki> tags in the expanded wikitext */
-	protected $removeNowiki;
 
 	/** @var int Maximum size in bytes to include. 50 MB allows fixing those huge pages */
 	private const MAX_INCLUDE_SIZE = 50000000;
@@ -81,24 +70,26 @@ class SpecialExpandTemplates extends SpecialPage {
 		$this->addHelpLink( 'Help:ExpandTemplates' );
 
 		$request = $this->getRequest();
-		$titleStr = $request->getText( 'wpContextTitle' );
-		$title = Title::newFromText( $titleStr );
-
-		if ( !$title ) {
-			$title = $this->getPageTitle();
-		}
 		$input = $request->getText( 'wpInput' );
-		$this->generateXML = $request->getBool( 'wpGenerateXml' );
-		$this->generateRawHtml = $request->getBool( 'wpGenerateRawHtml' );
 
 		if ( strlen( $input ) ) {
-			$this->removeComments = $request->getBool( 'wpRemoveComments', false );
-			$this->removeNowiki = $request->getBool( 'wpRemoveNowiki', false );
+			$removeComments = $request->getBool( 'wpRemoveComments', false );
+			$removeNowiki = $request->getBool( 'wpRemoveNowiki', false );
+			$generateXML = $request->getBool( 'wpGenerateXml' );
+			$generateRawHtml = $request->getBool( 'wpGenerateRawHtml' );
+
 			$options = ParserOptions::newFromContext( $this->getContext() );
-			$options->setRemoveComments( $this->removeComments );
+			$options->setRemoveComments( $removeComments );
 			$options->setMaxIncludeSize( self::MAX_INCLUDE_SIZE );
 
-			if ( $this->generateXML ) {
+			$titleStr = $request->getText( 'wpContextTitle' );
+			$title = Title::newFromText( $titleStr );
+			if ( !$title ) {
+				$title = $this->getPageTitle();
+				$options->setTargetLanguage( $this->getContentLanguage() );
+			}
+
+			if ( $generateXML ) {
 				$this->parser->startExternalParse( $title, $options, Parser::OT_PREPROCESS );
 				$dom = $this->parser->preprocessToDom( $input );
 
@@ -112,24 +103,17 @@ class SpecialExpandTemplates extends SpecialPage {
 			}
 
 			$output = $this->parser->preprocess( $input, $title, $options );
-		} else {
-			$this->removeComments = $request->getBool( 'wpRemoveComments', true );
-			$this->removeNowiki = $request->getBool( 'wpRemoveNowiki', false );
-			$output = false;
-		}
+			$this->makeForm();
 
-		$out = $this->getOutput();
-
-		$this->makeForm( $titleStr, $input );
-
-		if ( $output !== false ) {
-			if ( $this->generateXML && strlen( $output ) > 0 ) {
+			$out = $this->getOutput();
+			if ( $generateXML && strlen( $output ) > 0 ) {
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable xml is set when used
 				$out->addHTML( $this->makeOutput( $xml, 'expand_templates_xml_output' ) );
 			}
 
 			$tmp = $this->makeOutput( $output );
 
-			if ( $this->removeNowiki ) {
+			if ( $removeNowiki ) {
 				$tmp = preg_replace(
 					[ '_&lt;nowiki&gt;_', '_&lt;/nowiki&gt;_', '_&lt;nowiki */&gt;_' ],
 					'',
@@ -137,20 +121,20 @@ class SpecialExpandTemplates extends SpecialPage {
 				);
 			}
 
-			$config = $this->getConfig();
-
 			$tmp = $this->tidy->tidy( $tmp );
 
 			$out->addHTML( $tmp );
 
 			$pout = $this->generateHtml( $title, $output );
 			$rawhtml = $pout->getText();
-			if ( $this->generateRawHtml && strlen( $rawhtml ) > 0 ) {
+			if ( $generateRawHtml && strlen( $rawhtml ) > 0 ) {
 				// @phan-suppress-next-line SecurityCheck-DoubleEscaped Wanted here to display the html
 				$out->addHTML( $this->makeOutput( $rawhtml, 'expand_templates_html_output' ) );
 			}
 
 			$this->showHtmlPreview( $title, $pout, $out );
+		} else {
+			$this->makeForm();
 		}
 	}
 
@@ -164,7 +148,7 @@ class SpecialExpandTemplates extends SpecialPage {
 	 */
 	public function onSubmitInput( array $values ) {
 		$status = Status::newGood();
-		if ( !strlen( $values['input'] ) ) {
+		if ( !strlen( $values['Input'] ) ) {
 			$status = Status::newFatal( 'expand_templates_input_missing' );
 		}
 		return $status;
@@ -172,57 +156,43 @@ class SpecialExpandTemplates extends SpecialPage {
 
 	/**
 	 * Generate a form allowing users to enter information
-	 *
-	 * @param string $title Value for context title field
-	 * @param string $input Value for input textbox
 	 */
-	private function makeForm( $title, $input ) {
+	private function makeForm() {
 		$fields = [
-			'contexttitle' => [
+			'ContextTitle' => [
 				'type' => 'text',
 				'label' => $this->msg( 'expand_templates_title' )->plain(),
-				'name' => 'wpContextTitle',
 				'id' => 'contexttitle',
 				'size' => 60,
-				'default' => $title,
 				'autofocus' => true,
 			],
-			'input' => [
+			'Input' => [
 				'type' => 'textarea',
-				'name' => 'wpInput',
 				'label' => $this->msg( 'expand_templates_input' )->text(),
 				'rows' => 10,
-				'default' => $input,
 				'id' => 'input',
 				'useeditfont' => true,
 			],
-			'removecomments' => [
+			'RemoveComments' => [
 				'type' => 'check',
 				'label' => $this->msg( 'expand_templates_remove_comments' )->text(),
-				'name' => 'wpRemoveComments',
 				'id' => 'removecomments',
-				'default' => $this->removeComments,
+				'default' => true,
 			],
-			'removenowiki' => [
+			'RemoveNowiki' => [
 				'type' => 'check',
 				'label' => $this->msg( 'expand_templates_remove_nowiki' )->text(),
-				'name' => 'wpRemoveNowiki',
 				'id' => 'removenowiki',
-				'default' => $this->removeNowiki,
 			],
-			'generate_xml' => [
+			'GenerateXml' => [
 				'type' => 'check',
 				'label' => $this->msg( 'expand_templates_generate_xml' )->text(),
-				'name' => 'wpGenerateXml',
 				'id' => 'generate_xml',
-				'default' => $this->generateXML,
 			],
-			'generate_rawhtml' => [
+			'GenerateRawHtml' => [
 				'type' => 'check',
 				'label' => $this->msg( 'expand_templates_generate_rawhtml' )->text(),
-				'name' => 'wpGenerateRawHtml',
 				'id' => 'generate_rawhtml',
-				'default' => $this->generateRawHtml,
 			],
 		];
 
@@ -283,7 +253,7 @@ class SpecialExpandTemplates extends SpecialPage {
 		$lang = $title->getPageViewLanguage();
 		$out->addHTML( "<h2>" . $this->msg( 'expand_templates_preview' )->escaped() . "</h2>\n" );
 
-		if ( $this->getConfig()->get( 'RawHtml' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::RawHtml ) ) {
 			$request = $this->getRequest();
 			$user = $this->getUser();
 
@@ -300,7 +270,13 @@ class SpecialExpandTemplates extends SpecialPage {
 			}
 
 			if ( $error ) {
-				$out->wrapWikiMsg( "<div class='previewnote errorbox'>\n$1\n</div>", $error );
+				$out->addHTML(
+					Html::errorBox(
+						$out->msg( $error )->parse(),
+						'',
+						'previewnote'
+					)
+				);
 				return;
 			}
 		}

@@ -24,7 +24,9 @@
  */
 
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserRigorOptions;
 
 /**
  * @ingroup Actions
@@ -108,7 +110,7 @@ class CreditsAction extends FormlessAction {
 	 */
 	private function getAuthor() {
 		$page = $this->getWikiPage();
-		$user = $this->userFactory->newFromName( $page->getUserText(), UserFactory::RIGOR_NONE );
+		$user = $this->userFactory->newFromName( $page->getUserText(), UserRigorOptions::RIGOR_NONE );
 
 		$timestamp = $page->getTimestamp();
 		if ( $timestamp ) {
@@ -121,6 +123,7 @@ class CreditsAction extends FormlessAction {
 		}
 
 		return $this->msg( 'lastmodifiedatby', $d, $t )->rawParams(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable RIGOR_NONE never returns null
 			$this->userLink( $user ) )->params( $user->getName() )->escaped();
 	}
 
@@ -131,7 +134,7 @@ class CreditsAction extends FormlessAction {
 	 * @return bool
 	 */
 	protected function canShowRealUserName() {
-		$hiddenPrefs = $this->context->getConfig()->get( 'HiddenPrefs' );
+		$hiddenPrefs = $this->context->getConfig()->get( MainConfigNames::HiddenPrefs );
 		return !in_array( 'realname', $hiddenPrefs );
 	}
 

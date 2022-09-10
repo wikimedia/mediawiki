@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * Test class for SpecialShortPages class
  *
@@ -14,9 +16,9 @@ class SpecialShortPagesTest extends MediaWikiIntegrationTestCase {
 	 * @covers SpecialShortPages::getQueryInfo()
 	 */
 	public function testGetQueryInfoRespectsContentNS( $contentNS, $blacklistNS, $expectedNS ) {
-		$this->setMwGlobals( [
-			'wgShortPagesNamespaceExclusions' => $blacklistNS,
-			'wgContentNamespaces' => $contentNS
+		$this->overrideConfigValues( [
+			MainConfigNames::ShortPagesNamespaceExclusions => $blacklistNS,
+			MainConfigNames::ContentNamespaces => $contentNS
 		] );
 		$this->setTemporaryHook( 'ShortPagesQuery', static function () {
 			// empty hook handler

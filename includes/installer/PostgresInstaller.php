@@ -21,6 +21,7 @@
  * @ingroup Installer
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabasePostgres;
 use Wikimedia\Rdbms\DBConnectionError;
@@ -47,7 +48,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		'_InstallUser' => 'postgres',
 	];
 
-	public static $minimumVersion = '9.4';
+	public static $minimumVersion = '10';
 	protected static $notMinimumVersionMessage = 'config-postgres-old';
 	public $maxRoleSearchDepth = 5;
 
@@ -161,7 +162,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	protected function openConnectionWithParams( $user, $password, $dbName, $schema ) {
 		$status = Status::newGood();
 		try {
-			$db = Database::factory( 'postgres', [
+			$db = MediaWikiServices::getInstance()->getDatabaseFactory()->create( 'postgres', [
 				'host' => $this->getVar( 'wgDBserver' ),
 				'port' => $this->getVar( 'wgDBport' ),
 				'user' => $user,

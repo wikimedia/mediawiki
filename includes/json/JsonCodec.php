@@ -36,7 +36,7 @@ use Wikimedia\Assert\Assert;
 class JsonCodec implements JsonUnserializer, JsonSerializer {
 
 	public function unserialize( $json, string $expectedClass = null ) {
-		Assert::parameterType( 'object|array|string', $json, '$json' );
+		Assert::parameterType( [ 'object', 'array', 'string' ], $json, '$json' );
 		Assert::precondition(
 			!$expectedClass || is_subclass_of( $expectedClass, JsonUnserializable::class ),
 			'$expectedClass parameter must be subclass of JsonUnserializable, got ' . $expectedClass

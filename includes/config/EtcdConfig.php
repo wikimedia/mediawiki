@@ -133,14 +133,12 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 	public function has( $name ) {
 		$this->load();
 
-		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable procCache is set after load()
 		return array_key_exists( $name, $this->procCache['config'] );
 	}
 
 	public function get( $name ) {
 		$this->load();
 
-		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable procCache is set after load()
 		if ( !array_key_exists( $name, $this->procCache['config'] ) ) {
 			throw new ConfigException( "No entry found for '$name'." );
 		}
@@ -150,7 +148,6 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 
 	public function getModifiedIndex() {
 		$this->load();
-		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable procCache is set after load()
 		return $this->procCache['modifiedIndex'];
 	}
 
@@ -228,9 +225,11 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 
 		if ( $loop->invoke() !== WaitConditionLoop::CONDITION_REACHED ) {
 			// No cached value exists and etcd query failed; throw an error
+			// @phan-suppress-next-line PhanTypeSuspiciousStringExpression WaitConditionLoop throws or error set
 			throw new ConfigException( "Failed to load configuration from etcd: $error" );
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchProperty WaitConditionLoop throws ore data set
 		$this->procCache = $data;
 	}
 

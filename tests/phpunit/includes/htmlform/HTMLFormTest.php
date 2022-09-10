@@ -14,7 +14,7 @@ class HTMLFormTest extends MediaWikiIntegrationTestCase {
 		$out->setTitle( Title::newMainPage() );
 		$context->setOutput( $out );
 		$form = new HTMLForm( [], $context );
-		$form->setTitle( Title::newFromText( 'Foo' ) );
+		$form->setTitle( Title::makeTitle( NS_MAIN, 'Foo' ) );
 		return $form;
 	}
 

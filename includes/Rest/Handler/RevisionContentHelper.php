@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -112,12 +113,14 @@ class RevisionContentHelper extends PageContentHelper {
 			'content_model' => $mainSlot->getModel(),
 			'page' => [
 				'id' => $page->getId(),
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 				'key' => $this->titleFormatter->getPrefixedDBkey( $page ),
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 				'title' => $this->titleFormatter->getPrefixedText( $page ),
 			],
 			'license' => [
-				'url' => $this->config->get( 'RightsUrl' ),
-				'title' => $this->config->get( 'RightsText' )
+				'url' => $this->config->get( MainConfigNames::RightsUrl ),
+				'title' => $this->config->get( MainConfigNames::RightsText )
 			],
 		];
 
@@ -134,6 +137,7 @@ class RevisionContentHelper extends PageContentHelper {
 		$comment = $revision->getComment( RevisionRecord::FOR_THIS_USER, $this->authority );
 		$metadata['comment'] = $comment ? $comment->text : null;
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 		$parent = $this->revisionLookup->getPreviousRevision( $revision );
 		if ( $parent ) {
 			$metadata['delta'] = $revision->getSize() - $parent->getSize();
@@ -171,6 +175,7 @@ class RevisionContentHelper extends PageContentHelper {
 			);
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Validated by hasContent
 		if ( !$this->authority->authorizeRead( 'read', $this->getPage() ) ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-permission-denied-revision' )->plaintextParams( $revId ),

@@ -142,6 +142,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 				$domain = AF_INET;
 			}
 
+			// @phan-suppress-next-line PhanTypeMismatchProperty False positive caused by PHP 8.0 resource transition
 			$this->sink = socket_create( $domain, SOCK_DGRAM, SOL_UDP );
 
 		} else {
@@ -153,6 +154,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 			$this->sink = null;
 			throw new UnexpectedValueException( sprintf(
 				'The stream or file "%s" could not be opened: %s',
+				// @phan-suppress-next-line PhanTypeMismatchArgumentInternalProbablyReal Set by error handler
 				$this->uri, $this->error
 			) );
 		}
@@ -214,7 +216,13 @@ class LegacyHandler extends AbstractProcessingHandler {
 			}
 
 			socket_sendto(
-				$this->sink, $text, strlen( $text ), 0, $this->host, $this->port
+				// @phan-suppress-next-line PhanTypeMismatchArgumentInternal False positive caused by PHP 8.0 transition
+				$this->sink,
+				$text,
+				strlen( $text ),
+				0,
+				$this->host,
+				$this->port
 			);
 
 		} else {
@@ -225,6 +233,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 	public function close(): void {
 		if ( $this->sink ) {
 			if ( $this->useUdp() ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 				socket_close( $this->sink );
 
 			} else {

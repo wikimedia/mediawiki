@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group Search
  * @group Database
@@ -34,9 +36,9 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 
 		$this->insertPage( 'User:Example' );
 
-		$this->setMwGlobals( [
-			'wgExtraNamespaces' => [ self::NS_NONCAP => 'NonCap' ],
-			'wgCapitalLinkOverrides' => [ self::NS_NONCAP => false ],
+		$this->overrideConfigValues( [
+			MainConfigNames::ExtraNamespaces => [ self::NS_NONCAP => 'NonCap' ],
+			MainConfigNames::CapitalLinkOverrides => [ self::NS_NONCAP => false ],
 		] );
 
 		$this->insertPage( Title::makeTitle( self::NS_NONCAP, 'Bar' ) );
@@ -52,26 +54,25 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 		}
 
 		// Avoid special pages from extensions interfering with the tests
-		$this->setMwGlobals( [
-			'wgSpecialPages' => [],
-			'wgHooks' => [],
-			'wgExtraNamespaces' => [ self::NS_NONCAP => 'NonCap' ],
-			'wgCapitalLinkOverrides' => [ self::NS_NONCAP => false ],
+		$this->overrideConfigValues( [
+			MainConfigNames::SpecialPages => [],
+			MainConfigNames::Hooks => [],
+			MainConfigNames::ExtraNamespaces => [ self::NS_NONCAP => 'NonCap' ],
+			MainConfigNames::CapitalLinkOverrides => [ self::NS_NONCAP => false ],
 		] );
 	}
 
 	protected function searchProvision( array $results = null ) {
 		if ( $results === null ) {
-			$this->setMwGlobals( 'wgHooks', [] );
+			$this->overrideConfigValue( MainConfigNames::Hooks, [] );
 		} else {
-			$this->setMwGlobals( 'wgHooks', [
-				'PrefixSearchBackend' => [
-					static function ( $namespaces, $search, $limit, &$srchres ) use ( $results ) {
-						$srchres = $results;
-						return false;
-					}
-				],
-			] );
+			$this->setTemporaryHook(
+				'PrefixSearchBackend',
+				static function ( $namespaces, $search, $limit, &$srchres ) use ( $results ) {
+					$srchres = $results;
+					return false;
+				}
+			);
 		}
 	}
 

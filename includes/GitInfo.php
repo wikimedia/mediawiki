@@ -23,8 +23,13 @@
  * @file
  */
 
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
+use Psr\Log\LoggerInterface;
 use Wikimedia\AtEase\AtEase;
 
 /**
@@ -60,9 +65,27 @@ class GitInfo {
 	protected $cache = [];
 
 	/**
-	 * @var array|false Map of repo URLs to viewer URLs. Access via static method getViewers().
+	 * @var array|false Map of repo URLs to viewer URLs. Access via method getViewers().
 	 */
 	private static $viewers = false;
+
+	/** Configuration options needed */
+	private const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::BaseDirectory,
+		MainConfigNames::CacheDirectory,
+		MainConfigNames::GitBin,
+		MainConfigNames::GitInfoCacheDirectory,
+		MainConfigNames::GitRepositoryViewers,
+	];
+
+	/** @var LoggerInterface */
+	private $logger;
+
+	/** @var ServiceOptions */
+	private $options;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/**
 	 * @stable to call
@@ -72,10 +95,18 @@ class GitInfo {
 	 */
 	public function __construct( $repoDir, $usePrecomputed = true ) {
 		$this->repoDir = $repoDir;
-		$this->cacheFile = self::getCacheFilePath( $repoDir, !$usePrecomputed );
-		wfDebugLog( 'gitinfo',
+		$this->options = new ServiceOptions(
+			self::CONSTRUCTOR_OPTIONS,
+			MediaWikiServices::getInstance()->getMainConfig()
+		);
+		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		// $this->options must be set before using getCacheFilePath()
+		$this->cacheFile = $this->getCacheFilePath( $repoDir );
+		$this->logger = LoggerFactory::getInstance( 'gitinfo' );
+		$this->logger->debug(
 			"Candidate cacheFile={$this->cacheFile} for {$repoDir}"
 		);
+		$this->hookRunner = Hooks::runner();
 		if ( $usePrecomputed &&
 			$this->cacheFile !== null &&
 			is_readable( $this->cacheFile )
@@ -84,11 +115,11 @@ class GitInfo {
 				file_get_contents( $this->cacheFile ),
 				true
 			);
-			wfDebugLog( 'gitinfo', "Loaded git data from cache for {$repoDir}" );
+			$this->logger->debug( "Loaded git data from cache for {$repoDir}" );
 		}
 
 		if ( !$this->cacheIsComplete() ) {
-			wfDebugLog( 'gitinfo', "Cache incomplete for {$repoDir}" );
+			$this->logger->debug( "Cache incomplete for {$repoDir}" );
 			$this->basedir = $repoDir . DIRECTORY_SEPARATOR . '.git';
 			if ( is_readable( $this->basedir ) && !is_dir( $this->basedir ) ) {
 				$GITfile = file_get_contents( $this->basedir );
@@ -116,10 +147,12 @@ class GitInfo {
 	 * fallback in the extension directory itself
 	 * @since 1.24
 	 */
-	protected static function getCacheFilePath( $repoDir, $forceCache ) {
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$gitInfoCacheDirectory = $config->get( 'GitInfoCacheDirectory' );
-		$baseDir = $config->get( 'BaseDirectory' );
+	private function getCacheFilePath( $repoDir, $forceCache ) {
+		$gitInfoCacheDirectory = $this->options->get( MainConfigNames::GitInfoCacheDirectory );
+		if ( $gitInfoCacheDirectory === false ) {
+			$gitInfoCacheDirectory = $this->options->get( MainConfigNames::CacheDirectory ) . '/gitinfo';
+		}
+		$baseDir = $this->options->get( MainConfigNames::BaseDirectory );
 		if ( $gitInfoCacheDirectory ) {
 			// Convert both $IP and $repoDir to canonical paths to protect against
 			// $IP having changed between the settings files and runtime.
@@ -230,7 +263,7 @@ class GitInfo {
 	 * @return int|bool Commit date (UNIX timestamp) or false
 	 */
 	public function getHeadCommitDate() {
-		$gitBin = MediaWikiServices::getInstance()->getMainConfig()->get( 'GitBin' );
+		$gitBin = $this->options->get( MainConfigNames::GitBin );
 
 		if ( !isset( $this->cache['headCommitDate'] ) ) {
 			$date = false;
@@ -293,7 +326,7 @@ class GitInfo {
 		if ( $url === false ) {
 			return false;
 		}
-		foreach ( self::getViewers() as $repo => $viewer ) {
+		foreach ( $this->getViewers() as $repo => $viewer ) {
 			$pattern = '#^' . $repo . '$#';
 			if ( preg_match( $pattern, $url, $matches ) ) {
 				$viewerUrl = preg_replace( $pattern, $viewer, $url );
@@ -380,7 +413,7 @@ class GitInfo {
 			$this->getRemoteUrl();
 
 			if ( !$this->cacheIsComplete() ) {
-				wfDebugLog( 'gitinfo',
+				$this->logger->debug(
 					"Failed to compute GitInfo for \"{$this->basedir}\""
 				);
 				return;
@@ -425,12 +458,10 @@ class GitInfo {
 	 * Gets the list of repository viewers
 	 * @return array
 	 */
-	protected static function getViewers() {
-		$gitRepositoryViewers = MediaWikiServices::getInstance()->getMainConfig()->get( 'GitRepositoryViewers' );
-
+	private function getViewers() {
 		if ( self::$viewers === false ) {
-			self::$viewers = $gitRepositoryViewers;
-			Hooks::runner()->onGitViewers( self::$viewers );
+			self::$viewers = $this->options->get( MainConfigNames::GitRepositoryViewers );
+			$this->hookRunner->onGitViewers( self::$viewers );
 		}
 
 		return self::$viewers;

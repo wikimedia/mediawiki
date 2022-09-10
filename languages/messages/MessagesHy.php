@@ -3,9 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
- *
+ * @ingroup Languages
  */
 
 $separatorTransformTable = [
@@ -192,8 +191,8 @@ $specialPageAliases = [
 	'Allmessages'               => [ 'Բոլորուղերձները' ],
 	'Allpages'                  => [ 'Բոլորէջերը' ],
 	'Ancientpages'              => [ 'Ամենահինէջերը' ],
-	'Block'                     => [ 'Արգելափակել այփին' ],
-	'BlockList'                 => [ 'Արգելափակված այփի ները' ],
+	'Block'                     => [ 'Արգելափակել_այփին' ],
+	'BlockList'                 => [ 'Արգելափակված_այփի_ները' ],
 	'Booksources'               => [ 'Գրքայինաղբյուրները' ],
 	'BrokenRedirects'           => [ 'Կոտրվածվերահղումները' ],
 	'Categories'                => [ 'Կատեգորիաները' ],

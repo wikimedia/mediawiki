@@ -1,8 +1,5 @@
 <?php
 /**
- * Special handling for category description pages.
- * Modelled after ImagePage.php.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -22,8 +19,9 @@
  */
 
 /**
- * Special handling for category description pages, showing pages,
- * subcategories and file that belong to the category
+ * Special handling for category description pages.
+ *
+ * This displays category members: subcategories, pages, and files categorised here.
  *
  * @method WikiCategoryPage getPage() Set by overwritten newPage() in this class
  */
@@ -43,10 +41,8 @@ class CategoryPage extends Article {
 	public function view() {
 		$request = $this->getContext()->getRequest();
 		$diff = $request->getVal( 'diff' );
-		$diffOnly = $request->getBool( 'diffonly',
-			$this->getContext()->getUser()->getOption( 'diffonly' ) );
 
-		if ( $diff !== null && $diffOnly ) {
+		if ( $diff !== null && $this->isDiffOnlyView() ) {
 			parent::view();
 			return;
 		}
@@ -113,21 +109,5 @@ class CategoryPage extends Article {
 		$out = $this->getContext()->getOutput();
 		$out->addHTML( $viewer->getHTML() );
 		$this->addHelpLink( 'Help:Categories' );
-	}
-
-	/**
-	 * @deprecated since 1.35
-	 */
-	public function getCategoryViewerClass() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->mCategoryViewerClass;
-	}
-
-	/**
-	 * @deprecated since 1.35
-	 */
-	public function setCategoryViewerClass( $class ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$this->mCategoryViewerClass = $class;
 	}
 }

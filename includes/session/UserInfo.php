@@ -24,7 +24,7 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserRigorOptions;
 use User;
 
 /**
@@ -106,7 +106,7 @@ final class UserInfo {
 	public static function newFromName( $name, $verified = false ) {
 		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromName(
 			(string)$name,
-			UserFactory::RIGOR_USABLE
+			UserRigorOptions::RIGOR_USABLE
 		);
 		if ( !$user ) {
 			throw new \InvalidArgumentException( 'Invalid user name' );

@@ -35,7 +35,7 @@
 		}, config.textInput ) );
 		this.button = new OO.ui.ButtonWidget( $.extend( {
 			label: mw.msg( 'mw-widgets-copytextlayout-copy' ),
-			icon: 'articles'
+			icon: 'copy'
 		}, config.button ) );
 		this.successMessage = config.successMessage || mw.msg( 'mw-widgets-copytextlayout-copy-success' );
 		this.failMessage = config.failMessage || mw.msg( 'mw-widgets-copytextlayout-copy-fail' );
@@ -102,6 +102,12 @@
 	 * Select the text to copy
 	 */
 	mw.widgets.CopyTextLayout.prototype.selectText = function () {
+		// Don't attempt to focus a hidden input (https://github.com/jquery/jquery/issues/4950, T312770)
+		// eslint-disable-next-line no-jquery/no-sizzle
+		if ( !this.textInput.$input.is( ':visible' ) ) {
+			return;
+		}
+
 		var input = this.textInput.$input[ 0 ],
 			scrollTop = input.scrollTop,
 			scrollLeft = input.scrollLeft;

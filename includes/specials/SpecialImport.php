@@ -24,6 +24,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 
 /**
@@ -71,10 +72,7 @@ class SpecialImport extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$this->getOutput()->addModules( 'mediawiki.special.import' );
-		$this->getOutput()->addModuleStyles( 'mediawiki.special.import.styles.ooui' );
-
-		$this->importSources = $this->getConfig()->get( 'ImportSources' );
+		$this->importSources = $this->getConfig()->get( MainConfigNames::ImportSources );
 		// Avoid phan error by checking the type
 		if ( !is_array( $this->importSources ) ) {
 			throw new UnexpectedValueException( '$wgImportSources must be an array' );
@@ -104,6 +102,9 @@ class SpecialImport extends SpecialPage {
 			throw new PermissionsError( 'import', $errors );
 		}
 
+		$this->getOutput()->addModules( 'mediawiki.misc-authed-ooui' );
+		$this->getOutput()->addModuleStyles( 'mediawiki.special.import.styles.ooui' );
+
 		$this->checkReadOnly();
 
 		$request = $this->getRequest();
@@ -123,13 +124,13 @@ class SpecialImport extends SpecialPage {
 		$assignKnownUsers = $request->getCheck( 'assignKnownUsers' );
 
 		$logcomment = $request->getText( 'log-comment' );
-		$pageLinkDepth = $this->getConfig()->get( 'ExportMaxLinkDepth' ) == 0
+		$pageLinkDepth = $this->getConfig()->get( MainConfigNames::ExportMaxLinkDepth ) == 0
 			? 0
 			: $request->getIntOrNull( 'pagelink-depth' );
 
 		$rootpage = '';
 		$mapping = $request->getVal( 'mapping' );
-		$namespace = $this->getConfig()->get( 'ImportTargetNamespace' );
+		$namespace = $this->getConfig()->get( MainConfigNames::ImportTargetNamespace );
 		if ( $mapping === 'namespace' ) {
 			$namespace = $request->getIntOrNull( 'namespace' );
 		} elseif ( $mapping === 'subpage' ) {
@@ -177,6 +178,7 @@ class SpecialImport extends SpecialPage {
 					$frompage = $request->getText( 'frompage' );
 					$includeTemplates = $request->getCheck( 'interwikiTemplates' );
 					$source = ImportStreamSource::newFromInterwiki(
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 						$fullInterwikiPrefix,
 						$frompage,
 						$history,
@@ -217,6 +219,7 @@ class SpecialImport extends SpecialPage {
 					return;
 				}
 			}
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 			$importer->setUsernamePrefix( $fullInterwikiPrefix, $assignKnownUsers );
 
 			$out->addWikiMsg( "importstart" );
@@ -224,6 +227,7 @@ class SpecialImport extends SpecialPage {
 			$reporter = new ImportReporter(
 				$importer,
 				$isUpload,
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 				$fullInterwikiPrefix,
 				$logcomment
 			);
@@ -259,12 +263,12 @@ class SpecialImport extends SpecialPage {
 	}
 
 	private function getMappingFormPart( $sourceName ) {
-		$defaultNamespace = $this->getConfig()->get( 'ImportTargetNamespace' );
+		$defaultNamespace = $this->getConfig()->get( MainConfigNames::ImportTargetNamespace );
 		return [
 			'mapping' => [
 				'type' => 'radio',
 				'name' => 'mapping',
-				// mw-import-mapping-interwiki, mw-import-mapping-upload
+				// IDs: mw-import-mapping-interwiki, mw-import-mapping-upload
 				'id' => "mw-import-mapping-$sourceName",
 				'options-messages' => [
 					'import-mapping-default' => 'default',
@@ -276,18 +280,19 @@ class SpecialImport extends SpecialPage {
 			'namespace' => [
 				'type' => 'namespaceselect',
 				'name' => 'namespace',
-				// mw-import-namespace-interwiki, mw-import-namespace-upload
+				// IDs: mw-import-namespace-interwiki, mw-import-namespace-upload
 				'id' => "mw-import-namespace-$sourceName",
 				'default' => $defaultNamespace ?: '',
-				'all' => null
+				'all' => null,
+				'disable-if' => [ '!==', 'mapping', 'namespace' ],
 			],
 			'rootpage' => [
 				'type' => 'text',
 				'name' => 'rootpage',
-				// Should be "mw-import-rootpage-...", but we keep this inaccurate
-				// ID for legacy reasons
-				// mw-interwiki-rootpage-interwiki, mw-interwiki-rootpage-upload
+				// Should be "mw-import-...", but we keep the inaccurate ID for compat
+				// IDs: mw-interwiki-rootpage-interwiki, mw-interwiki-rootpage-upload
 				'id' => "mw-interwiki-rootpage-$sourceName",
+				'disable-if' => [ '!==', 'mapping', 'subpage' ],
 			],
 		];
 	}
@@ -423,7 +428,7 @@ class SpecialImport extends SpecialPage {
 				],
 			];
 
-			if ( $this->getConfig()->get( 'ExportMaxLinkDepth' ) > 0 ) {
+			if ( $this->getConfig()->get( MainConfigNames::ExportMaxLinkDepth ) > 0 ) {
 				$interwikiFormDescriptor += [
 					'pagelink-depth' => [
 						'type' => 'int',

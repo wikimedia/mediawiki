@@ -68,6 +68,7 @@
 			menu: {
 				items: menuTagOptions
 			},
+			disabled: checkboxesWidget.isDisabled(),
 			placeholder: fieldData.placeholder || ''
 		} );
 		menuTagWidget.setValue( checkboxesWidget.getValue() );

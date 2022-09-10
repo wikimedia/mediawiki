@@ -1,6 +1,13 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
+
+// phpcs:ignore MediaWiki.Files.ClassMatchesFilename.NotMatch
+class SkinQuickTemplateTest extends QuickTemplate {
+	public function execute() {
+	}
+}
 
 /**
  * @covers SkinTemplate
@@ -90,7 +97,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 			// Test case 1
 			[
 				[
-					'wgFooterIcons' => [],
+					MainConfigNames::FooterIcons => [],
 				],
 				[],
 				'Empty list'
@@ -98,7 +105,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 			// Test case 2
 			[
 				[
-					'wgFooterIcons' => [
+					MainConfigNames::FooterIcons => [
 						'poweredby' => [
 							'mediawiki' => [
 								'src' => '/w/resources/assets/poweredby_mediawiki_88x31.png',
@@ -128,7 +135,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 			// Test case 3
 			[
 				[
-					'wgFooterIcons' => [
+					MainConfigNames::FooterIcons => [
 						'copyright' => [
 							'copyright' => [],
 						],
@@ -140,7 +147,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 			// Test case 4
 			[
 				[
-					'wgFooterIcons' => [
+					MainConfigNames::FooterIcons => [
 						'copyright' => [
 							'copyright' => [
 								'alt' => 'Wikimedia Foundation',
@@ -160,7 +167,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetFooterIcons
 	 */
 	public function testGetFooterIcons( $globals, $expected, $msg ) {
-		$this->setMwGlobals( $globals );
+		$this->overrideConfigValues( $globals );
 		$wrapper = TestingAccessWrapper::newFromObject( new SkinTemplate() );
 		$icons = $wrapper->getFooterIcons();
 
@@ -302,4 +309,19 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	/**
+	 * @covers SkinTemplate::prepareQuickTemplate
+	 * @covers SkinTemplate::generateHTML
+	 */
+	public function testGenerateHTML() {
+		$wrapper = TestingAccessWrapper::newFromObject(
+			new SkinTemplate( [ 'template' => 'SkinQuickTemplateTest', 'name' => 'test' ] )
+		);
+
+		$wrapper->getContext()->setTitle( Title::newFromText( 'PrepareQuickTemplateTest' ) );
+		$tpl = $wrapper->prepareQuickTemplate();
+		$contentNav = $tpl->get( 'content_navigation' );
+
+		$this->assertEquals( array_keys( $contentNav ), [ 'namespaces', 'views', 'actions', 'variants' ] );
+	}
 }

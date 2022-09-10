@@ -26,14 +26,14 @@ namespace MediaWiki\User;
  * Shared interface for rigor levels when dealing with User methods
  *
  * @since 1.36
- * @internal
  */
 interface UserRigorOptions {
 
 	/**
 	 * @var string
 	 *
-	 * Check that a user name is valid for batch processes, login and account creation
+	 * Check that a user name is valid for batch processes, login and account
+	 * creation. This does not allow auto-created temporary user patterns.
 	 */
 	public const RIGOR_CREATABLE = 'creatable';
 

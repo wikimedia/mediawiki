@@ -53,7 +53,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 
 	private const TAG_DISPLAY = 'ContributionsLookup Tag Display Text';
 
-	public function setUp(): void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// Work around T256006
@@ -63,7 +63,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$this->getServiceContainer()->getMessageCache()->enable();
 	}
 
-	public function tearDown(): void {
+	protected function tearDown(): void {
 		ChangeTags::$avoidReopeningTablesForTesting = false;
 		$this->getServiceContainer()->getMessageCache()->disable();
 

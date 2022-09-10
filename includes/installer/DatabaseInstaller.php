@@ -226,7 +226,7 @@ abstract class DatabaseInstaller {
 			return $status;
 		}
 
-		$this->db->setFlag( DBO_DDLMODE ); // For Oracle's handling of schema files
+		$this->db->setFlag( DBO_DDLMODE );
 		$this->db->begin( __METHOD__ );
 
 		// @phan-suppress-next-line SecurityCheck-PathTraversal False positive
@@ -425,6 +425,7 @@ abstract class DatabaseInstaller {
 			$up->doUpdates();
 			$up->purgeCache();
 		} catch ( MWException $e ) {
+			// TODO: Remove special casing in favour of MWExceptionRenderer
 			echo "\nAn error occurred:\n";
 			echo $e->getText();
 			$ret = false;

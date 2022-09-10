@@ -899,6 +899,7 @@ class ApiResult implements ApiSerializable {
 				$keepMetadata = &$metadata;
 				break;
 			case 'bc':
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal Type mismatch on pass-by-ref args
 				$keepMetadata = array_intersect_key( $metadata, [
 					self::META_INDEXED_TAG_NAME => 1,
 					self::META_SUBELEMENTS => 1,
@@ -943,6 +944,7 @@ class ApiResult implements ApiSerializable {
 				ksort( $data );
 				$data = array_values( $data );
 				$metadata[self::META_TYPE] = 'array';
+				// @phan-suppress-next-line PhanTypeMismatchReturnNullable Type mismatch on pass-by-ref args
 				return $data + $keepMetadata;
 
 			case 'kvp':
@@ -969,6 +971,7 @@ class ApiResult implements ApiSerializable {
 						$mergeType = 'n/a';
 					}
 					if ( $mergeType === 'assoc' ) {
+						// @phan-suppress-next-line PhanPossiblyUndeclaredVariable vArr set when used
 						$item = $vArr + [
 							$key => $k,
 						];
@@ -992,6 +995,7 @@ class ApiResult implements ApiSerializable {
 				}
 				$metadata[self::META_TYPE] = 'array';
 
+				// @phan-suppress-next-line PhanTypeMismatchReturnNullable Type mismatch on pass-by-ref args
 				return $ret + $keepMetadata;
 
 			default:

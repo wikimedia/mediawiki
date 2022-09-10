@@ -61,7 +61,6 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		)->value['revision-record']->getId();
 		$revertedRevs = array_slice( $revisionIds, 1 );
 
-		// ensure all deferred updates are ran / enqueued
 		DeferredUpdates::doUpdates();
 
 		// the tags should not have been populated yet
@@ -97,7 +96,6 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		)->value['revision-record']->getId();
 		$revertedRevs = array_slice( $revisionIds, 1 );
 
-		// ensure all deferred updates are ran / enqueued
 		DeferredUpdates::doUpdates();
 
 		// the tags should not have been populated yet
@@ -145,7 +143,6 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		)->value['revision-record']->getId();
 		$revertedRevs = array_slice( $revisionIds, 1 );
 
-		// ensure all deferred updates are ran and try to run the job
 		DeferredUpdates::doUpdates();
 		$this->runJobs( [ 'numJobs' => 0 ], [
 			'type' => 'revertedTagUpdate'
@@ -207,7 +204,6 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		)->value['revision-record']->getId();
 		$revertedRevs = array_slice( $revisionIds, 1 );
 
-		// ensure all deferred updates are ran / enqueued
 		DeferredUpdates::doUpdates();
 
 		// the tags should not have been populated yet
@@ -264,7 +260,6 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		)->value['revision-record']->getId();
 		$revertedRevs = array_slice( $revisionIds, 1 );
 
-		// ensure all deferred updates are ran / enqueued
 		DeferredUpdates::doUpdates();
 
 		// the tags should not have been populated yet
@@ -332,7 +327,6 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		)->value['revision-record']->getId();
 		$revertedRevs = array_slice( $revisionIds, 1 );
 
-		// ensure all deferred updates are ran / enqueued
 		DeferredUpdates::doUpdates();
 
 		// the tags should not have been populated yet

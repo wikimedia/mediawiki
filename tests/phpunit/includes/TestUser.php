@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 
@@ -161,6 +162,14 @@ class TestUser {
 	 * @return User
 	 */
 	public function getUser() {
+		return $this->user;
+	}
+
+	/**
+	 * @since 1.39
+	 * @return Authority
+	 */
+	public function getAuthority(): Authority {
 		return $this->user;
 	}
 

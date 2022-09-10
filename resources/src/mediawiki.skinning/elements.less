@@ -10,7 +10,6 @@
  * This style sheet is used by the Monobook and Vector skins.
  */
 
-@import 'mediawiki.mixins';
 @import 'mediawiki.skin.variables.less';
 
 /* stylelint-disable selector-class-pattern */
@@ -200,7 +199,6 @@ fieldset {
 
 legend {
 	padding: 0.5em;
-	font-size: 95%;
 }
 
 form {
@@ -210,7 +208,7 @@ form {
 
 textarea {
 	display: block;
-	.box-sizing( border-box );
+	box-sizing: border-box;
 	width: 100%;
 	/* Support: Firefox */
 	/* Border rule required to override system appearance on Linux. T13641. */

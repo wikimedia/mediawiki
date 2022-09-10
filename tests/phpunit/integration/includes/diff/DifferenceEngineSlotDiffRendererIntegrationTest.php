@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group small
  */
@@ -9,9 +11,9 @@ class DifferenceEngineSlotDiffRendererIntegrationTest extends \MediaWikiIntegrat
 	 * @covers DifferenceEngineSlotDiffRenderer::getExtraCacheKeys
 	 */
 	public function testGetExtraCacheKeys_noExternalDiffEngineConfigured() {
-		$this->setMwGlobals( [
-			'wgDiffEngine' => null,
-			'wgExternalDiffEngine' => null,
+		$this->overrideConfigValues( [
+			MainConfigNames::DiffEngine => null,
+			MainConfigNames::ExternalDiffEngine => null,
 		] );
 
 		$differenceEngine = new CustomDifferenceEngine();

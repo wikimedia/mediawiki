@@ -49,6 +49,19 @@ class HashConfigTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
+	 * @covers HashConfig::clear
+	 */
+	public function testClear() {
+		$conf = new HashConfig( [
+			'one' => '1',
+		] );
+		$this->assertTrue( $conf->has( 'one' ) );
+
+		$conf->clear();
+		$this->assertFalse( $conf->has( 'one' ) );
+	}
+
+	/**
 	 * @covers HashConfig::set
 	 */
 	public function testSet() {

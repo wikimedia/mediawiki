@@ -127,7 +127,7 @@ class StringUtilsTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @param strin $input
+	 * @param string $input
 	 * @param bool $expected
 	 * @dataProvider provideRegexps
 	 * @covers StringUtils::isValidPCRERegex

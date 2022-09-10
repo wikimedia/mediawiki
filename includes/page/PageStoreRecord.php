@@ -26,6 +26,7 @@ use Wikimedia\Assert\Assert;
 
 /**
  * Immutable data record representing an editable page on a wiki.
+ *
  * Corresponds to a row in the page table.
  *
  * @since 1.36

@@ -89,6 +89,7 @@ class ArrayUtils {
 			}
 		}
 
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable weight is non-empty and i is always set
 		return $i;
 	}
 
@@ -104,7 +105,7 @@ class ArrayUtils {
 	 *     indexed from 0 to $valueCount - 1
 	 * @param callable $comparisonCallback A callback to compare two values, returning
 	 *     -1, 0 or 1 in the style of strcmp().
-	 * @param string $target The target value to find.
+	 * @param mixed $target The target value to find.
 	 *
 	 * @return int|bool The item index of the lower bound, or false if the target value
 	 *     sorts before all items.

@@ -1,13 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Andrijko Z.",
 			"D'AroemenenZullenNiVergaan",
 			"Stephanecbisson",
 			"Кумулај Маркус",
 			"Макѕе",
-			"Приетен тев",
-			"Amire80"
+			"Приетен тев"
 		]
 	},
 	"tog-underline": "Subliniaere legătuls:",
@@ -89,7 +89,7 @@
 	"printableversion": "Versiune di tipărit",
 	"permalink": "Ligătură permanentă",
 	"view": "Vez",
-	"view-foreign": "Vez ăn $1",
+	"skin-view-foreign": "Vez ăn $1",
 	"edit": "Zăpridară",
 	"delete": "Ștearzi",
 	"protect": "Veagľă",
@@ -129,7 +129,6 @@
 	"youhavenewmessagesfromusers": "Ai $1 di la {{PLURAL:$3|lant utilizator|$3 utilizatori}} ($2).",
 	"youhavenewmessagesmanyusers": "Ai $1 di la mai mulț utilizatori ($2).",
 	"newmessageslinkplural": "{{PLURAL:$1|ună noauă carti|999=cărț noi}}",
-	"youhavenewmessagesmulti": "Ai cărț noi la $1",
 	"editsection": "zăpridară",
 	"editold": "zăpridară",
 	"editsectionhint": "Zăpridară țeastă secțiune: $1",

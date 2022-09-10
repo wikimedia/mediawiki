@@ -90,6 +90,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 			$terms = $result instanceof \SqlSearchResult ? $result->getTermMatches() : [];
 			if ( !$this->hookRunner->onShowSearchHit( $this->specialPage, $result,
 				$terms, $link, $redirect, $section, $extract, $score,
+				// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 				$desc, $date, $related, $html )
 			) {
 				return $html;
@@ -156,6 +157,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 		$attributes = [ 'data-serp-pos' => $position ];
 		$this->hookRunner->onShowSearchHitTitle( $title, $snippet, $result,
 			$result instanceof \SqlSearchResult ? $result->getTermMatches() : [],
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			$this->specialPage, $query, $attributes );
 
 		$link = $this->linkRenderer->makeLink(

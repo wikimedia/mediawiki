@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"DaSupremo",
-			"Amire80"
+			"Amire80",
+			"DaSupremo"
 		]
 	},
 	"tog-underline": "Link wey dey underline:",
@@ -150,6 +150,7 @@
 	"searchbutton": "Search",
 	"go": "Go",
 	"searcharticle": "Go",
+	"skin-view-history": "View history",
 	"history": "Page history",
 	"history_short": "History",
 	"history_small": "history",
@@ -159,15 +160,20 @@
 	"permalink": "Permanent link",
 	"print": "Print",
 	"view": "View",
+	"skin-view-view": "Read",
+	"skin-view-foreign": "View on $1",
 	"edit": "Edit",
+	"skin-view-edit": "Edit",
 	"edit-local": "Edit local description",
 	"create": "Create",
+	"skin-view-create": "Create",
 	"create-local": "Add local description",
 	"delete": "Delete",
 	"undelete_short": "Undelete {{PLURAL:$1|one edit|$1 edits}}",
 	"viewdeleted_short": "View {{PLURAL:$1|one edit wey dem delete|$1 edits wey dem deleted}}",
 	"protect": "Protect",
 	"protect_change": "change",
+	"skin-action-unprotect": "Change protection",
 	"unprotect": "Change protection",
 	"newpage": "Fresh page",
 	"talkpagelinktext": "talk",
@@ -504,6 +510,10 @@
 	"whatlinkshere-prev": "{{PLURAL:$1|previous|previous $1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|next|next $1}}",
 	"whatlinkshere-links": "← links",
+	"whatlinkshere-hideredirs": "Make you hide redirects",
+	"whatlinkshere-hidetrans": "Make you hide transclusions",
+	"whatlinkshere-hidelinks": "Make you hide links",
+	"whatlinkshere-hideimages": "Hide file links",
 	"infiniteblock": "infinite",
 	"blocklink": "block",
 	"contribslink": "contribs",

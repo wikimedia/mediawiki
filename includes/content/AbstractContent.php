@@ -175,6 +175,27 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
+	 * Returns native representation of the data. Interpretation depends on
+	 * the data model used, as given by getDataModel().
+	 *
+	 * @stable to override
+	 * @since 1.21
+	 *
+	 * @deprecated since 1.33 use getText() for TextContent instances.
+	 *             For other content models, use specialized getters.
+	 *
+	 * @return mixed The native representation of the content. Could be a
+	 *    string, a nested array structure, an object, a binary blob...
+	 *    anything, really.
+	 * @throws LogicException
+	 *
+	 * @note Caller must be aware of content model!
+	 */
+	public function getNativeData() {
+		throw new LogicException( __METHOD__ . ': not implemented' );
+	}
+
+	/**
 	 * @stable to override
 	 * @since 1.21
 	 *
@@ -268,42 +289,23 @@ abstract class AbstractContent implements Content {
 
 	/**
 	 * @since 1.21
-	 * @deprecated since 1.38 Support for $wgMaxRedirect will be removed
-	 *   soon so this will go away with it. See T296430.
+	 * @deprecated since 1.38, use getRedirectTarget() instead.
+	 *   Emitting deprecation warnings since 1.39.
+	 *   Support for redirect chains has been removed.
 	 *
 	 * @return Title[]|null
 	 *
 	 * @see Content::getRedirectChain
 	 */
 	public function getRedirectChain() {
-		$maxRedirects = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxRedirects' );
+		wfDeprecated( __METHOD__, '1.38' );
+
 		$title = $this->getRedirectTarget();
 		if ( $title === null ) {
 			return null;
+		} else {
+			return [ $title ];
 		}
-		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
-		// recursive check to follow double redirects
-		$recurse = $maxRedirects;
-		$titles = [ $title ];
-		while ( --$recurse > 0 ) {
-			if ( $title->isRedirect() ) {
-				$page = $wikiPageFactory->newFromTitle( $title );
-				$newtitle = $page->getRedirectTarget();
-			} else {
-				break;
-			}
-			// Redirects to some special pages are not permitted
-			if ( $newtitle instanceof Title && $newtitle->isValidRedirectTarget() ) {
-				// The new title passes the checks, so make that our current
-				// title so that further recursion can be checked
-				$title = $newtitle;
-				$titles[] = $newtitle;
-			} else {
-				break;
-			}
-		}
-
-		return $titles;
 	}
 
 	/**
@@ -324,17 +326,18 @@ abstract class AbstractContent implements Content {
 	 * @note Migrated here from Title::newFromRedirectRecurse.
 	 *
 	 * @since 1.21
-	 * @deprecated since 1.38 Support for $wgMaxRedirect will be removed
-	 *   soon so this will go away with it. See T296430.
+	 * @deprecated since 1.38, use getRedirectTarget() instead.
+	 *   Emitting deprecation warnings since 1.39.
+	 *   Support for redirect chains has been removed.
 	 *
 	 * @return Title|null
 	 *
 	 * @see Content::getUltimateRedirectTarget
 	 */
 	public function getUltimateRedirectTarget() {
-		$titles = $this->getRedirectChain();
+		wfDeprecated( __METHOD__, '1.38' );
 
-		return $titles ? array_pop( $titles ) : null;
+		return $this->getRedirectTarget();
 	}
 
 	/**
@@ -571,7 +574,7 @@ abstract class AbstractContent implements Content {
 
 		if ( $detectGPODeprecatedOverride || $detectFPODeprecatedOverride ) {
 			if ( $options === null ) {
-				$options = ParserOptions::newCanonical( 'canonical' );
+				$options = ParserOptions::newFromAnon();
 			}
 
 			$po = new ParserOutput();

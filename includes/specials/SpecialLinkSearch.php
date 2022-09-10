@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -76,7 +77,7 @@ class SpecialLinkSearch extends QueryPage {
 		$namespace = $request->getIntOrNull( 'namespace' );
 
 		$protocols_list = [];
-		foreach ( $this->getConfig()->get( 'UrlProtocols' ) as $prot ) {
+		foreach ( $this->getConfig()->get( MainConfigNames::UrlProtocols ) as $prot ) {
 			if ( $prot !== '//' ) {
 				$protocols_list[] = $prot;
 			}
@@ -90,7 +91,7 @@ class SpecialLinkSearch extends QueryPage {
 			$protocol = $bits['scheme'] . $bits['delimiter'];
 			// Make sure wfParseUrl() didn't make some well-intended correction in the
 			// protocol
-			if ( strcasecmp( $protocol, substr( $target, 0, strlen( $protocol ) ) ) === 0 ) {
+			if ( str_starts_with( strtolower( $target ), strtolower( $protocol ) ) ) {
 				$target2 = substr( $target, strlen( $protocol ) );
 			} else {
 				// If it did, let LinkFilter::makeLikeArray() handle this
@@ -114,7 +115,7 @@ class SpecialLinkSearch extends QueryPage {
 				'dir' => 'ltr',
 			]
 		];
-		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
+		if ( !$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$fields += [
 				'namespace' => [
 					'type' => 'namespaceselect',
@@ -127,14 +128,10 @@ class SpecialLinkSearch extends QueryPage {
 				],
 			];
 		}
-		$hiddenFields = [
-			'title' => $this->getPageTitle()->getPrefixedDBkey(),
-		];
 		$htmlForm = HTMLForm::factory( 'ooui', $fields, $this->getContext() );
-		$htmlForm->addHiddenFields( $hiddenFields );
 		$htmlForm->setSubmitTextMsg( 'linksearch-ok' );
 		$htmlForm->setWrapperLegendMsg( 'linksearch' );
-		$htmlForm->setAction( wfScript() );
+		$htmlForm->setTitle( $this->getPageTitle() );
 		$htmlForm->setMethod( 'get' );
 		$htmlForm->prepareForm()->displayForm( false );
 		$this->addHelpLink( 'Help:Linksearch' );
@@ -162,7 +159,7 @@ class SpecialLinkSearch extends QueryPage {
 	protected function linkParameters() {
 		$params = [];
 		$params['target'] = $this->mProt . $this->mQuery;
-		if ( $this->mNs !== null && !$this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->mNs !== null && !$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$params['namespace'] = $this->mNs;
 		}
 
@@ -209,7 +206,7 @@ class SpecialLinkSearch extends QueryPage {
 			'options' => [ 'ORDER BY' => $orderBy ]
 		];
 
-		if ( $this->mNs !== null && !$this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->mNs !== null && !$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$retval['conds']['page_namespace'] = $this->mNs;
 		}
 

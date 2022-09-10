@@ -14,6 +14,7 @@ define( 'DBO_DEFAULT', IDatabase::DBO_DEFAULT );
 define( 'DBO_PERSISTENT', IDatabase::DBO_PERSISTENT );
 define( 'DBO_SYSDBA', IDatabase::DBO_SYSDBA );
 define( 'DBO_DDLMODE', IDatabase::DBO_DDLMODE );
+/** @deprecated since 1.39, use the "ssl" parameter */
 define( 'DBO_SSL', IDatabase::DBO_SSL );
 define( 'DBO_COMPRESS', IDatabase::DBO_COMPRESS );
 /** @} */

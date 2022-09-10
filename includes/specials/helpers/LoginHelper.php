@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\MainConfigNames;
 
 /**
  * Helper functions for the login form that need to be shared with other special pages
@@ -61,17 +62,21 @@ class LoginHelper extends ContextSource {
 	 *    - error: display a return to link ignoring $wgRedirectOnLogin
 	 *    - success: display a return to link using $wgRedirectOnLogin if needed
 	 *    - successredirect: send an HTTP redirect using $wgRedirectOnLogin if needed
-	 * @param string $returnTo
-	 * @param array|string $returnToQuery
+	 *    - signup: used during signup, functionally identical to 'success'
+	 * @param string $returnTo Title of page to return to. Overriden by $wgRedirectOnLogin
+	 *   when that is set (and $type is not 'error').
+	 * @param array|string $returnToQuery Query parameters to return to.
 	 * @param bool $stickHTTPS Keep redirect link on HTTPS. Ignored (treated as
 	 *   true) if $wgForceHTTPS is true.
+	 * @param string $returnToAnchor A string to append to the URL, presumed to
+	 *   be either a fragment including the leading hash or an empty string.
 	 */
 	public function showReturnToPage(
-		$type, $returnTo = '', $returnToQuery = '', $stickHTTPS = false
+		$type, $returnTo = '', $returnToQuery = '', $stickHTTPS = false, $returnToAnchor = ''
 	) {
 		$config = $this->getConfig();
-		if ( $type !== 'error' && $config->get( 'RedirectOnLogin' ) !== null ) {
-			$returnTo = $config->get( 'RedirectOnLogin' );
+		if ( $type !== 'error' && $config->get( MainConfigNames::RedirectOnLogin ) !== null ) {
+			$returnTo = $config->get( MainConfigNames::RedirectOnLogin );
 			$returnToQuery = [];
 		} elseif ( is_string( $returnToQuery ) ) {
 			$returnToQuery = wfCgiToArray( $returnToQuery );
@@ -82,12 +87,12 @@ class LoginHelper extends ContextSource {
 
 		$returnToTitle = Title::newFromText( $returnTo ) ?: Title::newMainPage();
 
-		if ( $config->get( 'ForceHTTPS' )
-			|| ( $config->get( 'SecureLogin' ) && $stickHTTPS )
+		if ( $config->get( MainConfigNames::ForceHTTPS )
+			|| ( $config->get( MainConfigNames::SecureLogin ) && $stickHTTPS )
 		) {
 			$options = [ 'https' ];
 			$proto = PROTO_HTTPS;
-		} elseif ( $config->get( 'SecureLogin' ) && !$stickHTTPS ) {
+		} elseif ( $config->get( MainConfigNames::SecureLogin ) && !$stickHTTPS ) {
 			$options = [ 'http' ];
 			$proto = PROTO_HTTP;
 		} else {
@@ -96,7 +101,8 @@ class LoginHelper extends ContextSource {
 		}
 
 		if ( $type === 'successredirect' ) {
-			$redirectUrl = $returnToTitle->getFullUrlForRedirect( $returnToQuery, $proto );
+			$redirectUrl = $returnToTitle->getFullUrlForRedirect( $returnToQuery, $proto )
+				. $returnToAnchor;
 			$this->getOutput()->redirect( $redirectUrl );
 		} else {
 			$this->getOutput()->addReturnTo( $returnToTitle, $returnToQuery, null, $options );

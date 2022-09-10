@@ -32,22 +32,27 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\PageUpdaterFactory;
+use NamespaceInfo;
 use Psr\Log\LoggerInterface;
 use ReadOnlyError;
 use ReadOnlyMode;
 use RepoGroup;
 use Status;
 use StatusValue;
+use Wikimedia\Message\ITextFormatter;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use WikiPage;
 
 /**
+ * Backend logic for performing a page undelete action.
+ *
  * @since 1.38
- * @package MediaWiki\Page
  */
 class UndeletePage {
 
@@ -75,7 +80,10 @@ class UndeletePage {
 	private $pageUpdaterFactory;
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
-
+	/** @var ArchivedRevisionLookup */
+	private $archivedRevisionLookup;
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
 	/** @var ProperPageIdentity */
 	private $page;
 	/** @var Authority */
@@ -92,8 +100,13 @@ class UndeletePage {
 	private $unsuppress = false;
 	/** @var string[] */
 	private $tags = [];
+	/** @var WikiPage|null If not null, it means that we have to undelete it. */
+	private $associatedTalk;
+	/** @var ITextFormatter */
+	private $contLangMsgTextFormatter;
 
 	/**
+	 * @internal Create via the UndeletePageFactory service.
 	 * @param HookContainer $hookContainer
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param ILoadBalancer $loadBalancer
@@ -104,6 +117,9 @@ class UndeletePage {
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param PageUpdaterFactory $pageUpdaterFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param ArchivedRevisionLookup $archivedRevisionLookup
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param ITextFormatter $contLangMsgTextFormatter
 	 * @param ProperPageIdentity $page
 	 * @param Authority $performer
 	 */
@@ -118,6 +134,9 @@ class UndeletePage {
 		WikiPageFactory $wikiPageFactory,
 		PageUpdaterFactory $pageUpdaterFactory,
 		IContentHandlerFactory $contentHandlerFactory,
+		ArchivedRevisionLookup $archivedRevisionLookup,
+		NamespaceInfo $namespaceInfo,
+		ITextFormatter $contLangMsgTextFormatter,
 		ProperPageIdentity $page,
 		Authority $performer
 	) {
@@ -131,13 +150,16 @@ class UndeletePage {
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->pageUpdaterFactory = $pageUpdaterFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->archivedRevisionLookup = $archivedRevisionLookup;
+		$this->namespaceInfo = $namespaceInfo;
+		$this->contLangMsgTextFormatter = $contLangMsgTextFormatter;
 
 		$this->page = $page;
 		$this->performer = $performer;
 	}
 
 	/**
-	 * Whether to remove all ar_deleted/fa_deleted restrictions of seletected revs.
+	 * Whether to remove all ar_deleted/fa_deleted restrictions of selected revs.
 	 *
 	 * @param bool $unsuppress
 	 * @return self For chaining
@@ -181,6 +203,48 @@ class UndeletePage {
 	}
 
 	/**
+	 * Tests whether it's probably possible to undelete the associated talk page. This checks the replica,
+	 * so it may not see the latest master change, and is useful e.g. for building the UI.
+	 *
+	 * @return StatusValue
+	 */
+	public function canProbablyUndeleteAssociatedTalk(): StatusValue {
+		if ( $this->namespaceInfo->isTalk( $this->page->getNamespace() ) ) {
+			return StatusValue::newFatal( 'undelete-error-associated-alreadytalk' );
+		}
+		// @todo FIXME: NamespaceInfo should work with PageIdentity
+		$thisWikiPage = $this->wikiPageFactory->newFromTitle( $this->page );
+		$talkPage = $this->wikiPageFactory->newFromLinkTarget(
+			$this->namespaceInfo->getTalkPage( $thisWikiPage->getTitle() )
+		);
+		// NOTE: The talk may exist, but have some deleted revision. That's fine.
+		if ( !$this->archivedRevisionLookup->hasArchivedRevisions( $talkPage ) ) {
+			return StatusValue::newFatal( 'undelete-error-associated-notdeleted' );
+		}
+		return StatusValue::newGood();
+	}
+
+	/**
+	 * Whether to delete the associated talk page with the subject page
+	 *
+	 * @param bool $undelete
+	 * @return self For chaining
+	 */
+	public function setUndeleteAssociatedTalk( bool $undelete ): self {
+		if ( !$undelete ) {
+			$this->associatedTalk = null;
+			return $this;
+		}
+
+		// @todo FIXME: NamespaceInfo should accept PageIdentity
+		$thisWikiPage = $this->wikiPageFactory->newFromTitle( $this->page );
+		$this->associatedTalk = $this->wikiPageFactory->newFromLinkTarget(
+			$this->namespaceInfo->getTalkPage( $thisWikiPage->getTitle() )
+		);
+		return $this;
+	}
+
+	/**
 	 * Same as undeleteUnsafe, but checks permissions.
 	 *
 	 * @param string $comment
@@ -201,6 +265,9 @@ class UndeletePage {
 	private function authorizeUndeletion(): PermissionStatus {
 		$status = PermissionStatus::newEmpty();
 		$this->performer->authorizeWrite( 'undelete', $this->page, $status );
+		if ( $this->associatedTalk ) {
+			$this->performer->authorizeWrite( 'undelete', $this->associatedTalk, $status );
+		}
 		if ( $this->tags ) {
 			$status->merge( ChangeTags::canAddTagsAccompanyingChange( $this->tags, $this->performer ) );
 		}
@@ -226,18 +293,8 @@ class UndeletePage {
 	 *   Fatal Status on failure.
 	 */
 	public function undeleteUnsafe( string $comment ): StatusValue {
-		$hookStatus = StatusValue::newGood();
-		$hookRes = $this->hookRunner->onPageUndelete(
-			$this->page,
-			$this->performer,
-			$comment,
-			$this->unsuppress,
-			$this->timestamps,
-			$this->fileVersions,
-			$hookStatus
-		);
-		if ( !$hookRes && !$hookStatus->isGood() ) {
-			// Note: as per the PageUndeleteHook documentation, `return false` is ignored if $status is good.
+		$hookStatus = $this->runPreUndeleteHook( $comment );
+		if ( !$hookStatus->isGood() ) {
 			return $hookStatus;
 		}
 		// If both the set of text revisions and file revisions are empty,
@@ -248,6 +305,7 @@ class UndeletePage {
 		$restoreFiles = $restoreAll || $this->fileVersions !== [];
 
 		$resStatus = StatusValue::newGood();
+		$filesRestored = 0;
 		if ( $restoreFiles && $this->page->getNamespace() === NS_FILE ) {
 			/** @var LocalFile $img */
 			$img = $this->repoGroup->getLocalRepo()->newFile( $this->page );
@@ -258,35 +316,104 @@ class UndeletePage {
 			}
 			$filesRestored = $this->fileStatus->successCount;
 			$resStatus->merge( $this->fileStatus );
-		} else {
-			$filesRestored = 0;
 		}
 
+		$textRestored = 0;
 		if ( $restoreText ) {
-			$this->revisionStatus = $this->undeleteRevisions( $comment );
+			$this->revisionStatus = $this->undeleteRevisions( $this->page, $this->timestamps, $comment );
 			if ( !$this->revisionStatus->isOK() ) {
 				return $this->revisionStatus;
 			}
 
 			$textRestored = $this->revisionStatus->getValue();
 			$resStatus->merge( $this->revisionStatus );
-		} else {
-			$textRestored = 0;
+		}
+
+		$talkRestored = 0;
+		if ( $this->associatedTalk ) {
+			$talkStatus = $this->canProbablyUndeleteAssociatedTalk();
+			// if undeletion of the page fails we don't want to undelete the talk page
+			if ( $talkStatus->isGood() && $resStatus->isGood() ) {
+				$talkStatus = $this->undeleteRevisions( $this->associatedTalk, [], $comment );
+				if ( !$talkStatus->isOK() ) {
+					return $talkStatus;
+				}
+				$talkRestored = $talkStatus->getValue();
+
+			} else {
+				// Add errors as warnings since the talk page is secondary to the main action
+				foreach ( $talkStatus->getErrors() as $error ) {
+					$resStatus->warning( $error['message'], $error['params'] );
+				}
+			}
 		}
 
 		$resStatus->value = [
-			self::REVISIONS_RESTORED => $textRestored,
+			self::REVISIONS_RESTORED => $textRestored + $talkRestored,
 			self::FILES_RESTORED => $filesRestored
 		];
 
-		if ( !$textRestored && !$filesRestored ) {
+		if ( !$textRestored && !$filesRestored && !$talkRestored ) {
 			$this->logger->debug( "Undelete: nothing undeleted..." );
 			return $resStatus;
 		}
 
+		if ( $textRestored || $filesRestored ) {
+			$this->addLogEntry( $this->page, $comment, $textRestored, $filesRestored );
+		}
+		if ( $talkRestored ) {
+			$talkRestoredComment = $this->contLangMsgTextFormatter->format(
+				MessageValue::new( 'undelete-talk-summary-prefix' )->plaintextParams( $comment )
+			);
+			$this->addLogEntry( $this->associatedTalk, $talkRestoredComment, $talkRestored, 0 );
+		}
+
+		return $resStatus;
+	}
+
+	/**
+	 * @param string $comment
+	 * @return StatusValue
+	 */
+	private function runPreUndeleteHook( string $comment ): StatusValue {
+		$checkPages = [ $this->page ];
+		if ( $this->associatedTalk ) {
+			$checkPages[] = $this->associatedTalk;
+		}
+		foreach ( $checkPages as $page ) {
+			$hookStatus = StatusValue::newGood();
+			$hookRes = $this->hookRunner->onPageUndelete(
+				$page,
+				$this->performer,
+				$comment,
+				$this->unsuppress,
+				$this->timestamps,
+				$this->fileVersions,
+				$hookStatus
+			);
+			if ( !$hookRes && !$hookStatus->isGood() ) {
+				// Note: as per the PageUndeleteHook documentation, `return false` is ignored if $status is good.
+				return $hookStatus;
+			}
+		}
+		return Status::newGood();
+	}
+
+	/**
+	 * @param ProperPageIdentity $page
+	 * @param string $comment
+	 * @param int $textRestored
+	 * @param int $filesRestored
+	 */
+	private function addLogEntry(
+		ProperPageIdentity $page,
+		string $comment,
+		int $textRestored,
+		int $filesRestored
+	): void {
 		$logEntry = new ManualLogEntry( 'delete', 'restore' );
 		$logEntry->setPerformer( $this->performer->getUser() );
-		$logEntry->setTarget( $this->page );
+		$logEntry->setTarget( $page );
 		$logEntry->setComment( $comment );
 		$logEntry->addTags( $this->tags );
 		$logEntry->setParameters( [
@@ -298,19 +425,19 @@ class UndeletePage {
 
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
-
-		return $resStatus;
 	}
 
 	/**
 	 * This is the meaty bit -- It restores archived revisions of the given page
 	 * to the revision table.
 	 *
+	 * @param ProperPageIdentity $page
+	 * @param string[] $timestamps
 	 * @param string $comment
 	 * @throws ReadOnlyError
 	 * @return StatusValue Status object containing the number of revisions restored on success
 	 */
-	private function undeleteRevisions( string $comment ): StatusValue {
+	private function undeleteRevisions( ProperPageIdentity $page, array $timestamps, string $comment ): StatusValue {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			throw new ReadOnlyError();
 		}
@@ -319,11 +446,11 @@ class UndeletePage {
 		$dbw->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 
 		$oldWhere = [
-			'ar_namespace' => $this->page->getNamespace(),
-			'ar_title' => $this->page->getDBkey(),
+			'ar_namespace' => $page->getNamespace(),
+			'ar_title' => $page->getDBkey(),
 		];
-		if ( $this->timestamps ) {
-			$oldWhere['ar_timestamp'] = array_map( [ $dbw, 'timestamp' ], $this->timestamps );
+		if ( $timestamps ) {
+			$oldWhere['ar_timestamp'] = array_map( [ $dbw, 'timestamp' ], $timestamps );
 		}
 
 		$revisionStore = $this->revisionStore;
@@ -346,7 +473,7 @@ class UndeletePage {
 			$this->logger->debug( __METHOD__ . ": no revisions to restore" );
 
 			$status = Status::newGood( 0 );
-			$status->warning( "undelete-no-results" );
+			$status->error( "undelete-no-results" );
 			$dbw->endAtomic( __METHOD__ );
 
 			return $status;
@@ -392,7 +519,7 @@ class UndeletePage {
 		// move back
 		$result->seek( 0 );
 
-		$wikiPage = $this->wikiPageFactory->newFromTitle( $this->page );
+		$wikiPage = $this->wikiPageFactory->newFromTitle( $page );
 
 		$oldPageId = 0;
 		/** @var RevisionRecord|null $revision */
@@ -416,7 +543,7 @@ class UndeletePage {
 			$revision = $revisionStore->newRevisionFromArchiveRow(
 				$latestRestorableRow,
 				0,
-				$this->page
+				$page
 			);
 
 			foreach ( $revision->getSlotRoles() as $role ) {
@@ -424,6 +551,7 @@ class UndeletePage {
 				// NOTE: article ID may not be known yet. validateSave() should not modify the database.
 				$contentHandler = $this->contentHandlerFactory->getContentHandler( $content->getModel() );
 				$validationParams = new ValidationParams( $wikiPage, 0 );
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable RAW never returns null
 				$status = $contentHandler->validateSave( $content, $validationParams );
 				if ( !$status->isOK() ) {
 					$dbw->endAtomic( __METHOD__ );
@@ -461,7 +589,7 @@ class UndeletePage {
 					$this->logger->debug( __METHOD__ . ": existing page refers to a page_latest that does not exist" );
 
 					$status = Status::newGood( 0 );
-					$status->warning( 'undeleterevision-missing' );
+					$status->error( 'undeleterevision-missing' );
 					$dbw->cancelAtomic( __METHOD__ );
 
 					return $status;
@@ -493,7 +621,7 @@ class UndeletePage {
 				$revision = $revisionStore->newRevisionFromArchiveRow(
 					$row,
 					0,
-					$this->page,
+					$page,
 					[
 						'page_id' => $pageId,
 						'deleted' => $this->unsuppress ? 0 : $row->ar_deleted
@@ -537,6 +665,7 @@ class UndeletePage {
 				// XXX: updateRevisionOn should probably move into a PageStore service.
 				$wasnew = $wikiPage->updateRevisionOn(
 					$dbw,
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revision set when used
 					$revision,
 					$created ? 0 : $wikiPage->getLatest()
 				);
@@ -556,6 +685,7 @@ class UndeletePage {
 				];
 
 				$updater = $this->pageUpdaterFactory->newDerivedPageDataUpdater( $wikiPage );
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revision set when used
 				$updater->prepareUpdate( $revision, $options );
 				$updater->doUpdates();
 			}
@@ -563,9 +693,9 @@ class UndeletePage {
 			$this->hookRunner->onArticleUndelete(
 				$wikiPage->getTitle(), $created, $comment, $oldPageId, $restoredPages );
 
-			if ( $this->page->getNamespace() === NS_FILE ) {
+			if ( $page->getNamespace() === NS_FILE ) {
 				$job = HTMLCacheUpdateJob::newForBacklinks(
-					$this->page,
+					$page,
 					'imagelinks',
 					[ 'causeAction' => 'file-restore' ]
 				);

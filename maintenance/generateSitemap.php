@@ -26,6 +26,7 @@
  * @see http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -207,7 +208,7 @@ class GenerateSitemap extends Maintenance {
 	}
 
 	private function setNamespacePriorities() {
-		global $wgSitemapNamespacesPriorities;
+		$sitemapNamespacesPriorities = $this->getConfig()->get( MainConfigNames::SitemapNamespacesPriorities );
 
 		// Custom main namespaces
 		$this->priorities[self::GS_MAIN] = '0.5';
@@ -232,11 +233,11 @@ class GenerateSitemap extends Maintenance {
 		$this->priorities[NS_CATEGORY_TALK] = '0.1';
 
 		// Custom priorities
-		if ( $wgSitemapNamespacesPriorities !== false ) {
+		if ( $sitemapNamespacesPriorities !== false ) {
 			/**
-			 * @var array $wgSitemapNamespacesPriorities
+			 * @var array $sitemapNamespacesPriorities
 			 */
-			foreach ( $wgSitemapNamespacesPriorities as $namespace => $priority ) {
+			foreach ( $sitemapNamespacesPriorities as $namespace => $priority ) {
 				$float = floatval( $priority );
 				if ( $float > 1.0 ) {
 					$priority = '1.0';
@@ -253,9 +254,9 @@ class GenerateSitemap extends Maintenance {
 	 */
 	private function generateNamespaces() {
 		// Only generate for specific namespaces if $wgSitemapNamespaces is an array.
-		global $wgSitemapNamespaces;
-		if ( is_array( $wgSitemapNamespaces ) ) {
-			$this->namespaces = $wgSitemapNamespaces;
+		$sitemapNamespaces = $this->getConfig()->get( MainConfigNames::SitemapNamespaces );
+		if ( is_array( $sitemapNamespaces ) ) {
+			$this->namespaces = $sitemapNamespaces;
 
 			return;
 		}

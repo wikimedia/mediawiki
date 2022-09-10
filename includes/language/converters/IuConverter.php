@@ -1,7 +1,5 @@
 <?php
 /**
- * Inuktitut specific code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,10 +16,11 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
 
 /**
+ * Inuktitut specific code.
+ *
  * Conversion script between Latin and Syllabics for Inuktitut.
  * - Syllabics -> lowercase Latin
  * - lowercase/uppercase Latin -> Syllabics
@@ -31,7 +30,7 @@
  *   - https://commons.wikimedia.org/wiki/Image:Inuktitut.png
  *   - LanguageSr.php
  *
- * @ingroup Language
+ * @ingroup Languages
  */
 class IuConverter extends LanguageConverterSpecific {
 	public $mToLatin = [

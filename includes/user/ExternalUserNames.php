@@ -21,7 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserRigorOptions;
 
 /**
  * Class to parse and build external user names
@@ -107,7 +107,7 @@ class ExternalUserNames {
 	 */
 	public function applyPrefix( $name ) {
 		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
-		if ( $userNameUtils->getCanonical( $name, UserNameUtils::RIGOR_USABLE ) === false ) {
+		if ( $userNameUtils->getCanonical( $name, UserRigorOptions::RIGOR_USABLE ) === false ) {
 			return $name;
 		}
 

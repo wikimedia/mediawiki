@@ -1,7 +1,7 @@
 <?php
 /**
- * The web entry point for ResourceLoader, which serves static CSS/JavaScript
- * via ResourceLoaderModule subclasses.
+ * The web entry point for @ref ResourceLoader, which serves static CSS/JavaScript
+ * via @ref MediaWiki\ResourceLoader\Module Module subclasses.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ResourceLoader\Context;
 
 // This endpoint is supposed to be independent of request cookies and other
 // details of the session. Enforce this constraint with respect to session use.
@@ -46,7 +47,7 @@ function wfLoadMain() {
 	$services->getDBLoadBalancerFactory()->disableChronologyProtection();
 
 	$resourceLoader = $services->getResourceLoader();
-	$context = new ResourceLoaderContext( $resourceLoader, $wgRequest );
+	$context = new Context( $resourceLoader, $wgRequest );
 
 	// Respond to ResourceLoader request
 	$resourceLoader->respond( $context );

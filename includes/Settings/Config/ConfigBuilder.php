@@ -19,9 +19,17 @@ interface ConfigBuilder {
 	 * @param mixed $value
 	 * @param MergeStrategy|null $mergeStrategy strategy for merging array config values.
 	 * @return ConfigBuilder
-	 * @throws SettingsBuilderException if a $mergeStrategy is not provided and the $value is not an array.
 	 */
 	public function set( string $key, $value, MergeStrategy $mergeStrategy = null ): ConfigBuilder;
+
+	/**
+	 * Set all values in the array.
+	 *
+	 * @param array $values
+	 * @param MergeStrategy[] $mergeStrategies The merge strategies indexed by config key
+	 * @return ConfigBuilder
+	 */
+	public function setMulti( array $values, array $mergeStrategies = [] ): ConfigBuilder;
 
 	/**
 	 * Set the default for the configuration $key to $defaultValue.
@@ -34,9 +42,27 @@ interface ConfigBuilder {
 	 * @param mixed $defaultValue
 	 * @param MergeStrategy|null $mergeStrategy strategy for merging array config values.
 	 * @return ConfigBuilder
-	 * @throws SettingsBuilderException if a $mergeStrategy is not provided and the $value is not an array.
 	 */
 	public function setDefault( string $key, $defaultValue, MergeStrategy $mergeStrategy = null ): ConfigBuilder;
+
+	/**
+	 * Set defaults in a batch.
+	 *
+	 * @param array $defaults The default values
+	 * @param MergeStrategy[] $mergeStrategies The merge strategies indexed by config key
+	 * @return ConfigBuilder
+	 * @throws SettingsBuilderException if a merge strategy is not provided and
+	 *   the value is not an array.
+	 */
+	public function setMultiDefault( array $defaults, array $mergeStrategies ): ConfigBuilder;
+
+	/**
+	 * Get the current value for $key.
+	 *
+	 * @param string $key
+	 * @return mixed
+	 */
+	public function get( string $key );
 
 	/**
 	 * Build the resulting Config object.

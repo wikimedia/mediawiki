@@ -22,6 +22,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -91,7 +92,7 @@ class ExifBitmapHandler extends BitmapHandler {
 	 * @return bool|int
 	 */
 	public function isFileMetadataValid( $image ) {
-		$showEXIF = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowEXIF' );
+		$showEXIF = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::ShowEXIF );
 		if ( !$showEXIF ) {
 			# Metadata disabled and so an empty field is expected
 			return self::METADATA_GOOD;

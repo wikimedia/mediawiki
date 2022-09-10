@@ -256,7 +256,7 @@ class SlotRecord {
 	 *        in revision history.
 	 */
 	public function __construct( \stdClass $row, $content, bool $derived = false ) {
-		Assert::parameterType( 'Content|callable', $content, '$content' );
+		Assert::parameterType( [ 'Content', 'callable' ], $content, '$content' );
 
 		Assert::parameter(
 			property_exists( $row, 'slot_revision_id' ),
@@ -686,9 +686,3 @@ class SlotRecord {
 	}
 
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.32
- */
-class_alias( SlotRecord::class, 'MediaWiki\Storage\SlotRecord' );

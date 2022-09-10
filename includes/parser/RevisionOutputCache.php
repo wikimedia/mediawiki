@@ -179,7 +179,7 @@ class RevisionOutputCache {
 			return false;
 		}
 
-		$this->logger->debug( 'output cache hit' );
+		$this->logger->debug( 'old-revision cache hit' );
 		$this->incrementStats( $revision, 'hit' );
 		return $output;
 	}

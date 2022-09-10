@@ -21,8 +21,11 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\Rdbms\Subquery;
 
 /**
  * This is to display changes made to all articles linked in an article.
@@ -115,8 +118,8 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$dbkey = $title->getDBkey();
 
 		$rcQuery = RecentChange::getQueryInfo();
-		$tables = array_merge( $rcQuery['tables'], $tables );
-		$select = array_merge( $rcQuery['fields'], $select );
+		$tables = array_unique( array_merge( $rcQuery['tables'], $tables ) );
+		$select = array_unique( array_merge( $rcQuery['fields'], $select ) );
 		$join_conds = array_merge( $rcQuery['joins'], $join_conds );
 
 		// Join with watchlist and watchlist_expiry tables to highlight watched rows.
@@ -188,6 +191,15 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$subsql = []; // SELECT statements to combine with UNION
 
 		foreach ( $link_tables as $link_table ) {
+			$queryBuilder = $dbr->newSelectQueryBuilder();
+			$linksMigration = \MediaWiki\MediaWikiServices::getInstance()->getLinksMigration();
+			$queryBuilder = $queryBuilder
+				->tables( $tables )
+				->fields( $select )
+				->where( $conds )
+				->caller( __METHOD__ )
+				->options( $order + $query_options )
+				->joinConds( $join_conds );
 			$pfx = $prefix[$link_table];
 
 			// imagelinks and categorylinks tables have no xx_namespace field,
@@ -206,48 +218,78 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 					if ( $ns != $link_ns ) {
 						continue;
 					} // should never happen, but check anyway
-					$subconds = [ "{$pfx}_to" => $dbkey ];
+					$queryBuilder->where( [ "{$pfx}_to" => $dbkey ] );
 				} else {
-					$subconds = [ "{$pfx}_namespace" => $ns, "{$pfx}_title" => $dbkey ];
+					if ( isset( $linksMigration::$mapping[$link_table] ) ) {
+						$queryBuilder->where( $linksMigration->getLinksConditions( $link_table, $title ) );
+					} else {
+						$queryBuilder->where( [ "{$pfx}_namespace" => $ns, "{$pfx}_title" => $dbkey ] );
+					}
 				}
-				$subjoin = "rc_cur_id = {$pfx}_from";
+				$queryBuilder->join( $link_table, null, "rc_cur_id = {$pfx}_from" );
 			} else {
 				// find changes to pages linked from this page
-				$subconds = [ "{$pfx}_from" => $id ];
+				$queryBuilder->where( [ "{$pfx}_from" => $id ] );
 				if ( $link_table == 'imagelinks' || $link_table == 'categorylinks' ) {
-					$subconds["rc_namespace"] = $link_ns;
-					$subjoin = "rc_title = {$pfx}_to";
+					$queryBuilder->where( [ "rc_namespace" => $link_ns ] );
+					$queryBuilder->join( $link_table, null, "rc_title = {$pfx}_to" );
 				} else {
-					$subjoin = [ "rc_namespace = {$pfx}_namespace", "rc_title = {$pfx}_title" ];
+					// TODO: Move this to LinksMigration
+					if ( isset( $linksMigration::$mapping[$link_table] ) ) {
+						$queryInfo = $linksMigration->getQueryInfo( $link_table, $link_table );
+						list( $nsField, $titleField ) = $linksMigration->getTitleFields( $link_table );
+						if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
+							$joinTable = 'linktarget';
+						} else {
+							$joinTable = $link_table;
+						}
+						$queryBuilder->join(
+							$joinTable,
+							null,
+							[ "rc_namespace = {$nsField}", "rc_title = {$titleField}" ]
+						);
+						if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
+							$queryBuilder->joinConds( $queryInfo['joins'] );
+							$queryBuilder->table( $link_table );
+						}
+					} else {
+						$queryBuilder->join(
+							$link_table,
+							null,
+							[ "rc_namespace = {$pfx}_namespace", "rc_title = {$pfx}_title" ]
+						);
+					}
 				}
 			}
 
-			$query = $dbr->selectSQLText(
-				array_merge( $tables, [ $link_table ] ),
-				$select,
-				$conds + $subconds,
-				__METHOD__,
-				$order + $query_options,
-				$join_conds + [ $link_table => [ 'JOIN', $subjoin ] ]
-			);
-
 			if ( $dbr->unionSupportsOrderAndLimit() ) {
-				$query = $dbr->limitResult( $query, $limit );
+				$queryBuilder->limit( $limit );
 			}
 
-			$subsql[] = $query;
+			$subsql[] = $queryBuilder;
 		}
 
 		if ( count( $subsql ) == 0 ) {
 			return false; // should never happen
 		}
 		if ( count( $subsql ) == 1 && $dbr->unionSupportsOrderAndLimit() ) {
-			$sql = $subsql[0];
+			$sql = $subsql[0]
+				->setMaxExecutionTime( $this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )
+				->getSQL();
 		} else {
-			// need to resort and relimit after union
-			$sql = $dbr->unionQueries( $subsql, $dbr::UNION_DISTINCT ) .
-				' ORDER BY rc_timestamp DESC';
-			$sql = $dbr->limitResult( $sql, $limit, false );
+			$sqls = array_map( static function ( $queryBuilder ) {
+				return $queryBuilder->getSQL();
+			}, $subsql );
+			$queryBuilder = $dbr->newSelectQueryBuilder()
+				->select( '*' )
+				->from(
+					(string)( new Subquery( $dbr->unionQueries( $sqls, $dbr::UNION_DISTINCT ) ) ),
+					'main'
+				)
+				->orderBy( 'rc_timestamp', SelectQueryBuilder::SORT_DESC )
+				->setMaxExecutionTime( $this->getConfig()->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries ) )
+				->limit( $limit );
+			$sql = $queryBuilder->getSQL();
 		}
 		return $dbr->query( $sql, __METHOD__ );
 	}

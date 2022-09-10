@@ -5,15 +5,15 @@
 			"Andrijko Z.",
 			"Bïerne",
 			"DannyS712",
+			"Inaths",
+			"Keu",
 			"M.M.S.",
+			"SkPäiviö",
 			"TMg",
 			"Tok Pisin",
 			"Trondtr",
 			"Urhixidur",
-			"아라",
-			"Inaths",
-			"Keu",
-			"SkPäiviö"
+			"아라"
 		]
 	},
 	"tog-fancysig": "Saajpe singnatuvreh (namhtah jïjtsistie lïenghke)",
@@ -478,7 +478,6 @@
 	"unblocklink": "ov-tjöödtjehtidh",
 	"contribslink": "dåarjoeh",
 	"blocklogpage": "Tjöödtjehtidh logge",
-	"blocklogentry": "blåhkedidh \"[[$1]]\" $2 $3",
 	"lockdb": "Tjuevtedh daatabaase",
 	"lockbtn": "Tjuevtedh daatabaase",
 	"databasenotlocked": "Daatabaase lea ijje tjuevtedh.",

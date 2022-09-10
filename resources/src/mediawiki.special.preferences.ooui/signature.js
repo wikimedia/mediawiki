@@ -3,9 +3,7 @@
  */
 ( function () {
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
-		var signatureInput, $signatureInput, fancyToggleInput, $fancyToggleInput;
-
-		$signatureInput = $root.find( '#mw-input-wpnickname' );
+		var $signatureInput = $root.find( '#mw-input-wpnickname' );
 		if (
 			// This preference could theoretically be disabled ($wgHiddenPrefs)
 			!$signatureInput.length ||
@@ -14,7 +12,7 @@
 			return;
 		}
 
-		signatureInput = OO.ui.infuse( $signatureInput );
+		var signatureInput = OO.ui.infuse( $signatureInput );
 
 		// Add a visible length limit
 		mw.widgets.visibleCodePointLimit( signatureInput );
@@ -30,9 +28,9 @@
 				useEditFont
 			);
 		}
-		$fancyToggleInput = $root.find( '#mw-input-wpfancysig' );
+		var $fancyToggleInput = $root.find( '#mw-input-wpfancysig' );
 		if ( $fancyToggleInput.length ) {
-			fancyToggleInput = OO.ui.infuse( $fancyToggleInput );
+			var fancyToggleInput = OO.ui.infuse( $fancyToggleInput );
 			fancyToggleInput.on( 'change', function () {
 				updateFont( fancyToggleInput.isSelected() );
 			} );

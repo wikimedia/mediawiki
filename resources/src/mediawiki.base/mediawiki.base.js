@@ -102,10 +102,9 @@ Message.prototype = {
 	 * @chainable
 	 */
 	params: function ( parameters ) {
-		var i;
-		for ( i = 0; i < parameters.length; i++ ) {
-			this.parameters.push( parameters[ i ] );
-		}
+		// Optimization: push all parameter arguments at once. Can't use spread operator
+		// `this.parameters.push( ...parameters );` yet, but apply() does the same thing.
+		Array.prototype.push.apply( this.parameters, parameters );
 		return this;
 	},
 
@@ -245,9 +244,8 @@ mw.inspect = function () {
  * @return {string} Transformed format string
  */
 mw.internalDoTransformFormatForQqx = function ( formatString, parameters ) {
-	var replacement;
 	if ( formatString.indexOf( '$*' ) !== -1 ) {
-		replacement = '';
+		var replacement = '';
 		if ( parameters.length ) {
 			replacement = ': ' + parameters.map( function ( _, i ) {
 				return '$' + ( i + 1 );
@@ -256,6 +254,26 @@ mw.internalDoTransformFormatForQqx = function ( formatString, parameters ) {
 		return formatString.replace( '$*', replacement );
 	}
 	return formatString;
+};
+
+/**
+ * Encode page titles in a way that matches `wfUrlencode` in PHP.
+ *
+ * @see mw.util#wikiUrlencode
+ * @private
+ * @param {string} str
+ * @return {string}
+ */
+mw.internalWikiUrlencode = function ( str ) {
+	return encodeURIComponent( String( str ) )
+		.replace( /'/g, '%27' )
+		.replace( /%20/g, '_' )
+		.replace( /%3B/g, ';' )
+		.replace( /%40/g, '@' )
+		.replace( /%24/g, '$' )
+		.replace( /%2C/g, ',' )
+		.replace( /%2F/g, '/' )
+		.replace( /%3A/g, ':' );
 };
 
 /**
@@ -338,8 +356,8 @@ var trackHandlers = [];
  * well-defined purpose.
  *
  * Data handlers are registered via `mw.trackSubscribe`, and receive the full set of
- * events that match their subscription, including those that fired before the handler was
- * bound.
+ * events that match their subscription, including buffered events that fired before the handler
+ * was subscribed.
  *
  * @param {string} topic Topic name
  * @param {Object|number|string} [data] Data describing the event.
@@ -352,10 +370,18 @@ mw.track = function ( topic, data ) {
 /**
  * Register a handler for subset of analytic events, specified by topic.
  *
- * Handlers will be called once for each tracked event, including any events that fired before the
- * handler was registered; 'this' is set to a plain object with a topic' property naming the event, and a
- * 'data' property which is an object of event-specific data. The event topic and event data are
- * also passed to the callback as the first and second arguments, respectively.
+ * Handlers will be called once for each tracked event, including for any buffered events that
+ * fired before the handler was subscribed. The callback is passed a `topic` string, and optional
+ * `data` event object. The `this` value for the callback is a plain object with `topic` and
+ * `data` properties set to those same values.
+ *
+ * Example to monitor all topics for debugging:
+ *
+ *     mw.trackSubscribe( '', console.log );
+ *
+ * Example to subscribe to any of `foo.*`, e.g. both `foo.bar` and `foo.quux`:
+ *
+ *     mw.trackSubscribe( 'foo.', console.log );
  *
  * @param {string} topic Handle events whose name starts with this string prefix
  * @param {Function} callback Handler to call for each matching tracked event
@@ -365,9 +391,8 @@ mw.track = function ( topic, data ) {
 mw.trackSubscribe = function ( topic, callback ) {
 	var seen = 0;
 	function handler( trackQueue ) {
-		var event;
 		for ( ; seen < trackQueue.length; seen++ ) {
-			event = trackQueue[ seen ];
+			var event = trackQueue[ seen ];
 			if ( event.topic.indexOf( topic ) === 0 ) {
 				callback.call( event, event.topic, event.data );
 			}
@@ -449,7 +474,8 @@ var hooks = Object.create( null );
  */
 mw.hook = function ( name ) {
 	return hooks[ name ] || ( hooks[ name ] = ( function () {
-		var memory, fns = [];
+		var memory;
+		var fns = [];
 		function rethrow( e ) {
 			setTimeout( function () {
 				throw e;
@@ -463,8 +489,7 @@ mw.hook = function ( name ) {
 			 * @chainable
 			 */
 			add: function () {
-				var i = 0;
-				for ( ; i < arguments.length; i++ ) {
+				for ( var i = 0; i < arguments.length; i++ ) {
 					if ( memory ) {
 						try {
 							arguments[ i ].apply( null, memory );
@@ -483,8 +508,8 @@ mw.hook = function ( name ) {
 			 * @chainable
 			 */
 			remove: function () {
-				var i = 0, j;
-				for ( ; i < arguments.length; i++ ) {
+				for ( var i = 0; i < arguments.length; i++ ) {
+					var j;
 					while ( ( j = fns.indexOf( arguments[ i ] ) ) !== -1 ) {
 						fns.splice( j, 1 );
 					}
@@ -499,8 +524,7 @@ mw.hook = function ( name ) {
 			 * @chainable
 			 */
 			fire: function () {
-				var i = 0;
-				for ( ; i < fns.length; i++ ) {
+				for ( var i = 0; i < fns.length; i++ ) {
 					try {
 						fns[ i ].apply( null, arguments );
 					} catch ( e ) {
@@ -574,11 +598,11 @@ mw.html = {
 	 * @return {string} HTML
 	 */
 	element: function ( name, attrs, contents ) {
-		var v, attrName, s = '<' + name;
+		var s = '<' + name;
 
 		if ( attrs ) {
-			for ( attrName in attrs ) {
-				v = attrs[ attrName ];
+			for ( var attrName in attrs ) {
+				var v = attrs[ attrName ];
 				// Convert name=true, to name=name
 				if ( v === true ) {
 					v = attrName;
@@ -623,6 +647,72 @@ mw.html = {
 		this.value = value;
 	}
 };
+
+var loadedScripts = {};
+
+function importScriptURI( url ) {
+	if ( loadedScripts[ url ] ) {
+		return null;
+	}
+	loadedScripts[ url ] = true;
+	return mw.loader.addScriptTag( url );
+}
+
+/**
+ * Import a local JS content page, for use by user scripts and site-wide scripts.
+ *
+ * Note that if the same title is imported multiple times, it will only
+ * be loaded and executed once.
+ *
+ * @since 1.12.2
+ * @member global
+ * @param {string} title
+ * @return {HTMLElement|null} Script tag, or null if it was already imported before
+ */
+window.importScript = function ( title ) {
+	return importScriptURI(
+		mw.config.get( 'wgScript' ) + '?title=' + mw.internalWikiUrlencode( title ) +
+			'&action=raw&ctype=text/javascript'
+	);
+};
+
+/**
+ * Import a local CSS content page, for use by user scripts and site-wide scripts.
+ *
+ * @since 1.12.2
+ * @member global
+ * @param {string} title
+ * @return {HTMLElement} Link tag
+ */
+window.importStylesheet = function ( title ) {
+	return mw.loader.addLinkTag(
+		mw.config.get( 'wgScript' ) + '?title=' + mw.internalWikiUrlencode( title ) +
+			'&action=raw&ctype=text/css'
+	);
+};
+
+/**
+ * @since 1.12.2
+ * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
+ * @method importScriptURI
+ * @member global
+ * @param {string} url
+ * @return {HTMLElement} Script tag
+ */
+mw.log.deprecate( window, 'importScriptURI', importScriptURI, 'Use mw.loader instead.' );
+
+/**
+ * @since 1.12.2
+ * @deprecated since 1.17 Use mw.loader instead. Warnings added in 1.25.
+ * @member global
+ * @param {string} url
+ * @param {string} media
+ * @return {HTMLElement} Link tag
+ */
+function importStylesheetURI( url, media ) {
+	return mw.loader.addLinkTag( url, media );
+}
+mw.log.deprecate( window, 'importStylesheetURI', importStylesheetURI, 'Use mw.loader instead.' );
 
 /**
  * Get the names of all registered ResourceLoader modules.

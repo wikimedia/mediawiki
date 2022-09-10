@@ -22,6 +22,7 @@
 
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageNameUtils;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * A query action to return messages from site message cache
@@ -189,7 +190,9 @@ class ApiQueryAllMessages extends ApiQueryBase {
 
 				if ( $customiseFilterEnabled ) {
 					$messageIsCustomised = isset( $customisedMessages['pages'][$langObj->ucfirst( $message )] );
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable customised is set when used
 					if ( $customised === $messageIsCustomised ) {
+						// @phan-suppress-next-line PhanPossiblyUndeclaredVariable customised is set when used
 						if ( $customised ) {
 							$a['customised'] = true;
 						}
@@ -198,13 +201,14 @@ class ApiQueryAllMessages extends ApiQueryBase {
 					}
 				}
 
-				$msg = wfMessage( $message, $args )->inLanguage( $langObj );
+				$msg = $this->msg( $message, $args )->inLanguage( $langObj );
 
 				if ( !$msg->exists() ) {
 					$a['missing'] = true;
 				} else {
 					// Check if the parser is enabled:
 					if ( $params['enableparser'] ) {
+						// @phan-suppress-next-line PhanPossiblyUndeclaredVariable title is set when used
 						$msgString = $msg->page( $title )->text();
 					} else {
 						$msgString = $msg->plain();
@@ -213,7 +217,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 						ApiResult::setContentValue( $a, 'content', $msgString );
 					}
 					if ( isset( $prop['default'] ) ) {
-						$default = wfMessage( $message )->inLanguage( $langObj )->useDatabase( false );
+						$default = $this->msg( $message )->inLanguage( $langObj )->useDatabase( false );
 						if ( !$default->exists() ) {
 							$a['defaultmissing'] = true;
 						} elseif ( $default->plain() != $msgString ) {
@@ -247,12 +251,12 @@ class ApiQueryAllMessages extends ApiQueryBase {
 	public function getAllowedParams() {
 		return [
 			'messages' => [
-				ApiBase::PARAM_DFLT => '*',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_DEFAULT => '*',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'prop' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => [
 					'default'
 				]
 			],
@@ -260,13 +264,13 @@ class ApiQueryAllMessages extends ApiQueryBase {
 			'nocontent' => false,
 			'includelocal' => false,
 			'args' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_ALLOW_DUPLICATES => true,
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_ALLOW_DUPLICATES => true,
 			],
 			'filter' => [],
 			'customised' => [
-				ApiBase::PARAM_DFLT => 'all',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'all',
+				ParamValidator::PARAM_TYPE => [
 					'all',
 					'modified',
 					'unmodified'

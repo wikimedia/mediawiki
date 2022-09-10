@@ -18,20 +18,17 @@
 	 * @private
 	 * @param {jQuery} $formNode
 	 * @param {Object} response
-	 * @param {string} section
 	 */
-	function showEditSummary( $formNode, response, section ) {
+	function showEditSummary( $formNode, response ) {
+		var $summaryPreview = $formNode.find( '.mw-summary-preview' ).empty();
 		var parse = response.parse;
 
 		if ( !parse || !parse.parsedsummary ) {
 			return;
 		}
 
-		var isSubject = ( section === 'new' ),
-			$summaryPreview = $formNode.find( '.mw-summary-preview' ).empty();
-
 		$summaryPreview.append(
-			mw.message( isSubject ? 'subject-preview' : 'summary-preview' ).parse(),
+			mw.message( 'summary-preview' ).parse(),
 			' ',
 			$( '<span>' ).addClass( 'comment' ).html(
 				// There is no equivalent to rawParams
@@ -177,6 +174,13 @@
 			$( '.catlinks[data-mw="interface"]' ).replaceWith( $content );
 		}
 
+		// Table of contents.
+		if ( response.parse.sections ) {
+			mw.hook( 'wikipage.tableOfContents' ).fire(
+				response.parse.hidetoc ? [] : response.parse.sections
+			);
+		}
+
 		// Templates.
 		if ( response.parse.templates ) {
 			showTemplates( response.parse.templates );
@@ -237,14 +241,14 @@
 		var params = {
 			formatversion: 2,
 			action: 'parse',
-			title: mw.config.get( 'wgPageName' ),
+			title: config.title,
 			summary: config.summary,
 			prop: ''
 		};
 
 		if ( !config.showDiff ) {
 			$.extend( params, {
-				prop: 'text|indicators|displaytitle|modules|jsconfigvars|categorieshtml|templates|langlinks|limitreporthtml|parsewarningshtml',
+				prop: 'text|indicators|displaytitle|modules|jsconfigvars|categorieshtml|sections|templates|langlinks|limitreporthtml|parsewarningshtml',
 				text: config.$textareaNode.textSelection( 'getContents' ),
 				pst: true,
 				preview: true,
@@ -259,6 +263,7 @@
 			if ( section === 'new' ) {
 				params.section = 'new';
 				params.sectiontitle = params.summary;
+				delete params.summary;
 			}
 		}
 
@@ -332,6 +337,7 @@
 	 * @param {string} [config.summary=null] The edit summary. If no value is given, the summary is
 	 *   fetched from `$( '#wpSummaryWidget' )`.
 	 * @param {boolean} [config.showDiff=false] Shows a diff in the preview area instead of the content.
+	 * @param {string} [config.title=mw.config.get( 'wgPageName' )] The title of the page being previewed
 	 * @param {Array} [config.loadingSelectors=getLoadingSelectors()] An array of query selectors
 	 *   (i.e. '#catlinks') that should be grayed out while the preview is being generated.
 	 * @return {jQuery.Promise}
@@ -345,6 +351,7 @@
 			$spinnerNode: $( '.mw-spinner-preview' ),
 			summary: null,
 			showDiff: false,
+			title: mw.config.get( 'wgPageName' ),
 			loadingSelectors: getLoadingSelectors()
 		}, config );
 
@@ -376,11 +383,13 @@
 
 		if ( config.showDiff ) {
 			config.$previewNode.hide();
+			// Hide the table of contents, in case it was previously shown after previewing.
+			mw.hook( 'wikipage.tableOfContents' ).fire( [] );
 
 			var diffPar = {
 				action: 'compare',
-				fromtitle: mw.config.get( 'wgPageName' ),
-				totitle: mw.config.get( 'wgPageName' ),
+				fromtitle: config.title,
+				totitle: config.title,
 				toslots: 'main',
 				// Remove trailing whitespace for consistency with EditPage diffs.
 				// TODO trimEnd() when we can use that.
@@ -408,7 +417,7 @@
 
 		return $.when( parseRequest, diffRequest )
 			.done( function ( response, diffResponse ) {
-				showEditSummary( config.$formNode, response[ 0 ], section );
+				showEditSummary( config.$formNode, response[ 0 ] );
 
 				if ( config.showDiff ) {
 					parseDiffResponse( config, diffResponse[ 0 ] );

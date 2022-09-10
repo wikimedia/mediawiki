@@ -47,7 +47,7 @@ class StaticArrayWriter {
 			. "// " . implode( "\n// ", explode( "\n", $header ) ) . "\n"
 			. "return [\n";
 		foreach ( $data as $key => $value ) {
-			$code .= self::encode( $key, $value, 1 );
+			$code .= self::encodePair( $key, $value, 1 );
 		}
 		$code .= "];\n";
 		return $code;
@@ -73,7 +73,7 @@ class StaticArrayWriter {
 			. "class {$layout['class']} {\n"
 			. "\tpublic const {$layout['const']} = [\n";
 		foreach ( $data as $key => $value ) {
-			$code .= self::encode( $key, $value, 2 );
+			$code .= self::encodePair( $key, $value, 2 );
 		}
 		$code .= "\t];\n}\n";
 		return $code;
@@ -82,20 +82,40 @@ class StaticArrayWriter {
 	/**
 	 * Recursively turn one k/v pair into properly-indented PHP
 	 *
+	 * @since 1.38
+	 *
 	 * @param string|int $key
 	 * @param mixed $value
 	 * @param int $indent Indentation level
 	 * @return string PHP code
 	 */
-	private static function encode( $key, $value, $indent ) {
+	private static function encodePair( $key, $value, $indent = 0 ) {
 		$tabs = str_repeat( "\t", $indent );
 		$line = $tabs . var_export( $key, true ) . ' => ';
+		$line .= self::encodeValue( $value, $indent );
+
+		$line .= ",\n";
+		return $line;
+	}
+
+	/**
+	 * Recursively turn one value into properly-indented PHP
+	 *
+	 * @since 1.38
+	 *
+	 * @param mixed $value
+	 * @param int $indent Indentation level
+	 * @return string PHP code
+	 */
+	public static function encodeValue( $value, $indent = 0 ) {
 		if ( is_array( $value ) ) {
-			$line .= "[\n";
+			$tabs = str_repeat( "\t", $indent );
+			$line = "[\n";
 			foreach ( $value as $subkey => $subvalue ) {
-				$line .= self::encode( $subkey, $subvalue, $indent + 1 );
+				$line .= self::encodePair( $subkey, $subvalue, $indent + 1 );
 			}
 			$line .= "$tabs]";
+			return $line;
 		} else {
 			$exportedValue = var_export( $value, true );
 			if ( $exportedValue === 'NULL' ) {
@@ -103,10 +123,7 @@ class StaticArrayWriter {
 				// violates our own coding standards.
 				$exportedValue = 'null';
 			}
-			$line .= $exportedValue;
+			return $exportedValue;
 		}
-
-		$line .= ",\n";
-		return $line;
 	}
 }

@@ -2,6 +2,8 @@
 /**
  * Enables HTMLFormField elements to be build with a button.
  *
+ * TODO This class should be a trait
+ *
  * @stable to extend
  */
 class HTMLFormFieldWithButton extends HTMLFormField {

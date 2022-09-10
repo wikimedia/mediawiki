@@ -1,8 +1,5 @@
 <?php
 /**
- * This is the SQLite database abstraction layer.
- * See maintenance/sqlite/README for development notes and other specific information
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
 namespace Wikimedia\Rdbms;
 
@@ -28,9 +24,16 @@ use LockManager;
 use NullLockManager;
 use PDO;
 use PDOException;
+use PDOStatement;
 use RuntimeException;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
+use Wikimedia\Rdbms\Platform\SqlitePlatform;
 
 /**
+ * This is the SQLite database abstraction layer.
+ *
+ * See docs/sqlite.txt for development notes about MediaWiki's sqlite schema.
+ *
  * @ingroup Database
  */
 class DatabaseSqlite extends Database {
@@ -47,7 +50,7 @@ class DatabaseSqlite extends Database {
 	/** @var PDO|null */
 	protected $conn;
 
-	/** @var FSLockManager (hopefully on the same server as the DB) */
+	/** @var LockManager|null (hopefully on the same server as the DB) */
 	protected $lockMgr;
 
 	/** @var string|null */
@@ -64,8 +67,13 @@ class DatabaseSqlite extends Database {
 		// Optimizations or requirements regarding fsync() usage
 		'synchronous' => [ 'EXTRA', 'FULL', 'NORMAL', 'OFF' ],
 		// Optimizations for TEMPORARY tables
-		'temp_store' => [ 'FILE', 'MEMORY' ]
+		'temp_store' => [ 'FILE', 'MEMORY' ],
+		// Optimizations for disk use and page cache
+		'mmap_size' => 'integer'
 	];
+
+	/** @var ISQLPlatform */
+	protected $platform;
 
 	/**
 	 * Additional params include:
@@ -88,18 +96,16 @@ class DatabaseSqlite extends Database {
 
 		$this->trxMode = strtoupper( $params['trxMode'] ?? '' );
 
-		$lockDirectory = $this->getLockFileDirectory();
-		if ( $lockDirectory !== null ) {
-			$this->lockMgr = new FSLockManager( [
-				'domain' => $this->getDomainID(),
-				'lockDirectory' => $lockDirectory
-			] );
-		} else {
-			$this->lockMgr = new NullLockManager( [ 'domain' => $this->getDomainID() ] );
-		}
+		$this->lockMgr = $this->makeLockManager();
+		$this->platform = new SqlitePlatform(
+			$this,
+			$params['queryLogger'],
+			$this->currentDomain,
+			$this->errorLogger
+		);
 	}
 
-	protected static function getAttributes() {
+	public static function getAttributes() {
 		return [
 			self::ATTR_DB_IS_FILE => true,
 			self::ATTR_DB_LEVEL_LOCKING => true
@@ -121,6 +127,7 @@ class DatabaseSqlite extends Database {
 		$p['tablePrefix'] = '';
 		/** @var DatabaseSqlite $db */
 		$db = Database::factory( 'sqlite', $p );
+		'@phan-var DatabaseSqlite $db';
 
 		return $db;
 	}
@@ -156,7 +163,13 @@ class DatabaseSqlite extends Database {
 			throw $this->newExceptionAfterConnectError( "Got mode '{$this->trxMode}' for BEGIN" );
 		}
 
-		$attributes = [ PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT ];
+		$attributes = [
+			PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT,
+			// Starting with PHP 8.1, The SQLite PDO returns proper types instead
+			// of strings or null for everything. We cast every non-null value to
+			// string to restore the old behavior.
+			PDO::ATTR_STRINGIFY_FETCHES => true
+		];
 		if ( $this->getFlag( self::DBO_PERSISTENT ) ) {
 			// Persistent connections can avoid some schema index reading overhead.
 			// On the other hand, they can cause horrible contention with DBO_TRX.
@@ -178,6 +191,7 @@ class DatabaseSqlite extends Database {
 		}
 
 		$this->currentDomain = new DatabaseDomain( $db, null, $tablePrefix );
+		$this->platform->setPrefix( $tablePrefix );
 
 		try {
 			$flags = self::QUERY_CHANGE_TRX | self::QUERY_NO_RETRY;
@@ -188,7 +202,10 @@ class DatabaseSqlite extends Database {
 			$pragmas += $this->getDefaultPragmas();
 			foreach ( $pragmas as $name => $value ) {
 				$allowed = self::VALID_PRAGMAS[$name];
-				if ( in_array( $value, $allowed, true ) ) {
+				if (
+					( is_array( $allowed ) && in_array( $value, $allowed, true ) ) ||
+					( is_string( $allowed ) && gettype( $value ) === $allowed )
+				) {
 					$this->query( "PRAGMA $name = $value", __METHOD__, $flags );
 				}
 			}
@@ -234,11 +251,30 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
+	 * Initialize/reset the LockManager instance
+	 *
+	 * @return LockManager
+	 */
+	private function makeLockManager(): LockManager {
+		$lockDirectory = $this->getLockFileDirectory();
+		if ( $lockDirectory !== null ) {
+			return new FSLockManager( [
+				'domain' => $this->getDomainID(),
+				'lockDirectory' => $lockDirectory,
+			] );
+		} else {
+			return new NullLockManager( [ 'domain' => $this->getDomainID() ] );
+		}
+	}
+
+	/**
 	 * Does not actually close the connection, just destroys the reference for GC to do its work
 	 * @return bool
 	 */
 	protected function closeConnection() {
 		$this->conn = null;
+		// Release all locks, via FSLockManager::__destruct, as the base class expects
+		$this->lockMgr = null;
 
 		return true;
 	}
@@ -292,7 +328,7 @@ class DatabaseSqlite extends Database {
 
 	/**
 	 * Returns version of currently supported SQLite fulltext search module or false if none present.
-	 * @return string
+	 * @return string|false
 	 */
 	public static function getFulltextSearchModule() {
 		static $cachedResult = null;
@@ -338,30 +374,18 @@ class DatabaseSqlite extends Database {
 		);
 	}
 
-	protected function isWriteQuery( $sql, $flags ) {
-		return parent::isWriteQuery( $sql, $flags ) && !preg_match( '/^(ATTACH|PRAGMA)\b/i', $sql );
-	}
+	protected function doSingleStatementQuery( string $sql ): QueryStatus {
+		$conn = $this->getBindingHandle();
 
-	protected function isTransactableQuery( $sql ) {
-		return parent::isTransactableQuery( $sql ) && !in_array(
-			$this->getQueryVerb( $sql ),
-			[ 'ATTACH', 'PRAGMA' ],
-			true
+		$res = $conn->query( $sql );
+		$this->lastAffectedRowCount = $res ? $res->rowCount() : 0;
+
+		return new QueryStatus(
+			$res instanceof PDOStatement ? new SqliteResultWrapper( $res ) : $res,
+			$res ? $res->rowCount() : 0,
+			$this->lastError(),
+			$this->lastErrno()
 		);
-	}
-
-	/**
-	 * @param string $sql
-	 * @return IResultWrapper|bool
-	 */
-	protected function doQuery( $sql ) {
-		$res = $this->getBindingHandle()->query( $sql );
-		if ( $res === false ) {
-			return false;
-		}
-
-		$this->lastAffectedRowCount = $res->rowCount();
-		return new SqliteResultWrapper( $res );
 	}
 
 	protected function doSelectDomain( DatabaseDomain $domain ) {
@@ -380,6 +404,7 @@ class DatabaseSqlite extends Database {
 				null,
 				$domain->getTablePrefix()
 			);
+			$this->platform->setPrefix( $domain->getTablePrefix() );
 
 			return true;
 		}
@@ -391,23 +416,11 @@ class DatabaseSqlite extends Database {
 			);
 		}
 
+		// Update that domain fields on success (no exception thrown)
+		$this->currentDomain = $domain;
+		$this->platform->setPrefix( $domain->getTablePrefix() );
+
 		return true;
-	}
-
-	/**
-	 * Use MySQL's naming (accounts for prefix etc) but remove surrounding backticks
-	 *
-	 * @param string $name
-	 * @param string $format
-	 * @return string
-	 */
-	public function tableName( $name, $format = 'quoted' ) {
-		// table names starting with sqlite_ are reserved
-		if ( strpos( $name, 'sqlite_' ) === 0 ) {
-			return $name;
-		}
-
-		return str_replace( '"', '', parent::tableName( $name, $format ) );
 	}
 
 	/**
@@ -520,50 +533,9 @@ class DatabaseSqlite extends Database {
 		return in_array( 'UNIQUE', $options );
 	}
 
-	protected function makeSelectOptions( array $options ) {
-		// Remove problematic options that the base implementation converts to SQL
-		foreach ( $options as $k => $v ) {
-			if ( is_numeric( $k ) && ( $v === 'FOR UPDATE' || $v === 'LOCK IN SHARE MODE' ) ) {
-				$options[$k] = '';
-			}
-		}
-
-		return parent::makeSelectOptions( $options );
-	}
-
-	/**
-	 * @param array $options
-	 * @return array
-	 */
-	protected function makeUpdateOptionsArray( $options ) {
-		$options = parent::makeUpdateOptionsArray( $options );
-		$options = $this->rewriteIgnoreKeyword( $options );
-
-		return $options;
-	}
-
-	/**
-	 * @param array $options
-	 * @return array
-	 */
-	private function rewriteIgnoreKeyword( $options ) {
-		# SQLite uses OR IGNORE not just IGNORE
-		foreach ( $options as $k => $v ) {
-			if ( $v == 'IGNORE' ) {
-				$options[$k] = 'OR IGNORE';
-			}
-		}
-
-		return $options;
-	}
-
-	protected function makeInsertNonConflictingVerbAndOptions() {
-		return [ 'INSERT OR IGNORE INTO', '' ];
-	}
-
 	protected function doReplace( $table, array $identityKey, array $rows, $fname ) {
 		$encTable = $this->tableName( $table );
-		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
+		list( $sqlColumns, $sqlTuples ) = $this->platform->makeInsertLists( $rows );
 		// https://sqlite.org/lang_insert.html
 		$this->query(
 			"REPLACE INTO $encTable ($sqlColumns) VALUES $sqlTuples",
@@ -587,24 +559,6 @@ class DatabaseSqlite extends Database {
 	/**
 	 * @return bool
 	 */
-	public function unionSupportsOrderAndLimit() {
-		return false;
-	}
-
-	/**
-	 * @param string[] $sqls
-	 * @param bool $all Whether to "UNION ALL" or not
-	 * @return string
-	 */
-	public function unionQueries( $sqls, $all ) {
-		$glue = $all ? ' UNION ALL ' : ' UNION ';
-
-		return implode( $glue, $sqls );
-	}
-
-	/**
-	 * @return bool
-	 */
 	public function wasDeadlock() {
 		return $this->lastErrno() == 5; // SQLITE_BUSY
 	}
@@ -620,7 +574,7 @@ class DatabaseSqlite extends Database {
 		return $errno == 17; // SQLITE_SCHEMA;
 	}
 
-	protected function wasKnownStatementRollbackError() {
+	protected function isKnownStatementRollbackError( $errno ) {
 		// ON CONFLICT ROLLBACK clauses make it so that SQLITE_CONSTRAINT error is
 		// ambiguous with regard to whether it implies a ROLLBACK or an ABORT happened.
 		// https://sqlite.org/lang_createtable.html#uniqueconst
@@ -665,7 +619,7 @@ class DatabaseSqlite extends Database {
 	 *
 	 * @param string $table
 	 * @param string $field
-	 * @return SQLiteField|bool False on failure
+	 * @return SQLiteField|false False on failure
 	 */
 	public function fieldInfo( $table, $field ) {
 		$tableName = $this->tableName( $table );
@@ -752,24 +706,6 @@ class DatabaseSqlite extends Database {
 		}
 	}
 
-	public function buildSubstring( $input, $startPosition, $length = null ) {
-		$this->assertBuildSubstringParams( $startPosition, $length );
-		$params = [ $input, $startPosition ];
-		if ( $length !== null ) {
-			$params[] = $length;
-		}
-		return 'SUBSTR(' . implode( ',', $params ) . ')';
-	}
-
-	/**
-	 * @param string $field Field or column to cast
-	 * @return string
-	 * @since 1.28
-	 */
-	public function buildStringCast( $field ) {
-		return 'CAST ( ' . $field . ' AS TEXT )';
-	}
-
 	/**
 	 * No-op version of deadlockLoop
 	 *
@@ -780,63 +716,6 @@ class DatabaseSqlite extends Database {
 		$function = array_shift( $args );
 
 		return $function( ...$args );
-	}
-
-	/**
-	 * @param string $s
-	 * @return string
-	 */
-	protected function replaceVars( $s ) {
-		$s = parent::replaceVars( $s );
-		if ( preg_match( '/^\s*(CREATE|ALTER) TABLE/i', $s ) ) {
-			// CREATE TABLE hacks to allow schema file sharing with MySQL
-
-			// binary/varbinary column type -> blob
-			$s = preg_replace( '/\b(var)?binary(\(\d+\))/i', 'BLOB', $s );
-			// no such thing as unsigned
-			$s = preg_replace( '/\b(un)?signed\b/i', '', $s );
-			// INT -> INTEGER
-			$s = preg_replace( '/\b(tiny|small|medium|big|)int(\s*\(\s*\d+\s*\)|\b)/i', 'INTEGER', $s );
-			// floating point types -> REAL
-			$s = preg_replace(
-				'/\b(float|double(\s+precision)?)(\s*\(\s*\d+\s*(,\s*\d+\s*)?\)|\b)/i',
-				'REAL',
-				$s
-			);
-			// varchar -> TEXT
-			$s = preg_replace( '/\b(var)?char\s*\(.*?\)/i', 'TEXT', $s );
-			// TEXT normalization
-			$s = preg_replace( '/\b(tiny|medium|long)text\b/i', 'TEXT', $s );
-			// BLOB normalization
-			$s = preg_replace( '/\b(tiny|small|medium|long|)blob\b/i', 'BLOB', $s );
-			// BOOL -> INTEGER
-			$s = preg_replace( '/\bbool(ean)?\b/i', 'INTEGER', $s );
-			// DATETIME -> TEXT
-			$s = preg_replace( '/\b(datetime|timestamp)\b/i', 'TEXT', $s );
-			// No ENUM type
-			$s = preg_replace( '/\benum\s*\([^)]*\)/i', 'TEXT', $s );
-			// binary collation type -> nothing
-			$s = preg_replace( '/\bbinary\b/i', '', $s );
-			// auto_increment -> autoincrement
-			$s = preg_replace( '/\bauto_increment\b/i', 'AUTOINCREMENT', $s );
-			// No explicit options
-			$s = preg_replace( '/\)[^);]*(;?)\s*$/', ')\1', $s );
-			// AUTOINCREMENT should immediately follow PRIMARY KEY
-			$s = preg_replace( '/primary key (.*?) autoincrement/i', 'PRIMARY KEY AUTOINCREMENT $1', $s );
-		} elseif ( preg_match( '/^\s*CREATE (\s*(?:UNIQUE|FULLTEXT)\s+)?INDEX/i', $s ) ) {
-			// No truncated indexes
-			$s = preg_replace( '/\(\d+\)/', '', $s );
-			// No FULLTEXT
-			$s = preg_replace( '/\bfulltext\b/i', '', $s );
-		} elseif ( preg_match( '/^\s*DROP INDEX/i', $s ) ) {
-			// DROP INDEX is database-wide, not table-specific, so no ON <table> clause.
-			$s = preg_replace( '/\sON\s+[^\s]*/i', '', $s );
-		} elseif ( preg_match( '/^\s*INSERT IGNORE\b/i', $s ) ) {
-			// INSERT IGNORE --> INSERT OR IGNORE
-			$s = preg_replace( '/^\s*INSERT IGNORE\b/i', 'INSERT OR IGNORE', $s );
-		}
-
-		return $s;
 	}
 
 	public function doLockIsFree( string $lockName, string $method ) {
@@ -858,32 +737,6 @@ class DatabaseSqlite extends Database {
 
 	public function doUnlock( string $lockName, string $method ) {
 		return $this->lockMgr->unlock( [ $lockName ], LockManager::LOCK_EX )->isGood();
-	}
-
-	/**
-	 * Build a concatenation list to feed into a SQL query
-	 *
-	 * @param string[] $stringList
-	 * @return string
-	 */
-	public function buildConcat( $stringList ) {
-		return '(' . implode( ') || (', $stringList ) . ')';
-	}
-
-	public function buildGroupConcatField(
-		$delim, $table, $field, $conds = '', $join_conds = []
-	) {
-		$fld = "group_concat($field," . $this->addQuotes( $delim ) . ')';
-
-		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
-	}
-
-	public function buildGreatest( $fields, $values ) {
-		return $this->buildSuperlative( 'MAX', $fields, $values );
-	}
-
-	public function buildLeast( $fields, $values ) {
-		return $this->buildSuperlative( 'MIN', $fields, $values );
 	}
 
 	/**
@@ -910,9 +763,9 @@ class DatabaseSqlite extends Database {
 		$sqlCreateTable = $obj->sql;
 		$sqlCreateTable = preg_replace(
 			'/(?<=\W)"?' .
-				preg_quote( trim( $this->addIdentifierQuotes( $oldName ), '"' ), '/' ) .
+				preg_quote( trim( $this->platform->addIdentifierQuotes( $oldName ), '"' ), '/' ) .
 				'"?(?=\W)/',
-			$this->addIdentifierQuotes( $newName ),
+			$this->platform->addIdentifierQuotes( $newName ),
 			$sqlCreateTable,
 			1
 		);
@@ -925,7 +778,7 @@ class DatabaseSqlite extends Database {
 					'CREATE TABLE',
 					'CREATE TEMPORARY TABLE',
 					$sqlCreateTable
-				 );
+				);
 			}
 		}
 
@@ -954,8 +807,8 @@ class DatabaseSqlite extends Database {
 			}
 			// Try to come up with a new index name, given indexes have database scope in SQLite
 			$indexName = $newName . '_' . $index->name;
-			$sqlIndex .= ' ' . $this->addIdentifierQuotes( $indexName ) .
-				' ON ' . $this->addIdentifierQuotes( $newName );
+			$sqlIndex .= ' ' . $this->platform->addIdentifierQuotes( $indexName ) .
+				' ON ' . $this->platform->addIdentifierQuotes( $newName );
 
 			$indexInfo = $this->query(
 				'PRAGMA INDEX_INFO(' . $this->addQuotes( $index->name ) . ')',
@@ -1010,18 +863,6 @@ class DatabaseSqlite extends Database {
 		return $endArray;
 	}
 
-	public function dropTable( $table, $fname = __METHOD__ ) {
-		if ( !$this->tableExists( $table, $fname ) ) {
-			return false;
-		}
-
-		// No CASCADE support; https://www.sqlite.org/lang_droptable.html
-		$sql = "DROP TABLE " . $this->tableName( $table );
-		$this->query( $sql, $fname, self::QUERY_CHANGE_SCHEMA );
-
-		return true;
-	}
-
 	protected function doTruncate( array $tables, $fname ) {
 		$this->startAtomic( $fname );
 
@@ -1034,7 +875,7 @@ class DatabaseSqlite extends Database {
 			$encSeqNames[] = $this->addQuotes( $this->tableName( $table, 'raw' ) );
 		}
 
-		$encMasterTable = $this->addIdentifierQuotes( 'sqlite_sequence' );
+		$encMasterTable = $this->platform->addIdentifierQuotes( 'sqlite_sequence' );
 		$this->query(
 			"DELETE FROM $encMasterTable WHERE name IN(" . implode( ',', $encSeqNames ) . ")",
 			$fname,
@@ -1055,7 +896,7 @@ class DatabaseSqlite extends Database {
 	 * Issue ATTATCH statements for all unattached foreign DBs in table aliases
 	 */
 	private function attachDatabasesFromTableAliases() {
-		foreach ( $this->tableAliases as $params ) {
+		foreach ( $this->platform->getTableAliases() as $params ) {
 			if (
 				$params['dbname'] !== $this->getDBname() &&
 				!isset( $this->sessionAttachedDbs[$params['dbname']] )
@@ -1072,6 +913,17 @@ class DatabaseSqlite extends Database {
 
 	protected function doHandleSessionLossPreconnect() {
 		$this->sessionAttachedDbs = [];
+		// Release all locks, via FSLockManager::__destruct, as the base class expects;
+		$this->lockMgr = null;
+		// Create a new lock manager instance
+		$this->lockMgr = $this->makeLockManager();
+	}
+
+	protected function doFlushSession( $fname ) {
+		// Release all locks, via FSLockManager::__destruct, as the base class expects
+		$this->lockMgr = null;
+		// Create a new lock manager instance
+		$this->lockMgr = $this->makeLockManager();
 	}
 
 	/**

@@ -32,7 +32,9 @@ use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\PageReference;
+use MediaWiki\User\TempUser\RealTempUserConfig;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWikiTitleCodec;
@@ -70,6 +72,18 @@ trait DummyServicesTrait {
 	 * if there is no entry here than the page is not watched
 	 */
 	private $watchedItemStoreData = [];
+
+	/**
+	 * @return array keys are the setting name, values are the default value.
+	 */
+	private static function getDefaultSettings(): array {
+		static $defaultSettings = null;
+		if ( $defaultSettings !== null ) {
+			return $defaultSettings;
+		}
+		$defaultSettings = iterator_to_array( MainConfigSchema::listDefaultValues() );
+		return $defaultSettings;
+	}
 
 	/**
 	 * @param array $interwikis valid interwikis, either a string if all that matters is
@@ -303,35 +317,11 @@ trait DummyServicesTrait {
 		//     This shouldn't be an issue though, since it should only be called in
 		//     the dedicated tests for that deprecation method, which use the real service
 
-		// configuration is based on DefaultSettings
+		// configuration is based on the defaults in MainConfigSchema
 		$serviceOptions = new ServiceOptions(
 			NamespaceInfo::CONSTRUCTOR_OPTIONS,
 			$options, // caller can override the default config by specifying it here
-			[
-				'CanonicalNamespaceNames' => NamespaceInfo::CANONICAL_NAMES,
-				'CapitalLinkOverrides' => [],
-				'CapitalLinks' => true,
-				'ContentNamespaces' => [ NS_MAIN ],
-				'ExtraNamespaces' => [],
-				'ExtraSignatureNamespaces' => [],
-				'NamespaceContentModels' => [],
-				'NamespacesWithSubpages' => [
-					NS_TALK => true,
-					NS_USER => true,
-					NS_USER_TALK => true,
-					NS_PROJECT => true,
-					NS_PROJECT_TALK => true,
-					NS_FILE_TALK => true,
-					NS_MEDIAWIKI => true,
-					NS_MEDIAWIKI_TALK => true,
-					NS_TEMPLATE => true,
-					NS_TEMPLATE_TALK => true,
-					NS_HELP => true,
-					NS_HELP_TALK => true,
-					NS_CATEGORY_TALK => true,
-				],
-				'NonincludableNamespaces' => [],
-			]
+			self::getDefaultSettings()
 		);
 		return new NamespaceInfo(
 			$serviceOptions,
@@ -371,17 +361,10 @@ trait DummyServicesTrait {
 	 * @return UserNameUtils
 	 */
 	private function getDummyUserNameUtils( array $options = [] ) {
-		$baseOptions = [
-			'MaxNameChars' => 255,
-			'ReservedUsernames' => [
-				'MediaWiki default'
-			],
-			'InvalidUsernameCharacters' => '@:',
-		];
 		$serviceOptions = new ServiceOptions(
 			UserNameUtils::CONSTRUCTOR_OPTIONS,
 			$options,
-			$baseOptions // fallback for options not in $options
+			self::getDefaultSettings() // fallback for options not in $options
 		);
 
 		// The only methods we call on the Language object is ucfirst and getNsText,
@@ -429,7 +412,15 @@ trait DummyServicesTrait {
 			$logger,
 			$titleParser,
 			$textFormatter,
-			$options['hookContainer'] ?? $this->createHookContainer()
+			$options['hookContainer'] ?? $this->createHookContainer(),
+			new RealTempUserConfig( [
+				'enabled' => true,
+				'actions' => [ 'edit' ],
+				'serialProvider' => [ 'type' => 'local' ],
+				'serialMapping' => [ 'type' => 'plain-numeric' ],
+				'matchPattern' => '*$1',
+				'genPattern' => '*Unregistered $1'
+			] )
 		);
 	}
 

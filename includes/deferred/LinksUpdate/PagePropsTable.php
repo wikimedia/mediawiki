@@ -5,6 +5,7 @@ namespace MediaWiki\Deferred\LinksUpdate;
 use HTMLCacheUpdateJob;
 use JobQueueGroup;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use ParserOutput;
 
 /**
@@ -36,7 +37,7 @@ class PagePropsTable extends LinksTable {
 	 */
 	private $linkInvalidations;
 
-	public const CONSTRUCTOR_OPTIONS = [ 'PagePropLinkInvalidations' ];
+	public const CONSTRUCTOR_OPTIONS = [ MainConfigNames::PagePropLinkInvalidations ];
 
 	public function __construct(
 		ServiceOptions $options,
@@ -44,7 +45,7 @@ class PagePropsTable extends LinksTable {
 	) {
 		$this->jobQueueGroup = $jobQueueGroup;
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		$this->linkInvalidations = $options->get( 'PagePropLinkInvalidations' );
+		$this->linkInvalidations = $options->get( MainConfigNames::PagePropLinkInvalidations );
 	}
 
 	public function setParserOutput( ParserOutput $parserOutput ) {

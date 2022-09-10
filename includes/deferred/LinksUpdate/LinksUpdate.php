@@ -30,6 +30,7 @@ use DeprecationHelper;
 use Job;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
@@ -93,6 +94,7 @@ class LinksUpdate extends DataUpdate {
 	public function __construct( PageIdentity $page, ParserOutput $parserOutput, $recursive = true ) {
 		parent::__construct();
 
+		// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty castFrom does not return null here
 		$this->mTitle = Title::castFromPageIdentity( $page );
 		$this->mParserOutput = $parserOutput;
 
@@ -177,11 +179,11 @@ class LinksUpdate extends DataUpdate {
 			$services->getCollationFactory(),
 			$page,
 			$services->getLinkTargetLookup(),
-			$config->get( 'UpdateRowsPerQuery' ),
+			$config->get( MainConfigNames::UpdateRowsPerQuery ),
 			function ( $table, $rows ) {
 				$this->getHookRunner()->onLinksUpdateAfterInsert( $this, $table, $rows );
 			},
-			$config->get( 'TempCategoryCollations' )
+			$config->get( MainConfigNames::TempCategoryCollations )
 		);
 		// TODO: this does not have to be called in LinksDeletionUpdate
 		$this->tableFactory->setParserOutput( $parserOutput );
@@ -359,10 +361,12 @@ class LinksUpdate extends DataUpdate {
 		if ( !$backlinkCache ) {
 			wfDeprecatedMsg( __METHOD__ . " needs a BacklinkCache object, null passed", '1.37' );
 			$backlinkCache = MediaWikiServices::getInstance()->getBacklinkCacheFactory()
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				->getBacklinkCache( $title );
 		}
 		if ( $backlinkCache->hasLinks( $table ) ) {
 			$job = new RefreshLinksJob(
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$title,
 				[
 					'table' => $table,

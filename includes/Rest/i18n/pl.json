@@ -44,5 +44,7 @@
 	"rest-update-cannot-create-page": "Nie można utworzyć strony „$1”, ponieważ już istnieje. Aby zaktualizować istniejącą stronę, podaj ID bazowej wersji w strukturze pod kluczem „latest” w treści żądania.",
 	"rest-extraneous-csrf-token": "Znaleziono obcy token CSRF. Nie można używać tokenów CSRF podczas korzystania z mechanizmów uwierzytelniania takich jak OAuth, które są odporne na ataki CSRF.",
 	"rest-cannot-load-file": "Plik o tytule „$1” nie mógł zostać wczytany.",
-	"rest-cross-origin-anon-write": "Anonimowe żądania zapisu w innych domen nie są dozwolone"
+	"rest-cross-origin-anon-write": "Anonimowe żądania zapisu w innych domen nie są dozwolone",
+	"rest-requires-safe-against-csrf": "Ten endpoint wymaga sesji odpornej na CSRF.",
+	"rest-badtoken": "Podany token CSRF jest nieprawidłowy."
 }

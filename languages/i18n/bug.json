@@ -1,13 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Beeyan",
 			"DannyS712",
 			"Ezagren",
 			"Kurniasan",
 			"Notanotheramy",
-			"Zaidpjd (on bug.wikipedia.org)",
-			"Amire80"
+			"Zaidpjd (on bug.wikipedia.org)"
 		]
 	},
 	"sunday": "ᨕᨖ",
@@ -72,15 +72,15 @@
 	"history": "Versi riolo leppaë",
 	"history_short": "ᨕᨊᨘ ᨆᨑᨗᨕᨚᨒᨚ",
 	"permalink": "Pranala permanen",
-	"view-view": "ᨅᨌ",
+	"skin-view-view": "ᨅᨌ",
 	"edit": "ᨄᨉᨙᨌᨙᨂᨗ",
-	"view-edit": "ᨄᨉᨙᨌᨙᨂᨗ",
+	"skin-view-edit": "ᨄᨉᨙᨌᨙᨂᨗ",
 	"create": "ᨆᨙᨅᨘ",
-	"view-create": "ᨆᨙᨅᨘ",
+	"skin-view-create": "ᨆᨙᨅᨘ",
 	"delete": "Peddé",
 	"protect": "Accalinruŋi",
 	"protect_change": "pinra",
-	"action-unprotect": "Téccalinruŋi",
+	"skin-action-unprotect": "Téccalinruŋi",
 	"unprotect": "Téccalinruŋi",
 	"newpage": "Leppa baru",
 	"talkpagelinktext": "bicara",

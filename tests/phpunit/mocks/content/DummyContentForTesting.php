@@ -45,7 +45,7 @@ class DummyContentForTesting extends AbstractContent {
 	}
 
 	/**
-	 * Returns native represenation of the data. Interpretation depends on the data model used,
+	 * Returns native representation of the data. Interpretation depends on the data model used,
 	 * as given by getDataModel().
 	 *
 	 * @return mixed The native representation of the content. Could be a string, a nested array
@@ -72,7 +72,7 @@ class DummyContentForTesting extends AbstractContent {
 	 * * $original->getModel() === $copy->getModel()
 	 * * $original->equals( $copy )
 	 *
-	 * If and only if the Content object is imutable, the copy() method can and should
+	 * If and only if the Content object is immutable, the copy() method can and should
 	 * return $this. That is,  $copy === $original may be true, but only for imutable content
 	 * objects.
 	 *

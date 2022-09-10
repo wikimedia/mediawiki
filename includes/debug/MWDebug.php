@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Logger\LegacyLogger;
+use MediaWiki\ResourceLoader\ResourceLoader;
 use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
@@ -70,7 +71,7 @@ class MWDebug {
 	protected static $deprecationWarnings = [];
 
 	/**
-	 * @var string[] Deprecation filter regexes
+	 * @var array Keys are regexes, values are optional callbacks to call if the filter is hit
 	 */
 	protected static $deprecationFilters = [];
 
@@ -367,8 +368,11 @@ class MWDebug {
 	 *   caller column.
 	 */
 	public static function sendRawDeprecated( $msg, $sendToLog = true, $callerFunc = '' ) {
-		foreach ( self::$deprecationFilters as $filter ) {
+		foreach ( self::$deprecationFilters as $filter => $callback ) {
 			if ( preg_match( $filter, $msg ) ) {
+				if ( is_callable( $callback ) ) {
+					$callback();
+				}
 				return;
 			}
 		}
@@ -396,12 +400,15 @@ class MWDebug {
 	 * Use this to filter deprecation warnings when testing deprecated code.
 	 *
 	 * @param string $regex
+	 * @param ?callable $callback To call if $regex is hit
 	 */
-	public static function filterDeprecationForTest( $regex ) {
+	public static function filterDeprecationForTest(
+		string $regex, ?callable $callback = null
+	): void {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
 			throw new RuntimeException( __METHOD__ . ' can only be used in tests' );
 		}
-		self::$deprecationFilters[] = $regex;
+		self::$deprecationFilters[$regex] = $callback;
 	}
 
 	/**

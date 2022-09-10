@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
@@ -46,9 +47,6 @@ class LinkCache implements LoggerAwareInterface {
 	/** @var WANObjectCache */
 	private $wanCache;
 
-	/** @var bool */
-	private $mForUpdate = false;
-
 	/** @var TitleFormatter */
 	private $titleFormatter;
 
@@ -70,19 +68,15 @@ class LinkCache implements LoggerAwareInterface {
 	/**
 	 * @param TitleFormatter $titleFormatter
 	 * @param WANObjectCache $cache
-	 * @param NamespaceInfo|null $nsInfo Null for backward compatibility, but deprecated
+	 * @param NamespaceInfo $nsInfo
 	 * @param ILoadBalancer|null $loadBalancer Use null when no database is set up, for example on installation
 	 */
 	public function __construct(
 		TitleFormatter $titleFormatter,
 		WANObjectCache $cache,
-		NamespaceInfo $nsInfo = null,
+		NamespaceInfo $nsInfo,
 		ILoadBalancer $loadBalancer = null
 	) {
-		if ( !$nsInfo ) {
-			wfDeprecated( __METHOD__ . ' with no NamespaceInfo argument', '1.34' );
-			$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
-		}
 		$this->goodLinks = new MapCacheLRU( self::MAX_SIZE );
 		$this->badLinks = new MapCacheLRU( self::MAX_SIZE );
 		$this->wanCache = $cache;
@@ -97,22 +91,6 @@ class LinkCache implements LoggerAwareInterface {
 	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
-	}
-
-	/**
-	 * General accessor to get/set whether the primary DB should be used
-	 *
-	 * This used to also set the FOR UPDATE option (locking the rows read
-	 * in order to avoid link table inconsistency), which was later removed
-	 * for performance on wikis with a high edit rate.
-	 *
-	 * @param bool|null $update
-	 * @return bool
-	 * @deprecated Since 1.34. Use PageStore::getPageForLink with IDBAccessObject::READ_LATEST.
-	 */
-	public function forUpdate( $update = null ) {
-		wfDeprecated( __METHOD__, '1.34' ); // hard deprecated since 1.37
-		return wfSetVar( $this->mForUpdate, $update );
 	}
 
 	/**
@@ -201,7 +179,7 @@ class LinkCache implements LoggerAwareInterface {
 	 *        Can be given as an object or an associative array containing the
 	 *        page_namespace and page_title fields.
 	 *        In MediaWiki 1.36 and earlier, only LinkTarget was accepted.
-	 * @param string $field ( 'id', 'length', 'redirect', 'revision', 'model', 'lang', 'restrictions' )
+	 * @param string $field ( 'id', 'length', 'redirect', 'revision', 'model', 'lang' )
 	 * @return string|int|null The field value, or null if the page was not cached or does not exist
 	 *         or is not a proper page (e.g. a special page or interwiki link).
 	 */
@@ -237,10 +215,6 @@ class LinkCache implements LoggerAwareInterface {
 			case 'lang':
 				return !empty( $row->page_lang )
 					? strval( $row->page_lang )
-					: null;
-			case 'restrictions':
-				return !empty( $row->page_restrictions )
-					? strval( $row->page_restrictions )
 					: null;
 			default:
 				throw new InvalidArgumentException( "Unknown field: $field" );
@@ -293,7 +267,6 @@ class LinkCache implements LoggerAwareInterface {
 			'page_latest' => (int)$revision,
 			'page_content_model' => $model ? (string)$model : null,
 			'page_lang' => $lang ? (string)$lang : null,
-			'page_restrictions' => null,
 			'page_is_new' => 0,
 			'page_touched' => '',
 		] );
@@ -382,13 +355,13 @@ class LinkCache implements LoggerAwareInterface {
 	 * @return array
 	 */
 	public static function getSelectFields() {
-		$pageLanguageUseDB = MediaWikiServices::getInstance()->getMainConfig()->get( 'PageLanguageUseDB' );
+		$pageLanguageUseDB = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::PageLanguageUseDB );
 
 		$fields = array_merge(
 			PageStoreRecord::REQUIRED_FIELDS,
 			[
 				'page_len',
-				'page_restrictions',
 				'page_content_model',
 			]
 		);
@@ -447,9 +420,6 @@ class LinkCache implements LoggerAwareInterface {
 		$dbkey = $link->getDBkey();
 		$callerShouldAddGoodLink = false;
 
-		if ( $this->mForUpdate ) {
-			$queryFlags |= IDBAccessObject::READ_LATEST;
-		}
 		$forUpdate = $queryFlags & IDBAccessObject::READ_LATEST;
 
 		if ( !$forUpdate && $this->isBadLink( $key ) ) {

@@ -50,7 +50,7 @@ class DeleteUserEmail extends Maintenance {
 		}
 
 		// Checking whether User object is valid and has an actual id
-		if ( !$user || !$user->getId() || !$user->loadFromId() ) {
+		if ( !$user || !$user->isRegistered() || !$user->loadFromId() ) {
 			$this->fatalError( "Error: user '$userName' could not be loaded" );
 		}
 

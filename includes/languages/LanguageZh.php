@@ -1,7 +1,5 @@
 <?php
 /**
- * Chinese specific code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,14 +16,16 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
 
 /**
- * class that handles both Traditional and Simplified Chinese
- * right now it only distinguish zh_hans, zh_hant, zh_cn, zh_tw, zh_sg and zh_hk.
+ * Chinese-specific code.
  *
- * @ingroup Language
+ * This handles both Traditional and Simplified Chinese.
+ * Right now, we distinguish `zh_hans`, `zh_hant`, `zh_cn`, `zh_tw`, `zh_sg`,
+ * and `zh_hk`.
+ *
+ * @ingroup Languages
  */
 class LanguageZh extends LanguageZh_hans {
 	/**

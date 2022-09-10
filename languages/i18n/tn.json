@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Cbrown1023",
+			"F Samaritani",
 			"Hakka",
 			"Mompati ike",
-			"Amire80",
-			"F Samaritani",
 			"Rebelagent"
 		]
 	},
@@ -98,6 +98,7 @@
 	"searchbutton": "Senka",
 	"go": "Tsamaya",
 	"searcharticle": "Tsamaya",
+	"skin-view-history": "Bona Segologolo",
 	"history": "Segologolo sa Tsebe",
 	"history_short": "Ditso",
 	"history_small": "segologolo",
@@ -105,13 +106,18 @@
 	"printableversion": "Mokwalo o o ka gatisiwang motlhofo",
 	"permalink": "Kgolagano ya sennelaruri",
 	"view": "Bona",
+	"skin-view-view": "Bala",
+	"skin-view-foreign": "Bona mo $1",
 	"edit": "Baakanya",
+	"skin-view-edit": "Fetola",
 	"create": "Dira",
+	"skin-view-create": "Dira",
 	"create-local": "Tsenya thaloso",
 	"delete": "Sutlha",
 	"undelete_short": "Suthulola {{PLURAL:$1|phetolo e le nngwe|diphetolo}}",
 	"protect": "Sireletsa",
 	"protect_change": "Fetola",
+	"skin-action-unprotect": "Fetola tshireletso",
 	"unprotect": "Fetola tshireletso",
 	"newpage": "Tsebe e ntsha",
 	"talkpagelinktext": "bua",
@@ -146,7 +152,6 @@
 	"privacypage": "Project:Melawana ya sephiri",
 	"ok": "Ee",
 	"youhavenewmessages": "O na le $1 ($2).",
-	"youhavenewmessagesmulti": "O na le molaetsa o moša mo $1",
 	"editsection": "fetola",
 	"editold": "fetola",
 	"viewsourceold": "bona motswedi",
@@ -160,6 +165,7 @@
 	"confirmable-confirm": "A {{GENDER:$1|o a}} netefatsa",
 	"confirmable-yes": "Ee",
 	"confirmable-no": "Nnyaa",
+	"thisisdeleted": "Bona kana suthulola $1?",
 	"viewdeleted": "Bona $1?",
 	"red-link-title": "$1 (Tsebe ga eyo)",
 	"nstab-main": "Tsebe",
@@ -177,6 +183,7 @@
 	"nosuchspecialpage": "A gona tsebe e faphegileng e ntseng jaalo",
 	"badtitle": "Setlhogo se se sa siamang",
 	"viewsource": "Lebelela motswedi",
+	"skin-action-viewsource": "Bona motswedi",
 	"viewsource-title": "Bona motswedi wa $1",
 	"protectedpagetext": "Tsebe e, e sireleditswe go emisa gore e ka fetolwa kana ya dirwa sepe fela",
 	"viewsourcetext": "O ka bona kana wa kopa motswedi wa tsebe e.",
@@ -417,6 +424,7 @@
 	"searchsuggest-search": "Batla {{SITENAME}}",
 	"searchsuggest-containing": "Bata ditsebe tsedi naleng",
 	"pagelang-reason": "Lebaka",
+	"paramvalidator-help-type-user-subtype-name": "leina la modirisi",
 	"nstab-mainpage": "Tsebe ya konokono",
 	"skin-action-delete": "Sutlha"
 }

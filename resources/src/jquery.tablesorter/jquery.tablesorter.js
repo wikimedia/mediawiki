@@ -82,8 +82,10 @@
 		// eslint-disable-next-line no-jquery/no-map-util
 		return $.map( node.childNodes, function ( elem ) {
 			if ( elem.nodeType === Node.ELEMENT_NODE ) {
-				// eslint-disable-next-line no-jquery/no-class-state
-				if ( $( elem ).hasClass( 'reference' ) ) {
+				if ( elem.nodeName.toLowerCase() === 'style' ) {
+					return null;
+				}
+				if ( elem.classList.contains( 'reference' ) ) {
 					return null;
 				}
 				return getElementSortKey( elem );

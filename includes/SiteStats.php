@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -63,7 +64,7 @@ class SiteStats {
 		}
 
 		if ( !self::isRowSensible( $row ) ) {
-			if ( $config->get( 'MiserMode' ) ) {
+			if ( $config->get( MainConfigNames::MiserMode ) ) {
 				// Start off with all zeroes, assuming that this is a new wiki or any
 				// repopulations where done manually via script.
 				SiteStatsInit::doPlaceholderInit();
@@ -157,16 +158,17 @@ class SiteStats {
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $group, $fname ) {
 				$dbr = self::getLB()->getConnectionRef( DB_REPLICA );
 				$setOpts += Database::getCacheSetOptions( $dbr );
-
-				return (int)$dbr->selectField(
-					'user_groups',
-					'COUNT(*)',
-					[
-						'ug_group' => $group,
-						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
-					],
-					$fname
-				);
+				return (int)$dbr->newSelectQueryBuilder()
+					->select( 'COUNT(*)' )
+					->from( 'user_groups' )
+					->where(
+						[
+							'ug_group' => $group,
+							'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
+						]
+					)
+					->caller( $fname )
+					->fetchField();
 			},
 			[ 'pcTTL' => $cache::TTL_PROC_LONG ]
 		);
@@ -183,7 +185,7 @@ class SiteStats {
 			$cache->makeKey( 'SiteStats', 'jobscount' ),
 			$cache::TTL_MINUTE,
 			static function ( $oldValue, &$ttl, array &$setOpts ) {
-				try{
+				try {
 					$jobs = array_sum( MediaWikiServices::getInstance()->getJobQueueGroup()->getQueueSizes() );
 				} catch ( JobQueueError $e ) {
 					$jobs = 0;
@@ -236,15 +238,26 @@ class SiteStats {
 
 	/**
 	 * @param IDatabase $db
-	 * @return stdClass|bool
+	 * @return stdClass
 	 */
 	private static function doLoadFromDB( IDatabase $db ) {
-		return $db->selectRow(
-			'site_stats',
-			self::selectFields(),
-			[ 'ss_row_id' => 1 ],
-			__METHOD__
-		);
+		$fields = self::selectFields();
+		$rows = $db->newSelectQueryBuilder()
+			->select( $fields )
+			->from( 'site_stats' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
+		$finalRow = new stdClass();
+		foreach ( $rows as $row ) {
+			foreach ( $fields as $field ) {
+				$finalRow->$field = $finalRow->$field ?? 0;
+				if ( $row->$field ) {
+					$finalRow->$field += $row->$field;
+				}
+			}
+
+		}
+		return $finalRow;
 	}
 
 	/**

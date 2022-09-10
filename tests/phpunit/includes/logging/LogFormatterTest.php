@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentityValue;
 
 /**
@@ -51,15 +52,15 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgLogTypes' => [ 'phpunit' ],
-			'wgLogActionsHandlers' => [ 'phpunit/test' => LogFormatter::class,
+		$this->overrideConfigValues( [
+			MainConfigNames::LogTypes => [ 'phpunit' ],
+			MainConfigNames::LogActionsHandlers => [ 'phpunit/test' => LogFormatter::class,
 				'phpunit/param' => LogFormatter::class ],
 		] );
 
 		$this->user = User::newFromName( 'Testuser' );
-		$this->title = Title::newFromText( 'SomeTitle' );
-		$this->target = Title::newFromText( 'TestTarget' );
+		$this->title = Title::makeTitle( NS_MAIN, 'SomeTitle' );
+		$this->target = Title::makeTitle( NS_MAIN, 'TestTarget' );
 
 		$this->context = new RequestContext();
 		$this->context->setUser( $this->user );
@@ -334,11 +335,11 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 			] ],
 			[ '4:title:key', 'project:foo', [
 				'key_ns' => NS_PROJECT,
-				'key_title' => Title::newFromText( 'project:foo' )->getFullText(),
+				'key_title' => Title::makeTitle( NS_PROJECT, 'Foo' )->getFullText(),
 			] ],
 			[ '4:title-link:key', 'project:foo', [
 				'key_ns' => NS_PROJECT,
-				'key_title' => Title::newFromText( 'project:foo' )->getFullText(),
+				'key_title' => Title::makeTitle( NS_PROJECT, 'Foo' )->getFullText(),
 			] ],
 			[ '4:title-link:key', '<invalid>', [
 				'key_ns' => NS_SPECIAL,

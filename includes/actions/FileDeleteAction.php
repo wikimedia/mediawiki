@@ -26,6 +26,7 @@ use File;
 use FileDeleteForm;
 use IContextSource;
 use LocalFile;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
 use OldLocalFile;
@@ -115,7 +116,9 @@ class FileDeleteAction extends DeleteAction {
 			$this->oldImage,
 			$reason,
 			$suppress,
-			$context->getUser()
+			$context->getUser(),
+			[],
+			$request->getCheck( 'wpDeleteTalk' )
 		);
 
 		if ( !$status->isGood() ) {
@@ -141,6 +144,7 @@ class FileDeleteAction extends DeleteAction {
 
 	protected function showFormWarnings(): void {
 		$this->getOutput()->addHTML( $this->prepareMessage( 'filedelete-intro' ) );
+		$this->showSubpagesWarnings();
 	}
 
 	/**
@@ -202,7 +206,7 @@ class FileDeleteAction extends DeleteAction {
 	protected function runExecuteChecks(): void {
 		parent::runExecuteChecks();
 
-		if ( $this->getContext()->getConfig()->get( 'UploadMaintenance' ) ) {
+		if ( $this->getContext()->getConfig()->get( MainConfigNames::UploadMaintenance ) ) {
 			throw new ErrorPageError( 'filedelete-maintenance-title', 'filedelete-maintenance' );
 		}
 	}

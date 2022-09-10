@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * Adds a generic button inline to the form. Does not do anything, you must add
  * click handling code in JavaScript. Use a HTMLSubmitField if you merely
@@ -67,7 +69,7 @@ class HTMLButtonField extends HTMLFormField {
 		$flags = '';
 		$prefix = 'mw-htmlform-';
 		if ( $this->mParent instanceof VFormHTMLForm ||
-			$this->mParent->getConfig()->get( 'UseMediaWikiUIEverywhere' )
+			$this->mParent->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere )
 		) {
 			$prefix = 'mw-ui-';
 			// add mw-ui-button separately, so the descriptor doesn't need to set it

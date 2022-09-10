@@ -22,6 +22,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -90,7 +91,8 @@ class AtomFeed extends ChannelFeed {
 	 * @param FeedItem $item
 	 */
 	public function outItem( $item ) {
-		$mimeType = MediaWikiServices::getInstance()->getMainConfig()->get( 'MimeType' );
+		$mimeType = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::MimeType );
 		// Manually escaping rather than letting Mustache do it because Mustache
 		// uses htmlentities, which does not work with XML
 		$templateParams = [

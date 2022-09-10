@@ -274,7 +274,6 @@ class RemexCompatMunger implements TreeHandler {
 
 		$inline = isset( self::$onlyInlineElements[$elementName] );
 		$under = $preposition === TreeBuilder::UNDER;
-		$elementToEnd = null;
 
 		if ( isset( self::$metadataElements[$elementName] ) ) {
 			// The element is a metadata element, that we allow to appear in
@@ -428,6 +427,7 @@ class RemexCompatMunger implements TreeHandler {
 			$fakeElement->userData = $rNode;
 			$this->serializer->removeNode( $fakeElement, $pos );
 		}
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable False positive
 		return $node;
 	}
 

@@ -24,8 +24,13 @@
  * @file
  * @ingroup Maintenance
  */
-use MediaWiki\MediaWikiServices;
+
+use MediaWiki\Maintenance\MaintenanceRunner;
 use MediaWiki\Settings\SettingsBuilder;
+
+// No AutoLoader yet
+require_once __DIR__ . '/includes/MaintenanceRunner.php';
+require_once __DIR__ . '/includes/MaintenanceParameters.php';
 
 if ( !defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 	echo "This file must be included after Maintenance.php\n";
@@ -36,7 +41,7 @@ if ( !defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 // If a class is using CommandLineInc (old school maintenance), they definitely
 // cannot be included and will proceed with execution
 // @phan-suppress-next-line PhanSuspiciousValueComparisonInGlobalScope
-if ( !Maintenance::shouldExecute() && $maintClass != CommandLineInc::class ) {
+if ( !MaintenanceRunner::shouldExecute() && $maintClass != CommandLineInc::class ) {
 	return;
 }
 
@@ -49,93 +54,37 @@ if ( !$maintClass || !class_exists( $maintClass ) ) {
 // Define the MediaWiki entrypoint
 define( 'MEDIAWIKI', true );
 
-// This environment variable is ensured present by Maintenance.php.
-$IP = getenv( 'MW_INSTALL_PATH' );
+$IP = wfDetectInstallPath();
 
-// Get an object to start us off
-/** @var Maintenance $maintenance */
-$maintenance = new $maintClass();
-
-// Basic checks and such
-$maintenance->setup();
+$runner = new MaintenanceRunner();
+$runner->init( $maintClass );
 
 // We used to call this variable $self, but it was moved
 // to $maintenance->mSelf. Keep that here for b/c
-$self = $maintenance->getName();
+$self = $runner->getName();
 
-// Define how settings are loaded (e.g. LocalSettings.php)
-if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
-	$maintenance->loadSettings();
-}
+$runner->defineSettings();
 
 // Custom setup for Maintenance entry point
 if ( !defined( 'MW_SETUP_CALLBACK' ) ) {
 
+	// Define a function, since we can't put a closure or object
+	// reference into MW_SETUP_CALLBACK.
 	function wfMaintenanceSetup( SettingsBuilder $settingsBuilder ) {
-		global $maintenance;
-		$config = $settingsBuilder->getConfig();
-
-		if ( $maintenance->getDbType() === Maintenance::DB_NONE ) {
-			$cacheConf = $config->get( 'LocalisationCacheConf' );
-			if ( $cacheConf['storeClass'] === false
-				&& ( $cacheConf['store'] == 'db'
-					|| ( $cacheConf['store'] == 'detect'
-						&& !$config->get( 'CacheDirectory' ) ) )
-			) {
-				$cacheConf['storeClass'] = LCStoreNull::class;
-				$settingsBuilder->putConfigValue( 'LocalisationCacheConf', $cacheConf );
-			}
-		}
-
-		$maintenance->finalSetup( $settingsBuilder );
+		global $runner;
+		$runner->overrideConfig( $settingsBuilder );
 	}
 
 	define( 'MW_SETUP_CALLBACK', 'wfMaintenanceSetup' );
 }
 
+// Initialize MediaWiki (load settings, initialized session,
+// enable MediaWikiServices)
 require_once "$IP/includes/Setup.php";
 
-// Initialize main config instance
-$maintenance->setConfig( MediaWikiServices::getInstance()->getMainConfig() );
-
-// Double check required extensions are installed
-$maintenance->checkRequiredExtensions();
-
-if ( $maintenance->getDbType() == Maintenance::DB_NONE ) {
-	// Be strict with maintenance tasks that claim to not need a database by
-	// disabling the storage backend.
-	MediaWikiServices::disableStorageBackend();
-}
-
-$maintenance->validateParamsAndArgs();
-
-// Do the work
-try {
-	$success = $maintenance->execute();
-} catch ( Exception $ex ) {
-	$success = false;
-	$exReportMessage = '';
-	while ( $ex ) {
-		$cls = get_class( $ex );
-		$exReportMessage .= "$cls from line {$ex->getLine()} of {$ex->getFile()}: {$ex->getMessage()}\n";
-		$exReportMessage .= $ex->getTraceAsString() . "\n";
-		$ex = $ex->getPrevious();
-	}
-	// Print the exception to stderr if possible, don't mix it in
-	// with stdout output.
-	if ( defined( 'STDERR' ) ) {
-		fwrite( STDERR, $exReportMessage );
-	} else {
-		echo $exReportMessage;
-	}
-}
-
-// Potentially debug globals
-$maintenance->globals();
-
-$maintenance->shutdown();
+$success = $runner->run();
 
 // Exit with an error status if execute() returned false
-if ( $success === false ) {
+if ( !$success ) {
 	exit( 1 );
 }

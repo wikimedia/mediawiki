@@ -20,6 +20,11 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\RestrictionStore;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+
 /**
  * Query module to enumerate all available pages.
  *
@@ -33,21 +38,27 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 	/** @var GenderCache */
 	private $genderCache;
 
+	/** @var RestrictionStore */
+	private $restrictionStore;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param GenderCache $genderCache
+	 * @param RestrictionStore $restrictionStore
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		NamespaceInfo $namespaceInfo,
-		GenderCache $genderCache
+		GenderCache $genderCache,
+		RestrictionStore $restrictionStore
 	) {
 		parent::__construct( $query, $moduleName, 'ap' );
 		$this->namespaceInfo = $namespaceInfo;
 		$this->genderCache = $genderCache;
+		$this->restrictionStore = $restrictionStore;
 	}
 
 	public function execute() {
@@ -90,7 +101,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			$this->addWhere( "page_title $op= $cont_from" );
 		}
 
-		$miserMode = $this->getConfig()->get( 'MiserMode' );
+		$miserMode = $this->getConfig()->get( MainConfigNames::MiserMode );
 		if ( !$miserMode ) {
 			if ( $params['filterredir'] == 'redirects' ) {
 				$this->addWhereFld( 'page_is_redirect', 1 );
@@ -284,72 +295,73 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 			'to' => null,
 			'prefix' => null,
 			'namespace' => [
-				ApiBase::PARAM_DFLT => NS_MAIN,
-				ApiBase::PARAM_TYPE => 'namespace',
+				ParamValidator::PARAM_DEFAULT => NS_MAIN,
+				ParamValidator::PARAM_TYPE => 'namespace',
 			],
 			'filterredir' => [
-				ApiBase::PARAM_DFLT => 'all',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'all',
+				ParamValidator::PARAM_TYPE => [
 					'all',
 					'redirects',
 					'nonredirects'
 				]
 			],
 			'minsize' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 			],
 			'maxsize' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 			],
 			'prtype' => [
-				ApiBase::PARAM_TYPE => Title::getFilteredRestrictionTypes( true ),
-				ApiBase::PARAM_ISMULTI => true
+				ParamValidator::PARAM_TYPE => $this->restrictionStore->listAllRestrictionTypes( true ),
+				ParamValidator::PARAM_ISMULTI => true
 			],
 			'prlevel' => [
-				ApiBase::PARAM_TYPE => $this->getConfig()->get( 'RestrictionLevels' ),
-				ApiBase::PARAM_ISMULTI => true
+				ParamValidator::PARAM_TYPE =>
+					$this->getConfig()->get( MainConfigNames::RestrictionLevels ),
+				ParamValidator::PARAM_ISMULTI => true
 			],
 			'prfiltercascade' => [
-				ApiBase::PARAM_DFLT => 'all',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'all',
+				ParamValidator::PARAM_TYPE => [
 					'cascading',
 					'noncascading',
 					'all'
 				],
 			],
 			'limit' => [
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
+				ParamValidator::PARAM_DEFAULT => 10,
+				ParamValidator::PARAM_TYPE => 'limit',
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				IntegerDef::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			],
 			'dir' => [
-				ApiBase::PARAM_DFLT => 'ascending',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'ascending',
+				ParamValidator::PARAM_TYPE => [
 					'ascending',
 					'descending'
 				]
 			],
 			'filterlanglinks' => [
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_TYPE => [
 					'withlanglinks',
 					'withoutlanglinks',
 					'all'
 				],
-				ApiBase::PARAM_DFLT => 'all'
+				ParamValidator::PARAM_DEFAULT => 'all'
 			],
 			'prexpiry' => [
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_TYPE => [
 					'indefinite',
 					'definite',
 					'all'
 				],
-				ApiBase::PARAM_DFLT => 'all'
+				ParamValidator::PARAM_DEFAULT => 'all'
 			],
 		];
 
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$ret['filterredir'][ApiBase::PARAM_HELP_MSG_APPEND] = [ 'api-help-param-limited-in-miser-mode' ];
 		}
 

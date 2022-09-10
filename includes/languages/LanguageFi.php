@@ -1,7 +1,5 @@
 <?php
 /**
- * Finnish (Suomi) specific code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,16 +17,16 @@
  *
  * @file
  * @author Niklas Laxström
- * @ingroup Language
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 
 /**
  * Finnish (Suomi)
  *
- * @ingroup Language
+ * @ingroup Languages
  */
 class LanguageFi extends Language {
 	/**
@@ -40,7 +38,8 @@ class LanguageFi extends Language {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
-		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		$grammarForms =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::GrammarForms );
 		if ( isset( $grammarForms['fi'][$case][$word] ) ) {
 			return $grammarForms['fi'][$case][$word];
 		}

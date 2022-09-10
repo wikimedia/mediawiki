@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\DAO\WikiAwareEntityTrait;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
@@ -73,7 +74,8 @@ class UserRightsProxy implements UserIdentity {
 	 * @return bool
 	 */
 	public static function validDatabase( $dbDomain ) {
-		$localDatabases = MediaWikiServices::getInstance()->getMainConfig()->get( 'LocalDatabases' );
+		$localDatabases = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::LocalDatabases );
 		return in_array( $dbDomain, $localDatabases );
 	}
 
@@ -126,8 +128,10 @@ class UserRightsProxy implements UserIdentity {
 	 * @return null|UserRightsProxy
 	 */
 	private static function newFromLookup( $dbDomain, $field, $value, $ignoreInvalidDB = false ) {
-		$sharedDB = MediaWikiServices::getInstance()->getMainConfig()->get( 'SharedDB' );
-		$sharedTables = MediaWikiServices::getInstance()->getMainConfig()->get( 'SharedTables' );
+		$sharedDB = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::SharedDB );
+		$sharedTables = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::SharedTables );
 		// If the user table is shared, perform the user query on it,
 		// but don't pass it to the UserRightsProxy,
 		// as user rights are normally not shared.

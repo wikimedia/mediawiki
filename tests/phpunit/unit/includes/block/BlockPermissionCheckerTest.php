@@ -5,6 +5,7 @@ use MediaWiki\Block\BlockPermissionChecker;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentity;
@@ -32,7 +33,7 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 	) {
 		$options = new ServiceOptions(
 			BlockPermissionChecker::CONSTRUCTOR_OPTIONS,
-			[ 'EnableUserEmail' => $enableUserEmail ]
+			[ MainConfigNames::EnableUserEmail => $enableUserEmail ]
 		);
 
 		// We don't care about how BlockUtils::parseBlockTarget actually works, just

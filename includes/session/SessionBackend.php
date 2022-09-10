@@ -26,6 +26,7 @@ namespace MediaWiki\Session;
 use CachedBagOStuff;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use User;
@@ -150,7 +151,8 @@ final class SessionBackend {
 		SessionId $id, SessionInfo $info, CachedBagOStuff $store, LoggerInterface $logger,
 		HookContainer $hookContainer, $lifetime
 	) {
-		$phpSessionHandling = \RequestContext::getMain()->getConfig()->get( 'PHPSessionHandling' );
+		$phpSessionHandling = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::PHPSessionHandling );
 		$this->usePhpSessionHandling = $phpSessionHandling !== 'disable';
 
 		if ( $info->getUserInfo() && !$info->getUserInfo()->isVerified() ) {
@@ -689,7 +691,7 @@ final class SessionBackend {
 					'user' => $this->user->__toString(),
 			] );
 			$this->user->setToken();
-			if ( !wfReadOnly() ) {
+			if ( !MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 				// Promise that the token set here will be valid; save it at end of request
 				$user = $this->user;
 				\DeferredUpdates::addCallableUpdate( static function () use ( $user ) {
@@ -779,7 +781,6 @@ final class SessionBackend {
 		}
 
 		$flags = $this->persist ? 0 : CachedBagOStuff::WRITE_CACHE_ONLY;
-		$flags |= CachedBagOStuff::WRITE_SYNC; // write to all datacenters
 		$this->store->set(
 			$this->store->makeKey( 'MWSession', (string)$this->id ),
 			[
@@ -852,12 +853,15 @@ final class SessionBackend {
 		if ( $this->persistenceChangeData
 			&& $this->persistenceChangeData['id'] === $id
 			&& $this->persistenceChangeData['user'] === $user
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable message always set
 			&& $this->persistenceChangeData['message'] === $message
 		) {
 			return;
 		}
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable message always set
 		$this->persistenceChangeData = [ 'id' => $id, 'user' => $user, 'message' => $message ];
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable,PhanPossiblyUndeclaredVariable message always set
 		$this->logger->info( $message, [
 			'id' => $id,
 			'provider' => get_class( $this->getProvider() ),

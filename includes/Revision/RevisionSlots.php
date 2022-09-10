@@ -51,7 +51,7 @@ class RevisionSlots {
 	 *        or a callback that returns such a structure.
 	 */
 	public function __construct( $slots ) {
-		Assert::parameterType( 'array|callable', $slots, '$slots' );
+		Assert::parameterType( [ 'array', 'callable' ], $slots, '$slots' );
 
 		if ( is_callable( $slots ) ) {
 			$this->slots = $slots;
@@ -331,9 +331,3 @@ class RevisionSlots {
 	}
 
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.32
- */
-class_alias( RevisionSlots::class, 'MediaWiki\Storage\RevisionSlots' );

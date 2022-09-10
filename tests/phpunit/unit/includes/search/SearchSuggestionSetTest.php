@@ -107,5 +107,20 @@ class SearchSuggestionSetTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 0, $set->getSize() );
 	}
 
-	// TODO: test for fromTitles
+	/** @return iterable */
+	public function provideNoTitles(): iterable {
+		yield 'Empty Array' => [ [] ];
+	}
+
+	/**
+	 * @covers SearchSuggestionSet::fromTitles
+	 * @dataProvider provideNoTitles
+	 */
+	public function testFromNoTitles( array $titles ): void {
+		$actual = SearchSuggestionSet::fromTitles( $titles );
+
+		$this->assertSame( 0, $actual->getSize() );
+		$this->assertSame( [], $actual->getSuggestions() );
+		$this->assertInstanceOf( SearchSuggestionSet::class, $actual );
+	}
 }

@@ -3,8 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author Milicevic01
  * @author Misos
@@ -13,6 +13,6 @@
  * @author Михајло Анђелковић
  */
 
-$fallback = 'sr-ec';
+$fallback = 'sr-ec, sr-cyrl';
 
 $linkTrail = '/^([abvgdđežzijklljmnnjoprstćufhcčdžšабвгдђежзијклљмнњопрстћуфхцчџш]+)(.*)$/usD';

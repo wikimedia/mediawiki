@@ -6,19 +6,41 @@
 		"HttpsPort": {
 			"default": 443
 		},
-		"ExtensionDirectory": {
-			"default": "/DEFAULT/"
-		},
 		"StyleDirectory": {
 			"default": "/DEFAULT/"
 		},
-		"ForeignUploadTargets": {
-			"default": [ "local" ],
-			"type": "array"
+		"UsePathInfo": {
+			"default": null,
+			"dynamicDefault": {
+				"callback": [ "MediaWiki\\MainConfigSchema", "getDefaultUsePathInfo" ]
+			}
 		},
-		"ExtraLanguageCodes": {
-			"default": { "simple": "en" },
-			"type": "object"
+		"LBFactoryConf": {
+			"default": { "class": "Wikimedia\\Rdbms\\LBFactorySimple" },
+			"type": "object",
+			"mergeStrategy": "replace"
+		}
+	},
+	"config-schema-inverse": {
+		"default": {
+			"ExtensionDirectory": "/DEFAULT/",
+			"ForeignUploadTargets": [ "local" ],
+			"ExtraLanguageCodes": { "simple": "en" },
+			"TiffThumbnailType": [],
+			"RestPath": false
+		},
+		"dynamicDefault": {
+			"RestPath": {
+				"use": [ "ScriptPath" ],
+				"callback": [ "MediaWiki\\MainConfigSchema", "getDefaultRestPath" ]
+			}
+		},
+		"mergeStrategy": {
+			"TiffThumbnailType": "replace"
+		},
+		"type": {
+			"ExtraLanguageCodes": "object",
+			"ForeignUploadTargets": "array"
 		}
 	}
 }

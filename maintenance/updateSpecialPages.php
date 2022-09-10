@@ -24,6 +24,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -42,16 +43,17 @@ class UpdateSpecialPages extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgQueryCacheLimit;
-
 		$dbw = $this->getDB( DB_PRIMARY );
+		$config = $this->getConfig();
+		$specialPageFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
 
 		$this->doSpecialPageCacheUpdates( $dbw );
 
-		$disabledQueryPages = QueryPage::getDisabledQueryPages( $this->getConfig() );
+		$queryCacheLimit = (int)$config->get( MainConfigNames::QueryCacheLimit );
+		$disabledQueryPages = QueryPage::getDisabledQueryPages( $config );
 		foreach ( QueryPage::getPages() as $page ) {
 			list( , $special ) = $page;
-			$limit = $page[2] ?? null;
+			$limit = $page[2] ?? $queryCacheLimit;
 
 			# --list : just show the name of pages
 			if ( $this->hasOption( 'list' ) ) {
@@ -66,8 +68,7 @@ class UpdateSpecialPages extends Maintenance {
 				continue;
 			}
 
-			$specialObj = MediaWikiServices::getInstance()->getSpecialPageFactory()->
-				getPage( $special );
+			$specialObj = $specialPageFactory->getPage( $special );
 			if ( !$specialObj ) {
 				$this->output( "No such special page: $special\n" );
 				return;
@@ -79,12 +80,12 @@ class UpdateSpecialPages extends Maintenance {
 				$this->fatalError( "$class is not an instance of QueryPage.\n" );
 			}
 
-			if ( !$this->hasOption( 'only' ) || $this->getOption( 'only' ) == $queryPage->getName() ) {
+			if ( !$this->hasOption( 'only' ) || $this->getOption( 'only' ) === $queryPage->getName() ) {
 				$this->output( sprintf( '%-30s [QueryPage] ', $special ) );
 				if ( $queryPage->isExpensive() ) {
 					$t1 = microtime( true );
 					# Do the query
-					$num = $queryPage->recache( $limit ?? $wgQueryCacheLimit );
+					$num = $queryPage->recache( $limit );
 					$t2 = microtime( true );
 					if ( $num === false ) {
 						$this->output( "FAILED: database error\n" );
@@ -145,23 +146,21 @@ class UpdateSpecialPages extends Maintenance {
 	}
 
 	public function doSpecialPageCacheUpdates( $dbw ) {
-		global $wgSpecialPageCacheUpdates;
-
-		foreach ( $wgSpecialPageCacheUpdates as $special => $call ) {
+		foreach ( $this->getConfig()->get( MainConfigNames::SpecialPageCacheUpdates ) as $special => $call ) {
 			# --list : just show the name of pages
 			if ( $this->hasOption( 'list' ) ) {
 				$this->output( "$special [callback]\n" );
 				continue;
 			}
 
-			if ( !$this->hasOption( 'only' ) || $this->getOption( 'only' ) == $special ) {
+			if ( !$this->hasOption( 'only' ) || $this->getOption( 'only' ) === $special ) {
 				if ( !is_callable( $call ) ) {
 					$this->error( "Uncallable function $call!" );
 					continue;
 				}
 				$this->output( sprintf( '%-30s [callback] ', $special ) );
 				$t1 = microtime( true );
-				call_user_func( $call, $dbw );
+				$call( $dbw );
 				$t2 = microtime( true );
 
 				$this->output( "completed in " );

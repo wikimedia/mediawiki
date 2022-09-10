@@ -26,6 +26,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -64,7 +65,7 @@ class CleanupPreferences extends Maintenance {
 
 		// Remove hidden prefs. Iterate over them to avoid the IN on a large table
 		if ( $hidden ) {
-			$hiddenPrefs = $this->getConfig()->get( 'HiddenPrefs' );
+			$hiddenPrefs = $this->getConfig()->get( MainConfigNames::HiddenPrefs );
 			if ( !$hiddenPrefs ) {
 				$this->output( "No hidden preferences, skipping\n" );
 			}

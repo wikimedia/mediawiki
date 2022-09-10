@@ -4,8 +4,8 @@ use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 
 /**
- * @covers LinksDeletionUpdate
- * @covers LinksUpdate
+ * @covers \MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate
+ * @covers \MediaWiki\Deferred\LinksUpdate\LinksUpdate
  * @covers \MediaWiki\Deferred\LinksUpdate\CategoryLinksTable
  * @covers \MediaWiki\Deferred\LinksUpdate\ExternalLinksTable
  * @covers \MediaWiki\Deferred\LinksUpdate\GenericPageLinksTable
@@ -43,7 +43,7 @@ class LinksDeletionUpdateTest extends MediaWikiLangTestCase {
 		$res = $this->insertPage( 'Source' );
 		$id = $res['id'];
 		$title = $res['title'];
-		$wikiPage = new WikiPage( $title );
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		$po = new ParserOutput();
 		$po->addCategory( 'Cat', 'cat' );

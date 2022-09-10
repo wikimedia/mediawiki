@@ -22,9 +22,11 @@
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class CategoryViewer extends ContextSource {
 	use ProtectedHookAccessorTrait;
@@ -105,6 +107,7 @@ class CategoryViewer extends ContextSource {
 			'title',
 			'1.37',
 			function (): Title {
+				// @phan-suppress-next-line PhanTypeMismatchReturnNullable castFrom does not return null here
 				return Title::castFromPageIdentity( $this->page );
 			},
 			function ( PageIdentity $page ) {
@@ -114,11 +117,11 @@ class CategoryViewer extends ContextSource {
 
 		$this->setContext( $context );
 		$this->getOutput()->addModuleStyles( [
-			'mediawiki.action.view.categoryPage.styles'
+			'mediawiki.action.styles',
 		] );
 		$this->from = $from;
 		$this->until = $until;
-		$this->limit = $context->getConfig()->get( 'CategoryPagingLimit' );
+		$this->limit = $context->getConfig()->get( MainConfigNames::CategoryPagingLimit );
 		$this->cat = Category::newFromTitle( $page );
 		$this->query = $query;
 		$this->collation = MediaWikiServices::getInstance()->getCollationFactory()->getCategoryCollation();
@@ -133,7 +136,7 @@ class CategoryViewer extends ContextSource {
 	 * @return string HTML output
 	 */
 	public function getHTML() {
-		$this->showGallery = $this->getConfig()->get( 'CategoryMagicGallery' )
+		$this->showGallery = $this->getConfig()->get( MainConfigNames::CategoryMagicGallery )
 			&& !$this->getOutput()->mNoGallery;
 
 		$this->clearCategoryState();
@@ -243,6 +246,7 @@ class CategoryViewer extends ContextSource {
 		$link = null;
 		$legacyTitle = MediaWikiServices::getInstance()->getTitleFactory()
 			->castFromPageReference( $page );
+		// @phan-suppress-next-line PhanTypeMismatchArgument castFrom does not return null here
 		$this->getHookRunner()->onCategoryViewer__generateLink( $type, $legacyTitle, $html, $link );
 		if ( $link === null ) {
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
@@ -302,8 +306,10 @@ class CategoryViewer extends ContextSource {
 		if ( $this->showGallery ) {
 			$flip = $this->flip['file'];
 			if ( $flip ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$this->gallery->insert( $title );
 			} else {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$this->gallery->add( $title );
 			}
 		} else {
@@ -375,13 +381,10 @@ class CategoryViewer extends ContextSource {
 				$this->flip[$type] = true;
 			}
 
-			$res = $dbr->select(
-				[ 'page', 'categorylinks', 'category' ],
-				array_merge(
+			$queryBuilder = $dbr->newSelectQueryBuilder();
+			$queryBuilder->select( array_merge(
 					LinkCache::getSelectFields(),
 					[
-						'page_namespace',
-						'page_title',
 						'cl_sortkey',
 						'cat_id',
 						'cat_title',
@@ -391,22 +394,28 @@ class CategoryViewer extends ContextSource {
 						'cl_sortkey_prefix',
 						'cl_collation'
 					]
-				),
-				array_merge( [ 'cl_to' => $this->page->getDBkey() ], $extraConds ),
-				__METHOD__,
-				[
-					'USE INDEX' => [ 'categorylinks' => 'cl_sortkey' ],
-					'LIMIT' => $this->limit + 1,
-					'ORDER BY' => $this->flip[$type] ? 'cl_sortkey DESC' : 'cl_sortkey',
-				],
-				[
-					'categorylinks' => [ 'JOIN', 'cl_from = page_id' ],
-					'category' => [ 'LEFT JOIN', [
-						'cat_title = page_title',
-						'page_namespace' => NS_CATEGORY
-					] ]
-				]
-			);
+				) )
+				->from( 'page' )
+				->where( [ 'cl_to' => $this->page->getDBkey() ] )
+				->andWhere( $extraConds )
+				->useIndex( [ 'categorylinks' => 'cl_sortkey' ] );
+
+			if ( $this->flip[$type] ) {
+				$queryBuilder->orderBy( 'cl_sortkey', SelectQueryBuilder::SORT_DESC );
+			} else {
+				$queryBuilder->orderBy( 'cl_sortkey' );
+			}
+
+			$queryBuilder
+				->join( 'categorylinks', null, [ 'cl_from = page_id' ] )
+				->leftJoin( 'category', null, [
+					'cat_title = page_title',
+					'page_namespace' => NS_CATEGORY
+				] )
+				->limit( $this->limit + 1 )
+				->caller( __METHOD__ );
+
+			$res = $queryBuilder->fetchResultSet();
 
 			$this->getHookRunner()->onCategoryViewer__doCategoryQuery( $type, $res );
 			$linkCache = MediaWikiServices::getInstance()->getLinkCache();

@@ -111,7 +111,8 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 			if ( !$this->userNameUtils->isIP( $ip ) ) {
 				throw new InvalidArgumentException( 'Invalid IP address' );
 			}
-			$user = $this->newFromName( $ip, self::RIGOR_NONE );
+			$user = new User();
+			$user->setName( $ip );
 		} else {
 			$user = new User();
 		}
@@ -312,4 +313,30 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 		return $this->newFromUserIdentity( $authority->getUser() );
 	}
 
+	/**
+	 * Create a placeholder user for an anonymous user who will be upgraded to
+	 * a temporary user. This will throw an exception if temp user autocreation
+	 * is disabled.
+	 *
+	 * @since 1.39
+	 * @return User
+	 */
+	public function newTempPlaceholder() {
+		$user = new User();
+		$user->setName( $this->userNameUtils->getTempPlaceholder() );
+		return $user;
+	}
+
+	/**
+	 * Create an unsaved temporary user with a previously acquired name.
+	 *
+	 * @since 1.39
+	 * @param string $name
+	 * @return User
+	 */
+	public function newUnsavedTempUser( string $name ) {
+		$user = new User();
+		$user->setName( $name );
+		return $user;
+	}
 }

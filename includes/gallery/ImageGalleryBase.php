@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -119,7 +120,7 @@ abstract class ImageGalleryBase extends ContextSource {
 			$context = RequestContext::getMainAndWarn( __METHOD__ );
 		}
 		if ( !$mode ) {
-			$galleryOptions = $context->getConfig()->get( 'GalleryOptions' );
+			$galleryOptions = $context->getConfig()->get( MainConfigNames::GalleryOptions );
 			$mode = $galleryOptions['mode'];
 		}
 
@@ -166,7 +167,7 @@ abstract class ImageGalleryBase extends ContextSource {
 			$this->setContext( $context );
 		}
 
-		$galleryOptions = $this->getConfig()->get( 'GalleryOptions' );
+		$galleryOptions = $this->getConfig()->get( MainConfigNames::GalleryOptions );
 		$this->mImages = [];
 		$this->mShowBytes = $galleryOptions['showBytes'];
 		$this->mShowDimensions = $galleryOptions['showDimensions'];
@@ -279,6 +280,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
 	 * @param int $loading Sets loading attribute of the underlying <img> (optional)
+	 * @param ?array $imageOptions To supercede the $link param
 	 */
 	public function add(
 			$title,
@@ -286,13 +288,14 @@ abstract class ImageGalleryBase extends ContextSource {
 			$alt = '',
 			$link = '',
 			$handlerOpts = [],
-			$loading = self::LOADING_DEFAULT
+			$loading = self::LOADING_DEFAULT,
+			?array $imageOptions = null
 		) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
-		$this->mImages[] = [ $title, $html, $alt, $link, $handlerOpts, $loading ];
+		$this->mImages[] = [ $title, $html, $alt, $link, $handlerOpts, $loading, $imageOptions ];
 		wfDebug( 'ImageGallery::add ' . $title->getText() );
 	}
 
@@ -306,6 +309,7 @@ abstract class ImageGalleryBase extends ContextSource {
 	 * @param string $link Override image link (optional)
 	 * @param array $handlerOpts Array of options for image handler (aka page number)
 	 * @param int $loading Sets loading attribute of the underlying <img> (optional)
+	 * @param ?array $imageOptions To supercede the $link param
 	 */
 	public function insert(
 			$title,
@@ -313,13 +317,14 @@ abstract class ImageGalleryBase extends ContextSource {
 			$alt = '',
 			$link = '',
 			$handlerOpts = [],
-			$loading = self::LOADING_DEFAULT
+			$loading = self::LOADING_DEFAULT,
+			?array $imageOptions = null
 		) {
 		if ( $title instanceof File ) {
 			// Old calling convention
 			$title = $title->getTitle();
 		}
-		array_unshift( $this->mImages, [ &$title, $html, $alt, $link, $handlerOpts, $loading ] );
+		array_unshift( $this->mImages, [ &$title, $html, $alt, $link, $handlerOpts, $loading, $imageOptions ] );
 	}
 
 	/**

@@ -24,6 +24,7 @@
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
@@ -32,6 +33,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\NameTableAccessException;
+use MediaWiki\User\UserOptionsLookup;
 
 /**
  * DifferenceEngine is responsible for rendering the difference between two revisions as HTML.
@@ -230,6 +232,9 @@ class DifferenceEngine extends ContextSource {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/** #@- */
 
 	/**
@@ -270,6 +275,7 @@ class DifferenceEngine extends ContextSource {
 		$this->revisionStore = $services->getRevisionStore();
 		$this->hookRunner = new HookRunner( $services->getHookContainer() );
 		$this->wikiPageFactory = $services->getWikiPageFactory();
+		$this->userOptionsLookup = $services->getUserOptionsLookup();
 	}
 
 	/**
@@ -891,7 +897,7 @@ class DifferenceEngine extends ContextSource {
 		// Prepare a change patrol link, if applicable
 		if (
 			// Is patrolling enabled and the user allowed to?
-			$config->get( 'UseRCPatrol' ) &&
+			$config->get( MainConfigNames::UseRCPatrol ) &&
 			$this->mNewPage &&
 			$this->getAuthority()->probablyCan( 'patrol', $this->mNewPage ) &&
 			// Only do this if the revision isn't more than 6 hours older
@@ -986,6 +992,7 @@ class DifferenceEngine extends ContextSource {
 			}
 
 			$out->setRevisionId( $this->mNewid );
+			$out->setRevisionIsCurrent( $this->mNewRevisionRecord->isCurrent() );
 			$out->setRevisionTimestamp( $this->mNewRevisionRecord->getTimestamp() );
 			$out->setArticleFlag( true );
 
@@ -1014,7 +1021,11 @@ class DifferenceEngine extends ContextSource {
 					if ( $this->hookRunner->onDifferenceEngineRenderRevisionAddParserOutput(
 						$this, $out, $parserOutput, $wikiPage )
 					) {
+						$skinOptions = $this->getSkin()->getOptions();
+						$out->setSections( $parserOutput->getSections() );
 						$out->addParserOutput( $parserOutput, [
+							// phab:T311529 - diffs should respect skin
+							'injectTOC' => $skinOptions['toc'],
 							'enableSectionEditLinks' => $this->mNewRevisionRecord->isCurrent()
 								&& $this->getAuthority()->probablyCan(
 									'edit',
@@ -1168,7 +1179,16 @@ class DifferenceEngine extends ContextSource {
 		if ( $this->mOldid && $this->mNewid ) {
 			// Check if subclass is still using the old way
 			// for backwards-compatibility
-			$key = $this->getDiffBodyCacheKey();
+			$detected = MWDebug::detectDeprecatedOverride(
+				$this,
+				__CLASS__,
+				'getDiffBodyCacheKey',
+				'1.31'
+			);
+			$key = null;
+			if ( $detected ) {
+				$key = $this->getDiffBodyCacheKey();
+			}
 			if ( $key === null ) {
 				$key = $cache->makeKey( ...$this->getDiffBodyCacheKeyParams() );
 			}
@@ -1268,13 +1288,15 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Returns the cache key for diff body text or content.
 	 *
-	 * @deprecated since 1.31, use getDiffBodyCacheKeyParams() instead
+	 * @deprecated since 1.31, use getDiffBodyCacheKeyParams() instead.
+	 *  Hard deprecated in 1.39.
 	 * @since 1.23
 	 *
 	 * @throws MWException
 	 * @return string|null
 	 */
 	protected function getDiffBodyCacheKey() {
+		wfDeprecated( __METHOD__, '1.31' );
 		return null;
 	}
 
@@ -1333,9 +1355,17 @@ class DifferenceEngine extends ContextSource {
 		$this->mNewid = 987654321;
 
 		// This will repeat a bunch of unnecessary key fields for each slot. Not nice but harmless.
-		$cacheString = $this->getDiffBodyCacheKey();
-		if ( $cacheString ) {
-			return [ $cacheString ];
+		$detected = MWDebug::detectDeprecatedOverride(
+			$this,
+			__CLASS__,
+			'getDiffBodyCacheKey',
+			'1.31'
+		);
+		if ( $detected ) {
+			$cacheString = $this->getDiffBodyCacheKey();
+			if ( $cacheString ) {
+				return [ $cacheString ];
+			}
 		}
 
 		$params = $this->getDiffBodyCacheKeyParams();
@@ -1425,9 +1455,9 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public static function getEngine() {
 		$diffEngine = MediaWikiServices::getInstance()->getMainConfig()
-			->get( 'DiffEngine' );
+			->get( MainConfigNames::DiffEngine );
 		$externalDiffEngine = MediaWikiServices::getInstance()->getMainConfig()
-			->get( 'ExternalDiffEngine' );
+			->get( MainConfigNames::ExternalDiffEngine );
 
 		if ( $diffEngine === null ) {
 			$engines = [ 'external', 'wikidiff2', 'php' ];
@@ -1484,8 +1514,10 @@ class DifferenceEngine extends ContextSource {
 	 * @return bool|string
 	 *
 	 * @deprecated since 1.32, use a TextSlotDiffRenderer instead.
+	 *  Hard deprecated since 1.39.
 	 */
 	protected function textDiff( $otext, $ntext ) {
+		wfDeprecated( __METHOD__, '1.32' );
 		$slotDiffRenderer = $this->contentHandlerFactory
 			->getContentHandler( CONTENT_MODEL_TEXT )
 			->getSlotDiffRenderer( $this->getContext() );
@@ -1511,7 +1543,7 @@ class DifferenceEngine extends ContextSource {
 			return '';
 		}
 		$data = [ $generator ];
-		if ( $this->getConfig()->get( 'ShowHostnames' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::ShowHostnames ) ) {
 			$data[] = wfHostname();
 		}
 		$data[] = wfTimestamp( TS_DB );
@@ -1768,7 +1800,10 @@ class DifferenceEngine extends ContextSource {
 			'class' => [
 				'diff',
 				'diff-contentalign-' . $this->getDiffLang()->alignStart(),
-				'diff-editfont-' . $this->getUser()->getOption( 'editfont' )
+				'diff-editfont-' . $this->userOptionsLookup->getOption(
+					$this->getUser(),
+					'editfont'
+				)
 			],
 			'data-mw' => 'interface',
 		] );
@@ -1916,6 +1951,7 @@ class DifferenceEngine extends ContextSource {
 			$newid = intval( $new );
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturn getId does not return null here
 		return [ $oldid, $newid ];
 	}
 
@@ -1937,6 +1973,7 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		$this->hookRunner->onNewDifferenceEngine(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 			$this->getTitle(), $this->mOldid, $this->mNewid, $old, $new );
 	}
 

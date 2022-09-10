@@ -38,6 +38,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
@@ -49,6 +50,7 @@ use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MWException;
+use Psr\Log\LoggerInterface;
 use RecentChange;
 use RuntimeException;
 use Status;
@@ -86,8 +88,8 @@ class PageUpdater {
 	 * @internal
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'ManualRevertSearchRadius',
-		'UseRCPatrol',
+		MainConfigNames::ManualRevertSearchRadius,
+		MainConfigNames::UseRCPatrol,
 	];
 
 	/**
@@ -166,6 +168,12 @@ class PageUpdater {
 	private $forceEmptyRevision = false;
 
 	/**
+	 * @var bool Whether to prevent new revision creation by throwing if it is
+	 *   attempted.
+	 */
+	private $preventChange = false;
+
+	/**
 	 * @var array
 	 */
 	private $tags = [];
@@ -203,6 +211,9 @@ class PageUpdater {
 	/** @var string[] */
 	private $softwareTags = [];
 
+	/** @var LoggerInterface */
+	private $logger;
+
 	/**
 	 * @param UserIdentity $author
 	 * @param WikiPage $wikiPage
@@ -218,6 +229,7 @@ class PageUpdater {
 	 * @param ServiceOptions $serviceOptions
 	 * @param string[] $softwareTags Array of currently enabled software change tags. Can be
 	 *        obtained from ChangeTags::getSoftwareTags()
+	 * @param LoggerInterface $logger
 	 */
 	public function __construct(
 		UserIdentity $author,
@@ -232,7 +244,8 @@ class PageUpdater {
 		UserGroupManager $userGroupManager,
 		TitleFormatter $titleFormatter,
 		ServiceOptions $serviceOptions,
-		array $softwareTags
+		array $softwareTags,
+		LoggerInterface $logger
 	) {
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $serviceOptions;
@@ -258,12 +271,13 @@ class PageUpdater {
 			new ServiceOptions(
 				EditResultBuilder::CONSTRUCTOR_OPTIONS,
 				[
-					'ManualRevertSearchRadius' =>
-						$serviceOptions->get( 'ManualRevertSearchRadius' )
+					MainConfigNames::ManualRevertSearchRadius =>
+						$serviceOptions->get( MainConfigNames::ManualRevertSearchRadius )
 				]
 			)
 		);
 		$this->softwareTags = $softwareTags;
+		$this->logger = $logger;
 	}
 
 	/**
@@ -332,6 +346,22 @@ class PageUpdater {
 	 */
 	private static function toLegacyUser( UserIdentity $user ) {
 		return User::newFromIdentity( $user );
+	}
+
+	/**
+	 * After creation of the user during the save process, update the stored
+	 * UserIdentity.
+	 * @since 1.39
+	 *
+	 * @param UserIdentity $author
+	 */
+	public function updateAuthor( UserIdentity $author ) {
+		if ( $this->author->getName() !== $author->getName() ) {
+			throw new \MWException( 'Cannot replace the author with an author ' .
+				'of a different name, since DerivedPageDataUpdater may have stored the ' .
+				'old name.' );
+		}
+		$this->author = $author;
 	}
 
 	/**
@@ -407,7 +437,7 @@ class PageUpdater {
 	}
 
 	private function getWikiId() {
-		return false; // TODO: get from RevisionStore!
+		return $this->revisionStore->getWikiId();
 	}
 
 	/**
@@ -785,7 +815,7 @@ class PageUpdater {
 	 * user-level edit conflict, and to adjust the content of the new revision accordingly,
 	 * e.g. by using a 3-way-merge.
 	 *
-	 * MCR migration note: this replaces WikiPage::doEditContent. Callers that change to using
+	 * MCR migration note: this replaces WikiPage::doUserEditContent. Callers that change to using
 	 * saveRevision() now need to check the "minoredit" themselves before using EDIT_MINOR.
 	 *
 	 * @param CommentStoreComment $summary Edit summary
@@ -893,6 +923,7 @@ class PageUpdater {
 			}
 
 			$this->status = $hookStatus;
+			$this->logger->info( "Hook prevented page save", [ 'status' => $hookStatus ] );
 			return null;
 		}
 
@@ -1001,6 +1032,7 @@ class PageUpdater {
 		// XXX: do we need PST?
 
 		$this->flags |= EDIT_INTERNAL;
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revision is checked
 		$this->status = $this->doUpdate( $revision );
 	}
 
@@ -1017,7 +1049,7 @@ class PageUpdater {
 	 * The Status object indicating whether saveRevision() was successful, or null if
 	 * saveRevision() was not yet called on this instance.
 	 *
-	 * @note This is here for compatibility with WikiPage::doEditContent. It may be deprecated
+	 * @note This is here for compatibility with WikiPage::doUserEditContent. It may be deprecated
 	 * soon.
 	 *
 	 * Possible status errors:
@@ -1070,6 +1102,25 @@ class PageUpdater {
 	 */
 	public function isUnchanged() {
 		return !$this->wasRevisionCreated();
+	}
+
+	/**
+	 * Whether the prepared edit is a change compared to the previous revision.
+	 *
+	 * @return bool
+	 */
+	public function isChange() {
+		return $this->derivedDataUpdater->isChange();
+	}
+
+	/**
+	 * Disable new revision creation, throwing an exception if it is attempted.
+	 *
+	 * @return $this
+	 */
+	public function preventChange() {
+		$this->preventChange = true;
+		return $this;
 	}
 
 	/**
@@ -1168,6 +1219,7 @@ class PageUpdater {
 
 			// XXX: We may push this up to the "edit controller" level, see T192777.
 			$contentHandler = $this->contentHandlerFactory->getContentHandler( $content->getModel() );
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable getId is not null here
 			$validationParams = new ValidationParams( $wikiPage, $this->flags, $oldid );
 			$prepStatus = $contentHandler->validateSave( $content, $validationParams );
 
@@ -1289,10 +1341,17 @@ class PageUpdater {
 
 		$changed = $this->derivedDataUpdater->isChange();
 
-		if ( $this->forceEmptyRevision && $changed ) {
-			throw new LogicException(
-				'Content was changed even though forceEmptyRevision() was called.'
-			);
+		if ( $changed ) {
+			if ( $this->forceEmptyRevision ) {
+				throw new LogicException(
+					"Content was changed even though forceEmptyRevision() was called."
+				);
+			}
+			if ( $this->preventChange ) {
+				throw new LogicException(
+					"Content was changed even though preventChange() was called."
+				);
+			}
 		}
 
 		// We build the EditResult before the $change if/else branch in order to pass
@@ -1421,6 +1480,11 @@ class PageUpdater {
 	 * @return Status
 	 */
 	private function doCreate( CommentStoreComment $summary ) {
+		if ( $this->preventChange ) {
+			throw new LogicException(
+				"Content was changed even though preventChange() was called."
+			);
+		}
 		$wikiPage = $this->getWikiPage(); // TODO: use for legacy hooks only!
 
 		if ( !$this->derivedDataUpdater->getSlots()->hasSlot( SlotRecord::MAIN ) ) {
@@ -1465,7 +1529,7 @@ class PageUpdater {
 
 		// Update the page record with revision data
 		// TODO: move to storage service
-		if ( !$wikiPage->updateRevisionOn( $dbw, $newRevisionRecord, 0 ) ) {
+		if ( !$wikiPage->updateRevisionOn( $dbw, $newRevisionRecord, 0, false ) ) {
 			throw new PageUpdateException( "Failed to update page row to use new revision." );
 		}
 
@@ -1556,7 +1620,7 @@ class PageUpdater {
 					// Should the reverted tag update be scheduled right away?
 					// The revert is approved if either patrolling is disabled or the
 					// edit is patrolled or autopatrolled.
-					$approved = !$this->serviceOptions->get( 'UseRCPatrol' ) ||
+					$approved = !$this->serviceOptions->get( MainConfigNames::UseRCPatrol ) ||
 						$this->rcPatrolStatus === RecentChange::PRC_PATROLLED ||
 						$this->rcPatrolStatus === RecentChange::PRC_AUTOPATROLLED;
 
@@ -1567,6 +1631,7 @@ class PageUpdater {
 						$summary,
 						$this->flags,
 						$newRevisionRecord,
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Not null already checked
 						$editResult,
 						$approved
 					);
@@ -1588,6 +1653,7 @@ class PageUpdater {
 					$summary->text,
 					$this->flags,
 					$newRevisionRecord,
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Not null already checked
 					$editResult
 				);
 			}

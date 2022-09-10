@@ -2,8 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Fulup",
-			"Y-M D",
-			"Huñvreüs"
+			"Huñvreüs",
+			"Y-M D"
 		]
 	},
 	"apihelp-main-param-action": "Peseurt ober kas da benn.",
@@ -44,7 +44,7 @@
 	"apihelp-delete-example-simple": "Diverkañ <kbd>Main Page</kbd>.",
 	"apihelp-disabled-summary": "Diweredekaet eo bet ar vodulenn-mañ.",
 	"apihelp-edit-summary": "Krouiñ pajennoù ha kemmañ anezho.",
-	"apihelp-edit-param-sectiontitle": "Titl ur rannbennad nevez.",
+	"apihelp-edit-param-sectiontitle": "Titl ur rannbennad nevez pa reer gant <var>$1section=new</var>.",
 	"apihelp-edit-param-text": "Danvez ar bajenn.",
 	"apihelp-edit-param-tags": "Cheñch an tikedennoù d'o lakaat da dalvezout evit ar stumm gwiriet.",
 	"apihelp-edit-param-minor": "Merkañ ar c’hemm-mañ evel ur c’hemm dister.",
@@ -53,7 +53,7 @@
 	"apihelp-edit-param-createonly": "Arabat kemmañ ar bajenn ma'z eus anezhi c'hoazh.",
 	"apihelp-edit-param-nocreate": "Krouiñ ur fazi ma n'eus ket eus ur bajenn.",
 	"apihelp-edit-param-watch": "Ouzhpennañ ar bajenn da roll evezhiañ an evezhier.",
-	"apihelp-edit-param-prependtext": "Ouzhpennañ an destenn-mañ e penn-kentañ ar bajenn. Frikañ a ra $1text.",
+	"apihelp-edit-param-prependtext": "Ouzhpennañ an destenn-mañ e penn-kentañ ar bajenn pe rannbennad. Frikañ a ra $1text.",
 	"apihelp-edit-param-redirect": "Diskoulmañ an adkasoù ent emgefre",
 	"apihelp-edit-example-edit": "Kemmañ ur bajenn.",
 	"apihelp-emailuser-summary": "Kas ur postel d'un implijer.",

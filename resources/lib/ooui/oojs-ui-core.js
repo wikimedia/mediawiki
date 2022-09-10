@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.43.2-pre (630d30f69c)
+ * OOUI v0.44.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-03-11T22:31:30Z
+ * Date: 2022-08-17T13:09:28Z
  */
 ( function ( OO ) {
 
@@ -79,8 +79,7 @@ OO.ui.generateElementId = function () {
  * @return {boolean} Element is focusable
  */
 OO.ui.isFocusableElement = function ( $element ) {
-	var nodeName,
-		element = $element[ 0 ];
+	var element = $element[ 0 ];
 
 	// Anything disabled is not focusable
 	if ( element.disabled ) {
@@ -113,7 +112,7 @@ OO.ui.isFocusableElement = function ( $element ) {
 	// Some element types are naturally focusable
 	// (indexOf is much faster than regex in Chrome and about the
 	// same in FF: https://jsperf.com/regex-vs-indexof-array2)
-	nodeName = element.nodeName.toLowerCase();
+	var nodeName = element.nodeName.toLowerCase();
 	if ( [ 'input', 'select', 'textarea', 'button', 'object' ].indexOf( nodeName ) !== -1 ) {
 		return true;
 	}
@@ -177,15 +176,13 @@ OO.ui.getUserLanguages = function () {
  * @return {Mixed} Local value
  */
 OO.ui.getLocalValue = function ( obj, lang, fallback ) {
-	var i, len, langs;
-
 	// Requested language
 	if ( obj[ lang ] ) {
 		return obj[ lang ];
 	}
 	// Known user language
-	langs = OO.ui.getUserLanguages();
-	for ( i = 0, len = langs.length; i < len; i++ ) {
+	var langs = OO.ui.getUserLanguages();
+	for ( var i = 0, len = langs.length; i < len; i++ ) {
 		lang = langs[ i ];
 		if ( obj[ lang ] ) {
 			return obj[ lang ];
@@ -217,11 +214,10 @@ OO.ui.getLocalValue = function ( obj, lang, fallback ) {
  * @return {boolean} The node is in the list of target nodes
  */
 OO.ui.contains = function ( containers, contained, matchContainers ) {
-	var i;
 	if ( !Array.isArray( containers ) ) {
 		containers = [ containers ];
 	}
-	for ( i = containers.length - 1; i >= 0; i-- ) {
+	for ( var i = containers.length - 1; i >= 0; i-- ) {
 		if (
 			( matchContainers && contained === containers[ i ] ) ||
 			$.contains( containers[ i ], contained )
@@ -354,12 +350,11 @@ OO.ui.infuse = function ( node, config ) {
  * [jQuery.i18n](https://github.com/wikimedia/jquery.i18n) follows.
  *
  *     @example
- *     var i, iLen, button,
- *         messagePath = 'oojs-ui/dist/i18n/',
+ *     var messagePath = 'oojs-ui/dist/i18n/',
  *         languages = [ $.i18n().locale, 'ur', 'en' ],
  *         languageMap = {};
  *
- *     for ( i = 0, iLen = languages.length; i < iLen; i++ ) {
+ *     for ( var i = 0, iLen = languages.length; i < iLen; i++ ) {
  *         languageMap[ languages[ i ] ] = messagePath + languages[ i ].toLowerCase() + '.json';
  *     }
  *
@@ -371,7 +366,7 @@ OO.ui.infuse = function ( node, config ) {
  *         OO.ui.msg = $.i18n;
  *
  *         // A button displaying "OK" in the default locale
- *         button = new OO.ui.ButtonWidget( {
+ *         var button = new OO.ui.ButtonWidget( {
  *             label: OO.ui.msg( 'ooui-dialog-message-accept' ),
  *             icon: 'check'
  *         } );
@@ -446,13 +441,12 @@ OO.ui.resolveMsg = function ( msg ) {
  */
 OO.ui.isSafeUrl = function ( url ) {
 	// Keep this function in sync with php/Tag.php
-	var i, protocolAllowList;
 
 	function stringStartsWith( haystack, needle ) {
 		return haystack.slice( 0, needle.length ) === needle;
 	}
 
-	protocolAllowList = [
+	var protocolAllowList = [
 		'bitcoin', 'ftp', 'ftps', 'geo', 'git', 'gopher', 'http', 'https', 'irc', 'ircs',
 		'magnet', 'mailto', 'mms', 'news', 'nntp', 'redis', 'sftp', 'sip', 'sips', 'sms', 'ssh',
 		'svn', 'tel', 'telnet', 'urn', 'worldwind', 'xmpp'
@@ -462,7 +456,7 @@ OO.ui.isSafeUrl = function ( url ) {
 		return true;
 	}
 
-	for ( i = 0; i < protocolAllowList.length; i++ ) {
+	for ( var i = 0; i < protocolAllowList.length; i++ ) {
 		if ( stringStartsWith( url, protocolAllowList[ i ] + ':' ) ) {
 			return true;
 		}
@@ -605,8 +599,6 @@ OO.ui.mixin = {};
  *  Data can also be specified with the #setData method.
  */
 OO.ui.Element = function OoUiElement( config ) {
-	var doc;
-
 	if ( OO.ui.isDemo ) {
 		this.initialConfig = config;
 	}
@@ -622,7 +614,7 @@ OO.ui.Element = function OoUiElement( config ) {
 	this.elementGroup = null;
 
 	// Initialization
-	doc = OO.ui.Element.static.getDocument( this.$element );
+	var doc = OO.ui.Element.static.getDocument( this.$element );
 	if ( Array.isArray( config.classes ) ) {
 		this.$element.addClass(
 			// Remove empty strings to work around jQuery bug
@@ -721,8 +713,7 @@ OO.ui.Element.static.infuse = function ( node, config ) {
  */
 OO.ui.Element.static.unsafeInfuse = function ( elem, config, domPromise ) {
 	// look for a cached result of a previous infusion.
-	var data, cls, parts, obj, top, state, infusedChildren, doc, id,
-		$elem = $( elem );
+	var $elem = $( elem );
 
 	if ( $elem.length > 1 ) {
 		throw new Error( 'Collection contains more than one element' );
@@ -734,9 +725,9 @@ OO.ui.Element.static.unsafeInfuse = function ( elem, config, domPromise ) {
 		$elem = $elem[ 0 ].$oouiInfused;
 	}
 
-	id = $elem.attr( 'id' );
-	doc = this.getDocument( $elem );
-	data = $elem.data( 'ooui-infused' );
+	var id = $elem.attr( 'id' );
+	var doc = this.getDocument( $elem );
+	var data = $elem.data( 'ooui-infused' );
 	if ( data ) {
 		// cached!
 		if ( data === true ) {
@@ -744,13 +735,13 @@ OO.ui.Element.static.unsafeInfuse = function ( elem, config, domPromise ) {
 		}
 		if ( domPromise ) {
 			// Pick up dynamic state, like focus, value of form inputs, scroll position, etc.
-			state = data.constructor.static.gatherPreInfuseState( $elem, data );
+			var stateCache = data.constructor.static.gatherPreInfuseState( $elem, data );
 			// Restore dynamic state after the new element is re-inserted into DOM under
 			// infused parent.
-			domPromise.done( data.restorePreInfuseState.bind( data, state ) );
-			infusedChildren = $elem.data( 'ooui-infused-children' );
-			if ( infusedChildren && infusedChildren.length ) {
-				infusedChildren.forEach( function ( childData ) {
+			domPromise.done( data.restorePreInfuseState.bind( data, stateCache ) );
+			var infusedChildrenCache = $elem.data( 'ooui-infused-children' );
+			if ( infusedChildrenCache && infusedChildrenCache.length ) {
+				infusedChildrenCache.forEach( function ( childData ) {
 					var childState = childData.constructor.static.gatherPreInfuseState(
 						$elem,
 						childData
@@ -779,20 +770,21 @@ OO.ui.Element.static.unsafeInfuse = function ( elem, config, domPromise ) {
 		// Special case: this is a raw Tag; wrap existing node, don't rebuild.
 		return new OO.ui.Element( $.extend( {}, config, { $element: $elem } ) );
 	}
-	parts = data._.split( '.' );
-	cls = OO.getProp.apply( OO, [ window ].concat( parts ) );
+	var parts = data._.split( '.' );
+	var cls = OO.getProp.apply( OO, [ window ].concat( parts ) );
 
 	if ( !( cls && ( cls === OO.ui.Element || cls.prototype instanceof OO.ui.Element ) ) ) {
 		throw new Error( 'Unknown widget type: id: ' + id + ', class: ' + data._ );
 	}
 
+	var top;
 	if ( !domPromise ) {
 		top = $.Deferred();
 		domPromise = top.promise();
 	}
 	$elem.data( 'ooui-infused', true ); // prevent loops
 	data.id = id; // implicit
-	infusedChildren = [];
+	var infusedChildren = [];
 	data = OO.copy( data, null, function deserialize( value ) {
 		var infused;
 		if ( OO.isPlainObject( value ) ) {
@@ -817,10 +809,10 @@ OO.ui.Element.static.unsafeInfuse = function ( elem, config, domPromise ) {
 	// allow widgets to reuse parts of the DOM
 	data = cls.static.reusePreInfuseDOM( $elem[ 0 ], data );
 	// pick up dynamic state, like focus, value of form inputs, scroll position, etc.
-	state = cls.static.gatherPreInfuseState( $elem[ 0 ], data );
+	var state = cls.static.gatherPreInfuseState( $elem[ 0 ], data );
 	// rebuild widget
 	// eslint-disable-next-line new-cap
-	obj = new cls( $.extend( {}, config, data ) );
+	var obj = new cls( $.extend( {}, config, data ) );
 	// If anyone is holding a reference to the old DOM element,
 	// let's allow them to OO.ui.infuse() it and do what they expect, see T105828.
 	// Do not use jQuery.data(), as using it on detached nodes leaks memory in 1.x line by design.
@@ -921,13 +913,11 @@ OO.ui.Element.static.getWindow = function ( obj ) {
  * @return {string} Text direction, either 'ltr' or 'rtl'
  */
 OO.ui.Element.static.getDir = function ( obj ) {
-	var isDoc, isWin;
-
 	if ( obj instanceof $ ) {
 		obj = obj[ 0 ];
 	}
-	isDoc = obj.nodeType === Node.DOCUMENT_NODE;
-	isWin = obj.document !== undefined;
+	var isDoc = obj.nodeType === Node.DOCUMENT_NODE;
+	var isWin = obj.document !== undefined;
 	if ( isDoc || isWin ) {
 		if ( isWin ) {
 			obj = obj.document;
@@ -949,8 +939,6 @@ OO.ui.Element.static.getDir = function ( obj ) {
  * @return {Object} Offset object, containing left and top properties
  */
 OO.ui.Element.static.getFrameOffset = function ( from, to, offset ) {
-	var i, len, frames, frame, rect;
-
 	if ( !to ) {
 		to = window;
 	}
@@ -962,8 +950,9 @@ OO.ui.Element.static.getFrameOffset = function ( from, to, offset ) {
 	}
 
 	// Get iframe element
-	frames = from.parent.document.getElementsByTagName( 'iframe' );
-	for ( i = 0, len = frames.length; i < len; i++ ) {
+	var frame;
+	var frames = from.parent.document.getElementsByTagName( 'iframe' );
+	for ( var i = 0, len = frames.length; i < len; i++ ) {
 		if ( frames[ i ].contentWindow === from ) {
 			frame = frames[ i ];
 			break;
@@ -972,7 +961,7 @@ OO.ui.Element.static.getFrameOffset = function ( from, to, offset ) {
 
 	// Recursively accumulate offset values
 	if ( frame ) {
-		rect = frame.getBoundingClientRect();
+		var rect = frame.getBoundingClientRect();
 		offset.left += rect.left;
 		offset.top += rect.top;
 		if ( from !== to ) {
@@ -994,19 +983,18 @@ OO.ui.Element.static.getFrameOffset = function ( from, to, offset ) {
  * @return {Object} Translated position coordinates, containing top and left properties
  */
 OO.ui.Element.static.getRelativePosition = function ( $element, $anchor ) {
-	var iframe, iframePos,
-		pos = $element.offset(),
+	var pos = $element.offset(),
 		anchorPos = $anchor.offset(),
 		elementDocument = this.getDocument( $element ),
 		anchorDocument = this.getDocument( $anchor );
 
 	// If $element isn't in the same document as $anchor, traverse up
 	while ( elementDocument !== anchorDocument ) {
-		iframe = elementDocument.defaultView.frameElement;
+		var iframe = elementDocument.defaultView.frameElement;
 		if ( !iframe ) {
 			throw new Error( '$element frame is not contained in $anchor frame' );
 		}
-		iframePos = $( iframe ).offset();
+		var iframePos = $( iframe ).offset();
 		pos.left += iframePos.left;
 		pos.top += iframePos.top;
 		elementDocument = this.getDocument( iframe );
@@ -1049,12 +1037,11 @@ OO.ui.Element.static.getBorders = function ( el ) {
  * @return {Object} Dimensions object with `borders`, `scroll`, `scrollbar` and `rect` properties
  */
 OO.ui.Element.static.getDimensions = function ( el ) {
-	var $el, $win,
-		doc = this.getDocument( el ),
+	var doc = this.getDocument( el ),
 		win = doc.defaultView;
 
 	if ( win === el || el === doc.documentElement ) {
-		$win = $( win );
+		var $win = $( win );
 		return {
 			borders: { top: 0, left: 0, bottom: 0, right: 0 },
 			scroll: {
@@ -1070,7 +1057,7 @@ OO.ui.Element.static.getDimensions = function ( el ) {
 			}
 		};
 	} else {
-		$el = $( el );
+		var $el = $( el );
 		return {
 			borders: this.getBorders( el ),
 			scroll: {
@@ -1243,12 +1230,11 @@ OO.ui.Element.static.getDimensions = function ( el ) {
  * @return {HTMLBodyElement|HTMLHtmlElement} Scrollable parent, `<body>` or `<html>`
  */
 OO.ui.Element.static.getRootScrollableElement = function ( el ) {
-	var scrollTop, body,
-		doc = this.getDocument( el );
+	var doc = this.getDocument( el );
 
 	if ( OO.ui.scrollableElement === undefined ) {
-		body = doc.body;
-		scrollTop = body.scrollTop;
+		var body = doc.body;
+		var scrollTop = body.scrollTop;
 		body.scrollTop = 1;
 
 		// In some browsers (observed in Chrome 56 on Linux Mint 18.1),
@@ -1276,8 +1262,7 @@ OO.ui.Element.static.getRootScrollableElement = function ( el ) {
  * @return {HTMLElement} Closest scrollable container
  */
 OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) {
-	var i, val,
-		doc = this.getDocument( el ),
+	var doc = this.getDocument( el ),
 		rootScrollableElement = this.getRootScrollableElement( el ),
 		// Browsers do not correctly return the computed value of 'overflow' when 'overflow-x' and
 		// 'overflow-y' have different values, so we need to check the separate properties.
@@ -1297,9 +1282,9 @@ OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) 
 		if ( $parent[ 0 ] === rootScrollableElement ) {
 			return $parent[ 0 ];
 		}
-		i = props.length;
+		var i = props.length;
 		while ( i-- ) {
-			val = $parent.css( props[ i ] );
+			var val = $parent.css( props[ i ] );
 			// We assume that elements with 'overflow' (in any direction) set to 'hidden' will
 			// never be scrolled in that direction, but they can actually be scrolled
 			// programatically. The user can unintentionally perform a scroll in such case even if
@@ -1332,6 +1317,8 @@ OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) 
  * @param {string} [config.duration='fast'] jQuery animation duration value
  * @param {string} [config.direction] Scroll in only one direction, e.g. 'x' or 'y', omit
  *  to scroll in both directions
+ * @param {Object} [config.alignToTop=false] Aligns the top of the element to the top of the visible
+ *  area of the scrollable ancestor.
  * @param {Object} [config.padding] Additional padding on the container to scroll past.
  *  Object containing any of 'top', 'bottom', 'left', or 'right' as numbers.
  * @param {Object} [config.scrollContainer] Scroll container. Defaults to
@@ -1339,37 +1326,36 @@ OO.ui.Element.static.getClosestScrollableContainer = function ( el, dimension ) 
  * @return {jQuery.Promise} Promise which resolves when the scroll is complete
  */
 OO.ui.Element.static.scrollIntoView = function ( elOrPosition, config ) {
-	var position, animations, container, $container, elementPosition, containerDimensions,
-		$window, padding, animate, method,
-		deferred = $.Deferred();
+	var deferred = $.Deferred();
 
 	// Configuration initialization
 	config = config || {};
 
-	padding = $.extend( {
+	var padding = $.extend( {
 		top: 0,
 		bottom: 0,
 		left: 0,
 		right: 0
 	}, config.padding );
 
-	animate = config.animate !== false;
+	var animate = config.animate !== false;
 
-	animations = {};
-	elementPosition = elOrPosition instanceof HTMLElement ?
+	var animations = {};
+	var elementPosition = elOrPosition instanceof HTMLElement ?
 		this.getDimensions( elOrPosition ).rect :
 		elOrPosition;
-	container = config.scrollContainer || (
+	var container = config.scrollContainer || (
 		elOrPosition instanceof HTMLElement ?
 			this.getClosestScrollableContainer( elOrPosition, config.direction ) :
 			// No scrollContainer or element, use global document
 			this.getClosestScrollableContainer( window.document.body )
 	);
-	$container = $( container );
-	containerDimensions = this.getDimensions( container );
-	$window = $( this.getWindow( container ) );
+	var $container = $( container );
+	var containerDimensions = this.getDimensions( container );
+	var $window = $( this.getWindow( container ) );
 
 	// Compute the element's position relative to the container
+	var position;
 	if ( $container.is( 'html, body' ) ) {
 		// If the scrollable container is the root, this is easy
 		position = {
@@ -1393,7 +1379,7 @@ OO.ui.Element.static.scrollIntoView = function ( elOrPosition, config ) {
 	}
 
 	if ( !config.direction || config.direction === 'y' ) {
-		if ( position.top < padding.top ) {
+		if ( position.top < padding.top || config.alignToTop ) {
 			animations.scrollTop = containerDimensions.scroll.top + position.top - padding.top;
 		} else if ( position.bottom < padding.bottom ) {
 			animations.scrollTop = containerDimensions.scroll.top +
@@ -1425,7 +1411,7 @@ OO.ui.Element.static.scrollIntoView = function ( elOrPosition, config ) {
 			} );
 		} else {
 			$container.stop( true );
-			for ( method in animations ) {
+			for ( var method in animations ) {
 				$container[ method ]( animations[ method ] );
 			}
 			deferred.resolve();
@@ -1449,10 +1435,10 @@ OO.ui.Element.static.scrollIntoView = function ( elOrPosition, config ) {
  * @param {HTMLElement} el Element to reconsider the scrollbars on
  */
 OO.ui.Element.static.reconsiderScrollbars = function ( el ) {
-	var i, len, scrollLeft, scrollTop, nodes = [];
 	// Save scroll position
-	scrollLeft = el.scrollLeft;
-	scrollTop = el.scrollTop;
+	var scrollLeft = el.scrollLeft;
+	var scrollTop = el.scrollTop;
+	var nodes = [];
 	// Detach all children
 	while ( el.firstChild ) {
 		nodes.push( el.firstChild );
@@ -1462,7 +1448,7 @@ OO.ui.Element.static.reconsiderScrollbars = function ( el ) {
 	// eslint-disable-next-line no-void
 	void el.offsetHeight;
 	// Reattach all children
-	for ( i = 0, len = nodes.length; i < len; i++ ) {
+	for ( var i = 0, len = nodes.length; i < len; i++ ) {
 		el.appendChild( nodes[ i ] );
 	}
 	// Restore scroll position (no-op if scrollbars disappeared)
@@ -1958,8 +1944,7 @@ OO.ui.Theme.prototype.updateElementClasses = function ( element ) {
  * @private
  */
 OO.ui.Theme.prototype.updateQueuedElementClasses = function () {
-	var i;
-	for ( i = 0; i < this.elementClassesQueue.length; i++ ) {
+	for ( var i = 0; i < this.elementClassesQueue.length; i++ ) {
 		this.updateElementClasses( this.elementClassesQueue[ i ] );
 	}
 	// Clear the queue
@@ -2155,8 +2140,6 @@ OO.ui.mixin.TabIndexedElement.prototype.getTabIndex = function () {
  * @return {string|null} The ID of the focusable element
  */
 OO.ui.mixin.TabIndexedElement.prototype.getInputId = function () {
-	var id;
-
 	if ( !this.$tabIndexed ) {
 		return null;
 	}
@@ -2164,7 +2147,7 @@ OO.ui.mixin.TabIndexedElement.prototype.getInputId = function () {
 		return null;
 	}
 
-	id = this.$tabIndexed.attr( 'id' );
+	var id = this.$tabIndexed.attr( 'id' );
 	if ( id === undefined ) {
 		id = OO.ui.generateElementId();
 		this.$tabIndexed.attr( 'id', id );
@@ -2548,10 +2531,8 @@ OO.mixinClass( OO.ui.mixin.GroupElement, OO.EmitterList );
  * @param {jQuery} $group Element to use as group
  */
 OO.ui.mixin.GroupElement.prototype.setGroupElement = function ( $group ) {
-	var i, len;
-
 	this.$group = $group;
-	for ( i = 0, len = this.items.length; i < len; i++ ) {
+	for ( var i = 0, len = this.items.length; i < len; i++ ) {
 		this.$group.append( this.items[ i ].$element );
 	}
 };
@@ -2566,11 +2547,10 @@ OO.ui.mixin.GroupElement.prototype.setGroupElement = function ( $group ) {
  * @return {OO.ui.Element|null} Item with equivalent data, `null` if none exists
  */
 OO.ui.mixin.GroupElement.prototype.findItemFromData = function ( data ) {
-	var i, len, item,
-		hash = OO.getHash( data );
+	var hash = OO.getHash( data );
 
-	for ( i = 0, len = this.items.length; i < len; i++ ) {
-		item = this.items[ i ];
+	for ( var i = 0, len = this.items.length; i < len; i++ ) {
+		var item = this.items[ i ];
 		if ( hash === OO.getHash( item.getData() ) ) {
 			return item;
 		}
@@ -2589,12 +2569,11 @@ OO.ui.mixin.GroupElement.prototype.findItemFromData = function ( data ) {
  * @return {OO.ui.Element[]} Items with equivalent data
  */
 OO.ui.mixin.GroupElement.prototype.findItemsFromData = function ( data ) {
-	var i, len, item,
-		hash = OO.getHash( data ),
+	var hash = OO.getHash( data ),
 		items = [];
 
-	for ( i = 0, len = this.items.length; i < len; i++ ) {
-		item = this.items[ i ];
+	for ( var i = 0, len = this.items.length; i < len; i++ ) {
+		var item = this.items[ i ];
 		if ( hash === OO.getHash( item.getData() ) ) {
 			items.push( item );
 		}
@@ -2714,16 +2693,14 @@ OO.ui.mixin.GroupElement.prototype.insertItemElements = function ( itemWidget, i
  * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.GroupElement.prototype.removeItems = function ( items ) {
-	var i, len, item, index;
-
 	if ( items.length === 0 ) {
 		return this;
 	}
 
 	// Remove specific items elements
-	for ( i = 0, len = items.length; i < len; i++ ) {
-		item = items[ i ];
-		index = this.items.indexOf( item );
+	for ( var i = 0, len = items.length; i < len; i++ ) {
+		var item = items[ i ];
+		var index = this.items.indexOf( item );
 		if ( index !== -1 ) {
 			item.setElementGroup( null );
 			item.$element.detach();
@@ -2747,10 +2724,8 @@ OO.ui.mixin.GroupElement.prototype.removeItems = function ( items ) {
  * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.GroupElement.prototype.clearItems = function () {
-	var i, len;
-
 	// Remove all item elements
-	for ( i = 0, len = this.items.length; i < len; i++ ) {
+	for ( var i = 0, len = this.items.length; i < len; i++ ) {
 		this.items[ i ].setElementGroup( null );
 		this.items[ i ].$element.detach();
 	}
@@ -2834,8 +2809,7 @@ OO.ui.mixin.LabelElement.static.label = null;
  *  sub-string wrapped in highlighted span
  */
 OO.ui.mixin.LabelElement.static.highlightQuery = function ( text, query, compare, combineMarks ) {
-	var i, tLen, qLen,
-		offset = -1,
+	var offset = -1,
 		$result = $( '<span>' ),
 		comboLength = 0,
 		comboMarks = '',
@@ -2843,9 +2817,9 @@ OO.ui.mixin.LabelElement.static.highlightQuery = function ( text, query, compare
 		comboMatch;
 
 	if ( compare ) {
-		tLen = text.length;
-		qLen = query.length;
-		for ( i = 0; offset === -1 && i <= tLen - qLen; i++ ) {
+		var tLen = text.length;
+		var qLen = query.length;
+		for ( var i = 0; offset === -1 && i <= tLen - qLen; i++ ) {
 			if ( compare( query, text.slice( i, i + qLen ) ) === 0 ) {
 				offset = i;
 			}
@@ -3455,13 +3429,12 @@ OO.ui.mixin.FlaggedElement.prototype.getFlags = function () {
  * @fires flag
  */
 OO.ui.mixin.FlaggedElement.prototype.clearFlags = function () {
-	var flag, className,
-		changes = {},
+	var changes = {},
 		remove = [],
 		classPrefix = 'oo-ui-flaggedElement-';
 
-	for ( flag in this.flags ) {
-		className = classPrefix + flag;
+	for ( var flag in this.flags ) {
+		var className = classPrefix + flag;
 		changes[ flag ] = false;
 		delete this.flags[ flag ];
 		remove.push( className );
@@ -3488,12 +3461,12 @@ OO.ui.mixin.FlaggedElement.prototype.clearFlags = function () {
  * @fires flag
  */
 OO.ui.mixin.FlaggedElement.prototype.setFlags = function ( flags ) {
-	var i, len, flag, className,
-		changes = {},
+	var changes = {},
 		add = [],
 		remove = [],
 		classPrefix = 'oo-ui-flaggedElement-';
 
+	var className, flag;
 	if ( typeof flags === 'string' ) {
 		className = classPrefix + flags;
 		// Set
@@ -3502,7 +3475,7 @@ OO.ui.mixin.FlaggedElement.prototype.setFlags = function ( flags ) {
 			add.push( className );
 		}
 	} else if ( Array.isArray( flags ) ) {
-		for ( i = 0, len = flags.length; i < len; i++ ) {
+		for ( var i = 0, len = flags.length; i < len; i++ ) {
 			flag = flags[ i ];
 			className = classPrefix + flag;
 			// Set
@@ -3569,6 +3542,8 @@ OO.ui.mixin.FlaggedElement.prototype.setFlags = function ( flags ) {
  *  element created by the class.
  * @cfg {string|Function} [title] The title text or a function that returns text. If
  *  this config is omitted, the value of the {@link #static-title static title} property is used.
+ *  If config for an invisible label ({@link OO.ui.mixin.LabelElement}) is present, and a title is
+ *  omitted, the label will be used as a fallback for the title.
  */
 OO.ui.mixin.TitledElement = function OoUiMixinTitledElement( config ) {
 	// Configuration initialization
@@ -3579,7 +3554,16 @@ OO.ui.mixin.TitledElement = function OoUiMixinTitledElement( config ) {
 	this.title = null;
 
 	// Initialization
-	this.setTitle( config.title !== undefined ? config.title : this.constructor.static.title );
+	var title = config.title !== undefined ? config.title : this.constructor.static.title;
+	if (
+		title === null &&
+		config.invisibleLabel &&
+		typeof config.label === 'string'
+	) {
+		// If config for an invisible label is present, use this as a fallback title
+		title = config.label;
+	}
+	this.setTitle( title );
 	this.setTitledElement( config.$titled || this.$element );
 };
 
@@ -3806,8 +3790,6 @@ OO.ui.mixin.AccessKeyedElement.prototype.getAccessKey = function () {
  * @return {string}
  */
 OO.ui.mixin.AccessKeyedElement.prototype.formatTitleWithAccessKey = function ( title ) {
-	var accessKey;
-
 	if ( !this.$accessKeyed ) {
 		// Not initialized yet; the constructor will call updateTitle() which will rerun this
 		// function.
@@ -3815,6 +3797,7 @@ OO.ui.mixin.AccessKeyedElement.prototype.formatTitleWithAccessKey = function ( t
 	}
 	// Use jquery.accessKeyLabel if available to show modifiers, otherwise just display the
 	// single key.
+	var accessKey;
 	if ( $.fn.updateTooltipAccessKeys && $.fn.updateTooltipAccessKeys.getAccessKeyLabel ) {
 		accessKey = $.fn.updateTooltipAccessKeys.getAccessKeyLabel( this.$accessKeyed[ 0 ] );
 	} else {
@@ -4951,8 +4934,6 @@ OO.ui.mixin.FloatableElement.prototype.setHorizontalPosition = function ( positi
  * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positioning ) {
-	var closestScrollableOfContainer;
-
 	if ( !this.$floatable || !this.$floatableContainer ) {
 		return this;
 	}
@@ -4967,7 +4948,7 @@ OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positionin
 	if ( this.positioning !== positioning ) {
 		this.positioning = positioning;
 
-		closestScrollableOfContainer = OO.ui.Element.static.getClosestScrollableContainer(
+		var closestScrollableOfContainer = OO.ui.Element.static.getClosestScrollableContainer(
 			this.$floatableContainer[ 0 ]
 		);
 		// If the scrollable is the root, we have to listen to scroll events
@@ -5015,13 +4996,12 @@ OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positionin
  * @return {boolean}
  */
 OO.ui.mixin.FloatableElement.prototype.isElementInViewport = function ( $element, $container ) {
-	var elemRect, contRect, topEdgeInBounds, bottomEdgeInBounds, leftEdgeInBounds,
-		rightEdgeInBounds, startEdgeInBounds, endEdgeInBounds, viewportSpacing,
-		direction = $element.css( 'direction' );
+	var direction = $element.css( 'direction' );
 
-	elemRect = $element[ 0 ].getBoundingClientRect();
+	var elemRect = $element[ 0 ].getBoundingClientRect();
+	var contRect;
 	if ( $container[ 0 ] === window ) {
-		viewportSpacing = OO.ui.getViewportSpacing();
+		var viewportSpacing = OO.ui.getViewportSpacing();
 		contRect = {
 			top: 0,
 			left: 0,
@@ -5036,10 +5016,11 @@ OO.ui.mixin.FloatableElement.prototype.isElementInViewport = function ( $element
 		contRect = $container[ 0 ].getBoundingClientRect();
 	}
 
-	topEdgeInBounds = elemRect.top >= contRect.top && elemRect.top <= contRect.bottom;
-	bottomEdgeInBounds = elemRect.bottom >= contRect.top && elemRect.bottom <= contRect.bottom;
-	leftEdgeInBounds = elemRect.left >= contRect.left && elemRect.left <= contRect.right;
-	rightEdgeInBounds = elemRect.right >= contRect.left && elemRect.right <= contRect.right;
+	var topEdgeInBounds = elemRect.top >= contRect.top && elemRect.top <= contRect.bottom;
+	var bottomEdgeInBounds = elemRect.bottom >= contRect.top && elemRect.bottom <= contRect.bottom;
+	var leftEdgeInBounds = elemRect.left >= contRect.left && elemRect.left <= contRect.right;
+	var rightEdgeInBounds = elemRect.right >= contRect.left && elemRect.right <= contRect.right;
+	var startEdgeInBounds, endEdgeInBounds;
 	if ( direction === 'rtl' ) {
 		startEdgeInBounds = rightEdgeInBounds;
 		endEdgeInBounds = leftEdgeInBounds;
@@ -5134,9 +5115,7 @@ OO.ui.mixin.FloatableElement.prototype.position = function () {
  * @return {Object} New position to apply with .css(). Keys are 'top', 'left', 'bottom' and 'right'.
  */
 OO.ui.mixin.FloatableElement.prototype.computePosition = function () {
-	var isBody, scrollableX, scrollableY, containerPos,
-		horizScrollbarHeight, vertScrollbarWidth, scrollTop, scrollLeft,
-		newPos = { top: '', left: '', bottom: '', right: '' },
+	var newPos = { top: '', left: '', bottom: '', right: '' },
 		direction = this.$floatableContainer.css( 'direction' ),
 		$offsetParent = this.$floatable.offsetParent();
 
@@ -5145,24 +5124,24 @@ OO.ui.mixin.FloatableElement.prototype.computePosition = function () {
 		// <html> element, but they do work on the <body>
 		$offsetParent = $( $offsetParent[ 0 ].ownerDocument.body );
 	}
-	isBody = $offsetParent.is( 'body' );
-	scrollableX = $offsetParent.css( 'overflow-x' ) === 'scroll' ||
+	var isBody = $offsetParent.is( 'body' );
+	var scrollableX = $offsetParent.css( 'overflow-x' ) === 'scroll' ||
 		$offsetParent.css( 'overflow-x' ) === 'auto';
-	scrollableY = $offsetParent.css( 'overflow-y' ) === 'scroll' ||
+	var scrollableY = $offsetParent.css( 'overflow-y' ) === 'scroll' ||
 		$offsetParent.css( 'overflow-y' ) === 'auto';
 
-	vertScrollbarWidth = $offsetParent.innerWidth() - $offsetParent.prop( 'clientWidth' );
-	horizScrollbarHeight = $offsetParent.innerHeight() - $offsetParent.prop( 'clientHeight' );
+	var vertScrollbarWidth = $offsetParent.innerWidth() - $offsetParent.prop( 'clientWidth' );
+	var horizScrollbarHeight = $offsetParent.innerHeight() - $offsetParent.prop( 'clientHeight' );
 	// We don't need to compute and add scrollTop and scrollLeft if the scrollable container
 	// is the body, or if it isn't scrollable
-	scrollTop = scrollableY && !isBody ?
+	var scrollTop = scrollableY && !isBody ?
 		$offsetParent.scrollTop() : 0;
-	scrollLeft = scrollableX && !isBody ?
+	var scrollLeft = scrollableX && !isBody ?
 		OO.ui.Element.static.getScrollLeft( $offsetParent[ 0 ] ) : 0;
 
 	// Avoid passing the <body> to getRelativePosition(), because it won't return what we expect
 	// if the <body> has a margin
-	containerPos = isBody ?
+	var containerPos = isBody ?
 		this.$floatableContainer.offset() :
 		OO.ui.Element.static.getRelativePosition( this.$floatableContainer, $offsetParent );
 	containerPos.bottom = containerPos.top + this.$floatableContainer.outerHeight();
@@ -5496,16 +5475,6 @@ OO.ui.mixin.ClippableElement.prototype.getVerticalAnchorEdge = function () {
  * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.ClippableElement.prototype.clip = function () {
-	var extraHeight, extraWidth, viewportSpacing,
-		desiredWidth, desiredHeight, allotedWidth, allotedHeight,
-		naturalWidth, naturalHeight, clipWidth, clipHeight,
-		$item, itemRect, $viewport, viewportRect, availableRect,
-		direction, vertScrollbarWidth, horizScrollbarHeight,
-		// Extra tolerance so that the sloppy code below doesn't result in results that are off
-		// by one or two pixels. (And also so that we have space to display drop shadows.)
-		// Chosen by fair dice roll.
-		buffer = 7;
-
 	if ( !this.clipping ) {
 		// this.$clippableScrollableContainer and this.$clippableWindow are null, so the below
 		// will fail
@@ -5521,8 +5490,9 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		return out;
 	}
 
-	viewportSpacing = OO.ui.getViewportSpacing();
+	var viewportSpacing = OO.ui.getViewportSpacing();
 
+	var $viewport, viewportRect;
 	if ( this.$clippableScrollableContainer.is( 'html, body' ) ) {
 		$viewport = $( this.$clippableScrollableContainer[ 0 ].ownerDocument.body );
 		// Dimensions of the browser window, rather than the element!
@@ -5544,9 +5514,9 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 	}
 
 	// Account for scrollbar gutter
-	direction = $viewport.css( 'direction' );
-	vertScrollbarWidth = $viewport.innerWidth() - $viewport.prop( 'clientWidth' );
-	horizScrollbarHeight = $viewport.innerHeight() - $viewport.prop( 'clientHeight' );
+	var direction = $viewport.css( 'direction' );
+	var vertScrollbarWidth = $viewport.innerWidth() - $viewport.prop( 'clientWidth' );
+	var horizScrollbarHeight = $viewport.innerHeight() - $viewport.prop( 'clientHeight' );
 	viewportRect.bottom -= horizScrollbarHeight;
 	if ( direction === 'rtl' ) {
 		viewportRect.left += vertScrollbarWidth;
@@ -5554,18 +5524,21 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		viewportRect.right -= vertScrollbarWidth;
 	}
 
-	// Add arbitrary tolerance
+	// Extra tolerance so that the sloppy code below doesn't result in results that are off
+	// by one or two pixels. (And also so that we have space to display drop shadows.)
+	// Chosen by fair dice roll.
+	var buffer = 7;
 	viewportRect.top += buffer;
 	viewportRect.left += buffer;
 	viewportRect.right -= buffer;
 	viewportRect.bottom -= buffer;
 
-	$item = this.$clippableContainer || this.$clippable;
+	var $item = this.$clippableContainer || this.$clippable;
 
-	extraHeight = $item.outerHeight() - this.$clippable.outerHeight();
-	extraWidth = $item.outerWidth() - this.$clippable.outerWidth();
+	var extraHeight = $item.outerHeight() - this.$clippable.outerHeight();
+	var extraWidth = $item.outerWidth() - this.$clippable.outerWidth();
 
-	itemRect = $item[ 0 ].getBoundingClientRect();
+	var itemRect = $item[ 0 ].getBoundingClientRect();
 	// Convert into a plain object
 	itemRect = $.extend( {}, itemRect );
 
@@ -5582,28 +5555,33 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		itemRect.bottom = viewportRect.bottom;
 	}
 
-	availableRect = rectIntersection( viewportRect, itemRect );
+	var availableRect = rectIntersection( viewportRect, itemRect );
 
-	desiredWidth = Math.max( 0, availableRect.right - availableRect.left );
-	desiredHeight = Math.max( 0, availableRect.bottom - availableRect.top );
+	var desiredWidth = Math.max( 0, availableRect.right - availableRect.left );
+	var desiredHeight = Math.max( 0, availableRect.bottom - availableRect.top );
 	// It should never be desirable to exceed the dimensions of the browser viewport... right?
 	desiredWidth = Math.min( desiredWidth,
 		document.documentElement.clientWidth - viewportSpacing.left - viewportSpacing.right );
 	desiredHeight = Math.min( desiredHeight,
 		document.documentElement.clientHeight - viewportSpacing.top - viewportSpacing.right );
-	allotedWidth = Math.ceil( desiredWidth - extraWidth );
-	allotedHeight = Math.ceil( desiredHeight - extraHeight );
-	naturalWidth = this.$clippable.prop( 'scrollWidth' );
-	naturalHeight = this.$clippable.prop( 'scrollHeight' );
-	clipWidth = allotedWidth < naturalWidth;
-	clipHeight = allotedHeight < naturalHeight;
+	var allotedWidth = Math.ceil( desiredWidth - extraWidth );
+	var allotedHeight = Math.ceil( desiredHeight - extraHeight );
+	var naturalWidth = this.$clippable.prop( 'scrollWidth' );
+	var naturalHeight = this.$clippable.prop( 'scrollHeight' );
+	var clipWidth = allotedWidth < naturalWidth;
+	var clipHeight = allotedHeight < naturalHeight;
 
 	if ( clipWidth ) {
-		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars.
-		// See T157672.
+		// Set overflow to 'scroll' first to avoid browser bugs causing bogus scrollbars (T67059),
+		// then to 'auto' which is what we want.
 		// Forcing a reflow is a smaller workaround than calling reconsiderScrollbars() for
 		// this case.
 		this.$clippable.css( 'overflowX', 'scroll' );
+		// eslint-disable-next-line no-void
+		void this.$clippable[ 0 ].offsetHeight; // Force reflow
+		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars.
+		// See T157672.
+		this.$clippable.css( 'overflowX', 'auto' );
 		// eslint-disable-next-line no-void
 		void this.$clippable[ 0 ].offsetHeight; // Force reflow
 		this.$clippable.css( {
@@ -5618,11 +5596,16 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		} );
 	}
 	if ( clipHeight ) {
-		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars.
-		// See T157672.
+		// Set overflow to 'scroll' first to avoid browser bugs causing bogus scrollbars (T67059),
+		// then to 'auto' which is what we want.
 		// Forcing a reflow is a smaller workaround than calling reconsiderScrollbars() for
 		// this case.
 		this.$clippable.css( 'overflowY', 'scroll' );
+		// eslint-disable-next-line no-void
+		void this.$clippable[ 0 ].offsetHeight; // Force reflow
+		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars.
+		// See T157672.
+		this.$clippable.css( 'overflowY', 'auto' );
 		// eslint-disable-next-line no-void
 		void this.$clippable[ 0 ].offsetHeight; // Force reflow
 		this.$clippable.css( {
@@ -5775,6 +5758,7 @@ OO.ui.PopupWidget = function OoUiPopupWidget( config ) {
 		this.$body.append( config.$content );
 	}
 
+	this.padded = !!config.padded;
 	if ( config.padded ) {
 		this.$body.addClass( 'oo-ui-popupWidget-body-padded' );
 	}
@@ -6009,11 +5993,9 @@ OO.ui.PopupWidget.prototype.hasAnchor = function () {
  * @inheritdoc
  */
 OO.ui.PopupWidget.prototype.toggle = function ( show ) {
-	var change, normalHeight, oppositeHeight, normalWidth,
-		oppositeWidth, $firstFocusableElement, $lastFocusableElement;
 	show = show === undefined ? !this.isVisible() : !!show;
 
-	change = show !== this.isVisible();
+	var change = show !== this.isVisible();
 
 	if ( show && !this.warnedUnattached && !this.isElementAttached() ) {
 		OO.ui.warnDeprecation( 'PopupWidget#toggle: Before calling this method, the popup must be attached to the DOM.' );
@@ -6037,8 +6019,8 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 		this.togglePositioning( show && !!this.$floatableContainer );
 
 		// Find the first and last focusable element in the popup widget
-		$lastFocusableElement = OO.ui.findFocusable( this.$element, true );
-		$firstFocusableElement = OO.ui.findFocusable( this.$element, false );
+		var $lastFocusableElement = OO.ui.findFocusable( this.$element, true );
+		var $firstFocusableElement = OO.ui.findFocusable( this.$element, false );
 
 		if ( show ) {
 			if ( this.autoClose ) {
@@ -6061,13 +6043,13 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 					if ( this.isClippedVertically() || this.isFloatableOutOfView() ) {
 						// If opening the popup in the normal direction causes it to be clipped,
 						// open in the opposite one instead
-						normalHeight = this.$element.height();
+						var normalHeight = this.$element.height();
 						this.isAutoFlipped = !this.isAutoFlipped;
 						this.position();
 						if ( this.isClippedVertically() || this.isFloatableOutOfView() ) {
 							// If that also causes it to be clipped, open in whichever direction
 							// we have more space
-							oppositeHeight = this.$element.height();
+							var oppositeHeight = this.$element.height();
 							if ( oppositeHeight < normalHeight ) {
 								this.isAutoFlipped = !this.isAutoFlipped;
 								this.position();
@@ -6079,7 +6061,7 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 					if ( this.isClippedHorizontally() || this.isFloatableOutOfView() ) {
 						// If opening the popup in the normal direction causes it to be clipped,
 						// open in the opposite one instead
-						normalWidth = this.$element.width();
+						var normalWidth = this.$element.width();
 						this.isAutoFlipped = !this.isAutoFlipped;
 						// Due to T180173 horizontally clipped PopupWidgets have messed up
 						// dimensions, which causes positioning to be off. Toggle clipping back and
@@ -6090,7 +6072,7 @@ OO.ui.PopupWidget.prototype.toggle = function ( show ) {
 						if ( this.isClippedHorizontally() || this.isFloatableOutOfView() ) {
 							// If that also causes it to be clipped, open in whichever direction
 							// we have more space
-							oppositeWidth = this.$element.width();
+							var oppositeWidth = this.$element.width();
 							if ( oppositeWidth < normalWidth ) {
 								this.isAutoFlipped = !this.isAutoFlipped;
 								// Due to T180173, horizontally clipped PopupWidgets have messed up
@@ -6183,10 +6165,7 @@ OO.ui.PopupWidget.prototype.updateDimensions = function ( transition ) {
  * @inheritdoc
  */
 OO.ui.PopupWidget.prototype.computePosition = function () {
-	var direction, align, vertical, start, end, near, far, sizeProp, popupSize, anchorSize,
-		anchorPos, anchorOffset, anchorMargin, parentPosition, positionProp, positionAdjustment,
-		floatablePos, offsetParentPos, containerPos, popupPosition, viewportSpacing,
-		popupPos = {},
+	var popupPos = {},
 		anchorCss = { left: '', right: '', top: '', bottom: '' },
 		popupPositionOppositeMap = {
 			above: 'below',
@@ -6225,49 +6204,49 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
 		// Lazy-initialize $container if not specified in constructor
 		this.$container = $( this.getClosestScrollableElementContainer() );
 	}
-	direction = this.$container.css( 'direction' );
+	var direction = this.$container.css( 'direction' );
 
 	// Set height and width before we do anything else, since it might cause our measurements
 	// to change (e.g. due to scrollbars appearing or disappearing), and it also affects centering
-	this.$popup.css( {
-		width: this.width !== null ? this.width : 'auto',
-		height: this.height !== null ? this.height : 'auto'
-	} );
+	this.setIdealSize(
+		// The properties refer to the width of this.$popup, but we set the properties on this.$body to
+		// make calculations work out right (T180173), so we subtract padding here.
+		this.width !== null ? this.width - ( this.padded ? 24 : 0 ) : 'auto',
+		this.height !== null ? this.height - ( this.padded ? 10 : 0 ) : 'auto'
+	);
 
-	align = alignMap[ direction ][ this.align ] || this.align;
-	popupPosition = this.popupPosition;
+	var align = alignMap[ direction ][ this.align ] || this.align;
+	var popupPosition = this.popupPosition;
 	if ( this.isAutoFlipped ) {
 		popupPosition = popupPositionOppositeMap[ popupPosition ];
 	}
 
 	// If the popup is positioned before or after, then the anchor positioning is vertical,
 	// otherwise horizontal
-	vertical = popupPosition === 'before' || popupPosition === 'after';
-	start = vertical ? 'top' : ( direction === 'rtl' ? 'right' : 'left' );
-	end = vertical ? 'bottom' : ( direction === 'rtl' ? 'left' : 'right' );
-	near = vertical ? 'top' : 'left';
-	far = vertical ? 'bottom' : 'right';
-	sizeProp = vertical ? 'Height' : 'Width';
-	popupSize = vertical ?
-		( this.height || this.$popup.height() ) :
-		( this.width || this.$popup.width() );
+	var vertical = popupPosition === 'before' || popupPosition === 'after';
+	var start = vertical ? 'top' : ( direction === 'rtl' ? 'right' : 'left' );
+	var end = vertical ? 'bottom' : ( direction === 'rtl' ? 'left' : 'right' );
+	var near = vertical ? 'top' : 'left';
+	var far = vertical ? 'bottom' : 'right';
+	var sizeProp = vertical ? 'Height' : 'Width';
+	var popupSize = vertical ? this.$popup.height() : this.$popup.width();
 
 	this.setAnchorEdge( anchorEdgeMap[ popupPosition ] );
 	this.horizontalPosition = vertical ? popupPosition : hPosMap[ align ];
 	this.verticalPosition = vertical ? vPosMap[ align ] : popupPosition;
 
 	// Parent method
-	parentPosition = OO.ui.mixin.FloatableElement.prototype.computePosition.call( this );
+	var parentPosition = OO.ui.mixin.FloatableElement.prototype.computePosition.call( this );
 	// Find out which property FloatableElement used for positioning, and adjust that value
-	positionProp = vertical ?
+	var positionProp = vertical ?
 		( parentPosition.top !== '' ? 'top' : 'bottom' ) :
 		( parentPosition.left !== '' ? 'left' : 'right' );
 
 	// Figure out where the near and far edges of the popup and $floatableContainer are
-	floatablePos = this.$floatableContainer.offset();
+	var floatablePos = this.$floatableContainer.offset();
 	floatablePos[ far ] = floatablePos[ near ] + this.$floatableContainer[ 'outer' + sizeProp ]();
 	// Measure where the offsetParent is and compute our position based on that and parentPosition
-	offsetParentPos = this.$element.offsetParent()[ 0 ] === document.documentElement ?
+	var offsetParentPos = this.$element.offsetParent()[ 0 ] === document.documentElement ?
 		{ top: 0, left: 0 } :
 		this.$element.offsetParent().offset();
 
@@ -6280,17 +6259,18 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
 		popupPos[ near ] = popupPos[ far ] - popupSize;
 	}
 
+	var anchorOffset, positionAdjustment;
 	if ( this.anchored ) {
 		// Position the anchor (which is positioned relative to the popup) to point to
 		// $floatableContainer
-		anchorPos = ( floatablePos[ start ] + floatablePos[ end ] ) / 2;
+		var anchorPos = ( floatablePos[ start ] + floatablePos[ end ] ) / 2;
 		anchorOffset = ( start === far ? -1 : 1 ) * ( anchorPos - popupPos[ start ] );
 
 		// If the anchor is less than 2*anchorSize from either edge, move the popup to make more
 		// space this.$anchor.width()/height() returns 0 because of the CSS trickery we use, so use
 		// scrollWidth/Height
-		anchorSize = this.$anchor[ 0 ][ 'scroll' + sizeProp ];
-		anchorMargin = parseFloat( this.$anchor.css( 'margin-' + start ) );
+		var anchorSize = this.$anchor[ 0 ][ 'scroll' + sizeProp ];
+		var anchorMargin = parseFloat( this.$anchor.css( 'margin-' + start ) );
 		if ( anchorOffset + anchorMargin < 2 * anchorSize ) {
 			// Not enough space for the anchor on the start side; pull the popup startwards
 			positionAdjustment = ( positionProp === start ? -1 : 1 ) *
@@ -6307,12 +6287,12 @@ OO.ui.PopupWidget.prototype.computePosition = function () {
 	}
 
 	// Check if the popup will go beyond the edge of this.$container
-	containerPos = this.$container[ 0 ] === document.documentElement ?
+	var containerPos = this.$container[ 0 ] === document.documentElement ?
 		{ top: 0, left: 0 } :
 		this.$container.offset();
 	containerPos[ far ] = containerPos[ near ] + this.$container[ 'inner' + sizeProp ]();
 	if ( this.$container[ 0 ] === document.documentElement ) {
-		viewportSpacing = OO.ui.getViewportSpacing();
+		var viewportSpacing = OO.ui.getViewportSpacing();
 		containerPos[ near ] += viewportSpacing[ near ];
 		containerPos[ far ] -= viewportSpacing[ far ];
 	}
@@ -6604,15 +6584,13 @@ OO.mixinClass( OO.ui.mixin.GroupWidget, OO.ui.mixin.GroupElement );
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.mixin.GroupWidget.prototype.setDisabled = function ( disabled ) {
-	var i, len;
-
 	// Parent method
 	// Note: Calling #setDisabled this way assumes this is mixed into an OO.ui.Widget
 	OO.ui.Widget.prototype.setDisabled.call( this, disabled );
 
 	// During construction, #setDisabled is called before the OO.ui.mixin.GroupElement constructor
 	if ( this.items ) {
-		for ( i = 0, len = this.items.length; i < len; i++ ) {
+		for ( var i = 0, len = this.items.length; i < len; i++ ) {
 			this.items[ i ].updateDisabled();
 		}
 	}
@@ -7054,6 +7032,27 @@ OO.mixinClass( OO.ui.SelectWidget, OO.ui.mixin.GroupWidget );
  * @param {OO.ui.OptionWidget[]} items Removed items
  */
 
+/* Static Properties */
+
+/**
+ * Whether this widget will respond to the navigation keys Home, End, PageUp, PageDown.
+ *
+ * @static
+ * @inheritable
+ * @property {boolean}
+ */
+OO.ui.SelectWidget.static.handleNavigationKeys = false;
+
+/**
+ * Whether selecting items using arrow keys or navigation keys in this widget will wrap around after
+ * the user reaches the beginning or end of the list.
+ *
+ * @static
+ * @inheritable
+ * @property {boolean}
+ */
+OO.ui.SelectWidget.static.listWrapsAround = true;
+
 /* Static methods */
 
 /**
@@ -7088,7 +7087,7 @@ OO.ui.SelectWidget.prototype.onFocus = function ( event ) {
 	if ( event.target === this.$element[ 0 ] ) {
 		// This widget was focussed, e.g. by the user tabbing to it.
 		// The styles for focus state depend on one of the items being selected.
-		if ( !this.findSelectedItem() ) {
+		if ( !this.findFirstSelectedItem() ) {
 			item = this.findFirstSelectableItem();
 		}
 	} else {
@@ -7226,15 +7225,11 @@ OO.ui.SelectWidget.prototype.onMouseLeave = function () {
  * @param {KeyboardEvent} e Key down event
  */
 OO.ui.SelectWidget.prototype.onDocumentKeyDown = function ( e ) {
-	var nextItem,
-		handled = false,
-		selected = this.findSelectedItems(),
-		currentItem = this.findHighlightedItem() || (
-			Array.isArray( selected ) ? selected[ 0 ] : selected
-		),
-		firstItem = this.getItems()[ 0 ];
+	var handled = false,
+		currentItem = this.isVisible() && this.findHighlightedItem() || this.findFirstSelectedItem();
 
-	if ( !this.isDisabled() && this.isVisible() ) {
+	var nextItem;
+	if ( !this.isDisabled() ) {
 		switch ( e.keyCode ) {
 			case OO.ui.Keys.ENTER:
 				if ( currentItem ) {
@@ -7245,17 +7240,42 @@ OO.ui.SelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 				break;
 			case OO.ui.Keys.UP:
 			case OO.ui.Keys.LEFT:
-				this.clearKeyPressBuffer();
-				nextItem = currentItem ?
-					this.findRelativeSelectableItem( currentItem, -1 ) : firstItem;
-				handled = true;
-				break;
 			case OO.ui.Keys.DOWN:
 			case OO.ui.Keys.RIGHT:
 				this.clearKeyPressBuffer();
-				nextItem = currentItem ?
-					this.findRelativeSelectableItem( currentItem, 1 ) : firstItem;
+				nextItem = this.findRelativeSelectableItem(
+					currentItem,
+					e.keyCode === OO.ui.Keys.UP || e.keyCode === OO.ui.Keys.LEFT ? -1 : 1,
+					null,
+					this.constructor.static.listWrapsAround
+				);
 				handled = true;
+				break;
+			case OO.ui.Keys.HOME:
+			case OO.ui.Keys.END:
+				if ( this.constructor.static.handleNavigationKeys ) {
+					this.clearKeyPressBuffer();
+					nextItem = this.findRelativeSelectableItem(
+						null,
+						e.keyCode === OO.ui.Keys.HOME ? 1 : -1,
+						null,
+						this.constructor.static.listWrapsAround
+					);
+					handled = true;
+				}
+				break;
+			case OO.ui.Keys.PAGEUP:
+			case OO.ui.Keys.PAGEDOWN:
+				if ( this.constructor.static.handleNavigationKeys ) {
+					this.clearKeyPressBuffer();
+					nextItem = this.findRelativeSelectableItem(
+						currentItem,
+						e.keyCode === OO.ui.Keys.PAGEUP ? -10 : 10,
+						null,
+						this.constructor.static.listWrapsAround
+					);
+					handled = true;
+				}
 				break;
 			case OO.ui.Keys.ESCAPE:
 			case OO.ui.Keys.TAB:
@@ -7270,9 +7290,12 @@ OO.ui.SelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 		}
 
 		if ( nextItem ) {
-			if ( nextItem.constructor.static.highlightable ) {
+			if ( this.isVisible() && nextItem.constructor.static.highlightable ) {
 				this.highlightItem( nextItem );
 			} else {
+				if ( this.screenReaderMode ) {
+					this.highlightItem( nextItem );
+				}
 				this.chooseItem( nextItem );
 			}
 			this.scrollItemIntoView( nextItem );
@@ -7358,10 +7381,7 @@ OO.ui.SelectWidget.prototype.onDocumentKeyPress = function ( e ) {
 	}
 	this.keyPressBufferTimer = setTimeout( this.clearKeyPressBuffer.bind( this ), 1500 );
 
-	var selected = this.findSelectedItems();
-	var item = this.findHighlightedItem() || (
-		Array.isArray( selected ) ? selected[ 0 ] : selected
-	);
+	var item = this.isVisible() && this.findHighlightedItem() || this.findFirstSelectedItem();
 
 	if ( this.keyPressBuffer === c ) {
 		// Common (if weird) special case: typing "xxxx" will cycle through all
@@ -7381,6 +7401,9 @@ OO.ui.SelectWidget.prototype.onDocumentKeyPress = function ( e ) {
 		if ( this.isVisible() && item.constructor.static.highlightable ) {
 			this.highlightItem( item );
 		} else {
+			if ( this.screenReaderMode ) {
+				this.highlightItem( item );
+			}
 			this.chooseItem( item );
 		}
 		this.scrollItemIntoView( item );
@@ -7478,6 +7501,18 @@ OO.ui.SelectWidget.prototype.findTargetItem = function ( e ) {
 };
 
 /**
+ * @return {OO.ui.OptionWidget|null} The first (of possibly many) selected item, if any
+ */
+OO.ui.SelectWidget.prototype.findFirstSelectedItem = function () {
+	for ( var i = 0; i < this.items.length; i++ ) {
+		if ( this.items[ i ].isSelected() ) {
+			return this.items[ i ];
+		}
+	}
+	return null;
+};
+
+/**
  * Find all selected items, if there are any. If the widget allows for multiselect
  * it will return an array of selected options. If the widget doesn't allow for
  * multiselect, it will return the selected option or null if no item is selected.
@@ -7488,13 +7523,13 @@ OO.ui.SelectWidget.prototype.findTargetItem = function ( e ) {
  *  if no item is selected
  */
 OO.ui.SelectWidget.prototype.findSelectedItems = function () {
-	var selected = this.items.filter( function ( item ) {
+	if ( !this.multiselect ) {
+		return this.findFirstSelectedItem();
+	}
+
+	return this.items.filter( function ( item ) {
 		return item.isSelected();
 	} );
-
-	return this.multiselect ?
-		selected :
-		selected[ 0 ] || null;
 };
 
 /**
@@ -7593,10 +7628,10 @@ OO.ui.SelectWidget.prototype.highlightItem = function ( item ) {
  * @return {OO.ui.Element|null} Item with equivalent label, `null` if none exists
  */
 OO.ui.SelectWidget.prototype.getItemFromLabel = function ( label, prefix ) {
-	var i, item,
-		len = this.items.length,
+	var len = this.items.length,
 		filter = this.getItemMatcher( label, 'exact' );
 
+	var i, item;
 	for ( i = 0; i < len; i++ ) {
 		item = this.items[ i ];
 		if ( item instanceof OO.ui.OptionWidget && item.isSelectable() && filter( item ) ) {
@@ -7805,42 +7840,67 @@ OO.ui.SelectWidget.prototype.chooseItem = function ( item ) {
 
 /**
  * Find an option by its position relative to the specified item (or to the start of the option
- * array, if item is `null`). The direction in which to search through the option array is specified
- * with a number: -1 for reverse (the default) or 1 for forward. The method will return an option,
- * or `null` if there are no options in the array.
+ * array, if item is `null`). The direction and distance in which to search through the option array
+ * is specified with a number: e.g. -1 for the previous item (the default) or 1 for the next item,
+ * or 15 for the 15th next item, etc. The method will return an option, or `null` if there are no
+ * options in the array.
  *
  * @param {OO.ui.OptionWidget|null} item Item to describe the start position, or `null` to start at
  *  the beginning of the array.
- * @param {number} direction Direction to move in: -1 to move backward, 1 to move forward
+ * @param {number} offset Relative position: negative to move backward, positive to move forward
  * @param {Function} [filter] Only consider items for which this function returns
  *  true. Function takes an OO.ui.OptionWidget and returns a boolean.
+ * @param {boolean} [wrap=false] Do not wrap around after reaching the last or first item
  * @return {OO.ui.OptionWidget|null} Item at position, `null` if there are no items in the select
  */
-OO.ui.SelectWidget.prototype.findRelativeSelectableItem = function ( item, direction, filter ) {
-	var nextIndex,
-		increase = direction > 0 ? 1 : -1,
+OO.ui.SelectWidget.prototype.findRelativeSelectableItem = function ( item, offset, filter, wrap ) {
+	var step = offset > 0 ? 1 : -1,
 		len = this.items.length;
+	if ( wrap === undefined ) {
+		wrap = true;
+	}
 
+	var nextIndex;
 	if ( item instanceof OO.ui.OptionWidget ) {
-		var currentIndex = this.items.indexOf( item );
-		nextIndex = ( currentIndex + increase + len ) % len;
+		nextIndex = this.items.indexOf( item );
 	} else {
 		// If no item is selected and moving forward, start at the beginning.
 		// If moving backward, start at the end.
-		nextIndex = direction > 0 ? 0 : len - 1;
+		nextIndex = offset > 0 ? 0 : len - 1;
+		offset -= step;
 	}
 
+	var previousItem = item;
+	var nextItem = null;
 	for ( var i = 0; i < len; i++ ) {
 		item = this.items[ nextIndex ];
 		if (
 			item instanceof OO.ui.OptionWidget && item.isSelectable() &&
 			( !filter || filter( item ) )
 		) {
-			return item;
+			nextItem = item;
 		}
-		nextIndex = ( nextIndex + increase + len ) % len;
+
+		if ( offset === 0 && nextItem && nextItem !== previousItem ) {
+			// We walked at least the desired number of steps *and* we've selected a different item.
+			// This is to ensure that disabled items don't cause us to get stuck or return null.
+			break;
+		}
+
+		nextIndex += step;
+		if ( nextIndex < 0 || nextIndex >= len ) {
+			if ( wrap ) {
+				nextIndex = ( nextIndex + len ) % len;
+			} else {
+				// We ran out of the list, return whichever was the last valid item
+				break;
+			}
+		}
+		if ( offset !== 0 ) {
+			offset -= step;
+		}
 	}
-	return null;
+	return nextItem;
 };
 
 /**
@@ -8187,6 +8247,7 @@ OO.ui.MenuSelectWidget = function OoUiMenuSelectWidget( config ) {
 	this.lastHighlightedItem = null;
 	this.width = config.width;
 	this.filterMode = config.filterMode;
+	this.screenReaderMode = false;
 
 	// Initialization
 	this.$element.addClass( 'oo-ui-menuSelectWidget' );
@@ -8217,6 +8278,10 @@ OO.mixinClass( OO.ui.MenuSelectWidget, OO.ui.mixin.FloatableElement );
  */
 
 /* Static properties */
+
+OO.ui.MenuSelectWidget.static.handleNavigationKeys = true;
+
+OO.ui.MenuSelectWidget.static.listWrapsAround = false;
 
 /**
  * Positions to flip to if there isn't room in the container for the
@@ -8257,34 +8322,42 @@ OO.ui.MenuSelectWidget.prototype.onDocumentMouseDown = function ( e ) {
  */
 OO.ui.MenuSelectWidget.prototype.onDocumentKeyDown = function ( e ) {
 	var handled = false,
-		selected = this.findSelectedItems(),
-		currentItem = this.findHighlightedItem() || (
-			Array.isArray( selected ) ? selected[ 0 ] : selected
-		);
+		currentItem = this.findHighlightedItem() || this.findFirstSelectedItem();
 
-	if ( !this.isDisabled() && this.isVisible() && this.getVisibleItems().length ) {
+	if ( !this.isDisabled() && this.getVisibleItems().length ) {
 		switch ( e.keyCode ) {
-			case OO.ui.Keys.TAB:
-				if ( currentItem ) {
-					// Was only highlighted, now let's select it. No-op if already selected.
-					this.chooseItem( currentItem );
-					handled = true;
+			case OO.ui.Keys.ENTER:
+				if ( this.isVisible() ) {
+					OO.ui.MenuSelectWidget.super.prototype.onDocumentKeyDown.call( this, e );
 				}
-				this.toggle( false );
+				break;
+			case OO.ui.Keys.TAB:
+				if ( this.isVisible() ) {
+					if ( currentItem ) {
+						// Was only highlighted, now let's select it. No-op if already selected.
+						this.chooseItem( currentItem );
+						handled = true;
+					}
+					this.toggle( false );
+				}
 				break;
 			case OO.ui.Keys.LEFT:
 			case OO.ui.Keys.RIGHT:
-				// Do nothing if a text field is associated, arrow keys will be handled natively
+			case OO.ui.Keys.HOME:
+			case OO.ui.Keys.END:
+				// Do nothing if a text field is associated, these keys will be handled by the text input
 				if ( !this.$input ) {
 					OO.ui.MenuSelectWidget.super.prototype.onDocumentKeyDown.call( this, e );
 				}
 				break;
 			case OO.ui.Keys.ESCAPE:
-				if ( currentItem && !this.multiselect ) {
-					currentItem.setHighlighted( false );
+				if ( this.isVisible() ) {
+					if ( currentItem && !this.multiselect ) {
+						currentItem.setHighlighted( false );
+					}
+					this.toggle( false );
+					handled = true;
 				}
-				this.toggle( false );
-				handled = true;
 				break;
 			default:
 				return OO.ui.MenuSelectWidget.super.prototype.onDocumentKeyDown.call( this, e );
@@ -8319,14 +8392,15 @@ OO.ui.MenuSelectWidget.prototype.updateItemVisibility = function () {
 		return;
 	}
 
-	var i, item, section, sectionEmpty,
-		anyVisible = false;
+	var anyVisible = false;
 
 	var showAll = !this.isVisible() || this.previouslySelectedValue === this.$input.val(),
 		filter = showAll ? null : this.getItemMatcher( this.$input.val(), this.filterMode );
 	// Hide non-matching options, and also hide section headers if all options
 	// in their section are hidden.
-	for ( i = 0; i < this.items.length; i++ ) {
+	var item;
+	var section, sectionEmpty;
+	for ( var i = 0; i < this.items.length; i++ ) {
 		item = this.items[ i ];
 		if ( item instanceof OO.ui.MenuSectionOptionWidget ) {
 			if ( section ) {
@@ -8490,6 +8564,27 @@ OO.ui.MenuSelectWidget.prototype.clearItems = function () {
 };
 
 /**
+ * Toggle visibility of the menu for screen readers.
+ *
+ * @param {boolean} screenReaderMode
+ */
+OO.ui.MenuSelectWidget.prototype.toggleScreenReaderMode = function ( screenReaderMode ) {
+	screenReaderMode = !!screenReaderMode;
+	this.screenReaderMode = screenReaderMode;
+
+	this.$element.toggleClass( 'oo-ui-menuSelectWidget-screenReaderMode', this.screenReaderMode );
+
+	if ( screenReaderMode ) {
+		this.bindDocumentKeyDownListener();
+		this.bindDocumentKeyPressListener();
+	} else {
+		this.$focusOwner.removeAttr( 'aria-activedescendant' );
+		this.unbindDocumentKeyDownListener();
+		this.unbindDocumentKeyPressListener();
+	}
+};
+
+/**
  * Toggle visibility of the menu. The menu is initially hidden and must be shown by calling
  * `.toggle( true )` after its #$element is attached to the DOM.
  *
@@ -8502,10 +8597,8 @@ OO.ui.MenuSelectWidget.prototype.clearItems = function () {
  * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
-	var change, originalHeight, flippedHeight, selectedItem;
-
 	visible = ( visible === undefined ? !this.visible : !!visible ) && !!this.items.length;
-	change = visible !== this.isVisible();
+	var change = visible !== this.isVisible();
 
 	if ( visible && !this.warnedUnattached && !this.isElementAttached() ) {
 		OO.ui.warnDeprecation( 'MenuSelectWidget#toggle: Before calling this method, the menu must be attached to the DOM.' );
@@ -8541,22 +8634,24 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			this.togglePositioning( !!this.$floatableContainer );
 			this.toggleClipping( true );
 
-			this.bindDocumentKeyDownListener();
-			this.bindDocumentKeyPressListener();
+			if ( !this.screenReaderMode ) {
+				this.bindDocumentKeyDownListener();
+				this.bindDocumentKeyPressListener();
+			}
 
 			if (
 				( this.isClippedVertically() || this.isFloatableOutOfView() ) &&
 				this.originalVerticalPosition !== 'center'
 			) {
 				// If opening the menu in one direction causes it to be clipped, flip it
-				originalHeight = this.$element.height();
+				var originalHeight = this.$element.height();
 				this.setVerticalPosition(
 					this.constructor.static.flippedPositions[ this.originalVerticalPosition ]
 				);
 				if ( this.isClippedVertically() || this.isFloatableOutOfView() ) {
 					// If flipping also causes it to be clipped, open in whichever direction
 					// we have more space
-					flippedHeight = this.$element.height();
+					var flippedHeight = this.$element.height();
 					if ( originalHeight > flippedHeight ) {
 						this.setVerticalPosition( this.originalVerticalPosition );
 					}
@@ -8566,9 +8661,10 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			// later (e.g. after the user scrolls), that seems like it would be annoying
 
 			this.$focusOwner.attr( 'aria-expanded', 'true' );
+			this.$focusOwner.attr( 'aria-owns', this.getElementId() );
 
-			selectedItem = this.findSelectedItem();
-			if ( !this.multiselect && selectedItem ) {
+			var selectedItem = !this.multiselect && this.findSelectedItem();
+			if ( selectedItem ) {
 				// TODO: Verify if this is even needed; This is already done on highlight changes
 				// in SelectWidget#highlightItem, so we should just need to highlight the item
 				// we need to highlight here and not bother with attr or checking selections.
@@ -8584,9 +8680,12 @@ OO.ui.MenuSelectWidget.prototype.toggle = function ( visible ) {
 			this.emit( 'ready' );
 		} else {
 			this.$focusOwner.removeAttr( 'aria-activedescendant' );
-			this.unbindDocumentKeyDownListener();
-			this.unbindDocumentKeyPressListener();
+			if ( !this.screenReaderMode ) {
+				this.unbindDocumentKeyDownListener();
+				this.unbindDocumentKeyPressListener();
+			}
 			this.$focusOwner.attr( 'aria-expanded', 'false' );
+			this.$focusOwner.removeAttr( 'aria-owns' );
 			this.getElementDocument().removeEventListener( 'mousedown', this.onDocumentMouseDownHandler, true );
 			this.togglePositioning( false );
 			this.toggleClipping( false );
@@ -8663,8 +8762,6 @@ OO.ui.MenuSelectWidget.prototype.scrollToTop = function () {
  *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  */
 OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
-	var labelId;
-
 	// Configuration initialization
 	config = $.extend( { indicator: 'down' }, config );
 
@@ -8697,9 +8794,8 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	this.$handle.on( {
 		click: this.onClick.bind( this ),
 		keydown: this.onKeyDown.bind( this ),
-		// Hack? Handle type-to-search when menu is not expanded and not handling its own events.
-		keypress: this.menu.onDocumentKeyPressHandler,
-		blur: this.menu.clearKeyPressBuffer.bind( this.menu )
+		focus: this.onFocus.bind( this ),
+		blur: this.onBlur.bind( this )
 	} );
 	this.menu.connect( this, {
 		select: 'onMenuSelect',
@@ -8707,7 +8803,7 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 	} );
 
 	// Initialization
-	labelId = OO.ui.generateElementId();
+	var labelId = OO.ui.generateElementId();
 	this.setLabelId( labelId );
 	this.$label
 		.attr( {
@@ -8722,7 +8818,6 @@ OO.ui.DropdownWidget = function OoUiDropdownWidget( config ) {
 			'aria-autocomplete': 'list',
 			'aria-expanded': 'false',
 			'aria-haspopup': 'true',
-			'aria-owns': this.menu.getElementId(),
 			'aria-labelledby': labelId
 		} );
 	this.$element
@@ -8807,28 +8902,41 @@ OO.ui.DropdownWidget.prototype.onClick = function ( e ) {
  * @return {undefined|boolean} False to prevent default if event is handled
  */
 OO.ui.DropdownWidget.prototype.onKeyDown = function ( e ) {
-	if (
-		!this.isDisabled() &&
-		(
-			e.which === OO.ui.Keys.ENTER ||
-			(
-				e.which === OO.ui.Keys.SPACE &&
-				// Avoid conflicts with type-to-search, see SelectWidget#onKeyPress.
-				// Space only closes the menu is the user is not typing to search.
-				this.menu.keyPressBuffer === ''
-			) ||
-			(
-				!this.menu.isVisible() &&
-				(
-					e.which === OO.ui.Keys.UP ||
-					e.which === OO.ui.Keys.DOWN
-				)
-			)
-		)
-	) {
-		this.menu.toggle();
-		return false;
+	if ( !this.isDisabled() ) {
+		switch ( e.keyCode ) {
+			case OO.ui.Keys.ENTER:
+				this.menu.toggle();
+				return false;
+			case OO.ui.Keys.SPACE:
+				if ( this.menu.keyPressBuffer === '' ) {
+					// Avoid conflicts with type-to-search, see SelectWidget#onKeyPress.
+					// Space only opens the menu is the user is not typing to search.
+					this.menu.toggle();
+					return false;
+				}
+				break;
+		}
 	}
+};
+
+/**
+ * Handle focus events.
+ *
+ * @private
+ * @param {jQuery.Event} e Focus event
+ */
+OO.ui.DropdownWidget.prototype.onFocus = function () {
+	this.menu.toggleScreenReaderMode( true );
+};
+
+/**
+ * Handle blur events.
+ *
+ * @private
+ * @param {jQuery.Event} e Blur event
+ */
+OO.ui.DropdownWidget.prototype.onBlur = function () {
+	this.menu.toggleScreenReaderMode( false );
 };
 
 /**
@@ -9192,9 +9300,8 @@ OO.ui.MultiselectWidget.prototype.selectItems = function ( items ) {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.MultiselectWidget.prototype.selectItemsByData = function ( datas ) {
-	var items,
-		widget = this;
-	items = datas.map( function ( data ) {
+	var widget = this;
+	var items = datas.map( function ( data ) {
 		return widget.findItemFromData( data );
 	} );
 	this.selectItems( items );
@@ -9289,10 +9396,9 @@ OO.ui.CheckboxMultioptionWidget.prototype.focus = function () {
  * @param {jQuery.Event} e
  */
 OO.ui.CheckboxMultioptionWidget.prototype.onKeyDown = function ( e ) {
-	var
-		element = this.getElementGroup(),
-		nextItem;
+	var element = this.getElementGroup();
 
+	var nextItem;
 	if ( e.keyCode === OO.ui.Keys.LEFT || e.keyCode === OO.ui.Keys.UP ) {
 		nextItem = element.getRelativeFocusableItem( this, -1 );
 	} else if ( e.keyCode === OO.ui.Keys.RIGHT || e.keyCode === OO.ui.Keys.DOWN ) {
@@ -9371,12 +9477,12 @@ OO.inheritClass( OO.ui.CheckboxMultiselectWidget, OO.ui.MultiselectWidget );
  *  in the select.
  */
 OO.ui.CheckboxMultiselectWidget.prototype.getRelativeFocusableItem = function ( item, direction ) {
-	var currentIndex, nextIndex, i,
-		increase = direction > 0 ? 1 : -1,
+	var increase = direction > 0 ? 1 : -1,
 		len = this.items.length;
 
+	var nextIndex;
 	if ( item ) {
-		currentIndex = this.items.indexOf( item );
+		var currentIndex = this.items.indexOf( item );
 		nextIndex = ( currentIndex + increase + len ) % len;
 	} else {
 		// If no item is selected and moving forward, start at the beginning.
@@ -9384,7 +9490,7 @@ OO.ui.CheckboxMultiselectWidget.prototype.getRelativeFocusableItem = function ( 
 		nextIndex = direction > 0 ? 0 : len - 1;
 	}
 
-	for ( i = 0; i < len; i++ ) {
+	for ( var i = 0; i < len; i++ ) {
 		item = this.items[ nextIndex ];
 		if ( item && !item.isDisabled() ) {
 			return item;
@@ -9400,26 +9506,25 @@ OO.ui.CheckboxMultiselectWidget.prototype.getRelativeFocusableItem = function ( 
  * @param {jQuery.Event} e
  */
 OO.ui.CheckboxMultiselectWidget.prototype.onClick = function ( e ) {
-	var $options, lastClickedIndex, nowClickedIndex, i, direction, wasSelected, items,
-		$lastClicked = this.$lastClicked,
+	var $lastClicked = this.$lastClicked,
 		$nowClicked = $( e.target ).closest( '.oo-ui-checkboxMultioptionWidget' )
 			.not( '.oo-ui-widget-disabled' );
 
 	// Allow selecting multiple options at once by Shift-clicking them
 	if ( $lastClicked && $nowClicked.length && e.shiftKey ) {
-		$options = this.$group.find( '.oo-ui-checkboxMultioptionWidget' );
-		lastClickedIndex = $options.index( $lastClicked );
-		nowClickedIndex = $options.index( $nowClicked );
+		var $options = this.$group.find( '.oo-ui-checkboxMultioptionWidget' );
+		var lastClickedIndex = $options.index( $lastClicked );
+		var nowClickedIndex = $options.index( $nowClicked );
 		// If it's the same item, either the user is being silly, or it's a fake event generated
 		// by the browser. In either case we don't need custom handling.
 		if ( nowClickedIndex !== lastClickedIndex ) {
-			items = this.items;
-			wasSelected = items[ nowClickedIndex ].isSelected();
-			direction = nowClickedIndex > lastClickedIndex ? 1 : -1;
+			var items = this.items;
+			var wasSelected = items[ nowClickedIndex ].isSelected();
+			var direction = nowClickedIndex > lastClickedIndex ? 1 : -1;
 
 			// This depends on the DOM order of the items and the order of the .items array being
 			// the same.
-			for ( i = lastClickedIndex; i !== nowClickedIndex; i += direction ) {
+			for ( var i = lastClickedIndex; i !== nowClickedIndex; i += direction ) {
 				if ( !items[ i ].isDisabled() ) {
 					items[ i ].setSelected( !wasSelected );
 				}
@@ -9449,9 +9554,8 @@ OO.ui.CheckboxMultiselectWidget.prototype.onClick = function ( e ) {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.CheckboxMultiselectWidget.prototype.focus = function () {
-	var item;
 	if ( !this.isDisabled() ) {
-		item = this.getRelativeFocusableItem( null, 1 );
+		var item = this.getRelativeFocusableItem( null, 1 );
 		if ( item ) {
 			item.focus();
 		}
@@ -10363,10 +10467,9 @@ OO.ui.DropdownInputWidget.prototype.onMenuSelect = function ( item ) {
  * @inheritdoc
  */
 OO.ui.DropdownInputWidget.prototype.setValue = function ( value ) {
-	var selected;
 	value = this.cleanUpValue( value );
 	// Only allow setting values that are actually present in the dropdown
-	selected = this.dropdownWidget.getMenu().findItemFromData( value ) ||
+	var selected = this.dropdownWidget.getMenu().findItemFromData( value ) ||
 		this.dropdownWidget.getMenu().findFirstSelectableItem();
 	this.dropdownWidget.getMenu().selectItem( selected );
 	value = selected ? selected.getData() : '';
@@ -10417,17 +10520,18 @@ OO.ui.DropdownInputWidget.prototype.setOptions = function ( options ) {
  * @private
  */
 OO.ui.DropdownInputWidget.prototype.setOptionsData = function ( options ) {
-	var optionWidgets, optIndex, opt, previousOptgroup, optionWidget, optValue,
-		widget = this;
+	var widget = this;
 
 	this.optionsDirty = true;
 
 	// Go through all the supplied option configs and create either
 	// MenuSectionOption or MenuOption widgets from each.
-	optionWidgets = [];
-	for ( optIndex = 0; optIndex < options.length; optIndex++ ) {
-		opt = options[ optIndex ];
+	var optionWidgets = [];
+	var previousOptgroup;
+	for ( var optIndex = 0; optIndex < options.length; optIndex++ ) {
+		var opt = options[ optIndex ];
 
+		var optionWidget;
 		if ( opt.optgroup !== undefined ) {
 			// Create a <optgroup> menu item.
 			optionWidget = widget.createMenuSectionOptionWidget( opt.optgroup );
@@ -10435,7 +10539,7 @@ OO.ui.DropdownInputWidget.prototype.setOptionsData = function ( options ) {
 
 		} else {
 			// Create a normal <option> menu item.
-			optValue = widget.cleanUpValue( opt.data );
+			var optValue = widget.cleanUpValue( opt.data );
 			optionWidget = widget.createMenuOptionWidget(
 				optValue,
 				opt.label !== undefined ? opt.label : optValue
@@ -10811,10 +10915,9 @@ OO.ui.RadioSelectInputWidget.prototype.onMenuSelect = function ( item ) {
  * @inheritdoc
  */
 OO.ui.RadioSelectInputWidget.prototype.setValue = function ( value ) {
-	var selected;
 	value = this.cleanUpValue( value );
 	// Only allow setting values that are actually present in the dropdown
-	selected = this.radioSelectWidget.findItemFromData( value ) ||
+	var selected = this.radioSelectWidget.findItemFromData( value ) ||
 		this.radioSelectWidget.findFirstSelectableItem();
 	this.radioSelectWidget.selectItem( selected );
 	value = selected ? selected.getData() : '';
@@ -11027,13 +11130,12 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.setValue = function ( value ) {
  * @return {string[]} Cleaned up value
  */
 OO.ui.CheckboxMultiselectInputWidget.prototype.cleanUpValue = function ( value ) {
-	var i, singleValue,
-		cleanValue = [];
+	var cleanValue = [];
 	if ( !Array.isArray( value ) ) {
 		return cleanValue;
 	}
-	for ( i = 0; i < value.length; i++ ) {
-		singleValue = OO.ui.CheckboxMultiselectInputWidget.super.prototype.cleanUpValue
+	for ( var i = 0; i < value.length; i++ ) {
+		var singleValue = OO.ui.CheckboxMultiselectInputWidget.super.prototype.cleanUpValue
 			.call( this, value[ i ] );
 		// Remove options that we don't have here
 		if ( !this.checkboxMultiselectWidget.findItemFromData( singleValue ) ) {
@@ -11091,11 +11193,10 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.setOptionsData = function ( optio
 	this.checkboxMultiselectWidget
 		.clearItems()
 		.addItems( options.map( function ( opt ) {
-			var optValue, item, optDisabled;
-			optValue = OO.ui.CheckboxMultiselectInputWidget.super.prototype.cleanUpValue
+			var optValue = OO.ui.CheckboxMultiselectInputWidget.super.prototype.cleanUpValue
 				.call( widget, opt.data );
-			optDisabled = opt.disabled !== undefined ? opt.disabled : false;
-			item = new OO.ui.CheckboxMultioptionWidget( {
+			var optDisabled = opt.disabled !== undefined ? opt.disabled : false;
+			var item = new OO.ui.CheckboxMultioptionWidget( {
 				data: optValue,
 				label: opt.label !== undefined ? opt.label : optValue,
 				disabled: optDisabled
@@ -11432,13 +11533,13 @@ OO.ui.TextInputWidget.prototype.installParentChangeDetector = function () {
 		return;
 	}
 
-	var onRemove,
-		widget = this,
+	var widget = this,
 		topmostNode = this.$element[ 0 ];
 	while ( topmostNode.parentNode ) {
 		topmostNode = topmostNode.parentNode;
 	}
 
+	var onRemove;
 	// We have no way to detect the $element being attached somewhere without observing the
 	// entire DOM with subtree modifications, which would hurt performance. So we cheat: we hook
 	// to the parent node of $element, and instead detect when $element is removed from it (and
@@ -12072,9 +12173,6 @@ OO.ui.MultilineTextInputWidget.prototype.onKeyPress = function ( e ) {
  * @fires resize
  */
 OO.ui.MultilineTextInputWidget.prototype.adjustSize = function ( force ) {
-	var scrollHeight, innerHeight, outerHeight, maxInnerHeight, measurementError,
-		idealHeight, newHeight, scrollWidth, property;
-
 	if ( force || this.$input.val() !== this.valCache ) {
 		if ( this.autosize ) {
 			this.$clone
@@ -12087,39 +12185,39 @@ OO.ui.MultilineTextInputWidget.prototype.adjustSize = function ( force ) {
 
 			this.valCache = this.$input.val();
 
-			scrollHeight = this.$clone[ 0 ].scrollHeight;
+			var scrollHeight = this.$clone[ 0 ].scrollHeight;
 
 			// Remove inline height property to measure natural heights
 			this.$clone.css( 'height', '' );
-			innerHeight = this.$clone.innerHeight();
-			outerHeight = this.$clone.outerHeight();
+			var innerHeight = this.$clone.innerHeight();
+			var outerHeight = this.$clone.outerHeight();
 
 			// Measure max rows height
 			this.$clone
 				.attr( 'rows', this.maxRows )
 				.css( 'height', 'auto' )
 				.val( '' );
-			maxInnerHeight = this.$clone.innerHeight();
+			var maxInnerHeight = this.$clone.innerHeight();
 
 			// Difference between reported innerHeight and scrollHeight with no scrollbars present.
 			// This is sometimes non-zero on Blink-based browsers, depending on zoom level.
-			measurementError = maxInnerHeight - this.$clone[ 0 ].scrollHeight;
-			idealHeight = Math.min( maxInnerHeight, scrollHeight + measurementError );
+			var measurementError = maxInnerHeight - this.$clone[ 0 ].scrollHeight;
+			var idealHeight = Math.min( maxInnerHeight, scrollHeight + measurementError );
 
 			this.$clone.addClass( 'oo-ui-element-hidden' );
 
 			// Only apply inline height when expansion beyond natural height is needed
 			// Use the difference between the inner and outer height as a buffer
-			newHeight = idealHeight > innerHeight ? idealHeight + ( outerHeight - innerHeight ) : '';
+			var newHeight = idealHeight > innerHeight ? idealHeight + ( outerHeight - innerHeight ) : '';
 			if ( newHeight !== this.styleHeight ) {
 				this.$input.css( 'height', newHeight );
 				this.styleHeight = newHeight;
 				this.emit( 'resize' );
 			}
 		}
-		scrollWidth = this.$input[ 0 ].offsetWidth - this.$input[ 0 ].clientWidth;
+		var scrollWidth = this.$input[ 0 ].offsetWidth - this.$input[ 0 ].clientWidth;
 		if ( scrollWidth !== this.scrollWidth ) {
-			property = this.$element.css( 'direction' ) === 'rtl' ? 'left' : 'right';
+			var property = this.$element.css( 'direction' ) === 'rtl' ? 'left' : 'right';
 			// Reset
 			this.$label.css( { right: '', left: '' } );
 			this.$indicator.css( { right: '', left: '' } );
@@ -12546,8 +12644,6 @@ OO.ui.ComboBoxInputWidget.prototype.setOptions = function ( options ) {
  * @throws {Error} An error is thrown if no widget is specified
  */
 OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
-	var id;
-
 	// Allow passing positional parameters inside the config object
 	if ( OO.isPlainObject( fieldWidget ) && config === undefined ) {
 		config = fieldWidget;
@@ -12561,6 +12657,12 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 
 	// Configuration initialization
 	config = $.extend( { align: 'left', helpInline: false }, config );
+
+	if ( config.help && !config.label ) {
+		// Add an empty label. For some combinations of 'helpInline' and 'align'
+		// there would be no space in the interface to display the help text otherwise.
+		config.label = ' ';
+	}
 
 	// Parent constructor
 	OO.ui.FieldLayout.super.call( this, config );
@@ -12600,7 +12702,7 @@ OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 		}
 	} else {
 		// We can't use `label for` with non-form elements, use `aria-labelledby` instead
-		id = OO.ui.generateElementId();
+		var id = OO.ui.generateElementId();
 		this.$label.attr( 'id', id );
 		this.fieldWidget.setLabelledBy( id );
 
@@ -12813,7 +12915,6 @@ OO.ui.FieldLayout.prototype.setNotices = function ( notices ) {
  * @private
  */
 OO.ui.FieldLayout.prototype.updateMessages = function () {
-	var i;
 	this.$messages.empty();
 
 	if (
@@ -12828,6 +12929,7 @@ OO.ui.FieldLayout.prototype.updateMessages = function () {
 		return;
 	}
 
+	var i;
 	for ( i = 0; i < this.errors.length; i++ ) {
 		this.$messages.append( this.makeMessage( 'error', this.errors[ i ] ) );
 	}
@@ -13051,8 +13153,6 @@ OO.inheritClass( OO.ui.ActionFieldLayout, OO.ui.FieldLayout );
  *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  */
 OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
-	var helpWidget;
-
 	// Configuration initialization
 	config = config || {};
 
@@ -13079,13 +13179,13 @@ OO.ui.FieldsetLayout = function OoUiFieldsetLayout( config ) {
 	// Help
 	if ( config.help ) {
 		if ( config.helpInline ) {
-			helpWidget = new OO.ui.LabelWidget( {
+			var inlineHelpWidget = new OO.ui.LabelWidget( {
 				label: config.help,
 				classes: [ 'oo-ui-inline-help' ]
 			} );
-			this.$element.prepend( this.$header, helpWidget.$element, this.$group );
+			this.$element.prepend( this.$header, inlineHelpWidget.$element, this.$group );
 		} else {
-			helpWidget = new OO.ui.PopupButtonWidget( {
+			var helpWidget = new OO.ui.PopupButtonWidget( {
 				$overlay: config.$overlay,
 				popup: {
 					padded: true
@@ -13186,8 +13286,6 @@ OO.ui.FieldsetLayout.static.tagName = 'fieldset';
  * @cfg {OO.ui.FieldsetLayout[]} [items] Fieldset layouts to add to the form layout.
  */
 OO.ui.FormLayout = function OoUiFormLayout( config ) {
-	var action;
-
 	// Configuration initialization
 	config = config || {};
 
@@ -13201,7 +13299,7 @@ OO.ui.FormLayout = function OoUiFormLayout( config ) {
 	this.$element.on( 'submit', this.onFormSubmit.bind( this ) );
 
 	// Make sure the action is safe
-	action = config.action;
+	var action = config.action;
 	if ( action !== undefined && !OO.ui.isSafeUrl( action ) ) {
 		action = './' + action;
 	}
@@ -13609,13 +13707,14 @@ OO.ui.NumberInputWidget.prototype.getNumericValue = function () {
  * @param {number} delta Adjustment amount
  */
 OO.ui.NumberInputWidget.prototype.adjustValue = function ( delta ) {
-	var n, v = this.getNumericValue();
+	var v = this.getNumericValue();
 
 	delta = +delta;
 	if ( isNaN( delta ) || !isFinite( delta ) ) {
 		throw new Error( 'Delta must be a finite number' );
 	}
 
+	var n;
 	if ( isNaN( v ) ) {
 		n = 0;
 	} else {
@@ -13866,7 +13965,7 @@ OO.ui.SelectFileInputWidget = function OoUiSelectFileInputWidget( config ) {
 	} );
 	this.$input.on( {
 		change: this.onFileSelected.bind( this ),
-		// Support: IE11
+		// Support: IE 11
 		// In IE 11, focussing a file input (by clicking on it) displays a text cursor and scrolls
 		// the cursor into view (in this case, it scrolls the button, which has 'overflow: hidden').
 		// Since this messes with our custom styling (the file input has large dimensions and this
@@ -13987,15 +14086,14 @@ OO.ui.SelectFileInputWidget.prototype.filterFiles = function ( files ) {
 	var accept = this.accept;
 
 	function mimeAllowed( file ) {
-		var i, mimeTest,
-			mimeType = file.type;
+		var mimeType = file.type;
 
 		if ( !accept || !mimeType ) {
 			return true;
 		}
 
-		for ( i = 0; i < accept.length; i++ ) {
-			mimeTest = accept[ i ];
+		for ( var i = 0; i < accept.length; i++ ) {
+			var mimeTest = accept[ i ];
 			if ( mimeTest === mimeType ) {
 				return true;
 			} else if ( mimeTest.slice( -2 ) === '/*' ) {

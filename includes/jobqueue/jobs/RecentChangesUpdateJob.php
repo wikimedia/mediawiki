@@ -19,6 +19,7 @@
  * @ingroup JobQueue
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -72,8 +73,10 @@ class RecentChangesUpdateJob extends Job {
 	}
 
 	protected function purgeExpiredRows() {
-		$rcMaxAge = MediaWikiServices::getInstance()->getMainConfig()->get( 'RCMaxAge' );
-		$updateRowsPerQuery = MediaWikiServices::getInstance()->getMainConfig()->get( 'UpdateRowsPerQuery' );
+		$rcMaxAge = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::RCMaxAge );
+		$updateRowsPerQuery = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::UpdateRowsPerQuery );
 		$dbw = wfGetDB( DB_PRIMARY );
 		$lockKey = $dbw->getDomainID() . ':recentchanges-prune';
 		if ( !$dbw->lock( $lockKey, __METHOD__, 0 ) ) {
@@ -117,7 +120,8 @@ class RecentChangesUpdateJob extends Job {
 	}
 
 	protected function updateActiveUsers() {
-		$activeUserDays = MediaWikiServices::getInstance()->getMainConfig()->get( 'ActiveUserDays' );
+		$activeUserDays = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ActiveUserDays );
 
 		// Users that made edits at least this many days ago are "active"
 		$days = $activeUserDays;

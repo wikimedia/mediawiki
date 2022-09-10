@@ -72,7 +72,13 @@ class ChangeTagsLogList extends ChangeTagsList {
 	 * @param Authority $performer
 	 * @return Status
 	 */
-	public function updateChangeTagsOnAll( $tagsToAdd, $tagsToRemove, $params, $reason, Authority $performer ) {
+	public function updateChangeTagsOnAll(
+		array $tagsToAdd,
+		array $tagsToRemove,
+		?string $params,
+		string $reason,
+		Authority $performer
+	) {
 		$status = Status::newGood();
 		for ( $this->reset(); $this->current(); $this->next() ) {
 			$item = $this->current();

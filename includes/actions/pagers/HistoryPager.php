@@ -23,6 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -36,17 +37,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	public $mGroupByDate = true;
 
-	/**
-	 * @var bool|stdClass
-	 */
-	public $lastRow = false;
-	/**
-	 * @var bool|stdClass|string May be set to 'unknown' when processing the last row
-	 */
-	public $currRow = false;
-	public $lastResultOffset = false;
-
-	public $counter, $historyPage, $buttons, $conds;
+	public $historyPage, $buttons, $conds;
 
 	protected $oldIdChecked;
 
@@ -135,10 +126,6 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	public function getQueryInfo() {
 		$revQuery = $this->revisionStore->getQueryInfo( [ 'user' ] );
-		// T270033 Index renaming
-		$revIndex = $this->mDb->indexExists( 'revision', 'page_timestamp',  __METHOD__ )
-			? 'page_timestamp'
-			: 'rev_page_timestamp';
 
 		$queryInfo = [
 			'tables' => $revQuery['tables'],
@@ -146,7 +133,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			'conds' => array_merge(
 				[ 'rev_page' => $this->getWikiPage()->getId() ],
 				$this->conds ),
-			'options' => [ 'USE INDEX' => [ 'revision' => $revIndex ] ],
+			'options' => [ 'USE INDEX' => [ 'revision' => 'rev_page_timestamp' ] ],
 			'join_conds' => $revQuery['joins'],
 		];
 		ChangeTags::modifyDisplayQuery(
@@ -168,37 +155,16 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	/**
-	 * Changes getRow behaviour to only render the previous row.
-	 *
-	 * @inheritDoc
-	 */
-	protected function getRow( $row ): string {
-		$this->currRow = $row;
-		if ( $this->lastRow ) {
-			$this->counter++;
-			$s = parent::getRow( $this->lastRow );
-		} else {
-			$s = '';
-		}
-		$this->lastRow = $row;
-		$this->lastResultOffset = $this->getResultOffset();
-		return $s;
-	}
-
-	/**
-	 * @param stdClass $row Unused because we're actually processing the previous row
+	 * @param stdClass $row
 	 * @return string
 	 */
 	public function formatRow( $row ) {
-		$firstInList = $this->counter == 1;
-
-		$notifTimestamp = $this->getConfig()->get( 'ShowUpdatedMarker' )
+		$notifTimestamp = $this->getConfig()->get( MainConfigNames::ShowUpdatedMarker )
 			? $this->watchlistManager
 				->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
 			: false;
 
-		return $this->historyLine( $this->lastRow, $this->currRow, $notifTimestamp,
-			$firstInList, $this->lastResultOffset );
+		return $this->historyLine( $row, $notifTimestamp, $this->getResultOffset() );
 	}
 
 	protected function doBatchLookups() {
@@ -256,8 +222,6 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return string HTML output
 	 */
 	protected function getStartBody() {
-		$this->lastRow = false;
-		$this->counter = 0;
 		$this->oldIdChecked = 0;
 		$s = '';
 		// Button container stored in $this->buttons for re-use in getEndBody()
@@ -328,29 +292,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		if ( $this->getNumRows() == 0 ) {
 			return '';
 		}
-
-		# Special handling for the last row.
-		if ( $this->lastRow ) {
-			$this->counter++;
-
-			if ( $this->mIsBackwards ) {
-				# Next row is unknown, but for UI reasons, probably exists if an offset has been specified
-				if ( $this->mOffset == '' ) {
-					$row = null;
-				} else {
-					$row = 'unknown';
-				}
-			} else {
-				# The next row is the past-the-end row
-				$row = $this->mPastTheEndRow;
-			}
-
-			$s = $this->getStartGroup();
-			$s .= $this->getRow( $row );
-			$s .= $this->getEndGroup();
-		} else {
-			$s = '';
-		}
+		$s = '';
 		# Add second buttons only if there is more than one rev
 		if ( $this->getNumRows() > 2 ) {
 			$s .= $this->buttons;
@@ -382,32 +324,37 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @todo document some more, and maybe clean up the code (some params redundant?)
 	 *
 	 * @param stdClass $row The database row corresponding to the previous line.
-	 * @param mixed $next The database row corresponding to the next line
-	 *   (chronologically previous)
 	 * @param bool|string $notificationtimestamp
-	 * @param bool $firstInList Whether this row corresponds to the first
-	 *   displayed on this history page.
 	 * @param int $resultOffset The offset into the current result set
 	 * @return string HTML output for the row
 	 */
-	private function historyLine( $row, $next, $notificationtimestamp,
-		$firstInList, $resultOffset
-	) {
-		$revRecord = $this->revisions[$resultOffset];
+	private function historyLine( $row, $notificationtimestamp, $resultOffset ) {
+		$numRows = min( $this->mResult->numRows(), $this->mLimit );
 
-		if ( is_object( $next ) ) {
-			$previousRevRecord = $this->revisionStore->newRevisionFromRow(
-				$next,
-				RevisionStore::READ_NORMAL,
-				$this->getTitle()
-			);
-		} else {
-			$previousRevRecord = null;
-		}
+		$firstInList = $resultOffset === ( $this->mIsBackwards ? $numRows - 1 : 0 );
+		// Next in the list, previous in chronological order.
+		$nextResultOffset = $resultOffset + ( $this->mIsBackwards ? -1 : 1 );
+
+		$revRecord = $this->revisions[$resultOffset];
+		// This may only be null if the current line is the last one in the list.
+		$previousRevRecord = $this->revisions[$nextResultOffset] ?? null;
 
 		$latest = $revRecord->getId() === $this->getWikiPage()->getLatest();
 		$curlink = $this->curLink( $revRecord );
-		$lastlink = $this->lastLink( $revRecord, $next );
+		if ( $previousRevRecord ) {
+			// Display a link to compare to the previous revision
+			$lastlink = $this->lastLink( $revRecord, $previousRevRecord );
+		} elseif ( $this->mIsBackwards && $this->mOffset !== '' ) {
+			// When paging "backwards", we don't have the extra result for the next revision that would
+			// appear in the list, and we don't know whether this is the oldest revision or not.
+			// However, if an offset has been specified, then the user probably reached this page by
+			// navigating from the "next" page, therefore the next revision probably exists.
+			// Display a link using &oldid=prev (this skips some checks but that's fine).
+			$lastlink = $this->lastLink( $revRecord, null );
+		} else {
+			// Do not display a link, because this is the oldest revision of the page
+			$lastlink = $this->historyPage->message['last'];
+		}
 		$curLastlinks = Html::rawElement( 'span', [], $curlink ) .
 			Html::rawElement( 'span', [], $lastlink );
 		$histLinks = Html::rawElement(
@@ -427,7 +374,6 @@ class HistoryPager extends ReverseChronologicalPager {
 		$canRevDelete = $this->getAuthority()->isAllowed( 'deleterevision' );
 		// Show checkboxes for each revision, to allow for revision deletion and
 		// change tags
-		$visibility = $revRecord->getVisibility();
 		if ( $canRevDelete || $this->showTagEditUI ) {
 			$this->setPreventClickjacking( true );
 			// If revision was hidden from sysops and we don't need the checkbox
@@ -590,7 +536,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return string
 	 */
 	private function revLink( RevisionRecord $rev ) {
-		return ChangesList::revDateLink( $rev, $this->getUser(), $this->getLanguage(),
+		return ChangesList::revDateLink( $rev, $this->getAuthority(), $this->getLanguage(),
 			$this->getTitle() );
 	}
 
@@ -626,48 +572,20 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * Create a diff-to-previous link for this revision for this page.
 	 *
 	 * @param RevisionRecord $prevRev The revision being displayed
-	 * @param stdClass|string|null $next The next revision in list (that is
-	 *        the previous one in chronological order).
-	 *        May either be a row, "unknown" or null.
+	 * @param RevisionRecord|null $nextRev The next revision in list (that is the previous one in
+	 *        chronological order) or null if it is unknown, but a link should be created anyway.
 	 * @return string
 	 */
-	private function lastLink( RevisionRecord $prevRev, $next ) {
+	private function lastLink( RevisionRecord $prevRev, ?RevisionRecord $nextRev ) {
 		$last = $this->historyPage->message['last'];
 
-		if ( $next === null ) {
-			# Probably no next row
-			return $last;
-		}
-
-		$linkRenderer = $this->getLinkRenderer();
-		if ( $next === 'unknown' ) {
-			# Next row probably exists but is unknown, use an oldid=prev link
-			return $linkRenderer->makeKnownLink(
-				$this->getTitle(),
-				new HtmlArmor( $last ),
-				[
-					'title' => $this->historyPage->message['tooltip-last']
-				],
-				[
-					'diff' => $prevRev->getId(),
-					'oldid' => 'prev'
-				]
-			);
-		}
-
-		$nextRev = $this->revisionStore->newRevisionFromRow(
-			$next,
-			RevisionStore::READ_NORMAL,
-			$this->getTitle()
-		);
-
 		if ( !$prevRev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ||
-			!$nextRev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() )
+			( $nextRev && !$nextRev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) )
 		) {
 			return $last;
 		}
 
-		return $linkRenderer->makeKnownLink(
+		return $this->getLinkRenderer()->makeKnownLink(
 			$this->getTitle(),
 			new HtmlArmor( $last ),
 			[
@@ -675,7 +593,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			],
 			[
 				'diff' => $prevRev->getId(),
-				'oldid' => $next->rev_id
+				'oldid' => $nextRev ? $nextRev->getId() : 'prev'
 			]
 		);
 	}

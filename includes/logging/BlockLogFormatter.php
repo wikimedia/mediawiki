@@ -22,7 +22,7 @@
  * @since 1.25
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\MainConfigNames;
 
 /**
  * This class formats block log entries.
@@ -51,8 +51,8 @@ class BlockLogFormatter extends LogFormatter {
 		$subtype = $this->entry->getSubtype();
 		if ( $subtype === 'block' || $subtype === 'reblock' ) {
 			if ( !isset( $params[4] ) ) {
-				// Very old log entry without duration: means infinite
-				$params[4] = 'infinite';
+				// Very old log entry without duration: means infinity
+				$params[4] = 'infinity';
 			}
 			// Localize the duration, and add a tooltip
 			// in English to help visitors from other wikis.
@@ -90,9 +90,18 @@ class BlockLogFormatter extends LogFormatter {
 					$text = (int)$ns === NS_MAIN
 						? $this->msg( 'blanknamespace' )->escaped()
 						: htmlspecialchars( $this->context->getLanguage()->getFormattedNsText( $ns ) );
-					$params = [ 'namespace' => $ns ];
-
-					return $this->makePageLink( SpecialPage::getTitleFor( 'Allpages' ), $params, $text );
+					if ( $this->plaintext ) {
+						// Because the plaintext cannot link to the Special:AllPages
+						// link that is linked to in non-plaintext mode, just return
+						// the name of the namespace.
+						return $text;
+					} else {
+						return $this->makePageLink(
+							SpecialPage::getTitleFor( 'Allpages' ),
+							[ 'namespace' => $ns ],
+							$text
+						);
+					}
 				}, $namespaces );
 
 				$actions = $params[6]['actions'] ?? [];
@@ -112,8 +121,8 @@ class BlockLogFormatter extends LogFormatter {
 						->numParams( count( $namespaces ) )
 						->rawParams( $this->context->getLanguage()->listToText( $namespaces ) )->text();
 				}
-				$enablePartialActionBlocks = MediaWikiServices::getInstance()
-					->getMainConfig()->get( 'EnablePartialActionBlocks' );
+				$enablePartialActionBlocks = $this->context->getConfig()
+					->get( MainConfigNames::EnablePartialActionBlocks );
 				if ( $actions && $enablePartialActionBlocks ) {
 					$restrictions[] = $this->msg( 'logentry-partialblock-block-action' )
 						->numParams( count( $actions ) )
@@ -264,7 +273,7 @@ class BlockLogFormatter extends LogFormatter {
 		if ( $subtype === 'block' || $subtype === 'reblock' ) {
 			// Defaults for old log entries missing some fields
 			$params += [
-				'5::duration' => 'infinite',
+				'5::duration' => 'infinity',
 				'6:array:flags' => [],
 			];
 
@@ -275,7 +284,10 @@ class BlockLogFormatter extends LogFormatter {
 					: explode( ',', $params['6:array:flags'] );
 			}
 
-			if ( !wfIsInfinity( $params['5::duration'] ) ) {
+			if ( wfIsInfinity( $params['5::duration'] ) ) {
+				// Normalize all possible values to one for pre-T241709 rows
+				$params['5::duration'] = 'infinity';
+			} else {
 				$ts = (int)wfTimestamp( TS_UNIX, $entry->getTimestamp() );
 				$expiry = strtotime( $params['5::duration'], $ts );
 				if ( $expiry !== false && $expiry > 0 ) {
@@ -305,6 +317,7 @@ class BlockLogFormatter extends LogFormatter {
 		}
 
 		if ( isset( $ret['restrictions']['namespaces'] ) ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgument False positive
 			ApiResult::setIndexedTagName( $ret['restrictions']['namespaces'], 'ns' );
 		}
 

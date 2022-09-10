@@ -1,7 +1,5 @@
 <?php
 /**
- * Predictive edit preparation system for MediaWiki page.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -43,7 +41,12 @@ use Wikimedia\ScopedCallback;
 use WikiPage;
 
 /**
- * Class for managing stashed edits used by the page updater classes
+ * Manage the pre-emptive page parsing for edits to wiki pages.
+ *
+ * This is written to by ApiStashEdit, and consumed by ApiEditPage
+ * and EditPage (via PageUpdaterFactory and DerivedPageDataUpdater).
+ *
+ * See also mediawiki.action.edit/stash.js.
  *
  * @since 1.34
  */
@@ -64,7 +67,6 @@ class PageEditStash {
 	private $userFactory;
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
-
 	/** @var int */
 	private $initiator;
 

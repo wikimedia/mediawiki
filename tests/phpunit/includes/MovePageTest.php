@@ -2,6 +2,8 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Rest\Handler\MediaTestTrait;
@@ -26,11 +28,9 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	 * @return MovePage
 	 */
 	private function newMovePageWithMocks( $old, $new, array $params = [] ): MovePage {
-		$mockLB = $this->createMock( LoadBalancer::class );
+		$mockLB = $this->createNoOpMock( LoadBalancer::class, [ 'getConnectionRef' ] );
 		$mockLB->method( 'getConnectionRef' )
 			->willReturn( $params['db'] ?? $this->createNoOpMock( IDatabase::class ) );
-		$mockLB->expects( $this->never() )
-			->method( $this->anythingBut( 'getConnectionRef', '__destruct' ) );
 
 		// If we don't use a manual mock for something specific, get a full
 		// NamespaceInfo service from DummyServicesTrait::getDummyNamespaceInfo
@@ -63,7 +63,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getUserEditTracker(),
 			$this->getServiceContainer()->getMovePageFactory(),
 			$this->getServiceContainer()->getCollationFactory(),
-			$this->getServiceContainer()->getPageUpdaterFactory()
+			$this->getServiceContainer()->getPageUpdaterFactory(),
+			$this->getServiceContainer()->getRestrictionStore()
 		);
 	}
 
@@ -71,7 +72,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		// To avoid problems with namespace localization
-		$this->setMwGlobals( 'wgLanguageCode', 'en' );
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
 
 		// Ensure we have some pages that are guaranteed to exist or not
 		$this->getExistingTestPage( 'Existent' );
@@ -109,29 +110,6 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'page';
 		$this->tablesUsed[] = 'revision';
 		$this->tablesUsed[] = 'comment';
-	}
-
-	/**
-	 * @covers MovePage::__construct
-	 */
-	public function testConstructorDefaults() {
-		$services = $this->getServiceContainer();
-
-		$this->filterDeprecated( '/MovePage::__construct/' );
-
-		$obj1 = new MovePage( Title::newFromText( 'A' ), Title::newFromText( 'B' ) );
-		$obj2 = new MovePage(
-			Title::newFromText( 'A' ),
-			Title::newFromText( 'B' ),
-			new ServiceOptions( MovePage::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
-			$services->getDBLoadBalancer(),
-			$services->getNamespaceInfo(),
-			$services->getWatchedItemStore(),
-			$services->getRepoGroup(),
-			$services->getContentHandlerFactory()
-		);
-
-		$this->assertEquals( $obj2, $obj1 );
 	}
 
 	/**
@@ -342,7 +320,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				->getMovePageFactory()
 				->newMovePage( $old, $new )
 				->move( $this->getTestUser()->getUser(), 'move reason', $createRedirect );
-			$this->assertTrue( $status->isOK() );
+			$this->assertStatusOK( $status );
 			$this->assertMoved( $old, $new, $oldPageId, $createRedirect );
 
 			[
@@ -382,7 +360,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$mp = $this->newMovePageWithMocks( $oldTitle, $newTitle );
 		$user = User::newFromName( 'TitleMove tester' );
 		$status = $mp->move( $user, 'Reason', true );
-		$this->assertTrue( $status->hasMessage( $error ) );
+		$this->assertStatusError( $error, $status );
 	}
 
 	/**
@@ -411,7 +389,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			->newMovePage( $oldTitle, $newTitle )
 			->moveSubpages( $this->getTestUser()->getUser(), 'Reason', true );
 
-		$this->assertTrue( $status->isGood(),
+		$this->assertStatusGood( $status,
 			"Moving subpages from Talk:{$name} to Talk:{$name} 2 was not completely successful." );
 		foreach ( $subPages as $page ) {
 			$this->assertMoved( $page, str_replace( $name, "$name 2", $page ), $ids[$page] );
@@ -444,7 +422,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			->newMovePage( $oldTitle, $newTitle )
 			->moveSubpagesIfAllowed( $this->getTestUser()->getUser(), 'Reason', true );
 
-		$this->assertTrue( $status->isGood(),
+		$this->assertStatusGood( $status,
 			"Moving subpages from Talk:{$name} to Talk:{$name} 2 was not completely successful." );
 		foreach ( $subPages as $page ) {
 			$this->assertMoved( $page, str_replace( $name, "$name 2", $page ), $ids[$page] );
@@ -539,7 +517,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	 * Assert that links tables are updated after cross namespace page move (T299275).
 	 */
 	public function testCrossNamespaceLinksUpdate() {
-		$this->getExistingTestPage( Title::makeTitle( NS_TEMPLATE, 'Test' ) );
+		$title = Title::makeTitle( NS_TEMPLATE, 'Test' );
+		$this->getExistingTestPage( $title );
 
 		$wikitext = "[[Test]], [[Image:Existent.jpg]], {{Test}}";
 
@@ -553,7 +532,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$status = $obj->move( $this->getTestUser()->getUser() );
 
 		// sanity checks
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
 		$this->assertSame( $pageId, $new->getId() );
 		$this->assertNotSame( $pageId, $old->getId() );
 
@@ -566,12 +545,13 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				[ NS_MAIN, 'Test', NS_PROJECT ]
 			]
 		);
+		$targetId = MediaWikiServices::getInstance()->getLinkTargetLookup()->getLinkTargetId( $title );
 		$this->assertSelect(
 			'templatelinks',
-			[ 'tl_namespace', 'tl_title', 'tl_from_namespace' ],
+			[ 'tl_target_id', 'tl_from_namespace' ],
 			[ 'tl_from' => $pageId ],
 			[
-				[ NS_TEMPLATE, 'Test', NS_PROJECT ]
+				[ $targetId, NS_PROJECT ]
 			]
 		);
 		$this->assertSelect(

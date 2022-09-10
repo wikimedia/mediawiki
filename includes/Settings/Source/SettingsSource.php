@@ -11,7 +11,7 @@ use Stringable;
  * etc. It is concerned with reading (and possibly decoding) settings data.
  *
  * @since 1.38
- * @todo mark as stable before the 1.38 release
+ * @stable to implement
  */
 interface SettingsSource extends Stringable {
 	/**

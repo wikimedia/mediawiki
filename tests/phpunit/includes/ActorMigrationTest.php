@@ -5,6 +5,7 @@ use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 /**
  * @group Database

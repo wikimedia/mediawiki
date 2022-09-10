@@ -1,9 +1,10 @@
 /* stylelint-disable selector-class-pattern */
 
 @import 'mediawiki.mixins';
+@import 'mediawiki.skin.variables.less';
 
 /**
- * Helper classes used across special pages
+ * Helper classes used across special pages and actions
  */
 
 /* Content dividers */
@@ -125,8 +126,18 @@ span.comment {
 	unicode-bidi: -moz-isolate;
 	unicode-bidi: isolate;
 	word-wrap: break-word;
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	overflow-wrap: break-word;
+}
+
+/* The auto-generated edit comments */
+.autocomment,
+.autocomment a,
+.autocomment a:visited {
+	color: #72777d;
+}
+
+.mw-comment-none {
+	.mixin-screen-reader-text();
 }
 
 /** rev_deleted stuff */
@@ -143,19 +154,19 @@ span.mw-history-suppressed {
 	color: #202122;
 }
 
-/* The auto-generated edit comments */
-.autocomment,
-.autocomment a,
-.autocomment a:visited {
-	color: #72777d;
-}
-
-.mw-comment-none {
-	.mixin-screen-reader-text();
-}
-
 /* (show/hide) revision deletion links */
 span.mw-revdelundel-link,
 strong.mw-revdelundel-link {
 	font-size: 90%;
+}
+
+// Historically this has been styled red, but should be distinguished from
+// normal red links as the contributions page does exist. To be revisited later.
+// More context: T303571#7781282
+.mw-usertoollinks-contribs-no-edits {
+	color: @color-link-new;
+
+	&:visited {
+		color: @color-link-new--visited;
+	}
 }

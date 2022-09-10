@@ -25,6 +25,7 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Navigation\PrevNextNavigationRenderer;
 use MediaWiki\Permissions\Authority;
@@ -264,14 +265,14 @@ class SpecialPage implements MessageLocalizer {
 	 *
 	 * @note If cache time is not 0, then the current user becomes an anon
 	 *   if you want to do any per-user customizations, than this method
-	 *   must be overriden to return 0.
+	 *   must be overridden to return 0.
 	 * @since 1.26
 	 * @stable to override
 	 * @return int Time in seconds, 0 to disable caching altogether,
 	 *  false to use the parent page's cache settings
 	 */
 	public function maxIncludeCacheTime() {
-		return $this->getConfig()->get( 'MiserMode' ) ? $this->getCacheTTL() : 0;
+		return $this->getConfig()->get( MainConfigNames::MiserMode ) ? $this->getCacheTTL() : 0;
 	}
 
 	/**
@@ -393,7 +394,9 @@ class SpecialPage implements MessageLocalizer {
 	 * @throws ReadOnlyError
 	 */
 	public function checkReadOnly() {
-		if ( wfReadOnly() ) {
+		// Can not inject the ReadOnlyMode as it would break the installer since
+		// it instantiates SpecialPageFactory before the DB (via ParserFactory for message parsing)
+		if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 			throw new ReadOnlyError;
 		}
 	}
@@ -413,6 +416,22 @@ class SpecialPage implements MessageLocalizer {
 		$reasonMsg = 'exception-nologin-text', $titleMsg = 'exception-nologin'
 	) {
 		if ( $this->getUser()->isAnon() ) {
+			throw new UserNotLoggedIn( $reasonMsg, $titleMsg );
+		}
+	}
+
+	/**
+	 * If the user is not logged in or is a temporary user, throws UserNotLoggedIn
+	 *
+	 * @since 1.39
+	 * @param string $reasonMsg [optional] Message key to be displayed on login page
+	 * @param string $titleMsg [optional] Passed on to UserNotLoggedIn constructor
+	 * @throws UserNotLoggedIn
+	 */
+	public function requireNamedUser(
+		$reasonMsg = 'exception-nologin-text', $titleMsg = 'exception-nologin'
+	) {
+		if ( !$this->getUser()->isNamed() ) {
 			throw new UserNotLoggedIn( $reasonMsg, $titleMsg );
 		}
 	}
@@ -590,6 +609,17 @@ class SpecialPage implements MessageLocalizer {
 	}
 
 	/**
+	 * Return an array of strings representing page titles that are discoverable to end users via UI.
+	 *
+	 * @since 1.39
+	 * @stable to call or override
+	 * @return string[] strings representing page titles that can be rendered by skins if required.
+	 */
+	public function getAssociatedNavigationLinks() {
+		return [];
+	}
+
+	/**
 	 * Perform a regular substring search for prefixSearchSubpages
 	 * @since 1.36 Added $searchEngineFactory parameter
 	 * @param string $search Prefix to search for
@@ -644,7 +674,7 @@ class SpecialPage implements MessageLocalizer {
 		$out->setArticleRelated( false );
 		$out->setRobotPolicy( $this->getRobotPolicy() );
 		$out->setPageTitle( $this->getDescription() );
-		if ( $this->getConfig()->get( 'UseMediaWikiUIEverywhere' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere ) ) {
 			$out->addModuleStyles( [
 				'mediawiki.ui.input',
 				'mediawiki.ui.radio',
@@ -732,8 +762,7 @@ class SpecialPage implements MessageLocalizer {
 	 */
 	protected function outputHeader( $summaryMessageKey = '' ) {
 		if ( $summaryMessageKey == '' ) {
-			$msg = $this->getContentLanguage()->lc( $this->getName() ) .
-				'-summary';
+			$msg = strtolower( $this->getName() ) . '-summary';
 		} else {
 			$msg = $summaryMessageKey;
 		}
@@ -756,6 +785,25 @@ class SpecialPage implements MessageLocalizer {
 	 */
 	public function getDescription() {
 		return $this->msg( strtolower( $this->mName ) )->text();
+	}
+
+	/**
+	 * Similar to getDescription but takes into account sub pages and designed for display
+	 * in tabs.
+	 *
+	 * @since 1.39
+	 * @stable to override if special page has complex parameter handling. Use default message keys
+	 * where possible.
+	 *
+	 * @param string $path (optional)
+	 * @return string
+	 */
+	public function getShortDescription( string $path = '' ): string {
+		$lowerPath = strtolower( str_replace( '/', '-', $path ) );
+		$shortKey = 'special-tab-' . $lowerPath;
+		$shortKey .= '-short';
+		$msgShort = $this->msg( $shortKey );
+		return $msgShort->text();
 	}
 
 	/**
@@ -954,7 +1002,7 @@ class SpecialPage implements MessageLocalizer {
 	protected function addFeedLinks( $params ) {
 		$feedTemplate = wfScript( 'api' );
 
-		foreach ( $this->getConfig()->get( 'FeedClasses' ) as $format => $class ) {
+		foreach ( $this->getConfig()->get( MainConfigNames::FeedClasses ) as $format => $class ) {
 			$theseParams = $params + [ 'feedformat' => $format ];
 			$url = wfAppendQuery( $feedTemplate, $theseParams );
 			$this->getOutput()->addFeedLink( $format, $url );
@@ -974,7 +1022,7 @@ class SpecialPage implements MessageLocalizer {
 			return;
 		}
 
-		$msg = $this->msg( $this->getContentLanguage()->lc( $this->getName() ) . '-helppage' );
+		$msg = $this->msg( strtolower( $this->getName() ) . '-helppage' );
 
 		if ( !$msg->isDisabled() ) {
 			$title = Title::newFromText( $msg->plain() );

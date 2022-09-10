@@ -126,9 +126,7 @@ class ReadOnlyModeTest extends MediaWikiUnitTestCase {
 	}
 
 	private function createLB( $params ) {
-		$lb = $this->getMockBuilder( \Wikimedia\Rdbms\LoadBalancer::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$lb = $this->createMock( \Wikimedia\Rdbms\LoadBalancer::class );
 		$lb->method( 'getReadOnlyReason' )
 			->willReturn( $params['lbMessage'] );
 		return $lb;

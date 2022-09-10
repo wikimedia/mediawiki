@@ -144,10 +144,9 @@
 		 * @return {string}
 		 */
 		listToText: function ( list ) {
-			var text = '',
-				i = 0;
+			var text = '';
 
-			for ( ; i < list.length; i++ ) {
+			for ( var i = 0; i < list.length; i++ ) {
 				text += list[ i ];
 				if ( list.length - 2 === i ) {
 					text += mw.msg( 'and' ) + mw.msg( 'word-separator' );

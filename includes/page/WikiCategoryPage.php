@@ -1,7 +1,5 @@
 <?php
 /**
- * Special handling for category pages.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -20,8 +18,10 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
- * Special handling for category pages
+ * Special handling for representing category pages.
  */
 class WikiCategoryPage extends WikiPage {
 
@@ -52,12 +52,13 @@ class WikiCategoryPage extends WikiPage {
 	 * Checks if a category is hidden.
 	 *
 	 * @since 1.27
-	 *
 	 * @return bool
 	 */
 	public function isHidden() {
 		$pageId = $this->getTitle()->getArticleID();
-		$pageProps = PageProps::getInstance()->getProperties( $this->getTitle(), 'hiddencat' );
+		$pageProps = MediaWikiServices::getInstance()
+			->getPageProps()
+			->getProperties( $this->getTitle(), 'hiddencat' );
 
 		return isset( $pageProps[$pageId] );
 	}
@@ -66,18 +67,20 @@ class WikiCategoryPage extends WikiPage {
 	 * Checks if a category is expected to be an unused category.
 	 *
 	 * @since 1.33
-	 *
 	 * @return bool
 	 */
 	public function isExpectedUnusedCategory() {
 		$pageId = $this->getTitle()->getArticleID();
-		$pageProps = PageProps::getInstance()->getProperties( $this->getTitle(), 'expectunusedcategory' );
+		$pageProps = MediaWikiServices::getInstance()
+			->getPageProps()
+			->getProperties( $this->getTitle(), 'expectunusedcategory' );
 
 		return isset( $pageProps[$pageId] );
 	}
 
 	/**
 	 * Update category counts on purge (T85696)
+	 *
 	 * @return bool
 	 */
 	public function doPurge() {

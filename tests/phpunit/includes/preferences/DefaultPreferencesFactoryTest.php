@@ -6,9 +6,11 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
+use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -59,8 +61,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 
 		$services = $this->getServiceContainer();
 
-		$this->setMwGlobals( 'wgParser', $services->getParserFactory()->create() );
-		$this->setMwGlobals( 'wgDisableLangConversion', false );
+		$this->overrideConfigValue( MainConfigNames::DisableLangConversion, false );
 		$this->config = $services->getMainConfig();
 	}
 
@@ -96,6 +97,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$params[] = $this->createMock( Parser::class );
 		$params[] = $this->createMock( SkinFactory::class );
 		$params[] = $this->createMock( UserGroupManager::class );
+		$params[] = $this->createMock( SignatureValidatorFactory::class );
 		$oldMwServices = MediaWikiServices::forceGlobalInstance(
 			$this->createNoOpMock( MediaWikiServices::class )
 		);
@@ -163,7 +165,8 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			$services->getLanguageConverterFactory(),
 			$services->getParser(),
 			$services->getSkinFactory(),
-			$userGroupManager
+			$userGroupManager,
+			$services->getSignatureValidatorFactory()
 		);
 	}
 
@@ -232,9 +235,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	 * @covers ::renderingPreferences
 	 */
 	public function testShowRollbackConfIsHiddenForUsersWithoutRollbackRights() {
-		$userMock = $this->getMockBuilder( User::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$userMock = $this->createMock( User::class );
 		$userMock->method( 'isAllowed' )->willReturnCallback(
 			static function ( $permission ) {
 				return $permission === 'editmyoptions';
@@ -253,9 +254,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	 * @covers ::renderingPreferences
 	 */
 	public function testShowRollbackConfIsShownForUsersWithRollbackRights() {
-		$userMock = $this->getMockBuilder( User::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$userMock = $this->createMock( User::class );
 		$userMock->method( 'isAllowed' )->willReturnCallback(
 			static function ( $permission ) {
 				return $permission === 'editmyoptions' || $permission === 'rollback';
@@ -309,13 +308,9 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$configMock = new HashConfig( [
 			'HiddenPrefs' => []
 		] );
-		$form = $this->getMockBuilder( PreferencesFormOOUI::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$form = $this->createMock( PreferencesFormOOUI::class );
 
-		$userMock = $this->getMockBuilder( User::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$userMock = $this->createMock( User::class );
 
 		$userOptionsManagerMock = $this->createUserOptionsManagerMock( $oldOptions );
 		$userOptionsManagerMock->expects( $this->exactly( 2 ) )
@@ -383,16 +378,15 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$form = $prefFactory->getForm( $user, $this->context );
 		$form->show();
 		$form->trySubmit();
-		$this->assertEquals( 12, $user->getOption( 'rclimit' ) );
+		$userOptionsLookup = $this->getServiceContainer()->getUserOptionsLookup();
+		$this->assertEquals( 12, $userOptionsLookup->getOption( $user, 'rclimit' ) );
 	}
 
 	/**
 	 * @covers ::profilePreferences
 	 */
 	public function testVariantsSupport() {
-		$userMock = $this->getMockBuilder( User::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$userMock = $this->createMock( User::class );
 		$userMock->method( 'isAllowed' )->willReturn( true );
 		$userMock = $this->getUserMockWithSession( $userMock );
 
@@ -416,9 +410,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	 * @covers ::profilePreferences
 	 */
 	public function testUserGroupMemberships() {
-		$userMock = $this->getMockBuilder( User::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$userMock = $this->createMock( User::class );
 		$userMock->method( 'isAllowed' )->willReturn( true );
 		$userMock->method( 'isAllowedAny' )->willReturn( true );
 		$userMock->method( 'isRegistered' )->willReturn( true );

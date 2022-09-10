@@ -23,6 +23,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -111,7 +112,7 @@ class Html {
 	 */
 	public static function buttonAttributes( array $attrs, array $modifiers = [] ) {
 		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'UseMediaWikiUIEverywhere' );
+			->getMainConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
 		if ( $useMediaWikiUIEverywhere ) {
 			if ( isset( $attrs['class'] ) ) {
 				if ( is_array( $attrs['class'] ) ) {
@@ -139,7 +140,7 @@ class Html {
 	 */
 	public static function getTextInputAttributes( array $attrs ) {
 		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'UseMediaWikiUIEverywhere' );
+			->getMainConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
 		if ( $useMediaWikiUIEverywhere ) {
 			if ( isset( $attrs['class'] ) ) {
 				if ( is_array( $attrs['class'] ) ) {
@@ -593,7 +594,7 @@ class Html {
 		$attrs = [];
 		if ( $nonce !== null ) {
 			$attrs['nonce'] = $nonce;
-		} elseif ( ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() ) ) {
+		} elseif ( ContentSecurityPolicy::isNonceRequired( MediaWikiServices::getInstance()->getMainConfig() ) ) {
 			wfWarn( "no nonce set on script. CSP will break it" );
 		}
 
@@ -617,7 +618,7 @@ class Html {
 		$attrs = [ 'src' => $url ];
 		if ( $nonce !== null ) {
 			$attrs['nonce'] = $nonce;
-		} elseif ( ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() ) ) {
+		} elseif ( ContentSecurityPolicy::isNonceRequired( MediaWikiServices::getInstance()->getMainConfig() ) ) {
 			wfWarn( "no nonce set on script. CSP will break it" );
 		}
 
@@ -760,10 +761,7 @@ class Html {
 	 * @return string of HTML representing the notice
 	 */
 	public static function noticeBox( $html, $className ) {
-		return self::messageBox( $html, [
-			'mw-message-box-notice',
-			$className
-		] );
+		return self::messageBox( $html, [ 'mw-message-box-notice', $className ] );
 	}
 
 	/**
@@ -775,12 +773,7 @@ class Html {
 	 * @return string of HTML representing a warning box.
 	 */
 	public static function warningBox( $html, $className = '' ) {
-		return self::messageBox( $html, [
-			'mw-message-box-warning',
-			// Deprecated class kept for cached HTML. Will be removed shortly.
-			'warningbox',
-			$className
-		] );
+		return self::messageBox( $html, [ 'mw-message-box-warning', $className ] );
 	}
 
 	/**
@@ -793,12 +786,7 @@ class Html {
 	 * @return string of HTML representing an error box.
 	 */
 	public static function errorBox( $html, $heading = '', $className = '' ) {
-		return self::messageBox( $html, [
-			'mw-message-box-error',
-			// Deprecated class kept for cached HTML. Will be removed shortly.
-			'errorbox',
-			$className
-		], $heading );
+		return self::messageBox( $html, [ 'mw-message-box-error', $className ], $heading );
 	}
 
 	/**
@@ -810,12 +798,7 @@ class Html {
 	 * @return string of HTML representing a success box.
 	 */
 	public static function successBox( $html, $className = '' ) {
-		return self::messageBox( $html, [
-			'mw-message-box-success',
-			// Deprecated class `successbox`. Kept for gadgets/user styles.
-			'successbox',
-			$className
-		] );
+		return self::messageBox( $html, [ 'mw-message-box-success', $className ] );
 	}
 
 	/**
@@ -1031,9 +1014,9 @@ class Html {
 	public static function htmlHeader( array $attribs = [] ) {
 		$ret = '';
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$html5Version = $mainConfig->get( 'Html5Version' );
-		$mimeType = $mainConfig->get( 'MimeType' );
-		$xhtmlNamespaces = $mainConfig->get( 'XhtmlNamespaces' );
+		$html5Version = $mainConfig->get( MainConfigNames::Html5Version );
+		$mimeType = $mainConfig->get( MainConfigNames::MimeType );
+		$xhtmlNamespaces = $mainConfig->get( MainConfigNames::XhtmlNamespaces );
 
 		$isXHTML = self::isXmlMimeType( $mimeType );
 

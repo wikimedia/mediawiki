@@ -3,13 +3,14 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author PhiLiP
  * @author Shizhao
+ * @author Winston Sung
  * @author Wong128hk
  */
 
 # Inherit everything for now
-$fallback = 'zh-hans';
+$fallback = 'zh-hans, zh-cn, zh, zh-hant';

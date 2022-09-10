@@ -8,9 +8,9 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Rest\Handler\CreationHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
-use MediaWiki\Storage\MutableRevisionRecord;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWikiIntegrationTestCase;
 use MockTitleTrait;
@@ -305,7 +305,7 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$handler = $this->newHandler( $actionResult, null, $csrfSafe );
 
-		$response = $this->executeHandler( $handler, $request );
+		$response = $this->executeHandler( $handler, $request, [], [], [], [], null, $csrfSafe );
 
 		$this->assertSame( 201, $response->getStatusCode() );
 		$this->assertSame(
@@ -418,35 +418,6 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 			],
 			415
 		];
-	}
-
-	public function testBodyValidation_extraneousToken() {
-		$requestData = [
-			'method' => 'POST',
-			'pathParams' => [ 'title' => 'Foo' ],
-			'headers' => [
-				'Content-Type' => 'application/json',
-			],
-			'bodyContents' => json_encode( [
-				'title' => 'Foo',
-				'token' => 'TOKEN',
-				'comment' => 'Testing',
-				'source' => 'Lorem Ipsum',
-				'content_model' => 'wikitext'
-			] ),
-		];
-
-		$request = new RequestData( $requestData );
-
-		$handler = $this->newHandler( [], null, true );
-
-		$exception = $this->executeHandlerAndGetHttpException( $handler, $request );
-
-		$this->assertSame( 400, $exception->getCode(), 'HTTP status' );
-		$this->assertInstanceOf( LocalizedHttpException::class, $exception );
-
-		$expectedMessage = new MessageValue( 'rest-extraneous-csrf-token' );
-		$this->assertEquals( $expectedMessage, $exception->getMessageValue() );
 	}
 
 	/**

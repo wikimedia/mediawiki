@@ -3,8 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author Alexsh
  * @author Andrew971218
@@ -17,12 +17,13 @@
  * @author Roc michael
  * @author Shizhao
  * @author Urhixidur
+ * @author Winston Sung
  * @author Wong128hk
  * @author Zerng07
  * @author לערי ריינהארט
  */
 
-$fallback = 'zh-hant, zh-hans';
+$fallback = 'zh-hant, zh-hk, zh, zh-hans';
 
 $namespaceNames = [
 	NS_USER             => '使用者',

@@ -3,8 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author AlefZet
  * @author Amire80
@@ -13,7 +13,7 @@
  * @author Urhixidur
  */
 
-$fallback = 'kk-cyrl';
+$fallback = 'kk, kk-cyrl';
 
 $rtl = true;
 

@@ -24,9 +24,13 @@ namespace MediaWiki\Page;
 use MediaWiki\Linker\LinkTarget;
 
 /**
- * @since 1.38
+ * Service for storing and retreiving page redirect information.
+ *
+ * @note This is not yet ready. https://phabricator.wikimedia.org/T290639
+ * To manage redirects today, use WikiPage via WikiPageFactory instead.
  *
  * @unstable
+ * @since 1.38
  */
 class RedirectStore implements RedirectLookup {
 	/** @var WikiPageFactory */

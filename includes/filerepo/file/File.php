@@ -8,6 +8,7 @@
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
@@ -300,11 +301,13 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * Split an internet media type into its two components; if not
 	 * a two-part name, set the minor type to 'unknown'.
 	 *
-	 * @param string $mime "text/html" etc
+	 * @param ?string $mime "text/html" etc
 	 * @return string[] ("text", "html") etc
 	 */
-	public static function splitMime( $mime ) {
-		if ( strpos( $mime, '/' ) !== false ) {
+	public static function splitMime( ?string $mime ) {
+		if ( $mime === null ) {
+			return [ 'unknown', 'unknown' ];
+		} elseif ( strpos( $mime, '/' ) !== false ) {
 			return explode( '/', $mime, 2 );
 		} else {
 			return [ $mime, 'unknown' ];
@@ -531,9 +534,9 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 */
 	public function getThumbnailBucket( $desiredWidth, $page = 1 ) {
 		$thumbnailBuckets = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'ThumbnailBuckets' );
+			->getMainConfig()->get( MainConfigNames::ThumbnailBuckets );
 		$thumbnailMinimumBucketDistance = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'ThumbnailMinimumBucketDistance' );
+			->getMainConfig()->get( MainConfigNames::ThumbnailMinimumBucketDistance );
 		$imageWidth = $this->getWidth( $page );
 
 		if ( $imageWidth === false ) {
@@ -636,7 +639,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	}
 
 	/**
-	 * Gives a (possibly empty) list of languages to render
+	 * Gives a (possibly empty) list of IETF languages to render
 	 * the file in.
 	 *
 	 * If the file doesn't have translations, or if the file
@@ -656,7 +659,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	}
 
 	/**
-	 * Get the language code from the available languages for this file that matches the language
+	 * Get the IETF language code from the available languages for this file that matches the language
 	 * requested by the user
 	 *
 	 * @param string|null $userPreferredLanguage
@@ -678,7 +681,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * In files that support multiple language, what is the default language
 	 * to use if none specified.
 	 *
-	 * @return string|null Lang code, or null if filetype doesn't support multiple languages.
+	 * @return string|null IETF Lang code, or null if filetype doesn't support multiple languages.
 	 * @since 1.23
 	 */
 	public function getDefaultRenderLanguage() {
@@ -775,7 +778,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	/**
 	 * Like getMetadata but returns a handler independent array of common values.
 	 * @see MediaHandler::getCommonMetaArray()
-	 * @return array|bool Array or false if not supported
+	 * @return array|false Array or false if not supported
 	 * @since 1.23
 	 */
 	public function getCommonMetaArray() {
@@ -938,7 +941,8 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return bool
 	 */
 	protected function getIsSafeFileUncached() {
-		$trustedMediaFormats = MediaWikiServices::getInstance()->getMainConfig()->get( 'TrustedMediaFormats' );
+		$trustedMediaFormats = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::TrustedMediaFormats );
 
 		if ( $this->allowInlineDisplay() ) {
 			return true;
@@ -1148,7 +1152,8 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return MediaTransformOutput
 	 */
 	protected function transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags ) {
-		$ignoreImageErrors = MediaWikiServices::getInstance()->getMainConfig()->get( 'IgnoreImageErrors' );
+		$ignoreImageErrors = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::IgnoreImageErrors );
 
 		$handler = $this->getHandler();
 		if ( $handler && $ignoreImageErrors && !( $flags & self::RENDER_NOW ) ) {
@@ -1169,7 +1174,8 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return ThumbnailImage|MediaTransformOutput|bool False on failure
 	 */
 	public function transform( $params, $flags = 0 ) {
-		$thumbnailEpoch = MediaWikiServices::getInstance()->getMainConfig()->get( 'ThumbnailEpoch' );
+		$thumbnailEpoch = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::ThumbnailEpoch );
 
 		do {
 			if ( !$this->canRender() ) {
@@ -1270,7 +1276,8 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return bool|MediaTransformOutput
 	 */
 	public function generateAndSaveThumb( $tmpFile, $transformParams, $flags ) {
-		$ignoreImageErrors = MediaWikiServices::getInstance()->getMainConfig()->get( 'IgnoreImageErrors' );
+		$ignoreImageErrors = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::IgnoreImageErrors );
 
 		if ( !$this->repo->canTransformLocally() ) {
 			return new MediaTransformError(
@@ -1547,7 +1554,8 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 */
 	public function iconThumb() {
 		global $IP;
-		$resourceBasePath = MediaWikiServices::getInstance()->getMainConfig()->get( 'ResourceBasePath' );
+		$resourceBasePath = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::ResourceBasePath );
 		$assetsPath = "{$resourceBasePath}/resources/assets/file-type-icons/";
 		$assetsDirectory = "$IP/resources/assets/file-type-icons/";
 

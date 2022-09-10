@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -63,7 +64,7 @@ class SpecialShortPages extends QueryPage {
 		$conds = [
 			'page_namespace' => array_diff(
 				$this->namespaceInfo->getContentNamespaces(),
-				$config->get( 'ShortPagesNamespaceExclusions' )
+				$config->get( MainConfigNames::ShortPagesNamespaceExclusions )
 			),
 			'page_is_redirect' => 0
 		];

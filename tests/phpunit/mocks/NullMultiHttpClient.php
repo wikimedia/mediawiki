@@ -23,9 +23,7 @@ class NullMultiHttpClient extends MultiHttpClient {
 	 * @throws AssertionFailedError always
 	 */
 	public function runMulti( array $reqs, array $opts = [] ) {
-		$urls = implode( ', ', array_map( static function ( $req ) {
-			return $req['url'];
-		}, $reqs ) );
+		$urls = implode( ', ', array_column( $reqs, 'url' ) );
 		Assert::fail( "HTTP requests to {$urls} blocked. Use MockHttpTrait." );
 	}
 

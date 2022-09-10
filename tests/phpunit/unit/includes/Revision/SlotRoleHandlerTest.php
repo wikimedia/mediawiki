@@ -12,13 +12,6 @@ use Title;
 class SlotRoleHandlerTest extends \MediaWikiUnitTestCase {
 
 	/**
-	 * @return Title
-	 */
-	private function makeBlankTitleObject() {
-		return $this->createMock( Title::class );
-	}
-
-	/**
 	 * @covers \MediaWiki\Revision\SlotRoleHandler::__construct
 	 * @covers \MediaWiki\Revision\SlotRoleHandler::getRole()
 	 * @covers \MediaWiki\Revision\SlotRoleHandler::getNameMessageKey()
@@ -30,7 +23,7 @@ class SlotRoleHandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 'foo', $handler->getRole() );
 		$this->assertSame( 'slot-name-foo', $handler->getNameMessageKey() );
 
-		$title = $this->makeBlankTitleObject();
+		$title = $this->createMock( Title::class );
 		$this->assertSame( 'FooModel', $handler->getDefaultModel( $title ) );
 
 		$hints = $handler->getOutputLayoutHints();

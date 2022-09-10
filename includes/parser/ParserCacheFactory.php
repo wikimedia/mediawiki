@@ -26,6 +26,7 @@ use IBufferingStatsdDataFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\WikiPageFactory;
 use ParserCache;
 use Psr\Log\LoggerInterface;
@@ -79,9 +80,8 @@ class ParserCacheFactory {
 	 * @internal
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'ParserCacheUseJson', // Temporary feature flag, remove before 1.36 is released.
-		'CacheEpoch',
-		'OldRevisionParserCacheExpireTime',
+		MainConfigNames::CacheEpoch,
+		MainConfigNames::OldRevisionParserCacheExpireTime,
 	];
 
 	/**
@@ -130,14 +130,13 @@ class ParserCacheFactory {
 			$cache = new ParserCache(
 				$name,
 				$this->parserCacheBackend,
-				$this->options->get( 'CacheEpoch' ),
+				$this->options->get( MainConfigNames::CacheEpoch ),
 				$this->hookContainer,
 				$this->jsonCodec,
 				$this->stats,
 				$this->logger,
 				$this->titleFactory,
-				$this->wikiPageFactory,
-				$this->options->get( 'ParserCacheUseJson' )
+				$this->wikiPageFactory
 			);
 
 			$this->parserCaches[$name] = $cache;
@@ -156,8 +155,8 @@ class ParserCacheFactory {
 			$cache = new RevisionOutputCache(
 				$name,
 				$this->revisionOutputCacheBackend,
-				$this->options->get( 'OldRevisionParserCacheExpireTime' ),
-				$this->options->get( 'CacheEpoch' ),
+				$this->options->get( MainConfigNames::OldRevisionParserCacheExpireTime ),
+				$this->options->get( MainConfigNames::CacheEpoch ),
 				$this->jsonCodec,
 				$this->stats,
 				$this->logger

@@ -6,6 +6,7 @@ use HashConfig;
 use InvalidArgumentException;
 use Language;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageStore;
@@ -17,6 +18,7 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\User\UserOptionsLookup;
 use MockSearchResultSet;
 use MockTitleTrait;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -28,6 +30,7 @@ use SearchSuggestion;
 use SearchSuggestionSet;
 use Status;
 use TitleFormatter;
+use TitleValue;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -67,16 +70,24 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$mockTitleFormatter = null
 	) {
 		$config = new HashConfig( [
-			'SearchType' => 'test',
-			'SearchTypeAlternatives' => [],
-			'NamespacesToBeSearchedDefault' => [ NS_MAIN => true ],
-			'SearchSuggestCacheExpiry' => 1200,
+			MainConfigNames::SearchType => 'test',
+			MainConfigNames::SearchTypeAlternatives => [],
+			MainConfigNames::NamespacesToBeSearchedDefault => [ NS_MAIN => true ],
+			MainConfigNames::SearchSuggestCacheExpiry => 1200,
 		] );
 
 		/** @var Language|MockObject $language */
 		$language = $this->createNoOpMock( Language::class );
 		$hookContainer = $this->createHookContainer();
-		$searchEngineConfig = new \SearchEngineConfig( $config, $language, $hookContainer, [] );
+		/** @var UserOptionsLookup|MockObject $userOptionsLookup */
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$searchEngineConfig = new \SearchEngineConfig(
+			$config,
+			$language,
+			$hookContainer,
+			[],
+			$userOptionsLookup
+		);
 
 		if ( !$permissionManager ) {
 			$permissionManager = $this->createMock( PermissionManager::class );
@@ -510,7 +521,6 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 
 		$query = 'foo';
 		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
-
 		$config = [];
 		$handler = $this->newHandler(
 			$query, null, $textResults, null, null,
@@ -575,7 +585,7 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$page = $this->makeMockTitle( 'Blankpage', [ 'namespace' => NS_SPECIAL ] );
 		$result = $this->createNoOpMock(
 			SearchResult::class,
-			[ 'getTitle', 'isBrokenTitle', 'isMissingRevision' ]
+			[ 'getTitle', 'isBrokenTitle', 'isMissingRevision', 'getTextSnippet' ]
 		);
 		$result->method( 'getTitle' )->willReturn( $page );
 		$textResults = new MockSearchResultSet( [ $result ] );
@@ -591,7 +601,68 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 
 		$data = $this->executeHandlerAndGetBodyData( $handler, $request );
 		$this->assertArrayHasKey( 'pages', $data );
-		$this->assertCount( 0, $data['pages'] );
+		$this->assertCount( 1, $data['pages'] );
+	}
+
+	/**
+	 * When a page in a real namespace redirects to a Special Page, it should come back in results
+	 */
+	public function testExecute_NonProperPageAsRedirect() {
+		$textResults = new MockSearchResultSet( [
+			$this->makeMockSearchResult( 'Special Page Redirect Source' ),
+		] );
+
+		$mockRedirectLinkTarget = new TitleValue( NS_SPECIAL, 'MyPage' );
+		$mockRedirectLookup = $this->createMock( RedirectLookup::class );
+		$mockRedirectLookup->method( 'getRedirectTarget' )
+			->willReturn( $mockRedirectLinkTarget );
+
+		$query = 'foo';
+		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
+
+		$config = [];
+		$handler = $this->newHandler(
+			$query, null, $textResults, null, null,
+			$mockRedirectLookup
+		);
+
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config, [] );
+		$this->assertCount( 1, $data['pages'] );
+		$this->assertEquals( 'Special Page Redirect Source', $data['pages'][0]['title'] );
+		$this->assertNull( $data['pages'][0]['matched_title'] );
+	}
+
+	/**
+	 * When a page in a real namespace redirects to an interwiki, it should come back in results
+	 */
+	public function testExecute_InterwikiLinkAsRedirect() {
+		$textResults = new MockSearchResultSet( [
+			$this->makeMockSearchResult( 'Interwiki Redirect Source' ),
+		] );
+
+		$mockRedirectLinkTarget = $this->createMock( LinkTarget::class );
+		$mockRedirectLinkTarget->method( 'getNamespace' )->willReturn( 0 );
+		$mockRedirectLinkTarget->method( 'isExternal' )->willReturn( true );
+		$mockRedirectLinkTarget->method( 'getDBkey' )->willReturn( 'Interwiki_Redirect_Target' );
+
+		$mockRedirectLookup = $this->createMock( RedirectLookup::class );
+		$mockRedirectLookup->method( 'getRedirectTarget' )
+			->willReturn( $mockRedirectLinkTarget );
+
+		$query = 'foo';
+		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
+
+		$config = [];
+		$handler = $this->newHandler(
+			$query, null, $textResults, null, null,
+			$mockRedirectLookup
+		);
+
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config, [] );
+
+		$this->assertCount( 1, $data['pages'] );
+		$this->assertNull( $data['pages'][0]['matched_title'] );
+		$this->assertEquals( 'Interwiki Redirect Source', $data['pages'][0]['title'] );
 	}
 
 	public function testExecute_NullResults() {

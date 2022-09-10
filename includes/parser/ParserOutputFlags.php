@@ -50,11 +50,6 @@ class ParserOutputFlags {
 	public const NO_GALLERY = 'mw-NoGallery';
 
 	/**
-	 * @var string Used to suppress language conversion in ToC contents.
-	 */
-	public const NO_TOC_CONVERSION = 'no-toc-conversion';
-
-	/**
 	 * @var string Whether OOUI should be enabled.
 	 * @see \ParserOutput::getEnableOOUI()
 	 * @see \ParserOutput::setEnableOOUI()
@@ -97,6 +92,16 @@ class ParserOutputFlags {
 	public const PREVENT_CLICKJACKING = 'mw-PreventClickjacking';
 
 	// These flags are stored in the ParserOutput::$mFlags array
+
+	/**
+	 * @var string Show the table of contents in the skin?
+	 */
+	public const SHOW_TOC = 'show-toc';
+
+	/**
+	 * @var string Used to suppress language conversion in ToC contents.
+	 */
+	public const NO_TOC_CONVERSION = 'no-toc-conversion';
 
 	/**
 	 * @var string
@@ -161,6 +166,7 @@ class ParserOutputFlags {
 			self::NO_INDEX_POLICY,
 			self::NEW_SECTION,
 			self::HIDE_NEW_SECTION,
+			self::SHOW_TOC,
 			self::PREVENT_CLICKJACKING,
 			self::VARY_REVISION,
 			self::VARY_REVISION_ID,

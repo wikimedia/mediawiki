@@ -26,6 +26,7 @@ use ChangeTags;
 use DeferrableUpdate;
 use FormatJson;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use Psr\Log\LoggerInterface;
@@ -43,7 +44,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	/**
 	 * @internal
 	 */
-	public const CONSTRUCTOR_OPTIONS = [ 'RevertedTagMaxDepth' ];
+	public const CONSTRUCTOR_OPTIONS = [ MainConfigNames::RevertedTagMaxDepth ];
 
 	/** @var RevisionStore */
 	private $revisionStore;
@@ -119,7 +120,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 			return;
 		}
 
-		$maxDepth = $this->options->get( 'RevertedTagMaxDepth' );
+		$maxDepth = $this->options->get( MainConfigNames::RevertedTagMaxDepth );
 		$extraParams = $this->getTagExtraParams();
 		$revertedRevisionIds = $this->revisionStore->getRevisionIdsBetween(
 			$this->getOldestRevertedRevision()->getPageId(),
@@ -174,7 +175,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	 * @return bool
 	 */
 	private function shouldExecute(): bool {
-		$maxDepth = $this->options->get( 'RevertedTagMaxDepth' );
+		$maxDepth = $this->options->get( MainConfigNames::RevertedTagMaxDepth );
 		if ( !in_array( ChangeTags::TAG_REVERTED, $this->softwareTags ) || $maxDepth <= 0 ) {
 			return false;
 		}
@@ -278,6 +279,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 		}
 
 		$this->markAsReverted(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revertedRevision is already checked
 			$this->editResult->getOldestRevertedRevisionId(),
 			$this->getTagExtraParams()
 		);
@@ -363,6 +365,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	private function getNewestRevertedRevision(): ?RevisionRecord {
 		if ( !isset( $this->newestRevertedRevision ) ) {
 			$this->newestRevertedRevision = $this->revisionStore->getRevisionById(
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable newestRevertedRevision is checked
 				$this->editResult->getNewestRevertedRevisionId()
 			);
 		}
@@ -377,6 +380,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	private function getOldestRevertedRevision(): ?RevisionRecord {
 		if ( !isset( $this->oldestRevertedRevision ) ) {
 			$this->oldestRevertedRevision = $this->revisionStore->getRevisionById(
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable oldestRevertedRevision is checked
 				$this->editResult->getOldestRevertedRevisionId()
 			);
 		}

@@ -16,9 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 /**
@@ -43,7 +41,7 @@ class DBQueryError extends DBExpectedError {
 	 * @param int|string $errno
 	 * @param string $sql
 	 * @param string $fname
-	 * @param string|null $message Optional message, intended for subclases (optional)
+	 * @param string|null $message Optional message, intended for subclasses (optional)
 	 */
 	public function __construct( IDatabase $db, $error, $errno, $sql, $fname, $message = null ) {
 		if ( $message === null ) {
@@ -52,7 +50,7 @@ class DBQueryError extends DBExpectedError {
 				"Query: $sql\n";
 		}
 
-		parent::__construct( $db, $message );
+		parent::__construct( $db, $message, [ 'dbName' => $db->getServerName() ] );
 
 		$this->error = $error;
 		$this->errno = $errno;

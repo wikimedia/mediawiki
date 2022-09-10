@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
@@ -219,16 +220,17 @@ class ApiPageSetTest extends ApiTestCase {
 
 	/**
 	 * Test that ApiPageSet is calling GenderCache for provided user names to prefill the
-	 * GenderCache and avoid a performance issue when loading each users' gender on it's own.
+	 * GenderCache and avoid a performance issue when loading each users' gender on its own.
 	 * The test is setting the "missLimit" to 0 on the GenderCache to trigger misses logic.
 	 * When the "misses" property is no longer 0 at the end of the test,
 	 * something was requested which is not part of the cache. Than the test is failing.
 	 */
 	public function testGenderCaching() {
 		// Set up the user namespace to have gender aliases to trigger the gender cache
-		$this->setMwGlobals( [
-			'wgExtraGenderNamespaces' => [ NS_USER => [ 'male' => 'Male', 'female' => 'Female' ] ]
-		] );
+		$this->overrideConfigValue(
+			MainConfigNames::ExtraGenderNamespaces,
+			[ NS_USER => [ 'male' => 'Male', 'female' => 'Female' ] ]
+		);
 		$this->overrideMwServices();
 
 		// User names to test with - it is not needed that the user exists in the database

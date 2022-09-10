@@ -22,12 +22,14 @@
  */
 
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class ChangeTags {
 	/**
@@ -124,6 +126,16 @@ class ChangeTags {
 	];
 
 	/**
+	 * Name of change_tag table
+	 */
+	private const CHANGE_TAG = 'change_tag';
+
+	/**
+	 * Name of change_tag_def table
+	 */
+	private const CHANGE_TAG_DEF = 'change_tag_def';
+
+	/**
 	 * If true, this class attempts to avoid reopening database tables within the same query,
 	 * to avoid the "Can't reopen table" error when operating on temporary tables while running
 	 * tests.
@@ -143,7 +155,8 @@ class ChangeTags {
 	 * @return array Array of all defined/enabled tags.
 	 */
 	public static function getSoftwareTags( $all = false ) {
-		$coreTags = MediaWikiServices::getInstance()->getMainConfig()->get( 'SoftwareTags' );
+		$coreTags = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::SoftwareTags );
 		$softwareTags = [];
 
 		if ( !is_array( $coreTags ) ) {
@@ -206,7 +219,7 @@ class ChangeTags {
 			$displayTags[] = Xml::tags(
 				'span',
 				[ 'class' => 'mw-tag-marker ' .
-								Sanitizer::escapeClass( "mw-tag-marker-$tag" ) ],
+					Sanitizer::escapeClass( "mw-tag-marker-$tag" ) ],
 				$description
 			);
 		}
@@ -241,13 +254,9 @@ class ChangeTags {
 		$msg = $context->msg( "tag-$tag" );
 		if ( !$msg->exists() ) {
 			// No such message
-			return ( new RawMessage( '$1', [ Message::plaintextParam( $tag ) ] ) )
-				// HACK MessageLocalizer doesn't have a way to set the right language on a RawMessage,
-				// so extract the language from $msg and use that.
-				// The language doesn't really matter, but we need to set it to avoid requesting
-				// the user's language from session-less entry points (T227233)
-				->inLanguage( $msg->getLanguage() )
-				->setInterfaceMessageFlag( true );
+			// Pass through ->msg(), even though it seems redundant, to avoid requesting
+			// the user's language from session-less entry points (T227233)
+			return $context->msg( new RawMessage( '$1', [ Message::plaintextParam( $tag ) ] ) );
 		}
 		if ( $msg->isDisabled() ) {
 			// The message exists but is disabled, hide the tag.
@@ -383,57 +392,57 @@ class ChangeTags {
 			// LogEntry/LogPage and WikiPage match rev/log/rc timestamps,
 			// so use that relation to avoid full table scans.
 			if ( $log_id ) {
-				$rc_id = $dbw->selectField(
-					[ 'logging', 'recentchanges' ],
-					'rc_id',
-					[
-						'log_id' => $log_id,
+				$rc_id = $dbw->newSelectQueryBuilder()
+					->select( 'rc_id' )
+					->from( 'logging' )
+					->join( 'recentchanges', null, [
 						'rc_timestamp = log_timestamp',
 						'rc_logid = log_id'
-					],
-					__METHOD__
-				);
+					] )
+					->where( [ 'log_id' => $log_id ] )
+					->caller( __METHOD__ )
+					->fetchField();
 			} elseif ( $rev_id ) {
-				$rc_id = $dbw->selectField(
-					[ 'revision', 'recentchanges' ],
-					'rc_id',
-					[
-						'rev_id' => $rev_id,
+				$rc_id = $dbw->newSelectQueryBuilder()
+					->select( 'rc_id' )
+					->from( 'revision' )
+					->join( 'recentchanges', null, [
 						'rc_this_oldid = rev_id'
-					],
-					__METHOD__
-				);
+					] )
+					->where( [ 'rev_id' => $rev_id ] )
+					->caller( __METHOD__ )
+					->fetchField();
 			}
 		} elseif ( !$log_id && !$rev_id ) {
 			// Info might be out of date, somewhat fractionally, on replica DB.
-			$log_id = $dbw->selectField(
-				'recentchanges',
-				'rc_logid',
-				[ 'rc_id' => $rc_id ],
-				__METHOD__
-			);
-			$rev_id = $dbw->selectField(
-				'recentchanges',
-				'rc_this_oldid',
-				[ 'rc_id' => $rc_id ],
-				__METHOD__
-			);
+			$log_id = $dbw->newSelectQueryBuilder()
+				->select( 'rc_logid' )
+				->from( 'recentchanges' )
+				->where( [ 'rc_id' => $rc_id ] )
+				->caller( __METHOD__ )
+				->fetchField();
+			$rev_id = $dbw->newSelectQueryBuilder()
+				->select( 'rc_this_oldid' )
+				->from( 'recentchanges' )
+				->where( [ 'rc_id' => $rc_id ] )
+				->caller( __METHOD__ )
+				->fetchField();
 		}
 
 		if ( $log_id && !$rev_id ) {
-			$rev_id = $dbw->selectField(
-				'log_search',
-				'ls_value',
-				[ 'ls_field' => 'associated_rev_id', 'ls_log_id' => $log_id ],
-				__METHOD__
-			);
+			$rev_id = $dbw->newSelectQueryBuilder()
+				->select( 'ls_value' )
+				->from( 'log_search' )
+				->where( [ 'ls_field' => 'associated_rev_id', 'ls_log_id' => $log_id ] )
+				->caller( __METHOD__ )
+				->fetchField();
 		} elseif ( !$log_id && $rev_id ) {
-			$log_id = $dbw->selectField(
-				'log_search',
-				'ls_log_id',
-				[ 'ls_field' => 'associated_rev_id', 'ls_value' => (string)$rev_id ],
-				__METHOD__
-			);
+			$log_id = $dbw->newSelectQueryBuilder()
+				->select( 'ls_log_id' )
+				->from( 'log_search' )
+				->where( [ 'ls_field' => 'associated_rev_id', 'ls_value' => (string)$rev_id ] )
+				->caller( __METHOD__ )
+				->fetchField();
 		}
 
 		$prevTags = self::getTags( $dbw, $rc_id, $rev_id, $log_id );
@@ -463,7 +472,7 @@ class ChangeTags {
 			// T207881: update the counts at the end of the transaction
 			$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tagsToAdd, $fname ) {
 				$dbw->update(
-					'change_tag_def',
+					self::CHANGE_TAG_DEF,
 					[ 'ctd_count = ctd_count + 1' ],
 					[ 'ctd_name' => $tagsToAdd ],
 					$fname
@@ -488,7 +497,7 @@ class ChangeTags {
 
 			}
 
-			$dbw->insert( 'change_tag', $tagsRows, __METHOD__, [ 'IGNORE' ] );
+			$dbw->insert( self::CHANGE_TAG, $tagsRows, __METHOD__, [ 'IGNORE' ] );
 		}
 
 		// delete from change_tag
@@ -503,19 +512,19 @@ class ChangeTags {
 						'ct_tag_id' => $changeTagDefStore->getId( $tag ),
 					]
 				);
-				$dbw->delete( 'change_tag', $conds, __METHOD__ );
+				$dbw->delete( self::CHANGE_TAG, $conds, __METHOD__ );
 				if ( $dbw->affectedRows() ) {
 					// T207881: update the counts at the end of the transaction
 					$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tag, $fname ) {
 						$dbw->update(
-							'change_tag_def',
+							self::CHANGE_TAG_DEF,
 							[ 'ctd_count = ctd_count - 1' ],
 							[ 'ctd_name' => $tag ],
 							$fname
 						);
 
 						$dbw->delete(
-							'change_tag_def',
+							self::CHANGE_TAG_DEF,
 							[ 'ctd_name' => $tag, 'ctd_count' => 0, 'ctd_user_defined' => 0 ],
 							$fname
 						);
@@ -558,13 +567,12 @@ class ChangeTags {
 				'ct_log_id' => $log_id,
 			]
 		);
-
-		$result = $db->select(
-			'change_tag',
-			[ 'ct_tag_id', 'ct_params' ],
-			$conds,
-			__METHOD__
-		);
+		$result = $db->newSelectQueryBuilder()
+			->select( [ 'ct_tag_id', 'ct_params' ] )
+			->from( self::CHANGE_TAG )
+			->where( $conds )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$tags = [];
 		$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
@@ -620,17 +628,22 @@ class ChangeTags {
 	 * @param string[] $tags Tags that you are interested in applying
 	 * @param Authority|null $performer whose permission you wish to check, or null to
 	 * check for a generic non-blocked user with the relevant rights
+	 * @param bool $checkBlock Whether to check the blocked status of $performer
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canAddTagsAccompanyingChange( array $tags, Authority $performer = null ) {
+	public static function canAddTagsAccompanyingChange(
+		array $tags,
+		Authority $performer = null,
+		$checkBlock = true
+	) {
 		$user = null;
 		if ( $performer !== null ) {
 			if ( !$performer->isAllowed( 'applychangetags' ) ) {
 				return Status::newFatal( 'tags-apply-no-permission' );
 			}
 
-			if ( $performer->getBlock() && $performer->getBlock()->isSitewide() ) {
+			if ( $checkBlock && $performer->getBlock() && $performer->getBlock()->isSitewide() ) {
 				return Status::newFatal(
 					'tags-apply-blocked',
 					$performer->getUser()->getName()
@@ -778,7 +791,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function updateTagsWithChecks( $tagsToAdd, $tagsToRemove,
-		$rc_id, $rev_id, $log_id, $params, $reason, Authority $performer
+		$rc_id, $rev_id, $log_id, $params, string $reason, Authority $performer
 	) {
 		if ( $tagsToAdd === null ) {
 			$tagsToAdd = [];
@@ -893,7 +906,8 @@ class ChangeTags {
 	public static function modifyDisplayQuery( &$tables, &$fields, &$conds,
 		&$join_conds, &$options, $filter_tag = '', bool $exclude = false
 	) {
-		$useTagFilter = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseTagFilter' );
+		$useTagFilter = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::UseTagFilter );
 
 		// Normalize to arrays
 		$tables = (array)$tables;
@@ -974,7 +988,7 @@ class ChangeTags {
 	 * @return string
 	 */
 	public static function getDisplayTableName() {
-		$tagTable = 'change_tag';
+		$tagTable = self::CHANGE_TAG;
 		if ( self::$avoidReopeningTablesForTesting && defined( 'MW_PHPUNIT_TEST' ) ) {
 			$db = wfGetDB( DB_REPLICA );
 
@@ -991,12 +1005,12 @@ class ChangeTags {
 				if ( !$db->tableExists( $tagTable ) ) {
 					$db->query(
 						'CREATE TEMPORARY TABLE IF NOT EXISTS ' . $db->tableName( $tagTable )
-						. ' LIKE ' . $db->tableName( 'change_tag' ),
+						. ' LIKE ' . $db->tableName( self::CHANGE_TAG ),
 						__METHOD__
 					);
 					$db->query(
 						'INSERT IGNORE INTO ' . $db->tableName( $tagTable )
-						. ' SELECT * FROM ' . $db->tableName( 'change_tag' ),
+						. ' SELECT * FROM ' . $db->tableName( self::CHANGE_TAG ),
 						__METHOD__
 					);
 				}
@@ -1030,8 +1044,8 @@ class ChangeTags {
 			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
-		$tagTables = [ 'change_tag', 'change_tag_def' ];
-		$join_cond_ts_tags = [ 'change_tag_def' => [ 'JOIN', 'ct_tag_id=ctd_id' ] ];
+		$tagTables = [ self::CHANGE_TAG, self::CHANGE_TAG_DEF ];
+		$join_cond_ts_tags = [ self::CHANGE_TAG_DEF => [ 'JOIN', 'ct_tag_id=ctd_id' ] ];
 		$field = 'ctd_name';
 
 		return wfGetDB( DB_REPLICA )->buildGroupConcatField(
@@ -1058,7 +1072,8 @@ class ChangeTags {
 		}
 
 		$config = $context->getConfig();
-		if ( !$config->get( 'UseTagFilter' ) || !count( self::listDefinedTags() ) ) {
+		if ( !$config->get( MainConfigNames::UseTagFilter ) ||
+		!count( self::listDefinedTags() ) ) {
 			return [];
 		}
 
@@ -1122,7 +1137,7 @@ class ChangeTags {
 			'ctd_count' => 0
 		];
 		$dbw->upsert(
-			'change_tag_def',
+			self::CHANGE_TAG_DEF,
 			$tagDef,
 			'ctd_name',
 			[ 'ctd_user_defined' => 1 ],
@@ -1145,14 +1160,14 @@ class ChangeTags {
 		$dbw = wfGetDB( DB_PRIMARY );
 
 		$dbw->update(
-			'change_tag_def',
+			self::CHANGE_TAG_DEF,
 			[ 'ctd_user_defined' => 0 ],
 			[ 'ctd_name' => $tag ],
 			__METHOD__
 		);
 
 		$dbw->delete(
-			'change_tag_def',
+			self::CHANGE_TAG_DEF,
 			[ 'ctd_name' => $tag, 'ctd_count' => 0 ],
 			__METHOD__
 		);
@@ -1175,7 +1190,7 @@ class ChangeTags {
 	 * @return int ID of the inserted log entry
 	 * @since 1.25
 	 */
-	protected static function logTagManagementAction( $action, $tag, $reason,
+	protected static function logTagManagementAction( string $action, string $tag, string $reason,
 		UserIdentity $user, $tagCount = null, array $logEntryTags = []
 	) {
 		$dbw = wfGetDB( DB_PRIMARY );
@@ -1256,8 +1271,8 @@ class ChangeTags {
 	 * entry as its value
 	 * @since 1.25
 	 */
-	public static function activateTagWithChecks( $tag, $reason, Authority $performer,
-		$ignoreWarnings = false, array $logEntryTags = []
+	public static function activateTagWithChecks( string $tag, string $reason, Authority $performer,
+		bool $ignoreWarnings = false, array $logEntryTags = []
 	) {
 		// are we allowed to do this?
 		$result = self::canActivateTag( $tag, $performer );
@@ -1323,8 +1338,8 @@ class ChangeTags {
 	 * entry as its value
 	 * @since 1.25
 	 */
-	public static function deactivateTagWithChecks( $tag, $reason, Authority $performer,
-		$ignoreWarnings = false, array $logEntryTags = []
+	public static function deactivateTagWithChecks( string $tag, string $reason, Authority $performer,
+		bool $ignoreWarnings = false, array $logEntryTags = []
 	) {
 		// are we allowed to do this?
 		$result = self::canDeactivateTag( $tag, $performer );
@@ -1438,8 +1453,8 @@ class ChangeTags {
 	 * entry as its value
 	 * @since 1.25
 	 */
-	public static function createTagWithChecks( $tag, $reason, Authority $performer,
-		$ignoreWarnings = false, array $logEntryTags = []
+	public static function createTagWithChecks( string $tag, string $reason, Authority $performer,
+		bool $ignoreWarnings = false, array $logEntryTags = []
 	) {
 		// are we allowed to do this?
 		$result = self::canCreateTag( $tag, $performer );
@@ -1481,8 +1496,8 @@ class ChangeTags {
 		self::undefineTag( $tag );
 
 		// delete from change_tag
-		$dbw->delete( 'change_tag', [ 'ct_tag_id' => $tagId ], __METHOD__ );
-		$dbw->delete( 'change_tag_def', [ 'ctd_name' => $tag ], __METHOD__ );
+		$dbw->delete( self::CHANGE_TAG, [ 'ct_tag_id' => $tagId ], __METHOD__ );
+		$dbw->delete( self::CHANGE_TAG_DEF, [ 'ctd_name' => $tag ], __METHOD__ );
 		$dbw->endAtomic( __METHOD__ );
 
 		// give extensions a chance
@@ -1571,8 +1586,8 @@ class ChangeTags {
 	 * entry as its value
 	 * @since 1.25
 	 */
-	public static function deleteTagWithChecks( $tag, $reason, Authority $performer,
-		$ignoreWarnings = false, array $logEntryTags = []
+	public static function deleteTagWithChecks( string $tag, string $reason, Authority $performer,
+		bool $ignoreWarnings = false, array $logEntryTags = []
 	) {
 		// are we allowed to do this?
 		$result = self::canDeleteTag( $tag, $performer );
@@ -1664,13 +1679,12 @@ class ChangeTags {
 				$dbr = wfGetDB( DB_REPLICA );
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
-
-				$tags = $dbr->selectFieldValues(
-					'change_tag_def',
-					'ctd_name',
-					[ 'ctd_user_defined' => 1 ],
-					$fname
-				);
+				$tags = $dbr->newSelectQueryBuilder()
+					->select( 'ctd_name' )
+					->from( self::CHANGE_TAG_DEF )
+					->where( [ 'ctd_user_defined' => 1 ] )
+					->caller( $fname )
+					->fetchFieldValues();
 
 				return array_unique( $tags );
 			},
@@ -1748,13 +1762,12 @@ class ChangeTags {
 			WANObjectCache::TTL_MINUTE * 5,
 			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
 				$dbr = wfGetDB( DB_REPLICA );
-				$res = $dbr->select(
-					'change_tag_def',
-					[ 'ctd_name', 'ctd_count' ],
-					[],
-					$fname,
-					[ 'ORDER BY' => 'ctd_count DESC' ]
-				);
+				$res = $dbr->newSelectQueryBuilder()
+					->select( [ 'ctd_name', 'ctd_count' ] )
+					->from( self::CHANGE_TAG_DEF )
+					->orderBy( 'ctd_count', SelectQueryBuilder::SORT_DESC )
+					->caller( $fname )
+					->fetchResultSet();
 
 				$out = [];
 				foreach ( $res as $row ) {
@@ -1782,8 +1795,8 @@ class ChangeTags {
 	 *
 	 * Message contents are the raw values (->plain()), because parsing messages is expensive.
 	 * Even though we're not parsing messages, building a data structure with the contents of
-	 * hundreds of i18n messages is still not cheap (see T223260#5370610), so the result of this
-	 * function is cached in WANCache for 24 hours.
+	 * hundreds of i18n messages is still not cheap (see T223260#5370610), so this function
+	 * caches its output in WANCache for up to 24 hours.
 	 *
 	 * Returns an array of associative arrays with information about each tag:
 	 * - name: Tag name (string)
@@ -1793,6 +1806,9 @@ class ChangeTags {
 	 * - description: Long description message (raw message contents)
 	 * - cssClass: CSS class to use for RC entries with this tag
 	 * - hits: Number of RC entries that have this tag
+	 *
+	 * This data is consumed by the `mediawiki.rcfilters.filters.ui` module,
+	 * specifically `mw.rcfilters.dm.FilterGroup` and `mw.rcfilters.dm.FilterItem`.
 	 *
 	 * @param MessageLocalizer $localizer
 	 * @param Language $lang
@@ -1804,17 +1820,17 @@ class ChangeTags {
 			$cache->makeKey( 'tags-list-summary', $lang->getCode() ),
 			WANObjectCache::TTL_DAY,
 			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $localizer ) {
-				$explicitlyDefinedTags = array_fill_keys( self::listExplicitlyDefinedTags(), 0 );
-				$softwareActivatedTags = array_fill_keys( self::listSoftwareActivatedTags(), 0 );
-
 				$tagHitCounts = self::tagUsageStatistics();
-				// Only get tags with more than 0 hits
-				$tagHitCounts = array_filter( $tagHitCounts );
-				// Only get active tags
-				$tagHitCounts = array_intersect_key( $tagHitCounts, $explicitlyDefinedTags + $softwareActivatedTags );
 
 				$result = [];
-				foreach ( $tagHitCounts as $tagName => $hits ) {
+				// Only list tags that are still actively defined
+				foreach ( self::listDefinedTags() as $tagName ) {
+					// Only list tags with more than 0 hits
+					$hits = $tagHitCounts[$tagName] ?? 0;
+					if ( $hits <= 0 ) {
+						continue;
+					}
+
 					$labelMsg = self::tagShortDescriptionMessage( $tagName, $localizer );
 					$descriptionMsg = self::tagLongDescriptionMessage( $tagName, $localizer );
 					// Don't cache the message object, use the correct MessageLocalizer to parse later.
@@ -1825,7 +1841,6 @@ class ChangeTags {
 						'descriptionMsg' => (bool)$descriptionMsg,
 						'description' => $descriptionMsg ? $descriptionMsg->plain() : '',
 						'cssClass' => Sanitizer::escapeClass( 'mw-tag-' . $tagName ),
-						'hits' => $hits,
 					];
 				}
 				return $result;
@@ -1840,8 +1855,6 @@ class ChangeTags {
 	 * and (in the case of description) truncated versions of these messages. Message
 	 * parsing is expensive, so to detect whether the tag list has changed, use
 	 * getChangeTagListSummary() instead.
-	 *
-	 * The result of this function is cached in WANCache for 24 hours.
 	 *
 	 * @param MessageLocalizer $localizer
 	 * @param Language $lang

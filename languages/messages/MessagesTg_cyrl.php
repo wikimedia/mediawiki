@@ -3,8 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author Cbrown1023
  * @author Chinneeb
@@ -17,6 +17,8 @@
  * @author Urhixidur
  * @author לערי ריינהארט
  */
+
+$fallback = 'tg';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Медиа',

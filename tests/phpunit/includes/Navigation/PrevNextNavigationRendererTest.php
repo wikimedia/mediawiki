@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Navigation\PrevNextNavigationRenderer;
 use Wikimedia\TestingAccessWrapper;
 
@@ -20,6 +21,7 @@ class PrevNextNavigationRendererTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideBuildPrevNextNavigation
 	 */
 	public function testBuildPrevNextNavigation( $offset, $limit, $atEnd, $subPage ) {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
 		$this->setUserLang( 'qqx' ); // disable i18n
 
 		$prevNext = new PrevNextNavigationRenderer( RequestContext::getMain() );
@@ -33,49 +35,61 @@ class PrevNextNavigationRendererTest extends MediaWikiIntegrationTestCase {
 			$atEnd
 		);
 
-		$this->assertStringStartsWith( '(viewprevnext:', $html );
+		$this->assertStringStartsWith( '<div class="mw-pager-navigation-bar">(viewprevnext:', $html );
 
-		preg_match_all( '!<a.*?</a>!', $html, $m, PREG_PATTERN_ORDER );
+		preg_match_all( '!<(a|span).*?</(a|span)>!', $html, $m, PREG_PATTERN_ORDER );
 		$links = $m[0];
 
 		foreach ( $links as $a ) {
-			if ( $subPage ) {
-				$this->assertStringContainsString( 'Special:Watchlist/' . wfUrlencode( $subPage ), $a );
-			} else {
-				$this->assertStringContainsString( 'Special:Watchlist', $a );
-				$this->assertStringNotContainsString( 'Special:Watchlist/', $a );
+			if ( str_starts_with( $a, '<a' ) ) {
+				if ( $subPage ) {
+					$this->assertStringContainsString( 'Special:Watchlist/' . wfUrlencode( $subPage ), $a );
+				} else {
+					$this->assertStringContainsString( 'Special:Watchlist', $a );
+					$this->assertStringNotContainsString( 'Special:Watchlist/', $a );
+				}
+				$this->assertStringContainsString( 'x=25', $a );
 			}
-			$this->assertStringContainsString( 'x=25', $a );
 		}
 
 		$i = 0;
 
+		// Check 'prev' link (or placeholder)
 		if ( $offset > 0 ) {
 			$this->assertStringContainsString(
 				'limit=' . $limit . '&amp;offset=' . max( 0, $offset - $limit ) . '&amp;',
 				$links[ $i ]
 			);
 			$this->assertStringContainsString( 'title="(prevn-title: ' . $limit . ')"', $links[$i] );
-			$this->assertStringContainsString( 'class="mw-prevlink"', $links[$i] );
-			$this->assertStringContainsString( '>(prevn: ' . $limit . ')<', $links[$i] );
-			$i += 1;
+		} else {
+			$this->assertStringContainsString( '<span', $links[$i] );
 		}
+		$this->assertStringContainsString( 'class="mw-prevlink"', $links[$i] );
+		$this->assertStringContainsString( '>(prevn: ' . $limit . ')<', $links[$i] );
+		$i += 1;
 
+		// Check 'next' link (or placeholder)
 		if ( !$atEnd ) {
 			$this->assertStringContainsString(
 				'limit=' . $limit . '&amp;offset=' . ( $offset + $limit ) . '&amp;',
 				$links[ $i ]
 			);
 			$this->assertStringContainsString( 'title="(nextn-title: ' . $limit . ')"', $links[$i] );
-			$this->assertStringContainsString( 'class="mw-nextlink"', $links[$i] );
-			$this->assertStringContainsString( '>(nextn: ' . $limit . ')<', $links[$i] );
-			$i += 1;
+		} else {
+			$this->assertStringContainsString( '<span', $links[$i] );
 		}
+		$this->assertStringContainsString( 'class="mw-nextlink"', $links[$i] );
+		$this->assertStringContainsString( '>(nextn: ' . $limit . ')<', $links[$i] );
+		$i += 1;
 
-		$this->assertCount( 5 + $i, $links );
+		$this->assertCount( 7, $links );
 
-		$this->assertStringContainsString( 'limit=20&amp;offset=' . $offset, $links[$i] );
-		$this->assertStringContainsString( 'title="(shown-title: 20)"', $links[$i] );
+		if ( $limit !== 20 ) {
+			$this->assertStringContainsString( 'limit=20&amp;offset=' . $offset, $links[$i] );
+			$this->assertStringContainsString( 'title="(shown-title: 20)"', $links[$i] );
+		} else {
+			$this->assertStringContainsString( '<span', $links[$i] );
+		}
 		$this->assertStringContainsString( 'class="mw-numlink"', $links[$i] );
 		$this->assertStringContainsString( '>20<', $links[$i] );
 		$i += 4;

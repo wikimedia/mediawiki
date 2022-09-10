@@ -39,23 +39,22 @@ class RevisionStoreFactoryTest extends MediaWikiUnitTestCase {
 			$this->getMockLoadBalancerFactory(),
 			$this->getMockBlobStoreFactory(),
 			$this->getNameTableStoreFactory(),
-			$this->getMockSlotRoleRegistry(),
+			$this->createMock( SlotRoleRegistry::class ),
 			$this->getHashWANObjectCache(),
 			new HashBagOStuff(),
-			$this->getMockCommentStore(),
-			$this->getMockActorMigration(),
+			$this->createMock( CommentStore::class ),
+			$this->createMock( ActorMigration::class ),
 			$this->getMockActorStoreFactory(),
 			new NullLogger(),
-			$this->getContentHandlerFactory(),
+			$this->createMock( IContentHandlerFactory::class ),
 			$this->getPageStoreFactory(),
-			$this->getTitleFactory(),
+			$this->createMock( TitleFactory::class ),
 			$this->createHookContainer()
 		);
 		$this->assertTrue( true );
 	}
 
 	public function provideWikiIds() {
-		yield [ true ];
 		yield [ false ];
 		yield [ 'somewiki' ];
 	}
@@ -65,36 +64,25 @@ class RevisionStoreFactoryTest extends MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStoreFactory::getRevisionStore
 	 */
 	public function testGetRevisionStore( $wikiId ) {
-		$lbFactory = $this->getMockLoadBalancerFactory();
-		$blobStoreFactory = $this->getMockBlobStoreFactory();
-		$nameTableStoreFactory = $this->getNameTableStoreFactory();
-		$slotRoleRegistry = $this->getMockSlotRoleRegistry();
 		$cache = $this->getHashWANObjectCache();
-		$localCache = new HashBagOStuff();
-		$commentStore = $this->getMockCommentStore();
-		$actorMigration = $this->getMockActorMigration();
-		$actorStoreFactory = $this->getMockActorStoreFactory();
-		$logger = new NullLogger();
-		$contentHandlerFactory = $this->getContentHandlerFactory();
-		$pageStoreFactory = $this->getPageStoreFactory();
-		$titleFactory = $this->getTitleFactory();
-		$hookContainer = $this->createHookContainer();
+		$commentStore = $this->createMock( CommentStore::class );
+		$actorMigration = $this->createMock( ActorMigration::class );
 
 		$factory = new RevisionStoreFactory(
-			$lbFactory,
-			$blobStoreFactory,
-			$nameTableStoreFactory,
-			$slotRoleRegistry,
+			$this->getMockLoadBalancerFactory(),
+			$this->getMockBlobStoreFactory(),
+			$this->getNameTableStoreFactory(),
+			$this->createMock( SlotRoleRegistry::class ),
 			$cache,
-			$localCache,
+			new HashBagOStuff(),
 			$commentStore,
 			$actorMigration,
-			$actorStoreFactory,
-			$logger,
-			$contentHandlerFactory,
-			$pageStoreFactory,
-			$titleFactory,
-			$hookContainer
+			$this->getMockActorStoreFactory(),
+			new NullLogger(),
+			$this->createMock( IContentHandlerFactory::class ),
+			$this->getPageStoreFactory(),
+			$this->createMock( TitleFactory::class ),
+			$this->createHookContainer()
 		);
 
 		$store = $factory->getRevisionStore( $wikiId );
@@ -117,13 +105,6 @@ class RevisionStoreFactoryTest extends MediaWikiUnitTestCase {
 		$this->assertInstanceOf( NameTableStore::class, $wrapper->slotRoleStore );
 		$this->assertInstanceOf( LoggerInterface::class, $wrapper->logger );
 		$this->assertInstanceOf( UserIdentityLookup::class, $wrapper->actorStore );
-	}
-
-	/**
-	 * @return MockObject|ActorMigration
-	 */
-	private function getMockActorMigration() {
-		return $this->createMock( ActorMigration::class );
 	}
 
 	/**
@@ -150,20 +131,6 @@ class RevisionStoreFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @return SlotRoleRegistry
-	 */
-	private function getMockSlotRoleRegistry() {
-		return $this->createMock( SlotRoleRegistry::class );
-	}
-
-	/**
-	 * @return IContentHandlerFactory|MockObject
-	 */
-	private function getContentHandlerFactory(): IContentHandlerFactory {
-		return $this->createMock( IContentHandlerFactory::class );
-	}
-
-	/**
 	 * @return PageStoreFactory|MockObject
 	 */
 	private function getPageStoreFactory(): PageStoreFactory {
@@ -176,13 +143,6 @@ class RevisionStoreFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @return TitleFactory|MockObject
-	 */
-	private function getTitleFactory(): TitleFactory {
-		return $this->createMock( TitleFactory::class );
-	}
-
-	/**
 	 * @return NameTableStoreFactory
 	 */
 	private function getNameTableStoreFactory() {
@@ -191,13 +151,6 @@ class RevisionStoreFactoryTest extends MediaWikiUnitTestCase {
 			$this->getHashWANObjectCache(),
 			new NullLogger()
 		);
-	}
-
-	/**
-	 * @return MockObject|CommentStore
-	 */
-	private function getMockCommentStore() {
-		return $this->createMock( CommentStore::class );
 	}
 
 	/**

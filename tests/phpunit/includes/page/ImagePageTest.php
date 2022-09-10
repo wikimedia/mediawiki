@@ -1,17 +1,21 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 class ImagePageTest extends MediaWikiMediaTestCase {
 
 	protected function setUp(): void {
-		$this->setMwGlobals( 'wgImageLimits', [
-			[ 320, 240 ],
-			[ 640, 480 ],
-			[ 800, 600 ],
-			[ 1024, 768 ],
-			[ 1280, 1024 ]
-		] );
+		$this->overrideConfigValue(
+			MainConfigNames::ImageLimits,
+			[
+				[ 320, 240 ],
+				[ 640, 480 ],
+				[ 800, 600 ],
+				[ 1024, 768 ],
+				[ 1280, 1024 ]
+			]
+		);
 		parent::setUp();
 	}
 
@@ -52,17 +56,21 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 	 * @covers ImagePage::getLanguageForRendering()
 	 * @dataProvider provideGetLanguageForRendering
 	 *
-	 * @param string|null $expected Expected language code
-	 * @param string $wikiLangCode Wiki language code
+	 * @param string|null $expected Expected IETF language code
+	 * @param string $wikiLangCode Wiki language code (zh)
+	 * @param string|null $wikiLangVariant Wiki language code variant (zh-cn)
 	 * @param string|null $lang lang=... URL parameter
 	 */
-	public function testGetLanguageForRendering( $expected, $wikiLangCode, $lang = null ) {
+	public function testGetLanguageForRendering( $expected, $wikiLangCode, $wikiLangVariant = null, $lang = null ) {
 		$params = [];
 		if ( $lang !== null ) {
 			$params['lang'] = $lang;
 		}
 		$request = new FauxRequest( $params );
-		$this->setMwGlobals( 'wgLanguageCode', $wikiLangCode );
+		$this->overrideConfigValues( [
+			MainConfigNames::LanguageCode => $wikiLangCode,
+			MainConfigNames::DefaultLanguageVariant => $wikiLangVariant
+		] );
 
 		$page = $this->getImagePage( 'translated.svg' );
 		$page = TestingAccessWrapper::newFromObject( $page );
@@ -75,13 +83,25 @@ class ImagePageTest extends MediaWikiMediaTestCase {
 	public function provideGetLanguageForRendering() {
 		return [
 			[ 'ru', 'ru' ],
-			[ 'ru', 'ru', 'ru' ],
+			[ 'ru', 'ru', null, 'ru' ],
 			[ null, 'en' ],
 			[ null, 'fr' ],
-			[ null, 'en', 'en' ],
-			[ null, 'fr', 'fr' ],
-			[ null, 'ru', 'en' ],
-			[ 'de', 'ru', 'de' ],
+			[ null, 'en', null, 'en' ],
+			[ null, 'fr', null, 'fr' ],
+			[ null, 'ru', null, 'en' ],
+			[ 'de', 'ru', null, 'de' ],
+			[ 'gsw', 'als' ], /* als MW lang code (which is not a valid IETF lang code) */
+			[ 'als', 'en', null, 'als' ], /* als IETF lang code */
+			[ 'zh-hans-cn', 'zh', 'zh-cn' ],
+			[ 'zh-hant-tw', 'zh', 'zh-tw' ],
+			[ 'zh-hans-cn', 'zh-Hans-cn' ], /* Should not happen, not a MW lang code */
+			[ 'zh-hans-cn', 'de', null, 'zh-Hans' ],
+			[ null, 'de', null, 'zh-cn' ], /* MW language code via param */
+			[ 'zh-hans-cn', 'zh', 'zh-cn', 'zh' ],
+			[ 'zh-hans-cn', 'zh', 'zh-cn', 'zh-Hans' ],
+			[ 'zh-hans-cn', 'zh', 'zh-cn', 'zh-Hans-CN' ],
+			[ 'zh-hant-tw', 'zh', 'zh-tw', 'zh-Hant-TW' ],
+			[ 'zh-hant-tw', 'zh', 'zh-cn', 'zh-Hant-TW' ],
 		];
 	}
 }

@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Maintenance;
 use Config;
 use Maintenance;
 use MediaWiki\MediaWikiServices;
+use PHPUnit\Framework\Assert;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -45,7 +46,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 	public function testOutput( $outputs, $expected, $extraNL ) {
 		foreach ( $outputs as $data ) {
 			if ( is_array( $data ) ) {
-				list( $msg, $channel ) = $data;
+				[ $msg, $channel ] = $data;
 			} else {
 				$msg = $data;
 				$channel = null;
@@ -198,7 +199,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 	public function testOutputChanneled( $outputs, $expected, $extraNL ) {
 		foreach ( $outputs as $data ) {
 			if ( is_array( $data ) ) {
-				list( $msg, $channel ) = $data;
+				[ $msg, $channel ] = $data;
 			} else {
 				$msg = $data;
 				$channel = null;
@@ -508,7 +509,7 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 
 		$this->assertEquals( [ 'this1', 'this2' ], $this->maintenance->getOption( 'multi' ) );
 		$this->assertEquals( [ [ 'multi', 'this1' ], [ 'multi', 'this2' ] ],
-		$this->maintenance->orderedOptions );
+			$this->maintenance->orderedOptions );
 	}
 
 	public function testParseMultiOption() {
@@ -548,5 +549,32 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 			$this->maintenance->getOption( 'somearg', 'newdefault' ),
 			'Non existent option falls back to a new default'
 		);
+	}
+
+	public function testLegacyOptionsAccess() {
+		$maintenance = new class () extends Maintenance {
+			/**
+			 * Tests need to be inside the class in order to have access to protected members.
+			 * Setting fields in protected arrays doesn't work via TestingAccessWrapper, triggering
+			 * an PHP warning ("Indirect modification of overloaded property").
+			 */
+			public function execute() {
+				$this->setOption( 'test', 'foo' );
+				Assert::assertSame( 'foo', $this->getOption( 'test' ) );
+				Assert::assertSame( 'foo', $this->mOptions['test'] );
+
+				$this->mOptions['test'] = 'bar';
+				Assert::assertSame( 'bar', $this->getOption( 'test' ) );
+
+				$this->setArg( 1, 'foo' );
+				Assert::assertSame( 'foo', $this->getArg( 1 ) );
+				Assert::assertSame( 'foo', $this->mArgs[1] );
+
+				$this->mArgs[1] = 'bar';
+				Assert::assertSame( 'bar', $this->getArg( 1 ) );
+			}
+		};
+
+		$maintenance->execute();
 	}
 }

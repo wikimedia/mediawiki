@@ -20,7 +20,9 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * This is the abstract base class for API formatters.
@@ -162,7 +164,7 @@ abstract class ApiFormatBase extends ApiBase {
 			return $paramSettings;
 		}
 
-		return $paramSettings[self::PARAM_DFLT] ?? null;
+		return $paramSettings[ParamValidator::PARAM_DEFAULT] ?? null;
 	}
 
 	/**
@@ -204,7 +206,7 @@ abstract class ApiFormatBase extends ApiBase {
 		$this->getMain()->getRequest()->response()->header( "Content-Type: $mime; charset=utf-8" );
 
 		// Set X-Frame-Options API results (T41180)
-		$apiFrameOptions = $this->getConfig()->get( 'ApiFrameOptions' );
+		$apiFrameOptions = $this->getConfig()->get( MainConfigNames::ApiFrameOptions );
 		if ( $apiFrameOptions ) {
 			$this->getMain()->getRequest()->response()->header( "X-Frame-Options: $apiFrameOptions" );
 		}
@@ -281,7 +283,7 @@ abstract class ApiFormatBase extends ApiBase {
 
 				if ( $this->mHttpStatus && $this->mHttpStatus !== 200 ) {
 					$out->addHTML(
-						Html::rawElement( 'div', [ 'class' => 'api-pretty-header api-pretty-status' ],
+						Html::rawElement( 'div', [ 'class' => [ 'api-pretty-header', 'api-pretty-status' ] ],
 							$this->msg(
 								'api-format-prettyprint-status',
 								$this->mHttpStatus,
@@ -301,7 +303,7 @@ abstract class ApiFormatBase extends ApiBase {
 			if ( $this->getIsWrappedHtml() ) {
 				// This is a special output mode mainly intended for ApiSandbox use
 				$time = $this->getMain()->getRequest()->getElapsedTime();
-				$json = FormatJson::encode(
+				echo FormatJson::encode(
 					[
 						'status' => (int)( $this->mHttpStatus ?: 200 ),
 						'statustext' => HttpStatus::getMessage( $this->mHttpStatus ?: 200 ),
@@ -315,17 +317,6 @@ abstract class ApiFormatBase extends ApiBase {
 					],
 					false, FormatJson::ALL_OK
 				);
-
-				// T68776: OutputHandler::mangleFlashPolicy() avoids a nasty bug in
-				// Flash, but what it does isn't friendly for the API, so we need to
-				// work around it.
-				if ( preg_match( '/\<\s*cross-domain-policy\s*\>/i', $json ) ) {
-					$json = preg_replace(
-						'/\<(\s*cross-domain-policy\s*)\>/i', '\\u003C$1\\u003E', $json
-					);
-				}
-
-				echo $json;
 			} else {
 				// API handles its own clickjacking protection.
 				// Note, that $wgBreakFrames will still override $wgApiFrameOptions for format mode.
@@ -361,9 +352,8 @@ abstract class ApiFormatBase extends ApiBase {
 		$ret = [];
 		if ( $this->getIsHtml() ) {
 			$ret['wrappedhtml'] = [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => 'apihelp-format-param-wrappedhtml',
-
 			];
 		}
 		return $ret;

@@ -18,6 +18,9 @@
  * @file
  */
 
+use MediaWiki\Message\Converter;
+use Wikimedia\Message\MessageValue;
+
 /**
  * Generic operation result class
  * Has warning/error list, boolean status and arbitrary value
@@ -227,11 +230,13 @@ class StatusValue {
 	/**
 	 * Add a new warning
 	 *
-	 * @param string|MessageSpecifier $message Message key or object
+	 * @param string|MessageSpecifier|MessageValue $message Message key or object
 	 * @param mixed ...$parameters
 	 * @return $this
 	 */
 	public function warning( $message, ...$parameters ) {
+		$message = $this->normalizeMessage( $message, $parameters );
+
 		return $this->addError( [
 			'type' => 'warning',
 			'message' => $message,
@@ -243,11 +248,13 @@ class StatusValue {
 	 * Add an error, do not set fatal flag
 	 * This can be used for non-fatal errors
 	 *
-	 * @param string|MessageSpecifier $message Message key or object
+	 * @param string|MessageSpecifier|MessageValue $message Message key or object
 	 * @param mixed ...$parameters
 	 * @return $this
 	 */
 	public function error( $message, ...$parameters ) {
+		$message = $this->normalizeMessage( $message, $parameters );
+
 		return $this->addError( [
 			'type' => 'error',
 			'message' => $message,
@@ -259,7 +266,7 @@ class StatusValue {
 	 * Add an error and set OK to false, indicating that the operation
 	 * as a whole was fatal
 	 *
-	 * @param string|MessageSpecifier $message Message key or object
+	 * @param string|MessageSpecifier|MessageValue $message Message key or object
 	 * @param mixed ...$parameters
 	 * @return $this
 	 */
@@ -312,14 +319,17 @@ class StatusValue {
 	/**
 	 * Returns true if the specified message is present as a warning or error
 	 *
-	 * @param string|MessageSpecifier $message Message key or object to search for
+	 * @param string|MessageSpecifier|MessageValue $message Message key or object to search for
 	 *
 	 * @return bool
 	 */
 	public function hasMessage( $message ) {
 		if ( $message instanceof MessageSpecifier ) {
 			$message = $message->getKey();
+		} elseif ( $message instanceof MessageValue ) {
+			$message = $message->getKey();
 		}
+
 		foreach ( $this->errors as $error ) {
 			if ( $error['message'] instanceof MessageSpecifier
 				&& $error['message']->getKey() === $message
@@ -340,15 +350,22 @@ class StatusValue {
 	 * Note, due to the lack of tools for comparing IStatusMessage objects, this
 	 * function will not work when using such an object as the search parameter.
 	 *
-	 * @param MessageSpecifier|string $source Message key or object to search for
-	 * @param MessageSpecifier|string $dest Replacement message key or object
+	 * @param MessageSpecifier|MessageValue|string $source Message key or object to search for
+	 * @param MessageSpecifier|MessageValue|string $dest Replacement message key or object
 	 * @return bool Return true if the replacement was done, false otherwise.
 	 */
 	public function replaceMessage( $source, $dest ) {
 		$replaced = false;
 
+		$source = $this->normalizeMessage( $source );
+		$dest = $this->normalizeMessage( $dest );
+
 		foreach ( $this->errors as $index => $error ) {
 			if ( $error['message'] === $source ) {
+				$this->errors[$index]['message'] = $dest;
+				$replaced = true;
+			} elseif ( $error['message'] instanceof MessageSpecifier
+				&& $error['message']->getKey() === $source ) {
 				$this->errors[$index]['message'] = $dest;
 				$replaced = true;
 			}
@@ -358,12 +375,15 @@ class StatusValue {
 	}
 
 	/**
+	 * Returns a string representation of the status for debugging.
+	 * This is fairly verbose and may change without notice.
+	 *
 	 * @return string
 	 */
 	public function __toString() {
 		$status = $this->isOK() ? "OK" : "Error";
 		if ( count( $this->errors ) ) {
-			$errorcount = "collected " . ( count( $this->errors ) ) . " error(s) on the way";
+			$errorcount = "collected " . ( count( $this->errors ) ) . " message(s) on the way";
 		} else {
 			$errorcount = "no errors detected";
 		}
@@ -381,7 +401,7 @@ class StatusValue {
 			$valstr
 		);
 		if ( count( $this->errors ) > 0 ) {
-			$hdr = sprintf( "+-%'-4s-+-%'-25s-+-%'-40s-+\n", "", "", "" );
+			$hdr = sprintf( "+-%'-8s-+-%'-25s-+-%'-36s-+\n", "", "", "" );
 			$i = 1;
 			$out .= "\n";
 			$out .= $hdr;
@@ -397,14 +417,16 @@ class StatusValue {
 					$params = [];
 				}
 
+				$type = $error['type'];
 				$keyChunks = str_split( $key, 25 );
-				$paramsChunks = str_split( substr( $this->flattenParams( $params ), 0, 100 ), 25 );
+				$paramsChunks = str_split( $this->flattenParams( $params, " | " ), 36 );
+
 				// array_map(null,...) is like Python's zip()
-				foreach ( array_map( null, [ $i ], $keyChunks, $paramsChunks )
-					as [ $iChunk, $keyChunk, $paramsChunk ]
+				foreach ( array_map( null, [ $type ], $keyChunks, $paramsChunks )
+					as [ $typeChunk, $keyChunk, $paramsChunk ]
 				) {
-					$out .= sprintf( "| %4s | %-25.25s | %-40.40s |\n",
-						$iChunk,
+					$out .= sprintf( "| %-8s | %-25.25s | %-36.36s |\n",
+						$typeChunk,
 						$keyChunk,
 						$paramsChunk
 					);
@@ -420,20 +442,24 @@ class StatusValue {
 
 	/**
 	 * @param array $params Message parameters
+	 * @param string $joiner
+	 *
 	 * @return string String representation
 	 */
-	private function flattenParams( array $params ): string {
+	private function flattenParams( array $params, string $joiner = ', ' ): string {
 		$ret = [];
 		foreach ( $params as $p ) {
 			if ( is_array( $p ) ) {
-				$ret[] = '[ ' . self::flattenParams( $p ) . ' ]';
+				$r = '[ ' . self::flattenParams( $p ) . ' ]';
 			} elseif ( $p instanceof MessageSpecifier ) {
-				$ret[] = '{ ' . $p->getKey() . ': ' . self::flattenParams( $p->getParams() ) . ' }';
+				$r = '{ ' . $p->getKey() . ': ' . self::flattenParams( $p->getParams() ) . ' }';
 			} else {
-				$ret[] = (string)$p;
+				$r = (string)$p;
 			}
+
+			$ret[] = strlen( $r ) > 100 ? substr( $r, 0, 99 ) . "..." : $r;
 		}
-		return implode( ' ', $ret );
+		return implode( $joiner, $ret );
 	}
 
 	/**
@@ -463,5 +489,20 @@ class StatusValue {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * @param MessageSpecifier|MessageValue|string $message
+	 * @param array $parameters
+	 *
+	 * @return MessageSpecifier|string
+	 */
+	private function normalizeMessage( $message, array $parameters = [] ) {
+		if ( $message instanceof MessageValue ) {
+			$converter = new Converter();
+			return $converter->convertMessageValue( $message );
+		}
+
+		return $message;
 	}
 }

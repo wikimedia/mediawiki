@@ -6,7 +6,7 @@
 
 // Circle mixin
 .mw-rcfilters-circle( @min-size-diameter: @min-size-circle, @size-diameter: @size-circle, @margin: 0.5em ) {
-	.box-sizing( border-box );
+	box-sizing: border-box;
 	min-width: @min-size-diameter;
 	width: @size-diameter;
 	min-height: @min-size-diameter;
@@ -46,7 +46,6 @@
 
 // A mixin for changes list containers. Applies enough margin-left to fit the 5 highlight circles.
 .result-circle-margin() {
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	margin-left: ~'calc( ( @{size-circle-result} + @{margin-circle-result} ) * 5 + @{margin-circle} )';
 }
 

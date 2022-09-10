@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\SlotRecord;
 
 /**
@@ -29,13 +30,13 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		return self::$users['ApiQueryWatchlistIntegrationTestUser2']->getUser();
 	}
 
-	private function doPageEdit( User $user, LinkTarget $target, $content, $summary ) {
-		$title = Title::newFromLinkTarget( $target );
-		$page = WikiPage::factory( $title );
-		$page->doUserEditContent(
-			ContentHandler::makeContent( $content, $title ),
-			$user,
-			$summary
+	private function doPageEdit( Authority $performer, LinkTarget $target, $content, $summary ) {
+		$this->editPage(
+			$target,
+			$content,
+			$summary,
+			NS_MAIN,
+			$performer
 		);
 	}
 
@@ -62,12 +63,12 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 	}
 
 	private function doAnonPageEdit( LinkTarget $target, $content, $summary ) {
-		$title = Title::newFromLinkTarget( $target );
-		$page = WikiPage::factory( $title );
-		$page->doUserEditContent(
-			ContentHandler::makeContent( $content, $title ),
-			User::newFromId( 0 ),
-			$summary
+		$this->editPage(
+			$target,
+			$content,
+			$summary,
+			NS_MAIN,
+			$this->getServiceContainer()->getUserFactory()->newAnonymous()
 		);
 	}
 
@@ -1465,7 +1466,8 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		$this->watchPages( $otherUser, [ $target ] );
 
 		$reloadedUser = User::newFromName( $otherUser->getName() );
-		$this->assertSame( '1234567890', $reloadedUser->getOption( 'watchlisttoken' ) );
+		$option = $userOptionsManager->getOption( $reloadedUser, 'watchlisttoken' );
+		$this->assertSame( '1234567890', $option );
 
 		$result = $this->doListWatchlistRequest( [
 			'wlowner' => $otherUser->getName(),

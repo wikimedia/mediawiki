@@ -3,12 +3,11 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
- *
+ * @ingroup Languages
  */
 
 $rtl = true;
 
 # Inherit everything for now
-$fallback = 'kk-arab, kk-cyrl';
+$fallback = 'kk-arab, kk, kk-cyrl';

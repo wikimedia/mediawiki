@@ -296,7 +296,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 	}
 
 	protected function convertGenericKey( $key ) {
-		return $key; // short-circuit; already uses "generic" keys
+		// short-circuit; already uses "generic" keys
+		return $key;
 	}
 
 	public function addBusyCallback( callable $workCallback ) {
@@ -341,7 +342,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 	private function remarkRecentSessionWrite( array $keys ) {
 		$now = $this->getCurrentTime();
 		foreach ( $keys as $key ) {
-			unset( $this->lastKeyWrites[$key] ); // move to the end
+			// move to the end
+			unset( $this->lastKeyWrites[$key] );
 			$this->lastKeyWrites[$key] = $now;
 		}
 		// Prune out the map if the first key is obsolete

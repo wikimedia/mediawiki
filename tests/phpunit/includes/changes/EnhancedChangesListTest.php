@@ -83,7 +83,7 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 			->onlyMethods( [ 'getTitle' ] )
 			->getMock();
 		$mockContext->method( 'getTitle' )
-			->willReturn( Title::newFromText( 'Expected Context Title' ) );
+			->willReturn( Title::makeTitle( NS_MAIN, 'Expected Context Title' ) );
 
 		// One group of two lines
 		$enhancedChangesList = $this->newEnhancedChangesList();
@@ -228,14 +228,14 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 	 * @return RecentChange
 	 */
 	private function getCategorizationChange( $timestamp, $thisId, $lastId ) {
-		$wikiPage = new WikiPage( Title::newFromText( 'Testpage' ) );
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::makeTitle( NS_MAIN, 'Testpage' ) );
 		$wikiPage->doUserEditContent(
 			new WikitextContent( 'Some random text' ),
 			$this->getTestSysop()->getUser(),
 			'page created'
 		);
 
-		$wikiPage = new WikiPage( Title::newFromText( 'Category:Foo' ) );
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::makeTitle( NS_CATEGORY, 'Foo' ) );
 		$wikiPage->doUserEditContent(
 			new WikitextContent( 'Some random text' ),
 			$this->getTestSysop()->getUser(),

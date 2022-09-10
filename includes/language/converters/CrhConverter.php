@@ -1,9 +1,5 @@
 <?php
 /**
- * Crimean Tatar (Qırımtatarca) specific code.
- *
- * Adapted from https://crh.wikipedia.org/wiki/Qullan%C4%B1c%C4%B1:Don_Alessandro/Translit
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -20,13 +16,14 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
 
 /**
- * Crimean Tatar (Qırımtatarca) converter routines
+ * Crimean Tatar (Qırımtatarca) converter routines.
  *
- * @ingroup Language
+ * Adapted from https://crh.wikipedia.org/wiki/Qullan%C4%B1c%C4%B1:Don_Alessandro/Translit
+ *
+ * @ingroup Languages
  */
 class CrhConverter extends LanguageConverterSpecific {
 	// Defines working character ranges

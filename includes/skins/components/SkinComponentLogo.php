@@ -19,8 +19,7 @@
 namespace MediaWiki\Skin;
 
 use Config;
-use ResourceLoaderSkinModule;
-use Title;
+use MediaWiki\ResourceLoader as RL;
 
 /**
  * @internal for use inside Skin and SkinTemplate classes only
@@ -29,23 +28,23 @@ use Title;
 class SkinComponentLogo implements SkinComponent {
 	/** @var Config */
 	private $config;
-	/** @var Title */
-	private $title;
+	/** @var string|null */
+	private $language;
 
 	/**
 	 * @param Config $config
-	 * @param Title|null $title
+	 * @param string|null $language
 	 */
-	public function __construct( Config $config, ?Title $title ) {
+	public function __construct( Config $config, ?string $language ) {
 		$this->config = $config;
-		$this->title = $title;
+		$this->language = $language;
 	}
 
 	/**
-	 * @return Title|null
+	 * @return string|null
 	 */
-	private function getTitle(): ?Title {
-		return $this->title;
+	private function getLanguage(): ?string {
+		return $this->language;
 	}
 
 	/**
@@ -65,21 +64,6 @@ class SkinComponentLogo implements SkinComponent {
 	 * - array tagline with `src`, `width`, `height` and `style` keys.
 	 */
 	public function getTemplateData(): array {
-		$logoData = ResourceLoaderSkinModule::getAvailableLogos( $this->getConfig() );
-		// check if the logo supports variants
-		$variantsLogos = $logoData['variants'] ?? null;
-		$title = $this->getTitle();
-		if ( $variantsLogos && $title ) {
-			$preferred = $title
-				->getPageViewLanguage()->getCode();
-			$variantOverrides = $variantsLogos[$preferred] ?? null;
-			// Overrides the logo
-			if ( $variantOverrides ) {
-				foreach ( $variantOverrides as $key => $val ) {
-					$logoData[$key] = $val;
-				}
-			}
-		}
-		return $logoData;
+		return RL\SkinModule::getAvailableLogos( $this->getConfig(), $this->getLanguage() );
 	}
 }

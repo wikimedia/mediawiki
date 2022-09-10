@@ -557,8 +557,7 @@ TEXT
 				->getContentHandlerFactory()
 				->getContentHandler( $model )
 				->exportTransform( $text, $format );
-		}
-		catch ( MWException $ex ) {
+		} catch ( MWException $ex ) {
 			wfWarn( "Unable to apply export transformation for content model '$model': " .
 				$ex->getMessage() );
 
@@ -681,6 +680,7 @@ TEXT
 				//         plausible
 
 				if ( $expSize === null || strlen( $text ) == $expSize ) {
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable Set when text is not false
 					if ( $tryIsPrefetch ) {
 						$this->prefetchCount++;
 					}
@@ -721,7 +721,7 @@ TEXT
 			}
 		}
 
-		// Retirieving a good text for $id failed (at least) maxFailures times.
+		// Retrieving a good text for $id failed (at least) maxFailures times.
 		// We abort for this $id.
 
 		// Restoring the consecutive failures, and maybe aborting, if the dump

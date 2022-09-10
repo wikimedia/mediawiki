@@ -50,7 +50,7 @@ class TagHooksTest extends MediaWikiIntegrationTestCase {
 		$parser->setHook( $tag, [ $this, 'tagCallback' ] );
 		$parserOutput = $parser->parse(
 			"Foo<$tag>Bar</$tag>Baz",
-			Title::newFromText( 'Test' ),
+			Title::makeTitle( NS_MAIN, 'Test' ),
 			$this->getParserOptions()
 		);
 		$this->assertEquals( "<p>FooOneBaz\n</p>", $parserOutput->getText( [ 'unwrap' => true ] ) );

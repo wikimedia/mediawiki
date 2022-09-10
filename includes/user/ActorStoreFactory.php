@@ -22,6 +22,7 @@ namespace MediaWiki\User;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\MainConfigNames;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -36,8 +37,8 @@ class ActorStoreFactory {
 
 	/** @internal */
 	public const CONSTRUCTOR_OPTIONS = [
-		'SharedDB',
-		'SharedTables',
+		MainConfigNames::SharedDB,
+		MainConfigNames::SharedTables,
 	];
 
 	/** @var ILBFactory */
@@ -72,8 +73,8 @@ class ActorStoreFactory {
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->loadBalancerFactory = $loadBalancerFactory;
-		$this->sharedDB = $options->get( 'SharedDB' );
-		$this->sharedTables = $options->get( 'SharedTables' );
+		$this->sharedDB = $options->get( MainConfigNames::SharedDB );
+		$this->sharedTables = $options->get( MainConfigNames::SharedTables );
 		$this->userNameUtils = $userNameUtils;
 		$this->logger = $logger;
 	}

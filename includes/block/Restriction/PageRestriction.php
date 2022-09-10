@@ -112,6 +112,7 @@ class PageRestriction extends AbstractRestriction {
 		}
 
 		$restriction = new self( 0, $title->getArticleID() );
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Title is always valid
 		$restriction->setTitle( $title );
 
 		return $restriction;

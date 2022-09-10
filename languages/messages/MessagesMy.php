@@ -3,8 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author Erikoo
  * @author Hakka
@@ -117,7 +117,7 @@ $specialPageAliases = [
 	'Myuploads'                 => [ 'ကျွန်ုပ်၏ဖိုင်တင်မှုများ', 'ကျွန်ုပ်၏ဖိုင်များ' ],
 	'Newimages'                 => [ 'ဖိုင်အသစ်များ', 'ပုံအသစ်များ' ],
 	'Newpages'                  => [ 'စာမျက်နှာအသစ်များ' ],
-	'Pagedata'                  => [ 'စာမျက်နှာဒေတာ' ],
+	'PageData'                  => [ 'စာမျက်နှာဒေတာ' ],
 	'PasswordPolicies'          => [ 'စကားဝှက်မူဝါဒများ' ],
 	'PasswordReset'             => [ 'စကားဝှက်အသစ်ပြုလုပ်ရန်' ],
 	'PermanentLink'             => [ 'ပုံသေလိပ်စာ' ],

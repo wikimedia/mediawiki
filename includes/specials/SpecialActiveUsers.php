@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserGroupManager;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -161,7 +162,7 @@ class SpecialActiveUsers extends SpecialPage {
 			->setWrapperLegendMsg( 'activeusers' )
 			->setSubmitTextMsg( 'activeusers-submit' )
 			// prevent setting subpage and 'username' parameter at the same time
-			->setAction( $this->getPageTitle()->getLocalURL() )
+			->setTitle( $this->getPageTitle() )
 			->setMethod( 'get' )
 			->prepareForm()
 			->displayForm( false );
@@ -172,7 +173,7 @@ class SpecialActiveUsers extends SpecialPage {
 	 * @return string
 	 */
 	protected function getIntroText() {
-		$days = $this->getConfig()->get( 'ActiveUserDays' );
+		$days = $this->getConfig()->get( MainConfigNames::ActiveUserDays );
 
 		$intro = $this->msg( 'activeusers-intro' )->numParams( $days )->parse();
 

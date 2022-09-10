@@ -3,6 +3,8 @@
 use MediaWiki\Deferred\LinksUpdate\LinksTable;
 use MediaWiki\Deferred\LinksUpdate\LinksTableGroup;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
@@ -61,7 +63,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 				'iw_wikiid' => 'linksupdatetest',
 			]
 		);
-		$this->setMwGlobals( 'wgRCWatchCategoryMembership', true );
+		$this->overrideConfigValue( MainConfigNames::RCWatchCategoryMembership, true );
 	}
 
 	public function addDBDataOnce() {
@@ -237,7 +239,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	 */
 	public function testUpdate_categorylinks() {
 		/** @var ParserOutput $po */
-		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
+		$this->overrideConfigValue( MainConfigNames::CategoryCollation, 'uppercase' );
 
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
@@ -296,10 +298,10 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	public function testOnAddingAndRemovingCategory_recentChangesRowIsAdded() {
-		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
+		$this->overrideConfigValue( MainConfigNames::CategoryCollation, 'uppercase' );
 
 		$title = Title::newFromText( 'Testing' );
-		$wikiPage = new WikiPage( $title );
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$wikiPage->doUserEditContent(
 			new WikitextContent( '[[Category:Foo]]' ),
 			$this->getTestSysop()->getUser(),
@@ -309,7 +311,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		$this->assertRecentChangeByCategorization(
 			$title,
-			$wikiPage->getParserOutput( ParserOptions::newCanonical( 'canonical' ) ),
+			$wikiPage->getParserOutput( ParserOptions::newFromAnon() ),
 			Title::newFromText( 'Category:Foo' ),
 			[ [ 'Foo', '[[:Testing]] added to category' ] ]
 		);
@@ -323,7 +325,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		$this->assertRecentChangeByCategorization(
 			$title,
-			$wikiPage->getParserOutput( ParserOptions::newCanonical( 'canonical' ) ),
+			$wikiPage->getParserOutput( ParserOptions::newFromAnon() ),
 			Title::newFromText( 'Category:Foo' ),
 			[
 				[ 'Foo', '[[:Testing]] added to category' ],
@@ -333,7 +335,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		$this->assertRecentChangeByCategorization(
 			$title,
-			$wikiPage->getParserOutput( ParserOptions::newCanonical( 'canonical' ) ),
+			$wikiPage->getParserOutput( ParserOptions::newFromAnon() ),
 			Title::newFromText( 'Category:Bar' ),
 			[
 				[ 'Bar', '[[:Testing]] added to category' ],
@@ -342,12 +344,12 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	public function testOnAddingAndRemovingCategoryToTemplates_embeddingPagesAreIgnored() {
-		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
+		$this->overrideConfigValue( MainConfigNames::CategoryCollation, 'uppercase' );
 
 		$templateTitle = Title::newFromText( 'Template:TestingTemplate' );
-		$templatePage = new WikiPage( $templateTitle );
+		$templatePage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $templateTitle );
 
-		$wikiPage = new WikiPage( Title::newFromText( 'Testing' ) );
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( 'Testing' ) );
 		$wikiPage->doUserEditContent(
 			new WikitextContent( '{{TestingTemplate}}' ),
 			$this->getTestSysop()->getUser(),
@@ -355,7 +357,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 		$this->runAllRelatedJobs();
 
-		$otherWikiPage = new WikiPage( Title::newFromText( 'Some_other_page' ) );
+		$otherWikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( 'Some_other_page' ) );
 		$otherWikiPage->doUserEditContent(
 			new WikitextContent( '{{TestingTemplate}}' ),
 			$this->getTestSysop()->getUser(),
@@ -365,7 +367,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		$this->assertRecentChangeByCategorization(
 			$templateTitle,
-			$templatePage->getParserOutput( ParserOptions::newCanonical( 'canonical' ) ),
+			$templatePage->getParserOutput( ParserOptions::newFromAnon() ),
 			Title::newFromText( 'Baz' ),
 			[]
 		);
@@ -379,7 +381,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		$this->assertRecentChangeByCategorization(
 			$templateTitle,
-			$templatePage->getParserOutput( ParserOptions::newCanonical( 'canonical' ) ),
+			$templatePage->getParserOutput( ParserOptions::newFromAnon() ),
 			Title::newFromText( 'Baz' ),
 			[ [
 				'Baz',
@@ -390,7 +392,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	public function testUpdate_categorylinks_move() {
-		$this->setMwGlobals( 'wgCategoryCollation', 'uppercase' );
+		$this->overrideConfigValue( MainConfigNames::CategoryCollation, 'uppercase' );
 
 		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Old", self::$testingPageId );
@@ -533,6 +535,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	public function testUpdate_templatelinks() {
 		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		$linkTargetLookup = MediaWikiServices::getInstance()->getLinkTargetLookup();
 
 		$target1 = Title::newFromText( "Template:T1" );
 		$target2 = Title::newFromText( "Template:T2" );
@@ -545,11 +548,11 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'templatelinks',
-			[ 'tl_namespace', 'tl_title' ],
+			[ 'tl_target_id' ],
 			'tl_from = ' . self::$testingPageId,
 			[
-				[ NS_TEMPLATE, 'T1' ],
-				[ NS_TEMPLATE, 'T2' ],
+				[ $linkTargetLookup->acquireLinkTargetId( $target1, $this->db ) ],
+				[ $linkTargetLookup->acquireLinkTargetId( $target2, $this->db ) ],
 			]
 		);
 
@@ -563,11 +566,11 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t,
 			$po,
 			'templatelinks',
-			[ 'tl_namespace', 'tl_title' ],
+			[ 'tl_target_id' ],
 			'tl_from = ' . self::$testingPageId,
 			[
-				[ NS_TEMPLATE, 'T2' ],
-				[ NS_TEMPLATE, 'T3' ],
+				[ $linkTargetLookup->acquireLinkTargetId( $target2, $this->db ) ],
+				[ $linkTargetLookup->acquireLinkTargetId( $target3, $this->db ) ],
 			]
 		);
 	}
@@ -644,9 +647,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	 * @covers ParserOutput::addLanguageLink
 	 */
 	public function testUpdate_langlinks() {
-		$this->setMwGlobals( [
-			'wgCapitalLinks' => true,
-		] );
+		$this->overrideConfigValue( MainConfigNames::CapitalLinks, true );
 
 		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );

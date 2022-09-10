@@ -71,12 +71,10 @@ class ApiContinuationManager {
 			$skip = explode( '|', $continue[1] );
 			if ( !$this->generatorDone ) {
 				$params = explode( '|', $continue[0] );
-				if ( $params ) {
-					$this->generatorParams = array_intersect_key(
-						$request->getValues(),
-						array_fill_keys( $params, true )
-					);
-				}
+				$this->generatorParams = array_intersect_key(
+					$request->getValues(),
+					array_fill_keys( $params, true )
+				);
 			} else {
 				// When the generator is complete, don't run any modules that
 				// depend on it.
@@ -214,7 +212,7 @@ class ApiContinuationManager {
 
 		// First, grab the non-generator-using continuation data
 		$continuationData = array_diff_key( $this->continuationData, $this->generatedModules );
-		foreach ( $continuationData as $module => $kvp ) {
+		foreach ( $continuationData as $kvp ) {
 			$data += $kvp;
 		}
 
@@ -223,7 +221,7 @@ class ApiContinuationManager {
 		if ( $continuationData ) {
 			// Some modules are unfinished: include those params, and copy
 			// the generator params.
-			foreach ( $continuationData as $module => $kvp ) {
+			foreach ( $continuationData as $kvp ) {
 				$data += $kvp;
 			}
 			$generatorParams = [];

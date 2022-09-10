@@ -3,9 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
- *
+ * @ingroup Languages
  */
 
 $namespaceNames = [
@@ -37,17 +36,17 @@ $namespaceAliases = [
 $specialPageAliases = [
 	'Allpages'                  => [ 'TanangPanid' ],
 	'BrokenRedirects'           => [ 'BuakngaRedirekta' ],
-	'Categories'                => [ 'Mga Kategoriya' ],
-	'Contributions'             => [ 'Mga Tampo' ],
+	'Categories'                => [ 'Mga_Kategoriya' ],
+	'Contributions'             => [ 'Mga_Tampo' ],
 	'CreateAccount'             => [ 'Paghimo\'gAkawnt' ],
 	'DoubleRedirects'           => [ 'DoblengRedirekta' ],
-	'Listfiles'                 => [ 'Listahan sa Imahen' ],
-	'Lonelypages'               => [ 'Nag-inusarangPanid', 'Sinagop nga Panid' ],
+	'Listfiles'                 => [ 'Listahan_sa_Imahen' ],
+	'Lonelypages'               => [ 'Nag-inusarangPanid', 'Sinagop_nga_Panid' ],
 	'Mycontributions'           => [ 'AkongTampo' ],
 	'Mypage'                    => [ 'AkongPanid' ],
 	'Mytalk'                    => [ 'AkongHisgot' ],
 	'Newimages'                 => [ 'Bag-ongImahen' ],
-	'Preferences'               => [ 'Mga Preperensya' ],
+	'Preferences'               => [ 'Mga_Preperensya' ],
 	'Randompage'                => [ 'Bisan-unsa', 'Bisan-unsangPanid' ],
 	'Recentchanges'             => [ 'Bag-ongGiusab' ],
 	'Search'                    => [ 'Pangita' ],

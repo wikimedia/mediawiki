@@ -32,8 +32,8 @@ class PermissionStatusTest extends MediaWikiUnitTestCase {
 	public function testNewEmpty() {
 		$status = PermissionStatus::newEmpty();
 
-		$this->assertTrue( $status->isOK() );
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusOK( $status );
+		$this->assertStatusGood( $status );
 		$this->assertEmpty( $status->getErrors() );
 	}
 

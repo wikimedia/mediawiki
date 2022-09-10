@@ -54,7 +54,7 @@ class PasswordPolicyChecksTest extends MediaWikiUnitTestCase {
 			$this->getUser(), // User
 			'password'  // password
 		);
-		$this->assertTrue( $statusOK->isGood(), 'Password is longer than minimal policy' );
+		$this->assertStatusGood( $statusOK, 'Password is longer than minimal policy' );
 		$statusShort = PasswordPolicyChecks::checkMinimalPasswordLength(
 			10, // policy value
 			$this->getUser(), // User
@@ -79,7 +79,7 @@ class PasswordPolicyChecksTest extends MediaWikiUnitTestCase {
 			$this->getUser(), // User
 			'password'  // password
 		);
-		$this->assertTrue( $statusOK->isGood(), 'Password is longer than minimal policy' );
+		$this->assertStatusGood( $statusOK, 'Password is longer than minimal policy' );
 		$statusShort = PasswordPolicyChecks::checkMinimumPasswordLengthToLogin(
 			10, // policy value
 			$this->getUser(), // User
@@ -104,16 +104,16 @@ class PasswordPolicyChecksTest extends MediaWikiUnitTestCase {
 			$this->getUser(), // User
 			'password'  // password
 		);
-		$this->assertTrue( $statusOK->isGood(), 'Password is shorter than maximal policy' );
+		$this->assertStatusGood( $statusOK, 'Password is shorter than maximal policy' );
 		$statusLong = PasswordPolicyChecks::checkMaximalPasswordLength(
 			4, // policy value
 			$this->getUser(), // User
 			'password'  // password
 		);
-		$this->assertFalse( $statusLong->isGood(),
+		$this->assertStatusNotGood( $statusLong,
 			'Password is longer than maximal policy'
 		);
-		$this->assertFalse( $statusLong->isOK(),
+		$this->assertStatusNotOK( $statusLong,
 			'Password is longer than maximal policy, fatal'
 		);
 	}
@@ -127,14 +127,14 @@ class PasswordPolicyChecksTest extends MediaWikiUnitTestCase {
 			$this->getUser(), // User
 			'password'  // password
 		);
-		$this->assertTrue( $statusOK->isGood(), 'Password is not a substring of username' );
+		$this->assertStatusGood( $statusOK, 'Password is not a substring of username' );
 		$statusLong = PasswordPolicyChecks::checkPasswordCannotBeSubstringInUsername(
 			1, // policy value
 			$this->getUser( '123user123' ), // User
 			'user'  // password
 		);
-		$this->assertFalse( $statusLong->isGood(), 'Password is a substring of username' );
-		$this->assertTrue( $statusLong->isOK(), 'Password is a substring of username, not fatal' );
+		$this->assertStatusNotGood( $statusLong, 'Password is a substring of username' );
+		$this->assertStatusOK( $statusLong, 'Password is a substring of username, not fatal' );
 	}
 
 	/**
@@ -154,11 +154,9 @@ class PasswordPolicyChecksTest extends MediaWikiUnitTestCase {
 		);
 
 		if ( $failureExpected ) {
-			$this->assertFalse( $status->isGood(), 'Password matches defaults list' );
-			$this->assertTrue( $status->isOK(), 'Password matches default list, not fatal' );
-			$this->assertTrue( $status->hasMessage( 'password-login-forbidden' ) );
+			$this->assertStatusWarning( 'password-login-forbidden', $status );
 		} else {
-			$this->assertTrue( $status->isGood(), 'Password is not on defaults list' );
+			$this->assertStatusGood( $status, 'Password is not on defaults list' );
 		}
 	}
 

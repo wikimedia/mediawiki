@@ -18,21 +18,21 @@ mw.language.convertGrammar = function ( word, form ) {
 		return grammarForms[ form ][ word ];
 	}
 	// Checking if the $word is in plural form
-	if ( word.match( /тæ$/i ) ) {
+	if ( /тæ$/i.test( word ) ) {
 		word = word.slice( 0, -1 );
 		endAllative = 'æм';
-	} else if ( word.match( /[аæеёиоыэюя]$/i ) ) {
+	} else if ( /[аæеёиоыэюя]$/i.test( word ) ) {
 		// Works if word is in singular form.
 		// Checking if word ends on one of the vowels: е, ё, и, о, ы, э, ю, я.
 		jot = 'й';
-	} else if ( word.match( /у$/i ) ) {
+	} else if ( /у$/i.test( word ) ) {
 		// Checking if word ends on 'у'. 'У' can be either consonant 'W' or vowel 'U' in Cyrillic Ossetic.
 		// Examples: {{grammar:genitive|аунеу}} = аунеуы, {{grammar:genitive|лæппу}} = лæппуйы.
 
 		if ( !word.slice( -2, -1 ).match( /[аæеёиоыэюя]$/i ) ) {
 			jot = 'й';
 		}
-	} else if ( !word.match( /[бвгджзйклмнопрстфхцчшщьъ]$/i ) ) {
+	} else if ( !/[бвгджзйклмнопрстфхцчшщьъ]$/i.test( word ) ) {
 		hyphen = '-';
 	}
 

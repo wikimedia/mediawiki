@@ -27,8 +27,14 @@
  * @since 1.38
  */
 class SpecialDeletePage extends SpecialRedirectWithAction {
-	public function __construct() {
-		parent::__construct( 'DeletePage', 'delete', 'deletepage' );
+
+	/**
+	 * @param SearchEngineFactory $searchEngineFactory
+	 */
+	public function __construct(
+		SearchEngineFactory $searchEngineFactory
+	) {
+		parent::__construct( 'DeletePage', 'delete', 'deletepage', $searchEngineFactory );
 	}
 
 	// Messages, for grep:

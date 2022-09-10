@@ -40,8 +40,7 @@ class OutputHandler {
 	 */
 	public static function handle( $s, $phase ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$disableOutputCompression = $config->get( 'DisableOutputCompression' );
-		$mangleFlashPolicy = $config->get( 'MangleFlashPolicy' );
+		$disableOutputCompression = $config->get( MainConfigNames::DisableOutputCompression );
 		// Don't send headers if output is being discarded (T278579)
 		if ( ( $phase & PHP_OUTPUT_HANDLER_CLEAN ) === PHP_OUTPUT_HANDLER_CLEAN ) {
 			$logger = LoggerFactory::getInstance( 'output' );
@@ -51,10 +50,6 @@ class OutputHandler {
 			] );
 
 			return $s;
-		}
-
-		if ( $mangleFlashPolicy ) {
-			$s = self::mangleFlashPolicy( $s );
 		}
 
 		// Check if a compression output buffer is already enabled via php.ini. Such
@@ -178,21 +173,6 @@ class OutputHandler {
 			header( 'Vary: Accept-Encoding' );
 		}
 		return $s;
-	}
-
-	/**
-	 * Mangle flash policy tags which open up the site to XSS attacks.
-	 *
-	 * @param string $s Web response output
-	 * @return string
-	 */
-	private static function mangleFlashPolicy( $s ) {
-		# Avoid weird excessive memory usage in PCRE on big articles
-		if ( preg_match( '/\<\s*cross-domain-policy(?=\s|\>)/i', $s ) ) {
-			return preg_replace( '/\<(\s*)(cross-domain-policy(?=\s|\>))/i', '<$1NOT-$2', $s );
-		} else {
-			return $s;
-		}
 	}
 
 	/**

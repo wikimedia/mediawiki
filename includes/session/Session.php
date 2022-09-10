@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use User;
@@ -412,9 +413,9 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	 */
 	private function getSecretKeys() {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$sessionSecret = $mainConfig->get( 'SessionSecret' );
-		$secretKey = $mainConfig->get( 'SecretKey' );
-		$sessionPbkdf2Iterations = $mainConfig->get( 'SessionPbkdf2Iterations' );
+		$sessionSecret = $mainConfig->get( MainConfigNames::SessionSecret );
+		$secretKey = $mainConfig->get( MainConfigNames::SecretKey );
+		$sessionPbkdf2Iterations = $mainConfig->get( MainConfigNames::SessionPbkdf2Iterations );
 		$wikiSecret = $sessionSecret ?: $secretKey;
 		$userSecret = $this->get( 'wsSessionSecret', null );
 		if ( $userSecret === null ) {
@@ -439,7 +440,8 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	 * @return array
 	 */
 	private static function getEncryptionAlgorithm() {
-		$sessionInsecureSecrets = MediaWikiServices::getInstance()->getMainConfig()->get( 'SessionInsecureSecrets' );
+		$sessionInsecureSecrets = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::SessionInsecureSecrets );
 
 		if ( self::$encryptionAlgorithm === null ) {
 			if ( function_exists( 'openssl_encrypt' ) ) {

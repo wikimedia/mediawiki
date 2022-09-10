@@ -27,6 +27,8 @@
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Interwiki\NullInterwikiLookup;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use Wikimedia\AtEase\AtEase;
@@ -168,34 +170,33 @@ abstract class Installer {
 	 *
 	 * @var array
 	 */
-	protected $defaultVarNames = [
-		'wgSitename',
-		'wgPasswordSender',
-		'wgLanguageCode',
-		'wgLocaltimezone',
-		'wgRightsIcon',
-		'wgRightsText',
-		'wgRightsUrl',
-		'wgEnableEmail',
-		'wgEnableUserEmail',
-		'wgEnotifUserTalk',
-		'wgEnotifWatchlist',
-		'wgEmailAuthentication',
-		'wgDBname',
-		'wgDBtype',
-		'wgDiff3',
-		'wgImageMagickConvertCommand',
-		'wgGitBin',
-		'IP',
-		'wgScriptPath',
-		'wgMetaNamespace',
-		'wgDeletedDirectory',
-		'wgEnableUploads',
-		'wgSecretKey',
-		'wgUseInstantCommons',
-		'wgUpgradeKey',
-		'wgDefaultSkin',
-		'wgPingback',
+	private const DEFAULT_VAR_NAMES = [
+		MainConfigNames::Sitename,
+		MainConfigNames::PasswordSender,
+		MainConfigNames::LanguageCode,
+		MainConfigNames::Localtimezone,
+		MainConfigNames::RightsIcon,
+		MainConfigNames::RightsText,
+		MainConfigNames::RightsUrl,
+		MainConfigNames::EnableEmail,
+		MainConfigNames::EnableUserEmail,
+		MainConfigNames::EnotifUserTalk,
+		MainConfigNames::EnotifWatchlist,
+		MainConfigNames::EmailAuthentication,
+		MainConfigNames::DBname,
+		MainConfigNames::DBtype,
+		MainConfigNames::Diff3,
+		MainConfigNames::ImageMagickConvertCommand,
+		MainConfigNames::GitBin,
+		MainConfigNames::ScriptPath,
+		MainConfigNames::MetaNamespace,
+		MainConfigNames::DeletedDirectory,
+		MainConfigNames::EnableUploads,
+		MainConfigNames::SecretKey,
+		MainConfigNames::UseInstantCommons,
+		MainConfigNames::UpgradeKey,
+		MainConfigNames::DefaultSkin,
+		MainConfigNames::Pingback,
 	];
 
 	/**
@@ -382,25 +383,25 @@ abstract class Installer {
 				CACHE_DB => $emptyCache,
 				CACHE_ANYTHING => $emptyCache,
 				CACHE_MEMCACHED => $emptyCache,
-			] + $baseConfig->get( 'ObjectCaches' );
+			] + $baseConfig->get( MainConfigNames::ObjectCaches );
 
-		$configOverrides->set( 'ObjectCaches', $objectCaches );
+		$configOverrides->set( MainConfigNames::ObjectCaches, $objectCaches );
 
 		// Load the installer's i18n.
-		$messageDirs = $baseConfig->get( 'MessagesDirs' );
+		$messageDirs = $baseConfig->get( MainConfigNames::MessagesDirs );
 		$messageDirs['MediawikiInstaller'] = __DIR__ . '/i18n';
 
-		$configOverrides->set( 'MessagesDirs', $messageDirs );
+		$configOverrides->set( MainConfigNames::MessagesDirs, $messageDirs );
 
 		$installerConfig = new MultiConfig( [ $configOverrides, $baseConfig ] );
 
 		// make sure we use the installer config as the main config
-		$configRegistry = $baseConfig->get( 'ConfigRegistry' );
+		$configRegistry = $baseConfig->get( MainConfigNames::ConfigRegistry );
 		$configRegistry['main'] = static function () use ( $installerConfig ) {
 			return $installerConfig;
 		};
 
-		$configOverrides->set( 'ConfigRegistry', $configRegistry );
+		$configOverrides->set( MainConfigNames::ConfigRegistry, $configRegistry );
 
 		return $installerConfig;
 	}
@@ -436,14 +437,21 @@ abstract class Installer {
 
 	/**
 	 * @return array
-	 * @return-taint none Taint-check really doesn't like the assignment from $GLOBALS
 	 */
 	private function getDefaultSettings(): array {
+		global $wgLocaltimezone;
+
 		$ret = $this->internalDefaults;
 
-		foreach ( $this->defaultVarNames as $var ) {
-			$ret[$var] = $GLOBALS[$var];
+		foreach ( self::DEFAULT_VAR_NAMES as $name ) {
+			$var = "wg{$name}";
+			$ret[$var] = MainConfigSchema::getDefaultValue( $name );
 		}
+
+		// Set $wgLocaltimezone to the value of the global, which SetupDynamicConfig.php will have
+		// set to something that is a valid timezone.
+		$ret['wgLocaltimezone'] = $wgLocaltimezone;
+
 		return $ret;
 	}
 
@@ -511,7 +519,7 @@ abstract class Installer {
 
 		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
 		// SqlBagOStuff will then throw since we just disabled wfGetDB)
-		$wgObjectCaches = $mwServices->getMainConfig()->get( 'ObjectCaches' );
+		$wgObjectCaches = $mwServices->getMainConfig()->get( MainConfigNames::ObjectCaches );
 
 		$this->parserOptions = new ParserOptions( $user ); // language will be wrong :(
 		// Don't try to access DB before user language is initialised
@@ -585,7 +593,7 @@ abstract class Installer {
 
 	/**
 	 * Get an MW configuration variable, or internal installer configuration variable.
-	 * The defaults come from $GLOBALS (ultimately DefaultSettings.php).
+	 * The defaults come from MainConfigSchema.
 	 * Installer variables are typically prefixed by an underscore.
 	 *
 	 * @param string $name
@@ -645,7 +653,7 @@ abstract class Installer {
 	 * @return array|false
 	 */
 	public static function getExistingLocalSettings() {
-		global $IP;
+		$IP = wfDetectInstallPath();
 
 		// You might be wondering why this is here. Well if you don't do this
 		// then some poorly-formed extensions try to call their own classes
@@ -677,7 +685,11 @@ abstract class Installer {
 		}
 		unset( $lsExists );
 
-		require "$IP/includes/DefaultSettings.php";
+		// Extract the defaults into the current scope
+		foreach ( MainConfigSchema::listDefaultValues( 'wg' ) as $var => $value ) {
+			$$var = $value;
+		}
+
 		$wgExtensionDirectory = "$IP/extensions";
 		$wgStyleDirectory = "$IP/skins";
 
@@ -1539,7 +1551,10 @@ abstract class Installer {
 		 * but we're not opening that can of worms
 		 * @see https://phabricator.wikimedia.org/T28857
 		 */
-		require "$IP/includes/DefaultSettings.php";
+		// Extract the defaults into the current scope
+		foreach ( MainConfigSchema::listDefaultValues( 'wg' ) as $var => $value ) {
+			$$var = $value;
+		}
 
 		// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables
 		global $wgAutoloadClasses, $wgExtensionDirectory, $wgStyleDirectory;
@@ -1551,7 +1566,8 @@ abstract class Installer {
 		}
 
 		// @phpcs:disable MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgHooks
-		// @phan-suppress-next-line PhanUndeclaredVariable,PhanCoalescingAlwaysNull $wgHooks is set by DefaultSettings
+		// @phpcs:ignore Generic.Files.LineLength.TooLong
+		// @phan-suppress-next-line PhanUndeclaredVariable,PhanCoalescingAlwaysNull $wgHooks is defined by MainConfigSchema
 		$hooksWeWant = $wgHooks['LoadExtensionSchemaUpdates'] ?? [];
 		// @phpcs:enable MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgHooks
 
@@ -1562,25 +1578,28 @@ abstract class Installer {
 
 	/**
 	 * Auto-detect extensions with an extension.json file. Load the extensions,
-	 * populate $wgAutoloadClasses and return the merged registry data.
+	 * register classes with the autoloader and return the merged registry data.
 	 *
 	 * @return array
 	 */
 	protected function getAutoExtensionData() {
 		$exts = $this->getVar( '_Extensions' );
 		$installPath = $this->getVar( 'IP' );
-		$queue = [];
+
+		$extensionProcessor = new ExtensionProcessor();
 		foreach ( $exts as $e ) {
-			if ( file_exists( "$installPath/extensions/$e/extension.json" ) ) {
-				$queue["$installPath/extensions/$e/extension.json"] = 1;
+			$jsonPath = "$installPath/extensions/$e/extension.json";
+			if ( file_exists( $jsonPath ) ) {
+				$extensionProcessor->extractInfoFromFile( $jsonPath );
 			}
 		}
 
-		$registry = new ExtensionRegistry();
-		$data = $registry->readFromQueue( $queue );
-		global $wgAutoloadClasses;
-		$wgAutoloadClasses += $data['globals']['wgAutoloadClasses'];
-		return $data;
+		$autoload = $extensionProcessor->getExtractedAutoloadInfo();
+		AutoLoader::loadFiles( $autoload['files'] );
+		AutoLoader::registerClasses( $autoload['classes'] );
+		AutoLoader::registerNamespaces( $autoload['namespaces'] );
+
+		return $extensionProcessor->getExtractedInfo();
 	}
 
 	/**
@@ -1689,6 +1708,8 @@ abstract class Installer {
 				break;
 			}
 		}
+		// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
+		// $steps has at least one element and that defines $status
 		if ( $status->isOK() ) {
 			$this->showMessage(
 				'config-install-db-success'
@@ -1892,33 +1913,33 @@ abstract class Installer {
 		$settings->overrideConfigValues( [
 
 			// Don't access the database
-			'UseDatabaseMessages' => false,
+			MainConfigNames::UseDatabaseMessages => false,
 
 			// Don't cache langconv tables
-			'LanguageConverterCacheType' => CACHE_NONE,
+			MainConfigNames::LanguageConverterCacheType => CACHE_NONE,
 
 			// Don't try to cache ResourceLoader dependencies in the database
-			'ResourceLoaderUseObjectCacheForDeps' => true,
+			MainConfigNames::ResourceLoaderUseObjectCacheForDeps => true,
 
 			// Debug-friendly
-			'ShowExceptionDetails' => true,
-			'ShowHostnames' => true,
+			MainConfigNames::ShowExceptionDetails => true,
+			MainConfigNames::ShowHostnames => true,
 
 			// Don't break forms
-			'ExternalLinkTarget' => '_blank',
+			MainConfigNames::ExternalLinkTarget => '_blank',
 
 			// Allow multiple ob_flush() calls
-			'DisableOutputCompression' => true,
+			MainConfigNames::DisableOutputCompression => true,
 
 			// Use a sensible cookie prefix (not my_wiki)
-			'CookiePrefix' => 'mw_installer',
+			MainConfigNames::CookiePrefix => 'mw_installer',
 
 			// Some of the environment checks make shell requests, remove limits
-			'MaxShellMemory' => 0,
+			MainConfigNames::MaxShellMemory => 0,
 
 			// Override the default CookieSessionProvider with a dummy
 			// implementation that won't stomp on PHP's cookies.
-			'SessionProviders' => [
+			MainConfigNames::SessionProviders => [
 				[
 					'class' => InstallerSessionProvider::class,
 					'args' => [ [
@@ -1928,14 +1949,14 @@ abstract class Installer {
 			],
 
 			// Don't use the DB as the main stash
-			'MainStash' => CACHE_NONE,
+			MainConfigNames::MainStash => CACHE_NONE,
 
 			// Don't try to use any object cache for SessionManager either.
-			'SessionCacheType' => CACHE_NONE,
+			MainConfigNames::SessionCacheType => CACHE_NONE,
 
 			// Set a dummy $wgServer to bypass the check in Setup.php, the
 			// web installer will automatically detect it and not use this value.
-			'Server' => 'https://🌻.invalid',
+			MainConfigNames::Server => 'https://🌻.invalid',
 		] );
 	}
 

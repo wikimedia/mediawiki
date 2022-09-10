@@ -93,6 +93,7 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 		$title = $this->titleFactory->castFromPageIdentity( $page );
 		$handler = $this->contentHandlerFactory->getContentHandler( $model );
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 		return $handler->canBeUsedOn( $title );
 	}
 
@@ -115,6 +116,7 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 		} else {
 			$title = $this->titleFactory->castFromLinkTarget( $page );
 		}
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom notnull/Type mismatch on pass-by-ref args
 		if ( !$this->hookRunner->onContentHandlerDefaultModelFor( $title, $model ) && $model !== null ) {
 			return $model;
 		}

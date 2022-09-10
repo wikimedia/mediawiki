@@ -47,15 +47,13 @@ class CheckUsernames extends Maintenance {
 
 		$maxUserId = 0;
 		do {
-			$res = $dbr->select( 'user',
-				[ 'user_id', 'user_name' ],
-				[ 'user_id > ' . $maxUserId ],
-				__METHOD__,
-				[
-					'ORDER BY' => 'user_id',
-					'LIMIT' => $this->getBatchSize(),
-				]
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( [ 'user_id', 'user_name' ] )
+				->from( 'user' )
+				->where( 'user_id > ' . $maxUserId )
+				->orderBy( 'user_id' )
+				->limit( $this->getBatchSize() )
+				->fetchResultSet();
 
 			foreach ( $res as $row ) {
 				if ( !$userNameUtils->isValid( $row->user_name ) ) {
@@ -63,6 +61,7 @@ class CheckUsernames extends Maintenance {
 					wfDebugLog( 'checkUsernames', $row->user_name );
 				}
 			}
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $res has at at least one item
 			$maxUserId = $row->user_id;
 		} while ( $res->numRows() );
 	}

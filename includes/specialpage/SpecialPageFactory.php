@@ -30,6 +30,8 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use Profiler;
 use RequestContext;
@@ -116,6 +118,7 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 				'LinkBatchFactory',
 				'LanguageConverterFactory',
+				'LinksMigration',
 			]
 		],
 		'Fewestrevisions' => [
@@ -145,6 +148,7 @@ class SpecialPageFactory {
 				'CommentStore',
 				'UserCache',
 				'RowCommentFormatter',
+				'RestrictionStore',
 			]
 		],
 		'Protectedtitles' => [
@@ -216,6 +220,7 @@ class SpecialPageFactory {
 			'class' => \SpecialUnusedTemplates::class,
 			'services' => [
 				'DBLoadBalancer',
+				'LinksMigration',
 			]
 		],
 		'Unwatchedpages' => [
@@ -254,6 +259,7 @@ class SpecialPageFactory {
 			'services' => [
 				'DBLoadBalancer',
 				'LinkBatchFactory',
+				'LinksMigration',
 			]
 		],
 
@@ -407,6 +413,8 @@ class SpecialPageFactory {
 				'PasswordFactory',
 				'AuthManager',
 				'CentralIdLookup',
+				'GrantsInfo',
+				'GrantsLocalization',
 			]
 		],
 		'PasswordReset' => [
@@ -465,6 +473,9 @@ class SpecialPageFactory {
 		],
 		'Listgrants' => [
 			'class' => \SpecialListGrants::class,
+			'services' => [
+				'GrantsLocalization',
+			]
 		],
 		'Listusers' => [
 			'class' => \SpecialListUsers::class,
@@ -502,7 +513,10 @@ class SpecialPageFactory {
 			]
 		],
 		'PasswordPolicies' => [
-			'class' => \SpecialPasswordPolicies::class
+			'class' => \SpecialPasswordPolicies::class,
+			'services' => [
+				'UserGroupManager',
+			]
 		],
 
 		// Recent changes and logs
@@ -583,6 +597,9 @@ class SpecialPageFactory {
 		],
 		'Filepath' => [
 			'class' => \SpecialFilepath::class,
+			'services' => [
+				'SearchEngineFactory',
+			]
 		],
 		'MediaStatistics' => [
 			'class' => \SpecialMediaStatistics::class,
@@ -637,11 +654,16 @@ class SpecialPageFactory {
 			'class' => \SpecialApiSandbox::class,
 		],
 		'Statistics' => [
-			'class' => \SpecialStatistics::class
+			'class' => \SpecialStatistics::class,
+			'services' => [
+				'UserGroupManager',
+			]
 		],
 		'Allmessages' => [
 			'class' => \SpecialAllMessages::class,
 			'services' => [
+				'LanguageFactory',
+				'LanguageNameUtils',
 				'LocalisationCache',
 				'DBLoadBalancer',
 			]
@@ -734,6 +756,7 @@ class SpecialPageFactory {
 			'services' => [
 				'DBLoadBalancer',
 				'LinkBatchFactory',
+				'LinksMigration',
 			]
 		],
 		'Mostcategories' => [
@@ -769,6 +792,7 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 				'WikiExporterFactory',
 				'TitleFormatter',
+				'LinksMigration',
 			]
 		],
 		'Import' => [
@@ -804,6 +828,8 @@ class SpecialPageFactory {
 				'ContentHandlerFactory',
 				'SearchEngineFactory',
 				'NamespaceInfo',
+				'TitleFactory',
+				'LinksMigration',
 			]
 		],
 		'MergeHistory' => [
@@ -852,12 +878,18 @@ class SpecialPageFactory {
 		],
 		'DeletePage' => [
 			'class' => \SpecialDeletePage::class,
+			'services' => [
+				'SearchEngineFactory',
+			]
 		],
 		'Diff' => [
 			'class' => \SpecialDiff::class,
 		],
 		'EditPage' => [
 			'class' => \SpecialEditPage::class,
+			'services' => [
+				'SearchEngineFactory',
+			]
 		],
 		'EditTags' => [
 			'class' => \SpecialEditTags::class,
@@ -887,6 +919,7 @@ class SpecialPageFactory {
 				'WikiPageFactory',
 				'SearchEngineFactory',
 				'WatchlistManager',
+				'RestrictionStore',
 			]
 		],
 		'Mycontributions' => [
@@ -907,15 +940,27 @@ class SpecialPageFactory {
 		],
 		'PageHistory' => [
 			'class' => \SpecialPageHistory::class,
+			'services' => [
+				'SearchEngineFactory',
+			]
 		],
 		'PageInfo' => [
 			'class' => \SpecialPageInfo::class,
+			'services' => [
+				'SearchEngineFactory',
+			]
 		],
 		'ProtectPage' => [
 			'class' => \SpecialProtectPage::class,
+			'services' => [
+				'SearchEngineFactory',
+			]
 		],
 		'Purge' => [
 			'class' => \SpecialPurge::class,
+			'services' => [
+				'SearchEngineFactory',
+			]
 		],
 		'Myuploads' => [
 			'class' => \SpecialMyuploads::class,
@@ -925,6 +970,9 @@ class SpecialPageFactory {
 		],
 		'NewSection' => [
 			'class' => \SpecialNewSection::class,
+			'services' => [
+				'SearchEngineFactory',
+			]
 		],
 		'PermanentLink' => [
 			'class' => \SpecialPermanentLink::class,
@@ -983,13 +1031,13 @@ class SpecialPageFactory {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'DisableInternalSearch',
-		'EmailAuthentication',
-		'EnableEmail',
-		'EnableJavaScriptTest',
-		'EnableSpecialMute',
-		'PageLanguageUseDB',
-		'SpecialPages',
+		MainConfigNames::DisableInternalSearch,
+		MainConfigNames::EmailAuthentication,
+		MainConfigNames::EnableEmail,
+		MainConfigNames::EnableJavaScriptTest,
+		MainConfigNames::EnableSpecialMute,
+		MainConfigNames::PageLanguageUseDB,
+		MainConfigNames::SpecialPages,
 	];
 
 	/**
@@ -1039,7 +1087,7 @@ class SpecialPageFactory {
 		if ( !is_array( $this->list ) ) {
 			$this->list = self::CORE_LIST;
 
-			if ( !$this->options->get( 'DisableInternalSearch' ) ) {
+			if ( !$this->options->get( MainConfigNames::DisableInternalSearch ) ) {
 				$this->list['Search'] = [
 					'class' => \SpecialSearch::class,
 					'services' => [
@@ -1055,7 +1103,7 @@ class SpecialPageFactory {
 				];
 			}
 
-			if ( $this->options->get( 'EmailAuthentication' ) ) {
+			if ( $this->options->get( MainConfigNames::EmailAuthentication ) ) {
 				$this->list['Confirmemail'] = [
 					'class' => \SpecialConfirmEmail::class,
 					'services' => [
@@ -1070,7 +1118,7 @@ class SpecialPageFactory {
 				];
 			}
 
-			if ( $this->options->get( 'EnableEmail' ) ) {
+			if ( $this->options->get( MainConfigNames::EnableEmail ) ) {
 				$this->list['ChangeEmail'] = [
 					'class' => \SpecialChangeEmail::class,
 					'services' => [
@@ -1079,13 +1127,13 @@ class SpecialPageFactory {
 				];
 			}
 
-			if ( $this->options->get( 'EnableJavaScriptTest' ) ) {
+			if ( $this->options->get( MainConfigNames::EnableJavaScriptTest ) ) {
 				$this->list['JavaScriptTest'] = [
 					'class' => \SpecialJavaScriptTest::class
 				];
 			}
 
-			if ( $this->options->get( 'EnableSpecialMute' ) ) {
+			if ( $this->options->get( MainConfigNames::EnableSpecialMute ) ) {
 				$this->list['Mute'] = [
 					'class' => \SpecialMute::class,
 					'services' => [
@@ -1096,7 +1144,7 @@ class SpecialPageFactory {
 				];
 			}
 
-			if ( $this->options->get( 'PageLanguageUseDB' ) ) {
+			if ( $this->options->get( MainConfigNames::PageLanguageUseDB ) ) {
 				$this->list['PageLanguage'] = [
 					'class' => \SpecialPageLanguage::class,
 					'services' => [
@@ -1109,7 +1157,8 @@ class SpecialPageFactory {
 			}
 
 			// Add extension special pages
-			$this->list = array_merge( $this->list, $this->options->get( 'SpecialPages' ) );
+			$this->list = array_merge( $this->list,
+				$this->options->get( MainConfigNames::SpecialPages ) );
 
 			// This hook can be used to disable unwanted core special pages
 			// or conditionally register special pages.
@@ -1324,8 +1373,9 @@ class SpecialPageFactory {
 			$context->getOutput()->setArticleRelated( false );
 			$context->getOutput()->setRobotPolicy( 'noindex,nofollow' );
 
-			global $wgSend404Code;
-			if ( $wgSend404Code ) {
+			$send404Code = MediaWikiServices::getInstance()->getMainConfig()
+				->get( MainConfigNames::Send404Code );
+			if ( $send404Code ) {
 				$context->getOutput()->setStatusCode( 404 );
 			}
 
@@ -1336,7 +1386,7 @@ class SpecialPageFactory {
 
 		if ( !$including ) {
 			// Narrow DB query expectations for this HTTP request
-			$trxLimits = $context->getConfig()->get( 'TrxProfilerLimits' );
+			$trxLimits = $context->getConfig()->get( MainConfigNames::TrxProfilerLimits );
 			$trxProfiler = Profiler::instance()->getTransactionProfiler();
 			if ( $context->getRequest()->wasPosted() && !$page->doesWrites() ) {
 				$trxProfiler->setExpectations( $trxLimits['POST-nonwrite'], __METHOD__ );
@@ -1526,6 +1576,3 @@ class SpecialPageFactory {
 		return null;
 	}
 }
-
-/** @deprecated since 1.35, use MediaWiki\\SpecialPage\\SpecialPageFactory */
-class_alias( SpecialPageFactory::class, 'MediaWiki\\Special\\SpecialPageFactory' );

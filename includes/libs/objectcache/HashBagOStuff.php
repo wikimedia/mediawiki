@@ -50,7 +50,7 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 	 * @param array $params Additional parameters include:
 	 *   - maxKeys : only allow this many keys (using oldest-first eviction)
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{logger?:Psr\Log\LoggerInterface,asyncHandler?:callable,keyspace?:string,reportDupes?:bool,syncTimeout?:int,segmentationSize?:int,segmentedValueMaxSize?:int,maxKeys?:int} $params
+	 * @phan-param array{logger?:Psr\Log\LoggerInterface,asyncHandler?:callable,keyspace?:string,reportDupes?:bool,segmentationSize?:int,segmentedValueMaxSize?:int,maxKeys?:int} $params
 	 */
 	public function __construct( $params = [] ) {
 		$params['segmentationSize'] = $params['segmentationSize'] ?? INF;
@@ -79,11 +79,12 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		unset( $this->bag[$key] );
 		$this->bag[$key] = $temp;
 
-		if ( $getToken ) {
+		$value = $this->bag[$key][self::KEY_VAL];
+		if ( $getToken && $value !== false ) {
 			$casToken = $this->bag[$key][self::KEY_CAS];
 		}
 
-		return $this->bag[$key][self::KEY_VAL];
+		return $value;
 	}
 
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
@@ -106,7 +107,8 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		if ( $this->hasKey( $key ) && !$this->expire( $key ) ) {
-			return false; // key already set
+			// key already set
+			return false;
 		}
 
 		return $this->doSet( $key, $value, $exptime, $flags );
@@ -175,13 +177,8 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	public function setNewPreparedValues( array $valueByKey ) {
-		// Do not bother with serialization as this class does not serialize values
-		$sizes = [];
-		foreach ( $valueByKey as $value ) {
-			$sizes[] = $this->guessSerialValueSize( $value );
-		}
-
-		return $sizes;
+		// Do not bother staging serialized values as this class does not serialize values
+		return $this->guessSerialSizeOfValues( $valueByKey );
 	}
 
 	/**
@@ -200,6 +197,7 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function convertGenericKey( $key ) {
-		return $key; // short-circuit; already uses "generic" keys
+		// short-circuit; already uses "generic" keys
+		return $key;
 	}
 }

@@ -106,7 +106,7 @@ class RevisionStore
 	private $blobStore;
 
 	/**
-	 * @var bool|string
+	 * @var false|string
 	 */
 	private $wikiId;
 
@@ -210,7 +210,7 @@ class RevisionStore
 		HookContainer $hookContainer,
 		$wikiId = WikiAwareEntity::LOCAL
 	) {
-		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
+		Assert::parameterType( [ 'string', 'false' ], $wikiId, '$wikiId' );
 
 		$this->loadBalancer = $loadBalancer;
 		$this->blobStore = $blobStore;
@@ -301,6 +301,7 @@ class RevisionStore
 		}
 
 		$page = $this->getPage( $pageId, $revId, $queryFlags );
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable castFrom does not return null here
 		return $this->titleFactory->castFromPageIdentity( $page );
 	}
 
@@ -352,7 +353,7 @@ class RevisionStore
 			if ( $title ) {
 				$this->logger->info(
 					__METHOD__ . ' fell back to READ_LATEST and got a Title.',
-					[ 'trace' => wfBacktrace() ]
+					[ 'exception' => new RuntimeException() ]
 				);
 				return $title;
 			}
@@ -380,6 +381,7 @@ class RevisionStore
 			//       over and over later on.
 			//       When there is less need to convert to Title, this special case can
 			//       be removed.
+			// @phan-suppress-next-line PhanTypeMismatchReturnNullable castFrom does not return null here
 			return $this->titleFactory->castFromPageIdentity( $page );
 		} else {
 			return $page;
@@ -714,8 +716,6 @@ class RevisionStore
 			$blobAddress = $this->storeContentBlob( $protoSlot, $page, $blobHints );
 		}
 
-		$contentId = null;
-
 		if ( $protoSlot->hasContentId() ) {
 			$contentId = $protoSlot->getContentId();
 		} else {
@@ -745,7 +745,7 @@ class RevisionStore
 		RevisionRecord $rev,
 		$revisionId
 	) {
-		if ( $user->getId() === 0 && IPUtils::isValid( $user->getName() ) ) {
+		if ( !$user->isRegistered() && IPUtils::isValid( $user->getName() ) ) {
 			$ipcRow = [
 				'ipc_rev_id'        => $revisionId,
 				'ipc_rev_timestamp' => $dbw->timestamp( $rev->getTimestamp() ),
@@ -1146,7 +1146,7 @@ class RevisionStore
 	 * @param SlotRecord $slot The SlotRecord to load content for
 	 * @param string|null $blobData The content blob, in the form indicated by $blobFlags
 	 * @param string|null $blobFlags Flags indicating how $blobData needs to be processed.
-	 *        Use null if no processing should happen. That is in constrast to the empty string,
+	 *        Use null if no processing should happen. That is in contrast to the empty string,
 	 *        which causes the blob to be decoded according to the configured legacy encoding.
 	 * @param string|null $blobFormat MIME type indicating how $dataBlob is encoded
 	 * @param int $queryFlags
@@ -1201,13 +1201,13 @@ class RevisionStore
 		// If the content model is not known, don't fail here (T220594, T220793, T228921)
 		if ( !$this->contentHandlerFactory->isDefinedModel( $model ) ) {
 			$this->logger->warning(
-				"Undefined content model '$model', falling back to UnknownContent",
+				"Undefined content model '$model', falling back to FallbackContent",
 				[
 					'content_address' => $slot->getAddress(),
 					'rev_id' => $slot->getRevision(),
 					'role_name' => $slot->getRole(),
 					'model_name' => $model,
-					'trace' => wfBacktrace()
+					'exception' => new RuntimeException()
 				]
 			);
 
@@ -1436,7 +1436,7 @@ class RevisionStore
 				__METHOD__ . ' falling back to READ_LATEST.',
 				[
 					'revid' => $revId,
-					'trace' => wfBacktrace( true )
+					'exception' => new RuntimeException(),
 				]
 			);
 			return $this->loadSlotRecordsFromDb(
@@ -1511,7 +1511,7 @@ class RevisionStore
 				[
 					'revid' => $revId,
 					'queryFlags' => $queryFlags,
-					'trace' => wfBacktrace( true )
+					'exception' => new RuntimeException(),
 				]
 			);
 
@@ -1680,7 +1680,7 @@ class RevisionStore
 		$comment = $this->commentStore->getCommentLegacy( $db, 'ar_comment', $row, true );
 
 		if ( !( $slots instanceof RevisionSlots ) ) {
-			$slots = $this->newRevisionSlots( $row->ar_rev_id, $row, $slots, $queryFlags, $page );
+			$slots = $this->newRevisionSlots( (int)$row->ar_rev_id, $row, $slots, $queryFlags, $page );
 		}
 		return new RevisionArchiveRecord( $page, $user, $comment, $row, $slots, $this->wikiId );
 	}
@@ -1763,7 +1763,7 @@ class RevisionStore
 		$comment = $this->commentStore->getCommentLegacy( $db, 'rev_comment', $row, true );
 
 		if ( !( $slots instanceof RevisionSlots ) ) {
-			$slots = $this->newRevisionSlots( $row->rev_id, $row, $slots, $queryFlags, $page );
+			$slots = $this->newRevisionSlots( (int)$row->rev_id, $row, $slots, $queryFlags, $page );
 		}
 
 		// If this is a cached row, instantiate a cache-aware RevisionRecord to avoid stale data.
@@ -1781,7 +1781,7 @@ class RevisionStore
 							'RevisionStoreCacheRecord refresh callback falling back to READ_LATEST.',
 							[
 								'revid' => $revId,
-								'trace' => wfBacktrace( true )
+								'exception' => new RuntimeException(),
 							]
 						);
 						$dbw = $this->getDBConnectionRefForQueryFlags( self::READ_LATEST );
@@ -1853,7 +1853,7 @@ class RevisionStore
 						'page_id_reloaded' => $masterPageId,
 						'page_latest' => $masterLatest,
 						'rev_id' => $revId,
-						'trace' => wfBacktrace()
+						'exception' => new RuntimeException(),
 					] + $context
 				);
 			} else {
@@ -1880,12 +1880,13 @@ class RevisionStore
 						'rev_page_title' => (string)$page,
 						'page_latest' => $masterLatest,
 						'rev_id' => $revId,
-						'trace' => wfBacktrace()
+						'exception' => new RuntimeException(),
 					] + $context
 				);
 			}
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable getPageByName/newFromID should not return null
 		return $page;
 	}
 
@@ -2306,7 +2307,7 @@ class RevisionStore
 
 		$lb = $this->getDBLoadBalancer();
 
-		// Make sure new pending/committed revision are visibile later on
+		// Make sure new pending/committed revision are visible later on
 		// within web requests to certain avoid bugs like T93866 and T94407.
 		if ( !$rev
 			&& !( $flags & self::READ_LATEST )
@@ -2418,9 +2419,9 @@ class RevisionStore
 	 *  - 'user': Join with the user table, and select the user name
 	 *
 	 * @return array[] With three keys:
-	 *  - tables: (string[]) to include in the `$table` to `IDatabase->select()`
-	 *  - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
-	 *  - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 *  - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
+	 *  - fields: (string[]) to include in the `$vars` to `IDatabase->select()` or `SelectQueryBuilder::fields`
+	 *  - joins: (array) to include in the `$join_conds` to `IDatabase->select()` or `SelectQueryBuilder::joinConds`
 	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public function getQueryInfo( $options = [] ) {
@@ -2495,13 +2496,14 @@ class RevisionStore
 	 *             Only applicable if 'content' is also set.
 	 *  - 'role': Join with the slot_roles table, and select the role_name field
 	 *
-	 * @return array With three keys:
-	 *  - tables: (string[]) to include in the `$table` to `IDatabase->select()`
-	 *  - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
-	 *  - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 * @return array[] With three keys:
+	 *  - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
+	 *  - fields: (string[]) to include in the `$vars` to `IDatabase->select()` or `SelectQueryBuilder::fields`
+	 *  - joins: (array) to include in the `$join_conds` to `IDatabase->select()` or `SelectQueryBuilder::joinConds`
 	 *  - keys: (associative array) to look up fields to match against.
 	 *          In particular, the field that can be used to find slots by rev_id
 	 *          can be found in ['keys']['rev_id'].
+	 * @phan-return array{tables:string[],fields:string[],joins:array,keys:array}
 	 */
 	public function getSlotsQueryInfo( $options = [] ) {
 		$ret = [
@@ -2589,10 +2591,11 @@ class RevisionStore
 	 *
 	 * @since 1.31
 	 *
-	 * @return array With three keys:
-	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
-	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
-	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 * @return array[] With three keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()` or `SelectQueryBuilder::fields`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()` or `SelectQueryBuilder::joinConds`
+	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public function getArchiveQueryInfo() {
 		$commentQuery = $this->commentStore->getJoin( 'ar_comment' );
@@ -2682,7 +2685,10 @@ class RevisionStore
 		list( $dbType, ) = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = $this->getDBConnectionRef( $dbType, [ 'contributions' ] );
 
-		$ts = $this->getTimestampFromId( $revisionIdValue, $flags );
+		$ts = $rev->getTimestamp();
+		if ( $ts === null ) {
+			$ts = $this->getTimestampFromId( $revisionIdValue, $flags );
+		}
 		if ( $ts === false ) {
 			// XXX Should this be moved into getTimestampFromId?
 			$ts = $db->selectField( 'archive', 'ar_timestamp',
@@ -3395,9 +3401,3 @@ class RevisionStore
 
 	// TODO: move relevant methods from Title here, e.g. isBigDeletion, etc.
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.32
- */
-class_alias( RevisionStore::class, 'MediaWiki\Storage\RevisionStore' );

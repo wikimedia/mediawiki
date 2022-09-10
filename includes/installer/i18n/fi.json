@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"01miki10",
+			"4shadoww",
 			"Beluga",
 			"Centerlink",
 			"Crt",
@@ -12,11 +13,13 @@
 			"MITO",
 			"McSalama",
 			"Mikahama",
+			"Moottori",
 			"Nike",
 			"Nwme",
 			"Olimar",
 			"Olli",
 			"Pyscowicz",
+			"Rönttönen",
 			"SMAUG",
 			"Silvonen",
 			"Str4nd",
@@ -27,10 +30,7 @@
 			"Uusijani",
 			"Veikk0.ma",
 			"VezonThunder",
-			"아라",
-			"4shadoww",
-			"Moottori",
-			"Rönttönen"
+			"아라"
 		]
 	},
 	"config-desc": "Asennin MediaWikiä varten",

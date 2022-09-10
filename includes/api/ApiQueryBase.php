@@ -123,14 +123,19 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * Selects the query database connection with the given name.
-	 * See ApiQuery::getNamedDB() for more information
+	 * Change the database connection for subsequent calls to ::getDB().
+	 *
+	 * See ApiQuery::getNamedDB() for more information.
+	 *
+	 * @deprecated since 1.39 Use or override ApiBase::getDB() and optionally
+	 *  pass a query group to wfGetDB() or ILoadBalancer::getConnectionRef().
 	 * @param string $name Name to assign to the database connection
 	 * @param int $db One of the DB_* constants
 	 * @param string|string[] $groups Query groups
 	 * @return IDatabase
 	 */
 	public function selectNamedDB( $name, $db, $groups ) {
+		wfDeprecated( __METHOD__, '1.39' );
 		$this->mDb = $this->getQuery()->getNamedDB( $name, $db, $groups );
 		return $this->mDb;
 	}
@@ -443,7 +448,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @since 1.28
 	 * @param stdClass $row Database row
 	 * @param array &$data Data to be added to the result
-	 * @param array &$hookData Hook data from ApiQueryBase::select()
+	 * @param array &$hookData Hook data from ApiQueryBase::select() @phan-output-reference
 	 * @return bool Return false if row processing should end with continuation
 	 */
 	protected function processRow( $row, array &$data, array &$hookData ) {
@@ -569,21 +574,6 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * Convert an input title or title prefix into a namespace constant and dbkey.
-	 *
-	 * @since 1.26
-	 * @deprecated sine 1.35, use parsePrefixedTitlePart() instead.
-	 * @param string $titlePart Title part parsePrefixedTitlePart instead
-	 * @param int $defaultNamespace Default namespace if none is given
-	 * @return array (int, string) Namespace number and DBkey
-	 */
-	public function prefixedTitlePartToKey( $titlePart, $defaultNamespace = NS_MAIN ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$t = $this->parsePrefixedTitlePart( $titlePart, $defaultNamespace );
-		return [ $t->getNamespace(), $t->getDBkey() ];
-	}
-
-	/**
 	 * @param string $hash
 	 * @return bool
 	 */
@@ -655,22 +645,4 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	// endregion -- end of utility methods
-
-	/***************************************************************************/
-	// region   Deprecated methods
-	/** @name   Deprecated methods */
-
-	/**
-	 * Filters hidden users (where the user doesn't have the right to view them)
-	 * Also adds relevant block information
-	 *
-	 * @deprecated since 1.34, use ApiQueryBlockInfoTrait instead
-	 * @param bool $showBlockInfo
-	 */
-	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		$this->addBlockInfoToQuery( $showBlockInfo );
-	}
-
-	// endregion -- end of deprecated methods
 }

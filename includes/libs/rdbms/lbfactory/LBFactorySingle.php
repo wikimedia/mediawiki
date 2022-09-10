@@ -1,7 +1,5 @@
 <?php
 /**
- * Simple generator of database connections that always returns the same object.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,16 +16,16 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 use BadMethodCallException;
 use InvalidArgumentException;
 
 /**
- * An LBFactory class that always returns a single database object.
+ * Manage a single hardcoded database connection.
+ *
+ * @ingroup Database
  */
 class LBFactorySingle extends LBFactory {
 	/** @var LoadBalancerSingle */
@@ -47,7 +45,7 @@ class LBFactorySingle extends LBFactory {
 		}
 
 		$lb = new LoadBalancerSingle( array_merge(
-			$this->baseLoadBalancerParams( $this->getOwnershipId() ),
+			$this->baseLoadBalancerParams(),
 			$conf
 		) );
 		$this->initLoadBalancer( $lb );
@@ -69,7 +67,7 @@ class LBFactorySingle extends LBFactory {
 		) );
 	}
 
-	public function newMainLB( $domain = false, $owner = null ): ILoadBalancer {
+	public function newMainLB( $domain = false ): ILoadBalancerForOwner {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new BadMethodCallException( "Method is not supported." );
 	}
@@ -78,7 +76,7 @@ class LBFactorySingle extends LBFactory {
 		return $this->lb;
 	}
 
-	public function newExternalLB( $cluster, $owner = null ): ILoadBalancer {
+	public function newExternalLB( $cluster ): ILoadBalancerForOwner {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new BadMethodCallException( "Method is not supported." );
 	}
@@ -97,8 +95,15 @@ class LBFactorySingle extends LBFactory {
 	}
 
 	public function forEachLB( $callback, array $params = [] ) {
+		wfDeprecated( __METHOD__, '1.39' );
 		if ( isset( $this->lb ) ) { // may not be set during _destruct()
 			$callback( $this->lb, ...$params );
+		}
+	}
+
+	protected function getLBsForOwner() {
+		if ( isset( $this->lb ) ) { // may not be set during _destruct()
+			yield $this->lb;
 		}
 	}
 

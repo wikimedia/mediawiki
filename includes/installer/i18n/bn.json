@@ -125,6 +125,8 @@
 	"config-upload-deleted": "অপসারণকৃত ফাইলের ডিরেক্টরি:",
 	"config-logo-preview-main": "প্রধান পাতা",
 	"config-logo-icon": "লোগো (আইকন)",
+	"config-logo-wordmark": "ওয়ার্ডমার্ক (ঐচ্ছিক):",
+	"config-logo-tagline": "ট্যাগলাইন (ঐচ্ছিক):",
 	"config-instantcommons": "তাত্ক্ষণিক কমন্স সক্রিয় করুন",
 	"config-advanced-settings": "উন্নত কনফিগারেশন",
 	"config-memcached-servers": "মেমক্যাশেকৃত সার্ভারসমূহ:",

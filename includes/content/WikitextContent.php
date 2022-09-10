@@ -25,6 +25,7 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -59,7 +60,7 @@ class WikitextContent extends TextContent {
 	 */
 	public function getSection( $sectionId ) {
 		$text = $this->getText();
-		$sect = MediaWikiServices::getInstance()->getParser()
+		$sect = MediaWikiServices::getInstance()->getParserFactory()->getInstance()
 			->getSection( $text, $sectionId, false );
 
 		if ( $sect === false ) {
@@ -80,6 +81,7 @@ class WikitextContent extends TextContent {
 	 * @see Content::replaceSection()
 	 */
 	public function replaceSection( $sectionId, Content $with, $sectionTitle = '' ) {
+		// @phan-suppress-previous-line PhanParamSignatureMismatch False positive
 		$myModelId = $this->getModel();
 		$sectionModelId = $with->getModel();
 
@@ -109,7 +111,7 @@ class WikitextContent extends TextContent {
 			}
 		} else {
 			# Replacing an existing section; roll out the big guns
-			$text = MediaWikiServices::getInstance()->getParser()
+			$text = MediaWikiServices::getInstance()->getParserFactory()->getInstance()
 				->replaceSection( $oldtext, $sectionId, $text );
 		}
 
@@ -127,9 +129,8 @@ class WikitextContent extends TextContent {
 	 * @return Content
 	 */
 	public function addSectionHeader( $header ) {
-		$text = wfMessage( 'newsectionheaderdefaultlevel' )
-			->rawParams( $header )->inContentLanguage()->text();
-		$text .= "\n\n";
+		$text = strval( $header ) !== '' ? wfMessage( 'newsectionheaderdefaultlevel' )
+			->plaintextParams( $header )->inContentLanguage()->text() . "\n\n" : '';
 		$text .= $this->getText();
 
 		return new static( $text );
@@ -145,15 +146,7 @@ class WikitextContent extends TextContent {
 	 * @return array List of two elements: Title|null and string.
 	 */
 	public function getRedirectTargetAndText() {
-		$maxRedirects = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxRedirects' );
-
 		if ( $this->redirectTargetAndText !== null ) {
-			return $this->redirectTargetAndText;
-		}
-
-		if ( $maxRedirects < 1 ) {
-			// redirects are disabled, so quit early
-			$this->redirectTargetAndText = [ null, $this->getText() ];
 			return $this->redirectTargetAndText;
 		}
 
@@ -239,7 +232,8 @@ class WikitextContent extends TextContent {
 	 * @return bool
 	 */
 	public function isCountable( $hasLinks = null, Title $title = null ) {
-		$articleCountMethod = MediaWikiServices::getInstance()->getMainConfig()->get( 'ArticleCountMethod' );
+		$articleCountMethod = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::ArticleCountMethod );
 
 		if ( $this->isRedirect() ) {
 			return false;
@@ -253,6 +247,7 @@ class WikitextContent extends TextContent {
 					$title = $context->getTitle();
 				}
 				$contentRenderer = MediaWikiServices::getInstance()->getContentRenderer();
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable getTitle does not return null here
 				$po = $contentRenderer->getParserOutput( $this, $title, null, null, false );
 				$links = $po->getLinks();
 				$hasLinks = !empty( $links );

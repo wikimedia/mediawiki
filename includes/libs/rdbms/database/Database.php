@@ -1,10 +1,5 @@
 <?php
 /**
- * @defgroup Database Database
- *
- * This file deals with database interface functions
- * and query specifics/optimisations.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,12 +16,10 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
 namespace Wikimedia\Rdbms;
 
 use BagOStuff;
-use HashBagOStuff;
 use InvalidArgumentException;
 use LogicException;
 use Psr\Log\LoggerAwareInterface;
@@ -34,12 +27,11 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
 use Throwable;
-use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\CriticalSectionScope;
 use Wikimedia\ScopedCallback;
-use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Relational database abstraction object
@@ -75,8 +67,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var object|resource|null Database connection */
 	protected $conn;
 
-	/** @var IDatabase|null Lazy handle to the primary DB this server replicates from */
-	private $lazyMasterHandle;
+	/** @var ?IDatabase Lazy handle to the most authoritative primary server for the dataset */
+	protected $topologicalPrimaryConnRef;
 
 	/** @var string|null Server that this instance is currently connected to */
 	protected $server;
@@ -92,8 +84,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $agent;
 	/** @var string Replication topology role of the server; one of the class ROLE_* constants */
 	protected $topologyRole;
-	/** @var string|null Host (or address) of the root primary server for the replication topology */
-	protected $topologyRootMaster;
 	/** @var array<string,mixed> Connection parameters used by initConnection() and open() */
 	protected $connectionParams;
 	/** @var string[]|int[]|float[] SQL variables values to use for all new connections */
@@ -103,28 +93,22 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/** @var int Current bit field of class DBO_* constants */
 	protected $flags;
+	/** @var bool Whether to use SSL connections */
+	protected $ssl;
 	/** @var array Current LoadBalancer tracking information */
 	protected $lbInfo = [];
 	/** @var string|false Current SQL query delimiter */
 	protected $delimiter = ';';
-	/** @var array[] Current map of (table => (dbname, schema, prefix) map) */
-	protected $tableAliases = [];
-	/** @var string[] Current map of (index alias => index) */
-	protected $indexAliases = [];
-	/** @var array|null Current variables use for schema element placeholders */
-	protected $schemaVars;
 
 	/** @var string|bool|null Stashed value of html_errors INI setting */
 	private $htmlErrors;
 	/** @var int[] Prior flags member variable values */
 	private $priorFlags = [];
 
-	/** @var array<string,float> Map of (name => UNIX timestamp) for locks obtained via lock() */
+	/** @var array<string,array> Map of (name => (UNIX time,trx ID)) for current lock() mutexes */
 	protected $sessionNamedLocks = [];
-	/** @var array Map of (table name => 1) for current TEMPORARY tables */
+	/** @var array<string,array> Map of (name => (type,pristine,trx ID)) for current temp tables */
 	protected $sessionTempTables = [];
-	/** @var array Map of (table name => 1) for current TEMPORARY tables */
-	protected $sessionDirtyTempTables = [];
 
 	/** @var array|null Replication lag estimate at the time of BEGIN for the last transaction */
 	private $trxReplicaLagStatus = null;
@@ -136,9 +120,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private $lastPing = 0.0;
 	/** @var string The last SQL query attempted */
 	private $lastQuery = '';
-	/** @var float|bool UNIX timestamp of last write query */
+	/** @var float|false UNIX timestamp of last write query */
 	private $lastWriteTime = false;
-	/** @var string|bool */
+	/** @var string|false */
 	private $lastPhpError = false;
 	/** @var float Query round trip time estimate */
 	private $lastRoundTripEstimate = 0.0;
@@ -149,9 +133,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private $csmFname;
 	/** @var DBUnexpectedError|null Last unresolved critical section error */
 	private $csmError;
-
-	/** @var int|null Integer ID of the managing LBFactory instance or null if none */
-	private $ownerId;
 
 	/** @var string Whether the database is a file on disk */
 	public const ATTR_DB_IS_FILE = 'db-is-file';
@@ -164,6 +145,20 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public const NEW_UNCONNECTED = 0;
 	/** @var int New Database instance will already be connected when returned */
 	public const NEW_CONNECTED = 1;
+
+	/** No errors occurred during the query */
+	protected const ERR_NONE = 0;
+	/** Retry query due to a connection loss detected while sending the query (session intact) */
+	protected const ERR_RETRY_QUERY = 1;
+	/** Abort query (no retries) due to a statement rollback (session/transaction intact) */
+	protected const ERR_ABORT_QUERY = 2;
+	/** Abort any current transaction, by rolling it back, due to an error during the query */
+	protected const ERR_ABORT_TRX = 4;
+	/** Abort and reset session due to server-side session-level state loss (locks, temp tables) */
+	protected const ERR_ABORT_SESSION = 8;
+
+	/** Assume that queries taking this long to yield connection loss errors are at fault */
+	protected const DROPPED_CONN_BLAME_THRESHOLD_SEC = 3.0;
 
 	/** @var string Idiom used when a cancelable atomic section started the transaction */
 	private const NOT_APPLICABLE = 'n/a';
@@ -210,6 +205,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** Table prefix to use on initial connection */
 	protected const CONN_INITIAL_TABLE_PREFIX = 'tablePrefix';
 
+	/** @var SQLPlatform */
+	protected $platform;
+
 	/**
 	 * @note exceptions for missing libraries/drivers should be thrown in initConnection()
 	 * @stable to call
@@ -238,15 +236,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		];
 
 		$this->lbInfo = $params['lbInfo'] ?? [];
-		$this->lazyMasterHandle = $params['lazyMasterHandle'] ?? null;
+		$this->topologicalPrimaryConnRef = $params['topologicalPrimaryConnRef'] ?? null;
 		$this->connectionVariables = $params['variables'] ?? [];
+		// Set SQL mode, default is turning them all off, can be overridden or skipped with null
+		if ( is_string( $params['sqlMode'] ?? null ) ) {
+			$this->connectionVariables['sql_mode'] = $params['sqlMode'];
+		}
 
 		$this->flags = (int)$params['flags'];
+		$this->ssl = $params['ssl'] ?? (bool)( $this->flags & self::DBO_SSL );
 		$this->cliMode = (bool)$params['cliMode'];
 		$this->agent = (string)$params['agent'];
 		$this->serverName = $params['serverName'];
 		$this->topologyRole = $params['topologyRole'];
-		$this->topologyRootMaster = $params['topologicalMaster'];
 		$this->nonNativeInsertSelectBatchSize = $params['nonNativeInsertSelectBatchSize'] ?? 10000;
 
 		$this->srvCache = $params['srvCache'];
@@ -265,8 +267,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$params['schema'] != '' ? $params['schema'] : null,
 			$params['tablePrefix']
 		);
-
-		$this->ownerId = $params['ownerId'] ?? null;
+		$this->platform = new SQLPlatform(
+			$this,
+			$params['queryLogger'],
+			$this->currentDomain,
+			$this->errorLogger
+		);
 	}
 
 	/**
@@ -344,12 +350,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *      used to adjust lock timeouts or encoding modes and the like.
 	 *   - serverName : Optional readable name for the database server.
 	 *   - topologyRole: Optional IDatabase::ROLE_* constant for the database server.
-	 *   - topologicalMaster: Optional name of the primary server within the replication topology.
 	 *   - lbInfo: Optional map of field/values for the managing load balancer instance.
 	 *      The "master" and "replica" fields are used to flag the replication role of this
 	 *      database server and whether methods like getLag() should actually issue queries.
-	 *   - lazyMasterHandle: lazy-connecting IDatabase handle to the primary DB for the cluster
-	 *      that this database belongs to. This is used for replication status purposes.
+	 *   - topologicalPrimaryConnRef: lazy-connecting IDatabase handle to the most authoritative
+	 *      primary database server for the cluster that this database belongs to. This handle is
+	 *      used for replication status purposes. This is generally managed by LoadBalancer.
 	 *   - connLogger: Optional PSR-3 logger interface instance.
 	 *   - queryLogger: Optional PSR-3 logger interface instance.
 	 *   - profiler : Optional callback that takes a section name argument and returns
@@ -363,60 +369,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - agent: Optional name used to identify the end-user in query profiling/logging.
 	 *   - srvCache: Optional BagOStuff instance to an APC-style cache.
 	 *   - nonNativeInsertSelectBatchSize: Optional batch size for non-native INSERT SELECT.
-	 *   - ownerId: Optional integer ID of a LoadBalancer instance that manages this instance.
 	 *   - criticalSectionProvider: Optional CriticalSectionProvider instance.
 	 * @param int $connect One of the class constants (NEW_CONNECTED, NEW_UNCONNECTED) [optional]
 	 * @return Database|null If the database driver or extension cannot be found
 	 * @throws InvalidArgumentException If the database driver or extension cannot be found
+	 * @deprecated since 1.39, use DatabaseFactory::create instead
 	 * @since 1.18
 	 */
 	final public static function factory( $type, $params = [], $connect = self::NEW_CONNECTED ) {
-		$class = self::getClass( $type, $params['driver'] ?? null );
-
-		if ( class_exists( $class ) && is_subclass_of( $class, IDatabase::class ) ) {
-			$params += [
-				// Default configuration
-				'host' => null,
-				'user' => null,
-				'password' => null,
-				'dbname' => null,
-				'schema' => null,
-				'tablePrefix' => '',
-				'flags' => 0,
-				'variables' => [],
-				'lbInfo' => [],
-				'cliMode' => ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ),
-				'agent' => '',
-				'ownerId' => null,
-				'serverName' => null,
-				'topologyRole' => null,
-				'topologicalMaster' => null,
-				// Objects and callbacks
-				'lazyMasterHandle' => $params['lazyMasterHandle'] ?? null,
-				'srvCache' => $params['srvCache'] ?? new HashBagOStuff(),
-				'profiler' => $params['profiler'] ?? null,
-				'trxProfiler' => $params['trxProfiler'] ?? new TransactionProfiler(),
-				'connLogger' => $params['connLogger'] ?? new NullLogger(),
-				'queryLogger' => $params['queryLogger'] ?? new NullLogger(),
-				'replLogger' => $params['replLogger'] ?? new NullLogger(),
-				'errorLogger' => $params['errorLogger'] ?? static function ( Throwable $e ) {
-					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
-				},
-				'deprecationLogger' => $params['deprecationLogger'] ?? static function ( $msg ) {
-					trigger_error( $msg, E_USER_DEPRECATED );
-				}
-			];
-
-			/** @var Database $conn */
-			$conn = new $class( $params );
-			if ( $connect === self::NEW_CONNECTED ) {
-				$conn->initConnection();
-			}
-		} else {
-			$conn = null;
-		}
-
-		return $conn;
+		return ( new DatabaseFactory() )->create( $type, $params, $connect );
 	}
 
 	/**
@@ -424,75 +385,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param string|null $driver Optional name of a specific DB client driver
 	 * @return array Map of (Database::ATTR_* constant => value) for all such constants
 	 * @throws DBUnexpectedError
+	 * @deprecated since 1.39, use DatabaseFactory::attributesFromType instead
 	 * @since 1.31
 	 */
 	final public static function attributesFromType( $dbType, $driver = null ) {
-		static $defaults = [
-			self::ATTR_DB_IS_FILE => false,
-			self::ATTR_DB_LEVEL_LOCKING => false,
-			self::ATTR_SCHEMAS_AS_TABLE_GROUPS => false
-		];
-
-		$class = self::getClass( $dbType, $driver );
-		if ( class_exists( $class ) ) {
-			return call_user_func( [ $class, 'getAttributes' ] ) + $defaults;
-		} else {
-			throw new DBUnexpectedError( null, "$dbType is not a supported database type." );
-		}
-	}
-
-	/**
-	 * @param string $dbType A possible DB type (sqlite, mysql, postgres,...)
-	 * @param string|null $driver Optional name of a specific DB client driver
-	 * @return string Database subclass name to use
-	 * @throws InvalidArgumentException
-	 */
-	private static function getClass( $dbType, $driver = null ) {
-		// For database types with built-in support, the below maps type to IDatabase
-		// implementations. For types with multiple driver implementations (PHP extensions),
-		// an array can be used, keyed by extension name. In case of an array, the
-		// optional 'driver' parameter can be used to force a specific driver. Otherwise,
-		// we auto-detect the first available driver. For types without built-in support,
-		// an class named "Database<Type>" us used, eg. DatabaseFoo for type 'foo'.
-		static $builtinTypes = [
-			'mysql' => [ 'mysqli' => DatabaseMysqli::class ],
-			'sqlite' => DatabaseSqlite::class,
-			'postgres' => DatabasePostgres::class,
-		];
-
-		$dbType = strtolower( $dbType );
-
-		if ( !isset( $builtinTypes[$dbType] ) ) {
-			// Not a built in type, assume standard naming scheme
-			return 'Database' . ucfirst( $dbType );
-		}
-
-		$class = false;
-		$possibleDrivers = $builtinTypes[$dbType];
-		if ( is_string( $possibleDrivers ) ) {
-			$class = $possibleDrivers;
-		} elseif ( (string)$driver !== '' ) {
-			if ( !isset( $possibleDrivers[$driver] ) ) {
-				throw new InvalidArgumentException( __METHOD__ .
-					" type '$dbType' does not support driver '{$driver}'" );
-			}
-
-			$class = $possibleDrivers[$driver];
-		} else {
-			foreach ( $possibleDrivers as $posDriver => $possibleClass ) {
-				if ( extension_loaded( $posDriver ) ) {
-					$class = $possibleClass;
-					break;
-				}
-			}
-		}
-
-		if ( $class === false ) {
-			throw new InvalidArgumentException( __METHOD__ .
-				" no viable database extension found for type '$dbType'" );
-		}
-
-		return $class;
+		return ( new DatabaseFactory() )->attributesFromType( $dbType, $driver );
 	}
 
 	/**
@@ -500,7 +397,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return array Map of (Database::ATTR_* constant => value)
 	 * @since 1.31
 	 */
-	protected static function getAttributes() {
+	public static function getAttributes() {
 		return [];
 	}
 
@@ -527,30 +424,20 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->topologyRole;
 	}
 
-	public function getTopologyRootPrimary() {
-		return $this->topologyRootMaster;
-	}
-
-	final public function trxLevel() {
-		// FIXME: A lot of tests disable constructor leading to trx manager being
-		// null and breaking, this is unacceptable but hopefully this should
-		// happen less by moving these functions to the transaction manager class.
-		if ( !$this->transactionManager ) {
-			$this->transactionManager = new TransactionManager( new NullLogger() );
-		}
-		return $this->transactionManager->trxLevel();
-	}
-
-	public function trxTimestamp() {
-		return $this->transactionManager->trxTimestamp();
-	}
-
 	/**
-	 * @return int One of the STATUS_TRX_* class constants
-	 * @since 1.31
+	 * Get important session state that cannot be recovered upon connection loss
+	 *
+	 * @return CriticalSessionInfo
 	 */
-	public function trxStatus() {
-		return $this->transactionManager->trxStatus();
+	private function getCriticalSessionInfo(): CriticalSessionInfo {
+		return new CriticalSessionInfo(
+			$this->transactionManager->getTrxId(),
+			$this->transactionManager->explicitTrxActive(),
+			$this->transactionManager->pendingWriteCallers(),
+			$this->transactionManager->pendingPreCommitCallbackCallers(),
+			$this->sessionNamedLocks,
+			$this->sessionTempTables
+		);
 	}
 
 	public function tablePrefix( $prefix = null ) {
@@ -562,6 +449,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->currentDomain->getSchema(),
 				$prefix
 			);
+			$this->platform->setCurrentDomain( $this->currentDomain );
 		}
 
 		return $old;
@@ -584,17 +472,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				( $schema !== '' ) ? $schema : null,
 				$this->currentDomain->getTablePrefix()
 			);
+			$this->platform->setCurrentDomain( $this->currentDomain );
 		}
 
 		return (string)$old;
-	}
-
-	/**
-	 * @stable to override
-	 * @return string Schema to use to qualify relations in queries
-	 */
-	protected function relationSchemaQualifier() {
-		return $this->dbSchema();
 	}
 
 	public function getLBInfo( $name = null ) {
@@ -623,24 +504,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
-	/**
-	 * Get a handle to the primary DB server of the cluster to which this server belongs
-	 *
-	 * @return IDatabase|null
-	 * @since 1.27
-	 */
-	protected function getLazyMasterHandle() {
-		return $this->lazyMasterHandle;
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function implicitOrderby() {
-		return true;
-	}
-
 	public function lastQuery() {
 		return $this->lastQuery;
 	}
@@ -649,12 +512,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->lastWriteTime ?: false;
 	}
 
-	public function writesPending() {
-		return $this->transactionManager->writesPending();
-	}
-
-	public function writesOrCallbacksPending() {
-		return $this->transactionManager->writesOrCallbacksPending();
+	/**
+	 * @return bool
+	 * @since 1.39
+	 * @internal For use by Database/LoadBalancer only
+	 */
+	public function sessionLocksPending() {
+		return (bool)$this->sessionNamedLocks;
 	}
 
 	/**
@@ -670,32 +534,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		return null;
-	}
-
-	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL ) {
-		return $this->transactionManager->pendingWriteQueryDuration( $this, $type );
-	}
-
-	public function pendingWriteCallers() {
-		if ( !$this->transactionManager ) {
-			return [];
-		}
-		return $this->transactionManager->pendingWriteCallers();
-	}
-
-	/**
-	 * List the methods that have write queries or callbacks for the current transaction
-	 *
-	 * @internal This method should not be used outside of Database/LoadBalancer
-	 *
-	 * @return string[]
-	 * @since 1.32
-	 */
-	public function pendingWriteAndCallbackCallers() {
-		if ( !$this->transactionManager ) {
-			return [];
-		}
-		return $this->transactionManager->pendingWriteAndCallbackCallers();
 	}
 
 	public function isOpen() {
@@ -753,26 +591,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->currentDomain->getId();
 	}
 
-	public function fetchObject( IResultWrapper $res ) {
-		return $res->fetchObject();
-	}
-
-	public function fetchRow( IResultWrapper $res ) {
-		return $res->fetchRow();
-	}
-
-	public function numRows( $res ) {
-		if ( is_bool( $res ) ) {
-			return 0;
-		} else {
-			return $res->numRows();
-		}
-	}
-
-	public function freeResult( IResultWrapper $res ) {
-		$res->free();
-	}
-
 	/**
 	 * Get information about an index into an object
 	 *
@@ -805,7 +623,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Restore the previous error handler and return the last PHP error for this DB
 	 *
-	 * @return bool|string
+	 * @return string|false
 	 */
 	protected function restoreErrorHandler() {
 		restore_error_handler();
@@ -817,7 +635,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @return string|bool Last PHP error for this DB (typically connection errors)
+	 * @return string|false Last PHP error for this DB (typically connection errors)
 	 */
 	protected function getLastPHPError() {
 		if ( $this->lastPhpError ) {
@@ -835,7 +653,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @internal This method should not be used outside of Database classes
 	 *
-	 * @param int $errno
+	 * @param int|string $errno
 	 * @param string $errstr
 	 */
 	public function connectionErrorLogger( $errno, $errstr ) {
@@ -853,13 +671,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			[
 				'db_server' => $this->getServerName(),
 				'db_name' => $this->getDBname(),
-				'db_user' => $this->connectionParams[self::CONN_USER],
+				'db_user' => $this->connectionParams[self::CONN_USER] ?? null,
 			],
 			$extras
 		);
 	}
 
-	final public function close( $fname = __METHOD__, $owner = null ) {
+	final public function close( $fname = __METHOD__ ) {
 		$error = null; // error to throw after disconnecting
 
 		$wasOpen = (bool)$this->conn;
@@ -881,16 +699,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$this->conn = null;
 
-		// Log or throw any unexpected errors after having disconnected
+		// Log any unexpected errors after having disconnected
 		if ( $error !== null ) {
-			// T217819, T231443: if this is probably just LoadBalancer trying to recover from
-			// errors and shutdown, then log any problems and move on since the request has to
+			// T217819, T231443: this is probably just LoadBalancer trying to recover from
+			// errors and shutdown. Log any problems and move on since the request has to
 			// end one way or another. Throwing errors is not very useful at some point.
-			if ( $this->ownerId !== null && $owner === $this->ownerId ) {
-				$this->queryLogger->error( $error, [ 'db_log_category' => 'query' ] );
-			} else {
-				throw new DBUnexpectedError( $this, $error );
-			}
+			$this->queryLogger->error( $error, [ 'db_log_category' => 'query' ] );
 		}
 
 		// Note that various subclasses call close() at the start of open(), which itself is
@@ -950,7 +764,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	abstract protected function closeConnection();
 
 	/**
-	 * Run a query and return a DBMS-dependent wrapper or boolean
+	 * Run a query and return a QueryStatus instance with the query result information
 	 *
 	 * This is meant to handle the basic command of actually sending a query to the
 	 * server via the driver. No implicit transaction, reconnection, nor retry logic
@@ -963,96 +777,44 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * to doQuery() such that an immediately subsequent call to lastError()/lastErrno()
 	 * meaningfully reflects any error that occurred during that public query method call.
 	 *
-	 * For SELECT queries, this returns either:
-	 *   - a) An IResultWrapper describing the query results
+	 * For SELECT queries, the result field contains either:
+	 *   - a) A driver-specific IResultWrapper describing the query results
 	 *   - b) False, on any query failure
 	 *
-	 * For non-SELECT queries, this returns either:
-	 *   - a) A driver-specific value/resource, only on success
+	 * For non-SELECT queries, the result field contains either:
+	 *   - a) A driver-specific IResultWrapper, only on success
 	 *   - b) True, only on success (e.g. no meaningful result other than "OK")
 	 *   - c) False, on any query failure
 	 *
-	 * @param string $sql SQL query
-	 * @return IResultWrapper|bool An IResultWrapper, or true on success; false on failure
+	 * @param string $sql Single-statement SQL query
+	 * @return QueryStatus
+	 * @since 1.39
 	 */
-	abstract protected function doQuery( $sql );
+	abstract protected function doSingleStatementQuery( string $sql ): QueryStatus;
 
 	/**
-	 * Determine whether a query writes to the DB. When in doubt, this returns true.
+	 * Execute a batch of query statements, aborting remaining statements if one fails
 	 *
-	 * Main use cases:
-	 *
-	 * - Subsequent web requests should not need to wait for replication from
-	 *   the primary position seen by this web request, unless this request made
-	 *   changes to the primary DB. This is handled by ChronologyProtector by checking
-	 *   doneWrites() at the end of the request. doneWrites() returns true if any
-	 *   query set lastWriteTime; which query() does based on isWriteQuery().
-	 *
-	 * - Reject write queries to replica DBs, in query().
-	 *
-	 * @param string $sql
-	 * @param int $flags Query flags to query()
-	 * @return bool
-	 */
-	protected function isWriteQuery( $sql, $flags ) {
-		if (
-			$this->fieldHasBit( $flags, self::QUERY_CHANGE_ROWS ) ||
-			$this->fieldHasBit( $flags, self::QUERY_CHANGE_SCHEMA )
-		) {
-			return true;
-		} elseif (
-			$this->fieldHasBit( $flags, self::QUERY_CHANGE_NONE ) ||
-			$this->fieldHasBit( $flags, self::QUERY_CHANGE_LOCKS )
-		) {
-			return false;
-		}
-		// BEGIN and COMMIT queries are considered read queries here.
-		// Database backends and drivers (MySQL, MariaDB, php-mysqli) generally
-		// treat these as write queries, in that their results have "affected rows"
-		// as meta data as from writes, instead of "num rows" as from reads.
-		// But, we treat them as read queries because when reading data (from
-		// either replica or primary DB) we use transactions to enable repeatable-read
-		// snapshots, which ensures we get consistent results from the same snapshot
-		// for all queries within a request. Use cases:
-		// - Treating these as writes would trigger ChronologyProtector (see method doc).
-		// - We use this method to reject writes to replicas, but we need to allow
-		//   use of transactions on replicas for read snapshots. This is fine given
-		//   that transactions by themselves don't make changes, only actual writes
-		//   within the transaction matter, which we still detect.
-		return !preg_match(
-			'/^\s*(?:SELECT|BEGIN|ROLLBACK|COMMIT|SAVEPOINT|RELEASE|SET|SHOW|EXPLAIN|USE|\(SELECT)\b/i',
-			$sql
-		);
-	}
-
-	/**
-	 * @param string $sql
-	 * @return string|null
-	 */
-	protected function getQueryVerb( $sql ) {
-		return preg_match( '/^\s*([a-z]+)/i', $sql, $m ) ? strtoupper( $m[1] ) : null;
-	}
-
-	/**
-	 * Determine whether a SQL statement is sensitive to isolation level.
-	 *
-	 * A SQL statement is considered transactable if its result could vary
-	 * depending on the transaction isolation level. Operational commands
-	 * such as 'SET' and 'SHOW' are not considered to be transactable.
-	 *
-	 * Main purpose: Used by query() to decide whether to begin a transaction
-	 * before the current query (in DBO_TRX mode, on by default).
+	 * @see Database::doQuery()
 	 *
 	 * @stable to override
-	 * @param string $sql
-	 * @return bool
+	 * @param string[] $sqls Non-empty map of (statement ID => SQL statement)
+	 * @return array<string,QueryStatus> Map of (statement ID => QueryStatus)
+	 * @since 1.39
 	 */
-	protected function isTransactableQuery( $sql ) {
-		return !in_array(
-			$this->getQueryVerb( $sql ),
-			[ 'BEGIN', 'ROLLBACK', 'COMMIT', 'SET', 'SHOW', 'CREATE', 'ALTER', 'USE', 'SHOW' ],
-			true
-		);
+	protected function doMultiStatementQuery( array $sqls ): array {
+		$qsByStatementId = [];
+
+		$aborted = false;
+		foreach ( $sqls as $statementId => $sql ) {
+			$qs = $aborted
+				? new QueryStatus( false, 0, 'Query aborted', 0 )
+				: $this->doSingleStatementQuery( $sql );
+			$qsByStatementId[$statementId] = $qs;
+			$aborted = ( $qs->res === false );
+		}
+
+		return $qsByStatementId;
 	}
 
 	/**
@@ -1103,8 +865,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( $queryVerb === 'CREATE' ) {
 				// Record the type of temporary table being created
 				$tableType = $pseudoPermanent ? self::TEMP_PSEUDO_PERMANENT : self::TEMP_NORMAL;
+			} elseif ( isset( $this->sessionTempTables[$table] ) ) {
+				$tableType = $this->sessionTempTables[$table]['type'];
 			} else {
-				$tableType = $this->sessionTempTables[$table] ?? null;
+				$tableType = null;
 			}
 
 			if ( $tableType !== null ) {
@@ -1127,17 +891,24 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		foreach ( $changes as list( $tmpTableType, $verb, $table ) ) {
 			switch ( $verb ) {
 				case 'CREATE':
-					$this->sessionTempTables[$table] = $tmpTableType;
+					$this->sessionTempTables[$table] = [
+						'type' => $tmpTableType,
+						'pristine' => true,
+						'trxId' => $this->transactionManager->getTrxId()
+					];
 					break;
 				case 'DROP':
 					unset( $this->sessionTempTables[$table] );
-					unset( $this->sessionDirtyTempTables[$table] );
 					break;
 				case 'TRUNCATE':
-					unset( $this->sessionDirtyTempTables[$table] );
+					if ( isset( $this->sessionTempTables[$table] ) ) {
+						$this->sessionTempTables[$table]['pristine'] = true;
+					}
 					break;
 				default:
-					$this->sessionDirtyTempTables[$table] = 1;
+					if ( isset( $this->sessionTempTables[$table] ) ) {
+						$this->sessionTempTables[$table]['pristine'] = false;
+					}
 					break;
 			}
 		}
@@ -1153,158 +924,258 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected function isPristineTemporaryTable( $table ) {
 		$rawTable = $this->tableName( $table, 'raw' );
 
-		return (
-			isset( $this->sessionTempTables[$rawTable] ) &&
-			!isset( $this->sessionDirtyTempTables[$rawTable] )
-		);
+		return isset( $this->sessionTempTables[$rawTable] )
+			? $this->sessionTempTables[$rawTable]['pristine']
+			: false;
 	}
 
-	public function query( $sql, $fname = __METHOD__, $flags = self::QUERY_NORMAL ) {
+	public function query( $sql, $fname = __METHOD__, $flags = 0 ) {
 		$flags = (int)$flags; // b/c; this field used to be a bool
-		// Double check that the SQL query is appropriate in the current context and is
-		// allowed for an outside caller (e.g. does not break transaction/session tracking).
+
+		// Make sure that this caller is allowed to issue this query statement
 		$this->assertQueryIsCurrentlyAllowed( $sql, $fname );
 
 		// Send the query to the server and fetch any corresponding errors
-		list( $ret, $err, $errno, $unignorable ) = $this->executeQuery( $sql, $fname, $flags );
-		if ( $ret === false ) {
-			$ignoreErrors = $this->fieldHasBit( $flags, self::QUERY_SILENCE_ERRORS );
+		/** @var QueryStatus $qs */
+		$qs = $this->executeQuery( $sql, $fname, $flags, $sql );
+
+		// Handle any errors that occurred
+		if ( $qs->res === false ) {
+			// An error occurred; log and report it as needed. Errors that corrupt the state of
+			// the transaction/session cannot be silenced from the client.
+			$ignore = (
+				$this->fieldHasBit( $flags, self::QUERY_SILENCE_ERRORS ) &&
+				!$this->fieldHasBit( $qs->flags, self::ERR_ABORT_SESSION ) &&
+				!$this->fieldHasBit( $qs->flags, self::ERR_ABORT_TRX )
+			);
 			// Throw an error unless both the ignore flag was set and a rollback is not needed
-			$this->reportQueryError( $err, $errno, $sql, $fname, $ignoreErrors && !$unignorable );
+			$this->reportQueryError( $qs->message, $qs->code, $sql, $fname, $ignore );
 		}
 
-		return $ret;
+		return $qs->res;
 	}
 
 	/**
-	 * Execute a query, retrying it if there is a recoverable connection loss
+	 * Run a batch of SQL query statements and return the results.
 	 *
-	 * This is similar to query() except:
-	 *   - It does not prevent all non-ROLLBACK queries if there is a corrupted transaction
-	 *   - It does not disallow raw queries that are supposed to use dedicated IDatabase methods
-	 *   - It does not throw exceptions for common error cases
+	 * @see Database::query()
 	 *
-	 * This is meant for internal use with Database subclasses.
-	 *
-	 * @param string $sql Original SQL query
+	 * @param string[] $sqls Map of (statement ID => SQL statement)
 	 * @param string $fname Name of the calling function
-	 * @param int $flags Bit field of class QUERY_* constants
-	 * @return array An n-tuple of:
-	 *   - mixed|bool: An object, resource, or true on success; false on failure
-	 *   - string: The result of calling lastError()
-	 *   - int: The result of calling lastErrno()
-	 *   - bool: Whether a rollback is needed to allow future non-rollback queries
-	 * @throws DBUnexpectedError
+	 * @param int $flags Bit field of IDatabase::QUERY_* constants
+	 * @param string|null $summarySql Virtual SQL for profiling (e.g. "UPSERT INTO TABLE 'x'")
+	 * @return array<string,QueryStatus> Ordered map of (statement ID => QueryStatus)
+	 * @since 1.39
 	 */
-	final protected function executeQuery( $sql, $fname, $flags ) {
-		$this->assertHasConnectionHandle();
-
-		$priorTransaction = $this->trxLevel();
-
-		if ( $this->isWriteQuery( $sql, $flags ) ) {
-			// Do not treat temporary table writes as "meaningful writes" since they are only
-			// visible to one session and are not permanent. Profile them as reads. Integration
-			// tests can override this behavior via $flags.
-			$pseudoPermanent = $this->fieldHasBit( $flags, self::QUERY_PSEUDO_PERMANENT );
-			$tempTableChanges = $this->getTempTableWrites( $sql, $pseudoPermanent );
-			$isPermWrite = !$tempTableChanges;
-			foreach ( $tempTableChanges as list( $tmpType ) ) {
-				$isPermWrite = $isPermWrite || ( $tmpType !== self::TEMP_NORMAL );
-			}
-
-			// Permit temporary table writes on replica DB connections
-			// but require a writable primary DB connection for any persistent writes.
-			if ( $isPermWrite ) {
-				$this->assertIsWritablePrimary();
-
-				// DBConnRef uses QUERY_REPLICA_ROLE to enforce the replica role for raw SQL queries
-				if ( $this->fieldHasBit( $flags, self::QUERY_REPLICA_ROLE ) ) {
-					throw new DBReadOnlyRoleError( $this, "Cannot write; target role is DB_REPLICA" );
-				}
-			}
-		} else {
-			// No permanent writes in this query
-			$isPermWrite = false;
-			// No temporary tables written to either
-			$tempTableChanges = [];
+	public function queryMulti(
+		array $sqls, string $fname = __METHOD__, int $flags = 0, ?string $summarySql = null
+	) {
+		if ( !$sqls ) {
+			return [];
+		}
+		if ( $summarySql === null ) {
+			$summarySql = reset( $sqls );
+		}
+		// Make sure that this caller is allowed to issue these query statements
+		foreach ( $sqls as $sql ) {
+			$this->assertQueryIsCurrentlyAllowed( $sql, $fname );
 		}
 
-		// Add trace comment to the begin of the sql string, right after the operator.
-		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (T44598).
-		// NOTE: Don't add varying ids such as request id or session id to the comment.
-		// It would break aggregation of similar queries in analysis tools (see T193050#7512149)
-		$encName = preg_replace( '/[\x00-\x1F\/]/', '-', "$fname {$this->agent}" );
-		$commentedSql = preg_replace( '/\s|$/', " /* $encName */ ", $sql, 1 );
+		// Send the query statements to the server and fetch the results
+		$statusByStatementId = $this->executeQuery( $sqls, $fname, $flags, $summarySql );
+		// @phan-suppress-next-line PhanTypeSuspiciousNonTraversableForeach
+		foreach ( $statusByStatementId as $statementId => $qs ) {
+			if ( $qs->res === false ) {
+				// An error occurred; log and report it as needed. Errors that corrupt the state of
+				// the transaction/session cannot be silenced from the client.
+				$ignore = (
+					$this->fieldHasBit( $flags, self::QUERY_SILENCE_ERRORS ) &&
+					!$this->fieldHasBit( $qs->flags, self::ERR_ABORT_SESSION ) &&
+					!$this->fieldHasBit( $qs->flags, self::ERR_ABORT_TRX )
+				);
+				$this->reportQueryError(
+					$qs->message,
+					$qs->code,
+					$sqls[$statementId],
+					$fname,
+					$ignore
+				);
+			}
+		}
 
-		$corruptedTrx = false;
+		return $statusByStatementId;
+	}
+
+	/**
+	 * Execute a set of queries without enforcing public (non-Database) caller restrictions.
+	 *
+	 * Retry it if there is a recoverable connection loss (e.g. no important state lost).
+	 *
+	 * This does not precheck for transaction/session state errors or critical section errors.
+	 *
+	 * @see Database::query()
+	 * @see Database::querMulti()
+	 *
+	 * @param string|string[] $sqls SQL statment or (statement ID => SQL statement) map
+	 * @param string $fname Name of the calling function
+	 * @param int $flags Bit field of class QUERY_* constants
+	 * @param string $summarySql Actual/simplified SQL for profiling
+	 * @return QueryStatus|array<string,QueryStatus> QueryStatus (when given a string statement)
+	 *   or ordered map of (statement ID => QueryStatus) (when given an array of statements)
+	 * @throws DBUnexpectedError
+	 * @since 1.34
+	 */
+	final protected function executeQuery( $sqls, $fname, $flags, $summarySql ) {
+		if ( is_array( $sqls ) ) {
+			// Query consists of an atomic batch of statements
+			$multiMode = true;
+			$statementsById = $sqls;
+		} else {
+			// Query consists of a single statement
+			$multiMode = false;
+			$statementsById = [ '*' => $sqls ];
+		}
+
+		$this->assertHasConnectionHandle();
+
+		$hasPermWrite = false;
+		$cStatementsById = [];
+		$tempTableChangesByStatementId = [];
+		foreach ( $statementsById as $statementId => $sql ) {
+			if ( $this->platform->isWriteQuery( $sql, $flags ) ) {
+				$verb = $this->platform->getQueryVerb( $sql );
+				// Temporary table writes are not "meaningful" writes, since they are only
+				// visible to one (ephemeral) session, so treat them as reads instead. This
+				// can be overridden during integration testing via $flags. For simplicity,
+				// disallow CREATE/DROP statements during multi queries, avoiding the need
+				// to speculatively track whether a table will be temporary at query time.
+				if ( $multiMode && in_array( $verb, [ 'CREATE', 'DROP' ] ) ) {
+					throw new DBUnexpectedError(
+						$this,
+						"Cannot issue CREATE/DROP as part of multi-queries"
+					);
+				}
+				$pseudoPermanent = $this->fieldHasBit( $flags, self::QUERY_PSEUDO_PERMANENT );
+				$tempTableChanges = $this->getTempTableWrites( $sql, $pseudoPermanent );
+				$isPermWrite = !$tempTableChanges;
+				foreach ( $tempTableChanges as list( $tmpType ) ) {
+					$isPermWrite = $isPermWrite || ( $tmpType !== self::TEMP_NORMAL );
+				}
+				// Permit temporary table writes on replica connections, but require a writable
+				// master connection for writes to persistent tables.
+				if ( $isPermWrite ) {
+					$this->assertIsWritablePrimary();
+					// DBConnRef uses QUERY_REPLICA_ROLE to enforce replica roles during query()
+					if ( $this->fieldHasBit( $flags, self::QUERY_REPLICA_ROLE ) ) {
+						throw new DBReadOnlyRoleError(
+							$this,
+							"Cannot write; target role is DB_REPLICA"
+						);
+					}
+				}
+				$hasPermWrite = $hasPermWrite || $isPermWrite;
+			} else {
+				// No temporary tables written to either
+				$tempTableChanges = [];
+			}
+			$tempTableChangesByStatementId[$statementId] = $tempTableChanges;
+			// Add agent and calling method comments to the SQL
+			$cStatementsById[$statementId] = $this->makeCommentedSql( $sql, $fname );
+		}
+
+		// Whether a silent retry attempt is left for recoverable connection loss errors
+		$retryLeft = !$this->fieldHasBit( $flags, self::QUERY_NO_RETRY );
+		$firstStatement = reset( $statementsById );
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 
-		// Send the query to the server and fetch any corresponding errors.
-		// This also doubles as a "ping" to see if the connection was dropped.
-		list( $ret, $err, $errno, $recoverableSR, $recoverableCL, $reconnected ) =
-			$this->executeQueryAttempt( $sql, $commentedSql, $isPermWrite, $fname, $flags );
-
-		// Check if the query failed due to a recoverable connection loss
-		$allowRetry = !$this->fieldHasBit( $flags, self::QUERY_NO_RETRY );
-		if ( $ret === false && $recoverableCL && $reconnected && $allowRetry ) {
-			// Silently resend the query to the server since it is safe and possible
-			list( $ret, $err, $errno, $recoverableSR, $recoverableCL ) =
-				$this->executeQueryAttempt( $sql, $commentedSql, $isPermWrite, $fname, $flags );
-		}
-
-		// Register creation and dropping of temporary tables
-		$this->registerTempWrites( $ret, $tempTableChanges );
-
-		if ( $ret === false && $priorTransaction ) {
-			if ( $recoverableSR ) {
-				# We're ignoring an error that caused just the current query to be aborted.
-				# But log the cause so we can log a deprecation notice if a caller actually
-				# does ignore it.
-				$this->transactionManager->setTrxStatusIgnoredCause( [ $err, $errno, $fname ] );
-			} elseif ( !$recoverableCL ) {
-				# Either the query was aborted or all queries after BEGIN where aborted.
-				# In the first case, the only options going forward are (a) ROLLBACK, or
-				# (b) ROLLBACK TO SAVEPOINT (if one was set). If the later case, the only
-				# option is ROLLBACK, since the snapshots would have been released.
-				$corruptedTrx = true; // cannot recover
-				$trxError = $this->getQueryException( $err, $errno, $sql, $fname );
-				$this->transactionManager->setTransactionError( $trxError );
+		do {
+			// Start a DBO_TRX wrapper transaction as needed (throw an error on failure)
+			if ( $this->beginIfImplied( $firstStatement, $fname, $flags ) ) {
+				// Since begin() was called, any connection loss was already handled
+				$retryLeft = false;
 			}
+			// Send the query statements to the server and fetch any results. Retry all the
+			// statements if the error was a recoverable connection loss on the first statement.
+			// To reduce the risk of running queries twice, do not retry the statements if there
+			// is a connection error during any of the subsequent statements.
+			$statusByStatementId = $this->attemptQuery(
+				$statementsById,
+				$cStatementsById,
+				$fname,
+				$summarySql,
+				$hasPermWrite,
+				$multiMode
+			);
+		} while (
+			// Query had at least one statement
+			( $firstQs = reset( $statusByStatementId ) ) &&
+			// An error occurred that can be recovered from via query retry
+			$this->fieldHasBit( $firstQs->flags, self::ERR_RETRY_QUERY ) &&
+			// The retry has not been exhausted (consume it now)
+			$retryLeft && !( $retryLeft = false )
+		);
+
+		foreach ( $statusByStatementId as $statementId => $qs ) {
+			// Register creation and dropping of temporary tables
+			$this->registerTempWrites( $qs->res, $tempTableChangesByStatementId[$statementId] );
 		}
 
 		$this->completeCriticalSection( __METHOD__, $cs );
 
-		return [ $ret, $err, $errno, $corruptedTrx ];
+		return $multiMode ? $statusByStatementId : $statusByStatementId['*'];
 	}
 
 	/**
-	 * Wrapper for doQuery() that handles DBO_TRX, profiling, logging, affected row count
-	 * tracking, and reconnects (without retry) on query failure due to connection loss
+	 * Query method wrapper handling profiling, logging, affected row count tracking, and
+	 * automatic reconnections (without retry) on query failure due to connection loss
 	 *
-	 * @param string $sql Original SQL query
-	 * @param string $commentedSql SQL query with debugging/trace comment
-	 * @param bool $isPermWrite Whether the query is a (non-temporary table) write
+	 * Note that this does not handle DBO_TRX logic.
+	 *
+	 * This method handles profiling, debug logging, reconnection and the tracking of:
+	 *   - write callers
+	 *   - last write time
+	 *   - affected row count of the last write
+	 *   - whether writes occurred in a transaction
+	 *   - last successful query time (confirming that the connection was not dropped)
+	 *
+	 * @see doSingleStatementQuery()
+	 * @see doMultiStatementQuery()
+	 *
+	 * @param string[] $statementsById Map of (statement ID => SQL statement)
+	 * @param string[] $cStatementsById Map of (statement ID => commented SQL statement)
 	 * @param string $fname Name of the calling function
-	 * @param int $flags Bit field of class QUERY_* constants
-	 * @return array An n-tuple of:
-	 *   - mixed|bool: An object, resource, or true on success; false on failure
-	 *   - string: The result of calling lastError()
-	 *   - int: The result of calling lastErrno()
-	 * 	 - bool: Whether a statement rollback error occurred
-	 *   - bool: Whether a disconnect *both* happened *and* was recoverable
-	 *   - bool: Whether a reconnection attempt was *both* made *and* succeeded
+	 * @param string $summarySql Actual/simplified SQL for profiling
+	 * @param bool $hasPermWrite Whether any of the queries write to permanent tables
+	 * @param bool $multiMode Whether this is for an anomic statement batch
+	 * @return array<string,QueryStatus> Map of (statement ID => statement result)
 	 * @throws DBUnexpectedError
 	 */
-	private function executeQueryAttempt( $sql, $commentedSql, $isPermWrite, $fname, $flags ) {
-		$priorWritesPending = $this->writesOrCallbacksPending();
-
-		if ( ( $flags & self::QUERY_IGNORE_DBO_TRX ) == 0 ) {
-			$this->beginIfImplied( $sql, $fname );
+	private function attemptQuery(
+		array $statementsById,
+		array $cStatementsById,
+		string $fname,
+		string $summarySql,
+		bool $hasPermWrite,
+		bool $multiMode
+	) {
+		// Treat empty multi-statement query lists as no query at all
+		if ( !$statementsById ) {
+			return [];
 		}
 
-		// Keep track of whether the transaction has write queries pending
-		if ( $isPermWrite ) {
+		// Transaction attributes before issuing this query
+		$priorSessInfo = $this->getCriticalSessionInfo();
+
+		// Get the transaction-aware SQL string used for profiling
+		$prefix = ( $this->topologyRole === self::ROLE_STREAMING_MASTER ) ? 'role-primary: ' : '';
+		$generalizedSql = new GeneralizedSql( $summarySql, $prefix );
+
+		$startTime = microtime( true );
+		$ps = $this->profiler ? ( $this->profiler )( $generalizedSql->stringify() ) : null;
+		$this->lastQuery = $summarySql;
+		$this->affectedRowCount = null;
+		if ( $hasPermWrite ) {
 			$this->lastWriteTime = microtime( true );
 			$this->transactionManager->transactionWritingIn(
 				$this->getServerName(),
@@ -1312,61 +1183,109 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			);
 		}
 
-		$prefix = $this->topologyRole === IDatabase::ROLE_STREAMING_MASTER ? 'query-m: ' : 'query: ';
-		$generalizedSql = new GeneralizedSql( $commentedSql, $prefix );
+		if ( $multiMode ) {
+			$qsByStatementId = $this->doMultiStatementQuery( $cStatementsById );
+		} else {
+			$qsByStatementId = [ '*' => $this->doSingleStatementQuery( $cStatementsById['*'] ) ];
+		}
 
-		$startTime = microtime( true );
-		$ps = $this->profiler
-			? ( $this->profiler )( $generalizedSql->stringify() )
-			: null;
-		$this->affectedRowCount = null;
-		$this->lastQuery = $sql;
-		$ret = $this->doQuery( $commentedSql );
-		$lastError = $this->lastError();
-		$lastErrno = $this->lastErrno();
-
-		$this->affectedRowCount = $this->affectedRows();
 		unset( $ps ); // profile out (if set)
 		$queryRuntime = max( microtime( true ) - $startTime, 0.0 );
 
-		$recoverableSR = false; // recoverable statement rollback?
-		$recoverableCL = false; // recoverable connection loss?
-		$reconnected = false; // reconnection both attempted and succeeded?
+		$lastStatus = end( $qsByStatementId );
+		// Use the last affected row count for consistency with lastErrno()/lastError()
+		$this->affectedRowCount = $lastStatus->rowsAffected;
+		// Compute the total number of rows affected by all statements in the query
+		$totalAffectedRowCount = 0;
+		foreach ( $qsByStatementId as $qs ) {
+			$totalAffectedRowCount += $qs->rowsAffected;
+		}
 
-		if ( $ret !== false ) {
+		if ( $lastStatus->res !== false ) {
 			$this->lastPing = $startTime;
-			if ( $isPermWrite && $this->trxLevel() ) {
+			if ( $hasPermWrite && $this->trxLevel() ) {
 				$this->transactionManager->updateTrxWriteQueryReport(
-					$this->getQueryVerb( $sql ),
+					$summarySql,
 					$queryRuntime,
-					$this->affectedRows(),
+					$totalAffectedRowCount,
 					$fname
 				);
 			}
-		} elseif ( $this->isConnectionError( $lastErrno ) ) {
-			# Check if no meaningful session state was lost
-			$recoverableCL = $this->canRecoverFromDisconnect( $sql, $priorWritesPending );
-			# Update session state tracking and try to restore the connection
-			$reconnected = $this->replaceLostConnection( $lastErrno, __METHOD__ );
-		} else {
-			# Check if only the last query was rolled back
-			$recoverableSR = $this->wasKnownStatementRollbackError();
 		}
 
-		if ( $sql === self::PING_QUERY ) {
+		$errflags = 0;
+		$numRowsReturned = 0;
+		$numRowsAffected = 0;
+		if ( !$multiMode && $lastStatus->res === false ) {
+			$lastSql = end( $statementsById );
+			$lastError = $lastStatus->message;
+			$lastErrno = $lastStatus->code;
+			if ( $this->isConnectionError( $lastErrno ) ) {
+				// Connection lost before or during the query...
+				// Determine how to proceed given the lost session state
+				$connLossFlag = $this->assessConnectionLoss(
+					$lastSql,
+					$queryRuntime,
+					$priorSessInfo
+				);
+				// Update session state tracking and try to reestablish a connection
+				$reconnected = $this->replaceLostConnection( $lastErrno, __METHOD__ );
+				// Check if important server-side session-level state was lost
+				if ( $connLossFlag >= self::ERR_ABORT_SESSION ) {
+					$ex = $this->getQueryException( $lastError, $lastErrno, $lastSql, $fname );
+					$this->transactionManager->setSessionError( $ex );
+				}
+				// Check if important server-side transaction-level state was lost
+				if ( $connLossFlag >= self::ERR_ABORT_TRX ) {
+					$ex = $this->getQueryException( $lastError, $lastErrno, $lastSql, $fname );
+					$this->transactionManager->setTransactionError( $ex );
+				}
+				// Check if the query should be retried (having made the reconnection attempt)
+				if ( $connLossFlag === self::ERR_RETRY_QUERY ) {
+					$errflags |= ( $reconnected ? self::ERR_RETRY_QUERY : self::ERR_ABORT_QUERY );
+				} else {
+					$errflags |= $connLossFlag;
+				}
+			} elseif ( $this->isKnownStatementRollbackError( $lastErrno ) ) {
+				// Query error triggered a server-side statement-only rollback...
+				$errflags |= self::ERR_ABORT_QUERY;
+				if ( $this->trxLevel() ) {
+					// Allow legacy callers to ignore such errors via QUERY_IGNORE_DBO_TRX and
+					// try/catch. However, a deprecation notice will be logged on the next query.
+					$cause = [ $lastError, $lastErrno, $fname ];
+					$this->transactionManager->setTrxStatusIgnoredCause( $cause );
+				}
+			} elseif ( $this->trxLevel() ) {
+				// Some other error occurred during the query, within a transaction...
+				// Server-side handling of errors during transactions varies widely depending on
+				// the RDBMS type and configuration. There are several possible results: (a) the
+				// whole transaction is rolled back, (b) only the queries after BEGIN are rolled
+				// back, (c) the transaction is marked as "aborted" and a ROLLBACK is required
+				// before other queries are permitted. For compatibility reasons, pessimistically
+				// require a ROLLBACK query (not using SAVEPOINT) before allowing other queries.
+				$ex = $this->getQueryException( $lastError, $lastErrno, $lastSql, $fname );
+				$this->transactionManager->setTransactionError( $ex );
+				$errflags |= self::ERR_ABORT_TRX;
+			} else {
+				// Some other error occurred during the query, without a transaction...
+				$errflags |= self::ERR_ABORT_QUERY;
+			}
+		}
+		foreach ( $qsByStatementId as $qs ) {
+			$qs->flags = $errflags;
+			$numRowsReturned += $qs->rowsReturned;
+			$numRowsAffected += $qs->rowsAffected;
+		}
+
+		if ( !$multiMode && $statementsById['*'] === self::PING_QUERY ) {
 			$this->lastRoundTripEstimate = $queryRuntime;
-		}
-
-		$numRows = 0;
-		if ( $ret instanceof IResultWrapper ) {
-			$numRows = $ret->numRows();
 		}
 
 		$this->transactionManager->recordQueryCompletion(
 			$generalizedSql,
 			$startTime,
-			$isPermWrite,
-			$isPermWrite ? $this->affectedRows() : $numRows,
+			$hasPermWrite,
+			$hasPermWrite ? $numRowsAffected : $numRowsReturned,
 			$this->getServerName()
 		);
 
@@ -1376,7 +1295,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				"{method} [{runtime}s] {db_server}: {sql}",
 				$this->getLogContext( [
 					'method' => $fname,
-					'sql' => $sql,
+					'sql' => implode( "; ", $statementsById ),
 					'domain' => $this->getDomainID(),
 					'runtime' => round( $queryRuntime, 3 ),
 					'db_log_category' => 'query'
@@ -1384,12 +1303,22 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			);
 		}
 
-		if ( !is_bool( $ret ) && $ret !== null && !( $ret instanceof IResultWrapper ) ) {
-			throw new DBUnexpectedError( $this,
-				static::class . '::doQuery() should return an IResultWrapper' );
-		}
+		return $qsByStatementId;
+	}
 
-		return [ $ret, $lastError, $lastErrno, $recoverableSR, $recoverableCL, $reconnected ];
+	/**
+	 * @param string $sql
+	 * @param string $fname
+	 * @return string
+	 */
+	private function makeCommentedSql( $sql, $fname ): string {
+		// Add trace comment to the begin of the sql string, right after the operator.
+		// Or, for one-word queries (like "BEGIN" or COMMIT") add it to the end (T44598).
+		// NOTE: Don't add varying ids such as request id or session id to the comment.
+		// It would break aggregation of similar queries in analysis tools (see T193050#7512149)
+		$encName = preg_replace( '/[\x00-\x1F\/]/', '-', "$fname {$this->agent}" );
+
+		return preg_replace( '/\s|$/', " /* $encName */ ", $sql, 1 );
 	}
 
 	/**
@@ -1397,82 +1326,162 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @param string $sql
 	 * @param string $fname
+	 * @param int $flags
+	 * @return bool Whether an implicit transaction was started
+	 * @throws DBError
 	 */
-	private function beginIfImplied( $sql, $fname ) {
+	private function beginIfImplied( $sql, $fname, $flags ) {
 		if (
+			!$this->fieldHasBit( $flags, self::QUERY_IGNORE_DBO_TRX ) &&
 			!$this->trxLevel() &&
 			$this->getFlag( self::DBO_TRX ) &&
-			$this->isTransactableQuery( $sql )
+			$this->platform->isTransactableQuery( $sql )
 		) {
 			$this->begin( __METHOD__ . " ($fname)", self::TRANSACTION_INTERNAL );
 			$this->transactionManager->turnOnAutomatic();
+
+			return true;
 		}
+
+		return false;
 	}
 
 	/**
-	 * Error out if the DB is not in a valid state for a query via query()
+	 * Check if the given query is appropriate to run in a public context
+	 *
+	 * The caller is assumed to come from outside Database.
+	 * In order to keep the DB handle's session state tracking in sync, certain queries
+	 * like "USE", "BEGIN", "COMMIT", and "ROLLBACK" must not be issued directly from
+	 * outside callers. Such commands should only be issued through dedicated methods
+	 * like selectDomain(), begin(), commit(), and rollback(), respectively.
+	 *
+	 * This also checks if the session state tracking was corrupted by a prior exception.
 	 *
 	 * @param string $sql
 	 * @param string $fname
 	 * @throws DBUnexpectedError
 	 * @throws DBTransactionStateError
 	 */
-	private function assertQueryIsCurrentlyAllowed( $sql, $fname ) {
-		$verb = $this->getQueryVerb( $sql );
+	private function assertQueryIsCurrentlyAllowed( string $sql, string $fname ) {
+		$verb = $this->platform->getQueryVerb( $sql );
+
 		if ( $verb === 'USE' ) {
 			throw new DBUnexpectedError( $this, "Got USE query; use selectDomain() instead" );
 		}
 
-		if ( $verb === 'ROLLBACK' ) { // transaction/savepoint
+		if ( $verb === 'ROLLBACK' ) {
+			// Whole transaction rollback is used for recovery
+			// @TODO: T269161; prevent "BEGIN"/"COMMIT"/"ROLLBACK" from outside callers
 			return;
 		}
 
 		if ( $this->csmError ) {
 			throw new DBTransactionStateError(
 				$this,
-				"Cannot execute query from $fname while session state is out of sync.\n\n" .
-					$this->csmError->getMessage() . "\n" .
-					$this->csmError->getTraceAsString()
+				"Cannot execute query from $fname while session state is out of sync",
+				[],
+				$this->csmError
 			);
 		}
 
-		$this->transactionManager->assertTransactionStatus( $this, $this->deprecationLogger, $fname );
+		$this->transactionManager->assertSessionStatus( $this, $fname );
+
+		if ( $verb !== 'ROLLBACK TO SAVEPOINT' ) {
+			$this->transactionManager->assertTransactionStatus(
+				$this,
+				$this->deprecationLogger,
+				$fname
+			);
+		}
 	}
 
 	/**
-	 * Determine whether it is safe to retry queries after a database connection is lost
+	 * Determine how to handle a connection lost discovered during a query attempt
 	 *
-	 * @param string $sql SQL query
-	 * @param bool $priorWritesPending Whether there is a transaction open with
-	 *     possible write queries or transaction pre-commit/idle callbacks
-	 *     waiting on it to finish.
-	 * @return bool True if it is safe to retry the query, false otherwise
+	 * This checks if explicit transactions, pending transaction writes, and important
+	 * session-level state (locks, temp tables) was lost. Point-in-time read snapshot loss
+	 * is considered acceptable for DBO_TRX logic.
+	 *
+	 * If state was lost, but that loss was discovered during a ROLLBACK that would have
+	 * destroyed that state anyway, treat the error as recoverable.
+	 *
+	 * @param string $sql SQL query statement that encountered or caused the connection loss
+	 * @param float $walltime How many seconds passes while attempting the query
+	 * @param CriticalSessionInfo $priorSessInfo Session state just before the query
+	 * @return int Recovery approach. One of the following ERR_* class constants:
+	 *   - Database::ERR_RETRY_QUERY: reconnect silently, retry query
+	 *   - Database::ERR_ABORT_QUERY: reconnect silently, do not retry query
+	 *   - Database::ERR_ABORT_TRX: reconnect, throw error, enforce transaction rollback
+	 *   - Database::ERR_ABORT_SESSION: reconnect, throw error, enforce session rollback
 	 */
-	private function canRecoverFromDisconnect( $sql, $priorWritesPending ) {
+	private function assessConnectionLoss(
+		string $sql,
+		float $walltime,
+		CriticalSessionInfo $priorSessInfo
+	) {
+		$verb = $this->platform->getQueryVerb( $sql );
+
+		if ( $walltime < self::DROPPED_CONN_BLAME_THRESHOLD_SEC ) {
+			// Query failed quickly; the connection was probably lost before the query was sent
+			$res = self::ERR_RETRY_QUERY;
+		} else {
+			// Query took a long time; the connection was probably lost during query execution
+			$res = self::ERR_ABORT_QUERY;
+		}
+
+		// List of problems causing session/transaction state corruption
 		$blockers = [];
-		if ( $this->sessionNamedLocks ) {
-			// Named locks were automatically released, breaking the expectations
-			// of callers relying on those locks for critical section enforcement
-			$blockers[] = 'named locks';
+		// Loss of named locks breaks future callers relying on those locks for critical sections
+		foreach ( $priorSessInfo->namedLocks as $lockName => $lockInfo ) {
+			if ( $lockInfo['trxId'] && $lockInfo['trxId'] === $priorSessInfo->trxId ) {
+				// Treat lost locks acquired during the lost transaction as a transaction state
+				// problem. Connection loss on ROLLBACK (non-SAVEPOINT) is tolerable since
+				// rollback automatically triggered server-side.
+				if ( $verb !== 'ROLLBACK' ) {
+					$res = max( $res, self::ERR_ABORT_TRX );
+					$blockers[] = "named lock '$lockName'";
+				}
+			} else {
+				// Treat lost locks acquired either during prior transactions or during no
+				// transaction as a session state problem.
+				$res = max( $res, self::ERR_ABORT_SESSION );
+				$blockers[] = "named lock '$lockName'";
+			}
 		}
-		if ( $this->sessionTempTables ) {
-			// Temp tables were automatically dropped, breaking the expectations
-			// of callers relying on those tables having been created/populated
-			$blockers[] = 'temp tables';
+		// Loss of temp tables breaks future callers relying on those tables for queries
+		foreach ( $priorSessInfo->tempTables as $tableName => $tableInfo ) {
+			if ( $tableInfo['trxId'] && $tableInfo['trxId'] === $priorSessInfo->trxId ) {
+				// Treat lost temp tables created during the lost transaction as a transaction
+				// state problem. Connection loss on ROLLBACK (non-SAVEPOINT) is tolerable since
+				// rollback automatically triggered server-side.
+				if ( $verb !== 'ROLLBACK' ) {
+					$res = max( $res, self::ERR_ABORT_TRX );
+					$blockers[] = "temp table '$tableName'";
+				}
+			} else {
+				// Treat lost temp tables created either during prior transactions or during
+				// no transaction as a session state problem.
+				$res = max( $res, self::ERR_ABORT_SESSION );
+				$blockers[] = "temp table '$tableName'";
+			}
 		}
-		if ( $priorWritesPending && $sql !== 'ROLLBACK' ) {
-			// Transaction was automatically rolled back, breaking the expectations
-			// of callers and DBO_TRX semantics relying on that transaction to provide
-			// atomic writes (point-in-time snapshot loss is acceptable for DBO_TRX)
-			$blockers[] = 'transaction writes';
+		// Loss of transaction writes breaks future callers and DBO_TRX logic relying on those
+		// writes to be atomic and still pending. Connection loss on ROLLBACK (non-SAVEPOINT) is
+		// tolerable since rollback automatically triggered server-side.
+		if ( $priorSessInfo->trxWriteCallers && $verb !== 'ROLLBACK' ) {
+			$res = max( $res, self::ERR_ABORT_TRX );
+			$blockers[] = 'uncommitted writes';
 		}
-		if ( $this->transactionManager->explicitTrxActive() && $sql !== 'ROLLBACK' && $sql !== 'COMMIT' ) {
-			// Transaction was automatically rolled back, breaking the expectations of
-			// callers relying on that transaction to provide atomic writes, serializability,
-			// or read results consistent with a single point-in-time snapshot. Disconnection
-			// on ROLLBACK is not an issue, since the intended result of rolling back the
-			// transaction was in fact achieved. Disconnection on COMMIT of an empty transaction
-			// is also not an issue, for similar reasons (T127428).
+		if ( $priorSessInfo->trxPreCommitCbCallers && $verb !== 'ROLLBACK' ) {
+			$res = max( $res, self::ERR_ABORT_TRX );
+			$blockers[] = 'pre-commit callbacks';
+		}
+		if ( $priorSessInfo->trxExplicit && $verb !== 'ROLLBACK' && $sql !== 'COMMIT' ) {
+			// Transaction automatically rolled back, breaking the expectations of callers
+			// relying on that transaction to provide atomic writes, serializability, or use
+			// one  point-in-time snapshot for all reads. Assume that connection loss is OK
+			// with ROLLBACK (non-SAVEPOINT). Likewise for COMMIT (T127428).
+			$res = max( $res, self::ERR_ABORT_TRX );
 			$blockers[] = 'explicit transaction';
 		}
 
@@ -1485,11 +1494,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					'db_log_category' => 'connection'
 				] )
 			);
-
-			return false;
 		}
 
-		return true;
+		return $res;
 	}
 
 	/**
@@ -1500,7 +1507,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// https://dev.mysql.com/doc/refman/5.7/en/implicit-commit.html
 		// https://www.postgresql.org/docs/9.2/static/sql-createtable.html (ignoring ON COMMIT)
 		$this->sessionTempTables = [];
-		$this->sessionDirtyTempTables = [];
 		// https://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_get-lock
 		// https://www.postgresql.org/docs/9.4/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$this->sessionNamedLocks = [];
@@ -1509,7 +1515,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Clear additional subclass fields
 		$oldTrxId = $this->transactionManager->consumeTrxId();
 		$this->doHandleSessionLossPreconnect();
-		$this->transactionManager->transactionWritingOut( $this, $oldTrxId );
+		$this->transactionManager->transactionWritingOut( $this, (string)$oldTrxId );
 	}
 
 	/**
@@ -1527,7 +1533,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Handle callbacks in trxEndCallbacks, e.g. onTransactionResolution().
 		// If callback suppression is set then the array will remain unhandled.
 		$this->runOnTransactionIdleCallbacks( self::TRIGGER_ROLLBACK );
-		// Handle callbacks in trxRecurringCallbacks, e.g. setTransactionListener()
+		// Handle callbacks in trxRecurringCallbacks, e.g. setTransactionListener().
+		// If callback suppression is set then the array will remain unhandled.
 		$this->runTransactionListenerCallbacks( self::TRIGGER_ROLLBACK );
 	}
 
@@ -1538,28 +1545,33 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * If this returns false, it will be treated as a generic query error.
 	 *
 	 * @stable to override
-	 * @param string $error Error text
-	 * @param int $errno Error number
+	 * @param int|string $errno Error number
 	 * @return bool
+	 * @since 1.39
 	 */
-	protected function wasQueryTimeout( $error, $errno ) {
+	protected function isQueryTimeoutError( $errno ) {
 		return false;
 	}
 
 	/**
-	 * Report a query error. Log the error, and if neither the object ignore
-	 * flag nor the $ignoreErrors flag is set, throw a DBQueryError.
+	 * Report a query error
+	 *
+	 * If $ignore is set, emit a DEBUG level log entry and continue,
+	 * otherwise, emit an ERROR level log entry and throw an exception.
 	 *
 	 * @param string $error
-	 * @param int $errno
+	 * @param int|string $errno
 	 * @param string $sql
 	 * @param string $fname
-	 * @param bool $ignore
+	 * @param bool $ignore Whether to just log an error rather than throw an exception
 	 * @throws DBQueryError
 	 */
 	public function reportQueryError( $error, $errno, $sql, $fname, $ignore = false ) {
 		if ( $ignore ) {
-			$this->queryLogger->debug( "SQL ERROR (ignored): $error", [ 'db_log_category' => 'query' ] );
+			$this->queryLogger->debug(
+				"SQL ERROR (ignored): $error",
+				[ 'db_log_category' => 'query' ]
+			);
 		} else {
 			throw $this->getQueryExceptionAndLog( $error, $errno, $sql, $fname );
 		}
@@ -1598,7 +1610,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return DBError
 	 */
 	private function getQueryException( $error, $errno, $sql, $fname ) {
-		if ( $this->wasQueryTimeout( $error, $errno ) ) {
+		if ( $this->isQueryTimeoutError( $errno ) ) {
 			return new DBQueryTimeoutError( $this, $error, $errno, $sql, $fname );
 		} elseif ( $this->isConnectionError( $errno ) ) {
 			return new DBQueryDisconnectedError( $this, $error, $errno, $sql, $fname );
@@ -1643,7 +1655,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new DBUnexpectedError( $this, 'Cannot use more than one field' );
 		}
 
-		$options = $this->normalizeOptions( $options );
+		$options = $this->platform->normalizeOptions( $options );
 		$options['LIMIT'] = 1;
 
 		$res = $this->select( $table, $var, $cond, $fname, $options, $join_conds );
@@ -1668,7 +1680,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			throw new DBUnexpectedError( $this, "Cannot use an array of fields" );
 		}
 
-		$options = $this->normalizeOptions( $options );
+		$options = $this->platform->normalizeOptions( $options );
 		$res = $this->select( $table, [ 'value' => $var ], $cond, $fname, $options, $join_conds );
 		if ( $res === false ) {
 			throw new DBUnexpectedError( $this, "Got false from select()" );
@@ -1682,224 +1694,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $values;
 	}
 
-	/**
-	 * Returns an optional USE INDEX clause to go after the table, and a
-	 * string to go at the end of the query.
-	 *
-	 * @see Database::select()
-	 *
-	 * @stable to override
-	 * @param array $options Associative array of options to be turned into
-	 *   an SQL query, valid keys are listed in the function.
-	 * @return array
-	 */
-	protected function makeSelectOptions( array $options ) {
-		$preLimitTail = $postLimitTail = '';
-		$startOpts = '';
-
-		$noKeyOptions = [];
-
-		foreach ( $options as $key => $option ) {
-			if ( is_numeric( $key ) ) {
-				$noKeyOptions[$option] = true;
-			}
-		}
-
-		$preLimitTail .= $this->makeGroupByWithHaving( $options );
-
-		$preLimitTail .= $this->makeOrderBy( $options );
-
-		if ( isset( $noKeyOptions['FOR UPDATE'] ) ) {
-			$postLimitTail .= ' FOR UPDATE';
-		}
-
-		if ( isset( $noKeyOptions['LOCK IN SHARE MODE'] ) ) {
-			$postLimitTail .= ' LOCK IN SHARE MODE';
-		}
-
-		if ( isset( $noKeyOptions['DISTINCT'] ) || isset( $noKeyOptions['DISTINCTROW'] ) ) {
-			$startOpts .= 'DISTINCT';
-		}
-
-		# Various MySQL extensions
-		if ( isset( $noKeyOptions['STRAIGHT_JOIN'] ) ) {
-			$startOpts .= ' /*! STRAIGHT_JOIN */';
-		}
-
-		if ( isset( $noKeyOptions['SQL_BIG_RESULT'] ) ) {
-			$startOpts .= ' SQL_BIG_RESULT';
-		}
-
-		if ( isset( $noKeyOptions['SQL_BUFFER_RESULT'] ) ) {
-			$startOpts .= ' SQL_BUFFER_RESULT';
-		}
-
-		if ( isset( $noKeyOptions['SQL_SMALL_RESULT'] ) ) {
-			$startOpts .= ' SQL_SMALL_RESULT';
-		}
-
-		if ( isset( $noKeyOptions['SQL_CALC_FOUND_ROWS'] ) ) {
-			$startOpts .= ' SQL_CALC_FOUND_ROWS';
-		}
-
-		if ( isset( $options['USE INDEX'] ) && is_string( $options['USE INDEX'] ) ) {
-			$useIndex = $this->useIndexClause( $options['USE INDEX'] );
-		} else {
-			$useIndex = '';
-		}
-		if ( isset( $options['IGNORE INDEX'] ) && is_string( $options['IGNORE INDEX'] ) ) {
-			$ignoreIndex = $this->ignoreIndexClause( $options['IGNORE INDEX'] );
-		} else {
-			$ignoreIndex = '';
-		}
-
-		return [ $startOpts, $useIndex, $preLimitTail, $postLimitTail, $ignoreIndex ];
-	}
-
-	/**
-	 * Returns an optional GROUP BY with an optional HAVING
-	 *
-	 * @param array $options Associative array of options
-	 * @return string
-	 * @see Database::select()
-	 * @since 1.21
-	 */
-	protected function makeGroupByWithHaving( $options ) {
-		$sql = '';
-		if ( isset( $options['GROUP BY'] ) ) {
-			$gb = is_array( $options['GROUP BY'] )
-				? implode( ',', $options['GROUP BY'] )
-				: $options['GROUP BY'];
-			$sql .= ' GROUP BY ' . $gb;
-		}
-		if ( isset( $options['HAVING'] ) ) {
-			$having = is_array( $options['HAVING'] )
-				? $this->makeList( $options['HAVING'], self::LIST_AND )
-				: $options['HAVING'];
-			$sql .= ' HAVING ' . $having;
-		}
-
-		return $sql;
-	}
-
-	/**
-	 * Returns an optional ORDER BY
-	 *
-	 * @param array $options Associative array of options
-	 * @return string
-	 * @see Database::select()
-	 * @since 1.21
-	 */
-	protected function makeOrderBy( $options ) {
-		if ( isset( $options['ORDER BY'] ) ) {
-			$ob = is_array( $options['ORDER BY'] )
-				? implode( ',', $options['ORDER BY'] )
-				: $options['ORDER BY'];
-
-			return ' ORDER BY ' . $ob;
-		}
-
-		return '';
-	}
-
 	public function select(
 		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
-		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
-
-		return $this->query( $sql, $fname, self::QUERY_CHANGE_NONE );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function selectSQLText( $table, $vars, $conds = '', $fname = __METHOD__,
-		$options = [], $join_conds = []
-	) {
-		if ( is_array( $vars ) ) {
-			$fields = implode( ',', $this->fieldNamesWithAlias( $vars ) );
-		} else {
-			$fields = $vars;
-		}
-
 		$options = (array)$options;
-		$useIndexes = ( isset( $options['USE INDEX'] ) && is_array( $options['USE INDEX'] ) )
-			? $options['USE INDEX']
-			: [];
-		$ignoreIndexes = (
-			isset( $options['IGNORE INDEX'] ) &&
-			is_array( $options['IGNORE INDEX'] )
-		)
-			? $options['IGNORE INDEX']
-			: [];
+		$sql = $this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
+		// Treat SELECT queries with FOR UPDATE as writes. This matches
+		// how MySQL enforces read_only (FOR SHARE and LOCK IN SHADE MODE are allowed).
+		$flags = in_array( 'FOR UPDATE', $options, true )
+			? self::QUERY_CHANGE_ROWS
+			: self::QUERY_CHANGE_NONE;
 
-		if (
-			$this->selectOptionsIncludeLocking( $options ) &&
-			$this->selectFieldsOrOptionsAggregate( $vars, $options )
-		) {
-			// Some DB types (e.g. postgres) disallow FOR UPDATE with aggregate
-			// functions. Discourage use of such queries to encourage compatibility.
-			call_user_func(
-				$this->deprecationLogger,
-				__METHOD__ . ": aggregation used with a locking SELECT ($fname)"
-			);
-		}
-
-		if ( is_array( $table ) ) {
-			if ( count( $table ) === 0 ) {
-				$from = '';
-			} else {
-				$from = ' FROM ' .
-					$this->tableNamesWithIndexClauseOrJOIN(
-						$table, $useIndexes, $ignoreIndexes, $join_conds );
-			}
-		} elseif ( $table != '' ) {
-			$from = ' FROM ' .
-				$this->tableNamesWithIndexClauseOrJOIN(
-					[ $table ], $useIndexes, $ignoreIndexes, [] );
-		} else {
-			$from = '';
-		}
-
-		list( $startOpts, $useIndex, $preLimitTail, $postLimitTail, $ignoreIndex ) =
-			$this->makeSelectOptions( $options );
-
-		if ( is_array( $conds ) ) {
-			$conds = $this->makeList( $conds, self::LIST_AND );
-		}
-
-		if ( $conds === null || $conds === false ) {
-			$this->queryLogger->warning(
-				__METHOD__
-				. ' called from '
-				. $fname
-				. ' with incorrect parameters: $conds must be a string or an array',
-				[ 'db_log_category' => 'sql' ]
-			);
-			$conds = '';
-		}
-
-		if ( $conds === '' || $conds === '*' ) {
-			$sql = "SELECT $startOpts $fields $from $useIndex $ignoreIndex $preLimitTail";
-		} elseif ( is_string( $conds ) ) {
-			$sql = "SELECT $startOpts $fields $from $useIndex $ignoreIndex " .
-				"WHERE $conds $preLimitTail";
-		} else {
-			throw new DBUnexpectedError( $this, __METHOD__ . ' called with incorrect parameters' );
-		}
-
-		if ( isset( $options['LIMIT'] ) ) {
-			$sql = $this->limitResult( $sql, $options['LIMIT'],
-				$options['OFFSET'] ?? false );
-		}
-		$sql = "$sql $postLimitTail";
-
-		if ( isset( $options['EXPLAIN'] ) ) {
-			$sql = 'EXPLAIN ' . $sql;
-		}
-
-		return $sql;
+		return $this->query( $sql, $fname, $flags );
 	}
 
 	public function selectRow( $table, $vars, $conds, $fname = __METHOD__,
@@ -1927,8 +1733,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function estimateRowCount(
 		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
-		$conds = $this->normalizeConditions( $conds, $fname );
-		$column = $this->extractSingleFieldFromList( $var );
+		$conds = $this->platform->normalizeConditions( $conds, $fname );
+		$column = $this->platform->extractSingleFieldFromList( $var );
 		if ( is_string( $column ) && !in_array( $column, [ '*', '1' ] ) ) {
 			$conds[] = "$column IS NOT NULL";
 		}
@@ -1944,8 +1750,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	public function selectRowCount(
 		$tables, $var = '*', $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
 	) {
-		$conds = $this->normalizeConditions( $conds, $fname );
-		$column = $this->extractSingleFieldFromList( $var );
+		$conds = $this->platform->normalizeConditions( $conds, $fname );
+		$column = $this->platform->extractSingleFieldFromList( $var );
 		if ( is_string( $column ) && !in_array( $column, [ '*', '1' ] ) ) {
 			$conds[] = "$column IS NOT NULL";
 		}
@@ -1968,304 +1774,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$row = $res ? $res->fetchRow() : [];
 
 		return isset( $row['rowcount'] ) ? (int)$row['rowcount'] : 0;
-	}
-
-	/**
-	 * @param string|array $options
-	 * @return bool
-	 */
-	private function selectOptionsIncludeLocking( $options ) {
-		$options = (array)$options;
-		foreach ( [ 'FOR UPDATE', 'LOCK IN SHARE MODE' ] as $lock ) {
-			if ( in_array( $lock, $options, true ) ) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * @param array|string $fields
-	 * @param array|string $options
-	 * @return bool
-	 */
-	private function selectFieldsOrOptionsAggregate( $fields, $options ) {
-		foreach ( (array)$options as $key => $value ) {
-			if ( is_string( $key ) ) {
-				if ( preg_match( '/^(?:GROUP BY|HAVING)$/i', $key ) ) {
-					return true;
-				}
-			} elseif ( is_string( $value ) ) {
-				if ( preg_match( '/^(?:DISTINCT|DISTINCTROW)$/i', $value ) ) {
-					return true;
-				}
-			}
-		}
-
-		$regex = '/^(?:COUNT|MIN|MAX|SUM|GROUP_CONCAT|LISTAGG|ARRAY_AGG)\s*\\(/i';
-		foreach ( (array)$fields as $field ) {
-			if ( is_string( $field ) && preg_match( $regex, $field ) ) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * @param array $rowOrRows A single (field => value) map or a list of such maps
-	 * @return array[] List of (field => value) maps
-	 * @since 1.35
-	 */
-	final protected function normalizeRowArray( array $rowOrRows ) {
-		if ( !$rowOrRows ) {
-			$rows = [];
-		} elseif ( isset( $rowOrRows[0] ) ) {
-			$rows = $rowOrRows;
-		} else {
-			$rows = [ $rowOrRows ];
-		}
-
-		foreach ( $rows as $row ) {
-			if ( !is_array( $row ) ) {
-				throw new DBUnexpectedError( $this, "Got non-array in row array" );
-			} elseif ( !$row ) {
-				throw new DBUnexpectedError( $this, "Got empty array in row array" );
-			}
-		}
-
-		return $rows;
-	}
-
-	/**
-	 * @param array|string $conds
-	 * @param string $fname
-	 * @return array
-	 * @since 1.31
-	 */
-	final protected function normalizeConditions( $conds, $fname ) {
-		if ( $conds === null || $conds === false ) {
-			$this->queryLogger->warning(
-				__METHOD__
-				. ' called from '
-				. $fname
-				. ' with incorrect parameters: $conds must be a string or an array',
-				[ 'db_log_category' => 'sql' ]
-			);
-			return [];
-		} elseif ( $conds === '' ) {
-			return [];
-		}
-
-		return is_array( $conds ) ? $conds : [ $conds ];
-	}
-
-	/**
-	 * Validate and normalize parameters to upsert() or replace()
-	 *
-	 * @param string|string[]|string[][] $uniqueKeys Unique indexes (only one is allowed)
-	 * @param array[] &$rows The row array, which will be replaced with a normalized version.
-	 * @return string[]|null List of columns that defines a single unique index, or null for
-	 *   a legacy fallback to plain insert.
-	 * @since 1.35
-	 */
-	final protected function normalizeUpsertParams( $uniqueKeys, &$rows ) {
-		$rows = $this->normalizeRowArray( $rows );
-		if ( !$rows ) {
-			return null;
-		}
-		if ( !$uniqueKeys ) {
-			// For backwards compatibility, allow insertion of rows with no applicable key
-			$this->queryLogger->warning(
-				"upsert/replace called with no unique key",
-				[
-					'exception' => new RuntimeException(),
-					'db_log_category' => 'sql',
-				]
-			);
-			return null;
-		}
-		$identityKey = $this->normalizeUpsertKeys( $uniqueKeys );
-		if ( $identityKey ) {
-			$allDefaultKeyValues = $this->assertValidUpsertRowArray( $rows, $identityKey );
-			if ( $allDefaultKeyValues ) {
-				// For backwards compatibility, allow insertion of rows with all-NULL
-				// values for the unique columns (e.g. for an AUTOINCREMENT column)
-				$this->queryLogger->warning(
-					"upsert/replace called with all-null values for unique key",
-					[
-						'exception' => new RuntimeException(),
-						'db_log_category' => 'sql',
-					]
-				);
-				return null;
-			}
-		}
-		return $identityKey;
-	}
-
-	/**
-	 * @param string|string[]|string[][] $uniqueKeys Unique indexes (only one is allowed)
-	 * @return string[]|null List of columns that defines a single unique index,
-	 *   or null for a legacy fallback to plain insert.
-	 * @since 1.35
-	 */
-	private function normalizeUpsertKeys( $uniqueKeys ) {
-		if ( is_string( $uniqueKeys ) ) {
-			return [ $uniqueKeys ];
-		} elseif ( !is_array( $uniqueKeys ) ) {
-			throw new DBUnexpectedError( $this, 'Invalid unique key array' );
-		} else {
-			if ( count( $uniqueKeys ) !== 1 || !isset( $uniqueKeys[0] ) ) {
-				throw new DBUnexpectedError( $this,
-					"The unique key array should contain a single unique index" );
-			}
-
-			$uniqueKey = $uniqueKeys[0];
-			if ( is_string( $uniqueKey ) ) {
-				// Passing a list of strings for single-column unique keys is too
-				// easily confused with passing the columns of composite unique key
-				$this->queryLogger->warning( __METHOD__ .
-					" called with deprecated parameter style: " .
-					"the unique key array should be a string or array of string arrays",
-					[
-						'exception' => new RuntimeException(),
-						'db_log_category' => 'sql',
-					] );
-				return $uniqueKeys;
-			} elseif ( is_array( $uniqueKey ) ) {
-				return $uniqueKey;
-			} else {
-				throw new DBUnexpectedError( $this, 'Invalid unique key array entry' );
-			}
-		}
-	}
-
-	/**
-	 * @param string|array $options
-	 * @return array Combination option/value map and boolean option list
-	 * @since 1.35
-	 */
-	final protected function normalizeOptions( $options ) {
-		if ( is_array( $options ) ) {
-			return $options;
-		} elseif ( is_string( $options ) ) {
-			return ( $options === '' ) ? [] : [ $options ];
-		} else {
-			throw new DBUnexpectedError( $this, __METHOD__ . ': expected string or array' );
-		}
-	}
-
-	/**
-	 * @param array<int,array> $rows Normalized list of rows to insert
-	 * @param string[] $identityKey Columns of the (unique) identity key to UPSERT upon
-	 * @return bool Whether all the rows have NULL/absent values for all identity key columns
-	 * @since 1.37
-	 */
-	final protected function assertValidUpsertRowArray( array $rows, array $identityKey ) {
-		$numNulls = 0;
-		foreach ( $rows as $row ) {
-			foreach ( $identityKey as $column ) {
-				$numNulls += ( isset( $row[$column] ) ? 0 : 1 );
-			}
-		}
-
-		if (
-			$numNulls &&
-			$numNulls !== ( count( $rows ) * count( $identityKey ) )
-		) {
-			throw new DBUnexpectedError(
-				$this,
-				"NULL/absent values for unique key (" . implode( ',', $identityKey ) . ")"
-			);
-		}
-
-		return (bool)$numNulls;
-	}
-
-	/**
-	 * @param array $set Combined column/literal assignment map and SQL assignment list
-	 * @param string[] $identityKey Columns of the (unique) identity key to UPSERT upon
-	 * @param array<int,array> $rows List of rows to upsert
-	 * @since 1.37
-	 */
-	final protected function assertValidUpsertSetArray(
-		array $set,
-		array $identityKey,
-		array $rows
-	) {
-		// Sloppy callers might construct the SET array using the ROW array, leaving redundant
-		// column definitions for identity key columns. Detect this for backwards compatibility.
-		$soleRow = ( count( $rows ) == 1 ) ? reset( $rows ) : null;
-		// Disallow value changes for any columns in the identity key. This avoids additional
-		// insertion order dependencies that are unwieldy and difficult to implement efficiently
-		// in PostgreSQL.
-		foreach ( $set as $k => $v ) {
-			if ( is_string( $k ) ) {
-				// Key is a column name and value is a literal (e.g. string, int, null, ...)
-				if ( in_array( $k, $identityKey, true ) ) {
-					if ( $soleRow && array_key_exists( $k, $soleRow ) && $soleRow[$k] === $v ) {
-						$this->queryLogger->warning(
-							__METHOD__ . " called with redundant assignment to column '$k'",
-							[
-								'exception' => new RuntimeException(),
-								'db_log_category' => 'sql',
-							]
-						);
-					} else {
-						throw new DBUnexpectedError(
-							$this,
-							"Cannot reassign column '$k' since it belongs to identity key"
-						);
-					}
-				}
-			} elseif ( preg_match( '/^([a-zA-Z0-9_]+)\s*=/', $v, $m ) ) {
-				// Value is of the form "<unquoted alphanumeric column> = <SQL expression>"
-				if ( in_array( $m[1], $identityKey, true ) ) {
-					throw new DBUnexpectedError(
-						$this,
-						"Cannot reassign column '{$m[1]}' since it belongs to identity key"
-					);
-				}
-			}
-		}
-	}
-
-	/**
-	 * @param string $option Query option flag (e.g. "IGNORE" or "FOR UPDATE")
-	 * @param array $options Combination option/value map and boolean option list
-	 * @return bool Whether the option appears as an integer-keyed value in the options
-	 * @since 1.35
-	 */
-	final protected function isFlagInOptions( $option, array $options ) {
-		foreach ( array_keys( $options, $option, true ) as $k ) {
-			if ( is_int( $k ) ) {
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * @param array|string $var Field parameter in the style of select()
-	 * @return string|null Column name or null; ignores aliases
-	 */
-	final protected function extractSingleFieldFromList( $var ) {
-		if ( is_array( $var ) ) {
-			if ( !$var ) {
-				$column = null;
-			} elseif ( count( $var ) == 1 ) {
-				$column = $var[0] ?? reset( $var );
-			} else {
-				throw new DBUnexpectedError( $this, __METHOD__ . ': got multiple columns' );
-			}
-		} else {
-			$column = $var;
-		}
-
-		return $column;
 	}
 
 	public function lockForUpdate(
@@ -2320,526 +1828,20 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function insert( $table, $rows, $fname = __METHOD__, $options = [] ) {
-		$rows = $this->normalizeRowArray( $rows );
-		if ( !$rows ) {
+		$sql = $this->platform->dispatchingInsertSqlText( $table, $rows, $options );
+		if ( !$sql ) {
 			return true;
 		}
-
-		$options = $this->normalizeOptions( $options );
-		if ( $this->isFlagInOptions( 'IGNORE', $options ) ) {
-			$this->doInsertNonConflicting( $table, $rows, $fname );
-		} else {
-			$this->doInsert( $table, $rows, $fname );
-		}
+		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 
 		return true;
-	}
-
-	/**
-	 * @see Database::insert()
-	 * @stable to override
-	 * @param string $table
-	 * @param array $rows Non-empty list of rows
-	 * @param string $fname
-	 * @since 1.35
-	 */
-	protected function doInsert( $table, array $rows, $fname ) {
-		$encTable = $this->tableName( $table );
-		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
-
-		$sql = "INSERT INTO $encTable ($sqlColumns) VALUES $sqlTuples";
-
-		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
-	}
-
-	/**
-	 * @see Database::insert()
-	 * @stable to override
-	 * @param string $table
-	 * @param array $rows Non-empty list of rows
-	 * @param string $fname
-	 * @since 1.35
-	 */
-	protected function doInsertNonConflicting( $table, array $rows, $fname ) {
-		$encTable = $this->tableName( $table );
-		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
-		list( $sqlVerb, $sqlOpts ) = $this->makeInsertNonConflictingVerbAndOptions();
-
-		$sql = rtrim( "$sqlVerb $encTable ($sqlColumns) VALUES $sqlTuples $sqlOpts" );
-
-		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
-	}
-
-	/**
-	 * @stable to override
-	 * @return string[] ("INSERT"-style SQL verb, "ON CONFLICT"-style clause or "")
-	 * @since 1.35
-	 */
-	protected function makeInsertNonConflictingVerbAndOptions() {
-		return [ 'INSERT IGNORE INTO', '' ];
-	}
-
-	/**
-	 * Make SQL lists of columns, row tuples for INSERT/VALUES expressions
-	 *
-	 * The tuple column order is that of the columns of the first provided row.
-	 * The provided rows must have exactly the same keys and ordering thereof.
-	 *
-	 * @param array[] $rows Non-empty list of (column => value) maps
-	 * @return array (comma-separated columns, comma-separated tuples)
-	 * @since 1.35
-	 */
-	protected function makeInsertLists( array $rows ) {
-		$firstRow = $rows[0];
-		if ( !is_array( $firstRow ) || !$firstRow ) {
-			throw new DBUnexpectedError( $this, 'Got an empty row list or empty row' );
-		}
-		// List of columns that define the value tuple ordering
-		$tupleColumns = array_keys( $firstRow );
-
-		$valueTuples = [];
-		foreach ( $rows as $row ) {
-			$rowColumns = array_keys( $row );
-			// VALUES(...) requires a uniform correspondence of (column => value)
-			if ( $rowColumns !== $tupleColumns ) {
-				throw new DBUnexpectedError(
-					$this,
-					'Got row columns (' . implode( ', ', $rowColumns ) . ') ' .
-					'instead of expected (' . implode( ', ', $tupleColumns ) . ')'
-				);
-			}
-			// Make the value tuple that defines this row
-			$valueTuples[] = '(' . $this->makeList( $row, self::LIST_COMMA ) . ')';
-		}
-
-		return [
-			$this->makeList( $tupleColumns, self::LIST_NAMES ),
-			implode( ',', $valueTuples )
-		];
-	}
-
-	/**
-	 * Make UPDATE options array for Database::makeUpdateOptions
-	 *
-	 * @stable to override
-	 * @param array $options
-	 * @return array
-	 */
-	protected function makeUpdateOptionsArray( $options ) {
-		$options = $this->normalizeOptions( $options );
-
-		$opts = [];
-
-		if ( in_array( 'IGNORE', $options ) ) {
-			$opts[] = 'IGNORE';
-		}
-
-		return $opts;
-	}
-
-	/**
-	 * Make UPDATE options for the Database::update function
-	 *
-	 * @stable to override
-	 * @param array $options The options passed to Database::update
-	 * @return string
-	 */
-	protected function makeUpdateOptions( $options ) {
-		$opts = $this->makeUpdateOptionsArray( $options );
-
-		return implode( ' ', $opts );
 	}
 
 	public function update( $table, $set, $conds, $fname = __METHOD__, $options = [] ) {
-		$this->assertConditionIsNotEmpty( $conds, __METHOD__, true );
-		$table = $this->tableName( $table );
-		$opts = $this->makeUpdateOptions( $options );
-		$sql = "UPDATE $opts $table SET " . $this->makeList( $set, self::LIST_SET );
-
-		if ( $conds && $conds !== IDatabase::ALL_ROWS ) {
-			if ( is_array( $conds ) ) {
-				$conds = $this->makeList( $conds, self::LIST_AND );
-			}
-			$sql .= ' WHERE ' . $conds;
-		}
-
+		$sql = $this->platform->updateSqlText( $table, $set, $conds, $options );
 		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 
 		return true;
-	}
-
-	public function makeList( array $a, $mode = self::LIST_COMMA ) {
-		$first = true;
-		$list = '';
-
-		foreach ( $a as $field => $value ) {
-			if ( $first ) {
-				$first = false;
-			} else {
-				if ( $mode == self::LIST_AND ) {
-					$list .= ' AND ';
-				} elseif ( $mode == self::LIST_OR ) {
-					$list .= ' OR ';
-				} else {
-					$list .= ',';
-				}
-			}
-
-			if ( ( $mode == self::LIST_AND || $mode == self::LIST_OR ) && is_numeric( $field ) ) {
-				$list .= "($value)";
-			} elseif ( $mode == self::LIST_SET && is_numeric( $field ) ) {
-				$list .= "$value";
-			} elseif (
-				( $mode == self::LIST_AND || $mode == self::LIST_OR ) && is_array( $value )
-			) {
-				// Remove null from array to be handled separately if found
-				$includeNull = false;
-				foreach ( array_keys( $value, null, true ) as $nullKey ) {
-					$includeNull = true;
-					unset( $value[$nullKey] );
-				}
-				if ( count( $value ) == 0 && !$includeNull ) {
-					throw new InvalidArgumentException(
-						__METHOD__ . ": empty input for field $field" );
-				} elseif ( count( $value ) == 0 ) {
-					// only check if $field is null
-					$list .= "$field IS NULL";
-				} else {
-					// IN clause contains at least one valid element
-					if ( $includeNull ) {
-						// Group subconditions to ensure correct precedence
-						$list .= '(';
-					}
-					if ( count( $value ) == 1 ) {
-						// Special-case single values, as IN isn't terribly efficient
-						// Don't necessarily assume the single key is 0; we don't
-						// enforce linear numeric ordering on other arrays here.
-						$value = array_values( $value )[0];
-						$list .= $field . " = " . $this->addQuotes( $value );
-					} else {
-						$list .= $field . " IN (" . $this->makeList( $value ) . ") ";
-					}
-					// if null present in array, append IS NULL
-					if ( $includeNull ) {
-						$list .= " OR $field IS NULL)";
-					}
-				}
-			} elseif ( $value === null ) {
-				if ( $mode == self::LIST_AND || $mode == self::LIST_OR ) {
-					$list .= "$field IS ";
-				} elseif ( $mode == self::LIST_SET ) {
-					$list .= "$field = ";
-				}
-				$list .= 'NULL';
-			} else {
-				if (
-					$mode == self::LIST_AND || $mode == self::LIST_OR || $mode == self::LIST_SET
-				) {
-					$list .= "$field = ";
-				}
-				$list .= $mode == self::LIST_NAMES ? $value : $this->addQuotes( $value );
-			}
-		}
-
-		return $list;
-	}
-
-	public function makeWhereFrom2d( $data, $baseKey, $subKey ) {
-		$conds = [];
-
-		foreach ( $data as $base => $sub ) {
-			if ( count( $sub ) ) {
-				$conds[] = $this->makeList(
-					[ $baseKey => $base, $subKey => array_map( 'strval', array_keys( $sub ) ) ],
-					self::LIST_AND
-				);
-			}
-		}
-
-		if ( $conds ) {
-			return $this->makeList( $conds, self::LIST_OR );
-		} else {
-			// Nothing to search for...
-			return false;
-		}
-	}
-
-	public function factorConds( $condsArray ) {
-		if ( count( $condsArray ) === 0 ) {
-			throw new InvalidArgumentException(
-				__METHOD__ . ": empty condition array" );
-		}
-		$condsByFieldSet = [];
-		foreach ( $condsArray as $conds ) {
-			if ( !count( $conds ) ) {
-				throw new InvalidArgumentException(
-					__METHOD__ . ": empty condition subarray" );
-			}
-			$fieldKey = implode( ',', array_keys( $conds ) );
-			$condsByFieldSet[$fieldKey][] = $conds;
-		}
-		$result = '';
-		foreach ( $condsByFieldSet as $conds ) {
-			if ( $result !== '' ) {
-				$result .= ' OR ';
-			}
-			$result .= $this->factorCondsWithCommonFields( $conds );
-		}
-		return $result;
-	}
-
-	/**
-	 * Same as factorConds() but with each element in the array having the same
-	 * set of array keys. Validation is done by the caller.
-	 *
-	 * @param array $condsArray
-	 * @return string
-	 */
-	private function factorCondsWithCommonFields( $condsArray ) {
-		$first = $condsArray[array_key_first( $condsArray )];
-		if ( count( $first ) === 1 ) {
-			// IN clause
-			$field = array_key_first( $first );
-			$values = [];
-			foreach ( $condsArray as $conds ) {
-				$values[] = $conds[$field];
-			}
-			return $this->makeList( [ $field => $values ], self::LIST_AND );
-		}
-
-		$field1 = array_key_first( $first );
-		$nullExpressions = [];
-		$expressionsByField1 = [];
-		foreach ( $condsArray as $conds ) {
-			$value1 = $conds[$field1];
-			unset( $conds[$field1] );
-			if ( $value1 === null ) {
-				$nullExpressions[] = $conds;
-			} else {
-				$expressionsByField1[$value1][] = $conds;
-			}
-
-		}
-		$wrap = false;
-		$result = '';
-		foreach ( $expressionsByField1 as $value1 => $expressions ) {
-			if ( $result !== '' ) {
-				$result .= ' OR ';
-				$wrap = true;
-			}
-			$factored = $this->factorCondsWithCommonFields( $expressions );
-			$result .= "($field1 = " . $this->addQuotes( $value1 ) .
-				" AND $factored)";
-		}
-		if ( count( $nullExpressions ) ) {
-			$factored = $this->factorCondsWithCommonFields( $nullExpressions );
-			if ( $result !== '' ) {
-				$result .= ' OR ';
-				$wrap = true;
-			}
-			$result .= "($field1 IS NULL AND $factored)";
-		}
-		if ( $wrap ) {
-			return "($result)";
-		} else {
-			return $result;
-		}
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function bitNot( $field ) {
-		return "(~$field)";
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function bitAnd( $fieldLeft, $fieldRight ) {
-		return "($fieldLeft & $fieldRight)";
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function bitOr( $fieldLeft, $fieldRight ) {
-		return "($fieldLeft | $fieldRight)";
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function buildConcat( $stringList ) {
-		return 'CONCAT(' . implode( ',', $stringList ) . ')';
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function buildGroupConcatField(
-		$delim, $table, $field, $conds = '', $join_conds = []
-	) {
-		$fld = "GROUP_CONCAT($field SEPARATOR " . $this->addQuotes( $delim ) . ')';
-
-		return '(' . $this->selectSQLText( $table, $fld, $conds, __METHOD__, [], $join_conds ) . ')';
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function buildGreatest( $fields, $values ) {
-		return $this->buildSuperlative( 'GREATEST', $fields, $values );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function buildLeast( $fields, $values ) {
-		return $this->buildSuperlative( 'LEAST', $fields, $values );
-	}
-
-	/**
-	 * Build a superlative function statement comparing columns/values
-	 *
-	 * Integer and float values in $values will not be quoted
-	 *
-	 * If $fields is an array, then each value with a string key is treated as an expression
-	 * (which must be manually quoted); such string keys do not appear in the SQL and are only
-	 * descriptive aliases.
-	 *
-	 * @stable to override
-	 * @param string $sqlfunc Name of a SQL function
-	 * @param string|string[] $fields Name(s) of column(s) with values to compare
-	 * @param string|int|float|string[]|int[]|float[] $values Values to compare
-	 * @return string
-	 * @since 1.35
-	 */
-	protected function buildSuperlative( $sqlfunc, $fields, $values ) {
-		$fields = is_array( $fields ) ? $fields : [ $fields ];
-		$values = is_array( $values ) ? $values : [ $values ];
-
-		$encValues = [];
-		foreach ( $fields as $alias => $field ) {
-			if ( is_int( $alias ) ) {
-				$encValues[] = $this->addIdentifierQuotes( $field );
-			} else {
-				$encValues[] = $field; // expression
-			}
-		}
-		foreach ( $values as $value ) {
-			if ( is_int( $value ) || is_float( $value ) ) {
-				$encValues[] = $value;
-			} elseif ( is_string( $value ) ) {
-				$encValues[] = $this->addQuotes( $value );
-			} elseif ( $value === null ) {
-				throw new DBUnexpectedError( $this, 'Null value in superlative' );
-			} else {
-				throw new DBUnexpectedError( $this, 'Unexpected value type in superlative' );
-			}
-		}
-
-		return $sqlfunc . '(' . implode( ',', $encValues ) . ')';
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function buildSubstring( $input, $startPosition, $length = null ) {
-		$this->assertBuildSubstringParams( $startPosition, $length );
-		$functionBody = "$input FROM $startPosition";
-		if ( $length !== null ) {
-			$functionBody .= " FOR $length";
-		}
-		return 'SUBSTRING(' . $functionBody . ')';
-	}
-
-	/**
-	 * Check type and bounds for parameters to self::buildSubstring()
-	 *
-	 * All supported databases have substring functions that behave the same for
-	 * positive $startPosition and non-negative $length, but behaviors differ when
-	 * given negative $startPosition or negative $length. The simplest
-	 * solution to that is to just forbid those values.
-	 *
-	 * @param int $startPosition
-	 * @param int|null $length
-	 * @since 1.31
-	 */
-	protected function assertBuildSubstringParams( $startPosition, $length ) {
-		if ( $startPosition === 0 ) {
-			// The DBMSs we support use 1-based indexing here.
-			throw new InvalidArgumentException( 'Use 1 as $startPosition for the beginning of the string' );
-		}
-		if ( !is_int( $startPosition ) || $startPosition < 0 ) {
-			throw new InvalidArgumentException(
-				'$startPosition must be a positive integer'
-			);
-		}
-		if ( !( is_int( $length ) && $length >= 0 || $length === null ) ) {
-			throw new InvalidArgumentException(
-				'$length must be null or an integer greater than or equal to 0'
-			);
-		}
-	}
-
-	/**
-	 * Check type and bounds conditions parameters for update
-	 *
-	 * In order to prevent possible performance or replication issues,
-	 * empty condition for 'update' and 'delete' queries isn't allowed
-	 *
-	 * @param array|string $conds conditions to be validated on emptiness
-	 * @param string $fname caller's function name to be passed to exception
-	 * @param bool $deprecate define the assertion type. If true then
-	 *   wfDeprecated will be called, otherwise DBUnexpectedError will be
-	 *   raised.
-	 * @since 1.35
-	 */
-	protected function assertConditionIsNotEmpty( $conds, string $fname, bool $deprecate ) {
-		$isCondValid = ( is_string( $conds ) || is_array( $conds ) ) && $conds;
-		if ( !$isCondValid ) {
-			if ( $deprecate ) {
-				wfDeprecated( $fname . ' called with empty $conds', '1.35', false, 3 );
-			} else {
-				throw new DBUnexpectedError( $this, $fname . ' called with empty conditions' );
-			}
-		}
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function buildStringCast( $field ) {
-		// In theory this should work for any standards-compliant
-		// SQL implementation, although it may not be the best way to do it.
-		return "CAST( $field AS CHARACTER )";
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function buildIntegerCast( $field ) {
-		return 'CAST( ' . $field . ' AS INTEGER )';
-	}
-
-	public function buildSelectSubquery(
-		$table, $vars, $conds = '', $fname = __METHOD__,
-		$options = [], $join_conds = []
-	) {
-		return new Subquery(
-			$this->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds )
-		);
 	}
 
 	/**
@@ -2882,6 +1884,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	protected function doSelectDomain( DatabaseDomain $domain ) {
 		$this->currentDomain = $domain;
+		$this->platform->setCurrentDomain( $this->currentDomain );
 	}
 
 	public function getDBname() {
@@ -2894,348 +1897,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function getServerName() {
 		return $this->serverName ?? $this->getServer() ?? 'unknown';
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function tableName( $name, $format = 'quoted' ) {
-		if ( $name instanceof Subquery ) {
-			throw new DBUnexpectedError(
-				$this,
-				__METHOD__ . ': got Subquery instance when expecting a string'
-			);
-		}
-
-		# Skip the entire process when we have a string quoted on both ends.
-		# Note that we check the end so that we will still quote any use of
-		# use of `database`.table. But won't break things if someone wants
-		# to query a database table with a dot in the name.
-		if ( $this->isQuotedIdentifier( $name ) ) {
-			return $name;
-		}
-
-		# Lets test for any bits of text that should never show up in a table
-		# name. Basically anything like JOIN or ON which are actually part of
-		# SQL queries, but may end up inside of the table value to combine
-		# sql. Such as how the API is doing.
-		# Note that we use a whitespace test rather than a \b test to avoid
-		# any remote case where a word like on may be inside of a table name
-		# surrounded by symbols which may be considered word breaks.
-		if ( preg_match( '/(^|\s)(DISTINCT|JOIN|ON|AS)(\s|$)/i', $name ) !== 0 ) {
-			$this->queryLogger->warning(
-				__METHOD__ . ": use of subqueries is not supported this way",
-				[
-					'exception' => new RuntimeException(),
-					'db_log_category' => 'sql',
-				]
-			);
-
-			return $name;
-		}
-
-		# Split database and table into proper variables.
-		list( $database, $schema, $prefix, $table ) = $this->qualifiedTableComponents( $name );
-
-		# Quote $table and apply the prefix if not quoted.
-		# $tableName might be empty if this is called from Database::replaceVars()
-		$tableName = "{$prefix}{$table}";
-		if ( $format === 'quoted'
-			&& !$this->isQuotedIdentifier( $tableName )
-			&& $tableName !== ''
-		) {
-			$tableName = $this->addIdentifierQuotes( $tableName );
-		}
-
-		# Quote $schema and $database and merge them with the table name if needed
-		$tableName = $this->prependDatabaseOrSchema( $schema, $tableName, $format );
-		$tableName = $this->prependDatabaseOrSchema( $database, $tableName, $format );
-
-		return $tableName;
-	}
-
-	/**
-	 * Get the table components needed for a query given the currently selected database
-	 *
-	 * @param string $name Table name in the form of db.schema.table, db.table, or table
-	 * @return array (DB name or "" for default, schema name, table prefix, table name)
-	 */
-	protected function qualifiedTableComponents( $name ) {
-		# We reverse the explode so that database.table and table both output the correct table.
-		$dbDetails = explode( '.', $name, 3 );
-		if ( count( $dbDetails ) == 3 ) {
-			list( $database, $schema, $table ) = $dbDetails;
-			# We don't want any prefix added in this case
-			$prefix = '';
-		} elseif ( count( $dbDetails ) == 2 ) {
-			list( $database, $table ) = $dbDetails;
-			# We don't want any prefix added in this case
-			$prefix = '';
-			# In dbs that support it, $database may actually be the schema
-			# but that doesn't affect any of the functionality here
-			$schema = '';
-		} else {
-			list( $table ) = $dbDetails;
-			if ( isset( $this->tableAliases[$table] ) ) {
-				$database = $this->tableAliases[$table]['dbname'];
-				$schema = is_string( $this->tableAliases[$table]['schema'] )
-					? $this->tableAliases[$table]['schema']
-					: $this->relationSchemaQualifier();
-				$prefix = is_string( $this->tableAliases[$table]['prefix'] )
-					? $this->tableAliases[$table]['prefix']
-					: $this->tablePrefix();
-			} else {
-				$database = '';
-				$schema = $this->relationSchemaQualifier(); # Default schema
-				$prefix = $this->tablePrefix(); # Default prefix
-			}
-		}
-
-		return [ $database, $schema, $prefix, $table ];
-	}
-
-	/**
-	 * @param string|null $namespace Database or schema
-	 * @param string $relation Name of table, view, sequence, etc...
-	 * @param string $format One of (raw, quoted)
-	 * @return string Relation name with quoted and merged $namespace as needed
-	 */
-	private function prependDatabaseOrSchema( $namespace, $relation, $format ) {
-		if ( $namespace !== null && $namespace !== '' ) {
-			if ( $format === 'quoted' && !$this->isQuotedIdentifier( $namespace ) ) {
-				$namespace = $this->addIdentifierQuotes( $namespace );
-			}
-			$relation = $namespace . '.' . $relation;
-		}
-
-		return $relation;
-	}
-
-	public function tableNames( ...$tables ) {
-		$retVal = [];
-
-		foreach ( $tables as $name ) {
-			$retVal[$name] = $this->tableName( $name );
-		}
-
-		return $retVal;
-	}
-
-	public function tableNamesN( ...$tables ) {
-		$retVal = [];
-
-		foreach ( $tables as $name ) {
-			$retVal[] = $this->tableName( $name );
-		}
-
-		return $retVal;
-	}
-
-	/**
-	 * Get an aliased table name
-	 *
-	 * This returns strings like "tableName AS newTableName" for aliased tables
-	 * and "(SELECT * from tableA) newTablename" for subqueries (e.g. derived tables)
-	 *
-	 * @see Database::tableName()
-	 * @param string|Subquery $table Table name or object with a 'sql' field
-	 * @param string|bool $alias Table alias (optional)
-	 * @return string SQL name for aliased table. Will not alias a table to its own name
-	 */
-	protected function tableNameWithAlias( $table, $alias = false ) {
-		if ( is_string( $table ) ) {
-			$quotedTable = $this->tableName( $table );
-		} elseif ( $table instanceof Subquery ) {
-			$quotedTable = (string)$table;
-		} else {
-			throw new InvalidArgumentException( "Table must be a string or Subquery" );
-		}
-
-		if ( $alias === false || $alias === $table ) {
-			if ( $table instanceof Subquery ) {
-				throw new InvalidArgumentException( "Subquery table missing alias" );
-			}
-
-			return $quotedTable;
-		} else {
-			return $quotedTable . ' ' . $this->addIdentifierQuotes( $alias );
-		}
-	}
-
-	/**
-	 * Get an aliased field name
-	 * e.g. fieldName AS newFieldName
-	 *
-	 * @stable to override
-	 * @param string $name Field name
-	 * @param string|bool $alias Alias (optional)
-	 * @return string SQL name for aliased field. Will not alias a field to its own name
-	 */
-	protected function fieldNameWithAlias( $name, $alias = false ) {
-		if ( !$alias || (string)$alias === (string)$name ) {
-			return $name;
-		} else {
-			return $name . ' AS ' . $this->addIdentifierQuotes( $alias ); // PostgreSQL needs AS
-		}
-	}
-
-	/**
-	 * Gets an array of aliased field names
-	 *
-	 * @param array $fields [ [alias] => field ]
-	 * @return string[] See fieldNameWithAlias()
-	 */
-	protected function fieldNamesWithAlias( $fields ) {
-		$retval = [];
-		foreach ( $fields as $alias => $field ) {
-			if ( is_numeric( $alias ) ) {
-				$alias = $field;
-			}
-			$retval[] = $this->fieldNameWithAlias( $field, $alias );
-		}
-
-		return $retval;
-	}
-
-	/**
-	 * Get the aliased table name clause for a FROM clause
-	 * which might have a JOIN and/or USE INDEX or IGNORE INDEX clause
-	 *
-	 * @param array $tables ( [alias] => table )
-	 * @param array $use_index Same as for select()
-	 * @param array $ignore_index Same as for select()
-	 * @param array $join_conds Same as for select()
-	 * @return string
-	 */
-	protected function tableNamesWithIndexClauseOrJOIN(
-		$tables,
-		$use_index = [],
-		$ignore_index = [],
-		$join_conds = []
-	) {
-		$ret = [];
-		$retJOIN = [];
-		$use_index = (array)$use_index;
-		$ignore_index = (array)$ignore_index;
-		$join_conds = (array)$join_conds;
-
-		foreach ( $tables as $alias => $table ) {
-			if ( !is_string( $alias ) ) {
-				// No alias? Set it equal to the table name
-				$alias = $table;
-			}
-
-			if ( is_array( $table ) ) {
-				// A parenthesized group
-				if ( count( $table ) > 1 ) {
-					$joinedTable = '(' .
-						$this->tableNamesWithIndexClauseOrJOIN(
-							$table, $use_index, $ignore_index, $join_conds ) . ')';
-				} else {
-					// Degenerate case
-					$innerTable = reset( $table );
-					$innerAlias = key( $table );
-					$joinedTable = $this->tableNameWithAlias(
-						$innerTable,
-						is_string( $innerAlias ) ? $innerAlias : $innerTable
-					);
-				}
-			} else {
-				$joinedTable = $this->tableNameWithAlias( $table, $alias );
-			}
-
-			// Is there a JOIN clause for this table?
-			if ( isset( $join_conds[$alias] ) ) {
-				Assert::parameterType( 'array', $join_conds[$alias], "join_conds[$alias]" );
-				list( $joinType, $conds ) = $join_conds[$alias];
-				$tableClause = $this->normalizeJoinType( $joinType );
-				$tableClause .= ' ' . $joinedTable;
-				if ( isset( $use_index[$alias] ) ) { // has USE INDEX?
-					$use = $this->useIndexClause( implode( ',', (array)$use_index[$alias] ) );
-					if ( $use != '' ) {
-						$tableClause .= ' ' . $use;
-					}
-				}
-				if ( isset( $ignore_index[$alias] ) ) { // has IGNORE INDEX?
-					$ignore = $this->ignoreIndexClause(
-						implode( ',', (array)$ignore_index[$alias] ) );
-					if ( $ignore != '' ) {
-						$tableClause .= ' ' . $ignore;
-					}
-				}
-				$on = $this->makeList( (array)$conds, self::LIST_AND );
-				if ( $on != '' ) {
-					$tableClause .= ' ON (' . $on . ')';
-				}
-
-				$retJOIN[] = $tableClause;
-			} elseif ( isset( $use_index[$alias] ) ) {
-				// Is there an INDEX clause for this table?
-				$tableClause = $joinedTable;
-				$tableClause .= ' ' . $this->useIndexClause(
-						implode( ',', (array)$use_index[$alias] )
-					);
-
-				$ret[] = $tableClause;
-			} elseif ( isset( $ignore_index[$alias] ) ) {
-				// Is there an INDEX clause for this table?
-				$tableClause = $joinedTable;
-				$tableClause .= ' ' . $this->ignoreIndexClause(
-						implode( ',', (array)$ignore_index[$alias] )
-					);
-
-				$ret[] = $tableClause;
-			} else {
-				$tableClause = $joinedTable;
-
-				$ret[] = $tableClause;
-			}
-		}
-
-		// We can't separate explicit JOIN clauses with ',', use ' ' for those
-		$implicitJoins = implode( ',', $ret );
-		$explicitJoins = implode( ' ', $retJOIN );
-
-		// Compile our final table clause
-		return implode( ' ', [ $implicitJoins, $explicitJoins ] );
-	}
-
-	/**
-	 * Validate and normalize a join type
-	 *
-	 * Subclasses may override this to add supported join types.
-	 *
-	 * @param string $joinType
-	 * @return string
-	 */
-	protected function normalizeJoinType( string $joinType ) {
-		switch ( strtoupper( $joinType ) ) {
-			case 'JOIN':
-			case 'INNER JOIN':
-				return 'JOIN';
-
-			case 'LEFT JOIN':
-				return 'LEFT JOIN';
-
-			case 'STRAIGHT_JOIN':
-			case 'STRAIGHT JOIN':
-				// MySQL only
-				return 'JOIN';
-
-			default:
-				return $joinType;
-		}
-	}
-
-	/**
-	 * Allows for index remapping in queries where this is not consistent across DBMS
-	 *
-	 * @param string $index
-	 * @return string
-	 */
-	protected function indexName( $index ) {
-		return $this->indexAliases[$index] ?? $index;
 	}
 
 	/**
@@ -3257,124 +1918,20 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function addIdentifierQuotes( $s ) {
-		return '"' . str_replace( '"', '""', $s ) . '"';
-	}
-
-	/**
-	 * Returns if the given identifier looks quoted or not according to
-	 * the database convention for quoting identifiers
-	 *
-	 * @stable to override
-	 * @note Do not use this to determine if untrusted input is safe.
-	 *   A malicious user can trick this function.
-	 * @param string $name
-	 * @return bool
-	 */
-	public function isQuotedIdentifier( $name ) {
-		return $name[0] == '"' && substr( $name, -1, 1 ) == '"';
-	}
-
-	/**
-	 * @stable to override
-	 * @param string $s
-	 * @param string $escapeChar
-	 * @return string
-	 */
-	protected function escapeLikeInternal( $s, $escapeChar = '`' ) {
-		return str_replace(
-			[ $escapeChar, '%', '_' ],
-			[ "{$escapeChar}{$escapeChar}", "{$escapeChar}%", "{$escapeChar}_" ],
-			$s
-		);
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function buildLike( $param, ...$params ) {
-		if ( is_array( $param ) ) {
-			$params = $param;
-		} else {
-			$params = func_get_args();
-		}
-
-		$s = '';
-
-		// We use ` instead of \ as the default LIKE escape character, since addQuotes()
-		// may escape backslashes, creating problems of double escaping. The `
-		// character has good cross-DBMS compatibility, avoiding special operators
-		// in MS SQL like ^ and %
-		$escapeChar = '`';
-
-		foreach ( $params as $value ) {
-			if ( $value instanceof LikeMatch ) {
-				$s .= $value->toString();
-			} else {
-				$s .= $this->escapeLikeInternal( $value, $escapeChar );
-			}
-		}
-
-		return ' LIKE ' .
-			$this->addQuotes( $s ) . ' ESCAPE ' . $this->addQuotes( $escapeChar ) . ' ';
-	}
-
-	public function anyChar() {
-		return new LikeMatch( '_' );
-	}
-
-	public function anyString() {
-		return new LikeMatch( '%' );
-	}
-
 	public function nextSequenceValue( $seqName ) {
 		return null;
 	}
 
-	/**
-	 * USE INDEX clause.
-	 *
-	 * This can be used as optimisation in queries that affect tables with multiple
-	 * indexes if the database does not pick the most optimal one by default.
-	 * The "right" index might vary between database backends and versions thereof,
-	 * as such in practice this is biased toward specifically improving performance
-	 * of large wiki farms that use MySQL or MariaDB (like Wikipedia).
-	 *
-	 * @stable to override
-	 * @param string $index
-	 * @return string
-	 */
-	public function useIndexClause( $index ) {
-		return '';
-	}
-
-	/**
-	 * IGNORE INDEX clause.
-	 *
-	 * The inverse of Database::useIndexClause.
-	 *
-	 * @stable to override
-	 * @param string $index
-	 * @return string
-	 */
-	public function ignoreIndexClause( $index ) {
-		return '';
-	}
-
 	public function replace( $table, $uniqueKeys, $rows, $fname = __METHOD__ ) {
-		$identityKey = $this->normalizeUpsertParams( $uniqueKeys, $rows );
+		$identityKey = $this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
 		if ( !$rows ) {
 			return;
 		}
 		if ( $identityKey ) {
 			$this->doReplace( $table, $identityKey, $rows, $fname );
 		} else {
-			$this->doInsert( $table, $rows, $fname );
+			$sql = $this->platform->insertSqlText( $table, $rows );
+			$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 		}
 	}
 
@@ -3393,10 +1950,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		try {
 			foreach ( $rows as $row ) {
 				// Delete any conflicting rows (including ones inserted from $rows)
-				$sqlCondition = $this->makeKeyCollisionCondition( [ $row ], $identityKey );
+				$sqlCondition = $this->platform->makeKeyCollisionCondition( [ $row ], $identityKey );
 				$this->delete( $table, [ $sqlCondition ], $fname );
 				$affectedRowCount += $this->affectedRows();
-				// Now insert the row
+				// Insert the new row
 				$this->insert( $table, $row, $fname );
 				$affectedRowCount += $this->affectedRows();
 			}
@@ -3408,73 +1965,35 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->affectedRowCount = $affectedRowCount;
 	}
 
-	/**
-	 * Build an SQL condition to find rows with matching key values to those in $rows.
-	 *
-	 * @param array[] $rows Non-empty list of rows
-	 * @param string[] $uniqueKey List of columns that define a single unique index
-	 * @return string
-	 */
-	private function makeKeyCollisionCondition( array $rows, array $uniqueKey ) {
-		if ( !$rows ) {
-			throw new DBUnexpectedError( $this, "Empty row array" );
-		} elseif ( !$uniqueKey ) {
-			throw new DBUnexpectedError( $this, "Empty unique key array" );
-		}
-
-		if ( count( $uniqueKey ) == 1 ) {
-			// Use a simple IN(...) clause
-			$column = reset( $uniqueKey );
-			$values = array_column( $rows, $column );
-			if ( count( $values ) !== count( $rows ) ) {
-				throw new DBUnexpectedError( $this, "Missing values for unique key ($column)" );
-			}
-
-			return $this->makeList( [ $column => $values ], self::LIST_AND );
-		}
-
-		$nullByUniqueKeyColumn = array_fill_keys( $uniqueKey, null );
-
-		$orConds = [];
-		foreach ( $rows as $row ) {
-			$rowKeyMap = array_intersect_key( $row, $nullByUniqueKeyColumn );
-			if ( count( $rowKeyMap ) != count( $uniqueKey ) ) {
-				throw new DBUnexpectedError(
-					$this,
-					"Missing values for unique key (" . implode( ',', $uniqueKey ) . ")"
-				);
-			}
-			$orConds[] = $this->makeList( $rowKeyMap, self::LIST_AND );
-		}
-
-		return count( $orConds ) > 1
-			? $this->makeList( $orConds, self::LIST_OR )
-			: $orConds[0];
-	}
-
 	public function upsert( $table, array $rows, $uniqueKeys, array $set, $fname = __METHOD__ ) {
-		$identityKey = $this->normalizeUpsertParams( $uniqueKeys, $rows );
+		$identityKey = $this->platform->normalizeUpsertParams( $uniqueKeys, $rows );
 		if ( !$rows ) {
 			return true;
 		}
 		if ( $identityKey ) {
-			$this->assertValidUpsertSetArray( $set, $identityKey, $rows );
+			$this->platform->assertValidUpsertSetArray( $set, $identityKey, $rows );
 			$this->doUpsert( $table, $rows, $identityKey, $set, $fname );
 		} else {
-			$this->doInsert( $table, $rows, $fname );
+			$sql = $this->platform->insertSqlText( $table, $rows );
+			$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 		}
 
 		return true;
 	}
 
 	/**
-	 * @param string $table
-	 * @param array[] $rows Non-empty list of rows
-	 * @param string[] $identityKey List of columns defining a unique key
-	 * @param string[] $set Non-empty combined column/literal map and SQL assignment list
-	 * @param string $fname
+	 * Perform an UPSERT query
+	 *
 	 * @see Database::upsert()
+	 * @see Database::buildExcludedValue()
+	 *
 	 * @stable to override
+	 *
+	 * @param string $table Table name
+	 * @param array[] $rows Non-empty list of rows to insert
+	 * @param string[] $identityKey Columns of the (unique) identity key to UPSERT upon
+	 * @param string[] $set Non-empty map of (column name => SQL expression or literal)
+	 * @param string $fname
 	 * @since 1.35
 	 */
 	protected function doUpsert(
@@ -3484,26 +2003,48 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		array $set,
 		string $fname
 	) {
+		$encTable = $this->tableName( $table );
+		$sqlColumnAssignments = $this->makeList( $set, self::LIST_SET );
+		// Check if there is a SQL assignment expression in $set
+		$useWith = isset( $set[0] );
+
 		$affectedRowCount = 0;
 		$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 		try {
 			foreach ( $rows as $row ) {
-				// Update any existing conflicting rows (including ones inserted from $rows)
-				$sqlConditions = $this->makeKeyCollisionCondition( [ $row ], $identityKey );
-				$this->update( $table, $set, [ $sqlConditions ], $fname );
+				// Update any existing conflicting row (including ones inserted from $rows)
+				[ $sqlColumns, $sqlTuples, $sqlVals ] = $this->platform->makeInsertLists( [ $row ], '__' );
+				$sqlConditions = $this->platform->makeKeyCollisionCondition( [ $row ], $identityKey );
+				// Since "WITH...AS (VALUES ...)" loses type information, subclasses should
+				// override with method if that might cause problems with the SET clause.
+				// https://www.sqlite.org/lang_update.html
+				// https://mariadb.com/kb/en/with/
+				// https://dev.mysql.com/doc/refman/8.0/en/update.html
+				// https://www.postgresql.org/docs/9.2/sql-update.html
+				$sql =
+					( $useWith ? "WITH __VALS ($sqlVals) AS (VALUES $sqlTuples) " : "" ) .
+					"UPDATE $encTable SET $sqlColumnAssignments " .
+					"WHERE ($sqlConditions)";
+				$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 				$rowsUpdated = $this->affectedRows();
 				$affectedRowCount += $rowsUpdated;
+				// Insert the new row if there are no conflicts
 				if ( $rowsUpdated <= 0 ) {
-					// Now insert the row if there are no conflicts
-					$this->insert( $table, $row, $fname );
+					// https://sqlite.org/lang_insert.html
+					// https://mariadb.com/kb/en/with/
+					// https://dev.mysql.com/doc/refman/8.0/en/with.html
+					// https://www.postgresql.org/docs/9.2/sql-insert.html
+					$sql = "INSERT INTO $encTable ($sqlColumns) VALUES $sqlTuples";
+					$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 					$affectedRowCount += $this->affectedRows();
 				}
 			}
-			$this->endAtomic( $fname );
 		} catch ( DBError $e ) {
 			$this->cancelAtomic( $fname );
 			throw $e;
 		}
+		$this->endAtomic( $fname );
+		// Set the affected row count for the whole operation
 		$this->affectedRowCount = $affectedRowCount;
 	}
 
@@ -3519,18 +2060,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$conds,
 		$fname = __METHOD__
 	) {
-		if ( !$conds ) {
-			throw new DBUnexpectedError( $this, __METHOD__ . ' called with empty $conds' );
-		}
-
-		$delTable = $this->tableName( $delTable );
-		$joinTable = $this->tableName( $joinTable );
-		$sql = "DELETE FROM $delTable WHERE $delVar IN (SELECT $joinVar FROM $joinTable ";
-		if ( $conds != '*' ) {
-			$sql .= 'WHERE ' . $this->makeList( $conds, self::LIST_AND );
-		}
-		$sql .= ')';
-
+		$sql = $this->platform->deleteJoinSqlText( $delTable, $joinTable, $delVar, $joinVar, $conds );
 		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 	}
 
@@ -3559,18 +2089,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function delete( $table, $conds, $fname = __METHOD__ ) {
-		$this->assertConditionIsNotEmpty( $conds, __METHOD__, false );
-
-		$table = $this->tableName( $table );
-		$sql = "DELETE FROM $table";
-
-		if ( $conds !== IDatabase::ALL_ROWS ) {
-			if ( is_array( $conds ) ) {
-				$conds = $this->makeList( $conds, self::LIST_AND );
-			}
-			$sql .= ' WHERE ' . $conds;
-		}
-
+		$sql = $this->platform->deleteSqlText( $table, $conds );
 		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 
 		return true;
@@ -3588,8 +2107,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	) {
 		static $hints = [ 'NO_AUTO_COLUMNS' ];
 
-		$insertOptions = $this->normalizeOptions( $insertOptions );
-		$selectOptions = $this->normalizeOptions( $selectOptions );
+		$insertOptions = $this->platform->normalizeOptions( $insertOptions );
+		$selectOptions = $this->platform->normalizeOptions( $selectOptions );
 
 		if ( $this->cliMode && $this->isInsertSelectSafe( $insertOptions, $selectOptions ) ) {
 			// For massive migrations with downtime, we don't want to select everything
@@ -3660,7 +2179,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// know how big the INSERT is going to be.
 		$fields = [];
 		foreach ( $varMap as $dstColumn => $sourceColumnOrSql ) {
-			$fields[] = $this->fieldNameWithAlias( $sourceColumnOrSql, $dstColumn );
+			$fields[] = $this->platform->fieldNameWithAlias( $sourceColumnOrSql, $dstColumn );
 		}
 		$res = $this->select(
 			$srcTable,
@@ -3720,155 +2239,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		array $selectOptions,
 		$selectJoinConds
 	) {
-		list( $sqlVerb, $sqlOpts ) = $this->isFlagInOptions( 'IGNORE', $insertOptions )
-			? $this->makeInsertNonConflictingVerbAndOptions()
-			: [ 'INSERT INTO', '' ];
-		$encDstTable = $this->tableName( $destTable );
-		$sqlDstColumns = implode( ',', array_keys( $varMap ) );
-		$selectSql = $this->selectSQLText(
+		$sql = $this->platform->insertSelectNativeSqlText(
+			$destTable,
 			$srcTable,
-			array_values( $varMap ),
+			$varMap,
 			$conds,
 			$fname,
+			$insertOptions,
 			$selectOptions,
 			$selectJoinConds
 		);
-
-		$sql = rtrim( "$sqlVerb $encDstTable ($sqlDstColumns) $selectSql $sqlOpts" );
-
 		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function limitResult( $sql, $limit, $offset = false ) {
-		if ( !is_numeric( $limit ) ) {
-			throw new DBUnexpectedError(
-				$this,
-				"Invalid non-numeric limit passed to " . __METHOD__
-			);
-		}
-		// This version works in MySQL and SQLite. It will very likely need to be
-		// overridden for most other RDBMS subclasses.
-		return "$sql LIMIT "
-			. ( ( is_numeric( $offset ) && $offset != 0 ) ? "{$offset}," : "" )
-			. "{$limit} ";
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function unionSupportsOrderAndLimit() {
-		return true; // True for almost every DB supported
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function unionQueries( $sqls, $all ) {
-		$glue = $all ? ') UNION ALL (' : ') UNION (';
-
-		return '(' . implode( $glue, $sqls ) . ')';
-	}
-
-	public function unionConditionPermutations(
-		$table,
-		$vars,
-		array $permute_conds,
-		$extra_conds = '',
-		$fname = __METHOD__,
-		$options = [],
-		$join_conds = []
-	) {
-		// First, build the Cartesian product of $permute_conds
-		$conds = [ [] ];
-		foreach ( $permute_conds as $field => $values ) {
-			if ( !$values ) {
-				// Skip empty $values
-				continue;
-			}
-			$values = array_unique( $values );
-			$newConds = [];
-			foreach ( $conds as $cond ) {
-				foreach ( $values as $value ) {
-					$cond[$field] = $value;
-					$newConds[] = $cond; // Arrays are by-value, not by-reference, so this works
-				}
-			}
-			$conds = $newConds;
-		}
-
-		$extra_conds = $extra_conds === '' ? [] : (array)$extra_conds;
-
-		// If there's just one condition and no subordering, hand off to
-		// selectSQLText directly.
-		if ( count( $conds ) === 1 &&
-			( !isset( $options['INNER ORDER BY'] ) || !$this->unionSupportsOrderAndLimit() )
-		) {
-			return $this->selectSQLText(
-				$table, $vars, $conds[0] + $extra_conds, $fname, $options, $join_conds
-			);
-		}
-
-		// Otherwise, we need to pull out the order and limit to apply after
-		// the union. Then build the SQL queries for each set of conditions in
-		// $conds. Then union them together (using UNION ALL, because the
-		// product *should* already be distinct).
-		$orderBy = $this->makeOrderBy( $options );
-		$limit = $options['LIMIT'] ?? null;
-		$offset = $options['OFFSET'] ?? false;
-		$all = empty( $options['NOTALL'] ) && !in_array( 'NOTALL', $options );
-		if ( !$this->unionSupportsOrderAndLimit() ) {
-			unset( $options['ORDER BY'], $options['LIMIT'], $options['OFFSET'] );
-		} else {
-			if ( array_key_exists( 'INNER ORDER BY', $options ) ) {
-				$options['ORDER BY'] = $options['INNER ORDER BY'];
-			}
-			if ( $limit !== null && is_numeric( $offset ) && $offset != 0 ) {
-				// We need to increase the limit by the offset rather than
-				// using the offset directly, otherwise it'll skip incorrectly
-				// in the subqueries.
-				$options['LIMIT'] = $limit + $offset;
-				unset( $options['OFFSET'] );
-			}
-		}
-
-		$sqls = [];
-		foreach ( $conds as $cond ) {
-			$sqls[] = $this->selectSQLText(
-				$table, $vars, $cond + $extra_conds, $fname, $options, $join_conds
-			);
-		}
-		$sql = $this->unionQueries( $sqls, $all ) . $orderBy;
-		if ( $limit !== null ) {
-			$sql = $this->limitResult( $sql, $limit, $offset );
-		}
-
-		return $sql;
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function conditional( $cond, $caseTrueExpression, $caseFalseExpression ) {
-		if ( is_array( $cond ) ) {
-			$cond = $this->makeList( $cond, self::LIST_AND );
-		}
-
-		return "(CASE WHEN $cond THEN $caseTrueExpression ELSE $caseFalseExpression END)";
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function strreplace( $orig, $old, $new ) {
-		return "REPLACE({$orig}, {$old}, {$new})";
 	}
 
 	/**
@@ -3917,6 +2298,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 * @param int|string $errno
 	 * @return bool Whether the given query error was a connection drop
+	 * @since 1.38
 	 */
 	protected function isConnectionError( $errno ) {
 		return false;
@@ -3924,12 +2306,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @stable to override
+	 * @param int|string $errno
 	 * @return bool Whether it is known that the last query error only caused statement rollback
 	 * @note This is for backwards compatibility for callers catching DBError exceptions in
 	 *   order to ignore problems like duplicate key errors or foreign key violations
-	 * @since 1.31
+	 * @since 1.39
 	 */
-	protected function wasKnownStatementRollbackError() {
+	protected function isKnownStatementRollbackError( $errno ) {
 		return false; // don't know; it could have caused a transaction rollback
 	}
 
@@ -4137,19 +2520,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Consume and run any "on transaction pre-commit" callbacks
-	 *
-	 * @internal This method should not be used outside of Database/LoadBalancer
-	 *
-	 * @since 1.22
-	 * @return int Number of callbacks attempted
-	 * @throws Throwable Any exception thrown by a callback
-	 */
-	public function runOnTransactionPreCommitCallbacks() {
-		return $this->transactionManager->runOnTransactionPreCommitCallbacks( $this );
-	}
-
-	/**
 	 * Actually run any "transaction listener" callbacks
 	 *
 	 * @internal This method should not be used outside of Database/LoadBalancer
@@ -4205,62 +2575,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->affectedRowCount = 0; // for the sake of consistency
 	}
 
-	/**
-	 * Create a savepoint
-	 *
-	 * This is used internally to implement atomic sections. It should not be
-	 * used otherwise.
-	 *
-	 * @stable to override
-	 * @since 1.31
-	 * @param string $identifier Identifier for the savepoint
-	 * @param string $fname Calling function name
-	 */
-	protected function doSavepoint( $identifier, $fname ) {
-		$sql = 'SAVEPOINT ' . $this->addIdentifierQuotes( $identifier );
-		$this->query( $sql, $fname, self::QUERY_CHANGE_TRX );
-	}
-
-	/**
-	 * Release a savepoint
-	 *
-	 * This is used internally to implement atomic sections. It should not be
-	 * used otherwise.
-	 *
-	 * @stable to override
-	 * @since 1.31
-	 * @param string $identifier Identifier for the savepoint
-	 * @param string $fname Calling function name
-	 */
-	protected function doReleaseSavepoint( $identifier, $fname ) {
-		$sql = 'RELEASE SAVEPOINT ' . $this->addIdentifierQuotes( $identifier );
-		$this->query( $sql, $fname, self::QUERY_CHANGE_TRX );
-	}
-
-	/**
-	 * Rollback to a savepoint
-	 *
-	 * This is used internally to implement atomic sections. It should not be
-	 * used otherwise.
-	 *
-	 * @stable to override
-	 * @since 1.31
-	 * @param string $identifier Identifier for the savepoint
-	 * @param string $fname Calling function name
-	 */
-	protected function doRollbackToSavepoint( $identifier, $fname ) {
-		$sql = 'ROLLBACK TO SAVEPOINT ' . $this->addIdentifierQuotes( $identifier );
-		$this->query( $sql, $fname, self::QUERY_CHANGE_TRX );
-	}
-
-	/**
-	 * @param string $fname
-	 * @return string
-	 */
-	private function nextSavepointId( $fname ) {
-		return $this->transactionManager->nextSavePointId( $this, $fname );
-	}
-
 	final public function startAtomic(
 		$fname = __METHOD__,
 		$cancelable = self::ATOMIC_NOT_CANCELABLE
@@ -4303,7 +2617,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				// transaction (e.g. changes from other sections or from outside of sections)
 				try {
 					$savepointId = $this->nextSavepointId( $fname );
-					$this->doSavepoint( $savepointId, $fname );
+					$sql = $this->platform->savepointSqlText( $savepointId );
+					$this->query( $sql, $fname, self::QUERY_CHANGE_TRX );
 				} catch ( DBError $e ) {
 					$this->completeCriticalSection( __METHOD__, $cs, $e );
 					throw $e;
@@ -4336,7 +2651,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$this->commit( $fname, self::FLUSHING_INTERNAL );
 				$runPostCommitCallbacks = true;
 			} elseif ( $savepointId !== null && $savepointId !== self::NOT_APPLICABLE ) {
-				$this->doReleaseSavepoint( $savepointId, $fname );
+				$sql = $this->platform->releaseSavepointSqlText( $savepointId );
+				$this->query( $sql, $fname, self::QUERY_CHANGE_TRX );
 			}
 		} catch ( DBError $e ) {
 			$this->completeCriticalSection( __METHOD__, $cs, $e );
@@ -4392,7 +2708,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				} else {
 					// Atomic section nested within the transaction; rollback the transaction
 					// to the state prior to this section and trigger its cancellation callbacks
-					$this->doRollbackToSavepoint( $savepointId, $fname );
+					$sql = $this->platform->rollbackToSavepointSqlText( $savepointId );
+					$this->query( $sql, $fname, self::QUERY_CHANGE_TRX );
 					$this->transactionManager->setTrxStatusToOk(); // no exception; recovered
 					$this->transactionManager->runOnAtomicSectionCancelCallbacks(
 						$this,
@@ -4401,7 +2718,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					);
 				}
 			} else {
-				$this->transactionManager->setTransactionErrorFromStatus( $this, $fname );
+				// Put the transaction into an error state if it's not already in one
+				$trxError = new DBUnexpectedError(
+					$this,
+					"Uncancelable atomic section canceled (got $fname)"
+				);
+				$this->transactionManager->setTransactionError( $trxError );
 			}
 		} finally {
 			// Fix up callbacks owned by the sections that were just cancelled.
@@ -4546,14 +2868,26 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( !$this->trxLevel() ) {
+			$this->transactionManager->setTrxStatusToNone();
 			$this->transactionManager->clearPreEndCallbacks();
+			if ( $this->transactionManager->trxLevel() <= TransactionManager::STATUS_TRX_ERROR ) {
+				$this->connLogger->info(
+					"$fname: acknowledged server-side transaction loss on {db_server}",
+					$this->getLogContext()
+				);
+			}
+
 			return;
 		}
 
 		$this->assertHasConnectionHandle();
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
-		$this->doRollback( $fname );
+		$sql = $this->platform->rollbackSqlText();
+		if ( $this->trxLevel() ) {
+			# Disconnects cause rollback anyway, so ignore those errors
+			$this->query( $sql, $fname, self::QUERY_SILENCE_ERRORS | self::QUERY_CHANGE_TRX );
+		}
 		$this->transactionManager->onRollback( $this );
 		// With FLUSHING_ALL_PEERS, callbacks will run when requested by a dedicated phase
 		// within LoadBalancer. With FLUSHING_INTERNAL, callbacks will run when requested by
@@ -4565,21 +2899,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Issues the ROLLBACK command to the database server.
-	 *
-	 * @stable to override
-	 * @see Database::rollback()
-	 * @param string $fname
-	 * @throws DBError
-	 */
-	protected function doRollback( $fname ) {
-		if ( $this->trxLevel() ) {
-			# Disconnects cause rollback anyway, so ignore those errors
-			$this->query( 'ROLLBACK', $fname, self::QUERY_SILENCE_ERRORS | self::QUERY_CHANGE_TRX );
-		}
-	}
-
-	/**
 	 * @internal Only for tests and highly discouraged
 	 * @param TransactionManager $transactionManager
 	 */
@@ -4587,13 +2906,60 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->transactionManager = $transactionManager;
 	}
 
+	public function flushSession( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
+		if ( $this->trxLevel() ) {
+			// Any existing transaction should have been rolled back already
+			throw new DBUnexpectedError(
+				$this,
+				"$fname: transaction still in progress (not yet rolled back)"
+			);
+		}
+
+		if (
+			$flush !== self::FLUSHING_INTERNAL &&
+			$flush !== self::FLUSHING_ALL_PEERS &&
+			$this->getFlag( self::DBO_TRX )
+		) {
+			throw new DBUnexpectedError(
+				$this,
+				"$fname: Expected mass flush of all peer connections (DBO_TRX set)"
+			);
+		}
+
+		// If the session state was already lost due to either an unacknowledged session
+		// state loss error (e.g. dropped connection) or an explicit connection close call,
+		// then there is nothing to do here. Note that such cases, even temporary tables and
+		// server-side config variables are lost (the invocation of this method is assumed to
+		// imply that such losses are tolerable).
+		if ( $this->transactionManager->sessionStatus() <= TransactionManager::STATUS_SESS_ERROR ) {
+			$this->connLogger->info(
+				"$fname: acknowledged server-side session loss on {db_server}",
+				$this->getLogContext()
+			);
+		} elseif ( $this->isOpen() ) {
+			// Connection handle exists; server-side session state must be flushed
+			$this->doFlushSession( $fname );
+			$this->sessionNamedLocks = [];
+		}
+
+		$this->transactionManager->clearSessionError();
+	}
+
+	/**
+	 * Reset the server-side session state for named locks and table locks
+	 *
+	 * Connection and query errors will be suppressed and logged
+	 *
+	 * @param string $fname
+	 * @since 1.38
+	 */
+	protected function doFlushSession( $fname ) {
+		// no-op
+	}
+
 	public function flushSnapshot( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		$this->transactionManager->onFlushSnapshot( $this, $fname, $flush, $this->getTransactionRoundId() );
 		$this->commit( $fname, self::FLUSHING_INTERNAL );
-	}
-
-	public function explicitTrxActive() {
-		return $this->transactionManager->explicitTrxActive();
 	}
 
 	/**
@@ -4623,24 +2989,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	public function listViews( $prefix = null, $fname = __METHOD__ ) {
 		throw new RuntimeException( __METHOD__ . ' is not implemented in descendant class' );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function timestamp( $ts = 0 ) {
-		$t = new ConvertibleTimestamp( $ts );
-		// Let errors bubble up to avoid putting garbage in the DB
-		return $t->getTimestamp( TS_MW );
-	}
-
-	public function timestampOrNull( $ts = null ) {
-		if ( $ts === null ) {
-			return null;
-		} else {
-			return $this->timestamp( $ts );
-		}
 	}
 
 	public function affectedRows() {
@@ -4734,14 +3082,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/**
 	 * Get the replica DB lag when the current transaction started
 	 *
-	 * This is useful when transactions might use snapshot isolation
-	 * (e.g. REPEATABLE-READ in innodb), so the "real" lag of that data
-	 * is this lag plus transaction duration. If they don't, it is still
-	 * safe to be pessimistic. This returns null if there is no transaction.
+	 * This is useful given that transactions might use point-in-time read snapshots,
+	 * in which case the lag estimate should be recorded just before the transaction
+	 * establishes the read snapshot (either BEGIN or the first SELECT/write query).
 	 *
-	 * This returns null if the lag status for this transaction was not yet recorded.
+	 * If snapshots are not used, it is still safe to be pessimistic.
 	 *
-	 * @return array|null ('lag': seconds or false on error, 'since': UNIX timestamp of BEGIN)
+	 * This returns null if there is no transaction or the lag status was not yet recorded.
+	 *
+	 * @return array|null ('lag': seconds or false, 'since': UNIX timestamp of BEGIN) or null
 	 * @since 1.27
 	 */
 	final protected function getRecordedTransactionLagStatus() {
@@ -4897,10 +3246,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
-	public function setSchemaVars( $vars ) {
-		$this->schemaVars = is_array( $vars ) ? $vars : null;
-	}
-
 	public function sourceStream(
 		$fp,
 		callable $lineCallback = null,
@@ -4940,7 +3285,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$cmd .= "$line\n";
 
 			if ( $done || feof( $fp ) ) {
-				$cmd = $this->replaceVars( $cmd );
+				$cmd = $this->platform->replaceVars( $cmd );
 
 				if ( $inputCallback ) {
 					$callbackResult = $inputCallback( $cmd );
@@ -4996,82 +3341,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Database-independent variable replacement. Replaces a set of variables
-	 * in an SQL statement with their contents as given by $this->getSchemaVars().
-	 *
-	 * Supports '{$var}' `{$var}` and / *$var* / (without the spaces) style variables.
-	 *
-	 * - '{$var}' should be used for text and is passed through the database's
-	 *   addQuotes method.
-	 * - `{$var}` should be used for identifiers (e.g. table and database names).
-	 *   It is passed through the database's addIdentifierQuotes method which
-	 *   can be overridden if the database uses something other than backticks.
-	 * - / *_* / or / *$wgDBprefix* / passes the name that follows through the
-	 *   database's tableName method.
-	 * - / *i* / passes the name that follows through the database's indexName method.
-	 * - In all other cases, / *$var* / is left unencoded. Except for table options,
-	 *   its use should be avoided. In 1.24 and older, string encoding was applied.
-	 *
-	 * @stable to override
-	 * @param string $ins SQL statement to replace variables in
-	 * @return string The new SQL statement with variables replaced
-	 */
-	protected function replaceVars( $ins ) {
-		$vars = $this->getSchemaVars();
-		return preg_replace_callback(
-			'!
-				/\* (\$wgDBprefix|[_i]) \*/ (\w*) | # 1-2. tableName, indexName
-				\'\{\$ (\w+) }\'                  | # 3. addQuotes
-				`\{\$ (\w+) }`                    | # 4. addIdentifierQuotes
-				/\*\$ (\w+) \*/                     # 5. leave unencoded
-			!x',
-			function ( $m ) use ( $vars ) {
-				// Note: Because of <https://bugs.php.net/bug.php?id=51881>,
-				// check for both nonexistent keys *and* the empty string.
-				if ( isset( $m[1] ) && $m[1] !== '' ) {
-					if ( $m[1] === 'i' ) {
-						return $this->indexName( $m[2] );
-					} else {
-						return $this->tableName( $m[2] );
-					}
-				} elseif ( isset( $m[3] ) && $m[3] !== '' && array_key_exists( $m[3], $vars ) ) {
-					return $this->addQuotes( $vars[$m[3]] );
-				} elseif ( isset( $m[4] ) && $m[4] !== '' && array_key_exists( $m[4], $vars ) ) {
-					return $this->addIdentifierQuotes( $vars[$m[4]] );
-				} elseif ( isset( $m[5] ) && $m[5] !== '' && array_key_exists( $m[5], $vars ) ) {
-					return $vars[$m[5]];
-				} else {
-					return $m[0];
-				}
-			},
-			$ins
-		);
-	}
-
-	/**
-	 * Get schema variables. If none have been set via setSchemaVars(), then
-	 * use some defaults from the current object.
-	 *
-	 * @return array
-	 */
-	protected function getSchemaVars() {
-		return $this->schemaVars ?? $this->getDefaultSchemaVars();
-	}
-
-	/**
-	 * Get schema variables to use if none have been set via setSchemaVars().
-	 *
-	 * Override this in derived classes to provide variables for tables.sql
-	 * and SQL patch files.
-	 *
-	 * @stable to override
-	 * @return array
-	 */
-	protected function getDefaultSchemaVars() {
-		return [];
-	}
-
-	/**
 	 * @inheritDoc
 	 */
 	public function lockIsFree( $lockName, $method ) {
@@ -5107,21 +3376,22 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$lockTsUnix = $this->doLock( $lockName, $method, $timeout );
 		if ( $lockTsUnix !== null ) {
 			$locked = true;
-			$this->sessionNamedLocks[$lockName] = $lockTsUnix;
+			$this->sessionNamedLocks[$lockName] = [
+				'ts' => $lockTsUnix,
+				'trxId' => $this->transactionManager->getTrxId()
+			];
 		} else {
 			$locked = false;
-			$this->queryLogger->info( __METHOD__ . " failed to acquire lock '{lockname}'",
+			$this->queryLogger->info(
+				__METHOD__ . " failed to acquire lock '{lockname}'",
 				[
 					'lockname' => $lockName,
 					'db_log_category' => 'locking'
-				] );
+				]
+			);
 		}
 
-		if ( $this->fieldHasBit( $flags, self::LOCK_TIMESTAMP ) ) {
-			return $lockTsUnix;
-		} else {
-			return $locked;
-		}
+		return $this->fieldHasBit( $flags, self::LOCK_TIMESTAMP ) ? $lockTsUnix : $locked;
 	}
 
 	/**
@@ -5204,78 +3474,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return false;
 	}
 
-	public function tableLocksHaveTransactionScope() {
-		return true;
-	}
-
-	final public function lockTables( array $read, array $write, $method ) {
-		if ( $this->writesOrCallbacksPending() ) {
-			throw new DBUnexpectedError( $this, "Transaction writes or callbacks still pending" );
-		}
-
-		if ( $this->tableLocksHaveTransactionScope() ) {
-			$this->startAtomic( $method );
-		}
-
-		return $this->doLockTables( $read, $write, $method );
-	}
-
-	/**
-	 * Helper function for lockTables() that handles the actual table locking
-	 *
-	 * @stable to override
-	 * @param array $read Array of tables to lock for read access
-	 * @param array $write Array of tables to lock for write access
-	 * @param string $method Name of caller
-	 * @return true
-	 */
-	protected function doLockTables( array $read, array $write, $method ) {
-		return true;
-	}
-
-	final public function unlockTables( $method ) {
-		if ( $this->tableLocksHaveTransactionScope() ) {
-			$this->endAtomic( $method );
-
-			return true; // locks released on COMMIT/ROLLBACK
-		}
-
-		return $this->doUnlockTables( $method );
-	}
-
-	/**
-	 * Helper function for unlockTables() that handles the actual table unlocking
-	 *
-	 * @stable to override
-	 * @param string $method Name of caller
-	 * @return true
-	 */
-	protected function doUnlockTables( $method ) {
-		return true;
-	}
-
 	public function dropTable( $table, $fname = __METHOD__ ) {
 		if ( !$this->tableExists( $table, $fname ) ) {
 			return false;
 		}
 
-		$this->doDropTable( $table, $fname );
+		$sql = $this->platform->dropTableSqlText( $table );
+		$this->query( $sql, $fname, self::QUERY_CHANGE_SCHEMA );
 
 		return true;
-	}
-
-	/**
-	 * @see Database::dropTable()
-	 * @stable to override
-	 * @param string $table
-	 * @param string $fname
-	 */
-	protected function doDropTable( $table, $fname ) {
-		// https://mariadb.com/kb/en/drop-table/
-		// https://dev.mysql.com/doc/refman/8.0/en/drop-table.html
-		// https://www.postgresql.org/docs/9.2/sql-truncate.html
-		$sql = "DROP TABLE " . $this->tableName( $table ) . " CASCADE";
-		$this->query( $sql, $fname, self::QUERY_CHANGE_SCHEMA );
 	}
 
 	public function truncate( $tables, $fname = __METHOD__ ) {
@@ -5312,28 +3519,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @inheritDoc
 	 * @stable to override
 	 */
-	public function getInfinity() {
-		return 'infinity';
-	}
-
-	public function encodeExpiry( $expiry ) {
-		return ( $expiry == '' || $expiry == 'infinity' || $expiry == $this->getInfinity() )
-			? $this->getInfinity()
-			: $this->timestamp( $expiry );
-	}
-
-	public function decodeExpiry( $expiry, $format = TS_MW ) {
-		if ( $expiry == '' || $expiry == 'infinity' || $expiry == $this->getInfinity() ) {
-			return 'infinity';
-		}
-
-		return ConvertibleTimestamp::convert( $format, $expiry );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function setBigSelects( $value = true ) {
 		// no-op
 	}
@@ -5343,7 +3528,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @return array|bool Tuple of (read-only reason, "role" or "lb") or false if it is not
+	 * @return array|false Tuple of (read-only reason, "role" or "lb") or false if it is not
 	 */
 	protected function getReadOnlyReason() {
 		if ( $this->topologyRole === self::ROLE_STREAMING_REPLICA ) {
@@ -5358,22 +3543,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		return false;
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function setTableAliases( array $aliases ) {
-		$this->tableAliases = $aliases;
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function setIndexAliases( array $aliases ) {
-		$this->indexAliases = $aliases;
 	}
 
 	/**
@@ -5424,17 +3593,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *     try {
 	 *         //...send a query that changes the session/transaction state...
 	 *     } catch ( DBError $e ) {
-	 *         // Rely on assertQueryIsCurrentlyAllowed()/canRecoverFromDisconnect() to ensure
-	 *         // the rollback of incomplete transactions and the prohibition of reconnections
-	 *         // that mask a loss of session state (e.g. named locks and temp tables)
 	 *         $this->completeCriticalSection( __METHOD__, $cs );
 	 *         throw $expectedException;
 	 *     }
 	 *     try {
 	 *         //...send another query that changes the session/transaction state...
 	 *     } catch ( DBError $trxError ) {
-	 *         // Inform assertQueryIsCurrentlyAllowed() that the transaction must be rolled
-	 *         // back (e.g. even if the error was a pre-query check or normally recoverable)
+	 *         // Require ROLLBACK before allowing any other queries from outside callers
 	 *         $this->completeCriticalSection( __METHOD__, $cs, $trxError );
 	 *         throw $expectedException;
 	 *     }
@@ -5601,6 +3766,257 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->conn = null;
 		}
 	}
+
+	/* Start of methods delegated to TransactionManager. Avoid using them outside of rdbms library */
+
+	final public function trxLevel() {
+		// FIXME: A lot of tests disable constructor leading to trx manager being
+		// null and breaking, this is unacceptable but hopefully this should
+		// happen less by moving these functions to the transaction manager class.
+		if ( !$this->transactionManager ) {
+			$this->transactionManager = new TransactionManager( new NullLogger() );
+		}
+		return $this->transactionManager->trxLevel();
+	}
+
+	public function trxTimestamp() {
+		return $this->transactionManager->trxTimestamp();
+	}
+
+	public function trxStatus() {
+		return $this->transactionManager->trxStatus();
+	}
+
+	public function writesPending() {
+		return $this->transactionManager->writesPending();
+	}
+
+	public function writesOrCallbacksPending() {
+		return $this->transactionManager->writesOrCallbacksPending();
+	}
+
+	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL ) {
+		return $this->transactionManager->pendingWriteQueryDuration( $this, $type );
+	}
+
+	public function pendingWriteCallers() {
+		if ( !$this->transactionManager ) {
+			return [];
+		}
+		return $this->transactionManager->pendingWriteCallers();
+	}
+
+	public function pendingWriteAndCallbackCallers() {
+		if ( !$this->transactionManager ) {
+			return [];
+		}
+		return $this->transactionManager->pendingWriteAndCallbackCallers();
+	}
+
+	public function runOnTransactionPreCommitCallbacks() {
+		return $this->transactionManager->runOnTransactionPreCommitCallbacks( $this );
+	}
+
+	private function nextSavepointId( $fname ) {
+		return $this->transactionManager->nextSavePointId( $this, $fname );
+	}
+
+	public function explicitTrxActive() {
+		return $this->transactionManager->explicitTrxActive();
+	}
+
+	/* End of methods delegated to TransactionManager. */
+
+	/* Start of methods delegated to SQLPlatform. Avoid using them outside of rdbms library */
+
+	public function implicitOrderby() {
+		return $this->platform->implicitOrderby();
+	}
+
+	public function selectSQLText(
+		$table, $vars, $conds = '', $fname = __METHOD__, $options = [], $join_conds = []
+	) {
+		return $this->platform->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
+	}
+
+	public function makeList( array $a, $mode = self::LIST_COMMA ) {
+		return $this->platform->makeList( $a, $mode );
+	}
+
+	public function makeWhereFrom2d( $data, $baseKey, $subKey ) {
+		return $this->platform->makeWhereFrom2d( $data, $baseKey, $subKey );
+	}
+
+	public function factorConds( $condsArray ) {
+		return $this->platform->factorConds( $condsArray );
+	}
+
+	public function bitNot( $field ) {
+		return $this->platform->bitNot( $field );
+	}
+
+	public function bitAnd( $fieldLeft, $fieldRight ) {
+		return $this->platform->bitAnd( $fieldLeft, $fieldRight );
+	}
+
+	public function bitOr( $fieldLeft, $fieldRight ) {
+		return $this->platform->bitOr( $fieldLeft, $fieldRight );
+	}
+
+	public function buildConcat( $stringList ) {
+		return $this->platform->buildConcat( $stringList );
+	}
+
+	public function buildGreatest( $fields, $values ) {
+		return $this->platform->buildGreatest( $fields, $values );
+	}
+
+	public function buildLeast( $fields, $values ) {
+		return $this->platform->buildLeast( $fields, $values );
+	}
+
+	public function buildSubstring( $input, $startPosition, $length = null ) {
+		return $this->platform->buildSubstring( $input, $startPosition, $length );
+	}
+
+	public function buildStringCast( $field ) {
+		return $this->platform->buildStringCast( $field );
+	}
+
+	public function buildIntegerCast( $field ) {
+		return $this->platform->buildIntegerCast( $field );
+	}
+
+	public function tableName( $name, $format = 'quoted' ) {
+		return $this->platform->tableName( $name, $format );
+	}
+
+	public function tableNames( ...$tables ) {
+		return $this->platform->tableNames( ...$tables );
+	}
+
+	public function tableNamesN( ...$tables ) {
+		return $this->platform->tableNamesN( ...$tables );
+	}
+
+	protected function indexName( $index ) {
+		return $this->platform->indexName( $index );
+	}
+
+	public function addIdentifierQuotes( $s ) {
+		return $this->platform->addIdentifierQuotes( $s );
+	}
+
+	public function isQuotedIdentifier( $name ) {
+		return $this->platform->isQuotedIdentifier( $name );
+	}
+
+	public function buildLike( $param, ...$params ) {
+		return $this->platform->buildLike( $param, ...$params );
+	}
+
+	public function anyChar() {
+		return $this->platform->anyChar();
+	}
+
+	public function anyString() {
+		return $this->platform->anyString();
+	}
+
+	public function limitResult( $sql, $limit, $offset = false ) {
+		return $this->platform->limitResult( $sql, $limit, $offset );
+	}
+
+	public function unionSupportsOrderAndLimit() {
+		return $this->platform->unionSupportsOrderAndLimit();
+	}
+
+	public function unionQueries( $sqls, $all ) {
+		return $this->platform->unionQueries( $sqls, $all );
+	}
+
+	public function unionConditionPermutations(
+		$table,
+		$vars,
+		array $permute_conds,
+		$extra_conds = '',
+		$fname = __METHOD__,
+		$options = [],
+		$join_conds = []
+	) {
+		return $this->platform->unionConditionPermutations(
+			$table,
+			$vars,
+			$permute_conds,
+			$extra_conds,
+			$fname,
+			$options,
+			$join_conds
+		);
+	}
+
+	public function conditional( $cond, $caseTrueExpression, $caseFalseExpression ) {
+		return $this->platform->conditional( $cond, $caseTrueExpression, $caseFalseExpression );
+	}
+
+	public function strreplace( $orig, $old, $new ) {
+		return $this->platform->strreplace( $orig, $old, $new );
+	}
+
+	public function timestamp( $ts = 0 ) {
+		return $this->platform->timestamp( $ts );
+	}
+
+	public function timestampOrNull( $ts = null ) {
+		return $this->platform->timestampOrNull( $ts );
+	}
+
+	public function getInfinity() {
+		return $this->platform->getInfinity();
+	}
+
+	public function encodeExpiry( $expiry ) {
+		return $this->platform->encodeExpiry( $expiry );
+	}
+
+	public function decodeExpiry( $expiry, $format = TS_MW ) {
+		return $this->platform->decodeExpiry( $expiry, $format );
+	}
+
+	public function setTableAliases( array $aliases ) {
+		$this->platform->setTableAliases( $aliases );
+	}
+
+	public function getTableAliases() {
+		return $this->platform->getTableAliases();
+	}
+
+	public function setIndexAliases( array $aliases ) {
+		$this->platform->setIndexAliases( $aliases );
+	}
+
+	public function buildGroupConcatField(
+		$delim, $table, $field, $conds = '', $join_conds = []
+	) {
+		return $this->platform->buildGroupConcatField( $delim, $table, $field, $conds, $join_conds );
+	}
+
+	public function buildSelectSubquery(
+		$table, $vars, $conds = '', $fname = __METHOD__,
+		$options = [], $join_conds = []
+	) {
+		return $this->platform->buildSelectSubquery( $table, $vars, $conds, $fname, $options, $join_conds );
+	}
+
+	public function buildExcludedValue( $column ) {
+		return $this->platform->buildExcludedValue( $column );
+	}
+
+	public function setSchemaVars( $vars ) {
+		$this->platform->setSchemaVars( $vars );
+	}
+
+	/* End of methods delegated to SQLPlatform. */
 }
 
 /**

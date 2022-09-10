@@ -23,6 +23,7 @@
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
 
 /**
@@ -230,6 +231,7 @@ class HTMLForm extends ContextSource {
 	protected $mSubmitTooltip;
 
 	protected $mFormIdentifier;
+	/** @var Title|null */
 	protected $mTitle;
 	protected $mMethod = 'post';
 	protected $mWasSubmitted = false;
@@ -321,22 +323,34 @@ class HTMLForm extends ContextSource {
 	];
 
 	/**
+	 * Whether a hidden title field has been added to the form
+	 * @var bool
+	 */
+	private $hiddenTitleAddedToForm = false;
+
+	/**
 	 * Construct a HTMLForm object for given display type. May return a HTMLForm subclass.
 	 *
 	 * @stable to call
 	 *
 	 * @param string $displayFormat
-	 * @param mixed ...$arguments Additional arguments to pass to the constructor.
+	 * @param array $descriptor Array of Field constructs, as described
+	 *     in the class documentation
+	 * @param IContextSource $context Context used to fetch submitted form fields and
+	 *     generate localisation messages
+	 * @param string $messagePrefix A prefix to go in front of default messages
 	 * @return HTMLForm
 	 */
-	public static function factory( $displayFormat, ...$arguments ) {
+	public static function factory(
+		$displayFormat, $descriptor, IContextSource $context, $messagePrefix = ''
+	) {
 		switch ( $displayFormat ) {
 			case 'vform':
-				return new VFormHTMLForm( ...$arguments );
+				return new VFormHTMLForm( $descriptor, $context, $messagePrefix );
 			case 'ooui':
-				return new OOUIHTMLForm( ...$arguments );
+				return new OOUIHTMLForm( $descriptor, $context, $messagePrefix );
 			default:
-				$form = new self( ...$arguments );
+				$form = new self( $descriptor, $context, $messagePrefix );
 				$form->setDisplayFormat( $displayFormat );
 				return $form;
 		}
@@ -348,31 +362,20 @@ class HTMLForm extends ContextSource {
 	 * @stable to call
 	 *
 	 * @param array $descriptor Array of Field constructs, as described
-	 * 	in the class documentation
-	 * @param IContextSource|null $context Available since 1.18, required since 1.38.
-	 *     Obviates the need to call $form->setTitle()
+	 *     in the class documentation
+	 * @param IContextSource $context Context used to fetch submitted form fields and
+	 *     generate localisation messages
 	 * @param string $messagePrefix A prefix to go in front of default messages
 	 */
-	public function __construct( $descriptor, /*IContextSource*/ $context = null,
-		$messagePrefix = ''
+	public function __construct(
+		$descriptor, IContextSource $context, $messagePrefix = ''
 	) {
-		if ( $context instanceof IContextSource ) {
-			$this->setContext( $context );
-			$this->mTitle = false; // We don't need them to set a title
-			$this->mMessagePrefix = $messagePrefix;
-		} elseif ( $context === null && $messagePrefix !== '' ) {
-			wfDeprecated( __METHOD__ . ' without $context', '1.38' );
-			$this->mMessagePrefix = $messagePrefix;
-		} elseif ( is_string( $context ) && $messagePrefix === '' ) {
-			wfDeprecated( __METHOD__ . ' without $context', '1.38' );
-			// B/C since 1.18
-			// it's actually $messagePrefix
-			$this->mMessagePrefix = $context;
-		}
+		$this->setContext( $context );
+		$this->mMessagePrefix = $messagePrefix;
 
 		// Evil hack for mobile :(
 		if (
-			!$this->getConfig()->get( 'HTMLFormAllowTableFormat' )
+			!$this->getConfig()->get( MainConfigNames::HTMLFormAllowTableFormat )
 			&& $this->displayFormat === 'table'
 		) {
 			$this->displayFormat = 'div';
@@ -474,7 +477,8 @@ class HTMLForm extends ContextSource {
 		}
 
 		// Evil hack for mobile :(
-		if ( !$this->getConfig()->get( 'HTMLFormAllowTableFormat' ) && $format === 'table' ) {
+		if ( !$this->getConfig()->get( MainConfigNames::HTMLFormAllowTableFormat ) &&
+		$format === 'table' ) {
 			$format = 'div';
 		}
 
@@ -565,17 +569,12 @@ class HTMLForm extends ContextSource {
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function prepareForm() {
-		# Check if we have the info we need
-		if ( !$this->mTitle instanceof PageReference && $this->mTitle !== false ) {
-			throw new MWException( 'You must call setTitle() on an HTMLForm' );
-		}
-
 		# Load data from the request.
 		if (
 			$this->mFormIdentifier === null ||
 			$this->getRequest()->getVal( 'wpFormIdentifier' ) === $this->mFormIdentifier
 		) {
-			$this->loadData();
+			$this->loadFieldData();
 		} else {
 			$this->mFieldData = [];
 		}
@@ -726,6 +725,9 @@ class HTMLForm extends ContextSource {
 		$res = call_user_func( $callback, $data, $this );
 		if ( $res === false ) {
 			$this->mWasSubmitted = false;
+		} elseif ( $res instanceof StatusValue ) {
+			// DWIM - callbacks are not supposed to return a StatusValue but it's easy to mix up.
+			$res = Status::wrap( $res );
 		}
 
 		return $res;
@@ -1238,6 +1240,25 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
+	 * Get a hidden field for the title of the page if necessary (empty string otherwise)
+	 * @return string
+	 */
+	private function getHiddenTitle(): string {
+		if ( $this->hiddenTitleAddedToForm ) {
+			return '';
+		}
+
+		$html = '';
+		if ( $this->getMethod() === 'post' ||
+			$this->getAction() === $this->getConfig()->get( MainConfigNames::Script )
+		) {
+			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
+		}
+		$this->hiddenTitleAddedToForm = true;
+		return $html;
+	}
+
+	/**
 	 * Returns the raw HTML generated by the form
 	 *
 	 * @stable to override
@@ -1262,6 +1283,7 @@ class HTMLForm extends ContextSource {
 			. $this->getErrorsOrWarnings( $submitResult, 'error' )
 			. $this->getErrorsOrWarnings( $submitResult, 'warning' )
 			. $this->getHeaderText()
+			. $this->getHiddenTitle()
 			. $this->getBody()
 			. $this->getHiddenFields()
 			. $this->getButtons()
@@ -1345,6 +1367,11 @@ class HTMLForm extends ContextSource {
 	 */
 	public function getHiddenFields() {
 		$html = '';
+
+		// add the title as a hidden file if it hasn't been added yet and if it is necessary
+		// added for backward compatibility with the previous version of this public method
+		$html .= $this->getHiddenTitle();
+
 		if ( $this->mFormIdentifier !== null ) {
 			$html .= Html::hidden(
 				'wpFormIdentifier',
@@ -1357,12 +1384,6 @@ class HTMLForm extends ContextSource {
 				$this->getUser()->getEditToken( $this->mTokenSalt ),
 				[ 'id' => 'wpEditToken' ]
 			) . "\n";
-			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
-		}
-
-		$articlePath = $this->getConfig()->get( 'ArticlePath' );
-		if ( strpos( $articlePath, '?' ) !== false && $this->getMethod() === 'get' ) {
-			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
 
 		foreach ( $this->mHiddenFields as [ $value, $attribs ] ) {
@@ -1379,7 +1400,8 @@ class HTMLForm extends ContextSource {
 	 */
 	public function getButtons() {
 		$buttons = '';
-		$useMediaWikiUIEverywhere = $this->getConfig()->get( 'UseMediaWikiUIEverywhere' );
+		$useMediaWikiUIEverywhere =
+			$this->getConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
 
 		if ( $this->mShowSubmit ) {
 			$attribs = [];
@@ -1448,7 +1470,9 @@ class HTMLForm extends ContextSource {
 				$label = htmlspecialchars( $button['value'] );
 			}
 
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Always set in self::addButton
 			if ( $button['attribs'] ) {
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Always set in self::addButton
 				$attrs += $button['attribs'];
 			}
 
@@ -1515,9 +1539,13 @@ class HTMLForm extends ContextSource {
 			}
 		}
 
-		return $elementstr
-			? Html::rawElement( 'div', [ 'class' => $elementsType . 'box' ], $elementstr )
-			: '';
+		if ( !$elementstr ) {
+			return '';
+		} elseif ( $elementsType === 'error' ) {
+			return Html::errorBox( $elementstr );
+		} else { // $elementsType can only be 'warning'
+			return Html::warningBox( $elementstr );
+		}
 	}
 
 	/**
@@ -2009,9 +2037,16 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Construct the form fields from the Descriptor array
+	 * @deprecated since 1.39, Use prepareForm() instead.
 	 */
 	public function loadData() {
+		$this->prepareForm();
+	}
+
+	/**
+	 * Load data of form fields from the request
+	 */
+	protected function loadFieldData() {
 		$fieldData = [];
 		$request = $this->getRequest();
 
@@ -2113,14 +2148,14 @@ class HTMLForm extends ContextSource {
 			return $this->mAction;
 		}
 
-		$articlePath = $this->getConfig()->get( 'ArticlePath' );
+		$articlePath = $this->getConfig()->get( MainConfigNames::ArticlePath );
 		// Check whether we are in GET mode and the ArticlePath contains a "?"
 		// meaning that getLocalURL() would return something like "index.php?title=...".
 		// As browser remove the query string before submitting GET forms,
-		// it means that the title would be lost. In such case use wfScript() instead
+		// it means that the title would be lost. In such case use script path instead
 		// and put title in an hidden field (see getHiddenFields()).
 		if ( strpos( $articlePath, '?' ) !== false && $this->getMethod() === 'get' ) {
-			return wfScript();
+			return $this->getConfig()->get( MainConfigNames::Script );
 		}
 
 		return $this->getTitle()->getLocalURL();

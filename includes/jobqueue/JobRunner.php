@@ -24,6 +24,7 @@
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -45,11 +46,11 @@ class JobRunner implements LoggerAwareInterface {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'JobBackoffThrottling',
-		'JobClasses',
-		'JobSerialCommitThreshold',
-		'MaxJobDBWriteDuration',
-		'TrxProfilerLimits'
+		MainConfigNames::JobBackoffThrottling,
+		MainConfigNames::JobClasses,
+		MainConfigNames::JobSerialCommitThreshold,
+		MainConfigNames::MaxJobDBWriteDuration,
+		MainConfigNames::TrxProfilerLimits,
 	];
 
 	/** @var ServiceOptions */
@@ -125,7 +126,7 @@ class JobRunner implements LoggerAwareInterface {
 		LoggerInterface $logger = null
 	) {
 		if ( !$serviceOptions || $serviceOptions instanceof LoggerInterface ) {
-			// TODO: wfDeprecated( __METHOD__ . ' called directly. Use MediaWikiServices instead', '1.35' );
+			wfDeprecated( __METHOD__ . ' called directly. Use MediaWikiServices instead', '1.39' );
 			$logger = $serviceOptions;
 			$serviceOptions = new ServiceOptions(
 				static::CONSTRUCTOR_OPTIONS,
@@ -173,8 +174,8 @@ class JobRunner implements LoggerAwareInterface {
 		$maxTime = $options['maxTime'] ?? false;
 		$throttle = $options['throttle'] ?? true;
 
-		$jobClasses = $this->options->get( 'JobClasses' );
-		$profilerLimits = $this->options->get( 'TrxProfilerLimits' );
+		$jobClasses = $this->options->get( MainConfigNames::JobClasses );
+		$profilerLimits = $this->options->get( MainConfigNames::TrxProfilerLimits );
 
 		$response = [ 'jobs' => [], 'reached' => 'none-ready' ];
 
@@ -476,7 +477,7 @@ class JobRunner implements LoggerAwareInterface {
 	 * @see $wgJobBackoffThrottling
 	 */
 	private function getBackoffTimeToWait( RunnableJob $job ) {
-		$throttling = $this->options->get( 'JobBackoffThrottling' );
+		$throttling = $this->options->get( MainConfigNames::JobBackoffThrottling );
 
 		if ( !isset( $throttling[$job->getType()] ) || $job instanceof DuplicateJob ) {
 			return 0; // not throttled
@@ -634,7 +635,7 @@ class JobRunner implements LoggerAwareInterface {
 	 * @throws DBError
 	 */
 	private function commitPrimaryChanges( RunnableJob $job, $fnameTrxOwner ) {
-		$syncThreshold = $this->options->get( 'JobSerialCommitThreshold' );
+		$syncThreshold = $this->options->get( MainConfigNames::JobSerialCommitThreshold );
 
 		$time = false;
 		$lb = $this->lbFactory->getMainLB();
@@ -659,7 +660,8 @@ class JobRunner implements LoggerAwareInterface {
 			$this->lbFactory->commitPrimaryChanges(
 				$fnameTrxOwner,
 				// Abort if any transaction was too big
-				[ 'maxWriteDuration' => $this->options->get( 'MaxJobDBWriteDuration' ) ]
+				[ 'maxWriteDuration' =>
+					$this->options->get( MainConfigNames::MaxJobDBWriteDuration ) ]
 			);
 
 			return;
@@ -695,7 +697,7 @@ class JobRunner implements LoggerAwareInterface {
 		$this->lbFactory->commitPrimaryChanges(
 			$fnameTrxOwner,
 			// Abort if any transaction was too big
-			[ 'maxWriteDuration' => $this->options->get( 'MaxJobDBWriteDuration' ) ]
+			[ 'maxWriteDuration' => $this->options->get( MainConfigNames::MaxJobDBWriteDuration ) ]
 		);
 		ScopedCallback::consume( $unlocker );
 	}

@@ -406,7 +406,7 @@
 			// Submitting the form with enter should always trigger "search within pages"
 			// for JavaScript capable browsers.
 			// If it is, remove the "full text search" fallback button.
-			// In skins, where the the "full text search" button
+			// In skins, where the "full text search" button
 			// precedes the "search by title" button, e.g. Vector this is done for
 			// non-JavaScript support. If the "search by title" button is first,
 			// and two search buttons are shown e.g. MonoBook no change is needed.

@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -49,9 +50,9 @@ class ChangesFeed {
 	 */
 	public function getFeedObject( $title, $description, $url ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$sitename = $mainConfig->get( 'Sitename' );
-		$languageCode = $mainConfig->get( 'LanguageCode' );
-		$feedClasses = $mainConfig->get( 'FeedClasses' );
+		$sitename = $mainConfig->get( MainConfigNames::Sitename );
+		$languageCode = $mainConfig->get( MainConfigNames::LanguageCode );
+		$feedClasses = $mainConfig->get( MainConfigNames::FeedClasses );
 		if ( !isset( $feedClasses[$this->format] ) ) {
 			return false;
 		}

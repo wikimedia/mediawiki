@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
@@ -52,7 +53,8 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( TitleFormatter::class ),
 			$this->createMock( Language::class ),
 			$this->createMock( GenderCache::class ),
-			$this->createMock( ILoadBalancer::class )
+			$this->createMock( ILoadBalancer::class ),
+			$this->createMock( LinksMigration::class )
 		);
 
 		$this->assertTrue( $batch->isEmpty() );
@@ -74,7 +76,8 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( TitleFormatter::class ),
 			$this->createMock( Language::class ),
 			$this->createMock( GenderCache::class ),
-			$this->createMock( ILoadBalancer::class )
+			$this->createMock( ILoadBalancer::class ),
+			$this->createMock( LinksMigration::class )
 		);
 
 		$this->assertFalse( $batch->isEmpty() );
@@ -94,7 +97,8 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( TitleFormatter::class ),
 			$this->createMock( Language::class ),
 			$this->createMock( GenderCache::class ),
-			$this->getServiceContainer()->getDBLoadBalancer()
+			$this->getServiceContainer()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getLinksMigration()
 		);
 	}
 
@@ -141,9 +145,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 		$nonexisting1 = $this->getNonexistingTestPage( __METHOD__ . 'x' )->getTitle();
 		$nonexisting2 = $this->getNonexistingTestPage( __METHOD__ . 'y' )->getTitle();
 
-		$cache = $this->getMockBuilder( LinkCache::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$cache = $this->createMock( LinkCache::class );
 
 		$good = [];
 		$bad = [];
@@ -251,7 +253,8 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( TitleFormatter::class ),
 			$language,
 			$genderCache,
-			$this->createMock( ILoadBalancer::class )
+			$this->createMock( ILoadBalancer::class ),
+			$this->createMock( LinksMigration::class )
 		);
 		$batch->addObj(
 			new TitleValue( NS_MAIN, 'Foo' )

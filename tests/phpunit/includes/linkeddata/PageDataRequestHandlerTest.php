@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @covers PageDataRequestHandler
  * @group PageData
@@ -22,7 +24,7 @@ class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
 		$this->interfaceTitle = Title::newFromText( __CLASS__ );
 		$this->obLevel = ob_get_level();
 
-		$this->setMwGlobals( 'wgArticlePath', '/wiki/$1' );
+		$this->overrideConfigValue( MainConfigNames::ArticlePath, '/wiki/$1' );
 	}
 
 	protected function tearDown(): void {
@@ -254,7 +256,7 @@ class PageDataRequestHandlerTest extends \MediaWikiLangTestCase {
 	}
 
 	public function provideHttpContentNegotiation() {
-		$helsinki = Title::newFromText( 'Helsinki' );
+		$helsinki = Title::makeTitle( NS_MAIN, 'Helsinki' );
 		return [
 			'Accept Header of HTML' => [
 				$helsinki,

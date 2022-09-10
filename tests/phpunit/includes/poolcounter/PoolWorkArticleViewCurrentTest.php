@@ -3,6 +3,8 @@
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Revision\RevisionRecord;
 use Psr\Log\NullLogger;
+use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers PoolWorkArticleViewCurrent
@@ -18,7 +20,7 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 	 * @param RevisionRecord|null $rev
 	 * @param ParserOptions|null $options
 	 *
-	 * @return PoolWorkArticleView
+	 * @return PoolWorkArticleViewCurrent
 	 */
 	protected function newPoolWorkArticleView(
 		WikiPage $page,
@@ -26,7 +28,7 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 		$options = null
 	) {
 		if ( !$options ) {
-			$options = ParserOptions::newCanonical( 'canonical' );
+			$options = ParserOptions::newFromAnon();
 		}
 
 		if ( !$rev ) {
@@ -67,18 +69,20 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 	}
 
 	public function testUpdateCachedOutput() {
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$page = $this->getExistingTestPage( __METHOD__ );
 
 		$parserCache = $this->installParserCache();
 
 		// rendering of a deleted revision should work, audience checks are bypassed
 		$work = $this->newPoolWorkArticleView( $page, null, $options );
-		$this->assertTrue( $work->execute() );
+		/** @var Status $status */
+		$status = $work->execute();
+		$this->assertTrue( $status->isGood() );
 
 		$cachedOutput = $parserCache->get( $page, $options );
 		$this->assertNotEmpty( $cachedOutput );
-		$this->assertSame( $work->getParserOutput()->getText(), $cachedOutput->getText() );
+		$this->assertSame( $status->getValue()->getText(), $cachedOutput->getText() );
 	}
 
 	/**
@@ -87,7 +91,7 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 	 */
 	public function testFetchAfterMissWithLock() {
 		$bag = new HashBagOStuff();
-		$options = ParserOptions::newCanonical( 'canonical' );
+		$options = ParserOptions::newFromAnon();
 		$page = $this->getExistingTestPage( __METHOD__ );
 
 		$this->installParserCache( $bag );
@@ -98,12 +102,71 @@ class PoolWorkArticleViewCurrentTest extends PoolWorkArticleViewTest {
 		// but share the backend store
 		$this->installParserCache( $bag );
 		$work2 = $this->newPoolWorkArticleView( $page, null, $options );
-		$this->assertTrue( $work2->execute() );
+		/** @var Status $status2 */
+		$status2 = $work2->execute();
+		$this->assertTrue( $status2->isGood() );
 
 		// The parser output cached but $work2 should now be also visible to $work1
-		$work1->getCachedWork();
-		$this->assertInstanceOf( ParserOutput::class, $work1->getParserOutput() );
-		$this->assertSame( $work2->getParserOutput()->getText(), $work1->getParserOutput()->getText() );
+		$status1 = $work1->getCachedWork();
+		$this->assertInstanceOf( ParserOutput::class, $status1->getValue() );
+		$this->assertSame( $status2->getValue()->getText(), $status1->getValue()->getText() );
+	}
+
+	public function testFallbackFromOutdatedParserCache() {
+		// Fake Unix timestamps
+		$lastWrite = 10;
+		$outdated = $lastWrite;
+
+		$lbFactory = $this->createNoOpMock( LBFactory::class, [ 'getChronologyProtectorTouched' ] );
+		$lbFactory->method( 'getChronologyProtectorTouched' )->willReturn( $lastWrite );
+
+		$output = $this->createNoOpMock( ParserOutput::class, [ 'getCacheTime' ] );
+		$output->method( 'getCacheTime' )->willReturn( $outdated );
+		$this->parserCache = $this->createNoOpMock( ParserCache::class, [ 'getDirty' ] );
+		$this->parserCache->method( 'getDirty' )->willReturn( $output );
+
+		$work = $this->newPoolWorkArticleView(
+			$this->createMock( WikiPage::class ),
+			$this->createMock( RevisionRecord::class )
+		);
+		TestingAccessWrapper::newFromObject( $work )->lbFactory = $lbFactory;
+
+		$this->assertFalse( $work->fallback( true ) );
+
+		$status = $work->fallback( false );
+		$this->assertTrue( $status->isOK() );
+		$this->assertInstanceOf( ParserOutput::class, $status->getValue() );
+		$this->assertTrue( $status->hasMessage( 'view-pool-overload' ) );
+	}
+
+	public function testFallbackFromMoreRecentParserCache() {
+		// Fake Unix timestamps
+		$lastWrite = 10;
+		$moreRecent = $lastWrite + 1;
+
+		$lbFactory = $this->createNoOpMock( LBFactory::class, [ 'getChronologyProtectorTouched' ] );
+		$lbFactory->method( 'getChronologyProtectorTouched' )->willReturn( $lastWrite );
+
+		$output = $this->createNoOpMock( ParserOutput::class, [ 'getCacheTime' ] );
+		$output->method( 'getCacheTime' )->willReturn( $moreRecent );
+		$this->parserCache = $this->createNoOpMock( ParserCache::class, [ 'getDirty' ] );
+		$this->parserCache->method( 'getDirty' )->willReturn( $output );
+
+		$work = $this->newPoolWorkArticleView(
+			$this->createMock( WikiPage::class ),
+			$this->createMock( RevisionRecord::class )
+		);
+		TestingAccessWrapper::newFromObject( $work )->lbFactory = $lbFactory;
+
+		$status = $work->fallback( true );
+		$this->assertTrue( $status->isOK() );
+		$this->assertInstanceOf( ParserOutput::class, $status->getValue() );
+		$this->assertTrue( $status->hasMessage( 'view-pool-contention' ) );
+
+		$status = $work->fallback( false );
+		$this->assertTrue( $status->isOK() );
+		$this->assertInstanceOf( ParserOutput::class, $status->getValue() );
+		$this->assertTrue( $status->hasMessage( 'view-pool-overload' ) );
 	}
 
 }

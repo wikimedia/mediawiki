@@ -25,6 +25,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\User\UserOptionsManager;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * API module that facilitates the changing of user's preferences.
@@ -244,18 +245,18 @@ class ApiOptions extends ApiBase {
 		return [
 			'reset' => false,
 			'resetkinds' => [
-				ApiBase::PARAM_TYPE => $optionKinds,
-				ApiBase::PARAM_DFLT => 'all',
-				ApiBase::PARAM_ISMULTI => true
+				ParamValidator::PARAM_TYPE => $optionKinds,
+				ParamValidator::PARAM_DEFAULT => 'all',
+				ParamValidator::PARAM_ISMULTI => true
 			],
 			'change' => [
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'optionname' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 			'optionvalue' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 		];
 	}

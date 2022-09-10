@@ -1,10 +1,5 @@
 <?php
 
-use PhpParser\Node;
-use PhpParser\Node\Expr;
-use PhpParser\Node\Stmt;
-use PhpParser\ParserFactory;
-
 class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Assert that there were no classes loaded that are not registered with the AutoLoader.
@@ -81,14 +76,14 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected static function checkAutoLoadConf() {
-		global $wgAutoloadLocalClasses, $wgAutoloadClasses, $IP;
+		$IP = MW_INSTALL_PATH;
 
 		// wgAutoloadLocalClasses has precedence, just like in includes/AutoLoader.php
-		$expected = $wgAutoloadLocalClasses + $wgAutoloadClasses;
+		$expected = AutoLoader::getClassFiles();
 		$actual = [];
 
 		$psr4Namespaces = [];
-		foreach ( AutoLoader::getAutoloadNamespaces() as $ns => $path ) {
+		foreach ( AutoLoader::CORE_NAMESPACES as $ns => $path ) {
 			$psr4Namespaces[rtrim( $ns, '\\' ) . '\\'] = self::fixSlashes( rtrim( $path, '/' ) );
 		}
 
@@ -112,7 +107,7 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 				continue;
 			}
 
-			list( $classesInFile, $aliasesInFile ) = self::parseFile( $contents );
+			[ $classesInFile, $aliasesInFile ] = self::parseFile( $contents );
 
 			foreach ( $classesInFile as $className => $ignore ) {
 				// Skip if it's a PSR4 class
@@ -155,7 +150,7 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 		$path = __DIR__ . '/../../..';
 		$oldAutoload = file_get_contents( $path . '/autoload.php' );
 		$generator = new AutoloadGenerator( $path, 'local' );
-		$generator->setPsr4Namespaces( AutoLoader::getAutoloadNamespaces() );
+		$generator->setPsr4Namespaces( AutoLoader::CORE_NAMESPACES );
 		$generator->initMediaWikiDefault();
 		$newAutoload = $generator->getAutoload( 'maintenance/generateLocalAutoload.php' );
 
@@ -169,71 +164,14 @@ class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAutoloadNamespaces() {
 		$missing = [];
-		foreach ( AutoLoader::$psr4Namespaces as $ns => $path ) {
+		$psr4Namespaces = AutoLoader::getNamespaceDirectories();
+
+		foreach ( $psr4Namespaces as $ns => $path ) {
 			if ( !is_dir( $path ) ) {
 				$missing[] = "Directory $path for namespace $ns does not exist";
 			}
 		}
 
 		$this->assertSame( [], $missing );
-	}
-
-	public static function provideAutoloadNoFileScope() {
-		global $wgAutoloadLocalClasses;
-		$files = array_unique( $wgAutoloadLocalClasses );
-		$args = [];
-		foreach ( $files as $file ) {
-			$args[$file] = [ $file ];
-		}
-		return $args;
-	}
-
-	/**
-	 * Confirm that all files in $wgAutoloadLocalClasses have no file-scope code
-	 * apart from specific exemptions.
-	 *
-	 * This is slow (~15s). Running it arguably renders all the performance
-	 * optimisations above obsolete.
-	 *
-	 * @dataProvider provideAutoloadNoFileScope
-	 */
-	public function testAutoloadNoFileScope( $file ) {
-		$parser = ( new ParserFactory )->create( ParserFactory::ONLY_PHP7 );
-		$ast = $parser->parse( file_get_contents( $file ) );
-		foreach ( $ast as $node ) {
-			if ( $node instanceof Stmt\ClassLike
-				|| $node instanceof Stmt\Namespace_
-				|| $node instanceof Stmt\Use_
-				|| $node instanceof Stmt\Nop
-				|| $node instanceof Stmt\Declare_
-				|| $node instanceof Stmt\Function_
-			) {
-				continue;
-			}
-			if ( $node instanceof Stmt\Expression ) {
-				$expr = $node->expr;
-				if ( $expr instanceof Expr\FuncCall ) {
-					if ( $expr->name instanceof Node\Name ) {
-						if ( in_array( $expr->name->toString(), [
-							'class_alias',
-							'define'
-						] ) ) {
-							continue;
-						}
-					}
-				} elseif ( $expr instanceof Expr\Include_ ) {
-					if ( $expr->type === Expr\Include_::TYPE_REQUIRE_ONCE ) {
-						continue;
-					}
-				} elseif ( $expr instanceof Expr\Assign ) {
-					if ( $expr->var->name === 'maintClass' ) {
-						continue;
-					}
-				}
-			}
-			$line = $node->getLine();
-			$this->assertNull( $node, "Found file scope code in $file at line $line" );
-		}
-		$this->assertTrue( true );
 	}
 }

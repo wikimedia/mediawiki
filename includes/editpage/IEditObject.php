@@ -52,7 +52,7 @@ interface IEditObject {
 	/** Status: this logged in user is not allowed to edit this page */
 	public const AS_READ_ONLY_PAGE_LOGGED = 219;
 
-	/** Status: wiki is in readonly mode (wfReadOnly() == true) */
+	/** Status: wiki is in readonly mode (ReadOnlyMode::isReadOnly() == true) */
 	public const AS_READ_ONLY_PAGE = 220;
 
 	/** Status: rate limiter for action 'edit' was tripped */

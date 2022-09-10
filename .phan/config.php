@@ -20,6 +20,11 @@
 
 $cfg = require __DIR__ . '/../vendor/mediawiki/mediawiki-phan-config/src/config.php';
 
+// Whilst MediaWiki is still supporting PHP 7.2+, this lets us run phan on higher versions of PHP
+// like 8.0 without phan trying to get us to make PHP 7.2-incompatible changes. This value should
+// match the PHP version specified in composer.json and PHPVersionCheck.php.
+$cfg['minimum_target_php_version'] = '7.2.22';
+
 $cfg['file_list'] = array_merge(
 	$cfg['file_list'],
 	class_exists( PEAR::class ) ? [] : [ '.phan/stubs/mail.php' ],
@@ -30,8 +35,9 @@ $cfg['file_list'] = array_merge(
 		// You can check the parser order with --dump-parsed-file-list
 		'includes/Defines.php',
 		// @todo This isn't working yet, see globals_type_map below
-		// 'includes/DefaultSettings.php',
 		// 'includes/Setup.php',
+		'tests/phpunit/MediaWikiIntegrationTestCase.php',
+		'tests/phpunit/includes/TestUser.php',
 	]
 );
 
@@ -72,12 +78,18 @@ $cfg['directory_list'] = [
 	'mw-config/',
 	'resources/',
 	'vendor/',
+	'tests/common/',
+	'tests/parser/',
+	'tests/phpunit/mocks/',
 	// Do NOT add .phan/stubs/ here: stubs are conditionally loaded in file_list
 ];
 
 $cfg['exclude_analysis_directory_list'] = [
 	'vendor/',
 	'.phan/',
+	'tests/phpunit/',
+	// Generated documentation stub for configuration variables.
+	'includes/config-vars.php',
 	// The referenced classes are not available in vendor, only when
 	// included from composer.
 	'includes/composer/',
@@ -92,24 +104,20 @@ $cfg['exclude_analysis_directory_list'] = [
 	'includes/PHPVersionCheck.php',
 ];
 
-// These are too spammy for now. TODO enable
-$cfg['null_casts_as_any_type'] = true;
-$cfg['scalar_implicit_cast'] = true;
-$cfg['suppress_issue_types'][] = 'PhanTypePossiblyInvalidDimOffset';
-$cfg['suppress_issue_types'][] = 'PhanPossiblyUndeclaredVariable';
-
 // Do not use aliases in core.
 // Use the correct name, because we don't need backward compatibility
 $cfg['enable_class_alias_support'] = false;
 
 $cfg['ignore_undeclared_variables_in_global_scope'] = true;
-// @todo It'd be great if we could just make phan read these from DefaultSettings, to avoid
-// duplicating the types.
+// @todo It'd be great if we could just make phan read these from config-schema.php, to avoid
+// duplicating the types. config-schema.php has JSON types though, not PHP types.
+// @todo As we are removing access to global variables from the code base,
+// remove them from here as well, so phan complains when something tries to use them.
 $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'IP' => 'string',
 	'wgGalleryOptions' => 'array',
 	'wgDummyLanguageCodes' => 'string[]',
-	'wgNamespaceProtection' => 'array<string,string|string[]>',
+	'wgNamespaceProtection' => 'array<int,string|string[]>',
 	'wgNamespaceAliases' => 'array<string,int>',
 	'wgLockManagers' => 'array[]',
 	'wgForeignFileRepos' => 'array[]',

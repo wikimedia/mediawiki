@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -50,7 +51,7 @@ class MigrateArchiveText extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
 		$replaceMissing = $this->hasOption( 'replace-missing' );
-		$defaultExternalStore = $this->getConfig()->get( 'DefaultExternalStore' );
+		$defaultExternalStore = $this->getConfig()->get( MainConfigNames::DefaultExternalStore );
 		$blobStore = MediaWikiServices::getInstance()
 			->getBlobStoreFactory()
 			->newSqlBlobStore();

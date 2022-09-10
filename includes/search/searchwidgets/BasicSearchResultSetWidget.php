@@ -57,8 +57,10 @@ class BasicSearchResultSetWidget {
 		}
 
 		$out = '';
+
 		if ( $hasTitle ) {
 			$out .= $this->header( $this->specialPage->msg( 'titlematches' ) )
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable titleResultSet is set when used here
 				. $this->renderResultSet( $titleResultSet, $offset );
 		}
 
@@ -67,6 +69,7 @@ class BasicSearchResultSetWidget {
 				$out .= "<div class='mw-search-visualclear'></div>" .
 					$this->header( $this->specialPage->msg( 'textmatches' ) );
 			}
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable textResultSet is set when used
 			$out .= $this->renderResultSet( $textResultSet, $offset );
 		}
 

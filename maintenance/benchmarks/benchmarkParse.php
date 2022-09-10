@@ -160,6 +160,7 @@ class BenchmarkParse extends Maintenance {
 	private function runParser( RevisionRecord $revision ) {
 		$content = $revision->getContent( SlotRecord::MAIN );
 		$contentRenderer = MediaWikiServices::getInstance()->getContentRenderer();
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable getId does not return null here
 		$contentRenderer->getParserOutput( $content, $revision->getPage(), $revision->getId() );
 		if ( $this->clearLinkCache ) {
 			$this->linkCache->clear();

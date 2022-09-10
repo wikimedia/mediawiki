@@ -141,12 +141,12 @@ class RevisionStoreFactory {
 	/**
 	 * @since 1.32
 	 *
-	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one
+	 * @param false|string $dbDomain DB domain of the relevant wiki or false for the current one
 	 *
 	 * @return RevisionStore for the given wikiId with all necessary services
 	 */
 	public function getRevisionStore( $dbDomain = false ) {
-		Assert::parameterType( 'string|boolean', $dbDomain, '$dbDomain' );
+		Assert::parameterType( [ 'string', 'false' ], $dbDomain, '$dbDomain' );
 
 		$store = new RevisionStore(
 			$this->dbLoadBalancerFactory->getMainLB( $dbDomain ),

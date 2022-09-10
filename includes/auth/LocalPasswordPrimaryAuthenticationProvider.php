@@ -21,7 +21,8 @@
 
 namespace MediaWiki\Auth;
 
-use MediaWiki\User\UserNameUtils;
+use MediaWiki\MainConfigNames;
+use MediaWiki\User\UserRigorOptions;
 use User;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -67,7 +68,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return null;
 		}
 
-		$grace = $this->config->get( 'PasswordExpireGrace' );
+		$grace = $this->config->get( MainConfigNames::PasswordExpireGrace );
 		if ( (int)$expiration + $grace < $now ) {
 			$data = [
 				'hard' => true,
@@ -93,7 +94,8 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return AuthenticationResponse::newAbstain();
 		}
 
-		$username = $this->userNameUtils->getCanonical( $req->username, UserNameUtils::RIGOR_USABLE );
+		$username = $this->userNameUtils->getCanonical(
+			$req->username, UserRigorOptions::RIGOR_USABLE );
 		if ( $username === false ) {
 			return AuthenticationResponse::newAbstain();
 		}
@@ -131,7 +133,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 		$pwhash = $this->getPassword( $row->user_password );
 		if ( !$pwhash->verify( $req->password ) ) {
-			if ( $this->config->get( 'LegacyEncoding' ) ) {
+			if ( $this->config->get( MainConfigNames::LegacyEncoding ) ) {
 				// Some wikis were converted from ISO 8859-1 to UTF-8, the passwords can't be converted
 				// Check for this with iconv
 				$cp1252Password = iconv( 'UTF-8', 'WINDOWS-1252//TRANSLIT', $req->password );
@@ -168,7 +170,8 @@ class LocalPasswordPrimaryAuthenticationProvider
 	}
 
 	public function testUserCanAuthenticate( $username ) {
-		$username = $this->userNameUtils->getCanonical( $username, UserNameUtils::RIGOR_USABLE );
+		$username = $this->userNameUtils->getCanonical(
+			$username, UserRigorOptions::RIGOR_USABLE );
 		if ( $username === false ) {
 			return false;
 		}
@@ -194,7 +197,8 @@ class LocalPasswordPrimaryAuthenticationProvider
 	}
 
 	public function testUserExists( $username, $flags = User::READ_NORMAL ) {
-		$username = $this->userNameUtils->getCanonical( $username, UserNameUtils::RIGOR_USABLE );
+		$username = $this->userNameUtils->getCanonical(
+			$username, UserRigorOptions::RIGOR_USABLE );
 		if ( $username === false ) {
 			return false;
 		}
@@ -223,7 +227,8 @@ class LocalPasswordPrimaryAuthenticationProvider
 				return \StatusValue::newGood();
 			}
 
-			$username = $this->userNameUtils->getCanonical( $req->username, UserNameUtils::RIGOR_USABLE );
+			$username = $this->userNameUtils->getCanonical( $req->username,
+				UserRigorOptions::RIGOR_USABLE );
 			if ( $username !== false ) {
 				$row = $this->loadBalancer->getConnectionRef( DB_PRIMARY )->selectRow(
 					'user',
@@ -250,7 +255,8 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 	public function providerChangeAuthenticationData( AuthenticationRequest $req ) {
 		$username = $req->username !== null ?
-			$this->userNameUtils->getCanonical( $req->username, UserNameUtils::RIGOR_USABLE ) : false;
+			$this->userNameUtils->getCanonical( $req->username, UserRigorOptions::RIGOR_USABLE )
+			: false;
 		if ( $username === false ) {
 			return;
 		}
@@ -273,6 +279,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 				'user',
 				[
 					'user_password' => $pwhash->toString(),
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable expiry is set together with pwhash
 					'user_password_expires' => $dbw->timestampOrNull( $expiry ),
 				],
 				[ 'user_name' => $username ],

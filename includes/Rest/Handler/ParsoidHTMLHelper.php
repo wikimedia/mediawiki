@@ -21,22 +21,22 @@
  */
 namespace MediaWiki\Rest\Handler;
 
-use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
+use IBufferingStatsdDataFactory;
+use Language;
+use MediaWiki\Edit\ParsoidOutputStash;
+use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageRecord;
-use MediaWiki\Parser\RevisionOutputCache;
+use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
+use MediaWiki\Parser\Parsoid\ParsoidRenderID;
+use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\RevisionRecord;
-use ParserCache;
 use ParserOptions;
 use ParserOutput;
-use TitleValue;
+use User;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Parsoid\Config\PageConfig;
-use Wikimedia\Parsoid\Core\ClientError;
-use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
-use Wikimedia\Parsoid\Parsoid;
-use Wikimedia\UUID\GlobalIdGenerator;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Helper for getting output of a given wikitext page rendered by parsoid.
@@ -47,149 +47,79 @@ use Wikimedia\UUID\GlobalIdGenerator;
  *           Part of this class should probably become a service.
  */
 class ParsoidHTMLHelper {
+	/**
+	 * @internal
+	 * @var string[]
+	 */
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::ParsoidCacheConfig
+	];
 
-	private const RENDER_ID_KEY = 'parsoid-render-id';
+	/** @var ParsoidOutputStash */
+	private $parsoidOutputStash;
 
-	/** @var ParserCache */
-	private $parserCache;
-
-	/** @var RevisionOutputCache */
-	private $revisionOutputCache;
-
-	/** @var GlobalIdGenerator */
-	private $globalIdGenerator;
-
-	/** @var PageRecord|null */
+	/** @var PageIdentity|null */
 	private $page = null;
-
-	/** @var Parsoid|null */
-	private $parsoid = null;
 
 	/** @var RevisionRecord|null */
 	private $revision = null;
 
+	/** @var Language|null */
+	private $pageLanguage = null;
+
+	/** @var ?string [ 'view', 'stash' ] are the supported flavors for now */
+	private $flavor = null;
+
+	/** @var bool */
+	private $stash = false;
+
+	/** @var IBufferingStatsdDataFactory */
+	private $stats;
+
+	/** @var User */
+	private $user;
+
+	/** @var ParsoidOutputAccess */
+	private $parsoidOutputAccess;
+
+	/** @var ParserOutput */
+	private $parserOutput;
+
 	/**
-	 * @param ParserCache $parserCache
-	 * @param RevisionOutputCache $revisionOutputCache
-	 * @param GlobalIdGenerator $globalIdGenerator
+	 * @param ParsoidOutputStash $parsoidOutputStash
+	 * @param IBufferingStatsdDataFactory $statsDataFactory
+	 * @param ParsoidOutputAccess $parsoidOutputAccess
 	 */
 	public function __construct(
-		ParserCache $parserCache,
-		RevisionOutputCache $revisionOutputCache,
-		GlobalIdGenerator $globalIdGenerator
+		ParsoidOutputStash $parsoidOutputStash,
+		IBufferingStatsdDataFactory $statsDataFactory,
+		ParsoidOutputAccess $parsoidOutputAccess
 	) {
-		$this->parserCache = $parserCache;
-		$this->globalIdGenerator = $globalIdGenerator;
-		$this->revisionOutputCache = $revisionOutputCache;
+		$this->parsoidOutputStash = $parsoidOutputStash;
+		$this->stats = $statsDataFactory;
+		$this->parsoidOutputAccess = $parsoidOutputAccess;
 	}
 
 	/**
-	 * @param PageRecord $page
+	 * @param PageIdentity $page
+	 * @param array $parameters
+	 * @param User $user
 	 * @param RevisionRecord|null $revision
+	 * @param Language|null $pageLanguage
 	 */
-	public function init( PageRecord $page, ?RevisionRecord $revision = null ) {
+	public function init(
+		PageIdentity $page,
+		array $parameters,
+		User $user,
+		?RevisionRecord $revision = null,
+		?Language $pageLanguage = null
+	) {
 		$this->page = $page;
+		$this->user = $user;
 		$this->revision = $revision;
-	}
-
-	/**
-	 * @return ParserOutput
-	 * @throws LocalizedHttpException
-	 */
-	private function parse(): ParserOutput {
-		$parsoid = $this->createParsoid();
-		$pageConfig = $this->createPageConfig();
-		try {
-			$startTime = microtime( true );
-			$pageBundle = $parsoid->wikitext2html( $pageConfig, [
-				'discardDataParsoid' => true,
-				'pageBundle' => true,
-			] );
-			$fakeParserOutput = new ParserOutput( $pageBundle->html );
-			$time = microtime( true ) - $startTime;
-			if ( $time > 3 ) {
-				LoggerFactory::getInstance( 'slow-parsoid' )
-					->info( 'Parsing {title} was slow, took {time} seconds', [
-						'time' => number_format( $time, 2 ),
-						'title' => (string)$this->page,
-					] );
-			}
-			return $fakeParserOutput;
-		} catch ( ClientError $e ) {
-			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-html-backend-error' ),
-				400,
-				[ 'reason' => $e->getMessage() ]
-			);
-		} catch ( ResourceLimitExceededException $e ) {
-			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-resource-limit-exceeded' ),
-				413,
-				[ 'reason' => $e->getMessage() ]
-			);
-		}
-	}
-
-	/**
-	 * Assert that Parsoid services are available.
-	 * TODO: once parsoid glue services are in core,
-	 * this will become a no-op and will be removed.
-	 * See T265518
-	 * @throws LocalizedHttpException
-	 */
-	private function assertParsoidInstalled() {
-		$services = MediaWikiServices::getInstance();
-		if ( $services->has( 'ParsoidSiteConfig' ) &&
-			$services->has( 'ParsoidPageConfigFactory' ) &&
-			$services->has( 'ParsoidDataAccess' )
-		) {
-			return;
-		}
-		throw new LocalizedHttpException(
-			MessageValue::new( 'rest-html-backend-error' ),
-			501
-		);
-	}
-
-	/**
-	 * @return Parsoid
-	 * @throws LocalizedHttpException
-	 */
-	private function createParsoid(): Parsoid {
-		$this->assertParsoidInstalled();
-		if ( $this->parsoid === null ) {
-			// TODO: Once parsoid glue services are in core,
-			// this will need to use normal DI.
-			// At that point, we may want to extract a more high level
-			// service for rendering a revision, and inject that into this class.
-			// See T265518
-			$services = MediaWikiServices::getInstance();
-			$this->parsoid = new Parsoid(
-				$services->get( 'ParsoidSiteConfig' ),
-				$services->get( 'ParsoidDataAccess' )
-			);
-		}
-		return $this->parsoid;
-	}
-
-	/**
-	 * @return PageConfig
-	 * @throws LocalizedHttpException
-	 */
-	private function createPageConfig(): PageConfig {
-		$this->assertParsoidInstalled();
-		// Currently everything is parsed as anon since Parsoid
-		// can't report the used options.
-		// Already checked that title/revision exist and accessible.
-		// TODO: make ParsoidPageConfigFactory take a RevisionRecord
-		// TODO: make ParsoidPageConfigFactory take PageReference as well
-		return MediaWikiServices::getInstance()
-			->get( 'ParsoidPageConfigFactory' )
-			->create(
-				TitleValue::newFromPage( $this->page ),
-				null,
-				$this->revision ? $this->revision->getId() : null
-			);
+		$this->pageLanguage = $pageLanguage;
+		$this->stash = $parameters['stash'];
+		$this->flavor = $parameters['stash'] ? 'stash' : 'view'; // more to come, T308743
 	}
 
 	/**
@@ -197,53 +127,58 @@ class ParsoidHTMLHelper {
 	 * @throws LocalizedHttpException
 	 */
 	public function getHtml(): ParserOutput {
-		$parserOptions = ParserOptions::newCanonical( 'canonical' );
+		$parserOutput = $this->getParserOutput();
 
-		$revId = $this->revision ? $this->revision->getId() : $this->page->getLatest();
-		$isOld = $revId !== $this->page->getLatest();
+		if ( $this->stash ) {
+			if ( $this->user->pingLimiter( 'stashbasehtml' ) ) {
+				throw new LocalizedHttpException(
+					MessageValue::new( 'parsoid-stash-rate-limit-error' ),
+					// See https://www.rfc-editor.org/rfc/rfc6585#section-4
+					429,
+					[ 'reason' => 'Rate limiter tripped, wait for a few minutes and try again' ]
+				);
+			}
 
-		if ( $isOld ) {
-			$parserOutput = $this->revisionOutputCache->get( $this->revision, $parserOptions );
-		} else {
-			$parserOutput = $this->parserCache->get( $this->page, $parserOptions );
-		}
-		if ( $parserOutput ) {
-			return $parserOutput;
-		}
-
-		$fakeParserOutput = $this->parse();
-
-		// XXX: ParserOutput should just always record the revision ID and timestamp
-		$now = wfTimestampNow();
-		$fakeParserOutput->setCacheRevisionId( $revId );
-		$fakeParserOutput->setCacheTime( $now );
-
-		// TODO: when we make tighter integration with Parsoid, render ID should become
-		// a standard ParserOutput property. Nothing else needs it now, so don't generate
-		// it in ParserCache just yet.
-		$fakeParserOutput->setExtensionData( self::RENDER_ID_KEY, $this->globalIdGenerator->newUUIDv1() );
-
-		if ( $isOld ) {
-			$this->revisionOutputCache->save( $fakeParserOutput, $this->revision, $parserOptions, $now );
-		} else {
-			$this->parserCache->save( $fakeParserOutput, $this->page, $parserOptions, $now );
+			$parsoidStashKey = ParsoidRenderID::newFromKey(
+				$this->parsoidOutputAccess->getParsoidRenderID( $parserOutput )
+			);
+			$stashSuccess = $this->parsoidOutputStash->set(
+				$parsoidStashKey,
+				$this->parsoidOutputAccess->getParsoidPageBundle( $parserOutput )
+			);
+			if ( !$stashSuccess ) {
+				$this->stats->increment( 'parsoidhtmlhelper.stash.fail' );
+				throw new LocalizedHttpException(
+					MessageValue::new( 'rest-html-backend-error' ),
+					500,
+					[ 'reason' => 'Failed to stash parser output' ]
+				);
+			}
+			$this->stats->increment( 'parsoidhtmlhelper.stash.save' );
 		}
 
-		return $fakeParserOutput;
+		return $parserOutput;
 	}
 
 	/**
 	 * Returns an ETag uniquely identifying the HTML output.
+	 *
+	 * @param string $suffix A suffix to attach to the etag.
+	 *
 	 * @return string|null
 	 */
-	public function getETag(): ?string {
-		$parserOutput = $this->getHtml();
-		$renderId = $parserOutput->getExtensionData( self::RENDER_ID_KEY );
-		// Fallback for backwards compatibility with older cached entries.
-		if ( !$renderId ) {
-			$renderId = $this->getLastModified();
+	public function getETag( string $suffix = '' ): ?string {
+		$parserOutput = $this->getParserOutput();
+
+		$renderID = $this->parsoidOutputAccess->getParsoidRenderID( $parserOutput )->getKey();
+
+		if ( $suffix !== '' ) {
+			$eTag = "$renderID/{$this->flavor}/$suffix";
+		} else {
+			$eTag = "$renderID/{$this->flavor}";
 		}
-		return "\"{$parserOutput->getCacheRevisionId()}/{$renderId}\"";
+
+		return "\"{$eTag}\"";
 	}
 
 	/**
@@ -252,7 +187,74 @@ class ParsoidHTMLHelper {
 	 * @return string|null
 	 */
 	public function getLastModified(): ?string {
-		return $this->getHtml()->getCacheTime();
+		return $this->getParserOutput()->getCacheTime();
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getParamSettings(): array {
+		return [
+			'stash' => [
+				Handler::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => 'boolean',
+				ParamValidator::PARAM_DEFAULT => false,
+				ParamValidator::PARAM_REQUIRED => false,
+			]
+		];
+	}
+
+	/**
+	 * @return ParserOutput
+	 */
+	private function getParserOutput(): ParserOutput {
+		if ( !$this->parserOutput ) {
+			$parserOptions = ParserOptions::newFromAnon();
+
+			if ( $this->pageLanguage ) {
+				$parserOptions->setTargetLanguage( $this->pageLanguage );
+			}
+
+			if ( $this->page instanceof PageRecord && $this->page->exists() ) {
+				$status = $this->parsoidOutputAccess->getParserOutput(
+					$this->page,
+					$parserOptions,
+					$this->revision
+				);
+			} else {
+				$status = $this->parsoidOutputAccess->parse(
+					$this->page,
+					$parserOptions,
+					$this->revision
+				);
+			}
+
+			if ( !$status->isOK() ) {
+				if ( $status->hasMessage( 'parsoid-client-error' ) ) {
+					throw new LocalizedHttpException(
+						MessageValue::new( 'rest-html-backend-error' ),
+						400,
+						[ 'reason' => $status->getErrors() ]
+					);
+				} elseif ( $status->hasMessage( 'parsoid-resource-limit-exceeded' ) ) {
+					throw new LocalizedHttpException(
+						MessageValue::new( 'rest-resource-limit-exceeded' ),
+						413,
+						[ 'reason' => $status->getErrors() ]
+					);
+				} else {
+					throw new LocalizedHttpException(
+						MessageValue::new( 'rest-html-backend-error' ),
+						500,
+						[ 'reason' => $status->getErrors() ]
+					);
+				}
+			}
+
+			$this->parserOutput = $status->getValue();
+		}
+
+		return $this->parserOutput;
 	}
 
 }

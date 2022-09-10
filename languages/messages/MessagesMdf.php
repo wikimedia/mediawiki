@@ -3,8 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author Jarmanj Turtash
  * @author Kaganer
@@ -63,7 +63,7 @@ $specialPageAliases = [
 	'Booksources'               => [ 'КинигаЛисьмот' ],
 	'BrokenRedirects'           => [ 'СиньтьфШашфтфксне' ],
 	'Categories'                => [ 'Категориет' ],
-	'ChangePassword'            => [ 'ПолафттСувама', 'ПолафттСувама вал' ],
+	'ChangePassword'            => [ 'ПолафттСувама', 'ПолафттСувама_вал' ],
 	'Confirmemail'              => [ 'КемокстакАдрес' ],
 	'Contributions'             => [ 'Путксне' ],
 	'CreateAccount'             => [ 'Сёрматфтомс' ],
@@ -76,10 +76,10 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'ФайлКафонзафВешендема' ],
 	'Filepath'                  => [ 'ФайлКиц' ],
 	'Import'                    => [ 'Сувафтомс' ],
-	'Invalidateemail'           => [ 'Аф кемокстамс адресть' ],
+	'Invalidateemail'           => [ 'Аф_кемокстамс_адресть' ],
 	'LinkSearch'                => [ 'СюлмафксВешендема' ],
-	'Listadmins'                => [ 'ЛувомаСистемонь вятиксне' ],
-	'Listbots'                  => [ 'ЛувомаРоботт програпне' ],
+	'Listadmins'                => [ 'ЛувомаСистемонь_вятиксне' ],
+	'Listbots'                  => [ 'ЛувомаРоботт_програпне' ],
 	'Listfiles'                 => [ 'НяйфКярькс' ],
 	'Listgrouprights'           => [ 'ЛувомаПолгаВидексне' ],
 	'Listredirects'             => [ 'ЛувомаШашфтфксне' ],
@@ -106,8 +106,8 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'ВалынгольксИндекс' ],
 	'Protectedpages'            => [ 'АралафЛопат' ],
 	'Protectedtitles'           => [ 'АралафКонякст' ],
-	'Randompage'                => [ 'Кодама повсь', 'Кодама повсь лопа' ],
-	'Randomredirect'            => [ 'Кона повсьШашфтфкс' ],
+	'Randompage'                => [ 'Кодама_повсь', 'Кодама_повсь_лопа' ],
+	'Randomredirect'            => [ 'Кона_повсьШашфтфкс' ],
 	'Recentchanges'             => [ 'УлхкомбаньПолафнематне' ],
 	'Recentchangeslinked'       => [ 'УлхкомбаньПолафнематСюлмафт' ],
 	'Revisiondelete'            => [ 'ВерзиеНардамс' ],
@@ -115,15 +115,15 @@ $specialPageAliases = [
 	'Shortpages'                => [ 'НюрьхкяняЛопат' ],
 	'Specialpages'              => [ 'БашкаЛопат' ],
 	'Statistics'                => [ 'Статистик' ],
-	'Uncategorizedcategories'   => [ 'Апак категорияфттКатегориет' ],
-	'Uncategorizedimages'       => [ 'Апак категорияфттНяйфт' ],
-	'Uncategorizedpages'        => [ 'Апак категорияфттЛопат' ],
-	'Uncategorizedtemplates'    => [ 'Апак категорияфттШаблотт' ],
+	'Uncategorizedcategories'   => [ 'Апак_категорияфттКатегориет' ],
+	'Uncategorizedimages'       => [ 'Апак_категорияфттНяйфт' ],
+	'Uncategorizedpages'        => [ 'Апак_категорияфттЛопат' ],
+	'Uncategorizedtemplates'    => [ 'Апак_категорияфттШаблотт' ],
 	'Undelete'                  => [ 'Мърдафтомс' ],
 	'Unlockdb'                  => [ 'ПанжемсДатабазать' ],
-	'Unusedcategories'          => [ 'Апак нолдак тевсКатегориет' ],
-	'Unusedimages'              => [ 'Апак нолдак тевсНяйфне' ],
-	'Unusedtemplates'           => [ 'Апак нолдак тевсШаблотт' ],
+	'Unusedcategories'          => [ 'Апак_нолдак_тевсКатегориет' ],
+	'Unusedimages'              => [ 'Апак_нолдак_тевсНяйфне' ],
+	'Unusedtemplates'           => [ 'Апак_нолдак_тевсШаблотт' ],
 	'Unwatchedpages'            => [ 'МельгеваномафтомаЛопат' ],
 	'Upload'                    => [ 'Тонгома' ],
 	'Userlogin'                 => [ 'ТииньСувама' ],

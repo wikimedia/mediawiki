@@ -4,6 +4,7 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PasswordAuthenticationRequest;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Session\SessionManager;
 
 /**
@@ -71,8 +72,9 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 			return;
 		}
 
-		$this->getOutput()->addBacklinkSubtitle( $this->getPageTitle() );
-
+		$out = $this->getOutput();
+		$out->addModules( 'mediawiki.special.changecredentials' );
+		$out->addBacklinkSubtitle( $this->getPageTitle() );
 		$status = $this->trySubmit();
 
 		if ( $status === false || !$status->isOK() ) {
@@ -188,7 +190,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 		// messages used: changecredentials-submit removecredentials-submit
 		$form->setSubmitTextMsg( static::$messagePrefix . '-submit' );
 		$form->showCancel()->setCancelTarget( $this->getReturnUrl() ?: Title::newMainPage() );
-
+		$form->setSubmitID( 'change_credentials_submit' );
 		return $form;
 	}
 
@@ -260,8 +262,11 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 			$out->redirect( $returnUrl );
 		} else {
 			// messages used: changecredentials-success removecredentials-success
-			$out->wrapWikiMsg( "<div class=\"successbox\">\n$1\n</div>", static::$messagePrefix
-				. '-success' );
+			$out->addHtml(
+				Html::successBox(
+					$out->msg( static::$messagePrefix . '-success' )->parse()
+				)
+			);
 			$out->returnToMain();
 		}
 	}
@@ -283,6 +288,6 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 	}
 
 	protected function getRequestBlacklist() {
-		return $this->getConfig()->get( 'ChangeCredentialsBlacklist' );
+		return $this->getConfig()->get( MainConfigNames::ChangeCredentialsBlacklist );
 	}
 }

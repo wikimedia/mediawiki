@@ -23,7 +23,7 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\PageEditStash;
-use MediaWiki\User\UserIdentity;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Prepare an edit in shared cache so that it can be reused on edit
@@ -125,8 +125,9 @@ class ApiStashEdit extends ApiBase {
 			$textHash = sha1( $text );
 		}
 
-		$textContent = ContentHandler::makeContent(
-			$text, $title, $params['contentmodel'], $params['contentformat'] );
+		$textContent = $this->contentHandlerFactory
+			->getContentHandler( $params['contentmodel'] )
+			->unserializeContent( $text, $params['contentformat'] );
 
 		$page = $this->wikiPageFactory->newFromTitle( $title );
 		if ( $page->exists() ) {
@@ -211,56 +212,41 @@ class ApiStashEdit extends ApiBase {
 		$this->getResult()->addValue( null, $this->getModuleName(), $ret );
 	}
 
-	/**
-	 * @param WikiPage $page
-	 * @param Content $content Edit content
-	 * @param UserIdentity $user
-	 * @param string $summary Edit summary
-	 * @return string ApiStashEdit::ERROR_* constant
-	 * @since 1.25
-	 * @deprecated Since 1.34, hard deprecated since 1.38
-	 */
-	public function parseAndStash( WikiPage $page, Content $content, UserIdentity $user, $summary ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		$updater = $page->newPageUpdater( $user );
-		return $this->pageEditStash->parseAndCache( $updater, $content, $user, $summary ?? '' );
-	}
-
 	public function getAllowedParams() {
 		return [
 			'title' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true
 			],
 			'section' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 			'sectiontitle' => [
-				ApiBase::PARAM_TYPE => 'string'
+				ParamValidator::PARAM_TYPE => 'string'
 			],
 			'text' => [
-				ApiBase::PARAM_TYPE => 'text',
-				ApiBase::PARAM_DFLT => null
+				ParamValidator::PARAM_TYPE => 'text',
+				ParamValidator::PARAM_DEFAULT => null
 			],
 			'stashedtexthash' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_DFLT => null
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_DEFAULT => null
 			],
 			'summary' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_DFLT => ''
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_DEFAULT => ''
 			],
 			'contentmodel' => [
-				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getContentModels(),
-				ApiBase::PARAM_REQUIRED => true
+				ParamValidator::PARAM_TYPE => $this->contentHandlerFactory->getContentModels(),
+				ParamValidator::PARAM_REQUIRED => true
 			],
 			'contentformat' => [
-				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
-				ApiBase::PARAM_REQUIRED => true
+				ParamValidator::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
+				ParamValidator::PARAM_REQUIRED => true
 			],
 			'baserevid' => [
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_REQUIRED => true
+				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_REQUIRED => true
 			]
 		];
 	}

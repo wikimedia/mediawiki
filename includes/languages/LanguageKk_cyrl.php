@@ -1,10 +1,5 @@
 <?php
-
-use MediaWiki\MediaWikiServices;
-
 /**
- * Kazakh (Қазақша) specific code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,14 +16,17 @@ use MediaWiki\MediaWikiServices;
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
+// phpcs:ignoreFile Squiz.Classes.ValidClassName.NotCamelCaps
+
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
+
 /**
  * Kazakh (Қазақша)
  *
- * @ingroup Language
+ * @ingroup Languages
  */
-// phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class LanguageKk_cyrl extends Language {
 	# Convert from the nominative form of a noun to some other case
 	# Invoked with {{GRAMMAR:case|word}}
@@ -42,7 +40,8 @@ class LanguageKk_cyrl extends Language {
 	 * @return string
 	 */
 	protected function convertGrammarKk_cyrl( $word, $case ) {
-		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		$grammarForms =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::GrammarForms );
 		if ( isset( $grammarForms['kk-kz'][$case][$word] ) ) {
 			return $grammarForms['kk-kz'][$case][$word];
 		}
@@ -274,7 +273,8 @@ class LanguageKk_cyrl extends Language {
 	 * @return string
 	 */
 	protected function convertGrammarKk_latn( $word, $case ) {
-		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		$grammarForms =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::GrammarForms );
 		if ( isset( $grammarForms['kk-tr'][$case][$word] ) ) {
 			return $grammarForms['kk-tr'][$case][$word];
 		}
@@ -506,7 +506,8 @@ class LanguageKk_cyrl extends Language {
 	 * @return string
 	 */
 	protected function convertGrammarKk_arab( $word, $case ) {
-		$grammarForms = MediaWikiServices::getInstance()->getMainConfig()->get( 'GrammarForms' );
+		$grammarForms =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::GrammarForms );
 		if ( isset( $grammarForms['kk-cn'][$case][$word] ) ) {
 			return $grammarForms['kk-cn'][$case][$word];
 		}

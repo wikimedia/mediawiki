@@ -45,7 +45,7 @@ class ChangeTagsRevisionList extends ChangeTagsList {
 			'tables' => $revQuery['tables'],
 			'fields' => $revQuery['fields'],
 			'conds' => [
-				'rev_page' => $this->title->getId(),
+				'rev_page' => $this->page->getId(),
 				'rev_id' => $ids,
 			],
 			'options' => [ 'ORDER BY' => 'rev_id DESC' ],
@@ -83,7 +83,13 @@ class ChangeTagsRevisionList extends ChangeTagsList {
 	 * @param Authority $performer
 	 * @return Status
 	 */
-	public function updateChangeTagsOnAll( $tagsToAdd, $tagsToRemove, $params, $reason, Authority $performer ) {
+	public function updateChangeTagsOnAll(
+		array $tagsToAdd,
+		array $tagsToRemove,
+		?string $params,
+		string $reason,
+		Authority $performer
+	) {
 		$status = Status::newGood();
 		for ( $this->reset(); $this->current(); $this->next() ) {
 			$item = $this->current();

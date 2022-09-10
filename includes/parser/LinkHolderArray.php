@@ -23,6 +23,7 @@
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -56,25 +57,14 @@ class LinkHolderArray {
 
 	/**
 	 * @param Parser $parent
-	 * @param ILanguageConverter|null $languageConverter
-	 * @param HookContainer|null $hookContainer
+	 * @param ILanguageConverter $languageConverter
+	 * @param HookContainer $hookContainer
 	 */
-	public function __construct( Parser $parent, ILanguageConverter $languageConverter = null,
-		HookContainer $hookContainer = null
+	public function __construct( Parser $parent, ILanguageConverter $languageConverter,
+		HookContainer $hookContainer
 	) {
 		$this->parent = $parent;
-
-		if ( !$languageConverter ) {
-			wfDeprecated( __METHOD__ . ' without $languageConverter parameter', '1.35' );
-			$languageConverter = MediaWikiServices::getInstance()
-				->getLanguageConverterFactory()
-				->getLanguageConverter( $parent->getTargetLanguage() );
-		}
 		$this->languageConverter = $languageConverter;
-		if ( !$hookContainer ) {
-			wfDeprecated( __METHOD__ . ' without $hookContainer parameter', '1.35' );
-			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		}
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
@@ -109,7 +99,8 @@ class LinkHolderArray {
 	 * @return bool
 	 */
 	public function isBig() {
-		$linkHolderBatchSize = MediaWikiServices::getInstance()->getMainConfig()->get( 'LinkHolderBatchSize' );
+		$linkHolderBatchSize = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::LinkHolderBatchSize );
 		return $this->size > $linkHolderBatchSize;
 	}
 
@@ -226,17 +217,12 @@ class LinkHolderArray {
 			}
 		}
 		if ( !$lb->isEmpty() ) {
-			$fields = array_merge(
-				LinkCache::getSelectFields(),
-				[ 'page_namespace', 'page_title' ]
-			);
-
-			$res = $dbr->select(
-				'page',
-				$fields,
-				$lb->constructSet( 'page', $dbr ),
-				__METHOD__
-			);
+			$res = $dbr->newSelectQueryBuilder()
+				->select( LinkCache::getSelectFields() )
+				->from( 'page' )
+				->where( [ $lb->constructSet( 'page', $dbr ) ] )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 
 			# Fetch data and form into an associative array
 			# non-existent = broken
@@ -426,16 +412,13 @@ class LinkHolderArray {
 		if ( !$linkBatch->isEmpty() ) {
 			// construct query
 			$dbr = wfGetDB( DB_REPLICA );
-			$fields = array_merge(
-				LinkCache::getSelectFields(),
-				[ 'page_namespace', 'page_title' ]
-			);
 
-			$varRes = $dbr->select( 'page',
-				$fields,
-				$linkBatch->constructSet( 'page', $dbr ),
-				__METHOD__
-			);
+			$varRes = $dbr->newSelectQueryBuilder()
+				->select( LinkCache::getSelectFields() )
+				->from( 'page' )
+				->where( [ $linkBatch->constructSet( 'page', $dbr ) ] )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 
 			$pagemap = [];
 			$linkRenderer = $this->parent->getLinkRenderer();

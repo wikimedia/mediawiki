@@ -25,6 +25,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\User\UserIdentityLookup;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * API module that facilitates the unblocking of users. Requires API write mode
@@ -92,6 +93,7 @@ class ApiUnblock extends ApiBase {
 			$this->dieWithError(
 				$status,
 				null,
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 				[ 'blockinfo' => $this->getBlockDetails( $performer->getBlock() ) ]
 			);
 		}
@@ -130,20 +132,20 @@ class ApiUnblock extends ApiBase {
 	public function getAllowedParams() {
 		return [
 			'id' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 			],
 			'user' => [
-				ApiBase::PARAM_TYPE => 'user',
+				ParamValidator::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'cidr', 'id' ],
 			],
 			'userid' => [
-				ApiBase::PARAM_TYPE => 'integer',
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'reason' => '',
 			'tags' => [
-				ApiBase::PARAM_TYPE => 'tags',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'tags',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 		];
 	}

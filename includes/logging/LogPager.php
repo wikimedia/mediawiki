@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\User\ActorNormalization;
@@ -149,7 +150,7 @@ class LogPager extends ReverseChronologicalPager {
 		}
 
 		$wpfilters = $this->getRequest()->getArray( "wpfilters" );
-		$filterLogTypes = $this->getConfig()->get( 'FilterLogTypes' );
+		$filterLogTypes = $this->getConfig()->get( MainConfigNames::FilterLogTypes );
 
 		foreach ( $filterLogTypes as $type => $default ) {
 			// Back-compat: Check old URL params if the new param wasn't passed
@@ -173,8 +174,7 @@ class LogPager extends ReverseChronologicalPager {
 	 *   empty string means no restriction
 	 */
 	private function limitType( $types ) {
-		$user = $this->getUser();
-		$restrictions = $this->getConfig()->get( 'LogRestrictions' );
+		$restrictions = $this->getConfig()->get( MainConfigNames::LogRestrictions );
 		// If $types is not an array, make it an array
 		$types = ( $types === '' ) ? [] : (array)$types;
 		// Don't even show header for private logs; don't recognize it...
@@ -199,7 +199,7 @@ class LogPager extends ReverseChronologicalPager {
 		// we don't require that "specific request" so that the links-in-logs feature
 		// works. See T269761
 		$audience = ( $types || $this->hasEqualsClause( 'log_id' ) ) ? 'user' : 'public';
-		$hideLogs = LogEventsList::getExcludeClause( $this->mDb, $audience, $user );
+		$hideLogs = LogEventsList::getExcludeClause( $this->mDb, $audience, $this->getAuthority() );
 		if ( $hideLogs !== false ) {
 			$this->mConds[] = $hideLogs;
 		}
@@ -260,7 +260,7 @@ class LogPager extends ReverseChronologicalPager {
 		$ns = $page->getNamespace();
 		$db = $this->mDb;
 
-		$interwikiDelimiter = $this->getConfig()->get( 'UserrightsInterwikiDelimiter' );
+		$interwikiDelimiter = $this->getConfig()->get( MainConfigNames::UserrightsInterwikiDelimiter );
 
 		$doUserRightsLogLike = false;
 		if ( $this->types == [ 'rights' ] ) {
@@ -288,14 +288,17 @@ class LogPager extends ReverseChronologicalPager {
 		 */
 		$this->mConds['log_namespace'] = $ns;
 		if ( $doUserRightsLogLike ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $name is set when reached here
 			$params = [ $name . $interwikiDelimiter ];
+			// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable $database is set when reached here
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal $database is set when reached here
 			foreach ( explode( '*', $database ) as $databasepart ) {
 				$params[] = $databasepart;
 				$params[] = $db->anyString();
 			}
 			array_pop( $params ); // Get rid of the last % we added.
 			$this->mConds[] = 'log_title' . $db->buildLike( ...$params );
-		} elseif ( $pattern && !$this->getConfig()->get( 'MiserMode' ) ) {
+		} elseif ( $pattern && !$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$this->mConds[] = 'log_title' . $db->buildLike( $page->getDBkey(), $db->anyString() );
 			$this->pattern = $pattern;
 		} else {
@@ -316,7 +319,7 @@ class LogPager extends ReverseChronologicalPager {
 			// nothing to do
 			return;
 		}
-		$actions = $this->getConfig()->get( 'ActionFilteredLogs' );
+		$actions = $this->getConfig()->get( MainConfigNames::ActionFilteredLogs );
 		if ( isset( $actions[$type] ) ) {
 			// log type can be filtered by actions
 			$this->mLogEventsList->setAllowedActions( array_keys( $actions[$type] ) );
@@ -368,6 +371,16 @@ class LogPager extends ReverseChronologicalPager {
 				# no duplicate log rows. Otherwise, we need to remove the duplicates.
 				$options[] = 'DISTINCT';
 			}
+		} elseif ( array_key_exists( 'log_actor', $this->mConds ) ) {
+			// Optimizer doesn't pick the right index when a user has lots of log actions (T303089)
+			$index = 'log_actor_time';
+			foreach ( $this->getFilterParams() as $type => $hide ) {
+				if ( !$hide ) {
+					$index = 'log_actor_type_time';
+					break;
+				}
+			}
+			$options['USE INDEX'] = [ 'logging' => $index ];
 		}
 		# Don't show duplicate rows when using log_search
 		$joins['log_search'] = [ 'JOIN', 'ls_log_id=log_id' ];
@@ -380,7 +393,8 @@ class LogPager extends ReverseChronologicalPager {
 			$options[] = 'STRAIGHT_JOIN';
 		}
 
-		$options['MAX_EXECUTION_TIME'] = $this->getConfig()->get( 'MaxExecutionTimeForExpensiveQueries' );
+		$options['MAX_EXECUTION_TIME'] = $this->getConfig()
+			->get( MainConfigNames::MaxExecutionTimeForExpensiveQueries );
 
 		$info = [
 			'tables' => $tables,

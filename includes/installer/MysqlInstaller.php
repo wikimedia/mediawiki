@@ -21,6 +21,7 @@
  * @ingroup Installer
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBQueryError;
@@ -50,7 +51,7 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	public $supportedEngines = [ 'InnoDB' ];
 
-	public static $minimumVersion = '5.5.8';
+	public static $minimumVersion = '5.7.0';
 	protected static $notMinimumVersionMessage = 'config-mysql-old';
 
 	public $webUserPrivs = [
@@ -397,7 +398,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		if ( !$create ) {
 			// Test the web account
 			try {
-				Database::factory( 'mysql', [
+				MediaWikiServices::getInstance()->getDatabaseFactory()->create( 'mysql', [
 					'host' => $this->getVar( 'wgDBserver' ),
 					'user' => $this->getVar( 'wgDBuser' ),
 					'password' => $this->getVar( 'wgDBpassword' ),

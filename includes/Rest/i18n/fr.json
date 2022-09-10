@@ -14,7 +14,7 @@
 	"rest-nonexistent-title-revision": "La version spécifiée ($1) n’existe pas pour la page spécifiée ($2)",
 	"rest-nonexistent-revision": "La version spécifiée ($1) n’existe pas",
 	"rest-nonexistent-user": "L’utilisateur ou l’utilisatrice « $1 » spécifié(e) n’existe pas.",
-	"rest-invalid-user": "Le nom d’utilisateur spécifié ($1) est incorrect",
+	"rest-invalid-user": "Le nom d’utilisateur spécifié ($1) n’est pas valide",
 	"rest-permission-denied-anon": "Non accessible par un utilisateur anonyme",
 	"rest-permission-denied-title": "L’utilisateur n’a pas le droit de lire le titre ($1)",
 	"rest-permission-denied-revision": "L’utilisateur n’a pas accès à la version demandée ($1).",
@@ -43,5 +43,7 @@
 	"rest-update-cannot-create-page": "La page « $1 » n’a pas pu être créée car elle existe déjà. Pour mettre à jour la page existante, fournir l’identifiant de la révision de base dans la structure sous la clé « latest » (la plus récente) dans le corps de la requête.",
 	"rest-extraneous-csrf-token": "Jeton CRSF superflu trouvé. Les jetons CSRF ne doivent pas être utilisés lors de l’utilisation de mécanismes d’authentification tels que OAuth, qui sont sûrs vis-à-vis des attaques CSRF.",
 	"rest-cannot-load-file": "Le fichier de titre « $1 » n’a pas pu être chargé.",
-	"rest-cross-origin-anon-write": "Les requêtes d’écriture anonymes d’origine croisée ne sont pas autorisées"
+	"rest-cross-origin-anon-write": "Les requêtes d’écriture anonymes d’origine croisée ne sont pas autorisées",
+	"rest-requires-safe-against-csrf": "Ce point de terminaison exige un fournisseur de session qui protège des usurpations de sites (CSRF).",
+	"rest-badtoken": "Le jeton CSRF fourni n’est pas valide."
 }

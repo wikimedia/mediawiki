@@ -19,6 +19,7 @@
  * @ingroup JobQueue
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -49,7 +50,7 @@ class ClearWatchlistNotificationsJob extends Job implements GenericParameterJob 
 	public function run() {
 		$services = MediaWikiServices::getInstance();
 		$lbFactory = $services->getDBLoadBalancerFactory();
-		$rowsPerQuery = $services->getMainConfig()->get( 'UpdateRowsPerQuery' );
+		$rowsPerQuery = $services->getMainConfig()->get( MainConfigNames::UpdateRowsPerQuery );
 
 		$dbw = $lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );

@@ -30,8 +30,10 @@ use ManualLogEntry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\GroupPermissionsLookup;
+use MediaWiki\User\TempUser\TempUserConfig;
 use Psr\Log\LoggerInterface;
 use ReadOnlyMode;
 use Sanitizer;
@@ -55,20 +57,20 @@ class UserGroupManager implements IDBAccessObject {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'AddGroups',
-		'AutoConfirmAge',
-		'AutoConfirmCount',
-		'Autopromote',
-		'AutopromoteOnce',
-		'AutopromoteOnceLogInRC',
-		'EmailAuthentication',
-		'ImplicitGroups',
-		'GroupInheritsPermissions',
-		'GroupPermissions',
-		'GroupsAddToSelf',
-		'GroupsRemoveFromSelf',
-		'RevokePermissions',
-		'RemoveGroups',
+		MainConfigNames::AddGroups,
+		MainConfigNames::AutoConfirmAge,
+		MainConfigNames::AutoConfirmCount,
+		MainConfigNames::Autopromote,
+		MainConfigNames::AutopromoteOnce,
+		MainConfigNames::AutopromoteOnceLogInRC,
+		MainConfigNames::EmailAuthentication,
+		MainConfigNames::ImplicitGroups,
+		MainConfigNames::GroupInheritsPermissions,
+		MainConfigNames::GroupPermissions,
+		MainConfigNames::GroupsAddToSelf,
+		MainConfigNames::GroupsRemoveFromSelf,
+		MainConfigNames::RevokePermissions,
+		MainConfigNames::RemoveGroups,
 	];
 
 	/** @var ServiceOptions */
@@ -100,6 +102,9 @@ class UserGroupManager implements IDBAccessObject {
 
 	/** @var LoggerInterface */
 	private $logger;
+
+	/** @var TempUserConfig */
+	private $tempUserConfig;
 
 	/** @var callable[] */
 	private $clearCacheCallbacks;
@@ -154,6 +159,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param JobQueueGroup $jobQueueGroup for this $dbDomain
 	 * @param LoggerInterface $logger
+	 * @param TempUserConfig $tempUserConfig
 	 * @param callable[] $clearCacheCallbacks
 	 * @param string|bool $dbDomain
 	 */
@@ -166,6 +172,7 @@ class UserGroupManager implements IDBAccessObject {
 		GroupPermissionsLookup $groupPermissionsLookup,
 		JobQueueGroup $jobQueueGroup,
 		LoggerInterface $logger,
+		TempUserConfig $tempUserConfig,
 		array $clearCacheCallbacks = [],
 		$dbDomain = false
 	) {
@@ -179,6 +186,7 @@ class UserGroupManager implements IDBAccessObject {
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->logger = $logger;
+		$this->tempUserConfig = $tempUserConfig;
 		// Can't just inject ROM since we LB can be for foreign wiki
 		$this->readOnlyMode = new ReadOnlyMode( $configuredReadOnlyMode, $this->loadBalancer );
 		$this->clearCacheCallbacks = $clearCacheCallbacks;
@@ -195,9 +203,9 @@ class UserGroupManager implements IDBAccessObject {
 		return array_values( array_unique(
 			array_diff(
 				array_merge(
-					array_keys( $this->options->get( 'GroupPermissions' ) ),
-					array_keys( $this->options->get( 'RevokePermissions' ) ),
-					array_keys( $this->options->get( 'GroupInheritsPermissions' ) )
+					array_keys( $this->options->get( MainConfigNames::GroupPermissions ) ),
+					array_keys( $this->options->get( MainConfigNames::RevokePermissions ) ),
+					array_keys( $this->options->get( MainConfigNames::GroupInheritsPermissions ) )
 				),
 				$this->listAllImplicitGroups()
 			)
@@ -209,7 +217,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @return string[]
 	 */
 	public function listAllImplicitGroups(): array {
-		return $this->options->get( 'ImplicitGroups' );
+		return $this->options->get( MainConfigNames::ImplicitGroups );
 	}
 
 	/**
@@ -280,9 +288,13 @@ class UserGroupManager implements IDBAccessObject {
 			!$this->canUseCachedValues( $user, self::CACHE_IMPLICIT, $queryFlags )
 		) {
 			$groups = [ '*' ];
-			if ( $user->isRegistered() ) {
+			if ( $this->tempUserConfig->isReservedName( $user->getName() ) ) {
 				$groups[] = 'user';
-
+			} elseif ( $user->isRegistered() ) {
+				$groups[] = 'user';
+				if ( $this->tempUserConfig->isEnabled() ) {
+					$groups[] = 'named';
+				}
 				$groups = array_unique( array_merge(
 					$groups,
 					$this->getUserAutopromoteGroups( $user )
@@ -397,7 +409,7 @@ class UserGroupManager implements IDBAccessObject {
 		$promote = [];
 		// TODO: remove the need for the full user object
 		$userObj = User::newFromIdentity( $user );
-		foreach ( $this->options->get( 'Autopromote' ) as $group => $cond ) {
+		foreach ( $this->options->get( MainConfigNames::Autopromote ) as $group => $cond ) {
 			if ( $this->recCheckCondition( $cond, $userObj ) ) {
 				$promote[] = $group;
 			}
@@ -423,7 +435,7 @@ class UserGroupManager implements IDBAccessObject {
 		UserIdentity $user,
 		string $event
 	): array {
-		$autopromoteOnce = $this->options->get( 'AutopromoteOnce' );
+		$autopromoteOnce = $this->options->get( MainConfigNames::AutopromoteOnce );
 		$promote = [];
 
 		if ( isset( $autopromoteOnce[$event] ) && count( $autopromoteOnce[$event] ) ) {
@@ -533,7 +545,7 @@ class UserGroupManager implements IDBAccessObject {
 		switch ( $cond[0] ) {
 			case APCOND_EMAILCONFIRMED:
 				if ( Sanitizer::validateEmail( $user->getEmail() ) ) {
-					if ( $this->options->get( 'EmailAuthentication' ) ) {
+					if ( $this->options->get( MainConfigNames::EmailAuthentication ) ) {
 						return (bool)$user->getEmailAuthenticationTimestamp();
 					} else {
 						return true;
@@ -541,7 +553,7 @@ class UserGroupManager implements IDBAccessObject {
 				}
 				return false;
 			case APCOND_EDITCOUNT:
-				$reqEditCount = $cond[1] ?? $this->options->get( 'AutoConfirmCount' );
+				$reqEditCount = $cond[1] ?? $this->options->get( MainConfigNames::AutoConfirmCount );
 
 				// T157718: Avoid edit count lookup if specified edit count is 0 or invalid
 				if ( $reqEditCount <= 0 ) {
@@ -549,7 +561,7 @@ class UserGroupManager implements IDBAccessObject {
 				}
 				return $user->isRegistered() && $this->userEditTracker->getUserEditCount( $user ) >= $reqEditCount;
 			case APCOND_AGE:
-				$reqAge = $cond[1] ?? $this->options->get( 'AutoConfirmAge' );
+				$reqAge = $cond[1] ?? $this->options->get( MainConfigNames::AutoConfirmAge );
 				$age = time() - (int)wfTimestampOrNull( TS_UNIX, $user->getRegistration() );
 				return $age >= $reqAge;
 			case APCOND_AGE_FROM_EDIT:
@@ -576,6 +588,7 @@ class UserGroupManager implements IDBAccessObject {
 			default:
 				$result = null;
 				$this->hookRunner->onAutopromoteCondition( $cond[0],
+					// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 					array_slice( $cond, 1 ), $user, $result );
 				if ( $result === null ) {
 					throw new InvalidArgumentException(
@@ -611,7 +624,7 @@ class UserGroupManager implements IDBAccessObject {
 			__METHOD__ . " is not supported for foreign domains: {$this->dbDomain} used"
 		);
 
-		if ( $this->readOnlyMode->isReadOnly() || !$user->getId() ) {
+		if ( $this->readOnlyMode->isReadOnly() || !$user->isRegistered() ) {
 			return [];
 		}
 
@@ -650,7 +663,7 @@ class UserGroupManager implements IDBAccessObject {
 			'5::newgroups' => $newGroups,
 		] );
 		$logid = $logEntry->insert();
-		if ( $this->options->get( 'AutopromoteOnceLogInRC' ) ) {
+		if ( $this->options->get( MainConfigNames::AutopromoteOnceLogInRC ) ) {
 			$logEntry->publish( $logid );
 		}
 
@@ -934,11 +947,11 @@ class UserGroupManager implements IDBAccessObject {
 	 * using newGroupMembershipFromRow method.
 	 *
 	 * @return array[] With three keys:
-	 *  - tables: (string[]) to include in the `$table` to `IDatabase->select()`
-	 *  - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
-	 *  - joins: (string[]) to include in the `$joins` to `IDatabase->select()`
+	 *  - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
+	 *  - fields: (string[]) to include in the `$vars` to `IDatabase->select()` or `SelectQueryBuilder::fields`
+	 *  - joins: (array) to include in the `$join_conds` to `IDatabase->select()` or `SelectQueryBuilder::joinConds`
 	 * @internal
-	 * @phan-return array{tables:string[],fields:string[],joins:string[]}
+	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public function getQueryInfo(): array {
 		return [
@@ -1053,16 +1066,16 @@ class UserGroupManager implements IDBAccessObject {
 	public function getGroupsChangeableByGroup( string $group ): array {
 		return [
 			'add' => $this->expandChangeableGroupConfig(
-				$this->options->get( 'AddGroups' ), $group
+				$this->options->get( MainConfigNames::AddGroups ), $group
 			),
 			'remove' => $this->expandChangeableGroupConfig(
-				$this->options->get( 'RemoveGroups' ), $group
+				$this->options->get( MainConfigNames::RemoveGroups ), $group
 			),
 			'add-self' => $this->expandChangeableGroupConfig(
-				$this->options->get( 'GroupsAddToSelf' ), $group
+				$this->options->get( MainConfigNames::GroupsAddToSelf ), $group
 			),
 			'remove-self' => $this->expandChangeableGroupConfig(
-				$this->options->get( 'GroupsRemoveFromSelf' ), $group
+				$this->options->get( MainConfigNames::GroupsRemoveFromSelf ), $group
 			),
 		];
 	}

@@ -23,6 +23,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
@@ -165,6 +166,7 @@ class WebRequest {
 			$path = $a['path'] ?? '';
 
 			global $wgScript;
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 			if ( $path == $wgScript && $want !== 'all' ) {
 				// Script inside a rewrite path?
 				// Abort to keep from breaking...
@@ -174,6 +176,7 @@ class WebRequest {
 			$router = new PathRouter;
 
 			// Raw PATH_INFO style
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 			$router->add( "$wgScript/$1" );
 
 			global $wgArticlePath;
@@ -242,7 +245,7 @@ class WebRequest {
 		} else {
 			$requestPath = $requestUrl;
 		}
-		if ( substr( $requestPath, 0, strlen( $basePath ) ) !== $basePath ) {
+		if ( !str_starts_with( $requestPath, $basePath ) ) {
 			return false;
 		}
 		return rawurldecode( substr( $requestPath, strlen( $basePath ) ) );
@@ -614,6 +617,7 @@ class WebRequest {
 	 * @return int
 	 */
 	public function getInt( $name, $default = 0 ) {
+		// @phan-suppress-next-line PhanTypeMismatchArgument getRawVal does not return null here
 		return intval( $this->getRawVal( $name, $default ) );
 	}
 
@@ -643,6 +647,7 @@ class WebRequest {
 	 * @return float
 	 */
 	public function getFloat( $name, $default = 0.0 ) {
+		// @phan-suppress-next-line PhanTypeMismatchArgument getRawVal does not return null here
 		return floatval( $this->getRawVal( $name, $default ) );
 	}
 
@@ -656,6 +661,7 @@ class WebRequest {
 	 * @return bool
 	 */
 	public function getBool( $name, $default = false ) {
+		// @phan-suppress-next-line PhanTypeMismatchArgument getRawVal does not return null here
 		return (bool)$this->getRawVal( $name, $default );
 	}
 
@@ -1171,20 +1177,6 @@ class WebRequest {
 	}
 
 	/**
-	 * This function formerly did a security check to prevent an XSS
-	 * vulnerability in IE6, as documented in T30235. Since IE6 support has
-	 * been dropped, this function now returns true unconditionally.
-	 *
-	 * @deprecated since 1.35
-	 * @param array $extList
-	 * @return bool
-	 */
-	public function checkUrlExtension( $extList = [] ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return true;
-	}
-
-	/**
 	 * Parse the Accept-Language header sent by the client into an array
 	 *
 	 * @return array [ languageCode => q-value ] sorted by q-value in
@@ -1248,23 +1240,18 @@ class WebRequest {
 	 * Fetch the raw IP from the request
 	 *
 	 * @since 1.19
-	 *
-	 * @throws MWException
 	 * @return string|null
 	 */
 	protected function getRawIP() {
-		if ( !isset( $_SERVER['REMOTE_ADDR'] ) ) {
+		$remoteAddr = $_SERVER['REMOTE_ADDR'] ?? null;
+		if ( !$remoteAddr ) {
 			return null;
 		}
-
-		if ( is_array( $_SERVER['REMOTE_ADDR'] ) || strpos( $_SERVER['REMOTE_ADDR'], ',' ) !== false ) {
-			throw new MWException( __METHOD__
-				. " : Could not determine the remote IP address due to multiple values." );
-		} else {
-			$ipchain = $_SERVER['REMOTE_ADDR'];
+		if ( is_array( $remoteAddr ) || str_contains( $remoteAddr, ',' ) ) {
+			throw new MWException( 'Remote IP must not contain multiple values' );
 		}
 
-		return IPUtils::canonicalize( $ipchain );
+		return IPUtils::canonicalize( $remoteAddr );
 	}
 
 	/**
@@ -1272,8 +1259,6 @@ class WebRequest {
 	 * For trusted proxies, use the XFF client IP (first of the chain)
 	 *
 	 * @since 1.19
-	 *
-	 * @throws MWException
 	 * @return string
 	 */
 	public function getIP() {
@@ -1284,7 +1269,7 @@ class WebRequest {
 			return $this->ip;
 		}
 
-		# collect the originating ips
+		# collect the originating IPs
 		$ip = $this->getRawIP();
 		if ( !$ip ) {
 			throw new MWException( 'Unable to determine IP.' );
@@ -1341,11 +1326,15 @@ class WebRequest {
 			}
 		}
 
-		# Allow extensions to improve our guess
-		Hooks::runner()->onGetIP( $ip );
+		// Allow extensions to modify the result
+		// Optimisation: Hot code called on most requests (T85805).
+		if ( Hooks::isRegistered( 'GetIP' ) ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
+			Hooks::runner()->onGetIP( $ip );
+		}
 
 		if ( !$ip ) {
-			throw new MWException( "Unable to determine IP." );
+			throw new MWException( 'Unable to determine IP.' );
 		}
 
 		$this->ip = $ip;
@@ -1436,5 +1425,51 @@ class WebRequest {
 	 */
 	public function markAsSafeRequest() {
 		$this->markedAsSafe = true;
+	}
+
+	/**
+	 * Determine if the request URL matches one of a given set of canonical CDN URLs.
+	 *
+	 * MediaWiki uses this to determine whether to set a long 'Cache-Control: s-maxage='
+	 * header on the response. {@see MainConfigNames::CdnMatchParameterOrder} controls whether
+	 * the matching is sensitive to the order of query parameters.
+	 *
+	 * @param string[] $cdnUrls URLs to match against
+	 * @return bool
+	 * @since 1.39
+	 */
+	public function matchURLForCDN( array $cdnUrls ) {
+		$reqUrl = wfExpandUrl( $this->getRequestURL(), PROTO_INTERNAL );
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		if ( $config->get( MainConfigNames::CdnMatchParameterOrder ) ) {
+			// Strict matching
+			return in_array( $reqUrl, $cdnUrls, true );
+		}
+
+		// Loose matching (order of query parameters is ignored)
+		$reqUrlParts = explode( '?', $reqUrl, 2 );
+		$reqUrlBase = $reqUrlParts[0];
+		$reqUrlParams = count( $reqUrlParts ) === 2 ? explode( '&', $reqUrlParts[1] ) : [];
+		// The order of parameters after the sort() call below does not match
+		// the order set by the CDN, and does not need to. The CDN needs to
+		// take special care to preserve the relative order of duplicate keys
+		// and array-like parameters.
+		sort( $reqUrlParams );
+		foreach ( $cdnUrls as $cdnUrl ) {
+			if ( strlen( $reqUrl ) !== strlen( $cdnUrl ) ) {
+				continue;
+			}
+			$cdnUrlParts = explode( '?', $cdnUrl, 2 );
+			$cdnUrlBase = $cdnUrlParts[0];
+			if ( $reqUrlBase !== $cdnUrlBase ) {
+				continue;
+			}
+			$cdnUrlParams = count( $cdnUrlParts ) === 2 ? explode( '&', $cdnUrlParts[1] ) : [];
+			sort( $cdnUrlParams );
+			if ( $reqUrlParams === $cdnUrlParams ) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Session\BotPasswordSessionProvider;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\TestingAccessWrapper;
@@ -29,7 +30,10 @@ class ApiLoginTest extends ApiTestCase {
 	 * @dataProvider provideEnableBotPasswords
 	 */
 	public function testExtendedDescription( $enableBotPasswords ) {
-		$this->setMwGlobals( 'wgEnableBotPasswords', $enableBotPasswords );
+		$this->overrideConfigValue(
+			MainConfigNames::EnableBotPasswords,
+			$enableBotPasswords
+		);
 		$ret = $this->doApiRequest( [
 			'action' => 'paraminfo',
 			'modules' => 'login',
@@ -61,7 +65,10 @@ class ApiLoginTest extends ApiTestCase {
 	 * @dataProvider provideEnableBotPasswords
 	 */
 	public function testDeprecatedUserLogin( $enableBotPasswords ) {
-		$this->setMwGlobals( 'wgEnableBotPasswords', $enableBotPasswords );
+		$this->overrideConfigValue(
+			MainConfigNames::EnableBotPasswords,
+			$enableBotPasswords
+		);
 
 		$user = $this->getTestUser();
 
@@ -196,7 +203,10 @@ class ApiLoginTest extends ApiTestCase {
 	 * @dataProvider provideEnableBotPasswords
 	 */
 	public function testGoodPass( $enableBotPasswords ) {
-		$this->setMwGlobals( 'wgEnableBotPasswords', $enableBotPasswords );
+		$this->overrideConfigValue(
+			MainConfigNames::EnableBotPasswords,
+			$enableBotPasswords
+		);
 
 		$user = self::$users['sysop'];
 		$userName = $user->getUser()->getName();
@@ -218,7 +228,10 @@ class ApiLoginTest extends ApiTestCase {
 	 * @dataProvider provideEnableBotPasswords
 	 */
 	public function testUnsupportedAuthResponseType( $enableBotPasswords ) {
-		$this->setMwGlobals( 'wgEnableBotPasswords', $enableBotPasswords );
+		$this->overrideConfigValue(
+			MainConfigNames::EnableBotPasswords,
+			$enableBotPasswords
+		);
 
 		$mockProvider = $this->createMock(
 			MediaWiki\Auth\AbstractSecondaryAuthenticationProvider::class );
@@ -260,19 +273,20 @@ class ApiLoginTest extends ApiTestCase {
 	private function setUpForBotPassword() {
 		global $wgSessionProviders;
 
-		$this->setMwGlobals( [
+		$this->overrideConfigValues( [
 			// We can't use mergeMwGlobalArrayValue because it will overwrite the existing entry
 			// with index 0
-			'wgSessionProviders' => array_merge( $wgSessionProviders, [
+			MainConfigNames::SessionProviders => array_merge( $wgSessionProviders, [
 				[
 					'class' => BotPasswordSessionProvider::class,
 					'args' => [ [ 'priority' => 40 ] ],
+					'services' => [ 'GrantsInfo' ],
 				],
 			] ),
-			'wgEnableBotPasswords' => true,
-			'wgBotPasswordsDatabase' => false,
-			'wgCentralIdLookupProvider' => 'local',
-			'wgGrantPermissions' => [
+			MainConfigNames::EnableBotPasswords => true,
+			MainConfigNames::BotPasswordsDatabase => false,
+			MainConfigNames::CentralIdLookupProvider => 'local',
+			MainConfigNames::GrantPermissions => [
 				'test' => [ 'read' => true ],
 			],
 		] );
@@ -325,14 +339,21 @@ class ApiLoginTest extends ApiTestCase {
 	}
 
 	public function testBotPasswordThrottled() {
-		global $wgPasswordAttemptThrottle;
+		// Undo high count from DevelopmentSettings.php
+		$throttle = [
+			[ 'count' => 5, 'seconds' => 30 ],
+			[ 'count' => 100, 'seconds' => 60 * 60 * 48 ],
+		];
 
 		$this->setGroupPermissions( 'sysop', 'noratelimit', false );
-		$this->setMwGlobals( 'wgMainCacheType', 'hash' );
+		$this->overrideConfigValue(
+			MainConfigNames::PasswordAttemptThrottle,
+			$throttle
+		);
 
 		list( $name, $password ) = $this->setUpForBotPassword();
 
-		for ( $i = 0; $i < $wgPasswordAttemptThrottle[0]['count']; $i++ ) {
+		for ( $i = 0; $i < $throttle[0]['count']; $i++ ) {
 			$this->doUserLogin( $name, 'incorrectpasswordincorrectpassword' );
 		}
 
@@ -341,7 +362,7 @@ class ApiLoginTest extends ApiTestCase {
 		$this->assertSame( [
 			'result' => 'Failed',
 			'reason' => ApiErrorFormatter::stripMarkup( wfMessage( 'login-throttled' )->
-				durationParams( $wgPasswordAttemptThrottle[0]['seconds'] )->text() ),
+				durationParams( $throttle[0]['seconds'] )->text() ),
 		], $ret[0]['login'] );
 	}
 

@@ -3,12 +3,15 @@
 namespace MediaWiki\Tests\Structure;
 
 use ExtensionRegistry;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\Settings\Config\ArrayConfigBuilder;
 use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Settings\Source\FileSource;
-use MediaWiki\Settings\Source\Format\YamlFormat;
+use MediaWiki\Settings\Source\JsonSchemaTrait;
 use MediaWiki\Settings\Source\PhpSettingsSource;
+use MediaWiki\Settings\Source\ReflectionSchemaSource;
 use MediaWiki\Settings\Source\SettingsSource;
 use MediaWiki\Shell\Shell;
 use MediaWikiIntegrationTestCase;
@@ -17,23 +20,17 @@ use MediaWikiIntegrationTestCase;
  * @coversNothing
  */
 class SettingsTest extends MediaWikiIntegrationTestCase {
+	use JsonSchemaTrait;
 
 	/**
-	 * Returns the contents of config-schema.yaml as an array.
+	 * Returns the main configuration schema as a settings array.
 	 *
 	 * @return array
 	 */
-	private static function getSchemaData(): array {
-		static $data = null;
-
-		if ( !$data ) {
-			$file = __DIR__ . '/../../../includes/config-schema.yaml';
-			$data = file_get_contents( $file );
-			$yaml = new YamlFormat();
-			$data = $yaml->decode( $data );
-		}
-
-		return $data;
+	private function getSchemaData(): array {
+		$source = new ReflectionSchemaSource( MainConfigSchema::class, true );
+		$settings = $source->load();
+		return $settings;
 	}
 
 	/**
@@ -56,7 +53,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		$settingsBuilder->apply();
 
 		// Assert we've read some random config value
-		$this->assertTrue( $settingsBuilder->getConfig()->has( 'Server' ) );
+		$this->assertTrue( $settingsBuilder->getConfig()->has( MainConfigNames::Server ) );
 	}
 
 	/**
@@ -65,13 +62,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	public function testConfigSchemaDefaultsValidate() {
 		$settingsBuilder = $this->getSettingsBuilderWithSchema();
 		$validationResult = $settingsBuilder->apply()->validate();
-		$this->assertArrayEquals(
-			[],
-			$validationResult->getErrorsByType( 'errors' ),
-			false,
-			false,
-			"$validationResult"
-		);
+		$this->assertStatusOK( $validationResult );
 	}
 
 	/**
@@ -80,38 +71,61 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	public function testCurrentSettingsValidate() {
 		global $wgSettings;
 		$validationResult = $wgSettings->validate();
-		$this->assertArrayEquals(
-			[],
-			$validationResult->getErrorsByType( 'error' ),
-			false,
-			false,
-			"$validationResult"
-		);
+		$this->assertStatusOK( $validationResult );
+	}
+
+	/**
+	 * Check that currently loaded config does not use deprecated settings.
+	 */
+	public function testCurrentSettingsNotDeprecated() {
+		global $wgSettings;
+		$deprecations = $wgSettings->detectDeprecatedConfig();
+		$this->assertEquals( [], $deprecations );
+	}
+
+	/**
+	 * Check that currently loaded config does not have warnings.
+	 */
+	public function testCurrentSettingsHaveNoWarnings() {
+		global $wgSettings;
+		$deprecations = $wgSettings->getWarnings();
+		$this->assertEquals( [], $deprecations );
 	}
 
 	public function provideConfigGeneration() {
-		yield 'docs/Configuration.md' => [
-			'script' => __DIR__ . '/../../../maintenance/generateConfigDoc.php',
-			'expectedFile' => __DIR__ . '/../../../docs/Configuration.md',
+		yield 'includes/config-schema.php' => [
+			'option' => '--schema',
+			'expectedFile' => MW_INSTALL_PATH . '/includes/config-schema.php',
 		];
-		yield 'incl/Configuration.md' => [
-			'script' => __DIR__ . '/../../../maintenance/generateConfigSchema.php',
-			'expectedFile' => __DIR__ . '/../../../includes/config-schema.php',
+		yield 'includes/config-vars.php' => [
+			'option' => '--vars',
+			'expectedFile' => MW_INSTALL_PATH . '/includes/config-vars.php',
+		];
+		yield 'docs/config-schema.yaml' => [
+			'option' => '--yaml',
+			'expectedFile' => MW_INSTALL_PATH . '/docs/config-schema.yaml',
+		];
+		yield 'includes/MainConfigNames.php' => [
+			'option' => '--names',
+			'expectedFile' => MW_INSTALL_PATH . '/includes/MainConfigNames.php',
 		];
 	}
 
 	/**
 	 * @dataProvider provideConfigGeneration
 	 */
-	public function testConfigGeneration( string $script, string $expectedFile ) {
-		$schemaGenerator = Shell::makeScriptCommand( $script, [ '--output', 'php://stdout' ] );
-
+	public function testConfigGeneration( string $option, string $expectedFile ) {
+		$script = MW_INSTALL_PATH . '/maintenance/generateConfigSchema.php';
+		$schemaGenerator = Shell::makeScriptCommand( $script, [ $option, 'php://stdout' ] );
 		$result = $schemaGenerator->execute();
 		$this->assertSame( 0, $result->getExitCode(), 'Config generation must finish successfully' );
-		$this->assertSame( '', $result->getStderr(), 'Config generation must not have errors' );
+
+		$errors = $result->getStderr();
+		$errors = preg_replace( '/^Xdebug:.*\n/m', '', $errors );
+		$this->assertSame( '', $errors, 'Config generation must not have errors' );
 
 		$oldGeneratedSchema = file_get_contents( $expectedFile );
-		$relativePath = wfRelativePath( $script, __DIR__ . '/../../..' );
+		$relativePath = wfRelativePath( $script, MW_INSTALL_PATH );
 
 		$this->assertEquals(
 			$oldGeneratedSchema,
@@ -121,8 +135,8 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideDefaultSettingsConsistency() {
-		yield 'YAML' => [ new FileSource( 'includes/config-schema.yaml' ) ];
-		yield 'PHP' => [ new PhpSettingsSource( 'includes/config-schema.php' ) ];
+		yield 'YAML' => [ new FileSource( MW_INSTALL_PATH . '/docs/config-schema.yaml' ) ];
+		yield 'PHP' => [ new PhpSettingsSource( MW_INSTALL_PATH . '/includes/config-schema.php' ) ];
 	}
 
 	/**
@@ -131,8 +145,9 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideDefaultSettingsConsistency
 	 */
 	public function testDefaultSettingsConsistency( SettingsSource $source ) {
+		$this->expectDeprecationAndContinue( '/DefaultSettings\\.php/' );
 		$defaultSettingsProps = ( static function () {
-			require __DIR__ . '/../../../includes/DefaultSettings.php';
+			require MW_INSTALL_PATH . '/includes/DefaultSettings.php';
 			$vars = get_defined_vars();
 			unset( $vars['input'] );
 			$result = [];
@@ -150,7 +165,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 			$this->createNoOpMock( PhpIniSink::class )
 		);
 		$settingsBuilder->load( $source );
-		$settingsBuilder->apply();
+		$defaults = iterator_to_array( $settingsBuilder->getDefaultConfig() );
 
 		foreach ( $defaultSettingsProps as $key => $value ) {
 			if ( in_array( $key, [
@@ -160,9 +175,12 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 			] ) ) {
 				continue;
 			}
-			$this->assertTrue( $configBuilder->build()->has( $key ), "Missing $key" );
-			$this->assertEquals( $value, $configBuilder->build()->get( $key ), "Wrong value for $key\n" );
+			$this->assertArrayHasKey( $key, $defaults, "Missing $key from $source" );
+			$this->assertEquals( $value, $defaults[ $key ], "Wrong value for $key\n" );
 		}
+
+		$missingKeys = array_diff_key( $defaults, $defaultSettingsProps );
+		$this->assertSame( [], $missingKeys, 'Keys missing from DefaultSettings.php' );
 	}
 
 	public function provideArraysHaveMergeStrategy() {
@@ -177,19 +195,37 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 * Check that the schema for each config variable contains all necessary information.
 	 * @dataProvider provideArraysHaveMergeStrategy
 	 */
-	public function testArraysHaveMergeStrategy( $schema ) {
-		$this->assertArrayHasKey(
-			'default',
-			$schema,
-			'should specify a default value'
-		);
-
+	public function testSchemaCompleteness( $schema ) {
 		$type = $schema['type'] ?? null;
 		$type = (array)$type;
 
+		if ( isset( $schema['properties'] ) ) {
+			$this->assertContains(
+				'object', $type,
+				'must be of type "object", since it defines properties'
+			);
+
+			$defaults = $schema['default'] ?? [];
+			foreach ( $schema['properties'] as $key => $sch ) {
+				// must have a default in the schema, or in the top level default
+				if ( !array_key_exists( 'default', $sch ) ) {
+					$this->assertArrayHasKey( $key, $defaults, "property $key must have a default" );
+				} else {
+					$defaults[$key] = $sch['default'];
+				}
+			}
+		} else {
+			$this->assertArrayHasKey(
+				'default',
+				$schema,
+				'should specify a default value'
+			);
+			$defaults = $schema['default'];
+		}
+
 		// If the default is an array, the type must be declared, so we know whether
 		// it's a list (JS "array") or a map (JS "object").
-		if ( is_array( $schema['default'] ) ) {
+		if ( is_array( $defaults ) ) {
 			$this->assertTrue(
 				in_array( 'array', $type ) || in_array( 'object', $type ),
 				'must be of type "array" or "object", since the default is an array'
@@ -198,15 +234,12 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 
 		// If the default value of a list is not empty, check that it is an indexed array,
 		// not an associative array.
-		if ( in_array( 'array', $type ) && !empty( $schema['default'] ) ) {
-			if ( empty( $schema['ignoreKeys'] ) ) {
-				$this->assertArrayHasKey(
-					0,
-					$schema['default'],
-					'should have a default value starting with index 0, since its type is "array", '
-						. 'and ignoreKeys is not set.'
-				);
-			}
+		if ( in_array( 'array', $type ) && !empty( $defaults ) ) {
+			$this->assertArrayHasKey(
+				0,
+				$schema['default'],
+				'should have a default value starting with index 0, since its type is "array".'
+			);
 		}
 
 		$mergeStrategy = $schema['mergeStrategy'] ?? null;
@@ -247,11 +280,28 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 				);
 			}
 		}
+
+		if ( isset( $schema['items'] ) ) {
+			$this->assertContains(
+				'array',
+				$type,
+				'should be declared to be an array if an "items" schema is defined'
+			);
+		}
+
+		if ( isset( $schema['additionalProperties'] ) || isset( $schema['properties'] ) ) {
+			$this->assertContains(
+				'object',
+				$type,
+				'should be declared to be an object if schemas are defined for "properties" ' .
+					'or "additionalProperties"'
+			);
+		}
 	}
 
 	public function provideConfigStructureHandling() {
 		yield 'NamespacesWithSubpages' => [
-			'NamespacesWithSubpages',
+			MainConfigNames::NamespacesWithSubpages,
 			[ 0 => true, 1 => false,
 				2 => true, 3 => true, 4 => true, 5 => true, 7 => true,
 				8 => true, 9 => true, 10 => true, 11 => true, 12 => true,
@@ -260,56 +310,56 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 			[ 0 => true, 1 => false ]
 		];
 		yield 'InterwikiCache array' => [
-			'InterwikiCache',
+			MainConfigNames::InterwikiCache,
 			[ 'x' => [ 'foo' => 1 ] ],
 			[ 'x' => [ 'foo' => 1 ] ],
 		];
 		yield 'InterwikiCache string' => [
-			'InterwikiCache',
+			MainConfigNames::InterwikiCache,
 			'interwiki.map',
 			'interwiki.map',
 		];
 		yield 'InterwikiCache string over array' => [
-			'InterwikiCache',
+			MainConfigNames::InterwikiCache,
 			'interwiki.map',
 			[ 'x' => [ 'foo' => 1 ] ],
 			'interwiki.map',
 		];
 		yield 'ProxyList array' => [
-			'ProxyList',
+			MainConfigNames::ProxyList,
 			[ 'a', 'b', 'c' ],
 			[ 'a', 'b', 'c' ],
 		];
 		yield 'ProxyList string' => [
-			'ProxyList',
+			MainConfigNames::ProxyList,
 			'interwiki.map',
 			'interwiki.map',
 		];
 		yield 'ProxyList string over array' => [
-			'ProxyList',
+			MainConfigNames::ProxyList,
 			'interwiki.map',
 			[ 'a', 'b', 'c' ],
 			'interwiki.map',
 		];
 		yield 'ProxyList array over array' => [
-			'ProxyList',
+			MainConfigNames::ProxyList,
 			[ 'a', 'b', 'c', 'd' ],
 			[ 'a', 'b' ],
 			[ 'c', 'd' ],
 		];
 		yield 'Logos' => [
-			'Logos',
+			MainConfigNames::Logos,
 			[ '1x' => 'Logo1', '2x' => 'Logo2' ],
 			[ '1x' => 'Logo1', '2x' => 'Logo2' ],
 		];
 		yield 'Logos clear' => [
-			'Logos',
+			MainConfigNames::Logos,
 			false,
 			[ '1x' => 'Logo1', '2x' => 'Logo2' ],
 			false
 		];
 		yield 'RevokePermissions' => [
-			'RevokePermissions',
+			MainConfigNames::RevokePermissions,
 			[ '*' => [ 'read' => true, 'edit' => true, ] ],
 			[ '*' => [ 'edit' => true ] ],
 			[ '*' => [ 'read' => true ] ]
@@ -422,7 +472,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 				$f1,
 			]
 		];
-		$settingsBuilder->putConfigValue( 'Hooks', $hooks );
+		$settingsBuilder->putConfigValue( MainConfigNames::Hooks, $hooks );
 
 		$f2 = static function () {
 			// noop
@@ -435,7 +485,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 				$f2,
 			]
 		];
-		$settingsBuilder->putConfigValue( 'Hooks', $hooks );
+		$settingsBuilder->putConfigValue( MainConfigNames::Hooks, $hooks );
 
 		$config = $settingsBuilder->getConfig();
 
@@ -449,7 +499,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 				$f2,
 			]
 		];
-		$this->assertSame( $hooks, $config->get( 'Hooks' ) );
+		$this->assertSame( $hooks, $config->get( MainConfigNames::Hooks ) );
 	}
 
 	/**
@@ -457,7 +507,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testPasswordPolicyMerge() {
 		$settingsBuilder = $this->getSettingsBuilderWithSchema();
-		$defaultPolicies = $settingsBuilder->getConfig()->get( 'PasswordPolicy' );
+		$defaultPolicies = $settingsBuilder->getConfig()->get( MainConfigNames::PasswordPolicy );
 
 		$newPolicies = [
 			'policies' => [
@@ -476,8 +526,8 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 				'SomeOtherCheck' => 'myOtherCheck',
 			]
 		];
-		$settingsBuilder->putConfigValue( 'PasswordPolicy', $newPolicies );
-		$mergedPolicies = $settingsBuilder->getConfig()->get( 'PasswordPolicy' );
+		$settingsBuilder->putConfigValue( MainConfigNames::PasswordPolicy, $newPolicies );
+		$mergedPolicies = $settingsBuilder->getConfig()->get( MainConfigNames::PasswordPolicy );
 
 		// check that the new policies have been applied
 		$this->assertSame(
@@ -521,4 +571,34 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	/**
+	 * @covers \MediaWiki\MainConfigSchema::listDefaultValues
+	 * @covers \MediaWiki\MainConfigSchema::getDefaultValue
+	 */
+	public function testMainConfigSchemaDefaults() {
+		$defaults = iterator_to_array( MainConfigSchema::listDefaultValues() );
+		$prefixed = iterator_to_array( MainConfigSchema::listDefaultValues( 'wg' ) );
+
+		$schema = $this->getSchemaData();
+		foreach ( $schema['config-schema'] as $name => $sch ) {
+			$this->assertArrayHasKey( $name, $defaults );
+			$this->assertArrayHasKey( "wg$name", $prefixed );
+
+			$expected = self::getDefaultFromJsonSchema( $sch );
+
+			$this->assertSame( $expected, $defaults[$name] );
+			$this->assertSame( $expected, $prefixed["wg$name"] );
+
+			$this->assertSame( $expected, MainConfigSchema::getDefaultValue( $name ) );
+		}
+	}
+
+	/**
+	 * @coversNothing Only covers code in global scope, no way to annotate that?
+	 */
+	public function testSetLocaltimezone(): void {
+		// Make sure the configured timezone ewas applied to the PHP runtime.
+		$tz = $this->getServiceContainer()->getMainConfig()->get( 'Localtimezone' );
+		$this->assertSame( $tz, date_default_timezone_get() );
+	}
 }

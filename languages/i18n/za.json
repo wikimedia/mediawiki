@@ -2,10 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"A Retired User",
+			"Amire80",
 			"Biŋhai",
 			"Hakka",
-			"唐吉訶德的侍從",
-			"Amire80"
+			"唐吉訶德的侍從"
 		]
 	},
 	"underline-never": "coengz mbouj swjyungh",
@@ -74,16 +74,16 @@
 	"searchbutton": "Ra",
 	"go": "Bae",
 	"searcharticle": "Bae",
-	"view-history": "Cazyawj lizsij",
+	"skin-view-history": "Cazyawj lizsij",
 	"history": "Lizsij",
 	"history_short": "Lizsij",
 	"printableversion": "Gojyaenq banj",
 	"permalink": "Gaeq-lamh kaemdaengz",
-	"view-view": "Doeg",
+	"skin-view-view": "Doeg",
 	"edit": "gaij",
-	"view-edit": "gaij",
+	"skin-view-edit": "gaij",
 	"create": "Laeb",
-	"view-create": "Laeb",
+	"skin-view-create": "Laeb",
 	"delete": "Duz",
 	"protect": "Hahdiuz",
 	"protect_change": "gaij",

@@ -1,182 +1,190 @@
 <?php
+/**
+ * Schema containing merge strategies to supplement the information coming from
+ * DefaultSettings.php. Only used in Setup.php if MW_USE_LEGACY_DEFAULT_SETTINGS
+ * is set.
+ *
+ * @todo Remove this when it is no longer needed.
+ */
+use MediaWiki\MainConfigNames;
 
 return [
 	'config-schema' => [
-		'AuthManagerAutoConfig' => [
+		MainConfigNames::AuthManagerAutoConfig => [
 			'mergeStrategy' => 'array_plus_2d'
 		],
-		'CapitalLinkOverrides' => [
+		MainConfigNames::CapitalLinkOverrides => [
 			'mergeStrategy' => 'array_plus'
 		],
-		'ExtraGenderNamespaces' => [
+		MainConfigNames::ExtraGenderNamespaces => [
 			'mergeStrategy' => 'array_plus'
 		],
-		'GrantPermissions' => [
+		MainConfigNames::GrantPermissions => [
 			'mergeStrategy' => 'array_plus_2d'
 		],
-		'GroupPermissions' => [
+		MainConfigNames::GroupPermissions => [
 			'mergeStrategy' => 'array_plus_2d'
 		],
-		'Hooks' => [
+		MainConfigNames::Hooks => [
 			'mergeStrategy' => 'array_merge_recursive'
 		],
-		'NamespaceContentModels' => [
+		MainConfigNames::NamespaceContentModels => [
 			'mergeStrategy' => 'array_plus'
 		],
-		'NamespaceProtection' => [
+		MainConfigNames::NamespaceProtection => [
 			'mergeStrategy' => 'array_plus'
 		],
-		'NamespacesWithSubpages' => [
+		MainConfigNames::NamespacesWithSubpages => [
 			'mergeStrategy' => 'array_plus'
 		],
-		'PasswordPolicy' => [
+		MainConfigNames::PasswordPolicy => [
 			'mergeStrategy' => 'array_merge_recursive'
 		],
-		'RateLimits' => [
+		MainConfigNames::RateLimits => [
 			'mergeStrategy' => 'array_plus_2d'
 		],
-		'RevokePermissions' => [
+		MainConfigNames::RevokePermissions => [
 			'mergeStrategy' => 'array_plus_2d'
 		],
-		'ActionFilteredLogs' => [
+		MainConfigNames::ActionFilteredLogs => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'Actions' => [
+		MainConfigNames::Actions => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'AddGroups' => [
+		MainConfigNames::AddGroups => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'APIFormatModules' => [
+		MainConfigNames::APIFormatModules => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'APIListModules' => [
+		MainConfigNames::APIListModules => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'APIMetaModules' => [
+		MainConfigNames::APIMetaModules => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'APIModules' => [
+		MainConfigNames::APIModules => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'APIPropModules' => [
+		MainConfigNames::APIPropModules => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'AvailableRights' => [
+		MainConfigNames::AvailableRights => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'CentralIdLookupProviders' => [
+		MainConfigNames::CentralIdLookupProviders => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'ChangeCredentialsBlacklist' => [
+		MainConfigNames::ChangeCredentialsBlacklist => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'ConfigRegistry' => [
+		MainConfigNames::ConfigRegistry => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'ContentHandlers' => [
+		MainConfigNames::ContentHandlers => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'DefaultUserOptions' => [
+		MainConfigNames::DefaultUserOptions => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'ExtensionEntryPointListFiles' => [
+		MainConfigNames::ExtensionEntryPointListFiles => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'ExtensionFunctions' => [
+		MainConfigNames::ExtensionFunctions => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'FeedClasses' => [
+		MainConfigNames::FeedClasses => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'FileExtensions' => [
+		MainConfigNames::FileExtensions => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'FilterLogTypes' => [
+		MainConfigNames::FilterLogTypes => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'GrantPermissionGroups' => [
+		MainConfigNames::GrantPermissionGroups => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'GroupsAddToSelf' => [
+		MainConfigNames::GroupsAddToSelf => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'GroupsRemoveFromSelf' => [
+		MainConfigNames::GroupsRemoveFromSelf => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'HiddenPrefs' => [
+		MainConfigNames::HiddenPrefs => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'ImplicitGroups' => [
+		MainConfigNames::ImplicitGroups => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'JobClasses' => [
+		MainConfigNames::JobClasses => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'LogActions' => [
+		MainConfigNames::LogActions => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'LogActionsHandlers' => [
+		MainConfigNames::LogActionsHandlers => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'LogHeaders' => [
+		MainConfigNames::LogHeaders => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'LogNames' => [
+		MainConfigNames::LogNames => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'LogRestrictions' => [
+		MainConfigNames::LogRestrictions => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'LogTypes' => [
+		MainConfigNames::LogTypes => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'MediaHandlers' => [
+		MainConfigNames::MediaHandlers => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'RawHtmlMessages' => [
+		MainConfigNames::RawHtmlMessages => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'ReauthenticateTime' => [
+		MainConfigNames::ReauthenticateTime => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'RecentChangesFlags' => [
+		MainConfigNames::RecentChangesFlags => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'RemoveCredentialsBlacklist' => [
+		MainConfigNames::RemoveCredentialsBlacklist => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'RemoveGroups' => [
+		MainConfigNames::RemoveGroups => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'ResourceLoaderSources' => [
+		MainConfigNames::ResourceLoaderSources => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'SessionProviders' => [
+		MainConfigNames::SessionProviders => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'SpecialPages' => [
+		MainConfigNames::SpecialPages => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'ServiceWiringFiles' => [
+		MainConfigNames::ServiceWiringFiles => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'ContentNamespaces' => [
+		MainConfigNames::ContentNamespaces => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'NonincludableNamespaces' => [
+		MainConfigNames::NonincludableNamespaces => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'ValidSkinNames' => [
+		MainConfigNames::ValidSkinNames => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'ExtensionMessagesFiles' => [
+		MainConfigNames::ExtensionMessagesFiles => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'MessagesDirs' => [
+		MainConfigNames::MessagesDirs => [
 			'mergeStrategy' => 'array_merge'
 		],
-		'ParserTestFiles' => [
+		MainConfigNames::ParserTestFiles => [
 			'mergeStrategy' => 'array_merge'
 		],
 	]

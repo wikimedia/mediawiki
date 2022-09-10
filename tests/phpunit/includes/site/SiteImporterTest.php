@@ -30,18 +30,18 @@
 class SiteImporterTest extends MediaWikiIntegrationTestCase {
 
 	private function newSiteImporter( array $expectedSites, $errorCount ) {
-		$store = $this->getMockBuilder( SiteStore::class )->getMock();
+		$store = $this->createMock( SiteStore::class );
 
 		$store->expects( $this->once() )
 			->method( 'saveSites' )
-			->will( $this->returnCallback( function ( $sites ) use ( $expectedSites ) {
+			->willReturnCallback( function ( $sites ) use ( $expectedSites ) {
 				$this->assertSitesEqual( $expectedSites, $sites );
-			} ) );
+			} );
 
 		$store->method( 'getSites' )
 			->willReturn( new SiteList() );
 
-		$errorHandler = $this->getMockBuilder( Psr\Log\LoggerInterface::class )->getMock();
+		$errorHandler = $this->createMock( Psr\Log\LoggerInterface::class );
 		$errorHandler->expects( $this->exactly( $errorCount ) )
 			->method( 'error' );
 
@@ -145,7 +145,7 @@ class SiteImporterTest extends MediaWikiIntegrationTestCase {
 	public function testImportFromXML_malformed() {
 		$this->expectException( Exception::class );
 
-		$store = $this->getMockBuilder( SiteStore::class )->getMock();
+		$store = $this->createMock( SiteStore::class );
 		$importer = new SiteImporter( $store );
 		$importer->importFromXML( 'THIS IS NOT XML' );
 	}

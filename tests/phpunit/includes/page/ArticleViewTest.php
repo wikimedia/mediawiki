@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -260,10 +261,10 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testViewOfOldRevisionFromCache() {
-		$this->setMwGlobals( [
-			'wgOldRevisionParserCacheExpireTime' => 100500,
-			'wgMainWANCache' => 'main',
-			'wgWANObjectCaches' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::OldRevisionParserCacheExpireTime => 100500,
+			MainConfigNames::MainWANCache => 'main',
+			MainConfigNames::WANObjectCaches => [
 				'main' => [
 					'class' => WANObjectCache::class,
 					'cacheId' => 'hash',
@@ -296,7 +297,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$article->view();
 		$output = $article->getContext()->getOutput();
 		$this->assertStringContainsString( 'Test A', $this->getHtml( $output ) );
-		$this->assertSame( 1, substr_count( $output->getSubtitle(), 'class="mw-revision warningbox"' ) );
+		$this->assertSame( 1, substr_count( $output->getSubtitle(), 'class="mw-message-box-warning mw-revision mw-message-box"' ) );
 		$this->assertSame( $idA, $output->getRevisionId() );
 		$this->assertSame( $idA, $outputPageBeforeHTMLRevisionId );
 		$this->assertSame( $revisions[1]->getTimestamp(), $output->getRevisionTimestamp() );

@@ -915,9 +915,7 @@ Controller.prototype.updateNumericPreference = function ( prefName, newValue ) {
 		return;
 	}
 
-	newValue = Number( newValue );
-
-	if ( mw.user.options.get( prefName ) !== newValue ) {
+	if ( String( mw.user.options.get( prefName ) ) !== String( newValue ) ) {
 		// Save the preference
 		new mw.Api().saveOption( prefName, newValue );
 		// Update the preference for this session
@@ -1043,7 +1041,7 @@ Controller.prototype._queryChangesList = function ( counterId, params ) {
 	// current/default values
 	uri.extend( stickyParams );
 
-	return $.ajax( uri.toString(), { contentType: 'html' } )
+	return $.ajax( uri.toString() )
 		.then(
 			function ( content, message, jqXHR ) {
 				if ( !latestRequest() ) {

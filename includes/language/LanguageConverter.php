@@ -24,6 +24,7 @@
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Revision\RevisionRecord;
@@ -254,7 +255,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return string[] Contains all valid variants
 	 */
 	final public function getVariants() {
-		$disabledVariants = MediaWikiServices::getInstance()->getMainConfig()->get( 'DisabledVariants' );
+		$disabledVariants = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::DisabledVariants );
 		return array_diff( $this->getLanguageVariants(), $disabledVariants );
 	}
 
@@ -286,7 +288,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return string The preferred language code
 	 */
 	public function getPreferredVariant() {
-		$defaultLanguageVariant = MediaWikiServices::getInstance()->getMainConfig()->get( 'DefaultLanguageVariant' );
+		$defaultLanguageVariant = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::DefaultLanguageVariant );
 
 		$req = $this->getURLVariant();
 
@@ -324,7 +327,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return string The default variant code
 	 */
 	public function getDefaultVariant() {
-		$defaultLanguageVariant = MediaWikiServices::getInstance()->getMainConfig()->get( 'DefaultLanguageVariant' );
+		$defaultLanguageVariant = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::DefaultLanguageVariant );
 
 		$req = $this->getURLVariant();
 
@@ -494,7 +498,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * convertTo().
 	 *
 	 * @param string $text The text to be converted
-	 * @param bool|string $toVariant The target language code
+	 * @param string|false $toVariant The target language code
 	 * @return string The converted text
 	 */
 	public function autoConvert( $text, $toVariant = false ) {
@@ -511,12 +515,12 @@ abstract class LanguageConverter implements ILanguageConverter {
 			return $text;
 		}
 		/* we convert everything except:
-		   1. HTML markups (anything between < and >)
-		   2. HTML entities
-		   3. placeholders created by the parser
-		   IMPORTANT: Beware of failure from pcre.backtrack_limit (T124404).
-		   Minimize use of backtracking where possible.
-		*/
+		 * 1. HTML markups (anything between < and >)
+		 * 2. HTML entities
+		 * 3. placeholders created by the parser
+		 * IMPORTANT: Beware of failure from pcre.backtrack_limit (T124404).
+		 * Minimize use of backtracking where possible.
+		 */
 		static $reg;
 		if ( $reg === null ) {
 			$marker = '|' . Parser::MARKER_PREFIX . '[^\x7f]++\x7f';
@@ -722,23 +726,37 @@ abstract class LanguageConverter implements ILanguageConverter {
 
 	/**
 	 * Auto convert a LinkTarget or PageReference to a readable string in the
+	 * preferred variant, separating the namespace and the main part of the title.
+	 *
+	 * @since 1.39
+	 * @param LinkTarget|PageReference $title
+	 * @return string[] Three elements: converted namespace text, converted namespace separator,
+	 *   and converted main part of the title
+	 */
+	public function convertSplitTitle( $title ) {
+		$variant = $this->getPreferredVariant();
+
+		$index = $title->getNamespace();
+		$nsText = $this->convertNamespace( $index, $variant );
+
+		$name = str_replace( '_', ' ', $title->getDBKey() );
+		$mainText = $this->translate( $name, $variant );
+
+		return [ $nsText, ':', $mainText ];
+	}
+
+	/**
+	 * Auto convert a LinkTarget or PageReference to a readable string in the
 	 * preferred variant.
 	 *
 	 * @param LinkTarget|PageReference $title
 	 * @return string Converted title text
 	 */
 	public function convertTitle( $title ) {
-		$variant = $this->getPreferredVariant();
-		$index = $title->getNamespace();
-		if ( $index !== NS_MAIN ) {
-			$text = $this->convertNamespace( $index, $variant ) . ':';
-		} else {
-			$text = '';
-		}
-		$name = str_replace( '_', ' ', $title->getDBKey() );
-		$text .= $this->translate( $name, $variant );
-
-		return $text;
+		[ $nsText, $nsSeparator, $mainText ] = $this->convertSplitTitle( $title );
+		return $nsText !== '' ?
+			$nsText . $nsSeparator . $mainText :
+			$mainText;
 	}
 
 	/**
@@ -1092,7 +1110,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 */
 	protected function loadTables( $fromCache = true ) {
 		$languageConverterCacheType = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'LanguageConverterCacheType' );
+			->getMainConfig()->get( MainConfigNames::LanguageConverterCacheType );
 
 		if ( $this->mTablesLoaded ) {
 			return;

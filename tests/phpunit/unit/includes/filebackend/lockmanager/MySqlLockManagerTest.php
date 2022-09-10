@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\Rdbms\DBError;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\TestingAccessWrapper;
 
 class MySqlLockManagerTest extends MediaWikiUnitTestCase {
@@ -28,25 +30,22 @@ class MySqlLockManagerTest extends MediaWikiUnitTestCase {
 	 *     on already (locksHeld member)
 	 */
 	public function testGetLocksOnServer( array $params ) {
-		$mockDb = $this->createMock( IDatabase::class );
-
-		$mockDb->expects( $this->never() )->method( $this->anythingBut( 'query', 'startAtomic',
-			'selectField', 'insert', 'setSessionOptions', 'trxLevel', 'rollback', 'close',
-			'addQuotes' ) );
+		$mockDb = $this->createNoOpMock( IDatabase::class, [ 'query', 'startAtomic', 'selectField',
+			'insert', 'setSessionOptions', 'trxLevel', 'rollback', 'close', 'addQuotes' ] );
 
 		$isolationSet = false;
 		$trxStarted = false;
 
 		$mockDb->expects( $this->once() )->method( 'query' )
 			->with( 'SET SESSION TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;' )
-			->will( $this->returnCallback( static function () use ( &$isolationSet ) {
+			->willReturnCallback( static function () use ( &$isolationSet ) {
 				$isolationSet = true;
-			} ) );
+			} );
 
 		$mockDb->expects( $this->once() )->method( 'startAtomic' )
-			->will( $this->returnCallback( static function () use ( &$trxStarted ) {
+			->willReturnCallback( static function () use ( &$trxStarted ) {
 				$trxStarted = true;
-			} ) );
+			} );
 
 		// Because of the way PHPUnit works, we don't test the order of inserts relative to
 		// selectField. It shouldn't matter if the correct results are obtained in all cases.
@@ -78,10 +77,10 @@ class MySqlLockManagerTest extends MediaWikiUnitTestCase {
 
 		$mockDb->expects( $this->exactly( count( $expectedInserts ) ) )->method( 'insert' )
 			->withConsecutive( ...$expectedInserts )
-			->will( $this->returnCallback( function () use ( &$isolationSet, &$trxStarted ) {
+			->willReturnCallback( function () use ( &$isolationSet, &$trxStarted ) {
 				$this->assertTrue( $isolationSet, 'Read uncommitted must be set before queries' );
 				$this->assertTrue( $trxStarted, 'Transaction must be started before writes' );
-			} ) );
+			} );
 
 		$expectedSelectFieldArgs = [];
 		$selectFieldReturns = [];
@@ -114,9 +113,9 @@ class MySqlLockManagerTest extends MediaWikiUnitTestCase {
 			->withConsecutive( ...$expectedSelectFieldArgs )
 			->willReturnOnConsecutiveCalls( ...$selectFieldReturns );
 
-		$mockDb->method( 'addQuotes' )->will( $this->returnCallback( static function ( $s ) {
+		$mockDb->method( 'addQuotes' )->willReturnCallback( static function ( $s ) {
 			return "'$s'";
-		} ) );
+		} );
 
 		$lm = new MySqlLockManager( [
 			'dbServers' => [ 'main' => $mockDb ],
@@ -277,12 +276,10 @@ class MySqlLockManagerTest extends MediaWikiUnitTestCase {
 	 * @param int $expectedRollbacks How many times we expect rollback() to be called
 	 */
 	public function testReleaseAllLocks( $trxLevel, $expectedRollbacks ) {
-		$mockDb = $this->createMock( IDatabase::class );
+		$mockDb = $this->createNoOpMock( IDatabase::class, [ 'query', 'startAtomic', 'selectField',
+			'insert', 'setSessionOptions', 'trxLevel', 'rollback', 'close', 'addQuotes' ] );
 		$mockDb->expects( $this->once() )->method( 'trxLevel' )->willReturn( $trxLevel );
 		$mockDb->expects( $this->exactly( $expectedRollbacks ) )->method( 'rollback' );
-		$mockDb->expects( $this->never() )->method( $this->anythingBut( 'query', 'startAtomic',
-			'selectField', 'insert', 'setSessionOptions', 'trxLevel', 'rollback', 'close',
-			'addQuotes' ) );
 
 		$lm = new MySqlLockManager( [
 			'dbServers' => [ 'main' => $mockDb ],
@@ -308,14 +305,12 @@ class MySqlLockManagerTest extends MediaWikiUnitTestCase {
 	 * @covers MySqlLockManager::releaseAllLocks
 	 */
 	public function testReleaseAllLocks_exception() {
-		$mockDb = $this->createMock( IDatabase::class );
+		$mockDb = $this->createNoOpMock( IDatabase::class, [ 'query', 'startAtomic', 'selectField',
+			'insert', 'setSessionOptions', 'trxLevel', 'rollback', 'close', 'addQuotes' ] );
 		// These methods will be called once by unlock() and again by destructor
 		$mockDb->expects( $this->exactly( 2 ) )->method( 'trxLevel' )->willReturn( 1 );
 		$mockDb->expects( $this->exactly( 2 ) )->method( 'rollback' )
 			->will( $this->throwException( new DBError( $mockDb, '' ) ) );
-		$mockDb->expects( $this->never() )->method( $this->anythingBut( 'query', 'startAtomic',
-			'selectField', 'insert', 'setSessionOptions', 'trxLevel', 'rollback', 'close',
-			'addQuotes' ) );
 
 		$lm = new MySqlLockManager( [
 			'dbServers' => [ 'main' => $mockDb ],
@@ -332,6 +327,6 @@ class MySqlLockManagerTest extends MediaWikiUnitTestCase {
 			'message' => 'lockmanager-fail-db-release',
 			'params' => [ 'main' ],
 		] ], $status->getErrors() );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 	}
 }

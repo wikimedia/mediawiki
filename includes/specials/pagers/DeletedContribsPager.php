@@ -31,12 +31,9 @@ use Wikimedia\Rdbms\IResultWrapper;
 /**
  * @ingroup Pager
  */
-class DeletedContribsPager extends IndexPager {
+class DeletedContribsPager extends ReverseChronologicalPager {
 
-	/**
-	 * @var bool Default direction for pager
-	 */
-	public $mDefaultDirection = IndexPager::DIR_DESCENDING;
+	public $mGroupByDate = true;
 
 	/**
 	 * @var string[] Local cache for escaped messages
@@ -52,11 +49,6 @@ class DeletedContribsPager extends IndexPager {
 	 * @var string|int A single namespace number, or an empty string for all namespaces
 	 */
 	public $namespace = '';
-
-	/**
-	 * @var string Navigation bar with paging links.
-	 */
-	protected $mNavigationBar;
 
 	/** @var CommentStore */
 	private $commentStore;
@@ -128,6 +120,15 @@ class DeletedContribsPager extends IndexPager {
 		$queryInfo['join_conds'] = $queryInfo['joins'];
 		unset( $queryInfo['joins'] );
 
+		ChangeTags::modifyDisplayQuery(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
+			$queryInfo['conds'],
+			$queryInfo['join_conds'],
+			$queryInfo['options'],
+			''
+		);
+
 		return $queryInfo;
 	}
 
@@ -192,47 +193,18 @@ class DeletedContribsPager extends IndexPager {
 		return $this->namespace;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function getStartBody() {
-		return "<ul>\n";
+		return "<section class='mw-pager-body'>\n";
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function getEndBody() {
-		return "</ul>\n";
-	}
-
-	public function getNavigationBar() {
-		if ( !$this->isNavigationBarShown() ) {
-			return '';
-		}
-
-		if ( isset( $this->mNavigationBar ) ) {
-			return $this->mNavigationBar;
-		}
-
-		$linkTexts = [
-			'prev' => $this->msg( 'pager-newer-n' )->numParams( $this->mLimit )->escaped(),
-			'next' => $this->msg( 'pager-older-n' )->numParams( $this->mLimit )->escaped(),
-			'first' => $this->msg( 'histlast' )->escaped(),
-			'last' => $this->msg( 'histfirst' )->escaped()
-		];
-
-		$pagingLinks = $this->getPagingLinks( $linkTexts );
-		$limitLinks = $this->getLimitLinks();
-		$lang = $this->getLanguage();
-		$limits = $lang->pipeList( $limitLinks );
-
-		$firstLast = $lang->pipeList( [ $pagingLinks['first'], $pagingLinks['last'] ] );
-		$firstLast = $this->msg( 'parentheses' )->rawParams( $firstLast )->escaped();
-		$prevNext = $this->msg( 'viewprevnext' )
-			->rawParams(
-				$pagingLinks['prev'],
-				$pagingLinks['next'],
-				$limits
-			)->escaped();
-		$separator = $this->msg( 'word-separator' )->escaped();
-		$this->mNavigationBar = $firstLast . $separator . $prevNext;
-
-		return $this->mNavigationBar;
+		return "</section>\n";
 	}
 
 	private function getNamespaceCond() {
@@ -257,14 +229,11 @@ class DeletedContribsPager extends IndexPager {
 
 		if ( $this->revisionFactory->isRevisionRow( $row, 'archive' ) ) {
 			$revRecord = $this->revisionFactory->newRevisionFromArchiveRow( $row );
-			$validRevision = (bool)$revRecord->getId();
-		} else {
-			$validRevision = false;
-		}
-
-		if ( $validRevision ) {
-			$attribs['data-mw-revid'] = $revRecord->getId();
-			$ret = $this->formatRevisionRow( $row );
+			$revId = $revRecord->getId();
+			if ( $revId ) {
+				$attribs['data-mw-revid'] = $revId;
+				[ $ret, $classes ] = $this->formatRevisionRow( $row );
+			}
 		}
 
 		// Let extensions add data
@@ -296,7 +265,7 @@ class DeletedContribsPager extends IndexPager {
 	 *
 	 * @todo This would probably look a lot nicer in a table.
 	 * @param stdClass $row
-	 * @return string
+	 * @return array
 	 */
 	private function formatRevisionRow( $row ) {
 		$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
@@ -393,14 +362,21 @@ class DeletedContribsPager extends IndexPager {
 				[ $last, $dellog, $reviewlink ] ) )->escaped()
 		);
 
+		// Tags, if any.
+		list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow(
+			$row->ts_tags,
+			'deletedcontributions',
+			$this->getContext()
+		);
+
 		$separator = '<span class="mw-changeslist-separator">. .</span>';
-		$ret = "{$del}{$link} {$tools} {$separator} {$mflag} {$pagelink} {$comment}";
+		$ret = "{$del}{$link} {$tools} {$separator} {$mflag} {$pagelink} {$comment} {$tagSummary}";
 
 		# Denote if username is redacted for this edit
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_USER ) ) {
 			$ret .= " <strong>" . $this->msg( 'rev-deleted-user-contribs' )->escaped() . "</strong>";
 		}
 
-		return $ret;
+		return [ $ret, $classes ];
 	}
 }

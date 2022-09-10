@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\ChangeTags\Taggable;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
@@ -251,10 +252,11 @@ class RecentChange implements Taggable {
 	 * aliases.
 	 *
 	 * @since 1.31
-	 * @return array With three keys:
-	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
-	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
-	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 * @return array[] With three keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()` or `SelectQueryBuilder::fields`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()` or `SelectQueryBuilder::joinConds`
+	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public static function getQueryInfo() {
 		$commentQuery = CommentStore::getStore()->getJoin( 'rc_comment' );
@@ -408,9 +410,7 @@ class RecentChange implements Taggable {
 	 */
 	public function save( $send = self::SEND_FEED ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$putIPinRC = $mainConfig->get( 'PutIPinRC' );
-		$useEnotif = $mainConfig->get( 'UseEnotif' );
-		$showUpdatedMarker = $mainConfig->get( 'ShowUpdatedMarker' );
+		$putIPinRC = $mainConfig->get( MainConfigNames::PutIPinRC );
 		$dbw = wfGetDB( DB_PRIMARY );
 		if ( !is_array( $this->mExtra ) ) {
 			$this->mExtra = [];
@@ -429,12 +429,6 @@ class RecentChange implements Taggable {
 			$this->mAttribs["rc_$field"] = isset( $this->mAttribs["rc_$field"] )
 				? (int)$this->mAttribs["rc_$field"]
 				: null;
-		}
-
-		# If our database is strict about IP addresses, use NULL instead of an empty string
-		$strictIPs = $dbw->getType() === 'postgres'; // legacy
-		if ( $strictIPs && $this->mAttribs['rc_ip'] == '' ) {
-			unset( $this->mAttribs['rc_ip'] );
 		}
 
 		$row = $this->mAttribs;
@@ -505,7 +499,10 @@ class RecentChange implements Taggable {
 		}
 
 		# E-mail notifications
-		if ( $useEnotif || $showUpdatedMarker ) {
+		if ( $mainConfig->get( MainConfigNames::EnotifUserTalk ) ||
+			$mainConfig->get( MainConfigNames::EnotifWatchlist ) ||
+			$mainConfig->get( MainConfigNames::ShowUpdatedMarker )
+		) {
 			$userFactory = MediaWikiServices::getInstance()->getUserFactory();
 			$editor = $userFactory->newFromUserIdentity( $this->getPerformerIdentity() );
 			$page = $this->getPage();
@@ -554,7 +551,8 @@ class RecentChange implements Taggable {
 	 * @param array|null $feeds Optional feeds to send to, defaults to $wgRCFeeds
 	 */
 	public function notifyRCFeeds( array $feeds = null ) {
-		$rcFeeds = MediaWikiServices::getInstance()->getMainConfig()->get( 'RCFeeds' );
+		$rcFeeds =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RCFeeds );
 		if ( $feeds === null ) {
 			$feeds = $rcFeeds;
 		}
@@ -599,7 +597,8 @@ class RecentChange implements Taggable {
 	 */
 	public static function getEngine( $uri, $params = [] ) {
 		wfDeprecated( __METHOD__, '1.29' );
-		$rcEngines = MediaWikiServices::getInstance()->getMainConfig()->get( 'RCEngines' );
+		$rcEngines =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RCEngines );
 		$scheme = parse_url( $uri, PHP_URL_SCHEME );
 		if ( !$scheme ) {
 			throw new MWException( "Invalid RCFeed uri: '$uri'" );
@@ -626,9 +625,9 @@ class RecentChange implements Taggable {
 	 */
 	public function doMarkPatrolled( Authority $performer, $auto = false, $tags = null ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$useRCPatrol = $mainConfig->get( 'UseRCPatrol' );
-		$useNPPatrol = $mainConfig->get( 'UseNPPatrol' );
-		$useFilePatrol = $mainConfig->get( 'UseFilePatrol' );
+		$useRCPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
+		$useNPPatrol = $mainConfig->get( MainConfigNames::UseNPPatrol );
+		$useFilePatrol = $mainConfig->get( MainConfigNames::UseFilePatrol );
 		// Fix up $tags so that the MarkPatrolled hook below always gets an array
 		if ( $tags === null ) {
 			$tags = [];
@@ -893,7 +892,8 @@ class RecentChange implements Taggable {
 		$logPage, $user, $actionComment, $ip, $type,
 		$action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = ''
 	) {
-		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
+		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::LogRestrictions );
 
 		# Don't add private logs to RC!
 		if ( isset( $logRestrictions[$type] ) && $logRestrictions[$type] != '*' ) {
@@ -1137,14 +1137,6 @@ class RecentChange implements Taggable {
 		// rc_deleted MUST be set
 		$this->mAttribs['rc_deleted'] = $row->rc_deleted;
 
-		if ( isset( $this->mAttribs['rc_ip'] ) ) {
-			// Clean up CIDRs for Postgres per T164898. ("127.0.0.1" casts to "127.0.0.1/32")
-			$n = strpos( $this->mAttribs['rc_ip'], '/' );
-			if ( $n !== false ) {
-				$this->mAttribs['rc_ip'] = substr( $this->mAttribs['rc_ip'], 0, $n );
-			}
-		}
-
 		$comment = CommentStore::getStore()
 			// Legacy because $row may have come from self::selectFields()
 			->getCommentLegacy( wfGetDB( DB_REPLICA ), 'rc_comment', $row, true )
@@ -1277,7 +1269,8 @@ class RecentChange implements Taggable {
 	 * @return bool
 	 */
 	public static function isInRCLifespan( $timestamp, $tolerance = 0 ) {
-		$rcMaxAge = MediaWikiServices::getInstance()->getMainConfig()->get( 'RCMaxAge' );
+		$rcMaxAge =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RCMaxAge );
 
 		return (int)wfTimestamp( TS_UNIX, $timestamp ) > time() - $tolerance - $rcMaxAge;
 	}

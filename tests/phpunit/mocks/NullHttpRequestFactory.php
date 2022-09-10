@@ -2,6 +2,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\MainConfigNames;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\AssertionFailedError;
 use Psr\Log\NullLogger;
@@ -20,12 +21,12 @@ class NullHttpRequestFactory extends HttpRequestFactory {
 	public function __construct() {
 		$options = new ServiceOptions(
 			self::CONSTRUCTOR_OPTIONS, [
-			'HTTPTimeout' => 1,
-			'HTTPConnectTimeout' => 1,
-			'HTTPMaxTimeout' => 2,
-			'HTTPMaxConnectTimeout' => 2,
-			'LocalVirtualHosts' => [],
-			'LocalHTTPProxy' => false,
+			MainConfigNames::HTTPTimeout => 1,
+			MainConfigNames::HTTPConnectTimeout => 1,
+			MainConfigNames::HTTPMaxTimeout => 2,
+			MainConfigNames::HTTPMaxConnectTimeout => 2,
+			MainConfigNames::LocalVirtualHosts => [],
+			MainConfigNames::LocalHTTPProxy => false,
 			]
 		);
 

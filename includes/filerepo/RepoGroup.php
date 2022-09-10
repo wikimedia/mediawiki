@@ -1,7 +1,5 @@
 <?php
 /**
- * Prioritized list of file repositories.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,14 +16,13 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup FileRepo
  */
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 
 /**
- * Prioritized list of file repositories
+ * Prioritized list of file repositories.
  *
  * @ingroup FileRepo
  */
@@ -108,7 +105,11 @@ class RepoGroup {
 		if ( isset( $options['bypassCache'] ) ) {
 			$options['latest'] = $options['bypassCache']; // b/c
 		}
-		$options += [ 'time' => false ];
+		if ( isset( $options['time'] ) && $options['time'] !== false ) {
+			$options['time'] = wfTimestamp( TS_MW, $options['time'] );
+		} else {
+			$options['time'] = false;
+		}
 
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();

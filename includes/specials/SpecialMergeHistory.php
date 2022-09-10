@@ -236,6 +236,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$haveRevisions = $revisions->getNumRows() > 0;
 
 		$out = $this->getOutput();
+		$out->addModuleStyles( [ 'mediawiki.interface.helpers.styles' ] );
 		$titleObj = $this->getPageTitle();
 		$action = $titleObj->getLocalURL( [ 'action' => 'submit' ] );
 		# Start the form here
@@ -358,9 +359,16 @@ class SpecialMergeHistory extends SpecialPage {
 		}
 		$comment = Linker::revComment( $revRecord );
 
-		return Html::rawElement( 'li', [],
+		// Tags, if any.
+		list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow(
+			$row->ts_tags,
+			'mergehistory',
+			$this->getContext()
+		);
+
+		return Html::rawElement( 'li', $classes,
 			$this->msg( 'mergehistory-revisionrow' )
-				->rawParams( $checkBox, $last, $pageLink, $userLink, $stxt, $comment )->escaped() );
+				->rawParams( $checkBox, $last, $pageLink, $userLink, $stxt, $comment, $tagSummary )->escaped() );
 	}
 
 	/**
@@ -392,7 +400,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$mh = $this->mergeHistoryFactory->newMergeHistory( $targetTitle, $destTitle, $this->mTimestamp );
 
 		// Merge!
-		$mergeStatus = $mh->merge( $this->getUser(), $this->mComment );
+		$mergeStatus = $mh->merge( $this->getAuthority(), $this->mComment );
 		if ( !$mergeStatus->isOK() ) {
 			// Failed merge
 			$this->getOutput()->addWikiMsg( $mergeStatus->getMessage() );

@@ -5,9 +5,9 @@ Installing MediaWiki
 Starting with MediaWiki 1.2.0, it's possible to install and configure the wiki
 "in-place", as long as you have the necessary prerequisites available.
 
-Required software as of MediaWiki 1.38.0:
+Required software as of MediaWiki 1.39.0:
 
-* Web server with PHP 7.3.19 or higher, plus the following extensions:
+* Web server with PHP 7.4.3 or higher, plus the following extensions:
 ** ctype
 ** dom
 ** fileinfo
@@ -19,8 +19,9 @@ Required software as of MediaWiki 1.38.0:
 ** xml
 ** xmlreader
 * A SQL server, the following types are supported
-** MySQL 5.5.8 or higher
-** PostgreSQL 9.4 or higher
+** MariaDB 10.3 or higher
+** MySQL 5.7.0 or higher
+** PostgreSQL 10 or higher
 ** SQLite 3.8.0 or higher
 
 MediaWiki is developed and tested mainly on Unix/Linux platforms, but should
@@ -36,7 +37,7 @@ Additional documentation is available online, which may include more detailed
 notes on particular operating systems and workarounds for difficult hosting
 environments:
 
-https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Installation_guide
+https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Installing_MediaWiki
 
 
 ******************* WARNING *******************

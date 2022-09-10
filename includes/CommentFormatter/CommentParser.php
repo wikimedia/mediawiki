@@ -384,6 +384,7 @@ class CommentParser {
 					if ( isset( $match[1][0] ) && $match[1][0] == ':' ) {
 						$match[1] = substr( $match[1], 1 );
 					}
+					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 					if ( $match[1] !== false && $match[1] !== null && $match[1] !== '' ) {
 						if ( preg_match(
 							$this->contLang->linkTrail(),
@@ -419,6 +420,8 @@ class CommentParser {
 				if ( $linkMarker ) {
 					// If the link is still valid, go ahead and replace it in!
 					$comment = preg_replace(
+						// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable linkRegexp set when used
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal linkRegexp set when used
 						$linkRegexp,
 						$linkMarker,
 						$comment,

@@ -60,7 +60,7 @@
 			&:before {
 				content: '';
 				background-color: #fff;
-				.box-sizing( border-box );
+				box-sizing: border-box;
 				position: absolute;
 				left: 0;
 				width: @size-input-binary;
@@ -92,7 +92,7 @@
 
 			& + label:before {
 				cursor: pointer;
-				.transition( ~'background-color 100ms, color 100ms, border-color 100ms' );
+				transition: background-color 100ms, color 100ms, border-color 100ms;
 			}
 
 			&:hover + label:before {

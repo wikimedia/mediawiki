@@ -31,13 +31,12 @@ class RollbackActionTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$name = 'RollbackActionTest';
-		$this->testPage = Title::newFromText( $name );
+		$this->testPage = Title::makeTitle( NS_MAIN, 'RollbackActionTest' );
 
 		$this->vandal = $this->getTestUser()->getUser();
 		$this->sysop = $this->getTestSysop()->getUser();
-		$this->editPage( $name, 'Some text', '', NS_MAIN, $this->sysop );
-		$this->editPage( $name, 'Vandalism', '', NS_MAIN, $this->vandal );
+		$this->editPage( $this->testPage, 'Some text', '', NS_MAIN, $this->sysop );
+		$this->editPage( $this->testPage, 'Vandalism', '', NS_MAIN, $this->vandal );
 	}
 
 	private function getRollbackAction( WebRequest $request ) {

@@ -177,18 +177,9 @@ CREATE INDEX pl_backlinks_namespace ON /*_*/pagelinks (
 
 CREATE TABLE /*_*/templatelinks (
   tl_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
-  tl_namespace INTEGER DEFAULT 0 NOT NULL,
-  tl_title BLOB DEFAULT '' NOT NULL,
+  tl_target_id BIGINT UNSIGNED NOT NULL,
   tl_from_namespace INTEGER DEFAULT 0 NOT NULL,
-  tl_target_id BIGINT UNSIGNED DEFAULT NULL,
-  PRIMARY KEY(tl_from, tl_namespace, tl_title)
-);
-
-CREATE INDEX tl_namespace ON /*_*/templatelinks (tl_namespace, tl_title, tl_from);
-
-CREATE INDEX tl_backlinks_namespace ON /*_*/templatelinks (
-  tl_from_namespace, tl_namespace,
-  tl_title, tl_from
+  PRIMARY KEY(tl_from, tl_target_id)
 );
 
 CREATE INDEX tl_target_id ON /*_*/templatelinks (tl_target_id, tl_from);
@@ -270,7 +261,7 @@ CREATE INDEX ctd_user_defined ON /*_*/change_tag_def (ctd_user_defined);
 
 
 CREATE TABLE /*_*/ipblocks_restrictions (
-  ir_ipb_id INTEGER NOT NULL,
+  ir_ipb_id INTEGER UNSIGNED NOT NULL,
   ir_type SMALLINT NOT NULL,
   ir_value INTEGER UNSIGNED NOT NULL,
   PRIMARY KEY(ir_ipb_id, ir_type, ir_value)
@@ -463,25 +454,6 @@ CREATE TABLE /*_*/revision_comment_temp (
 );
 
 CREATE UNIQUE INDEX revcomment_rev ON /*_*/revision_comment_temp (revcomment_rev);
-
-
-CREATE TABLE /*_*/revision_actor_temp (
-  revactor_rev INTEGER UNSIGNED NOT NULL,
-  revactor_actor BIGINT UNSIGNED NOT NULL,
-  revactor_timestamp BLOB NOT NULL,
-  revactor_page INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(revactor_rev, revactor_actor)
-);
-
-CREATE UNIQUE INDEX revactor_rev ON /*_*/revision_actor_temp (revactor_rev);
-
-CREATE INDEX actor_timestamp ON /*_*/revision_actor_temp (
-  revactor_actor, revactor_timestamp
-);
-
-CREATE INDEX page_actor_timestamp ON /*_*/revision_actor_temp (
-  revactor_page, revactor_actor, revactor_timestamp
-);
 
 
 CREATE TABLE /*_*/page_props (
@@ -708,7 +680,7 @@ CREATE TABLE /*_*/ipblocks (
   ipb_range_end BLOB NOT NULL, ipb_deleted SMALLINT DEFAULT 0 NOT NULL,
   ipb_block_email SMALLINT DEFAULT 0 NOT NULL,
   ipb_allow_usertalk SMALLINT DEFAULT 0 NOT NULL,
-  ipb_parent_block_id INTEGER DEFAULT NULL,
+  ipb_parent_block_id INTEGER UNSIGNED DEFAULT NULL,
   ipb_sitewide SMALLINT DEFAULT 1 NOT NULL
 );
 
@@ -828,7 +800,6 @@ CREATE UNIQUE INDEX ar_revid_uniq ON /*_*/archive (ar_rev_id);
 CREATE TABLE /*_*/page (
   page_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   page_namespace INTEGER NOT NULL, page_title BLOB NOT NULL,
-  page_restrictions BLOB DEFAULT NULL,
   page_is_redirect SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
   page_is_new SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
   page_random DOUBLE PRECISION NOT NULL,
@@ -863,7 +834,7 @@ CREATE TABLE /*_*/user (
   user_email_token BLOB DEFAULT NULL,
   user_email_token_expires BLOB DEFAULT NULL,
   user_registration BLOB DEFAULT NULL,
-  user_editcount INTEGER DEFAULT NULL,
+  user_editcount INTEGER UNSIGNED DEFAULT NULL,
   user_password_expires BLOB DEFAULT NULL
 );
 
@@ -872,6 +843,13 @@ CREATE UNIQUE INDEX user_name ON /*_*/user (user_name);
 CREATE INDEX user_email_token ON /*_*/user (user_email_token);
 
 CREATE INDEX user_email ON /*_*/user (user_email);
+
+
+CREATE TABLE /*_*/user_autocreate_serial (
+  uas_shard INTEGER UNSIGNED NOT NULL,
+  uas_value INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(uas_shard)
+);
 
 
 CREATE TABLE /*_*/revision (

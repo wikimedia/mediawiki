@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -124,7 +125,8 @@ class Http {
 	public static function getProxy() {
 		wfDeprecated( __METHOD__, '1.34' );
 
-		$httpProxy = MediaWikiServices::getInstance()->getMainConfig()->get( 'HTTPProxy' );
+		$httpProxy = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::HTTPProxy );
 		return (string)$httpProxy;
 	}
 
@@ -137,7 +139,8 @@ class Http {
 	 */
 	public static function createMultiClient( array $options = [] ) {
 		wfDeprecated( __METHOD__, '1.34' );
-		$httpProxy = MediaWikiServices::getInstance()->getMainConfig()->get( 'HTTPProxy' );
+		$httpProxy = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::HTTPProxy );
 		return MediaWikiServices::getInstance()->getHttpRequestFactory()
 			->createMultiClient( $options + [ 'proxy' => $httpProxy ] );
 	}

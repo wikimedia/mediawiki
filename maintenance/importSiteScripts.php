@@ -47,6 +47,7 @@ class ImportSiteScripts extends Maintenance {
 		} else {
 			$user = User::newFromName( $username );
 		}
+		'@phan-var User $user';
 		StubGlobalUser::setUser( $user );
 
 		$baseUrl = $this->getArg( 1 );

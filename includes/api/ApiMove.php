@@ -20,9 +20,11 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * API Module to move pages
@@ -52,8 +54,9 @@ class ApiMove extends ApiBase {
 		$this->repoGroup = $repoGroup;
 
 		// Variables needed in ApiWatchlistTrait trait
-		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
-		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( MainConfigNames::WatchlistExpiry );
+		$this->watchlistMaxDuration =
+			$this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 		$this->watchlistManager = $watchlistManager;
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
@@ -76,6 +79,8 @@ class ApiMove extends ApiBase {
 			if ( !$fromTitle ) {
 				$this->dieWithError( [ 'apierror-nosuchpageid', $params['fromid'] ] );
 			}
+		} else {
+			throw new LogicException( 'Unreachable due to requireOnlyOneParameter' );
 		}
 
 		if ( !$fromTitle->exists() ) {
@@ -106,20 +111,16 @@ class ApiMove extends ApiBase {
 			$this->dieWithError( 'apierror-ratelimited' );
 		}
 
-		// Check if the user is allowed to add the specified changetags
-		if ( $params['tags'] ) {
-			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $this->getAuthority() );
-			if ( !$ableToTag->isOK() ) {
-				$this->dieStatus( $ableToTag );
-			}
-		}
-
 		// Move the page
 		$toTitleExists = $toTitle->exists();
-		$status = $this->movePage( $fromTitle, $toTitle, $params['reason'], !$params['noredirect'],
-			$params['tags'] ?: [] );
+		$mp = $this->movePageFactory->newMovePage( $fromTitle, $toTitle );
+		$status = $mp->moveIfAllowed(
+			$this->getAuthority(),
+			$params['reason'],
+			!$params['noredirect'],
+			$params['tags'] ?: []
+		);
 		if ( !$status->isOK() ) {
-			$user->spreadAnyEditBlock();
 			$this->dieStatus( $status );
 		}
 
@@ -140,9 +141,9 @@ class ApiMove extends ApiBase {
 		// Move the talk page
 		if ( $params['movetalk'] && $toTalk && $fromTalk->exists() && !$fromTitle->isTalkPage() ) {
 			$toTalkExists = $toTalk->exists();
-			$status = $this->movePage(
-				$fromTalk,
-				$toTalk,
+			$mp = $this->movePageFactory->newMovePage( $fromTalk, $toTalk );
+			$status = $mp->moveIfAllowed(
+				$this->getAuthority(),
 				$params['reason'],
 				!$params['noredirect'],
 				$params['tags'] ?: []
@@ -182,10 +183,7 @@ class ApiMove extends ApiBase {
 			}
 		}
 
-		$watch = 'preferences';
-		if ( isset( $params['watchlist'] ) ) {
-			$watch = $params['watchlist'];
-		}
+		$watch = $params['watchlist'] ?? 'preferences';
 		$watchlistExpiry = $this->getExpiryFromParams( $params );
 
 		// Watch pages
@@ -193,34 +191,6 @@ class ApiMove extends ApiBase {
 		$this->setWatch( $watch, $toTitle, $user, 'watchmoves', $watchlistExpiry );
 
 		$result->addValue( null, $this->getModuleName(), $r );
-	}
-
-	/**
-	 * @param Title $from
-	 * @param Title $to
-	 * @param string $reason
-	 * @param bool $createRedirect
-	 * @param string[] $changeTags Applied to the entry in the move log and redirect page revision
-	 * @return Status
-	 */
-	protected function movePage( Title $from, Title $to, $reason, $createRedirect, $changeTags ) {
-		$mp = $this->movePageFactory->newMovePage( $from, $to );
-		$valid = $mp->isValidMove();
-		if ( !$valid->isOK() ) {
-			return $valid;
-		}
-
-		$permStatus = $mp->authorizeMove( $this->getAuthority(), $reason );
-		if ( !$permStatus->isOK() ) {
-			return Status::wrap( $permStatus );
-		}
-
-		// Check suppressredirect permission
-		if ( !$this->getAuthority()->isAllowed( 'suppressredirect' ) ) {
-			$createRedirect = true;
-		}
-
-		return $mp->move( $this->getUser(), $reason, $createRedirect, $changeTags );
 	}
 
 	/**
@@ -270,11 +240,11 @@ class ApiMove extends ApiBase {
 		$params = [
 			'from' => null,
 			'fromid' => [
-				ApiBase::PARAM_TYPE => 'integer'
+				ParamValidator::PARAM_TYPE => 'integer'
 			],
 			'to' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_REQUIRED => true
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true
 			],
 			'reason' => '',
 			'movetalk' => false,
@@ -289,8 +259,8 @@ class ApiMove extends ApiBase {
 		return $params + [
 			'ignorewarnings' => false,
 			'tags' => [
-				ApiBase::PARAM_TYPE => 'tags',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'tags',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 		];
 	}

@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Symfony\Component\Yaml\Yaml;
 use Wikimedia\AtEase\AtEase;
 
 /**
@@ -28,17 +29,30 @@ use Wikimedia\AtEase\AtEase;
  * @since 1.32
  */
 class ForeignResourceManager {
+	/** @var string */
 	private $defaultAlgo = 'sha384';
+
+	/** @var bool */
 	private $hasErrors = false;
+
+	/** @var string */
 	private $registryFile;
+
+	/** @var string */
 	private $libDir;
+
+	/** @var string */
 	private $tmpParentDir;
+
+	/** @var string */
 	private $cacheDir;
+
 	/**
 	 * @var callable|Closure
 	 * @phan-var callable(string):void
 	 */
 	private $infoPrinter;
+
 	/**
 	 * @var callable|Closure
 	 * @phan-var callable(string):void
@@ -49,7 +63,10 @@ class ForeignResourceManager {
 	 * @phan-var callable(string):void
 	 */
 	private $verbosePrinter;
+
+	/** @var string */
 	private $action;
+
 	/** @var array[] */
 	private $registry;
 
@@ -99,7 +116,7 @@ class ForeignResourceManager {
 		}
 		$this->action = $action;
 
-		$this->registry = $this->parseBasicYaml( file_get_contents( $this->registryFile ) );
+		$this->registry = Yaml::parseFile( $this->registryFile );
 		if ( $module === 'all' ) {
 			$modules = $this->registry;
 		} elseif ( isset( $this->registry[ $module ] ) ) {
@@ -160,6 +177,12 @@ class ForeignResourceManager {
 		return true;
 	}
 
+	/**
+	 * @param string $src
+	 * @param string $integrity
+	 *
+	 * @return string
+	 */
 	private function cacheKey( $src, $integrity ) {
 		$key = basename( $src ) . '_' . substr( $integrity, -12 );
 		$key = preg_replace( '/[.\/+?=_-]+/', '_', $key );
@@ -174,11 +197,21 @@ class ForeignResourceManager {
 		return AtEase::quietCall( 'file_get_contents', "{$this->cacheDir}/$key.data" );
 	}
 
+	/**
+	 * @param string $key
+	 * @param mixed $data
+	 */
 	private function cacheSet( $key, $data ) {
 		wfMkdirParents( $this->cacheDir );
 		file_put_contents( "{$this->cacheDir}/$key.data", $data, LOCK_EX );
 	}
 
+	/**
+	 * @param string $src
+	 * @param string $integrity
+	 *
+	 * @return string
+	 */
 	private function fetch( $src, $integrity ) {
 		$key = $this->cacheKey( $src, $integrity );
 		$data = $this->cacheGet( $key );
@@ -212,6 +245,11 @@ class ForeignResourceManager {
 		return $data;
 	}
 
+	/**
+	 * @param string $moduleName
+	 * @param string $destDir
+	 * @param array $info
+	 */
 	private function handleTypeFile( $moduleName, $destDir, array $info ) {
 		if ( !isset( $info['src'] ) ) {
 			throw new Exception( "Module '$moduleName' must have a 'src' key." );
@@ -228,6 +266,11 @@ class ForeignResourceManager {
 		}
 	}
 
+	/**
+	 * @param string $moduleName
+	 * @param string $destDir
+	 * @param array $info
+	 */
 	private function handleTypeMultiFile( $moduleName, $destDir, array $info ) {
 		if ( !isset( $info['files'] ) ) {
 			throw new Exception( "Module '$moduleName' must have a 'files' key." );
@@ -247,6 +290,11 @@ class ForeignResourceManager {
 		}
 	}
 
+	/**
+	 * @param string $moduleName
+	 * @param string $destDir
+	 * @param array $info
+	 */
 	private function handleTypeTar( $moduleName, $destDir, array $info ) {
 		$info += [ 'src' => null, 'integrity' => null, 'dest' => null ];
 		if ( $info['src'] === null ) {
@@ -312,14 +360,23 @@ class ForeignResourceManager {
 		}
 	}
 
+	/**
+	 * @param string $text
+	 */
 	private function verbose( $text ) {
 		( $this->verbosePrinter )( $text );
 	}
 
+	/**
+	 * @param string $text
+	 */
 	private function output( $text ) {
 		( $this->infoPrinter )( $text );
 	}
 
+	/**
+	 * @param string $text
+	 */
 	private function error( $text ) {
 		( $this->errorPrinter )( $text );
 	}
@@ -343,62 +400,5 @@ class ForeignResourceManager {
 				unlink( $cacheFile );
 			}
 		}
-	}
-
-	/**
-	 * Basic YAML parser.
-	 *
-	 * Supports only string or object values, and 2 spaces indentation.
-	 *
-	 * @todo Just ship symfony/yaml.
-	 * @param string $input
-	 * @return array
-	 */
-	private function parseBasicYaml( $input ) {
-		$lines = explode( "\n", $input );
-		$root = [];
-		$stack = [ &$root ];
-		$prev = 0;
-		foreach ( $lines as $i => $text ) {
-			$line = $i + 1;
-			$trimmed = ltrim( $text, ' ' );
-			if ( $trimmed === '' || $trimmed[0] === '#' ) {
-				continue;
-			}
-			$indent = strlen( $text ) - strlen( $trimmed );
-			if ( $indent % 2 !== 0 ) {
-				throw new Exception( __METHOD__ . ": Odd indentation on line $line." );
-			}
-			$depth = $indent === 0 ? 0 : ( $indent / 2 );
-			if ( $depth < $prev ) {
-				// Close previous branches we can't re-enter
-				array_splice( $stack, $depth + 1 );
-			}
-			if ( !array_key_exists( $depth, $stack ) ) {
-				throw new Exception( __METHOD__ . ": Too much indentation on line $line." );
-			}
-			if ( strpos( $trimmed, ':' ) === false ) {
-				throw new Exception( __METHOD__ . ": Missing colon on line $line." );
-			}
-			$dest =& $stack[ $depth ];
-			if ( $dest === null ) {
-				// Promote from null to object
-				$dest = [];
-			}
-			list( $key, $val ) = explode( ':', $trimmed, 2 );
-			$val = ltrim( $val, ' ' );
-			if ( $val !== '' ) {
-				// Add string
-				$dest[ $key ] = $val;
-			} else {
-				// Add null (may become an object later)
-				$val = null;
-				$stack[] = &$val;
-				$dest[ $key ] = &$val;
-			}
-			$prev = $depth;
-			unset( $dest, $val );
-		}
-		return $root;
 	}
 }

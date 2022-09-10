@@ -1,14 +1,14 @@
+// @deprecated since MW 1.39.0, use unprefixed `animation:` now.
 .animation( ... ) {
-	-webkit-animation: @arguments; // Chrome 4-42, Safari 4-8, Opera 15-29, Android 2.1-4.4.4
-	animation: @arguments; // Chrome 43+, Firefox 16+, IE 10+, Edge 12+, Safari 9+, Opera 12.10 & 30+, iOS 9+, Android 47+
+	animation: @arguments;
 }
 
+// @deprecated since MW 1.39.0, use unprefixed `animation-delay:` now.
 .animation-delay( ... ) {
-	-webkit-animation-delay: @arguments; // Chrome 4-42, Safari 4-8, Opera 15-29, Android 2.1-4.4.4
-	animation-delay: @arguments; // Chrome 43+, Firefox 16+, IE 10+, Edge 12+, Safari 9+, Opera 12.10 & 30+, iOS 9+, Android 47+
+	animation-delay: @arguments;
 }
 
+// @deprecated since MW 1.39.0, use unprefixed `transform: rotate( ... )` now.
 .transform-rotate( @deg ) {
-	-webkit-transform: rotate( @deg );
 	transform: rotate( @deg );
 }

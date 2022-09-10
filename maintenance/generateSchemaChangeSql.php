@@ -55,18 +55,6 @@ class GenerateSchemaChangeSql extends SchemaMaintenance {
 			$this->fatalError( 'No schema changes detected!' );
 		}
 
-		// Postgres hacks
-		if ( $platform === 'postgres' ) {
-			// Remove table prefixes from Postgres schema, people should not set it
-			// but better safe than sorry.
-			$sql = str_replace( "\n/*_*/\n", ' ', $sql );
-
-			// MySQL goes with varbinary for collation reasons, but postgres can't
-			// properly understand BYTEA type and works just fine with TEXT type
-			// FIXME: This should be fixed at some point (T257755)
-			$sql = str_replace( "BYTEA", 'TEXT', $sql );
-		}
-
 		// Until the linting issue is resolved
 		// https://github.com/doctrine/sql-formatter/issues/53
 		$sql = str_replace( "\n/*_*/\n", " /*_*/", $sql );

@@ -30,8 +30,6 @@ class CollationTest extends MediaWikiLangTestCase {
 		$cp = Collator::create( $lang );
 		$cp->setStrength( Collator::PRIMARY );
 		$baseBin = $cp->getSortKey( $base );
-		// Remove sortkey terminator
-		$baseBin = rtrim( $baseBin, "\0" );
 		$extendedBin = $cp->getSortKey( $extended );
 		$this->assertStringStartsWith( $baseBin, $extendedBin, "$base is not a prefix of $extended" );
 	}
@@ -67,8 +65,6 @@ class CollationTest extends MediaWikiLangTestCase {
 		$cp = Collator::create( $lang );
 		$cp->setStrength( Collator::PRIMARY );
 		$baseBin = $cp->getSortKey( $base );
-		// Remove sortkey terminator
-		$baseBin = rtrim( $baseBin, "\0" );
 		$extendedBin = $cp->getSortKey( $extended );
 		$this->assertStringStartsNotWith( $baseBin, $extendedBin, "$base is a prefix of $extended" );
 	}

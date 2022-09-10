@@ -3,7 +3,6 @@
 namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
-use stdClass;
 
 /**
  * Helper class used for automatically marking an IDatabase connection as reusable (once it no
@@ -27,7 +26,7 @@ use stdClass;
  * @ingroup Database
  * @since 1.22
  */
-class DBConnRef implements IDatabase {
+class DBConnRef implements IMaintainableDatabase {
 	/** @var ILoadBalancer */
 	private $lb;
 	/** @var Database|null Live connection handle */
@@ -37,34 +36,69 @@ class DBConnRef implements IDatabase {
 	/** @var int One of DB_PRIMARY/DB_REPLICA */
 	private $role;
 
+	/**
+	 * @var int Reference to the $modcount passed to the constructor.
+	 *      $conn is valid if $modCountRef and $modCountFix are the same.
+	 */
+	private $modCountRef;
+
+	/**
+	 * @var int Last known good value of $modCountRef
+	 *      $conn is valid if $modCountRef and $modCountFix are the same.
+	 */
+	private $modCountFix;
+
 	private const FLD_INDEX = 0;
 	private const FLD_GROUP = 1;
 	private const FLD_DOMAIN = 2;
 	private const FLD_FLAGS = 3;
 
 	/**
+	 * @internal May not be used outside Rdbms LoadBalancer
 	 * @param ILoadBalancer $lb Connection manager for $conn
-	 * @param IDatabase|array $conn Database or (server index, query groups, domain, flags)
+	 * @param array $params [server index, query groups, domain, flags]
 	 * @param int $role The type of connection asked for; one of DB_PRIMARY/DB_REPLICA
-	 * @internal This method should not be called outside of LoadBalancer
+	 * @param null|int &$modcount Reference to a modification counter. This is for
+	 *  LoadBalancer::reconfigure to indicate that a new connection should be acquired.
 	 */
-	public function __construct( ILoadBalancer $lb, $conn, $role ) {
-		$this->lb = $lb;
-		$this->role = $role;
-		if ( $conn instanceof IDatabase && !( $conn instanceof DBConnRef ) ) {
-			$this->conn = $conn; // live handle
-		} elseif ( is_array( $conn ) && count( $conn ) >= 4 && $conn[self::FLD_DOMAIN] !== false ) {
-			$this->params = $conn;
-		} else {
+	public function __construct( ILoadBalancer $lb, $params, $role, &$modcount = 0 ) {
+		if ( !is_array( $params ) || count( $params ) < 4 || $params[self::FLD_DOMAIN] === false ) {
 			throw new InvalidArgumentException( "Missing lazy connection arguments." );
+		}
+
+		$this->lb = $lb;
+		$this->params = $params;
+		$this->role = $role;
+
+		// $this->conn is valid as long as $this->modCountRef and $this->modCountFix are the same.
+		$this->modCountRef = &$modcount; // remember reference
+		$this->modCountFix = $modcount;  // remember current value
+	}
+
+	/**
+	 * Connect to the database if we are not already connected.
+	 */
+	public function ensureConnection() {
+		if ( $this->modCountFix !== $this->modCountRef ) {
+			// Discard existing connection, unless we are in an ongoing transaction.
+			// This is triggered by LoadBalancer::reconfigure(), to allow changed settings
+			// to take effect. The primary use case are replica servers being taken out of
+			// rotation, or the primary database changing.
+			if ( !$this->conn->trxLevel() ) {
+				$this->lb->closeConnection( $this->conn );
+				$this->conn = null;
+			}
+		}
+
+		if ( $this->conn === null ) {
+			[ $index, $groups, $wiki, $flags ] = $this->params;
+			$this->conn = $this->lb->getConnectionInternal( $index, $groups, $wiki, $flags );
+			$this->modCountFix = $this->modCountRef;
 		}
 	}
 
 	public function __call( $name, array $arguments ) {
-		if ( $this->conn === null ) {
-			list( $index, $groups, $wiki, $flags ) = $this->params;
-			$this->conn = $this->lb->getConnection( $index, $groups, $wiki, $flags );
-		}
+		$this->ensureConnection();
 
 		return $this->conn->$name( ...$arguments );
 	}
@@ -89,10 +123,6 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function getTopologyRootPrimary() {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function trxLevel() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
@@ -106,29 +136,39 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function tablePrefix( $prefix = null ) {
-		if ( $this->conn === null && $prefix === null ) {
-			$domain = DatabaseDomain::newFromId( $this->params[self::FLD_DOMAIN] );
-			// Avoid triggering a database connection
-			return $domain->getTablePrefix();
-		} elseif ( $this->conn !== null && $prefix === null ) {
-			// This will just return the prefix
-			return $this->__call( __FUNCTION__, func_get_args() );
+		if ( $prefix !== null ) {
+			// Disallow things that might confuse the LoadBalancer tracking
+			throw $this->getDomainChangeException();
 		}
-		// Disallow things that might confuse the LoadBalancer tracking
-		throw $this->getDomainChangeException();
+
+		if ( $this->conn === null ) {
+			// Avoid triggering a database connection
+			$domain = DatabaseDomain::newFromId( $this->params[self::FLD_DOMAIN] );
+			$prefix = $domain->getTablePrefix();
+		} else {
+			// This will just return the prefix
+			$prefix = $this->__call( __FUNCTION__, func_get_args() );
+		}
+
+		return $prefix;
 	}
 
 	public function dbSchema( $schema = null ) {
-		if ( $this->conn === null && $schema === null ) {
-			$domain = DatabaseDomain::newFromId( $this->params[self::FLD_DOMAIN] );
-			// Avoid triggering a database connection
-			return $domain->getSchema();
-		} elseif ( $this->conn !== null && $schema === null ) {
-			// This will just return the schema
-			return $this->__call( __FUNCTION__, func_get_args() );
+		if ( $schema !== null ) {
+			// Disallow things that might confuse the LoadBalancer tracking
+			throw $this->getDomainChangeException();
 		}
-		// Disallow things that might confuse the LoadBalancer tracking
-		throw $this->getDomainChangeException();
+
+		if ( $this->conn === null ) {
+			// Avoid triggering a database connection
+			$domain = DatabaseDomain::newFromId( $this->params[self::FLD_DOMAIN] );
+			$schema = (string)$domain->getSchema();
+		} else {
+			// This will just return the schema
+			$schema = $this->__call( __FUNCTION__, func_get_args() );
+		}
+
+		return $schema;
 	}
 
 	public function getLBInfo( $name = null ) {
@@ -206,47 +246,13 @@ class DBConnRef implements IDatabase {
 	public function getType() {
 		if ( $this->conn === null ) {
 			// Avoid triggering a database connection
-			if ( $this->params[self::FLD_INDEX] === ILoadBalancer::DB_PRIMARY ) {
-				$index = $this->lb->getWriterIndex();
-			} else {
-				$index = $this->params[self::FLD_INDEX];
-			}
+			$index = $this->normalizeServerIndex( $this->params[self::FLD_INDEX] );
 			if ( $index >= 0 ) {
 				// In theory, if $index is DB_REPLICA, the type could vary
 				return $this->lb->getServerType( $index );
 			}
 		}
 
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	/**
-	 * @deprecated since 1.37 use IResultWrapper::fetchObject()
-	 * @param IResultWrapper $res
-	 * @return stdClass|bool
-	 */
-	public function fetchObject( $res ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	/**
-	 * @deprecated since 1.37 use IResultWrapper::fetchRow()
-	 * @param IResultWrapper $res
-	 * @return array|bool
-	 */
-	public function fetchRow( $res ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
-	/**
-	 * @deprecated since 1.37 use IResultWrapper::numRows()
-	 * @param IResultWrapper|bool $res A SQL result
-	 * @return int
-	 */
-	public function numRows( $res ) {
-		wfDeprecated( __METHOD__, '1.37' );
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -274,7 +280,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function close( $fname = __METHOD__, $owner = null ) {
+	public function close( $fname = __METHOD__ ) {
 		// @phan-suppress-previous-line PhanPluginNeverReturnMethod
 		throw new DBUnexpectedError( $this->conn, 'Cannot close shared connection.' );
 	}
@@ -287,13 +293,13 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, [ $sql, $fname, $flags ] );
 	}
 
-	/**
-	 * @deprecated since 1.37 Use IResultWrapper::free()
-	 * @param IResultWrapper $res A SQL result
-	 */
-	public function freeResult( $res ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->__call( __FUNCTION__, func_get_args() );
+	public function queryMulti(
+		array $sqls, string $fname = __METHOD__, int $flags = 0, ?string $summarySql = null
+	) {
+		if ( $this->role !== ILoadBalancer::DB_PRIMARY ) {
+			$flags |= IDatabase::QUERY_REPLICA_ROLE;
+		}
+		return $this->__call( __FUNCTION__, [ $sqls, $fname, $flags, $summarySql ] );
 	}
 
 	public function newSelectQueryBuilder(): SelectQueryBuilder {
@@ -435,6 +441,10 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function buildExcludedValue( $column ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function buildSelectSubquery(
 		$table, $vars, $conds = '', $fname = __METHOD__,
 		$options = [], $join_conds = []
@@ -473,6 +483,15 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function getServerName() {
+		if ( $this->conn === null ) {
+			// Avoid triggering a database connection
+			$index = $this->normalizeServerIndex( $this->params[self::FLD_INDEX] );
+			if ( $index >= 0 ) {
+				// If $index is DB_REPLICA, the server name could vary
+				return $this->lb->getServerName( $index );
+			}
+		}
+
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -657,6 +676,10 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function flushSession( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function flushSnapshot( $fname = __METHOD__, $flush = self::FLUSHING_ONE ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
@@ -751,7 +774,97 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
+	public function getTableAliases() {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
 	public function setIndexAliases( array $aliases ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function tableName( $name, $format = 'quoted' ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function tableNames( ...$tables ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function tableNamesN( ...$tables ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function sourceFile(
+		$filename,
+		callable $lineCallback = null,
+		callable $resultCallback = null,
+		$fname = false,
+		callable $inputCallback = null
+	) {
+		$this->assertRoleAllowsWrites();
+
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function sourceStream(
+		$fp,
+		callable $lineCallback = null,
+		callable $resultCallback = null,
+		$fname = __METHOD__,
+		callable $inputCallback = null
+	) {
+		$this->assertRoleAllowsWrites();
+
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function dropTable( $table, $fname = __METHOD__ ) {
+		$this->assertRoleAllowsWrites();
+
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function truncate( $tables, $fname = __METHOD__ ) {
+		$this->assertRoleAllowsWrites();
+
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function deadlockLoop( ...$args ) {
+		$this->assertRoleAllowsWrites();
+
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function listViews( $prefix = null, $fname = __METHOD__ ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function textFieldSize( $table, $field ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function streamStatementEnd( &$sql, &$newLine ) {
+		return $this->__call( __FUNCTION__, [ &$sql, &$newLine ] );
+	}
+
+	public function duplicateTableStructure(
+		$oldName, $newName, $temporary = false, $fname = __METHOD__
+	) {
+		$this->assertRoleAllowsWrites();
+
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function indexUnique( $table, $index, $fname = __METHOD__ ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function listTables( $prefix = null, $fname = __METHOD__ ) {
+		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function fieldInfo( $table, $field ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
@@ -796,11 +909,19 @@ class DBConnRef implements IDatabase {
 	}
 
 	/**
+	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
+	 * @return int|mixed
+	 */
+	protected function normalizeServerIndex( $i ) {
+		return ( $i === ILoadBalancer::DB_PRIMARY ) ? $this->lb->getWriterIndex() : $i;
+	}
+
+	/**
 	 * Clean up the connection when out of scope
 	 */
 	public function __destruct() {
 		if ( $this->conn ) {
-			$this->lb->reuseConnection( $this->conn );
+			$this->lb->reuseConnectionInternal( $this->conn );
 		}
 	}
 }

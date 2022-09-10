@@ -292,7 +292,7 @@ class Preprocessor_Hash extends Preprocessor {
 				$matches = false;
 				// Handle </onlyinclude>
 				if ( $enableOnlyinclude
-					&& substr( $text, $i, strlen( '</onlyinclude>' ) ) == '</onlyinclude>'
+					&& str_starts_with( substr( $text, $i ), '</onlyinclude>' )
 				) {
 					$findOnlyinclude = true;
 					continue;

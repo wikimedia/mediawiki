@@ -3,6 +3,7 @@
 		"authors": [
 			"Anthony Fok",
 			"Cwlin0416",
+			"Diskdance",
 			"Hzy980512",
 			"Justincheng12345",
 			"Kly",
@@ -244,7 +245,7 @@
 	"config-logo-tagline-help": "您站台的標語。僅在您有定義上方字標時才使用。若未定義的話，通常會退回成文字。標語與字標的結合高度在一般規則是不超過 50 像素。",
 	"config-logo-sidebar": "側欄標誌（選擇性）：",
 	"config-logo-filedrop": "拖放圖片檔案至此",
-	"config-logo-sidebar-help": "某些 MediaWiki 外觀的側邊選單會包含高度為 160 像素的標誌。若未定義，會與上方所定義的圖標相同。您可能會想要一個結合字標與圖標的專用圖形。",
+	"config-logo-sidebar-help": "某些 MediaWiki 外觀的側欄選單會包含高度為 160 像素的標誌。若未定義，會與上方所定義的圖示相同。您可能會想要一個結合字標與圖示的專用圖形。",
 	"config-instantcommons": "開啟即時共享資源",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons 即時共享資源] 是允許 Wiki 使用來自 [https://commons.wikimedia.org/ Wikimedia Commons] 網站上的圖片、聲音以及其他媒體的一項功能。\n若要開啟此功能，您的 MediaWiki 必須能夠連線網際網路。\n更多有關此功能的訊息，包含如何存除了 Wikimedia Commons 之外其他網站的說明，請參考 \n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos 操作手冊]。",
 	"config-cc-error": "查無該創作共用授權條款，\n請手動輸入您的授權條款名稱。",

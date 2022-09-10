@@ -38,7 +38,7 @@ trait EditConstraintTestTrait {
 		);
 
 		$status = $constraint->getLegacyStatus();
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 	}
 
 	/**
@@ -53,8 +53,8 @@ trait EditConstraintTestTrait {
 		);
 
 		$status = $constraint->getLegacyStatus();
-		$this->assertFalse( $status->isGood() );
-		$this->assertSame( $statusCode, $status->getValue() );
+		$this->assertStatusNotGood( $status );
+		$this->assertStatusValue( $statusCode, $status );
 	}
 
 }

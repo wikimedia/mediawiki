@@ -3,15 +3,16 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author Hiong3-eng5
  * @author Ianbu
  * @author Kaihsu
+ * @author Winston Sung
  */
 
-$fallback = 'cdo, zh-hant';
+$fallback = 'cdo, zh-hant, zh, zh-hans';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Mûi-thé',

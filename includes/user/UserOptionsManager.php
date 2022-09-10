@@ -31,6 +31,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;
@@ -46,8 +47,8 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'HiddenPrefs',
-		'LocalTZoffset',
+		MainConfigNames::HiddenPrefs,
+		MainConfigNames::LocalTZoffset,
 	];
 
 	/** @var ServiceOptions */
@@ -140,7 +141,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		# set it, and then it was disabled removing their ability to change it).  But
 		# we don't want to erase the preferences in the database in case the preference
 		# is re-enabled again.  So don't touch $mOptions, just override the returned value
-		if ( !$ignoreHidden && in_array( $oname, $this->serviceOptions->get( 'HiddenPrefs' ) ) ) {
+		if ( !$ignoreHidden && in_array( $oname, $this->serviceOptions->get( MainConfigNames::HiddenPrefs ) ) ) {
 			return $this->defaultOptionsLookup->getDefaultOption( $oname );
 		}
 
@@ -166,7 +167,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		# set it, and then it was disabled removing their ability to change it).  But
 		# we don't want to erase the preferences in the database in case the preference
 		# is re-enabled again.  So don't touch $mOptions, just override the returned value
-		foreach ( $this->serviceOptions->get( 'HiddenPrefs' ) as $pref ) {
+		foreach ( $this->serviceOptions->get( MainConfigNames::HiddenPrefs ) as $pref ) {
 			$default = $this->defaultOptionsLookup->getDefaultOption( $pref );
 			if ( $default !== null ) {
 				$options[$pref] = $default;
@@ -622,7 +623,7 @@ class UserOptionsManager extends UserOptionsLookup {
 			$options['timecorrection'] = ( new UserTimeCorrection(
 				$options['timecorrection'],
 				null,
-				$this->serviceOptions->get( 'LocalTZoffset' )
+				$this->serviceOptions->get( MainConfigNames::LocalTZoffset )
 			) )->toString();
 		}
 

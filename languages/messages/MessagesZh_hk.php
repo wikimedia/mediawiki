@@ -3,8 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author Horacewai2
  * @author Kayau
@@ -12,12 +12,13 @@
  * @author PhiLiP
  * @author Shizhao
  * @author Waihorace
+ * @author Winston Sung
  * @author Wong128hk
  * @author Yukiseaside
  * @author Yuyu
  */
 
-$fallback = 'zh-hant, zh-hans';
+$fallback = 'zh-hant, zh-tw, zh, zh-hans';
 
 $fallback8bitEncoding = 'Big5-HKSCS';
 

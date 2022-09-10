@@ -21,6 +21,7 @@
  * @ingroup JobQueue
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -35,7 +36,7 @@ class ThumbnailRenderJob extends Job {
 
 	public function run() {
 		$uploadThumbnailRenderMethod = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'UploadThumbnailRenderMethod' );
+			->getMainConfig()->get( MainConfigNames::UploadThumbnailRenderMethod );
 
 		$transformParams = $this->params['transformParams'];
 
@@ -77,8 +78,10 @@ class ThumbnailRenderJob extends Job {
 	 */
 	protected function hitThumbUrl( LocalFile $file, $transformParams ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$uploadThumbnailRenderHttpCustomHost = $config->get( 'UploadThumbnailRenderHttpCustomHost' );
-		$uploadThumbnailRenderHttpCustomDomain = $config->get( 'UploadThumbnailRenderHttpCustomDomain' );
+		$uploadThumbnailRenderHttpCustomHost =
+			$config->get( MainConfigNames::UploadThumbnailRenderHttpCustomHost );
+		$uploadThumbnailRenderHttpCustomDomain =
+			$config->get( MainConfigNames::UploadThumbnailRenderHttpCustomDomain );
 		$handler = $file->getHandler();
 		if ( !$handler ) {
 			$this->setLastError( __METHOD__ . ': could not get handler' );

@@ -1,7 +1,5 @@
 <?php
 /**
- * Language names.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,13 +16,12 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
 
 namespace MediaWiki\Languages\Data;
 
 /**
- * Language names in their own languages (language autonyms).
+ * Language names in their own languages (known as "language autonyms").
  *
  * These determine things like interwikis, language selectors, and so on.
  * Safe to change without running scripts on the respective sites.
@@ -158,6 +155,7 @@ class Names {
 		'eu' => 'euskara', # Basque
 		'ext' => 'estremeñu', # Extremaduran
 		'fa' => 'فارسی', # Persian
+		'fat' => 'mfantse', # Fante
 		'ff' => 'Fulfulde', # Fulfulde, Maasina
 		'fi' => 'suomi', # Finnish
 		'fit' => 'meänkieli', # Tornedalen Finnish
@@ -188,6 +186,7 @@ class Names {
 		'gom-latn' => 'Gõychi Konknni', # Goan Konkani (Latin script)
 		'gor' => 'Bahasa Hulontalo', # Gorontalo
 		'got' => '𐌲𐌿𐍄𐌹𐍃𐌺', # Gothic
+		'gpe' => 'Ghanaian Pidgin', # Ghanaian Pidgin
 		'grc' => 'Ἀρχαία ἑλληνικὴ', # Ancient Greek
 		'gsw' => 'Alemannisch', # Alemannic
 		'gu' => 'ગુજરાતી', # Gujarati
@@ -219,7 +218,7 @@ class Names {
 		'ie' => 'Interlingue', # Interlingue (Occidental)
 		'ig' => 'Igbo', # Igbo
 		'ii' => 'ꆇꉙ', # Sichuan Yi
-		'ik' => 'Iñupiak', # Inupiak (Inupiatun, Northwest Alaska / Inupiatun, North Alaskan)
+		'ik' => 'Iñupiatun', # Inupiaq
 		'ike-cans' => 'ᐃᓄᒃᑎᑐᑦ', # Inuktitut, Eastern Canadian (Unified Canadian Aboriginal Syllabics)
 		'ike-latn' => 'inuktitut', # Inuktitut, Eastern Canadian (Latin script)
 		'ilo' => 'Ilokano', # Ilokano
@@ -260,7 +259,7 @@ class Names {
 		'ko' => '한국어', # Korean
 		'ko-kp' => '조선말', # Korean (DPRK), T190324
 		'koi' => 'перем коми', # Komi-Permyak
-		'kr' => 'Kanuri', # Kanuri, Central
+		'kr' => 'kanuri', # Kanuri
 		'krc' => 'къарачай-малкъар', # Karachay-Balkar
 		'kri' => 'Krio', # Krio
 		'krj' => 'Kinaray-a', # Kinaray-a
@@ -316,6 +315,7 @@ class Names {
 		'mni' => 'ꯃꯤꯇꯩ ꯂꯣꯟ', # Manipuri/Meitei
 		'mnw' => 'ဘာသာ မန်', # Mon, T201583
 		'mo' => 'молдовеняскэ', # Moldovan, deprecated (ISO 639-2: ro-Cyrl-MD)
+		'mos' => 'moore', # Mooré
 		'mr' => 'मराठी', # Marathi
 		'mrh' => 'Mara', # Mara
 		'mrj' => 'кырык мары', # Hill Mari
@@ -364,6 +364,7 @@ class Names {
 		'pam' => 'Kapampangan', # Pampanga
 		'pap' => 'Papiamentu', # Papiamentu
 		'pcd' => 'Picard', # Picard
+		'pcm' => 'Naijá', # Nigerian Pidgin
 		'pdc' => 'Deitsch', # Pennsylvania German
 		'pdt' => 'Plautdietsch', # Plautdietsch/Mennonite Low German
 		'pfl' => 'Pälzisch', # Palatinate German
@@ -385,7 +386,7 @@ class Names {
 		'rm' => 'rumantsch', # Raeto-Romance
 		'rmc' => 'romaňi čhib', # Carpathian Romany
 		'rmy' => 'romani čhib', # Vlax Romany
-		'rn' => 'ikirundi', # Kirundi
+		'rn' => 'ikirundi', # Rundi (Kirundi)
 		'ro' => 'română', # Romanian
 		'roa-rup' => 'armãneashti', # Aromanian (deprecated code, 'rup' exists in ISO 639-3)
 		'roa-tara' => 'tarandíne', # Tarantino ('nap-x-tara')
@@ -398,6 +399,7 @@ class Names {
 		# 'ruq-grek' => 'Βλαεστε', # Megleno-Romanian (Greek script)
 		'ruq-latn' => 'Vlăheşte', # Megleno-Romanian (Latin script)
 		'rw' => 'Ikinyarwanda', # Kinyarwanda
+		'ryu' => 'うちなーぐち', # Okinawan
 		'sa' => 'संस्कृतम्', # Sanskrit
 		'sah' => 'саха тыла', # Sakha
 		'sat' => 'ᱥᱟᱱᱛᱟᱲᱤ', # Santali
@@ -444,6 +446,7 @@ class Names {
 		'sr-ec' => 'српски (ћирилица)', # Serbian Cyrillic ekavian
 		'sr-el' => 'srpski (latinica)', # Serbian Latin ekavian
 		'srn' => 'Sranantongo', # Sranan Tongo
+		'sro' => 'sardu campidanesu', # Campidanese Sardinian
 		'ss' => 'SiSwati', # Swati
 		'st' => 'Sesotho', # Southern Sotho
 		'stq' => 'Seeltersk', # Saterland Frisian
@@ -451,11 +454,13 @@ class Names {
 		'su' => 'Sunda', # Sundanese
 		'sv' => 'svenska', # Swedish
 		'sw' => 'Kiswahili', # Swahili
+		'syl' => 'ꠍꠤꠟꠐꠤ', # Sylheti
 		'szl' => 'ślůnski', # Silesian
 		'szy' => 'Sakizaya', # Sakizaya - T174601
 		'ta' => 'தமிழ்', # Tamil
 		'tay' => 'Tayal', # Atayal
 		'tcy' => 'ತುಳು', # Tulu
+		'tdd' => 'ᥖᥭᥰᥖᥬᥳᥑᥨᥒᥰ', # Tai Nüa
 		'te' => 'తెలుగు', # Telugu
 		'tet' => 'tetun', # Tetun
 		'tg' => 'тоҷикӣ', # Tajiki (falls back to tg-cyrl)

@@ -267,7 +267,7 @@ class ParamValidator {
 	 */
 	public function addTypeDef( $name, $typeDef ) {
 		Assert::parameterType(
-			implode( '|', [ TypeDef::class, 'array' ] ),
+			[ TypeDef::class, 'array' ],
 			$typeDef,
 			'$typeDef'
 		);
@@ -286,7 +286,7 @@ class ParamValidator {
 	 */
 	public function overrideTypeDef( $name, $typeDef ) {
 		Assert::parameterType(
-			implode( '|', [ TypeDef::class, 'array', 'null' ] ),
+			[ TypeDef::class, 'array', 'null' ],
 			$typeDef,
 			'$typeDef'
 		);

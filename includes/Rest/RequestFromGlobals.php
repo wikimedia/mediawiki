@@ -44,7 +44,7 @@ class RequestFromGlobals extends RequestBase {
 				//
 				// Since $requestUrl here is absolute-path references
 				// so all titles that contain colon followed by a
-				// number would be inacessible if the exception occurs.
+				// number would be inaccessible if the exception occurs.
 				$uriInstance = (
 					new Uri( '//HOST:80' . $requestUrl )
 				)->withScheme( '' )->withHost( '' )->withPort( null );
@@ -59,9 +59,9 @@ class RequestFromGlobals extends RequestBase {
 	public function getProtocolVersion() {
 		if ( $this->protocol === null ) {
 			$serverProtocol = $_SERVER['SERVER_PROTOCOL'] ?? '';
-			$prefixLength = strlen( 'HTTP/' );
-			if ( strncmp( $serverProtocol, 'HTTP/', $prefixLength ) === 0 ) {
-				$this->protocol = substr( $serverProtocol, $prefixLength );
+			$prefix = 'HTTP/';
+			if ( str_starts_with( $serverProtocol, $prefix ) ) {
+				$this->protocol = substr( $serverProtocol, strlen( $prefix ) );
 			} else {
 				$this->protocol = '1.1';
 			}

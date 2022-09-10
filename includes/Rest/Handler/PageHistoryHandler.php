@@ -258,6 +258,7 @@ class PageHistoryHandler extends SimpleHandler {
 		$limit = self::REVISIONS_RETURN_LIMIT + 1;
 
 		$res = $dbr->select(
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			$revQuery['tables'],
 			$revQuery['fields'],
 			$cond,
@@ -372,7 +373,11 @@ class PageHistoryHandler extends SimpleHandler {
 
 			if ( $revisions && $params['newer_than'] ) {
 				$revisions = array_reverse( $revisions );
+				// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
+				// $lastRevId is declared because $res has one element
 				$temp = $lastRevId;
+				// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
+				// $firstRevId is declared because $res has one element
 				$lastRevId = $firstRevId;
 				$firstRevId = $temp;
 			}
@@ -386,11 +391,15 @@ class PageHistoryHandler extends SimpleHandler {
 		// This facilitates clients doing "paging" style api operations.
 		if ( $revisions ) {
 			if ( $params['newer_than'] || $res->numRows() > self::REVISIONS_RETURN_LIMIT ) {
+				// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
+				// $lastRevId is declared because $res has one element
 				$older = $lastRevId;
 			}
 			if ( $params['older_than'] ||
 				( $params['newer_than'] && $res->numRows() > self::REVISIONS_RETURN_LIMIT )
 			) {
+				// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable
+				// $firstRevId is declared because $res has one element
 				$newer = $firstRevId;
 			}
 		}

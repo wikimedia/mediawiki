@@ -57,10 +57,17 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 	public function checkPermissions() {
 		parent::checkPermissions();
 
-		$user = $this->getUser();
-		$status = $this->getAuthManager()->checkAccountCreatePermissions( $user );
+		$performer = $this->getAuthority();
+		$authManager = $this->getAuthManager();
+
+		$status = $this->mPosted ?
+			$authManager->authorizeCreateAccount( $performer ) :
+			$authManager->probablyCanCreateAccount( $performer );
 		if ( !$status->isGood() ) {
-			throw new ErrorPageError( 'createacct-error', $status->getMessage() );
+			throw new ErrorPageError(
+				'createacct-error',
+				Status::wrap( $status )->getMessage()
+			);
 		}
 	}
 

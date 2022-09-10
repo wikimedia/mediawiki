@@ -66,7 +66,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 	}
 
 	private function newChange( RevisionRecord $revision = null ) {
-		$title = Title::newFromText( self::$pageName );
+		$title = Title::makeTitle( NS_MAIN, self::$pageName );
 		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
 		$change = new CategoryMembershipChange(
 			$title, $blcFactory->getBacklinkCache( $title ), $revision
@@ -80,7 +80,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 
 	public function testChangeAddedNoRev() {
 		$change = $this->newChange();
-		$change->triggerCategoryAddedNotification( Title::newFromText( 'CategoryName', NS_CATEGORY ) );
+		$change->triggerCategoryAddedNotification( Title::makeTitle( NS_CATEGORY, 'CategoryName' ) );
 
 		$this->assertSame( 1, self::$notifyCallCounter );
 
@@ -100,7 +100,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 
 	public function testChangeRemovedNoRev() {
 		$change = $this->newChange();
-		$change->triggerCategoryRemovedNotification( Title::newFromText( 'CategoryName', NS_CATEGORY ) );
+		$change->triggerCategoryRemovedNotification( Title::makeTitle( NS_CATEGORY, 'CategoryName' ) );
 
 		$this->assertSame( 1, self::$notifyCallCounter );
 
@@ -121,9 +121,9 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 	public function testChangeAddedWithRev() {
 		$revision = $this->getServiceContainer()
 			->getRevisionLookup()
-			->getRevisionByTitle( Title::newFromText( self::$pageName ) );
+			->getRevisionByTitle( Title::makeTitle( NS_MAIN, self::$pageName ) );
 		$change = $this->newChange( $revision );
-		$change->triggerCategoryAddedNotification( Title::newFromText( 'CategoryName', NS_CATEGORY ) );
+		$change->triggerCategoryAddedNotification( Title::makeTitle( NS_CATEGORY, 'CategoryName' ) );
 
 		$this->assertSame( 1, self::$notifyCallCounter );
 
@@ -144,9 +144,9 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 	public function testChangeRemovedWithRev() {
 		$revision = $this->getServiceContainer()
 			->getRevisionLookup()
-			->getRevisionByTitle( Title::newFromText( self::$pageName ) );
+			->getRevisionByTitle( Title::makeTitle( NS_MAIN, self::$pageName ) );
 		$change = $this->newChange( $revision );
-		$change->triggerCategoryRemovedNotification( Title::newFromText( 'CategoryName', NS_CATEGORY ) );
+		$change->triggerCategoryRemovedNotification( Title::makeTitle( NS_CATEGORY, 'CategoryName' ) );
 
 		$this->assertSame( 1, self::$notifyCallCounter );
 

@@ -104,14 +104,11 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 
 		$page = $this->wikiPageFactory->newFromTitle( $importableRevision->getTitle() );
 		$page->loadPageData( WikiPage::READ_LATEST );
-		if ( !$page->exists() ) {
-			// must create the page...
+		$mustCreatePage = !$page->exists();
+		if ( $mustCreatePage ) {
 			$pageId = $page->insertOn( $dbw );
-			$created = true;
-			$oldcountable = null;
 		} else {
 			$pageId = $page->getId();
-			$created = false;
 
 			// Note: sha1 has been in XML dumps since 2012. If you have an
 			// older dump, the duplicate detection here won't work.
@@ -168,11 +165,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		);
 
 		try {
-			$revUser = $this->userFactory->newFromAnyId(
-				$userId,
-				$userText,
-				null
-			);
+			$revUser = $this->userFactory->newFromAnyId( $userId, $userText );
 		} catch ( InvalidArgumentException $ex ) {
 			$revUser = RequestContext::getMain()->getUser();
 		}
@@ -237,7 +230,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 			// countable/oldcountable stuff is handled in WikiImporter::finishImportPage
 
 			$options = [
-				'created' => $created,
+				'created' => $mustCreatePage,
 				'oldcountable' => 'no-change',
 				'causeAction' => 'edit-page',
 				'causeAgent' => $user->getName(),

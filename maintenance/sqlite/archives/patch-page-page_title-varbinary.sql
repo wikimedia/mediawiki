@@ -2,7 +2,6 @@ CREATE TABLE /*_*/page_tmp (
   page_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   page_namespace INTEGER NOT NULL,
   page_title BLOB NOT NULL,
-  page_restrictions BLOB DEFAULT NULL,
   page_is_redirect SMALLINT DEFAULT 0 NOT NULL,
   page_is_new SMALLINT DEFAULT 0 NOT NULL,
   page_random DOUBLE PRECISION NOT NULL,
@@ -16,7 +15,7 @@ CREATE TABLE /*_*/page_tmp (
 
 
 INSERT INTO /*_*/page_tmp
-       SELECT page_id, page_namespace, page_title, page_restrictions, page_is_redirect, page_is_new,
+       SELECT page_id, page_namespace, page_title, page_is_redirect, page_is_new,
             page_random, page_touched, page_links_updated, page_latest, page_len, page_content_model, page_lang
                FROM /*_*/page;
 DROP TABLE /*_*/page;

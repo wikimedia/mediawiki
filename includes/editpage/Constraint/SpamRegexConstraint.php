@@ -43,7 +43,7 @@ class SpamRegexConstraint implements IEditConstraint {
 	/** @var string */
 	private $summary;
 
-	/** @var string */
+	/** @var ?string */
 	private $sectionHeading;
 
 	/** @var string */
@@ -62,8 +62,7 @@ class SpamRegexConstraint implements IEditConstraint {
 	 * @param LoggerInterface $logger for logging hits
 	 * @param SpamChecker $spamChecker
 	 * @param string $summary
-	 * @param string $section
-	 * @param string $sectionHeading
+	 * @param ?string $sectionHeading
 	 * @param string $text
 	 * @param string $reqIP for logging hits
 	 * @param Title $title for logging hits
@@ -72,28 +71,15 @@ class SpamRegexConstraint implements IEditConstraint {
 		LoggerInterface $logger,
 		SpamChecker $spamChecker,
 		string $summary,
-		string $section,
-		string $sectionHeading,
+		?string $sectionHeading,
 		string $text,
 		string $reqIP,
 		Title $title
 	) {
-		if ( $section == 'new' ) {
-			// $wgSpamRegex is enforced on this new heading/summary because, unlike
-			// regular summaries, it is added to the actual wikitext.
-			// sectiontitle is only set if the API is used with `sectiontitle`, otherwise
-			// the summary is used which comes from the API `summary` parameter or the
-			// "Add Topic" user interface
-			$sectionHeadingToCheck = ( $sectionHeading !== '' ? $sectionHeading : $summary );
-		} else {
-			// No section heading to check
-			$sectionHeadingToCheck = '';
-		}
-
 		$this->logger = $logger;
 		$this->spamChecker = $spamChecker;
 		$this->summary = $summary;
-		$this->sectionHeading = $sectionHeadingToCheck;
+		$this->sectionHeading = $sectionHeading;
 		$this->text = $text;
 		$this->reqIP = $reqIP;
 		$this->title = $title;
@@ -101,12 +87,8 @@ class SpamRegexConstraint implements IEditConstraint {
 
 	public function checkConstraint(): string {
 		$match = $this->spamChecker->checkSummary( $this->summary );
-		if ( $match === false ) {
-			// $wgSpamRegex is enforced on this new heading/summary because, unlike
-			// regular summaries, it is added to the actual wikitext.
-			// EditPage has already determined, based on if this is the API with `sectiontitle`,
-			// or action=edit, or the API with `summary`, what will be the section title.
-			// If the section isn't new, the $this->sectionHeading is an empty string
+		if ( $match === false && $this->sectionHeading !== null ) {
+			// If the section isn't new, the $this->sectionHeading is null
 			$match = $this->spamChecker->checkContent( $this->sectionHeading );
 		}
 		if ( $match === false ) {

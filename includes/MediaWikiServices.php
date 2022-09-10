@@ -1,4 +1,22 @@
 <?php
+/**
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
 
 namespace MediaWiki;
 
@@ -48,6 +66,7 @@ use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
+use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Export\WikiExporterFactory;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
@@ -64,6 +83,7 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\Page\ContentModelChangeFactory;
@@ -79,13 +99,18 @@ use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
+use MediaWiki\Parser\Parsoid\HTMLTransformFactory;
+use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidatorFactory;
+use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\RevisionFactory;
@@ -94,6 +119,7 @@ use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\Settings\Config\ConfigSchema;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Shell\ShellboxClientFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
@@ -111,6 +137,8 @@ use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\BotPasswordStore;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
 use MediaWiki\User\TalkPageNotificationManager;
+use MediaWiki\User\TempUser\RealTempUserConfig;
+use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
@@ -120,10 +148,12 @@ use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
+use MediaWiki\Utils\UrlUtils;
 use MediaWiki\Watchlist\WatchlistManager;
 use MessageCache;
 use MimeAnalyzer;
 use MWException;
+use MWLBFactory;
 use NamespaceInfo;
 use ObjectCache;
 use OldRevisionImporter;
@@ -136,7 +166,6 @@ use PasswordReset;
 use ProxyLookup;
 use ReadOnlyMode;
 use RepoGroup;
-use ResourceLoader;
 use SearchEngine;
 use SearchEngineConfig;
 use SearchEngineFactory;
@@ -158,6 +187,9 @@ use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\Metrics\MetricsFactory;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\ObjectFactory\ObjectFactory;
+use Wikimedia\Parsoid\Config\DataAccess;
+use Wikimedia\Parsoid\Config\SiteConfig;
+use Wikimedia\Rdbms\DatabaseFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
@@ -165,42 +197,17 @@ use Wikimedia\Services\NoSuchServiceException;
 use Wikimedia\Services\SalvageableService;
 use Wikimedia\Services\ServiceContainer;
 use Wikimedia\UUID\GlobalIdGenerator;
+use Wikimedia\WRStats\WRStatsFactory;
 
 /**
  * Service locator for MediaWiki core services.
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
+ * Refer to includes/ServiceWiring.php for the default implementations.
  *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License along
- * with this program; if not, write to the Free Software Foundation, Inc.,
- * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * http://www.gnu.org/copyleft/gpl.html
- *
- * @file
+ * @see [Dependency Injection](@ref dependencyinjection) in docs/Injection.md
+ * for the principles of DI and how to use it MediaWiki core.
  *
  * @since 1.27
- */
-
-/**
- * MediaWikiServices is the service locator for the application scope of MediaWiki.
- * Its implemented as a simple configurable DI container.
- * MediaWikiServices acts as a top level factory/registry for top level services, and builds
- * the network of service objects that defines MediaWiki's application logic.
- * It acts as an entry point to MediaWiki's dependency injection mechanism.
- *
- * Services are defined in the "wiring" array passed to the constructor,
- * or by calling defineService().
- *
- * @see docs/Injection.md for an overview of using dependency injection in the
- *      MediaWiki code base.
  */
 class MediaWikiServices extends ServiceContainer {
 	use NonSerializableTrait;
@@ -436,7 +443,7 @@ class MediaWikiServices extends ServiceContainer {
 
 		// Load the default wiring from the specified files.
 		if ( $loadWiring === 'load' ) {
-			$wiringFiles = $bootstrapConfig->get( 'ServiceWiringFiles' );
+			$wiringFiles = $bootstrapConfig->get( MainConfigNames::ServiceWiringFiles );
 			$instance->loadWiringFiles( $wiringFiles );
 		}
 
@@ -817,6 +824,14 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.39
+	 * @return ConfigSchema
+	 */
+	public function getConfigSchema(): ConfigSchema {
+		return $this->getService( 'ConfigSchema' );
+	}
+
+	/**
 	 * @since 1.29
 	 * @return ConfiguredReadOnlyMode
 	 */
@@ -905,6 +920,14 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.39
+	 * @return DatabaseFactory
+	 */
+	public function getDatabaseFactory(): DatabaseFactory {
+		return $this->getService( 'DatabaseFactory' );
+	}
+
+	/**
 	 * @since 1.33
 	 * @return DateFormatterFactory
 	 */
@@ -926,6 +949,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDBLoadBalancerFactory(): LBFactory {
 		return $this->getService( 'DBLoadBalancerFactory' );
+	}
+
+	/**
+	 * @since 1.39
+	 * @return MWLBFactory
+	 */
+	public function getDBLoadBalancerFactoryConfigBuilder(): MWLBFactory {
+		return $this->getService( 'DBLoadBalancerFactoryConfigBuilder' );
 	}
 
 	/**
@@ -1030,6 +1061,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getHtmlCacheUpdater(): HtmlCacheUpdater {
 		return $this->getService( 'HtmlCacheUpdater' );
+	}
+
+	/**
+	 * @return HTMLTransformFactory
+	 * @since 1.39
+	 */
+	public function getHTMLTransformFactory(): HTMLTransformFactory {
+		return $this->getService( 'HTMLTransformFactory' );
 	}
 
 	/**
@@ -1145,6 +1184,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getLinkRendererFactory(): LinkRendererFactory {
 		return $this->getService( 'LinkRendererFactory' );
+	}
+
+	/**
+	 * @since 1.39
+	 * @return LinksMigration
+	 */
+	public function getLinksMigration(): LinksMigration {
+		return $this->getService( 'LinksMigration' );
 	}
 
 	/**
@@ -1359,6 +1406,10 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * Get the main Parser instance. This is unsafe when the caller is not in
+	 * a top-level context, because re-entering the parser will throw an
+	 * exception.
+	 *
 	 * @since 1.29
 	 * @return Parser
 	 */
@@ -1396,6 +1447,48 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getParserOutputAccess(): ParserOutputAccess {
 		return $this->getService( 'ParserOutputAccess' );
+	}
+
+	/**
+	 * @return DataAccess
+	 * @since 1.39
+	 */
+	public function getParsoidDataAccess(): DataAccess {
+		return $this->getService( 'ParsoidDataAccess' );
+	}
+
+	/**
+	 * @return ParsoidOutputAccess
+	 * @since 1.39
+	 * @unstable
+	 */
+	public function getParsoidOutputAccess(): ParsoidOutputAccess {
+		return $this->getService( 'ParsoidOutputAccess' );
+	}
+
+	/**
+	 * @return ParsoidOutputStash
+	 * @since 1.39
+	 * @unstable since 1.39, should be stable before release of 1.39
+	 */
+	public function getParsoidOutputStash(): ParsoidOutputStash {
+		return $this->getService( 'ParsoidOutputStash' );
+	}
+
+	/**
+	 * @return PageConfigFactory
+	 * @since 1.39
+	 */
+	public function getParsoidPageConfigFactory(): PageConfigFactory {
+		return $this->getService( 'ParsoidPageConfigFactory' );
+	}
+
+	/**
+	 * @return SiteConfig
+	 * @since 1.39
+	 */
+	public function getParsoidSiteConfig(): SiteConfig {
+		return $this->getService( 'ParsoidSiteConfig' );
 	}
 
 	/**
@@ -1444,6 +1537,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getProxyLookup(): ProxyLookup {
 		return $this->getService( 'ProxyLookup' );
+	}
+
+	/**
+	 * @since 1.39
+	 * @return RateLimiter
+	 */
+	public function getRateLimiter(): RateLimiter {
+		return $this->getService( 'RateLimiter' );
 	}
 
 	/**
@@ -1688,6 +1789,22 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.39
+	 * @return RealTempUserConfig
+	 */
+	public function getTempUserConfig(): RealTempUserConfig {
+		return $this->getService( 'TempUserConfig' );
+	}
+
+	/**
+	 * @since 1.39
+	 * @return TempUserCreator
+	 */
+	public function getTempUserCreator(): TempUserCreator {
+		return $this->getService( 'TempUserCreator' );
+	}
+
+	/**
 	 * @since 1.36
 	 * @return TidyDriverBase
 	 */
@@ -1749,6 +1866,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUploadRevisionImporter(): UploadRevisionImporter {
 		return $this->getService( 'UploadRevisionImporter' );
+	}
+
+	/**
+	 * @since 1.39
+	 * @return UrlUtils
+	 */
+	public function getUrlUtils(): UrlUtils {
+		return $this->getService( 'UrlUtils' );
 	}
 
 	/**
@@ -1919,6 +2044,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getWikiRevisionUploadImporter(): UploadRevisionImporter {
 		return $this->getService( 'UploadRevisionImporter' );
+	}
+
+	/**
+	 * @since 1.39
+	 * @return WRStatsFactory
+	 */
+	public function getWRStatsFactory(): WRStatsFactory {
+		return $this->getService( 'WRStatsFactory' );
 	}
 
 }

@@ -10,6 +10,7 @@ use JobQueueGroup;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -69,9 +70,8 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		return new ServiceOptions(
 			DeletePage::CONSTRUCTOR_OPTIONS,
 			[
-				'DeleteRevisionsBatchSize' => 100,
-				'ActorTableSchemaMigrationStage' => SCHEMA_COMPAT_NEW,
-				'DeleteRevisionsLimit' => $deleteLimit
+				MainConfigNames::DeleteRevisionsBatchSize => 100,
+				MainConfigNames::DeleteRevisionsLimit => $deleteLimit
 			]
 		);
 	}
@@ -142,7 +142,7 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		$status = $dp->deleteIfAllowed( 'foobar' );
 		$this->assertSame( $expectedGood, $status->isGood() );
 		if ( $expectedMessage !== null ) {
-			$this->assertTrue( $status->hasMessage( $expectedMessage ) );
+			$this->assertStatusError( $expectedMessage, $status );
 		}
 	}
 
@@ -265,22 +265,25 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 
 		$res = $delPage->canProbablyDeleteAssociatedTalk();
 		if ( $expectedMsg === null ) {
-			$this->assertTrue( $res->isGood() );
+			$this->assertStatusGood( $res );
 		} else {
-			$this->assertFalse( $res->isOK() );
-			$this->assertTrue( $res->hasMessage( $expectedMsg ) );
+			$this->assertStatusError( $expectedMsg, $res );
 		}
 	}
 
 	public function provideAssociatedTalk(): Generator {
 		$getWpFactory = function ( bool $talkExists ): WikiPageFactory {
 			$wpFactory = $this->createMock( WikiPageFactory::class );
-			$wpFactory->method( 'newFromTitle' )->willReturnCallback( static function ( $t ) {
-				return new WikiPage( $t );
+			$wpFactory->method( 'newFromTitle' )->willReturnCallback( function ( $t ) {
+				$title = Title::castFromPageReference( $t );
+				$wikiPage = $this->createMock( WikiPage::class );
+				$wikiPage->method( 'getTitle' )->willReturn( $title );
+				$wikiPage->method( 'getNamespace' )->willReturn( $title->getNamespace() );
+				return $wikiPage;
 			} );
 			$wpFactory->method( 'newFromLinkTarget' )->willReturnCallback(
 				function ( LinkTarget $t ) use ( $talkExists ) {
-					$existingTalk = $this->createMock( PageIdentity::class );
+					$existingTalk = $this->createMock( WikiPage::class );
 					$existingTalk->expects( $this->atLeastOnce() )->method( 'exists' )->willReturn( $talkExists );
 					return $existingTalk;
 				}

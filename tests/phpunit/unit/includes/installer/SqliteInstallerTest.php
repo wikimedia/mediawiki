@@ -19,7 +19,7 @@ class SqliteInstallerTest extends MediaWikiUnitTestCase {
 			mkdir( $dir, 0000 );
 			/** @var Status $status */
 			$status = $method->invoke( null, $dir );
-			$this->assertFalse( $status->isGood() );
+			$this->assertStatusNotGood( $status );
 			$this->assertSame( 'config-sqlite-dir-unwritable', $status->getErrors()[0]['message'] );
 			rmdir( $dir );
 		}
@@ -27,13 +27,13 @@ class SqliteInstallerTest extends MediaWikiUnitTestCase {
 		# Test 2: Should return fatal Status if $dir not exist and it parent also not exist
 		$dir = sys_get_temp_dir() . '/' . uniqid( 'MediaWikiTest' ) . '/' . uniqid( 'MediaWikiTest' );
 		$status = $method->invoke( null, $dir );
-		$this->assertFalse( $status->isGood() );
+		$this->assertStatusNotGood( $status );
 
 		# Test 3: Should return good Status if $dir not exist and it parent writable
 		$dir = sys_get_temp_dir() . '/' . uniqid( 'MediaWikiTest' );
 		/** @var Status $status */
 		$status = $method->invoke( null, $dir );
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 	}
 
 	/**
@@ -51,7 +51,7 @@ class SqliteInstallerTest extends MediaWikiUnitTestCase {
 			mkdir( sys_get_temp_dir() . "/$random", 0000 );
 			/** @var Status $status */
 			$status = $method->invoke( null, $dir );
-			$this->assertFalse( $status->isGood() );
+			$this->assertStatusNotGood( $status );
 			$this->assertSame( 'config-sqlite-mkdir-error', $status->getErrors()[0]['message'] );
 			rmdir( sys_get_temp_dir() . "/$random" );
 		}
@@ -59,7 +59,7 @@ class SqliteInstallerTest extends MediaWikiUnitTestCase {
 		# Test 2: Test .htaccess content after created successfully
 		$dir = sys_get_temp_dir() . '/' . uniqid( 'MediaWikiTest' );
 		$status = $method->invoke( null, $dir );
-		$this->assertTrue( $status->isGood() );
+		$this->assertStatusGood( $status );
 		$this->assertSame( "Deny from all\n", file_get_contents( "$dir/.htaccess" ) );
 		unlink( "$dir/.htaccess" );
 		rmdir( $dir );

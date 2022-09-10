@@ -28,6 +28,7 @@ use DBAccessObjectUtils;
 use FormatJson;
 use IDBAccessObject;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MWCryptRand;
 use MWRestrictions;
 use Password;
@@ -47,9 +48,9 @@ class BotPasswordStore implements IDBAccessObject {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'EnableBotPasswords',
-		'BotPasswordsCluster',
-		'BotPasswordsDatabase',
+		MainConfigNames::EnableBotPasswords,
+		MainConfigNames::BotPasswordsCluster,
+		MainConfigNames::BotPasswordsDatabase,
 	];
 
 	/** @var ServiceOptions */
@@ -84,19 +85,19 @@ class BotPasswordStore implements IDBAccessObject {
 	 * @internal
 	 */
 	public function getDatabase( int $db ): IDatabase {
-		if ( $this->options->get( 'BotPasswordsCluster' ) ) {
+		if ( $this->options->get( MainConfigNames::BotPasswordsCluster ) ) {
 			$loadBalancer = $this->lbFactory->getExternalLB(
-				$this->options->get( 'BotPasswordsCluster' )
+				$this->options->get( MainConfigNames::BotPasswordsCluster )
 			);
 		} else {
 			$loadBalancer = $this->lbFactory->getMainLB(
-				$this->options->get( 'BotPasswordsDatabase' )
+				$this->options->get( MainConfigNames::BotPasswordsDatabase )
 			);
 		}
 		return $loadBalancer->getConnectionRef(
 			$db,
 			[],
-			$this->options->get( 'BotPasswordsDatabase' )
+			$this->options->get( MainConfigNames::BotPasswordsDatabase )
 		);
 	}
 
@@ -112,7 +113,7 @@ class BotPasswordStore implements IDBAccessObject {
 		string $appId,
 		int $flags = self::READ_NORMAL
 	): ?BotPassword {
-		if ( !$this->options->get( 'EnableBotPasswords' ) ) {
+		if ( !$this->options->get( MainConfigNames::EnableBotPasswords ) ) {
 			return null;
 		}
 
@@ -136,7 +137,7 @@ class BotPasswordStore implements IDBAccessObject {
 		string $appId,
 		int $flags = self::READ_NORMAL
 	): ?BotPassword {
-		if ( !$this->options->get( 'EnableBotPasswords' ) ) {
+		if ( !$this->options->get( MainConfigNames::EnableBotPasswords ) ) {
 			return null;
 		}
 
@@ -370,7 +371,7 @@ class BotPasswordStore implements IDBAccessObject {
 	 * @return bool Whether any passwords were invalidated
 	 */
 	public function invalidateUserPasswords( string $username ): bool {
-		if ( !$this->options->get( 'EnableBotPasswords' ) ) {
+		if ( !$this->options->get( MainConfigNames::EnableBotPasswords ) ) {
 			return false;
 		}
 
@@ -399,7 +400,7 @@ class BotPasswordStore implements IDBAccessObject {
 	 * @return bool Whether any passwords were removed
 	 */
 	public function removeUserPasswords( string $username ): bool {
-		if ( !$this->options->get( 'EnableBotPasswords' ) ) {
+		if ( !$this->options->get( MainConfigNames::EnableBotPasswords ) ) {
 			return false;
 		}
 

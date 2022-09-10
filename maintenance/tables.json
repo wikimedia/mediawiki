@@ -555,35 +555,13 @@
 				"options": { "notnull": true, "default": 0 }
 			},
 			{
-				"name": "tl_namespace",
-				"type": "integer",
-				"options": { "notnull": true, "default": 0 }
-			},
-			{
-				"name": "tl_title",
-				"type": "binary",
-				"options": { "notnull": true, "length": 255, "default": "" }
-			},
-			{
 				"name": "tl_target_id",
 				"type": "bigint",
 				"comment": "Foreign key to linktarget.lt_id",
-				"options": { "notnull": false, "unsigned": true, "default": null }
+				"options": { "notnull": true, "unsigned": true }
 			}
 		],
 		"indexes": [
-			{
-				"name": "tl_namespace",
-				"columns": [ "tl_namespace", "tl_title", "tl_from" ],
-				"comment": "Reverse index, for Special:Whatlinkshere",
-				"unique": false
-			},
-			{
-				"name": "tl_backlinks_namespace",
-				"columns": [ "tl_from_namespace", "tl_namespace", "tl_title", "tl_from" ],
-				"comment": "Index for Special:Whatlinkshere with namespace filter",
-				"unique": false
-			},
 			{
 				"name": "tl_target_id",
 				"columns": [ "tl_target_id", "tl_from" ],
@@ -597,7 +575,7 @@
 				"unique": false
 			}
 		],
-		"pk": [ "tl_from", "tl_namespace", "tl_title" ]
+		"pk": [ "tl_from", "tl_target_id" ]
 	},
 	{
 		"name": "imagelinks",
@@ -827,7 +805,7 @@
 				"name": "ir_ipb_id",
 				"comment": "The ipb_id from ipblocks",
 				"type": "integer",
-				"options": { "notnull": true }
+				"options": { "notnull": true, "unsigned": true }
 			},
 			{
 				"name": "ir_type",
@@ -1384,42 +1362,6 @@
 			{ "name": "revcomment_rev", "columns": [ "revcomment_rev" ], "unique": true }
 		],
 		"pk": [ "revcomment_rev", "revcomment_comment_id" ]
-	},
-	{
-		"name": "revision_actor_temp",
-		"comment": "Temporary table to avoid blocking on an alter of revision. On large wikis like the English Wikipedia, altering the revision table is a months-long process. This table is being created to avoid such an alter, and will be merged back into revision in the future",
-		"columns": [
-			{
-				"name": "revactor_rev",
-				"comment": "Key to rev_id",
-				"type": "integer",
-				"options": { "unsigned": true, "notnull": true }
-			},
-			{
-				"name": "revactor_actor",
-				"comment": "Key to actor_id",
-				"type": "bigint",
-				"options": { "unsigned": true, "notnull": true }
-			},
-			{
-				"name": "revactor_timestamp",
-				"comment": "Copy field from revision for indexes",
-				"type": "mwtimestamp",
-				"options": { "notnull": true }
-			},
-			{
-				"name": "revactor_page",
-				"comment": "Copy field from revision for indexes",
-				"type": "integer",
-				"options": { "unsigned": true, "notnull": true }
-			}
-		],
-		"indexes": [
-			{ "name": "revactor_rev", "columns": [ "revactor_rev" ], "unique": true },
-			{ "name": "actor_timestamp", "columns": [ "revactor_actor", "revactor_timestamp" ], "unique": false },
-			{ "name": "page_actor_timestamp", "columns": [ "revactor_page", "revactor_actor", "revactor_timestamp" ], "unique": false }
-		],
-		"pk": [ "revactor_rev", "revactor_actor" ]
 	},
 	{
 		"name": "page_props",
@@ -2463,7 +2405,8 @@
 				"type": "integer",
 				"options": {
 					"autoincrement": true,
-					"notnull": true
+					"notnull": true,
+					"unsigned": true
 				}
 			},
 			{
@@ -2616,6 +2559,7 @@
 				"type": "integer",
 				"options": {
 					"notnull": false,
+					"unsigned": true,
 					"default": null
 				}
 			},
@@ -3360,12 +3304,6 @@
 				"options": { "notnull": true, "length": 255 }
 			},
 			{
-				"name": "page_restrictions",
-				"comment": "Comma-separated set of permission keys indicating who can move or edit the page.",
-				"type": "blob",
-				"options": { "notnull": false, "length": 255 }
-			},
-			{
 				"name": "page_is_redirect",
 				"comment": "1 indicates the article is a redirect.",
 				"type": "mwtinyint",
@@ -3545,7 +3483,7 @@
 				"name": "user_editcount",
 				"comment": "Count of edits and edit-like actions. Not intended to be an accurate copy of 'COUNT(*) WHERE rev_actor refers to a user's actor_id'. May contain NULL for old accounts if batch-update scripts haven't been run, as well as listing deleted edits and other myriad ways it could be out of sync. Meant primarily for heuristic checks to give an impression of whether the account has been used much.",
 				"type": "integer",
-				"options": { "notnull": false }
+				"options": { "notnull": false, "unsigned": true }
 			},
 			{
 				"name": "user_password_expires",
@@ -3565,6 +3503,26 @@
 			{ "name": "user_email", "columns": [ "user_email" ], "unique": false, "options": { "lengths": [ 50, null, null ] } }
 		],
 		"pk": [ "user_id" ]
+	},
+	{
+		"name": "user_autocreate_serial",
+		"comment": "Table for sequential name generation for auto-created temporary users",
+		"columns": [
+			{
+				"name": "uas_shard",
+				"comment": "The segment of ID space, ID mod N, referred to by this row",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "uas_value",
+				"comment": "The maximum allocated ID value",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			}
+		],
+		"indexes": [],
+		"pk": [ "uas_shard" ]
 	},
 	{
 		"name": "revision",

@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * @ingroup API
@@ -125,7 +126,7 @@ class ApiImageRotate extends ApiBase {
 				'rotation' => $rotation
 			] );
 			if ( !$err ) {
-				$comment = wfMessage(
+				$comment = $this->msg(
 					'rotate-comment'
 				)->numParams( $rotation )->inContentLanguage()->text();
 				// @phan-suppress-next-line PhanUndeclaredMethod
@@ -184,15 +185,15 @@ class ApiImageRotate extends ApiBase {
 	public function getAllowedParams( $flags = 0 ) {
 		$result = [
 			'rotation' => [
-				ApiBase::PARAM_TYPE => [ '90', '180', '270' ],
-				ApiBase::PARAM_REQUIRED => true
+				ParamValidator::PARAM_TYPE => [ '90', '180', '270' ],
+				ParamValidator::PARAM_REQUIRED => true
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],
 			'tags' => [
-				ApiBase::PARAM_TYPE => 'tags',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'tags',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 		];
 		if ( $flags ) {

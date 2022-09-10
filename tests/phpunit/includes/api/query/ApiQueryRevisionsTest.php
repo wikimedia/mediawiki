@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * @group API

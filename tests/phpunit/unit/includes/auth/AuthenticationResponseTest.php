@@ -11,7 +11,7 @@ class AuthenticationResponseTest extends \MediaWikiUnitTestCase {
 	 * @dataProvider provideConstructors
 	 * @param string $constructor
 	 * @param array $args
-	 * @param array|Exception $expect
+	 * @param array|\Exception $expect
 	 */
 	public function testConstructors( $constructor, $args, $expect ) {
 		if ( is_array( $expect ) ) {
@@ -53,6 +53,7 @@ class AuthenticationResponseTest extends \MediaWikiUnitTestCase {
 				'status' => AuthenticationResponse::FAIL,
 				'message' => $msg,
 				'messageType' => 'error',
+				'failReasons' => []
 			] ],
 
 			[ 'newRestart', [ $msg ], [

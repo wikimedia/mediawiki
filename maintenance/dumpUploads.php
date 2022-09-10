@@ -81,14 +81,14 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 	 */
 	private function fetchUsed( $shared ) {
 		$dbr = $this->getDB( DB_REPLICA );
-		$image = $dbr->tableName( 'image' );
-		$imagelinks = $dbr->tableName( 'imagelinks' );
 
-		$sql = "SELECT DISTINCT il_to, img_name
-			FROM $imagelinks
-			LEFT JOIN $image
-			ON il_to=img_name";
-		$result = $dbr->query( $sql, __METHOD__ );
+		$result = $dbr->newSelectQueryBuilder()
+			->select( [ 'il_to', 'img_name' ] )
+			->distinct()
+			->from( 'imagelinks' )
+			->leftJoin( 'image', null, 'il_to=img_name' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		foreach ( $result as $row ) {
 			$this->outputItem( $row->il_to, $shared );
@@ -102,10 +102,11 @@ By default, outputs relative paths against the parent directory of $wgUploadDire
 	 */
 	private function fetchLocal( $shared ) {
 		$dbr = $this->getDB( DB_REPLICA );
-		$result = $dbr->select( 'image',
-			[ 'img_name' ],
-			'',
-			__METHOD__ );
+		$result = $dbr->newSelectQueryBuilder()
+			->select( 'img_name' )
+			->from( 'image' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		foreach ( $result as $row ) {
 			$this->outputItem( $row->img_name, $shared );

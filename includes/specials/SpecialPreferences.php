@@ -63,7 +63,7 @@ class SpecialPreferences extends SpecialPage {
 		$out = $this->getOutput();
 		$out->disallowUserJs(); # Prevent hijacked user scripts from sniffing passwords etc.
 
-		$this->requireLogin( 'prefsnologintext2' );
+		$this->requireNamedUser( 'prefsnologintext2' );
 		$this->checkReadOnly();
 
 		if ( $par == 'reset' ) {
@@ -86,14 +86,13 @@ class SpecialPreferences extends SpecialPage {
 			$out->addModuleStyles( 'mediawiki.notification.convertmessagebox.styles' );
 
 			$out->addHTML(
-				Html::rawElement(
-					'div',
-					[
-						'class' => 'mw-preferences-messagebox mw-notify-success successbox',
-						'id' => 'mw-preferences-success',
-						'data-mw-autohide' => 'false',
-					],
-					Html::element( 'p', [], $this->msg( 'savedprefs' )->text() )
+				Html::successBox(
+					Html::element(
+						'p',
+						[],
+						$this->msg( 'savedprefs' )->text()
+					),
+					'mw-preferences-messagebox mw-notify-success'
 				)
 			);
 		}
@@ -140,13 +139,22 @@ class SpecialPreferences extends SpecialPage {
 
 		$this->getOutput()->addWikiMsg( 'prefs-reset-intro' );
 
-		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getPageTitle( 'reset' ) ); // Reset subpage
-		HTMLForm::factory( 'ooui', [], $context, 'prefs-restore' )
+		$desc = [
+			'confirm' => [
+				'type' => 'check',
+				'label-message' => 'prefs-reset-confirm',
+				'required' => true,
+			],
+		];
+		// TODO: disable the submit button if the checkbox is not checked
+		HTMLForm::factory( 'ooui', $desc, $this->getContext(), 'prefs-restore' )
+			->setTitle( $this->getPageTitle( 'reset' ) ) // Reset subpage
 			->setSubmitTextMsg( 'restoreprefs' )
 			->setSubmitDestructive()
 			->setSubmitCallback( [ $this, 'submitReset' ] )
 			->suppressReset()
+			->showCancel()
+			->setCancelTarget( $this->getPageTitle() )
 			->show();
 	}
 

@@ -452,4 +452,21 @@ class UserDefTest extends TypeDefTestCase {
 		$this->assertUserIdentity( $res, 0, $userName );
 	}
 
+	public function testProcessUser_0() {
+		$userName = '0';
+
+		$userDef = $this->getInstance( new SimpleCallbacks( [] ), [] );
+		$res = $userDef->validate(
+			'', // $name, unused here
+			$userName,
+			[
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name' ],
+				UserDef::PARAM_RETURN_OBJECT => true,
+			], // $settings
+			[] // $options, unused here
+		);
+
+		$this->assertUserIdentity( $res, 0, $userName );
+	}
+
 }

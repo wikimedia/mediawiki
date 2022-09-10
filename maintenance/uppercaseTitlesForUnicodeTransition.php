@@ -649,6 +649,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 					}
 
 					if ( $this->run ) {
+						// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
 						$r = $cont ? json_encode( $row, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) : '<end>';
 						$this->output( "... $table: $count renames, $errors errors at $r\n" );
 						$lbFactory->waitForReplication(
@@ -712,6 +713,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 					$count++;
 					$cont = [ 'user_name > ' . $db->addQuotes( $row->user_name ) ];
 				}
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
 				$this->output( "... at $row->user_name, $count names so far\n" );
 			}
 		}

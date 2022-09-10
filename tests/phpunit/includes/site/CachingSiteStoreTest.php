@@ -93,20 +93,18 @@ class CachingSiteStoreTest extends \MediaWikiIntegrationTestCase {
 	 * @covers CachingSiteStore::reset
 	 */
 	public function testReset() {
-		$dbSiteStore = $this->getMockBuilder( SiteStore::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$dbSiteStore = $this->createMock( SiteStore::class );
 
 		$dbSiteStore->method( 'getSite' )
 			->willReturn( $this->getTestSite() );
 
 		$dbSiteStore->method( 'getSites' )
-			->will( $this->returnCallback( function () {
+			->willReturnCallback( function () {
 				$siteList = new SiteList();
 				$siteList->setSite( $this->getTestSite() );
 
 				return $siteList;
-			} ) );
+			} );
 
 		$store = new CachingSiteStore( $dbSiteStore, ObjectCache::getLocalClusterInstance() );
 

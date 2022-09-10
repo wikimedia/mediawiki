@@ -51,7 +51,6 @@
 	// Background properties.
 	background-repeat: no-repeat;
 	// Using static value instead of `background-size: contain` because of T233521#5545513.
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	background-size: @size @size;
 	background-position: center;
 }
@@ -107,7 +106,8 @@
 		.mixin-background-square( @icon-size-md );
 	}
 
-	& + span {
+	// Use `not` selector to ensure we don't add space for machine readable markup. More info: T307233
+	& + span:not( :empty ) {
 		// Margin is added to separate accompanying text.
 		margin-left: @margin-icon-md-labelled;
 	}
@@ -133,9 +133,7 @@
 .mw-ui-icon-element {
 	border-radius: @border-radius-base;
 	padding: @icon-padding-md;
-	// Use semi-colon if multiple arguments are needed!
-	// See https://stackoverflow.com/questions/11419741/less-css-mixins-with-variable-number-of-arguments
-	.transition( background-color @transition-duration-base; );
+	transition: background-color @transition-duration-base;
 
 	// Combined with nowrap & ellipsis from .mw-ui-icon, forms safe "screen-reader" text.
 	color: transparent;

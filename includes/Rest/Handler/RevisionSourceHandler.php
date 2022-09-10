@@ -52,7 +52,7 @@ class RevisionSourceHandler extends SimpleHandler {
 	 */
 	private function constructHtmlUrl( RevisionRecord $rev ): string {
 		return $this->getRouter()->getRouteUrl(
-			'/coredev/v0/revision/{id}/html',
+			'/v1/revision/{id}/html',
 			[ 'id' => $rev->getId() ]
 		);
 	}
@@ -69,6 +69,7 @@ class RevisionSourceHandler extends SimpleHandler {
 			case 'bare':
 				$revisionRecord = $this->contentHelper->getTargetRevision();
 				$body = $this->contentHelper->constructMetadata();
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revisionRecord is set when used
 				$body['html_url'] = $this->constructHtmlUrl( $revisionRecord );
 				$response = $this->getResponseFactory()->createJson( $body );
 				$this->contentHelper->setCacheControl( $response );

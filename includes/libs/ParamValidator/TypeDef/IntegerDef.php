@@ -23,7 +23,7 @@ use Wikimedia\ParamValidator\ParamValidator;
 class IntegerDef extends NumericDef {
 
 	public function validate( $name, $value, array $settings, array $options ) {
-		if ( !preg_match( '/^[+-]?\d+$/D', $value ) ) {
+		if ( is_array( $value ) || !preg_match( '/^[+-]?\d+$/D', $value ) ) {
 			$this->failure( 'badinteger', $name, $value, $settings, $options );
 		}
 		$ret = intval( $value, 10 );
@@ -46,6 +46,14 @@ class IntegerDef extends NumericDef {
 			->params( empty( $settings[ParamValidator::PARAM_ISMULTI] ) ? 1 : 2 );
 
 		return $info;
+	}
+
+	public function stringifyValue( $name, $value, array $settings, array $options ) {
+		if ( !is_array( $value ) ) {
+			return parent::stringifyValue( $name, $value, $settings, $options );
+		}
+
+		return ParamValidator::implodeMultiValue( $value );
 	}
 
 }

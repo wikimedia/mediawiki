@@ -136,6 +136,7 @@ class HTTPFileStreamer {
 		if ( isset( $optHeaders['if-modified-since'] ) ) {
 			$modsince = preg_replace( '/;.*$/', '', $optHeaders['if-modified-since'] );
 			if ( $mtimeCT->getTimestamp( TS_UNIX ) <= strtotime( $modsince ) ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentInternal Scalar okay with php8.1
 				ini_set( 'zlib.output_compression', 0 );
 				$headerFunc( 304 );
 				return true; // ok

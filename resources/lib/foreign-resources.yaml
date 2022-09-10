@@ -93,17 +93,50 @@ CLDRPluralRuleParser:
   src: https://raw.githubusercontent.com/santhoshtr/CLDRPluralRuleParser/0dda851/src/CLDRPluralRuleParser.js
   integrity: sha384-M4taeYYG2+9Ob1/La16iO+zlRRmBV5lBR3xUKkQT6kfkJ0aLbCi6yc0RYI1BDzdh
 
+codex:
+  type: tar
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.1.1.tgz
+  integrity: sha512-Ep/JNUm2mE5zzanTP8IBGP9sUHkNlY7gnJise9Bldbg7CSJEijRj343QHS6x4ZxDO6MGzknpDmjI3SnS7eDjnQ==
+  dest:
+    package/dist/codex.es.js:
+    package/dist/codex.umd.js:
+    package/dist/codex.style.css:
+    package/dist/codex.style-rtl.css:
+    package/LICENSE:
+    package/README.md:
+
+codex-icons:
+  type: tar
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.1.1.tgz
+  integrity: sha512-J43hjnAzDxRVUBEB+MirWfc3MiK245vR4pXR4Y/9eC486PTAiH/Gf7W69bOEIJK8eoGvKUe+Xa5HBut4zg52QQ==
+  dest:
+    package/dist/codex-icons.json:
+    package/LICENSE:
+    package/README.md:
+
+codex-search:
+  type: tar
+  src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.1.1.tgz
+  integrity: sha512-But9MjJjFsCNfn+RZuq8mJWSzkDDSsy6/rj+xh8X5eNO3PGc6knkb1wYprSKaVNdkFBB3jc3cXQUB4OYa2fMgw==
+  dest:
+    package/dist/codex-search.es.js:
+    package/dist/codex-search.umd.js:
+    package/dist/codex-search.style.css:
+    package/dist/codex-search.style-rtl.css:
+    package/LICENSE:
+    package/README.md:
+
 url:
   type: multi-file
   files:
     URL.js:
-      src: https://raw.githubusercontent.com/Financial-Times/polyfill-library/v3.110.1/polyfills/URL/polyfill.js
-      integrity: sha384-FGZAGLMIhuw5UeqLV+dzLac78DWCT1DxE4exY+YEboP1OmQD9kuvWaHZxiDFzrWC
+      src: https://raw.githubusercontent.com/Financial-Times/polyfill-library/0ece79ce32/polyfills/URL/polyfill.js
+      integrity: sha384-ZAFKMtnv4166IfCOoSoxGM1b4JQx/njgDOWwnaSQPESHAqvjE0e5gXmYBYyjQEl8
     URL-toJSON.js:
-      src: https://raw.githubusercontent.com/Financial-Times/polyfill-library/v3.110.1/polyfills/URL/prototype/toJSON/polyfill.js
+      src: https://raw.githubusercontent.com/Financial-Times/polyfill-library/0ece79ce32/polyfills/URL/prototype/toJSON/polyfill.js
       integrity: sha384-Fy884Llzghu/2ag7WG9GtW4BhSprpT9ZdbSKfetBSoD7V6VW1AE5hx1PA0LXVqlC
     LICENSE.md:
-      src: https://raw.githubusercontent.com/Financial-Times/polyfill-library/v3.110.1/LICENSE.md
+      src: https://raw.githubusercontent.com/Financial-Times/polyfill-library/0ece79ce32/LICENSE.md
       integrity: sha384-kXXDJ+mVdRawUrEAkIAPr1Lz40TzWjVxllGDCxB9+fHcLXtNsSYrKIvzNgTBF+En
 
 fetch-polyfill:
@@ -127,12 +160,9 @@ jquery:
   type: multi-file
   files:
     # Integrities from link modals https://code.jquery.com/jquery/
-    jquery.migrate.js:
-      src: https://code.jquery.com/jquery-migrate-3.3.2.js
-      integrity: sha256-BDmtN+79VRrkfamzD16UnAoJP8zMitAz093tvZATdiE=
     jquery.js:
-      src: https://code.jquery.com/jquery-3.6.0.js
-      integrity: sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=
+      src: https://code.jquery.com/jquery-3.6.1.js
+      integrity: sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=
 
 jquery.chosen:
   type: multi-file
@@ -167,18 +197,21 @@ jquery.client:
     package/LICENSE-MIT:
     package/README.md:
 
-jquery.cookie:
-  type: multi-file
-  files:
-    jquery.cookie.js:
-      src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/jquery.cookie.js
-      integrity: sha384-Xxq63E9KDgzUJ6WPNPqVeOtRIwZyx6y9DzEwY2u6LYKSnWrjSoGtWSKmTindYBf2
-    MIT-LICENSE.txt:
-      src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/MIT-LICENSE.txt
-      integrity: sha384-zYsGf3KJ7S0AhOICjcoh0kkn7aGZlzYUXXX5xz8dwR9KjLMM+/JPR2g/jVOGGeId
-    CHANGELOG.md:
-      src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/CHANGELOG.md
-      integrity: sha384-SQOHhLc7PHxHDQpGE/zv9XfXKL0A7OBu8kuyVDnHVp+zSoWyRw4xUJ+LSm5ql4kS
+# # PATCHED:
+# # Changed to support SameSite and change decode logic. Seems permanent with upstream archived.
+# # Move to src instead?
+# jquery.cookie:
+#   type: multi-file
+#   files:
+#     jquery.cookie.js:
+#       src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/jquery.cookie.js
+#       integrity: sha384-Xxq63E9KDgzUJ6WPNPqVeOtRIwZyx6y9DzEwY2u6LYKSnWrjSoGtWSKmTindYBf2
+#     MIT-LICENSE.txt:
+#       src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/MIT-LICENSE.txt
+#       integrity: sha384-zYsGf3KJ7S0AhOICjcoh0kkn7aGZlzYUXXX5xz8dwR9KjLMM+/JPR2g/jVOGGeId
+#     CHANGELOG.md:
+#       src: https://raw.githubusercontent.com/carhartl/jquery-cookie/v1.3.1/CHANGELOG.md
+#       integrity: sha384-SQOHhLc7PHxHDQpGE/zv9XfXKL0A7OBu8kuyVDnHVp+zSoWyRw4xUJ+LSm5ql4kS
 
 jquery.form:
   type: file
@@ -197,15 +230,15 @@ jquery.hoverIntent:
 
 jquery.i18n:
   type: tar
-  src: https://codeload.github.com/wikimedia/jquery.i18n/tar.gz/v1.0.7
-  integrity: sha384-vUuZNwEm0k4d/JGRa8uoscyxTL6e1BZ0a+fTS/jtjjS+3pOcwcMo9BjzMbe6reEv
+  src: https://codeload.github.com/wikimedia/jquery.i18n/tar.gz/70b5ee20a638cb8fe36baef8d51ac2eb577ce012
+  integrity: sha384-/Upo+6ih5h5v7/GW4zzuaMNZfAHmV7cYVhORdjwT9qFTHzmIStN9mPQ+VD0niknE
   dest:
-    jquery.i18n-1.0.7/CODE_OF_CONDUCT.md:
-    jquery.i18n-1.0.7/CREDITS:
-    jquery.i18n-1.0.7/GPL-LICENSE:
-    jquery.i18n-1.0.7/MIT-LICENSE:
-    jquery.i18n-1.0.7/README.md:
-    jquery.i18n-1.0.7/src:
+    jquery.i18n-*/CODE_OF_CONDUCT.md:
+    jquery.i18n-*/CREDITS:
+    jquery.i18n-*/GPL-LICENSE:
+    jquery.i18n-*/MIT-LICENSE:
+    jquery.i18n-*/README.md:
+    jquery.i18n-*/src:
 
 jquery.throttle-debounce:
   type: file
@@ -257,8 +290,8 @@ oojs-router:
 
 ooui:
   type: tar
-  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.43.2.tgz
-  integrity: sha384-yA5126AM4/LfSs7fEOesYiYIhj+L9d8bfIQvRfTohBfBOrt31CltOoLL7HPtR2Dl
+  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.44.3.tgz
+  integrity: sha384-nP/IIJZJCEb18wfYd98CC91bW7Z10RDxHz0t0F/wBKISBmZ805GLmO9OhPHHazt0
 
   dest:
     # Main stuff
@@ -290,25 +323,25 @@ ooui:
 pako:
   type: multi-file
   files:
-    pako_deflate.js:
-      src: https://raw.githubusercontent.com/nodeca/pako/1.0.10/dist/pako_deflate.js
-      integrity: sha384-5WMh5CB1LExc7cwu9KhrrJNgHsi75Q1U6APn5dpmeFGEalKInNRzqTkUkHXb9JA9
+    pako_deflate.es5.js:
+      src: https://raw.githubusercontent.com/nodeca/pako/2.0.4/dist/pako_deflate.es5.js
+      integrity: sha384-msHzmf3Olqx90vEgQHrbqpn7Kx6Tv0L5VXKPQoq+yDnkrvKwzlufduA/rLk1suNV
     README.md:
-      src: https://raw.githubusercontent.com/nodeca/pako/1.0.10/README.md
-      integrity: sha384-lI5OTOkO7/0yGfYTICjdLvpYcj5DVpWMTRFS+I7t0usiyiA1jLqBmyDELv/zrGQZ
+      src: https://raw.githubusercontent.com/nodeca/pako/2.0.4/README.md
+      integrity: sha384-mQ9cShSJ6yG8JTPL7LkbnfUnTmc7LA2hnBMSNfb5X7xk6pTFzVTurK9gcSMgJu3B
     LICENSE:
-      src: https://raw.githubusercontent.com/nodeca/pako/1.0.10/LICENSE
+      src: https://raw.githubusercontent.com/nodeca/pako/2.0.4/LICENSE
       integrity: sha384-9tg5LwdfxM6Fpdp6Sep9VI0qXS7Eg5gQRPvNrfV3DKIkVVL3EwSK2atu+zRoEwJg
 
 promise-polyfill:
   type: multi-file
   files:
     promise-polyfill.js:
-      # src: https://raw.githubusercontent.com/taylorhakes/promise-polyfill/8.1.3/dist/polyfill.js
-      src: https://raw.githubusercontent.com/wikimedia/promise-polyfill/9bafe45598e69e4215757dc874b99629d0dfea0d/dist/polyfill.js
+      # unreleased between 8.1.3 and 2.2.0
+      src: https://raw.githubusercontent.com/taylorhakes/promise-polyfill/65ed35b2927e97b262538054e5951d63893db05f/dist/polyfill.js
       integrity: sha384-nQUslfDX7uz5YSWudfV8dG5d8whQpNMrLcbJPLjvq+McUl2VK7v0UOVnbfs/FrMl
     LICENSE:
-      src: https://raw.githubusercontent.com/wikimedia/promise-polyfill/9bafe45598e69e4215757dc874b99629d0dfea0d/LICENSE
+      src: https://raw.githubusercontent.com/taylorhakes/promise-polyfill/65ed35b2927e97b262538054e5951d63893db05f/LICENSE
       integrity: sha384-IiroT08PAyKPUM4VsNJI7G1o3SM1y+YBBj1lwdJURXYnjtx1OzYKJTNEWs2pE684
 
 qunitjs:
@@ -316,11 +349,11 @@ qunitjs:
   # Integrity from link modals at https://code.jquery.com/qunit/
   files:
     qunit.js:
-      src: https://code.jquery.com/qunit/qunit-2.18.0.js
-      integrity: sha256-TLK2e33vMxDueQWBbROhSVGcIzqtLAjQPfrIPmfq9R4=
+      src: https://code.jquery.com/qunit/qunit-2.18.2.js
+      integrity: sha256-ZHKhdrkmp5cjQJGuc4fGv024PWo9IqBQJTawS4erwz0=
     qunit.css:
-      src: https://code.jquery.com/qunit/qunit-2.18.0.css
-      integrity: sha256-POO1U+Az2IC7NO8KxF7RhmdYRBHsI9ApZh841xT5CBY=
+      src: https://code.jquery.com/qunit/qunit-2.18.2.css
+      integrity: sha256-GmRML6cGwIPA5an2uTNHHKynhn8ooqM058EpN+fpmbM=
 
 sinonjs:
   type: file
@@ -330,9 +363,9 @@ sinonjs:
 
 vue:
   type: tar
-  # This is the migration build of Vue 3.2.23 which provides compatibility for Vue 2 code
-  src: https://registry.npmjs.org/@vue/compat/-/compat-3.2.23.tgz
-  integrity: sha512-ap/aO8V1j3dveHGcELRQZdb3dlnMgCK5N5Ur6Q37RRtMcB1glJldqUP46aAhY7kMberaUVWwYehMothocsF6Dg==
+  # This is the migration build of Vue 3.2.37 which provides compatibility for Vue 2 code
+  src: https://registry.npmjs.org/@vue/compat/-/compat-3.2.37.tgz
+  integrity: sha512-MIYkFAz3Fur1mtZBqrNMYTymlohCQ0ol6vtNb58cqExLSCt63xZaXyiZZYPvS6WaMXfbNBDPXMvU9tO922eFCA==
   dest:
     package/README.md:
     package/LICENSE:

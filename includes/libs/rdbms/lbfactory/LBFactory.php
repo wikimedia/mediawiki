@@ -1,7 +1,5 @@
 <?php
 /**
- * Generator and manager of database load balancing objects
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,15 +16,16 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 use BagOStuff;
 use EmptyBagOStuff;
 use Exception;
+use Generator;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
+use NullStatsdDataFactory;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
@@ -36,7 +35,7 @@ use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\ScopedCallback;
 
 /**
- * An interface for generating database load balancers
+ * @see ILBFactory
  * @ingroup Database
  */
 abstract class LBFactory implements ILBFactory {
@@ -51,6 +50,8 @@ abstract class LBFactory implements ILBFactory {
 	private $profiler;
 	/** @var TransactionProfiler */
 	private $trxProfiler;
+	/** @var StatsdDataFactoryInterface */
+	private $statsd;
 	/** @var LoggerInterface */
 	private $replLogger;
 	/** @var LoggerInterface */
@@ -70,7 +71,8 @@ abstract class LBFactory implements ILBFactory {
 	protected $srvCache;
 	/** @var WANObjectCache */
 	protected $wanCache;
-
+	/** @var DatabaseFactory */
+	protected $databaseFactory;
 	/** @var DatabaseDomain Local domain */
 	protected $localDomain;
 
@@ -92,18 +94,16 @@ abstract class LBFactory implements ILBFactory {
 	/** @var callable[] */
 	private $replicationWaitCallbacks = [];
 
-	/** var int An identifier for this class instance */
-	private $id;
 	/** @var int|null Ticket used to delegate transaction ownership */
 	private $ticket;
-	/** @var string|bool String if a requested DBO_TRX transaction round is active */
+	/** @var string|false String if a requested DBO_TRX transaction round is active */
 	private $trxRoundId = false;
 	/** @var string One of the ROUND_* class constants */
 	private $trxRoundStage = self::ROUND_CURSORY;
 	/** @var int Default replication wait timeout */
 	private $replicationWaitTimeout;
 
-	/** @var string|bool Reason all LBs are read-only or false if not */
+	/** @var string|false Reason all LBs are read-only or false if not */
 	protected $readOnlyReason = false;
 
 	/** @var string|null */
@@ -121,11 +121,43 @@ abstract class LBFactory implements ILBFactory {
 	private const ROUND_ROLLING_BACK = 'within-rollback';
 	private const ROUND_COMMIT_CALLBACKS = 'within-commit-callbacks';
 	private const ROUND_ROLLBACK_CALLBACKS = 'within-rollback-callbacks';
+	private const ROUND_ROLLBACK_SESSIONS = 'within-rollback-session';
 
 	private static $loggerFields =
 		[ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ];
 
+	/**
+	 * @var callable
+	 */
+	private $configCallback = null;
+
+	/**
+	 * @var array
+	 */
+	private $currentConfig;
+
 	public function __construct( array $conf ) {
+		$this->configure( $conf );
+
+		if ( isset( $conf['configCallback'] ) ) {
+			$this->configCallback = $conf['configCallback'];
+		}
+
+		$this->requestInfo = [
+			'IPAddress' => $_SERVER['REMOTE_ADDR'] ?? '',
+			'UserAgent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
+			// Headers application can inject via LBFactory::setRequestInfo()
+			'ChronologyProtection' => null,
+			'ChronologyClientId' => null, // prior $cpClientId value from LBFactory::shutdown()
+			'ChronologyPositionIndex' => null // prior $cpIndex value from LBFactory::shutdown()
+		];
+	}
+
+	/**
+	 * @param array $conf
+	 * @return void
+	 */
+	protected function configure( array $conf ): void {
 		$this->localDomain = isset( $conf['localDomain'] )
 			? DatabaseDomain::newFromId( $conf['localDomain'] )
 			: DatabaseDomain::newUnspecified();
@@ -139,29 +171,23 @@ abstract class LBFactory implements ILBFactory {
 		$this->srvCache = $conf['srvCache'] ?? new EmptyBagOStuff();
 		$this->wanCache = $conf['wanCache'] ?? WANObjectCache::newEmpty();
 
+		$this->databaseFactory = $conf['databaseFactory'] ?? new DatabaseFactory();
+
 		foreach ( self::$loggerFields as $key ) {
-			$this->$key = $conf[$key] ?? new NullLogger();
+			$this->$key = $conf[ $key ] ?? new NullLogger();
 		}
 		$this->errorLogger = $conf['errorLogger'] ?? static function ( Throwable $e ) {
-			trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
+				trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 		};
 		$this->deprecationLogger = $conf['deprecationLogger'] ?? static function ( $msg ) {
-			trigger_error( $msg, E_USER_DEPRECATED );
+				trigger_error( $msg, E_USER_DEPRECATED );
 		};
 
 		$this->profiler = $conf['profiler'] ?? null;
 		$this->trxProfiler = $conf['trxProfiler'] ?? new TransactionProfiler();
+		$this->statsd = $conf['statsdDataFactory'] ?? new NullStatsdDataFactory();
 
 		$this->csProvider = $conf['criticalSectionProvider'] ?? null;
-
-		$this->requestInfo = [
-			'IPAddress' => $_SERVER[ 'REMOTE_ADDR' ] ?? '',
-			'UserAgent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
-			// Headers application can inject via LBFactory::setRequestInfo()
-			'ChronologyProtection' => null,
-			'ChronologyClientId' => null, // prior $cpClientId value from LBFactory::shutdown()
-			'ChronologyPositionIndex' => null // prior $cpIndex value from LBFactory::shutdown()
-		];
 
 		$this->cliMode = $conf['cliMode'] ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
 		$this->agent = $conf['agent'] ?? '';
@@ -169,16 +195,85 @@ abstract class LBFactory implements ILBFactory {
 		$this->secret = $conf['secret'] ?? '';
 		$this->replicationWaitTimeout = $this->cliMode ? 60 : 1;
 
-		static $nextId, $nextTicket;
-		$this->id = $nextId = ( is_int( $nextId ) ? $nextId++ : mt_rand() );
+		static $nextTicket;
 		$this->ticket = $nextTicket = ( is_int( $nextTicket ) ? $nextTicket++ : mt_rand() );
+
+		$this->currentConfig = $conf;
 	}
 
 	public function destroy() {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
-		$this->forEachLBCallMethod( 'disable', [ __METHOD__, $this->id ] );
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			$lb->disable( __METHOD__ );
+		}
+	}
+
+	/**
+	 * Reload config using the callback passed defined $config['configCallback'].
+	 *
+	 * If the config returned by the callback is different from the existing config,
+	 * this calls reconfigure() on all load balancers, which causes them to invalidate
+	 * any existing connections and re-connect using the new configuration.
+	 *
+	 * @note This invalidates the current transaction ticket.
+	 *
+	 * @warning This must only be called in top level code such as the execute()
+	 * method of a maintenance script. Any database connection in use when this
+	 * method is called will become defunct.
+	 *
+	 * @return bool true if the config changed.
+	 */
+	public function autoReconfigure(): bool {
+		if ( !$this->configCallback ) {
+			return false;
+		}
+
+		$conf = ( $this->configCallback )();
+		if ( !$conf ) {
+			return false;
+		}
+
+		return $this->reconfigure( $conf );
+	}
+
+	/**
+	 * Reconfigure using the given config array.
+	 * Any fields omitted from $conf will be taken from the current config.
+	 *
+	 * If the config changed, this calls reconfigure() on all load balancers,
+	 * which causes them to close all existing connections.
+	 *
+	 * @note This invalidates the current transaction ticket.
+	 *
+	 * @warning This must only be called in top level code such as the execute()
+	 * method of a maintenance script. Any database connection in use when this
+	 * method is called will become defunct.
+	 *
+	 * @since 1.39
+	 *
+	 * @param array $conf A configuration array, using the same structure as
+	 *        the one passed to the constructor (see also $wgLBFactoryConf).
+	 *
+	 * @return bool true if the config changed.
+	 */
+	public function reconfigure( array $conf ): bool {
+		if ( !$conf ) {
+			return false;
+		}
+		if ( $conf['servers'] == $this->currentConfig['servers'] ) {
+			return false;
+		}
+
+		$this->connLogger->notice( 'Reconfiguring LBFactory!' );
+		$this->configure( $conf );
+
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			$lb->reconfigure( $conf );
+		}
+
+		return true;
 	}
 
 	public function getLocalDomainID() {
@@ -190,7 +285,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	/**
-	 * @param DatabaseDomain|string|bool $domain
+	 * @param DatabaseDomain|string|false $domain
 	 * @return DatabaseDomain
 	 */
 	final protected function resolveDomainInstance( $domain ) {
@@ -227,7 +322,7 @@ abstract class LBFactory implements ILBFactory {
 
 		$chronProt = $this->getChronologyProtector();
 		if ( ( $flags & self::SHUTDOWN_NO_CHRONPROT ) != self::SHUTDOWN_NO_CHRONPROT ) {
-			$this->shutdownChronologyProtector( $chronProt, $workCallback, $cpIndex );
+			$this->shutdownChronologyProtector( $chronProt, $cpIndex );
 			$this->replLogger->debug( __METHOD__ . ': finished ChronologyProtector shutdown' );
 		}
 		$cpClientId = $chronProt->getClientId();
@@ -237,35 +332,41 @@ abstract class LBFactory implements ILBFactory {
 		$this->replLogger->debug( 'LBFactory shutdown completed' );
 	}
 
-	/**
-	 * Call a method on each tracked (instantiated) load balancer instance
-	 *
-	 * @param string $methodName
-	 * @param array $args
-	 */
-	protected function forEachLBCallMethod( $methodName, array $args = [] ) {
-		$this->forEachLB(
-			static function ( ILoadBalancer $loadBalancer, $methodName, array $args ) {
-				$loadBalancer->$methodName( ...$args );
-			},
-			[ $methodName, $args ]
-		);
+	public function getAllLBs() {
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			yield $lb;
+		}
 	}
+
+	/**
+	 * Get all tracked load balancers with the internal "for owner" interface.
+	 * Most subclasses override this, we just provide an implementation here
+	 * for the benefit of Wikibase's FakeLBFactory.
+	 *
+	 * @return Generator|ILoadBalancerForOwner[]
+	 */
+	abstract protected function getLBsForOwner();
 
 	public function flushReplicaSnapshots( $fname = __METHOD__ ) {
 		if ( $this->trxRoundId !== false && $this->trxRoundId !== $fname ) {
 			$this->queryLogger->warning(
 				"$fname: transaction round '{$this->trxRoundId}' still running",
-				[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
+				[ 'exception' => new RuntimeException() ]
 			);
 		}
-		$this->forEachLBCallMethod( 'flushReplicaSnapshots', [ $fname, $this->id ] );
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			$lb->flushReplicaSnapshots( $fname );
+		}
 	}
 
 	final public function commitAll( $fname = __METHOD__, array $options = [] ) {
 		$this->commitPrimaryChanges( $fname, $options );
-		$this->forEachLBCallMethod( 'flushPrimarySnapshots', [ $fname, $this->id ] );
-		$this->forEachLBCallMethod( 'flushReplicaSnapshots', [ $fname, $this->id ] );
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			$lb->flushPrimarySessions( $fname );
+		}
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			$lb->flushReplicaSnapshots( $fname );
+		}
 	}
 
 	final public function beginPrimaryChanges( $fname = __METHOD__ ) {
@@ -282,7 +383,9 @@ abstract class LBFactory implements ILBFactory {
 		}
 		$this->trxRoundId = $fname;
 		// Set DBO_TRX flags on all appropriate DBs
-		$this->forEachLBCallMethod( 'beginPrimaryChanges', [ $fname, $this->id ] );
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			$lb->beginPrimaryChanges( $fname );
+		}
 		$this->trxRoundStage = self::ROUND_CURSORY;
 	}
 
@@ -301,17 +404,21 @@ abstract class LBFactory implements ILBFactory {
 		// Run pre-commit callbacks and suppress post-commit callbacks, aborting on failure
 		do {
 			$count = 0; // number of callbacks executed this iteration
-			$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$count, $fname ) {
-				$count += $lb->finalizePrimaryChanges( $fname, $this->id );
-			} );
+			foreach ( $this->getLBsForOwner() as $lb ) {
+				$count += $lb->finalizePrimaryChanges( $fname );
+			}
 		} while ( $count > 0 );
 		$this->trxRoundId = false;
 		// Perform pre-commit checks, aborting on failure
-		$this->forEachLBCallMethod( 'approvePrimaryChanges', [ $options, $fname, $this->id ] );
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			$lb->approvePrimaryChanges( $options, $fname );
+		}
 		// Log the DBs and methods involved in multi-DB transactions
 		$this->logIfMultiDbTransaction();
 		// Actually perform the commit on all primary DB connections and revert DBO_TRX
-		$this->forEachLBCallMethod( 'commitPrimaryChanges', [ $fname, $this->id ] );
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			$lb->commitPrimaryChanges( $fname );
+		}
 		// Run all post-commit callbacks in a separate step
 		$this->trxRoundStage = self::ROUND_COMMIT_CALLBACKS;
 		$e = $this->executePostTransactionCallbacks();
@@ -329,10 +436,24 @@ abstract class LBFactory implements ILBFactory {
 		$this->trxRoundStage = self::ROUND_ROLLING_BACK;
 		$this->trxRoundId = false;
 		// Actually perform the rollback on all primary DB connections and revert DBO_TRX
-		$this->forEachLBCallMethod( 'rollbackPrimaryChanges', [ $fname, $this->id ] );
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			$lb->rollbackPrimaryChanges( $fname );
+		}
 		// Run all post-commit callbacks in a separate step
 		$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;
 		$this->executePostTransactionCallbacks();
+		$this->trxRoundStage = self::ROUND_CURSORY;
+	}
+
+	final public function flushPrimarySessions( $fname = __METHOD__ ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$scope = ScopedCallback::newScopedIgnoreUserAbort();
+
+		// Release named locks and table locks on all primary DB connections
+		$this->trxRoundStage = self::ROUND_ROLLBACK_SESSIONS;
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			$lb->flushPrimarySessions( $fname );
+		}
 		$this->trxRoundStage = self::ROUND_CURSORY;
 	}
 
@@ -344,16 +465,16 @@ abstract class LBFactory implements ILBFactory {
 		// Run all post-commit callbacks until new ones stop getting added
 		$e = null; // first callback exception
 		do {
-			$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$e, $fname ) {
-				$ex = $lb->runPrimaryTransactionIdleCallbacks( $fname, $this->id );
+			foreach ( $this->getLBsForOwner() as $lb ) {
+				$ex = $lb->runPrimaryTransactionIdleCallbacks( $fname );
 				$e = $e ?: $ex;
-			} );
+			}
 		} while ( $this->hasPrimaryChanges() );
 		// Run all listener callbacks once
-		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$e, $fname ) {
-			$ex = $lb->runPrimaryTransactionListenerCallbacks( $fname, $this->id );
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			$ex = $lb->runPrimaryTransactionListenerCallbacks( $fname );
 			$e = $e ?: $ex;
-		} );
+		}
 
 		return $e;
 	}
@@ -371,13 +492,13 @@ abstract class LBFactory implements ILBFactory {
 	 */
 	private function logIfMultiDbTransaction() {
 		$callersByDB = [];
-		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( &$callersByDB ) {
+		foreach ( $this->getLBsForOwner() as $lb ) {
 			$primaryName = $lb->getServerName( $lb->getWriterIndex() );
 			$callers = $lb->pendingPrimaryChangeCallers();
 			if ( $callers ) {
 				$callersByDB[$primaryName] = $callers;
 			}
-		} );
+		}
 
 		if ( count( $callersByDB ) >= 2 ) {
 			$dbs = implode( ', ', array_keys( $callersByDB ) );
@@ -390,29 +511,30 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function hasPrimaryChanges() {
-		$ret = false;
-		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( &$ret ) {
-			$ret = $ret || $lb->hasPrimaryChanges();
-		} );
-
-		return $ret;
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			if ( $lb->hasPrimaryChanges() ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public function laggedReplicaUsed() {
-		$ret = false;
-		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( &$ret ) {
-			$ret = $ret || $lb->laggedReplicaUsed();
-		} );
-
-		return $ret;
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			if ( $lb->laggedReplicaUsed() ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public function hasOrMadeRecentPrimaryChanges( $age = null ) {
-		$ret = false;
-		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( $age, &$ret ) {
-			$ret = $ret || $lb->hasOrMadeRecentPrimaryChanges( $age );
-		} );
-		return $ret;
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			if ( $lb->hasOrMadeRecentPrimaryChanges( $age ) ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public function waitForReplication( array $opts = [] ) {
@@ -435,9 +557,9 @@ abstract class LBFactory implements ILBFactory {
 		} elseif ( $opts['domain'] !== false ) {
 			$lbs[] = $this->getMainLB( $opts['domain'] );
 		} else {
-			$this->forEachLB( static function ( ILoadBalancer $lb ) use ( &$lbs ) {
+			foreach ( $this->getAllLBs() as $lb ) {
 				$lbs[] = $lb;
-			} );
+			}
 			if ( !$lbs ) {
 				return true; // nothing actually used
 			}
@@ -496,7 +618,7 @@ abstract class LBFactory implements ILBFactory {
 		if ( $this->hasPrimaryChanges() ) {
 			$this->queryLogger->error(
 				__METHOD__ . ": $fname does not have outer scope",
-				[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
+				[ 'exception' => new RuntimeException() ]
 			);
 
 			return null;
@@ -509,7 +631,7 @@ abstract class LBFactory implements ILBFactory {
 		if ( $ticket !== $this->ticket ) {
 			$this->perfLogger->error(
 				__METHOD__ . ": $fname does not have outer scope",
-				[ 'trace' => ( new RuntimeException() )->getTraceAsString() ]
+				[ 'exception' => new RuntimeException() ]
 			);
 
 			return false;
@@ -587,45 +709,29 @@ abstract class LBFactory implements ILBFactory {
 	 * Get and record all of the staged DB positions into persistent memory storage
 	 *
 	 * @param ChronologyProtector $cp
-	 * @param callable|null $workCallback Work to do instead of waiting on syncing positions
 	 * @param int|null &$cpIndex DB position key write counter; incremented on update [returned]
 	 */
 	protected function shutdownChronologyProtector(
-		ChronologyProtector $cp, $workCallback, &$cpIndex = null
+		ChronologyProtector $cp, &$cpIndex = null
 	) {
 		// Remark all of the relevant DB primary positions
-		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( $cp ) {
+		foreach ( $this->getLBsForOwner() as $lb ) {
 			$cp->stageSessionReplicationPosition( $lb );
-		} );
-		// Write the positions to the persistent stash
-		$unsavedPositions = $cp->persistSessionReplicationPositions( $cpIndex );
-		if ( $unsavedPositions && $workCallback ) {
-			// Invoke callback in case it did not cache the result yet
-			$workCallback();
 		}
-		// If the positions failed to write to the stash, then wait on the local datacenter
-		// replica DBs to catch up before sending an HTTP response. As long as the request that
-		// caused such DB writes occurred in the primary datacenter, and clients are temporarily
-		// pinned to the primary datacenter after causing DB writes, then this should suffice.
-		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( $unsavedPositions ) {
-			$primaryName = $lb->getServerName( $lb->getWriterIndex() );
-			if ( isset( $unsavedPositions[$primaryName] ) ) {
-				$lb->waitForAll( $unsavedPositions[$primaryName] );
-			}
-		} );
+		// Write the positions to the persistent stash
+		$cp->persistSessionReplicationPositions( $cpIndex );
 	}
 
 	/**
 	 * Get parameters to ILoadBalancer::__construct()
 	 *
-	 * @param int|null $owner Use getOwnershipId() if this is for getMainLB()/getExternalLB()
 	 * @return array
 	 */
-	final protected function baseLoadBalancerParams( $owner ) {
+	final protected function baseLoadBalancerParams() {
 		if ( $this->trxRoundStage === self::ROUND_COMMIT_CALLBACKS ) {
-			$initStage = ILoadBalancer::STAGE_POSTCOMMIT_CALLBACKS;
+			$initStage = ILoadBalancerForOwner::STAGE_POSTCOMMIT_CALLBACKS;
 		} elseif ( $this->trxRoundStage === self::ROUND_ROLLBACK_CALLBACKS ) {
-			$initStage = ILoadBalancer::STAGE_POSTROLLBACK_CALLBACKS;
+			$initStage = ILoadBalancerForOwner::STAGE_POSTROLLBACK_CALLBACKS;
 		} else {
 			$initStage = null;
 		}
@@ -635,6 +741,7 @@ abstract class LBFactory implements ILBFactory {
 			'readOnlyReason' => $this->readOnlyReason,
 			'srvCache' => $this->srvCache,
 			'wanCache' => $this->wanCache,
+			'databaseFactory' => $this->databaseFactory,
 			'profiler' => $this->profiler,
 			'trxProfiler' => $this->trxProfiler,
 			'queryLogger' => $this->queryLogger,
@@ -643,6 +750,7 @@ abstract class LBFactory implements ILBFactory {
 			'perfLogger' => $this->perfLogger,
 			'errorLogger' => $this->errorLogger,
 			'deprecationLogger' => $this->deprecationLogger,
+			'statsdDataFactory' => $this->statsd,
 			'cliMode' => $this->cliMode,
 			'agent' => $this->agent,
 			'maxLag' => $this->maxLag,
@@ -653,17 +761,16 @@ abstract class LBFactory implements ILBFactory {
 				$this->getChronologyProtector()->applySessionReplicationPosition( $lb );
 			},
 			'roundStage' => $initStage,
-			'ownerId' => $owner,
 			'criticalSectionProvider' => $this->csProvider
 		];
 	}
 
 	/**
-	 * @param ILoadBalancer $lb
+	 * @param ILoadBalancerForOwner $lb
 	 */
-	protected function initLoadBalancer( ILoadBalancer $lb ) {
+	protected function initLoadBalancer( ILoadBalancerForOwner $lb ) {
 		if ( $this->trxRoundId !== false ) {
-			$lb->beginPrimaryChanges( $this->trxRoundId, $this->id ); // set DBO_TRX
+			$lb->beginPrimaryChanges( $this->trxRoundId ); // set DBO_TRX
 		}
 
 		$lb->setTableAliases( $this->tableAliases );
@@ -694,26 +801,28 @@ abstract class LBFactory implements ILBFactory {
 			$prefix
 		);
 
-		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( $prefix ) {
+		foreach ( $this->getLBsForOwner() as $lb ) {
 			$lb->setLocalDomainPrefix( $prefix );
-		} );
+		}
 	}
 
 	public function redefineLocalDomain( $domain ) {
-		$this->closeAll();
+		$this->closeAll( __METHOD__ );
 
 		$this->localDomain = DatabaseDomain::newFromId( $domain );
 
-		$this->forEachLB( function ( ILoadBalancer $lb ) {
+		foreach ( $this->getLBsForOwner() as $lb ) {
 			$lb->redefineLocalDomain( $this->localDomain );
-		} );
+		}
 	}
 
-	public function closeAll() {
+	public function closeAll( $fname = __METHOD__ ) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 
-		$this->forEachLBCallMethod( 'closeAll', [ __METHOD__, $this->id ] );
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			$lb->closeAll( $fname );
+		}
 	}
 
 	public function setAgentName( $agent ) {
@@ -721,16 +830,13 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	public function appendShutdownCPIndexAsQuery( $url, $index ) {
-		$usedCluster = false;
-		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( &$usedCluster ) {
-			$usedCluster = $usedCluster || $lb->hasStreamingReplicaServers();
-		} );
-
-		if ( !$usedCluster ) {
-			return $url; // no primary/replica clusters touched
+		foreach ( $this->getLBsForOwner() as $lb ) {
+			if ( $lb->hasStreamingReplicaServers() ) {
+				return strpos( $url, '?' ) === false
+					? "$url?cpPosIndex=$index" : "$url&cpPosIndex=$index";
+			}
 		}
-
-		return strpos( $url, '?' ) === false ? "$url?cpPosIndex=$index" : "$url&cpPosIndex=$index";
+		return $url; // no primary/replica clusters touched
 	}
 
 	public function getChronologyProtectorClientId() {
@@ -803,14 +909,6 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	/**
-	 * @return int Internal instance ID used to assert ownership of ILoadBalancer instances
-	 * @since 1.34
-	 */
-	final protected function getOwnershipId() {
-		return $this->id;
-	}
-
-	/**
 	 * @param string $stage
 	 */
 	private function assertTransactionRoundStage( $stage ) {
@@ -820,10 +918,6 @@ abstract class LBFactory implements ILBFactory {
 				"Transaction round stage must be '$stage' (not '{$this->trxRoundStage}')"
 			);
 		}
-	}
-
-	public function __destruct() {
-		$this->destroy();
 	}
 
 	/**

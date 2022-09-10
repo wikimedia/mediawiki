@@ -22,11 +22,14 @@
 use Wikimedia\Rdbms\IMaintainableDatabase;
 
 class DbTestRecorder extends TestRecorder {
+	/** @var string */
 	public $version;
-	/** @var Database */
+	/** @var IMaintainableDatabase */
 	private $db;
+	/** @var int */
+	private $curRun;
 
-	public function __construct( IMaintainableDatabase $db ) {
+	public function __construct( $db ) {
 		$this->db = $db;
 	}
 
@@ -55,24 +58,20 @@ class DbTestRecorder extends TestRecorder {
 				'tr_uname' => php_uname()
 			],
 			__METHOD__ );
-		if ( $this->db->getType() === 'postgres' ) {
-			$this->curRun = $this->db->currentSequenceValue( 'testrun_id_seq' );
-		} else {
-			$this->curRun = $this->db->insertId();
-		}
+		$this->curRun = $this->db->insertId();
 	}
 
 	/**
 	 * Record an individual test item's success or failure to the db
 	 *
-	 * @param array $test
 	 * @param ParserTestResult $result
 	 */
-	public function record( $test, ParserTestResult $result ) {
+	public function record( ParserTestResult $result ) {
+		$desc = $result->getDescription();
 		$this->db->insert( 'testitem',
 			[
 				'ti_run' => $this->curRun,
-				'ti_name' => $test['desc'],
+				'ti_name' => $desc,
 				'ti_success' => $result->isSuccess() ? 1 : 0,
 			],
 			__METHOD__ );

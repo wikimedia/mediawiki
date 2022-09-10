@@ -68,7 +68,7 @@
 	"apihelp-edit-summary": "Vytvářet a upravovat stránky.",
 	"apihelp-edit-param-title": "Název stránky, kterou chcete editovat. Nelze použít společně s <var>$1pageid</var>.",
 	"apihelp-edit-param-pageid": "ID stránky, která se má editovat. Není možné použít společně s <var>$1title</var>.",
-	"apihelp-edit-param-sectiontitle": "Název nové sekce.",
+	"apihelp-edit-param-sectiontitle": "Název nové sekce při použití <var>$1section=new</var>.",
 	"apihelp-edit-param-text": "Obsah stránky.",
 	"apihelp-edit-param-minor": "Označit toto jako malou editaci",
 	"apihelp-edit-param-notminor": "Nemalá editace.",
@@ -281,5 +281,5 @@
 	"apierror-readonly": "Wiki je právě v módu pro čtení a nelze ji editovat.",
 	"apierror-sectionsnotsupported-what": "$1 nepodporuje sekce.",
 	"api-credits-header": "Zásluhy",
-	"api-credits": "Vývojáři API:\n* Roan Kattouw (hlavní vývojář září 2007–2009)\n* Viktor Vasiljev\n* Bryan Tong Minh\n* Sam Reed\n* Jurij Astrachan (tvůrce, hlavní vývojář září 2006–září 2007)\n* Brad Jorsch (hlavní vývojář od 2013)\n\nSvé komentáře, návrhy či dotazy posílejte na mediawiki-api@lists.wikimedia.org\nnebo založte chybové hlášení na https://phabricator.wikimedia.org/."
+	"api-credits": "Vývojáři API:\n* Jurij Astrachan (tvůrce, hlavní vývojář září 2006 – září 2007)\n* Roan Kattouw (hlavní vývojář září 2007–2009)\n* Viktor Vasiljev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (hlavní vývojář 2013–2020)\n\nSvé komentáře, návrhy či dotazy posílejte na mediawiki-api@lists.wikimedia.org\nnebo založte chybové hlášení na https://phabricator.wikimedia.org/."
 }

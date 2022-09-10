@@ -22,16 +22,17 @@
 
 namespace MediaWiki\Watchlist;
 
-use DeferredUpdates;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
@@ -39,7 +40,6 @@ use NamespaceInfo;
 use ReadOnlyMode;
 use Status;
 use StatusValue;
-use TitleValue;
 use User;
 use WatchedItemStoreInterface;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
@@ -55,8 +55,9 @@ class WatchlistManager {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'UseEnotif',
-		'ShowUpdatedMarker',
+		MainConfigNames::EnotifUserTalk,
+		MainConfigNames::EnotifWatchlist,
+		MainConfigNames::ShowUpdatedMarker,
 	];
 
 	/** @var ServiceOptions */
@@ -164,15 +165,15 @@ class WatchlistManager {
 
 		$user = $performer->getUser();
 
-		if ( !$this->options->get( 'UseEnotif' ) &&
-			!$this->options->get( 'ShowUpdatedMarker' )
+		if ( !$this->options->get( MainConfigNames::EnotifUserTalk ) &&
+			!$this->options->get( MainConfigNames::EnotifWatchlist ) &&
+			!$this->options->get( MainConfigNames::ShowUpdatedMarker )
 		) {
 			$this->talkPageNotificationManager->removeUserHasNewMessages( $user );
 			return;
 		}
 
-		$userId = $user->getId();
-		if ( !$userId ) {
+		if ( !$user->isRegistered() ) {
 			return;
 		}
 
@@ -192,11 +193,14 @@ class WatchlistManager {
 	 * @param Authority|UserIdentity $performer deprecated passing UserIdentity since 1.37
 	 * @param LinkTarget|PageIdentity $title deprecated passing LinkTarget since 1.37
 	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
+	 * @param RevisionRecord|null $oldRev The revision record associated with $oldid, or null if
+	 *   the latest revision is used
 	 */
 	public function clearTitleUserNotifications(
 		$performer,
 		$title,
-		int $oldid = 0
+		int $oldid = 0,
+		RevisionRecord $oldRev = null
 	) {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			// Cannot change anything in read only
@@ -219,55 +223,17 @@ class WatchlistManager {
 		);
 
 		if ( $userTalkPage ) {
-			// If we're working on user's talk page, we should update the talk page message indicator
-			if ( !$this->hookRunner->onUserClearNewTalkNotification(
-				$userIdentity,
-				$oldid
-			) ) {
-				return;
+			if ( !$oldid ) {
+				$oldRev = null;
+			} elseif ( !$oldRev ) {
+				$oldRev = $this->revisionLookup->getRevisionById( $oldid );
 			}
-
-			// Try to update the DB post-send and only if needed...
-			$talkPageNotificationManager = $this->talkPageNotificationManager;
-			$revisionLookup = $this->revisionLookup;
-			DeferredUpdates::addCallableUpdate( static function () use (
-				$userIdentity,
-				$oldid,
-				$talkPageNotificationManager,
-				$revisionLookup
-			) {
-				if ( !$talkPageNotificationManager->userHasNewMessages( $userIdentity ) ) {
-					// no notifications to clear
-					return;
-				}
-				// Delete the last notifications (they stack up)
-				$talkPageNotificationManager->removeUserHasNewMessages( $userIdentity );
-
-				// If there is a new, unseen, revision, use its timestamp
-				if ( !$oldid ) {
-					return;
-				}
-
-				$oldRev = $revisionLookup->getRevisionById(
-					$oldid,
-					RevisionLookup::READ_LATEST
-				);
-				if ( !$oldRev ) {
-					return;
-				}
-
-				$newRev = $revisionLookup->getNextRevision( $oldRev );
-				if ( $newRev ) {
-					$talkPageNotificationManager->setUserHasNewMessages(
-						$userIdentity,
-						$newRev
-					);
-				}
-			} );
+			$this->talkPageNotificationManager->clearForPageView( $userIdentity, $oldRev );
 		}
 
-		if ( !$this->options->get( 'UseEnotif' ) &&
-			!$this->options->get( 'ShowUpdatedMarker' )
+		if ( !$this->options->get( MainConfigNames::EnotifUserTalk ) &&
+			!$this->options->get( MainConfigNames::EnotifWatchlist ) &&
+			!$this->options->get( MainConfigNames::ShowUpdatedMarker )
 		) {
 			return;
 		}
@@ -293,13 +259,11 @@ class WatchlistManager {
 	 * @return string|bool|null String timestamp, false if not watched, null if nothing is unseen
 	 */
 	public function getTitleNotificationTimestamp( UserIdentity $user, $title ) {
-		$userId = $user->getId();
-
-		if ( !$userId ) {
+		if ( !$user->isRegistered() ) {
 			return false;
 		}
 
-		$cacheKey = 'u' . (string)$userId . '-' .
+		$cacheKey = 'u' . (string)$user->getId() . '-' .
 			(string)$title->getNamespace() . ':' . $title->getDBkey();
 
 		// avoid isset here, as it'll return false for null entries
@@ -536,9 +500,8 @@ class WatchlistManager {
 			return StatusValue::newGood();
 		}
 
-		// Only call addWatchhIgnoringRights() or removeWatch() if there's been a change in the watched status.
-		$link = TitleValue::newFromPage( $target );
-		$oldWatchedItem = $this->watchedItemStore->getWatchedItem( $performer->getUser(), $link );
+		// Only call addWatchIgnoringRights() or removeWatch() if there's been a change in the watched status.
+		$oldWatchedItem = $this->watchedItemStore->getWatchedItem( $performer->getUser(), $target );
 		$changingWatchStatus = (bool)$oldWatchedItem !== $watch;
 		if ( $oldWatchedItem && $expiry !== null ) {
 			// If there's an old watched item, a non-null change to the expiry requires an UPDATE.

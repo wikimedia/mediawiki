@@ -21,8 +21,10 @@ use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\ResourceLoader\WikiModule;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
@@ -30,7 +32,6 @@ use MediaWiki\User\UserFactory;
 use Message;
 use NamespaceInfo;
 use RawMessage;
-use ResourceLoaderWikiModule;
 use SearchUpdate;
 use SiteStatsUpdate;
 use Status;
@@ -44,17 +45,17 @@ use Wikimedia\RequestTimeout\TimeoutException;
 use WikiPage;
 
 /**
+ * Backend logic for performing a page delete action.
+ *
  * @since 1.37
- * @package MediaWiki\Page
  */
 class DeletePage {
 	/**
 	 * @internal For use by PageCommandFactory
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'DeleteRevisionsBatchSize',
-		'ActorTableSchemaMigrationStage',
-		'DeleteRevisionsLimit',
+		MainConfigNames::DeleteRevisionsBatchSize,
+		MainConfigNames::DeleteRevisionsLimit,
 	];
 
 	/**
@@ -132,6 +133,7 @@ class DeletePage {
 	private $attemptedDeletion = false;
 
 	/**
+	 * @internal Create via the PageDeleteFactory service.
 	 * @param HookContainer $hookContainer
 	 * @param RevisionStore $revisionStore
 	 * @param LBFactory $lbFactory
@@ -352,7 +354,7 @@ class DeletePage {
 	public function deletionWasScheduled(): bool {
 		wfDeprecated( __METHOD__, '1.38' );
 		$this->assertDeletionAttempted();
-		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable,PhanTypeMismatchReturnNullable
 		return $this->wasScheduled[self::PAGE_BASE];
 	}
 
@@ -393,7 +395,7 @@ class DeletePage {
 		if ( !$this->deleter->isAllowed( 'bigdelete' ) && $this->isBigDeletion() ) {
 			$status->fatal(
 				'delete-toomanyrevisions',
-				Message::numParam( $this->options->get( 'DeleteRevisionsLimit' ) )
+				Message::numParam( $this->options->get( MainConfigNames::DeleteRevisionsLimit ) )
 			);
 		}
 		if ( $this->tags ) {
@@ -406,7 +408,7 @@ class DeletePage {
 	 * @return bool
 	 */
 	private function isBigDeletion(): bool {
-		$revLimit = $this->options->get( 'DeleteRevisionsLimit' );
+		$revLimit = $this->options->get( MainConfigNames::DeleteRevisionsLimit );
 		if ( !$revLimit ) {
 			return false;
 		}
@@ -437,7 +439,7 @@ class DeletePage {
 		$revCount = $this->revisionStore->countRevisionsByPageId( $dbr, $this->page->getId() );
 		$revCount += $safetyMargin;
 
-		if ( $revCount >= $this->options->get( 'DeleteRevisionsBatchSize' ) ) {
+		if ( $revCount >= $this->options->get( MainConfigNames::DeleteRevisionsBatchSize ) ) {
 			return true;
 		} elseif ( !$this->associatedTalk ) {
 			return false;
@@ -446,7 +448,7 @@ class DeletePage {
 		$talkRevCount = $this->revisionStore->countRevisionsByPageId( $dbr, $this->associatedTalk->getId() );
 		$talkRevCount += $safetyMargin;
 
-		return $talkRevCount >= $this->options->get( 'DeleteRevisionsBatchSize' );
+		return $talkRevCount >= $this->options->get( MainConfigNames::DeleteRevisionsBatchSize );
 	}
 
 	/**
@@ -482,6 +484,8 @@ class DeletePage {
 		}
 		// NOTE: If the page deletion above failed because the page is no longer there (e.g. race condition) we'll
 		// still try to delete the talk page, since it was the user's intention anyway.
+		// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable talkReason is set when used
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable talkReason is set when used
 		$status->merge( $this->deleteInternal( $this->associatedTalk, self::PAGE_TALK, $talkReason ) );
 		return $status;
 	}
@@ -594,7 +598,7 @@ class DeletePage {
 			}
 			$dbw->endAtomic( __METHOD__ );
 			if ( $dbw->explicitTrxActive() ) {
-				// Explict transactions may never happen here in practice.  Log to be sure.
+				// Explicit transactions may never happen here in practice.  Log to be sure.
 				if ( !$explictTrxLogged ) {
 					$explictTrxLogged = true;
 					LoggerFactory::getInstance( 'wfDebug' )->debug(
@@ -751,7 +755,7 @@ class DeletePage {
 		$dbw->lockForUpdate(
 			array_intersect(
 				$revQuery['tables'],
-				[ 'revision', 'revision_comment_temp', 'revision_actor_temp' ]
+				[ 'revision', 'revision_comment_temp' ]
 			),
 			[ 'rev_page' => $id ],
 			__METHOD__,
@@ -759,7 +763,7 @@ class DeletePage {
 			$revQuery['joins']
 		);
 
-		$deleteBatchSize = $this->options->get( 'DeleteRevisionsBatchSize' );
+		$deleteBatchSize = $this->options->get( MainConfigNames::DeleteRevisionsBatchSize );
 		// Get as many of the page revisions as we are allowed to.  The +1 lets us recognize the
 		// unusual case where there were exactly $deleteBatchSize revisions remaining.
 		$res = $dbw->select(
@@ -816,10 +820,6 @@ class DeletePage {
 
 			$dbw->delete( 'revision', [ 'rev_id' => $revids ], __METHOD__ );
 			$dbw->delete( 'revision_comment_temp', [ 'revcomment_rev' => $revids ], __METHOD__ );
-			if ( $this->options->get( 'ActorTableSchemaMigrationStage' ) & SCHEMA_COMPAT_WRITE_TEMP ) {
-				$dbw->delete( 'revision_actor_temp', [ 'revactor_rev' => $revids ], __METHOD__ );
-			}
-
 			// Also delete records from ip_changes as applicable.
 			if ( count( $ipRevIds ) > 0 ) {
 				$dbw->delete( 'ip_changes', [ 'ipc_rev_id' => $ipRevIds ], __METHOD__ );
@@ -888,7 +888,7 @@ class DeletePage {
 			WikiPage::onArticleDelete( $page->getTitle() );
 		}
 
-		ResourceLoaderWikiModule::invalidateModuleCache(
+		WikiModule::invalidateModuleCache(
 			$page->getTitle(),
 			$revRecord,
 			null,

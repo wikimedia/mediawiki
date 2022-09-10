@@ -18,19 +18,18 @@
  * @file
  */
 
-/**
- * @defgroup Language Language
- */
-
 namespace MediaWiki\Languages;
 
+use Config;
 use Language;
 use LanguageConverter;
 use LocalisationCache;
 use MapCacheLRU;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MainConfigNames;
 use MWException;
+use NamespaceInfo;
 
 /**
  * Internationalisation code
@@ -42,6 +41,9 @@ use MWException;
 class LanguageFactory {
 	/** @var ServiceOptions */
 	private $options;
+
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
 
 	/** @var LocalisationCache */
 	private $localisationCache;
@@ -61,6 +63,9 @@ class LanguageFactory {
 	/** @var MapCacheLRU */
 	private $langObjCache;
 
+	/** @var Config */
+	private $config;
+
 	/** @var array */
 	private $parentLangCache = [];
 
@@ -68,7 +73,7 @@ class LanguageFactory {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'DummyLanguageCodes',
+		MainConfigNames::DummyLanguageCodes,
 	];
 
 	/** How many distinct Language objects to retain at most in memory (T40439). */
@@ -76,40 +81,63 @@ class LanguageFactory {
 
 	/**
 	 * @param ServiceOptions $options
+	 * @param NamespaceInfo $namespaceInfo
 	 * @param LocalisationCache $localisationCache
 	 * @param LanguageNameUtils $langNameUtils
 	 * @param LanguageFallback $langFallback
 	 * @param LanguageConverterFactory $langConverterFactory
 	 * @param HookContainer $hookContainer
+	 * @param Config $config
 	 */
 	public function __construct(
 		ServiceOptions $options,
+		NamespaceInfo $namespaceInfo,
 		LocalisationCache $localisationCache,
 		LanguageNameUtils $langNameUtils,
 		LanguageFallback $langFallback,
 		LanguageConverterFactory $langConverterFactory,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		Config $config
 	) {
+		// We have both ServiceOptions and a Config object because
+		// the Language class hasn't (yet) been updated to use ServiceOptions
+		// and for now gets a full Config
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
 		$this->options = $options;
+		$this->namespaceInfo = $namespaceInfo;
 		$this->localisationCache = $localisationCache;
 		$this->langNameUtils = $langNameUtils;
 		$this->langFallback = $langFallback;
 		$this->langConverterFactory = $langConverterFactory;
 		$this->hookContainer = $hookContainer;
 		$this->langObjCache = new MapCacheLRU( self::LANG_CACHE_SIZE );
+		$this->config = $config;
 	}
 
 	/**
 	 * Get a cached or new language object for a given language code
+	 * with normalization of the language code.
 	 * @param string $code
 	 * @throws MWException if the language code contains dangerous characters, e.g. HTML special
 	 *  characters or characters illegal in MediaWiki titles.
 	 * @return Language
 	 */
 	public function getLanguage( $code ): Language {
-		$code = $this->options->get( 'DummyLanguageCodes' )[$code] ?? $code;
+		$code = $this->options->get( MainConfigNames::DummyLanguageCodes )[$code] ?? $code;
+		return $this->getRawLanguage( $code );
+	}
+
+	/**
+	 * Get a cached or new language object for a given language code
+	 * without normalization of the language code.
+	 * @param string $code
+	 * @throws MWException if the language code contains dangerous characters, e.g. HTML special
+	 *  characters or characters illegal in MediaWiki titles.
+	 * @return Language
+	 * @since 1.39
+	 */
+	public function getRawLanguage( $code ): Language {
 		return $this->langObjCache->getWithSetCallback(
 			$code,
 			function () use ( $code ) {
@@ -132,11 +160,13 @@ class LanguageFactory {
 
 		$constructorArgs = [
 			$code,
+			$this->namespaceInfo,
 			$this->localisationCache,
 			$this->langNameUtils,
 			$this->langFallback,
 			$this->langConverterFactory,
-			$this->hookContainer
+			$this->hookContainer,
+			$this->config
 		];
 
 		if ( !$this->langNameUtils->isValidBuiltInCode( $code ) ) {

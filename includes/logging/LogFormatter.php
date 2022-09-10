@@ -25,6 +25,7 @@
 
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 
@@ -53,7 +54,8 @@ class LogFormatter {
 	 * @return LogFormatter
 	 */
 	public static function newFromEntry( LogEntry $entry ) {
-		$logActionsHandlers = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogActionsHandlers' );
+		$logActionsHandlers = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::LogActionsHandlers );
 		$fulltype = $entry->getFullType();
 		$wildcard = $entry->getType() . '/*';
 		$handler = $logActionsHandlers[$fulltype] ?? $logActionsHandlers[$wildcard] ?? '';
@@ -170,7 +172,7 @@ class LogFormatter {
 	public function canViewLogType() {
 		// If the user doesn't have the right permission to view the specific
 		// log type, return false
-		$logRestrictions = $this->context->getConfig()->get( 'LogRestrictions' );
+		$logRestrictions = $this->context->getConfig()->get( MainConfigNames::LogRestrictions );
 		$type = $this->entry->getType();
 		return !isset( $logRestrictions[$type] )
 			|| $this->context->getAuthority()->isAllowed( $logRestrictions[$type] );
@@ -184,7 +186,7 @@ class LogFormatter {
 	protected function canView( $field ) {
 		if ( $this->audience == self::FOR_THIS_USER ) {
 			return LogEventsList::userCanBitfield(
-				$this->entry->getDeleted(), $field, $this->context->getUser() ) &&
+				$this->entry->getDeleted(), $field, $this->context->getAuthority() ) &&
 				self::canViewLogType();
 		} else {
 			return !$this->entry->isDeleted( $field ) && self::canViewLogType();
@@ -563,7 +565,7 @@ class LogFormatter {
 	}
 
 	/**
-	 * Formats parameters intented for action message from
+	 * Formats parameters intended for action message from
 	 * array of all parameters. There are three hardcoded
 	 * parameters (array is zero-indexed, this list not):
 	 *  - 1: user name with premade link
@@ -767,17 +769,6 @@ class LogFormatter {
 		$attribs = [ 'class' => 'history-deleted' ];
 
 		return Html::rawElement( 'span', $attribs, $content );
-	}
-
-	/**
-	 * Helper method for styling restricted element.
-	 * @deprecated since 1.37, use ::styleRestrictedElement instead
-	 * @param string $content
-	 * @return string HTML or wiki text
-	 */
-	protected function styleRestricedElement( $content ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->styleRestrictedElement( $content );
 	}
 
 	/**

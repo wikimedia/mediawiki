@@ -137,13 +137,24 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 		$conds['rev_page'] = $this->articleID;
 		$conds[] = "rev_timestamp < " . $dbr->addQuotes( $this->maxTimestamp );
 
-		$revQuery = $this->revisionStore->getQueryInfo( [ 'page', 'user' ] );
-		return [
-			'tables' => $revQuery['tables'],
-			'fields' => $revQuery['fields'],
-			'conds' => $conds,
-			'join_conds' => $revQuery['joins']
-		];
+		$queryInfo = $this->revisionStore->getQueryInfo( [ 'page', 'user' ] );
+		$queryInfo['conds'] = $conds;
+		$queryInfo['options'] = [];
+
+		// rename the "joins" field to "join_conds" as expected by the base class.
+		$queryInfo['join_conds'] = $queryInfo['joins'];
+		unset( $queryInfo['joins'] );
+
+		ChangeTags::modifyDisplayQuery(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
+			$queryInfo['conds'],
+			$queryInfo['join_conds'],
+			$queryInfo['options'],
+			''
+		);
+
+		return $queryInfo;
 	}
 
 	public function getIndexField() {

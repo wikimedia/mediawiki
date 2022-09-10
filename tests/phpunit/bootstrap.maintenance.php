@@ -16,7 +16,7 @@ EOF;
 
 // The TestRunner class will run each test suite and may call
 // exit() with an exit status code. As such, we cannot run code "after the last test"
-// by adding statements to PHPUnitMaintClass::execute or MediaWikiPHPUnitCommand::run.
+// by adding statements to PHPUnitMaintClass::execute.
 // Instead, we work around it by registering a shutdown callback from the bootstrap
 // file, which runs before PHPUnit starts.
 // @todo Once we use PHPUnit 8 or higher, use the 'AfterLastTestHook' feature.
@@ -28,3 +28,5 @@ register_shutdown_function( static function () {
 	// - restore ability to connect to the real database.
 	MediaWikiIntegrationTestCase::teardownTestDB();
 } );
+
+MediaWikiCliOptions::initialize();

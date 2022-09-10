@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Session\CsrfTokenSet;
@@ -67,7 +68,7 @@ class RequestContext implements IContextSource, MutableContext {
 	private $output;
 
 	/**
-	 * @var User
+	 * @var User|null
 	 */
 	private $user;
 
@@ -152,11 +153,13 @@ class RequestContext implements IContextSource, MutableContext {
 	}
 
 	/**
-	 * @deprecated since 1.27 use a StatsdDataFactory from MediaWikiServices (preferably injected)
+	 * @deprecated since 1.27 use a StatsdDataFactory from MediaWikiServices (preferably injected).
+	 *  Hard deprecated since 1.39.
 	 *
 	 * @return IBufferingStatsdDataFactory
 	 */
 	public function getStats() {
+		wfDeprecated( __METHOD__, '1.27' );
 		return MediaWikiServices::getInstance()->getStatsdDataFactory();
 	}
 
@@ -357,7 +360,14 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public function getUser() {
 		if ( $this->user === null ) {
-			$this->user = User::newFromSession( $this->getRequest() );
+			if ( $this->authority !== null ) {
+				// Keep user consistent by using a possible set authority
+				$this->user = MediaWikiServices::getInstance()
+					->getUserFactory()
+					->newFromAuthority( $this->authority );
+			} else {
+				$this->user = User::newFromSession( $this->getRequest() );
+			}
 		}
 
 		return $this->user;
@@ -368,10 +378,8 @@ class RequestContext implements IContextSource, MutableContext {
 	 */
 	public function setAuthority( Authority $authority ) {
 		$this->authority = $authority;
-		// Keep user consistent
-		$this->user = MediaWikiServices::getInstance()
-			->getUserFactory()
-			->newFromAuthority( $authority );
+		// If needed, a User object is constructed from this authority
+		$this->user = null;
 		// Invalidate cached user interface language
 		$this->lang = null;
 	}
@@ -467,7 +475,7 @@ class RequestContext implements IContextSource, MutableContext {
 
 				Hooks::runner()->onUserGetLanguageObject( $user, $code, $this );
 
-				if ( $code === $this->getConfig()->get( 'LanguageCode' ) ) {
+				if ( $code === $this->getConfig()->get( MainConfigNames::LanguageCode ) ) {
 					$this->lang = MediaWikiServices::getInstance()->getContentLanguage();
 				} else {
 					$obj = MediaWikiServices::getInstance()->getLanguageFactory()
@@ -509,14 +517,15 @@ class RequestContext implements IContextSource, MutableContext {
 				$this->skin = $factory->makeSkin( $normalized );
 			} else {
 				// No hook override, go through normal processing
-				if ( !in_array( 'skin', $this->getConfig()->get( 'HiddenPrefs' ) ) ) {
+				if ( !in_array( 'skin',
+				$this->getConfig()->get( MainConfigNames::HiddenPrefs ) ) ) {
 					$userOptionsLookup = MediaWikiServices::getInstance()
 						->getUserOptionsLookup();
 					$userSkin = $userOptionsLookup->getOption( $this->getUser(), 'skin' );
 					// Optimisation: Avoid slow getVal(), this isn't user-generated content.
 					$userSkin = $this->getRequest()->getRawVal( 'useskin', $userSkin );
 				} else {
-					$userSkin = $this->getConfig()->get( 'DefaultSkin' );
+					$userSkin = $this->getConfig()->get( MainConfigNames::DefaultSkin );
 				}
 
 				// Normalize the key in case the user is passing gibberish query params
@@ -641,7 +650,7 @@ class RequestContext implements IContextSource, MutableContext {
 		if ( $params['userId'] ) { // logged-in user
 			$user = User::newFromId( $params['userId'] );
 			$user->load();
-			if ( !$user->getId() ) {
+			if ( !$user->isRegistered() ) {
 				throw new MWException( "No user with ID '{$params['userId']}'." );
 			}
 		} else { // anon user

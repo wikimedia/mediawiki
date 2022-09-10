@@ -81,7 +81,7 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		}
 	}
 
-	protected function postText() {
+	protected function postHtml() {
 		$text = '';
 		if ( $this->title ) {
 			$contentModelLogPage = new LogPage( 'contentmodel' );

@@ -27,6 +27,7 @@ use DeferredUpdates;
 use EnqueueableDataUpdate;
 use InvalidArgumentException;
 use JobSpecification;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MWException;
 use ParserOutput;
@@ -70,7 +71,7 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();
 		$lbFactory = $services->getDBLoadBalancerFactory();
-		$batchSize = $config->get( 'UpdateRowsPerQuery' );
+		$batchSize = $config->get( MainConfigNames::UpdateRowsPerQuery );
 
 		$id = $this->mId;
 		$title = $this->mTitle;

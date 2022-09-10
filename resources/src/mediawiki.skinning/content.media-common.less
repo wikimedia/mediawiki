@@ -3,6 +3,12 @@
 /**
  * Block media items
  */
+
+figure[ typeof~='mw:File' ],
+figure[ typeof~='mw:File/Frameless' ],
+/* TODO: Remove "Image|Video|Audio" when version 2.4.0 of the content is no
+ * longer supported
+ */
 figure[ typeof~='mw:Image' ],
 figure[ typeof~='mw:Video' ],
 figure[ typeof~='mw:Audio' ],
@@ -57,6 +63,11 @@ figure[ typeof~='mw:Audio/Frameless' ] {
 	}
 }
 
+figure[ typeof~='mw:File/Thumb' ],
+figure[ typeof~='mw:File/Frame' ],
+/* TODO: Remove "Image|Video|Audio" when version 2.4.0 of the content is no
+ * longer supported
+ */
 figure[ typeof~='mw:Image/Thumb' ],
 figure[ typeof~='mw:Video/Thumb' ],
 figure[ typeof~='mw:Audio/Thumb' ],
@@ -135,14 +146,16 @@ figure[ typeof~='mw:Audio/Frame' ] {
 		float: none;
 	}
 
-	> *:first-child {
-		> audio,
-		> img,
-		> video {
+	> a:first-child,
+	> span:first-child {
+		> *:first-child {
 			margin: 3px;
 		}
-		/* Broken media get a span instead */
-		> span {
+
+		/**
+		 * Broken media get a span instead.
+		 */
+		> span.mw-broken-media {
 			display: inline-block;
 			/* The extra horizontal margin here is to make up for the lack of a border */
 			margin: 3px 4px;
@@ -198,10 +211,9 @@ figure[ typeof~='mw:Audio/Frame' ] {
 /**
  * Inline media items
  */
-*:first-child {
-	> audio,
-	> img,
-	> video {
+span:first-child,
+a:first-child {
+	> *:first-child {
 		.mw-valign-middle > & {
 			vertical-align: middle;
 		}

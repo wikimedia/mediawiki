@@ -6,7 +6,6 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\ResultWrapper;
 use Wikimedia\Rdbms\TransactionProfiler;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group sqlite
@@ -54,7 +53,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 				'variables' => [ 'synchronous' => 'NORMAL', 'temp_store' => 'MEMORY' ],
 				'profiler' => null,
 				'topologyRole' => Database::ROLE_STREAMING_MASTER,
-				'topologicalMaster' => null,
 				'trxProfiler' => new TransactionProfiler(),
 				'connLogger' => new NullLogger(),
 				'queryLogger' => new NullLogger(),
@@ -81,17 +79,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		}
 
 		return $mock;
-	}
-
-	/**
-	 * @param string $sql
-	 * @return string
-	 */
-	private function replaceVars( $sql ) {
-		/** @var Database $wrapper */
-		$wrapper = TestingAccessWrapper::newFromObject( $this->db );
-		// normalize spacing to hide implementation details
-		return preg_replace( '/\s+/', ' ', $wrapper->replaceVars( $sql ) );
 	}
 
 	private function assertResultIs( $expected, $res ) {
@@ -136,7 +123,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideAddQuotes()
-	 * @covers DatabaseSqlite::addQuotes
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::addQuotes
 	 */
 	public function testAddQuotes( $value, $expected ) {
 		// check quoting
@@ -161,79 +148,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DatabaseSqlite::replaceVars
-	 */
-	public function testReplaceVars() {
-		$this->assertEquals( 'foo', $this->replaceVars( 'foo' ), "Don't break anything accidentally" );
-
-		$this->assertEquals(
-			"CREATE TABLE /**/foo (foo_key INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
-			. "foo_bar TEXT, foo_name TEXT NOT NULL DEFAULT '', foo_int INTEGER, foo_int2 INTEGER );",
-			$this->replaceVars(
-				"CREATE TABLE /**/foo (foo_key int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT, "
-				. "foo_bar char(13), foo_name varchar(255) binary NOT NULL DEFAULT '', "
-				. "foo_int tinyint ( 8 ), foo_int2 int(16) ) ENGINE=MyISAM;"
-			)
-		);
-
-		$this->assertEquals(
-			"CREATE TABLE foo ( foo1 REAL, foo2 REAL, foo3 REAL );",
-			$this->replaceVars(
-				"CREATE TABLE foo ( foo1 FLOAT, foo2 DOUBLE( 1,10), foo3 DOUBLE PRECISION );"
-			)
-		);
-
-		$this->assertEquals( "CREATE TABLE foo ( foo_binary1 BLOB, foo_binary2 BLOB );",
-			$this->replaceVars( "CREATE TABLE foo ( foo_binary1 binary(16), foo_binary2 varbinary(32) );" )
-		);
-
-		$this->assertEquals( "CREATE TABLE text ( text_foo TEXT );",
-			$this->replaceVars( "CREATE TABLE text ( text_foo tinytext );" ),
-			'Table name changed'
-		);
-
-		$this->assertEquals( "CREATE TABLE foo ( foobar INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL );",
-			$this->replaceVars( "CREATE TABLE foo ( foobar INT PRIMARY KEY NOT NULL AUTO_INCREMENT );" )
-		);
-		$this->assertEquals( "CREATE TABLE foo ( foobar INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL );",
-			$this->replaceVars( "CREATE TABLE foo ( foobar INT PRIMARY KEY AUTO_INCREMENT NOT NULL );" )
-		);
-
-		$this->assertEquals( "CREATE TABLE enums( enum1 TEXT, myenum TEXT)",
-			$this->replaceVars( "CREATE TABLE enums( enum1 ENUM('A', 'B'), myenum ENUM ('X', 'Y'))" )
-		);
-
-		$this->assertEquals( "ALTER TABLE foo ADD COLUMN foo_bar INTEGER DEFAULT 42",
-			$this->replaceVars( "ALTER TABLE foo\nADD COLUMN foo_bar int(10) unsigned DEFAULT 42" )
-		);
-
-		$this->assertEquals( "DROP INDEX foo",
-			$this->replaceVars( "DROP INDEX /*i*/foo ON /*_*/bar" )
-		);
-
-		$this->assertEquals( "DROP INDEX foo -- dropping index",
-			$this->replaceVars( "DROP INDEX /*i*/foo ON /*_*/bar -- dropping index" )
-		);
-		$this->assertEquals( "INSERT OR IGNORE INTO foo VALUES ('bar')",
-			$this->replaceVars( "INSERT OR IGNORE INTO foo VALUES ('bar')" )
-		);
-	}
-
-	/**
-	 * @covers DatabaseSqlite::tableName
-	 */
-	public function testTableName() {
-		// @todo Moar!
-		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
-		$this->assertEquals( 'foo', $db->tableName( 'foo' ) );
-		$this->assertEquals( 'sqlite_master', $db->tableName( 'sqlite_master' ) );
-		$db->tablePrefix( 'foo_' );
-		$this->assertEquals( 'sqlite_master', $db->tableName( 'sqlite_master' ) );
-		$this->assertEquals( 'foo_bar', $db->tableName( 'bar' ) );
-	}
-
-	/**
-	 * @covers DatabaseSqlite::duplicateTableStructure
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::duplicateTableStructure
 	 */
 	public function testDuplicateTableStructure() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
@@ -247,10 +162,10 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 			'Normal table duplication'
 		);
 		$indexList = $db->query( 'PRAGMA INDEX_LIST("bar")' );
-		$index = $indexList->next();
+		$index = $indexList->fetchObject();
 		$this->assertEquals( 'bar_index1', $index->name );
 		$this->assertSame( '0', (string)$index->unique );
-		$index = $indexList->next();
+		$index = $indexList->fetchObject();
 		$this->assertEquals( 'bar_index2', $index->name );
 		$this->assertSame( '1', (string)$index->unique );
 
@@ -260,10 +175,10 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 			'Creation of temporary duplicate'
 		);
 		$indexList = $db->query( 'PRAGMA INDEX_LIST("baz")' );
-		$index = $indexList->next();
+		$index = $indexList->fetchObject();
 		$this->assertEquals( 'baz_index1', $index->name );
 		$this->assertSame( '0', (string)$index->unique );
-		$index = $indexList->next();
+		$index = $indexList->fetchObject();
 		$this->assertEquals( 'baz_index2', $index->name );
 		$this->assertSame( '1', (string)$index->unique );
 		$this->assertSame( '0',
@@ -273,7 +188,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DatabaseSqlite::duplicateTableStructure
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::duplicateTableStructure
 	 */
 	public function testDuplicateTableStructureVirtual() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
@@ -296,7 +211,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DatabaseSqlite::deleteJoin
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::deleteJoin
 	 */
 	public function testDeleteJoin() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
@@ -337,7 +252,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DatabaseSqlite::insertId
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insertId
 	 */
 	public function testInsertIdType() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
@@ -353,7 +268,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers DatabaseSqlite::insert
+	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::insert
 	 */
 	public function testInsertAffectedRows() {
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
@@ -372,70 +287,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 
 		$this->assertSame( 3, $db->affectedRows() );
 		$this->assertTrue( $db->close(), "closing database" );
-	}
-
-	private function initAndUpgradeTestDB( $startingVersion ) {
-		static $maint = null;
-		if ( $maint === null ) {
-			$maint = new FakeMaintenance();
-			$maint->loadParamsAndArgs( null, [ 'quiet' => 1 ] );
-		}
-
-		global $IP;
-		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
-		$db->sourceFile( "$IP/tests/phpunit/data/db/sqlite/tables-$startingVersion.sql" );
-		$updater = DatabaseUpdater::newForDB( $db, false, $maint );
-		$updater->doUpdates( [ 'core' ] );
-
-		return $db;
-	}
-
-	private function getTables( $db ) {
-		$list = array_diff(
-			$db->listTables(),
-			[
-				'external_user', // removed from core in 1.22
-				'math', // moved out of core in 1.18
-				'trackbacks', // removed from core in 1.19
-				'searchindex',
-				'searchindex_content',
-				'searchindex_segments',
-				'searchindex_segdir',
-			]
-		);
-		sort( $list );
-
-		return $list;
-	}
-
-	private function getColumns( $db, $table ) {
-		$cols = [];
-		$res = $db->query( "PRAGMA table_info($table)" );
-		$this->assertNotNull( $res );
-		foreach ( $res as $col ) {
-			$cols[$col->name] = $col;
-		}
-		ksort( $cols );
-
-		return $cols;
-	}
-
-	private function getIndexes( $db, $table ) {
-		$indexes = [];
-		$res = $db->query( "PRAGMA index_list($table)" );
-		$this->assertNotNull( $res );
-		foreach ( $res as $index ) {
-			$res2 = $db->query( "PRAGMA index_info({$index->name})" );
-			$this->assertNotNull( $res2 );
-			$index->columns = [];
-			foreach ( $res2 as $col ) {
-				$index->columns[] = $col;
-			}
-			$indexes[$index->name] = $index;
-		}
-		ksort( $indexes );
-
-		return $indexes;
 	}
 
 	/**

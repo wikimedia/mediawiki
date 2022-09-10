@@ -1073,5 +1073,5 @@
 	"api-usage-docref": "APIの使用については$1を参照してください。",
 	"api-exception-trace": "$2の$1($3)\n$4",
 	"api-credits-header": "クレジット",
-	"api-credits": "API の開発者:\n* Roan Kattouw (2007年9月-2009年の主任開発者)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (作成者、2006年9月-2007年9月の主任開発者)\n* Brad Jorsch (2013年-現在の主任開発者)\n\nコメント、提案、質問は mediawiki-api@lists.wikimedia.org にお送りください。\nバグはこちらへご報告ください: https://phabricator.wikimedia.org/"
+	"api-credits": "API の開発者:\n* Yuri Astrakhan (作成者、2006年9月-2007年9月の主任開発者)\n* Roan Kattouw (2007年9月-2009年の主任開発者)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (2013年-2020年の主任開発者)\n\nコメント、提案、質問は mediawiki-api@lists.wikimedia.org にお送りください。\nバグはこちらへご報告ください: https://phabricator.wikimedia.org/"
 }

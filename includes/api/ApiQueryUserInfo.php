@@ -20,12 +20,14 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Query module to get information about the currently logged-in user
@@ -122,7 +124,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		UserIdentity $user,
 		$attachedWiki = UserIdentity::LOCAL
 	) {
-		$providerIds = array_keys( $config->get( 'CentralIdLookupProviders' ) );
+		$providerIds = array_keys( $config->get( MainConfigNames::CentralIdLookupProviders ) );
 
 		$ret = [
 			'centralids' => [],
@@ -231,7 +233,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['realname'] ) &&
-			!in_array( 'realname', $this->getConfig()->get( 'HiddenPrefs' ) )
+			!in_array( 'realname', $this->getConfig()->get( MainConfigNames::HiddenPrefs ) )
 		) {
 			$vals['realname'] = $user->getRealName();
 		}
@@ -326,7 +328,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$categories = array_merge( $categories, $this->userGroupManager->getUserGroups( $user ) );
 
 		// Now get the actual limits
-		foreach ( $this->getConfig()->get( 'RateLimits' ) as $action => $limits ) {
+		foreach ( $this->getConfig()->get( MainConfigNames::RateLimits ) as $action => $limits ) {
 			foreach ( $categories as $cat ) {
 				if ( isset( $limits[$cat] ) ) {
 					$retval[$action][$cat]['hits'] = (int)$limits[$cat][0];
@@ -352,9 +354,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	public function getAllowedParams() {
 		return [
 			'prop' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_ALL => true,
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_ALL => true,
+				ParamValidator::PARAM_TYPE => [
 					'blockinfo',
 					'hasmsg',
 					'groups',

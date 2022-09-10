@@ -274,7 +274,7 @@ class WikiMap {
 		// all wikis in the farm. Historically, any wiki farm had to make the database/prefix
 		// combination unique per wiki. Omit the schema if it does not seem wiki specific.
 		if ( !in_array( $domain->getSchema(), [ null, 'mediawiki' ], true ) ) {
-			// This means a site admin may have specifically taylored the schemas.
+			// This means a site admin may have specifically tailored the schemas.
 			// Domain IDs might use the form <DB>-<project>- or <DB>-<project>-<language>_,
 			// meaning that the schema portion must be accounted for to disambiguate wikis.
 			return "{$domain->getDatabase()}-{$domain->getSchema()}-{$domain->getTablePrefix()}";

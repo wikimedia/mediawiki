@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 
@@ -61,6 +62,7 @@ class HTMLCacheUpdateJob extends Job {
 	public static function newForBacklinks( PageReference $page, $table, $params = [] ) {
 		$title = Title::castFromPageReference( $page );
 		return new self(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$title,
 			[
 				'table' => $table,
@@ -72,8 +74,10 @@ class HTMLCacheUpdateJob extends Job {
 	}
 
 	public function run() {
-		$updateRowsPerJob = MediaWikiServices::getInstance()->getMainConfig()->get( 'UpdateRowsPerJob' );
-		$updateRowsPerQuery = MediaWikiServices::getInstance()->getMainConfig()->get( 'UpdateRowsPerQuery' );
+		$updateRowsPerJob = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::UpdateRowsPerJob );
+		$updateRowsPerQuery = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::UpdateRowsPerQuery );
 		if ( isset( $this->params['table'] ) && !isset( $this->params['pages'] ) ) {
 			$this->params['recursive'] = true; // b/c; base job
 		}
@@ -140,7 +144,7 @@ class HTMLCacheUpdateJob extends Job {
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 		// Update page_touched (skipping pages already touched since the root job).
 		// Check $wgUpdateRowsPerQuery; batch jobs are sized by that already.
-		$batches = array_chunk( $pageIds, $config->get( 'UpdateRowsPerQuery' ) );
+		$batches = array_chunk( $pageIds, $config->get( MainConfigNames::UpdateRowsPerQuery ) );
 		foreach ( $batches as $batch ) {
 			$dbw->update( 'page',
 				[ 'page_touched' => $dbw->timestamp( $newTouchedUnix ) ],
@@ -159,7 +163,7 @@ class HTMLCacheUpdateJob extends Job {
 			'page',
 			array_merge(
 				[ 'page_namespace', 'page_title' ],
-				$config->get( 'PageLanguageUseDB' ) ? [ 'page_lang' ] : []
+				$config->get( MainConfigNames::PageLanguageUseDB ) ? [ 'page_lang' ] : []
 			),
 			[ 'page_id' => $pageIds, 'page_touched' => $dbw->timestamp( $newTouchedUnix ) ],
 			__METHOD__

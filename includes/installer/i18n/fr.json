@@ -3,6 +3,7 @@
 		"authors": [
 			"Aadri",
 			"C13m3n7",
+			"Cigaryno",
 			"Cl3m3n7",
 			"Crochet.david",
 			"Gomoko",
@@ -32,8 +33,7 @@
 			"Wladek92",
 			"Wyz",
 			"Yumeki",
-			"아라",
-			"Cigaryno"
+			"아라"
 		]
 	},
 	"config-desc": "Le programme d’installation de MediaWiki",
@@ -246,11 +246,11 @@
 	"config-personalization-settings": "Personnalisation",
 	"config-logo-summary": "Pour chacun de ces champs, vous devrez télécharger une image de la taille appropriée, et saisir l’URL dans les cases ci-dessous. Vous pouvez utiliser <code>$wgStylePath</code> ou <code>$wgScriptPath</code> si votre logo se rapporte à ces chemins. Vous pouvez laisser n’importe laquelle de ces cases vide. \n\nSur les navigateurs pris en charge, vous pouvez aussi tirer des fichiers image depuis votre système de fichiers vers les cases de saisie ou dans la zone d’aperçu.",
 	"config-logo-preview-main": "Page d’accueil",
-	"config-logo-icon": "Logo (icône)",
+	"config-logo-icon": "Logo (icône) :",
 	"config-logo-icon-help": "Votre icône de logo doit être carrée et faire, dans l’idéal, plus de 50px, ou être un SVG.",
-	"config-logo-wordmark": "Terme de la marque (facultatif)",
+	"config-logo-wordmark": "Terme de la marque (facultatif) :",
 	"config-logo-wordmark-help": "Le nom de votre site. Si non défini, le texte sera en général pris par défaut. Dans l’idéal, un SVG avec une hauteur inférieure ou égale à 30px.",
-	"config-logo-tagline": "Slogan (facultatif)",
+	"config-logo-tagline": "Slogan (facultatif) :",
 	"config-logo-tagline-help": "Le slogan de votre site. À utiliser seulement si vous avez défini ci-dessus un terme de marque. Si non défini, le texte sera en général pris par défaut. La hauteur combinée du slogan et du terme de la marque, en règle générale, ne devrait pas dépasser 50px.",
 	"config-logo-sidebar": "Logo de barre latérale (facultatif) :",
 	"config-logo-filedrop": "Tirer un fichier d’image ici",

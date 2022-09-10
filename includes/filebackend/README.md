@@ -16,14 +16,14 @@ file system to distributed object stores). The types include:
 * FileBackendMultiWrite (useful for transitioning from one backend to another)
 
 Configuration documentation for each type of backend is to be found in their
-__construct() inline documentation.
+`__construct()` inline documentation.
 
 Setup
 -----
 
 File backends are registered in LocalSettings.php via the global variable
 $wgFileBackends. To access one of those defined backends, one would use
-FileBackendStore::get( <name> ) which will bring back a FileBackend object
+`FileBackendStore::get( <name> )` which will bring back a FileBackend object
 handle. Such handles are reused for any subsequent get() call (via singleton).
 The FileBackends objects are caching request calls such as file stats,
 SHA1 requests or TCP connection handles.

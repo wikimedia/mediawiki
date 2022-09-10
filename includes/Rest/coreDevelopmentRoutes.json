@@ -36,40 +36,33 @@
 		"mode": "user"
 	},
 	{
-		"path": "/coredev/v0/revision/{id}",
-		"class": "MediaWiki\\Rest\\Handler\\RevisionSourceHandler",
-		"services": [
-			"MainConfig",
-			"RevisionLookup",
-			"TitleFormatter",
-			"PageStore"
-		],
-		"format": "source"
+		"method": "POST",
+		"path": "/coredev/v0/transform/{from}/to/{format}/{title}/{revision}",
+		"class": "MediaWiki\\Rest\\Handler\\TransformHandler",
+		"factory": "MediaWiki\\Rest\\Handler\\TransformHandler::factory",
+		"transformations": {
+			"wikitext": [ "html", "lint" ],
+			"html": [ "wikitext" ]
+		}
 	},
 	{
-		"path": "/coredev/v0/revision/{id}/html",
-		"class": "MediaWiki\\Rest\\Handler\\RevisionHTMLHandler",
-		"services": [
-			"MainConfig",
-			"RevisionLookup",
-			"TitleFormatter",
-			"ParserCacheFactory",
-			"GlobalIdGenerator",
-			"PageStore"
-		],
-		"format": "html"
+		"method": "POST",
+		"path": "/coredev/v0/transform/{from}/to/{format}",
+		"class": "MediaWiki\\Rest\\Handler\\TransformHandler",
+		"factory": "MediaWiki\\Rest\\Handler\\TransformHandler::factory",
+		"transformations": {
+			"wikitext": [ "html", "lint" ],
+			"html": [ "wikitext" ]
+		}
 	},
 	{
-		"path": "/coredev/v0/revision/{id}/with_html",
-		"class": "MediaWiki\\Rest\\Handler\\RevisionHTMLHandler",
-		"services": [
-			"MainConfig",
-			"RevisionLookup",
-			"TitleFormatter",
-			"ParserCacheFactory",
-			"GlobalIdGenerator",
-			"PageStore"
-		],
-		"format": "with_html"
+		"method": "POST",
+		"path": "/coredev/v0/transform/{from}/to/{format}/{title}",
+		"class": "MediaWiki\\Rest\\Handler\\TransformHandler",
+		"factory": "MediaWiki\\Rest\\Handler\\TransformHandler::factory",
+		"transformations": {
+			"wikitext": [ "html", "lint" ],
+			"html": [ "wikitext" ]
+		}
 	}
 ]

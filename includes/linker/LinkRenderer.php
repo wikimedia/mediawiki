@@ -144,23 +144,6 @@ class LinkRenderer {
 	}
 
 	/**
-	 * @deprecated since 1.37. Stub threshold feature was removed. See T284917
-	 * @param int $threshold
-	 */
-	public function setStubThreshold( $threshold ) {
-		wfDeprecated( __METHOD__, '1.37' );
-	}
-
-	/**
-	 * @deprecated since 1.37. Stub threshold feature was removed. See T284917
-	 * @return int
-	 */
-	public function getStubThreshold() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return 0;
-	}
-
-	/**
 	 * @param LinkTarget|PageReference $target
 	 * @param string|HtmlArmor|null $text
 	 * @param array $extraAttribs
@@ -181,6 +164,7 @@ class LinkRenderer {
 	private function runBeginHook( $target, &$text, &$extraAttribs, &$query, $isKnown ) {
 		$ret = null;
 		if ( !$this->hookRunner->onHtmlPageLinkRendererBegin(
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			$this, $this->castToTitle( $target ), $text, $extraAttribs, $query, $ret )
 		) {
 			return $ret;
@@ -328,6 +312,7 @@ class LinkRenderer {
 	private function buildAElement( $target, $text, array $attribs, $isKnown ) {
 		$ret = null;
 		if ( !$this->hookRunner->onHtmlPageLinkRendererEnd(
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			$this, $this->castToLinkTarget( $target ), $isKnown, $text, $attribs, $ret )
 		) {
 			return $ret;
@@ -460,6 +445,7 @@ class LinkRenderer {
 			return Title::newFromLinkTarget( $target );
 		}
 		// $target instanceof PageReference
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable castFrom does not return null here
 		return Title::castFromPageReference( $target );
 	}
 
@@ -469,6 +455,7 @@ class LinkRenderer {
 	 */
 	private function castToLinkTarget( $target ): LinkTarget {
 		if ( $target instanceof PageReference ) {
+			// @phan-suppress-next-line PhanTypeMismatchReturnNullable castFrom does not return null here
 			return Title::castFromPageReference( $target );
 		}
 		// $target instanceof LinkTarget

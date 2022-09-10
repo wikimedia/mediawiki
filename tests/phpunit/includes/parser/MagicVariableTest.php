@@ -39,7 +39,7 @@ class MagicVariableTest extends MediaWikiIntegrationTestCase {
 		$this->testParser->clearState();
 
 		# Needs a title to do magic word stuff
-		$title = Title::newFromText( 'Tests' );
+		$title = Title::makeTitle( NS_MAIN, 'Tests' );
 		# Else it needs a db connection just to check if it's a redirect
 		# (when deciding the page language).
 		$title->mRedirect = false;
@@ -200,7 +200,7 @@ class MagicVariableTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function setParserTS( $ts ) {
 		$this->testParser->getOptions()->setTimestamp( $ts );
-		$this->testParser->mRevisionTimestamp = $ts;
+		TestingAccessWrapper::newFromObject( $this->testParser )->mRevisionTimestamp = $ts;
 	}
 
 	/**

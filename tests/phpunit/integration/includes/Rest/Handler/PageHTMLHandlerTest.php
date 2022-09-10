@@ -2,16 +2,17 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use BagOStuff;
 use DeferredUpdates;
-use EmptyBagOStuff;
 use Exception;
 use ExtensionRegistry;
 use HashBagOStuff;
 use HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Rest\Handler\PageHTMLHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -23,10 +24,8 @@ use Psr\Log\NullLogger;
 use WANObjectCache;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
-use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
-use Wikimedia\TestingAccessWrapper;
 use WikiPage;
 
 /**
@@ -35,10 +34,14 @@ use WikiPage;
  */
 class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	use HandlerTestTrait;
+	use HTMLHandlerTestTrait;
 
 	private const WIKITEXT = 'Hello \'\'\'World\'\'\'';
 
-	private const HTML = '<p>Hello <b>World</b></p>';
+	private const HTML = '>World</';
+
+	/** @var HashBagOStuff */
+	private $parserCacheBagOStuff;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -51,6 +54,8 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			'text',
 			'content'
 		];
+
+		$this->parserCacheBagOStuff = new HashBagOStuff();
 	}
 
 	/**
@@ -63,47 +68,62 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param BagOStuff|null $cache
 	 * @param Parsoid|MockObject|null $parsoid
+	 *
 	 * @return PageHTMLHandler
-	 * @throws Exception
 	 */
-	private function newHandler( BagOStuff $cache = null, Parsoid $parsoid = null ): PageHTMLHandler {
+	private function newHandler( ?Parsoid $parsoid = null ): PageHTMLHandler {
 		$parserCacheFactoryOptions = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
-			'ParserCacheUseJson' => true,
 			'CacheEpoch' => '20200202112233',
-			'OldRevisionParserCacheExpireTime' => 60,
+			'OldRevisionParserCacheExpireTime' => 60 * 60,
 		] );
 
+		$services = $this->getServiceContainer();
 		$parserCacheFactory = new ParserCacheFactory(
-			$cache ?: new EmptyBagOStuff(),
-			new WANObjectCache( [ 'cache' => $cache ?: new EmptyBagOStuff() ] ),
+			$this->parserCacheBagOStuff,
+			new WANObjectCache( [ 'cache' => $this->parserCacheBagOStuff, ] ),
 			$this->createHookContainer(),
 			new JsonCodec(),
 			new NullStatsdDataFactory(),
 			new NullLogger(),
 			$parserCacheFactoryOptions,
-			$this->getServiceContainer()->getTitleFactory(),
-			$this->getServiceContainer()->getWikiPageFactory()
+			$services->getTitleFactory(),
+			$services->getWikiPageFactory()
+		);
+
+		$config = [
+			'RightsUrl' => 'https://example.com/rights',
+			'RightsText' => 'some rights',
+			'ParsoidCacheConfig' =>
+				MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig )
+		];
+
+		$parsoidOutputAccess = new ParsoidOutputAccess(
+			new ServiceOptions(
+				ParsoidOutputAccess::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			$parserCacheFactory,
+			$services->getRevisionLookup(),
+			$services->getGlobalIdGenerator(),
+			$services->getStatsdDataFactory(),
+			$parsoid ?? new Parsoid(
+				$services->get( 'ParsoidSiteConfig' ),
+				$services->get( 'ParsoidDataAccess' )
+			),
+			$services->getParsoidSiteConfig(),
+			$services->getParsoidPageConfigFactory()
 		);
 
 		$handler = new PageHTMLHandler(
-			new HashConfig( [
-				'RightsUrl' => 'https://example.com/rights',
-				'RightsText' => 'some rights',
-			] ),
-			$this->getServiceContainer()->getRevisionLookup(),
-			$this->getServiceContainer()->getTitleFormatter(),
-			$parserCacheFactory,
-			$this->getServiceContainer()->getGlobalIdGenerator(),
-			$this->getServiceContainer()->getPageStore()
+			new HashConfig( $config ),
+			$services->getRevisionLookup(),
+			$services->getTitleFormatter(),
+			$services->getPageStore(),
+			$this->getParsoidOutputStash(),
+			$services->getStatsdDataFactory(),
+			$parsoidOutputAccess
 		);
-
-		if ( $parsoid !== null ) {
-			$handlerWrapper = TestingAccessWrapper::newFromObject( $handler );
-			$helperWrapper = TestingAccessWrapper::newFromObject( $handlerWrapper->htmlHelper );
-			$helperWrapper->parsoid = $parsoid;
-		}
 
 		return $handler;
 	}
@@ -154,36 +174,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( self::HTML, $htmlResponse );
 	}
 
-	public function testHtmlIsCached() {
-		$this->checkParsoidInstalled();
-
-		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
-		$request = new RequestData(
-			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
-		);
-
-		$cache = new HashBagOStuff();
-		$parsoid = $this->createNoOpMock( Parsoid::class, [ 'wikitext2html' ] );
-		$parsoid->expects( $this->once() )
-			->method( 'wikitext2html' )
-			->willReturn( new PageBundle( 'mocked HTML', null, null, '1.0' ) );
-
-		$handler = $this->newHandler( $cache, $parsoid );
-		$response = $this->executeHandler( $handler, $request, [
-			'format' => 'html'
-		] );
-		$htmlResponse = (string)$response->getBody();
-		$this->assertStringContainsString( 'mocked HTML', $htmlResponse );
-
-		// check that we can run the test again and ensure that the parse is only run once
-		$handler = $this->newHandler( $cache, $parsoid );
-		$response = $this->executeHandler( $handler, $request, [
-			'format' => 'html'
-		] );
-		$htmlResponse = (string)$response->getBody();
-		$this->assertStringContainsString( 'mocked HTML', $htmlResponse );
-	}
-
 	public function testEtagLastModified() {
 		$this->checkParsoidInstalled();
 
@@ -195,32 +185,30 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
 		);
 
-		$cache = new HashBagOStuff();
-
 		// First, test it works if nothing was cached yet.
 		// Make some time pass since page was created:
 		$time += 10;
 		MWTimestamp::setFakeTime( $time );
-		$handler = $this->newHandler( $cache );
+		$handler = $this->newHandler();
 		$response = $this->executeHandler( $handler, $request, [
 			'format' => 'html'
 		] );
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
 		$etag = $response->getHeaderLine( 'ETag' );
-		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x"', $etag );
+		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x/%s"', $etag );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
 		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time ),
 			$response->getHeaderLine( 'Last-Modified' ) );
 
 		// Now, test that headers work when getting from cache too.
-		$handler = $this->newHandler( $cache );
+		$handler = $this->newHandler();
 		$response = $this->executeHandler( $handler, $request, [
 			'format' => 'html'
 		] );
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
 		$this->assertSame( $etag, $response->getHeaderLine( 'ETag' ) );
 		$etag = $response->getHeaderLine( 'ETag' );
-		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x"', $etag );
+		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x/%s"', $etag );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
 		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time ),
 			$response->getHeaderLine( 'Last-Modified' ) );
@@ -234,14 +222,14 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 		DeferredUpdates::doUpdates();
 
-		$handler = $this->newHandler( $cache );
+		$handler = $this->newHandler();
 		$response = $this->executeHandler( $handler, $request, [
 			'format' => 'html'
 		] );
 		$this->assertArrayHasKey( 'ETag', $response->getHeaders() );
 		$this->assertNotSame( $etag, $response->getHeaderLine( 'ETag' ) );
 		$etag = $response->getHeaderLine( 'ETag' );
-		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x"', $etag );
+		$this->assertStringMatchesFormat( '"' . $page->getLatest() . '/%x-%x-%x-%x-%x/%s"', $etag );
 		$this->assertArrayHasKey( 'Last-Modified', $response->getHeaders() );
 		$this->assertSame( MWTimestamp::convert( TS_RFC2822, $time ),
 			$response->getHeaderLine( 'Last-Modified' ) );
@@ -289,7 +277,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			->method( 'wikitext2html' )
 			->willThrowException( $parsoidException );
 
-		$handler = $this->newHandler( null, $parsoid );
+		$handler = $this->newHandler( $parsoid );
 		$this->expectExceptionObject( $expectedException );
 		$this->executeHandler( $handler, $request, [
 			'format' => 'html'
@@ -340,6 +328,83 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( CONTENT_MODEL_WIKITEXT, $data['content_model'] );
 		$this->assertSame( 'https://example.com/rights', $data['license']['url'] );
 		$this->assertSame( 'some rights', $data['license']['title'] );
+	}
+
+	/**
+	 * Request One:
+	 *
+	 * When a request is made with no stash entries in the stash and stashing
+	 * is set to false, don't stash anything. At this point, the stash is empty.
+	 *
+	 * Request Two:
+	 *
+	 * Once a request is made with stashing option set to true, we should have
+	 * one entry in parsoid stash. So at this point, the stash is no longer empty
+	 * as before.
+	 *
+	 * Request Three:
+	 *
+	 * Upon the third request, there is already a stash entry and if the 3rd request's
+	 * stashing option is set to false, we're not invalidating the stash entries that
+	 * exiting with the UUID. So, if we request a parsoid stashed object from the stash
+	 * with a given UUID that exist, we should have a hit.
+	 */
+	public function testExecuteStashParsoidOutput() {
+		$page = $this->getExistingTestPage();
+		$outputStash = $this->getParsoidOutputStash();
+
+		[ /* $html1 */, $etag1, $stashKey1 ] = $this->executePageHTMLRequest( $page );
+		$this->assertNull( $outputStash->get( $stashKey1 ) );
+
+		[ /* $html2 */, $etag2, $stashKey2 ] = $this->executePageHTMLRequest( $page, [ 'stash' => true ] );
+		$this->assertNotNull( $outputStash->get( $stashKey2 ) );
+
+		[ /* $html3 */, $etag3, $stashKey3 ] = $this->executePageHTMLRequest( $page );
+		/**
+		 * The stash for the previous request should still live at this point.
+		 */
+		$this->assertNotNull( $outputStash->get( $stashKey2 ) );
+		$this->assertNotNull( $outputStash->get( $stashKey3 ) );
+		$this->assertSame( $etag1, $etag3 );
+		$this->assertNotSame( $etag1, $etag2 );
+
+		// Make sure the output for stashed and unstashed doesn't have the same tag,
+		// since it will actually be different!
+		// FIXME: implement flavors and write test cases for them.
+	}
+
+	public function testETagVariesOnFormat() {
+		$page = $this->getExistingTestPage();
+
+		[ /* $html1 */, $etag1 ] =
+			$this->executePageHTMLRequest( $page, [], [ 'format' => 'html' ] );
+
+		[ /* $html2 */, $etag2 ] =
+			$this->executePageHTMLRequest( $page, [], [ 'format' => 'with_html' ] );
+
+		$this->assertNotSame( $etag1, $etag2 );
+	}
+
+	public function testStashingWithRateLimitExceeded() {
+		// Set the rate limit to 1 request per minute
+		$this->overrideConfigValue(
+			MainConfigNames::RateLimits,
+			[
+				'stashbasehtml' => [
+					'&can-bypass' => false,
+					'ip' => [ 1, 60 ],
+					'newbie' => [ 1, 60 ]
+				]
+			]
+		);
+
+		$page = $this->getExistingTestPage();
+
+		$this->executePageHTMLRequest( $page, [ 'stash' => true ] );
+		// In this request, the rate limit has been exceeded, so it should throw.
+		$this->expectException( LocalizedHttpException::class );
+		$this->expectExceptionCode( 429 );
+		$this->executePageHTMLRequest( $page, [ 'stash' => true ] );
 	}
 
 }

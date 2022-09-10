@@ -83,6 +83,7 @@ class MWFileProps {
 			$info['media_type'] = $this->magic->getMediaType( $path, $info['mime'] );
 
 			# Height, width and metadata
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable See XXX above
 			$handler = MediaHandler::getHandler( $info['mime'] );
 			if ( $handler ) {
 				$sizeAndMetadata = $handler->getSizeAndMetadataWithFallback( $fsFile, $path );

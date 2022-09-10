@@ -117,7 +117,8 @@ class ActionFactory {
 				'MainWANObjectCache',
 				'WatchedItemStore',
 				'RedirectLookup',
-				'MainConfig'
+				'RestrictionStore',
+				'LinksMigration',
 			],
 		],
 		'markpatrolled' => [
@@ -151,6 +152,7 @@ class ActionFactory {
 				'Parser',
 				'PermissionManager',
 				'RevisionLookup',
+				'RestrictionStore',
 			],
 		],
 		'revert' => [

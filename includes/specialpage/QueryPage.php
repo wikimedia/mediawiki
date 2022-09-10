@@ -23,6 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\IDatabase;
@@ -80,13 +81,13 @@ abstract class QueryPage extends SpecialPage {
 	 * DO NOT CHANGE THIS LIST without testing that
 	 * maintenance/updateSpecialPages.php still works.
 	 *
-	 * @return string[][]
+	 * @return array[] List of [ string $class, string $specialPageName, ?int $limit (optional) ].
+	 *  Limit defaults to $wgQueryCacheLimit if not given.
 	 */
 	public static function getPages() {
 		static $qp = null;
 
 		if ( $qp === null ) {
-			// QueryPage subclass, Special page name
 			$qp = [
 				[ SpecialAncientPages::class, 'Ancientpages' ],
 				[ SpecialBrokenRedirects::class, 'BrokenRedirects' ],
@@ -97,7 +98,7 @@ abstract class QueryPage extends SpecialPage {
 				[ SpecialListRedirects::class, 'Listredirects' ],
 				[ SpecialLonelyPages::class, 'Lonelypages' ],
 				[ SpecialLongPages::class, 'Longpages' ],
-				[ SpecialMediaStatistics::class, 'MediaStatistics' ],
+				[ SpecialMediaStatistics::class, 'MediaStatistics', SpecialMediaStatistics::MAX_LIMIT ],
 				[ SpecialMIMESearch::class, 'MIMEsearch' ],
 				[ SpecialMostCategories::class, 'Mostcategories' ],
 				[ MostimagesPage::class, 'Mostimages' ],
@@ -155,7 +156,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return string[]
 	 */
 	public static function getDisabledQueryPages( Config $config ) {
-		$disableQueryPageUpdate = $config->get( 'DisableQueryPageUpdate' );
+		$disableQueryPageUpdate = $config->get( MainConfigNames::DisableQueryPageUpdate );
 
 		if ( !is_array( $disableQueryPageUpdate ) ) {
 			return [];
@@ -210,18 +211,19 @@ abstract class QueryPage extends SpecialPage {
 	 * @since 1.18
 	 */
 	public function getQueryInfo() {
+		// @phan-suppress-next-line PhanTypeMismatchReturnProbablyReal null needed for b/c checks
 		return null;
 	}
 
 	/**
 	 * For back-compat, subclasses may return a raw SQL query here, as a string.
-	 * This is strongly deprecated; getQueryInfo() should be overridden instead.
+	 * @deprecated since 1.39; getQueryInfo() should be overridden instead.
 	 * @throws MWException
 	 * @return string
 	 * @suppress PhanPluginNeverReturnMethod
 	 */
 	protected function getSQL() {
-		/* Implement getQueryInfo() instead */
+		wfDeprecated( __METHOD__, '1.39' );
 		throw new MWException( "Bug in a QueryPage: doesn't implement getQueryInfo() nor "
 			. "getQuery() properly" );
 	}
@@ -264,15 +266,27 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
-	 * Is this query expensive (for some definition of expensive)? Then we
-	 * don't let it run in miser mode. $wgDisableQueryPages causes all query
-	 * pages to be declared expensive. Some query pages are always expensive.
+	 * Should this query page only be updated offline on large wikis?
+	 *
+	 * If the query for this page is considered too expensive to run on-demand
+	 * for large wikis (e.g. every time the special page is viewed), then
+	 * implement this as returning true.
+	 *
+	 * "Large wikis" are those that enable $wgMiserMode. The value of
+	 * ::isExpensive() has no effect by default when $wgMiserMode is off.
+	 *
+	 * It is expected that such large wikis, periodically run the
+	 * UpdateSpecialPages maintenance script to update these query pages.
+	 *
+	 * By enabling $wgDisableQueryPages, all query pages will be considered
+	 * as expensive and updated offline only, even query pages that do not
+	 * mark themselves as expensive.
 	 *
 	 * @stable to override
 	 * @return bool
 	 */
 	public function isExpensive() {
-		return $this->getConfig()->get( 'DisableQueryPages' );
+		return $this->getConfig()->get( MainConfigNames::DisableQueryPages );
 	}
 
 	/**
@@ -295,7 +309,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return bool
 	 */
 	public function isCached() {
-		return $this->isExpensive() && $this->getConfig()->get( 'MiserMode' );
+		return $this->isExpensive() && $this->getConfig()->get( MainConfigNames::MiserMode );
 	}
 
 	/**
@@ -357,7 +371,7 @@ abstract class QueryPage extends SpecialPage {
 	 *
 	 * @stable to override
 	 *
-	 * @param int|bool $limit Limit for SQL statement
+	 * @param int|false $limit Limit for SQL statement or false for no limit
 	 * @param bool $ignoreErrors Whether to ignore database errors
 	 * @throws DBError|Exception
 	 * @return bool|int
@@ -410,13 +424,16 @@ abstract class QueryPage extends SpecialPage {
 							$dbw->insert( 'querycache', $vals, $fname );
 						}
 						// Update the querycache_info record for the page
-						$dbw->delete( 'querycache_info',
-							[ 'qci_type' => $this->getName() ],
-							$fname
-						);
-						$dbw->insert( 'querycache_info',
-							[ 'qci_type' => $this->getName(),
-								'qci_timestamp' => $dbw->timestamp() ],
+						$dbw->upsert(
+							'querycache_info',
+							[
+								'qci_type' => $this->getName(),
+								'qci_timestamp' => $dbw->timestamp(),
+							],
+							'qci_type',
+							[
+								'qci_timestamp' => $dbw->timestamp(),
+							],
 							$fname
 						);
 					}
@@ -484,8 +501,8 @@ abstract class QueryPage extends SpecialPage {
 	/**
 	 * Run the query and return the result
 	 * @stable to override
-	 * @param int|bool $limit Numerical limit or false for no limit
-	 * @param int|bool $offset Numerical offset or false for no offset
+	 * @param int|false $limit Numerical limit or false for no limit
+	 * @param int|false $offset Numerical offset or false for no offset
 	 * @return IResultWrapper
 	 * @since 1.18
 	 */
@@ -525,6 +542,12 @@ abstract class QueryPage extends SpecialPage {
 			);
 		} else {
 			// Old-fashioned raw SQL style, deprecated
+			MWDebug::detectDeprecatedOverride(
+				$this,
+				__CLASS__,
+				'getSQL',
+				'1.39'
+			);
 			$sql = $this->getSQL();
 			$sql .= ' ORDER BY ' . implode( ', ', $order );
 			$sql = $dbr->limitResult( $sql, $limit, $offset );
@@ -536,8 +559,8 @@ abstract class QueryPage extends SpecialPage {
 
 	/**
 	 * Somewhat deprecated, you probably want to be using execute()
-	 * @param int|bool $offset
-	 * @param int|bool $limit
+	 * @param int|false $offset
+	 * @param int|false $limit
 	 * @return IResultWrapper
 	 */
 	public function doQuery( $offset = false, $limit = false ) {
@@ -552,8 +575,8 @@ abstract class QueryPage extends SpecialPage {
 	 * Fetch the query results from the query cache
 	 * @stable to override
 	 *
-	 * @param int|bool $limit Numerical limit or false for no limit
-	 * @param int|bool $offset Numerical offset or false for no offset
+	 * @param int|false $limit Numerical limit or false for no limit
+	 * @param int|false $offset Numerical offset or false for no offset
 	 * @return IResultWrapper
 	 * @since 1.18
 	 */
@@ -629,7 +652,7 @@ abstract class QueryPage extends SpecialPage {
 	protected function getLimitOffset() {
 		list( $limit, $offset ) = $this->getRequest()
 			->getLimitOffsetForUser( $this->getUser() );
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$maxResults = $this->getMaxResults();
 			// Can't display more than max results on a page
 			$limit = min( $limit, $maxResults );
@@ -649,7 +672,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	protected function getDBLimit( $uiLimit, $uiOffset ) {
 		$maxResults = $this->getMaxResults();
-		if ( $this->getConfig()->get( 'MiserMode' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$limit = min( $uiLimit + 1, $maxResults - $uiOffset );
 			return max( $limit, 0 );
 		} else {
@@ -669,7 +692,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	protected function getMaxResults() {
 		// Max of 10000, unless we store more than 10000 in query cache.
-		return max( $this->getConfig()->get( 'QueryCacheLimit' ), 10000 );
+		return max( $this->getConfig()->get( MainConfigNames::QueryCacheLimit ), 10000 );
 	}
 
 	/**
@@ -708,7 +731,8 @@ abstract class QueryPage extends SpecialPage {
 				// Fetch the timestamp of this update
 				$ts = $this->getCachedTimestamp();
 				$lang = $this->getLanguage();
-				$maxResults = $lang->formatNum( $this->getConfig()->get( 'QueryCacheLimit' ) );
+				$maxResults = $lang->formatNum( $this->getConfig()->get(
+					MainConfigNames::QueryCacheLimit ) );
 
 				if ( $ts ) {
 					$user = $this->getUser();
@@ -758,7 +782,7 @@ abstract class QueryPage extends SpecialPage {
 					min( $this->numRows, $this->limit ), // do not show the one extra row, if exist
 					$this->offset + 1, ( min( $this->numRows, $this->limit ) + $this->offset ) )->parseAsBlock() );
 				// Disable the "next" link when we reach the end
-				$miserMaxResults = $this->getConfig()->get( 'MiserMode' )
+				$miserMaxResults = $this->getConfig()->get( MainConfigNames::MiserMode )
 					&& ( $this->offset + $this->limit >= $this->getMaxResults() );
 				$atEnd = ( $this->numRows <= $this->limit ) || $miserMaxResults;
 				$paging = $this->buildPrevNextNavigation( $this->offset,
@@ -785,6 +809,7 @@ abstract class QueryPage extends SpecialPage {
 
 		// Repeat the paging links at the bottom
 		if ( $this->shownavigation ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable paging is set when used here
 			$out->addHTML( '<p>' . $paging . '</p>' );
 		}
 

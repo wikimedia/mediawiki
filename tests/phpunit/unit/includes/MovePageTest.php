@@ -130,9 +130,9 @@ class MovePageTest extends MediaWikiUnitTestCase {
 		);
 		foreach ( [ 'checkPermissions', 'authorizeMove', 'probablyCanMove' ] as $method ) {
 			$notSpamStatus = $mp->$method( $this->mockRegisteredUltimateAuthority(), 'NOT_SPAM' );
-			$this->assertTrue( $notSpamStatus->isGood() );
+			$this->assertStatusGood( $notSpamStatus );
 			$spamStatus = $mp->$method( $this->mockRegisteredUltimateAuthority(), 'SPAM' );
-			$this->assertFalse( $spamStatus->isGood() );
+			$this->assertStatusNotGood( $spamStatus );
 			$this->assertArrayEquals( [ [
 				'message' => 'spamprotectiontext',
 				'type' => 'error',

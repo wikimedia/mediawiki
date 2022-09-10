@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Parser;
 
 use CacheTime;
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
 use ParserOptions;
@@ -19,9 +20,10 @@ class CacheTimeTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		MWTimestamp::setFakeTime( ParserCacheSerializationTestCases::FAKE_TIME );
-		$this->setMwGlobals( [
-			'wgParserCacheExpireTime' => ParserCacheSerializationTestCases::FAKE_CACHE_EXPIRY
-		] );
+		$this->overrideConfigValue(
+			MainConfigNames::ParserCacheExpireTime,
+			ParserCacheSerializationTestCases::FAKE_CACHE_EXPIRY
+		);
 	}
 
 	/**

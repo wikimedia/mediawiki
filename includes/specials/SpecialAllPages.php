@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -85,7 +86,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 		$to = $request->getVal( 'to', null );
 		$namespace = $request->getInt( 'namespace' );
 
-		$miserMode = (bool)$this->getConfig()->get( 'MiserMode' );
+		$miserMode = (bool)$this->getConfig()->get( MainConfigNames::MiserMode );
 
 		// Redirects filter is disabled in MiserMode
 		$hideredirects = $request->getBool( 'hideredirects', false ) && !$miserMode;
@@ -119,7 +120,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 	protected function outputHTMLForm( $namespace = NS_MAIN,
 		$from = '', $to = '', $hideRedirects = false
 	) {
-		$miserMode = (bool)$this->getConfig()->get( 'MiserMode' );
+		$miserMode = (bool)$this->getConfig()->get( MainConfigNames::MiserMode );
 		$formDescriptor = [
 			'from' => [
 				'type' => 'text',
@@ -158,11 +159,10 @@ class SpecialAllPages extends IncludableSpecialPage {
 			unset( $formDescriptor['hideredirects'] );
 		}
 
-		$context = new DerivativeContext( $this->getContext() );
-		$context->setTitle( $this->getPageTitle() ); // Remove subpage
-		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $context );
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
 		$htmlForm
 			->setMethod( 'get' )
+			->setTitle( $this->getPageTitle() ) // Remove subpage
 			->setWrapperLegendMsg( 'allpages' )
 			->setSubmitTextMsg( 'allpagessubmit' )
 			->prepareForm()
@@ -324,6 +324,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 		}
 
 		// Generate a "next page" link if needed
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $res is declared when have maxPerPage
 		if ( $n == $this->maxPerPage && $s = $res->fetchObject() ) {
 			# $s is the first link of the next chunk
 			$t = Title::makeTitle( $namespace, $s->page_title );

@@ -1,7 +1,5 @@
 <?php
 /**
- * Shilha specific code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,10 +16,11 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
 
 /**
+ * Shilha specific code.
+ *
  * Conversion script between Latin and Tifinagh for Tachelhit.
  * - Tifinagh -> lowercase Latin
  * - lowercase/uppercase Latin -> Tifinagh
@@ -31,7 +30,7 @@
  *   - https://en.wikipedia.org/wiki/Shilha_language
  *   - LanguageSr.php
  *
- * @ingroup Language
+ * @ingroup Languages
  */
 class ShiConverter extends LanguageConverterSpecific {
 	// The Tifinagh alphabet sequence is based on
@@ -179,7 +178,7 @@ class ShiConverter extends LanguageConverterSpecific {
 	 */
 	public function getVariantsFallbacks(): array {
 		return [
-			'shi' => 'shi-tfng',
+			'shi' => [ 'shi-latn', 'shi-tfng' ],
 			'shi-tfng' => 'shi',
 			'shi-latn' => 'shi',
 		];

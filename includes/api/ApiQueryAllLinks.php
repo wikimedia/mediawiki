@@ -20,6 +20,11 @@
  * @file
  */
 
+use MediaWiki\Linker\LinksMigration;
+use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
+
 /**
  * Query module to enumerate links from all pages together.
  *
@@ -40,17 +45,22 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	/** @var GenderCache */
 	private $genderCache;
 
+	/** @var LinksMigration */
+	private $linksMigration;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param GenderCache $genderCache
+	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		NamespaceInfo $namespaceInfo,
-		GenderCache $genderCache
+		GenderCache $genderCache,
+		LinksMigration $linksMigration
 	) {
 		switch ( $moduleName ) {
 			case 'alllinks':
@@ -94,6 +104,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		parent::__construct( $query, $moduleName, $prefix );
 		$this->namespaceInfo = $namespaceInfo;
 		$this->genderCache = $genderCache;
+		$this->linksMigration = $linksMigration;
 	}
 
 	public function execute() {
@@ -117,7 +128,21 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 
 		$pfx = $this->tablePrefix;
-		$fieldTitle = $this->fieldTitle;
+
+		$nsField = $pfx . 'namespace';
+		$titleField = $pfx . $this->fieldTitle;
+		if ( isset( $this->linksMigration::$mapping[$this->table] ) ) {
+			list( $nsField, $titleField ) = $this->linksMigration->getTitleFields( $this->table );
+			$queryInfo = $this->linksMigration->getQueryInfo( $this->table );
+			$this->addTables( $queryInfo['tables'] );
+			$this->addJoinConds( $queryInfo['joins'] );
+		} else {
+			if ( $this->useIndex ) {
+				$this->addOption( 'USE INDEX', $this->useIndex );
+			}
+			$this->addTables( $this->table );
+		}
+
 		$prop = array_fill_keys( $params['prop'], true );
 		$fld_ids = isset( $prop['ids'] );
 		$fld_title = isset( $prop['title'] );
@@ -143,9 +168,8 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			$this->addOption( 'DISTINCT' );
 		}
 
-		$this->addTables( $this->table );
 		if ( $this->hasNamespace ) {
-			$this->addWhereFld( $pfx . 'namespace', $namespace );
+			$this->addWhereFld( $nsField, $namespace );
 		}
 
 		$continue = $params['continue'] !== null;
@@ -155,14 +179,14 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			if ( $params['unique'] ) {
 				$this->dieContinueUsageIf( count( $continueArr ) != 1 );
 				$continueTitle = $db->addQuotes( $continueArr[0] );
-				$this->addWhere( "{$pfx}{$fieldTitle} $op= $continueTitle" );
+				$this->addWhere( "{$titleField} $op= $continueTitle" );
 			} else {
 				$this->dieContinueUsageIf( count( $continueArr ) != 2 );
 				$continueTitle = $db->addQuotes( $continueArr[0] );
 				$continueFrom = (int)$continueArr[1];
 				$this->addWhere(
-					"{$pfx}{$fieldTitle} $op $continueTitle OR " .
-					"({$pfx}{$fieldTitle} = $continueTitle AND " .
+					"{$titleField} $op $continueTitle OR " .
+					"({$titleField} = $continueTitle AND " .
 					"{$pfx}from $op= $continueFrom)"
 				);
 			}
@@ -173,28 +197,25 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			$this->titlePartToKey( $params['from'], $namespace );
 		$to = $params['to'] === null ? null :
 			$this->titlePartToKey( $params['to'], $namespace );
-		$this->addWhereRange( $pfx . $fieldTitle, 'newer', $from, $to );
+		$this->addWhereRange( $titleField, 'newer', $from, $to );
 
 		if ( isset( $params['prefix'] ) ) {
-			$this->addWhere( $pfx . $fieldTitle . $db->buildLike( $this->titlePartToKey(
+			$this->addWhere( $titleField . $db->buildLike( $this->titlePartToKey(
 				$params['prefix'], $namespace ), $db->anyString() ) );
 		}
 
-		$this->addFields( [ 'pl_title' => $pfx . $fieldTitle ] );
+		$this->addFields( [ 'pl_title' => $titleField ] );
 		$this->addFieldsIf( [ 'pl_from' => $pfx . 'from' ], !$params['unique'] );
 		foreach ( $this->props as $name => $field ) {
 			$this->addFieldsIf( $field, isset( $prop[$name] ) );
 		}
 
-		if ( $this->useIndex ) {
-			$this->addOption( 'USE INDEX', $this->useIndex );
-		}
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
 
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		$orderBy = [];
-		$orderBy[] = $pfx . $fieldTitle . $sort;
+		$orderBy[] = $titleField . $sort;
 		if ( !$params['unique'] ) {
 			$orderBy[] = $pfx . 'from' . $sort;
 		}
@@ -203,15 +224,13 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$res = $this->select( __METHOD__ );
 
 		// Get gender information
-		if ( $res->numRows() && $resultPageSet === null ) {
-			if ( $this->namespaceInfo->hasGenderDistinction( $namespace ) ) {
-				$users = [];
-				foreach ( $res as $row ) {
-					$users[] = $row->pl_title;
-				}
-				if ( $users !== [] ) {
-					$this->genderCache->doQuery( $users, __METHOD__ );
-				}
+		if ( $resultPageSet === null && $res->numRows() && $this->namespaceInfo->hasGenderDistinction( $namespace ) ) {
+			$users = [];
+			foreach ( $res as $row ) {
+				$users[] = $row->pl_title;
+			}
+			if ( $users !== [] ) {
+				$this->genderCache->doQuery( $users, __METHOD__ );
 			}
 		}
 
@@ -282,28 +301,28 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 			'prefix' => null,
 			'unique' => false,
 			'prop' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_DFLT => 'title',
-				ApiBase::PARAM_TYPE => array_merge(
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_DEFAULT => 'title',
+				ParamValidator::PARAM_TYPE => array_merge(
 					[ 'ids', 'title' ], array_keys( $this->props )
 				),
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			'namespace' => [
-				ApiBase::PARAM_DFLT => $this->dfltNamespace,
-				ApiBase::PARAM_TYPE => 'namespace',
-				ApiBase::PARAM_EXTRA_NAMESPACES => [ NS_MEDIA, NS_SPECIAL ],
+				ParamValidator::PARAM_DEFAULT => $this->dfltNamespace,
+				ParamValidator::PARAM_TYPE => 'namespace',
+				NamespaceDef::PARAM_EXTRA_NAMESPACES => [ NS_MEDIA, NS_SPECIAL ],
 			],
 			'limit' => [
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
+				ParamValidator::PARAM_DEFAULT => 10,
+				ParamValidator::PARAM_TYPE => 'limit',
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				IntegerDef::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			],
 			'dir' => [
-				ApiBase::PARAM_DFLT => 'ascending',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'ascending',
+				ParamValidator::PARAM_TYPE => [
 					'ascending',
 					'descending'
 				]

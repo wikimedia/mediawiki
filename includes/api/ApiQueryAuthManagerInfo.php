@@ -22,6 +22,8 @@
  */
 
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\MainConfigNames;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * A query action to return meta information about AuthManager state.
@@ -85,13 +87,13 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 			// Filter out blacklisted requests, depending on the action
 			switch ( $action ) {
 				case AuthManager::ACTION_CHANGE:
-					$reqs = ApiAuthManagerHelper::blacklistAuthenticationRequests(
-						$reqs, $this->getConfig()->get( 'ChangeCredentialsBlacklist' )
+					$reqs = ApiAuthManagerHelper::blacklistAuthenticationRequests( $reqs,
+						$this->getConfig()->get( MainConfigNames::ChangeCredentialsBlacklist )
 					);
 					break;
 				case AuthManager::ACTION_REMOVE:
-					$reqs = ApiAuthManagerHelper::blacklistAuthenticationRequests(
-						$reqs, $this->getConfig()->get( 'RemoveCredentialsBlacklist' )
+					$reqs = ApiAuthManagerHelper::blacklistAuthenticationRequests( $reqs,
+						$this->getConfig()->get( MainConfigNames::RemoveCredentialsBlacklist )
 					);
 					break;
 			}
@@ -110,7 +112,7 @@ class ApiQueryAuthManagerInfo extends ApiQueryBase {
 		return [
 			'securitysensitiveoperation' => null,
 			'requestsfor' => [
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_TYPE => [
 					AuthManager::ACTION_LOGIN,
 					AuthManager::ACTION_LOGIN_CONTINUE,
 					AuthManager::ACTION_CREATE,

@@ -10,6 +10,7 @@ use Doctrine\DBAL\Platforms\PostgreSQL94Platform;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 class MWPostgreSqlPlatform extends PostgreSQL94Platform {
+
 	/**
 	 * Handles Postgres unique timestamp format
 	 * @inheritDoc
@@ -22,8 +23,15 @@ class MWPostgreSqlPlatform extends PostgreSQL94Platform {
 		$default = $column['default'] ?? null;
 
 		if ( $type instanceof TimestampType && $default ) {
-			$timestamp = new ConvertibleTimestamp( $default );
-			$pgTimestamp = $timestamp->getTimestamp( TS_POSTGRES );
+			if ( isset( $column['allowInfinite'] ) &&
+				$column['allowInfinite'] &&
+				$default === 'infinity'
+			) {
+				$pgTimestamp = $default;
+			} else {
+				$timestamp = new ConvertibleTimestamp( $default );
+				$pgTimestamp = $timestamp->getTimestamp( TS_POSTGRES );
+			}
 
 			return " DEFAULT '$pgTimestamp' ";
 		}
@@ -50,6 +58,26 @@ class MWPostgreSqlPlatform extends PostgreSQL94Platform {
 		}
 
 		return $tableSql;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getBlobTypeDeclarationSQL( array $column ) {
+		// MySQL goes with varbinary for collation reasons, but postgres can't
+		// properly understand BYTEA type and works just fine with TEXT type
+		// FIXME: This should be fixed at some point (T257755)
+		return 'TEXT';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getBinaryTypeDeclarationSQL( array $column ) {
+		// MySQL goes with varbinary for collation reasons, but postgres can't
+		// properly understand BYTEA type and works just fine with TEXT type
+		// FIXME: This should be fixed at some point (T257755)
+		return 'TEXT';
 	}
 
 	/**

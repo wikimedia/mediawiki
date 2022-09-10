@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\MediaWikiServices;
+use UtfNormal\Validator;
 
 /**
  * Verifies that special page aliases are valid, with no slashes.
@@ -14,37 +16,67 @@ use MediaWiki\Languages\LanguageNameUtils;
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
 class SpecialPageAliasTest extends MediaWikiIntegrationTestCase {
+	/** @var ?array Cache language names */
+	private static $langNames = null;
+
+	/**
+	 * @throws Exception
+	 */
+	public static function setUpBeforeClass(): void {
+		if ( !self::$langNames ) {
+			$langNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+			self::$langNames = $langNameUtils->getLanguageNames(
+				LanguageNameUtils::AUTONYMS,
+				LanguageNameUtils::SUPPORTED
+			);
+		}
+	}
+
+	/** @return void */
+	public static function tearDownAfterClass(): void {
+		self::$langNames = null;
+	}
 
 	/**
 	 * @coversNothing
 	 */
 	public function testValidSpecialPageAliases() {
-		foreach ( $this->validSpecialPageAliasesProvider() as $expected ) {
-			$code = $expected[0];
-			$specialPageAliases = $expected[1];
+		foreach ( $this->validSpecialPageAliasesProvider() as [ $languageCode, $specialPageAliases ] ) {
 			foreach ( $specialPageAliases as $specialPage => $aliases ) {
 				foreach ( $aliases as $alias ) {
-					$msg = "Special:$specialPage alias '$alias' in $code must not contain slashes";
-					$this->assertStringNotContainsString( '/', $alias, $msg );
+					$msg = "\$specialPageAliases[$languageCode][$specialPage] → '$alias' ";
+
+					$this->assertStringNotContainsString( '/', $alias, $msg .
+						'must not contain slashes'
+					);
+
+					$this->assertNotNull( Title::makeTitleSafe( NS_SPECIAL, $alias ), $msg .
+						'is not a valid title'
+					);
+
+					$normalized = Validator::cleanUp( $alias );
+					$this->assertSame( $normalized, $alias, $msg .
+						'must be normalized UTF-8'
+					);
+
+					// Technically this is optional (see LocalisationCache::recache) but good practice
+					if ( str_contains( $alias, ' ' ) ) {
+						$this->addWarning( $msg .
+							'should be in canonical DBkey form with underscores instead of spaces'
+						);
+					}
 				}
 			}
 		}
 	}
 
 	/**
-	 * FIXME: Cannot access MW services in a dataProvider.
-	 *
 	 * @return Generator
 	 */
 	public function validSpecialPageAliasesProvider() {
-		$codes = array_keys( $this->getServiceContainer()
-				->getLanguageNameUtils()
-				->getLanguageNames( LanguageNameUtils::AUTONYMS, LanguageNameUtils::SUPPORTED ) );
-
-		foreach ( $codes as $code ) {
+		foreach ( self::$langNames as $code => $_ ) {
 			$specialPageAliases = $this->getSpecialPageAliases( $code );
-
-			if ( $specialPageAliases !== [] ) {
+			if ( $specialPageAliases ) {
 				yield [ $code, $specialPageAliases ];
 			}
 		}
@@ -53,9 +85,9 @@ class SpecialPageAliasTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param string $code
 	 *
-	 * @return array
+	 * @return string[][]
 	 */
-	protected function getSpecialPageAliases( $code ) {
+	protected function getSpecialPageAliases( string $code ): array {
 		$file = Language::getMessagesFileName( $code );
 
 		if ( is_readable( $file ) ) {

@@ -44,7 +44,7 @@ class LocalSettingsLoaderTest extends TestCase {
 			'fixtures/settings.json',
 			$expected
 		];
-		yield 'PHP with variabls' => [
+		yield 'PHP with variables' => [
 			'fixtures/settings-with-variables.php',
 			$expected
 		];

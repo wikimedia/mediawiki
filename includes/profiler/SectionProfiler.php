@@ -41,14 +41,11 @@ class SectionProfiler {
 	protected $stack = [];
 	/** @var array Queue of open profile calls with start data */
 	protected $workStack = [];
-
 	/** @var array[] Map of (function name => aggregate data array) */
 	protected $collated = [];
 	/** @var bool */
 	protected $collateDone = false;
 
-	/** @var bool Whether to collect the full stack trace or just aggregates */
-	protected $collateOnly = true;
 	/** @var array Cache of a standard broken collation entry */
 	protected $errorEntry;
 	/** @var LoggerInterface */
@@ -59,12 +56,6 @@ class SectionProfiler {
 	 */
 	public function __construct( array $params = [] ) {
 		$this->errorEntry = $this->getErrorEntry();
-		// collateOnly (meaning: no tracing) is true by default.
-		// Setting trace=true produces collateOnly=false
-		$this->collateOnly = empty( $params['trace'] );
-		if ( !$this->collateOnly ) {
-			wfDeprecated( __CLASS__ . ' with "trace" option', '1.38' );
-		}
 		$this->logger = LoggerFactory::getInstance( 'profiler' );
 	}
 
@@ -252,111 +243,28 @@ class SectionProfiler {
 		if ( $functionname === 'close' ) {
 			$message = "Profile section ended by close(): {$ofname}";
 			$this->logger->error( $message );
-			if ( $this->collateOnly ) {
-				$this->collated[$message] = $this->errorEntry;
-			} else {
-				$this->stack[] = [ $message, 0, 0.0, 0.0, 0, 0.0, 0.0, 0 ];
-			}
+			$this->collated[$message] = $this->errorEntry;
 			$functionname = $ofname;
 		} elseif ( $ofname !== $functionname ) {
 			$message = "Profiling error: in({$ofname}), out($functionname)";
 			$this->logger->error( $message );
-			if ( $this->collateOnly ) {
-				$this->collated[$message] = $this->errorEntry;
-			} else {
-				$this->stack[] = [ $message, 0, 0.0, 0.0, 0, 0.0, 0.0, 0 ];
-			}
+			$this->collated[$message] = $this->errorEntry;
 		}
 
 		$realTime = $this->getTime( 'wall' );
 		$cpuTime = $this->getTime( 'cpu' );
 		$memUsage = memory_get_usage();
 
-		if ( $this->collateOnly ) {
-			$elapsedcpu = $cpuTime - $octime;
-			$elapsedreal = $realTime - $ortime;
-			$memchange = $memUsage - $omem;
-			$this->updateEntry( $functionname, $elapsedcpu, $elapsedreal, $memchange );
-		} else {
-			$this->stack[] = array_merge( $item, [ $realTime, $cpuTime, $memUsage ] );
-		}
+		$elapsedcpu = $cpuTime - $octime;
+		$elapsedreal = $realTime - $ortime;
+		$memchange = $memUsage - $omem;
+		$this->updateEntry( $functionname, $elapsedcpu, $elapsedreal, $memchange );
 
 		$this->end = [
 			'cpu'      => $cpuTime,
 			'real'     => $realTime,
 			'memory'   => $memUsage
 		];
-	}
-
-	/**
-	 * Returns a tree of function calls with their real times
-	 * @return string
-	 * @throws Exception
-	 */
-	public function getCallTreeReport() {
-		if ( $this->collateOnly ) {
-			throw new Exception( "Tree is only available for trace profiling." );
-		}
-		return implode( '', array_map(
-			[ $this, 'getCallTreeLine' ], $this->remapCallTree( $this->stack )
-		) );
-	}
-
-	/**
-	 * Recursive function the format the current profiling array into a tree
-	 *
-	 * @param array $stack Profiling array
-	 * @return array
-	 */
-	protected function remapCallTree( array $stack ) {
-		if ( count( $stack ) < 2 ) {
-			return $stack;
-		}
-		$outputs = [];
-		for ( $max = count( $stack ) - 1; $max > 0; ) {
-			/* Find all items under this entry */
-			$level = $stack[$max][1];
-			$working = [];
-			for ( $i = $max - 1; $i >= 0; $i-- ) {
-				if ( $stack[$i][1] > $level ) {
-					$working[] = $stack[$i];
-				} else {
-					break;
-				}
-			}
-			$working = $this->remapCallTree( array_reverse( $working ) );
-			$output = [];
-			foreach ( $working as $item ) {
-				array_push( $output, $item );
-			}
-			array_unshift( $output, $stack[$max] );
-			$max = $i;
-
-			array_unshift( $outputs, $output );
-		}
-		$final = [];
-		foreach ( $outputs as $output ) {
-			foreach ( $output as $item ) {
-				$final[] = $item;
-			}
-		}
-		return $final;
-	}
-
-	/**
-	 * Callback to get a formatted line for the call tree
-	 * @param array $entry
-	 * @return string
-	 */
-	protected function getCallTreeLine( $entry ) {
-		// $entry has (name, level, stime, scpu, smem, etime, ecpu, emem)
-		list( $fname, $level, $startreal, , , $endreal ) = $entry;
-		$delta = $endreal - $startreal;
-		$space = str_repeat( ' ', $level );
-		# The ugly double sprintf is to work around a PHP bug,
-		# which has been fixed in recent releases.
-		return sprintf( "%10s %s %s\n",
-			trim( sprintf( "%7.3f", $delta * 1000.0 ) ), $space, $fname );
 	}
 
 	/**
@@ -371,97 +279,6 @@ class SectionProfiler {
 		while ( count( $this->workStack ) ) {
 			$this->profileOutInternal( 'close' );
 		}
-
-		if ( $this->collateOnly ) {
-			return; // already collated as methods exited
-		}
-
-		$this->collated = [];
-
-		# Estimate profiling overhead
-		$oldEnd = $this->end;
-		$profileCount = count( $this->stack );
-		$this->calculateOverhead( $profileCount );
-
-		# First, subtract the overhead!
-		$overheadTotal = $overheadMemory = $overheadInternal = [];
-		foreach ( $this->stack as $entry ) {
-			// $entry is (name,pos,rtime0,cputime0,mem0,rtime1,cputime1,mem1)
-			$fname = $entry[0];
-			$elapsed = $entry[5] - $entry[2];
-			$memchange = $entry[7] - $entry[4];
-
-			if ( $fname === '-overhead-total' ) {
-				$overheadTotal[] = $elapsed;
-				$overheadMemory[] = max( 0, $memchange );
-			} elseif ( $fname === '-overhead-internal' ) {
-				$overheadInternal[] = $elapsed;
-			}
-		}
-		$overheadTotal = $overheadTotal ?
-			array_sum( $overheadTotal ) / count( $overheadInternal ) : 0;
-		$overheadMemory = $overheadMemory ?
-			array_sum( $overheadMemory ) / count( $overheadInternal ) : 0;
-		$overheadInternal = $overheadInternal ?
-			array_sum( $overheadInternal ) / count( $overheadInternal ) : 0;
-
-		# Collate
-		foreach ( $this->stack as $index => $entry ) {
-			// $entry is (name,pos,rtime0,cputime0,mem0,rtime1,cputime1,mem1)
-			$fname = $entry[0];
-			$elapsedCpu = $entry[6] - $entry[3];
-			$elapsedReal = $entry[5] - $entry[2];
-			$memchange = $entry[7] - $entry[4];
-			$subcalls = $this->calltreeCount( $this->stack, $index );
-
-			if ( substr( $fname, 0, 9 ) !== '-overhead' ) {
-				# Adjust for profiling overhead (except special values with elapsed=0)
-				if ( $elapsed ) {
-					$elapsed -= $overheadInternal;
-					$elapsed -= ( $subcalls * $overheadTotal );
-					$memchange -= ( $subcalls * $overheadMemory );
-				}
-			}
-
-			$this->updateEntry( $fname, $elapsedCpu, $elapsedReal, $memchange );
-		}
-
-		$this->collated['-overhead-total']['count'] = $profileCount;
-		arsort( $this->collated, SORT_NUMERIC );
-
-		// Unclobber the end info map (the overhead checking alters it)
-		$this->end = $oldEnd;
-	}
-
-	/**
-	 * Dummy calls to calculate profiling overhead
-	 *
-	 * @param int $profileCount
-	 */
-	protected function calculateOverhead( $profileCount ) {
-		$this->profileInInternal( '-overhead-total' );
-		for ( $i = 0; $i < $profileCount; $i++ ) {
-			$this->profileInInternal( '-overhead-internal' );
-			$this->profileOutInternal( '-overhead-internal' );
-		}
-		$this->profileOutInternal( '-overhead-total' );
-	}
-
-	/**
-	 * Counts the number of profiled function calls sitting under
-	 * the given point in the call graph. Not the most efficient algo.
-	 *
-	 * @param array $stack
-	 * @param int $start
-	 * @return int
-	 */
-	protected function calltreeCount( $stack, $start ) {
-		$level = $stack[$start][1];
-		$count = 0;
-		for ( $i = $start - 1; $i >= 0 && $stack[$i][1] > $level; $i-- ) {
-			$count++;
-		}
-		return $count;
 	}
 
 	/**

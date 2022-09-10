@@ -28,8 +28,10 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
@@ -61,12 +63,13 @@ class PageUpdaterFactory {
 	 * @internal
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'ArticleCountMethod',
-		'RCWatchCategoryMembership',
-		'PageCreationLog',
-		'UseAutomaticEditSummaries',
-		'ManualRevertSearchRadius',
-		'UseRCPatrol',
+		MainConfigNames::ArticleCountMethod,
+		MainConfigNames::RCWatchCategoryMembership,
+		MainConfigNames::PageCreationLog,
+		MainConfigNames::UseAutomaticEditSummaries,
+		MainConfigNames::ManualRevertSearchRadius,
+		MainConfigNames::UseRCPatrol,
+		MainConfigNames::ParsoidCacheConfig,
 	];
 
 	/** @var RevisionStore */
@@ -141,11 +144,15 @@ class PageUpdaterFactory {
 	/** @var string[] */
 	private $softwareTags;
 
+	/** @var ParsoidOutputAccess */
+	private $parsoidOutputAccess;
+
 	/**
 	 * @param RevisionStore $revisionStore
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param ParserCache $parserCache
+	 * @param ParsoidOutputAccess $parsoidOutputAccess
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param MessageCache $messageCache
 	 * @param Language $contLang
@@ -172,6 +179,7 @@ class PageUpdaterFactory {
 		RevisionRenderer $revisionRenderer,
 		SlotRoleRegistry $slotRoleRegistry,
 		ParserCache $parserCache,
+		ParsoidOutputAccess $parsoidOutputAccess,
 		JobQueueGroup $jobQueueGroup,
 		MessageCache $messageCache,
 		Language $contLang,
@@ -199,6 +207,7 @@ class PageUpdaterFactory {
 		$this->revisionRenderer = $revisionRenderer;
 		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->parserCache = $parserCache;
+		$this->parsoidOutputAccess = $parsoidOutputAccess;
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->messageCache = $messageCache;
 		$this->contLang = $contLang;
@@ -282,12 +291,14 @@ class PageUpdaterFactory {
 				PageUpdater::CONSTRUCTOR_OPTIONS,
 				$this->options
 			),
-			$this->softwareTags
+			$this->softwareTags,
+			$this->logger
 		);
 
-		$pageUpdater->setUsePageCreationLog( $this->options->get( 'PageCreationLog' ) );
+		$pageUpdater->setUsePageCreationLog(
+			$this->options->get( MainConfigNames::PageCreationLog ) );
 		$pageUpdater->setUseAutomaticEditSummaries(
-			$this->options->get( 'UseAutomaticEditSummaries' )
+			$this->options->get( MainConfigNames::UseAutomaticEditSummaries )
 		);
 
 		return $pageUpdater;
@@ -303,11 +314,13 @@ class PageUpdaterFactory {
 	 */
 	public function newDerivedPageDataUpdater( WikiPage $page ): DerivedPageDataUpdater {
 		$derivedDataUpdater = new DerivedPageDataUpdater(
+			$this->options,
 			$page, // NOTE: eventually, PageUpdater should not know about WikiPage
 			$this->revisionStore,
 			$this->revisionRenderer,
 			$this->slotRoleRegistry,
 			$this->parserCache,
+			$this->parsoidOutputAccess,
 			$this->jobQueueGroup,
 			$this->messageCache,
 			$this->contLang,
@@ -324,9 +337,10 @@ class PageUpdaterFactory {
 		);
 
 		$derivedDataUpdater->setLogger( $this->logger );
-		$derivedDataUpdater->setArticleCountMethod( $this->options->get( 'ArticleCountMethod' ) );
+		$derivedDataUpdater->setArticleCountMethod(
+			$this->options->get( MainConfigNames::ArticleCountMethod ) );
 		$derivedDataUpdater->setRcWatchCategoryMembership(
-			$this->options->get( 'RCWatchCategoryMembership' )
+			$this->options->get( MainConfigNames::RCWatchCategoryMembership )
 		);
 
 		return $derivedDataUpdater;

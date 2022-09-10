@@ -15,8 +15,12 @@ require( './jquery.accessKeyLabel.js' );
  */
 function rawurlencode( str ) {
 	return encodeURIComponent( String( str ) )
-		.replace( /!/g, '%21' ).replace( /'/g, '%27' ).replace( /\(/g, '%28' )
-		.replace( /\)/g, '%29' ).replace( /\*/g, '%2A' ).replace( /~/g, '%7E' );
+		.replace( /!/g, '%21' )
+		.replace( /'/g, '%27' )
+		.replace( /\(/g, '%28' )
+		.replace( /\)/g, '%29' )
+		.replace( /\*/g, '%2A' )
+		.replace( /~/g, '%7E' );
 }
 
 /**
@@ -24,8 +28,8 @@ function rawurlencode( str ) {
  *
  * @ignore
  * @param {string} str String to be encoded
- * @param {string} mode Encoding mode, see documentation for $wgFragmentMode
- *     in DefaultSettings.php
+ * @param {string} mode Encoding mode, see documentation at
+ *     MainConfigSchema::FragmentMode.
  * @return {string} Encoded string
  */
 function escapeIdInternal( str, mode ) {
@@ -41,6 +45,22 @@ function escapeIdInternal( str, mode ) {
 		default:
 			throw new Error( 'Unrecognized ID escaping mode ' + mode );
 	}
+}
+
+/**
+ * Takes a string (str) and returns string repeated count times
+ *
+ * @ignore
+ * @param {string} str String to be repeated
+ * @param {number} count Number of times to repeat string
+ * @return {string} String repeated count times
+ */
+function repeatString( str, count ) {
+	var repeatedString = '';
+	for ( var i = 0; i < count; i++ ) {
+		repeatedString += str;
+	}
+	return repeatedString;
 }
 
 /**
@@ -83,6 +103,75 @@ util = {
 	 */
 	escapeIdForLink: function ( str ) {
 		return escapeIdInternal( str, config.FragmentMode[ 0 ] );
+	},
+
+	/**
+	 * Get the target element from a link hash
+	 *
+	 * This is the same element as you would get from
+	 * document.querySelectorAll(':target'), but can be used on
+	 * an arbitrary hash fragment, or after pushState/replaceState
+	 * has been used.
+	 *
+	 * Link fragments can be unencoded, fully encoded or partially
+	 * encoded, as defined in the spec.
+	 *
+	 * We can't just use decodeURI as that assumes the fragment
+	 * is fully encoded, and throws an error on a string like '%A',
+	 * so we use the percent-decode.
+	 *
+	 * @param {string} [hash] Hash fragment, without the leading '#'.
+	 *  Taken from location.hash if omitted.
+	 * @return {HTMLElement|null} Element, if found
+	 */
+	getTargetFromFragment: function ( hash ) {
+		hash = hash || location.hash.slice( 1 );
+		if ( !hash ) {
+			// Firefox emits a console warning if you pass an empty string
+			// to getElementById (T272844).
+			return null;
+		}
+		// Per https://html.spec.whatwg.org/multipage/browsing-the-web.html#target-element
+		// we try the raw fragment first, then the percent-decoded fragment.
+		var element = document.getElementById( hash );
+		if ( element ) {
+			return element;
+		}
+		var decodedHash = this.percentDecodeFragment( hash );
+		if ( !decodedHash ) {
+			// decodedHash can return null, calling getElementById would cast it to a string
+			return null;
+		}
+		return document.getElementById( decodedHash );
+	},
+
+	/**
+	 * Percent-decode a string, as found in a URL hash fragment
+	 *
+	 * Implements the percent-decode method as defined in
+	 * https://url.spec.whatwg.org/#percent-decode.
+	 *
+	 * URLSearchParams implements https://url.spec.whatwg.org/#concept-urlencoded-parser
+	 * which performs a '+' to ' ' substitution before running percent-decode.
+	 *
+	 * To get the desired behaviour we percent-encode any '+' in the fragment
+	 * to effectively expose the percent-decode implementation.
+	 *
+	 * @param {string} text Text to decode
+	 * @return {string|null} Decoded text, null if decoding failed
+	 */
+	percentDecodeFragment: function ( text ) {
+		var params = new URLSearchParams(
+			'q=' +
+			text
+				// Query string param decoding replaces '+' with ' ' before doing the
+				// percent_decode, so encode '+' to prevent this.
+				.replace( /\+/g, '%2B' )
+				// Query strings are split on '&' and then '=' so encode these too.
+				.replace( /&/g, '%26' )
+				.replace( /=/g, '%3D' )
+		);
+		return params.get( 'q' );
 	},
 
 	/**
@@ -169,33 +258,18 @@ util = {
 	},
 
 	/**
-	 * Encode page titles for use in a URL
+	 * Encode page titles in a way that matches `wfUrlencode` in PHP.
 	 *
-	 * We want / and : to be included as literal characters in our title URLs
-	 * as they otherwise fatally break the title.
-	 *
-	 * The others are decoded because we can, it's prettier and matches behaviour
-	 * of `wfUrlencode` in PHP.
+	 * This is important both for readability and consistency in the user experience,
+	 * as well as for caching. If URLs are not formatted in the canonical way, they
+	 * may be subject to drastically shorter cache durations and/or miss automatic
+	 * purging after edits, thus leading to stale content being served from a
+	 * non-canonical URL.
 	 *
 	 * @param {string} str String to be encoded.
 	 * @return {string} Encoded string
 	 */
-	wikiUrlencode: function ( str ) {
-		return util.rawurlencode( str )
-			.replace( /%20/g, '_' )
-			// wfUrlencode replacements
-			.replace( /%3B/g, ';' )
-			.replace( /%40/g, '@' )
-			.replace( /%24/g, '$' )
-			.replace( /%21/g, '!' )
-			.replace( /%2A/g, '*' )
-			.replace( /%28/g, '(' )
-			.replace( /%29/g, ')' )
-			.replace( /%2C/g, ',' )
-			.replace( /%2F/g, '/' )
-			.replace( /%7E/g, '~' )
-			.replace( /%3A/g, ':' );
-	},
+	wikiUrlencode: mw.internalWikiUrlencode,
 
 	/**
 	 * Get the URL to a given local wiki page name,
@@ -621,12 +695,12 @@ util = {
 	 * Based on \Wikimedia\IPUtils::isIPv6 in PHP.
 	 *
 	 *     // Valid
-	 *     mw.util.isIPv4Address( '2001:db8:a:0:0:0:0:0' );
-	 *     mw.util.isIPv4Address( '2001:db8:a::' );
+	 *     mw.util.isIPv6Address( '2001:db8:a:0:0:0:0:0' );
+	 *     mw.util.isIPv6Address( '2001:db8:a::' );
 	 *
 	 *     // Invalid
-	 *     mw.util.isIPv4Address( '2001:db8:a::/32' );
-	 *     mw.util.isIPv4Address( 'hello' );
+	 *     mw.util.isIPv6Address( '2001:db8:a::/32' );
+	 *     mw.util.isIPv6Address( 'hello' );
 	 *
 	 * @param {string} address
 	 * @param {boolean} [allowBlock=false]
@@ -708,12 +782,17 @@ util = {
 	 *   Special:Redirect which is less efficient. Otherwise, it is a direct thumbnail URL.
 	 */
 	parseImageUrl: function ( url ) {
-		var i, name, decodedName, width, match, strippedUrl,
-			urlTemplate = null,
-			// thumb.php-generated thumbnails
-			// thumb.php?f=<name>&w[idth]=<width>[px]
-			thumbPhpRegex = /thumb\.php/,
-			regexes = [
+		var name, decodedName, width, urlTemplate;
+
+		// thumb.php-generated thumbnails
+		// thumb.php?f=<name>&w[idth]=<width>[px]
+		if ( /thumb\.php/.test( url ) ) {
+			decodedName = mw.util.getParamValue( 'f', url );
+			name = encodeURIComponent( decodedName );
+			width = mw.util.getParamValue( 'width', url ) || mw.util.getParamValue( 'w', url );
+			urlTemplate = url.replace( /([&?])w(?:idth)?=[^&]+/g, '' ) + '&width={width}';
+		} else {
+			var regexes = [
 				// Thumbnails
 				// /<hash prefix>/<name>/[<options>-]<width>-<name*>[.<ext>]
 				// where <name*> could be the filename, 'thumbnail.<ext>' (for long filenames)
@@ -732,15 +811,8 @@ util = {
 				// /<name>
 				/\/([^\s/]+)$/
 			];
-
-		if ( thumbPhpRegex.test( url ) ) {
-			decodedName = mw.util.getParamValue( 'f', url );
-			name = encodeURIComponent( decodedName );
-			width = mw.util.getParamValue( 'width', url ) || mw.util.getParamValue( 'w', url );
-			urlTemplate = url.replace( /([&?])w(?:idth)?=[^&]+/g, '' ) + '&width={width}';
-		} else {
-			for ( i = 0; i < regexes.length; i++ ) {
-				match = url.match( regexes[ i ] );
+			for ( var i = 0; i < regexes.length; i++ ) {
+				var match = url.match( regexes[ i ] );
 				if ( match ) {
 					name = match[ 1 ];
 					decodedName = decodeURIComponent( name );
@@ -764,7 +836,7 @@ util = {
 			} else if ( width && !urlTemplate ) {
 				// Javascript does not expose regexp capturing group indexes, and the width
 				// part could in theory also occur in the filename so hide that first.
-				strippedUrl = url.replace( name, '{name}' )
+				var strippedUrl = url.replace( name, '{name}' )
 					.replace( name, '{name}' )
 					.replace( width + 'px-', '{width}px-' );
 				urlTemplate = strippedUrl.replace( /\{name\}/g, name );
@@ -797,24 +869,6 @@ util = {
 	},
 
 	/**
-	 * Takes a string (str) and returns string repeated count times
-	 *
-	 * @param {string} str string to be repeated
-	 * @param {number} count number of times to repeat string
-	 * @return {string} String repeated count times
-	 */
-	repeatString: function ( str, count ) {
-		if ( count <= 0 || count === Infinity || str === '' ) {
-			return str;
-		}
-		var repeatedString = '';
-		for ( var i = 0; i < count; i++ ) {
-			repeatedString += str;
-		}
-		return repeatedString;
-	},
-
-	/**
 	 * This functionality has been adapted from \Wikimedia\IPUtils::sanitizeIP()
 	 *
 	 * Convert an IP into a verbose, uppercase, normalized form.
@@ -823,10 +877,13 @@ util = {
 	 * IPv4 addresses have leading zeros, in each octet, removed.
 	 *
 	 * @param {string} ip IP address in quad or octet form (CIDR or not).
-	 * @return {string|null|*}
+	 * @return {string|null}
 	 */
 	sanitizeIP: function ( ip ) {
-		ip = ip.replace( /(^\s+|\s+$)/g, '' );
+		if ( typeof ip !== 'string' ) {
+			return null;
+		}
+		ip = ip.trim();
 		if ( ip === '' ) {
 			return null;
 		}
@@ -837,11 +894,11 @@ util = {
 			return ip.replace( /(^|\.)0+(\d)/g, '$1$2' );
 		}
 		ip = ip.toUpperCase();
-		var abbrevPos, CIDRStart, addressEnd, repeatStr, extra, pad;
-		abbrevPos = ip.search( /::/ );
+		var abbrevPos = ip.search( /::/ );
 		if ( abbrevPos !== -1 ) {
-			CIDRStart = ip.search( /\// );
-			addressEnd = ( CIDRStart !== -1 ) ? CIDRStart - 1 : ip.length - 1;
+			var CIDRStart = ip.search( /\// );
+			var addressEnd = ( CIDRStart !== -1 ) ? CIDRStart - 1 : ip.length - 1;
+			var repeatStr, extra, pad;
 			if ( abbrevPos === 0 ) {
 				repeatStr = '0:';
 				extra = ip === '::' ? '0' : '';
@@ -856,7 +913,7 @@ util = {
 				pad = 8;
 			}
 			ip = ip.replace( '::',
-				this.repeatString( repeatStr, pad - ( ip.split( ':' ).length - 1 ) ) + extra
+				repeatString( repeatStr, pad - ( ip.split( ':' ).length - 1 ) ) + extra
 			);
 		}
 		return ip.replace( /(^|:)0+(([0-9A-Fa-f]{1,4}))/g, '$1$2' );
@@ -869,7 +926,7 @@ util = {
 	 * This will make it more compact and lower-case.
 	 *
 	 * @param {string} ip IP address in quad or octet form (CIDR or not).
-	 * @return {null|*}
+	 * @return {string|null}
 	 */
 	prettifyIP: function ( ip ) {
 		ip = this.sanitizeIP( ip );

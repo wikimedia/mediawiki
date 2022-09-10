@@ -3,8 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author Anson2812
  * @author Antonytse
@@ -17,6 +17,7 @@
  * @author Simon Shek
  * @author Waihorace
  * @author William915
+ * @author Winston Sung
  * @author Wong128hk
  * @author Xiaomingyan
  * @author Yfdyh000

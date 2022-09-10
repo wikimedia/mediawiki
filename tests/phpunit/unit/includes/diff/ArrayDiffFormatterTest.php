@@ -20,18 +20,14 @@ class ArrayDiffFormatterTest extends \MediaWikiUnitTestCase {
 	}
 
 	private function getMockDiff( array $edits ) {
-		$diff = $this->getMockBuilder( Diff::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$diff = $this->createMock( Diff::class );
 		$diff->method( 'getEdits' )
 			->willReturn( $edits );
 		return $diff;
 	}
 
 	private function getMockDiffOp( string $type, $orig = [], array $closing = [] ) {
-		$diffOp = $this->getMockBuilder( DiffOp::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$diffOp = $this->createMock( DiffOp::class );
 		$diffOp->method( 'getType' )
 			->willReturn( $type );
 		$diffOp->method( 'getOrig' )
@@ -39,9 +35,7 @@ class ArrayDiffFormatterTest extends \MediaWikiUnitTestCase {
 		if ( $type === 'change' ) {
 			$diffOp->method( 'getClosing' )
 				->with( $this->isType( 'integer' ) )
-				->will( $this->returnCallback( static function () {
-					return 'mockLine';
-				} ) );
+				->willReturn( 'mockLine' );
 		} else {
 			$diffOp->method( 'getClosing' )
 				->willReturn( $closing );

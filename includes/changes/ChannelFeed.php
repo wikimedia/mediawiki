@@ -22,6 +22,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -91,7 +92,8 @@ abstract class ChannelFeed extends FeedItem {
 	 */
 	public function httpHeaders() {
 		global $wgOut;
-		$varyOnXFP = MediaWikiServices::getInstance()->getMainConfig()->get( 'VaryOnXFP' );
+		$varyOnXFP = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::VaryOnXFP );
 		# We take over from $wgOut, excepting its cache header info
 		$wgOut->disable();
 		$mimetype = $this->contentType();

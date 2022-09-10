@@ -22,11 +22,13 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserRigorOptions;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -104,7 +106,10 @@ class SpecialDeletedContributions extends SpecialPage {
 		$this->outputHeader();
 		$this->checkPermissions();
 		$out = $this->getOutput();
-		$out->addModuleStyles( 'mediawiki.interface.helpers.styles' );
+		$out->addModuleStyles( [
+			'mediawiki.interface.helpers.styles',
+			'mediawiki.special.changeslist',
+		] );
 		$this->addHelpLink( 'Help:User contributions' );
 
 		$opts = new FormOptions();
@@ -114,11 +119,12 @@ class SpecialDeletedContributions extends SpecialPage {
 		$opts->add( 'limit', 20 );
 
 		$opts->fetchValuesFromRequest( $this->getRequest() );
-		$opts->validateIntBounds( 'limit', 0, $this->getConfig()->get( 'QueryPageDefaultLimit' ) );
+		$opts->validateIntBounds( 'limit', 0,
+			$this->getConfig()->get( MainConfigNames::QueryPageDefaultLimit ) );
 
 		if ( $par !== null ) {
 			// Beautify the username
-			$par = $this->userNameUtils->getCanonical( $par, UserNameUtils::RIGOR_NONE );
+			$par = $this->userNameUtils->getCanonical( $par, UserRigorOptions::RIGOR_NONE );
 			$opts->setValue( 'target', (string)$par );
 		}
 
@@ -136,7 +142,7 @@ class SpecialDeletedContributions extends SpecialPage {
 			return;
 		}
 
-		$userObj = $this->userFactory->newFromName( $target, UserFactory::RIGOR_NONE );
+		$userObj = $this->userFactory->newFromName( $target, UserRigorOptions::RIGOR_NONE );
 		if ( !$userObj ) {
 			$this->getForm();
 
@@ -288,7 +294,7 @@ class SpecialDeletedContributions extends SpecialPage {
 			->setWrapperLegendMsg( 'sp-contributions-search' )
 			->setSubmitTextMsg( 'sp-contributions-submit' )
 			// prevent setting subpage and 'target' parameter at the same time
-			->setAction( $this->getPageTitle()->getLocalURL() )
+			->setTitle( $this->getPageTitle() )
 			->setMethod( 'get' )
 			->prepareForm()
 			->displayForm( false );

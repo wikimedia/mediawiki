@@ -5,6 +5,7 @@
 			"Arthur2e5",
 			"Corainn",
 			"Cwlin0416",
+			"Diskdance",
 			"EagerLin",
 			"Jasonzhuocn",
 			"Kly",
@@ -13,6 +14,7 @@
 			"Macofe",
 			"Matma Rex",
 			"Sanmosa",
+			"Sidishandsome",
 			"Tranve",
 			"Wbxshiori",
 			"WhitePhosphorus",
@@ -22,10 +24,8 @@
 			"Xiplus",
 			"Zhxy 519",
 			"列维劳德",
-			"烈羽",
 			"星海",
-			"Sidishandsome",
-			"Diskdance"
+			"烈羽"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|說明文件]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etiquette 與使用指南]]\n* [[mw:Special:MyLanguage/API:FAQ|常見問題]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 郵寄清單]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 報告錯誤及請求功能]\n</div>\n<strong>狀態資訊：</strong>MediaWiki API 已是成熟、穩定，並積極支援以改善的介面。儘管我們儘可能避免，但仍偶有需要重大變更的情況，請訂閱[https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ mediawiki-api-announce 郵寄清單]以便獲得更新通知。\n\n<strong>錯誤的請求：</strong>當 API 收到錯誤的請求，會發出以「MediaWiki-API-Error」為鍵的 HTTP 標頭欄位，隨後標頭欄位的值，以及傳回的錯誤碼會設為相同值。詳細資訊請參閱 [[mw:Special:MyLanguage/API:Errors_and_warnings|API: 錯誤與警告]]。\n\n<p class=\"mw-apisandbox-link\"><strong>測試：</strong>要簡化 API 請求的測試過程，請見 [[Special:ApiSandbox]]。</p>",
@@ -156,7 +156,7 @@
 	"apihelp-edit-param-section": "章節標籤。<kbd>0</kbd> 代表最上層章節，<kbd>new</kbd> 代表新章節。通常是正整數但也可以是非數字。",
 	"apihelp-edit-param-sectiontitle": "新章節的標題。",
 	"apihelp-edit-param-text": "頁面內容。",
-	"apihelp-edit-param-summary": "編輯摘要。 當未設定 $1section=new 與 $1sectiontitle 時也會當做章節標題。",
+	"apihelp-edit-param-summary": "編輯摘要。\n\n未提供本參數或本參數為空時，[[mw:Special:MyLanguage/Autosummary|會自動生成編輯摘要]]。\n\n使用<var>$1section=new</var>且未提供<var>$1sectiontitle</var>時，本參數的值用於填入章節標題，同時會自動生成編輯摘要。",
 	"apihelp-edit-param-tags": "更改套用到修訂的標籤。",
 	"apihelp-edit-param-minor": "標記此編輯為小編輯。",
 	"apihelp-edit-param-notminor": "不要標記此編輯為小編輯，即使有設定到「{{int:tog-minordefault}}」使用者偏好設定。",

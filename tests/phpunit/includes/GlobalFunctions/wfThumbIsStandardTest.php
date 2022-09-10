@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Psr\Log\NullLogger;
 
 /**
@@ -11,12 +12,12 @@ class WfThumbIsStandardTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgThumbLimits' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::ThumbLimits => [
 				100,
 				401
 			],
-			'wgImageLimits' => [
+			MainConfigNames::ImageLimits => [
 				[ 300, 225 ],
 				[ 800, 600 ],
 			],

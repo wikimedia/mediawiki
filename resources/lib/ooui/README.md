@@ -121,23 +121,19 @@ Release process:
     # Ensure tests pass
     $ npm install && composer update && npm test && composer test
 
-    # Avoid using "npm version patch" because that creates
-    # both a commit and a tag, and we shouldn't tag until after
-    # the commit is merged.
-
     # Update release notes
     # Copy the resulting list into a new section at the top of History.md and edit
     # into five sub-sections, in order:
-    # * Breaking changes
-    # * Deprecations
-    # * Features
-    # * Styles
-    # * Code
+    # * ### Breaking changes
+    # * ### Deprecations
+    # * ### Features
+    # * ### Styles
+    # * ### Code
     $ git log --format='* %s (%aN)' --no-merges --reverse v$(node -e 'console.log(require("./package.json").version);')...HEAD | grep -v "Localisation updates from" | sort
     $ edit History.md
 
-    # Update the version number
-    $ edit package.json
+    # Update the version number (change 'patch' to 'minor' if you've made breaking changes):
+    $ npm version patch --git-tag-version=false
 
     $ git add -p
     $ git commit -m "Tag vX.X.X"

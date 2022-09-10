@@ -397,9 +397,3 @@ class MutableRevisionRecord extends RevisionRecord {
 	}
 
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.32
- */
-class_alias( MutableRevisionRecord::class, 'MediaWiki\Storage\MutableRevisionRecord' );

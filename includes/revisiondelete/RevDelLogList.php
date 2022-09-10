@@ -91,9 +91,9 @@ class RevDelLogList extends RevDelList {
 
 		$commentQuery = $this->commentStore->getJoin( 'log_comment' );
 
-		return $db->select(
-			[ 'logging', 'actor' ] + $commentQuery['tables'],
-			[
+		$queryInfo = [
+			'tables' => [ 'logging', 'actor' ] + $commentQuery['tables'],
+			'fields' => [
 				'log_id',
 				'log_type',
 				'log_action',
@@ -107,12 +107,29 @@ class RevDelLogList extends RevDelList {
 				'log_user' => 'actor_user',
 				'log_user_text' => 'actor_name'
 			] + $commentQuery['fields'],
-			[ 'log_id' => $ids ],
-			__METHOD__,
-			[ 'ORDER BY' => 'log_id DESC' ],
-			[
+			'conds' => [ 'log_id' => $ids ],
+			'options' => [ 'ORDER BY' => 'log_id DESC' ],
+			'join_conds' => [
 				'actor' => [ 'JOIN', 'actor_id=log_actor' ]
-			] + $commentQuery['joins']
+			] + $commentQuery['joins'],
+		];
+
+		ChangeTags::modifyDisplayQuery(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
+			$queryInfo['conds'],
+			$queryInfo['join_conds'],
+			$queryInfo['options'],
+			''
+		);
+
+		return $db->select(
+			$queryInfo['tables'],
+			$queryInfo['fields'],
+			$queryInfo['conds'],
+			__METHOD__,
+			$queryInfo['options'],
+			$queryInfo['join_conds']
 		);
 	}
 

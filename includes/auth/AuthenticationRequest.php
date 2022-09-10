@@ -200,6 +200,7 @@ abstract class AuthenticationRequest {
 
 					case 'multiselect':
 						$data[$field] = (array)$data[$field];
+						// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset required for multiselect
 						$allowed = array_keys( $info['options'] );
 						if ( array_diff( $data[$field], $allowed ) !== [] ) {
 							return false;
@@ -277,6 +278,7 @@ abstract class AuthenticationRequest {
 				return get_class( $req ) === $class;
 			}
 		} );
+		// @phan-suppress-next-line PhanTypeMismatchReturn False positive
 		return count( $requests ) === 1 ? reset( $requests ) : null;
 	}
 
@@ -301,6 +303,7 @@ abstract class AuthenticationRequest {
 				} elseif ( $username !== $req->username ) {
 					$requestClass = get_class( $req );
 					throw new \UnexpectedValueException( "Conflicting username fields: \"{$req->username}\" from "
+						// @phan-suppress-next-line PhanTypeSuspiciousStringExpression $otherClass always set
 						. "$requestClass::\$username vs. \"$username\" from $otherClass::\$username" );
 				}
 			}
@@ -349,6 +352,7 @@ abstract class AuthenticationRequest {
 					// If there is a primary not requiring this field, no matter how many others do,
 					// authentication can proceed without it.
 					|| $req->required === self::PRIMARY_REQUIRED
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal False positive
 						&& !in_array( $name, $sharedRequiredPrimaryFields, true )
 				) {
 					$options['optional'] = true;

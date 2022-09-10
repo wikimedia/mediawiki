@@ -3,6 +3,7 @@
 namespace MediaWiki\Session;
 
 use BadMethodCallException;
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 use UnexpectedValueException;
@@ -35,10 +36,7 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 
 	public function testEnableFlags() {
 		$handler = TestingAccessWrapper::newFromObject(
-			$this->getMockBuilder( PHPSessionHandler::class )
-				->onlyMethods( [] )
-				->disableOriginalConstructor()
-				->getMock()
+			$this->createPartialMock( PHPSessionHandler::class, [] )
 		);
 
 		$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
@@ -104,9 +102,9 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( '$_SESSION' );
 		$reset[] = $this->getResetter( $rProp );
 
-		$this->setMwGlobals( [
-			'wgSessionProviders' => [ [ 'class' => \DummySessionProvider::class ] ],
-			'wgObjectCacheSessionExpiry' => 2,
+		$this->overrideConfigValues( [
+			MainConfigNames::SessionProviders => [ [ 'class' => \DummySessionProvider::class ] ],
+			MainConfigNames::ObjectCacheSessionExpiry => 2,
 		] );
 
 		$store = new TestBagOStuff();
@@ -317,10 +315,7 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 	public function testDisabled( $method, $args ) {
 		$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 		$rProp->setAccessible( true );
-		$handler = $this->getMockBuilder( PHPSessionHandler::class )
-			->onlyMethods( [] )
-			->disableOriginalConstructor()
-			->getMock();
+		$handler = $this->createPartialMock( PHPSessionHandler::class, [] );
 		TestingAccessWrapper::newFromObject( $handler )->setEnableFlags( 'disable' );
 		$oldValue = $rProp->getValue();
 		$rProp->setValue( $handler );
@@ -344,10 +339,7 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideWrongInstance
 	 */
 	public function testWrongInstance( $method, $args ) {
-		$handler = $this->getMockBuilder( PHPSessionHandler::class )
-			->onlyMethods( [] )
-			->disableOriginalConstructor()
-			->getMock();
+		$handler = $this->createPartialMock( PHPSessionHandler::class, [] );
 		TestingAccessWrapper::newFromObject( $handler )->setEnableFlags( 'enable' );
 
 		$this->expectException( UnexpectedValueException::class );

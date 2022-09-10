@@ -231,6 +231,7 @@
 	"config-upload-deleted-help": "Pilih direktori tempat mengarsipkan berkas yang dihapus.\nIdealnya, direktori ini tidak boleh dapat diakses dari web.",
 	"config-personalization-settings": "Personalisasi",
 	"config-logo-preview-main": "Halaman utama",
+	"config-logo-icon": "Logo (ikon):",
 	"config-logo-icon-help": "Ikon logo Anda harus berbentuk persegi dan berukuran lebih besar dari 50px atau merupakan SVG.",
 	"config-instantcommons": "Aktifkan Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] adalah fitur yang memungkinkan wiki untuk menggunakan gambar, suara, dan media lain dari [https://commons.wikimedia.org/ Wikimedia Commons].\nUntuk melakukannya, MediaWiki memerlukan akses ke Internet.\n\nUntuk informasi lebih lanjut tentang fitur ini, termasuk petunjuk tentang cara untuk mengatur untuk wiki selain Wikimedia Commons, baca [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manual].",

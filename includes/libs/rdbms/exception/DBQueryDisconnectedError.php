@@ -16,9 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 /**
@@ -35,7 +33,7 @@ class DBQueryDisconnectedError extends DBQueryError {
 	 * @param int|string $errno
 	 * @param string $sql
 	 * @param string $fname
-	 * @param string|null $message Optional message, intended for subclases (optional)
+	 * @param string|null $message Optional message, intended for subclasses (optional)
 	 */
 	public function __construct( IDatabase $db, $error, $errno, $sql, $fname, $message = null ) {
 		if ( $message === null ) {

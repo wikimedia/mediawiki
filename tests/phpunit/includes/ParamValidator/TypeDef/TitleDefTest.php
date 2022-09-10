@@ -3,6 +3,7 @@
 namespace MediaWiki\ParamValidator\TypeDef;
 
 use CommentStoreComment;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use Title;
@@ -10,15 +11,14 @@ use TitleValue;
 use User;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
-use Wikimedia\ParamValidator\TypeDef\TypeDefTestCase;
 use WikitextContent;
 
 /**
  * @covers \MediaWiki\ParamValidator\TypeDef\TitleDef
  */
-class TitleDefTest extends TypeDefTestCase {
-
+class TitleDefTest extends TypeDefIntegrationTestCase {
 	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
+		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
 		return new TitleDef(
 			$callbacks,
 			MediaWikiServices::getInstance()->getTitleFactory()
@@ -34,7 +34,7 @@ class TitleDefTest extends TypeDefTestCase {
 	) {
 		if ( $this->dataName() === 'must exist (success)' ) {
 			$updater = MediaWikiServices::getInstance()->getWikiPageFactory()
-				->newFromTitle( Title::newFromText( 'exists' ) )
+				->newFromTitle( Title::makeTitle( NS_MAIN, 'Exists' ) )
 				->newPageUpdater( new User )
 				->setContent( SlotRecord::MAIN, new WikitextContent( 'exists' ) );
 			$updater->saveRevision( CommentStoreComment::newUnsavedComment( 'test' ) );
@@ -94,7 +94,7 @@ class TitleDefTest extends TypeDefTestCase {
 			// Underscore-to-space conversion not happening here but later in validate().
 			'String' => [ 'User:John_Doe', 'User:John_Doe' ],
 			'TitleValue' => [ new TitleValue( NS_USER, 'John_Doe' ), 'User:John Doe' ],
-			'Title' => [ Title::newFromText( 'User:John_Doe' ), 'User:John Doe' ],
+			'Title' => [ Title::makeTitle( NS_USER, 'John_Doe' ), 'User:John Doe' ],
 		];
 	}
 

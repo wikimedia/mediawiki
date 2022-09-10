@@ -36,6 +36,7 @@ class ParserTestParserHook {
 	}
 
 	public static function dumpHook( $in, $argv ) {
+		// @phan-suppress-next-line SecurityCheck-XSS
 		return "<pre>\n" .
 			var_export( $in, true ) . "\n" .
 			var_export( $argv, true ) . "\n" .
@@ -52,8 +53,10 @@ class ParserTestParserHook {
 			// Clear the buffer, we probably don't need to
 			$tmp = $parser->static_tag_buf ?? '';
 			$parser->static_tag_buf = null;
+			// @phan-suppress-next-line SecurityCheck-XSS
 			return $tmp;
 		} else { // wtf?
+			// @phan-suppress-next-line SecurityCheck-XSS
 			return "\nCall this extension as <statictag>string</statictag> or as" .
 				" <statictag action=flush/>, not in any other way.\n" .
 				"text: " . var_export( $in, true ) . "\n" .

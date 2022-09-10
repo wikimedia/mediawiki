@@ -36,7 +36,9 @@
 							"bigint",
 							"binary",
 							"blob",
+							"boolean",
 							"datetimetz",
+							"decimal",
 							"float",
 							"integer",
 							"mwenum",
@@ -87,6 +89,16 @@
 								"description": "If the column should be an unsigned integer",
 								"default": false
 							},
+							"scale": {
+								"type": "number",
+								"description": "Exact number of decimal digits to be stored in a decimal type column",
+								"default": 0
+							},
+							"precision": {
+								"type": "number",
+								"description": "Precision of a decimal type column that determines the overall maximum number of digits to be stored (including scale)",
+								"default": 10
+							},
 							"PlatformOptions": {
 								"type": "object",
 								"additionalProperties": false,
@@ -123,7 +135,8 @@
 				},
 				"required": [
 					"name",
-					"type"
+					"type",
+					"options"
 				]
 			}
 		},
@@ -154,13 +167,19 @@
 					},
 					"unique": {
 						"type": "boolean",
-						"description": "If the index is unique"
+						"description": "If the index is unique",
+						"default": false
 					},
 					"flags": {
 						"type": "array",
 						"items": {
-							"type": "string"
-						}
+							"type": "string",
+							"enum": [
+								"fulltext",
+								"spatial"
+							]
+						},
+						"uniqueItems": true
 					},
 					"options": {
 						"type": "object",
@@ -180,7 +199,8 @@
 				},
 				"required": [
 					"name",
-					"columns"
+					"columns",
+					"unique"
 				]
 			}
 		},

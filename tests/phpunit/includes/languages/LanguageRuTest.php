@@ -80,177 +80,175 @@ class LanguageRuTest extends LanguageClassesTestCase {
 	}
 
 	public static function providerGrammar() {
-		return [
-			[
-				'Википедии',
-				'Википедия',
-				'genitive',
-			],
-			[
-				'Викитеки',
-				'Викитека',
-				'genitive',
-			],
-			[
-				'Википедию',
-				'Википедия',
-				'accusative',
-			],
-			[
-				'Викисловарь',
-				'Викисловарь',
-				'accusative',
-			],
-			[
-				'Викицитатник',
-				'Викицитатник',
-				'accusative',
-			],
-			[
-				'Викиучебник',
-				'Викиучебник',
-				'accusative',
-			],
-			[
-				'Викитеку',
-				'Викитека',
-				'accusative',
-			],
-			[
-				'Викиновости',
-				'Викиновости',
-				'accusative',
-			],
-			[
-				'Викиверситет',
-				'Викиверситет',
-				'accusative',
-			],
-			[
-				'Викивиды',
-				'Викивиды',
-				'accusative',
-			],
-			[
-				'Викиданные',
-				'Викиданные',
-				'accusative',
-			],
-			[
-				'Викисклад',
-				'Викисклад',
-				'accusative',
-			],
-			[
-				'Викигид',
-				'Викигид',
-				'accusative',
-			],
-			[
-				'Мету',
-				'Мета',
-				'accusative',
-			],
-			[
-				'Инкубатор',
-				'Инкубатор',
-				'accusative',
-			],
-			[
-				'Викитеке',
-				'Викитека',
-				'prepositional',
-			],
-			[
-				'Викисклада',
-				'Викисклад',
-				'genitive',
-			],
-			[
-				'Викиверситета',
-				'Викиверситет',
-				'genitive',
-			],
-			[
-				'Викискладе',
-				'Викисклад',
-				'prepositional',
-			],
-			[
-				'Викиданных',
-				'Викиданные',
-				'prepositional',
-			],
-			[
-				'Викиверситете',
-				'Викиверситет',
-				'prepositional',
-			],
-			[
-				'русского',
-				'русский',
-				'languagegen',
-			],
-			[
-				'немецкого',
-				'немецкий',
-				'languagegen',
-			],
-			[
-				'иврита',
-				'иврит',
-				'languagegen',
-			],
-			[
-				'эсперанто',
-				'эсперанто',
-				'languagegen',
-			],
-			[
-				'русском',
-				'русский',
-				'languageprep',
-			],
-			[
-				'немецком',
-				'немецкий',
-				'languageprep',
-			],
-			[
-				'идише',
-				'идиш',
-				'languageprep',
-			],
-			[
-				'эсперанто',
-				'эсперанто',
-				'languageprep',
-			],
-			[
-				'по-русски',
-				'русский',
-				'languageadverb',
-			],
-			[
-				'по-немецки',
-				'немецкий',
-				'languageadverb',
-			],
-			[
-				'на иврите',
-				'иврит',
-				'languageadverb',
-			],
-			[
-				'на эсперанто',
-				'эсперанто',
-				'languageadverb',
-			],
-			[
-				'на языке гуарани',
-				'гуарани',
-				'languageadverb',
-			],
+		yield 'Wikipedia genitive' => [
+			'Википедии',
+			'Википедия',
+			'genitive',
+		];
+		yield 'Wikisource genitive' => [
+			'Викитеки',
+			'Викитека',
+			'genitive',
+		];
+		yield 'Wikipedia accusative' => [
+			'Википедию',
+			'Википедия',
+			'accusative',
+		];
+		yield 'Wiktionary accusative' => [
+			'Викисловарь',
+			'Викисловарь',
+			'accusative',
+		];
+		yield 'Wikiquote accusative' => [
+			'Викицитатник',
+			'Викицитатник',
+			'accusative',
+		];
+		yield 'Wikibooks accusative' => [
+			'Викиучебник',
+			'Викиучебник',
+			'accusative',
+		];
+		yield 'Wikisource accusative' => [
+			'Викитеку',
+			'Викитека',
+			'accusative',
+		];
+		yield 'Wikinews accusative' => [
+			'Викиновости',
+			'Викиновости',
+			'accusative',
+		];
+		yield 'Wikiversity accusative' => [
+			'Викиверситет',
+			'Викиверситет',
+			'accusative',
+		];
+		yield 'Wikispecies accusative' => [
+			'Викивиды',
+			'Викивиды',
+			'accusative',
+		];
+		yield 'Wikidata accusative' => [
+			'Викиданные',
+			'Викиданные',
+			'accusative',
+		];
+		yield 'Commons accusative' => [
+			'Викисклад',
+			'Викисклад',
+			'accusative',
+		];
+		yield 'Wikivoyage accusative' => [
+			'Викигид',
+			'Викигид',
+			'accusative',
+		];
+		yield 'Meta accusative' => [
+			'Мету',
+			'Мета',
+			'accusative',
+		];
+		yield 'Incubator accusative' => [
+			'Инкубатор',
+			'Инкубатор',
+			'accusative',
+		];
+		yield 'Wikisource prepositional' => [
+			'Викитеке',
+			'Викитека',
+			'prepositional',
+		];
+		yield 'Commons genitive' => [
+			'Викисклада',
+			'Викисклад',
+			'genitive',
+		];
+		yield 'Wikiversity genitive' => [
+			'Викиверситета',
+			'Викиверситет',
+			'genitive',
+		];
+		yield 'Commons prepositional' => [
+			'Викискладе',
+			'Викисклад',
+			'prepositional',
+		];
+		yield 'Wikidata prepositional' => [
+			'Викиданных',
+			'Викиданные',
+			'prepositional',
+		];
+		yield 'Wikiversity prepositional' => [
+			'Викиверситете',
+			'Викиверситет',
+			'prepositional',
+		];
+		yield 'Russian languagegen' => [
+			'русского',
+			'русский',
+			'languagegen',
+		];
+		yield 'German languagegen' => [
+			'немецкого',
+			'немецкий',
+			'languagegen',
+		];
+		yield 'Hebrew languagegen' => [
+			'иврита',
+			'иврит',
+			'languagegen',
+		];
+		yield 'Esperanto languagegen' => [
+			'эсперанто',
+			'эсперанто',
+			'languagegen',
+		];
+		yield 'Russian languageprep' => [
+			'русском',
+			'русский',
+			'languageprep',
+		];
+		yield 'German languageprep' => [
+			'немецком',
+			'немецкий',
+			'languageprep',
+		];
+		yield 'Yiddish languageprep' => [
+			'идише',
+			'идиш',
+			'languageprep',
+		];
+		yield 'Esperanto languageprep' => [
+			'эсперанто',
+			'эсперанто',
+			'languageprep',
+		];
+		yield 'Russian languageadverb' => [
+			'по-русски',
+			'русский',
+			'languageadverb',
+		];
+		yield 'German languageadverb' => [
+			'по-немецки',
+			'немецкий',
+			'languageadverb',
+		];
+		yield 'Hebrew languageadverb' => [
+			'на иврите',
+			'иврит',
+			'languageadverb',
+		];
+		yield 'Esperanto languageadverb' => [
+			'на эсперанто',
+			'эсперанто',
+			'languageadverb',
+		];
+		yield 'Guarani languageadverb' => [
+			'на языке гуарани',
+			'гуарани',
+			'languageadverb',
 		];
 	}
 }

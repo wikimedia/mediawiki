@@ -162,7 +162,7 @@ class RevertAction extends FormAction {
 			0,
 			false,
 			false,
-			$this->getUser(),
+			$this->getAuthority(),
 			[],
 			true,
 			true
@@ -189,11 +189,11 @@ class RevertAction extends FormAction {
 	}
 
 	protected function getPageTitle() {
-		return $this->msg( 'filerevert', $this->getTitle()->getText() );
+		return $this->msg( 'filerevert', $this->getTitle()->getText() )->text();
 	}
 
 	protected function getDescription() {
-		return OutputPage::buildBacklinkSubtitle( $this->getTitle() );
+		return OutputPage::buildBacklinkSubtitle( $this->getTitle() )->escaped();
 	}
 
 	public function doesWrites() {

@@ -69,7 +69,7 @@ class UserArrayFromResult extends UserArray implements Countable {
 	}
 
 	public function next(): void {
-		$row = $this->res->next();
+		$row = $this->res->fetchObject();
 		$this->setCurrent( $row );
 		$this->key++;
 	}

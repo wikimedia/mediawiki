@@ -21,9 +21,14 @@
  */
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Permissions\RestrictionStore;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\EnumDef;
 
 /**
  * A query module to show basic page information.
@@ -44,6 +49,10 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $titleFormatter;
 	/** @var WatchedItemStore */
 	private $watchedItemStore;
+	/** @var RestrictionStore */
+	private $restrictionStore;
+	/** @var LinksMigration */
+	private $linksMigration;
 
 	private $fld_protection = false, $fld_talkid = false,
 		$fld_subjectid = false, $fld_url = false,
@@ -72,7 +81,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	/** @var Title[] */
 	private $everything;
 
-	private $pageRestrictions, $pageIsRedir, $pageIsNew, $pageTouched,
+	private $pageIsRedir, $pageIsNew, $pageTouched,
 		$pageLatest, $pageLength;
 
 	private $protections, $restrictionTypes, $watched, $watchers, $visitingwatchers,
@@ -104,6 +113,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @param TitleFormatter $titleFormatter
 	 * @param WatchedItemStore $watchedItemStore
 	 * @param LanguageConverterFactory $languageConverterFactory
+	 * @param RestrictionStore $restrictionStore
+	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
@@ -114,7 +125,9 @@ class ApiQueryInfo extends ApiQueryBase {
 		TitleFactory $titleFactory,
 		TitleFormatter $titleFormatter,
 		WatchedItemStore $watchedItemStore,
-		LanguageConverterFactory $languageConverterFactory
+		LanguageConverterFactory $languageConverterFactory,
+		RestrictionStore $restrictionStore,
+		LinksMigration $linksMigration
 	) {
 		parent::__construct( $queryModule, $moduleName, 'in' );
 		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $contentLanguage );
@@ -123,6 +136,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->titleFactory = $titleFactory;
 		$this->titleFormatter = $titleFormatter;
 		$this->watchedItemStore = $watchedItemStore;
+		$this->restrictionStore = $restrictionStore;
+		$this->linksMigration = $linksMigration;
 	}
 
 	/**
@@ -130,7 +145,6 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @return void
 	 */
 	public function requestExtraData( $pageSet ) {
-		$pageSet->requestField( 'page_restrictions' );
 		// If the pageset is resolving redirects we won't get page_is_redirect.
 		// But we can't know for sure until the pageset is executed (revids may
 		// turn it off), so request it unconditionally.
@@ -141,7 +155,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageSet->requestField( 'page_latest' );
 		$pageSet->requestField( 'page_len' );
 		$pageSet->requestField( 'page_content_model' );
-		if ( $config->get( 'PageLanguageUseDB' ) ) {
+		if ( $config->get( MainConfigNames::PageLanguageUseDB ) ) {
 			$pageSet->requestField( 'page_lang' );
 		}
 	}
@@ -190,7 +204,6 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 		}
 
-		$this->pageRestrictions = $pageSet->getCustomField( 'page_restrictions' );
 		// when resolving redirects, no page will have this field
 		$this->pageIsRedir = !$pageSet->isResolvingRedirects()
 			? $pageSet->getCustomField( 'page_is_redirect' )
@@ -364,6 +377,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$pageInfo['preload'] = '';
 			} else {
 				$text = null;
+				// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 				$this->getHookRunner()->onEditFormPreloadText( $text, $title );
 
 				$pageInfo['preload'] = $text;
@@ -447,45 +461,6 @@ class ApiQueryInfo extends ApiQueryBase {
 				}
 				$this->protections[$title->getNamespace()][$title->getDBkey()][] = $a;
 			}
-			// Also check old restrictions
-			foreach ( $this->titles as $pageId => $title ) {
-				if ( $this->pageRestrictions[$pageId] ) {
-					$namespace = $title->getNamespace();
-					$dbKey = $title->getDBkey();
-					$restrictions = explode( ':', trim( $this->pageRestrictions[$pageId] ) );
-					foreach ( $restrictions as $restrict ) {
-						$temp = explode( '=', trim( $restrict ) );
-						if ( count( $temp ) == 1 ) {
-							// old old format should be treated as edit/move restriction
-							$restriction = trim( $temp[0] );
-
-							if ( $restriction == '' ) {
-								continue;
-							}
-							$this->protections[$namespace][$dbKey][] = [
-								'type' => 'edit',
-								'level' => $restriction,
-								'expiry' => 'infinity',
-							];
-							$this->protections[$namespace][$dbKey][] = [
-								'type' => 'move',
-								'level' => $restriction,
-								'expiry' => 'infinity',
-							];
-						} else {
-							$restriction = trim( $temp[1] );
-							if ( $restriction == '' ) {
-								continue;
-							}
-							$this->protections[$namespace][$dbKey][] = [
-								'type' => $temp[0],
-								'level' => $restriction,
-								'expiry' => 'infinity',
-							];
-						}
-					}
-				}
-			}
 		}
 
 		// Get protections for missing titles
@@ -516,30 +491,35 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 			// Applicable protection types
 			$this->restrictionTypes[$title->getNamespace()][$title->getDBkey()] =
-				array_values( $title->getRestrictionTypes() );
+				array_values( $this->restrictionStore->listApplicableRestrictionTypes( $title ) );
 		}
+
+		list( $blNamespace, $blTitle ) = $this->linksMigration->getTitleFields( 'templatelinks' );
+		$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
 
 		if ( count( $others ) ) {
 			// Non-images: check templatelinks
 			$lb = $this->linkBatchFactory->newLinkBatch( $others );
 			$this->resetQueryParams();
-			$this->addTables( [ 'page_restrictions', 'page', 'templatelinks' ] );
+			$this->addTables( array_merge( [ 'page_restrictions', 'page' ], $queryInfo['tables'] ) );
+			// templatelinks must use PRIMARY index and not the tl_target_id.
+			$this->addOption( 'USE INDEX', [ 'templatelinks' => 'PRIMARY' ] );
 			$this->addFields( [ 'pr_type', 'pr_level', 'pr_expiry',
 				'page_title', 'page_namespace',
-				'tl_title', 'tl_namespace' ] );
+				$blNamespace, $blTitle ] );
 			$this->addWhere( $lb->constructSet( 'tl', $db ) );
 			$this->addWhere( 'pr_page = page_id' );
 			$this->addWhere( 'pr_page = tl_from' );
 			$this->addWhereFld( 'pr_cascade', 1 );
+			$this->addJoinConds( $queryInfo['joins'] );
 
 			$res = $this->select( __METHOD__ );
 			foreach ( $res as $row ) {
-				$source = $this->titleFactory->makeTitle( $row->page_namespace, $row->page_title );
-				$this->protections[$row->tl_namespace][$row->tl_title][] = [
+				$this->protections[$row->$blNamespace][$row->$blTitle][] = [
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
 					'expiry' => ApiResult::formatExpiry( $row->pr_expiry ),
-					'source' => $source->getPrefixedText()
+					'source' => $this->titleFormatter->formatTitle( $row->page_namespace, $row->page_title ),
 				];
 			}
 		}
@@ -557,12 +537,11 @@ class ApiQueryInfo extends ApiQueryBase {
 
 			$res = $this->select( __METHOD__ );
 			foreach ( $res as $row ) {
-				$source = $this->titleFactory->makeTitle( $row->page_namespace, $row->page_title );
 				$this->protections[NS_FILE][$row->il_to][] = [
 					'type' => $row->pr_type,
 					'level' => $row->pr_level,
 					'expiry' => ApiResult::formatExpiry( $row->pr_expiry ),
-					'source' => $source->getPrefixedText()
+					'source' => $this->titleFormatter->formatTitle( $row->page_namespace, $row->page_title ),
 				];
 			}
 		}
@@ -750,7 +729,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		$canUnwatchedpages = $this->getAuthority()->isAllowed( 'unwatchedpages' );
-		$unwatchedPageThreshold = $this->getConfig()->get( 'UnwatchedPageThreshold' );
+		$unwatchedPageThreshold =
+			$this->getConfig()->get( MainConfigNames::UnwatchedPageThreshold );
 		if ( !$canUnwatchedpages && !is_int( $unwatchedPageThreshold ) ) {
 			return;
 		}
@@ -779,7 +759,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$db = $this->getDB();
 
 		$canUnwatchedpages = $this->getAuthority()->isAllowed( 'unwatchedpages' );
-		$unwatchedPageThreshold = $config->get( 'UnwatchedPageThreshold' );
+		$unwatchedPageThreshold = $config->get( MainConfigNames::UnwatchedPageThreshold );
 		if ( !$canUnwatchedpages && !is_int( $unwatchedPageThreshold ) ) {
 			return;
 		}
@@ -801,7 +781,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->addOption( 'GROUP BY', [ 'page_namespace', 'page_title' ] );
 			$timestampRes = $this->select( __METHOD__ );
 
-			$age = $config->get( 'WatchersMaxAge' );
+			$age = $config->get( MainConfigNames::WatchersMaxAge );
 			$timestamps = [];
 			foreach ( $timestampRes as $row ) {
 				$revTimestamp = wfTimestamp( TS_UNIX, (int)$row->rev_timestamp );
@@ -861,8 +841,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	public function getAllowedParams() {
 		return [
 			'prop' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => [
 					'protection',
 					'talkid',
 					'watched', # private
@@ -881,22 +861,22 @@ class ApiQueryInfo extends ApiQueryBase {
 					// need to be added to getCacheMode()
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
-				ApiBase::PARAM_DEPRECATED_VALUES => [
+				EnumDef::PARAM_DEPRECATED_VALUES => [
 					'readable' => true, // Since 1.32
 				],
 			],
 			'linkcontext' => [
-				ApiBase::PARAM_TYPE => 'title',
-				ApiBase::PARAM_DFLT => $this->titleFactory->newMainPage()->getPrefixedText(),
+				ParamValidator::PARAM_TYPE => 'title',
+				ParamValidator::PARAM_DEFAULT => $this->titleFactory->newMainPage()->getPrefixedText(),
 				TitleDef::PARAM_RETURN_OBJECT => true,
 			],
 			'testactions' => [
-				ApiBase::PARAM_TYPE => 'string',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'testactionsdetail' => [
-				ApiBase::PARAM_TYPE => [ 'boolean', 'full', 'quick' ],
-				ApiBase::PARAM_DFLT => 'boolean',
+				ParamValidator::PARAM_TYPE => [ 'boolean', 'full', 'quick' ],
+				ParamValidator::PARAM_DEFAULT => 'boolean',
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			'continue' => [

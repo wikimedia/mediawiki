@@ -162,6 +162,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 */
 	public function setTarget( $target ) {
 		if ( $target instanceof PageReference ) {
+			// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty castFrom does not return null here
 			$this->target = Title::castFromPageReference( $target );
 		} elseif ( $target instanceof LinkTarget ) {
 			$this->target = Title::newFromLinkTarget( $target );
@@ -186,7 +187,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 * @since 1.19
 	 * @param string $comment
 	 */
-	public function setComment( $comment ) {
+	public function setComment( string $comment ) {
 		$this->comment = $comment;
 	}
 
@@ -211,9 +212,11 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 *
 	 * @since 1.27
 	 * @param string|string[]|null $tags
-	 * @deprecated since 1.33 Please use addTags() instead
+	 * @deprecated since 1.33 Please use addTags() instead.
+	 *  Hard deprecated since 1.39.
 	 */
 	public function setTags( $tags ) {
+		wfDeprecated( __METHOD__, '1.33' );
 		if ( $this->tags ) {
 			wfDebug( 'Overwriting existing ManualLogEntry tags' );
 		}

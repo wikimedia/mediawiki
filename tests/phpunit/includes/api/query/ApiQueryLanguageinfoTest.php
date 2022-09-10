@@ -55,7 +55,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 				'bcp47' => 'sh',
 				'autonym' => 'srpskohrvatski / српскохрватски',
 				'name' => 'Serbo-Croatian',
-				'fallbacks' => [ 'bs', 'sr-el', 'hr' ],
+				'fallbacks' => [ 'bs', 'sr-el', 'sr-latn', 'hr' ],
 				'dir' => 'ltr',
 				'variants' => [ 'sh' ],
 			],

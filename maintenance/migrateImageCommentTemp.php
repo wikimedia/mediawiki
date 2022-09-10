@@ -107,6 +107,7 @@ class MigrateImageCommentTemp extends LoggedUpdateMaintenance {
 				break;
 			}
 
+			// @phan-suppress-next-line PhanTypeSuspiciousStringExpression last is not-null when used
 			$this->output( "... $last, updated $updated, deleted $deleted\n" );
 			$conds = [ 'imgcomment_name > ' . $dbw->addQuotes( $last ) ];
 		}

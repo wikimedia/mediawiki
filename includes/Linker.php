@@ -22,10 +22,12 @@
 
 use HtmlFormatter\HtmlFormatter;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Some internal bits split of from Skin.php. These functions are used
@@ -169,7 +171,7 @@ class Linker {
 		if ( $html == '' ) {
 			$html = htmlspecialchars( $nt->getPrefixedText() );
 		}
-		list( $inside, $trail ) = self::splitTrail( $trail );
+		[ $inside, $trail ] = self::splitTrail( $trail );
 		return "<a class=\"mw-selflink selflink\">{$prefix}{$html}{$inside}</a>{$trail}";
 	}
 
@@ -278,16 +280,17 @@ class Linker {
 	 *          valign          Vertical alignment (baseline, sub, super, top, text-top, middle,
 	 *                          bottom, text-bottom)
 	 *          alt             Alternate text for image (i.e. alt attribute). Plain text.
+	 *          title           Used for tooltips if caption isn't visible.
 	 *          class           HTML for image classes. Plain text.
 	 *          caption         HTML for image caption.
 	 *          link-url        URL to link to
 	 *          link-title      LinkTarget object to link to
 	 *          link-target     Value for the target attribute, only with link-url
 	 *          no-link         Boolean, suppress description link
-	 *          targetlang      (optional) Target language code, see Parser::getTargetLanguage()
 	 *
 	 * @param array $handlerParams Associative array of media handler parameters, to be passed
 	 *       to transform(). Typical keys are "width" and "page".
+	 *          targetlang      (optional) Target language code, see Parser::getTargetLanguage()
 	 * @param string|false $time Timestamp of the file, set as false for current
 	 * @param string $query Query params for desc url
 	 * @param int|null $widthOption Used by the parser to remember the user preference thumbnailsize
@@ -296,20 +299,22 @@ class Linker {
 	 */
 	public static function makeImageLink( Parser $parser, LinkTarget $title,
 		$file, $frameParams = [], $handlerParams = [], $time = false,
-		$query = "", $widthOption = null
+		$query = '', $widthOption = null
 	) {
 		$title = Title::newFromLinkTarget( $title );
 		$res = null;
 		$dummy = new DummyLinker;
 		if ( !Hooks::runner()->onImageBeforeProduceHTML( $dummy, $title,
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			$file, $frameParams, $handlerParams, $time, $res,
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			$parser, $query, $widthOption )
 		) {
 			return $res;
 		}
 
 		if ( $file && !$file->allowInlineDisplay() ) {
-			wfDebug( __METHOD__ . ': ' . $title->getPrefixedDBkey() . " does not allow inline display" );
+			wfDebug( __METHOD__ . ': ' . $title->getPrefixedDBkey() . ' does not allow inline display' );
 			return self::link( $title );
 		}
 
@@ -330,10 +335,14 @@ class Linker {
 
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();
-		$enableLegacyMediaDOM = $config->get( 'ParserEnableLegacyMediaDOM' );
+		$enableLegacyMediaDOM = $config->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 
 		$classes = [];
-		if ( !isset( $handlerParams['width'] ) ) {
+		if (
+			!isset( $handlerParams['width'] ) &&
+			!isset( $frameParams['manualthumb'] ) &&
+			!isset( $frameParams['framed'] )
+		) {
 			$classes[] = 'mw-default-size';
 		}
 
@@ -351,7 +360,7 @@ class Linker {
 			if ( isset( $handlerParams['height'] ) && $file->isVectorized() ) {
 				// If its a vector image, and user only specifies height
 				// we don't want it to be limited by its "normal" width.
-				$svgMaxSize = $config->get( 'SVGMaxSize' );
+				$svgMaxSize = $config->get( MainConfigNames::SVGMaxSize );
 				$handlerParams['width'] = $svgMaxSize;
 			} else {
 				$handlerParams['width'] = $file->getWidth( $page );
@@ -363,8 +372,8 @@ class Linker {
 				|| isset( $frameParams['frameless'] )
 				|| !$handlerParams['width']
 			) {
-				$thumbLimits = $config->get( 'ThumbLimits' );
-				$thumbUpright = $config->get( 'ThumbUpright' );
+				$thumbLimits = $config->get( MainConfigNames::ThumbLimits );
+				$thumbUpright = $config->get( MainConfigNames::ThumbUpright );
 				if ( $widthOption === null || !isset( $thumbLimits[$widthOption] ) ) {
 					$userOptionsLookup = $services->getUserOptionsLookup();
 					$widthOption = $userOptionsLookup->getDefaultOption( 'thumbsize' );
@@ -391,9 +400,12 @@ class Linker {
 			}
 		}
 
-		if ( isset( $frameParams['thumbnail'] ) || isset( $frameParams['manualthumb'] )
-			|| isset( $frameParams['framed'] )
-		) {
+		// Parser::makeImage has a similarly named variable
+		$hasVisibleCaption = isset( $frameParams['thumbnail'] ) ||
+			isset( $frameParams['manualthumb'] ) ||
+			isset( $frameParams['framed'] );
+
+		if ( $hasVisibleCaption ) {
 			if ( $enableLegacyMediaDOM ) {
 				// This is no longer needed in our new media output, since the
 				// default styling in content.media-common.less takes care of it;
@@ -414,16 +426,7 @@ class Linker {
 			) . $postfix;
 		}
 
-		switch ( $file ? $file->getMediaType() : '' ) {
-			case 'AUDIO':
-				$rdfaType = 'mw:Audio';
-				break;
-			case 'VIDEO':
-				$rdfaType = 'mw:Video';
-				break;
-			default:
-				$rdfaType = 'mw:Image';
-		}
+		$rdfaType = 'mw:File';
 
 		if ( $file && isset( $frameParams['frameless'] ) ) {
 			$rdfaType .= '/Frameless';
@@ -527,7 +530,7 @@ class Linker {
 	 * @param Parser|null $parser
 	 * @return array
 	 */
-	private static function getImageLinkMTOParams( $frameParams, $query = '', $parser = null ) {
+	public static function getImageLinkMTOParams( $frameParams, $query = '', $parser = null ) {
 		$mtoParams = [];
 		if ( isset( $frameParams['link-url'] ) && $frameParams['link-url'] !== '' ) {
 			$mtoParams['custom-url-link'] = $frameParams['link-url'];
@@ -572,20 +575,21 @@ class Linker {
 	 */
 	public static function makeThumbLinkObj(
 		LinkTarget $title, $file, $label = '', $alt = '', $align = null,
-		$params = [], $framed = false, $manualthumb = ""
+		$params = [], $framed = false, $manualthumb = ''
 	) {
 		$frameParams = [
 			'alt' => $alt,
 			'caption' => $label,
 			'align' => $align
 		];
-		if ( $framed ) {
-			$frameParams['framed'] = true;
-		}
+		$classes = [];
 		if ( $manualthumb ) {
 			$frameParams['manualthumb'] = $manualthumb;
+		} elseif ( $framed ) {
+			$frameParams['framed'] = true;
+		} elseif ( !isset( $params['width'] ) ) {
+			$classes[] = 'mw-default-size';
 		}
-		$classes = [ 'mw-default-size' ];
 		return self::makeThumbLink2(
 			$title, $file, $frameParams, $params, false, '', $classes
 		);
@@ -604,12 +608,12 @@ class Linker {
 	 */
 	public static function makeThumbLink2(
 		LinkTarget $title, $file, $frameParams = [], $handlerParams = [],
-		$time = false, $query = "", array $classes = [], ?Parser $parser = null
+		$time = false, $query = '', array $classes = [], ?Parser $parser = null
 	) {
 		$exists = $file && $file->exists();
 
 		$services = MediaWikiServices::getInstance();
-		$enableLegacyMediaDOM = $services->getMainConfig()->get( 'ParserEnableLegacyMediaDOM' );
+		$enableLegacyMediaDOM = $services->getMainConfig()->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 
 		$page = $handlerParams['page'] ?? false;
 		if ( !isset( $frameParams['align'] ) ) {
@@ -620,9 +624,6 @@ class Linker {
 		}
 		if ( !isset( $frameParams['alt'] ) ) {
 			$frameParams['alt'] = '';
-		}
-		if ( !isset( $frameParams['title'] ) ) {
-			$frameParams['title'] = '';
 		}
 		if ( !isset( $frameParams['caption'] ) ) {
 			$frameParams['caption'] = '';
@@ -636,7 +637,7 @@ class Linker {
 		$thumb = false;
 		$noscale = false;
 		$manualthumb = false;
-		$rdfaType = null;
+		$rdfaType = 'mw:File/Thumb';
 
 		if ( !$exists ) {
 			$outerWidth = $handlerParams['width'] + 2;
@@ -658,7 +659,7 @@ class Linker {
 				// Use image dimensions, don't scale
 				$thumb = $file->getUnscaledThumb( $handlerParams );
 				$noscale = true;
-				$rdfaType = '/Frame';
+				$rdfaType = 'mw:File/Frame';
 			} else {
 				# Do not present an image bigger than the source, for bitmap-style images
 				# This is a hack to maintain compatibility with arbitrary pre-1.10 behavior
@@ -714,11 +715,6 @@ class Linker {
 
 		if ( !$exists ) {
 			$label = '';
-			if ( $enableLegacyMediaDOM ) {
-				// This is the information for tooltips for inline images which
-				// Parsoid stores in data-mw.  See T273014
-				$label = $frameParams['title'];
-			}
 			$s .= self::makeBrokenImageLinkObj(
 				$title, $label, '', '', '', (bool)$time, $handlerParams
 			);
@@ -738,7 +734,6 @@ class Linker {
 			}
 			$params = [
 				'alt' => $frameParams['alt'],
-				'title' => $frameParams['title'],
 			];
 			if ( $enableLegacyMediaDOM ) {
 				$params += [
@@ -750,38 +745,26 @@ class Linker {
 			$params = self::getImageLinkMTOParams( $frameParams, $query, $parser ) + $params;
 			$s .= $thumb->toHtml( $params );
 			if ( isset( $frameParams['framed'] ) ) {
-				$zoomIcon = "";
+				$zoomIcon = '';
 			} else {
 				$zoomIcon = Html::rawElement( 'div', [ 'class' => 'magnify' ],
 					Html::rawElement( 'a', [
 						'href' => $url,
 						'class' => 'internal',
-						'title' => wfMessage( 'thumbnail-more' )->text() ],
-						"" ) );
+						'title' => wfMessage( 'thumbnail-more' )->text(),
+					] )
+				);
 			}
 		}
 
 		if ( $enableLegacyMediaDOM ) {
-			$s .= '  <div class="thumbcaption">' . $zoomIcon . $frameParams['caption'] . "</div></div></div>";
+			$s .= '  <div class="thumbcaption">' . $zoomIcon . $frameParams['caption'] . '</div></div></div>';
 			return str_replace( "\n", ' ', $s );
 		}
 
 		$s .= Html::rawElement(
 			'figcaption', [], $frameParams['caption'] ?? ''
 		);
-
-		$rdfaType = $rdfaType ?: '/Thumb';
-
-		switch ( $file ? $file->getMediaType() : '' ) {
-			case 'AUDIO':
-				$rdfaType = 'mw:Audio' . $rdfaType;
-				break;
-			case 'VIDEO':
-				$rdfaType = 'mw:Video' . $rdfaType;
-				break;
-			default:
-				$rdfaType = 'mw:Image' . $rdfaType;
-		}
 
 		if ( !$exists || !$thumb ) {
 			$rdfaType = 'mw:Error ' . $rdfaType;
@@ -806,7 +789,7 @@ class Linker {
 	 * @param array $hp Image parameters
 	 */
 	public static function processResponsiveImages( $file, $thumb, $hp ) {
-		$responsiveImages = MediaWikiServices::getInstance()->getMainConfig()->get( 'ResponsiveImages' );
+		$responsiveImages = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::ResponsiveImages );
 		if ( $responsiveImages && $thumb && !$thumb->isError() ) {
 			$hp15 = $hp;
 			$hp15['width'] = round( $hp['width'] * 1.5 );
@@ -853,20 +836,21 @@ class Linker {
 		$title = Title::castFromLinkTarget( $title );
 		$services = MediaWikiServices::getInstance();
 		$mainConfig = $services->getMainConfig();
-		$enableUploads = $mainConfig->get( 'EnableUploads' );
-		$uploadMissingFileUrl = $mainConfig->get( 'UploadMissingFileUrl' );
-		$uploadNavigationUrl = $mainConfig->get( 'UploadNavigationUrl' );
+		$enableUploads = $mainConfig->get( MainConfigNames::EnableUploads );
+		$uploadMissingFileUrl = $mainConfig->get( MainConfigNames::UploadMissingFileUrl );
+		$uploadNavigationUrl = $mainConfig->get( MainConfigNames::UploadNavigationUrl );
 		if ( $label == '' ) {
 			$label = $title->getPrefixedText();
 		}
 
 		$html = Html::element( 'span', [
+			'class' => 'mw-broken-media',
 			// These data attributes are used to dynamically size the span, see T273013
 			'data-width' => $handlerParams['width'] ?? null,
 			'data-height' => $handlerParams['height'] ?? null,
 		], $label );
 
-		if ( $mainConfig->get( 'ParserEnableLegacyMediaDOM' ) ) {
+		if ( $mainConfig->get( MainConfigNames::ParserEnableLegacyMediaDOM ) ) {
 			$html = htmlspecialchars( $label, ENT_COMPAT );
 		}
 
@@ -877,7 +861,10 @@ class Linker {
 		if ( ( $uploadMissingFileUrl || $uploadNavigationUrl || $enableUploads )
 			&& !$currentExists
 		) {
-			if ( $repoGroup->getLocalRepo()->checkRedirect( $title ) ) {
+			if (
+				$title->inNamespace( NS_FILE ) &&
+				$repoGroup->getLocalRepo()->checkRedirect( $title )
+			) {
 				// We already know it's a redirect, so mark it accordingly
 				return self::link(
 					$title,
@@ -912,8 +899,8 @@ class Linker {
 	 */
 	protected static function getUploadUrl( $destFile, $query = '' ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$uploadMissingFileUrl = $mainConfig->get( 'UploadMissingFileUrl' );
-		$uploadNavigationUrl = $mainConfig->get( 'UploadNavigationUrl' );
+		$uploadMissingFileUrl = $mainConfig->get( MainConfigNames::UploadMissingFileUrl );
+		$uploadNavigationUrl = $mainConfig->get( MainConfigNames::UploadNavigationUrl );
 		$q = 'wpDestFile=' . Title::castFromLinkTarget( $destFile )->getPartialURL();
 		if ( $query != '' ) {
 			$q .= '&' . $query;
@@ -1032,7 +1019,7 @@ class Linker {
 		$linktype = '', $attribs = [], $title = null
 	) {
 		global $wgTitle;
-		$class = "external";
+		$class = 'external';
 		if ( $linktype ) {
 			$class .= " $linktype";
 		}
@@ -1136,7 +1123,7 @@ class Linker {
 			return ' ' . wfMessage( 'empty-username' )->parse();
 		}
 		global $wgLang;
-		$disableAnonTalk = MediaWikiServices::getInstance()->getMainConfig()->get( 'DisableAnonTalk' );
+		$disableAnonTalk = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::DisableAnonTalk );
 		$talkable = !( $disableAnonTalk && $userId == 0 );
 		$blockable = !( $flags & self::TOOL_LINKS_NOBLOCK );
 		$addEmailLink = $flags & self::TOOL_LINKS_EMAIL && $userId;
@@ -1160,7 +1147,9 @@ class Linker {
 					$edits = $user->getEditCount();
 				}
 				if ( $edits === 0 ) {
-					$attribs['class'] .= ' new';
+					// Note: "new" class is inappropriate here, as "new" class
+					// should only be used for pages that do not exist.
+					$attribs['class'] .= ' mw-usertoollinks-contribs-no-edits';
 				}
 			}
 			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $userText );
@@ -1503,7 +1492,7 @@ class Linker {
 				# check for .. subpage backlinks
 				$dotdotcount = 0;
 				$nodotdot = $target;
-				while ( strncmp( $nodotdot, "../", 3 ) == 0 ) {
+				while ( str_starts_with( $nodotdot, '../' ) ) {
 					++$dotdotcount;
 					$nodotdot = substr( $nodotdot, 3 );
 				}
@@ -1689,7 +1678,7 @@ class Linker {
 				'class' => 'toctogglelabel',
 			] )
 			. '</span>'
-			. "</div>"
+			. '</div>'
 			. $toc
 			. "</ul>\n</div>\n";
 	}
@@ -1765,7 +1754,7 @@ class Linker {
 		$regex = MediaWikiServices::getInstance()->getContentLanguage()->linkTrail();
 		$inside = '';
 		if ( $trail !== '' && preg_match( $regex, $trail, $m ) ) {
-			list( , $inside, $trail ) = $m;
+			[ , $inside, $trail ] = $m;
 		}
 		return [ $inside, $trail ];
 	}
@@ -1859,7 +1848,8 @@ class Linker {
 	 * @return int|false|null
 	 */
 	public static function getRollbackEditCount( RevisionRecord $revRecord, $verify ) {
-		$showRollbackEditCount = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowRollbackEditCount' );
+		$showRollbackEditCount = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::ShowRollbackEditCount );
 
 		if ( !is_int( $showRollbackEditCount ) || !$showRollbackEditCount > 0 ) {
 			// Nothing has happened, indicate this by returning 'null'
@@ -1870,22 +1860,16 @@ class Linker {
 
 		// Up to the value of $wgShowRollbackEditCount revisions are counted
 		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
-		// T270033 Index renaming
-		$revIndex = $dbr->indexExists( 'revision', 'page_timestamp',  __METHOD__ )
-			? 'page_timestamp'
-			: 'rev_page_timestamp';
-		$res = $dbr->select(
-			$revQuery['tables'],
-			[ 'rev_user_text' => $revQuery['fields']['rev_user_text'], 'rev_deleted' ],
-			[ 'rev_page' => $revRecord->getPageId() ],
-			__METHOD__,
-			[
-				'USE INDEX' => [ 'revision' => $revIndex ],
-				'ORDER BY' => [ 'rev_timestamp DESC', 'rev_id DESC' ],
-				'LIMIT' => $showRollbackEditCount + 1
-			],
-			$revQuery['joins']
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( [ 'rev_user_text' => $revQuery['fields']['rev_user_text'], 'rev_deleted' ] )
+			->tables( $revQuery['tables'] )
+			->where( [ 'rev_page' => $revRecord->getPageId() ] )
+			->joinConds( $revQuery['joins'] )
+			->useIndex( [ 'revision' => 'rev_page_timestamp' ] )
+			->orderBy( [ 'rev_timestamp', 'rev_id' ], SelectQueryBuilder::SORT_DESC )
+			->limit( $showRollbackEditCount + 1 )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$revUser = $revRecord->getUser( RevisionRecord::RAW );
 		$revUserText = $revUser ? $revUser->getName() : '';
@@ -1938,8 +1922,8 @@ class Linker {
 		$editCount = false
 	) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$showRollbackEditCount = $config->get( 'ShowRollbackEditCount' );
-		$miserMode = $config->get( 'MiserMode' );
+		$showRollbackEditCount = $config->get( MainConfigNames::ShowRollbackEditCount );
+		$miserMode = $config->get( MainConfigNames::MiserMode );
 		// To config which pages are affected by miser mode
 		$disableRollbackEditCountSpecialPage = [ 'Recentchanges', 'Watchlist' ];
 
@@ -2233,10 +2217,11 @@ class Linker {
 			}
 		}
 
-		$isWatchlistExpiryEnabled = $config->get( 'WatchlistExpiry' );
-		if ( !$isWatchlistExpiryEnabled ) {
+		$isWatchlistExpiryEnabled = $config->get( MainConfigNames::WatchlistExpiry );
+		if ( !$isWatchlistExpiryEnabled || !$relevantTitle || !$relevantTitle->canExist() ) {
 			return;
 		}
+
 		$watchStore = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$watchedItem = $watchStore->getWatchedItem( $user, $relevantTitle );
 		if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() !== null ) {

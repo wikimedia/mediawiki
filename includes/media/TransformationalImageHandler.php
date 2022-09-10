@@ -26,6 +26,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
@@ -176,7 +177,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		}
 
 		if ( $image->isTransformedLocally() && !$this->isImageAreaOkForThumbnaling( $image, $params ) ) {
-			$maxImageArea = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxImageArea' );
+			$maxImageArea = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::MaxImageArea );
 			return new TransformTooBigImageAreaError( $params, $maxImageArea );
 		}
 
@@ -265,6 +266,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		}
 
 		# Remove the file if a zero-byte thumbnail was created, or if there was an error
+		// @phan-suppress-next-line PhanTypeMismatchArgument Relaying on bool/int conversion to cast objects correct
 		$removed = $this->removeBadFile( $dstPath, (bool)$err );
 		if ( $err ) {
 			# transform returned MediaTransforError
@@ -456,7 +458,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * to filter down to users.
 	 *
 	 * @param string $path The file path
-	 * @param bool|string $scene The scene specification, or false if there is none
+	 * @param string|false $scene The scene specification, or false if there is none
 	 * @throws MWException
 	 * @return string
 	 */
@@ -477,7 +479,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * Escape a string for ImageMagick's output filename. See
 	 * InterpretImageFilename() in magick/image.c.
 	 * @param string $path The file path
-	 * @param bool|string $scene The scene specification, or false if there is none
+	 * @param string|false $scene The scene specification, or false if there is none
 	 * @return string
 	 */
 	protected function escapeMagickOutput( $path, $scene = false ) {
@@ -491,7 +493,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * helper function for escapeMagickInput() and escapeMagickOutput().
 	 *
 	 * @param string $path The file path
-	 * @param bool|string $scene The scene specification, or false if there is none
+	 * @param string|false $scene The scene specification, or false if there is none
 	 * @throws MWException
 	 * @return string
 	 */
@@ -524,7 +526,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * Retrieve the version of the installed ImageMagick
 	 * You can use PHPs version_compare() to use this value
 	 * Value is cached for one hour.
-	 * @return string|bool Representing the IM version; false on error
+	 * @return string|false Representing the IM version; false on error
 	 */
 	protected function getMagickVersion() {
 		$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
@@ -534,7 +536,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			$cache::TTL_HOUR,
 			static function () use ( $method ) {
 				$imageMagickConvertCommand = MediaWikiServices::getInstance()
-					->getMainConfig()->get( 'ImageMagickConvertCommand' );
+					->getMainConfig()->get( MainConfigNames::ImageMagickConvertCommand );
 
 				$cmd = Shell::escape( $imageMagickConvertCommand ) . ' -version';
 				wfDebug( $method . ": Running convert -version" );
@@ -586,7 +588,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @param array $params Rotate parameters.
 	 *   'rotation' clockwise rotation in degrees, allowed are multiples of 90
 	 * @since 1.24 Is non-static. From 1.21 it was static
-	 * @return bool|MediaTransformError
+	 * @return MediaTransformError|false
 	 */
 	public function rotate( $file, $params ) {
 		return new MediaTransformError( 'thumbnail_error', 0, 0,
@@ -617,7 +619,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 * @since 1.25
 	 */
 	public function isImageAreaOkForThumbnaling( $file, &$params ) {
-		$maxImageArea = MediaWikiServices::getInstance()->getMainConfig()->get( 'MaxImageArea' );
+		$maxImageArea = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::MaxImageArea );
 
 		# For historical reasons, hook starts with BitmapHandler
 		$checkImageAreaHookResult = null;
@@ -634,7 +636,9 @@ abstract class TransformationalImageHandler extends ImageHandler {
 			return true;
 		}
 
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Checked by normaliseParams
 		$srcWidth = $file->getWidth( $params['page'] );
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Checked by normaliseParams
 		$srcHeight = $file->getHeight( $params['page'] );
 
 		if ( $srcWidth * $srcHeight > $maxImageArea

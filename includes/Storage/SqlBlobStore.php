@@ -155,15 +155,6 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	}
 
 	/**
-	 * @deprecated since 1.34 No longer needed
-	 * @return null
-	 */
-	public function getLegacyEncodingConversionLang() {
-		wfDeprecated( __METHOD__ );
-		return null;
-	}
-
-	/**
 	 * Set the legacy encoding to assume for blobs that do not have the utf-8 flag set.
 	 *
 	 * @note The second parameter, Language $language, was removed in 1.34.
@@ -239,14 +230,9 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 
 			$dbw = $this->getDBConnection( DB_PRIMARY );
 
-			$old_id = $dbw->nextSequenceValue( 'text_old_id_seq' );
 			$dbw->insert(
 				'text',
-				[
-					'old_id' => $old_id,
-					'old_text' => $data,
-					'old_flags' => $flags,
-				],
+				[ 'old_text' => $data, 'old_flags' => $flags ],
 				__METHOD__
 			);
 

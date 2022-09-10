@@ -1,6 +1,7 @@
 <?php
 
 use LightnCandy\LightnCandy;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -114,7 +115,7 @@ class TemplateParser {
 		// Fetch a secret key for building a keyed hash of the PHP code.
 		// Note that this may be called before MediaWiki is fully initialized.
 		$secretKey = MediaWikiServices::hasInstance()
-			? MediaWikiServices::getInstance()->getMainConfig()->get( 'SecretKey' )
+			? MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::SecretKey )
 			: null;
 
 		if ( $secretKey ) {
@@ -148,7 +149,7 @@ class TemplateParser {
 				}
 			}
 
-			// We're not using the cached code for whathever reason. Recompile the template and
+			// We're not using the cached code for whatever reason. Recompile the template and
 			// cache it.
 			if ( !$compiledTemplate ) {
 				$compiledTemplate = $this->compile( $templateName );

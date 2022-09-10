@@ -19,17 +19,17 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 	public function testWikiPageTitle() {
 		$context = new RequestContext();
 
-		$curTitle = Title::newFromText( "A" );
+		$curTitle = Title::makeTitle( NS_MAIN, "A" );
 		$context->setTitle( $curTitle );
 		$this->assertTrue( $curTitle->equals( $context->getWikiPage()->getTitle() ),
 			"When a title is first set WikiPage should be created on-demand for that title." );
 
-		$curTitle = Title::newFromText( "B" );
+		$curTitle = Title::makeTitle( NS_MAIN, "B" );
 		$context->setWikiPage( WikiPage::factory( $curTitle ) );
 		$this->assertTrue( $curTitle->equals( $context->getTitle() ),
 			"Title must be updated when a new WikiPage is provided." );
 
-		$curTitle = Title::newFromText( "C" );
+		$curTitle = Title::makeTitle( NS_MAIN, "C" );
 		$context->setTitle( $curTitle );
 		$this->assertTrue(
 			$curTitle->equals( $context->getWikiPage()->getTitle() ),

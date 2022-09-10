@@ -3,9 +3,12 @@
 namespace MediaWiki\Rest\Handler;
 
 use Config;
+use IBufferingStatsdDataFactory;
 use LogicException;
+use MediaWiki\Edit\ParsoidOutputStash;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageLookup;
-use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
@@ -13,7 +16,6 @@ use MediaWiki\Rest\StringStream;
 use MediaWiki\Revision\RevisionLookup;
 use TitleFormatter;
 use Wikimedia\Assert\Assert;
-use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * A handler that returns Parsoid HTML for the following routes:
@@ -34,9 +36,10 @@ class PageHTMLHandler extends SimpleHandler {
 		Config $config,
 		RevisionLookup $revisionLookup,
 		TitleFormatter $titleFormatter,
-		ParserCacheFactory $parserCacheFactory,
-		GlobalIdGenerator $globalIdGenerator,
-		PageLookup $pageLookup
+		PageLookup $pageLookup,
+		ParsoidOutputStash $parsoidOutputStash,
+		IBufferingStatsdDataFactory $statsDataFactory,
+		ParsoidOutputAccess $parsoidOutputAccess
 	) {
 		$this->contentHelper = new PageContentHelper(
 			$config,
@@ -45,18 +48,22 @@ class PageHTMLHandler extends SimpleHandler {
 			$pageLookup
 		);
 		$this->htmlHelper = new ParsoidHTMLHelper(
-			$parserCacheFactory->getParserCache( 'parsoid' ),
-			$parserCacheFactory->getRevisionOutputCache( 'parsoid' ),
-			$globalIdGenerator
+			$parsoidOutputStash,
+			$statsDataFactory,
+			$parsoidOutputAccess
 		);
 	}
 
 	protected function postValidationSetup() {
-		$this->contentHelper->init( $this->getAuthority(), $this->getValidatedParams() );
+		// TODO: Once Authority supports rate limit (T310476), just inject the Authority.
+		$user = MediaWikiServices::getInstance()->getUserFactory()
+			->newFromUserIdentity( $this->getAuthority()->getUser() );
+
+		$this->contentHelper->init( $user, $this->getValidatedParams() );
 
 		$page = $this->contentHelper->getPage();
 		if ( $page ) {
-			$this->htmlHelper->init( $page );
+			$this->htmlHelper->init( $page, $this->getValidatedParams(), $user );
 		}
 	}
 
@@ -109,7 +116,9 @@ class PageHTMLHandler extends SimpleHandler {
 		if ( !$this->contentHelper->isAccessible() ) {
 			return null;
 		}
-		return $this->htmlHelper->getETag();
+
+		// Vary eTag based on output mode
+		return $this->htmlHelper->getETag( $this->getOutputMode() );
 	}
 
 	/**
@@ -131,6 +140,9 @@ class PageHTMLHandler extends SimpleHandler {
 	}
 
 	public function getParamSettings(): array {
-		return $this->contentHelper->getParamSettings();
+		return array_merge(
+			$this->contentHelper->getParamSettings(),
+			$this->htmlHelper->getParamSettings()
+		);
 	}
 }

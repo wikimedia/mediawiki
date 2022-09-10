@@ -177,6 +177,7 @@ class LanguageConverterFactory {
 		if ( isset( $this->cache[$lang->getCode()] ) ) {
 			return $this->cache[$lang->getCode()];
 		}
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 		$converter = $this->instantiateConverter( $lang );
 		$this->cache[$lang->getCode()] = $converter;
 		return $converter;

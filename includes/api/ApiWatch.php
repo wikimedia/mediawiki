@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
@@ -45,8 +46,8 @@ class ApiWatch extends ApiBase {
 		parent::__construct( $mainModule, $moduleName );
 
 		$this->watchlistManager = $watchlistManager;
-		$this->expiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
-		$this->maxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+		$this->expiryEnabled = $this->getConfig()->get( MainConfigNames::WatchlistExpiry );
+		$this->maxDuration = $this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 	}
 
 	public function execute() {

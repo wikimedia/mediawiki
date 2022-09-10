@@ -16,12 +16,12 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 use BagOStuff;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use NullStatsdDataFactory;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
@@ -47,6 +47,8 @@ class LoadMonitor implements ILoadMonitor {
 	protected $wanCache;
 	/** @var LoggerInterface */
 	protected $replLogger;
+	/** @var StatsdDataFactoryInterface */
+	protected $statsd;
 
 	/** @var float Moving average ratio (e.g. 0.1 for 10% weight to new weight) */
 	private $movingAveRatio;
@@ -83,6 +85,7 @@ class LoadMonitor implements ILoadMonitor {
 		$this->srvCache = $srvCache;
 		$this->wanCache = $wCache;
 		$this->replLogger = new NullLogger();
+		$this->statsd = new NullStatsdDataFactory();
 
 		$this->movingAveRatio = $options['movingAveRatio'] ?? 0.1;
 		$this->lagWarnThreshold = $options['lagWarnThreshold'] ?? LoadBalancer::MAX_LAG_DEFAULT;
@@ -90,6 +93,10 @@ class LoadMonitor implements ILoadMonitor {
 
 	public function setLogger( LoggerInterface $logger ) {
 		$this->replLogger = $logger;
+	}
+
+	public function setStatsdDataFactory( StatsdDataFactoryInterface $statsFactory ) {
+		$this->statsd = $statsFactory;
 	}
 
 	final public function scaleLoads( array &$weightByServer, $domain ) {
@@ -112,7 +119,7 @@ class LoadMonitor implements ILoadMonitor {
 
 	/**
 	 * @param array $serverIndexes
-	 * @param string|bool $domain
+	 * @param string|false $domain
 	 * @return array
 	 * @throws DBAccessError
 	 */
@@ -193,7 +200,7 @@ class LoadMonitor implements ILoadMonitor {
 
 	/**
 	 * @param array $serverIndexes
-	 * @param string|bool $domain
+	 * @param string|false $domain
 	 * @param array|false $priorStates
 	 * @return array
 	 * @throws DBAccessError
@@ -205,6 +212,7 @@ class LoadMonitor implements ILoadMonitor {
 		}
 
 		$priorScales = $priorStates ? $priorStates['weightScales'] : [];
+		$cluster = $this->lb->getClusterName();
 
 		$lagTimes = [];
 		$weightScales = [];
@@ -241,9 +249,12 @@ class LoadMonitor implements ILoadMonitor {
 				$naiveScale,
 				$this->movingAveRatio
 			);
-
 			// Scale from 0% to 100% of nominal weight
-			$weightScales[$i] = max( $newScale, 0.0 );
+			$newScale = max( $newScale, 0.0 );
+
+			$weightScales[$i] = $newScale;
+			$statHost = str_replace( '.', '_', $host );
+			$this->statsd->gauge( "loadbalancer.weight.$cluster.$statHost", $newScale );
 
 			// Mark replication lag on this server as "false" if it is unreachable
 			if ( !$conn ) {
@@ -257,26 +268,30 @@ class LoadMonitor implements ILoadMonitor {
 
 			// Determine the amount of replication lag on this server
 			try {
-				$lagTimes[$i] = $conn->getLag();
+				$lag = $conn->getLag();
 			} catch ( DBError $e ) {
 				// Mark the lag time as "false" if it cannot be queried
-				$lagTimes[$i] = false;
+				$lag = false;
 			}
+			$lagTimes[$i] = $lag;
 
-			if ( $lagTimes[$i] === false ) {
+			if ( $lag === false ) {
 				$this->replLogger->error(
 					__METHOD__ . ": host {db_server} is not replicating?",
 					[ 'db_server' => $host ]
 				);
-			} elseif ( $lagTimes[$i] > $this->lagWarnThreshold ) {
-				$this->replLogger->warning(
-					"Server {db_server} has {lag} seconds of lag (>= {maxlag})",
-					[
-						'db_server' => $host,
-						'lag' => $lagTimes[$i],
-						'maxlag' => $this->lagWarnThreshold
-					]
-				);
+			} else {
+				$this->statsd->timing( "loadbalancer.lag.$cluster.$statHost", $lag * 1000 );
+				if ( $lag > $this->lagWarnThreshold ) {
+					$this->replLogger->warning(
+						"Server {db_server} has {lag} seconds of lag (>= {maxlag})",
+						[
+							'db_server' => $host,
+							'lag' => $lag,
+							'maxlag' => $this->lagWarnThreshold
+						]
+					);
+				}
 			}
 
 			if ( $close ) {

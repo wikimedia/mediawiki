@@ -249,6 +249,21 @@
 		rAF = window.requestAnimationFrame || setTimeout;
 
 	/**
+	 * Append an HTML element to `document.head` or before a specified node.
+	 *
+	 * @private
+	 * @param {HTMLElement} el
+	 * @param {Node|null} [nextNode]
+	 */
+	function addToHead( el, nextNode ) {
+		if ( nextNode && nextNode.parentNode ) {
+			nextNode.parentNode.insertBefore( el, nextNode );
+		} else {
+			document.head.appendChild( el );
+		}
+	}
+
+	/**
 	 * Create a new style element and add it to the DOM.
 	 *
 	 * @private
@@ -260,11 +275,7 @@
 	function newStyleTag( text, nextNode ) {
 		var el = document.createElement( 'style' );
 		el.appendChild( document.createTextNode( text ) );
-		if ( nextNode && nextNode.parentNode ) {
-			nextNode.parentNode.insertBefore( el, nextNode );
-		} else {
-			document.head.appendChild( el );
-		}
+		addToHead( el, nextNode );
 		return el;
 	}
 
@@ -716,6 +727,7 @@
 	 * @private
 	 * @param {string} src URL to script, will be used as the src attribute in the script tag
 	 * @param {Function} [callback] Callback to run after request resolution
+	 * @return {HTMLElement}
 	 */
 	function addScript( src, callback ) {
 		// Use a <script> element rather than XHR. Using XHR changes the request
@@ -736,6 +748,7 @@
 			}
 		};
 		document.head.appendChild( script );
+		return script;
 	}
 
 	/**
@@ -782,6 +795,7 @@
 	 * @param {string} url URL
 	 * @param {string} [media] Media attribute
 	 * @param {Node|null} [nextNode]
+	 * @return {HTMLElement}
 	 */
 	function addLink( url, media, nextNode ) {
 		var el = document.createElement( 'link' );
@@ -794,11 +808,8 @@
 		// see #addEmbeddedCSS, T33676, T43331, and T49277 for details.
 		el.href = url;
 
-		if ( nextNode && nextNode.parentNode ) {
-			nextNode.parentNode.insertBefore( el, nextNode );
-		} else {
-			document.head.appendChild( el );
-		}
+		addToHead( el, nextNode );
+		return el;
 	}
 
 	/**
@@ -1113,11 +1124,16 @@
 	function makeQueryString( params ) {
 		// Optimisation: This is a fairly hot code path with batchRequest() loops.
 		// Avoid overhead from Object.keys and Array.forEach.
-		var chunks = [];
+		// String concatenation is faster than array pushing and joining, see
+		// https://phabricator.wikimedia.org/P19931
+		var str = '';
 		for ( var key in params ) {
-			chunks.push( encodeURIComponent( key ) + '=' + encodeURIComponent( params[ key ] ) );
+			// Parameters are separated by &, added before all parameters other than
+			// the first
+			str += ( str ? '&' : '' ) + encodeURIComponent( key ) + '=' +
+				encodeURIComponent( params[ key ] );
 		}
-		return chunks.join( '&' );
+		return str;
 	}
 
 	/**
@@ -1149,9 +1165,9 @@
 			query.modules = packed.str;
 			// The packing logic can change the effective order, even if the input was
 			// sorted. As such, the call to getCombinedVersion() must use this
-			// effective order, instead of currReqModules, as otherwise the combined
-			// version will not match the hash expected by the server based on
-			// combining versions from the module query string in-order. (T188076)
+			// effective order to ensure that the combined version will match the hash
+			// expected by the server based on combining versions from the module
+			// query string in-order. (T188076)
 			query.version = getCombinedVersion( packed.list );
 			query = sortQuery( query );
 			addScript( sourceLoadScript + '?' + makeQueryString( query ) );
@@ -1202,9 +1218,9 @@
 				var currReqBaseLength = makeQueryString( currReqBase ).length + 23;
 
 				// We may need to split up the request to honor the query string length limit,
-				// so build it piece by piece.
-				var length = currReqBaseLength;
-				var currReqModules = [];
+				// so build it piece by piece. `length` does not include the characters from
+				// the request base, see below
+				var length = 0;
 				moduleMap = Object.create( null ); // { prefix: [ suffixes ] }
 
 				for ( var i = 0; i < modules.length; i++ ) {
@@ -1216,26 +1232,30 @@
 							suffix.length + 3 : // '%2C'.length == 3
 							modules[ i ].length + 3; // '%7C'.length == 3
 
-					// If the url would become too long, create a new one, but don't create empty requests
-					if ( currReqModules.length && length + bytesAdded > mw.loader.maxQueryLength ) {
+					// If the url would become too long, create a new one, but don't create empty requests.
+					// The value of `length` only reflects the request-specific bytes relating to the
+					// accumulated entries in moduleMap so far. It does not include the base length,
+					// which we account for separately so that length is 0 when moduleMap is empty.
+					if ( length && length + currReqBaseLength + bytesAdded > mw.loader.maxQueryLength ) {
 						// Dispatch what we've got...
 						doRequest();
 						// .. and start again.
-						length = currReqBaseLength;
+						length = 0;
 						moduleMap = Object.create( null );
-						currReqModules = [];
 					}
 					if ( !moduleMap[ prefix ] ) {
 						moduleMap[ prefix ] = [];
 					}
 					length += bytesAdded;
 					moduleMap[ prefix ].push( suffix );
-					currReqModules.push( modules[ i ] );
 				}
-				// If there's anything left in moduleMap, request that too
-				if ( currReqModules.length ) {
-					doRequest();
-				}
+				// Optimization: Skip `length` check.
+				// moduleMap will contain at least one module here. The loop above leaves the last module
+				// undispatched (and maybe some before it), so for moduleMap to be empty here, there must
+				// have been no modules to iterate in the current group to start with, but we only create
+				// a group in `splits` when the first module in the group is seen, so there are always
+				// modules in the group when this code is reached.
+				doRequest();
 			}
 		}
 	}
@@ -1368,6 +1388,10 @@
 		 * @method
 		 */
 		addStyleTag: newStyleTag,
+
+		// Exposed for internal use only. Documented as @private.
+		addScriptTag: addScript,
+		addLinkTag: addLink,
 
 		enqueue: enqueue,
 
@@ -1785,19 +1809,13 @@
 			// Init only once per page
 			if ( this.enabled === null ) {
 				this.enabled = false;
-				if (
-					$VARS.storeDisabled ||
-
-					// Disabled because localStorage quotas are tight and (in Firefox's case)
-					// shared by multiple origins.
-					// See T66721, and <https://bugzilla.mozilla.org/show_bug.cgi?id=1064466>.
-					/Firefox/.test( navigator.userAgent )
-				) {
+				if ( $VARS.storeEnabled ) {
+					this.load();
+				} else {
 					// Clear any previous store to free up space. (T66721)
 					this.clear();
-				} else {
-					this.load();
 				}
+
 			}
 		},
 

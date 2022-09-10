@@ -1,7 +1,8 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
-use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserRigorOptions;
 use Psr\Log\LogLevel;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
@@ -59,7 +60,7 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 			->willReturn( 'reserved-user' );
 
 		$utils = $this->getDummyUserNameUtils( [
-			'ReservedUsernames' => [
+			MainConfigNames::ReservedUsernames => [
 				'MediaWiki default',
 				'msg:reserved-user'
 			],
@@ -120,6 +121,12 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 			$utils->isCreatable( 'FooBar' ),
 			'User names with no issues can be created'
 		);
+
+		$tempUserName = '*Unregistered 1234';
+		$this->assertFalse(
+			$utils->isCreatable( $tempUserName ),
+			'UI account creation with the temp user prefix needs to be prevented'
+		);
 	}
 
 	/**
@@ -142,69 +149,69 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 			'Normal name' => [
 				'Normal name',
 				[
-					UserNameUtils::RIGOR_CREATABLE => 'Normal name',
-					UserNameUtils::RIGOR_USABLE => 'Normal name',
-					UserNameUtils::RIGOR_VALID => 'Normal name',
-					UserNameUtils::RIGOR_NONE => 'Normal name'
+					UserRigorOptions::RIGOR_CREATABLE => 'Normal name',
+					UserRigorOptions::RIGOR_USABLE => 'Normal name',
+					UserRigorOptions::RIGOR_VALID => 'Normal name',
+					UserRigorOptions::RIGOR_NONE => 'Normal name'
 				]
 			],
 			'Leading space' => [
 				' Leading space',
-				[ UserNameUtils::RIGOR_CREATABLE => 'Leading space' ]
+				[ UserRigorOptions::RIGOR_CREATABLE => 'Leading space' ]
 			],
 			'Trailing space' => [
 				'Trailing space ',
-				[ UserNameUtils::RIGOR_CREATABLE => 'Trailing space' ]
+				[ UserRigorOptions::RIGOR_CREATABLE => 'Trailing space' ]
 			],
 			'Subject namespace prefix' => [
 				'User:Username',
 				[
-					UserNameUtils::RIGOR_NONE => 'Username'
+					UserRigorOptions::RIGOR_NONE => 'Username'
 				]
 			],
 			'Talk namespace prefix' => [
 				'Talk:Username',
 				[
-					UserNameUtils::RIGOR_CREATABLE => false,
-					UserNameUtils::RIGOR_USABLE => false,
-					UserNameUtils::RIGOR_VALID => false,
-					UserNameUtils::RIGOR_NONE => 'Talk:Username'
+					UserRigorOptions::RIGOR_CREATABLE => false,
+					UserRigorOptions::RIGOR_USABLE => false,
+					UserRigorOptions::RIGOR_VALID => false,
+					UserRigorOptions::RIGOR_NONE => 'Talk:Username'
 				]
 			],
 			'With hash' => [
 				'name with # hash',
 				[
-					UserNameUtils::RIGOR_CREATABLE => false,
-					UserNameUtils::RIGOR_USABLE => false
+					UserRigorOptions::RIGOR_CREATABLE => false,
+					UserRigorOptions::RIGOR_USABLE => false
 				]
 			],
 			'Multi spaces' => [
 				'Multi  spaces',
 				[
-					UserNameUtils::RIGOR_CREATABLE => 'Multi spaces',
-					UserNameUtils::RIGOR_USABLE => 'Multi spaces'
+					UserRigorOptions::RIGOR_CREATABLE => 'Multi spaces',
+					UserRigorOptions::RIGOR_USABLE => 'Multi spaces'
 				]
 			],
 			'Lowercase' => [
 				'lowercase',
-				[ UserNameUtils::RIGOR_CREATABLE => 'Lowercase' ]
+				[ UserRigorOptions::RIGOR_CREATABLE => 'Lowercase' ]
 			],
 			'Invalid character' => [
 				'in[]valid',
 				[
-					UserNameUtils::RIGOR_CREATABLE => false,
-					UserNameUtils::RIGOR_USABLE => false,
-					UserNameUtils::RIGOR_VALID => false,
-					UserNameUtils::RIGOR_NONE => 'In[]valid'
+					UserRigorOptions::RIGOR_CREATABLE => false,
+					UserRigorOptions::RIGOR_USABLE => false,
+					UserRigorOptions::RIGOR_VALID => false,
+					UserRigorOptions::RIGOR_NONE => 'In[]valid'
 				]
 			],
 			'With slash' => [
 				'with / slash',
 				[
-					UserNameUtils::RIGOR_CREATABLE => false,
-					UserNameUtils::RIGOR_USABLE => false,
-					UserNameUtils::RIGOR_VALID => false,
-					UserNameUtils::RIGOR_NONE => 'With / slash'
+					UserRigorOptions::RIGOR_CREATABLE => false,
+					UserRigorOptions::RIGOR_USABLE => false,
+					UserRigorOptions::RIGOR_VALID => false,
+					UserRigorOptions::RIGOR_NONE => 'With / slash'
 				]
 			],
 			// 'interwiki' is a valid interwiki prefix, per configuration of the
@@ -212,10 +219,10 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 			'Interwiki prefix in username' => [
 				'interwiki:Username',
 				[
-					UserNameUtils::RIGOR_CREATABLE => false,
-					UserNameUtils::RIGOR_USABLE => false,
-					UserNameUtils::RIGOR_VALID => false,
-					UserNameUtils::RIGOR_NONE => 'Interwiki:Username'
+					UserRigorOptions::RIGOR_CREATABLE => false,
+					UserRigorOptions::RIGOR_USABLE => false,
+					UserRigorOptions::RIGOR_VALID => false,
+					UserRigorOptions::RIGOR_NONE => 'Interwiki:Username'
 				]
 			],
 		];
@@ -300,6 +307,19 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 			[ '::86:f:2001/ab', false ],
 			[ '::23:f:2001/', false ]
 		];
+	}
+
+	public function testIsTemp() {
+		$utils = $this->getDummyUserNameUtils();
+		$this->assertFalse( $utils->isTemp( 'Some user' ) );
+		$this->assertTrue( $utils->isTemp( '*Unregistered 1234' ) );
+		$this->assertTrue( $utils->isTemp( '*1234' ) );
+	}
+
+	public function testGetTempPlaceholder() {
+		$utils = $this->getDummyUserNameUtils();
+		$name = $utils->getTempPlaceholder();
+		$this->assertSame( '*Unregistered *', $name );
 	}
 
 }

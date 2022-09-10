@@ -22,6 +22,7 @@
 namespace MediaWiki\Block;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 
@@ -55,7 +56,7 @@ class BlockPermissionChecker {
 	 * @internal only for use by ServiceWiring and BlockPermissionCheckerFactory
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'EnableUserEmail',
+		MainConfigNames::EnableUserEmail,
 	];
 
 	/** @var ServiceOptions */
@@ -165,7 +166,7 @@ class BlockPermissionChecker {
 	 * @return bool
 	 */
 	public function checkEmailPermissions() {
-		return $this->options->get( 'EnableUserEmail' ) &&
+		return $this->options->get( MainConfigNames::EnableUserEmail ) &&
 			$this->performer->isAllowed( 'blockemail' );
 	}
 }

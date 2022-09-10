@@ -22,7 +22,9 @@
  * @ingroup Cache
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ResourceLoader as RL;
 
 /**
  * ResourceLoader request result caching in the file system.
@@ -37,10 +39,10 @@ class ResourceFileCache extends FileCacheBase {
 
 	/**
 	 * Construct an ResourceFileCache from a context
-	 * @param ResourceLoaderContext $context
+	 * @param RL\Context $context
 	 * @return ResourceFileCache
 	 */
-	public static function newFromContext( ResourceLoaderContext $context ) {
+	public static function newFromContext( RL\Context $context ) {
 		$cache = new self();
 
 		if ( $context->getImage() ) {
@@ -63,14 +65,14 @@ class ResourceFileCache extends FileCacheBase {
 	/**
 	 * Check if an RL request can be cached.
 	 * Caller is responsible for checking if any modules are private.
-	 * @param ResourceLoaderContext $context
+	 * @param RL\Context $context
 	 * @return bool
 	 */
-	public static function useFileCache( ResourceLoaderContext $context ) {
+	public static function useFileCache( RL\Context $context ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$useFileCache = $mainConfig->get( 'UseFileCache' );
-		$defaultSkin = $mainConfig->get( 'DefaultSkin' );
-		$languageCode = $mainConfig->get( 'LanguageCode' );
+		$useFileCache = $mainConfig->get( MainConfigNames::UseFileCache );
+		$defaultSkin = $mainConfig->get( MainConfigNames::DefaultSkin );
+		$languageCode = $mainConfig->get( MainConfigNames::LanguageCode );
 		if ( !$useFileCache ) {
 			return false;
 		}

@@ -57,6 +57,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	 * @param ILBFactory $lbFactory
 	 * @param LoggerSpi $loggerSpi
 	 * @param WikiPageFactory $wikiPageFactory
+	 * @param bool $cacheable Whether it should store the result in cache or not
 	 */
 	public function __construct(
 		string $workKey,
@@ -67,7 +68,8 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		ParserCache $parserCache,
 		ILBFactory $lbFactory,
 		LoggerSpi $loggerSpi,
-		WikiPageFactory $wikiPageFactory
+		WikiPageFactory $wikiPageFactory,
+		bool $cacheable = true
 	) {
 		// TODO: Remove support for partially initialized RevisionRecord instances once
 		//       Article no longer uses fake revisions.
@@ -82,58 +84,65 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		$this->parserCache = $parserCache;
 		$this->lbFactory = $lbFactory;
 		$this->wikiPageFactory = $wikiPageFactory;
-		$this->cacheable = true;
+		$this->cacheable = $cacheable;
 	}
 
 	/**
-	 * @param ParserOutput $output
-	 * @param string $cacheTime
+	 * @return Status
 	 */
-	protected function saveInCache( ParserOutput $output, string $cacheTime ) {
-		$this->parserCache->save(
-			$output,
-			$this->page,
-			$this->parserOptions,
-			$cacheTime,
-			$this->revision->getId()
-		);
+	public function doWork() {
+		// Reduce effects of race conditions for slow parses (T48014)
+		$cacheTime = wfTimestampNow();
+
+		$status = $this->renderRevision();
+		/** @var ParserOutput|null $output */
+		$output = $status->getValue();
+
+		if ( $output ) {
+			if ( $this->cacheable && $output->isCacheable() ) {
+				$this->parserCache->save(
+					$output,
+					$this->page,
+					$this->parserOptions,
+					$cacheTime,
+					$this->revision->getId()
+				);
+			}
+
+			$this->wikiPageFactory->newFromTitle( $this->page )
+				->triggerOpportunisticLinksUpdate( $output );
+		}
+
+		return $status;
 	}
 
 	/**
-	 * @param ParserOutput $output
-	 */
-	protected function afterWork( ParserOutput $output ) {
-		$this->wikiPageFactory->newFromTitle( $this->page )
-			->triggerOpportunisticLinksUpdate( $this->parserOutput );
-	}
-
-	/**
-	 * @return bool
+	 * @return Status|false
 	 */
 	public function getCachedWork() {
-		$this->parserOutput = $this->parserCache->get( $this->page, $this->parserOptions );
+		$parserOutput = $this->parserCache->get( $this->page, $this->parserOptions );
 
-		$logger = $this->getLogger();
-		if ( $this->parserOutput === false ) {
-			$logger->debug( 'parser cache miss' );
-			return false;
-		} else {
-			$logger->debug( 'parser cache hit' );
-			return true;
-		}
+		$logger = $this->loggerSpi->getLogger( 'PoolWorkArticleView' );
+		$logger->debug( $parserOutput ? 'parser cache hit' : 'parser cache miss' );
+
+		return $parserOutput ? Status::newGood( $parserOutput ) : false;
 	}
 
 	/**
 	 * @param bool $fast Fast stale request
-	 * @return bool
+	 * @return Status|false
 	 */
 	public function fallback( $fast ) {
-		$this->parserOutput = $this->parserCache->getDirty( $this->page, $this->parserOptions );
+		$parserOutput = $this->parserCache->getDirty( $this->page, $this->parserOptions );
 
-		$logger = $this->getLogger( 'dirty' );
+		$logger = $this->loggerSpi->getLogger( 'dirty' );
 
-		$fastMsg = '';
-		if ( $this->parserOutput && $fast ) {
+		if ( !$parserOutput ) {
+			$logger->info( 'dirty missing' );
+			return false;
+		}
+
+		if ( $fast ) {
 			/* Check if the stale response is from before the last write to the
 			 * DB by this user. Declining to return a stale response in this
 			 * case ensures that the user will see their own edit after page
@@ -144,7 +153,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 			 * responses of potentially several seconds.
 			 */
 			$lastWriteTime = $this->lbFactory->getChronologyProtectorTouched();
-			$cacheTime = MWTimestamp::convert( TS_UNIX, $this->parserOutput->getCacheTime() );
+			$cacheTime = MWTimestamp::convert( TS_UNIX, $parserOutput->getCacheTime() );
 			if ( $lastWriteTime && $cacheTime <= $lastWriteTime ) {
 				$logger->info(
 					'declining to send dirty output since cache time ' .
@@ -158,20 +167,16 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 				// Forget this ParserOutput -- we will request it again if
 				// necessary in slow mode. There might be a newer entry
 				// available by that time.
-				$this->parserOutput = false;
 				return false;
 			}
-			$this->isFast = true;
-			$fastMsg = 'fast ';
 		}
 
-		if ( $this->parserOutput === false ) {
-			$logger->info( 'dirty missing' );
-			return false;
-		} else {
-			$logger->info( "{$fastMsg}dirty output", [ 'workKey' => $this->workKey ] );
-			$this->isDirty = true;
-			return true;
-		}
+		$logger->info( $fast ? 'fast dirty output' : 'dirty output', [ 'workKey' => $this->workKey ] );
+
+		$status = Status::newGood( $parserOutput );
+		$status->warning( 'view-pool-dirty-output' );
+		$status->warning( $fast ? 'view-pool-contention' : 'view-pool-overload' );
+		return $status;
 	}
+
 }

@@ -46,11 +46,13 @@ class PageProps {
 	private $cache;
 
 	/**
-	 * @deprecated since 1.38, use MediaWikiServices::getPageProps() instead
+	 * @deprecated since 1.38, hard deprecated since 1.39
+	 * Use MediaWikiServices::getPageProps() instead
 	 *
 	 * @return PageProps
 	 */
 	public static function getInstance() {
+		wfDeprecated( __METHOD__, '1.38' );
 		return MediaWikiServices::getInstance()->getPageProps();
 	}
 
@@ -121,20 +123,12 @@ class PageProps {
 		}
 
 		if ( $queryIDs ) {
-			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-			$result = $dbr->select(
-				'page_props',
-				[
-					'pp_page',
-					'pp_propname',
-					'pp_value'
-				],
-				[
-					'pp_page' => $queryIDs,
-					'pp_propname' => $propertyNames
-				],
-				__METHOD__
-			);
+			$queryBuilder = $this->loadBalancer->getConnectionRef( DB_REPLICA )->newSelectQueryBuilder();
+			$queryBuilder->select( [ 'pp_page', 'pp_propname', 'pp_value' ] )
+				->from( 'page_props' )
+				->where( [ 'pp_page' => $queryIDs, 'pp_propname' => $propertyNames ] )
+				->caller( __METHOD__ );
+			$result = $queryBuilder->fetchResultSet();
 
 			foreach ( $result as $row ) {
 				$pageID = $row->pp_page;
@@ -179,19 +173,12 @@ class PageProps {
 		}
 
 		if ( $queryIDs != [] ) {
-			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-			$result = $dbr->select(
-				'page_props',
-				[
-					'pp_page',
-					'pp_propname',
-					'pp_value'
-				],
-				[
-					'pp_page' => $queryIDs,
-				],
-				__METHOD__
-			);
+			$queryBuilder = $this->loadBalancer->getConnectionRef( DB_REPLICA )->newSelectQueryBuilder();
+			$queryBuilder->select( [ 'pp_page', 'pp_propname', 'pp_value' ] )
+				->from( 'page_props' )
+				->where( [ 'pp_page' => $queryIDs ] )
+				->caller( __METHOD__ );
+			$result = $queryBuilder->fetchResultSet();
 
 			$currentPageID = 0;
 			$pageProperties = [];
@@ -209,7 +196,11 @@ class PageProps {
 				$pageProperties[$row->pp_propname] = $row->pp_value;
 			}
 			if ( $pageProperties != [] ) {
+				// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable pageID set when used
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable pageID set when used
 				$this->cacheProperties( $pageID, $pageProperties );
+				// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable pageID set when used
+				// @phan-suppress-next-line PhanTypeMismatchDimAssignment pageID set when used
 				$values[$pageID] = $pageProperties;
 			}
 		}

@@ -92,7 +92,7 @@ class WebPHandler extends BitmapHandler {
 	 * Extracts the image size and WebP type from a file
 	 *
 	 * @param string $filename
-	 * @return array|bool Header data array with entries 'compression', 'width' and 'height',
+	 * @return array|false Header data array with entries 'compression', 'width' and 'height',
 	 * where 'compression' can be 'lossy', 'lossless', 'animated' or 'unknown'. False if
 	 * file is not a valid WebP file.
 	 */

@@ -6,6 +6,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\MainConfigNames;
 
 /**
  * @group Database
@@ -49,9 +50,9 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideTestStrictestParametersApplied
 	 */
 	public function testStrictestParametersApplied( $blocks, $expected ) {
-		$this->setMwGlobals( [
-			'wgBlockDisablesLogin' => false,
-			'wgBlockAllowsUTEdit' => true,
+		$this->overrideConfigValues( [
+			MainConfigNames::BlockDisablesLogin => false,
+			MainConfigNames::BlockAllowsUTEdit => true,
 		] );
 
 		$block = new CompositeBlock( [
@@ -150,9 +151,7 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::appliesToTitle
 	 */
 	public function testBlockAppliesToTitle() {
-		$this->setMwGlobals( [
-			'wgBlockDisablesLogin' => false,
-		] );
+		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 
 		$blocks = $this->getPartialBlocks();
 
@@ -180,9 +179,9 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::appliesToNamespace
 	 */
 	public function testBlockAppliesToUsertalk() {
-		$this->setMwGlobals( [
-			'wgBlockAllowsUTEdit' => true,
-			'wgBlockDisablesLogin' => false,
+		$this->overrideConfigValues( [
+			MainConfigNames::BlockAllowsUTEdit => true,
+			MainConfigNames::BlockDisablesLogin => false,
 		] );
 
 		$blocks = $this->getPartialBlocks();
@@ -211,9 +210,7 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideTestBlockAppliesToRight
 	 */
 	public function testBlockAppliesToRight( $applies, $expected ) {
-		$this->setMwGlobals( [
-			'wgBlockDisablesLogin' => false,
-		] );
+		$this->overrideConfigValue( MainConfigNames::BlockDisablesLogin, false );
 
 		$block = new CompositeBlock( [
 			'originalBlocks' => [

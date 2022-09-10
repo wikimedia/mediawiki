@@ -23,6 +23,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 
@@ -96,7 +97,7 @@ class LogPage {
 	 * @return int The log_id of the inserted log entry
 	 */
 	protected function saveContent() {
-		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
+		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::LogRestrictions );
 
 		$dbw = wfGetDB( DB_PRIMARY );
 
@@ -204,7 +205,7 @@ class LogPage {
 	 * @return string[]
 	 */
 	public static function validTypes() {
-		$logTypes = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogTypes' );
+		$logTypes = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::LogTypes );
 
 		return $logTypes;
 	}
@@ -236,7 +237,8 @@ class LogPage {
 		$params = [], $filterWikilinks = false
 	) {
 		global $wgLang;
-		$logActions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogActions' );
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$logActions = $config->get( MainConfigNames::LogActions );
 		$key = "$type/$action";
 
 		if ( isset( $logActions[$key] ) ) {
@@ -255,7 +257,6 @@ class LogPage {
 				$titleLink = self::getTitleLink( $title, $langObjOrNull );
 
 				if ( count( $params ) == 0 ) {
-					// @phan-suppress-next-line SecurityCheck-XSS
 					$rv = wfMessage( $logActions[$key] )->rawParams( $titleLink )
 						->inLanguage( $langObj )->escaped();
 				} else {
@@ -266,7 +267,7 @@ class LogPage {
 				}
 			}
 		} else {
-			$logActionsHandlers = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogActionsHandlers' );
+			$logActionsHandlers = $config->get( MainConfigNames::LogActionsHandlers );
 
 			if ( isset( $logActionsHandlers[$key] ) ) {
 				$args = func_get_args();
@@ -438,7 +439,7 @@ class LogPage {
 	 * @since 1.19
 	 */
 	public function getName() {
-		$logNames = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogNames' );
+		$logNames = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::LogNames );
 
 		// BC
 		$key = $logNames[$this->type] ?? 'log-name-' . $this->type;
@@ -452,7 +453,7 @@ class LogPage {
 	 * @since 1.19
 	 */
 	public function getDescription() {
-		$logHeaders = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogHeaders' );
+		$logHeaders = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::LogHeaders );
 		// BC
 		$key = $logHeaders[$this->type] ?? 'log-description-' . $this->type;
 
@@ -465,7 +466,7 @@ class LogPage {
 	 * @since 1.19
 	 */
 	public function getRestriction() {
-		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
+		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::LogRestrictions );
 		// The empty string fallback will
 		// always return true in permission check
 		return $logRestrictions[$this->type] ?? '';

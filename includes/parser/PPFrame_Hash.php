@@ -49,7 +49,7 @@ class PPFrame_Hash implements PPFrame {
 	/**
 	 * Hashtable listing templates which are disallowed for expansion in this frame,
 	 * having been encountered previously in parent frames.
-	 * @var string[]
+	 * @var true[]
 	 */
 	public $loopCheckHash;
 
@@ -350,7 +350,8 @@ class PPFrame_Hash implements PPFrame {
 					}
 					$out .= $s;
 				} else {
-					$out .= $this->parser->extensionSubstitution( $bits, $this );
+					$out .= $this->parser->extensionSubstitution( $bits, $this,
+						(bool)( $flags & PPFrame::PROCESS_NOWIKI ) );
 				}
 			} elseif ( $contextName === 'h' ) {
 				# Heading

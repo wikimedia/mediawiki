@@ -21,7 +21,7 @@
 			"Stanglavine",
 			"TheEduGobi",
 			"Warley Felipe C.",
-			"Stanglavine"
+			"YuriNikolai"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentação]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etiqueta & diretrizes de uso]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Lista de discussão]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Anúncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Erros e pedidos]\n</div>\n<strong>Estado:</strong> A API do MediaWiki é uma interface madura e estável que é ativamente suportada e aprimorada. Por mais que tentemos evitar, ocasionalmente talvez precisemos fazer mudanças estruturais; inscreva-se na [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ lista de discussão mediawiki-api-announce] para ser informado acerca das atualizações.\n\n<strong>Pedidos incorretos:</strong> Quando são enviados pedidos incorretos à API, será devolvido um cabeçalho HTTP com a chave \"MediaWiki-API-Error\" e depois tanto o valor desse cabeçalho como o código de erro devolvido serão definidos com o mesmo valor. Para mais informação, consulte [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Erros e avisos]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testes:</strong> Para testar facilmente pedidos à API, visite [[Special:ApiSandbox|Testes da API]].</p>",
@@ -1853,5 +1853,5 @@
 	"api-usage-mailinglist-ref": "Inscreva-se na lista de discussão mediawiki-api-announce em &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; Para aviso de depreciações de API e alterações.",
 	"api-exception-trace": "$1 em $2($3)\n$4",
 	"api-credits-header": "Créditos",
-	"api-credits": "Desenvolvedores da API:\n* Yuri Astrakhan (criador, desenvolvedor-chefe Set 2006–Set 2007)\n* Roan Kattouw (desenvolvedor-chefe Set 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (desenvolvedor-chefe 2013–presente)\n\nPor favor, envie seus comentários, sugestões e perguntas para mediawiki-api@lists.wikimedia.org\nou apresente um relatório de erro em https://phabricator.wikimedia.org/."
+	"api-credits": "Desenvolvedores da API:\n* Yuri Astrakhan (criador, desenvolvedor-chefe Set 2006–Set 2007)\n* Roan Kattouw (desenvolvedor-chefe Set 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (desenvolvedor-chefe 2013–2020)\n\nPor favor, envie seus comentários, sugestões e perguntas para mediawiki-api@lists.wikimedia.org\nou apresente um relatório de erro em https://phabricator.wikimedia.org/."
 }

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group Media
  */
@@ -14,7 +16,7 @@ class TiffTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 		$this->checkPHPExtension( 'exif' );
 
-		$this->setMwGlobals( 'wgShowEXIF', true );
+		$this->overrideConfigValue( MainConfigNames::ShowEXIF, true );
 
 		$this->filePath = __DIR__ . '/../../data/media/';
 		$this->handler = new TiffHandler;

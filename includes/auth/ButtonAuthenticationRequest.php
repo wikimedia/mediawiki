@@ -87,6 +87,7 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 		$requests = array_filter( $reqs, static function ( $req ) use ( $name ) {
 			return $req instanceof ButtonAuthenticationRequest && $req->name === $name;
 		} );
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType False positive
 		return count( $requests ) === 1 ? reset( $requests ) : null;
 	}
 

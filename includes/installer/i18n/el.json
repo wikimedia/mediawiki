@@ -199,6 +199,7 @@
 	"config-upload-deleted": "Καταλόγος για διαγραφέντα αρχεία:",
 	"config-upload-deleted-help": "Επιλέξτε έναν κατάλογο στον οποίο να αρχειοθετείτε τα διαγραμμένα αρχεία.\nΙδανικά, αυτό δεν θα πρέπει να είναι προσβάσιμο από τον Ιστό.",
 	"config-logo-preview-main": "Κεντρική σελίδα",
+	"config-logo-icon": "Λογότυπο (εικονίδιο):",
 	"config-instantcommons": "Ενεργοποίηση Instant Commons",
 	"config-instantcommons-help": "Τα [https://www.mediawiki.org/wiki/InstantCommons Instant Commons] είναι ένα χαρακτηριστικό που επιτρέπει στα wiki να χρησιμοποιούν εικόνες, ήχους και άλλα μέσα που βρίσκονται στον ιστότοπο των Wikimedia Commons. Για να γίνει αυτό, το MediaWiki απαιτεί πρόσβαση στο Διαδίκτυο.\n\nΓια περισσότερες πληροφορίες σχετικά με αυτήν τη δυνατότητα, συμπεριλαμβανομένων των οδηγιών για τον τρόπο ρύθμισης της για άλλα wiki από τα Wikimedia Commons, συμβουλευτείτε [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos το εγχειρίδιο].",
 	"config-cc-error": "Ο επιλογέας αδειών  Creative Commons επιλογέα δεν έδωσε κανένα αποτέλεσμα.\nΕισάγετε το όνομα της άδειας χειροκίνητα.",

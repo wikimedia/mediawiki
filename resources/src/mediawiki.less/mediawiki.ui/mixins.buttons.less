@@ -9,7 +9,7 @@
 .mw-ui-button() {
 	// Container layout
 	display: inline-block;
-	.box-sizing( border-box );
+	box-sizing: border-box;
 	margin: 0;
 	border: @border-base;
 	border-radius: @border-radius-base;
@@ -23,6 +23,7 @@
 	line-height: 1.28571429em;
 	text-align: center;
 	// Disable weird iOS styling
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	-webkit-appearance: none;
 
 	&:not( .mw-ui-icon-element ) {
@@ -37,7 +38,8 @@
 .mw-ui-button-states() {
 	&:not( :disabled ) {
 		// Add `transition`s exclusively on enabled buttons.
-		.transition( ~'background-color 100ms, color 100ms, border-color 100ms, box-shadow 100ms' );
+		transition-property: background-color, color, border-color, box-shadow;
+		transition-duration: 100ms;
 
 		// Make sure that `color` isn't inheriting from user-agent styles
 		&:visited {

@@ -3,8 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author Amire80
  * @author Andrijko Z.
@@ -96,7 +96,7 @@ $specialPageAliases = [
 	'Lonelypages'               => [ 'Тулаайах_сирэйдэр' ],
 	'Longpages'                 => [ 'Уһун_сирэйдэр' ],
 	'MergeHistory'              => [ 'Устуоруйаларын_холбооһун' ],
-	'MIMEsearch'                => [ 'MIME_туһанан көрдөөһүн' ],
+	'MIMEsearch'                => [ 'MIME_туһанан_көрдөөһүн' ],
 	'Mostcategories'            => [ 'Ордук_элбэх_категориялаахтар' ],
 	'Mostimages'                => [ 'Ордук_элбэхтик_туттуллар_билэлэр' ],
 	'Mostinterwikis'            => [ 'Элбэх_интэрбиики_сигэлээхтэр' ],

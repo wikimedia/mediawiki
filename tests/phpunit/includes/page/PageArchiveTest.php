@@ -2,7 +2,7 @@
 
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
 
@@ -70,7 +70,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 
 		// First create our dummy page
 		$this->archivedPage = Title::newFromText( 'PageArchiveTest_thePage' );
-		$page = new WikiPage( $this->archivedPage );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $this->archivedPage );
 		$content = ContentHandler::makeContent(
 			'testing',
 			$page->getTitle(),

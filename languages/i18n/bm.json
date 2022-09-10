@@ -2,10 +2,10 @@
 	"@metadata": {
 		"authors": [
 			"Amadouyoro.thiam",
+			"Amire80",
 			"Guaka",
 			"MtDu",
-			"לערי ריינהארט",
-			"Amire80"
+			"לערי ריינהארט"
 		]
 	},
 	"tog-hideminor": "Yɛlɛmaliw kura fitini dogo",
@@ -85,18 +85,18 @@
 	"updatedmarker": "A yailai mara kabri ne ka nali laban",
 	"print": "A kɛ papiye kan",
 	"view": "Ayé",
-	"view-view": "Kalan",
-	"view-foreign": "Yé $1",
+	"skin-view-view": "Kalan",
+	"skin-view-foreign": "Yé $1",
 	"edit": "yɛlɛma",
-	"view-edit": "yɛlɛma",
+	"skin-view-edit": "yɛlɛma",
 	"edit-local": "KounafƆni yailai ma",
 	"create": "Da",
-	"view-create": "Da",
+	"skin-view-create": "Da",
 	"create-local": "Kounafɔni fara a kan",
 	"delete": "A la tounou",
 	"protect": "Kôlôchi",
 	"protect_change": "Yailaima",
-	"action-unprotect": "Kôlôchili yailaima",
+	"skin-action-unprotect": "Kôlôchili yailaima",
 	"unprotect": "Kôlôchili yailaima",
 	"newpage": "Nyɛ kura",
 	"talkpagelinktext": "n'ka baronyɛ",
@@ -160,7 +160,7 @@
 	"others": "wɛrɛ",
 	"ilsubmit": "Nyini",
 	"specialpages": "Nyɛw kɛrɛnkɛrɛnnen",
-	"view-create-local": "Kounafɔni fara a kan",
-	"view-edit-local": "KounafƆni yailai ma",
+	"skin-view-create-local": "Kounafɔni fara a kan",
+	"skin-view-edit-local": "KounafƆni yailai ma",
 	"skin-action-protect": "Kôlôchi"
 }

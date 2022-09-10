@@ -59,11 +59,10 @@ class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
 		$benchProxy = TestingAccessWrapper::newFromObject( $bench );
 		$benchProxy->defaultCount = 1;
 
-		$bench->expects( $this->exactly( 2 ) )->method( 'hasOption' )
-			->will( $this->returnValueMap( [
+		$bench->expects( $this->exactly( 1 ) )->method( 'hasOption' )
+			->willReturnMap( [
 				[ 'verbose', true ],
-				[ 'count', false ],
-			] ) );
+			] );
 
 		$bench->expects( $this->once() )->method( 'verboseRun' )
 			->with( 0 )
@@ -123,11 +122,10 @@ class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
 		$benchProxy = TestingAccessWrapper::newFromObject( $bench );
 		$benchProxy->defaultCount = 1;
 
-		$bench->expects( $this->exactly( 2 ) )->method( 'hasOption' )
-			->will( $this->returnValueMap( [
+		$bench->expects( $this->exactly( 1 ) )->method( 'hasOption' )
+			->willReturnMap( [
 				[ 'verbose', true ],
-				[ 'count', false ],
-			] ) );
+			] );
 
 		$bench->expects( $this->once() )->method( 'output' )
 			->with( $this->callback( static function ( $out ) {

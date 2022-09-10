@@ -28,7 +28,7 @@ class ContentParseParams {
 		bool $generateHtml = true
 	) {
 		$this->page = $page;
-		$this->parserOptions = $parserOptions ?? ParserOptions::newCanonical( 'canonical' );
+		$this->parserOptions = $parserOptions ?? ParserOptions::newFromAnon();
 		$this->revId = $revId;
 		$this->generateHtml = $generateHtml;
 	}

@@ -20,8 +20,11 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
+use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * @ingroup API
@@ -30,23 +33,30 @@ class ApiProtect extends ApiBase {
 
 	use ApiWatchlistTrait;
 
+	/** @var RestrictionStore */
+	private $restrictionStore;
+
 	/**
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
 	 * @param WatchlistManager $watchlistManager
 	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param RestrictionStore $restrictionStore
 	 */
 	public function __construct(
 		ApiMain $mainModule,
 		$moduleName,
 		WatchlistManager $watchlistManager,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
+		RestrictionStore $restrictionStore
 	) {
 		parent::__construct( $mainModule, $moduleName );
+		$this->restrictionStore = $restrictionStore;
 
 		// Variables needed in ApiWatchlistTrait trait
-		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
-		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( MainConfigNames::WatchlistExpiry );
+		$this->watchlistMaxDuration =
+			$this->getConfig()->get( MainConfigNames::WatchlistExpiryMaxDuration );
 		$this->watchlistManager = $watchlistManager;
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
@@ -84,7 +94,7 @@ class ApiProtect extends ApiBase {
 			}
 		}
 
-		$restrictionTypes = $titleObj->getRestrictionTypes();
+		$restrictionTypes = $this->restrictionStore->listApplicableRestrictionTypes( $titleObj );
 		$levels = $this->getPermissionManager()->getNamespaceRestrictionLevels(
 			$titleObj->getNamespace(),
 			$user
@@ -143,7 +153,7 @@ class ApiProtect extends ApiBase {
 			$cascade,
 			$params['reason'],
 			$user,
-			$tags
+			$tags ?? []
 		);
 
 		if ( !$status->isOK() ) {
@@ -173,29 +183,29 @@ class ApiProtect extends ApiBase {
 	public function getAllowedParams() {
 		return [
 			'title' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 			'pageid' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 			],
 			'protections' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_REQUIRED => true,
 			],
 			'expiry' => [
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_ALLOW_DUPLICATES => true,
-				ApiBase::PARAM_DFLT => 'infinite',
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_ALLOW_DUPLICATES => true,
+				ParamValidator::PARAM_DEFAULT => 'infinite',
 			],
 			'reason' => '',
 			'tags' => [
-				ApiBase::PARAM_TYPE => 'tags',
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => 'tags',
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'cascade' => false,
 			'watch' => [
-				ApiBase::PARAM_DFLT => false,
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEFAULT => false,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 		] + $this->getWatchlistParams();
 	}

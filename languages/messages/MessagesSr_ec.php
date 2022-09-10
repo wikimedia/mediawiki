@@ -3,8 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author Bjankuloski06
  * @author CERminator
@@ -31,6 +31,8 @@
  * @author Михајло Анђелковић
  * @author לערי ריינהארט
  */
+
+$fallback = 'sr-cyrl, sr';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Медиј',

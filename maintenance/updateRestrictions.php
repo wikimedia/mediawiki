@@ -47,6 +47,11 @@ class UpdateRestrictions extends Maintenance {
 			$this->fatalError( "page_restrictions table does not exist" );
 		}
 
+		if ( !$dbw->fieldExists( 'page', 'page_restrictions' ) ) {
+			$this->output( "Migration is not needed.\n" );
+			return true;
+		}
+
 		$encodedExpiry = $dbw->getInfinity();
 
 		$maxPageId = $dbw->selectField( 'page', 'MAX(page_id)', '', __METHOD__ );
@@ -116,6 +121,7 @@ class UpdateRestrictions extends Maintenance {
 		} while ( $batchMaxPageId < $maxPageId );
 
 		$this->output( "...Done!\n" );
+		return true;
 	}
 
 	/**

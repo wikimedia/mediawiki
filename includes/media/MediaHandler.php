@@ -49,7 +49,7 @@ abstract class MediaHandler {
 	 * Get a MediaHandler for a given MIME type from the instance cache
 	 *
 	 * @param string $type
-	 * @return MediaHandler|bool
+	 * @return MediaHandler|false
 	 */
 	public static function getHandler( $type ) {
 		return MediaWikiServices::getInstance()
@@ -59,6 +59,7 @@ abstract class MediaHandler {
 	/**
 	 * Get an associative array mapping magic word IDs to parameter names.
 	 * Will be used by the parser to identify parameters.
+	 * @return string[]
 	 */
 	abstract public function getParamMap();
 
@@ -69,6 +70,7 @@ abstract class MediaHandler {
 	 *
 	 * @param string $name
 	 * @param mixed $value
+	 * @return bool
 	 */
 	abstract public function validateParam( $name, $value );
 
@@ -84,7 +86,7 @@ abstract class MediaHandler {
 	 * Parse a param string made with makeParamString back into an array
 	 *
 	 * @param string $str The parameter string without file name (e.g. 122px)
-	 * @return array|bool Array of parameters or false on failure.
+	 * @return array|false Array of parameters or false on failure.
 	 */
 	abstract public function parseParamString( $str );
 
@@ -94,6 +96,7 @@ abstract class MediaHandler {
 	 * Returns false if the parameters are unacceptable and the transform should fail
 	 * @param File $image
 	 * @param array &$params
+	 * @return bool
 	 */
 	abstract public function normaliseParams( $image, &$params );
 
@@ -110,7 +113,7 @@ abstract class MediaHandler {
 	 *
 	 * @deprecated since 1.37, override getSizeAndMetadata instead
 	 *
-	 * @param File|FSFile $image The image object, or false if there isn't one.
+	 * @param File|FSFile|false $image The image object, or false if there isn't one.
 	 *   Warning, FSFile::getPropsFromPath might pass an FSFile instead of File (!)
 	 * @param string $path The filename
 	 * @return array|false Follow the format of PHP getimagesize() internal function.
@@ -156,7 +159,7 @@ abstract class MediaHandler {
 	 * Get handler-specific metadata which will be saved in the img_metadata field.
 	 * @deprecated since 1.37 override getSizeAndMetadata() instead
 	 *
-	 * @param File|FSFile $image The image object, or false if there isn't one.
+	 * @param File|FSFile|false $image The image object, or false if there isn't one.
 	 *   Warning, FSFile::getPropsFromPath might pass an FSFile instead of File (!)
 	 * @param string $path The filename
 	 * @return string A string of metadata in php serialized form (Run through serialize())
@@ -404,7 +407,7 @@ abstract class MediaHandler {
 	 * @stable to override
 	 *
 	 * @param File $file
-	 * @return array|bool False if interface not supported
+	 * @return array|false False if interface not supported
 	 * @since 1.23
 	 */
 	public function getCommonMetaArray( File $file ) {
@@ -601,7 +604,7 @@ abstract class MediaHandler {
 	 *
 	 * @param File $image
 	 * @param int $page What page to get dimensions of
-	 * @return array|bool
+	 * @return array|false
 	 */
 	public function getPageDimensions( File $image, $page ) {
 		return false;
@@ -1020,7 +1023,7 @@ abstract class MediaHandler {
 	 * @stable to override
 	 *
 	 * @param File $file
-	 * @return string[] Array of language codes, or empty array if unsupported.
+	 * @return string[] Array of IETF language codes, or empty array if unsupported.
 	 * @since 1.23
 	 */
 	public function getAvailableLanguages( File $file ) {
@@ -1034,9 +1037,9 @@ abstract class MediaHandler {
 	 *
 	 * @since 1.32
 	 *
-	 * @param string $userPreferredLanguage Language code requesed
-	 * @param string[] $availableLanguages Languages present in the file
-	 * @return string|null Language code picked or null if not supported/available
+	 * @param string $userPreferredLanguage IETF Language code requested
+	 * @param string[] $availableLanguages IETF Languages present in the file
+	 * @return string|null IETF Language code picked or null if not supported/available
 	 */
 	public function getMatchedLanguage( $userPreferredLanguage, array $availableLanguages ) {
 		return null;
@@ -1049,11 +1052,12 @@ abstract class MediaHandler {
 	 * If getAvailableLanguages returns a non-empty array, this must return
 	 * a valid language code. Otherwise can return null if files of this
 	 * type do not support alternative language renderings.
+	 * It can also return 'und' for explicitly requesting an undetermined language
 	 *
 	 * @stable to override
 	 *
 	 * @param File $file
-	 * @return string|null Language code or null if multi-language not supported for filetype.
+	 * @return string|null IETF Language code or null if multi-language not supported for filetype.
 	 * @since 1.23
 	 */
 	public function getDefaultRenderLanguage( File $file ) {

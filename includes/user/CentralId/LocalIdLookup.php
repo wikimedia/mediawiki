@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -55,15 +56,15 @@ class LocalIdLookup extends CentralIdLookup {
 		Config $config,
 		ILoadBalancer $loadBalancer
 	) {
-		$this->sharedDB = $config->get( 'SharedDB' );
-		$this->sharedTables = $config->get( 'SharedTables' );
-		$this->localDatabases = $config->get( 'LocalDatabases' );
+		$this->sharedDB = $config->get( MainConfigNames::SharedDB );
+		$this->sharedTables = $config->get( MainConfigNames::SharedTables );
+		$this->localDatabases = $config->get( MainConfigNames::LocalDatabases );
 		$this->loadBalancer = $loadBalancer;
 	}
 
 	public function isAttached( UserIdentity $user, $wikiId = UserIdentity::LOCAL ): bool {
 		// If the user has no ID, it can't be attached
-		if ( !$user->getId() ) {
+		if ( !$user->isRegistered() ) {
 			return false;
 		}
 

@@ -6,11 +6,13 @@ use ExtensionRegistry;
 use IContextSource;
 use MediaWiki;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\BasicAccess\CompoundAuthorizer;
 use MediaWiki\Rest\BasicAccess\MWBasicAuthorizer;
 use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
+use MWExceptionRenderer;
 use RequestContext;
 use Title;
 use WebResponse;
@@ -58,7 +60,7 @@ class EntryPoint {
 		// Always include the "official" routes. Include additional routes if specified.
 		$routeFiles = array_merge(
 			[ 'includes/Rest/coreRoutes.json' ],
-			$conf->get( 'RestAPIAdditionalRouteFiles' )
+			$conf->get( MainConfigNames::RestAPIAdditionalRouteFiles )
 		);
 		array_walk( $routeFiles, static function ( &$val, $key ) {
 			global $IP;
@@ -68,8 +70,7 @@ class EntryPoint {
 		return ( new Router(
 			$routeFiles,
 			ExtensionRegistry::getInstance()->getAttribute( 'RestRoutes' ),
-			$conf->get( 'CanonicalServer' ),
-			$conf->get( 'RestPath' ),
+			new ServiceOptions( Router::CONSTRUCTOR_OPTIONS, $conf ),
 			$services->getLocalServerObjectCache(),
 			$responseFactory,
 			$authorizer,
@@ -77,7 +78,8 @@ class EntryPoint {
 			$objectFactory,
 			$restValidator,
 			new MWErrorReporter(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$context->getRequest()->getSession()
 		) )->setCors( $cors );
 	}
 
@@ -88,7 +90,7 @@ class EntryPoint {
 		if ( self::$mainRequest === null ) {
 			$conf = MediaWikiServices::getInstance()->getMainConfig();
 			self::$mainRequest = new RequestFromGlobals( [
-				'cookiePrefix' => $conf->get( 'CookiePrefix' )
+				'cookiePrefix' => $conf->get( MainConfigNames::CookiePrefix )
 			] );
 		}
 		return self::$mainRequest;
@@ -109,7 +111,7 @@ class EntryPoint {
 		$conf = $services->getMainConfig();
 
 		$responseFactory = new ResponseFactory( self::getTextFormatters( $services ) );
-		$responseFactory->setSendExceptionBacktrace( $conf->get( 'ShowExceptionDetails' ) );
+		$responseFactory->setShowExceptionDetails( MWExceptionRenderer::shouldShowExceptionDetails() );
 
 		$cors = new CorsUtils(
 			new ServiceOptions(

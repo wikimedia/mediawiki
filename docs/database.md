@@ -7,7 +7,8 @@
 For information about the MediaWiki database layout, such as a description of the tables and their contents, please see:
 
 * [The manual](https://www.mediawiki.org/wiki/Manual:Database_layout)
-* [https://phabricator.wikimedia.org/diffusion/MW/browse/master/maintenance/tables.sql](https://phabricator.wikimedia.org/diffusion/MW/browse/master/maintenance/tables.sql)
+* [Abstract schema of MediaWiki core](https://phabricator.wikimedia.org/diffusion/MW/browse/master/maintenance/tables.json)
+* [MySQL schema (automatically generated)](https://phabricator.wikimedia.org/diffusion/MW/browse/master/maintenance/tables-generated.sql)
 
 
 ## API
@@ -15,16 +16,23 @@ For information about the MediaWiki database layout, such as a description of th
 To make a read query, something like this usually suffices:
 
 ```php
-$dbr = wfGetDB( DB_REPLICA );
-$res = $dbr->select( /* ...see docs... */ );
-foreach ( $res as $row ) {
+use MediaWiki\MediaWikiServices;
+$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+...
+$dbr = $lb->getConnectionRef( DB_REPLICA );
+$res = $dbr->newSelectQueryBuilder()
+  ->select( /* ... see docs... */ )
+  // ...see docs for other methods...
+  ->fetchResultSet();
+
+foreach( $res as $row ) {
 	...
 }
 ```
 
 For a write query, use something like:
 ```php
-$dbw = wfGetDB( DB_PRIMARY );
+$dbw = $lb->getConnectionRef( DB_PRIMARY );
 $dbw->insert( /* ...see docs... */ );
 ```
 We use the convention `$dbr` for read and `$dbw` for write to help you keep track of whether the database object is a replica (read-only) or a primary (read/write). If you write to a replica, the world will explode. Or to be precise, a subsequent write query which succeeded on the primary may fail when propagated to the replica due to a unique key collision. Replication will then stop and it may take hours to repair the database and get it back online. Setting `read_only` in `my.cnf` on the replica will avoid this scenario, but given the dire consequences, we prefer to have as many checks as possible.

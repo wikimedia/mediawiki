@@ -1,12 +1,13 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Session\SessionManager;
 
 class FauxRequestTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( 'wgServer', '//wiki.test' );
+		$this->overrideConfigValue( MainConfigNames::Server, '//wiki.test' );
 	}
 
 	/**

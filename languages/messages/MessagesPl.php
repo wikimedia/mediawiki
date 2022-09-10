@@ -3,8 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author Ankry
  * @author Bartek50003
@@ -171,7 +171,7 @@ $specialPageAliases = [
 	'Listbots'                  => [ 'Boty' ],
 	'ListDuplicatedFiles'       => [ 'Zduplikowane_pliki' ],
 	'Listfiles'                 => [ 'Pliki' ],
-	'ListGrants'                => [ 'Dostępy_użytkowników' ],
+	'Listgrants'                => [ 'Dostępy_użytkowników' ],
 	'Listgrouprights'           => [ 'Grupy_użytkowników', 'Uprawnienia_grup_użytkowników' ],
 	'Listredirects'             => [ 'Przekierowania' ],
 	'Listusers'                 => [ 'Użytkownicy' ],

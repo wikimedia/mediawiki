@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -12,7 +13,7 @@ class TempFSFileIntegrationTest extends MediaWikiIntegrationTestCase {
 	 * @coversNothing
 	 */
 	public function testServiceWiring() {
-		$this->setMwGlobals( 'wgTmpDirectory', '/hopefully invalid' );
+		$this->overrideConfigValue( MainConfigNames::TmpDirectory, '/hopefully invalid' );
 		$factory = $this->getServiceContainer()->getTempFSFileFactory();
 		$this->assertSame( '/hopefully invalid',
 			( TestingAccessWrapper::newFromObject( $factory ) )->tmpDirectory );

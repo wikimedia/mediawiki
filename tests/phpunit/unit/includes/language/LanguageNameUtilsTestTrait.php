@@ -3,6 +3,7 @@
 // phpcs:disable MediaWiki.Commenting.FunctionComment.MissingParamTag -- Traits are not excluded
 
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\MainConfigNames;
 
 const AUTONYMS = LanguageNameUtils::AUTONYMS;
 const ALL = LanguageNameUtils::ALL;
@@ -267,7 +268,7 @@ trait LanguageNameUtilsTestTrait {
 			}
 		);
 		$this->assertGetLanguageNames(
-			[ 'ExtraLanguageNames' => [ 'de' => 'deutsche Sprache', 'sqsqsqsq' => '!!?!' ] ],
+			[ MainConfigNames::ExtraLanguageNames => [ 'de' => 'deutsche Sprache', 'sqsqsqsq' => '!!?!' ] ],
 			$expected, $code, ...$otherArgs
 		);
 	}
@@ -381,7 +382,7 @@ trait LanguageNameUtilsTestTrait {
 		);
 
 		$this->assertGetLanguageNames(
-			[ 'UsePigLatinVariant' => true ], $expected, 'en-x-piglatin', ...$otherArgs );
+			[ MainConfigNames::UsePigLatinVariant => true ], $expected, 'en-x-piglatin', ...$otherArgs );
 	}
 
 	public function provideGetLanguageNames_pigLatin() {
@@ -408,8 +409,8 @@ trait LanguageNameUtilsTestTrait {
 	public function testGetLanguageNames_pigLatinAndExtraLanguageNames() {
 		$this->assertGetLanguageNames(
 			[
-				'UsePigLatinVariant' => true,
-				'ExtraLanguageNames' => [ 'en-x-piglatin' => 'igpay atinlay' ]
+				MainConfigNames::UsePigLatinVariant => true,
+				MainConfigNames::ExtraLanguageNames => [ 'en-x-piglatin' => 'igpay atinlay' ]
 			],
 			'Igpay Atinlay',
 			'en-x-piglatin'

@@ -3,6 +3,7 @@
 		"authors": [
 			"1233qwer1234qwer4",
 			"Edoderoo",
+			"Elderson",
 			"Elroy",
 			"Encycloon",
 			"HanV",
@@ -98,7 +99,7 @@
 	"apihelp-edit-param-title": "Naam van de te bewerken pagina. Kan niet in combinatie met <var>$1pageid</var> gebruikt worden.",
 	"apihelp-edit-param-pageid": "Pagina-ID van de te bewerken pagina. Kan niet in combinatie met <var>$1title</var> gebruikt worden.",
 	"apihelp-edit-param-section": "Sectie identificatiecode. <kbd>0</kbd> voor de bovenste sectie, <kbd>new</kbd> voor een nieuwe sectie. Meestal een positief getal, maar kan ook niet-numeriek zijn.",
-	"apihelp-edit-param-sectiontitle": "De naam van een nieuwe sectie.",
+	"apihelp-edit-param-sectiontitle": "De titel van een nieuwe sectie bij gebruik van <var>$1 section=new</var>.",
 	"apihelp-edit-param-text": "Pagina-inhoud.",
 	"apihelp-edit-param-tags": "De labels voor de revisie wijzigen.",
 	"apihelp-edit-param-minor": "Mankeer deze bewerking als een kleine bewerking.",
@@ -109,8 +110,8 @@
 	"apihelp-edit-param-watch": "Voeg de pagina toe aan de volglijst van de huidige gebruiker.",
 	"apihelp-edit-param-unwatch": "Verwijder de pagina van de volglijst van de huidige gebruiker.",
 	"apihelp-edit-param-md5": "De MD5-hash van de $1text parameter, of de $1prependtext en $1appendtext parameters samengevoegd. Indien ingesteld, wordt de bewerking niet gemaakt tenzij de hash juist is.",
-	"apihelp-edit-param-prependtext": "Voeg deze tekst toe aan het begin van de pagina. Overschrijft $1text.",
-	"apihelp-edit-param-appendtext": "Voeg deze tekst toe aan het eind van de pagina. Overschrijft $1text.\n\nGebruik $1section=new om een nieuwe sectie toe te voegen, in plaats van deze parameter.",
+	"apihelp-edit-param-prependtext": "Voeg deze tekst toe aan het begin van de pagina of sectie. Overschrijft $1text.",
+	"apihelp-edit-param-appendtext": "Voeg deze tekst toe aan het eind van de pagina of sectie. Overschrijft $1text.\n\nGebruik $1section=new om een nieuwe sectie toe te voegen, in plaats van deze parameter.",
 	"apihelp-edit-param-undo": "Maak deze revisie ongedaan. Overschrijft $1text, $1prependtext en $1appendtext.",
 	"apihelp-edit-param-undoafter": "Maak alle revisies vanaf $1undo tot deze ongedaan. Indien niet ingesteld wordt slechts één revisie ongedaan gemaakt.",
 	"apihelp-edit-param-redirect": "Doorverwijzingen automatisch oplossen.",
@@ -277,7 +278,7 @@
 	"apihelp-query+allusers-paramvalue-prop-rights": "Toont de rechten die de gebruiker heeft.",
 	"apihelp-query+allusers-paramvalue-prop-editcount": "Voegt het aantal bewerkingen van de gebruiker toe.",
 	"apihelp-query+allusers-paramvalue-prop-registration": "Voegt de registratiedatum van de gebruiker toe, indien beschikbaar (kan leeg zijn).",
-	"apihelp-query+allusers-param-limit": "Het totaal aantal aan gebruikersnamen dat getoont moet worden.",
+	"apihelp-query+allusers-param-limit": "Het totaal aantal aan gebruikersnamen dat getoond moet worden.",
 	"apihelp-query+allusers-param-witheditsonly": "Toon alleen gebruikers die bewerkingen hebben gemaakt.",
 	"apihelp-query+allusers-param-activeusers": "Toon alleen gebruikers die actief zijn geweest in de laatste {{PLURAL:$1|dag|$1 dagen}}.",
 	"apihelp-query+allusers-example-y": "Toon gebruikers vanaf <kbd>Y</kbd>.",
@@ -601,5 +602,5 @@
 	"api-usage-mailinglist-ref": "Abonneer u op de mediawiki-api-announce mailinglijst op <https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/> voor kennisgeving van beëindiging van API's en belangrijke wijzigingen.",
 	"api-exception-trace": "$1 in $2($3)\n$4",
 	"api-credits-header": "Vermeldingen",
-	"api-credits": "API-ontwikkelaars:\n* Yuri Astrakhan (oorspronkelijke ontwikkelaar, hoofdontwikkelaar september 2006 – september 2007)\n* Roan Kattouw (hoofdontwikkelaar september 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (hoofdontwikkelaar 2013–heden)\n\nStuur uw opmerkingen, suggesties en vragen naar mediawiki-api@lists.wikimedia.org\nof maak een bugrapport aan op https://phabricator.wikimedia.org/."
+	"api-credits": "API-ontwikkelaars:\n* Yuri Astrakhan (oorspronkelijke ontwikkelaar, hoofdontwikkelaar september 2006 – september 2007)\n* Roan Kattouw (hoofdontwikkelaar september 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (hoofdontwikkelaar 2013–2020)\n\nStuur uw opmerkingen, suggesties en vragen naar mediawiki-api@lists.wikimedia.org\nof maak een bugrapport aan op https://phabricator.wikimedia.org/."
 }

@@ -24,6 +24,7 @@
  * @ingroup SpecialPage
  */
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\SlotRecord;
@@ -37,6 +38,7 @@ use MediaWiki\Revision\SlotRecord;
  * @ingroup SpecialPage
  */
 class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
+	use DeprecationHelper;
 
 	/**
 	 * @since 1.2
@@ -63,8 +65,9 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	public $user_text = "";
 
 	/**
+	 * @deprecated since 1.39, use {@see $user_text} instead
 	 * @since 1.27
-	 * @var User
+	 * @var User|null
 	 */
 	public $userObj = null;
 
@@ -188,11 +191,11 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.18
-	 * @deprecated since 1.29 use Wikirevision::isTempSrc()
+	 * @deprecated since 1.29 use WikiRevision::isTempSrc()
 	 * First written to in 43d5d3b682cc1733ad01a837d11af4a402d57e6a
 	 * Actually introduced in 52cd34acf590e5be946b7885ffdc13a157c1c6cf
 	 */
-	public $fileIsTemp;
+	private $fileIsTemp;
 
 	/** @var bool */
 	private $mNoUpdates = false;
@@ -210,6 +213,8 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	public function __construct( Config $config ) {
 		$this->config = $config;
 		$this->slots = new MutableRevisionSlots();
+
+		$this->deprecatePublicProperty( 'fileIsTemp', '1.29' );
 	}
 
 	/**
@@ -254,14 +259,20 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	}
 
 	/**
+	 * @deprecated since 1.39, use {@see setUsername} instead
 	 * @since 1.27
 	 * @param User $user
 	 */
 	public function setUserObj( $user ) {
-		$this->userObj = $user;
+		// Not officially supported, but some callers pass false from e.g. User::newFromName()
+		$this->userObj = $user ?: null;
+		if ( $this->user_text === '' && $user ) {
+			$this->user_text = $user->getName();
+		}
 	}
 
 	/**
+	 * @deprecated since 1.39, use {@see setUsername} instead, it does the same anyway
 	 * @since 1.2
 	 * @param string $ip
 	 */
@@ -455,8 +466,9 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	}
 
 	/**
+	 * @deprecated since 1.39, use {@see getUser} instead; this is almost always null anyway
 	 * @since 1.27
-	 * @return User
+	 * @return User|null Typically null, use {@see getUser} instead
 	 */
 	public function getUserObj() {
 		return $this->userObj;
@@ -734,12 +746,13 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.12.2
-	 * @deprecated in 1.31. No replacement
+	 * @deprecated in 1.31. No replacement. Hard deprecated in 1.39.
 	 * @return bool|string
 	 */
 	public function downloadSource() {
+		wfDeprecated( __METHOD__, '1.31' );
 		$importer = new ImportableUploadRevisionImporter(
-			$this->config->get( 'EnableUploads' ),
+			$this->config->get( MainConfigNames::EnableUploads ),
 			LoggerFactory::getInstance( 'UploadRevisionImporter' )
 		);
 		return $importer->downloadSource( $this );

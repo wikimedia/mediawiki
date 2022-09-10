@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\User\UserGroupManager;
 
@@ -88,10 +89,10 @@ class SpecialListGroupRights extends SpecialPage {
 		);
 
 		$config = $this->getConfig();
-		$addGroups = $config->get( 'AddGroups' );
-		$removeGroups = $config->get( 'RemoveGroups' );
-		$groupsAddToSelf = $config->get( 'GroupsAddToSelf' );
-		$groupsRemoveFromSelf = $config->get( 'GroupsRemoveFromSelf' );
+		$addGroups = $config->get( MainConfigNames::AddGroups );
+		$removeGroups = $config->get( MainConfigNames::RemoveGroups );
+		$groupsAddToSelf = $config->get( MainConfigNames::GroupsAddToSelf );
+		$groupsRemoveFromSelf = $config->get( MainConfigNames::GroupsRemoveFromSelf );
 		$allGroups = array_merge(
 			$this->userGroupManager->listAllGroups(),
 			$this->userGroupManager->listAllImplicitGroups()
@@ -99,6 +100,7 @@ class SpecialListGroupRights extends SpecialPage {
 		asort( $allGroups );
 
 		$linkRenderer = $this->getLinkRenderer();
+		$lang = $this->getLanguage();
 
 		foreach ( $allGroups as $group ) {
 			$permissions = $this->groupPermissionsLookup->getGrantedPermissions( $group );
@@ -106,7 +108,7 @@ class SpecialListGroupRights extends SpecialPage {
 				? 'all'
 				: $group;
 
-			$groupnameLocalized = UserGroupMembership::getGroupName( $groupname );
+			$groupnameLocalized = $lang->getGroupName( $groupname );
 
 			$grouppageLocalizedTitle = UserGroupMembership::getGroupPage( $groupname )
 				?: Title::makeTitleSafe( NS_PROJECT, $groupname );
@@ -127,7 +129,7 @@ class SpecialListGroupRights extends SpecialPage {
 					SpecialPage::getTitleFor( 'Listusers' ),
 					$this->msg( 'listgrouprights-members' )->text()
 				);
-			} elseif ( !in_array( $group, $config->get( 'ImplicitGroups' ) ) ) {
+			} elseif ( !in_array( $group, $config->get( MainConfigNames::ImplicitGroups ) ) ) {
 				$grouplink = '<br />' . $linkRenderer->makeKnownLink(
 					SpecialPage::getTitleFor( 'Listusers' ),
 					$this->msg( 'listgrouprights-members' )->text(),
@@ -161,7 +163,7 @@ class SpecialListGroupRights extends SpecialPage {
 
 	private function outputNamespaceProtectionInfo() {
 		$out = $this->getOutput();
-		$namespaceProtection = $this->getConfig()->get( 'NamespaceProtection' );
+		$namespaceProtection = $this->getConfig()->get( MainConfigNames::NamespaceProtection );
 
 		if ( count( $namespaceProtection ) == 0 ) {
 			return;

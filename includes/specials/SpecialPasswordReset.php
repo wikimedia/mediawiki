@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
+
 /**
  * Special page for requesting a password reset email.
  *
@@ -80,7 +82,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	protected function getFormFields() {
-		$resetRoutes = $this->getConfig()->get( 'PasswordResetRoutes' );
+		$resetRoutes = $this->getConfig()->get( MainConfigNames::PasswordResetRoutes );
 		$a = [];
 		if ( isset( $resetRoutes['username'] ) && $resetRoutes['username'] ) {
 			$a['Username'] = [
@@ -109,7 +111,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	public function alterForm( HTMLForm $form ) {
-		$resetRoutes = $this->getConfig()->get( 'PasswordResetRoutes' );
+		$resetRoutes = $this->getConfig()->get( MainConfigNames::PasswordResetRoutes );
 
 		$form->setSubmitDestructive();
 
@@ -163,7 +165,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 		// Information messages.
 		$output->addWikiMsg( 'passwordreset-success' );
 		$output->addWikiMsg( 'passwordreset-success-details-generic',
-			$this->getConfig()->get( 'PasswordReminderResendTime' ) );
+			$this->getConfig()->get( MainConfigNames::PasswordReminderResendTime ) );
 
 		// Confirmation of what the user has just submitted.
 		$info = "\n";

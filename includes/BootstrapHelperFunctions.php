@@ -22,12 +22,18 @@
  *
  * @internal Only for use by Setup.php and Installer.
  * @since 1.38
- * @param string $installationPath The installation's base path, typically global $IP.
+ * @param string|null $installationPath The installation's base path,
+ *        as returned by wfDetectInstallPath().
+ *
  * @return string The path to the settings file
  */
-function wfDetectLocalSettingsFile( string $installationPath ): string {
+function wfDetectLocalSettingsFile( ?string $installationPath = null ): string {
 	if ( defined( 'MW_CONFIG_FILE' ) ) {
 		return MW_CONFIG_FILE;
+	}
+
+	if ( $installationPath === null ) {
+		$installationPath = wfDetectInstallPath();
 	}
 
 	// We could look for LocalSettings.yaml and LocalSettings.json,
@@ -44,4 +50,29 @@ function wfDetectLocalSettingsFile( string $installationPath ): string {
 
 	define( 'MW_CONFIG_FILE', $configFile );
 	return $configFile;
+}
+
+/**
+ * Decide and remember where mediawiki is installed.
+ *
+ * This is used by Setup.php and will (if not already) store the result
+ * in the MW_INSTALL_PATH constant.
+ *
+ * The install path is detected based on the location of this file,
+ * but can be overwritten using the MW_INSTALL_PATH environment variable.
+ *
+ * @internal Only for use by Setup.php and Installer.
+ * @since 1.39
+ * @return string The path to the mediawiki installation
+ */
+function wfDetectInstallPath(): string {
+	if ( !defined( 'MW_INSTALL_PATH' ) ) {
+		$IP = getenv( 'MW_INSTALL_PATH' );
+		if ( $IP === false ) {
+			$IP = dirname( __DIR__ );
+		}
+		define( 'MW_INSTALL_PATH', $IP );
+	}
+
+	return MW_INSTALL_PATH;
 }

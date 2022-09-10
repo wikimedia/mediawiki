@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group API
  * @group Database
@@ -31,11 +33,8 @@ class ApiUploadTest extends ApiUploadTestCase {
 			$this->getServiceContainer()->getMainWANObjectCache(),
 			$this->createMock( MimeAnalyzer::class )
 		) );
-		$this->resetServices();
 
-		$this->setMwGlobals( [
-			'wgWatchlistExpiry' => true,
-		] );
+		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 	}
 
 	public function testUploadRequiresToken() {
@@ -214,9 +213,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$fileSize = filesize( $filePath );
 		$chunkSize = 20 * 1024; // The file is ~60 KiB, use 20 KiB chunks
 
-		$this->setMwGlobals( [
-			'wgMinUploadChunkSize' => $chunkSize
-		] );
+		$this->overrideConfigValue( MainConfigNames::MinUploadChunkSize, $chunkSize );
 
 		// Base upload params:
 		$params = [

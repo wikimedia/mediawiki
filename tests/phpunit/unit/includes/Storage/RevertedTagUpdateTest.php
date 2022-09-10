@@ -3,11 +3,12 @@
 namespace MediaWiki\Tests\Storage;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\RevertedTagUpdate;
-use MediaWiki\Storage\RevisionRecord;
 use MediaWikiUnitTestCase;
 use MockTitleTrait;
 use PHPUnit\Framework\MockObject\Builder\InvocationMocker;
@@ -76,7 +77,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			) {
 				$serviceOptions = new ServiceOptions(
 					RevertedTagUpdate::CONSTRUCTOR_OPTIONS,
-					[ 'RevertedTagMaxDepth' => $revertedTagMaxDepth ]
+					[ MainConfigNames::RevertedTagMaxDepth => $revertedTagMaxDepth ]
 				);
 
 				parent::__construct(

@@ -33,7 +33,7 @@ class JobQueueMemoryTest extends PHPUnit\Framework\TestCase {
 			'null',
 			[ 'customParameter' => null ],
 			[],
-			Title::newFromText( 'Custom title' )
+			Title::makeTitle( NS_MAIN, 'Custom title' )
 		);
 	}
 

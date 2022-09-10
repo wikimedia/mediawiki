@@ -50,7 +50,6 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 			'page_content_model' => CONTENT_MODEL_TEXT,
 			'page_lang' => 'xyz',
 			'page_is_new' => 0,
-			'page_restrictions' => 'test',
 			'page_touched' => '20200202020202',
 		];
 	}
@@ -105,10 +104,6 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			$row->page_lang,
 			$linkCache->getGoodLinkFieldObj( $page, 'lang' )
-		);
-		$this->assertSame(
-			$row->page_restrictions,
-			$linkCache->getGoodLinkFieldObj( $page, 'restrictions' )
 		);
 
 		$this->assertEquals(
@@ -184,7 +179,6 @@ class LinkCacheTest extends MediaWikiIntegrationTestCase {
 			'page_latest' => 0,
 			'page_content_model' => null,
 			'page_lang' => null,
-			'page_restrictions' => null
 		];
 
 		$actualRow = (array)$linkCache->getGoodLinkRow( $page->getNamespace(), $page->getDBkey() );

@@ -93,6 +93,7 @@ abstract class Preprocessor {
 	 * @internal
 	 */
 	public function resetParser( ?Parser $parser ) {
+		// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty For internal use only
 		$this->parser = $parser;
 	}
 

@@ -5,6 +5,8 @@
  * @copyright Copyright © 2013, Antoine Musso
  * @copyright Copyright © 2013, Wikimedia Foundation Inc.
  */
+use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
+use Wikimedia\Parsoid\ParserTests\TestMode as ParserTestMode;
 
 /**
  * Represent the result of a parser test.
@@ -12,20 +14,24 @@
  * @since 1.22
  */
 class ParserTestResult {
-	/** @var array The test info array */
+	/** @var ParserTest The test info */
 	public $test;
+	/** @var ParserTestMode The test mode */
+	public $mode;
 	/** @var string Text that was expected */
 	public $expected;
 	/** @var string Actual text rendered */
 	public $actual;
 
 	/**
-	 * @param array $test The test info array from TestIterator
+	 * @param ParserTest $test The test info class
+	 * @param ParserTestMode $mode The test mode
 	 * @param string $expected The normalized expected output
 	 * @param string $actual The actual output
 	 */
-	public function __construct( $test, $expected, $actual ) {
+	public function __construct( $test, $mode, $expected, $actual ) {
 		$this->test = $test;
+		$this->mode = $mode;
 		$this->expected = $expected;
 		$this->actual = $actual;
 	}
@@ -39,6 +45,6 @@ class ParserTestResult {
 	}
 
 	public function getDescription() {
-		return $this->test['desc'];
+		return "{$this->test->testName} [{$this->mode}]";
 	}
 }

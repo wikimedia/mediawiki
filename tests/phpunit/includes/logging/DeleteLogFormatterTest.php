@@ -77,7 +77,7 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 					],
 				],
 				[
-					'text' => 'User restored page Page (2 revisions and 1 file)',
+					'text' => 'User undeleted page Page (2 revisions and 1 file)',
 					'api' => [
 						'count' => [
 							'revisions' => 2,
@@ -98,7 +98,7 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 					'params' => [],
 				],
 				[
-					'text' => 'User restored page Page',
+					'text' => 'User undeleted page Page',
 					'api' => [],
 				],
 			],
@@ -115,7 +115,7 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 				],
 				[
 					'legacy' => true,
-					'text' => 'User restored page Page',
+					'text' => 'User undeleted page Page',
 					'api' => [],
 				],
 			],
@@ -477,8 +477,7 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 	 * @dataProvider provideSuppressRevisionLogDatabaseRows
 	 */
 	public function testSuppressRevisionLogDatabaseRows( $row, $extra ) {
-		$this->setMwGlobals(
-			'wgGroupPermissions',
+		$this->setGroupPermissions(
 			[
 				'oversight' => [
 					'viewsuppressed' => true,
@@ -719,8 +718,7 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 	 * @dataProvider provideSuppressEventLogDatabaseRows
 	 */
 	public function testSuppressEventLogDatabaseRows( $row, $extra ) {
-		$this->setMwGlobals(
-			'wgGroupPermissions',
+		$this->setGroupPermissions(
 			[
 				'oversight' => [
 					'viewsuppressed' => true,
@@ -891,8 +889,7 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 	 * @dataProvider provideSuppressDeleteLogDatabaseRows
 	 */
 	public function testSuppressDeleteLogDatabaseRows( $row, $extra ) {
-		$this->setMwGlobals(
-			'wgGroupPermissions',
+		$this->setGroupPermissions(
 			[
 				'oversight' => [
 					'viewsuppressed' => true,

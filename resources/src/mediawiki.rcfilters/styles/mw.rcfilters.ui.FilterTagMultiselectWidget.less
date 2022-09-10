@@ -47,7 +47,7 @@
 			// per T177206#4271707 we avoid keeping the collapsed element to take the whole width of the screen
 			// we are providing enough cues (keeping the labels) for it to be clear that the panel gets compacted
 			// to the left and the user not to feel lost with the transition.
-			width: unset;
+			width: auto;
 			max-width: 100%;
 		}
 
@@ -60,7 +60,7 @@
 	}
 
 	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled &-animate.oo-ui-tagMultiselectWidget-handle {
-		.transition( background-color 500ms ease-out );
+		transition: background-color 500ms ease-out;
 	}
 
 	.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled &-emphasize.oo-ui-tagMultiselectWidget-handle {
@@ -134,7 +134,7 @@
 		&-select {
 			&-widget.oo-ui-widget {
 				display: block;
-				.box-sizing( border-box );
+				box-sizing: border-box;
 				height: 2.5em;
 				border: @border-base;
 				border-left-width: 0;

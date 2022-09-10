@@ -29,7 +29,6 @@ use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\DAO\WikiAwareEntity;
 use MWException;
 use stdClass;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -69,23 +68,16 @@ class BlockRestrictionStore {
 	/**
 	 * Retrieves the restrictions from the database by block id.
 	 *
-	 * Passing a $db is @deprecated since 1.38.
-	 *
 	 * @since 1.33
 	 * @param int|array $blockId
-	 * @param IDatabase|null $db
 	 * @return Restriction[]
 	 */
-	public function loadByBlockId( $blockId, IDatabase $db = null ) {
+	public function loadByBlockId( $blockId ) {
 		if ( $blockId === null || $blockId === [] ) {
 			return [];
 		}
 
-		if ( $db !== null ) {
-			wfDeprecatedMsg( 'Old method signature: Passing a $db is no longer supported', '1.38' );
-		}
-
-		$db = $db ?: $this->loadBalancer->getConnectionRef( DB_REPLICA, [], $this->wikiId );
+		$db = $this->loadBalancer->getConnectionRef( DB_REPLICA, [], $this->wikiId );
 
 		$result = $db->select(
 			[ 'ipblocks_restrictions', 'page' ],

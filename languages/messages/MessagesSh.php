@@ -3,8 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author Kaganer
  * @author Kolega2357
@@ -13,7 +13,7 @@
  * @author לערי ריינהארט
  */
 
-$fallback = 'bs, sr-el, hr';
+$fallback = 'bs, sr-el, sr-latn, hr';
 
 $namespaceNames = [
 	NS_SPECIAL          => 'Posebno',

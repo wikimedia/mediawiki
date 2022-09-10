@@ -60,10 +60,14 @@ class Validator {
 	];
 
 	/** @var string[] HTTP request methods that we expect never to have a payload */
-	private const NO_BODY_METHODS = [ 'GET', 'HEAD', 'DELETE' ];
+	private const NO_BODY_METHODS = [ 'GET', 'HEAD' ];
 
 	/** @var string[] HTTP request methods that we expect always to have a payload */
 	private const BODY_METHODS = [ 'POST', 'PUT' ];
+
+	// NOTE: per RFC 7231 (https://www.rfc-editor.org/rfc/rfc7231#section-4.3.5), sending a body
+	// with the DELETE method "has no defined semantics". We allow it, as it is useful for
+	// passing the csrf token required by some authentication methods.
 
 	/** @var string[] Content types handled via $_POST */
 	private const FORM_DATA_CONTENT_TYPES = [
@@ -98,7 +102,7 @@ class Validator {
 	 * Validate parameters
 	 * @param array[] $paramSettings Parameter settings
 	 * @return array Validated parameters
-	 * @throws HttpException on validaton failure
+	 * @throws HttpException on validation failure
 	 */
 	public function validateParams( array $paramSettings ) {
 		$validatedParams = [];

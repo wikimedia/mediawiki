@@ -23,6 +23,7 @@
  * @since 1.22
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -32,8 +33,8 @@ use MediaWiki\MediaWikiServices;
  */
 class RightsLogFormatter extends LogFormatter {
 	protected function makePageLink( Title $title = null, $parameters = [], $html = null ) {
-		$userrightsInterwikiDelimiter = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'UserrightsInterwikiDelimiter' );
+		$userrightsInterwikiDelimiter = $this->context->getConfig()
+			->get( MainConfigNames::UserrightsInterwikiDelimiter );
 
 		if ( !$this->plaintext ) {
 			$text = MediaWikiServices::getInstance()->getContentLanguage()->
@@ -84,14 +85,15 @@ class RightsLogFormatter extends LogFormatter {
 		$newGroups = $this->makeGroupArray( $params[4] );
 
 		$userName = $this->entry->getTarget()->getText();
+		$lang = $this->context->getLanguage();
 		if ( !$this->plaintext && count( $oldGroups ) ) {
 			foreach ( $oldGroups as &$group ) {
-				$group = UserGroupMembership::getGroupMemberName( $group, $userName );
+				$group = $lang->getGroupMemberName( $group, $userName );
 			}
 		}
 		if ( !$this->plaintext && count( $newGroups ) ) {
 			foreach ( $newGroups as &$group ) {
-				$group = UserGroupMembership::getGroupMemberName( $group, $userName );
+				$group = $lang->getGroupMemberName( $group, $userName );
 			}
 		}
 

@@ -112,6 +112,39 @@ class StripState {
 
 	/**
 	 * @param string $text
+	 * @param callable $callback
+	 * @return string
+	 */
+	public function replaceNoWikis( string $text, callable $callback ): string {
+		// Shortcut
+		if ( !count( $this->data['nowiki'] ) ) {
+			return $text;
+		}
+
+		$callback = function ( $m ) use ( $callback ) {
+			$marker = $m[1];
+			if ( isset( $this->data['nowiki'][$marker] ) ) {
+				$value = $this->data['nowiki'][$marker];
+				if ( $value instanceof Closure ) {
+					$value = $value();
+				}
+
+				$this->expandSize += strlen( $value );
+				if ( $this->expandSize > $this->sizeLimit ) {
+					return $this->getLimitationWarning( 'unstrip-size', $this->sizeLimit );
+				}
+
+				return call_user_func( $callback, $value );
+			} else {
+				return $m[0];
+			}
+		};
+
+		return preg_replace_callback( $this->regex, $callback, $text );
+	}
+
+	/**
+	 * @param string $text
 	 * @return mixed
 	 */
 	public function unstripBoth( $text ) {
@@ -175,7 +208,7 @@ class StripState {
 	 * Get warning HTML and register a limitation warning with the parser
 	 *
 	 * @param string $type
-	 * @param int $max
+	 * @param int|string $max
 	 * @return string
 	 */
 	private function getLimitationWarning( $type, $max = '' ) {
@@ -189,7 +222,7 @@ class StripState {
 	 * Get warning HTML
 	 *
 	 * @param string $message
-	 * @param int $max
+	 * @param int|string $max
 	 * @return string
 	 */
 	private function getWarning( $message, $max = '' ) {

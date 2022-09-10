@@ -44,7 +44,21 @@ class DateFormatter {
 	 * format, and the value is the ID of the target format that will be used
 	 * in that case.
 	 */
-	private $rules = [];
+	private const RULES = [
+		self::ALL => [
+			self::MD => self::MD,
+			self::DM => self::DM,
+		],
+		self::NONE => [
+			self::ISO => self::ISO,
+		],
+		self::MDY => [
+			self::DM => self::MD,
+		],
+		self::DMY => [
+			self::MD => self::DM,
+		],
+	];
 
 	/**
 	 * @var int[] Month numbers by lowercase name
@@ -59,10 +73,24 @@ class DateFormatter {
 	/**
 	 * @var int[] A map of descriptive preference text to internal format ID
 	 */
-	private $preferenceIDs;
+	private const PREFERENCE_IDS = [
+		'default' => self::NONE,
+		'dmy' => self::DMY,
+		'mdy' => self::MDY,
+		'ymd' => self::YMD,
+		'ISO 8601' => self::ISO,
+	];
 
 	/** @var string[] Format strings similar to those used by date(), indexed by ID */
-	private $targetFormats;
+	private const TARGET_FORMATS = [
+		self::DMY => 'j F Y',
+		self::YDM => 'Y, j F',
+		self::MDY => 'F j, Y',
+		self::YMD => 'Y F j',
+		self::DM => 'j F',
+		self::MD => 'F j',
+		self::ISO => 'y-m-d',
+	];
 
 	/** Used as a preference ID for rules that apply regardless of preference */
 	private const ALL = -1;
@@ -125,33 +153,6 @@ class DateFormatter {
 			self::MD => "/^{$md}$/iu",
 			self::ISO => "/^{$iso}$/iu",
 		];
-
-		// Target date formats
-		$this->targetFormats = [
-			self::DMY => 'j F Y',
-			self::YDM => 'Y, j F',
-			self::MDY => 'F j, Y',
-			self::YMD => 'Y F j',
-			self::DM => 'j F',
-			self::MD => 'F j',
-			self::ISO => 'y-m-d',
-		];
-
-		// Rules
-		//           pref       source      target
-		$this->rules[self::DMY][self::MD] = self::DM;
-		$this->rules[self::ALL][self::MD] = self::MD;
-		$this->rules[self::MDY][self::DM] = self::MD;
-		$this->rules[self::ALL][self::DM] = self::DM;
-		$this->rules[self::NONE][self::ISO] = self::ISO;
-
-		$this->preferenceIDs = [
-			'default' => self::NONE,
-			'dmy' => self::DMY,
-			'mdy' => self::MDY,
-			'ymd' => self::YMD,
-			'ISO 8601' => self::ISO,
-		];
 	}
 
 	/**
@@ -178,31 +179,33 @@ class DateFormatter {
 	 * @return string
 	 */
 	public function reformat( $preference, $text, $options = [] ) {
-		if ( isset( $this->preferenceIDs[$preference] ) ) {
-			$preference = $this->preferenceIDs[$preference];
+		if ( isset( self::PREFERENCE_IDS[$preference] ) ) {
+			$userFormatId = self::PREFERENCE_IDS[$preference];
 		} else {
-			$preference = self::NONE;
+			$userFormatId = self::NONE;
 		}
 		for ( $source = 1; $source <= self::LAST; $source++ ) {
-			if ( isset( $this->rules[$preference][$source] ) ) {
+			if ( isset( self::RULES[$userFormatId][$source] ) ) {
 				# Specific rules
-				$target = $this->rules[$preference][$source];
-			} elseif ( isset( $this->rules[self::ALL][$source] ) ) {
+				// @phan-suppress-next-line PhanTypeInvalidDimOffset
+				$target = self::RULES[$userFormatId][$source];
+			} elseif ( isset( self::RULES[self::ALL][$source] ) ) {
 				# General rules
-				$target = $this->rules[self::ALL][$source];
-			} elseif ( $preference ) {
+				// @phan-suppress-next-line PhanTypeInvalidDimOffset
+				$target = self::RULES[self::ALL][$source];
+			} elseif ( $userFormatId ) {
 				# User preference
-				$target = $preference;
+				$target = $userFormatId;
 			} else {
 				# Default
 				$target = $source;
 			}
+			// @phan-suppress-next-line PhanTypeMismatchDimFetchNullable
+			$format = self::TARGET_FORMATS[$target];
 			$regex = $this->regexes[$source];
 
 			$text = preg_replace_callback( $regex,
-				function ( $match ) use ( $target ) {
-					$format = $this->targetFormats[$target];
-
+				function ( $match ) use ( $format ) {
 					$text = '';
 
 					// Pre-generate y/Y stuff because we need the year for the <span> title.
@@ -238,6 +241,7 @@ class DateFormatter {
 								$text .= $match['isoMonth'];
 								break;
 							case 'y': // ISO year
+								// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 								$text .= $match['isoYear'];
 								break;
 							case 'j': // ordinary day of month
@@ -257,6 +261,7 @@ class DateFormatter {
 								}
 								break;
 							case 'Y': // ordinary (optional BC) year
+								// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 								$text .= $match['year'];
 								break;
 							default:

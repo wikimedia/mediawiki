@@ -48,6 +48,7 @@ class ApiImportReporter extends ImportReporter {
 			$r['invalid'] = true;
 		} else {
 			$titleFactory = MediaWikiServices::getInstance()->getTitleFactory();
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			ApiQueryBase::addTitleInfo( $r, $titleFactory->castFromPageIdentity( $pageIdentity ) );
 			$r['revisions'] = (int)$successCount;
 		}

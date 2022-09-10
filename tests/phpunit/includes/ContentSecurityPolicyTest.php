@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
@@ -11,22 +12,22 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgAllowExternalImages' => false,
-			'wgAllowExternalImagesFrom' => [],
-			'wgAllowImageTag' => false,
-			'wgEnableImageWhitelist' => false,
-			'wgLoadScript' => false,
-			'wgExtensionAssetsPath' => false,
-			'wgStylePath' => false,
-			'wgResourceBasePath' => '/w',
-			'wgCrossSiteAJAXdomains' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::AllowExternalImages => false,
+			MainConfigNames::AllowExternalImagesFrom => [],
+			MainConfigNames::AllowImageTag => false,
+			MainConfigNames::EnableImageWhitelist => false,
+			MainConfigNames::LoadScript => false,
+			MainConfigNames::ExtensionAssetsPath => false,
+			MainConfigNames::StylePath => false,
+			MainConfigNames::ResourceBasePath => '/w',
+			MainConfigNames::CrossSiteAJAXdomains => [
 				'sister-site.somewhere.com',
 				'*.wikipedia.org',
 				'??.wikinews.org'
 			],
-			'wgScriptPath' => '/w',
-			'wgForeignFileRepos' => [ [
+			MainConfigNames::ScriptPath => '/w',
+			MainConfigNames::ForeignFileRepos => [ [
 				'class' => ForeignAPIRepo::class,
 				'name' => 'wikimediacommons',
 				'apibase' => 'https://commons.wikimedia.org/w/api.php',
@@ -40,7 +41,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 				'directory' => $wgUploadDirectory,
 				'backend' => 'wikimediacommons-backend',
 			] ],
-			'wgCSPHeader' => true, // enable nonce by default
+			MainConfigNames::CSPHeader => true, // enable nonce by default
 		] );
 		// Note, there are some obscure globals which
 		// could affect the results which aren't included above.
@@ -58,11 +59,12 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ContentSecurityPolicy::getAdditionalSelfUrls
 	 */
 	public function testGetAdditionalSelfUrlsRespectsUrlSettings() {
-		$this->setMwGlobals( 'wgLoadScript', 'https://wgLoadScript.example.org/load.php' );
-		$this->setMwGlobals( 'wgExtensionAssetsPath',
-			'https://wgExtensionAssetsPath.example.org/assets/' );
-		$this->setMwGlobals( 'wgStylePath', 'https://wgStylePath.example.org/style/' );
-		$this->setMwGlobals( 'wgResourceBasePath', 'https://wgResourceBasePath.example.org/resources/' );
+		$this->overrideConfigValues( [
+			MainConfigNames::LoadScript => 'https://wgLoadScript.example.org/load.php',
+			MainConfigNames::ExtensionAssetsPath => 'https://wgExtensionAssetsPath.example.org/assets/',
+			MainConfigNames::StylePath => 'https://wgStylePath.example.org/style/',
+			MainConfigNames::ResourceBasePath => 'https://wgResourceBasePath.example.org/resources/',
+		] );
 
 		$this->assertEquals(
 			[
@@ -368,9 +370,11 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	 * @covers ContentSecurityPolicy::isNonceRequired
 	 */
 	public function testCSPIsEnabled( $main, $reportOnly, $expected ) {
-		$this->setMwGlobals( 'wgCSPReportOnlyHeader', $reportOnly );
-		$this->setMwGlobals( 'wgCSPHeader', $main );
-		$res = ContentSecurityPolicy::isNonceRequired( RequestContext::getMain()->getConfig() );
+		$this->overrideConfigValues( [
+			MainConfigNames::CSPReportOnlyHeader => $reportOnly,
+			MainConfigNames::CSPHeader => $main,
+		] );
+		$res = ContentSecurityPolicy::isNonceRequired( $this->getServiceContainer()->getMainConfig() );
 		$this->assertSame( $expected, $res );
 	}
 

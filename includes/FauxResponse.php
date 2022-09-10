@@ -20,6 +20,8 @@
  *
  * @file
  */
+
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -44,7 +46,7 @@ class FauxResponse extends WebResponse {
 			$parts = explode( ' ', $string, 3 );
 			$this->code = intval( $parts[1] );
 		} else {
-			list( $key, $val ) = array_map( 'trim', explode( ":", $string, 2 ) );
+			[ $key, $val ] = array_map( 'trim', explode( ":", $string, 2 ) );
 
 			$key = strtoupper( $key );
 
@@ -114,12 +116,12 @@ class FauxResponse extends WebResponse {
 	 */
 	public function setCookie( $name, $value, $expire = 0, $options = [] ) {
 		$cookieConfig = $this->getCookieConfig();
-		$cookiePath = $cookieConfig->get( 'CookiePath' );
-		$cookiePrefix = $cookieConfig->get( 'CookiePrefix' );
-		$cookieDomain = $cookieConfig->get( 'CookieDomain' );
-		$cookieSecure = $cookieConfig->get( 'CookieSecure' );
-		$cookieExpiration = $cookieConfig->get( 'CookieExpiration' );
-		$cookieHttpOnly = $cookieConfig->get( 'CookieHttpOnly' );
+		$cookiePath = $cookieConfig->get( MainConfigNames::CookiePath );
+		$cookiePrefix = $cookieConfig->get( MainConfigNames::CookiePrefix );
+		$cookieDomain = $cookieConfig->get( MainConfigNames::CookieDomain );
+		$cookieSecure = $cookieConfig->get( MainConfigNames::CookieSecure );
+		$cookieExpiration = $cookieConfig->get( MainConfigNames::CookieExpiration );
+		$cookieHttpOnly = $cookieConfig->get( MainConfigNames::CookieHttpOnly );
 		$options = array_filter( $options, static function ( $a ) {
 			return $a !== null;
 		} ) + [

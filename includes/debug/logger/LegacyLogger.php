@@ -109,13 +109,15 @@ class LegacyLogger extends AbstractLogger {
 	 * @param string $channel
 	 */
 	public function __construct( $channel ) {
-		global $wgDebugLogFile, $wgDBerrorLog, $wgDebugLogGroups, $wgDebugToolbar;
+		global $wgDebugLogFile, $wgDBerrorLog, $wgDebugLogGroups, $wgDebugToolbar, $wgDebugRawPage;
 
 		$this->channel = $channel;
 		$this->isDB = isset( self::$dbChannels[$channel] );
 
 		// Calculate minimum level, duplicating some of the logic from log() and shouldEmit()
-		if ( $wgDebugLogFile != '' || $wgDebugToolbar ) {
+		if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
+			$this->minimumLevel = self::LEVEL_WARNING;
+		} elseif ( $wgDebugLogFile != '' || $wgDebugToolbar ) {
 			// Log all messages if there is a debug log file or debug toolbar
 			$this->minimumLevel = self::LEVEL_DEBUG;
 		} elseif ( isset( $wgDebugLogGroups[$channel] ) ) {
@@ -130,6 +132,7 @@ class LegacyLogger extends AbstractLogger {
 			// No other case hit: discard all messages
 			$this->minimumLevel = self::LEVEL_INFINITY;
 		}
+
 		if ( $this->isDB && $wgDBerrorLog && $this->minimumLevel > self::LEVEL_ERROR ) {
 			// Log DB errors if there is a DB error log
 			$this->minimumLevel = self::LEVEL_ERROR;

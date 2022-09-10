@@ -22,6 +22,7 @@
  * @author Tyler Romeo, 2012
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserTimeCorrection;
@@ -67,6 +68,7 @@ class MWTimestamp extends ConvertibleTimestamp {
 	public function getHumanTimestamp(
 		MWTimestamp $relativeTo = null, UserIdentity $user = null, Language $lang = null
 	) {
+		wfDeprecated( __METHOD__, '1.26' );
 		if ( $lang === null ) {
 			$lang = RequestContext::getMain()->getLanguage();
 		}
@@ -90,7 +92,7 @@ class MWTimestamp extends ConvertibleTimestamp {
 		$value = new UserTimeCorrection(
 			$option,
 			$this->timestamp,
-			MediaWikiServices::getInstance()->getMainConfig()->get( 'LocalTZoffset' )
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::LocalTZoffset )
 		);
 		$tz = $value->getTimeZone();
 		if ( $tz ) {
@@ -171,7 +173,7 @@ class MWTimestamp extends ConvertibleTimestamp {
 	 * @return MWTimestamp The local instance
 	 */
 	public static function getLocalInstance( $ts = false ) {
-		$localtimezone = MediaWikiServices::getInstance()->getMainConfig()->get( 'Localtimezone' );
+		$localtimezone = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::Localtimezone );
 		$timestamp = new self( $ts );
 		$timestamp->setTimezone( $localtimezone );
 		return $timestamp;

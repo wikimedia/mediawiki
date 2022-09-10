@@ -1,12 +1,14 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @covers RepoGroup
  */
 class RepoGroupTest extends MediaWikiIntegrationTestCase {
 
 	public function testHasForeignRepoNegative() {
-		$this->setMwGlobals( 'wgForeignFileRepos', [] );
+		$this->overrideConfigValue( MainConfigNames::ForeignFileRepos, [] );
 		$this->assertFalse( $this->getServiceContainer()->getRepoGroup()->hasForeignRepos() );
 	}
 
@@ -24,7 +26,7 @@ class RepoGroupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testForEachForeignRepoNone() {
-		$this->setMwGlobals( 'wgForeignFileRepos', [] );
+		$this->overrideConfigValue( MainConfigNames::ForeignFileRepos, [] );
 		$fakeCallback = $this->createMock( RepoGroupTestHelper::class );
 		$fakeCallback->expects( $this->never() )->method( 'callback' );
 		$this->getServiceContainer()->getRepoGroup()->forEachForeignRepo(
@@ -33,7 +35,7 @@ class RepoGroupTest extends MediaWikiIntegrationTestCase {
 
 	private function setUpForeignRepo() {
 		global $wgUploadDirectory;
-		$this->setMwGlobals( 'wgForeignFileRepos', [ [
+		$this->overrideConfigValue( MainConfigNames::ForeignFileRepos, [ [
 			'class' => ForeignAPIRepo::class,
 			'name' => 'wikimediacommons',
 			'backend' => 'wikimediacommons-backend',

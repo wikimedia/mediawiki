@@ -69,15 +69,16 @@ class Protect extends Maintenance {
 			$this->fatalError( "Invalid title" );
 		}
 
+		$services = MediaWikiServices::getInstance();
 		$restrictions = [];
-		foreach ( $t->getRestrictionTypes() as $type ) {
+		foreach ( $services->getRestrictionStore()->listApplicableRestrictionTypes( $t ) as $type ) {
 			$restrictions[$type] = $protection;
 		}
 
 		# un/protect the article
 		$this->output( "Updating protection status..." );
 
-		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $t );
+		$page = $services->getWikiPageFactory()->newFromTitle( $t );
 		$status = $page->doUpdateRestrictions( $restrictions, [], $cascade, $reason, $user );
 
 		if ( $status->isOK() ) {

@@ -1,7 +1,5 @@
 <?php
 /**
- * Generator and manager of database load balancing instances
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,15 +16,15 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
+use Generator;
 use InvalidArgumentException;
 
 /**
- * An interface for generating database load balancers
+ * Manager of ILoadBalancer objects, and indirectly of IDatabase connections.
+ *
  * @ingroup Database
  * @since 1.28
  */
@@ -40,9 +38,7 @@ interface ILBFactory {
 	public const CLUSTER_MAIN_DEFAULT = 'DEFAULT';
 
 	/**
-	 * Construct a manager of ILoadBalancer instances
-	 *
-	 * Sub-classes will extend the required keys in $conf with additional parameters
+	 * Sub-classes may extend the required keys in $conf with additional parameters
 	 *
 	 * @param array $conf Array with keys:
 	 *  - localDomain: A DatabaseDomain or database domain ID string.
@@ -51,6 +47,7 @@ interface ILBFactory {
 	 *  - cpStash: BagOStuff instance for ChronologyProtector store [optional]
 	 *    See [ChronologyProtector requirements](@ref ChronologyProtector-storage-requirements).
 	 *  - wanCache: WANObjectCache instance [optional]
+	 *  - databaseFactory: DatabaseFactory instance [optional]
 	 *  - cliMode: Whether the execution context is a CLI script. [optional]
 	 *  - maxLag: Try to avoid DB replicas with lag above this many seconds [optional]
 	 *  - profiler: Callback that takes a section name argument and returns
@@ -64,7 +61,6 @@ interface ILBFactory {
 	 *  - deprecationLogger: Callback to log a deprecation warning. [optional]
 	 *  - secret: Secret string to use for HMAC hashing [optional]
 	 *  - criticalSectionProvider: CriticalSectionProvider instance [optional]
-	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $conf );
 
@@ -87,7 +83,7 @@ interface ILBFactory {
 	public function getLocalDomainID();
 
 	/**
-	 * @param DatabaseDomain|string|bool $domain Database domain
+	 * @param DatabaseDomain|string|false $domain Database domain
 	 * @return string Value of $domain if provided or the local domain otherwise
 	 * @since 1.32
 	 */
@@ -119,11 +115,10 @@ interface ILBFactory {
 	 * @note The local/default database domain used by the load balancer instance will
 	 * still inherit from this ILBFactory instance, regardless of the $domain parameter.
 	 *
-	 * @param bool|string $domain Domain ID, or false for the current domain
-	 * @param int|null $owner Owner ID of the new instance (e.g. this LBFactory ID)
-	 * @return ILoadBalancer
+	 * @param string|false $domain Domain ID, or false for the current domain
+	 * @return ILoadBalancerForOwner
 	 */
-	public function newMainLB( $domain = false, $owner = null ): ILoadBalancer;
+	public function newMainLB( $domain = false ): ILoadBalancerForOwner;
 
 	/**
 	 * Get the tracked load balancer instance for the main cluster that handles the given domain
@@ -133,7 +128,7 @@ interface ILBFactory {
 	 * @note The local/default database domain used by the load balancer instance will
 	 * still inherit from this ILBFactory instance, regardless of the $domain parameter.
 	 *
-	 * @param bool|string $domain Domain ID, or false for the current domain
+	 * @param string|false $domain Domain ID, or false for the current domain
 	 * @return ILoadBalancer
 	 */
 	public function getMainLB( $domain = false ): ILoadBalancer;
@@ -150,11 +145,10 @@ interface ILBFactory {
 	 * (DBO_TRX off) but still use DBO_TRX transaction rounds on other tables.
 	 *
 	 * @param string $cluster External cluster name
-	 * @param int|null $owner Owner ID of the new instance (e.g. this LBFactory ID)
 	 * @throws InvalidArgumentException If $cluster is not recognized
-	 * @return ILoadBalancer
+	 * @return ILoadBalancerForOwner
 	 */
-	public function newExternalLB( $cluster, $owner = null ): ILoadBalancer;
+	public function newExternalLB( $cluster ): ILoadBalancerForOwner;
 
 	/**
 	 * Get the tracked load balancer instance for an external cluster
@@ -195,10 +189,20 @@ interface ILBFactory {
 	 * The callback is called with the load balancer as the first parameter,
 	 * and $params passed as the subsequent parameters.
 	 *
+	 * @deprecated since 1.39 use getAllLBs()
+	 *
 	 * @param callable $callback
 	 * @param array $params
 	 */
 	public function forEachLB( $callback, array $params = [] );
+
+	/**
+	 * Get all tracked load balancer instances (generator)
+	 *
+	 * @return Generator|ILoadBalancer[]
+	 * @since 1.39
+	 */
+	public function getAllLBs();
 
 	/**
 	 * Prepare all instantiated tracked load balancer instances for shutdown
@@ -281,6 +285,19 @@ interface ILBFactory {
 	 * @since 1.37
 	 */
 	public function rollbackPrimaryChanges( $fname = __METHOD__ );
+
+	/**
+	 * Release important session-level state (named lock, table locks) as post-rollback cleanup
+	 *
+	 * This only applies to the instantiated tracked load balancer instances.
+	 *
+	 * This should only be called by application entry point functions, since there must be
+	 * no chance that a future caller will still be expecting some of the lost session state.
+	 *
+	 * @param string $fname Caller name
+	 * @since 1.38
+	 */
+	public function flushPrimarySessions( $fname = __METHOD__ );
 
 	/**
 	 * Check if an explicit transaction round is active
@@ -393,7 +410,7 @@ interface ILBFactory {
 	/**
 	 * Get the UNIX timestamp when the client last touched the DB, if they did so recently
 	 *
-	 * @param DatabaseDomain|string|bool $domain Domain ID, or false for the current domain
+	 * @param DatabaseDomain|string|false $domain Domain ID, or false for the current domain
 	 * @return float|false UNIX timestamp; false if not recent or on record
 	 */
 	public function getChronologyProtectorTouched( $domain = false );
@@ -415,8 +432,10 @@ interface ILBFactory {
 
 	/**
 	 * Close all connections on instantiated tracked load balancer instances
+	 *
+	 * @param string $fname Caller name (e.g. __METHOD__)
 	 */
-	public function closeAll();
+	public function closeAll( $fname = __METHOD__ );
 
 	/**
 	 * @param string $agent Agent name for query profiling

@@ -7,8 +7,8 @@ use EditPage;
 use FauxRequest;
 use McrUndoAction;
 use MediaWiki\Revision\RevisionStoreRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
-use MediaWiki\Storage\SlotRecord;
 use MediaWikiIntegrationTestCase;
 use OutputPage;
 use RequestContext;
@@ -371,7 +371,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			$originalRevIndex
 		);
 
-		$wikiPage = new WikiPage( Title::newFromText( self::PAGE_NAME ) );
+		$wikiPage = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( self::PAGE_NAME ) );
 		$wikiPage->doUserEditContent(
 			new WikitextContent( $newContent ),
 			$this->getTestSysop()->getUser(),

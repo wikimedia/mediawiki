@@ -80,37 +80,35 @@ class LanguageUkTest extends LanguageClassesTestCase {
 	}
 
 	public static function providerGrammar() {
-		return [
-			[
-				'Вікіпедії',
-				'Вікіпедія',
-				'genitive',
-			],
-			[
-				'Віківидів',
-				'Віківиди',
-				'genitive',
-			],
-			[
-				'Вікіцитат',
-				'Вікіцитати',
-				'genitive',
-			],
-			[
-				'Вікіпідручника',
-				'Вікіпідручник',
-				'genitive',
-			],
-			[
-				'Вікіпедію',
-				'Вікіпедія',
-				'accusative',
-			],
-			[
-				'у MediaWiki',
-				'MediaWiki',
-				'locative',
-			]
+		yield 'Wikipedia genitive' => [
+			'Вікіпедії',
+			'Вікіпедія',
+			'genitive',
+		];
+		yield 'Wikispecies genitive' => [
+			'Віківидів',
+			'Віківиди',
+			'genitive',
+		];
+		yield 'Wikiquote genitive' => [
+			'Вікіцитат',
+			'Вікіцитати',
+			'genitive',
+		];
+		yield 'Wikibooks genitive' => [
+			'Вікіпідручника',
+			'Вікіпідручник',
+			'genitive',
+		];
+		yield 'Wikipedia accusative' => [
+			'Вікіпедію',
+			'Вікіпедія',
+			'accusative',
+		];
+		yield 'MediaWiki locative' => [
+			'у MediaWiki',
+			'MediaWiki',
+			'locative',
 		];
 	}
 }

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"-sasha-",
 			"2axterix2",
 			"Adjen",
 			"Agusbou2015",
@@ -16,6 +17,7 @@
 			"DannyS712",
 			"Destinid10 2",
 			"Dgstranz",
+			"DiegoAmbrocio",
 			"Edslov",
 			"Effy",
 			"Eloy",
@@ -1360,6 +1362,7 @@
 	"apihelp-undelete-param-tags": "Cambiar las etiquetas para aplicar a la entrada en el registro de borrados.",
 	"apihelp-undelete-param-timestamps": "Marcas de tiempo de las revisiones que se desea restaurar. Si tanto <var>$1timestamps</var> como <var>$1fileids</var> están vacíos, se restaurarán todas.",
 	"apihelp-undelete-param-fileids": "Identificadores de las revisiones que se desea restaurar. Si tanto <var>$1timestamps</var> como <var>$1fileids</var> están vacíos, se restaurarán todas.",
+	"apihelp-undelete-param-undeletetalk": "Restaurar todas las revisiones de la página de discusión asociada, si existen.",
 	"apihelp-undelete-example-page": "Restaurar la página <kbd>Main page</kbd>.",
 	"apihelp-undelete-example-revisions": "Restaurar dos revisiones de la página <kbd>Main Page</kbd>.",
 	"apihelp-upload-param-filename": "Nombre del archivo de destino.",

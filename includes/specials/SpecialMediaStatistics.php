@@ -31,6 +31,9 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup SpecialPage
  */
 class SpecialMediaStatistics extends QueryPage {
+
+	public const MAX_LIMIT = 5000;
+
 	protected $totalCount = 0, $totalBytes = 0;
 
 	/**
@@ -64,7 +67,7 @@ class SpecialMediaStatistics extends QueryPage {
 		parent::__construct( 'MediaStatistics' );
 		// Generally speaking there is only a small number of file types,
 		// so just show all of them.
-		$this->limit = 5000;
+		$this->limit = self::MAX_LIMIT;
 		$this->shownavigation = false;
 		$this->mimeAnalyzer = $mimeAnalyzer;
 		$this->setDBLoadBalancer( $loadBalancer );
@@ -317,7 +320,7 @@ class SpecialMediaStatistics extends QueryPage {
 				[],
 				// for grep:
 				// mediastatistics-table-mimetype, mediastatistics-table-extensions
-				// tatistics-table-count, mediastatistics-table-totalbytes
+				// mediastatistics-table-count, mediastatistics-table-totalbytes
 				$this->msg( 'mediastatistics-table-' . $header )->parse()
 			);
 		}

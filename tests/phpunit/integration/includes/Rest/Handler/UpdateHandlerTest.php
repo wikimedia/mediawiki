@@ -9,9 +9,9 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Rest\Handler\UpdateHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
-use MediaWiki\Storage\MutableRevisionRecord;
-use MediaWiki\Storage\SlotRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MockTitleTrait;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -418,7 +418,9 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 
 		$handler = $this->newHandler( $actionResult, null, $csrfSafe );
 
-		$responseData = $this->executeHandlerAndGetBodyData( $handler, $request );
+		$responseData = $this->executeHandlerAndGetBodyData(
+			$handler, $request, [], [], [], [], null, $csrfSafe
+		);
 
 		// Check parameters passed to ApiEditPage by UpdateHandler based on $requestData
 		foreach ( $expectedActionParams as $key => $value ) {
@@ -487,34 +489,6 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 		$this->assertInstanceOf( LocalizedHttpException::class, $exception );
 
 		/** @var LocalizedHttpException $exception */
-		$this->assertEquals( $expectedMessage, $exception->getMessageValue() );
-	}
-
-	public function testBodyValidation_extraneousToken() {
-		$requestData = [
-			'method' => 'PUT',
-			'pathParams' => [ 'title' => 'Foo' ],
-			'headers' => [
-				'Content-Type' => 'application/json',
-			],
-			'bodyContents' => json_encode( [
-				'token' => 'TOKEN',
-				'comment' => 'Testing',
-				'source' => 'Lorem Ipsum',
-				'content_model' => 'wikitext'
-			] ),
-		];
-
-		$request = new RequestData( $requestData );
-
-		$handler = $this->newHandler( [], null, true );
-
-		$exception = $this->executeHandlerAndGetHttpException( $handler, $request );
-
-		$this->assertSame( 400, $exception->getCode(), 'HTTP status' );
-		$this->assertInstanceOf( LocalizedHttpException::class, $exception );
-
-		$expectedMessage = new MessageValue( 'rest-extraneous-csrf-token' );
 		$this->assertEquals( $expectedMessage, $exception->getMessageValue() );
 	}
 

@@ -22,6 +22,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ResourceLoader as RL;
+use MediaWiki\ResourceLoader\ResourceLoader;
 
 /**
  * Output class modelled on OutputPage.
@@ -133,13 +135,13 @@ class WebInstallerOutput {
 	public function getCSS() {
 		$resourceLoader = MediaWikiServices::getInstance()->getResourceLoader();
 
-		$rlContext = new ResourceLoaderContext( $resourceLoader, new FauxRequest( [
+		$rlContext = new RL\Context( $resourceLoader, new FauxRequest( [
 			'debug' => 'true',
 			'lang' => $this->getLanguage()->getCode(),
 			'only' => 'styles',
 		] ) );
 
-		$module = new ResourceLoaderSkinModule( [
+		$module = new RL\SkinModule( [
 			'features' => [
 				'elements',
 				'interface-message-box'
@@ -150,7 +152,7 @@ class WebInstallerOutput {
 		] );
 		$module->setConfig( $resourceLoader->getConfig() );
 
-		// Based on: ResourceLoaderFileModule::getStyles (without the DB query)
+		// Based on MediaWiki\ResourceLoader\FileModule::getStyles, without the DB query
 		$styles = ResourceLoader::makeCombinedStyles(
 			$module->readStyleFiles(
 				$module->getStyleFiles( $rlContext ),

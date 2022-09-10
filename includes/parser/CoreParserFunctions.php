@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Revision\RevisionAccessException;
@@ -40,8 +41,8 @@ class CoreParserFunctions {
 	 */
 	public const REGISTER_OPTIONS = [
 		// See documentation for the corresponding config options
-		'AllowDisplayTitle',
-		'AllowSlowParserFunctions',
+		MainConfigNames::AllowDisplayTitle,
+		MainConfigNames::AllowSlowParserFunctions,
 	];
 
 	/**
@@ -54,8 +55,8 @@ class CoreParserFunctions {
 	 */
 	public static function register( Parser $parser, ServiceOptions $options ) {
 		$options->assertRequiredOptions( self::REGISTER_OPTIONS );
-		$allowDisplayTitle = $options->get( 'AllowDisplayTitle' );
-		$allowSlowParserFunctions = $options->get( 'AllowSlowParserFunctions' );
+		$allowDisplayTitle = $options->get( MainConfigNames::AllowDisplayTitle );
+		$allowSlowParserFunctions = $options->get( MainConfigNames::AllowSlowParserFunctions );
 
 		# Syntax for arguments (see Parser::setFunctionHook):
 		#  "name for lookup in localized magic words array",
@@ -71,6 +72,7 @@ class CoreParserFunctions {
 			'numberingroup', 'numberofedits', 'language',
 			'padleft', 'padright', 'anchorencode', 'defaultsort', 'filepath',
 			'pagesincategory', 'pagesize', 'protectionlevel', 'protectionexpiry',
+			'namespace',
 			'namespacee', 'namespacenumber', 'talkspace', 'talkspacee',
 			'subjectspace', 'subjectspacee', 'pagename', 'pagenamee',
 			'fullpagename', 'fullpagenamee', 'rootpagename', 'rootpagenamee',
@@ -84,11 +86,6 @@ class CoreParserFunctions {
 			$parser->setFunctionHook( $func, [ __CLASS__, $func ], Parser::SFH_NO_HASH );
 		}
 
-		$parser->setFunctionHook(
-			'namespace',
-			[ __CLASS__, 'mwnamespace' ],
-			Parser::SFH_NO_HASH
-		);
 		$parser->setFunctionHook( 'int', [ __CLASS__, 'intFunction' ], Parser::SFH_NO_HASH );
 		$parser->setFunctionHook( 'special', [ __CLASS__, 'special' ] );
 		$parser->setFunctionHook( 'speciale', [ __CLASS__, 'speciale' ] );
@@ -412,6 +409,7 @@ class CoreParserFunctions {
 	public static function plural( $parser, $text = '', ...$forms ) {
 		$text = $parser->getFunctionLang()->parseFormattedNumber( $text );
 		settype( $text, ctype_digit( $text ) ? 'int' : 'float' );
+		// @phan-suppress-next-line PhanTypeMismatchArgument Phan does not handle settype
 		return $parser->getFunctionLang()->convertPlural( $text, $forms );
 	}
 
@@ -425,16 +423,6 @@ class CoreParserFunctions {
 	}
 
 	/**
-	 * Shorthand for getting a Language Converter for Target language
-	 * @param Parser $parser Parent parser
-	 * @return ILanguageConverter
-	 */
-	private static function getTargetLanguageConverter( Parser $parser ): ILanguageConverter {
-		return MediaWikiServices::getInstance()->getLanguageConverterFactory()
-			->getLanguageConverter( $parser->getTargetLanguage() );
-	}
-
-	/**
 	 * Override the title of the page when viewed, provided we've been given a
 	 * title which will normalise to the canonical title
 	 *
@@ -444,7 +432,8 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function displaytitle( $parser, $text = '', $uarg = '' ) {
-		$restrictDisplayTitle = MediaWikiServices::getInstance()->getMainConfig()->get( 'RestrictDisplayTitle' );
+		$restrictDisplayTitle = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::RestrictDisplayTitle );
 
 		static $magicWords = null;
 		if ( $magicWords === null ) {
@@ -510,7 +499,7 @@ class CoreParserFunctions {
 			}
 			if ( $old !== null && $old !== $text && !$arg ) {
 
-				$converter = self::getTargetLanguageConverter( $parser );
+				$converter = $parser->getTargetLanguageConverter();
 				return '<span class="error">' .
 					wfMessage( 'duplicate-displaytitle',
 						// Message should be parsed, but these params should only be escaped.
@@ -626,18 +615,32 @@ class CoreParserFunctions {
 	/**
 	 * Given a title, return the namespace name that would be given by the
 	 * corresponding magic word
-	 * Note: function name changed to "mwnamespace" rather than "namespace"
-	 * to not break PHP 5.3
 	 * @param Parser $parser
 	 * @param string|null $title
 	 * @return mixed|string
+	 * @since 1.39
 	 */
-	public static function mwnamespace( $parser, $title = null ) {
+	public static function namespace( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
 		if ( $t === null ) {
 			return '';
 		}
 		return str_replace( '_', ' ', $t->getNsText() );
+	}
+
+	/**
+	 * Given a title, return the namespace name that would be given by the
+	 * corresponding magic word.
+	 * @note This function corresponded to the `namespace` parser function
+	 * and magic variable, but `namespace` was a reserved word before PHP 7.
+	 * @param Parser $parser
+	 * @param string|null $title
+	 * @return mixed|string
+	 * @deprecated Use CoreParserFunctions::namespace() instead.
+	 */
+	public static function mwnamespace( $parser, $title = null ) {
+		wfDeprecated( __METHOD__, '1.39' );
+		return self::namespace( $parser, $title );
 	}
 
 	public static function namespacee( $parser, $title = null ) {
@@ -915,9 +918,10 @@ class CoreParserFunctions {
 	 */
 	public static function protectionlevel( $parser, $type = '', $title = '' ) {
 		$titleObject = Title::newFromText( $title ) ?? $parser->getTitle();
-		if ( $titleObject->areRestrictionsLoaded() || $parser->incrementExpensiveFunctionCount() ) {
-			$restrictions = $titleObject->getRestrictions( strtolower( $type ) );
-			# Title::getRestrictions returns an array, its possible it may have
+		$restrictionStore = MediaWikiServices::getInstance()->getRestrictionStore();
+		if ( $restrictionStore->areRestrictionsLoaded( $titleObject ) || $parser->incrementExpensiveFunctionCount() ) {
+			$restrictions = $restrictionStore->getRestrictions( $titleObject, strtolower( $type ) );
+			# RestrictionStore::getRestrictions returns an array, its possible it may have
 			# multiple values in the future
 			return implode( ',', $restrictions );
 		}
@@ -938,11 +942,12 @@ class CoreParserFunctions {
 	 */
 	public static function protectionexpiry( $parser, $type = '', $title = '' ) {
 		$titleObject = Title::newFromText( $title ) ?? $parser->getTitle();
-		if ( $titleObject->areRestrictionsLoaded() || $parser->incrementExpensiveFunctionCount() ) {
-			$expiry = $titleObject->getRestrictionExpiry( strtolower( $type ) );
-			// getRestrictionExpiry() returns false on invalid type; trying to
+		$restrictionStore = MediaWikiServices::getInstance()->getRestrictionStore();
+		if ( $restrictionStore->areRestrictionsLoaded( $titleObject ) || $parser->incrementExpensiveFunctionCount() ) {
+			$expiry = $restrictionStore->getRestrictionExpiry( $titleObject, strtolower( $type ) );
+			// getRestrictionExpiry() returns null on invalid type; trying to
 			// match protectionlevel() function that returns empty string instead
-			if ( $expiry === false ) {
+			if ( $expiry === null ) {
 				$expiry = '';
 			}
 			return $expiry;
@@ -1140,9 +1145,10 @@ class CoreParserFunctions {
 			return '';
 		}
 		$tagName = strtolower( trim( $frame->expand( array_shift( $args ) ) ) );
+		$processNowiki = $parser->tagNeedsNowikiStrippedInTagPF( $tagName ) ? PPFrame::PROCESS_NOWIKI : 0;
 
 		if ( count( $args ) ) {
-			$inner = $frame->expand( array_shift( $args ) );
+			$inner = $frame->expand( array_shift( $args ), $processNowiki );
 		} else {
 			$inner = null;
 		}
@@ -1192,7 +1198,7 @@ class CoreParserFunctions {
 	 *
 	 * @param Parser $parser
 	 * @param Title $title
-	 * @param string $vary ParserOuput vary-* flag
+	 * @param string $vary ParserOutput vary-* flag
 	 * @return RevisionRecord|null
 	 * @since 1.23
 	 */
@@ -1319,7 +1325,7 @@ class CoreParserFunctions {
 		$services = MediaWikiServices::getInstance();
 		if (
 			$t->equals( $parser->getTitle() ) &&
-			$services->getMainConfig()->get( 'MiserMode' ) &&
+			$services->getMainConfig()->get( MainConfigNames::MiserMode ) &&
 			!$parser->getOptions()->getInterfaceMessage() &&
 			// @TODO: disallow this word on all namespaces (T235957)
 			$services->getNamespaceInfo()->isSubject( $t->getNamespace() )
@@ -1475,13 +1481,15 @@ class CoreParserFunctions {
 	 */
 	public static function cascadingsources( $parser, $title = '' ) {
 		$titleObject = Title::newFromText( $title ) ?? $parser->getTitle();
-		if ( $titleObject->areCascadeProtectionSourcesLoaded()
+		$restrictionStore = MediaWikiServices::getInstance()->getRestrictionStore();
+		if ( $restrictionStore->areCascadeProtectionSourcesLoaded( $titleObject )
 			|| $parser->incrementExpensiveFunctionCount()
 		) {
 			$names = [];
-			$sources = $titleObject->getCascadeProtectionSources();
-			foreach ( $sources[0] as $sourceTitle ) {
-				$names[] = $sourceTitle->getPrefixedText();
+			$sources = $restrictionStore->getCascadeProtectionSources( $titleObject );
+			$titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
+			foreach ( $sources[0] as $sourcePageIdentity ) {
+				$names[] = $titleFormatter->getPrefixedText( $sourcePageIdentity );
 			}
 			return implode( '|', $names );
 		}

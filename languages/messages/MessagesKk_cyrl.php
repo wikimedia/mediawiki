@@ -3,8 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author AlefZet
  * @author Alibek Kisybay
@@ -23,6 +23,8 @@ $separatorTransformTable = [
 	'.' => ',',
 ];
 $minimumGroupingDigits = 2;
+
+$fallback = 'kk';
 
 $fallback8bitEncoding = 'windows-1251';
 

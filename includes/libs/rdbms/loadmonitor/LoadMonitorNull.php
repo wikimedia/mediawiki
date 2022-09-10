@@ -16,15 +16,18 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
 
 namespace Wikimedia\Rdbms;
 
 use BagOStuff;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use Psr\Log\LoggerInterface;
 use WANObjectCache;
 
+/**
+ * @ingroup Database
+ */
 class LoadMonitorNull implements ILoadMonitor {
 	public function __construct(
 		ILoadBalancer $lb, BagOStuff $sCache, WANObjectCache $wCache, array $options = []
@@ -32,6 +35,9 @@ class LoadMonitorNull implements ILoadMonitor {
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
+	}
+
+	public function setStatsdDataFactory( StatsdDataFactoryInterface $statsFactory ) {
 	}
 
 	public function scaleLoads( array &$loads, $domain ) {

@@ -1,4 +1,7 @@
 <?php
+
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @author Antoine Musso
  * @copyright Copyright © 2013, Antoine Musso
@@ -21,13 +24,18 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 	 * @covers MWException::useOutputPage
 	 */
 	public function testUseOutputPage( $expected, $langObj, $fullyInitialised, $outputPage ) {
+		if ( $langObj !== null ) {
+			$this->setUserLang( $langObj );
+		} else {
+			// Reset the global to unset
+			$this->setMwGlobals( 'wgLang', $langObj );
+		}
 		$this->setMwGlobals( [
-			'wgLang' => $langObj,
 			'wgFullyInitialised' => $fullyInitialised,
 			'wgOut' => $outputPage,
 		] );
 
-		$e = new MWException();
+		$e = TestingAccessWrapper::newFromObject( new MWException() );
 		$this->assertEquals( $expected, $e->useOutputPage() );
 	}
 
@@ -35,18 +43,12 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 		return [
 			// expected, langObj, wgFullyInitialised, wgOut
 			[ false, null, null, null ],
-			[ false, $this->getMockLanguage(), null, null ],
-			[ false, $this->getMockLanguage(), true, null ],
+			[ false, $this->createMock( Language::class ), null, null ],
+			[ false, $this->createMock( Language::class ), true, null ],
 			[ false, null, true, null ],
 			[ false, null, null, true ],
-			[ true, $this->getMockLanguage(), true, true ],
+			[ true, $this->createMock( Language::class ), true, true ],
 		];
-	}
-
-	private function getMockLanguage() {
-		return $this->getMockBuilder( Language::class )
-			->disableOriginalConstructor()
-			->getMock();
 	}
 
 	/**

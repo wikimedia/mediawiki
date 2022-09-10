@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\UserGroupMembershipParam;
 use MediaWiki\Page\PageReference;
@@ -36,7 +37,7 @@ use Wikimedia\RequestTimeout\TimeoutException;
  * between old and new functions.
  *
  * The preferred way to create Message objects is via the msg() method of
- * of an available RequestContext and ResourceLoaderContext object; this will
+ * of an available RequestContext and ResourceLoader Context object; this will
  * ensure that the message uses the correct language. When that is not
  * possible, the wfMessage() global function can be used, which will cause
  * Message to get the language from the global RequestContext object. In
@@ -477,7 +478,8 @@ class Message implements MessageSpecifier, Serializable {
 	 * @since 1.26
 	 */
 	public function getTitle() {
-		$forceUIMsgAsContentMsg = MediaWikiServices::getInstance()->getMainConfig()->get( 'ForceUIMsgAsContentMsg' );
+		$forceUIMsgAsContentMsg = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ForceUIMsgAsContentMsg );
 
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		$lang = $this->getLanguage();
@@ -865,7 +867,8 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return Message $this
 	 */
 	public function inContentLanguage() {
-		$forceUIMsgAsContentMsg = MediaWikiServices::getInstance()->getMainConfig()->get( 'ForceUIMsgAsContentMsg' );
+		$forceUIMsgAsContentMsg = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ForceUIMsgAsContentMsg );
 		if ( in_array( $this->key, (array)$forceUIMsgAsContentMsg ) ) {
 			return $this;
 		}
@@ -1496,7 +1499,10 @@ class Message implements MessageSpecifier, Serializable {
 
 			// NOTE: The constructor makes sure keysToTry isn't empty,
 			//       so we know that $key and $message are initialized.
+			// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable False positive
+			// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty False positive
 			$this->key = $key;
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 			$this->message = $message;
 		}
 		return $this->message;

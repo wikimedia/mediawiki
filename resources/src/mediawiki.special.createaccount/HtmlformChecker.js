@@ -17,7 +17,7 @@ function HtmlformChecker( $element, validator ) {
 	this.validator = validator;
 	this.$element = $element;
 
-	this.$errorBox = $element.next( '.errorbox' );
+	this.$errorBox = $element.next( '.mw-message-box-error' );
 	if ( !this.$errorBox.length ) {
 		this.$errorBox = $( '<div>' );
 		this.$errorBox.hide();
@@ -159,7 +159,8 @@ HtmlformChecker.prototype.setErrors = function ( valid, errors, forceReplacement
 					.detach();
 			}
 			$errorBox
-				.attr( 'class', valid ? 'warningbox' : 'errorbox' )
+				.attr( 'class', 'mw-message-box' )
+				.addClass( valid ? 'mw-message-box-warning' : 'mw-message-box-error' )
 				.empty();
 			// Match behavior of HTMLFormField::formatErrors()
 			if ( errors.length === 1 ) {
@@ -180,7 +181,7 @@ HtmlformChecker.prototype.setErrors = function ( valid, errors, forceReplacement
 		if (
 			$oldErrorBox !== $errorBox &&
 			// eslint-disable-next-line no-jquery/no-class-state
-			( $oldErrorBox.hasClass( 'errorbox' ) || $oldErrorBox.hasClass( 'warningbox' ) )
+			( $oldErrorBox.hasClass( 'mw-message-box-error' ) || $oldErrorBox.hasClass( 'mw-message-box-warning' ) )
 		) {
 			// eslint-disable-next-line no-jquery/no-slide
 			$oldErrorBox.slideUp( showFunc );

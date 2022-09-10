@@ -5,6 +5,10 @@ namespace MediaWiki\Page;
 use MediaWiki\Permissions\Authority;
 
 /**
+ * Service for page delete actions.
+ *
+ * Default implementation is MediaWiki\Page\PageCommandFactory.
+ *
  * @since 1.37
  */
 interface DeletePageFactory {

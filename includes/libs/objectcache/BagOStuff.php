@@ -62,20 +62,19 @@ use Wikimedia\ScopedCallback;
  *    from the local datacenter (e.g. by avoiding replica DBs or invoking quorom reads).
  *  - Write operation methods, e.g. set(), should be synchronous in the local datacenter, with
  *    asynchronous cross-datacenter replication. This replication can be either "best effort"
- *    or eventually consistent. When used with WRITE_SYNC, such operations will wait until all
- *    datacenters are updated or a timeout occurs. If the write succeeded, then any subsequent
- *    get() operations with READ_LATEST, regardless of datacenter, should reflect the changes.
+ *    or eventually consistent. If the write succeeded, then any subsequent `get()` operations with
+ *    READ_LATEST, regardless of datacenter, should reflect the changes.
  *  - Locking operation methods, e.g. lock(), unlock(), and getScopedLock(), should only apply
  *    to the local datacenter.
  *  - Any set of single-key write operation method calls originating from a single datacenter
- *    should observe "best effort" linearizability. Any set of single-key write operations using
- *    WRITE_SYNC, regardless of the datacenter, should observe "best effort" linearizability.
+ *    should observe "best effort" linearizability.
  *    In this context, "best effort" means that consistency holds as long as connectivity is
  *    strong, network latency is low, and there are no relevant storage server failures.
  *    Per https://en.wikipedia.org/wiki/PACELC_theorem, the store should act as a PA/EL
  *    distributed system for these operations.
  *
  * @stable to extend
+ * @newable
  * @ingroup Cache
  */
 abstract class BagOStuff implements
@@ -90,14 +89,13 @@ abstract class BagOStuff implements
 	protected $logger;
 	/** @var callable|null */
 	protected $asyncHandler;
+	/** @var int[] Map of (BagOStuff:ATTR_* constant => BagOStuff:QOS_* constant) */
+	protected $attrMap = [];
 	/**
 	 * @var array<string,array> Cache key processing callbacks and info for metrics
 	 * @phan-var array<string,array{0:string,1:callable}>
 	 */
 	protected $wrapperInfoByPrefix = [];
-
-	/** @var int[] Map of (BagOStuff:ATTR_* constant => BagOStuff:QOS_* constant) */
-	protected $attrMap = [];
 
 	/** @var string Default keyspace; used by makeKey() */
 	protected $keyspace;
@@ -114,21 +112,33 @@ abstract class BagOStuff implements
 	private $wallClockOverride;
 
 	/** Bitfield constants for get()/getMulti(); these are only advisory */
-	public const READ_LATEST = 1; // if supported, avoid reading stale data due to replication
-	public const READ_VERIFIED = 2; // promise that the caller handles detection of staleness
+	/** If supported, avoid reading stale data due to replication */
+	public const READ_LATEST = 1;
+	/** Promise that the caller handles detection of staleness */
+	public const READ_VERIFIED = 2;
+
 	/** Bitfield constants for set()/merge(); these are only advisory */
-	public const WRITE_SYNC = 4; // if supported, block until the write is fully replicated
-	public const WRITE_CACHE_ONLY = 8; // only change state of the in-memory cache
-	public const WRITE_ALLOW_SEGMENTS = 16; // allow partitioning of the value if it is large
-	public const WRITE_PRUNE_SEGMENTS = 32; // delete all the segments if the value is partitioned
-	public const WRITE_BACKGROUND = 64; // if supported, do not block on completion until the next read
+	/** Only change state of the in-memory cache */
+	public const WRITE_CACHE_ONLY = 8;
+	/** Allow partitioning of the value if it is a large string */
+	public const WRITE_ALLOW_SEGMENTS = 16;
+	/** Delete all the segments if the value is partitioned */
+	public const WRITE_PRUNE_SEGMENTS = 32;
+	/**
+	 * If supported, do not block on write operation completion; instead, treat writes as
+	 * succesful based on whether they could be buffered. When using this flag with methods
+	 * that yield item values, the boolean "true" will be used as a placeholder. The next
+	 * blocking operation (e.g. typical read) will trigger a flush of the operation buffer.
+	 */
+	public const WRITE_BACKGROUND = 64;
+
+	/** Abort after the first merge conflict */
+	public const MAX_CONFLICTS_ONE = 1;
 
 	/** @var string Global keyspace; used by makeGlobalKey() */
 	protected const GLOBAL_KEYSPACE = 'global';
 	/** @var string Precomputed global cache key prefix (needs no encoding) */
 	protected const GLOBAL_PREFIX = 'global:';
-	/** @var string Precomputed global cache key prefix length */
-	protected const GLOBAL_PREFIX_LEN = 7;
 
 	/** @var int Item is a single cache key */
 	protected const ARG0_KEY = 0;
@@ -150,20 +160,24 @@ abstract class BagOStuff implements
 	private const WRAPPER_COLLECTION_CALLBACK = 1;
 
 	/**
-	 * Parameters include:
+	 * @stable to call
+	 * @param array $params Parameters include:
 	 *   - keyspace: Keyspace to use for keys in makeKey(). [Default: "local"]
 	 *   - asyncHandler: Callable to use for scheduling tasks after the web request ends.
 	 *      In CLI mode, it should run the task immediately. [Default: null]
 	 *   - stats: IStatsdDataFactory instance. [optional]
 	 *   - logger: Psr\Log\LoggerInterface instance. [optional]
-	 * @param array $params
 	 * @phan-param array{keyspace?:string,logger?:Psr\Log\LoggerInterface,asyncHandler?:callable} $params
 	 */
 	public function __construct( array $params = [] ) {
 		$this->keyspace = $params['keyspace'] ?? 'local';
-		$this->asyncHandler = $params['asyncHandler'] ?? null;
 		$this->stats = $params['stats'] ?? new NullStatsdDataFactory();
 		$this->setLogger( $params['logger'] ?? new NullLogger() );
+
+		$asyncHandler = $params['asyncHandler'] ?? null;
+		if ( is_callable( $asyncHandler ) ) {
+			$this->asyncHandler = $asyncHandler;
+		}
 	}
 
 	/**
@@ -183,7 +197,7 @@ abstract class BagOStuff implements
 	}
 
 	/**
-	 * Get an item with the given key, regenerating and setting it if not found
+	 * Get an item, regenerating and setting it if not found
 	 *
 	 * The callback can take $exptime as argument by reference and modify it.
 	 * Nothing is stored nor deleted if the callback returns false.
@@ -209,7 +223,7 @@ abstract class BagOStuff implements
 	}
 
 	/**
-	 * Get an item with the given key
+	 * Get an item
 	 *
 	 * If the key includes a deterministic input hash (e.g. the key can only have
 	 * the correct value) or complete staleness checks are handled by the caller
@@ -235,15 +249,15 @@ abstract class BagOStuff implements
 	abstract public function set( $key, $value, $exptime = 0, $flags = 0 );
 
 	/**
-	 * Delete an item
+	 * Delete an item if it exists
 	 *
 	 * For large values written using WRITE_ALLOW_SEGMENTS, this only deletes the main
 	 * segment list key unless WRITE_PRUNE_SEGMENTS is in the flags. While deleting the segment
 	 * list key has the effect of functionally deleting the key, it leaves unused blobs in cache.
 	 *
 	 * @param string $key
-	 * @return bool True if the item was deleted or not found, false on failure
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
+	 * @return bool Success (item deleted or not found)
 	 */
 	abstract public function delete( $key, $flags = 0 );
 
@@ -254,7 +268,7 @@ abstract class BagOStuff implements
 	 * @param mixed $value
 	 * @param int $exptime
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
-	 * @return bool Success
+	 * @return bool Success (item created)
 	 */
 	abstract public function add( $key, $value, $exptime = 0, $flags = 0 );
 
@@ -284,7 +298,7 @@ abstract class BagOStuff implements
 	);
 
 	/**
-	 * Change the expiration on a key if it exists
+	 * Change the expiration on an item
 	 *
 	 * If an expiry in the past is given then the key will immediately be expired
 	 *
@@ -297,7 +311,7 @@ abstract class BagOStuff implements
 	 * @param string $key
 	 * @param int $exptime TTL or UNIX timestamp
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
-	 * @return bool Success Returns false on failure or if the item does not exist
+	 * @return bool Success (item found and updated)
 	 * @since 1.28
 	 */
 	abstract public function changeTTL( $key, $exptime = 0, $flags = 0 );
@@ -372,7 +386,7 @@ abstract class BagOStuff implements
 	);
 
 	/**
-	 * Get an associative array containing the item for each of the keys that have items
+	 * Get a batch of items
 	 *
 	 * @param string[] $keys List of keys
 	 * @param int $flags Bitfield; supports READ_LATEST [optional]
@@ -381,7 +395,7 @@ abstract class BagOStuff implements
 	abstract public function getMulti( array $keys, $flags = 0 );
 
 	/**
-	 * Batch insertion/replace
+	 * Set a batch of items
 	 *
 	 * This does not support WRITE_ALLOW_SEGMENTS to avoid excessive read I/O
 	 *
@@ -396,7 +410,7 @@ abstract class BagOStuff implements
 	abstract public function setMulti( array $valueByKey, $exptime = 0, $flags = 0 );
 
 	/**
-	 * Batch deletion
+	 * Delete a batch of items
 	 *
 	 * This does not support WRITE_ALLOW_SEGMENTS to avoid excessive read I/O
 	 *
@@ -404,20 +418,20 @@ abstract class BagOStuff implements
 	 *
 	 * @param string[] $keys List of keys
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
-	 * @return bool Success
+	 * @return bool Success (items deleted and/or not found)
 	 * @since 1.33
 	 */
 	abstract public function deleteMulti( array $keys, $flags = 0 );
 
 	/**
-	 * Change the expiration of multiple keys that exist
+	 * Change the expiration of multiple items
 	 *
 	 * @see BagOStuff::changeTTL()
 	 *
 	 * @param string[] $keys List of keys
 	 * @param int $exptime TTL or UNIX timestamp
 	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants (since 1.33)
-	 * @return bool Success
+	 * @return bool Success (all items found and updated)
 	 * @since 1.34
 	 */
 	abstract public function changeTTLMulti( array $keys, $exptime, $flags = 0 );
@@ -451,12 +465,15 @@ abstract class BagOStuff implements
 	 * Callers should make sure that both ($init - $step) and $exptime are invariants for all
 	 * operations to any given key. The value of $init should be at least that of $step.
 	 *
+	 * The new value is returned, except if the WRITE_BACKGROUND flag is given, in which case
+	 * the handler may choose to return true to indicate that the operation has been dispatched.
+	 *
 	 * @param string $key Key built via makeKey() or makeGlobalKey()
 	 * @param int $exptime Time-to-live (in seconds) or a UNIX timestamp expiration
 	 * @param int $step Amount to increase the key value by [default: 1]
 	 * @param int|null $init Value to initialize the key to if it does not exist [default: $step]
 	 * @param int $flags Bit field of class WRITE_* constants [optional]
-	 * @return int|bool New value or false on failure
+	 * @return int|bool New value (or true if asynchronous) on success; false on failure
 	 * @since 1.24
 	 */
 	abstract public function incrWithInit( $key, $exptime, $step = 1, $init = null, $flags = 0 );
@@ -517,22 +534,12 @@ abstract class BagOStuff implements
 	/**
 	 * Let a callback be run to avoid wasting time on special blocking calls
 	 *
-	 * The callbacks may or may not be called ever, in any particular order.
-	 * They are likely to be invoked when something WRITE_SYNC is used used.
-	 * They should follow a caching pattern as shown below, so that any code
-	 * using the work will get it's result no matter what happens.
-	 * @code
-	 *     $result = null;
-	 *     $workCallback = function () use ( &$result ) {
-	 *         if ( !$result ) {
-	 *             $result = ....
-	 *         }
-	 *         return $result;
-	 *     }
-	 * @endcode
+	 * This is hard-deprecated and non-functional since 1.39. The callback
+	 * will not be called.
 	 *
 	 * @param callable $workCallback
 	 * @since 1.28
+	 * @deprecated since 1.39
 	 */
 	abstract public function addBusyCallback( callable $workCallback );
 
@@ -583,7 +590,7 @@ abstract class BagOStuff implements
 	 * @since 1.35
 	 */
 	public function isKeyGlobal( $key ) {
-		return ( strncmp( $key, self::GLOBAL_PREFIX, self::GLOBAL_PREFIX_LEN ) === 0 );
+		return str_starts_with( $key, self::GLOBAL_PREFIX );
 	}
 
 	/**
@@ -643,7 +650,7 @@ abstract class BagOStuff implements
 	}
 
 	/**
-	 * Make a "generic" reversible cache key from the given components
+	 * Stage a set of new key values for storage and estimate the amount of bytes needed
 	 *
 	 * All previously prepared values will be cleared. Each of the new prepared values will be
 	 * individually cleared as they get used by write operations for that key. This is done to
@@ -657,7 +664,8 @@ abstract class BagOStuff implements
 	 *     $cache->setMulti( [ $key2 => $value2, $key3 => $value3 ], $cache::TTL_HOUR );
 	 * @endcode
 	 *
-	 * This is only useful if the caller needs an estimate of the serialized object sizes.
+	 * This is only useful if the caller needs an estimate of the serialized object sizes,
+	 * such as cache wrappers with adaptive write slam avoidance or store wrappers with metrics.
 	 * The caller cannot know the serialization format and even if it did, it could be expensive
 	 * to serialize complex values twice just to get the size information before writing them to
 	 * cache. This method solves both problems by making the cache instance do the serialization
@@ -720,7 +728,7 @@ abstract class BagOStuff implements
 				$key .= ':';
 			}
 			// Escape delimiter (":") and escape ("%") characters
-			$key .= strtr( (string)$component, [ '%' => '%25', ':' => '%3A' ] );
+			$key .= strtr( $component, [ '%' => '%25', ':' => '%3A' ] );
 		}
 
 		return $key;

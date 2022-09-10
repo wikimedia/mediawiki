@@ -25,6 +25,7 @@ namespace MediaWiki\Storage;
 use BagOStuff;
 use FormatJson;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -42,7 +43,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class EditResultCache {
 
 	public const CONSTRUCTOR_OPTIONS = [
-		'RCMaxAge'
+		MainConfigNames::RCMaxAge,
 	];
 
 	private const CACHE_KEY_PREFIX = 'EditResult';
@@ -87,7 +88,7 @@ class EditResultCache {
 			$this->makeKey( $revisionId ),
 			FormatJson::encode( $editResult ),
 			// Patrol flags are not stored for longer than $wgRCMaxAge
-			$this->options->get( 'RCMaxAge' )
+			$this->options->get( MainConfigNames::RCMaxAge )
 		);
 	}
 

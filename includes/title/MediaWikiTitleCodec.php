@@ -113,7 +113,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 * @param string $text
 	 *
 	 * @throws InvalidArgumentException If the namespace is invalid
-	 * @return string Namespace name with underscores (not spaces)
+	 * @return string Namespace name with underscores (not spaces), e.g. 'User_talk'
 	 */
 	public function getNamespaceName( $namespace, $text ) {
 		if ( $this->language->needsGenderDistinction() &&
@@ -556,6 +556,8 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		// inconsistent. Same for talk/userpages. Keep them normalized instead.
 		if ( $parts['namespace'] === NS_USER || $parts['namespace'] === NS_USER_TALK ) {
 			$dbkey = IPUtils::sanitizeIP( $dbkey );
+			// IPUtils::sanitizeIP return null only for bad input
+			'@phan-var string $dbkey';
 		}
 
 		// Any remaining initial :s are illegal.

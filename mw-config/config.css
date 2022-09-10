@@ -246,6 +246,7 @@ body {
 .config-help-field-data {
 	display: block;
 	overflow: hidden;
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	min-width: min-content;
 	background-color: #d6f3ff;
 	padding: 5px 8px 4px 8px;

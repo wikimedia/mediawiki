@@ -26,35 +26,36 @@ versus
     $wgArticle = $oldArticle
 
 Some of the current MediaWiki developers have an idle fantasy that some day,
-globals will be eliminated from MediaWiki entirely, replaced by an application
+globals will be eliminated from MediaWiki entirely, replaced by a configuration
 object which would be passed to constructors. Whether that would be an
 efficient, convenient solution remains to be seen, but certainly PHP 5 makes
 such object-oriented programming models easier than they were in previous
 versions.
 
 For the time being though, MediaWiki programmers will have to work in an
-environment with some global context. At the time of writing, 418 globals were
+environment with some global context. At the time of writing (2008), 418 globals were
 initialised on startup by MediaWiki. 304 of these were configuration settings,
-which are documented in DefaultSettings.php. There is no comprehensive
+which are defined in MainConfigSchema.php. There is no comprehensive
 documentation for the remaining 114 globals, however some of the most important
 ones are listed below. They are typically initialised either in index.php or in
 Setup.php.
 
 $wgTitle
 	Title object created from the request URL.
+	Use IContextSource::getTitle() instead.
 
 $wgOut
 	OutputPage object for HTTP response.
+	Use IContextSource::getOutput() instead.
 
 $wgUser
 	User object for the user associated with the current request.
+	Use IContextSource::getAuthority() instead.
 
 $wgLang
 	Language object selected by user preferences.
-
-$wgParser
-	Parser object. Parser extensions used to register their hooks here;
-	modern code should use the ParserFirstCallInit hook.
+	Use IContextSource::getLanguage() instead.
 
 $wgRequest
 	WebRequest object, to get request data
+	Use IContextSource::getRequest() instead.

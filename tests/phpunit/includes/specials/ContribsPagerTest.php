@@ -1,7 +1,15 @@
 <?php
 
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\Rdbms\FakeResultWrapper;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -106,36 +114,66 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 
 	public static function dateFilterOptionProcessingProvider() {
 		return [
-			[ [ 'start' => '2016-05-01',
-				'end' => '2016-06-01',
-				'year' => null,
-				'month' => null ],
-			  [ 'start' => '2016-05-01',
-				'end' => '2016-06-01' ] ],
-			[ [ 'start' => '2016-05-01',
-				'end' => '2016-06-01',
-				'year' => '',
-				'month' => '' ],
-			  [ 'start' => '2016-05-01',
-				'end' => '2016-06-01' ] ],
-			[ [ 'start' => '2016-05-01',
-				'end' => '2016-06-01',
-				'year' => '2012',
-				'month' => '5' ],
-			  [ 'start' => '',
-				'end' => '2012-05-31' ] ],
-			[ [ 'start' => '',
-				'end' => '',
-				'year' => '2012',
-				'month' => '5' ],
-			  [ 'start' => '',
-				'end' => '2012-05-31' ] ],
-			[ [ 'start' => '',
-				'end' => '',
-				'year' => '2012',
-				'month' => '' ],
-			  [ 'start' => '',
-				'end' => '2012-12-31' ] ],
+			[
+				[
+					'start' => '2016-05-01',
+					'end' => '2016-06-01',
+					'year' => null,
+					'month' => null
+				],
+				[
+					'start' => '2016-05-01',
+					'end' => '2016-06-01'
+				]
+			],
+			[
+				[
+					'start' => '2016-05-01',
+					'end' => '2016-06-01',
+					'year' => '',
+					'month' => ''
+				],
+				[
+					'start' => '2016-05-01',
+					'end' => '2016-06-01'
+				]
+			],
+			[
+				[
+					'start' => '2016-05-01',
+					'end' => '2016-06-01',
+					'year' => '2012',
+					'month' => '5'
+				],
+				[
+					'start' => '',
+					'end' => '2012-05-31'
+				]
+			],
+			[
+				[
+					'start' => '',
+					'end' => '',
+					'year' => '2012',
+					'month' => '5'
+				],
+				[
+					'start' => '',
+					'end' => '2012-05-31'
+				]
+			],
+			[
+				[
+					'start' => '',
+					'end' => '',
+					'year' => '2012',
+					'month' => ''
+				],
+				[
+					'start' => '',
+					'end' => '2012-12-31'
+				]
+			],
 		];
 	}
 
@@ -144,12 +182,13 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideQueryableRanges
 	 */
 	public function testQueryableRanges( $ipRange ) {
-		$this->setMwGlobals( [
-			'wgRangeContributionsCIDRLimit' => [
+		$this->overrideConfigValue(
+			MainConfigNames::RangeContributionsCIDRLimit,
+			[
 				'IPv4' => 16,
 				'IPv6' => 32,
-			],
-		] );
+			]
+		);
 
 		$this->assertTrue(
 			$this->pager->isQueryableRange( $ipRange ),
@@ -171,12 +210,13 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideUnqueryableRanges
 	 */
 	public function testUnqueryableRanges( $ipRange ) {
-		$this->setMwGlobals( [
-			'wgRangeContributionsCIDRLimit' => [
+		$this->overrideConfigValue(
+			MainConfigNames::RangeContributionsCIDRLimit,
+			[
 				'IPv4' => 16,
 				'IPv6' => 32,
-			],
-		] );
+			]
+		);
 
 		$this->assertFalse(
 			$this->pager->isQueryableRange( $ipRange ),
@@ -363,7 +403,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	public function testPopulatedIntegration() {
 		$this->tablesUsed[] = 'page';
 		$user = $this->getTestUser()->getUser();
-		$title = Title::newFromText( 'ContribsPagerTest' );
+		$title = Title::makeTitle( NS_MAIN, 'ContribsPagerTest' );
 		$this->editPage( $title, '', '', NS_MAIN, $user );
 		$pager = $this->getContribsPager( [], $user );
 		$this->assertIsString( $pager->getBody() );

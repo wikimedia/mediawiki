@@ -87,8 +87,7 @@ trait WikiAwareEntityTrait {
 	 * @param string|false $wikiId
 	 */
 	protected function assertWikiIdParam( $wikiId ) {
-		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
-		Assert::parameter( $wikiId !== true, '$wikiId', 'must be false or a string' );
+		Assert::parameterType( [ 'string', 'false' ], $wikiId, '$wikiId' );
 	}
 
 	/**

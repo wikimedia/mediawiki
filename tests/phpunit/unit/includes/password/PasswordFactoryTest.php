@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @covers PasswordFactory
  */
@@ -44,10 +46,10 @@ class PasswordFactoryTest extends MediaWikiUnitTestCase {
 
 	public function testInit() {
 		$config = new HashConfig( [
-			'PasswordConfig' => [
+			MainConfigNames::PasswordConfig => [
 				'foo' => [ 'class' => InvalidPassword::class ],
 			],
-			'PasswordDefault' => 'foo'
+			MainConfigNames::PasswordDefault => 'foo'
 		] );
 		$pf = new PasswordFactory;
 		$pf->init( $config );

@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserNameUtils;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -163,7 +164,6 @@ class ImageListPager extends TablePager {
 	 * @return array The query conditions.
 	 */
 	protected function buildQueryConds( $table ) {
-		$prefix = $table === 'image' ? 'img' : 'oi';
 		$conds = [];
 
 		if ( $this->mUserName !== null ) {
@@ -197,7 +197,7 @@ class ImageListPager extends TablePager {
 			// img_description down here, in order so that its still after the username field.
 			$this->mFieldNames['img_description'] = $this->msg( 'listfiles_description' )->text();
 
-			if ( !$this->getConfig()->get( 'MiserMode' ) && !$this->mShowAll ) {
+			if ( !$this->getConfig()->get( MainConfigNames::MiserMode ) && !$this->mShowAll ) {
 				$this->mFieldNames['count'] = $this->msg( 'listfiles_count' )->text();
 			}
 			if ( $this->mShowAll ) {
@@ -220,10 +220,10 @@ class ImageListPager extends TablePager {
 		 * In particular that means we cannot sort by timestamp when not filtering
 		 * by user and including old images in the results. Which is sad. (T279982)
 		 */
-		if ( $this->getConfig()->get( 'MiserMode' ) && $this->mUserName !== null ) {
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) && $this->mUserName !== null ) {
 			// If we're sorting by user, the index only supports sorting by time.
 			return $field === 'img_timestamp';
-		} elseif ( $this->getConfig()->get( 'MiserMode' )
+		} elseif ( $this->getConfig()->get( MainConfigNames::MiserMode )
 			&& $this->mShowAll /* && mUserName === null */
 		) {
 			// no oi_timestamp index, so only alphabetical sorting in this case.
@@ -367,35 +367,35 @@ class ImageListPager extends TablePager {
 	protected function combineResult( $res1, $res2, $limit, $order ) {
 		$res1->rewind();
 		$res2->rewind();
-		$topRes1 = $res1->next();
-		$topRes2 = $res2->next();
+		$topRes1 = $res1->fetchObject();
+		$topRes2 = $res2->fetchObject();
 		$resultArray = [];
 		for ( $i = 0; $i < $limit && $topRes1 && $topRes2; $i++ ) {
 			if ( strcmp( $topRes1->{$this->mIndexField[0]}, $topRes2->{$this->mIndexField[0]} ) > 0 ) {
 				if ( $order !== IndexPager::QUERY_ASCENDING ) {
 					$resultArray[] = $topRes1;
-					$topRes1 = $res1->next();
+					$topRes1 = $res1->fetchObject();
 				} else {
 					$resultArray[] = $topRes2;
-					$topRes2 = $res2->next();
+					$topRes2 = $res2->fetchObject();
 				}
 			} elseif ( $order !== IndexPager::QUERY_ASCENDING ) {
 				$resultArray[] = $topRes2;
-				$topRes2 = $res2->next();
+				$topRes2 = $res2->fetchObject();
 			} else {
 				$resultArray[] = $topRes1;
-				$topRes1 = $res1->next();
+				$topRes1 = $res1->fetchObject();
 			}
 		}
 
 		for ( ; $i < $limit && $topRes1; $i++ ) {
 			$resultArray[] = $topRes1;
-			$topRes1 = $res1->next();
+			$topRes1 = $res1->fetchObject();
 		}
 
 		for ( ; $i < $limit && $topRes2; $i++ ) {
 			$resultArray[] = $topRes2;
-			$topRes2 = $res2->next();
+			$topRes2 = $res2->fetchObject();
 		}
 
 		return new FakeResultWrapper( $resultArray );
@@ -406,7 +406,8 @@ class ImageListPager extends TablePager {
 	}
 
 	public function getDefaultSort() {
-		if ( $this->mShowAll && $this->getConfig()->get( 'MiserMode' ) && $this->mUserName === null ) {
+		if ( $this->mShowAll && $this->getConfig()->get( MainConfigNames::MiserMode ) &&
+		$this->mUserName === null ) {
 			// Unfortunately no index on oi_timestamp.
 			return 'img_name';
 		} else {

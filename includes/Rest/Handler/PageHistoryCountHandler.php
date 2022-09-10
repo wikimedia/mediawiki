@@ -356,7 +356,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * Generating an etag when getting revision counts must account for things like visibility settings
 	 * (e.g. rev_deleted bit) which requires hitting the database anyway. The response for these
 	 * requests are so small that we wouldn't be gaining much efficiency.
-	 * Etags are strong validators and if provided would take precendence over
+	 * Etags are strong validators and if provided would take precedence over
 	 * last modified time, a weak validator. We want to ensure only last modified time is used
 	 * since it is more efficient than using etags for this particular case.
 	 * @return null
@@ -440,13 +440,6 @@ class PageHistoryCountHandler extends SimpleHandler {
 				"OR rev_timestamp > {$oldTs}";
 		}
 
-		// This redundant join condition tells MySQL that rev_page and revactor_page are the
-		// same, so it can propagate the condition
-		if ( isset( $revQuery['tables']['temp_rev_user'] ) /* SCHEMA_COMPAT_READ_TEMP */ ) {
-			$revQuery['joins']['temp_rev_user'][1] =
-				"temp_rev_user.revactor_rev = rev_id AND revactor_page = rev_page";
-		}
-
 		$edits = $dbr->selectRowCount(
 			[
 				'revision',
@@ -503,6 +496,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		$edits = $dbr->selectRowCount(
 			[
 				'revision',
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			] + $revQuery['tables'],
 			'1',
 			$cond,

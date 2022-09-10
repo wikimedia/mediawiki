@@ -1,5 +1,6 @@
 <?php
 
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -14,16 +15,23 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 
 	/**
-	 * @return ILoadBalancer
+	 * @return ILoadBalancer|MockObject
 	 */
 	private function getLoadBalancerMock() {
-		$lb = $this->createMock( ILoadBalancer::class );
-
-		$lb->method( 'getConnection' )->willReturnCallback(
-			function () {
-				return $this->getDatabaseMock();
+		// getConnection() and getConnectionInternal() should keep returning the same connection
+		// on every call, unless that connection was closed. Then they should return a new
+		// connection.
+		$conn = $this->getDatabaseMock();
+		$getDatabaseMock = function () use ( &$conn ) {
+			if ( !$conn->isOpen() ) {
+				$conn = $this->getDatabaseMock();
 			}
-		);
+			return $conn;
+		};
+
+		$lb = $this->createMock( ILoadBalancer::class );
+		$lb->method( 'getConnection' )->willReturnCallback( $getDatabaseMock );
+		$lb->method( 'getConnectionInternal' )->willReturnCallback( $getDatabaseMock );
 
 		$lb->method( 'getConnectionRef' )->willReturnCallback(
 			function () use ( $lb ) {
@@ -38,9 +46,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	 * @return IDatabase
 	 */
 	private function getDatabaseMock() {
-		$db = $this->getMockBuilder( IDatabase::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$db = $this->createMock( IDatabase::class );
 
 		$open = true;
 		$db->method( 'select' )->willReturnCallback( static function () use ( &$open ) {
@@ -68,27 +74,40 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	 */
 	private function getDBConnRef( ILoadBalancer $lb = null ) {
 		$lb = $lb ?: $this->getLoadBalancerMock();
-		return new DBConnRef( $lb, $this->getDatabaseMock(), DB_PRIMARY );
+		return new DBConnRef( $lb, [ DB_PRIMARY, [], 'mywiki', 0 ], DB_PRIMARY );
+	}
+
+	/**
+	 * Test that bumping the modification counter causes the wrapped connection
+	 * to be discarded and re-aquired.
+	 */
+	public function testModCount() {
+		$lb = $this->getLoadBalancerMock();
+		$lb->expects( $this->exactly( 3 ) )->method( 'getConnectionInternal' );
+
+		$params = [ DB_PRIMARY, [], 'mywiki', 0 ];
+		$modcount = 0;
+		$ref = new DBConnRef( $lb, $params, DB_PRIMARY, $modcount );
+
+		$ref->select( 'test', '*' );
+		$ref->select( 'test', '*' );
+
+		$modcount++; // cause second call to getConnectionInternal
+		$ref->select( 'test', '*' );
+		$ref->select( 'test', '*' );
+
+		$modcount++; // cause third call to getConnectionInternal
+		$ref->select( 'test', '*' );
+		$ref->select( 'test', '*' );
 	}
 
 	public function testConstruct() {
-		$lb = $this->getLoadBalancerMock();
-		$ref = new DBConnRef( $lb, $this->getDatabaseMock(), DB_PRIMARY );
-
-		$this->assertInstanceOf( IResultWrapper::class, $ref->select( 'whatever', '*' ) );
-	}
-
-	public function testConstruct_params() {
 		$lb = $this->createMock( ILoadBalancer::class );
 
 		$lb->expects( $this->once() )
-			->method( 'getConnection' )
+			->method( 'getConnectionInternal' )
 			->with( DB_PRIMARY, [ 'test' ], 'dummy', ILoadBalancer::CONN_TRX_AUTOCOMMIT )
-			->willReturnCallback(
-				function () {
-					return $this->getDatabaseMock();
-				}
-			);
+			->willReturn( $this->getDatabaseMock() );
 
 		$ref = new DBConnRef(
 			$lb,
@@ -111,7 +130,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		$lb = $this->getLoadBalancerMock();
 
 		$lb->expects( $this->once() )
-			->method( 'reuseConnection' );
+			->method( 'reuseConnectionInternal' );
 
 		$this->innerMethodForTestDestruct( $lb );
 	}

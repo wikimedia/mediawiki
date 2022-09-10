@@ -148,8 +148,8 @@ abstract class ResultWrapper implements IResultWrapper {
 		return $this->currentPos;
 	}
 
-	public function next() {
-		return $this->fetchObject();
+	public function next(): void {
+		$this->fetchObject();
 	}
 
 	public function valid(): bool {

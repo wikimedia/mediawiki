@@ -1,7 +1,5 @@
 <?php
 /**
- * Database load monitoring interface
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,21 +16,20 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 use BagOStuff;
 use Psr\Log\LoggerAwareInterface;
+use StatsdAwareInterface;
 use WANObjectCache;
 
 /**
- * An interface for database load monitoring
+ * Database load monitoring interface
  *
  * @ingroup Database
  */
-interface ILoadMonitor extends LoggerAwareInterface {
+interface ILoadMonitor extends LoggerAwareInterface, StatsdAwareInterface {
 	/**
 	 * Construct a new LoadMonitor with a given LoadBalancer parent
 	 *
@@ -49,7 +46,7 @@ interface ILoadMonitor extends LoggerAwareInterface {
 	 * Perform load ratio adjustment before deciding which server to use
 	 *
 	 * @param int[] &$weightByServer Map of (server index => float weight)
-	 * @param string|bool $domain
+	 * @param string|false $domain
 	 */
 	public function scaleLoads( array &$weightByServer, $domain );
 
@@ -60,7 +57,7 @@ interface ILoadMonitor extends LoggerAwareInterface {
 	 *
 	 * @param int[] $serverIndexes
 	 * @param string $domain
-	 * @return array Map of (server index => float|int|bool)
+	 * @return array Map of (server index => float|int|false)
 	 */
 	public function getLagTimes( array $serverIndexes, $domain );
 }

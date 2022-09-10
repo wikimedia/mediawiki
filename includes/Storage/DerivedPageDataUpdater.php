@@ -32,14 +32,18 @@ use InvalidArgumentException;
 use JobQueueGroup;
 use Language;
 use LogicException;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionRecord;
@@ -61,7 +65,6 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RefreshSecondaryDataUpdate;
-use ResourceLoaderWikiModule;
 use RevertedTagUpdateJob;
 use SearchUpdate;
 use SiteStatsUpdate;
@@ -313,12 +316,20 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 	/** @var PermissionManager */
 	private $permissionManager;
 
+	/** @var bool */
+	private $warmParsoidParserCache;
+
+	/** @var ParsoidOutputAccess */
+	private $parsoidOutputAccess;
+
 	/**
+	 * @param ServiceOptions $options
 	 * @param WikiPage $wikiPage
 	 * @param RevisionStore $revisionStore
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param ParserCache $parserCache
+	 * @param ParsoidOutputAccess $parsoidOutputAccess
 	 * @param JobQueueGroup $jobQueueGroup
 	 * @param MessageCache $messageCache
 	 * @param Language $contLang
@@ -334,11 +345,13 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 	 * @param PermissionManager $permissionManager
 	 */
 	public function __construct(
+		ServiceOptions $options,
 		WikiPage $wikiPage,
 		RevisionStore $revisionStore,
 		RevisionRenderer $revisionRenderer,
 		SlotRoleRegistry $slotRoleRegistry,
 		ParserCache $parserCache,
+		ParsoidOutputAccess $parsoidOutputAccess,
 		JobQueueGroup $jobQueueGroup,
 		MessageCache $messageCache,
 		Language $contLang,
@@ -376,6 +389,9 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$this->permissionManager = $permissionManager;
 
 		$this->logger = new NullLogger();
+		$this->warmParsoidParserCache = $options
+			->get( MainConfigNames::ParsoidCacheConfig )['WarmParsoidParserCache'];
+		$this->parsoidOutputAccess = $parsoidOutputAccess;
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
@@ -1340,7 +1356,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$this->doTransition( 'has-revision' );
 
 		// NOTE: in case we have a User object, don't override with a UserIdentity.
-		// We already checked that $revision->getUser() mathces $this->user;
+		// We already checked that $revision->getUser() matches $this->user;
 		if ( !$this->user ) {
 			$this->user = $revision->getUser( RevisionRecord::RAW );
 		}
@@ -1437,7 +1453,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 	public function getSecondaryDataUpdates( $recursive = false ) {
 		if ( $this->isContentDeleted() ) {
 			// This shouldn't happen, since the current content is always public,
-			// and DataUpates are only needed for current content.
+			// and DataUpdates are only needed for current content.
 			return [];
 		}
 
@@ -1460,6 +1476,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 			$recursive
 		);
 		if ( $this->options['moved'] ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgument Oldtitle is set along with moved
 			$linksUpdate->setMoveDetails( $this->options['oldtitle'] );
 		}
 
@@ -1554,7 +1571,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$this->doSecondaryDataUpdates( [
 			// T52785 do not update any other pages on a null edit
 			'recursive' => $this->options['changed'],
-			// Defer the getCannonicalParserOutput() call made by getSecondaryDataUpdates()
+			// Defer the getCanonicalParserOutput() call made by getSecondaryDataUpdates()
 			'defer' => DeferredUpdates::POSTSEND
 		] );
 
@@ -1671,7 +1688,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$oldRevisionRecord = $this->getParentRevision();
 
 		// TODO: In the wiring, register a listener for this on the new PageEventEmitter
-		ResourceLoaderWikiModule::invalidateModuleCache(
+		RL\WikiModule::invalidateModuleCache(
 			$title,
 			$oldRevisionRecord,
 			$this->revision,
@@ -1685,6 +1702,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 	}
 
 	private function triggerParserCacheUpdate() {
+		$this->assertHasRevision( __METHOD__ );
+
 		$userParserOptions = ParserOptions::newFromUser( $this->user );
 		// Decide whether to save the final canonical parser output based on the fact that
 		// users are typically redirected to viewing pages right after they edit those pages.
@@ -1769,6 +1788,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		// updates that are not defined as being related.
 		$update = new RefreshSecondaryDataUpdate(
 			$this->loadbalancerFactory,
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Already checked
 			$triggeringUser,
 			$this->wikiPage,
 			$this->revision,
@@ -1805,6 +1825,50 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 			$output, $wikiPage, $this->getCanonicalParserOptions(),
 			$timestamp, $this->revision->getId()
 		);
+
+		// If we enable cache warming with parsoid outputs, let's do it at the same
+		// time we're populating the parser cache with pre-generated HTML.
+		if ( $this->warmParsoidParserCache ) {
+			$this->doParsoidCacheUpdate();
+		}
+	}
+
+	public function doParsoidCacheUpdate() {
+		$this->assertHasRevision( __METHOD__ );
+
+		$wikiPage = $this->getWikiPage(); // TODO: ParserCache should accept a RevisionRecord instead
+		$rev = $this->getRevision();
+		$parserOpts = $this->getCanonicalParserOptions();
+
+		$mainSlot = $rev->getSlot( SlotRecord::MAIN );
+		if ( !$this->parsoidOutputAccess->supportsContentModel( $mainSlot->getModel() ) ) {
+			$this->logger->debug( __METHOD__ . ': Parsoid does not support content model ' . $mainSlot->getModel() );
+			return;
+		}
+
+		// Make sure that ParsoidOutputAccess recognizes the revision as the current one.
+		Assert::precondition(
+			$wikiPage->getLatest() === $rev->getId(),
+			'The ID of the new revision must match the page\'s current revision ID'
+		);
+
+		$this->logger->debug( __METHOD__ . ': generating Parsoid output' );
+
+		// getParserOutput() will write to ParserCache
+		$status = $this->parsoidOutputAccess->getParserOutput(
+			$wikiPage,
+			$parserOpts,
+			$rev,
+			ParsoidOutputAccess::OPT_FORCE_PARSE
+		);
+
+		if ( !$status->isOK() ) {
+			$this->logger->error( __METHOD__ . ': Parsoid error', [
+				'errors' => $status->getErrors(),
+				'page' => $wikiPage->getTitle()->getPrefixedText(),
+				'rev' => $rev->getId(),
+			] );
+		}
 	}
 
 }

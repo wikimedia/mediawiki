@@ -5,6 +5,7 @@ use MediaWiki\Json\JsonUnserializableTrait;
 use MediaWiki\Json\JsonUnserializer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutputFlags;
@@ -224,9 +225,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mEnableOOUI = false;
 
 	/**
-	 * @var string 'index' or 'noindex'?  Any other value will result in no change.
+	 * @var bool Whether the index policy has been set to 'index'.
 	 */
-	private $mIndexPolicy = '';
+	private $mIndexSet = false;
+
+	/**
+	 * @var bool Whether the index policy has been set to 'noindex'.
+	 */
+	private $mNoIndexSet = false;
 
 	/**
 	 * @var array extra data used by extensions.
@@ -278,7 +284,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private const SPECULATIVE_FIELDS = [
 		'speculativePageIdUsed',
 		'mSpeculativeRevId',
-		'revisionTimestampUsed'
+		'revisionTimestampUsed',
 	];
 
 	/** @var int|null Assumed rev ID for {{REVISIONID}} if no revision is set */
@@ -300,7 +306,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mMaxAdaptiveExpiry = INF;
 
 	private const EDITSECTION_REGEX =
-		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#s';
+		'#<(?:mw:)?editsection page="(.*?)" section="(.*?)">(.*?)</(?:mw:)?editsection>#s';
 
 	// finalizeAdaptiveCacheExpiry() uses TTL = MAX( m * PARSE_TIME + b, MIN_AR_TTL)
 	// Current values imply that m=3933.333333 and b=-333.333333
@@ -314,13 +320,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @param string|null $text HTML. Use null to indicate that this ParserOutput contains only
 	 *        meta-data, and the HTML output is undetermined, as opposed to empty. Passing null
-	 *        here causes hasText() to return false.
+	 *        here causes hasText() to return false. In 1.39 the default value changed from ''
+	 *        to null.
 	 * @param array $languageLinks
 	 * @param array $categoryLinks
 	 * @param bool $unused
 	 * @param string $titletext
 	 */
-	public function __construct( $text = '', $languageLinks = [], $categoryLinks = [],
+	public function __construct( $text = null, $languageLinks = [], $categoryLinks = [],
 		$unused = false, $titletext = ''
 	) {
 		$this->mText = $text;
@@ -425,7 +432,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				function ( $m ) use ( $skin ) {
 					$editsectionPage = Title::newFromText( htmlspecialchars_decode( $m[1] ) );
 					$editsectionSection = htmlspecialchars_decode( $m[2] );
-					$editsectionContent = isset( $m[4] ) ? Sanitizer::decodeCharReferences( $m[3] ) : null;
+					$editsectionContent = Sanitizer::decodeCharReferences( $m[3] );
 
 					if ( !is_object( $editsectionPage ) ) {
 						LoggerFactory::getInstance( 'Parser' )
@@ -435,7 +442,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 									'placeholder' => $m[0],
 									'editsectionPage' => $m[1],
 									'titletext' => $this->getTitleText(),
-									'phab' => 'T261347'
+									'phab' => 'T261347',
 								]
 							);
 						return '';
@@ -587,7 +594,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * Returns the class (or classes) to be used with the wrapper div for this otuput.
+	 * Returns the class (or classes) to be used with the wrapper div for this output.
 	 * If there is no wrapper class given, no wrapper div should be added.
 	 * The wrapper div is added automatically by getText().
 	 *
@@ -808,7 +815,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	public function getIndexPolicy(): string {
-		return $this->mIndexPolicy;
+		// 'noindex' wins if both are set. (T16899)
+		if ( $this->mNoIndexSet ) {
+			return 'noindex';
+		} elseif ( $this->mIndexSet ) {
+			return 'index';
+		}
+		return '';
 	}
 
 	public function getTOCHTML() {
@@ -861,8 +874,17 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $this->mExtraStyleSrcs;
 	}
 
+	/**
+	 * Set the text of the ParserOutput.
+	 *
+	 * If you did not generate html, pass null to mark it as such.
+	 *
+	 * @since 1.39 You can now pass null to this function
+	 * @param string|null $text HTML content of ParserOutput or null if not generated
+	 * @return string|null Previous value of ParserOutput's text
+	 */
 	public function setText( $text ) {
-		return wfSetVar( $this->mText, $text );
+		return wfSetVar( $this->mText, $text, true );
 	}
 
 	public function setLanguageLinks( $ll ) {
@@ -886,7 +908,13 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	public function setIndexPolicy( $policy ): string {
-		return wfSetVar( $this->mIndexPolicy, $policy );
+		$old = $this->getIndexPolicy();
+		if ( $policy === 'noindex' ) {
+			$this->mNoIndexSet = true;
+		} elseif ( $policy === 'index' ) {
+			$this->mIndexSet = true;
+		}
+		return $old;
 	}
 
 	public function setTOCHTML( $tochtml ) {
@@ -958,9 +986,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		// @todo: these aren't serialized/unserialized
 		$this->mWarningMsgs[$msg] = $args;
 		$s = wfMessage( $msg, ...$args )
-		   // some callers set the title here?
-		   ->inContentLanguage() // because this ends up in cache
-		   ->text();
+			// some callers set the title here?
+			->inContentLanguage() // because this ends up in cache
+			->text();
 		$this->mWarnings[$s] = 1;
 	}
 
@@ -971,6 +999,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * hook (T292321).
 	 */
 	public function addOutputHook( $hook, $data = false ): void {
+		wfDeprecated( __METHOD__, '1.38' );
 		$this->mOutputHooks[] = [ $hook, $data ];
 	}
 
@@ -1024,8 +1053,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public function addExternalLink( $url ): void {
 		# We don't register links pointing to our own server, unless... :-)
 		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$server = $config->get( 'Server' );
-		$registerInternalExternals = $config->get( 'RegisterInternalExternals' );
+		$server = $config->get( MainConfigNames::Server );
+		$registerInternalExternals = $config->get( MainConfigNames::RegisterInternalExternals );
 		# Replace unnecessary URL escape codes with the referenced character
 		# This prevents spammers from hiding links from the filters
 		$url = Parser::normalizeLinkUrl( $url );
@@ -1251,7 +1280,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * Accomodate very basic transcluding of a temporary OutputPage object into parser output.
+	 * Accommodate very basic transcluding of a temporary OutputPage object into parser output.
 	 *
 	 * This is a fragile method that cannot be relied upon in any meaningful way.
 	 * It exists solely to support the wikitext feature of transcluding a SpecialPage, and
@@ -1347,7 +1376,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * Attach a flag to the output so that it can be checked later to handle special cases
 	 *
 	 * @param string $flag
-	 * @deprecated Use ::setOutputFlag()
+	 * @deprecated since 1.38; use ::setOutputFlag()
 	 */
 	public function setFlag( $flag ): void {
 		$this->mFlags[$flag] = true;
@@ -1356,7 +1385,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * @param string $flag
 	 * @return bool Whether the given flag was set to signify a special case
-	 * @deprecated Use ::getOutputFlag()
+	 * @deprecated since 1.38; use ::getOutputFlag()
 	 */
 	public function getFlag( $flag ): bool {
 		return isset( $this->mFlags[$flag] );
@@ -1441,6 +1470,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *     Wikimedia Commons.
 	 *     This is not actually implemented, yet but would be pretty cool.
 	 *
+	 * @note It is strongly recommended that only strings be used for $value.
+	 *  Although any JSON-serializable value can be stored/fetched in
+	 *  ParserOutput, when the values are stored to the database
+	 *  (in deferred/LinksUpdate/PagePropsTable.php) they will be stringified:
+	 *  booleans will be converted to '0' and '1', null will become '',
+	 *  and everything else will be cast to string.  Page properties
+	 *  obtained from the PageProps service will always be strings.
+	 *
 	 * @note Do not use setPageProperty() to set a property which is only used
 	 * in a context where the ParserOutput object itself is already available,
 	 * for example a normal page view. There is no need to save such a property
@@ -1450,7 +1487,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * If you are writing an extension where you want to set a property in the
 	 * parser which is used by an OutputPageParserOutput hook, you have to
 	 * associate the extension data directly with the ParserOutput object.
-	 * Since MediaWiki 1.21, you can use setExtensionData() to do this:
+	 * Since MediaWiki 1.21, you should use setExtensionData() to do this:
 	 *
 	 * @par Example:
 	 * @code
@@ -1463,18 +1500,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @code
 	 *    $output->getExtensionData( 'my_ext_foo' );
 	 * @endcode
-	 *
-	 * In MediaWiki 1.20 and older, you have to use a custom member variable
-	 * within the ParserOutput object:
-	 *
-	 * @par Example:
-	 * @code
-	 *    $parser->getOutput()->my_ext_foo = '...';
-	 * @endcode
-	 *
-	 * @note Only scalar values like numbers and strings are supported
-	 * as a value. Attempt to use an object or array will
-	 * not work properly with LinksUpdate.
 	 *
 	 * @param string $name
 	 * @param int|float|string|bool|null $value
@@ -1490,7 +1515,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @return int|float|string|bool|null The value previously set using setPageProperty().
 	 * Returns null if no value was set for the given property name.
 	 *
-	 * @note You need to use getPageProperties() to an explicitly-set null value.
+	 * @note You would need to use ::getPageProperties() to test for an
+	 *  explicitly-set null value; but see the note in ::setPageProperty()
+	 *  about avoiding the use of non-string values.
 	 * @since 1.38
 	 */
 	public function getPageProperty( string $name ) {
@@ -1525,6 +1552,15 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * should use ::setExtensionData() rather than creating new flags
 	 * with ::setOutputFlag() in order to prevent namespace conflicts.
 	 *
+	 * Flags are always combined with OR.  That is, the flag is set in
+	 * the resulting ParserOutput if the flag is set in *any* of the
+	 * fragments composing the ParserOutput.
+	 *
+	 * @note The combination policy means that a ParserOutput may end
+	 * up with both INDEX_POLICY and NO_INDEX_POLICY set.  It is
+	 * expected that NO_INDEX_POLICY "wins" in that case. (T16899)
+	 * (This resolution is implemented in ::getIndexPolicy().)
+	 *
 	 * @param string $name A flag name
 	 * @param bool $val
 	 * @since 1.38
@@ -1540,14 +1576,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			break;
 
 		case ParserOutputFlags::NO_INDEX_POLICY:
+			$this->mNoIndexSet = $val;
+			break;
+
 		case ParserOutputFlags::INDEX_POLICY:
-			if ( !$val ) {
-				$this->setIndexPolicy( '' );
-			} elseif ( $name === ParserOutputFlags::INDEX_POLICY ) {
-				$this->setIndexPolicy( 'index' );
-			} else {
-				$this->setIndexPolicy( 'noindex' );
-			}
+			$this->mIndexSet = $val;
 			break;
 
 		case ParserOutputFlags::NEW_SECTION:
@@ -1593,10 +1626,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			return $this->getEnableOOUI();
 
 		case ParserOutputFlags::INDEX_POLICY:
-			return $this->getIndexPolicy() === 'index';
+			return $this->mIndexSet;
 
 		case ParserOutputFlags::NO_INDEX_POLICY:
-			return $this->getIndexPolicy() === 'noindex';
+			return $this->mNoIndexSet;
 
 		case ParserOutputFlags::NEW_SECTION:
 			return $this->getNewSection();
@@ -1646,11 +1679,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @endcode
 	 *
 	 * @note Only scalar values, e.g. numbers, strings, arrays or MediaWiki\Json\JsonUnserializable
-	 * instances are supported as a value. Attempt to set other class instance as a extension data
+	 * instances are supported as a value. Attempt to set other class instance as extension data
 	 * will break ParserCache for the page.
 	 *
 	 * @note Since MW 1.38 the practice of setting conflicting values for
-	 * the same key has been deprecated.  As with ::setJsConfigVar() if
+	 * the same key has been deprecated.  As with ::setJsConfigVar(), if
 	 * you set the same key multiple times on a ParserOutput, it is expected
 	 * that the value will be identical each time.  If you want to collect
 	 * multiple pieces of data under a single key, use ::appendExtensionData().
@@ -1861,7 +1894,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 					'cachereport-timestamp',
 					'cachereport-ttl',
 					'cachereport-transientcontent',
-					'limitreport-timingprofile'
+					'limitreport-timingprofile',
 				] ) ) {
 					// These keys are processed separately.
 					continue;
@@ -1921,7 +1954,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @return bool
 	 */
 	public function hasReducedExpiry(): bool {
-		$parserCacheExpireTime = MediaWikiServices::getInstance()->getMainConfig()->get( 'ParserCacheExpireTime' );
+		$parserCacheExpireTime = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ParserCacheExpireTime );
 
 		return $this->getCacheExpiry() < $parserCacheExpireTime;
 	}
@@ -2123,11 +2157,8 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		);
 
 		// "noindex" always wins!
-		if ( $this->mIndexPolicy === 'noindex' || $source->mIndexPolicy === 'noindex' ) {
-			$this->mIndexPolicy = 'noindex';
-		} elseif ( $this->mIndexPolicy !== 'index' ) {
-			$this->mIndexPolicy = $source->mIndexPolicy;
-		}
+		$this->mIndexSet = $this->mIndexSet || $source->mIndexSet;
+		$this->mNoIndexSet = $this->mNoIndexSet || $source->mNoIndexSet;
 
 		// Skin control
 		$this->mNewSection = $this->mNewSection || $source->getNewSection();
@@ -2233,13 +2264,15 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 						$metadata->appendJsConfigVar( $key, $item, $strategy );
 					}
 				}
-			} elseif ( array_key_exists( $key, $this->mJsConfigVars ) ) {
+			} elseif ( $metadata instanceof ParserOutput &&
+				array_key_exists( $key, $metadata->mJsConfigVars )
+			) {
 				// This behavior is deprecated, will likely result in
 				// incorrect output, and we'll eventually emit a
 				// warning here---but at the moment this is usually
 				// caused by limitations in Parsoid and/or use of
 				// the ParserAfterParse hook: T303015#7770480
-				$this->mJsConfigVars[$key] = $value;
+				$metadata->mJsConfigVars[$key] = $value;
 			} else {
 				$metadata->setJsConfigVar( $key, $value );
 			}
@@ -2252,13 +2285,15 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 						$metadata->appendExtensionData( $key, $item, $strategy );
 					}
 				}
-			} elseif ( array_key_exists( $key, $this->mExtensionData ) ) {
+			} elseif ( $metadata instanceof ParserOutput &&
+				array_key_exists( $key, $metadata->mExtensionData )
+			) {
 				// This behavior is deprecated, will likely result in
 				// incorrect output, and we'll eventually emit a
 				// warning here---but at the moment this is usually
 				// caused by limitations in Parsoid and/or use of
 				// the ParserAfterParse hook: T303015#7770480
-				$this->mExtensionData[$key] = $value;
+				$metadata->mExtensionData[$key] = $value;
 			} else {
 				$metadata->setExtensionData( $key, $value );
 			}
@@ -2294,6 +2329,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			if ( !array_key_exists( $key, $a ) ) {
 				$a[$key] = $bValue;
 			} elseif (
+				is_array( $a[$key] ) &&
 				isset( $a[$key][self::MW_MERGE_STRATEGY_KEY] ) &&
 				isset( $bValue[self::MW_MERGE_STRATEGY_KEY] )
 			) {
@@ -2310,10 +2346,20 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				} else {
 					throw new InvalidArgumentException( "Unknown merge strategy $strategy" );
 				}
-			} elseif ( $a[$key] !== $bValue ) {
-				// Silently replace for now; in the future will first emit
-				// a deprecation warning, and then (later) throw.
-				$a[$key] = $bValue;
+			} else {
+				$valuesSame = ( $a[$key] === $bValue );
+				if ( ( !$valuesSame ) &&
+					 is_object( $a[$key] ) &&
+					 is_object( $bValue )
+				) {
+					$jsonCodec = MediaWikiServices::getInstance()->getJsonCodec();
+					$valuesSame = ( $jsonCodec->serialize( $a[$key] ) === $jsonCodec->serialize( $bValue ) );
+				}
+				if ( !$valuesSame ) {
+					// Silently replace for now; in the future will first emit
+					// a deprecation warning, and then (later) throw.
+					$a[$key] = $bValue;
+				}
 			}
 		}
 		return $a;
@@ -2412,7 +2458,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'TOCHTML' => $this->mTOCHTML,
 			'Timestamp' => $this->mTimestamp,
 			'EnableOOUI' => $this->mEnableOOUI,
-			'IndexPolicy' => $this->mIndexPolicy,
+			'IndexPolicy' => $this->getIndexPolicy(),
 			// may contain arbitrary structures!
 			'ExtensionData' => $this->mExtensionData,
 			'LimitReportData' => $this->mLimitReportData,
@@ -2485,7 +2531,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mTOCHTML = $jsonData['TOCHTML'];
 		$this->mTimestamp = $jsonData['Timestamp'];
 		$this->mEnableOOUI = $jsonData['EnableOOUI'];
-		$this->mIndexPolicy = $jsonData['IndexPolicy'];
+		$this->setIndexPolicy( $jsonData['IndexPolicy'] );
 		$this->mExtensionData = $unserializer->unserializeArray( $jsonData['ExtensionData'] ?? [] );
 		$this->mLimitReportData = $jsonData['LimitReportData'];
 		$this->mLimitReportJSData = $jsonData['LimitReportJSData'];
@@ -2555,6 +2601,11 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		if ( $priorAccessedOptions ) {
 			$this->mParseUsedOptions = $priorAccessedOptions;
 		}
+		// Backwards compatibility, pre 1.39
+		$priorIndexPolicy = $this->getGhostFieldValue( 'mIndexPolicy' );
+		if ( $priorIndexPolicy ) {
+			$this->setIndexPolicy( $priorIndexPolicy );
+		}
 	}
 
 	public function __get( $name ) {
@@ -2567,7 +2618,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			wfDeprecatedMsg( "ParserOutput::{$name} dynamic property read access deprecated", '1.38' );
 			return $this->$name;
 		} else {
-			trigger_error( "Inaccessible property via __set(): $name" );
+			trigger_error( "Inaccessible property via __get(): $name" );
 			return null;
 		}
 	}

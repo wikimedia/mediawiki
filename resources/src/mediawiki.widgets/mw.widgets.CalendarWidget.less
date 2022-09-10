@@ -90,7 +90,7 @@
 	.mw-widget-calendarWidget-body:first-child {
 		margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
 		margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
-		.transition( margin-left 500ms );
+		transition: margin-left 500ms;
 	}
 }
 
@@ -101,7 +101,7 @@
 	.mw-widget-calendarWidget-body:first-child {
 		margin-left: -@calendarWidth !important; /* stylelint-disable-line declaration-no-important */
 		margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
-		.transition( margin-left 500ms );
+		transition: margin-left 500ms;
 	}
 }
 
@@ -117,7 +117,7 @@
 	.mw-widget-calendarWidget-body:first-child {
 		margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
 		margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
-		.transition( margin-top 500ms );
+		transition: margin-top 500ms;
 	}
 }
 
@@ -133,7 +133,7 @@
 	.mw-widget-calendarWidget-body:first-child {
 		margin-left: 0 !important; /* stylelint-disable-line declaration-no-important */
 		margin-top: -@calendarHeight !important; /* stylelint-disable-line declaration-no-important */
-		.transition( margin-top 500ms );
+		transition: margin-top 500ms;
 	}
 }
 
@@ -236,9 +236,9 @@
 
 /* Theme-specific */
 .mw-widget-calendarWidget {
-	.box-sizing( border-box );
+	box-sizing: border-box;
 	border: 1px solid #a2a9b1;
-	.transition( ~'border-color 100ms, box-shadow 100ms' );
+	transition: border-color 100ms, box-shadow 100ms;
 
 	&:focus {
 		border-color: #36c;
@@ -269,7 +269,7 @@
 	}
 
 	&-item {
-		.transition( ~'background-color 250ms, color 250ms' );
+		transition: background-color 250ms, color 250ms;
 
 		&:hover {
 			background-color: #36c;

@@ -1,5 +1,14 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+use MediaWiki\ResourceLoader\FilePath;
+
+/**
+ * Utility class for loading extension manifests and aggregating
+ * their contents.
+ *
+ * @newable since 1.39
+ */
 class ExtensionProcessor implements Processor {
 
 	/**
@@ -8,52 +17,52 @@ class ExtensionProcessor implements Processor {
 	 * @var array
 	 */
 	protected static $globalSettings = [
-		'ActionFilteredLogs',
-		'Actions',
-		'AddGroups',
-		'APIFormatModules',
-		'APIListModules',
-		'APIMetaModules',
-		'APIModules',
-		'APIPropModules',
-		'AuthManagerAutoConfig',
-		'AvailableRights',
-		'CentralIdLookupProviders',
-		'ChangeCredentialsBlacklist',
-		'ConfigRegistry',
-		'ContentHandlers',
-		'DefaultUserOptions',
-		'ExtensionEntryPointListFiles',
-		'ExtensionFunctions',
-		'FeedClasses',
-		'FileExtensions',
-		'FilterLogTypes',
-		'GrantPermissionGroups',
-		'GrantPermissions',
-		'GroupPermissions',
-		'GroupsAddToSelf',
-		'GroupsRemoveFromSelf',
-		'HiddenPrefs',
-		'ImplicitGroups',
-		'JobClasses',
-		'LogActions',
-		'LogActionsHandlers',
-		'LogHeaders',
-		'LogNames',
-		'LogRestrictions',
-		'LogTypes',
-		'MediaHandlers',
-		'PasswordPolicy',
-		'RateLimits',
-		'RawHtmlMessages',
-		'ReauthenticateTime',
-		'RecentChangesFlags',
-		'RemoveCredentialsBlacklist',
-		'RemoveGroups',
-		'ResourceLoaderSources',
-		'RevokePermissions',
-		'SessionProviders',
-		'SpecialPages'
+		MainConfigNames::ActionFilteredLogs,
+		MainConfigNames::Actions,
+		MainConfigNames::AddGroups,
+		MainConfigNames::APIFormatModules,
+		MainConfigNames::APIListModules,
+		MainConfigNames::APIMetaModules,
+		MainConfigNames::APIModules,
+		MainConfigNames::APIPropModules,
+		MainConfigNames::AuthManagerAutoConfig,
+		MainConfigNames::AvailableRights,
+		MainConfigNames::CentralIdLookupProviders,
+		MainConfigNames::ChangeCredentialsBlacklist,
+		MainConfigNames::ConfigRegistry,
+		MainConfigNames::ContentHandlers,
+		MainConfigNames::DefaultUserOptions,
+		MainConfigNames::ExtensionEntryPointListFiles,
+		MainConfigNames::ExtensionFunctions,
+		MainConfigNames::FeedClasses,
+		MainConfigNames::FileExtensions,
+		MainConfigNames::FilterLogTypes,
+		MainConfigNames::GrantPermissionGroups,
+		MainConfigNames::GrantPermissions,
+		MainConfigNames::GroupPermissions,
+		MainConfigNames::GroupsAddToSelf,
+		MainConfigNames::GroupsRemoveFromSelf,
+		MainConfigNames::HiddenPrefs,
+		MainConfigNames::ImplicitGroups,
+		MainConfigNames::JobClasses,
+		MainConfigNames::LogActions,
+		MainConfigNames::LogActionsHandlers,
+		MainConfigNames::LogHeaders,
+		MainConfigNames::LogNames,
+		MainConfigNames::LogRestrictions,
+		MainConfigNames::LogTypes,
+		MainConfigNames::MediaHandlers,
+		MainConfigNames::PasswordPolicy,
+		MainConfigNames::RateLimits,
+		MainConfigNames::RawHtmlMessages,
+		MainConfigNames::ReauthenticateTime,
+		MainConfigNames::RecentChangesFlags,
+		MainConfigNames::RemoveCredentialsBlacklist,
+		MainConfigNames::RemoveGroups,
+		MainConfigNames::ResourceLoaderSources,
+		MainConfigNames::RevokePermissions,
+		MainConfigNames::SessionProviders,
+		MainConfigNames::SpecialPages
 	];
 
 	/**
@@ -67,6 +76,8 @@ class ExtensionProcessor implements Processor {
 		'SkinOOUIThemes',
 		'SearchMappings',
 		'TrackingCategories',
+		'TempUserSerialProviders',
+		'TempUserSerialMappings',
 	];
 
 	/**
@@ -123,6 +134,7 @@ class ExtensionProcessor implements Processor {
 		'namespaces',
 		'requires',
 		'AutoloadClasses',
+		'AutoloadNamespaces',
 		'ExtensionMessagesFiles',
 		'Hooks',
 		'MessagePosterModule',
@@ -169,6 +181,31 @@ class ExtensionProcessor implements Processor {
 	protected $credits = [];
 
 	/**
+	 * Autoloader information.
+	 * Each element is an array of strings.
+	 * 'files' is just a list, 'classes' and 'namespaces' are associative.
+	 *
+	 * @var string[][]
+	 */
+	protected $autoload = [
+		'files' => [],
+		'classes' => [],
+		'namespaces' => [],
+	];
+
+	/**
+	 * Autoloader information for development.
+	 * Same structure as $autoload.
+	 *
+	 * @var string[][]
+	 */
+	protected $autoloadDev = [
+		'files' => [],
+		'classes' => [],
+		'namespaces' => [],
+	];
+
+	/**
 	 * Any thing else in the $info that hasn't
 	 * already been processed
 	 *
@@ -183,6 +220,33 @@ class ExtensionProcessor implements Processor {
 	 * @var array
 	 */
 	protected $extAttributes = [];
+
+	/**
+	 * Extracts extension info from the given JSON file.
+	 *
+	 * @param string $path
+	 *
+	 * @return void
+	 */
+	public function extractInfoFromFile( string $path ) {
+		$json = file_get_contents( $path );
+		$info = json_decode( $json, true );
+
+		if ( !$info ) {
+			throw new RuntimeException( "Failed to load JSON data from $path" );
+		}
+
+		if ( !isset( $info['manifest_version'] ) ) {
+			wfDeprecatedMsg(
+				"{$info['name']}'s extension.json or skin.json does not have manifest_version, " .
+				'this is deprecated since MediaWiki 1.29',
+				'1.29', false, false
+			);
+			$info['manifest_version'] = 1;
+		}
+
+		$this->extractInfo( $path, $info, $info['manifest_version'] );
+	}
 
 	/**
 	 * @param string $path
@@ -216,6 +280,8 @@ class ExtensionProcessor implements Processor {
 		if ( isset( $info['callback'] ) ) {
 			$this->callbacks[$name] = $info['callback'];
 		}
+
+		$this->extractAutoload( $info, $dir );
 
 		// config should be after all core globals are extracted,
 		// so duplicate setting detection will work fully
@@ -283,7 +349,7 @@ class ExtensionProcessor implements Processor {
 		}
 	}
 
-	public function getExtractedInfo() {
+	public function getExtractedInfo( bool $includeDev = false ) {
 		// Make sure the merge strategies are set
 		foreach ( $this->globals as $key => $val ) {
 			if ( isset( self::MERGE_STRATEGIES[$key] ) ) {
@@ -307,13 +373,18 @@ class ExtensionProcessor implements Processor {
 			}
 		}
 
-		return [
+		$autoload = $this->getExtractedAutoloadInfo( $includeDev );
+		$info = [
 			'globals' => $this->globals,
 			'defines' => $this->defines,
 			'callbacks' => $this->callbacks,
 			'credits' => $this->credits,
 			'attributes' => $this->attributes,
+			'autoloaderPaths' => $autoload['files'],
+			'autoloaderClasses' => $autoload['classes'],
+			'autoloaderNS' => $autoload['namespaces'],
 		];
+		return $info;
 	}
 
 	public function getRequirements( array $info, $includeDev ) {
@@ -592,7 +663,7 @@ class ExtensionProcessor implements Processor {
 			$baseDir = $basePath === '' ? $dir : "$dir/$basePath";
 			foreach ( $data['scripts'] ?? [] as $scripts ) {
 				$this->attributes['MessagePosterModule']['scripts'][] =
-					new ResourceLoaderFilePath( $scripts, $baseDir );
+					new FilePath( $scripts, $baseDir );
 			}
 			foreach ( $data['dependencies'] ?? [] as $dependency ) {
 				$this->attributes['MessagePosterModule']['dependencies'][] = $dependency;
@@ -728,6 +799,23 @@ class ExtensionProcessor implements Processor {
 	}
 
 	/**
+	 * Applies a base path to the given string or string array.
+	 *
+	 * @param string[] $value
+	 * @param string $dir
+	 *
+	 * @return string[]
+	 */
+	private function applyPath( array $value, string $dir ): array {
+		$result = [];
+
+		foreach ( $value as $k => $v ) {
+			$result[$k] = $dir . '/' . $v;
+		}
+		return $result;
+	}
+
+	/**
 	 * Set configuration settings for manifest_version == 2
 	 * @todo In the future, this should be done via Config interfaces
 	 *
@@ -744,13 +832,10 @@ class ExtensionProcessor implements Processor {
 
 				$value = $data['value'];
 				if ( isset( $data['path'] ) && $data['path'] ) {
-					$callback = static function ( $value ) use ( $dir ) {
-						return "$dir/$value";
-					};
 					if ( is_array( $value ) ) {
-						$value = array_map( $callback, $value );
+						$value = $this->applyPath( $value, $dir );
 					} else {
-						$value = $callback( $value );
+						$value = "$dir/$value";
 					}
 				}
 				if ( isset( $data['merge_strategy'] ) ) {
@@ -827,11 +912,90 @@ class ExtensionProcessor implements Processor {
 		}
 	}
 
+	/**
+	 * @deprecated since 1.39, use getExtractedAutoloadInfo instead
+	 *
+	 * @param string $dir
+	 * @param array $info
+	 *
+	 * @return array
+	 */
 	public function getExtraAutoloaderPaths( $dir, array $info ) {
+		wfDeprecated( __METHOD__, '1.39' );
 		$paths = [];
 		if ( isset( $info['load_composer_autoloader'] ) && $info['load_composer_autoloader'] === true ) {
 			$paths[] = "$dir/vendor/autoload.php";
 		}
 		return $paths;
+	}
+
+	/**
+	 * Returns the extracted autoload info.
+	 * The autoload info is returned as an associative array with three keys:
+	 * - files: a list of files to load, for use with Autoloader::loadFile()
+	 * - classes: a map of class names to files, for use with Autoloader::registerClass()
+	 * - namespaces: a map of namespace names to directories, for use
+	 *   with Autoloader::registerNamespace()
+	 *
+	 * @since 1.39
+	 *
+	 * @param bool $includeDev
+	 *
+	 * @return array[] The autoload info.
+	 */
+	public function getExtractedAutoloadInfo( bool $includeDev = false ): array {
+		$autoload = $this->autoload;
+
+		if ( $includeDev ) {
+			$autoload['classes'] += $this->autoloadDev['classes'];
+			$autoload['namespaces'] += $this->autoloadDev['namespaces'];
+
+			// NOTE: This is here for completeness. Per MW 1.39,
+			//       $this->autoloadDev['files'] is always empty.
+			//       So avoid the performance hit of array_merge().
+			if ( !empty( $this->autoloadDev['files'] ) ) {
+				// NOTE: Don't use += with numeric keys!
+				//       Could use PHPUtils::pushArray.
+				$autoload['files'] = array_merge(
+					$autoload['files'],
+					$this->autoloadDev['files']
+				);
+			}
+		}
+
+		return $autoload;
+	}
+
+	/**
+	 * @param array $info
+	 * @param string $dir
+	 */
+	private function extractAutoload( array $info, string $dir ) {
+		if ( isset( $info['load_composer_autoloader'] ) && $info['load_composer_autoloader'] === true ) {
+			$file = "$dir/vendor/autoload.php";
+			if ( file_exists( $file ) ) {
+				$this->autoload['files'][] = $file;
+			}
+		}
+
+		if ( isset( $info['AutoloadClasses'] ) ) {
+			$paths = $this->applyPath( $info['AutoloadClasses'], $dir );
+			$this->autoload['classes'] += $paths;
+		}
+
+		if ( isset( $info['AutoloadNamespaces'] ) ) {
+			$paths = $this->applyPath( $info['AutoloadNamespaces'], $dir );
+			$this->autoload['namespaces'] += $paths;
+		}
+
+		if ( isset( $info['TestAutoloadClasses'] ) ) {
+			$paths = $this->applyPath( $info['TestAutoloadClasses'], $dir );
+			$this->autoloadDev['classes'] += $paths;
+		}
+
+		if ( isset( $info['TestAutoloadNamespaces'] ) ) {
+			$paths = $this->applyPath( $info['TestAutoloadNamespaces'], $dir );
+			$this->autoloadDev['namespaces'] += $paths;
+		}
 	}
 }

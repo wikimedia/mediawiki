@@ -5,6 +5,7 @@
 			"Alifakoor",
 			"Alirezaaa",
 			"Arash.pt",
+			"Beginneruser",
 			"Ebraminio",
 			"FarsiNevis",
 			"Fatemi127",
@@ -17,8 +18,7 @@
 			"Mjbmr",
 			"Reza1615",
 			"Sahehco",
-			"Signal89",
-			"Beginneruser"
+			"Signal89"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|مستندات]]\n* [[mw:Special:MyLanguage/API:Etiquette|آداب و رهنمودهای استفاده]]\n* [[mw:Special:MyLanguage/API:FAQ|پرسش‌های متداول]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ میلینگ لیست]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ اطلاعیه‌های واسط برنامه‌نویسی کاربردی]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R مشکلات و درخواست‌ها]\n</div>\n\n<strong>وضعیت:</strong> تمام ویژگی‌هایی که در این صفحه نمایش یافته‌اند باید کار بکنند، ولی رابط برنامه‌نویسی کاربردی کماکان در حال توسعه است، و ممکن است در هر زمان تغییر بکند. به عضویت [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ فهرست پست الکترونیکی mediawiki-api-announce] در بیایید تا از تغییرات باخبر شوید.\n\n<strong>درخواست‌های معیوب:</strong> وقتی درخواست‌های معیوب به رابط برنامه‌نویسی کاربردی فرستاده شوند، یک سرایند اچ‌تی‌تی‌پی با کلید «MediaWiki-API-Erorr» فرستاده می‌شود و بعد هم مقدار سرایند و هم کد خطای بازگردانده شده  هر دو به یک مقدار نسبت داده می‌شوند. برای اطلاعات بیشتر [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]] را ببینید.\n\n<strong>آزمایش:</strong> برای انجام درخواست‌های API آزمایشی [[Special:ApiSandbox]] را ببینید.",
@@ -112,6 +112,7 @@
 	"apihelp-compare-paramvalue-prop-rel": "شناسه‌های نسخهٔ پیشین «from» و پس از «to» در صورت وجود.",
 	"apihelp-compare-paramvalue-prop-ids": "شناسه‌های نسخه و صفحه برای نسخه‌های «from» و «to».",
 	"apihelp-compare-paramvalue-prop-title": "عنوان صفحه‌های نسخه‌های «from» و «to».",
+	"apihelp-compare-paramvalue-prop-user": "نام و شناسهٔ کاربر اعمال‌کنندهٔ نسخه‌های «from» و «to». اگر نسخهٔ کاربر حذف شده‌باشد، یک ویژگی <samp>fromuserhidden</samp> یا <samp>touserhidden</samp> برگردانده خواهد شد.",
 	"apihelp-compare-paramvalue-prop-comment": "خلاصهٔ نسخه‌های «from» و «to». در صورتی که نسخهٔ مرتبط با خلاصه حذف شده‌باشد، یک ویژگی <samp>fromcommenthidden</samp> یا <samp>tocommenthidden</samp> برگردانده خواهد شد.",
 	"apihelp-compare-paramvalue-prop-parsedcomment": "خلاصهٔ تجزیه‌شدهٔ نسخه‌های «form» و «to». در صورتی که نسخهٔ مرتبط با خلاصه حذف شده‌باشد، یک ویژگی <samp>fromcommenthidden</samp> یا <samp>tocommenthidden</samp> برگردانده خواهد شد.",
 	"apihelp-compare-paramvalue-prop-size": "اندازهٔ نسخه‌های «from» و «to».",
@@ -152,7 +153,8 @@
 	"apihelp-edit-param-watchlist": "افزودن یا حذف بدون قید و شرط صفحه از فهرست پیگیری‌های کاربر کنونی، پیروی از ترجیحات (برای کاربران ربات نادیده گرفته می‌شود) یا عدم تغییر وضعیت پیگیری.",
 	"apihelp-edit-param-watchlistexpiry": "برچسب زمان منقضی‌شدن در فهرست پیگیری‌ها. برای عدم تغییر انقضای موجود از این پارامتر به‌طور کامل چشم‌پوشی کنید.",
 	"apihelp-edit-param-md5": "هش MD5 پارامتر $1text، یا پارامترهای $1prependtext و $1appendtext به‌هم‌پیوسته. اگر تنظیم شود، ویرایش تا پیش از صحیح بودن هش انجام نخواهد شد.",
-	"apihelp-edit-param-prependtext": "این متن را به ابتدای صفحه اضافه کنید. $1text را لغو می‌کند.",
+	"apihelp-edit-param-prependtext": "افزودن این متن به ابتدای صفحه یا بخش. $1text را باطل می‌کند.",
+	"apihelp-edit-param-appendtext": "افزودن این متن به انتهای صفحه یا بخش. $1text را باطل می‌کند.\n\nبرای افزودن یک بخش تازه، به‌جای این پارامتر از $1section=new استفاده کنید.",
 	"apihelp-edit-param-undo": "خنثی‌سازی این نسخه. $1text، $1prependtext و $1appendtext را باطل می‌کند.",
 	"apihelp-edit-param-undoafter": "بازگردانی تمام نسخه‌ها از $1undo تا این یکی. اگر تنظیم نشود، فقط یک نسخه بازگردانده می‌شود.",
 	"apihelp-edit-param-redirect": "اصلاح خودکار تغییرمسیرها.",
@@ -438,6 +440,7 @@
 	"apihelp-unblock-summary": "بازکردن کاربر.",
 	"apihelp-unblock-param-tags": "برچسب‌های تغییر برای افزودن به مدخل سیاههٔ قطع دسترسی.",
 	"apihelp-undelete-summary": "احیای نسخه‌های یک صفحهٔ حذف‌شده.",
+	"apihelp-undelete-param-title": "عنوان صفحه برای احیاء.",
 	"apihelp-undelete-param-reason": "دلیل احیا.",
 	"apihelp-undelete-param-tags": "برچسب‌های تغییر برای افزودن به مدخل سیاههٔ حذف.",
 	"apihelp-undelete-param-watchlist": "افزودن یا حذف بدون قید و شرط صفحه از فهرست پیگیری‌های کاربر کنونی، پیروی از ترجیحات (برای کاربران ربات نادیده گرفته می‌شود) یا عدم تغییر وضعیت پیگیری.",

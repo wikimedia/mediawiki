@@ -25,6 +25,7 @@
 
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -196,7 +197,9 @@ class TextContentHandler extends ContentHandler {
 	 * provided by getHtml().
 	 *
 	 * For content models listed in $wgTextModelsToParse, this method will call the MediaWiki
-	 * wikitext parser on the text to extract any (wikitext) links, magic words, etc.
+	 * wikitext parser on the text to extract any (wikitext) links, magic words, etc.,
+	 * but note that the Table of Contents will *not* be generated
+	 * (feature added by T307691, but should be refactored: T313455).
 	 *
 	 * Subclasses may override this to provide custom content processing.
 	 * For custom HTML generation alone, it is sufficient to override getHtml().
@@ -213,11 +216,12 @@ class TextContentHandler extends ContentHandler {
 		ContentParseParams $cpoParams,
 		ParserOutput &$output
 	) {
-		$textModelsToParse = MediaWikiServices::getInstance()->getMainConfig()->get( 'TextModelsToParse' );
+		$textModelsToParse = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::TextModelsToParse );
 		'@phan-var TextContent $content';
 		if ( in_array( $content->getModel(), $textModelsToParse ) ) {
 			// parse just to get links etc into the database, HTML is replaced below.
-			$output = MediaWikiServices::getInstance()->getParser()
+			$output = MediaWikiServices::getInstance()->getParserFactory()->getInstance()
 				->parse(
 					$content->getText(),
 					$cpoParams->getPage(),
@@ -239,7 +243,7 @@ class TextContentHandler extends ContentHandler {
 				$html = htmlspecialchars( $content->getText(), ENT_COMPAT );
 			}
 		} else {
-			$html = '';
+			$html = null;
 		}
 
 		$output->clearWrapperDivClass();

@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @covers Interwiki
  * @group Database
@@ -47,8 +49,7 @@ class InterwikiTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function setWgInterwikiCache( $interwikiCache ) {
-		$this->getServiceContainer()->resetServiceForTesting( 'InterwikiLookup' );
-		$this->setMwGlobals( 'wgInterwikiCache', $interwikiCache );
+		$this->overrideConfigValue( MainConfigNames::InterwikiCache, $interwikiCache );
 	}
 
 	public function testDatabaseStorage() {

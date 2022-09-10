@@ -47,10 +47,12 @@
 	// but not the "auto" property. It is advisable to set the @lang attribute
 	// on the HTML element to enable hyphenation support and improve accessibility.
 	// Chrome 55-87 only supports `auto` exclusively on Mac platform.
+	/* stylelint-disable plugin/no-unsupported-browser-features */
 	-webkit-hyphens: @value; // Safari 5.1+, iOS 4.2+
 	-moz-hyphens: @value;    // Firefox 6-42
 	-ms-hyphens: @value;     // IE 10-11, Edge 12-18
 	hyphens: @value;         // Firefox 43+, Chrome 55+, Android 62+, UC Browser 11.8+, Samsung 6.2+
+	/* stylelint-enable plugin/no-unsupported-browser-features */
 }
 
 // Use to truncate overflow text with value of `ellipsis` (mixin default)
@@ -80,22 +82,25 @@
 
 // Deprecated in MW v1.37.0, use unprefixed `transform:` now.
 .transform( @value ) {
-	-webkit-transform: @value; // Safari 3.1-8.0, iOS 3.2-8.4, Android 2.1-4.4.4
-	-ms-transform: @value; // IE 9
 	transform: @value; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 23+, iOS 9.2+, Android 5+
 }
 
 // Deprecated in MW v1.37.0, use unprefixed `transform-origin:` now.
 .transform-origin( @value ) {
-	-webkit-transform-origin: @value; // Chrome 4-35, Safari 3.1-8.0, iOS 3.2-8.4, Op 15-22, Android 2.1-4.4.4
-	-ms-transform-origin: @value; // IE 9
 	transform-origin: @value; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 23+, iOS 9.2+, Android 5+
 }
 
 // Deprecated in MW v1.37.0, use unprefixed `transition:` now.
 .transition( @value ) {
-	-webkit-transition: @value; // Safari 3.1-6.0, iOS 3.2-6.1, Android 2.1-4.3
 	transition: @value; // Chrome 26+, Firefox 16+, IE 10+, Safari 6.1+, Opera 12.1+, iOS 7+, Android 4.4+
+}
+
+// Not supporterd in IE11, Chrome <= 55, Opera < 42
+.position-sticky() {
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+	-webkit-position: sticky; // Support: Safari < 13
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+	position: sticky;
 }
 
 // Deprecated in MW v1.37.0, use unprefixed `transition: transform` now.
@@ -107,13 +112,11 @@
 // and remaining parameters are additional transitions."
 .transition-transform( ... ) {
 	-webkit-backface-visibility: hidden; // Older Webkit browsers: Promote element to a composite layer & involve the GPU
-	-webkit-transition: -webkit-transform @arguments; // Safari 3.1-8, iOS 3.2-8.4, Android 2.1-4.4.4
 	transition: transform @arguments; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 12.1+, iOS 9.2+, Android 36+
 }
 
 // Deprecated in MW v1.37.0, use unprefixed `box-sizing:` now.
 .box-sizing( @value ) {
-	-moz-box-sizing: @value; // Firefox 4-28,
 	box-sizing: @value; // Chrome 10+, Firefox 29+, IE 8+, Safari 5.1+, Opera 10+, iOS 5+, Android 4+
 }
 
@@ -136,24 +139,18 @@
 }
 
 .flex-display( @display: flex ) {
-	display: ~'-ms-@{display}box'; // IE 10
 	display: @display;
 }
 
 .flex-wrap( @wrap: wrap ) {
-	-ms-flex-wrap: @wrap; // IE 10
 	flex-wrap: @wrap;
 }
 
 .flex( @grow: 1, @shrink: 1, @width: auto, @order: 1 ) {
-	// 2012 spec alignment to current spec
-	-ms-flex-pack: justify; // IE 10 (2012 spec)
 	// Current spec
 	justify-content: space-between;
 	width: @width; // Fallback for flex-basis
-	-ms-flex: @grow @shrink @width; // IE 10
 	flex: @grow @shrink @width;
-	-ms-flex-order: @order; // IE 10
 	order: @order;
 }
 

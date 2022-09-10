@@ -11,6 +11,7 @@
 	"rest-nonexistent-title-revision": "Navedena izmjena ($1) ne postoji za navedenu stranicu ($2)",
 	"rest-nonexistent-revision": "Navedena izmjena ($1) ne postoji",
 	"rest-nonexistent-user": "Navedeni korisnik ($1) ne postoji",
+	"rest-invalid-user": "Navedeno korisničko ime ($1) ne postoji",
 	"rest-permission-denied-anon": "Nedostupno anonimnom korisniku",
 	"rest-permission-denied-title": "Korisnik nema pravo čitati naslov ($1)",
 	"rest-permission-denied-revision": "Korisnik nema pristup traženoj izmjeni ($1).",

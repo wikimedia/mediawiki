@@ -23,6 +23,9 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\GrantsInfo;
+use MediaWiki\Permissions\GrantsLocalization;
 
 /**
  * Let users manage bot passwords
@@ -52,28 +55,40 @@ class SpecialBotPasswords extends FormSpecialPage {
 	/** @var CentralIdLookup */
 	private $centralIdLookup;
 
+	/** @var GrantsInfo */
+	private $grantsInfo;
+
+	/** @var GrantsLocalization */
+	private $grantsLocalization;
+
 	/**
 	 * @param PasswordFactory $passwordFactory
 	 * @param AuthManager $authManager
 	 * @param CentralIdLookup $centralIdLookup
+	 * @param GrantsInfo $grantsInfo
+	 * @param GrantsLocalization $grantsLocalization
 	 */
 	public function __construct(
 		PasswordFactory $passwordFactory,
 		AuthManager $authManager,
-		CentralIdLookup $centralIdLookup
+		CentralIdLookup $centralIdLookup,
+		GrantsInfo $grantsInfo,
+		GrantsLocalization $grantsLocalization
 	) {
 		parent::__construct( 'BotPasswords', 'editmyprivateinfo' );
 		$this->logger = LoggerFactory::getInstance( 'authentication' );
 		$this->passwordFactory = $passwordFactory;
 		$this->centralIdLookup = $centralIdLookup;
 		$this->setAuthManager( $authManager );
+		$this->grantsInfo = $grantsInfo;
+		$this->grantsLocalization = $grantsLocalization;
 	}
 
 	/**
 	 * @return bool
 	 */
 	public function isListed() {
-		return $this->getConfig()->get( 'EnableBotPasswords' );
+		return $this->getConfig()->get( MainConfigNames::EnableBotPasswords );
 	}
 
 	protected function getLoginSecurityLevel() {
@@ -86,7 +101,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 	 */
 	public function execute( $par ) {
 		$this->getOutput()->disallowUserJs();
-		$this->requireLogin();
+		$this->requireNamedUser();
 		$this->addHelpLink( 'Manual:Bot_passwords' );
 
 		$par = trim( $par );
@@ -103,7 +118,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 	protected function checkExecutePermissions( User $user ) {
 		parent::checkExecutePermissions( $user );
 
-		if ( !$this->getConfig()->get( 'EnableBotPasswords' ) ) {
+		if ( !$this->getConfig()->get( MainConfigNames::EnableBotPasswords ) ) {
 			throw new ErrorPageError( 'botpasswords', 'botpasswords-disabled' );
 		}
 
@@ -143,8 +158,8 @@ class SpecialBotPasswords extends FormSpecialPage {
 			}
 
 			$lang = $this->getLanguage();
-			$showGrants = MWGrants::getValidGrants();
-			$grantLinks = array_map( [ MWGrants::class, 'getGrantsLink' ], $showGrants );
+			$showGrants = $this->grantsInfo->getValidGrants();
+			$grantLinks = array_map( [ $this->grantsLocalization, 'getGrantsLink' ], $showGrants );
 
 			$fields['grants'] = [
 				'type' => 'checkmatrix',
@@ -169,7 +184,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 						static function ( $rights ) use ( $lang ) {
 							return $lang->semicolonList( array_map( [ User::class, 'getRightDescription' ], $rights ) );
 						},
-						array_intersect_key( MWGrants::getRightsByGrant(),
+						array_intersect_key( $this->grantsInfo->getRightsByGrant(),
 							array_fill_keys( $showGrants, true ) )
 					)
 				),
@@ -177,7 +192,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 					static function ( $g ) {
 						return "grant-$g";
 					},
-					MWGrants::getHiddenGrants()
+					$this->grantsInfo->getHiddenGrants()
 				),
 			];
 
@@ -335,7 +350,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 			'appId' => $this->par,
 			'restrictions' => $data['restrictions'],
 			'grants' => array_merge(
-				MWGrants::getHiddenGrants(),
+				$this->grantsInfo->getHiddenGrants(),
 				// @phan-suppress-next-next-line PhanTypeMismatchArgumentInternal See phan issue #3163,
 				// it's probably failing to infer the type of $data['grants']
 				preg_replace( '/^grant-/', '', $data['grants'] )

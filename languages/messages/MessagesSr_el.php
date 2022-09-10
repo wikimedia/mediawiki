@@ -3,8 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author FriedrickMILBarbarossa
  * @author Geitost
@@ -22,6 +22,8 @@
  * @author Михајло Анђелковић
  * @author לערי ריינהארט
  */
+
+$fallback = 'sr-latn, sr';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Medij',

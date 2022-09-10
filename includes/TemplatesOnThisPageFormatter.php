@@ -18,10 +18,11 @@
  * @file
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Permissions\RestrictionStore;
 
 /**
  * Handles formatting for the "templates used on this page"
@@ -42,23 +43,42 @@ class TemplatesOnThisPageFormatter {
 	private $linkRenderer;
 
 	/**
+	 * @var LinkBatchFactory
+	 */
+	private $linkBatchFactory;
+
+	/**
+	 * @var RestrictionStore
+	 */
+	private $restrictionStore;
+
+	/**
 	 * @param IContextSource $context
 	 * @param LinkRenderer $linkRenderer
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param RestrictionStore $restrictionStore
 	 */
-	public function __construct( IContextSource $context, LinkRenderer $linkRenderer ) {
+	public function __construct(
+		IContextSource $context,
+		LinkRenderer $linkRenderer,
+		LinkBatchFactory $linkBatchFactory,
+		RestrictionStore $restrictionStore
+	) {
 		$this->context = $context;
 		$this->linkRenderer = $linkRenderer;
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->restrictionStore = $restrictionStore;
 	}
 
 	/**
 	 * Make an HTML list of templates, and then add a "More..." link at
 	 * the bottom. If $more is null, do not add a "More..." link. If $more
-	 * is a LinkTarget, make a link to that title and use it. If $more is a string,
+	 * is a PageReference, make a link to that page and use it. If $more is a string,
 	 * directly paste it in as the link (escaping needs to be done manually).
 	 *
-	 * @param LinkTarget[] $templates
-	 * @param string|bool $type 'preview' if a preview, 'section' if a section edit, false if neither
-	 * @param LinkTarget|string|null $more An escaped link for "More..." of the templates
+	 * @param PageIdentity[] $templates
+	 * @param string|false $type 'preview' if a preview, 'section' if a section edit, false if neither
+	 * @param PageReference|string|null $more An escaped link for "More..." of the templates
 	 * @return string HTML output
 	 */
 	public function format( array $templates, $type = false, $more = null ) {
@@ -68,12 +88,12 @@ class TemplatesOnThisPageFormatter {
 		}
 
 		# Do a batch existence check
-		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-		$batch = $linkBatchFactory->newLinkBatch( $templates );
+		$batch = $this->linkBatchFactory->newLinkBatch( $templates );
+		$batch->setCaller( __METHOD__ );
 		$batch->execute();
 
 		# Construct the HTML
-		$outText = '<div class="mw-templatesUsedExplanation">';
+		$outText = Html::openElement( 'div', [ 'class' => 'mw-templatesUsedExplanation' ] );
 		$count = count( $templates );
 		if ( $type === 'preview' ) {
 			$outText .= $this->context->msg( 'templatesusedpreview' )->numParams( $count )
@@ -85,41 +105,46 @@ class TemplatesOnThisPageFormatter {
 			$outText .= $this->context->msg( 'templatesused' )->numParams( $count )
 				->parseAsBlock();
 		}
-		$outText .= "</div><ul>\n";
+		$outText .= Html::closeElement( 'div' ) . Html::openElement( 'ul' ) . "\n";
 
 		usort( $templates, [ Title::class, 'compare' ] );
 		foreach ( $templates as $template ) {
 			$outText .= $this->formatTemplate( $template );
 		}
 
-		if ( $more instanceof LinkTarget ) {
-			$outText .= Html::rawElement( 'li', [], $this->linkRenderer->makeLink(
-				$more, $this->context->msg( 'moredotdotdot' )->text() ) );
+		if ( $more instanceof PageReference ) {
+			$outText .= Html::rawElement( 'li', [],
+				$this->linkRenderer->makeLink(
+					$more,
+					$this->context->msg( 'moredotdotdot' )->text()
+				)
+			);
 		} elseif ( $more ) {
 			// Documented as should already be escaped
 			$outText .= Html::rawElement( 'li', [], $more );
 		}
 
-		$outText .= '</ul>';
+		$outText .= Html::closeElement( 'ul' );
 		return $outText;
 	}
 
 	/**
-	 * Builds an <li> item for an individual template
+	 * Builds a list item for an individual template
 	 *
-	 * @param LinkTarget $target
+	 * @param PageIdentity $target
 	 * @return string
 	 */
-	private function formatTemplate( LinkTarget $target ) {
-		// TODO Would be nice if we didn't have to use Title here
-		$titleObj = Title::newFromLinkTarget( $target );
-		$protected = $this->getRestrictionsText( $titleObj->getRestrictions( 'edit' ) );
-		$editLink = $this->buildEditLink( $titleObj );
-		return '<li>' . $this->linkRenderer->makeLink( $target )
+	private function formatTemplate( PageIdentity $target ) {
+		$protected = $this->getRestrictionsText(
+			$this->restrictionStore->getRestrictions( $target, 'edit' )
+		);
+		$editLink = $this->buildEditLink( $target );
+		return Html::rawElement( 'li', [], $this->linkRenderer->makeLink( $target )
 			. $this->context->msg( 'word-separator' )->escaped()
 			. $this->context->msg( 'parentheses' )->rawParams( $editLink )->escaped()
 			. $this->context->msg( 'word-separator' )->escaped()
-			. $protected . '</li>';
+			. $protected
+		);
 	}
 
 	/**
@@ -127,7 +152,7 @@ class TemplatesOnThisPageFormatter {
 	 * for those restrictions
 	 *
 	 * @param array $restrictions
-	 * @return string
+	 * @return string HTML
 	 */
 	private function getRestrictionsText( array $restrictions ) {
 		$protected = '';
@@ -163,7 +188,7 @@ class TemplatesOnThisPageFormatter {
 	 * saying "view source" if the user can't edit the page
 	 *
 	 * @param PageIdentity $page
-	 * @return string
+	 * @return string HTML
 	 */
 	private function buildEditLink( PageIdentity $page ) {
 		if ( $this->context->getAuthority()->probablyCan( 'edit', $page ) ) {
@@ -173,7 +198,7 @@ class TemplatesOnThisPageFormatter {
 		}
 
 		return $this->linkRenderer->makeLink(
-			new TitleValue( $page->getNamespace(), $page->getDBkey() ),
+			$page,
 			$this->context->msg( $linkMsg )->text(),
 			[],
 			[ 'action' => 'edit' ]

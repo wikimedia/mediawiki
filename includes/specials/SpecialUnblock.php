@@ -24,7 +24,6 @@
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\UnblockUserFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
@@ -115,16 +114,20 @@ class SpecialUnblock extends SpecialPage {
 		if ( $form->show() ) {
 			switch ( $this->type ) {
 				case DatabaseBlock::TYPE_IP:
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable target is set when type is set
 					$out->addWikiMsg( 'unblocked-ip', wfEscapeWikiText( $this->target ) );
 					break;
 				case DatabaseBlock::TYPE_USER:
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable target is set when type is set
 					$out->addWikiMsg( 'unblocked', wfEscapeWikiText( $this->target ) );
 					break;
 				case DatabaseBlock::TYPE_RANGE:
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable target is set when type is set
 					$out->addWikiMsg( 'unblocked-range', wfEscapeWikiText( $this->target ) );
 					break;
 				case DatabaseBlock::TYPE_ID:
 				case DatabaseBlock::TYPE_AUTO:
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable target is set when type is set
 					$out->addWikiMsg( 'unblocked-id', wfEscapeWikiText( $this->target ) );
 					break;
 			}
@@ -230,36 +233,6 @@ class SpecialUnblock extends SpecialPage {
 		}
 
 		return $fields;
-	}
-
-	/**
-	 * Process the form
-	 *
-	 * @deprecated since 1.36, use UnblockUser instead
-	 * @param array $data
-	 * @param IContextSource $context
-	 * @return array|bool [ [ message key, parameters ] ] on failure, True on success
-	 */
-	public static function processUnblock( array $data, IContextSource $context ) {
-		wfDeprecated( __METHOD__, '1.36' );
-
-		if ( !isset( $data['Tags'] ) ) {
-			$data['Tags'] = [];
-		}
-
-		$unblockUser = MediaWikiServices::getInstance()->getUnblockUserFactory()->newUnblockUser(
-			$data['Target'],
-			$context->getAuthority(),
-			$data['Reason'],
-			$data['Tags']
-		);
-
-		$status = $unblockUser->unblock();
-		if ( !$status->isOK() ) {
-			return $status->getErrorsArray();
-		}
-
-		return true;
 	}
 
 	/**

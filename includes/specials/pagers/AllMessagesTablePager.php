@@ -19,6 +19,8 @@
  * @ingroup Pager
  */
 
+use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
@@ -69,6 +71,8 @@ class AllMessagesTablePager extends TablePager {
 	/**
 	 * @param IContextSource $context
 	 * @param Language $contentLanguage
+	 * @param LanguageFactory $languageFactory
+	 * @param LanguageNameUtils $languageNameUtils
 	 * @param LinkRenderer $linkRenderer
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LocalisationCache $localisationCache
@@ -77,6 +81,8 @@ class AllMessagesTablePager extends TablePager {
 	public function __construct(
 		IContextSource $context,
 		Language $contentLanguage,
+		LanguageFactory $languageFactory,
+		LanguageNameUtils $languageNameUtils,
 		LinkRenderer $linkRenderer,
 		ILoadBalancer $loadBalancer,
 		LocalisationCache $localisationCache,
@@ -91,7 +97,10 @@ class AllMessagesTablePager extends TablePager {
 		// FIXME: Why does this need to be set to DIR_DESCENDING to produce ascending ordering?
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 
-		$this->lang = wfGetLangObj( $opts->getValue( 'lang' ) );
+		$lang = $opts->getValue( 'lang' );
+		$this->lang = $languageNameUtils->isKnownLanguageTag( $lang ) ?
+			$languageFactory->getRawLanguage( $lang ) :
+			$contentLanguage;
 
 		$this->langcode = $this->lang->getCode();
 		$this->foreign = !$this->lang->equals( $contentLanguage );

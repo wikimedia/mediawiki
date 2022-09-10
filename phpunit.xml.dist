@@ -14,9 +14,12 @@
 		 stopOnFailure="false"
 		 beStrictAboutTestsThatDoNotTestAnything="true"
 		 beStrictAboutOutputDuringTests="true"
+		 printerClass="MediaWikiPHPUnitResultPrinter"
+		 stderr="true"
 		 verbose="false">
 	<php>
-		<ini name="memory_limit" value="512M" />
+		<ini name="memory_limit" value="-1" />
+		<ini name="max_execution_time" value="0" />
 	</php>
 	<testsuites>
 		<testsuite name="core:unit">
@@ -92,10 +95,10 @@
 			<arguments>
 				<array>
 					<element key="slowThreshold">
-						<integer>50</integer>
+						<integer>100</integer>
 					</element>
 					<element key="reportLength">
-						<integer>50</integer>
+						<integer>25</integer>
 					</element>
 				</array>
 			</arguments>

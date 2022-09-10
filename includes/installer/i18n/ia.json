@@ -226,6 +226,7 @@
 	"config-logo-tagline-help": "Le slogan de tu sito. A usar solmente si tu ha definite hic supra un marca de parola. Si non es definite, in general essera usate un texto. Le altor combinate del slogan e del marca de parola generalmente non debe exceder le 50 pixels.",
 	"config-logo-sidebar": "Logo de barra lateral (optional):",
 	"config-logo-filedrop": "Depone un file de imagine hic",
+	"config-logo-sidebar-help": "Alcun apparentias de MediaWiki include un logo con un altor de 160 pixels como parte del menu del barra lateral. Si non es definite, iste es le mesme que le icone definite hic supra. Pote esser preferibile crear un imagine specific que combina le marca de parola e le icone.",
 	"config-instantcommons": "Activar \"Instant Commons\"",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] es un function que permitte a wikis de usar imagines, sonos e altere multimedia trovate in le sito [https://commons.wikimedia.org/ Wikimedia Commons].\nPro poter facer isto, MediaWiki require accesso a Internet.\n\nPro saper plus, p.ex. como configurar lo pro wikis altere que Wikimedia Commons, consulta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos le manual].",
 	"config-cc-error": "Le selector de licentia Creative Commons non dava un resultato.\nEntra le nomine del licentia manualmente.",

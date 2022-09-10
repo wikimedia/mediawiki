@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use Wikimedia\Assert\Assert;
@@ -73,9 +74,10 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * @param string[] $urls
 	 *
 	 * @return CdnCacheUpdate
-	 * @deprecated Since 1.35 Use HtmlCacheUpdater instead
+	 * @deprecated Since 1.35 Use HtmlCacheUpdater instead. Hard deprecated since 1.39.
 	 */
 	public static function newFromTitles( $pages, $urls = [] ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return new CdnCacheUpdate( array_merge( $pages, $urls ) );
 	}
 
@@ -113,8 +115,8 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * @param string[] $urls List of full URLs to purge
 	 */
 	public static function purge( array $urls ) {
-		$cdnServers = MediaWikiServices::getInstance()->getMainConfig()->get( 'CdnServers' );
-		$htcpRouting = MediaWikiServices::getInstance()->getMainConfig()->get( 'HTCPRouting' );
+		$cdnServers = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::CdnServers );
+		$htcpRouting = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::HTCPRouting );
 		if ( !$urls ) {
 			return;
 		}
@@ -198,8 +200,8 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * @param string[] $urls Collection of URLs to purge
 	 */
 	private static function HTCPPurge( array $urls ) {
-		$htcpRouting = MediaWikiServices::getInstance()->getMainConfig()->get( 'HTCPRouting' );
-		$htcpMulticastTTL = MediaWikiServices::getInstance()->getMainConfig()->get( 'HTCPMulticastTTL' );
+		$htcpRouting = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::HTCPRouting );
+		$htcpMulticastTTL = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::HTCPMulticastTTL );
 		// HTCP CLR operation
 		$htcpOpCLR = 4;
 
@@ -294,7 +296,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * @throws Exception
 	 */
 	private static function naivePurge( array $urls ) {
-		$cdnServers = MediaWikiServices::getInstance()->getMainConfig()->get( 'CdnServers' );
+		$cdnServers = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::CdnServers );
 
 		$reqs = [];
 		foreach ( $urls as $url ) {

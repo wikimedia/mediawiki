@@ -101,13 +101,18 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		$e = null;
 		try {
 			$blob = $conn->get( $key );
-			if ( $getToken && $blob !== false ) {
+			if ( $blob !== false ) {
+				$value = $this->unserialize( $blob );
+				$valueSize = strlen( $blob );
+			} else {
+				$value = false;
+				$valueSize = false;
+			}
+			if ( $getToken && $value !== false ) {
 				$casToken = $blob;
 			}
-			$result = $this->unserialize( $blob );
-			$valueSize = strlen( $blob );
 		} catch ( RedisException $e ) {
-			$result = false;
+			$value = false;
 			$valueSize = false;
 			$this->handleException( $conn, $e );
 		}
@@ -116,7 +121,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 
 		$this->updateOpStats( self::METRIC_OP_GET, [ $key => [ 0, $valueSize ] ] );
 
-		return $result;
+		return $value;
 	}
 
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
@@ -621,6 +626,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function convertGenericKey( $key ) {
-		return $key; // short-circuit; already uses "generic" keys
+		// short-circuit; already uses "generic" keys
+		return $key;
 	}
 }

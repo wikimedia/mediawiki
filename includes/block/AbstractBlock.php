@@ -21,9 +21,11 @@
 namespace MediaWiki\Block;
 
 use CommentStoreComment;
+use DeprecationHelper;
 use IContextSource;
 use InvalidArgumentException;
 use MediaWiki\DAO\WikiAwareEntityTrait;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Message;
@@ -36,22 +38,17 @@ use User;
  * @since 1.34 Factored out from DatabaseBlock (previously Block).
  */
 abstract class AbstractBlock implements Block {
+	use DeprecationHelper;
 	use WikiAwareEntityTrait;
 
 	/** @var CommentStoreComment */
 	protected $reason;
 
-	/**
-	 * @deprecated since 1.34. Use getTimestamp and setTimestamp instead.
-	 * @var string
-	 */
-	public $mTimestamp = '';
+	/** @var string */
+	protected $mTimestamp = '';
 
-	/**
-	 * @deprecated since 1.34. Use getExpiry and setExpiry instead.
-	 * @var string
-	 */
-	public $mExpiry = '';
+	/** @var string */
+	protected $mExpiry = '';
 
 	/** @var bool */
 	protected $mBlockEmail = false;
@@ -62,11 +59,8 @@ abstract class AbstractBlock implements Block {
 	/** @var bool */
 	protected $blockCreateAccount = false;
 
-	/**
-	 * @deprecated since 1.34. Use getHideName and setHideName instead.
-	 * @var bool
-	 */
-	public $mHideName = false;
+	/** @var bool */
+	protected $mHideName = false;
 
 	/** @var bool */
 	protected $isHardblock;
@@ -114,6 +108,11 @@ abstract class AbstractBlock implements Block {
 		$this->setTimestamp( wfTimestamp( TS_MW, $options['timestamp'] ) );
 		$this->setHideName( (bool)$options['hideName'] );
 		$this->isHardblock( !$options['anonOnly'] );
+
+		// hard deprecated since 1.39
+		$this->deprecatePublicProperty( 'mExpiry', '1.34', __CLASS__ );
+		$this->deprecatePublicProperty( 'mHideName', '1.34', __CLASS__ );
+		$this->deprecatePublicProperty( 'mTimestamp', '1.34', __CLASS__ );
 	}
 
 	/**
@@ -276,8 +275,8 @@ abstract class AbstractBlock implements Block {
 	 *  unsure (e.g. unrecognized right or unset property)
 	 */
 	public function appliesToRight( $right ) {
-		$config = RequestContext::getMain()->getConfig();
-		$blockDisablesLogin = $config->get( 'BlockDisablesLogin' );
+		$blockDisablesLogin = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::BlockDisablesLogin );
 
 		$res = null;
 		switch ( $right ) {
@@ -426,7 +425,9 @@ abstract class AbstractBlock implements Block {
 	 *  build the array using Message::getKey and Message::getParams.
 	 * @since 1.22
 	 * @param IContextSource $context
-	 * @return array
+	 * @return array A message array: either a list of strings, the first of which
+	 *  is the message key and the remaining ones the parameters, or an array with
+	 *  a single MessageSpecifier object.
 	 */
 	public function getPermissionsError( IContextSource $context ) {
 		$message = MediaWikiServices::getInstance()
@@ -436,7 +437,7 @@ abstract class AbstractBlock implements Block {
 				$context->getLanguage(),
 				$context->getRequest()->getIP()
 			);
-		return array_merge( [ [ $message->getKey() ], $message->getParams() ] );
+		return array_merge( [ $message->getKey() ], $message->getParams() );
 	}
 
 	/**
@@ -497,8 +498,9 @@ abstract class AbstractBlock implements Block {
 
 		// This is a type of block which uses the ipb_allow_usertalk
 		// flag. The flag can still be overridden by global configs.
-		$config = RequestContext::getMain()->getConfig();
-		if ( !$config->get( 'BlockAllowsUTEdit' ) ) {
+		if ( !MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::BlockAllowsUTEdit )
+		) {
 			return true;
 		}
 		return !$this->isUsertalkEditAllowed();

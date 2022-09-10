@@ -16,9 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 /**
@@ -46,4 +44,9 @@ class DBQueryTimeoutError extends DBQueryError {
 
 		parent::__construct( $db, $error, $errno, $sql, $fname, $message );
 	}
+
+	public function getKey() {
+		return 'transaction-max-statement-time-exceeded';
+	}
+
 }

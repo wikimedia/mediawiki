@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * Tests for protect API.
  *
@@ -18,9 +20,7 @@ class ApiProtectTest extends ApiTestCase {
 			[ 'page_restrictions', 'logging', 'watchlist', 'watchlist_expiry' ]
 		);
 
-		$this->setMwGlobals( [
-			'wgWatchlistExpiry' => true,
-		] );
+		$this->overrideConfigValue( MainConfigNames::WatchlistExpiry, true );
 	}
 
 	/**
@@ -43,7 +43,7 @@ class ApiProtectTest extends ApiTestCase {
 
 		$this->assertArrayHasKey( 'protect', $apiResult );
 		$this->assertSame( $name, $apiResult['protect']['title'] );
-		$this->assertTrue( $title->isProtected( 'edit' ) );
+		$this->assertTrue( $this->getServiceContainer()->getRestrictionStore()->isProtected( $title, 'edit' ) );
 		$this->assertTrue( $this->getServiceContainer()->getWatchlistManager()->isTempWatched(
 			$this->getTestSysop()->getUser(),
 			$title

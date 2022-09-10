@@ -17,7 +17,7 @@ Important: Upgrading from releases older than two LTS release is not supported a
 If you want to upgrade from an old version, please upgrade to a more recent LTS version first,
 then to this version.
 
-Currently any upgrade from any version older than 1.29 will fail.
+Currently any upgrade from any version older than 1.31 will fail.
 
 === Consult the release notes ===
 
@@ -89,10 +89,6 @@ MediaWiki.
 === Check installed extensions ===
 
 Extensions usually need to be upgraded at the same time as the MediaWiki core.
-
-In MediaWiki 1.14 some extensions were migrated into the core. Please see the
-HISTORY section "Migrated extensions" and disable these extensions in your
-LocalSettings.php
 
 === Test ===
 

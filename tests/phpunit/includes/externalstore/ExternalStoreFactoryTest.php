@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
@@ -54,10 +55,10 @@ class ExternalStoreFactoryTest extends MediaWikiIntegrationTestCase {
 		$active = [ 'memory', 'mwstore' ];
 		$defaults = [ 'memory://cluster1', 'memory://cluster2', 'mwstore://memstore1' ];
 		$esFactory = new ExternalStoreFactory( $active, $defaults, 'db-prefix' );
-		$this->setMwGlobals( 'wgFileBackends', [
+		$this->overrideConfigValue( MainConfigNames::FileBackends, [
 			[
 				'name' => 'memstore1',
-				'class' => 'MemoryFileBackend',
+				'class' => MemoryFileBackend::class,
 				'domain' => 'its-all-in-your-head',
 				'readOnly' => 'reason is a lie',
 				'lockManager' => 'nullLockManager'
@@ -76,11 +77,9 @@ class ExternalStoreFactoryTest extends MediaWikiIntegrationTestCase {
 		$mwStore = $esFactory->getStore( 'mwstore' );
 		$this->assertTrue( $mwStore->isReadOnly( 'memstore1' ), "Location is read-only" );
 
-		$lb = $this->getMockBuilder( \Wikimedia\Rdbms\LoadBalancer::class )
-			->disableOriginalConstructor()->getMock();
+		$lb = $this->createMock( \Wikimedia\Rdbms\LoadBalancer::class );
 		$lb->method( 'getReadOnlyReason' )->willReturn( 'Locked' );
-		$lbFactory = $this->getMockBuilder( LBFactory::class )
-			->disableOriginalConstructor()->getMock();
+		$lbFactory = $this->createMock( LBFactory::class );
 		$lbFactory->method( 'getExternalLB' )->willReturn( $lb );
 
 		$this->setService( 'DBLoadBalancerFactory', $lbFactory );

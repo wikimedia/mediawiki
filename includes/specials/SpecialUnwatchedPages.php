@@ -31,7 +31,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * A special page that displays a list of pages that are not on anyones watchlist.
+ * A special page that displays a list of pages that are not on anyone's watchlist.
  *
  * @ingroup SpecialPage
  */

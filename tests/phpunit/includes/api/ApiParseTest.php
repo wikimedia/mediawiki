@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 use Psr\Container\ContainerInterface;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -149,7 +150,10 @@ class ApiParseTest extends ApiTestCase {
 			'IGNORE'
 		);
 
-		$this->setMwGlobals( 'wgExtraInterlanguageLinkPrefixes', [ 'madeuplanguage' ] );
+		$this->overrideConfigValue(
+			MainConfigNames::ExtraInterlanguageLinkPrefixes,
+			[ 'madeuplanguage' ]
+		);
 		$this->tablesUsed[] = 'interwiki';
 	}
 
@@ -226,7 +230,7 @@ class ApiParseTest extends ApiTestCase {
 		$this->doApiRequest( [
 			'action' => 'parse',
 			'oldid' => self::$revIds['revdel'],
-		], null, null, static::getTestUser()->getUser() );
+		], null, null, static::getTestUser()->getAuthority() );
 	}
 
 	public function testSuppressed() {
@@ -788,7 +792,10 @@ class ApiParseTest extends ApiTestCase {
 
 		$this->assertSame(
 			// Now we return in display order rather than markup order
-			[ 'a' => 'aaa', 'b' => 'BBB!' ],
+			[
+				'a' => '<div class="mw-parser-output">aaa</div>',
+				'b' => '<div class="mw-parser-output">BBB!</div>',
+			],
 			$res[0]['parse']['indicators']
 		);
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
@@ -879,13 +886,16 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testConcurrentLimitPageParse() {
-		$this->setMwGlobals( 'wgPoolCounterConf', [
-			'ApiParser' => [
-				'class' => MockPoolCounterFailing::class,
+		$this->overrideConfigValue(
+			MainConfigNames::PoolCounterConf,
+			[
+				'ApiParser' => [
+					'class' => MockPoolCounterFailing::class,
+				]
 			]
-		] );
+		);
 
-		try{
+		try {
 			$this->doApiRequest( [
 				'action' => 'parse',
 				'page' => __CLASS__,
@@ -897,13 +907,16 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testConcurrentLimitContentParse() {
-		$this->setMwGlobals( 'wgPoolCounterConf', [
-			'ApiParser' => [
-				'class' => MockPoolCounterFailing::class,
+		$this->overrideConfigValue(
+			MainConfigNames::PoolCounterConf,
+			[
+				'ApiParser' => [
+					'class' => MockPoolCounterFailing::class,
+				]
 			]
-		] );
+		);
 
-		try{
+		try {
 			$this->doApiRequest( [
 				'action' => 'parse',
 				'oldid' => self::$revIds['revdel'],
@@ -942,9 +955,32 @@ class ApiParseTest extends ApiTestCase {
 		] );
 
 		$this->assertSame(
-			'Art&amp;copy',
+			'<span class="mw-page-title-main">Art&amp;copy</span>',
 			$res[0]['parse']['displaytitle']
 		);
+	}
+
+	public function testIncompatFormat() {
+		$this->expectException( ApiUsageException::class );
+		$this->expectExceptionMessage( 'The requested format application/json is not supported for content model wikitext' );
+
+		$this->doApiRequest( [
+			'action' => 'parse',
+			'prop' => 'categories',
+			'title' => __CLASS__,
+			'text' => '',
+			'contentformat' => 'application/json',
+		] );
+	}
+
+	public function testIgnoreFormatUsingPage() {
+		$res = $this->doApiRequest( [
+			'action' => 'parse',
+			'page' => __CLASS__,
+			'prop' => 'wikitext',
+			'contentformat' => 'text/plain',
+		] );
+		$this->assertArrayHasKey( 'wikitext', $res[0]['parse'] );
 	}
 
 }

@@ -27,6 +27,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Linker\LinksMigration;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -36,35 +37,45 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class SpecialWantedTemplates extends WantedQueryPage {
 
+	/** @var LinksMigration */
+	private $linksMigration;
+
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		LinksMigration $linksMigration
 	) {
 		parent::__construct( 'Wantedtemplates' );
 		$this->setDBLoadBalancer( $loadBalancer );
 		$this->setLinkBatchFactory( $linkBatchFactory );
+		$this->linksMigration = $linksMigration;
 	}
 
 	public function getQueryInfo() {
+		$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
+		list( $ns, $title ) = $this->linksMigration->getTitleFields( 'templatelinks' );
 		return [
-			'tables' => [ 'templatelinks', 'page' ],
+			'tables' => array_merge( $queryInfo['tables'], [ 'page' ] ),
 			'fields' => [
-				'namespace' => 'tl_namespace',
-				'title' => 'tl_title',
+				'namespace' => $ns,
+				'title' => $title,
 				'value' => 'COUNT(*)'
 			],
 			'conds' => [
 				'page_title IS NULL',
-				'tl_namespace' => NS_TEMPLATE
+				$ns => NS_TEMPLATE
 			],
-			'options' => [ 'GROUP BY' => [ 'tl_namespace', 'tl_title' ] ],
-			'join_conds' => [ 'page' => [ 'LEFT JOIN',
-				[ 'page_namespace = tl_namespace',
-					'page_title = tl_title' ] ] ]
+			'options' => [ 'GROUP BY' => [ $ns, $title ] ],
+			'join_conds' => array_merge(
+				[ 'page' => [ 'LEFT JOIN',
+					[ "page_namespace = $ns", "page_title = $title" ] ] ],
+				$queryInfo['joins']
+			)
 		];
 	}
 

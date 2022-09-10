@@ -25,6 +25,7 @@
  * @author Luke Welling lwelling@wikimedia.org
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 
@@ -84,8 +85,8 @@ class UserMailer {
 	 * @return string
 	 */
 	private static function makeMsgId() {
-		$smtp = MediaWikiServices::getInstance()->getMainConfig()->get( 'SMTP' );
-		$server = MediaWikiServices::getInstance()->getMainConfig()->get( 'Server' );
+		$smtp = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::SMTP );
+		$server = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::Server );
 		$domainId = WikiMap::getCurrentWikiDbDomain()->getId();
 		$msgid = uniqid( $domainId . ".", true /** for cygwin */ );
 		if ( is_array( $smtp ) && isset( $smtp['IDHost'] ) && $smtp['IDHost'] ) {
@@ -117,7 +118,8 @@ class UserMailer {
 	 * @return Status
 	 */
 	public static function send( $to, $from, $subject, $body, $options = [] ) {
-		$allowHTMLEmail = MediaWikiServices::getInstance()->getMainConfig()->get( 'AllowHTMLEmail' );
+		$allowHTMLEmail = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::AllowHTMLEmail );
 
 		if ( !isset( $options['contentType'] ) ) {
 			$options['contentType'] = 'text/plain; charset=UTF-8';
@@ -247,9 +249,9 @@ class UserMailer {
 		$options = []
 	) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$smtp = $mainConfig->get( 'SMTP' );
-		$enotifMaxRecips = $mainConfig->get( 'EnotifMaxRecips' );
-		$additionalMailParams = $mainConfig->get( 'AdditionalMailParams' );
+		$smtp = $mainConfig->get( MainConfigNames::SMTP );
+		$enotifMaxRecips = $mainConfig->get( MainConfigNames::EnotifMaxRecips );
+		$additionalMailParams = $mainConfig->get( MainConfigNames::AdditionalMailParams );
 		$mime = null;
 
 		$replyto = $options['replyTo'] ?? null;
@@ -258,6 +260,7 @@ class UserMailer {
 
 		// Allow transformation of content, such as encrypting/signing
 		$error = false;
+		// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 		if ( !Hooks::runner()->onUserMailerTransformContent( $to, $from, $body, $error ) ) {
 			if ( $error ) {
 				return Status::newFatal( 'php-mail-error', $error );
@@ -309,7 +312,7 @@ class UserMailer {
 		// escaping (e.g. due to spaces). MediaWiki's email sanitizer should generally
 		// be good enough, but just in case, put in double quotes, and remove any
 		// double quotes present (" is not allowed in emails, so should have no
-		// effect, although this might cause apostrophees to be double escaped)
+		// effect, although this might cause apostrophes to be double escaped)
 		$returnPathCLI = '"' . str_replace( '"', '', $returnPath ) . '"';
 		$extraParams .= ' -f ' . $returnPathCLI;
 
@@ -461,6 +464,7 @@ class UserMailer {
 				wfDebug( "Error sending mail: " . self::$mErrorString );
 				return Status::newFatal( 'php-mail-error', self::$mErrorString );
 			} elseif ( !$sent ) {
+				// @phan-suppress-previous-line PhanPossiblyUndeclaredVariable sent set on success
 				// mail function only tells if there's an error
 				wfDebug( "Unknown error sending mail" );
 				return Status::newFatal( 'php-mail-error-unknown' );
@@ -482,7 +486,7 @@ class UserMailer {
 
 	/**
 	 * Strips bad characters from a header value to prevent PHP mail header injection attacks
-	 * @param string $val String to be santizied
+	 * @param string $val String to be sanitized
 	 * @return string
 	 */
 	public static function sanitizeHeaderValue( $val ) {

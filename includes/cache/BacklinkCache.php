@@ -27,6 +27,7 @@
 
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
@@ -282,6 +283,7 @@ class BacklinkCache {
 			return $prefixes[$table];
 		} else {
 			$prefix = null;
+			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 			$this->getHookRunner()->onBacklinkCacheGetPrefix( $table, $prefix );
 			if ( $prefix ) {
 				return $prefix;
@@ -303,12 +305,16 @@ class BacklinkCache {
 
 		switch ( $table ) {
 			case 'pagelinks':
-			case 'templatelinks':
 				$conds = [
 					"{$prefix}_namespace" => $this->page->getNamespace(),
 					"{$prefix}_title" => $this->page->getDBkey(),
 					"page_id={$prefix}_from"
 				];
+				break;
+			case 'templatelinks':
+				$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+				$conds = $linksMigration->getLinksConditions( $table, TitleValue::newFromPage( $this->page ) );
+				$conds[] = "page_id={$prefix}_from";
 				break;
 			case 'redirect':
 				$conds = [
@@ -331,7 +337,11 @@ class BacklinkCache {
 			default:
 				$conds = null;
 				$this->getHookRunner()->onBacklinkCacheGetConditions( $table,
-					Title::castFromPageReference( $this->page ), $conds );
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
+					Title::castFromPageReference( $this->page ),
+					// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
+					$conds
+				);
 				if ( !$conds ) {
 					throw new MWException( "Invalid table \"$table\" in " . __CLASS__ );
 				}
@@ -356,7 +366,7 @@ class BacklinkCache {
 	 * @return int
 	 */
 	public function getNumLinks( $table, $max = INF ) {
-		$updateRowsPerJob = MediaWikiServices::getInstance()->getMainConfig()->get( 'UpdateRowsPerJob' );
+		$updateRowsPerJob = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UpdateRowsPerJob );
 
 		// 1) try partition cache ...
 		if ( isset( $this->partitionCache[$table] ) ) {
@@ -576,16 +586,17 @@ class BacklinkCache {
 
 		// @todo: use UNION without breaking tests that use temp tables
 		$resSets = [];
+		$conds = [
+			'tl_from = pr_page',
+			'pr_cascade' => 1,
+			'page_id = tl_from'
+		];
+		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
+		$linkConds = $linksMigration->getLinksConditions( 'templatelinks', TitleValue::newFromPage( $this->page ) );
 		$resSets[] = $dbr->select(
 			[ 'templatelinks', 'page_restrictions', 'page' ],
 			[ 'page_namespace', 'page_title', 'page_id' ],
-			[
-				'tl_namespace' => $this->page->getNamespace(),
-				'tl_title' => $this->page->getDBkey(),
-				'tl_from = pr_page',
-				'pr_cascade' => 1,
-				'page_id = tl_from'
-			],
+			array_merge( $conds, $linkConds ),
 			__METHOD__,
 			[ 'DISTINCT' ]
 		);

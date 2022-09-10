@@ -1,7 +1,5 @@
 <?php
 /**
- * Special handling for file description pages.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -20,14 +18,14 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * Class for viewing MediaWiki file description pages
+ * Rendering of file description pages.
  *
  * @ingroup Media
- *
  * @method WikiFilePage getPage()
  */
 class ImagePage extends Article {
@@ -80,15 +78,18 @@ class ImagePage extends Article {
 				$img = $services->getRepoGroup()->getLocalRepo()->newFile( $this->getTitle() );
 			}
 		}
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable should be set
 		$this->getPage()->setFile( $img );
 		if ( !$this->displayImg ) { // not set by hook?
+			// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty should be set
 			$this->displayImg = $img;
 		}
 		$this->repo = $img->getRepo();
 	}
 
 	public function view() {
-		$showEXIF = MediaWikiServices::getInstance()->getMainConfig()->get( 'ShowEXIF' );
+		$context = $this->getContext();
+		$showEXIF = $context->getConfig()->get( MainConfigNames::ShowEXIF );
 
 		// For action=render, include body text only; none of the image extras
 		if ( $this->viewIsRenderAction ) {
@@ -96,15 +97,11 @@ class ImagePage extends Article {
 			return;
 		}
 
-		$out = $this->getContext()->getOutput();
-		$request = $this->getContext()->getRequest();
+		$out = $context->getOutput();
+		$request = $context->getRequest();
 		$diff = $request->getVal( 'diff' );
-		$diffOnly = $request->getBool(
-			'diffonly',
-			$this->getContext()->getUser()->getOption( 'diffonly' )
-		);
 
-		if ( $this->getTitle()->getNamespace() !== NS_FILE || ( $diff !== null && $diffOnly ) ) {
+		if ( $this->getTitle()->getNamespace() !== NS_FILE || ( $diff !== null && $this->isDiffOnlyView() ) ) {
 			parent::view();
 			return;
 		}
@@ -158,14 +155,14 @@ class ImagePage extends Article {
 			$out->setArticleFlag( true );
 			$out->setPageTitle( $this->getTitle()->getPrefixedText() );
 			$this->getPage()->doViewUpdates(
-				$this->getContext()->getUser(),
+				$context->getAuthority(),
 				$this->getOldID()
 			);
 		}
 
 		# Show shared description, if needed
 		if ( $this->mExtraDescription ) {
-			$fol = $this->getContext()->msg( 'shareddescriptionfollows' );
+			$fol = $context->msg( 'shareddescriptionfollows' );
 			if ( !$fol->isDisabled() ) {
 				$out->addWikiTextAsInterface( $fol->plain() );
 			}
@@ -184,7 +181,7 @@ class ImagePage extends Article {
 
 		$out->addHTML( Xml::element( 'h2',
 			[ 'id' => 'filelinks' ],
-				$this->getContext()->msg( 'imagelinks' )->text() ) . "\n" );
+				$context->msg( 'imagelinks' )->text() ) . "\n" );
 		$this->imageDupes();
 		# @todo FIXME: For some freaky reason, we can't redirect to foreign images.
 		# Yet we return metadata about the target. Definitely an issue in the FileRepo
@@ -201,7 +198,7 @@ class ImagePage extends Article {
 			$out->addHTML( Xml::element(
 				'h2',
 				[ 'id' => 'metadata' ],
-					$this->getContext()->msg( 'metadata' )->text() ) . "\n" );
+					$context->msg( 'metadata' )->text() ) . "\n" );
 			$out->wrapWikiTextAsInterface(
 				'mw-imagepage-section-metadata',
 				$this->makeMetadataTable( $formattedMetadata )
@@ -316,12 +313,12 @@ class ImagePage extends Article {
 	}
 
 	/**
-	 * Returns language code to be used for dispaying the image, based on request context and
+	 * Returns language code to be used for displaying the image, based on request context and
 	 * languages available in the file.
 	 *
 	 * @param WebRequest $request
 	 * @param File $file
-	 * @return string|null
+	 * @return string|null a valid IETF language tag
 	 */
 	private function getLanguageForRendering( WebRequest $request, File $file ) {
 		$handler = $file->getHandler();
@@ -329,8 +326,10 @@ class ImagePage extends Article {
 			return null;
 		}
 
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$requestLanguage = $request->getVal( 'lang', $config->get( 'LanguageCode' ) );
+		$requestLanguage =
+			$request->getVal( 'lang',
+				LanguageCode::bcp47( $this->getTitle()->getPageViewLanguage()->getCode() )
+			);
 		if ( $handler->validateParam( 'lang', $requestLanguage ) ) {
 			return $file->getMatchedLanguage( $requestLanguage );
 		}
@@ -339,16 +338,17 @@ class ImagePage extends Article {
 	}
 
 	protected function openShowImage() {
-		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$enableUploads = $mainConfig->get( 'EnableUploads' );
-		$send404Code = $mainConfig->get( 'Send404Code' );
-		$svgMaxSize = $mainConfig->get( 'SVGMaxSize' );
+		$context = $this->getContext();
+		$mainConfig = $context->getConfig();
+		$enableUploads = $mainConfig->get( MainConfigNames::EnableUploads );
+		$send404Code = $mainConfig->get( MainConfigNames::Send404Code );
+		$svgMaxSize = $mainConfig->get( MainConfigNames::SVGMaxSize );
 		$this->loadFile();
-		$out = $this->getContext()->getOutput();
-		$user = $this->getContext()->getUser();
-		$lang = $this->getContext()->getLanguage();
+		$out = $context->getOutput();
+		$user = $context->getUser();
+		$lang = $context->getLanguage();
 		$dirmark = $lang->getDirMarkEntity();
-		$request = $this->getContext()->getRequest();
+		$request = $context->getRequest();
 
 		if ( $this->displayImg->exists() ) {
 			list( $maxWidth, $maxHeight ) = $this->getImageLimitsFromOption( $user, 'imagesize' );
@@ -390,7 +390,7 @@ class ImagePage extends Article {
 					list( $width, $height ) = $this->displayImg->getDisplayWidthHeight(
 						$maxWidth, $maxHeight, $page
 					);
-					$linktext = $this->getContext()->msg( 'show-big-image' )->escaped();
+					$linktext = $context->msg( 'show-big-image' )->escaped();
 
 					$thumbSizes = $this->getThumbSizes( $width_orig, $height_orig );
 					# Generate thumbnails or thumbnail links as needed...
@@ -426,7 +426,7 @@ class ImagePage extends Article {
 						Html::rawElement(
 							'span',
 							[ 'class' => 'mw-filepage-other-resolutions' ],
-							$this->getContext()->msg( 'show-big-image-other' )
+							$context->msg( 'show-big-image-other' )
 								->rawParams( $lang->pipeList( $otherSizes ) )
 								->params( count( $otherSizes ) )
 								->parse()
@@ -481,7 +481,7 @@ class ImagePage extends Article {
 					$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 					if ( $page > 1 ) {
-						$label = $this->getContext()->msg( 'imgmultipageprev' )->text();
+						$label = $context->msg( 'imgmultipageprev' )->text();
 						// on the client side, this link is generated in ajaxifyPageNavigation()
 						// in the mediawiki.page.image.pagination module
 						$link = $linkRenderer->makeKnownLink(
@@ -504,7 +504,7 @@ class ImagePage extends Article {
 					}
 
 					if ( $page < $count ) {
-						$label = $this->getContext()->msg( 'imgmultipagenext' )->text();
+						$label = $context->msg( 'imgmultipagenext' )->text();
 						$link = $linkRenderer->makeKnownLink(
 							$this->getTitle(),
 							$label,
@@ -524,7 +524,7 @@ class ImagePage extends Article {
 						$thumb2 = '';
 					}
 
-					$script = MediaWikiServices::getInstance()->getMainConfig()->get( 'Script' );
+					$script = $mainConfig->get( MainConfigNames::Script );
 
 					$formParams = [
 						'name' => 'pageselector',
@@ -542,9 +542,9 @@ class ImagePage extends Article {
 						'</td><td><div class="multipageimagenavbox">' .
 						Xml::openElement( 'form', $formParams ) .
 						Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
-						$this->getContext()->msg( 'imgmultigoto' )->rawParams( $select )->parse() .
-						$this->getContext()->msg( 'word-separator' )->escaped() .
-						Xml::submitButton( $this->getContext()->msg( 'imgmultigo' )->text() ) .
+						$context->msg( 'imgmultigoto' )->rawParams( $select )->parse() .
+						$context->msg( 'word-separator' )->escaped() .
+						Xml::submitButton( $context->msg( 'imgmultigo' )->text() ) .
 						Xml::closeElement( 'form' ) .
 						"<hr />$thumb1\n$thumb2<br style=\"clear: both\" /></div></td></tr></table>"
 					);
@@ -562,7 +562,7 @@ class ImagePage extends Article {
 				);
 			}
 
-			$longDesc = $this->getContext()->msg( 'parentheses', $this->displayImg->getLongDesc() )->text();
+			$longDesc = $context->msg( 'parentheses', $this->displayImg->getLongDesc() )->text();
 
 			$handler = $this->displayImg->getHandler();
 
@@ -573,7 +573,7 @@ class ImagePage extends Article {
 				if ( $warningConfig !== null ) {
 					// The warning will be displayed via CSS and JavaScript.
 					// We just need to tell the client side what message to use.
-					$output = $this->getContext()->getOutput();
+					$output = $context->getOutput();
 					$output->addJsConfigVars( 'wgFileWarning', $warningConfig );
 					$output->addModules( $warningConfig['module'] );
 					$output->addModules( 'mediawiki.filewarning' );
@@ -583,7 +583,7 @@ class ImagePage extends Article {
 			$medialink = "[[Media:$filename|$linktext]]";
 
 			if ( !$this->displayImg->isSafeFile() ) {
-				$warning = $this->getContext()->msg( 'mediawarning' )->plain();
+				$warning = $context->msg( 'mediawarning' )->plain();
 				// dirmark is needed here to separate the file name, which
 				// most likely ends in Latin characters, from the description,
 				// which may begin with the file type. In RTL environment
@@ -621,7 +621,7 @@ EOT
 				$noAnimMesg = wfMessageFallback(
 					'file-no-thumb-animation-' . $ext,
 					'file-no-thumb-animation'
-				)->plain();
+				)->setContext( $context )->plain();
 
 				$out->wrapWikiTextAsInterface( 'mw-noanimatethumb', $noAnimMesg );
 			}
@@ -650,7 +650,7 @@ EOT
 			}
 
 			if ( $enableUploads &&
-				$this->getContext()->getAuthority()->isAllowed( 'upload' )
+				$context->getAuthority()->isAllowed( 'upload' )
 			) {
 				// Only show an upload link if the user can upload
 				$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
@@ -787,7 +787,7 @@ EOT
 	 * Add the re-upload link (or message about not being able to re-upload) to the output.
 	 */
 	protected function uploadLinksBox() {
-		if ( !$this->getContext()->getConfig()->get( 'EnableUploads' ) ) {
+		if ( !$this->getContext()->getConfig()->get( MainConfigNames::EnableUploads ) ) {
 			return;
 		}
 
@@ -935,14 +935,12 @@ EOT
 				break;
 			}
 
-			$query = [];
-			# Add a redirect=no to make redirect pages reachable
-			if ( isset( $redirects[$element->page_title] ) ) {
-				$query['redirect'] = 'no';
-			}
 			$link = $linkRenderer->makeKnownLink(
 				Title::makeTitle( $element->page_namespace, $element->page_title ),
-				null, [], $query
+				null,
+				[],
+				// Add a redirect=no to make redirect pages reachable
+				[ 'redirect' => isset( $redirects[$element->page_title] ) ? 'no' : null ]
 			);
 			if ( !isset( $redirects[$element->page_title] ) ) {
 				# No redirects
@@ -1064,14 +1062,16 @@ EOT
 	 * Output a drop-down box for language options for the file
 	 *
 	 * @param array $langChoices Array of string language codes
-	 * @param string|null $renderLang Language code for the language we want the file to rendered in.
+	 * @param string|null $renderLang Language code for the language we want the file to rendered in,
+	 *  it is pre-selected in the drop down box, use null to select the default case in the option list
 	 * @return string HTML to insert underneath image.
 	 */
-	protected function doRenderLangOpt( array $langChoices, $renderLang = null ) {
-		$script = MediaWikiServices::getInstance()->getMainConfig()->get( 'Script' );
+	protected function doRenderLangOpt( array $langChoices, $renderLang ) {
+		$context = $this->getContext();
+		$script = $context->getConfig()->get( MainConfigNames::Script );
 		$opts = '';
 
-		$matchedRenderLang = $this->displayImg->getMatchedLanguage( $renderLang );
+		$matchedRenderLang = $renderLang === null ? null : $this->displayImg->getMatchedLanguage( $renderLang );
 
 		foreach ( $langChoices as $lang ) {
 			$opts .= $this->createXmlOptionStringForLanguage(
@@ -1084,9 +1084,9 @@ EOT
 		// systemLanguage attribute matches
 		$opts .= "\n" .
 			Xml::option(
-				$this->getContext()->msg( 'img-lang-default' )->text(),
+				$context->msg( 'img-lang-default' )->text(),
 				'und',
-				$matchedRenderLang === null
+				$matchedRenderLang === null || $matchedRenderLang === 'und'
 			);
 
 		$select = Html::rawElement(
@@ -1094,9 +1094,9 @@ EOT
 			[ 'id' => 'mw-imglangselector', 'name' => 'lang' ],
 			$opts
 		);
-		$submit = Xml::submitButton( $this->getContext()->msg( 'img-lang-go' )->text() );
+		$submit = Xml::submitButton( $context->msg( 'img-lang-go' )->text() );
 
-		$formContents = $this->getContext()->msg( 'img-lang-info' )
+		$formContents = $context->msg( 'img-lang-info' )
 			->rawParams( $select, $submit )
 			->parse();
 		$formContents .= Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() );
@@ -1113,14 +1113,15 @@ EOT
 	 * @return string
 	 */
 	private function createXmlOptionStringForLanguage( $lang, $selected ) {
-		$code = LanguageCode::bcp47( $lang );
+		// TODO: There is no good way to get the language name of a BCP code,
+		// as MW language codes take precedence
 		$name = MediaWikiServices::getInstance()
 			->getLanguageNameUtils()
-			->getLanguageName( $code, $this->getContext()->getLanguage()->getCode() );
+			->getLanguageName( $lang, $this->getContext()->getLanguage()->getCode() );
 		if ( $name !== '' ) {
-			$display = $this->getContext()->msg( 'img-lang-opt', $code, $name )->text();
+			$display = $this->getContext()->msg( 'img-lang-opt', $lang, $name )->text();
 		} else {
-			$display = $code;
+			$display = $lang;
 		}
 		return "\n" .
 			Xml::option(
@@ -1140,7 +1141,8 @@ EOT
 	 * @phan-return array<int,array{0:int,1:int}>
 	 */
 	protected function getThumbSizes( $origWidth, $origHeight ) {
-		$imageLimits = MediaWikiServices::getInstance()->getMainConfig()->get( 'ImageLimits' );
+		$context = $this->getContext();
+		$imageLimits = $context->getConfig()->get( MainConfigNames::ImageLimits );
 		if ( $this->displayImg->getRepo()->canTransformVia404() ) {
 			$thumbSizes = $imageLimits;
 			// Also include the full sized resolution in the list, so
@@ -1154,7 +1156,7 @@ EOT
 			# Creating thumb links triggers thumbnail generation.
 			# Just generate the thumb for the current users prefs.
 			$thumbSizes = [
-				$this->getImageLimitsFromOption( $this->getContext()->getUser(), 'thumbsize' )
+				$this->getImageLimitsFromOption( $context->getUser(), 'thumbsize' )
 			];
 			if ( !$this->displayImg->mustRender() ) {
 				// We can safely include a link to the "full-size" preview,

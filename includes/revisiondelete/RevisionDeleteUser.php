@@ -21,7 +21,6 @@
  * @ingroup RevisionDelete
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -45,9 +44,6 @@ class RevisionDeleteUser {
 	 * @return bool True on success, false on failure (e.g. invalid user ID)
 	 */
 	private static function setUsernameBitfields( $name, $userId, $op, IDatabase $dbw = null ) {
-		$actorTableSchemaMigrationStage = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'ActorTableSchemaMigrationStage' );
-
 		if ( !$userId || ( $op !== '|' && $op !== '&' ) ) {
 			return false;
 		}
@@ -74,30 +70,12 @@ class RevisionDeleteUser {
 		$actorId = $dbw->selectField( 'actor', 'actor_id', [ 'actor_name' => $name ], __METHOD__ );
 		if ( $actorId ) {
 			# Hide name from live edits
-			# This query depends on the actor migration read stage, not the
-			# write stage, because the stage determines how we find the rows to
-			# delete. The write stage determines whether or not to write to
-			# rev_actor and revision_actor_temp which is not relevant here.
-			if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_TEMP ) {
-				$ids = $dbw->selectFieldValues(
-					'revision_actor_temp', 'revactor_rev', [ 'revactor_actor' => $actorId ], __METHOD__
-				);
-				if ( $ids ) {
-					$dbw->update(
-						'revision',
-						[ self::buildSetBitDeletedField( 'rev_deleted', $op, $delUser, $dbw ) ],
-						[ 'rev_id' => $ids ],
-						__METHOD__
-					);
-				}
-			} else /* SCHEMA_COMPAT_READ_NEW */ {
-				$dbw->update(
-					'revision',
-					[ self::buildSetBitDeletedField( 'rev_deleted', $op, $delUser, $dbw ) ],
-					[ 'rev_actor' => $actorId ],
-					__METHOD__
-				);
-			}
+			$dbw->update(
+				'revision',
+				[ self::buildSetBitDeletedField( 'rev_deleted', $op, $delUser, $dbw ) ],
+				[ 'rev_actor' => $actorId ],
+				__METHOD__
+			);
 
 			# Hide name from deleted edits
 			$dbw->update(

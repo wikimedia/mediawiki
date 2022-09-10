@@ -419,6 +419,7 @@ class BlockLevelPass {
 			}
 		}
 		while ( $prefixLength ) {
+			// @phan-suppress-next-line PhanTypeArraySuspicious $prefix set if $prefixLength is set
 			$output .= $this->closeList( $prefix2[$prefixLength - 1] );
 			--$prefixLength;
 			// Note that a paragraph is only ever opened when `prefixLength`
@@ -439,7 +440,7 @@ class BlockLevelPass {
 	 * @param string &$before Set to everything before the ':'
 	 * @param string &$after Set to everything after the ':'
 	 * @throws MWException
-	 * @return string|false The position of the ':', or false if none found
+	 * @return int|false The position of the ':', or false if none found
 	 */
 	private function findColonNoLinks( $str, &$before, &$after ) {
 		if ( !preg_match( '/:|<|-\{/', $str, $m, PREG_OFFSET_CAPTURE ) ) {

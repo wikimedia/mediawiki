@@ -921,10 +921,10 @@ class JSParser
 			return $n;
 
 			case KEYWORD_WHILE:
-			        $n = new JSNode($this->t);
-			        $n->isLoop = true;
-			        $n->condition = $this->ParenExpression($x);
-			        $n->body = $this->nest($x, $n);
+				$n = new JSNode($this->t);
+				$n->isLoop = true;
+				$n->condition = $this->ParenExpression($x);
+				$n->body = $this->nest($x, $n);
 			return $n;
 
 			case KEYWORD_DO:
@@ -1042,7 +1042,7 @@ class JSParser
 
 			case KEYWORD_VAR:
 			case KEYWORD_CONST:
-			        $n = $this->Variables($x);
+				$n = $this->Variables($x);
 			break;
 
 			case TOKEN_CONDCOMMENT_START:
@@ -1829,7 +1829,7 @@ class JSTokenizer
 
 	public function mustMatch($tt)
 	{
-	        if (!$this->match($tt))
+		if (!$this->match($tt))
 			throw $this->newSyntaxError('Unexpected token; token ' . $tt . ' expected');
 
 		return $this->currentToken();
@@ -2082,18 +2082,21 @@ class JSTokenizer
 						// Character classes per ECMA-262 edition 5.1 section 7.6
 						// Per spec, must accept Unicode 3.0, *may* accept later versions.
 						// We'll take whatever PCRE understands, which should be more recent.
-						$identifierStartChars = "\\p{L}\\p{Nl}" .  # UnicodeLetter
-						                        "\$" .
-						                        "_";
-						$identifierPartChars  = $identifierStartChars .
-						                        "\\p{Mn}\\p{Mc}" . # UnicodeCombiningMark
-						                        "\\p{Nd}" .        # UnicodeDigit
-						                        "\\p{Pc}";         # UnicodeConnectorPunctuation
+						$identifierStartChars =
+							"\\p{L}\\p{Nl}" .  # UnicodeLetter
+							"\$" .
+							"_";
+						$identifierPartChars  =
+							$identifierStartChars .
+							"\\p{Mn}\\p{Mc}" . # UnicodeCombiningMark
+							"\\p{Nd}" .        # UnicodeDigit
+							"\\p{Pc}";         # UnicodeConnectorPunctuation
 						$unicodeEscape = "\\\\u[0-9A-F-a-f]{4}";
-						$identifierRegex = "/^" .
-						                   "(?:[$identifierStartChars]|$unicodeEscape)" .
-						                   "(?:[$identifierPartChars]|$unicodeEscape)*" .
-						                   "/uS";
+						$identifierRegex =
+							"/^" .
+							"(?:[$identifierStartChars]|$unicodeEscape)" .
+							"(?:[$identifierPartChars]|$unicodeEscape)*" .
+							"/uS";
 						if (preg_match($identifierRegex, $input, $match))
 						{
 							if (strpos($match[0], '\\') !== false) {

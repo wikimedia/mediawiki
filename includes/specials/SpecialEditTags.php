@@ -142,6 +142,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			)
 		) {
 			throw new UserBlockedError(
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 				$user->getBlock(),
 				$user,
 				$this->getLanguage(),
@@ -452,9 +453,11 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	 * Report that the submit operation succeeded
 	 */
 	protected function success() {
-		$this->getOutput()->setPageTitle( $this->msg( 'actioncomplete' ) );
-		$this->getOutput()->wrapWikiMsg( "<div class=\"successbox\">\n$1\n</div>",
-			'tags-edit-success' );
+		$out = $this->getOutput();
+		$out->setPageTitle( $this->msg( 'actioncomplete' ) );
+		$out->addHTML(
+			Html::successBox( $out->msg( 'tags-edit-success' )->parse() )
+		);
 		$this->wasSaved = true;
 		$this->revList->reloadFromPrimary();
 		$this->reason = ''; // no need to spew the reason back at the user
@@ -466,9 +469,14 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	 * @param Status $status
 	 */
 	protected function failure( $status ) {
-		$this->getOutput()->setPageTitle( $this->msg( 'actionfailed' ) );
-		$this->getOutput()->wrapWikiTextAsInterface(
-			'errorbox', $status->getWikiText( 'tags-edit-failure', false, $this->getLanguage() )
+		$out = $this->getOutput();
+		$out->setPageTitle( $this->msg( 'actionfailed' ) );
+		$out->addHTML(
+			Html::errorBox(
+				$out->parseAsContent(
+					$status->getWikiText( 'tags-edit-failure', false, $this->getLanguage() )
+				)
+			)
 		);
 		$this->showForm();
 	}

@@ -40,5 +40,7 @@
 	"rest-update-cannot-create-page": "Le pagina \"$1\" non pote esser create perque illo jam existe. Pro actualisar le pagina existente, forni le ID del version de base in le structura sub le clave \"latest\" in le corpore del requesta.",
 	"rest-extraneous-csrf-token": "Un token CSRF superflue ha essite trovate. Le tokens CSRF non debe esser usate quando se usa mechanismos de authentication como OAuth que es secur contra attaccos CSRF.",
 	"rest-cannot-load-file": "Le file pro le titulo \"$1\" non pote esser cargate.",
-	"rest-cross-origin-anon-write": "Le requestas de scriptura anonyme trans origines non es permittite"
+	"rest-cross-origin-anon-write": "Le requestas de scriptura anonyme trans origines non es permittite",
+	"rest-requires-safe-against-csrf": "Iste puncto terminal require un fornitor de sessiones que protege contra usurpationes de sitos (CSRF).",
+	"rest-badtoken": "Le token CSRF fornite non es valide."
 }

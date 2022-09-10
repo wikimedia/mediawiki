@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Log;
 
 use DatabaseLogEntry;
 use LogPage;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserIdentityValue;
 use MockTitleTrait;
 
@@ -18,14 +19,14 @@ class LogPageTest extends \MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgLogNames' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::LogNames => [
 				'test_test' => 'testing-log-message'
 			],
-			'wgLogHeaders' => [
+			MainConfigNames::LogHeaders => [
 				'test_test' => 'testing-log-header'
 			],
-			'wgLogRestrictions' => [
+			MainConfigNames::LogRestrictions => [
 				'test_test' => 'testing-log-restriction'
 			]
 		] );

@@ -3,15 +3,19 @@
 
 /* stylelint-disable selector-class-pattern */
 .searchresults {
-	margin: 1em 0 1em 0.4em;
+	margin: 1em 0 1em 0;
+}
+
+.searchresults .mw-search-exists {
+	margin-bottom: 32px;
 }
 
 /* needs extra specificity to override `.mw-body p` selector */
 .mw-body .mw-search-nonefound {
-	margin: 0;
+	margin: 1.5em 0 0.5em 0;
+	font-size: 1.2em;
 }
 
-.searchdidyoumean em,
 .searchmatch {
 	font-weight: bold;
 }
@@ -26,7 +30,7 @@
 		padding-bottom: 24px;
 
 		a {
-			font-size: 108%;
+			font-size: 114%;
 		}
 	}
 }
@@ -36,8 +40,8 @@
 }
 
 .mw-search-result-data {
-	color: #008000;
-	font-size: 97%;
+	color: #54595d;
+	font-size: 93%;
 }
 
 .mw-search-profile-tabs {
@@ -167,10 +171,12 @@
 }
 
 .searchdidyoumean {
-	font-size: 127%;
+	font-size: 114%;
 	margin-top: 0.8em;
-	/* Note that this color won't affect the link, as desired. */
-	color: #d33;
+
+	em {
+		font-style: normal;
+	}
 }
 
 #mw-search-togglebox {

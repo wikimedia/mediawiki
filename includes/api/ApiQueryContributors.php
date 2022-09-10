@@ -27,6 +27,8 @@ use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserGroupManager;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 /**
  * A query module to show contributors to a page
@@ -110,18 +112,9 @@ class ApiQueryContributors extends ApiQueryBase {
 
 		$result = $this->getResult();
 		$revQuery = $this->revisionStore->getQueryInfo();
-
-		// For SCHEMA_COMPAT_READ_TEMP, target indexes on the
-		// revision_actor_temp table, otherwise on the revision table.
-		if ( $this->getConfig()->get( 'ActorTableSchemaMigrationStage' ) & SCHEMA_COMPAT_READ_TEMP ) {
-			$pageField = 'revactor_page';
-			$idField = 'revactor_actor';
-			$countField = 'revactor_actor';
-		} else {
-			$pageField = 'rev_page';
-			$idField = 'rev_actor';
-			$countField = 'rev_actor';
-		}
+		$pageField = 'rev_page';
+		$idField = 'rev_actor';
+		$countField = 'rev_actor';
 
 		// First, count anons
 		$this->addTables( $revQuery['tables'] );
@@ -212,6 +205,7 @@ class ApiQueryContributors extends ApiQueryBase {
 			$limitGroups = array_unique( $limitGroups );
 			$this->addTables( 'user_groups' );
 			$this->addJoinConds( [ 'user_groups' => [
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable excludeGroups declared when limitGroups set
 				$excludeGroups ? 'LEFT JOIN' : 'JOIN',
 				[
 					'ug_user=' . $revQuery['fields']['rev_user'],
@@ -219,6 +213,8 @@ class ApiQueryContributors extends ApiQueryBase {
 					'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
 				]
 			] ] );
+			// @phan-suppress-next-next-line PhanTypeMismatchArgumentNullable,PhanPossiblyUndeclaredVariable
+			// excludeGroups declared when limitGroups set
 			$this->addWhereIf( 'ug_user IS NULL', $excludeGroups );
 		}
 
@@ -273,27 +269,27 @@ class ApiQueryContributors extends ApiQueryBase {
 
 		return [
 			'group' => [
-				ApiBase::PARAM_TYPE => $userGroups,
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => $userGroups,
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'excludegroup' => [
-				ApiBase::PARAM_TYPE => $userGroups,
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => $userGroups,
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'rights' => [
-				ApiBase::PARAM_TYPE => $userRights,
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => $userRights,
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'excluderights' => [
-				ApiBase::PARAM_TYPE => $userRights,
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => $userRights,
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'limit' => [
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
+				ParamValidator::PARAM_DEFAULT => 10,
+				ParamValidator::PARAM_TYPE => 'limit',
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				IntegerDef::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',

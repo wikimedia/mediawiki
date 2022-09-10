@@ -22,12 +22,13 @@ namespace MediaWiki\Preferences;
 
 use Html;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 use MultiHttpClient;
-use Parser;
+use ParserFactory;
 use ParserOptions;
 use ParsoidVirtualRESTService;
 use SpecialPage;
@@ -41,8 +42,8 @@ class SignatureValidator {
 
 	/** @var array Made public for use in services */
 	public const CONSTRUCTOR_OPTIONS = [
-		'SignatureAllowedLintErrors',
-		'VirtualRestConfig',
+		MainConfigNames::SignatureAllowedLintErrors,
+		MainConfigNames::VirtualRestConfig,
 	];
 
 	/** @var UserIdentity */
@@ -51,8 +52,8 @@ class SignatureValidator {
 	private $localizer;
 	/** @var ParserOptions */
 	private $popts;
-	/** @var Parser */
-	private $parser;
+	/** @var ParserFactory */
+	private $parserFactory;
 	/** @var ServiceOptions */
 	private $serviceOptions;
 	/** @var SpecialPageFactory */
@@ -65,7 +66,7 @@ class SignatureValidator {
 	 * @param UserIdentity $user
 	 * @param ?MessageLocalizer $localizer
 	 * @param ParserOptions $popts
-	 * @param Parser $parser
+	 * @param ParserFactory $parserFactory
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param TitleFactory $titleFactory
 	 */
@@ -74,15 +75,14 @@ class SignatureValidator {
 		UserIdentity $user,
 		?MessageLocalizer $localizer,
 		ParserOptions $popts,
-		Parser $parser,
+		ParserFactory $parserFactory,
 		SpecialPageFactory $specialPageFactory,
 		TitleFactory $titleFactory
 	) {
 		$this->user = $user;
 		$this->localizer = $localizer;
 		$this->popts = $popts;
-		// Fetch the parser, will be used to create a new parser via getFreshParser() when needed
-		$this->parser = $parser;
+		$this->parserFactory = $parserFactory;
 		// Configuration
 		$this->serviceOptions = $options;
 		$this->serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -118,7 +118,8 @@ class SignatureValidator {
 
 		$lintErrors = $this->checkLintErrors( $signature );
 		if ( $lintErrors ) {
-			$allowedLintErrors = $this->serviceOptions->get( 'SignatureAllowedLintErrors' );
+			$allowedLintErrors = $this->serviceOptions->get(
+				MainConfigNames::SignatureAllowedLintErrors );
 			$messages = '';
 
 			foreach ( $lintErrors as $error ) {
@@ -208,7 +209,7 @@ class SignatureValidator {
 	 */
 	protected function applyPreSaveTransform( string $signature ) {
 		// This may be called by the Parser when it's displaying a signature, so we need a new instance
-		$parser = $this->parser->getFreshParser();
+		$parser = $this->parserFactory->getInstance();
 
 		$pstSignature = $parser->preSaveTransform(
 			$signature,
@@ -248,7 +249,7 @@ class SignatureValidator {
 		// This request is not cached, but that's okay, because $signature is short (other code checks
 		// the length against $wgMaxSigChars).
 
-		$vrsConfig = $this->serviceOptions->get( 'VirtualRestConfig' );
+		$vrsConfig = $this->serviceOptions->get( MainConfigNames::VirtualRestConfig );
 		if ( isset( $vrsConfig['modules']['parsoid'] ) ) {
 			$params = $vrsConfig['modules']['parsoid'];
 			if ( isset( $vrsConfig['global'] ) ) {
@@ -291,7 +292,7 @@ class SignatureValidator {
 	 */
 	protected function checkUserLinks( string $signature ): bool {
 		// This may be called by the Parser when it's displaying a signature, so we need a new instance
-		$parser = $this->parser->getFreshParser();
+		$parser = $this->parserFactory->getInstance();
 
 		// Check for required links. This one's easier to do with the PHP Parser.
 		$pout = $parser->parse(

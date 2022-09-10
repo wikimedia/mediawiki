@@ -1,7 +1,5 @@
 <?php
 /**
- * Old file in the oldimage table.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup FileAbstraction
  */
 
 use MediaWiki\MediaWikiServices;
@@ -27,7 +24,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
 
 /**
- * Class to represent a file in the oldimage table
+ * Old file in the oldimage table.
  *
  * @stable to extend
  * @ingroup FileAbstraction
@@ -44,7 +41,7 @@ class OldLocalFile extends LocalFile {
 	/**
 	 * @stable to override
 	 * @param Title $title
-	 * @param FileRepo $repo
+	 * @param LocalRepo $repo
 	 * @param string|int|null $time
 	 * @return static
 	 * @throws MWException
@@ -62,7 +59,7 @@ class OldLocalFile extends LocalFile {
 	 * @stable to override
 	 *
 	 * @param Title $title
-	 * @param FileRepo $repo
+	 * @param LocalRepo $repo
 	 * @param string $archiveName
 	 * @return static
 	 */
@@ -74,7 +71,7 @@ class OldLocalFile extends LocalFile {
 	 * @stable to override
 	 *
 	 * @param stdClass $row
-	 * @param FileRepo $repo
+	 * @param LocalRepo $repo
 	 * @return static
 	 */
 	public static function newFromRow( $row, $repo ) {
@@ -130,9 +127,10 @@ class OldLocalFile extends LocalFile {
 	 * @param string[] $options
 	 *   - omit-lazy: Omit fields that are lazily cached.
 	 * @return array[] With three keys:
-	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
-	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
-	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()` or `SelectQueryBuilder::fields`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()` or `SelectQueryBuilder::joinConds`
+	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public static function getQueryInfo( array $options = [] ) {
 		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'oi_description' );
@@ -179,7 +177,7 @@ class OldLocalFile extends LocalFile {
 	 * @stable to call
 	 *
 	 * @param Title $title
-	 * @param FileRepo $repo
+	 * @param LocalRepo $repo
 	 * @param string|int|null $time Timestamp or null to load by archive name
 	 * @param string|null $archiveName Archive name or null to load by timestamp
 	 * @throws MWException

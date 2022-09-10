@@ -152,6 +152,7 @@ abstract class LockManager {
 		);
 		$loop->invoke();
 
+		// @phan-suppress-next-line PhanTypeMismatchReturn WaitConditionLoop throws or status is set
 		return $status;
 	}
 

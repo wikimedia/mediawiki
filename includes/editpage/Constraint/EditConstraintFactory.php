@@ -22,11 +22,13 @@ namespace MediaWiki\EditPage\Constraint;
 
 use Content;
 use IContextSource;
+use Language;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\Spi;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
 use ReadOnlyMode;
@@ -45,7 +47,7 @@ class EditConstraintFactory {
 	/** @internal */
 	public const CONSTRUCTOR_OPTIONS = [
 		// PageSizeConstraint
-		'MaxArticleSize',
+		MainConfigNames::MaxArticleSize,
 	];
 
 	/** @var ServiceOptions */
@@ -117,20 +119,26 @@ class EditConstraintFactory {
 	 * @param IContextSource $context
 	 * @param string $summary
 	 * @param bool $minorEdit
+	 * @param Language $language
+	 * @param User $user
 	 * @return EditFilterMergedContentHookConstraint
 	 */
 	public function newEditFilterMergedContentHookConstraint(
 		Content $content,
 		IContextSource $context,
 		string $summary,
-		bool $minorEdit
+		bool $minorEdit,
+		Language $language,
+		User $user
 	): EditFilterMergedContentHookConstraint {
 		return new EditFilterMergedContentHookConstraint(
 			$this->hookContainer,
 			$content,
 			$context,
 			$summary,
-			$minorEdit
+			$minorEdit,
+			$language,
+			$user
 		);
 	}
 
@@ -144,7 +152,7 @@ class EditConstraintFactory {
 		string $type
 	): PageSizeConstraint {
 		return new PageSizeConstraint(
-			$this->options->get( 'MaxArticleSize' ),
+			$this->options->get( MainConfigNames::MaxArticleSize ),
 			$contentSize,
 			$type
 		);
@@ -180,8 +188,7 @@ class EditConstraintFactory {
 
 	/**
 	 * @param string $summary
-	 * @param string $section
-	 * @param string $sectionHeading
+	 * @param ?string $sectionHeading
 	 * @param string $text
 	 * @param string $reqIP
 	 * @param Title $title
@@ -189,8 +196,7 @@ class EditConstraintFactory {
 	 */
 	public function newSpamRegexConstraint(
 		string $summary,
-		string $section,
-		string $sectionHeading,
+		?string $sectionHeading,
 		string $text,
 		string $reqIP,
 		Title $title
@@ -199,7 +205,6 @@ class EditConstraintFactory {
 			$this->loggerFactory->getLogger( 'SpamRegex' ),
 			$this->spamRegexChecker,
 			$summary,
-			$section,
 			$sectionHeading,
 			$text,
 			$reqIP,

@@ -60,7 +60,7 @@ class WANObjectCacheReaper implements LoggerAwareInterface {
 	 *          - The ending position as a UNIX timestamp
 	 *          - The maximum number of results to return
 	 *        It returns a list of maps of (key: cache key, pos: UNIX timestamp, id: unique ID)
-	 *        for each key affected, with the corrosponding event timestamp/ID information.
+	 *        for each key affected, with the corresponding event timestamp/ID information.
 	 *        The events should be in ascending order, by (timestamp,id).
 	 * @param callable $keyCallback Callback taking arguments:
 	 *          - The WANObjectCache instance
@@ -132,7 +132,8 @@ class WANObjectCacheReaper implements LoggerAwareInterface {
 				[ $this->cache, $event['item'] ]
 			);
 			foreach ( $keys as $key ) {
-				unset( $keyEvents[$key] ); // use only the latest per key
+				// use only the latest per key
+				unset( $keyEvents[$key] );
 				$keyEvents[$key] = [
 					'pos' => $event['pos'],
 					'id' => $event['id']

@@ -24,6 +24,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Wikimedia\AtEase\AtEase;
@@ -251,8 +252,8 @@ class DjVuImage {
 	 * @return array|null|false
 	 */
 	public function retrieveMetaData() {
-		$djvuDump = MediaWikiServices::getInstance()->getMainConfig()->get( 'DjvuDump' );
-		$djvuTxt = MediaWikiServices::getInstance()->getMainConfig()->get( 'DjvuTxt' );
+		$djvuDump = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::DjvuDump );
+		$djvuTxt = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::DjvuTxt );
 		if ( !$this->isValid() ) {
 			return false;
 		}

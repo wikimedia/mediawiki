@@ -1,7 +1,5 @@
 <?php
 /**
- * Database load balancing interface
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,18 +16,16 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
 namespace Wikimedia\Rdbms;
 
-use Exception;
-use InvalidArgumentException;
-use LogicException;
-
 /**
- * Database cluster connection, tracking, load balancing, and transaction manager interface
+ * Create and track the database connections and transactions for a given database cluster.
  *
- * A "cluster" is considered to be one primary database and zero or more replica databases.
+ * This class is a delegate to ILBFactory for a given database cluster (separated for the
+ * LBFactoryMulti use case).
+ *
+ * A "cluster" is defined as a primary database with zero or more replica databases.
  * Typically, the replica DBs replicate from the primary asynchronously. The first node in the
  * "servers" configuration array is always considered the "primary". However, this class can still
  * be used when all or some of the "replica" DBs are multi-primary peers of the primary or even
@@ -51,7 +47,7 @@ use LogicException;
  * hold across separate queries in the DB transaction since the data appears within a consistent
  * point-in-time snapshot.
  *
- * The typical caller will use LoadBalancer::getConnection( DB_* ) to yield a live database
+ * The typical caller will use LoadBalancer::getConnection( DB_* ) to yield a database
  * connection handle. The choice of which DB server to use is based on pre-defined loads for
  * weighted random selection, adjustments thereof by LoadMonitor, and the amount of replication
  * lag on each DB server. Lag checks might cause problems in certain setups, so they should be
@@ -109,44 +105,6 @@ interface ILoadBalancer {
 	/** Bypass and update any server-side read-only mode state cache */
 	public const CONN_REFRESH_READ_ONLY = 8;
 
-	/** Manager of ILoadBalancer instances is running post-commit callbacks */
-	public const STAGE_POSTCOMMIT_CALLBACKS = 'stage-postcommit-callbacks';
-	/** Manager of ILoadBalancer instances is running post-rollback callbacks */
-	public const STAGE_POSTROLLBACK_CALLBACKS = 'stage-postrollback-callbacks';
-
-	/**
-	 * Construct a manager of IDatabase connection objects
-	 *
-	 * @param array $params Parameter map with keys:
-	 *  - servers : List of server info structures
-	 *  - localDomain: A DatabaseDomain or domain ID string
-	 *  - loadMonitor : LoadMonitor::__construct() parameters with "class" field. [optional]
-	 *  - readOnlyReason : Reason the primary DB is read-only if so [optional]
-	 *  - waitTimeout : Maximum time to wait for replicas for consistency [optional]
-	 *  - maxLag: Try to avoid DB replicas with lag above this many seconds [optional]
-	 *  - srvCache : BagOStuff object for server cache [optional]
-	 *  - wanCache : WANObjectCache object [optional]
-	 *  - chronologyCallback: Callback to run before the first connection attempt [optional]
-	 *  - defaultGroup: Default query group; the generic group if not specified [optional]
-	 *  - hostname : The name of the current server [optional]
-	 *  - cliMode: Whether the execution context is a CLI script [optional]
-	 *  - profiler : Callback that takes a section name argument and returns
-	 *      a ScopedCallback instance that ends the profile section in its destructor [optional]
-	 *  - trxProfiler: TransactionProfiler instance [optional]
-	 *  - replLogger: PSR-3 logger instance [optional]
-	 *  - connLogger: PSR-3 logger instance [optional]
-	 *  - queryLogger: PSR-3 logger instance [optional]
-	 *  - perfLogger: PSR-3 logger instance [optional]
-	 *  - errorLogger : Callback that takes an Exception and logs it [optional]
-	 *  - deprecationLogger: Callback to log a deprecation warning [optional]
-	 *  - roundStage: STAGE_POSTCOMMIT_* class constant; for internal use [optional]
-	 *  - ownerId: integer ID of an LBFactory instance that manages this instance [optional]
-	 *  - clusterName: The logical name of the DB cluster [optional]
-	 *  - criticalSectionProvider: CriticalSectionProvider instance [optional]
-	 * @throws InvalidArgumentException
-	 */
-	public function __construct( array $params );
-
 	/**
 	 * Get the logical name of the database cluster
 	 *
@@ -173,7 +131,7 @@ interface ILoadBalancer {
 	public function getLocalDomainID(): string;
 
 	/**
-	 * @param DatabaseDomain|string|bool $domain Database domain
+	 * @param DatabaseDomain|string|false $domain Database domain
 	 * @return string Value of $domain if it is foreign or the local domain otherwise
 	 * @since 1.32
 	 */
@@ -209,14 +167,14 @@ interface ILoadBalancer {
 	 * Subsequent calls with the same $group will not need to make new connection attempts
 	 * since the acquired connection for each group is preserved.
 	 *
-	 * @param string|bool $group Query group or false for the generic group
-	 * @param string|bool $domain DB domain ID or false for the local domain
-	 * @return int|bool Specific server index, or false if no live handle can be obtained
+	 * @param string|false $group Query group or false for the generic group
+	 * @param string|false $domain DB domain ID or false for the local domain
+	 * @return int|false Specific server index, or false if no DB handle can be obtained
 	 */
 	public function getReaderIndex( $group = false, $domain = false );
 
 	/**
-	 * Set the primary position to reach before the next generic group DB handle query
+	 * Set the primary position to reach before the next generic group DB query
 	 *
 	 * If a generic replica DB connection is already open then this immediately waits
 	 * for that DB to catch up to the specified replication position. Otherwise, it will
@@ -226,7 +184,7 @@ interface ILoadBalancer {
 	 * will return true. This is useful for discouraging clients from taking further actions
 	 * if session consistency could not be maintained with respect to their last actions.
 	 *
-	 * @param DBPrimaryPos|bool $pos Primary position or false
+	 * @param DBPrimaryPos|false $pos Primary position or false
 	 */
 	public function waitFor( $pos );
 
@@ -236,29 +194,30 @@ interface ILoadBalancer {
 	 * This method is only intended for use a throttling mechanism for high-volume updates.
 	 * Unlike waitFor(), failure does not effect getLaggedReplicaMode()/laggedReplicaUsed().
 	 *
-	 * @param DBPrimaryPos|bool $pos Primary position or false
+	 * @param DBPrimaryPos|false $pos Primary position or false
 	 * @param int|null $timeout Max seconds to wait; default is mWaitTimeout
 	 * @return bool Success (able to connect and no timeouts reached)
 	 */
 	public function waitForAll( $pos, $timeout = null );
 
 	/**
-	 * Get an existing live handle to the given server index (on any domain)
+	 * Get an existing DB handle to the given server index (on any domain)
 	 *
 	 * Use the CONN_TRX_AUTOCOMMIT flag to only look for connections opened with that flag.
 	 *
 	 * Avoid the use of begin()/commit() and startAtomic()/endAtomic() on any handle returned.
-	 * This method is largely intended for internal by RDBMs callers that issue queries that do
+	 * This method is intended for internal RDBMS callers that issue queries that do
 	 * not affect any current transaction.
 	 *
+	 * @internal For use by Rdbms classes only
 	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param int $flags Bitfield of CONN_* class constants
-	 * @return Database|bool False if no such connection is open
+	 * @return Database|false False if no such connection is open
 	 */
 	public function getAnyOpenConnection( $i, $flags = 0 );
 
 	/**
-	 * Get a live handle for a specific or virtual (DB_PRIMARY/DB_REPLICA) server index
+	 * Get a lazy-connecting database handle for a specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 *
 	 * The server index, $i, can be one of the following:
 	 *   - DB_REPLICA: a server index will be selected by the load balancer based on read
@@ -276,9 +235,7 @@ interface ILoadBalancer {
 	 *      server selection method is usually only useful for internal load balancing logic.
 	 *      The value of $groups should be [] when using a specific server index.
 	 *
-	 * Handles acquired by this method, getConnectionRef(), getLazyConnectionRef(), and
-	 * getMaintenanceConnectionRef() use the same set of shared connection pools. Callers that
-	 * get a *local* DB domain handle for the same server will share one handle for all of those
+	 * Callers that get a *local* DB domain handle for the same server will share one handle for all of those
 	 * callers using CONN_TRX_AUTOCOMMIT (via $flags) and one handle for all of those callers not
 	 * using CONN_TRX_AUTOCOMMIT. Callers that get a *foreign* DB domain handle (via $domain) will
 	 * share any handle that has the right CONN_TRX_AUTOCOMMIT mode and is already on the right
@@ -291,10 +248,6 @@ interface ILoadBalancer {
 	 * callers get local DB domain (the default), transaction round aware (the default), samely
 	 * query grouped (the default), DB_REPLICA handles. All such callers will operate within a
 	 * single database transaction as a consequence.
-	 *
-	 * Callers of this function that use a non-local $domain must call reuseConnection() after
-	 * their last query on this handle executed. This lets the load balancer share the handle with
-	 * other callers requesting connections on different database domains.
 	 *
 	 * Use CONN_TRX_AUTOCOMMIT to use a separate pool of only auto-commit handles. This flag
 	 * is ignored for databases with ATTR_DB_LEVEL_LOCKING (e.g. sqlite) in order to avoid
@@ -309,98 +262,88 @@ interface ILoadBalancer {
 	 *
 	 * @param int $i Specific (overrides $groups) or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
-	 * @param string|bool $domain DB domain ID or false for the local domain
+	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants
-	 *
-	 * @note This method throws DBAccessError if ILoadBalancer::disable() was called
-	 *
-	 * @return IDatabase|bool This returns false on failure if CONN_SILENCE_ERRORS is set
-	 * @throws DBError If no live handle could be obtained and CONN_SILENCE_ERRORS is not set
-	 * @throws DBAccessError If disable() was previously called
-	 * @throws InvalidArgumentException
+	 * @return IDatabase|false This returns false on failure if CONN_SILENCE_ERRORS is set
 	 */
 	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 );
 
 	/**
-	 * Get a live handle for a specific server index
+	 * Get a DB handle for a specific server index
 	 *
-	 * This is a simpler version of getConnection() that does not accept virtual server
-	 * indexes (e.g. DB_PRIMARY/DB_REPLICA), does not assure that primary DB handles have
-	 * read-only mode when there is high replication lag, and can only trigger attempts
-	 * to connect to a single server (the one with the specified server index).
+	 * This is an internal utility method for methods like LoadBalancer::getConnectionInternal()
+	 * and DBConnRef to create the underlying connection to a concrete server.
+	 *
+	 * The following is the responsibility of the caller:
+	 *
+	 * - translate any virtual server indexes (DB_PRIMARY/DB_REPLICA) to a real server index.
+	 * - enforce read-only mode on primary DB handle if there is high replication lag.
 	 *
 	 * @see ILoadBalancer::getConnection()
 	 *
+	 * @internal Only for use within ILoadBalancer/ILoadMonitor
 	 * @param int $i Specific server index
 	 * @param string $domain Resolved DB domain
 	 * @param int $flags Bitfield of class CONN_* constants
 	 * @return IDatabase|false This returns false on failure if CONN_SILENCE_ERRORS is set
-	 * @throws DBError If no live handle could be obtained and CONN_SILENCE_ERRORS is not set
-	 * @internal Only for use within ILoadBalancer/ILoadMonitor
+	 * @throws DBError If no DB handle could be obtained and CONN_SILENCE_ERRORS is not set
 	 */
 	public function getServerConnection( $i, $domain, $flags = 0 );
 
 	/**
-	 * Mark a live handle as being available for reuse under a different database domain
-	 *
-	 * This mechanism is reference-counted, and must be called the same number of times as
-	 * getConnection() to work. Never call this on handles acquired via getConnectionRef(),
-	 * getLazyConnectionRef(), and getMaintenanceConnectionRef(), as they already manage
-	 * the logic of calling this method when they fall out of scope in PHP.
-	 *
-	 * @see ILoadBalancer::getConnection()
-	 *
+	 * @deprecated since 1.39 noop
 	 * @param IDatabase $conn
-	 * @throws LogicException
 	 */
 	public function reuseConnection( IDatabase $conn );
 
 	/**
-	 * Get a live database handle reference for a server index
-	 *
-	 * The CONN_TRX_AUTOCOMMIT flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
-	 * (e.g. sqlite) in order to avoid deadlocks. The getServerAttributes() method can be used
-	 * to check such flags beforehand. Avoid the use of begin() or startAtomic()
-	 * on any CONN_TRX_AUTOCOMMIT connections.
-	 *
-	 * @see ILoadBalancer::getConnection() for parameter information
-	 *
+	 * @internal Only for use within DBConnRef
+	 * @param IDatabase $conn
+	 */
+	public function reuseConnectionInternal( IDatabase $conn );
+
+	/**
+	 * @deprecated since 1.39, use ILoadBalancer::getConnection() instead.
 	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
-	 * @param string|bool $domain DB domain ID or false for the local domain
+	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
 	 * @return DBConnRef
 	 */
 	public function getConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase;
 
 	/**
-	 * Get a lazy-connecting database handle reference for a server index
-	 *
-	 * The handle's methods simply proxy to those of an underlying IDatabase handle which
-	 * takes care of the actual connection and query logic.
+	 * @internal Only to be used by DBConnRef
+	 * @param int $i Specific (overrides $groups) or virtual (DB_PRIMARY/DB_REPLICA) server index
+	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
+	 * @param string|false $domain DB domain ID or false for the local domain
+	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
+	 * @return IDatabase
+	 */
+	public function getConnectionInternal( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase;
+
+	/**
+	 * Get a lazy-connecting database handle for a server index
 	 *
 	 * The CONN_TRX_AUTOCOMMIT flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
 	 * (e.g. sqlite) in order to avoid deadlocks. getServerAttributes()
 	 * can be used to check such flags beforehand. Avoid the use of begin() or startAtomic()
 	 * on any CONN_TRX_AUTOCOMMIT connections.
 	 *
+	 * @deprecated since 1.38, use ILoadBalancer::getConnectionRef() instead.
 	 * @see ILoadBalancer::getConnection() for parameter information
-	 *
 	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
-	 * @param string|bool $domain DB domain ID or false for the local domain
+	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants
-	 * @return IDatabase Live connection handle
-	 * @throws DBError If no live handle could be obtained
-	 * @throws DBAccessError If disable() was previously called
-	 * @deprecated since 1.38 use getConnectionRef instead
+	 * @return IDatabase
 	 */
 	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase;
 
 	/**
-	 * Get a live database handle, suitable for migrations and schema changes, for a server index
+	 * Get a DB handle, suitable for migrations and schema changes, for a server index
 	 *
-	 * The handle's methods simply proxy to those of an underlying IDatabase handle which
+	 * The DBConnRef methods simply proxy an underlying IDatabase object which
 	 * takes care of the actual connection and query logic.
 	 *
 	 * The CONN_TRX_AUTOCOMMIT flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
@@ -409,16 +352,13 @@ interface ILoadBalancer {
 	 * on any CONN_TRX_AUTOCOMMIT connections.
 	 *
 	 * @see ILoadBalancer::getConnection() for parameter information
-	 *
 	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
 	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
-	 * @param string|bool $domain DB domain ID or false for the local domain
+	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @param int $flags Bitfield of CONN_* class constants (e.g. CONN_TRX_AUTOCOMMIT)
-	 * @return MaintainableDBConnRef Live connection handle
-	 * @throws DBError If no live handle could be obtained
-	 * @throws DBAccessError If disable() was previously called
+	 * @return DBConnRef
 	 */
-	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): MaintainableDBConnRef;
+	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): DBConnRef;
 
 	/**
 	 * Get the specific server index of the primary server
@@ -504,7 +444,7 @@ interface ILoadBalancer {
 	/**
 	 * Get the current primary replication position
 	 *
-	 * @return DBPrimaryPos|bool Returns false if not applicable
+	 * @return DBPrimaryPos|false Returns false if not applicable
 	 * @throws DBError
 	 * @since 1.37
 	 */
@@ -522,28 +462,10 @@ interface ILoadBalancer {
 	 * This can be useful for implementing session consistency, where the session
 	 * will be resumed across multiple HTTP requests or CLI script instances.
 	 *
-	 * @return DBPrimaryPos|bool Replication position or false if not applicable
+	 * @return DBPrimaryPos|false Replication position or false if not applicable
 	 * @since 1.34
 	 */
 	public function getReplicaResumePos();
-
-	/**
-	 * Close all connections and disable this load balancer
-	 *
-	 * Any attempt to open a new connection will result in a DBAccessError.
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 */
-	public function disable( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Close all open connections
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 */
-	public function closeAll( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * Close a connection
@@ -554,113 +476,6 @@ interface ILoadBalancer {
 	 * @param IDatabase $conn
 	 */
 	public function closeConnection( IDatabase $conn );
-
-	/**
-	 * Commit transactions on all open connections
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @throws DBExpectedError
-	 */
-	public function commitAll( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Run pre-commit callbacks and defer execution of post-commit callbacks
-	 *
-	 * Use this only for multi-database commits
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @return int Number of pre-commit callbacks run (since 1.32)
-	 * @since 1.37
-	 */
-	public function finalizePrimaryChanges( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Perform all pre-commit checks for things like replication safety
-	 *
-	 * Use this only for multi-database commits
-	 *
-	 * @param array $options Includes:
-	 *   - maxWriteDuration : max write query duration time in seconds
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @throws DBTransactionError
-	 * @since 1.37
-	 */
-	public function approvePrimaryChanges( array $options, $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Flush any primary transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)
-	 *
-	 * The DBO_TRX setting will be reverted to the default in each of these methods:
-	 *   - commitPrimaryChanges()
-	 *   - rollbackPrimaryChanges()
-	 *   - commitAll()
-	 * This allows for custom transaction rounds from any outer transaction scope.
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @throws DBExpectedError
-	 * @since 1.37
-	 */
-	public function beginPrimaryChanges( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Issue COMMIT on all open primary connections to flush changes and view snapshots
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @throws DBExpectedError
-	 * @since 1.37
-	 */
-	public function commitPrimaryChanges( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Consume and run all pending post-COMMIT/ROLLBACK callbacks and commit dangling transactions
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @return Exception|null The first exception or null if there were none
-	 * @since 1.37
-	 */
-	public function runPrimaryTransactionIdleCallbacks( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Run all recurring post-COMMIT/ROLLBACK listener callbacks
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @return Exception|null The first exception or null if there were none
-	 * @since 1.37
-	 */
-	public function runPrimaryTransactionListenerCallbacks( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Issue ROLLBACK only on primary, only if queries were done on connection
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @throws DBExpectedError
-	 * @since 1.37
-	 */
-	public function rollbackPrimaryChanges( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshots
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 */
-	public function flushReplicaSnapshots( $fname = __METHOD__, $owner = null );
-
-	/**
-	 * Commit all primary DB transactions so as to flush any REPEATABLE-READ or SSI snapshots
-	 *
-	 * An error will be thrown if a connection has pending writes or callbacks
-	 *
-	 * @param string $fname Caller name
-	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
-	 * @since 1.37
-	 */
-	public function flushPrimarySnapshots( $fname = __METHOD__, $owner = null );
 
 	/**
 	 * @return bool Whether a primary connection is already open
@@ -676,8 +491,16 @@ interface ILoadBalancer {
 	public function hasPrimaryChanges();
 
 	/**
+	 * Determine whether an explicit transaction is active on any open primary
+	 * connection.
+	 * @return bool
+	 * @since 1.39
+	 */
+	public function explicitTrxActive();
+
+	/**
 	 * Get the timestamp of the latest write query done by this thread
-	 * @return float|bool UNIX timestamp or false
+	 * @return float|false UNIX timestamp or false
 	 * @since 1.37
 	 */
 	public function lastPrimaryChangeTimestamp();
@@ -693,16 +516,8 @@ interface ILoadBalancer {
 	public function hasOrMadeRecentPrimaryChanges( $age = null );
 
 	/**
-	 * Get the list of callers that have pending primary changes
-	 *
-	 * @return string[] List of method names
-	 * @since 1.37
-	 */
-	public function pendingPrimaryChangeCallers();
-
-	/**
 	 * @note This method will trigger a DB connection if not yet done
-	 * @param string|bool $domain DB domain ID or false for the local domain
+	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @return bool Whether the database for generic connections this request is highly "lagged"
 	 */
 	public function getLaggedReplicaMode( $domain = false );
@@ -719,8 +534,8 @@ interface ILoadBalancer {
 
 	/**
 	 * @note This method may trigger a DB connection if not yet done
-	 * @param string|bool $domain DB domain ID or false for the local domain
-	 * @return string|bool Reason the primary is read-only or false if it is not
+	 * @param string|false $domain DB domain ID or false for the local domain
+	 * @return string|false Reason the primary is read-only or false if it is not
 	 */
 	public function getReadOnlyReason( $domain = false );
 
@@ -730,28 +545,13 @@ interface ILoadBalancer {
 	public function pingAll();
 
 	/**
-	 * Call a function with each open connection object
-	 * @param callable $callback
-	 * @param array $params
-	 */
-	public function forEachOpenConnection( $callback, array $params = [] );
-
-	/**
-	 * Call a function with each open connection object to a primary
-	 * @param callable $callback
-	 * @param array $params
-	 * @since 1.37
-	 */
-	public function forEachOpenPrimaryConnection( $callback, array $params = [] );
-
-	/**
 	 * Get the name and lag time of the most-lagged replica server
 	 *
 	 * This is useful for maintenance scripts that need to throttle their updates.
 	 * May attempt to open connections to replica DBs on the default DB. If there is
 	 * no lag, the maximum lag will be reported as -1.
 	 *
-	 * @param bool|string $domain Domain ID or false for the default database
+	 * @param string|false $domain Domain ID or false for the default database
 	 * @return array{0:string,1:float|int|false,2:int} (host, max lag, index of max lagged host)
 	 */
 	public function getMaxLag( $domain = false );
@@ -763,7 +563,7 @@ interface ILoadBalancer {
 	 *
 	 * Values may be "false" if replication is too broken to estimate
 	 *
-	 * @param string|bool $domain
+	 * @param string|false $domain
 	 * @return float[]|int[]|false[] Map of (server index => lag) in order of server index
 	 */
 	public function getLagTimes( $domain = false );
@@ -776,7 +576,7 @@ interface ILoadBalancer {
 	 * to get an accurate position.
 	 *
 	 * @param IDatabase $conn Replica DB
-	 * @param DBPrimaryPos|bool $pos Primary position; default: current position
+	 * @param DBPrimaryPos|false $pos Primary position; default: current position
 	 * @param int $timeout Timeout in seconds [optional]
 	 * @return bool Success
 	 * @since 1.37
@@ -791,14 +591,6 @@ interface ILoadBalancer {
 	 * @param callable|null $callback
 	 */
 	public function setTransactionListener( $name, callable $callback = null );
-
-	/**
-	 * Set a new table prefix for the existing local domain ID for testing
-	 *
-	 * @param string $prefix
-	 * @since 1.33
-	 */
-	public function setLocalDomainPrefix( $prefix );
 
 	/**
 	 * Make certain table names use their own database, schema, and table prefix

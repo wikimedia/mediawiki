@@ -23,6 +23,32 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'namespace' => NS_USER,
 					'title' => 'Logtestuser',
 					'params' => [
+						'5::duration' => 'infinity',
+						'6::flags' => 'anononly',
+					],
+				],
+				[
+					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite'
+						. ' (anonymous users only)',
+					'api' => [
+						'duration' => 'infinity',
+						'flags' => [ 'anononly' ],
+					],
+					'preload' => [ new TitleValue( NS_USER_TALK, 'Logtestuser' ) ],
+				],
+			],
+
+			// Old log format with one of the 4 values for 'infinity'
+			[
+				[
+					'type' => 'block',
+					'action' => 'block',
+					'comment' => 'Block comment',
+					'user' => 0,
+					'user_text' => 'Sysop',
+					'namespace' => NS_USER,
+					'title' => 'Logtestuser',
+					'params' => [
 						'5::duration' => 'infinite',
 						'6::flags' => 'anononly',
 					],
@@ -31,7 +57,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite'
 						. ' (anonymous users only)',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [ 'anononly' ],
 					],
 					'preload' => [ new TitleValue( NS_USER_TALK, 'Logtestuser' ) ],
@@ -54,7 +80,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'text' => 'Sysop blocked (no username available) '
 						. 'with an expiration time of indefinite',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [],
 					],
 					'preload' => [],
@@ -81,7 +107,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite'
 						. ' (anonymous users only)',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [ 'anononly' ],
 					],
 				],
@@ -105,7 +131,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'legacy' => true,
 					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [],
 					],
 				],
@@ -127,7 +153,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'legacy' => true,
 					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [],
 					],
 				],
@@ -168,7 +194,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'text' => 'Sysop changed block settings for Logtestuser with an expiration time of'
 						. ' indefinite (anonymous users only)',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [ 'anononly' ],
 					],
 				],
@@ -194,7 +220,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'text' => 'Sysop changed block settings for Logtestuser with an expiration time of'
 						. ' indefinite (anonymous users only)',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [ 'anononly' ],
 					],
 				],
@@ -218,7 +244,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'legacy' => true,
 					'text' => 'Sysop changed block settings for Logtestuser with an expiration time of indefinite',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [],
 					],
 				],
@@ -293,7 +319,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite'
 						. ' (anonymous users only)',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [ 'anononly' ],
 					],
 				],
@@ -319,7 +345,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'text' => 'Sysop blocked Logtestuser with an expiration time of indefinite'
 						. ' (anonymous users only)',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [ 'anononly' ],
 					],
 				],
@@ -331,8 +357,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 	 * @dataProvider provideSuppressBlockLogDatabaseRows
 	 */
 	public function testSuppressBlockLogDatabaseRows( $row, $extra ) {
-		$this->setMwGlobals(
-			'wgGroupPermissions',
+		$this->setGroupPermissions(
 			[
 				'oversight' => [
 					'viewsuppressed' => true,
@@ -368,7 +393,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 				[
 					'text' => '(username removed) (log details removed)',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [ 'anononly' ],
 					],
 				],
@@ -393,7 +418,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'legacy' => true,
 					'text' => '(username removed) (log details removed)',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [ 'anononly' ],
 					],
 				],
@@ -435,7 +460,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'text' => 'Sysop changed block settings for Logtestuser with an expiration time of'
 						. ' indefinite (anonymous users only)',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [ 'anononly' ],
 					],
 				],
@@ -461,7 +486,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'text' => 'Sysop changed block settings for Logtestuser with an expiration time of'
 						. ' indefinite (anonymous users only)',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [ 'anononly' ],
 					],
 				],
@@ -473,8 +498,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 	 * @dataProvider provideSuppressReblockLogDatabaseRows
 	 */
 	public function testSuppressReblockLogDatabaseRows( $row, $extra ) {
-		$this->setMwGlobals(
-			'wgGroupPermissions',
+		$this->setGroupPermissions(
 			[
 				'oversight' => [
 					'viewsuppressed' => true,
@@ -510,7 +534,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 				[
 					'text' => '(username removed) (log details removed)',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [ 'anononly' ],
 					],
 				],
@@ -535,7 +559,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'legacy' => true,
 					'text' => '(username removed) (log details removed)',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [ 'anononly' ],
 					],
 				],
@@ -573,7 +597,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'text' => 'Sysop blocked Logtestuser from the pages User:Test1 and Main Page'
 						. ' with an expiration time of indefinite (anonymous users only)',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [ 'anononly' ],
 						'restrictions' => [
 							'pages' => [
@@ -612,7 +636,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'text' => 'Sysop blocked Logtestuser from the namespace User'
 						. ' with an expiration time of indefinite (anonymous users only)',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [ 'anononly' ],
 						'restrictions' => [
 							'namespaces' => [ NS_USER ],
@@ -645,7 +669,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 						. ' namespaces User and (Main) with an expiration time of indefinite'
 						. ' (anonymous users only)',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [ 'anononly' ],
 						'restrictions' => [
 							'pages' => [
@@ -679,7 +703,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					'text' => 'Sysop blocked Logtestuser from specified non-editing actions'
 						. ' with an expiration time of indefinite (anonymous users only)',
 					'api' => [
-						'duration' => 'infinite',
+						'duration' => 'infinity',
 						'flags' => [ 'anononly' ],
 						'sitewide' => false,
 					],

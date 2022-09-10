@@ -21,6 +21,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -73,7 +74,8 @@ class StreamFile {
 	 * @return null|string
 	 */
 	public static function contentTypeFromPath( $filename, $safe = true ) {
-		$trivialMimeDetection = MediaWikiServices::getInstance()->getMainConfig()->get( 'TrivialMimeDetection' );
+		$trivialMimeDetection = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::TrivialMimeDetection );
 
 		$ext = strrchr( $filename, '.' );
 		$ext = $ext ? strtolower( substr( $ext, 1 ) ) : '';
@@ -106,13 +108,13 @@ class StreamFile {
 		 */
 		if ( $safe ) {
 			$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-			$prohibitedFileExtensions = $mainConfig->get( 'ProhibitedFileExtensions' );
-			$checkFileExtensions = $mainConfig->get( 'CheckFileExtensions' );
-			$strictFileExtensions = $mainConfig->get( 'StrictFileExtensions' );
-			$fileExtensions = $mainConfig->get( 'FileExtensions' );
-			$verifyMimeType = $mainConfig->get( 'VerifyMimeType' );
-			$mimeTypeExclusions = $mainConfig->get( 'MimeTypeExclusions' );
-			list( , $extList ) = UploadBase::splitExtensions( $filename );
+			$prohibitedFileExtensions = $mainConfig->get( MainConfigNames::ProhibitedFileExtensions );
+			$checkFileExtensions = $mainConfig->get( MainConfigNames::CheckFileExtensions );
+			$strictFileExtensions = $mainConfig->get( MainConfigNames::StrictFileExtensions );
+			$fileExtensions = $mainConfig->get( MainConfigNames::FileExtensions );
+			$verifyMimeType = $mainConfig->get( MainConfigNames::VerifyMimeType );
+			$mimeTypeExclusions = $mainConfig->get( MainConfigNames::MimeTypeExclusions );
+			[ , $extList ] = UploadBase::splitExtensions( $filename );
 			if ( UploadBase::checkFileExtensionList( $extList, $prohibitedFileExtensions ) ) {
 				return 'unknown/unknown';
 			}

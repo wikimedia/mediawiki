@@ -115,7 +115,6 @@ class RenderedRevision implements SlotRenderingProvider {
 		Authority $performer = null
 	) {
 		$this->options = $options;
-		$this->contentRenderer = $contentRenderer;
 
 		$this->setRevisionInternal( $revision );
 

@@ -21,6 +21,9 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
+use MediaWiki\User\UserGroupManager;
+
 /**
  * Special page lists various statistics, including the contents of
  * `site_stats`, plus page view details if enabled
@@ -31,8 +34,15 @@ class SpecialStatistics extends SpecialPage {
 	private $edits, $good, $images, $total, $users,
 		$activeUsers = 0;
 
-	public function __construct() {
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
+	/**
+	 * @param UserGroupManager $userGroupManager
+	 */
+	public function __construct( UserGroupManager $userGroupManager ) {
 		parent::__construct( 'Statistics' );
+		$this->userGroupManager = $userGroupManager;
 	}
 
 	public function execute( $par ) {
@@ -84,7 +94,7 @@ class SpecialStatistics extends SpecialPage {
 	 * Format a row
 	 * @param string $text Description of the row
 	 * @param float|string $number A statistical number
-	 * @param array $trExtraParams Params to table row, see Html::elememt
+	 * @param array $trExtraParams Params to table row, see Html::element
 	 * @param string $descMsg Message key
 	 * @param array|string $descMsgParam Message parameters
 	 * @return string Table row in HTML format
@@ -125,7 +135,7 @@ class SpecialStatistics extends SpecialPage {
 				->parse() ) .
 			Xml::closeElement( 'tr' ) .
 				$this->formatRow(
-					$this->getConfig()->get( 'MiserMode' )
+					$this->getConfig()->get( MainConfigNames::MiserMode )
 						? $this->msg( 'statistics-articles' )->escaped()
 						: $linkRenderer->makeKnownLink(
 							$specialAllPagesTitle,
@@ -141,7 +151,7 @@ class SpecialStatistics extends SpecialPage {
 					'statistics-pages-desc' );
 
 		// Show the image row only, when there are files or upload is possible
-		if ( $this->images !== 0 || $this->getConfig()->get( 'EnableUploads' ) ) {
+		if ( $this->images !== 0 || $this->getConfig()->get( MainConfigNames::EnableUploads ) ) {
 			$pageStatsHtml .= $this->formatRow(
 				$linkRenderer->makeKnownLink( SpecialPage::getTitleFor( 'MediaStatistics' ),
 				$this->msg( 'statistics-files' )->text() ),
@@ -190,20 +200,16 @@ class SpecialStatistics extends SpecialPage {
 				[ 'class' => 'mw-statistics-users-active' ],
 				'statistics-users-active-desc',
 				$this->getLanguage()->formatNum(
-					$this->getConfig()->get( 'ActiveUserDays' ) )
+					$this->getConfig()->get( MainConfigNames::ActiveUserDays ) )
 			);
 	}
 
 	private function getGroupStats() {
 		$linkRenderer = $this->getLinkRenderer();
+		$lang = $this->getLanguage();
 		$text = '';
-		foreach ( $this->getConfig()->get( 'GroupPermissions' ) as $group => $permissions ) {
-			# Skip generic * and implicit groups
-			if ( in_array( $group, $this->getConfig()->get( 'ImplicitGroups' ) )
-				|| $group == '*' ) {
-				continue;
-			}
-			$groupnameLocalized = UserGroupMembership::getGroupName( $group );
+		foreach ( $this->userGroupManager->listAllGroups() as $group ) {
+			$groupnameLocalized = $lang->getGroupName( $group );
 			$linkTarget = UserGroupMembership::getGroupPage( $group )
 				?: Title::makeTitleSafe( NS_PROJECT, $group );
 

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 
@@ -26,18 +27,16 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setContentLang( 'tg' );
-
-		$this->setMwGlobals( [
-			'wgDefaultLanguageVariant' => false,
+		$this->overrideConfigValues( [
+			MainConfigNames::LanguageCode => 'en',
+			MainConfigNames::DefaultLanguageVariant => false,
 		] );
+		$this->setContentLang( 'tg' );
 		$this->setContextUser( new User );
 
-		$this->lang = $this->createMock( Language::class );
+		$this->lang = $this->createNoOpMock( Language::class, [ 'factory', 'getNsText', 'ucfirst' ] );
 		$this->lang->method( 'getNsText' )->with( NS_MEDIAWIKI )->willReturn( 'MediaWiki' );
 		$this->lang->method( 'ucfirst' )->willReturnCallback( 'ucfirst' );
-		$this->lang->expects( $this->never() )
-			->method( $this->anythingBut( 'factory', 'getNsText', 'ucfirst' ) );
 		$this->lc = new DummyConverter( $this->lang );
 	}
 
@@ -155,9 +154,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @covers LanguageConverter::getPreferredVariant
 	 */
 	public function testGetPreferredVariantDefaultLanguageVariant( $globalVal, $expected ) {
-		global $wgDefaultLanguageVariant;
-
-		$wgDefaultLanguageVariant = $globalVal;
+		$this->overrideConfigValue( MainConfigNames::DefaultLanguageVariant, $globalVal );
 		$this->assertEquals( $expected, $this->lc->getPreferredVariant() );
 	}
 
@@ -205,10 +202,13 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideTitlesToConvert
 	 * @covers LanguageConverter::convertTitle
 	 *
-	 * @param LinkTarget|PageReference $title title to convert
+	 * @param LinkTarget|PageReference|callable $title title to convert
 	 * @param string $expected
 	 */
 	public function testConvertTitle( $title, string $expected ): void {
+		if ( is_callable( $title ) ) {
+			$title = $title();
+		}
 		$actual = $this->lc->convertTitle( $title );
 		$this->assertSame( $expected, $actual );
 	}
@@ -224,12 +224,18 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 				'Акс:Dummy title',
 			],
 			'Title MainPage default' => [
-				Title::newMainPage(),
-				'Main Page',
+				static function () {
+					// Don't call this until services have been set up
+					return Title::newMainPage();
+				},
+				'Саҳифаи аслӣ',
 			],
 			'Title MainPage with MessageLocalizer' => [
-				Title::newMainPage( new MockMessageLocalizer() ),
-				'Main Page',
+				static function () {
+					// Don't call this until services have been set up
+					return Title::newMainPage( new MockMessageLocalizer() );
+				},
+				'Саҳифаи аслӣ',
 			],
 			'TitleValue' => [
 				new TitleValue( NS_FILE, 'Dummy page' ),

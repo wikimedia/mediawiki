@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\LikeMatch;
 
 /**
@@ -11,7 +12,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( 'wgUrlProtocols', [
+		$this->overrideConfigValue( MainConfigNames::UrlProtocols, [
 			'http://',
 			'https://',
 			'ftp://',
@@ -294,14 +295,13 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 	 */
 	public function testMakeIndexes( $url, $expected ) {
 		// Set global so file:// tests can work
-		$this->setMwGlobals( [
-			'wgUrlProtocols' => [
+		$this->overrideConfigValue(
+			MainConfigNames::UrlProtocols, [
 				'http://',
 				'https://',
 				'mailto:',
 				'//',
 				'file://', # Non-default
-			],
 		] );
 
 		$index = LinkFilter::makeIndexes( $url );

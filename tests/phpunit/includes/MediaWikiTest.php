@@ -1,17 +1,20 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 class MediaWikiTest extends MediaWikiIntegrationTestCase {
 	private $oldServer, $oldGet, $oldPost;
 
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgServer' => 'http://example.org',
-			'wgScriptPath' => '/w',
-			'wgScript' => '/w/index.php',
-			'wgArticlePath' => '/wiki/$1',
-			'wgActionPaths' => [],
+		$this->overrideConfigValues( [
+			MainConfigNames::Server => 'http://example.org',
+			MainConfigNames::ScriptPath => '/w',
+			MainConfigNames::Script => '/w/index.php',
+			MainConfigNames::ArticlePath => '/wiki/$1',
+			MainConfigNames::ActionPaths => [],
+			MainConfigNames::LanguageCode => 'en',
 		] );
 
 		// phpcs:disable MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals

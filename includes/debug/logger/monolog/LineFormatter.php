@@ -145,12 +145,14 @@ class LineFormatter extends MonologLineFormatter {
 		];
 		$e = array_merge( $defaults, $e );
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal class is always set
 		$which = is_a( $e['class'], Error::class, true ) ? 'Error' : 'Exception';
 		$str = "\n[$which {$e['class']}] (" .
 			"{$e['file']}:{$e['line']}) {$e['message']}";
 
 		if ( $this->includeStacktraces && $e['trace'] ) {
 			$str .= "\n" .
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable trace is always set
 				MWExceptionHandler::prettyPrintTrace( $e['trace'], '  ' );
 		}
 

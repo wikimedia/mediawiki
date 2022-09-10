@@ -1,10 +1,13 @@
 <?php
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\Logger\LegacySpi;
 use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
@@ -136,6 +139,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private $overriddenServices = [];
 
 	/**
+	 * @var ?HashConfig
+	 */
+	private $overriddenConfig = null;
+
+	/**
 	 * @var array[] contains temporary hooks as a list of name/handler pairs,
 	 *      where a name/false pair indicates the hook being cleared.
 	 */
@@ -170,13 +178,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	private static function initializeForStandardPhpunitEntrypointIfNeeded() {
-		if ( function_exists( 'wfRequireOnceInGlobalScope' ) ) {
+		if ( defined( 'MW_PHPUNIT_UNIT' ) ) {
 			$IP = realpath( __DIR__ . '/../..' );
-			wfRequireOnceInGlobalScope( "$IP/includes/Defines.php" );
-			wfRequireOnceInGlobalScope( "$IP/includes/DefaultSettings.php" );
-			wfRequireOnceInGlobalScope( "$IP/includes/GlobalFunctions.php" );
-			wfRequireOnceInGlobalScope( "$IP/includes/Setup.php" );
-			wfRequireOnceInGlobalScope( "$IP/tests/common/TestsAutoLoader.php" );
+			TestSetup::requireOnceInGlobalScope( "$IP/includes/Defines.php" );
+			TestSetup::requireOnceInGlobalScope( "$IP/includes/GlobalFunctions.php" );
+			TestSetup::requireOnceInGlobalScope( "$IP/includes/Setup.php" );
+			TestSetup::requireOnceInGlobalScope( "$IP/tests/common/TestsAutoLoader.php" );
 			TestSetup::applyInitialConfig();
 		}
 	}
@@ -186,8 +193,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @beforeClass
 	 */
 	final public static function mediaWikiSetUpBeforeClass(): void {
-		global $IP;
-		$settingsFile = wfDetectLocalSettingsFile( $IP );
+		$settingsFile = wfDetectLocalSettingsFile();
 		if ( !is_file( $settingsFile ) ) {
 				echo "The file $settingsFile could not be found. "
 				. "Test case " . static::class . " extends " . self::class . " "
@@ -310,22 +316,34 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Create a config suitable for testing, based on a base config, default overrides,
-	 * and custom overrides.
+	 * Determine config overrides, taking into account the local system's actual settings and
+	 * avoiding interference with any custom overrides.
 	 *
-	 * @param Config|null $baseConfig
-	 * @param Config|null $customOverrides
+	 * @param Config|null $customOverrides Custom overrides that should take precedence
+	 *        over the default overrides. Settings from $customOverrides that conflict
+	 *        with a default override will replace that default override.
+	 * @param Config|null $baseConfig Used to get the baseline value for settings.
+	 *        This is used when the override should only affect part of a setting
+	 *        that contains a complex structure, such ObjectCaches.
+	 *        If not given, the original main config will be used.
+	 *        The base config will not be used as a fallback for config keys that are
+	 *        not overwritten, it is only used to determine values of keys that are
+	 *        overwritten.
 	 *
-	 * @return Config
+	 * @return array Config overrides
 	 */
-	private static function makeTestConfig(
-		Config $baseConfig = null,
-		Config $customOverrides = null
-	) {
-		$defaultOverrides = new HashConfig();
+	public static function getConfigOverrides(
+		Config $customOverrides = null,
+		Config $baseConfig = null
+	): array {
+		$overrides = [];
 
 		if ( !$baseConfig ) {
-			$baseConfig = self::$originalServices->getBootstrapConfig();
+			if ( self::$originalServices ) {
+				$baseConfig = self::$originalServices->getMainConfig();
+			} else {
+				$baseConfig = MediaWikiServices::getInstance()->getMainConfig();
+			}
 		}
 
 		/* Some functions require some kind of caching, and will end up using the db,
@@ -340,20 +358,35 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				'apc' => $hashCache,
 				'apcu' => $hashCache,
 				'wincache' => $hashCache,
-			] + $baseConfig->get( 'ObjectCaches' );
+				'UTCache' => $hashCache,
+			] + $baseConfig->get( MainConfigNames::ObjectCaches );
 
-		$defaultOverrides->set( 'ObjectCaches', $objectCaches );
-		$defaultOverrides->set( 'MainCacheType', CACHE_NONE );
-		$defaultOverrides->set( 'JobTypeConf', [ 'default' => [ 'class' => JobQueueMemory::class ] ] );
+		// Use hash based caches
+		$overrides[ MainConfigNames::ObjectCaches ] = $objectCaches;
+
+		// Use a hash based BagOStuff as the main cache
+		$overrides[ MainConfigNames::MainCacheType ] = CACHE_HASH;
+
+		// Don't actually store jobs
+		$overrides[ MainConfigNames::JobTypeConf ] = [ 'default' => [ 'class' => JobQueueMemory::class ] ];
 
 		// Use a fast hash algorithm to hash passwords.
-		$defaultOverrides->set( 'PasswordDefault', 'A' );
+		$overrides[ MainConfigNames::PasswordDefault ] = 'A';
 
-		$testConfig = $customOverrides
-			? new MultiConfig( [ $customOverrides, $defaultOverrides, $baseConfig ] )
-			: new MultiConfig( [ $defaultOverrides, $baseConfig ] );
+		// Since $overrides would shadow entries in $customOverrides, copy any
+		// conflicting entries from $customOverrides into $overrides.
+		// Later, $overrides and $customOverrides will be combined in a MultiConfig.
+		// If $customOverrides was an IterableConfig, we wouldn't need to do that,
+		// we could just copy it entirely into $overrides.
+		if ( $customOverrides ) {
+			foreach ( $overrides as $key => $dummy ) {
+				if ( $customOverrides->has( $key ) ) {
+					$overrides[ $key ] = $customOverrides->get( $key );
+				}
+			}
+		}
 
-		return $testConfig;
+		return $overrides;
 	}
 
 	/**
@@ -415,57 +448,73 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	public function run( TestResult $result = null ): TestResult {
-		$this->overrideMwServices();
-
-		if ( $this->needsDB() && !$this->isTestInDatabaseGroup() ) {
-			throw new Exception(
-				get_class( $this ) . ' apparently needsDB but is not in the Database group'
-			);
+		if ( $result === null ) {
+			$result = $this->createResult();
 		}
 
-		$needsResetDB = false;
-		if ( !self::$dbSetup || $this->needsDB() ) {
-			// set up a DB connection for this test to use
+		try {
+			$this->overrideMwServices();
 
-			$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
-
-			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-			$this->db = $lb->getConnection( DB_PRIMARY );
-
-			$this->checkDbIsSupported();
-
-			if ( !self::$dbSetup ) {
-				self::setupAllTestDBs(
-					$this->db, $this->dbPrefix(), $useTemporaryTables
+			if ( $this->needsDB() && !$this->isTestInDatabaseGroup() ) {
+				throw new LogicException(
+					get_class( $this ) . ' apparently needsDB but is not in the Database group'
 				);
-				$this->addCoreDBData();
 			}
 
-			// TODO: the DB setup should be done in setUpBeforeClass(), so the test DB
-			// is available in subclass's setUpBeforeClass() and setUp() methods.
-			// This would also remove the need for the HACK that is oncePerClass().
-			if ( $this->oncePerClass() ) {
-				$this->setUpSchema( $this->db );
-				$this->resetDB( $this->db, $this->tablesUsed );
-				$this->addDBDataOnce();
-			}
+			$needsResetDB = false;
+			if ( !self::$dbSetup || $this->needsDB() ) {
+				// Set up a DB connection for this test to use
+				$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
 
-			$this->addDBData();
-			$needsResetDB = true;
+				$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+				$this->db = $lb->getConnectionInternal( DB_PRIMARY );
+
+				$this->checkDbIsSupported();
+
+				if ( !self::$dbSetup ) {
+					self::setupAllTestDBs(
+						$this->db, $this->dbPrefix(), $useTemporaryTables
+					);
+					$this->addCoreDBData();
+				}
+
+				// TODO: the DB setup should be done in setUpBeforeClass(), so the test DB
+				// is available in subclass's setUpBeforeClass() and setUp() methods.
+				// This would also remove the need for the HACK that is oncePerClass().
+				if ( $this->oncePerClass() ) {
+					$this->setUpSchema( $this->db );
+					$this->resetDB( $this->db, $this->tablesUsed );
+					$this->addDBDataOnce();
+				}
+
+				$this->addDBData();
+				$needsResetDB = true;
+			}
+		} catch ( Throwable $e ) {
+			$result->stop();
+			$result->addError( $this, $e, 0 );
+
+			return $result;
 		}
 
 		parent::run( $result );
 
-		// We don't mind if we override already-overridden services during cleanup
-		$this->overriddenServices = [];
-		$this->temporaryHookHandlers = [];
+		try {
+			// We don't mind if we override already-overridden services during cleanup
+			$this->overriddenServices = [];
+			$this->temporaryHookHandlers = [];
 
-		if ( $needsResetDB ) {
-			$this->resetDB( $this->db, $this->tablesUsed );
+			if ( $needsResetDB ) {
+				$this->resetDB( $this->db, $this->tablesUsed );
+			}
+
+			self::restoreMwServices();
+			$this->localServices = null;
+		} catch ( Throwable $e ) {
+			$result->stop();
+			$result->addError( $this, $e, 0 );
 		}
 
-		self::restoreMwServices();
-		$this->localServices = null;
 		return $result;
 	}
 
@@ -572,12 +621,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			while ( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback( __METHOD__, 'flush' );
 			}
-			// Check for unsafe queries
-			if ( $this->db->getType() === 'mysql' ) {
-				$this->db->query(
-					"SET sql_mode = 'STRICT_ALL_TABLES,ONLY_FULL_GROUP_BY'",
-					__METHOD__ );
-			}
 		}
 
 		// Reset all caches between tests.
@@ -601,7 +644,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @after
 	 */
 	final protected function mediaWikiTearDown(): void {
-		global $wgRequest, $wgSQLMode;
+		global $wgRequest;
 
 		$status = ob_get_status();
 		if ( isset( $status['name'] ) &&
@@ -615,14 +658,15 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			while ( $this->db->trxLevel() > 0 ) {
 				$this->db->rollback( __METHOD__, 'flush' );
 			}
-			if ( $this->db->getType() === 'mysql' ) {
-				$this->db->query( "SET sql_mode = " . $this->db->addQuotes( $wgSQLMode ),
-					__METHOD__ );
-			}
 		}
 
 		// Clear any cached test users so they don't retain references to old services
 		TestUserRegistry::clear();
+
+		// Restore config
+		if ( $this->overriddenConfig ) {
+			$this->overriddenConfig->clear();
+		}
 
 		// Restore mw globals
 		foreach ( $this->mwGlobals as $key => $value ) {
@@ -742,31 +786,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * The key is added to the array of globals that will be reset afterwards
 	 * in the tearDown().
 	 *
-	 * @par Example
-	 * @code
-	 *     protected function setUp() : void {
-	 *         parent::setUp();
-	 *         $this->setMwGlobals( 'wgRestrictStuff', true );
-	 *     }
-	 *
-	 *     function testFoo() {}
-	 *
-	 *     function testBar() {}
-	 *         $this->assertTrue( self::getX()->doStuff() );
-	 *
-	 *         $this->setMwGlobals( 'wgRestrictStuff', false );
-	 *         $this->assertTrue( self::getX()->doStuff() );
-	 *     }
-	 *
-	 *     function testQuux() {}
-	 * @endcode
+	 * @note Since 1.39, use overrideConfigValue() to override configuration.
+	 *       Since then, setMwGlobals() should only be used for the rare case of global variables
+	 *       that are not configuration.
 	 *
 	 * @param array|string $pairs Key to the global variable, or an array
 	 *  of key/value pairs.
 	 * @param mixed|null $value Value to set the global to (ignored
 	 *  if an array is given as first argument).
-	 *
-	 * @note This will call resetServices().
 	 *
 	 * @since 1.21
 	 */
@@ -775,13 +802,120 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$pairs = [ $pairs => $value ];
 		}
 
-		$this->doStashMwGlobals( array_keys( $pairs ) );
+		$this->stashMwGlobals( array_keys( $pairs ) );
 
 		foreach ( $pairs as $key => $value ) {
 			$GLOBALS[$key] = $value;
 		}
 
 		$this->resetServices();
+	}
+
+	/**
+	 * Overrides a config setting for the duration of the current test case.
+	 * The original value of the config setting will be restored after the test case finishes.
+	 *
+	 * @note This will cause any existing service instances to be reset.
+	 *
+	 * @see setMwGlobals
+	 * @see \MediaWiki\Settings\SettingsBuilder::overrideConfigValue
+	 *
+	 * @par Example
+	 * @code
+	 *     protected function setUp() : void {
+	 *         parent::setUp();
+	 *         $this->overrideConfigValue( MainConfigNames::RestrictStuff, true );
+	 *     }
+	 *
+	 *     function testFoo() {}
+	 *
+	 *     function testBar() {}
+	 *         $this->assertTrue( self::getX()->doStuff() );
+	 *
+	 *         $this->overrideConfigValue( MainConfigNames::RestrictStuff, false );
+	 *         $this->assertTrue( self::getX()->doStuff() );
+	 *     }
+	 *
+	 *     function testQuux() {}
+	 * @endcode
+	 *
+	 * @param string $key
+	 * @param mixed $value
+	 *
+	 * @since 1.39
+	 */
+	protected function overrideConfigValue( string $key, $value ) {
+		$this->overriddenConfig->set( $key, $value );
+
+		// When nothing reads config from globals anymore, we will no longer need to call
+		// setMwGlobals() here.
+		$this->setMwGlobals( "wg$key", $value );
+	}
+
+	/**
+	 * Set the main object cache that will be returned by ObjectCache::getLocalClusterInstance().
+	 *
+	 * Per default, the main object cache is disabled during testing (that is, the cache is an
+	 * EmptyBagOStuff).
+	 *
+	 * The $cache parameter support the following kinds of values:
+	 * - a string: refers to an entry in the ObjectCaches array, see MainConfigSchema::ObjectCaches.
+	 *   MainCacheType will be set to this value. Use CACHE_HASH to use a HashBagOStuff.
+	 * - an int: refers to an entry in the ObjectCaches array, see MainConfigSchema::ObjectCaches.
+	 *   MainCacheType will be set to this value. Use CACHE_NONE to disable caching.
+	 * - a BagOStuff: the object will be injected into the ObjectCache class under the name
+	 *   'UTCache', and MainCacheType will be set to 'UTCache'.
+	 *
+	 * @note Most entries in the ObjectCaches config setting are overwritten during testing.
+	 *       To set the cache to anything other than CACHE_HASH, you will have to override
+	 *       the ObjectCaches setting first.
+	 *
+	 * @note This will cause any existing service instances to be reset.
+	 *
+	 * @param string|BagOStuff $cache
+	 *
+	 * @return string|int The new value of the MainCacheType setting.
+	 */
+	protected function setMainCache( $cache ) {
+		if ( $cache instanceof BagOStuff ) {
+			// ObjectCache::$instances is reset after each test by resetNonGlobalServices().
+			ObjectCache::$instances[ 'UTCache' ] = $cache;
+			$cache = 'UTCache';
+		}
+
+		if ( !is_string( $cache ) && !is_int( $cache ) ) {
+			throw new InvalidArgumentException( 'Bad type of $cache parameter: ' . get_debug_type( $cache ) );
+		}
+
+		$this->overrideConfigValue( MainConfigNames::MainCacheType, $cache );
+		return $cache;
+	}
+
+	/**
+	 * Overrides a set of config settings for the duration of the current test case.
+	 * The original values of the config settings will be restored after the test case finishes.
+	 *
+	 * @note This will cause any existing service instances to be reset.
+	 *
+	 * @see setMwGlobals
+	 * @see \MediaWiki\Settings\SettingsBuilder::overrideConfigValues
+	 *
+	 * @param array<string,mixed> $values
+	 *
+	 * @since 1.39
+	 */
+	protected function overrideConfigValues( array $values ) {
+		$vars = [];
+
+		foreach ( $values as $key => $value ) {
+			$this->overriddenConfig->set( $key, $value );
+			$var = "wg$key";
+			$vars[$var] = $value;
+		}
+
+		// When nothing reads config from globals anymore, we will no longer need to call
+		// setMwGlobals() here.
+		$this->setMwGlobals( $vars );
 	}
 
 	/**
@@ -832,7 +966,14 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		return false;
 	}
 
-	private function doStashMwGlobals( $globalKeys ) {
+	/**
+	 * Stash the values of globals which the test is going to modify.
+	 * Stashed values will be restored on tear down.
+	 *
+	 * @since 1.38
+	 * @param string[] $globalKeys
+	 */
+	protected function stashMwGlobals( $globalKeys ) {
 		if ( is_string( $globalKeys ) ) {
 			$globalKeys = [ $globalKeys ];
 		}
@@ -913,8 +1054,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * The primary use case for this method is to allow changes to global configuration variables
 	 * to take effect on services that get initialized based on these global configuration
-	 * variables. Similarly, it may be necessary to call resetServices() after calling setService(),
-	 * so the newly set service gets picked up by any other service definitions that may use it.
+	 * variables. It is called by setMwGlobals/overrideConfigValues
 	 *
 	 * @see MediaWikiServices::resetServiceForTesting.
 	 *
@@ -970,18 +1110,17 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *       Tests should use either overrideMwServices() or setService(), but not mix both.
 	 *       Since 1.34, resetServices() is available as an alternative compatible with setService().
 	 *
-	 * @since 1.27
-	 *
-	 * @param Config|null $configOverrides Configuration overrides for the new MediaWikiServices
+	 * @param Config|null $customOverrides Custom configuration overrides for the new MediaWikiServices
 	 *        instance.
 	 * @param callable[] $services An associative array of services to re-define. Keys are service
 	 *        names, values are callables.
 	 *
 	 * @return MediaWikiServices
 	 * @throws MWException
+	 * @since 1.27
 	 */
 	protected function overrideMwServices(
-		Config $configOverrides = null, array $services = []
+		Config $customOverrides = null, array $services = []
 	) {
 		if ( $this->overriddenServices ) {
 			throw new MWException(
@@ -989,13 +1128,38 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 					implode( ', ', $this->overriddenServices )
 			);
 		}
-		$newInstance = self::installMockMwServices( $configOverrides );
+
+		$this->overriddenConfig = new HashConfig();
+
+		// Create the Config object that will be stacked on top of the real bootstrap config
+		// to create the config that will be used as the bootstrap as well as the main config
+		// by the service container.
+		// overrideConfigValue() will write to $this->overriddenConfig later and reset
+		// services as appropriate.
+		// Make sure that $this->overriddenConfig is the top layer of overrides.
+		// XXX: If $customOverrides was guaranteed to be an IterableConfig, this could be
+		//      simplified by making getConfigOverrides() copy it into the $configOverrides array.
+		//      Or we could just get rid of $customOverrides.
+		if ( $customOverrides ) {
+			$serviceConfig = new MultiConfig( [ $this->overriddenConfig, $customOverrides ] );
+		} else {
+			$serviceConfig = $this->overriddenConfig;
+		}
+
+		// NOTE: $serviceConfig doesn't have the overrides yet, they will be added
+		//       by calling overrideConfigValues() below.
+		$newInstance = self::installMockMwServices( $serviceConfig );
 
 		if ( $this->localServices ) {
 			$this->localServices->destroy();
 		}
 
 		$this->localServices = $newInstance;
+
+		// Determine the config overrides that should apply during testing.
+		$configOverrides = self::getConfigOverrides( $customOverrides );
+
+		$this->overrideConfigValues( $configOverrides );
 
 		foreach ( $services as $name => $callback ) {
 			$newInstance->redefineService( $name, $callback );
@@ -1012,46 +1176,61 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * the ConfigFactory and the DBLoadBalancerFactory service, which are inherited from
 	 * the original MediaWikiServices.
 	 *
+	 * @warning This method interacts with global state in a complex way. There should
+	 * generally be no need to call it directly. Subclasses should use more specific methods
+	 * like setService() or overrideConfigValues() instead.
+	 *
 	 * @note The new original MediaWikiServices instance can later be restored by calling
 	 * restoreMwServices(). That original is determined by the first call to this method, or
 	 * by setUpBeforeClass, whichever is called first. The caller is responsible for managing
 	 * and, when appropriate, destroying any other MediaWikiServices instances that may get
 	 * replaced when calling this method.
 	 *
-	 * @param Config|null $configOverrides Configuration overrides for the new MediaWikiServices
-	 *        instance.
+	 * @param Config|array|null $configOverrides Configuration overrides for the new
+	 *        MediaWikiServices instance. Should be constructed by calling getConfigOverrides(),
+	 *        to ensure that the configuration is safe for testing.
 	 *
 	 * @return MediaWikiServices the new mock service locator.
 	 */
-	public static function installMockMwServices( Config $configOverrides = null ) {
+	public static function installMockMwServices( $configOverrides = null ) {
 		// Make sure we have the original service locator
 		if ( !self::$originalServices ) {
 			self::$originalServices = MediaWikiServices::getInstance();
 		}
 
+		if ( $configOverrides === null ) {
+			// Only use the default overrides if $configOverrides is not given.
+			// Don't try to be smart and combine the custom overrides with the default overrides.
+			// This gives overrideMwServices() full control over the configuration when it calls
+			// this method.
+			$configOverrides = self::getConfigOverrides();
+		}
+
+		if ( is_array( $configOverrides ) ) {
+			$configOverrides = new HashConfig( $configOverrides );
+		}
+
 		// (T247990) Cache the original service wirings to work around a memory leak on PHP 7.4 and above
 		if ( !self::$originalServiceWirings ) {
-			$serviceWiringFiles = self::$originalServices->getBootstrapConfig()->get( 'ServiceWiringFiles' );
+			$serviceWiringFiles = self::$originalServices->getBootstrapConfig()->get( MainConfigNames::ServiceWiringFiles );
 
 			foreach ( $serviceWiringFiles as $wiringFile ) {
 				self::$originalServiceWirings[] = require $wiringFile;
 			}
 		}
 
-		if ( !$configOverrides ) {
-			$configOverrides = new HashConfig();
-		}
-
 		$oldConfigFactory = self::$originalServices->getConfigFactory();
 		$oldLoadBalancerFactory = self::$originalServices->getDBLoadBalancerFactory();
 
-		$testConfig = self::makeTestConfig( null, $configOverrides );
+		$originalConfig = self::$originalServices->getBootstrapConfig();
+		$testConfig = new MultiConfig( [ $configOverrides, $originalConfig ] );
+
 		$newServices = new MediaWikiServices( $testConfig );
 
 		// Load the default wiring from the specified files.
 		// NOTE: this logic mirrors the logic in MediaWikiServices::newInstance
-		if ( $configOverrides->has( 'ServiceWiringFiles' ) ) {
-			$wiringFiles = $testConfig->get( 'ServiceWiringFiles' );
+		if ( $configOverrides && $configOverrides->has( MainConfigNames::ServiceWiringFiles ) ) {
+			$wiringFiles = $configOverrides->get( MainConfigNames::ServiceWiringFiles );
 			$newServices->loadWiringFiles( $wiringFiles );
 		} else {
 			// (T247990) Avoid including default wirings many times - use cached wirings
@@ -1073,6 +1252,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				$oldConfigFactory,
 				[ 'main' => $bootstrapConfig ]
 			)
+		);
+		$newServices->resetServiceForTesting( 'LocalServerObjectCache' );
+		$newServices->redefineService(
+			'LocalServerObjectCache',
+			static function ( MediaWikiServices $services ) {
+				return ObjectCache::getInstance( 'hash' );
+			}
 		);
 		$newServices->resetServiceForTesting( 'DBLoadBalancerFactory' );
 		$newServices->redefineService(
@@ -1128,19 +1314,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		return true;
 	}
 
-	/**
-	 * Replace legacy global $wgParser with a fresh one so it picks up any
-	 * config changes. It's deprecated, but we still support it for now.
-	 */
 	private static function resetLegacyGlobals() {
-		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgParser
-		global $wgParser;
-		// We don't have to replace the parser if it wasn't unstubbed
-		if ( !( $wgParser instanceof StubObject ) ) {
-			$wgParser = new StubObject( 'wgParser', static function () {
-				return MediaWikiServices::getInstance()->getParser();
-			} );
-		}
 		ParserOptions::clearStaticCache();
 	}
 
@@ -1154,7 +1328,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @deprecated since 1.35. To change the site language, use setMwGlobals( 'wgLanguageCode' ),
+	 * @deprecated since 1.35. To change the site language, use overrideConfigValue( 'LanguageCode' ),
 	 *   which will also reset the service. If you want to set the service to a specific object
 	 *   (like a mock), use setService( 'ContentLanguage' ).
 	 * @since 1.27
@@ -1164,9 +1338,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		if ( $lang instanceof Language ) {
 			// Set to the exact object requested
 			$this->setService( 'ContentLanguage', $lang );
-			$this->setMwGlobals( 'wgLanguageCode', $lang->getCode() );
+			$this->overrideConfigValue( MainConfigNames::LanguageCode, $lang->getCode() );
 		} else {
-			$this->setMwGlobals( 'wgLanguageCode', $lang );
+			$this->overrideConfigValue( MainConfigNames::LanguageCode, $lang );
 		}
 	}
 
@@ -1187,20 +1361,20 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param mixed|null $newValue
 	 */
 	public function setGroupPermissions( $newPerms, $newKey = null, $newValue = null ) {
-		global $wgGroupPermissions;
-
 		if ( is_string( $newPerms ) ) {
 			$newPerms = [ $newPerms => [ $newKey => $newValue ] ];
 		}
 
-		$newPermissions = $wgGroupPermissions;
+		$newPermissions = $this->getServiceContainer()->getMainConfig()
+			->get( MainConfigNames::GroupPermissions );
+
 		foreach ( $newPerms as $group => $permissions ) {
 			foreach ( $permissions as $key => $value ) {
 				$newPermissions[$group][$key] = $value;
 			}
 		}
 
-		$this->setMwGlobals( 'wgGroupPermissions', $newPermissions );
+		$this->overrideConfigValue( MainConfigNames::GroupPermissions, $newPermissions );
 	}
 
 	/**
@@ -1465,7 +1639,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		// T219673: close any connections from code that failed to call reuseConnection()
 		// or is still holding onto a DBConnRef instance (e.g. in a singleton).
-		$services->getDBLoadBalancerFactory()->closeAll();
+		$services->getDBLoadBalancerFactory()->closeAll( __METHOD__ );
 		CloneDatabase::changePrefix( self::$oldTablePrefix );
 
 		self::$oldTablePrefix = false;
@@ -1646,7 +1820,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected function ensureMockDatabaseConnection( IDatabase $db ) {
 		if ( $db->tablePrefix() !== $this->dbPrefix() ) {
 			throw new LogicException(
-				'Trying to delete mock tables, but table prefix does not indicate a mock database.'
+				"Trying to delete mock tables, but table prefix '{$db->tablePrefix()}' " .
+				"does not indicate a mock database (expected '{$this->dbPrefix()}')"
 			);
 		}
 	}
@@ -1874,7 +2049,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$extraTables = [
 				'user' => [ 'user', 'user_groups', 'user_properties', 'actor' ],
 				'page' => [ 'page', 'revision', 'ip_changes', 'revision_comment_temp', 'comment', 'archive',
-					'revision_actor_temp', 'slots', 'content', 'content_models', 'slot_roles',
+					'slots', 'content', 'content_models', 'slot_roles',
 					'change_tag' ],
 				'logging' => [ 'logging', 'log_search', 'change_tag' ],
 			];
@@ -1985,10 +2160,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * This should only be used for small data sets.
 	 *
-	 * @param IDatabase $source
-	 * @param IDatabase $target
+	 * @param IMaintainableDatabase $source
+	 * @param IMaintainableDatabase $target
 	 */
-	public function copyTestData( IDatabase $source, IDatabase $target ) {
+	public function copyTestData( IMaintainableDatabase $source, IMaintainableDatabase $target ) {
 		if ( $this->db->getType() === 'sqlite' ) {
 			// SQLite uses a non-temporary copy of the searchindex table for testing,
 			// which gets deleted and re-created when setting up the secondary connection,
@@ -2160,25 +2335,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			},
 			$elements
 		);
-	}
-
-	/**
-	 * Put each HTML element on its own line and then equals() the results
-	 *
-	 * Use for nicely formatting of PHPUnit diff output when comparing very
-	 * simple HTML
-	 *
-	 * @since 1.20
-	 *
-	 * @param string $expected HTML on oneline
-	 * @param string $actual HTML on oneline
-	 * @param string $msg Optional message
-	 */
-	protected function assertHTMLEquals( $expected, $actual, $msg = '' ) {
-		$expected = str_replace( '>', ">\n", $expected );
-		$actual = str_replace( '>', ">\n", $actual );
-
-		$this->assertEquals( $expected, $actual, $msg );
 	}
 
 	/**
@@ -2374,11 +2530,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * Edits or creates a page/revision
-	 * @param string|Title|WikiPage $page the page to edit
+	 * @param string|PageIdentity|LinkTarget|WikiPage $page the page to edit
 	 * @param string|Content $content the new content of the page
 	 * @param string $summary Optional summary string for the revision
 	 * @param int $defaultNs Optional namespace id
-	 * @param Authority|null $performer If null, static::getTestUser()->getUser() is used.
+	 * @param Authority|null $performer If null, static::getTestUser()->getAuthority() is used.
 	 * @return Status Object as returned by WikiPage::doUserEditContent()
 	 * @throws MWException If this test cases's needsDB() method doesn't return true.
 	 *         Test cases can use "@group Database" to enable database test support,
@@ -2397,22 +2553,28 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				' method should return true. Use @group Database or $this->tablesUsed.' );
 		}
 
+		$services = $this->getServiceContainer();
 		if ( $page instanceof WikiPage ) {
 			$title = $page->getTitle();
-		} elseif ( $page instanceof Title ) {
-			$title = $page;
-			$page = WikiPage::factory( $title );
+		} elseif ( $page instanceof PageIdentity ) {
+			$page = $services->getWikiPageFactory()->newFromTitle( $page );
+			$title = $page->getTitle();
+		} elseif ( $page instanceof LinkTarget ) {
+			$page = $services->getWikiPageFactory()->newFromLinkTarget( $page );
+			$title = $page->getTitle();
 		} else {
-			$title = Title::newFromText( $page, $defaultNs );
-			$page = WikiPage::factory( $title );
+			$title = $services->getTitleFactory()->newFromText( $page, $defaultNs );
+			$page = $services->getWikiPageFactory()->newFromTitle( $title );
 		}
 
 		if ( $performer === null ) {
-			$performer = static::getTestUser()->getUser();
+			$performer = static::getTestUser()->getAuthority();
 		}
 
 		if ( is_string( $content ) ) {
-			$content = ContentHandler::makeContent( $content, $title );
+			$content = $services->getContentHandlerFactory()
+				->getContentHandler( $title->getContentModel() )
+				->unserializeContent( $content );
 		}
 
 		return $page->doUserEditContent(
@@ -2451,10 +2613,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				->getRevisionById( $rev );
 		}
 
-		$title = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
-
 		RevisionDeleter::createList(
-			'revision', RequestContext::getMain(), $title, [ $rev->getId() ]
+			'revision', RequestContext::getMain(), $rev->getPage(), [ $rev->getId() ]
 		)->setVisibility( [
 			'value' => $value,
 			'comment' => $comment,

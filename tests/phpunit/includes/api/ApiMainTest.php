@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Wikimedia\Rdbms\DBConnRef;
@@ -313,7 +314,7 @@ class ApiMainTest extends ApiTestCase {
 		// it does fail.
 		$now = time();
 
-		$this->setMwGlobals( 'wgCacheEpoch', '20030516000000' );
+		$this->overrideConfigValue( MainConfigNames::CacheEpoch, '20030516000000' );
 
 		$mock = $this->createMock( ApiBase::class );
 		$mock->method( 'getModuleName' )->willReturn( 'testmodule' );
@@ -378,7 +379,7 @@ class ApiMainTest extends ApiTestCase {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( 'Waiting for a database server: 4 seconds lagged.' );
 
-		$this->setMwGlobals( 'wgShowHostnames', false );
+		$this->overrideConfigValue( MainConfigNames::ShowHostnames, false );
 
 		$this->doTestCheckMaxLag( 4 );
 	}
@@ -387,7 +388,7 @@ class ApiMainTest extends ApiTestCase {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( 'Waiting for somehost: 4 seconds lagged.' );
 
-		$this->setMwGlobals( 'wgShowHostnames', true );
+		$this->overrideConfigValue( MainConfigNames::ShowHostnames, true );
 
 		$this->doTestCheckMaxLag( 4 );
 	}
@@ -516,20 +517,20 @@ class ApiMainTest extends ApiTestCase {
 		$priv->mInternalMode = false;
 
 		if ( !empty( $options['cdn'] ) ) {
-			$this->setMwGlobals( 'wgUseCdn', true );
+			$this->overrideConfigValue( MainConfigNames::UseCdn, true );
 		}
 
 		// Can't do this in TestSetup.php because Setup.php will override it
-		$this->setMwGlobals( 'wgCacheEpoch', '20030516000000' );
+		$this->overrideConfigValue( MainConfigNames::CacheEpoch, '20030516000000' );
 
 		$module = $this->getMockBuilder( ApiBase::class )
 			->setConstructorArgs( [ $api, 'mock' ] )
 			->onlyMethods( [ 'getConditionalRequestData' ] )
 			->getMockForAbstractClass();
 		$module->method( 'getConditionalRequestData' )
-			->will( $this->returnCallback( static function ( $condition ) use ( $conditions ) {
+			->willReturnCallback( static function ( $condition ) use ( $conditions ) {
 				return $conditions[$condition] ?? null;
-			} ) );
+			} );
 
 		$ret = $priv->checkConditionalRequestHeaders( $module );
 
@@ -657,9 +658,9 @@ class ApiMainTest extends ApiTestCase {
 			->onlyMethods( [ 'getConditionalRequestData' ] )
 			->getMockForAbstractClass();
 		$module->method( 'getConditionalRequestData' )
-			->will( $this->returnCallback( static function ( $condition ) use ( $conditions ) {
+			->willReturnCallback( static function ( $condition ) use ( $conditions ) {
 				return $conditions[$condition] ?? null;
-			} ) );
+			} );
 		$priv->mModule = $module;
 
 		$priv->sendCacheHeaders( $isError );

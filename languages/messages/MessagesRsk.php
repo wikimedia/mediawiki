@@ -3,13 +3,13 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author Keresturec
  */
 
-$fallback = 'sr-ec';
+$fallback = 'sr-ec, sr-cyrl';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Медий',

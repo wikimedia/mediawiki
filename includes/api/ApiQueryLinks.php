@@ -21,6 +21,10 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Linker\LinksMigration;
+use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 /**
  * A query module to list all wiki links on a given set of pages.
@@ -37,15 +41,20 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
+	/** @var LinksMigration */
+	private $linksMigration;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		LinksMigration $linksMigration
 	) {
 		switch ( $moduleName ) {
 			case self::LINKS:
@@ -66,6 +75,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 		parent::__construct( $query, $moduleName, $this->prefix );
 		$this->linkBatchFactory = $linkBatchFactory;
+		$this->linksMigration = $linksMigration;
 	}
 
 	public function execute() {
@@ -91,13 +101,23 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 
 		$params = $this->extractRequestParams();
 
+		if ( isset( $this->linksMigration::$mapping[$this->table] ) ) {
+			list( $nsField, $titleField ) = $this->linksMigration->getTitleFields( $this->table );
+			$queryInfo = $this->linksMigration->getQueryInfo( $this->table );
+			$this->addTables( $queryInfo['tables'] );
+			$this->addJoinConds( $queryInfo['joins'] );
+		} else {
+			$this->addTables( $this->table );
+			$nsField = $this->prefix . '_namespace';
+			$titleField = $this->prefix . '_title';
+		}
+
 		$this->addFields( [
 			'pl_from' => $this->prefix . '_from',
-			'pl_namespace' => $this->prefix . '_namespace',
-			'pl_title' => $this->prefix . '_title'
+			'pl_namespace' => $nsField,
+			'pl_title' => $titleField,
 		] );
 
-		$this->addTables( $this->table );
 		$this->addWhereFld( $this->prefix . '_from', array_keys( $pages ) );
 
 		$multiNS = true;
@@ -109,7 +129,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			$lb = $this->linkBatchFactory->newLinkBatch();
 			foreach ( $params[$this->titlesParam] as $t ) {
 				$title = Title::newFromText( $t );
-				if ( !$title ) {
+				if ( !$title || $title->isExternal() ) {
 					$this->addWarning( [ 'apiwarn-invalidtitle', wfEscapeWikiText( $t ) ] );
 				} elseif ( !$filterNS || isset( $filterNS[$title->getNamespace()] ) ) {
 					$lb->addObj( $title );
@@ -125,7 +145,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				return;
 			}
 		} elseif ( $params['namespace'] ) {
-			$this->addWhereFld( $this->prefix . '_namespace', $params['namespace'] );
+			$this->addWhereFld( $nsField, $params['namespace'] );
 			$multiNS = $params['namespace'] === null || count( $params['namespace'] ) !== 1;
 		}
 
@@ -139,9 +159,9 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			$this->addWhere(
 				"{$this->prefix}_from $op $plfrom OR " .
 				"({$this->prefix}_from = $plfrom AND " .
-				"({$this->prefix}_namespace $op $plns OR " .
-				"({$this->prefix}_namespace = $plns AND " .
-				"{$this->prefix}_title $op= $pltitle)))"
+				"($nsField $op $plns OR " .
+				"($nsField = $plns AND " .
+				"$titleField $op= $pltitle)))"
 			);
 		}
 
@@ -156,10 +176,10 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			$order[] = $this->prefix . '_from' . $sort;
 		}
 		if ( $multiNS ) {
-			$order[] = $this->prefix . '_namespace' . $sort;
+			$order[] = $nsField . $sort;
 		}
 		if ( $multiTitle ) {
-			$order[] = $this->prefix . '_title' . $sort;
+			$order[] = $titleField . $sort;
 		}
 		if ( $order ) {
 			$this->addOption( 'ORDER BY', $order );
@@ -209,26 +229,26 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 	public function getAllowedParams() {
 		return [
 			'namespace' => [
-				ApiBase::PARAM_TYPE => 'namespace',
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_EXTRA_NAMESPACES => [ NS_MEDIA, NS_SPECIAL ],
+				ParamValidator::PARAM_TYPE => 'namespace',
+				ParamValidator::PARAM_ISMULTI => true,
+				NamespaceDef::PARAM_EXTRA_NAMESPACES => [ NS_MEDIA, NS_SPECIAL ],
 			],
 			'limit' => [
-				ApiBase::PARAM_DFLT => 10,
-				ApiBase::PARAM_TYPE => 'limit',
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => ApiBase::LIMIT_BIG1,
-				ApiBase::PARAM_MAX2 => ApiBase::LIMIT_BIG2
+				ParamValidator::PARAM_DEFAULT => 10,
+				ParamValidator::PARAM_TYPE => 'limit',
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => ApiBase::LIMIT_BIG1,
+				IntegerDef::PARAM_MAX2 => ApiBase::LIMIT_BIG2
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],
 			$this->titlesParam => [
-				ApiBase::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_ISMULTI => true,
 			],
 			'dir' => [
-				ApiBase::PARAM_DFLT => 'ascending',
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_DEFAULT => 'ascending',
+				ParamValidator::PARAM_TYPE => [
 					'ascending',
 					'descending'
 				]

@@ -197,6 +197,7 @@ class RefreshImageMetadata extends Maintenance {
 				}
 			}
 			if ( $res->numRows() > 0 ) {
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
 				$conds2 = [ $fieldPrefix . 'name > ' . $dbw->addQuotes( $row->$nameField ) ];
 			}
 			$lbFactory->waitForReplication();

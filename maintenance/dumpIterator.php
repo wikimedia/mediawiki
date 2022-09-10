@@ -26,6 +26,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Settings\SettingsBuilder;
@@ -33,7 +34,7 @@ use MediaWiki\Settings\SettingsBuilder;
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Base class for interating over a dump.
+ * Base class for iterating over a dump.
  *
  * @ingroup Maintenance
  */
@@ -122,8 +123,8 @@ abstract class DumpIterator extends Maintenance {
 			$wgHooks['InterwikiLoadPrefix'][] = 'DumpIterator::disableInterwikis';
 
 			$settingsBuilder->putConfigValues( [
-				'UseDatabaseMessages' => false,
-				'LocalisationCacheConf' => [ 'storeClass' => LCStoreNull::class ],
+				MainConfigNames::UseDatabaseMessages => false,
+				MainConfigNames::LocalisationCacheConf => [ 'storeClass' => LCStoreNull::class ],
 			] );
 		}
 	}

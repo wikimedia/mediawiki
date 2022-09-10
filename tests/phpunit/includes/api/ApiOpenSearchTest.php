@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\ParamValidator\ParamValidator;
+
 /**
  * TODO convert to unit test, no integration is needed
  *
@@ -24,7 +26,7 @@ class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$engine->method( 'getProfiles' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ SearchEngine::COMPLETION_PROFILE_TYPE, $api->getUser(), [
 					[
 						'name' => 'normal',
@@ -36,31 +38,25 @@ class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 						'desc-message' => 'strict-message',
 					],
 				] ],
-			] ) );
+			] );
 
 		$params = $api->getAllowedParams();
 
 		$this->assertArrayNotHasKey( 'offset', $params );
 		$this->assertArrayHasKey( 'profile', $params, print_r( $params, true ) );
-		$this->assertEquals( 'normal', $params['profile'][ApiBase::PARAM_DFLT] );
+		$this->assertEquals( 'normal', $params['profile'][ParamValidator::PARAM_DEFAULT] );
 	}
 
 	private function replaceSearchEngineConfig() {
-		$config = $this->getMockBuilder( SearchEngineConfig::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$config = $this->createMock( SearchEngineConfig::class );
 		$this->setService( 'SearchEngineConfig', $config );
 
 		return $config;
 	}
 
 	private function replaceSearchEngine() {
-		$engine = $this->getMockBuilder( SearchEngine::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$engineFactory = $this->getMockBuilder( SearchEngineFactory::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$engine = $this->createMock( SearchEngine::class );
+		$engineFactory = $this->createMock( SearchEngineFactory::class );
 		$engineFactory->method( 'create' )
 			->willReturn( $engine );
 		$this->setService( 'SearchEngineFactory', $engineFactory );

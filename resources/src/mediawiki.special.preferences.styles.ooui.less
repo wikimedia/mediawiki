@@ -31,8 +31,7 @@
  */
 .mw-prefs-buttons {
 	background-color: #fff;
-	position: -webkit-sticky;
-	position: sticky;
+	.position-sticky();
 	bottom: 0;
 	margin-top: -1px;
 	border-top: 1px solid #c8ccd1;
@@ -44,22 +43,13 @@
 // Support Edge: The `position: sticky` rule above causes the buttons to
 // disappear in RTL languages on Microsoft Edge. This magically fixes the issue. See T220706.
 #preferences {
+	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	filter: brightness( 1 );
 }
 
 /* This is needed because add extra buttons in a weird way */
 .mw-prefs-buttons .mw-htmlform-submit-buttons {
-	display: inline;
 	margin: 0;
-}
-
-// This button has a very long label, allow wrapping for mobile (T227131)
-#mw-prefs-restoreprefs .oo-ui-buttonElement-button {
-	white-space: normal;
-}
-
-#prefcontrol {
-	margin-right: 0.5em;
 }
 
 /*

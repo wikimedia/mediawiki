@@ -1,62 +1,56 @@
 /*!
- * JavaScript to update page URL when a redirect is viewed, ensuring that the
- * page is scrolled to the id when it's a redirect with fragment.
+ * In general, MediaWiki does not ask browsers to resolve wiki page
+ * redirects client-side over HTTP. Instead, wiki page redirects are
+ * resolved server-side and rendered directly in response to a
+ * navigation.
+ *
+ * This script is responsible for:
+ *
+ * - Update the address bar to reflect the rendered destination.
+ *
+ *   Given [[Foo]] redirecting to [[Bar]], when viewing [[Foo]]
+ *   the server renders Bar content, with "Bar" as doc title
+ *   and with "Bar" in the address bar.
+ *
+ * - For internal redirect destination that specify a fragment, if
+ *   the navigation does not set its own fragment, scroll to the
+ *   specified section.
+ *
+ *   Given [[Foo]] redirecting to [[Bar#Foo]], the browser should
+ *   scroll to "Foo", and render address bar Bar#Foo (not Foo, Bar,
+ *   or Foo#Foo).
+ *
+ *   Given [[Foo]] redirecting to [[Bar#Foo]], when navigating to
+ *   [[Foo#Quux]], the address bar should reflect Bar#Quux, and
+ *   let the native scroll happen, don't override scroll to #Foo.
  */
 ( function () {
-	var profile = $.client.profile(),
-		canonical = mw.config.get( 'wgInternalRedirectTargetUrl' ),
-		fragment = null,
-		node, shouldChangeFragment, index;
-
-	index = canonical.indexOf( '#' );
-	if ( index !== -1 ) {
-		fragment = canonical.slice( index );
+	var canonical = mw.config.get( 'wgInternalRedirectTargetUrl' );
+	if ( !canonical ) {
+		return;
 	}
 
-	// Never override the fragment if the user intended to look at a different section
-	shouldChangeFragment = fragment && !location.hash;
-
-	// Replace the whole URL if possible, otherwise just change the fragment
-	if ( canonical && history.replaceState ) {
-		if ( !shouldChangeFragment ) {
-			// If the current page view has a fragment already, don't override it
-			canonical = canonical.replace( /#.*$/, '' );
-			canonical += location.hash;
-		}
-
-		// Note that this will update the hash in a modern browser, retaining back behaviour
-		history.replaceState( /* data= */ history.state, /* title= */ document.title, /* url= */ canonical );
-		if ( shouldChangeFragment ) {
-			// Specification for history.replaceState() doesn't require browser to scroll,
-			// so scroll to be sure (see also T110501). Support for IE10.
-			node = document.getElementById( fragment.slice( 1 ) );
-			if ( node ) {
-				node.scrollIntoView();
-			}
-		}
-
-	} else if ( shouldChangeFragment ) {
-		if ( profile.layout === 'webkit' && profile.layoutVersion < 420 ) {
-			// Released Safari w/ WebKit 418.9.1 messes up horribly
-			// Nightlies of 420+ are ok
-			return;
-		}
-
-		location.hash = fragment;
+	var fragment = null;
+	if ( location.hash ) {
+		// Ignore redirect's own fragment and preserve fragment override in address
+		canonical = canonical.replace( /#.*$/, '' ) + location.hash;
+	} else {
+		var index = canonical.indexOf( '#' );
+		fragment = ( index !== -1 ) ? canonical.slice( index ) : null;
 	}
 
-	if ( shouldChangeFragment && profile.layout === 'gecko' ) {
-		// Mozilla needs to wait until after load, otherwise the window doesn't
-		// scroll.  See <https://bugzilla.mozilla.org/show_bug.cgi?id=516293>.
-		// There's no obvious way to detect this programmatically, so we use
-		// version-testing.  If Firefox fixes the bug, they'll jump twice, but
-		// better twice than not at all, so make the fix hit future versions as
-		// well.
-		$( function () {
-			if ( location.hash === fragment ) {
-				location.hash = fragment;
-			}
-		} );
+	// Update address bar, including browser history.
+	// Preserve correct "Back"-button behaviour by using replaceState instead of
+	// pushState (or location.hash assignment)
+	history.replaceState( history.state, '', canonical );
+
+	if ( fragment ) {
+		// Specification for history.replaceState() doesn't require browser to scroll,
+		// so scroll to be sure (see also T110501).
+		var node = document.getElementById( fragment.slice( 1 ) );
+		if ( node ) {
+			node.scrollIntoView();
+		}
 	}
 
 }() );

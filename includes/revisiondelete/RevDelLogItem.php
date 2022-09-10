@@ -66,7 +66,7 @@ class RevDelLogItem extends RevDelItem {
 
 	public function canView() {
 		return LogEventsList::userCan(
-			$this->row, RevisionRecord::DELETED_RESTRICTED, $this->list->getUser()
+			$this->row, RevisionRecord::DELETED_RESTRICTED, $this->list->getAuthority()
 		);
 	}
 
@@ -138,12 +138,23 @@ class RevDelLogItem extends RevDelItem {
 			$comment = '<span class="history-deleted">' . $comment . '</span>';
 		}
 
-		return "<li>$loglink $date $action $comment</li>";
+		$content = "$loglink $date $action $comment";
+		$attribs = [];
+		if ( $this->row->ts_tags ) {
+			list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow(
+				$this->row->ts_tags,
+				'revisiondelete',
+				$this->list->getContext()
+			);
+			$content .= " $tagSummary";
+			$attribs['class'] = implode( ' ', $classes );
+		}
+		return Xml::tags( 'li', $attribs, $content );
 	}
 
 	public function getApiData( ApiResult $result ) {
 		$logEntry = DatabaseLogEntry::newFromRow( $this->row );
-		$user = $this->list->getUser();
+		$user = $this->list->getAuthority();
 		$ret = [
 			'id' => $logEntry->getId(),
 			'type' => $logEntry->getType(),

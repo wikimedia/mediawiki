@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 class OldChangesList extends ChangesList {
@@ -117,7 +118,7 @@ class OldChangesList extends ChangesList {
 		# Edit/log timestamp
 		$this->insertTimestamp( $html, $rc );
 		# Bytes added or removed
-		if ( $this->getConfig()->get( 'RCShowChangedSize' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::RCShowChangedSize ) ) {
 			$cd = $this->formatCharacterDifference( $rc );
 			if ( $cd !== '' ) {
 				$html .= $cd . '  <span class="mw-changeslist-separator"></span> ';

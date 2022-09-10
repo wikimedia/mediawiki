@@ -26,7 +26,7 @@
 			$gallery = $( this );
 
 		$gallery.children( 'li.gallerybox' ).each( function () {
-			var $img, imgWidth, imgHeight, outerWidth, captionWidth,
+			var $imageDiv, $img, imgWidth, imgHeight, outerWidth, captionWidth,
 				// Math.floor, to be paranoid if things are off by 0.00000000001
 				top = Math.floor( $( this ).position().top ),
 				$this = $( this );
@@ -36,7 +36,8 @@
 				lastTop = top;
 			}
 
-			$img = $this.find( 'div.thumb img' );
+			$imageDiv = $this.find( 'div.thumb' ).first();
+			$img = $imageDiv.find( 'img, video' ).first();
 			if ( $img.length && $img[ 0 ].height ) {
 				imgHeight = $img[ 0 ].height;
 				imgWidth = $img[ 0 ].width;
@@ -45,17 +46,18 @@
 				// Note that if we do have a real image, using this method will generally
 				// give the same answer, but can be different in the case of a very
 				// narrow image where extra padding is added.
-				imgHeight = $this.children().children( 'div' ).first().height();
-				imgWidth = $this.children().children( 'div' ).first().width();
+				imgHeight = $imageDiv.height();
+				imgWidth = $imageDiv.width();
 			}
 
 			// Hack to make an edge case work ok
-			if ( imgHeight < 30 ) {
+			// (This happens for very small images, and for audio files)
+			if ( imgHeight < 40 ) {
 				// Don't try and resize this item.
 				imgHeight = 0;
 			}
 
-			captionWidth = $this.children().children( 'div.gallerytextwrapper' ).width();
+			captionWidth = $this.find( 'div.gallerytextwrapper' ).width();
 			outerWidth = $this.outerWidth();
 			rows[ rows.length - 1 ].push( {
 				$elm: $this,
@@ -84,8 +86,8 @@
 				preferredHeight,
 				newWidth,
 				padding,
+				$gallerybox,
 				$outerDiv,
-				$innerDiv,
 				$imageDiv,
 				$imageElm,
 				imageElm,
@@ -167,11 +169,12 @@
 				for ( j = 0; j < curRow.length; j++ ) {
 					newWidth = preferredHeight * curRow[ j ].aspect;
 					padding = curRow[ j ].width - curRow[ j ].imgWidth;
-					$outerDiv = curRow[ j ].$elm;
-					$innerDiv = $outerDiv.children( 'div' ).first();
-					$imageDiv = $innerDiv.children( 'div.thumb' );
-					$imageElm = $imageDiv.find( 'img' ).first();
-					$caption = $outerDiv.find( 'div.gallerytextwrapper' );
+					$gallerybox = curRow[ j ].$elm;
+					// This wrapper is only present if ParserEnableLegacyMediaDOM is true
+					$outerDiv = $gallerybox.children( 'div:not( [class] )' ).first();
+					$imageDiv = $gallerybox.find( 'div.thumb' ).first();
+					$imageElm = $imageDiv.find( 'img, video' ).first();
+					$caption = $gallerybox.find( 'div.gallerytextwrapper' );
 
 					// Since we are going to re-adjust the height, the vertical
 					// centering margins need to be reset.
@@ -180,14 +183,14 @@
 					if ( newWidth < 60 || !isFinite( newWidth ) ) {
 						// Making something skinnier than this will mess up captions,
 						if ( newWidth < 1 || !isFinite( newWidth ) ) {
-							$innerDiv.height( preferredHeight );
+							$outerDiv.height( preferredHeight );
 							// Don't even try and touch the image size if it could mean
 							// making it disappear.
 							continue;
 						}
 					} else {
+						$gallerybox.width( newWidth + padding );
 						$outerDiv.width( newWidth + padding );
-						$innerDiv.width( newWidth + padding );
 						$imageDiv.width( newWidth );
 						$caption.width( curRow[ j ].captionWidth + ( newWidth - curRow[ j ].imgWidth ) );
 					}
@@ -222,17 +225,18 @@
 				imgHeight = $( this ).data( 'imgHeight' ),
 				width = $( this ).data( 'width' ),
 				captionWidth = $( this ).data( 'captionWidth' ),
-				$innerDiv = $( this ).children( 'div' ).first(),
-				$imageDiv = $innerDiv.children( 'div.thumb' ),
+				// This wrapper is only present if ParserEnableLegacyMediaDOM is true
+				$outerDiv = $( this ).children( 'div:not( [class] )' ).first(),
+				$imageDiv = $( this ).find( 'div.thumb' ).first(),
 				$imageElm, imageElm;
 
 			// Restore original sizes so we can arrange the elements as on freshly loaded page
 			$( this ).width( width );
-			$innerDiv.width( width );
+			$outerDiv.width( width );
 			$imageDiv.width( imgWidth );
 			$( this ).find( 'div.gallerytextwrapper' ).width( captionWidth );
 
-			$imageElm = $( this ).find( 'img' ).first();
+			$imageElm = $imageDiv.find( 'img, video' ).first();
 			if ( $imageElm[ 0 ] ) {
 				imageElm = $imageElm[ 0 ];
 				imageElm.width = imgWidth;

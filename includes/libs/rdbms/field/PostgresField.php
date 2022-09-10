@@ -102,7 +102,7 @@ SQL;
 
 	/**
 	 * @since 1.19
-	 * @return bool|mixed
+	 * @return mixed|false
 	 */
 	public function defaultValue() {
 		if ( $this->has_default ) {

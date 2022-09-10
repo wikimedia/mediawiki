@@ -32,6 +32,7 @@ interface PPFrame {
 	public const NO_IGNORE = 8;
 	public const RECOVER_COMMENTS = 16;
 	public const NO_TAGS = 32;
+	public const PROCESS_NOWIKI = 64;
 
 	public const RECOVER_ORIG = self::NO_ARGS | self::NO_TEMPLATES | self::NO_IGNORE |
 		self::RECOVER_COMMENTS | self::NO_TAGS;

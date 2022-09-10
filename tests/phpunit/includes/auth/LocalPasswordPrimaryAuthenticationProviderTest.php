@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
@@ -75,9 +76,9 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			->getMock();
 
 		$provider->method( 'checkPasswordValidity' )
-			->will( $this->returnCallback( function () {
+			->willReturnCallback( function () {
 				return $this->validity;
-			} ) );
+			} );
 		$this->initProvider(
 			$provider, $config, null, $this->manager, $hookContainer, $this->getServiceContainer()->getUserNameUtils()
 		);
@@ -154,7 +155,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$this->getProvider();
 
 		// @todo: Because we're currently using User, which uses the global config...
-		$this->setMwGlobals( [ 'wgPasswordExpireGrace' => 100 ] );
+		$this->overrideConfigValue( MainConfigNames::PasswordExpireGrace, 100 );
 
 		$this->config->set( 'PasswordExpireGrace', 100 );
 		$this->config->set( 'InvalidPasswordReset', true );

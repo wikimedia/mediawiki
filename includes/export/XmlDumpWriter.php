@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -163,7 +164,8 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	private function sitename() {
-		$sitename = MediaWikiServices::getInstance()->getMainConfig()->get( 'Sitename' );
+		$sitename = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::Sitename );
 		return Xml::element( 'sitename', [], $sitename );
 	}
 
@@ -171,7 +173,7 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	private function dbname() {
-		$dbname = MediaWikiServices::getInstance()->getMainConfig()->get( 'DBname' );
+		$dbname = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::DBname );
 		return Xml::element( 'dbname', [], $dbname );
 	}
 
@@ -193,7 +195,8 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	private function caseSetting() {
-		$capitalLinks = MediaWikiServices::getInstance()->getMainConfig()->get( 'CapitalLinks' );
+		$capitalLinks = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::CapitalLinks );
 		// "case-insensitive" option is reserved for future
 		$sensitivity = $capitalLinks ? 'first-letter' : 'case-sensitive';
 		return Xml::element( 'case', [], $sensitivity );
@@ -261,12 +264,6 @@ class XmlDumpWriter {
 				$out .= "\n";
 			}
 		}
-
-		if ( $row->page_restrictions != '' ) {
-			$out .= '    ' . Xml::element( 'restrictions', [],
-				strval( $row->page_restrictions ) ) . "\n";
-		}
-
 		$this->hookRunner->onXmlDumpWriterOpenPage( $this, $out, $row, $this->currentTitle );
 
 		return $out;

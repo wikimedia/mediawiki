@@ -1,7 +1,5 @@
 <?php
 /**
- * Advanced generator of database load balancing objects for database farms.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,9 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
-
 namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
@@ -28,7 +24,10 @@ use LogicException;
 use UnexpectedValueException;
 
 /**
- * A multi-database, multi-primary DB factory for Wikimedia and similar installations
+ * Advanced manager for multiple database sections, e.g. for large wiki farms.
+ *
+ * This means different wikis can be stored on different database servers.
+ * It includes support for multi-primary setups.
  *
  * @ingroup Database
  */
@@ -106,6 +105,9 @@ class LBFactoryMulti extends LBFactory {
 	 *   - readOnlyBySection: map of (main section => message text or false).
 	 *      String values make sections read only, whereas anything else does not
 	 *      restrict read/write mode. [optional]
+	 *   - configCallback: A callback that returns a conf array that can be passed to
+	 *      the reconfigure() method. This will be used to autoReconfigure() to load
+	 *      any updated configuration.
 	 */
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );
@@ -142,7 +144,7 @@ class LBFactoryMulti extends LBFactory {
 		}
 	}
 
-	public function newMainLB( $domain = false, $owner = null ): ILoadBalancer {
+	public function newMainLB( $domain = false ): ILoadBalancerForOwner {
 		$domainInstance = $this->resolveDomainInstance( $domain );
 		$database = $domainInstance->getDatabase();
 		$section = $this->getSectionFromDatabase( $database );
@@ -161,8 +163,7 @@ class LBFactoryMulti extends LBFactory {
 			// Use the LB-specific read-only reason if everything isn't already read-only
 			is_string( $this->readOnlyReason )
 				? $this->readOnlyReason
-				: ( $this->readOnlyBySection[$section] ?? false ),
-			$owner
+				: ( $this->readOnlyBySection[$section] ?? false )
 		);
 	}
 
@@ -171,13 +172,13 @@ class LBFactoryMulti extends LBFactory {
 		$section = $this->getSectionFromDatabase( $domainInstance->getDatabase() );
 
 		if ( !isset( $this->mainLBs[$section] ) ) {
-			$this->mainLBs[$section] = $this->newMainLB( $domain, $this->getOwnershipId() );
+			$this->mainLBs[$section] = $this->newMainLB( $domain );
 		}
 
 		return $this->mainLBs[$section];
 	}
 
-	public function newExternalLB( $cluster, $owner = null ): ILoadBalancer {
+	public function newExternalLB( $cluster ): ILoadBalancerForOwner {
 		if ( !isset( $this->externalLoadsByCluster[$cluster] ) ) {
 			throw new InvalidArgumentException( "Unknown cluster '$cluster'" );
 		}
@@ -189,16 +190,14 @@ class LBFactoryMulti extends LBFactory {
 				$this->templateOverridesByCluster[$cluster] ?? []
 			),
 			[ ILoadBalancer::GROUP_GENERIC => $this->externalLoadsByCluster[$cluster] ],
-			$this->readOnlyReason,
-			$owner
+			$this->readOnlyReason
 		);
 	}
 
 	public function getExternalLB( $cluster ): ILoadBalancer {
 		if ( !isset( $this->externalLBs[$cluster] ) ) {
 			$this->externalLBs[$cluster] = $this->newExternalLB(
-				$cluster,
-				$this->getOwnershipId()
+				$cluster
 			);
 		}
 
@@ -226,11 +225,21 @@ class LBFactoryMulti extends LBFactory {
 	}
 
 	public function forEachLB( $callback, array $params = [] ) {
+		wfDeprecated( __METHOD__, '1.39' );
 		foreach ( $this->mainLBs as $lb ) {
 			$callback( $lb, ...$params );
 		}
 		foreach ( $this->externalLBs as $lb ) {
 			$callback( $lb, ...$params );
+		}
+	}
+
+	protected function getLBsForOwner() {
+		foreach ( $this->mainLBs as $lb ) {
+			yield $lb;
+		}
+		foreach ( $this->externalLBs as $lb ) {
+			yield $lb;
 		}
 	}
 
@@ -240,19 +249,17 @@ class LBFactoryMulti extends LBFactory {
 	 * @param string $clusterName
 	 * @param array $serverTemplate
 	 * @param array $groupLoads
-	 * @param string|bool $readOnlyReason
-	 * @param int|null $owner
+	 * @param string|false $readOnlyReason
 	 * @return LoadBalancer
 	 */
 	private function newLoadBalancer(
 		string $clusterName,
 		array $serverTemplate,
 		array $groupLoads,
-		$readOnlyReason,
-		$owner
+		$readOnlyReason
 	) {
 		$lb = new LoadBalancer( array_merge(
-			$this->baseLoadBalancerParams( $owner ),
+			$this->baseLoadBalancerParams(),
 			[
 				'servers' => $this->makeServerConfigArrays( $serverTemplate, $groupLoads ),
 				'loadMonitor' => $this->loadMonitorConfig,

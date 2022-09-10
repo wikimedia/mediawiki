@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 
@@ -476,7 +477,7 @@ class UploadStash {
 	 */
 	public static function getExtensionForPath( $path ) {
 		$prohibitedFileExtensions = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'ProhibitedFileExtensions' );
+			->getMainConfig()->get( MainConfigNames::ProhibitedFileExtensions );
 		// Does this have an extension?
 		$n = strrpos( $path, '.' );
 
@@ -510,7 +511,6 @@ class UploadStash {
 	 */
 	protected function fetchFileMetadata( $key, $readFromDB = DB_REPLICA ) {
 		// populate $fileMetadata[$key]
-		$dbr = null;
 		if ( $readFromDB === DB_PRIMARY ) {
 			// sometimes reading from the primary DB is necessary, if there's replication lag.
 			$dbr = $this->repo->getPrimaryDB();

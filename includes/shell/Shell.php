@@ -23,6 +23,7 @@
 namespace MediaWiki\Shell;
 
 use Hooks;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Shellbox\Shellbox;
 
@@ -183,7 +184,7 @@ class Shell {
 	public static function makeScriptCommand(
 		string $script, array $parameters, $options = []
 	): Command {
-		$phpCli = MediaWikiServices::getInstance()->getMainConfig()->get( 'PhpCli' );
+		$phpCli = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::PhpCli );
 		// Give site config file a chance to run the script in a wrapper.
 		// The caller may likely want to call wfBasename() on $script.
 		Hooks::runner()->onWfShellWikiCmd( $script, $parameters, $options );

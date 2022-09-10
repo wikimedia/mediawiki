@@ -30,6 +30,7 @@ class NotRecursiveIterator extends IteratorDecorator implements RecursiveIterato
 	}
 
 	public function getChildren(): ?RecursiveIterator {
+		// @phan-suppress-next-line PhanTypeMismatchReturnProbablyReal False positive
 		return null;
 	}
 }

@@ -63,8 +63,10 @@ class TitleDef extends TypeDef {
 		$title = $this->titleFactory->newFromText( $value );
 
 		if ( !$title ) {
+			// Message used: paramvalidator-badtitle
 			$this->failure( 'badtitle', $name, $value, $settings, $options );
 		} elseif ( $mustExist && !$title->exists() ) {
+			// Message used: paramvalidator-missingtitle
 			$this->failure( 'missingtitle', $name, $value, $settings, $options );
 		}
 

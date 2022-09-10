@@ -29,11 +29,7 @@
 abstract class AlphabeticPager extends IndexPager {
 
 	/**
-	 * Shamelessly stolen bits from ReverseChronologicalPager,
-	 * didn't want to do class magic as may be still revamped
-	 *
 	 * @stable to override
-	 *
 	 * @return string HTML
 	 */
 	public function getNavigationBar() {
@@ -45,51 +41,34 @@ abstract class AlphabeticPager extends IndexPager {
 			return $this->mNavigationBar;
 		}
 
-		$linkTexts = [
-			'prev' => $this->msg( 'prevn' )->numParams( $this->mLimit )->escaped(),
-			'next' => $this->msg( 'nextn' )->numParams( $this->mLimit )->escaped(),
-			'first' => $this->msg( 'page_first' )->escaped(),
-			'last' => $this->msg( 'page_last' )->escaped()
-		];
+		$navBuilder = $this->getNavigationBuilder()
+			->setPrevMsg( 'prevn' )
+			->setNextMsg( 'nextn' )
+			->setFirstMsg( 'page_first' )
+			->setLastMsg( 'page_last' );
 
-		$lang = $this->getLanguage();
+		if ( is_array( $this->getIndexField() ) ) {
+			$extra = '';
+			$msgs = $this->getOrderTypeMessages();
+			foreach ( $msgs as $order => $msg ) {
+				if ( $extra !== '' ) {
+					$extra .= $this->msg( 'pipe-separator' )->escaped();
+				}
 
-		$pagingLinks = $this->getPagingLinks( $linkTexts );
-		$limitLinks = $this->getLimitLinks();
-		$limits = $lang->pipeList( $limitLinks );
-
-		$this->mNavigationBar = $this->msg( 'parentheses' )->rawParams(
-			$lang->pipeList( [ $pagingLinks['first'],
-			$pagingLinks['last'] ] ) )->escaped() . " " .
-			$this->msg( 'viewprevnext' )->rawParams( $pagingLinks['prev'],
-				$pagingLinks['next'], $limits )->escaped();
-
-		if ( !is_array( $this->getIndexField() ) ) {
-			# Early return to avoid undue nesting
-			return $this->mNavigationBar;
-		}
-
-		$extra = '';
-		$msgs = $this->getOrderTypeMessages();
-		foreach ( $msgs as $order => $msg ) {
-			if ( $extra !== '' ) {
-				$extra .= $this->msg( 'pipe-separator' )->escaped();
+				if ( $order == $this->mOrderType ) {
+					$extra .= $this->msg( $msg )->escaped();
+				} else {
+					$extra .= $this->makeLink(
+						$this->msg( $msg )->escaped(),
+						[ 'order' => $order ]
+					);
+				}
 			}
 
-			if ( $order == $this->mOrderType ) {
-				$extra .= $this->msg( $msg )->escaped();
-			} else {
-				$extra .= $this->makeLink(
-					$this->msg( $msg )->escaped(),
-					[ 'order' => $order ]
-				);
-			}
+			$navBuilder->setExtra( $extra );
 		}
 
-		if ( $extra !== '' ) {
-			$extra = ' ' . $this->msg( 'parentheses' )->rawParams( $extra )->escaped();
-			$this->mNavigationBar .= $extra;
-		}
+		$this->mNavigationBar = $navBuilder->getHtml();
 
 		return $this->mNavigationBar;
 	}

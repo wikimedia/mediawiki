@@ -32,11 +32,14 @@ use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRenderingProvider;
 use MediaWiki\Search\ParserOutputSearchDataExtractor;
+use Wikimedia\ScopedCallback;
 
 /**
  * A content handler knows how do deal with a specific type of content on a wiki
@@ -96,7 +99,7 @@ abstract class ContentHandler {
 	 */
 	public static function getContentText( Content $content = null ) {
 		$contentHandlerTextFallback = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'ContentHandlerTextFallback' );
+			->getMainConfig()->get( MainConfigNames::ContentHandlerTextFallback );
 
 		if ( $content === null ) {
 			return '';
@@ -279,19 +282,6 @@ abstract class ContentHandler {
 		return MediaWikiServices::getInstance()
 			->getContentHandlerFactory()
 			->getContentHandler( $modelId );
-	}
-
-	/**
-	 * @deprecated since 1.35, hard deprecated since 1.37
-	 * Please, use ContentHandlerFactory. Cleanup is not needed
-	 * @see ContentHandlerFactory
-	 *
-	 * Clean up handlers cache.
-	 */
-	public static function cleanupHandlersCache() {
-		wfDeprecated( __METHOD__, '1.35' );
-		// No-op: no longer needed, since the instance cache is in the
-		// ContentHandlerFactory service, and services get reset between tests
 	}
 
 	/**
@@ -592,7 +582,7 @@ abstract class ContentHandler {
 	 * (Note that in older versions of MediaWiki the hook documentation instructed extensions
 	 * to return false from the hook; you should not rely on always being able to decorate
 	 * the DifferenceEngine instance from the hook. If the owner of the content type wants to
-	 * decorare the instance, overriding this method is a safer approach.)
+	 * decorate the instance, overriding this method is a safer approach.)
 	 *
 	 * @todo This is page-level functionality so it should not belong to ContentHandler.
 	 *   Move it to a better place once one exists (e.g. PageTypeHandler).
@@ -1276,6 +1266,20 @@ abstract class ContentHandler {
 	}
 
 	/**
+	 * If a non-existing page can be created with the contents from another (arbitrary) page being
+	 * preloaded in the editor, see {@see EditPage::getContentObject}. Only makes sense together
+	 * with {@see supportsDirectEditing}.
+	 *
+	 * @stable to override
+	 * @since 1.39
+	 *
+	 * @return bool
+	 */
+	public function supportsPreloadContent(): bool {
+		return false;
+	}
+
+	/**
 	 * Whether an edit on the content should trigger an HTML render and ParserCache entry.
 	 *
 	 * @stable to override
@@ -1422,14 +1426,20 @@ abstract class ContentHandler {
 	 *
 	 * @param WikiPage $page
 	 * @param ParserCache|null $cache deprecated since 1.38 and won't have any effect
-	 * @return ParserOutput
+	 * @return ParserOutput|null null when the ParserOutput cannot be obtained
+	 * @see ParserOutputAccess::getParserOutput() for failure modes
 	 */
 	public function getParserOutputForIndexing( WikiPage $page, ParserCache $cache = null ) {
 		// TODO: MCR: ContentHandler should be called per slot, not for the whole page.
 		// See T190066.
 		$parserOptions = $page->makeParserOptions( 'canonical' );
 		$parserOutputAccess = MediaWikiServices::getInstance()->getParserOutputAccess();
-		return $parserOutputAccess->getParserOutput( $page, $parserOptions )->getValue();
+		return $parserOutputAccess->getParserOutput(
+			$page,
+			$parserOptions,
+			null,
+			ParserOutputAccess::OPT_NO_UPDATE_CACHE
+		)->getValue();
 	}
 
 	/**
@@ -1692,9 +1702,15 @@ abstract class ContentHandler {
 		$title = $services->getTitleFactory()->castFromPageReference( $cpoParams->getPage() );
 		$parserOptions = $cpoParams->getParserOptions();
 
+		if ( $parserOptions->getIsPreview() ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
+			$scopedCallback = $parserOptions->setupFakeRevision( $title, $content, $parserOptions->getUserIdentity() );
+		}
+
 		$po = new ParserOutput();
 		$parserOptions->registerWatcher( [ $po, 'recordOption' ] );
 		if ( Hooks::runner()->onContentGetParserOutput(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$content, $title, $cpoParams->getRevId(), $parserOptions, $cpoParams->getGenerateHtml(), $po )
 		) {
 			// Save and restore the old value, just in case something is reusing
@@ -1710,13 +1726,18 @@ abstract class ContentHandler {
 				$title,
 				$cpoParams->getRevId(),
 				$parserOptions,
+				$content,
 				$po
 			);
 			$parserOptions->setRedirectTarget( $oldRedir );
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 		Hooks::runner()->onContentAlterParserOutput( $content, $title, $po );
 		$parserOptions->registerWatcher( null );
+		if ( isset( $scopedCallback ) ) {
+			ScopedCallback::consume( $scopedCallback );
+		}
 
 		return $po;
 	}
@@ -1742,6 +1763,12 @@ abstract class ContentHandler {
 	 * Fills the provided ParserOutput with information derived from the content.
 	 * Unless $cpoParams->getGenerateHtml() was false,
 	 * this includes an HTML representation of the content.
+	 *
+	 * If $cpoParams->getGenerateHtml() is false, and you chose not to generate
+	 * html, the ParserOutput must have a text of null. If the
+	 * text of the ParserOutput object is anything other than null (even if ''),
+	 * it is assumed that you don't support not generating html, and that it is
+	 * safe to reuse the parser output for calls expecting that html was generated.
 	 *
 	 * Subclasses are expected to override this method.
 	 *
@@ -1805,6 +1832,7 @@ abstract class ContentHandler {
 		$legacyTitle = $services->getTitleFactory()->castFromPageReference( $params->getPage() );
 
 		return $content->preSaveTransform(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$legacyTitle,
 			$legacyUser,
 			$params->getParserOptions()
@@ -1826,6 +1854,7 @@ abstract class ContentHandler {
 		$services = MediaWikiServices::getInstance();
 		$legacyTitle = $services->getTitleFactory()->castFromPageReference( $params->getPage() );
 		return $content->preloadTransform(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$legacyTitle,
 			$params->getParserOptions(),
 			$params->getParams()
@@ -1847,6 +1876,7 @@ abstract class ContentHandler {
 		$services = MediaWikiServices::getInstance();
 		$legacyTitle = $services->getTitleFactory()->castFromPageReference( $cpoParams->getPage() );
 		return $content->getParserOutput(
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$legacyTitle,
 			$cpoParams->getRevId(),
 			$cpoParams->getParserOptions(),

@@ -20,6 +20,7 @@
 
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\Page\DeletePageFactory;
@@ -70,6 +71,15 @@ class DeleteAction extends FormlessAction {
 	/** @var int */
 	private $deleteRevisionsLimit;
 
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	/** @var TitleFormatter */
+	private $titleFormatter;
+
+	/** @var TitleFactory */
+	private $titleFactory;
+
 	/**
 	 * @inheritDoc
 	 */
@@ -82,7 +92,10 @@ class DeleteAction extends FormlessAction {
 		$this->readOnlyMode = $services->getReadOnlyMode();
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
 		$this->deletePageFactory = $services->getDeletePageFactory();
-		$this->deleteRevisionsLimit = $services->getMainConfig()->get( 'DeleteRevisionsLimit' );
+		$this->deleteRevisionsLimit = $services->getMainConfig()->get( MainConfigNames::DeleteRevisionsLimit );
+		$this->namespaceInfo = $services->getNamespaceInfo();
+		$this->titleFormatter = $services->getTitleFormatter();
+		$this->titleFactory = $services->getTitleFactory();
 	}
 
 	public function getName() {
@@ -139,28 +152,43 @@ class DeleteAction extends FormlessAction {
 			$this->getWikiPage(),
 			$context->getAuthority()
 		);
+		$shouldDeleteTalk = $request->getCheck( 'wpDeleteTalk' ) &&
+			$deletePage->canProbablyDeleteAssociatedTalk()->isGood();
+		$deletePage->setDeleteAssociatedTalk( $shouldDeleteTalk );
 		$status = $deletePage
 			->setSuppress( $suppress )
 			->deleteIfAllowed( $this->getDeleteReason() );
 
-		if ( $status->isGood() ) {
-			$deleted = $this->getTitle()->getPrefixedText();
-
+		if ( $status->isOK() ) {
 			$outputPage->setPageTitle( $this->msg( 'actioncomplete' ) );
 			$outputPage->setRobotPolicy( 'noindex,nofollow' );
 
-			if ( !$deletePage->deletionsWereScheduled()[DeletePage::PAGE_BASE] ) {
-				$loglink = '[[Special:Log/delete|' . $this->msg( 'deletionlog' )->text() . ']]';
-				$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
-				$this->getHookRunner()->onArticleDeleteAfterSuccess( $this->getTitle(), $outputPage );
-			} else {
-				$outputPage->addWikiMsg( 'delete-scheduled', wfEscapeWikiText( $deleted ) );
+			if ( !$status->isGood() ) {
+				// If the page (and/or its talk) couldn't be found (e.g. because it was deleted in another request),
+				// let the user know.
+				$outputPage->addHTML(
+					Html::warningBox(
+						$outputPage->parseAsContent(
+							Status::wrap( $status )->getWikiText(
+								false,
+								false,
+								$context->getLanguage()
+							)
+						)
+					)
+				);
 			}
 
+			$this->showSuccessMessages(
+				$deletePage->getSuccessfulDeletionsIDs(),
+				$deletePage->deletionsWereScheduled()
+			);
+
+			if ( !$status->isGood() ) {
+				$this->showLogEntries();
+			}
 			$outputPage->returnToMain();
 		} else {
-			// This branch is also executed when the status is OK but not good, meaning the page couldn't be found (e.g.
-			// because it was deleted in another request)
 			$outputPage->setPageTitle( $this->msg( 'cannotdelete-title', $this->getTitle()->getPrefixedText() ) );
 
 			$outputPage->wrapWikiTextAsInterface(
@@ -173,6 +201,51 @@ class DeleteAction extends FormlessAction {
 		$this->watchlistManager->setWatch( $request->getCheck( 'wpWatch' ), $context->getAuthority(), $title );
 	}
 
+	/**
+	 * Display success messages
+	 *
+	 * @param array $deleted
+	 * @param array $scheduled
+	 * @return void
+	 */
+	private function showSuccessMessages( array $deleted, array $scheduled ): void {
+		$outputPage = $this->getContext()->getOutput();
+		$loglink = '[[Special:Log/delete|' . $this->msg( 'deletionlog' )->text() . ']]';
+		$pageBaseDisplayTitle = wfEscapeWikiText( $this->getTitle()->getPrefixedText() );
+		$pageTalkDisplayTitle = wfEscapeWikiText( $this->titleFormatter->getPrefixedText(
+			$this->namespaceInfo->getTalkPage( $this->getTitle() )
+		) );
+
+		$deletedTalk = $deleted[DeletePage::PAGE_TALK] ?? false;
+		$deletedBase = $deleted[DeletePage::PAGE_BASE];
+		$scheduledTalk = $scheduled[DeletePage::PAGE_TALK] ?? false;
+		$scheduledBase = $scheduled[DeletePage::PAGE_BASE];
+
+		if ( $deletedBase && $deletedTalk ) {
+			$outputPage->addWikiMsg( 'deleted-page-and-talkpage',
+				$pageBaseDisplayTitle,
+				$pageTalkDisplayTitle,
+				$loglink );
+		} elseif ( $deletedBase ) {
+			$outputPage->addWikiMsg( 'deletedtext', $pageBaseDisplayTitle, $loglink );
+		} elseif ( $deletedTalk ) {
+			$outputPage->addWikiMsg( 'deletedtext', $pageTalkDisplayTitle, $loglink );
+		}
+
+		// run hook if article was deleted
+		if ( $deletedBase ) {
+			$this->getHookRunner()->onArticleDeleteAfterSuccess( $this->getTitle(), $outputPage );
+		}
+
+		if ( $scheduledBase ) {
+			$outputPage->addWikiMsg( 'delete-scheduled', $pageBaseDisplayTitle );
+		}
+
+		if ( $scheduledTalk ) {
+			$outputPage->addWikiMsg( 'delete-scheduled', $pageTalkDisplayTitle );
+		}
+	}
+
 	private function showHistoryWarnings(): void {
 		$context = $this->getContext();
 		$title = $this->getTitle();
@@ -182,13 +255,12 @@ class DeleteAction extends FormlessAction {
 		// This, as a side-effect, also makes sure that the following query isn't being run for
 		// pages with a larger history, unless the user has the 'bigdelete' right
 		// (and is about to delete this page).
-		$dbr = wfGetDB( DB_REPLICA );
-		$revisions = (int)$dbr->selectField(
-			'revision',
-			'COUNT(rev_page)',
-			[ 'rev_page' => $title->getArticleID() ],
-			__METHOD__
-		);
+		$revisions = (int)wfGetDB( DB_REPLICA )->newSelectQueryBuilder()
+			->select( 'COUNT(rev_page)' )
+			->from( 'revision' )
+			->where( [ 'rev_page' => $title->getArticleID() ] )
+			->caller( __METHOD__ )
+			->fetchField();
 
 		// @todo i18n issue/patchwork message
 		$context->getOutput()->addHTML(
@@ -213,32 +285,46 @@ class DeleteAction extends FormlessAction {
 	}
 
 	protected function showFormWarnings(): void {
-		$title = $this->getTitle();
-		$outputPage = $this->getOutput();
+		$this->showBacklinksWarning();
+		$this->showSubpagesWarnings();
+	}
 
-		$backlinkCache = $this->backlinkCacheFactory->getBacklinkCache( $title );
+	private function showBacklinksWarning(): void {
+		$backlinkCache = $this->backlinkCacheFactory->getBacklinkCache( $this->getTitle() );
 		if ( $backlinkCache->hasLinks( 'pagelinks' ) || $backlinkCache->hasLinks( 'templatelinks' ) ) {
-			$outputPage->addHtml(
+			$this->getOutput()->addHtml(
 				Html::warningBox(
-					$outputPage->msg( 'deleting-backlinks-warning' )->parse(),
+					$this->msg( 'deleting-backlinks-warning' )->parse(),
+					'plainlinks'
+				)
+			);
+		}
+	}
+
+	protected function showSubpagesWarnings(): void {
+		$title = $this->getTitle();
+		$subpageCount = count( $title->getSubpages( 51 ) );
+		if ( $subpageCount ) {
+			$this->getOutput()->addHtml(
+				Html::warningBox(
+					$this->msg( 'deleting-subpages-warning' )->numParams( $subpageCount )->parse(),
 					'plainlinks'
 				)
 			);
 		}
 
-		$subpageQueryLimit = 51;
-		$subpages = $title->getSubpages( $subpageQueryLimit );
-		$subpageCount = count( $subpages );
-		if ( $subpageCount > 0 ) {
-			$outputPage->addHtml(
-				Html::warningBox(
-					$outputPage->msg( 'deleting-subpages-warning', Message::numParam( $subpageCount ) )->parse(),
-					'plainlinks'
-				)
-			);
+		if ( !$title->isTalkPage() ) {
+			$talkPageTitle = $this->titleFactory->newFromLinkTarget( $this->namespaceInfo->getTalkPage( $title ) );
+			$subpageCount = count( $talkPageTitle->getSubpages( 51 ) );
+			if ( $subpageCount ) {
+				$this->getOutput()->addHtml(
+					Html::warningBox(
+						$this->msg( 'deleting-talkpage-subpages-warning' )->numParams( $subpageCount )->parse(),
+						'plainlinks'
+					)
+				);
+			}
 		}
-
-		$outputPage->addWikiMsg( 'confirmdeletetext' );
 	}
 
 	private function tempConfirmDelete(): void {
@@ -254,6 +340,8 @@ class DeleteAction extends FormlessAction {
 		}
 		$this->showFormWarnings();
 
+		$outputPage->addWikiMsg( 'confirmdeletetext' );
+
 		// FIXME: Replace (or at least rename) this hook
 		$this->getHookRunner()->onArticleConfirmDelete( $this->getArticle(), $outputPage, $reason );
 
@@ -263,7 +351,7 @@ class DeleteAction extends FormlessAction {
 	}
 
 	protected function showEditReasonsLinks(): void {
-		if ( $this->getContext()->getAuthority()->isAllowed( 'editinterface' ) ) {
+		if ( $this->getAuthority()->isAllowed( 'editinterface' ) ) {
 			$link = '';
 			if ( $this->isSuppressionAllowed() ) {
 				$link .= $this->linkRenderer->makeKnownLink(
@@ -288,7 +376,7 @@ class DeleteAction extends FormlessAction {
 	 * @return bool
 	 */
 	protected function isSuppressionAllowed(): bool {
-		return $this->getContext()->getAuthority()->isAllowed( 'suppressrevision' );
+		return $this->getAuthority()->isAllowed( 'suppressrevision' );
 	}
 
 	/**
@@ -351,12 +439,29 @@ class DeleteAction extends FormlessAction {
 			]
 		);
 
+		$delPage = $this->deletePageFactory->newDeletePage( $this->getWikiPage(), $this->getAuthority() );
+		if ( $delPage->canProbablyDeleteAssociatedTalk()->isGood() ) {
+			$fields[] = new OOUI\FieldLayout(
+				new OOUI\CheckboxInputWidget( [
+					'name' => 'wpDeleteTalk',
+					'inputId' => 'wpDeleteTalk',
+					'tabIndex' => 3,
+					'selected' => false,
+				] ),
+				[
+					'label' => $this->msg( 'deletepage-deletetalk' )->text(),
+					'align' => 'inline',
+					'infusable' => true,
+				]
+			);
+		}
+
 		if ( $user->isRegistered() ) {
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
 					'name' => 'wpWatch',
 					'inputId' => 'wpWatch',
-					'tabIndex' => 3,
+					'tabIndex' => 4,
 					'selected' => $checkWatch,
 				] ),
 				[
@@ -371,7 +476,7 @@ class DeleteAction extends FormlessAction {
 				new OOUI\CheckboxInputWidget( [
 					'name' => 'wpSuppress',
 					'inputId' => 'wpSuppress',
-					'tabIndex' => 4,
+					'tabIndex' => 5,
 					'selected' => false,
 				] ),
 				[
@@ -386,7 +491,7 @@ class DeleteAction extends FormlessAction {
 			new OOUI\ButtonInputWidget( [
 				'name' => 'wpConfirmB',
 				'inputId' => 'wpConfirmB',
-				'tabIndex' => 5,
+				'tabIndex' => 6,
 				'value' => $this->getFormMsg( self::MSG_SUBMIT )->text(),
 				'label' => $this->getFormMsg( self::MSG_SUBMIT )->text(),
 				'flags' => [ 'primary', 'destructive' ],
@@ -431,7 +536,7 @@ class DeleteAction extends FormlessAction {
 	 */
 	protected function runExecuteChecks(): void {
 		$permissionStatus = PermissionStatus::newEmpty();
-		if ( !$this->getContext()->getAuthority()->definitelyCan( 'delete', $this->getTitle(), $permissionStatus ) ) {
+		if ( !$this->getAuthority()->definitelyCan( 'delete', $this->getTitle(), $permissionStatus ) ) {
 			throw new PermissionsError( 'delete', $permissionStatus );
 		}
 
@@ -553,16 +658,16 @@ class DeleteAction extends FormlessAction {
 	 */
 	private function pageHasHistory(): bool {
 		$dbr = wfGetDB( DB_REPLICA );
-		$res = $dbr->selectRowCount(
-			'revision',
-			'*',
-			[
-				'rev_page' => $this->getTitle()->getArticleID(),
-				$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0'
-			],
-			__METHOD__,
-			[ 'LIMIT' => 2 ]
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'revision' )
+			->where( [ 'rev_page' => $this->getTitle()->getArticleID() ] )
+			->andWhere(
+				[ $dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0' ]
+			)->limit( 2 )
+			->caller( __METHOD__ )
+			->fetchRowCount();
+
 		return $res > 1;
 	}
 

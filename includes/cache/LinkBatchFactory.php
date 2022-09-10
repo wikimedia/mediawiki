@@ -27,6 +27,7 @@ use GenderCache;
 use Language;
 use LinkBatch;
 use LinkCache;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
 use Psr\Log\LoggerInterface;
@@ -64,6 +65,9 @@ class LinkBatchFactory {
 	 */
 	private $loadBalancer;
 
+	/** @var LinksMigration */
+	private $linksMigration;
+
 	/** @var LoggerInterface */
 	private $logger;
 
@@ -73,6 +77,7 @@ class LinkBatchFactory {
 		Language $contentLanguage,
 		GenderCache $genderCache,
 		ILoadBalancer $loadBalancer,
+		LinksMigration $linksMigration,
 		LoggerInterface $logger
 	) {
 		$this->linkCache = $linkCache;
@@ -80,6 +85,7 @@ class LinkBatchFactory {
 		$this->contentLanguage = $contentLanguage;
 		$this->genderCache = $genderCache;
 		$this->loadBalancer = $loadBalancer;
+		$this->linksMigration = $linksMigration;
 		$this->logger = $logger;
 	}
 
@@ -96,6 +102,7 @@ class LinkBatchFactory {
 			$this->contentLanguage,
 			$this->genderCache,
 			$this->loadBalancer,
+			$this->linksMigration,
 			$this->logger
 		);
 	}

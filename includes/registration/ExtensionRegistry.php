@@ -39,7 +39,7 @@ class ExtensionRegistry {
 	/**
 	 * Bump whenever the registration cache needs resetting
 	 */
-	private const CACHE_VERSION = 7;
+	private const CACHE_VERSION = 8;
 
 	private const CACHE_EXPIRY = 60 * 60 * 24;
 
@@ -135,6 +135,11 @@ class ExtensionRegistry {
 	private static $instance;
 
 	/**
+	 * @var ?BagOStuff
+	 */
+	private $cache = null;
+
+	/**
 	 * @codeCoverageIgnore
 	 * @return ExtensionRegistry
 	 */
@@ -144,6 +149,18 @@ class ExtensionRegistry {
 		}
 
 		return self::$instance;
+	}
+
+	/**
+	 * Set the cache to use for extension info.
+	 * Intended for use during testing.
+	 *
+	 * @internal
+	 *
+	 * @param BagOStuff $cache
+	 */
+	public function setCache( BagOStuff $cache ): void {
+		$this->cache = $cache;
 	}
 
 	/**
@@ -188,9 +205,13 @@ class ExtensionRegistry {
 	}
 
 	private function getCache(): BagOStuff {
-		// Can't call MediaWikiServices here, as we must not cause services
-		// to be instantiated before extensions have loaded.
-		return ObjectCache::makeLocalServerCache();
+		if ( !$this->cache ) {
+			// Can't call MediaWikiServices here, as we must not cause services
+			// to be instantiated before extensions have loaded.
+			return ObjectCache::makeLocalServerCache();
+		}
+
+		return $this->cache;
 	}
 
 	private function makeCacheKey( BagOStuff $cache, $component, ...$extra ) {
@@ -351,15 +372,14 @@ class ExtensionRegistry {
 	/**
 	 * Process a queue of extensions and return their extracted data
 	 *
+	 * @internal since 1.39. Extensions should use ExtensionProcessor instead.
+	 *
 	 * @param int[] $queue keys are filenames, values are ignored
 	 * @return array extracted info
 	 * @throws Exception
 	 * @throws ExtensionDependencyError
 	 */
 	public function readFromQueue( array $queue ) {
-		$autoloadClasses = [];
-		$autoloadNamespaces = [];
-		$autoloaderPaths = [];
 		$processor = new ExtensionProcessor();
 		$versionChecker = $this->buildVersionChecker();
 		$extDependencies = [];
@@ -389,23 +409,6 @@ class ExtensionRegistry {
 				throw new Exception( "$path: unsupported manifest_version: {$version}" );
 			}
 
-			$dir = dirname( $path );
-			self::exportAutoloadClassesAndNamespaces(
-				$dir,
-				$info,
-				$autoloadClasses,
-				$autoloadNamespaces
-			);
-
-			if ( $this->loadTestClassesAndNamespaces ) {
-				self::exportTestAutoloadClassesAndNamespaces(
-					$dir,
-					$info,
-					$autoloadClasses,
-					$autoloadNamespaces
-				);
-			}
-
 			// get all requirements/dependencies for this extension
 			$requires = $processor->getRequirements( $info, $this->checkDev );
 
@@ -414,13 +417,10 @@ class ExtensionRegistry {
 				$extDependencies[$info['name']] = $requires;
 			}
 
-			// Get extra paths for later inclusion
-			$autoloaderPaths = array_merge( $autoloaderPaths,
-				$processor->getExtraAutoloaderPaths( $dir, $info ) );
 			// Compatible, read and extract info
 			$processor->extractInfo( $path, $info, $version );
 		}
-		$data = $processor->getExtractedInfo();
+		$data = $processor->getExtractedInfo( $this->loadTestClassesAndNamespaces );
 		$data['warnings'] = $warnings;
 
 		// check for incompatible extensions
@@ -432,56 +432,7 @@ class ExtensionRegistry {
 			throw new ExtensionDependencyError( $incompatible );
 		}
 
-		// FIXME: It was a design mistake to handle autoloading separately (T240535)
-		$data['globals']['wgAutoloadClasses'] = $autoloadClasses;
-		$data['autoloaderPaths'] = $autoloaderPaths;
-		$data['autoloaderNS'] = $autoloadNamespaces;
 		return $data;
-	}
-
-	/**
-	 * Export autoload classes and namespaces for a given directory and parsed JSON info file.
-	 *
-	 * @param string $dir
-	 * @param array $info
-	 * @param array &$autoloadClasses
-	 * @param array &$autoloadNamespaces
-	 */
-	public static function exportAutoloadClassesAndNamespaces(
-		$dir, $info, &$autoloadClasses = [], &$autoloadNamespaces = []
-	) {
-		if ( isset( $info['AutoloadClasses'] ) ) {
-			$autoload = self::processAutoLoader( $dir, $info['AutoloadClasses'] );
-			$GLOBALS['wgAutoloadClasses'] += $autoload;
-			$autoloadClasses += $autoload;
-		}
-		if ( isset( $info['AutoloadNamespaces'] ) ) {
-			$autoloadNamespaces += self::processAutoLoader( $dir, $info['AutoloadNamespaces'] );
-			AutoLoader::$psr4Namespaces += $autoloadNamespaces;
-		}
-	}
-
-	/**
-	 * Export test autoload classes and namespaces for a given directory and parsed JSON info file.
-	 *
-	 * @since 1.35
-	 * @param string $dir
-	 * @param array $info
-	 * @param array &$autoloadClasses
-	 * @param array &$autoloadNamespaces
-	 */
-	public static function exportTestAutoloadClassesAndNamespaces(
-		$dir, $info, &$autoloadClasses = [], &$autoloadNamespaces = []
-	) {
-		if ( isset( $info['TestAutoloadClasses'] ) ) {
-			$autoload = self::processAutoLoader( $dir, $info['TestAutoloadClasses'] );
-			$GLOBALS['wgAutoloadClasses'] += $autoload;
-			$autoloadClasses += $autoload;
-		}
-		if ( isset( $info['TestAutoloadNamespaces'] ) ) {
-			$autoloadNamespaces += self::processAutoLoader( $dir, $info['TestAutoloadNamespaces'] );
-			AutoLoader::$psr4Namespaces += $autoloadNamespaces;
-		}
 	}
 
 	protected function exportExtractedData( array $info ) {
@@ -536,7 +487,11 @@ class ExtensionRegistry {
 		}
 
 		if ( isset( $info['autoloaderNS'] ) ) {
-			AutoLoader::$psr4Namespaces += $info['autoloaderNS'];
+			AutoLoader::registerNamespaces( $info['autoloaderNS'] );
+		}
+
+		if ( isset( $info['autoloaderClasses'] ) ) {
+			AutoLoader::registerClasses( $info['autoloaderClasses'] );
 		}
 
 		foreach ( $info['defines'] as $name => $val ) {
@@ -549,10 +504,8 @@ class ExtensionRegistry {
 			}
 		}
 
-		foreach ( $info['autoloaderPaths'] as $path ) {
-			if ( file_exists( $path ) ) {
-				require_once $path;
-			}
+		if ( isset( $info['autoloaderPaths'] ) ) {
+			AutoLoader::loadFiles( $info['autoloaderPaths'] );
 		}
 
 		$this->loaded += $info['credits'];

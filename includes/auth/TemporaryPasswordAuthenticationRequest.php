@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -72,8 +73,8 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		// get the min password length
-		$minLength = $config->get( 'MinimalPasswordLength' );
-		$policy = $config->get( 'PasswordPolicy' );
+		$minLength = $config->get( MainConfigNames::MinimalPasswordLength );
+		$policy = $config->get( MainConfigNames::PasswordPolicy );
 		foreach ( $policy['policies'] as $p ) {
 			foreach ( [ 'MinimalPasswordLength', 'MinimumPasswordLengthToLogin' ] as $check ) {
 				$minLength = max( $minLength, $p[$check]['value'] ?? $p[$check] ?? 0 );

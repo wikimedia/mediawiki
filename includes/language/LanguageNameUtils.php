@@ -18,10 +18,6 @@
  * @file
  */
 
-/**
- * @defgroup Language Language
- */
-
 namespace MediaWiki\Languages;
 
 use BagOStuff;
@@ -29,6 +25,7 @@ use HashBagOStuff;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWikiTitleCodec;
 use MWException;
 
@@ -80,8 +77,8 @@ class LanguageNameUtils {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'ExtraLanguageNames',
-		'UsePigLatinVariant',
+		MainConfigNames::ExtraLanguageNames,
+		MainConfigNames::UsePigLatinVariant,
 	];
 
 	/** @var HookRunner */
@@ -217,11 +214,12 @@ class LanguageNameUtils {
 
 		if ( $inLanguage !== self::AUTONYMS ) {
 			# TODO: also include for self::AUTONYMS, when this code is more efficient
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 			$this->hookRunner->onLanguageGetTranslatedLanguageNames( $names, $inLanguage );
 		}
 
-		$mwNames = $this->options->get( 'ExtraLanguageNames' ) + Data\Names::$names;
-		if ( $this->options->get( 'UsePigLatinVariant' ) ) {
+		$mwNames = $this->options->get( MainConfigNames::ExtraLanguageNames ) + Data\Names::$names;
+		if ( $this->options->get( MainConfigNames::UsePigLatinVariant ) ) {
 			// Pig Latin (for variant development)
 			$mwNames['en-x-piglatin'] = 'Igpay Atinlay';
 		}

@@ -3,9 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
- *
+ * @ingroup Languages
  */
 
 $fallback8bitEncoding = 'windows-1256';
@@ -471,5 +470,6 @@ $arabicCombiningDiacritics =
 
 $linkTrail = '/^([a-zء-ي' . $arabicCombiningDiacritics . ']+)(.*)$/sDu';
 $linkPrefixCharset = 'a-zA-Zء-ي' . $arabicCombiningDiacritics;
+unset( $arabicCombiningDiacritics );
 
 $digitGroupingPattern = "#,##0.###";

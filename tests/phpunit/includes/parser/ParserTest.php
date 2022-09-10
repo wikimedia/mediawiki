@@ -4,6 +4,9 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Preferences\SignatureValidatorFactory;
+use MediaWiki\User\UserNameUtils;
+use MediaWiki\Utils\UrlUtils;
 
 /**
  * @covers Parser::__construct
@@ -29,14 +32,14 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			->onlyMethods( [ 'get', 'getVariableIDs' ] )
 			->getMock();
 		$mwFactory
-			->method( 'get' )->will( $this->returnCallback( function ( $arg ) {
+			->method( 'get' )->willReturnCallback( function ( $arg ) {
 				$mw = $this->getMockBuilder( MagicWord::class )
 					->disableOriginalConstructor()
 					->onlyMethods( [ 'getSynonyms' ] )
 					->getMock();
 				$mw->method( 'getSynonyms' )->willReturn( [] );
 				return $mw;
-			} ) );
+			} );
 		$mwFactory
 			->method( 'getVariableIDs' )->willReturn( [] );
 
@@ -45,8 +48,8 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			$mwFactory,
 			$this->createMock( Language::class ),
 			$this->createMock( ParserFactory::class ),
-			'a snail can sleep for three years',
-			$this->createMock( MediaWiki\Special\SpecialPageFactory::class ),
+			$this->createMock( UrlUtils::class ),
+			$this->createMock( MediaWiki\SpecialPage\SpecialPageFactory::class ),
 			$this->createMock( MediaWiki\Linker\LinkRendererFactory::class ),
 			$this->createMock( NamespaceInfo::class ),
 			new Psr\Log\NullLogger(),
@@ -59,7 +62,9 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( MediaWiki\User\UserFactory::class ),
 			$this->createMock( TitleFormatter::class ),
 			$this->createMock( HttpRequestFactory::class ),
-			$this->createMock( TrackingCategories::class )
+			$this->createMock( TrackingCategories::class ),
+			$this->createMock( SignatureValidatorFactory::class ),
+			$this->createMock( UserNameUtils::class )
 		];
 	}
 

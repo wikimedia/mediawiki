@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 class JavaScriptContentHandlerTest extends MediaWikiLangTestCase {
 
 	/**
@@ -7,9 +9,9 @@ class JavaScriptContentHandlerTest extends MediaWikiLangTestCase {
 	 * @covers JavaScriptContentHandler::makeRedirectContent
 	 */
 	public function testMakeRedirectContent( $title, $expected ) {
-		$this->setMwGlobals( [
-			'wgServer' => '//example.org',
-			'wgScript' => '/w/index.php',
+		$this->overrideConfigValues( [
+			MainConfigNames::Server => '//example.org',
+			MainConfigNames::Script => '/w/index.php',
 		] );
 		$ch = new JavaScriptContentHandler();
 		$content = $ch->makeRedirectContent( Title::newFromText( $title ) );

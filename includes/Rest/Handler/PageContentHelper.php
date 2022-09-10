@@ -3,6 +3,7 @@
 namespace MediaWiki\Rest\Handler;
 
 use Config;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Permissions\Authority;
@@ -215,7 +216,9 @@ class PageContentHelper {
 		$revision = $this->getTargetRevision();
 		return [
 			'id' => $page->getId(),
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 			'key' => $this->titleFormatter->getPrefixedDBkey( $page ),
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 			'title' => $this->titleFormatter->getPrefixedText( $page ),
 			'latest' => [
 				'id' => $revision->getId(),
@@ -225,8 +228,8 @@ class PageContentHelper {
 				->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )
 				->getModel(),
 			'license' => [
-				'url' => $this->config->get( 'RightsUrl' ),
-				'title' => $this->config->get( 'RightsText' )
+				'url' => $this->config->get( MainConfigNames::RightsUrl ),
+				'title' => $this->config->get( MainConfigNames::RightsText )
 			],
 		];
 	}
@@ -274,6 +277,7 @@ class PageContentHelper {
 			);
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Validated by hasContent
 		if ( !$this->authority->authorizeRead( 'read', $this->getPage() ) ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-permission-denied-title' )->plaintextParams( $titleText ),

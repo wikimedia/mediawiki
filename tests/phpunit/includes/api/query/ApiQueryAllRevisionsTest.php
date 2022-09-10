@@ -17,19 +17,20 @@ class ApiQueryAllRevisionsTest extends ApiTestCase {
 	 * @group medium
 	 */
 	public function testContentComesWithContentModelAndFormat() {
-		$pageName = 'Help:' . __METHOD__;
-		$title = Title::newFromText( $pageName );
-		$page = WikiPage::factory( $title );
-
-		$page->doUserEditContent(
-			ContentHandler::makeContent( 'Some text', $page->getTitle() ),
-			$this->getTestSysop()->getUser(),
-			'inserting content'
+		$title = Title::makeTitle( NS_HELP, 'TestContentComesWithContentModelAndFormat' );
+		$this->editPage(
+			$title,
+			'Some text',
+			'inserting content',
+			NS_MAIN,
+			$this->getTestSysop()->getAuthority()
 		);
-		$page->doUserEditContent(
-			ContentHandler::makeContent( 'Some other text', $page->getTitle() ),
-			$this->getTestSysop()->getUser(),
-			'adding revision'
+		$this->editPage(
+			$title,
+			'Some other text',
+			'adding revision',
+			NS_MAIN,
+			$this->getTestSysop()->getAuthority()
 		);
 
 		$apiResult = $this->doApiRequest( [
@@ -44,7 +45,7 @@ class ApiQueryAllRevisionsTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'allrevisions', $apiResult[0]['query'] );
 		$this->assertArrayHasKey( 0, $apiResult[0]['query']['allrevisions'] );
 		$this->assertArrayHasKey( 'title', $apiResult[0]['query']['allrevisions'][0] );
-		$this->assertSame( $pageName, $apiResult[0]['query']['allrevisions'][0]['title'] );
+		$this->assertSame( $title->getPrefixedText(), $apiResult[0]['query']['allrevisions'][0]['title'] );
 		$this->assertArrayHasKey( 'revisions', $apiResult[0]['query']['allrevisions'][0] );
 		$this->assertCount( 2, $apiResult[0]['query']['allrevisions'][0]['revisions'] );
 

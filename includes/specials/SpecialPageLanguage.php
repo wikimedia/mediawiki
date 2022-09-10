@@ -25,6 +25,7 @@
 
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionStatus;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -75,9 +76,9 @@ class SpecialPageLanguage extends FormSpecialPage {
 		return true;
 	}
 
-	protected function preText() {
+	protected function preHtml() {
 		$this->getOutput()->addModules( 'mediawiki.misc-authed-ooui' );
-		return parent::preText();
+		return parent::preHtml();
 	}
 
 	protected function getFormFields() {
@@ -130,7 +131,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 			'label-message' => 'pagelang-language',
 			'default' => $title ?
 				$title->getPageLanguage()->getCode() :
-				$this->getConfig()->get( 'LanguageCode' ),
+				$this->getConfig()->get( MainConfigNames::LanguageCode ),
 		];
 
 		// Allow user to enter a comment explaining the change
@@ -142,7 +143,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		return $page;
 	}
 
-	protected function postText() {
+	protected function postHtml() {
 		if ( $this->par ) {
 			return $this->showLogFragment( $this->par );
 		}
@@ -213,9 +214,9 @@ class SpecialPageLanguage extends FormSpecialPage {
 	 * @return Status
 	 */
 	public static function changePageLanguage( IContextSource $context, Title $title,
-		$newLanguage, $reason, array $tags = [], IDatabase $dbw = null ) {
+		$newLanguage, $reason = "", array $tags = [], IDatabase $dbw = null ) {
 		// Get the default language for the wiki
-		$defLang = $context->getConfig()->get( 'LanguageCode' );
+		$defLang = $context->getConfig()->get( MainConfigNames::LanguageCode );
 
 		$pageId = $title->getArticleID();
 
@@ -288,7 +289,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		$entry->setPerformer( $context->getUser() );
 		$entry->setTarget( $title );
 		$entry->setParameters( $logParams );
-		$entry->setComment( $reason );
+		$entry->setComment( is_string( $reason ) ? $reason : "" );
 		$entry->addTags( $tags );
 
 		$logid = $entry->insert();

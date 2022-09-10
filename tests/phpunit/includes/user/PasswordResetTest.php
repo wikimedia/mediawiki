@@ -35,12 +35,11 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 	) {
 		$config = $this->makeConfig( $enableEmail, $passwordResetRoutes, false );
 
-		$authManager = $this->getMockBuilder( AuthManager::class )->disableOriginalConstructor()
-			->getMock();
+		$authManager = $this->createMock( AuthManager::class );
 		$authManager->method( 'allowsAuthenticationDataChange' )
 			->willReturn( $allowsAuthenticationDataChange ? Status::newGood() : Status::newFatal( 'foo' ) );
 
-		$user = $this->getMockBuilder( User::class )->getMock();
+		$user = $this->createMock( User::class );
 		$user->method( 'getName' )->willReturn( 'Foo' );
 		$user->method( 'getBlock' )->willReturn( $block );
 		$user->method( 'getGlobalBlock' )->willReturn( $globalBlock );
@@ -522,7 +521,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 				'Expected status to be good, result was: ' . $status->__toString()
 			);
 		} else {
-			$this->assertFalse( $status->isGood(), 'Expected status to not be good' );
+			$this->assertStatusNotGood( $status, 'Expected status to not be good' );
 			if ( is_string( $error ) ) {
 				$this->assertNotEmpty( $status->getErrors() );
 				$message = $status->getErrors()[0]['message'];
@@ -550,8 +549,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 	 * @return User
 	 */
 	private function makePerformingUser( $ip, $pingLimited ): User {
-		$request = $this->getMockBuilder( WebRequest::class )
-			->getMock();
+		$request = $this->createMock( WebRequest::class );
 		$request->method( 'getIP' )
 			->willReturn( $ip );
 		/** @var WebRequest $request */
@@ -592,9 +590,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 		array $ignored = [],
 		array $mailThrottledLimited = []
 	): AuthManager {
-		$authManager = $this->getMockBuilder( AuthManager::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$authManager = $this->createMock( AuthManager::class );
 		$authManager->method( 'allowsAuthenticationDataChange' )
 			->willReturnCallback(
 				static function ( TemporaryPasswordAuthenticationRequest $req )
@@ -625,7 +621,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function makeUsers() {
 		$getGoodUserCb = function ( int $num ) {
-			$user = $this->getMockBuilder( User::class )->getMock();
+			$user = $this->createMock( User::class );
 			$user->method( 'getName' )->willReturn( "User$num" );
 			$user->method( 'getId' )->willReturn( $num );
 			$user->method( 'isRegistered' )->willReturn( true );
@@ -637,7 +633,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 		$user3 = $getGoodUserCb( 3 );
 		$user4 = $getGoodUserCb( 4 );
 
-		$badUser = $this->getMockBuilder( User::class )->getMock();
+		$badUser = $this->createMock( User::class );
 		$badUser->method( 'getName' )->willReturn( 'BadUser' );
 		$badUser->method( 'getId' )->willReturn( 5 );
 		$badUser->method( 'isRegistered' )->willReturn( true );

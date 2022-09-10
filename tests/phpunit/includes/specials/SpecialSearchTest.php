@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -30,9 +31,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 	 * @covers SpecialSearch::load
 	 */
 	public function testAlternativeBackend() {
-		$this->setMwGlobals( [
-			'wgSearchTypeAlternatives' => [ 'MockSearchEngine' ],
-		] );
+		$this->overrideConfigValue( MainConfigNames::SearchTypeAlternatives, [ 'MockSearchEngine' ] );
 
 		$ctx = new RequestContext();
 		$ctx->setRequest( new FauxRequest( [
@@ -64,7 +63,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			->getSpecialPageFactory()
 			->executePath( $sp, $ctx );
 		$html = $ctx->getOutput()->getHTML();
-		$this->assertRegExp( '/class="mw-message-box-warning warningbox/', $html, 'must contain warnings' );
+		$this->assertRegExp( '/class="mw-message-box-warning/', $html, 'must contain warnings' );
 		$this->assertRegExp( '/Sort order of invalid is unrecognized/',
 			$html, 'must tell user sort order is invalid' );
 	}
@@ -178,9 +177,9 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 	 * @covers SpecialSearch::setupPage
 	 */
 	public function testSearchTermIsNotExpanded() {
-		$this->setMwGlobals( [
-			'wgSearchType' => null,
-		] );
+		// T303046
+		$this->markTestSkippedIfDbType( 'sqlite' );
+		$this->overrideConfigValue( MainConfigNames::SearchType, null );
 
 		# Initialize [[Special::Search]]
 		$ctx = new RequestContext();
@@ -235,7 +234,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
 			[
 				'Prev/next links are using the rewritten query',
-				'/search=rewritten\+query" title="Next 20 results"/',
+				'/search=rewritten\+query" rel="next" title="Next 20 results"/',
 				'original query',
 				'rewritten query',
 				array_fill( 0, 100, Title::newMainPage() )
@@ -390,9 +389,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 	 * @covers SpecialSearch::execute
 	 */
 	public function testSubPageRedirect() {
-		$this->setMwGlobals( [
-			'wgScript' => '/w/index.php',
-		] );
+		$this->overrideConfigValue( MainConfigNames::Script, '/w/index.php' );
 
 		$ctx = new RequestContext;
 		$sp = Title::newFromText( 'Special:Search/foo_bar' );
@@ -480,10 +477,8 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		$searchTerm = "Test create link not shown if variant link is known";
 		$variantLink = "the replaced link variant text should not be visible";
 
-		$variantTitle = $this->createNoOpMock(
-			Title::class,
-			[ 'isKnown', 'getPrefixedText', 'getDBkey', 'isExternal' ]
-		);
+		$variantTitle = $this->createNoOpMock( Title::class, [ 'isKnown', 'getPrefixedText',
+			'getDBkey', 'isExternal' ] );
 
 		$variantTitle->method( "isKnown" )->willReturn( true );
 		$variantTitle->method( "isExternal" )->willReturn( false );

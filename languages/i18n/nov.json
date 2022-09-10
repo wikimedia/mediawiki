@@ -1,14 +1,14 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"BRG (on nov.wikipedia.org)",
 			"Chrisportelli",
 			"MF-Warburg",
 			"Malafaya",
 			"Nov ialiste",
 			"Purodha",
-			"Wayne (on nov.wikipedia.org)",
-			"Amire80"
+			"Wayne (on nov.wikipedia.org)"
 		]
 	},
 	"sunday": "sundie",
@@ -86,9 +86,9 @@
 	"printableversion": "Printindi versione",
 	"permalink": "Permananti linke",
 	"print": "Printa",
-	"view-view": "Lekte",
+	"skin-view-view": "Lekte",
 	"edit": "Immodifika",
-	"view-edit": "Immodifika",
+	"skin-view-edit": "Immodifika",
 	"delete": "Ekarta",
 	"protect": "Protekte",
 	"newpage": "Novi pagine",
@@ -115,7 +115,6 @@
 	"portal-url": "Project:Li komun chambre",
 	"badaccess": "Permisione erore",
 	"youhavenewmessages": "Vu have $1 ($2).",
-	"youhavenewmessagesmulti": "Vu have novi mesajes pri $1",
 	"editsection": "modifika",
 	"editold": "modifika",
 	"editlink": "modifika",

@@ -20,6 +20,7 @@
  * @ingroup Actions
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
@@ -57,7 +58,7 @@ class WatchAction extends FormAction {
 		WatchedItemStore $watchedItemStore
 	) {
 		parent::__construct( $page, $context );
-		$this->watchlistExpiry = $this->getContext()->getConfig()->get( 'WatchlistExpiry' );
+		$this->watchlistExpiry = $this->getContext()->getConfig()->get( MainConfigNames::WatchlistExpiry );
 		if ( $this->watchlistExpiry ) {
 			// The watchedItem is only used in this action's form if $wgWatchlistExpiry is enabled.
 			$this->watchedItem = $watchedItemStore->getWatchedItem(
@@ -85,7 +86,7 @@ class WatchAction extends FormAction {
 		// because it also checks for changed expiry.
 		$result = $this->watchlistManager->setWatch(
 			true,
-			$this->getContext()->getAuthority(),
+			$this->getAuthority(),
 			$this->getTitle(),
 			$this->getRequest()->getVal( 'wp' . $this->expiryFormFieldName )
 		);
@@ -94,8 +95,7 @@ class WatchAction extends FormAction {
 	}
 
 	protected function checkCanExecute( User $user ) {
-		// Must be logged in
-		if ( $user->isAnon() ) {
+		if ( !$user->isNamed() ) {
 			throw new UserNotLoggedIn( 'watchlistanontext', 'watchnologin' );
 		}
 

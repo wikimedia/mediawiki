@@ -22,7 +22,7 @@
  */
 
 /**
- * This is a wrapper for APCU's shared memory functions
+ * This is a wrapper for APCu's shared memory functions
  *
  * Use PHP serialization to avoid bugs and easily create CAS tokens.
  * APCu has a memory corruption bug when the serializer is set to 'default'.
@@ -36,8 +36,6 @@
 class APCUBagOStuff extends MediumSpecificBagOStuff {
 	/** @var bool Whether to trust the APC implementation to serialization */
 	private $nativeSerialize;
-	/** @var bool */
-	private $useIncrTTLArg;
 
 	/**
 	 * @var string String to append to each APC key. This may be changed
@@ -50,11 +48,11 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 	private static $CAS_MAX_ATTEMPTS = 100;
 
 	public function __construct( array $params = [] ) {
-		$params['segmentationSize'] = $params['segmentationSize'] ?? INF;
+		// No use in segmenting values
+		$params['segmentationSize'] = INF;
 		parent::__construct( $params );
 		// The extension serializer is still buggy, unlike "php" and "igbinary"
 		$this->nativeSerialize = ( ini_get( 'apc.serializer' ) !== 'default' );
-		$this->useIncrTTLArg = version_compare( phpversion( 'apcu' ), '5.1.12', '>=' );
 		// Avoid back-dated values that expire too soon. In particular, regenerating a hot
 		// key before it expires should never have the end-result of purging that key. Using
 		// the web request time becomes increasingly problematic the longer the request lasts.
@@ -76,7 +74,9 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		$blob = apcu_fetch( $key . self::KEY_SUFFIX );
 		$value = $this->nativeSerialize ? $blob : $this->unserialize( $blob );
 		if ( $getToken && $value !== false ) {
-			$casToken = $blob; // don't bother hashing this
+			// Note that if the driver handles serialization then this uses the PHP value
+			// as the token. This might require inspection or re-serialization in doCas().
+			$casToken = $blob;
 		}
 
 		return $value;
@@ -85,15 +85,17 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		$blob = $this->nativeSerialize ? $value : $this->getSerialized( $value, $key );
 		$ttl = $this->getExpirationAsTTL( $exptime );
-		$success = apcu_store( $key . self::KEY_SUFFIX, $blob, $ttl );
-		return $success;
+		return apcu_store( $key . self::KEY_SUFFIX, $blob, $ttl );
 	}
 
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
+		if ( apcu_exists( $key . self::KEY_SUFFIX ) ) {
+			return false;
+		}
+
 		$blob = $this->nativeSerialize ? $value : $this->getSerialized( $value, $key );
 		$ttl = $this->getExpirationAsTTL( $exptime );
-		$success = apcu_add( $key . self::KEY_SUFFIX, $blob, $ttl );
-		return $success;
+		return apcu_add( $key . self::KEY_SUFFIX, $blob, $ttl );
 	}
 
 	protected function doDelete( $key, $flags = 0 ) {
@@ -145,7 +147,7 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
 		// Use apcu 5.1.12 $ttl argument if apcu_inc() will initialize to $init:
 		// https://www.php.net/manual/en/function.apcu-inc.php
-		if ( $step === $init && $this->useIncrTTLArg ) {
+		if ( $step === $init ) {
 			/** @noinspection PhpMethodParametersCountMismatchInspection */
 			$ttl = $this->getExpirationAsTTL( $exptime );
 			$result = apcu_inc( $key . self::KEY_SUFFIX, $step, $success, $ttl );
@@ -175,11 +177,19 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		return $result;
 	}
 
+	public function setNewPreparedValues( array $valueByKey ) {
+		// Do not bother staging serialized values if the PECL driver does the serializing
+		return $this->nativeSerialize
+			? $this->guessSerialSizeOfValues( $valueByKey )
+			: parent::setNewPreparedValues( $valueByKey );
+	}
+
 	public function makeKeyInternal( $keyspace, $components ) {
 		return $this->genericKeyFromComponents( $keyspace, ...$components );
 	}
 
 	protected function convertGenericKey( $key ) {
-		return $key; // short-circuit; already uses "generic" keys
+		// short-circuit; already uses "generic" keys
+		return $key;
 	}
 }

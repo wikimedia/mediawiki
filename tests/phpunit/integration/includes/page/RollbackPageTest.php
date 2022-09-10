@@ -5,12 +5,13 @@ namespace MediaWiki\Tests\Page;
 use ChangeTags;
 use DatabaseLogEntry;
 use JsonContent;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\RollbackPage;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Storage\RevisionRecord;
 use MediaWiki\Tests\Unit\MockServiceDependenciesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserFactory;
@@ -36,7 +37,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->setMwGlobals( 'wgUseRCPatrol', true );
+		$this->overrideConfigValue( MainConfigNames::UseRCPatrol, true );
 		$this->tablesUsed = array_merge( $this->tablesUsed, [
 			'page',
 			'recentchanges',
@@ -120,19 +121,19 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		// Use the confirmed group for user2 to make sure the user is different
 		$user2 = $this->getTestUser( [ 'confirmed' ] )->getUser();
 
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		// Make some edits
 		$text = "one";
 		$status1 = $this->editPage( $page, $text, "section one", NS_MAIN, $admin );
-		$this->assertTrue( $status1->isGood(), 'edit 1 success' );
+		$this->assertStatusGood( $status1, 'edit 1 success' );
 
 		$text .= "\n\ntwo";
 		$status2 = $this->editPage( $page, $text, "adding section two", NS_MAIN, $user1 );
-		$this->assertTrue( $status2->isGood(), 'edit 2 success' );
+		$this->assertStatusGood( $status2, 'edit 2 success' );
 
 		$text .= "\n\nthree";
 		$status3 = $this->editPage( $page, $text, "adding section three", NS_MAIN, $user2 );
-		$this->assertTrue( $status3->isGood(), 'edit 3 success' );
+		$this->assertStatusGood( $status3, 'edit 3 success' );
 
 		/** @var RevisionRecord $rev1 */
 		/** @var RevisionRecord $rev2 */
@@ -141,6 +142,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		$rev2 = $status2->getValue()['revision-record'];
 		$rev3 = $status3->getValue()['revision-record'];
 
+		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 		/**
 		 * We are having issues with doRollback spuriously failing. Apparently
 		 * the last revision somehow goes missing or not committed under some
@@ -148,20 +150,24 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		 */
 		$this->assertEquals(
 			3,
-			$this->getServiceContainer()
-				->getRevisionStore()
-				->countRevisionsByPageId( $this->db, $page->getId() )
+			$revisionStore->countRevisionsByPageId( $this->db, $page->getId() )
 		);
 		$this->assertEquals( $admin->getName(), $rev1->getUser()->getName() );
 		$this->assertEquals( $user1->getName(), $rev2->getUser()->getName() );
 		$this->assertEquals( $user2->getName(), $rev3->getUser()->getName() );
+
+		$rc3 = $revisionStore->getRecentChange( $rev3 );
+		$this->assertEquals(
+			RecentChange::PRC_UNPATROLLED,
+			$rc3->getAttribute( 'rc_patrolled' )
+		);
 
 		// Now, try the actual rollback
 		$rollbackStatus = $this->getServiceContainer()
 			->getRollbackPageFactory()
 			->newRollbackPage( $page, $admin, $user2 )
 			->rollbackIfAllowed();
-		$this->assertTrue( $rollbackStatus->isGood() );
+		$this->assertStatusGood( $rollbackStatus );
 
 		$this->assertEquals(
 			$rev2->getSha1(),
@@ -169,15 +175,18 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			"rollback did not revert to the correct revision" );
 		$this->assertEquals( "one\n\ntwo", $page->getContent()->getText() );
 
-		$rc = $this->getServiceContainer()->getRevisionStore()->getRecentChange(
-			$page->getRevisionRecord()
-		);
+		$rc = $revisionStore->getRecentChange( $page->getRevisionRecord() );
+		$rc3 = $revisionStore->getRecentChange( $rev3 );
 
 		$this->assertNotNull( $rc, 'RecentChanges entry' );
 		$this->assertEquals(
 			RecentChange::PRC_AUTOPATROLLED,
 			$rc->getAttribute( 'rc_patrolled' ),
 			'rc_patrolled'
+		);
+		$this->assertEquals(
+			RecentChange::PRC_AUTOPATROLLED,
+			$rc3->getAttribute( 'rc_patrolled' )
 		);
 
 		$mainSlot = $page->getRevisionRecord()->getSlot( SlotRecord::MAIN );
@@ -186,32 +195,24 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRollbackFailSameContent() {
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		$admin = $this->getTestSysop()->getUser();
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
-
-		$text = "one";
-		$status1 = $this->editPage( $page, $text, "section one", NS_MAIN, $admin );
-		$this->assertTrue( $status1->isGood(), 'edit 1 success' );
-		$rev1 = $page->getRevisionRecord();
-
 		$user1 = $this->getTestUser( [ 'sysop' ] )->getUser();
-		$text .= "\n\ntwo";
-		$status1 = $this->editPage( $page, $text, "adding section two", NS_MAIN, $user1 );
-		$this->assertTrue( $status1->isGood(), 'edit 2 success' );
+
+		[ 'revision-one' => $rev1 ] = $this->prepareForRollback( $admin, $user1, $page );
 
 		$rollbackResult = $this->getServiceContainer()
 			->getRollbackPageFactory()
 			->newRollbackPage( $page, $admin, $user1 )
 			->rollbackIfAllowed();
-		$this->assertTrue( $rollbackResult->isGood() );
+		$this->assertStatusGood( $rollbackResult );
 
 		# now, try the rollback again
 		$rollbackResult = $this->getServiceContainer()
 			->getRollbackPageFactory()
 			->newRollbackPage( $page, $admin, $user1 )
 			->rollback();
-		$this->assertFalse( $rollbackResult->isGood() );
-		$this->assertTrue( $rollbackResult->hasMessage( 'alreadyrolled' ) );
+		$this->assertStatusError( 'alreadyrolled', $rollbackResult );
 
 		$this->assertEquals( $rev1->getSha1(), $page->getRevisionRecord()->getSha1(),
 			"rollback did not revert to the correct revision" );
@@ -227,8 +228,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 				new UserIdentityValue( 0, '127.0.0.1' )
 			)
 			->rollback();
-		$this->assertFalse( $rollbackStatus->isGood() );
-		$this->assertTrue( $rollbackStatus->hasMessage( 'notanarticle' ) );
+		$this->assertStatusError( 'notanarticle', $rollbackStatus );
 	}
 
 	/**
@@ -243,12 +243,12 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 		$result = [];
 		$text = "one";
 		$status = $this->editPage( $page, $text, "section one", NS_MAIN, $user1 );
-		$this->assertTrue( $status->isGood(), 'edit 1 success' );
+		$this->assertStatusGood( $status, 'edit 1 success' );
 		$result['revision-one'] = $status->getValue()['revision-record'];
 
 		$text .= "\n\ntwo";
 		$status = $this->editPage( $page, $text, "adding section two", NS_MAIN, $user2 );
-		$this->assertTrue( $status->isGood(), 'edit 2 success' );
+		$this->assertStatusGood( $status, 'edit 2 success' );
 		$result['revision-two'] = $status->getValue()['revision-record'];
 		return $result;
 	}
@@ -258,7 +258,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			$this->markTestSkipped( 'Rollback tag deactivated, skipped the test.' );
 		}
 
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser()->getUser();
 
@@ -269,13 +269,13 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			->newRollbackPage( $page, $admin, $user1 )
 			->setChangeTags( [ 'tag' ] )
 			->rollbackIfAllowed();
-		$this->assertTrue( $rollbackResult->isGood() );
+		$this->assertStatusGood( $rollbackResult );
 		$this->assertContains( 'mw-rollback', $rollbackResult->getValue()['tags'] );
 		$this->assertContains( 'tag', $rollbackResult->getValue()['tags'] );
 	}
 
 	public function testRollbackBot() {
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser()->getUser();
 
@@ -286,14 +286,14 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			->newRollbackPage( $page, $admin, $user1 )
 			->markAsBot( true )
 			->rollbackIfAllowed();
-		$this->assertTrue( $rollbackResult->isGood() );
+		$this->assertStatusGood( $rollbackResult );
 		$rc = $this->getServiceContainer()->getRevisionStore()->getRecentChange( $page->getRevisionRecord() );
 		$this->assertNotNull( $rc );
 		$this->assertSame( '1', $rc->getAttribute( 'rc_bot' ) );
 	}
 
 	public function testRollbackBotNotAllowed() {
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		$admin = $this->mockUserAuthorityWithoutPermissions(
 			$this->getTestSysop()->getUser(), [ 'markbotedits', 'bot' ] );
 		$user1 = $this->getTestUser()->getUser();
@@ -305,14 +305,84 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			->newRollbackPage( $page, $admin, $user1 )
 			->markAsBot( true )
 			->rollbackIfAllowed();
-		$this->assertTrue( $rollbackResult->isGood() );
+		$this->assertStatusGood( $rollbackResult );
 		$rc = $this->getServiceContainer()->getRevisionStore()->getRecentChange( $page->getRevisionRecord() );
 		$this->assertNotNull( $rc );
 		$this->assertSame( '0', $rc->getAttribute( 'rc_bot' ) );
 	}
 
+	public function provideRollbackPatrolAndBot() {
+		yield 'mark as bot' => [ true ];
+		yield 'do not mark as bot' => [ false ];
+	}
+
+	/**
+	 * @dataProvider provideRollbackPatrolAndBot
+	 */
+	public function testRollbackPatrolAndBot( bool $markAsBot ) {
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
+		$admin = $this->getTestSysop()->getUser();
+		$user1 = $this->getTestUser()->getUser();
+
+		[
+			'revision-one' => $rev1,
+			'revision-two' => $rev2,
+		] = $this->prepareForRollback( $admin, $user1, $page );
+
+		$text = "one\n\ntwo\n\nthree";
+		$status = $this->editPage( $page, $text, "adding section three", NS_MAIN, $user1 );
+		$this->assertStatusGood( $status, 'edit 3 success' );
+		$rev3 = $status->getValue()['revision-record'];
+
+		$revisionStore = $this->getServiceContainer()->getRevisionStore();
+
+		$rc1 = $revisionStore->getRecentChange( $rev1 );
+		$this->assertEquals(
+			RecentChange::PRC_AUTOPATROLLED,
+			$rc1->getAttribute( 'rc_patrolled' )
+		);
+
+		// manually patrol the first reverted revision
+		$rc2 = $revisionStore->getRecentChange( $rev2 );
+		$rc2->reallyMarkPatrolled();
+
+		$rc3 = $revisionStore->getRecentChange( $rev3 );
+		$this->assertEquals(
+			RecentChange::PRC_UNPATROLLED,
+			$rc3->getAttribute( 'rc_patrolled' )
+		);
+
+		$rollbackResult = $this->getServiceContainer()
+			->getRollbackPageFactory()
+			->newRollbackPage( $page, $admin, $user1 )
+			->markAsBot( $markAsBot )
+			->rollback();
+		$this->assertStatusGood( $rollbackResult );
+
+		$rc1 = $revisionStore->getRecentChange( $rev1 );
+		$this->assertEquals(
+			RecentChange::PRC_AUTOPATROLLED,
+			$rc1->getAttribute( 'rc_patrolled' )
+		);
+		$this->assertFalse( (bool)$rc1->getAttribute( 'rc_bot' ) );
+
+		$rc2 = $revisionStore->getRecentChange( $rev2 );
+		$this->assertEquals(
+			RecentChange::PRC_PATROLLED,
+			$rc2->getAttribute( 'rc_patrolled' )
+		);
+		$this->assertSame( $markAsBot, (bool)$rc2->getAttribute( 'rc_bot' ) );
+
+		$rc3 = $revisionStore->getRecentChange( $rev3 );
+		$this->assertEquals(
+			RecentChange::PRC_AUTOPATROLLED,
+			$rc3->getAttribute( 'rc_patrolled' )
+		);
+		$this->assertSame( $markAsBot, (bool)$rc3->getAttribute( 'rc_bot' ) );
+	}
+
 	public function testRollbackCustomSummary() {
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser()->getUser();
 
@@ -323,18 +393,22 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 			->newRollbackPage( $page, $admin, $user1 )
 			->setSummary( 'TEST! $1 $2 $3 $4 $5 $6' )
 			->rollbackIfAllowed();
-		$this->assertTrue( $rollbackResult->isGood() );
+		$this->assertStatusGood( $rollbackResult );
 		$targetTimestamp = $this->getServiceContainer()
 			->getContentLanguage()
 			->timeanddate( $revisions['revision-one']->getTimestamp() );
 		$currentTimestamp = $this->getServiceContainer()
 			->getContentLanguage()
 			->timeanddate( $revisions['revision-two']->getTimestamp() );
-		$expectedSummary = "TEST! {$admin->getName()} {$user1->getName()}" .
-			" {$revisions['revision-one']->getId()}" .
-			" {$targetTimestamp}" .
-			" {$revisions['revision-two']->getId()}" .
-			" {$currentTimestamp}";
+		$expectedSummary = implode( ' ', [
+			'TEST!',
+			$admin->getName(),
+			$user1->getName(),
+			$revisions['revision-one']->getId(),
+			$targetTimestamp,
+			$revisions['revision-two']->getId(),
+			$currentTimestamp
+		] );
 		$this->assertSame( $expectedSummary, $page->getRevisionRecord()->getComment()->text );
 		$rc = $this->getServiceContainer()->getRevisionStore()->getRecentChange( $page->getRevisionRecord() );
 		$this->assertNotNull( $rc );
@@ -342,24 +416,24 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRollbackChangesContentModel() {
-		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		$admin = $this->getTestSysop()->getUser();
 		$user1 = $this->getTestUser()->getUser();
 
 		$status1 = $this->editPage( $page, new JsonContent( '{}' ),
 			"it's json", NS_MAIN, $admin );
-		$this->assertTrue( $status1->isGood(), 'edit 1 success' );
+		$this->assertStatusGood( $status1, 'edit 1 success' );
 
 		$status1 = $this->editPage( $page, new WikitextContent( 'bla' ),
 			"no, it's wikitext", NS_MAIN, $user1 );
-		$this->assertTrue( $status1->isGood(), 'edit 2 success' );
+		$this->assertStatusGood( $status1, 'edit 2 success' );
 
 		$rollbackResult = $this->getServiceContainer()
 			->getRollbackPageFactory()
 			->newRollbackPage( $page, $admin, $user1 )
 			->setSummary( 'TESTING' )
 			->rollbackIfAllowed();
-		$this->assertTrue( $rollbackResult->isGood() );
+		$this->assertStatusGood( $rollbackResult );
 		$logQuery = DatabaseLogEntry::getSelectQueryData();
 		$logRow = $this->db->selectRow(
 			$logQuery['tables'],

@@ -19,7 +19,10 @@
  * @since 1.23
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
 /**
  * Recent changes feed.
@@ -65,11 +68,11 @@ class ApiFeedRecentChanges extends ApiBase {
 
 		$this->params = $this->extractRequestParams();
 
-		if ( !$config->get( 'Feed' ) ) {
+		if ( !$config->get( MainConfigNames::Feed ) ) {
 			$this->dieWithError( 'feed-unavailable' );
 		}
 
-		$feedClasses = $config->get( 'FeedClasses' );
+		$feedClasses = $config->get( MainConfigNames::FeedClasses );
 		if ( !isset( $feedClasses[$this->params['feedformat']] ) ) {
 			$this->dieWithError( 'feed-invalid' );
 		}
@@ -120,7 +123,7 @@ class ApiFeedRecentChanges extends ApiBase {
 	private function getFeedObject( $feedFormat, $specialPageName ) {
 		if ( $specialPageName === 'Recentchangeslinked' ) {
 			$title = Title::newFromText( $this->params['target'] );
-			if ( !$title ) {
+			if ( !$title || $title->isExternal() ) {
 				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $this->params['target'] ) ] );
 			}
 
@@ -145,33 +148,33 @@ class ApiFeedRecentChanges extends ApiBase {
 
 	public function getAllowedParams() {
 		$config = $this->getConfig();
-		$feedFormatNames = array_keys( $config->get( 'FeedClasses' ) );
+		$feedFormatNames = array_keys( $config->get( MainConfigNames::FeedClasses ) );
 
-		$ret = [
+		return [
 			'feedformat' => [
-				ApiBase::PARAM_DFLT => 'rss',
-				ApiBase::PARAM_TYPE => $feedFormatNames,
+				ParamValidator::PARAM_DEFAULT => 'rss',
+				ParamValidator::PARAM_TYPE => $feedFormatNames,
 			],
 
 			'namespace' => [
-				ApiBase::PARAM_TYPE => 'namespace',
+				ParamValidator::PARAM_TYPE => 'namespace',
 			],
 			'invert' => false,
 			'associated' => false,
 
 			'days' => [
-				ApiBase::PARAM_DFLT => 7,
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_DEFAULT => 7,
+				IntegerDef::PARAM_MIN => 1,
+				ParamValidator::PARAM_TYPE => 'integer',
 			],
 			'limit' => [
-				ApiBase::PARAM_DFLT => 50,
-				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => $config->get( 'FeedLimit' ),
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_DEFAULT => 50,
+				IntegerDef::PARAM_MIN => 1,
+				IntegerDef::PARAM_MAX => $config->get( MainConfigNames::FeedLimit ),
+				ParamValidator::PARAM_TYPE => 'integer',
 			],
 			'from' => [
-				ApiBase::PARAM_TYPE => 'timestamp',
+				ParamValidator::PARAM_TYPE => 'timestamp',
 			],
 
 			'hideminor' => false,
@@ -183,16 +186,14 @@ class ApiFeedRecentChanges extends ApiBase {
 			'hidecategorization' => false,
 
 			'tagfilter' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 
 			'target' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 			'showlinkedto' => false,
 		];
-
-		return $ret;
 	}
 
 	protected function getExamplesMessages() {

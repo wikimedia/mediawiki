@@ -33,9 +33,3 @@ namespace MediaWiki\Revision;
 class SuppressedDataException extends RevisionAccessException {
 
 }
-
-/**
- * Retain the old class name for backwards compatibility.
- * @deprecated since 1.32
- */
-class_alias( SuppressedDataException::class, 'MediaWiki\Storage\SuppressedDataException' );

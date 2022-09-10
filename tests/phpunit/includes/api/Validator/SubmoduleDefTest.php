@@ -14,7 +14,7 @@ use Wikimedia\ParamValidator\ValidationException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers MediaWiki\Api\Validator\SubmoduleDef
+ * @covers \MediaWiki\Api\Validator\SubmoduleDef
  */
 class SubmoduleDefTest extends TypeDefTestCase {
 

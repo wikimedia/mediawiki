@@ -11,13 +11,6 @@ use Title;
 class FallbackSlotRoleHandlerTest extends \MediaWikiUnitTestCase {
 
 	/**
-	 * @return Title
-	 */
-	private function makeBlankTitleObject() {
-		return $this->createMock( Title::class );
-	}
-
-	/**
 	 * @covers \MediaWiki\Revision\FallbackSlotRoleHandler::__construct
 	 * @covers \MediaWiki\Revision\FallbackSlotRoleHandler::getRole()
 	 * @covers \MediaWiki\Revision\FallbackSlotRoleHandler::getNameMessageKey()
@@ -29,7 +22,7 @@ class FallbackSlotRoleHandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertSame( 'foo', $handler->getRole() );
 		$this->assertSame( 'slot-name-foo', $handler->getNameMessageKey() );
 
-		$title = $this->makeBlankTitleObject();
+		$title = $this->createMock( Title::class );
 		$this->assertSame( CONTENT_MODEL_UNKNOWN, $handler->getDefaultModel( $title ) );
 
 		$hints = $handler->getOutputLayoutHints();
@@ -42,10 +35,10 @@ class FallbackSlotRoleHandlerTest extends \MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Revision\FallbackSlotRoleHandler::isAllowedModel()
 	 */
 	public function testIsAllowedModel() {
-		$handler = new FallbackSlotRoleHandler( 'foo', 'FooModel' );
+		$handler = new FallbackSlotRoleHandler( 'foo' );
 
 		// For the fallback handler, no models are allowed
-		$title = $this->makeBlankTitleObject();
+		$title = $this->createMock( Title::class );
 		$this->assertFalse( $handler->isAllowedModel( 'FooModel', $title ) );
 		$this->assertFalse( $handler->isAllowedModel( 'QuaxModel', $title ) );
 	}
@@ -54,9 +47,9 @@ class FallbackSlotRoleHandlerTest extends \MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Revision\SlotRoleHandler::isAllowedModel()
 	 */
 	public function testIsAllowedOn() {
-		$handler = new FallbackSlotRoleHandler( 'foo', 'FooModel' );
+		$handler = new FallbackSlotRoleHandler( 'foo' );
 
-		$title = $this->makeBlankTitleObject();
+		$title = $this->createMock( Title::class );
 		$this->assertFalse( $handler->isAllowedOn( $title ) );
 	}
 
@@ -64,7 +57,7 @@ class FallbackSlotRoleHandlerTest extends \MediaWikiUnitTestCase {
 	 * @covers \MediaWiki\Revision\FallbackSlotRoleHandler::supportsArticleCount()
 	 */
 	public function testSupportsArticleCount() {
-		$handler = new FallbackSlotRoleHandler( 'foo', 'FooModel' );
+		$handler = new FallbackSlotRoleHandler( 'foo' );
 
 		$this->assertFalse( $handler->supportsArticleCount() );
 	}

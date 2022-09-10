@@ -70,7 +70,7 @@ abstract class Profiler {
 		if ( self::$instance === null ) {
 			global $wgProfiler;
 
-			$params = $wgProfiler + [
+			$params = ( $wgProfiler ?? [] ) + [
 				'class'     => ProfilerStub::class,
 				'sampling'  => 1,
 				'threshold' => 0.0,
@@ -83,6 +83,9 @@ abstract class Profiler {
 				$params['class'] = ProfilerStub::class;
 			}
 
+			// "Redundant attempt to cast $params['output'] of type array{} to array"
+			// Not correct, this could be a non-array if $wgProfiler sets it to a non-array.
+			// @phan-suppress-next-line PhanRedundantCondition
 			if ( !is_array( $params['output'] ) ) {
 				$params['output'] = [ $params['output'] ];
 			}

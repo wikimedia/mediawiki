@@ -25,6 +25,7 @@
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\Authority;
@@ -136,7 +137,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		// Title pattern, if allowed
-		if ( !$this->getConfig()->get( 'MiserMode' ) ) {
+		if ( !$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$formDescriptor['pattern'] = $this->getTitlePatternDesc( $pattern );
 		}
 
@@ -432,8 +433,6 @@ class LogEventsList extends ContextSource {
 			return '';
 		}
 
-		$user = $this->getUser();
-
 		// If change tag editing is available to this user, return the checkbox
 		if ( $this->flags & self::USE_CHECKBOXES && $this->showTagEditUI ) {
 			return Xml::check(
@@ -449,18 +448,19 @@ class LogEventsList extends ContextSource {
 		}
 
 		$del = '';
+		$authority = $this->getAuthority();
 		// Don't show useless checkbox to people who cannot hide log entries
-		if ( $this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
-			$canHide = $this->getAuthority()->isAllowed( 'deletelogentry' );
-			$canViewSuppressedOnly = $this->getAuthority()->isAllowed( 'viewsuppressed' ) &&
-				!$this->getAuthority()->isAllowed( 'suppressrevision' );
+		if ( $authority->isAllowed( 'deletedhistory' ) ) {
+			$canHide = $authority->isAllowed( 'deletelogentry' );
+			$canViewSuppressedOnly = $authority->isAllowed( 'viewsuppressed' ) &&
+				!$authority->isAllowed( 'suppressrevision' );
 			$entryIsSuppressed = self::isDeleted( $row, LogPage::DELETED_RESTRICTED );
 			$canViewThisSuppressedEntry = $canViewSuppressedOnly && $entryIsSuppressed;
 			if ( $row->log_deleted || $canHide ) {
 				// Show checkboxes instead of links.
 				if ( $canHide && $this->flags & self::USE_CHECKBOXES && !$canViewThisSuppressedEntry ) {
 					// If event was hidden from sysops
-					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) {
+					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $authority ) ) {
 						$del = Xml::check( 'deleterevisions', false, [ 'disabled' => 'disabled' ] );
 					} else {
 						$del = Xml::check(
@@ -471,7 +471,7 @@ class LogEventsList extends ContextSource {
 					}
 				} else {
 					// If event was hidden from sysops
-					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $user ) ) {
+					if ( !self::userCan( $row, LogPage::DELETED_RESTRICTED, $authority ) ) {
 						$del = Linker::revDeleteLinkDisabled( $canHide );
 					} else {
 						$query = [
@@ -552,7 +552,7 @@ class LogEventsList extends ContextSource {
 	 * @return bool
 	 */
 	public static function userCanViewLogType( $type, Authority $performer ) {
-		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
+		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::LogRestrictions );
 		if ( isset( $logRestrictions[$type] ) && !$performer->isAllowed( $logRestrictions[$type] )
 		) {
 			return false;
@@ -788,7 +788,7 @@ class LogEventsList extends ContextSource {
 	 * @throws InvalidArgumentException
 	 */
 	public static function getExcludeClause( $db, $audience = 'public', Authority $performer = null ) {
-		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
+		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::LogRestrictions );
 
 		if ( $audience != 'public' && $performer === null ) {
 			throw new InvalidArgumentException(

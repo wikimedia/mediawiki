@@ -604,15 +604,11 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideFetchFromServer
 	 */
 	public function testFetchFromServer( array $httpResponse, array $expected ) {
-		$http = $this->getMockBuilder( MultiHttpClient::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$http = $this->createMock( MultiHttpClient::class );
 		$http->expects( $this->once() )->method( 'run' )
 			->willReturn( array_values( $httpResponse ) );
 
-		$conf = $this->getMockBuilder( EtcdConfig::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$conf = $this->createMock( EtcdConfig::class );
 		// Access for protected member and method
 		$conf = TestingAccessWrapper::newFromObject( $conf );
 		$conf->http = $http;
@@ -627,13 +623,9 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 	 * @covers EtcdConfig::fetchAllFromEtcdServer
 	 */
 	public function testFetchFromServerWithoutPort() {
-		$conf = $this->getMockBuilder( EtcdConfig::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$conf = $this->createMock( EtcdConfig::class );
 
-		$http = $this->getMockBuilder( MultiHttpClient::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$http = $this->createMock( MultiHttpClient::class );
 
 		$conf = TestingAccessWrapper::newFromObject( $conf );
 		$conf->protocol = 'https';
@@ -662,13 +654,9 @@ class EtcdConfigTest extends MediaWikiUnitTestCase {
 	 * @covers EtcdConfig::fetchAllFromEtcdServer
 	 */
 	public function testFetchFromServerWithPort() {
-		$conf = $this->getMockBuilder( EtcdConfig::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$conf = $this->createMock( EtcdConfig::class );
 
-		$http = $this->getMockBuilder( MultiHttpClient::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$http = $this->createMock( MultiHttpClient::class );
 
 		$conf = TestingAccessWrapper::newFromObject( $conf );
 		$conf->protocol = 'https';

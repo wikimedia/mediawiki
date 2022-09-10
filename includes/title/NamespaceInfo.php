@@ -24,6 +24,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -86,15 +87,15 @@ class NamespaceInfo {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'CanonicalNamespaceNames',
-		'CapitalLinkOverrides',
-		'CapitalLinks',
-		'ContentNamespaces',
-		'ExtraNamespaces',
-		'ExtraSignatureNamespaces',
-		'NamespaceContentModels',
-		'NamespacesWithSubpages',
-		'NonincludableNamespaces',
+		MainConfigNames::CanonicalNamespaceNames,
+		MainConfigNames::CapitalLinkOverrides,
+		MainConfigNames::CapitalLinks,
+		MainConfigNames::ContentNamespaces,
+		MainConfigNames::ExtraNamespaces,
+		MainConfigNames::ExtraSignatureNamespaces,
+		MainConfigNames::NamespaceContentModels,
+		MainConfigNames::NamespacesWithSubpages,
+		MainConfigNames::NonincludableNamespaces,
 	];
 
 	/**
@@ -380,11 +381,11 @@ class NamespaceInfo {
 	public function getCanonicalNamespaces() {
 		if ( $this->canonicalNamespaces === null ) {
 			$this->canonicalNamespaces =
-				[ NS_MAIN => '' ] + $this->options->get( 'CanonicalNamespaceNames' );
+				[ NS_MAIN => '' ] + $this->options->get( MainConfigNames::CanonicalNamespaceNames );
 			$this->canonicalNamespaces +=
 				ExtensionRegistry::getInstance()->getAttribute( 'ExtensionNamespaces' );
-			if ( is_array( $this->options->get( 'ExtraNamespaces' ) ) ) {
-				$this->canonicalNamespaces += $this->options->get( 'ExtraNamespaces' );
+			if ( is_array( $this->options->get( MainConfigNames::ExtraNamespaces ) ) ) {
+				$this->canonicalNamespaces += $this->options->get( MainConfigNames::ExtraNamespaces );
 			}
 			$this->hookRunner->onCanonicalNamespaces( $this->canonicalNamespaces );
 		}
@@ -461,7 +462,8 @@ class NamespaceInfo {
 	 * @return bool
 	 */
 	public function isContent( $index ) {
-		return $index == NS_MAIN || in_array( $index, $this->options->get( 'ContentNamespaces' ) );
+		return $index == NS_MAIN ||
+			in_array( $index, $this->options->get( MainConfigNames::ContentNamespaces ) );
 	}
 
 	/**
@@ -473,7 +475,7 @@ class NamespaceInfo {
 	 */
 	public function wantSignatures( $index ) {
 		return $this->isTalk( $index ) ||
-			in_array( $index, $this->options->get( 'ExtraSignatureNamespaces' ) );
+			in_array( $index, $this->options->get( MainConfigNames::ExtraSignatureNamespaces ) );
 	}
 
 	/**
@@ -494,7 +496,7 @@ class NamespaceInfo {
 	 * @return bool
 	 */
 	public function hasSubpages( $index ) {
-		return !empty( $this->options->get( 'NamespacesWithSubpages' )[$index] );
+		return !empty( $this->options->get( MainConfigNames::NamespacesWithSubpages )[$index] );
 	}
 
 	/**
@@ -502,7 +504,7 @@ class NamespaceInfo {
 	 * @return int[] Array of namespace indices
 	 */
 	public function getContentNamespaces() {
-		$contentNamespaces = $this->options->get( 'ContentNamespaces' );
+		$contentNamespaces = $this->options->get( MainConfigNames::ContentNamespaces );
 		if ( !is_array( $contentNamespaces ) || $contentNamespaces === [] ) {
 			return [ NS_MAIN ];
 		} elseif ( !in_array( NS_MAIN, $contentNamespaces ) ) {
@@ -556,13 +558,13 @@ class NamespaceInfo {
 		if ( in_array( $index, $this->alwaysCapitalizedNamespaces ) ) {
 			return true;
 		}
-		$overrides = $this->options->get( 'CapitalLinkOverrides' );
+		$overrides = $this->options->get( MainConfigNames::CapitalLinkOverrides );
 		if ( isset( $overrides[$index] ) ) {
 			// CapitalLinkOverrides is explicitly set
 			return $overrides[$index];
 		}
 		// Default to the global setting
-		return $this->options->get( 'CapitalLinks' );
+		return $this->options->get( MainConfigNames::CapitalLinks );
 	}
 
 	/**
@@ -583,7 +585,7 @@ class NamespaceInfo {
 	 * @return bool
 	 */
 	public function isNonincludable( $index ) {
-		$namespaces = $this->options->get( 'NonincludableNamespaces' );
+		$namespaces = $this->options->get( MainConfigNames::NonincludableNamespaces );
 		return $namespaces && in_array( $index, $namespaces );
 	}
 
@@ -598,7 +600,7 @@ class NamespaceInfo {
 	 * @return null|string Default model name for the given namespace, if set
 	 */
 	public function getNamespaceContentModel( $index ) {
-		return $this->options->get( 'NamespaceContentModels' )[$index] ?? null;
+		return $this->options->get( MainConfigNames::NamespaceContentModels )[$index] ?? null;
 	}
 
 	/**

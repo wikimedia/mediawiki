@@ -6,9 +6,9 @@
 			"Hzy980512",
 			"Shizhao",
 			"SomeyaMako",
+			"Tr jason",
 			"VulpesVulpes825",
-			"铁桶",
-			"Tr jason"
+			"铁桶"
 		]
 	},
 	"rest-prefix-mismatch": "请求的路径($1)不在REST API根路径($2)中",
@@ -18,7 +18,7 @@
 	"rest-nonexistent-title-revision": "指定的修订($1)对于指定的页面不存在($2)",
 	"rest-nonexistent-revision": "指定的修订($1)不存在",
 	"rest-nonexistent-user": "指定的用户($1)不存在",
-	"rest-invalid-user": "指定的用户名（$1）无效",
+	"rest-invalid-user": "指定的用户名($1)无效",
 	"rest-permission-denied-anon": "匿名用户无法访问",
 	"rest-permission-denied-title": "用户无权阅读标题($1)",
 	"rest-permission-denied-revision": "用户无法访问请求的修订($1)。",
@@ -47,5 +47,7 @@
 	"rest-update-cannot-create-page": "页面“$1”已存在，无法创建。要更新现有页面，请在请求正文的“latest”键中的结构中提供基础修订 ID。",
 	"rest-extraneous-csrf-token": "发现外来的 CSRF 令牌。当使用如 OAuth 之类的抵抗 CSRF 攻击的验证机制时不能使用 CSRF 令牌。",
 	"rest-cannot-load-file": "无法加载标题为“$1”的文件。",
-	"rest-cross-origin-anon-write": "不允许匿名跨域写请求"
+	"rest-cross-origin-anon-write": "不允许匿名跨域写请求",
+	"rest-requires-safe-against-csrf": "此端点需要CSRF安全的会话提供者。",
+	"rest-badtoken": "提供的 CSRF 令牌无效。"
 }

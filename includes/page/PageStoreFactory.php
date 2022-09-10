@@ -16,7 +16,7 @@ use Wikimedia\Rdbms\ILBFactory;
 class PageStoreFactory {
 
 	/**
-	 * @internal for use by service wiring
+	 * @internal For use by service wiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = PageStore::CONSTRUCTOR_OPTIONS;
 

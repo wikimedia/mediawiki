@@ -36,7 +36,7 @@ class ZipDirectoryReader {
 	 * behavior.
 	 *
 	 * @param string $fileName The archive file name
-	 * @param array $callback The callback function. It will be called for each file
+	 * @param callable $callback The callback function. It will be called for each file
 	 *   with a single associative array each time, with members:
 	 *
 	 *      - name: The file name. Directories conventionally have a trailing
@@ -86,13 +86,26 @@ class ZipDirectoryReader {
 	 * function should be discarded.
 	 */
 	public static function read( $fileName, $callback, $options = [] ) {
-		$zdr = new self( $fileName, $callback, $options );
-
+		$file = fopen( $fileName, 'r' );
+		$zdr = new self( $file, $callback, $options );
 		return $zdr->execute();
 	}
 
-	/** The file name */
-	protected $fileName;
+	/**
+	 * Read an opened file handle presumed to be a ZIP and call a function for
+	 * each file discovered in it.
+	 *
+	 * @see ZipDirectoryReader::read
+	 *
+	 * @param resource $file A seekable stream containing the archive
+	 * @param callable $callback
+	 * @param array $options
+	 * @return Status
+	 */
+	public static function readHandle( $file, $callback, $options = [] ) {
+		$zdr = new self( $file, $callback, $options );
+		return $zdr->execute();
+	}
 
 	/** The opened file resource */
 	protected $file;
@@ -127,12 +140,12 @@ class ZipDirectoryReader {
 	private const GENERAL_CD_ENCRYPTED = 13;
 
 	/**
-	 * @param string $fileName
+	 * @param resource $file
 	 * @param callable $callback
 	 * @param array $options
 	 */
-	protected function __construct( $fileName, $callback, $options ) {
-		$this->fileName = $fileName;
+	protected function __construct( $file, $callback, $options ) {
+		$this->file = $file;
 		$this->callback = $callback;
 
 		if ( isset( $options['zip64'] ) ) {
@@ -146,7 +159,6 @@ class ZipDirectoryReader {
 	 * @return Status
 	 */
 	private function execute() {
-		$this->file = fopen( $this->fileName, 'r' );
 		$this->data = [];
 		if ( !$this->file ) {
 			return Status::newFatal( 'zip-file-open-error' );

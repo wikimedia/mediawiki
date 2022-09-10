@@ -21,7 +21,6 @@ use Title;
  * code up the stack is guaranteed not to pass Title.
  *
  * @internal
- * @package MediaWiki\Page
  */
 trait LegacyArticleIdAccess {
 	/**

@@ -9,6 +9,7 @@
  * @stable to extend
  */
 class HTMLSelectOrOtherField extends HTMLTextField {
+	private const FIELD_CLASS = 'mw-htmlform-select-or-other';
 
 	/**
 	 * @stable to call
@@ -37,12 +38,10 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 
 		$selected = $valInSelect ? $value : 'other';
 
-		$select = new XmlSelect( $this->mName, $this->mID, $selected );
+		$select = new XmlSelect( $this->mName, false, $selected );
 		$select->addOptions( $this->getOptions() );
 
-		$select->setAttribute( 'class', 'mw-htmlform-select-or-other' );
-
-		$tbAttribs = [ 'id' => $this->mID . '-other', 'size' => $this->getSize() ];
+		$tbAttribs = [ 'size' => $this->getSize() ];
 
 		if ( !empty( $this->mParams['disabled'] ) ) {
 			$select->setAttribute( 'disabled', 'disabled' );
@@ -60,13 +59,20 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 			$tbAttribs['maxlength'] = $this->mParams['maxlength'];
 		}
 
-		if ( $this->mClass !== '' ) {
-			$tbAttribs['class'] = $this->mClass;
-		}
-
 		$textbox = Html::input( $this->mName . '-other', $valInSelect ? '' : $value, 'text', $tbAttribs );
 
-		return "$select<br />\n$textbox";
+		$wrapperAttribs = [
+			'id' => $this->mID,
+			'class' => self::FIELD_CLASS
+		];
+		if ( $this->mClass !== '' ) {
+			$wrapperAttribs['class'] .= ' ' . $this->mClass;
+		}
+		return Html::rawElement(
+			'div',
+			$wrapperAttribs,
+			"$select<br />\n$textbox"
+		);
 	}
 
 	protected function shouldInfuseOOUI() {
@@ -93,7 +99,6 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 			'name' => $this->mName,
 			'options' => $this->getOptionsOOUI(),
 			'value' => $valInSelect ? $value : 'other',
-			'class' => [ 'mw-htmlform-select-or-other' ],
 		];
 
 		$allowedParams = [
@@ -125,9 +130,6 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 			$this->getAttributes( $allowedParams )
 		);
 
-		if ( $this->mClass !== '' ) {
-			$textAttribs['classes'] = [ $this->mClass ];
-		}
 		if ( $this->mPlaceholder !== '' ) {
 			$textAttribs['placeholder'] = $this->mPlaceholder;
 		}
@@ -137,8 +139,13 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 			$disabled = true;
 		}
 
+		$inputClasses = [ self::FIELD_CLASS ];
+		if ( $this->mClass !== '' ) {
+			$inputClasses = array_merge( $inputClasses, explode( ' ', $this->mClass ) );
+		}
 		return $this->getInputWidget( [
 			'id' => $this->mID,
+			'classes' => $inputClasses,
 			'disabled' => $disabled,
 			'textinput' => $textAttribs,
 			'dropdowninput' => $dropdownAttribs,

@@ -19,6 +19,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -45,9 +46,9 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 	 */
 	public function getLine( array $feed, RecentChange $rc, $actionComment ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$canonicalServer = $mainConfig->get( 'CanonicalServer' );
-		$serverName = $mainConfig->get( 'ServerName' );
-		$scriptPath = $mainConfig->get( 'ScriptPath' );
+		$canonicalServer = $mainConfig->get( MainConfigNames::CanonicalServer );
+		$serverName = $mainConfig->get( MainConfigNames::ServerName );
+		$scriptPath = $mainConfig->get( MainConfigNames::ScriptPath );
 		$packet = [
 			// Usually, RC ID is exposed only for patrolling purposes,
 			// but there is no real reason not to expose it in other cases,
@@ -68,8 +69,8 @@ abstract class MachineReadableRCFeedFormatter implements RCFeedFormatter {
 
 		$type = $rc->getAttribute( 'rc_type' );
 		if ( $type == RC_EDIT || $type == RC_NEW ) {
-			$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseRCPatrol' );
-			$useNPPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseNPPatrol' );
+			$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UseRCPatrol );
+			$useNPPatrol = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UseNPPatrol );
 			$packet['minor'] = (bool)$rc->getAttribute( 'rc_minor' );
 			if ( $useRCPatrol || ( $type == RC_NEW && $useNPPatrol ) ) {
 				$packet['patrolled'] = (bool)$rc->getAttribute( 'rc_patrolled' );

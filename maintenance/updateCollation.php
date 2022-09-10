@@ -26,6 +26,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -118,7 +119,7 @@ TEXT
 		if ( $this->hasOption( 'target-collation' ) ) {
 			$this->collationName = $this->getOption( 'target-collation' );
 		} else {
-			$this->collationName = $this->getConfig()->get( 'CategoryCollation' );
+			$this->collationName = $this->getConfig()->get( MainConfigNames::CategoryCollation );
 		}
 		if ( $this->hasOption( 'remote' ) ) {
 			$realCollationName = 'remote-' . $this->collationName;
@@ -288,6 +289,7 @@ TEXT
 				$prefix = $equality;
 				$first = false;
 			} else {
+				// @phan-suppress-next-line PhanTypeSuspiciousStringExpression False positive
 				$cond .= " OR ($prefix AND $inequality)";
 				$prefix .= " AND $equality";
 			}
@@ -440,6 +442,7 @@ TEXT
 			}
 			$val = $this->sizeHistogram[$i] ?? 0;
 			for ( $coarseIndex = 0; $coarseIndex < $numBins - 1; $coarseIndex++ ) {
+				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				if ( $coarseBoundaries[$coarseIndex] > $i ) {
 					$coarseHistogram[$coarseIndex] += $val;
 					break;
@@ -458,6 +461,7 @@ TEXT
 		$prevBoundary = 0;
 		for ( $coarseIndex = 0; $coarseIndex < $numBins; $coarseIndex++ ) {
 			$val = $coarseHistogram[$coarseIndex] ?? 0;
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 			$boundary = $coarseBoundaries[$coarseIndex];
 			$this->output( sprintf( "%-10s %-10d |%s\n",
 				$prevBoundary . '-' . ( $boundary - 1 ) . ': ',

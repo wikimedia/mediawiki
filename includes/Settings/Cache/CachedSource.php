@@ -11,8 +11,8 @@ use Wikimedia\WaitConditionLoop;
 /**
  * Provides a caching layer for a {@link CacheableSource}.
  *
+ * @newable
  * @since 1.38
- * @todo mark as stable before the 1.38 release
  */
 class CachedSource implements SettingsSource, SettingsIncludeLocator {
 	/**
@@ -29,6 +29,8 @@ class CachedSource implements SettingsSource, SettingsIncludeLocator {
 	/**
 	 * Constructs a new CachedSource using an instantiated cache and
 	 * {@link CacheableSource}.
+	 *
+	 * @stable to call
 	 *
 	 * @param BagOStuff $cache
 	 * @param CacheableSource $source
@@ -107,6 +109,7 @@ class CachedSource implements SettingsSource, SettingsIncludeLocator {
 			);
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturn WaitConditionLoop throws or value set
 		return $result;
 	}
 

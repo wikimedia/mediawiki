@@ -33,7 +33,7 @@ define( 'MEDIAWIKI_INSTALL', true );
 /**
  * Maintenance script to install and configure MediaWiki
  *
- * Default values for the options are defined in DefaultSettings.php
+ * Default values for the options are defined in MainConfigSchema.php
  * (see the mapping in CliInstaller.php)
  * Default for --dbpath (SQLite-specific) is defined in SqliteInstaller::getGlobalDefaults
  *
@@ -92,7 +92,7 @@ class CommandLineInstaller extends Maintenance {
 		);
 		$this->addOption( 'confpath', "Path to write LocalSettings.php to ($IP)", false, true );
 		$this->addOption( 'dbschema', 'The schema for the MediaWiki DB in '
-			. 'PostgreSQL/Microsoft SQL Server (mediawiki)', false, true );
+			. 'PostgreSQL (mediawiki)', false, true );
 		/*
 		$this->addOption( 'namespace', 'The project namespace (same as the "name" argument)',
 			false, true );

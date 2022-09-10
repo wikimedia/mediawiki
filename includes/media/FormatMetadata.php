@@ -143,9 +143,9 @@ class FormatMetadata extends ContextSource {
 			if ( $tag == 'GPSTimeStamp' && count( $vals ) === 3 ) {
 				// hour min sec array
 
-				$h = explode( '/', $vals[0] );
-				$m = explode( '/', $vals[1] );
-				$s = explode( '/', $vals[2] );
+				$h = explode( '/', $vals[0], 2 );
+				$m = explode( '/', $vals[1], 2 );
+				$s = explode( '/', $vals[2], 2 );
 
 				// this should already be validated
 				// when loaded from file, but it could
@@ -859,7 +859,7 @@ class FormatMetadata extends ContextSource {
 					case 'MaxApertureValue':
 						if ( strpos( $val, '/' ) !== false ) {
 							// need to expand this earlier to calculate fNumber
-							list( $n, $d ) = explode( '/', $val );
+							list( $n, $d ) = explode( '/', $val, 2 );
 							if ( is_numeric( $n ) && is_numeric( $d ) ) {
 								$val = (int)$n / (int)$d;
 							}
@@ -1110,18 +1110,16 @@ class FormatMetadata extends ContextSource {
 	 * @param bool|IContextSource $context
 	 * @return string Single value (in wiki-syntax).
 	 * @since 1.23
-	 * @deprecated since 1.36, appears to have no callers
+	 * @deprecated since 1.36, appears to have no callers. Hard deprecated since 1.39.
 	 */
 	public static function flattenArrayContentLang( $vals, $type = 'ul',
 		$noHtml = false, $context = false
 	) {
+		wfDeprecated( __METHOD__, '1.36' );
 		// Allow $noHtml to be omitted.
 		if ( $noHtml instanceof IContextSource ) {
 			$context = $noHtml;
 			$noHtml = false;
-		}
-		if ( $noHtml ) {
-			wfDeprecated( __METHOD__ . ' with $noHtml = true', '1.36' );
 		}
 		$obj = new FormatMetadata;
 		if ( $context ) {
@@ -1168,6 +1166,12 @@ class FormatMetadata extends ContextSource {
 
 			return ""; // paranoia. This should never happen
 		} else {
+			// Check if $vals contains nested arrays
+			$containsNestedArrays = in_array( true, array_map( 'is_array', $vals ), true );
+			if ( $containsNestedArrays ) {
+				wfLogWarning( __METHOD__ . ': Invalid $vals, contains nested arrays: ' . json_encode( $vals ) );
+			}
+
 			/* @todo FIXME: This should hide some of the list entries if there are
 			 * say more than four. Especially if a field is translated into 20
 			 * languages, we don't want to show them all by default
@@ -1350,7 +1354,7 @@ class FormatMetadata extends ContextSource {
 	 * numbers, joins arrays of numbers with commas.
 	 *
 	 * @param mixed $num The value to format
-	 * @param float|int|bool $round Digits to round to or false.
+	 * @param float|int|false $round Digits to round to or false.
 	 * @param string|null $tagName (optional) The name of the tag (for debugging)
 	 * @return mixed A floating point number or whatever we were fed
 	 */
@@ -1425,7 +1429,7 @@ class FormatMetadata extends ContextSource {
 		/*
 			// https://en.wikipedia.org/wiki/Euclidean_algorithm
 			// Recursive form would be:
-			if( $b == 0 )
+			if ( $b == 0 )
 				return $a;
 			else
 				return gcd( $b, $a % $b );

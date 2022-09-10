@@ -18,12 +18,13 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @todo Use some variant of Pager or something; the pagination here is lousy.
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Linker\LinksMigration;
+use MediaWiki\MainConfigNames;
+use MediaWiki\Navigation\PagerNavigationBuilder;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\SelectQueryBuilder;
@@ -36,8 +37,6 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 class SpecialWhatLinksHere extends IncludableSpecialPage {
 	/** @var FormOptions */
 	protected $opts;
-
-	protected $selfTitle;
 
 	/** @var Title */
 	protected $target;
@@ -57,6 +56,12 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
+	/** @var TitleFactory */
+	private $titleFactory;
+
+	/** @var LinksMigration */
+	private $linksMigration;
+
 	protected $limits = [ 20, 50, 100, 250, 500 ];
 
 	/**
@@ -65,13 +70,17 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param SearchEngineFactory $searchEngineFactory
 	 * @param NamespaceInfo $namespaceInfo
+	 * @param TitleFactory $titleFactory
+	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
 		LinkBatchFactory $linkBatchFactory,
 		IContentHandlerFactory $contentHandlerFactory,
 		SearchEngineFactory $searchEngineFactory,
-		NamespaceInfo $namespaceInfo
+		NamespaceInfo $namespaceInfo,
+		TitleFactory $titleFactory,
+		LinksMigration $linksMigration
 	) {
 		parent::__construct( 'Whatlinkshere' );
 		$this->loadBalancer = $loadBalancer;
@@ -79,6 +88,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->searchEngineFactory = $searchEngineFactory;
 		$this->namespaceInfo = $namespaceInfo;
+		$this->titleFactory = $titleFactory;
+		$this->linksMigration = $linksMigration;
 	}
 
 	public function execute( $par ) {
@@ -87,14 +98,13 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->addHelpLink( 'Help:What links here' );
-		$out->addModuleStyles( 'mediawiki.special.changeslist' );
-		$out->addModules( 'mediawiki.special.recentchanges' );
+		$out->addModuleStyles( 'mediawiki.special' );
 
 		$opts = new FormOptions();
 
 		$opts->add( 'target', '' );
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
-		$opts->add( 'limit', $this->getConfig()->get( 'QueryPageDefaultLimit' ) );
+		$opts->add( 'limit', $this->getConfig()->get( MainConfigNames::QueryPageDefaultLimit ) );
 		$opts->add( 'offset', '' );
 		$opts->add( 'from', 0 );
 		$opts->add( 'dir', 'next' );
@@ -125,8 +135,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		}
 
 		$this->getSkin()->setRelevantTitle( $this->target );
-
-		$this->selfTitle = $this->getPageTitle( $this->target->getPrefixedDBkey() );
 
 		$out->setPageTitle( $this->msg( 'whatlinkshere-title', $this->target->getPrefixedText() ) );
 		$out->addBacklinkSubtitle( $this->target );
@@ -181,10 +189,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		}
 
 		if ( $offsetNamespace === null ) {
-			$offsetTitle = MediaWikiServices::getInstance()
-				->getTitleFactory()
-				->newFromID( $offsetPageID );
-			$offsetNamespace = $offsetTitle ? $offsetTitle->getNamespace() : 0;
+			$offsetTitle = $this->titleFactory->newFromID( $offsetPageID );
+			$offsetNamespace = $offsetTitle ? $offsetTitle->getNamespace() : NS_MAIN;
 		}
 
 		return [ $offsetNamespace, $offsetPageID, $dir ];
@@ -223,10 +229,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			'pl_namespace' => $target->getNamespace(),
 			'pl_title' => $target->getDBkey(),
 		];
-		$conds['templatelinks'] = [
-			'tl_namespace' => $target->getNamespace(),
-			'tl_title' => $target->getDBkey(),
-		];
+		$conds['templatelinks'] = $this->linksMigration->getLinksConditions( 'templatelinks', $target );
 		$conds['imagelinks'] = [
 			'il_to' => $target->getDBkey(),
 		];
@@ -328,18 +331,18 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$ilRes = $queryFunc( $dbr, 'imagelinks', 'il_from' );
 		}
 
+		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $rdRes is declared when fetching redirs
 		if ( ( !$fetchredirs || !$rdRes->numRows() )
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $plRes is declared when fetching links
 			&& ( $hidelinks || !$plRes->numRows() )
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $tlRes is declared when fetching trans
 			&& ( $hidetrans || !$tlRes->numRows() )
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $ilRes is declared when fetching images
 			&& ( $hideimages || !$ilRes->numRows() )
 		) {
 			if ( $level == 0 && !$this->including() ) {
 				$out->addHTML( $this->whatlinkshereForm() );
 
-				// Show filters only if there are links
-				if ( $hidelinks || $hidetrans || $hideredirs || $hideimages ) {
-					$out->addHTML( $this->getFilterPanel() );
-				}
 				$msgKey = is_int( $namespace ) ? 'nolinkshere-ns' : 'nolinkshere';
 				$link = $this->getLinkRenderer()->makeLink(
 					$this->target,
@@ -364,6 +367,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		// pagelinks/redirect row, so we get (inclusion) rather than nothing
 		$rows = [];
 		if ( $fetchredirs ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $rdRes is declared when fetching redirs
 			foreach ( $rdRes as $row ) {
 				$row->is_template = 0;
 				$row->is_image = 0;
@@ -371,6 +375,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			}
 		}
 		if ( !$hidelinks ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $plRes is declared when fetching links
 			foreach ( $plRes as $row ) {
 				$row->is_template = 0;
 				$row->is_image = 0;
@@ -378,6 +383,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			}
 		}
 		if ( !$hidetrans ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $tlRes is declared when fetching trans
 			foreach ( $tlRes as $row ) {
 				$row->is_template = 1;
 				$row->is_image = 0;
@@ -385,6 +391,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			}
 		}
 		if ( !$hideimages ) {
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $ilRes is declared when fetching images
 			foreach ( $ilRes as $row ) {
 				$row->is_template = 0;
 				$row->is_image = 1;
@@ -453,7 +460,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		if ( $level == 0 && !$this->including() ) {
 			$out->addHTML( $this->whatlinkshereForm() );
-			$out->addHTML( $this->getFilterPanel() );
 
 			$link = $this->getLinkRenderer()->makeLink(
 				$this->target,
@@ -482,7 +488,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				$this->showIndirectLinks(
 					$level + 1,
 					$nt,
-					$this->getConfig()->get( 'MaxRedirectLinksRetrieved' )
+					$this->getConfig()->get( MainConfigNames::MaxRedirectLinksRetrieved )
 				);
 				$out->addHTML( Xml::closeElement( 'li' ) );
 			} else {
@@ -493,6 +499,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$out->addHTML( $this->listEnd() );
 
 		if ( $level == 0 && !$this->including() ) {
+			// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable $prevnext is defined with $level is 0
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable prevnext is set when used
 			$out->addHTML( $prevnext );
 		}
 	}
@@ -601,141 +609,94 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		return $this->getLanguage()->pipeList( $links );
 	}
 
-	private function makeSelfLink( $text, $query ) {
-		return $this->getLinkRenderer()->makeKnownLink(
-			$this->selfTitle,
-			$text,
-			[],
-			$query
-		);
-	}
-
 	private function getPrevNext( $prevNamespace, $prevPageId, $nextNamespace, $nextPageId ) {
-		$currentLimit = $this->opts->getValue( 'limit' );
-		$prev = $this->msg( 'whatlinkshere-prev' )->numParams( $currentLimit )->text();
-		$next = $this->msg( 'whatlinkshere-next' )->numParams( $currentLimit )->text();
+		$navBuilder = new PagerNavigationBuilder( $this->getContext() );
 
-		$changed = $this->opts->getChangedValues();
-		unset( $changed['target'] ); // Already in the request title
+		$navBuilder
+			->setPage( $this->getPageTitle( $this->target->getPrefixedDBkey() ) )
+			// Remove 'target', already included in the request title
+			->setLinkQuery( array_diff_key( $this->opts->getChangedValues(), [ 'target' => null ] ) )
+			->setLimits( $this->limits )
+			->setLimitLinkQueryParam( 'limit' )
+			->setCurrentLimit( $this->opts->getValue( 'limit' ) )
+			->setPrevMsg( 'whatlinkshere-prev' )
+			->setNextMsg( 'whatlinkshere-next' );
 
 		if ( $prevPageId != 0 ) {
-			$overrides = [ 'dir' => 'prev', 'offset' => "$prevNamespace|$prevPageId", ];
-			$prev = Message::rawParam( $this->makeSelfLink( $prev, array_merge( $changed, $overrides ) ) );
+			$navBuilder->setPrevLinkQuery( [ 'dir' => 'prev', 'offset' => "$prevNamespace|$prevPageId" ] );
 		}
 		if ( $nextPageId != 0 ) {
-			$overrides = [ 'dir' => 'next', 'offset' => "$nextNamespace|$nextPageId", ];
-			$next = Message::rawParam( $this->makeSelfLink( $next, array_merge( $changed, $overrides ) ) );
+			$navBuilder->setNextLinkQuery( [ 'dir' => 'next', 'offset' => "$nextNamespace|$nextPageId" ] );
 		}
 
-		$limitLinks = [];
-		$lang = $this->getLanguage();
-		foreach ( $this->limits as $limit ) {
-			$prettyLimit = $lang->formatNum( $limit );
-			$overrides = [ 'limit' => $limit ];
-			$limitLinks[] = $this->makeSelfLink( $prettyLimit, array_merge( $changed, $overrides ) );
-		}
-
-		$nums = $lang->pipeList( $limitLinks );
-
-		return $this->msg( 'viewprevnext' )->params( $prev, $next )->rawParams( $nums )->escaped();
+		return $navBuilder->getHtml();
 	}
 
 	private function whatlinkshereForm() {
 		// We get nicer value from the title object
 		$this->opts->consumeValue( 'target' );
-
 		$target = $this->target ? $this->target->getPrefixedText() : '';
-		$namespace = $this->opts->consumeValue( 'namespace' );
-		$nsinvert = $this->opts->consumeValue( 'invert' );
+		$this->opts->consumeValue( 'namespace' );
+		$this->opts->consumeValue( 'invert' );
 
-		# Build up the form
-		$f = Xml::openElement( 'form', [ 'action' => wfScript() ] );
-
-		# Values that should not be forgotten
-		$f .= Html::hidden( 'title', $this->getPageTitle()->getPrefixedText() );
-		foreach ( $this->opts->getUnconsumedValues() as $name => $value ) {
-			$f .= Html::hidden( $name, $value );
-		}
-
-		$f .= Xml::fieldset( $this->msg( 'whatlinkshere' )->text() );
-
-		# Target input (.mw-searchInput enables suggestions)
-		$f .= Xml::inputLabel( $this->msg( 'whatlinkshere-page' )->text(), 'target',
-			'mw-whatlinkshere-target', 40, $target, [ 'class' => 'mw-searchInput' ] );
-
-		$f .= ' ';
-
-		# Namespace selector
-		$f .= Html::namespaceSelector(
-			[
-				'selected' => $namespace,
-				'all' => '',
-				'label' => $this->msg( 'namespace' )->text(),
-				'in-user-lang' => true,
-			], [
+		$fields = [
+			'target' => [
+				'type' => 'title',
+				'name' => 'target',
+				'default' => $target,
+				'id' => 'mw-whatlinkshere-target',
+				'label-message' => 'whatlinkshere-page',
+				'section' => 'whatlinkshere-target',
+			],
+			'namespace' => [
+				'type' => 'namespaceselect',
 				'name' => 'namespace',
 				'id' => 'namespace',
-				'class' => 'namespaceselector',
-			]
-		);
+				'label-message' => 'namespace',
+				'all' => '',
+				'in-user-lang' => true,
+				'section' => 'whatlinkshere-ns',
+			],
+			'invert' => [
+				'type' => 'check',
+				'name' => 'invert',
+				'id' => 'nsinvert',
+				'hide-if' => [ '===', 'namespace', '' ],
+				'label-message' => 'invert',
+				'help-message' => 'tooltip-whatlinkshere-invert',
+				'help-inline' => false,
+				'section' => 'whatlinkshere-ns',
+			],
+		];
 
-		$hidden = $namespace === '' ? ' mw-input-hidden' : '';
-		$f .= ' ' .
-			Html::rawElement( 'span',
-				[ 'class' => 'mw-input-with-label' . $hidden ],
-				Xml::checkLabel(
-					$this->msg( 'invert' )->text(),
-					'invert',
-					'nsinvert',
-					$nsinvert,
-					[ 'title' => $this->msg( 'tooltip-whatlinkshere-invert' )->text() ]
-				)
-			);
-
-		$f .= ' ';
-
-		# Submit
-		$f .= Xml::submitButton( $this->msg( 'whatlinkshere-submit' )->text() );
-
-		# Close
-		$f .= Xml::closeElement( 'fieldset' ) . Xml::closeElement( 'form' ) . "\n";
-
-		return $f;
-	}
-
-	/**
-	 * Create filter panel
-	 *
-	 * @return string HTML fieldset and filter panel with the show/hide links
-	 */
-	private function getFilterPanel() {
-		$show = $this->msg( 'show' )->text();
-		$hide = $this->msg( 'hide' )->text();
-
-		$changed = $this->opts->getChangedValues();
-		unset( $changed['target'] ); // Already in the request title
-
-		$links = [];
-		$types = [ 'hidetrans', 'hidelinks', 'hideredirs' ];
-		if ( $this->target->getNamespace() === NS_FILE ) {
-			$types[] = 'hideimages';
+		$filters = [ 'hidetrans', 'hidelinks', 'hideredirs' ];
+		if ( $this->target instanceof Title &&
+			$this->target->getNamespace() == NS_FILE ) {
+			$filters[] = 'hideimages';
 		}
 
 		// Combined message keys: 'whatlinkshere-hideredirs', 'whatlinkshere-hidetrans',
 		// 'whatlinkshere-hidelinks', 'whatlinkshere-hideimages'
 		// To be sure they will be found by grep
-		foreach ( $types as $type ) {
-			$chosen = $this->opts->getValue( $type );
-			$msg = $chosen ? $show : $hide;
-			$overrides = [ $type => !$chosen ];
-			$links[] = $this->msg( "whatlinkshere-{$type}" )->rawParams(
-				$this->makeSelfLink( $msg, array_merge( $changed, $overrides ) ) )->escaped();
+		foreach ( $filters as $filter ) {
+			// Parameter only provided for backwards-compatibility with old translations
+			$hide = $this->msg( 'hide' )->text();
+			$msg = $this->msg( "whatlinkshere-{$filter}", $hide )->text();
+			$fields[$filter] = [
+				'type' => 'check',
+				'name' => $filter,
+				'label' => $msg,
+				'section' => 'whatlinkshere-filter',
+			];
 		}
 
-		return Xml::fieldset(
-			$this->msg( 'whatlinkshere-filters' )->text(),
-			$this->getLanguage()->pipeList( $links )
-		);
+		$form = HTMLForm::factory( 'ooui', $fields, $this->getContext() )
+			->setMethod( 'GET' )
+			->setTitle( $this->getPageTitle() )
+			->setWrapperLegendMsg( 'whatlinkshere' )
+			->setSubmitTextMsg( 'whatlinkshere-submit' );
+
+		return $form->prepareForm()->getHTML( false );
 	}
 
 	/**

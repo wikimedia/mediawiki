@@ -11,53 +11,42 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserFactory;
 
 /**
- * Helper class to change the content model of pages
+ * Backend logic for changing the content model of a page.
  *
- * For creating new pages via the action API,
- * use the edit api and specify the desired content model and format.
+ * Note that you can create a new page directly with a desired content
+ * model and format, e.g. via EditPage or externally from ApiEditPage.
  *
  * @since 1.35
  * @author DannyS712
  */
 class ContentModelChange {
-
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
-
 	/** @var HookRunner */
 	private $hookRunner;
-
 	/** @var RevisionLookup */
 	private $revLookup;
-
 	/** @var UserFactory */
 	private $userFactory;
-
 	/** @var Authority making the change */
 	private $performer;
-
 	/** @var WikiPage */
 	private $page;
-
 	/** @var string */
 	private $newModel;
-
 	/** @var string[] tags to add */
 	private $tags;
-
 	/** @var Content */
 	private $newContent;
-
 	/** @var int|false latest revision id, or false if creating */
 	private $latestRevId;
-
 	/** @var string 'new' or 'change' */
 	private $logAction;
-
 	/** @var string 'apierror-' or empty string, for status messages */
 	private $msgPrefix;
 
 	/**
+	 * @internal Create via the ContentModelChangeFactory service.
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param HookContainer $hookContainer
 	 * @param RevisionLookup $revLookup
@@ -264,7 +253,7 @@ class ContentModelChange {
 	 */
 	public function doContentModelChange(
 		IContextSource $context,
-		$comment,
+		string $comment,
 		$bot
 	) {
 		$status = $this->createNewContent();

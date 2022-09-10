@@ -26,10 +26,6 @@
  *      the 'other' message.
  *   other - Raw text to use for the 'other' message
  *
- * The old name of autocomplete-data[-messages] was autocomplete[-messages] which is still
- * recognized but deprecated since MediaWiki 1.29 since it conflicts with how autocomplete is
- * used in HTMLTextField.
- *
  * @stable to extend
  */
 class HTMLAutoCompleteSelectField extends HTMLTextField {
@@ -44,26 +40,11 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 			'require-match' => false,
 		];
 
-		// FIXME B/C, remove in 1.30
-		if (
-			array_key_exists( 'autocomplete', $params )
-			&& !array_key_exists( 'autocomplete-data', $params )
-		) {
-			$params['autocomplete-data'] = $params['autocomplete'];
-			unset( $params['autocomplete'] );
-		}
-		if (
-			array_key_exists( 'autocomplete-messages', $params )
-			&& !array_key_exists( 'autocomplete-data-messages', $params )
-		) {
-			$params['autocomplete-data-messages'] = $params['autocomplete-messages'];
-			unset( $params['autocomplete-messages'] );
-		}
-
 		parent::__construct( $params );
 
 		if ( array_key_exists( 'autocomplete-data-messages', $this->mParams ) ) {
 			foreach ( $this->mParams['autocomplete-data-messages'] as $key => $value ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgument False positive, $key is documented as string
 				$key = $this->msg( $key )->plain();
 				$this->autocompleteData[$key] = strval( $value );
 			}
@@ -144,7 +125,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 
 	public function getInputHTML( $value ) {
 		$oldClass = $this->mClass;
-		$this->mClass = (array)$this->mClass;
+		$classes = (array)$this->mClass;
 
 		$valInSelect = false;
 		$ret = '';
@@ -160,7 +141,6 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 			$selected = $valInSelect ? $value : 'other';
 			$select = new XmlSelect( $this->mName . '-select', $this->mID . '-select', $selected );
 			$select->addOptions( $this->getOptions() );
-			$select->setAttribute( 'class', 'mw-htmlform-select-or-other' );
 
 			if ( !empty( $this->mParams['disabled'] ) ) {
 				$select->setAttribute( 'disabled', 'disabled' );
@@ -172,7 +152,7 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 
 			$ret = $select->getHTML() . "<br />\n";
 
-			$this->mClass[] = 'mw-htmlform-hide-if';
+			$classes[] = 'mw-htmlform-hide-if';
 		}
 
 		if ( $valInSelect ) {
@@ -184,7 +164,8 @@ class HTMLAutoCompleteSelectField extends HTMLTextField {
 			}
 		}
 
-		$this->mClass[] = 'mw-htmlform-autocomplete';
+		$classes[] = 'mw-htmlform-autocomplete';
+		$this->mClass = implode( ' ', $classes );
 		$ret .= parent::getInputHTML( $valInSelect ? '' : $value );
 		$this->mClass = $oldClass;
 

@@ -3,7 +3,7 @@
 	"--categories": "maintenance/jsduck/categories.json",
 	"--eg-iframe": "maintenance/jsduck/eg-iframe.html",
 	"--tags": "maintenance/jsduck/custom_tags.rb",
-	"--warnings": [ "-nodoc(class,public)" ],
+	"--warnings": [ "-nodoc(class,public),-global" ],
 	"--builtin-classes": true,
 	"--processes": "0",
 	"--warnings-exit-nonzero": true,
@@ -23,7 +23,8 @@
 		"resources/src/mediawiki.watchstar.widgets/WatchlistExpiryWidget.js",
 		"resources/src/es6-polyfills",
 		"resources/src/vue",
-		"resources/src/codex"
+		"resources/src/codex",
+		"resources/src/codex-search"
 	],
 	"--": [
 		"maintenance/jsduck/external.js",

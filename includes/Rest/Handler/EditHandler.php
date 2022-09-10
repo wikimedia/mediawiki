@@ -5,9 +5,11 @@ namespace MediaWiki\Rest\Handler;
 use Config;
 use IApiMessage;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
+use MediaWiki\Rest\TokenAwareHandlerTrait;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use TitleFormatter;
@@ -19,6 +21,7 @@ use Wikimedia\Message\MessageValue;
  * Base class for REST API handlers that perform page edits (main slot only).
  */
 abstract class EditHandler extends ActionModuleBasedHandler {
+	use TokenAwareHandlerTrait;
 
 	/** @var Config */
 	protected $config;
@@ -109,8 +112,8 @@ abstract class EditHandler extends ActionModuleBasedHandler {
 				'timestamp' => $data['edit']['newtimestamp'],
 			],
 			'license' => [
-				'url' => $this->config->get( 'RightsUrl' ),
-				'title' => $this->config->get( 'RightsText' )
+				'url' => $this->config->get( MainConfigNames::RightsUrl ),
+				'title' => $this->config->get( MainConfigNames::RightsText )
 			],
 			'content_model' => $data['edit']['contentmodel'],
 			'source' => $content->serialize(),
@@ -149,36 +152,6 @@ abstract class EditHandler extends ActionModuleBasedHandler {
 
 		// Fall through to generic handling of the error (status 400).
 		parent::throwHttpExceptionForActionModuleError( $msg, $statusCode );
-	}
-
-	/**
-	 * Determines the CSRF token to be passed to the action module.
-	 *
-	 * This could be taken from a request parameter, or a known-good token
-	 * can be computed, if the request has been determined to be safe against
-	 * CSRF attacks, e.g. when an OAuth Authentication header is present.
-	 *
-	 * Most return an empty string if the request isn't known to be safe and
-	 * no token was supplied by the client.
-	 *
-	 * @return string
-	 */
-	protected function getActionModuleToken() {
-		$body = $this->getValidatedBody();
-
-		if ( $this->getSession()->getProvider()->safeAgainstCsrf() ) {
-			if ( !empty( $body['token'] ) ) {
-				throw new LocalizedHttpException(
-					new MessageValue( 'rest-extraneous-csrf-token' ),
-					400
-				);
-			}
-
-			// Since the session is safe against CSRF, just use a known-good token.
-			return $this->getUser()->getEditToken();
-		} else {
-			return $body['token'] ?? '';
-		}
 	}
 
 	protected function mapActionModuleResponse(

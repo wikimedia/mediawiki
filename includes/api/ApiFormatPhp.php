@@ -20,6 +20,8 @@
  * @file
  */
 
+use Wikimedia\ParamValidator\ParamValidator;
+
 /**
  * API Serialized PHP output formatter
  * @ingroup API
@@ -52,29 +54,16 @@ class ApiFormatPhp extends ApiFormatBase {
 
 			default:
 				// Should have been caught during parameter validation
-				$this->dieDebug( __METHOD__, 'Unknown value for \'formatversion\'' );
+				self::dieDebug( __METHOD__, 'Unknown value for \'formatversion\'' );
 		}
-		$text = serialize( $this->getResult()->getResultData( null, $transforms ) );
-
-		// T68776: OutputHandler::mangleFlashPolicy() avoids a nasty bug in
-		// Flash, but what it does isn't friendly for the API. There's nothing
-		// we can do here that isn't actively broken in some manner, so let's
-		// just be broken in a useful manner.
-		if ( $this->getConfig()->get( 'MangleFlashPolicy' ) &&
-			in_array( 'MediaWiki\\OutputHandler::handle', ob_list_handlers(), true ) &&
-			preg_match( '/\<\s*cross-domain-policy(?=\s|\>)/i', $text )
-		) {
-			$this->dieWithError( 'apierror-formatphp', 'internalerror' );
-		}
-
-		$this->printText( $text );
+		$this->printText( serialize( $this->getResult()->getResultData( null, $transforms ) ) );
 	}
 
 	public function getAllowedParams() {
 		return parent::getAllowedParams() + [
 			'formatversion' => [
-				ApiBase::PARAM_TYPE => [ '1', '2', 'latest' ],
-				ApiBase::PARAM_DFLT => '1',
+				ParamValidator::PARAM_TYPE => [ '1', '2', 'latest' ],
+				ParamValidator::PARAM_DEFAULT => '1',
 				ApiBase::PARAM_HELP_MSG => 'apihelp-php-param-formatversion',
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],

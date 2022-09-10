@@ -25,6 +25,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -44,23 +45,21 @@ class CleanupUploadStash extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgUploadStashMaxAge;
-
 		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		$tempRepo = $repo->getTempRepo();
 
 		$dbr = $repo->getReplicaDB();
 
 		// how far back should this look for files to delete?
-		$cutoff = time() - $wgUploadStashMaxAge;
+		$cutoff = time() - (int)$this->getConfig()->get( MainConfigNames::UploadStashMaxAge );
 
 		$this->output( "Getting list of files to clean up...\n" );
-		$res = $dbr->select(
-			'uploadstash',
-			'us_key',
-			'us_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $cutoff ) ),
-			__METHOD__
-		);
+		$res = $dbr->newSelectQueryBuilder()
+			->select( 'us_key' )
+			->from( 'uploadstash' )
+			->where( 'us_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $cutoff ) ) )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		// Delete all registered stash files...
 		if ( $res->numRows() == 0 ) {

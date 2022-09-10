@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Cbrown1023",
 			"Gustave London",
-			"Zyxoas (on st.wikipedia.org)",
-			"Amire80",
-			"Tšepo"
+			"Tšepo",
+			"Zyxoas (on st.wikipedia.org)"
 		]
 	},
 	"sunday": "Sontaha",
@@ -66,12 +66,12 @@
 	"search": "Fuputsa",
 	"searchbutton": "Batla",
 	"searcharticle": "Tsamaea",
-	"view-history": "sheba histori",
+	"skin-view-history": "Sheba histori",
 	"history": "Nalane",
 	"history_short": "Nalane",
 	"printableversion": "Phetolelo e hatisitsoeng",
 	"edit": "Fetola",
-	"view-edit": "Fetola",
+	"skin-view-edit": "Fetola",
 	"newpage": "Leqephe le letjha",
 	"talkpagelinktext": "bua",
 	"specialpage": "Leqephe le khethehileng",
@@ -113,7 +113,6 @@
 	"mainpage-nstab": "Leqephe la pele",
 	"yourpasswordagain": "Ngola lepetjo hape:",
 	"createaccount": "Ingodisetse",
-	"createaccountmail": "ka e-mail",
 	"badretype": "Mapetjo a mabedi o a ngotseng ha a tshwane.",
 	"mailmypassword": "Nthomele password ya ka ka email",
 	"pt-login": "Ho kena",
@@ -158,7 +157,6 @@
 	"newpages": "Maqephe a matjha",
 	"allpages": "Maqephe ohle",
 	"categories": "Mekhahlelo",
-	"categoriespagetext": "The following {{PLURAL:$1|category contains|categories contain}} pages or media.\n[[Special:UnusedCategories|Unused categories]] are not shown here.\nAlso see [[Special:WantedCategories|wanted categories]].",
 	"emailuser": "Romela motho enwa email",
 	"emailfrom": "E tswa ho:",
 	"emailto": "Ho:",

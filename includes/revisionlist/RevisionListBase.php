@@ -30,8 +30,8 @@ use Wikimedia\Rdbms\IResultWrapper;
 abstract class RevisionListBase extends ContextSource implements Iterator {
 	use DeprecationHelper;
 
-	/** @var Title */
-	protected $title;
+	/** @var PageIdentity */
+	protected $page;
 
 	/** @var int[]|null */
 	protected $ids;
@@ -43,24 +43,32 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	protected $current;
 
 	/**
-	 * Construct a revision list for a given title
+	 * Construct a revision list for a given page identity
 	 * @param IContextSource $context
 	 * @param PageIdentity $page
 	 */
 	public function __construct( IContextSource $context, PageIdentity $page ) {
 		$this->setContext( $context );
-		$this->title = Title::castFromPageIdentity( $page );
+		$this->page = $page;
 
-		$this->deprecatePublicPropertyFallback( 'title', '1.37', function () {
-			return $this->title;
-		} );
+		$this->deprecatePublicPropertyFallback(
+			'title',
+			'1.37',
+			function (): Title {
+				// @phan-suppress-next-line PhanTypeMismatchReturnNullable castFrom does not return null here
+				return Title::castFromPageIdentity( $this->page );
+			},
+			function ( PageIdentity $page ) {
+				$this->page = $page;
+			}
+		);
 	}
 
 	/**
 	 * @return PageIdentity
 	 */
 	public function getPage(): PageIdentity {
-		return $this->title;
+		return $this->page;
 	}
 
 	/**
@@ -68,7 +76,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	 * @return string
 	 */
 	public function getPageName(): string {
-		return $this->title->getPrefixedText();
+		return Title::castFromPageIdentity( $this->page )->getPrefixedText();
 	}
 
 	/**

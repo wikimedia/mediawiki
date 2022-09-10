@@ -1,65 +1,123 @@
-Dependency Injection
+Dependency Injection {#dependencyinjection}
 =======
 
-This is an overview of how MediaWiki makes use of dependency injection.
-The design described here grew from the discussion of RFC
-[T384](https://phabricator.wikimedia.org/T384).
+This is an overview of how MediaWiki uses of dependency injection.
+The design originates from [RFC T384](https://phabricator.wikimedia.org/T384).
 
-
-The term "dependency injection" (DI) refers to a pattern on object oriented
-programming that tries to improve modularity by reducing strong coupling
+The term "dependency injection" (DI) refers to a pattern in object oriented
+programming. DI tries to improve modularity by reducing strong coupling
 between classes. In practical terms, this means that anything an object needs
-to operate should be injected from the outside, the object itself should only
+to operate should be injected from the outside. The object itself should only
 know narrow interfaces, no concrete implementation of the logic it relies on.
 
-The requirement to inject everything typically results in an architecture that
-based on two main types of objects: simple value objects with no business logic
-(and often immutable), and essentially stateless service objects that use
-other service objects to operate on the value objects.
+The requirement to inject everything typically results in an architecture based
+on two main kinds of objects: simple "value" objects with no business logic
+(and often immutable), and essentially stateless "service" objects that use
+other service objects to operate on value objects.
 
-As of the beginning of 2016 (MW version 1.27), MediaWiki is only starting to
-use the DI approach. Much of the code still relies on global state or direct
-instantiation, resulting in a highly cyclical dependency graph.
-
+As of 2022 (MediaWiki 1.39), MediaWiki has adopted dependency injection in much
+of its code. However, some operations still require the use of singletons or
+otherwise involve global state.
 
 ## Overview
+
 The heart of the DI in MediaWiki is the central service locator,
-MediaWikiServices, which acts as the top level factory for services in
-MediaWiki. `MediaWikiServices::getInstance()` returns the default service
-locator instance, which can be used to gain access to default instances of
-various services. MediaWikiServices however also allows new services to be
-defined and default services to be redefined. Services are defined or
-redefined by providing a callback function, the "instantiator" function,
-that will return a new instance of the service.
+MediaWikiServices, which acts as the top-level factory (or registry) for
+services. MediaWikiServices represents the tree (or network) of service objects
+that define MediaWiki's application logic. It acts as an entry point to all
+dependency injection for MediaWiki core.
 
 When `MediaWikiServices::getInstance()` is first called, it will create an
-instance of MediaWikiServices and populate it with the services defined
-in the files listed by `$wgServiceWiringFiles`, thereby "bootstrapping" the
-DI framework. Per default, `$wgServiceWiringFiles` lists
-includes/ServiceWiring.php, which defines all default service
-implementations, and specifies how they depend on each other ("wiring").
-
-When a new service is added to MediaWiki core, an instantiator function
-that will create the appropriate default instance for that service must
-be added to ServiceWiring.php. This makes the service available through
-the generic getService() method on the service locator returned by
-`MediaWikiServices::getInstance()`.
+instance of MediaWikiServices and populate it with the services defined by
+MediaWiki core in `includes/ServiceWiring.php`, as well as any additional
+bootstrapping files specified in  `$wgServiceWiringFiles`. The service
+wiring files define the (default) service implementations to use, and
+specifies how they depend on each other ("wiring").
 
 Extensions can add their own wiring files to `$wgServiceWiringFiles`, in order
-to define their own service. Extensions may also use the 'MediaWikiServices'
-hook to define or redefined services by calling methods on the default
+to define their own service. Extensions may also use the `MediaWikiServices`
+hook to replace ("redefine") a core service, by calling methods on the
 MediaWikiServices instance.
 
 It should be noted that the term "service locator" is often used to refer to a
-top level factory that is accessed directly, throughout the code, to avoid
+top-level factory that is accessed directly, throughout the code, to avoid
 explicit dependency injection. In contrast, the term "DI container" is often
-used to describe a top level factory that is only accessed when services
-are created. We use the term "service locator" for the top level factory
+used to describe a top-level factory that is only accessed only inside service
+wiring code when instantiating service classes. We use the term "service locator"
 because it is more descriptive than "DI container", even though application
 logic is strongly discouraged from accessing MediaWikiServices directly.
+
 `MediaWikiServices::getInstance()` should ideally be accessed only in "static
 entry points" such as hook handler functions. See "Migration" below.
 
+## Principles {#di-principles}
+
+Service classes generally only vary on site configuration and are
+deterministic and agnostic of global state. It is the responsibility of
+callers to a service object to obtain and derive information from a
+web request (such as title, user, language, WebRequest, RequestContext),
+and pass this to specific methods of a service class as-needed. See
+[T218555](https://phabricator.wikimedia.org/T218555) for related discussion.
+
+Consider using the factory pattern if your service would otherwise be
+unergonomic or slow, e.g. due to passing many parameters and/or recomputing
+the same derived information. This keeps the global state out of the
+service class, by having the service be a factory from which the caller
+can obtain a (re-usable) object for its specific context.
+
+This design ensures service classes are safe to use in both user-facing
+contexts on the web (e.g. index.php page views and special pages), as
+well as in an API, job, or maintenance script. It also ensures that
+within a web-facing context the same service can be safely used
+multiple times to perform different operations, without incorrectly
+implying certain commonalities between these calls. Lastly, this
+restriction allows services to be instantiated across wikis in the
+future.
+
+If a feature is not ready to meet these requirements, keep it outside
+the service container. This avoids false confidence in the safety of an
+injected service, and its ripple effect on other services.
+
+### Principle exemption
+
+There is a limited exemption to the above principles for "inconsequential
+state". That is, global state may be used directly if and only if used
+for diagnostics or to optimise performance, so long as they do not
+change the observed functional outcome of a called method.
+
+Examples of safe and inconsequential state:
+
+
+* Use `$_SERVER['REQUEST_TIME_FLOAT']` or `ConvertibleTimestamp::now`
+  to help compute a time measure that is sent to a metric service.
+
+* Use `wfHostname()`, `PHP_SAPI`, or `WikiMap::getCurrentWikiId()`
+  to describe where, how, or for which wiki the overall process was
+  created and send it as message context to a logging service.
+
+* Use `WebRequest::getRequestId()` to automatically inject a
+  header into HTTP requests to other services. These are for tracking
+  purposes only.
+
+* Use `function_exists('apcu_fetch')` to automatically enable use
+  of caching.
+
+Examples of unsafe state in a service class:
+
+* Do not use `WikiMap::getCurrentWikiId()` as the default value
+  to obtain a database connection.
+
+* Do not use `$_SERVER['SERVER_NAME']` to inject a header into
+  HTTP requests to other services to control which wiki to operate on.
+
+## Create a new service
+
+To create a new service in MediaWiki core, write a function that will return
+the appropriate class instantiation for that service in ServiceWiring.php. This
+makes the service available through the generic `getService()` method on the
+`MediaWikiServices` class. We then also add a wrapper method to
+MediaWikiServices.php with a discoverable method named and strictly typed
+return value to reduce mistakes and improve static analysis.
 
 ## Service Reset
 
@@ -81,7 +139,6 @@ by MediaWikiServices, or they should use the Service Locator pattern, accessing
 service instances via the global MediaWikiServices instance state when needed.
 This ensures that no stale service references remain after a reset.
 
-
 ## Configuration
 
 When the default MediaWikiServices instance is created, a Config object is
@@ -96,12 +153,10 @@ logic should use the 'MainConfig' service (or a more specific configuration
 object). 'BootstrapConfig' should only be used for bootstrapping basic
 services that are needed to load the 'MainConfig'.
 
-
 Note: Several well known services in MediaWiki core act as factories
 themselves, e.g. ApiModuleManager, ObjectCache, SpecialPageFactory, etc.
 The registries these factories are based on are currently managed as part of
 the configuration. This may however change in the future.
-
 
 ## Migration
 

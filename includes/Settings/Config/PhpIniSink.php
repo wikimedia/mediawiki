@@ -2,13 +2,20 @@
 
 namespace MediaWiki\Settings\Config;
 
-use MediaWiki\Settings\SettingsBuilderException;
+use Wikimedia\NormalizedException\NormalizedExceptionTrait;
 
 /**
- * @unstable
+ * Settings sink for values to pass to ini_set.
+ *
+ * @since 1.39
  */
 class PhpIniSink {
+	use NormalizedExceptionTrait;
+
 	/**
+	 * Sets a php runtime configuration value using ini_set().
+	 * A PHP notice is triggered if setting the value fails.
+	 *
 	 * @param string $option
 	 * @param string $value
 	 * @return void
@@ -17,13 +24,14 @@ class PhpIniSink {
 		$result = ini_set( $option, $value );
 
 		if ( $result === false ) {
-			throw new SettingsBuilderException(
+			$msg = $this->getMessageFromNormalizedMessage(
 				'Could not set option: {option} with value: {value} to PHP_INI config.',
 				[
 					'value' => $value,
 					'option' => $option,
 				]
 			);
+			trigger_error( $msg );
 		}
 	}
 

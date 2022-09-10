@@ -1,7 +1,5 @@
 <?php
 /**
- * Walloon (Walon) specific code.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Language
  */
 
 /**
@@ -27,7 +24,7 @@
  * NOTE: cweri après "NOTE:" po des racsegnes so des ratournaedjes
  * k' i gn a.
  *
- * @ingroup Language
+ * @ingroup Languages
  */
 class LanguageWa extends Language {
 

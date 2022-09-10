@@ -18,11 +18,11 @@ Comment line, no effect [[File:Good.jpg]]
 *[[Image:Bad2.jpg]] also works
 * So does [[Bad3.jpg]]
 * [[User:Bad4.jpg]] works although it is silly
-* [[File:Redirect to good.jpg]] doesn't do anything if RepoGroup is working, because we only look at
+* [[File:Redirect to good.jpg]] does not do anything if RepoGroup is working, because we only look at
   the final name, but will work if RepoGroup returns null
 * List line with no link
-* [[Malformed title<>]] doesn't break anything, the line is ignored [[File:Good.jpg]]
-* [[File:Bad5.jpg]] before [[malformed title<>]] doesn't ignore the line
+* [[Malformed title<>]] does not break anything, the line is ignored [[File:Good.jpg]]
+* [[File:Bad5.jpg]] before [[malformed title<>]] does not ignore the line
 WIKITEXT;
 
 	/** @var HookContainer */
@@ -50,41 +50,23 @@ WIKITEXT;
 	}
 
 	private function getMockRepoGroup() {
-		$mock = $this->createMock( RepoGroup::class );
+		$mock = $this->createNoOpMock( RepoGroup::class, [ 'findFile' ] );
 		$mock->expects( $this->once() )->method( 'findFile' )
-			->will( $this->returnCallback( function ( $name ) {
-				$mockFile = $this->createMock( File::class );
+			->willReturnCallback( function ( $name ) {
+				$mockFile = $this->createNoOpMock( File::class, [ 'getTitle' ] );
 				$mockFile->expects( $this->once() )->method( 'getTitle' )
-					->will( $this->returnCallback( static function () use ( $name ) {
-						switch ( $name ) {
-							case 'Redirect to bad.jpg':
-								return new TitleValue( NS_FILE, 'Bad.jpg' );
-							case 'Redirect_to_good.jpg':
-								return new TitleValue( NS_FILE, 'Good.jpg' );
-							case 'Redirect to hook bad.jpg':
-								return new TitleValue( NS_FILE, 'Hook_bad.jpg' );
-							case 'Redirect to hook good.jpg':
-								return new TitleValue( NS_FILE, 'Hook_good.jpg' );
-							default:
-								return new TitleValue( NS_FILE, $name );
-						}
-					} ) );
-				$mockFile->expects( $this->never() )->method( $this->anythingBut( 'getTitle' ) );
+					->willReturnCallback( static function () use ( $name ) {
+						$redirectMap = [
+							'Redirect to bad.jpg' => 'Bad.jpg',
+							'Redirect_to_good.jpg' => 'Good.jpg',
+							'Redirect to hook bad.jpg' => 'Hook_bad.jpg',
+							'Redirect to hook good.jpg' => 'Hook_good.jpg',
+						];
+						$redirectTarget = $redirectMap[$name] ?? $name;
+						return new TitleValue( NS_FILE, $redirectTarget );
+					} );
 				return $mockFile;
-			} ) );
-		$mock->expects( $this->never() )->method( $this->anythingBut( 'findFile' ) );
-
-		return $mock;
-	}
-
-	/**
-	 * Just returns null for every findFile().
-	 * @return RepoGroup
-	 */
-	private function getMockRepoGroupNull() {
-		$mock = $this->createMock( RepoGroup::class );
-		$mock->expects( $this->once() )->method( 'findFile' )->willReturn( null );
-		$mock->expects( $this->never() )->method( $this->anythingBut( 'findFile' ) );
+			} );
 
 		return $mock;
 	}
@@ -121,12 +103,15 @@ WIKITEXT;
 	 * @covers ::isBadFile
 	 */
 	public function testIsBadFile_nullRepoGroup( $name, $title, $expected ) {
+		$nullRepoGroup = $this->createNoOpMock( RepoGroup::class, [ 'findFile' ] );
+		$nullRepoGroup->expects( $this->once() )->method( 'findFile' )->willReturn( null );
+
 		$bfl = new BadFileLookup(
 			static function () {
 				return self::BAD_FILE_LIST;
 			},
 			new EmptyBagOStuff,
-			$this->getMockRepoGroupNull(),
+			$nullRepoGroup,
 			$this->getDummyTitleParser( [ 'throwMockExceptions' => true ] ),
 			$this->hookContainer
 		);
@@ -167,7 +152,7 @@ WIKITEXT;
 			'Hook says good' => [ 'Hook good.jpg', null, false ],
 			'Redirect to hook bad image' => [ 'Redirect to hook bad.jpg', null, true ],
 			'Redirect to hook good image' => [ 'Redirect to hook good.jpg', null, false ],
-			'Malformed title doesn\'t break the line' => [ 'Bad5.jpg', null, true ],
+			'Malformed title does not break the line' => [ 'Bad5.jpg', null, true ],
 		];
 	}
 }

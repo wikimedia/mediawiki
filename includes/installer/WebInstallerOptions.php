@@ -615,7 +615,7 @@ class WebInstallerOptions extends WebInstallerPage {
 		}
 		$defaultSkin = $this->getVar( 'wgDefaultSkin' );
 		$skinsToInstallLowercase = array_map( 'strtolower', $skinsToInstall );
-		if ( $skinsToInstall && array_search( $defaultSkin, $skinsToInstallLowercase ) === false ) {
+		if ( $skinsToInstall && !in_array( $defaultSkin, $skinsToInstallLowercase ) ) {
 			$this->parent->showError( 'config-skins-must-enable-default' );
 			$retVal = false;
 		}
@@ -632,6 +632,9 @@ class WebInstallerOptions extends WebInstallerPage {
 
 		if ( $this->getVar( '_MainCacheType' ) == 'memcached' ) {
 			$memcServers = explode( "\n", $this->getVar( '_MemCachedServers' ) );
+			// FIXME: explode() will always result in an array of at least one string, even on null (when
+			// the string will be empty and you'll get a PHP warning), so this has never worked?
+			// @phan-suppress-next-line PhanImpossibleCondition
 			if ( !$memcServers ) {
 				$this->parent->showError( 'config-memcache-needservers' );
 				$retVal = false;

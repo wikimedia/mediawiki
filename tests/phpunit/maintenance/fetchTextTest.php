@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Maintenance;
 
 use ContentHandler;
+use Exception;
 use FetchText;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWikiIntegrationTestCase;

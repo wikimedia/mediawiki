@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
@@ -48,9 +49,9 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		);
 		$status = $mh->isValidMerge();
 		if ( $error === true ) {
-			$this->assertTrue( $status->isGood() );
+			$this->assertStatusGood( $status );
 		} else {
-			$this->assertTrue( $status->hasMessage( $error ) );
+			$this->assertStatusError( $error, $status );
 		}
 	}
 
@@ -100,7 +101,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $limit + 1 );
 
 		$status = $mh->isValidMerge();
-		$this->assertTrue( $status->hasMessage( 'mergehistory-fail-toobig' ) );
+		$this->assertStatusError( 'mergehistory-fail-toobig', $status );
 		$errors = $status->getErrorsByType( 'error' );
 		$params = $errors[0]['params'];
 		$this->assertEquals( $params[0], Message::numParam( $limit ) );
@@ -124,13 +125,13 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 				$this->mockRegisteredUltimateAuthority(),
 				''
 			);
-			$this->assertTrue( $status->isOK() );
+			$this->assertStatusOK( $status );
 
 			$status = $mh->$method(
 				$this->mockRegisteredAuthorityWithoutPermissions( [ 'mergehistory' ] ),
 				''
 			);
-			$this->assertTrue( $status->hasMessage( 'mergehistory-fail-permission' ) );
+			$this->assertStatusError( 'mergehistory-fail-permission', $status );
 		}
 	}
 
@@ -177,16 +178,16 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers MergeHistory::merge
 	 */
 	public function testSourceUpdateForNoRedirectSupport() {
-		$this->setMwGlobals( [
-			'wgExtraNamespaces' => [
+		$this->overrideConfigValues( [
+			MainConfigNames::ExtraNamespaces => [
 				2030 => 'NoRedirect',
 				2030 => 'NoRedirect_talk'
 			],
 
-			'wgNamespaceContentModels' => [
+			MainConfigNames::NamespaceContentModels => [
 				2030 => 'testing'
 			],
-			'wgContentHandlers' => [
+			MainConfigNames::ContentHandlers => [
 				// Relies on the DummyContentHandlerForTesting not
 				// supporting redirects by default. If this ever gets
 				// changed this test has to be fixed.
@@ -205,6 +206,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $title->exists() );
 
 		$status = $mh->merge( static::getTestSysop()->getUser() );
+		$this->assertStatusOK( $status );
 
 		$this->assertFalse( $title->exists() );
 	}

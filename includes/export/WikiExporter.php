@@ -29,6 +29,7 @@
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionAccessException;
@@ -96,7 +97,8 @@ class WikiExporter {
 	 * @return string
 	 */
 	public static function schemaVersion() {
-		return MediaWikiServices::getInstance()->getMainConfig()->get( 'XmlDumpSchemaVersion' );
+		return MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::XmlDumpSchemaVersion );
 	}
 
 	/**
@@ -365,6 +367,7 @@ class WikiExporter {
 			}
 
 			$lastLogId = $this->outputLogStream( $result );
+			$this->reloadDBConfig();
 		}
 	}
 
@@ -393,7 +396,6 @@ class WikiExporter {
 		unset( $join['page'] );
 
 		$fields = array_merge( $revQuery['fields'], $slotQuery['fields'] );
-		$fields[] = 'page_restrictions';
 
 		if ( $this->text != self::STUB ) {
 			$fields['_load_content'] = '1';
@@ -500,6 +502,10 @@ class WikiExporter {
 			if ( $done && $lastRow ) {
 				$this->finishPageStreamOutput( $lastRow );
 			}
+
+			if ( !$done ) {
+				$this->reloadDBConfig();
+			}
 		}
 	}
 
@@ -553,12 +559,14 @@ class WikiExporter {
 					. ' revision ' . $revRow->rev_id . ': ' . $ex->getMessage() );
 			}
 			$lastRow = $revRow;
+			$this->reloadDBConfig();
 		}
 
 		if ( $rowCarry ) {
 			throw new LogicException( 'Error while processing a stream of slot rows' );
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable False positive
 		return $lastRow;
 	}
 
@@ -618,5 +626,16 @@ class WikiExporter {
 			$this->sink->writeLogItem( $row, $output );
 		}
 		return $row->log_id ?? null;
+	}
+
+	/**
+	 * Attempt to reload the database configuration, so any changes can take effect.
+	 * Dynamic reloading can be enabled by setting $wgLBFactoryConf['configCallback']
+	 * to a function that returns an array of any keys that should be updated
+	 * in LBFactoryConf.
+	 */
+	private function reloadDBConfig() {
+		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
+			->autoReconfigure();
 	}
 }

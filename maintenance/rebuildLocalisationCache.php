@@ -32,7 +32,9 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\Settings\SettingsBuilder;
 
 require_once __DIR__ . '/Maintenance.php';
@@ -46,6 +48,7 @@ class RebuildLocalisationCache extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Rebuild the localisation cache' );
+		$this->addOption( 'dry-run', 'Determine what languages need to be rebuilt without changing anything' );
 		$this->addOption( 'force', 'Rebuild all files, even ones not out of date' );
 		$this->addOption( 'threads', 'Fork more than one thread', false, true );
 		$this->addOption( 'outdir', 'Override the output directory (normally $wgCacheDirectory)',
@@ -86,13 +89,11 @@ class RebuildLocalisationCache extends Maintenance {
 		# This script needs to be run to build the initial l10n cache. But if
 		# LanguageCode is not 'en', it won't be able to run because there is
 		# no l10n cache. Break the cycle by forcing the LanguageCode setting to 'en'.
-		$settingsBuilder->putConfigValue( 'LanguageCode', 'en' );
+		$settingsBuilder->putConfigValue( MainConfigNames::LanguageCode, 'en' );
 		parent::finalSetup( $settingsBuilder );
 	}
 
 	public function execute() {
-		global $wgLocalisationCacheConf, $wgCacheDirectory;
-
 		$force = $this->hasOption( 'force' );
 		$threads = $this->getOption( 'threads', 1 );
 		if ( $threads < 1 || $threads != intval( $threads ) ) {
@@ -108,7 +109,7 @@ class RebuildLocalisationCache extends Maintenance {
 			$threads = 1;
 		}
 
-		$conf = $wgLocalisationCacheConf;
+		$conf = $this->getConfig()->get( MainConfigNames::LocalisationCacheConf );
 		// Allow fallbacks to create CDB files
 		$conf['manualRecache'] = false;
 		$conf['forceRecache'] = $force || !empty( $conf['forceRecache'] );
@@ -128,7 +129,7 @@ class RebuildLocalisationCache extends Maintenance {
 				$conf,
 				$services->getMainConfig()
 			),
-			LocalisationCache::getStoreFromConf( $conf, $wgCacheDirectory ),
+			LocalisationCache::getStoreFromConf( $conf, $this->getConfig()->get( MainConfigNames::CacheDirectory ) ),
 			LoggerFactory::getInstance( 'localisation' ),
 			$this->hasOption( 'skip-message-purge' ) ? [] :
 				[ static function () use ( $services ) {
@@ -172,7 +173,7 @@ class RebuildLocalisationCache extends Maintenance {
 				$socketpair = [];
 				// Create a pair of sockets so that the child can communicate
 				// the number of rebuilt langs to the parent.
-				if ( socket_create_pair( AF_UNIX, SOCK_STREAM, 0, $socketpair ) === false ) {
+				if ( !socket_create_pair( AF_UNIX, SOCK_STREAM, 0, $socketpair ) ) {
 					$this->fatalError( 'socket_create_pair failed' );
 				}
 
@@ -245,12 +246,16 @@ class RebuildLocalisationCache extends Maintenance {
 	 */
 	private function doRebuild( $codes, $lc, $force ) {
 		$numRebuilt = 0;
+		$operation = $this->hasOption( 'dry-run' ) ? "Would rebuild" : "Rebuilding";
+
 		foreach ( $codes as $code ) {
 			if ( $force || $lc->isExpired( $code ) ) {
 				if ( !$this->hasOption( 'no-progress' ) ) {
-					$this->output( "Rebuilding $code...\n" );
+					$this->output( "$operation $code...\n" );
 				}
-				$lc->recache( $code );
+				if ( !$this->hasOption( 'dry-run' ) ) {
+					$lc->recache( $code );
+				}
 				$numRebuilt++;
 			}
 		}

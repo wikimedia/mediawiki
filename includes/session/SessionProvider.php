@@ -27,6 +27,7 @@ use Config;
 use Language;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerInterface;
 use User;
@@ -568,7 +569,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 * Fetch the rights allowed the user when the specified session is active.
 	 *
 	 * This is mainly meant for allowing the user to restrict access to the account
-	 * by certain methods; you probably want to use this with MWGrants. The returned
+	 * by certain methods; you probably want to use this with GrantsInfo. The returned
 	 * rights will be intersected with the user's actual rights.
 	 *
 	 * @stable to override
@@ -658,7 +659,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 * the stored data fails.
 	 *
 	 * @param string $data
-	 * @param string|null $key Defaults to $this->getConfig()->get( 'SecretKey' )
+	 * @param string|null $key Defaults to $this->getConfig()->get( MainConfigNames::SecretKey )
 	 * @return string
 	 */
 	final protected function hashToSessionId( $data, $key = null ) {
@@ -673,7 +674,8 @@ abstract class SessionProvider implements SessionProviderInterface {
 			);
 		}
 
-		$hash = \MWCryptHash::hmac( "$this\n$data", $key ?: $this->getConfig()->get( 'SecretKey' ), false );
+		$hash = \MWCryptHash::hmac( "$this\n$data",
+			$key ?: $this->getConfig()->get( MainConfigNames::SecretKey ), false );
 		if ( strlen( $hash ) < 32 ) {
 			// Should never happen, even md5 is 128 bits
 			// @codeCoverageIgnoreStart

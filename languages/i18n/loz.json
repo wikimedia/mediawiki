@@ -1,13 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"DannyS712",
 			"Kaganer",
 			"Litingatinga Silozi",
 			"Ooswesthoesbes",
 			"SF-Language",
-			"아라",
-			"Amire80"
+			"아라"
 		]
 	},
 	"tog-underline": "Tumana ling'ko:",
@@ -164,7 +164,6 @@
 	"ok": "lumelisize",
 	"retrievedfrom": "Bulukezi ye ng'i di \"$1\"",
 	"youhavenewmessages": "A sa pozefisize $1 ($2).",
-	"youhavenewmessagesmulti": "Nca $1 mulumiwani",
 	"editsection": "hloli ye ng'i",
 	"editold": "hloli ye ng'i",
 	"editsectionhint": "Hloli ye ng'i silami: $1",
@@ -516,8 +515,6 @@
 	"rollbacklink": "afi hloli ye ng'i lila",
 	"rollbackfailed": "Bufosi dafi hloli ye ng'i lila",
 	"protectlogpage": "Desu di bukelize",
-	"protectedarticle": "sa bukelelize \"[[$1]]\"",
-	"unprotectedarticle": "sa ati-bukelelize \"[[$1]]\"",
 	"prot_1movedto2": "[[$1]] nyanganyisize di [[$2]]",
 	"protect-legend": "Bukelezi",
 	"protectcomment": "Lyangutukezi:",
@@ -585,7 +582,6 @@
 	"unblocklink": "bolok tamuhile",
 	"contribslink": "afina",
 	"blocklogpage": "Desu di bolok",
-	"blocklogentry": "sa bolok [[$1]] e simpekile sa $2 $3",
 	"move-page-legend": "Nyanganyisize petulo",
 	"movepagetext": "A sa nyanganyisize xete bundau di nom nca e petulo.\nXisiti nom sa petulo abezi post nyanganyisize.\nLing'ki di xisiti nom no kenki; luku di petulo abezi bufosi e petulo abezi sa bužemi.\nA sa gutukilimisize di ling'ki.\n\nPetulo sa '''no''' nyanganyisize di nca nom e nca nom sa xete, xete a sa petulo abezi e ni bundau/no selt petulo. A sa nyanganyisize petulo a orži.\n\n'''!'''\nPetulo populari sa drastiki bufosi e nyanganyisize;\na sa gukilize di nyanganyisize.",
 	"movepagetalktext": "Bulelezi sa nyanganyisize '''teri:'''\n*Bulelezi e selt sa kwa nca nom,\n*Okižekilize sisebelisoni.\n\nTeri yaki, a nyanganyisize.",

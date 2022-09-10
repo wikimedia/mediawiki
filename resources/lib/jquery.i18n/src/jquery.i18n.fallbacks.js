@@ -144,7 +144,7 @@
 		sg: [ 'fr' ],
 		sgs: [ 'lt' ],
 		sli: [ 'de' ],
-		sr: [ 'sr-ec' ],
+		sr: [ 'sr-ec', 'sr-cyrl' ],
 		srn: [ 'nl' ],
 		stq: [ 'de' ],
 		su: [ 'id' ],

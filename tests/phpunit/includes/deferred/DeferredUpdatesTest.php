@@ -359,7 +359,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		DeferredUpdates::addCallableUpdate( $callback1 );
 		$this->assertEquals( [], $calls );
 
-		DeferredUpdates::tryOpportunisticExecute( 'run' );
+		DeferredUpdates::tryOpportunisticExecute();
 		$this->assertEquals( [], $calls );
 
 		$dbw = wfGetDB( DB_PRIMARY );
@@ -375,7 +375,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals( [ 'oti' ], $calls );
 
-		DeferredUpdates::tryOpportunisticExecute( 'run' );
+		DeferredUpdates::tryOpportunisticExecute();
 		$this->assertEquals( [ 'oti', 1, 2 ], $calls );
 	}
 

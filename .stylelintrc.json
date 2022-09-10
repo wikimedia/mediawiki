@@ -1,5 +1,8 @@
 {
-	"extends": "stylelint-config-wikimedia/grade-a",
+	"extends": [
+		"stylelint-config-wikimedia/support-basic",
+		"stylelint-config-wikimedia/mediawiki"
+	],
 	"rules": {
 		"selector-class-pattern": "^((mw|oo-ui)-|(wikitable|(toc(|toggle|hidden))|client-(no)?js)$)",
 		"no-descending-specificity": null,

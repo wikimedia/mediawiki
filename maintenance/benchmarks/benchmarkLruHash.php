@@ -63,6 +63,7 @@ class BenchmarkLruHash extends Benchmarker {
 
 		if ( !$method || $method === 'set' ) {
 			$hObj = null;
+			'@phan-var BagOStuff $hObj';
 			$benches['HashBagOStuff::set'] = [
 				'setup' => static function () use ( &$hObj, $max ) {
 					$hObj = new HashBagOStuff( [ 'maxKeys' => $max ] );
@@ -74,6 +75,7 @@ class BenchmarkLruHash extends Benchmarker {
 				}
 			];
 			$mObj = null;
+			'@phan-var MapCacheLRU $mObj';
 			$benches['MapCacheLRU::set'] = [
 				'setup' => static function () use ( &$mObj, $max ) {
 					$mObj = new MapCacheLRU( $max );
@@ -88,6 +90,7 @@ class BenchmarkLruHash extends Benchmarker {
 
 		if ( !$method || $method === 'get' ) {
 			$hObj = null;
+			'@phan-var BagOStuff $hObj';
 			$benches['HashBagOStuff::get'] = [
 				'setup' => static function () use ( &$hObj, $max, $keys ) {
 					$hObj = new HashBagOStuff( [ 'maxKeys' => $max ] );
@@ -102,6 +105,7 @@ class BenchmarkLruHash extends Benchmarker {
 				}
 			];
 			$mObj = null;
+			'@phan-var MapCacheLRU $mObj';
 			$benches['MapCacheLRU::get'] = [
 				'setup' => static function () use ( &$mObj, $max, $keys ) {
 					$mObj = new MapCacheLRU( $max );

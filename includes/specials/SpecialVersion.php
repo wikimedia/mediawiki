@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\ExtensionInfo;
+use MediaWiki\MainConfigNames;
 
 /**
  * Give information about the version of MediaWiki, PHP, the DB and extensions
@@ -66,7 +67,7 @@ class SpecialVersion extends SpecialPage {
 	 * @see $wgExtensionCredits
 	 */
 	public static function getCredits( ExtensionRegistry $reg, Config $conf ): array {
-		$credits = $conf->get( 'ExtensionCredits' );
+		$credits = $conf->get( MainConfigNames::ExtensionCredits );
 		foreach ( $reg->getAllThings() as $name => $credit ) {
 			$credits[$credit['type']][] = $credit;
 		}
@@ -111,7 +112,7 @@ class SpecialVersion extends SpecialPage {
 		// Now figure out what to do
 		switch ( strtolower( $parts[0] ) ) {
 			case 'credits':
-				$out->addModuleStyles( 'mediawiki.special.version' );
+				$out->addModuleStyles( 'mediawiki.special' );
 
 				$wikiText = '{{int:version-credits-not-found}}';
 				if ( $extName === 'MediaWiki' ) {
@@ -176,7 +177,7 @@ class SpecialVersion extends SpecialPage {
 				}
 				break;
 			default:
-				$out->addModuleStyles( 'mediawiki.special.version' );
+				$out->addModuleStyles( 'mediawiki.special' );
 				$out->addWikiTextAsInterface(
 					self::getMediaWikiCredits() .
 					self::softwareInformation() .
@@ -315,8 +316,9 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Return a string of the MediaWiki version with Git revision if available.
 	 *
-	 * @param string $flags
-	 * @param Language|string|null $lang
+	 * @param string $flags If set to 'nodb', the language-specific parantheses are not used.
+	 * @param Language|string|null $lang Language in which to render the version; ignored if
+	 *   $flags is set to 'nodb'.
 	 * @return mixed
 	 */
 	public static function getVersion( $flags = '', $lang = null ) {
@@ -714,7 +716,7 @@ class SpecialVersion extends SpecialPage {
 	 */
 	protected function getExtensionCategory( $type, ?string $text, array $creditsGroup ) {
 		$config = $this->getConfig();
-		$credits = $config->get( 'ExtensionCredits' );
+		$credits = $config->get( MainConfigNames::ExtensionCredits );
 
 		$out = '';
 
@@ -911,6 +913,7 @@ class SpecialVersion extends SpecialPage {
 
 		// ... now get the authors for this extension
 		$authors = $extension['author'] ?? [];
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable path is set when there is a name
 		$authors = $this->listAuthors( $authors, $extension['name'], $extensionPath );
 
 		// Finally! Create the table
@@ -937,8 +940,9 @@ class SpecialVersion extends SpecialPage {
 	 * @return string Wikitext
 	 */
 	private function getHooks() {
-		if ( $this->getConfig()->get( 'SpecialVersionShowHooks' ) && count( $this->getConfig()->get( 'Hooks' ) ) ) {
-			$myHooks = $this->getConfig()->get( 'Hooks' );
+		if ( $this->getConfig()->get( MainConfigNames::SpecialVersionShowHooks ) &&
+		count( $this->getConfig()->get( MainConfigNames::Hooks ) ) ) {
+			$myHooks = $this->getConfig()->get( MainConfigNames::Hooks );
 			ksort( $myHooks );
 
 			$ret = [];
@@ -1097,44 +1101,6 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Obtains the full path of an extensions AUTHORS or CREDITS file if
-	 * one exists.
-	 *
-	 * @param string $extDir Path to the extensions root directory
-	 *
-	 * @since 1.23
-	 * @deprecated since 1.35 Use MediaWiki\ExtensionInfo::getAuthorsFileName()
-	 *
-	 * @return bool|string False if no such file exists, otherwise returns
-	 * a path to it.
-	 */
-	public static function getExtAuthorsFileName( $extDir ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return ExtensionInfo::getAuthorsFileName( $extDir );
-	}
-
-	/**
-	 * Obtains the full path of an extensions COPYING or LICENSE file if
-	 * one exists.
-	 *
-	 * @param string $extDir Path to the extensions root directory
-	 *
-	 * @since 1.23
-	 * @deprecated since 1.35 Use MediaWiki\ExtensionInfo::getLicenseFileNames()
-	 *
-	 * @return bool|string False if no such file exists, otherwise returns
-	 * a path to it.
-	 */
-	public static function getExtLicenseFileName( $extDir ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$licenses = ExtensionInfo::getLicenseFileNames( $extDir );
-		if ( count( $licenses ) === 0 ) {
-			return false;
-		}
-		return $licenses[0];
-	}
-
-	/**
 	 * Convert an array of items into a list for display.
 	 *
 	 * @param array $list List of elements to display
@@ -1211,10 +1177,10 @@ class SpecialVersion extends SpecialPage {
 	 */
 	public function getEntryPointInfo() {
 		$config = $this->getConfig();
-		$scriptPath = $config->get( 'ScriptPath' ) ?: '/';
+		$scriptPath = $config->get( MainConfigNames::ScriptPath ) ?: '/';
 
 		$entryPoints = [
-			'version-entrypoints-articlepath' => $config->get( 'ArticlePath' ),
+			'version-entrypoints-articlepath' => $config->get( MainConfigNames::ArticlePath ),
 			'version-entrypoints-scriptpath' => $scriptPath,
 			'version-entrypoints-index-php' => wfScript( 'index' ),
 			'version-entrypoints-api-php' => wfScript( 'api' ),

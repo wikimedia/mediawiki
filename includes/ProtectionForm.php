@@ -28,6 +28,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Watchlist\WatchlistManager;
 
 /**
@@ -102,11 +103,16 @@ class ProtectionForm {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var RestrictionStore */
+	private $restrictionStore;
+
+	/** @var TitleFormatter */
+	private $titleFormatter;
+
 	public function __construct( Article $article ) {
 		// Set instance variables.
 		$this->mArticle = $article;
 		$this->mTitle = $article->getTitle();
-		$this->mApplicableTypes = $this->mTitle->getRestrictionTypes();
 		$this->mContext = $article->getContext();
 		$this->mRequest = $this->mContext->getRequest();
 		$this->mPerformer = $this->mContext->getAuthority();
@@ -117,6 +123,9 @@ class ProtectionForm {
 		$this->permManager = $services->getPermissionManager();
 		$this->hookRunner = new HookRunner( $services->getHookContainer() );
 		$this->watchlistManager = $services->getWatchlistManager();
+		$this->titleFormatter = $services->getTitleFormatter();
+		$this->restrictionStore = $services->getRestrictionStore();
+		$this->mApplicableTypes = $this->restrictionStore->listApplicableRestrictionTypes( $this->mTitle );
 
 		// Check if the form should be disabled.
 		// If it is, the form will be available in read-only to show levels.
@@ -126,8 +135,9 @@ class ProtectionForm {
 		} else {
 			$this->mPerformer->authorizeRead( 'protect', $this->mTitle, $this->mPermStatus );
 		}
-		if ( wfReadOnly() ) {
-			$this->mPermStatus->fatal( 'readonlytext', wfReadOnlyReason() );
+		$readOnlyMode = $services->getReadOnlyMode();
+		if ( $readOnlyMode->isReadOnly() ) {
+			$this->mPermStatus->fatal( 'readonlytext', $readOnlyMode->getReason() );
 		}
 		$this->disabled = !$this->mPermStatus->isGood();
 		$this->disabledAttrib = $this->disabled ? [ 'disabled' => 'disabled' ] : [];
@@ -143,7 +153,7 @@ class ProtectionForm {
 			$this->mTitle->getNamespace(), $this->mPerformer->getUser()
 		);
 
-		$this->mCascade = $this->mTitle->areRestrictionsCascading();
+		$this->mCascade = $this->restrictionStore->areRestrictionsCascading( $this->mTitle );
 		$this->mReason = $this->mRequest->getText( 'mwProtect-reason' );
 		$this->mReasonSelection = $this->mRequest->getText( 'wpProtectReasonSelection' );
 		$this->mCascade = $this->mRequest->getBool( 'mwProtect-cascade', $this->mCascade );
@@ -153,13 +163,14 @@ class ProtectionForm {
 			// but the db allows multiples separated by commas.
 
 			// Pull the actual restriction from the DB
-			$this->mRestrictions[$action] = implode( '', $this->mTitle->getRestrictions( $action ) );
+			$this->mRestrictions[$action] = implode( '',
+				$this->restrictionStore->getRestrictions( $this->mTitle, $action ) );
 
 			if ( !$this->mRestrictions[$action] ) {
 				// No existing expiry
 				$existingExpiry = '';
 			} else {
-				$existingExpiry = $this->mTitle->getRestrictionExpiry( $action );
+				$existingExpiry = $this->restrictionStore->getRestrictionExpiry( $this->mTitle, $action );
 			}
 			$this->mExistingExpiry[$action] = $existingExpiry;
 
@@ -278,12 +289,13 @@ class ProtectionForm {
 			return;
 		}
 
-		list( $cascadeSources, /* $restrictions */ ) = $this->mTitle->getCascadeProtectionSources();
-		if ( $cascadeSources && count( $cascadeSources ) > 0 ) {
+		list( $cascadeSources, /* $restrictions */ ) =
+			$this->restrictionStore->getCascadeProtectionSources( $this->mTitle );
+		if ( count( $cascadeSources ) > 0 ) {
 			$titles = '';
 
-			foreach ( $cascadeSources as $title ) {
-				$titles .= '* [[:' . $title->getPrefixedText() . "]]\n";
+			foreach ( $cascadeSources as $pageIdentity ) {
+				$titles .= '* [[:' . $this->titleFormatter->getPrefixedText( $pageIdentity ) . "]]\n";
 			}
 
 			/** @todo FIXME: i18n issue, should use formatted number. */
@@ -595,7 +607,7 @@ class ProtectionForm {
 			->setTokenSalt( [ 'protect', $this->mTitle->getPrefixedDBkey() ] )
 			->suppressDefaultSubmit( $this->disabled )
 			->setWrapperLegendMsg( 'protect-legend' )
-			->loadData();
+			->prepareForm();
 
 		return $htmlForm->getHTML( false ) . $out;
 	}

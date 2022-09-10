@@ -19,12 +19,43 @@ trait ConfigSinkTestTrait {
 		$this->assertKeyHasValue( 'TestKey2', 'bar' );
 	}
 
+	public function testSetMulti() {
+		$this->getConfigSink()
+			->setMulti(
+				[
+					'TestSetMulti_string' => 'a',
+					'TestSetMulti_array1' => [ 1, 2 ],
+					'TestSetMulti_array2' => [ 'a', 'b' ]
+				],
+				[
+					'TestSetMulti_array1' => MergeStrategy::newFromName( MergeStrategy::ARRAY_MERGE ),
+					'TestSetMulti_array2' => MergeStrategy::newFromName( MergeStrategy::ARRAY_MERGE ),
+				]
+			)
+			->setMulti(
+				[
+					'TestSetMulti_string' => 'b',
+					'TestSetMulti_array1' => [ 3, 4 ],
+					'TestSetMulti_array2' => [ 'c', 'd' ]
+				],
+				[
+					'TestSetMulti_array1' => MergeStrategy::newFromName( MergeStrategy::ARRAY_MERGE ),
+					'TestSetMulti_array2' => MergeStrategy::newFromName( MergeStrategy::ARRAY_MERGE ),
+				]
+			)
+			->setMulti( [ 'TestSetMulti_array1' => [ 'x' ] ] );
+
+		$this->assertKeyHasValue( 'TestSetMulti_string', 'b' );
+		$this->assertKeyHasValue( 'TestSetMulti_array1', [ 'x' ] );
+		$this->assertKeyHasValue( 'TestSetMulti_array2', [ 'a', 'b', 'c', 'd' ] );
+	}
+
 	public function testSetDefault() {
 		$this->getConfigSink()
-			->setDefault( 'TestKey1', 'foo' )
-			->setDefault( 'TestKey2', 'bar' );
-		$this->assertKeyHasValue( 'TestKey1', 'foo' );
-		$this->assertKeyHasValue( 'TestKey2', 'bar' );
+			->setDefault( 'TestDefaultKey1', 'foo' )
+			->setDefault( 'TestDefaultKey2', 'bar' );
+		$this->assertKeyHasValue( 'TestDefaultKey1', 'foo' );
+		$this->assertKeyHasValue( 'TestDefaultKey2', 'bar' );
 	}
 
 	public function provideSetNewValue() {
@@ -56,19 +87,40 @@ trait ConfigSinkTestTrait {
 	 */
 	public function testSetNewValue( $first, $second, $strategy, $expected ) {
 		$this->getConfigSink()
-			->set( 'TestKey', $first )
+			->set( 'TestNewValueKey', $first )
 			->set(
-				'TestKey',
+				'TestNewValueKey',
 				$second, $strategy ? MergeStrategy::newFromName( $strategy ) : null
 			);
-		$this->assertKeyHasValue( 'TestKey', $expected );
+		$this->assertKeyHasValue( 'TestNewValueKey', $expected );
+	}
+
+	/**
+	 * @note Since implementations of setMulti may inline logic of setDefault() for performance,
+	 * we need to test all edge cases for setMultiDefault() as well.
+	 *
+	 * @dataProvider provideSetNewValue
+	 *
+	 * @param mixed $first
+	 * @param mixed $second
+	 * @param string $strategy
+	 * @param mixed $expected
+	 */
+	public function testSetNewValue_multi( $first, $second, $strategy, $expected ) {
+		$this->getConfigSink()
+			->set( 'TestNewValueKeyMulti', $first )
+			->setMulti(
+				[ 'TestNewValueKeyMulti' => $second ],
+				[ 'TestNewValueKeyMulti' => $strategy ? MergeStrategy::newFromName( $strategy ) : null ]
+			);
+		$this->assertKeyHasValue( 'TestNewValueKeyMulti', $expected );
 	}
 
 	public function provideSetDefaultValue() {
 		yield 'do not replace 1 with 2' => [ 1, 2, null, 1 ];
 		yield 'do not replace 0 with 2' => [ 0, 2, null, 0 ];
-		yield 'do not replace null with 2' => [ false, 2, null, null ];
-		yield 'do not replace false with 2' => [ null, 2, null, false ];
+		yield 'do not replace null with 2' => [ null, 2, null, null ];
+		yield 'do not replace false with 2' => [ false, 2, null, false ];
 		yield 'do not replace an empty array with 2' => [ [], 2, null, [] ];
 		yield 'do not replace an empty array with a non-empty one' => [ [], [ 2 ], null, [] ];
 
@@ -94,13 +146,58 @@ trait ConfigSinkTestTrait {
 	 */
 	public function testSetDefaultValue( $first, $second, $strategy, $expected ) {
 		$this->getConfigSink()
-			->set( 'TestKey', $first )
+			->set( 'TestDefaultValueKey', $first )
 			->setDefault(
-				'TestKey',
+				'TestDefaultValueKey',
 				$second,
 				$strategy ? MergeStrategy::newFromName( $strategy ) : null
 			);
-		$this->assertKeyHasValue( 'TestKey', $expected );
+		$this->assertKeyHasValue( 'TestDefaultValueKey', $expected );
+	}
+
+	/**
+	 * @note Since implementations of setMultiDefault may inline logic of setDefault() for performance,
+	 * we need to test all edge cases for setMultiDefault() as well.
+	 *
+	 * @dataProvider provideSetDefaultValue
+	 *
+	 * @param mixed $first
+	 * @param mixed $second
+	 * @param string $strategy
+	 * @param mixed $expected
+	 */
+	public function testSetDefaultValue_multi( $first, $second, $strategy, $expected ) {
+		$this->getConfigSink()
+			->set( 'TestDefaultValueKey', $first )
+			->setMultiDefault(
+				[ 'TestDefaultValueKey' => $second ],
+				[ 'TestDefaultValueKey' => $strategy ? MergeStrategy::newFromName( $strategy ) : null ]
+			);
+		$this->assertKeyHasValue( 'TestDefaultValueKey', $expected );
+	}
+
+	public function testSetMultiDefault() {
+		$this->getConfigSink()
+			->setMultiDefault(
+				[
+					'TestSetMultiDefault_string' => 'a',
+					'TestSetMultiDefault_array' => [ 1, 2 ]
+				],
+				[
+					'TestSetMultiDefault_array' => MergeStrategy::newFromName( MergeStrategy::ARRAY_MERGE )
+				]
+			)
+			->setMultiDefault(
+				[
+					'TestSetMultiDefault_string' => 'b',
+					'TestSetMultiDefault_array' => [ 3, 4 ]
+				],
+				[
+					'TestSetMultiDefault_array' => MergeStrategy::newFromName( MergeStrategy::ARRAY_MERGE )
+				]
+			);
+		$this->assertKeyHasValue( 'TestSetMultiDefault_string', 'a' );
+		$this->assertKeyHasValue( 'TestSetMultiDefault_array', [ 3, 4, 1, 2 ] );
 	}
 
 }

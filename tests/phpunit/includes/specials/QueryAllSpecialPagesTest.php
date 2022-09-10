@@ -7,6 +7,8 @@
  * @author Antoine Musso
  */
 
+use Wikimedia\Rdbms\ResultWrapper;
+
 /**
  * @group Database
  * @covers QueryPage<extended>
@@ -49,7 +51,6 @@ class QueryAllSpecialPagesTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Test SQL for each of our QueryPages objects
-	 * @group Database
 	 */
 	public function testQuerypageSqlQuery() {
 		global $wgDBtype;
@@ -69,11 +70,7 @@ class QueryAllSpecialPagesTest extends MediaWikiIntegrationTestCase {
 			$msg = "SQL query for page {$page->getName()} should give a result wrapper object";
 
 			$result = $page->reallyDoQuery( 50 );
-			if ( $result instanceof ResultWrapper ) {
-				$this->assertTrue( true, $msg );
-			} else {
-				$this->assertFalse( false, $msg );
-			}
+			$this->assertInstanceOf( ResultWrapper::class, $result, $msg );
 		}
 	}
 }

@@ -5,7 +5,6 @@ declare( strict_types = 1 );
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -71,13 +70,10 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 
 	public static function provideConstruct_validName(): array {
 		return [
-			'True' => [ true ],
-			'Positive integer' => [ 7 ],
-			'Zero integer' => [ 0 ],
-			'Zero float' => [ 0.0 ],
-			'Negative integer' => [ -7 ],
-			'Negative float' => [ -7.0 ],
-			'255 chars is allowed' => [ str_repeat( 'a', 255 ) ],
+			'simple' => [ 'foobar' ],
+			'dash and underscore' => [ 'foo_bar-baz' ],
+			'capital and numbers' => [ 'Duck-Car313' ],
+			'255 chars' => [ str_repeat( 'a', 255 ) ],
 		];
 	}
 
@@ -90,24 +86,28 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( "Backend name '$name' is invalid." );
 
-		AtEase::suppressWarnings(); // php 8.1 gives warning about null
-		try {
-			$this->newMockFileBackend( [ 'name' => $name, 'domainId' => false ] );
-		} finally {
-			AtEase::restoreWarnings();
-		}
+		$this->newMockFileBackend( [ 'name' => $name, 'domainId' => false ] );
 	}
 
 	public static function provideConstruct_invalidName(): array {
 		return [
 			'Empty string' => [ '' ],
-			'256 chars is too long' => [ str_repeat( 'a', 256 ) ],
-			'!' => [ '!' ],
+			'Illegal slash' => [ 'foo/bar' ],
+			'Illegal space' => [ 'foo bar' ],
+			'Illegal percent' => [ 'foo%20bar' ],
+			'256 chars' => [ str_repeat( 'a', 256 ) ],
+			'Bang' => [ '!' ],
 			'With space' => [ 'a b' ],
 			'False' => [ false ],
 			'Null' => [ null ],
 			'Positive float' => [ 13.402 ],
 			'Negative float' => [ -13.402 ],
+			'True' => [ true ],
+			'Positive integer' => [ 7 ],
+			'Zero integer' => [ 0 ],
+			'Zero float' => [ 0.0 ],
+			'Negative integer' => [ -7 ],
+			'Negative float' => [ -7.0 ],
 		];
 	}
 
@@ -423,7 +423,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 			'message' => 'backend-fail-readonly',
 			'params' => [ 'test_name', '.' ],
 		] ], $status->getErrors() );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 	}
 
 	public static function provideReadOnly(): array {
@@ -468,9 +468,8 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 
 		$status = $backend->$method( ...array_merge( $args, [ [ 'bypassReadOnly' => true ] ] ) );
 
-		$this->assertTrue( $status->isOK() );
-		$this->assertSame( [], $status->getErrors() );
-		$this->assertSame( 'myvalue', $status->getValue() );
+		$this->assertStatusGood( $status );
+		$this->assertStatusValue( 'myvalue', $status );
 	}
 
 	/**
@@ -486,8 +485,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		$backend->expects( $this->never() )->method( 'doQuickOperationsInternal' );
 
 		$status = $backend->$method( [] );
-		$this->assertTrue( $status->isOK() );
-		$this->assertSame( [], $status->getErrors() );
+		$this->assertStatusGood( $status );
 	}
 
 	public static function provideDoMultipleOperations(): array {
@@ -566,8 +564,8 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		$method = $prefix ? $prefix . ucfirst( $action ) : $action;
 		$status = $backend->$method( [ 'op' => 'ignored', 'foo' => 'bar' ], [ 'baz' => 'quuz' ] );
 
-		$this->assertTrue( $status->isOK() );
-		$this->assertSame( 'myvalue', $status->getValue() );
+		$this->assertStatusOK( $status );
+		$this->assertStatusValue( 'myvalue', $status );
 	}
 
 	public static function provideAction(): array {
@@ -596,9 +594,8 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 
 		$status = $backend->$method( [ 'foo' => 'bar' ] );
 
-		$this->assertTrue( $status->isOK() );
-		$this->assertSame( [], $status->getErrors() );
-		$this->assertSame( 'myvalue', $status->getValue() );
+		$this->assertStatusGood( $status );
+		$this->assertStatusValue( 'myvalue', $status );
 	}
 
 	public static function provideForwardToDo(): array {
@@ -688,9 +685,8 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 
 		$status = $backend->$backendMethod( ...array_merge( $args, (array)$timeout ) );
 
-		$this->assertTrue( $status->isOK() );
-		$this->assertSame( [], $status->getErrors() );
-		$this->assertSame( 'myvalue', $status->getValue() );
+		$this->assertStatusGood( $status );
+		$this->assertStatusValue( 'myvalue', $status );
 	}
 
 	public static function provideLockUnlockFiles(): array {
@@ -730,7 +726,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		$status = StatusValue::newGood( 'myvalue' );
 		$scopedLock = $backend->getScopedFileLocks( $paths, $type, $status );
 
-		$this->assertSame( 'myvalue', $status->getValue() );
+		$this->assertStatusValue( 'myvalue', $status );
 		$this->assertSame( $lockStatus->isOK(), $status->isOK() );
 		$this->assertSame( $lockStatus->getErrors(), $status->getErrors() );
 
@@ -742,7 +738,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		$this->assertInstanceOf( ScopedLock::class, $scopedLock );
 		unset( $scopedLock );
 
-		$this->assertSame( 'myvalue', $status->getValue() );
+		$this->assertStatusValue( 'myvalue', $status );
 		$this->assertSame( $lockStatus->isOK(), $status->isOK() );
 		$this->assertSame( array_merge( $lockStatus->getErrors(), $unlockStatus->getErrors() ),
 			$status->getErrors() );
@@ -1096,8 +1092,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		}
 		$status = $backend->$method( $op );
 
-		$this->assertTrue( $status->isOK() );
-		$this->assertSame( [], $status->getErrors() );
+		$this->assertStatusGood( $status );
 	}
 
 	/**

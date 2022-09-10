@@ -30,6 +30,7 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\UserAuthority;
 use MediaWikiUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+use Status;
 use User;
 
 /**
@@ -37,13 +38,21 @@ use User;
  */
 class UserAuthorityTest extends MediaWikiUnitTestCase {
 
+	/** @var string[] Some dummy message parameters to test error message formatting. */
+	private const FAKE_BLOCK_MESSAGE_PARAMS = [
+		'[[User:Blocker|Blocker]]',
+		'Block reason that can contain {{templates}}',
+		'192.168.0.1',
+		'Blocker',
+	];
+
 	/**
 	 * @param string[] $permissions
 	 * @return PermissionManager
 	 */
 	private function newPermissionsManager( array $permissions ): PermissionManager {
 		/** @var PermissionManager|MockObject $permissionManager */
-		$permissionManager = $this->createNoOpMock(
+		$permissionManager = $this->createMock(
 			PermissionManager::class,
 			[ 'userHasRight', 'userCan', 'getPermissionErrors', 'isBlockedFrom' ]
 		);
@@ -68,7 +77,10 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 				}
 
 				if ( $user->getBlock() && $permission !== 'read' ) {
-					$errors[] = [ 'blockedtext-partial' ];
+					$errors[] = array_merge(
+						[ 'blockedtext-partial' ],
+						self::FAKE_BLOCK_MESSAGE_PARAMS
+					);
 				}
 
 				return $errors;
@@ -92,7 +104,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 	}
 
 	private function newAuthority( array $permissions, User $actor = null ): Authority {
-		/** @var UserAuthority|MockObject $permissionManager */
+		/** @var PermissionManager|MockObject $permissionManager */
 		$permissionManager = $this->newPermissionsManager( $permissions );
 		return new UserAuthority(
 			$actor ?? $this->newUser(),
@@ -144,7 +156,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$status = PermissionStatus::newEmpty();
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
 		$this->assertTrue( $authority->authorizeRead( 'read', $target, $status ) );
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
 	}
 
 	public function testBlockedUserCanNotWrite() {
@@ -156,7 +168,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$status = PermissionStatus::newEmpty();
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
 		$this->assertFalse( $authority->authorizeRead( 'edit', $target, $status ) );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 		$this->assertSame( $block, $status->getBlock() );
 	}
 
@@ -184,10 +196,10 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 		$status = new PermissionStatus();
 		$authority->probablyCan( 'foo', $target, $status );
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
 
 		$authority->probablyCan( 'quux', $target, $status );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 	}
 
 	public function testDefinitlyCan() {
@@ -200,10 +212,10 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 		$status = new PermissionStatus();
 		$authority->definitelyCan( 'foo', $target, $status );
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
 
 		$authority->definitelyCan( 'quux', $target, $status );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 	}
 
 	public function testAuthorizeRead() {
@@ -216,10 +228,10 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 		$status = new PermissionStatus();
 		$authority->authorizeRead( 'foo', $target, $status );
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
 
 		$authority->authorizeRead( 'quux', $target, $status );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 	}
 
 	public function testAuthorizeWrite() {
@@ -232,10 +244,10 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 		$status = new PermissionStatus();
 		$authority->authorizeWrite( 'foo', $target, $status );
-		$this->assertTrue( $status->isOK() );
+		$this->assertStatusOK( $status );
 
 		$authority->authorizeWrite( 'quux', $target, $status );
-		$this->assertFalse( $status->isOK() );
+		$this->assertStatusNotOK( $status );
 	}
 
 	public function testIsAllowedAnyThrowsOnEmptySet() {
@@ -267,5 +279,37 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$authority = $this->newAuthority( [ 'foo', 'bar' ], $actor );
 
 		$this->assertSame( $block, $authority->getBlock() );
+	}
+
+	/**
+	 * Regression test for T306494: check that when creating a PermissionStatus,
+	 * the message contains all parameters and when converted to a Status, the parameters
+	 * are not wikitext escaped.
+	 */
+	public function testInternalCanWithPermissionStatusMessageFormatting() {
+		$block = $this->createNoOpMock( Block::class );
+		$user = $this->getBlockedUser( $block );
+
+		$authority = $this->newAuthority( [ 'read', 'edit' ], $user );
+
+		$permissionStatus = PermissionStatus::newEmpty();
+		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
+
+		$authority->authorizeWrite(
+			'edit',
+			$target,
+			$permissionStatus
+		);
+
+		$this->assertTrue( $permissionStatus->hasMessage( 'blockedtext-partial' ) );
+
+		$status = Status::wrap( $permissionStatus );
+
+		$message = $status->getMessage();
+		$this->assertEquals( 'blockedtext-partial', $message->getKey() );
+		$this->assertArrayEquals(
+			self::FAKE_BLOCK_MESSAGE_PARAMS,
+			$message->getParams()
+		);
 	}
 }

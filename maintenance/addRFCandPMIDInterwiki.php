@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -43,24 +45,25 @@ class AddRFCandPMIDInterwiki extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$interwikiCache = $this->getConfig()->get( 'InterwikiCache' );
+		$interwikiCache = $this->getConfig()->get( MainConfigNames::InterwikiCache );
 		// Using something other than the database,
 		if ( $interwikiCache !== false ) {
 			return true;
 		}
 		$dbw = $this->getDB( DB_PRIMARY );
-		$rfc = $dbw->selectField(
-			'interwiki',
-			'iw_url',
-			[ 'iw_prefix' => 'rfc' ],
-			__METHOD__
-		);
+
+		$rfc = $dbw->newSelectQueryBuilder()
+			->select( 'iw_url' )
+			->from( 'interwiki' )
+			->where( [ 'iw_prefix' => 'rfc' ] )
+			->caller( __METHOD__ )
+			->fetchField();
 
 		// Old pre-1.28 default value, or not set at all
 		if ( $rfc === false || $rfc === 'http://www.rfc-editor.org/rfc/rfc$1.txt' ) {
 			$dbw->replace(
 				'interwiki',
-				[ 'iw_prefix' ],
+				[ [ 'iw_prefix' ] ],
 				[
 					'iw_prefix' => 'rfc',
 					'iw_url' => 'https://tools.ietf.org/html/rfc$1',

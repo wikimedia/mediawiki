@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Jose77",
 			"MinecraftAustralia",
 			"Rotemliss",
-			"Sioneholof",
-			"Amire80"
+			"Sioneholof"
 		]
 	},
 	"sunday": "Aho Tapu",
@@ -72,7 +72,6 @@
 	"portal-url": "Project:Ko e lau auloa ma maaga",
 	"privacy": "Ko e puipuiaga ke he tau talahauaga mo e talahauaga fakatagata",
 	"youhavenewmessages": "Fai $1 ($2).",
-	"youhavenewmessagesmulti": "Fai tohi foou a koe he $1",
 	"editsection": "fakahakohako",
 	"editold": "fakahakohako",
 	"editsectionhint": "Hiki e vala e: $1",

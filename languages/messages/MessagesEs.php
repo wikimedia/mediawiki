@@ -3,9 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
- *
+ * @ingroup Languages
  */
 
 $namespaceNames = [
@@ -46,7 +45,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'PáginasAntiguas', 'Páginas_antiguas' ],
 	'ApiHelp'                   => [ 'AyudaAPI', 'Ayuda_de_la_API' ],
 	'ApiSandbox'                => [ 'Zona_de_pruebas_de_la_API' ],
-	'Autoblocklist'             => [ 'Lista_de_bloqueos_automáticos' ],
+	'AutoblockList'             => [ 'Lista_de_bloqueos_automáticos' ],
 	'Badtitle'                  => [ 'Título_incorrecto' ],
 	'Blankpage'                 => [ 'PáginaEnBlanco', 'Blanquear_página', 'BlanquearPágina', 'Página_en_blanco' ],
 	'Block'                     => [ 'Bloquear' ],

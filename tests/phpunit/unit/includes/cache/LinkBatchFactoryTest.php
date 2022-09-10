@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
@@ -40,6 +41,7 @@ class LinkBatchFactoryTest extends MediaWikiUnitTestCase {
 			$this->createMock( Language::class ),
 			$this->createMock( GenderCache::class ),
 			$this->createMock( ILoadBalancer::class ),
+			$this->createMock( LinksMigration::class ),
 			LoggerFactory::getInstance( 'LinkBatch' )
 		);
 

@@ -5,6 +5,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
@@ -19,13 +20,19 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	private $origHooks;
 
 	private function newLanguage( $class = Language::class, $code = 'en' ) {
+		// Needed to support the setMwGlobals calls for the various tests, but this should
+		// probably be changed to have the configuration injected into this method instead
+		// at some point
+		$config = $this->getServiceContainer()->getMainConfig();
 		return new $class(
 			$code,
+			$this->createNoOpMock( NamespaceInfo::class ),
 			$this->createNoOpMock( LocalisationCache::class ),
 			$this->createNoOpMock( LanguageNameUtils::class ),
 			$this->createNoOpMock( LanguageFallback::class ),
 			$this->createNoOpMock( LanguageConverterFactory::class ),
-			$this->createHookContainer()
+			$this->createHookContainer(),
+			$config
 		);
 	}
 
@@ -39,7 +46,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$this->origHooks = $wgHooks;
 		$newHooks = $wgHooks;
 		unset( $newHooks['LanguageGetTranslatedLanguageNames'] );
-		$this->setMwGlobals( 'wgHooks', $newHooks );
+		$this->overrideConfigValue( MainConfigNames::Hooks, $newHooks );
 	}
 
 	/**
@@ -451,7 +458,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * The test cases are based on the tests in the GaBuZoMeu parser
 	 * written by Stéphane Bortzmeyer <bortzmeyer@nic.fr>
 	 * and distributed as free software, under the GNU General Public Licence.
-	 * http://www.bortzmeyer.org/gabuzomeu-parsing-language-tags.html
+	 * https://www.bortzmeyer.org/gabuzomeu-parsing-language-tags.html
 	 */
 	public static function provideWellFormedLanguageTags() {
 		return [
@@ -1680,7 +1687,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$translateNumerals, $langCode, $number, $noSeparators, $expected
 	) {
 		$this->hideDeprecated( 'Language::formatNum with a non-numeric string' );
-		$this->setMwGlobals( [ 'wgTranslateNumerals' => $translateNumerals ] );
+		$this->overrideConfigValue( MainConfigNames::TranslateNumerals, $translateNumerals );
 		$lang = Language::factory( $langCode );
 		if ( $noSeparators ) {
 			$formattedNum = $lang->formatNumNoSeparators( $number );
@@ -1896,8 +1903,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$langNameUtils = $this->getMockBuilder( LanguageNameUtils::class )
 			->setConstructorArgs( [
 				new ServiceOptions( LanguageNameUtils::CONSTRUCTOR_OPTIONS, [
-					'ExtraLanguageNames' => [],
-					'UsePigLatinVariant' => false,
+					MainConfigNames::ExtraLanguageNames => [],
+					MainConfigNames::UsePigLatinVariant => false,
 				] ),
 				$this->createHookContainer()
 			] )
@@ -1908,7 +1915,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 				return __DIR__ . '/../data/messages/Messages_' . $code . '.php';
 			} )
 		);
-		$this->setMwGlobals( 'wgNamespaceAliases', [
+		$this->overrideConfigValue( MainConfigNames::NamespaceAliases, [
 			'Mouse' => NS_SPECIAL,
 		] );
 		$this->setService( 'LanguageNameUtils', $langNameUtils );
@@ -1969,7 +1976,10 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	public function testUcfirst( $orig, $expected, $desc, $overrides = false ) {
 		$lang = $this->newLanguage();
 		if ( is_array( $overrides ) ) {
-			$this->setMwGlobals( [ 'wgOverrideUcfirstCharacters' => $overrides ] );
+			$this->overrideConfigValue(
+				MainConfigNames::OverrideUcfirstCharacters,
+				$overrides
+			);
 		}
 		$this->assertSame( $expected, $lang->ucfirst( $orig ), $desc );
 	}
@@ -1979,7 +1989,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[ 'alice', 'Alice', 'simple ASCII string', false ],
 			[ 'århus',  'Århus', 'unicode string', false ],
 			// overrides do not affect ASCII characters
-			[ 'foo', 'Foo', 'ASCII is not overriden', [ 'f' => 'b' ] ],
+			[ 'foo', 'Foo', 'ASCII is not overridden', [ 'f' => 'b' ] ],
 			// but they do affect non-ascii ones
 			[ 'èl', 'Ll' , 'Non-ASCII is overridden', [ 'è' => 'L' ] ],
 		];
@@ -2017,10 +2027,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 */
 	private function assertGetLanguageNames( array $options, $expected, $code, ...$otherArgs ) {
 		if ( $options ) {
-			foreach ( $options as $key => $val ) {
-				$this->setMwGlobals( "wg$key", $val );
-			}
-			$this->resetServices();
+			$this->overrideConfigValues( $options );
 		}
 		$this->assertSame( $expected,
 			Language::fetchLanguageNames( ...$otherArgs )[strtolower( $code )] ?? '' );
@@ -2060,7 +2067,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		}
 
 		// We need to restore the extension's hook that we removed.
-		$this->setMwGlobals( 'wgHooks', $this->origHooks );
+		$this->overrideConfigValue( MainConfigNames::Hooks, $this->origHooks );
 
 		// "pal" is an ancient language, which probably will not appear in Names.php, but appears in
 		// CLDR in English
@@ -2073,25 +2080,31 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @dataProvider provideGetNamespaces
 	 */
 	public function testGetNamespaces( string $langCode, array $config, array $expected ) {
+		$services = $this->getServiceContainer();
 		$langClass = Language::class . ucfirst( $langCode );
 		if ( !class_exists( $langClass ) ) {
 			$langClass = Language::class;
 		}
+		$config += [
+			MainConfigNames::MetaNamespace => 'Project',
+			MainConfigNames::MetaNamespaceTalk => false,
+			MainConfigNames::ExtraNamespaces => [],
+		];
+		$nsInfo = new NamespaceInfo(
+			new ServiceOptions( NamespaceInfo::CONSTRUCTOR_OPTIONS, $config, $services->getMainConfig() ),
+			$services->getHookContainer()
+		);
 		/** @var Language $lang */
 		$lang = new $langClass(
 			$langCode,
-			MediaWikiServices::getInstance()->getLocalisationCache(),
+			$nsInfo,
+			$services->getLocalisationCache(),
 			$this->createNoOpMock( LanguageNameUtils::class ),
 			$this->createNoOpMock( LanguageFallback::class ),
 			$this->createNoOpMock( LanguageConverterFactory::class ),
-			$this->createMock( HookContainer::class )
+			$this->createMock( HookContainer::class ),
+			new MultiConfig( [ new HashConfig( $config ), $services->getMainConfig() ] )
 		);
-		$config += [
-			'wgMetaNamespace' => 'Project',
-			'wgMetaNamespaceTalk' => false,
-			'wgExtraNamespaces' => [],
-		];
-		$this->setMwGlobals( $config );
 		$namespaces = $lang->getNamespaces();
 		$this->assertArraySubmapSame( $expected, $namespaces );
 	}
@@ -2144,8 +2157,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			'Custom project NS + extra' => [
 				'en',
 				[
-					'wgMetaNamespace' => 'Wikipedia',
-					'wgExtraNamespaces' => [
+					MainConfigNames::MetaNamespace => 'Wikipedia',
+					MainConfigNames::ExtraNamespaces => [
 						100 => 'Borderlands',
 						101 => 'Borderlands_talk',
 					],
@@ -2160,9 +2173,9 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			'Custom project NS and talk + extra' => [
 				'en',
 				[
-					'wgMetaNamespace' => 'Wikipedia',
-					'wgMetaNamespaceTalk' => 'Wikipedia_drama',
-					'wgExtraNamespaces' => [
+					MainConfigNames::MetaNamespace => 'Wikipedia',
+					MainConfigNames::MetaNamespaceTalk => 'Wikipedia_drama',
+					MainConfigNames::ExtraNamespaces => [
 						100 => 'Borderlands',
 						101 => 'Borderlands_talk',
 					],
@@ -2186,7 +2199,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			'Ukrainian custom NS' => [
 				'uk',
 				[
-					'wgMetaNamespace' => 'Вікіпедія',
+					MainConfigNames::MetaNamespace => 'Вікіпедія',
 				],
 				$ukNamespaces + [
 					NS_MAIN => '',

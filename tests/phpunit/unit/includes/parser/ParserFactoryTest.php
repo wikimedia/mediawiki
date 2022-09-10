@@ -5,10 +5,13 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinkRendererFactory;
+use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\Utils\UrlUtils;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -31,26 +34,27 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 			->onlyMethods( [ 'get', 'getVariableIDs' ] )
 			->getMock();
 		$mwFactory
-			->method( 'get' )->will( $this->returnCallback( function ( $arg ) {
+			->method( 'get' )->willReturnCallback( function ( $arg ) {
 				$mw = $this->getMockBuilder( MagicWord::class )
 					->disableOriginalConstructor()
 					->onlyMethods( [ 'getSynonyms' ] )
 					->getMock();
 				$mw->method( 'getSynonyms' )->willReturn( [] );
 				return $mw;
-			} ) );
+			} );
 		$mwFactory
 			->method( 'getVariableIDs' )->willReturn( [] );
 
-		$languageConverterFactory = $this->getMockBuilder( LanguageConverterFactory::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$languageConverterFactory = $this->createMock( LanguageConverterFactory::class );
+
+		$urlUtils = $this->createNoOpMock( UrlUtils::class, [ 'validProtocols' ] );
+		$urlUtils->method( 'validProtocols' )->willReturn( 'http:\/\/|https:\/\/' );
 
 		$factory = new ParserFactory(
 			$options,
 			$mwFactory,
 			$this->createNoOpMock( Language::class ),
-			"",
+			$urlUtils,
 			$this->createNoOpMock( SpecialPageFactory::class ),
 			$this->createNoOpMock( LinkRendererFactory::class ),
 			$this->createNoOpMock( NamespaceInfo::class ),
@@ -64,7 +68,9 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( UserFactory::class ),
 			$this->createNoOpMock( TitleFormatter::class ),
 			$this->createNoOpMock( HttpRequestFactory::class ),
-			$this->createNoOpMock( TrackingCategories::class )
+			$this->createNoOpMock( TrackingCategories::class ),
+			$this->createNoOpMock( SignatureValidatorFactory::class ),
+			$this->createNoOpMock( UserNameUtils::class )
 		);
 		return $factory;
 	}

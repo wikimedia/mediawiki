@@ -25,13 +25,14 @@ use MediaWiki\Api\Validator\SubmoduleDef;
 use MediaWiki\Block\Block;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
-use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserRigorOptions;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -770,6 +771,7 @@ abstract class ApiBase extends ContextSource {
 			'safeMode' => false,
 		];
 
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		$parseLimit = (bool)$options['parseLimit'];
 		$cacheKey = (int)$parseLimit;
 
@@ -987,7 +989,8 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function requirePostedParameters( $params, $prefix = 'prefix' ) {
 		// Skip if $wgDebugAPI is set or we're in internal mode
-		if ( $this->getConfig()->get( 'DebugAPI' ) || $this->getMain()->isInternalMode() ) {
+		if ( $this->getConfig()->get( MainConfigNames::DebugAPI ) ||
+		$this->getMain()->isInternalMode() ) {
 			return;
 		}
 
@@ -1042,7 +1045,8 @@ abstract class ApiBase extends ContextSource {
 			if ( !$titleObj->canExist() ) {
 				$this->dieWithError( 'apierror-pagecannotexist' );
 			}
-			$pageObj = WikiPage::factory( $titleObj );
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
+			$pageObj = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $titleObj );
 			if ( $load !== false ) {
 				$pageObj->loadPageData( $load );
 			}
@@ -1050,12 +1054,13 @@ abstract class ApiBase extends ContextSource {
 			if ( $load === false ) {
 				$load = 'fromdb';
 			}
-			$pageObj = WikiPage::newFromID( $params['pageid'], $load );
+			$pageObj = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromID( $params['pageid'], $load );
 			if ( !$pageObj ) {
 				$this->dieWithError( [ 'apierror-nosuchpageid', $params['pageid'] ] );
 			}
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable requireOnlyOneParameter guard it is always set
 		return $pageObj;
 	}
 
@@ -1076,6 +1081,7 @@ abstract class ApiBase extends ContextSource {
 			if ( !$titleObj || $titleObj->isExternal() ) {
 				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
 			}
+			// @phan-suppress-next-line PhanTypeMismatchReturnNullable T240141
 			return $titleObj;
 		} elseif ( isset( $params['pageid'] ) ) {
 			$titleObj = Title::newFromID( $params['pageid'] );
@@ -1084,6 +1090,7 @@ abstract class ApiBase extends ContextSource {
 			}
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable requireOnlyOneParameter guard it is always set
 		return $titleObj;
 	}
 
@@ -1154,15 +1161,10 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		$webUiSalt = $this->getWebUITokenSalt( $params );
-		if ( $webUiSalt !== null && $this->getUser()->matchEditToken(
-			$token,
-			$webUiSalt,
-			$this->getRequest()
-		) ) {
-			return true;
-		}
 
-		return false;
+		return $webUiSalt !== null && $this->getUser()->matchEditToken(
+			$token, $webUiSalt, $this->getRequest()
+		);
 	}
 
 	// endregion -- end of parameter handling
@@ -1180,12 +1182,13 @@ abstract class ApiBase extends ContextSource {
 	public function getWatchlistUser( $params ) {
 		if ( $params['owner'] !== null && $params['token'] !== null ) {
 			$services = MediaWikiServices::getInstance();
-			$user = $services->getUserFactory()->newFromName( $params['owner'], UserFactory::RIGOR_NONE );
+			$user = $services->getUserFactory()->newFromName( $params['owner'], UserRigorOptions::RIGOR_NONE );
 			if ( !$user || !$user->isRegistered() ) {
 				$this->dieWithError(
 					[ 'nosuchusershort', wfEscapeWikiText( $params['owner'] ) ], 'bad_wlowner'
 				);
 			}
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable T240141
 			$token = $services->getUserOptionsLookup()->getOption( $user, 'watchlisttoken' );
 			if ( $token == '' || !hash_equals( $token, $params['token'] ) ) {
 				$this->dieWithError( 'apierror-bad-watchlist-token', 'bad_wltoken' );
@@ -1198,6 +1201,7 @@ abstract class ApiBase extends ContextSource {
 			$this->checkUserRightsAny( 'viewmywatchlist' );
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable T240141
 		return $user;
 	}
 
@@ -1251,6 +1255,7 @@ abstract class ApiBase extends ContextSource {
 			if ( is_string( $error[0] ) && isset( self::$blockMsgMap[$error[0]] ) && $user->getBlock() ) {
 				list( $msg, $code ) = self::$blockMsgMap[$error[0]];
 				$status->fatal( ApiMessage::create( $msg, $code,
+					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 					[ 'blockinfo' => $this->getBlockDetails( $user->getBlock() ) ]
 				) );
 			} else {
@@ -1294,6 +1299,18 @@ abstract class ApiBase extends ContextSource {
 		if ( $this->getRequest()->wasPosted() ) {
 			wfTransactionalTimeLimit();
 		}
+	}
+
+	/**
+	 * Reset static caches of database state.
+	 *
+	 * @internal For testing only
+	 */
+	public static function clearCacheForTest(): void {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new RuntimeException( 'Not allowed outside tests' );
+		}
+		self::$filterIDsCache = [];
 	}
 
 	/**
@@ -1530,7 +1547,7 @@ abstract class ApiBase extends ContextSource {
 		$this->dieWithError(
 			'apierror-readonly',
 			'readonly',
-			[ 'readonlyreason' => wfReadOnlyReason() ]
+			[ 'readonlyreason' => MediaWikiServices::getInstance()->getReadOnlyMode()->getReason() ]
 		);
 	}
 
@@ -1581,8 +1598,10 @@ abstract class ApiBase extends ContextSource {
 		$status = new PermissionStatus();
 		foreach ( (array)$actions as $action ) {
 			if ( $this->isWriteMode() ) {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$this->getAuthority()->authorizeWrite( $action, $pageIdentity, $status );
 			} else {
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$this->getAuthority()->authorizeRead( $action, $pageIdentity, $status );
 			}
 		}
@@ -1606,7 +1625,7 @@ abstract class ApiBase extends ContextSource {
 	 * @throws ApiUsageException
 	 */
 	public function dieWithErrorOrDebug( $msg, $code = null, $data = null, $httpCode = null ) {
-		if ( $this->getConfig()->get( 'DebugAPI' ) !== true ) {
+		if ( $this->getConfig()->get( MainConfigNames::DebugAPI ) !== true ) {
 			$this->dieWithError( $msg, $code, $data, $httpCode );
 		} else {
 			$this->addWarning( $msg, $code, $data );
@@ -1721,12 +1740,11 @@ abstract class ApiBase extends ContextSource {
 	 * @return Message
 	 */
 	public function getFinalSummary() {
-		$msg = self::makeMessage( $this->getSummaryMessage(), $this->getContext(), [
+		return self::makeMessage( $this->getSummaryMessage(), $this->getContext(), [
 			$this->getModulePrefix(),
 			$this->getModuleName(),
 			$this->getModulePath(),
 		] );
-		return $msg;
 	}
 
 	/**
@@ -1774,9 +1792,9 @@ abstract class ApiBase extends ContextSource {
 
 		if ( $this->needsToken() ) {
 			$params['token'] = [
-				self::PARAM_TYPE => 'string',
-				self::PARAM_REQUIRED => true,
-				self::PARAM_SENSITIVE => true,
+				ParamValidator::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_SENSITIVE => true,
 				self::PARAM_HELP_MSG => [
 					'api-help-param-token',
 					$this->needsToken(),
@@ -1808,11 +1826,7 @@ abstract class ApiBase extends ContextSource {
 				$settings = [];
 			}
 
-			if ( isset( $settings[self::PARAM_HELP_MSG] ) ) {
-				$msg = $settings[self::PARAM_HELP_MSG];
-			} else {
-				$msg = $this->msg( "apihelp-{$path}-param-{$param}" );
-			}
+			$msg = $settings[self::PARAM_HELP_MSG] ?? $this->msg( "apihelp-$path-param-$param" );
 			$msg = self::makeMessage( $msg, $this->getContext(),
 				[ $prefix, $param, $name, $path ] );
 			if ( !$msg ) {
@@ -1821,11 +1835,11 @@ abstract class ApiBase extends ContextSource {
 			}
 			$msgs[$param] = [ $msg ];
 
-			if ( isset( $settings[self::PARAM_TYPE] ) &&
-				$settings[self::PARAM_TYPE] === 'submodule'
+			if ( isset( $settings[ParamValidator::PARAM_TYPE] ) &&
+				$settings[ParamValidator::PARAM_TYPE] === 'submodule'
 			) {
-				if ( isset( $settings[self::PARAM_SUBMODULE_MAP] ) ) {
-					$map = $settings[self::PARAM_SUBMODULE_MAP];
+				if ( isset( $settings[SubmoduleDef::PARAM_SUBMODULE_MAP] ) ) {
+					$map = $settings[SubmoduleDef::PARAM_SUBMODULE_MAP];
 				} else {
 					$prefix = $this->isMain() ? '' : ( $this->getModulePath() . '+' );
 					$map = [];
@@ -1877,21 +1891,17 @@ abstract class ApiBase extends ContextSource {
 					self::dieDebug( __METHOD__,
 						'ApiBase::PARAM_HELP_MSG_PER_VALUE is not valid' );
 				}
-				if ( !is_array( $settings[self::PARAM_TYPE] ) ) {
+				if ( !is_array( $settings[ParamValidator::PARAM_TYPE] ) ) {
 					self::dieDebug( __METHOD__,
 						'ApiBase::PARAM_HELP_MSG_PER_VALUE may only be used when ' .
-						'ApiBase::PARAM_TYPE is an array' );
+						'ParamValidator::PARAM_TYPE is an array' );
 				}
 
 				$valueMsgs = $settings[self::PARAM_HELP_MSG_PER_VALUE];
-				$deprecatedValues = $settings[self::PARAM_DEPRECATED_VALUES] ?? [];
+				$deprecatedValues = $settings[EnumDef::PARAM_DEPRECATED_VALUES] ?? [];
 
-				foreach ( $settings[self::PARAM_TYPE] as $value ) {
-					if ( isset( $valueMsgs[$value] ) ) {
-						$msg = $valueMsgs[$value];
-					} else {
-						$msg = "apihelp-{$path}-paramvalue-{$param}-{$value}";
-					}
+				foreach ( $settings[ParamValidator::PARAM_TYPE] as $value ) {
+					$msg = $valueMsgs[$value] ?? "apihelp-$path-paramvalue-$param-$value";
 					$m = self::makeMessage( $msg, $this->getContext(),
 						[ $prefix, $param, $name, $path, $value ] );
 					if ( $m ) {
@@ -1992,8 +2002,8 @@ abstract class ApiBase extends ContextSource {
 
 		// Build map of extension directories to extension info
 		if ( self::$extensionInfo === null ) {
-			$extDir = $this->getConfig()->get( 'ExtensionDirectory' );
-			$baseDir = $this->getConfig()->get( 'BaseDirectory' );
+			$extDir = $this->getConfig()->get( MainConfigNames::ExtensionDirectory );
+			$baseDir = $this->getConfig()->get( MainConfigNames::BaseDirectory );
 			self::$extensionInfo = [
 				realpath( __DIR__ ) ?: __DIR__ => [
 					'path' => $baseDir,

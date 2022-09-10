@@ -18,13 +18,15 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 
 /**
  * Trait for functionality related to media files
- * @since 1.35
+ *
+ * @internal
  * @ingroup FileRepo
  */
 trait MediaFileTrait {
@@ -80,6 +82,7 @@ trait MediaFileTrait {
 				foreach ( $transforms as $transformType => $transform ) {
 					$responseFile[$transformType] = $this->getTransformInfo(
 						$file,
+						// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 						$duration,
 						$transform['maxWidth'],
 						$transform['maxHeight']
@@ -147,7 +150,8 @@ trait MediaFileTrait {
 	 * @since 1.35
 	 */
 	public static function getImageLimitsFromOption( UserIdentity $user, string $optionName ) {
-		$imageLimits = MediaWikiServices::getInstance()->getMainConfig()->get( 'ImageLimits' );
+		$imageLimits = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::ImageLimits );
 		$optionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 		$option = $optionsLookup->getIntOption( $user, $optionName );
 		if ( !isset( $imageLimits[$option] ) ) {

@@ -47,6 +47,7 @@
 	"config-install-step-failed": "tla haw",
 	"config-install-schema": "Schema taona",
 	"config-install-logo-blank": "logo URL phapa a ngia teih",
+	"config-install-restore-services": "MediaWiki chakaonazy sopathina",
 	"config-help": "baona",
 	"config-help-tooltip": "pakawh awpa ta hmie teih",
 	"config-skins-screenshots": "$1 (screenshots: $2)",

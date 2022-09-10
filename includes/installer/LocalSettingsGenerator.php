@@ -308,13 +308,13 @@ class LocalSettingsGenerator {
 			$platformSettings = '';
 		}
 
-		$this->values['taglineConfig'] = $this->values['_LogoTagline'] ? "'tagline' => [
+		$this->values['taglineConfig'] = $this->values['_LogoTagline'] ? "\n\t'tagline' => [
 		\"src\" => \"{$this->values['_LogoTagline']}\",
 		\"width\" => {$this->values['_LogoTaglineWidth']},
 		\"height\" => {$this->values['_LogoTaglineHeight']}
 	]," : "";
 
-		$this->values['wordmarkConfig'] = $this->values['_LogoWordmark'] ? "'wordmark' => [
+		$this->values['wordmarkConfig'] = $this->values['_LogoWordmark'] ? "\n\t'wordmark' => [
 		\"src\" => \"{$this->values['_LogoWordmark']}\",
 		\"width\" => {$this->values['_LogoWordmarkWidth']},
 		\"height\" => {$this->values['_LogoWordmarkHeight']},
@@ -360,9 +360,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 ## The URL paths to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
 \$wgLogos = [
-	'1x' => \"{$this->values['sidebarLogo']}\",
-	{$this->values['wordmarkConfig']}
-	{$this->values['taglineConfig']}
+	'1x' => \"{$this->values['sidebarLogo']}\",{$this->values['wordmarkConfig']}{$this->values['taglineConfig']}
 	'icon' => \"{$this->values['_LogoIcon']}\",
 ];
 
@@ -409,7 +407,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 # with MediaWiki developers to help guide future development efforts.
 \$wgPingback = {$this->values['wgPingback']};
 
-# Site language code, should be one of the list in ./languages/data/Names.php
+# Site language code, should be one of the list in ./includes/languages/data/Names.php
 \$wgLanguageCode = \"{$this->values['wgLanguageCode']}\";
 
 # Time zone

@@ -22,8 +22,14 @@
  * @author DannyS712
  */
 class SpecialPageHistory extends SpecialRedirectWithAction {
-	public function __construct() {
-		parent::__construct( 'PageHistory', 'history', 'pagehistory' );
+
+	/**
+	 * @param SearchEngineFactory $searchEngineFactory
+	 */
+	public function __construct(
+		SearchEngineFactory $searchEngineFactory
+	) {
+		parent::__construct( 'PageHistory', 'history', 'pagehistory', $searchEngineFactory );
 	}
 
 	// Messages, for grep:

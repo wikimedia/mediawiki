@@ -22,7 +22,7 @@ trait SerializationTestTrait {
 		foreach ( $this->getSupportedSerializationFormats() as $serializationFormat ) {
 			$serializationUtils = new SerializationTestUtils(
 				$this->getSerializedDataPath(),
-				$this->getTestInstances(),
+				$this->getTestInstances( $this->getTestInstancesAndAssertions() ),
 				$serializationFormat['ext'],
 				$serializationFormat['serializer'],
 				$serializationFormat['deserializer']
@@ -64,7 +64,7 @@ trait SerializationTestTrait {
 		foreach ( $this->getSupportedSerializationFormats() as $serializationFormat ) {
 			$serializationUtils = new SerializationTestUtils(
 				$this->getSerializedDataPath(),
-				$this->getTestInstances(),
+				$this->getTestInstances( $this->getTestInstancesAndAssertions() ),
 				$serializationFormat['ext'],
 				$serializationFormat['serializer'],
 				$serializationFormat['deserializer']
@@ -115,9 +115,10 @@ trait SerializationTestTrait {
 	 * @return Generator for [ object $instance, callable $serializer, callable $deserializer ]
 	 */
 	public function provideSerializationRoundTrip(): Generator {
+		$testCases = $this->getTestInstancesAndAssertions();
 		$className = $this->getClassToTest();
 		foreach ( $this->getSupportedSerializationFormats() as $serializationFormat ) {
-			foreach ( $this->getTestInstances() as $testCaseName => $instance ) {
+			foreach ( $testCases as $testCaseName => [ 'instance' => $instance ] ) {
 				yield "{$className}:{$testCaseName}, " .
 					"serialized with {$serializationFormat['ext']}" => [
 						$instance,
@@ -159,10 +160,6 @@ trait SerializationTestTrait {
 		object $actual,
 		ReflectionClass $class = null
 	) {
-		if ( $actual == $expected ) {
-			return;
-		}
-
 		if ( !$class ) {
 			$class = new ReflectionClass( $expected );
 		}
@@ -204,9 +201,7 @@ trait SerializationTestTrait {
 	public function provideDeserializedTestObjects(): Generator {
 		$className = $this->getClassToTest();
 		$testCases = $this->getTestInstancesAndAssertions();
-		$testObjects = array_map( static function ( $testCase ) {
-			return $testCase['instance'];
-		}, $testCases );
+		$testObjects = $this->getTestInstances( $testCases );
 		foreach ( $this->getSupportedSerializationFormats() as $serializationFormat ) {
 			$serializationUtils = new SerializationTestUtils(
 				$this->getSerializedDataPath(),
@@ -215,7 +210,7 @@ trait SerializationTestTrait {
 				$serializationFormat['serializer'],
 				$serializationFormat['deserializer']
 			);
-			foreach ( array_keys( $testObjects ) as $testCaseName ) {
+			foreach ( $testCases as $testCaseName => [ 'assertions' => $assertions ] ) {
 				$deserializedObjects = $serializationUtils->getDeserializedInstancesForTestCase(
 					$className,
 					$testCaseName
@@ -226,7 +221,7 @@ trait SerializationTestTrait {
 						"{$deserializedObjectInfo->version}" =>
 					[
 						$deserializedObjectInfo->object,
-						$testCases[ $testCaseName ]['assertions']
+						$assertions
 					];
 				}
 			}
@@ -248,12 +243,13 @@ trait SerializationTestTrait {
 
 	/**
 	 * Returns a map of $testCaseName to an instance to test.
+	 * @param array[] $instancesAndAssertions
 	 * @return array
 	 */
-	private function getTestInstances(): array {
+	private function getTestInstances( array $instancesAndAssertions ): array {
 		return array_map( static function ( $testCase ) {
 			return $testCase['instance'];
-		}, $this->getTestInstancesAndAssertions() );
+		}, $instancesAndAssertions );
 	}
 
 	/**

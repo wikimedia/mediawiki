@@ -22,6 +22,7 @@
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 
 /**
  * @defgroup Actions Actions
@@ -168,6 +169,16 @@ abstract class Action implements MessageLocalizer {
 	 */
 	final public function getUser() {
 		return $this->getContext()->getUser();
+	}
+
+	/**
+	 * Shortcut to get the Authority executing this instance
+	 *
+	 * @return Authority
+	 * @since 1.39
+	 */
+	final public function getAuthority(): Authority {
+		return $this->getContext()->getAuthority();
 	}
 
 	/**
@@ -414,7 +425,7 @@ abstract class Action implements MessageLocalizer {
 	}
 
 	/**
-	 * Returns the name that goes in the \<h1\> page title
+	 * Returns the name that goes in the `<h1>` page title.
 	 *
 	 * @stable to override
 	 * @return string
@@ -424,10 +435,10 @@ abstract class Action implements MessageLocalizer {
 	}
 
 	/**
-	 * Returns the description that goes below the \<h1\> tag
+	 * Returns the description that goes below the `<h1>` element.
+	 *
 	 * @since 1.17
 	 * @stable to override
-	 *
 	 * @return string HTML
 	 */
 	protected function getDescription() {

@@ -124,7 +124,7 @@ class RevDelRevisionList extends RevDelList {
 			'tables' => $revQuery['tables'],
 			'fields' => $revQuery['fields'],
 			'conds' => [
-				'rev_page' => $this->title->getArticleID(),
+				'rev_page' => $this->page->getId(),
 				'rev_id' => $ids,
 			],
 			'options' => [
@@ -218,7 +218,11 @@ class RevDelRevisionList extends RevDelList {
 		if ( $this->currentRevId === null ) {
 			$dbw = $this->lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
 			$this->currentRevId = $dbw->selectField(
-				'page', 'page_latest', $this->title->pageCond(), __METHOD__ );
+				'page',
+				'page_latest',
+				[ 'page_namespace' => $this->page->getNamespace(), 'page_title' => $this->page->getDBkey() ],
+				__METHOD__
+			);
 		}
 		return $this->currentRevId;
 	}
@@ -228,23 +232,24 @@ class RevDelRevisionList extends RevDelList {
 	}
 
 	public function doPreCommitUpdates() {
-		$this->title->invalidateCache();
+		Title::castFromPageIdentity( $this->page )->invalidateCache();
 		return Status::newGood();
 	}
 
 	public function doPostCommitUpdates( array $visibilityChangeMap ) {
 		$this->htmlCacheUpdater->purgeTitleUrls(
-			$this->title,
+			$this->page,
 			HtmlCacheUpdater::PURGE_INTENT_TXROUND_REFLECTED
 		);
 		// Extensions that require referencing previous revisions may need this
 		$this->hookRunner->onArticleRevisionVisibilitySet(
-			$this->title,
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
+			Title::castFromPageIdentity( $this->page ),
 			$this->ids,
 			$visibilityChangeMap
 		);
 		$this->wanObjectCache->touchCheckKey(
-			"RevDelRevisionList:page:{$this->title->getArticleID()}}"
+			"RevDelRevisionList:page:{$this->page->getID()}}"
 		);
 
 		return Status::newGood();

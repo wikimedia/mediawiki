@@ -10,7 +10,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
-use WikiPage;
 
 /**
  * @group Database
@@ -81,7 +80,7 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 
 		// First create our dummy page
 		$this->archivedPage = PageIdentityValue::localIdentity( 0, 0, 'ArchivedRevisionLookupTest_thePage' );
-		$page = new WikiPage( $this->archivedPage );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $this->archivedPage );
 		$content = ContentHandler::makeContent(
 			'testing',
 			$page->getTitle(),
@@ -173,7 +172,7 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( 2, $revisions->numRows() );
 		// Get the rows as arrays
 		$row0 = (array)$revisions->current();
-		$row1 = (array)$revisions->next();
+		$row1 = (array)$revisions->fetchObject();
 
 		$expectedRows = $this->getExpectedArchiveRows();
 
@@ -306,7 +305,7 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 		$timestamp = wfTimestamp( TS_UNIX, $this->secondRev->getTimestamp() ) + 10;
 		MWTimestamp::setFakeTime( $timestamp );
 
-		$page = new WikiPage( $this->archivedPage );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $this->archivedPage );
 
 		$content = ContentHandler::makeContent(
 			'recreated page',

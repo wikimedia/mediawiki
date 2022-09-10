@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\MainConfigNames;
 
 /**
  * @coversDefaultClass MediaWiki\Languages\LanguageFallback
@@ -11,7 +12,7 @@ class LanguageFallbackIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	private function getCallee( array $options = [] ) {
 		if ( isset( $options['siteLangCode'] ) ) {
-			$this->setMwGlobals( 'wgLanguageCode', $options['siteLangCode'] );
+			$this->overrideConfigValue( MainConfigNames::LanguageCode, $options['siteLangCode'] );
 		}
 		if ( isset( $options['fallbackMap'] ) ) {
 			$this->setService( 'LocalisationCache', $this->getMockLocalisationCache(

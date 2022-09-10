@@ -3,6 +3,7 @@
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\DAO\WikiAwareEntity;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 
 /**
@@ -20,33 +21,36 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		$context = $this->getContext();
-		$this->setMwGlobals( 'wgActions', [
-			'null' => null,
-			'disabled' => false,
-			'view' => true,
-			'edit' => true,
-			'revisiondelete' => [
-				'class' => SpecialPageAction::class,
-				'services' => [
-					'SpecialPageFactory',
+		$this->overrideConfigValue(
+			MainConfigNames::Actions,
+			[
+				'null' => null,
+				'disabled' => false,
+				'view' => true,
+				'edit' => true,
+				'revisiondelete' => [
+					'class' => SpecialPageAction::class,
+					'services' => [
+						'SpecialPageFactory',
+					],
+					'args' => [
+						// SpecialPageAction is used for both 'editchangetags' and
+						// 'revisiondelete' actions, tell it which one this is
+						'revisiondelete',
+					],
 				],
-				'args' => [
-					// SpecialPageAction is used for both 'editchangetags' and
-					// 'revisiondelete' actions, tell it which one this is
-					'revisiondelete',
-				],
-			],
-			'dummy' => true,
-			'access' => 'ControlledAccessDummyAction',
-			'unblock' => 'RequiresUnblockDummyAction',
-			'string' => 'NamedDummyAction',
-			'declared' => 'NonExistingClassName',
-			'callable' => [ $this, 'dummyActionCallback' ],
-			'object' => new InstantiatedDummyAction(
-				$this->getArticle(),
-				$context
-			),
-		] );
+				'dummy' => true,
+				'access' => 'ControlledAccessDummyAction',
+				'unblock' => 'RequiresUnblockDummyAction',
+				'string' => 'NamedDummyAction',
+				'declared' => 'NonExistingClassName',
+				'callable' => [ $this, 'dummyActionCallback' ],
+				'object' => new InstantiatedDummyAction(
+					$this->getArticle(),
+					$context
+				),
+			]
+		);
 	}
 
 	/**
@@ -88,11 +92,8 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function getPage(): WikiPage {
-		return WikiPage::factory( $this->getTitle() );
-	}
-
-	private function getTitle(): Title {
-		return Title::makeTitle( 0, 'Title' );
+		$title = Title::makeTitle( 0, 'Title' );
+		return WikiPage::factory( $title );
 	}
 
 	/**
@@ -111,7 +112,7 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		return $context;
 	}
 
-	public function actionProvider() {
+	public function provideActions() {
 		return [
 			[ 'dummy', 'DummyAction' ],
 			[ 'string', 'NamedDummyAction' ],
@@ -126,13 +127,16 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 			[ 'null', null ],
 			[ 'undeclared', null ],
 			[ '', null ],
+
+			// disabled action exists but cannot be created
+			[ 'disabled', false ],
 		];
 	}
 
 	/**
-	 * @dataProvider actionProvider
+	 * @dataProvider provideActions
 	 * @param string $requestedAction
-	 * @param string|null $expected
+	 * @param string|false|null $expected
 	 */
 	public function testActionExists( string $requestedAction, $expected ) {
 		$this->hideDeprecated( ActionFactory::class . '::actionExists' );
@@ -147,53 +151,49 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( Action::class . '::exists' );
 		// The method is not supposed to check if the action can be instantiated.
 		$exists = Action::exists( 'declared' );
-
 		$this->assertTrue( $exists );
 	}
 
-	/**
-	 * @dataProvider actionProvider
-	 * @param string $requestedAction
-	 * @param string|null $expected
-	 */
-	public function testGetActionName( $requestedAction, $expected ) {
-		$context = $this->getContext( $requestedAction );
-		$actionName = Action::getActionName( $context );
-
-		$this->assertEquals( $expected ?: 'nosuchaction', $actionName );
-	}
-
-	public function provideGetActionNameNotPossible() {
+	public function provideGetActionName() {
 		return [
-			'null' => [ null, 'view' ],
+			'dummy' => [ 'dummy', 'DummyAction' ],
+			'string' => [ 'string', 'NamedDummyAction' ],
+			'callable' => [ 'callable', 'CalledDummyAction' ],
+			'object' => [ 'object', 'InstantiatedDummyAction' ],
+
+			// Capitalization is ignored
+			'dummy (caps)' => [ 'DUMMY', 'DummyAction' ],
+			'string (caps)' => [ 'STRING', 'NamedDummyAction' ],
+
+			// non-existing values
+			'null (string)' => [ 'null', 'nosuchaction' ],
+			'undeclared' => [ 'undeclared', 'nosuchaction' ],
+			'empty' => [ '', 'nosuchaction' ],
+
+			// impossible
+			'null (value)' => [ null, 'view' ],
 			'false' => [ false, 'nosuchaction' ],
+
+			// See https://phabricator.wikimedia.org/T22966
+			'editredlink' => [ 'editredlink', 'edit' ],
+
+			// See https://phabricator.wikimedia.org/T22966
+			'historysubmit (no request params)' => [ 'historysubmit', 'view' ],
+
+			'disabled not resolvable' => [ 'disabled', 'nosuchaction' ],
 		];
 	}
 
 	/**
-	 * @dataProvider provideGetActionNameNotPossible
+	 * @dataProvider provideGetActionName
+	 * @param string $requestedAction
+	 * @param string $expected
 	 */
-	public function testGetActionNameNotPossible( $requestedAction, string $expected ) {
+	public function testGetActionName( $requestedAction, $expected ) {
 		$actionName = Action::getActionName(
 			$this->getContext( $requestedAction )
 		);
 		$this->assertEquals( $expected, $actionName );
-	}
-
-	public function testGetActionName_editredlinkWorkaround() {
-		// See https://phabricator.wikimedia.org/T22966
-		$context = $this->getContext( 'editredlink' );
-		$actionName = Action::getActionName( $context );
-
-		$this->assertEquals( 'edit', $actionName );
-	}
-
-	public function testGetActionName_historysubmitWorkaround() {
-		// See https://phabricator.wikimedia.org/T22966
-		$context = $this->getContext( 'historysubmit' );
-		$actionName = Action::getActionName( $context );
-
-		$this->assertEquals( 'view', $actionName );
 	}
 
 	public function testGetActionName_revisiondeleteWorkaround() {
@@ -217,46 +217,18 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \Action::factory
 	 *
-	 * @dataProvider actionProvider
+	 * @dataProvider provideActions
 	 * @param string $requestedAction
-	 * @param string|null $expected
+	 * @param string|false|null $expected
 	 */
 	public function testActionFactory( string $requestedAction, $expected ) {
 		$action = $this->getAction( $requestedAction );
 
-		if ( $expected === null ) {
-			$this->assertNull( $action );
-		} else {
+		if ( is_string( $expected ) ) {
 			$this->assertInstanceOf( $expected, $action );
+		} else {
+			$this->assertSame( $expected, $action );
 		}
-	}
-
-	public function testNull_defaultsToView() {
-		$context = $this->getContext();
-		$actionName = Action::getActionName( $context );
-
-		$this->assertEquals( 'view', $actionName );
-	}
-
-	public function testDisabledAction_exists() {
-		$this->hideDeprecated( ActionFactory::class . '::actionExists' );
-		$this->hideDeprecated( Action::class . '::exists' );
-		$exists = Action::exists( 'disabled' );
-
-		$this->assertTrue( $exists );
-	}
-
-	public function testDisabledAction_isNotResolved() {
-		$context = $this->getContext( 'disabled' );
-		$actionName = Action::getActionName( $context );
-
-		$this->assertEquals( 'nosuchaction', $actionName );
-	}
-
-	public function testDisabledAction_factoryReturnsFalse() {
-		$action = $this->getAction( 'disabled' );
-
-		$this->assertFalse( $action );
 	}
 
 	public function dummyActionCallback() {

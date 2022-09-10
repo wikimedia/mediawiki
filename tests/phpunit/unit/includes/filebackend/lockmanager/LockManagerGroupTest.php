@@ -13,9 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class LockManagerGroupTest extends MediaWikiUnitTestCase {
 	private function getMockLBFactory() {
-		$mock = $this->createMock( LBFactory::class );
-		$mock->expects( $this->never() )->method( $this->anythingBut( '__destruct' ) );
-		return $mock;
+		return $this->createNoOpMock( LBFactory::class );
 	}
 
 	public function testConstructorNoConfigs() {

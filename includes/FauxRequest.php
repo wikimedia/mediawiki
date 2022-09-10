@@ -23,6 +23,7 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 
@@ -117,7 +118,7 @@ class FauxRequest extends WebRequest {
 
 	public function getCookie( $key, $prefix = null, $default = null ) {
 		if ( $prefix === null ) {
-			$cookiePrefix = MediaWikiServices::getInstance()->getMainConfig()->get( 'CookiePrefix' );
+			$cookiePrefix = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::CookiePrefix );
 			$prefix = $cookiePrefix;
 		}
 		$name = $prefix . $key;
@@ -141,7 +142,7 @@ class FauxRequest extends WebRequest {
 	 */
 	public function setCookies( $cookies, $prefix = null ) {
 		if ( $prefix === null ) {
-			$cookiePrefix = MediaWikiServices::getInstance()->getMainConfig()->get( 'CookiePrefix' );
+			$cookiePrefix = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::CookiePrefix );
 			$prefix = $cookiePrefix;
 		}
 		foreach ( $cookies as $key => $value ) {

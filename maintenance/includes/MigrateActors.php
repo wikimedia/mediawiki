@@ -216,7 +216,8 @@ class MigrateActors extends LoggedUpdateMaintenance {
 						'actor_name' => $v,
 					];
 				}, array_keys( $needActors ) ),
-				__METHOD__
+				__METHOD__,
+				[ 'IGNORE' ]
 			);
 			$countActors += $dbw->affectedRows();
 
@@ -531,6 +532,8 @@ class MigrateActors extends LoggedUpdateMaintenance {
 			$dbw->insert( 'log_search', $ins, __METHOD__, [ 'IGNORE' ] );
 			$countInserted += $dbw->affectedRows();
 
+			// @phan-suppress-next-next-line PhanTypeMismatchArgumentNullable,PhanPossiblyUndeclaredVariable
+			// lastRow is set when used here
 			list( $next, $display ) = $this->makeNextCond( $dbw, $primaryKey, $lastRow );
 			$this->output( "... target_author_id, $display\n" );
 			$lbFactory->waitForReplication();

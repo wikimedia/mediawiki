@@ -42,5 +42,7 @@
 	"rest-update-cannot-create-page": "Sidan \"$1\" kan inte skapas eftersom den redan finns. För att uppdatera den befintliga sidan behöver du ange grundversionens ID i strukturen under nyckeln \"latest\" inuti innehållet i begäran.",
 	"rest-extraneous-csrf-token": "Främmande CSRF-nyckel hittades. CSRF-nycklar får inte användas tillsammans med autentiseringsmekaniker som OAuth som inte är säker mot CSRF-attacker.",
 	"rest-cannot-load-file": "Filen för titeln \"$1\" kan inte läsas in.",
-	"rest-cross-origin-anon-write": "Anonyma skrivbegäran från andra webbplatser tillåts inte"
+	"rest-cross-origin-anon-write": "Anonyma skrivbegäran från andra webbplatser tillåts inte",
+	"rest-requires-safe-against-csrf": "Denna slutpunkt kräver en CSRF-säker sessionsleverantör.",
+	"rest-badtoken": "Den angivna CSRF-nyckeln är ogiltig."
 }

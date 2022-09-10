@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
+use MediaWiki\MainConfigNames;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -18,15 +19,14 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgShowExceptionDetails' => true,
-			'wgCleanSignatures' => true,
-		] );
 		$this->setUserLang( 'en' );
-		$this->setContentLang( 'en' );
+		$this->overrideConfigValues( [
+			MainConfigNames::ShowExceptionDetails => true,
+			MainConfigNames::CleanSignatures => true,
+			MainConfigNames::LanguageCode => 'en',
+		] );
 
 		$services = $this->getServiceContainer();
-
 		$contLang = $services->getContentLanguage();
 
 		// FIXME: This test should pass without setting global content language
@@ -135,9 +135,8 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	 * @covers Parser::cleanSig
 	 */
 	public function testCleanSigDisabled() {
-		$this->setMwGlobals( 'wgCleanSignatures', false );
+		$this->overrideConfigValue( MainConfigNames::CleanSignatures, false );
 
-		$title = Title::newFromText( __FUNCTION__ );
 		$outputText = $this->parser->cleanSig( "{{Foo}} ~~~~" );
 
 		$this->assertEquals( "{{Foo}} ~~~~", $outputText );
@@ -269,12 +268,9 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 				'iw_local' => 0
 			]
 		];
-		$this->setMwGlobals(
-			'wgInterwikiCache',
+		$this->overrideConfigValue(
+			MainConfigNames::InterwikiCache,
 			ClassicInterwikiLookup::buildCdbHash( $testInterwikis )
-		);
-		$this->getServiceContainer()->resetServiceForTesting(
-			'InterwikiLookup'
 		);
 		Title::clearCaches();
 		$this->parser->startExternalParse(

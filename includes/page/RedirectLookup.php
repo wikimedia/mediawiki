@@ -24,23 +24,21 @@ namespace MediaWiki\Page;
 use MediaWiki\Linker\LinkTarget;
 
 /**
- * Interface to handle redirects for a given page like getting the
- * redirect target of an editable wiki page.
+ * Service for resolving a wiki page redirect.
+ *
+ * Default implementation is RedirectStore.
  *
  * @unstable
- *
  * @since 1.38
  */
 interface RedirectLookup {
 	/**
-	 * Get the redirect destination from this page and return
-	 * a LinkTarget, or null if this page is not a redirect page.
+	 * Get the redirect destination.
 	 *
 	 * @since 1.38
-	 *
 	 * @param PageIdentity $page
-	 * @return LinkTarget|null
-	 * @throws PageAssertionException if $page does not represent an editable page
+	 * @return LinkTarget|null Returns null if this page is not a redirect
+	 * @throws PageAssertionException If page does not represent an editable page
 	 */
 	public function getRedirectTarget( PageIdentity $page ): ?LinkTarget;
 }

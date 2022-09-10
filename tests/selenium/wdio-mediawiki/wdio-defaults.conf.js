@@ -67,6 +67,9 @@ exports.config = {
 			// If DISPLAY is set, assume developer asked non-headless or CI with Xvfb.
 			// Otherwise, use --headless.
 			args: [
+				// Default to reasonably common (https://gs.statcounter.com/screen-resolution-stats/desktop/worldwide)
+				// larger window size to avoid quirks with tests in smaller viewports.
+				'window-size=1920,1080',
 				// Dismissed Chrome's `Save password?` popup
 				'--enable-automation',
 				...( process.env.DISPLAY ? [] : [ '--headless' ] ),
@@ -106,8 +109,8 @@ exports.config = {
 	},
 	// See also: https://webdriver.io/docs/dot-reporter.html
 	reporters: [
-		// See also: https://webdriver.io/docs/dot-reporter/
-		'dot',
+		// See also: https://webdriver.io/docs/spec-reporter/
+		'spec',
 		// See also: https://webdriver.io/docs/junit-reporter/
 		[ 'junit', {
 			outputDir: logPath,

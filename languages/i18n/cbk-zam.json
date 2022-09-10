@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Weekeejames",
-			"WikiEditor50",
-			"Amire80"
+			"WikiEditor50"
 		]
 	},
 	"sunday": "Domingo",
@@ -60,9 +60,9 @@
 	"searcharticle": "Anda",
 	"history_short": "Historia",
 	"printableversion": "El version que puede imprenta",
-	"view-view": "Lee",
+	"skin-view-view": "Lee",
 	"edit": "Revisa",
-	"view-edit": "Revisa",
+	"skin-view-edit": "Revisa",
 	"delete": "Bora",
 	"talkpagelinktext": "cuento",
 	"personaltools": "Maga herramientas personal",

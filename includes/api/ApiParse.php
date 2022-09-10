@@ -31,6 +31,8 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\TypeDef\EnumDef;
 
 /**
  * @ingroup API
@@ -201,9 +203,6 @@ class ApiParse extends ApiBase {
 		$pageid = $params['pageid'];
 		$oldid = $params['oldid'];
 
-		$model = $params['contentmodel'];
-		$format = $params['contentformat'];
-
 		$prop = array_fill_keys( $params['prop'], true );
 
 		if ( isset( $params['section'] ) ) {
@@ -220,6 +219,7 @@ class ApiParse extends ApiBase {
 		// TODO: Does this still need $wgTitle?
 		global $wgTitle;
 
+		$format = null;
 		$redirValues = null;
 
 		$needContent = isset( $prop['wikitext'] ) ||
@@ -302,6 +302,9 @@ class ApiParse extends ApiBase {
 				);
 			}
 		} else { // Not $oldid, $pageid, $page. Hence based on $text
+			$model = $params['contentmodel'];
+			$format = $params['contentformat'];
+
 			$titleObj = Title::newFromText( $title );
 			if ( !$titleObj || $titleObj->isExternal() ) {
 				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $title ) ] );
@@ -355,10 +358,18 @@ class ApiParse extends ApiBase {
 			if ( $textProvided && !$titleProvided && $model === null ) {
 				$model = CONTENT_MODEL_WIKITEXT;
 				$this->addWarning( [ 'apiwarn-parse-nocontentmodel', $model ] );
+			} elseif ( $model === null ) {
+				$model = $titleObj->getContentModel();
+			}
+
+			$contentHandler = $this->contentHandlerFactory->getContentHandler( $model );
+			// Not in the default format, check supported or not
+			if ( $format && !$contentHandler->isSupportedFormat( $format ) ) {
+				$this->dieWithError( [ 'apierror-badformat-generic', $format, $model ] );
 			}
 
 			try {
-				$this->content = ContentHandler::makeContent( $text, $titleObj, $model, $format );
+				$this->content = $contentHandler->unserializeContent( $text, $format );
 			} catch ( MWContentSerializationException $ex ) {
 				$this->dieWithException( $ex, [
 					'wrap' => ApiMessage::create( 'apierror-contentserializationexception', 'parseerror' )
@@ -368,7 +379,7 @@ class ApiParse extends ApiBase {
 			if ( $this->section !== false ) {
 				if ( $this->section === 'new' ) {
 					// Insert the section title above the content.
-					if ( $params['sectiontitle'] !== null && $params['sectiontitle'] !== '' ) {
+					if ( $params['sectiontitle'] !== null ) {
 						$this->content = $this->content->addSectionHeader( $params['sectiontitle'] );
 					}
 				} else {
@@ -432,7 +443,10 @@ class ApiParse extends ApiBase {
 
 		$outputPage = null;
 		$context = null;
-		if ( $skin || isset( $prop['subtitle'] ) || isset( $prop['headhtml'] ) || isset( $prop['categorieshtml'] ) ) {
+		if (
+			$skin || isset( $prop['subtitle'] ) || isset( $prop['headhtml'] ) || isset( $prop['categorieshtml'] ) ||
+			isset( $params['mobileformat'] )
+		) {
 			// Enabling the skin via 'useskin', 'subtitle', 'headhtml', or 'categorieshtml'
 			// gets OutputPage and Skin involved, which (among others) applies
 			// these hooks:
@@ -442,6 +456,11 @@ class ApiParse extends ApiBase {
 			// - Hook: OutputPageParserOutput
 			// - Hook: OutputPageMakeCategoryLinks
 			// - Hook: OutputPageBeforeHTML
+			// HACK Adding the 'mobileformat' parameter *also* enables the skin, for compatibility with legacy
+			// apps. This behavior should be considered deprecated so new users should not rely on this and
+			// always use the "useskin" parameter to enable "skin mode".
+			// Ideally this would be done with another hook so that MobileFrontend could enable skin mode, but
+			// as this is just for a deprecated feature, we are hard-coding this param into core.
 			$context = new DerivativeContext( $this->getContext() );
 			$context->setTitle( $titleObj );
 
@@ -554,6 +573,7 @@ class ApiParse extends ApiBase {
 		}
 		if ( isset( $prop['sections'] ) ) {
 			$result_array['sections'] = $p_result->getSections();
+			$result_array['showtoc'] = (bool)$p_result->getTOCHTML();
 		}
 		if ( isset( $prop['parsewarnings'] ) ) {
 			$result_array['parsewarnings'] = $p_result->getWarnings();
@@ -752,13 +772,13 @@ class ApiParse extends ApiBase {
 		if ( $getContent || $this->section !== false || $isDeleted ) {
 			if ( $rev ) {
 				$this->content = $rev->getContent(
-					SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $this->getUser()
+					SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $this->getAuthority()
 				);
 				if ( !$this->content ) {
 					$this->dieWithError( [ 'apierror-missingcontent-revid', $revId ] );
 				}
 			} else {
-				$this->content = $page->getContent( RevisionRecord::FOR_THIS_USER, $this->getUser() );
+				$this->content = $page->getContent( RevisionRecord::FOR_THIS_USER, $this->getAuthority() );
 				if ( !$this->content ) {
 					$this->dieWithError( [ 'apierror-missingcontent-pageid', $page->getId() ] );
 				}
@@ -810,6 +830,7 @@ class ApiParse extends ApiBase {
 			$this->dieWithError( [ 'apierror-sectionsnotsupported-what', $what ], 'nosuchsection' );
 		}
 
+		// @phan-suppress-next-line PhanTypeMismatchReturnNullable T240141
 		return $section;
 	}
 
@@ -829,7 +850,7 @@ class ApiParse extends ApiBase {
 				$summary = $params['sectiontitle'];
 			}
 			if ( $summary !== '' ) {
-				$summary = wfMessage( 'newsectionsummary' )
+				$summary = $this->msg( 'newsectionsummary' )
 					->rawParams( $this->parser->stripSectionName( $summary ) )
 					->inContentLanguage()->text();
 			}
@@ -874,15 +895,13 @@ class ApiParse extends ApiBase {
 		$lb = $this->linkBatchFactory->newLinkBatch();
 		$lb->setArray( [ NS_CATEGORY => $links ] );
 		$db = $this->getDB();
-		$res = $db->select( [ 'page', 'page_props' ],
-			[ 'page_title', 'pp_propname' ],
-			$lb->constructSet( 'page', $db ),
-			__METHOD__,
-			[],
-			[ 'page_props' => [
-				'LEFT JOIN', [ 'pp_propname' => 'hiddencat', 'pp_page = page_id' ]
-			] ]
-		);
+		$res = $db->newSelectQueryBuilder()
+			->select( [ 'page_title', 'pp_propname' ] )
+			->from( 'page' )
+			->where( $lb->constructSet( 'page', $db ) )
+			->leftJoin( 'page_props', null, [ 'pp_propname' => 'hiddencat', 'pp_page = page_id' ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		$hiddencats = [];
 		foreach ( $res as $row ) {
 			$hiddencats[$row->page_title] = isset( $row->pp_propname );
@@ -988,26 +1007,26 @@ class ApiParse extends ApiBase {
 		return [
 			'title' => null,
 			'text' => [
-				ApiBase::PARAM_TYPE => 'text',
+				ParamValidator::PARAM_TYPE => 'text',
 			],
 			'revid' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 			],
 			'summary' => null,
 			'page' => null,
 			'pageid' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 			],
 			'redirects' => false,
 			'oldid' => [
-				ApiBase::PARAM_TYPE => 'integer',
+				ParamValidator::PARAM_TYPE => 'integer',
 			],
 			'prop' => [
-				ApiBase::PARAM_DFLT => 'text|langlinks|categories|links|templates|' .
+				ParamValidator::PARAM_DEFAULT => 'text|langlinks|categories|links|templates|' .
 					'images|externallinks|sections|revid|displaytitle|iwlinks|' .
 					'properties|parsewarnings',
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => [
+				ParamValidator::PARAM_ISMULTI => true,
+				ParamValidator::PARAM_TYPE => [
 					'text',
 					'langlinks',
 					'categories',
@@ -1038,7 +1057,7 @@ class ApiParse extends ApiBase {
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [
 					'parsetree' => [ 'apihelp-parse-paramvalue-prop-parsetree', CONTENT_MODEL_WIKITEXT ],
 				],
-				ApiBase::PARAM_DEPRECATED_VALUES => [
+				EnumDef::PARAM_DEPRECATED_VALUES => [
 					'headitems' => 'apiwarn-deprecation-parse-headitems',
 				],
 			],
@@ -1046,27 +1065,27 @@ class ApiParse extends ApiBase {
 			'pst' => false,
 			'onlypst' => false,
 			'effectivelanglinks' => [
-				ApiBase::PARAM_DFLT => false,
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEFAULT => false,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'section' => null,
 			'sectiontitle' => [
-				ApiBase::PARAM_TYPE => 'string',
+				ParamValidator::PARAM_TYPE => 'string',
 			],
 			'disablepp' => [
-				ApiBase::PARAM_DFLT => false,
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEFAULT => false,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'disablelimitreport' => false,
 			'disableeditsection' => false,
 			'disablestylededuplication' => false,
 			'showstrategykeys' => false,
 			'generatexml' => [
-				ApiBase::PARAM_DFLT => false,
+				ParamValidator::PARAM_DEFAULT => false,
 				ApiBase::PARAM_HELP_MSG => [
 					'apihelp-parse-param-generatexml', CONTENT_MODEL_WIKITEXT
 				],
-				ApiBase::PARAM_DEPRECATED => true,
+				ParamValidator::PARAM_DEPRECATED => true,
 			],
 			'preview' => false,
 			'sectionpreview' => false,
@@ -1074,13 +1093,13 @@ class ApiParse extends ApiBase {
 			'useskin' => [
 				// T237856; We use all installed skins here to allow hidden (but usable) skins
 				// to continue working correctly with some features such as Live Preview
-				ApiBase::PARAM_TYPE => array_keys( $this->skinFactory->getInstalledSkins() ),
+				ParamValidator::PARAM_TYPE => array_keys( $this->skinFactory->getInstalledSkins() ),
 			],
 			'contentformat' => [
-				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
+				ParamValidator::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
 			],
 			'contentmodel' => [
-				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getContentModels(),
+				ParamValidator::PARAM_TYPE => $this->contentHandlerFactory->getContentModels(),
 			],
 		];
 	}

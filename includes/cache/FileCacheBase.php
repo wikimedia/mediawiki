@@ -21,6 +21,8 @@
  * @ingroup Cache
  */
 
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
@@ -31,6 +33,15 @@ use Wikimedia\IPUtils;
  * @ingroup Cache
  */
 abstract class FileCacheBase {
+	/** @var string[] */
+	private const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::CacheEpoch,
+		MainConfigNames::FileCacheDepth,
+		MainConfigNames::FileCacheDirectory,
+		MainConfigNames::MimeType,
+		MainConfigNames::UseGzip,
+	];
+
 	protected $mKey;
 	protected $mType = 'object';
 	protected $mExt = 'cache';
@@ -38,15 +49,19 @@ abstract class FileCacheBase {
 	protected $mUseGzip;
 	/** @var bool|null lazy loaded */
 	protected $mCached;
+	/** @var ServiceOptions */
+	protected $options;
 
 	/* @todo configurable? */
 	private const MISS_FACTOR = 15; // log 1 every MISS_FACTOR cache misses
 	private const MISS_TTL_SEC = 3600; // how many seconds ago is "recent"
 
 	protected function __construct() {
-		$useGzip = MediaWikiServices::getInstance()->getMainConfig()->get( 'UseGzip' );
-
-		$this->mUseGzip = (bool)$useGzip;
+		$this->options = new ServiceOptions(
+			self::CONSTRUCTOR_OPTIONS,
+			MediaWikiServices::getInstance()->getMainConfig()
+		);
+		$this->mUseGzip = (bool)$this->options->get( MainConfigNames::UseGzip );
 	}
 
 	/**
@@ -54,9 +69,7 @@ abstract class FileCacheBase {
 	 * @return string
 	 */
 	final protected function baseCacheDirectory() {
-		$fileCacheDirectory = MediaWikiServices::getInstance()->getMainConfig()->get( 'FileCacheDirectory' );
-
-		return $fileCacheDirectory;
+		return $this->options->get( MainConfigNames::FileCacheDirectory );
 	}
 
 	/**
@@ -119,7 +132,7 @@ abstract class FileCacheBase {
 	 * @return bool
 	 */
 	public function isCacheGood( $timestamp = '' ) {
-		$cacheEpoch = MediaWikiServices::getInstance()->getMainConfig()->get( 'CacheEpoch' );
+		$cacheEpoch = $this->options->get( MainConfigNames::CacheEpoch );
 
 		if ( !$this->isCached() ) {
 			return false;
@@ -214,7 +227,7 @@ abstract class FileCacheBase {
 	 * @return string
 	 */
 	protected function hashSubdirectory() {
-		$fileCacheDepth = MediaWikiServices::getInstance()->getMainConfig()->get( 'FileCacheDepth' );
+		$fileCacheDepth = $this->options->get( MainConfigNames::FileCacheDepth );
 
 		$subdir = '';
 		if ( $fileCacheDepth > 0 ) {

@@ -23,6 +23,8 @@
  * @ingroup Search
  */
 
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
@@ -73,7 +75,9 @@ class SearchUpdate implements DeferrableUpdate {
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getSearchEngineConfig();
 
-		if ( $config->getConfig()->get( 'DisableSearchUpdate' ) || !$this->id ) {
+		if ( $config->getConfig()->get( MainConfigNames::DisableSearchUpdate ) || !$this->id ) {
+			LoggerFactory::getInstance( "search" )
+				->debug( "Skipping update: search updates disabled by config" );
 			return;
 		}
 

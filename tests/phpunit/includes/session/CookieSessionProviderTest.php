@@ -3,6 +3,7 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
 use Psr\Log\NullLogger;
@@ -432,7 +433,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$store = new TestBagOStuff();
 
 		// For User::requiresHTTPS
-		$this->setMwGlobals( [ 'wgForceHTTPS' => $forceHTTPS ] );
+		$this->overrideConfigValue( MainConfigNames::ForceHTTPS, $forceHTTPS );
 
 		$user = static::getTestSysop()->getUser();
 		$anon = new User;
@@ -518,9 +519,9 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $forceHTTPS
 	 */
 	public function testCookieData( $secure, $remember, $forceHTTPS ) {
-		$this->setMwGlobals( [
-			'wgSecureLogin' => false,
-			'wgForceHTTPS' => $forceHTTPS,
+		$this->overrideConfigValues( [
+			MainConfigNames::SecureLogin => false,
+			MainConfigNames::ForceHTTPS => $forceHTTPS,
 		] );
 
 		$provider = new CookieSessionProvider( [
@@ -641,7 +642,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->initProvider( $provider, null, $this->getConfig(), SessionManager::singleton(), $hookContainer );
 
 		// For User::requiresHTTPS
-		$this->setMwGlobals( [ 'wgForceHTTPS' => false ] );
+		$this->overrideConfigValue( MainConfigNames::ForceHTTPS, false );
 
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 		$store = new TestBagOStuff();
@@ -686,7 +687,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$mock = $this->getMockBuilder( __CLASS__ )
 			->onlyMethods( [ 'onUserSetCookies' ] )->getMock();
 		$mock->expects( $this->once() )->method( 'onUserSetCookies' )
-			->will( $this->returnCallback( function ( $u, &$sessionData, &$cookies ) use ( $user ) {
+			->willReturnCallback( function ( $u, &$sessionData, &$cookies ) use ( $user ) {
 				$this->assertSame( $user, $u );
 				$this->assertEquals( [
 					'wsUserID' => $user->getId(),
@@ -702,7 +703,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 				$sessionData['foo'] = 'foo!';
 				$cookies['bar'] = 'bar!';
 				return true;
-			} ) );
+			} );
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'UserSetCookies' => [ $mock ] ] );
 		$backend->setUser( $user );
 		$backend->setRememberUser( false );
@@ -733,7 +734,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$mock = $this->getMockBuilder( __CLASS__ )
 			->onlyMethods( [ 'onUserSetCookies' ] )->getMock();
 		$mock->expects( $this->once() )->method( 'onUserSetCookies' )
-			->will( $this->returnCallback( function ( $u, &$sessionData, &$cookies ) use ( $user ) {
+			->willReturnCallback( function ( $u, &$sessionData, &$cookies ) use ( $user ) {
 				$this->assertSame( $user, $u );
 				$this->assertEquals( [
 					'wsUserID' => $user->getId(),
@@ -749,7 +750,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 				$sessionData['foo'] = 'foo 2!';
 				$cookies['bar'] = 'bar 2!';
 				return true;
-			} ) );
+			} );
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'UserSetCookies' => [ $mock ] ] );
 		$backend->setUser( $user );
 		$backend->setRememberUser( true );

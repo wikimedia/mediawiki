@@ -3,8 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
+ * @ingroup Languages
  *
  * @author Ikiwaner
  * @author Jagwar
@@ -20,13 +20,12 @@
  */
 
 $namespaceNames = [
-	NS_MEDIA            => 'Faili',
 	NS_SPECIAL          => 'Maalum',
 	NS_TALK             => 'Majadiliano',
 	NS_USER             => 'Mtumiaji',
 	NS_USER_TALK        => 'Majadiliano_ya_mtumiaji',
 	NS_PROJECT_TALK     => 'Majadiliano_ya_$1',
-	NS_FILE             => 'Picha',
+	NS_FILE             => 'Faili',
 	NS_FILE_TALK        => 'Majadiliano_ya_faili',
 	NS_MEDIAWIKI_TALK   => 'Majadiliano_ya_MediaWiki',
 	NS_TEMPLATE         => 'Kigezo',
@@ -38,6 +37,7 @@ $namespaceNames = [
 ];
 
 $namespaceAliases = [
+	'Picha'                 => NS_FILE,
 	'$1_majadiliano'        => NS_PROJECT_TALK,
 	'Majadiliano_faili'     => NS_FILE_TALK,
 	'MediaWiki_majadiliano' => NS_MEDIAWIKI_TALK,

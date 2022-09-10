@@ -72,12 +72,16 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$mockedMethods[] = 'checkPasswordValidity';
 		$provider = $this->getMockBuilder( TemporaryPasswordPrimaryAuthenticationProvider::class )
 			->onlyMethods( $mockedMethods )
-			->setConstructorArgs( [ $mwServices->getDBLoadBalancer(), $params ] )
+			->setConstructorArgs( [
+				$mwServices->getDBLoadBalancer(),
+				$mwServices->getUserOptionsLookup(),
+				$params
+			] )
 			->getMock();
 		$provider->method( 'checkPasswordValidity' )
-			->will( $this->returnCallback( function () {
+			->willReturnCallback( function () {
 				return $this->validity;
-			} ) );
+			} );
 		$this->initProvider(
 			$provider, $config, null, $this->manager, null, $this->getServiceContainer()->getUserNameUtils()
 		);
@@ -126,7 +130,8 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		] );
 
 		$provider = new TemporaryPasswordPrimaryAuthenticationProvider(
-			$this->getServiceContainer()->getDBLoadBalancer()
+			$this->getServiceContainer()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getUserOptionsLookup()
 		);
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 		$this->initProvider( $provider, $config );
@@ -136,6 +141,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 
 		$provider = new TemporaryPasswordPrimaryAuthenticationProvider(
 			$this->getServiceContainer()->getDBLoadBalancer(),
+			$this->getServiceContainer()->getUserOptionsLookup(),
 			[
 				'emailEnabled' => true,
 				'newPasswordExpiry' => 42,

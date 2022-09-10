@@ -26,6 +26,7 @@
  * @license GPL-2.0-or-later
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 
@@ -56,7 +57,8 @@ class SVGReader {
 	 * @throws MWException|Exception
 	 */
 	public function __construct( $source ) {
-		$svgMetadataCutoff = MediaWikiServices::getInstance()->getMainConfig()->get( 'SVGMetadataCutoff' );
+		$svgMetadataCutoff = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::SVGMetadataCutoff );
 		$this->reader = new XMLReader();
 
 		// Don't use $file->getSize() since file object passed to SVGHandler::getMetadata is bogus.
@@ -254,7 +256,7 @@ class SVGReader {
 					$langList = explode( ',', $sysLang );
 					foreach ( $langList as $langItem ) {
 						$langItem = trim( $langItem );
-						if ( Language::isWellFormedLanguageTag( $langItem ) ) {
+						if ( LanguageCode::isWellFormedLanguageTag( $langItem ) ) {
 							$this->languages[$langItem] = self::LANG_FULL_MATCH;
 						}
 						// Note, the standard says that any prefix should work,
@@ -267,7 +269,7 @@ class SVGReader {
 						// Intentionally checking both !false and > 0 at the same time.
 						if ( $dash ) {
 							$itemPrefix = substr( $langItem, 0, $dash );
-							if ( Language::isWellFormedLanguageTag( $itemPrefix ) ) {
+							if ( LanguageCode::isWellFormedLanguageTag( $itemPrefix ) ) {
 								$this->languagePrefixes[$itemPrefix] = self::LANG_PREFIX_MATCH;
 							}
 						}

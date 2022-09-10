@@ -25,7 +25,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
-use Parser;
 use ParserOptions;
 use TitleFactory;
 
@@ -33,11 +32,11 @@ use TitleFactory;
  * @since 1.38
  */
 class SignatureValidatorFactory {
-	/** @var Parser */
-	private $parser;
-
 	/** @var ServiceOptions */
 	private $serviceOptions;
+
+	/** @var callable */
+	private $parserFactoryClosure;
 
 	/** @var SpecialPageFactory */
 	private $specialPageFactory;
@@ -47,21 +46,22 @@ class SignatureValidatorFactory {
 
 	/**
 	 * @param ServiceOptions $options
-	 * @param Parser $parser
+	 * @param callable $parserFactoryClosure A function which returns a ParserFactory.
+	 *   We use this instead of an actual ParserFactory to avoid a circular dependency,
+	 *   since Parser also needs a SignatureValidatorFactory for signature formatting.
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param TitleFactory $titleFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		Parser $parser,
+		callable $parserFactoryClosure,
 		SpecialPageFactory $specialPageFactory,
 		TitleFactory $titleFactory
 	) {
-		// Fetch the parser, will be used to create a new parser via getFreshParser() when needed
-		$this->parser = $parser;
 		// Configuration
 		$this->serviceOptions = $options;
 		$this->serviceOptions->assertRequiredOptions( SignatureValidator::CONSTRUCTOR_OPTIONS );
+		$this->parserFactoryClosure = $parserFactoryClosure;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->titleFactory = $titleFactory;
 	}
@@ -82,7 +82,7 @@ class SignatureValidatorFactory {
 			$user,
 			$localizer,
 			$popts,
-			$this->parser,
+			( $this->parserFactoryClosure )(),
 			$this->specialPageFactory,
 			$this->titleFactory
 		);

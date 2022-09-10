@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
+use MediaWiki\MainConfigNames;
 
 /**
  * @coversDefaultClass FileBackendGroup
@@ -17,10 +18,15 @@ class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function newObj( array $options = [] ): FileBackendGroup {
-		$globals = [ 'DirectoryMode', 'FileBackends', 'ForeignFileRepos', 'LocalFileRepo' ];
+		$globals = [
+			MainConfigNames::DirectoryMode,
+			MainConfigNames::FileBackends,
+			MainConfigNames::ForeignFileRepos,
+			MainConfigNames::LocalFileRepo,
+		];
 		foreach ( $globals as $global ) {
-			$this->setMwGlobals(
-				"wg$global", $options[$global] ?? self::getDefaultOptions()[$global] );
+			$this->overrideConfigValue(
+				$global, $options[$global] ?? self::getDefaultOptions()[$global] );
 		}
 
 		$serviceMembers = [
@@ -41,10 +47,7 @@ class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertEmpty(
 			array_diff( array_keys( $options ), $globals, array_keys( $serviceMembers ) ) );
 
-		$this->resetServices();
-
 		$services = $this->getServiceContainer();
-		$services->resetServiceForTesting( 'FileBackendGroup' );
 
 		$obj = $services->getFileBackendGroup();
 

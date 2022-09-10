@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -155,7 +156,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @throws DomainException
 	 */
 	protected function recentChangesBlockGroup( $block ) {
-		$recentChangesFlags = $this->getConfig()->get( 'RecentChangesFlags' );
+		$recentChangesFlags = $this->getConfig()->get( MainConfigNames::RecentChangesFlags );
 
 		# Add the namespace and title of the block as part of the class
 		$tableClasses = [ 'mw-collapsible', 'mw-collapsed', 'mw-enhanced-rc', 'mw-changeslist-line' ];
@@ -182,7 +183,7 @@ class EnhancedChangesList extends ChangesList {
 		# Some catalyst variables...
 		$namehidden = true;
 		$allLogs = true;
-		$RCShowChangedSize = $this->getConfig()->get( 'RCShowChangedSize' );
+		$RCShowChangedSize = $this->getConfig()->get( MainConfigNames::RCShowChangedSize );
 
 		# Default values for RC flags
 		$collectedRcFlags = [];
@@ -363,7 +364,7 @@ class EnhancedChangesList extends ChangesList {
 	 * @throws MWException
 	 */
 	protected function getLineData( array $block, RCCacheEntry $rcObj, array $queryParams = [] ) {
-		$RCShowChangedSize = $this->getConfig()->get( 'RCShowChangedSize' );
+		$RCShowChangedSize = $this->getConfig()->get( MainConfigNames::RCShowChangedSize );
 
 		$type = $rcObj->mAttribs['rc_type'];
 		$data = [];
@@ -658,7 +659,7 @@ class EnhancedChangesList extends ChangesList {
 		$data['separatorAfterLinks'] = ' <span class="mw-changeslist-separator"></span> ';
 
 		# Character diff
-		if ( $this->getConfig()->get( 'RCShowChangedSize' ) ) {
+		if ( $this->getConfig()->get( MainConfigNames::RCShowChangedSize ) ) {
 			$cd = $this->formatCharacterDifference( $rcObj );
 			if ( $cd !== '' ) {
 				$data['characterDiff'] = $cd;

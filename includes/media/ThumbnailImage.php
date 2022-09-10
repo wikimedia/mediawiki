@@ -22,6 +22,7 @@
  * @ingroup Media
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -30,8 +31,6 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Media
  */
 class ThumbnailImage extends MediaTransformOutput {
-	private static $firstNonIconImageRendered = false;
-
 	/**
 	 * Get a thumbnail object from a file and parameters.
 	 * If $path is set to null, the output file is treated as a source copy.
@@ -73,6 +72,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		# These should be integers when they get here.
 		# If not, there's a bug somewhere.  But let's at
 		# least produce valid HTML code regardless.
+		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal Confused by old signature
 		$this->width = (int)round( $actualParams['width'] );
 		$this->height = (int)round( $actualParams['height'] );
 
@@ -115,10 +115,8 @@ class ThumbnailImage extends MediaTransformOutput {
 	 */
 	public function toHtml( $options = [] ) {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
-		$priorityHints = $mainConfig->get( 'PriorityHints' );
-		$priorityHintsRatio = $mainConfig->get( 'PriorityHintsRatio' );
-		$elementTiming = $mainConfig->get( 'ElementTiming' );
-		$nativeImageLazyLoading = $mainConfig->get( 'NativeImageLazyLoading' );
+		$nativeImageLazyLoading = $mainConfig->get( MainConfigNames::NativeImageLazyLoading );
+		$enableLegacyMediaDOM = $mainConfig->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 
 		if ( func_num_args() == 2 ) {
 			throw new MWException( __METHOD__ . ' called in the old style' );
@@ -135,29 +133,6 @@ class ThumbnailImage extends MediaTransformOutput {
 
 		if ( $options['loading'] ?? $nativeImageLazyLoading ) {
 			$attribs['loading'] = $options['loading'] ?? 'lazy';
-		}
-
-		$elementTimingName = 'thumbnail';
-
-		if ( $priorityHints
-			&& !self::$firstNonIconImageRendered
-			&& $this->width * $this->height > 100 * 100 ) {
-			self::$firstNonIconImageRendered = true;
-
-			// Generate a random number between 0.01 and 1.0, included
-			$random = rand( 1, 100 ) / 100.0;
-
-			if ( $random <= $priorityHintsRatio ) {
-				$attribs['importance'] = 'high';
-				$elementTimingName = 'thumbnail-high';
-			} else {
-				// This lets us track that the thumbnail *would* have gotten high priority but didn't.
-				$elementTimingName = 'thumbnail-top';
-			}
-		}
-
-		if ( $elementTiming ) {
-			$attribs['elementtiming'] = $elementTimingName;
 		}
 
 		if ( !empty( $options['custom-url-link'] ) ) {
@@ -178,7 +153,7 @@ class ThumbnailImage extends MediaTransformOutput {
 			$title = $options['custom-title-link'];
 			$linkAttribs = [
 				'href' => $title->getLinkURL( $options['custom-title-link-query'] ?? null ),
-				'title' => empty( $options['title'] ) ? $title->getFullText() : $options['title']
+				'title' => empty( $options['title'] ) ? $title->getPrefixedText() : $options['title']
 			];
 		} elseif ( !empty( $options['desc-link'] ) ) {
 			$linkAttribs = $this->getDescLinkAttribs(
@@ -190,7 +165,11 @@ class ThumbnailImage extends MediaTransformOutput {
 		} else {
 			$linkAttribs = false;
 			if ( !empty( $options['title'] ) ) {
-				$attribs['title'] = $options['title'];
+				if ( $enableLegacyMediaDOM ) {
+					$attribs['title'] = $options['title'];
+				} else {
+					$linkAttribs = [ 'title' => $options['title'] ];
+				}
 			}
 		}
 

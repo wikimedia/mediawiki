@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,12 +24,13 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
@@ -123,93 +123,81 @@ class MovePage {
 	/** @var CollationFactory */
 	public $collationFactory;
 
+	/** @var PageUpdaterFactory */
+	private $pageUpdaterFactory;
+
+	/** @var RestrictionStore */
+	private $restrictionStore;
+
 	/**
 	 * @internal For use by PageCommandFactory
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'CategoryCollation',
-		'MaximumMovedPages',
+		MainConfigNames::CategoryCollation,
+		MainConfigNames::MaximumMovedPages,
 	];
 
-	/** @var PageUpdaterFactory */
-	private $pageUpdaterFactory;
-
 	/**
-	 * @internal Extensions should use the MovePageFactory.
+	 * @see MovePageFactory
 	 *
 	 * @param Title $oldTitle
 	 * @param Title $newTitle
-	 * @param ServiceOptions|null $options
-	 * @param ILoadBalancer|null $loadBalancer
-	 * @param NamespaceInfo|null $nsInfo
-	 * @param WatchedItemStoreInterface|null $watchedItems
-	 * @param RepoGroup|null $repoGroup
-	 * @param IContentHandlerFactory|null $contentHandlerFactory
-	 * @param RevisionStore|null $revisionStore
-	 * @param SpamChecker|null $spamChecker
-	 * @param HookContainer|null $hookContainer
-	 * @param WikiPageFactory|null $wikiPageFactory
-	 * @param UserFactory|null $userFactory
-	 * @param UserEditTracker|null $userEditTracker
-	 * @param MovePageFactory|null $movePageFactory
-	 * @param CollationFactory|null $collationFactory
-	 * @param PageUpdaterFactory|null $pageUpdaterFactory
-	 * @deprecated since 1.34, hard deprecated since 1.37. Use MovePageFactory instead.
+	 * @param ServiceOptions $options
+	 * @param ILoadBalancer $loadBalancer
+	 * @param NamespaceInfo $nsInfo
+	 * @param WatchedItemStoreInterface $watchedItems
+	 * @param RepoGroup $repoGroup
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param RevisionStore $revisionStore
+	 * @param SpamChecker $spamChecker
+	 * @param HookContainer $hookContainer
+	 * @param WikiPageFactory $wikiPageFactory
+	 * @param UserFactory $userFactory
+	 * @param UserEditTracker $userEditTracker
+	 * @param MovePageFactory $movePageFactory
+	 * @param CollationFactory $collationFactory
+	 * @param PageUpdaterFactory $pageUpdaterFactory
+	 * @param RestrictionStore $restrictionStore
 	 */
 	public function __construct(
 		Title $oldTitle,
 		Title $newTitle,
-		ServiceOptions $options = null,
-		ILoadBalancer $loadBalancer = null,
-		NamespaceInfo $nsInfo = null,
-		WatchedItemStoreInterface $watchedItems = null,
-		RepoGroup $repoGroup = null,
-		IContentHandlerFactory $contentHandlerFactory = null,
-		RevisionStore $revisionStore = null,
-		SpamChecker $spamChecker = null,
-		HookContainer $hookContainer = null,
-		WikiPageFactory $wikiPageFactory = null,
-		UserFactory $userFactory = null,
-		UserEditTracker $userEditTracker = null,
-		MovePageFactory $movePageFactory = null,
-		CollationFactory $collationFactory = null,
-		PageUpdaterFactory $pageUpdaterFactory = null
+		ServiceOptions $options,
+		ILoadBalancer $loadBalancer,
+		NamespaceInfo $nsInfo,
+		WatchedItemStoreInterface $watchedItems,
+		RepoGroup $repoGroup,
+		IContentHandlerFactory $contentHandlerFactory,
+		RevisionStore $revisionStore,
+		SpamChecker $spamChecker,
+		HookContainer $hookContainer,
+		WikiPageFactory $wikiPageFactory,
+		UserFactory $userFactory,
+		UserEditTracker $userEditTracker,
+		MovePageFactory $movePageFactory,
+		CollationFactory $collationFactory,
+		PageUpdaterFactory $pageUpdaterFactory,
+		RestrictionStore $restrictionStore
 	) {
-		if ( !$options ) {
-			wfDeprecatedMsg(
-				__METHOD__ . ' without providing all services is deprecated',
-				'1.34'
-			);
-		}
-
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
 
-		$services = static function () {
-			// BC hack. Use a closure so this can be unit-tested.
-			return MediaWikiServices::getInstance();
-		};
-		$this->options = $options ??
-			new ServiceOptions(
-				self::CONSTRUCTOR_OPTIONS,
-				$services()->getMainConfig()
-			);
-		$this->loadBalancer = $loadBalancer ?? $services()->getDBLoadBalancer();
-		$this->nsInfo = $nsInfo ?? $services()->getNamespaceInfo();
-		$this->watchedItems = $watchedItems ?? $services()->getWatchedItemStore();
-		$this->repoGroup = $repoGroup ?? $services()->getRepoGroup();
-		$this->contentHandlerFactory =
-			$contentHandlerFactory ?? $services()->getContentHandlerFactory();
-
-		$this->revisionStore = $revisionStore ?? $services()->getRevisionStore();
-		$this->spamChecker = $spamChecker ?? $services()->getSpamChecker();
-		$this->hookRunner = new HookRunner( $hookContainer ?? $services()->getHookContainer() );
-		$this->wikiPageFactory = $wikiPageFactory ?? $services()->getWikiPageFactory();
-		$this->userFactory = $userFactory ?? $services()->getUserFactory();
-		$this->userEditTracker = $userEditTracker ?? $services()->getUserEditTracker();
-		$this->movePageFactory = $movePageFactory ?? $services()->getMovePageFactory();
-		$this->collationFactory = $collationFactory ?? $services()->getCollationFactory();
-		$this->pageUpdaterFactory = $pageUpdaterFactory ?? $services()->getPageUpdaterFactory();
+		$this->options = $options;
+		$this->loadBalancer = $loadBalancer;
+		$this->nsInfo = $nsInfo;
+		$this->watchedItems = $watchedItems;
+		$this->repoGroup = $repoGroup;
+		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->revisionStore = $revisionStore;
+		$this->spamChecker = $spamChecker;
+		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->wikiPageFactory = $wikiPageFactory;
+		$this->userFactory = $userFactory;
+		$this->userEditTracker = $userEditTracker;
+		$this->movePageFactory = $movePageFactory;
+		$this->collationFactory = $collationFactory;
+		$this->pageUpdaterFactory = $pageUpdaterFactory;
+		$this->restrictionStore = $restrictionStore;
 	}
 
 	/**
@@ -605,7 +593,7 @@ class MovePage {
 		// Return a status for the overall result. Its value will be an array with per-title
 		// status for each subpage. Merge any errors from the per-title statuses into the
 		// top-level status without resetting the overall result.
-		$maximumMovedPages = $this->options->get( 'MaximumMovedPages' );
+		$maximumMovedPages = $this->options->get( MainConfigNames::MaximumMovedPages );
 		$topStatus = Status::newGood();
 		$perTitleStatus = [];
 		$subpages = $this->oldTitle->getSubpages( $maximumMovedPages + 1 );
@@ -679,7 +667,7 @@ class MovePage {
 		$this->hookRunner->onTitleMoveStarting( $this->oldTitle, $this->newTitle, $userObj );
 
 		$pageid = $this->oldTitle->getArticleID( Title::READ_LATEST );
-		$protected = $this->oldTitle->isProtected();
+		$protected = $this->restrictionStore->isProtected( $this->oldTitle );
 
 		// Attempt the actual move
 		$moveAttemptResult = $this->moveToInternal( $user, $this->newTitle, $reason, $createRedirect,
@@ -698,13 +686,13 @@ class MovePage {
 
 		if ( $protected ) {
 			# Protect the redirect title as the title used to be...
-			$res = $dbw->select(
-				'page_restrictions',
-				[ 'pr_type', 'pr_level', 'pr_cascade', 'pr_expiry' ],
-				[ 'pr_page' => $pageid ],
-				__METHOD__,
-				'FOR UPDATE'
-			);
+			$res = $dbw->newSelectQueryBuilder()
+				->select( [ 'pr_type', 'pr_level', 'pr_cascade', 'pr_expiry' ] )
+				->from( 'page_restrictions' )
+				->where( [ 'pr_page' => $pageid ] )
+				->forUpdate()
+				->caller( __METHOD__ )
+				->fetchResultSet();
 			$rowsInsert = [];
 			foreach ( $res as $row ) {
 				$rowsInsert[] = [
@@ -964,6 +952,8 @@ class MovePage {
 		 */
 		$this->userEditTracker->incrementUserEditCount( $user );
 
+		// Get the old redirect state before clean up
+		$isRedirect = $this->oldTitle->isRedirect();
 		if ( !$redirectContent ) {
 			// Clean up the old title *before* reset article id - T47348
 			WikiPage::onArticleDelete( $this->oldTitle );
@@ -972,7 +962,7 @@ class MovePage {
 		$this->oldTitle->resetArticleID( 0 ); // 0 == non existing
 		$newpage->loadPageData( WikiPage::READ_LOCKING ); // T48397
 
-		$newpage->updateRevisionOn( $dbw, $nullRevision );
+		$newpage->updateRevisionOn( $dbw, $nullRevision, null, $isRedirect );
 
 		$fakeTags = [];
 		$this->hookRunner->onRevisionFromEditComplete(

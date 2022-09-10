@@ -2,12 +2,15 @@
 
 namespace MediaWiki\Rest;
 
+use DateTime;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Validator\BodyValidator;
 use MediaWiki\Rest\Validator\NullBodyValidator;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\Session\Session;
+use Wikimedia\Message\MessageValue;
 
 /**
  * Base class for REST route handlers.
@@ -52,6 +55,9 @@ abstract class Handler {
 	/** @var HookContainer */
 	private $hookContainer;
 
+	/** @var Session */
+	private $session;
+
 	/** @var HookRunner */
 	private $hookRunner;
 
@@ -63,10 +69,12 @@ abstract class Handler {
 	 * @param Authority $authority
 	 * @param ResponseFactory $responseFactory
 	 * @param HookContainer $hookContainer
+	 * @param Session $session
 	 * @internal
 	 */
 	final public function init( Router $router, RequestInterface $request, array $config,
-		Authority $authority, ResponseFactory $responseFactory, HookContainer $hookContainer
+		Authority $authority, ResponseFactory $responseFactory, HookContainer $hookContainer,
+		Session $session
 	) {
 		$this->router = $router;
 		$this->request = $request;
@@ -75,6 +83,7 @@ abstract class Handler {
 		$this->responseFactory = $responseFactory;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->session = $session;
 		$this->postInitSetup();
 	}
 
@@ -108,7 +117,7 @@ abstract class Handler {
 	 *
 	 * Keeps intact ;@$!*(),~: (urlencode does not, but wfUrlencode does).
 	 * Encodes spaces as underscores (wfUrlencode does not).
-	 * Encodes slashes (wfUrlencode does not, but keeping them messes with REST pathes).
+	 * Encodes slashes (wfUrlencode does not, but keeping them messes with REST paths).
 	 * Encodes pluses (this is not necessary, and may change).
 	 *
 	 * @see wfUrlencode
@@ -172,6 +181,17 @@ abstract class Handler {
 	}
 
 	/**
+	 * Get the Session.
+	 * This will raise a fatal error if init() has not been
+	 * called.
+	 *
+	 * @return Session
+	 */
+	public function getSession(): Session {
+		return $this->session;
+	}
+
+	/**
 	 * Validate the request parameters/attributes and body. If there is a validation
 	 * failure, a response with an error message should be returned or an
 	 * HttpException should be thrown.
@@ -186,6 +206,27 @@ abstract class Handler {
 		$this->validatedParams = $validatedParams;
 		$this->validatedBody = $validatedBody;
 		$this->postValidationSetup();
+	}
+
+	/**
+	 * Check the session (and session provider)
+	 * @throws HttpException on failed check
+	 * @internal
+	 */
+	public function checkSession() {
+		if ( !$this->session->getProvider()->safeAgainstCsrf() ) {
+			if ( $this->requireSafeAgainstCsrf() ) {
+				throw new LocalizedHttpException(
+					new MessageValue( 'rest-requires-safe-against-csrf' ),
+					400
+				);
+			}
+		} elseif ( !empty( $this->validatedBody['token'] ) ) {
+			throw new LocalizedHttpException(
+				new MessageValue( 'rest-extraneous-csrf-token' ),
+				400
+			);
+		}
 	}
 
 	/**
@@ -229,16 +270,29 @@ abstract class Handler {
 	}
 
 	/**
-	 * Modify the response, adding Last-Modified and ETag headers as indicated
-	 * the values previously returned by ETag and getLastModified(). This is
-	 * called after execute() returns, and may be overridden.
+	 * Apply verifier headers to the response, per RFC 7231 §7.2.
+	 * This is called after execute() returns.
+	 *
+	 * For GET and HEAD requests, the default behavior is to set the ETag and
+	 * Last-Modified headers based on the values returned by getETag() and
+	 * getLastModified() when they were called before execute() was run.
+	 *
+	 * Other request methods are assumed to be state-changing, so no headers
+	 * will be set per default.
+	 *
+	 * This may be overridden to modify the verifier headers sent in the response.
+	 * However, handlers that modify the resource's state would typically just
+	 * set the ETag and Last-Modified headers in the execute() method.
 	 *
 	 * @stable to override
 	 *
 	 * @param ResponseInterface $response
 	 */
 	public function applyConditionalResponseHeaders( ResponseInterface $response ) {
-		$this->getConditionalHeaderUtil()->applyResponseHeaders( $response );
+		$method = $this->getRequest()->getMethod();
+		if ( $method === 'GET' || $method === 'HEAD' ) {
+			$this->getConditionalHeaderUtil()->applyResponseHeaders( $response );
+		}
 	}
 
 	/**
@@ -319,15 +373,25 @@ abstract class Handler {
 
 	/**
 	 * The subclass should override this to provide the maximum last modified
-	 * timestamp for the current request. This is called before execute() in
-	 * order to decide whether to send a 304.
+	 * timestamp of the requested resource. This is called before execute() in
+	 * order to decide whether to send a 304. If the request is going to
+	 * change the state of the resource, the time returned must represent
+	 * the last modification date before the change. In other words, it must
+	 * provide the timestamp of the entity that the change is going to be
+	 * applied to.
 	 *
-	 * The timestamp can be in any format accepted by ConvertibleTimestamp, or
-	 * null to indicate that the timestamp is unknown.
+	 * For GET and HEAD requests, this value will automatically be included
+	 * in the response in the Last-Modified header.
+	 *
+	 * Handlers that modify the resource and want to return a Last-Modified
+	 * header representing the new state in the response should set the header
+	 * in the execute() method.
+	 *
+	 * See RFC 7231 §7.2 and RFC 7232 §2.3 for semantics.
 	 *
 	 * @stable to override
 	 *
-	 * @return bool|string|int|float|\DateTime|null
+	 * @return bool|string|int|float|DateTime|null
 	 */
 	protected function getLastModified() {
 		return null;
@@ -335,12 +399,23 @@ abstract class Handler {
 
 	/**
 	 * The subclass should override this to provide an ETag for the current
-	 * request. This is called before execute() in order to decide whether to
-	 * send a 304.
+	 * state of the requested resource. This is called before execute() in
+	 * order to decide whether to send a 304. If the request is going to
+	 * change the state of the resource, the ETag returned must represent
+	 * the state before the change. In other words, it must identify
+	 * the entity that the change is going to be applied to.
+	 *
+	 * For GET and HEAD requests, this ETag will also be included in the
+	 * response.
+	 *
+	 * Handlers that modify the resource and want to return an ETag
+	 * header representing the new state in the response should set the header
+	 * in the execute() method. However, note that responses to PUT requests
+	 * must not return an ETag unless the new content of the resource is exactly
+	 * the data that was sent by the client in the request body.
 	 *
 	 * This must be a complete ETag, including double quotes.
-	 *
-	 * See RFC 7232 § 2.3 for semantics.
+	 * See RFC 7231 §7.2 and RFC 7232 §2.3 for semantics.
 	 *
 	 * @stable to override
 	 *
@@ -354,6 +429,9 @@ abstract class Handler {
 	 * The subclass should override this to indicate whether the resource
 	 * exists. This is used for wildcard validators, for example "If-Match: *"
 	 * fails if the resource does not exist.
+	 *
+	 * In a state-changing request, the return value of this method should
+	 * reflect the state before the requested change is applied.
 	 *
 	 * @stable to override
 	 *
@@ -394,6 +472,24 @@ abstract class Handler {
 	 */
 	public function needsWriteAccess() {
 		return true;
+	}
+
+	/**
+	 * Indicates whether this route can be accessed only by session providers safe vs csrf
+	 *
+	 * The handler should override this if the route must only be accessed by session
+	 * providers that are safe against csrf.
+	 *
+	 * A return value of false does not necessarily mean the route is vulnerable to csrf attacks.
+	 * It means the route can be accessed by session providers that are not automatically safe
+	 * against csrf attacks, so the possibility of csrf attacks must be considered.
+	 *
+	 * @stable to override
+	 *
+	 * @return bool
+	 */
+	public function requireSafeAgainstCsrf() {
+		return false;
 	}
 
 	/**

@@ -90,7 +90,7 @@ interface ILanguageConverter {
 	 * convertTo().
 	 *
 	 * @param string $text The text to be converted
-	 * @param bool|string $toVariant The target language code
+	 * @param string|false $toVariant The target language code
 	 * @return string The converted text
 	 */
 	public function autoConvert( $text, $toVariant = false );
@@ -113,6 +113,17 @@ interface ILanguageConverter {
 	 * @return array Variant => converted text
 	 */
 	public function autoConvertToAllVariants( $text );
+
+	/**
+	 * Auto convert a LinkTarget or PageReference to a readable string in the
+	 * preferred variant, separating the namespace and the main part of the title.
+	 *
+	 * @since 1.39
+	 * @param LinkTarget|PageReference $title
+	 * @return string[] Three elements: converted namespace text, converted namespace separator,
+	 *   and converted main part of the title
+	 */
+	public function convertSplitTitle( $title );
 
 	/**
 	 * Auto convert a LinkTarget or PageReference to a readable string in the

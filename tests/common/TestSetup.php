@@ -4,12 +4,13 @@
  * Common code for test environment initialisation and teardown
  */
 class TestSetup {
+	/** @var array */
 	public static $bootstrapGlobals;
 
 	/**
 	 * For use in MediaWikiUnitTestCase.
 	 *
-	 * This should be called before DefaultSettings.php or Setup.php loads.
+	 * This should be called before default settings are applied or Setup.php loads.
 	 */
 	public static function snapshotGlobals() {
 		self::$bootstrapGlobals = [];
@@ -22,8 +23,9 @@ class TestSetup {
 	}
 
 	/**
-	 * This should be called before Setup.php, e.g. from the finalSetup() method
-	 * of a Maintenance subclass
+	 * Overrides config settings for testing.
+	 * This should be called after loading local settings, typically from the finalSetup() method
+	 * of a Maintenance subclass which then gets called via MW_SETUP_CALLBACK in Setup.php.
 	 */
 	public static function applyInitialConfig() {
 		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgMainWANCache, $wgSessionCacheType;
@@ -37,9 +39,10 @@ class TestSetup {
 		global $wgJobTypeConf;
 		global $wgMWLoggerDefaultSpi;
 		global $wgAuthManagerConfig;
-		global $wgShowExceptionDetails;
+		global $wgShowExceptionDetails, $wgShowHostnames;
 
 		$wgShowExceptionDetails = true;
+		$wgShowHostnames = true;
 
 		// wfWarn should cause tests to fail
 		$wgDevelopmentWarnings = true;
@@ -49,15 +52,15 @@ class TestSetup {
 		// cache meant for the local wiki from outside the test run.
 		// See also MediaWikiIntegrationTestCase::run() which mocks CACHE_DB and APC.
 
-		// Disabled in DefaultSettings, override local settings
+		// Disabled per default in MainConfigSchema, override local settings
 		$wgMainWANCache =
 		$wgMainCacheType = CACHE_NONE;
-		// Uses CACHE_ANYTHING in DefaultSettings, use hash instead of db
+		// Uses CACHE_ANYTHING per default in MainConfigSchema, use hash instead of db
 		$wgMessageCacheType =
 		$wgParserCacheType =
 		$wgSessionCacheType =
 		$wgLanguageConverterCacheType = 'hash';
-		// Uses db-replicated in DefaultSettings
+		// Uses db-replicated per default in MainConfigSchema
 		$wgMainStash = 'hash';
 		$wgChronologyProtectorStash = 'hash';
 		// Use hash instead of db
@@ -110,6 +113,7 @@ class TestSetup {
 					'class' => MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider::class,
 					'services' => [
 						'DBLoadBalancer',
+						'UserOptionsLookup',
 					],
 					'args' => [ [
 						'authoritative' => false,
@@ -129,12 +133,47 @@ class TestSetup {
 		];
 
 		// xdebug's default of 100 is too low for MediaWiki
+		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 		ini_set( 'xdebug.max_nesting_level', 1000 );
 
 		// Bug T116683 serialize_precision of 100
 		// may break testing against floating point values
 		// treated with PHP's serialize()
+		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 		ini_set( 'serialize_precision', 17 );
+	}
+
+	/**
+	 * @internal Should only be used in bootstrap.php and boostrap.maintenance.php
+	 *
+	 * PHPUnit includes the bootstrap file inside a method body, while most MediaWiki startup files
+	 * assume to be included in the global scope.
+	 * This utility provides a way to include these files: it makes all globals available in the
+	 * inclusion scope before including the file, then exports all new or changed globals.
+	 *
+	 * @param string $fileName the file to include
+	 */
+	public static function requireOnceInGlobalScope( string $fileName ): void {
+		$originalGlobals = $GLOBALS;
+		foreach ( array_keys( $GLOBALS ) as $key ) {
+			if ( $key === 'fileName' || $key === 'originalGlobals' ) {
+				continue;
+			}
+			// phpcs:ignore MediaWiki.VariableAnalysis.UnusedGlobalVariables.UnusedGlobal$key,MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
+			global $$key;
+		}
+
+		require_once $fileName;
+
+		foreach ( get_defined_vars() as $varName => $value ) {
+			if ( $varName === 'fileName' || $varName === 'originalGlobals' || $varName === 'key' ) {
+				continue;
+			}
+			if ( array_key_exists( $varName, $originalGlobals ) ) {
+				continue;
+			}
+			$GLOBALS[$varName] = $value;
+		}
 	}
 
 }

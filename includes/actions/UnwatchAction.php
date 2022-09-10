@@ -54,7 +54,7 @@ class UnwatchAction extends WatchAction {
 
 	public function onSubmit( $data ) {
 		$this->watchlistManager->removeWatch(
-			$this->getContext()->getAuthority(),
+			$this->getAuthority(),
 			$this->getTitle()
 		);
 

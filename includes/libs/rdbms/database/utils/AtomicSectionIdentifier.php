@@ -16,12 +16,14 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Database
  */
 namespace Wikimedia\Rdbms;
 
 /**
  * Class used for token representing identifiers for atomic sections from IDatabase instances
+ *
+ * @ingroup Database
+ * @internal
  */
 class AtomicSectionIdentifier {
 }

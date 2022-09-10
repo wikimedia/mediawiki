@@ -45,16 +45,20 @@ class DumpLinks extends Maintenance {
 
 	public function execute() {
 		$dbr = $this->getDB( DB_REPLICA );
-		$result = $dbr->select( [ 'pagelinks', 'page' ],
-			[
+
+		$result = $dbr->newSelectQueryBuilder()
+			->select( [
 				'page_id',
 				'page_namespace',
 				'page_title',
 				'pl_namespace',
-				'pl_title' ],
-			[ 'page_id=pl_from' ],
-			__METHOD__,
-			[ 'ORDER BY' => 'page_id' ] );
+				'pl_title'
+			] )
+			->from( 'page' )
+			->join( 'pagelinks', null, [ 'page_id=pl_from' ] )
+			->orderBy( 'page_id' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$lastPage = null;
 		foreach ( $result as $row ) {

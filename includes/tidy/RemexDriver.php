@@ -3,6 +3,7 @@
 namespace MediaWiki\Tidy;
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use Wikimedia\RemexHtml\HTMLData;
 use Wikimedia\RemexHtml\Serializer\Serializer;
 use Wikimedia\RemexHtml\Serializer\SerializerWithTracer;
@@ -16,10 +17,12 @@ class RemexDriver extends TidyDriverBase {
 	private $serializerTrace;
 	private $mungerTrace;
 	private $pwrap;
+	private $enableLegacyMediaDOM;
 
 	/** @internal */
 	public const CONSTRUCTOR_OPTIONS = [
-		'TidyConfig',
+		MainConfigNames::TidyConfig,
+		MainConfigNames::ParserEnableLegacyMediaDOM,
 	];
 
 	/**
@@ -31,7 +34,8 @@ class RemexDriver extends TidyDriverBase {
 			$config = $options;
 		} else {
 			$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-			$config = $options->get( 'TidyConfig' );
+			$config = $options->get( MainConfigNames::TidyConfig );
+			$this->enableLegacyMediaDOM = $options->get( MainConfigNames::ParserEnableLegacyMediaDOM );
 		}
 		$config += [
 			'treeMutationTrace' => false,
@@ -67,7 +71,8 @@ class RemexDriver extends TidyDriverBase {
 		} else {
 			$tracer = $munger;
 		}
-		$treeBuilder = new TreeBuilder( $tracer, [
+		$treeBuilderClass = $this->enableLegacyMediaDOM ? TreeBuilder::class : RemexCompatBuilder::class;
+		$treeBuilder = new $treeBuilderClass( $tracer, [
 			'ignoreErrors' => true,
 			'ignoreNulls' => true,
 		] );

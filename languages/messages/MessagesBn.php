@@ -3,9 +3,8 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
- *
+ * @ingroup Languages
  */
 
 $namespaceNames = [
@@ -268,7 +267,7 @@ $magicWords = [
 	'pagesincategory_all'     => [ 0, 'সব', 'সকল', 'all' ],
 	'pagesincategory_files'   => [ 0, 'ফাইলসমূহ', 'files' ],
 	'pagesincategory_pages'   => [ 0, 'পাতাসমূহ', 'পৃষ্ঠাসমূহ', 'pages' ],
-	'pagesincategory_subcats' => [ 0, 'উপবিষয়শ্রেণী', '', 'subcats' ],
+	'pagesincategory_subcats' => [ 0, 'উপবিষয়শ্রেণী', 'subcats' ],
 	'pagesinnamespace'        => [ 1, 'নামস্থানে_পাতা', 'নামস্থানে_পৃষ্ঠা', 'নামস্থানেপাতা', 'নামস্থানেপৃষ্ঠা', 'PAGESINNAMESPACE:', 'PAGESINNS:' ],
 	'pagesize'                => [ 1, 'পাতার_আকার', 'পাতারআকার', 'পৃষ্ঠার_আকার', 'পৃষ্ঠারআকার', 'PAGESIZE' ],
 	'plural'                  => [ 0, 'বহুবচন:', 'PLURAL:' ],

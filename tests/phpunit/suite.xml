@@ -15,7 +15,14 @@
 	failOnRisky="true"
 	beStrictAboutTestsThatDoNotTestAnything="true"
 	beStrictAboutOutputDuringTests="true"
-	verbose="false">
+	verbose="false"
+	printerClass="MediaWikiPHPUnitResultPrinter"
+	stderr="true">
+	<!-- Output only to stderr to avoid "Headers already sent" problems -->
+	<php>
+		<ini name="memory_limit" value="-1" />
+		<ini name="max_execution_time" value="0" />
+	</php>
 	<testsuites>
 		<testsuite name="includes">
 			<directory>includes</directory>

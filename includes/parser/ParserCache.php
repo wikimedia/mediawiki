@@ -122,18 +122,6 @@ class ParserCache {
 	private $metadataProcCache;
 
 	/**
-	 * @note Temporary feature flag, remove before 1.36 is released.
-	 * @var bool
-	 */
-	private $writeJson = false;
-
-	/**
-	 * @note Temporary feature flag, remove before 1.36 is released.
-	 * @var bool
-	 */
-	private $readJson = false;
-
-	/**
 	 * Setup a cache pathway with a given back-end storage mechanism.
 	 *
 	 * This class use an invalidation strategy that is compatible with
@@ -148,7 +136,6 @@ class ParserCache {
 	 * @param LoggerInterface $logger
 	 * @param TitleFactory $titleFactory
 	 * @param WikiPageFactory $wikiPageFactory
-	 * @param bool $useJson Temporary feature flag, remove before 1.36 is released.
 	 */
 	public function __construct(
 		string $name,
@@ -159,8 +146,7 @@ class ParserCache {
 		IBufferingStatsdDataFactory $stats,
 		LoggerInterface $logger,
 		TitleFactory $titleFactory,
-		WikiPageFactory $wikiPageFactory,
-		$useJson = false
+		WikiPageFactory $wikiPageFactory
 	) {
 		$this->name = $name;
 		$this->cache = $cache;
@@ -171,8 +157,6 @@ class ParserCache {
 		$this->logger = $logger;
 		$this->titleFactory = $titleFactory;
 		$this->wikiPageFactory = $wikiPageFactory;
-		$this->readJson = $useJson;
-		$this->writeJson = $useJson;
 		$this->metadataProcCache = new HashBagOStuff( [ 'maxKeys' => 2 ] );
 	}
 
@@ -252,7 +236,7 @@ class ParserCache {
 		// NOTE: Support for reading string values from the cache must be
 		//       deployed a while before starting to write JSON to the cache,
 		//       in case we have to revert either change.
-		if ( is_string( $metadata ) && $this->readJson ) {
+		if ( is_string( $metadata ) ) {
 			$metadata = $this->restoreFromJson( $metadata, $pageKey, CacheTime::class );
 		}
 
@@ -369,7 +353,7 @@ class ParserCache {
 		// NOTE: Support for reading string values from the cache must be
 		//       deployed a while before starting to write JSON to the cache,
 		//       in case we have to revert either change.
-		if ( is_string( $value ) && $this->readJson ) {
+		if ( is_string( $value ) ) {
 			$value = $this->restoreFromJson( $value, $parserOutputKey, ParserOutput::class );
 		}
 
@@ -446,6 +430,15 @@ class ParserCache {
 		$cacheTime = $cacheTime ?: wfTimestampNow();
 		$revId = $revId ?: $page->getLatest( PageRecord::LOCAL );
 
+		if ( !$revId ) {
+			$this->logger->debug(
+				'Parser output cannot be saved if the revision ID is not known',
+				[ 'name' => $this->name ]
+			);
+			$this->incrementStats( $page, 'save.norevid' );
+			return;
+		}
+
 		$metadata = new CacheTime;
 		$metadata->recordOptions( $parserOutput->getUsedOptions() );
 		$metadata->updateCacheExpiry( $expire );
@@ -464,23 +457,12 @@ class ParserCache {
 		$msg = "Saved in parser cache with key $parserOutputKey" .
 			" and timestamp $cacheTime" .
 			" and revision id $revId.";
-		if ( $this->writeJson ) {
-			$msg .= " Serialized with JSON.";
-		} else {
-			$msg .= " Serialized with PHP.";
-		}
 		$parserOutput->addCacheMessage( $msg );
 
 		$pageKey = $this->makeMetadataKey( $page );
 
-		if ( $this->writeJson ) {
-			$parserOutputData = $this->encodeAsJson( $parserOutput, $parserOutputKey );
-			$metadataData = $this->encodeAsJson( $metadata, $pageKey );
-		} else {
-			// rely on implicit PHP serialization in the cache
-			$parserOutputData = $parserOutput;
-			$metadataData = $metadata;
-		}
+		$parserOutputData = $this->convertForCache( $parserOutput, $parserOutputKey );
+		$metadataData = $this->convertForCache( $metadata, $pageKey );
 
 		if ( !$parserOutputData || !$metadataData ) {
 			$this->logger->warning(
@@ -505,6 +487,7 @@ class ParserCache {
 		$this->cache->set( $pageKey, $metadataData, $expire );
 
 		$title = $this->titleFactory->castFromPageIdentity( $page );
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 		$this->hookRunner->onParserCacheSaveComplete( $this, $parserOutput, $title, $popts, $revId );
 
 		$this->logger->debug( 'Saved in parser cache', [
@@ -585,17 +568,6 @@ class ParserCache {
 	}
 
 	/**
-	 * @note setter for temporary feature flags, for use in testing.
-	 * @internal
-	 * @param bool $readJson
-	 * @param bool $writeJson
-	 */
-	public function setJsonSupport( bool $readJson, bool $writeJson ): void {
-		$this->readJson = $readJson;
-		$this->writeJson = $writeJson;
-	}
-
-	/**
 	 * @param string $jsonData
 	 * @param string $key
 	 * @param string $expectedClass
@@ -621,7 +593,7 @@ class ParserCache {
 	 * @param string $key
 	 * @return string|null
 	 */
-	private function encodeAsJson( CacheTime $obj, string $key ) {
+	protected function convertForCache( CacheTime $obj, string $key ) {
 		try {
 			return $this->jsonCodec->serialize( $obj );
 		} catch ( InvalidArgumentException $e ) {

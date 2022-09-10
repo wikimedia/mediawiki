@@ -15,8 +15,7 @@ class SlotDiffRendererTest extends \MediaWikiIntegrationTestCase {
 		$oldContent, $newContent, $allowedClasses,
 		$expectedOldContent, $expectedNewContent, $expectedExceptionClass
 	) {
-		$slotDiffRenderer = $this->getMockBuilder( SlotDiffRenderer::class )
-			->getMock();
+		$slotDiffRenderer = $this->createMock( SlotDiffRenderer::class );
 		try {
 			// __call needs help deciding which parameter to take by reference
 			call_user_func_array( [ TestingAccessWrapper::newFromObject( $slotDiffRenderer ),

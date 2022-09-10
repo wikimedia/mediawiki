@@ -1,16 +1,15 @@
 <?php
+namespace MediaWiki\Languages\Data;
+
+use CrhConverter as Crh;
+
 /**
  * Exceptions Tables for Crimean Tatar (crh / Qırımtatarca)
  *
  * Adapted from https://crh.wikipedia.org/wiki/Qullan%C4%B1c%C4%B1:Don_Alessandro/Translit
  *
- * @file
+ * @ingroup Language
  */
-
-namespace MediaWiki\Languages\Data;
-
-use CrhConverter as Crh;
-
 class CrhExceptions {
 
 	private const WB = '\b'; # default word boundary; may be updated in the future
@@ -74,7 +73,9 @@ class CrhExceptions {
 			if ( !preg_match( '/\$[1-9]/', $WordA ) ) {
 				$A2B[ $prePat . $WordA . $postPat ] = $WordB;
 				if ( !$exactCase ) {
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable uc vars are set when used
 					$A2B[ $prePat . $ucWordA . $postPat ] = $ucWordB;
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable uc vars are set when used
 					$A2B[ $prePat . $ucA . $postPat ] = $ucB;
 				}
 			}
@@ -82,7 +83,9 @@ class CrhExceptions {
 			if ( !preg_match( '/\$[1-9]/', $WordB ) ) {
 				$B2A[ $prePat . $WordB . $postPat ] = $WordA;
 				if ( !$exactCase ) {
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable uc vars are set when used
 					$B2A[ $prePat . $ucWordB . $postPat ] = $ucWordA;
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable uc vars are set when used
 					$B2A[ $prePat . $ucB . $postPat ] = $ucA;
 				}
 			}
@@ -590,7 +593,7 @@ class CrhExceptions {
 			'/([' . Crh::C_CONS . '])Ё/u' => '$1Ö',
 
 			# остальные вхождения о, у, ё, ю
-			# other occurences of о, у, ё, ю
+			# other occurrences of о, у, ё, ю
 			'/Ё([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => 'YO$1',
 			'/Ю([' . Crh::C_UC . 'CĞÑQÖÜ])/u' => 'YU$1',
 

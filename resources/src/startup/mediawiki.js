@@ -11,10 +11,8 @@
 ( function () {
 	'use strict';
 
-	var mw, log,
-		con = window.console;
+	var con = window.console;
 
-	/* https://github.com/gajus/eslint-plugin-jsdoc/issues/806 */
 	/**
 	 * Log a message to window.console, if possible.
 	 *
@@ -30,11 +28,9 @@
 	 * @param {string} [data.module] Name of module which caused the error
 	 */
 	function logError( topic, data ) {
-		var msg,
-			e = data.exception;
-
 		if ( con.log ) {
-			msg = ( e ? 'Exception' : 'Error' ) +
+			var e = data.exception;
+			var msg = ( e ? 'Exception' : 'Error' ) +
 				' in ' + data.source +
 				( data.module ? ' in module ' + data.module : '' ) +
 				( e ? ':' : '.' );
@@ -48,7 +44,6 @@
 			}
 		}
 	}
-	/* eslint-enable jsdoc/valid-types */
 
 	/**
 	 * Create an object that can be read from or written to via methods that allow
@@ -78,12 +73,20 @@
 		 *  If no selection is passed, a new object with all key/values is returned.
 		 */
 		get: function ( selection, fallback ) {
-			var results, i;
-			fallback = arguments.length > 1 ? fallback : null;
+			if ( arguments.length < 2 ) {
+				fallback = null;
+			}
 
+			if ( typeof selection === 'string' ) {
+				return selection in this.values ?
+					this.values[ selection ] :
+					fallback;
+			}
+
+			var results;
 			if ( Array.isArray( selection ) ) {
 				results = {};
-				for ( i = 0; i < selection.length; i++ ) {
+				for ( var i = 0; i < selection.length; i++ ) {
 					if ( typeof selection[ i ] === 'string' ) {
 						results[ selection[ i ] ] = selection[ i ] in this.values ?
 							this.values[ selection[ i ] ] :
@@ -93,16 +96,10 @@
 				return results;
 			}
 
-			if ( typeof selection === 'string' ) {
-				return selection in this.values ?
-					this.values[ selection ] :
-					fallback;
-			}
-
 			if ( selection === undefined ) {
 				results = {};
-				for ( i in this.values ) {
-					results[ i ] = this.values[ i ];
+				for ( var key in this.values ) {
+					results[ key ] = this.values[ key ];
 				}
 				return results;
 			}
@@ -128,8 +125,8 @@
 				}
 			} else if ( typeof selection === 'object' ) {
 				// Set multiple keys
-				for ( var s in selection ) {
-					this.values[ s ] = selection[ s ];
+				for ( var key in selection ) {
+					this.values[ key ] = selection[ key ];
 				}
 				return true;
 			}
@@ -158,7 +155,7 @@
 	 * @member mw
 	 * @param {...string} msg Messages to output to console.
 	 */
-	log = function () {
+	var log = function () {
 		$CODE.consoleLog();
 	};
 
@@ -183,7 +180,7 @@
 	/**
 	 * @class mw
 	 */
-	mw = {
+	var mw = {
 
 		/**
 		 * Get the current time, measured in milliseconds since January 1, 1970 (UTC).
@@ -195,10 +192,10 @@
 		 * @return {number} Current time
 		 */
 		now: function () {
-			// Optimisation: Make startup initialisation faster by defining the
-			// shortcut on first call, not at module definition.
-			var perf = window.performance,
-				navStart = perf && perf.timing && perf.timing.navigationStart;
+			// Optimisation: Cache and re-use the chosen implementation.
+			// Optimisation: Avoid startup overhead by re-defining on first call instead of IIFE.
+			var perf = window.performance;
+			var navStart = perf && perf.timing && perf.timing.navigationStart;
 
 			// Define the relevant shortcut
 			mw.now = navStart && perf.now ?

@@ -21,7 +21,6 @@
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
-use Psr\Log\LoggerInterface;
 
 /**
  * PoolCounter protected work wrapping RenderedRevision->getRevisionParserOutput.
@@ -36,26 +35,14 @@ class PoolWorkArticleView extends PoolCounterWork {
 	/** @var ParserOptions */
 	protected $parserOptions;
 
-	/** @var RevisionRecord|null */
-	protected $revision = null;
+	/** @var RevisionRecord */
+	protected $revision;
 
 	/** @var RevisionRenderer */
-	protected $renderer = null;
-
-	/** @var ParserOutput|bool */
-	protected $parserOutput = false;
-
-	/** @var bool */
-	protected $isDirty = false;
-
-	/** @var bool */
-	protected $isFast = false;
-
-	/** @var Status|bool */
-	protected $error = false;
+	private $renderer;
 
 	/** @var LoggerSpi */
-	private $loggerSpi;
+	protected $loggerSpi;
 
 	/**
 	 * @param string $workKey
@@ -79,68 +66,35 @@ class PoolWorkArticleView extends PoolCounterWork {
 	}
 
 	/**
-	 * Get the ParserOutput from this object, or false in case of failure
-	 *
-	 * @return ParserOutput|bool
-	 */
-	public function getParserOutput() {
-		return $this->parserOutput;
-	}
-
-	/**
-	 * Get whether the ParserOutput is a dirty one (i.e. expired)
-	 *
-	 * @return bool
-	 */
-	public function getIsDirty() {
-		return $this->isDirty;
-	}
-
-	/**
-	 * Get whether the ParserOutput was retrieved in fast stale mode
-	 *
-	 * @return bool
-	 */
-	public function getIsFastStale() {
-		return $this->isFast;
-	}
-
-	/**
-	 * Get a Status object in case of error or false otherwise
-	 *
-	 * @return Status|bool
-	 */
-	public function getError() {
-		return $this->error;
-	}
-
-	/**
-	 * @return bool
+	 * @return Status
 	 */
 	public function doWork() {
+		return $this->renderRevision();
+	}
+
+	/**
+	 * @return Status with the value being a ParserOutput or null
+	 */
+	public function renderRevision(): Status {
 		$renderedRevision = $this->renderer->getRenderedRevision(
 			$this->revision,
 			$this->parserOptions,
 			null,
 			[ 'audience' => RevisionRecord::RAW ]
 		);
-
 		if ( !$renderedRevision ) {
 			// audience check failed
-			return false;
+			return Status::newFatal( 'pool-errorunknown' );
 		}
 
-		// Reduce effects of race conditions for slow parses (T48014)
-		$cacheTime = wfTimestampNow();
-
 		$time = -microtime( true );
-		$this->parserOutput = $renderedRevision->getRevisionParserOutput();
+		$parserOutput = $renderedRevision->getRevisionParserOutput();
 		$time += microtime( true );
 
 		// Timing hack
 		if ( $time > 3 ) {
 			// TODO: Use Parser's logger (once it has one)
-			$logger = $this->getLogger( 'slow-parse' );
+			$logger = $this->loggerSpi->getLogger( 'slow-parse' );
 			$logger->info( 'Parsing {title} was slow, took {time} seconds', [
 				'time' => number_format( $time, 2 ),
 				'title' => (string)$this->revision->getPageAsLinkTarget(),
@@ -148,51 +102,15 @@ class PoolWorkArticleView extends PoolCounterWork {
 			] );
 		}
 
-		if ( $this->cacheable && $this->parserOutput->isCacheable() ) {
-			$this->saveInCache( $this->parserOutput, $cacheTime );
-		}
-
-		$this->afterWork( $this->parserOutput );
-
-		return true;
-	}
-
-	/**
-	 * Place the output in the cache from which getCachedWork() will retrieve it.
-	 * Will be called before saveInCache().
-	 *
-	 * @param ParserOutput $output
-	 * @param string $cacheTime
-	 */
-	protected function saveInCache( ParserOutput $output, string $cacheTime ) {
-		// noop
-	}
-
-	/**
-	 * Subclasses may implement this to perform some action after the work of rendering is done.
-	 * Will be called after saveInCache().
-	 *
-	 * @param ParserOutput $output
-	 */
-	protected function afterWork( ParserOutput $output ) {
-		// noop
+		return Status::newGood( $parserOutput );
 	}
 
 	/**
 	 * @param Status $status
-	 * @return bool
+	 * @return Status
 	 */
 	public function error( $status ) {
-		$this->error = $status;
-		return false;
+		return $status;
 	}
 
-	/**
-	 * @param string $name
-	 *
-	 * @return LoggerInterface
-	 */
-	protected function getLogger( $name = 'PoolWorkArticleView' ): LoggerInterface {
-		return $this->loggerSpi->getLogger( $name );
-	}
 }

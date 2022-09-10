@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
@@ -7,7 +8,6 @@ use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
-use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * @group Database
@@ -376,7 +376,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideIsInRCLifespan
 	 */
 	public function testIsInRCLifespan( $maxAge, $offset, $tolerance, $expected ) {
-		$this->setMwGlobals( 'wgRCMaxAge', $maxAge );
+		$this->overrideConfigValue( MainConfigNames::RCMaxAge, $maxAge );
 		// Calculate this here instead of the data provider because the provider
 		// is expanded early on and the full test suite may take longer than 100 minutes
 		// when coverage is enabled.
@@ -410,15 +410,6 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $rcType, RecentChange::parseToRCType( $type ) );
 	}
 
-	/**
-	 * @return MockObject|PageProps
-	 */
-	private function getMockPageProps() {
-		return $this->getMockBuilder( PageProps::class )
-			->disableOriginalConstructor()
-			->getMock();
-	}
-
 	public function provideCategoryContent() {
 		return [
 			[ true ],
@@ -431,9 +422,9 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @covers RecentChange::newForCategorization
 	 */
 	public function testHiddenCategoryChange( $isHidden ) {
-		$categoryTitle = Title::newFromText( 'CategoryPage', NS_CATEGORY );
+		$categoryTitle = Title::makeTitle( NS_CATEGORY, 'CategoryPage' );
 
-		$pageProps = $this->getMockPageProps();
+		$pageProps = $this->createMock( PageProps::class );
 		$pageProps->expects( $this->once() )
 			->method( 'getProperties' )
 			->with( $categoryTitle, 'hiddencat' )
@@ -537,9 +528,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @covers RecentChange::doMarkPatrolled
 	 */
 	public function testDoMarkPatrolledPermissions_NoRcPatrol() {
-		$this->setMwGlobals( [
-			'wgUseRCPatrol' => false
-		] );
+		$this->overrideConfigValue( MainConfigNames::UseRCPatrol, false );
 		$rc = $this->getDummyEditRecentChange();
 		$errors = $rc->doMarkPatrolled( $this->mockRegisteredUltimateAuthority() );
 		$this->assertContains( [ 'rcpatroldisabled' ], $errors );

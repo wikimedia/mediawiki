@@ -1,14 +1,18 @@
 <?php
 
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\ResourceLoader as RL;
+use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
+use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -79,9 +83,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'Sitename' => false,
 		] );
 		$outputPage->setTitle( Title::makeTitle( NS_MAIN, 'Test' ) );
-		$this->setMwGlobals( [
-			'wgScript' => '/w/index.php',
-		] );
+		$this->overrideConfigValue( MainConfigNames::Script, '/w/index.php' );
 		return $outputPage;
 	}
 
@@ -401,7 +403,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @covers OutputPage::addParserOutput
 	 */
 	public function testCSPParserOutput() {
-		$this->setMwGlobals( [ 'wgCSPHeader' => [] ] );
+		$this->overrideConfigValue( MainConfigNames::CSPHeader, [] );
 		foreach ( [ 'Default', 'Script', 'Style' ] as $type ) {
 			$op = $this->newInstance();
 			$ltype = strtolower( $type );
@@ -1252,21 +1254,19 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	private function setupCategoryTests(
 		array $fakeResults, callable $variantLinkCallback = null
 	): OutputPage {
-		$this->setMwGlobals( 'wgUsePigLatinVariant', true );
+		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 
 		if ( $variantLinkCallback ) {
 			$mockContLang = $this->createMock( Language::class );
 			$mockContLang
 				->method( 'convertHtml' )
-				->will( $this->returnCallback( static function ( $arg ) {
-					return $arg;
-				} ) );
+				->willReturnArgument( 0 );
 
 			$mockLanguageConverter = $this
 				->createMock( ILanguageConverter::class );
 			$mockLanguageConverter
 				->method( 'findVariantLink' )
-				->will( $this->returnCallback( $variantLinkCallback ) );
+				->willReturnCallback( $variantLinkCallback );
 
 			$languageConverterFactory = $this
 				->createMock( LanguageConverterFactory::class );
@@ -1289,7 +1289,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $title );
 
 		$op->method( 'addCategoryLinksToLBAndGetResult' )
-			->will( $this->returnCallback( static function ( array $categories ) use ( $fakeResults ) {
+			->willReturnCallback( static function ( array $categories ) use ( $fakeResults ) {
 				$return = [];
 				foreach ( $categories as $category => $unused ) {
 					if ( isset( $fakeResults[$category] ) ) {
@@ -1297,7 +1297,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 					}
 				}
 				return new FakeResultWrapper( $return );
-			} ) );
+			} );
 
 		$this->assertSame( [], $op->getCategories() );
 
@@ -1399,16 +1399,31 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( [ 'a' => 'w', 'b' => 'x', 'c' => 'z' ], $op->getIndicators() );
 
 		// Test with addParserOutputMetadata
-		$pOut1 = $this->createParserOutputStub( 'getIndicators', [ 'c' => 'u', 'd' => 'v' ] );
+		// Note that the indicators are wrapped.
+		$pOut1 = $this->createParserOutputStub( [
+			'getIndicators' => [ 'c' => 'u', 'd' => 'v' ],
+			'getWrapperDivClass' => 'wrapper1',
+		] );
 		$op->addParserOutputMetadata( $pOut1 );
-		$this->assertSame( [ 'a' => 'w', 'b' => 'x', 'c' => 'u', 'd' => 'v' ],
-			$op->getIndicators() );
+		$this->assertSame( [
+			'a' => 'w',
+			'b' => 'x',
+			'c' => '<div class="wrapper1">u</div>',
+			'd' => '<div class="wrapper1">v</div>',
+		], $op->getIndicators() );
 
 		// Test with addParserOutput
-		$pOut2 = $this->createParserOutputStub( 'getIndicators', [ 'a' => '!!!' ] );
+		$pOut2 = $this->createParserOutputStub( [
+			'getIndicators' => [ 'a' => '!!!' ],
+			'getWrapperDivClass' => 'wrapper2',
+		] );
 		$op->addParserOutput( $pOut2 );
-		$this->assertSame( [ 'a' => '!!!', 'b' => 'x', 'c' => 'u', 'd' => 'v' ],
-			$op->getIndicators() );
+		$this->assertSame( [
+			'a' => '<div class="wrapper2">!!!</div>',
+			'b' => 'x',
+			'c' => '<div class="wrapper1">u</div>',
+			'd' => '<div class="wrapper1">v</div>',
+		], $op->getIndicators() );
 	}
 
 	/**
@@ -1851,7 +1866,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		self::$parserOutputHookCalled = [];
 
-		$this->setMwGlobals( 'wgParserOutputHooks', [
+		$this->overrideConfigValue( MainConfigNames::ParserOutputHooks, [
 			'myhook' => function ( OutputPage $innerOp, ParserOutput $innerPOut, $data )
 			use ( $op, $pOut ) {
 				$this->assertSame( $op, $innerOp );
@@ -1862,7 +1877,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'yourhook' => [ $this, 'parserOutputHookCallback' ],
 			'theirhook' => [ __CLASS__, 'parserOutputHookCallbackStatic' ],
 			'uncalled' => function () {
-				$this->assertTrue( false );
+				$this->fail();
 			},
 		] );
 
@@ -2237,7 +2252,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		// We have to reset the cookies because getCacheVaryCookies may have already been called
 		TestingAccessWrapper::newFromClass( OutputPage::class )->cacheVaryCookies = null;
 
-		$this->setMwGlobals( 'wgCacheVaryCookies', [ 'cookie1' ] );
+		$this->overrideConfigValue( MainConfigNames::CacheVaryCookies, [ 'cookie1' ] );
 		$this->setTemporaryHook( 'GetCacheVaryCookies',
 			function ( $innerOP, &$cookies ) use ( $op, $expectedCookies ) {
 				$this->assertSame( $op, $innerOP );
@@ -2575,17 +2590,17 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * See ResourceLoaderClientHtmlTest for full coverage.
+	 * See ClientHtmlTest for full coverage.
 	 *
 	 * @dataProvider provideMakeResourceLoaderLink
 	 *
 	 * @covers OutputPage::makeResourceLoaderLink
 	 */
 	public function testMakeResourceLoaderLink( $args, $expectedHtml ) {
-		$this->setMwGlobals( [
-			'wgResourceLoaderDebug' => false,
-			'wgLoadScript' => 'http://127.0.0.1:8080/w/load.php',
-			'wgCSPReportOnlyHeader' => true,
+		$this->overrideConfigValues( [
+			MainConfigNames::ResourceLoaderDebug => false,
+			MainConfigNames::LoadScript => 'http://127.0.0.1:8080/w/load.php',
+			MainConfigNames::CSPReportOnlyHeader => true,
 		] );
 		$class = new ReflectionClass( OutputPage::class );
 		$method = $class->getMethod( 'makeResourceLoaderLink' );
@@ -2600,7 +2615,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$nonce->setAccessible( true );
 		$nonce->setValue( $out->getCSP(), 'secret' );
 		$rl = $out->getResourceLoader();
-		$rl->setMessageBlobStore( $this->createMock( MessageBlobStore::class ) );
+		$rl->setMessageBlobStore( $this->createMock( RL\MessageBlobStore::class ) );
 		$rl->setDependencyStore( $this->createMock( KeyValueDependencyStore::class ) );
 		$rl->register( [
 			'test.foo' => [
@@ -2649,27 +2664,27 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		return [
 			// Single only=scripts load
 			[
-				[ 'test.foo', ResourceLoaderModule::TYPE_SCRIPTS ],
+				[ 'test.foo', RL\Module::TYPE_SCRIPTS ],
 				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.foo\u0026only=scripts");'
 					. "});</script>"
 			],
 			// Multiple only=styles load
 			[
-				[ [ 'test.baz', 'test.foo', 'test.bar' ], ResourceLoaderModule::TYPE_STYLES ],
+				[ [ 'test.baz', 'test.foo', 'test.bar' ], RL\Module::TYPE_STYLES ],
 
 				'<link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?lang=en&amp;modules=test.bar%2Cbaz%2Cfoo&amp;only=styles"/>'
 			],
 			// Private embed (only=scripts)
 			[
-				[ 'test.quux', ResourceLoaderModule::TYPE_SCRIPTS ],
+				[ 'test.quux', RL\Module::TYPE_SCRIPTS ],
 				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
 					. "mw.test.baz({token:123});\nmw.loader.state({\"test.quux\":\"ready\"});"
 					. "});</script>"
 			],
 			// Load private module (combined)
 			[
-				[ 'test.quux', ResourceLoaderModule::TYPE_COMBINED ],
+				[ 'test.quux', RL\Module::TYPE_COMBINED ],
 				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
 					. "mw.loader.implement(\"test.quux@1ev0i\",function($,jQuery,require,module){"
 					. "mw.test.baz({token:123});},{\"css\":[\".mw-icon{transition:none}"
@@ -2677,17 +2692,17 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			],
 			// Load no modules
 			[
-				[ [], ResourceLoaderModule::TYPE_COMBINED ],
+				[ [], RL\Module::TYPE_COMBINED ],
 				'',
 			],
 			// noscript group
 			[
-				[ 'test.noscript', ResourceLoaderModule::TYPE_STYLES ],
+				[ 'test.noscript', RL\Module::TYPE_STYLES ],
 				'<noscript><link rel="stylesheet" href="http://127.0.0.1:8080/w/load.php?lang=en&amp;modules=test.noscript&amp;only=styles"/></noscript>'
 			],
 			// Load two modules in separate groups
 			[
-				[ [ 'test.group.foo', 'test.group.bar' ], ResourceLoaderModule::TYPE_COMBINED ],
+				[ [ 'test.group.foo', 'test.group.bar' ], RL\Module::TYPE_COMBINED ],
 				"<script nonce=\"secret\">(RLQ=window.RLQ||[]).push(function(){"
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.group.bar");'
 					. 'mw.loader.load("http://127.0.0.1:8080/w/load.php?lang=en\u0026modules=test.group.foo");'
@@ -2703,12 +2718,12 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @covers OutputPage::buildExemptModules
 	 */
 	public function testBuildExemptModules( array $exemptStyleModules, $expect ) {
-		$this->setMwGlobals( [
-			'wgResourceLoaderDebug' => false,
-			'wgLoadScript' => '/w/load.php',
+		$this->overrideConfigValues( [
+			MainConfigNames::ResourceLoaderDebug => false,
+			MainConfigNames::LoadScript => '/w/load.php',
 			// Stub wgCacheEpoch as it influences getVersionHash used for the
 			// urls in the expected HTML
-			'wgCacheEpoch' => '20140101000000',
+			MainConfigNames::CacheEpoch => '20140101000000',
 		] );
 
 		// Set up stubs
@@ -2724,7 +2739,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			->willReturn( [] );
 		/** @var OutputPage $op */
 		$rl = $op->getResourceLoader();
-		$rl->setMessageBlobStore( $this->createMock( MessageBlobStore::class ) );
+		$rl->setMessageBlobStore( $this->createMock( RL\MessageBlobStore::class ) );
 
 		// Register custom modules
 		$rl->register( [
@@ -2763,7 +2778,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				'exemptStyleModules' => [ 'site' => [ 'site.styles' ], 'user' => [ 'user.styles' ] ],
 				'<meta name="ResourceLoaderDynamicStyles" content=""/>' . "\n" .
 				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=tgzos"/>',
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=94mvi"/>',
 			],
 			'custom modules' => [
 				'exemptStyleModules' => [
@@ -2774,7 +2789,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=example.site.a%2Cb&amp;only=styles"/>' . "\n" .
 				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=site.styles&amp;only=styles"/>' . "\n" .
 				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=example.user&amp;only=styles&amp;version={blankCombi}"/>' . "\n" .
-				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=tgzos"/>',
+				'<link rel="stylesheet" href="/w/load.php?lang=en&amp;modules=user.styles&amp;only=styles&amp;version=94mvi"/>',
 			],
 		];
 		// phpcs:enable
@@ -2797,10 +2812,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		}
 		$this->setMwGlobals( 'IP', $baseDir );
 		$conf = new HashConfig( [
-			'ResourceBasePath' => $basePath,
-			'UploadDirectory' => $uploadDir,
-			'UploadPath' => $uploadPath,
-			'BaseDirectory' => $baseDir
+			MainConfigNames::ResourceBasePath => $basePath,
+			MainConfigNames::UploadDirectory => $uploadDir,
+			MainConfigNames::UploadPath => $uploadPath,
+			MainConfigNames::BaseDirectory => $baseDir
 		] );
 
 		// Some of these paths don't exist and will cause warnings
@@ -2992,12 +3007,11 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider providePreloadLinkHeaders
-	 * @covers ResourceLoaderSkinModule::getPreloadLinks
-	 * @covers ResourceLoaderSkinModule::getLogoPreloadlinks
+	 * @covers \MediaWiki\ResourceLoader\SkinModule::getPreloadLinks
 	 */
 	public function testPreloadLinkHeaders( $config, $result ) {
-		$ctx = $this->createMock( ResourceLoaderContext::class );
-		$module = new ResourceLoaderSkinModule();
+		$ctx = $this->createMock( RL\Context::class );
+		$module = new RL\SkinModule();
 		$module->setConfig( new HashConfig( $config + ResourceLoaderTestCase::getSettings() ) );
 
 		$this->assertEquals( [ $result ], $module->getHeaders( $ctx ) );

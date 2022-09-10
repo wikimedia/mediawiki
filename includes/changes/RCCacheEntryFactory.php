@@ -282,7 +282,11 @@ class RCCacheEntryFactory {
 	 */
 	private function getUserLink( RecentChange $cacheEntry ) {
 		if ( ChangesList::isDeleted( $cacheEntry, RevisionRecord::DELETED_USER ) ) {
-			$userLink = ' <span class="history-deleted">' .
+			$deletedClass = 'history-deleted';
+			if ( ChangesList::isDeleted( $cacheEntry, RevisionRecord::DELETED_RESTRICTED ) ) {
+				$deletedClass .= ' mw-history-suppressed';
+			}
+			$userLink = ' <span class="' . $deletedClass . '">' .
 				$this->context->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
 			$userLink = Linker::userLink(

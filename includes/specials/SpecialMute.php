@@ -19,6 +19,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MainConfigNames;
 use MediaWiki\Preferences\MultiUsernameFilter;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
@@ -201,8 +202,8 @@ class SpecialMute extends FormSpecialPage {
 		$config = $this->getConfig();
 		$fields = [];
 		if (
-			$config->get( 'EnableUserEmailMuteList' ) &&
-			$config->get( 'EnableUserEmail' ) &&
+			$config->get( MainConfigNames::EnableUserEmailMuteList ) &&
+			$config->get( MainConfigNames::EnableUserEmail ) &&
 			$this->getUser()->getEmailAuthenticationTimestamp()
 		) {
 			$fields['email-blacklist'] = [
@@ -249,17 +250,6 @@ class SpecialMute extends FormSpecialPage {
 	public function isTargetMuted( $userOption ) {
 		$muteList = $this->getMuteList( $userOption );
 		return in_array( $this->targetCentralId, $muteList, true );
-	}
-
-	/**
-	 * @deprecated since 1.35, use isTargetMuted
-	 *
-	 * @param string $userOption
-	 * @return bool
-	 */
-	public function isTargetBlacklisted( $userOption ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->isTargetMuted( $userOption );
 	}
 
 	/**

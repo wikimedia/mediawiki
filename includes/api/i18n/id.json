@@ -8,8 +8,8 @@
 			"Presidenvolksraad",
 			"Rachmat.Wahidi",
 			"Rachmat04",
-			"WongKentir",
-			"Veracious"
+			"Veracious",
+			"WongKentir"
 		]
 	},
 	"apihelp-main-param-action": "Tindakan manakah yang akan dilakukan.",
@@ -96,6 +96,7 @@
 	"apihelp-help-example-recursive": "Semua bantuan dalam satu halaman.",
 	"apihelp-help-example-help": "Bantuan untuk modul bantuan.",
 	"apihelp-import-param-xml": "Berkas XML yang diunggah.",
+	"apihelp-login-param-name": "Nama pengguna.",
 	"apihelp-login-param-password": "Kata sandi.",
 	"apihelp-login-param-domain": "Domain (opsional).",
 	"apihelp-login-param-token": "Token login diperoleh pada permintaan pertama.",

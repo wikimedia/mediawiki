@@ -1,7 +1,5 @@
 <?php
 /**
- * Local file in the wiki's own database.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,15 +16,14 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup FileAbstraction
  */
 
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Storage\BlobStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\Blob;
@@ -35,7 +32,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * Class to represent a local file in the wiki's own database
+ * Local file in the wiki's own database.
  *
  * Provides methods to retrieve paths (physical, logical, URL),
  * to generate image thumbnails or for uploading.
@@ -177,6 +174,9 @@ class LocalFile extends File {
 	/** @var bool True if file is not present in file system. Not to be cached in memcached */
 	private $missing;
 
+	/** @var MetadataStorageHelper */
+	private $metadataStorageHelper;
+
 	// @note: higher than IDBAccessObject constants
 	private const LOAD_ALL = 16; // integer; load all the lazy fields too (like metadata)
 
@@ -191,7 +191,7 @@ class LocalFile extends File {
 	 * @stable to override
 	 *
 	 * @param Title $title
-	 * @param FileRepo $repo
+	 * @param LocalRepo $repo
 	 * @param null $unused
 	 *
 	 * @return static
@@ -207,7 +207,7 @@ class LocalFile extends File {
 	 * @stable to override
 	 *
 	 * @param stdClass $row
-	 * @param FileRepo $repo
+	 * @param LocalRepo $repo
 	 *
 	 * @return static
 	 */
@@ -263,9 +263,10 @@ class LocalFile extends File {
 	 * @param string[] $options
 	 *   - omit-lazy: Omit fields that are lazily cached.
 	 * @return array[] With three keys:
-	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
-	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
-	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()` or `SelectQueryBuilder::tables`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()` or `SelectQueryBuilder::fields`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()` or `SelectQueryBuilder::joinConds`
+	 * @phan-return array{tables:string[],fields:string[],joins:array}
 	 */
 	public static function getQueryInfo( array $options = [] ) {
 		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'img_description' );
@@ -313,10 +314,11 @@ class LocalFile extends File {
 	 * @stable to call
 	 *
 	 * @param Title $title
-	 * @param FileRepo $repo
+	 * @param LocalRepo $repo
 	 */
 	public function __construct( $title, $repo ) {
 		parent::__construct( $title, $repo );
+		$this->metadataStorageHelper = new MetadataStorageHelper( $repo );
 
 		$this->assertRepoDefined();
 		$this->assertTitleDefined();
@@ -744,7 +746,7 @@ class LocalFile extends File {
 	 * @internal
 	 */
 	public function maybeUpgradeRow() {
-		if ( wfReadOnly() || $this->upgrading ) {
+		if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() || $this->upgrading ) {
 			return;
 		}
 
@@ -853,7 +855,7 @@ class LocalFile extends File {
 	 * format.
 	 */
 	protected function reserializeMetadata() {
-		if ( wfReadOnly() ) {
+		if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 			return;
 		}
 		$dbw = $this->repo->getPrimaryDB();
@@ -1093,67 +1095,19 @@ class LocalFile extends File {
 				$addresses[$itemName] = $this->unloadedMetadataBlobs[$itemName];
 			}
 		}
+
 		if ( $addresses ) {
-			$blobStore = $this->repo->getBlobStore();
-			if ( !$blobStore ) {
-				LoggerFactory::getInstance( 'LocalFile' )->warning(
-					"Unable to load metadata: repo has no blob store" );
-				return $result;
-			}
-			$status = $blobStore->getBlobBatch( $addresses );
-			if ( !$status->isGood() ) {
-				$msg = Status::wrap( $status )->getWikiText(
-					false, false, 'en' );
-				LoggerFactory::getInstance( 'LocalFile' )->warning(
-					"Error loading metadata from BlobStore: $msg" );
-			}
+			$resultFromBlob = $this->metadataStorageHelper->getMetadataFromBlobStore( $addresses );
 			foreach ( $addresses as $itemName => $address ) {
 				unset( $this->unloadedMetadataBlobs[$itemName] );
-				$json = $status->getValue()[$address] ?? null;
-				if ( $json !== null ) {
-					$value = $this->jsonDecode( $json );
+				$value = $resultFromBlob[$itemName] ?? null;
+				if ( $value !== null ) {
 					$result[$itemName] = $value;
 					$this->metadataArray[$itemName] = $value;
 				}
 			}
 		}
 		return $result;
-	}
-
-	/**
-	 * Do JSON encoding with local flags. Throw an exception if the data cannot be
-	 * serialized.
-	 *
-	 * @throws MWException
-	 * @param mixed $data
-	 * @return string
-	 */
-	private function jsonEncode( $data ): string {
-		$s = json_encode( $data,
-			JSON_INVALID_UTF8_IGNORE |
-			JSON_UNESCAPED_SLASHES |
-			JSON_UNESCAPED_UNICODE );
-		if ( $s === false ) {
-			throw new MWException( __METHOD__ . ': metadata is not JSON-serializable ' .
-				'(type = ' . $this->getMimeType() . ')' );
-		}
-		return $s;
-	}
-
-	/**
-	 * Do JSON decoding with local flags.
-	 *
-	 * This doesn't use JsonCodec because JsonCodec can construct objects,
-	 * which we don't want.
-	 *
-	 * Does not throw. Returns false on failure.
-	 *
-	 * @param string $s
-	 * @return mixed The decoded value, or false on failure
-	 */
-	private function jsonDecode( string $s ) {
-		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-		return @json_decode( $s, true, 512, JSON_INVALID_UTF8_IGNORE );
 	}
 
 	/**
@@ -1199,42 +1153,7 @@ class LocalFile extends File {
 			$envelope['blobs'] = $this->metadataBlobs;
 		}
 
-		// Try encoding
-		$s = $this->jsonEncode( $envelope );
-
-		// Decide whether to try splitting the metadata.
-		// Return early if it's not going to happen.
-		if ( !$this->repo->isSplitMetadataEnabled()
-			|| !$this->getHandler()
-			|| !$this->getHandler()->useSplitMetadata()
-		) {
-			return $s;
-		}
-		$threshold = $this->repo->getSplitMetadataThreshold();
-		if ( !$threshold || strlen( $s ) <= $threshold ) {
-			return $s;
-		}
-		$blobStore = $this->repo->getBlobStore();
-		if ( !$blobStore ) {
-			return $s;
-		}
-
-		// The data as a whole is above the item threshold. Look for
-		// large items that can be split out.
-		$blobAddresses = [];
-		foreach ( $envelope['data'] as $name => $value ) {
-			$encoded = $this->jsonEncode( $value );
-			if ( strlen( $encoded ) > $threshold ) {
-				$blobAddresses[$name] = $blobStore->storeBlob(
-					$encoded,
-					[ BlobStore::IMAGE_HINT => $this->getName() ]
-				);
-			}
-		}
-		// Remove any items that were split out
-		$envelope['data'] = array_diff_key( $envelope['data'], $blobAddresses );
-		$envelope['blobs'] = $blobAddresses;
-		$s = $this->jsonEncode( $envelope );
+		list( $s, $blobAddresses ) = $this->metadataStorageHelper->getJsonMetadata( $this, $envelope );
 
 		// Repeated calls to this function should not keep inserting more blobs
 		$this->metadataBlobs += $blobAddresses;
@@ -1255,7 +1174,7 @@ class LocalFile extends File {
 		$threshold = $this->repo->getSplitMetadataThreshold();
 		$directItems = array_diff_key( $this->metadataArray, $this->metadataBlobs );
 		foreach ( $directItems as $value ) {
-			if ( strlen( $this->jsonEncode( $value ) ) > $threshold ) {
+			if ( strlen( $this->metadataStorageHelper->jsonEncode( $value ) ) > $threshold ) {
 				return true;
 			}
 		}
@@ -1292,7 +1211,7 @@ class LocalFile extends File {
 			return;
 		}
 		if ( $metadataString[0] === '{' ) {
-			$envelope = $this->jsonDecode( $metadataString );
+			$envelope = $this->metadataStorageHelper->jsonDecode( $metadataString );
 			if ( !$envelope ) {
 				// Legacy error encoding
 				$this->metadataArray = [ '_error' => $metadataString ];
@@ -1526,7 +1445,7 @@ class LocalFile extends File {
 	 */
 	public function prerenderThumbnails() {
 		$uploadThumbnailRenderMap = MediaWikiServices::getInstance()
-			->getMainConfig()->get( 'UploadThumbnailRenderMap' );
+			->getMainConfig()->get( MainConfigNames::UploadThumbnailRenderMap );
 
 		$jobs = [];
 
@@ -2002,7 +1921,11 @@ class LocalFile extends File {
 
 		$descTitle = $this->getTitle();
 		$descId = $descTitle->getArticleID();
-		$wikiPage = new WikiFilePage( $descTitle );
+		$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $descTitle );
+		if ( !$wikiPage instanceof WikiFilePage ) {
+			throw new MWException( 'Cannot instance WikiFilePage for ' . $this->getName()
+				. ', got instance of ' . get_class( $wikiPage ) );
+		}
 		$wikiPage->setFile( $this );
 
 		// Determine log action. If reupload is done by reverting, use a special log_action.

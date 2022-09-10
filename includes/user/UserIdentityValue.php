@@ -141,7 +141,7 @@ class UserIdentityValue implements UserIdentity {
 	 *
 	 */
 	public function getId( $wikiId = self::LOCAL ): int {
-		$this->deprecateInvalidCrossWiki( $wikiId, '1.36' );
+		$this->assertWiki( $wikiId );
 		return $this->id;
 	}
 

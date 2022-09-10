@@ -1,12 +1,19 @@
 <?php
 
 class TestFileEditor {
+	/** @var string[] */
 	private $lines;
+	/** @var int */
 	private $numLines;
+	/** @var array */
 	private $deletions;
+	/** @var array */
 	private $changes;
+	/** @var int */
 	private $pos = 0;
+	/** @var callable|false */
 	private $warningCallback;
+	/** @var string */
 	private $result = '';
 
 	public static function edit( $text, array $deletions, array $changes, $warningCallback = null ) {

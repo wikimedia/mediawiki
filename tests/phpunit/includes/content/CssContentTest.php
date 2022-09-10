@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MainConfigNames;
+
 /**
  * @group ContentHandler
  * @group Database
@@ -10,39 +12,16 @@ class CssContentTest extends TextContentTest {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgTextModelsToParse' => [
+		$this->overrideConfigValue(
+			MainConfigNames::TextModelsToParse,
+			[
 				CONTENT_MODEL_CSS,
 			]
-		] );
+		);
 	}
 
 	public function newContent( $text ) {
 		return new CssContent( $text );
-	}
-
-	public static function dataGetParserOutput() {
-		return [
-			[
-				'MediaWiki:Test.css',
-				null,
-				"hello <world>\n",
-				"<pre class=\"mw-code mw-css\" dir=\"ltr\">\nhello &lt;world>\n\n</pre>"
-			],
-			[
-				'MediaWiki:Test.css',
-				null,
-				"/* hello [[world]] */\n",
-				"<pre class=\"mw-code mw-css\" dir=\"ltr\">\n/* hello [[world]] */\n\n</pre>",
-				[
-					'Links' => [
-						[ 'World' => 0 ]
-					]
-				]
-			],
-
-			// TODO: more...?
-		];
 	}
 
 	// XXX: currently, preSaveTransform is applied to styles. this may change or become optional.
@@ -95,10 +74,10 @@ class CssContentTest extends TextContentTest {
 	 * @dataProvider provideGetRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $text ) {
-		$this->setMwGlobals( [
-			'wgServer' => '//example.org',
-			'wgScriptPath' => '/w',
-			'wgScript' => '/w/index.php',
+		$this->overrideConfigValues( [
+			MainConfigNames::Server => '//example.org',
+			MainConfigNames::ScriptPath => '/w',
+			MainConfigNames::Script => '/w/index.php',
 		] );
 		$content = new CssContent( $text );
 		$target = $content->getRedirectTarget();

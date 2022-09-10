@@ -4,6 +4,7 @@
 			"Aefgh39622",
 			"Afaz",
 			"Hzy980512",
+			"MathXplore",
 			"Omotecho",
 			"Shirayuki"
 		]
@@ -44,5 +45,6 @@
 	"rest-update-cannot-create-page": "ページ「$1」が既に存在しているため、作成できません。既存のページを更新するには、リクエストボディにある「latest」の構造にベースとなる版を提供してください。",
 	"rest-extraneous-csrf-token": "外来の CSRF トークンを検出しました。OAuth のような CSRF 攻撃を防ぐ認証メカニズムを利用している場合は、CSRF トークンを使用することができません。",
 	"rest-cannot-load-file": "タイトル「$1」のファイルをロードできません。",
-	"rest-cross-origin-anon-write": "匿名のオリジン間書き込みリクエストは許可されません"
+	"rest-cross-origin-anon-write": "匿名のオリジン間書き込みリクエストは許可されません",
+	"rest-badtoken": "与えられたCSRFトークンは無効です"
 }

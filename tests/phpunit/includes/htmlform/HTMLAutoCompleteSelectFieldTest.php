@@ -22,25 +22,6 @@ class HTMLAutoCompleteSelectFieldTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Verify that the autocomplete options are correctly encoded as
-	 * the 'data-autocomplete' attribute of the field.
-	 *
-	 * @covers HTMLAutoCompleteSelectField::getAttributes
-	 */
-	public function testGetAttributes() {
-		$field = new HTMLAutoCompleteSelectField( [
-			'fieldname'    => 'Test',
-			'autocomplete' => $this->options,
-		] );
-
-		$attributes = $field->getAttributes( [] );
-		$this->assertEquals( array_keys( $this->options ),
-			FormatJson::decode( $attributes['data-autocomplete'] ),
-			"The 'data-autocomplete' attribute encodes autocomplete option keys as a JSON array."
-		);
-	}
-
-	/**
 	 * Test that the optional select dropdown is included or excluded based on
 	 * the presence or absence of the 'options' parameter.
 	 */

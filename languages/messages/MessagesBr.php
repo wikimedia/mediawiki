@@ -3,12 +3,11 @@
  *
  * To improve a translation please visit https://translatewiki.net
  *
- * @ingroup Language
  * @file
- *
+ * @ingroup Languages
  */
 
-$fallback = 'fr';
+// $fallback is NOT set so as to keep English per community decision.
 
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
@@ -34,7 +33,10 @@ $namespaceAliases = [
 	'Kaozeadenn_Skeudenn' => NS_FILE_TALK,
 ];
 
-$namespaceGenderAliases = [];
+$namespaceGenderAliases = [
+	NS_USER => [ 'male' => 'Implijer', 'female' => 'Implijerez' ],
+	NS_USER_TALK => [ 'male' => 'Kaozeadenn_Implijer', 'female' => 'Kaozeadenn_Implijerez' ],
+];
 
 /** @phpcs-require-sorted-array */
 $specialPageAliases = [
@@ -43,20 +45,30 @@ $specialPageAliases = [
 	'Allpages'                  => [ 'AnHollBajennoù' ],
 	'Ancientpages'              => [ 'PajennoùKozh' ],
 	'Badtitle'                  => [ 'TitlFall' ],
+	'Blankpage'                 => [ 'PajennC\'houllo' ],
 	'Block'                     => [ 'Stankañ' ],
+	'BlockList'                 => [ 'RollStankadennoù' ],
 	'Booksources'               => [ 'MammennoùLevr' ],
 	'BrokenRedirects'           => [ 'AdkasoùTorr' ],
 	'Categories'                => [ 'Rummadoù' ],
+	'ChangeEmail'               => [ 'KemmPostel' ],
 	'ChangePassword'            => [ 'KemmañGer-tremen' ],
 	'ComparePages'              => [ 'KeñveriañPajennoù' ],
 	'Confirmemail'              => [ 'KadarnaatPostel' ],
 	'Contributions'             => [ 'Degasadennoù' ],
 	'CreateAccount'             => [ 'KrouiñKont' ],
+	'Deadendpages'              => [ 'PajennoùDall' ],
+	'DeletedContributions'      => [ 'DegasadennoùDiverket' ],
 	'DoubleRedirects'           => [ 'AdksaoùDoubl' ],
-	'Emailuser'                 => [ 'PostelImplijer' ],
+	'EditWatchlist'             => [ 'KemmañRollEvezhiañ' ],
+	'Emailuser'                 => [ 'KasPostel' ],
 	'ExpandTemplates'           => [ 'PatromoùAstennet' ],
 	'Export'                    => [ 'Ezporzhiañ' ],
+	'Fewestrevisions'           => [ 'PajennoùNebeutañKemmet' ],
+	'FileDuplicateSearch'       => [ 'KlaskRestroùEilet' ],
+	'Filepath'                  => [ 'HentRestr' ],
 	'Import'                    => [ 'Enporzhiañ' ],
+	'Invalidateemail'           => [ 'NullañPostel' ],
 	'LinkSearch'                => [ 'KlaskLiamm' ],
 	'Listadmins'                => [ 'RollMerourien' ],
 	'Listbots'                  => [ 'RollBotoù' ],
@@ -64,11 +76,18 @@ $specialPageAliases = [
 	'Listgrouprights'           => [ 'RollGwirioùStrollad' ],
 	'Listredirects'             => [ 'RollañAdkasoù' ],
 	'Listusers'                 => [ 'RollImplijerien' ],
+	'Lockdb'                    => [ 'PrennañDiazRoadennoù' ],
 	'Log'                       => [ 'Marilh' ],
 	'Lonelypages'               => [ 'PajennoùEnoUnan' ],
 	'Longpages'                 => [ 'PajennoùHir' ],
 	'MergeHistory'              => [ 'KendeuziñIstor' ],
+	'MIMEsearch'                => [ 'KlaskMIME' ],
+	'Mostcategories'            => [ 'PajennoùMuiañRummataet' ],
+	'Mostimages'                => [ 'SkeudennoùImplijetañ' ],
+	'Mostlinked'                => [ 'Implijetañ' ],
+	'Mostlinkedcategories'      => [ 'RummadoùImplijetañ' ],
 	'Mostlinkedtemplates'       => [ 'PatromoùImplijetañ' ],
+	'Mostrevisions'             => [ 'PajennoùMuiañKemmet' ],
 	'Movepage'                  => [ 'AdkasPajenn' ],
 	'Mycontributions'           => [ 'MaDegasadennoù' ],
 	'MyLanguage'                => [ 'MaYezh' ],
@@ -76,12 +95,20 @@ $specialPageAliases = [
 	'Mytalk'                    => [ 'MaC\'haozeadennoù' ],
 	'Newimages'                 => [ 'RestroùNevez', 'SkeudennoùNevez' ],
 	'Newpages'                  => [ 'PajennoùNevez' ],
+	'PagesWithProp'             => [ 'PajennoùGantPerzh' ],
+	'PasswordReset'             => [ 'AdderaouiñGerTremen' ],
+	'PermanentLink'             => [ 'LiammDidermen' ],
 	'Preferences'               => [ 'Penndibaboù' ],
+	'Prefixindex'               => [ 'MenegerRakgerioù' ],
 	'Protectedpages'            => [ 'PajennoùGwarezet' ],
 	'Protectedtitles'           => [ 'TitloùGwarezet' ],
+	'RandomInCategory'          => [ 'DreZegouezhERummad' ],
 	'Randompage'                => [ 'DreZegouezh' ],
+	'Randomredirect'            => [ 'AdkasDreZegouezh' ],
 	'Recentchanges'             => [ 'KemmoùDiwezhañ' ],
 	'Recentchangeslinked'       => [ 'KemmoùKar' ],
+	'Redirect'                  => [ 'Adkas' ],
+	'Revisiondelete'            => [ 'StummoùDiverket' ],
 	'Search'                    => [ 'Klask' ],
 	'Shortpages'                => [ 'PajennoùBerr' ],
 	'Specialpages'              => [ 'PajennoùDibar' ],
@@ -93,6 +120,7 @@ $specialPageAliases = [
 	'Uncategorizedpages'        => [ 'PajennoùDirumm' ],
 	'Uncategorizedtemplates'    => [ 'PatromoùDirumm' ],
 	'Undelete'                  => [ 'Diziverkañ' ],
+	'Unlockdb'                  => [ 'DibrennañDiazRoadennoù' ],
 	'Unusedcategories'          => [ 'RummadoùDizimplij' ],
 	'Unusedimages'              => [ 'RestroùDizimplij' ],
 	'Unusedtemplates'           => [ 'PatromoùDizimplij' ],
@@ -114,6 +142,7 @@ $specialPageAliases = [
 /** @phpcs-require-sorted-array */
 $magicWords = [
 	'currentversion'            => [ '1', 'STUMMRED', 'CURRENTVERSION' ],
+	'defaultsort'               => [ '1', 'ALC\'HWEZDIBAB:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ],
 	'fullpagename'              => [ '1', 'ANVPAJENNKLOK', 'FULLPAGENAME' ],
 	'fullpagenamee'             => [ '1', 'ANVPAJENNKLOKSK', 'FULLPAGENAMEE' ],
 	'fullurl'                   => [ '0', 'URLKLOK:', 'FULLURL:' ],

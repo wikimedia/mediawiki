@@ -153,6 +153,7 @@ class TableCleanup extends Maintenance {
 			// of the string.
 			$nextCond = '';
 			foreach ( array_reverse( $index ) as $field ) {
+				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $res has at at least one item
 				$encValue = $dbr->addQuotes( $row->$field );
 				if ( $nextCond === '' ) {
 					$nextCond = "$field > $encValue";

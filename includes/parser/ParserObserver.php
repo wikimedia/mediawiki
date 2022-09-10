@@ -28,6 +28,7 @@
 
 namespace MediaWiki\Parser;
 
+use Content;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Page\PageReference;
 use ParserOptions;
@@ -64,10 +65,11 @@ class ParserObserver {
 	 * @param PageReference $page
 	 * @param int|null $revId
 	 * @param ParserOptions $options
+	 * @param Content $content
 	 * @param ParserOutput $output
 	 */
 	public function notifyParse(
-		PageReference $page, ?int $revId, ParserOptions $options, ParserOutput $output
+		PageReference $page, ?int $revId, ParserOptions $options, Content $content, ParserOutput $output
 	) {
 		$pageKey = CacheKeyHelper::getKeyForPage( $page );
 
@@ -76,7 +78,11 @@ class ParserObserver {
 			Title::castFromPageReference( $page )
 		);
 
-		$index = $this->getParseId( $pageKey, $revId, $optionsHash );
+		$contentStr = $content->isValid() ? $content->serialize() : null;
+		// $contentStr may be null if the content could not be serialized
+		$contentSha1 = $contentStr ? sha1( $contentStr ) : 'INVALID';
+
+		$index = $this->getParseId( $pageKey, $revId, $optionsHash, $contentSha1 );
 
 		$stackTrace = ( new RuntimeException() )->getTraceAsString();
 		if ( array_key_exists( $index, $this->previousParseStackTraces ) ) {
@@ -90,6 +96,7 @@ class ParserObserver {
 					'page' => $pageKey,
 					'rev' => $revId,
 					'options-hash' => $optionsHash,
+					'contentSha1' => $contentSha1,
 					'trace' => $stackTrace,
 					'previous-trace' => $this->previousParseStackTraces[$index],
 				]
@@ -102,13 +109,14 @@ class ParserObserver {
 	 * @param string $titleStr
 	 * @param int|null $revId
 	 * @param string $optionsHash
+	 * @param string $contentSha1
 	 * @return string
 	 */
-	private function getParseId( string $titleStr, ?int $revId, string $optionsHash ): string {
+	private function getParseId( string $titleStr, ?int $revId, string $optionsHash, string $contentSha1 ): string {
 		// $revId may be null when previewing a new page
 		$revIdStr = $revId ?? "";
 
-		return "$titleStr.$revIdStr.$optionsHash";
+		return "$titleStr.$revIdStr.$optionsHash.$contentSha1";
 	}
 
 }

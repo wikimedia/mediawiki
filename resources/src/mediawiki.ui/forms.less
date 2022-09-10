@@ -1,6 +1,5 @@
 // Form elements and layouts
 
-@import 'mediawiki.mixins.less';
 @import 'mediawiki.ui/variables.less';
 
 /* stylelint-disable selector-class-pattern */
@@ -33,7 +32,7 @@
 //   </div>
 // </form>
 .mw-ui-vform {
-	.box-sizing( border-box );
+	box-sizing: border-box;
 	width: @defaultFormWidth;
 
 	// MW currently doesn't use the type attribute everywhere on inputs.
@@ -46,7 +45,7 @@
 	// Give dropdown lists the same spacing as input fields for consistency.
 	// Values taken from .agora-field-styling() in mixins/form.less
 	select {
-		.box-sizing( border-box );
+		box-sizing: border-box;
 		padding: 0.35em 0.5em;
 		vertical-align: middle;
 	}
@@ -54,7 +53,7 @@
 	> label {
 		display: block;
 		color: @color-base;
-		.box-sizing( border-box );
+		box-sizing: border-box;
 		width: auto;
 		margin: 0 0 0.2em;
 		padding: 0;
@@ -68,22 +67,22 @@
 	// Override input styling just for checkboxes and radio inputs.
 	input[ type='radio' ] {
 		display: inline;
-		.box-sizing( content-box );
+		box-sizing: content-box;
 		width: auto;
 	}
 
 	// Styles for information boxes
 	//
 	// Regular HTMLForm uses .error class, some special pages like
-	// SpecialUserlogin (login and create account) use .errorbox.
+	// SpecialUserlogin (login and create account) use Html::errorBox
 	//
 	// Markup:
 	// <form class="mw-ui-vform">
-	//   <div class="errorbox">
+	//   <div class="mw-message-box-error mw-message-box">
 	//     <ul><li>An error occurred. There are problems with some of your input.</li></ul>
 	//   </div>
-	//   <div class="warningbox">A warning to be noted</div>
-	//   <div class="successbox">Action successful!</div>
+	//   <div class="mw-message-box-warning mw-message-box">A warning to be noted</div>
+	//   <div class="mw-message-box-success mw-message-box">Action successful!</div>
 	//   <div class="mw-ui-vform-field">
 	//     <input type="text" value="input" class="mw-ui-input">
 	//   </div>
@@ -103,8 +102,8 @@
 	// Show them below the fields to prevent line break glitches, and leave
 	// some space between the field and the error message box.
 	.mw-ui-vform-field {
-		.errorbox,
-		.warningbox {
+		.mw-message-box-error,
+		.mw-message-box-warning {
 			margin-top: 5px;
 		}
 	}

@@ -53,12 +53,11 @@ class DeleteArchivedFiles extends Maintenance {
 
 		# Get "active" revisions from the filearchive table
 		$this->output( "Searching for and deleting archived files...\n" );
-		$res = $dbw->select(
-			'filearchive',
-			[ 'fa_id', 'fa_storage_group', 'fa_storage_key', 'fa_sha1', 'fa_name' ],
-			'',
-			__METHOD__
-		);
+		$res = $dbw->newSelectQueryBuilder()
+			->select( [ 'fa_id', 'fa_storage_group', 'fa_storage_key', 'fa_sha1', 'fa_name' ] )
+			->from( 'filearchive' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		$count = 0;
 		foreach ( $res as $row ) {
@@ -87,14 +86,16 @@ class DeleteArchivedFiles extends Maintenance {
 			}
 
 			// Check if the file is used anywhere...
-			$inuse = (bool)$dbw->selectField( 'oldimage', '1',
-				[
+			$inuse = (bool)$dbw->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'oldimage' )
+				->where( [
 					'oi_sha1' => $sha1,
 					$dbw->bitAnd( 'oi_deleted', File::DELETED_FILE ) => File::DELETED_FILE
-				],
-				__METHOD__,
-				[ 'FOR UPDATE' ]
-			);
+				] )
+				->caller( __METHOD__ )
+				->forUpdate()
+				->fetchField();
 
 			$needForce = true;
 			if ( !$repo->fileExists( $path ) ) {

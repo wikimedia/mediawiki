@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Alex00728",
+			"Bluehill",
 			"Comjun04",
 			"Hwangjy9",
 			"Hym411",
@@ -16,8 +17,7 @@
 			"Ykhwong",
 			"Yunbj",
 			"렌즈",
-			"아라",
-			"Bluehill"
+			"아라"
 		]
 	},
 	"config-desc": "미디어위키를 위한 설치 관리자",
@@ -228,13 +228,14 @@
 	"config-logo-summary": "각 필드에 대해 적절한 크기의 이미지를 업로드하고 아래 상자에 URL을 입력해야 합니다. 로고가 해당 경로에 상대적인 경우 <code>$wgStylePath</code> 또는 <code>$wgScriptPath</code>를 사용할 수 있습니다. 이러한 상자는 비워 둘 수 있습니다. \n\n지원되는 브라우저에서 파일 시스템의 이미지 파일을 입력 상자나 미리보기 영역으로 드래그할 수도 있습니다.",
 	"config-logo-preview-main": "주 문서",
 	"config-logo-icon": "로고 (아이콘)",
-	"config-logo-icon-help": "로고 아이콘은 사각이면서 이상적으로는 50px을 초과하거나 SVG인 것이 좋습니다.",
+	"config-logo-icon-help": "로고 아이콘은 정사각형이면서 이상적으로는 50px을 초과하거나 SVG인 것이 좋습니다.",
 	"config-logo-wordmark": "워드마크 (선택사항)",
 	"config-logo-wordmark-help": "사이트 이름입니다. 정의하지 않으면 일반적으로 텍스트로 대체됩니다. 높이가 30픽셀 이하인 SVG가 이상적입니다.",
 	"config-logo-tagline": "태그라인 (선택사항)",
 	"config-logo-tagline-help": "사이트의 태그라인입니다. 위에서 워드마크를 정의한 경우에만 사용하십시오. 정의하지 않으면 일반적으로 텍스트로 대체됩니다. 일반적으로 태그라인과 워드마크를 합친 높이는 50픽셀을 넘지 않아야 합니다.",
 	"config-logo-sidebar": "사이드바 로고 (선택사항):",
 	"config-logo-filedrop": "여기에 이미지 파일을 끌어놓으세요",
+	"config-logo-sidebar-help": "일부 미디어위키 스킨에는 사이드바 메뉴의 일부로 160픽셀 높이의 로고가 포함되어 있습니다. 정의되지 않은 경우 위에서 정의한 아이콘과 동일합니다. 워드마크와 아이콘이 결합된 전용 그래픽을 사용할 수 있습니다.",
 	"config-instantcommons": "인스턴트 공용 기능 활성화",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons 인스턴트 공용]은 [https://commons.wikimedia.org/ 위키미디어 공용] 사이트에서 찾을 수 있는 그림, 소리 및 다른 미디어를 위키에서 사용할 수 있도록 하는 기능입니다.\n이렇게 하려면 미디어위키가 인터넷 연결을 필요로 합니다.\n\n위키미디어 공용 이외에 다른 위키에서 이를 설정하는 방법에 대한 지침을 포함한, 기능에 대한 자세한 내용은 [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos 매뉴얼]을 참조하세요.",
 	"config-cc-error": "크리에이티브 커먼즈 라이선스 선택기에 결과가 없습니다.\n수동으로 라이선스 이름을 입력하세요.",

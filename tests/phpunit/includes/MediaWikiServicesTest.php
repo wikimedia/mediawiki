@@ -189,9 +189,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		$newServices = $this->newMediaWikiServices();
 		$oldServices = MediaWikiServices::forceGlobalInstance( $newServices );
 
-		$lbFactory = $this->getMockBuilder( \Wikimedia\Rdbms\LBFactorySimple::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$lbFactory = $this->createMock( \Wikimedia\Rdbms\LBFactorySimple::class );
 
 		$newServices->redefineService(
 			'DBLoadBalancerFactory',
@@ -208,8 +206,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		try {
 			MediaWikiServices::getInstance()->getService( 'DBLoadBalancerFactory' );
 			$this->fail( 'DBLoadBalancerFactory should have been disabled' );
-		}
-		catch ( ServiceDisabledException $ex ) {
+		} catch ( ServiceDisabledException $ex ) {
 			// ok, as expected
 		} catch ( Throwable $ex ) {
 			$this->fail( 'ServiceDisabledException expected, caught ' . get_class( $ex ) );

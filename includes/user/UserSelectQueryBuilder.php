@@ -49,7 +49,7 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	 * @return UserSelectQueryBuilder
 	 */
 	public function whereUserIds( $userIds ): self {
-		Assert::parameterType( 'integer|array', $userIds, '$userIds' );
+		Assert::parameterType( [ 'integer', 'array' ], $userIds, '$userIds' );
 		$this->conds( [ 'actor_user' => $userIds ] );
 		return $this;
 	}
@@ -71,7 +71,7 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	 * @return UserSelectQueryBuilder
 	 */
 	public function whereUserNames( $userNames ): self {
-		Assert::parameterType( 'string|array', $userNames, '$userIds' );
+		Assert::parameterType( [ 'string', 'array' ], $userNames, '$userIds' );
 		$userNames = array_map( function ( $name ) {
 			return $this->actorStore->normalizeUserName( (string)$name );
 		}, (array)$userNames );

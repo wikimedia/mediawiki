@@ -164,6 +164,7 @@ abstract class ChangesListFilter {
 
 		if ( isset( $filterDefinition['cssClassSuffix'] ) ) {
 			$this->cssClassSuffix = $filterDefinition['cssClassSuffix'];
+			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Documented as required
 			$this->isRowApplicableCallable = $filterDefinition['isRowApplicableCallable'];
 		}
 
@@ -413,12 +414,7 @@ abstract class ChangesListFilter {
 	 * @return ChangesListFilterGroup[]
 	 */
 	public function getConflictingGroups() {
-		return array_map(
-			static function ( $conflictDesc ) {
-				return $conflictDesc[ 'groupObject' ];
-			},
-			$this->conflictingGroups
-		);
+		return array_column( $this->conflictingGroups, 'groupObject' );
 	}
 
 	/**
@@ -427,12 +423,7 @@ abstract class ChangesListFilter {
 	 * @return ChangesListFilter[]
 	 */
 	public function getConflictingFilters() {
-		return array_map(
-			static function ( $conflictDesc ) {
-				return $conflictDesc[ 'filterObject' ];
-			},
-			$this->conflictingFilters
-		);
+		return array_column( $this->conflictingFilters, 'filterObject' );
 	}
 
 	/**
