@@ -80,17 +80,32 @@ trait SerializationTestTrait {
 
 				yield "{$className}:{$testCaseName}, " .
 					"serialized with {$serializationFormat['ext']}" =>
-						[ $serializationFormat['serializer'], $expected->data, $testInstance ];
+						[
+							$serializationFormat['serializer'],
+							$serializationFormat['deserializer'],
+							$expected->data,
+							$testInstance
+						];
 			}
 		}
 	}
 
 	/**
-	 * Test that the current master $serialized instances are equal to stored $expected instances.
+	 * Test that the current master $serialized instances are
+	 * equal to stored $expected instances.
+	 * Serialization formats might change in backwards compatible ways
+	 * (in particular, php 8.1 orders protected instance variables differently
+	 * than earlier php), so do the comparision on the deserialized version.
 	 * @dataProvider provideSerialization
 	 */
-	public function testSerialization( callable $serializer, string $expected, object $testInstance ) {
-		$this->assertSame( $expected, $serializer( $testInstance ) );
+	public function testSerialization( callable $serializer, callable $deserializer, string $expected, object $testInstance ) {
+		$serTestInstance = $serializer( $testInstance );
+		$deserExpected = $deserializer( $expected );
+		$this->assertNotEmpty( $deserExpected );
+		$deserTestInstance = $deserializer( $serTestInstance );
+		$this->assertNotEmpty( $deserTestInstance );
+
+		$this->validateObjectEquality( $deserExpected, $deserTestInstance );
 	}
 
 	/**

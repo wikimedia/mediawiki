@@ -98,7 +98,7 @@ class RowCommentIterator extends IteratorIterator {
 		return $this;
 	}
 
-	public function key() {
+	public function key(): string {
 		if ( $this->indexField ) {
 			return parent::current()->{$this->indexField};
 		} else {
@@ -106,7 +106,7 @@ class RowCommentIterator extends IteratorIterator {
 		}
 	}
 
-	public function current() {
+	public function current(): CommentItem {
 		if ( $this->commentKey === null ) {
 			throw new \RuntimeException( __METHOD__ . ': commentKey must be specified' );
 		}

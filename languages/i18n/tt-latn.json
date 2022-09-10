@@ -15,7 +15,7 @@
 			"Urhixidur",
 			"לערי ריינהארט",
 			"아라",
-			"McDutchie"
+			"Ерней"
 		]
 	},
 	"tog-underline": "Sıltamalarnıñ astına sızu:",
@@ -251,7 +251,7 @@
 	"feed-rss": "RSS-tasması",
 	"red-link-title": "$1 (mondıy bit yuq)",
 	"nstab-main": "Bit",
-	"nstab-user": "Qullanuçı bite",
+	"nstab-user": "{{GENDER:$1|Qullanuçı bite}}",
 	"nstab-media": "Multimedia",
 	"nstab-special": "Maxsus bit",
 	"nstab-project": "Proyekt bite",
@@ -616,7 +616,7 @@
 	"prefs-rc": "Soñğı üzgärtülär",
 	"prefs-watchlist": "Küzätü isemlege",
 	"prefs-watchlist-days": "Küzätü isemlegendä kürsätelgän kön sanı:",
-	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|day|days}}",
+	"prefs-watchlist-days-max": "İñ kübe $1 {{PLURAL:$1|kön}}",
 	"prefs-watchlist-edits": "Kiñäytelgän küzätü isemlegendä üzgärtülärneñ iñ yuğarı isäbe:",
 	"prefs-watchlist-edits-max": "Maksimum san: 1000",
 	"prefs-watchlist-token": "Küzätü isemlege toqenı:",

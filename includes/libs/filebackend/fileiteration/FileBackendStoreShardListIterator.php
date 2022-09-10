@@ -64,7 +64,7 @@ abstract class FileBackendStoreShardListIterator extends FilterIterator {
 		parent::__construct( $iter );
 	}
 
-	public function accept() {
+	public function accept(): bool {
 		$rel = $this->getInnerIterator()->current(); // path relative to given directory
 		$path = $this->params['dir'] . "/{$rel}"; // full storage path
 		if ( $this->backend->isSingleShardPathInternal( $path ) ) {
@@ -79,7 +79,7 @@ abstract class FileBackendStoreShardListIterator extends FilterIterator {
 		}
 	}
 
-	public function rewind() {
+	public function rewind(): void {
 		parent::rewind();
 		$this->multiShardPaths = [];
 	}

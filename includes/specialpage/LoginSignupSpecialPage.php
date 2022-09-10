@@ -802,6 +802,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'id' => 'wpEmail',
 					'cssclass' => 'loginText',
 					'size' => '20',
+					'maxlength' => 255,
 					'autocomplete' => 'email',
 					// FIXME will break non-standard providers
 					'required' => $config->get( 'EmailConfirmToEdit' ),
@@ -817,6 +818,8 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 							return $this->msg( 'noemailcreate' );
 						} elseif ( $value && !Sanitizer::validateEmail( $value ) ) {
 							return $this->msg( 'invalidemailaddress' );
+						} elseif ( is_string( $value ) && strlen( $value ) > 255 ) {
+							return $this->msg( 'changeemail-maxlength' );
 						}
 						return true;
 					},

@@ -10,6 +10,15 @@ use Wikimedia\TestingAccessWrapper;
  */
 class HttpRequestFactoryTest extends MediaWikiUnitTestCase {
 
+	protected function setUp(): void {
+		global $wgServer;
+		parent::setUp();
+		// PHP 8.1 requires wgServer to be set here for wfParseUrl().
+		// This is refactored in 1.39 to no longer be needed.
+		// The parent class ensures that this is cleaned up.
+		$wgServer = 'https://example.invalid';
+	}
+
 	/**
 	 * @param array|null $options
 	 * @return HttpRequestFactory

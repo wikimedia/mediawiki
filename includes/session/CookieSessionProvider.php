@@ -96,7 +96,8 @@ class CookieSessionProvider extends SessionProvider {
 				$this->getConfig()->get( 'SessionName' ) ?: $this->getConfig()->get( 'CookiePrefix' ) . '_session',
 		];
 
-		$this->useCrossSiteCookies = strcasecmp( $this->getConfig()->get( 'CookieSameSite' ), 'none' ) === 0;
+		$sameSite = $this->getConfig()->get( 'CookieSameSite' );
+		$this->useCrossSiteCookies = $sameSite !== null && strcasecmp( $sameSite, 'none' ) === 0;
 
 		// @codeCoverageIgnoreStart
 		$this->cookieOptions += [
@@ -106,7 +107,7 @@ class CookieSessionProvider extends SessionProvider {
 			'domain' => $this->getConfig()->get( 'CookieDomain' ),
 			'secure' => $this->getConfig()->get( 'CookieSecure' ) || $this->getConfig()->get( 'ForceHTTPS' ),
 			'httpOnly' => $this->getConfig()->get( 'CookieHttpOnly' ),
-			'sameSite' => $this->getConfig()->get( 'CookieSameSite' ),
+			'sameSite' => $sameSite
 		];
 	}
 

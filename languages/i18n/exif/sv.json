@@ -381,7 +381,7 @@
 	"exif-poseheadingdegrees": "X-rotation (grader)",
 	"exif-posepitchdegrees": "Pitch (grader)",
 	"exif-poserolldegrees": "Y-rotation (grader)",
-	"exif-initialviewheadingdegrees": "Initial riktning (grader)",
+	"exif-initialviewheadingdegrees": "Initial visningsriktning (grader)",
 	"exif-initialviewpitchdegrees": "X-rotation för initial vy (grader)",
 	"exif-initialviewrolldegrees": "Y-rotation för initial vy (grader)",
 	"exif-initialhorizontalfovdegrees": "Initialt synfält (horisontala grader)",

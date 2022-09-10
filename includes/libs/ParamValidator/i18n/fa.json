@@ -1,14 +1,26 @@
 {
 	"@metadata": {
 		"authors": [
-			"FarsiNevis"
+			"FarsiNevis",
+			"Jeeputer"
 		]
 	},
 	"paramvalidator-badexpiry": "مقدار نامعتبر «$2» برای پارامتر انقضای «$1».",
 	"paramvalidator-badinteger": "مقدار نامعتبر «$2» برای پارامتر صحیح «$1».",
 	"paramvalidator-badvalue-enummulti": "مقدار نامعتبر «$2» برای پارامتر «$1». {{PLURAL:$4|فقط «$3» مجاز است.|مقادیر مجاز عبارت‌اند از $3.}}",
+	"paramvalidator-deprecated-value": "مقدار «$2» برای پارامتر «$1» منسوخ شده‌است.",
+	"paramvalidator-maxbytes": "مقدار پارامتر «$1» نمی‌تواند طولانی‌تر از $3 {{PLURAL:$3|بایت}} باشد ($4 بود).",
 	"paramvalidator-missingparam": "پارامتر «$1» باید تعیین شود.",
+	"paramvalidator-outofrange-max": "مقدار «$2» برای پارامتر «$1» نباید بزرگ‌تر از $4 باشد.",
+	"paramvalidator-outofrange-min": "مقدار «$2» برای پارامتر «$1» نباید کوچک‌تر از $3 باشد.",
 	"paramvalidator-help-default": "پیش‌فرض: $1",
+	"paramvalidator-help-multi-max": "حداکثر تعداد مقدارها {{PLURAL:$1|$1}} است ({{PLURAL:$2|$2}} برای متقضایانی که مجوز محدودیت‌های بالاتر را دارند).",
+	"paramvalidator-help-required": "این پارامتر الزامی است.",
+	"paramvalidator-help-type-boolean": "نوع: {{PLURAL:$1|1=بولی|2=فهرستی از بولی‌ها}}",
+	"paramvalidator-help-type-expiry": "نوع: {{PLURAL:$1|1=انقضا|۲=فهرستی از انقضاها}}.\n\nمی‌تواند نسبی (برای مثال <kbd>5 months</kbd> یا <kbd>2 weeks</kbd>) یا دقیق (برای مثال <kbd>2014-09-18T12:34:56Z</kbd>) باشد. برای انقضای نامعین از $2 استفاده کنید.",
+	"paramvalidator-help-type-integer": "نوع: {{PLURAL:$1|1=عدد صحیح|2=فهرستی از اعداد صحیح}}",
 	"paramvalidator-help-type-number-max": "{{PLURAL:$1|1=مقدار|2=مقادیر}} نباید بزرگ‌تر از $3 {{PLURAL:$1|1=باشد|2=باشند}}.",
-	"paramvalidator-help-type-string-maxbytes": "نباید بیشتر از $1 بایت باشد."
+	"paramvalidator-help-type-presenceboolean": "نوع: بولی",
+	"paramvalidator-help-type-string-maxbytes": "نباید بیشتر از $1 بایت باشد.",
+	"paramvalidator-help-type-timestamp": "نوع: {{PLURAL:$1|1=برچسب زمان|2=فهرستی از برچسب‌های زمان}}"
 }

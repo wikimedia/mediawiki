@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"DaSupremo"
+			"DaSupremo",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Link wey dey underline:",
@@ -230,11 +231,13 @@
 	"red-link-title": "$1 (page no dey exist)",
 	"nstab-main": "Page",
 	"nstab-user": "{{GENDER:$1|User page}}",
+	"nstab-media": "Media page",
 	"nstab-special": "Special page",
 	"nstab-project": "Project page",
 	"nstab-image": "File",
 	"nstab-mediawiki": "Message",
 	"nstab-template": "Template",
+	"nstab-help": "Help page",
 	"nstab-category": "Category",
 	"mainpage-nstab": "Main page",
 	"nosuchspecialpage": "Such special page no dey",
@@ -296,7 +299,7 @@
 	"editing": "Dey edit $1",
 	"creating": "Creating $1",
 	"editingsection": "Editing $1 (section)",
-	"templatesused": "{{PLURAL:$1|Template|Templates}} dem use for dis page top",
+	"templatesused": "{{PLURAL:$1|Template|Templates}} dem use for dis page top:",
 	"templatesusedpreview": "{{PLURAL:$1|Template|Templates}} dem use for dis preview:",
 	"template-protected": "(protected)",
 	"template-semiprotected": "(semi-protected)",

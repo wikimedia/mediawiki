@@ -260,20 +260,26 @@ class Site implements Serializable {
 
 	/**
 	 * Returns the domain of the site, ie en.wikipedia.org
-	 * Or false if it's not known.
+	 * Or null if it's not known.
 	 *
 	 * @since 1.21
 	 *
 	 * @return string|null
 	 */
-	public function getDomain() {
+	public function getDomain(): ?string {
 		$path = $this->getLinkPath();
 
 		if ( $path === null ) {
 			return null;
 		}
 
-		return parse_url( $path, PHP_URL_HOST );
+		$domain = parse_url( $path, PHP_URL_HOST );
+
+		if ( $domain === false ) {
+			$domain = null;
+		}
+
+		return $domain;
 	}
 
 	/**
@@ -670,7 +676,7 @@ class Site implements Serializable {
 	 *
 	 * @return string
 	 */
-	public function serialize() {
+	public function serialize(): string {
 		return serialize( $this->__serialize() );
 	}
 
@@ -703,7 +709,7 @@ class Site implements Serializable {
 	 *
 	 * @param string $serialized
 	 */
-	public function unserialize( $serialized ) {
+	public function unserialize( $serialized ): void {
 		$this->__unserialize( unserialize( $serialized ) );
 	}
 

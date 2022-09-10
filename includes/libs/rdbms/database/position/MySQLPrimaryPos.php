@@ -326,7 +326,7 @@ class MySQLPrimaryPos implements DBPrimaryPos {
 			: false;
 	}
 
-	public function serialize() {
+	public function serialize(): string {
 		return serialize( $this->__serialize() );
 	}
 
@@ -340,7 +340,7 @@ class MySQLPrimaryPos implements DBPrimaryPos {
 		];
 	}
 
-	public function unserialize( $serialized ) {
+	public function unserialize( $serialized ): void {
 		$this->__unserialize( unserialize( $serialized ) );
 	}
 

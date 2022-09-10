@@ -12,7 +12,8 @@
 			"Oldstoneage",
 			"Qchmqs",
 			"Vikoula5",
-			"아라"
+			"아라",
+			"Cigaryno"
 		]
 	},
 	"tog-underline": "تسطار الوصيلات:",
@@ -270,7 +271,7 @@
 	"sort-descending": "رتّب بل نازولي",
 	"sort-ascending": "رتّب بل طالوعي",
 	"nstab-main": "صفحة",
-	"nstab-user": "باجة{{GENDER:{{BASEPAGENAME}}|المستخدم|المستخدمة}}",
+	"nstab-user": "{{GENDER:$1|المستخدم|المستخدمة}}",
 	"nstab-media": "باجة تاع ميديا",
 	"nstab-special": "باجه خوصوصيّة",
 	"nstab-project": "باجه مشروع",
@@ -900,7 +901,7 @@
 	"isimage": "وصيلة ملف",
 	"whatlinkshere-prev": "{{PLURAL:$1|التالي|ال$1 التاليه}}",
 	"whatlinkshere-next": "{{PLURAL:$1|الجايه|ال$1 الجايه}}",
-	"whatlinkshere-links": "← وصيلات",
+	"whatlinkshere-links": "→ وصيلات",
 	"whatlinkshere-hideredirs": "$1 التحويلات",
 	"whatlinkshere-hidetrans": "$1 التضمينات",
 	"whatlinkshere-hidelinks": "$1 الوصيلات",
@@ -1083,7 +1084,6 @@
 	"mw-widgets-abandonedit-title": "راك متأكد ؟",
 	"mw-widgets-mediasearch-noresults": "ما كانش نتائج",
 	"randomrootpage": "باجة جدريّة على الزهر",
-	"view-view-foreign": "شوف على $1",
 	"view-create-local": "زيد توصاف مبلّد",
 	"nstab-mainpage": "الپاجة الاولانيّة",
 	"view-edit-local": "عدّل التوصاف المبلّد",
