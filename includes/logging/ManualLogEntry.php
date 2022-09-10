@@ -290,7 +290,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 			->acquireActorId( $this->getPerformerIdentity(), $dbw );
 
 		// Trim spaces on user supplied text
-		$comment = trim( $this->getComment() );
+		$comment = trim( $this->getComment() ?? '' );
 
 		$params = $this->getParameters();
 		$relations = $this->relations;
