@@ -1,5 +1,5 @@
 {
-  "default": "REL1_38",
+  "default": "REL1_39",
   "master": [
     "extensions/Translate",
     "extensions/UniversalLanguageSelector",
