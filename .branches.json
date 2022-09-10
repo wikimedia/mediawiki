@@ -70,7 +70,6 @@
     "extensions/MintyDocs",
     "extensions/EmbedSpotify",
     "extensions/DiscordNotifications",
-    "extensions/DynamicPageList3",
     "extensions/RatePage",
     "skins/Flatbox",
     "skins/WMAU",
@@ -92,5 +91,8 @@
     "skins/Citizen",
     "extensions/TabberNeue",
     "skins/Evelution"
+  ],
+  "revision": [
+    "extensions/DynamicPageList3"
   ]
 }

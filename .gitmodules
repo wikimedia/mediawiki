@@ -1236,7 +1236,7 @@
 [submodule "extensions/DynamicPageList3"]
 	path = extensions/DynamicPageList3
 	url = https://github.com/Universal-Omega/DynamicPageList3
-	branch = master
+	branch = revision
 	ignore = dirty
 [submodule "extensions/Report"]
 	path = extensions/Report
@@ -1567,4 +1567,14 @@
 	path = extensions/Share
 	url = https://github.com/AgentIsai/Share
 	branch = master
+	ignore = dirty
+[submodule "extensions/IPInfo"]
+	path = extensions/IPInfo
+	url = https://github.com/wikimedia/mediawiki-extensions-IPInfo
+	branch = REL1_38
+	ignore = dirty
+[submodule "extensions/PageProperties"]
+	path = extensions/PageProperties
+	url = https://github.com/wikimedia/mediawiki-extensions-PageProperties
+	branch = REL1_38
 	ignore = dirty
