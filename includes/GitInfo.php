@@ -101,7 +101,7 @@ class GitInfo {
 		);
 		$this->options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		// $this->options must be set before using getCacheFilePath()
-		$this->cacheFile = $this->getCacheFilePath( $repoDir );
+		$this->cacheFile = $this->getCacheFilePath( $repoDir, !$usePrecomputed );
 		$this->logger = LoggerFactory::getInstance( 'gitinfo' );
 		$this->logger->debug(
 			"Candidate cacheFile={$this->cacheFile} for {$repoDir}"
