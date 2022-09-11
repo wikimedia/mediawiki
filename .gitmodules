@@ -451,7 +451,7 @@
 [submodule "extensions/MirahezeMagic"]
 	path = extensions/MirahezeMagic
 	url = https://github.com/miraheze/MirahezeMagic
-	branch = master
+	branch = REL1_39
 	ignore = dirty
 [submodule "extensions/Tabs"]
 	path = extensions/Tabs
