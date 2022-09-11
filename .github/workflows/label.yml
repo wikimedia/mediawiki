@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        ref: 'REL1_38'
+        ref: 'REL1_39'
 
     - run: |
         submodule=$(echo $(echo ${GITHUB_HEAD_REF} | cut -d'/' -f4,5 ) | cut -d'-' -f1 )
