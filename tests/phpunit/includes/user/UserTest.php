@@ -8,7 +8,6 @@ use MediaWiki\Block\SystemBlock;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RateLimitSubject;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Assert\PreconditionException;
@@ -1334,21 +1333,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			'sitewide blocks block uploads' => [ true, true ],
 			'partial blocks allow uploads' => [ false, false ],
 		];
-	}
-
-	/**
-	 * @param User $user
-	 * @param string $title
-	 * @param string $content
-	 * @param string $comment
-	 * @return \MediaWiki\Revision\RevisionRecord|null
-	 */
-	private static function makeEdit( User $user, $title, $content, $comment ) {
-		$page = WikiPage::factory( Title::newFromText( $title ) );
-		$content = ContentHandler::makeContent( $content, $page->getTitle() );
-		return $page->newPageUpdater( $user )
-			->setContent( SlotRecord::MAIN, $content )
-			->saveRevision( CommentStoreComment::newUnsavedComment( $comment ) );
 	}
 
 	/**
