@@ -673,7 +673,12 @@ abstract class IndexPager extends ContextSource implements Pager {
 	/**
 	 * Make a self-link
 	 *
-	 * @stable to override
+	 * To support the deprecated overrides, any override of this method is used by the builder
+	 * (see getNavigationBuilder()) to make the links. This is deprecated and will be removed.
+	 * You should override getNavigationBuilder() instead to return a customized builder.
+	 *
+	 * @stable to override (deprecated since 1.39)
+	 * @stable to call (since 1.39)
 	 *
 	 * @param string $text Text displayed on the link
 	 * @param array|null $query Associative array of parameter to be in the query string.
@@ -871,6 +876,17 @@ abstract class IndexPager extends ContextSource implements Pager {
 			->setNextLinkQuery( $pagingQueries['next'] ?: null )
 			->setFirstLinkQuery( $pagingQueries['first'] ?: null )
 			->setLastLinkQuery( $pagingQueries['last'] ?: null );
+
+		// Use overridden makeLink() for the navigation, if it was overridden. Otherwise use the
+		// builder's implementation.
+		$reflectionMethod = new ReflectionMethod( $this, 'makeLink' );
+		$declaringClass = $reflectionMethod->getDeclaringClass()->getName();
+		if ( $declaringClass !== __CLASS__ ) {
+			// Overriding makeLink() is deprecated since 1.39
+			$navBuilder->setMakeLinkCallback( function ( ...$args ) {
+				return $this->makeLink( ...$args );
+			} );
+		}
 
 		return $navBuilder;
 	}
