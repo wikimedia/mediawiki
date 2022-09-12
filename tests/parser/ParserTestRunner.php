@@ -1207,6 +1207,9 @@ class ParserTestRunner {
 		if ( isset( $opts['maxtemplatedepth'] ) ) {
 			$options->setMaxTemplateDepth( $opts['maxtemplatedepth'] );
 		}
+		if ( isset( $opts['externallinktarget'] ) ) {
+			$options->setExternalLinkTarget( $opts['externallinktarget'] );
+		}
 
 		return [ $title, $options, $revProps['revid'] ];
 	}
