@@ -79,7 +79,8 @@
     "skins/Tweeki",
     "extensions/ExternalData",
     "extensions/RemovePII",
-    "extensions/ImportDump"
+    "extensions/ImportDump",
+    "extensions/WikibaseEdtf"
   ],
   "stable": [
     "extensions/SnapProjectEmbed",
