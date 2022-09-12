@@ -49,4 +49,37 @@ class ApiQueryUserInfoTest extends ApiTestCase {
 		$queryTimestamp = $apiResult[0]['query']['userinfo']['latestcontrib'];
 		$this->assertSame( $revisionTimestamp, $queryTimestamp );
 	}
+
+	public function testCanCreateAccount() {
+		$params = [
+			'action' => 'query',
+			'meta' => 'userinfo',
+			'uiprop' => 'cancreateaccount',
+		];
+		$user = $this->getTestUser()->getUser();
+		$apiResult = $this->doApiRequest( $params, null, false, $user );
+		$this->assertArrayHasKey( 'query', $apiResult[0] );
+		$this->assertArrayHasKey( 'userinfo', $apiResult[0]['query'] );
+		$this->assertArrayHasKey( 'cancreateaccount', $apiResult[0]['query']['userinfo'] );
+		$this->assertTrue( $apiResult[0]['query']['userinfo']['cancreateaccount'] );
+		$this->assertArrayNotHasKey( 'cancreateaccounterror', $apiResult[0]['query']['userinfo'] );
+
+		$user = $this->getMutableTestUser()->getUser();
+		$status = $this->getServiceContainer()->getBlockUserFactory()->newBlockUser(
+			$user,
+			$this->getTestSysop()->getUser(),
+			'infinity',
+			'',
+			[ 'isCreateAccountBlocked' => true ]
+		)->placeBlock();
+		if ( !$status->isGood() ) {
+			$this->fail( $status->getWikiText( false, false, 'en' ) );
+		}
+		$apiResult = $this->doApiRequest( $params, null, false, $user );
+		$this->assertArrayHasKey( 'query', $apiResult[0] );
+		$this->assertArrayHasKey( 'userinfo', $apiResult[0]['query'] );
+		$this->assertArrayHasKey( 'cancreateaccount', $apiResult[0]['query']['userinfo'] );
+		$this->assertFalse( $apiResult[0]['query']['userinfo']['cancreateaccount'] );
+		$this->assertArrayHasKey( 'cancreateaccounterror', $apiResult[0]['query']['userinfo'] );
+	}
 }
