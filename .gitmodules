@@ -1578,3 +1578,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-PageProperties
 	branch = REL1_39
 	ignore = dirty
+[submodule "extensions/WikibaseEdtf"]
+	path = extensions/WikibaseEdtf
+	url = https://github.com/ProfessionalWiki/WikibaseEdtf
+	branch = master
+	ignore = dirty
