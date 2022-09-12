@@ -15,7 +15,8 @@
 			"Urhixidur",
 			"Vlad5250",
 			"아라",
-			"McDutchie"
+			"McDutchie",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Ferwiese unnerstriekje:",
@@ -663,7 +664,7 @@
 	"prefs-rc": "Bekoandreekenge fon \"Lääste Annerengen\"",
 	"prefs-watchlist": "Beooboachtengslieste",
 	"prefs-watchlist-days": "Antaal fon Deege, do ju Beooboachtengslieste standoardmäitich uumfoatje skäl:",
-	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|day|days}}",
+	"prefs-watchlist-days-max": "Maximoal $1 {{PLURAL:$1|Deege}}",
 	"prefs-watchlist-edits": "Maximoale Antaal fon Iendraage in ju fergratterde Beooboachtengslieste:",
 	"prefs-watchlist-edits-max": "Maximoale Antaal: 1000",
 	"prefs-watchlist-token": "Beooboachtengslieste-Token:",

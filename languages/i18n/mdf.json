@@ -638,7 +638,7 @@
 	"prefs-rc": "Мекольце полафнемат",
 	"prefs-watchlist": "Мельгеванома",
 	"prefs-watchlist-days": "Мъзяра шит няфтемс мельгеваномаса:",
-	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|day|days}}",
+	"prefs-watchlist-days-max": "Максимум $1 {{PLURAL:$1|шит}}",
 	"prefs-watchlist-edits": "Иньоцю полафнематнень лувкссь няфтеви келептьф мельгеваномаса:",
 	"prefs-watchlist-edits-max": "(максимум луфкс: 1000)",
 	"prefs-misc": "Калмоча",

@@ -72,7 +72,8 @@
 			"Mguix",
 			"MuratTheTurkish",
 			"Skurz0",
-			"Vfc"
+			"Vfc",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -2560,7 +2561,7 @@
 	"month": "Mes (i anteriors):",
 	"year": "Any (i anteriors):",
 	"date": "Des de la data (i abans):",
-	"sp-contributions-blocklog": "Registre de blocatges",
+	"sp-contributions-blocklog": "registre de blocatges",
 	"sp-contributions-suppresslog": "contribucions suprimides de {{GENDER:$1|l'usuari|la usuària}}",
 	"sp-contributions-deleted": "contribucions de {{GENDER:$1|l’usuari|la usuària}} suprimides",
 	"sp-contributions-uploads": "càrregues",

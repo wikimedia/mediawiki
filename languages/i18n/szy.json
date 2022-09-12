@@ -8,7 +8,8 @@
 			"DannyS712",
 			"Matma Rex",
 			"Tokoabibi",
-			"Xiplus"
+			"Xiplus",
+			"Iyumu"
 		]
 	},
 	"tog-underline": "nu sasaan sacuzu’ masasiket:",
@@ -569,6 +570,8 @@
 	"publishpage": "patiyak kasabelih",
 	"publishchanges": "patiyak misumad",
 	"savearticle-start": "misuped kasabelih...",
+	"publishpage-start": "patiyak kasabelih",
+	"publishchanges-start": "patiyak misumad",
 	"preview": "pataayaway miazih",
 	"showpreview": "paazih pataayaway miazih",
 	"showdiff": "paazih ku masumaday",

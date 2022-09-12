@@ -629,7 +629,7 @@
 	"prefs-rc": "የቅርቡ ለውጦች ዝርዝር",
 	"prefs-watchlist": "የሚከታተሉ ገጾች",
 	"prefs-watchlist-days": "በሚከታተሉት ገጾች ዝርዝር ስንት ቀን ይታይ፤",
-	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|day|days}}",
+	"prefs-watchlist-days-max": "(ከ$1 {{PLURAL:$1|ቀን}} አይበልጥም)",
 	"prefs-watchlist-edits": "በተደረጁት ዝርዝር ስንት ለውጥ ይታይ፤",
 	"prefs-watchlist-edits-max": "(ከ1,000 ለውጥ በላይ አይሆንም)",
 	"prefs-misc": "ልዩ ልዩ ምርጫዎች",

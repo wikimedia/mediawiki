@@ -3598,6 +3598,8 @@
 	"linkaccounts-success-text": "Račun je spojen.",
 	"linkaccounts-submit": "Spoji račune",
 	"unlinkaccounts": "Razdvajanje računa",
+	"userjsispublic": "Imajte u vidu da JavaScript podstranice ne bi trebale sadržavati povjerljive podatke jer su vidljive drugim korisnicima.",
+	"userjsdangerous": "Imajte u vidu i da će se skripte uključene na ovu stranicu pokrenuti svaki put kada učitate stranicu. Zlonamjerni kôd dodan ovdje bi mogao dovesti do ugrožavanja suradničkog računa. Kôd će se izvršiti kada pregledate svoje promjene na ovoj stranici.",
 	"specialmute": "Utišavanje",
 	"specialmute-success": "Vaše postavke utišavanja uspješno su ažurirane. Pogledajte sve utišane suradnike u [[Special:Preferences|Vašim postavkama]].",
 	"specialmute-submit": "Potvrdi",

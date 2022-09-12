@@ -4016,7 +4016,7 @@
 	"restrictionsfield-help": "Un indirizzo IP o intervallo CIDR per linea. Per consentire tutto, utilizza:<pre>0.0.0.0/0\n::/0</pre>",
 	"edit-error-short": "Errore: $1",
 	"edit-error-long": "Errori:\n\n$1",
-	"specialmute": "Muto",
+	"specialmute": "Silenzia",
 	"specialmute-success": "Le tue preferenze di silenzio sono state aggiornate. Puoi vedere tutti gli utenti silenziati in [[Special:Preferences|your preferences]].",
 	"specialmute-submit": "Conferma",
 	"specialmute-label-mute-email": "Silenzia le email da {{GENDER:$1|questo|questa}} utente",

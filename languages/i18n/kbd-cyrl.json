@@ -617,7 +617,7 @@
 	"prefs-rc": "Гъэтэрэзыгъуэ щӀэхэр",
 	"prefs-watchlist": "ЩӀэлъыплъыгъуэхэм я тхылъ",
 	"prefs-watchlist-days": "Махуэхэм я бжыгъэр:",
-	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|day|days}}",
+	"prefs-watchlist-days-max": "{{PLURAL:$1|Махуибл}} $1 мынэхъыбу",
 	"prefs-watchlist-edits": "Гъэтэрэзыгъуэхэр нэхъыбэдыду, кӀэлъыплъыгъуэ тхылъым гъэлъэгъуар:",
 	"prefs-watchlist-edits-max": "Нэхъыбэдыду: 1000",
 	"prefs-watchlist-token": "КӀэлъыплъыгъуэ тхылъым и токен:",

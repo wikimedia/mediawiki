@@ -18,7 +18,8 @@
 			"Zylbath",
 			"לערי ריינהארט",
 			"아라",
-			"McDutchie"
+			"McDutchie",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Verwies ünnerstrieken",
@@ -660,7 +661,7 @@
 	"prefs-rc": "Letzte Ännern un Wiesen vun kotte Sieten",
 	"prefs-watchlist": "Oppasslist",
 	"prefs-watchlist-days": "Maximumtall Daag, de in de Oppasslist wiest warrt:",
-	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|day|days}}",
+	"prefs-watchlist-days-max": "Maximal $1 {{PLURAL:$1|Daag}}",
 	"prefs-watchlist-edits": "Maximumtall Daag, de in de verwiederte Oppasslist wiest warrt:",
 	"prefs-watchlist-edits-max": "Maximaltall: 1000",
 	"prefs-watchlist-token": "Oppasslistenslötel:",

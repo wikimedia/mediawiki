@@ -611,6 +611,7 @@
 	"changeemail-submit": "Gingsir rerepél",
 	"changeemail-throttled": "Ida sampun makehan nyoba manjing log.\nDurusang jantos $1 sadurung nyoba malih.",
 	"changeemail-nochange": "Duruaang masukang alamat rerepél sané tiosan.",
+	"changeemail-maxlength": "Alamat rerepél ragané patut madué pinih akéh 255 karakter",
 	"resettokens": "Jumu tokén",
 	"resettokens-text": "Ida prasida jumu tokén sané ngapresidayang akses ring data peragan katentu sané kakait sareng akun ragané iriki.\n\nRagané patut ngalaksanayang pinaka Ida punika nénten katuju kawagiang sareng jatma utawi pinaka akun Anda sampun kasusupin.",
 	"resettokens-no-tokens": "Nénten wénten tokén antuk kajumu.",

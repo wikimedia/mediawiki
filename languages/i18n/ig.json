@@ -599,7 +599,7 @@
 	"prefs-personal": "Nkówá ọ'bànifé",
 	"prefs-rc": "Mgbánwè ógè nso",
 	"prefs-watchlist": "Ùlìle",
-	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|day|days}}",
+	"prefs-watchlist-days-max": "Okè {{PLURAL:$1|chi}} $1",
 	"prefs-misc": "Mcheta-ma-mchetaghim",
 	"prefs-resetpass": "Gbanwe okwu éjị à gáfe",
 	"prefs-email": "Màkà e-mail",

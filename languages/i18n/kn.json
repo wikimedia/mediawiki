@@ -813,7 +813,7 @@
 	"prefs-editwatchlist": "ವೀಕ್ಷಣಾಪಟ್ಟಿಯನ್ನು ಸಂಪಾದಿಸು",
 	"prefs-editwatchlist-raw": "ಮೂಲ ವೀಕ್ಷಣಾಪಟ್ಟಿಯನ್ನು ಸಂಪಾದಿಸು",
 	"prefs-watchlist-days": "ವೀಕ್ಷಣಾಪಟ್ಟಿಯಲ್ಲಿ ತೋರಿಸಲಾಗುವ ದಿನಗಳು:",
-	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|day|days}}",
+	"prefs-watchlist-days-max": "ಗರಿಷ್ಠ $1 {{PLURAL:$1|ದಿನ|ದಿನಗಳು}}",
 	"prefs-watchlist-edits": "ವಿಸ್ತೃತ ವೀಕ್ಷಣಾಪಟ್ಟಿಯಲ್ಲಿ ತೋರಿಸಬೇಕಾದ ಗರಿಷ್ಠ ಬದಲಾವಣೆಗಳು:",
 	"prefs-watchlist-edits-max": "ಗರಿಷ್ಠ ಸಂಖ್ಯೆ: ೧೦೦೦",
 	"prefs-misc": "ಇತರೆ",

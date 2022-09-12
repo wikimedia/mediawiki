@@ -9,7 +9,8 @@
 			"Uttam Singha, Dec 2006",
 			"아라",
 			"McDutchie",
-			"আফতাবুজ্জামান"
+			"আফতাবুজ্জামান",
+			"Amire80"
 		]
 	},
 	"tog-underline": "লিঙ্কর তলে দুরগ দিক:",
@@ -590,7 +591,7 @@
 	"datedefault": "পছন করাতা নেই",
 	"prefs-labs": "পরীক্ষাগারর বৈশিষ্টহানি",
 	"prefs-rc": "হাদি এহানর পতানি",
-	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|day|days}}",
+	"prefs-watchlist-days-max": "বপিলে $1 {{PLURAL:$1|দিন পেয়া}}",
 	"prefs-misc": "নানন",
 	"prefs-resetpass": "খন্তাচাবি সিলকর",
 	"prefs-email": "ই-মেইল অপশনহানি",

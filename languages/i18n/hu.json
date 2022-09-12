@@ -58,7 +58,9 @@
 			"Luckylukee81",
 			"McDutchie",
 			"Balint36",
-			"Blua lago"
+			"Blua lago",
+			"1233qwer1234qwer4",
+			"Mmarci72"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -2528,7 +2530,7 @@
 	"month": "E hónap végéig:",
 	"year": "Eddig az évig:",
 	"date": "Eddig a dátumig:",
-	"sp-contributions-blocklog": "Blokkolási napló",
+	"sp-contributions-blocklog": "blokkolási napló",
 	"sp-contributions-suppresslog": "elrejtett {{GENDER:$1|felhasználók}} közreműködései",
 	"sp-contributions-deleted": "törölt {{GENDER:$1|szerkesztések}}",
 	"sp-contributions-uploads": "feltöltések",

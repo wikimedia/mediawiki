@@ -2378,6 +2378,7 @@
 	"sp-contributions-submit": "ძიება",
 	"sp-contributions-outofrange": "შეუძლებელია შედეგების ნახვა. მოთხოვნილი IP არეალი უფრო დიდია, ვიდრე /$1-ის CIDR-ის ლიმიტი.",
 	"whatlinkshere": "ბმულები გვერდზე",
+	"whatlinkshere-count": "ნაჩვენებია $1 {{PLURAL:$1|ელემენტი}}.",
 	"whatlinkshere-title": "გვერდები, რომლებიც შეიცავენ „$1“-ის ბმულებს",
 	"whatlinkshere-page": "გვერდი:",
 	"linkshere": "მომდევნო გვერდები შეიცავენ ბმულებს '''$2'''-ზე:",

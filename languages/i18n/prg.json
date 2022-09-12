@@ -616,7 +616,7 @@
 	"prefs-rc": "Panzdaumas kitawīdinsnas",
 	"prefs-watchlist": "Nadirītan listi",
 	"prefs-watchlist-days": "Gīrbis stēisan deīnan widātan en listei stēisan nadirītan :",
-	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|day|days}}",
+	"prefs-watchlist-days-max": "Maksimālai $1 {{PLURAL:$1|dēinas}}",
 	"prefs-watchlist-edits": "Gīrbis stēisan redigīsenin waidīntan en paplattintai listin stēisan nadirīntan:",
 	"prefs-watchlist-edits-max": "Maksimāls gīrbis: 1000",
 	"prefs-misc": "Šlaitawīdai ensadīnsenei",

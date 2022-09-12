@@ -473,7 +473,7 @@
 	"userlogout": "Logg ut",
 	"notloggedin": "Ikke logget inn",
 	"userlogin-noaccount": "Ingen konto?",
-	"userlogin-joinproject": "Slutt deg til {{SITENAME}}",
+	"userlogin-joinproject": "Opprett en {{SITENAME}}-konto",
 	"createaccount": "Opprett konto",
 	"userlogin-resetpassword-link": "Glemt passordet?",
 	"userlogin-helplink2": "Hjelp med innlogging",

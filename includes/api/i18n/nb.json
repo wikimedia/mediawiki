@@ -9,7 +9,8 @@
 			"Kingu",
 			"Macofe",
 			"Abuluntu",
-			"Matma Rex"
+			"Matma Rex",
+			"Telaneo"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Dokumentasjon]]\n* [[mw:Special:MyLanguage/API:FAQ|Ofte stilte spørsmål]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api E-post-liste]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API-kunngjøringer]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Feil & forespørsler]\n</div>\n<strong>Status:</strong> Alle funksjonene som vises på denne siden skal virke, men API-en er fortsatt i aktiv utvikling, og kan bli endret når som helst. Abonner på [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ MediaWiki sin API-kunnkjøringsepostliste] for nyheter om oppdateringer.\n\n<strong>Feile kall:</strong> Hvis det blir sendt feile kall til API-et, blir det sendt en HTTP-header med nøkkelen \"MediaWiki-API-Error\" og da blir både header-verdien og feilkoden sendt tilbake med samme verdi. For mer informasjon se [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Feil og advarsler]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testing:</strong> For enkelt å teste API-kall, se [[Special:ApiSandbox]].</p>",
@@ -67,7 +68,7 @@
 	"apihelp-clearhasmsg-example-1": "Fjern <code>hasmsg</code>-flagget for aktuell bruker.",
 	"apihelp-clientlogin-summary": "Logg inn på wikien med den interaktive flyten.",
 	"apihelp-clientlogin-example-login": "Start prosessen med å logge inn til wikien som bruker <kbd>Example</kbd> med passord <kbd>ExamplePassword</kbd>.",
-	"apihelp-clientlogin-example-login2": "Fortsett å logge inn etter en <samp>UI</samp>-respons for totrinns pålogging, ved å oppgi en <var>OATHToken</var> på <kbd>987654</kbd>.",
+	"apihelp-clientlogin-example-login2": "Fortsett å logge inn etter en <samp>UI</samp>-respons for tofaktorautentisering, ved å oppgi en <var>OATHToken</var> på <kbd>987654</kbd>.",
 	"apihelp-compare-summary": "Hent forskjellen mellom to sider.",
 	"apihelp-compare-extended-description": "Et revisjonsnummer, en sidetittel eller en side-ID for både «fra» og «til» må sendes.",
 	"apihelp-compare-param-fromtitle": "Første tittel å sammenligne.",

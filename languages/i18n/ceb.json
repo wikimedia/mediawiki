@@ -15,7 +15,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"McDutchie",
-			"Spilltea"
+			"Spilltea",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Binadlisan nga mga sumpay:",
@@ -497,7 +498,7 @@
 	"prefs-rc": "Mga bag-ong pag-usab",
 	"prefs-watchlist": "Gibantayan",
 	"prefs-watchlist-days": "Mga adlaw nga ipakita sa gibantayan:",
-	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|day|days}}",
+	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|ka adlaw}}",
 	"prefs-watchlist-edits": "Maximum nga numero sa pag-usab nga ipakita sa ekspanded nga gibantayan:",
 	"prefs-watchlist-edits-max": "Maximum nga numero: 1000",
 	"prefs-watchlist-token": "Token sa gibantayan",

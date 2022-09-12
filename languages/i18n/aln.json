@@ -594,7 +594,7 @@
 	"prefs-rc": "Ndryshimet e freskëta",
 	"prefs-watchlist": "Lista e mbikëqyrjeve",
 	"prefs-watchlist-days": "Numri i ditëve me i tregue në listën e mbikëqyrjeve:",
-	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|day|days}}",
+	"prefs-watchlist-days-max": "Maksimalisht $1 {{PLURAL:$1|ditë}}",
 	"prefs-watchlist-edits": "Numri maksimal i ndryshimeve që tregohen në listën e zgjânueme të mbikëqyrjes:",
 	"prefs-watchlist-edits-max": "Numri maksimal: 1000",
 	"prefs-misc": "Të ndryshme",

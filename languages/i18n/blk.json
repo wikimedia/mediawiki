@@ -2200,6 +2200,7 @@
 	"searchsuggest-search": "ထိုမ်ႏထွား {{SITENAME}}ကို",
 	"duration-days": "$1 {{PLURAL:$1|မွူး|မွူးဖုံႏ}}",
 	"mw-widgets-dateinput-no-date": "လွိုက်ခါꩻတဝ်းမွူးနီꩻ",
+	"mw-widgets-titleinput-description-new-page": "လိတ်မဲ့ငါ တအဝ်ႏတဝ်းဒွိုန်း",
 	"date-range-from": "အဝ်ႏမွူးနီꩻ:",
 	"date-range-to": "ဗꩻမွူးနီꩻ:"
 }
