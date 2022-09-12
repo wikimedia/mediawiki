@@ -178,50 +178,6 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * Get template representation of the footer.
-	 * @since 1.35
-	 * @return array
-	 */
-	protected function getFooterIcons() {
-		$config = $this->getConfig();
-
-		$footericons = [];
-		foreach (
-			$config->get( MainConfigNames::FooterIcons ) as $footerIconsKey => &$footerIconsBlock
-		) {
-			if ( count( $footerIconsBlock ) > 0 ) {
-				$footericons[$footerIconsKey] = [];
-				foreach ( $footerIconsBlock as &$footerIcon ) {
-					if ( isset( $footerIcon['src'] ) ) {
-						if ( !isset( $footerIcon['width'] ) ) {
-							$footerIcon['width'] = 88;
-						}
-						if ( !isset( $footerIcon['height'] ) ) {
-							$footerIcon['height'] = 31;
-						}
-					}
-
-					// Only output icons which have an image.
-					// For historic reasons this mimics the `icononly` option
-					// for BaseTemplate::getFooterIcons.
-					// In some cases the icon may be an empty array.
-					// Filter these out. (See T269776)
-					if ( is_string( $footerIcon ) || isset( $footerIcon['src'] ) ) {
-						$footericons[$footerIconsKey][] = $footerIcon;
-					}
-				}
-
-				// If no valid icons with images were added, unset the parent array
-				// Should also prevent empty arrays from when no copyright is set.
-				if ( !count( $footericons[$footerIconsKey] ) ) {
-					unset( $footericons[$footerIconsKey] );
-				}
-			}
-		}
-		return $footericons;
-	}
-
-	/**
 	 * @inheritDoc
 	 */
 	public function getTemplateData() {
