@@ -624,7 +624,6 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * (see getNavigationBuilder()) to make the links. This is deprecated and will be removed.
 	 * You should override getNavigationBuilder() instead to return a customized builder.
 	 *
-	 * @stable to override (deprecated since 1.39)
 	 * @stable to call (since 1.39)
 	 *
 	 * @param string $text Text displayed on the link
@@ -826,9 +825,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 
 		// Use overridden makeLink() for the navigation, if it was overridden. Otherwise use the
 		// builder's implementation.
-		$reflectionMethod = new ReflectionMethod( $this, 'makeLink' );
-		$declaringClass = $reflectionMethod->getDeclaringClass()->getName();
-		if ( $declaringClass !== __CLASS__ ) {
+		if ( MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'makeLink', '1.39' ) ) {
 			// Overriding makeLink() is deprecated since 1.39
 			$navBuilder->setMakeLinkCallback( function ( ...$args ) {
 				// @phan-suppress-next-line PhanParamTooFewUnpack
@@ -865,6 +862,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @return string[] HTML
 	 */
 	protected function getPagingLinks( $linkTexts, $disabledTexts = [] ) {
+		wfDeprecated( __METHOD__, '1.39' );
 		$queries = $this->getPagingQueries();
 		$links = [];
 
@@ -888,6 +886,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @return string[] HTML
 	 */
 	protected function getLimitLinks() {
+		wfDeprecated( __METHOD__, '1.39' );
 		$links = [];
 		$offset = $this->getOffsetQuery();
 		foreach ( $this->mLimitsShown as $limit ) {
@@ -1030,6 +1029,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 		array $query = [],
 		$atend = false
 	) {
+		wfDeprecated( __METHOD__, '1.39' );
 		$prevNext = new PrevNextNavigationRenderer( $this );
 
 		return $prevNext->buildPrevNextNavigation( $title, $offset, $limit, $query, $atend );

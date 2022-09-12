@@ -21,6 +21,8 @@ class PrevNextNavigationRendererTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideBuildPrevNextNavigation
 	 */
 	public function testBuildPrevNextNavigation( $offset, $limit, $atEnd, $subPage ) {
+		$this->expectDeprecationAndContinue( "/PrevNextNavigationRenderer/" );
+
 		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'en' );
 		$this->setUserLang( 'qqx' ); // disable i18n
 
