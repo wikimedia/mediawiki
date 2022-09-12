@@ -80,7 +80,9 @@
     "extensions/ExternalData",
     "extensions/RemovePII",
     "extensions/ImportDump",
-    "extensions/WikibaseEdtf"
+    "extensions/WikibaseEdtf",
+    "extensions/FlexDiagrams",
+    "extensions/SemanticFormsSelect"
   ],
   "stable": [
     "extensions/SnapProjectEmbed",
