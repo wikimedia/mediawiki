@@ -3174,7 +3174,7 @@
 	"confirm-watch-button": "V redu",
 	"confirm-watch-top": "Dodam stran na vaš spisek nadzorov?",
 	"confirm-watch-label": "Čas spremljanja spiska nadzorov:",
-	"watchlist-expiry-options": "Trajno:infinite,1 teden:1 week,1 mesec:1 month,3 meseci:3 months,6 mesecev:6 months",
+	"watchlist-expiry-options": "Trajno:infinite,1 teden:1 week,1 mesec:1 month,3 meseci:3 months,6 mesecev:6 months,1 leto:1 year",
 	"watchlist-expires-in-aria-label": "Vnos na spisku nadzorov, ki poteče",
 	"confirm-watch-button-expiry": "Opazuj",
 	"confirm-unwatch-button": "V redu",
