@@ -40,6 +40,7 @@ class PrevNextNavigationRenderer {
 	 * @param MessageLocalizer $messageLocalizer
 	 */
 	public function __construct( MessageLocalizer $messageLocalizer ) {
+		wfDeprecated( __CLASS__, '1.39' );
 		$this->messageLocalizer = $messageLocalizer;
 	}
 
