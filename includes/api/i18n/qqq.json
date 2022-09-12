@@ -1284,6 +1284,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-unreadcount": "{{doc-apihelp-paramvalue|query+userinfo|prop|unreadcount|params=* $1 - Maximum value for the \"unreadcount\" property.\n* $2 - Return value when there are more unread pages.|paramstart=3}}",
 	"apihelp-query+userinfo-paramvalue-prop-centralids": "{{doc-apihelp-paramvalue|query+userinfo|prop|centralids}}",
 	"apihelp-query+userinfo-paramvalue-prop-latestcontrib": "{{doc-apihelp-paramvalue|query+userinfo|prop|latestcontrib}}",
+	"apihelp-query+userinfo-paramvalue-prop-cancreateaccount": "{{doc-apihelp-paramvalue|query+userinfo|prop|cancreateaccount}}",
 	"apihelp-query+userinfo-param-attachedwiki": "{{doc-apihelp-param|query+userinfo|attachedwiki}}",
 	"apihelp-query+userinfo-example-simple": "{{doc-apihelp-example|query+userinfo}}",
 	"apihelp-query+userinfo-example-data": "{{doc-apihelp-example|query+userinfo}}",
