@@ -1588,3 +1588,8 @@
 	url = https://github.com/SemanticMediaWiki/SemanticFormsSelect
 	branch = master
 	ignore = dirty
+[submodule "extensions/FlexDiagrams"]
+	path = extensions/FlexDiagrams
+	url = https://github.com/wikimedia/mediawiki-extensions-FlexDiagrams
+	branch = master
+	ignore = dirty
