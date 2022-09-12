@@ -491,6 +491,8 @@ class SpecialSearch extends SpecialPage {
 			$out->addHTML( '<div class="searchresults">' );
 		}
 
+		$out->addHTML( '<div class="mw-search-results-info">' );
+
 		if ( $hasSearchErrors || $this->loadStatus->getErrors() ) {
 			if ( $textStatus === null ) {
 				$textStatus = $this->loadStatus;
@@ -526,6 +528,9 @@ class SpecialSearch extends SpecialPage {
 		$this->showCreateLink( $title, $num, $titleMatches, $textMatches );
 
 		$this->getHookRunner()->onSpecialSearchResults( $term, $titleMatches, $textMatches );
+
+		// Close <div class='mw-search-results-info'>
+		$out->addHtml( '</div>' );
 
 		// Although $num might be 0 there can still be secondary or inline
 		// results to display.
