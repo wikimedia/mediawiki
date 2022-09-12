@@ -2080,12 +2080,6 @@ class MainConfigNames {
 	public const ResourceLoaderDebug = 'ResourceLoaderDebug';
 
 	/**
-	 * Name constant for the IncludeLegacyJavaScript setting, for use with Config::get()
-	 * @see MainConfigSchema::IncludeLegacyJavaScript
-	 */
-	public const IncludeLegacyJavaScript = 'IncludeLegacyJavaScript';
-
-	/**
 	 * Name constant for the ResourceLoaderMaxQueryLength setting, for use with Config::get()
 	 * @see MainConfigSchema::ResourceLoaderMaxQueryLength
 	 */

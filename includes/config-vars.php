@@ -2064,12 +2064,6 @@ $wgResourceLoaderUseObjectCacheForDeps = null;
 $wgResourceLoaderDebug = null;
 
 /**
- * Config variable stub for the IncludeLegacyJavaScript setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::IncludeLegacyJavaScript
- */
-$wgIncludeLegacyJavaScript = null;
-
-/**
  * Config variable stub for the ResourceLoaderMaxQueryLength setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ResourceLoaderMaxQueryLength
  */
