@@ -1566,7 +1566,7 @@
 [submodule "extensions/Share"]
 	path = extensions/Share
 	url = https://github.com/AgentIsai/Share
-	branch = REL1_39
+	branch = master
 	ignore = dirty
 [submodule "extensions/IPInfo"]
 	path = extensions/IPInfo
