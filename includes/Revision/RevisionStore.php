@@ -2698,12 +2698,14 @@ class RevisionStore
 				return null;
 			}
 		}
-		$dbts = $db->addQuotes( $db->timestamp( $ts ) );
 
 		$revId = $db->selectField( 'revision', 'rev_id',
 			[
 				'rev_page' => $rev->getPageId( $this->wikiId ),
-				"rev_timestamp $op $dbts OR (rev_timestamp = $dbts AND rev_id $op $revisionIdValue )"
+				$db->buildComparison( $op, [
+					'rev_timestamp' => $db->timestamp( $ts ),
+					'rev_id' => $revisionIdValue,
+				] ),
 			],
 			__METHOD__,
 			[

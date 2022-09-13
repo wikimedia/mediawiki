@@ -488,14 +488,13 @@ class NamespaceDupes extends Maintenance {
 				$this->resolvableLinks -= $dbw->affectedRows();
 			}
 
-			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
-			$encLastTitle = $dbw->addQuotes( $row->$titleField );
-			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
-			$encLastFrom = $dbw->addQuotes( $row->$fromField );
-
 			$batchConds = [
-				"$titleField > $encLastTitle " .
-				"OR ($titleField = $encLastTitle AND $fromField > $encLastFrom)"
+				$dbw->buildComparison( '>', [
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
+					$titleField => $dbw->addQuotes( $row->$titleField ),
+					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
+					$fromField => $dbw->addQuotes( $row->$fromField ),
+				] )
 			];
 
 			$lbFactory->waitForReplication();

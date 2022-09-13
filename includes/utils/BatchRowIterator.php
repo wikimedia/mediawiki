@@ -258,11 +258,7 @@ class BatchRowIterator implements RecursiveIterator {
 	/**
 	 * Uses the primary key list and the maximal result row from the
 	 * previous iteration to build an SQL condition sufficient for
-	 * selecting the next page of results.  All except the final key use
-	 * `=` conditions while the final key uses a `>` condition
-	 *
-	 * Example output:
-	 *     [ '( foo = 42 AND bar > 7 ) OR ( foo > 42 )' ]
+	 * selecting the next page of results.
 	 *
 	 * @return array The SQL conditions necessary to select the next set
 	 *  of rows in the batched query
@@ -276,50 +272,12 @@ class BatchRowIterator implements RecursiveIterator {
 		$maximumValues = [];
 		foreach ( $this->primaryKey as $alias => $column ) {
 			$name = is_numeric( $alias ) ? $column : $alias;
-			$maximumValues[$column] = $this->db->addQuotes( $maxRow->{$name} );
-		}
-
-		$pkConditions = [];
-		// For example: If we have 3 primary keys
-		// first run through will generate
-		//   col1 = 4 AND col2 = 7 AND col3 > 1
-		// second run through will generate
-		//   col1 = 4 AND col2 > 7
-		// and the final run through will generate
-		//   col1 > 4
-		while ( $maximumValues ) {
-			$pkConditions[] = $this->buildGreaterThanCondition( $maximumValues );
-			array_pop( $maximumValues );
+			$maximumValues[$column] = $maxRow->$name;
 		}
 
 		$conditions = $this->conditions;
-		$conditions[] = sprintf( '( %s )', implode( ' ) OR ( ', $pkConditions ) );
+		$conditions[] = $this->db->buildComparison( '>', $maximumValues );
 
 		return $conditions;
-	}
-
-	/**
-	 * Given an array of column names and their maximum value  generate
-	 * an SQL condition where all keys except the last match $quotedMaximumValues
-	 * exactly and the last column is greater than the matching value in
-	 * $quotedMaximumValues
-	 *
-	 * @param array $quotedMaximumValues The maximum values quoted with
-	 *  $this->db->addQuotes()
-	 * @return string An SQL condition that will select rows where all
-	 *  columns match the maximum value exactly except the last column
-	 *  which must be greater than the provided maximum value
-	 */
-	protected function buildGreaterThanCondition( array $quotedMaximumValues ) {
-		$keys = array_keys( $quotedMaximumValues );
-		$lastColumn = end( $keys );
-		$lastValue = array_pop( $quotedMaximumValues );
-		$conditions = [];
-		foreach ( $quotedMaximumValues as $column => $value ) {
-			$conditions[] = "$column = $value";
-		}
-		$conditions[] = "$lastColumn > $lastValue";
-
-		return implode( ' AND ', $conditions );
 	}
 }
