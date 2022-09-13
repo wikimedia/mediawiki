@@ -104,6 +104,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 				$services->getMainConfig()
 			),
 			$parserCacheFactory,
+			$services->getPageStore(),
 			$services->getRevisionLookup(),
 			$services->getGlobalIdGenerator(),
 			$services->getStatsdDataFactory(),

@@ -30,16 +30,21 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Parsoid\HTMLTransform;
 use MediaWiki\Parser\Parsoid\HTMLTransformFactory;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
+use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
+use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MWUnknownContentModelException;
+use ParserOptions;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Parsoid\Core\ClientError;
+use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 
@@ -82,6 +87,11 @@ class HtmlInputTransformHelper {
 	private $parsoidOutputStash;
 
 	/**
+	 * @var ParsoidOutputAccess
+	 */
+	private $parsoidOutputAccess;
+
+	/**
 	 * @var array
 	 */
 	private $envOptions;
@@ -90,12 +100,14 @@ class HtmlInputTransformHelper {
 	 * @param IBufferingStatsdDataFactory $statsDataFactory
 	 * @param HTMLTransformFactory $htmlTransformFactory
 	 * @param ParsoidOutputStash $parsoidOutputStash
+	 * @param ParsoidOutputAccess $parsoidOutputAccess
 	 * @param array $envOptions
 	 */
 	public function __construct(
 		IBufferingStatsdDataFactory $statsDataFactory,
 		HTMLTransformFactory $htmlTransformFactory,
 		ParsoidOutputStash $parsoidOutputStash,
+		ParsoidOutputAccess $parsoidOutputAccess,
 		array $envOptions = []
 	) {
 		$this->stats = $statsDataFactory;
@@ -105,6 +117,7 @@ class HtmlInputTransformHelper {
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
 			'offsetType' => 'byte',
 		];
+		$this->parsoidOutputAccess = $parsoidOutputAccess;
 	}
 
 	/**
@@ -306,7 +319,7 @@ class HtmlInputTransformHelper {
 		if ( !isset( $body['original']['html'] ) && !empty( $body['original']['renderid'] ) ) {
 			// If the client asked for a render ID, load original data from stash
 			try {
-				$original = $this->fetchOriginalDataFromStash( $body['original']['renderid'] );
+				$original = $this->fetchOriginalDataFromStash( $page, $body['original']['renderid'] );
 			} catch ( InvalidArgumentException $ex ) {
 				throw new HttpException(
 					'Bad stash key',
@@ -432,7 +445,35 @@ class HtmlInputTransformHelper {
 		$response->getBody()->write( $data );
 	}
 
-	private function fetchOriginalDataFromStash( string $key ): ?array {
+	private function fetchOriginalDataFromCache( PageIdentity $page, ?int $revId ): ?array {
+		$parserOptions = ParserOptions::newFromAnon();
+
+		try {
+			$parserOutput = $this->parsoidOutputAccess->getCachedParserOutput(
+				$page,
+				$parserOptions,
+				$revId
+			);
+		} catch ( RevisionAccessException $e ) {
+			// The client supplied bad revision ID, or the revision was deleted or suppressed.
+			throw new HttpException(
+				'The specified revision does not exist.',
+				404,
+				[ 'reason' => $e->getMessage() ]
+			);
+		}
+
+		if ( !$parserOutput ) {
+			return null;
+		}
+
+		$pb = PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput );
+		$renderID = $this->parsoidOutputAccess->getParsoidRenderID( $parserOutput );
+
+		return $this->makeOriginalDataArrayFromPageBundle( $pb, $renderID );
+	}
+
+	private function fetchOriginalDataFromStash( PageIdentity $page, string $key ): ?array {
 		if ( preg_match( '!^(W/)?".*"$!', $key ) ) {
 			$renderID = ParsoidRenderID::newFromETag( $key );
 		} else {
@@ -442,16 +483,45 @@ class HtmlInputTransformHelper {
 		$pb = $this->parsoidOutputStash->get( $renderID );
 
 		if ( !$pb ) {
-			return null;
+			// Looks like the rendering is gone from stash (or the client send us a bogus key).
+			// Try to load it from the parser cache instead.
+			// On a wiki with low edit frequency, there is a good chance that it's still there.
+			try {
+				$original = $this->fetchOriginalDataFromCache( $page, $renderID->getRevisionID() );
+			} catch ( HttpException $e ) {
+				// If the revision isn't found, don't trigger a 404. Return null to trigger a 412.
+				return null;
+			}
+
+			if ( !$original || $original['html']['key'] !== $renderID->getKey() ) {
+				// Nothing found in the parser cache, or it's not the correct rendering.
+				return null;
+			}
+
+			return $original;
 		}
 
+		return $this->makeOriginalDataArrayFromPageBundle( $pb, $renderID );
+	}
+
+	/**
+	 * @param PageBundle $pb
+	 * @param ParsoidRenderID $renderID
+	 *
+	 * @return array
+	 */
+	private function makeOriginalDataArrayFromPageBundle(
+		PageBundle $pb,
+		ParsoidRenderID $renderID
+	): array {
 		$original = [
 			'contentmodel' => $pb->contentmodel,
 			'revid' => $renderID->getRevisionID(),
 			'html' => [
 				'version' => $pb->version,
 				'headers' => $pb->headers ?: [],
-				'body' => $pb->html
+				'body' => $pb->html,
+				'key' => $renderID->getKey(),
 			],
 			'data-parsoid' => [
 				'body' => $pb->parsoid,

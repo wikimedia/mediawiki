@@ -1303,7 +1303,8 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 				$helper = new HtmlInputTransformHelper(
 					new NullStatsdDataFactory(),
 					$factory,
-					$this->getServiceContainer()->getParsoidOutputStash()
+					$this->getServiceContainer()->getParsoidOutputStash(),
+					$this->getServiceContainer()->getParsoidOutputAccess()
 				);
 
 				$helper->init( $page, [ 'html' => $html ], [] );

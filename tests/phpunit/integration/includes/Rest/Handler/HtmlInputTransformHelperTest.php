@@ -81,7 +81,8 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$helper = new HtmlInputTransformHelper(
 			new NullStatsdDataFactory(),
 			$this->newMockHTMLTransformFactory( $transformMethodOverrides ),
-			$this->getServiceContainer()->getParsoidOutputStash()
+			$this->getServiceContainer()->getParsoidOutputStash(),
+			$this->getServiceContainer()->getParsoidOutputAccess()
 		);
 
 		return $helper;
@@ -786,6 +787,13 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getExistingTestPage();
 		$html = 'whatever';
 
+		// Call getParserOutput() to make sure a rendering is in the ParserCache.
+		// Even though we find a rendering, it should be discarded because it doesn't match
+		// the ETag.
+		$access = $this->getServiceContainer()->getParsoidOutputAccess();
+		$popt = ParserOptions::newFromAnon();
+		$access->getParserOutput( $page, $popt )->getValue();
+
 		$revid = $page->getLatest();
 		$eTag = "\"$revid/nope-nope-nope\"";
 
@@ -818,7 +826,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$helper->getContent();
 	}
 
-	public function testResponseWithUseStashFallbackToParserCache() {
+	public function testResponseWithRenderIDFallbackToParserCache() {
 		$page = $this->getExistingTestPage();
 		$oldWikitext = $page->getContent()->serialize();
 
@@ -830,10 +838,9 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$key = $access->getParsoidRenderID( $pout );
 		$html = $pout->getRawText();
 
-		$body = [ 'html' => $html ];
-
 		// Load the original data based on the ETag
-		$params = [ 'use-stash' => $key ];
+		$body = [ 'html' => $html, 'original' => [ 'renderid' => $key ] ];
+		$params = [];
 
 		$helper = $this->newHelper();
 

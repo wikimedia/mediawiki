@@ -309,6 +309,7 @@ abstract class ParsoidHandler extends Handler {
 			$services->getStatsdDataFactory(),
 			$services->getHTMLTransformFactory(),
 			$services->getParsoidOutputStash(),
+			$services->getParsoidOutputAccess(),
 			$attribs['envOptions']
 		);
 
