@@ -115,12 +115,9 @@ class MWDocGen extends Maintenance {
 
 		$this->template = $IP . '/maintenance/Doxyfile';
 		$this->excludes = [
+			'cache',
 			'images',
-			'node_modules',
-			'resources',
 			'static',
-			'tests',
-			'vendor',
 		];
 		$this->excludePatterns = [];
 		if ( $this->input === '' ) {

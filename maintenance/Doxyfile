@@ -144,6 +144,10 @@ EXCLUDE_SYMLINKS       = YES
 EXCLUDE_PATTERNS       = LocalSettings.php \
                          .svn \
                          */.git/* \
+                         */node_modules \
+                         */resources \
+                         */tests \
+                         */vendor \
                          */includes/libs/*/README.md \
                          */maintenance/*/README.md \
                          {{EXCLUDE_PATTERNS}}
