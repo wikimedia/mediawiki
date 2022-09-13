@@ -3839,6 +3839,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->platform->selectSQLText( $table, $vars, $conds, $fname, $options, $join_conds );
 	}
 
+	public function buildComparison( string $op, array $conds ): string {
+		return $this->platform->buildComparison( $op, $conds );
+	}
+
 	public function makeList( array $a, $mode = self::LIST_COMMA ) {
 		return $this->platform->makeList( $a, $mode );
 	}

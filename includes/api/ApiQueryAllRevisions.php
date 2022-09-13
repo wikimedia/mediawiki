@@ -188,15 +188,15 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		}
 
 		if ( $params['continue'] !== null ) {
-			$op = ( $dir == 'newer' ? '>' : '<' );
+			$op = ( $dir == 'newer' ? '>=' : '<=' );
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
-			$ts = $db->addQuotes( $db->timestamp( $cont[0] ) );
 			$rev_id = (int)$cont[1];
 			$this->dieContinueUsageIf( strval( $rev_id ) !== $cont[1] );
-			$this->addWhere( "$tsField $op $ts OR " .
-				"($tsField = $ts AND " .
-				"$idField $op= $rev_id)" );
+			$this->addWhere( $db->buildComparison( $op, [
+				$tsField => $db->timestamp( $cont[0] ),
+				$idField => (int)$cont[1],
+			] ) );
 		}
 
 		$this->addOption( 'LIMIT', $this->limit + 1 );
