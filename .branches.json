@@ -81,6 +81,7 @@
     "extensions/ExternalData",
     "extensions/RemovePII",
     "extensions/ImportDump",
+    "extensions/Share",
     "extensions/WikibaseEdtf",
     "extensions/FlexDiagrams",
     "extensions/SemanticFormsSelect"
