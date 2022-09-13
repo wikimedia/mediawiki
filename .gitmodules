@@ -1181,7 +1181,7 @@
 [submodule "skins/Cosmos"]
 	path = skins/Cosmos
 	url = https://github.com/wikimedia/mediawiki-skins-Cosmos
-	branch = master
+	branch = REL1_38
 	ignore = dirty
 [submodule "extensions/TranslationNotifications"]
 	path = extensions/TranslationNotifications
