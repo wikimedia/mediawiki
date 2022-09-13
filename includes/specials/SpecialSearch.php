@@ -482,14 +482,19 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$hasSearchErrors = $textStatus && $textStatus->getErrors() !== [];
-		$hasOtherResults = $textMatches &&
+		$hasInlineIwResults = $textMatches &&
 			$textMatches->hasInterwikiResults( ISearchResultSet::INLINE_RESULTS );
+		$hasSecondaryIwResults = $textMatches &&
+			$textMatches->hasInterwikiResults( ISearchResultSet::SECONDARY_RESULTS );
 
-		if ( $textMatches && $textMatches->hasInterwikiResults( ISearchResultSet::SECONDARY_RESULTS ) ) {
-			$out->addHTML( '<div class="searchresults mw-searchresults-has-iw">' );
-		} else {
-			$out->addHTML( '<div class="searchresults">' );
+		$classNames = [ 'searchresults' ];
+		if ( $hasSecondaryIwResults ) {
+			$classNames[] = 'mw-searchresults-has-iw';
 		}
+		if ( $this->offset > 0 ) {
+			$classNames[] = 'mw-searchresults-has-offset';
+		}
+		$out->addHTML( '<div class="' . implode( ' ', $classNames ) . '">' );
 
 		$out->addHTML( '<div class="mw-search-results-info">' );
 
@@ -517,7 +522,7 @@ class SpecialSearch extends SpecialPage {
 			$wikiId = WikiMap::getCurrentWikiId();
 			$localizedWikiName = $this->msg( "project-localized-name-{$wikiId}" )->text();
 			$out->wrapWikiMsg( "<p class=\"mw-search-nonefound\">\n$1</p>", [
-				$hasOtherResults ? 'search-nonefound-thiswiki' : 'search-nonefound',
+				$hasInlineIwResults ? 'search-nonefound-thiswiki' : 'search-nonefound',
 				wfEscapeWikiText( $term ),
 				$term,
 				$localizedWikiName
