@@ -13,7 +13,6 @@
 
 	.iw-resultset {
 		box-sizing: border-box;
-		padding: 0.5em;
 		vertical-align: top;
 		width: 100%;
 		float: left;
@@ -39,7 +38,7 @@
 
 	.iw-result__header {
 		font-size: 1.2em;
-		margin-bottom: 0.5em;
+		margin-bottom: 0.1em;
 	}
 
 	.iw-result__header a {
@@ -49,7 +48,7 @@
 
 	.iw-result__footer {
 		/* Matching main search result font-size */
-		margin-top: 0.5em;
+		margin-top: 0.1em;
 	}
 
 	.iw-result__footer a {
@@ -69,6 +68,13 @@
 		box-sizing: border-box;
 		/* stylelint-disable-next-line unit-disallowed-list */
 		padding: 0.25rem;
+	}
+
+	.iw-resultset:nth-child( 1 ) {
+		.iw-result__header {
+			border-top: solid 1px #ccc;
+			padding-top: 12px;
+		}
 	}
 
 	/* Second and third images are small */
@@ -122,6 +128,27 @@
 			width: 60%;
 			clear: left;
 			max-width: 60%;
+		}
+
+		.iw-resultset:nth-child( 1 ) {
+			.iw-result__header {
+				border-top: unset;
+			}
+		}
+	}
+
+	.mw-searchresults-has-iw {
+		.iw-resultset {
+			padding: 0.5em;
+		}
+	}
+}
+
+.mw-searchresults-has-iw.mw-searchresults-has-offset {
+	/* Tablet and up */
+	@media only screen and ( max-width: @width-breakpoint-tablet ) {
+		#mw-interwiki-results {
+			display: none;
 		}
 	}
 }
