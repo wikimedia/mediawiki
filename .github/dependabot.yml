@@ -8,3 +8,12 @@ updates:
       time: "00:00"
     open-pull-requests-limit: 250
     target-branch: REL1_38
+  - package-ecosystem: gitsubmodule
+    directory: "/"
+    schedule:
+      interval: weekly
+      time: "00:00"
+    open-pull-requests-limit: 250
+    target-branch: REL1_39
+    labels:
+      - "REL1_39"
