@@ -131,7 +131,7 @@
 	"revdelete-modify-no-access": "Er is een fout opgetreden tijdens het wijzigen van het object van $1 om $2: dit object is gemarkeerd als \"beschermd\".\nJe hebt geen toegang tot dit object.",
 	"revdelete-only-restricted": "Er is een fout opgetreden tijdens het verbergen van het item van $1, $2: je kunt geen items onderdrukken uit het zicht van beheerders zonder ook een van de andere zichtbaarheidsopties te selecteren.",
 	"mergehistory-header": "Via deze pagina kan je versies van de geschiedenis van een bronpagina naar een nieuwere pagina samenvoegen.\nZorg dat deze wijziging de geschiedenis van de pagina behoudt.",
-	"searchmenu-new": "<strong>De pagina \"[[:$1]]\" op deze wiki aanmaken!</strong> {{PLURAL:$2|0=|Zie ook de pagina met je zoekresultaat. |Zie ook de lijst met gevonden zoekresultaten}}",
+	"searchmenu-new": "Maak de pagina \"[[:$1]]\" op deze wiki! {{PLURAL:$2|0=|Zie ook de pagina met je zoekresultaat.|Zie ook de lijst met gevonden zoekresultaten}}",
 	"search-suggest": "Bedoelde je: $1",
 	"searchdisabled": "Zoeken in {{SITENAME}} is niet mogelijk.\nJe kunt gebruik maken van Google.\nDe gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.",
 	"savedprefs": "Je voorkeuren zijn opgeslagen.",
