@@ -1541,7 +1541,7 @@
 [submodule "extensions/NamespacePreload"]
 	path = extensions/NamespacePreload
 	url = https://gitlab.com/nonsensopedia/extensions/namespacepreload
-	branch = REL1_39
+	branch = master
 	ignore = dirty
 [submodule "extensions/ExternalData"]
 	path = extensions/ExternalData
