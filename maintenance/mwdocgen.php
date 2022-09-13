@@ -117,7 +117,6 @@ class MWDocGen extends Maintenance {
 		$this->excludes = [
 			'cache',
 			'images',
-			'static',
 		];
 		$this->excludePatterns = [];
 		if ( $this->input === '' ) {
