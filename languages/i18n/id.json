@@ -3786,7 +3786,7 @@
 	"feedback-thanks-title": "Terima kasih!",
 	"feedback-useragent": "Agen pengguna:",
 	"searchsuggest-search": "Telusuri {{SITENAME}}",
-	"searchsuggest-containing": "Cari halaman yang berisi istilah ini",
+	"searchsuggest-containing": "Cari halaman yang berisi istilah",
 	"search-match-redirect-label": "Arahkan ulang ke pencocokan yang tepat saat mencari",
 	"search-match-redirect-help": "Pilih untuk dialihkan ke halaman saat judul halaman itu cocok dengan apa yang Anda cari",
 	"api-clientside-error-noconnect": "Tidak dapat terhubung ke server. Pastikan Anda memiliki koneksi internet yang berfungsi dan coba lagi.",

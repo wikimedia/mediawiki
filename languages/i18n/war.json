@@ -2172,7 +2172,7 @@
 	"feedback-subject": "Himangrawon:",
 	"feedback-thanks-title": "Salamat!",
 	"searchsuggest-search": "Bilnga ha {{SITENAME}}",
-	"searchsuggest-containing": "nagsusulod. . .",
+	"searchsuggest-containing": "Pamiling hin mga pakli nga nagsusulod hin",
 	"api-clientside-error-timeout": "An server waray magbaton ha sulod han ginpapamulat nga oras.",
 	"api-error-badtoken": "Sayop ha sulod: Maraot nga token.",
 	"api-error-emptypage": "Naghihimo hin bag-o, diri gintutugotan an waray sulod nga mga pakli.",

@@ -192,7 +192,8 @@
 			"Paraboule",
 			"Cigaryno",
 			"Nclm",
-			"Envlh"
+			"Envlh",
+			"Gaultier"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -4044,7 +4045,7 @@
 	"pagelang-use-default": "Utiliser la langue par défaut",
 	"pagelang-select-lang": "Sélectionner la langue",
 	"pagelang-reason": "Motif",
-	"pagelang-submit": "Envoyer",
+	"pagelang-submit": "Soumettre",
 	"pagelang-nonexistent-page": "La page $1 n’existe pas.",
 	"pagelang-unchanged-language": "La page $1 est déjà définie pour la langue $2.",
 	"pagelang-unchanged-language-default": "La page $1 est déjà définie pour la langue par défaut du contenu du wiki.",
