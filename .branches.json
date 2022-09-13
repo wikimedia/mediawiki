@@ -81,6 +81,7 @@
     "extensions/ExternalData",
     "extensions/RemovePII",
     "extensions/ImportDump",
+    "extensions/NamespacePreload",
     "extensions/Share",
     "extensions/WikibaseEdtf",
     "extensions/FlexDiagrams",
