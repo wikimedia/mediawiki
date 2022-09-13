@@ -220,7 +220,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 				? hash_hmac( 'md5', $client['ip'] . "\n" . $client['agent'], $secret )
 				: md5( $client['ip'] . "\n" . $client['agent'] );
 		}
-		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId, 'v3' );
+		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId, 'v4' );
 		$this->waitForPosIndex = $clientPosIndex;
 
 		$this->clientLogInfo = [
