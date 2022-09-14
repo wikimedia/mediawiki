@@ -84,7 +84,8 @@
     "extensions/Share",
     "extensions/WikibaseEdtf",
     "extensions/FlexDiagrams",
-    "extensions/SemanticFormsSelect"
+    "extensions/SemanticFormsSelect",
+    "extensions/DPLForum"
   ],
   "stable": [
     "extensions/SnapProjectEmbed",
