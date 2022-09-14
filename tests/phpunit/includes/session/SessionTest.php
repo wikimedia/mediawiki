@@ -108,7 +108,13 @@ class SessionTest extends MediaWikiIntegrationTestCase {
 
 		// Simple round-trip
 		$session->setSecret( 'secret', $data );
-		$this->assertNotEquals( $data, $session->get( 'secret' ) );
+		// Cast to strings because PHPUnit sometimes considers true as equal to a string,
+		// depending on the other of the parameters (T317750)
+		$raw = $session->get( 'secret' );
+		$this->assertIsString( $raw );
+		if ( is_scalar( $data ) ) {
+			$this->assertNotSame( (string)$data, $raw );
+		}
 		$this->assertEquals( $data, $session->getSecret( 'secret', 'defaulted' ) );
 	}
 
