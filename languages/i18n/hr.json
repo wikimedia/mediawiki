@@ -59,7 +59,7 @@
 	"tog-newpageshidepatrolled": "Sakrij pregledane stranice iz popisa novih stranica",
 	"tog-hidecategorization": "Sakrij kategorizaciju stranica",
 	"tog-extendwatchlist": "Proširi popis praćenih stranica tako da prikaže sve promjene, ne samo najnovije",
-	"tog-usenewrc": "Grupne promjene po stranici u popisu nedavnih izmjena i popisu praćenih stranica (zahtijeva JavaScript)",
+	"tog-usenewrc": "Grupiraj promjene po stranici u popisu nedavnih promjena i popisu praćenih stranica",
 	"tog-editondblclick": "Uređivanje stranica dvostrukim klikom",
 	"tog-editsectiononrightclick": "Omogući uređivanje odlomka klikom desne tipke miša na njegov naslov",
 	"tog-watchcreations": "Dodaj stranice koje sam {{GENDER:|stvorio|stvorila}} na moj popis praćenja",

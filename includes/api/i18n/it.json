@@ -574,7 +574,7 @@
 	"apihelp-query+userinfo-example-simple": "Ottieni informazioni sull'utente attuale.",
 	"apihelp-query+users-summary": "Ottieni informazioni su un elenco di utenti.",
 	"apihelp-query+users-param-prop": "Quali informazioni includere:",
-	"apihelp-query+users-paramvalue-prop-cancreate": "Indica se può essere creata un'utenza per nomi utente validi ma non registrati.",
+	"apihelp-query+users-paramvalue-prop-cancreate": "Indica se può essere creata un'utenza per nomi utente validi ma non registrati. Per verificare se l'utente attuale può eseguire la creazione di un'utenza, usa [[Special:ApiHelp/query+userinfo|<kbd>action=query&meta=userinfo&uiprop=cancreateaccount</kbd>]].",
 	"apihelp-query+users-param-users": "Un elenco di utenti di cui ottenere informazioni.",
 	"apihelp-query+watchlist-summary": "Ottieni le ultime modifiche alle pagine tra gli osservati speciali dell'utente attuale.",
 	"apihelp-query+watchlist-param-start": "Il timestamp da cui iniziare l'elenco.",
