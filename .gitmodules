@@ -226,7 +226,7 @@
 [submodule "extensions/DPLForum"]
 	path = extensions/DPLForum
 	url = https://github.com/wikimedia/mediawiki-extensions-DPLForum
-	branch = REL1_38
+	branch = master
 	ignore = dirty
 [submodule "extensions/Poem"]
 	path = extensions/Poem
