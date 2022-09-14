@@ -62,6 +62,8 @@ For notes on 1.39.x and older releases, see HISTORY.
 * (T277618) The @noVarDump annotation from the DebugInfoTrait tool can now be
   added to references to stop them from being expanded when their object is
   passed to var_dump(), to make its use for debugging more feasible.
+* Added 'GetBlockErrorMessageKey' hook, allow extensions'
+  block error messages to be received and displayed by BlockErrorFormatter.
 * …
 
 === External library changes in 1.40 ===
