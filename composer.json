@@ -54,7 +54,7 @@
 		"wikimedia/ip-utils": "1.0.0",
 		"wikimedia/less.php": "3.1.0",
 		"wikimedia/object-factory": "2.2.0",
-		"wikimedia/parsoid": "0.12.2",
+		"wikimedia/parsoid": "0.12.3",
 		"wikimedia/php-session-serializer": "1.0.7",
 		"wikimedia/purtle": "1.0.7",
 		"wikimedia/relpath": "2.1.1",
