@@ -868,9 +868,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		// Check if we already know that the DB has reached this point
 		$srvName = $this->getServerName( $index );
-		$key = $this->srvCache->makeGlobalKey( __CLASS__, 'last-known-pos', $srvName, 'v1' );
+		$key = $this->srvCache->makeGlobalKey( __CLASS__, 'last-known-pos', $srvName, 'v2' );
+
 		/** @var DBPrimaryPos $knownReachedPos */
-		$knownReachedPos = $this->srvCache->get( $key );
+		$knownReachedPos = $this->unmarshalPosition( $this->srvCache->get( $key ) );
 		if (
 			$knownReachedPos instanceof DBPrimaryPos &&
 			$knownReachedPos->hasReached( $this->waitForPos )
@@ -917,7 +918,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$ok = ( $result !== null && $result != -1 );
 		if ( $ok ) {
 			// Remember that the DB reached this point
-			$this->srvCache->set( $key, $this->waitForPos, BagOStuff::TTL_DAY );
+			$this->srvCache->set( $key, $this->waitForPos->toArray(), BagOStuff::TTL_DAY );
 		}
 
 		if ( $close ) {
@@ -925,6 +926,15 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		return $ok;
+	}
+
+	private function unmarshalPosition( $position ) {
+		if ( !is_array( $position ) ) {
+			return null;
+		}
+
+		$class = $position['_type_'];
+		return $class::newFromArray( $position );
 	}
 
 	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 ) {
