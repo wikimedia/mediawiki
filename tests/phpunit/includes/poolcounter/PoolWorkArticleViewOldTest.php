@@ -100,4 +100,11 @@ class PoolWorkArticleViewOldTest extends PoolWorkArticleViewTest {
 
 		$this->assertFalse( $cache->get( $page->getRevisionRecord(), $parserOptions ) );
 	}
+
+	public function testDoWorkWithFakeRevision() {
+		// PoolWorkArticleViewOld caches the results, but things with null revid should
+		// not be cached.
+		$this->expectException( InvalidArgumentException::class );
+		parent::testDoWorkWithFakeRevision();
+	}
 }
