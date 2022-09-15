@@ -1489,6 +1489,7 @@
 	"rcfilters-preference-label": "Ober gant etrefas hep JavaScript",
 	"rcfilters-preference-help": "Kargañ [[{{#special:RecentChanges}}|kemmoù diwezhañ]] ha pajenn [[{{#special:RecentChangesLinked}}|heuliañ ar pajennoù liammet]] hep klask silet pe an arc’hweladur livañ",
 	"rcfilters-watchlist-preference-label": "Ober gant etrefas hep JavaScript",
+	"rcfilters-watchlist-preference-help": "Karget a vo [[{{#special:Watchlist}}|ar roll evezhiañ]] hep siloù klask pe livañ an ereadurezh.",
 	"rcfilters-filter-showlinkedfrom-label": "Diskouez ar c'hemmoù war ar bajennoù liammet",
 	"rcfilters-filter-showlinkedto-label": "Diskouez ar c'hemmoù war ar bajennoù liammet",
 	"rcfilters-target-page-placeholder": "Skrivañ anv ar bajenn (pe rummad)",
