@@ -7739,9 +7739,3 @@ config-schema:
         description: |-
             List of preferred skins to be listed higher in Special:Preferences
             @since 1.38
-    SpecialPreferencesUseMobileLayout:
-        default: false
-        type: boolean
-        description: |-
-            Whether a user is shown the mobile layout in Special:Preferences
-            @since 1.39

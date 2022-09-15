@@ -4395,9 +4395,3 @@ $wgFeaturePolicyReportOnly = null;
  * @see MediaWiki\MainConfigSchema::SkinsPreferred
  */
 $wgSkinsPreferred = null;
-
-/**
- * Config variable stub for the SpecialPreferencesUseMobileLayout setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::SpecialPreferencesUseMobileLayout
- */
-$wgSpecialPreferencesUseMobileLayout = null;
