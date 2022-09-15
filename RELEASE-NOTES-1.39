@@ -257,6 +257,7 @@ because of Phabricator reports.
     SkinTemplateNavigation::Universal:
      - SkinTemplateNavigation::SpecialPage
      - SkinTemplateNavigation
+     - PersonalUrls
   - The mediawiki.skinning.content.externallinks module, which was
     deprecated in 1.36 has been removed. Skins that still rely on it
     will lose the icon styling of external links by type.
