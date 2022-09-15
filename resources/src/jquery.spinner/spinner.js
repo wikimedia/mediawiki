@@ -69,7 +69,7 @@
 
 			opts = $.extend( {}, defaults, opts );
 
-			$spinner = $( '<div>' ).addClass( 'mw-spinner' ).attr( 'title', '...' );
+			$spinner = $( '<div>' ).addClass( 'mw-spinner' );
 			if ( opts.id !== undefined ) {
 				$spinner.attr( 'id', 'mw-spinner-' + opts.id );
 			}
