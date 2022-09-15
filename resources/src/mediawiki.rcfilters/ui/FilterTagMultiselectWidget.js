@@ -420,9 +420,6 @@ FilterTagMultiselectWidget.prototype.onMenuToggle = function ( isVisible ) {
 		// Clear the search
 		this.controller.setSearch( '' );
 
-		// Log filter grouping
-		this.controller.trackFilterGroupings( 'filtermenu' );
-
 		this.blur();
 	}
 
