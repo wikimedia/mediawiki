@@ -93,7 +93,6 @@ use Wikimedia\ScopedCallback;
  * @ingroup Parser
  */
 class Parser {
-	use DeprecationHelper;
 
 	# Flags for Parser::setFunctionHook
 	public const SFH_NO_HASH = 1;
@@ -492,24 +491,6 @@ class Parser {
 			// removed in 1.36; use a ParserFactory instead.
 			throw new MWException( 'Direct construction of Parser not allowed' );
 		}
-		$this->deprecatePublicProperty( 'mLinkID', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mIncludeSizes', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mDoubleUnderscores', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mShowToc', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mRevisionId', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mRevisionTimestamp', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mRevisionUser', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mRevisionSize', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mInputSize', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mInParse', '1.35', __CLASS__ );
-		$this->deprecatePublicPropertyFallback( 'mFirstCall', '1.35', static function () {
-			return false;
-		}, static function ( $value ) { /* ignore */
-		} );
-		$this->deprecatePublicPropertyFallback( 'mGeneratedPPNodeCount', '1.35', static function () {
-			return 0;
-		}, static function ( $value ) { /* ignore */
-		} );
 		$svcOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->svcOptions = $svcOptions;
 
