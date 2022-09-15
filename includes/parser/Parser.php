@@ -193,6 +193,15 @@ class Parser {
 	 */
 	public const TOC_PLACEHOLDER = '<meta property="mw:PageProp/toc" />';
 
+	/**
+	 * Permissive regexp matching TOC_PLACEHOLDER.  This allows for some
+	 * minor modifications to the placeholder to be made by extensions
+	 * without breaking the TOC (T317857); note also that Parsoid's version
+	 * of the placeholder might include additional attributes.
+	 * @var string
+	 */
+	private const TOC_PLACEHOLDER_REGEX = '/<meta\\b[^>]*\\bproperty\\s*=\\s*"mw:PageProp\\/toc"[^>]*\\/>/';
+
 	# Persistent:
 	private $mTagHooks = [];
 	private $mFunctionHooks = [];
@@ -4854,9 +4863,11 @@ class Parser {
 	 * @return string Result HTML
 	 */
 	public static function replaceTableOfContentsMarker( $text, $toc ) {
-		return str_replace(
-			self::TOC_PLACEHOLDER,
-			$toc,
+		return preg_replace_callback(
+			self::TOC_PLACEHOLDER_REGEX,
+			static function ( array $matches ) use( $toc ) {
+				return $toc; // Ensure $1 \1 etc are safe to use in $toc
+			},
 			// For backwards compatibility during transition period,
 			// also replace "old" TOC_PLACEHOLDER value
 			str_replace( '<mw:tocplace></mw:tocplace>', $toc, $text )
