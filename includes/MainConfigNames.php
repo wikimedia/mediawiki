@@ -4412,10 +4412,4 @@ class MainConfigNames {
 	 */
 	public const SkinsPreferred = 'SkinsPreferred';
 
-	/**
-	 * Name constant for the SpecialPreferencesUseMobileLayout setting, for use with Config::get()
-	 * @see MainConfigSchema::SpecialPreferencesUseMobileLayout
-	 */
-	public const SpecialPreferencesUseMobileLayout = 'SpecialPreferencesUseMobileLayout';
-
 }
