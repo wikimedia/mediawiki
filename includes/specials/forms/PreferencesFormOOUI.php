@@ -18,6 +18,9 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
+
 /**
  * Form to edit user preferences.
  *
@@ -155,6 +158,181 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	 * @return string
 	 */
 	public function getBody() {
+		$services = MediaWikiServices::getInstance();
+		$config = $services->getMainConfig();
+		$useMobileLayout =
+			$config->get( MainConfigNames::SpecialPreferencesUseMobileLayout );
+
+		if ( $useMobileLayout ) {
+			// Import the icons used in the mobile view
+			$out = $this->getOutput();
+			$out->addModuleStyles(
+				[
+					'oojs-ui.styles.icons-user',
+					'oojs-ui.styles.icons-editing-core',
+					'oojs-ui.styles.icons-editing-advanced',
+					'oojs-ui.styles.icons-wikimediaui',
+					'oojs-ui.styles.icons-content',
+					'oojs-ui.styles.icons-moderation',
+					'oojs-ui.styles.icons-interactions',
+					'oojs-ui.styles.icons-movement',
+					'oojs-ui.styles.icons-wikimedia',
+					'oojs-ui.styles.icons-media',
+					'oojs-ui.styles.icons-accessibility',
+					'oojs-ui.styles.icons-layout',
+				]
+			);
+			$form = $this->createMobilePreferencesForm();
+		} else {
+			$form = $this->createDesktopPreferencesForm();
+		}
+
+		$header = $this->formatFormHeader();
+
+		return $header . $form;
+	}
+
+	/**
+	 * Get the "<legend>" for a given section key. Normally this is the
+	 * prefs-$key message but we'll allow extensions to override it.
+	 * @param string $key
+	 * @return string
+	 */
+	public function getLegend( $key ) {
+		$legend = parent::getLegend( $key );
+		$this->getHookRunner()->onPreferencesGetLegend( $this, $key, $legend );
+		return $legend;
+	}
+
+	/**
+	 * Get the keys of each top level preference section.
+	 * @return string[] List of section keys
+	 */
+	public function getPreferenceSections() {
+		return array_keys( array_filter( $this->mFieldTree, 'is_array' ) );
+	}
+
+	/**
+	 * Create the preferences form for a mobile layout.
+	 * @return string
+	 */
+	private function createMobilePreferencesForm() {
+		$prefPanels = [];
+		$iconNames = [
+			'personal' => 'userAvatar',
+			'rendering' => 'palette',
+			'editing' => 'edit',
+			'rc' => 'recentChanges',
+			'watchlist' => 'watchlist',
+			'searchoptions' => 'search',
+			'echo' => 'bell',
+			'betafeatures' => 'labFlask',
+			'gadgets' => 'puzzle',
+			'lqt' => 'speechBubbles',
+			'openstack' => 'key',
+			'uploads' => 'upload',
+			'centralnotice-banners' => 'feedback',
+			'misc' => '',
+		];
+
+		foreach ( $this->mFieldTree as $key => $val ) {
+			if ( !is_array( $val ) ) {
+				wfDebug( __METHOD__ . " encountered a field not attached to a section: '$key'" );
+				continue;
+			}
+			$label = $this->getLegend( $key );
+			$content =
+				$this->getHeaderHtml( $key ) .
+				$this->displaySection(
+					$val,
+					"",
+					"mw-prefsection-$key-"
+				) .
+				$this->getFooterHtml( $key );
+
+			$prefPanel = new OOUI\PanelLayout( [
+				'expanded' => false,
+				'content' => [],
+				'framed' => false,
+				'classes' => [ 'mw-mobile-preferences-option' ]
+			] );
+
+			$iconHeaderDiv = ( new OOUI\Tag( 'div' ) )
+				->addClasses( [ 'mw-prefs-header-container' ] );
+			$iconExists = array_key_exists( $key, $iconNames );
+			if ( $iconExists ) {
+				$iconName = $iconNames[ $key ];
+			} else {
+				wfDebug( __METHOD__ . " icon does not exist for section: '$key'" );
+				$iconName = "";
+			}
+			$spanIcon = new OOUI\IconWidget( [
+				'icon' => $iconName,
+				'label' => $label,
+				'title' => $label,
+				'classes' => [ 'mw-prefs-icon' ],
+			] );
+
+			$prefTitle = ( new OOUI\Tag( 'h5' ) )->appendContent( $label )->addClasses( [ 'prefs-title' ] );
+			$iconHeaderDiv->appendContent( $spanIcon );
+			$iconHeaderDiv->appendContent( $prefTitle );
+			$prefPanel->appendContent( $iconHeaderDiv );
+			$prefPanel->appendContent( ( new OOUI\Tag( 'p' ) )
+				->appendContent( $this->msg( "prefs-description-" . $key )->text() )
+				->addClasses( [ 'mw-prefs-description' ] )
+			);
+			$contentDiv = ( new OOUI\Tag( 'div' ) )->addClasses( [ 'mw-prefs-hidden' ] );
+			$contentDiv->setAttributes( [
+				'id' => 'mw-prefs-option-' . $key . '-content',
+				'style' => 'display: none;',
+			] );
+			$contentHeader = ( new OOUI\Tag( 'div' ) )->addClasses( [ 'mw-prefs-content-header' ] );
+			$contentHeaderBackButton = new OOUI\IconWidget( [
+				'icon' => 'previous',
+				'label' => 'Back',
+				'title' => 'Back to preferences',
+				'classes' => [ 'mw-prefs-header-icon' ],
+			] );
+			$contentHeaderBackButton->setAttributes( [
+				'id' => 'mw-prefs-option-' . $key . '-back-button',
+			] );
+			$contentHeaderTitle = ( new OOUI\Tag( 'h5' ) )
+				->appendContent( $label )->addClasses( [ 'mw-prefs-header-title' ] );
+			$formContent = new OOUI\Widget( [
+				'content' => new OOUI\HtmlSnippet( $content )
+			] );
+			$hiddenForm = ( new OOUI\Tag( 'div' ) )->appendContent( $formContent );
+			$contentHeader->appendContent( $contentHeaderBackButton );
+			$contentHeader->appendContent( $contentHeaderTitle );
+			$contentDiv->appendContent( $contentHeader );
+			$contentDiv->appendContent( $hiddenForm );
+			$prefPanel->appendContent( $contentDiv );
+			$prefPanel->setAttributes( [
+				'id' => 'mw-prefs-option-' . $key,
+			] );
+			$prefPanel->setInfusable( true );
+			$prefPanels[] = $prefPanel;
+		}
+
+		$form = new OOUI\StackLayout( [
+			'items' => $prefPanels,
+			'continuous' => true,
+			'expanded' => false,
+			'classes' => [ 'mw-mobile-preferences-container' ]
+		] );
+		$form->setAttributes( [
+			'id' => 'mw-prefs-container',
+		] );
+		$form->setInfusable( true );
+
+		return $form;
+	}
+
+	/**
+	 * Create the preferences form for a desktop layout.
+	 * @return string
+	 */
+	private function createDesktopPreferencesForm() {
 		$tabPanels = [];
 		foreach ( $this->mFieldTree as $key => $val ) {
 			if ( !is_array( $val ) ) {
@@ -163,13 +341,13 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 			}
 			$label = $this->getLegend( $key );
 			$content =
-				$this->getHeaderText( $key ) .
+				$this->getHeaderHtml( $key ) .
 				$this->displaySection(
 					$val,
 					"",
 					"mw-prefsection-$key-"
 				) .
-				$this->getFooterText( $key );
+				$this->getFooterHtml( $key );
 
 			$tabPanels[] = new OOUI\TabPanelLayout( 'mw-prefsection-' . $key, [
 				'classes' => [ 'mw-htmlform-autoinfuse-lazy' ],
@@ -197,7 +375,6 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 		] );
 		$indexLayout->addTabPanels( $tabPanels );
 
-		$header = $this->formatFormHeader();
 		$form = new OOUI\PanelLayout( [
 			'framed' => true,
 			'expanded' => false,
@@ -205,26 +382,6 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 			'content' => $indexLayout
 		] );
 
-		return $header . $form;
-	}
-
-	/**
-	 * Get the "<legend>" for a given section key. Normally this is the
-	 * prefs-$key message but we'll allow extensions to override it.
-	 * @param string $key
-	 * @return string
-	 */
-	public function getLegend( $key ) {
-		$legend = parent::getLegend( $key );
-		$this->getHookRunner()->onPreferencesGetLegend( $this, $key, $legend );
-		return $legend;
-	}
-
-	/**
-	 * Get the keys of each top level preference section.
-	 * @return string[] List of section keys
-	 */
-	public function getPreferenceSections() {
-		return array_keys( array_filter( $this->mFieldTree, 'is_array' ) );
+		return $form;
 	}
 }

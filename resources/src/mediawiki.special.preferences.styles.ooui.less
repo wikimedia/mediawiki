@@ -1,5 +1,6 @@
 @import 'mediawiki.skin.variables.less';
 @import 'mediawiki.mixins.less';
+@import 'mediawiki.ui/variables';
 
 /* Uses standard message block colors, compare mediawiki.legacy/shared.css */
 .mw-email-not-authenticated .oo-ui-labelWidget,
@@ -184,4 +185,69 @@
 
 #wpTimeCorrection .oo-ui-textInputWidget {
 	margin-top: 0.5em;
+}
+
+/* T311717 - Styles for Special:Preferences on mobile
+These are used when users navigate to Special:Preferences
+with params ?useskin=vector&useformat=mobile
+*/
+.mw-mobile-preferences-option {
+	cursor: pointer;
+	padding-top: 0.3125em;
+	border-bottom: 0.0625em solid @colorGray12;
+}
+
+.mw-mobile-preferences-option:hover {
+	background-color: @colorGray15;
+}
+
+.mw-mobile-preferences-option:last-child {
+	border-bottom: none; // stylelint-disable-line declaration-property-value-disallowed-list
+}
+
+.mw-prefs-icon {
+	color: @colorGray2;
+	margin: 0.55em !important; // stylelint-disable-line declaration-no-important
+}
+
+.mw-prefs-title {
+	font-weight: normal;
+	font-size: 1em;
+	line-height: 1.25em;
+	color: @colorGray2;
+}
+
+.mw-prefs-description {
+	font-weight: normal;
+	font-size: 0.875em;
+	line-height: 1.25em;
+	padding: 0 2.7em;
+	color: @colorGray7;
+	margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.mw-prefs-header-container {
+	display: flex;
+}
+
+.mw-prefs-hidden {
+	display: none;
+}
+
+.mw-prefs-content-header {
+	width: 100%;
+	height: 3.125em;
+	display: block;
+	border-bottom: 1px solid @colorGray12;
+	box-shadow: 0 0.25em 0.125em -0.1875em rgba( 0, 0, 0, 0.25 );
+}
+
+.mw-prefs-header-icon {
+	color: @colorGray2;
+	cursor: pointer;
+	margin: 0.25em 0.5em !important; // stylelint-disable-line declaration-no-important
+}
+
+.mw-prefs-header-title {
+	display: inline-flex;
 }
