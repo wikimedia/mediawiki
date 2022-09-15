@@ -4460,6 +4460,7 @@ class Parser {
 				'fromtitle' => $titleText,
 				'byteoffset' => ( $noOffset ? null : $byteOffset ),
 				'anchor' => $anchor,
+				'linkAnchor' => $linkAnchor,
 			];
 
 			# give headline the correct <h#> tag
