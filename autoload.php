@@ -804,7 +804,6 @@ $wgAutoloadLocalClasses = [
 	'MWExceptionHandler' => __DIR__ . '/includes/exception/MWExceptionHandler.php',
 	'MWExceptionRenderer' => __DIR__ . '/includes/exception/MWExceptionRenderer.php',
 	'MWFileProps' => __DIR__ . '/includes/utils/MWFileProps.php',
-	'MWGrants' => __DIR__ . '/includes/MWGrants.php',
 	'MWHttpRequest' => __DIR__ . '/includes/http/MWHttpRequest.php',
 	'MWLBFactory' => __DIR__ . '/includes/db/MWLBFactory.php',
 	'MWOldPassword' => __DIR__ . '/includes/password/MWOldPassword.php',
