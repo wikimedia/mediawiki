@@ -139,8 +139,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			$this->addOption( 'USE INDEX', [ 'categorylinks' => 'cl_timestamp' ] );
 		} else {
 			if ( $params['continue'] ) {
-				$cont = explode( '|', $params['continue'] );
-				$this->dieContinueUsageIf( count( $cont ) != 3 );
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'string', 'int' ] );
 
 				// Remove the types to skip from $queryTypes
 				$contTypeIndex = array_search( $cont[0], $queryTypes );
@@ -148,13 +147,12 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
 				// Add a WHERE clause for sortkey and from
 				$this->dieContinueUsageIf( !$this->validateHexSortkey( $cont[1] ) );
-				$escSortkey = $this->getDB()->addQuotes( hex2bin( $cont[1] ) );
-				$from = (int)$cont[2];
-				$op = $dir == 'newer' ? '>' : '<';
+				$op = $dir == 'newer' ? '>=' : '<=';
 				// $contWhere is used further down
-				$contWhere = "cl_sortkey $op $escSortkey OR " .
-					"(cl_sortkey = $escSortkey AND " .
-					"cl_from $op= $from)";
+				$contWhere = $this->getDB()->buildComparison( $op, [
+					'cl_sortkey' => hex2bin( $cont[1] ),
+					'cl_from' => $cont[2],
+				] );
 				// The below produces ORDER BY cl_sortkey, cl_from, possibly with DESC added to each of them
 				$this->addWhereRange( 'cl_sortkey', $dir, null, null );
 				$this->addWhereRange( 'cl_from', $dir, null, null );
