@@ -2352,10 +2352,12 @@ class WANObjectCache implements
 	/**
 	 * Get an iterator of (cache key => entity ID) for a list of entity IDs
 	 *
-	 * The callback takes an ID string and returns a key via makeKey()/makeGlobalKey().
-	 * There should be no network nor filesystem I/O used in the callback. The entity
-	 * ID/key mapping must be 1:1 or an exception will be thrown. If hashing is needed,
-	 * then use the hash256() method.
+	 * The $callback argument expects a function that returns the key for an entity ID via
+	 * makeKey()/makeGlobalKey(). There should be no network nor filesystem I/O used in the
+	 * callback. The entity ID/key mapping must be 1:1 or an exception will be thrown. Use
+	 * the hash256() method for any hashing. The callback takes the following arguments:
+	 *   - $id: An entity ID
+	 *   - $cache: This WANObjectCache instance
 	 *
 	 * Example usage for the default keyspace:
 	 * @code
