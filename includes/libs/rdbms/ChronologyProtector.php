@@ -485,9 +485,18 @@ class ChronologyProtector implements LoggerAwareInterface {
 		}
 
 		if ( $indexReached && $this->hasImplicitClientId ) {
-				$this->logger->warning( 'found position data under a presumed clientId (T314434)', [
-					'indexReached' => $indexReached
-				] + $this->clientLogInfo );
+				$isWithinPossibleCookieTTL = false;
+				foreach ( $this->startupTimestampsByCluster as $cluster => $timestamp ) {
+					if ( ( $this->startupTimestamp - $timestamp ) < self::POSITION_COOKIE_TTL ) {
+						$isWithinPossibleCookieTTL = true;
+						break;
+					}
+				}
+				if ( $isWithinPossibleCookieTTL ) {
+					$this->logger->warning( 'found position data under a presumed clientId (T314434)', [
+						'indexReached' => $indexReached
+					] + $this->clientLogInfo );
+				}
 		}
 	}
 
