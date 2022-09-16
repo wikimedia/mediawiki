@@ -190,9 +190,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		if ( $this->params['continue'] !== null ) {
 			// Throw away any titles we're gonna skip so they don't
 			// clutter queries
-			$cont = explode( '|', $this->params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 2 );
-			$conttitle = $this->titleFactory->makeTitleSafe( (int)$cont[0], $cont[1] );
+			$cont = $this->parseContinueParamOrDie( $this->params['continue'], [ 'int', 'string' ] );
+			$conttitle = $this->titleFactory->makeTitleSafe( $cont[0], $cont[1] );
 			$this->dieContinueUsageIf( !$conttitle );
 			foreach ( $this->everything as $pageid => $title ) {
 				if ( Title::compare( $title, $conttitle ) >= 0 ) {

@@ -85,14 +85,11 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		$this->addWhereFld( 'll_from', array_keys( $pages ) );
 		if ( $params['continue'] !== null ) {
 			$db = $this->getDB();
-			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 2 );
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'string' ] );
 			$op = $params['dir'] == 'descending' ? '<=' : '>=';
-			$llfrom = (int)$cont[0];
-			$lllang = $cont[1];
 			$this->addWhere( $db->buildComparison( $op, [
-				'll_from' => $llfrom,
-				'll_lang' => $lllang,
+				'll_from' => $cont[0],
+				'll_lang' => $cont[1],
 			] ) );
 		}
 

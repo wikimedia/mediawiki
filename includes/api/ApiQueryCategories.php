@@ -92,14 +92,11 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 		if ( $params['continue'] !== null ) {
 			$db = $this->getDB();
-			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 2 );
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'string' ] );
 			$op = $params['dir'] == 'descending' ? '<=' : '>=';
-			$clfrom = (int)$cont[0];
-			$clto = $cont[1];
 			$this->addWhere( $db->buildComparison( $op, [
-				'cl_from' => $clfrom,
-				'cl_to' => $clto,
+				'cl_from' => $cont[0],
+				'cl_to' => $cont[1],
 			] ) );
 		}
 

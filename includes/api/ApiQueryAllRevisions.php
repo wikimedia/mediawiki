@@ -189,13 +189,10 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 
 		if ( $params['continue'] !== null ) {
 			$op = ( $dir == 'newer' ? '>=' : '<=' );
-			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 2 );
-			$rev_id = (int)$cont[1];
-			$this->dieContinueUsageIf( strval( $rev_id ) !== $cont[1] );
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int' ] );
 			$this->addWhere( $db->buildComparison( $op, [
 				$tsField => $db->timestamp( $cont[0] ),
-				$idField => (int)$cont[1],
+				$idField => $cont[1],
 			] ) );
 		}
 

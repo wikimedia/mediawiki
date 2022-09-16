@@ -90,8 +90,7 @@ class ApiQueryContributors extends ApiQueryBase {
 
 		// Filter out already-processed pages
 		if ( $params['continue'] !== null ) {
-			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 2 );
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'int' ] );
 			$cont_page = (int)$cont[0];
 			$pages = array_filter( $pages, static function ( $v ) use ( $cont_page ) {
 				return $v >= $cont_page;
@@ -219,13 +218,10 @@ class ApiQueryContributors extends ApiQueryBase {
 		}
 
 		if ( $params['continue'] !== null ) {
-			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 2 );
-			$cont_page = (int)$cont[0];
-			$cont_id = (int)$cont[1];
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'int' ] );
 			$this->addWhere( $db->buildComparison( '>=', [
-				$pageField => $cont_page,
-				$idField => $cont_id,
+				$pageField => $cont[0],
+				$idField => $cont[1],
 			] ) );
 		}
 
