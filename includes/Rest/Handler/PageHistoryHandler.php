@@ -239,9 +239,10 @@ class PageHistoryHandler extends SimpleHandler {
 		if ( $relativeRevId ) {
 			$op = $params['older_than'] ? '<' : '>';
 			$sort = $params['older_than'] ? 'DESC' : 'ASC';
-			$ts = $dbr->addQuotes( $dbr->timestamp( $ts ) );
-			$cond[] = "rev_timestamp $op $ts OR " .
-				"(rev_timestamp = $ts AND rev_id $op $relativeRevId)";
+			$cond[] = $dbr->buildComparison( $op, [
+				'rev_timestamp' => $dbr->timestamp( $ts ),
+				'rev_id' => $relativeRevId,
+			] );
 			$orderBy = "rev_timestamp $sort, rev_id $sort";
 		} else {
 			$orderBy = "rev_timestamp DESC, rev_id DESC";
