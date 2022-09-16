@@ -71,17 +71,15 @@ class ApiQueryLangBacklinks extends ApiQueryGeneratorBase {
 			$this->dieContinueUsageIf( count( $cont ) != 3 );
 
 			$db = $this->getDB();
-			$op = $params['dir'] == 'descending' ? '<' : '>';
-			$prefix = $db->addQuotes( $cont[0] );
-			$title = $db->addQuotes( $cont[1] );
+			$op = $params['dir'] == 'descending' ? '<=' : '>=';
+			$prefix = $cont[0];
+			$title = $cont[1];
 			$from = (int)$cont[2];
-			$this->addWhere(
-				"ll_lang $op $prefix OR " .
-				"(ll_lang = $prefix AND " .
-				"(ll_title $op $title OR " .
-				"(ll_title = $title AND " .
-				"ll_from $op= $from)))"
-			);
+			$this->addWhere( $db->buildComparison( $op, [
+				'll_lang' => $prefix,
+				'll_title' => $title,
+				'll_from' => $from,
+			] ) );
 		}
 
 		$prop = array_fill_keys( $params['prop'], true );

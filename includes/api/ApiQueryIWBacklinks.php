@@ -71,17 +71,15 @@ class ApiQueryIWBacklinks extends ApiQueryGeneratorBase {
 			$this->dieContinueUsageIf( count( $cont ) != 3 );
 
 			$db = $this->getDB();
-			$op = $params['dir'] == 'descending' ? '<' : '>';
-			$prefix = $db->addQuotes( $cont[0] );
-			$title = $db->addQuotes( $cont[1] );
+			$op = $params['dir'] == 'descending' ? '<=' : '>=';
+			$prefix = $cont[0];
+			$title = $cont[1];
 			$from = (int)$cont[2];
-			$this->addWhere(
-				"iwl_prefix $op $prefix OR " .
-				"(iwl_prefix = $prefix AND " .
-				"(iwl_title $op $title OR " .
-				"(iwl_title = $title AND " .
-				"iwl_from $op= $from)))"
-			);
+			$this->addWhere( $db->buildComparison( $op, [
+				'iwl_prefix' => $prefix,
+				'iwl_title' => $title,
+				'iwl_from' => $from,
+			] ) );
 		}
 
 		$prop = array_fill_keys( $params['prop'], true );

@@ -223,11 +223,10 @@ class ApiQueryContributors extends ApiQueryBase {
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$cont_page = (int)$cont[0];
 			$cont_id = (int)$cont[1];
-			$this->addWhere(
-				"$pageField > $cont_page OR " .
-				"($pageField = $cont_page AND " .
-				"$idField >= $cont_id)"
-			);
+			$this->addWhere( $db->buildComparison( '>=', [
+				$pageField => $cont_page,
+				$idField => $cont_id,
+			] ) );
 		}
 
 		$res = $this->select( __METHOD__ );

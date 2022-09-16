@@ -175,20 +175,19 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$continue = $params['continue'] !== null;
 		if ( $continue ) {
 			$continueArr = explode( '|', $params['continue'] );
-			$op = $params['dir'] == 'descending' ? '<' : '>';
+			$op = $params['dir'] == 'descending' ? '<=' : '>=';
 			if ( $params['unique'] ) {
 				$this->dieContinueUsageIf( count( $continueArr ) != 1 );
-				$continueTitle = $db->addQuotes( $continueArr[0] );
-				$this->addWhere( "{$titleField} $op= $continueTitle" );
+				$continueTitle = $continueArr[0];
+				$this->addWhere( $db->buildComparison( $op, [ $titleField => $continueTitle ] ) );
 			} else {
 				$this->dieContinueUsageIf( count( $continueArr ) != 2 );
-				$continueTitle = $db->addQuotes( $continueArr[0] );
+				$continueTitle = $continueArr[0];
 				$continueFrom = (int)$continueArr[1];
-				$this->addWhere(
-					"{$titleField} $op $continueTitle OR " .
-					"({$titleField} = $continueTitle AND " .
-					"{$pfx}from $op= $continueFrom)"
-				);
+				$this->addWhere( $db->buildComparison( $op, [
+					$titleField => $continueTitle,
+					"{$pfx}from" => $continueFrom,
+				] ) );
 			}
 		}
 

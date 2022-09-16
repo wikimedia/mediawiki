@@ -150,19 +150,18 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		}
 
 		if ( $params['continue'] !== null ) {
+			$db = $this->getDB();
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 3 );
-			$op = $params['dir'] == 'descending' ? '<' : '>';
+			$op = $params['dir'] == 'descending' ? '<=' : '>=';
 			$plfrom = (int)$cont[0];
 			$plns = (int)$cont[1];
-			$pltitle = $this->getDB()->addQuotes( $cont[2] );
-			$this->addWhere(
-				"{$this->prefix}_from $op $plfrom OR " .
-				"({$this->prefix}_from = $plfrom AND " .
-				"($nsField $op $plns OR " .
-				"($nsField = $plns AND " .
-				"$titleField $op= $pltitle)))"
-			);
+			$pltitle = $cont[2];
+			$this->addWhere( $db->buildComparison( $op, [
+				"{$this->prefix}_from" => $plfrom,
+				$nsField => $plns,
+				$titleField => $pltitle,
+			] ) );
 		}
 
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );

@@ -156,15 +156,15 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->addWhereFld( $this->bl_from_ns, $this->params['namespace'] );
 
 		if ( count( $this->cont ) >= 2 ) {
-			$op = $this->params['dir'] == 'descending' ? '<' : '>';
+			$db = $this->getDB();
+			$op = $this->params['dir'] == 'descending' ? '<=' : '>=';
 			if ( $this->params['namespace'] !== null && count( $this->params['namespace'] ) > 1 ) {
-				$this->addWhere(
-					"{$this->bl_from_ns} $op {$this->cont[0]} OR " .
-					"({$this->bl_from_ns} = {$this->cont[0]} AND " .
-					"{$this->bl_from} $op= {$this->cont[1]})"
-				);
+				$this->addWhere( $db->buildComparison( $op, [
+					$this->bl_from_ns => $this->cont[0],
+					$this->bl_from => $this->cont[1],
+				] ) );
 			} else {
-				$this->addWhere( "{$this->bl_from} $op= {$this->cont[1]}" );
+				$this->addWhere( $db->buildComparison( $op, [ $this->bl_from => $this->cont[1] ] ) );
 			}
 		}
 

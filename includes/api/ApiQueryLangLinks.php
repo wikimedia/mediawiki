@@ -84,16 +84,16 @@ class ApiQueryLangLinks extends ApiQueryBase {
 		$this->addTables( 'langlinks' );
 		$this->addWhereFld( 'll_from', array_keys( $pages ) );
 		if ( $params['continue'] !== null ) {
+			$db = $this->getDB();
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
-			$op = $params['dir'] == 'descending' ? '<' : '>';
+			$op = $params['dir'] == 'descending' ? '<=' : '>=';
 			$llfrom = (int)$cont[0];
-			$lllang = $this->getDB()->addQuotes( $cont[1] );
-			$this->addWhere(
-				"ll_from $op $llfrom OR " .
-				"(ll_from = $llfrom AND " .
-				"ll_lang $op= $lllang)"
-			);
+			$lllang = $cont[1];
+			$this->addWhere( $db->buildComparison( $op, [
+				'll_from' => $llfrom,
+				'll_lang' => $lllang,
+			] ) );
 		}
 
 		// FIXME: (follow-up) To allow extensions to add to the language links, we need
