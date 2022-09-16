@@ -45,21 +45,12 @@ class HTMLTransformFactory {
 	 * @return HTMLTransform
 	 */
 	public function getHTMLTransform( string $modifiedHTML, PageIdentity $page ) {
-		// XXX: do we need to be able to override anything else in the PageConfig?
-		$pageConfig = $this->configFactory->create(
-			$page,
-			null,
-			null,
-			null,
-			null,
-			$this->parsoidSettings
-		);
-
 		return new HTMLTransform(
 			$modifiedHTML,
-			$pageConfig,
+			$page,
 			$this->parsoid,
-			$this->parsoidSettings
+			$this->parsoidSettings,
+			$this->configFactory
 		);
 	}
 
