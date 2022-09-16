@@ -58,6 +58,10 @@ class PruneUnusedLinkTargetRows extends Maintenance {
 				] );
 			}
 			$ltIdsToDelete = $queryBuilder->caller( __METHOD__ )->fetchFieldValues();
+			if ( !$ltIdsToDelete ) {
+				$ltCounter += $this->getBatchSize();
+				continue;
+			}
 
 			// Run against primary as well with a faster query plan, just to be safe.
 			// Also having a bit of time in between helps in cases of immediate removal and insertion of use.
@@ -74,6 +78,10 @@ class PruneUnusedLinkTargetRows extends Maintenance {
 				] );
 			}
 			$ltIdsToDelete = $queryBuilder->caller( __METHOD__ )->fetchFieldValues();
+			if ( !$ltIdsToDelete ) {
+				$ltCounter += $this->getBatchSize();
+				continue;
+			}
 
 			if ( !$this->getOption( 'dry' ) ) {
 				$dbw->delete( 'linktarget', $ltIdsToDelete, __METHOD__ );
