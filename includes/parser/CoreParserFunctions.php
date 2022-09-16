@@ -716,7 +716,7 @@ class CoreParserFunctions {
 
 	public static function fullpagename( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( $t === null || !$t->canHaveTalkPage() ) {
+		if ( $t === null ) {
 			return '';
 		}
 		return wfEscapeWikiText( $t->getPrefixedText() );
@@ -724,7 +724,7 @@ class CoreParserFunctions {
 
 	public static function fullpagenamee( $parser, $title = null ) {
 		$t = Title::newFromText( $title );
-		if ( $t === null || !$t->canHaveTalkPage() ) {
+		if ( $t === null ) {
 			return '';
 		}
 		return wfEscapeWikiText( $t->getPrefixedURL() );
