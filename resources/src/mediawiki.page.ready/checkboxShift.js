@@ -23,9 +23,12 @@ module.exports = function ( $box ) {
 					Math.max( $box.index( prev ), $box.index( e.target ) ) + 1
 				)
 				.filter( function () {
-					return !this.disabled;
+					return !this.disabled && this.checked !== e.target.checked;
 				} )
-				.prop( 'checked', e.target.checked );
+				.prop( 'checked', e.target.checked )
+				// Since the state change is a consequence of direct user action,
+				// fire the 'change' event (see T313077).
+				.trigger( 'change' );
 		}
 		// Either way, remember this as the last clicked one
 		prev = e.target;
