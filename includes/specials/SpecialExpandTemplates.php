@@ -125,7 +125,7 @@ class SpecialExpandTemplates extends SpecialPage {
 
 			$out->addHTML( $tmp );
 
-			$pout = $this->generateHtml( $title, $output );
+			$pout = $this->parser->parse( $output, $title, $options );
 			$rawhtml = $pout->getText();
 			if ( $generateRawHtml && strlen( $rawhtml ) > 0 ) {
 				// @phan-suppress-next-line SecurityCheck-DoubleEscaped Wanted here to display the html
@@ -227,19 +227,6 @@ class SpecialExpandTemplates extends SpecialPage {
 		);
 
 		return $out;
-	}
-
-	/**
-	 * Renders the supplied wikitext as html
-	 *
-	 * @param Title $title
-	 * @param string $text
-	 * @return ParserOutput
-	 */
-	private function generateHtml( Title $title, $text ) {
-		$popts = ParserOptions::newFromContext( $this->getContext() );
-		$popts->setTargetLanguage( $title->getPageLanguage() );
-		return $this->parser->parse( $text, $title, $popts );
 	}
 
 	/**
