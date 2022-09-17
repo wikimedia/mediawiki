@@ -32,12 +32,15 @@ use Wikimedia\WaitConditionLoop;
  * @since 1.34
  */
 abstract class MediumSpecificBagOStuff extends BagOStuff {
-	/** @var array<string,array> Map of (key => (class, depth, expiry) */
+	/** @var array<string,array> Map of (key => (class LOCK_* constant => value) */
 	protected $locks = [];
 	/** @var int Bytes; chunk size of segmented cache values */
 	protected $segmentationSize;
 	/** @var int Bytes; maximum total size of a segmented cache value */
 	protected $segmentedValueMaxSize;
+
+	/** @var float Seconds; maximum expected seconds for a lock ping to reach the backend */
+	protected $maxLockSendDelay = 0.05;
 
 	/** @var array */
 	private $duplicateKeyLookups = [];
@@ -545,7 +548,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 				if ( $this->add( $this->makeLockKey( $key ), 1, $exptime ) ) {
 					$lockTsUnix = microtime( true );
 
-					// locked!
 					return WaitConditionLoop::CONDITION_REACHED;
 				} elseif ( $this->getLastError( $watchPoint ) ) {
 					$this->logger->warning(
@@ -553,7 +555,6 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 						[ 'key' => $key ]
 					);
 
-					// network partition?
 					return WaitConditionLoop::CONDITION_ABORTED;
 				}
 
@@ -612,21 +613,24 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 	 * @return bool Success
 	 */
 	protected function doUnlock( $key ) {
-		// Estimate the remaining TTL of the lock key
-		$curTTL = $this->locks[$key][self::LOCK_EXPIRY] - $this->getCurrentTime();
-		// Maximum expected one-way-delay for a query to reach the backend
-		$maxOWD = 0.050;
-
 		$released = false;
 
-		if ( ( $curTTL - $maxOWD ) > 0 ) {
-			// The lock key is extremely unlikely to expire before a deletion operation
-			// sent from this method arrives on the relevant backend server
+		// Estimate the remaining TTL of the lock key
+		$curTTL = $this->locks[$key][self::LOCK_EXPIRY] - $this->getCurrentTime();
+
+		// Check the risk of race conditions for key deletion
+		if ( $this->getQoS( self::ATTR_DURABILITY ) <= self::QOS_DURABILITY_SCRIPT ) {
+			// Lock (and data) keys use memory specific to this request (e.g. HashBagOStuff)
+			$isSafe = true;
+		} else {
+			// It is unsafe to delete the lock key if there is a serious risk of the key already
+			// being claimed by another thread before the delete operation reaches the backend
+			$isSafe = ( $curTTL > $this->maxLockSendDelay );
+		}
+
+		if ( $isSafe ) {
 			$released = $this->doDelete( $this->makeLockKey( $key ) );
 		} else {
-			// It is unsafe for this method to delete the lock key due to the risk of it
-			// expiring and being claimed by another thread before the deletion operation
-			// arrives on the backend server
 			$this->logger->warning(
 				"Lock for {key} held too long ({age} sec).",
 				[ 'key' => $key, 'curTTL' => $curTTL ]

@@ -24,10 +24,29 @@ use LogicException;
 use UnexpectedValueException;
 
 /**
- * Advanced manager for multiple database sections, e.g. for large wiki farms.
+ * LoadBalancer manager for sites with several "main" database clusters
  *
- * This means different wikis can be stored on different database servers.
- * It includes support for multi-primary setups.
+ * Each database cluster consists of a "primary" server and any number of replica servers,
+ * all of which converge, as soon as possible, to contain the same schemas and records. If
+ * a replication topology has multiple primaries, then the "primary" is merely the preferred
+ * co-primary for the current context (e.g. datacenter).
+ *
+ * For single-primary topologies, the schemas and records of the primary define the "dataset".
+ * For multiple-primary topologies, the "dataset" is the convergent result of applying/merging
+ * all committed events (regardless of the co-primary they originated on); it possible that no
+ * co-primary has yet converged upon this state at any given time (especially when there are
+ * frequent writes and co-primaries are geographically distant).
+ *
+ * A "main" cluster contain a "main" dataset, which consists of data that is compact, highly
+ * relational (e.g. read by JOIN queries), and essential to one or more sites. The "external"
+ * clusters each store an "external" dataset, which consists of data that is non-relational
+ * (e.g. key/value pairs), self-contained (e.g. JOIN queries and transactions thereof never
+ * involve a main dataset), or too bulky to reside in a main dataset (e.g. text blobs).
+ *
+ * The class allows for large site farms to split up their data in the following ways:
+ *   - Vertically shard compact site-specific data by site (e.g. page/comment metadata)
+ *   - Vertically shard compact global data by module (e.g. account/notification data)
+ *   - Horizontally shard any bulk data by blob key (e.g. page/comment content blobs)
  *
  * @ingroup Database
  */
@@ -326,7 +345,7 @@ class LBFactoryMulti extends LBFactory {
 
 	/**
 	 * @param string $database
-	 * @return string Section name
+	 * @return string Main section name
 	 */
 	private function getSectionFromDatabase( $database ) {
 		return $this->sectionsByDB[$database] ?? self::CLUSTER_MAIN_DEFAULT;

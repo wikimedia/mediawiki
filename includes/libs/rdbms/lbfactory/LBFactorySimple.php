@@ -22,7 +22,14 @@ namespace Wikimedia\Rdbms;
 use InvalidArgumentException;
 
 /**
- * Manage a simple setup with one primary database and optionally some replicas.
+ * Manager for sites with a single "main" cluster and any number of "external" clusters
+ *
+ * @see LBFactoryMulti
+ *
+ * The class allows for large site farms to split up their data in the following ways:
+ *   - Vertically shard compact site-specific data by site (e.g. page/comment metadata)
+ *   - Vertically shard compact global data by module (e.g. account/notification data)
+ *   - Horizontally shard any bulk data by blob key (e.g. page/comment content)
  *
  * @ingroup Database
  */

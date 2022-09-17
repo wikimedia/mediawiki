@@ -349,19 +349,19 @@ abstract class BagOStuff implements
 	 *
 	 * @param string $key
 	 * @param int $timeout Lock wait timeout; 0 for non-blocking [optional]
-	 * @param int $expiry Lock expiry [optional]; 1 day maximum
+	 * @param int $exptime Lock time-to-live [optional]; 1 day maximum
 	 * @param string $rclass Allow reentry if set and the current lock used this value
 	 * @return ScopedCallback|null Returns null on failure
 	 * @since 1.26
 	 */
-	final public function getScopedLock( $key, $timeout = 6, $expiry = 30, $rclass = '' ) {
-		$expiry = min( $expiry ?: INF, self::TTL_DAY );
+	final public function getScopedLock( $key, $timeout = 6, $exptime = 30, $rclass = '' ) {
+		$exptime = min( $exptime ?: INF, self::TTL_DAY );
 
-		if ( !$this->lock( $key, $timeout, $expiry, $rclass ) ) {
+		if ( !$this->lock( $key, $timeout, $exptime, $rclass ) ) {
 			return null;
 		}
 
-		return new ScopedCallback( function () use ( $key, $expiry ) {
+		return new ScopedCallback( function () use ( $key, $exptime ) {
 			$this->unlock( $key );
 		} );
 	}
