@@ -1316,11 +1316,14 @@ class FormatMetadata extends ContextSource {
 	/**
 	 * Convenience function for getFormattedData()
 	 *
-	 * @param string|int $val The literal value
+	 * @param string|int|null $val The literal value
 	 * @return string The value, properly escaped as wikitext -- with some
 	 *   exceptions to allow auto-linking, etc.
 	 */
-	protected function literal( $val ) {
+	protected function literal( $val ): string {
+		if ( $val === null ) {
+			return '';
+		}
 		// T266707: historically this has used htmlspecialchars to protect
 		// the string contents, but it should probably be changed to use
 		// wfEscapeWikitext() instead -- however, "we still want to auto-link
@@ -1374,6 +1377,7 @@ class FormatMetadata extends ContextSource {
 			}
 			return $this->getLanguage()->formatNum( $num );
 		}
+		$num ??= '';
 		if ( preg_match( '/^(-?\d+)\/(\d+)$/', $num, $m ) ) {
 			if ( $m[2] != 0 ) {
 				$newNum = (int)$m[1] / (int)$m[2];
