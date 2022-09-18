@@ -342,15 +342,6 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * @param WANObjectCache $cache
-	 * @return string[]
-	 * @since 1.28
-	 */
-	public function getMutableCacheKeys( WANObjectCache $cache ) {
-		return [ $this->getCacheKey() ];
-	}
-
-	/**
 	 * Try to load file metadata from memcached, falling back to the database
 	 */
 	private function loadFromCache() {

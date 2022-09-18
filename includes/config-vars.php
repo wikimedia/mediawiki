@@ -1474,12 +1474,6 @@ $wgMainWANCache = null;
 $wgWANObjectCaches = null;
 
 /**
- * Config variable stub for the EnableWANCacheReaper setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::EnableWANCacheReaper
- */
-$wgEnableWANCacheReaper = null;
-
-/**
  * Config variable stub for the MainStash setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::MainStash
  */

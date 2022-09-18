@@ -136,6 +136,8 @@ because of Phabricator reports.
     It had no known usages.
 * BagOStuff::makeKeyInternal(), deprecated for public use in 1.36, is now a
   protected method of MediumSpecificBagOStuff.
+* WANObjectCache::reap() and WANObjectCache::reapCheckKey(), deprecated since
+  1.39, have been removed.
 * The EnqueueJob class, unused since 1.31, has been removed without
   deprecation.
 * ContextSource::getStats, deprecated since 1.27, has been removed.

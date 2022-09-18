@@ -517,27 +517,6 @@ class LinkCache implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @param WANObjectCache $cache
-	 * @param LinkTarget|Pagereference $page
-	 *        In MediaWiki 1.36 and earlier, only LinkTarget was accepted.
-	 * @return string[]
-	 * @since 1.28
-	 */
-	public function getMutableCacheKeys( WANObjectCache $cache, $page ) {
-		$key = $this->getCacheKey( $page );
-		// if no key can be derived, the page isn't cacheable
-		if ( $key === null ) {
-			return [];
-		}
-
-		if ( $this->usePersistentCache( $page ) ) {
-			return [ $cache->makeKey( 'page', $page->getNamespace(), sha1( $page->getDBkey() ) ) ];
-		}
-
-		return [];
-	}
-
-	/**
 	 * @param LinkTarget|PageReference|int $pageOrNamespace
 	 *
 	 * @return bool
