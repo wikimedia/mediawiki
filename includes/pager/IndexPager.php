@@ -521,6 +521,9 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @return string The conditions for getting results from the offset
 	 */
 	private function buildOffsetConds( $offsets, $columns, $operator ) {
+		// $offsets may be shorter than $columns, in which case the remaining columns should be ignored
+		// (T318080)
+		$columns = array_slice( $columns, 0, count( $offsets ) );
 		$conds = array_combine( $columns, $offsets );
 		return $this->mDb->buildComparison( $operator, $conds );
 	}
