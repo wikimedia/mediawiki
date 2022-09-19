@@ -3536,7 +3536,7 @@
 	"logentry-newusers-autocreate": "Korisnički račun $1 je automatski {{GENDER:$2|napravljen}}",
 	"logentry-protect-move_prot": "$1 {{GENDER:$2|premjestio|premjestila}} je zaštitne postavke sa $4 na $3",
 	"logentry-protect-unprotect": "$1 {{GENDER:$2|uklonio je|uklonila je}} zaštitu sa stranice $3",
-	"logentry-protect-protect": "$1 {{GENDER:$2|stavio zaštitu|stavila zaštitu}} $3 $4",
+	"logentry-protect-protect": "$1 {{GENDER:$2|zaštitio|zaštitila}} je $3 $4",
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|stavio zaštitu|stavila zaštitu}} $3 $4 [prenosiva zaštita]",
 	"logentry-protect-modify": "$1 {{GENDER:$2|izmijenio je|izmijenila je}} postavke zaštite za $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|izmijenio je|izmijenila je}} postavke zaštite za $3 $4 [prenosiva zaštita]",

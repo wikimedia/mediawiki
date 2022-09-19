@@ -1266,7 +1266,7 @@
 	"apihelp-query+users-paramvalue-prop-emailable": "Отмечает, может ли и хочет ли участник получать электронную почту посредством [[Special:Emailuser]].",
 	"apihelp-query+users-paramvalue-prop-gender": "Отмечает пол текущего участника. Возвращает «male», «female» или «unknown».",
 	"apihelp-query+users-paramvalue-prop-centralids": "Добавляет центральный идентификатор и статус прикрепления участника.",
-	"apihelp-query+users-paramvalue-prop-cancreate": "Определяет, могут ли быть созданы аккаунты с корректными, но незарегистрированными именами.",
+	"apihelp-query+users-paramvalue-prop-cancreate": "Определяет, могут ли быть созданы аккаунты с допустимыми, но незарегистрированными именами. Чтобы проверить, может ли текущий пользователь выполнить создание учетной записи, используйте [[Special:ApiHelp/query+userinfo|<kbd>action=query&meta=userinfo&uiprop=cancreateaccount</kbd>]].",
 	"apihelp-query+users-param-attachedwiki": "Вместе с <kbd>$1prop=centralids</kbd> отображает, прикреплён ли к вики участник с этим идентификатором.",
 	"apihelp-query+users-param-users": "Список участников, для которых получить информацию.",
 	"apihelp-query+users-param-userids": "Список идентификаторов участников, для которых получить информацию.",
