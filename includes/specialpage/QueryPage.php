@@ -412,7 +412,7 @@ abstract class QueryPage extends SpecialPage {
 				}
 
 				$dbw->doAtomicSection(
-					__METHOD__,
+					$fname,
 					function ( IDatabase $dbw, $fname ) use ( $vals ) {
 						// Clear out any old cached data
 						$dbw->delete( 'querycache',
