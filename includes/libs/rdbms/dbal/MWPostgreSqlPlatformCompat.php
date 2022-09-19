@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @phan-file-suppress PhanCommentAbstractOnInheritedMethod T298571
+ */
+
 namespace Wikimedia\Rdbms;
 
 // T270740 - HACK

@@ -3,6 +3,10 @@
 namespace Wikimedia\Rdbms;
 
 /**
+ * @phan-file-suppress PhanCommentAbstractOnInheritedMethod T298571
+ */
+
+/**
  * @suppress PhanRedefinedExtendedClass
  */
 class MWMySQLPlatform extends MWMySQLPlatformCompat {

@@ -1,5 +1,10 @@
 <?php
 // phpcs:ignoreFile -- This is a very temporary file
+
+/**
+ * @phan-file-suppress PhanCommentAbstractOnInheritedMethod T298571
+ */
+
 namespace Wikimedia\Rdbms;
 
 // T270740 - HACK: In doctrine/dbal 3.0.0, they renamed MySql -> MySQL
