@@ -42,7 +42,7 @@ class PruneUnusedLinkTargetRows extends Maintenance {
 		$deleted = 0;
 		$linksMigration = \MediaWiki\MediaWikiServices::getInstance()->getLinksMigration();
 		while ( $ltCounter < $maxLtId ) {
-			$batchMaxLtId = $ltCounter + $this->getBatchSize();
+			$batchMaxLtId = min( $ltCounter + $this->getBatchSize(), $maxLtId ) + 1;
 			$this->output( "Checking lt_id between $ltCounter and $batchMaxLtId...\n" );
 			$queryBuilder = $dbr->newSelectQueryBuilder()
 				->select( [ 'lt_id' ] )
@@ -76,7 +76,7 @@ class PruneUnusedLinkTargetRows extends Maintenance {
 			$ltIdsToDelete = $queryBuilder->caller( __METHOD__ )->fetchFieldValues();
 
 			if ( !$this->getOption( 'dry' ) ) {
-				$dbw->delete( 'linktarget', $ltIdsToDelete, __METHOD__ );
+				$dbw->delete( 'linktarget', [ 'lt_id' => $ltIdsToDelete ], __METHOD__ );
 			}
 			$deleted += count( $ltIdsToDelete );
 			$ltCounter += $this->getBatchSize();
