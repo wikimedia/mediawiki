@@ -431,7 +431,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			if ( $request->getBool( 'wpRemoveAllTags' ) ) {
 				$tagsToRemove = $existingTags;
 			} else {
-				$tagsToRemove = $request->getArray( 'wpTagsToRemove' );
+				$tagsToRemove = $request->getArray( 'wpTagsToRemove', [] );
 			}
 		} else {
 			// single revision selected
