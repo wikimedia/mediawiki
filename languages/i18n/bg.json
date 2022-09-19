@@ -2441,7 +2441,7 @@
 	"protect-norestrictiontypes-title": "Незащитима страница",
 	"protect-legend": "Потвърждение на защитата",
 	"protectcomment": "Причина:",
-	"protectexpiry": "Изтича след:",
+	"protectexpiry": "Изтича на:",
 	"protect_expiry_invalid": "Невалиден срок на изтичане.",
 	"protect_expiry_old": "Срокът на изтичане е минал.",
 	"protect-unchain-permissions": "Позволяване на допълнителни възможности за защита",
