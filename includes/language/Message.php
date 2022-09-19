@@ -25,7 +25,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\UserGroupMembershipParam;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
-use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * The Message class deals with fetching and processing of interface message
@@ -1029,27 +1028,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string
 	 */
 	public function __toString() {
-		// PHP before 7.4.0 doesn't allow __toString to throw exceptions and will
-		// trigger a fatal error if it does. So, catch any exceptions.
-		if ( version_compare( PHP_VERSION, '7.4.0', '<' ) ) {
-			try {
-				return $this->format( self::FORMAT_PARSE );
-			} catch ( TimeoutException $e ) {
-				// Fatal is OK in this case
-				throw $e;
-			} catch ( Exception $ex ) {
-				try {
-					trigger_error( "Exception caught in " . __METHOD__ . " (message " . $this->key . "): "
-						. $ex, E_USER_WARNING );
-				} catch ( Exception $ex ) {
-					// Doh! Cause a fatal error after all?
-				}
-
-				return '⧼' . htmlspecialchars( $this->key ) . '⧽';
-			}
-		} else {
-			return $this->format( self::FORMAT_PARSE );
-		}
+		return $this->format( self::FORMAT_PARSE );
 	}
 
 	/**
