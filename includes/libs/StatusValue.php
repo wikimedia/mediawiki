@@ -402,7 +402,6 @@ class StatusValue {
 		);
 		if ( count( $this->errors ) > 0 ) {
 			$hdr = sprintf( "+-%'-8s-+-%'-25s-+-%'-36s-+\n", "", "", "" );
-			$i = 1;
 			$out .= "\n";
 			$out .= $hdr;
 			foreach ( $this->errors as $error ) {
@@ -431,8 +430,6 @@ class StatusValue {
 						$paramsChunk
 					);
 				}
-
-				$i++;
 			}
 			$out .= $hdr;
 		}

@@ -540,15 +540,12 @@ class SearchHighlighter {
 		$max = intval( $contextchars ) + 1;
 		$pat1 = "/(.*)($terms)(.{0,$max})/i";
 
-		$lineno = 0;
-
 		$extract = "";
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
 		foreach ( $lines as $line ) {
 			if ( $contextlines == 0 ) {
 				break;
 			}
-			++$lineno;
 			$m = [];
 			if ( !preg_match( $pat1, $line, $m ) ) {
 				continue;
