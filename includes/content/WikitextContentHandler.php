@@ -29,6 +29,7 @@ use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutputFlags;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Content handler for wiki text pages.
@@ -157,9 +158,10 @@ class WikitextContentHandler extends TextContentHandler {
 	public function getDataForSearchIndex(
 		WikiPage $page,
 		ParserOutput $parserOutput,
-		SearchEngine $engine
+		SearchEngine $engine,
+		?RevisionRecord $revision = null
 	) {
-		$fields = parent::getDataForSearchIndex( $page, $parserOutput, $engine );
+		$fields = parent::getDataForSearchIndex( $page, $parserOutput, $engine, $revision );
 
 		$structure = new WikiTextStructure( $parserOutput );
 		$fields['heading'] = $structure->headings();
@@ -172,7 +174,7 @@ class WikitextContentHandler extends TextContentHandler {
 		// Until we have full first-class content handler for files, we invoke it explicitly here
 		if ( $page->getTitle()->getNamespace() === NS_FILE ) {
 			$fields = array_merge( $fields,
-					$this->getFileHandler()->getDataForSearchIndex( $page, $parserOutput, $engine ) );
+					$this->getFileHandler()->getDataForSearchIndex( $page, $parserOutput, $engine, $revision ) );
 		}
 		return $fields;
 	}
