@@ -129,7 +129,8 @@
 			"魔琴",
 			"SunAfterRain",
 			"Diskdance",
-			"LuciferianThomas"
+			"LuciferianThomas",
+			"Willy1018"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -361,8 +362,8 @@
 	"policy-url": "Project:方針",
 	"portal": "社群入口",
 	"portal-url": "Project:社群入口",
-	"privacy": "隱私政策",
-	"privacypage": "Project:隱私政策",
+	"privacy": "隱私權政策",
+	"privacypage": "Project:隱私權政策",
 	"badaccess": "權限錯誤",
 	"badaccess-group0": "系統不允許您執行這項操作。",
 	"badaccess-groups": "您請求的操作只有{{PLURAL:$2|這個|這些}}群組的使用者能使用：$1",
@@ -643,7 +644,7 @@
 	"changepassword-success": "您的密碼已經變更！",
 	"changepassword-throttled": "您最近嘗試了太多次登入。\n請等待 $1 後再試。",
 	"botpasswords": "機器人密碼",
-	"botpasswords-summary": "<em>機器人密碼</em> 可在不需帳號的主要登入密碼情況下，允許透過 API 存取使用者帳號。 可限制使用機器人密碼登入的使用者權限。\n\n若在尚無法了解為何要設定機器人密碼之前不應使用此功能。 且不該有任何人會向您索取機器人密碼。",
+	"botpasswords-summary": "<em>機器人密碼</em>可在不需帳號的主要登入密碼情況下，允許透過 API 存取使用者帳號。可限制使用機器人密碼登入的使用者權限。\n\n若在尚無法了解為何要設定機器人密碼之前不應使用此功能。且不該有任何人會向您索取機器人密碼。",
 	"botpasswords-disabled": "機器人密碼已停用。",
 	"botpasswords-no-central-id": "要使用機器人密碼，您必須登入帳號集中管理系統。",
 	"botpasswords-existing": "已存在機器人密碼",

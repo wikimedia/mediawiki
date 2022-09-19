@@ -192,7 +192,8 @@
 			"Jules*",
 			"Cigaryno",
 			"Nclm",
-			"Envlh"
+			"Envlh",
+			"Gaultier"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -578,7 +579,7 @@
 	"logout-failed": "Impossible de se déconnecter maintenant : $1",
 	"cannotlogoutnow-title": "Impossible de se déconnecter maintenant",
 	"cannotlogoutnow-text": "La déconnexion n’est pas possible en utilisant $1.",
-	"welcomeuser": "Bienvenue, $1 !",
+	"welcomeuser": "Bienvenue, $1 !",
 	"welcomecreation-msg": "Votre compte a été créé.\nVous pouvez modifier [[Special:Preferences|vos préférences]] pour {{SITENAME}} si vous le souhaitez.",
 	"yourname": "Nom d’utilisateur :",
 	"userlogin-yourname": "Nom d’utilisateur",
