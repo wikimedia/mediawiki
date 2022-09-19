@@ -2555,7 +2555,7 @@
 			},
 			{
 				"name": "ipb_parent_block_id",
-				"comment": "ID of the block that caused this block to exist. Autoblocks set this to the original block so that the original block being deleted also deletes the autoblocks",
+				"comment": "ID of the block that caused this block to exist. Autoblocks set this to the original block so that the original block being deleted also deletes the autoblocks. Due to a bug this could be 0, which should be handled as null.",
 				"type": "integer",
 				"options": {
 					"notnull": false,
