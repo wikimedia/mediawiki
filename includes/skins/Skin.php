@@ -2439,7 +2439,7 @@ abstract class Skin extends ContextSource {
 		$out = $this->getOutput();
 		$subpagestr = $this->subPageSubtitleInternal();
 		if ( $subpagestr !== '' ) {
-			$subpagestr = Html::rawElement( 'span', [ 'class' => 'subpages' ], $subpagestr );
+			$subpagestr = Html::rawElement( 'div', [ 'class' => 'subpages' ], $subpagestr );
 		}
 		return $subpagestr . $out->getSubtitle();
 	}
@@ -2544,7 +2544,7 @@ abstract class Skin extends ContextSource {
 	 */
 	final protected function prepareUndeleteLink() {
 		$undelete = $this->getUndeleteLink();
-		return $undelete === '' ? null : '<span class="subpages">' . $undelete . '</span>';
+		return $undelete === '' ? null : '<div class="subpages">' . $undelete . '</div>';
 	}
 
 	/**
