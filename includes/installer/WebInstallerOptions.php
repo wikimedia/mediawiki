@@ -266,7 +266,6 @@ class WebInstallerOptions extends WebInstallerPage {
 						'class' => 'config-ext-input'
 					];
 					$labelAttribs = [];
-					$fullDepList = [];
 					if ( isset( $info['requires']['extensions'] ) ) {
 						$dependencyMap[$ext]['extensions'] = $info['requires']['extensions'];
 						$labelAttribs['class'] = 'mw-ext-with-dependencies';

@@ -1174,8 +1174,6 @@ return [
 	},
 
 	'PageEditStash' => static function ( MediaWikiServices $services ): PageEditStash {
-		$config = $services->getMainConfig();
-
 		return new PageEditStash(
 			ObjectCache::getLocalClusterInstance(),
 			$services->getDBLoadBalancer(),

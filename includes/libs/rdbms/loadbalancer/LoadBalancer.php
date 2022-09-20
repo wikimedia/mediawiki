@@ -1650,7 +1650,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
 		foreach ( $this->getOpenConnections() as $conn ) {
-			$srvName = $conn->getServerName();
 			$conn->close( $fname );
 		}
 

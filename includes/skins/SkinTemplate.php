@@ -1250,8 +1250,6 @@ class SkinTemplate extends Skin {
 				$talkId = "{$subjectId}_talk";
 			}
 
-			$skname = $this->skinname;
-
 			// Adds namespace links
 			if ( $subjectId === 'user' ) {
 				$subjectMsg = wfMessage( 'nstab-user', $subjectPage->getRootText() );

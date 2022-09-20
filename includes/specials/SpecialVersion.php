@@ -715,9 +715,6 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	protected function getExtensionCategory( $type, ?string $text, array $creditsGroup ) {
-		$config = $this->getConfig();
-		$credits = $config->get( MainConfigNames::ExtensionCredits );
-
 		$out = '';
 
 		if ( $creditsGroup ) {
