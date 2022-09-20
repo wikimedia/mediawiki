@@ -46,9 +46,9 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	private $wikipage;
 
 	/**
-	 * @var string
+	 * @var string|null|false
 	 */
-	private $action;
+	private $action = false;
 
 	/**
 	 * @var OutputPage
@@ -144,6 +144,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 */
 	public function setTitle( Title $title ) {
 		$this->title = $title;
+		$this->action = null;
 	}
 
 	/**
@@ -183,6 +184,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 			$this->setTitle( $pageTitle );
 		}
 		$this->wikipage = $wikiPage;
+		$this->action = null;
 	}
 
 	/**
@@ -217,7 +219,17 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @return string Action
 	 */
 	public function getActionName(): string {
-		return $this->action ?: $this->getContext()->getActionName();
+		if ( $this->action === false ) {
+			return $this->getContext()->getActionName();
+		}
+
+		if ( $this->action === null ) {
+			$this->action = MediaWikiServices::getInstance()
+				->getActionFactory()
+				->getActionName( $this );
+		}
+
+		return $this->action;
 	}
 
 	/**
