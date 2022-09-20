@@ -251,7 +251,6 @@ abstract class HTMLFormField {
 	 * @throws MWException
 	 */
 	protected function checkStateRecurse( array $alldata, array $params ) {
-		$origParams = $params;
 		$op = array_shift( $params );
 		$valueChk = [ 'AND' => false, 'OR' => true, 'NAND' => false, 'NOR' => true ];
 		$valueRet = [ 'AND' => true, 'OR' => false, 'NAND' => false, 'NOR' => true ];
@@ -293,7 +292,6 @@ abstract class HTMLFormField {
 	 * @return mixed[]
 	 */
 	protected function parseCondState( $params ) {
-		$origParams = $params;
 		$op = array_shift( $params );
 
 		switch ( $op ) {

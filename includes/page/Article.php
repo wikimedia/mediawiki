@@ -854,7 +854,6 @@ class Article implements Page {
 	protected function showDiffPage() {
 		$context = $this->getContext();
 		$request = $context->getRequest();
-		$user = $context->getUser();
 		$diff = $request->getVal( 'diff' );
 		$rcid = $request->getInt( 'rcid' );
 		$purge = $request->getRawVal( 'action' ) === 'purge';

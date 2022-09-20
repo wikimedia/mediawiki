@@ -354,7 +354,6 @@ class SpecialUpload extends SpecialPage {
 	 */
 	protected function showViewDeletedLinks() {
 		$title = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
-		$user = $this->getUser();
 		// Show a subtitle link to deleted revisions (to sysops et al only)
 		if ( $title instanceof Title ) {
 			$count = $title->getDeletedEditsCount();

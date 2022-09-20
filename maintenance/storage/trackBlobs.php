@@ -249,10 +249,6 @@ class TrackBlobs {
 				],
 				[ 'blob_tracking' => [ 'LEFT JOIN', 'bt_text_id=old_id' ] ]
 			);
-			$ids = [];
-			foreach ( $res as $row ) {
-				$ids[] = $row->old_id;
-			}
 
 			if ( !$res->numRows() ) {
 				break;

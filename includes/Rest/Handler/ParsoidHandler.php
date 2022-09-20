@@ -929,7 +929,6 @@ abstract class ParsoidHandler extends Handler {
 	 * @throws HttpException
 	 */
 	protected function pb2pb( array $attribs ) {
-		$request = $this->getRequest();
 		$opts = $attribs['opts'];
 
 		$revision = $opts['previous'] ?? $opts['original'] ?? null;

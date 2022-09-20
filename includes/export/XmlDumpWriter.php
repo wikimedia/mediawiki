@@ -566,7 +566,7 @@ class XmlDumpWriter {
 		}
 
 		$data = $contentHandler->exportTransform( $data, $contentFormat );
-		$textAttributes['bytes'] = $size = strlen( $data ); // make sure to use the actual size
+		$textAttributes['bytes'] = strlen( $data ); // make sure to use the actual size
 		$textAttributes['xml:space'] = 'preserve';
 		$out .= $indent . Xml::elementClean( 'text', $textAttributes, strval( $data ) ) . "\n";
 
