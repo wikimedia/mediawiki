@@ -1214,7 +1214,7 @@
 	"userrights-no-shorten-expiry-marker": "$1#",
 	"userrights-expiry-current": "Изтича на $1",
 	"userrights-expiry-none": "Не изтича",
-	"userrights-expiry": "Срок на изтичане:",
+	"userrights-expiry": "Изтича на:",
 	"userrights-expiry-existing": "Текущото време на изтичане: $3, $2",
 	"userrights-expiry-othertime": "Друго време:",
 	"userrights-expiry-options": "1 ден:1 day,1 седмица:1 week,1 месец:1 month,3 месеца:3 months,6 месеца:6 months,1 година:1 year",

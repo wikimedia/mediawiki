@@ -15,7 +15,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"McDutchie",
-			"Balint36"
+			"Balint36",
+			"S4b1nuz E.656"
 		]
 	},
 	"tog-underline": "Sotlinee leams",
@@ -276,7 +277,7 @@
 	"sort-descending": "Ordinament decressint",
 	"sort-ascending": "Ordinament cressint",
 	"nstab-main": "Vôs",
-	"nstab-user": "{{GENDER:$1Pagjine dal utent}}",
+	"nstab-user": "{{GENDER:$1|Pagjine dal utent}}",
 	"nstab-media": "Media",
 	"nstab-special": "Pagjine speciâl",
 	"nstab-project": "Informazions",
