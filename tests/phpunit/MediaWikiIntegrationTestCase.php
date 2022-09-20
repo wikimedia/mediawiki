@@ -2065,8 +2065,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$extraTables = [
 				'user' => [ 'user', 'user_groups', 'user_properties', 'actor' ],
 				'page' => [ 'page', 'revision', 'ip_changes', 'revision_comment_temp', 'comment', 'archive',
-					'slots', 'content', 'content_models', 'slot_roles',
-					'change_tag' ],
+					'slots', 'content', 'content_models', 'slot_roles', 'redirect', 'change_tag' ],
 				'logging' => [ 'logging', 'log_search', 'change_tag' ],
 			];
 			$coreDBDataTables = array_merge( $extraTables['user'], $extraTables['page'] );
