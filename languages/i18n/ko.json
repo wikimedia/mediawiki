@@ -681,6 +681,7 @@
 	"changeemail-submit": "이메일 주소 바꾸기",
 	"changeemail-throttled": "최근 너무 많이 로그인을 시도했습니다.\n$1 뒤에 다시 시도하세요.",
 	"changeemail-nochange": "다른 이메일 주소를 입력해 주세요.",
+	"changeemail-maxlength": "이메일 주소는 최대 255자여야 합니다.",
 	"resettokens": "토큰 재설정",
 	"resettokens-text": "여기에 당신의 계정과 관련된 특정 개인 데이터에 접근을 허용하는 토큰을 재설정합니다.\n\n토큰이 다른 사람에게 알려졌거나 계정이 침해되었을 때는 재설정해야 합니다.",
 	"resettokens-no-tokens": "재설정할 토큰이 없습니다.",

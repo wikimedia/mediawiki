@@ -54,12 +54,10 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * @param array &$formDescriptor HTMLForm descriptor. The special key 'weight' can be set to
 	 *    change the order of the fields.
 	 * @param string $action Authentication type (one of the AuthManager::ACTION_* constants)
-	 * @return bool
 	 */
 	public function onAuthChangeFormFields(
 		array $requests, array $fieldInfo, array &$formDescriptor, $action
 	) {
-		return true;
 	}
 
 	/**
@@ -212,6 +210,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	/**
 	 * Get the default action for this special page, if none is given via URL/POST data.
 	 * Subclasses should override this (or override loadAuth() so this is never called).
+	 * @stable to override
 	 * @param string $subPage Subpage of the special page.
 	 * @return string an AuthManager::ACTION_* constant.
 	 */
@@ -788,5 +787,55 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			throw new \LogicException( 'invalid field type: ' . $type );
 		}
 		return $map[$type];
+	}
+
+	/**
+	 * Apply defaults to a form descriptor, without creating non-existend fields.
+	 *
+	 * Overrides $formDescriptor fields with their $defaultFormDescriptor equivalent, but
+	 * only if the field is defined in $fieldInfo, uses the special 'basefield' property to
+	 * refer to a $fieldInfo field, or it is not a real field (e.g. help text). Applies some
+	 * common-sense behaviors to ensure related fields are overridden in a consistent manner.
+	 * @param array $fieldInfo
+	 * @param array $formDescriptor
+	 * @param array $defaultFormDescriptor
+	 * @return array
+	 */
+	protected static function mergeDefaultFormDescriptor(
+		array $fieldInfo, array $formDescriptor, array $defaultFormDescriptor
+	) {
+		// keep the ordering from $defaultFormDescriptor where there is no explicit weight
+		foreach ( $defaultFormDescriptor as $fieldName => $defaultField ) {
+			// remove everything that is not in the fieldinfo, is not marked as a supplemental field
+			// to something in the fieldinfo, and is not an info field or a submit button
+			if (
+				!isset( $fieldInfo[$fieldName] )
+				&& (
+					!isset( $defaultField['baseField'] )
+					|| !isset( $fieldInfo[$defaultField['baseField']] )
+				)
+				&& (
+					!isset( $defaultField['type'] )
+					|| !in_array( $defaultField['type'], [ 'submit', 'info' ], true )
+				)
+			) {
+				$defaultFormDescriptor[$fieldName] = null;
+				continue;
+			}
+
+			// default message labels should always take priority
+			$requestField = $formDescriptor[$fieldName] ?? [];
+			if (
+				isset( $defaultField['label'] )
+				|| isset( $defaultField['label-message'] )
+				|| isset( $defaultField['label-raw'] )
+			) {
+				unset( $requestField['label'], $requestField['label-message'], $defaultField['label-raw'] );
+			}
+
+			$defaultFormDescriptor[$fieldName] += $requestField;
+		}
+
+		return array_filter( $defaultFormDescriptor + $formDescriptor );
 	}
 }

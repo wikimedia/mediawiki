@@ -360,7 +360,7 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 		];
 	}
 
-	public function serialize() {
+	public function serialize(): string {
 		return serialize( $this->__serialize() );
 	}
 
@@ -372,7 +372,7 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 		$this->epoch = $this->getCurrentTime();
 	}
 
-	public function unserialize( $serialized ) {
+	public function unserialize( $serialized ): void {
 		$this->__unserialize( unserialize( $serialized ) );
 	}
 

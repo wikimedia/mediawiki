@@ -339,7 +339,7 @@ class InfoAction extends FormlessAction {
 		$pageInfo['header-basic'][] = [
 			// Messages: pageinfo-robot-index, pageinfo-robot-noindex
 			$this->msg( 'pageinfo-robot-policy' ),
-			$this->msg( "pageinfo-robot-${policy['index']}" )
+			$this->msg( "pageinfo-robot-{$policy['index']}" )
 		];
 
 		$unwatchedPageThreshold = $config->get( 'UnwatchedPageThreshold' );

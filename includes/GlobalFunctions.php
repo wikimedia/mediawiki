@@ -1952,7 +1952,7 @@ function wfRecursiveRemoveDir( $dir ) {
  */
 function wfPercent( $nr, int $acc = 2, bool $round = true ) {
 	$accForFormat = $acc >= 0 ? $acc : 0;
-	$ret = sprintf( "%.${accForFormat}f", $nr );
+	$ret = sprintf( "%.{$accForFormat}f", $nr );
 	return $round ? round( (float)$ret, $acc ) . '%' : "$ret%";
 }
 
@@ -2701,12 +2701,12 @@ function wfTransactionalTimeLimit() {
 /**
  * Converts shorthand byte notation to integer form
  *
- * @param string $string
+ * @param null|string $string
  * @param int $default Returned if $string is empty
  * @return int
  */
-function wfShorthandToInteger( $string = '', $default = -1 ) {
-	$string = trim( $string );
+function wfShorthandToInteger( ?string $string = '', int $default = -1 ): int {
+	$string = trim( $string ?? '' );
 	if ( $string === '' ) {
 		return $default;
 	}

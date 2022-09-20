@@ -53,6 +53,8 @@
 	"apihelp-block-example-user-complex": "Blocca l'utente <kbd>Vandal</kbd> a tempo indeterminato con una motivazione, e impediscigli la creazione di nuove utenze e l'invio di email.",
 	"apihelp-changeauthenticationdata-summary": "Modificare i dati di autenticazione per l'utente corrente.",
 	"apihelp-changeauthenticationdata-example-password": "Tentativo di modificare la password dell'utente corrente a <kbd>ExamplePassword</kbd>.",
+	"apihelp-changecontentmodel-summary": "Modifica il modello di contenuto di una pagina",
+	"apihelp-changecontentmodel-param-model": "Modello di contenuto del nuovo contenuto.",
 	"apihelp-checktoken-summary": "Verifica la validità di un token da <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd>.",
 	"apihelp-checktoken-param-type": "Tipo di token in corso di test.",
 	"apihelp-checktoken-param-token": "Token da testare.",

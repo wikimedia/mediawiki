@@ -625,6 +625,7 @@
 	"changeemail-submit": "Muuda e-posti aadress",
 	"changeemail-throttled": "Oled proovinud liiga palju kordi sisse logida.\nPalun oota $1, enne kui uuesti proovid.",
 	"changeemail-nochange": "Palun sisesta teistsugune uus e-posti aadress.",
+	"changeemail-maxlength": "E-posti aadress peaks sisaldama kõige rohkem 255 märki.",
 	"resettokens": "Lubade lähtestamine",
 	"resettokens-text": "Saad lähtestada load, mida on vaja siin sinu kontoga seotud kindlatele eraandmetele ligipääsuks.\n\nPeaksid load lähtestama, kui jagasid neid kogemata või kui su konto on kellegi teise võimusesse sattunud.",
 	"resettokens-no-tokens": "Lähtestatavad load puuduvad.",

@@ -29,7 +29,8 @@
 			"青子守歌",
 			"아라",
 			"Hzy980512",
-			"W.CC"
+			"W.CC",
+			"MathXplore"
 		]
 	},
 	"config-desc": "MediaWiki のインストーラー",
@@ -84,6 +85,7 @@
 	"config-no-fts3": "<strong>警告:</strong> SQLite は [//sqlite.org/fts3.html FTS3] モジュールなしでコンパイルされており、このバックエンドでは検索機能は利用できなくなります。",
 	"config-pcre-old": "<strong>致命的エラー:</strong> PCRE $1 以降が必要です。\nご使用中の PHP のバイナリは PCRE $2 とリンクされています。\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE 詳細情報]",
 	"config-pcre-no-utf8": "<strong>致命的エラー:</strong> PHP の PCRE が PCRE_UTF8 対応なしでコンパイルされているようです。\nMediaWiki を正しく動作させるには、UTF-8 対応が必要です。",
+	"config-pcre-invalid-newline": "<strong>致命的なエラー：</strong>PHPのPCREモジュールはPCRE_CONFIG_NEWLINE = -1 for ANYでコンパイルされているようです。MediaWikiはこの構成と互換性がありません。",
 	"config-memory-raised": "PHPの<code>memory_limit</code>は$1で、$2に引き上げられました。",
 	"config-memory-bad": "<strong>警告:</strong> PHPの<code>memory_limit</code>に$1に設定されています。\nこの値はおそらく小さすぎます。\nインストールが失敗するおそれがあります!",
 	"config-apc": "[https://www.php.net/apc APC] がインストール済み",

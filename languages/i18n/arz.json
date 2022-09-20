@@ -17,7 +17,8 @@
 			"HitomiAkane",
 			"McDutchie",
 			"MuratTheTurkish",
-			"Hubaishan"
+			"Hubaishan",
+			"Amire80"
 		]
 	},
 	"tog-underline": "حط خط تحت اللينكات:",
@@ -1592,7 +1593,7 @@
 	"isimage": "وصلة ملف",
 	"whatlinkshere-prev": "{{PLURAL:$1|اللى قبل كده|الـ $1 اللى قبل كده}}",
 	"whatlinkshere-next": "{{PLURAL:$1|اللى بعد كده|الـ $1 اللى بعد كده}}",
-	"whatlinkshere-links": "← وصلات",
+	"whatlinkshere-links": "→ وصلات",
 	"whatlinkshere-hideredirs": "$1 التحويلات",
 	"whatlinkshere-hidetrans": "$1 التضمينات",
 	"whatlinkshere-hidelinks": "$1 لينكات",

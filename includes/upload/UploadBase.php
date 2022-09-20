@@ -251,7 +251,7 @@ abstract class UploadBase {
 
 	/**
 	 * @param string $name The desired destination name
-	 * @param string $tempPath
+	 * @param string|null $tempPath
 	 * @param int|null $fileSize
 	 * @param bool $removeTempFile (false) remove the temporary file?
 	 * @throws MWException
@@ -274,11 +274,11 @@ abstract class UploadBase {
 	abstract public function initializeFromRequest( &$request );
 
 	/**
-	 * @param string $tempPath File system path to temporary file containing the upload
+	 * @param string|null $tempPath File system path to temporary file containing the upload
 	 * @param int|null $fileSize
 	 */
 	protected function setTempFile( $tempPath, $fileSize = null ) {
-		$this->mTempPath = $tempPath;
+		$this->mTempPath = $tempPath ?? '';
 		$this->mFileSize = $fileSize ?: null;
 		if ( strlen( $this->mTempPath ) && file_exists( $this->mTempPath ) ) {
 			$this->tempFileObj = new TempFSFile( $this->mTempPath );

@@ -6,7 +6,8 @@
 			"Ævar Arnfjörð Bjarmason <avarab@gmail.com>",
 			"아라",
 			"Rpel",
-			"Tshering Nidup"
+			"Tshering Nidup",
+			"Amire80"
 		]
 	},
 	"tog-underline": "འོག་ཐིག་འཐེན་མིའི་འབྲེལ་མཐུད།",
@@ -75,6 +76,7 @@
 	"help": "གྲོགས་རམ།",
 	"search": "འཚོལ་ཞིབ།",
 	"searchbutton": "འཚོལ་ཞིབ།",
+	"go": "འགྱོ།",
 	"searcharticle": "འགྱོ།",
 	"history": "ཤོག་ལེབ་སྤྱོད་ཤུལ།",
 	"history_short": "སྤྱོད་ཤུལ།",
@@ -254,8 +256,10 @@
 	"listredirects": "སླར་ལོག་ཐོ་ཡིག",
 	"unusedtemplates": "ལག་ལེན་མ་འཐབ་པའི་ཊེམ་པེལེཊིསི་",
 	"randompage": "གང་འབྱུང་ཤོག་ལེབ།",
+	"randomincategory-submit": "འགྱོ།",
 	"randomredirect": "གང་འབྱུང་སླར་ལོག།",
 	"statistics": "ཚད་རྩིས།",
+	"pageswithprop-submit": "འགྱོ།",
 	"doubleredirects": "སླར་ལོག་གཉིས་ལྡན།",
 	"brokenredirects": "མེདཔ་འགྱོ་ཡོད་པའི་སླར་ལོག",
 	"withoutinterwiki": "སྐད་ཡིག་འབྲེལ་ལམ་མེད་པའི་ཤོག་ལེབ།",
@@ -363,6 +367,7 @@
 	"whatlinkshere-prev": "{{PLURAL:$1|ཧེ་མམ་|ཧེ་མམ་ $1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|ཤུལ་མམ་|ཤུལ་མམ་ $1}}",
 	"whatlinkshere-links": "← འབྲེལ་ལམ།",
+	"whatlinkshere-submit": "འགྱོ།",
 	"blockip": "ལག་ལེན་པ་བཀག",
 	"ipboptions": "ཆུ་ཚོད་ ༢:2 hours,ཉིནམ་ ༡:1 day,ཉིནམ་ ༣:3 days,བདུན་ཕྲག་ ༡:1 week,བདུན་ཕྲག་ ༢:2 weeks,ཟླཝ་ ༡:1 month,ཟླཝ་ ༣:3 months,ཟླཝ་ ༦:6 months,ལོ་ ༡:1 year,ཚད་ལས་འདས་པ་:infinite",
 	"ipblocklist": "བཀག་ཆ་འབད་ཡོད་པའི ཨའི་པི་ཁ་བྱང་དང་ལག་ལེན་པའི་མིང།",
@@ -443,9 +448,12 @@
 	"metadata-fields": "མེ་ཊ་གནས་སྡུད་ཐིག་ཁྲམ་ ཧྲམ་པའི་སྐབས་ལུ་ འཕྲིན་དོན་འདི་ནང་ ཐོ་བཀོད་འབད་་ཡོད་པའི་ ཨི་ཨེགསི་ཨའི་ཨེཕ་ མེ་ཊ༌གནས་སྡུད་འདི་ གཟུགས་བརྙན་ཤོག་ལེབ་བཀྲམ་སྟོན་གུ་ གྲངས་སུ་བཙུགས་འོང་།\nགཞན་ཚུ་ སྔོན་སྒྲིག་གི་ཐོག་ལས་སྦ་འོང་།\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
 	"namespacesall": "ཆ་མཉམ།",
 	"monthsall": "ཆ་མཉམ།",
+	"img-lang-go": "འགྱོ།",
+	"table_pager_limit_submit": "འགྱོ།",
 	"watchlisttools-view": "འབྲེལ་བ་ཡོད་པའི་བསྒྱུར་བཅོས་ཚུ་སྟོན།",
 	"watchlisttools-edit": "བལྟ་སྟེ་བལྟ་ཞིབ་ཐོ་ཡིག་ཞུན་དག་འབད།",
 	"watchlisttools-raw": "རགས་ཙམ་གྱི་བལྟ་ཞིབ་ཐོ་ཡིག་ ཞུན་དག་འབད་",
 	"version": "ཐོན་རིམ།",
+	"redirect-submit": "འགྱོ།",
 	"specialpages": "དམིགས་བསལ་ཤོག་ལེབ།"
 }

@@ -409,7 +409,7 @@ trait FileBackendGroupTestTrait {
 			$tmpFileFactory->expects( $this->never() )->method( 'newTempFSFile' );
 			$mimeAnalyzer->expects( $this->once() )->method( 'guessMimeType' )
 				->with( $fsPath, false )->willReturn( $expectedGuessedMimeType );
-		} elseif ( !$expectedExtensionType && strlen( $content ) ) {
+		} elseif ( !$expectedExtensionType && $content !== null && $content !== '' ) {
 			// XXX What should we do about the file creation here? Really we should mock
 			// file_put_contents() somehow. It's not very nice to ignore the value of
 			// $wgTmpDirectory.

@@ -74,7 +74,7 @@ trait HandlerTestTrait {
 		$router = $this->createNoOpMock( Router::class, [ 'getRouteUrl' ] );
 		$router->method( 'getRouteUrl' )->willReturnCallback( function ( $route, $path = [], $query = [] ) {
 			foreach ( $path as $param => $value ) {
-				$route = str_replace( '{' . $param . '}', urlencode( $value ), $route );
+				$route = str_replace( '{' . $param . '}', urlencode( (string)$value ), $route );
 			}
 			return wfAppendQuery( 'https://wiki.example.com/rest' . $route, $query );
 		} );

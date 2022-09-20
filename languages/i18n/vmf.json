@@ -7,7 +7,8 @@
 			"Midnight Gambler",
 			"Silvicola",
 			"Zombie45764",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Linggs undârschdrajchn:",
@@ -337,7 +338,7 @@
 	"prefs-rc": "Ledschde Ändrungn",
 	"prefs-watchlist": "Beoobachdungs-lischdn",
 	"prefs-watchlist-days": "Wiifiil dääch dsrig in dr beoobachdungs-lischdn:",
-	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|day|days}}",
+	"prefs-watchlist-days-max": "Hechschdns $1 {{PLURAL:$1|dääch}}",
 	"prefs-watchlist-edits": "Wiifiil âjdrääch hechschdens:",
 	"prefs-watchlist-edits-max": "Hegschd-dsôôl: 1000",
 	"prefs-watchlist-token": "Token fir d'beoobachdungs-lisdn",

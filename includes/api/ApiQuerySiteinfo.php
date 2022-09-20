@@ -678,7 +678,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$config = $this->getConfig();
 		$rightsPage = $config->get( 'RightsPage' );
 		// The default value is null, but the installer sets it to empty string
-		if ( strlen( $rightsPage ) ) {
+		if ( strlen( (string)$rightsPage ) ) {
 			$title = Title::newFromText( $rightsPage );
 			$url = wfExpandUrl( $title->getLinkURL(), PROTO_CURRENT );
 		} else {
@@ -686,7 +686,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			$url = $config->get( 'RightsUrl' );
 		}
 		$text = $config->get( 'RightsText' );
-		if ( $title && !strlen( $text ) ) {
+		if ( $title && !strlen( (string)$text ) ) {
 			$text = $title->getPrefixedText();
 		}
 

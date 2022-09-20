@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Fulup"
+			"Fulup",
+			"Huñvreüs"
 		]
 	},
 	"paramvalidator-badexpiry": "Talvoud \"$2\" direizh evit an arventenn aet d'e dermen \"$1\".",
@@ -28,7 +29,7 @@
 	"paramvalidator-help-multi-max-simple": "An niver brasañ a dalvoudoù a zo {{PLURAL:$1|$1}}.",
 	"paramvalidator-help-multi-all": "Evit merkan an holl dalvoudoù, grit gant <kbd>$1</kbd>.",
 	"paramvalidator-help-required": "Rekis eo an arventenn-mañ.",
-	"paramvalidator-help-type-boolean": "Type: {{PLURAL:$1|1=boulean|2=roll ar bouleanoù}}",
+	"paramvalidator-help-type-boolean": "Type: {{PLURAL:$1|1=boolean|2=roll booleanoù}}",
 	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=a rank bezañ goullo|a c'hall bezañ goullo, pe $1}}",
 	"paramvalidator-help-type-expiry": "Seurt : {{PLURAL:$1|1=expiration|2=roll aet d'e dermen}}.\n\nA c'hall bezañ relativel (da sk. <kbd>5 miz</kbd> pe <kbd>2 sizhun</kbd>) pe krenn (da sk. <kbd>2014-09-18T12:34:56Z</kbd>). Kuit da gaout un deiziad termen, ober gant $2.",
 	"paramvalidator-help-type-float": "Seurt : {{PLURAL:$1|1=float|2=roll ar re war-neuñv}}",
@@ -36,6 +37,6 @@
 	"paramvalidator-help-type-limit": "Seurt : anterin pe \"brasañ\"",
 	"paramvalidator-help-type-number-minmax": "An {{PLURAL:$1|1=talvoud|2=talvoudoù}} a rank bezañ etre $2 ha $3.",
 	"paramvalidator-help-type-number-min": "Ne c'hall ket an {{PLURAL:$1|1=talvoud|2=talvoudoù}} bezañ dindan $2.",
-	"paramvalidator-help-type-presenceboolean": "Seurt : boulean",
+	"paramvalidator-help-type-presenceboolean": "Seurt : boolean",
 	"paramvalidator-help-type-timestamp": "Type: {{PLURAL:$1|1=timestamp|2=roll an eurdeziata}}"
 }

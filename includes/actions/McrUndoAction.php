@@ -347,7 +347,7 @@ class McrUndoAction extends FormAction {
 					$this->getContext(),
 					$slot->getContent(),
 					$status,
-					trim( $this->getRequest()->getVal( 'wpSummary' ) ),
+					trim( $this->getRequest()->getVal( 'wpSummary' ) ?? '' ),
 					$this->getUser(),
 					false
 				);
@@ -411,7 +411,8 @@ class McrUndoAction extends FormAction {
 			}
 
 			$updater->saveRevision(
-				CommentStoreComment::newUnsavedComment( trim( $this->getRequest()->getVal( 'wpSummary' ) ) ),
+				CommentStoreComment::newUnsavedComment(
+					trim( $this->getRequest()->getVal( 'wpSummary' ) ?? '' ) ),
 				EDIT_AUTOSUMMARY | EDIT_UPDATE
 			);
 

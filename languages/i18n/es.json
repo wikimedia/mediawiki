@@ -828,6 +828,7 @@
 	"changeemail-submit": "Cambiar correo electrónico",
 	"changeemail-throttled": "Has intentado acceder demasiadas veces.\nEspera $1 antes de intentarlo de nuevo.",
 	"changeemail-nochange": "Escribe una dirección de correo electrónico nueva diferente.",
+	"changeemail-maxlength": "Su dirección de correo electrónico debe tener como máximo 255 caracteres.",
 	"resettokens": "Restablecer claves",
 	"resettokens-text": "Aquí puedes restablecer las claves que permiten el acceso a ciertos datos privados asociados a tu cuenta.\n\nDeberías hacerlo si los has compartido por accidente, o si ha habido intrusiones en tu cuenta.",
 	"resettokens-no-tokens": "No hay claves para restablecer.",

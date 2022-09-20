@@ -764,7 +764,7 @@
 	"edit-slots-cannot-remove": "{{PLURAL:$1|No haling |Nê halingi}} lazımi u nê darênê we: $2.",
 	"edit-slots-missing": "{{PLURAL:$1|No haling kemiyo|Nê halingi kemiyê}}: $2.",
 	"postedit-confirmation-created": "Pele vıraziye.",
-	"postedit-confirmation-restored": "Pele anciya vıraziye.",
+	"postedit-confirmation-restored": "Pele peyser arde.",
 	"postedit-confirmation-saved": "Vırnayışê şıma qeyd bi.",
 	"postedit-confirmation-published": "Vurnayışê şıma biyo vıla.",
 	"edit-already-exists": "Pelo newe nêvıraziyeno.\nPel ca ra esto.",

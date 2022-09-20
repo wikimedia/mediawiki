@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Y-M D",
-			"Fulup"
+			"Fulup",
+			"Huñvreüs"
 		]
 	},
 	"apihelp-main-param-action": "Peseurt ober kas da benn.",
@@ -19,8 +20,8 @@
 	"apihelp-block-param-reblock": "Mard eo stanket an implijer c'hoazh, frikañ ar stankadenn zo.",
 	"apihelp-block-param-watchuser": "Evezhiañ pajennoù implijer ha kaozeal an den pe e chomlec'h IP.",
 	"apihelp-block-param-tags": "Kemmañ an tikedennoù da lakaat e talvoud en enmont marilh ar stankadennoù.",
-	"apihelp-block-example-ip-simple": "Stankañ ar chomlec'h IP <kbd>192.0.2.5</kbd> 3 devezh-pad gant an abeg <kbd>Kemenn kentañ</kbd>.",
-	"apihelp-block-example-user-complex": "Stankañ an implijer <kbd>Vandal</kbd> da vat ha da viken gant an abeg <kbd>Vandalerezh</kbd>, ha mirout a grouiñ kontoù nevez pe kas posteloù.",
+	"apihelp-block-example-ip-simple": "Stankañ ar chomlec'h IP <kbd>192.0.2.5</kbd> tri devezh-pad gant un abeg.",
+	"apihelp-block-example-user-complex": "Stankañ an implijer <kbd>Vandal</kbd> da viken gant un abeg, ha mirout a grouiñ kontoù nevez pe kas posteloù.",
 	"apihelp-checktoken-param-type": "Seurt jedouer o vezañ amprouet.",
 	"apihelp-checktoken-param-token": "Jedouer da vezañ amprouet.",
 	"apihelp-checktoken-param-maxtokenage": "Pad hirañ aotreet d'ar jedouer, en eilennoù.",
@@ -46,8 +47,8 @@
 	"apihelp-edit-param-sectiontitle": "Titl ur rannbennad nevez.",
 	"apihelp-edit-param-text": "Danvez ar bajenn.",
 	"apihelp-edit-param-tags": "Cheñch an tikedennoù d'o lakaat da dalvezout evit ar stumm gwiriet.",
-	"apihelp-edit-param-minor": "Kemmig dister.",
-	"apihelp-edit-param-notminor": "Kemmoù n'eo ket dister",
+	"apihelp-edit-param-minor": "Merkañ ar c’hemm-mañ evel ur c’hemm dister.",
+	"apihelp-edit-param-notminor": "Chom hep merkañ ar c’hemm-mañ evel ur c’hemm dister ha pa vefe gweredekaet an dibab implijer \"{{int:tog-minordefault}}\"",
 	"apihelp-edit-param-bot": "Merkañ ar c'hemm-mañ evel ur c'hemm robot.",
 	"apihelp-edit-param-createonly": "Arabat kemmañ ar bajenn ma'z eus anezhi c'hoazh.",
 	"apihelp-edit-param-nocreate": "Krouiñ ur fazi ma n'eus ket eus ur bajenn.",

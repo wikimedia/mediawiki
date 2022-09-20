@@ -5,6 +5,7 @@ declare( strict_types = 1 );
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
+use Wikimedia\AtEase\AtEase;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -90,7 +91,12 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( "Backend name '$name' is invalid." );
 
-		$this->newMockFileBackend( [ 'name' => $name, 'domainId' => false ] );
+		AtEase::suppressWarnings(); // php 8.1 gives warning about null
+		try {
+			$this->newMockFileBackend( [ 'name' => $name, 'domainId' => false ] );
+		} finally {
+			AtEase::restoreWarnings();
+		}
 	}
 
 	public static function provideConstruct_invalidName() : array {

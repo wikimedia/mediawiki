@@ -72,6 +72,10 @@ class ResultWrapper implements IResultWrapper {
 		return $this->getDB()->numRows( $this );
 	}
 
+	public function count(): int {
+		return $this->numRows();
+	}
+
 	public function fetchObject() {
 		return $this->getDB()->fetchObject( $this );
 	}
@@ -80,7 +84,7 @@ class ResultWrapper implements IResultWrapper {
 		return $this->getDB()->fetchRow( $this );
 	}
 
-	public function seek( $pos ) {
+	public function seek( $pos ): void {
 		$this->getDB()->dataSeek( $this, $pos );
 		$this->pos = $pos;
 	}
@@ -99,6 +103,7 @@ class ResultWrapper implements IResultWrapper {
 		$this->currentRow = null;
 	}
 
+	#[\ReturnTypeWillChange]
 	public function current() {
 		if ( $this->currentRow === null ) {
 			$this->currentRow = $this->fetchObject();
@@ -107,7 +112,7 @@ class ResultWrapper implements IResultWrapper {
 		return $this->currentRow;
 	}
 
-	public function key() {
+	public function key(): int {
 		return $this->pos;
 	}
 

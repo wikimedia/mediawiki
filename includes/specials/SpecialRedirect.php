@@ -58,12 +58,12 @@ class SpecialRedirect extends FormSpecialPage {
 
 	/**
 	 * Set $mType and $mValue based on parsed value of $subpage.
-	 * @param string $subpage
+	 * @param string|null $subpage
 	 */
 	public function setParameter( $subpage ) {
 		// parse $subpage to pull out the parts
-		$parts = explode( '/', $subpage, 2 );
-		$this->mType = $parts[0];
+		$parts = $subpage !== null ? explode( '/', $subpage, 2 ) : [];
+		$this->mType = $parts[0] ?? null;
 		$this->mValue = $parts[1] ?? null;
 	}
 

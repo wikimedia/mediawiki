@@ -429,7 +429,7 @@ abstract class Job implements RunnableJob {
 				}
 
 				$flatValue = (string)$value;
-				if ( mb_strlen( $value ) > 1024 ) {
+				if ( mb_strlen( $flatValue ) > 1024 ) {
 					$flatValue = "string(" . mb_strlen( $value ) . ")";
 				}
 

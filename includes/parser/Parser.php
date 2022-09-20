@@ -3889,7 +3889,7 @@ class Parser {
 			return $name;
 		}
 
-		$attrText = !isset( $params['attr'] ) ? null : $frame->expand( $params['attr'] );
+		$attrText = !isset( $params['attr'] ) ? '' : $frame->expand( $params['attr'] );
 		if ( substr( $attrText, 0, $errorLen ) === $errorStr ) {
 			// See above
 			return $attrText;
@@ -3938,9 +3938,6 @@ class Parser {
 				}
 			}
 		} else {
-			if ( $attrText === null ) {
-				$attrText = '';
-			}
 			if ( isset( $params['attributes'] ) ) {
 				foreach ( $params['attributes'] as $attrName => $attrValue ) {
 					$attrText .= ' ' . htmlspecialchars( $attrName ) . '="' .
@@ -4304,18 +4301,18 @@ class Parser {
 			$fallbackAnchor = $fallbackHeadline;
 			if ( isset( $refers[$arrayKey] ) ) {
 				// phpcs:ignore Generic.Formatting.DisallowMultipleStatements
-				for ( $i = 2; isset( $refers["${arrayKey}_$i"] ); ++$i );
+				for ( $i = 2; isset( $refers["{$arrayKey}_$i"] ); ++$i );
 				$anchor .= "_$i";
 				$linkAnchor .= "_$i";
-				$refers["${arrayKey}_$i"] = true;
+				$refers["{$arrayKey}_$i"] = true;
 			} else {
 				$refers[$arrayKey] = true;
 			}
 			if ( $fallbackHeadline !== false && isset( $refers[$fallbackArrayKey] ) ) {
 				// phpcs:ignore Generic.Formatting.DisallowMultipleStatements
-				for ( $i = 2; isset( $refers["${fallbackArrayKey}_$i"] ); ++$i );
+				for ( $i = 2; isset( $refers["{$fallbackArrayKey}_$i"] ); ++$i );
 				$fallbackAnchor .= "_$i";
-				$refers["${fallbackArrayKey}_$i"] = true;
+				$refers["{$fallbackArrayKey}_$i"] = true;
 			} else {
 				$refers[$fallbackArrayKey] = true;
 			}
@@ -5891,7 +5888,9 @@ class Parser {
 
 		# Use specified revision timestamp, falling back to the current timestamp
 		$revObject = $this->getRevisionRecordObject();
-		$timestamp = $revObject ? $revObject->getTimestamp() : $this->mOptions->getTimestamp();
+		$timestamp = $revObject && $revObject->getTimestamp()
+			? $revObject->getTimestamp()
+			: $this->mOptions->getTimestamp();
 		$this->mOutput->setRevisionTimestampUsed( $timestamp ); // unadjusted time zone
 
 		# The cryptic '' timezone parameter tells to use the site-default

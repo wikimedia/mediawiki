@@ -103,6 +103,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 				'type' => 'email',
 				'label-message' => 'changeemail-newemail',
 				'autofocus' => true,
+				'maxlength' => 255,
 				'help-message' => 'changeemail-newemail-help',
 			],
 		];
@@ -165,6 +166,10 @@ class SpecialChangeEmail extends FormSpecialPage {
 		$oldaddr = $user->getEmail();
 		if ( $newaddr === $oldaddr ) {
 			return Status::newFatal( 'changeemail-nochange' );
+		}
+
+		if ( strlen( $newaddr ) > 255 ) {
+			return Status::newFatal( 'changeemail-maxlength' );
 		}
 
 		// To prevent spam, rate limit adding a new address, but do

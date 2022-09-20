@@ -985,7 +985,7 @@
 	"isimage": "ھوٹوان لنک",
 	"whatlinkshere-prev": "{{PLURAL:$1|سابقہ|سابقہ $1}}",
 	"whatlinkshere-next": "{{PLURAL:$1|پروشٹیو|پروشٹیو$1}}",
-	"whatlinkshere-links": "← لنکس",
+	"whatlinkshere-links": "→ لنکس",
 	"whatlinkshere-hideredirs": "$1 Redirects",
 	"whatlinkshere-hidetrans": "ٹرانسکلوژن $1",
 	"whatlinkshere-hidelinks": "$1 لنکس",

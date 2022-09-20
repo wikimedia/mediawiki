@@ -36,7 +36,7 @@ class UploadSourceAdapter {
 	private $mSource;
 
 	/** @var string */
-	private $mBuffer;
+	private $mBuffer = '';
 
 	/** @var int */
 	private $mPosition;
@@ -82,7 +82,8 @@ class UploadSourceAdapter {
 		$leave = false;
 
 		while ( !$leave && !$this->mSource->atEnd() &&
-				strlen( $this->mBuffer ) < $count ) {
+			strlen( $this->mBuffer ) < $count
+		) {
 			$read = $this->mSource->readChunk();
 
 			if ( !strlen( $read ) ) {

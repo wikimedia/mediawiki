@@ -16,9 +16,9 @@ interface SkinAfterPortletHook {
 	 * @since 1.35
 	 *
 	 * @param Skin $skin
-	 * @param string $portlet
+	 * @param string $portletName
 	 * @param string &$html
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onSkinAfterPortlet( $skin, $portlet, &$html );
+	public function onSkinAfterPortlet( $skin, $portletName, &$html );
 }

@@ -121,7 +121,7 @@ class HTMLDateTimeField extends HTMLTextField {
 	}
 
 	protected function parseDate( $value ) {
-		$value = trim( $value );
+		$value = trim( $value ?? '' );
 		if ( $value === '' ) {
 			return false;
 		}

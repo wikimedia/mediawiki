@@ -437,7 +437,7 @@ class HashRing implements Serializable {
 		return time();
 	}
 
-	public function serialize() {
+	public function serialize(): string {
 		return serialize( $this->__serialize() );
 	}
 
@@ -449,7 +449,7 @@ class HashRing implements Serializable {
 		];
 	}
 
-	public function unserialize( $serialized ) {
+	public function unserialize( $serialized ): void {
 		$this->__unserialize( unserialize( $serialized ) );
 	}
 

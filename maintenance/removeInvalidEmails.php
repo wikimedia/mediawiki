@@ -36,7 +36,7 @@ class RemoveInvalidEmails extends Maintenance {
 				[ 'user_id', 'user_email' ],
 				[
 					'user_id > ' . $dbr->addQuotes( $lastId ),
-					'user_email != ""',
+					'user_email != ' . $dbr->addQuotes( '' ),
 					'user_email_authenticated IS NULL'
 				],
 				__METHOD__,

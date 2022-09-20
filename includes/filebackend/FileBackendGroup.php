@@ -295,7 +295,7 @@ class FileBackendGroup {
 		// For files without a valid extension (or one at all), inspect the contents
 		if ( !$type && $fsPath ) {
 			$type = $this->mimeAnalyzer->guessMimeType( $fsPath, false );
-		} elseif ( !$type && strlen( $content ) ) {
+		} elseif ( !$type && $content !== null && $content !== '' ) {
 			$tmpFile = $this->tmpFileFactory->newTempFSFile( 'mime_', '' );
 			file_put_contents( $tmpFile->getPath(), $content );
 			$type = $this->mimeAnalyzer->guessMimeType( $tmpFile->getPath(), false );

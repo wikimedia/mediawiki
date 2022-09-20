@@ -89,7 +89,7 @@ abstract class FSFileBackendList implements Iterator {
 	 * @see Iterator::key()
 	 * @return int
 	 */
-	public function key() {
+	public function key(): int {
 		return $this->pos;
 	}
 
@@ -97,6 +97,7 @@ abstract class FSFileBackendList implements Iterator {
 	 * @see Iterator::current()
 	 * @return string|bool String or false
 	 */
+	#[\ReturnTypeWillChange]
 	public function current() {
 		return $this->getRelPath( $this->iter->current()->getPathname() );
 	}
@@ -105,7 +106,7 @@ abstract class FSFileBackendList implements Iterator {
 	 * @see Iterator::next()
 	 * @throws FileBackendError
 	 */
-	public function next() {
+	public function next(): void {
 		try {
 			$this->iter->next();
 			$this->filterViaNext();
@@ -121,7 +122,7 @@ abstract class FSFileBackendList implements Iterator {
 	 * @see Iterator::rewind()
 	 * @throws FileBackendError
 	 */
-	public function rewind() {
+	public function rewind(): void {
 		$this->pos = 0;
 		try {
 			$this->iter->rewind();
@@ -137,7 +138,7 @@ abstract class FSFileBackendList implements Iterator {
 	 * @see Iterator::valid()
 	 * @return bool
 	 */
-	public function valid() {
+	public function valid(): bool {
 		return $this->iter && $this->iter->valid();
 	}
 

@@ -12,7 +12,8 @@
 			"SF-Language",
 			"Urhixidur",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"Amire80"
 		]
 	},
 	"tog-underline": "Rëddaatu lëkkalekaay yi :",
@@ -161,7 +162,7 @@
 	"protect_change": "soppi",
 	"unprotect": "Aaradi",
 	"newpage": "Xët wu bees",
-	"talkpagelinktext": "Waxtaan",
+	"talkpagelinktext": "waxtaan",
 	"specialpage": "Xëtu jagleel",
 	"personaltools": "Samay jumtukaay",
 	"talk": "Waxtaan",
@@ -614,7 +615,7 @@
 	"prefs-rc": "Coppite yu mujj",
 	"prefs-watchlist": "Limu toppte",
 	"prefs-watchlist-days": "Limu bes yi nga koy ba ci sa limu toppte :",
-	"prefs-watchlist-days-max": "Maximum $1 {{PLURAL:$1|day|days}}",
+	"prefs-watchlist-days-max": "Du weesu $1 {{PLURAL:$1|fan}}",
 	"prefs-watchlist-edits": "Limu coppite yi ngay wone ci limu toppte gees yaatal gi:",
 	"prefs-misc": "Yeneeni tànneef",
 	"prefs-resetpass": "Soppi baatujàll",
