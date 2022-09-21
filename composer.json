@@ -48,7 +48,7 @@
 		"ralouphie/getallheaders": "3.0.3",
 		"symfony/polyfill-php73": "1.26.0",
 		"symfony/polyfill-php80": "1.26.0",
-		"symfony/yaml": "5.4.10",
+		"symfony/yaml": "5.4.12",
 		"wikimedia/assert": "0.5.1",
 		"wikimedia/at-ease": "2.1.0",
 		"wikimedia/base-convert": "2.0.2",
