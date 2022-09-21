@@ -127,10 +127,8 @@ body {
 
 .config-message {
 	display: list-item;
-	line-height: 1.5em;
-	/* @embed */
-	list-style-image: url( images/bullet.gif );
-	list-style-type: square;
+	margin-left: 2em;
+	margin-top: 0.5em;
 }
 
 .config-input-text {
