@@ -184,7 +184,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$this->msg( 'watchlistfor2', $this->getUser()->getName(), '' )->text()
 			) . ' ' .
 			self::buildTools(
-				$this->getLanguage(),
+				null,
 				$this->getLinkRenderer(),
 				$this->currentMode
 			)
@@ -840,17 +840,12 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Build a set of links for convenient navigation
 	 * between watchlist viewing and editing modes
 	 *
-	 * @param Language $lang
+	 * @param mixed $unused
 	 * @param LinkRenderer|null $linkRenderer
 	 * @param int|false $selectedMode result of self::getMode
 	 * @return string
 	 */
-	public static function buildTools( $lang, LinkRenderer $linkRenderer = null, $selectedMode = false ) {
-		if ( !$lang instanceof Language ) {
-			// back-compat where the first parameter was $unused
-			global $wgLang;
-			$lang = $wgLang;
-		}
+	public static function buildTools( $unused, LinkRenderer $linkRenderer = null, $selectedMode = false ) {
 		if ( !$linkRenderer ) {
 			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		}
