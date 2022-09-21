@@ -411,7 +411,7 @@ class HashRing implements Serializable {
 			if ( count( $this->ejectExpiryByLocation ) ) {
 				// Some locations are still ejected from the ring
 				$liveRing = [];
-				foreach ( $this->baseRing as $i => $nodeInfo ) {
+				foreach ( $this->baseRing as $nodeInfo ) {
 					$location = $nodeInfo[self::KEY_LOCATION];
 					if ( !isset( $this->ejectExpiryByLocation[$location] ) ) {
 						$liveRing[] = $nodeInfo;

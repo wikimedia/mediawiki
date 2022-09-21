@@ -1937,7 +1937,7 @@ abstract class Skin extends ContextSource {
 
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$linksHtml = [];
-		foreach ( $links as $k => $linkDetails ) {
+		foreach ( $links as $linkDetails ) {
 			$linksHtml[] = $linkRenderer->makeKnownLink(
 				$linkDetails['targetTitle'],
 				$linkDetails['text'],

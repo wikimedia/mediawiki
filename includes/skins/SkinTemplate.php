@@ -838,7 +838,7 @@ class SkinTemplate extends Skin {
 			$icons = [];
 			foreach ( $footerIcons as $blockName => $blockIcons ) {
 				$html = '';
-				foreach ( $blockIcons as $key => $icon ) {
+				foreach ( $blockIcons as $icon ) {
 					$html .= $this->makeFooterIcon( $icon );
 				}
 				// For historic reasons this mimics the `icononly` option

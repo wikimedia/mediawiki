@@ -1178,7 +1178,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			return $b->getPriority() <=> $a->getPriority();
 		} );
 
-		foreach ( $this->filterGroups as $groupName => $group ) {
+		foreach ( $this->filterGroups as $group ) {
 			$groupOutput = $group->getJsData();
 			if ( $groupOutput !== null ) {
 				$output['messageKeys'] = array_merge(

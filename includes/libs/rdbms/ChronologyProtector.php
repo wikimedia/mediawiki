@@ -486,7 +486,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 		if ( $indexReached && $this->hasImplicitClientId ) {
 				$isWithinPossibleCookieTTL = false;
-				foreach ( $this->startupTimestampsByCluster as $cluster => $timestamp ) {
+				foreach ( $this->startupTimestampsByCluster as $timestamp ) {
 					if ( ( $this->startupTimestamp - $timestamp ) < self::POSITION_COOKIE_TTL ) {
 						$isWithinPossibleCookieTTL = true;
 						break;

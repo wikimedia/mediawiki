@@ -253,8 +253,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 */
 	private function uncacheUser( UserIdentity $user ) {
 		$this->stats->increment( 'WatchedItemStore.uncacheUser' );
-		foreach ( $this->cacheIndex as $ns => $dbKeyArray ) {
-			foreach ( $dbKeyArray as $dbKey => $userArray ) {
+		foreach ( $this->cacheIndex as $dbKeyArray ) {
+			foreach ( $dbKeyArray as $userArray ) {
 				if ( isset( $userArray[$user->getId()] ) ) {
 					$this->stats->increment( 'WatchedItemStore.uncacheUser.items' );
 					$this->cache->delete( $userArray[$user->getId()] );

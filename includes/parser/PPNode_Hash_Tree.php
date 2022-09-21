@@ -315,7 +315,7 @@ class PPNode_Hash_Tree implements PPNode {
 	 */
 	public static function splitRawHeading( array $children ) {
 		$bits = [];
-		foreach ( $children as $i => $child ) {
+		foreach ( $children as $child ) {
 			if ( !is_array( $child ) ) {
 				continue;
 			}

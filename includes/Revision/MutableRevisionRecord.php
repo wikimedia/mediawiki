@@ -88,11 +88,11 @@ class MutableRevisionRecord extends RevisionRecord {
 		$newRevisionRecord->setParentId( $revision->getParentId( $revision->getWikiId() ) );
 		$newRevisionRecord->setUser( $revision->getUser() );
 
-		foreach ( $revision->getSlots()->getSlots() as $role => $slot ) {
+		foreach ( $revision->getSlots()->getSlots() as $slot ) {
 			$newRevisionRecord->setSlot( $slot );
 		}
 
-		foreach ( $slots as $role => $slot ) {
+		foreach ( $slots as $slot ) {
 			$newRevisionRecord->setSlot( $slot );
 		}
 

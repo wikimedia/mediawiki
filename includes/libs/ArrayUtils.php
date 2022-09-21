@@ -228,7 +228,7 @@ class ArrayUtils {
 		while ( !$done ) {
 			// Construct the output array element
 			$element = [];
-			foreach ( $inputArrays as $paramIndex => $inputArray ) {
+			foreach ( $inputArrays as $inputArray ) {
 				$element[] = current( $inputArray );
 			}
 			$outputArrays[] = $element;

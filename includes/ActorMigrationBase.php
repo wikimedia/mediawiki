@@ -398,7 +398,7 @@ class ActorMigrationBase {
 			if ( $tempTableInfo ) {
 				$func = __METHOD__;
 				$callback = static function ( $pk, array $extra ) use ( $tempTableInfo, $func ) {
-					foreach ( $tempTableInfo['extra'] as $to => $from ) {
+					foreach ( $tempTableInfo['extra'] as $from ) {
 						if ( !array_key_exists( $from, $extra ) ) {
 							throw new InvalidArgumentException( "$func callback: \$extra[$from] is not provided" );
 						}

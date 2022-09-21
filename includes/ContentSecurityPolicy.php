@@ -377,8 +377,8 @@ class ContentSecurityPolicy {
 			}
 		}
 		$RLSources = $this->mwConfig->get( MainConfigNames::ResourceLoaderSources );
-		foreach ( $RLSources as $wiki => $sources ) {
-			foreach ( $sources as $id => $value ) {
+		foreach ( $RLSources as $sources ) {
+			foreach ( $sources as $value ) {
 				$url = $this->prepareUrlForCSP( $value );
 				if ( $url ) {
 					$additionalUrls[] = $url;
@@ -433,8 +433,8 @@ class ContentSecurityPolicy {
 		}
 		$RLSources = $this->mwConfig->get( MainConfigNames::ResourceLoaderSources );
 
-		foreach ( $RLSources as $wiki => $sources ) {
-			foreach ( $sources as $id => $value ) {
+		foreach ( $RLSources as $sources ) {
+			foreach ( $sources as $value ) {
 				$url = $this->prepareUrlForCSP( $value );
 				if ( $url ) {
 					$additionalSelfUrls[] = $url;

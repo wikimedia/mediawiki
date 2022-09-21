@@ -103,7 +103,7 @@ trait OOUIModule {
 
 		// Allow custom themes' paths to be relative to the skin/extension that defines them,
 		// like with ResourceModuleSkinStyles
-		foreach ( $themePaths as $theme => &$paths ) {
+		foreach ( $themePaths as &$paths ) {
 			list( $localBasePath, $remoteBasePath ) =
 				FileModule::extractBasePaths( $paths );
 			if ( $localBasePath !== $defaultLocalBasePath || $remoteBasePath !== $defaultRemoteBasePath ) {

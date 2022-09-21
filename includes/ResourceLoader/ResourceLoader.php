@@ -1291,7 +1291,7 @@ MESSAGE;
 			}
 		} elseif ( is_array( $scripts ) && isset( $scripts['files'] ) ) {
 			$files = $scripts['files'];
-			foreach ( $files as $path => &$file ) {
+			foreach ( $files as &$file ) {
 				// $file is changed (by reference) from a descriptor array to the content of the file
 				// All of these essentially do $file = $file['content'];, some just have wrapping around it
 				if ( $file['type'] === 'script' ) {

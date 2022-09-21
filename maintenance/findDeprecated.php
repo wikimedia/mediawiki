@@ -58,7 +58,7 @@ class DeprecatedInterfaceFinder extends FileAwareNodeVisitor {
 
 	public function getFoundNodes() {
 		// Sort results by version, then by filename, then by name.
-		foreach ( $this->foundNodes as $version => &$nodes ) {
+		foreach ( $this->foundNodes as &$nodes ) {
 			uasort( $nodes, static function ( $a, $b ) {
 				return ( $a['filename'] . $a['name'] ) <=> ( $b['filename'] . $b['name'] );
 			} );

@@ -2773,7 +2773,7 @@ class OutputPage extends ContextSource {
 	public function loadSkinModules( $sk ) {
 		foreach ( $sk->getDefaultModules() as $group => $modules ) {
 			if ( $group === 'styles' ) {
-				foreach ( $modules as $key => $moduleMembers ) {
+				foreach ( $modules as $moduleMembers ) {
 					$this->addModuleStyles( $moduleMembers );
 				}
 			} else {
@@ -4134,7 +4134,7 @@ class OutputPage extends ContextSource {
 		// Things that go after the ResourceLoaderDynamicStyles marker
 		$append = [];
 		$separateReq = [ 'site.styles', 'user.styles' ];
-		foreach ( $this->rlExemptStyleModules as $group => $moduleNames ) {
+		foreach ( $this->rlExemptStyleModules as $moduleNames ) {
 			if ( $moduleNames ) {
 				$append[] = $this->makeResourceLoaderLink(
 					array_diff( $moduleNames, $separateReq ),
