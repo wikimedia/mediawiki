@@ -269,8 +269,6 @@ class CrhConverter extends LanguageConverterSpecific {
 			return $text;
 		}
 
-		$pat = [];
-		$rep = [];
 		switch ( $toVariant ) {
 			case 'crh-latn':
 				$text = strtr( $text, $this->mCyrl2LatnExceptions );

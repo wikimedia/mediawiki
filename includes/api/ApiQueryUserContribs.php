@@ -183,7 +183,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$this->orderBy = 'id';
 			$this->multiUserMode = count( $ids ) > 1;
 
-			$from = $fromId = false;
+			$from = false;
 			if ( $this->multiUserMode && $this->params['continue'] !== null ) {
 				$continue = explode( '|', $this->params['continue'] );
 				$this->dieContinueUsageIf( count( $continue ) != 4 );
@@ -228,7 +228,6 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			// Because 'iprange' might produce a huge number of ips, use a
 			// generator with batched lookup and continuation.
 			$userIter = call_user_func( function () use ( $dbSecondary, $sort, $op, $fname, $ipRange ) {
-				$fromName = false;
 				list( $start, $end ) = IPUtils::parseRange( $ipRange );
 				if ( $this->params['continue'] !== null ) {
 					$continue = explode( '|', $this->params['continue'] );
@@ -307,7 +306,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$this->orderBy = 'name';
 			$this->multiUserMode = count( $names ) > 1;
 
-			$from = $fromName = false;
+			$from = false;
 			if ( $this->multiUserMode && $this->params['continue'] !== null ) {
 				$continue = explode( '|', $this->params['continue'] );
 				$this->dieContinueUsageIf( count( $continue ) != 4 );

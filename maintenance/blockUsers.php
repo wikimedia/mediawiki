@@ -118,7 +118,6 @@ class BlockUsers extends Maintenance {
 		$reblock = $this->hasOption( 'reblock' );
 		$expiry = $this->getOption( 'expiry', 'indefinite' );
 
-		$performer = null;
 		if ( $performerName ) {
 			$performer = User::newFromName( $performerName );
 		} else {

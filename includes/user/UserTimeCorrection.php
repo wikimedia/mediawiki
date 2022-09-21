@@ -202,7 +202,6 @@ class UserTimeCorrection {
 		// $timeCorrection actually isn't a pipe separated value, but instead
 		// a colon separated value. This is only used by the userinput of the preferences
 		// but can also still be present in the Db. (but shouldn't be)
-		$diff = 0;
 		$data = explode( ':', $timeCorrection, 2 );
 		if ( count( $data ) >= 2 ) {
 			// Combination hours and minutes.

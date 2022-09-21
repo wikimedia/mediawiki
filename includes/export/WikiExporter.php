@@ -331,7 +331,6 @@ class WikiExporter {
 		if ( $cond ) {
 			$where[] = $cond;
 		}
-		$result = null; // Assuring $result is not undefined, if exception occurs early
 
 		$commentQuery = CommentStore::getStore()->getJoin( 'log_comment' );
 
@@ -457,7 +456,6 @@ class WikiExporter {
 			throw new MWException( __METHOD__ . " given invalid history dump type." );
 		}
 
-		$result = null; // Assuring $result is not undefined, if exception occurs early
 		$done = false;
 		$lastRow = null;
 		$revPage = 0;
