@@ -25,7 +25,7 @@ body {
 }
 
 #content {
-	background: #fff;
+	background-color: #fff;
 	margin-left: 11em;
 	border: 1px solid #aaa;
 	padding: 1.25em 1.5em 1.5em 1.5em;
@@ -86,19 +86,19 @@ body {
 }
 
 .config-page-list {
+	background-color: #fff;
 	float: right;
 	width: 12em;
 	border: 1px solid #aaa;
-	background: #fff;
 	padding: 0.5em;
 	/* 3em left margin to leave space between the list and the page-content */
 	margin: 0.5em 0.5em 0.5em 3.5em;
 }
 
 .config-page {
+	background-color: #eee;
 	padding: 0.5em 0.5em 0.5em 2em;
 	margin: 0.5em 0.5em 0.5em 0.5em;
-	background: #eee;
 }
 
 .config-submit {
@@ -160,8 +160,8 @@ body {
 }
 
 .error {
-	color: #f00;
 	background-color: #fff;
+	color: #f00;
 	font-weight: bold;
 	left: 1em;
 	font-size: 100%;
@@ -227,12 +227,12 @@ body {
 
 /* tooltip styles */
 .config-help-field-hint {
-	margin-left: 2px;
-	padding: 0 0 0 15px;
 	/* @embed */
 	background-image: url( images/help-question.gif );
 	background-position: left center;
 	background-repeat: no-repeat;
+	margin-left: 2px;
+	padding: 0 0 0 15px;
 	cursor: pointer;
 	font-size: 0.8em;
 	text-decoration: underline;
@@ -245,11 +245,11 @@ body {
 }
 
 .config-help-field-data {
+	background-color: #d6f3ff;
 	display: block;
 	overflow: hidden;
 	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	min-width: min-content;
-	background-color: #d6f3ff;
 	padding: 5px 8px 4px 8px;
 	border: 1px solid #5dc9f4;
 	margin-left: 20px;
@@ -266,13 +266,13 @@ body {
 }
 
 #p-logo a {
+	background-image: url( images/installer-logo.png );
 	background-position: center center;
 	background-repeat: no-repeat;
 	display: block;
 	width: 10em;
 	height: 160px;
 	text-decoration: none;
-	background-image: url( images/installer-logo.png );
 }
 
 .visualClear {
@@ -293,8 +293,8 @@ body {
 
 /* Logo preview  */
 .logo-preview-area {
+	background-color: #f7f7f7;
 	display: flex;
-	background: #f6f6f6;
 	padding: 20px;
 	margin: 20px 20px 0;
 }
@@ -349,13 +349,13 @@ body {
 }
 
 .logo-dropper {
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
 	border: solid 1px #333;
 	height: 100px;
 	width: 200px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center center;
 }
