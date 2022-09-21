@@ -2363,8 +2363,8 @@ class WANObjectCache implements
 	 * @code
 	 *     $keyedIds = $cache->makeMultiKeys(
 	 *         $modules,
-	 *         function ( $module ) use ( $cache ) {
-	 *             return $cache->makeKey( 'module-info', $module );
+	 *         function ( $module, $cache ) {
+	 *             return $cache->makeKey( 'example-module', $module );
 	 *         }
 	 *     );
 	 * @endcode
@@ -2373,10 +2373,10 @@ class WANObjectCache implements
 	 * @code
 	 *     $keyedIds = $cache->makeMultiKeys(
 	 *         $filters,
-	 *         function ( $filter ) use ( $cache ) {
+	 *         function ( $filter, $cache ) {
 	 *             return self::isCentral( $filter )
-	 *                 ? $cache->makeGlobalKey( 'regex-filter', $filter )
-	 *                 : $cache->makeKey( 'regex-filter', $filter )
+	 *                 ? $cache->makeGlobalKey( 'example-filter', $filter )
+	 *                 : $cache->makeKey( 'example-filter', $filter )
 	 *         }
 	 *     );
 	 * @endcode
@@ -2385,8 +2385,8 @@ class WANObjectCache implements
 	 * @code
 	 *     $keyedIds = $cache->makeMultiKeys(
 	 *         $urls,
-	 *         function ( $url ) use ( $cache ) {
-	 *             return $cache->makeKey( 'url-info', $cache->hash256( $url ) );
+	 *         function ( $url, $cache ) {
+	 *             return $cache->makeKey( 'example-url', $cache->hash256( $url ) );
 	 *         }
 	 *     );
 	 * @endcode
