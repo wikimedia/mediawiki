@@ -304,6 +304,7 @@ class HookRunner implements
 	\MediaWiki\Hook\ParserTestTablesHook,
 	\MediaWiki\Hook\PasswordPoliciesForUserHook,
 	\MediaWiki\Hook\PostLoginRedirectHook,
+	\MediaWiki\Hook\PreferencesGetLayoutHook,
 	\MediaWiki\Hook\PreferencesGetLegendHook,
 	\MediaWiki\Hook\PrefsEmailAuditHook,
 	\MediaWiki\Hook\ProtectionForm__buildFormHook,
@@ -3084,6 +3085,13 @@ class HookRunner implements
 		return $this->container->run(
 			'PreferencesFormPreSave',
 			[ $formData, $form, $user, &$result, $oldUserOptions ]
+		);
+	}
+
+	public function onPreferencesGetLayout( &$useMobileLayout, $skin ) {
+		return $this->container->run(
+			'PreferencesGetLayout',
+			[ &$useMobileLayout, $skin ]
 		);
 	}
 
