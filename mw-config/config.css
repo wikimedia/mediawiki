@@ -113,7 +113,8 @@ body {
 }
 
 .config-page-disabled {
-	color: #aaa;
+	/* `#767676` is the lightest shade to comply to WCAG level AA contrast ratio, see T318200. */
+	color: #767676;
 }
 
 .config-error-box {
