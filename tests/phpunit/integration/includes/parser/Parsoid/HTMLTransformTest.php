@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Parser\Parsoid;
 
 use Composer\Semver\Semver;
+use JsonContent;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Page\PageIdentityValue;
@@ -14,6 +15,7 @@ use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Mocks\MockPageConfig;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
+use WikitextContent;
 
 /**
  * @covers \MediaWiki\Parser\Parsoid\HTMLTransform
@@ -58,7 +60,8 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 				$this->getServiceContainer()->getParsoidDataAccess()
 			),
 			[],
-			$pageConfigFactory
+			$pageConfigFactory,
+			$this->getServiceContainer()->getContentHandlerFactory()
 		);
 	}
 
@@ -282,16 +285,31 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 		$transform->getOriginalBody();
 	}
 
-	public function testHtmlToWikitext() {
+	public function testHtmlToWikitextContent() {
 		$transform = $this->createHTMLTransform( self::ORIG_HTML );
 
 		// Set some options to assert on $transform.
 		$transform->setOptions( [
-			'contentmodel' => 'wikitext',
+			'contentmodel' => null,
 			'offsetType' => 'byte',
 		] );
 
-		$wikitext = $transform->htmlToWikitext();
-		$this->assertStringContainsString( 'Original Content', $wikitext );
+		$content = $transform->htmlToContent();
+		$this->assertInstanceOf( WikitextContent::class, $content );
+		$this->assertStringContainsString( 'Original Content', $content->getText() );
+	}
+
+	public function testHtmlToJsonContent() {
+		$jsonConfigHtml = $this->getTextFromFile( 'JsonConfig.html' );
+		$transform = $this->createHTMLTransform( $jsonConfigHtml );
+
+		// Set some options to assert on $transform.
+		$transform->setOptions( [
+			'contentmodel' => CONTENT_MODEL_JSON,
+			'offsetType' => 'byte',
+		] );
+
+		$content = $transform->htmlToContent();
+		$this->assertInstanceOf( JsonContent::class, $content );
 	}
 }
