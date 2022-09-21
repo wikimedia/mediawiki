@@ -44,6 +44,8 @@ For notes on 1.39.x and older releases, see HISTORY.
 * …
 
 ==== Removed configuration ====
+* $wgShellboxUrl that was deprecated in 1.37 has now been removed,
+  set $wgShellboxUrls instead.
 * …
 
 === New user-facing features in 1.40 ===
