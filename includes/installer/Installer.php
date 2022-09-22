@@ -1443,7 +1443,7 @@ abstract class Installer {
 		// so the first extension is the one we want to load,
 		// everything else is a dependency
 		$i = 0;
-		foreach ( $info['credits'] as $name => $credit ) {
+		foreach ( $info['credits'] as $credit ) {
 			$i++;
 			if ( $i == 1 ) {
 				// Extension we want to load

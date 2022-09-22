@@ -794,7 +794,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public function getJsConfigVars( bool $showStrategyKeys = false ) {
 		$result = $this->mJsConfigVars;
 		// Don't expose the internal strategy key
-		foreach ( $result as $key => &$value ) {
+		foreach ( $result as &$value ) {
 			if ( is_array( $value ) && !$showStrategyKeys ) {
 				unset( $value[self::MW_MERGE_STRATEGY_KEY] );
 			}

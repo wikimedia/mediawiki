@@ -184,7 +184,7 @@ class ImageModule extends Module {
 						// Backwards compatibility
 						$option = [ 'default' => $option ];
 					}
-					foreach ( $option as $skin => $data ) {
+					foreach ( $option as $data ) {
 						if ( !is_array( $data ) ) {
 							throw new InvalidArgumentException(
 								"Invalid list error. '$data' given, array expected."
@@ -450,7 +450,7 @@ class ImageModule extends Module {
 	private function getFileHashes( Context $context ) {
 		$this->loadFromDefinition();
 		$files = [];
-		foreach ( $this->getImages( $context ) as $name => $image ) {
+		foreach ( $this->getImages( $context ) as $image ) {
 			$files[] = $image->getPath( $context );
 		}
 		$files = array_values( array_unique( $files ) );

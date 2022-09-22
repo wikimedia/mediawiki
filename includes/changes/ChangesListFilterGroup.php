@@ -358,7 +358,7 @@ abstract class ChangesListFilterGroup {
 			return $b->getPriority() <=> $a->getPriority();
 		} );
 
-		foreach ( $this->filters as $filterName => $filter ) {
+		foreach ( $this->filters as $filter ) {
 			if ( $filter->displaysOnStructuredUi() ) {
 				$filterData = $filter->getJsData();
 				$output['messageKeys'] = array_merge(

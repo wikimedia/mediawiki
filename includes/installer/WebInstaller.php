@@ -977,7 +977,7 @@ class WebInstaller extends Installer {
 		}
 
 		$s = "<ul>\n";
-		foreach ( $items as $value => $item ) {
+		foreach ( $items as $item ) {
 			$s .= "<li>$item</li>\n";
 		}
 		$s .= "</ul>\n";

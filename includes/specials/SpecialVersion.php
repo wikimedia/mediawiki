@@ -68,7 +68,7 @@ class SpecialVersion extends SpecialPage {
 	 */
 	public static function getCredits( ExtensionRegistry $reg, Config $conf ): array {
 		$credits = $conf->get( MainConfigNames::ExtensionCredits );
-		foreach ( $reg->getAllThings() as $name => $credit ) {
+		foreach ( $reg->getAllThings() as $credit ) {
 			$credits[$credit['type']][] = $credit;
 		}
 		return $credits;
@@ -94,7 +94,7 @@ class SpecialVersion extends SpecialPage {
 		if ( isset( $parts[1] ) ) {
 			$extName = str_replace( '_', ' ', $parts[1] );
 			// Find it!
-			foreach ( $credits as $group => $extensions ) {
+			foreach ( $credits as $extensions ) {
 				foreach ( $extensions as $ext ) {
 					if ( isset( $ext['name'] ) && ( $ext['name'] === $extName ) ) {
 						$extNode = &$ext;

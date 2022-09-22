@@ -95,7 +95,7 @@ class CheckBlocksSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 			'local-createaccount' => $user->isBlockedFromCreateAccount(),
 			'local' => $user->getBlock(),
 		];
-		foreach ( $blocks as $type => $block ) {
+		foreach ( $blocks as $block ) {
 			/** @var AbstractBlock $block */
 			if ( $block && $block->isSitewide()
 				// This method is for checking a given account/username, not the current user, so

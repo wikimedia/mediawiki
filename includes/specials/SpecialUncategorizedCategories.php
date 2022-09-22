@@ -72,7 +72,7 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 			$exList = $this->msg( 'uncategorized-categories-exceptionlist' )
 				->inContentLanguage()->plain();
 			$proposedTitles = explode( "\n", $exList );
-			foreach ( $proposedTitles as $count => $titleStr ) {
+			foreach ( $proposedTitles as $titleStr ) {
 				if ( strpos( $titleStr, '*' ) !== 0 ) {
 					continue;
 				}

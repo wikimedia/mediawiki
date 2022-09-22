@@ -131,7 +131,7 @@ class StartUpModule extends Module {
 	 * @phan-param array<string,array{version:string,dependencies:array,group:?string,source:string}> &$registryData
 	 */
 	public static function compileUnresolvedDependencies( array &$registryData ): void {
-		foreach ( $registryData as $name => &$data ) {
+		foreach ( $registryData as &$data ) {
 			$dependencies = $data['dependencies'];
 			try {
 				foreach ( $data['dependencies'] as $dependency ) {

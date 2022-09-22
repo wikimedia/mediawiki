@@ -917,7 +917,7 @@ class FileModule extends Module {
 
 		$result = [];
 
-		foreach ( $collatedStyleFiles as $media => $styleFiles ) {
+		foreach ( $collatedStyleFiles as $styleFiles ) {
 			foreach ( $styleFiles as $styleFile ) {
 				$result[] = $this->getLocalPath( $styleFile );
 			}

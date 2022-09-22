@@ -191,7 +191,7 @@ class GetConfiguration extends Maintenance {
 
 	private function isAllowedVariable( $value ) {
 		if ( is_array( $value ) ) {
-			foreach ( $value as $k => $v ) {
+			foreach ( $value as $v ) {
 				if ( !$this->isAllowedVariable( $v ) ) {
 					return false;
 				}

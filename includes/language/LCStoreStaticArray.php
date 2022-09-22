@@ -68,7 +68,7 @@ class LCStoreStaticArray implements LCStore {
 	 * @return bool
 	 */
 	private static function isValueArray( array $arr ) {
-		foreach ( $arr as $key => $value ) {
+		foreach ( $arr as $value ) {
 			if ( is_scalar( $value )
 				|| $value === null
 				|| ( is_array( $value ) && self::isValueArray( $value ) )
