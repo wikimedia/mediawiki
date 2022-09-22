@@ -75,7 +75,6 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
-	 * @deprecated since 1.35 use Skin::getPersonalToolsForMakeListItem
 	 * @return array
 	 */
 	public function getPersonalTools() {
@@ -211,7 +210,11 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
-	 * @deprecated since 1.35 use Skin::makeLink
+	 * Wrapper for Skin method.
+	 *
+	 * @param string $key of link
+	 * @param array $item to render
+	 * @param array $options for link
 	 * @return string
 	 */
 	protected function makeLink( $key, $item, $options = [] ) {
@@ -219,7 +222,11 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
-	 * @deprecated since 1.35 use Skin::makeListItem
+	 * Wrapper for Skin method.
+	 *
+	 * @param string $key of list item
+	 * @param array $item to render
+	 * @param array $options for list item
 	 * @return string
 	 */
 	public function makeListItem( $key, $item, $options = [] ) {
@@ -227,14 +234,21 @@ abstract class BaseTemplate extends QuickTemplate {
 	}
 
 	/**
-	 * @deprecated since 1.35 use Skin::makeSearchInput
+	 * Wrapper for Skin method.
+	 *
+	 * @param array $attrs
+	 * @return string
 	 */
 	protected function makeSearchInput( $attrs = [] ) {
 		return $this->getSkin()->makeSearchInput( $attrs );
 	}
 
 	/**
-	 * @deprecated since 1.35 use Skin::makeSearchButton
+	 * Wrapper for Skin method.
+	 *
+	 * @param string $mode
+	 * @param array $attrs
+	 * @return string
 	 */
 	protected function makeSearchButton( $mode, $attrs = [] ) {
 		return $this->getSkin()->makeSearchButton( $mode, $attrs );
