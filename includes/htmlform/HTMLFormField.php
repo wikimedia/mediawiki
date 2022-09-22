@@ -300,7 +300,7 @@ abstract class HTMLFormField {
 	 * that the user-defined callback mValidationCallback is still run
 	 * @stable to override
 	 *
-	 * @param string|array $value The value the field was submitted with
+	 * @param mixed $value The value the field was submitted with
 	 * @param array $alldata The data collected from the form
 	 *
 	 * @return bool|string|Message True on success, or String/Message error to display, or

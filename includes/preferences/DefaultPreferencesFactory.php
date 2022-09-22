@@ -1579,7 +1579,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	}
 
 	/**
-	 * @param string $signature
+	 * @param mixed $signature
 	 * @param array $alldata
 	 * @param HTMLForm $form
 	 * @return bool|string|string[]
@@ -1587,11 +1587,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	protected function validateSignature( $signature, $alldata, HTMLForm $form ) {
 		$sigValidation = $this->options->get( 'SignatureValidation' );
 		$maxSigChars = $this->options->get( 'MaxSigChars' );
-		if ( mb_strlen( $signature ) > $maxSigChars ) {
+		if ( is_string( $signature ) && mb_strlen( $signature ) > $maxSigChars ) {
 			return $form->msg( 'badsiglength' )->numParams( $maxSigChars )->escaped();
 		}
 
-		if ( $signature === '' ) {
+		if ( $signature === null || $signature === '' ) {
 			// Make sure leaving the field empty is valid, since that's used as the default (T288151).
 			// Code using this preference in Parser::getUserSig() handles this case specially.
 			return true;
