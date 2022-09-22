@@ -1137,7 +1137,12 @@ describe( '/transform/ endpoint', function () {
 					html: htmlOfJsonConfig,
 					contentmodel: 'json'
 				} )
-				.expect( validWikitextResponse( '{"a":4,"b":3}' ) )
+				.expect( ( res ) => {
+					res.statusCode.should.equal( 200 );
+					res.headers.should.have.property( 'content-type' );
+					res.headers[ 'content-type' ].should.equal( 'application/json' );
+					res.text.should.equal( '{"a":4,"b":3}' );
+				} )
 				.end( done );
 		} );
 

@@ -20,6 +20,7 @@
 namespace MediaWiki\Rest\Handler;
 
 use Composer\Semver\Semver;
+use Content;
 use ExtensionRegistry;
 use InvalidArgumentException;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
@@ -34,6 +35,7 @@ use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseException;
+use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\SlotRecord;
@@ -317,7 +319,7 @@ abstract class ParsoidHandler extends Handler {
 
 		if ( isset( $original['wikitext']['body'] ) ) {
 			// FIXME: do we really have to support wikitext overrides?
-			$transform->setOriginalWikitext( $original['wikitext']['body'] );
+			$transform->setOriginalText( $original['wikitext']['body'] );
 		}
 
 		if ( $attribs['opts']['from'] === ParsoidFormatHelper::FORMAT_PAGEBUNDLE ) {
@@ -909,16 +911,41 @@ abstract class ParsoidHandler extends Handler {
 
 		try {
 			$transform = $this->getHTMLTransform( $attribs, $html, $page );
-			$wikitext = $transform->htmlToWikitext();
+			$content = $transform->htmlToContent();
 
 			$response = $this->getResponseFactory()->create();
-			ParsoidFormatHelper::setContentType( $response, ParsoidFormatHelper::FORMAT_WIKITEXT );
-			$response->getBody()->write( $wikitext );
+			$this->putContent( $content, $response, $attribs['envOptions']['outputContentVersion'] );
 
 			return $response;
 		} catch ( ClientError $e ) {
 			throw new HttpException( $e->getMessage(), 400 );
 		}
+	}
+
+	/**
+	 * Helper function for putting the given content into the HTTP response object.
+	 * This will also set the appropriate Content-Type header.
+	 *
+	 * @param Content $content
+	 * @param ResponseInterface $response
+	 * @param string|null $outputContentVersion
+	 */
+	private function putContent(
+		Content $content,
+		ResponseInterface $response,
+		?string $outputContentVersion = null
+	) {
+		$data = $content->serialize();
+		try {
+			$contentType = ParsoidFormatHelper::getContentType(
+				$content->getModel(),
+				$outputContentVersion
+			);
+		} catch ( InvalidArgumentException $e ) {
+			$contentType = $content->getDefaultFormat();
+		}
+		$response->setHeader( 'Content-Type', $contentType );
+		$response->getBody()->write( $data );
 	}
 
 	/**

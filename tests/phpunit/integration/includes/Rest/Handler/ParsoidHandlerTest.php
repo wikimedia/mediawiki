@@ -90,7 +90,8 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 					$this->getServiceContainer()->getParsoidDataAccess()
 				),
 				[],
-				$pageConfigFactory
+				$pageConfigFactory,
+				$this->getServiceContainer()->getContentHandlerFactory()
 			] )
 			->getMock();
 
@@ -880,13 +881,17 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$attribs = [
-			'opts' => [ 'contentmodel' => CONTENT_MODEL_JSON ],
+			'opts' => [
+				// even if the path says "wikitext", the contentmodel from the body should win.
+				'format' => ParsoidFormatHelper::FORMAT_WIKITEXT,
+				'contentmodel' => CONTENT_MODEL_JSON,
+			],
 		];
 		yield 'should convert html to json' => [
 			$attribs,
 			$html,
 			$expectedText,
-			[ 'Content-Type' => $wikiTextContentType ], // TODO: this is a lie, it returns JSON!
+			[ 'content-type' => 'application/json' ],
 		];
 
 		// page bundle input should work with no original data present  ///////////
@@ -1287,7 +1292,8 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$page,
 			$parsoid,
 			[],
-			$this->getPageConfigFactory( $page )
+			$this->getPageConfigFactory( $page ),
+			$this->getServiceContainer()->getContentHandlerFactory()
 		) );
 
 		$this->setService( 'HTMLTransformFactory', $factory );

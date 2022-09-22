@@ -2,12 +2,14 @@
 
 namespace MediaWiki\Parser\Parsoid;
 
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use Wikimedia\Parsoid\Parsoid;
 
 /**
- * @unstable
+ * @since 1.40
+ * @unstable should be marked stable before 1.40 release
  */
 class HTMLTransformFactory {
 
@@ -20,19 +22,25 @@ class HTMLTransformFactory {
 	/** @var PageConfigFactory */
 	private $configFactory;
 
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
 	/**
 	 * @param Parsoid $parsoid
 	 * @param array $parsoidSettings
 	 * @param PageConfigFactory $configFactory
+	 * @param IContentHandlerFactory $contentHandlerFactory
 	 */
 	public function __construct(
 		Parsoid $parsoid,
 		array $parsoidSettings,
-		PageConfigFactory $configFactory
+		PageConfigFactory $configFactory,
+		IContentHandlerFactory $contentHandlerFactory
 	) {
 		$this->parsoid = $parsoid;
 		$this->parsoidSettings = $parsoidSettings;
 		$this->configFactory = $configFactory;
+		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	/**
@@ -50,7 +58,8 @@ class HTMLTransformFactory {
 			$page,
 			$this->parsoid,
 			$this->parsoidSettings,
-			$this->configFactory
+			$this->configFactory,
+			$this->contentHandlerFactory
 		);
 	}
 
