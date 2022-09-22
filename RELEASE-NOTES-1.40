@@ -34,6 +34,9 @@ For notes on 1.39.x and older releases, see HISTORY.
 * …
 
 === New developer features in 1.40 ===
+* The ApiSandbox will now by default request responses in the latest API format,
+  rather than the original format. Users can set `formatversion` to a different
+  value if needed.
 * …
 
 === External library changes in 1.40 ===
