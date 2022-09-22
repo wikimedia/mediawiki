@@ -1,8 +1,5 @@
 <?php
 /**
- * Provides of semaphore semantics for restricting the number
- * of workers that may be concurrently performing the same task.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -22,7 +19,7 @@
  */
 
 /**
- * Convenience class for dealing with PoolCounters using callbacks
+ * Convenience class for dealing with PoolCounter using callbacks
  * @since 1.22
  * @newable
  * @note marked as newable in 1.35 for lack of a better alternative,
@@ -48,11 +45,9 @@ class PoolCounterWorkViaCallback extends PoolCounterWork {
 	 * process in the pool to finish and reuse its cached result.
 	 *
 	 * @stable to call
-	 *
 	 * @param string $type The class of actions to limit concurrency for
 	 * @param string $key
 	 * @param array $callbacks Map of callbacks
-	 * @throws MWException
 	 */
 	public function __construct( $type, $key, array $callbacks ) {
 		parent::__construct( $type, $key );
