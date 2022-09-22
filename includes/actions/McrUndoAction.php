@@ -299,8 +299,6 @@ class McrUndoAction extends FormAction {
 		$out = $this->getOutput();
 
 		try {
-			$previewHTML = '';
-
 			# provide a anchor link to the form
 			$continueEditing = '<span class="mw-continue-editing">' .
 				'[[#mw-mcrundo-form|' .

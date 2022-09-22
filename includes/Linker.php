@@ -1076,7 +1076,6 @@ class Linker {
 		}
 
 		$classes = 'mw-userlink';
-		$page = null;
 		if ( $userId == 0 ) {
 			$page = ExternalUserNames::getUserLinkTitle( $userName );
 

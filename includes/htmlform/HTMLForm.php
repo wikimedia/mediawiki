@@ -1952,7 +1952,6 @@ class HTMLForm extends ContextSource {
 						"mw-htmlform-$key",
 						"$fieldsetIDPrefix$key-",
 						$subsectionHasVisibleFields );
-				$legend = null;
 
 				if ( $subsectionHasVisibleFields === true ) {
 					// Display the section with various niceties.

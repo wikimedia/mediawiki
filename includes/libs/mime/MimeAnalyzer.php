@@ -899,7 +899,6 @@ class MimeAnalyzer implements LoggerAwareInterface {
 		}
 
 		$callback = $this->detectCallback;
-		$m = null;
 		if ( $callback ) {
 			$m = $callback( $file );
 		} else {
