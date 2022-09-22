@@ -108,7 +108,8 @@
 			"Ymar",
 			"Žekřil71pl",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Kwiatek 123"
 		]
 	},
 	"tog-underline": "Podkreślenie linków:",
@@ -128,7 +129,7 @@
 	"tog-watchrollback": "Dodawaj do obserwowanych strony, w których {{GENDER:|wycofałem|wycofałam}} edycję",
 	"tog-minordefault": "Wszystkie edycje domyślnie oznaczaj jako drobne",
 	"tog-previewontop": "Pokazuj podgląd powyżej obszaru edycji",
-	"tog-previewonfirst": "Pokazuj podgląd strony podczas pierwszej edycji",
+	"tog-previewonfirst": "Pokaż podgląd strony po rozpoczęciu edycji",
 	"tog-enotifwatchlistpages": "Wyślij do mnie e‐mail, gdy strona lub plik z mojej listy obserwowanych zostaną zmodyfikowane",
 	"tog-enotifusertalkpages": "Wyślij do mnie e‐mail, gdy moja strona dyskusji zostanie zmodyfikowana",
 	"tog-enotifminoredits": "Wyślij e‐mail także w przypadku drobnych zmian na stronach lub w plikach",

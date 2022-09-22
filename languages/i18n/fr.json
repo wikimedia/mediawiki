@@ -192,7 +192,8 @@
 			"Zolo",
 			"Горан Анђелковић",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Gaultier"
 		]
 	},
 	"tog-underline": "Soulignement des liens :",
@@ -572,7 +573,7 @@
 	"logout-failed": "Impossible de se déconnecter maintenant : $1",
 	"cannotlogoutnow-title": "Impossible de se déconnecter maintenant",
 	"cannotlogoutnow-text": "La déconnexion n’est pas possible en utilisant $1.",
-	"welcomeuser": "Bienvenue, $1 !",
+	"welcomeuser": "Bienvenue, $1 !",
 	"welcomecreation-msg": "Votre compte a été créé.\nVous pouvez modifier [[Special:Preferences|vos préférences]] pour {{SITENAME}} si vous le souhaitez.",
 	"yourname": "Nom d’utilisateur :",
 	"userlogin-yourname": "Nom d’utilisateur",
@@ -4053,7 +4054,7 @@
 	"pagelang-use-default": "Utiliser la langue par défaut",
 	"pagelang-select-lang": "Sélectionner la langue",
 	"pagelang-reason": "Motif",
-	"pagelang-submit": "Envoyer",
+	"pagelang-submit": "Soumettre",
 	"pagelang-nonexistent-page": "La page $1 n’existe pas.",
 	"pagelang-unchanged-language": "La page $1 est déjà définie pour la langue $2.",
 	"pagelang-unchanged-language-default": "La page $1 est déjà définie pour la langue par défaut du contenu du wiki.",

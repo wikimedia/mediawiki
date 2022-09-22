@@ -32,7 +32,8 @@
 			"לערי ריינהארט",
 			"ਗੁਰਪ੍ਰੀਤ ਹੁੰਦਲ",
 			"ਪ੍ਰਚਾਰਕ",
-			"아라"
+			"아라",
+			"Bgo eiu"
 		]
 	},
 	"tog-underline": "ਲਿੰਕ ਹੇਠ-ਲਾਈਨ:",
@@ -290,7 +291,7 @@
 	"sort-descending": "ਘਟਦਾ ਕ੍ਰਮ",
 	"sort-ascending": "ਵਧਦਾ ਕ੍ਰਮ",
 	"nstab-main": "ਸਫ਼ਾ",
-	"nstab-user": "ਵਰਤੋਂਕਾਰ ਸਫ਼ਾ",
+	"nstab-user": "{{GENDER:$1|ਵਰਤੋਂਕਾਰ ਸਫ਼ਾ}}",
 	"nstab-media": "ਮੀਡੀਆ ਸਫ਼ਾ",
 	"nstab-special": "ਖ਼ਾਸ ਸਫ਼ਾ",
 	"nstab-project": "ਪਰੋਜੈਕਟ ਸਫ਼ਾ",
