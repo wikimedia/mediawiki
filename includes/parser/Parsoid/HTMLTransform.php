@@ -3,8 +3,11 @@
 namespace MediaWiki\Parser\Parsoid;
 
 use Composer\Semver\Semver;
+use Content;
+use ContentHandler;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
@@ -24,10 +27,12 @@ use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMCompat;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 use Wikimedia\Parsoid\Utils\Timing;
-use WikitextContent;
 
 /**
- * @unstable
+ * This class allows HTML to be transformed to a page content source format such as wikitext.
+ *
+ * @since 1.40
+ * @unstable should be stable before 1.40 release
  */
 class HTMLTransform {
 	/** @var array */
@@ -40,7 +45,7 @@ class HTMLTransform {
 	private $contentLanguage = null;
 
 	/** @var ?string */
-	private $originalWikitext = null;
+	private $originalText = null;
 
 	/**
 	 * Whether $this->doc has had any necessary processing applied,
@@ -79,19 +84,24 @@ class HTMLTransform {
 	/** @var PageConfigFactory */
 	private $pageConfigFactory;
 
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
 	/**
 	 * @param string $modifiedHTML
 	 * @param PageIdentity $page
 	 * @param Parsoid $parsoid
 	 * @param array $parsoidSettings
 	 * @param PageConfigFactory $pageConfigFactory
+	 * @param IContentHandlerFactory $contentHandlerFactory
 	 */
 	public function __construct(
 		string $modifiedHTML,
 		PageIdentity $page,
 		Parsoid $parsoid,
 		array $parsoidSettings,
-		PageConfigFactory $pageConfigFactory
+		PageConfigFactory $pageConfigFactory,
+		IContentHandlerFactory $contentHandlerFactory
 	) {
 		$this->parsoid = $parsoid;
 		$this->parsoidSettings = $parsoidSettings;
@@ -99,6 +109,7 @@ class HTMLTransform {
 		$this->originalPageBundle = new PageBundle( '' );
 		$this->page = $page;
 		$this->pageConfigFactory = $pageConfigFactory;
+		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	/**
@@ -145,14 +156,16 @@ class HTMLTransform {
 	}
 
 	/**
-	 * @param string $wikitext
+	 * Sets the original source text (usually wikitext).
+	 *
+	 * @param string $text
 	 */
-	public function setOriginalWikitext( string $wikitext ): void {
+	public function setOriginalText( string $text ): void {
 		if ( $this->pageConfig ) {
-			throw new LogicException( 'Cannot set wikitext after using the PageConfig' );
+			throw new LogicException( 'Cannot set text after using the PageConfig' );
 		}
 
-		$this->originalWikitext = $wikitext;
+		$this->originalText = $text;
 	}
 
 	private function validatePageBundle( PageBundle $pb ) {
@@ -237,17 +250,19 @@ class HTMLTransform {
 		if ( !$this->pageConfig ) {
 
 			// XXX: do we even have to support wikitext overrides? What's the use case?
-			if ( $this->originalWikitext ) {
+			if ( $this->originalText !== null ) {
 				// Create a mutable revision record point to the same revision
-				// and set to the desired wikitext.
+				// and set to the desired content.
 				$revision = new MutableRevisionRecord( $this->page );
 				if ( $this->oldid ) {
 					$revision->setId( $this->oldid );
 				}
+
+				$content = $this->getContentHandler()->unserializeContent( $this->originalText );
 				$revision->setSlot(
 					SlotRecord::newUnsaved(
 						SlotRecord::MAIN,
-						new WikitextContent( $this->originalWikitext )
+						$content
 					)
 				);
 
@@ -552,7 +567,33 @@ class HTMLTransform {
 		return $selserData;
 	}
 
-	public function htmlToWikitext(): string {
+	private function getContentHandler(): ContentHandler {
+		$model = $this->getContentModel() ?: CONTENT_MODEL_WIKITEXT;
+
+		return $this->contentHandlerFactory
+			->getContentHandler( $model );
+	}
+
+	/**
+	 * Returns a Content object derived from the supplied HTML.
+	 *
+	 * @return Content
+	 */
+	public function htmlToContent(): Content {
+		$text = $this->htmlToText();
+		$content = $this->getContentHandler()->unserializeContent( $text );
+
+		return $content;
+	}
+
+	/**
+	 * Converts the input HTML to source format, typically wikitext.
+	 *
+	 * @see Parsoid::dom2wikitext
+	 *
+	 * @return string
+	 */
+	private function htmlToText(): string {
 		if ( $this->metrics ) {
 			$metrics = $this->metrics;
 		} else {
@@ -579,7 +620,7 @@ class HTMLTransform {
 		$timing->end( 'html2wt.init' );
 
 		try {
-			$wikitext = $this->parsoid->dom2wikitext( $this->getPageConfig(), $doc, [
+			$text = $this->parsoid->dom2wikitext( $this->getPageConfig(), $doc, [
 				'inputContentVersion' => $inputContentVersion,
 				'offsetType' => $this->getOffsetType(),
 				'contentmodel' => $this->getContentModel(),
@@ -592,7 +633,7 @@ class HTMLTransform {
 		}
 
 		$total = $timing->end( 'html2wt.total' );
-		$metrics->timing( 'html2wt.size.output', strlen( $wikitext ) );
+		$metrics->timing( 'html2wt.size.output', strlen( $text ) );
 
 		if ( $htmlSize ) {  // Avoid division by zero
 			// NOTE: the name timePerInputKB is misleading, since $htmlSize is
@@ -600,7 +641,7 @@ class HTMLTransform {
 			$metrics->timing( 'html2wt.timePerInputKB', $total * 1024 / $htmlSize );
 		}
 
-		return $wikitext;
+		return $text;
 	}
 
 }

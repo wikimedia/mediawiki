@@ -738,7 +738,8 @@ return [
 		return new HTMLTransformFactory(
 			$services->getService( '_Parsoid' ),
 			$services->getMainConfig()->get( MainConfigNames::ParsoidSettings ),
-			$services->getParsoidPageConfigFactory()
+			$services->getParsoidPageConfigFactory(),
+			$services->getContentHandlerFactory()
 		);
 	},
 
