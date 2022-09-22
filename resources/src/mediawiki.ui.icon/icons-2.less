@@ -32,7 +32,6 @@
 // Colors
 @icon-color: @colorGray5;
 @margin-icon-md-labelled: 8px;
-@icon-background-color--selected:  rgba( 0, 0, 0, 0.03 );
 
 /**
 * Mixin for a pseudo-element with a background image.
@@ -146,16 +145,16 @@
 
 	// Assume a mobile device - and avoid tap state remaining after click (T233046).
 	&:active {
-		background-color: @icon-background-color--selected;
+		background-color: @background-color-quiet--hover;
 	}
 }
 
 // When the user's device primary input is capable of hover, like a mouse,
-// use hover (T233046). Only on active elements.
+// use hover (T233046). Only on enabled elements.
 @media ( hover: hover ) {
 	// stylelint-disable-next-line selector-class-pattern
 	.mw-ui-icon-element:not( .disabled ):hover {
-		background-color: @icon-background-color--selected;
+		background-color: @background-color-quiet--hover;
 	}
 }
 
