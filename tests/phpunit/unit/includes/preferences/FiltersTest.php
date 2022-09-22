@@ -54,7 +54,8 @@ class FiltersTest extends \MediaWikiUnitTestCase {
 		return [
 			[ 'ZoneInfo', 'Offset|0' ],
 			[ 'ZoneInfo|bogus', 'Offset|0' ],
-			[ 'System', 'System' ],
+			[ 'System', 'System|0' ],
+			[ 'System|120', 'System|0' ],
 			[ '2:30', 'Offset|150' ],
 		];
 	}

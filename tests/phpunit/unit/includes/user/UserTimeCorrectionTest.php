@@ -59,9 +59,9 @@ class UserTimeCorrectionTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers       \MediaWiki\User\UserTimeCorrection::__construct
-	 * @covers       \MediaWiki\User\UserTimeCorrection::__toString
-	 * @covers       \MediaWiki\User\UserTimeCorrection::isValid
+	 * @covers \MediaWiki\User\UserTimeCorrection::__construct
+	 * @covers \MediaWiki\User\UserTimeCorrection::__toString
+	 * @covers \MediaWiki\User\UserTimeCorrection::isValid
 	 * @dataProvider provideServerTZoffsetExamples
 	 *
 	 * @param int $serverOffset
@@ -97,7 +97,7 @@ class UserTimeCorrectionTest extends MediaWikiUnitTestCase {
 	 * @param string $expected
 	 * @param bool $isValid
 	 */
-	public function testDSTVariantions( DateTime $date, $input, $expected, $isValid ) {
+	public function testDSTVariations( DateTime $date, $input, $expected, $isValid ) {
 		$value = new UserTimeCorrection( $input, $date );
 		self::assertEquals( $expected, (string)$value );
 		self::assertEquals( $isValid, $value->isValid() );
@@ -112,7 +112,6 @@ class UserTimeCorrectionTest extends MediaWikiUnitTestCase {
 			[ new DateTime( '2020-06-01' ), 'ZoneInfo|60|Europe/Amsterdam', 'ZoneInfo|120|Europe/Amsterdam', true ],
 			[ new DateTime( '2020-06-01' ), 'ZoneInfo|120|Europe/Amsterdam', 'ZoneInfo|120|Europe/Amsterdam', true ],
 			[ new DateTime( '2020-06-01' ), 'ZoneInfo|120|Africa/Johannesburg', 'ZoneInfo|120|Africa/Johannesburg', true ],
-			// phpcs:enable
 		];
 	}
 
