@@ -135,7 +135,6 @@ class ObjectCache {
 	 *  - .. Other parameters passed to factory or class.
 	 * @param Config|null $conf (Since 1.35)
 	 * @return BagOStuff
-	 * @throws InvalidArgumentException
 	 */
 	public static function newFromParams( array $params, Config $conf = null ) {
 		$services = MediaWikiServices::getInstance();
@@ -163,7 +162,7 @@ class ObjectCache {
 		$class = $params['class'];
 		$conf ??= $services->getMainConfig();
 
-		// Do config normalization for SqlBagOStuff
+		// Normalization and DI for SqlBagOStuff
 		if ( is_a( $class, SqlBagOStuff::class, true ) ) {
 			if ( isset( $params['globalKeyLB'] ) ) {
 				throw new InvalidArgumentException(
@@ -195,13 +194,25 @@ class ObjectCache {
 			$params += [ 'writeBatchSize' => $conf->get( MainConfigNames::UpdateRowsPerQuery ) ];
 		}
 
-		// Do config normalization for MemcachedBagOStuff
+		// Normalization and DI for MemcachedBagOStuff
 		if ( is_subclass_of( $class, MemcachedBagOStuff::class ) ) {
 			$params += [
 				'servers' => $conf->get( MainConfigNames::MemCachedServers ),
 				'persistent' => $conf->get( MainConfigNames::MemCachedPersistent ),
 				'timeout' => $conf->get( MainConfigNames::MemCachedTimeout ),
 			];
+		}
+
+		// Normalization and DI for MultiWriteBagOStuff
+		if ( is_subclass_of( $class, MultiWriteBagOStuff::class ) ) {
+			// Phan warns about foreach with non-array because it
+			// thinks any key can be Closure|IBufferingStatsdDataFactory
+			'@phan-var array{caches:array[]} $params';
+			foreach ( $params['caches'] ?? [] as $i => $cacheInfo ) {
+				// Ensure logger, keyspace, asyncHandler, etc are injected just as if
+				// one of these was configured without MultiWriteBagOStuff.
+				$params['caches'][$i] = self::newFromParams( $cacheInfo, $conf );
+			}
 		}
 
 		return new $class( $params );

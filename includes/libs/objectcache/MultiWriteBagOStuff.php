@@ -80,16 +80,6 @@ class MultiWriteBagOStuff extends BagOStuff {
 			if ( $cacheInfo instanceof BagOStuff ) {
 				$this->caches[] = $cacheInfo;
 			} else {
-				if ( !isset( $cacheInfo['args'] ) ) {
-					// B/C for when $cacheInfo was for ObjectCache::newFromParams().
-					// Callers intending this to be for ObjectFactory::getObjectFromSpec
-					// should have set "args" per the docs above. Doings so avoids extra
-					// (likely harmless) params (factory/class/calls) ending up in "args".
-					$cacheInfo['args'] = [ $cacheInfo ];
-				}
-
-				// ObjectFactory::getObjectFromSpec accepts an array, not just a callable (phan bug)
-				// @phan-suppress-next-line PhanTypeInvalidCallableArraySize
 				$this->caches[] = ObjectFactory::getObjectFromSpec( $cacheInfo );
 			}
 		}
