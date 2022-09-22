@@ -374,7 +374,7 @@ class LogPager extends ReverseChronologicalPager {
 		} elseif ( array_key_exists( 'log_actor', $this->mConds ) ) {
 			// Optimizer doesn't pick the right index when a user has lots of log actions (T303089)
 			$index = 'log_actor_time';
-			foreach ( $this->getFilterParams() as $type => $hide ) {
+			foreach ( $this->getFilterParams() as $hide ) {
 				if ( !$hide ) {
 					$index = 'log_actor_type_time';
 					break;

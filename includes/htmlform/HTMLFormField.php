@@ -260,7 +260,7 @@ abstract class HTMLFormField {
 			case 'OR':
 			case 'NAND':
 			case 'NOR':
-				foreach ( $params as $i => $p ) {
+				foreach ( $params as $p ) {
 					if ( $valueChk[$op] === $this->checkStateRecurse( $alldata, $p ) ) {
 						return !$valueRet[$op];
 					}
@@ -300,7 +300,7 @@ abstract class HTMLFormField {
 			case 'NAND':
 			case 'NOR':
 				$ret = [ $op ];
-				foreach ( $params as $i => $p ) {
+				foreach ( $params as $p ) {
 					$ret[] = $this->parseCondState( $p );
 				}
 				return $ret;

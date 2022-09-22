@@ -369,7 +369,7 @@ class LinkHolderArray {
 			$ns = $title->getNamespace();
 			$text = $title->getText();
 
-			foreach ( $titlesAllVariants as $variantName => $textVariants ) {
+			foreach ( $titlesAllVariants as $textVariants ) {
 				$textVariant = $textVariants[$i];
 				if ( $textVariant === $text ) {
 					continue;

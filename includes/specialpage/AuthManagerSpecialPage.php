@@ -611,7 +611,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 * @return bool
 	 */
 	protected function hasOwnSubmitButton( AuthenticationRequest $req ) {
-		foreach ( $req->getFieldInfo() as $field => $info ) {
+		foreach ( $req->getFieldInfo() as $info ) {
 			if ( $info['type'] === 'button' ) {
 				return true;
 			}
@@ -626,7 +626,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 */
 	protected function addTabIndex( &$formDescriptor ) {
 		$i = 1;
-		foreach ( $formDescriptor as $field => &$definition ) {
+		foreach ( $formDescriptor as &$definition ) {
 			$class = false;
 			if ( array_key_exists( 'class', $definition ) ) {
 				$class = $definition['class'];

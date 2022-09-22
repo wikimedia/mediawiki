@@ -2197,7 +2197,7 @@ class HTMLForm extends ContextSource {
 	 * @since 1.29
 	 */
 	public function needsJSForHtml5FormValidation() {
-		foreach ( $this->mFlatFields as $fieldname => $field ) {
+		foreach ( $this->mFlatFields as $field ) {
 			if ( $field->needsJSForHtml5FormValidation() ) {
 				return true;
 			}

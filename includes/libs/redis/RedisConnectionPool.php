@@ -402,8 +402,8 @@ class RedisConnectionPool implements LoggerAwareInterface {
 	 * Make sure connections are closed
 	 */
 	public function __destruct() {
-		foreach ( $this->connections as $server => &$serverConnections ) {
-			foreach ( $serverConnections as $key => &$connection ) {
+		foreach ( $this->connections as &$serverConnections ) {
+			foreach ( $serverConnections as &$connection ) {
 				try {
 					/** @var Redis $conn */
 					$conn = $connection['conn'];
