@@ -1610,24 +1610,24 @@ class Linker {
 	 * parameter level defines if we are on an indentation level
 	 *
 	 * @since 1.16.3
-	 * @param string $anchor
+	 * @param string $linkAnchor
 	 * @param string $tocline
 	 * @param string $tocnumber
 	 * @param int $level
 	 * @param int|false $sectionIndex
 	 * @return string
 	 */
-	public static function tocLine( $anchor, $tocline, $tocnumber, $level, $sectionIndex = false ) {
+	public static function tocLine( $linkAnchor, $tocline, $tocnumber, $level, $sectionIndex = false ) {
 		$classes = "toclevel-$level";
 		if ( $sectionIndex !== false ) {
 			$classes .= " tocsection-$sectionIndex";
 		}
 
-		// <li class="$classes"><a href="#$anchor"><span class="tocnumber">
+		// <li class="$classes"><a href="#$linkAnchor"><span class="tocnumber">
 		// $tocnumber</span> <span class="toctext">$tocline</span></a>
 		return Html::openElement( 'li', [ 'class' => $classes ] )
 			. Html::rawElement( 'a',
-				[ 'href' => "#$anchor" ],
+				[ 'href' => "#$linkAnchor" ],
 				Html::element( 'span', [ 'class' => 'tocnumber' ], $tocnumber )
 					. ' '
 					. Html::rawElement( 'span', [ 'class' => 'toctext' ], $tocline )
@@ -1703,7 +1703,7 @@ class Linker {
 				$toc .= self::tocLineEnd();
 			}
 
-			$toc .= self::tocLine( $section['anchor'],
+			$toc .= self::tocLine( $section['linkAnchor'],
 				$section['line'], $section['number'],
 				$section['toclevel'], $section['index'] );
 			$lastLevel = $section['toclevel'];
