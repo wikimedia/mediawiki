@@ -57,6 +57,7 @@ $( function () {
 	 * in an unwanted zoom on mobile devices. To avoid this we check innerWidth and set the initial-scale
 	 * on the client where needed. The width must be synced with the value in Skin::initPage.
 	 * More information on this bug in [[phab:T311795]].
+	 *
 	 * @ignore
 	 */
 	function fixViewportForTabletDevices() {
