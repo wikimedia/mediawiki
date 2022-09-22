@@ -32,8 +32,6 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @ingroup Parser
  */
 class CoreMagicVariables {
-	/** @var int Assume that no output will later be saved this many seconds after parsing */
-	private const MAX_TTS = 900;
 
 	/**
 	 * Expand the magic variable given by $index.
@@ -109,6 +107,12 @@ class CoreMagicVariables {
 			case 'subjectpagename':
 			case 'subjectpagenamee':
 			case 'pageid':
+			case 'revisionday':
+			case 'revisionday2':
+			case 'revisionmonth':
+			case 'revisionmonth1':
+			case 'revisionyear':
+			case 'revisiontimestamp':
 			case 'namespace':
 			case 'namespacee':
 			case 'namespacenumber':
@@ -165,30 +169,6 @@ class CoreMagicVariables {
 					}
 					return (string)$value;
 				}
-			case 'revisionday':
-				return strval( (int)self::getRevisionTimestampSubstring(
-					$parser, $logger, 6, 2, self::MAX_TTS, $id
-				) );
-			case 'revisionday2':
-				return self::getRevisionTimestampSubstring(
-					$parser, $logger, 6, 2, self::MAX_TTS, $id
-				);
-			case 'revisionmonth':
-				return self::getRevisionTimestampSubstring(
-					$parser, $logger, 4, 2, self::MAX_TTS, $id
-				);
-			case 'revisionmonth1':
-				return strval( (int)self::getRevisionTimestampSubstring(
-					$parser, $logger, 4, 2, self::MAX_TTS, $id
-				) );
-			case 'revisionyear':
-				return self::getRevisionTimestampSubstring(
-					$parser, $logger, 0, 4, self::MAX_TTS, $id
-				);
-			case 'revisiontimestamp':
-				return self::getRevisionTimestampSubstring(
-					$parser, $logger, 0, 14, self::MAX_TTS, $id
-				);
 			case 'revisionuser':
 				// Inform the edit saving system that getting the canonical output after
 				// revision insertion requires a parse that used the actual user ID
@@ -283,47 +263,6 @@ class CoreMagicVariables {
 		$localtimezone = $svcOptions->get( MainConfigNames::Localtimezone );
 		$ts->setTimezone( $localtimezone );
 		return $ts;
-	}
-
-	/**
-	 * @param Parser $parser
-	 * @param LoggerInterface $logger
-	 * @param int $start
-	 * @param int $len
-	 * @param int $mtts Max time-till-save; sets vary-revision-timestamp if result changes by then
-	 * @param string $variable Parser variable name
-	 * @return string
-	 */
-	private static function getRevisionTimestampSubstring(
-		Parser $parser,
-		LoggerInterface $logger,
-		int $start,
-		int $len,
-		int $mtts,
-		string $variable
-	): string {
-		// Get the timezone-adjusted timestamp to be used for this revision
-		$resNow = substr( $parser->getRevisionTimestamp(), $start, $len );
-		// Possibly set vary-revision if there is not yet an associated revision
-		if ( !$parser->getRevisionRecordObject() ) {
-			// Get the timezone-adjusted timestamp $mtts seconds in the future.
-			// This future is relative to the current time and not that of the
-			// parser options. The rendered timestamp can be compared to that
-			// of the timestamp specified by the parser options.
-			$resThen = substr(
-				$parser->getContentLanguage()->userAdjust( wfTimestamp( TS_MW, time() + $mtts ), '' ),
-				$start,
-				$len
-			);
-
-			if ( $resNow !== $resThen ) {
-				// Inform the edit saving system that getting the canonical output after
-				// revision insertion requires a parse that used an actual revision timestamp
-				self::setOutputFlag( $parser, $logger, ParserOutputFlags::VARY_REVISION_TIMESTAMP, "$variable used" );
-			}
-		}
-
-		return $resNow;
 	}
 
 	/**

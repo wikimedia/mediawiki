@@ -35,6 +35,8 @@ use Wikimedia\RemexHtml\Tokenizer\PlainAttributes;
  * @ingroup Parser
  */
 class CoreParserFunctions {
+	/** @var int Assume that no output will later be saved this many seconds after parsing */
+	private const MAX_TTS = 900;
 
 	/**
 	 * @internal
@@ -1257,6 +1259,12 @@ class CoreParserFunctions {
 			// Revision is for the same title that is currently being parsed. Only use the last
 			// saved revision, regardless of Parser::getRevisionId() or fake revision injection
 			// callbacks against the current title.
+
+			// FIXME (T318278): the above is the intention, but doesn't
+			// describe the actual current behavior of this code, since
+			// ->isCurrent() for the last saved revision will return
+			// false so we're going to fall through and end up calling
+			// ->getCurrentRevisionRecordOfTitle().
 			$parserRevisionRecord = $parser->getRevisionRecordObject();
 			if ( $parserRevisionRecord && $parserRevisionRecord->isCurrent() ) {
 				$revisionRecord = $parserRevisionRecord;
@@ -1387,6 +1395,51 @@ class CoreParserFunctions {
 		return $rev ? $rev->getId() : '';
 	}
 
+	private static function getRevisionTimestampSubstring(
+		Parser $parser,
+		Title $title,
+		int $start,
+		int $len,
+		bool $isNoArgForm,
+		int $mtts
+	): string {
+		// Note that {{REVISIONTIMESTAMP}} works differently from
+		// {{REVISIONTIMESTAMP:{{PAGENAME}}}} even though $title is the same!
+		if ( $title->equals( $parser->getTitle() ) && $isNoArgForm ) {
+			// Get the timezone-adjusted timestamp to be used for this revision
+			$resNow = substr( $parser->getRevisionTimestamp(), $start, $len );
+			// Possibly set vary-revision if there is not yet an associated revision
+			if ( !$parser->getRevisionRecordObject() ) {
+				// Get the timezone-adjusted timestamp $mtts seconds in the future.
+				// This future is relative to the current time and not that of the
+				// parser options. The rendered timestamp can be compared to that
+				// of the timestamp specified by the parser options.
+				$resThen = substr(
+					$parser->getContentLanguage()->userAdjust( wfTimestamp( TS_MW, time() + $mtts ), '' ),
+					$start,
+					$len
+				);
+
+				if ( $resNow !== $resThen ) {
+					// Inform the edit saving system that getting the canonical output after
+					// revision insertion requires a parse that used an actual revision timestamp
+					$parser->getOutput()->setOutputFlag( ParserOutputFlags::VARY_REVISION_TIMESTAMP );
+				}
+			}
+
+			return $resNow;
+		} else {
+			$rev = self::getCachedRevisionObject( $parser, $title, ParserOutputFlags::VARY_REVISION_TIMESTAMP );
+			if ( !$rev ) {
+				return '';
+			}
+			$resNow = substr(
+				$parser->getContentLanguage()->userAdjust( $rev->getTimestamp() ), $start, $len
+			);
+			return $resNow;
+		}
+	}
+
 	/**
 	 * Get the day from the last revision of a specified page.
 	 * @param Parser $parser
@@ -1399,9 +1452,9 @@ class CoreParserFunctions {
 		if ( $t === null ) {
 			return '';
 		}
-		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_REVISION_TIMESTAMP );
-		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'j' ) : '';
+		return strval( (int)self::getRevisionTimestampSubstring(
+			$parser, $t, 6, 2, ( $title === null ), self::MAX_TTS
+		) );
 	}
 
 	/**
@@ -1416,9 +1469,9 @@ class CoreParserFunctions {
 		if ( $t === null ) {
 			return '';
 		}
-		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_REVISION_TIMESTAMP );
-		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'd' ) : '';
+		return self::getRevisionTimestampSubstring(
+			$parser, $t, 6, 2, ( $title === null ), self::MAX_TTS
+		);
 	}
 
 	/**
@@ -1433,9 +1486,9 @@ class CoreParserFunctions {
 		if ( $t === null ) {
 			return '';
 		}
-		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_REVISION_TIMESTAMP );
-		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'm' ) : '';
+		return self::getRevisionTimestampSubstring(
+			$parser, $t, 4, 2, ( $title === null ), self::MAX_TTS
+		);
 	}
 
 	/**
@@ -1450,9 +1503,9 @@ class CoreParserFunctions {
 		if ( $t === null ) {
 			return '';
 		}
-		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_REVISION_TIMESTAMP );
-		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'n' ) : '';
+		return strval( (int)self::getRevisionTimestampSubstring(
+			$parser, $t, 4, 2, ( $title === null ), self::MAX_TTS
+		) );
 	}
 
 	/**
@@ -1467,9 +1520,9 @@ class CoreParserFunctions {
 		if ( $t === null ) {
 			return '';
 		}
-		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_REVISION_TIMESTAMP );
-		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'Y' ) : '';
+		return self::getRevisionTimestampSubstring(
+			$parser, $t, 0, 4, ( $title === null ), self::MAX_TTS
+		);
 	}
 
 	/**
@@ -1484,9 +1537,9 @@ class CoreParserFunctions {
 		if ( $t === null ) {
 			return '';
 		}
-		// fetch revision from cache/database and return the value
-		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_REVISION_TIMESTAMP );
-		return $rev ? MWTimestamp::getLocalInstance( $rev->getTimestamp() )->format( 'YmdHis' ) : '';
+		return self::getRevisionTimestampSubstring(
+			$parser, $t, 0, 14, ( $title === null ), self::MAX_TTS
+		);
 	}
 
 	/**
