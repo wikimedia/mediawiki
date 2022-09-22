@@ -1378,6 +1378,12 @@ $wgMemoryLimit = null;
 $wgPoolCounterConf = null;
 
 /**
+ * Config variable stub for the PoolCountClientConf setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::PoolCountClientConf
+ */
+$wgPoolCountClientConf = null;
+
+/**
  * Config variable stub for the MaxUserDBWriteDuration setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::MaxUserDBWriteDuration
  */

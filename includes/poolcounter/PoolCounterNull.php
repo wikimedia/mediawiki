@@ -20,6 +20,9 @@
 
 /**
  * A default PoolCounter, which provides no locking.
+ *
+ * @internal
+ * @since 1.33
  */
 class PoolCounterNull extends PoolCounter {
 
