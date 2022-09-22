@@ -152,7 +152,7 @@ class CategoryLinksTable extends TitleLinksTable {
 	 * @return iterable<array>
 	 */
 	protected function getNewLinkIDs() {
-		foreach ( $this->newLinks as $name => [ $prefix, $sortKey ] ) {
+		foreach ( $this->newLinks as $name => [ $prefix, ] ) {
 			yield [ (string)$name, $prefix ];
 		}
 	}
