@@ -1,10 +1,10 @@
 = MediaWiki 1.39 =
 
-== MediaWiki 1.39.0-PRERELEASE ==
+== MediaWiki 1.39.0-rc.0 ==
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.39 is an alpha-quality development branch, and is not recommended
+MediaWiki 1.39 is a pre-release testing branch, and is not recommended
 for use in production.
 
 == Upgrading notes for 1.39 ==
@@ -15,7 +15,6 @@ oldest supported upgrading version, MediaWiki 1.31.
 
 Some specific notes for MediaWiki 1.39 upgrades are below:
 * (T278139) Drop PHP 7.3 support in MediaWiki 1.39; require 7.4.3 or higher.
-* …
 
 For notes on 1.38.x and older releases, see HISTORY.
 
@@ -28,7 +27,6 @@ For notes on 1.38.x and older releases, see HISTORY.
 * $wgMangleFlashPolicy is deprecated and is no longer functional. Users who are
   somehow still using Flash as a browser extension will be exposed to CSRF
   vulnerabilities.
-* …
 
 ==== New configuration ====
 * $wgAutoCreateTempUser – configures automatic user creation on page save.
@@ -44,12 +42,10 @@ For notes on 1.38.x and older releases, see HISTORY.
   URLs to canonical CDN URLs insensitive to parameter order.
 * $wgMultiShardSiteStats – split site_stats across multiple rows.
   Only useful for very large, heavily edited wikis. (T306589)
-* …
 
 ==== Changed configuration ====
 * $wgInvalidUsernameCharacters now contains the char '>',
   reserved delimiter for external user names.
-* …
 
 ==== Removed configuration ====
 * $wgMultiContentRevisionSchemaMigrationStage - Migration is over, was
@@ -79,7 +75,6 @@ For notes on 1.38.x and older releases, see HISTORY.
   removed because it was unused.
 * $wgInterwikiPrefixDisplayTypes - This global configuration has been
   removed because it was unused.
-* …
 
 === New user-facing features in 1.39 ===
 * Optional automatic user creation on page save ($wgAutoCreateTempUser)
@@ -92,7 +87,6 @@ For notes on 1.38.x and older releases, see HISTORY.
   other than `=` has been deprecated since 1.36, with affected pages put into
   a special tracking category for migration.
 * (T284020) Bot passwords are now supported when using the REST API.
-* …
 
 === New developer features in 1.39 ===
 * Added optional $size param to SearchResultProvideThumbnail hook.
@@ -103,17 +97,14 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Added 'PermissionErrorAudit' hook, enabling extensions to audit permission
   errors on specfic actions. For instance account registration failed attempts
   due to a block (T306018).
-* …
 
 === External library changes in 1.39 ===
 
 ==== New external libraries ====
 * Added Codex v0.1.1. This replaces the now deprecated wvui library.
-* …
 
 ===== New development-only external libraries =====
 * Updated QUnit from 2.18.0 to 2.18.2.
-* …
 
 ==== Changed external libraries ====
 * Updated jQuery from v3.6.0 to v3.6.1.
@@ -132,31 +123,21 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Updated wikimedia/services from 2.0.1 to 3.0.0.
 * Updated wikimedia/timestamp from 3.0.0 to 4.0.0.
 * Updated wikimedia/xmp-reader from 0.8.1 to 0.8.3.
-* …
 
 ===== Changed development-only external libraries =====
 * Updated composer/spdx-licenses from 1.5.5 to 1.5.6.
 * Updated doctrine/dbal for PHP < 7.3 from 2.13.6 to 2.13.9.
 * Updated doctrine/dbal for PHP >= 7.3 from 3.1.5 to 3.4.2.
-* …
-
-==== Removed external libraries ====
-* …
 
 === Bug fixes in 1.39 ===
 * (T314013) $wgExtraNamespaces no longer overrides canonical namespace names
   specified in extension.json files. While this setting can still be used to
   rename extension-defined namespaces, system administrators may need to run
   namespaceDupes.php after upgrading.
-* …
 
 === Action API changes in 1.39 ===
 * New `undeletetalk` parameter on action=undelete that allows you to restore
   all revisions of the associated talk page.
-* …
-
-=== Action API internal changes in 1.39 ===
-* …
 
 === Languages updated in 1.39 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -187,7 +168,6 @@ because of Phabricator reports.
   ones are retained as aliases for backwards compatibility.
 * (T117845) Started the renaming of the language codes for Serbian from sr-ec
   and sr-el to sr-cyrl and sr-latn.
-* …
 
 === Breaking changes in 1.39 ===
 * Basic non-JavaScript (Grade C) support has been dropped for Internet Explorer
@@ -426,7 +406,6 @@ because of Phabricator reports.
 * IDatabase::getTopologyRootPrimary() was removed.
 * User::blockedBy(), deprecated since 1.38, has been removed.
 * User::getBlockId(), deprecated since 1.38, has been removed.
-* …
 
 === Deprecations in 1.39 ===
 * PageProps::getInstance(), deprecated since 1.38, emits deprecations warnings.
@@ -580,7 +559,6 @@ because of Phabricator reports.
   IndexPager::buildPrevNextNavigation() have been deprecated in favor of
   IndexPager::getNavigationBuilder().
 * Overriding the method IndexPager::makeLink() has been deprecated.
-* …
 
 === Other changes in 1.39 ===
 * Dynamic default values are now applied before extension registration callbacks
@@ -591,7 +569,6 @@ because of Phabricator reports.
   cases however, this may cause an undesired change in behavior: if the dynamic
   default of setting X depends on the value of setting Y, and an extension
   changes Y, the changed value of Y will no longer affect the value of X.
-* …
 
 == Compatibility ==
 
