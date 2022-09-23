@@ -910,6 +910,7 @@ return [
 			'resources/src/mediawiki.htmlform/multiselect.js',
 			'resources/src/mediawiki.htmlform/selectandother.js',
 			'resources/src/mediawiki.htmlform/selectorother.js',
+			'resources/src/mediawiki.htmlform/timezone.js',
 		],
 		'dependencies' => [
 			'mediawiki.util',

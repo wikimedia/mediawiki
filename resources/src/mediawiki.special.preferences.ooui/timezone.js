@@ -13,9 +13,6 @@
 			return;
 		}
 
-		// Timezone functions.
-		// Guesses Timezone from browser and updates fields onchange.
-
 		// This is identical to OO.ui.infuse( ... ), but it makes the class name of the result known.
 		var timezoneWidget = mw.widgets.SelectWithInputWidget.static.infuse( $target );
 
@@ -65,31 +62,8 @@
 			} else {
 				// Time zone not manually specified by user
 				if ( type === 'guess' ) {
-					// If available, get the named time zone from the browser.
-					// (We also support older browsers where this API is not available.)
-					var timeZone;
-					try {
-						// This may return undefined
-						timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-					} catch ( err ) {
-						timeZone = null;
-					}
-
 					// Get the time offset
 					minuteDiff = -( new Date().getTimezoneOffset() );
-
-					var newValue;
-					if ( timeZone ) {
-						// Try to save both time zone and offset
-						newValue = 'ZoneInfo|' + minuteDiff + '|' + timeZone;
-						timezoneWidget.dropdowninput.setValue( newValue );
-					}
-					if ( !timeZone || timezoneWidget.dropdowninput.getValue() !== newValue ) {
-						// No time zone, or it's unknown to MediaWiki. Save only offset
-						timezoneWidget.dropdowninput.setValue( 'other' );
-						timezoneWidget.textinput.setValue( minutesToHours( minuteDiff ) );
-					}
-
 				} else {
 					// Grab data from the dropdown value
 					minuteDiff = parseInt( type.split( '|' )[ 1 ], 10 ) || 0;

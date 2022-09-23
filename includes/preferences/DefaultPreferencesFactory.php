@@ -20,11 +20,10 @@
 
 namespace MediaWiki\Preferences;
 
-use DateTime;
-use DateTimeZone;
 use Html;
 use HTMLForm;
 use HTMLFormField;
+use HTMLTimezoneField;
 use IContextSource;
 use ILanguageConverter;
 use Language;
@@ -48,7 +47,6 @@ use MediaWiki\User\UserTimeCorrection;
 use Message;
 use MessageLocalizer;
 use MWException;
-use MWTimestamp;
 use NamespaceInfo;
 use OutputPage;
 use Parser;
@@ -63,8 +61,6 @@ use Title;
 use UnexpectedValueException;
 use User;
 use UserGroupMembership;
-use Wikimedia\Message\ITextFormatter;
-use Wikimedia\Message\MessageValue;
 use Xml;
 
 /**
@@ -1041,20 +1037,14 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$tzDefault = $userTimeCorrectionObj->toString();
 		}
 
-		$msgFormatter = MediaWikiServices::getInstance()->getMessageFormatterFactory()
-			->getTextFormatter( $context->getLanguage()->getCode() );
-		$tzOptions = $this->getTimezoneOptions( $msgFormatter );
-
 		$defaultPreferences['timecorrection'] = [
-			'class' => \HTMLSelectOrOtherField::class,
+			'class' => HTMLTimezoneField::class,
 			'label-message' => 'timezonelegend',
-			'options' => $tzOptions,
 			'default' => $tzDefault,
 			'size' => 20,
 			'section' => 'rendering/timeoffset',
 			'id' => 'wpTimeCorrection',
 			'filter' => TimezoneFilter::class,
-			'placeholder-message' => 'timezone-useoffset-placeholder',
 		];
 	}
 
@@ -1837,49 +1827,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	}
 
 	/**
-	 * @param ITextFormatter $msgFormatter
-	 * @return array
-	 */
-	protected function getTimezoneOptions( ITextFormatter $msgFormatter ) {
-		$opt = [];
-
-		$localTZoffset = $this->options->get( MainConfigNames::LocalTZoffset );
-		$timeZoneList = $this->getTimeZoneList( $msgFormatter );
-
-		$timestamp = MWTimestamp::getLocalInstance();
-		// Check that the LocalTZoffset is the same as the local time zone offset
-		if ( $localTZoffset === (int)$timestamp->format( 'Z' ) / 60 ) {
-			$timezoneName = $timestamp->getTimezone()->getName();
-			// Localize timezone
-			if ( isset( $timeZoneList[$timezoneName] ) ) {
-				$timezoneName = $timeZoneList[$timezoneName]['name'];
-			}
-			$server_tz_msg = $msgFormatter->format(
-				MessageValue::new( 'timezoneuseserverdefault', [ $timezoneName ] )
-			);
-		} else {
-			$tzstring = sprintf(
-				'%+03d:%02d',
-				floor( $localTZoffset / 60 ),
-				abs( $localTZoffset ) % 60
-			);
-			$server_tz_msg = $msgFormatter->format( MessageValue::new( 'timezoneuseserverdefault', [ $tzstring ] ) );
-		}
-		$opt[$server_tz_msg] = "System|$localTZoffset";
-		$opt[$msgFormatter->format( MessageValue::new( 'timezoneuseoffset' ) )] = 'other';
-		$opt[$msgFormatter->format( MessageValue::new( 'guesstimezone' ) )] = 'guess';
-
-		foreach ( $timeZoneList as $timeZoneInfo ) {
-			$region = $timeZoneInfo['region'];
-			if ( !isset( $opt[$region] ) ) {
-				$opt[$region] = [];
-			}
-			$opt[$region][$timeZoneInfo['name']] = $timeZoneInfo['timecorrection'];
-		}
-		return $opt;
-	}
-
-	/**
 	 * Handle the form submission if everything validated properly
 	 *
 	 * @param array $formData
@@ -2010,68 +1957,5 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		return ( $res === true ? Status::newGood() : $res );
-	}
-
-	/**
-	 * Get a list of all time zones
-	 * @param ITextFormatter $msgFormatter
-	 * @return array[] A list of all time zones. The system name of the time zone is used as key and
-	 *  the value is an array which contains localized name, the timecorrection value used for
-	 *  preferences and the region
-	 * @since 1.26
-	 */
-	protected function getTimeZoneList( ITextFormatter $msgFormatter ) {
-		$identifiers = DateTimeZone::listIdentifiers();
-		// @phan-suppress-next-line PhanTypeComparisonFromArray See phan issue #3162
-		if ( $identifiers === false ) {
-			return [];
-		}
-		sort( $identifiers );
-
-		$tzRegions = [
-			'Africa' => $msgFormatter->format( MessageValue::new( 'timezoneregion-africa' ) ),
-			'America' => $msgFormatter->format( MessageValue::new( 'timezoneregion-america' ) ),
-			'Antarctica' => $msgFormatter->format( MessageValue::new( 'timezoneregion-antarctica' ) ),
-			'Arctic' => $msgFormatter->format( MessageValue::new( 'timezoneregion-arctic' ) ),
-			'Asia' => $msgFormatter->format( MessageValue::new( 'timezoneregion-asia' ) ),
-			'Atlantic' => $msgFormatter->format( MessageValue::new( 'timezoneregion-atlantic' ) ),
-			'Australia' => $msgFormatter->format( MessageValue::new( 'timezoneregion-australia' ) ),
-			'Europe' => $msgFormatter->format( MessageValue::new( 'timezoneregion-europe' ) ),
-			'Indian' => $msgFormatter->format( MessageValue::new( 'timezoneregion-indian' ) ),
-			'Pacific' => $msgFormatter->format( MessageValue::new( 'timezoneregion-pacific' ) ),
-		];
-		asort( $tzRegions );
-
-		$timeZoneList = [];
-
-		$now = new DateTime();
-
-		foreach ( $identifiers as $identifier ) {
-			$parts = explode( '/', $identifier, 2 );
-
-			// DateTimeZone::listIdentifiers() returns a number of
-			// backwards-compatibility entries. This filters them out of the
-			// list presented to the user.
-			if ( count( $parts ) !== 2 || !array_key_exists( $parts[0], $tzRegions ) ) {
-				continue;
-			}
-
-			// Localize region
-			$parts[0] = $tzRegions[$parts[0]];
-
-			$dateTimeZone = new DateTimeZone( $identifier );
-			$minDiff = floor( $dateTimeZone->getOffset( $now ) / 60 );
-
-			$display = str_replace( '_', ' ', $parts[0] . '/' . $parts[1] );
-			$value = "ZoneInfo|$minDiff|$identifier";
-
-			$timeZoneList[$identifier] = [
-				'name' => $display,
-				'timecorrection' => $value,
-				'region' => $parts[0],
-			];
-		}
-
-		return $timeZoneList;
 	}
 }
