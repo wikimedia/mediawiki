@@ -2031,7 +2031,6 @@ return [
 				'clearWatchlistNotifications' => 'ClearWatchlistNotificationsJob',
 				'userOptionsUpdate' => 'UserOptionsUpdateJob',
 				'revertedTagUpdate' => 'RevertedTagUpdateJob',
-				'enqueue' => 'EnqueueJob',
 				'null' => 'NullJob',
 				'userEditCountInit' => 'UserEditCountInitJob',
 			],

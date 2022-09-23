@@ -32,7 +32,6 @@ use DoubleRedirectJob;
 use EmaillingJob;
 use EmptyBagOStuff;
 use EnotifNotifyJob;
-use EnqueueJob;
 use EventRelayerNull;
 use FallbackContentHandler;
 use Generator;
@@ -11001,7 +11000,6 @@ class MainConfigSchema {
 			'clearWatchlistNotifications' => ClearWatchlistNotificationsJob::class,
 			'userOptionsUpdate' => UserOptionsUpdateJob::class,
 			'revertedTagUpdate' => RevertedTagUpdateJob::class,
-			'enqueue' => EnqueueJob::class, // local queue for multi-DC setups
 			'null' => NullJob::class,
 			'userEditCountInit' => UserEditCountInitJob::class,
 		],
