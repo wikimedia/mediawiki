@@ -1405,7 +1405,7 @@ class CoreParserFunctions {
 	): string {
 		// Note that {{REVISIONTIMESTAMP}} works differently from
 		// {{REVISIONTIMESTAMP:{{PAGENAME}}}} even though $title is the same!
-		if ( $title->equals( $parser->getTitle() ) && $isNoArgForm ) {
+		if ( $title->equals( $parser->getTitle() ) ) {
 			// Get the timezone-adjusted timestamp to be used for this revision
 			$resNow = substr( $parser->getRevisionTimestamp(), $start, $len );
 			// Possibly set vary-revision if there is not yet an associated revision
