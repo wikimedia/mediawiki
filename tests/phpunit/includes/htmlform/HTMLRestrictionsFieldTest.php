@@ -35,7 +35,7 @@ class HTMLRestrictionsFieldTest extends PHPUnit\Framework\TestCase {
 		$form = HTMLForm::factory( 'ooui', [
 			'restrictions' => [ 'class' => HTMLRestrictionsField::class ],
 		], $context );
-		$form->setTitle( Title::newFromText( 'Main Page' ) )->setSubmitCallback( static function () {
+		$form->setTitle( Title::makeTitle( NS_MAIN, 'Main Page' ) )->setSubmitCallback( static function () {
 			return true;
 		} )->prepareForm();
 		$status = $form->trySubmit();

@@ -141,7 +141,7 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testPartition() {
 		$targetId = $this->getServiceContainer()->getLinkTargetLookup()->acquireLinkTargetId(
-			Title::newFromText( 'BLCTest1234' ),
+			Title::makeTitle( NS_MAIN, 'BLCTest1234' ),
 			$this->db
 		);
 		$targetRow = [

@@ -350,13 +350,13 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			}
 		);
 
-		$oldTitle = Title::newFromText( 'Some old title' );
+		$oldTitle = Title::makeTitle( NS_MAIN, 'Some old title' );
 		WikiPage::factory( $oldTitle )->doUserEditContent(
 			new WikitextContent( 'foo' ),
 			$this->getTestSysop()->getUser(),
 			'bar'
 		);
-		$newTitle = Title::newFromText( 'A brand new title' );
+		$newTitle = Title::makeTitle( NS_MAIN, 'A brand new title' );
 		$mp = $this->newMovePageWithMocks( $oldTitle, $newTitle );
 		$user = User::newFromName( 'TitleMove tester' );
 		$status = $mp->move( $user, 'Reason', true );
@@ -481,8 +481,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	public function testRedirects() {
 		$this->editPage( 'ExistentRedirect', '#REDIRECT [[Existent]]' );
 		$mp = $this->newMovePageWithMocks(
-			Title::newFromText( 'Existent' ),
-			Title::newFromText( 'ExistentRedirect' )
+			Title::makeTitle( NS_MAIN, 'Existent' ),
+			Title::makeTitle( NS_MAIN, 'ExistentRedirect' )
 		);
 		$this->assertSame(
 			[],
@@ -492,8 +492,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 		$this->editPage( 'ExistentRedirect3', '#REDIRECT [[Existent]]' );
 		$mp = $this->newMovePageWithMocks(
-			Title::newFromText( 'Existent2' ),
-			Title::newFromText( 'ExistentRedirect3' )
+			Title::makeTitle( NS_MAIN, 'Existent2' ),
+			Title::makeTitle( NS_MAIN, 'ExistentRedirect3' )
 		);
 		$this->assertSame(
 			[ [ 'redirectexists', 'ExistentRedirect3' ] ],
@@ -503,8 +503,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 		$this->editPage( 'ExistentRedirect3', '#REDIRECT [[Existent2]]' );
 		$mp = $this->newMovePageWithMocks(
-			Title::newFromText( 'Existent' ),
-			Title::newFromText( 'ExistentRedirect3' )
+			Title::makeTitle( NS_MAIN, 'Existent' ),
+			Title::makeTitle( NS_MAIN, 'ExistentRedirect3' )
 		);
 		$this->assertSame(
 			[ [ 'articleexists', 'ExistentRedirect3' ] ],

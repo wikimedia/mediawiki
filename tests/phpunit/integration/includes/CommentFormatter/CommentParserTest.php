@@ -297,7 +297,7 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 		] );
 
 		$this->setupInterwiki();
-		$this->addGoodLinkObject( 1, Title::newFromText( 'Present' ) );
+		$this->addGoodLinkObject( 1, Title::makeTitle( NS_MAIN, 'Present' ) );
 
 		if ( $title === false ) {
 			// We need a page title that exists
@@ -378,8 +378,8 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'page';
 		$this->setupConf();
 		$services = $this->getServiceContainer();
-		$present = Title::newFromText( 'Present' );
-		$absent = Title::newFromText( 'Absent' );
+		$present = Title::makeTitle( NS_MAIN, 'Present' );
+		$absent = Title::makeTitle( NS_MAIN, 'Absent' );
 		$this->editPage(
 			$present,
 			'content'
@@ -439,7 +439,7 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'page';
 		$this->setupConf();
 		$this->setupInterwiki();
-		$present = Title::newFromText( 'Template:Present' );
+		$present = Title::makeTitle( NS_TEMPLATE, 'Present' );
 		$this->editPage(
 			$present,
 			'content'
@@ -467,7 +467,7 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 			}
 		);
 
-		$title = Title::newFromText( 'User:AlwaysKnownFoo' );
+		$title = Title::makeTitle( NS_USER, 'AlwaysKnownFoo' );
 		$this->assertFalse( $title->exists() );
 
 		$parser = $this->getParser();

@@ -216,11 +216,11 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	public function provideTitlesToConvert(): array {
 		return [
 			'Title FromText default' => [
-				Title::newFromText( 'Dummy_title' ),
+				Title::makeTitle( NS_MAIN, 'Dummy_title' ),
 				'Dummy title',
 			],
 			'Title FromText with NS' => [
-				Title::newFromText( 'Dummy_title', NS_FILE ),
+				Title::makeTitle( NS_FILE, 'Dummy_title' ),
 				'Акс:Dummy title',
 			],
 			'Title MainPage default' => [

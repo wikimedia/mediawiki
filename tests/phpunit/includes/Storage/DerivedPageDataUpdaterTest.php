@@ -958,7 +958,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsCountableNotContentPage() {
 		$updater = $this->getDerivedPageDataUpdater(
-			Title::newFromText( 'Main_Page', NS_TALK )
+			Title::makeTitle( NS_TALK, 'Main_Page' )
 		);
 		self::assertFalse( $updater->isCountable() );
 	}

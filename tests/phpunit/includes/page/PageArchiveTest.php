@@ -69,7 +69,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// First create our dummy page
-		$this->archivedPage = Title::newFromText( 'PageArchiveTest_thePage' );
+		$this->archivedPage = Title::makeTitle( NS_MAIN, 'PageArchiveTest_thePage' );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $this->archivedPage );
 		$content = ContentHandler::makeContent(
 			'testing',

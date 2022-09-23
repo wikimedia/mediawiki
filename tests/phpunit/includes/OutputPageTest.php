@@ -792,7 +792,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( 'My test page', $op->getTitle()->getPrefixedText() );
 
-		$op->setTitle( Title::newFromText( 'Another test page' ) );
+		$op->setTitle( Title::makeTitle( NS_MAIN, 'Another test page' ) );
 
 		$this->assertSame( 'Another test page', $op->getTitle()->getPrefixedText() );
 	}
@@ -1285,7 +1285,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			->onlyMethods( [ 'addCategoryLinksToLBAndGetResult', 'getTitle' ] )
 			->getMock();
 
-		$title = Title::newFromText( 'My test page' );
+		$title = Title::makeTitle( NS_MAIN, 'My test page' );
 		$op->method( 'getTitle' )
 			->willReturn( $title );
 
@@ -1725,10 +1725,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 					[ '== Title ==' ],
 					"<h2><span class=\"mw-headline\" id=\"Title\">Title</span></h2>",
 				], 'With title at start' => [
-					[ '* {{PAGENAME}}', true, Title::newFromText( 'Talk:Some page' ) ],
+					[ '* {{PAGENAME}}', true, Title::makeTitle( NS_TALK, 'Some page' ) ],
 					"<ul><li>Some page</li></ul>\n",
 				], 'With title not at start' => [
-					[ '* {{PAGENAME}}', false, Title::newFromText( 'Talk:Some page' ) ],
+					[ '* {{PAGENAME}}', false, Title::makeTitle( NS_TALK, 'Some page' ) ],
 					"<p>* Some page</p>",
 				], 'Untidy input' => [
 					[ '<b>{{PAGENAME}}', true, $somePageRef ],
@@ -1746,10 +1746,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 					[ '* <b>Not a list', false ],
 					'<p>* <b>Not a list</b></p>',
 				], 'With title at start' => [
-					[ '* {{PAGENAME}}', true, Title::newFromText( 'Talk:Some page' ) ],
+					[ '* {{PAGENAME}}', true, Title::makeTitle( NS_TALK, 'Some page' ) ],
 					"<ul><li>Some page</li></ul>",
 				], 'With title not at start' => [
-					[ '* {{PAGENAME}}', false, Title::newFromText( 'Talk:Some page' ) ],
+					[ '* {{PAGENAME}}', false, Title::makeTitle( NS_TALK, 'Some page' ) ],
 					"<p>* Some page</p>",
 				], 'EditPage' => [
 					[ "<div class='mw-editintro'>{{PAGENAME}}", true, $somePageRef ],
@@ -3274,7 +3274,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetJsVarsEditable( Authority $performer, array $expectedEditableConfig ) {
 		$op = $this->newInstance( [], null, null, $performer );
-		$op->getContext()->getSkin()->setRelevantTitle( Title::newFromText( 'RelevantTitle' ) );
+		$op->getContext()->getSkin()->setRelevantTitle( Title::makeTitle( NS_MAIN, 'RelevantTitle' ) );
 		$this->assertArraySubmapSame( $expectedEditableConfig, $op->getJSVars() );
 	}
 
@@ -3374,7 +3374,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		] ) );
 
 		if ( $option !== 'notitle' ) {
-			$context->setTitle( Title::newFromText( 'My test page' ) );
+			$context->setTitle( Title::makeTitle( NS_MAIN, 'My test page' ) );
 		}
 
 		if ( $request ) {

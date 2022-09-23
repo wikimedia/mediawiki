@@ -58,7 +58,7 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 	 * @param string $content
 	 */
 	private function setupPage( string $titleText, int $ns, string $content ): void {
-		$title = Title::newFromText( $titleText, $ns );
+		$title = Title::makeTitle( $ns, $titleText );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$performer = static::getTestUser()->getUser();
 		$content = ContentHandler::makeContent( $content, $page->getTitle(), CONTENT_MODEL_WIKITEXT );

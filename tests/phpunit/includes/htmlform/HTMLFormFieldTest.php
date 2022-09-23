@@ -15,7 +15,7 @@ class HTMLFormFieldTest extends PHPUnit\Framework\TestCase {
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setRequest( $request );
 		$form = HTMLForm::factory( 'ooui', $descriptor, $context );
-		$form->setTitle( Title::newFromText( 'Main Page' ) )->setSubmitCallback( static function () {
+		$form->setTitle( Title::makeTitle( NS_MAIN, 'Main Page' ) )->setSubmitCallback( static function () {
 			return true;
 		} )->prepareForm();
 		$status = $form->trySubmit();
