@@ -149,14 +149,23 @@ class DatabasePostgres extends Database {
 	}
 
 	public function doSelectDomain( DatabaseDomain $domain ) {
-		if ( $this->getDBname() !== $domain->getDatabase() ) {
+		$database = $domain->getDatabase();
+		if ( $database === null ) {
+			// A null database means "don't care" so leave it as is and update the table prefix
+			$this->currentDomain = new DatabaseDomain(
+				$this->currentDomain->getDatabase(),
+				$domain->getSchema() ?? $this->currentDomain->getSchema(),
+				$domain->getTablePrefix()
+			);
+			$this->platform->setCurrentDomain( $this->currentDomain );
+		} elseif ( $this->getDBname() !== $database ) {
 			// Postgres doesn't support selectDB in the same way MySQL does.
 			// So if the DB name doesn't match the open connection, open a new one
 			$this->open(
 				$this->connectionParams[self::CONN_HOST],
 				$this->connectionParams[self::CONN_USER],
 				$this->connectionParams[self::CONN_PASSWORD],
-				$domain->getDatabase(),
+				$database,
 				$domain->getSchema(),
 				$domain->getTablePrefix()
 			);
