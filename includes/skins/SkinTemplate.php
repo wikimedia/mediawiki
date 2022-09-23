@@ -1126,7 +1126,6 @@ class SkinTemplate extends Skin {
 
 		return [
 			'class' => $class,
-			'button' => true,
 			'icon' => $watchIcon,
 			// uses 'watch' or 'unwatch' message
 			'text' => $this->msg( $mode )->text(),
