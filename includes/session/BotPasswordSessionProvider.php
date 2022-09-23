@@ -37,12 +37,16 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 	/** @var GrantsInfo */
 	private $grantsInfo;
 
+	/** @var bool Whether the current request is an API request. */
+	private $isApiRequest;
+
 	/**
 	 * @param GrantsInfo $grantsInfo
 	 * @param array $params Keys include:
 	 *  - priority: (required) Set the priority
 	 *  - sessionCookieName: Session cookie name. Default is '_BPsession'.
 	 *  - sessionCookieOptions: Options to pass to WebResponse::setCookie().
+	 *  - isApiRequest: Whether the current request is an API request. Should be only set in tests.
 	 */
 	public function __construct( GrantsInfo $grantsInfo, array $params = [] ) {
 		if ( !isset( $params['sessionCookieName'] ) ) {
@@ -62,11 +66,14 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 		$this->priority = $params['priority'];
 
 		$this->grantsInfo = $grantsInfo;
+
+		$this->isApiRequest = $params['isApiRequest']
+			?? ( defined( 'MW_API' ) || defined( 'MW_REST_API' ) );
 	}
 
 	public function provideSessionInfo( WebRequest $request ) {
 		// Only relevant for the (Action or REST) API
-		if ( !defined( 'MW_API' ) && !defined( 'MW_REST_API' ) ) {
+		if ( !$this->isApiRequest ) {
 			return null;
 		}
 

@@ -17,20 +17,23 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 	use SessionProviderTestTrait;
 
 	private $config;
+	private $configHash;
 
-	private function getProvider( $name = null, $prefix = null ) {
+	private function getProvider( $name = null, $prefix = null, $isApiRequest = true ) {
 		global $wgSessionProviders;
 
 		$params = [
 			'priority' => 40,
 			'sessionCookieName' => $name,
 			'sessionCookieOptions' => [],
+			'isApiRequest' => $isApiRequest,
 		];
 		if ( $prefix !== null ) {
 			$params['sessionCookieOptions']['prefix'] = $prefix;
 		}
 
-		if ( !$this->config ) {
+		$configHash = json_encode( [ $name, $prefix, $isApiRequest ] );
+		if ( !$this->config || $this->configHash !== $configHash ) {
 			$this->config = new \HashConfig( [
 				'CookiePrefix' => 'wgCookiePrefix',
 				'EnableBotPasswords' => true,
@@ -43,6 +46,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 					]
 				],
 			] );
+			$this->configHash = $configHash;
 		}
 		$manager = new SessionManager( [
 			'config' => new MultiConfig( [ $this->config, $this->getServiceContainer()->getMainConfig() ] ),
@@ -182,14 +186,13 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testProvideSessionInfo() {
-		$provider = $this->getProvider();
 		$request = new \FauxRequest;
 		$request->setCookie( '_BPsession', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'wgCookiePrefix' );
 
-		if ( !defined( 'MW_API' ) && !defined( 'MW_REST_API' ) ) {
-			$this->assertNull( $provider->provideSessionInfo( $request ) );
-			define( 'MW_API', 1 ); // TODO this irreversibly affects all future tests!
-		}
+		$provider = $this->getProvider( null, null, false );
+		$this->assertNull( $provider->provideSessionInfo( $request ) );
+
+		$provider = $this->getProvider();
 
 		$info = $provider->provideSessionInfo( $request );
 		$this->assertInstanceOf( SessionInfo::class, $info );
