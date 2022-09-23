@@ -1182,10 +1182,15 @@ class ParserTestRunner {
 		if ( isset( $opts['lastsavedrevision'] ) ) {
 			$revRecord = $this->createRevRecord( $title, $user, $revProps );
 			$revProps['rev'] = $revRecord;
+			// Increment timestamp so that parser tests can distinguish between
+			// ParserOptions source and RevisionRecord
+			$revProps['timestamp'] += 234;
 		}
 
 		$options = $parserOptionsCallback( $context, $title, $revProps );
-		$options->setTimestamp( $revProps['timestamp'] );
+		$options->setTimestamp(
+			MWTimestamp::convert( TS_MW, $revProps['timestamp'] )
+		);
 		$options->setUserLang( $context->getLanguage() );
 
 		if ( isset( $opts['lastsavedrevision'] ) ) {
