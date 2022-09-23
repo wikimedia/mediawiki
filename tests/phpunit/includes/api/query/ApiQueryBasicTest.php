@@ -38,7 +38,7 @@ class ApiQueryBasicTest extends ApiQueryTestBase {
 	 */
 	public function addDBDataOnce() {
 		try {
-			if ( Title::newFromText( 'AQBT-All' )->exists() ) {
+			if ( Title::makeTitle( NS_MAIN, 'AQBT-All' )->exists() ) {
 				return;
 			}
 

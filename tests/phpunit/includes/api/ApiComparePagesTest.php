@@ -41,13 +41,13 @@ class ApiComparePagesTest extends ApiTestCase {
 		self::$repl['revA2'] = $this->addPage( 'A', 'A 2' );
 		self::$repl['revA3'] = $this->addPage( 'A', 'A 3' );
 		self::$repl['revA4'] = $this->addPage( 'A', 'A 4' );
-		self::$repl['pageA'] = Title::newFromText( 'ApiComparePagesTest A' )->getArticleID();
+		self::$repl['pageA'] = Title::makeTitle( NS_MAIN, 'ApiComparePagesTest A' )->getArticleID();
 
 		self::$repl['revB1'] = $this->addPage( 'B', 'B 1' );
 		self::$repl['revB2'] = $this->addPage( 'B', 'B 2' );
 		self::$repl['revB3'] = $this->addPage( 'B', 'B 3' );
 		self::$repl['revB4'] = $this->addPage( 'B', 'B 4' );
-		self::$repl['pageB'] = Title::newFromText( 'ApiComparePagesTest B' )->getArticleID();
+		self::$repl['pageB'] = Title::makeTitle( NS_MAIN, 'ApiComparePagesTest B' )->getArticleID();
 		$updateTimestamps = [
 			self::$repl['revB1'] => '20010101011101',
 			self::$repl['revB2'] => '20020202022202',
@@ -66,35 +66,35 @@ class ApiComparePagesTest extends ApiTestCase {
 		self::$repl['revC1'] = $this->addPage( 'C', 'C 1' );
 		self::$repl['revC2'] = $this->addPage( 'C', 'C 2' );
 		self::$repl['revC3'] = $this->addPage( 'C', 'C 3' );
-		self::$repl['pageC'] = Title::newFromText( 'ApiComparePagesTest C' )->getArticleID();
+		self::$repl['pageC'] = Title::makeTitle( NS_MAIN, 'ApiComparePagesTest C' )->getArticleID();
 
 		$id = $this->addPage( 'D', 'D 1' );
-		self::$repl['pageD'] = Title::newFromText( 'ApiComparePagesTest D' )->getArticleID();
+		self::$repl['pageD'] = Title::makeTitle( NS_MAIN, 'ApiComparePagesTest D' )->getArticleID();
 		wfGetDB( DB_PRIMARY )->delete( 'revision', [ 'rev_id' => $id ] );
 
 		self::$repl['revE1'] = $this->addPage( 'E', 'E 1' );
 		self::$repl['revE2'] = $this->addPage( 'E', 'E 2' );
 		self::$repl['revE3'] = $this->addPage( 'E', 'E 3' );
 		self::$repl['revE4'] = $this->addPage( 'E', 'E 4' );
-		self::$repl['pageE'] = Title::newFromText( 'ApiComparePagesTest E' )->getArticleID();
+		self::$repl['pageE'] = Title::makeTitle( NS_MAIN, 'ApiComparePagesTest E' )->getArticleID();
 		wfGetDB( DB_PRIMARY )->update(
 			'page', [ 'page_latest' => 0 ], [ 'page_id' => self::$repl['pageE'] ]
 		);
 
 		self::$repl['revF1'] = $this->addPage( 'F', "== Section 1 ==\nF 1.1\n\n== Section 2 ==\nF 1.2" );
-		self::$repl['pageF'] = Title::newFromText( 'ApiComparePagesTest F' )->getArticleID();
+		self::$repl['pageF'] = Title::makeTitle( NS_MAIN, 'ApiComparePagesTest F' )->getArticleID();
 
 		self::$repl['revG1'] = $this->addPage( 'G', "== Section 1 ==\nG 1.1", CONTENT_MODEL_TEXT );
-		self::$repl['pageG'] = Title::newFromText( 'ApiComparePagesTest G' )->getArticleID();
+		self::$repl['pageG'] = Title::makeTitle( NS_MAIN, 'ApiComparePagesTest G' )->getArticleID();
 
 		$page = $this->getServiceContainer()->getWikiPageFactory()
-			->newFromTitle( Title::newFromText( 'ApiComparePagesTest C' ) );
+			->newFromTitle( Title::makeTitle( NS_MAIN, 'ApiComparePagesTest C' ) );
 		$this->deletePage( $page, 'Test for ApiComparePagesTest', $user );
 
 		RevisionDeleter::createList(
 			'revision',
 			RequestContext::getMain(),
-			Title::newFromText( 'ApiComparePagesTest B' ),
+			Title::makeTitle( NS_MAIN, 'ApiComparePagesTest B' ),
 			[ self::$repl['revB2'] ]
 		)->setVisibility( [
 			'value' => [
@@ -108,7 +108,7 @@ class ApiComparePagesTest extends ApiTestCase {
 		RevisionDeleter::createList(
 			'revision',
 			RequestContext::getMain(),
-			Title::newFromText( 'ApiComparePagesTest B' ),
+			Title::makeTitle( NS_MAIN, 'ApiComparePagesTest B' ),
 			[ self::$repl['revB3'] ]
 		)->setVisibility( [
 			'value' => [

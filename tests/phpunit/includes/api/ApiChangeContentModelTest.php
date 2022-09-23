@@ -82,7 +82,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 	public function testChangeNeeded() {
 		$this->assertSame(
 			'wikitext',
-			Title::newFromText( 'ExistingPage' )->getContentModel(),
+			Title::makeTitle( NS_MAIN, 'ExistingPage' )->getContentModel(),
 			'`ExistingPage` should be wikitext'
 		);
 
@@ -134,7 +134,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 	 * @param string $expectedMessage expected fatal
 	 */
 	public function testEditFilterMergedContent( $customMessage, $expectedMessage ) {
-		$title = Title::newFromText( 'ExistingPage' );
+		$title = Title::makeTitle( NS_MAIN, 'ExistingPage' );
 
 		$this->assertSame(
 			'wikitext',
@@ -180,7 +180,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 	 * Test the ContentModelCanBeUsedOn hook can be intercepted
 	 */
 	public function testContentModelCanBeUsedOn() {
-		$title = Title::newFromText( 'ExistingPage' );
+		$title = Title::makeTitle( NS_MAIN, 'ExistingPage' );
 
 		$this->assertSame(
 			'wikitext',
@@ -267,7 +267,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 	 * Test that it works
 	 */
 	public function testEverythingWorks() {
-		$title = Title::newFromText( 'ExistingPage' );
+		$title = Title::makeTitle( NS_MAIN, 'ExistingPage' );
 		$performer = $this->mockAnonAuthorityWithPermissions(
 			[ 'edit', 'editcontentmodel', 'writeapi', 'applychangetags' ]
 		);

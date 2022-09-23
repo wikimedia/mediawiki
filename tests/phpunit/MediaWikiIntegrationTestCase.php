@@ -1600,7 +1600,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$user = static::getTestSysop()->getUser();
 
 		// Make 1 page with 1 revision
-		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( Title::newFromText( 'UTPage' ) );
+		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( Title::makeTitle( NS_MAIN, 'UTPage' ) );
 		if ( $page->getId() == 0 ) {
 			$page->doUserEditContent(
 				new WikitextContent( 'UTContent' ),

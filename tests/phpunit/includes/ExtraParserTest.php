@@ -45,7 +45,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	public function testLongNumericLinesDontKillTheParser() {
 		$longLine = '1.' . str_repeat( '1234567890', 100000 ) . "\n";
 
-		$title = Title::newFromText( 'Unit test' );
+		$title = Title::makeTitle( NS_MAIN, 'Unit test' );
 		$options = ParserOptions::newFromUser( new User() );
 		$this->assertEquals( "<p>$longLine</p>",
 			$this->parser->parse( $longLine, $title, $options )->getText( [ 'unwrap' => true ] ) );
@@ -57,7 +57,7 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testSpecialPageTransclusionRestoresGlobalState() {
 		$text = "{{Special:ApiHelp/help}}";
-		$title = Title::newFromText( 'testSpecialPageTransclusionRestoresGlobalState' );
+		$title = Title::makeTitle( NS_MAIN, 'TestSpecialPageTransclusionRestoresGlobalState' );
 		$options = ParserOptions::newFromUser( new User() );
 
 		RequestContext::getMain()->setTitle( $title );

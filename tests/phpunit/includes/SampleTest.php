@@ -37,11 +37,11 @@ class SampleTest extends MediaWikiLangTestCase {
 	 * https://phpunit.de/manual/6.5/en/other-uses-for-tests.html
 	 */
 	public function testTitleObjectStringConversion() {
-		$title = Title::newFromText( "text" );
+		$title = Title::makeTitle( NS_MAIN, "Text" );
 		$this->assertInstanceOf( Title::class, $title, "Title creation" );
 		$this->assertEquals( "Text", $title, "Automatic string conversion" );
 
-		$title = Title::newFromText( "text", NS_MEDIA );
+		$title = Title::makeTitle( NS_MEDIA, "Text" );
 		$this->assertEquals( "Media:Text", $title, "Title creation with namespace" );
 	}
 

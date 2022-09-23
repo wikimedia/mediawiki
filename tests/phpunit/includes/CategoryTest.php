@@ -102,7 +102,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers Category::newFromTitle()
 	 */
 	public function testNewFromTitle() {
-		$title = Title::newFromText( 'Category:Example' );
+		$title = Title::makeTitle( NS_CATEGORY, 'Example' );
 		$category = Category::newFromTitle( $title );
 		$this->assertSame( 'Example', $category->getName() );
 		$this->assertTrue( $title->isSamePageAs( $category->getPage() ) );
@@ -167,7 +167,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 
 		$category = Category::newFromRow(
 			$row,
-			Title::newFromText( NS_CATEGORY, 'Example' )
+			Title::makeTitle( NS_CATEGORY, 'Example' )
 		);
 
 		$this->assertFalse( $category->getID() );

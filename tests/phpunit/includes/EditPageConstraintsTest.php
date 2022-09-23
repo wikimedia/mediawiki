@@ -263,7 +263,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			'format' => CONTENT_FORMAT_TEXT,
 		];
 
-		$title = Title::newFromText( 'Example', NS_MAIN );
+		$title = Title::makeTitle( NS_MAIN, 'Example' );
 		$this->assertSame(
 			CONTENT_MODEL_WIKITEXT,
 			$title->getContentModel(),
@@ -449,7 +449,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			'wpSummary' => 'Summary'
 		];
 
-		$title = Title::newFromText( 'Example.jpg', NS_FILE );
+		$title = Title::makeTitle( NS_FILE, 'Example.jpg' );
 		$this->assertEdit(
 			$title,
 			null,

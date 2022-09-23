@@ -39,7 +39,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		// Create a new context
 		$this->mContext = new DerivativeContext( new RequestContext() );
-		$this->mContext->getContext()->setTitle( Title::newFromText( 'Test' ) );
+		$this->mContext->getContext()->setTitle( Title::makeTitle( NS_MAIN, 'Test' ) );
 		$this->mContext->setAuthority(
 			$this->mockUserAuthorityWithPermissions( $this->mUserMock, [ 'editmyoptions' ] )
 		);

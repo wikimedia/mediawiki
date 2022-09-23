@@ -14,7 +14,7 @@ class ArticleTablesTest extends MediaWikiLangTestCase {
 	 * @covers Title::getLinksFrom
 	 */
 	public function testTemplatelinksUsesContentLanguage() {
-		$title = Title::newFromText( 'T16404' );
+		$title = Title::makeTitle( NS_MAIN, 'T16404' );
 		$wikiPageFactory = $this->getServiceContainer()->getWikiPageFactory();
 		$page = $wikiPageFactory->newFromTitle( $title );
 		$user = new User();
