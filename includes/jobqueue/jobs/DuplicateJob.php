@@ -1,7 +1,5 @@
 <?php
 /**
- * No-op job that does nothing.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,12 +16,14 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup JobQueue
  */
 
 /**
- * No-op job that does nothing. Used to represent duplicates.
+ * No-op job that does nothing.
  *
+ * This is used by JobQueue::pop to temporarily represent duplicates.
+ *
+ * @internal
  * @ingroup JobQueue
  */
 final class DuplicateJob extends Job implements GenericParameterJob {
