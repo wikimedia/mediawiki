@@ -27,13 +27,15 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Watchlist\WatchlistManager;
+use Wikimedia\Parsoid\Core\SectionMetadata;
+use Wikimedia\Parsoid\Core\TOCData;
 
 /**
  * Provides the UI through which users can perform editing
@@ -55,7 +57,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 	protected $successMessage;
 
-	protected $toc;
+	/** @var TOCData */
+	protected $tocData;
 
 	private $badItems = [];
 
@@ -221,13 +224,24 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	protected function executeViewEditWatchlist() {
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'watchlistedit-normal-title' ) );
+
 		$form = $this->getNormalForm();
-		if ( $form->show() ) {
+		$form->prepareForm();
+
+		$result = $form->tryAuthorizedSubmit();
+		if ( $result === true || ( $result instanceof Status && $result->isGood() ) ) {
 			$out->addHTML( $this->successMessage );
 			$out->addReturnTo( SpecialPage::getTitleFor( 'Watchlist' ) );
-		} elseif ( $this->toc !== false ) {
-			$out->prependHTML( $this->toc );
+			return;
 		}
+
+		$pout = new ParserOutput;
+		$pout->setTOCData( $this->tocData );
+		$pout->setOutputFlag( ParserOutputFlags::SHOW_TOC );
+		$pout->setText( Parser::TOC_PLACEHOLDER );
+		$out->addParserOutput( $pout );
+
+		$form->displayForm( $result );
 	}
 
 	/**
@@ -691,25 +705,30 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		}
 		$this->cleanupWatchlist();
 
+		$this->tocData = new TOCData();
 		if ( count( $fields ) > 1 && $count > 30 ) {
-			$this->toc = Linker::tocIndent();
 			$tocLength = 0;
 			$contLang = $this->getContentLanguage();
-
 			foreach ( $fields as $data ) {
 				# strip out the 'ns' prefix from the section name:
 				$ns = (int)substr( $data['section'], 2 );
-
-				$nsText = ( $ns == NS_MAIN )
-					? $this->msg( 'blanknamespace' )->escaped()
-					: htmlspecialchars( $contLang->getFormattedNsText( $ns ) );
-				$this->toc .= Linker::tocLine( "editwatchlist-{$data['section']}", $nsText,
-					$this->getLanguage()->formatNum( ++$tocLength ), 1 ) . Linker::tocLineEnd();
+				$nsText = ( $ns === NS_MAIN )
+					? $this->msg( 'blanknamespace' )->text()
+					: $contLang->getFormattedNsText( $ns );
+				$anchor = "editwatchlist-{$data['section']}";
+				++$tocLength;
+				$this->tocData->addSection( new SectionMetadata(
+					1,
+					99,
+					htmlspecialchars( $nsText ),
+					$this->getLanguage()->formatNum( $tocLength ),
+					(string)$tocLength,
+					null,
+					null,
+					$anchor,
+					$anchor
+				) );
 			}
-
-			$this->toc = Linker::tocList( $this->toc );
-		} else {
-			$this->toc = false;
 		}
 
 		$form = new EditWatchlistNormalHTMLForm( $fields, $this->getContext() );
