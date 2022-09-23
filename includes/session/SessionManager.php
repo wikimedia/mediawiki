@@ -276,7 +276,6 @@ class SessionManager implements SessionManagerInterface {
 		}
 
 		if ( $create && $session === null ) {
-			$ex = null;
 			try {
 				$session = $this->getEmptySessionInternal( $request, $id );
 			} catch ( \Exception $ex ) {

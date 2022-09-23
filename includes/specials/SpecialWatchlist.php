@@ -639,7 +639,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				$this->msg( 'watchlistfor2', $this->getUser()->getName(), '' )->text()
 			) . ' ' .
 			SpecialEditWatchlist::buildTools(
-				$this->getLanguage(),
+				null,
 				$this->getLinkRenderer(),
 				$this->currentMode
 			)

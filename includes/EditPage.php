@@ -2396,8 +2396,6 @@ class EditPage implements IEditObject {
 				}
 			}
 
-			$content = null;
-
 			if ( $this->isConflict ) {
 				$editConflictLogger->debug(
 					'Conflict! Getting section {section} for time {editTime}'

@@ -109,7 +109,6 @@ abstract class SchemaMaintenance extends Maintenance {
 		} elseif ( $platform === 'all' ) {
 			$platforms = self::SUPPORTED_PLATFORMS;
 		} else {
-			$platforms = [];
 			$this->fatalError( "'$platform' is not a supported platform!" );
 		}
 
