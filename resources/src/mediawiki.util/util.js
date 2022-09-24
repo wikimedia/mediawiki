@@ -453,6 +453,13 @@ util = {
 	 * - p-personal (Personal tools),
 	 * - p-navigation (Navigation),
 	 * - p-tb (Toolbox).
+	 * - p-associated-pages (For namespaces and special page tabs on supported skins)
+	 * - p-namespaces (For namespaces on legacy skins)
+	 *
+	 * Note: Menus available vary based on skin, site and page.
+	 *
+	 * Additional menus can be discovered by calling
+	 * ```$('.mw-portlet').map((i, a) => a.getAttribute('id'))```
 	 *
 	 * The first three parameters are required, the others are optional and
 	 * may be null. Though providing an id and tooltip is recommended.
@@ -495,6 +502,8 @@ util = {
 	 * @param {HTMLElement|jQuery|string} [nextnode] Element that the new item should be added before.
 	 *  Must be another item in the same list, it will be ignored otherwise.
 	 *  Can be specified as DOM reference, as jQuery object, or as CSS selector string.
+	 * @fires util.addPortletLink with added element and associated ID. This allows
+	 *   skins to make transformations to menu items (for example adding icons).
 	 * @return {HTMLElement|null} The added list item, or null if no element was added.
 	 */
 	addPortletLink: function ( portletId, href, text, id, tooltip, accesskey, nextnode ) {
