@@ -89,7 +89,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 	protected function getFormFields() {
 		$user = $this->getUser();
 
-		$fields = [
+		return [
 			'Name' => [
 				'type' => 'info',
 				'label-message' => 'username',
@@ -108,8 +108,6 @@ class SpecialChangeEmail extends FormSpecialPage {
 				'help-message' => 'changeemail-newemail-help',
 			],
 		];
-
-		return $fields;
 	}
 
 	protected function getDisplayFormat() {
@@ -127,18 +125,16 @@ class SpecialChangeEmail extends FormSpecialPage {
 	}
 
 	public function onSubmit( array $data ) {
-		$status = $this->attemptChange( $this->getUser(), $data['NewEmail'] );
+		$this->status = $this->attemptChange( $this->getUser(), $data['NewEmail'] );
 
-		$this->status = $status;
-
-		return $status;
+		return $this->status;
 	}
 
 	public function onSuccess() {
 		$request = $this->getRequest();
 
-		$returnto = $request->getVal( 'returnto' );
-		$titleObj = $returnto !== null ? Title::newFromText( $returnto ) : null;
+		$returnTo = $request->getVal( 'returnto' );
+		$titleObj = $returnTo !== null ? Title::newFromText( $returnTo ) : null;
 		if ( !$titleObj instanceof Title ) {
 			$titleObj = Title::newMainPage();
 		}
@@ -161,31 +157,32 @@ class SpecialChangeEmail extends FormSpecialPage {
 
 	/**
 	 * @param User $user
-	 * @param string $newaddr
+	 * @param string $newAddr
+	 *
 	 * @return Status
 	 */
-	private function attemptChange( User $user, $newaddr ) {
-		if ( $newaddr != '' && !Sanitizer::validateEmail( $newaddr ) ) {
+	private function attemptChange( User $user, $newAddr ) {
+		if ( $newAddr !== '' && !Sanitizer::validateEmail( $newAddr ) ) {
 			return Status::newFatal( 'invalidemailaddress' );
 		}
 
-		$oldaddr = $user->getEmail();
-		if ( $newaddr === $oldaddr ) {
+		$oldAddr = $user->getEmail();
+		if ( $newAddr === $oldAddr ) {
 			return Status::newFatal( 'changeemail-nochange' );
 		}
 
-		if ( strlen( $newaddr ) > 255 ) {
+		if ( strlen( $newAddr ) > 255 ) {
 			return Status::newFatal( 'changeemail-maxlength' );
 		}
 
 		// To prevent spam, rate limit adding a new address, but do
 		// not rate limit removing an address.
-		if ( $newaddr !== '' && $user->pingLimiter( 'changeemail' ) ) {
+		if ( $newAddr !== '' && $user->pingLimiter( 'changeemail' ) ) {
 			return Status::newFatal( 'actionthrottledtext' );
 		}
 
 		$userLatest = $user->getInstanceForUpdate();
-		$status = $userLatest->setEmailWithConfirmation( $newaddr );
+		$status = $userLatest->setEmailWithConfirmation( $newAddr );
 		if ( !$status->isGood() ) {
 			return $status;
 		}
@@ -193,12 +190,12 @@ class SpecialChangeEmail extends FormSpecialPage {
 		LoggerFactory::getInstance( 'authentication' )->info(
 			'Changing email address for {user} from {oldemail} to {newemail}', [
 				'user' => $userLatest->getName(),
-				'oldemail' => $oldaddr,
-				'newemail' => $newaddr,
+				'oldemail' => $oldAddr,
+				'newemail' => $newAddr,
 			]
 		);
 
-		$this->getHookRunner()->onPrefsEmailAudit( $userLatest, $oldaddr, $newaddr );
+		$this->getHookRunner()->onPrefsEmailAudit( $userLatest, $oldAddr, $newAddr );
 
 		$userLatest->saveSettings();
 
