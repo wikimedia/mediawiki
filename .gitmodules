@@ -1356,7 +1356,7 @@
 [submodule "skins/Monaco"]
 	path = skins/Monaco
 	url = https://github.com/Universal-Omega/Monaco
-	branch = master
+	branch = REL1_38
 	ignore = dirty
 [submodule "extensions/UserPageEditProtection"]
 	path = extensions/UserPageEditProtection
