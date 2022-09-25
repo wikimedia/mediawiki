@@ -1,7 +1,5 @@
 <?php
 
-use Wikimedia\ParamValidator\ParamValidator;
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -109,7 +107,6 @@ class ApiManageTags extends ApiBase {
 			],
 			'reason' => [
 				ApiBase::PARAM_TYPE => 'string',
-				ParamValidator::PARAM_DEFAULT => '',
 			],
 			'ignorewarnings' => [
 				ApiBase::PARAM_TYPE => 'boolean',

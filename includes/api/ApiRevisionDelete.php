@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\Revision\RevisionRecord;
-use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * API interface to RevDel. The API equivalent of Special:RevisionDelete.
@@ -102,7 +101,7 @@ class ApiRevisionDelete extends ApiBase {
 		);
 		$status = $list->setVisibility( [
 			'value' => $bitfield,
-			'comment' => $params['reason'] ?? '',
+			'comment' => $params['reason'],
 			'perItemStatus' => true,
 			'tags' => $params['tags']
 		] );
@@ -175,9 +174,7 @@ class ApiRevisionDelete extends ApiBase {
 				ApiBase::PARAM_TYPE => [ 'yes', 'no', 'nochange' ],
 				ApiBase::PARAM_DFLT => 'nochange',
 			],
-			'reason' => [
-				ParamValidator::PARAM_TYPE => 'string'
-			],
+			'reason' => null,
 			'tags' => [
 				ApiBase::PARAM_TYPE => 'tags',
 				ApiBase::PARAM_ISMULTI => true,

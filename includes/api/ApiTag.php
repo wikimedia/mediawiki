@@ -20,7 +20,6 @@
  */
 
 use MediaWiki\Revision\RevisionStore;
-use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -222,7 +221,6 @@ class ApiTag extends ApiBase {
 				ApiBase::PARAM_ISMULTI => true,
 			],
 			'reason' => [
-				ParamValidator::PARAM_TYPE => 'string',
 				ApiBase::PARAM_DFLT => '',
 			],
 			'tags' => [

@@ -2,7 +2,6 @@
 
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Page\ContentModelChangeFactory;
-use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * Api module to change the content model of existing pages
@@ -120,9 +119,7 @@ class ApiChangeContentModel extends ApiBase {
 			'pageid' => [
 				ApiBase::PARAM_TYPE => 'integer',
 			],
-			'summary' => [
-				ParamValidator::PARAM_TYPE => 'string',
-			],
+			'summary' => null,
 			'tags' => [
 				ApiBase::PARAM_TYPE => 'tags',
 				ApiBase::PARAM_ISMULTI => true,

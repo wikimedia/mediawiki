@@ -185,7 +185,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 * @since 1.19
 	 * @param string $comment
 	 */
-	public function setComment( string $comment ) {
+	public function setComment( $comment ) {
 		$this->comment = $comment;
 	}
 
