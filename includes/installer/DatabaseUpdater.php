@@ -1224,66 +1224,6 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Merge `image_comment_temp` into the `image` table
-	 * @since 1.32
-	 */
-	protected function migrateImageCommentTemp() {
-		if ( $this->tableExists( 'image_comment_temp' ) ) {
-			$this->output( "Merging image_comment_temp into the image table\n" );
-			$task = $this->maintenance->runChild(
-				MigrateImageCommentTemp::class, 'migrateImageCommentTemp.php'
-			);
-			// @phan-suppress-next-line PhanUndeclaredMethod
-			$task->setForce();
-			$ok = $task->execute();
-			$this->output( $ok ? "done.\n" : "errors were encountered.\n" );
-			if ( $ok ) {
-				$this->dropTable( 'image_comment_temp' );
-			}
-		}
-	}
-
-	/**
-	 * Populates the externallinks.el_index_60 field
-	 * @since 1.32
-	 */
-	protected function populateExternallinksIndex60() {
-		if ( !$this->updateRowExists( 'populate externallinks.el_index_60' ) ) {
-			$this->output(
-				"Populating el_index_60 field, printing progress markers. For large\n" .
-				"databases, you may want to hit Ctrl-C and do this manually with\n" .
-				"maintenance/populateExternallinksIndex60.php.\n"
-			);
-			$task = $this->maintenance->runChild( PopulateExternallinksIndex60::class,
-				'populateExternallinksIndex60.php' );
-			$task->execute();
-			$this->output( "done.\n" );
-		}
-	}
-
-	/**
-	 * Populates the MCR content tables
-	 * @since 1.32
-	 */
-	protected function populateContentTables() {
-		if ( !$this->updateRowExists( 'PopulateContentTables' ) ) {
-			$this->output(
-				"Migrating revision data to the MCR 'slot' and 'content' tables, printing progress markers.\n" .
-				"For large databases, you may want to hit Ctrl-C and do this manually with\n" .
-				"maintenance/populateContentTables.php.\n"
-			);
-			$task = $this->maintenance->runChild(
-				PopulateContentTables::class, 'populateContentTables.php'
-			);
-			$ok = $task->execute();
-			$this->output( $ok ? "done.\n" : "errors were encountered.\n" );
-			if ( $ok ) {
-				$this->insertUpdateRow( 'PopulateContentTables' );
-			}
-		}
-	}
-
-	/**
 	 * Only run a function if a table does not exist
 	 *
 	 * @since 1.35
