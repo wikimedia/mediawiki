@@ -27,6 +27,7 @@ use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageRecord;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Rest\Handler;
@@ -144,7 +145,7 @@ class HtmlOutputRendererHelper {
 			);
 			$stashSuccess = $this->parsoidOutputStash->set(
 				$parsoidStashKey,
-				$this->parsoidOutputAccess->getParsoidPageBundle( $parserOutput )
+				PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput )
 			);
 			if ( !$stashSuccess ) {
 				$this->stats->increment( 'htmloutputrendererhelper.stash.fail' );

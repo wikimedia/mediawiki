@@ -3,6 +3,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
@@ -151,7 +152,6 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
 	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParsoidRenderID
-	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParsoidPageBundle
 	 */
 	public function testGetParserOutput() {
 		$access = $this->getParsoidOutputAccessWithCache( 1 );
@@ -168,11 +168,11 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		// check that getParsoidRenderID() doesn't throw
 		$this->assertNotNull( $access->getParsoidRenderID( $output ) );
 
-		// check that getParsoidPageBundle() returns the correct data
-		$pageBundle = $access->getParsoidPageBundle( $output );
+		// Ensure that we can still create a valid instance of PageBundle from the ParserOutput
+		$pageBundle = PageBundleParserOutputConverter::pageBundleFromParserOutput( $output );
 		$this->assertSame( $output->getRawText(), $pageBundle->html );
 
-		// The actual values of these fields come from newMockParsoid(). We could check them here.
+		// Ensure that the expected mw and parsoid fields are set in the PageBundle
 		$this->assertNotEmpty( $pageBundle->mw );
 		$this->assertNotEmpty( $pageBundle->parsoid );
 	}
