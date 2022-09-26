@@ -375,7 +375,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
-		$status = $parsoidOutputAccess->parse( $page, $pOpts, $revRecord );
+		$status = $parsoidOutputAccess->parse( $page->getTitle(), $pOpts, $revRecord );
 
 		$this->assertInstanceOf( Status::class, $status );
 		$this->assertTrue( $status->isOK() );

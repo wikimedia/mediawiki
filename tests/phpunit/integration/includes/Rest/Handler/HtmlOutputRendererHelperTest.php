@@ -12,6 +12,7 @@ use HashBagOStuff;
 use Language;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
@@ -291,7 +292,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$poa->expects( $this->once() )
 			->method( 'parse' )
 			->willReturnCallback( static function (
-				PageRecord $page,
+				PageIdentity $page,
 				ParserOptions $parserOpts,
 				?RevisionRecord $rev = null
 			) use ( $fakePage, $fakeRevision ) {
