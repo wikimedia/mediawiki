@@ -97,6 +97,7 @@
 		"psy/psysh": "^0.11.1",
 		"seld/jsonlint": "1.8.3",
 		"wikimedia/alea": "^0.9.3",
+		"wikimedia/langconv": "^0.4.2",
 		"wikimedia/testing-access-wrapper": "~2.0",
 		"wmde/hamcrest-html-matchers": "^1.0.0"
 	},

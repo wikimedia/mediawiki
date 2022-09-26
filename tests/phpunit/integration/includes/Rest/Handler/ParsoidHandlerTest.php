@@ -70,6 +70,11 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		],
 	];
 
+	public function setUp(): void {
+		// enable Pig Latin variant conversion
+		$this->overrideConfigValue( 'UsePigLatinVariant', true );
+	}
+
 	private function createRouter( $authority, $request ) {
 		return $this->newRouter( [
 			'authority' => $authority,
@@ -1552,35 +1557,82 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $wikitext, $actual );
 	}
 
-	public function provideGetRequestAttributes() {
-		// TODO: oldid in path
-		// TODO: oldid in body
-		// TODO: html as string
-		// TODO: html with headers
-		// TODO: wikitext override (tryToCreatePageConfig)
-		// TODO: wikitext loaded (tryToCreatePageConfig)
-		// TODO: ...
+	public function provideLanguageConversion() {
+		$profileVersion = Parsoid::AVAILABLE_VERSIONS[0];
+		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;
+		$htmlContentType = "text/html; charset=utf-8; profile=\"$htmlProfileUri\"";
+
+		$defaultAttribs = [
+			'oldid' => null,
+			'pageName' => __METHOD__,
+			'opts' => [],
+			'envOptions' => [
+				'inputContentVersion' => Parsoid::defaultHTMLVersion()
+			]
+		];
+
+		$attribs = [
+			'pagelanguage' => 'en',
+			'opts' => [
+				'updates' => [
+					'variant' => [
+						'source' => 'en',
+						'target' => 'en-x-piglatin'
+					]
+				],
+			],
+		] + $defaultAttribs;
+
+		$revision = [
+			'contentmodel' => CONTENT_MODEL_WIKITEXT,
+			'html' => [
+				'headers' => [
+					'content-type' => $htmlContentType,
+				],
+				'body' => '<p>test language conversion</p>',
+			],
+		];
+
+		yield [
+			$attribs,
+			$revision,
+			'>esttay anguagelay onversioncay<',
+			[
+				'content-type' => $htmlContentType,
+				'content-language' => 'en-x-piglatin',
+			]
+		];
 	}
 
 	/**
-	 * @dataProvider provideGetRequestAttributes
+	 * @dataProvider provideLanguageConversion
 	 */
-	public function testGetRequestAttributes() {
-		// TODO: also test tryToCreatePageConfig
-		$this->fail( 'TBD' );
-	}
+	public function testLanguageConversion(
+		array $attribs,
+		array $revision,
+		string $expectedText,
+		array $expectedHeaders
+	) {
+		$handler = $this->newParsoidHandler();
 
-	public function provideGetRequestAttributesThrows() {
-		// TODO: should require html when serializing
-		// TODO: should error when revision not found
-	}
+		$pageConfig = $handler->tryToCreatePageConfig( $attribs, null, true );
+		$response = $handler->languageConversion( $pageConfig, $attribs, $revision );
 
-	/**
-	 * @dataProvider provideGetRequestAttributesThrows
-	 */
-	public function testGetRequestAttributesThrows() {
-		// TODO: also test tryToCreatePageConfig
-		$this->fail( 'TBD' );
+		$body = $response->getBody();
+		$body->rewind();
+		$actual = $body->getContents();
+
+		$pb = json_decode( $actual, true );
+		$this->assertNotEmpty( $pb );
+		$this->assertArrayHasKey( 'html', $pb );
+		$this->assertArrayHasKey( 'body', $pb['html'] );
+
+		$this->assertStringContainsString( $expectedText, $pb['html']['body'] );
+
+		foreach ( $expectedHeaders as $key => $value ) {
+			$this->assertArrayHasKey( $key, $pb['html']['headers'] );
+			$this->assertSame( $value, $pb['html']['headers'][$key] );
+		}
 	}
 
 }
