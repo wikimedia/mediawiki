@@ -370,13 +370,13 @@ class ParsoidOutputAccess {
 	}
 
 	/**
-	 * @param PageRecord $page
+	 * @param PageIdentity $page
 	 * @param ParserOptions $parserOpts
 	 * @param RevisionRecord|null $revision
 	 * @return Status
 	 */
-	public function parse( PageRecord $page, ParserOptions $parserOpts, ?RevisionRecord $revision ): Status {
-		$revId = $revision ? $revision->getId() : $page->getLatest();
+	public function parse( PageIdentity $page, ParserOptions $parserOpts, ?RevisionRecord $revision ): Status {
+		$revId = $revision ? $revision->getId() : $page->getId();
 
 		$status = $this->parseInternal( $page, $revision, $parserOpts->getTargetLanguage() );
 
