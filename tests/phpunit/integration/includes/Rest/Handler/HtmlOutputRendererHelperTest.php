@@ -31,7 +31,6 @@ use Status;
 use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
-use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use WikitextContent;
 
@@ -70,8 +69,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	public function newMockParsoidOutputAccess( $expectedCalls = [] ): ParsoidOutputAccess {
 		$expectedCalls += [
 			'getParserOutput' => 1,
-			'getParsoidRenderID' => null,
-			'getParsoidPageBundle' => null,
+			'getParsoidRenderID' => null
 		];
 
 		$parsoid = $this->createNoOpMock( ParsoidOutputAccess::class, array_keys( $expectedCalls ) );
@@ -94,12 +92,6 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			->method( 'getParsoidRenderID' )
 			->willReturnCallback( static function ( ParserOutput $pout ) {
 				return new ParsoidRenderID( $pout->getCacheRevisionId(), $pout->getCacheTime() );
-			} );
-
-		$parsoid->expects( $this->exactlyOrAny( $expectedCalls[ 'getParsoidPageBundle' ] ) )
-			->method( 'getParsoidPageBundle' )
-			->willReturnCallback( static function ( ParserOutput $pout ) {
-				return new PageBundle( $pout->getRawText() );
 			} );
 
 		return $parsoid;
