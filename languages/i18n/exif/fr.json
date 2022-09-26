@@ -37,7 +37,7 @@
 	"exif-orientation": "Orientation",
 	"exif-samplesperpixel": "Nombre de composantes",
 	"exif-planarconfiguration": "Arrangement des données",
-	"exif-ycbcrsubsampling": "Taux de sous-échantillonnage Y / C",
+	"exif-ycbcrsubsampling": "Rapport de sous-échantillonnage Y / C",
 	"exif-ycbcrpositioning": "Positionnement YCbCr",
 	"exif-xresolution": "Résolution horizontale",
 	"exif-yresolution": "Résolution verticale",
