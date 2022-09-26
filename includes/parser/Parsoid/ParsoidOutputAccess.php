@@ -44,7 +44,6 @@ use Status;
 use UnexpectedValueException;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\ClientError;
-use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\UUID\GlobalIdGenerator;
@@ -65,11 +64,6 @@ class ParsoidOutputAccess {
 	 * @var string Key used to store the parsoid render ID in ParserOutput
 	 */
 	private const RENDER_ID_KEY = 'parsoid-render-id';
-
-	/**
-	 * @var string Key used to store parsoid page bundle data in ParserOutput
-	 */
-	private const PARSOID_PAGE_BUNDLE_KEY = 'parsoid-page-bundle';
 
 	/** @var int Do not check the cache before parsing (force parse) */
 	public const OPT_FORCE_PARSE = 1;
@@ -251,7 +245,7 @@ class ParsoidOutputAccess {
 				$pageConfig,
 				[ 'pageBundle' => true ]
 			);
-			$parserOutput = $this->createParserOutputFromPageBundle( $pageBundle );
+			$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle );
 			$time = microtime( true ) - $startTime;
 			if ( $time > 3 ) {
 				LoggerFactory::getInstance( 'slow-parsoid' )
@@ -266,31 +260,6 @@ class ParsoidOutputAccess {
 		} catch ( ResourceLimitExceededException $e ) {
 			return Status::newFatal( 'parsoid-resource-limit-exceeded', $e->getMessage() );
 		}
-	}
-
-	/**
-	 * Creates a ParserOutput object containing the relevant data from
-	 * the given PageBundle object.
-	 *
-	 * We need to inject data-parsoid and other properties into the
-	 * parser output object for caching, so we can use it for VE edits
-	 * and transformations.
-	 *
-	 * @param PageBundle $pageBundle
-	 *
-	 * @return ParserOutput
-	 */
-	private function createParserOutputFromPageBundle( PageBundle $pageBundle ): ParserOutput {
-		$parserOutput = new ParserOutput( $pageBundle->html );
-		$parserOutput->setExtensionData(
-			self::PARSOID_PAGE_BUNDLE_KEY,
-			[
-				'parsoid' => $pageBundle->parsoid,
-				'mw' => $pageBundle->mw
-			]
-		);
-
-		return $parserOutput;
 	}
 
 	/**
@@ -310,22 +279,6 @@ class ParsoidOutputAccess {
 		}
 
 		return ParsoidRenderID::newFromKey( $renderId );
-	}
-
-	/**
-	 * Returns a Parsoid PageBundle equivalent to the given ParserOutput.
-	 *
-	 * @param ParserOutput $parserOutput
-	 *
-	 * @return PageBundle
-	 */
-	public function getParsoidPageBundle( ParserOutput $parserOutput ): PageBundle {
-		$pbData = $parserOutput->getExtensionData( self::PARSOID_PAGE_BUNDLE_KEY );
-		return new PageBundle(
-			$parserOutput->getRawText(),
-			$pbData['parsoid'] ?? [],
-			$pbData['mw'] ?? []
-		);
 	}
 
 	/**
@@ -353,7 +306,7 @@ class ParsoidOutputAccess {
 		if ( $parserOutput ) {
 			// Ignore cached ParserOutput if it is incomplete,
 			// because it was stored by an old version of the code.
-			if ( !$parserOutput->getExtensionData( self::PARSOID_PAGE_BUNDLE_KEY )
+			if ( !$parserOutput->getExtensionData( PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY )
 				|| !$parserOutput->getExtensionData( self::RENDER_ID_KEY )
 			) {
 				$parserOutput = null;
