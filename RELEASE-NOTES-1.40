@@ -72,6 +72,10 @@ because of Phabricator reports.
 * …
 
 === Breaking changes in 1.40 ===
+* OutputPage::enableClientCache no longer accepts a parameter, nor does it
+  return the current value. It simply sets the OutputPage::mEnableClientCache
+  to true. Use OutputPage::disableClientCache to disable client side caching
+  instead.
 * BagOStuff::makeKeyInternal(), deprecated for public use in 1.36, is now a
   protected method of MediumSpecificBagOStuff.
 * The following public properties of Parser, deprecated in 1.35,

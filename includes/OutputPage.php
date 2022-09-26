@@ -2409,17 +2409,10 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Use enableClientCache(false) to force it to send nocache headers
-	 *
-	 * @param bool|null $state New value, or null to not set the value
-	 *
-	 * @return bool Old value
-	 * @deprecated since 1.38; use disableClientCache() instead
-	 * ($state is almost always `false` when this method is called)
+	 * Do not send nocache headers
 	 */
-	public function enableClientCache( $state ) {
-		wfDeprecated( __METHOD__, '1.38' );
-		return wfSetVar( $this->mEnableClientCache, $state );
+	public function enableClientCache(): void {
+		$this->mEnableClientCache = true;
 	}
 
 	/**

@@ -2167,6 +2167,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers OutputPage::disableClientCache
+	 * @covers OutputPage::enableClientCache
 	 * @covers OutputPage::addParserOutputMetadata
 	 * @covers OutputPage::addParserOutput
 	 */
@@ -2180,6 +2181,13 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		// Test setting to false
 		$op->disableClientCache();
 		$this->assertSame( false, $op->couldBePublicCached() );
+
+		// Test setting to true
+		$op->enableClientCache();
+		$this->assertSame( true, $op->couldBePublicCached() );
+
+		// set back to false
+		$op->disableClientCache();
 
 		// Test that a cacheable ParserOutput doesn't set to true
 		$pOutCacheable = $this->createParserOutputStub( 'isCacheable', true );
@@ -2195,43 +2203,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$pOutUncacheable = $this->createParserOutputStub( 'isCacheable', false );
 		$op->addParserOutput( $pOutUncacheable );
 		$this->assertSame( false, $op->couldBePublicCached() );
-	}
-
-	/**
-	 * This test can be safely removed when the deprecated
-	 * OutputPage::enableClientCache() is removed.
-	 * @covers OutputPage::enableClientCache
-	 */
-	public function testEnableClientCache() {
-		// OutputPage::enableClientCache() is deprecated, so this test
-		// will emit warnings.
-		$this->hideDeprecated( 'OutputPage::enableClientCache' );
-
-		$op = $this->newInstance();
-
-		// Test initial value
-		$this->assertSame( true, $op->enableClientCache( null ) );
-		// Test that calling with null doesn't change the value
-		$this->assertSame( true, $op->enableClientCache( null ) );
-
-		// Test setting to false
-		$this->assertSame( true, $op->enableClientCache( false ) );
-		$this->assertSame( false, $op->enableClientCache( null ) );
-		// Test that calling with null doesn't change the value
-		$this->assertSame( false, $op->enableClientCache( null ) );
-		// Using ::disableClientCache() works, too
-		$op->disableClientCache();
-		$this->assertSame( false, $op->enableClientCache( null ) );
-
-		// Test setting back to true
-		$this->assertSame( false, $op->enableClientCache( true ) );
-		$this->assertSame( true, $op->enableClientCache( null ) );
-
-		// For completeness, test that ::disableClientCache() also sets it
-		// to false.
-		$this->assertSame( true, $op->enableClientCache( null ) );
-		$op->disableClientCache();
-		$this->assertSame( false, $op->enableClientCache( null ) );
 	}
 
 	/**
