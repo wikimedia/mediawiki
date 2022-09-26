@@ -1,10 +1,5 @@
 <?php
-
-use MediaWiki\Site\MediaWikiPageNameNormalizer;
-
 /**
- * Class representing a MediaWiki site.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,19 +16,18 @@ use MediaWiki\Site\MediaWikiPageNameNormalizer;
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Site
- * @license GPL-2.0-or-later
- * @author John Erling Blad < jeblad@gmail.com >
- * @author Daniel Kinzler
- * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
+
+use MediaWiki\Site\MediaWikiPageNameNormalizer;
 
 /**
  * Class representing a MediaWiki site.
  *
  * @since 1.21
- *
  * @ingroup Site
+ * @author John Erling Blad < jeblad@gmail.com >
+ * @author Daniel Kinzler
+ * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class MediaWikiSite extends Site {
 	public const PATH_FILE = 'file_path';

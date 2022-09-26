@@ -1,15 +1,5 @@
 <?php
-
-namespace MediaWiki\Site;
-
-use FormatJson;
-use Http;
-use InvalidArgumentException;
-use UtfNormal\Validator;
-
 /**
- * Service for normalizing a page name using a MediaWiki api.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -25,9 +15,20 @@ use UtfNormal\Validator;
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.27
+ * @file
+ */
+
+namespace MediaWiki\Site;
+
+use FormatJson;
+use Http;
+use InvalidArgumentException;
+use UtfNormal\Validator;
+
+/**
+ * Service for normalizing a page name via a MediaWiki action API.
  *
- * @license GPL-2.0-or-later
+ * @since 1.27
  * @author John Erling Blad < jeblad@gmail.com >
  * @author Daniel Kinzler
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
