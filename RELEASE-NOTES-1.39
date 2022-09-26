@@ -570,6 +570,12 @@ because of Phabricator reports.
   IndexPager::buildPrevNextNavigation() have been deprecated in favor of
   IndexPager::getNavigationBuilder().
 * Overriding the method IndexPager::makeLink() has been deprecated.
+* ActorMigration is deprecated. The temporary table is no longer needed, the
+  actor table can be directly joined to the revision table, which is simple
+  enough to not need a helper class. See the methods of ActorMigration for more
+  specific information on replacements. ActorMigrationBase remains usable for
+  migrations in extension tables.
+* …
 
 === Other changes in 1.39 ===
 * Dynamic default values are now applied before extension registration callbacks
