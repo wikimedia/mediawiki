@@ -45,7 +45,6 @@ use Wikimedia\ParamValidator\ParamValidator;
  * @since 1.36
  *
  * @unstable Pending consolidation of the Parsoid extension with core code.
- *           Part of this class should probably become a service.
  */
 class HtmlOutputRendererHelper {
 	/**
