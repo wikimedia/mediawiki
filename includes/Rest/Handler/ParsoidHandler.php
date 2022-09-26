@@ -20,7 +20,6 @@
 namespace MediaWiki\Rest\Handler;
 
 use Composer\Semver\Semver;
-use Content;
 use ExtensionRegistry;
 use InvalidArgumentException;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
@@ -29,13 +28,11 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Parser\Parsoid\HTMLTransform;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseException;
-use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\SlotRecord;
@@ -272,71 +269,45 @@ abstract class ParsoidHandler extends Handler {
 		return $this->requestAttributes;
 	}
 
-	protected function getHTMLTransform(
+	/**
+	 * @param array $attribs
+	 * @param string $html
+	 * @param PageConfig|PageIdentity $page
+	 *
+	 * @return HtmlInputTransformHelper
+	 */
+	protected function getHtmlInputTransformHelper(
 		array $attribs,
 		string $html,
-		PageIdentity $page
-	): HTMLTransform {
-		// NOTE: The Parsoid extension is using the constructor, so we can't easily modify it and inject
-		//       the factory. Since we are planning to extract this logic anyway, this should, be ok for now.
-		$factory = MediaWikiServices::getInstance()->getHTMLTransformFactory();
-		$transform = $factory->getHTMLTransform( $html, $page );
+		$page
+	): HtmlInputTransformHelper {
+		$services = MediaWikiServices::getInstance();
 
-		if ( $this->metrics ) {
-			$transform->setMetrics( $this->metrics );
-		}
+		// Support PageConfig for backwards compatibility.
+		// We should leave it to lower level code to create it.
+		if ( $page instanceof PageConfig ) {
+			$title = $page->getTitle();
+			$page = $services->getPageStore()->getPageByText( $title );
 
-		$transform->setOptions( [
-			'contentmodel' => $attribs['opts']['contentmodel'] ?? null,
-			'offsetType' => $attribs['offsetType'] ?? 'byte',
-		] );
-
-		if ( isset( $attribs['oldid'] ) ) {
-			$transform->setOriginalRevisionId( $attribs['oldid'] );
-		}
-
-		if ( isset( $attribs['pagelanguage'] ) ) {
-			$transform->setContentLanguage( $attribs['pagelanguage'] );
-		}
-
-		$original = $attribs['opts']['original'] ?? [];
-
-		// NOTE: We may have an 'original' key that contains no html, but
-		//       just wikitext. We can ignore that here, we only care if there is HTML.
-		if ( !empty( $original['html']['headers']['content-type'] ) ) {
-			$vOriginal = ParsoidFormatHelper::parseContentTypeHeader(
-				$original['html']['headers']['content-type']
-			);
-
-			if ( $vOriginal ) {
-				$transform->setOriginalSchemaVersion( $vOriginal );
+			if ( !$page ) {
+				throw new HttpException( "Bad title: $title", 400 );
 			}
 		}
 
-		if ( isset( $original['html']['body'] ) ) {
-			$transform->setOriginalHtml( $original['html']['body'] );
-		}
+		$helper = new HtmlInputTransformHelper(
+			$services->getStatsdDataFactory(),
+			$services->getHTMLTransformFactory(),
+			$attribs['envOptions']
+		);
 
-		if ( isset( $original['wikitext']['body'] ) ) {
-			// FIXME: do we really have to support wikitext overrides?
-			$transform->setOriginalText( $original['wikitext']['body'] );
-		}
+		$parameters = $attribs['opts'] + $attribs;
+		$body = $attribs['opts'];
 
-		if ( $attribs['opts']['from'] === ParsoidFormatHelper::FORMAT_PAGEBUNDLE ) {
-			if ( isset( $original['data-parsoid']['body'] ) ) {
-				$transform->setOriginalDataParsoid( $original['data-parsoid']['body'] );
-			}
+		$body['html'] = $html;
 
-			if ( isset( $original['data-mw']['body'] ) ) {
-				$transform->setOriginalDataMW( $original['data-mw']['body'] );
-			}
-		}
+		$helper->init( $page, $body, $parameters );
 
-		if ( isset( $attribs['opts']['data-mw']['body'] ) ) {
-			$transform->setModifiedDataMW( $attribs['opts']['data-mw']['body'] );
-		}
-
-		return $transform;
+		return $helper;
 	}
 
 	/**
@@ -905,47 +876,20 @@ abstract class ParsoidHandler extends Handler {
 		if ( $page instanceof PageConfig ) {
 			// TODO: Deprecate passing a PageConfig.
 			//       Ideally, callers would use HTMLTransform directly.
-			// FIXME: This is slow, and we already have the parsed title and ID inside the PageConfig...
+			// XXX: This is slow, and we already have the parsed title and ID inside the PageConfig...
 			$page = Title::newFromTextThrow( $page->getTitle() );
 		}
 
 		try {
-			$transform = $this->getHTMLTransform( $attribs, $html, $page );
-			$content = $transform->htmlToContent();
+			$transform = $this->getHtmlInputTransformHelper( $attribs, $html, $page );
 
 			$response = $this->getResponseFactory()->create();
-			$this->putContent( $content, $response, $attribs['envOptions']['outputContentVersion'] );
+			$transform->putContent( $response );
 
 			return $response;
 		} catch ( ClientError $e ) {
 			throw new HttpException( $e->getMessage(), 400 );
 		}
-	}
-
-	/**
-	 * Helper function for putting the given content into the HTTP response object.
-	 * This will also set the appropriate Content-Type header.
-	 *
-	 * @param Content $content
-	 * @param ResponseInterface $response
-	 * @param string|null $outputContentVersion
-	 */
-	private function putContent(
-		Content $content,
-		ResponseInterface $response,
-		?string $outputContentVersion = null
-	) {
-		$data = $content->serialize();
-		try {
-			$contentType = ParsoidFormatHelper::getContentType(
-				$content->getModel(),
-				$outputContentVersion
-			);
-		} catch ( InvalidArgumentException $e ) {
-			$contentType = $content->getDefaultFormat();
-		}
-		$response->setHeader( 'Content-Type', $contentType );
-		$response->getBody()->write( $data );
 	}
 
 	/**

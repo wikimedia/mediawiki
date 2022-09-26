@@ -9,6 +9,7 @@ use LogicException;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\Parsoid\HTMLTransform;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Parsoid\Core\ClientError;
@@ -170,6 +171,18 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 	public function testOldId() {
 		$transform = $this->createHTMLTransformWithOriginalData();
 		$this->assertSame( 1, $transform->getOriginalRevisionId() );
+		$this->assertTrue( $transform->knowsOriginalRevision() );
+	}
+
+	public function testSetOriginalRevision() {
+		$page = PageIdentityValue::localIdentity( 17, NS_MAIN, 'Test' );
+		$rev = new MutableRevisionRecord( $page );
+		$rev->setId( 1337 );
+
+		$transform = $this->createHTMLTransformWithOriginalData();
+		$transform->setOriginalRevision( $rev );
+		$this->assertTrue( $transform->knowsOriginalRevision() );
+		$this->assertSame( $rev->getId(), $transform->getOriginalRevisionId() );
 	}
 
 	public function testGetContentModel() {

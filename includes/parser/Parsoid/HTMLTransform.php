@@ -14,6 +14,7 @@ use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Core\ClientError;
@@ -46,6 +47,9 @@ class HTMLTransform {
 
 	/** @var ?string */
 	private $originalText = null;
+
+	/** @var ?RevisionRecord */
+	private $originalRevision = null;
 
 	/**
 	 * Whether $this->doc has had any necessary processing applied,
@@ -134,11 +138,29 @@ class HTMLTransform {
 	}
 
 	/**
+	 * @param RevisionRecord $rev
+	 */
+	public function setOriginalRevision( RevisionRecord $rev ): void {
+		if ( $this->pageConfig ) {
+			throw new LogicException( 'Cannot set revision after using the PageConfig' );
+		}
+		if ( $this->originalRevision ) {
+			throw new LogicException( 'Cannot set revision again' );
+		}
+
+		$this->originalRevision = $rev;
+		$this->oldid = $rev->getId();
+	}
+
+	/**
 	 * @param int $oldid
 	 */
 	public function setOriginalRevisionId( int $oldid ): void {
 		if ( $this->pageConfig ) {
 			throw new LogicException( 'Cannot set revision ID after using the PageConfig' );
+		}
+		if ( $this->originalRevision ) {
+			throw new LogicException( 'Cannot set revision again' );
 		}
 
 		$this->oldid = $oldid;
@@ -163,6 +185,9 @@ class HTMLTransform {
 	public function setOriginalText( string $text ): void {
 		if ( $this->pageConfig ) {
 			throw new LogicException( 'Cannot set text after using the PageConfig' );
+		}
+		if ( $this->originalRevision ) {
+			throw new LogicException( 'Cannot set wikitext after using the PageConfig' );
 		}
 
 		$this->originalText = $text;
@@ -265,9 +290,9 @@ class HTMLTransform {
 						$content
 					)
 				);
-
 			} else {
-				$revision = $this->oldid;
+				// NOTE: PageConfigFactory allows $revision to be an int ID or a RevisionRecord.
+				$revision = $this->originalRevision ?: $this->oldid;
 			}
 
 			try {
@@ -452,6 +477,10 @@ class HTMLTransform {
 		return $this->oldid;
 	}
 
+	public function knowsOriginalRevision(): bool {
+		return $this->originalRevision || $this->oldid;
+	}
+
 	public function getContentModel(): ?string {
 		return $this->options['contentmodel'] ?? null;
 	}
@@ -548,7 +577,7 @@ class HTMLTransform {
 		//   "Both it and the oldid parameter are needed for
 		//    clean round-tripping of HTML retrieved earlier with"
 		// So, no oldid => no selser
-		$hasOldId = ( $this->getOriginalRevisionId() !== null );
+		$hasOldId = $this->knowsOriginalRevision();
 
 		if ( $hasOldId && !empty( $this->parsoidSettings['useSelser'] ) ) {
 			if ( !$this->getPageConfig()->getRevisionContent() ) {
