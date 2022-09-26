@@ -837,35 +837,6 @@ function wfLogProfilingData() {
 }
 
 /**
- * Check whether the wiki is in read-only mode.
- *
- * @deprecated since 1.38, use ReadOnlyMode::isReadOnly() instead, hard-deprecated in 1.39
- *
- * @return bool
- */
-function wfReadOnly() {
-	wfDeprecated( __FUNCTION__, '1.38' );
-	return MediaWikiServices::getInstance()->getReadOnlyMode()
-		->isReadOnly();
-}
-
-/**
- * Check if the site is in read-only mode and return the message if so
- *
- * This checks wfConfiguredReadOnlyReason() and the main load balancer
- * for replica DB lag. This may result in DB connection being made.
- *
- * @deprecated since 1.38, use ReadOnlyMode::getReason() instead, hard-deprecated in 1.39
- *
- * @return string|bool String when in read-only mode; false otherwise
- */
-function wfReadOnlyReason() {
-	wfDeprecated( __FUNCTION__, '1.38' );
-	return MediaWikiServices::getInstance()->getReadOnlyMode()
-		->getReason();
-}
-
-/**
  * Return a Language object from $langcode
  *
  * @param Language|string|bool $langcode Either:
