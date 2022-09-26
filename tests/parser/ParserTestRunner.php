@@ -1641,7 +1641,7 @@ class ParserTestRunner {
 		// Construct a fresh PageConfig object with $wt
 		$oldWt = $test->wikitext;
 		$test->wikitext = $wt;
-		list( $pageConfig ) = $this->setupParsoidTransform( $test );
+		$pageConfig = $this->setupParserOptionsAndBuildPageConfig( $test );
 		$test->wikitext = $oldWt;
 
 		$newHtml = $parsoid->wikitext2html( $pageConfig, [
@@ -1839,7 +1839,7 @@ class ParserTestRunner {
 		}
 	}
 
-	private function setupParsoidTransform( ParserTest $test ): array {
+	private function setupParserOptionsAndBuildPageConfig( ParserTest $test ): PageConfig {
 		$services = MediaWikiServices::getInstance();
 		$pageConfigFactory = $services->get( 'ParsoidPageConfigFactory' );
 		$pageConfig = null;
@@ -1860,7 +1860,8 @@ class ParserTestRunner {
 				);
 				return $pageConfig->getParserOptions();
 			} );
-		return [ $pageConfig, $title, $options, $revId ];
+		'@phan-var PageConfig $pageConfig'; // assert that this is not null
+		return $pageConfig;
 	}
 
 	/**
@@ -1915,6 +1916,8 @@ class ParserTestRunner {
 		}
 
 		$teardownGuard = $this->perTestSetup( $test );
+		$pageConfig = $this->setupParserOptionsAndBuildPageConfig( $test );
+
 		$teardown = [];
 
 		// Register any special extensions required by this test case
@@ -1934,8 +1937,6 @@ class ParserTestRunner {
 		// and DataAccess are cached by the ServiceContainer.)
 		$dataAccess = $services->get( 'ParsoidDataAccess' );
 		$parsoid = new Parsoid( $siteConfig, $dataAccess );
-
-		list( $pageConfig ) = $this->setupParsoidTransform( $test );
 		switch ( $mode->mode ) {
 			case 'wt2html':
 			case 'wt2html+integrated':
