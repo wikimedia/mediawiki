@@ -35,35 +35,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.35 but it must come first
 			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
 
-			// 1.31
-			[ 'addField', 'image', 'img_description_id', 'patch-image-img_description_id.sql' ],
-			[ 'migrateComments' ],
-
-			[ 'addTable', 'slots', 'patch-slots.sql' ],
-			[ 'addField', 'slots', 'slot_origin', 'patch-slot-origin.sql' ],
-			[ 'addTable', 'content', 'patch-content.sql' ],
-			[ 'addTable', 'slot_roles', 'patch-slot_roles.sql' ],
-			[ 'addTable', 'content_models', 'patch-content_models.sql' ],
-			[ 'migrateArchiveText' ],
-			[ 'addTable', 'actor', 'patch-actor-table.sql' ],
-			[ 'addField', 'archive', 'ar_actor', 'patch-archive-ar_actor.sql' ],
-			[ 'addField', 'ipblocks', 'ipb_by_actor', 'patch-ipblocks-ipb_by_actor.sql' ],
-			[ 'addField', 'image', 'img_actor', 'patch-image-img_actor.sql' ],
-			[ 'addField', 'oldimage', 'oi_actor', 'patch-oldimage-oi_actor.sql' ],
-			[ 'addField', 'filearchive', 'fa_actor', 'patch-filearchive-fa_actor.sql' ],
-			[ 'addField', 'recentchanges', 'rc_actor', 'patch-recentchanges-rc_actor.sql' ],
-			[ 'addField', 'logging', 'log_actor', 'patch-logging-log_actor.sql' ],
-			[ 'migrateActors' ],
-
-			// Adds a default value to the rev_text_id field to allow Multi Content
-			// Revisions migration to happen where rows will have to be added to the
-			// revision table with no rev_text_id.
-			[ 'setDefault', 'revision', 'rev_text_id', 0 ],
-			[ 'modifyTable', 'site_stats', 'patch-site_stats-modify.sql' ],
-			[ 'populateArchiveRevId' ],
-			[ 'addIndex', 'recentchanges', 'rc_namespace_title_timestamp',
-				'patch-recentchanges-nttindex.sql' ],
-
 			// 1.32
 			[ 'addTable', 'change_tag_def', 'patch-change_tag_def.sql' ],
 			[ 'populateExternallinksIndex60' ],
