@@ -394,12 +394,19 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 
 	public function testFiltersMissing() {
 		$availableResults = [];
+		$user = $this->getTestSysop()->getAuthority();
 		foreach ( range( 0, 11 ) as $i ) {
 			$title = "Search_Result_$i";
 			$availableResults[] = $title;
 			// pages not created must be filtered
 			if ( $i % 2 == 0 ) {
-				$this->editSearchResultPage( $title );
+				$this->editPage(
+					$title,
+					new WikitextContent( 'UTContent' ),
+					'UTPageSummary',
+					NS_MAIN,
+					$user
+				);
 			}
 		}
 		MockCompletionSearchEngine::addMockResults( 'foo', $availableResults );
@@ -415,16 +422,6 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		$results = $engine->completionSearch( 'foo' );
 		$this->assertSame( 1, $results->getSize() );
 		$this->assertFalse( $results->hasMoreResults() );
-	}
-
-	private function editSearchResultPage( $title ) {
-		$page = WikiPage::factory( Title::newFromText( $title ) );
-		$page->doUserEditContent(
-			new WikitextContent( 'UTContent' ),
-			$this->getTestSysop()->getUser(),
-			'UTPageSummary',
-			EDIT_NEW | EDIT_SUPPRESS_RC
-		);
 	}
 
 	public function provideDataForParseNamespacePrefix() {

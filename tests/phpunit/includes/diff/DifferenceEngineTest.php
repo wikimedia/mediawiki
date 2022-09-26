@@ -62,16 +62,20 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	 */
 	protected function doEdits() {
 		$title = $this->getTitle();
-		$page = WikiPage::factory( $title );
 
 		$strings = [ "it is a kitten", "two kittens", "three kittens", "four kittens" ];
 		$revisions = [];
 
-		$user = $this->getTestSysop()->getUser();
+		$user = $this->getTestSysop()->getAuthority();
 		foreach ( $strings as $string ) {
-			$content = ContentHandler::makeContent( $string, $title );
-			$page->doUserEditContent( $content, $user, 'edit page' );
-			$revisions[] = $page->getLatest();
+			$status = $this->editPage(
+				$title,
+				$string,
+				'edit page',
+				NS_MAIN,
+				$user
+			);
+			$revisions[] = $status->value['revision-record']->getId();
 		}
 
 		return $revisions;
