@@ -37,6 +37,7 @@ use MediaWiki\User\TempUser\TempUserConfig;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
+use Message;
 use MessageSpecifier;
 use NamespaceInfo;
 use PermissionsError;
@@ -1137,8 +1138,6 @@ class PermissionManager {
 		$short,
 		LinkTarget $page
 	): array {
-		global $wgLang;
-
 		// TODO: remove & rework upon further use of LinkTarget
 		$title = Title::newFromLinkTarget( $page );
 
@@ -1202,7 +1201,7 @@ class PermissionManager {
 				// NOTE: This check is deprecated since 1.37, see T288759
 				$errors[] = [
 					'delete-toobig',
-					$wgLang->formatNum( $this->options->get( MainConfigNames::DeleteRevisionsLimit ) )
+					Message::numParam( $this->options->get( MainConfigNames::DeleteRevisionsLimit ) )
 				];
 			}
 		} elseif ( $action === 'undelete' ) {

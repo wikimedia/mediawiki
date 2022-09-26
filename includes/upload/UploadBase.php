@@ -779,7 +779,6 @@ abstract class UploadBase {
 	 *                    2 => int The number of extensions that are allowed.
 	 */
 	private function checkUnwantedFileExtensions( $fileExtension ) {
-		global $wgLang;
 		$checkFileExtensions = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::CheckFileExtensions );
 		$fileExtensions = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::FileExtensions );
@@ -788,7 +787,7 @@ abstract class UploadBase {
 			if ( !$this->checkFileExtension( $fileExtension, $extensions ) ) {
 				return [
 					$fileExtension,
-					$wgLang->commaList( $extensions ),
+					Message::listParam( $extensions, 'comma' ),
 					count( $extensions )
 				];
 			}
