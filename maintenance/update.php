@@ -189,11 +189,11 @@ class UpdateMediaWiki extends Maintenance {
 
 		$updater = DatabaseUpdater::newForDB( $db, $shared, $this );
 
-		// Avoid upgrading from versions older than 1.31
-		// Using an implicit marker (slots table didn't exist until 1.31)
+		// Avoid upgrading from versions older than 1.32
+		// Using an implicit marker (change_tag_def table didn't exist until 1.32)
 		// TODO: Use an explicit marker
 		// See T259771
-		if ( !$updater->tableExists( 'slots' ) ) {
+		if ( !$updater->tableExists( 'change_tag_def' ) ) {
 			$this->fatalError(
 				"Can not upgrade from versions older than 1.31, please upgrade to that version or later first."
 			);
