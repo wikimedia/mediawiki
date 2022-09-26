@@ -32,7 +32,8 @@
 			"ਗੁਰਪ੍ਰੀਤ ਹੁੰਦਲ",
 			"ਪ੍ਰਚਾਰਕ",
 			"아라",
-			"AnupamM"
+			"AnupamM",
+			"Bgo eiu"
 		]
 	},
 	"tog-underline": "ਲਿੰਕ ਹੇਠ-ਲਾਈਨ:",
@@ -547,6 +548,10 @@
 	"watchthis": "ਇਸ ਸਫ਼ੇ ’ਤੇ ਨਜ਼ਰ ਰੱਖੋ",
 	"savearticle": "ਸਫ਼ਾ ਸਾਂਭੋ",
 	"savechanges": "ਤਬਦੀਲੀਆਂ ਸਾਂਭੋ",
+	"publishpage": "ਸਫ਼ਾ ਪ੍ਰਕਾਸ਼ਨ ਕਰੋ",
+	"publishchanges": "ਤਬਦੀਲੀਆਂ ਪ੍ਰਕਾਸ਼ਨ ਕਰੋ",
+	"publishpage-start": "ਸਫ਼ਾ ਪ੍ਰਕਾਸ਼ਨ ਕਰੋ…",
+	"publishchanges-start": "ਤਬਦੀਲੀਆਂ ਪ੍ਰਕਾਸ਼ਨ ਕਰੋ…",
 	"preview": "ਝਲਕ",
 	"showpreview": "ਝਲਕ ਵਿਖਾਓ",
 	"showdiff": "ਤਬਦੀਲੀਆਂ ਵਿਖਾਓ",

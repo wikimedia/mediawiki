@@ -1158,7 +1158,7 @@
 	"userrights-expiry-none": "Non expira",
 	"userrights-expiry": "Expiration:",
 	"userrights-expiry-existing": "Expiration existente: le $2 a $3",
-	"userrights-expiry-othertime": "Altere hora:",
+	"userrights-expiry-othertime": "Altere durata:",
 	"userrights-expiry-options": "1 die:1 day,1 septimana:1 week,1 mense:1 month,3 menses:3 months,6 menses:6 months,1 anno:1 year",
 	"userrights-invalid-expiry": "Le hora de expiration pro le gruppo \"$1\" es invalide.",
 	"userrights-expiry-in-past": "Le hora de expiration pro le gruppo \"$1\" es in le passato.",

@@ -14,5 +14,7 @@
 	"rest-permission-denied-anon": "Nedostupno anonimnom korisniku",
 	"rest-permission-denied-title": "Korisnik nema pravo čitati naslov ($1)",
 	"rest-permission-denied-revision": "Korisnik nema pristup traženoj izmjeni ($1).",
-	"rest-pagehistory-incompatible-params": "Ne mogu se navesti oba parametra \"older_than\" i \"newer_than\""
+	"rest-pagehistory-incompatible-params": "Ne mogu se navesti oba parametra \"older_than\" i \"newer_than\"",
+	"rest-pagehistory-param-range-error": "Naznaka izmjene mora biti veća od 0",
+	"rest-pagehistory-timestamp-error": "Nije moguće dohvatiti vremensku oznaku za navedenu izmjenu ($1)"
 }

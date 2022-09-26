@@ -118,7 +118,8 @@
 			"Wolfdietmann",
 			"Ameisenigel",
 			"Brettchenweber",
-			"ElBe"
+			"ElBe",
+			"Nikki"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -1427,7 +1428,7 @@
 	"rightslog": "Rechte-Logbuch",
 	"rightslogtext": "Dies ist das Logbuch der Änderungen der Benutzerrechte.",
 	"action-read": "die Seite zu lesen",
-	"action-edit": "die Seite zu bearbeiten",
+	"action-edit": "diese Seite bearbeiten",
 	"action-createpage": "diese Seite zu erstellen",
 	"action-createtalk": "diese Diskussionsseite zu erstellen",
 	"action-createaccount": "ein Benutzerkonto zu erstellen",

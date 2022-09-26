@@ -2531,7 +2531,7 @@
 	"unblock": "Odblokiraj korisnika",
 	"blockip": "Blokiraj {{GENDER:$1|korisnika|korisnicu}}",
 	"blockiptext": "Upotrebite donji upitnik da biste uklonili prava pisanja sa određene IP adrese ili korisničkog imena.  \nOvo bi trebalo da bude urađeno samo da bi se spriječio vandalizam, i u skladu sa [[{{MediaWiki:Policy-url}}|smjernicama]]. \nUnesite konkretan razlog ispod (na primjer, navodeći koje konkretne stranice su vandalizovane).\nMožete blokirati IP-opsege koristeći [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing sintaksu CIDR-a]; najveći dozvoljeni opseg za IPv4 je /$1, a za IPv6 /$2.",
-	"ipaddressorusername": "IP adresa ili korisničko ime:",
+	"ipaddressorusername": "IP adresa, korisničko ime ili naznaka blokade:",
 	"ipbreason": "Razlog:",
 	"ipbreason-dropdown": "*Najčešći razlozi blokiranja\n**Unošenje netačnih informacija\n**Uklanjanje sadržaja stranica\n**Postavljanje spam vanjskih linkova\n**Ubacivanje gluposti/grafita\n**Osobni napadi (ili napadačko ponašanje)\n**Čarapare (zloupotreba više korisničkih računa)\n**Neprihvatljivo korisničko ime",
 	"ipb-hardblock": "Primijeni blokadu na prijavljene korisnike s ove IP adrese",
@@ -2687,6 +2687,7 @@
 	"move-page-legend": "Premjesti stranicu",
 	"movepagetext": "Korištenjem ovog obrasca možete preimenovati stranicu, premještajući cijelu historiju na novo ime.\nČlanak pod starim imenom će postati stranica koja preusmjerava na članak pod novim imenom. \nMožete automatski podnoviti preusmjerenja do izvornog naslova.\nAko se ne odlučite na to, provjerite [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|neispravna preusmjeravanja]].\nDužni ste provjeriti da svi linkovi i dalje nastave voditi na prave stranice.\n\nImajte na umu da stranica <strong>neće</strong> biti preusmjeren ukoliko već postoji stranica pod imenom na koje namjeravate da preusmjerite osim u slučaju stranice za preusmjeravanje koja nema nikakvih starih izmjena.\nTo znači da možete vratiti stranicu na prethodno mjesto ako pogriješite, ali ne možete zamijeniti postojeću stranicu.\n\n<strong>Napomena:</strong>\nOvo može biti drastična i neočekivana promjena kad su u pitanju popularne stranice;\nmolimo dobro razmislite prije nego što preimenujete stranicu.",
 	"movepagetext-noredirectfixer": "Koristeći obrazac ispod ćete preimenovati stranicu i premjestiti cijelu njenu historiju na novi naziv.\nStari naziv će postati preusmjerenje na novi naziv.\nMolimo provjerite da li postoje [[Special:DoubleRedirects|dvostruka]] ili [[Special:BrokenRedirects|nedovršena preusmjerenja]].\nVi ste za to odgovorni te morate provjeriti da li su linkovi ispravni i da li vode tamo gdje bi trebali.\n\nImajte na umu da stranica <strong>neće</strong> biti premještena ako već postoji stranica s tim imenom, osim ako je prazna ili je preusmjerenje ili nema ranije historije.\nOvo znali da možete preimenovati stranicu nazad gdje je ranije bila preimenovana ako ste pogriješili a ne možete ponovo preimenovati postojeću stranicu.\n\n<strong>Napomena:</strong>\nImajte na umu da premještanje popularnog članka može biti\ndrastična i neočekivana promjena za korisnike; molimo budite sigurni da ste shvatili posljedice prije nego što nastavite.",
+	"movepagetext-noredirectsupport": "Korištenjem ovog obrasca možete preimenovati stranicu, premještajući cijelu historiju na novo ime.\nVi ste za to odgovorni te morate provjeriti da li su linkovi ispravni i da li vode tamo gdje bi trebali.\n\nImajte na umu da stranica <strong>neće</strong> biti premještena ako već postoji stranica s novim naslovom.\nTo znači da možete vratiti stranicu nazad gdje je ranije bila preimenovana ako ste pogriješili bez prekrivanja postojeće stranice.\n\n<strong>Napomena:</strong>\nOvo može biti drastična i neočekivana promjena kad su u pitanju popularne stranice;\nmolimo dobro razmislite prije nego što nastavite.",
 	"movepagetalktext": "Ako označite ovu kutijucu, pridružena stranica za razgovor će se automatski premjestiti na novi naslov, ukoliko ne-prazna stranica razgovor sa istim imenom već postoji. U tom slučaju ćete morati, ako želite, ručno premjestiti ili spojiti stranicu.\n\nU tom slučaju, morat ćete ručno premjestiti ili spojiti stranicu ako to želite.",
 	"moveuserpage-warning": "'''Upozorenje:''' Premještate korisničku stranicu. Molimo da zapamtite da će se samo stranica premjestiti a korisnik se ''neće'' preimenovati.",
 	"movecategorypage-warning": "<strong>Upozorenje:</strong> Premještate stranicu kategorije. Imajte na umu da će samo stranica biti premještena i da sve stranice u staroj kategoriji <em>neće</em> biti ponovo kategorirane u novu kategoriju.",
@@ -2872,6 +2873,8 @@
 	"tooltip-ca-move": "Premjestite ovu stranicu",
 	"tooltip-ca-watch": "Dodaj ovu stranicu na svoju listu praćenja",
 	"tooltip-ca-unwatch": "Izbrišite ovu stranicu sa spiska praćenja",
+	"tooltip-ca-unwatch-expiring": "{{PLURAL:$1|one=Preostao je 1 dan|Preostala su $1 dana|Preostalo je $1 dana}} na Vašem popisu praćenih stranica. Kliknite za uklanjanje.",
+	"tooltip-ca-unwatch-expiring-hours": "Još neko vrijeme bit će na popisu praćenja. Kliknite za uklanjanje.",
 	"tooltip-search": "Pretraži projekt {{SITENAME}}",
 	"tooltip-search-go": "Idi na stranicu s upravo ovakvim imenom ako postoji",
 	"tooltip-search-fulltext": "Pretraga stranica sa ovim tekstom",
@@ -3504,7 +3507,7 @@
 	"logentry-newusers-autocreate": "Korisnički račun $1 je automatski {{GENDER:$2|napravljen}}",
 	"logentry-protect-move_prot": "$1 {{GENDER:$2|premjestio|premjestila}} je zaštitne postavke sa $4 na $3",
 	"logentry-protect-unprotect": "$1 {{GENDER:$2|uklonio je|uklonila je}} zaštitu sa stranice $3",
-	"logentry-protect-protect": "$1 {{GENDER:$2|stavio zaštitu|stavila zaštitu}} $3 $4",
+	"logentry-protect-protect": "$1 {{GENDER:$2|zaštitio|zaštitila}} je $3 $4",
 	"logentry-protect-protect-cascade": "$1 {{GENDER:$2|stavio zaštitu|stavila zaštitu}} $3 $4 [prenosiva zaštita]",
 	"logentry-protect-modify": "$1 {{GENDER:$2|izmijenio je|izmijenila je}} stepen zaštite za $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|izmijenio je|izmijenila je}} stepen zaštite za $3 $4 [prenosiva zaštita]",
@@ -3876,5 +3879,6 @@
 	"paramvalidator-baduser": "Nevažeća vrijednost „$2” za korisnički parametar <var>$1</var>.",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP opseg",
-	"paramvalidator-help-type-user-subtype-interwiki": "međuwiki ime (npr. „prefiks>Primjer”)"
+	"paramvalidator-help-type-user-subtype-interwiki": "međuwiki ime (npr. „prefiks>Primjer”)",
+	"paramvalidator-help-type-user-subtype-id": "korisnička naznaka (npr. „#12345”)"
 }

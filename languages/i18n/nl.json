@@ -1262,7 +1262,7 @@
 	"userrights-expiry-none": "Vervalt niet",
 	"userrights-expiry": "Vervalt:",
 	"userrights-expiry-existing": "Bestaande vervaldatum: $2 om $3",
-	"userrights-expiry-othertime": "Andere tijd:",
+	"userrights-expiry-othertime": "Andere duur:",
 	"userrights-expiry-options": "1 dag:1 day,1 week:1 week,1 maand:1 month,3 maanden:3 months,6 maanden:6 months,1 jaar:1 year",
 	"userrights-invalid-expiry": "De vervaltijd voor de groep \"$1\" is ongeldig.",
 	"userrights-expiry-in-past": "De vervaltijd voor de groep \"$1\" is in het verleden.",

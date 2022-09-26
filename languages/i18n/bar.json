@@ -24,7 +24,8 @@
 			"bar.wikipedia.org administrators",
 			"✓",
 			"아라",
-			"Tacsipacsi"
+			"Tacsipacsi",
+			"Nikki"
 		]
 	},
 	"tog-underline": "Links unterstreichen:",
@@ -1030,7 +1031,7 @@
 	"tooltip-pt-logout": "Auslogga",
 	"tooltip-pt-createaccount": "Mia lodn di eih, a Nutzakonto oozleng und di oozmejdn; es is owa ned nedig.",
 	"tooltip-ca-talk": "Dischkrian iban Seitninhoid",
-	"tooltip-ca-edit": "Du konsd de Seitn beorbatn. Bittschee vawendt in Vorschau-Knopf bevorsd speichasd.",
+	"tooltip-ca-edit": "De Seitn beorbatn",
 	"tooltip-ca-addsection": "Neichn Obschnitt ofanga",
 	"tooltip-ca-viewsource": "De Seitn is gschitzd. In Quejtext konsda oschaugn.",
 	"tooltip-ca-history": "Friaare Versiona vo dera Seitn",
