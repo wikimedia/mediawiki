@@ -6433,6 +6433,31 @@ parsoid=wt2wt
 THIS SECTION IS NOT USED (but Parsoid won't run the test without it)
 !! end
 
+!! test
+Parsoid extlink with _blank target
+!! options
+externallinktarget=_blank
+!! wikitext
+[https://www.example.com]
+!! html/parsoid
+<p><a rel="mw:ExtLink nofollow noreferrer noopener" href="https://www.example.com" class="external autonumber" target="_blank"></a></p>
+!! html/php
+<p><a target="_blank" rel="nofollow noreferrer noopener" class="external autonumber" href="https://www.example.com">[1]</a>
+</p>
+!! end
+
+!! test
+Parsoid extlink with _self target
+!! options
+externallinktarget=_self
+!! wikitext
+[https://www.example.com]
+!! html/parsoid
+<p><a rel="mw:ExtLink nofollow" href="https://www.example.com" class="external autonumber" target="_self"></a></p>
+!! html/php
+<p><a target="_self" rel="nofollow" class="external autonumber" href="https://www.example.com">[1]</a>
+</p>
+!! end
 
 ###
 ### Quotes
