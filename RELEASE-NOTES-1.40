@@ -81,6 +81,8 @@ because of Phabricator reports.
   Parser::$mInputSize, Parser::$mInParse, Parser::$mFirstCall,
   Parser::$mGeneratedPPNodeCount
 * The MWGrants class, deprecated since 1.38, has been removed.
+* Global functions wfReadOnly and wfReadOnlyReason, deprecated since 1.38, have
+  been removed.
 * …
 
 === Deprecations in 1.40 ===
