@@ -13,10 +13,76 @@ PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 == MediaWiki 1.35.8 ==
 
 === Changes since MediaWiki 1.35.7 ===
-
+* Localisation updates.
+* (T311568) UploadBase::setTempFile() handle $tempPath being passed as null.
+* (T311559) SpecialListFiles: user parameter isn't always present.
+* (T311561) ImageListPager: Don't call htmlspecialchars() on null.
+* (T311920) SpecialBlockList: Prevent passing null to trim().
+* (T311921) SpecialUserrights: Don't pass null to str_replace.
+* (T311570) SpecialWithoutInterwiki: Don't pass null through to
+  Title::capitalize().
+* (T311574, T311576) SpecialLinkSearch: Don't pass null through to the parser.
+* (T312519, T312520) Parser::extensionSubstitution() Don't run substr() on null.
+* (T287564) populateInterwiki: Include not null columns iw_api/iw_wikiid.
+* (T312302) SpecialRedirect: Don't pass null to explode.
+* RemoveInvalidEmails: Fix quoting for postgres.
+* (T312678) import: UploadSourceAdapter::stream_read() don't pass null to
+  strlen().
+* (T312300) SpecialDiff: Don't pass null to explode().
+* (T312680) parser: Fix CoreParserFunctions::urlencode() null coalescence $arg.
+* (T289926) Handle null passed to wfShorthandToInteger() and Html::element().
+* (T289926) Ensure that strlen() does not get passed a (valid) null.
+* (T312301) SpecialDiff: Don't pass null to trim().
+* Hooks: Use more meaningful name for SkinAfterPortlet hook parameter.
+* (T289926) Ensure we don't pass null to mb_strlen.
+* (T312305, T311572, T311571, T311578) HtmlForm: Null coalescence in trim()
+  calls.
+* (T289926) site: Consistently return null from Site::getDomain().
+* (T307304, T289879) filebackend,jobqueue: Add signature for
+  FilterIterator::accept().
+* (T312183) rdbms: Adapt hasOrMadeRecentPrimaryChanges test mock for PHP 8.1.
+* Add application/vnd.ms-opentype to MIME list.
+* Allow composer/installers plugin in composer.json.
+* (T313663) Make HandlerTestTrait compatible with php8.1.
+* (T313663) [php8.1] Change override of $wgResourceBasePath for CSP tests.
 * Change type hints for BatchRowIterator and NotRecursiveIterator for
-* Parser will use current timestamp instead of null if passed a RevisionRecord
-  that does not have a timestamp.
+  compatibility with PHP 8.1.
+* (T313663) [php8] Don't use strlen on potentially null string.
+* (T313663) [php8.1] Suppress test warning about providing null.
+* (T313663) Parser will use current timestamp instead of null if passed a 
+  RevisionRecord that does not have a timestamp.
+* (T313663) Add explicit null check for $sha in FileBackend [php8.1].
+* (T313663) LogFormatter: Cast argument of ctype_digit to string [php8.1].
+* (T289879, T289926) Get rid of warnings on PHP 8.1.
+* rdbms: fix some PHP 8 warnings in Database/LoadBalancer/LBFactory.
+* (T313663) Avoid testing strlen on null in ApiQuerySiteinfo [php 8.1 compat].
+* Fix a couple deprecation warnings in the installer under PHP 8.1.
+* (T313663) Use default timezone UTC for SpecialWatchlistTest [php 8.1].
+* (T314096) Migrate use of ${var}-style string interpolation.
+* (T313663, T313662) Make default value for optional args {{PAGESINCAT:..}} be
+  '' not null.
+* (T314225) SpecialCategories: Null coalescene $par.
+* (T314099) User: Allow dynamic properties on PHP 8.2.
+* (T314404) SpecialGoToInterwiki: Null coalescene $par.
+* (T314397) SpecialBlock: Better handle null in getTargetUserTitle.
+* (T314099) phpunit: Fix trivial dynamic property usages in tests.
+* (T314405) UploadStash: Check if us_prop is set in the fileMetadata.
+* (T314550) SpecialMergeHistory: Set timestamp to '' if no mergepoint.
+* (T314551) SpecialMergeHistory: Set defaults for target and dest parameters.
+* api: Add rel=nofollow to help examples.
+* (T314824) tests: Update parser test after i18n change.
+* (T263927) Add autocomplete HTML attribute to common auth form fields.
+* (T307613) Validate length of user email on Special:ChangeEmail/
+  Special:CreateAccount.
+* (T314906, T314907) SpecialBlock: Set defaults for wpPageRestrictions and
+  wpNamespaceRestrictions.
+* (T315309) ImportStreamSource::newFromURL() Prevent passing null to fwrite.
+* (T315892) composer.json: Pin phpunit to 8.5.28.
+* (T229092) MigrateActors.php: ignore duplicate creations of actors.
+* (T313049) Bump wikimedia/parsoid to v0.12.3.
+* (T317750) session: Fix broken SessionTest case due to PHPUnit dependency
+  change.
+* (T318460) SpecialChangeEmail: Set default for returntoquery.
 
 == MediaWiki 1.35.7 ==
 
@@ -49,7 +115,6 @@ This is a security and maintenance release of the MediaWiki 1.35 branch.
 * (T296642) changetags: Fix management of a '0' tag.
 * (T311554) ChangeTags: Return early in formatSummaryRow() if $tags === null.
 * (T303033) Handle null in ChangeTags::modifyDisplayQuery.
-  compatibility with PHP 8.1
 
 == MediaWiki 1.35.6 ==
 
@@ -768,7 +833,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 * Added wikimedia/ip-utils 1.0.0.
-* Added wikimedia/parsoid 0.12.2.
+* Added wikimedia/parsoid 0.12.3.
 * Added wikimedia/services 2.0.1.
 * Added taylorhakes/promise-polyfill v8.1.3.
 * Added vuejs v2.6.11.
