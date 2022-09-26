@@ -30,12 +30,6 @@ use Wikimedia\UUID\GlobalIdGenerator;
  * @since 1.21
  */
 class JobQueueGroup {
-	/**
-	 * @var JobQueueGroup[]
-	 * @deprecated since 1.37
-	 */
-	protected static $instances = [];
-
 	/** @var MapCacheLRU */
 	protected $cache;
 
@@ -104,26 +98,6 @@ class JobQueueGroup {
 		$this->statsdDataFactory = $statsdDataFactory;
 		$this->wanCache = $wanCache;
 		$this->globalIdGenerator = $globalIdGenerator;
-	}
-
-	/**
-	 * @deprecated since 1.37 Use JobQueueGroupFactory::makeJobQueueGroup (hard deprecated since 1.39)
-	 * @param bool|string $domain Wiki domain ID
-	 * @return JobQueueGroup
-	 */
-	public static function singleton( $domain = false ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return MediaWikiServices::getInstance()->getJobQueueGroupFactory()->makeJobQueueGroup( $domain );
-	}
-
-	/**
-	 * Destroy the singleton instances
-	 *
-	 * @deprecated since 1.37 (hard deprecated since 1.39)
-	 * @return void
-	 */
-	public static function destroySingletons() {
-		wfDeprecated( __METHOD__, '1.37' );
 	}
 
 	/**
