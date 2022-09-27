@@ -1059,7 +1059,6 @@ abstract class ParsoidHandler extends Handler {
 		PageConfig $pageConfig, array $attribs, array $revision
 	) {
 		$opts = $attribs['opts'];
-		$source = $opts['updates']['variant']['source'] ?? null;
 		$target = $opts['updates']['variant']['target'] ??
 			$attribs['envOptions']['htmlVariantLanguage'];
 
@@ -1069,15 +1068,7 @@ abstract class ParsoidHandler extends Handler {
 			);
 		}
 
-		if ( !$this->siteConfig->langConverterEnabledForLanguage(
-			$pageConfig->getPageLanguage()
-		) ) {
-			throw new HttpException(
-				'LanguageConversion is not enabled on this article.', 400
-			);
-		}
-
-		$parsoid = $this->newParsoid();
+		$pageIdentity = $this->tryToCreatePageIdentity( $attribs );
 
 		$pb = new PageBundle(
 			$revision['html']['body'],
@@ -1087,15 +1078,18 @@ abstract class ParsoidHandler extends Handler {
 			$revision['html']['headers'] ?? null,
 			$revision['contentmodel'] ?? null
 		);
-		$out = $parsoid->pb2pb(
-			$pageConfig, 'variant', $pb,
-			[
-				'variant' => [
-					'source' => $source,
-					'target' => $target,
-				]
-			]
-		);
+
+		$languageVariantConverter = MediaWikiServices::getInstance()
+			->getHTMLTransformFactory()
+			->getLanguageVariantConverter( $pageIdentity );
+		$languageVariantConverter->setPageConfig( $pageConfig );
+		try {
+			$out = $languageVariantConverter->convertPageBundleVariant( $pb, $target );
+		} catch ( InvalidArgumentException $e ) {
+			throw new HttpException(
+				'LanguageConversion is not enabled on this article.', 400
+			);
+		}
 
 		$response = $this->getResponseFactory()->createJson( $out->responseData() );
 		ParsoidFormatHelper::setContentType(
