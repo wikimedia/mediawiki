@@ -3789,9 +3789,9 @@ class Parser {
 		# Register the file as a dependency...
 		$this->mOutput->addImage( $link->getDBkey(), $time, $sha1 );
 		if ( $file && !$link->isSameLinkAs( $file->getTitle() ) ) {
-			# Update fetched file title
-			$page = $file->getTitle();
-			$this->mOutput->addImage( $page->getDBkey(), $time, $sha1 );
+			# Update fetched file title after resolving redirects, etc.
+			$link = $file->getTitle();
+			$this->mOutput->addImage( $link->getDBkey(), $time, $sha1 );
 		}
 
 		$title = Title::castFromLinkTarget( $link ); // for return type compat
