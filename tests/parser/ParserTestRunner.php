@@ -1212,9 +1212,6 @@ class ParserTestRunner {
 		if ( isset( $opts['maxtemplatedepth'] ) ) {
 			$options->setMaxTemplateDepth( $opts['maxtemplatedepth'] );
 		}
-		if ( isset( $opts['externallinktarget'] ) ) {
-			$options->setExternalLinkTarget( $opts['externallinktarget'] );
-		}
 
 		return [ $title, $options, $revProps['revid'] ];
 	}
@@ -2048,6 +2045,10 @@ class ParserTestRunner {
 			// Test with legacy encoding by default until HTML5 is very stable and default
 			'wgFragmentMode' => [ 'legacy' ],
 		];
+
+		if ( isset( $opts['externallinktarget'] ) ) {
+			$setup['wgExternalLinkTarget'] = self::getOptionValue( 'externallinktarget', $opts, '' );
+		}
 
 		$nonIncludable = self::getOptionValue( 'wgNonincludableNamespaces', $opts, false );
 		if ( $nonIncludable !== false ) {
