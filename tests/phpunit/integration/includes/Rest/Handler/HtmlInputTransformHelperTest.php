@@ -827,8 +827,10 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testResponseWithRenderIDFallbackToParserCache() {
-		$page = $this->getExistingTestPage();
-		$oldWikitext = $page->getContent()->serialize();
+		// use wikitext that would be normalized without selser.
+		$oldWikitext = '<p >testing</P>';
+		$rev = $this->editPage( __METHOD__, $oldWikitext )->value['revision-record'];
+		$page = $rev->getPage();
 
 		$access = $this->getServiceContainer()->getParsoidOutputAccess();
 
@@ -850,8 +852,35 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$helper->init( $page, $body, $params );
 		$content = $helper->getContent();
 
-		// XXX: Would be nice if we could check that selser actually kicked in.
-		//      Right now we are just checking that the above doesn't throw.
+		// The wikitext should not have been normalized by re-serialization
+		$this->assertSame( $oldWikitext, $content->serialize() );
+	}
+
+	public function testResponseWithRevisionIDFallbackToRendering() {
+		// use wikitext that would be normalized without selser.
+		$oldWikitext = '<p >testing</P>';
+		$rev = $this->editPage( __METHOD__, $oldWikitext )->value['revision-record'];
+		$page = $rev->getPage();
+
+		$access = $this->getServiceContainer()->getParsoidOutputAccess();
+
+		$popt = ParserOptions::newFromAnon();
+		$pout = $access->getParserOutput( $page, $popt )->getValue();
+		$html = $pout->getRawText();
+
+		// Load the original data based on the ETag
+		$body = [ 'html' => $html, 'original' => [ 'revid' => $rev->getId() ] ];
+		$params = [];
+
+		$helper = $this->newHelper();
+
+		// We are asking for a stash key that is not in the stash.
+		// However, a rendering with the corresponding key is in the ParserCache.
+		// Because of this, the code below will not throw to trigger a 412 response.
+		$helper->init( $page, $body, $params );
+		$content = $helper->getContent();
+
+		// The wikitext should not have been normalized by re-serialization
 		$this->assertSame( $oldWikitext, $content->serialize() );
 	}
 
