@@ -301,7 +301,7 @@
 	"missingarticle-rev": "(chanjman # : $1)",
 	"missingarticle-diff": "(Diferans : $1, $2)",
 	"readonly_lag": "Bazdone a bloke otomatikman pandan lòt sèvè segondè yo ap travay pou bay lanmen nan sèvè prensipal la.",
-	"internalerror": "Erè nan sistèm la.",
+	"internalerror": "Erè nan sistèm la",
 	"internalerror_info": "Erè nan sistèm la : $1",
 	"filecopyerror": "Nou pa kapab kopye fichye  « $1 » nan « $2 ».",
 	"filerenameerror": "Nou pa kapab bay lòt non « $2 » pou fichye « $1 ».",
