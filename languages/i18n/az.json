@@ -280,7 +280,7 @@
 	"versionrequired": "MediaViki $1 versiyası lazımdır",
 	"versionrequiredtext": "Bu səhifəni istifadə etmək üçün MediaVikinin $1 versiyası tələb olunur.\n\n[[Special:Version|Versiya səhifəsinə]] bax.",
 	"ok": "Oldu",
-	"pagetitle": "$1 - {{SITENAME}}",
+	"pagetitle": "$1 — {{SITENAME}}",
 	"backlinksubtitle": "← $1",
 	"retrievedfrom": "Mənbə — \"$1\"",
 	"youhavenewmessages": "{{PLURAL:$3|$3}} $1 var ($2).",
