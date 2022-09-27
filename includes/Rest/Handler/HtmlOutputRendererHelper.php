@@ -216,13 +216,22 @@ class HtmlOutputRendererHelper {
 				$parserOptions->setTargetLanguage( $this->pageLanguage );
 			}
 
-			if ( $this->page instanceof PageRecord && $this->page->exists() ) {
+			// If we have a revision and the ID is 0 or null, then it's a fake revision
+			// representing a preview.
+			$fakeRevision = ( $this->revision && $this->revision->getId() < 1 );
+
+			// NOTE: ParsoidOutputAccess::getParserOutput() should be used for revisions
+			//       that comes from the database. Either this revision is null to indicate
+			//       the current revision or the revision must have an ID.
+			if ( $this->page instanceof PageRecord && !$fakeRevision ) {
 				$status = $this->parsoidOutputAccess->getParserOutput(
 					$this->page,
 					$parserOptions,
 					$this->revision
 				);
 			} else {
+				// Here, we have a revision object that has no revision, so it's a fake revision
+				// for example: on page previews.
 				$status = $this->parsoidOutputAccess->parse(
 					$this->page,
 					$parserOptions,
