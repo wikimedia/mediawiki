@@ -238,7 +238,7 @@ class ParserTestsMaintenance extends Maintenance {
 			'html2html' => $this->hasOption( 'html2html' ),
 			'numchanges' => $this->getOption( 'numchanges', 20 ),
 			'selser' => $selserOpt,
-			'changetree' => json_decode( $this->getOption( 'changetree', null ), true ),
+			'changetree' => json_decode( $this->getOption( 'changetree', '' ), true ),
 			'knownFailures' => $this->booleanOption( $this->getOption( 'knownFailures', true ) ),
 			'updateKnownFailures' => $this->hasOption( 'updateKnownFailures' )
 		] );
