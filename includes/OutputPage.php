@@ -153,7 +153,7 @@ class OutputPage extends ContextSource {
 	protected $mIndicators = [];
 
 	/**
-	 * @var array Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page')
+	 * @var string[] Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page')
 	 */
 	private $mLanguageLinks = [];
 
@@ -181,7 +181,7 @@ class OutputPage extends ContextSource {
 	protected $mAdditionalHtmlClasses = [];
 
 	/**
-	 * @var array Array of elements in "<head>". Parser might add its own headers!
+	 * @var string[] Array of elements in "<head>". Parser might add its own headers!
 	 * @deprecated since 1.38; will be made private (T301020)
 	 */
 	protected $mHeadItems = [];
@@ -701,7 +701,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get an array of head items
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	public function getHeadItemsArray() {
 		return $this->mHeadItems;
