@@ -43,7 +43,9 @@ final class PageBundleParserOutputConverter {
 			self::PARSOID_PAGE_BUNDLE_KEY,
 			[
 				'parsoid' => $pageBundle->parsoid,
-				'mw' => $pageBundle->mw
+				'mw' => $pageBundle->mw,
+				'version' => $pageBundle->version,
+				'headers' => $pageBundle->headers
 			]
 		);
 
@@ -62,7 +64,9 @@ final class PageBundleParserOutputConverter {
 		return new PageBundle(
 			$parserOutput->getRawText(),
 			$pageBundleData['parsoid'] ?? [],
-			$pageBundleData['mw'] ?? []
+			$pageBundleData['mw'] ?? [],
+			$pageBundleData['version'] ?? null,
+			$pageBundleData['headers'] ?? []
 		);
 	}
 

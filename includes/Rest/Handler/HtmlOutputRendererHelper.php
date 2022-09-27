@@ -23,6 +23,7 @@ namespace MediaWiki\Rest\Handler;
 
 use IBufferingStatsdDataFactory;
 use Language;
+use LogicException;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
@@ -255,6 +256,32 @@ class HtmlOutputRendererHelper {
 		}
 
 		return $this->parserOutput;
+	}
+
+	/**
+	 * The content language of the HTML output after parsing.
+	 *
+	 * @return string
+	 */
+	public function getHtmlOutputContentLanguage(): string {
+		if ( $this->parserOutput ) {
+			$pageBundleData = $this->parserOutput->getExtensionData(
+				PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY
+			);
+		} else {
+			$pageBundleData = $this->getHtml()->getExtensionData(
+				PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY
+			);
+		}
+
+		// XXX: We need a canonical way of getting the output language from
+		//      ParserOutput since we may not be getting parser outputs from
+		//		Parsoid always in the future.
+		if ( !isset( $pageBundleData['headers']['content-language'] ) ) {
+			throw new LogicException( 'Failed to find content language in page bundle data' );
+		}
+
+		return $pageBundleData['headers']['content-language'];
 	}
 
 }
