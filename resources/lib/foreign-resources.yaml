@@ -240,11 +240,6 @@ jquery.i18n:
     jquery.i18n-*/README.md:
     jquery.i18n-*/src:
 
-jquery.throttle-debounce:
-  type: file
-  src: https://raw.githubusercontent.com/cowboy/jquery-throttle-debounce/v1.1/jquery.ba-throttle-debounce.js
-  integrity: sha384-ULOy4DbAghrCqRcrTJLXOY9e4gDpWh0BeEf6xMSL0VtNudXWggcb6AmrVrl4KDAP
-
 # TODO: jquery.ui (!)
 
 moment:
