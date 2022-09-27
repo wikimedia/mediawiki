@@ -10,6 +10,8 @@ use ExtensionRegistry;
 use Generator;
 use HashBagOStuff;
 use Language;
+use LogicException;
+use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
@@ -469,6 +471,43 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		// also check that the correct wiki text content is returned in <section> tags
 		$this->assertStringContainsString( 'Hello ', $status->getValue()->getText() );
 		$this->assertStringContainsString( 'Goat', $status->getValue()->getText() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Rest\Handler\HtmlOutputRendererHelper::getHtmlOutputContentLanguage
+	 */
+	public function testGetHtmlOutputWithContentLanguage() {
+		$helper = new HtmlOutputRendererHelper(
+			$this->createNoOpMock( ParsoidOutputStash::class ),
+			$this->createNoOpMock( \IBufferingStatsdDataFactory::class ),
+			$this->getServiceContainer()->getParsoidOutputAccess()
+		);
+
+		$helper->init(
+			$this->getExistingTestPage( __METHOD__ ),
+			self::PARAM_DEFAULTS,
+			$this->newUser(),
+			null,
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' )
+		);
+
+		$contentLanguage = $helper->getHtmlOutputContentLanguage();
+		$this->assertSame( 'en', $contentLanguage );
+	}
+
+	/**
+	 * @covers \MediaWiki\Rest\Handler\HtmlOutputRendererHelper::getHtmlOutputContentLanguage
+	 * @dataProvider provideRevisionReferences()
+	 */
+	public function testGetHtmlOutputContentLanguageThrows( $revRef ) {
+		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
+		$rev = $revRef ? $revisions[ $revRef ] : null;
+
+		$helper = $this->newHelper();
+		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser(), $rev, null );
+
+		$this->expectException( LogicException::class );
+		$helper->getHtmlOutputContentLanguage();
 	}
 
 }
