@@ -844,7 +844,7 @@ return [
 					],
 					'default' => [
 						'MinimalPasswordLength' => [
-							'value' => 1,
+							'value' => 8,
 							'suggestChangeOnLogin' => true,
 						],
 						'PasswordCannotBeSubstringInUsername' => [

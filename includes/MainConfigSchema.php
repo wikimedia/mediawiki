@@ -6775,7 +6775,7 @@ class MainConfigSchema {
 					'MinimumPasswordLengthToLogin' => 1,
 				],
 				'default' => [
-					'MinimalPasswordLength' => [ 'value' => 1, 'suggestChangeOnLogin' => true ],
+					'MinimalPasswordLength' => [ 'value' => 8, 'suggestChangeOnLogin' => true ],
 					'PasswordCannotBeSubstringInUsername' => [
 						'value' => true,
 						'suggestChangeOnLogin' => true
