@@ -98,6 +98,7 @@ services:
   ```sh
   docker compose exec mediawiki /bin/bash /docker/install.sh
   ```
+  Windows user: make sure you run the above command in PowerShell as it does not work in Bash.
 
 Done! The wiki should now be available for you at <http://localhost:8080>.
 
