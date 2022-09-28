@@ -4148,6 +4148,25 @@ class Parser {
 	}
 
 	/**
+	 * Helper function to correctly set the target language and title of
+	 * a message based on the parser context. Most uses of system messages
+	 * inside extensions or parser functions should use this method (instead
+	 * of directly using `wfMessage`) to ensure that the cache is not
+	 * polluted.
+	 *
+	 * @param string $msg The localization message key
+	 * @param mixed ...$args Optional arguments for the message
+	 * @return Message
+	 * @since 1.40
+	 * @see https://phabricator.wikimedia.org/T202481
+	 */
+	public function msg( string $msg, ...$args ): Message {
+		return wfMessage( $msg, ...$args )
+			->inLanguage( $this->getTargetLanguage() )
+			->page( $this->getPage() );
+	}
+
+	/**
 	 * This function accomplishes several tasks:
 	 * 1) Auto-number headings if that option is enabled
 	 * 2) Add an [edit] link to sections for users who have enabled the option and can edit the page
