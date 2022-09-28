@@ -118,8 +118,8 @@ Release process:
     $ git remote update
     $ git checkout -B release -t origin/master
 
-    # Ensure tests pass
-    $ npm install && composer update && npm test && composer test
+    # Clean install npm dependencies. Update Composer dependecies. And ensure tests pass
+    $ npm ci && composer update && npm test && composer test
 
     # Update release notes
     # Copy the resulting list into a new section at the top of History.md and edit
@@ -129,20 +129,20 @@ Release process:
     # * ### Features
     # * ### Styles
     # * ### Code
-    $ git log --format='* %s (%aN)' --no-merges --reverse v$(node -e 'console.log(require("./package.json").version);')...HEAD | grep -v "Localisation updates from" | sort
+    $ git log --format='* %s (%aN)' --no-merges v$(node -e 'console.log(require("./package").version);')...HEAD | grep -v "Localisation updates from" | sort
     $ edit History.md
 
     # Update the version number (change 'patch' to 'minor' if you've made breaking changes):
     $ npm version patch --git-tag-version=false
 
     $ git add -p
-    $ git commit -m "Tag vX.X.X"
+    $ git commit -m "Tag v$(node -e 'console.log(require("./package").version);')"
     $ git review
 
     # After merging:
     $ git remote update
     $ git checkout origin/master
-    $ git tag "vX.X.X"
+    $ git tag "v$(node -e 'console.log(require("./package").version);')"
     $ npm run publish-build && git push --tags && npm publish
 
 </pre>

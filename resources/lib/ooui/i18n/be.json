@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Artificial123",
 			"Artsiom91",
 			"Chadyka",
@@ -14,7 +15,7 @@
 	"ooui-outline-control-remove": "Выдаліць элемент",
 	"ooui-toolbar-more": "Яшчэ",
 	"ooui-toolgroup-expand": "Яшчэ",
-	"ooui-toolgroup-collapse": "Менш",
+	"ooui-toolgroup-collapse": "Меней",
 	"ooui-item-remove": "Выдаліць",
 	"ooui-dialog-message-accept": "ОК",
 	"ooui-dialog-message-reject": "Адмяніць",

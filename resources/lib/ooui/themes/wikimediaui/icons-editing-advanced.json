@@ -115,6 +115,12 @@
 				"rtl": "images/icons/outline-rtl.svg"
 			}
 		},
+		"palette": {
+			"file": {
+				"ltr": "images/icons/palette-ltr.svg",
+				"rtl": "images/icons/palette-rtl.svg"
+			}
+		},
 		"paste": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/paste-ltr.svg",

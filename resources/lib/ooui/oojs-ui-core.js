@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.44.3
+ * OOUI v0.45.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-08-17T13:09:28Z
+ * Date: 2022-09-28T14:26:11Z
  */
 ( function ( OO ) {
 
@@ -616,13 +616,7 @@ OO.ui.Element = function OoUiElement( config ) {
 	// Initialization
 	var doc = OO.ui.Element.static.getDocument( this.$element );
 	if ( Array.isArray( config.classes ) ) {
-		this.$element.addClass(
-			// Remove empty strings to work around jQuery bug
-			// https://github.com/jquery/jquery/issues/4998
-			config.classes.filter( function ( val ) {
-				return val;
-			} )
-		);
+		this.$element.addClass( config.classes );
 	}
 	if ( config.id ) {
 		this.setElementId( config.id );

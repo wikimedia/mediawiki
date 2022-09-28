@@ -5,61 +5,101 @@ Ed Sanders <esanders@wikimedia.org>
 James D. Forrester <jforrester@wikimedia.org>
 Kirsten Menger-Anderson <kmenger@wikimedia.org>
 Kunal Mehta <legoktm@gmail.com>
-Moriel Schottlender <moriel@gmail.com>
+Moriel Schottlender <mschottlender@wikimedia.org>
 Prateek Saxena <prtksxna@gmail.com>
-Roan Kattouw <roan@wikimedia.org>
-Rob Moen <rmoen@wikimedia.org>
+Roan Kattouw <roan.kattouw@gmail.com>
+Thiemo Kreuz <thiemo.kreuz@wikimedia.de>
 Timo Tijhof <krinklemail@gmail.com>
-Trevor Parscal <trevor@wikimedia.org>
+Trevor Parscal <trevorparscal@gmail.com>
 Volker E. <volker.e@wikimedia.org>
 
 Patch Contributors (minor contributors, alphabetically)
 
+Adam Wight <adam.wight@wikimedia.de>
+Akinwale Alagbe <akalagbe@microsoft.com>
 Alangi Derick <alangiderick@gmail.com>
-Alex Monk <krenair@wikimedia.org>
+Alex Monk <krenair@gmail.com>
 Amir E. Aharoni <aaharoni@wikimedia.org>
 Amir Sarabadani <Ladsgroup@gmail.com>
 Andrew Garrett <agarrett@wikimedia.org>
 Andrew Green <andrew.green.df@gmail.com>
+Andrew Kostka <andrew.kostka@wikimedia.de>
 Antoine Musso <hashar@free.fr>
 Brad Jorsch <bjorsch@wikimedia.org>
+Brian Wolff <bawolff+wn@gmail.com>
 Brion Vibber <brion@users.mediawiki.org>
 C. Scott Ananian <cscott@cscott.net>
 Chad Horohoe <chadh@wikimedia.org>
-codynguyen1116 <samanthanguyen1116@gmail.com>
+Christian Williams <orbit@framezero.com>
+Daimona Eaytoy <daimona.wiki@gmail.com>
+DannyS712 <dannys712.wiki@gmail.com>
+David Barratt <dbarratt@wikimedia.org>
+David Chan <david@troi.org>
 David Lynch <dlynch@wikimedia.org>
 Derk-Jan Hartman <hartman.wiki@gmail.com>
-eranroz <eranroz89@gmail.com>
+Ebrahim Byagowi <ebrahim@gnu.org>
 Erick Guan <fantasticfears@gmail.com>
 Erik Moeller <erik@wikimedia.org>
 Florian <florian.schmidt.stargatewissen@gmail.com>
+Fomafix <fomafix@googlemail.com>
+Francisco Dans <fdans@wikimedia.org>
+Func <Funcer@outlook.com>
+Gabriel Birke <gabriel.birke@wikimedia.de>
 Geoffrey Mon <geofbot@gmail.com>
+Gergő Tisza <tgr.huwiki@gmail.com>
 Gilles Dubuc <gdubuc@wikimedia.org>
+Hagar Shilo <strayblues@gmail.com>
 Huji Lee <huji.huji@gmail.com>
 Inez Korczyński <inez@wikia-inc.com>
 IvanFon <ivanfonseca55@gmail.com>
 Jon Robson <jrobson@wikimedia.org>
 Juliusz Gonera <jgonera@wikimedia.org>
 Kartik Mistry <kartik.mistry@gmail.com>
-Kyle Florence <kflorence@wikia-inc.com>
+Klein Muçi <kleinmuci@gmail.com>
+Kosta Harlan <kharlan@wikimedia.org>
+Kyle Florence <kyle.florence@gmail.com>
 Leszek Manicki <leszek.manicki@wikimedia.de>
+Luca Mauri <luca.mauri@gmail.com>
+Lucas Werkmeister <mail@lucaswerkmeister.de>
 Marc A. Pelletier <marc@uberbox.org>
 Mark Holmquist <mtraceur@member.fsf.org>
-Matthew Flaschen <mflaschen@wikimedia.org>
+Matthew Flaschen <matthew.flaschen@gatech.edu>
 May Tee-Galloway <mgalloway@wikimedia.org>
+Michael Große <mic.grosse@googlemail.com>
 Mr. Stradivarius <misterstrad@gmail.com>
-Niklas Laxström <nlaxstrom@wikimedia.org>
-Nirzar Pangarkar <nirzardp@gmail.com>
+Niklas Laxström <niklas.laxstrom@gmail.com>
 Ori Livneh <ori@wikimedia.org>
 Paladox <thomasmulhall410@yahoo.com>
 Pau Giner <pau.giner@gmail.com>
+Phantom42 <nikitav30@gmail.com>
 Ricordisamoa <ricordisamoa@openmailbox.org>
-rillke <rillke@wikipedia.de>
-Ryan Kaldari <rkaldari@wikimedia.org>
+Rob Moen <rmoen@mediawiki.org>
+STran <stran@wikimedia.org>
 Sam Reed <reedy@wikimedia.org>
+Sam Wilson <sam@samwilson.id.au>
+Simone This Dot <simone@thisdot.co>
+Sohom Datta <sohom.datta@learner.manipal.edu>
+Southparkfan <southparkfan223@hotmail.com>
 Stephane Bisson <sbisson@wikimedia.org>
+Stephen Niedzielski <stephen@niedzielski.com>
 Sucheta Ghoshal <sghoshal@wikimedia.org>
+Svantje Lilienthal <svantje.lilienthal@wikimedia.de>
 Thalia Chan <thalia.e.chan@googlemail.com>
+Tim Eulitz <tim.eulitz@wikimedia.de>
+Tulsi Bhagat <Tulsibhagat50@gmail.com>
+Umherirrender <umherirrender_de.wp@web.de>
 Victor Barbu <victorbarbu08@gmail.com>
-Wei-Ko Kao <othree@gmail.com>
+WMDE-Fisch <christoph.jauera@wikimedia.de>
+Zach <terracodes@tools.wmflabs.org>
+codynguyen1116 <samanthanguyen1116@gmail.com>
+edwintam <Edwin.Tam@microsoft.com>
+eranroz <eranroz89@gmail.com>
+gtzatchkova <guergana.tzatchkova@wikimedia.de>
+kaldari <rkaldari@wikimedia.org>
+lens0021 <lorentz0021@gmail.com>
+mainframe98 <k.s.werf@hotmail.com>
+nirzar <nirzardp@gmail.com>
+rillke <rillke@wikipedia.de>
+srishakatux <srishakatux@gmail.com>
+tjones <tjones@wikimedia.org>
 Željko Filipin <zeljko.filipin@gmail.com>
