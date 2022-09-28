@@ -907,4 +907,15 @@ class SpecialContributions extends IncludableSpecialPage {
 	protected function getGroupName() {
 		return 'users';
 	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getShortDescription( string $path = '' ): string {
+		$lowerPath = strtolower( explode( '/', $path )[0] );
+		$shortKey = 'special-tab-' . $lowerPath;
+		$shortKey .= '-short';
+		$msgShort = $this->msg( $shortKey );
+		return $msgShort->text();
+	}
 }

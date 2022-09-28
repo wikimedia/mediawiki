@@ -1,0 +1,21 @@
+<div class="mw-contribute-wrapper">
+	<div id="mw-contribute-tabs-content" class="mw-contribute-tabs-content">
+		<div id="mw-contribute-cards" class="mw-contribute-content-area">
+			{{#cards}}
+			{{#action}}
+			<a href="{{action}}" class="mw-contribute-card">
+			{{/action}}
+				<div class="mw-contribute-card-content">
+					<div class="mw-contribute-card-title"><span class="mw-ui-icon mw-ui-icon-{{icon}} mw-contribute-card-icon"></span>{{title}}</div>
+					<div class="mw-contribute-card-description">{{description}}</div>
+					<div class="mw-link mw-contribute-card-action">
+					{{#action}}
+						{{actionText}}
+					{{/action}}
+					</div>
+				</div>
+			</a>
+			{{/cards}}
+		</div>
+	</div>
+</div>

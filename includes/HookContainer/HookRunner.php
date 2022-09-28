@@ -77,6 +77,7 @@ class HookRunner implements
 	\MediaWiki\Content\Hook\PageContentLanguageHook,
 	\MediaWiki\Content\Hook\PlaceNewSectionHook,
 	\MediaWiki\Content\Hook\SearchDataForIndexHook,
+	\MediaWiki\Specials\Contribute\Hook\ContributeCardsHook,
 	\MediaWiki\Diff\Hook\AbortDiffCacheHook,
 	\MediaWiki\Diff\Hook\ArticleContentOnDiffHook,
 	\MediaWiki\Diff\Hook\DifferenceEngineAfterLoadNewTextHook,
@@ -1272,6 +1273,13 @@ class HookRunner implements
 		return $this->container->run(
 			'ContribsPager::reallyDoQuery',
 			[ &$data, $pager, $offset, $limit, $descending ]
+		);
+	}
+
+	public function onContributeCards( &$cards ) {
+		return $this->container->run(
+			'ContributeCards',
+			[ &$cards ]
 		);
 	}
 

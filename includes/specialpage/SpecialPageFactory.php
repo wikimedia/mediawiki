@@ -1004,6 +1004,9 @@ class SpecialPageFactory {
 		'PageData' => [
 			'class' => \SpecialPageData::class,
 		],
+		'Contribute' => [
+			'class' => \SpecialContribute::class,
+		],
 	];
 
 	/** @var array Special page name => class name */
