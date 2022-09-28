@@ -176,6 +176,7 @@ class SpecialVersion extends SpecialPage {
 					$out->addWikiTextAsInterface( '{{int:version-license-not-found}}' );
 				}
 				break;
+
 			default:
 				$out->addModuleStyles( 'mediawiki.special' );
 				$out->addWikiTextAsInterface(
@@ -681,8 +682,8 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML output
 	 */
 	protected function getParserFunctionHooks() {
-		$fhooks = $this->parser->getFunctionHooks();
-		if ( count( $fhooks ) ) {
+		$funcHooks = $this->parser->getFunctionHooks();
+		if ( count( $funcHooks ) ) {
 			$out = Html::rawElement(
 				'h2',
 				[
@@ -697,7 +698,7 @@ class SpecialVersion extends SpecialPage {
 				)
 			);
 
-			$out .= $this->listToText( $fhooks );
+			$out .= $this->listToText( $funcHooks );
 		} else {
 			$out = '';
 		}
@@ -938,7 +939,8 @@ class SpecialVersion extends SpecialPage {
 	 */
 	private function getHooks() {
 		if ( $this->getConfig()->get( MainConfigNames::SpecialVersionShowHooks ) &&
-		count( $this->getConfig()->get( MainConfigNames::Hooks ) ) ) {
+			count( $this->getConfig()->get( MainConfigNames::Hooks ) )
+		) {
 			$myHooks = $this->getConfig()->get( MainConfigNames::Hooks );
 			ksort( $myHooks );
 
@@ -1133,9 +1135,7 @@ class SpecialVersion extends SpecialPage {
 			// Don't output stuff like "Closure$;1028376090#8$48499d94fe0147f7c633b365be39952b$"
 			return 'Closure';
 		} elseif ( is_object( $list ) ) {
-			$class = wfMessage( 'parentheses' )->params( get_class( $list ) )->escaped();
-
-			return $class;
+			return wfMessage( 'parentheses' )->params( get_class( $list ) )->escaped();
 		} elseif ( !is_array( $list ) ) {
 			return $list;
 		} else {
@@ -1154,9 +1154,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return bool|string Sha1 of commit HEAD points to
 	 */
 	public static function getGitHeadSha1( $dir ) {
-		$repo = new GitInfo( $dir );
-
-		return $repo->getHeadSHA1();
+		return ( new GitInfo( $dir ) )->getHeadSHA1();
 	}
 
 	/**
@@ -1164,8 +1162,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return bool|string Branch currently checked out
 	 */
 	public static function getGitCurrentBranch( $dir ) {
-		$repo = new GitInfo( $dir );
-		return $repo->getCurrentBranch();
+		return ( new GitInfo( $dir ) )->getCurrentBranch();
 	}
 
 	/**
@@ -1185,7 +1182,7 @@ class SpecialVersion extends SpecialPage {
 		];
 
 		$language = $this->getLanguage();
-		$thAttribures = [
+		$thAttributes = [
 			'dir' => $language->getDir(),
 			'lang' => $language->getHtmlCode()
 		];
@@ -1205,12 +1202,12 @@ class SpecialVersion extends SpecialPage {
 			Html::openElement( 'tr' ) .
 			Html::element(
 				'th',
-				$thAttribures,
+				$thAttributes,
 				$this->msg( 'version-entrypoints-header-entrypoint' )->text()
 			) .
 			Html::element(
 				'th',
-				$thAttribures,
+				$thAttributes,
 				$this->msg( 'version-entrypoints-header-url' )->text()
 			) .
 			Html::closeElement( 'tr' );
