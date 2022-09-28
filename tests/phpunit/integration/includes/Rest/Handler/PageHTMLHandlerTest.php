@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use DeferredUpdates;
 use Exception;
-use ExtensionRegistry;
 use HashBagOStuff;
 use HashConfig;
 use MediaWiki\Config\ServiceOptions;
@@ -56,15 +55,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$this->parserCacheBagOStuff = new HashBagOStuff();
-	}
-
-	/**
-	 * Checks whether Parsoid extension is installed and skips the test if it's not.
-	 */
-	private function checkParsoidInstalled() {
-		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Parsoid' ) ) {
-			$this->markTestSkipped( 'Skip test, since parsoid is not configured' );
-		}
 	}
 
 	/**
@@ -129,7 +119,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExecuteWithHtml() {
-		$this->checkParsoidInstalled();
+		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
 		$this->assertTrue(
 			$this->editPage( $page, self::WIKITEXT )->isGood(),
@@ -152,7 +142,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExecuteHtmlOnly() {
-		$this->checkParsoidInstalled();
+		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
 		$this->assertTrue(
 			$this->editPage( $page, self::WIKITEXT )->isGood(),
@@ -175,7 +165,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testEtagLastModified() {
-		$this->checkParsoidInstalled();
+		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 
 		$time = time();
 		MWTimestamp::setFakeTime( $time );
@@ -265,7 +255,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		Exception $parsoidException,
 		Exception $expectedException
 	) {
-		$this->checkParsoidInstalled();
+		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 
 		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
 		$request = new RequestData(

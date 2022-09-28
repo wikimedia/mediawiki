@@ -6,7 +6,6 @@ use BagOStuff;
 use DeferredUpdates;
 use EmptyBagOStuff;
 use Exception;
-use ExtensionRegistry;
 use Generator;
 use HashBagOStuff;
 use Language;
@@ -103,9 +102,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
-		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Parsoid' ) ) {
-			$this->markTestSkipped( 'Parsoid is not configured' );
-		}
+		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 
 		$this->overrideConfigValue( MainConfigNames::CacheEpoch, self::CACHE_EPOCH );
 

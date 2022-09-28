@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use DeferredUpdates;
 use Exception;
-use ExtensionRegistry;
 use HashBagOStuff;
 use HashConfig;
 use MediaWiki\Config\ServiceOptions;
@@ -60,15 +59,6 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$this->parserCacheBagOStuff = new HashBagOStuff();
-	}
-
-	/**
-	 * Checks whether Parsoid extension is installed and skips the test if it's not.
-	 */
-	private function checkParsoidInstalled() {
-		if ( !ExtensionRegistry::getInstance()->isLoaded( 'Parsoid' ) ) {
-			$this->markTestSkipped( 'Skip test, since parsoid is not configured' );
-		}
 	}
 
 	/**
@@ -153,7 +143,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExecuteWithHtml() {
-		$this->checkParsoidInstalled();
+		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
 		$this->assertTrue(
 			$this->editPage( $page, self::WIKITEXT )->isGood(),
@@ -176,7 +166,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testExecuteHtmlOnly() {
-		$this->checkParsoidInstalled();
+		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
 		$this->assertTrue(
 			$this->editPage( $page, self::WIKITEXT )->isGood(),
@@ -199,7 +189,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testEtagLastModified() {
-		$this->checkParsoidInstalled();
+		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 
 		$time = time();
 		MWTimestamp::setFakeTime( $time );
@@ -284,7 +274,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		Exception $parsoidException,
 		Exception $expectedException
 	) {
-		$this->checkParsoidInstalled();
+		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 
 		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
 		$request = new RequestData(
