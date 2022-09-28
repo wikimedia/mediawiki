@@ -4,12 +4,13 @@ namespace MediaWiki\Tests\Maintenance;
 
 use Benchmarker;
 use MediaWikiCoversValidator;
+use PHPUnit\Framework\TestCase;
 use Wikimedia\TestingAccessWrapper;
 
 /**
- * @covers Benchmarker
+ * @covers \Benchmarker
  */
-class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
+class BenchmarkerTest extends TestCase {
 
 	use MediaWikiCoversValidator;
 
@@ -59,7 +60,7 @@ class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
 		$benchProxy = TestingAccessWrapper::newFromObject( $bench );
 		$benchProxy->defaultCount = 1;
 
-		$bench->expects( $this->exactly( 1 ) )->method( 'hasOption' )
+		$bench->expects( $this->once() )->method( 'hasOption' )
 			->willReturnMap( [
 				[ 'verbose', true ],
 			] );
@@ -112,9 +113,6 @@ class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
 		] ] );
 	}
 
-	/**
-	 * @covers Benchmarker::verboseRun
-	 */
 	public function testVerboseRun() {
 		$bench = $this->getMockBuilder( Benchmarker::class )
 			->onlyMethods( [ 'execute', 'output', 'hasOption', 'startBench', 'addResult' ] )
@@ -122,7 +120,7 @@ class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
 		$benchProxy = TestingAccessWrapper::newFromObject( $bench );
 		$benchProxy->defaultCount = 1;
 
-		$bench->expects( $this->exactly( 1 ) )->method( 'hasOption' )
+		$bench->expects( $this->once() )->method( 'hasOption' )
 			->willReturnMap( [
 				[ 'verbose', true ],
 			] );
