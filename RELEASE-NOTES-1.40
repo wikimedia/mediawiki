@@ -146,6 +146,8 @@ because of Phabricator reports.
   removed.
 * LoadBalancer::haveIndex() and ::isNonZeroLoad(), deprecated in 1.34,
   have been removed.
+* SpecialVersion::listToText() and SpecialVersion::arrayToString()
+  have become private or internal without deprecation.
 * The 'ParserTestFiles' key in the schema for extension.json has been removed.
   This was deprecated in 1.30 and the corresponding $wgParserTestFiles
   configuration variable has also been removed in this release.  Extensions
