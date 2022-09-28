@@ -424,6 +424,7 @@ class ParserOptions {
 	/**
 	 * Maximum recursion depth for templates within templates
 	 * @return int
+	 * @internal Only used by Parser (T318826)
 	 */
 	public function getMaxTemplateDepth() {
 		return $this->getOption( 'maxTemplateDepth' );
@@ -433,6 +434,7 @@ class ParserOptions {
 	 * Maximum recursion depth for templates within templates
 	 * @param int|null $x New value (null is no change)
 	 * @return int Old value
+	 * @internal Only used by ParserTestRunner (T318826)
 	 */
 	public function setMaxTemplateDepth( $x ) {
 		return $this->setOptionLegacy( 'maxTemplateDepth', $x );
@@ -521,6 +523,7 @@ class ParserOptions {
 	/**
 	 * Target attribute for external links
 	 * @return string|false
+	 * @internal Only set by installer (T317647)
 	 */
 	public function getExternalLinkTarget() {
 		return $this->getOption( 'externalLinkTarget' );
@@ -530,6 +533,7 @@ class ParserOptions {
 	 * Target attribute for external links
 	 * @param string|false|null $x New value (null is no change)
 	 * @return string Old value
+	 * @internal Only used by installer (T317647)
 	 */
 	public function setExternalLinkTarget( $x ) {
 		return $this->setOptionLegacy( 'externalLinkTarget', $x );
