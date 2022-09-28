@@ -153,10 +153,6 @@ For notes on 1.38.x and older releases, see HISTORY.
 === Action API changes in 1.39 ===
 * New `undeletetalk` parameter on action=undelete that allows you to restore
   all revisions of the associated talk page.
-* New `cancreateaccount` parameter on action=query&meta=userinfo that allows
-  you to check if the user can create an account. Some of the errors that have
-  previously been returned by action=query&list=users&usprop=cancreate are now
-  returned here.
 * …
 
 === Action API internal changes in 1.39 ===
