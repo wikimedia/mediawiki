@@ -105,7 +105,8 @@ because of Phabricator reports.
     It now emits deprecation warnings.
   - The protected Skin::lastModified is deprecated, and marked for @internal use
     and now emits deprecation warnings.
-* ParserOutput::{get,set}ExternalLinkTarget() has been deprecated and marked
+* ParserOutput::{get,set}ExternalLinkTarget() and
+  ParserOutput::{get,set}MaxTemplateDepth() have been deprecated and marked
   for @internal use only.
 * …
 
