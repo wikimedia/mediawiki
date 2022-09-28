@@ -2011,6 +2011,7 @@ return [
 			'resources/src/mediawiki.special/listFiles.less',
 			'resources/src/mediawiki.special/blocklist.less',
 			'resources/src/mediawiki.special/version.css',
+			'resources/src/mediawiki.special/contribute.less',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],

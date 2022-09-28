@@ -1,0 +1,54 @@
+/*!
+ * Styles for Special Contribute page.
+ */
+@import 'mediawiki.ui/variables.less';
+
+.mw-contribute-tab {
+	display: inline-block;
+}
+
+.mw-contribute-wrapper {
+	.mw-contribute-tabs-content {
+		background-color: @colorGray14;
+
+		.mw-contribute-content-area {
+			padding: 24px 16px;
+
+			.mw-contribute-card {
+				text-decoration: none;
+
+				&:hover {
+					text-decoration: none;
+				}
+
+				.mw-contribute-card-content {
+					background-color: #fff;
+					padding: 12px;
+					color: @colorGray2;
+					margin-bottom: 24px;
+					border-radius: 2px;
+					box-shadow: 0 1px 2px 0 rgba( 0, 0, 0, 0.1 );
+
+					.mw-contribute-card-title {
+						font-size: 16;
+						font-weight: bold;
+					}
+
+					.mw-contribute-card-icon {
+						padding-right: 8px;
+					}
+
+					.mw-contribute-card-description {
+						padding-left: 28px;
+						font-size: 14;
+					}
+
+					.mw-contribute-card-action {
+						color: @color-primary;
+						padding-left: 28px;
+					}
+				}
+			}
+		}
+	}
+}

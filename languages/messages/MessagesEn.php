@@ -412,6 +412,7 @@ $specialPageAliases = [
 	'ChangePassword'            => [ 'ChangePassword', 'ResetPass', 'ResetPassword' ],
 	'ComparePages'              => [ 'ComparePages' ],
 	'Confirmemail'              => [ 'ConfirmEmail' ],
+	'Contribute'                => [ 'Contribute' ],
 	'Contributions'             => [ 'Contributions', 'Contribs' ],
 	'CreateAccount'             => [ 'CreateAccount' ],
 	'Deadendpages'              => [ 'DeadendPages' ],
