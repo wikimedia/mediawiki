@@ -293,7 +293,6 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers Skin::makeLink
-	 * @covers Skin::applyLinkTitleAttribs
 	 * @dataProvider provideMakeLink
 	 * @param array $data
 	 * @param array $options
