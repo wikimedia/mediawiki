@@ -1159,8 +1159,10 @@ class Parser {
 	 * Get a language object for use in parser functions such as {{FORMATNUM:}}
 	 * @return Language
 	 * @since 1.7
+	 * @deprecated since 1.40; use ::getTargetLanguage() instead.
 	 */
 	public function getFunctionLang() {
+		wfDeprecated( __METHOD__, '1.40' );
 		return $this->getTargetLanguage();
 	}
 

@@ -697,7 +697,7 @@ class ParserOptions {
 	 *
 	 * @warning Calling this causes the parser cache to be fragmented by user language!
 	 * To avoid cache fragmentation, output should not depend on the user language.
-	 * Use Parser::getFunctionLang() or Parser::getTargetLanguage() instead!
+	 * Use Parser::getTargetLanguage() instead!
 	 *
 	 * @note This function will trigger a cache fragmentation by recording the
 	 * 'userlang' option, see optionUsed(). This is done to avoid cache pollution
@@ -718,7 +718,7 @@ class ParserOptions {
 	 *
 	 * @warning Calling this causes the parser cache to be fragmented by user language!
 	 * To avoid cache fragmentation, output should not depend on the user language.
-	 * Use Parser::getFunctionLang() or Parser::getTargetLanguage() instead!
+	 * Use Parser::getTargetLanguage() instead!
 	 *
 	 * @see getUserLangObj()
 	 *

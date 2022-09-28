@@ -219,6 +219,8 @@ because of Phabricator reports.
   getReadConnectionRef() and getWriteConnectionRef() are deprecated;
   the ConnectionManager methods they override had been deprecated already.
 * Database::wasErrorReissuable() is deprecated.
+* Parser::getFunctionLang() has been deprecated; use
+  Parser::getTargetLanguage() instead.
 * …
 
 === Other changes in 1.40 ===
