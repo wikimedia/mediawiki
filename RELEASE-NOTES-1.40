@@ -90,6 +90,8 @@ because of Phabricator reports.
   been removed.
 * JobQueueGroup::singleton() and ::destroySingletons(), deprecated since 1.37,
   have been removed.
+* LoadBalancer::haveIndex() and ::isNonZeroLoad(), deprecated in 1.34,
+  have been removed.
 * …
 
 === Deprecations in 1.40 ===
