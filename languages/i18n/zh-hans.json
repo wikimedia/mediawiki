@@ -298,7 +298,7 @@
 	"hidden-categories": "{{PLURAL:$1|隐藏分类}}",
 	"hidden-category-category": "隐藏分类",
 	"category-subcat-count": "{{PLURAL:$2|本分类只有以下子分类。|本分类有以下$1个子分类，共有$2个子分类。}}",
-	"category-subcat-count-limited": "此分类有以下$1个子分类或多个$1子分类。",
+	"category-subcat-count-limited": "此分类有以下{{PLURAL:$1|$1个子分类}}。",
 	"category-article-count": "{{PLURAL:$2|本分类只含有以下页面。|以下{{PLURAL:$1|页面|$1个页面}}属于本分类，共$2个页面。}}",
 	"category-article-count-limited": "以下{{PLURAL:$1|页面|$1个页面}}属于当前分类。",
 	"category-file-count": "{{PLURAL:$2|本分类只含有以下文件。|以下{{PLURAL:$1|文件|$1个文件}}属于本分类，共$2个文件。}}",
