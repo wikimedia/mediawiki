@@ -1,5 +1,16 @@
 = MediaWiki 1.39 =
 
+== MediaWiki 1.39.0-rc.1 ==
+
+=== Changes since MediaWiki 1.39.0-rc.0 ===
+* Localisation updates.
+* (T318754) WebInstallerOptions::addPersonalizationOptions(): Close fieldset
+* (T306802) docker: update to latest published images
+* (T318307) HTMLFormField::validate(): Update docs to permit all data types
+* (T318460) SpecialChangeEmail: Set default for returntoquery
+* (T318481) composer: Drop symfony/php73-polyfill
+* …
+
 == MediaWiki 1.39.0-rc.0 ==
 
 THIS IS NOT A RELEASE YET
@@ -19,62 +30,62 @@ Some specific notes for MediaWiki 1.39 upgrades are below:
 For notes on 1.38.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.39 ===
-* The default serialization method for file meta-data has been changed to JSON.
-  You can revert it to PHP by setting the 'useJsonMetadata' property to false in
-  $wgLocalFileRepo.
-* The DBO_SSL flag in $wgDBservers and $wgLBFactoryConf has been deprecated in
-  favour of a boolean "ssl" parameter.
-* $wgMangleFlashPolicy is deprecated and is no longer functional. Users who are
-  somehow still using Flash as a browser extension will be exposed to CSRF
-  vulnerabilities.
 
 ==== New configuration ====
-* $wgAutoCreateTempUser – configures automatic user creation on page save.
-* $wgCopyUploadAllowOnWikiDomainConfig – Configures if administrators can use
-  the MediaWiki:Copyupload-allowed-domains system message to define which
+* $wgAutoCreateTempUser – This configures automatic user creation on page save.
+* $wgCopyUploadAllowOnWikiDomainConfig – This configures if administrators can
+  use the MediaWiki:Copyupload-allowed-domains system message to define which
   domains can be used with the upload-by-url tool.
-* $wgLBFactoryConf['configCallback'] can be set to a callback function that
-  returns an array with keys to update in $wgLBFactoryConf. This can be used
-  to update the database configuration on the fly, e.g. to take replica hosts
-  out of rotation.
-* $wgCdnMatchParameterOrder can be set to false if MediaWiki is behind a CDN
-  that re-orders query parameters. This will make the code that matches request
-  URLs to canonical CDN URLs insensitive to parameter order.
-* $wgMultiShardSiteStats – split site_stats across multiple rows.
-  Only useful for very large, heavily edited wikis. (T306589)
+* $wgCdnMatchParameterOrder – This can be set to false if MediaWiki is behind a
+  CDN that re-orders query parameters. This will make the code that matches
+  request URLs to canonical CDN URLs insensitive to parameter order.
+* $wgMultiShardSiteStats – This allows you to split site_stats across multiple
+  rows. Only useful for very large, heavily edited wikis. (T306589)
 
 ==== Changed configuration ====
-* $wgInvalidUsernameCharacters now contains the char '>',
-  reserved delimiter for external user names.
+* $wgInvalidUsernameCharacters – This setting now contains the char '>', which
+  is now the reserved delimiter for external user names.
+* $wgLocalFileRepo – The default serialization method for file meta-data has
+  been changed to JSON. You can revert it to PHP by setting the property
+  'useJsonMetadata' to false.
+* $wgLBFactoryConf – The 'configCallback' flag can now be set to a callback
+  function that returns an array with keys to update in $wgLBFactoryConf. This
+  can be used to update the database configuration on the fly, e.g. to take
+  replica hosts out of rotation.
+* $wgDBservers and $wgLBFactoryConf – The DBO_SSL flag in has been deprecated in
+  favour of a boolean "ssl" parameter.
+* $wgObjectCaches – The 'globalKeyLB' and 'localKeyLB' flags are no longer
+  supported.
 
 ==== Removed configuration ====
-* $wgMultiContentRevisionSchemaMigrationStage - Migration is over, was
-  deprecated since 1.35.
-* $wgWikiFarmSiteDetector – experimental setting removed without replacement.
-  Use the MW_WIKI_NAME environment variable to specifiy the name of the site
-  to load configuration for. Using the WIKI_NAME environment variable for this
-  purpose is deprecated.
-* $wgParserCacheUseJson - the ParserCache now always uses JSON serialization.
+* $wgMultiContentRevisionSchemaMigrationStage - This transition flag, deprecated
+  since MediaWiki 1.35, has been removed; the data migration is over.
+* $wgActorTableSchemaMigrationStage - This transition flag has been removed; the
+  data migration is over.
+* $wgWikiFarmSiteDetector – This experimental setting has been removed without
+  replacement. Use the MW_WIKI_NAME environment variable to specifiy the name of
+  the site for which to load configuration. Using the WIKI_NAME environment
+  variable for this purpose is deprecated.
+* $wgParserCacheUseJson - The ParserCache now always uses JSON serialization.
   Reading old non-JSON cache entries is still supported. The setting had been
   deprecated since 1.36.
 * $wgAllowJavaUploads - To allow uploads of JAR files, remove application/java
   from $wgMimeTypeExclusions.
-* $wgMaxRedirects has been removed. This feature never worked as intended,
-  see T296430.
-* $wgElementTiming has been removed. This feature was experimental,
-  and disabled by default.
-* $wgPriorityHints and $wgPriorityHintsRatio have been removed.
-  This feature was experimental, and disabled by default.
-* $wgIncludeLegacyJavaScript has been removed. Note that no functionality
-  was removed in this release. Most former "wikibits" functions were removed
+* $wgMaxRedirects – This broken feature was removed, as it never worked as
+  intended (T296430).
+* $wgElementTiming – This experimental, default-disabled feature has been
+  removed without replacement.
+* $wgPriorityHints and $wgPriorityHintsRatio – The related experimental feature
+  has been removed without replacement.
+* $wgIncludeLegacyJavaScript – This flag has been removed, without loss of any
+  functionality in this release. Most former "wikibits" functions were removed
   after deprecation in previous releases. The remaining functions, such as
-  importScript, are available unconditionally.
-* $wgActorTableSchemaMigrationStage has been removed. Migration is over.
-* In $wgObjectCaches, globalKeyLB and localKeyLB are no longer supported.
-* $wgLegacySchemaConversion - This global configuration has been
-  removed because it was unused.
-* $wgInterwikiPrefixDisplayTypes - This global configuration has been
-  removed because it was unused.
+  importScript, are now available unconditionally.
+* $wgLegacySchemaConversion - This unused setting has been removed.
+* $wgInterwikiPrefixDisplayTypes - This unused setting has been removed.
+* $wgMangleFlashPolicy – This is no longer functional, and is now deprecated.
+  Users who are somehow still using Flash as a browser extension will be exposed
+  to CSRF vulnerabilities.
 
 === New user-facing features in 1.39 ===
 * Optional automatic user creation on page save ($wgAutoCreateTempUser)
@@ -213,7 +224,7 @@ because of Phabricator reports.
 * Changes to skins:
   - Skin::getCopyrightIcon(), ::getPoweredBy(), deprecated in 1.37 have been
     removed.
-  - Skin::bottomScripts soft deprecated in 1.37, was hard deprecated.
+  - Skin::bottomScripts, deprecated in 1.37, now emits deprecation notices.
     Skins using SkinTemplate must set bodyOnly as a skin option and
     remove lines of code generating html, body and head elements.
   - Skin::makeSearchButton and Skin::makeSearchInput were deprecated in 1.38.
@@ -412,7 +423,7 @@ because of Phabricator reports.
 * The global function wfGetDB() has been deprecated. Use
   LoadBalancer::getConnection() instead.
 * SpecialRedirectWithAction::__construct without SearchEngineFactory argument
-  is hard deprecated.
+  will now emit a deprecation notice.
 * Use of the SiteStatsUpdate constructor has been deprecated in favor of
   the ::factory() method.
 * AuthManager::checkAccountCreatePermissions has been deprecated. Use
@@ -548,7 +559,7 @@ because of Phabricator reports.
   warnings.
 * Instantiating HTMLCacheUpdate class, deprecated in 1.34, now emits deprecation
   warnings.
-* ISQLPlatform::tableNames() (implemented by IDatabase) is soft deprecated.
+* ISQLPlatform::tableNames() (implemented by IDatabase) is now deprecated.
   None of the tableName*() functions should be used by most users;
   if you absolutely must use raw SQL, write several tableName() calls instead.
 * Language::isWellFormedLanguageTag() has been deprecated in favor of
