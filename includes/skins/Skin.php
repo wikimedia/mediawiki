@@ -27,6 +27,9 @@ use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Skin\SkinComponent;
+use MediaWiki\Skin\SkinComponentFooter;
+use MediaWiki\Skin\SkinComponentLink;
+use MediaWiki\Skin\SkinComponentListItem;
 use MediaWiki\Skin\SkinComponentRegistry;
 use MediaWiki\Skin\SkinComponentRegistryContext;
 use MediaWiki\User\UserIdentity;
@@ -866,83 +869,44 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Helper function for mapping template data for use in legacy function
+	 *
+	 * @param string $dataKey
+	 * @param string $name
+	 * @return string
+	 */
+	private function getFooterTemplateDataItem( string $dataKey, string $name ) {
+		$footerData = $this->getComponent( 'footer' )->getTemplateData();
+		$items = $footerData[ $dataKey ]['array-items'] ?? [];
+		foreach ( $items as $item ) {
+			if ( $item['name'] === $name ) {
+				return $item['html'];
+			}
+		}
+		return '';
+	}
+
+	/**
 	 * @param string $type
 	 * @return string
 	 */
-	public function getCopyright( $type = 'detect' ) {
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		if ( $type == 'detect' ) {
-			if ( !$this->getOutput()->isRevisionCurrent()
-				&& !$this->msg( 'history_copyright' )->inContentLanguage()->isDisabled()
-			) {
-				$type = 'history';
-			} else {
-				$type = 'normal';
-			}
+	final public function getCopyright( $type = 'detect' ) {
+		if ( $type !== 'detect' ) {
+			wfDeprecated( __METHOD__ . ' with detect parameter', '1.40' );
 		}
-
-		if ( $type == 'history' ) {
-			$msg = 'history_copyright';
-		} else {
-			$msg = 'copyright';
-		}
-
-		$config = $this->getConfig();
-
-		if ( $config->get( MainConfigNames::RightsPage ) ) {
-			$title = Title::newFromText( $config->get( MainConfigNames::RightsPage ) );
-			$link = $linkRenderer->makeKnownLink( $title,
-				new HtmlArmor( $config->get( MainConfigNames::RightsText ) ?: $title->getText() )
-			);
-		} elseif ( $config->get( MainConfigNames::RightsUrl ) ) {
-			$link = Linker::makeExternalLink( $config->get( MainConfigNames::RightsUrl ),
-				$config->get( MainConfigNames::RightsText ) );
-		} elseif ( $config->get( MainConfigNames::RightsText ) ) {
-			$link = $config->get( MainConfigNames::RightsText );
-		} else {
-			# Give up now
-			return '';
-		}
-
-		// Allow for site and per-namespace customization of copyright notice.
-		$this->getHookRunner()->onSkinCopyrightFooter( $this->getTitle(), $type, $msg, $link );
-
-		return $this->msg( $msg )->rawParams( $link )->text();
+		return $this->getFooterTemplateDataItem( 'data-info', 'copyright' );
 	}
 
 	/**
 	 * Get the timestamp of the latest revision, formatted in user language
 	 *
+	 * @internal
+	 * @deprecated since 1.40
 	 * @return string
 	 */
 	protected function lastModified() {
-		$timestamp = $this->getOutput()->getRevisionTimestamp();
-		$user = $this->getUser();
-		$language = $this->getLanguage();
-
-		# No cached timestamp, load it from the database
-		if ( $timestamp === null ) {
-			$revId = $this->getOutput()->getRevisionId();
-			if ( $revId !== null ) {
-				$timestamp = MediaWikiServices::getInstance()
-					->getRevisionLookup()
-					->getTimestampFromId( $revId );
-			}
-		}
-
-		if ( $timestamp ) {
-			$d = $language->userDate( $timestamp, $user );
-			$t = $language->userTime( $timestamp, $user );
-			$s = ' ' . $this->msg( 'lastmodifiedat', $d, $t )->parse();
-		} else {
-			$s = '';
-		}
-
-		if ( MediaWikiServices::getInstance()->getDBLoadBalancer()->getLaggedReplicaMode() ) {
-			$s .= ' <strong>' . $this->msg( 'laggedreplicamode' )->parse() . '</strong>';
-		}
-
-		return $s;
+		wfDeprecated( __METHOD__, '1.40' );
+		return $this->getFooterTemplateDataItem( 'data-info', 'lastmod' );
 	}
 
 	/**
@@ -965,51 +929,25 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Get template representation of the footer.
+	 *
+	 * Stable to use since 1.40 but should not be overridden.
+	 *
 	 * @since 1.35
-	 * @stable to override
+	 * @internal for use inside SkinComponentRegistryContext
 	 * @return array
 	 */
 	public function getFooterIcons() {
-		$config = $this->getConfig();
-
-		$footericons = [];
-		foreach (
-			$config->get( MainConfigNames::FooterIcons ) as $footerIconsKey => &$footerIconsBlock
-		) {
-			if ( count( $footerIconsBlock ) > 0 ) {
-				$footericons[$footerIconsKey] = [];
-				foreach ( $footerIconsBlock as &$footerIcon ) {
-					if ( isset( $footerIcon['src'] ) ) {
-						if ( !isset( $footerIcon['width'] ) ) {
-							$footerIcon['width'] = 88;
-						}
-						if ( !isset( $footerIcon['height'] ) ) {
-							$footerIcon['height'] = 31;
-						}
-					}
-
-					// Only output icons which have an image.
-					// For historic reasons this mimics the `icononly` option
-					// for BaseTemplate::getFooterIcons.
-					// In some cases the icon may be an empty array.
-					// Filter these out. (See T269776)
-					if ( is_string( $footerIcon ) || isset( $footerIcon['src'] ) ) {
-						$footericons[$footerIconsKey][] = $footerIcon;
-					}
-				}
-
-				// If no valid icons with images were added, unset the parent array
-				// Should also prevent empty arrays from when no copyright is set.
-				if ( !count( $footericons[$footerIconsKey] ) ) {
-					unset( $footericons[$footerIconsKey] );
-				}
-			}
-		}
-		return $footericons;
+		MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'getFooterIcons', '1.40' );
+		return SkinComponentFooter::getFooterIconsData(
+			$this->getConfig()
+		);
 	}
 
 	/**
 	 * Renders a $wgFooterIcons icon according to the method's arguments
+	 *
+	 * Stable to use since 1.40 but should not be overridden.
+	 *
 	 * @param array $icon The icon to build the html for, see $wgFooterIcons
 	 *   for the format of this array.
 	 * @param bool|string $withImage Whether to use the icon's image or output
@@ -1017,28 +955,10 @@ abstract class Skin extends ContextSource {
 	 * @return string HTML
 	 */
 	public function makeFooterIcon( $icon, $withImage = 'withImage' ) {
-		if ( is_string( $icon ) ) {
-			$html = $icon;
-		} else { // Assuming array
-			$url = $icon['url'] ?? null;
-			unset( $icon['url'] );
-			if ( isset( $icon['src'] ) && $withImage === 'withImage' ) {
-				// Lazy-load footer icons, since they're not part of the printed view.
-				$icon['loading'] = 'lazy';
-				// do this the lazy way, just pass icon data as an attribute array
-				$html = Html::element( 'img', $icon );
-			} else {
-				$html = htmlspecialchars( $icon['alt'] ?? '' );
-			}
-			if ( $url ) {
-				$html = Html::rawElement( 'a', [
-						'href' => $url,
-						'target' => $this->getConfig()->get( MainConfigNames::ExternalLinkTarget ),
-					],
-					$html );
-			}
-		}
-		return $html;
+		MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'makeFooterIcon', '1.40' );
+		return SkinComponentFooter::makeFooterIconHTML(
+			$this->getConfig(), $icon, $withImage
+		);
 	}
 
 	/**
@@ -1057,9 +977,22 @@ abstract class Skin extends ContextSource {
 	 * 		the title of the content.
 	 *
 	 * @return string HTML anchor
+	 * @deprecated since 1.40
 	 */
 	public function footerLink( $desc, $page ) {
-		$title = $this->footerLinkTitle( $desc, $page );
+		wfDeprecated( __METHOD__, '1.40' );
+
+		// If the link description has been disabled in the default language,
+		if ( $this->msg( $desc )->inContentLanguage()->isDisabled() ) {
+			// then it is disabled, for all languages.
+			$title = null;
+		} else {
+			// Otherwise, we display the link for the user, described in their
+			// language (which may or may not be the same as the default language),
+			// but we make the link target be the one site-wide page.
+			$title = Title::newFromText( $this->msg( $page )->inContentLanguage()->text() );
+		}
+
 		if ( !$title ) {
 			return '';
 		}
@@ -1071,37 +1004,6 @@ abstract class Skin extends ContextSource {
 			[ 'href' => $title->fixSpecialName()->getLinkURL() ],
 			$this->msg( $desc )->text()
 		);
-	}
-
-	/**
-	 * @param string $desc
-	 * @param string $page
-	 * @return Title|null
-	 */
-	private function footerLinkTitle( $desc, $page ) {
-		// If the link description has been disabled in the default language,
-		if ( $this->msg( $desc )->inContentLanguage()->isDisabled() ) {
-			// then it is disabled, for all languages.
-			return null;
-		}
-		// Otherwise, we display the link for the user, described in their
-		// language (which may or may not be the same as the default language),
-		// but we make the link target be the one site-wide page.
-		return Title::newFromText( $this->msg( $page )->inContentLanguage()->text() );
-	}
-
-	/**
-	 * Gets the link to the wiki's privacy policy, about page, and disclaimer page
-	 *
-	 * @internal For use by SkinTemplate
-	 * @return string[] Map of (key => HTML) for 'privacy', 'about', 'disclaimer'
-	 */
-	public function getSiteFooterLinks() {
-		return [
-			'privacy' => $this->footerLink( 'privacy', 'privacypage' ),
-			'about' => $this->footerLink( 'aboutsite', 'aboutpage' ),
-			'disclaimer' => $this->footerLink( 'disclaimers', 'disclaimerpage' )
-		];
 	}
 
 	/**
@@ -2160,104 +2062,10 @@ abstract class Skin extends ContextSource {
 	 */
 	final public function makeLink( $key, $item, $linkOptions = [] ) {
 		$options = $linkOptions + $this->defaultLinkOptions;
-		$html = $item['html'] ?? null;
-		if ( $html ) {
-			return $html;
-		}
-		$text = $item['text'] ?? $this->msg( $item['msg'] ?? $key )->text();
-
-		$html = htmlspecialchars( $text );
-		$isLink = isset( $item['href'] ) || isset( $options['link-fallback'] );
-
-		if ( $html !== '' && isset( $options['text-wrapper'] ) ) {
-			$wrapper = $options['text-wrapper'];
-			if ( isset( $wrapper['tag'] ) ) {
-				$wrapper = [ $wrapper ];
-			}
-			while ( count( $wrapper ) > 0 ) {
-				$element = array_pop( $wrapper );
-				'@phan-var array $element';
-
-				$attrs = $element['attributes'] ?? [];
-				// Apply title attribute to the outermost wrapper if there is
-				// no link wrapper. No need for an accesskey.
-				if ( count( $wrapper ) === 0 && !$isLink ) {
-					$this->applyLinkTitleAttribs(
-						$item,
-						false,
-						$attrs
-					);
-				}
-				$html = Html::rawElement( $element['tag'],  $attrs, $html );
-			}
-		}
-
-		if ( $isLink ) {
-			$attrs = $item;
-			foreach ( [ 'single-id', 'text', 'msg', 'tooltiponly', 'context', 'primary',
-						// These fields provide context for skins to modify classes and should not be outputted to skin
-						'icon', 'button',
-						'tooltip-params', 'exists', 'link-html' ] as $k ) {
-				unset( $attrs[$k] );
-			}
-
-			if ( isset( $attrs['data'] ) ) {
-				foreach ( $attrs['data'] as $key => $value ) {
-					$attrs[ 'data-' . $key ] = $value;
-				}
-				unset( $attrs[ 'data' ] );
-			}
-			$this->applyLinkTitleAttribs( $item, true, $attrs );
-			if ( isset( $options['link-class'] ) ) {
-				$attrs['class'] = $this->addClassToClassList( $attrs['class'] ?? [], $options['link-class'] );
-			}
-
-			if ( isset( $item['link-html'] ) ) {
-				$html = $item['link-html'] . ' ' . $html;
-			}
-
-			$html = Html::rawElement( isset( $attrs['href'] )
-				? 'a'
-				: $options['link-fallback'], $attrs, $html );
-		}
-
-		return $html;
-	}
-
-	/**
-	 * Helper for makeLink(). Add tooltip and accesskey attributes to $attrs
-	 * according to the input item array.
-	 *
-	 * @param array $item
-	 * @param bool $allowAccessKey
-	 * @param array &$attrs
-	 */
-	private function applyLinkTitleAttribs( $item, $allowAccessKey, &$attrs ) {
-		$tooltipId = $item['single-id'] ?? $item['id'] ?? null;
-		if ( $tooltipId === null ) {
-			return;
-		}
-		$tooltipParams = $item['tooltip-params'] ?? [];
-		$tooltipOption = isset( $item['exists'] ) && $item['exists'] === false ? 'nonexisting' : null;
-
-		if ( !$allowAccessKey || !empty( $item['tooltiponly'] ) ) {
-			$title = Linker::titleAttrib( $tooltipId, $tooltipOption, $tooltipParams );
-			if ( $title !== false ) {
-				$attrs['title'] = $title;
-			}
-		} else {
-			$tip = Linker::tooltipAndAccesskeyAttribs(
-				$tooltipId,
-				$tooltipParams,
-				$tooltipOption
-			);
-			if ( isset( $tip['title'] ) && $tip['title'] !== false ) {
-				$attrs['title'] = $tip['title'];
-			}
-			if ( isset( $tip['accesskey'] ) && $tip['accesskey'] !== false ) {
-				$attrs['accesskey'] = $tip['accesskey'];
-			}
-		}
+		$component = new SkinComponentLink(
+			$key, $item, $this->getContext(), $options
+		);
+		return $component->getTemplateData()[ 'html' ];
 	}
 
 	/**
@@ -2295,72 +2103,10 @@ abstract class Skin extends ContextSource {
 	 * @return string
 	 */
 	final public function makeListItem( $key, $item, $options = [] ) {
-		// In case this is still set from SkinTemplate, we don't want it to appear in
-		// the HTML output (normally removed in SkinTemplate::buildContentActionUrls())
-		unset( $item['redundant'] );
-
-		if ( isset( $item['links'] ) ) {
-			$links = [];
-			foreach ( $item['links'] as $link ) {
-				// Note: links will have identical label unless 'msg' is set on $link
-				$links[] = $this->makeLink( $key, $link, $options );
-			}
-			$html = implode( ' ', $links );
-		} else {
-			$link = $item;
-			// These keys are used by makeListItem and shouldn't be passed on to the link
-			foreach ( [ 'id', 'class', 'active', 'tag', 'itemtitle' ] as $k ) {
-				unset( $link[$k] );
-			}
-			if ( isset( $item['id'] ) && !isset( $item['single-id'] ) ) {
-				// The id goes on the <li> not on the <a> for single links
-				// but makeSidebarLink still needs to know what id to use when
-				// generating tooltips and accesskeys.
-				$link['single-id'] = $item['id'];
-			}
-			if ( isset( $link['link-class'] ) ) {
-				// link-class should be set on the <a> itself,
-				// so pass it in as 'class'
-				$link['class'] = $link['link-class'];
-				unset( $link['link-class'] );
-			}
-			$html = $this->makeLink( $key, $link, $options );
-		}
-
-		$attrs = [];
-		foreach ( [ 'id', 'class' ] as $attr ) {
-			if ( isset( $item[$attr] ) ) {
-				$attrs[$attr] = $item[$attr];
-			}
-		}
-		$attrs['class'] = $this->addClassToClassList( $attrs['class'] ?? [], 'mw-list-item' );
-
-		if ( isset( $item['active'] ) && $item['active'] ) {
-			// In the future, this should accept an array of classes, not a string
-			$attrs['class'] = $this->addClassToClassList( $attrs['class'], 'active' );
-		}
-		if ( isset( $item['itemtitle'] ) ) {
-			$attrs['title'] = $item['itemtitle'];
-		}
-		return Html::rawElement( $options['tag'] ?? 'li', $attrs, $html );
-	}
-
-	/**
-	 * Adds a class to the existing class value, supporting it as a string
-	 * or array.
-	 *
-	 * @param string|array $class to update.
-	 * @param string $newClass to add.
-	 * @return string|array classes.
-	 */
-	private function addClassToClassList( $class, string $newClass ) {
-		if ( is_array( $class ) ) {
-			$class[] = $newClass;
-		} else {
-			$class .= ' ' . $newClass;
-			$class = trim( $class );
-		}
-		return $class;
+		$component = new SkinComponentListItem(
+			$key, $item, $this->getContext(), $options, $this->defaultLinkOptions
+		);
+		return $component->getTemplateData()[ 'html-item' ];
 	}
 
 	/**
@@ -2442,55 +2188,6 @@ abstract class Skin extends ContextSource {
 			$subpagestr = Html::rawElement( 'div', [ 'class' => 'subpages' ], $subpagestr );
 		}
 		return $subpagestr . $out->getSubtitle();
-	}
-
-	/**
-	 * Get template representation of the footer containing
-	 * site footer links as well as standard footer links.
-	 *
-	 * All values are resolved and can be added to by the
-	 * SkinAddFooterLinks hook.
-	 *
-	 * @since 1.35
-	 * @internal
-	 * @return array
-	 */
-	protected function getFooterLinks(): array {
-		$out = $this->getOutput();
-		$title = $out->getTitle();
-		$titleExists = $title->exists();
-		$config = $this->getConfig();
-		$maxCredits = $config->get( MainConfigNames::MaxCredits );
-		$showCreditsIfMax = $config->get( MainConfigNames::ShowCreditsIfMax );
-		$useCredits = $titleExists
-			&& $out->isArticle()
-			&& $out->isRevisionCurrent()
-			&& $maxCredits !== 0;
-
-		/** @var CreditsAction $action */
-		if ( $useCredits ) {
-			$article = Article::newFromWikiPage( $this->getWikiPage(), $this );
-			$action = Action::factory( 'credits', $article, $this );
-		}
-
-		'@phan-var CreditsAction $action';
-		$data = [
-			'info' => [
-				'lastmod' => !$useCredits ? $this->lastModified() : null,
-				'numberofwatchingusers' => null,
-				'credits' => $useCredits ?
-					$action->getCredits( $maxCredits, $showCreditsIfMax ) : null,
-				'copyright' => $titleExists &&
-					$out->showsCopyright() ? $this->getCopyright() : null,
-			],
-			'places' => $this->getSiteFooterLinks(),
-		];
-		foreach ( $data as $key => $existingItems ) {
-			$newItems = [];
-			$this->getHookRunner()->onSkinAddFooterLinks( $this, $key, $newItems );
-			$data[$key] = $existingItems + $newItems;
-		}
-		return $data;
 	}
 
 	/**
