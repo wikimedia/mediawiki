@@ -148,11 +148,6 @@
 		"settings": {
 			"file": "images/icons/settings.svg"
 		},
-		"stopHand": {
-			"file": "images/icons/hand.svg",
-			"variants": [ "destructive" ],
-			"deprecated": "Renamed since v0.43.0, use 'hand' instead."
-		},
 		"subtract": {
 			"file": "images/icons/subtract.svg",
 			"variants": [ "destructive" ]
