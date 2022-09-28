@@ -1,4 +1,22 @@
 # OOUI Release History
+## v0.45.0 / 2022-09-26
+### Breaking changes
+* [BREAKING CHANGE] Raise jQuery requirement from v3.6.0 to v3.6.1 (James D. Forrester)
+* [BREAKING CHANGE] icons: Drop stopHand, renamed to hand since v0.43.0 (James D. Forrester)
+
+### Features
+* Allow custom menu class to be passed in to `OO.ui.ButtonMenuSelectWidget` (Thalia Chan)
+
+### Styles
+* icons: Add 'palette' to 'editing-advanced' (Volker E.)
+* icons: Minimize 'search' icon (Thiemo Kreuz)
+* WikimediaUI theme: Remove selected Tabs state handling (Volker E.)
+
+### Code
+* demos: Make icons page more robust (Thiemo Kreuz)
+* README: Update some of the release steps to avoid typo mistakes (James D. Forrester)
+* AUTHORS: Update for the first time since 2017(!) and composer.json listing too (James D. Forrester)
+
 ## v0.44.3 / 2022-08-16
 ### Features
 * DropdownWidget: Add screen reader support while collapsed (Bartosz Dziewoński)

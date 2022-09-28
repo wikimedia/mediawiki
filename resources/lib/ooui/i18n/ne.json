@@ -4,6 +4,7 @@
 			"Ganesh Paudel",
 			"Nirajan pant",
 			"RajeshPandey",
+			"बडा काजी",
 			"सरोज कुमार ढकाल"
 		]
 	},
@@ -20,5 +21,6 @@
 	"ooui-dialog-process-retry": "पुन प्रयास गर्नुहोस",
 	"ooui-dialog-process-continue": "जारी राख्नुहोस्",
 	"ooui-selectfile-button-select": "फाइल चयन गर्नुहोस्",
+	"ooui-popup-widget-close-button-aria-label": "बन्द गर्नुहोस्",
 	"ooui-field-help": "सहायता"
 }

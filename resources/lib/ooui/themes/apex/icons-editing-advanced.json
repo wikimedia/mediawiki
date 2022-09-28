@@ -92,6 +92,12 @@
 				"rtl": "../wikimediaui/images/icons/outline-rtl.svg"
 			}
 		},
+		"palette": {
+			"file": {
+				"ltr": "../wikimediaui/images/icons/palette-ltr.svg",
+				"rtl": "../wikimediaui/images/icons/palette-rtl.svg"
+			}
+		},
 		"paste": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/paste-ltr.svg",
