@@ -1,10 +1,5 @@
 <?php
-
-namespace MediaWiki\Interwiki;
-
 /**
- * Service interface for looking up Interwiki records.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -22,10 +17,15 @@ namespace MediaWiki\Interwiki;
  *
  * @file
  */
+
+namespace MediaWiki\Interwiki;
+
 use Interwiki;
 
 /**
  * Service interface for looking up Interwiki records.
+ *
+ * Default implementation is ClassicInterwikiLookup.
  *
  * @since 1.28
  */
