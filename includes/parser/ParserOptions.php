@@ -424,6 +424,7 @@ class ParserOptions {
 	/**
 	 * Maximum recursion depth for templates within templates
 	 * @return int
+	 * @internal Only used by Parser (T318826)
 	 */
 	public function getMaxTemplateDepth() {
 		return $this->getOption( 'maxTemplateDepth' );
@@ -433,6 +434,7 @@ class ParserOptions {
 	 * Maximum recursion depth for templates within templates
 	 * @param int|null $x New value (null is no change)
 	 * @return int Old value
+	 * @internal Only used by ParserTestRunner (T318826)
 	 */
 	public function setMaxTemplateDepth( $x ) {
 		return $this->setOptionLegacy( 'maxTemplateDepth', $x );
