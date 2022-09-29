@@ -15,7 +15,6 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @author Happy-melon
  * @file
  */
 use MediaWiki\MediaWikiServices;
@@ -29,6 +28,7 @@ use Wikimedia\NonSerializable\NonSerializableTrait;
  *
  * @stable to extend
  * @since 1.18
+ * @author Happy-melon
  */
 abstract class ContextSource implements IContextSource {
 	use NonSerializableTrait;

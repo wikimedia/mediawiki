@@ -15,9 +15,6 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.18
- *
- * @author Happy-melon
  * @file
  */
 
@@ -53,7 +50,11 @@ use MediaWiki\Session\CsrfTokenSetProvider;
  * belong here either. Session state changes should only be propagated on
  * shutdown by separate persistence handler objects, for example.
  *
- * @unstable for implementation, extensions should subclass ContextSource instead.
+ * Must not be implemented directly by extensions, extend ContextSource instead.
+ *
+ * @since 1.18
+ * @stable to type
+ * @author Happy-melon
  */
 interface IContextSource extends MessageLocalizer, CsrfTokenSetProvider {
 
