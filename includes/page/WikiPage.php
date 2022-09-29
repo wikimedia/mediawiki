@@ -471,7 +471,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 			if ( !$data
 				&& $index == DB_REPLICA
-				&& $loadBalancer->getServerCount() > 1
+				&& $loadBalancer->hasReplicaServers()
 				&& $loadBalancer->hasOrMadeRecentPrimaryChanges()
 			) {
 				$from = self::READ_LATEST;
@@ -1599,7 +1599,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			// the revision could be generalized into RevisionStore, but we don't want
 			// to encourage loading of revisions by timestamp.
 			if ( !$rev
-				&& $lb->getServerCount() > 1
+				&& $lb->hasReplicaServers()
 				&& $lb->hasOrMadeRecentPrimaryChanges()
 			) {
 				$rev = $this->getRevisionStore()->getRevisionByTimestamp(

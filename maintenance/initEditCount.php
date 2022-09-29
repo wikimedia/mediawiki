@@ -47,7 +47,7 @@ class InitEditCount extends Maintenance {
 			$backgroundMode = false;
 		} else {
 			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-			$backgroundMode = $lb->getServerCount() > 1;
+			$backgroundMode = $lb->hasReplicaServers();
 		}
 
 		$actorQuery = ActorMigration::newMigration()->getJoin( 'rev_user' );

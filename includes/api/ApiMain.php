@@ -1742,7 +1742,7 @@ class ApiMain extends ApiBase {
 
 		if ( $module->isWriteMode()
 			&& $this->getUser()->isBot()
-			&& MediaWikiServices::getInstance()->getDBLoadBalancer()->getServerCount() > 1
+			&& MediaWikiServices::getInstance()->getDBLoadBalancer()->hasReplicaServers()
 		) {
 			$this->checkBotReadOnly();
 		}
