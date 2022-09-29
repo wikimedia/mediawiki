@@ -46,7 +46,6 @@
 		"psr/container": "1.1.1",
 		"psr/log": "1.1.4",
 		"ralouphie/getallheaders": "3.0.3",
-		"symfony/polyfill-php73": "1.26.0",
 		"symfony/polyfill-php80": "1.26.0",
 		"symfony/yaml": "5.4.12",
 		"wikimedia/assert": "0.5.1",
