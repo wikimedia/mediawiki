@@ -3156,7 +3156,7 @@
 	"watchlistedit-clear-titles": "खिताब:",
 	"watchlistedit-clear-submit": "ध्यानसूची को हटाएँ (यह स्थाई है!)",
 	"watchlistedit-clear-done": "आपकी ध्यानसूची खाली कर दी गयी है।",
-	"watchlistedit-clear-jobqueue": "आपकी ध्यानसूची की साफ हो रही है। इसे पूर्ण होने में कुछ समय लग सकता है!",
+	"watchlistedit-clear-jobqueue": "आपकी ध्यानसूची साफ हो रही है। इसे पूर्ण होने में कुछ समय लग सकता है!",
 	"watchlistedit-clear-removed": "$1 पृष्ठ{{PLURAL:$1|हटाया गया|हटाये गए}}:",
 	"watchlistedit-too-many": "यहाँ दर्शाने के लिए अत्यधिक पृष्ठ हैं।",
 	"watchlisttools-clear": "ध्यानसूची खाली करें",
