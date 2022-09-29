@@ -1,7 +1,5 @@
 <?php
 /**
- * Version of LockManager based on using DB table locks.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup LockManager
  */
 
 use Wikimedia\Rdbms\Database;
@@ -26,7 +23,7 @@ use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
- * Version of LockManager based on using named/row DB locks.
+ * Base class for lock managers that use named/row database table locks.
  *
  * This is meant for multi-wiki systems that may share files.
  *
@@ -35,6 +32,8 @@ use Wikimedia\Rdbms\IDatabase;
  * A majority of peer DBs must agree for a lock to be acquired.
  *
  * Caching is used to avoid hitting servers that are down.
+ *
+ * See MySqlLockManager and PostgreSqlLockManager.
  *
  * @stable to extend
  * @ingroup LockManager

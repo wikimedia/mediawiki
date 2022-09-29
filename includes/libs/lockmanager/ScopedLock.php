@@ -1,7 +1,5 @@
 <?php
 /**
- * Resource locking handling.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,13 +16,12 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup LockManager
  */
 
 /**
- * Self-releasing locks
+ * Self-releasing locks.
  *
- * LockManager helper class to handle scoped locks, which
+ * Helper for consumers of LockManager, to create locks that automatically
  * release when an object is destroyed or goes out of scope.
  *
  * @ingroup LockManager
@@ -33,10 +30,8 @@
 class ScopedLock {
 	/** @var LockManager */
 	protected $manager;
-
 	/** @var StatusValue */
 	protected $status;
-
 	/** @var array Map of lock types to resource paths */
 	protected $pathsByType;
 
