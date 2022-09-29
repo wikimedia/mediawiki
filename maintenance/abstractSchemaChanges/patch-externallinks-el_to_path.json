@@ -1,0 +1,102 @@
+{
+	"comment": "Set unsigned true for ipb_id and ipb_parent_block_id in ipblocks table",
+	"before": {
+		"name": "externallinks",
+		"comment": "Track links to external URLs",
+		"columns": [
+			{
+				"name": "el_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "el_from",
+				"type": "integer",
+				"comment": "page_id of the referring page",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			},
+			{
+				"name": "el_to",
+				"type": "blob",
+				"comment": "The external link",
+				"options": { "length": 65530, "notnull": true }
+			},
+			{
+				"name": "el_index",
+				"type": "blob",
+				"comment": "In the case of HTTP URLs, this is the URL with any username or password removed, and with the labels in the hostname reversed and converted to lower case which will allow faster searching for all pages with WHERE clause. Note: If PHP's intl extension is enabled/disabled, maintenance/refreshExternallinksIndex.php needs to be run to refresh this field",
+				"options": { "length": 65530, "notnull": true }
+			},
+			{
+				"name": "el_index_60",
+				"type": "binary",
+				"comment": "'el_index' truncated to 60 bytes to allow for sortable queries that aren't supported by a partial index",
+				"options": { "notnull": true, "length": 60 }
+			}
+		],
+		"indexes": [
+			{ "name": "el_from", "columns": [ "el_from", "el_to" ], "unique": false, "options": { "lengths": [ null, 40 ] } },
+			{ "name": "el_to", "columns": [ "el_to", "el_from" ], "unique": false, "options": { "lengths": [ 60, null ] } },
+			{ "name": "el_index", "columns": [ "el_index" ], "unique": false, "options": { "lengths": [ 60 ] } },
+			{ "name": "el_index_60", "columns": [ "el_index_60", "el_id" ], "unique": false },
+			{ "name": "el_from_index_60", "columns": [ "el_from", "el_index_60", "el_id" ], "unique": false }
+		],
+		"pk": [ "el_id" ]
+	},
+	"after": {
+		"name": "externallinks",
+		"comment": "Track links to external URLs",
+		"columns": [
+			{
+				"name": "el_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "el_from",
+				"type": "integer",
+				"comment": "page_id of the referring page",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			},
+			{
+				"name": "el_to",
+				"type": "blob",
+				"comment": "The external link",
+				"options": { "length": 65530, "notnull": true }
+			},
+			{
+				"name": "el_index",
+				"type": "blob",
+				"comment": "In the case of HTTP URLs, this is the URL with any username or password removed, and with the labels in the hostname reversed and converted to lower case which will allow faster searching for all pages with WHERE clause. Note: If PHP's intl extension is enabled/disabled, maintenance/refreshExternallinksIndex.php needs to be run to refresh this field",
+				"options": { "length": 65530, "notnull": true }
+			},
+			{
+				"name": "el_index_60",
+				"type": "binary",
+				"comment": "'el_index' truncated to 60 bytes to allow for sortable queries that aren't supported by a partial index",
+				"options": { "notnull": true, "length": 60 }
+			},
+			{
+				"name": "el_to_domain_index",
+				"type": "binary",
+				"comment": "Indexable domain",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			},
+			{
+				"name": "el_to_path",
+				"type": "blob",
+				"comment": "Path to the external link without considering the domain",
+				"options": { "length": 65530, "notnull": false }
+			}
+		],
+		"indexes": [
+			{ "name": "el_from", "columns": [ "el_from" ], "unique": false },
+			{ "name": "el_to", "columns": [ "el_to", "el_from" ], "unique": false, "options": { "lengths": [ 60, null ] } },
+			{ "name": "el_index", "columns": [ "el_index" ], "unique": false, "options": { "lengths": [ 60 ] } },
+			{ "name": "el_index_60", "columns": [ "el_index_60", "el_id" ], "unique": false },
+			{ "name": "el_from_index_60", "columns": [ "el_from", "el_index_60", "el_id" ], "unique": false },
+			{ "name": "el_to_domain_index_to_path", "columns": [ "el_to_domain_index", "el_to_path" ], "unique": false, "options": { "lengths": [ null, 60 ] } }
+		],
+		"pk": [ "el_id" ]
+	}
+}

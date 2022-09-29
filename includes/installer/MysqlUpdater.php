@@ -155,6 +155,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'migrateTemplatelinks' ],
 			[ 'modifyField', 'templatelinks', 'tl_namespace', 'patch-templatelinks-tl_title-nullable.sql' ],
 			[ 'dropField', 'templatelinks', 'tl_title', 'patch-templatelinks-drop-tl_title.sql' ],
+
+			// 1.40
+			[ 'addField', 'externallinks', 'el_to_path', 'patch-externallinks-el_to_path.sql' ],
 		];
 	}
 
