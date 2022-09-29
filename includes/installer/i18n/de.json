@@ -19,6 +19,7 @@
 			"ThePiscin",
 			"Tobi 406",
 			"Umherirrender",
+			"Vrifox",
 			"Wikinaut",
 			"아라"
 		]
@@ -236,7 +237,7 @@
 	"config-logo-icon": "Logo (Icon):",
 	"config-logo-icon-help": "Dein Logo-Symbol sollte quadratisch und idealerweise größer als 50 Pixel oder ein SVG sein.",
 	"config-logo-wordmark": "Wortmarke (optional):",
-	"config-logo-wordmark-help": "Der Name deiner Website. Wenn nicht definiert, wird in der Regel auf Text zurückgegriffen. Idealerweise ein SVG mit einer Höhe von 30 Pixel oder weniger.",
+	"config-logo-wordmark-help": "Der Name deiner Webseite. Wenn nicht definiert, wird in der Regel auf Text zurückgegriffen. Idealerweise ein SVG mit einer Höhe von 30 Pixel oder weniger.",
 	"config-logo-tagline": "Tagline (optional):",
 	"config-logo-tagline-help": "Die Tagline deiner Website. Nur verwenden, wenn du oben eine Wortmarke definiert hast. Wenn du keine Wortmarke definiert hast, wird diese in der Regel in Text umgewandelt. Die kombinierte Höhe von Tagline und Wortmarke sollte in der Regel 50 Pixel nicht überschreiten.",
 	"config-logo-sidebar": "Logo in der Seitenleiste (optional):",
