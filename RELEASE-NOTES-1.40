@@ -92,6 +92,8 @@ because of Phabricator reports.
     It had no known usages.
 * BagOStuff::makeKeyInternal(), deprecated for public use in 1.36, is now a
   protected method of MediumSpecificBagOStuff.
+* The EnqueueJob class, unused since 1.31, has been removed without
+  deprecation.
 * The following public properties of Parser, deprecated in 1.35,
   have been made private: Parser::$mLinkId, Parser::$mIncludeSizes,
   Parser::$mDoubleUnderscore, Parser::$mShowToc, Parser::$mRevisionId,
