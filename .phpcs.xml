@@ -55,9 +55,6 @@
 		<exclude-pattern>*/maintenance/CommandLineInc\.php</exclude-pattern>
 		<exclude-pattern>*/tests/phpunit/MediaWikiIntegrationTestCase\.php</exclude-pattern>
 	</rule>
-	<rule ref="Generic.Classes.DuplicateClassName.Found">
-		<exclude-pattern>*/includes/libs/rdbms/dbal/MWPostgreSqlPlatformCompat\.php</exclude-pattern>
-	</rule>
 	<rule ref="Generic.Files.LineLength">
 		<exclude-pattern>*/languages/messages/*</exclude-pattern>
 		<exclude-pattern>*/tests/*</exclude-pattern>
@@ -157,7 +154,6 @@
 			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
-		<exclude-pattern>*/includes/libs/rdbms/dbal/MWPostgreSqlPlatformCompat\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/dumpIterator\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/findDeprecated\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/storage/recompressTracked\.php</exclude-pattern>
