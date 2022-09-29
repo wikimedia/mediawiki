@@ -139,13 +139,8 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 
 		$lb->method( 'reallyOpenConnection' )->willReturnCallback(
-			function ( $i, DatabaseDomain $domain, array $lbInfo ) use ( $server ) {
-				$conn = $this->getDatabaseMock( $server );
-				foreach ( $lbInfo as $k => $v ) {
-					$conn->setLBInfo( $k, $v );
-				}
-
-				return $conn;
+			function () use ( $server ) {
+				return $this->getDatabaseMock( $server );
 			}
 		);
 
