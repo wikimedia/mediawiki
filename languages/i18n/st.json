@@ -5,7 +5,8 @@
 			"Zyxoas (on st.wikipedia.org)",
 			"Gustave London",
 			"Amire80",
-			"Tšepo"
+			"Tšepo",
+			"Coldfact"
 		]
 	},
 	"sunday": "Sontaha",
@@ -52,7 +53,8 @@
 	"nov": "Pudu",
 	"dec": "Tshitwe",
 	"category_header": "Dingolwa tse mokgeng wa \"$1\"",
-	"mypage": "Leqephe la ka",
+	"about": "Mabapi",
+	"mypage": "Leqephe",
 	"mytalk": "Leqephe la ka la moqoqo",
 	"navigation": "Eya ho",
 	"and": "le",
@@ -163,6 +165,7 @@
 	"emailsend": "E romele",
 	"emailsent": "E rometswe",
 	"emailsenttext": "Email ya molaetsa wa hao e se e rometswe.",
+	"delete-legend": "Hlakola",
 	"rollbacklink": "tsosoloso",
 	"blanknamespace": "(Lehae)",
 	"contributions": "Tse ngotsweng ke motho enwa",

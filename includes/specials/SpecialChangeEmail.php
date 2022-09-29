@@ -140,7 +140,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 		if ( !$titleObj instanceof Title ) {
 			$titleObj = Title::newMainPage();
 		}
-		$query = $request->getVal( 'returntoquery' );
+		$query = $request->getVal( 'returntoquery', '' );
 
 		if ( $this->status->value === true ) {
 			$this->getOutput()->redirect( $titleObj->getFullUrlForRedirect( $query ) );

@@ -3803,7 +3803,7 @@
 	"logentry-protect-modify-cascade": "$1 изменил{{GENDER:$2||а}} уровень защиты $3 $4 [каскадно]",
 	"logentry-rights-rights": "$1 {{GENDER:$2|изменил|изменила}} членство в группах для {{GENDER:$6|$3}} с $4 на $5",
 	"logentry-rights-rights-legacy": "$1 {{GENDER:$2|изменил|изменила}} членство в группах для $3",
-	"logentry-rights-autopromote": "$1 был{{GENDER:$2||а}} автоматически переведен{{GENDER:$2||а}} из $4 в $5",
+	"logentry-rights-autopromote": "$1 был{{GENDER:$2||а}} автоматически переведён{{GENDER:$2||а}} из $4 в $5",
 	"logentry-upload-upload": "$1 загрузил{{GENDER:$2||а}} $3",
 	"logentry-upload-overwrite": "$1 загрузил{{GENDER:$2||а}} новую версию $3",
 	"logentry-upload-revert": "$1 вернул{{GENDER:$2||а}} $3 к старой версии",

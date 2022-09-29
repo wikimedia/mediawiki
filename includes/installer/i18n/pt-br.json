@@ -301,7 +301,7 @@
 	"config-install-updates": "Impedir a execução de atualizações desnecessárias",
 	"config-install-updates-failed": "<strong>Error:</strong> A inserção de chaves de atualização em tabelas falhou com o seguinte erro: $1",
 	"config-install-sysop": "Criando conta de usuário administrador",
-	"config-install-subscribe-fail": "Não foi possível subscrever ao mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
+	"config-install-subscribe-fail": "Não foi possível subscrever a lista [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL não está instalada e <code>allow_url_fopen</code> não está disponível.",
 	"config-install-mainpage": "Criando página principal com o conteúdo padrão",
 	"config-install-mainpage-exists": "A página principal já existe, pulando",

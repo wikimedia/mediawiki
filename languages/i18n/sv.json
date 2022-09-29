@@ -2450,7 +2450,7 @@
 	"changecontentmodel-nodirectediting": "Innehållsmodellen $1 stöder inte direkt redigering",
 	"changecontentmodel-emptymodels-title": "Inget innehållsmodeller finns tillgängliga",
 	"changecontentmodel-emptymodels-text": "Innehållet på [[:$1]] kan inte konverteras till någon typ.",
-	"log-name-contentmodel": "Ändringslogg för innehållsmodellen",
+	"log-name-contentmodel": "Ändringslogg för innehållsmodell",
 	"log-description-contentmodel": "Denna sida listar ändringar i innehållsmodellen för sidor och sidor som skapades med en annan innehållsmodell än den som är standard.",
 	"logentry-contentmodel-new": "$1 {{GENDER:$2|skapade}} sidan $3 med den icke-standardiserade innehållsmodellen \"$5\"",
 	"logentry-contentmodel-change": "$1 {{GENDER:$2|ändrade}} innehållsmodellen för sidan $3 från \"$4\" till \"$5\"",
