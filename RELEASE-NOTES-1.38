@@ -1,5 +1,12 @@
 = MediaWiki 1.38 =
 
+== MediaWiki 1.38.4 ==
+
+This is a maintenance release of the MediaWiki 1.38 branch.
+
+=== Changes since MediaWiki 1.38.3 ===
+* Fix missing use statement from backport of fix for T307278.
+
 == MediaWiki 1.38.3 ==
 
 This is a security and maintenance release of the MediaWiki 1.38 branch.
