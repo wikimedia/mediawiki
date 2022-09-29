@@ -1,5 +1,12 @@
 = MediaWiki 1.37 =
 
+== MediaWiki 1.37.6 ==
+
+This is a maintenance release of the MediaWiki 1.37 branch.
+
+=== Changes since MediaWiki 1.37.5 ===
+* Fix missing use statement from backport of fix for T307278.
+
 == MediaWiki 1.37.5 ==
 
 This is a security and maintenance release of the MediaWiki 1.37 branch.
