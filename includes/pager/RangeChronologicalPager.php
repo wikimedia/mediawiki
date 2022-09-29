@@ -16,12 +16,12 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Pager
  */
 use Wikimedia\Timestamp\TimestampException;
 
 /**
  * Pager for filtering by a range of dates.
+ *
  * @stable to extend
  * @ingroup Pager
  */

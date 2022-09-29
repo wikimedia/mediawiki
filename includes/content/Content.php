@@ -1,8 +1,5 @@
 <?php
 /**
- * A content object represents page content, e.g. the text to show on a page.
- * Content objects have no knowledge about how they relate to wiki pages.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,19 +15,21 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.21
- *
  * @file
- * @ingroup Content
- *
- * @author Daniel Kinzler
  */
 
 /**
- * Base interface for content objects.
+ * Base interface for representing page content.
  *
+ * A content object represents page content, e.g. the text to show on a page.
+ * Content objects have no knowledge about how they relate to wiki pages.
+ *
+ * Must not be implemented directly by extensions, extend AbstractContent instead.
+ *
+ * @stable to type
+ * @since 1.21
  * @ingroup Content
- * @unstable for implementation, extensions should extend AbstractContent instead.
+ * @author Daniel Kinzler
  */
 interface Content {
 
