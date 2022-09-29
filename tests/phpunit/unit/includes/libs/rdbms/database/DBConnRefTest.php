@@ -111,7 +111,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 
 		$ref = new DBConnRef(
 			$lb,
-			[ DB_PRIMARY, [ 'test' ], 'dummy', $lb::CONN_TRX_AUTOCOMMIT ],
+			[ DB_PRIMARY, [ 'test' ], 'dummy', ILoadBalancer::CONN_TRX_AUTOCOMMIT ],
 			DB_PRIMARY
 		);
 
@@ -120,7 +120,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 
 		$ref2 = new DBConnRef(
 			$lb,
-			[ DB_PRIMARY, [ 'test' ], 'dummy', $lb::CONN_TRX_AUTOCOMMIT ],
+			[ DB_PRIMARY, [ 'test' ], 'dummy', ILoadBalancer::CONN_TRX_AUTOCOMMIT ],
 			DB_REPLICA
 		);
 		$this->assertEquals( DB_REPLICA, $ref2->getReferenceRole() );

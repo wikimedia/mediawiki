@@ -337,7 +337,6 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 		// Make an untracked DB_PRIMARY connection
 		$lb = $this->getServiceContainer()->getDBLoadBalancerFactory()->newMainLB();
-		// Need a Database where the DB domain changes during table cloning
 		$db = $lb->getConnectionInternal( DB_PRIMARY );
 
 		$this->assertNotSame( $this->db, $db );

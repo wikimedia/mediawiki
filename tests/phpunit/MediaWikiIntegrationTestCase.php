@@ -483,7 +483,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
 
 				$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-				// Need a Database where the DB domain changes during table cloning
 				$this->db = $lb->getConnectionInternal( DB_PRIMARY );
 
 				$this->checkDbIsSupported();
