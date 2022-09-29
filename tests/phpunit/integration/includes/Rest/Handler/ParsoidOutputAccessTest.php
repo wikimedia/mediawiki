@@ -32,7 +32,15 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$parsoid->expects( $this->exactly( $expectedCalls ) )->method( 'wikitext2html' )->willReturnCallback(
 			static function ( PageConfig $pageConfig ) {
 				$wikitext = $pageConfig->getRevisionContent()->getContent( SlotRecord::MAIN );
-				return new PageBundle( self::MOCKED_HTML . ' of ' . $wikitext, [ 'parsoid-data' ], [ 'mw-data' ], '1.0' );
+
+				return new PageBundle(
+					self::MOCKED_HTML . ' of ' . $wikitext,
+					[ 'parsoid-data' ],
+					[ 'mw-data' ],
+					Parsoid::defaultHTMLVersion(),
+					[ 'content-language' => 'en' ],
+					$pageConfig->getContentModel()
+				);
 			}
 		);
 
@@ -175,6 +183,8 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		// Ensure that the expected mw and parsoid fields are set in the PageBundle
 		$this->assertNotEmpty( $pageBundle->mw );
 		$this->assertNotEmpty( $pageBundle->parsoid );
+		$this->assertNotEmpty( $pageBundle->headers );
+		$this->assertNotEmpty( $pageBundle->version );
 	}
 
 	/**

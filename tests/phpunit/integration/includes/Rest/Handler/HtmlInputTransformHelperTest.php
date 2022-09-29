@@ -10,17 +10,21 @@ use MediaWiki\Message\TextFormatter;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\Parsoid\HTMLTransform;
 use MediaWiki\Parser\Parsoid\HTMLTransformFactory;
+use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Rest\Handler\HtmlInputTransformHelper;
 use MediaWiki\Rest\Handler\ParsoidFormatHelper;
+use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
 use NullStatsdDataFactory;
+use ParserOptions;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
+use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 use WikitextContent;
@@ -76,7 +80,8 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 		$helper = new HtmlInputTransformHelper(
 			new NullStatsdDataFactory(),
-			$this->newMockHTMLTransformFactory( $transformMethodOverrides )
+			$this->newMockHTMLTransformFactory( $transformMethodOverrides ),
+			$this->getServiceContainer()->getParsoidOutputStash()
 		);
 
 		return $helper;
@@ -731,6 +736,116 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 		// Since the HTML didn't change, we expect to get back the content of the fake revision.
 		$this->assertSame( $wikitext, $body->getContents() );
+	}
+
+	public function testResponseWithRenderId() {
+		$profileVersion = '2.4.0';
+		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;
+		$htmlContentType = "text/html;profile=\"$htmlProfileUri\"";
+
+		$htmlHeaders = [
+			'content-type' => $htmlContentType,
+		];
+
+		$page = $this->getExistingTestPage();
+		$oldWikitext = $page->getContent()->serialize();
+
+		$html = $this->getTextFromFile( 'MainPage-original.html' );
+		$dataParsoid = $this->getJsonFromFile( 'MainPage-original.data-parsoid' );
+
+		$pb = new PageBundle(
+			$html,
+			$dataParsoid,
+			[],
+			$profileVersion,
+			$htmlHeaders,
+			CONTENT_MODEL_WIKITEXT
+		);
+
+		$eTag = '"' . $page->getLatest() . '/just-a-test/edit"';
+
+		// Load the original data based on the ETag
+		$body = [ 'html' => $html, 'original' => [ 'renderid' => $eTag ] ];
+		$params = [];
+
+		$stash = $this->getServiceContainer()->getParsoidOutputStash();
+		$stash->set( ParsoidRenderID::newFromETag( $eTag ), $pb );
+
+		$helper = $this->newHelper();
+		$helper->init( $page, $body, $params );
+
+		$content = $helper->getContent();
+
+		// Assert that we get back the old wikitext, not wikitext derived from the HTML.
+		// Since the supplied HTML is the same as the HTML in the stash, selser should
+		// decide that there is nothing to do and return the wikitext unchanged.
+		$this->assertSame( $oldWikitext, $content->serialize() );
+	}
+
+	public function testETagWithBadUUIDFails() {
+		$page = $this->getExistingTestPage();
+		$html = 'whatever';
+
+		$revid = $page->getLatest();
+		$eTag = "\"$revid/nope-nope-nope\"";
+
+		$body = [ 'html' => $html, 'original' => [ 'renderid' => $eTag ] ];
+		$params = [];
+
+		$helper = $this->newHelper();
+
+		$this->expectException( HttpException::class );
+		$this->expectExceptionCode( 412 );
+		$helper->init( $page, $body, $params );
+		$helper->getContent();
+	}
+
+	public function testETagWithBadRevIDFails() {
+		$page = $this->getExistingTestPage();
+		$html = 'whatever';
+
+		// Non-Existing revision
+		$eTag = "\"1111111/nope-nope-nope\"";
+
+		$body = [ 'html' => $html, 'original' => [ 'renderid' => $eTag ] ];
+		$params = [];
+
+		$helper = $this->newHelper();
+
+		$this->expectException( HttpException::class );
+		$this->expectExceptionCode( 412 );
+		$helper->init( $page, $body, $params );
+		$helper->getContent();
+	}
+
+	public function testResponseWithUseStashFallbackToParserCache() {
+		$page = $this->getExistingTestPage();
+		$oldWikitext = $page->getContent()->serialize();
+
+		$access = $this->getServiceContainer()->getParsoidOutputAccess();
+
+		$popt = ParserOptions::newFromAnon();
+		$pout = $access->getParserOutput( $page, $popt )->getValue();
+
+		$key = $access->getParsoidRenderID( $pout );
+		$html = $pout->getRawText();
+
+		$body = [ 'html' => $html ];
+
+		// Load the original data based on the ETag
+		$params = [ 'use-stash' => $key ];
+
+		$helper = $this->newHelper();
+
+		// We are asking for a stash key that is not in the stash.
+		// However, a rendering with the corresponding key is in the ParserCache.
+		// Because of this, the code below will not throw to trigger a 412 response.
+		$helper->init( $page, $body, $params );
+		$content = $helper->getContent();
+
+		// XXX: Would be nice if we could check that selser actually kicked in.
+		//      Right now we are just checking that the above doesn't throw.
+		$this->assertSame( $oldWikitext, $content->serialize() );
 	}
 
 	public function provideHandlesParsoidError() {
