@@ -1,10 +1,5 @@
 <?php
-
-use MediaWiki\MediaWikiServices;
-
 /**
- * Job that purges expired user group memberships.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or
@@ -21,9 +16,16 @@ use MediaWiki\MediaWikiServices;
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup JobQueue
  */
 
+use MediaWiki\MediaWikiServices;
+
+/**
+ * Job that purges expired user group memberships.
+ *
+ * @internal For use by \MediaWiki\User\UserGroupManager
+ * @ingroup JobQueue
+ */
 class UserGroupExpiryJob extends Job implements GenericParameterJob {
 	public function __construct( array $params ) {
 		parent::__construct( 'userGroupExpiry', $params );

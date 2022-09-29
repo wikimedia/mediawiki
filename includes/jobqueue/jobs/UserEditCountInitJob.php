@@ -1,7 +1,5 @@
 <?php
 /**
- * Job that initializes an user's edit count.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or
@@ -18,18 +16,20 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup JobQueue
  */
 
 use MediaWiki\MediaWikiServices;
 
 /**
- * Job that initializes an user's edit count if it's not yet set or the current value is outdated.
+ * Job that initializes an user's edit count.
+ *
+ * This is used by UserEditTracker when a user's editcount isn't yet set.
  *
  * The following job parameters are required:
  *   - userId: the user ID
  *   - editCount: new edit count to set
  *
+ * @internal For use by \MediaWiki\User\UserEditTracker
  * @since 1.36
  */
 class UserEditCountInitJob extends Job implements GenericParameterJob {

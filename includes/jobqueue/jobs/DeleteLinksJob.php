@@ -1,7 +1,5 @@
 <?php
 /**
- * Job to update link tables for pages
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup JobQueue
  */
 
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
@@ -28,10 +25,9 @@ use MediaWiki\MediaWikiServices;
 /**
  * Job to prune link tables for pages that were deleted
  *
- * Only DataUpdate classes should construct these jobs
- *
- * @ingroup JobQueue
+ * @internal For use by core in LinksDeletionUpdate only.
  * @since 1.27
+ * @ingroup JobQueue
  */
 class DeleteLinksJob extends Job {
 	public function __construct( Title $title, array $params ) {

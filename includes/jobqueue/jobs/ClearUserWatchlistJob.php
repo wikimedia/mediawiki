@@ -7,10 +7,9 @@ use MediaWiki\User\UserIdentity;
 /**
  * Job to clear a users watchlist in batches.
  *
- * @author Addshore
- *
- * @ingroup JobQueue
  * @since 1.31
+ * @ingroup JobQueue
+ * @author Addshore
  */
 class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 	/**
