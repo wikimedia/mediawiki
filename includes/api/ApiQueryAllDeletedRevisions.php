@@ -298,39 +298,26 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		}
 
 		if ( $params['continue'] !== null ) {
-			$cont = explode( '|', $params['continue'] );
 			$op = ( $dir == 'newer' ? '>=' : '<=' );
 			if ( $optimizeGenerateTitles ) {
-				$this->dieContinueUsageIf( count( $cont ) != 2 );
-				$ns = (int)$cont[0];
-				$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
-				$title = $cont[1];
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'string' ] );
 				$this->addWhere( $db->buildComparison( $op, [
-					'ar_namespace' => $ns,
-					'ar_title' => $title,
+					'ar_namespace' => $cont[0],
+					'ar_title' => $cont[1],
 				] ) );
 			} elseif ( $mode == 'all' ) {
-				$this->dieContinueUsageIf( count( $cont ) != 4 );
-				$ns = (int)$cont[0];
-				$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
-				$title = $cont[1];
-				$ts = $db->timestamp( $cont[2] );
-				$ar_id = (int)$cont[3];
-				$this->dieContinueUsageIf( strval( $ar_id ) !== $cont[3] );
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'string', 'string', 'int' ] );
 				$this->addWhere( $db->buildComparison( $op, [
-					'ar_namespace' => $ns,
-					'ar_title' => $title,
-					'ar_timestamp' => $ts,
-					'ar_id' => $ar_id,
+					'ar_namespace' => $cont[0],
+					'ar_title' => $cont[1],
+					'ar_timestamp' => $db->timestamp( $cont[2] ),
+					'ar_id' => $cont[3],
 				] ) );
 			} else {
-				$this->dieContinueUsageIf( count( $cont ) != 2 );
-				$ts = $db->timestamp( $cont[0] );
-				$ar_id = (int)$cont[1];
-				$this->dieContinueUsageIf( strval( $ar_id ) !== $cont[1] );
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int' ] );
 				$this->addWhere( $db->buildComparison( $op, [
-					'ar_timestamp' => $ts,
-					'ar_id' => $ar_id,
+					'ar_timestamp' => $db->timestamp( $cont[0] ),
+					'ar_id' => $cont[1],
 				] ) );
 			}
 		}

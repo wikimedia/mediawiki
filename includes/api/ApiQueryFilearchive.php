@@ -93,17 +93,12 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$this->addJoinConds( $fileQuery['joins'] );
 
 		if ( $params['continue'] !== null ) {
-			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 3 );
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'string', 'int' ] );
 			$op = $params['dir'] == 'descending' ? '<=' : '>=';
-			$cont_from = $cont[0];
-			$cont_timestamp = $db->timestamp( $cont[1] );
-			$cont_id = (int)$cont[2];
-			$this->dieContinueUsageIf( $cont[2] !== (string)$cont_id );
 			$this->addWhere( $db->buildComparison( $op, [
-				'fa_name' => $cont_from,
-				'fa_timestamp' => $cont_timestamp,
-				'fa_id' => $cont_id,
+				'fa_name' => $cont[0],
+				'fa_timestamp' => $db->timestamp( $cont[1] ),
+				'fa_id' => $cont[2],
 			] ) );
 		}
 

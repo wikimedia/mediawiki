@@ -94,11 +94,9 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		$this->addTables( 'page' );
 
 		if ( $params['continue'] !== null ) {
-			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 1 );
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string' ] );
 			$op = $params['dir'] == 'descending' ? '<=' : '>=';
-			$cont_from = $cont[0];
-			$this->addWhere( $db->buildComparison( $op, [ 'page_title' => $cont_from ] ) );
+			$this->addWhere( $db->buildComparison( $op, [ 'page_title' => $cont[0] ] ) );
 		}
 
 		$miserMode = $this->getConfig()->get( MainConfigNames::MiserMode );

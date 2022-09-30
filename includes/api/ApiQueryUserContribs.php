@@ -407,30 +407,28 @@ class ApiQueryUserContribs extends ApiQueryBase {
 
 		// Handle continue parameter
 		if ( $this->params['continue'] !== null ) {
-			$continue = explode( '|', $this->params['continue'] );
 			if ( $this->multiUserMode ) {
-				$this->dieContinueUsageIf( count( $continue ) != 4 );
+				$continue = $this->parseContinueParamOrDie( $this->params['continue'],
+					[ 'string', 'string', 'string', 'int' ] );
 				$modeFlag = array_shift( $continue );
 				$this->dieContinueUsageIf( $modeFlag !== $this->orderBy );
 				$encUser = array_shift( $continue );
 			} else {
-				$this->dieContinueUsageIf( count( $continue ) != 2 );
+				$continue = $this->parseContinueParamOrDie( $this->params['continue'],
+					[ 'string', 'int' ] );
 			}
-			$encTS = $db->timestamp( $continue[0] );
-			$encId = (int)$continue[1];
-			$this->dieContinueUsageIf( $encId != $continue[1] );
 			$op = ( $this->params['dir'] == 'older' ? '<=' : '>=' );
 			if ( $this->multiUserMode ) {
 				$this->addWhere( $db->buildComparison( $op, [
 					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable encUser is set when used
 					$userField => $encUser,
-					$tsField => $encTS,
-					$idField => $encId,
+					$tsField => $db->timestamp( $continue[0] ),
+					$idField => $continue[1],
 				] ) );
 			} else {
 				$this->addWhere( $db->buildComparison( $op, [
-					$tsField => $encTS,
-					$idField => $encId,
+					$tsField => $db->timestamp( $continue[0] ),
+					$idField => $continue[1],
 				] ) );
 			}
 		}

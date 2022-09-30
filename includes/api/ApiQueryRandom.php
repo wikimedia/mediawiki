@@ -140,15 +140,13 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		}
 
 		if ( isset( $params['continue'] ) ) {
-			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 4 );
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'string', 'int', 'string' ] );
 			$rand = $cont[0];
 			$start = $cont[1];
-			$startId = (int)$cont[2];
+			$startId = $cont[2];
 			$end = $cont[3] ? $rand : null;
 			$this->dieContinueUsageIf( !preg_match( '/^0\.\d+$/', $rand ) );
 			$this->dieContinueUsageIf( !preg_match( '/^0\.\d+$/', $start ) );
-			$this->dieContinueUsageIf( $cont[2] !== (string)$startId );
 			$this->dieContinueUsageIf( $cont[3] !== '0' && $cont[3] !== '1' );
 		} else {
 			$rand = wfRandom();

@@ -1633,6 +1633,37 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Parse the 'continue' parameter in the usual format and validate the types of each part,
+	 * or die with the 'badcontinue' error if the format, types, or number of parts is wrong.
+	 *
+	 * @param string $continue Value of 'continue' parameter obtained from extractRequestParams()
+	 * @param string[] $types Types of the expected parts in order, 'string' or 'int'
+	 * @return mixed[] Array containing strings and integers
+	 * @throws ApiUsageException
+	 * @since 1.40
+	 */
+	protected function parseContinueParamOrDie( string $continue, array $types ): array {
+		$cont = explode( '|', $continue );
+		$this->dieContinueUsageIf( count( $cont ) != count( $types ) );
+
+		foreach ( $cont as $i => &$value ) {
+			switch ( $types[$i] ) {
+				case 'string':
+					// Do nothing
+					break;
+				case 'int':
+					$this->dieContinueUsageIf( $value !== (string)(int)$value );
+					$value = (int)$value;
+					break;
+				default:
+					throw new InvalidArgumentException( "Unknown type '{$types[$i]}'" );
+			}
+		}
+
+		return $cont;
+	}
+
+	/**
 	 * Die with the 'badcontinue' error.
 	 *
 	 * This call is common enough to make it into the base method.

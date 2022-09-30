@@ -94,18 +94,13 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$this->addWhereRange( 'pt_title', $params['dir'], null, null );
 
 		if ( $params['continue'] !== null ) {
-			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 3 );
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int', 'string' ] );
 			$op = ( $params['dir'] === 'newer' ? '>=' : '<=' );
 			$db = $this->getDB();
-			$continueTimestamp = $db->timestamp( $cont[0] );
-			$continueNs = (int)$cont[1];
-			$this->dieContinueUsageIf( $continueNs != $cont[1] );
-			$continueTitle = $cont[2];
 			$this->addWhere( $db->buildComparison( $op, [
-				'pt_timestamp' => $continueTimestamp,
-				'pt_namespace' => $continueNs,
-				'pt_title' => $continueTitle,
+				'pt_timestamp' => $db->timestamp( $cont[0] ),
+				'pt_namespace' => $cont[1],
+				'pt_title' => $cont[2],
 			] ) );
 		}
 

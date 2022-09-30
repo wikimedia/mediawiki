@@ -127,22 +127,19 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			$this->addWhereRange( 'cl_from', $dir, null, null );
 
 			if ( $params['continue'] !== null ) {
-				$cont = explode( '|', $params['continue'] );
-				$this->dieContinueUsageIf( count( $cont ) != 2 );
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int' ] );
 				$op = ( $dir === 'newer' ? '>=' : '<=' );
 				$db = $this->getDB();
-				$continueFrom = (int)$cont[1];
-				$this->dieContinueUsageIf( $continueFrom != $cont[1] );
 				$this->addWhere( $db->buildComparison( $op, [
 					'cl_timestamp' => $db->timestamp( $cont[0] ),
-					'cl_from' => (int)$cont[1],
+					'cl_from' => $cont[1],
 				] ) );
 			}
 
 			$this->addOption( 'USE INDEX', [ 'categorylinks' => 'cl_timestamp' ] );
 		} else {
 			if ( $params['continue'] ) {
-				$cont = explode( '|', $params['continue'], 3 );
+				$cont = explode( '|', $params['continue'] );
 				$this->dieContinueUsageIf( count( $cont ) != 3 );
 
 				// Remove the types to skip from $queryTypes

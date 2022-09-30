@@ -218,12 +218,10 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
 
 			if ( $params['continue'] !== null ) {
-				$cont = explode( '|', $params['continue'] );
-				$this->dieContinueUsageIf( count( $cont ) != 2 );
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int' ] );
 				$op = ( $params['dir'] === 'newer' ? '>=' : '<=' );
 				$continueTimestamp = $db->timestamp( $cont[0] );
 				$continueId = (int)$cont[1];
-				$this->dieContinueUsageIf( $continueId != $cont[1] );
 				$this->addWhere( $db->buildComparison( $op, [
 					$tsField => $continueTimestamp,
 					$idField => $continueId,
@@ -373,13 +371,10 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$this->addWhereFld( 'rev_page', $pageids );
 
 			if ( $params['continue'] !== null ) {
-				$cont = explode( '|', $params['continue'] );
-				$this->dieContinueUsageIf( count( $cont ) != 2 );
-				$pageid = (int)$cont[0];
-				$revid = (int)$cont[1];
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'int' ] );
 				$this->addWhere( $db->buildComparison( '>=', [
-					'rev_page' => $pageid,
-					'rev_id' => $revid,
+					'rev_page' => $cont[0],
+					'rev_id' => $cont[1],
 				] ) );
 			}
 			$this->addOption( 'ORDER BY', [
