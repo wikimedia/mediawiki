@@ -53,6 +53,7 @@ For notes on 1.39.x and older releases, see HISTORY.
 * Updated justinrainbow/json-schema from 5.2.11 to 5.2.12.
 * Updated symfony/yaml from 5.4.10 to 5.4.12.
 * Updated pear/net_smtp from 0.10.0 to 0.10.1.
+* Updated guzzlehttp/guzzle 7.4.5 to 7.5.0.
 
 ===== Changed development-only external libraries =====
 * …
