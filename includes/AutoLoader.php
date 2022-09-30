@@ -74,6 +74,7 @@ class AutoLoader {
 		'MediaWiki\\Site\\' => __DIR__ . '/site/',
 		'MediaWiki\\Sparql\\' => __DIR__ . '/sparql/',
 		'MediaWiki\\SpecialPage\\' => __DIR__ . '/specialpage/',
+		'MediaWiki\\Specials\\Contribute\\' => __DIR__ . '/specials/Contribute',
 		'MediaWiki\\Tidy\\' => __DIR__ . '/tidy/',
 		'MediaWiki\\User\\' => __DIR__ . '/user/',
 		'MediaWiki\\Utils\\' => __DIR__ . '/utils/',
