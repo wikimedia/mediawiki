@@ -3,6 +3,7 @@ body {
 	background-color: #f7f7f7;
 	margin: 0;
 	font-family: sans-serif;
+	line-height: 1.5;
 }
 
 #mw-page-base {
@@ -39,7 +40,6 @@ body {
 	list-style: none;
 	margin: 0 0.5em;
 	font-size: 0.813em;
-	line-height: 1.4;
 }
 
 .env-check {
