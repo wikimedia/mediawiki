@@ -133,14 +133,6 @@ interface IContextSource extends MessageLocalizer, CsrfTokenSetProvider {
 	public function getConfig();
 
 	/**
-	 * @deprecated since 1.27 use a StatsdDataFactory from MediaWikiServices (preferably injected)
-	 *
-	 * @since 1.25
-	 * @return IBufferingStatsdDataFactory
-	 */
-	public function getStats();
-
-	/**
 	 * @since 1.27
 	 * @return Timing
 	 */
