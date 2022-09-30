@@ -1,9 +1,5 @@
 <?php
 /**
- * Report number of jobs currently waiting in primary database.
- *
- * Based on runJobs.php
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -20,9 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Maintenance
- * @author Tim Starling
- * @author Antoine Musso
  */
 
 use MediaWiki\MediaWikiServices;
@@ -30,10 +23,16 @@ use MediaWiki\MediaWikiServices;
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script that reports the number of jobs currently waiting
- * in the primary database.
+ * Report number of jobs currently waiting in primary database.
+ *
+ * Based on runJobs.php. Note that this only works for JobQueue backends
+ * that implement JobQueue::doGetSize. Implementations based on Kafka,
+ * for example, might not have a way to obtain this. In that case,
+ * telemetry should be provided externally, e.g. with Grafana/Prometheus.
  *
  * @ingroup Maintenance
+ * @author Tim Starling
+ * @author Antoine Musso
  */
 class ShowJobs extends Maintenance {
 	protected static $stateMethods = [

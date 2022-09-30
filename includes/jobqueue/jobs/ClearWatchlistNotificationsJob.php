@@ -16,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup JobQueue
  */
 
 use MediaWiki\MainConfigNames;
@@ -31,8 +30,8 @@ use MediaWiki\MediaWikiServices;
  *   - casTime: UNIX timestamp of the event that triggered this job [required]
  *   - timestamp: value to set all of the "last viewed" timestamps to [optional, defaults to null]
  *
- * @ingroup JobQueue
  * @since 1.31
+ * @ingroup JobQueue
  */
 class ClearWatchlistNotificationsJob extends Job implements GenericParameterJob {
 	public function __construct( array $params ) {

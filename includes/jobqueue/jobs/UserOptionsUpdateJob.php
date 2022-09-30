@@ -1,7 +1,5 @@
 <?php
 /**
- * Job that updates a user's preferences.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 3 of the License, or
@@ -18,19 +16,19 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup JobQueue
  */
 
 use MediaWiki\MediaWikiServices;
 
 /**
- * Job that updates a user's preferences
+ * Job that updates a user's preferences.
  *
  * The following job parameters are required:
  *   - userId: the user ID
  *   - options: a map of (option => value)
  *
  * @since 1.33
+ * @ingroup JobQueue
  */
 class UserOptionsUpdateJob extends Job implements GenericParameterJob {
 	public function __construct( array $params ) {

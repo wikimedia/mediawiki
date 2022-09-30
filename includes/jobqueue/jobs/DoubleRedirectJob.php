@@ -1,7 +1,5 @@
 <?php
 /**
- * Job to fix double redirects after moving a page.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup JobQueue
  */
 
 use MediaWiki\Cache\CacheKeyHelper;
@@ -29,7 +26,7 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 
 /**
- * Job to fix double redirects after moving a page
+ * Fix any double redirects after moving a page.
  *
  * @ingroup JobQueue
  */

@@ -25,10 +25,12 @@ use Content;
 use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use Language;
+use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Parsoid\HTMLTransform;
 use MediaWiki\Parser\Parsoid\HTMLTransformFactory;
+use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -75,6 +77,11 @@ class HtmlInputTransformHelper {
 	private $transform;
 
 	/**
+	 * @var ParsoidOutputStash
+	 */
+	private $parsoidOutputStash;
+
+	/**
 	 * @var array
 	 */
 	private $envOptions;
@@ -82,15 +89,18 @@ class HtmlInputTransformHelper {
 	/**
 	 * @param IBufferingStatsdDataFactory $statsDataFactory
 	 * @param HTMLTransformFactory $htmlTransformFactory
+	 * @param ParsoidOutputStash $parsoidOutputStash
 	 * @param array $envOptions
 	 */
 	public function __construct(
 		IBufferingStatsdDataFactory $statsDataFactory,
 		HTMLTransformFactory $htmlTransformFactory,
+		ParsoidOutputStash $parsoidOutputStash,
 		array $envOptions = []
 	) {
 		$this->stats = $statsDataFactory;
 		$this->htmlTransformFactory = $htmlTransformFactory;
+		$this->parsoidOutputStash = $parsoidOutputStash;
 		$this->envOptions = $envOptions + [
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
 			'offsetType' => 'byte',
@@ -117,8 +127,12 @@ class HtmlInputTransformHelper {
 			properties:
 				offsetType:
 					type: string
-				oldid:
+				revid:
 					type: integer
+				renderid:
+					type: string
+				etag:
+					type: string
 				html:
 					type: [ doc, string ]
 				data-mw:
@@ -149,9 +163,9 @@ class HtmlInputTransformHelper {
 				ParamValidator::PARAM_REQUIRED => false,
 			],
 			// XXX: Needed for compatibility with the parsoid transform endpoint.
-			//      But revid should probably just be part of the info about the original data
+			//      But revid should just be part of the info about the original data
 			//      in the body.
-			'revid' => [
+			'oldid' => [
 				Handler::PARAM_SOURCE => 'path',
 				ParamValidator::PARAM_TYPE => 'int',
 				ParamValidator::PARAM_DEFAULT => 0,
@@ -184,7 +198,7 @@ class HtmlInputTransformHelper {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_DEFAULT => '',
 				ParamValidator::PARAM_REQUIRED => false,
-			],
+			]
 		];
 	}
 
@@ -202,8 +216,15 @@ class HtmlInputTransformHelper {
 	 */
 	private static function normalizeParameters( array &$body, array &$parameters ) {
 		// If the revision ID is given in the path, pretend it was given in the body.
-		if ( isset( $parameters['revid'] ) && $parameters['revid'] > 0 ) {
-			$body['original']['oldid'] = (int)$parameters['revid'];
+		if ( isset( $parameters['oldid'] ) && (int)$parameters['oldid'] > 0 ) {
+			$body['original']['revid'] = (int)$parameters['oldid'];
+		}
+
+		// If an etag is given in the body, use it as the render ID.
+		// fetchOriginalDataFromStash() will detect the Etag format.
+		if ( !empty( $body['original']['etag'] ) ) {
+			// @phan-suppress-next-line PhanTypeInvalidDimOffset false positive
+			$body['original']['renderid'] = $body['original']['etag'];
 		}
 
 		// Accept 'wikitext' as an alias for 'source'.
@@ -282,13 +303,39 @@ class HtmlInputTransformHelper {
 			'offsetType' => $body['offsetType'] ?? $this->envOptions['offsetType'],
 		] );
 
-		if ( $revision ) {
-			$this->transform->setOriginalRevision( $revision );
-		} elseif ( isset( $this->parameters['oldid'] ) ) {
-			$this->transform->setOriginalRevisionId( $this->parameters['oldid'] );
-		}
+		if ( !isset( $body['original']['html'] ) && !empty( $body['original']['renderid'] ) ) {
+			// If the client asked for a render ID, load original data from stash
+			try {
+				$original = $this->fetchOriginalDataFromStash( $body['original']['renderid'] );
+			} catch ( InvalidArgumentException $ex ) {
+				throw new HttpException(
+					'Bad stash key',
+					400,
+					[
+						'reason' => $ex->getMessage(),
+						'key' => $body['original']['renderid']
+					]
+				);
+			}
 
-		$original = $body['original'] ?? [];
+			if ( !$original ) {
+				// NOTE: When the client asked for a specific stash key (resp. etag),
+				//       we should fail with a 412 if we don't have the specific rendering.
+				//       On the other hand, of the client only provided a base revision ID,
+				//       we can re-parse and hope for the best.
+
+				throw new HttpException(
+					'No stashed content found for ' . $body['original']['renderid'], 412
+				);
+
+				// TODO: This class should provide getETag and getLastModified methods for use by
+				//       the REST endpoint, to provide proper support for conditionals.
+				//       However, that requires some refactoring of how HTTP conditional checks
+				//       work in the Handler base class.
+			}
+		} else {
+			$original = $body['original'] ?? [];
+		}
 
 		// NOTE: We may have an 'original' key that contains no html, but
 		//       just wikitext. We can ignore that here, we only care if there is HTML.
@@ -300,6 +347,12 @@ class HtmlInputTransformHelper {
 			if ( $vOriginal ) {
 				$this->transform->setOriginalSchemaVersion( $vOriginal );
 			}
+		}
+
+		if ( $revision ) {
+			$this->transform->setOriginalRevision( $revision );
+		} elseif ( isset( $original['revid'] ) ) {
+			$this->transform->setOriginalRevisionId( $original['revid'] );
 		}
 
 		if ( isset( $original['html']['body'] ) ) {
@@ -328,8 +381,6 @@ class HtmlInputTransformHelper {
 			// XXX: do we really have to support wikitext overrides?
 			$this->transform->setOriginalText( $original['source']['body'] );
 		}
-
-		// TODO: load original data if 'use-stash' is set.
 	}
 
 	/**
@@ -379,6 +430,43 @@ class HtmlInputTransformHelper {
 
 		$response->setHeader( 'Content-Type', $contentType );
 		$response->getBody()->write( $data );
+	}
+
+	private function fetchOriginalDataFromStash( string $key ): ?array {
+		if ( preg_match( '!^(W/)?".*"$!', $key ) ) {
+			$renderID = ParsoidRenderID::newFromETag( $key );
+		} else {
+			$renderID = ParsoidRenderID::newFromKey( $key );
+		}
+
+		$pb = $this->parsoidOutputStash->get( $renderID );
+
+		if ( !$pb ) {
+			return null;
+		}
+
+		$original = [
+			'contentmodel' => $pb->contentmodel,
+			'revid' => $renderID->getRevisionID(),
+			'html' => [
+				'version' => $pb->version,
+				'headers' => $pb->headers ?: [],
+				'body' => $pb->html
+			],
+			'data-parsoid' => [
+				'body' => $pb->parsoid,
+			],
+			'data-mw' => [
+				'body' => $pb->mw,
+			],
+		];
+
+		if ( $pb->version ) {
+			$original['html']['headers']['content-type'] =
+				ParsoidFormatHelper::getContentType( 'html', $pb->version );
+		}
+
+		return $original;
 	}
 
 }

@@ -1,7 +1,5 @@
 <?php
 /**
- * Version of LockManager that uses a quorum from peer servers for locks.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,12 +16,14 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup LockManager
  */
 
 /**
- * Version of LockManager that uses a quorum from peer servers for locks.
+ * Base class for lock managers that use a quorum of peer servers for locks.
+ *
  * The resource space can also be sharded into separate peer groups.
+ *
+ * See MemcLockManager and RedisLockManager.
  *
  * @stable to extend
  * @ingroup LockManager

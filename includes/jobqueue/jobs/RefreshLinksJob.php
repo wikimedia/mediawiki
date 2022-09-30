@@ -1,7 +1,5 @@
 <?php
 /**
- * Job to update link tables for pages
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,8 +16,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup JobQueue
  */
+
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Logger\LoggerFactory;
@@ -31,7 +29,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 
 /**
- * Job to update link tables for pages
+ * Job to update link tables for rerendered wiki pages.
  *
  * This job comes in a few variants:
  *

@@ -16,13 +16,12 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Pager
  */
 use Wikimedia\Timestamp\TimestampException;
 
 /**
- * Efficient paging for SQL queries.
  * IndexPager with a formatted navigation bar.
+ *
  * @stable to extend
  * @ingroup Pager
  */

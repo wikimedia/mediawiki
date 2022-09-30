@@ -1,7 +1,5 @@
 <?php
 /**
- * Updater for link tracking tables after a page edit.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,6 +17,7 @@
  *
  * @file
  */
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -39,6 +38,7 @@ use Wikimedia\Rdbms\LBFactory;
  * Category changes will be mentioned for revisions at/after the timestamp for this page
  *
  * @since 1.27
+ * @ingroup JobQueue
  */
 class CategoryMembershipChangeJob extends Job {
 	/** @var int|null */

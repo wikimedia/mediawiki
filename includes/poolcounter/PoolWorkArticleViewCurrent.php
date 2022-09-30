@@ -31,19 +31,14 @@ use Wikimedia\Rdbms\ILBFactory;
  * @internal
  */
 class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
-
 	/** @var string */
 	private $workKey;
-
 	/** @var PageRecord */
 	private $page;
-
 	/** @var ParserCache */
 	private $parserCache;
-
 	/** @var ILBFactory */
 	private $lbFactory;
-
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 

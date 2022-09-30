@@ -60,8 +60,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getLocalDomainID()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::resolveDomainID()
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::haveIndex()
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::isNonZeroLoad()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::setDomainAliases()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getClusterName()
 	 */
@@ -84,11 +82,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $lb->hasReplicaServers() );
 		$this->assertFalse( $lb->hasStreamingReplicaServers() );
 		$this->assertSame( 'xyz', $lb->getClusterName() );
-
-		$this->assertTrue( $lb->haveIndex( 0 ) );
-		$this->assertFalse( $lb->haveIndex( 1 ) );
-		$this->assertFalse( $lb->isNonZeroLoad( 0 ) );
-		$this->assertFalse( $lb->isNonZeroLoad( 1 ) );
 
 		$ld = DatabaseDomain::newFromId( $lb->getLocalDomainID() );
 		$this->assertSame( $wgDBname, $ld->getDatabase(), 'local domain DB set' );
@@ -148,8 +141,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getConnection()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getReaderIndex()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getWriterIndex()
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::haveIndex()
-	 * @covers \Wikimedia\Rdbms\LoadBalancer::isNonZeroLoad()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getServerName()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getServerInfo()
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getServerType()
@@ -166,11 +157,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $lb->hasReplicaServers() );
 		$this->assertTrue( $lb->hasStreamingReplicaServers() );
 		$this->assertSame( 'main-test-cluster', $lb->getClusterName() );
-
-		$this->assertTrue( $lb->haveIndex( 0 ) );
-		$this->assertTrue( $lb->haveIndex( 1 ) );
-		$this->assertFalse( $lb->isNonZeroLoad( 0 ) );
-		$this->assertTrue( $lb->isNonZeroLoad( 1 ) );
 
 		for ( $i = 0; $i < $lb->getServerCount(); ++$i ) {
 			$this->assertIsString( $lb->getServerName( $i ) );
@@ -598,7 +584,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$conn2->ensureConnection();
 
 		$count = iterator_count( $lbWrapper->getOpenPrimaryConnections() );
-		$this->assertSame( 1, $count, 'Connection handle count' );
+		$this->assertSame( 2, $count, 'Connection handle count' );
 
 		$tlCalls = 0;
 		$lb->setTransactionListener( 'test-listener', static function () use ( &$tlCalls ) {
@@ -626,7 +612,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$lb->runPrimaryTransactionListenerCallbacks();
 
 		$this->assertSame( array_fill_keys( [ 'a', 'b', 'c', 'd' ], 1 ), $bc );
-		$this->assertSame( 1, $tlCalls );
+		$this->assertSame( 2, $tlCalls );
 
 		$tlCalls = 0;
 		$lb->beginPrimaryChanges( __METHOD__ );
@@ -650,7 +636,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$lb->runPrimaryTransactionListenerCallbacks();
 
 		$this->assertSame( array_fill_keys( [ 'a', 'b', 'c', 'd' ], 1 ), $ac );
-		$this->assertSame( 1, $tlCalls );
+		$this->assertSame( 2, $tlCalls );
 
 		$conn1->lock( 'test_lock_' . mt_rand(), __METHOD__, 0 );
 		$lb->flushPrimarySessions( __METHOD__ );

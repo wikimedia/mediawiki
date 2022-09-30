@@ -1,7 +1,5 @@
 <?php
 /**
- * Efficient paging for SQL queries.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup Pager
  */
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
@@ -30,8 +27,11 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
- * IndexPager is an efficient pager which uses a (roughly unique) index in the
- * data set to implement paging, rather than a "LIMIT offset,limit" clause.
+ * Efficient paging for SQL queries that use a (roughly unique) index.
+ *
+ * This is for paging through data sets stored in tables with a unique
+ * index, instead of a naive "LIMIT offset,limit" clause.
+ *
  * In MySQL, such a limit/offset clause requires counting through the
  * specified number of offset rows to find the desired data, which can be
  * expensive for large offsets.
@@ -63,11 +63,11 @@ use Wikimedia\Rdbms\IResultWrapper;
  *      from the query. This naturally produces either the first page or the
  *      last page depending on the dir parameter.
  *
- *  Subclassing the pager to implement concrete functionality should be fairly
- *  simple, please see the examples in HistoryAction.php and
- *  SpecialBlockList.php. You just need to override formatRow(),
- *  getQueryInfo() and getIndexField(). Don't forget to call the parent
- *  constructor if you override it.
+ * Subclassing the pager to implement concrete functionality should be fairly
+ * simple, please see the examples in HistoryAction.php and
+ * SpecialBlockList.php. You just need to override formatRow(),
+ * getQueryInfo() and getIndexField(). Don't forget to call the parent
+ * constructor if you override it.
  *
  * @stable to extend
  * @ingroup Pager

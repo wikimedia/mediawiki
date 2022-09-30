@@ -84,6 +84,7 @@ describe( '/transform/ endpoint', function () {
 	const endpointPrefix = client.pathPrefix = 'rest.php/coredev/v0';
 	const page = utils.title( 'TransformSource ' );
 	const pageEncoded = encodeURIComponent( page );
+	const pageContent = '{|\nhi\n|ho\n|}';
 	let revid;
 
 	before( async function () {
@@ -92,7 +93,7 @@ describe( '/transform/ endpoint', function () {
 		const alice = await action.alice();
 
 		// Create pages
-		let edit = await alice.edit( page, { text: '{|\nhi\n|ho\n|}' } );
+		let edit = await alice.edit( page, { text: pageContent } );
 		edit.result.should.equal( 'Success' );
 		revid = edit.newrevid;
 
@@ -2273,4 +2274,85 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 	} );
+
+	describe( 'stashing with If-Match header', function () {
+
+		// TODO: The /transform/html endpoint should handle the If-Match header
+		//       by checking whether it has a rendering with the correct key
+		//       stashed or cached. If so, it should be used for selser.
+		it.skip( 'should trigger on If-Match header', async () => {
+			const pageResponse = await client.req
+				.get( `rest.php/v1/page/${pageEncoded}/html` )
+				.query( { stash: 'yes' } );
+
+			pageResponse.headers.should.have.property( 'etag' );
+			const eTag = pageResponse.headers.etag;
+			const html = pageResponse.text;
+
+			const transformResponse = await client.req
+				.post( endpointPrefix + '/transform/html/to/wikitext/' )
+				.set( 'If-Match', eTag )
+				.send( {
+					html
+				} );
+
+			transformResponse.status.should.equal( 200, transformResponse.text );
+
+			// Since the HTML didn't change, we should get back the original wikitext unchanged.
+			transformResponse.text.should.equal( pageContent );
+		} );
+
+		it( 'should fail if eTag in If-Match header is unknown', async () => {
+			// request page HTML, but do not set 'stash' parameter!
+			const transformResponse = await client.req
+				.post( endpointPrefix + '/transform/html/to/wikitext/' )
+				.set( 'If-Match', '"1234/dummy"' )
+				.send( {
+					html: '<p>test</p>'
+				} );
+
+			transformResponse.status.should.equal( 412 );
+		} );
+	} );
+
+	describe( 'stashing with renderid in body', function () {
+		it( 'should trigger on renderid field in the body', async () => {
+			const pageResponse = await client.req
+				.get( `rest.php/v1/page/${pageEncoded}/html` )
+				.query( { stash: 'yes' } );
+
+			pageResponse.headers.should.have.property( 'etag' );
+			const eTag = pageResponse.headers.etag;
+			const html = pageResponse.text;
+
+			const transformResponse = await client.req
+				.post( endpointPrefix + '/transform/html/to/wikitext/' )
+				.send( {
+					html,
+					original: {
+						renderid: eTag
+					}
+				} );
+
+			transformResponse.status.should.equal( 200, transformResponse.text );
+
+			// Since the HTML didn't change, we should get back the original wikitext unchanged.
+			transformResponse.text.should.equal( pageContent );
+		} );
+
+		it( 'should fail if stash key is unknown', async () => {
+			// request page HTML, but do not set 'stash' parameter!
+			const transformResponse = await client.req
+				.post( endpointPrefix + '/transform/html/to/wikitext/' )
+				.send( {
+					html: '<p>test</p>',
+					original: {
+						renderid: '"1234/dummy"'
+					}
+				} );
+
+			transformResponse.status.should.equal( 412 );
+		} );
+	} );
+
 } );

@@ -3159,8 +3159,8 @@ class HookRunner implements
 		);
 	}
 
-	public function onRecentChangesPurgeRows( $rows ) {
-		return $this->container->run(
+	public function onRecentChangesPurgeRows( $rows ): void {
+		$this->container->run(
 			'RecentChangesPurgeRows',
 			[ $rows ]
 		);

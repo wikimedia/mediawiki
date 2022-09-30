@@ -1,16 +1,5 @@
 <?php
 /**
- * @defgroup LockManager Lock management
- * @ingroup FileBackend
- */
-use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
-use Wikimedia\RequestTimeout\RequestTimeout;
-use Wikimedia\WaitConditionLoop;
-
-/**
- * Resource locking handling.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -27,11 +16,20 @@ use Wikimedia\WaitConditionLoop;
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @ingroup LockManager
+ */
+
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
+use Wikimedia\RequestTimeout\RequestTimeout;
+use Wikimedia\WaitConditionLoop;
+
+/**
+ * @defgroup LockManager Lock management
+ * @ingroup FileBackend
  */
 
 /**
- * @brief Class for handling resource locking.
+ * Resource locking handling.
  *
  * Locks on resource keys can either be shared or exclusive.
  *

@@ -22,7 +22,6 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Http\SetCookieCompat;
 
 /**
  * Allow programs to request this object from WebRequest::response()
@@ -242,9 +241,9 @@ class WebResponse {
 
 		wfDebugLog( 'cookie', $logDesc );
 		if ( $func === 'setrawcookie' ) {
-			SetCookieCompat::setrawcookie( $prefixedName, $value, $setOptions );
+			setrawcookie( $prefixedName, $value, $setOptions );
 		} else {
-			SetCookieCompat::setcookie( $prefixedName, $value, $setOptions );
+			setcookie( $prefixedName, $value, $setOptions );
 		}
 		self::$setCookies[$key] = $deleting ? null : $optionsForDeduplication;
 	}
