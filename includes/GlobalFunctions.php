@@ -1928,22 +1928,6 @@ function wfGetDB( $db, $groups = [], $wiki = false ) {
 }
 
 /**
- * Should low-performance queries be disabled?
- *
- * @deprecated since 1.39, unused and directly hard-deprecated
- * @return bool
- * @codeCoverageIgnore
- */
-function wfQueriesMustScale() {
-	wfDeprecated( __FUNCTION__, '1.39' );
-	global $wgMiserMode;
-	return $wgMiserMode
-		|| ( SiteStats::pages() > 100000
-		&& SiteStats::edits() > 1000000
-		&& SiteStats::users() > 10000 );
-}
-
-/**
  * Get the path to a specified script file, respecting file
  * extensions; this is a wrapper around $wgScriptPath etc.
  * except for 'index' and 'load' which use $wgScript/$wgLoadScript

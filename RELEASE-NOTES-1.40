@@ -104,6 +104,7 @@ because of Phabricator reports.
 * The MWGrants class, deprecated since 1.38, has been removed.
 * Global functions wfReadOnly and wfReadOnlyReason, deprecated since 1.38, have
   been removed.
+* Global function wfQueriesMustScale, deprecated since 1.39, has been removed.
 * JobQueueGroup::singleton() and ::destroySingletons(), deprecated since 1.37,
   have been removed.
 * LoadBalancer::haveIndex() and ::isNonZeroLoad(), deprecated in 1.34,
