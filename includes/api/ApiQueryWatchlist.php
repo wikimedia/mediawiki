@@ -146,12 +146,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		$startFrom = null;
 		if ( $params['continue'] !== null ) {
-			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 2 );
-			$continueTimestamp = $cont[0];
-			$continueId = (int)$cont[1];
-			$this->dieContinueUsageIf( $continueId != $cont[1] );
-			$startFrom = [ $continueTimestamp, $continueId ];
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int' ] );
+			$startFrom = $cont;
 		}
 
 		if ( $wlowner !== $user ) {

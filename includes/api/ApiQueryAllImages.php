@@ -151,11 +151,9 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 			// Pagination
 			if ( $params['continue'] !== null ) {
-				$cont = explode( '|', $params['continue'] );
-				$this->dieContinueUsageIf( count( $cont ) != 1 );
-				$op = $ascendingOrder ? '>' : '<';
-				$continueFrom = $db->addQuotes( $cont[0] );
-				$this->addWhere( "img_name $op= $continueFrom" );
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string' ] );
+				$op = $ascendingOrder ? '>=' : '<=';
+				$this->addWhere( $db->buildComparison( $op, [ 'img_name' => $cont[0] ] ) );
 			}
 
 			// Image filters
@@ -202,15 +200,12 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			$this->addWhereRange( 'img_name', $ascendingOrder ? 'newer' : 'older', null, null );
 
 			if ( $params['continue'] !== null ) {
-				$cont = explode( '|', $params['continue'] );
-				$this->dieContinueUsageIf( count( $cont ) != 2 );
-				$op = ( $ascendingOrder ? '>' : '<' );
-				$continueTimestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
-				$continueName = $db->addQuotes( $cont[1] );
-				$this->addWhere( "img_timestamp $op $continueTimestamp OR " .
-					"(img_timestamp = $continueTimestamp AND " .
-					"img_name $op= $continueName)"
-				);
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'string' ] );
+				$op = ( $ascendingOrder ? '>=' : '<=' );
+				$this->addWhere( $db->buildComparison( $op, [
+					'img_timestamp' => $db->timestamp( $cont[0] ),
+					'img_name' => $cont[1],
+				] ) );
 			}
 
 			// Image filters

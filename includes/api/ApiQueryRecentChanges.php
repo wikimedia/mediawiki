@@ -134,18 +134,13 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->addTimestampWhereRange( 'rc_timestamp', $params['dir'], $params['start'], $params['end'] );
 
 		if ( $params['continue'] !== null ) {
-			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 2 );
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int' ] );
 			$db = $this->getDB();
-			$timestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
-			$id = (int)$cont[1];
-			$this->dieContinueUsageIf( $id != $cont[1] );
-			$op = $params['dir'] === 'older' ? '<' : '>';
-			$this->addWhere(
-				"rc_timestamp $op $timestamp OR " .
-				"(rc_timestamp = $timestamp AND " .
-				"rc_id $op= $id)"
-			);
+			$op = $params['dir'] === 'older' ? '<=' : '>=';
+			$this->addWhere( $db->buildComparison( $op, [
+				'rc_timestamp' => $db->timestamp( $cont[0] ),
+				'rc_id' => $cont[1],
+			] ) );
 		}
 
 		$order = $params['dir'] === 'older' ? 'DESC' : 'ASC';

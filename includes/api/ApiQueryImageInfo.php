@@ -114,9 +114,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 			$fromTitle = null;
 			if ( $params['continue'] !== null ) {
-				$cont = explode( '|', $params['continue'] );
-				$this->dieContinueUsageIf( count( $cont ) != 2 );
-				$fromTitle = strval( $cont[0] );
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'string' ] );
+				$fromTitle = $cont[0];
 				$fromTimestamp = $cont[1];
 				// Filter out any titles before $fromTitle
 				foreach ( $titles as $key => $title ) {

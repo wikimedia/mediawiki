@@ -62,11 +62,9 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		$this->addFields( 'cat_title' );
 
 		if ( $params['continue'] !== null ) {
-			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 1 );
-			$op = $params['dir'] == 'descending' ? '<' : '>';
-			$cont_from = $db->addQuotes( $cont[0] );
-			$this->addWhere( "cat_title $op= $cont_from" );
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string' ] );
+			$op = $params['dir'] == 'descending' ? '<=' : '>=';
+			$this->addWhere( $db->buildComparison( $op, [ 'cat_title' => $cont[0] ] ) );
 		}
 
 		$dir = ( $params['dir'] == 'descending' ? 'older' : 'newer' );

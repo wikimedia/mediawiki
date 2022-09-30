@@ -94,20 +94,14 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$this->addWhereRange( 'pt_title', $params['dir'], null, null );
 
 		if ( $params['continue'] !== null ) {
-			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 3 );
-			$op = ( $params['dir'] === 'newer' ? '>' : '<' );
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int', 'string' ] );
+			$op = ( $params['dir'] === 'newer' ? '>=' : '<=' );
 			$db = $this->getDB();
-			$continueTimestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
-			$continueNs = (int)$cont[1];
-			$this->dieContinueUsageIf( $continueNs != $cont[1] );
-			$continueTitle = $db->addQuotes( $cont[2] );
-			$this->addWhere( "pt_timestamp $op $continueTimestamp OR " .
-				"(pt_timestamp = $continueTimestamp AND " .
-				"(pt_namespace $op $continueNs OR " .
-				"(pt_namespace = $continueNs AND " .
-				"pt_title $op= $continueTitle)))"
-			);
+			$this->addWhere( $db->buildComparison( $op, [
+				'pt_timestamp' => $db->timestamp( $cont[0] ),
+				'pt_namespace' => $cont[1],
+				'pt_title' => $cont[2],
+			] ) );
 		}
 
 		if ( isset( $prop['user'] ) ) {

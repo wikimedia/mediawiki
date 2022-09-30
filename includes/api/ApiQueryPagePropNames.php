@@ -49,9 +49,7 @@ class ApiQueryPagePropNames extends ApiQueryBase {
 		$this->addOption( 'ORDER BY', 'pp_propname' );
 
 		if ( $params['continue'] ) {
-			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 1 );
-
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string' ] );
 			// Add a WHERE clause
 			$this->addWhereRange( 'pp_propname', 'newer', $cont[0], null );
 		}

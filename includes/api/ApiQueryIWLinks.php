@@ -73,20 +73,14 @@ class ApiQueryIWLinks extends ApiQueryBase {
 		$this->addWhereFld( 'iwl_from', array_keys( $pages ) );
 
 		if ( $params['continue'] !== null ) {
-			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 3 );
-			$op = $params['dir'] == 'descending' ? '<' : '>';
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'string', 'string' ] );
+			$op = $params['dir'] == 'descending' ? '<=' : '>=';
 			$db = $this->getDB();
-			$iwlfrom = (int)$cont[0];
-			$iwlprefix = $db->addQuotes( $cont[1] );
-			$iwltitle = $db->addQuotes( $cont[2] );
-			$this->addWhere(
-				"iwl_from $op $iwlfrom OR " .
-				"(iwl_from = $iwlfrom AND " .
-				"(iwl_prefix $op $iwlprefix OR " .
-				"(iwl_prefix = $iwlprefix AND " .
-				"iwl_title $op= $iwltitle)))"
-			);
+			$this->addWhere( $db->buildComparison( $op, [
+				'iwl_from' => $cont[0],
+				'iwl_prefix' => $cont[1],
+				'iwl_title' => $cont[2],
+			] ) );
 		}
 
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );

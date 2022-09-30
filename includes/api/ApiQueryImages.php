@@ -65,16 +65,13 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 		$this->addTables( 'imagelinks' );
 		$this->addWhereFld( 'il_from', array_keys( $pages ) );
 		if ( $params['continue'] !== null ) {
-			$cont = explode( '|', $params['continue'] );
-			$this->dieContinueUsageIf( count( $cont ) != 2 );
-			$op = $params['dir'] == 'descending' ? '<' : '>';
-			$ilfrom = (int)$cont[0];
-			$ilto = $this->getDB()->addQuotes( $cont[1] );
-			$this->addWhere(
-				"il_from $op $ilfrom OR " .
-				"(il_from = $ilfrom AND " .
-				"il_to $op= $ilto)"
-			);
+			$db = $this->getDB();
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'string' ] );
+			$op = $params['dir'] == 'descending' ? '<=' : '>=';
+			$this->addWhere( $db->buildComparison( $op, [
+				'il_from' => $cont[0],
+				'il_to' => $cont[1],
+			] ) );
 		}
 
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );

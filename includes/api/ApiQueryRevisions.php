@@ -218,16 +218,14 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
 
 			if ( $params['continue'] !== null ) {
-				$cont = explode( '|', $params['continue'] );
-				$this->dieContinueUsageIf( count( $cont ) != 2 );
-				$op = ( $params['dir'] === 'newer' ? '>' : '<' );
-				$continueTimestamp = $db->addQuotes( $db->timestamp( $cont[0] ) );
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int' ] );
+				$op = ( $params['dir'] === 'newer' ? '>=' : '<=' );
+				$continueTimestamp = $db->timestamp( $cont[0] );
 				$continueId = (int)$cont[1];
-				$this->dieContinueUsageIf( $continueId != $cont[1] );
-				$this->addWhere( "$tsField $op $continueTimestamp OR " .
-					"($tsField = $continueTimestamp AND " .
-					"$idField $op= $continueId)"
-				);
+				$this->addWhere( $db->buildComparison( $op, [
+					$tsField => $continueTimestamp,
+					$idField => $continueId,
+				] ) );
 			}
 
 			// Convert startid/endid to timestamps (T163532)
@@ -276,26 +274,30 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				if ( $params['start'] !== null ) {
-					$op = ( $params['dir'] === 'newer' ? '>' : '<' );
+					$op = ( $params['dir'] === 'newer' ? '>=' : '<=' );
 					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
-					$ts = $db->addQuotes( $db->timestampOrNull( $params['start'] ) );
+					$ts = $db->timestampOrNull( $params['start'] );
 					if ( $params['startid'] !== null ) {
-						$this->addWhere( "$tsField $op $ts OR "
-							. "$tsField = $ts AND $idField $op= " . (int)$params['startid'] );
+						$this->addWhere( $db->buildComparison( $op, [
+							$tsField => $ts,
+							$idField => (int)$params['startid'],
+						] ) );
 					} else {
-						$this->addWhere( "$tsField $op= $ts" );
+						$this->addWhere( $db->buildComparison( $op, [ $tsField => $ts ] ) );
 					}
 				}
 				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 				if ( $params['end'] !== null ) {
-					$op = ( $params['dir'] === 'newer' ? '<' : '>' ); // Yes, opposite of the above
+					$op = ( $params['dir'] === 'newer' ? '<=' : '>=' ); // Yes, opposite of the above
 					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
-					$ts = $db->addQuotes( $db->timestampOrNull( $params['end'] ) );
+					$ts = $db->timestampOrNull( $params['end'] );
 					if ( $params['endid'] !== null ) {
-						$this->addWhere( "$tsField $op $ts OR "
-							. "$tsField = $ts AND $idField $op= " . (int)$params['endid'] );
+						$this->addWhere( $db->buildComparison( $op, [
+							$tsField => $ts,
+							$idField => (int)$params['endid'],
+						] ) );
 					} else {
-						$this->addWhere( "$tsField $op= $ts" );
+						$this->addWhere( $db->buildComparison( $op, [ $tsField => $ts ] ) );
 					}
 				}
 			} else {
@@ -369,15 +371,11 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$this->addWhereFld( 'rev_page', $pageids );
 
 			if ( $params['continue'] !== null ) {
-				$cont = explode( '|', $params['continue'] );
-				$this->dieContinueUsageIf( count( $cont ) != 2 );
-				$pageid = (int)$cont[0];
-				$revid = (int)$cont[1];
-				$this->addWhere(
-					"rev_page > $pageid OR " .
-					"(rev_page = $pageid AND " .
-					"rev_id >= $revid)"
-				);
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'int' ] );
+				$this->addWhere( $db->buildComparison( '>=', [
+					'rev_page' => $cont[0],
+					'rev_id' => $cont[1],
+				] ) );
 			}
 			$this->addOption( 'ORDER BY', [
 				'rev_page',
