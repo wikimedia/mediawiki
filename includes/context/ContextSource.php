@@ -17,7 +17,7 @@
  *
  * @file
  */
-use MediaWiki\MediaWikiServices;
+
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Session\CsrfTokenSet;
 use Wikimedia\NonSerializable\NonSerializableTrait;
@@ -181,18 +181,6 @@ abstract class ContextSource implements IContextSource {
 	 */
 	public function getTiming() {
 		return $this->getContext()->getTiming();
-	}
-
-	/**
-	 * @deprecated since 1.27 use a StatsdDataFactory from MediaWikiServices (preferably injected).
-	 *  Hard deprecated since 1.39.
-	 *
-	 * @since 1.25
-	 * @return IBufferingStatsdDataFactory
-	 */
-	public function getStats() {
-		wfDeprecated( __METHOD__, '1.27' );
-		return MediaWikiServices::getInstance()->getStatsdDataFactory();
 	}
 
 	/**
