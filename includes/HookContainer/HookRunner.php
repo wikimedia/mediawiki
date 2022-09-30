@@ -1276,8 +1276,8 @@ class HookRunner implements
 		);
 	}
 
-	public function onContributeCards( &$cards ) {
-		return $this->container->run(
+	public function onContributeCards( &$cards ): void {
+		$this->container->run(
 			'ContributeCards',
 			[ &$cards ]
 		);

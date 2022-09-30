@@ -10,7 +10,7 @@ interface ContributeCardsHook {
 	 * @since 1.40
 	 *
 	 * @param array &$cards List of contribute cards data
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @return void
 	 */
-	public function onContributeCards( array &$cards );
+	public function onContributeCards( array &$cards ): void;
 }
