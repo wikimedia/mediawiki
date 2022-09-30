@@ -482,6 +482,7 @@ class ApiEditPage extends ApiBase {
 		$ep->setApiEditOverride( true );
 		$ep->setContextTitle( $titleObj );
 		$ep->importFormData( $req );
+		$ep->maybeActivateTempUserCreate( true );
 
 		// T255700: Ensure content models of the base content
 		// and fetched revision remain the same before attempting to save.
