@@ -95,6 +95,7 @@ because of Phabricator reports.
   protected method of MediumSpecificBagOStuff.
 * The EnqueueJob class, unused since 1.31, has been removed without
   deprecation.
+* ContextSource::getStats, deprecated since 1.27, has been removed.
 * The following public properties of Parser, deprecated in 1.35,
   have been made private: Parser::$mLinkId, Parser::$mIncludeSizes,
   Parser::$mDoubleUnderscore, Parser::$mShowToc, Parser::$mRevisionId,
