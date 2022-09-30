@@ -374,12 +374,11 @@ class RestrictionStore {
 			$fname = __METHOD__;
 			$loadRestrictionsFromDb = static function ( IDatabase $dbr ) use ( $fname, $id ) {
 				return iterator_to_array(
-					$dbr->select(
-						'page_restrictions',
-						[ 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ],
-						[ 'pr_page' => $id ],
-						$fname
-					)
+					$dbr->newSelectQueryBuilder()
+					->select( [ 'pr_type', 'pr_expiry', 'pr_level', 'pr_cascade' ] )
+					->from( 'page_restrictions' )
+					->where( [ 'pr_page' => $id ] )
+					->caller( $fname )->fetchResultSet()
 				);
 			};
 
@@ -576,36 +575,33 @@ class RestrictionStore {
 			return $cacheEntry['has_cascading'];
 		}
 
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$queryBuilder = $dbr->newSelectQueryBuilder();
+		$queryBuilder->select( [ 'pr_expiry' ] )
+			->from( 'page_restrictions' )
+			->where( [ 'pr_cascade' => 1 ] );
+
 		if ( $page->getNamespace() === NS_FILE ) {
 			// Files transclusion may receive cascading protection in the future
 			// see https://phabricator.wikimedia.org/T241453
-			$tables = [ 'imagelinks', 'page_restrictions' ];
-			$where_clauses = [
-				'il_to' => $page->getDBkey(),
-				'il_from=pr_page',
-				'pr_cascade' => 1
-			];
+			$queryBuilder->join( 'imagelinks', null, 'il_from=pr_page' );
+			$queryBuilder->andWhere( [ 'il_to' => $page->getDBkey() ] );
 		} else {
-			$tables = [ 'templatelinks', 'page_restrictions' ];
-			$where_clauses = $this->linksMigration->getLinksConditions(
-				'templatelinks',
-				TitleValue::newFromPage( $page )
+			$queryBuilder->join( 'templatelinks', null, 'tl_from=pr_page' );
+			$queryBuilder->andWhere(
+				$this->linksMigration->getLinksConditions(
+					'templatelinks',
+					TitleValue::newFromPage( $page )
+				)
 			);
-			$where_clauses[] = 'tl_from=pr_page';
-			$where_clauses['pr_cascade'] = 1;
 		}
 
-		if ( $shortCircuit ) {
-			$cols = [ 'pr_expiry' ];
-		} else {
-			$cols = [ 'pr_page', 'page_namespace', 'page_title',
-				'pr_expiry', 'pr_type', 'pr_level' ];
-			$where_clauses[] = 'page_id=pr_page';
-			$tables[] = 'page';
+		if ( !$shortCircuit ) {
+			$queryBuilder->fields( [ 'pr_page', 'page_namespace', 'page_title', 'pr_type', 'pr_level' ] );
+			$queryBuilder->join( 'page', null, 'page_id=pr_page' );
 		}
 
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$res = $dbr->select( $tables, $cols, $where_clauses, __METHOD__ );
+		$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
 		$sources = [];
 		$pageRestrictions = [];

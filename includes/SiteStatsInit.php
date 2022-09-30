@@ -59,10 +59,17 @@ class SiteStatsInit {
 	 * @return int
 	 */
 	public function edits() {
-		$this->edits = $this->dbr->selectField( 'revision', 'COUNT(*)', '', __METHOD__ );
-		$this->edits += $this->dbr->selectField( 'archive', 'COUNT(*)', '', __METHOD__ );
+		$this->edits = $this->countTableRows( 'revision' );
+		$this->edits += $this->countTableRows( 'archive' );
 
 		return $this->edits;
+	}
+
+	private function countTableRows( string $tableName ) {
+		return (int)$this->dbr->newSelectQueryBuilder()
+			->select( 'COUNT(*)' )
+			->from( $tableName )
+			->caller( __METHOD__ )->fetchField();
 	}
 
 	/**
@@ -71,24 +78,19 @@ class SiteStatsInit {
 	 */
 	public function articles() {
 		$services = MediaWikiServices::getInstance();
-
-		$tables = [ 'page' ];
-		$conds = [
-			'page_namespace' => $services->getNamespaceInfo()->getContentNamespaces(),
-			'page_is_redirect' => 0,
-		];
+		$queryBuilder = $this->dbr->newSelectQueryBuilder()
+			->select( 'COUNT(DISTINCT page_id)' )
+			->from( 'page' )
+			->where( [
+					'page_namespace' => $services->getNamespaceInfo()->getContentNamespaces(),
+					'page_is_redirect' => 0,
+				] );
 
 		if ( $services->getMainConfig()->get( MainConfigNames::ArticleCountMethod ) == 'link' ) {
-			$tables[] = 'pagelinks';
-			$conds[] = 'pl_from=page_id';
+			$queryBuilder->join( 'pagelinks', null, 'pl_from=page_id' );
 		}
 
-		$this->articles = $this->dbr->selectField(
-			$tables,
-			'COUNT(DISTINCT page_id)',
-			$conds,
-			__METHOD__
-		);
+		$this->articles = $queryBuilder->caller( __METHOD__ )->fetchField();
 
 		return $this->articles;
 	}
@@ -98,7 +100,7 @@ class SiteStatsInit {
 	 * @return int
 	 */
 	public function pages() {
-		$this->pages = $this->dbr->selectField( 'page', 'COUNT(*)', '', __METHOD__ );
+		$this->pages = $this->countTableRows( 'page' );
 
 		return $this->pages;
 	}
@@ -108,7 +110,7 @@ class SiteStatsInit {
 	 * @return int
 	 */
 	public function users() {
-		$this->users = $this->dbr->selectField( 'user', 'COUNT(*)', '', __METHOD__ );
+		$this->users = $this->countTableRows( 'user' );
 
 		return $this->users;
 	}
@@ -118,7 +120,7 @@ class SiteStatsInit {
 	 * @return int
 	 */
 	public function files() {
-		$this->files = $this->dbr->selectField( 'image', 'COUNT(*)', '', __METHOD__ );
+		$this->files = $this->countTableRows( 'image' );
 
 		return $this->files;
 	}

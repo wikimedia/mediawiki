@@ -23,6 +23,7 @@ use WANObjectCache;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * @coversDefaultClass \MediaWiki\Permissions\RestrictionStore
@@ -56,7 +57,10 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 
 		$dbs = [];
 		foreach ( $expectedCalls as $index => $calls ) {
-			$dbs[$index] = $this->createNoOpMock( IDatabase::class, array_keys( $calls ) );
+			$dbs[$index] = $this->createNoOpMock(
+				IDatabase::class,
+				array_merge( array_keys( $calls ), [ 'newSelectQueryBuilder' ] )
+			);
 			foreach ( $calls as $method => $callback ) {
 				$count = 1;
 				if ( is_array( $callback ) ) {
@@ -65,6 +69,11 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 				$dbs[$index]->expects( $count < 0 ? $this->any() : $this->exactly( $count ) )
 					->method( $method )->willReturnCallback( $callback );
 			}
+			$dbs[$index]
+				->method( 'newSelectQueryBuilder' )
+				->willReturnCallback( static function () use ( $dbs, $index ) {
+					return new SelectQueryBuilder( $dbs[$index] );
+				} );
 		}
 
 		$lb = $this->createMock( ILoadBalancer::class, [ 'getConnectionRef' ] );

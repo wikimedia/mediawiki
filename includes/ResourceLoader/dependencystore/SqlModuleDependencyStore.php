@@ -166,12 +166,11 @@ class SqlModuleDependencyStore extends DependencyStore {
 		$depsBlobByEntity = [];
 
 		if ( $disjunctionConds ) {
-			$res = $db->select(
-				'module_deps',
-				[ 'md_module', 'md_skin', 'md_deps' ],
-				$db->makeList( $disjunctionConds, $db::LIST_OR ),
-				__METHOD__
-			);
+			$res = $db->newSelectQueryBuilder()
+				->select( [ 'md_module', 'md_skin', 'md_deps' ] )
+				->from( 'module_deps' )
+				->where( $db->makeList( $disjunctionConds, $db::LIST_OR ) )
+				->caller( __METHOD__ )->fetchResultSet();
 
 			foreach ( $res as $row ) {
 				$entity = "{$row->md_module}|{$row->md_skin}";
