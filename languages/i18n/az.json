@@ -373,6 +373,7 @@
 	"querypage-no-updates": "Bu səhifənin yenilənməsi hal-hazırda dayandırılıb.\nBuradakı məlumatlar dərhal yenilənməyəcək.",
 	"querypage-updates-periodical": "Bu səhifə dövri olaraq yenilənir.",
 	"viewsource": "Kodu göstər",
+	"skin-action-viewsource": "Mənbəyə bax",
 	"viewsource-title": "$1 üçün mənbəyə bax",
 	"actionthrottled": "Sürət məhdudiyyəti",
 	"actionthrottledtext": "Spamla mübarizə məqsədilə qısa vaxt kəsiyi ərzində bu hərəkətlərin təkrarlanma sayı məhdudlaşdırılıb və siz qoyulan həddi aşmısınız.\nLütfən bir neçə dəqiqə sonra yenidən yoxlayın.",
