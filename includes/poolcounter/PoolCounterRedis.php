@@ -32,6 +32,7 @@ use Psr\Log\LoggerInterface;
  *                                 used for tracking waiting processes (and wait time).
  *   - poolcounter:l-wakeup-*    : A list pushed to for the sake of waking up processes
  *                                 when a any process in the pool finishes (lasts for 1ms).
+ *
  * For a given pool key, all the redis keys start off non-existing and are deleted if not
  * used for a while to prevent garbage from building up on the server. They are atomically
  * re-initialized as needed. The "z-renewtime" key is used for detecting sessions which got
@@ -63,7 +64,6 @@ class PoolCounterRedis extends PoolCounter {
 	protected $keySha1;
 	/** @var int TTL for locks to expire (work should finish in this time) */
 	protected $lockTTL;
-
 	/** @var RedisConnRef */
 	protected $conn;
 	/** @var string|null Pool slot value */
