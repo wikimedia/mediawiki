@@ -284,12 +284,10 @@ class SiteTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider instanceProvider
 	 * @param Site $site
-	 * @covers Site::serialize
-	 * @covers Site::unserialize
+	 * @covers Site::__serialize
+	 * @covers Site::__unserialize
 	 */
 	public function testSerialization( Site $site ) {
-		$this->assertInstanceOf( Serializable::class, $site );
-
 		$serialization = serialize( $site );
 		$newInstance = unserialize( $serialization );
 

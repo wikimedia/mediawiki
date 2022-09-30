@@ -162,7 +162,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$name = $prop->getName();
 			$usedMsg = ltrim( "$msg ($name)" );
 			if ( $name === 'message' && $expected->message ) {
-				$this->assertSame( $expected->message->serialize(), $actual->message->serialize(),
+				$this->assertSame( $expected->message->__serialize(), $actual->message->__serialize(),
 					$usedMsg );
 			} else {
 				$this->assertEquals( $expected->$name, $actual->$name, $usedMsg );
