@@ -193,31 +193,31 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 
 		if ( $params['continue'] !== null ) {
 			$cont = explode( '|', $params['continue'] );
-			$op = ( $dir == 'newer' ? '>' : '<' );
+			$op = ( $dir == 'newer' ? '>=' : '<=' );
 			if ( $revCount !== 0 ) {
 				$this->dieContinueUsageIf( count( $cont ) != 2 );
 				$rev = (int)$cont[0];
 				$this->dieContinueUsageIf( strval( $rev ) !== $cont[0] );
 				$ar_id = (int)$cont[1];
 				$this->dieContinueUsageIf( strval( $ar_id ) !== $cont[1] );
-				$this->addWhere( "ar_rev_id $op $rev OR " .
-					"(ar_rev_id = $rev AND " .
-					"ar_id $op= $ar_id)" );
+				$this->addWhere( $db->buildComparison( $op, [
+					'ar_rev_id' => $rev,
+					'ar_id' => $ar_id,
+				] ) );
 			} else {
 				$this->dieContinueUsageIf( count( $cont ) != 4 );
 				$ns = (int)$cont[0];
 				$this->dieContinueUsageIf( strval( $ns ) !== $cont[0] );
-				$title = $db->addQuotes( $cont[1] );
-				$ts = $db->addQuotes( $db->timestamp( $cont[2] ) );
+				$title = $cont[1];
+				$ts = $db->timestamp( $cont[2] );
 				$ar_id = (int)$cont[3];
 				$this->dieContinueUsageIf( strval( $ar_id ) !== $cont[3] );
-				$this->addWhere( "ar_namespace $op $ns OR " .
-					"(ar_namespace = $ns AND " .
-					"(ar_title $op $title OR " .
-					"(ar_title = $title AND " .
-					"(ar_timestamp $op $ts OR " .
-					"(ar_timestamp = $ts AND " .
-					"ar_id $op= $ar_id)))))" );
+				$this->addWhere( $db->buildComparison( $op, [
+					'ar_namespace' => $ns,
+					'ar_title' => $title,
+					'ar_timestamp' => $ts,
+					'ar_id' => $ar_id,
+				] ) );
 			}
 		}
 

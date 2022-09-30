@@ -412,30 +412,26 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				$this->dieContinueUsageIf( count( $continue ) != 4 );
 				$modeFlag = array_shift( $continue );
 				$this->dieContinueUsageIf( $modeFlag !== $this->orderBy );
-				$encUser = $db->addQuotes( array_shift( $continue ) );
+				$encUser = array_shift( $continue );
 			} else {
 				$this->dieContinueUsageIf( count( $continue ) != 2 );
 			}
-			$encTS = $db->addQuotes( $db->timestamp( $continue[0] ) );
+			$encTS = $db->timestamp( $continue[0] );
 			$encId = (int)$continue[1];
 			$this->dieContinueUsageIf( $encId != $continue[1] );
-			$op = ( $this->params['dir'] == 'older' ? '<' : '>' );
+			$op = ( $this->params['dir'] == 'older' ? '<=' : '>=' );
 			if ( $this->multiUserMode ) {
-				$this->addWhere(
+				$this->addWhere( $db->buildComparison( $op, [
 					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable encUser is set when used
-					"$userField $op $encUser OR " .
-					// @phan-suppress-next-line PhanPossiblyUndeclaredVariable encUser is set when used
-					"($userField = $encUser AND " .
-					"($tsField $op $encTS OR " .
-					"($tsField = $encTS AND " .
-					"$idField $op= $encId)))"
-				);
+					$userField => $encUser,
+					$tsField => $encTS,
+					$idField => $encId,
+				] ) );
 			} else {
-				$this->addWhere(
-					"$tsField $op $encTS OR " .
-					"($tsField = $encTS AND " .
-					"$idField $op= $encId)"
-				);
+				$this->addWhere( $db->buildComparison( $op, [
+					$tsField => $encTS,
+					$idField => $encId,
+				] ) );
 			}
 		}
 

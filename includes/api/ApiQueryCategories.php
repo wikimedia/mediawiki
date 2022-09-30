@@ -91,16 +91,16 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		}
 
 		if ( $params['continue'] !== null ) {
+			$db = $this->getDB();
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
-			$op = $params['dir'] == 'descending' ? '<' : '>';
+			$op = $params['dir'] == 'descending' ? '<=' : '>=';
 			$clfrom = (int)$cont[0];
-			$clto = $this->getDB()->addQuotes( $cont[1] );
-			$this->addWhere(
-				"cl_from $op $clfrom OR " .
-				"(cl_from = $clfrom AND " .
-				"cl_to $op= $clto)"
-			);
+			$clto = $cont[1];
+			$this->addWhere( $db->buildComparison( $op, [
+				'cl_from' => $clfrom,
+				'cl_to' => $clto,
+			] ) );
 		}
 
 		if ( isset( $show['hidden'] ) && isset( $show['!hidden'] ) ) {
