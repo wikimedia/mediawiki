@@ -3983,6 +3983,7 @@
 	"json-error-invalid-property-name": "Розшифрована назва властивості є недійсним",
 	"json-error-utf16": "Некоректні символи UTF-16, ймовірно неправильно закодовані",
 	"headline-anchor-title": "Посилання на цей розділ",
+	"special-tab-contribute-short": "Зробити внесок",
 	"special-characters-group-latin": "Латинські",
 	"special-characters-group-latinextended": "Розширена латинська",
 	"special-characters-group-ipa": "МФА (IPA)",
