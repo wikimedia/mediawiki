@@ -822,21 +822,6 @@ function wfLogWarning( $msg, $callerOffset = 1, $level = E_USER_WARNING ) {
 }
 
 /**
- * @deprecated since 1.38
- */
-function wfLogProfilingData() {
-	wfDeprecated( __FUNCTION__, '1.38' );
-	$profiler = Profiler::instance();
-	$profiler->logData();
-
-	// Send out any buffered statsd metrics as needed
-	MediaWiki::emitBufferedStatsdData(
-		MediaWikiServices::getInstance()->getStatsdDataFactory(),
-		MediaWikiServices::getInstance()->getMainConfig()
-	);
-}
-
-/**
  * Return a Language object from $langcode
  *
  * @param Language|string|bool $langcode Either:

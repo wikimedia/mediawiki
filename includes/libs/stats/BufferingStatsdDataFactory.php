@@ -33,8 +33,8 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactory;
  * over a single connection.
  *
  * These buffers are sent from MediaWiki::emitBufferedStatsdData. For web requests,
- * this happens pre-send via wfLogProfilingData. For command-line scripts, this
- * happens periodically from a database callback (see MWLBFactory::applyGlobalState).
+ * this happens post-send. For command-line scripts, this happens periodically from a
+ * database callback (see MWLBFactory::applyGlobalState).
  *
  * @todo Evaluate upstream's StatsdService class, which implements similar buffering logic
  * and was released in statsd-php-client 1.0.13, shortly after we implemented this here
