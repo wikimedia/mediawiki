@@ -178,9 +178,11 @@ body {
 }
 
 .success-message {
+	color: #008a00;
+	display: block;
+	margin-top: 1em;
 	font-weight: bold;
 	font-size: 110%;
-	color: #008000;
 }
 
 .config-cc-wrapper {
