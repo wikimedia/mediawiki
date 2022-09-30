@@ -20,43 +20,12 @@
  * @file
  */
 
-use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
-
 /**
  * @since 1.16.3
  * @author Tim Starling
  * @stable to extend
  */
 abstract class Collation {
-	private static $instance;
-
-	/**
-	 * @deprecated since 1.37 Use MediaWikiServices::getCollationFactory()->getCategoryCollation()
-	 * @since 1.16.3
-	 * @return Collation
-	 */
-	public static function singleton() {
-		wfDeprecated( __METHOD__, '1.37' );
-		if ( !self::$instance ) {
-			$categoryCollation = MediaWikiServices::getInstance()->getMainConfig()
-				->get( MainConfigNames::CategoryCollation );
-			self::$instance = self::factory( $categoryCollation );
-		}
-		return self::$instance;
-	}
-
-	/**
-	 * @since 1.16.3
-	 * @deprecated since 1.37 Use MediaWikiServices::getCollationFactory()->makeCollation()
-	 * @throws MWException
-	 * @param string $collationName
-	 * @return Collation
-	 */
-	public static function factory( $collationName ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return MediaWikiServices::getInstance()->getCollationFactory()->makeCollation( $collationName );
-	}
 
 	/**
 	 * Given a string, convert it to a (hopefully short) key that can be used

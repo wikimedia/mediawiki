@@ -107,6 +107,8 @@ because of Phabricator reports.
 * Global function wfQueriesMustScale, deprecated since 1.39, has been removed.
 * JobQueueGroup::singleton() and ::destroySingletons(), deprecated since 1.37,
   have been removed.
+* Collation::singleton() and ::factory(), deprecated since 1.37, have been
+  removed.
 * LoadBalancer::haveIndex() and ::isNonZeroLoad(), deprecated in 1.34,
   have been removed.
 * …
