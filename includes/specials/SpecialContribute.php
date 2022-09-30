@@ -4,7 +4,7 @@ use MediaWiki\Specials\Contribute\ContributeFactory;
 
 /**
  * Special:Contribute, show user contribute options in the 1st tab
- *  and a list of contrubution on the 2nd tab.
+ *  and a list of contribution on the 2nd tab.
  *
  * @ingroup SpecialPage
  */
@@ -21,10 +21,11 @@ class SpecialContribute extends IncludableSpecialPage {
 	 * @inheritDoc
 	 */
 	public function getAssociatedNavigationLinks(): array {
-		return $this->getUser() ? [
-			'Special:Contribute/' . $this->getUser()->getName(),
-			'Special:Contributions/' . $this->getUser()->getName(),
-			] : [];
+		$userName = $this->getUser()->getName();
+		return [
+			static::getTitleFor( 'Contribute', $userName )->getFullText(),
+			static::getTitleFor( 'Contributions', $userName )->getFullText(),
+		];
 	}
 
 	/**
@@ -37,9 +38,18 @@ class SpecialContribute extends IncludableSpecialPage {
 		$request = $this->getRequest();
 		$target = $par ?? $request->getVal( 'target', '' );
 
+		$titleLocalUrl = static::getTitleFor( 'Contribute', $this->getUser()->getName() )->getLocalUrl();
+
+		if ( $target !== $this->getUser()->getName() ) {
+			$this->getOutput()->redirect( $titleLocalUrl );
+		}
+
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'contribute-title', $target )->escaped() );
-		$out->addModuleStyles( [ 'mediawiki.special', 'mediawiki.special.contribute' ] );
+		$out->addModuleStyles( [
+			'mediawiki.special',
+			'oojs-ui.styles.icons-content'
+		] );
 		$out->addHTML( $this->getContributePage() );
 	}
 
@@ -52,7 +62,7 @@ class SpecialContribute extends IncludableSpecialPage {
 	private function getContributePage() {
 		$context = $this->getContext();
 		$user = $context->getUser();
-		$cards = ( new ContributeFactory() )->getCards();
+		$cards = ( new ContributeFactory( $context ) )->getCards();
 
 		$templateParser = new TemplateParser( __DIR__ . '/Contribute/Templates' );
 		$templateData = [
