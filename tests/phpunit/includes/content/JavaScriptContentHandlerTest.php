@@ -27,19 +27,23 @@ class JavaScriptContentHandlerTest extends MediaWikiLangTestCase {
 		return [
 			[
 				'MediaWiki:MonoBook.js',
-				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=MediaWiki:MonoBook.js\u0026action=raw\u0026ctype=text/javascript");'
+				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=MediaWiki:MonoBook.js&action=raw&ctype=text/javascript");'
 			],
 			[
 				'User:FooBar/common.js',
-				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=User:FooBar/common.js\u0026action=raw\u0026ctype=text/javascript");'
+				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=User:FooBar/common.js&action=raw&ctype=text/javascript");'
 			],
 			[
 				'Gadget:FooBaz.js',
-				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=Gadget:FooBaz.js\u0026action=raw\u0026ctype=text/javascript");'
+				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=Gadget:FooBaz.js&action=raw&ctype=text/javascript");'
 			],
 			[
 				'User:😂/unicode.js',
-				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=User:%F0%9F%98%82/unicode.js\u0026action=raw\u0026ctype=text/javascript");'
+				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=User:%F0%9F%98%82/unicode.js&action=raw&ctype=text/javascript");'
+			],
+			[
+				'User:A&B/ampersand.js',
+				'/* #REDIRECT */mw.loader.load("//example.org/w/index.php?title=User:A%26B/ampersand.js&action=raw&ctype=text/javascript");'
 			],
 		];
 		// phpcs:enable

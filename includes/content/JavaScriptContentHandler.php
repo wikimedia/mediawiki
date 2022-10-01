@@ -64,7 +64,13 @@ class JavaScriptContentHandler extends CodeContentHandler {
 		// The parameters are passed as a string so the / is not url-encoded by wfArrayToCgi
 		$url = $destination->getFullURL( 'action=raw&ctype=text/javascript', false, PROTO_RELATIVE );
 		$class = $this->getContentClass();
-		return new $class( '/* #REDIRECT */' . Html::encodeJsCall( 'mw.loader.load', [ $url ] ) );
+		// Don't needlessly encode ampersands in URLs (T107289).
+		// Avoid FormatJson or Html::encodeJsCall to ensure long-term byte-identical stability,
+		// as required for JavaScriptContent::getRedirectTarget validation.
+		$redirectContent = '/* #REDIRECT */mw.loader.load('
+			. json_encode( $url, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE )
+			. ');';
+		return new $class( $redirectContent );
 	}
 
 	public function preSaveTransform(
