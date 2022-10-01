@@ -25,6 +25,11 @@ For notes on 1.39.x and older releases, see HISTORY.
 * …
 
 ==== Changed configuration ====
+* wgPasswordPolicies – This setting, which controls what makes for a valid
+  password for wiki accounts, has been adjusted to raise the minimal password
+  length from 1 to 8 characters. The initial limit of 1 has been in place since
+  MediaWiki 1.26. If you wish to allow shorter passwords, you can over-ride it
+  in your LocalSettings following the guidance on MediaWiki.org.
 * …
 
 ==== Removed configuration ====
