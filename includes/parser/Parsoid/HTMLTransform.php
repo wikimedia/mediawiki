@@ -8,7 +8,6 @@ use ContentHandler;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Rest\HttpException;
@@ -130,6 +129,12 @@ class HTMLTransform {
 	private function incrementMetrics( string $key ) {
 		if ( $this->metrics ) {
 			$this->metrics->increment( $key );
+		}
+	}
+
+	private function timingMetrics( string $key, $value ) {
+		if ( $this->metrics ) {
+			$this->metrics->timing( $key, $value );
 		}
 	}
 
@@ -623,24 +628,18 @@ class HTMLTransform {
 	 * @return string
 	 */
 	private function htmlToText(): string {
-		if ( $this->metrics ) {
-			$metrics = $this->metrics;
-		} else {
-			$metrics = MediaWikiServices::getInstance()->getParsoidSiteConfig()->metrics();
-		}
-
 		// Performance Timing options
-		$timing = Timing::start( $metrics );
+		$timing = $this->startTiming();
 
 		$doc = $this->getModifiedDocument();
 		$htmlSize = $this->getModifiedHtmlSize();
 
 		// Send input size to statsd/Graphite
-		$metrics->timing( 'html2wt.size.input', $htmlSize );
+		$this->timingMetrics( 'html2wt.size.input', $htmlSize );
 
 		$inputContentVersion = $this->getSchemaVersion();
 
-		$metrics->increment(
+		$this->incrementMetrics(
 			'html2wt.original.version.' . $inputContentVersion
 		);
 
@@ -662,12 +661,12 @@ class HTMLTransform {
 		}
 
 		$total = $timing->end( 'html2wt.total' );
-		$metrics->timing( 'html2wt.size.output', strlen( $text ) );
+		$this->timingMetrics( 'html2wt.size.output', strlen( $text ) );
 
 		if ( $htmlSize ) {  // Avoid division by zero
 			// NOTE: the name timePerInputKB is misleading, since $htmlSize is
 			//       in characters, not bytes.
-			$metrics->timing( 'html2wt.timePerInputKB', $total * 1024 / $htmlSize );
+			$this->timingMetrics( 'html2wt.timePerInputKB', $total * 1024 / $htmlSize );
 		}
 
 		return $text;

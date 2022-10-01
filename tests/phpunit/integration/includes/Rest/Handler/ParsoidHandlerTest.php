@@ -33,6 +33,7 @@ use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\DOM\Document;
+use Wikimedia\Parsoid\Mocks\MockMetrics;
 use Wikimedia\Parsoid\Parsoid;
 
 /**
@@ -82,15 +83,16 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	private function newParsoidHandler( $methodOverrides = [] ): ParsoidHandler {
+	private function newParsoidHandler( $methodOverrides = [], $serviceOverrides = [] ): ParsoidHandler {
 		$parsoidSettings = [];
 		$method = 'POST';
 
 		$parsoidSettings += MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidSettings );
 
-		$dataAccess = $this->getServiceContainer()->getParsoidDataAccess();
-		$siteConfig = $this->getServiceContainer()->getParsoidSiteConfig();
-		$pageConfigFactory = $this->getServiceContainer()->getParsoidPageConfigFactory();
+		$dataAccess = $serviceOverrides['ParsoidDataAccess'] ?? $this->getServiceContainer()->getParsoidDataAccess();
+		$siteConfig = $serviceOverrides['ParsoidSiteConfig'] ?? $this->getServiceContainer()->getParsoidSiteConfig();
+		$pageConfigFactory = $serviceOverrides['ParsoidPageConfigFactory']
+			?? $this->getServiceContainer()->getParsoidPageConfigFactory();
 
 		$handler = new class (
 			$parsoidSettings,
@@ -935,6 +937,45 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		foreach ( (array)$expectedText as $exp ) {
 			$this->assertStringContainsString( $exp, $wikitext );
 		}
+	}
+
+	public function testHtml2wtMetrics() {
+		$page = $this->getExistingTestPage();
+		$pageConfig = $this->getPageConfig( $page );
+
+		$attribs = self::DEFAULT_ATTRIBS;
+		$attribs['opts'] += self::DEFAULT_ATTRIBS['opts'];
+		$attribs['opts']['from'] = $attribs['opts']['from'] ?? 'html';
+		$attribs['envOptions'] += self::DEFAULT_ATTRIBS['envOptions'];
+
+		$metrics = new class () extends MockMetrics {
+			public $data = [];
+
+			public function timing( $key, $time ) {
+				$this->data[$key] = $time;
+				parent::timing( $key, $time );
+			}
+
+			public function increment( $key ) {
+				$v = $this->data[$key] ?? 0;
+				$this->data[$key] = $v + 1;
+				return parent::increment( $key );
+			}
+		};
+
+		$siteConfig = $this->createNoOpMock( SiteConfig::class, [ 'metrics' ] );
+		$siteConfig->method( 'metrics' )->willReturn( $metrics );
+
+		$handler = $this->newParsoidHandler( [], [ 'ParsoidSiteConfig' => $siteConfig ] );
+
+		$handler->html2wt( $pageConfig, $attribs, '<p>test</p>' );
+
+		$this->assertArrayHasKey( 'html2wt.size.input', $metrics->data );
+		$this->assertArrayHasKey( 'html2wt.original.version.' . Parsoid::defaultHTMLVersion(), $metrics->data );
+		$this->assertArrayHasKey( 'html2wt.init', $metrics->data );
+		$this->assertArrayHasKey( 'html2wt.total', $metrics->data );
+		$this->assertArrayHasKey( 'html2wt.size.output', $metrics->data );
+		$this->assertArrayHasKey( 'html2wt.timePerInputKB', $metrics->data );
 	}
 
 	public function provideHtml2wtThrows() {
