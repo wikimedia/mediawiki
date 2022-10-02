@@ -322,7 +322,8 @@ abstract class Maintenance {
 
 	/**
 	 * Does a given argument exist?
-	 * @param int $argId The integer value (from zero) for the arg
+	 * @param int|string $argId The index (from zero) of the argument, or
+	 *                   the name declared for the argument by addArg().
 	 * @return bool
 	 */
 	protected function hasArg( $argId = 0 ) {
@@ -331,7 +332,8 @@ abstract class Maintenance {
 
 	/**
 	 * Get an argument.
-	 * @param int $argId The integer value (from zero) for the arg
+	 * @param int|string $argId The index (from zero) of the argument, or
+	 *                   the name declared for the argument by addArg().
 	 * @param mixed|null $default The default if it doesn't exist
 	 * @return mixed
 	 * @return-taint none
