@@ -664,6 +664,7 @@ return [
 	],
 
 	'wvui-search' => [
+		'deprecated' => 'Deprecated in 1.39. Use `@wikimedia/codex-search` instead.',
 		'packageFiles' => [
 			'resources/src/wvui/wvui-search.js',
 			'resources/lib/wvui/wvui-search.commonjs2.js',
