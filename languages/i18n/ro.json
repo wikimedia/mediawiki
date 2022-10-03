@@ -1081,6 +1081,8 @@
 	"prefs-help-tokenmanagement": "Puteți vedea și reseta cheia secretă pentru contul dvs. care poate accesa fluxul Web al listei dvs. de urmărire. Oricine știe cheia va putea să vă citească lista de urmărire, deci nu o împărtășiți.",
 	"prefs-user-downloaddata-label": "Datele contului:",
 	"prefs-user-downloaddata-info": "Datele contului meu din acest proiect",
+	"prefs-user-restoreprefs-label": "Resetare setări:",
+	"prefs-user-restoreprefs-info": "Restaurează toate preferințele implicite (în toate secțiunile)",
 	"savedprefs": "Preferințele dumneavoastră au fost salvate.",
 	"savedrights": "Grupurile utilizatorului {{GENDER:$1|$1}} au fost salvate.",
 	"timezonelegend": "Fus orar:",

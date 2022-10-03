@@ -344,7 +344,7 @@
 	"mergehistory-fail": "Versionsvereinigung nicht möglich, bitte prüfen Sie die Seite und die Zeitangaben.",
 	"lineno": "Zeile $1:",
 	"searchmenu-exists": "<strong>Es gibt eine Seite, die den Namen „[[:$1]]“ hat.</strong> {{PLURAL:$2|0=|Weitere Suchergebnisse anzeigen.}}",
-	"searchmenu-new": "<strong>Erstellen Sie die Seite „[[:$1]]“ in diesem Wiki.</strong> {{PLURAL:$2|0=|Siehe auch die über Ihre Suche gefundene Seite.|Siehe auch die gefundenen Suchergebnisse.}}",
+	"searchmenu-new": "Erstellen Sie die Seite „[[:$1]]“ in diesem Wiki. {{PLURAL:$2|0=|Siehe auch die über Ihre Suche gefundene Seite.|Siehe auch die gefundenen Suchergebnisse.}}",
 	"search-suggest": "Meinten Sie „$1“?",
 	"search-nonefound": "Für Ihre Suchanfrage wurden keine Ergebnisse gefunden.",
 	"searchdisabled": "Die {{SITENAME}} Suche wurde deaktiviert. Sie können unterdessen mit Google suchen. Bitte bedenken Sie, dass der Suchindex von {{SITENAME}} veraltet sein kann.",
