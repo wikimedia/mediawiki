@@ -20,10 +20,10 @@
 
 $cfg = require __DIR__ . '/../vendor/mediawiki/mediawiki-phan-config/src/config.php';
 
-// Whilst MediaWiki is still supporting PHP 7.2+, this lets us run phan on higher versions of PHP
-// like 8.0 without phan trying to get us to make PHP 7.2-incompatible changes. This value should
+// Whilst MediaWiki is still supporting PHP 7.4+, this lets us run phan on higher versions of PHP
+// like 8.0 without phan trying to get us to make PHP 7.4-incompatible changes. This value should
 // match the PHP version specified in composer.json and PHPVersionCheck.php.
-$cfg['minimum_target_php_version'] = '7.2.22';
+$cfg['minimum_target_php_version'] = '7.4.3';
 
 $cfg['file_list'] = array_merge(
 	$cfg['file_list'],
@@ -103,6 +103,13 @@ $cfg['exclude_analysis_directory_list'] = [
 	// empty array due to the version checking in T246594 not being currently used.
 	'includes/PHPVersionCheck.php',
 ];
+
+$cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
+	// approximate error count: 62
+	// Disabled temporarily as part of upgrade to PHP 7.4. Not actually an error,
+	// just not taking advantage of the ??= operator. Can be fixed in the near future.
+	'PhanPluginDuplicateExpressionAssignmentOperation',
+] );
 
 // Do not use aliases in core.
 // Use the correct name, because we don't need backward compatibility
