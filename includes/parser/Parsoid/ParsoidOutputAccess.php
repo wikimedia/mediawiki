@@ -29,6 +29,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
@@ -93,16 +94,19 @@ class ParsoidOutputAccess {
 	/** @var PageConfigFactory */
 	private $parsoidPageConfigFactory;
 
+	/** @var PageLookup */
+	private $pageLookup;
+
 	/** @var RevisionLookup */
 	private $revisionLookup;
-	/**
-	 * @var SiteConfig
-	 */
+
+	/** @var SiteConfig */
 	private $siteConfig;
 
 	/**
 	 * @param ServiceOptions $options
 	 * @param ParserCacheFactory $parserCacheFactory
+	 * @param PageLookup $pageLookup
 	 * @param RevisionLookup $revisionLookup
 	 * @param GlobalIdGenerator $globalIdGenerator
 	 * @param IBufferingStatsdDataFactory $stats
@@ -113,6 +117,7 @@ class ParsoidOutputAccess {
 	public function __construct(
 		ServiceOptions $options,
 		ParserCacheFactory $parserCacheFactory,
+		PageLookup $pageLookup,
 		RevisionLookup $revisionLookup,
 		GlobalIdGenerator $globalIdGenerator,
 		IBufferingStatsdDataFactory $stats,
@@ -125,6 +130,7 @@ class ParsoidOutputAccess {
 		$this->revisionOutputCache = $parserCacheFactory
 			->getRevisionOutputCache( self::PARSOID_PARSER_CACHE_NAME );
 		$this->parserCache = $parserCacheFactory->getParserCache( self::PARSOID_PARSER_CACHE_NAME );
+		$this->pageLookup = $pageLookup;
 		$this->revisionLookup = $revisionLookup;
 		$this->globalIdGenerator = $globalIdGenerator;
 		$this->stats = $stats;
@@ -147,32 +153,22 @@ class ParsoidOutputAccess {
 	}
 
 	/**
-	 * @param PageRecord $page
+	 * @param PageIdentity $page
 	 * @param ParserOptions $parserOpts
-	 * @param ?RevisionRecord $revision
+	 * @param RevisionRecord|int|null $revision
 	 * @param int $options See the OPT_XXX constants
 	 *
 	 * @return Status<ParserOutput>
 	 */
 	public function getParserOutput(
-		PageRecord $page,
+		PageIdentity $page,
 		ParserOptions $parserOpts,
-		?RevisionRecord $revision = null,
+		$revision = null,
 		int $options = 0
 	): Status {
-		$revId = $revision ? $revision->getId() : $page->getLatest();
-		if ( !$revision ) {
-			$revision = $this->revisionLookup->getRevisionById( $revId );
+		[ $page, $revision ] = $this->resolveRevision( $page, $revision );
+		$isOld = $revision->getId() !== $page->getLatest();
 
-			if ( !$revision ) {
-				throw new RevisionAccessException(
-					'Revision {revId} not found',
-					[ 'revId' => $revId ]
-				);
-			}
-		}
-
-		$isOld = $revId !== $page->getLatest();
 		$statsKey = $isOld ? 'ParsoidOutputAccess.Cache.revision' : 'ParsoidOutputAccess.Cache.parser';
 
 		$mainSlot = $revision->getSlot( SlotRecord::MAIN );
@@ -181,7 +177,7 @@ class ParsoidOutputAccess {
 		}
 
 		if ( !( $options & self::OPT_FORCE_PARSE ) ) {
-			$parserOutput = $this->getCachedParserOutput(
+			$parserOutput = $this->getCachedParserOutputInternal(
 				$page,
 				$parserOpts,
 				$revision,
@@ -282,6 +278,32 @@ class ParsoidOutputAccess {
 	}
 
 	/**
+	 * @param PageIdentity $page
+	 * @param ParserOptions $parserOpts
+	 * @param RevisionRecord|int|null $revision
+	 *
+	 * @return ?ParserOutput
+	 */
+	public function getCachedParserOutput(
+		PageIdentity $page,
+		ParserOptions $parserOpts,
+		$revision = null
+	): ?ParserOutput {
+		[ $page, $revision ] = $this->resolveRevision( $page, $revision );
+		$isOld = $revision->getId() !== $page->getLatest();
+
+		$statsKey = $isOld ? 'ParsoidOutputAccess.Cache.revision' : 'ParsoidOutputAccess.Cache.parser';
+
+		return $this->getCachedParserOutputInternal(
+			$page,
+			$parserOpts,
+			$revision,
+			$isOld,
+			$statsKey
+		);
+	}
+
+	/**
 	 * @param PageRecord $page
 	 * @param ParserOptions $parserOpts
 	 * @param RevisionRecord|null $revision
@@ -290,7 +312,7 @@ class ParsoidOutputAccess {
 	 *
 	 * @return ?ParserOutput
 	 */
-	protected function getCachedParserOutput(
+	protected function getCachedParserOutputInternal(
 		PageRecord $page,
 		ParserOptions $parserOpts,
 		?RevisionRecord $revision,
@@ -351,5 +373,42 @@ class ParsoidOutputAccess {
 		$parserOutput->setCacheTime( $now );
 
 		return $status;
+	}
+
+	/**
+	 * @param PageIdentity $page
+	 * @param RevisionRecord|int|null $revision
+	 *
+	 * @return array [ PageRecord $page, RevisionRecord $revision ]
+	 */
+	private function resolveRevision( PageIdentity $page, $revision ): array {
+		if ( !$page instanceof PageRecord ) {
+			$name = "$page";
+			$page = $this->pageLookup->getPageByReference( $page );
+			if ( !$page ) {
+				throw new RevisionAccessException(
+					'Page {name} not found',
+					[ 'name' => $name ]
+				);
+			}
+		}
+
+		if ( $revision === null ) {
+			$revision = $page->getLatest();
+		}
+
+		if ( is_int( $revision ) ) {
+			$revId = $revision;
+			$revision = $this->revisionLookup->getRevisionById( $revId );
+
+			if ( !$revision ) {
+				throw new RevisionAccessException(
+					'Revision {revId} not found',
+					[ 'revId' => $revId ]
+				);
+			}
+		}
+
+		return [ $page, $revision ];
 	}
 }
