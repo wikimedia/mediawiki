@@ -173,7 +173,7 @@ class RandomImageGenerator {
 
 		$draws = [];
 		for ( $i = 0; $i <= $this->shapesToDraw; $i++ ) {
-			$radius = mt_rand( 0, $diagonalLength / 4 );
+			$radius = mt_rand( 0, (int)( $diagonalLength / 4 ) );
 			if ( $radius == 0 ) {
 				continue;
 			}
