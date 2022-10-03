@@ -97,7 +97,7 @@ class SiteConfig extends ISiteConfig {
 	private $config;
 
 	/** @var Config */
-	private $optionalConfig;
+	private $mwConfig;
 
 	/** @var array Parsoid-specific options array from $config */
 	private $parsoidSettings;
@@ -172,7 +172,7 @@ class SiteConfig extends ISiteConfig {
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param UrlUtils $urlUtils
 	 * @param Parser $parser
-	 * @param Config $optionalConfig
+	 * @param Config $mwConfig
 	 */
 	public function __construct(
 		ServiceOptions $config,
@@ -189,16 +189,15 @@ class SiteConfig extends ISiteConfig {
 		LanguageConverterFactory $languageConverterFactory,
 		LanguageNameUtils $languageNameUtils,
 		UrlUtils $urlUtils,
-		// These arguments are temporary and will be removed once
-		// better solutions are found.
+		// $parser is temporary and may be removed once a better solution is found.
 		Parser $parser, // T268776
-		Config $optionalConfig // T268777
+		Config $mwConfig
 	) {
 		parent::__construct();
 
 		$config->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->config = $config;
-		$this->optionalConfig = $optionalConfig;
+		$this->mwConfig = $mwConfig;
 		$this->parsoidSettings = $parsoidSettings;
 
 		$this->objectFactory = $objectFactory;
@@ -505,12 +504,24 @@ class SiteConfig extends ISiteConfig {
 		return Title::newMainPage()->getPrefixedText();
 	}
 
+	/**
+	 * Lookup config
+	 * @param string $key
+	 * @return mixed config value for $key, if present or null, if not.
+	 */
+	public function getMWConfigValue( string $key ) {
+		return $this->mwConfig->has( $key ) ? $this->mwConfig->get( $key ) : null;
+	}
+
+	/**
+	 * This will be removed without deprecation once we transition over
+	 * Parsoid's Cite code to use getMWConfigValue method above.
+	 * @inheritDoc
+	 */
 	public function responsiveReferences(): array {
-		// @todo This is from the Cite extension, which shouldn't be known about by core
-		// T268777
 		return [
-			'enabled' => $this->optionalConfig->has( 'CiteResponsiveReferences' ) ?
-				$this->optionalConfig->get( 'CiteResponsiveReferences' ) : false,
+			'enabled' => $this->mwConfig->has( 'CiteResponsiveReferences' ) ?
+				$this->mwConfig->get( 'CiteResponsiveReferences' ) : false,
 			'threshold' => 10,
 		];
 	}
