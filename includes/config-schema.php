@@ -296,6 +296,9 @@ return [
 				4 => 250,
 				5 => 300,
 			],
+			'ThumbnailNamespaces' => [
+				0 => 6,
+			],
 			'ThumbnailBuckets' => null,
 			'ThumbnailMinimumBucketDistance' => 50,
 			'UploadThumbnailRenderMap' => [
@@ -2502,6 +2505,7 @@ return [
 			'XMLMimeTypes' => 'object',
 			'ImageLimits' => 'array',
 			'ThumbLimits' => 'array',
+			'ThumbnailNamespaces' => 'array',
 			'ThumbnailBuckets' => [
 				0 => 'array',
 				1 => 'null',
@@ -3119,6 +3123,11 @@ return [
 		],
 		'UploadStashScalerBaseUrl' => [
 			'deprecated' => 'since 1.36 Use thumbProxyUrl in $wgLocalFileRepo',
+		],
+		'ThumbnailNamespaces' => [
+			'items' => [
+				'type' => 'integer',
+			],
 		],
 		'SharedDB' => [
 			'deprecated' => 'since 1.21 In new code, use the $wiki parameter to LBFactory::getMainLB() to access remote databases. Using LBFactory::getMainLB() allows the shared database to reside on separate servers to the wiki\'s own database, with suitable configuration of $wgLBFactoryConf',

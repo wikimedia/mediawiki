@@ -783,6 +783,12 @@ class MainConfigNames {
 	public const ThumbLimits = 'ThumbLimits';
 
 	/**
+	 * Name constant for the ThumbnailNamespaces setting, for use with Config::get()
+	 * @see MainConfigSchema::ThumbnailNamespaces
+	 */
+	public const ThumbnailNamespaces = 'ThumbnailNamespaces';
+
+	/**
 	 * Name constant for the ThumbnailBuckets setting, for use with Config::get()
 	 * @see MainConfigSchema::ThumbnailBuckets
 	 */

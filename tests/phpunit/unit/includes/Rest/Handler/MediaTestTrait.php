@@ -58,10 +58,11 @@ trait MediaTestTrait {
 		/** @var MockObject|LocalFile $file */
 		$file = $this->createNoOpMock(
 			LocalFile::class,
-			[ 'getTitle', 'getDescriptionUrl', 'exists', 'userCan', 'getUploader', 'getTimestamp',
+			[ 'getName', 'getTitle', 'getDescriptionUrl', 'exists', 'userCan', 'getUploader', 'getTimestamp',
 				'getMediaType', 'getSize', 'getHeight', 'getWidth', 'getDisplayWidthHeight',
 				'getLength', 'getUrl', 'allowInlineDisplay', 'transform', 'getSha1', 'load', 'getMimeType' ]
 		);
+		$file->method( 'getName' )->willReturn( ucfirst( $title->getDBkey() ) );
 		$file->method( 'getTitle' )->willReturn( $title );
 		$file->method( 'exists' )->willReturn( true );
 		$file->method( 'userCan' )->willReturn( true );
@@ -72,7 +73,6 @@ trait MediaTestTrait {
 		$file->method( 'getSize' )->willReturn( 12345 );
 		$file->method( 'getHeight' )->willReturn( 400 );
 		$file->method( 'getWidth' )->willReturn( 600 );
-		$file->method( 'getDisplayWidthHeight' )->willReturn( [ 600, 400 ] );
 		$file->method( 'getLength' )->willReturn( 678 );
 		$file->method( 'getSha1' )->willReturn( 'DEADBEEF' );
 		$file->method( 'allowInlineDisplay' )->willReturn( true );
@@ -84,13 +84,30 @@ trait MediaTestTrait {
 		);
 		$file->method( 'getMimeType' )->willReturn( 'image/jpeg' );
 
-		$thumbnail = new ThumbnailImage(
-			$file,
-			'https://media.example.com/static/thumb/' . $title->getDBkey(),
-			false,
-			[ 'width' => 64, 'height' => 64, ]
-		);
-		$file->method( 'transform' )->willReturn( $thumbnail );
+		$getDisplayWidthHeight = static function ( $maxWidth, $maxHeight, $page = 1 ) use ( $file ) {
+			$width = $file->getWidth( $page );
+			$height = $file->getHeight( $page );
+			$ratio = $width / $height;
+			if ( $width / $maxWidth > $height / $maxHeight ) {
+				return [ $maxWidth, round( $maxWidth / $ratio ) ];
+			}
+			return [ round( $maxHeight * $ratio ), $maxHeight ];
+		};
+		$file->method( 'getDisplayWidthHeight' )->willReturnCallback( $getDisplayWidthHeight );
+
+		$transform = static function ( $params ) use ( $file, $title ) {
+			return new ThumbnailImage(
+				$file,
+				'https://media.example.com/static/thumb/' . $title->getDBkey(),
+				false,
+				[
+					'width' => $params['width'] ?? 64,
+					'height' => $params['height'] ?? 64,
+					'page' => $params['page'] ?? false
+				]
+			);
+		};
+		$file->method( 'transform' )->willReturnCallback( $transform );
 
 		return $file;
 	}

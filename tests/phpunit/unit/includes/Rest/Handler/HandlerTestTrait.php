@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
@@ -38,7 +39,7 @@ trait HandlerTestTrait {
 	 * @param Handler $handler
 	 * @param RequestInterface $request
 	 * @param array $config
-	 * @param array $hooks Hook overrides
+	 * @param HookContainer|array $hooks Hook container or array of hooks
 	 * @param Authority|null $authority
 	 * @param bool $csrfSafe
 	 */
@@ -68,7 +69,7 @@ trait HandlerTestTrait {
 		} );
 
 		$authority = $authority ?: $this->mockAnonUltimateAuthority();
-		$hookContainer = $this->createHookContainer( $hooks );
+		$hookContainer = $hooks instanceof HookContainer ? $hooks : $this->createHookContainer( $hooks );
 
 		$handler->init( $router, $request, $config, $authority, $responseFactory, $hookContainer,
 			$this->getSession( $csrfSafe )
@@ -121,7 +122,7 @@ trait HandlerTestTrait {
 	 * @param Handler $handler
 	 * @param RequestInterface $request
 	 * @param array $config
-	 * @param array $hooks Hook overrides
+	 * @param HookContainer|array $hooks Hook container or array of hooks
 	 * @param array $validatedParams Path/query params to return as already valid
 	 * @param array $validatedBody Body params to return as already valid
 	 * @param Authority|null $authority
@@ -173,7 +174,7 @@ trait HandlerTestTrait {
 	 * @param Handler $handler
 	 * @param RequestInterface $request
 	 * @param array $config
-	 * @param array $hooks
+	 * @param HookContainer|array $hooks Hook container or array of hooks
 	 * @param array $validatedParams
 	 * @param array $validatedBody
 	 * @param Authority|null $authority
@@ -212,7 +213,7 @@ trait HandlerTestTrait {
 	 * @param Handler $handler
 	 * @param RequestInterface $request
 	 * @param array $config
-	 * @param array $hooks
+	 * @param HookContainer|array $hooks Hook container or array of hooks
 	 *
 	 * @return HttpException
 	 */

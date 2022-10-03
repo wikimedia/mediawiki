@@ -84,7 +84,10 @@ class BasicSearchResultSetWidget {
 					"<h2 class='mw-search-interwiki-header mw-search-visualclear'>" .
 						$this->specialPage->msg( "search-interwiki-results-{$interwiki}" )->parse() .
 					"</h2>";
-				$out .= $this->renderResultSet( $results, $offset );
+				$out .=
+					"<div class='mw-search-interwiki-results'>" .
+						$this->renderResultSet( $results, $offset ) .
+					"</div>";
 			}
 		}
 

@@ -1,5 +1,6 @@
 /* Special:Search */
 @import 'mediawiki.mixins.less';
+@import 'mediawiki.ui/variables.less';
 
 /* stylelint-disable selector-class-pattern */
 .searchresults {
@@ -41,19 +42,60 @@
 	}
 }
 
+.searchResultImage {
+	.searchResultImage-thumbnail {
+		width: 90px;
+		height: 90px;
+		text-align: center;
+		vertical-align: middle;
+		padding-right: 0.5em;
+
+		.searchResultImage-thumbnail-placeholder {
+			width: 100%;
+			height: 100%;
+			background-color: @colorGray15;
+			border: 1px solid @colorGray12;
+			fill: @colorGray7;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		img {
+			width: 100%;
+			/* Note: below !important required to override an unrelated !important in minerva skin */
+			/* stylelint-disable-next-line declaration-no-important */
+			height: 100% !important;
+			/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+			object-fit: cover;
+			object-position: top;
+			border: 1px solid @colorGray12;
+		}
+	}
+
+	.searchResultImage-text {
+		vertical-align: top;
+	}
+}
+
+/* Don't show thumbnails for interwiki results */
+.mw-search-interwiki-results .searchResultImage-thumbnail {
+	display: none;
+}
+
 .mw-search-visualclear {
 	clear: both;
 }
 
 .mw-search-result-data {
-	color: #54595d;
+	color: @colorGray5;
 	font-size: 93%;
 }
 
 .mw-search-profile-tabs {
-	background-color: #f8f9fa;
+	background-color: @colorGray15;
 	margin-top: 1em;
-	border: 1px solid #c8ccd1;
+	border: 1px solid @colorGray12;
 	border-radius: 2px;
 }
 
@@ -79,7 +121,7 @@
 	}
 
 	.current a {
-		color: #202122;
+		color: @colorGray2;
 		cursor: default;
 
 		&:hover {
@@ -92,7 +134,7 @@
 	float: right;
 	padding: 0.5em;
 	padding-right: 0.75em;
-	color: #54595d;
+	color: @colorGray5;
 	font-size: 95%;
 }
 
@@ -108,9 +150,9 @@
 	/* Support: Firefox, needs `clear: both` on `fieldset` when zoom level > 100%, see T176499 */
 	clear: both;
 	padding: 0.5em 0.75em 0.75em 0.75em;
-	background-color: #f8f9fa;
+	background-color: @colorGray15;
 	margin: -1px 0 0;
-	border: 1px solid #c8ccd1;
+	border: 1px solid @colorGray12;
 	border-radius: 0 0 2px 2px;
 
 	legend {
@@ -125,7 +167,7 @@
 
 	.divider {
 		clear: both;
-		border-bottom: 1px solid #eaecf0;
+		border-bottom: 1px solid @colorGray14;
 		padding-top: 0.5em;
 		margin-bottom: 0.5em;
 	}
@@ -172,8 +214,8 @@
 	font-size: 97%;
 	text-align: left;
 	padding: 0.15em 0.15em 0.2em 0.2em;
-	background-color: #eaecf0;
-	border-top: 1px solid #c8ccd1;
+	background-color: @colorGray14;
+	border-top: 1px solid @colorGray12;
 }
 
 .searchdidyoumean {

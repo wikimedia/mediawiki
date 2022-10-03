@@ -767,6 +767,12 @@ $wgImageLimits = null;
 $wgThumbLimits = null;
 
 /**
+ * Config variable stub for the ThumbnailNamespaces setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ThumbnailNamespaces
+ */
+$wgThumbnailNamespaces = null;
+
+/**
  * Config variable stub for the ThumbnailBuckets setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ThumbnailBuckets
  */
