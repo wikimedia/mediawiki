@@ -116,6 +116,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 				$services->getMainConfig()
 			),
 			$parserCacheFactory,
+			$services->getPageStore(),
 			$services->getRevisionLookup(),
 			$idGenerator,
 			$services->getStatsdDataFactory(),

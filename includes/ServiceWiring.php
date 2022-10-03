@@ -1357,6 +1357,7 @@ return [
 				$services->getMainConfig()
 			),
 			$services->getParserCacheFactory(),
+			$services->getPageStore(),
 			$services->getRevisionLookup(),
 			$services->getGlobalIdGenerator(),
 			$services->getStatsdDataFactory(),
