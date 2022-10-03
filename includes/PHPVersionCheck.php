@@ -29,7 +29,7 @@
  * and MW current version are hardcoded in this class.
  *
  * @note This class uses setter methods instead of a constructor so that
- * it can be compatible with PHP 4, PHP 5 and PHP 7 (without warnings).
+ * it can be compatible with PHP 4 through PHP 8 (without warnings).
  */
 class PHPVersionCheck {
 	/** @var string The number of the MediaWiki version used. If you're updating MW_VERSION in Defines.php, you must also update this value. */
