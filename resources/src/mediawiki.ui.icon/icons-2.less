@@ -18,20 +18,25 @@
 @import 'mediawiki.mixins.less';
 
 // == Icons ==
-@icon-touch-area-sm: 34;
+@icon-touch-area-sm: 32; // This is also used for touch areas at DESKTOP resolutions.
 @icon-touch-area-md: 44;
 @font-size-browser: 16; // Assumed browser default of `16px`.
 // Small icon
 @icon-glyph-size-sm: 16;
 @icon-size-sm: unit( @icon-glyph-size-sm / @font-size-browser, em );
-@icon-padding-sm: unit( ( @icon-touch-area-sm - @icon-glyph-size-sm ) / 2 / @font-size-browser, em );
+@icon-padding-sm: unit( ( @icon-touch-area-sm - @icon-glyph-size-sm - 2 ) / 2 / @font-size-browser, em );
 // Medium icon
 @icon-glyph-size-md: 20;
 @icon-size-md: unit( @icon-glyph-size-md / @font-size-browser, em );
 @icon-padding-md: unit( ( @icon-touch-area-md - @icon-glyph-size-md ) / 2 / @font-size-browser, em );
+// Includes 2px mw-ui-button border
+@icon-padding-md-button: unit( ( @icon-touch-area-md - @icon-glyph-size-md - 2 ) / 2 / @font-size-browser, em );
+// At desktop resolution the icon touch area will shrink from @icon-touch-area-md to @icon-touch-area-sm
+@icon-padding-md-button--desktop: unit( ( @icon-touch-area-sm - @icon-glyph-size-md - 2 ) / 2 / @font-size-browser, em );
+
 // Colors
 @icon-color: @colorGray5;
-@margin-icon-md-labelled: 8px;
+@margin-icon-md-labelled: 6px;
 
 /**
 * Mixin for a pseudo-element with a background image.
@@ -134,6 +139,9 @@
 	padding: @icon-padding-md;
 	transition: background-color @transition-duration-base;
 
+	&.mw-ui-button {
+		padding: @icon-padding-md-button;
+	}
 	// Combined with nowrap & ellipsis from .mw-ui-icon, forms safe "screen-reader" text.
 	color: transparent;
 
@@ -146,6 +154,13 @@
 	// Assume a mobile device - and avoid tap state remaining after click (T233046).
 	&:active {
 		background-color: @background-color-quiet--hover;
+	}
+
+	// In desktop these icons shrink in size as touch area no longer important.
+	@media ( min-width: @width-breakpoint-desktop ) {
+		&.mw-ui-button {
+			padding: @icon-padding-md-button--desktop;
+		}
 	}
 }
 
