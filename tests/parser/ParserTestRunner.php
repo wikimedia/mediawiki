@@ -188,6 +188,10 @@ class ParserTestRunner {
 	 *      If not null, run a Parsoid selser edit test with this changetree
 	 *  - updateKnownFailures (bool)
 	 *      If true, *knownFailures.json files are updated
+	 *  - traceFlags (array)
+	 *      (Parsoid-only) Flags for tracing different Parsoid stages
+	 *  - dumpFlags (array)
+	 *      (Parsoid-only) Flags for dumping various pieces of state
 	 *  - norm (array)
 	 *      An array of normalization functions to run on test output
 	 *      to use in legacy parser test runs
@@ -221,15 +225,19 @@ class ParserTestRunner {
 			// Options can also match those in ParserTestModes::TEST_MODES
 			// but we don't need to initialize those here; they will be
 			// accessed via $this->requestedTestModes instead.
+			'traceFlags' => [],
+			'dumpFlags' => [],
 		];
+
 		// Requested test modes are used for Parsoid tests and ignored for
 		// legacy parser tests.
 		$this->requestedTestModes = ParserTestMode::requestedTestModes(
 			$this->options
 		);
 
-		// @phan-suppress-next-line PhanEmptyForeach False positive
-		foreach ( $this->options['norm'] as $func ) {
+		$normFuncs = $this->options['norm'];
+		'@phan-var string[] $normFuncs';
+		foreach ( $normFuncs as $func ) {
 			if ( in_array( $func, [ 'removeTbody', 'trimWhitespace' ] ) ) {
 				$this->normalizationFunctions[] = $func;
 			} else {
@@ -1652,6 +1660,8 @@ class ParserTestRunner {
 		$origOut = $parsoid->wikitext2html( $pageConfig, [
 			'body_only' => true,
 			'wrapSections' => $test->options['parsoid']['wrapSections'] ?? false,
+			'traceFlags' => $this->options['traceFlags'],
+			'dumpFlags' => $this->options['dumpFlags']
 		], $headers, $metadata );
 
 		if ( isset( $test->options['nohtml'] ) ) {
@@ -2059,6 +2069,7 @@ class ParserTestRunner {
 		// Register any special extensions required by this test case
 		$services = MediaWikiServices::getInstance();
 		$siteConfig = $services->get( 'ParsoidSiteConfig' );
+		$siteConfig->getLogger()->log( 'debug', "\n------ LOGS for {$test->testName} [$mode] ------" );
 		$teardown[] = self::registerExtensionModule( $siteConfig, ParsoidParserHook::class );
 		if ( ( $test->options['wgrawhtml'] ?? null ) === '1' ) {
 			$teardown[] = self::registerExtensionModule( $siteConfig, ParsoidRawHTML::class );
