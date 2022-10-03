@@ -1940,7 +1940,7 @@
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ಟ್ಯಾಗ್|ಟ್ಯಾಗ್‌ಗಳು}}]]: $2",
 	"tag-mw-new-redirect": "ಹೊಸ ಪುನರ್ ನಿರ್ದೇಶನ",
 	"tag-mw-undo": "ರದ್ದುಗೊಳಿಸಿ",
-	"tags-title": "ಅಂಕಿತಗಳು",
+	"tags-title": "ಟ್ಯಾಗ್‌ಗಳು",
 	"tags-tag": "ಅಂಕಿತ ನಾಮ",
 	"tags-source-header": "ಮೂಲ",
 	"tags-active-header": "ಸಕ್ರಿಯ?",

@@ -50,7 +50,8 @@
 			"아라",
 			"McDutchie",
 			"Ponor",
-			"Srđan"
+			"Srđan",
+			"Eleassar"
 		]
 	},
 	"tog-underline": "Podcrtavanje poveznica",
@@ -1272,7 +1273,10 @@
 	"grant-generic": "Snop prava »$1«",
 	"grant-group-page-interaction": "Upravljanje stranicama",
 	"grant-group-file-interaction": "Rad s medijskim datotekama",
+	"grant-group-watchlist-interaction": "Interakcija s popisom praćenja",
 	"grant-group-email": "Pošalji e-mail",
+	"grant-group-high-volume": "Izvođenje radnji velikog opsega",
+	"grant-group-administration": "Izvođenje administratorskih radnji",
 	"grant-group-other": "Raznovrsno djelovanje",
 	"grant-blockusers": "Blokiranje i deblokiranje suradnika",
 	"grant-createaccount": "Otvaranje računa",

@@ -16,5 +16,8 @@
 	"rest-permission-denied-revision": "Korisnik nema pristup traženoj izmjeni ($1).",
 	"rest-pagehistory-incompatible-params": "Ne mogu se navesti oba parametra \"older_than\" i \"newer_than\"",
 	"rest-pagehistory-param-range-error": "Naznaka izmjene mora biti veća od 0",
-	"rest-pagehistory-timestamp-error": "Nije moguće dohvatiti vremensku oznaku za navedenu izmjenu ($1)"
+	"rest-pagehistory-timestamp-error": "Nije moguće dohvatiti vremensku oznaku za navedenu izmjenu ($1)",
+	"rest-compare-permission-denied": "Korisnik nema pristup zatraženim izmjenama",
+	"rest-compare-wrong-content": "$1 mjesto izmjene koja je naznačena parametrom $2 ima tip sadržaja što se ne može pretvoriti u tekst.",
+	"rest-bad-content-model": "Loš model sadržaja: $1"
 }

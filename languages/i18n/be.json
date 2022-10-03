@@ -1802,7 +1802,7 @@
 	"uploadstash-refresh": "Абнавіць спіс файлаў",
 	"uploadstash-thumbnail": "паказаць мініяцюру",
 	"uploadstash-exception": "Не атрымалася захаваць загрузку ў хованку ($1): «$2».",
-	"uploadstash-bad-path": "Шлях не існуе.",
+	"uploadstash-bad-path": "Такога шляху няма.",
 	"uploadstash-bad-path-invalid": "Няслушны шлях.",
 	"uploadstash-bad-path-unknown-type": "Невядомы тып «$1».",
 	"uploadstash-bad-path-unrecognized-thumb-name": "Нераспазнаная назва драбніцы.",
