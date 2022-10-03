@@ -1846,6 +1846,7 @@
 	"delete-toobig": "Bu səhifə $1-dən artıq redaktə ilə çox böyük redaktə tarixçəsinə malikdir.\n\"{{SITENAME}}\" saytının fəaliyyətində problemlər yaratmamaq üçün bu cür səhifələrin silinməsi qadağandır.",
 	"deleting-backlinks-warning": "<strong>Xəbərdarlıq:</strong> Silmək istədiyiniz səhifəyə [[Special:WhatLinksHere/{{FULLPAGENAME}}|başqa səhifələr]]dən keçid verilib.",
 	"deleting-subpages-warning": "<strong>Xəbərdarlıq:</strong> Silmək üzrə olduğunuz səhifənin  [[Special:PrefixIndex/{{FULLPAGENAME}}/|{{PLURAL:$1|1 altsəhifəsi|$1 altsəhifəsi|51=50-dən çox altsəhifəsi}}]] var.",
+	"deleting-talkpage-subpages-warning": "<strong>Xəbərdarlıq:</strong> Silmək istədiyiniz səhifənin müzakirə səhifəsinin [[Special:PrefixIndex/{{TALKPAGENAME}}/|{{PLURAL:$1|alt səhifəsi|$1 alt səhifəsi|51=50-dən artıq alt səhifəsi}}]] var.",
 	"rollback": "Redaktələri geri qaytar",
 	"rollback-confirmation-confirm": "Zəhmət olmasa təsdiqləyin:",
 	"rollback-confirmation-yes": "Əvvəlki halına qaytar",
