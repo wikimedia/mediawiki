@@ -739,9 +739,7 @@ return [
 			$services->getService( '_Parsoid' ),
 			$services->getMainConfig()->get( MainConfigNames::ParsoidSettings ),
 			$services->getParsoidPageConfigFactory(),
-			$services->getContentHandlerFactory(),
-			$services->getParsoidSiteConfig(),
-			$services->getTitleFactory()
+			$services->getContentHandlerFactory()
 		);
 	},
 
