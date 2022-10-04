@@ -827,7 +827,7 @@
 	"gender-male": "Ew rûpelên wîkiyê diguherîne",
 	"gender-female": "Ew (mê) rûpelên wîkiyê diguherîne",
 	"email": "Ename",
-	"prefs-help-realname": "Navê rastî ne pêwîst e. Go tu bixwazibe navê xwe binivisînî, ew karê ji bo karên te were bikaranîn.",
+	"prefs-help-realname": "Navê rastî ne pêwîst e.\nKu tu bixwazî navê xwe binivisînî, dibe ku ew ji bo atfkririna karên te were bikaranîn.",
 	"prefs-help-email": "Email address is optional, but is needed for password resets, should you forget your password.",
 	"prefs-help-email-required": "Navnîşana e-nameyê hewce ye.",
 	"prefs-info": "Agahiyên sereke",

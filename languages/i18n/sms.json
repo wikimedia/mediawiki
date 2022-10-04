@@ -719,6 +719,7 @@
 	"filehist-filesize": "Teâttõõzz šorradvuõtt",
 	"filehist-comment": "Kommeʹntt",
 	"imagelinks": "Teâttõõzz âânnmõš",
+	"linkstoimage-more": "Jeänab ǥu $1 {{PLURAL:$1|seidd âânn|seeid âʹnne|seiddad âʹnne}} tän teâttõõzz.\nTän liistâst {{PLURAL:$1|lij vuõssmõs seidd, koʹst|lie vuõssmõs $1 seeid, koin|lie vuõssmõs $1 seiddad, koin}} ââʹnet tåʹlǩ tän teâttõõzz.\n[[Special:WhatLinksHere/$2|Obb listt]] lij vuäǯǯamnalla.",
 	"nolinkstoimage": "Ij leäkku ni õhtt seidd, koʹst tän teâttõõzz ââʹnet.",
 	"morelinkstoimage": "Čuäʹjet [[Special:WhatLinksHere/$1|lââʹzz liiŋkid]] tän teâttõʹsse.",
 	"uploadnewversion-linktext": "Ruõkk ođđ versio tän teâttõõzzâst",
