@@ -306,7 +306,7 @@ abstract class ParsoidHandler extends Handler {
 		}
 
 		$helper = new HtmlInputTransformHelper(
-			$services->getStatsdDataFactory(),
+			$this->siteConfig->metrics() ?: $services->getStatsdDataFactory(),
 			$services->getHTMLTransformFactory(),
 			$services->getParsoidOutputStash(),
 			$services->getParsoidOutputAccess(),

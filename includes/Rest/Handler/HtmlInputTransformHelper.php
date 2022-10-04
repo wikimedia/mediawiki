@@ -25,6 +25,7 @@ use Content;
 use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use Language;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
@@ -97,14 +98,14 @@ class HtmlInputTransformHelper {
 	private $envOptions;
 
 	/**
-	 * @param IBufferingStatsdDataFactory $statsDataFactory
+	 * @param StatsdDataFactoryInterface $statsDataFactory
 	 * @param HTMLTransformFactory $htmlTransformFactory
 	 * @param ParsoidOutputStash $parsoidOutputStash
 	 * @param ParsoidOutputAccess $parsoidOutputAccess
 	 * @param array $envOptions
 	 */
 	public function __construct(
-		IBufferingStatsdDataFactory $statsDataFactory,
+		StatsdDataFactoryInterface $statsDataFactory,
 		HTMLTransformFactory $htmlTransformFactory,
 		ParsoidOutputStash $parsoidOutputStash,
 		ParsoidOutputAccess $parsoidOutputAccess,
