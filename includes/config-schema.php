@@ -2408,6 +2408,15 @@ return [
 				0 => 'vector-2022',
 				1 => 'vector',
 			],
+			'SpecialContributeSkinsDisabled' => [
+				0 => 'vector',
+				1 => 'vector-2022',
+				2 => 'monobook',
+				3 => 'timeless',
+				4 => 'modern',
+				5 => 'cologneblue',
+				6 => 'minerva',
+			],
 		],
 		'type' => [
 			'ConfigRegistry' => 'object',
@@ -2868,6 +2877,7 @@ return [
 			'ReportToEndpoints' => 'array',
 			'FeaturePolicyReportOnly' => 'array',
 			'SkinsPreferred' => 'array',
+			'SpecialContributeSkinsDisabled' => 'array',
 		],
 		'mergeStrategy' => [
 			'TiffThumbnailType' => 'replace',

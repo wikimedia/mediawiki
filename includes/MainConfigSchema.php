@@ -12383,6 +12383,17 @@ class MainConfigSchema {
 		'type' => 'list',
 	];
 
+	/**
+	 * List of skins to not show the Special:Contribute page
+	 *
+	 * @since 1.40
+	 */
+	public const SpecialContributeSkinsDisabled = [
+		'default' => [ 'vector', 'vector-2022', 'monobook',
+			'timeless', 'modern', 'cologneblue', 'minerva' ],
+		'type' => 'list',
+	];
+
 	// endregion -- End Miscellaneous
 
 }

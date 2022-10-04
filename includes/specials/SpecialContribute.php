@@ -11,16 +11,26 @@ use MediaWiki\Specials\Contribute\ContributeFactory;
 class SpecialContribute extends IncludableSpecialPage {
 
 	/**
+	 * @var array List of MediaWiki\Specials\Contribute\Card\ContributeCard
+	 * to show on the Special:Contribute page
+	 */
+	private array $cards = [];
+
+	/**
 	 * SpecialContribute constructor.
 	 */
 	public function __construct() {
 		parent::__construct( 'Contribute' );
+		$this->cards = ( new ContributeFactory( $this->getContext() ) )->getCards();
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function getAssociatedNavigationLinks(): array {
+		if ( !$this->isShowable() ) {
+			return [];
+		}
 		$userName = $this->getUser()->getName();
 		return [
 			static::getTitleFor( 'Contribute', $userName )->getFullText(),
@@ -32,6 +42,9 @@ class SpecialContribute extends IncludableSpecialPage {
 	 * @inheritDoc
 	 */
 	public function execute( $par ) {
+		if ( !$this->isShowable() ) {
+			$this->displayRestrictionError();
+		}
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -60,13 +73,11 @@ class SpecialContribute extends IncludableSpecialPage {
 	 * @return string
 	 */
 	private function getContributePage() {
-		$context = $this->getContext();
-		$user = $context->getUser();
-		$cards = ( new ContributeFactory( $context ) )->getCards();
+		$user = $this->getContext()->getUser();
 
 		$templateParser = new TemplateParser( __DIR__ . '/Contribute/Templates' );
 		$templateData = [
-			'cards' => $cards,
+			'cards' => $this->cards,
 			'userName' => $user->getName(),
 			'userPage' => $user->getUserPage(),
 			'contribute' => $this->msg( 'contribute' )->text(),
@@ -90,4 +101,25 @@ class SpecialContribute extends IncludableSpecialPage {
 		$msgShort = $this->msg( $shortKey );
 		return $msgShort->text();
 	}
+
+	/**
+	 * Check if any cards are available to show on the Special:Contribute page
+	 *
+	 * @return bool
+	 */
+	private function hasCards() {
+		return count( $this->cards ) > 0;
+	}
+
+	/**
+	 * Check if it is allowed to access the Special:Contribute page
+	 *
+	 * @return bool
+	 */
+	public function isShowable() {
+		$specialContributeSkinsDisabled = $this->getConfig()->get( 'SpecialContributeSkinsDisabled' );
+		return $this->hasCards() &&
+			!in_array( $this->getContext()->getSkin()->getSkinName(), $specialContributeSkinsDisabled );
+	}
+
 }
