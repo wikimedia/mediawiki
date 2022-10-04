@@ -112,7 +112,7 @@ class UrlUtils {
 	 * @param string $url Either fully-qualified or a local path + query
 	 * @param string|int|null $defaultProto One of the PROTO_* constants. Determines the
 	 *    protocol to use if $url or SERVER is protocol-relative
-	 * @return ?string Fully-qualified URL, current-path-relative URL or false if
+	 * @return ?string Fully-qualified URL, current-path-relative URL or null if
 	 *    no valid URL can be constructed
 	 */
 	public function expand( string $url, $defaultProto = PROTO_FALLBACK ): ?string {
