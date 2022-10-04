@@ -1059,7 +1059,7 @@ class WebInstaller extends Installer {
 		foreach ( $varNames as $name ) {
 			$value = $this->request->getVal( $prefix . $name );
 			// T32524, do not trim passwords
-			if ( stripos( $name, 'password' ) === false ) {
+			if ( $value !== null && stripos( $name, 'password' ) === false ) {
 				$value = trim( $value );
 			}
 			$newValues[$name] = $value;
