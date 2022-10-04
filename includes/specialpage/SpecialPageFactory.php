@@ -639,6 +639,7 @@ class SpecialPageFactory {
 			'services' => [
 				'RepoGroup',
 				'HttpRequestFactory',
+				'UrlUtils',
 			]
 		],
 		'ListDuplicatedFiles' => [
@@ -672,6 +673,7 @@ class SpecialPageFactory {
 			'class' => \SpecialVersion::class,
 			'services' => [
 				'Parser',
+				'UrlUtils',
 			]
 		],
 		'Lockdb' => [
@@ -687,6 +689,7 @@ class SpecialPageFactory {
 			'services' => [
 				'DBLoadBalancer',
 				'LinkBatchFactory',
+				'UrlUtils',
 			]
 		],
 		'Randompage' => [
@@ -872,6 +875,9 @@ class SpecialPageFactory {
 		// Unlisted / redirects
 		'ApiHelp' => [
 			'class' => \SpecialApiHelp::class,
+			'services' => [
+				'UrlUtils',
+			]
 		],
 		'Blankpage' => [
 			'class' => \SpecialBlankpage::class,

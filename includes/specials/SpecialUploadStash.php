@@ -22,6 +22,7 @@
 
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Utils\UrlUtils;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
@@ -47,6 +48,9 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/** @var HttpRequestFactory */
 	private $httpRequestFactory;
 
+	/** @var UrlUtils */
+	private $urlUtils;
+
 	/**
 	 * Since we are directly writing the file to STDOUT,
 	 * we should not be reading in really big files and serving them out.
@@ -62,14 +66,17 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	/**
 	 * @param RepoGroup $repoGroup
 	 * @param HttpRequestFactory $httpRequestFactory
+	 * @param UrlUtils $urlUtils
 	 */
 	public function __construct(
 		RepoGroup $repoGroup,
-		HttpRequestFactory $httpRequestFactory
+		HttpRequestFactory $httpRequestFactory,
+		UrlUtils $urlUtils
 	) {
 		parent::__construct( 'UploadStash', 'upload' );
 		$this->localRepo = $repoGroup->getLocalRepo();
 		$this->httpRequestFactory = $httpRequestFactory;
+		$this->urlUtils = $urlUtils;
 	}
 
 	public function doesWrites() {
@@ -270,7 +277,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 				// this is apparently a protocol-relative URL, which makes no sense in this context,
 				// since this is used for communication that's internal to the application.
 				// default to http.
-				$scalerBaseUrl = wfExpandUrl( $scalerBaseUrl, PROTO_CANONICAL );
+				$scalerBaseUrl = $this->urlUtils->expand( $scalerBaseUrl, PROTO_CANONICAL );
 			}
 
 			$scalerThumbUrl = $scalerBaseUrl . '/' . $file->getUrlRel() .
