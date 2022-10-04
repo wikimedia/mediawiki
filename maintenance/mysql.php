@@ -83,10 +83,10 @@ class MysqlMaintenance extends Maintenance {
 			$index = $lb->getWriterIndex();
 		} else {
 			$group = $this->getOption( 'group', false );
-			$index = $lb->getReaderIndex( $group, $dbName );
+			$index = $lb->getReaderIndex( $group );
 			if ( $index === false && $group ) {
 				// retry without the group; it may not exist
-				$index = $lb->getReaderIndex( false, $dbName );
+				$index = $lb->getReaderIndex( false );
 			}
 			if ( $index === false ) {
 				$this->fatalError( 'Error: unable to get reader index' );
