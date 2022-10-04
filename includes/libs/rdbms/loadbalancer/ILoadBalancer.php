@@ -517,10 +517,9 @@ interface ILoadBalancer {
 
 	/**
 	 * @note This method will trigger a DB connection if not yet done
-	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @return bool Whether the database for generic connections this request is highly "lagged"
 	 */
-	public function getLaggedReplicaMode( $domain = false );
+	public function getLaggedReplicaMode();
 
 	/**
 	 * Checks whether the database for generic connections this request was both:
@@ -534,7 +533,7 @@ interface ILoadBalancer {
 
 	/**
 	 * @note This method may trigger a DB connection if not yet done
-	 * @param string|false $domain DB domain ID or false for the local domain
+	 * @param string|false $domain DB domain ID or false (unused and deprecated since 1.40)
 	 * @return string|false Reason the primary is read-only or false if it is not
 	 */
 	public function getReadOnlyReason( $domain = false );
@@ -551,10 +550,9 @@ interface ILoadBalancer {
 	 * May attempt to open connections to replica DBs on the default DB. If there is
 	 * no lag, the maximum lag will be reported as -1.
 	 *
-	 * @param string|false $domain Domain ID or false for the default database
 	 * @return array{0:string,1:float|int|false,2:int} (host, max lag, index of max lagged host)
 	 */
-	public function getMaxLag( $domain = false );
+	public function getMaxLag();
 
 	/**
 	 * Get an estimate of replication lag (in seconds) for each server
@@ -563,10 +561,9 @@ interface ILoadBalancer {
 	 *
 	 * Values may be "false" if replication is too broken to estimate
 	 *
-	 * @param string|false $domain
 	 * @return float[]|int[]|false[] Map of (server index => lag) in order of server index
 	 */
-	public function getLagTimes( $domain = false );
+	public function getLagTimes();
 
 	/**
 	 * Wait for a replica DB to reach a specified primary position

@@ -447,12 +447,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	/**
 	 * @param array $loads
-	 * @param string $domain Resolved DB domain
 	 * @param int|float $maxLag Restrict the maximum allowed lag to this many seconds, or INF for no max
 	 * @return int|string|false
 	 */
-	private function getRandomNonLagged( array $loads, string $domain, $maxLag = INF ) {
-		$lags = $this->getLagTimes( $domain );
+	private function getRandomNonLagged( array $loads, $maxLag = INF ) {
+		$lags = $this->getLagTimes();
 
 		# Unset excessively lagged servers
 		foreach ( $lags as $i => $lag ) {
@@ -645,11 +644,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 					// avoid lagged servers so as to avoid excessive delay in that method.
 					$ago = microtime( true ) - $this->waitForPos->asOfTime();
 					// Aim for <= 1 second of waiting (being too picky can backfire)
-					$i = $this->getRandomNonLagged( $currentLoads, $domain, $ago + 1 );
+					$i = $this->getRandomNonLagged( $currentLoads, $ago + 1 );
 				}
 				if ( $i === false ) {
 					// Any server with less lag than it's 'max lag' param is preferable
-					$i = $this->getRandomNonLagged( $currentLoads, $domain );
+					$i = $this->getRandomNonLagged( $currentLoads );
 				}
 				if ( $i === false && count( $currentLoads ) ) {
 					// All replica DBs lagged. Switch to read-only mode
@@ -956,7 +955,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		if (
 			$conn &&
 			$serverIndex === $this->getWriterIndex() &&
-			$this->getLaggedReplicaMode( $domain ) &&
+			$this->getLaggedReplicaMode() &&
 			!is_string( $conn->getLBInfo( $conn::LB_READ_ONLY_REASON ) )
 		) {
 			$genericIndex = $this->getExistingReaderIndex( self::GROUP_GENERIC );
@@ -1348,7 +1347,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 					? ( $domain->getDatabase() ?? $server['dbname'] ?? null )
 					: $domain->getDatabase(),
 				// Override the $server default schema with that of $domain if specified
-				'schema' => $domain->getSchema() ?? $server['schema'] ?? null,
+				'schema' => $domain->getSchema(),
 				// Use the table prefix specified in $domain
 				'tablePrefix' => $domain->getTablePrefix(),
 				// Participate in transaction rounds if $server does not specify otherwise
@@ -2072,9 +2071,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return false;
 	}
 
-	public function getLaggedReplicaMode( $domain = false ) {
-		$domain = $this->resolveDomainID( $domain );
-
+	public function getLaggedReplicaMode() {
 		if ( $this->laggedReplicaMode ) {
 			// Stay in lagged replica mode once it is observed on any domain
 			return true;
@@ -2082,7 +2079,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		if ( $this->hasStreamingReplicaServers() ) {
 			// This will set "laggedReplicaMode" as needed
-			$this->getReaderIndex( self::GROUP_GENERIC, $domain );
+			$this->getReaderIndex( self::GROUP_GENERIC, self::DOMAIN_ANY );
 		}
 
 		return $this->laggedReplicaMode;
@@ -2093,13 +2090,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	public function getReadOnlyReason( $domain = false ) {
-		$domainInstance = DatabaseDomain::newFromId( $this->resolveDomainID( $domain ) );
-
 		if ( $this->readOnlyReason !== false ) {
 			return $this->readOnlyReason;
-		} elseif ( $this->isPrimaryRunningReadOnly( $domainInstance ) ) {
+		} elseif ( $this->isPrimaryRunningReadOnly() ) {
 			return 'The primary database server is running in read-only mode.';
-		} elseif ( $this->getLaggedReplicaMode( $domain ) ) {
+		} elseif ( $this->getLaggedReplicaMode() ) {
 			$genericIndex = $this->getExistingReaderIndex( self::GROUP_GENERIC );
 
 			return ( $genericIndex !== self::READER_INDEX_NONE )
@@ -2118,12 +2113,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 */
 	private function isPrimaryConnectionReadOnly( IDatabase $conn, $flags = 0 ) {
 		// Note that table prefixes are not related to server-side read-only mode
-		$key = $this->srvCache->makeGlobalKey(
-			'rdbms-server-readonly',
-			$conn->getServerName(),
-			(string)$conn->getDBname(),
-			(string)$conn->dbSchema()
-		);
+		$key = $this->srvCache->makeGlobalKey( 'rdbms-server-readonly', $conn->getServerName() );
 
 		if ( self::fieldHasBit( $flags, self::CONN_REFRESH_READ_ONLY ) ) {
 			// Refresh the local server cache. This is useful when the caller is
@@ -2155,28 +2145,25 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	/**
 	 * @note This method suppresses DBError exceptions in order to avoid severe downtime
-	 * @param DatabaseDomain $domain
 	 * @return bool Whether the entire primary DB server or the local domain DB is read-only
 	 */
-	private function isPrimaryRunningReadOnly( DatabaseDomain $domain ) {
+	private function isPrimaryRunningReadOnly() {
 		// Context will often be HTTP GET/HEAD; heavily cache the results
 		return (bool)$this->wanCache->getWithSetCallback(
 			// Note that table prefixes are not related to server-side read-only mode
 			$this->wanCache->makeGlobalKey(
 				'rdbms-server-readonly',
-				$this->getPrimaryServerName(),
-				$domain->getDatabase(),
-				(string)$domain->getSchema()
+				$this->getPrimaryServerName()
 			),
 			self::TTL_CACHE_READONLY,
-			function () use ( $domain ) {
+			function () {
 				$scope = $this->trxProfiler->silenceForScope();
 
 				$index = $this->getWriterIndex();
 				// Refresh the local server cache as well. This is done in order to avoid
 				// backfilling the WANCache with data that is already significantly stale
 				$flags = self::CONN_SILENCE_ERRORS | self::CONN_REFRESH_READ_ONLY;
-				$conn = $this->getServerConnection( $index, $domain->getId(), $flags );
+				$conn = $this->getServerConnection( $index, self::DOMAIN_ANY, $flags );
 				if ( $conn ) {
 					try {
 						$readOnly = (int)$this->isPrimaryConnectionReadOnly( $conn );
@@ -2285,15 +2272,13 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return $count;
 	}
 
-	public function getMaxLag( $domain = false ) {
-		$domain = $this->resolveDomainID( $domain );
-
+	public function getMaxLag() {
 		$host = '';
 		$maxLag = -1;
 		$maxIndex = 0;
 
 		if ( $this->hasReplicaServers() ) {
-			$lagTimes = $this->getLagTimes( $domain );
+			$lagTimes = $this->getLagTimes();
 			foreach ( $lagTimes as $i => $lag ) {
 				if ( $this->groupLoads[self::GROUP_GENERIC][$i] > 0 && $lag > $maxLag ) {
 					$maxLag = $lag;
@@ -2306,9 +2291,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return [ $host, $maxLag, $maxIndex ];
 	}
 
-	public function getLagTimes( $domain = false ) {
-		$domain = $this->resolveDomainID( $domain );
-
+	public function getLagTimes() {
 		if ( !$this->hasReplicaServers() ) {
 			return [ $this->getWriterIndex() => 0 ]; // no replication = no lag
 		}

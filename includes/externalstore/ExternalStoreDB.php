@@ -137,10 +137,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			return true;
 		}
 
-		$lb = $this->getLoadBalancer( $location );
-		$domainId = $this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) );
-
-		return ( $lb->getReadOnlyReason( $domainId ) !== false );
+		return ( $this->getLoadBalancer( $location )->getReadOnlyReason() !== false );
 	}
 
 	/**
