@@ -4418,4 +4418,10 @@ class MainConfigNames {
 	 */
 	public const SkinsPreferred = 'SkinsPreferred';
 
+	/**
+	 * Name constant for the SpecialContributeSkinsDisabled setting, for use with Config::get()
+	 * @see MainConfigSchema::SpecialContributeSkinsDisabled
+	 */
+	public const SpecialContributeSkinsDisabled = 'SpecialContributeSkinsDisabled';
+
 }
