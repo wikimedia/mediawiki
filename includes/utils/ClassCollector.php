@@ -75,7 +75,7 @@ class ClassCollector {
 		if ( isset( $matches[0][0] ) ) {
 			foreach ( $matches[0] as $match ) {
 				$match = trim( $match );
-				if ( substr( $match, -1 ) === '{' ) {
+				if ( str_ends_with( $match, '{' ) ) {
 					// Keep it balanced
 					$match .= '}';
 				}
