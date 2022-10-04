@@ -5,6 +5,8 @@ namespace MediaWiki\Parser\Parsoid;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
+use TitleFactory;
+use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Parsoid;
 
 /**
@@ -25,22 +27,34 @@ class HTMLTransformFactory {
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
+	/** @var SiteConfig */
+	private $siteConfig;
+
+	/** @var TitleFactory */
+	private $titleFactory;
+
 	/**
 	 * @param Parsoid $parsoid
 	 * @param array $parsoidSettings
 	 * @param PageConfigFactory $configFactory
 	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param SiteConfig $siteConfig
+	 * @param TitleFactory $titleFactory
 	 */
 	public function __construct(
 		Parsoid $parsoid,
 		array $parsoidSettings,
 		PageConfigFactory $configFactory,
-		IContentHandlerFactory $contentHandlerFactory
+		IContentHandlerFactory $contentHandlerFactory,
+		SiteConfig $siteConfig,
+		TitleFactory $titleFactory
 	) {
 		$this->parsoid = $parsoid;
 		$this->parsoidSettings = $parsoidSettings;
 		$this->configFactory = $configFactory;
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->siteConfig = $siteConfig;
+		$this->titleFactory = $titleFactory;
 	}
 
 	/**
@@ -60,6 +74,24 @@ class HTMLTransformFactory {
 			$this->parsoidSettings,
 			$this->configFactory,
 			$this->contentHandlerFactory
+		);
+	}
+
+	/**
+	 * Get a language variant converter object for a given page
+	 *
+	 * @param PageIdentity $page
+	 *
+	 * @return LanguageVariantConverter
+	 */
+	public function getLanguageVariantConverter( PageIdentity $page ): LanguageVariantConverter {
+		return new LanguageVariantConverter(
+			$page,
+			$this->configFactory,
+			$this->parsoid,
+			$this->parsoidSettings,
+			$this->siteConfig,
+			$this->titleFactory
 		);
 	}
 
