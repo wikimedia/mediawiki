@@ -80,8 +80,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mText = null;
 
 	/**
-	 * @var array List of the full text of language links,
-	 *  in the order they appear.
+	 * @var string[] List of the full text of language links, in the order they appear.
 	 */
 	private $mLanguageLinks;
 
@@ -91,7 +90,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mCategories;
 
 	/**
-	 * @var array Page status indicators, usually displayed in top-right corner.
+	 * @var string[] Page status indicators, usually displayed in top-right corner.
 	 */
 	private $mIndicators = [];
 
@@ -162,7 +161,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mNoGallery = false;
 
 	/**
-	 * @var array Items to put in the <head> section
+	 * @var string[] Items to put in the <head> section
 	 */
 	private $mHeadItems = [];
 
@@ -261,17 +260,17 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	private $mPreventClickjacking = false;
 
 	/**
-	 * @var array Extra script-src for CSP
+	 * @var string[] Extra script-src for CSP
 	 */
 	private $mExtraScriptSrcs = [];
 
 	/**
-	 * @var array Extra default-src for CSP [Everything but script and style]
+	 * @var string[] Extra default-src for CSP [Everything but script and style]
 	 */
 	private $mExtraDefaultSrcs = [];
 
 	/**
-	 * @var array Extra style-src for CSP
+	 * @var string[] Extra style-src for CSP
 	 */
 	private $mExtraStyleSrcs = [];
 
@@ -714,7 +713,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	}
 
 	/**
-	 * @return array
+	 * @return string[]
 	 * @since 1.25
 	 */
 	public function getIndicators() {
@@ -851,7 +850,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * Get extra Content-Security-Policy 'default-src' directives
 	 * @since 1.35
-	 * @return array
+	 * @return string[]
 	 */
 	public function getExtraCSPDefaultSrcs() {
 		return $this->mExtraDefaultSrcs;
@@ -860,7 +859,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * Get extra Content-Security-Policy 'script-src' directives
 	 * @since 1.35
-	 * @return array
+	 * @return string[]
 	 */
 	public function getExtraCSPScriptSrcs() {
 		return $this->mExtraScriptSrcs;
@@ -869,7 +868,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	/**
 	 * Get extra Content-Security-Policy 'style-src' directives
 	 * @since 1.35
-	 * @return array
+	 * @return string[]
 	 */
 	public function getExtraCSPStyleSrcs() {
 		return $this->mExtraStyleSrcs;

@@ -41,11 +41,11 @@ class ContentSecurityPolicy {
 	/** @var WebResponse */
 	private $response;
 
-	/** @var array */
+	/** @var string[] */
 	private $extraDefaultSrc = [];
-	/** @var array */
+	/** @var string[] */
 	private $extraScriptSrc = [];
-	/** @var array */
+	/** @var string[] */
 	private $extraStyleSrc = [];
 
 	/** @var HookRunner */
@@ -73,7 +73,7 @@ class ContentSecurityPolicy {
 	 *
 	 * @note Most callers will probably want ContentSecurityPolicy::sendHeaders() instead.
 	 * @internal
-	 * @param array $csp ContentSecurityPolicy configuration
+	 * @param array|bool $csp ContentSecurityPolicy configuration
 	 * @param int $reportOnly self::*_MODE constant
 	 */
 	public function sendCSPHeader( $csp, $reportOnly ) {
@@ -361,7 +361,7 @@ class ContentSecurityPolicy {
 	}
 
 	/**
-	 * @return array Additional sources for loading scripts from
+	 * @return string[] Additional sources for loading scripts from
 	 */
 	private function getAdditionalSelfUrlsScript() {
 		$additionalUrls = [];
