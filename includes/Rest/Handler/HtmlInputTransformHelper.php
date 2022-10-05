@@ -42,6 +42,7 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MWUnknownContentModelException;
 use ParserOptions;
+use Status;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Parsoid\Core\ClientError;
@@ -347,6 +348,12 @@ class HtmlInputTransformHelper {
 				//       However, that requires some refactoring of how HTTP conditional checks
 				//       work in the Handler base class.
 			}
+		} elseif ( !isset( $body['original']['html'] ) && !empty( $body['original']['revid'] ) ) {
+			// The client provided a revision ID, but not stash key.
+			// Try to get a rendering for the given revision, and use it as the basis for selser.
+			// Chances are good that the resulting diff will be reasonably clean.
+			// NOTE: If we don't have a revision ID, we should not attempt selser!
+			$original = $this->fetchOriginalDataFromParsoid( $page, $body['original']['revid'], true );
 		} else {
 			$original = $body['original'] ?? [];
 		}
@@ -446,15 +453,29 @@ class HtmlInputTransformHelper {
 		$response->getBody()->write( $data );
 	}
 
-	private function fetchOriginalDataFromCache( PageIdentity $page, ?int $revId ): ?array {
+	private function fetchOriginalDataFromParsoid( PageIdentity $page, ?int $revId, bool $mayParse ): ?array {
 		$parserOptions = ParserOptions::newFromAnon();
 
 		try {
-			$parserOutput = $this->parsoidOutputAccess->getCachedParserOutput(
-				$page,
-				$parserOptions,
-				$revId
-			);
+			if ( $mayParse ) {
+				$status = $this->parsoidOutputAccess->getParserOutput(
+					$page,
+					$parserOptions,
+					$revId
+				);
+
+				if ( !$status->isOK() ) {
+					$this->throwHttpExceptionForStatus( $status );
+				}
+
+				$parserOutput = $status->getValue();
+			} else {
+				$parserOutput = $this->parsoidOutputAccess->getCachedParserOutput(
+					$page,
+					$parserOptions,
+					$revId
+				);
+			}
 		} catch ( RevisionAccessException $e ) {
 			// The client supplied bad revision ID, or the revision was deleted or suppressed.
 			throw new HttpException(
@@ -488,7 +509,7 @@ class HtmlInputTransformHelper {
 			// Try to load it from the parser cache instead.
 			// On a wiki with low edit frequency, there is a good chance that it's still there.
 			try {
-				$original = $this->fetchOriginalDataFromCache( $page, $renderID->getRevisionID() );
+				$original = $this->fetchOriginalDataFromParsoid( $page, $renderID->getRevisionID(), false );
 			} catch ( HttpException $e ) {
 				// If the revision isn't found, don't trigger a 404. Return null to trigger a 412.
 				return null;
@@ -538,6 +559,29 @@ class HtmlInputTransformHelper {
 		}
 
 		return $original;
+	}
+
+	/**
+	 * @param Status $status
+	 *
+	 * @return never
+	 * @throws HttpException
+	 */
+	private function throwHttpExceptionForStatus( Status $status ) {
+		// TODO: make this nicer.
+		if ( $status->hasMessage( 'parsoid-resource-limit-exceeded' ) ) {
+			throw new HttpException(
+				'Resource limit exceeeded',
+				413,
+				[ 'reason' => $status->getHTML() ]
+			);
+		} else {
+			throw new HttpException(
+				'Parsoid error',
+				400,
+				[ 'reason' => $status->getHTML() ]
+			);
+		}
 	}
 
 }

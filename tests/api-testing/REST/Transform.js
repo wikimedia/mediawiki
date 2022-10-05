@@ -2355,4 +2355,39 @@ describe( '/transform/ endpoint', function () {
 		} );
 	} );
 
+	describe( 'selser using rendering based on revid', function () {
+		it( 'should trigger on revid field in the body', async () => {
+			const pageResponse = await client.req
+				.get( `rest.php/v1/page/${pageEncoded}/with_html` );
+
+			const transformResponse = await client.req
+				.post( endpointPrefix + '/transform/html/to/wikitext/' )
+				.send( {
+					html: pageResponse.body.html,
+					original: {
+						revid: pageResponse.body.latest.id
+					}
+				} );
+
+			transformResponse.status.should.equal( 200, transformResponse.text );
+
+			// Since the HTML didn't change, we should get back the original wikitext unchanged.
+			transformResponse.text.should.equal( pageContent );
+		} );
+
+		it( 'should fail if revid is unknown', async () => {
+			// request page HTML, but do not set 'stash' parameter!
+			const transformResponse = await client.req
+				.post( endpointPrefix + '/transform/html/to/wikitext/' )
+				.send( {
+					html: '<p>test</p>',
+					original: {
+						revid: 45452232
+					}
+				} );
+
+			transformResponse.status.should.equal( 404 );
+		} );
+	} );
+
 } );
