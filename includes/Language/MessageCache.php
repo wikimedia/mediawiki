@@ -22,7 +22,6 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\StubObject\StubObject;
 use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Title\Title;
 use Psr\Log\LoggerAwareInterface;
@@ -969,16 +968,15 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param string $key The message key
 	 * @param bool $useDB If true, look for the message in the DB, false
 	 *   to use only the LocalisationCache.
-	 * @param string|Language|null $language Code of the language to get the message for.
-	 *   This should be a string or null in new code. If null is given, the content language
-	 *   will be used.
+	 * @param string|null $langCode Code of the language to get the message for.
+	 *   If null is given, the content language code will be used.
 	 * @param MessageInfo|null $info If a default-constructed MessageInfo is passed, it will be
 	 *   populated with information about the retrieved message.
 	 *
 	 * @return string|false False if the message doesn't exist, otherwise the
 	 *   message (which can be empty)
 	 */
-	public function get( $key, $useDB = true, $language = null, $info = null ) {
+	public function get( $key, $useDB = true, ?string $langCode = null, $info = null ) {
 		if ( is_int( $key ) ) {
 			// Fix numerical strings that somehow become ints on their way here
 			$key = (string)$key;
@@ -994,7 +992,14 @@ class MessageCache implements LoggerAwareInterface {
 			$info = null;
 		}
 
-		$langCode = $this->getLanguageCode( $language ?? $this->contLangCode );
+		if ( $langCode === null ) {
+			$langCode = $this->contLangCode;
+		} elseif ( !$this->languageNameUtils->isValidCode( $langCode ) ) {
+			// $langCode is not a valid language code; use content language code.
+			$this->logger->debug( 'Invalid language code passed to ' . __METHOD__ .
+				', falling back to content language.' );
+			$langCode = $this->contLangCode;
+		}
 
 		// Normalise title-case input (with some inlining)
 		$lckey = $this->normalizeKey( $key );
@@ -1069,39 +1074,6 @@ class MessageCache implements LoggerAwareInterface {
 		}
 
 		return $message;
-	}
-
-	/**
-	 * Return a Language code from legacy input
-	 *
-	 * @param Language|string $lang Either:
-	 *   - a Language object
-	 *   - code of the language to get the message for, with a fall back to the
-	 *     content language if it is invalid.
-	 * @return string
-	 */
-	private function getLanguageCode( $lang ): string {
-		if ( is_object( $lang ) ) {
-			StubObject::unstub( $lang );
-			if ( $lang instanceof Language ) {
-				wfDeprecatedMsg( 'Calling MessageCache::get with a Language object ' .
-					'was deprecated in MediaWiki 1.44', '1.44' );
-				return $lang->getCode();
-			} else {
-				throw new InvalidArgumentException( 'Invalid language object of class ' .
-					get_class( $lang ) );
-			}
-		} elseif ( is_string( $lang ) ) {
-			if ( $this->languageNameUtils->isValidCode( $lang ) ) {
-				return $lang;
-			}
-			// $lang is a string, but not a valid language code; use content language.
-			$this->logger->debug( 'Invalid language code passed to' . __METHOD__ .
-				', falling back to content language.' );
-			return $this->contLangCode;
-		} else {
-			throw new InvalidArgumentException( 'Invalid language' );
-		}
 	}
 
 	/**
