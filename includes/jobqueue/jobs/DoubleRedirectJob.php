@@ -84,8 +84,8 @@ class DoubleRedirectJob extends Job {
 		$jobs = [];
 		$jobQueueGroup = MediaWikiServices::getInstance()->getJobQueueGroup();
 		foreach ( $res as $row ) {
-			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-			if ( !$title ) {
+			$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
+			if ( !$title || !$title->canExist() ) {
 				continue;
 			}
 
@@ -110,6 +110,13 @@ class DoubleRedirectJob extends Job {
 	public function run() {
 		if ( !$this->redirTitle ) {
 			$this->setLastError( 'Invalid title' );
+
+			return false;
+		}
+
+		if ( !$this->title->canExist() ) {
+			// Needs a proper title for WikiPageFactory::newFromTitle and RevisionStore::getRevisionByTitle
+			$this->setLastError( 'Cannot edit title' );
 
 			return false;
 		}
