@@ -317,7 +317,8 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		if ( $ret === false ) {
 			// Try the primary DB
 			$this->logger->warning( __METHOD__ . ": primary DB fallback on $cacheID" );
-			$scope = $this->lbFactory->getTransactionProfiler()->silenceForScope();
+			$trxProfiler = $this->lbFactory->getTransactionProfiler();
+			$scope = $trxProfiler->silenceForScope( $trxProfiler::EXPECTATION_REPLICAS_ONLY );
 			$dbw = $this->getPrimary( $cluster );
 			$ret = $dbw->selectField(
 				$this->getTable( $dbw, $cluster ),
@@ -367,7 +368,8 @@ class ExternalStoreDB extends ExternalStoreMedium {
 				__METHOD__ . ": primary fallback on '$cluster' for: " .
 				implode( ',', array_keys( $ids ) )
 			);
-			$scope = $this->lbFactory->getTransactionProfiler()->silenceForScope();
+			$trxProfiler = $this->lbFactory->getTransactionProfiler();
+			$scope = $trxProfiler->silenceForScope( $trxProfiler::EXPECTATION_REPLICAS_ONLY );
 			$dbw = $this->getPrimary( $cluster );
 			$res = $dbw->newSelectQueryBuilder()
 				->select( [ 'blob_id', 'blob_text' ] )

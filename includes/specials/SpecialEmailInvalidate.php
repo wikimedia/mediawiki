@@ -57,7 +57,7 @@ class SpecialEmailInvalidate extends UnlistedSpecialPage {
 		$this->checkReadOnly();
 		$this->checkPermissions();
 
-		$scope = $trxProfiler->silenceForScope();
+		$scope = $trxProfiler->silenceForScope( $trxProfiler::EXPECTATION_REPLICAS_ONLY );
 		$this->attemptInvalidate( $code );
 		ScopedCallback::consume( $scope );
 	}
