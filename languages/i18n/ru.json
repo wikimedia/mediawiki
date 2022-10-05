@@ -2680,6 +2680,7 @@
 	"contribute-title": "Вклад участника",
 	"mycontris": "Вклад",
 	"anoncontribs": "Вклад",
+	"contribute": "Вклад",
 	"contribsub2": "Вклад {{GENDER:$3|$1}} ($2)",
 	"contributions-subtitle": "Для {{GENDER:$3|$1}}",
 	"contributions-userdoesnotexist": "Не зарегистрировано учётной записи «$1».",
