@@ -784,10 +784,6 @@
 				new RegExp( /(^[£$€¥]|[£$€¥]$)/ ),
 				new RegExp( /[£$€¥]/g )
 			],
-			url: [
-				new RegExp( /^(https?|ftp|file):\/\/$/ ),
-				new RegExp( /(https?|ftp|file):\/\// )
-			],
 			isoDate: [
 				new RegExp( /^[^-\d]*(-?\d{1,4})-(0\d|1[0-2])(-([0-3]\d))?([T\s]([01]\d|2[0-4]):?(([0-5]\d):?(([0-5]\d|60)([.,]\d{1,3})?)?)?([zZ]|([-+])([01]\d|2[0-3]):?([0-5]\d)?)?)?/ ),
 				new RegExp( /^[^-\d]*(-?\d{1,4})-?(\d\d)?(-?(\d\d))?([T\s](\d\d):?((\d\d)?:?((\d\d)?([.,]\d{1,3})?)?)?([zZ]|([-+])(\d\d):?(\d\d)?)?)?/ )
@@ -1194,17 +1190,6 @@
 			return $.tablesorter.formatDigit( s.replace( ts.rgx.currency[ 1 ], '' ) );
 		},
 		type: 'numeric'
-	} );
-
-	ts.addParser( {
-		id: 'url',
-		is: function ( s ) {
-			return ts.rgx.url[ 0 ].test( s );
-		},
-		format: function ( s ) {
-			return s.replace( ts.rgx.url[ 1 ], '' ).trim();
-		},
-		type: 'text'
 	} );
 
 	ts.addParser( {
