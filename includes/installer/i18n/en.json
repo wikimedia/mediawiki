@@ -211,7 +211,7 @@
 	"config-upload-deleted": "Directory for deleted files:",
 	"config-upload-deleted-help": "Choose a directory in which to archive deleted files.\nIdeally, this should not be accessible from the web.",
 	"config-personalization-settings": "Personalization",
-	"config-logo-summary": "For each of these fields, you will need to upload an image of the appropriate size, and enter the URL in the boxes below. You can use <code>$wgStylePath</code> or <code>$wgScriptPath</code> if your logo is relative to those paths. You can leave any of these boxes blank. \n\nOn supported browsers you can also drag image files from your file system into the input boxes or preview area.",
+	"config-logo-summary": "For each of these fields, you will need to upload an image of the appropriate size, and enter the URL in the boxes below. You can use <code>$wgStylePath</code> or <code>$wgScriptPath</code> if your logo is relative to those paths. You can leave any of these boxes blank.",
 	"config-logo-preview-main": "Main page",
 	"config-logo-icon": "Logo (icon)",
 	"config-logo-icon-help": "Your logo icon should be square and ideally more than 50px or an SVG.\n",
