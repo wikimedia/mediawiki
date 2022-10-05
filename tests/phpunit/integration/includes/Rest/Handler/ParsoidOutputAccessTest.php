@@ -2,6 +2,8 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
@@ -21,6 +23,7 @@ use Wikimedia\Parsoid\Parsoid;
 class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	private const WIKITEXT = 'Hello \'\'\'Parsoid\'\'\'!';
 	private const MOCKED_HTML = 'mocked HTML';
+	private const ENV_OPTS = [ 'pageBundle' => true ];
 
 	/**
 	 * @param int $expectedCalls
@@ -82,7 +85,13 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		return new ParsoidOutputAccess(
 			new ServiceOptions(
 				ParsoidOutputAccess::CONSTRUCTOR_OPTIONS,
-				[ 'ParsoidCacheConfig' => $parsoidCacheConfig ]
+				[
+					'ParsoidCacheConfig' => $parsoidCacheConfig,
+					'ParsoidSettings' => MainConfigSchema::getDefaultValue(
+						MainConfigNames::ParsoidSettings
+					),
+					'WikiID' => 'MyWiki'
+				]
 			),
 			$parserCacheFactory,
 			$services->getPageStore(),
@@ -349,7 +358,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$pOpts = ParserOptions::newFromAnon();
 
 		$parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
-		$status = $parsoidOutputAccess->parse( $pageRecord, $pOpts, null );
+		$status = $parsoidOutputAccess->parse( $pageRecord, $pOpts, self::ENV_OPTS, null );
 
 		$this->assertInstanceOf( Status::class, $status );
 		$this->assertTrue( $status->isOK() );
@@ -374,7 +383,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$revRecord = $page->getRevisionRecord();
 
 		$parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
-		$status = $parsoidOutputAccess->parse( $pageRecord, $pOpts, $revRecord );
+		$status = $parsoidOutputAccess->parse( $pageRecord, $pOpts, self::ENV_OPTS, $revRecord );
 
 		$this->assertInstanceOf( Status::class, $status );
 		$this->assertTrue( $status->isOK() );
@@ -406,7 +415,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
-		$status = $parsoidOutputAccess->parse( $page->getTitle(), $pOpts, $revRecord );
+		$status = $parsoidOutputAccess->parse( $page->getTitle(), $pOpts, self::ENV_OPTS, $revRecord );
 
 		$this->assertInstanceOf( Status::class, $status );
 		$this->assertTrue( $status->isOK() );
