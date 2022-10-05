@@ -1367,6 +1367,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			( $this->getCurrentTime() - $this->lastGarbageCollect ) > self::GC_DELAY_SEC
 		) {
 			$garbageCollector = function () use ( $db ) {
+				/** @noinspection PhpUnusedLocalVariableInspection */
+				$silenceScope = $this->silenceTransactionProfiler();
 				$this->deleteServerObjectsExpiringBefore(
 					$db,
 					(int)$this->getCurrentTime(),
