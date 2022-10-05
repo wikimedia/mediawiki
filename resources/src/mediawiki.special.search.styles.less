@@ -3,22 +3,43 @@
 @import 'mediawiki.ui/variables.less';
 
 /* stylelint-disable selector-class-pattern */
-.searchresults {
-	margin: 1em 0 1em 0;
-}
+#mw-content-text {
+	.searchresults {
+		margin-bottom: 1em;
+	}
 
-.searchresults .mw-search-exists {
-	margin-bottom: 32px;
+	.mw-search-nonefound,
+	.mw-search-exists,
+	.mw-search-createlink,
+	.searchdidyoumean {
+		margin-top: 24px;
+		margin-bottom: 0;
+		float: none;
+	}
+
+	// If more than one message is present at the same time, reduce margin in between
+	.searchdidyoumean + .searchresults .mw-search-createlink,
+	.mw-search-nonefound + .mw-search-createlink {
+		margin-top: 12px;
+	}
+
+	// Default top margin for the search result
+	.mw-search-results {
+		margin-top: 32px;
+	}
 }
 
 /* needs extra specificity to override `.mw-body p` selector */
 .mw-body .mw-search-nonefound {
-	margin: 1.5em 0 0.5em 0;
 	font-size: 1.2em;
 }
 
 .searchmatch {
 	font-weight: bold;
+}
+
+.mw-search-form-wrapper {
+	margin-bottom: 24px;
 }
 
 .mw-search-results {
@@ -221,6 +242,7 @@
 .searchdidyoumean {
 	font-size: 114%;
 	margin-top: 0.8em;
+	margin-bottom: 0.8em;
 
 	em {
 		font-style: normal;
