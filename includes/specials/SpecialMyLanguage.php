@@ -138,36 +138,46 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 			return null;
 		}
 
+		$fragment = '';
 		if ( $base->isRedirect() ) {
 			$base = $this->redirectLookup->getRedirectTarget( $base );
+			// Preserve the fragment from the redirect target
+			$fragment = $base->getFragment();
 		}
 
 		$uiLang = $this->getLanguage();
-		$contLang = $this->getContentLanguage();
+		$baseLang = $base->getPageLanguage();
 
-		if ( $uiLang->equals( $contLang ) && !$forTransclusion ) {
+		if ( $uiLang->equals( $baseLang ) && !$forTransclusion ) {
 			// Short circuit when the current UI language is the
-			// wiki's default language to avoid unnecessary page lookups.
+			// page's content language to avoid unnecessary page lookups.
 			return $base;
 		}
 
 		// Check for a subpage in current UI language
 		$proposed = $base->getSubpage( $uiLang->getCode() );
 		if ( $proposed && $proposed->exists() ) {
+			if ( $fragment !== '' ) {
+				$proposed->setFragment( $fragment );
+			}
 			return $proposed;
 		}
 
+		// Explicit language code given and the page exists
 		if ( $provided !== $base && $provided->exists() ) {
-			// Explicit language code given and the page exists
+			// Not based on the redirect target, don't need the fragment
 			return $provided;
 		}
 
 		// Check for fallback languages specified by the UI language
 		$possibilities = $uiLang->getFallbackLanguages();
 		foreach ( $possibilities as $lang ) {
-			if ( $forTransclusion || $lang !== $contLang->getCode() ) {
+			if ( $forTransclusion || $lang !== $baseLang->getCode() ) {
 				$proposed = $base->getSubpage( $lang );
 				if ( $proposed && $proposed->exists() ) {
+					if ( $fragment !== '' ) {
+						$proposed->setFragment( $fragment );
+					}
 					return $proposed;
 				}
 			}
