@@ -414,7 +414,8 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return string
 	 */
 	public function getFullUrl() {
-		return wfExpandUrl( $this->getUrl(), PROTO_RELATIVE );
+		return (string)MediaWikiServices::getInstance()->getUrlUtils()
+			->expand( $this->getUrl(), PROTO_RELATIVE );
 	}
 
 	/**
@@ -422,7 +423,8 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return string
 	 */
 	public function getCanonicalUrl() {
-		return wfExpandUrl( $this->getUrl(), PROTO_CANONICAL );
+		return (string)MediaWikiServices::getInstance()->getUrlUtils()
+			->expand( $this->getUrl(), PROTO_CANONICAL );
 	}
 
 	/**
@@ -1186,7 +1188,8 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 			// Get the descriptionUrl to embed it as comment into the thumbnail. T21791.
 			$descriptionUrl = $this->getDescriptionUrl();
 			if ( $descriptionUrl ) {
-				$params['descriptionUrl'] = wfExpandUrl( $descriptionUrl, PROTO_CANONICAL );
+				$params['descriptionUrl'] = MediaWikiServices::getInstance()->getUrlUtils()
+					->expand( $descriptionUrl, PROTO_CANONICAL );
 			}
 
 			$handler = $this->getHandler();
