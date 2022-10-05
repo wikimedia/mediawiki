@@ -1001,10 +1001,11 @@ abstract class Maintenance {
 			DeferredUpdates::doUpdates();
 		}
 
-		// Handle external profiler outputs
-		// FIXME: Handle embedded outputs as well, such as ProfilerOutputText (T253547)
+		// Handle profiler outputs
+		// NOTE: MaintenanceRunner ensures Profiler::setAllowOutput() during setup
 		$profiler = Profiler::instance();
 		$profiler->logData();
+		$profiler->logDataPageOutputOnly();
 
 		MediaWiki::emitBufferedStatsdData(
 			MediaWikiServices::getInstance()->getStatsdDataFactory(),
