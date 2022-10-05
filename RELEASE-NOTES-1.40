@@ -19,6 +19,14 @@ Some specific notes for MediaWiki 1.40 upgrades are below:
 For notes on 1.39.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.40 ===
+* When computing PBKDF2 password hashes, MediaWiki now detects and uses OpenSSL
+  support if available, unless $wgPasswordConfig['pbkdf2']['class'] is set in
+  LocalSettings.php. OpenSSL is more efficient, so if that setting is present,
+  you should remove it (or set it to 'Pbkdf2PasswordUsingOpenSSL' if possible).
+  If users get an internal error when trying to log in, you can try setting it
+  to 'Pbkdf2PasswordUsingHashExtension'. In particular, this would be necessary
+  if existing PBKDF2 password hashes were computed using a hash algorithm other
+  than "sha512" or "sha256" (the current and prior defaults).
 * …
 
 ==== New configuration ====
@@ -132,6 +140,8 @@ because of Phabricator reports.
 * ParserOutput::{get,set}ExternalLinkTarget() and
   ParserOutput::{get,set}MaxTemplateDepth() have been deprecated and marked
   for @internal use only.
+* The class Pbkdf2Password was renamed to Pbkdf2PasswordUsingHashExtension,
+  and the old name is now deprecated.
 * …
 
 === Other changes in 1.40 ===

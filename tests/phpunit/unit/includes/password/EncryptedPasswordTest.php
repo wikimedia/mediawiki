@@ -34,7 +34,7 @@ class EncryptedPasswordTest extends PasswordTestCase {
 				'cipher' => 'aes-256-cbc',
 			],
 			'pbkdf2' => [
-				'class' => Pbkdf2Password::class,
+				'class' => Pbkdf2PasswordUsingHashExtension::class,
 				'algo' => 'sha256',
 				'cost' => '10',
 				'length' => '64',

@@ -11,6 +11,7 @@
 // phpcs:disable Generic.Files.LineLength.TooLong
 namespace MediaWiki;
 
+use AbstractPbkdf2Password;
 use ActivityUpdateJob;
 use APCUBagOStuff;
 use Argon2Password;
@@ -58,7 +59,6 @@ use MWSaltedPassword;
 use NamespaceInfo;
 use NullJob;
 use PatrolLogFormatter;
-use Pbkdf2Password;
 use ProtectLogFormatter;
 use PublishStashedFileJob;
 use RecentChangesUpdateJob;
@@ -7076,9 +7076,16 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Configuration for built-in password types. Maps the password type
-	 * to an array of options. The 'class' option is the Password class to
-	 * use. All other options are class-dependent.
+	 * Configuration for built-in password types.
+	 *
+	 * Maps the password type to an array of options:
+	 *
+	 * - class: The Password class to use.
+	 * - factory (since 1.40): A function that creates and returns a suitable Password object.
+	 *   This option is intended only for internal use; the function signature is unstable and
+	 *   subject to change in future versions.
+	 *
+	 * All other options are class-dependent.
 	 *
 	 * An advanced example:
 	 *
@@ -7122,7 +7129,7 @@ class MainConfigSchema {
 				'cost' => 9,
 			],
 			'pbkdf2' => [
-				'class' => Pbkdf2Password::class,
+				'factory' => [ AbstractPbkdf2Password::class, 'newInstance' ],
 				'algo' => 'sha512',
 				'cost' => '30000',
 				'length' => '64',
