@@ -329,7 +329,7 @@ class OutputPage extends ContextSource {
 	private $mFollowPolicy = 'follow';
 
 	/** @var array */
-	private $mRobotsOptions = [];
+	private $mRobotsOptions = [ 'max-image-preview' => 'standard' ];
 
 	/**
 	 * @var array Headers that cause the cache to vary.  Key is header name,

@@ -233,7 +233,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertContains( '<meta name="keywords" content="first"/>', $links );
 		$this->assertContains( '<meta name="keywords" content="second"/>', $links );
 		$this->assertContains( '<meta property="og:title" content="Ta-duh"/>', $links );
-		$this->assertArrayNotHasKey( 'meta-robots', $links );
+		$this->assertArrayHasKey( 'meta-robots', $links );
 	}
 
 	/**
@@ -606,7 +606,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->setRobotPolicy( 'noindex, nofollow' );
 
 		$links = $op->getHeadLinksArray();
-		$this->assertContains( '<meta name="robots" content="noindex,nofollow"/>', $links );
+		$this->assertContains( '<meta name="robots" content="noindex,nofollow,max-image-preview:standard"/>', $links );
 	}
 
 	/**
@@ -622,12 +622,12 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->setIndexPolicy( 'index' );
 
 		$links = $op->getHeadLinksArray();
-		$this->assertContains( '<meta name="robots" content="index,nofollow,max-snippet:500"/>', $links );
+		$this->assertContains( '<meta name="robots" content="index,nofollow,max-image-preview:standard,max-snippet:500"/>', $links );
 
 		$op->setFollowPolicy( 'follow' );
 		$links = $op->getHeadLinksArray();
 		$this->assertContains(
-			'<meta name="robots" content="max-snippet:500"/>',
+			'<meta name="robots" content="max-image-preview:standard,max-snippet:500"/>',
 			$links,
 			'When index,follow (browser default) omit'
 		);
@@ -656,7 +656,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->setFollowPolicy( 'nofollow' );
 
 		$links = $op->getHeadLinksArray();
-		$this->assertContains( '<meta name="robots" content="noindex,nofollow"/>', $links );
+		$this->assertContains( '<meta name="robots" content="noindex,nofollow,max-image-preview:standard"/>', $links );
 	}
 
 	private function extractHTMLTitle( OutputPage $op ) {
