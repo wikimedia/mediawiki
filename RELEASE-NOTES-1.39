@@ -6,17 +6,20 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.39.0-rc.0 ===
 * Localisation updates.
-* (T318754) WebInstallerOptions::addPersonalizationOptions(): Close fieldset
-* (T306802) docker: update to latest published images
+* (T318481) composer: Drop symfony/php73-polyfill.
+* (T318460) SpecialChangeEmail: Set default for returntoquery.
 * (T318307) HTMLFormField::validate(): Update docs to permit all data types
-* (T318460) SpecialChangeEmail: Set default for returntoquery
-* (T318481) composer: Drop symfony/php73-polyfill
+* (T306802) docker: update to latest published images.
+* (T318754) WebInstallerOptions::addPersonalizationOptions(): Close fieldset.
+* (T227047) Soft-deprecate the remainder of ActorMigration.
 * (T316304, CVE-2022-41767) SECURITY: reassignEdits doesn't update results
   in an IP range check on Special:Contributions.
 * (T309894, CVE-2022-41765) SECURITY: HTMLUserTextField exposes existence
   of hidden users.
 * (T307278, CVE-2022-41766) SECURITY: On action=rollback the message
   "alreadyrolled" can leak revision deleted user name.
+* (T319186) .phan/config.php: Update minimum_target_php_version.
+* Tests: Explicit cast to int in RandomImageGenerator test (php8 warnings).
 * …
 
 == MediaWiki 1.39.0-rc.0 ==
