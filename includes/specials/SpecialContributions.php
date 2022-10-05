@@ -918,4 +918,11 @@ class SpecialContributions extends IncludableSpecialPage {
 		$msgShort = $this->msg( $shortKey );
 		return $msgShort->text();
 	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getAssociatedNavigationLinks(): array {
+		return ( new SpecialContribute() )->getAssociatedNavigationLinks();
+	}
 }

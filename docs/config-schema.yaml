@@ -7749,3 +7749,16 @@ config-schema:
         description: |-
             List of preferred skins to be listed higher in Special:Preferences
             @since 1.38
+    SpecialContributeSkinsDisabled:
+        default:
+            - vector
+            - vector-2022
+            - monobook
+            - timeless
+            - modern
+            - cologneblue
+            - minerva
+        type: array
+        description: |-
+            List of skins to not show the Special:Contribute page
+            @since 1.40

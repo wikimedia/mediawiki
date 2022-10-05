@@ -187,5 +187,8 @@ return [
 		MainConfigNames::ParserTestFiles => [
 			'mergeStrategy' => 'array_merge'
 		],
+		MainConfigNames::SpecialContributeSkinsDisabled => [
+			'mergeStrategy' => 'array_merge'
+		],
 	]
 ];
