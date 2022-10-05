@@ -153,6 +153,10 @@ class MainConfigSchema {
 				continue;
 			}
 
+			if ( isset( $value['obsolete'] ) ) {
+				continue;
+			}
+
 			$name = $const->getName();
 			yield "$prefix$name" => self::getDefaultFromJsonSchema( $value );
 		}
@@ -5281,7 +5285,9 @@ class MainConfigSchema {
 	 */
 	public const MangleFlashPolicy = [
 		'default' => true,
-		'deprecated' => 'since 1.39; no longer has any effect',
+		'obsolete' => 'Since 1.39; no longer has any effect.',
+		'description' => 'Has been emitting warnings since 1.39 (LTS). ' .
+			'Can be removed completely in 1.44, assuming 1.43 is an LTS release.'
 	];
 
 	/**
@@ -9668,7 +9674,9 @@ class MainConfigSchema {
 	 */
 	public const EnableOpenSearchSuggest = [
 		'default' => true,
-		'deprecated' => 'since 1.35 No longer used',
+		'obsolete' => 'Since 1.35, no longer used',
+		'description' => 'Has been emitting warnings since 1.39 (LTS). ' .
+			'Can be removed completely in 1.44, assuming 1.43 is an LTS release.'
 	];
 
 	/**

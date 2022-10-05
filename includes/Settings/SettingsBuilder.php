@@ -39,6 +39,9 @@ class SettingsBuilder {
 	/** @var ConfigBuilder */
 	private $configSink;
 
+	/** @var array<string,string> */
+	private $obsoleteConfig;
+
 	/** @var Config|null */
 	private $config;
 
@@ -104,6 +107,7 @@ class SettingsBuilder {
 		$this->extensionRegistry = $extensionRegistry;
 		$this->cache = $cache;
 		$this->configSink = $configSink;
+		$this->obsoleteConfig = [];
 		$this->configSchema = new ConfigSchemaAggregator();
 		$this->phpIniSink = $phpIniSink;
 		$this->settingsConfig = [
@@ -200,9 +204,13 @@ class SettingsBuilder {
 
 	/**
 	 * Detect usage of deprecated settings. A setting is counted as used if
-	 * it has a value other than the default.
+	 * it has a value other than the default. Note that deprecated settings are
+	 * expected to be supported. Settings that have become non-functional should
+	 * be marked as obsolete instead.
 	 *
 	 * @note this is slow, so you probably don't want to do this on every request.
+	 * @note Code that needs to call detectDeprecatedConfig() should probably also
+	 *       call detectObsoleteConfig() and getWarnings().
 	 *
 	 * @return array<string,string> an associative array mapping config keys
 	 *         to the deprecation messages from the schema.
@@ -227,6 +235,31 @@ class SettingsBuilder {
 		}
 
 		return $deprecated;
+	}
+
+	/**
+	 * Detect usage of obsolete settings. A setting is counted as used if it is
+	 * defined in any way. Note that obsolete settings are non-functional, while
+	 * deprecated settings are still supported.
+	 *
+	 * @note this is slow, so you probably don't want to do this on every request.
+	 * @note Code that calls detectObsoleteConfig() may also want to
+	 *       call detectDeprecatedConfig() and getWarnings().
+	 *
+	 * @return array<string,string> an associative array mapping config keys
+	 *         to the deprecation messages from the schema.
+	 */
+	public function detectObsoleteConfig(): array {
+		$config = $this->getConfig();
+		$obsolete = [];
+
+		foreach ( $this->obsoleteConfig as $key => $msg ) {
+			if ( $config->has( $key ) ) {
+				$obsolete[$key] = $msg;
+			}
+		}
+
+		return $obsolete;
 	}
 
 	/**
@@ -457,6 +490,10 @@ class SettingsBuilder {
 		if ( isset( $settings['config-overrides'] ) ) {
 			// no merge strategies, just override in one go
 			$this->configSink->setMulti( $settings['config-overrides'] );
+		}
+
+		if ( isset( $settings['obsolete-config'] ) ) {
+			$this->obsoleteConfig = array_merge( $this->obsoleteConfig, $settings['obsolete-config'] );
 		}
 
 		if ( isset( $settings['config'] ) || isset( $settings['config-overrides'] ) ) {

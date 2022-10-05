@@ -652,7 +652,6 @@ return [
 			'Send404Code' => true,
 			'ShowRollbackEditCount' => 10,
 			'EnableCanonicalServerLink' => false,
-			'MangleFlashPolicy' => true,
 			'ResourceModules' => [
 			],
 			'ResourceModuleSkinStyles' => [
@@ -1844,7 +1843,6 @@ return [
 				'application/x-suggestions+json' => false,
 				'application/x-suggestions+xml' => false,
 			],
-			'EnableOpenSearchSuggest' => true,
 			'OpenSearchDefaultLimit' => 10,
 			'OpenSearchDescriptionLength' => 100,
 			'SearchSuggestCacheExpiry' => 1200,
@@ -3157,9 +3155,6 @@ return [
 				'type' => 'string',
 			],
 		],
-		'MangleFlashPolicy' => [
-			'deprecated' => 'since 1.39; no longer has any effect',
-		],
 		'AllowImageTag' => [
 			'deprecated' => 'since 1.35; register an extension tag named <img> instead.',
 		],
@@ -3223,9 +3218,6 @@ return [
 		'OpenSearchTemplate' => [
 			'deprecated' => 'since 1.25 Use $wgOpenSearchTemplates[\'application/x-suggestions+json\'] instead',
 		],
-		'EnableOpenSearchSuggest' => [
-			'deprecated' => 'since 1.35 No longer used',
-		],
 		'SoftwareTags' => [
 			'additionalProperties' => [
 				'type' => 'boolean',
@@ -3272,5 +3264,9 @@ return [
 				],
 			],
 		],
+	],
+	'obsolete-config' => [
+		'MangleFlashPolicy' => 'Since 1.39; no longer has any effect.',
+		'EnableOpenSearchSuggest' => 'Since 1.35, no longer used',
 	],
 ];

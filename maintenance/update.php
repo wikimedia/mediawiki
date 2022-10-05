@@ -298,6 +298,11 @@ class UpdateMediaWiki extends Maintenance {
 			$warnings[] = "$key is deprecated: $msg";
 		}
 
+		$obsolete = $wgSettings->detectObsoleteConfig();
+		foreach ( $obsolete as $key => $msg ) {
+			$warnings[] = "$key is obsolete: $msg";
+		}
+
 		if ( $warnings ) {
 			$this->fatalError( "Some of your configuration settings caused a warning:\n\n"
 				. $this->formatWarnings( $warnings ) . "\n"
