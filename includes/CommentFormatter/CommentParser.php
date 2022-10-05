@@ -17,6 +17,7 @@ use MediaWiki\Linker\LinkTarget;
 use NamespaceInfo;
 use Parser;
 use RepoGroup;
+use StringUtils;
 use Title;
 use TitleParser;
 use TitleValue;
@@ -423,7 +424,7 @@ class CommentParser {
 						// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable linkRegexp set when used
 						// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal linkRegexp set when used
 						$linkRegexp,
-						$linkMarker,
+						StringUtils::escapeRegexReplacement( $linkMarker ),
 						$comment,
 						1
 					);
