@@ -25,6 +25,7 @@
 
 use MediaWiki\ExtensionInfo;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Utils\UrlUtils;
 
 /**
  * Give information about the version of MediaWiki, PHP, the DB and extensions
@@ -51,12 +52,20 @@ class SpecialVersion extends SpecialPage {
 	/** @var Parser */
 	private $parser;
 
+	/** @var UrlUtils */
+	private $urlUtils;
+
 	/**
 	 * @param Parser $parser
+	 * @param UrlUtils $urlUtils
 	 */
-	public function __construct( Parser $parser ) {
+	public function __construct(
+		Parser $parser,
+		UrlUtils $urlUtils
+	) {
 		parent::__construct( 'Version' );
 		$this->parser = $parser;
+		$this->urlUtils = $urlUtils;
 	}
 
 	/**
@@ -1213,7 +1222,7 @@ class SpecialVersion extends SpecialPage {
 			Html::closeElement( 'tr' );
 
 		foreach ( $entryPoints as $message => $value ) {
-			$url = wfExpandUrl( $value, PROTO_RELATIVE );
+			$url = $this->urlUtils->expand( $value, PROTO_RELATIVE );
 			$out .= Html::openElement( 'tr' ) .
 				// ->plain() looks like it should be ->parse(), but this function
 				// returns wikitext, not HTML, boo

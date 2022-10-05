@@ -24,6 +24,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Utils\UrlUtils;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -42,6 +43,9 @@ class SpecialLinkSearch extends QueryPage {
 	/** @var string|null */
 	private $mProt;
 
+	/** @var UrlUtils */
+	private $urlUtils;
+
 	private function setParams( $params ) {
 		$this->mQuery = $params['query'];
 		$this->mNs = $params['namespace'];
@@ -51,14 +55,17 @@ class SpecialLinkSearch extends QueryPage {
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param UrlUtils $urlUtils
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		UrlUtils $urlUtils
 	) {
 		parent::__construct( 'LinkSearch' );
 		$this->setDBLoadBalancer( $loadBalancer );
 		$this->setLinkBatchFactory( $linkBatchFactory );
+		$this->urlUtils = $urlUtils;
 	}
 
 	public function isCacheable() {
@@ -86,11 +93,10 @@ class SpecialLinkSearch extends QueryPage {
 		$target2 = Parser::normalizeLinkUrl( $target );
 		// Get protocol, default is http://
 		$protocol = 'http://';
-		$bits = wfParseUrl( $target );
+		$bits = $this->urlUtils->parse( $target );
 		if ( isset( $bits['scheme'] ) && isset( $bits['delimiter'] ) ) {
 			$protocol = $bits['scheme'] . $bits['delimiter'];
-			// Make sure wfParseUrl() didn't make some well-intended correction in the
-			// protocol
+			// Make sure UrlUtils::parse() didn't make some well-intended correction in the protocol
 			if ( str_starts_with( strtolower( $target ), strtolower( $protocol ) ) ) {
 				$target2 = substr( $target, strlen( $protocol ) );
 			} else {
