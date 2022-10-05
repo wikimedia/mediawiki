@@ -1708,7 +1708,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	/**
 	 * @covers WANObjectCache::delete
 	 * @covers WANObjectCache::relayNonVolatilePurge
-	 * @covers WANObjectCache::relayVolatilePurges
+	 * @covers WANObjectCache::relayVolatilePurge
 	 * @covers WANObjectCache::makeTombstonePurgeValue
 	 */
 	public function testDelete() {

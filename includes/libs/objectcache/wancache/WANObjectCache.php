@@ -31,19 +31,15 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
  *
  * ### Using WANObjectCache
  *
- * All operations go to the local datacenter cache, except for delete(),
- * touchCheckKey(), and resetCheckKey(), which broadcast to all datacenters.
+ * This class intends to boost performance of code paths by using cache-aside logic
+ * for data potentially derived from source databases subject to replication lag. Callers
+ * will generally make use of the getWithSetCallback() method.
  *
- * This class is intended for caching data from primary stores.
- * If the get() method does not return a value, then the caller
- * should query the new value and backfill the cache using set().
- * The preferred way to do this logic is through getWithSetCallback().
- * When querying the store on cache miss, the closest DB replica
- * should be used. Try to avoid heavyweight DB primary or quorum reads.
+ * All operations go to the local datacenter cache, except for delete(), touchCheckKey(),
+ * and resetCheckKey(), which are also broadcasted to caches in all datacenters.
  *
- * To ensure consumers of the cache see new values in a timely manner,
- * you either need to follow either the validation strategy, or the
- * purge strategy.
+ * To ensure consumers of the cache see new values in a timely manner, you need to
+ * follow either the validation strategy, or the purge strategy.
  *
  * The validation strategy refers to the natural avoidance of stale data
  * by one of the following means:
@@ -62,17 +58,19 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
  *        be stale, one should consider using TTL only – using the value's age as
  *        method of validation.
  *
- * The purge strategy refers to the approach whereby your application knows that
- * source data has changed and can react by purging the relevant cache keys.
- * As purges are expensive, this strategy should be avoided if possible.
- * The simplest purge method is delete().
+ * The purge strategy refers to the approach whereby your application knows that source
+ * data has changed and can react by purging the relevant cache keys. Since purges are
+ * expensive, this strategy should be avoided if possible. The simplest purge method is
+ * delete().
  *
- * No matter which strategy you choose, callers must not rely on updates or purges
- * being immediately visible to other servers. It should be treated similarly as
- * one would a database replica.
+ * In any case, callers must not assume that updates and purges are immediately visible
+ * to all application servers. It should be treated like a replica database in this regard.
+ * If such semantics are required, then solutions must be sought outside WANObjectCache.
  *
- * The need for immediate updates should be avoided. If needed, solutions must be
- * sought outside WANObjectCache.
+ * Note that write operations, such as set() and delete(), are allowed to return true as
+ * soon as the command could be sent or buffered via an open socket to the relevant cache
+ * backend server. If that server is a proxy, then it is responsible for detecting
+ * and tracking downed servers.
  *
  * @anchor wanobjectcache-deployment
  * ### Deploying WANObjectCache
@@ -692,7 +690,12 @@ class WANObjectCache implements
 
 			if ( $purge === null ) {
 				$wrapped = $this->makeCheckPurgeValue( $now, self::HOLDOFF_TTL, $purge );
-				$this->cache->add( $timeKey, $wrapped, self::CHECK_KEY_TTL );
+				$this->cache->add(
+					$timeKey,
+					$wrapped,
+					self::CHECK_KEY_TTL,
+					$this->cache::WRITE_BACKGROUND
+				);
 			}
 
 			$purges[] = $purge;
@@ -940,9 +943,9 @@ class WANObjectCache implements
 		$wrapped = $this->wrap( $value, $logicalTTL ?: $ttl, $version, $now, $walltime );
 		$storeTTL = $ttl + $staleTTL;
 
-		$flags = 0;
+		$flags = $this->cache::WRITE_BACKGROUND;
 		if ( $segmentable ) {
-			$flags |= ( $this->cache )::WRITE_ALLOW_SEGMENTS;
+			$flags |= $this->cache::WRITE_ALLOW_SEGMENTS;
 		}
 
 		if ( $creating ) {
@@ -960,7 +963,7 @@ class WANObjectCache implements
 					return ( is_string( $cWrapped ) ) ? false : $wrapped;
 				},
 				$storeTTL,
-				( $this->cache )::MAX_CONFLICTS_ONE,
+				$this->cache::MAX_CONFLICTS_ONE,
 				$flags
 			);
 		}
@@ -1050,8 +1053,8 @@ class WANObjectCache implements
 			// mitigation systems.
 			$now = $this->getCurrentTime();
 			// Set the key to the purge value in all datacenters
-			$purgeBySisterKey = [ $valueSisterKey => $this->makeTombstonePurgeValue( $now ) ];
-			$ok = $this->relayVolatilePurges( $purgeBySisterKey, $ttl );
+			$purge = $this->makeTombstonePurgeValue( $now );
+			$ok = $this->relayVolatilePurge( $valueSisterKey, $purge, $ttl );
 		}
 
 		$kClass = $this->determineKeyClassForStats( $key );
@@ -1159,7 +1162,12 @@ class WANObjectCache implements
 			$purge = $this->parsePurgeValue( $wrappedBySisterKey[$checkSisterKey] );
 			if ( $purge === null ) {
 				$wrapped = $this->makeCheckPurgeValue( $now, self::HOLDOFF_TTL, $purge );
-				$this->cache->add( $checkSisterKey, $wrapped, self::CHECK_KEY_TTL );
+				$this->cache->add(
+					$checkSisterKey,
+					$wrapped,
+					self::CHECK_KEY_TTL,
+					$this->cache::WRITE_BACKGROUND
+				);
 			}
 
 			$times[$key] = $purge[self::PURGE_TIME];
@@ -1205,8 +1213,8 @@ class WANObjectCache implements
 		$checkSisterKey = $this->makeSisterKey( $key, self::TYPE_TIMESTAMP );
 
 		$now = $this->getCurrentTime();
-		$purgeBySisterKey = [ $checkSisterKey => $this->makeCheckPurgeValue( $now, $holdoff ) ];
-		$ok = $this->relayVolatilePurges( $purgeBySisterKey, self::CHECK_KEY_TTL );
+		$purge = $this->makeCheckPurgeValue( $now, $holdoff );
+		$ok = $this->relayVolatilePurge( $checkSisterKey, $purge, self::CHECK_KEY_TTL );
 
 		$kClass = $this->determineKeyClassForStats( $key );
 		$this->stats->increment( "wanobjectcache.$kClass.ck_touch." . ( $ok ? 'ok' : 'error' ) );
@@ -1831,7 +1839,7 @@ class WANObjectCache implements
 	private function yieldStampedeLock( $key, $hasLock ) {
 		if ( $hasLock ) {
 			$checkSisterKey = $this->makeSisterKey( $key, self::TYPE_MUTEX );
-			$this->cache->changeTTL( $checkSisterKey, (int)$this->getCurrentTime() - 60 );
+			$this->cache->delete( $checkSisterKey, $this->cache::WRITE_BACKGROUND );
 		}
 	}
 
@@ -2052,9 +2060,9 @@ class WANObjectCache implements
 		// Wrap that value with time/TTL/version metadata
 		$wrapped = $this->wrap( $value, $ttl, $version, $now, $walltime );
 
-		$flags = 0;
+		$flags = $this->cache::WRITE_BACKGROUND;
 		if ( $segmentable ) {
-			$flags |= ( $this->cache )::WRITE_ALLOW_SEGMENTS;
+			$flags |= $this->cache::WRITE_ALLOW_SEGMENTS;
 		}
 
 		return $this->cache->set(
@@ -2676,30 +2684,24 @@ class WANObjectCache implements
 	 * so that even if the older value replaces the newer value, the TTL will greater than the
 	 * remaining TTL on the older value (assuming that all purges for a key use the same TTL).
 	 *
-	 * @param array<string,string> $purgeBySisterKey Map of
-	 *  (sister key => result of makeTombstonePurgeValue()/makeCheckKeyPurgeValue())
+	 * @param string $sisterKey A value key or "check" key
+	 * @param string $purgeValue Result of makeTombstonePurgeValue()/makeCheckKeyPurgeValue()
 	 * @param int $ttl Seconds to keep the purge value around
 	 * @return bool Success
 	 */
-	protected function relayVolatilePurges( array $purgeBySisterKey, int $ttl ) {
-		$purgeByRouteKey = [];
-		foreach ( $purgeBySisterKey as $sisterKey => $purge ) {
-			if ( $this->broadcastRoute !== null ) {
-				$routeKey = $this->prependRoute( $sisterKey, $this->broadcastRoute );
-			} else {
-				$routeKey = $sisterKey;
-			}
-			$purgeByRouteKey[$routeKey] = $purge;
-		}
-
-		if ( count( $purgeByRouteKey ) == 1 ) {
-			$purge = reset( $purgeByRouteKey );
-			$ok = $this->cache->set( key( $purgeByRouteKey ), $purge, $ttl );
+	protected function relayVolatilePurge( string $sisterKey, string $purgeValue, int $ttl ) {
+		if ( $this->broadcastRoute !== null ) {
+			$routeKey = $this->prependRoute( $sisterKey, $this->broadcastRoute );
 		} else {
-			$ok = $this->cache->setMulti( $purgeByRouteKey, $ttl );
+			$routeKey = $sisterKey;
 		}
 
-		return $ok;
+		return $this->cache->set(
+			$routeKey,
+			$purgeValue,
+			$ttl,
+			$this->cache::WRITE_BACKGROUND
+		);
 	}
 
 	/**
@@ -2717,7 +2719,7 @@ class WANObjectCache implements
 			$routeKey = $sisterKey;
 		}
 
-		return $this->cache->delete( $routeKey );
+		return $this->cache->delete( $routeKey, $this->cache::WRITE_BACKGROUND );
 	}
 
 	/**
