@@ -42,9 +42,6 @@ class SpecialContribute extends IncludableSpecialPage {
 	 * @inheritDoc
 	 */
 	public function execute( $par ) {
-		if ( !$this->isShowable() ) {
-			$this->displayRestrictionError();
-		}
 		$this->setHeaders();
 		$this->outputHeader();
 
