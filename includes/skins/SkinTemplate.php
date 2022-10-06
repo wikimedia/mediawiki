@@ -1082,6 +1082,8 @@ class SkinTemplate extends Skin {
 	 * @since 1.37
 	 */
 	protected function runOnSkinTemplateNavigationHooks( SkinTemplate $skin, &$content_navigation ) {
+		$beforeHookAssociatedPages = array_keys( $content_navigation['associated-pages'] );
+		$beforeHookNamespaces = array_keys( $content_navigation['namespaces'] );
 		$title = $this->getRelevantTitle();
 		if ( $title->canExist() ) {
 			$this->getHookRunner()->onSkinTemplateNavigation( $skin, $content_navigation );
@@ -1093,6 +1095,21 @@ class SkinTemplate extends Skin {
 		// Equiv to SkinTemplateContentActions, run
 		$this->getHookRunner()->onSkinTemplateNavigation__Universal(
 			$skin, $content_navigation );
+		// The new `associatedPages` menu (added in 1.39)
+		// should be backwards compatibile with `namespaces`.
+		// To do this we look for hook modifications to both keys. If modifications are not
+		// made the new key, but are made to the old key, associatedPages reverts back to the
+		// links in the namespaces menu.
+		// It's expected in future that `namespaces` menu will become an alias for `associatedPages`
+		// at which point this code can be removed.
+		$afterHookNamespaces = array_keys( $content_navigation[ 'namespaces' ] );
+		$afterHookAssociatedPages = array_keys( $content_navigation[ 'associated-pages' ] );
+		$associatedPagesChanged = count( array_diff( $afterHookAssociatedPages, $beforeHookAssociatedPages ) ) > 0;
+		$namespacesChanged = count( array_diff( $afterHookNamespaces, $beforeHookNamespaces ) ) > 0;
+		// If some change occurred to namespaces via the hook, revert back to namespaces.
+		if ( !$associatedPagesChanged && $namespacesChanged ) {
+			$content_navigation['associated-pages'] = $content_navigation['namespaces'];
+		}
 	}
 
 	/**
@@ -1459,25 +1476,7 @@ class SkinTemplate extends Skin {
 
 		$content_navigation['namespaces'] = $namespaces;
 		$content_navigation['associated-pages'] = $associatedPages;
-		$beforeHookAssociatedPages = array_keys( $content_navigation['associated-pages'] );
-		$beforeHookNamespaces = array_keys( $content_navigation['namespaces'] );
 		$this->runOnSkinTemplateNavigationHooks( $this, $content_navigation );
-
-		// The new `associatedPages` menu (added in 1.39)
-		// should be backwards compatibile with `namespaces`.
-		// To do this we look for hook modifications to both keys. If modifications are not
-		// made the new key, but are made to the old key, associatedPages reverts back to the
-		// links in the namespaces menu.
-		// It's expected in future that `namespaces` menu will become an alias for `associatedPages`
-		// at which point this code can be removed.
-		$afterHookNamespaces = array_keys( $content_navigation[ 'namespaces' ] );
-		$afterHookAssociatedPages = array_keys( $content_navigation[ 'associated-pages' ] );
-		$associatedPagesChanged = count( array_diff( $afterHookAssociatedPages, $beforeHookAssociatedPages ) ) > 0;
-		$namespacesChanged = count( array_diff( $afterHookNamespaces, $beforeHookNamespaces ) ) > 0;
-		// If some change occurred to namespaces via the hook, revert back to namespaces.
-		if ( !$associatedPagesChanged && $namespacesChanged ) {
-			$content_navigation['associated-pages'] = $content_navigation['namespaces'];
-		}
 
 		// Setup xml ids and tooltip info
 		foreach ( $content_navigation as $section => &$links ) {
