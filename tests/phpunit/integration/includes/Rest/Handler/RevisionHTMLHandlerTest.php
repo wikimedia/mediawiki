@@ -113,7 +113,8 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$parsoidOutputAccess = new ParsoidOutputAccess(
 			new ServiceOptions(
 				ParsoidOutputAccess::CONSTRUCTOR_OPTIONS,
-				$services->getMainConfig()
+				$services->getMainConfig(),
+				[ 'WikiID' => 'MyWiki' ]
 			),
 			$parserCacheFactory,
 			$services->getPageStore(),

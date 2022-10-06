@@ -56,6 +56,9 @@ class HtmlOutputRendererHelper {
 		MainConfigNames::ParsoidCacheConfig
 	];
 
+	/** @var string[] */
+	private const OUTPUT_FLAVORS = [ 'view', 'stash', 'fragment' ];
+
 	/** @var ParsoidOutputStash */
 	private $parsoidOutputStash;
 
@@ -102,6 +105,22 @@ class HtmlOutputRendererHelper {
 	}
 
 	/**
+	 * Sets the given flavor to use for Wikitext -> HTML
+	 * transformations.
+	 *
+	 * @param string $flavor
+	 *
+	 * @return void
+	 */
+	public function setFlavor( string $flavor ): void {
+		if ( !in_array( $flavor, self::OUTPUT_FLAVORS ) ) {
+			throw new LogicException( 'Invalid flavor supplied' );
+		}
+
+		$this->flavor = $flavor;
+	}
+
+	/**
 	 * @param PageIdentity $page
 	 * @param array $parameters
 	 * @param User $user
@@ -120,7 +139,12 @@ class HtmlOutputRendererHelper {
 		$this->revision = $revision;
 		$this->pageLanguage = $pageLanguage;
 		$this->stash = $parameters['stash'];
-		$this->flavor = $parameters['stash'] ? 'stash' : 'view'; // more to come, T308743
+
+		if ( $this->stash ) {
+			$this->setFlavor( 'stash' );
+		} else {
+			$this->setFlavor( $parameters['flavor'] );
+		}
 	}
 
 	/**
@@ -201,7 +225,13 @@ class HtmlOutputRendererHelper {
 				ParamValidator::PARAM_TYPE => 'boolean',
 				ParamValidator::PARAM_DEFAULT => false,
 				ParamValidator::PARAM_REQUIRED => false,
-			]
+			],
+			'flavor' => [
+				Handler::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => self::OUTPUT_FLAVORS,
+				ParamValidator::PARAM_DEFAULT => 'view',
+				ParamValidator::PARAM_REQUIRED => false,
+			],
 		];
 	}
 
@@ -216,25 +246,39 @@ class HtmlOutputRendererHelper {
 				$parserOptions->setTargetLanguage( $this->pageLanguage );
 			}
 
-			// If we have a revision and the ID is 0 or null, then it's a fake revision
-			// representing a preview.
-			$fakeRevision = ( $this->revision && $this->revision->getId() < 1 );
+			// XXX: $envOptions are really parser options, and they should be integrated with
+			//      the ParserOptions class. That would allow us to use hte ParserCache with
+			//      various flavors.
+			$envOptions = [];
+
+			// NOTE: VisualEditor would set this flavor when transforming from Wikitext to HTML
+			//       for the purpose of editing when doing parsefragment (in body only mode).
+			if ( $this->flavor === 'fragment' ) {
+				$envOptions += [
+					'body_only' => true,
+					'wrapSections' => false,
+				];
+			}
 
 			// NOTE: ParsoidOutputAccess::getParserOutput() should be used for revisions
 			//       that comes from the database. Either this revision is null to indicate
 			//       the current revision or the revision must have an ID.
-			if ( $this->page instanceof PageRecord && !$fakeRevision ) {
+			// If we have a revision and the ID is 0 or null, then it's a fake revision
+			// representing a preview.
+			$fakeRevision = ( $this->revision && $this->revision->getId() < 1 );
+			$pageRecordAvailable = $this->page instanceof PageRecord;
+
+			if ( $pageRecordAvailable && !$fakeRevision && !$envOptions ) {
 				$status = $this->parsoidOutputAccess->getParserOutput(
 					$this->page,
 					$parserOptions,
 					$this->revision
 				);
 			} else {
-				// Here, we have a revision object that has no revision, so it's a fake revision
-				// for example: on page previews.
 				$status = $this->parsoidOutputAccess->parse(
 					$this->page,
 					$parserOptions,
+					$envOptions,
 					$this->revision
 				);
 			}

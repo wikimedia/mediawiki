@@ -70,7 +70,9 @@ class ParsoidOutputAccess {
 	public const OPT_FORCE_PARSE = 1;
 
 	public const CONSTRUCTOR_OPTIONS = [
-		MainConfigNames::ParsoidCacheConfig
+		MainConfigNames::ParsoidCacheConfig,
+		MainConfigNames::ParsoidSettings,
+		'WikiID'
 	];
 
 	/** @var RevisionOutputCache */
@@ -103,6 +105,12 @@ class ParsoidOutputAccess {
 	/** @var SiteConfig */
 	private $siteConfig;
 
+	/** @var ServiceOptions */
+	private $options;
+
+	/** @var string */
+	private $wikiId;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param ParserCacheFactory $parserCacheFactory
@@ -126,6 +134,7 @@ class ParsoidOutputAccess {
 		PageConfigFactory $parsoidPageConfigFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->options = $options;
 		$this->parsoidCacheConfig = new HashConfig( $options->get( MainConfigNames::ParsoidCacheConfig ) );
 		$this->revisionOutputCache = $parserCacheFactory
 			->getRevisionOutputCache( self::PARSOID_PARSER_CACHE_NAME );
@@ -191,7 +200,7 @@ class ParsoidOutputAccess {
 		}
 
 		$startTime = microtime( true );
-		$status = $this->parse( $page, $parserOpts, $revision );
+		$status = $this->parse( $page, $parserOpts, [ 'pageBundle' => true ], $revision );
 		$time = microtime( true ) - $startTime;
 
 		if ( $status->isOK() ) {
@@ -217,16 +226,26 @@ class ParsoidOutputAccess {
 
 	/**
 	 * @param PageIdentity $page
+	 * @param array $envOptions
 	 * @param ?RevisionRecord $revision
 	 * @param Language|null $languageOverride
 	 *
-	 * @return Status<ParserOutput>
+	 * @return Status
 	 */
 	private function parseInternal(
 		PageIdentity $page,
+		array $envOptions,
 		?RevisionRecord $revision = null,
 		Language $languageOverride = null
 	): Status {
+		$defaultOptions = [
+			'pageBundle' => true,
+			'prefix' => $this->wikiId,
+			'pageName' => $page,
+			'htmlVariantLanguage' => $languageOverride ? $languageOverride->getCode() : null,
+			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
+		];
+
 		try {
 			$langCode = $languageOverride ? $languageOverride->getCode() : null;
 			$pageConfig = $this->parsoidPageConfigFactory->create(
@@ -234,13 +253,15 @@ class ParsoidOutputAccess {
 				null,
 				$revision,
 				null,
-				$langCode
+				$langCode,
+				$this->options->get( MainConfigNames::ParsoidSettings )
 			);
 			$startTime = microtime( true );
 			$pageBundle = $this->parsoid->wikitext2html(
 				$pageConfig,
-				[ 'pageBundle' => true ]
+				$envOptions + $defaultOptions
 			);
+
 			$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle );
 			$time = microtime( true ) - $startTime;
 			if ( $time > 3 ) {
@@ -347,13 +368,20 @@ class ParsoidOutputAccess {
 	/**
 	 * @param PageIdentity $page
 	 * @param ParserOptions $parserOpts
+	 * @param array $envOptions
 	 * @param RevisionRecord|null $revision
+	 *
 	 * @return Status
 	 */
-	public function parse( PageIdentity $page, ParserOptions $parserOpts, ?RevisionRecord $revision ): Status {
+	public function parse(
+		PageIdentity $page,
+		ParserOptions $parserOpts,
+		array $envOptions,
+		?RevisionRecord $revision
+	): Status {
 		$revId = $revision ? $revision->getId() : $page->getId();
 
-		$status = $this->parseInternal( $page, $revision, $parserOpts->getTargetLanguage() );
+		$status = $this->parseInternal( $page, $envOptions, $revision, $parserOpts->getTargetLanguage() );
 
 		if ( !$status->isOK() ) {
 			return $status;
