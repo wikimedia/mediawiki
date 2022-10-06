@@ -245,6 +245,24 @@ class ConditionalHeaderUtilTest extends \MediaWikiUnitTestCase {
 				412,
 				[]
 			],
+			'If-None-Match wildcard GET request, resource has representation' => [
+				'GET',
+				null,
+				null,
+				true,
+				[ 'If-None-Match' => '*' ],
+				304,
+				[]
+			],
+			'If-None-Match wildcard non-GET request, resource has representation' => [
+				'POST',
+				null,
+				null,
+				true,
+				[ 'If-None-Match' => '*' ],
+				412,
+				[]
+			],
 		];
 	}
 

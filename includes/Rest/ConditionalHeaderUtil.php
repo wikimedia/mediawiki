@@ -97,6 +97,9 @@ class ConditionalHeaderUtil {
 		if ( $request->hasHeader( 'If-None-Match' ) ) {
 			$inm = $request->getHeader( 'If-None-Match' );
 			foreach ( $parser->parseHeaderList( $inm ) as $tag ) {
+				if ( $tag['whole'] === '*' && $this->hasRepresentation ) {
+					return $getOrHead ? 304 : 412;
+				}
 				if ( $this->weakCompare( $resourceTag, $tag ) ) {
 					if ( $getOrHead ) {
 						return 304;
