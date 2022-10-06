@@ -86,7 +86,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 		$db = $this->installMockDatabase();
 
 		// First query is by page ID. Return result
-		$db->expects( $this->at( 0 ) )
+		$db
 			->method( 'selectRow' )
 			->with(
 				[ 'page' ],
@@ -98,9 +98,6 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 				'page_namespace' => '3',
 				'page_title' => 'Food',
 			] ) );
-
-		$db->method( 'selectRow' )
-			->willReturn( false );
 
 		$store = $this->getRevisionStore();
 		$title = $store->getTitle( 1, 2, RevisionStore::READ_NORMAL );
@@ -115,39 +112,36 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 	public function testGetTitle_successFromPageIdOnFallback() {
 		$db = $this->installMockDatabase();
 
-		// First query, by page_id, no result
-		$db->expects( $this->at( 0 ) )
+		$db
 			->method( 'selectRow' )
-			->with(
-				[ 'page' ],
-				$this->anything(),
-				[ 'page_id' => 1 ]
+			->withConsecutive(
+				[
+					[ 'page' ],
+					$this->anything(),
+					[ 'page_id' => 1 ]
+				],
+				[
+					[ 0 => 'page', 'revision' => 'revision' ],
+					$this->anything(),
+					[ 'rev_id' => 2 ]
+				],
+				[
+					[ 'page' ],
+					$this->anything(),
+					[ 'page_id' => 1 ]
+				]
 			)
-			->willReturn( false );
-
-		// Second query, by rev_id, no result
-		$db->expects( $this->at( 1 ) )
-			->method( 'selectRow' )
-			->with(
-				[ 0 => 'page', 'revision' => 'revision' ],
-				$this->anything(),
-				[ 'rev_id' => 2 ]
-			)
-			->willReturn( false );
-
-		// Retrying on master...
-		// Third query, by page_id again
-		$db->expects( $this->at( 2 ) )
-			->method( 'selectRow' )
-			->with(
-				[ 'page' ],
-				$this->anything(),
-				[ 'page_id' => 1 ]
-			)
-			->willReturn( $this->getDummyPageRow( [
-				'page_namespace' => '2',
-				'page_title' => 'Foodey',
-			] ) );
+			->willReturnOnConsecutiveCalls(
+				// First query, by page_id, no result
+				false,
+				// Second query, by rev_id, no result
+				false,
+				// Third query, retrying by page_id again on master
+				$this->getDummyPageRow( [
+					'page_namespace' => '2',
+					'page_title' => 'Foodey',
+				] )
+			);
 
 		$store = $this->getRevisionStore();
 		$title = $store->getTitle( 1, 2, RevisionStore::READ_NORMAL );
@@ -163,27 +157,28 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 		$db = $this->installMockDatabase();
 
 		// First call to Title::newFromID, faking no result (db lag?)
-		$db->expects( $this->at( 0 ) )
-			->method( 'selectRow' )
-			->with(
-				[ 'page' ],
-				$this->anything(),
-				[ 'page_id' => 1 ]
-			)
-			->willReturn( false );
-
 		// Second select using rev_id, faking no result (db lag?)
-		$db->expects( $this->at( 1 ) )
+		$db
 			->method( 'selectRow' )
-			->with(
-				[ 0 => 'page', 'revision' => 'revision' ],
-				$this->anything(),
-				[ 'rev_id' => 2 ]
+			->withConsecutive(
+				[
+					[ 'page' ],
+					$this->anything(),
+					[ 'page_id' => 1 ]
+				],
+				[
+					[ 0 => 'page', 'revision' => 'revision' ],
+					$this->anything(),
+					[ 'rev_id' => 2 ]
+				]
 			)
-			->willReturn( $this->getDummyPageRow( [
-				'page_namespace' => '1',
-				'page_title' => 'Food2',
-			] ) );
+			->willReturnOnConsecutiveCalls(
+				false,
+				$this->getDummyPageRow( [
+					'page_namespace' => '1',
+					'page_title' => 'Food2',
+				] )
+			);
 
 		$store = $this->getRevisionStore();
 		$title = $store->getTitle( 1, 2, RevisionStore::READ_NORMAL );
@@ -198,49 +193,43 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 	public function testGetTitle_successFromRevIdOnFallback() {
 		$db = $this->installMockDatabase();
 
-		// First query, by page_id, no result
-		$db->expects( $this->at( 0 ) )
+		$db
 			->method( 'selectRow' )
-			->with(
-				[ 'page' ],
-				$this->anything(),
-				[ 'page_id' => 1 ]
+			->withConsecutive(
+				[
+					[ 'page' ],
+					$this->anything(),
+					[ 'page_id' => 1 ]
+				],
+				[
+					[ 0 => 'page', 'revision' => 'revision' ],
+					$this->anything(),
+					[ 'rev_id' => 2 ]
+				],
+				[
+					[ 'page' ],
+					$this->anything(),
+					[ 'page_id' => 1 ]
+				],
+				[
+					[ 0 => 'page', 'revision' => 'revision' ],
+					$this->anything(),
+					[ 'rev_id' => 2 ]
+				]
 			)
-			->willReturn( false );
-
-		// Second query, by rev_id, no result
-		$db->expects( $this->at( 1 ) )
-			->method( 'selectRow' )
-			->with(
-				[ 0 => 'page', 'revision' => 'revision' ],
-				$this->anything(),
-				[ 'rev_id' => 2 ]
-			)
-			->willReturn( false );
-
-		// Retrying on master...
-		// Third query, by page_id again, still no result
-		$db->expects( $this->at( 2 ) )
-			->method( 'selectRow' )
-			->with(
-				[ 'page' ],
-				$this->anything(),
-				[ 'page_id' => 1 ]
-			)
-			->willReturn( false );
-
-		// Forth query, by rev_id agin
-		$db->expects( $this->at( 3 ) )
-			->method( 'selectRow' )
-			->with(
-				[ 0 => 'page', 'revision' => 'revision' ],
-				$this->anything(),
-				[ 'rev_id' => 2 ]
-			)
-			->willReturn( $this->getDummyPageRow( [
-				'page_namespace' => '2',
-				'page_title' => 'Foodey',
-			] ) );
+			->willReturnOnConsecutiveCalls(
+				// First query, by page_id, no result
+				false,
+				// Second query, by rev_id, no result
+				false,
+				// Third query, retrying by page_id again on master, still no result
+				false,
+				// Fourth query, by rev_id again
+				$this->getDummyPageRow( [
+					'page_namespace' => '2',
+					'page_title' => 'Foodey',
+				] )
+			);
 
 		$store = $this->getRevisionStore();
 		$title = $store->getTitle( 1, 2, RevisionStore::READ_NORMAL );
@@ -274,27 +263,31 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			} );
 
 		// First and third call to Title::newFromID, faking no result
-		foreach ( [ 0, 2 ] as $counter ) {
-			$db->expects( $this->at( $counter ) )
-				->method( 'selectRow' )
-				->with(
+		$db
+			->method( 'selectRow' )
+			->withConsecutive(
+				[
 					[ 'page' ],
 					$this->anything(),
 					[ 'page_id' => 1 ]
-				)
-				->willReturn( false );
-		}
-
-		foreach ( [ 1, 3 ] as $counter ) {
-			$db->expects( $this->at( $counter ) )
-				->method( 'selectRow' )
-				->with(
+				],
+				[
 					[ 0 => 'page', 'revision' => 'revision' ],
 					$this->anything(),
 					[ 'rev_id' => 2 ]
-				)
-				->willReturn( false );
-		}
+				],
+				[
+					[ 'page' ],
+					$this->anything(),
+					[ 'page_id' => 1 ]
+				],
+				[
+					[ 0 => 'page', 'revision' => 'revision' ],
+					$this->anything(),
+					[ 'rev_id' => 2 ]
+				]
+			)
+			->willReturn( false );
 
 		$store = $this->getRevisionStore( $mockLoadBalancer );
 
