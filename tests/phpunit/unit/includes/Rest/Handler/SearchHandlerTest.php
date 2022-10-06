@@ -524,12 +524,10 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$mockPageStore->method( 'getPageForLink' )->willReturn( $pageTarget );
 		$mockRedirectLookup = $this->createMock( RedirectLookup::class );
 
-		$mockRedirectLookup->expects( $this->at( 0 ) ) // first call has a redirect,
-		->method( 'getRedirectTarget' )
-			->willReturn( $mockRedirectLinkTarget );
-		$mockRedirectLookup->expects( $this->at( 1 ) ) // second call does not
-		->method( 'getRedirectTarget' )
-			->willReturn( null );
+		// first call has a redirect, second call does not
+		$mockRedirectLookup
+			->method( 'getRedirectTarget' )
+			->willReturnOnConsecutiveCalls( $mockRedirectLinkTarget, null );
 
 		$query = 'foo';
 		$request = new RequestData( [ 'queryParams' => [ 'q' => $query ] ] );
@@ -564,12 +562,10 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$mockPageStore->method( 'getPageForLink' )->willReturn( $pageTarget );
 		$mockRedirectLookup = $this->createMock( RedirectLookup::class );
 
-		$mockRedirectLookup->expects( $this->at( 0 ) ) // first call has a redirect,
-		->method( 'getRedirectTarget' )
-			->willReturn( $mockRedirectLinkTarget );
-		$mockRedirectLookup->expects( $this->at( 1 ) ) // second call does not
-		->method( 'getRedirectTarget' )
-			->willReturn( null );
+		// first call has a redirect, second call does not
+		$mockRedirectLookup
+			->method( 'getRedirectTarget' )
+			->willReturnOnConsecutiveCalls( $mockRedirectLinkTarget, null );
 
 		$mockTitle = $this->makeMockTitle( 'Foo Redirect Target', [ 'id' => 10 ] );
 		$completionConfig = [ 'mode' => SearchHandler::COMPLETION_MODE ];
