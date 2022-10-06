@@ -2,7 +2,8 @@
 
 == MediaWiki 1.39.0-rc.1 ==
 
-THIS IS NOT A RELEASE YET
+MediaWiki 1.39 is a pre-release testing branch, and is not recommended
+for use in production.
 
 === Changes since MediaWiki 1.39.0-rc.0 ===
 * Localisation updates.
@@ -20,12 +21,14 @@ THIS IS NOT A RELEASE YET
   "alreadyrolled" can leak revision deleted user name.
 * (T319186) .phan/config.php: Update minimum_target_php_version.
 * Tests: Explicit cast to int in RandomImageGenerator test (php8 warnings).
-* …
+* (T319186) .phan/config.php: Update minimum_target_php_version.
+* (T310243) Deprecate use of 'wvui-search' package.
+* utils: Fix return doc about false/null for UrlUtils::expand.
+* (T319000) WebInstaller: Don't try and run trim() on null.
+* In the event of preg failure in MagicWordArray throw exception.
+* (T318753) Installer: Disable logo dropper for now.
 
 == MediaWiki 1.39.0-rc.0 ==
-
-MediaWiki 1.39 is a pre-release testing branch, and is not recommended
-for use in production.
 
 == Upgrading notes for 1.39 ==
 Don't forget to always back up your database before upgrading!
