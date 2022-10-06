@@ -2495,7 +2495,7 @@
 	"undelete-search-prefix": "Prikaži strani, ki se začnejo na:",
 	"undelete-search-full": "Pokaži naslove strani, ki vsebujejo:",
 	"undelete-search-submit": "Iskanje",
-	"undelete-no-results": "Ne najdem ujemajočih strani v arhivu izbrisov.",
+	"undelete-no-results": "V arhivu brisanja ne najdem nobene ustrezajoče strani.",
 	"undelete-filename-mismatch": "Redakcije datoteke s časovnim žigom $1 ni mogoče obnoviti: ime datoteke se ne ujema",
 	"undelete-bad-store-key": "Redakcije datoteke s časovnim žigom $1 ni mogoče obnoviti: datoteka je manjkala pred izbrisom.",
 	"undelete-cleanup-error": "Napaka pri brisanju neuporabljene arhivske datoteke »$1«.",
