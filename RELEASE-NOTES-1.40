@@ -140,6 +140,7 @@ because of Phabricator reports.
   removed.
 * LoadBalancer::haveIndex() and ::isNonZeroLoad(), deprecated in 1.34,
   have been removed.
+* PostgreSqlLockManager has been removed without deprecation.
 * …
 
 === Deprecations in 1.40 ===
