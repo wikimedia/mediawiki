@@ -349,13 +349,5 @@ body {
 }
 
 .logo-dropper {
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center center;
-	border: solid 1px #333;
-	height: 100px;
-	width: 200px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	display: none;
 }
