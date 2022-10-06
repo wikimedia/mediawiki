@@ -12017,14 +12017,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * @deprecated since 1.37; use $wgShellboxUrls instead
-	 */
-	public const ShellboxUrl = [
-		'default' => null,
-		'deprecated' => 'since 1.37; use $wgShellboxUrls instead',
-	];
-
-	/**
 	 * Shell commands can be run on a remote server using Shellbox. To use this
 	 * feature, set this to the URLs mapped by the service, and also configure $wgShellboxSecretKey.
 	 *

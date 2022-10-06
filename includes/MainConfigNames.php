@@ -4262,13 +4262,6 @@ class MainConfigNames {
 	public const ShellRestrictionMethod = 'ShellRestrictionMethod';
 
 	/**
-	 * Name constant for the ShellboxUrl setting, for use with Config::get()
-	 * @see MainConfigSchema::ShellboxUrl
-	 * @deprecated since 1.37; use $wgShellboxUrls instead
-	 */
-	public const ShellboxUrl = 'ShellboxUrl';
-
-	/**
 	 * Name constant for the ShellboxUrls setting, for use with Config::get()
 	 * @see MainConfigSchema::ShellboxUrls
 	 */

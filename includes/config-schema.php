@@ -2362,7 +2362,6 @@ return [
 			'ShellCgroup' => false,
 			'PhpCli' => '/usr/bin/php',
 			'ShellRestrictionMethod' => 'autodetect',
-			'ShellboxUrl' => null,
 			'ShellboxUrls' => [
 				'default' => null,
 			],
@@ -3269,9 +3268,6 @@ return [
 			'additionalProperties' => [
 				'type' => 'integer',
 			],
-		],
-		'ShellboxUrl' => [
-			'deprecated' => 'since 1.37; use $wgShellboxUrls instead',
 		],
 		'ShellboxUrls' => [
 			'additionalProperties' => [

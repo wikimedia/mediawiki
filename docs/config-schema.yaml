@@ -7523,10 +7523,6 @@ config-schema:
             @note If using firejail with MediaWiki running in a home directory different
             from the webserver user, firejail 0.9.44+ is required.
             @since 1.31
-    ShellboxUrl:
-        default: null
-        deprecated: 'since 1.37; use $wgShellboxUrls instead'
-        description: '@deprecated since 1.37; use $wgShellboxUrls instead'
     ShellboxUrls:
         default:
             default: null
