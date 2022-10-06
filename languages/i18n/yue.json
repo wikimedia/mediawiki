@@ -3147,6 +3147,7 @@
 	"feedback-thanks-title": "多謝！",
 	"searchsuggest-search": "搵{{SITENAME}}",
 	"searchsuggest-containing": "包含……",
+	"searchlimit-label": "每頁顯示嘅搜尋結果數：",
 	"api-error-unknown-warning": "未知嘅警告：$1。",
 	"api-error-unknownerror": "未知嘅出錯：$1。",
 	"duration-seconds": "$1秒",
