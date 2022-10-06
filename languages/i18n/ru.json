@@ -3998,6 +3998,7 @@
 	"json-error-invalid-property-name": "Декодированное имя свойства недействительно.",
 	"json-error-utf16": "Некорректные символы UTF-16, возможно, неверная кодировка",
 	"headline-anchor-title": "Ссылка на этот раздел",
+	"special-tab-contribute-short": "Вклад",
 	"special-tab-contributions-short": "Посмотреть вклад",
 	"special-characters-group-latin": "Латинские",
 	"special-characters-group-latinextended": "Латинские расширенные",

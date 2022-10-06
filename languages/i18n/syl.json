@@ -283,7 +283,7 @@
 	"shown-title": "$1 ꠖꠦꠈꠣꠅ {{PLURAL:$1|result|results}} ꠚꠞꠔꠦꠈ ꠚꠣꠔꠣꠞ ꠖꠣꠄ",
 	"viewprevnext": "ꠖꠦꠈꠃꠇ꠆ꠇꠣ ($1 {{int:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "<strong>ꠁꠇꠣꠘꠧ ꠄꠇꠐꠣ ꠙꠣꠔꠣ ꠀꠍꠦ \"[[:$1]]\" ꠘꠣꠝꠦ ꠁ ꠃꠁꠇꠤꠔ ⁕</strong> {{PLURAL:$2|0=|ꠀꠞꠧ ꠖꠦꠈꠂꠘ ꠕꠥꠇꠣꠘꠤꠔ ꠀꠞꠧ ꠝꠤꠟꠍꠦ ⁕}}",
-	"searchmenu-new": "<strong>ꠅꠃ ꠃꠁꠇꠤꠔ \"[[:$1]]\" ꠚꠣꠔꠣ ꠛꠣꠘꠣꠃꠇ꠆ꠇꠣ!</strong> {{PLURAL:$2|0=|ꠀꠞꠧ ꠖꠦꠈꠂꠘ ꠀꠙꠘꠣꠞ ꠕꠥꠇꠣꠘꠤꠔ ꠎꠦꠔꠣ ꠙꠣꠔꠣ ꠝꠤꠟꠍꠦ ⁕}}|ꠀꠞꠧ ꠖꠦꠈꠂꠘ ꠕꠥꠇꠣꠘꠤꠔ ꠎꠦꠔꠣ ꠝꠤꠟꠍꠦ ⁕}}}}",
+	"searchmenu-new": "<strong>ꠅꠃ ꠃꠁꠇꠤꠔ \"[[:$1]]\" ꠚꠣꠔꠣ ꠛꠣꠘꠣꠃꠇ꠆ꠇꠣ!</strong> {{PLURAL:$2|0=|ꠀꠞꠧ ꠖꠦꠈꠂꠘ ꠀꠙꠘꠣꠞ ꠕꠥꠇꠣꠘꠤꠔ ꠎꠦꠔꠣ ꠙꠣꠔꠣ ꠝꠤꠟꠍꠦ ⁕|ꠀꠞꠧ ꠖꠦꠈꠂꠘ ꠕꠥꠇꠣꠘꠤꠔ ꠎꠦꠔꠣ ꠝꠤꠟꠍꠦ ⁕}}",
 	"searchprofile-articles": "ꠇꠘꠐꠦꠘꠐ ꠚꠣꠔꠣꠁꠘ",
 	"searchprofile-images": "ꠛꠢꠥꠝꠤꠒꠤꠀ",
 	"searchprofile-everything": "ꠢꠈꠟꠔꠣ",
