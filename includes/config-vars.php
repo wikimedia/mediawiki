@@ -4246,13 +4246,6 @@ $wgPhpCli = null;
 $wgShellRestrictionMethod = null;
 
 /**
- * Config variable stub for the ShellboxUrl setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::ShellboxUrl
- * @deprecated since 1.37; use $wgShellboxUrls instead
- */
-$wgShellboxUrl = null;
-
-/**
  * Config variable stub for the ShellboxUrls setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ShellboxUrls
  */
