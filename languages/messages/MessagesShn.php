@@ -16,14 +16,21 @@ $namespaceNames = [
 	NS_PROJECT_TALK     => 'ဢုပ်ႇၵုမ်_$1',
 	NS_FILE             => 'ၾၢႆႇ',
 	NS_FILE_TALK        => 'ဢုပ်ႇၵုမ်_ၾၢႆႇ',
-	NS_MEDIAWIKI        => 'သိုဝ်ႇၶၢဝ်ႇဝီႇၶီႇ',
-	NS_MEDIAWIKI_TALK   => 'ဢုပ်ႇၵုမ်_သိုဝ်ႇၶၢဝ်ႇဝီႇၶီႇ',
-	NS_TEMPLATE         => 'ထႅမ်းပလဵၵ်ႉ',
-	NS_TEMPLATE_TALK    => 'ဢုပ်ႇၵုမ်_ထႅမ်းပလဵၵ်ႉ',
+	NS_MEDIAWIKI        => 'မီႇတီႇယႃႇဝီႇၶီႇ',
+	NS_MEDIAWIKI_TALK   => 'ဢုပ်ႇၵုမ်_မီႇတီႇယႃႇဝီႇၶီႇ',
+	NS_TEMPLATE         => 'ထႅမ်းပလဵတ်ႉ',
+	NS_TEMPLATE_TALK    => 'ဢုပ်ႇၵုမ်_ထႅမ်းပလဵတ်ႉ',
 	NS_HELP             => 'လွင်ႈၸွႆႈထႅမ်',
 	NS_HELP_TALK        => 'ဢုပ်ႇၵုမ်_လွင်ႈၸွႆႈထႅမ်',
 	NS_CATEGORY         => 'ပိူင်ထၢၼ်ႈ',
 	NS_CATEGORY_TALK    => 'ဢုပ်ႇၵုမ်_ပိူင်ထၢၼ်ႈ',
+];
+
+$namespaceAliases = [
+	'သိုဝ်ႇၶၢဝ်ႇဝီႇၶီႇ' => NS_MEDIAWIKI,
+	'ဢုပ်ႇၵုမ်_သိုဝ်ႇၶၢဝ်ႇဝီႇၶီႇ' => NS_MEDIAWIKI_TALK,
+	'ထႅမ်းပလဵၵ်ႉ' => NS_TEMPLATE,
+	'ဢုပ်ႇၵုမ်_ထႅမ်းပလဵၵ်ႉ' => NS_TEMPLATE_TALK,
 ];
 
 /** @phpcs-require-sorted-array */
