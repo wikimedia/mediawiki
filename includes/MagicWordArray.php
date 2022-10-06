@@ -307,11 +307,16 @@ class MagicWordArray {
 			$matches = [];
 			$res = preg_match_all( $regex, $text, $matches, PREG_SET_ORDER );
 			if ( $res === false ) {
-				LoggerFactory::getInstance( 'parser' )->warning( 'preg_match_all returned false', [
-					'code' => preg_last_error(),
+				$error = preg_last_error();
+				// TODO: Remove function_exists when we require PHP8
+				$errorText = function_exists( 'preg_last_error_msg' ) ? preg_last_error_msg() : '';
+				LoggerFactory::getInstance( 'parser' )->warning( 'preg_match_all error: {code} {errorText}', [
+					'code' => $error,
 					'regex' => $regex,
 					'text' => $text,
+					'errorText' => $errorText
 				] );
+				throw new Exception( "preg_match_all error $error: $errorText" );
 			} elseif ( $res ) {
 				foreach ( $matches as $m ) {
 					list( $name, $param ) = $this->parseMatch( $m );
@@ -320,11 +325,16 @@ class MagicWordArray {
 			}
 			$res = preg_replace( $regex, '', $text );
 			if ( $res === null ) {
-				LoggerFactory::getInstance( 'parser' )->warning( 'preg_replace returned null', [
-					'code' => preg_last_error(),
+				$error = preg_last_error();
+				// TODO: Remove function_exists when we require PHP8
+				$errorText = function_exists( 'preg_last_error_msg' ) ? preg_last_error_msg() : '';
+				LoggerFactory::getInstance( 'parser' )->warning( 'preg_replace error: {code} {errorText}', [
+					'code' => $error,
 					'regex' => $regex,
 					'text' => $text,
+					'errorText' => $errorText
 				] );
+				throw new Exception( "preg_replace error $error: $errorText" );
 			}
 			$text = $res;
 		}
