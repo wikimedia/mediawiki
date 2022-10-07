@@ -38,24 +38,24 @@ class OOUIImageModuleTest extends ResourceLoaderTestCase {
 		);
 
 		$styles = $module->getStyles( $this->getResourceLoaderContext( [ 'skin' => 'fakemonobook' ] ) );
-		$this->assertRegExp(
+		$this->assertMatchesRegularExpression(
 			'/stu-apex/',
 			$styles['all'],
 			'Generated styles use the non-default image (embed)'
 		);
-		$this->assertRegExp(
+		$this->assertMatchesRegularExpression(
 			'/fakemonobook/',
 			$styles['all'],
 			'Generated styles use the non-default image (link)'
 		);
 
 		$styles = $module->getStyles( $this->getResourceLoaderContext() );
-		$this->assertRegExp(
+		$this->assertMatchesRegularExpression(
 			'/stu-wikimediaui/',
 			$styles['all'],
 			'Generated styles use the default image (embed)'
 		);
-		$this->assertRegExp(
+		$this->assertMatchesRegularExpression(
 			'/fallback/',
 			$styles['all'],
 			'Generated styles use the default skin (link)'

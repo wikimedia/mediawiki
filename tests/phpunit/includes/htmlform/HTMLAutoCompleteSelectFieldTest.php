@@ -34,13 +34,13 @@ class HTMLAutoCompleteSelectFieldTest extends MediaWikiIntegrationTestCase {
 
 		$field = new HTMLAutoCompleteSelectField( $params );
 		$html = $field->getInputHTML( false );
-		$this->assertRegExp( '/select/', $html,
+		$this->assertMatchesRegularExpression( '/select/', $html,
 			"When the 'options' parameter is set, the HTML includes a <select>" );
 
 		unset( $params['options'] );
 		$field = new HTMLAutoCompleteSelectField( $params );
 		$html = $field->getInputHTML( false );
-		$this->assertNotRegExp( '/select/', $html,
+		$this->assertDoesNotMatchRegularExpression( '/select/', $html,
 			"When the 'options' parameter is not set, the HTML does not include a <select>" );
 	}
 }

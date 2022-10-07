@@ -413,7 +413,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			$csp = TestingAccessWrapper::newFromObject( $op->getCSP() );
 			$actual = $csp->makeCSPDirectives( [ 'default-src' => [] ], false );
 			$regex = '/(^|;)\s*' . $ltype . '-src\s[^;]*' . $ltype . 'src\.com[\s;]/';
-			$this->assertRegExp( $regex, $actual, $type );
+			$this->assertMatchesRegularExpression( $regex, $actual, $type );
 		}
 	}
 

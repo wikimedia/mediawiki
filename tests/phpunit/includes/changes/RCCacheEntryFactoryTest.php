@@ -141,21 +141,21 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 
 	private function assertUserLinks( $user, $cacheEntry ) {
 		$this->assertValidHTML( $cacheEntry->userlink );
-		$this->assertRegExp(
+		$this->assertMatchesRegularExpression(
 			'#^<a .*class="new mw-userlink".*><bdi>' . $user . '</bdi></a>#',
 			$cacheEntry->userlink,
 			'verify user link'
 		);
 
 		$this->assertValidHTML( $cacheEntry->usertalklink );
-		$this->assertRegExp(
+		$this->assertMatchesRegularExpression(
 			'#^ <span class="mw-usertoollinks mw-changeslist-links">.*<span><a .+>talk</a></span>.*</span>#',
 			$cacheEntry->usertalklink,
 			'verify user talk link'
 		);
 
 		$this->assertValidHTML( $cacheEntry->usertalklink );
-		$this->assertRegExp(
+		$this->assertMatchesRegularExpression(
 			'#^ <span class="mw-usertoollinks mw-changeslist-links">.*<span><a .+>' .
 				'contribs</a></span>.*</span>$#',
 			$cacheEntry->usertalklink,
@@ -192,7 +192,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	private function assertQueryLink( $content, $params, $link ) {
-		$this->assertRegExp(
+		$this->assertMatchesRegularExpression(
 			"#^<a .+>$content</a>$#",
 			$link,
 			'verify query link element'
@@ -200,7 +200,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 		$this->assertValidHTML( $link );
 
 		foreach ( $params as $key => $value ) {
-			$this->assertRegExp( '/' . $key . '=' . $value . '/', $link, "verify $key link params" );
+			$this->assertMatchesRegularExpression( '/' . $key . '=' . $value . '/', $link, "verify $key link params" );
 		}
 	}
 

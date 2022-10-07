@@ -41,7 +41,7 @@ class SpecialEditWatchlistTest extends SpecialPageTestBase {
 	public function testClearPage_hasClearButtonForm() {
 		$user = new TestUser( __METHOD__ );
 		list( $html, ) = $this->executeSpecialPage( 'clear', null, 'qqx', $user->getUser() );
-		$this->assertRegExp(
+		$this->assertMatchesRegularExpression(
 			'/<form action=\'.*?Special:EditWatchlist\/clear\'/',
 			$html
 		);

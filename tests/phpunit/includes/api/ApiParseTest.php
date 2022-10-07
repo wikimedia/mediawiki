@@ -110,14 +110,14 @@ class ApiParseTest extends ApiTestCase {
 
 			$unexpectedEnd = '#<!-- \nNewPP limit report|' .
 				'<!--\nTransclusion expansion time report#s';
-			$this->assertNotRegExp( $unexpectedEnd, $html );
+			$this->assertDoesNotMatchRegularExpression( $unexpectedEnd, $html );
 
 			$html = substr( $html, 0, strlen( $html ) - strlen( $expectedEnd ) );
 		} else {
 			$expectedEnd = '#\n<!-- \nNewPP limit report\n(?>.+?\n-->)\n' .
 				'<!--\nTransclusion expansion time report \(%,ms,calls,template\)\n(?>.*?\n-->)\n' .
 				'</div>$#s';
-			$this->assertRegExp( $expectedEnd, $html );
+			$this->assertMatchesRegularExpression( $expectedEnd, $html );
 
 			$html = preg_replace( $expectedEnd, '', $html );
 		}
@@ -352,7 +352,7 @@ class ApiParseTest extends ApiTestCase {
 
 		// Can't use assertParsedTo because the parser output is different for
 		// redirects
-		$this->assertRegExp( "/Redirect to:.*$name 2/", $res[0]['parse']['text'] );
+		$this->assertMatchesRegularExpression( "/Redirect to:.*$name 2/", $res[0]['parse']['text'] );
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 	}
 
@@ -592,7 +592,7 @@ class ApiParseTest extends ApiTestCase {
 		] );
 
 		// Just do a rough check
-		$this->assertRegExp( '#<!DOCTYPE.*<html.*<head.*</head>.*<body#s',
+		$this->assertMatchesRegularExpression( '#<!DOCTYPE.*<html.*<head.*</head>.*<body#s',
 			$res[0]['parse']['headhtml'] );
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 	}
@@ -608,7 +608,7 @@ class ApiParseTest extends ApiTestCase {
 			'prop' => 'categorieshtml',
 		] );
 
-		$this->assertRegExp( "#Category.*Category:$name.*$name#",
+		$this->assertMatchesRegularExpression( "#Category.*Category:$name.*$name#",
 			$res[0]['parse']['categorieshtml'] );
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 	}

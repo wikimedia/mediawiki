@@ -125,7 +125,7 @@ class MySqlLockManagerTest extends MediaWikiUnitTestCase {
 		// We need a predictable session here
 		$wrapper = TestingAccessWrapper::newFromObject( $lm );
 		// This tests the constructor's truncation of the session to 31 chars from 32
-		$this->assertRegExp( '/^[0-9a-z]{31}$/', $wrapper->session );
+		$this->assertMatchesRegularExpression( '/^[0-9a-z]{31}$/', $wrapper->session );
 		$wrapper->session = self::FAKE_SESSION;
 
 		$locksHeld = [];

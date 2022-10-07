@@ -2522,7 +2522,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$wrapper = TestingAccessWrapper::newFromObject( $bag );
 		foreach ( array_keys( $wrapper->bag ) as $bagKey ) {
 			if ( $keyNeedle === null ) {
-				$this->assertNotRegExp( '/[#{}]/', $bagKey, 'Respects "coalesceKeys"' );
+				$this->assertDoesNotMatchRegularExpression( '/[#{}]/', $bagKey, 'Respects "coalesceKeys"' );
 			} else {
 				$this->assertStringContainsString(
 					$keyNeedle,

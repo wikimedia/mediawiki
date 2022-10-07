@@ -65,8 +65,8 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			->getSpecialPageFactory()
 			->executePath( $sp, $ctx );
 		$html = $ctx->getOutput()->getHTML();
-		$this->assertRegExp( '/class="mw-message-box-warning/', $html, 'must contain warnings' );
-		$this->assertRegExp( '/Sort order of invalid is unrecognized/',
+		$this->assertMatchesRegularExpression( '/class="mw-message-box-warning/', $html, 'must contain warnings' );
+		$this->assertMatchesRegularExpression( '/Sort order of invalid is unrecognized/',
 			$html, 'must tell user sort order is invalid' );
 	}
 
@@ -201,7 +201,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			->getHTMLTitle();
 
 		# Compare :-]
-		$this->assertRegExp(
+		$this->assertMatchesRegularExpression(
 			'/' . preg_quote( $term, '/' ) . '/',
 			$pageTitle,
 			"Search term '{$term}' should not be expanded in Special:Search <title>"
@@ -300,7 +300,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
 		$html = $search->getContext()->getOutput()->getHTML();
 		foreach ( (array)$expectRegex as $regex ) {
-			$this->assertRegExp( $regex, $html, $message );
+			$this->assertMatchesRegularExpression( $regex, $html, $message );
 		}
 	}
 
@@ -361,9 +361,9 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
 		$html = $search->getContext()->getOutput()->getHTML();
 		if ( $expectedLimit === null ) {
-			$this->assertNotRegExp( "/ title=\"Next \\d+ results\"/", $html );
+			$this->assertDoesNotMatchRegularExpression( "/ title=\"Next \\d+ results\"/", $html );
 		} else {
-			$this->assertRegExp( "/ title=\"Next $expectedLimit results\"/", $html );
+			$this->assertMatchesRegularExpression( "/ title=\"Next $expectedLimit results\"/", $html );
 		}
 	}
 

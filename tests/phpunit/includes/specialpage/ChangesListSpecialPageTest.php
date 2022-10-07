@@ -575,7 +575,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testFilterUserExpLevelUnregisteredOrExperienced() {
 		$conds = $this->buildQuery( [ 'userExpLevel' => 'unregistered;experienced' ] );
 
-		$this->assertRegExp(
+		$this->assertMatchesRegularExpression(
 			'/actor_user IS NULL OR '
 				. '\(\(user_editcount >= 500\) AND \(\(user_registration IS NULL\) OR '
 				. '\(user_registration <= \'[^\']+\'\)\)\)/',
