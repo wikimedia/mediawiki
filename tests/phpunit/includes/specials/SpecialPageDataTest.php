@@ -121,17 +121,17 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 			list( $output, $response ) = $this->executeSpecialPage( $subpage, $request );
 
 			$this->assertEquals( $expCode, $response->getStatusCode(), "status code" );
-			$this->assertRegExp( $expRegExp, $output, "output" );
+			$this->assertMatchesRegularExpression( $expRegExp, $output, "output" );
 
 			foreach ( $expHeaders as $name => $exp ) {
 				$value = $response->getHeader( $name );
 				$this->assertNotNull( $value, "header: $name" );
 				$this->assertIsString( $value, "header: $name" );
-				$this->assertRegExp( $exp, $value, "header: $name" );
+				$this->assertMatchesRegularExpression( $exp, $value, "header: $name" );
 			}
 		} catch ( HttpError $e ) {
 			$this->assertEquals( $expCode, $e->getStatusCode(), "status code" );
-			$this->assertRegExp( $expRegExp, $e->getHTML(), "error output" );
+			$this->assertMatchesRegularExpression( $expRegExp, $e->getHTML(), "error output" );
 		}
 	}
 

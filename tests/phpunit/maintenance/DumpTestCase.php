@@ -247,7 +247,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		$this->assertSame( '', array_pop( $lines ), "Output ends in LF" );
 		$timestamp_re = "[0-9]{4}-[01][0-9]-[0-3][0-9] [0-2][0-9]:[0-5][0-9]:[0-6][0-9]";
 		foreach ( $lines as $line ) {
-			$this->assertRegExp(
+			$this->assertMatchesRegularExpression(
 				"/$timestamp_re: .* \(ID [0-9]+\) [0-9]* pages .*, [0-9]* revs .*, ETA/",
 				$line
 			);

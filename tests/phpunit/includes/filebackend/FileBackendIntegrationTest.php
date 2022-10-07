@@ -1199,7 +1199,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 			$data = ob_get_contents();
 			ob_end_clean();
 
-			$this->assertRegExp( '#<h1>File not found</h1>#', $data,
+			$this->assertMatchesRegularExpression( '#<h1>File not found</h1>#', $data,
 				"Correct content streamed from '$path' ($backendName)" );
 		}
 	}

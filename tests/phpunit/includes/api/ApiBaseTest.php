@@ -337,7 +337,7 @@ class ApiBaseTest extends ApiTestCase {
 			) {
 				// Allow one second of fuzziness.  Make sure the formats are
 				// correct!
-				$this->assertRegExp( '/^\d{14}$/', $result );
+				$this->assertMatchesRegularExpression( '/^\d{14}$/', $result );
 				$this->assertLessThanOrEqual( 1,
 					abs( wfTimestamp( TS_UNIX, $result ) - time() ),
 					"Result $result differs from expected $expected by " .
