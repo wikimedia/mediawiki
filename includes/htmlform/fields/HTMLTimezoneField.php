@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserTimeCorrection;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 
@@ -56,11 +57,7 @@ class HTMLTimezoneField extends HTMLSelectOrOtherField {
 				MessageValue::new( 'timezoneuseserverdefault', [ $timezoneName ] )
 			);
 		} else {
-			$tzstring = sprintf(
-				'%+03d:%02d',
-				floor( $localTZoffset / 60 ),
-				abs( $localTZoffset ) % 60
-			);
+			$tzstring = UserTimeCorrection::formatTimezoneOffset( $localTZoffset );
 			$server_tz_msg = $this->msgFormatter->format(
 				MessageValue::new( 'timezoneuseserverdefault', [ $tzstring ] )
 			);
