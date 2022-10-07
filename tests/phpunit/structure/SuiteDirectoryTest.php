@@ -3,6 +3,7 @@
 /**
  * The tests here verify that phpunit/suite.xml covers all of the tests under /tests/phpunit
  * @group medium
+ * @coversNothing
  */
 class SuiteDirectoryTest extends PHPUnit\Framework\TestCase {
 

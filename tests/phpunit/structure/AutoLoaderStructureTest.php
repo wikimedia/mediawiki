@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @coversNothing
+ */
 class AutoLoaderStructureTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Assert that there were no classes loaded that are not registered with the AutoLoader.

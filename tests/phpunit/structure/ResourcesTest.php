@@ -14,6 +14,8 @@ use Wikimedia\TestingAccessWrapper;
  * @copyright © 2012, Antoine Musso
  * @copyright © 2012, Niklas Laxström
  * @copyright © 2012, Santhosh Thottingal
+ *
+ * @coversNothing
  */
 class ResourcesTest extends MediaWikiIntegrationTestCase {
 
@@ -21,8 +23,9 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 		foreach ( self::provideMediaStylesheets() as list( $moduleName, $media, $filename, $css ) ) {
 			$cssText = CSSMin::minify( $css->cssText );
 
-			$this->assertTrue(
-				strpos( $cssText, '@media' ) === false,
+			$this->assertStringNotContainsString(
+				'@media',
+				$cssText,
 				'Stylesheets should not both specify "media" and contain @media'
 			);
 		}

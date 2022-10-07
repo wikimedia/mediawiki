@@ -15,6 +15,8 @@ use Wikimedia\TestingAccessWrapper;
  * - parameters in path have correct PARAM_SOURCE
  * - path parameters not in path are not required
  * - do not have inconsistencies in the parameter definitions
+ *
+ * @coversNothing
  */
 class RestStructureTest extends MediaWikiIntegrationTestCase {
 
