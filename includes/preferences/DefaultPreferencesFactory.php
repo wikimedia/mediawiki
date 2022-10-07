@@ -23,7 +23,6 @@ namespace MediaWiki\Preferences;
 use Html;
 use HTMLForm;
 use HTMLFormField;
-use HTMLTimezoneField;
 use IContextSource;
 use ILanguageConverter;
 use Language;
@@ -1038,7 +1037,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		$defaultPreferences['timecorrection'] = [
-			'class' => HTMLTimezoneField::class,
+			'type' => 'timezone',
 			'label-message' => 'timezonelegend',
 			'default' => $tzDefault,
 			'size' => 20,
