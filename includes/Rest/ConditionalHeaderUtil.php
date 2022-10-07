@@ -7,7 +7,6 @@ use MediaWiki\Rest\HeaderParser\IfNoneMatch;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 class ConditionalHeaderUtil {
-	private $validatorsHaveBeenSet = false;
 	private $varnishETagHack = true;
 	private $eTag;
 	private $lastModified;
@@ -28,7 +27,6 @@ class ConditionalHeaderUtil {
 	 *   the resource exists if an ETag was specified for it.
 	 */
 	public function setValidators( $eTag, $lastModified, $hasRepresentation ) {
-		$this->validatorsHaveBeenSet = true;
 		$this->eTag = $eTag;
 		if ( $lastModified === null ) {
 			$this->lastModified = null;
