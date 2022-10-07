@@ -75,6 +75,12 @@ For notes on 1.39.x and older releases, see HISTORY.
 * Updated pear/net_smtp from 0.10.0 to 0.10.1.
 
 ===== Changed development-only external libraries =====
+* Updated grunt from 1.5.2 to 1.5.3.
+* Updated grunt-banana-checker from 0.9.0 to 0.10.0.
+* Updated karma from 6.3.15 to 6.4.1.
+* Updated mediawiki/mediawiki-codesniffer from 38.0.0 to 39.0.0.
+* Updated php-parallel-lint/php-console-highlighter from 0.5 to 1.0.0.
+* Updated php-parallel-lint/php-parallel-lint from 1.3.1 to 1.3.2.
 * …
 
 ==== Removed external libraries ====
