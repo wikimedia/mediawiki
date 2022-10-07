@@ -1085,6 +1085,11 @@ abstract class ParsoidHandler extends Handler {
 			->getHTMLTransformFactory()
 			->getLanguageVariantConverter( $pageIdentity );
 		$languageVariantConverter->setPageConfig( $pageConfig );
+		$httpContentLanguage = $attribs['pagelanguage' ] ?? null;
+		if ( $httpContentLanguage ) {
+			$languageVariantConverter->setPageContentLanguage( $httpContentLanguage );
+		}
+
 		try {
 			$out = $languageVariantConverter->convertPageBundleVariant( $pb, $target, $source );
 		} catch ( InvalidArgumentException $e ) {
