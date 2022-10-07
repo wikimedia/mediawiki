@@ -13,6 +13,7 @@ use MediaWiki\User\UserIdentityValue;
  *
  * @since 1.32
  * @author Addshore
+ * @coversNothing
  */
 class SpecialPageFatalTest extends MediaWikiIntegrationTestCase {
 

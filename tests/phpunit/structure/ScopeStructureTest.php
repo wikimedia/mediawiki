@@ -5,6 +5,9 @@ use PhpParser\Node\Expr;
 use PhpParser\Node\Stmt;
 use PhpParser\ParserFactory;
 
+/**
+ * @coversNothing
+ */
 class ScopeStructureTest extends MediaWikiIntegrationTestCase {
 
 	public static function provideAutoloadNoFileScope() {
