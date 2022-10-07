@@ -44,6 +44,9 @@ class LanguageVariantConverter {
 	/** @var TitleFactory */
 	private $titleFactory;
 
+	/** @var string */
+	private $pageContentLanguage;
+
 	public function __construct(
 		PageIdentity $pageIdentity,
 		PageConfigFactory $pageConfigFactory,
@@ -71,6 +74,16 @@ class LanguageVariantConverter {
 	 */
 	public function setPageConfig( PageConfig $pageConfig ) {
 		$this->pageConfig = $pageConfig;
+	}
+
+	/**
+	 * Set the page content language override
+	 *
+	 * @param string $language
+	 * @return void
+	 */
+	public function setPageContentLanguage( string $language ) {
+		$this->pageContentLanguage = $language;
 	}
 
 	/**
@@ -157,7 +170,19 @@ class LanguageVariantConverter {
 	}
 
 	private function getPageLanguageCode( PageBundle $pageBundle ): string {
-		$languageCode = $pageBundle->headers[ 'content-language' ] ?? null;
-		return $languageCode ?? $this->pageTitle->getPageLanguage()->getCode();
+		if ( $this->pageContentLanguage ) {
+			return $this->pageContentLanguage;
+		}
+
+		$pageBundleLanguage = $pageBundle->headers[ 'content-language' ] ?? null;
+		if ( $pageBundleLanguage ) {
+			return $pageBundleLanguage;
+		}
+
+		if ( $this->pageConfig ) {
+			return $this->pageConfig->getPageLanguage();
+		}
+
+		return $this->pageTitle->getPageLanguage()->getCode();
 	}
 }
