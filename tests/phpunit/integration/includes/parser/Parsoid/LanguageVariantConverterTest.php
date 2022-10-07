@@ -31,6 +31,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			),
 			'en-x-piglatin',
 			null,
+			null,
 			'>esttay anguagelay onversioncay<'
 		];
 		yield 'Source variant is base language' => [
@@ -43,6 +44,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			),
 			'en-x-piglatin',
 			'en',
+			null,
 			'>esttay anguagelay onversioncay<'
 		];
 		yield 'Source language is null' => [
@@ -54,6 +56,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 				[ 'content-language' => 'sr' ]
 			),
 			'sr-el',
+			null,
 			null,
 			'>Ovo je testna stranica<'
 		];
@@ -67,6 +70,20 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			),
 			'sr-el',
 			'sr-ec',
+			null,
+			'>Ovo je testna stranica<'
+		];
+		yield 'Content language is provided via HTTP header' => [
+			new PageBundle(
+				'<p>Ово је тестна страница</p>',
+				[ 'parsoid-data' ],
+				[ 'mw-data' ],
+				Parsoid::defaultHTMLVersion(),
+				[ 'content-language' => 'sr-ec' ]
+			),
+			'sr-el',
+			'sr-ec',
+			'sr',
 			'>Ovo je testna stranica<'
 		];
 	}
@@ -74,9 +91,12 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideConvertPageBundleVariant
 	 */
-	public function testConvertPageBundleVariant( PageBundle $pageBundle, $target, $source, $expected ) {
+	public function testConvertPageBundleVariant( PageBundle $pageBundle, $target, $source, $contentLanguage, $expected ) {
 		$page = $this->getExistingTestPage();
 		$languageVariantConverter = $this->getLanguageVariantConverter( $page );
+		if ( $contentLanguage ) {
+			$languageVariantConverter->setPageContentLanguage( $contentLanguage );
+		}
 
 		$outputPageBundle = $languageVariantConverter->convertPageBundleVariant( $pageBundle, $target, $source );
 
@@ -97,9 +117,12 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideConvertParserOutputVariant
 	 */
-	public function testConvertParserOutputVariant( ParserOutput $parserOutput, $target, $source, $expected ) {
+	public function testConvertParserOutputVariant( ParserOutput $parserOutput, $target, $source, $contentLanguage, $expected ) {
 		$page = $this->getExistingTestPage();
 		$languageVariantConverter = $this->getLanguageVariantConverter( $page );
+		if ( $contentLanguage ) {
+			$languageVariantConverter->setPageContentLanguage( $contentLanguage );
+		}
 
 		$modifiedParserOutput = $languageVariantConverter
 			->convertParserOutputVariant( $parserOutput, $target, $source );

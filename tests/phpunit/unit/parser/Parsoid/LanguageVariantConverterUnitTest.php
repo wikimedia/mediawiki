@@ -43,6 +43,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 			$shouldPageConfigFactoryBeUsed,
 			$isLanguageConversionEnabled,
 			$pageBundleLanguageCode,
+			null,
 			$titleLanguageCode,
 			$targetLanguageCode,
 			$sourceLanguageCode,
@@ -66,7 +67,8 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 	public function testSourceLanguage(
 		?string $pageBundleLanguageCode,
 		string $titleLanguageCode,
-		?string $sourceLanguageCode
+		?string $sourceLanguageCode,
+		?string $contentLanguage
 	) {
 		// Decide what should be called and what should not be
 		$shouldParsoidBeUsed = true;
@@ -89,6 +91,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 			$shouldPageConfigFactoryBeUsed,
 			$isLanguageConversionEnabled,
 			$pageBundleLanguageCode,
+			$contentLanguage,
 			$titleLanguageCode,
 			$targetLanguageCode,
 			$sourceLanguageCode,
@@ -99,9 +102,13 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	public function provideSourceLanguage() {
-		yield 'PageBundle language is used when available' => [ 'en', 'en-gb', null ];
-		yield 'Title page language is used if PageBundle language is not available' => [ null, 'en-ca', null ];
-		yield 'Source language is used if given' => [ null, 'en-ca', 'en-gb' ];
+		yield 'Content language is used when available' => [ 'sr-el', 'sr-ec', null, 'sr' ];
+		yield 'PageBundle language is used when content language is not available' =>
+			[ 'en', 'en-gb', null, null ];
+		yield 'Title page language is used if PageBundle and content language are not available' =>
+			[ null, 'en-ca', null, null ];
+		yield 'Source language is used if given' =>
+			[ null, 'en-ca', 'en-gb', null ];
 	}
 
 	/** @dataProvider provideSiteConfiguration */
@@ -130,6 +137,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 			$shouldPageConfigFactoryBeUsed,
 			$isLanguageConversionEnabled,
 			$pageBundleLanguageCode,
+			null,
 			$titleLanguageCode,
 			$targetLanguageCode,
 			$sourceLanguageCode,
@@ -157,6 +165,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 	 * @param bool $shouldPageConfigFactoryBeUsed
 	 * @param bool $isLanguageConversionEnabled
 	 * @param string|null $pageBundleLanguageCode
+	 * @param string|null $contentLanguage
 	 * @param string $titleLanguageCode
 	 * @param string $targetLanguageCode
 	 * @param string|null $sourceLanguageCode
@@ -169,13 +178,16 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 		bool $shouldPageConfigFactoryBeUsed,
 		bool $isLanguageConversionEnabled,
 		?string $pageBundleLanguageCode,
+		?string $contentLanguage,
 		string $titleLanguageCode,
 		string $targetLanguageCode,
 		?string $sourceLanguageCode,
 		array $parsoidSettings
 	): LanguageVariantConverter {
-		// If PageBundle language code is set, use that else, fallback to title page language
-		$pageLanguageCode = $pageBundleLanguageCode ?? $titleLanguageCode;
+		// If Content language is set, use language from there,
+		// If PageBundle language code is set, use that
+		// Else, fallback to title page language
+		$pageLanguageCode = $contentLanguage ?? $pageBundleLanguageCode ?? $titleLanguageCode;
 
 		$shouldSiteConfigBeUsed = true;
 		$parsoidSettings = [];
@@ -204,7 +216,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 			]
 		);
 
-		return new LanguageVariantConverter(
+		$languageVariantConverter = new LanguageVariantConverter(
 			$pageIdentityValue,
 			$pageConfigFactoryMock,
 			$parsoidMock,
@@ -212,6 +224,12 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 			$siteConfigMock,
 			$titleFactoryMock
 		);
+
+		if ( $contentLanguage ) {
+			$languageVariantConverter->setPageContentLanguage( $contentLanguage );
+		}
+
+		return $languageVariantConverter;
 	}
 
 	// Mock methods follow
