@@ -60,6 +60,7 @@ $specialPageAliases = [
 	'ChangePassword'            => [ 'تغيير_الپاسوورد', 'ظبط_الپاسوورد' ],
 	'ComparePages'              => [ 'مقارنه_الصفحات' ],
 	'Confirmemail'              => [ 'تأكيد_الايميل' ],
+	'Contribute'                => [ 'ساهم' ],
 	'Contributions'             => [ 'مساهمات' ],
 	'CreateAccount'             => [ 'ابتدى_حساب' ],
 	'Deadendpages'              => [ 'صفح_نهايه_مسدوده' ],
