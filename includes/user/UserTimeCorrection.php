@@ -200,7 +200,7 @@ class UserTimeCorrection {
 		}
 
 		// $timeCorrection actually isn't a pipe separated value, but instead
-		// a colon separated value. This is only used by the userinput of the preferences
+		// a colon separated value. This is only used by the HTMLTimezoneField userinput
 		// but can also still be present in the Db. (but shouldn't be)
 		$data = explode( ':', $timeCorrection, 2 );
 		if ( count( $data ) >= 2 ) {
@@ -231,6 +231,16 @@ class UserTimeCorrection {
 
 		$this->correctionType = self::OFFSET;
 		$this->offset = $diff;
+	}
+
+	/**
+	 * Converts a timezone offset in minutes (e.g., "120") to an hh:mm string like "+02:00".
+	 * @param int $offset
+	 * @return string
+	 */
+	public static function formatTimezoneOffset( int $offset ): string {
+		$hours = $offset > 0 ? floor( $offset / 60 ) : ceil( $offset / 60 );
+		return sprintf( '%+03d:%02d', $hours, abs( $offset ) % 60 );
 	}
 
 	/**

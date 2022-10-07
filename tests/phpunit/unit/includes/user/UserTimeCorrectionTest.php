@@ -126,4 +126,24 @@ class UserTimeCorrectionTest extends MediaWikiUnitTestCase {
 		self::assertEquals( 120, (int)$value->getTimeOffsetInterval()->format( '%i' ) );
 		self::assertEquals( 'Africa/Johannesburg', $value->getTimeZone()->getName() );
 	}
+
+	/**
+	 * @param int $offset
+	 * @param string $expected
+	 * @dataProvider provideTimezoneOffsets
+	 * @covers \MediaWiki\User\UserTimeCorrection::formatTimezoneOffset
+	 */
+	public function testFormatTimezoneOffset( int $offset, string $expected ) {
+		$this->assertSame( $expected, UserTimeCorrection::formatTimezoneOffset( $offset ) );
+	}
+
+	public function provideTimezoneOffsets(): array {
+		return [
+			'00:00' => [ 0, '+00:00' ],
+			'Positive' => [ 120, '+02:00' ],
+			'Positive with minutes' => [ 150, '+02:30' ],
+			'Negative' => [ -120, '-02:00' ],
+			'Negative with minutes' => [ -150, '-02:30' ],
+		];
+	}
 }

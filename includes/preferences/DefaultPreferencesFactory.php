@@ -1030,8 +1030,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		);
 
 		if ( $userTimeCorrectionObj->getCorrectionType() === UserTimeCorrection::OFFSET ) {
-			$minDiff = $userTimeCorrectionObj->getTimeOffset();
-			$tzDefault = sprintf( '%+03d:%02d', floor( $minDiff / 60 ), abs( $minDiff ) % 60 );
+			$tzDefault = UserTimeCorrection::formatTimezoneOffset( $userTimeCorrectionObj->getTimeOffset() );
 		} else {
 			$tzDefault = $userTimeCorrectionObj->toString();
 		}
