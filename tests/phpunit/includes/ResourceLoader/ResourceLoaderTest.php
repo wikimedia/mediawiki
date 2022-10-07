@@ -817,7 +817,7 @@ END
 
 		$response = $rl->makeModuleResponse( $context, [] );
 		$this->assertSame( [], $rl->getErrors(), 'Errors' );
-		$this->assertRegExp( '/^\/\*.+no modules were requested.+\*\/$/ms', $response );
+		$this->assertMatchesRegularExpression( '/^\/\*.+no modules were requested.+\*\/$/ms', $response );
 	}
 
 	/**
@@ -847,7 +847,7 @@ END
 		$errors = $rl->getErrors();
 
 		$this->assertCount( 1, $errors );
-		$this->assertRegExp( '/Ferry not found/', $errors[0] );
+		$this->assertMatchesRegularExpression( '/Ferry not found/', $errors[0] );
 		$this->assertEquals(
 			"foo();\nbar();\n" . 'mw.loader.state({
     "ferry": "error",
@@ -885,8 +885,8 @@ END
 		$errors = $rl->getErrors();
 
 		$this->assertCount( 2, $errors );
-		$this->assertRegExp( '/Ferry not found/', $errors[0] );
-		$this->assertRegExp( '/Problem.+"ferry":\s*"error"/ms', $errors[1] );
+		$this->assertMatchesRegularExpression( '/Ferry not found/', $errors[0] );
+		$this->assertMatchesRegularExpression( '/Problem.+"ferry":\s*"error"/ms', $errors[1] );
 		$this->assertEquals(
 			'.foo{}.bar{}',
 			$response
@@ -936,19 +936,19 @@ END
 		$response = $rl->makeModuleResponse( $context, $modules );
 		$errors = $rl->getErrors();
 
-		$this->assertRegExp( '/Ferry not found/', $errors[0] ?? '' );
+		$this->assertMatchesRegularExpression( '/Ferry not found/', $errors[0] ?? '' );
 		$this->assertCount( 1, $errors );
-		$this->assertRegExp(
+		$this->assertMatchesRegularExpression(
 			'/isCompatible.*window\.RLQ/s',
 			$response,
 			'startup response undisrupted (T152266)'
 		);
-		$this->assertRegExp(
+		$this->assertMatchesRegularExpression(
 			'/register\([^)]+"ferry",\s*""/s',
 			$response,
 			'startup response registers broken module'
 		);
-		$this->assertRegExp(
+		$this->assertMatchesRegularExpression(
 			'/state\([^)]+"ferry":\s*"error"/s',
 			$response,
 			'startup response sets state to error'
