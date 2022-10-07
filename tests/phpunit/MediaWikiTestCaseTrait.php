@@ -424,4 +424,22 @@ trait MediaWikiTestCaseTrait {
 			$this->assertRegExp( $pattern, $string, $message );
 		}
 	}
+
+	/**
+	 * @param string $pattern
+	 * @param string $string
+	 * @param string $message
+	 * @internal Temporary method for the PHPUnit 9 migration
+	 */
+	protected function assertDoesNotMatchRegularExpression(
+		string $pattern,
+		string $string,
+		string $message = ''
+	): void {
+		if ( method_exists( Assert::class, 'assertDoesNotMatchRegularExpression' ) ) {
+			Assert::assertDoesNotMatchRegularExpression( $pattern, $string, $message );
+		} else {
+			$this->assertNotRegExp( $pattern, $string, $message );
+		}
+	}
 }
