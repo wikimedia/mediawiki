@@ -435,7 +435,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			new ServiceOptions(
 				ParsoidOutputAccess::CONSTRUCTOR_OPTIONS,
 				$this->getServiceContainer()->getMainConfig(),
-				[ 'WikiID' => 'MyWiki' ]
+				[ 'ParsoidWikiID' => 'MyWiki' ]
 			),
 			$this->getServiceContainer()->getParserCacheFactory(),
 			$this->createNoOpMock( PageLookup::class ),

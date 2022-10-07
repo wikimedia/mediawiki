@@ -1358,7 +1358,7 @@ return [
 			new ServiceOptions(
 				ParsoidOutputAccess::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig(),
-				[ 'WikiID' => WikiMap::getCurrentWikiId() ]
+				[ 'ParsoidWikiID' => WikiMap::getCurrentWikiId() ]
 			),
 			$services->getParserCacheFactory(),
 			$services->getPageStore(),

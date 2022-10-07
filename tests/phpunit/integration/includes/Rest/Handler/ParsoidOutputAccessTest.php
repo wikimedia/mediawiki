@@ -90,7 +90,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 					'ParsoidSettings' => MainConfigSchema::getDefaultValue(
 						MainConfigNames::ParsoidSettings
 					),
-					'WikiID' => 'MyWiki'
+					'ParsoidWikiID' => 'MyWiki'
 				]
 			),
 			$parserCacheFactory,
