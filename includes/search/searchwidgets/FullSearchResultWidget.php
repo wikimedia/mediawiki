@@ -279,7 +279,8 @@ class FullSearchResultWidget implements SearchResultWidget {
 	 */
 	protected function generateFileHtml( SearchResult $result ) {
 		$title = $result->getTitle();
-		if ( $title === null ) {
+		// don't assume that result is a valid title; e.g. could be interwiki page
+		if ( $title === null || !$title->canExist() || !$title->exists() ) {
 			return [ '', null, null ];
 		}
 
@@ -317,7 +318,8 @@ class FullSearchResultWidget implements SearchResultWidget {
 	 */
 	private function getThumbnail( SearchResult $result, int $size ): ?SearchResultThumbnail {
 		$title = $result->getTitle();
-		if ( $title === null ) {
+		// don't assume that result is a valid title; e.g. could be interwiki page
+		if ( $title === null || !$title->canExist() || !$title->exists() ) {
 			return null;
 		}
 
@@ -333,7 +335,8 @@ class FullSearchResultWidget implements SearchResultWidget {
 	 */
 	private function generateThumbnailHtml( SearchResult $result, SearchResultThumbnail $thumbnail = null ): ?string {
 		$title = $result->getTitle();
-		if ( $title === null ) {
+		// don't assume that result is a valid title; e.g. could be interwiki page
+		if ( $title === null || !$title->canExist() || !$title->exists() ) {
 			return null;
 		}
 
