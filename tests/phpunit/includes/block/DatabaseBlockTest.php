@@ -161,8 +161,8 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		// Should find the block with the narrowest range
 		$block = DatabaseBlock::newFromTarget( $this->getTestUser()->getUserIdentity(), $ip );
 		$this->assertSame(
-			$block->getTargetName(),
-			$expectedTarget
+			$expectedTarget,
+			$block->getTargetName()
 		);
 
 		foreach ( $targets as $target ) {
