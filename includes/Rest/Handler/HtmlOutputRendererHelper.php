@@ -21,6 +21,7 @@
  */
 namespace MediaWiki\Rest\Handler;
 
+use Content;
 use IBufferingStatsdDataFactory;
 use Language;
 use LogicException;
@@ -33,10 +34,13 @@ use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use ParserOptions;
 use ParserOutput;
 use User;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -65,13 +69,13 @@ class HtmlOutputRendererHelper {
 	/** @var PageIdentity|null */
 	private $page = null;
 
-	/** @var RevisionRecord|null */
-	private $revision = null;
+	/** @var RevisionRecord|int|null */
+	private $revisionOrId = null;
 
 	/** @var Language|null */
 	private $pageLanguage = null;
 
-	/** @var ?string [ 'view', 'stash' ] are the supported flavors for now */
+	/** @var ?string One of the flavors from OUTPUT_FLAVORS */
 	private $flavor = null;
 
 	/** @var bool */
@@ -121,29 +125,87 @@ class HtmlOutputRendererHelper {
 	}
 
 	/**
+	 * Determine whether stashing should be applied.
+	 *
+	 * @param bool $stash
+	 *
+	 * @return void
+	 */
+	public function setStashingEnabled( bool $stash ): void {
+		$this->stash = $stash;
+
+		if ( $stash ) {
+			$this->setFlavor( 'stash' );
+		} elseif ( $this->flavor === 'stash' ) {
+			$this->setFlavor( 'view' );
+		}
+	}
+
+	/**
+	 * Set the revision to render.
+	 *
+	 * This can take a fake RevisionRecord when rendering for previews
+	 * or when switching the editor from source mode to visual mode.
+	 *
+	 * In that case, $revisionOrId->getId() must return 0 to indicate
+	 * that the ParserCache should be bypassed. Stashing may still apply.
+	 *
+	 * @param RevisionRecord|int $revisionOrId
+	 */
+	public function setRevision( $revisionOrId ): void {
+		Assert::parameterType( [ RevisionRecord::class, 'integer' ], $revisionOrId, '$revision' );
+		$this->revisionOrId = $revisionOrId;
+	}
+
+	/**
+	 * Set the content to render. Useful when rendering for previews
+	 * or when switching the editor from source mode to visual mode.
+	 *
+	 * This will create a fake revision for rendering, the revision ID will be 0.
+	 *
+	 * @see setRevision
+	 *
+	 * @param Content $content
+	 */
+	public function setContent( Content $content ): void {
+		$rev = new MutableRevisionRecord( $this->page );
+		$rev->setId( 0 );
+		$rev->setPageId( $this->page->getId() );
+		$rev->setContent( SlotRecord::MAIN, $content );
+		$this->setRevision( $rev );
+	}
+
+	/**
+	 * @param Language $pageLanguage
+	 */
+	public function setPageLanguage( Language $pageLanguage ): void {
+		$this->pageLanguage = $pageLanguage;
+	}
+
+	/**
 	 * @param PageIdentity $page
 	 * @param array $parameters
 	 * @param User $user
-	 * @param RevisionRecord|null $revision
+	 * @param RevisionRecord|int|null $revision DEPRECATED, use setRevision()
 	 * @param Language|null $pageLanguage
 	 */
 	public function init(
 		PageIdentity $page,
 		array $parameters,
 		User $user,
-		?RevisionRecord $revision = null,
+		$revision = null,
 		?Language $pageLanguage = null
 	) {
 		$this->page = $page;
 		$this->user = $user;
-		$this->revision = $revision;
+		$this->revisionOrId = $revision;
 		$this->pageLanguage = $pageLanguage;
-		$this->stash = $parameters['stash'];
+		$this->stash = $parameters['stash'] ?? false;
 
 		if ( $this->stash ) {
 			$this->setFlavor( 'stash' );
 		} else {
-			$this->setFlavor( $parameters['flavor'] );
+			$this->setFlavor( $parameters['flavor'] ?? 'view' );
 		}
 	}
 
@@ -265,21 +327,21 @@ class HtmlOutputRendererHelper {
 			//       the current revision or the revision must have an ID.
 			// If we have a revision and the ID is 0 or null, then it's a fake revision
 			// representing a preview.
-			$fakeRevision = ( $this->revision && $this->revision->getId() < 1 );
+			$fakeRevision = ( is_object( $this->revisionOrId ) && $this->revisionOrId->getId() < 1 );
 			$pageRecordAvailable = $this->page instanceof PageRecord;
 
 			if ( $pageRecordAvailable && !$fakeRevision && !$envOptions ) {
 				$status = $this->parsoidOutputAccess->getParserOutput(
 					$this->page,
 					$parserOptions,
-					$this->revision
+					$this->revisionOrId
 				);
 			} else {
 				$status = $this->parsoidOutputAccess->parse(
 					$this->page,
 					$parserOptions,
 					$envOptions,
-					$this->revision
+					$this->revisionOrId
 				);
 			}
 
@@ -317,15 +379,9 @@ class HtmlOutputRendererHelper {
 	 * @return string
 	 */
 	public function getHtmlOutputContentLanguage(): string {
-		if ( $this->parserOutput ) {
-			$pageBundleData = $this->parserOutput->getExtensionData(
-				PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY
-			);
-		} else {
-			$pageBundleData = $this->getHtml()->getExtensionData(
-				PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY
-			);
-		}
+		$pageBundleData = $this->getParserOutput()->getExtensionData(
+			PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY
+		);
 
 		// XXX: We need a canonical way of getting the output language from
 		//      ParserOutput since we may not be getting parser outputs from
