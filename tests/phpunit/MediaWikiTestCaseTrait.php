@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\HookContainer\HookContainer;
+use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
@@ -408,5 +409,19 @@ trait MediaWikiTestCaseTrait {
 		$actual = str_replace( '>', ">\n", $actual );
 
 		$this->assertEquals( $expected, $actual, $msg );
+	}
+
+	/**
+	 * @param string $pattern
+	 * @param string $string
+	 * @param string $message
+	 * @internal Temporary method for the PHPUnit 9 migration
+	 */
+	protected function assertMatchesRegularExpression( string $pattern, string $string, string $message = '' ): void {
+		if ( method_exists( Assert::class, 'assertMatchesRegularExpression' ) ) {
+			Assert::assertMatchesRegularExpression( $pattern, $string, $message );
+		} else {
+			$this->assertRegExp( $pattern, $string, $message );
+		}
 	}
 }
