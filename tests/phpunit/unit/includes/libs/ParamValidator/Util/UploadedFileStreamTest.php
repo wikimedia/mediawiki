@@ -17,7 +17,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$filename = $this->makeTemp( __FUNCTION__ );
 		unlink( $filename );
 
-		$this->assertFileNotExists( $filename, 'Non existence check' );
+		$this->assertFileDoesNotExist( $filename, 'Non existence check' );
 		$this->expectException( RuntimeException::class );
 		$this->expectExceptionMessage( "Failed to open file:" );
 		$stream = new UploadedFileStream( $filename );

@@ -335,6 +335,7 @@ $specialPageAliases = [
 	'ChangePassword'            => [ 'تغيير_كلمة_السر', 'ضبط_كلمة_السر' ],
 	'ComparePages'              => [ 'مقارنة_الصفحات' ],
 	'Confirmemail'              => [ 'تأكيد_البريد' ],
+	'Contribute'                => [ 'ساهم' ],
 	'Contributions'             => [ 'مساهمات' ],
 	'CreateAccount'             => [ 'إنشاء_حساب' ],
 	'Deadendpages'              => [ 'صفحات_نهاية_مسدودة' ],

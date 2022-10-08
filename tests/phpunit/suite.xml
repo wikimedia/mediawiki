@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="./bootstrap.maintenance.php"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.8/phpunit.xsd"
-
+	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
 	colors="true"
 	backupGlobals="false"
 	convertDeprecationsToExceptions="true"
@@ -35,7 +34,6 @@
 			<file>suites/ExtensionsParserTestSuite.php</file>
 		</testsuite>
 		<testsuite name="skins">
-			<directory>skins</directory>
 			<directory>structure</directory>
 			<file>suites/ExtensionsTestSuite.php</file>
 			<file>suites/LessTestSuite.php</file>
@@ -56,9 +54,6 @@
 			<file>suites/ExtensionsParserTestSuite.php</file>
 			<file>suites/LessTestSuite.php</file>
 		</testsuite>
-		<testsuite name="documentation">
-			<directory>documentation</directory>
-		</testsuite>
 		<testsuite name="unit">
 			<directory>unit</directory>
 		</testsuite>
@@ -71,17 +66,17 @@
 			<group>Broken</group>
 		</exclude>
 	</groups>
-	<filter>
-		<whitelist addUncoveredFilesFromWhitelist="true">
+	<coverage includeUncoveredFiles="true">
+		<include>
 			<directory suffix=".php">../../includes</directory>
 			<directory suffix=".php">../../languages</directory>
 			<directory suffix=".php">../../maintenance</directory>
-			<exclude>
-				<directory suffix=".php">../../languages/messages</directory>
-				<directory suffix=".php">../../maintenance/benchmarks</directory>
-			</exclude>
-		</whitelist>
-	</filter>
+		</include>
+		<exclude>
+			<directory suffix=".php">../../languages/messages</directory>
+			<directory suffix=".php">../../maintenance/benchmarks</directory>
+		</exclude>
+	</coverage>
 	<listeners>
 		<listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener">
 			<arguments>
