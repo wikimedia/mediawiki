@@ -3972,17 +3972,17 @@ class Parser {
 	 */
 	public function extensionSubstitution( array $params, PPFrame $frame, bool $processNowiki = false ) {
 		static $errorStr = '<span class="error">';
-		static $errorLen = 20;
 
 		$name = $frame->expand( $params['name'] );
-		if ( substr( $name, 0, $errorLen ) === $errorStr ) {
+		if ( str_starts_with( $name, $errorStr ) ) {
 			// Probably expansion depth or node count exceeded. Just punt the
 			// error up.
 			return $name;
 		}
 
+		// Parse attributes from XML-like wikitext syntax
 		$attrText = !isset( $params['attr'] ) ? '' : $frame->expand( $params['attr'] );
-		if ( substr( $attrText, 0, $errorLen ) === $errorStr ) {
+		if ( str_starts_with( $attrText, $errorStr ) ) {
 			// See above
 			return $attrText;
 		}
@@ -3999,20 +3999,20 @@ class Parser {
 		$isNowiki = $normalizedName === 'nowiki';
 		$markerType = $isNowiki ? 'nowiki' : 'general';
 		if ( $this->ot['html'] || ( $processNowiki && $isNowiki ) ) {
-			$name = $normalizedName;
 			$attributes = Sanitizer::decodeTagAttributes( $attrText );
+			// Merge in attributes passed via {{#tag:}} parser function
 			if ( isset( $params['attributes'] ) ) {
 				$attributes += $params['attributes'];
 			}
 
-			if ( isset( $this->mTagHooks[$name] ) ) {
+			if ( isset( $this->mTagHooks[$normalizedName] ) ) {
 				// Note that $content may be null here, for example if the
 				// tag is self-closed.
-				$output = call_user_func_array( $this->mTagHooks[$name],
+				$output = call_user_func_array( $this->mTagHooks[$normalizedName],
 					[ $content, $attributes, $this, $frame ] );
 			} else {
 				$output = '<span class="error">Invalid tag extension name: ' .
-					htmlspecialchars( $name ) . '</span>';
+					htmlspecialchars( $normalizedName ) . '</span>';
 			}
 
 			if ( is_array( $output ) ) {
@@ -4024,6 +4024,8 @@ class Parser {
 				}
 			}
 		} else {
+			// We're substituting a {{subst:#tag:}} parser function.
+			// Convert the attributes it passed into the XML-like string.
 			if ( isset( $params['attributes'] ) ) {
 				foreach ( $params['attributes'] as $attrName => $attrValue ) {
 					$attrText .= ' ' . htmlspecialchars( $attrName ) . '="' .
@@ -4034,7 +4036,7 @@ class Parser {
 				$output = "<$name$attrText/>";
 			} else {
 				$close = $params['close'] === null ? '' : $frame->expand( $params['close'] );
-				if ( substr( $close, 0, $errorLen ) === $errorStr ) {
+				if ( str_starts_with( $close, $errorStr ) ) {
 					// See above
 					return $close;
 				}
@@ -4924,22 +4926,19 @@ class Parser {
 	/**
 	 * Create an HTML-style tag, e.g. "<yourtag>special text</yourtag>"
 	 * The callback should have the following form:
-	 *    function myParserHook( $text, $params, $parser, $frame ) { ... }
+	 *    function myParserHook( $text, array $params, Parser $parser, PPFrame $frame ) { ... }
 	 *
 	 * Transform and return $text. Use $parser for any required context, e.g. use
 	 * $parser->getTitle() and $parser->getOptions() not $wgTitle or $wgOut->mParserOptions
 	 *
 	 * Hooks may return extended information by returning an array, of which the
-	 * first numbered element (index 0) must be the return string, and all other
-	 * entries are extracted into local variables within an internal function
-	 * in the Parser class.
-	 *
-	 * This interface (introduced r61913) appears to be undocumented, but
-	 * 'markerType' is used by some core tag hooks to override which strip
-	 * array their results are placed in.
+	 * first numbered element (index 0) must be the return string. The following other
+	 * keys are used:
+	 *  - 'markerType': used by some core tag hooks to override which strip
+	 *    array their results are placed in, 'general' or 'nowiki'.
 	 *
 	 * @param string $tag The tag to use, e.g. 'hook' for "<hook>"
-	 * @param callable $callback The callback function (and object) to use for the tag
+	 * @param callable $callback The callback to use for the tag
 	 * @throws MWException
 	 * @return callable|null The old value of the mTagHooks array associated with the hook
 	 * @since 1.3
