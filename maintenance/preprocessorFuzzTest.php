@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-
 use Wikimedia\TestingAccessWrapper;
 
 $optionsWithoutArgs = [ 'verbose' ];

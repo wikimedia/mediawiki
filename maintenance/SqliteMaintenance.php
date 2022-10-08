@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\DatabaseSqlite;
 
