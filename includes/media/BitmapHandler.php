@@ -516,6 +516,7 @@ class BitmapHandler extends TransformationalImageHandler {
 		if ( $useQuality && isset( $params['quality'] ) ) {
 			$funcParams[] = $params['quality'];
 		}
+		// @phan-suppress-next-line PhanParamTooFewInternalUnpack,PhanParamTooFewUnpack There are at least 2 args
 		$saveType( ...$funcParams );
 
 		imagedestroy( $dst_image );

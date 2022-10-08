@@ -36,7 +36,6 @@ use MediaWiki\User\UserIdentity;
  * @ingroup FileAbstraction
  */
 
-// @phan-file-suppress PhanTypeMissingReturn false positives
 /**
  * Implements some public methods and some protected utility functions which
  * are required by multiple child classes. Contains stub functionality for

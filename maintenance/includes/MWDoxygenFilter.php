@@ -19,7 +19,6 @@
  *
  * @file
  * @ingroup Maintenance
- * @phan-file-suppress PhanInvalidCommentForDeclarationType False negative about `@var`
  */
 
 /**

@@ -531,7 +531,6 @@ class CoreParserFunctions {
 					wfMessage( 'duplicate-displaytitle',
 						// Message should be parsed, but these params should only be escaped.
 						$converter->markNoConversion( wfEscapeWikiText( $old ) ),
-						// @phan-suppress-next-line SecurityCheck-DoubleEscaped we removed escaping above
 						$converter->markNoConversion( wfEscapeWikiText( $filteredText ) )
 					)->inContentLanguage()->text() .
 					'</span>';

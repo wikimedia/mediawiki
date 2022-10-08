@@ -99,7 +99,6 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		// Build the column headers
 		$headerContents = Html::rawElement( 'td', [], "\u{00A0}" );
 		foreach ( $columns as $columnLabel => $columnTag ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgument False positive, labels are documented as string
 			$headerContents .= Html::rawElement( 'th', [], $columnLabel );
 		}
 		$thead = Html::rawElement( 'tr', [], "\n$headerContents\n" );

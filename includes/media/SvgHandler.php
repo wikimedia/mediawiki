@@ -367,7 +367,6 @@ class SvgHandler extends ImageHandler {
 				$err = wfShellExecWithStderr( $cmd, $retval, $env );
 			}
 		}
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 		$removed = $this->removeBadFile( $dstPath, $retval );
 		if ( $retval != 0 || $removed ) {
 			// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable cmd is set when used

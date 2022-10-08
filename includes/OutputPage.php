@@ -3118,6 +3118,7 @@ class OutputPage extends ContextSource {
 			$text .= '</ul>';
 		} else {
 			$text .= "<div class=\"permissions-errors\">\n" .
+					// @phan-suppress-next-line PhanParamTooFewUnpack Elements of $errors already annotated as non-empty
 					$this->msg( ...reset( $errors ) )->plain() .
 					"\n</div>";
 		}
