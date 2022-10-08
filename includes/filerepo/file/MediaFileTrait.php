@@ -37,11 +37,12 @@ trait MediaFileTrait {
 	 * @return array response data
 	 */
 	private function getFileInfo( $file, Authority $performer, $transforms ) {
+		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
 		// If there is a problem with the file, there is very little info we can reliably
 		// return (T228286, T239213), but we do what we can (T201205).
 		$responseFile = [
 			'title' => $file->getTitle()->getText(),
-			'file_description_url' => wfExpandUrl( $file->getDescriptionUrl(), PROTO_RELATIVE ),
+			'file_description_url' => $urlUtils->expand( $file->getDescriptionUrl(), PROTO_RELATIVE ),
 			'latest' => null,
 			'preferred' => null,
 			'original' => null,
@@ -96,7 +97,7 @@ trait MediaFileTrait {
 				'width' => $file->getWidth() ?: null,
 				'height' => $file->getHeight() ?: null,
 				'duration' => $duration,
-				'url' => wfExpandUrl( $file->getUrl(), PROTO_RELATIVE ),
+				'url' => $urlUtils->expand( $file->getUrl(), PROTO_RELATIVE ),
 			];
 		}
 
@@ -131,7 +132,8 @@ trait MediaFileTrait {
 					'width' => $transform->getWidth() ?: null,
 					'height' => $transform->getHeight() ?: null,
 					'duration' => $duration,
-					'url' => wfExpandUrl( $transform->getUrl(), PROTO_RELATIVE ),
+					'url' => MediaWikiServices::getInstance()->getUrlUtils()
+						->expand( $transform->getUrl(), PROTO_RELATIVE ),
 				];
 			}
 		} catch ( MWException $e ) {

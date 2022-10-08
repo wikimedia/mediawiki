@@ -539,8 +539,12 @@ class ForeignAPIRepo extends FileRepo implements IForeignRepoWithMWApi {
 	) {
 		$options['timeout'] = $timeout;
 		/* Http::get */
-		$url = wfExpandUrl( $url, PROTO_HTTP );
+		$url = MediaWikiServices::getInstance()->getUrlUtils()
+			->expand( $url, PROTO_HTTP );
 		wfDebug( "ForeignAPIRepo: HTTP GET: $url" );
+		if ( !$url ) {
+			return false;
+		}
 		$options['method'] = "GET";
 
 		if ( !isset( $options['timeout'] ) ) {
