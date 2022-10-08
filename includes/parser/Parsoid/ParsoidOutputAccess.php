@@ -72,7 +72,7 @@ class ParsoidOutputAccess {
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::ParsoidCacheConfig,
 		MainConfigNames::ParsoidSettings,
-		'WikiID'
+		'ParsoidWikiID'
 	];
 
 	/** @var RevisionOutputCache */
@@ -109,7 +109,7 @@ class ParsoidOutputAccess {
 	private $options;
 
 	/** @var string */
-	private $wikiId;
+	private $parsoidWikiId;
 
 	/**
 	 * @param ServiceOptions $options
@@ -146,6 +146,12 @@ class ParsoidOutputAccess {
 		$this->parsoid = $parsoid;
 		$this->siteConfig = $siteConfig;
 		$this->parsoidPageConfigFactory = $parsoidPageConfigFactory;
+
+		// NOTE: This is passed as the "prefix" option to parsoid, which it uses
+		//       to locate wiki specific configuration in the baseconfig directory.
+		//       This should probably be managed by SiteConfig instead, so
+		//       we hopefully will not need it here in the future.
+		$this->parsoidWikiId = $options->get( 'ParsoidWikiID' );
 	}
 
 	/**
@@ -240,7 +246,7 @@ class ParsoidOutputAccess {
 	): Status {
 		$defaultOptions = [
 			'pageBundle' => true,
-			'prefix' => $this->wikiId,
+			'prefix' => $this->parsoidWikiId,
 			'pageName' => $page,
 			'htmlVariantLanguage' => $languageOverride ? $languageOverride->getCode() : null,
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
