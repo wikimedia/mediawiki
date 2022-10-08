@@ -1,14 +1,10 @@
 <?php
 
 use PHPUnit\Framework\TestFailure;
-use PHPUnit\TextUI\ResultPrinter;
+use PHPUnit\TextUI\DefaultResultPrinter;
 
-class MediaWikiPHPUnitResultPrinter extends ResultPrinter {
-
-	/**
-	 * @param TestFailure $defect
-	 * @return void
-	 */
+class MediaWikiPHPUnitResultPrinter extends DefaultResultPrinter {
+	/** @inheritDoc */
 	protected function printDefectTrace( TestFailure $defect ): void {
 		parent::printDefectTrace( $defect );
 		$test = $defect->getTestName();

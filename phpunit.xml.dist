@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="tests/phpunit/bootstrap.php"
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		 xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.8/phpunit.xsd"
-
+		 xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
 		 colors="true"
 		 backupGlobals="false"
 		 convertDeprecationsToExceptions="true"
@@ -75,21 +74,21 @@
 			<group>Broken</group>
 		</exclude>
 	</groups>
-	<filter>
-		<whitelist addUncoveredFilesFromWhitelist="false">
+	<coverage includeUncoveredFiles="false">
+		<include>
 			<directory suffix=".php">includes</directory>
 			<directory suffix=".php">languages</directory>
 			<directory suffix=".php">maintenance</directory>
 			<directory suffix=".php">extensions</directory>
 			<directory suffix=".php">skins</directory>
-			<exclude>
-				<directory suffix=".php">languages/messages</directory>
-				<directory suffix=".php">maintenance/benchmarks</directory>
-				<directory suffix=".php">extensions/*/tests</directory>
-				<directory suffix=".php">skins/*/tests</directory>
-			</exclude>
-		</whitelist>
-	</filter>
+		</include>
+		<exclude>
+			<directory suffix=".php">languages/messages</directory>
+			<directory suffix=".php">maintenance/benchmarks</directory>
+			<directory suffix=".php">extensions/*/tests</directory>
+			<directory suffix=".php">skins/*/tests</directory>
+		</exclude>
+	</coverage>
 	<listeners>
 		<listener class="JohnKary\PHPUnit\Listener\SpeedTrapListener">
 			<arguments>
