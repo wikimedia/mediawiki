@@ -73,9 +73,12 @@ class SVGReader {
 			if ( $contents === false ) {
 				throw new MWException( 'Error reading SVG file.' );
 			}
-			$this->reader->XML( $contents, null, LIBXML_NOERROR | LIBXML_NOWARNING );
+			$status = $this->reader->XML( $contents, null, LIBXML_NOERROR | LIBXML_NOWARNING );
 		} else {
-			$this->reader->open( $source, null, LIBXML_NOERROR | LIBXML_NOWARNING );
+			$status = $this->reader->open( $source, null, LIBXML_NOERROR | LIBXML_NOWARNING );
+		}
+		if ( !$status ) {
+			throw new MWException( "Error getting xml of SVG." );
 		}
 
 		// Expand entities, since Adobe Illustrator uses them for xmlns
