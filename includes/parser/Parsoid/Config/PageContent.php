@@ -21,7 +21,6 @@ namespace MediaWiki\Parser\Parsoid\Config;
 
 use InvalidArgumentException;
 use MediaWiki\Revision\RevisionRecord;
-
 use Wikimedia\Parsoid\Config\PageContent as IPageContent;
 
 /**
