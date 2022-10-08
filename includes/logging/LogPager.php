@@ -292,11 +292,14 @@ class LogPager extends ReverseChronologicalPager {
 			$params = [ $name . $interwikiDelimiter ];
 			// @phan-suppress-next-next-line PhanPossiblyUndeclaredVariable $database is set when reached here
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal $database is set when reached here
-			foreach ( explode( '*', $database ) as $databasepart ) {
+			$databaseParts = explode( '*', $database );
+			$databasePartCount = count( $databaseParts );
+			foreach ( $databaseParts as $i => $databasepart ) {
 				$params[] = $databasepart;
-				$params[] = $db->anyString();
+				if ( $i < $databasePartCount - 1 ) {
+					$params[] = $db->anyString();
+				}
 			}
-			array_pop( $params ); // Get rid of the last % we added.
 			$this->mConds[] = 'log_title' . $db->buildLike( ...$params );
 		} elseif ( $pattern && !$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$this->mConds[] = 'log_title' . $db->buildLike( $page->getDBkey(), $db->anyString() );

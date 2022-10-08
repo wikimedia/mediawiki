@@ -1213,6 +1213,7 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @since 1.25
 	 * @param string|array|Message $msg
+	 * @phan-param string|non-empty-array|Message $msg
 	 * @param IContextSource $context
 	 * @param array|null $params
 	 * @return Message|null
