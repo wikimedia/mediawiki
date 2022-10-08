@@ -449,7 +449,7 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @param string|string[] ...$keys Message keys, or first argument as an array of all the
 	 * message keys.
-	 * @param-taint $keys tainted
+	 * @param-taint ...$keys tainted
 	 *
 	 * @return Message
 	 */
