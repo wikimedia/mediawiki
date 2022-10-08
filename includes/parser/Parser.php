@@ -690,7 +690,6 @@ class Parser {
 		// Strip U+0000 NULL (T159174)
 		$text = str_replace( "\000", '', $text );
 
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 		$this->startParse( $page, $options, self::OT_HTML, $clearState );
 
 		$this->currentRevisionCache = null;
@@ -2225,7 +2224,6 @@ class Parser {
 			# This means that users can paste URLs directly into the text
 			# Funny characters like ö aren't valid in URLs anyway
 			# This was changed in August 2004
-			// @phan-suppress-next-line SecurityCheck-XSS,SecurityCheck-DoubleEscaped using false for escape is valid
 			$s .= Linker::makeExternalLink( $url, $text, false, $linktype,
 				$this->getExternalLinkAttribs( $url ), $this->getTitle() ) . $dtrail . $trail;
 
@@ -3326,11 +3324,9 @@ class Parser {
 
 		# Replace raw HTML by a placeholder
 		if ( $isHTML ) {
-			// @phan-suppress-next-line SecurityCheck-XSS Mixed mode, here html and safe
 			$text = $this->insertStripItem( $text );
 		} elseif ( $nowiki && ( $this->ot['html'] || $this->ot['pre'] ) ) {
 			# Escape nowiki-style return values
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped Mixed mode, here html and safe
 			$text = wfEscapeWikiText( $text );
 		} elseif ( is_string( $text )
 			&& !$piece['lineStart']
@@ -4469,7 +4465,6 @@ class Parser {
 				// be able to convert that piece of data.
 				// Gets replaced with html in ParserOutput::getText
 				$editlink = '<mw:editsection page="' . htmlspecialchars( $editsectionPage, ENT_COMPAT );
-				// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 				$editlink .= '" section="' . htmlspecialchars( $editsectionSection, ENT_COMPAT ) . '"';
 				$editlink .= '>' . $editsectionContent . '</mw:editsection>';
 			} else {
@@ -4583,7 +4578,6 @@ class Parser {
 		if ( $clearState ) {
 			$magicScopeVariable = $this->lock();
 		}
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive
 		$this->startParse( $page, $options, self::OT_WIKI, $clearState );
 		$this->setUser( $user );
 

@@ -703,6 +703,7 @@ TEXT
 			$failures++;
 
 			// A failure in a prefetch hit does not warrant resetting db connection etc.
+			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable Control flow is hard to understand here.
 			if ( !$tryIsPrefetch ) {
 				// After backing off for some time, we try to reboot the whole process as
 				// much as possible to not carry over failures from one part to the other

@@ -261,6 +261,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 				if ( is_int( $key ) ) {
 					$this->conds[] = $cond;
 				} elseif ( isset( $this->conds[$key] ) ) {
+					// @phan-suppress-previous-line PhanTypeMismatchDimFetch
 					// T288882
 					$this->conds[] = $this->db->makeList(
 						[ $key => $cond ], IDatabase::LIST_AND );

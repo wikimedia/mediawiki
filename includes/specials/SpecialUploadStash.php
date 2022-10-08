@@ -130,7 +130,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			$message = $e->getMessage();
 		}
 
-		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 		throw new HttpError( $code, $message );
 	}
 

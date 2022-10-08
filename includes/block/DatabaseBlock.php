@@ -266,7 +266,6 @@ class DatabaseBlock extends AbstractBlock {
 					$conds['ipb_address'][] = (string)$target;
 					$conds['ipb_address'] = array_unique( $conds['ipb_address'] );
 					$conds[] = self::getRangeCond( IPUtils::toHex( $target ) );
-					// @phan-suppress-next-line SecurityCheck-SQLInjection
 					$conds = $db->makeList( $conds, LIST_OR );
 					break;
 
@@ -274,7 +273,6 @@ class DatabaseBlock extends AbstractBlock {
 					list( $start, $end ) = IPUtils::parseRange( $target );
 					$conds['ipb_address'][] = (string)$target;
 					$conds[] = self::getRangeCond( $start, $end );
-					// @phan-suppress-next-line SecurityCheck-SQLInjection
 					$conds = $db->makeList( $conds, LIST_OR );
 					break;
 
@@ -284,7 +282,6 @@ class DatabaseBlock extends AbstractBlock {
 		}
 
 		$blockQuery = self::getQueryInfo();
-		// @phan-suppress-next-line SecurityCheck-SQLInjection
 		$res = $db->select(
 			$blockQuery['tables'],
 			$blockQuery['fields'],
