@@ -113,7 +113,9 @@ class ResetPasswordSecondaryAuthenticationProvider extends AbstractSecondaryAuth
 			);
 		}
 
+		/** @var PasswordAuthenticationRequest $req */
 		$req = AuthenticationRequest::getRequestByClass( $reqs, get_class( $needReq ) );
+		'@phan-var PasswordAuthenticationRequest $req';
 		if ( !$req || !array_key_exists( 'retype', $req->getFieldInfo() ) ) {
 			return AuthenticationResponse::newUI( $needReqs, $data->msg, 'warning' );
 		}

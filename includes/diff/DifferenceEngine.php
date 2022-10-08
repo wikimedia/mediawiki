@@ -1308,6 +1308,7 @@ class DifferenceEngine extends ContextSource {
 	 * @since 1.31
 	 *
 	 * @return string[]
+	 * @phan-return non-empty-array<string>
 	 * @throws MWException
 	 */
 	protected function getDiffBodyCacheKeyParams() {
