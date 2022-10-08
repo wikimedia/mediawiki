@@ -1465,7 +1465,6 @@ abstract class ApiBase extends ContextSource {
 	 * @return never
 	 */
 	public function dieWithException( Throwable $exception, array $options = [] ) {
-		// @phan-suppress-previous-line PhanTypeMissingReturn
 		$this->dieWithError(
 			// @phan-suppress-next-line PhanTypeMismatchArgument
 			$this->getErrorFormatter()->getMessageFromException( $exception, $options )
@@ -1482,7 +1481,6 @@ abstract class ApiBase extends ContextSource {
 	 * @return never
 	 */
 	public function dieBlocked( Block $block ) {
-		// @phan-suppress-previous-line PhanTypeMissingReturn
 		// Die using the appropriate message depending on block type
 		if ( $block->getType() == Block::TYPE_AUTO ) {
 			$this->dieWithError(
@@ -1544,7 +1542,6 @@ abstract class ApiBase extends ContextSource {
 	 * @return never
 	 */
 	public function dieReadOnly() {
-		// @phan-suppress-previous-line PhanTypeMissingReturn
 		$this->dieWithError(
 			'apierror-readonly',
 			'readonly',

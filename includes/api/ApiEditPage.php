@@ -620,6 +620,7 @@ class ApiEditPage extends ApiBase {
 						// errors on the status.
 						// @codeCoverageIgnoreStart
 						case EditPage::AS_SPAM_ERROR:
+							// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 							$status->fatal( 'apierror-spamdetected', $result['spam'] );
 							break;
 						case EditPage::AS_READ_ONLY_PAGE_LOGGED:

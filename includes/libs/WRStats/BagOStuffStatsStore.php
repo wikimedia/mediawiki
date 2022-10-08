@@ -21,6 +21,10 @@ class BagOStuffStatsStore implements StatsStore {
 		$this->cache = $cache;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @suppress PhanParamTooFewUnpack
+	 */
 	public function makeKey( $prefix, $internals, $entity ) {
 		if ( $entity->isGlobal() ) {
 			return $this->cache->makeGlobalKey(

@@ -261,7 +261,6 @@ class WebInstaller extends Installer {
 
 		# Execute the page.
 		$this->currentPageName = $page->getName();
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable pageName is not null here
 		$this->startPageWrapper( $pageName );
 
 		if ( $page->isSlow() ) {
@@ -275,7 +274,6 @@ class WebInstaller extends Installer {
 		if ( $result == 'skip' ) {
 			# Page skipped without explicit submission.
 			# Skip it when we click "back" so that we don't just go forward again.
-			// @phan-suppress-next-line PhanTypeMismatchDimAssignment pageName is not null here
 			$this->skippedPages[$pageName] = true;
 			$result = 'continue';
 		} else {

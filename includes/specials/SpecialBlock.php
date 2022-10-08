@@ -201,6 +201,7 @@ class SpecialBlock extends FormSpecialPage {
 				[
 					'align' => 'top',
 					'errors' => array_map( function ( $errMsg ) {
+						// @phan-suppress-next-line PhanParamTooFewUnpack Should infer non-emptiness
 						return new OOUI\HtmlSnippet( $this->msg( ...$errMsg )->parse() );
 					}, $this->preErrors ),
 				]

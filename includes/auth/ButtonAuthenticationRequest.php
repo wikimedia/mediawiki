@@ -103,6 +103,7 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 		} elseif ( is_string( $data['label'] ) ) {
 			$data['label'] = new Message( $data['label'] );
 		} elseif ( is_array( $data['label'] ) && $data['label'] ) {
+			// @phan-suppress-next-line PhanParamTooFewUnpack Should infer non-emptiness from above
 			$data['label'] = Message::newFromKey( ...$data['label'] );
 		}
 		if ( !isset( $data['help'] ) ) {
@@ -110,6 +111,7 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 		} elseif ( is_string( $data['help'] ) ) {
 			$data['help'] = new Message( $data['help'] );
 		} elseif ( is_array( $data['help'] ) && $data['help'] ) {
+			// @phan-suppress-next-line PhanParamTooFewUnpack Should infer non-emptiness from above
 			$data['help'] = Message::newFromKey( ...$data['help'] );
 		}
 		$ret = new static( $data['name'], $data['label'], $data['help'] );

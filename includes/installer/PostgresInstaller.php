@@ -196,7 +196,6 @@ class PostgresInstaller extends DatabaseInstaller {
 			$conn = $status->value;
 			$conn->clearFlag( DBO_TRX );
 			$conn->commit( __METHOD__ );
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped
 			$this->pgConns[$type] = $conn;
 		}
 
