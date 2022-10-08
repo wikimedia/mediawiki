@@ -260,6 +260,7 @@ class ProtectionForm {
 	 * Show the input form with optional error message
 	 *
 	 * @param string|string[]|null $err Error message or null if there's no error
+	 * @phan-param string|non-empty-array|null $err
 	 */
 	private function show( $err = null ) {
 		$out = $this->mOut;
