@@ -1373,6 +1373,7 @@
 	"timezoneuseserverdefault": "Option in timezone selector form fields.\n\nThis option lets your time zone setting use the one that is used on the wiki (often UTC).\n\nParameters:\n* $1 - timezone name, or timezone offset (in \"%+03d:%02d\" format)",
 	"timezoneuseoffset": "Option in timezone selector form fields that lets the user manually enter an offset from UTC.",
 	"timezone-useoffset-placeholder": "Placeholder of the text input in timezone selector form fields.",
+	"timezone-invalid": "Error message shown in preferences.",
 	"servertime": "Used as label in [[Special:Preferences#mw-prefsection-datetime|preferences]].",
 	"guesstimezone": "Option in timezone selector form fields to fill in the timezone from the browser setting",
 	"timezoneregion-africa": "Used in timezone selector form fields.\n{{Related|Timezoneregion}}",

@@ -1043,6 +1043,13 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'section' => 'rendering/timeoffset',
 			'id' => 'wpTimeCorrection',
 			'filter' => TimezoneFilter::class,
+			'validation-callback' => static function ( $timecorrection, $alldata, HTMLForm $form ) {
+				if ( ( new UserTimeCorrection( $timecorrection ) )->isValid() ) {
+					return true;
+				} else {
+					return $form->msg( 'timezone-invalid' )->escaped();
+				}
+			},
 		];
 	}
 
