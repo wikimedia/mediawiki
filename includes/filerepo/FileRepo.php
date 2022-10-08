@@ -1995,7 +1995,8 @@ class FileRepo {
 		}
 		if ( isset( $this->favicon ) ) {
 			// Expand any local path to full URL to improve API usability (T77093).
-			$ret['favicon'] = wfExpandUrl( $this->favicon );
+			$ret['favicon'] = MediaWikiServices::getInstance()->getUrlUtils()
+				->expand( $this->favicon );
 		}
 
 		return $ret;
