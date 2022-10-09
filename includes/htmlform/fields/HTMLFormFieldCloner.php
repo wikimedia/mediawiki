@@ -485,7 +485,6 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		}
 
 		$template = $this->getInputHTMLForKey( $this->uniqueId, [] );
-		// @phan-suppress-next-line SecurityCheck-DoubleEscaped data-template contains html, but that is okay here
 		$html = Html::rawElement( 'ul', [
 			'id' => "mw-htmlform-cloner-list-{$this->mID}",
 			'class' => 'mw-htmlform-cloner-ul',
@@ -558,7 +557,6 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		}
 
 		$template = $this->getInputOOUIForKey( $this->uniqueId, [] );
-		// @phan-suppress-next-line SecurityCheck-DoubleEscaped data-template contains html, but that is okay here
 		$html = Html::rawElement( 'ul', [
 			'id' => "mw-htmlform-cloner-list-{$this->mID}",
 			'class' => 'mw-htmlform-cloner-ul',

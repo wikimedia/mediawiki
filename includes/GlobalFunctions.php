@@ -1938,7 +1938,6 @@ function wfGetDB( $db, $groups = [], $wiki = false ) {
 function wfScript( $script = 'index' ) {
 	global $wgScriptPath, $wgScript, $wgLoadScript;
 	if ( $script === 'index' ) {
-		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable False positive
 		return $wgScript;
 	} elseif ( $script === 'load' ) {
 		return $wgLoadScript;

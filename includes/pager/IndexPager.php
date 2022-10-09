@@ -830,6 +830,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 		if ( $declaringClass !== __CLASS__ ) {
 			// Overriding makeLink() is deprecated since 1.39
 			$navBuilder->setMakeLinkCallback( function ( ...$args ) {
+				// @phan-suppress-next-line PhanParamTooFewUnpack
 				return $this->makeLink( ...$args );
 			} );
 		}

@@ -1377,7 +1377,6 @@ abstract class Installer {
 			$info += $jsonStatus->value;
 		}
 
-		// @phan-suppress-next-line SecurityCheckMulti
 		return Status::newGood( $info );
 	}
 

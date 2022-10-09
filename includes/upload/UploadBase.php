@@ -483,7 +483,7 @@ abstract class UploadBase {
 	/**
 	 * Verifies that it's ok to include the uploaded file
 	 *
-	 * @return array|bool True of the file is verified, array otherwise.
+	 * @return array|true True of the file is verified, array otherwise.
 	 */
 	protected function verifyFile() {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
@@ -547,7 +547,8 @@ abstract class UploadBase {
 	 * Runs the blacklist checks, but not any checks that may
 	 * assume the entire file is present.
 	 *
-	 * @return array|bool True if the file is valid, else an array with error message key.
+	 * @return array|true True if the file is valid, else an array with error message key.
+	 * @phan-return non-empty-array|true
 	 */
 	protected function verifyPartialFile() {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
