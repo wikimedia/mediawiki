@@ -1132,6 +1132,7 @@
 	"timezoneuseserverdefault": "Use wiki default ($1)",
 	"timezoneuseoffset": "Other (time offset from UTC)",
 	"timezone-useoffset-placeholder": "Example values: \"-07:00\" or \"01:00\"",
+	"timezone-invalid": "Invalid time zone or time offset.",
 	"servertime": "Server time:",
 	"guesstimezone": "Fill in from browser",
 	"timezoneregion-africa": "Africa",
