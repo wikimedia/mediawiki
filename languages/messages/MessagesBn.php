@@ -29,7 +29,7 @@ $namespaceNames = [
 $namespaceAliases = [
 	'$1_আলাপ' => NS_PROJECT_TALK,
 	'চিত্র_আলাপ' => NS_FILE_TALK,
-	'MediaWiki_আলাপ' => NS_FILE_TALK,
+	'MediaWiki_আলাপ' => NS_MEDIAWIKI_TALK,
 ];
 
 $datePreferences = false;
