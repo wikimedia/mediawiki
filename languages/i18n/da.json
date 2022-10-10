@@ -2257,7 +2257,7 @@
 	"delete-confirm": "Slet \"$1\"",
 	"delete-legend": "Slet",
 	"historywarning": "<strong>Advarsel:</strong> Siden du er ved at slette har en historie med $1 {{PLURAL:$1|version|versioner}}:",
-	"historyaction-submit": "Vis revisioner",
+	"historyaction-submit": "Vis versioner",
 	"confirmdeletetext": "Du er ved at slette en side sammen med hele dens tilhørende historik.\nBekræft venligst at du virkelig vil gøre dette, at du forstår konsekvenserne, og at du gør det i overensstemmelse med [[{{MediaWiki:Policy-url}}|retningslinjerne]].",
 	"actioncomplete": "Gennemført",
 	"actionfailed": "Handlingen mislykkedes",

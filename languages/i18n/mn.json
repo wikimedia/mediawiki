@@ -20,7 +20,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"Amire80",
-			"McDutchie"
+			"McDutchie",
+			"Enkhsaihan2005"
 		]
 	},
 	"tog-underline": "Линкүүдийн доогуур зураас зур:",
@@ -251,7 +252,7 @@
 	"editsection": "засварлах",
 	"editold": "засварлах",
 	"viewsourceold": "кодыг харах",
-	"editlink": "загварыг засах",
+	"editlink": "засварлах",
 	"viewsourcelink": "кодыг харах",
 	"editsectionhint": "Хэсгийг засварлах: $1",
 	"toc": "Гарчиг",

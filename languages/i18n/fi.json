@@ -3468,7 +3468,7 @@
 	"tags-manage-no-permission": "Sinulla ei ole oikeutta käsitellä merkkauksia.",
 	"tags-manage-blocked": "Et voi hallita muokkausmerkkauksia, kun {{GENDER:$1|olet}} estettynä.",
 	"tags-create-heading": "Luo uusi merkkaus",
-	"tags-create-explanation": "Oletuksena on, että uutena luodut merkkaukset tulevat käyttäjien ja bottien käyttöön.",
+	"tags-create-explanation": "Oletuksena on, että uudet merkkaukset tulevat käyttäjien ja bottien käyttöön.",
 	"tags-create-tag-name": "Merkkauksen nimi:",
 	"tags-create-reason": "Syy:",
 	"tags-create-submit": "Luo",

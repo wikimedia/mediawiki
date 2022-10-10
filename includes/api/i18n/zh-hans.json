@@ -147,7 +147,7 @@
 	"apihelp-compare-paramvalue-prop-comment": "“from”和“to”修订版本的注释。若该注释已被删除修订，将返回<samp>fromcommenthidden</samp>或<samp>tocommenthidden</samp>属性。",
 	"apihelp-compare-paramvalue-prop-parsedcomment": "“from”和“to”修订版本的已解析注释。若该注释已被删除修订，将返回<samp>fromcommenthidden</samp>或<samp>tocommenthidden</samp>属性。",
 	"apihelp-compare-paramvalue-prop-size": "“from”和“to”修订版本的大小。",
-	"apihelp-compare-param-slots": "返回这些间隔的个别差异，而非所有间隔合并而得到的单个差异。",
+	"apihelp-compare-param-slots": "返回这些槽位的个别差异，而非所有槽位合并而得到的单个差异。",
 	"apihelp-compare-example-1": "在版本1和2中创建差异。",
 	"apihelp-createaccount-summary": "创建一个新用户账号。",
 	"apihelp-createaccount-param-preservestate": "如果<kbd>[[Special:ApiHelp/query+authmanagerinfo|action=query&meta=authmanagerinfo]]</kbd>返回用于<samp>hasprimarypreservedstate</samp>的真值，标记为<samp>primary-required</samp>的请求应被忽略。如果它返回用于<samp>preservedusername</samp>的非空值，用户名必须用于<var>username</var>参数。",

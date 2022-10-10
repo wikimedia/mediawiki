@@ -2830,7 +2830,7 @@
 	"import-nonewrevisions": "Nulle version ha essite importate (totes esseva jam presente o ha essite saltate a causa de errores).",
 	"xml-error-string": "$1 al linea $2, col $3 (byte $4): $5",
 	"import-upload": "Incargar datos XML",
-	"import-token-mismatch": "Perdita del datos del session.\n\nEs possibile que tu session ha essite claudite. '''Per favor, verifica que tu session es ancora aperte e tenta lo de novo.'''\nSi le problema persiste, proba a [[Special:UserLogout|clauder session]] e aperir un nove session, verificante que tu navigator accepta le cookies ab iste sito.",
+	"import-token-mismatch": "Perdita del datos del session.\n\nEs possibile que tu session ha essite claudite. '''Per favor, verifica que tu session es ancora aperte e tenta lo de novo.'''\nSi le problema persiste, tenta [[Special:UserLogout|clauder]] e reaperir session, e verifica que tu navigator accepta le cookies de iste sito.",
 	"import-invalid-interwiki": "Non pote importar ab le wiki specificate.",
 	"import-error-edit": "Le pagina \"$1\" non ha essite importate perque tu non ha le permission de modificar lo.",
 	"import-error-create": "Le pagina \"$1\" non ha essite importate perque tu non ha le permission de crear lo.",

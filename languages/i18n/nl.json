@@ -2150,7 +2150,7 @@
 	"unusedimagestext-categorizedimgisused": "De volgende bestanden zijn aanwezig maar worden nergens gebruikt. Gecategoriseerde afbeeldingen worden beschouwd als in gebruik, zelfs als ze niet op een pagina gebruikt worden.\nHet is mogelijk dat er direct verwezen wordt naar een bestand. Een bestand kan hier dus ten onrechte opgenomen zijn.",
 	"unusedcategoriestext": "Hieronder staan categorieën die zijn aangemaakt, maar door geen enkele pagina of andere categorie gebruikt worden.",
 	"notargettitle": "Geen doelpagina",
-	"notargettext": "U hebt niet opgegeven voor welke pagina of gebruiker u deze handeling wilt uitvoeren.",
+	"notargettext": "U hebt niet opgegeven voor welke pagina of gebruiker u deze handeling wilt verrichten.",
 	"nopagetitle": "De doelpagina bestaat niet",
 	"nopagetext": "De doelpagina die u hebt opgegeven bestaat niet.",
 	"pager-newer-n": "{{PLURAL:$1|1 nieuwere|$1 nieuwere}}",
