@@ -133,10 +133,6 @@
 						// Confirmed the parser for multiple cells, let's return it
 						return parsers[ i ];
 					}
-				} else if ( parsers[ i ].id.match( /isoDate/ ) && /^\D*(\d{1,4}) ?(\[.+\])?$/.test( nodeValue ) ) {
-					// For 1-4 digits and maybe reference(s) parser "isoDate" or "number" is possible, check next row
-					empty++;
-					nextRow = true;
 				} else {
 					// Check next parser, reset rows
 					i++;
@@ -784,10 +780,6 @@
 				new RegExp( /(^[£$€¥]|[£$€¥]$)/ ),
 				new RegExp( /[£$€¥]/g )
 			],
-			isoDate: [
-				new RegExp( /^[^-\d]*(-?\d{1,4})-(0\d|1[0-2])(-([0-3]\d))?([T\s]([01]\d|2[0-4]):?(([0-5]\d):?(([0-5]\d|60)([.,]\d{1,3})?)?)?([zZ]|([-+])([01]\d|2[0-3]):?([0-5]\d)?)?)?/ ),
-				new RegExp( /^[^-\d]*(-?\d{1,4})-?(\d\d)?(-?(\d\d))?([T\s](\d\d):?((\d\d)?:?((\d\d)?([.,]\d{1,3})?)?)?([zZ]|([-+])(\d\d):?(\d\d)?)?)?/ )
-			],
 			usLongDate: [
 				new RegExp( /^[A-Za-z]{3,10}\.? [0-9]{1,2}, ([0-9]{4}|'?[0-9]{2}) (([0-2]?[0-9]:[0-5][0-9])|([0-1]?[0-9]:[0-5][0-9]\s(AM|PM)))$/ )
 			],
@@ -1188,46 +1180,6 @@
 		},
 		format: function ( s ) {
 			return $.tablesorter.formatDigit( s.replace( ts.rgx.currency[ 1 ], '' ) );
-		},
-		type: 'numeric'
-	} );
-
-	ts.addParser( {
-		id: 'isoDate',
-		is: function ( s ) {
-			return ts.rgx.isoDate[ 0 ].test( s );
-		},
-		format: function ( s ) {
-			var match = s.match( ts.rgx.isoDate[ 0 ] );
-			if ( match === null ) {
-				// Otherwise a signed number with 1-4 digit is parsed as isoDate
-				match = s.match( ts.rgx.isoDate[ 1 ] );
-			}
-			if ( !match ) {
-				return -Infinity;
-			}
-			var i;
-			// Month and day
-			for ( i = 2; i <= 4; i += 2 ) {
-				if ( !match[ i ] || match[ i ].length === 0 ) {
-					match[ i ] = 1;
-				}
-			}
-			// Time
-			for ( i = 6; i <= 15; i++ ) {
-				if ( !match[ i ] || match[ i ].length === 0 ) {
-					match[ i ] = '0';
-				}
-			}
-			var ms = parseFloat( match[ 11 ].replace( /,/, '.' ) ) * 1000;
-			var hOffset = $.tablesorter.formatInt( match[ 13 ] + match[ 14 ] );
-			var mOffset = $.tablesorter.formatInt( match[ 13 ] + match[ 15 ] );
-
-			var isodate = new Date( 0 );
-			// Because Date constructor changes year 0-99 to 1900-1999, use setUTCFullYear()
-			isodate.setUTCFullYear( match[ 1 ], match[ 2 ] - 1, match[ 4 ] );
-			isodate.setUTCHours( match[ 6 ] - hOffset, match[ 8 ] - mOffset, match[ 10 ], ms );
-			return isodate.getTime();
 		},
 		type: 'numeric'
 	} );

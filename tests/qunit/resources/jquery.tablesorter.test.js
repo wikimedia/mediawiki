@@ -206,10 +206,11 @@
 		],
 		isoDateSortingSorted = [
 			[ '2009' ],
-			[ '2009-12-25T12:30:45+01:00' ],
 			[ '2009-12-25T12:30:45' ],
 			[ '2009-12-25T12:30:45.001Z' ],
 			[ '2009-12-25T12:30:45.111' ],
+			// Effectively 11:30 UTC (earlier than above). No longer timezone-aware (T47161).
+			[ '2009-12-25T12:30:45+01:00' ],
 			[ '2010-01-31' ],
 			[ '2010-02-01' ]
 		];
@@ -1231,7 +1232,7 @@
 
 	tableTest(
 		'ISO date sorting',
-		[ 'isoDate' ],
+		[ 'ISO date' ],
 		isoDateSorting,
 		isoDateSortingSorted,
 		function ( $table ) {
