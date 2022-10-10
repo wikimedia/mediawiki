@@ -1047,6 +1047,7 @@
 	"prefsnologintext2": "Du skal logge på for at ændre dine brugerindstillinger.",
 	"prefs-skin": "Udseende",
 	"prefs-skin-prefs": "Indstilling af udseende",
+	"prefs-skin-responsive": "Aktiver responsiv tilstand",
 	"prefs-help-skin-responsive": "Tilpas udseendet til skærmstørrelsen på mobil.",
 	"skin-preview": "Forhåndsvisning",
 	"datedefault": "Standard",

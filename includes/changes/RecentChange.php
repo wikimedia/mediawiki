@@ -440,7 +440,7 @@ class RecentChange implements Taggable {
 		$row = $this->mAttribs;
 
 		# Trim spaces on user supplied text
-		$row['rc_comment'] = trim( $row['rc_comment'] );
+		$row['rc_comment'] = trim( $row['rc_comment'] ?? '' );
 
 		# Fixup database timestamps
 		$row['rc_timestamp'] = $dbw->timestamp( $row['rc_timestamp'] );

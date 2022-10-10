@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\IPUtils;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -161,6 +162,20 @@ class ReassignEdits extends Maintenance {
 				$dbw->update( 'recentchanges',
 					[ 'rc_actor' => $toActorId ],
 					[ 'rc_actor' => $fromActorId ],
+					__METHOD__
+				);
+				$this->output( "done.\n" );
+			}
+
+			# If $from is an IP, delete any relevant rows from the
+			# ip_changes. No update needed, as $to cannot be an IP.
+			if ( !$from->isRegistered() ) {
+				$this->output( "Deleting ip_changes..." );
+				$dbw->delete(
+					'ip_changes',
+					[
+						'ipc_hex' => IPUtils::toHex( $from->getName() )
+					],
 					__METHOD__
 				);
 				$this->output( "done.\n" );
