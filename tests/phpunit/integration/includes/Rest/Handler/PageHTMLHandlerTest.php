@@ -19,6 +19,7 @@ use MediaWikiIntegrationTestCase;
 use MWTimestamp;
 use NullStatsdDataFactory;
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Http\Message\StreamInterface;
 use Psr\Log\NullLogger;
 use WANObjectCache;
 use Wikimedia\Message\MessageValue;
@@ -55,6 +56,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$this->parserCacheBagOStuff = new HashBagOStuff();
+		$this->overrideConfigValue( 'UsePigLatinVariant', true );
 	}
 
 	/**
@@ -114,7 +116,8 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			$services->getPageStore(),
 			$this->getParsoidOutputStash(),
 			$services->getStatsdDataFactory(),
-			$parsoidOutputAccess
+			$parsoidOutputAccess,
+			$services->getHTMLTransformFactory()
 		);
 
 		return $handler;
@@ -164,6 +167,66 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( '<!DOCTYPE html>', $htmlResponse );
 		$this->assertStringContainsString( '<html', $htmlResponse );
 		$this->assertStringContainsString( self::HTML, $htmlResponse );
+	}
+
+	/**
+	 * @dataProvider provideExecuteWithVariant
+	 */
+	public function testExecuteWithVariant(
+		string $format,
+		callable $bodyHtmlHandler,
+		string $expectedContentLanguage,
+		string $expectedVaryHeader
+	) {
+		$page = $this->getExistingTestPage( 'HtmlVariantConversion' );
+		$this->assertTrue(
+			$this->editPage( $page, '<p>test language conversion</p>' )->isGood(),
+			'Edited a page'
+		);
+
+		$acceptLanguage = 'en-x-piglatin';
+		$request = new RequestData(
+			[
+				'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ],
+				'headers' => [
+					'Accept-Language' => $acceptLanguage
+				]
+			]
+		);
+
+		$handler = $this->newHandler();
+		$response = $this->executeHandler( $handler, $request, [
+			'format' => $format
+		] );
+
+		$htmlBody = $bodyHtmlHandler( $response->getBody() );
+		$contentLanguageHeader = $response->getHeaderLine( 'Content-Language' );
+		$varyHeader = $response->getHeaderLine( 'Vary' );
+
+		$this->assertStringContainsString( '>esttay anguagelay onversioncay<', $htmlBody );
+		$this->assertEquals( $expectedContentLanguage, $contentLanguageHeader );
+		$this->assertStringContainsStringIgnoringCase( $expectedVaryHeader, $varyHeader );
+		$this->assertStringContainsString( $acceptLanguage, $response->getHeaderLine( 'ETag' ) );
+	}
+
+	public function provideExecuteWithVariant() {
+		yield 'with_html request should contain accept language but not content language' => [
+			'with_html',
+			static function ( StreamInterface $response ) {
+				return json_decode( $response->getContents(), true )['html'];
+			},
+			'',
+			'accept-language'
+		];
+
+		yield 'html request should contain accept and content language' => [
+			'html',
+			static function ( StreamInterface $response ) {
+				return $response->getContents();
+			},
+			'en-x-piglatin',
+			'accept-language'
+		];
 	}
 
 	public function testEtagLastModified() {

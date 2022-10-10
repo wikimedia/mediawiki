@@ -126,7 +126,8 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			$services->getPageStore(),
 			$this->getParsoidOutputStash(),
 			$services->getStatsdDataFactory(),
-			$parsoidOutputAccess
+			$parsoidOutputAccess,
+			$services->getHTMLTransformFactory()
 		);
 
 		return $handler;

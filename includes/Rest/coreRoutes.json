@@ -53,7 +53,8 @@
 			"PageStore",
 			"ParsoidOutputStash",
 			"StatsdDataFactory",
-			"ParsoidOutputAccess"
+			"ParsoidOutputAccess",
+			"HTMLTransformFactory"
 		],
 		"format": "html"
 	},
@@ -67,7 +68,8 @@
 			"PageStore",
 			"ParsoidOutputStash",
 			"StatsdDataFactory",
-			"ParsoidOutputAccess"
+			"ParsoidOutputAccess",
+			"HTMLTransformFactory"
 		],
 		"format": "with_html"
 	},
@@ -155,7 +157,8 @@
 			"PageStore",
 			"ParsoidOutputStash",
 			"StatsdDataFactory",
-			"ParsoidOutputAccess"
+			"ParsoidOutputAccess",
+			"HTMLTransformFactory"
 		],
 		"format": "html"
 	},
@@ -169,7 +172,8 @@
 			"PageStore",
 			"ParsoidOutputStash",
 			"StatsdDataFactory",
-			"ParsoidOutputAccess"
+			"ParsoidOutputAccess",
+			"HTMLTransformFactory"
 		],
 		"format": "with_html"
 	},

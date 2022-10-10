@@ -20,6 +20,7 @@ use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Rest\Handler\HtmlOutputRendererHelper;
 use MediaWiki\Rest\LocalizedHttpException;
+use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -62,6 +63,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	];
 
 	private const MOCK_HTML = 'mocked HTML';
+	private const MOCK_HTML_VARIANT = 'ockedmay HTML';
 
 	private function exactlyOrAny( ?int $count ): InvocationOrder {
 		return $count === null ? $this->any() : $this->exactly( $count );
@@ -224,7 +226,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$helper = new HtmlOutputRendererHelper(
 			$stash,
 			new NullStatsdDataFactory(),
-			$access ?? $this->newMockParsoidOutputAccess()
+			$access ?? $this->newMockParsoidOutputAccess(),
+			$this->getServiceContainer()->getHTMLTransformFactory()
 		);
 
 		return $helper;
@@ -283,6 +286,18 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$htmlresult = $helper->getHtml()->getRawText();
 
 		$this->assertStringContainsString( $this->getMockHtml( $rev ), $htmlresult );
+	}
+
+	public function testGetHtmlWithVariant() {
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		$helper = $this->newHelper();
+		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
+		$helper->setVariantConversionLanguage( 'en-x-piglatin' );
+
+		$htmlResult = $helper->getHtml()->getRawText();
+		$this->assertStringContainsString( self::MOCK_HTML_VARIANT, $htmlResult );
+		$this->assertStringContainsString( 'en-x-piglatin', $helper->getETag() );
 	}
 
 	public function testGetPreviewHtml() {
@@ -663,6 +678,48 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		foreach ( $expected as $name => $value ) {
 			$this->assertSame( $value, $wrapper->$name );
 		}
+	}
+
+	/**
+	 * @dataProvider providePutHeaders
+	 */
+	public function testPutHeaders( ?string $targetLanguage, bool $setContentLanguageHeader ) {
+		$page = $this->getExistingTestPage( __METHOD__ );
+		$expectedCalls = [];
+
+		$helper = $this->newHelper();
+		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
+
+		if ( $targetLanguage ) {
+			$helper->setVariantConversionLanguage( $targetLanguage );
+			$expectedCalls['addHeader'] = [ [ 'Vary', 'Accept-Language' ] ];
+
+			if ( $setContentLanguageHeader ) {
+				$expectedCalls['setHeader'] = [ [ 'Content-Language', $targetLanguage ] ];
+			}
+		}
+
+		$responseInterface = $this->getResponseInterfaceMock( $expectedCalls );
+		$helper->putHeaders( $responseInterface, $setContentLanguageHeader );
+	}
+
+	public function providePutHeaders() {
+		yield 'no target variant language' => [ null, true ];
+		yield 'target language is set but setContentLanguageHeader is false' => [ 'en-x-piglatin', false ];
+		yield 'target language and setContentLanguageHeader flag is true' =>
+			[ 'en-x-piglatin', true ];
+	}
+
+	private function getResponseInterfaceMock( array $expectedCalls ) {
+		$responseInterface = $this->createNoOpMock( ResponseInterface::class, array_keys( $expectedCalls ) );
+		foreach ( $expectedCalls as $method => $argument ) {
+			$responseInterface
+				->expects( $this->exactly( count( $argument ) ) )
+				->method( $method )
+				->withConsecutive( ...$argument );
+		}
+
+		return $responseInterface;
 	}
 
 }
