@@ -1,11 +1,34 @@
 = MediaWiki 1.39 =
 
-== MediaWiki 1.39.0-PRERELEASE ==
+== MediaWiki 1.39.0-rc.1 ==
 
-THIS IS NOT A RELEASE YET
-
-MediaWiki 1.39 is an alpha-quality development branch, and is not recommended
+MediaWiki 1.39 is a pre-release testing branch, and is not recommended
 for use in production.
+
+=== Changes since MediaWiki 1.39.0-rc.0 ===
+* Localisation updates.
+* (T318481) composer: Drop symfony/php73-polyfill.
+* (T318460) SpecialChangeEmail: Set default for returntoquery.
+* (T318307) HTMLFormField::validate(): Update docs to permit all data types
+* (T306802) docker: update to latest published images.
+* (T318754) WebInstallerOptions::addPersonalizationOptions(): Close fieldset.
+* (T227047) Soft-deprecate the remainder of ActorMigration.
+* (T316304, CVE-2022-41767) SECURITY: reassignEdits doesn't update results
+  in an IP range check on Special:Contributions.
+* (T309894, CVE-2022-41765) SECURITY: HTMLUserTextField exposes existence
+  of hidden users.
+* (T307278, CVE-2022-41766) SECURITY: On action=rollback the message
+  "alreadyrolled" can leak revision deleted user name.
+* (T319186) .phan/config.php: Update minimum_target_php_version.
+* Tests: Explicit cast to int in RandomImageGenerator test (php8 warnings).
+* (T319186) .phan/config.php: Update minimum_target_php_version.
+* (T310243) Deprecate use of 'wvui-search' package.
+* utils: Fix return doc about false/null for UrlUtils::expand.
+* (T319000) WebInstaller: Don't try and run trim() on null.
+* In the event of preg failure in MagicWordArray throw exception.
+* (T318753) Installer: Disable logo dropper for now.
+
+== MediaWiki 1.39.0-rc.0 ==
 
 == Upgrading notes for 1.39 ==
 Don't forget to always back up your database before upgrading!
@@ -15,67 +38,66 @@ oldest supported upgrading version, MediaWiki 1.31.
 
 Some specific notes for MediaWiki 1.39 upgrades are below:
 * (T278139) Drop PHP 7.3 support in MediaWiki 1.39; require 7.4.3 or higher.
-* …
 
 For notes on 1.38.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.39 ===
-* The default serialization method for file meta-data has been changed to JSON.
-  You can revert it to PHP by setting the 'useJsonMetadata' property to false in
-  $wgLocalFileRepo.
-* The DBO_SSL flag in $wgDBservers and $wgLBFactoryConf has been deprecated in
-  favour of a boolean "ssl" parameter.
-* $wgMangleFlashPolicy is deprecated and is no longer functional. Users who are
-  somehow still using Flash as a browser extension will be exposed to CSRF
-  vulnerabilities.
-* …
 
 ==== New configuration ====
-* $wgAutoCreateTempUser – configures automatic user creation on page save.
-* $wgCopyUploadAllowOnWikiDomainConfig – Configures if administrators can use
-  the MediaWiki:Copyupload-allowed-domains system message to define which
+* $wgAutoCreateTempUser – This configures automatic user creation on page save.
+* $wgCopyUploadAllowOnWikiDomainConfig – This configures if administrators can
+  use the MediaWiki:Copyupload-allowed-domains system message to define which
   domains can be used with the upload-by-url tool.
-* $wgLBFactoryConf['configCallback'] can be set to a callback function that
-  returns an array with keys to update in $wgLBFactoryConf. This can be used
-  to update the database configuration on the fly, e.g. to take replica hosts
-  out of rotation.
-* $wgCdnMatchParameterOrder can be set to false if MediaWiki is behind a CDN
-  that re-orders query parameters. This will make the code that matches request
-  URLs to canonical CDN URLs insensitive to parameter order.
-* $wgMultiShardSiteStats – split site_stats across multiple rows.
-  Only useful for very large, heavily edited wikis. (T306589)
-* …
+* $wgCdnMatchParameterOrder – This can be set to false if MediaWiki is behind a
+  CDN that re-orders query parameters. This will make the code that matches
+  request URLs to canonical CDN URLs insensitive to parameter order.
+* $wgMultiShardSiteStats – This allows you to split site_stats across multiple
+  rows. Only useful for very large, heavily edited wikis. (T306589)
 
 ==== Changed configuration ====
-* $wgInvalidUsernameCharacters now contains the char '>',
-  reserved delimiter for external user names.
-* …
+* $wgInvalidUsernameCharacters – This setting now contains the char '>', which
+  is now the reserved delimiter for external user names.
+* $wgLocalFileRepo – The default serialization method for file meta-data has
+  been changed to JSON. You can revert it to PHP by setting the property
+  'useJsonMetadata' to false.
+* $wgLBFactoryConf – The 'configCallback' flag can now be set to a callback
+  function that returns an array with keys to update in $wgLBFactoryConf. This
+  can be used to update the database configuration on the fly, e.g. to take
+  replica hosts out of rotation.
+* $wgDBservers and $wgLBFactoryConf – The DBO_SSL flag in has been deprecated in
+  favour of a boolean "ssl" parameter.
+* $wgObjectCaches – The 'globalKeyLB' and 'localKeyLB' flags are no longer
+  supported.
 
 ==== Removed configuration ====
-* $wgMultiContentRevisionSchemaMigrationStage - Migration is over, was
-  deprecated since 1.35.
-* $wgWikiFarmSiteDetector – experimental setting removed without replacement.
-  Use the MW_WIKI_NAME environment variable to specifiy the name of the site
-  to load configuration for. Using the WIKI_NAME environment variable for this
-  purpose is deprecated.
-* $wgParserCacheUseJson - the ParserCache now always uses JSON serialization.
+* $wgMultiContentRevisionSchemaMigrationStage - This transition flag, deprecated
+  since MediaWiki 1.35, has been removed; the data migration is over.
+* $wgActorTableSchemaMigrationStage - This transition flag has been removed; the
+  data migration is over.
+* $wgWikiFarmSiteDetector – This experimental setting has been removed without
+  replacement. Use the MW_WIKI_NAME environment variable to specifiy the name of
+  the site for which to load configuration. Using the WIKI_NAME environment
+  variable for this purpose is deprecated.
+* $wgParserCacheUseJson - The ParserCache now always uses JSON serialization.
   Reading old non-JSON cache entries is still supported. The setting had been
   deprecated since 1.36.
 * $wgAllowJavaUploads - To allow uploads of JAR files, remove application/java
   from $wgMimeTypeExclusions.
-* $wgMaxRedirects has been removed. This feature never worked as intended,
-  see T296430.
-* $wgElementTiming has been removed. This feature was experimental,
-  and disabled by default.
-* $wgPriorityHints and $wgPriorityHintsRatio have been removed.
-  This feature was experimental, and disabled by default.
-* $wgActorTableSchemaMigrationStage has been removed. Migration is over.
-* In $wgObjectCaches, globalKeyLB and localKeyLB are no longer supported.
-* $wgLegacySchemaConversion - This global configuration has been
-  removed because it was unused.
-* $wgInterwikiPrefixDisplayTypes - This global configuration has been
-  removed because it was unused.
-* …
+* $wgMaxRedirects – This broken feature was removed, as it never worked as
+  intended (T296430).
+* $wgElementTiming – This experimental, default-disabled feature has been
+  removed without replacement.
+* $wgPriorityHints and $wgPriorityHintsRatio – The related experimental feature
+  has been removed without replacement.
+* $wgIncludeLegacyJavaScript – This flag has been removed, without loss of any
+  functionality in this release. Most former "wikibits" functions were removed
+  after deprecation in previous releases. The remaining functions, such as
+  importScript, are now available unconditionally.
+* $wgLegacySchemaConversion - This unused setting has been removed.
+* $wgInterwikiPrefixDisplayTypes - This unused setting has been removed.
+* $wgMangleFlashPolicy – This is no longer functional, and is now deprecated.
+  Users who are somehow still using Flash as a browser extension will be exposed
+  to CSRF vulnerabilities.
 
 === New user-facing features in 1.39 ===
 * Optional automatic user creation on page save ($wgAutoCreateTempUser)
@@ -88,7 +110,6 @@ For notes on 1.38.x and older releases, see HISTORY.
   other than `=` has been deprecated since 1.36, with affected pages put into
   a special tracking category for migration.
 * (T284020) Bot passwords are now supported when using the REST API.
-* …
 
 === New developer features in 1.39 ===
 * Added optional $size param to SearchResultProvideThumbnail hook.
@@ -99,17 +120,14 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Added 'PermissionErrorAudit' hook, enabling extensions to audit permission
   errors on specfic actions. For instance account registration failed attempts
   due to a block (T306018).
-* …
 
 === External library changes in 1.39 ===
 
 ==== New external libraries ====
 * Added Codex v0.1.1. This replaces the now deprecated wvui library.
-* …
 
 ===== New development-only external libraries =====
 * Updated QUnit from 2.18.0 to 2.18.2.
-* …
 
 ==== Changed external libraries ====
 * Updated jQuery from v3.6.0 to v3.6.1.
@@ -127,32 +145,22 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Updated wikimedia/scoped-callback from 3.0.0 to 4.0.0.
 * Updated wikimedia/services from 2.0.1 to 3.0.0.
 * Updated wikimedia/timestamp from 3.0.0 to 4.0.0.
-* Updated wikimedia/xmp-reader from 0.8.1 to 0.8.3.
-* …
+* Updated wikimedia/xmp-reader from 0.8.1 to 0.8.4.
 
 ===== Changed development-only external libraries =====
 * Updated composer/spdx-licenses from 1.5.5 to 1.5.6.
 * Updated doctrine/dbal for PHP < 7.3 from 2.13.6 to 2.13.9.
 * Updated doctrine/dbal for PHP >= 7.3 from 3.1.5 to 3.4.2.
-* …
-
-==== Removed external libraries ====
-* …
 
 === Bug fixes in 1.39 ===
 * (T314013) $wgExtraNamespaces no longer overrides canonical namespace names
   specified in extension.json files. While this setting can still be used to
   rename extension-defined namespaces, system administrators may need to run
   namespaceDupes.php after upgrading.
-* …
 
 === Action API changes in 1.39 ===
 * New `undeletetalk` parameter on action=undelete that allows you to restore
   all revisions of the associated talk page.
-* …
-
-=== Action API internal changes in 1.39 ===
-* …
 
 === Languages updated in 1.39 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -183,7 +191,6 @@ because of Phabricator reports.
   ones are retained as aliases for backwards compatibility.
 * (T117845) Started the renaming of the language codes for Serbian from sr-ec
   and sr-el to sr-cyrl and sr-latn.
-* …
 
 === Breaking changes in 1.39 ===
 * Basic non-JavaScript (Grade C) support has been dropped for Internet Explorer
@@ -229,7 +236,7 @@ because of Phabricator reports.
 * Changes to skins:
   - Skin::getCopyrightIcon(), ::getPoweredBy(), deprecated in 1.37 have been
     removed.
-  - Skin::bottomScripts soft deprecated in 1.37, was hard deprecated.
+  - Skin::bottomScripts, deprecated in 1.37, now emits deprecation notices.
     Skins using SkinTemplate must set bodyOnly as a skin option and
     remove lines of code generating html, body and head elements.
   - Skin::makeSearchButton and Skin::makeSearchInput were deprecated in 1.38.
@@ -253,6 +260,7 @@ because of Phabricator reports.
     SkinTemplateNavigation::Universal:
      - SkinTemplateNavigation::SpecialPage
      - SkinTemplateNavigation
+     - PersonalUrls
   - The mediawiki.skinning.content.externallinks module, which was
     deprecated in 1.36 has been removed. Skins that still rely on it
     will lose the icon styling of external links by type.
@@ -421,14 +429,13 @@ because of Phabricator reports.
 * IDatabase::getTopologyRootPrimary() was removed.
 * User::blockedBy(), deprecated since 1.38, has been removed.
 * User::getBlockId(), deprecated since 1.38, has been removed.
-* …
 
 === Deprecations in 1.39 ===
 * PageProps::getInstance(), deprecated since 1.38, emits deprecations warnings.
 * The global function wfGetDB() has been deprecated. Use
   LoadBalancer::getConnection() instead.
 * SpecialRedirectWithAction::__construct without SearchEngineFactory argument
-  is hard deprecated.
+  will now emit a deprecation notice.
 * Use of the SiteStatsUpdate constructor has been deprecated in favor of
   the ::factory() method.
 * AuthManager::checkAccountCreatePermissions has been deprecated. Use
@@ -564,16 +571,22 @@ because of Phabricator reports.
   warnings.
 * Instantiating HTMLCacheUpdate class, deprecated in 1.34, now emits deprecation
   warnings.
-* ISQLPlatform::tableNames() (implemented by IDatabase) is soft deprecated.
+* ISQLPlatform::tableNames() (implemented by IDatabase) is now deprecated.
   None of the tableName*() functions should be used by most users;
   if you absolutely must use raw SQL, write several tableName() calls instead.
 * Language::isWellFormedLanguageTag() has been deprecated in favor of
   LanguageCode::isWellFormedLanguageTag().
 * The PrevNextNavigationRenderer helper class has been deprecated in favor of
   the new PagerNavigationBuilder one.
-* IndexPager::getPagingLinks(), IndexPager::getLimitLinks() and
+* The methods IndexPager::getPagingLinks(), IndexPager::getLimitLinks() and
   IndexPager::buildPrevNextNavigation() have been deprecated in favor of
   IndexPager::getNavigationBuilder().
+* Overriding the method IndexPager::makeLink() has been deprecated.
+* ActorMigration is deprecated. The temporary table is no longer needed, the
+  actor table can be directly joined to the revision table, which is simple
+  enough to not need a helper class. See the methods of ActorMigration for more
+  specific information on replacements. ActorMigrationBase remains usable for
+  migrations in extension tables.
 * …
 
 === Other changes in 1.39 ===
@@ -585,7 +598,6 @@ because of Phabricator reports.
   cases however, this may cause an undesired change in behavior: if the dynamic
   default of setting X depends on the value of setting Y, and an extension
   changes Y, the changed value of Y will no longer affect the value of X.
-* …
 
 == Compatibility ==
 

@@ -91,7 +91,8 @@ class WebInstallerOptions extends WebInstallerPage {
 				'data-filedrop' => wfMessage( 'config-logo-filedrop' )
 			] ) .
 			Html::closeElement( 'div' ) .
-			Html::closeElement( 'div' )
+			Html::closeElement( 'div' ) .
+			$this->getFieldsetEnd()
 		);
 	}
 

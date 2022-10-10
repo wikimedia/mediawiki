@@ -389,21 +389,28 @@ class RestrictionStore {
 			} else {
 				$this->linkCache->addLinkObj( $page );
 				$latestRev = $this->linkCache->getGoodLinkFieldObj( $page, 'revision' );
-				$rows = $this->wanCache->getWithSetCallback(
-					// Page protections always leave a new null revision
-					$this->wanCache->makeKey( 'page-restrictions', 'v1', $id, $latestRev ),
-					$this->wanCache::TTL_DAY,
-					function ( $curValue, &$ttl, array &$setOpts ) use ( $loadRestrictionsFromDb ) {
-						$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-						$setOpts += Database::getCacheSetOptions( $dbr );
-						if ( $this->loadBalancer->hasOrMadeRecentPrimaryChanges() ) {
-							// TODO: cleanup Title cache and caller assumption mess in general
-							$ttl = WANObjectCache::TTL_UNCACHEABLE;
-						}
+				if ( !$latestRev ) {
+					// This method can get called in the middle of page creation
+					// (WikiPage::doUserEditContent) where a page might have an
+					// id but no revisions, while checking the "autopatrol" permission.
+					$rows = [];
+				} else {
+					$rows = $this->wanCache->getWithSetCallback(
+						// Page protections always leave a new null revision
+						$this->wanCache->makeKey( 'page-restrictions', 'v1', $id, $latestRev ),
+						$this->wanCache::TTL_DAY,
+						function ( $curValue, &$ttl, array &$setOpts ) use ( $loadRestrictionsFromDb ) {
+							$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+							$setOpts += Database::getCacheSetOptions( $dbr );
+							if ( $this->loadBalancer->hasOrMadeRecentPrimaryChanges() ) {
+								// TODO: cleanup Title cache and caller assumption mess in general
+								$ttl = WANObjectCache::TTL_UNCACHEABLE;
+							}
 
-						return $loadRestrictionsFromDb( $dbr );
-					}
-				);
+							return $loadRestrictionsFromDb( $dbr );
+						}
+					);
+				}
 			}
 
 			$this->loadRestrictionsFromRows( $page, $rows );

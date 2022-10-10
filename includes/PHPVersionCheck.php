@@ -29,7 +29,7 @@
  * and MW current version are hardcoded in this class.
  *
  * @note This class uses setter methods instead of a constructor so that
- * it can be compatible with PHP 4, PHP 5 and PHP 7 (without warnings).
+ * it can be compatible with PHP 4 through PHP 8 (without warnings).
  */
 class PHPVersionCheck {
 	/** @var string The number of the MediaWiki version used. If you're updating MW_VERSION in Defines.php, you must also update this value. */
@@ -78,7 +78,7 @@ class PHPVersionCheck {
 	 * Displays an error, if the installed PHP version does not meet the minimum requirement.
 	 */
 	function checkRequiredPHPVersion() {
-		$minimumVersion = '7.3.19';
+		$minimumVersion = '7.4.3';
 
 		/**
 		 * This is a list of known-bad ranges of PHP versions. Syntax is like SemVer – either:
@@ -93,10 +93,7 @@ class PHPVersionCheck {
 		 *
 		 * Remember to drop irrelevant ranges when bumping $minimumVersion.
 		 */
-		$knownBad = array(
-			// https://bugs.php.net/bug.php?id=79174 as a regression from https://bugs.php.net/bug.php?id=78929
-			'T243667, T291127' => '7.4.0 - 7.4.2'
-		);
+		$knownBad = array();
 
 		$passes = version_compare( PHP_VERSION, $minimumVersion, '>=' );
 

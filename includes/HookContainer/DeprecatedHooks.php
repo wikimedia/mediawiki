@@ -62,6 +62,7 @@ class DeprecatedHooks {
 		'ArticleDeleteComplete' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
 		'SkinTemplateNavigation' => [ 'deprecatedVersion' => '1.39' ],
 		'SkinTemplateNavigation::SpecialPage' => [ 'deprecatedVersion' => '1.39' ],
+		'PersonalUrls' => [ 'deprecatedVersion' => '1.39' ],
 	];
 
 	/**

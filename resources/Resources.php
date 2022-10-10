@@ -164,13 +164,6 @@ return [
 					);
 				}
 			],
-			[
-				'name' => 'legacy.wikibits.js',
-				'callback' => static function ( Context $context, Config $config ) {
-					return $config->get( MainConfigNames::IncludeLegacyJavaScript ) ?
-						new FilePath( 'legacy.wikibits.js' ) : '';
-				}
-			],
 		],
 		'dependencies' => 'jquery',
 		'targets' => [ 'desktop', 'mobile' ],
@@ -671,6 +664,7 @@ return [
 	],
 
 	'wvui-search' => [
+		'deprecated' => 'Deprecated in 1.39. Use `@wikimedia/codex-search` instead.',
 		'packageFiles' => [
 			'resources/src/wvui/wvui-search.js',
 			'resources/lib/wvui/wvui-search.commonjs2.js',

@@ -413,7 +413,7 @@ class ParserOutputAccess {
 
 			default:
 				$this->statsDataFactory->increment( 'ParserOutputAccess.PoolWork.Uncached' );
-				$workKey = $this->secondaryCache->makeParserOutputKey( $revision, $parserOptions );
+				$workKey = $this->secondaryCache->makeParserOutputKeyOptionalRevId( $revision, $parserOptions );
 				return new PoolWorkArticleView(
 					$workKey,
 					$revision,

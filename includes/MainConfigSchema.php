@@ -5761,16 +5761,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Whether to ensure the mediawiki.legacy library is loaded before other modules.
-	 *
-	 * @note Discouraged since 1.26: Always declare dependencies.
-	 *       May be needed on some wikis for backwards compatibility.
-	 */
-	public const IncludeLegacyJavaScript = [
-		'default' => false,
-	];
-
-	/**
 	 * ResourceLoader will not generate URLs whose query string is more than
 	 * this many characters long, and will instead use multiple requests with
 	 * shorter query strings. Using multiple requests may degrade performance,

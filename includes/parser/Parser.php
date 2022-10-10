@@ -4141,7 +4141,6 @@ class Parser {
 			$this->mOutput->setPageProperty( $key, '' );
 		}
 
-		// @phan-suppress-next-line PhanTypeMismatchReturnNullable False positive
 		return $text;
 	}
 
