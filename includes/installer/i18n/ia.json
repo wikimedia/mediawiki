@@ -216,7 +216,7 @@
 	"config-upload-deleted": "Directorio pro files delite:",
 	"config-upload-deleted-help": "Selige un directorio in le qual archivar le files delite.\nIdealmente, isto non debe esser accessibile ab le web.",
 	"config-personalization-settings": "Personalisation",
-	"config-logo-summary": "Pro cata un de iste campos, tu debe incargar un imagine del grandor appropriate, e entrar le URL in le quadros que appare infra. Tu pote usar <code>$wgStylePath</code> o <code>$wgScriptPath</code> si tu logo es relative a ille percursos. Tu pote lassar qualcunque de iste quadros vacue. \n\nSur navigatores supportate tu pote tamben traher files de imagine de tu systema de files in le quadros de entrata o area de previsualisation.",
+	"config-logo-summary": "Pro cata un de iste campos, tu debe incargar un imagine del grandor appropriate, e entrar le URL in le quadros que appare infra. Tu pote usar <code>$wgStylePath</code> o <code>$wgScriptPath</code> si tu logo es relative a ille percursos. Tu pote lassar qualcunque de iste quadros vacue.",
 	"config-logo-preview-main": "Pagina principal",
 	"config-logo-icon": "Logo (icone)",
 	"config-logo-icon-help": "Tu icone de logo debe esser quadrate e idealmente haber plus de 50px o esser in formato SVG.",
