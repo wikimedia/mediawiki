@@ -857,7 +857,7 @@
 	"nextn-title": "{{PLURAL:$1|Nākamie|Nākamais|Nākamie}} $1 {{PLURAL:$1|rezultāti|rezultāts|rezultāti}}",
 	"shown-title": "Parādīt $1 {{PLURAL:$1|rezultātus|rezultātu|rezultātus}} vienā lapā",
 	"viewprevnext": "Skatīt ($1 {{int:pipe-separator}} $2) ($3 vienā lapā).",
-	"searchmenu-exists": "'''Šajā projektā ir raksts ar nosaukumu \"[[:$1]]\"'''",
+	"searchmenu-exists": "Šajā projektā ir raksts ar nosaukumu \"[[:$1]]\". {{PLURAL:$2|0=|Skatīt arī citus meklēšanas rezultātus.}}",
 	"searchmenu-new": "Izveido lapu \"[[:$1]]\" šajā vikivietnē! {{PLURAL:$2|0=|Apskati arī meklēšanā atrasto lapu.|Apskati arī meklēšanā atrastos rezultātus.}}",
 	"searchprofile-articles": "Rakstos",
 	"searchprofile-images": "Multivides failos",
