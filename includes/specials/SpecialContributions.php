@@ -923,6 +923,6 @@ class SpecialContributions extends IncludableSpecialPage {
 	 * @inheritDoc
 	 */
 	public function getAssociatedNavigationLinks(): array {
-		return SpecialContribute::getInstance()->getAssociatedNavigationLinks();
+		return ( new SpecialContribute() )->getAssociatedNavigationLinks();
 	}
 }
