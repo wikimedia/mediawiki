@@ -370,15 +370,21 @@ class FullSearchResultWidget implements SearchResultWidget {
 	 * @return ThumbnailImage|MediaTransformOutput|bool False on failure
 	 */
 	private function transformThumbnail( File $img, SearchResultThumbnail $thumbnail ) {
+		$optimalThumbnailWidth = $thumbnail->getWidth();
+
 		// $thumb will have rescaled to fit within a <$size>x<$size> bounding
 		// box, but we want it to cover a full square (at the cost of losing
 		// some of the edges)
 		// instead of the largest side matching up with $size, we want the
 		// smallest size to match (or exceed) $size
-		$thumbnailSize = max( $thumbnail->getWidth(), $thumbnail->getHeight() );
-		$optimalThumbnailSize = $thumbnailSize;
-		$rescaleCoefficient = $thumbnailSize / min( $thumbnail->getWidth(), $thumbnail->getHeight() );
-		$rescaledSize = $rescaleCoefficient * $thumbnailSize;
+		$thumbnailMaxDimension = max( $thumbnail->getWidth(), $thumbnail->getHeight() );
+		$thumbnailMinDimension = min( $thumbnail->getWidth(), $thumbnail->getHeight() );
+		$rescaleCoefficient = $thumbnailMaxDimension / $thumbnailMinDimension;
+
+		// we'll only deal with width from now on since conventions for
+		// standard sizes have formed around width; height will simply
+		// follow according to aspect ratio
+		$rescaledWidth = round( $rescaleCoefficient * $thumbnail->getWidth() );
 
 		// we'll also be looking at $wgThumbLimits to ensure that we pick
 		// from within the predefined list of sizes
@@ -387,18 +393,18 @@ class FullSearchResultWidget implements SearchResultWidget {
 		// different and thumb limits don't matter (e.g. for audio, the
 		// player must remain at the size we want, regardless of whether or
 		// not it fits the thumb limits, which in this case are irrelevant)
-		if ( $rescaledSize !== $thumbnailSize ) {
+		if ( $rescaledWidth !== $thumbnail->getWidth() ) {
 			$thumbLimits = $this->specialPage->getConfig()->get( 'ThumbLimits' );
 			$largerThumbLimits = array_filter(
 				$thumbLimits,
-				static function ( $limit ) use ( $rescaledSize ) {
-					return $limit >= $rescaledSize;
+				static function ( $limit ) use ( $rescaledWidth ) {
+					return $limit >= $rescaledWidth;
 				}
 			);
-			$optimalThumbnailSize = $largerThumbLimits ? min( $largerThumbLimits ) : max( $thumbLimits );
+			$optimalThumbnailWidth = $largerThumbLimits ? min( $largerThumbLimits ) : max( $thumbLimits );
 		}
 
-		return $img->transform( [ 'width' => $optimalThumbnailSize, 'height' => $optimalThumbnailSize ] );
+		return $img->transform( [ 'width' => $optimalThumbnailWidth ] );
 	}
 
 	/**
