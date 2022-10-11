@@ -1171,6 +1171,7 @@
 	"timezoneuseserverdefault": "Wikistandaard gebruiken ($1)",
 	"timezoneuseoffset": "Anders (tijdverschil met UTC)",
 	"timezone-useoffset-placeholder": "Voorbeeldinvoer: \"-07:00\" of \"01:00\"",
+	"timezone-invalid": "Ongeldige tijdzone of tijdsverschil.",
 	"servertime": "Servertijd:",
 	"guesstimezone": "Vanuit de browser toevoegen",
 	"timezoneregion-africa": "Afrika",

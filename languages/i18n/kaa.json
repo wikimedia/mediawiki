@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajiniyaz Nurniyazov",
 			"AlefZet",
 			"Amire80",
 			"Atabek",
@@ -582,6 +583,8 @@
 	"recentchangesdays": "Aqırǵı ózgerislerde kórsetiletuǵın kúnler:",
 	"recentchangesdays-max": "Maksimum $1 {{PLURAL:$1|kún}}",
 	"recentchangescount": "Aqırǵı ózgerisler, betler tariyxı hám jurnallarda kórsetiletuǵın redakciyalar sanı:",
+	"prefs-description-rc": "Aqırǵı ózgerisler qatarın sazlań.",
+	"prefs-description-misc": "Mazmunlar dizimin tártipke keltiriń",
 	"prefs-user-downloaddata-label": "Esap maǵlıwmatlarına kirisiw:",
 	"prefs-user-restoreprefs-label": "Sazlamalardı qayta tiklew:",
 	"savedprefs": "Siziń sazlawlarıńız saqlandı.",
@@ -589,6 +592,7 @@
 	"localtime": "Jergilikli waqıt:",
 	"timezoneuseserverdefault": "Serverdiń baslanǵısh sazlawların qollanıw: ($1)",
 	"timezoneuseoffset": "Basqa (UTC den parıqlı waqıt)",
+	"timezone-invalid": "Jaramsız waqıt regionı yamasa waqıt aralıǵı.",
 	"servertime": "Server waqtı:",
 	"guesstimezone": "Brauzerden alıp toltırıw",
 	"allowemail": "Maǵan basqa paydalanıwshılarǵa elektron pochta xabarların jiberiwge ruxsat beriń",
@@ -923,8 +927,8 @@
 	"mostimages": "Eń kóp paydalanılǵan fayllar",
 	"mostrevisions": "Eń kóp dúzetilgen betler",
 	"prefixindex": "Prefiksi bar barlıq betler",
-	"shortpages": "Eń qısqa betler",
-	"longpages": "Eń uzın betler",
+	"shortpages": "Qısqa betler",
+	"longpages": "Uzın betler",
 	"deadendpages": "Hesh betke siltemeytuǵın betler",
 	"deadendpagestext": "To'mendegi betler {{SITENAME}} proyektindegi basqa betlerge siltelmegen.",
 	"protectedpages": "Qorǵalǵan betler",

@@ -1094,6 +1094,7 @@
 	"timezoneuseserverdefault": "Од викито ($1)",
 	"timezoneuseoffset": "Друго (временско отстапување од UTC)",
 	"timezone-useoffset-placeholder": "Примерни вредности: „-07:00“ или „01:00“",
+	"timezone-invalid": "Неважечки часовен појас или часовно отстапување.",
 	"servertime": "Време на опслужувачот:",
 	"guesstimezone": "Пополни од прелистувачот",
 	"timezoneregion-africa": "Африка",

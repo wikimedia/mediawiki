@@ -1111,6 +1111,7 @@
 	"timezoneuseserverdefault": "ברירת המחדל של האתר ($1)",
 	"timezoneuseoffset": "אחר (הפרש זמן מ־UTC)",
 	"timezone-useoffset-placeholder": "ערכים לדוגמה: \"-07:00\" או \"01:00\"",
+	"timezone-invalid": "אזור הזמן או הפרש הזמן אינו תקין.",
 	"servertime": "השעה הנוכחית בשרת:",
 	"guesstimezone": "קבלה מהדפדפן",
 	"timezoneregion-africa": "אפריקה",
