@@ -38,7 +38,7 @@ This is a security and maintenance release of the MediaWiki 1.38 branch.
   strlen().
 * (T312300) SpecialDiff: Don't pass null to explode().
 * (T312680) parser: Fix CoreParserFunctions::urlencode() null coalescence $arg.
- (T289926) Handle null passed to wfShorthandToInteger() and Html::element().
+* (T289926) Handle null passed to wfShorthandToInteger() and Html::element().
 * (T289926) Ensure that strlen() does not get passed a (valid) null.
 * (T312301) SpecialDiff: Don't pass null to trim().
 * Hooks: Use more meaningful name for SkinAfterPortlet hook parameter.
