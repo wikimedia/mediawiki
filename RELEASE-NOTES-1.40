@@ -106,7 +106,7 @@ MediaWiki supports over 350 languages. Many localisations are updated regularly.
 Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
-* …
+* (T320465) Added language support for Magahi (mag).
 
 === Breaking changes in 1.40 ===
 * OutputPage::enableClientCache no longer accepts a parameter, nor does it

@@ -301,6 +301,7 @@ class Names {
 		'lzh' => '文言', # Literary Chinese, T10217
 		'lzz' => 'Lazuri', # Laz
 		'mad' => 'Madhurâ', # Madurese, T264582
+		'mag' => 'मगही', # Magahi
 		'mai' => 'मैथिली', # Maithili
 		'map-bms' => 'Basa Banyumasan', # Banyumasan ('jv-x-bms')
 		'mdf' => 'мокшень', # Moksha
