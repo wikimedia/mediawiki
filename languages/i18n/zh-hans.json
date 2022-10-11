@@ -1252,6 +1252,7 @@
 	"timezoneuseserverdefault": "使用wiki默认值（$1）",
 	"timezoneuseoffset": "其他（指定与UTC的时差）",
 	"timezone-useoffset-placeholder": "示例值：\"-07:00\"或\"01:00\"",
+	"timezone-invalid": "时区或时差无效。",
 	"servertime": "服务器时间：",
 	"guesstimezone": "使用浏览器设置",
 	"timezoneregion-africa": "非洲",

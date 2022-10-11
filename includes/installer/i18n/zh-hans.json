@@ -252,7 +252,7 @@
 	"config-upload-deleted": "已删除文件的目录：",
 	"config-upload-deleted-help": "指定用于存放被删除文件的目录。\n理想情况下，该目录不应能通过web访问。",
 	"config-personalization-settings": "个性化",
-	"config-logo-summary": "对于以下字段，您需要上传一个大小合适的图片，并在下方的方框中输入URL。如您的标志与<code>$wgStylePath</code>或<code>$wgScriptPath</code>是相对路径关系，您可以使用这些值。您可以将下方任意方框留空。\n\n如果您的浏览器支持，您也可以从您的文件系统中拖拽图像文件至输入框或预览区域处。",
+	"config-logo-summary": "对于以下字段，您需要上传一个大小合适的图片，并在下方的方框中输入URL。如您的标志与<code>$wgStylePath</code>或<code>$wgScriptPath</code>是相对路径关系，您可以使用这些值。您可以将下方任意方框留空。",
 	"config-logo-preview-main": "首页",
 	"config-logo-icon": "标志（图标）：",
 	"config-logo-icon-help": "您的标志应为矩形，理想情况下应大于50px或是SVG格式。",

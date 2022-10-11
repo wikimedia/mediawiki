@@ -318,7 +318,7 @@
 	"next": "Leswilandzelaka",
 	"last": "Swo hetelela",
 	"page_first": "Xo sungula",
-	"histlegend": "Leswaku uhambanisa mindzulamiso: thlava eka swifungu swa xirhendzevutana swa mindzulamiso leyi hambanaka ivi u thlava bhatheni leyi nge \"Enter\" eka Khibhodi ya wena kumbe bhatheni leyi kombiweke ehansi.<br />\nSwihlamuseri: '''({{int:sweswi}})''' = kuhambana na ndzulamiso wa sweswinyana, '''({{int:khale}})''' = kuhambana na ndzulamiso lowu tlhandlamaka lowu, '''{{int:minoreditletter}}''' = ndzulamiso lowu tsanana.",
+	"histlegend": "Leswaku uhambanisa mindzulamiso: thlava eka swifungu swa xirhendzevutana swa mindzulamiso leyi hambanaka ivi u thlava bhatheni leyi nge \"Enter\" eka Khibhodi ya wena kumbe bhatheni leyi kombiweke ehansi.<br />\nSwihlamuseri: <strong>({{int:cur}})</strong> = kuhambana na ndzulamiso wa sweswinyana, <strong>({{int:last}})</strong> = kuhambana na ndzulamiso lowu tlhandlamaka lowu, <strong>{{int:minoreditletter}}</strong> = ndzulamiso lowu tsanana.",
 	"history-fieldset-title": "Langutisa matimu",
 	"history-show-deleted": "Leswi suriweke ntsena",
 	"histfirst": "Swa khalenyana",
