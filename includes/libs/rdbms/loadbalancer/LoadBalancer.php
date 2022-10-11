@@ -558,7 +558,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		// Scale the configured load ratios according to each server's load and state
-		$this->getLoadMonitor()->scaleLoads( $loads, $domain );
+		$this->getLoadMonitor()->scaleLoads( $loads );
 
 		// Pick a server to use, accounting for weights, load, lag, and "waitForPos"
 		$this->lazyLoadReplicationPositions(); // optimizes server candidate selection
@@ -2323,7 +2323,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			}
 		}
 
-		return $this->getLoadMonitor()->getLagTimes( $indexesWithLag, $domain ) + $knownLagTimes;
+		return $this->getLoadMonitor()->getLagTimes( $indexesWithLag ) + $knownLagTimes;
 	}
 
 	public function waitForPrimaryPos( IDatabase $conn, $pos = false, $timeout = null ) {

@@ -40,10 +40,10 @@ class LoadMonitorNull implements ILoadMonitor {
 	public function setStatsdDataFactory( StatsdDataFactoryInterface $statsFactory ) {
 	}
 
-	public function scaleLoads( array &$loads, $domain ) {
+	public function scaleLoads( array &$loads ) {
 	}
 
-	public function getLagTimes( array $serverIndexes, $domain ) {
+	public function getLagTimes( array $serverIndexes ) {
 		return array_fill_keys( $serverIndexes, 0 );
 	}
 
