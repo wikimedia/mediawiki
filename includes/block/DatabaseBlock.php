@@ -30,7 +30,6 @@ use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
@@ -1171,15 +1170,6 @@ class DatabaseBlock extends AbstractBlock {
 		if ( !$user->isRegistered() &&
 			MediaWikiServices::getInstance()->getUserNameUtils()->isUsable( $user->getName() )
 		) {
-			// Temporarily log some block details to debug T192964
-			$logger = LoggerFactory::getInstance( 'BlockManager' );
-			$logger->warning(
-				'Blocker is neither a local user nor an invalid username',
-				[
-					'blocker' => (string)$user,
-					'blockId' => $this->getId( $this->getWikiId() ),
-				]
-			);
 			throw new InvalidArgumentException(
 				'Blocker must be a local user or a name that cannot be a local user'
 			);
