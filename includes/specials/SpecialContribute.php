@@ -11,11 +11,6 @@ use MediaWiki\Specials\Contribute\ContributeFactory;
 class SpecialContribute extends IncludableSpecialPage {
 
 	/**
-	 * @var SpecialContribute
-	 */
-	private static $instance = null;
-
-	/**
 	 * @var array List of MediaWiki\Specials\Contribute\Card\ContributeCard
 	 * to show on the Special:Contribute page
 	 */
@@ -26,19 +21,14 @@ class SpecialContribute extends IncludableSpecialPage {
 	 */
 	public function __construct() {
 		parent::__construct( 'Contribute' );
-		if ( self::$instance instanceof SpecialContribute ) {
-			$this->cards = static::$instance->cards;
-		} else {
-			$this->cards = ( new ContributeFactory( $this->getContext() ) )->getCards();
-		}
-		static::$instance = $this;
+		$this->cards = ( new ContributeFactory( $this->getContext() ) )->getCards();
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function getAssociatedNavigationLinks(): array {
-		if ( !$this->canShowCardsAndSkinEnabled() ) {
+		if ( !$this->isShowable() ) {
 			return [];
 		}
 		$userName = $this->getUser()->getName();
@@ -119,46 +109,14 @@ class SpecialContribute extends IncludableSpecialPage {
 	}
 
 	/**
-	 * Check if the Special:Contribute page is enabled for the current skin
+	 * Check if it is allowed to access the Special:Contribute page
 	 *
 	 * @return bool
 	 */
-	private function isEnabledOnCurrentSkin() {
-		return !in_array(
-			$this->getSkin()->getSkinName(),
-			$this->getConfig()->get( 'SpecialContributeSkinsDisabled' )
-		);
-	}
-
-	/**
-	 * Check if skin is allowed to access the Special:Contribute page
-	 * and the page have enough cards to be enabled
-	 *
-	 * @return bool
-	 */
-	private function canShowCardsAndSkinEnabled() {
-		return $this->hasCards() && $this->isEnabledOnCurrentSkin();
-	}
-
-	/**
-	 * Check if the skin can show Special:Contribute page.
-	 *
-	 * @return bool
-	 */
-	public static function isShowable(): bool {
-		return static::getInstance()->canShowCardsAndSkinEnabled();
-	}
-
-	/**
-	 * Instance Creater maintains a single instance of Special:Contribute object
-	 *
-	 * @return SpecialContribute
-	 */
-	public static function getInstance() {
-		if ( static::$instance === null ) {
-			static::$instance = new SpecialContribute();
-		}
-		return static::$instance;
+	public function isShowable() {
+		$specialContributeSkinsDisabled = $this->getConfig()->get( 'SpecialContributeSkinsDisabled' );
+		return $this->hasCards() &&
+			!in_array( $this->getContext()->getSkin()->getSkinName(), $specialContributeSkinsDisabled );
 	}
 
 }

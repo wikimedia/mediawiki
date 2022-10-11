@@ -468,23 +468,13 @@ class SkinTemplate extends Skin {
 				$active = false;
 			}
 
-			if ( SpecialContribute::isShowable() ) {
-				$href = self::makeSpecialUrlSubpage( 'Contribute', $this->username );
-				$personal_urls['mycontris'] = [
-					'text' => $this->msg( 'contribute' )->text(),
-					'href' => $href,
-					'active' => $active,
-					'icon' => 'edit'
-				];
-			} else {
-				$href = self::makeSpecialUrlSubpage( 'Contributions', $this->username );
-				$personal_urls['mycontris'] = [
-					'text' => $this->msg( 'mycontris' )->text(),
-					'href' => $href,
-					'active' => $active,
-					'icon' => 'userContributions'
-				];
-			}
+			$href = self::makeSpecialUrlSubpage( 'Contributions', $this->username );
+			$personal_urls['mycontris'] = [
+				'text' => $this->msg( 'mycontris' )->text(),
+				'href' => $href,
+				'active' => $active,
+				'icon' => 'userContributions'
+			];
 
 			// if we can't set the user, we can't unset it either
 			if ( !$this->isTempUser && $request->getSession()->canSetUser() ) {
@@ -517,21 +507,12 @@ class SkinTemplate extends Skin {
 					'active' => false,
 					'icon' => 'userTalk',
 				];
-				if ( SpecialContribute::isShowable() ) {
-					$personal_urls['anoncontribs'] = [
-						'text' => $this->msg( 'contribute' )->text(),
-						'href' => self::makeSpecialUrlSubpage( 'Contribute', false ),
-						'active' => false,
-						'icon' => 'edit',
-					];
-				} else {
-					$personal_urls['anoncontribs'] = [
-						'text' => $this->msg( 'anoncontribs' )->text(),
-						'href' => self::makeSpecialUrlSubpage( 'Mycontributions', false ),
-						'active' => false,
-						'icon' => 'userContributions',
-					];
-				}
+				$personal_urls['anoncontribs'] = [
+					'text' => $this->msg( 'anoncontribs' )->text(),
+					'href' => self::makeSpecialUrlSubpage( 'Mycontributions', false ),
+					'active' => false,
+					'icon' => 'userContributions',
+				];
 			}
 		}
 		if ( $this->isTempUser || !$this->loggedin ) {
