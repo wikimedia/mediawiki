@@ -207,9 +207,9 @@ class. Hooks declared in extensions may be deprecated by listing them in the
 
 If the `component` is not specified, it defaults to the name of the extension.
 
-The hook interface should be marked as deprecated by adding @deprecated to the
+The hook interface should be marked as deprecated by adding `@deprecated` to the
 interface doc comment. The interface doc comment is a better place for
-@deprecated than the method doc comment, because this causes the interface to
+`@deprecated` than the method doc comment, because this causes the interface to
 be deprecated for implementation. Deprecating the method only causes calling
 to be deprecated, not handling.
 
@@ -272,4 +272,4 @@ To deprecate a hook without raising deprecation warnings, use the "silent" flag:
         }
     }
 
-As with hard deprecation, @deprecated should be added to the interface.
+As with hard deprecation, `@deprecated` should be added to the interface.
