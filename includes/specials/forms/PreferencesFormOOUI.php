@@ -213,6 +213,19 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	 */
 	private function createMobilePreferencesForm() {
 		$prefPanels = [];
+		$iconNames = [
+			'personal' => 'userAvatar',
+			'rendering' => 'palette',
+			'editing' => 'edit',
+			'rc' => 'recentChanges',
+			'watchlist' => 'watchlist',
+			'searchoptions' => 'search',
+			'misc' => '',
+		];
+		$hookIcons = [];
+		// Get icons from extensions that have their own sections
+		$this->getHookRunner()->onPreferencesGetIcon( $hookIcons );
+		$iconNames += $hookIcons;
 
 		foreach ( $this->mFieldTree as $key => $val ) {
 			if ( !is_array( $val ) ) {
@@ -238,8 +251,20 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 
 			$iconHeaderDiv = ( new OOUI\Tag( 'div' ) )
 				->addClasses( [ 'mw-prefs-header-container' ] );
-
+			$iconExists = array_key_exists( $key, $iconNames );
+			if ( $iconExists ) {
+				$iconName = $iconNames[ $key ];
+			} else {
+				$iconName = "settings";
+			}
+			$spanIcon = new OOUI\IconWidget( [
+				'icon' => $iconName,
+				'label' => $label,
+				'title' => $label,
+				'classes' => [ 'mw-prefs-icon' ],
+			] );
 			$prefTitle = ( new OOUI\Tag( 'h5' ) )->appendContent( $label )->addClasses( [ 'prefs-title' ] );
+			$iconHeaderDiv->appendContent( $spanIcon );
 			$iconHeaderDiv->appendContent( $prefTitle );
 			$prefPanel->appendContent( $iconHeaderDiv );
 			$prefDescriptionMsg = $this->msg( "prefs-description-" . $key );
