@@ -57,6 +57,9 @@ For notes on 1.39.x and older releases, see HISTORY.
 * The ApiSandbox will now by default request responses in the latest API format,
   rather than the original format. Users can set `formatversion` to a different
   value if needed.
+* (T277618) The @noVarDump annotation from the DebugInfoTrait tool can now be
+  added to references to stop them from being expanded when their object is
+  passed to var_dump(), to make its use for debugging more feasible.
 * …
 
 === External library changes in 1.40 ===

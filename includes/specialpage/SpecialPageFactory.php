@@ -39,6 +39,7 @@ use SpecialPage;
 use Title;
 use TitleFactory;
 use User;
+use Wikimedia\DebugInfo\DebugInfoTrait;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
@@ -63,6 +64,8 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * @since 1.17
  */
 class SpecialPageFactory {
+	use DebugInfoTrait;
+
 	/**
 	 * List of special page names to the subclass of SpecialPage which handles them.
 	 */
@@ -1027,13 +1030,22 @@ class SpecialPageFactory {
 	/** @var Language */
 	private $contLang;
 
-	/** @var ObjectFactory */
+	/**
+	 * @var ObjectFactory
+	 * @noVarDump
+	 */
 	private $objectFactory;
 
-	/** @var HookContainer */
+	/**
+	 * @var HookContainer
+	 * @noVarDump
+	 */
 	private $hookContainer;
 
-	/** @var HookRunner */
+	/**
+	 * @var HookRunner
+	 * @noVarDump
+	 */
 	private $hookRunner;
 
 	/**
