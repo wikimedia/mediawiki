@@ -3234,7 +3234,7 @@
 	"confirm-watch-button": "OK",
 	"confirm-watch-top": "Přidat tuto stránku mezi sledované?",
 	"confirm-watch-label": "Doba sledování stránky:",
-	"watchlist-expiry-options": "Trvale:infinite,1 týden:1 week,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months",
+	"watchlist-expiry-options": "Trvale:infinite,1 týden:1 week,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year",
 	"watchlist-expires-in-aria-label": "Tato sledovaná stránka vyprší",
 	"confirm-watch-button-expiry": "Sledovat",
 	"confirm-unwatch-button": "OK",

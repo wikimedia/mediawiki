@@ -1234,6 +1234,7 @@
 	"timezoneuseserverdefault": "Использовать настройки сервера ($1)",
 	"timezoneuseoffset": "Иное (смещение времени от UTC)",
 	"timezone-useoffset-placeholder": "Например: «-07:00» или «01:00»",
+	"timezone-invalid": "Неверный часовой пояс или неверное смещение времени.",
 	"servertime": "Время сервера:",
 	"guesstimezone": "Заполнить из браузера",
 	"timezoneregion-africa": "Африка",
