@@ -62,22 +62,6 @@ class MagicWordFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertContainsOnly( 'string', $substIds );
 	}
 
-	/**
-	 * Test both valid and invalid caching hints paths
-	 */
-	public function testGetCacheTTL() {
-		$magicWordFactory = $this->makeMagicWordFactory();
-		$actual = $magicWordFactory->getCacheTTL( 'localday' );
-
-		$this->assertSame( 3600, $actual );
-
-		$actual = $magicWordFactory->getCacheTTL( 'currentmonth' );
-		$this->assertSame( 86400, $actual );
-
-		$actual = $magicWordFactory->getCacheTTL( 'invalid' );
-		$this->assertSame( -1, $actual );
-	}
-
 	public function testGetDoubleUnderscoreArray() {
 		$magicWordFactory = $this->makeMagicWordFactory();
 		$actual = $magicWordFactory->getDoubleUnderscoreArray();
