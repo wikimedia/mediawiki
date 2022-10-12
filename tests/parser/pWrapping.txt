@@ -1,0 +1,396 @@
+# The parsoid-compatible option below is only relevant when we are running
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html
+version=2
+!! end
+
+!! article
+Template:1x
+!! text
+{{{1}}}
+!! endarticle
+
+!! test
+No block tags
+!! wikitext
+a
+
+b
+!! html
+<p>a
+</p><p>b
+</p>
+!! end
+
+!! test
+Block tag on one line (<div>)
+!! wikitext
+a <div>foo</div>
+
+b
+!! html
+<p>a </p><div>foo</div>
+<p>b
+</p>
+!! end
+
+!! test
+No p-wrappable content
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+<span><div>x</div></span>
+<span><s><div>x</div></s></span>
+<small><em></em></small><span><s><div>x</div></s></span>
+!! html
+<span><div>x</div></span>
+<span><s><div>x</div></s></span>
+<p><small><em></em></small></p><span><s><div>x</div></s></span>
+!! end
+
+# T177612: Parsoid-only test
+!! test
+Transclusion meta tags shouldn't trip Parsoid's useless p-wrapper stripping code
+!! wikitext
+{{1x|<span><div>x</div></span>}}
+x
+!! html/parsoid
+<span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"stx":"html","pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;span>&lt;div>x&lt;/div>&lt;/span>"}},"i":0}}]}'><div>x</div></span>
+<p>x</p>
+!! end
+
+!! test
+Block tag on one line (<blockquote>)
+!! wikitext
+a <blockquote>foo</blockquote>
+
+b
+!! html
+<p>a </p><blockquote><p>foo</p></blockquote>
+<p>b
+</p>
+!! end
+
+!! test
+Block tag on both lines (<div>)
+!! wikitext
+a <div>foo</div>
+
+b <div>foo</div>
+!! html
+<p>a </p><div>foo</div><p>
+b </p><div>foo</div>
+!! end
+
+!! test
+Block tag on both lines (<blockquote>)
+!! wikitext
+a <blockquote>foo</blockquote>
+
+b <blockquote>foo</blockquote>
+!! html
+<p>a </p><blockquote><p>foo</p></blockquote><p>
+b </p><blockquote><p>foo</p></blockquote>
+!! end
+
+!! test
+Multiple lines without block tags
+!! wikitext
+<div>foo</div> a
+b
+c
+d<!--foo--> e
+x <div>foo</div> z
+!! html/php
+<div>foo</div><p> a
+</p><p>b
+c
+d e
+</p><p>
+x </p><div>foo</div><p> z</p>
+!! html/parsoid
+<div data-parsoid='{"stx":"html"}'>foo</div><p> a</p>
+<p>b
+c
+d<!--foo--> e</p>
+<p>x </p><div data-parsoid='{"stx":"html"}'>foo</div><p> z</p>
+!! end
+
+!! test
+Empty lines between lines with block tags
+!! wikitext
+<div></div>
+
+
+<div></div>a
+
+b
+<div>a</div>b
+
+<div>b</div>d
+
+
+<div>e</div>
+!! html/php
+<div></div>
+<p><br />
+</p>
+<div></div><p>a
+</p><p>b
+</p>
+<div>a</div><p>b
+</p><div>b</div><p>d
+</p><p><br />
+</p>
+<div>e</div>
+!! html/parsoid
+<div data-parsoid='{"stx":"html"}'></div>
+
+<p><br /></p>
+<div data-parsoid='{"stx":"html"}'></div><p>a</p>
+
+<p>b</p>
+<div data-parsoid='{"stx":"html"}'>a</div><p>b</p>
+
+<div data-parsoid='{"stx":"html"}'>b</div><p>d</p>
+
+<p><br /></p>
+<div data-parsoid='{"stx":"html"}'>e</div>
+!! end
+
+!! test
+Unclosed HTML p-tags should be handled properly
+!! wikitext
+<div><p>foo</div>
+a
+
+b
+!! html/php
+<div><p>foo</p></div>
+<p>a
+</p><p>b
+</p>
+!! html/parsoid
+<div data-parsoid='{"stx":"html"}'><p data-parsoid='{"stx":"html", "autoInsertedEnd":true}'>foo</p></div>
+<p>a</p>
+<p>b</p>
+!! end
+
+## SSS FIXME: I can come up with other scenarios where this doesn't work because
+## of eager output of buffered tokens in the p-wrapper. But, I'm going to ignore
+## them for now.
+!! test
+1. P-wrapping should leave sol-transparent tags outside p-tags where possible
+!! options
+parsoid=wt2html
+!! wikitext
+a [[Category:A1]] [[Category:A2]]
+[[Category:A3]]
+[[Category:A4]]
+!! html/parsoid
+<p>a</p>
+<link rel="mw:PageProp/Category" href="./Category:A1"/> <link rel="mw:PageProp/Category" href="./Category:A2"/> <link rel="mw:PageProp/Category" href="./Category:A3"/> <link rel="mw:PageProp/Category" href="./Category:A4"/>
+!! end
+
+!! test
+2. P-wrapping should leave sol-transparent tags outside p-tags where possible
+!! options
+parsoid=wt2html
+!! wikitext
+[[Category:A1]]a
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:A1"/><p>a</p>
+!! end
+
+!! test
+No paragraph necessary for SOL transparent template
+!! wikitext
+<span><div>foo</div></span>
+[[Category:Foo]]
+
+<span><div>foo</div></span>
+{{1x|[[Category:Foo]]}}
+!! html/php
+<span><div>foo</div></span>
+<span><div>foo</div></span>
+!! html/parsoid
+<span data-parsoid='{"stx":"html"}'><div data-parsoid='{"stx":"html"}'>foo</div></span>
+<link rel="mw:PageProp/Category" href="./Category:Foo"/>
+
+<span data-parsoid='{"stx":"html"}'><div data-parsoid='{"stx":"html"}'>foo</div></span>
+<link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Category:Foo]]"}},"i":0}}]}'/>
+!! end
+
+!! test
+Avoid expanding multiline sol transparent template ranges unnecessarily
+!! wikitext
+hi
+
+
+{{1x|<br/>
+}}
+
+[[Category:Ho]]
+!! html/php
+<p>hi
+</p><p><br />
+<br />
+</p>
+!! html/parsoid
+<p>hi</p>
+
+<p><br />
+<br about="#mwt1" typeof="mw:Transclusion" data-parsoid="{}" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;br/>\n"}},"i":0}}]}'/><span about="#mwt1">
+</span></p>
+
+<link rel="mw:PageProp/Category" href="./Category:Ho" />
+!! end
+
+!! test
+Paragraph wrapping following unclosed table
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+{|
+|-
+
+{|
+| x
+|}
+
+a
+
+b
+
+c
+!! html/php
+<table>
+
+
+</table><table>
+<tbody><tr>
+<td>x
+</td></tr></tbody></table>
+<p>a
+</p><p>b
+</p><p>c
+</p>
+!! html/parsoid
+<table data-parsoid='{"autoInsertedEnd":true}'>
+<tbody><tr class="mw-empty-elt" data-parsoid='{"startTagSrc":"|-"}'></tr>
+
+</tbody></table><table>
+<tbody><tr data-parsoid='{"autoInsertedStart":true}'><td>x</td></tr>
+</tbody></table>
+
+<p>a</p>
+
+<p>b</p>
+
+<p>c</p>
+!! end
+
+!! test
+Paragraph wrapping suppressed in html p
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+<p>
+
+
+hi
+
+
+
+</p>
+!! html/php
+<p>
+
+
+hi
+
+
+
+</p>
+!! html/parsoid
+<p data-parsoid='{"stx":"html"}'>
+
+
+hi
+
+
+
+</p>
+!! end
+
+!! test
+Dangling table row doesn't prevent p-wrapping
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+{|
+| hi
+|-
+|} ho
+!! html/parsoid
+<table>
+<tbody><tr><td>hi</td></tr>
+<tr class="mw-empty-elt"></tr>
+</tbody></table><p> ho</p>
+!! end
+
+!! test
+P-wrapping non-breaking spaces
+!! wikitext
+ 
+!! html/php
+<p>&#160;
+</p>
+!! html/parsoid
+<p> </p>
+!! end
+
+!! test
+Paragraph wrapping suppressed in table captions
+!! wikitext
+{|
+|+hi
+|ho
+|}
+
+{|
+|hi
+|+ho
+|}
+
+it's off to work we go
+!! html/php
+<table>
+<caption>hi
+</caption>
+<tbody><tr>
+<td>ho
+</td></tr></tbody></table>
+<table>
+<tbody><tr>
+<td>hi
+</td>
+</tr></tbody><caption>ho
+</caption></table>
+<p>it's off to work we go
+</p>
+!! html/parsoid
+<table>
+<caption>hi</caption>
+<tbody><tr><td>ho</td></tr>
+</tbody></table>
+
+<table>
+<tbody><tr><td>hi</td></tr>
+</tbody><caption>ho</caption>
+</table>
+
+<p>it's off to work we go</p>
+!! end

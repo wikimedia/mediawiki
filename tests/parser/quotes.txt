@@ -1,0 +1,649 @@
+# The parsoid-compatible option below is only relevant when we are running
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html
+version=2
+!! end
+
+# This is the standard article assumed to exist.
+!! article
+Main Page
+!! text
+blah blah
+!! endarticle
+
+!! test
+Quotes
+!! wikitext
+Normal text. '''Bold text.''' Normal text. ''Italic text.''
+
+Normal text. '''''Bold italic text.''''' Normal text.
+!! html
+<p>Normal text. <b>Bold text.</b> Normal text. <i>Italic text.</i>
+</p><p>Normal text. <i><b>Bold italic text.</b></i> Normal text.
+</p>
+!! end
+
+!! test
+Quotes wrapping HTML table
+!! wikitext
+'''<table><tr><td>hi</td></tr></table>'''
+!! html/php
+<b><table><tbody><tr><td>hi</td></tr></tbody></table></b>
+!! html/parsoid
+<b><table data-parsoid='{"stx":"html"}'><tbody><tr data-parsoid='{"stx":"html"}'><td data-parsoid='{"stx":"html"}'>hi</td></tr></tbody></table></b>
+!! end
+
+# Parsoid inserts an empty bold tag pair at the end of the line.
+# The wikitext contains just the first half of the bold
+# quote pair.
+!! test
+Unclosed and unmatched quotes
+!! wikitext
+'''''Bold italic text '''with bold deactivated''' in between.'''''
+
+'''''Bold italic text ''with italic deactivated'' in between.'''''
+
+'''Bold text..
+
+..spanning two paragraphs (should not work).'''
+
+'''Bold tag left open
+
+''Italic tag left open
+
+Normal text.
+
+<!-- Unmatching number of opening, closing tags: -->
+'''This year''''s election ''should'' beat '''last year''''s.
+
+''Tom'''s car is bigger than ''Susan'''s.
+
+Plain ''italic'''s plain
+!! html/php
+<p><i><b>Bold italic text </b>with bold deactivated<b> in between.</b></i>
+</p><p><b><i>Bold italic text </i>with italic deactivated<i> in between.</i></b>
+</p><p><b>Bold text..</b>
+</p><p>..spanning two paragraphs (should not work).<b></b>
+</p><p><b>Bold tag left open</b>
+</p><p><i>Italic tag left open</i>
+</p><p>Normal text.
+</p><p><b>This year'</b>s election <i>should</i> beat <b>last year'</b>s.
+</p><p><i>Tom<b>s car is bigger than </b></i><b>Susan</b>s.
+</p><p>Plain <i>italic'</i>s plain
+</p>
+!! html/parsoid
+<p><i><b>Bold italic text </b>with bold deactivated<b> in between.</b></i>
+</p><p><b><i>Bold italic text </i>with italic deactivated<i> in between.</i></b>
+</p><p><b>Bold text..</b>
+</p><p>..spanning two paragraphs (should not work).<b></b>
+</p><p><b>Bold tag left open</b>
+</p><p><i>Italic tag left open</i>
+</p><p>Normal text.
+</p>
+<!-- Unmatching number of opening, closing tags: -->
+<p><b>This year'</b>s election <i>should</i> beat <b>last year'</b>s.
+</p><p><i>Tom<b>s car is bigger than </b></i><b>Susan</b>s.
+</p><p>Plain <i>italic'</i>s plain
+</p>
+!! end
+!! test
+Italics and bold
+!! wikitext
+*plain
+*plain''italic''plain
+*plain''italic''plain''italic''plain
+*plain'''bold'''plain
+*plain'''bold'''plain'''bold'''plain
+*plain''italic''plain'''bold'''plain
+*plain'''bold'''plain''italic''plain
+*plain''italic'''bold-italic'''italic''plain
+*plain'''bold''bold-italic''bold'''plain
+*plain'''''bold-italic'''italic''plain
+*plain'''''bold-italic''bold'''plain
+*plain''italic'''bold-italic'''''plain
+*plain'''bold''bold-italic'''''plain
+*plain l'''italic''plain
+*plain l''''bold''' plain
+!! html
+<ul><li>plain</li>
+<li>plain<i>italic</i>plain</li>
+<li>plain<i>italic</i>plain<i>italic</i>plain</li>
+<li>plain<b>bold</b>plain</li>
+<li>plain<b>bold</b>plain<b>bold</b>plain</li>
+<li>plain<i>italic</i>plain<b>bold</b>plain</li>
+<li>plain<b>bold</b>plain<i>italic</i>plain</li>
+<li>plain<i>italic<b>bold-italic</b>italic</i>plain</li>
+<li>plain<b>bold<i>bold-italic</i>bold</b>plain</li>
+<li>plain<i><b>bold-italic</b>italic</i>plain</li>
+<li>plain<b><i>bold-italic</i>bold</b>plain</li>
+<li>plain<i>italic<b>bold-italic</b></i>plain</li>
+<li>plain<b>bold<i>bold-italic</i></b>plain</li>
+<li>plain l'<i>italic</i>plain</li>
+<li>plain l'<b>bold</b> plain</li></ul>
+!! end
+
+# this example taken from the [[simple:Moon]] article (T49326)
+!! test
+Italics and possessives (1)
+!! wikitext
+obtained by ''[[Lunar Prospector]]'''s gamma-ray spectrometer
+!! html
+<p>obtained by <i><a href="/index.php?title=Lunar_Prospector&amp;action=edit&amp;redlink=1" class="new" title="Lunar Prospector (page does not exist)">Lunar Prospector</a>'</i>s gamma-ray spectrometer
+</p>
+!! end
+
+# this example taken from [[en:Flaming Pie]] (T51926)
+!! test
+Italics and possessives (2)
+!! wikitext
+'''''Flaming Pie''''' is ... released in 1997. In ''Flaming Pie'''s liner notes
+!! html
+<p><i><b>Flaming Pie</b></i> is ... released in 1997. In <i>Flaming Pie'</i>s liner notes
+</p>
+!! end
+
+# this example taken from [[en:Dictionary]] (T51926)
+!! test
+Italics and possessives (3)
+!! wikitext
+The first monolingual dictionary written in a Romance language was ''Sebastián Covarrubias''' ''Tesoro de la lengua castellana o española'', published in 1611 in Madrid. In 1612 the first edition of the ''Vocabolario dell'[[Accademia della Crusca]]'', for Italian, was published. In 1690 in Rotterdam was published, posthumously, the ''Dictionnaire Universel''.
+!! html
+<p>The first monolingual dictionary written in a Romance language was <i>Sebastián Covarrubias'</i> <i>Tesoro de la lengua castellana o española</i>, published in 1611 in Madrid. In 1612 the first edition of the <i>Vocabolario dell'<a href="/index.php?title=Accademia_della_Crusca&amp;action=edit&amp;redlink=1" class="new" title="Accademia della Crusca (page does not exist)">Accademia della Crusca</a></i>, for Italian, was published. In 1690 in Rotterdam was published, posthumously, the <i>Dictionnaire Universel</i>.
+</p>
+!! end
+
+###
+### 2-quote opening sequence tests
+###
+
+!! test
+Italics and bold: 2-quote opening sequence: (2,2)
+!! wikitext
+''foo''
+!! html
+<p><i>foo</i>
+</p>
+!! end
+
+!! test
+Italics and bold: 2-quote opening sequence: (2,3)
+!! wikitext
+''foo'''
+!! html/*
+<p><i>foo'</i>
+</p>
+!! end
+
+!! test
+Italics and bold: 2-quote opening sequence: (2,4)
+!! options
+parsoid=wt2html
+!! wikitext
+''foo''''
+!! html/*
+<p><i>foo''</i>
+</p>
+!! end
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 2-quote opening sequence: (2,4) w/ nowiki
+!! wikitext
+''foo<nowiki>''</nowiki>''
+!! html
+<p><i>foo''</i>
+</p>
+!! end
+
+!! test
+Italics and bold: 2-quote opening sequence: (2,5)
+!! options
+parsoid=wt2html
+!! wikitext
+''foo'''''
+!! html
+<p><i>foo</i><b></b>
+</p>
+!! end
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 2-quote opening sequence: (2,5-3)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><i>foo</i><b></b>
+</p>
+!! wikitext
+''foo''
+!! end
+
+###
+### 3-quote opening sequence tests
+###
+
+!! test
+Italics and bold: 3-quote opening sequence: (3,2)
+!! wikitext
+'''foo''
+!! html
+<p>'<i>foo</i>
+</p>
+!! end
+
+!! test
+Italics and bold: 3-quote opening sequence: (3,3)
+!! wikitext
+'''foo'''
+!! html
+<p><b>foo</b>
+</p>
+!! end
+
+!! test
+Italics and bold: 3-quote opening sequence: (3,4)
+!! wikitext
+'''foo''''
+!! html
+<p><b>foo'</b>
+</p>
+!! end
+
+# The PHP parser strips the empty tags out for giggles; parsoid doesn't.
+!! test
+Italics and bold: 3-quote opening sequence: (3,5)
+!! options
+parsoid=wt2html
+!! wikitext
+'''foo'''''
+!! html
+<p><b>foo</b><i></i>
+</p>
+!! end
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 3-quote opening sequence: (3,5-2)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><b>foo</b><i></i>
+</p>
+!! wikitext
+'''foo'''
+!! end
+
+###
+### 4-quote opening sequence tests
+###
+
+!! test
+Italics and bold: 4-quote opening sequence: (4,2)
+!! options
+parsoid=wt2html
+!! wikitext
+''''foo''
+!! html/*
+<p>''<i>foo</i>
+</p>
+!!end
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 4-quote opening sequence: (4,2) w/ nowiki
+!! wikitext
+<nowiki>''</nowiki>''foo''
+!! html
+<p>''<i>foo</i>
+</p>
+!! end
+
+!! test
+Italics and bold: 4-quote opening sequence: (4,3)
+!! wikitext
+''''foo'''
+!! html/*
+<p>'<b>foo</b>
+</p>
+!!end
+
+!! test
+Italics and bold: 4-quote opening sequence: (4,4)
+!! options
+parsoid=wt2html
+!! wikitext
+''''foo''''
+!! html/*
+<p>'<b>foo'</b>
+</p>
+!!end
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 4-quote opening sequence: (4,4) w/ nowiki
+!! wikitext
+'<nowiki/>'''foo''''
+!! html
+<p>'<b>foo'</b>
+</p>
+!! end
+
+# The PHP parser strips the empty tags out for giggles; parsoid doesn't.
+!! test
+Italics and bold: 4-quote opening sequence: (4,5)
+!! options
+parsoid=wt2html
+!! wikitext
+''''foo'''''
+!! html
+<p>'<b>foo</b><i></i>
+</p>
+!!end
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 4-quote opening sequence: (4,5-2)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>'<b>foo</b><i></i>
+</p>
+!! wikitext
+''''foo'''
+!! end
+
+###
+### 5-quote opening sequence tests
+###
+
+!! test
+Italics and bold: 5-quote opening sequence: (5,2)
+!! options
+parsoid=wt2html
+!! wikitext
+'''''foo''
+!! html/*
+<p><b><i>foo</i></b>
+</p>
+!! end
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 5-quote opening sequence: (5,2+3)
+!! wikitext
+'''''foo'''''
+!! html/*
+<p><i><b>foo</b></i>
+</p>
+!! end
+
+!! test
+Italics and bold: 5-quote opening sequence: (5,3)
+!! options
+parsoid=wt2html
+!! wikitext
+'''''foo'''
+!! html/*
+<p><i><b>foo</b></i>
+</p>
+!! end
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: 5-quote opening sequence: (5,3+2)
+!! wikitext
+'''''foo'''''
+!! html
+<p><i><b>foo</b></i>
+</p>
+!! end
+
+!! test
+Italics and bold: 5-quote opening sequence: (5,4)
+!! options
+parsoid=wt2html
+!! wikitext
+'''''foo''''
+!! html/*
+<p><i><b>foo'</b></i>
+</p>
+!! end
+
+!! test
+Italics and bold: 5-quote opening sequence: (5,5)
+!! wikitext
+'''''foo'''''
+!! html
+<p><i><b>foo</b></i>
+</p>
+!! end
+
+!! test
+Italics and bold: 5-quote opening sequence: (5,6)
+!! wikitext
+'''''foo''''''
+!! html/*
+<p><i><b>foo'</b></i>
+</p>
+!! end
+
+###
+### multiple quote sequences in a line
+###
+
+!! test
+Italics and bold: multiple quote sequences: (2,4,2)
+!! options
+parsoid=wt2html
+!! wikitext
+''foo''''bar''
+!! html/php
+<p><i>foo'<b>bar</b></i><b></b>
+</p>
+!! html/parsoid
+<p><i>foo'<b>bar</b></i>
+</p>
+!! end
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: multiple quote sequences: (2,4,2+3) w/ nowiki
+!! wikitext
+''foo'<nowiki/>'''bar'''''
+!! html
+<p><i>foo'<b>bar</b></i>
+</p>
+!! end
+
+!! test
+Italics and bold: multiple quote sequences: (2,4,3)
+!! options
+parsoid=wt2html
+!! wikitext
+''foo''''bar'''
+!! html/*
+<p><i>foo'<b>bar</b></i>
+</p>
+!! end
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: multiple quote sequences: (2,4,3+2) w/ nowiki
+!! wikitext
+''foo'<nowiki/>'''bar'''''
+!! html
+<p><i>foo'<b>bar</b></i>
+</p>
+!! end
+
+!! test
+Italics and bold: multiple quote sequences: (2,4,4)
+!! options
+parsoid=wt2html
+!! wikitext
+''foo''''bar''''
+!! html/*
+<p><i>foo'<b>bar'</b></i>
+</p>
+!! end
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: multiple quote sequences: (2,4,4+2) w/ nowiki
+!! wikitext
+''foo'<nowiki/>'''bar'<nowiki/>'''''
+!! html
+<p><i>foo'<b>bar'</b></i>
+</p>
+!! end
+
+!! test
+Italics and bold: multiple quote sequences: (3,4,2)
+!! options
+parsoid=wt2html
+!! wikitext
+'''foo''''bar''
+!! html
+<p><b>foo'</b>bar<i></i>
+</p>
+!! end
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: multiple quote sequences: (3,4,2-2)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><b>foo'</b>bar<i></i>
+</p>
+!! wikitext
+'''foo''''bar
+!! end
+
+!! test
+Italics and bold: multiple quote sequences: (3,4,3)
+!! options
+parsoid=wt2html
+!! wikitext
+'''foo''''bar'''
+!! html
+<p><b>foo'</b>bar<b></b>
+</p>
+!! end
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: multiple quote sequences: (3,4,3-3)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><b>foo'</b>bar<b></b>
+</p>
+!! wikitext
+'''foo''''bar
+!! end
+
+###
+### other quote tests
+###
+
+!! test
+Italics and bold: other quote tests: (2,3,5)
+!! wikitext
+''this is about '''foo's family'''''
+!! html
+<p><i>this is about <b>foo's family</b></i>
+</p>
+!! end
+
+!! test
+Italics and bold: other quote tests: (2,(3,3),2)
+!! wikitext
+''this is about '''foo's''' family''
+!! html
+<p><i>this is about <b>foo's</b> family</i>
+</p>
+!! end
+
+!! test
+Italics and bold: other quote tests: (3,2,3,2)
+!! options
+parsoid=wt2html
+!! wikitext
+'''this is about ''foo'''s family''
+!! html/*
+<p><b>this is about <i>foo</i></b><i>s family</i>
+</p>
+!!end
+
+# same html as previous, but wikitext adjusted to match parsoid html2wt
+!! test
+Italics and bold: other quote tests: (3,2,3+2+2,2)
+!! wikitext
+'''this is about ''foo'''''<nowiki/>''s family''
+!! html
+<p><b>this is about <i>foo</i></b><i>s family</i>
+</p>
+!! end
+
+!! test
+Italics and bold: other quote tests: (3,2,3,3)
+!! wikitext
+'''this is about ''foo'''s family'''
+!! html/*
+<p>'<i>this is about </i>foo<b>s family</b>
+</p>
+!!end
+
+!! test
+Italics and bold: other quote tests: (3,(2,2),3)
+!! wikitext
+'''this is about ''foo's'' family'''
+!! html
+<p><b>this is about <i>foo's</i> family</b>
+</p>
+!!end
+
+!! test
+Italicized possessive
+!! wikitext
+The ''[[Main Page]]'''s talk page.
+!! html/php
+<p>The <i><a href="/wiki/Main_Page" title="Main Page">Main Page</a>'</i>s talk page.
+</p>
+!! html/parsoid
+<p>The <i><a rel="mw:WikiLink" href="./Main_Page" title="Main Page">Main Page</a>'</i>s talk page.</p>
+!! end
+
+!! test
+Quote balancing context should be restricted to td/th cells on the same wikitext line
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+{|
+!''a!!''b
+|''a||''b
+|}
+!! html
+<table>
+<tbody><tr>
+<th><i>a</i></th>
+<th><i>b</i>
+</th>
+<td><i>a</i></td>
+<td><i>b</i>
+</td></tr></tbody></table>
+!! end
+
+!! test
+Bold conversion test
+!! wikitext
+a b'''c ''d e'''f'' g h'''i ''j
+!! options
+parsoid=wt2html
+!! html
+<p>a b'<i>c </i>d e<b>f<i> g h</i></b><i>i </i>j
+</p>
+!! end

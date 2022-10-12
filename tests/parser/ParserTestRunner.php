@@ -69,11 +69,19 @@ class ParserTestRunner {
 	 * @var array
 	 */
 	private static $coreTestFiles = [
+		'badCharacters.txt',
+		'comments.txt',
+		'extLinks.txt',
+		'indentPre.txt',
+		'legacyMedia.txt',
+		'magicLinks.txt',
+		'magicWords.txt',
+		'media.txt',
+		'pWrapping.txt',
 		'parserTests.txt',
 		'pfeqParserTests.txt',
-		'extraParserTests.txt',
-		'legacyMediaParserTests.txt',
-		'mediaParserTests.txt',
+		'preTags.txt',
+		'quotes.txt',
 	];
 
 	/**
