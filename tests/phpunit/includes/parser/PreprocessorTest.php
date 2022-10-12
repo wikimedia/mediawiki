@@ -196,7 +196,7 @@ class PreprocessorTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideFiles
 	 */
 	public function testPreprocessorOutputFiles( $filename ) {
-		$folder = __DIR__ . "/../../../parser/preprocess";
+		$folder = __DIR__ . "/../../data/preprocess";
 		$wikiText = file_get_contents( "$folder/$filename.txt" );
 		$output = $this->preprocessToXml( $wikiText );
 
