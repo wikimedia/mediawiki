@@ -4,6 +4,7 @@ use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use MediaWiki\Tests\Unit\Libs\Rdbms\SQLPlatformTestHelper;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\Database\DatabaseFlags;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\QueryStatus;
@@ -75,6 +76,7 @@ class DatabaseTestHelper extends Database {
 
 		$this->testName = $testName;
 		$this->platform = new SQLPlatformTestHelper( new AddQuoterMock() );
+		$this->flagsHolder = new DatabaseFlags( 0 );
 
 		$this->currentDomain = DatabaseDomain::newUnspecified();
 		$this->open( 'localhost', 'testuser', 'password', 'testdb', null, '' );
