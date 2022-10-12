@@ -1,0 +1,897 @@
+# The parsoid-compatible option below is only relevant when we are running
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html
+version=2
+!! end
+
+# This is the standard article assumed to exist.
+!! article
+Main Page
+!! text
+blah blah
+!! endarticle
+
+!! article
+Template:1x
+!! text
+{{{1}}}
+!! endarticle
+
+!! article
+Template:T1
+!! text
+<pwraptest /><div>foo</div><pwraptest />
+!! endarticle
+
+!! test
+Preformatted text
+!! wikitext
+ This is some
+ Preformatted text
+ With ''italic''
+ And '''bold'''
+ And a [[Main Page|link]]
+!! html
+<pre>This is some
+Preformatted text
+With <i>italic</i>
+And <b>bold</b>
+And a <a href="/wiki/Main_Page" title="Main Page">link</a>
+</pre>
+!! end
+
+!! test
+Tabs don't trigger preformatted text
+!! wikitext
+	This is not
+	 preformatted text.
+ This is preformatted text.
+ 	So is this.
+!! html/php
+<p>	This is not
+	 preformatted text.
+</p>
+<pre>This is preformatted text.
+	So is this.
+</pre>
+!! html/parsoid
+<p>	This is not
+	 preformatted text.</p>
+<pre>This is preformatted text.
+	So is this.</pre>
+!! end
+
+## FIXME: This test is less useful now that the leading space is normalized away
+!! test
+Space before tab needs nowiki pre protection
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p> 	a</p>
+!! wikitext
+a
+!! end
+
+!! test
+Indent preformatting with inline content
+!! wikitext
+ a
+ ''b''
+!! html
+<pre>a
+<i>b</i>
+</pre>
+!! end
+
+!! test
+<pre> with <nowiki> inside (compatibility with 1.6 and earlier)
+!! wikitext
+<pre><nowiki>
+<b>
+<cite>
+<em>
+</nowiki></pre>
+!! html
+<pre>&lt;b&gt;
+&lt;cite&gt;
+&lt;em&gt;
+</pre>
+!! end
+
+!! test
+Regression with preformatted in <center>
+!! wikitext
+<center>
+ Blah
+</center>
+!! html
+<center>
+<pre>Blah
+</pre>
+</center>
+!! end
+
+!! test
+T54763: Preformatted in <blockquote>
+!! wikitext
+<blockquote>
+ Blah
+{|
+|
+ indented cell (no pre-wrapping!)
+|}
+</blockquote>
+!! html
+<blockquote>
+<p> Blah
+</p>
+<table>
+<tbody><tr>
+<td>
+<p> indented cell (no pre-wrapping!)
+</p>
+</td></tr></tbody></table>
+</blockquote>
+!! end
+
+!!test
+Templates: Indent-Pre: 1a. Templates that break a line should suppress <pre>
+!! wikitext
+ {{1x|}}
+!! html
+!! end
+
+!!test
+Templates: Indent-Pre: 1b. Templates that break a line should suppress <pre>
+!! wikitext
+ {{1x|
+foo}}
+!! html
+<p>foo
+</p>
+!!end
+
+!! test
+Templates: Indent-Pre: 1c: Wrapping should be based on expanded content
+!! wikitext
+ {{1x|a
+b}}
+!! html
+<pre>a
+</pre>
+<p>b
+</p>
+!!end
+
+!! test
+Templates: Indent-Pre: 1d: Wrapping should be based on expanded content
+!! wikitext
+ {{1x|a
+b
+c
+ d
+e
+}}
+!! html
+<pre>a
+</pre>
+<p>b
+c
+</p>
+<pre>d
+</pre>
+<p>e
+</p>
+!!end
+
+!!test
+Templates: Indent-Pre: 1e. Wrapping should be based on expanded content
+!! wikitext
+{{1x| foo}}
+
+{{1x| foo}}{{1x| bar}}
+
+{{1x| foo}}
+{{1x| bar}}
+
+{{1x|<!--cmt--> foo}}
+
+<!--cmt-->{{1x| foo}}
+
+{{1x|{{1x| }}bar}}
+!! html
+<pre>foo
+</pre>
+<pre>foo bar
+</pre>
+<pre>foo
+bar
+</pre>
+<pre>foo
+</pre>
+<pre>foo
+</pre>
+<pre>bar
+</pre>
+!!end
+
+!! test
+Templates: Indent-Pre: 1f: Wrapping should be based on expanded content
+!! wikitext
+{{1x| }}a
+
+{{1x|
+ }}a
+
+{{1x|
+ b}}
+
+{{1x|a
+ }}b
+
+{{1x|a
+}} b
+!! html
+<pre>a
+</pre>
+<p><br />
+</p>
+<pre>a
+</pre>
+<p><br />
+</p>
+<pre>b
+</pre>
+<p>a
+</p>
+<pre>b
+</pre>
+<p>a
+</p>
+<pre>b
+</pre>
+!!end
+
+###
+### Parsoid-centric regression tests
+###
+
+!! test
+Off-by-1 DSR values: Regression test for indent-pre usages
+!! options
+parsoid=wt2html,selser
+!! wikitext
+ {{1x|
+}} ''{{1x|
+}} X'' {{1x|<span></span>
+}} Y
+!! html/parsoid
+ <span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"\n"}},"i":0}}]}'>
+</span><pre><i data-parsoid='{"autoInsertedEnd":true}'></i><span about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"\n"}},"i":0}}]}'>
+</span>X<i about="#mwt3" typeof="mw:Transclusion" data-parsoid='{"autoInsertedEnd":true,"firstWikitextNode":"I","pi":[[{"k":"1"}]]}' data-mw='{"parts":["&apos;&apos; ",{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;span>&lt;/span>\n"}},"i":0}}]}'> <span></span></i><span about="#mwt3">
+</span>Y</pre>
+!! html/php
+<pre><i></i>
+X<i> <span></span></i>
+Y
+</pre>
+!! end
+
+!! test
+Ensure DSR values for mw:DisplaySpace spans are computed correctly
+!! options
+parsoid=wt2html,selser
+!! wikitext
+ x
+ y :)
+!! html/parsoid
+<pre>x
+y :)</pre>
+!! html/php
+<pre>x
+y&#160;:)
+</pre>
+!! end
+
+!! test
+pwrap test
+!! options
+parsoid=wt2html
+!! wikitext
+{{T1}}{{T1}}
+!! html/parsoid
+<span typeof="mw:Extension/pwraptest mw:Transclusion" about="#mwt1" data-mw='{"parts":[{"template":{"target":{"wt":"T1","href":"./Template:T1"},"params":{},"i":0}}]}'><!--CMT--></span><style about="#mwt1">p{}</style><div about="#mwt1">foo</div><span typeof="mw:Extension/pwraptest" about="#mwt1" data-mw='{"name":"pwraptest","attrs":{}}'><!--CMT--></span><style about="#mwt1">p{}</style><span typeof="mw:Extension/pwraptest mw:Transclusion" about="#mwt7" data-mw='{"parts":[{"template":{"target":{"wt":"T1","href":"./Template:T1"},"params":{},"i":0}}]}'><!--CMT--></span><style about="#mwt7">p{}</style><div about="#mwt7">foo</div><span typeof="mw:Extension/pwraptest" about="#mwt7" data-mw='{"name":"pwraptest","attrs":{}}'><!--CMT--></span><style about="#mwt7">p{}</style>
+!! end
+
+###
+### Parsoid-centric tests for testing RT edge cases for pre
+###
+
+!!test
+1a. Indent-Pre and Comments
+!! wikitext
+ a
+<!--a-->
+c
+!! html
+<pre>a
+</pre>
+<p>c
+</p>
+!!end
+
+!!test
+1b. Indent-Pre and Comments
+!! wikitext
+ a
+ <!--a-->
+c
+!! html
+<pre>a
+</pre>
+<p>c
+</p>
+!!end
+
+!!test
+1c. Indent-Pre and Comments
+!! wikitext
+<!--a-->  a
+
+ <!--a--> a
+!! html
+<pre> a
+</pre>
+<pre> a
+</pre>
+!!end
+
+!!test
+1d. Indent-Pre and Comments
+(Pre-handler currently cannot distinguish between comment/ws order and normalizes them to [comment,ws] order)
+!! wikitext
+<!--a--> a
+
+ <!--b-->b
+!! html
+<pre>a
+</pre>
+<pre>b
+</pre>
+!!end
+
+!!test
+2a. Indent-Pre and tables
+!! wikitext
+ {|
+ |-
+ !h1!!h2
+ |foo||bar
+ |}
+!! html
+<table>
+
+<tbody><tr>
+<th>h1</th>
+<th>h2
+</th>
+<td>foo</td>
+<td>bar
+</td></tr></tbody></table>
+!!end
+
+!!test
+2b. Indent-Pre and tables
+!! wikitext
+  {|
+ |-
+|foo
+|}
+!! html
+<table>
+
+<tbody><tr>
+<td>foo
+</td></tr></tbody></table>
+!!end
+
+!!test
+2c. Indent-Pre and tables (T44252)
+!! wikitext
+{|
+ |+foo
+ !  |bar
+|}
+!! html
+<table>
+<caption>foo
+</caption>
+<tbody><tr>
+<th>bar
+</th></tr></tbody></table>
+!!end
+
+!!test
+2d. Indent-Pre and tables
+!! wikitext
+ a
+ {|
+ |b
+ |}
+!! html/php
+<pre>a
+</pre>
+<table>
+<tbody><tr>
+<td>b
+</td></tr></tbody></table>
+!! html/parsoid
+<pre>a</pre>
+ <table>
+ <tbody><tr><td> b</td></tr>
+ </tbody></table>
+!!end
+
+!!test
+2e. Indent-Pre and table-line syntax
+!! wikitext
+ a
+ | b
+ | c
+!! html/php
+<pre>a
+| b
+| c
+</pre>
+!!end
+
+!!test
+2f. Indent-pre started by table-line syntax
+!! wikitext
+a
+ | b
+ | c
+!! html/php
+<p>a
+</p>
+<pre>| b
+| c
+</pre>
+!! html/parsoid
+<p>a</p>
+<pre>
+| b
+| c</pre>
+!!end
+
+!! test
+2g. Indented table markup mixed with indented pre content (proposed in T8200)
+!! wikitext
+ <table>
+ <tr>
+ <td>
+ Text that should be rendered preformatted
+ </td>
+ </tr>
+ </table>
+!! html
+ <table>
+ <tbody><tr>
+ <td>
+<pre>Text that should be rendered preformatted
+</pre>
+ </td>
+ </tr>
+ </tbody></table>
+!! end
+
+!! test
+2h. Indent pre in tables
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+{|
+ !
+ foo
+ !
+ bar
+ |-
+ |
+ baz
+ {{!}}
+ bam
+ |}
+!! html/php
+<table>
+<tbody><tr>
+<th>
+<pre>foo
+</pre>
+</th>
+<th>
+<pre>bar
+</pre>
+</th></tr>
+<tr>
+<td>
+<pre>baz
+</pre>
+</td>
+<td>
+<pre>bam
+</pre>
+</td></tr></tbody></table>
+!! html/parsoid
+<table>
+ <tbody><tr><th>
+<pre>foo</pre>
+</th><th>
+<pre>bar</pre>
+</th></tr><tr>
+ <td>
+<pre>baz</pre>
+</td><td data-parsoid='{"startTagSrc":"{{!}}"}'>
+<pre>bam</pre>
+</td></tr></tbody></table>
+!! end
+
+!! test
+3a. Indent-Pre and block tags (single-line html)
+!! wikitext
+ a <p> foo </p>
+ b <div> foo </div>
+ c <blockquote> foo </blockquote>
+ <span> foo </span>
+!! html/php
+<p> a </p><p> foo </p><p>
+ b </p><div> foo </div><p>
+ c </p><blockquote><p> foo </p></blockquote>
+<pre><span> foo </span>
+</pre>
+!! html/parsoid
+<p> a </p><p data-parsoid='{"stx":"html"}'> foo </p><p>
+ b </p><div data-parsoid='{"stx":"html"}'> foo </div><p>
+ c </p><blockquote data-parsoid='{"stx":"html"}'><p> foo </p></blockquote>
+<pre><span data-parsoid='{"stx":"html"}'> foo </span></pre>
+!! end
+
+!! test
+3b. Indent-Pre and block tags (multi-line html)
+!! wikitext
+ a <span>foo</span>
+<!-- comment --> b <div> foo </div>
+!! html/parsoid
+<pre>a <span data-parsoid='{"stx":"html"}'>foo</span></pre>
+<!-- comment --> <p>b </p><div data-parsoid='{"stx":"html"}'> foo </div>
+!! html/php
+<pre>a <span>foo</span>
+</pre><p>
+ b </p><div> foo </div>
+!! end
+
+!! test
+3c. Indent-Pre and block tags (pre-content on separate line)
+!! wikitext
+<p>
+ foo
+</p>
+
+<div>
+ foo
+</div>
+
+<center>
+ foo
+</center>
+
+<blockquote>
+ foo
+</blockquote>
+
+<blockquote>
+<pre>
+foo
+</pre>
+</blockquote>
+
+<table><tr><td>
+ foo
+</td></tr></table>
+
+<ul><li>
+  foo
+</li></ul>
+!! html/php
+<p>
+ foo
+</p>
+<div>
+<pre>foo
+</pre>
+</div>
+<center>
+<pre>foo
+</pre>
+</center>
+<blockquote>
+<p> foo
+</p>
+</blockquote>
+<blockquote>
+<pre>foo
+</pre>
+</blockquote>
+<table><tbody><tr><td>
+<pre>foo
+</pre>
+</td></tr></tbody></table>
+<ul><li>
+  foo
+</li></ul>
+!! html/parsoid
+<p data-parsoid='{"stx":"html"}'>
+ foo
+</p>
+
+<div>
+<pre>foo</pre>
+</div>
+
+<center>
+<pre>foo</pre>
+</center>
+
+<blockquote>
+<p> foo</p>
+</blockquote>
+
+<blockquote>
+<pre typeof="mw:Extension/pre" about="#mwt3" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\nfoo\n"}}'>foo
+</pre>
+</blockquote>
+
+<table data-parsoid='{"stx":"html"}'><tbody><tr data-parsoid='{"stx":"html"}'><td data-parsoid='{"stx":"html"}'>
+<pre>foo</pre>
+</td></tr></tbody></table>
+
+<ul data-parsoid='{"stx":"html"}'><li data-parsoid='{"stx":"html"}'>
+  foo
+</li></ul>
+!! end
+
+!! test
+4. Indent-Pre and extension tags
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+ a <tag />
+!! html/php
+<p> a </p><pre>NULL
+array (
+)
+</pre>
+!! html/parsoid
+<p> a </p><pre typeof="mw:Extension/tag" about="#mwt2" data-mw='{"name":"tag","attrs":{}}'>NULL
+array (
+)
+</pre>
+!! end
+
+!! test
+5. Indent-Pre and html pre
+!! wikitext
+ <pre class="123">hi</pre>
+!! html/php
+ <pre class="123">hi</pre>
+!! html/parsoid
+ <pre class="123" typeof="mw:Extension/pre" about="#mwt2" data-parsoid='{"stx":"html"}' data-mw='{"name":"pre","attrs":{"class":"123"},"body":{"extsrc":"hi"}}'>hi</pre>
+!! end
+
+!! test
+Serializing indent pre at sol
+!! html/parsoid
+ <pre>hi</pre>
+!! html/php
+<pre>hi
+</pre>
+!! wikitext
+ hi
+!! end
+
+!!test
+Render paragraphs when indent-pre is suppressed in blocklevels
+!! wikitext
+<blockquote>
+ foo
+
+ bar
+</blockquote>
+!! html
+<blockquote>
+<p> foo
+</p><p> bar
+</p>
+</blockquote>
+!!end
+
+!!test
+4. Multiple spaces at start-of-line
+!! wikitext
+    <p> foo </p>
+    foo
+	{|
+|foo
+|}
+!! html
+    <p> foo </p>
+<pre>   foo
+</pre>
+<table>
+<tbody><tr>
+<td>foo
+</td></tr></tbody></table>
+!!end
+
+## NOTE: the leading white-space chars on empty line are significant
+!! test
+5a. White-space in indent-pre
+!! wikitext
+ a<br />
+ 
+ b
+!! html
+<pre>a<br />
+
+b
+</pre>
+!! end
+
+## NOTE: the leading white-space chars on empty line are significant
+!! test
+5b. White-space in indent-pre
+!! wikitext
+ a
+ 
+ b
+ 
+ 
+ c
+!! html
+<pre>a
+
+b
+
+
+c
+</pre>
+!! end
+
+!! test
+5c. White-space in indent-pre
+!! wikitext
+ ''a''
+  ''b''
+   ''c''
+!! html
+<pre><i>a</i>
+ <i>b</i>
+  <i>c</i>
+</pre>
+!! end
+
+!! test
+6. Pre-blocks should extend across lines with leading WS even when there is no wrappable content
+!! wikitext
+ a
+ 
+ <!-- continue -->
+ b
+
+ c
+ 
+d
+!! html
+<pre>a
+
+b
+</pre>
+<pre>c
+
+</pre>
+<p>d
+</p>
+!! end
+
+!! test
+7a. Indent-pre and category links
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+ [[Category:foo]] <!-- No pre-wrapping -->
+{{1x| [[Category:foo]]}} <!-- No pre-wrapping -->
+!! html/php
+!! html/parsoid
+ <link rel="mw:PageProp/Category" href="./Category:Foo"> <!-- No pre&#x2D;wrapping -->
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":" [[Category:foo]]"}},"i":0}}]}'> </span><link rel="mw:PageProp/Category" href="./Category:Foo" about="#mwt1"> <!-- No pre&#x2D;wrapping -->
+!! end
+
+## We used to, but no longer wt2wt this test since the default serializer
+## will normalize all categories to serialize on their own line.
+## This wikitext usage is going to be fairly uncommon in production and
+## selser will take care of preserving formatting in those scenarios.
+!! test
+7b. Indent-pre and category links
+!! options
+parsoid=wt2html
+!! wikitext
+ [[Category:foo]] a
+ [[Category:foo]] {{1x|b}}
+!! html/parsoid
+<pre><link rel="mw:PageProp/Category" href="./Category:Foo"> a
+ <link rel="mw:PageProp/Category" href="./Category:Foo"> <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"b"}},"i":0}}]}'>b</span></pre>
+!! end
+
+!! test
+Indent-Pre: Newlines in comments shouldn't affect sol state
+!! wikitext
+a <!--
+foo
+--> b
+!! html/php
+<p>a  b
+</p>
+!! html/parsoid
+<p>a <!--
+foo
+--> b</p>
+!! end
+
+!! test
+Indent pre with leading colon
+!! wikitext
+ :foo
+!! html/php
+<pre>:foo
+</pre>
+!! html/parsoid
+<pre>:foo</pre>
+!! end
+
+## DO NOT DELETE trailing whitespace in the wikitext below!
+!! test
+Indent-Pre regression test: Trailing whitespace after sol-transparent content
+!! wikitext
+[[Category:Foo]]   
+[[Category:Bar]]
+!! html/php
+!! html/parsoid
+<link rel="mw:PageProp/Category" href="./Category:Foo" data-parsoid='{"stx":"simple","a":{"href":"./Category:Foo"},"sa":{"href":"Category:Foo"}}'/>   
+<link rel="mw:PageProp/Category" href="./Category:Bar" data-parsoid='{"stx":"simple","a":{"href":"./Category:Bar"},"sa":{"href":"Category:Bar"}}'/>
+!! end
+
+!! test
+Preserving leading whitespace in indent-pre suppressing contexts
+!! wikitext
+<ol>
+<li>
+ foo
+ bar
+</li>
+</ol>
+!! html/php
+<ol>
+<li>
+ foo
+ bar
+</li>
+</ol>
+!! html/parsoid
+<ol data-parsoid='{"stx":"html"}'>
+<li data-parsoid='{"stx":"html"}'>
+ foo
+ bar
+</li>
+</ol>
+!! end

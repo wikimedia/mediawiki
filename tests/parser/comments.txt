@@ -1,0 +1,282 @@
+# The parsoid-compatible option below is only relevant when we are running
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html
+version=2
+!! end
+
+!!article
+Template:Foo
+!!text
+FOO
+!!endarticle
+
+!! article
+Template:Blank
+!! text
+!! endarticle
+
+!! test
+Comments and Indent-Pre
+!! wikitext
+<!-- comment 1 --> asdf
+
+<!-- comment 1 --> asdf
+<!-- comment 2 -->
+
+<!-- comment 1 --> asdf
+<!-- comment 2 -->xyz
+
+<!-- comment 1 --> asdf
+<!-- comment 2 --> xyz
+!! html
+<pre>asdf
+</pre>
+<pre>asdf
+</pre>
+<pre>asdf
+</pre>
+<p>xyz
+</p>
+<pre>asdf
+xyz
+</pre>
+!! end
+
+!! test
+Comment test 2a
+!! wikitext
+asdf
+<!-- comment 1 -->
+jkl
+!! html
+<p>asdf
+jkl
+</p>
+!! end
+
+!! test
+Comment test 2b
+!! wikitext
+asdf
+<!-- comment 1 -->
+
+jkl
+!! html
+<p>asdf
+</p><p>jkl
+</p>
+!! end
+
+!! test
+Comment test 3
+!! wikitext
+asdf
+<!-- comment 1 -->
+<!-- comment 2 -->
+jkl
+!! html
+<p>asdf
+jkl
+</p>
+!! end
+
+!! test
+Comment test 4
+!! wikitext
+asdf<!-- comment 1 -->jkl
+!! html
+<p>asdfjkl
+</p>
+!! end
+
+!! test
+Comment spacing
+!! wikitext
+a
+ <!-- foo --> b <!-- bar -->
+c
+!! html
+<p>a
+</p>
+<pre> b 
+</pre>
+<p>c
+</p>
+!! end
+
+!! test
+Comment whitespace
+!! wikitext
+<!-- returns a single newline, not nothing, since the newline after > is not stripped -->
+!! html
+!! end
+
+!! test
+Comment semantics and delimiters
+!! wikitext
+<!-- --><!----><!-----><!------>
+!! html/php
+!! html/parsoid
+<!-- --><!----><!--&#x2D;--><!--&#x2D;&#x2D;-->
+!! end
+
+!! test
+Comment semantics and delimiters, redux
+!! wikitext
+<!-- In SGML every "foo" here would actually show up in the text -- foo -- bar
+-- foo -- funky huh? ... -->
+!! html/php
+!! html/parsoid
+<!-- In SGML every "foo" here would actually show up in the text &#x2D;&#x2D; foo &#x2D;&#x2D; bar
+&#x2D;&#x2D; foo &#x2D;&#x2D; funky huh? ... -->
+!! end
+
+!! test
+Comment semantics and delimiters: directors cut
+!! wikitext
+<!-- ... However we like to keep things simple and somewhat XML-ish so we eat
+everything starting with < followed by !-- until the first -- and > we see,
+that wouldn't be valid XML however, since in XML -- has to terminate a comment
+-->-->
+!! html/php
+<p>--&gt;
+</p>
+!! html/parsoid
+<!-- ... However we like to keep things simple and somewhat XML&#x2D;ish so we eat
+everything starting with < followed by !&#x2D;&#x2D; until the first &#x2D;&#x2D; and &#x3E; we see,
+that wouldn't be valid XML however, since in XML &#x2D;&#x2D; has to terminate a comment
+--><p>--></p>
+!! end
+
+!! test
+Comment semantics: nesting
+!! wikitext
+<!--<!-- no, we're not going to do anything fancy here -->-->
+!! html/php
+<p>--&gt;
+</p>
+!! html/parsoid
+<!--<!&#x2D;&#x2D; no, we're not going to do anything fancy here --><p>--></p>
+!! end
+
+# Parsoid closes the unclosed comment, even if it means a slight
+# round-trip diff.
+!! test
+Comment semantics: unclosed comment at end
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+<!--This comment will run out to the end of the document
+!! html/php
+!! html/parsoid
+<!--This comment will run out to the end of the document-->
+!! end
+
+!! test
+Comment semantics: normalize comments to play nice with XML and browsers
+!! wikitext
+<!-- Browsers --!> think this is closed -->
+<!--> This would normally be text -->
+<!---> As would this -->
+<!-- XML doesn't like trailing dashes -------->
+<!-- Nor doubled hyphens -- anywhere in the data -->
+But this is not a comment.
+!! html/php
+<p>But this is not a comment.
+</p>
+!! html/parsoid
+<!-- Browsers &#x2D;&#x2D;!&#x3E; think this is closed -->
+<!--&#x3E; This would normally be text -->
+<!--&#x2D;&#x3E; As would this -->
+<!-- XML doesn't like trailing dashes &#x2D;&#x2D;&#x2D;&#x2D;&#x2D;&#x2D;-->
+<!-- Nor doubled hyphens &#x2D;&#x2D; anywhere in the data -->
+<p>But this is not a comment.</p>
+!! end
+
+!! test
+Comment semantics: round-trip even text which contains encoded -->
+!! wikitext
+<!-- hello & goodbye - > --&gt; --&amp;gt; --&xx -->
+!! html/parsoid
+<!-- hello &#x26; goodbye &#x2D; &#x3E; &#x2D;&#x2D;&#x3E; &#x2D;&#x2D;&#x26;gt; &#x2D;&#x2D;&#x26;xx -->
+!! end
+
+!! test
+Comment in template title
+!! wikitext
+{{f<!---->oo}}
+!! html
+<p>FOO
+</p>
+!! end
+
+!! test
+Comment on its own line post-expand
+!! wikitext
+a
+{{blank}}<!---->
+b
+!! html
+<p>a
+</p><p>b
+</p>
+!! end
+
+!! test
+Comment on its own line post-expand with non-significant whitespace
+!! wikitext
+a
+ {{blank}} <!----> 
+b
+!! html
+<p>a
+</p><p>b
+</p>
+!! end
+
+!! test
+Multiple comments should still parse as SOL-transparent
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+<!--c1-->*a
+<!--c2--><!--c3--><!--c4-->*b
+!! html/php
+<ul><li>a</li>
+<li>b</li></ul>
+!! html/parsoid
+<!--c1--><ul>
+<li>a
+</li>
+<!--c2--><!--c3--><!--c4-->
+<li>b
+</li>
+</ul>
+!! end
+
+## Make sure ">" gets escaped in comments to avoid XSS
+!! test
+IE conditional comments
+!! wikitext
+<!--[if lt IE 9]>
+	<script>alert('hi');</script>
+<![endif]-->
+!! html/parsoid
+<!--[if lt IE 9]&#x3E;
+	<script&#x3E;alert('hi');</script&#x3E;
+<![endif]-->
+!! end
+
+## Regession test for Parsoid
+!! test
+Comment with valid json
+!! wikitext
+hi <!--{"hi":"ho"}--> ho
+!! html/php
+<p>hi  ho
+</p>
+!! html/parsoid
+<p>hi <!--{"hi":"ho"}--> ho</p>
+!! end

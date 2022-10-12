@@ -1,0 +1,1037 @@
+# The parsoid-compatible option below is only relevant when we are running
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html
+version=2
+!! end
+
+# Note that the current date is hard-coded as
+#   1970-01-01T00:02:03Z (a Thursday)
+# when running parser tests.  The timezone is also fixed to GMT, so
+# local date will be identical to current date.
+
+!! test
+Magic Word: {{CURRENTDAY}}
+!! wikitext
+{{CURRENTDAY}}
+!! html/php
+<p>1
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"CURRENTDAY","function":"currentday"},"params":{},"i":0}}]}'>1</span></p>
+!! end
+
+!! test
+Magic Word: {{CURRENTDAY2}}
+!! wikitext
+{{CURRENTDAY2}}
+!! html/php
+<p>01
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"CURRENTDAY2","function":"currentday2"},"params":{},"i":0}}]}'>01</span></p>
+!! end
+
+!! test
+Magic Word: {{CURRENTDAYNAME}}
+!! wikitext
+{{CURRENTDAYNAME}}
+!! html/php
+<p>Thursday
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"CURRENTDAYNAME","function":"currentdayname"},"params":{},"i":0}}]}'>Thursday</span></p>
+!! end
+
+!! test
+Magic Word: {{CURRENTDOW}}
+!! wikitext
+{{CURRENTDOW}}
+!! html/php
+<p>4
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"CURRENTDOW","function":"currentdow"},"params":{},"i":0}}]}'>4</span></p>
+!! end
+
+!! test
+Magic Word: {{CURRENTMONTH}}
+!! wikitext
+{{CURRENTMONTH}}
+!! html/php
+<p>01
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"CURRENTMONTH","function":"currentmonth"},"params":{},"i":0}}]}'>01</span></p>
+!! end
+
+!! test
+Magic Word: {{CURRENTMONTH1}}
+!! wikitext
+{{CURRENTMONTH1}}
+!! html/php
+<p>1
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"CURRENTMONTH1","function":"currentmonth1"},"params":{},"i":0}}]}'>1</span></p>
+!! end
+
+!! test
+Magic Word: {{CURRENTMONTHABBREV}}
+!! wikitext
+{{CURRENTMONTHABBREV}}
+!! html/php
+<p>Jan
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"CURRENTMONTHABBREV","function":"currentmonthabbrev"},"params":{},"i":0}}]}'>Jan</span></p>
+!! end
+
+!! test
+Magic Word: {{CURRENTMONTHNAME}}
+!! wikitext
+{{CURRENTMONTHNAME}}
+!! html/php
+<p>January
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"CURRENTMONTHNAME","function":"currentmonthname"},"params":{},"i":0}}]}'>January</span></p>
+!! end
+
+!! test
+Magic Word: {{CURRENTMONTHNAMEGEN}}
+!! wikitext
+{{CURRENTMONTHNAMEGEN}}
+!! html/php
+<p>January
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"CURRENTMONTHNAMEGEN","function":"currentmonthnamegen"},"params":{},"i":0}}]}'>January</span></p>
+!! end
+
+!! test
+Magic Word: {{CURRENTTIME}}
+!! wikitext
+{{CURRENTTIME}}
+!! html/php
+<p>00:02
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"CURRENTTIME","function":"currenttime"},"params":{},"i":0}}]}'>00:02</span></p>
+!! end
+
+!! test
+Magic Word: {{CURRENTHOUR}}
+!! wikitext
+{{CURRENTHOUR}}
+!! html/php
+<p>00
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"CURRENTHOUR","function":"currenthour"},"params":{},"i":0}}]}'>00</span></p>
+!! end
+
+!! test
+Magic Word: {{CURRENTWEEK}} (T6594)
+!! wikitext
+{{CURRENTWEEK}}
+!! html/php
+<p>1
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"CURRENTWEEK","function":"currentweek"},"params":{},"i":0}}]}'>1</span></p>
+!! end
+
+!! test
+Magic Word: {{CURRENTYEAR}}
+!! wikitext
+{{CURRENTYEAR}}
+!! html/php
+<p>1970
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"CURRENTYEAR","function":"currentyear"},"params":{},"i":0}}]}'>1970</span></p>
+!! end
+
+!! test
+Magic Word: {{CURRENTTIMESTAMP}}
+!! wikitext
+{{CURRENTTIMESTAMP}}
+!! html/php
+<p>19700101000203
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"CURRENTTIMESTAMP","function":"currenttimestamp"},"params":{},"i":0}}]}'>19700101000203</span></p>
+!! end
+
+!! test
+Magic Words LOCAL (UTC)
+!! wikitext
+*{{LOCALMONTH}}
+*{{LOCALMONTH1}}
+*{{LOCALMONTHNAME}}
+*{{LOCALMONTHNAMEGEN}}
+*{{LOCALMONTHABBREV}}
+*{{LOCALDAY}}
+*{{LOCALDAY2}}
+*{{LOCALDAYNAME}}
+*{{LOCALYEAR}}
+*{{LOCALTIME}}
+*{{LOCALHOUR}}
+*{{LOCALWEEK}}
+*{{LOCALDOW}}
+*{{LOCALTIMESTAMP}}
+!! html/php
+<ul><li>01</li>
+<li>1</li>
+<li>January</li>
+<li>January</li>
+<li>Jan</li>
+<li>1</li>
+<li>01</li>
+<li>Thursday</li>
+<li>1970</li>
+<li>00:02</li>
+<li>00</li>
+<li>1</li>
+<li>4</li>
+<li>19700101000203</li></ul>
+!! html/parsoid+integrated
+<ul><li><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"LOCALMONTH","function":"localmonth"},"params":{},"i":0}}]}'>01</span></li>
+<li><span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"LOCALMONTH1","function":"localmonth1"},"params":{},"i":0}}]}'>1</span></li>
+<li><span about="#mwt3" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"LOCALMONTHNAME","function":"localmonthname"},"params":{},"i":0}}]}'>January</span></li>
+<li><span about="#mwt4" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"LOCALMONTHNAMEGEN","function":"localmonthnamegen"},"params":{},"i":0}}]}'>January</span></li>
+<li><span about="#mwt5" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"LOCALMONTHABBREV","function":"localmonthabbrev"},"params":{},"i":0}}]}'>Jan</span></li>
+<li><span about="#mwt6" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"LOCALDAY","function":"localday"},"params":{},"i":0}}]}'>1</span></li>
+<li><span about="#mwt7" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"LOCALDAY2","function":"localday2"},"params":{},"i":0}}]}'>01</span></li>
+<li><span about="#mwt8" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"LOCALDAYNAME","function":"localdayname"},"params":{},"i":0}}]}'>Thursday</span></li>
+<li><span about="#mwt9" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"LOCALYEAR","function":"localyear"},"params":{},"i":0}}]}'>1970</span></li>
+<li><span about="#mwt10" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"LOCALTIME","function":"localtime"},"params":{},"i":0}}]}'>00:02</span></li>
+<li><span about="#mwt11" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"LOCALHOUR","function":"localhour"},"params":{},"i":0}}]}'>00</span></li>
+<li><span about="#mwt12" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"LOCALWEEK","function":"localweek"},"params":{},"i":0}}]}'>1</span></li>
+<li><span about="#mwt13" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"LOCALDOW","function":"localdow"},"params":{},"i":0}}]}'>4</span></li>
+<li><span about="#mwt14" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"LOCALTIMESTAMP","function":"localtimestamp"},"params":{},"i":0}}]}'>19700101000203</span></li></ul>
+!! end
+
+!! test
+Magic Word: {{FULLPAGENAME}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{FULLPAGENAME}}
+!! html/php
+<p>User:Ævar Arnfjörð Bjarmason
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"FULLPAGENAME","function":"fullpagename"},"params":{},"i":0}}]}'>User:Ævar Arnfjörð Bjarmason</span></p>
+!! end
+
+!! test
+Magic Word: {{FULLPAGENAMEE}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{FULLPAGENAMEE}}
+!! html/php
+<p>User:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"FULLPAGENAMEE","function":"fullpagenamee"},"params":{},"i":0}}]}'>User:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason</span></p>
+!! end
+
+!! test
+Magic Word: {{TALKSPACE}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{TALKSPACE}}
+!! html/php
+<p>User talk
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"TALKSPACE","function":"talkspace"},"params":{},"i":0}}]}'>User talk</span></p>
+!! end
+
+!! test
+Magic Word: {{TALKSPACE}}, same namespace
+!! options
+title=[[User talk:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{TALKSPACE}}
+!! html/php
+<p>User talk
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"TALKSPACE","function":"talkspace"},"params":{},"i":0}}]}'>User talk</span></p>
+!! end
+
+!! test
+Magic Word: {{TALKSPACE}}, main namespace
+!! options
+title=[[Parser Test]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+!! wikitext
+{{TALKSPACE}}
+!! html/php
+<p>Talk
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"TALKSPACE","function":"talkspace"},"params":{},"i":0}}]}'>Talk</span></p>
+!! end
+
+!! test
+Magic Word: {{TALKSPACEE}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{TALKSPACEE}}
+!! html/php
+<p>User_talk
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"TALKSPACEE","function":"talkspacee"},"params":{},"i":0}}]}'>User_talk</span></p>
+!! end
+
+!! test
+Magic Word: {{SUBJECTSPACE}}
+!! options
+title=[[User talk:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{SUBJECTSPACE}}
+!! html/php
+<p>User
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"SUBJECTSPACE","function":"subjectspace"},"params":{},"i":0}}]}'>User</span></p>
+!! end
+
+!! test
+Magic Word: {{SUBJECTSPACE}}, same namespace
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{SUBJECTSPACE}}
+!! html/php
+<p>User
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"SUBJECTSPACE","function":"subjectspace"},"params":{},"i":0}}]}'>User</span></p>
+!! end
+
+!! test
+Magic Word: {{SUBJECTSPACE}}, main namespace
+!! options
+title=[[Parser Test]]
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{SUBJECTSPACE}}
+!! html/php
+!! html/parsoid+integrated
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"SUBJECTSPACE","function":"subjectspace"},"params":{},"i":0}}]}'></span>
+!! end
+
+!! test
+Magic Word: {{SUBJECTSPACEE}}
+!! options
+title=[[User talk:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{SUBJECTSPACEE}}
+!! html/php
+<p>User
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"SUBJECTSPACEE","function":"subjectspacee"},"params":{},"i":0}}]}'>User</span></p>
+!! end
+
+!! test
+Magic Word: {{NAMESPACE}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{NAMESPACE}}
+!! html/php
+<p>User
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"NAMESPACE","function":"namespace"},"params":{},"i":0}}]}'>User</span></p>
+!! end
+
+!! test
+Magic Word: {{NAMESPACEE}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{NAMESPACEE}}
+!! html/php
+<p>User
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"NAMESPACEE","function":"namespacee"},"params":{},"i":0}}]}'>User</span></p>
+!! end
+
+!! test
+Magic Word: {{NAMESPACENUMBER}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{NAMESPACENUMBER}}
+!! html/php
+<p>2
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"NAMESPACENUMBER","function":"namespacenumber"},"params":{},"i":0}}]}'>2</span></p>
+!! end
+
+!! test
+Magic Word: {{SUBPAGENAME}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub ö]] subpage
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{SUBPAGENAME}}
+!! html/php
+<p>sub ö
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"SUBPAGENAME","function":"subpagename"},"params":{},"i":0}}]}'>sub ö</span></p>
+!! end
+
+!! test
+Magic Word: {{SUBPAGENAMEE}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub ö]] subpage
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{SUBPAGENAMEE}}
+!! html/php
+<p>sub_%C3%B6
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"SUBPAGENAMEE","function":"subpagenamee"},"params":{},"i":0}}]}'>sub_%C3%B6</span></p>
+!! end
+
+!! test
+Magic Word: {{ROOTPAGENAME}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub/sub2]] subpage
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{ROOTPAGENAME}}
+!! html/php
+<p>Ævar Arnfjörð Bjarmason
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"ROOTPAGENAME","function":"rootpagename"},"params":{},"i":0}}]}'>Ævar Arnfjörð Bjarmason</span></p>
+!! end
+
+!! test
+Magic Word: {{ROOTPAGENAMEE}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub/sub2]] subpage
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{ROOTPAGENAMEE}}
+!! html/php
+<p>%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"ROOTPAGENAMEE","function":"rootpagenamee"},"params":{},"i":0}}]}'>%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason</span></p>
+!! end
+
+!! test
+Magic Word: {{BASEPAGENAME}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub]] subpage
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{BASEPAGENAME}}
+!! html/php
+<p>Ævar Arnfjörð Bjarmason
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"BASEPAGENAME","function":"basepagename"},"params":{},"i":0}}]}'>Ævar Arnfjörð Bjarmason</span></p>
+!! end
+
+!! test
+Magic Word: {{BASEPAGENAMEE}}
+!! options
+title=[[Ævar Arnfjörð Bjarmason/sub]] subpage
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{BASEPAGENAMEE}}
+!! html/php
+<p>%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"BASEPAGENAMEE","function":"basepagenamee"},"params":{},"i":0}}]}'>%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason</span></p>
+!! end
+
+!! test
+Magic Word: {{TALKPAGENAME}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{TALKPAGENAME}}
+!! html/php
+<p>User talk:Ævar Arnfjörð Bjarmason
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"TALKPAGENAME","function":"talkpagename"},"params":{},"i":0}}]}'>User talk:Ævar Arnfjörð Bjarmason</span></p>
+!! end
+
+!! test
+Magic Word: {{TALKPAGENAMEE}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{TALKPAGENAMEE}}
+!! html/php
+<p>User_talk:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"TALKPAGENAMEE","function":"talkpagenamee"},"params":{},"i":0}}]}'>User_talk:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason</span></p>
+!! end
+
+!! test
+Magic Word: {{SUBJECTPAGENAME}}
+!! options
+title=[[User talk:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+!! wikitext
+{{SUBJECTPAGENAME}}
+!! html/php
+<p>User:Ævar Arnfjörð Bjarmason
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"SUBJECTPAGENAME","function":"subjectpagename"},"params":{},"i":0}}]}'>User:Ævar Arnfjörð Bjarmason</span></p>
+!! end
+
+!! test
+Magic Word: {{SUBJECTPAGENAMEE}}
+!! options
+title=[[User talk:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+!! wikitext
+{{SUBJECTPAGENAMEE}}
+!! html/php
+<p>User:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"SUBJECTPAGENAMEE","function":"subjectpagenamee"},"params":{},"i":0}}]}'>User:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason</span></p>
+!! end
+
+!! test
+Magic Word: {{NUMBEROFFILES}}
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{NUMBEROFFILES}}
+!! html/php
+<p>7
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"NUMBEROFFILES","function":"numberoffiles"},"params":{},"i":0}}]}'>7</span></p>
+!! end
+
+!! test
+Magic Word: {{PAGENAME}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+{{PAGENAME}}
+!! html/php
+<p>Ævar Arnfjörð Bjarmason
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"PAGENAME","function":"pagename"},"params":{},"i":0}}]}'>Ævar Arnfjörð Bjarmason</span></p>
+!! end
+
+!! test
+Magic Word: {{PAGENAME}} with metacharacters
+!! options
+title=[['foo & bar = baz']]
+parsoid={ "modes": ["wt2html","wt2wt"] }
+!! wikitext
+''{{PAGENAME}}''
+!! html/php
+<p><i>&#39;foo &#38; bar &#61; baz&#39;</i>
+</p>
+!! html/parsoid+integrated
+<p><i><span about="#mwt1" typeof="mw:Transclusion mw:Entity" data-mw='{"parts":[{"template":{"target":{"wt":"PAGENAME","function":"pagename"},"params":{},"i":0}}]}'>'</span><span>foo </span><span typeof="mw:Entity">&amp;</span><span> bar </span><span typeof="mw:Entity">=</span><span> baz</span><span typeof="mw:Entity">'</span></i></p>
+!! end
+
+!! test
+Magic Word: {{PAGENAME}} with metacharacters (T28781)
+!! options
+title=[[*RFC 1234 http://example.com/]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+!! wikitext
+{{PAGENAME}}
+!! html/php
+<p>&#42;RFC&#32;1234 http&#58;//example.com/
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion mw:Entity" data-mw='{"parts":[{"template":{"target":{"wt":"PAGENAME","function":"pagename"},"params":{},"i":0}}]}'>*</span><span>RFC</span><span typeof="mw:Entity"> </span><span>1234 http</span><span typeof="mw:Entity">:</span><span>//example.com/</span></p>
+!! end
+
+!! test
+Magic Word: {{PAGENAMEE}}
+!! options
+title=[[User:Ævar Arnfjörð Bjarmason]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+!! wikitext
+{{PAGENAMEE}}
+!! html/php
+<p>%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"PAGENAMEE","function":"pagenamee"},"params":{},"i":0}}]}'>%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason</span></p>
+!! end
+
+!! test
+Magic Word: {{PAGENAMEE}} with metacharacters (T28781)
+!! options
+title=[[*RFC 1234 http://example.com/]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+!! wikitext
+{{PAGENAMEE}}
+!! html/php
+<p>&#42;RFC_1234_http&#58;//example.com/
+</p>
+!! html/parsoid+integrated
+<p><span typeof="mw:Transclusion mw:Entity" about="#mwt1" data-parsoid='{"srcContent":"*","pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"PAGENAMEE","function":"pagenamee"},"params":{},"i":0}}]}'>*</span><span about="#mwt1">RFC_1234_http</span><span typeof="mw:Entity" about="#mwt1">:</span><span about="#mwt1">//example.com/</span></p>
+!! end
+
+!! test
+Magic Word: {{REVISIONID}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"] }
+showflags
+!! wikitext
+{{REVISIONID}}
+!! html/php
+<p>1337
+</p>
+flags=vary-revision-id
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONID","function":"revisionid"},"params":{},"i":0}}]}'>1337</span></p>
+!! end
+
+!! test
+Magic Word: {{REVISIONID}} on non-latest revision
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"] }
+showflags
+!! wikitext
+{{REVISIONID}}
+!! html/php
+<p>1337
+</p>
+flags=vary-revision-id
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONID","function":"revisionid"},"params":{},"i":0}}]}'>1337</span></p>
+!! end
+
+!! test
+Magic Word: {{REVISIONTIMESTAMP}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONTIMESTAMP}}
+!! html/php
+<p>19700101000203
+</p>
+flags=
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONTIMESTAMP","function":"revisiontimestamp"},"params":{},"i":0}}]}'>19700101000203</span></p>
+!! end
+
+!! test
+Magic Word: {{REVISIONTIMESTAMP:{{PAGENAME}}}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONTIMESTAMP:{{PAGENAME}}}}
+!! html/php
+<p>19700101000203
+</p>
+flags=
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONTIMESTAMP:{{PAGENAME}}","function":"revisiontimestamp"},"params":{},"i":0}}]}'>19700101000203</span></p>
+!! end
+
+!! test
+Magic Word: {{REVISIONTIMESTAMP}} on not-yet-existing current page
+!! options
+title=[[This page does not exist]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONTIMESTAMP}}
+!! html/php
+<p>19700101000203
+</p>
+flags=vary-revision-timestamp
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONTIMESTAMP","function":"revisiontimestamp"},"params":{},"i":0}}]}'>19700101000203</span></p>
+!! end
+
+!! test
+Magic Word: {{REVISIONTIMESTAMP:{{PAGENAME}}}} on not-yet-existing current page
+!! options
+title=[[This page does not exist]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONTIMESTAMP:{{PAGENAME}}}}
+!! html/php
+<p>19700101000203
+</p>
+flags=vary-revision-timestamp
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONTIMESTAMP:{{PAGENAME}}","function":"revisiontimestamp"},"params":{},"i":0}}]}'>19700101000203</span></p>
+!! end
+
+!! test
+Magic Word: {{REVISIONTIMESTAMP:...}}} on non-existing non-current page
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONTIMESTAMP:This page does not exist}}
+!! html/php
+
+flags=
+!! html/parsoid+integrated
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONTIMESTAMP:This page does not exist","function":"revisiontimestamp"},"params":{},"i":0}}]}'></span>
+!! end
+
+!! test
+Magic Word: {{REVISIONUSER}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONUSER}}
+!! html/php
+<p>127.0.0.1
+</p>
+flags=vary-user
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONUSER","function":"revisionuser"},"params":{},"i":0}}]}'>127.0.0.1</span></p>
+!! end
+
+!! test
+Magic Word: {{REVISIONUSER}} on not-yet-existing current page
+!! options
+title=[[This page does not exist]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONUSER}}
+!! html/php
+
+flags=vary-user
+!! html/parsoid+integrated
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONUSER","function":"revisionuser"},"params":{},"i":0}}]}'></span>
+!! end
+
+!! test
+Magic Word: {{REVISIONUSER:{{PAGENAME}}}} on not-yet-existing current page
+!! options
+title=[[This page does not exist]]
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONUSER:{{PAGENAME}}}}
+!! html/php
+
+flags=vary-user
+!! html/parsoid+integrated
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONUSER:{{PAGENAME}}","function":"revisionuser"},"params":{},"i":0}}]}'></span>
+!! end
+
+!! test
+Magic Word: {{REVISIONUSER:...}} on non-existing non-current page
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONUSER:This page does not exist}}
+!! html/php
+
+flags=
+!! html/parsoid+integrated
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONUSER:This page does not exist","function":"revisionuser"},"params":{},"i":0}}]}'></span>
+!! end
+
+!! test
+Magic Word: {{REVISIONUSER}} on non-latest revision
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONUSER}}
+!! html/php
+
+flags=vary-user
+!! html/parsoid+integrated
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONUSER","function":"revisionuser"},"params":{},"i":0}}]}'></span>
+!! end
+
+!! test
+Parser Function: {{REVISIONID:{{PAGENAME}}}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"] }
+showflags
+!! wikitext
+{{REVISIONID:{{PAGENAME}}}}
+!! html/php
+<p>1337
+</p>
+flags=vary-revision-id
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONID:{{PAGENAME}}","function":"revisionid"},"params":{},"i":0}}]}'>1337</span></p>
+!! end
+
+!! test
+Parser Function: {{REVISIONID:{{PAGENAME}}}} on non-saved revision
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"] }
+showflags
+!! wikitext
+{{REVISIONID:{{PAGENAME}}}}
+!! html/php
+
+flags=vary-revision-id
+!! html/parsoid+integrated
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONID:{{PAGENAME}}","function":"revisionid"},"params":{},"i":0}}]}'></span>
+!! end
+
+!! test
+Parser Function: {{REVISIONDAY}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONDAY}}
+!! html/php
+<p>1
+</p>
+flags=
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONDAY","function":"revisionday"},"params":{},"i":0}}]}'>1</span></p>
+!! end
+
+!! test
+Parser Function: {{REVISIONDAY:{{PAGENAME}}}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"] }
+showflags
+!! wikitext
+{{REVISIONDAY:{{PAGENAME}}}}
+!! html/php
+<p>1
+</p>
+flags=
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONDAY:{{PAGENAME}}","function":"revisionday"},"params":{},"i":0}}]}'>1</span></p>
+!! end
+
+!! test
+Parser Function: {{REVISIONMONTH}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+showflags
+!! wikitext
+{{REVISIONMONTH}}
+!! html/php
+<p>01
+</p>
+flags=
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONMONTH","function":"revisionmonth"},"params":{},"i":0}}]}'>01</span></p>
+!! end
+
+!! test
+Parser Function: {{REVISIONMONTH:{{PAGENAME}}}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"] }
+showflags
+!! wikitext
+{{REVISIONMONTH:{{PAGENAME}}}}
+!! html/php
+<p>01
+</p>
+flags=
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONMONTH:{{PAGENAME}}","function":"revisionmonth"},"params":{},"i":0}}]}'>01</span></p>
+!! end
+
+!! test
+Parser Function: {{REVISIONYEAR:{{PAGENAME}}}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"] }
+showflags
+!! wikitext
+{{REVISIONYEAR:{{PAGENAME}}}}
+!! html/php
+<p>1970
+</p>
+flags=
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONYEAR:{{PAGENAME}}","function":"revisionyear"},"params":{},"i":0}}]}'>1970</span></p>
+!! end
+
+!! test
+Parser Function: {{PAGESIZE:{{PAGENAME}}}} on latest revision
+!! options
+lastsavedrevision
+parsoid={ "modes": ["wt2html","wt2wt"] }
+showflags
+!! wikitext
+{{PAGESIZE:{{PAGENAME}}}}
+!! html/php
+<p>25
+</p>
+flags=vary-revision-sha1
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"PAGESIZE:{{PAGENAME}}","function":"pagesize"},"params":{},"i":0}}]}'>25</span></p>
+!! end
+
+!! test
+Magic Word: {{SCRIPTPATH}}
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+!! wikitext
+{{SCRIPTPATH}}
+!! html/php
+!! html/parsoid+integrated
+<span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"SCRIPTPATH","function":"scriptpath"},"params":{},"i":0}}]}'></span>
+!! end
+
+!! test
+Magic Word: {{STYLEPATH}}
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+!! wikitext
+{{STYLEPATH}}
+!! html/php
+<p>/skins
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"STYLEPATH","function":"stylepath"},"params":{},"i":0}}]}'>/skins</span></p>
+!! end
+
+!! test
+Magic Word: {{SERVER}}
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+!! wikitext
+{{SERVER}}
+!! html/*
+<p><a rel="nofollow" class="external free" href="http://example.org">http://example.org</a>
+</p>
+!! end
+
+!! test
+Magic Word: {{SERVERNAME}}
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+!! wikitext
+{{SERVERNAME}}
+!! html/*
+<p>example.org
+</p>
+!! end
+
+!! test
+Magic Word: {{SITENAME}}
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+!! wikitext
+{{SITENAME}}
+!! html/*
+<p>MediaWiki
+</p>
+!! end
+
+!! test
+Magic Word: {{PAGELANGUAGE}}
+!! options
+language=fr
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+!! wikitext
+{{PAGELANGUAGE}}
+!! html/*
+<p>fr
+</p>
+!! end
+
+!! test
+Magic Word: {{PAGELANGUAGE}} on a page with no explicitly set language
+!! options
+parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
+!! wikitext
+{{PAGELANGUAGE}}
+!! html/*
+<p>en
+</p>
+!! end
+
+!! test
+Case-sensitive magic words, when cased differently, should just be template transclusions
+!! wikitext
+{{CurrentMonth}}
+{{currentday}}
+{{cURreNTweEK}}
+{{currentHour}}
+!! html
+<p><a href="/index.php?title=Template:CurrentMonth&amp;action=edit&amp;redlink=1" class="new" title="Template:CurrentMonth (page does not exist)">Template:CurrentMonth</a>
+<a href="/index.php?title=Template:Currentday&amp;action=edit&amp;redlink=1" class="new" title="Template:Currentday (page does not exist)">Template:Currentday</a>
+<a href="/index.php?title=Template:CURreNTweEK&amp;action=edit&amp;redlink=1" class="new" title="Template:CURreNTweEK (page does not exist)">Template:CURreNTweEK</a>
+<a href="/index.php?title=Template:CurrentHour&amp;action=edit&amp;redlink=1" class="new" title="Template:CurrentHour (page does not exist)">Template:CurrentHour</a>
+</p>
+!! end
+
+!! test
+Case-insensitive magic words should still work with weird casing.
+!! wikitext
+{{sErVeRNaMe}}
+{{LCFirst:AOEU}}
+{{ucFIRST:aoeu}}
+{{SERver}}
+!! html
+<p>example.org
+aOEU
+Aoeu
+<a rel="nofollow" class="external free" href="http://example.org">http://example.org</a>
+</p>
+!! end

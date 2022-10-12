@@ -1,0 +1,413 @@
+# The parsoid-compatible option below is only relevant when we are running
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html
+version=2
+!! end
+
+!! article
+Template:1x
+!! text
+{{{1}}}
+!! endarticle
+
+!! test
+<pre> with attributes (T5202)
+!! wikitext
+<pre style="background: blue; color:white">Bluescreen of WikiDeath</pre>
+!! html
+<pre style="background: blue; color:white">Bluescreen of WikiDeath</pre>
+!! end
+
+!! test
+<pre> with width attribute (T5202)
+!! wikitext
+<pre width="8">Narrow screen goodies</pre>
+!! html
+<pre width="8">Narrow screen goodies</pre>
+!! end
+
+!! test
+<pre> with forbidden attribute (T5202)
+!! wikitext
+<pre width="8" onmouseover="alert(document.cookie)">Narrow screen goodies</pre>
+!! html
+<pre width="8">Narrow screen goodies</pre>
+!! end
+
+!! test
+Entities inside <pre>
+!! wikitext
+<pre>&lt;</pre>
+!! html
+<pre>&lt;</pre>
+!! end
+
+!! test
+<pre> with forbidden attribute values (T5202)
+!! wikitext
+<pre width="8" style="border-width: expression(alert(document.cookie))">Narrow screen goodies</pre>
+!! html
+<pre width="8" style="/* insecure input */">Narrow screen goodies</pre>
+!! end
+
+!! test
+<nowiki> inside <pre> (T15238)
+!! wikitext
+<pre>
+<nowiki>
+</pre>
+<pre>
+<nowiki></nowiki>
+</pre>
+<pre><nowiki><nowiki></nowiki>Foo<nowiki></nowiki></nowiki></pre>
+!! html
+<pre>&lt;nowiki&gt;
+</pre>
+<pre>
+
+</pre>
+<pre>&lt;nowiki&gt;Foo&lt;/nowiki&gt;</pre>
+!! end
+
+!! test
+<nowiki> inside of #tag:pre
+!! wikitext
+{{#tag:pre|Foo <nowiki>&rarr;bar</nowiki>}}
+!! html/php
+<pre>Foo &#8594;bar</pre>
+!! html/parsoid+standalone
+<pre about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"#tag:pre","function":"tag"},"params":{"1":{"wt":"Foo &lt;nowiki>&amp;rarr;bar&lt;/nowiki>"}},"i":0}}]}'>Foo <span typeof="mw:Entity">→</span>bar</pre>
+!! html/parsoid+integrated
+<pre about="#mwt1" typeof="mw:Extension/pre mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#tag:pre","function":"tag"},"params":{"1":{"wt":"Foo &lt;nowiki>&amp;rarr;bar&lt;/nowiki>"}},"i":0}}]}'>Foo →bar</pre>
+!! end
+
+## Don't expect this to rt, Parsoid drops the unmatched closing pre tags that
+## aren't enclosed in nowikis.
+!! test
+<nowiki> and <pre> preference (first one wins)
+!! options
+parsoid=wt2html
+!! wikitext
+<pre>
+<nowiki>
+</pre>
+</nowiki>
+</pre>
+
+<nowiki>
+<pre>
+<nowiki>
+</pre>
+</nowiki>
+</pre>
+
+!! html/php
+<pre>&lt;nowiki&gt;
+</pre>
+<p>&lt;/nowiki&gt;
+</p>
+
+<p>
+&lt;pre&gt;
+&lt;nowiki&gt;
+&lt;/pre&gt;
+
+</p>
+!! html/parsoid
+<pre typeof="mw:Extension/pre" about="#mwt2" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n&lt;nowiki>\n"}}'>&lt;nowiki>
+</pre>
+<p>&lt;/nowiki></p>
+
+
+<p><span typeof="mw:Nowiki">
+&lt;pre>
+&lt;nowiki>
+&lt;/pre>
+</span></p>
+!! end
+
+!! test
+</pre> inside nowiki
+!! wikitext
+<nowiki></pre></nowiki>
+!! html
+<p>&lt;/pre&gt;
+</p>
+!! end
+
+!! test
+Empty pre; pre inside other HTML tags (T56946)
+!! wikitext
+a
+
+<div><pre>
+foo
+</pre></div>
+<pre></pre>
+!! html/php
+<p>a
+</p>
+<div><pre>foo
+</pre></div>
+<pre></pre>
+!! html/parsoid
+<p>a</p>
+
+<div data-parsoid='{"stx":"html"}'><pre typeof="mw:Extension/pre" about="#mwt2" data-parsoid='{"stx":"html"}' data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\nfoo\n"}}'>foo
+</pre></div>
+<pre typeof="mw:Extension/pre" about="#mwt4" data-parsoid='{"stx":"html"}' data-mw='{"name":"pre","attrs":{},"body":{"extsrc":""}}'></pre>
+!! end
+
+!! test
+HTML pre followed by indent-pre
+!! wikitext
+<pre>foo</pre>
+ bar
+!! html
+<pre>foo</pre>
+<pre>bar
+</pre>
+!! end
+
+!! test
+Block tag pre
+!! wikitext
+<p><pre>foo</pre></p>
+!! html/php
+<p class="mw-empty-elt"></p><pre>foo</pre><p class="mw-empty-elt"></p>
+!! html/parsoid
+<p class='mw-empty-elt' data-parsoid='{"stx":"html","autoInsertedEnd":true}'></p><pre typeof="mw:Extension/pre" about="#mwt2" data-parsoid='{"stx":"html"}' data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"foo"}}'>foo</pre><p class='mw-empty-elt' data-parsoid='{"autoInsertedStart":true,"stx":"html"}'></p>
+!! end
+
+## Hmm, should Parsoid rt this?
+!! test
+Pres with newline attributes
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+<pre class="one
+two">hi</pre>
+!! html/php
+<pre class="one two">hi</pre>
+!! html/parsoid
+<pre class="one two" typeof="mw:Extension/pre" about="#mwt2" data-mw='{"name":"pre","attrs":{"class":"one two"},"body":{"extsrc":"hi"}}'>hi</pre>
+!! end
+
+!! test
+Things that look like <pre> tags aren't treated as such
+!! wikitext
+Barack Obama <President> of the United States
+<President></President>
+!! html
+<p>Barack Obama &lt;President&gt; of the United States
+&lt;President&gt;&lt;/President&gt;
+</p>
+!! end
+
+## Remex doesn't account for fostered content.
+## The difference between Parsoid and the PHP parser can be attributed to core
+## commit 674e8388cba and 710618f89af in Parsoid's repo.  Parsoid doesn't
+## tokenize unmatched extension tags that shadow html tags as strings to ease
+## an escaping mechanism.  See the comment in `maybeExtensionTag`.
+!! test
+Handle broken pre-like tags (T66025)
+!! options
+parsoid=wt2html
+!! wikitext
+{{1x|<pre <pre>x</pre>}}
+
+<table><pre </table>
+!! html/php
+<pre>x</pre>
+&lt;pre <table></table>
+!! html/parsoid
+<pre typeof="mw:Extension/pre mw:Transclusion" about="#mwt2" data-parsoid='{"stx":"html","a":{"&lt;pre":null},"sa":{"&lt;pre":""},"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;pre &lt;pre>x&lt;/pre>"}},"i":0}}]}'>x</pre>
+
+<pre data-parsoid='{"stx":"html","src":"&lt;pre &lt;/table>","tagWidths":[13,0],"a":{"&lt;":null,"table":null},"sa":{"&lt;":"","table":""},"fostered":true,"autoInsertedEnd":true}'></pre><table data-parsoid='{"stx":"html","autoInsertedEnd":true}'></table>
+!! end
+
+## Similar to the above, but shows the difference between extension and html tags
+!! test
+Less than in attribute position
+!! wikitext
+<pre <pre>123</pre>
+
+<div <div>123</div>
+!! html/php
+<pre>123</pre><p>
+&lt;div </p><div>123</div>
+!! html/parsoid
+<pre typeof="mw:Extension/pre" about="#mwt2" data-mw='{"name":"pre","attrs":{"&lt;pre":""},"body":{"extsrc":"123"}}'>123</pre><p>
+
+&lt;div </p><div>123</div>
+!! end
+
+!! test
+Parsoid: handle pre with space after attribute
+!! options
+parsoid=wt2html
+!! wikitext
+<pre style="width:50%;" >{{1x|foo}}</pre>
+!! html/php
+<pre style="width:50%;">{{1x|foo}}</pre>
+!! html/parsoid
+<pre style="width:50%;" typeof="mw:Extension/pre" about="#mwt2" data-mw='{"name":"pre","attrs":{"style":"width:50%;"},"body":{"extsrc":"{{1x|foo}}"}}'>{{1x|foo}}</pre>
+!! end
+
+!! test
+Self-closed pre
+!! wikitext
+<pre />
+!! html/php
+<pre></pre>
+!! html/parsoid
+<pre typeof="mw:Extension/pre" about="#mwt2" data-mw='{"name":"pre","attrs":{}}'></pre>
+!! end
+
+###
+### HTML-pre (some to spec PHP parser behavior and some Parsoid-RT-centric)
+###
+
+!!test
+HTML-pre: 1. embedded newlines
+!! wikitext
+<pre>foo</pre>
+
+<pre>
+foo
+</pre>
+
+<pre>
+
+foo
+</pre>
+
+<pre>
+
+
+foo
+</pre>
+!! html/php
+<pre>foo</pre>
+<pre>foo
+</pre>
+<pre>
+
+foo
+</pre>
+<pre>
+
+
+foo
+</pre>
+!! html/parsoid
+<pre typeof="mw:Extension/pre" about="#mwt2" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"foo"}}'>foo</pre>
+
+<pre typeof="mw:Extension/pre" about="#mwt4" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\nfoo\n"}}'>foo
+</pre>
+
+<pre typeof="mw:Extension/pre" about="#mwt6" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n\nfoo\n"}}'>
+
+foo
+</pre>
+
+<pre typeof="mw:Extension/pre" about="#mwt8" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n\n\nfoo\n"}}'>
+
+
+foo
+</pre>
+!!end
+
+!! test
+HTML-pre: big spaces
+!! wikitext
+<pre>
+
+
+
+
+haha
+
+
+
+
+haha
+
+
+
+
+</pre>
+!! html/php
+<pre>
+
+
+
+
+haha
+
+
+
+
+haha
+
+
+
+
+</pre>
+!! html/parsoid
+<pre typeof="mw:Extension/pre" about="#mwt2" data-parsoid='{"stx":"html"}' data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n\n\n\n\nhaha\n\n\n\n\nhaha\n\n\n\n\n"}}'>
+
+
+
+
+haha
+
+
+
+
+haha
+
+
+
+
+</pre>
+!! end
+
+!!test
+HTML-pre: 2: indented text
+!! wikitext
+<pre>
+ foo
+</pre>
+!! html
+<pre> foo
+</pre>
+!!end
+
+!!test
+HTML-pre: 3: other wikitext
+!! wikitext
+<pre>
+* foo
+# bar
+= no-h =
+'' no-italic ''
+[[ NoLink ]]
+</pre>
+!! html/php
+<pre>* foo
+# bar
+= no-h =
+'' no-italic ''
+[[ NoLink ]]
+</pre>
+!! html/parsoid
+<pre typeof="mw:Extension/pre" about="#mwt2" data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"\n* foo\n# bar\n= no-h =\n&#39;&#39; no-italic &#39;&#39;\n[[ NoLink ]]\n"}}'>* foo
+# bar
+= no-h =
+'' no-italic ''
+[[ NoLink ]]
+</pre>
+!!end

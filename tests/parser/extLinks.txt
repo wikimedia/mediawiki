@@ -1,0 +1,1302 @@
+### This file has tests for external and url links
+
+# The parsoid-compatible option below is only relevant when we are running
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html
+version=2
+!! end
+
+!! article
+Template:1x
+!! text
+{{{1}}}
+!! endarticle
+
+!! test
+External links: non-bracketed
+!! wikitext
+Non-bracketed: http://example.com
+!! html
+<p>Non-bracketed: <a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>
+</p>
+!! end
+
+# parsoid doesn't explicitly mark autonumbered links, see T55505
+!! test
+External links: numbered
+!! wikitext
+Numbered: [http://example.com]
+Numbered: [http://example.net]
+Numbered: [http://example.com]
+!! html/php
+<p>Numbered: <a rel="nofollow" class="external autonumber" href="http://example.com">[1]</a>
+Numbered: <a rel="nofollow" class="external autonumber" href="http://example.net">[2]</a>
+Numbered: <a rel="nofollow" class="external autonumber" href="http://example.com">[3]</a>
+</p>
+!! html/parsoid
+<p>Numbered: <a rel="mw:ExtLink" href="http://example.com" class="external autonumber"></a>
+Numbered: <a rel="mw:ExtLink" href="http://example.net" class="external autonumber"></a>
+Numbered: <a rel="mw:ExtLink" href="http://example.com" class="external autonumber"></a></p>
+!!end
+
+!! test
+External links: specified text
+!! wikitext
+Specified text: [http://example.com link]
+!! html
+<p>Specified text: <a rel="nofollow" class="external text" href="http://example.com">link</a>
+</p>
+!!end
+
+!! test
+External links: trail
+!! wikitext
+Linktrails should not work for external links: [http://example.com link]s
+!! html
+<p>Linktrails should not work for external links: <a rel="nofollow" class="external text" href="http://example.com">link</a>s
+</p>
+!! end
+
+!! test
+External links: dollar sign in URL
+!! wikitext
+http://example.com/1$2345
+!! html
+<p><a rel="nofollow" class="external free" href="http://example.com/1$2345">http://example.com/1$2345</a>
+</p>
+!! end
+
+# parsoid doesn't explicitly mark autonumbered links, see T55505
+!! test
+External links: dollar sign in URL (autonumber)
+!! wikitext
+[http://example.com/1$2345]
+!! html/php
+<p><a rel="nofollow" class="external autonumber" href="http://example.com/1$2345">[1]</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/1$2345" class="external autonumber"></a></p>
+!!end
+
+!! test
+External links: open square bracket forbidden in URL (T6377)
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+http://example.com/1[2345
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://example.com/1">http://example.com/1</a>[2345
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/1" class="external free">http://example.com/1</a>[2345</p>
+!! end
+
+!! test
+External links: open square bracket forbidden in URL (named) (T6377)
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+[http://example.com/1[2345]
+!! html/php
+<p><a rel="nofollow" class="external text" href="http://example.com/1">[2345</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/1" class="external text">[2345</a></p>
+!!end
+
+# parsoid adds a space before the link name
+!! test
+External links: open square bracket forbidden in URL (named) (T6377)
+Parsoid variant.
+!! wikitext
+[http://example.com/1 [2345]
+!! html
+<p><a rel="nofollow" class="external text" href="http://example.com/1">[2345</a>
+</p>
+!!end
+
+!! test
+External links: nowiki in URL link text (T8230)
+!! wikitext
+[http://example.com/ <nowiki>''example site''</nowiki>]
+!! html
+<p><a rel="nofollow" class="external text" href="http://example.com/">''example site''</a>
+</p>
+!! end
+
+!! test
+External links: newline forbidden in text (T8230 regression check)
+!! wikitext
+[http://example.com/ first
+second]
+!! html
+<p>[<a rel="nofollow" class="external free" href="http://example.com/">http://example.com/</a> first
+second]
+</p>
+!!end
+
+!! test
+External links: Pipe char between url and text
+!! wikitext
+[http://example.com | link]
+!! html
+<p><a rel="nofollow" class="external text" href="http://example.com">| link</a>
+</p>
+!!end
+
+!! test
+External links: protocol-relative URL in brackets
+!! wikitext
+[//example.com/ Test]
+!! html
+<p><a rel="nofollow" class="external text" href="//example.com/">Test</a>
+</p>
+!! end
+
+# parsoid doesn't explicitly mark autonumbered links, see T55505
+!! test
+External links: protocol-relative URL in brackets without text
+!! wikitext
+[//example.com]
+!! html/php
+<p><a rel="nofollow" class="external autonumber" href="//example.com">[1]</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="//example.com" class="external autonumber"></a></p>
+!! end
+
+!! test
+External links: protocol-relative URL in free text is left alone
+!! wikitext
+//example.com/Foo
+!! html
+<p>//example.com/Foo
+</p>
+!!end
+
+!! test
+External links: protocol-relative URL in the middle of a word is left alone (T32269)
+!! wikitext
+foo//example.com/Foo
+!! html
+<p>foo//example.com/Foo
+</p>
+!! end
+
+## html2wt and html2html will fail because we will prefer the :en: interwiki prefix over wikipedia:
+!! test
+External links: with no contents
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+[http://en.wikipedia.org/wiki/Foo]
+
+[[wikipedia:Foo|Bar]]
+
+[[wikipedia:Foo|<span>Bar</span>]]
+!! html/php
+<p><a rel="nofollow" class="external autonumber" href="http://en.wikipedia.org/wiki/Foo">[1]</a>
+</p><p><a href="http://en.wikipedia.org/wiki/Foo" class="extiw" title="wikipedia:Foo">Bar</a>
+</p><p><a href="http://en.wikipedia.org/wiki/Foo" class="extiw" title="wikipedia:Foo"><span>Bar</span></a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://en.wikipedia.org/wiki/Foo" class="external autonumber"></a></p>
+<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/Foo" title="wikipedia:Foo" class="extiw">Bar</a></p>
+<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/Foo" title="wikipedia:Foo" class="extiw"><span>Bar</span></a></p>
+!! end
+
+!! test
+External links: Free with trailing punctuation
+!! wikitext
+http://example.com,
+http://example.com;
+http://example.com\
+http://example.com.
+http://example.com:
+http://example.com!
+http://example.com?
+http://example.com)
+http://example.com/url_with_(brackets)
+(http://example.com/url_without_brackets)
+http://example.com/url_with_entity&amp;
+http://example.com/url_with_entity&#x26;
+http://example.com/url_with_entity&#038;
+http://example.com/url_with_entity&nbsp;
+http://example.com/url_with_entity&#xA0;
+http://example.com/url_with_entity&#160;
+http://example.com/url_with_entity&lt;
+http://example.com/url_with_entity&#x3C;
+http://example.com/url_with_entity&#60;
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>,
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>;
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>\
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>.
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>:
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>!
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>?
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>)
+<a rel="nofollow" class="external free" href="http://example.com/url_with_(brackets)">http://example.com/url_with_(brackets)</a>
+(<a rel="nofollow" class="external free" href="http://example.com/url_without_brackets">http://example.com/url_without_brackets</a>)
+<a rel="nofollow" class="external free" href="http://example.com/url_with_entity&amp;">http://example.com/url_with_entity&amp;</a>
+<a rel="nofollow" class="external free" href="http://example.com/url_with_entity&amp;">http://example.com/url_with_entity&amp;</a>
+<a rel="nofollow" class="external free" href="http://example.com/url_with_entity&amp;">http://example.com/url_with_entity&amp;</a>
+<a rel="nofollow" class="external free" href="http://example.com/url_with_entity">http://example.com/url_with_entity</a>&#160;
+<a rel="nofollow" class="external free" href="http://example.com/url_with_entity">http://example.com/url_with_entity</a>&#xa0;
+<a rel="nofollow" class="external free" href="http://example.com/url_with_entity">http://example.com/url_with_entity</a>&#160;
+<a rel="nofollow" class="external free" href="http://example.com/url_with_entity">http://example.com/url_with_entity</a>&lt;
+<a rel="nofollow" class="external free" href="http://example.com/url_with_entity">http://example.com/url_with_entity</a>&#x3c;
+<a rel="nofollow" class="external free" href="http://example.com/url_with_entity">http://example.com/url_with_entity</a>&#60;
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com" class="external free" data-parsoid='{"stx":"url"}'>http://example.com</a>,
+<a rel="mw:ExtLink" href="http://example.com" class="external free" data-parsoid='{"stx":"url"}'>http://example.com</a>;
+<a rel="mw:ExtLink" href="http://example.com" class="external free" data-parsoid='{"stx":"url"}'>http://example.com</a>\
+<a rel="mw:ExtLink" href="http://example.com" class="external free" data-parsoid='{"stx":"url"}'>http://example.com</a>.
+<a rel="mw:ExtLink" href="http://example.com" class="external free" data-parsoid='{"stx":"url"}'>http://example.com</a>:
+<a rel="mw:ExtLink" href="http://example.com" class="external free" data-parsoid='{"stx":"url"}'>http://example.com</a>!
+<a rel="mw:ExtLink" href="http://example.com" class="external free" data-parsoid='{"stx":"url"}'>http://example.com</a>?
+<a rel="mw:ExtLink" href="http://example.com" class="external free" data-parsoid='{"stx":"url"}'>http://example.com</a>)
+<a rel="mw:ExtLink" href="http://example.com/url_with_(brackets)" class="external free" data-parsoid='{"stx":"url"}'>http://example.com/url_with_(brackets)</a>
+(<a rel="mw:ExtLink" href="http://example.com/url_without_brackets" class="external free" data-parsoid='{"stx":"url"}'>http://example.com/url_without_brackets</a>)
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity&amp;" class="external free" data-parsoid='{"stx":"url","a":{"href":"http://example.com/url_with_entity&amp;"},"sa":{"href":"http://example.com/url_with_entity&amp;amp;"}}'>http://example.com/url_with_entity&amp;</a>
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity&amp;" class="external free" data-parsoid='{"stx":"url","a":{"href":"http://example.com/url_with_entity&amp;"},"sa":{"href":"http://example.com/url_with_entity&amp;#x26;"}}'>http://example.com/url_with_entity&amp;</a>
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity&amp;" class="external free" data-parsoid='{"stx":"url","a":{"href":"http://example.com/url_with_entity&amp;"},"sa":{"href":"http://example.com/url_with_entity&amp;#038;"}}'>http://example.com/url_with_entity&amp;</a>
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity" class="external free" data-parsoid='{"stx":"url"}'>http://example.com/url_with_entity</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity" class="external free" data-parsoid='{"stx":"url"}'>http://example.com/url_with_entity</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#xA0;","srcContent":" "}'> </span>
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity" class="external free" data-parsoid='{"stx":"url"}'>http://example.com/url_with_entity</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#160;","srcContent":" "}'> </span>
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity" class="external free" data-parsoid='{"stx":"url"}'>http://example.com/url_with_entity</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;lt;","srcContent":"&lt;"}'>&lt;</span>
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity" class="external free" data-parsoid='{"stx":"url"}'>http://example.com/url_with_entity</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#x3C;","srcContent":"&lt;"}'>&lt;</span>
+<a rel="mw:ExtLink" href="http://example.com/url_with_entity" class="external free" data-parsoid='{"stx":"url"}'>http://example.com/url_with_entity</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;#60;","srcContent":"&lt;"}'>&lt;</span></p>
+!! end
+
+!! test
+External links: tricky Parsoid html2html case
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+http://example.com/url_with_entity&amp;amp;
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://example.com/url_with_entity&amp;amp">http://example.com/url_with_entity&amp;amp</a>;
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/url_with_entity&amp;amp" class="external free">http://example.com/url_with_entity&amp;amp</a>;</p>
+!! end
+
+!! test
+External links: html2html with trailing dot (T263203)
+!! wikitext
+test [http://example.com/test. http://example.com/test.] test
+
+test http://example.com/test. test
+!! html/parsoid
+<p>test <a rel="mw:ExtLink" href="http://example.com/test." class="external text">http://example.com/test.</a> test</p>
+
+<p>test <a rel="mw:ExtLink" href="http://example.com/test" class="external free" data-parsoid='{"stx":"url"}'>http://example.com/test</a>. test</p>
+!! html/php
+<p>test <a rel="nofollow" class="external text" href="http://example.com/test.">http://example.com/test.</a> test
+</p><p>test <a rel="nofollow" class="external free" href="http://example.com/test">http://example.com/test</a>. test
+</p>
+!! end
+
+!! test
+External links: Free with trailing quotes (T113666)
+!! wikitext
+'''News:''' Stuff here
+
+news:'a'b''c''d e
+!! html/php
+<p><b>News:</b> Stuff here
+</p><p><a rel="nofollow" class="external free" href="news:&#39;a&#39;b">news:'a'b</a><i>c</i>d e
+</p>
+!! html/parsoid
+<p><b>News:</b> Stuff here</p>
+<p><a rel="mw:ExtLink" href="news:'a'b" class="external free">news:'a'b</a><i>c</i>d e</p>
+!! end
+
+!! test
+External links: with entity
+!! wikitext
+[http://&#x20;www.librarieswithoutborders.org Libraries without borders]
+!! html/php
+<p><a rel="nofollow" class="external text" href="http://+www.librarieswithoutborders.org">Libraries without borders</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://+www.librarieswithoutborders.org" class="external text" data-parsoid='{"a":{"href":"http://+www.librarieswithoutborders.org"},"sa":{"href":"http://&amp;#x20;www.librarieswithoutborders.org"}}'>Libraries without borders</a></p>
+!! end
+
+!! test
+External links: Lone protocols are never linked (T105697)
+!! wikitext
+http://
+http://;
+(http://)
+bitcoin:
+bitcoin:;
+(bitcoin:)
+!! html
+<p>http://
+http://;
+(http://)
+bitcoin:
+bitcoin:;
+(bitcoin:)
+</p>
+!! end
+
+!! test
+External links: No preceding word characters allowed (T67278)
+!! wikitext
+NOPEhttp://example.com
+N0http://example.com
+ok:http://example.com
+ok-http://example.com
+!! html
+<p>NOPEhttp://example.com
+N0http://example.com
+ok:<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>
+ok-<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>
+</p>
+!! end
+
+!! test
+External links: nofollow domain exception
+!! wikitext
+A [https://no-nofollow.org/foobar link], and another [https://example.org link].
+!! html
+<p>A <a class="external text" href="https://no-nofollow.org/foobar">link</a>, and another <a rel="nofollow" class="external text" href="https://example.org">link</a>.
+</p>
+!!end
+
+!! test
+External image
+!! wikitext
+External image: http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png
+!! html
+<p>External image: <img src="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png" />
+</p>
+!! end
+
+!! test
+External image from https
+!! wikitext
+External image from https: https://meta.wikimedia.org/upload/f/f1/Ncwikicol.png
+!! html
+<p>External image from https: <img src="https://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png" />
+</p>
+!! end
+
+!! test
+External image (when not allowed)
+!! options
+wgAllowExternalImages=0
+!! wikitext
+External image: http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png
+!! html/php
+<p>External image: <a rel="nofollow" class="external free" href="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png">http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png</a>
+</p>
+!! html/parsoid
+<p>External image: <a rel="mw:ExtLink" href="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" class="external free" data-parsoid='{"stx":"url"}'>http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png</a></p>
+!! html/parsoid+integrated
+<p>External image: <a rel="mw:ExtLink nofollow" href="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" class="external free" data-parsoid='{"stx":"url"}'>http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png</a></p>
+!! end
+
+!! test
+Link to non-http image, no img tag
+!! wikitext
+Link to non-http image, no img tag: ftp://example.com/test.jpg
+!! html
+<p>Link to non-http image, no img tag: <a rel="nofollow" class="external free" href="ftp://example.com/test.jpg">ftp://example.com/test.jpg</a>
+</p>
+!! end
+
+!! test
+External links: terminating separator
+!! wikitext
+Terminating separator: http://example.com/thing,
+!! html
+<p>Terminating separator: <a rel="nofollow" class="external free" href="http://example.com/thing">http://example.com/thing</a>,
+</p>
+!! end
+
+!! test
+External links: intervening separator
+!! wikitext
+Intervening separator: http://example.com/1,2,3
+!! html
+<p>Intervening separator: <a rel="nofollow" class="external free" href="http://example.com/1,2,3">http://example.com/1,2,3</a>
+</p>
+!! end
+
+!! test
+External links: old bug with URL in query
+!! wikitext
+Old bug with URL in query: [http://example.com/thing?url=http://example.com link]
+!! html
+<p>Old bug with URL in query: <a rel="nofollow" class="external text" href="http://example.com/thing?url=http://example.com">link</a>
+</p>
+!! end
+
+!! test
+External links: old URL-in-URL bug, mixed protocols
+!! wikitext
+And again with mixed protocols: [ftp://example.com?url=http://example.com link]
+!! html
+<p>And again with mixed protocols: <a rel="nofollow" class="external text" href="ftp://example.com?url=http://example.com">link</a>
+</p>
+!!end
+
+# Since Parsoid is starting to emit canonical wikitext for links,
+# [http://example.com http://example.com] will not RT back to that
+# form anymore.
+!! test
+External links: URL in text
+!! options
+parsoid=wt2html
+!! wikitext
+URL in text: [http://example.com http://example.com]
+!! html/php
+<p>URL in text: <a rel="nofollow" class="external text" href="http://example.com">http://example.com</a>
+</p>
+!! html/parsoid
+<p>URL in text: <a rel="mw:ExtLink" href="http://example.com" class="external text">http://example.com</a></p>
+!! end
+
+!! test
+External links: Clickable images
+!! wikitext
+ja-style clickable images: [http://example.com http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png]
+!! html/php
+<p>ja-style clickable images: <a rel="nofollow" class="external text" href="http://example.com"><img src="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png" /></a>
+</p>
+!! html/parsoid
+<p>ja-style clickable images: <a rel="mw:ExtLink" href="http://example.com" class="external text"><img src="http://meta.wikimedia.org/upload/f/f1/Ncwikicol.png" alt="Ncwikicol.png" data-parsoid='{"type":"extlink"}'/></a></p>
+!! end
+
+!! test
+External links: raw ampersand
+!! wikitext
+Old &amp; use: http://x&y
+!! html
+<p>Old &amp; use: <a rel="nofollow" class="external free" href="http://x&amp;y">http://x&amp;y</a>
+</p>
+!! end
+
+!! test
+External links: encoded ampersand
+!! wikitext
+Old &amp; use: http://x&amp;y
+!! html/php
+<p>Old &amp; use: <a rel="nofollow" class="external free" href="http://x&amp;y">http://x&amp;y</a>
+</p>
+!! html/parsoid
+<p>Old <span typeof="mw:Entity">&amp;</span> use: <a rel="mw:ExtLink" href="http://x&amp;y" class="external free">http://x&amp;y</a></p>
+!! end
+
+!! test
+External links: encoded equals (T8102)
+!! wikitext
+http://example.com/?foo&#61;bar
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://example.com/?foo=bar">http://example.com/?foo=bar</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/?foo=bar" class="external free">http://example.com/?foo=bar</a></p>
+!! end
+
+##
+## Note that parsoid doesn't explicit mark autonumbered links, nor
+## does it number them.  As discussed in T55505, we can identify
+## autonumbered links via CSS.
+##
+
+!! test
+External links: [raw ampersand]
+!! wikitext
+Old &amp; use: [http://x&y]
+!! html/php
+<p>Old &amp; use: <a rel="nofollow" class="external autonumber" href="http://x&amp;y">[1]</a>
+</p>
+!! html/parsoid
+<p>Old <span typeof="mw:Entity">&amp;</span> use: <a rel="mw:ExtLink" href="http://x&amp;y" class="external autonumber"></a></p>
+!! end
+
+# note that parsoid html is identical to [raw ampersand] case; so html2wt
+# mode will return the [raw ampersand] wikitext
+!! test
+External links: [encoded ampersand]
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+Old &amp; use: [http://x&amp;y]
+!! html/php
+<p>Old &amp; use: <a rel="nofollow" class="external autonumber" href="http://x&amp;y">[1]</a>
+</p>
+!! html/parsoid
+<p>Old <span typeof="mw:Entity">&amp;</span> use: <a rel="mw:ExtLink" href="http://x&amp;y" class="external autonumber"></a></p>
+!! end
+
+!! test
+External links: [raw equals]
+!! wikitext
+[http://example.com/?foo=bar]
+!! html/php
+<p><a rel="nofollow" class="external autonumber" href="http://example.com/?foo=bar">[1]</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/?foo=bar" class="external autonumber"></a></p>
+!! end
+
+# note that parsoid html is identical to [raw equals] case; so html2wt
+# mode will return the [raw equals] wikitext
+!! test
+External links: [encoded equals] (T8102)
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+[http://example.com/?foo&#61;bar]
+!! html/php
+<p><a rel="nofollow" class="external autonumber" href="http://example.com/?foo=bar">[1]</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/?foo=bar" class="external autonumber"></a></p>
+!! end
+
+# xxx parsoid strips the IDN character, so the round-trip tests will
+#     obviously fail and are disabled. --cscott
+!! test
+External links: [IDN ignored character reference in hostname; strip it right off]
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+[http://e&zwnj;xample.com/]
+!! html/php
+<p><a rel="nofollow" class="external autonumber" href="http://example.com/">[1]</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/" class="external autonumber"></a></p>
+!! end
+
+# FIXME: This test (the IDN characters in the text of a link) is an inconsistency.
+# Where an external link could easily circumvent the sanitization of the text of
+# a link like this (where an IDN-ignore character is in the URL somewhere), this
+# test demands a higher standard. That's a bit strange.
+#
+# Example:
+#
+# http://e‌xample.com -> [http://example.com|http://example.com]
+# [http://example.com|http://e‌xample.com] -> [http://example.com|http://e‌xample.com]
+#
+# The first example is sanitized, but the second is not. Any security benefits
+# from this production are trivial to circumvent. Either remove this test and
+# let the parser(s) do their thing unaccosted, or fix the inconsistency and change
+# the test accordingly.
+#
+# All our love,
+# The Parsoid team.
+# xxx parsoid strips the IDN character, so the round-trip tests will
+#     obviously fail and are disabled. --cscott
+!! test
+External links: IDN ignored character reference in hostname; strip it right off
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+http://e&zwnj;xample.com/
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://example.com/">http://example.com/</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/" class="external free">http://example.com/</a></p>
+!! end
+
+!! test
+External links: www.jpeg.org (T2554)
+!! wikitext
+http://www.jpeg.org
+!! html
+<p><a rel="nofollow" class="external free" href="http://www.jpeg.org">http://www.jpeg.org</a>
+</p>
+!! end
+
+# parsoid doesn't explicitly mark autonumbered links, see T55505
+!! test
+External links: URL within URL (T2002)
+!! wikitext
+[http://www.unausa.org/newindex.asp?place=http://www.unausa.org/programs/mun.asp]
+!! html/php
+<p><a rel="nofollow" class="external autonumber" href="http://www.unausa.org/newindex.asp?place=http://www.unausa.org/programs/mun.asp">[1]</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.unausa.org/newindex.asp?place=http://www.unausa.org/programs/mun.asp" class="external autonumber"></a></p>
+!! end
+
+!! test
+T2361: URL inside bracketed URL
+!! wikitext
+[http://www.example.com/foo http://www.example.com/bar]
+!! html
+<p><a rel="nofollow" class="external text" href="http://www.example.com/foo">http://www.example.com/bar</a>
+</p>
+!! end
+
+!! test
+T2361: URL within URL, not bracketed
+!! wikitext
+http://www.example.com/foo?=http://www.example.com/bar
+!! html
+<p><a rel="nofollow" class="external free" href="http://www.example.com/foo?=http://www.example.com/bar">http://www.example.com/foo?=http://www.example.com/bar</a>
+</p>
+!! end
+
+!! test
+T2289: ">"-token in URL-tail
+!! wikitext
+http://www.example.com/<hello>
+!! html
+<p><a rel="nofollow" class="external free" href="http://www.example.com/">http://www.example.com/</a>&lt;hello&gt;
+</p>
+!!end
+
+!! test
+T2289: literal ">"-token in URL-tail
+!! wikitext
+http://www.example.com/<b>html</b>
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://www.example.com/">http://www.example.com/</a><b>html</b>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.example.com/" class="external free" data-parsoid='{"stx":"url"}'>http://www.example.com/</a><b data-parsoid='{"stx":"html"}'>html</b></p>
+!! end
+
+!! test
+T2289: ">"-token in bracketed URL
+!! wikitext
+[http://www.example.com/<hello> stuff]
+!! html
+<p><a rel="nofollow" class="external text" href="http://www.example.com/">&lt;hello&gt; stuff</a>
+</p>
+!!end
+
+!! test
+T2289: literal ">"-token in bracketed URL
+!! wikitext
+[http://www.example.com/<b>html</b> stuff]
+!! html
+<p><a rel="nofollow" class="external text" href="http://www.example.com/"><b>html</b> stuff</a>
+</p>
+!!end
+
+!! test
+T2289: literal double quote at end of URL
+!! wikitext
+http://www.example.com/"hello"
+!! html
+<p><a rel="nofollow" class="external free" href="http://www.example.com/">http://www.example.com/</a>"hello"
+</p>
+!!end
+
+!! test
+T2289: literal double quote in bracketed URL
+!! wikitext
+[http://www.example.com/"hello" stuff]
+!! html
+<p><a rel="nofollow" class="external text" href="http://www.example.com/">"hello" stuff</a>
+</p>
+!!end
+
+!! test
+External links: multiple legal whitespace is fine, Magnus. Don't break it please. (T7081)
+!! wikitext
+[http://www.example.com  test]
+!! html
+<p><a rel="nofollow" class="external text" href="http://www.example.com">test</a>
+</p>
+!! end
+
+!! test
+External links: link text with spaces
+!! wikitext
+[http://www.example.com a b c]
+[http://www.example.com ''a'' ''b'']
+!! html
+<p><a rel="nofollow" class="external text" href="http://www.example.com">a b c</a>
+<a rel="nofollow" class="external text" href="http://www.example.com"><i>a</i> <i>b</i></a>
+</p>
+!! end
+
+# Note edge case difference between PHP and Parsoid here.
+!! test
+External links: wiki links within external link (T5695)
+!! options
+parsoid=wt2html
+!! wikitext
+[http://example.com [[wikilink]] embedded in ext link]
+
+[http://example.com test [[wikilink]] embedded in ext link]
+!! html/php
+<p><a rel="nofollow" class="external text" href="http://example.com"></a><a href="/index.php?title=Wikilink&amp;action=edit&amp;redlink=1" class="new" title="Wikilink (page does not exist)">wikilink</a> embedded in ext link
+</p><p><a rel="nofollow" class="external text" href="http://example.com">test </a><a href="/index.php?title=Wikilink&amp;action=edit&amp;redlink=1" class="new" title="Wikilink (page does not exist)">wikilink</a> embedded in ext link
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com" class="external autonumber"></a><a rel="mw:WikiLink" href="./Wikilink" title="Wikilink" class="new">wikilink</a><span> embedded in ext link</span></p>
+<p><a rel="mw:ExtLink" href="http://example.com" class="external text">test </a><a rel="mw:WikiLink" href="./Wikilink" title="Wikilink" class="new">wikilink</a><span> embedded in ext link</span></p>
+!! end
+
+!! test
+T2787: Links with one slash after the url protocol are invalid
+!! wikitext
+http:/example.com
+
+[http:/example.com title]
+!! html
+<p>http:/example.com
+</p><p>[http:/example.com title]
+</p>
+!! end
+
+!! test
+Bracketed external links with template-generated invalid target
+!! wikitext
+[{{1x|http:/example.com}} title]
+!! html
+<p>[http:/example.com title]
+</p>
+!! end
+
+!! test
+T6781: %26 in URL
+!! wikitext
+http://www.example.com/?title=AT%26T
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://www.example.com/?title=AT%26T">http://www.example.com/?title=AT%26T</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.example.com/?title=AT%26T" class="external free">http://www.example.com/?title=AT%26T</a></p>
+!! end
+
+# According to https://www.w3.org/TR/2011/WD-html5-20110525/Overview.html#parsing-urls a plain
+# % is actually legal in HTML5. Any change in output would need testing though.
+!! test
+T6781, T7267: %25 in URL
+!! wikitext
+http://www.example.com/?title=100%25_Bran
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://www.example.com/?title=100%25_Bran">http://www.example.com/?title=100%25_Bran</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.example.com/?title=100%25_Bran" class="external free">http://www.example.com/?title=100%25_Bran</a></p>
+!! end
+
+!! test
+T6781, T7267: %28, %29 in URL
+!! wikitext
+http://www.example.com/?title=Ben-Hur_%281959_film%29
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://www.example.com/?title=Ben-Hur_%281959_film%29">http://www.example.com/?title=Ben-Hur_%281959_film%29</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.example.com/?title=Ben-Hur_%281959_film%29" class="external free">http://www.example.com/?title=Ben-Hur_%281959_film%29</a></p>
+!! end
+
+
+!! test
+T6781: %26 in autonumber URL
+!! wikitext
+[http://www.example.com/?title=AT%26T]
+!! html/php
+<p><a rel="nofollow" class="external autonumber" href="http://www.example.com/?title=AT%26T">[1]</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.example.com/?title=AT%26T" class="external autonumber"></a></p>
+!! end
+
+!! test
+T6781, T7267: %26 in autonumber URL
+!! wikitext
+[http://www.example.com/?title=100%25_Bran]
+!! html/php
+<p><a rel="nofollow" class="external autonumber" href="http://www.example.com/?title=100%25_Bran">[1]</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.example.com/?title=100%25_Bran" class="external autonumber"></a></p>
+!! end
+
+!! test
+T6781, T7267: %28, %29 in autonumber URL
+!! wikitext
+[http://www.example.com/?title=Ben-Hur_%281959_film%29]
+!! html/php
+<p><a rel="nofollow" class="external autonumber" href="http://www.example.com/?title=Ben-Hur_%281959_film%29">[1]</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.example.com/?title=Ben-Hur_%281959_film%29" class="external autonumber"></a></p>
+!! end
+
+
+!! test
+T6781: %26 in bracketed URL
+!! wikitext
+[http://www.example.com/?title=AT%26T link]
+!! html/php
+<p><a rel="nofollow" class="external text" href="http://www.example.com/?title=AT%26T">link</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.example.com/?title=AT%26T" class="external text">link</a></p>
+!! end
+
+!! test
+T6781, T7267: %25 in bracketed URL
+!! wikitext
+[http://www.example.com/?title=100%25_Bran link]
+!! html
+<p><a rel="nofollow" class="external text" href="http://www.example.com/?title=100%25_Bran">link</a>
+</p>
+!! end
+
+!! test
+T6781, T7267: %28, %29 in bracketed URL
+!! wikitext
+[http://www.example.com/?title=Ben-Hur_%281959_film%29 link]
+!! html/php
+<p><a rel="nofollow" class="external text" href="http://www.example.com/?title=Ben-Hur_%281959_film%29">link</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.example.com/?title=Ben-Hur_%281959_film%29" class="external text">link</a></p>
+!! end
+
+!! test
+External link containing a period in the anchor. (T65947)
+!! wikitext
+[//foo.org/bar#baz. bang]
+
+[//foo.org/bar. bang]
+!! html/php
+<p><a rel="nofollow" class="external text" href="//foo.org/bar#baz.">bang</a>
+</p><p><a rel="nofollow" class="external text" href="//foo.org/bar.">bang</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="//foo.org/bar#baz." class="external text">bang</a></p>
+<p><a rel="mw:ExtLink" href="//foo.org/bar." class="external text">bang</a></p>
+!! end
+
+!! test
+External link containing a single quote. (T65947)
+!! wikitext
+[//foo.org/bar'baz]
+
+[//foo.org/bar'baz bang]
+!! html/php
+<p><a rel="nofollow" class="external autonumber" href="//foo.org/bar&#39;baz">[1]</a>
+</p><p><a rel="nofollow" class="external text" href="//foo.org/bar&#39;baz">bang</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="//foo.org/bar'baz" class="external autonumber"></a></p>
+<p><a rel="mw:ExtLink" href="//foo.org/bar'baz" class="external text">bang</a></p>
+!! end
+
+!! test
+External link containing double-single-quotes in text '' (T6598 check)
+!! wikitext
+Some [http://example.com/ pretty ''italics'' and stuff]!
+!! html
+<p>Some <a rel="nofollow" class="external text" href="http://example.com/">pretty <i>italics</i> and stuff</a>!
+</p>
+!! end
+
+# Note different rendering by Parsoid here compared to the legacy parser.
+!! test
+External link containing double-single-quotes in text embedded in italics (T6598 check)
+!! wikitext
+''Some [http://example.com/ pretty ''italics'' and stuff]!''
+!! html/php
+<p><i>Some <a rel="nofollow" class="external text" href="http://example.com/">pretty </a></i><a rel="nofollow" class="external text" href="http://example.com/">italics<i> and stuff</i></a><i>!</i>
+</p>
+!! html/parsoid
+<p><i>Some <a rel="mw:ExtLink" href="http://example.com/" class="external text">pretty <i>italics</i> and stuff</a>!</i></p>
+!! end
+
+# Don't add the html/php section since the output is broken and there isn't any reason to spec it
+!! test
+External link containing double-single-quotes with no space separating the url from text in italics
+!! wikitext
+[http://www.musee-picasso.fr/pages/page_id18528_u1l2.htm''La muerte de Casagemas'' (1901) en el sitio de [[Museo Picasso (París)|Museo Picasso]].]
+!! html/php
+<p><a rel="nofollow" class="external text" href="http://www.musee-picasso.fr/pages/page_id18528_u1l2.htm"><i>La muerte de Casagemas</i> (1901) en el sitio de </a><a href="/index.php?title=Museo_Picasso_(Par%C3%ADs)&amp;action=edit&amp;redlink=1" class="new" title="Museo Picasso (París) (page does not exist)">Museo Picasso</a>.
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.musee-picasso.fr/pages/page_id18528_u1l2.htm" class="external text"><i>La muerte de Casagemas</i> (1901) en el sitio de </a><a rel="mw:WikiLink" href="./Museo_Picasso_(París)" title="Museo Picasso (París)" class="new">Museo Picasso</a><span>.</span></p>
+!! end
+
+!! test
+External link with comments in link text
+!! wikitext
+[http://www.google.com Google <!-- comment -->]
+!! html/php
+<p><a rel="nofollow" class="external text" href="http://www.google.com">Google </a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://www.google.com" class="external text">Google <!-- comment --></a></p>
+!! end
+
+!! test
+External link to bare IPv4 address
+!! wikitext
+[http://192.168.0.1 Link]
+!! html/php
+<p><a rel="nofollow" class="external text" href="http://192.168.0.1">Link</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://192.168.0.1" class="external text">Link</a></p>
+!! end
+
+!! test
+URL-encoding in URL functions (single parameter)
+!! wikitext
+{{localurl:Some page|amp=&}}
+!! html
+<p>/index.php?title=Some_page&amp;amp=&amp;
+</p>
+!! end
+
+!! test
+URL-encoding in URL functions (multiple parameters)
+!! wikitext
+{{localurl:Some page|q=?&amp=&}}
+!! html
+<p>/index.php?title=Some_page&amp;q=?&amp;amp=&amp;
+</p>
+!! end
+
+!! test
+Brackets in urls
+!! wikitext
+http://example.com/index.php?foozoid%5B%5D=bar
+
+http://example.com/index.php?foozoid&#x5B;&#x5D;=bar
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://example.com/index.php?foozoid%5B%5D=bar">http://example.com/index.php?foozoid%5B%5D=bar</a>
+</p><p><a rel="nofollow" class="external free" href="http://example.com/index.php?foozoid%5B%5D=bar">http://example.com/index.php?foozoid%5B%5D=bar</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com/index.php?foozoid%5B%5D=bar" class="external free">http://example.com/index.php?foozoid%5B%5D=bar</a></p>
+
+<p><a rel="mw:ExtLink" href="http://example.com/index.php?foozoid%5B%5D=bar" class="external free" data-parsoid='{"stx":"url","a":{"href":"http://example.com/index.php?foozoid%5B%5D=bar"},"sa":{"href":"http://example.com/index.php?foozoid&amp;#x5B;&amp;#x5D;=bar"}}'>http://example.com/index.php?foozoid%5B%5D=bar</a></p>
+!! end
+
+!! test
+IPv6 urls, autolink format (T23261)
+!! wikitext
+http://[2404:130:0:1000::187:2]/index.php
+
+Examples from RFC 2373, section 2.2:
+
+*http://[1080::8:800:200C:417A]/unicast
+*http://[FF01::101]/multicast
+*http://[::1]/loopback
+*http://[::]/unspecified
+*http://[::13.1.68.3]/ipv4compat
+*http://[::FFFF:129.144.52.38]/ipv4compat
+
+Examples from RFC 2732, section 2:
+
+*http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html
+*http://[1080:0:0:0:8:800:200C:417A]/index.html
+*http://[3ffe:2a00:100:7031::1]
+*http://[1080::8:800:200C:417A]/foo
+*http://[::192.9.5.5]/ipng
+*http://[::FFFF:129.144.52.38]:80/index.html
+*http://[2010:836B:4179::836B:4179]
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://[2404:130:0:1000::187:2]/index.php">http://[2404:130:0:1000::187:2]/index.php</a>
+</p><p>Examples from <a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc2373">RFC 2373</a>, section 2.2:
+</p>
+<ul><li><a rel="nofollow" class="external free" href="http://[1080::8:800:200C:417A]/unicast">http://[1080::8:800:200C:417A]/unicast</a></li>
+<li><a rel="nofollow" class="external free" href="http://[FF01::101]/multicast">http://[FF01::101]/multicast</a></li>
+<li><a rel="nofollow" class="external free" href="http://[::1]/loopback">http://[::1]/loopback</a></li>
+<li><a rel="nofollow" class="external free" href="http://[::]/unspecified">http://[::]/unspecified</a></li>
+<li><a rel="nofollow" class="external free" href="http://[::13.1.68.3]/ipv4compat">http://[::13.1.68.3]/ipv4compat</a></li>
+<li><a rel="nofollow" class="external free" href="http://[::FFFF:129.144.52.38]/ipv4compat">http://[::FFFF:129.144.52.38]/ipv4compat</a></li></ul>
+<p>Examples from <a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc2732">RFC 2732</a>, section 2:
+</p>
+<ul><li><a rel="nofollow" class="external free" href="http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html">http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html</a></li>
+<li><a rel="nofollow" class="external free" href="http://[1080:0:0:0:8:800:200C:417A]/index.html">http://[1080:0:0:0:8:800:200C:417A]/index.html</a></li>
+<li><a rel="nofollow" class="external free" href="http://[3ffe:2a00:100:7031::1]">http://[3ffe:2a00:100:7031::1]</a></li>
+<li><a rel="nofollow" class="external free" href="http://[1080::8:800:200C:417A]/foo">http://[1080::8:800:200C:417A]/foo</a></li>
+<li><a rel="nofollow" class="external free" href="http://[::192.9.5.5]/ipng">http://[::192.9.5.5]/ipng</a></li>
+<li><a rel="nofollow" class="external free" href="http://[::FFFF:129.144.52.38]:80/index.html">http://[::FFFF:129.144.52.38]:80/index.html</a></li>
+<li><a rel="nofollow" class="external free" href="http://[2010:836B:4179::836B:4179]">http://[2010:836B:4179::836B:4179]</a></li></ul>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://[2404:130:0:1000::187:2]/index.php" class="external free">http://[2404:130:0:1000::187:2]/index.php</a></p>
+
+<p>Examples from <a href="https://tools.ietf.org/html/rfc2373" rel="mw:ExtLink" class="external mw-magiclink">RFC 2373</a>, section 2.2:</p>
+<ul><li><a rel="mw:ExtLink" href="http://[1080::8:800:200C:417A]/unicast" class="external free">http://[1080::8:800:200C:417A]/unicast</a></li>
+<li><a rel="mw:ExtLink" href="http://[FF01::101]/multicast" class="external free">http://[FF01::101]/multicast</a></li>
+<li><a rel="mw:ExtLink" href="http://[::1]/loopback" class="external free">http://[::1]/loopback</a></li>
+<li><a rel="mw:ExtLink" href="http://[::]/unspecified" class="external free">http://[::]/unspecified</a></li>
+<li><a rel="mw:ExtLink" href="http://[::13.1.68.3]/ipv4compat" class="external free">http://[::13.1.68.3]/ipv4compat</a></li>
+<li><a rel="mw:ExtLink" href="http://[::FFFF:129.144.52.38]/ipv4compat" class="external free">http://[::FFFF:129.144.52.38]/ipv4compat</a></li></ul>
+
+<p>Examples from <a href="https://tools.ietf.org/html/rfc2732" rel="mw:ExtLink" class="external mw-magiclink">RFC 2732</a>, section 2:</p>
+<ul><li><a rel="mw:ExtLink" href="http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html" class="external free">http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html</a></li>
+<li><a rel="mw:ExtLink" href="http://[1080:0:0:0:8:800:200C:417A]/index.html" class="external free">http://[1080:0:0:0:8:800:200C:417A]/index.html</a></li>
+<li><a rel="mw:ExtLink" href="http://[3ffe:2a00:100:7031::1]" class="external free">http://[3ffe:2a00:100:7031::1]</a></li>
+<li><a rel="mw:ExtLink" href="http://[1080::8:800:200C:417A]/foo" class="external free">http://[1080::8:800:200C:417A]/foo</a></li>
+<li><a rel="mw:ExtLink" href="http://[::192.9.5.5]/ipng" class="external free">http://[::192.9.5.5]/ipng</a></li>
+<li><a rel="mw:ExtLink" href="http://[::FFFF:129.144.52.38]:80/index.html" class="external free">http://[::FFFF:129.144.52.38]:80/index.html</a></li>
+<li><a rel="mw:ExtLink" href="http://[2010:836B:4179::836B:4179]" class="external free">http://[2010:836B:4179::836B:4179]</a></li></ul>
+!! end
+
+# It might make sense to change this behavior; see
+# See https://phabricator.wikimedia.org/T238022#5665580
+!! test
+Unicode text around autolinks
+!! wikitext
+größhttps://foo.org
+
+größ https://foo.org
+
+아들 고건 사진https://foo.org
+
+💩https://foo.org
+!! html/php
+<p>größhttps://foo.org
+</p><p>größ <a rel="nofollow" class="external free" href="https://foo.org">https://foo.org</a>
+</p><p>아들 고건 사진https://foo.org
+</p><p>💩<a rel="nofollow" class="external free" href="https://foo.org">https://foo.org</a>
+</p>
+!! html/parsoid
+<p>größhttps://foo.org</p>
+
+<p>größ <a rel="mw:ExtLink" href="https://foo.org" class="external free" data-parsoid='{"stx":"url"}'>https://foo.org</a></p>
+
+<p>아들 고건 사진https://foo.org</p>
+
+<p>💩<a rel="mw:ExtLink" href="https://foo.org" class="external free" data-parsoid='{"stx":"url"}'>https://foo.org</a></p>
+!! end
+
+!! test
+IPv6 urls, bracketed format (T23261)
+!! wikitext
+[http://[2404:130:0:1000::187:2]/index.php test]
+
+Examples from RFC 2373, section 2.2:
+
+*[http://[1080::8:800:200C:417A] unicast]
+*[http://[FF01::101] multicast]
+*[http://[::1]/ loopback]
+*[http://[::] unspecified]
+*[http://[::13.1.68.3] ipv4compat]
+*[http://[::FFFF:129.144.52.38] ipv4compat]
+
+Examples from RFC 2732, section 2:
+
+*[http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html 1]
+*[http://[1080:0:0:0:8:800:200C:417A]/index.html 2]
+*[http://[3ffe:2a00:100:7031::1] 3]
+*[http://[1080::8:800:200C:417A]/foo 4]
+*[http://[::192.9.5.5]/ipng 5]
+*[http://[::FFFF:129.144.52.38]:80/index.html 6]
+*[http://[2010:836B:4179::836B:4179] 7]
+!! html/php
+<p><a rel="nofollow" class="external text" href="http://[2404:130:0:1000::187:2]/index.php">test</a>
+</p><p>Examples from <a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc2373">RFC 2373</a>, section 2.2:
+</p>
+<ul><li><a rel="nofollow" class="external text" href="http://[1080::8:800:200C:417A]">unicast</a></li>
+<li><a rel="nofollow" class="external text" href="http://[FF01::101]">multicast</a></li>
+<li><a rel="nofollow" class="external text" href="http://[::1]/">loopback</a></li>
+<li><a rel="nofollow" class="external text" href="http://[::]">unspecified</a></li>
+<li><a rel="nofollow" class="external text" href="http://[::13.1.68.3]">ipv4compat</a></li>
+<li><a rel="nofollow" class="external text" href="http://[::FFFF:129.144.52.38]">ipv4compat</a></li></ul>
+<p>Examples from <a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc2732">RFC 2732</a>, section 2:
+</p>
+<ul><li><a rel="nofollow" class="external text" href="http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html">1</a></li>
+<li><a rel="nofollow" class="external text" href="http://[1080:0:0:0:8:800:200C:417A]/index.html">2</a></li>
+<li><a rel="nofollow" class="external text" href="http://[3ffe:2a00:100:7031::1]">3</a></li>
+<li><a rel="nofollow" class="external text" href="http://[1080::8:800:200C:417A]/foo">4</a></li>
+<li><a rel="nofollow" class="external text" href="http://[::192.9.5.5]/ipng">5</a></li>
+<li><a rel="nofollow" class="external text" href="http://[::FFFF:129.144.52.38]:80/index.html">6</a></li>
+<li><a rel="nofollow" class="external text" href="http://[2010:836B:4179::836B:4179]">7</a></li></ul>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://[2404:130:0:1000::187:2]/index.php" class="external text">test</a></p>
+
+<p>Examples from <a href="https://tools.ietf.org/html/rfc2373" rel="mw:ExtLink" class="external mw-magiclink">RFC 2373</a>, section 2.2:</p>
+<ul><li><a rel="mw:ExtLink" href="http://[1080::8:800:200C:417A]" class="external text">unicast</a></li>
+<li><a rel="mw:ExtLink" href="http://[FF01::101]" class="external text">multicast</a></li>
+<li><a rel="mw:ExtLink" href="http://[::1]/" class="external text">loopback</a></li>
+<li><a rel="mw:ExtLink" href="http://[::]" class="external text">unspecified</a></li>
+<li><a rel="mw:ExtLink" href="http://[::13.1.68.3]" class="external text">ipv4compat</a></li>
+<li><a rel="mw:ExtLink" href="http://[::FFFF:129.144.52.38]" class="external text">ipv4compat</a></li></ul>
+
+<p>Examples from <a href="https://tools.ietf.org/html/rfc2732" rel="mw:ExtLink" class="external mw-magiclink">RFC 2732</a>, section 2:</p>
+<ul><li><a rel="mw:ExtLink" href="http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html" class="external text">1</a></li>
+<li><a rel="mw:ExtLink" href="http://[1080:0:0:0:8:800:200C:417A]/index.html" class="external text">2</a></li>
+<li><a rel="mw:ExtLink" href="http://[3ffe:2a00:100:7031::1]" class="external text">3</a></li>
+<li><a rel="mw:ExtLink" href="http://[1080::8:800:200C:417A]/foo" class="external text">4</a></li>
+<li><a rel="mw:ExtLink" href="http://[::192.9.5.5]/ipng" class="external text">5</a></li>
+<li><a rel="mw:ExtLink" href="http://[::FFFF:129.144.52.38]:80/index.html" class="external text">6</a></li>
+<li><a rel="mw:ExtLink" href="http://[2010:836B:4179::836B:4179]" class="external text">7</a></li></ul>
+!! end
+
+!! test
+Non-extlinks in brackets
+!! wikitext
+[foo]
+[foo bar]
+[foo ''bar'']
+[fool's] errand
+[fool's errand]
+[{{1x|foo}}]
+[{{1x|foo}} bar]
+[{{1x|foo}} ''bar'']
+[{{1x|foo}}l's] errand
+[{{1x|foo}}l's errand]
+[url={{1x|foo}}]
+[url=http://example.com]
+[http:// bare protocols don't count]
+!! html/php
+<p>[foo]
+[foo bar]
+[foo <i>bar</i>]
+[fool's] errand
+[fool's errand]
+[foo]
+[foo bar]
+[foo <i>bar</i>]
+[fool's] errand
+[fool's errand]
+[url=foo]
+[url=<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>]
+[http:// bare protocols don't count]
+</p>
+!! html/parsoid
+<p>[foo]
+[foo bar]
+[foo <i>bar</i>]
+[fool's] errand
+[fool's errand]
+[<span about="#mwt19" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</span>]
+[<span about="#mwt20" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</span> bar]
+[<span about="#mwt21" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</span> <i>bar</i>]
+[<span about="#mwt22" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</span>l's] errand
+[<span about="#mwt23" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</span>l's errand]
+[url=<span about="#mwt24" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo"}},"i":0}}]}'>foo</span>]
+[url=<a rel="mw:ExtLink" href="http://example.com" class="external free">http://example.com</a>]
+[http:// bare protocols don't count]</p>
+!! end
+
+!! test
+Percent encoding in external links
+!! wikitext
+[https://github.com/search?l=&q=ResourceLoader+%40wikimedia Search]
+!! html/php
+<p><a rel="nofollow" class="external text" href="https://github.com/search?l=&amp;q=ResourceLoader+%40wikimedia">Search</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="https://github.com/search?l=&amp;q=ResourceLoader+%40wikimedia" class="external text">Search</a></p>
+!! end
+
+!! test
+Use url link syntax for links where the content is equal the link target
+!! wikitext
+http://example.com
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com" class="external free">http://example.com</a></p>
+!! end
+
+!! test
+Parenthesis in external links, especially URL links
+!! wikitext
+http://example.com)
+
+http://example.com/test)
+
+http://example.com/(test)
+
+http://example.com/((test)
+
+(http://example.com/(test))
+
+(http://example.com/(test)))))
+
+http://example.com/a)b
+
+[http://example.com) foo]
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>)
+</p><p><a rel="nofollow" class="external free" href="http://example.com/test">http://example.com/test</a>)
+</p><p><a rel="nofollow" class="external free" href="http://example.com/(test)">http://example.com/(test)</a>
+</p><p><a rel="nofollow" class="external free" href="http://example.com/((test)">http://example.com/((test)</a>
+</p><p>(<a rel="nofollow" class="external free" href="http://example.com/(test))">http://example.com/(test))</a>
+</p><p>(<a rel="nofollow" class="external free" href="http://example.com/(test)))))">http://example.com/(test)))))</a>
+</p><p><a rel="nofollow" class="external free" href="http://example.com/a)b">http://example.com/a)b</a>
+</p><p><a rel="nofollow" class="external text" href="http://example.com)">foo</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com" class="external free">http://example.com</a>)</p>
+<p><a rel="mw:ExtLink" href="http://example.com/test" class="external free">http://example.com/test</a>)</p>
+<p><a rel="mw:ExtLink" href="http://example.com/(test)" class="external free">http://example.com/(test)</a></p>
+<p><a rel="mw:ExtLink" href="http://example.com/((test)" class="external free">http://example.com/((test)</a></p>
+<p>(<a rel="mw:ExtLink" href="http://example.com/(test))" class="external free">http://example.com/(test))</a></p>
+<p>(<a rel="mw:ExtLink" href="http://example.com/(test)))))" class="external free">http://example.com/(test)))))</a></p>
+<p><a rel="mw:ExtLink" href="http://example.com/a)b" class="external free">http://example.com/a)b</a></p>
+<p><a rel="mw:ExtLink" href="http://example.com)" class="external text">foo</a></p>
+!! end
+
+!! test
+Parenthesis in external links, w/ transclusion or comment
+!! wikitext
+(http://example.com/{{1x|hi}})
+
+(http://example.com<!-- hi -->)
+!! html/php
+<p>(<a rel="nofollow" class="external free" href="http://example.com/hi">http://example.com/hi</a>)
+</p><p>(<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>)
+</p>
+!! html/parsoid
+<p>(<a typeof="mw:ExpandedAttrs" about="#mwt2" rel="mw:ExtLink" href="http://example.com/hi" class="external free" data-parsoid='{"stx":"url","a":{"href":"http://example.com/hi"},"sa":{"href":"http://example.com/{{1x|hi}}"}}' data-mw='{"attribs":[[{"txt":"href"},{"html":"http://example.com/&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"hi\"}},\"i\":0}}]}&#39;>hi&lt;/span>"}]]}'>http://example.com/hi</a>)</p>
+
+<p>(<a rel="mw:ExtLink" href="http://example.com" class="external free" data-parsoid='{"stx":"url","a":{"href":"http://example.com"},"sa":{"href":"http://example.com&lt;!-- hi -->"}}'>http://example.com</a>)</p>
+!! end
+
+### Parsoid-specific tests
+
+!! test
+mw:ExtLink linking to a interwiki URL can be round-tripped losslessly (T94723)
+!! options
+parsoid=wt2wt
+!! wikitext
+[http://en.wikipedia.org/wiki/European_Robin European Robin]
+!! html/parsoid
+THIS SECTION IS NOT USED (but Parsoid won't run the test without it)
+!! end
+
+!! test
+Parsoid extlink with _blank target
+!! options
+externallinktarget=_blank
+!! wikitext
+[https://www.example.com]
+!! html/parsoid
+<p><a rel="mw:ExtLink nofollow noreferrer noopener" href="https://www.example.com" class="external autonumber" target="_blank"></a></p>
+!! html/php
+<p><a target="_blank" rel="nofollow noreferrer noopener" class="external autonumber" href="https://www.example.com">[1]</a>
+</p>
+!! end
+
+!! test
+Parsoid extlink with _self target
+!! options
+externallinktarget=_self
+!! wikitext
+[https://www.example.com]
+!! html/parsoid
+<p><a rel="mw:ExtLink nofollow" href="https://www.example.com" class="external autonumber" target="_self"></a></p>
+!! html/php
+<p><a target="_self" rel="nofollow" class="external autonumber" href="https://www.example.com">[1]</a>
+</p>
+!! end
