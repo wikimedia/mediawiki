@@ -390,7 +390,8 @@ class JobRunner implements LoggerAwareInterface {
 		} catch ( Throwable $e ) {
 			MWExceptionHandler::rollbackPrimaryChangesAndLog( $e );
 			$status = false;
-			$error = get_class( $e ) . ': ' . $e->getMessage();
+			$error = get_class( $e ) . ': ' . $e->getMessage() . ' in '
+				. $e->getFile() . ' on line ' . $e->getLine();
 			$caught[] = get_class( $e );
 		}
 		// Always attempt to call teardown(), even if Job throws exception
