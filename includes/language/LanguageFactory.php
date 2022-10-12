@@ -238,11 +238,23 @@ class LanguageFactory {
 	 * Get the "parent" language which has a converter to convert a "compatible" language
 	 * (in another variant) to this language (eg. zh for zh-cn, but not en for en-gb).
 	 *
-	 * @param string $code
-	 * @return Language|null
+	 * @note This method does not contain the deprecated and compatibility
+	 *  mappings of Language::getLanguage(string).
+	 *
+	 * @param string|Bcp47Code $code The language to convert to; can be an
+	 *  internal MediaWiki language code or a Bcp47Code object (which includes
+	 *  Language, which implements Bcp47Code).
+	 * @return Language|null A base language which has a converter to the given
+	 *  language, or null if none exists.
 	 * @since 1.22
 	 */
 	public function getParentLanguage( $code ) {
+		if ( $code instanceof Language ) {
+			$code = $code->getCode();
+		} elseif ( $code instanceof Bcp47Code ) {
+			$code = LanguageCode::bcp47ToInternal( $code->toBcp47Code() );
+		}
+		// $code is now a mediawiki internal code string.
 		// We deliberately use array_key_exists() instead of isset() because we cache null.
 		if ( !array_key_exists( $code, $this->parentLangCache ) ) {
 			if ( !$this->langNameUtils->isValidBuiltInCode( $code ) ) {

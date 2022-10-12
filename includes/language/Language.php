@@ -4334,7 +4334,7 @@ class Language implements Bcp47Code {
 	 */
 	public function getParentLanguage() {
 		return MediaWikiServices::getInstance()->getLanguageFactory()
-			->getParentLanguage( $this->getCode() );
+			->getParentLanguage( $this );
 	}
 
 	/**

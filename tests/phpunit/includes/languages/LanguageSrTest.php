@@ -41,7 +41,7 @@ class LanguageSrTest extends LanguageClassesTestCase {
 			'sr-cyrl' => $langFactory->getLanguage( 'sr-cyrl' ),
 		];
 		foreach ( $langs as $code => $l ) {
-			$p = $langFactory->getParentLanguage( $l->getCode() );
+			$p = $langFactory->getParentLanguage( $l );
 			$this->assertTrue( $p !== null, 'parent language exists' );
 			$this->assertEquals( 'sr', $p->getCode(), 'sr is parent language' );
 			// This is a valid variant of the base
