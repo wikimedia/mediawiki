@@ -3,8 +3,9 @@
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use MediaWiki\Tests\Unit\Libs\Rdbms\SQLPlatformTestHelper;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\Database\DatabaseFlags;
 use Wikimedia\Rdbms\DatabaseDomain;
-use Wikimedia\Rdbms\DatabaseMysqli;
+use Wikimedia\Rdbms\DBLanguageError;
 use Wikimedia\Rdbms\DBReadOnlyRoleError;
 use Wikimedia\Rdbms\DBTransactionStateError;
 use Wikimedia\Rdbms\DBUnexpectedError;
@@ -453,6 +454,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		};
 		$wdb->currentDomain = DatabaseDomain::newUnspecified();
 		$wdb->platform = new SQLPlatform( new AddQuoterMock() );
+		$wdb->flagsHolder = new DatabaseFlags( 0 );
 		// Info used for logging/errors
 		$wdb->connectionParams = [
 			'host' => 'localhost',
@@ -616,27 +618,27 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\Database::setFlag
+	 * @covers Wikimedia\Rdbms\Database\DatabaseFlags::setFlag
 	 * @dataProvider provideImmutableDBOFlags
 	 * @param int $flag
 	 */
 	public function testDBOCannotSet( $flag ) {
-		$db = $this->createPartialMock( DatabaseMysqli::class, [] );
+		$flagsHolder = new DatabaseFlags( 0 );
 
-		$this->expectException( DBUnexpectedError::class );
-		$db->setFlag( $flag );
+		$this->expectException( DBLanguageError::class );
+		$flagsHolder->setFlag( $flag );
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\Database::clearFlag
+	 * @covers Wikimedia\Rdbms\Database\DatabaseFlags::clearFlag
 	 * @dataProvider provideImmutableDBOFlags
 	 * @param int $flag
 	 */
 	public function testDBOCannotClear( $flag ) {
-		$db = $this->createPartialMock( DatabaseMysqli::class, [] );
+		$flagsHolder = new DatabaseFlags( 0 );
 
-		$this->expectException( DBUnexpectedError::class );
-		$db->clearFlag( $flag );
+		$this->expectException( DBLanguageError::class );
+		$flagsHolder->clearFlag( $flag );
 	}
 
 	/**

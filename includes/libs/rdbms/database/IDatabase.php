@@ -22,6 +22,7 @@ namespace Wikimedia\Rdbms;
 use Exception;
 use stdClass;
 use Wikimedia\Rdbms\Database\DbQuoter;
+use Wikimedia\Rdbms\Database\IDatabaseFlags;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\ScopedCallback;
 
@@ -36,7 +37,7 @@ use Wikimedia\ScopedCallback;
  *
  * @ingroup Database
  */
-interface IDatabase extends ISQLPlatform, DbQuoter {
+interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	/** @var int Callback triggered immediately due to no active transaction */
 	public const TRIGGER_IDLE = 1;
 	/** @var int Callback triggered by COMMIT */
@@ -63,36 +64,10 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	/** @var string Commit/rollback is from the IDatabase handle internally */
 	public const FLUSHING_INTERNAL = 'flush-internal';
 
-	/** @var string Do not remember the prior flags */
-	public const REMEMBER_NOTHING = '';
-	/** @var string Remember the prior flags */
-	public const REMEMBER_PRIOR = 'remember';
-	/** @var string Restore to the prior flag state */
-	public const RESTORE_PRIOR = 'prior';
-	/** @var string Restore to the initial flag state */
-	public const RESTORE_INITIAL = 'initial';
-
 	/** @var string Estimate total time (RTT, scanning, waiting on locks, applying) */
 	public const ESTIMATE_TOTAL = 'total';
 	/** @var string Estimate time to apply (scanning, applying) */
 	public const ESTIMATE_DB_APPLY = 'apply';
-
-	/** @var int Enable debug logging of all SQL queries */
-	public const DBO_DEBUG = 1;
-	/** @var int Unused since 1.34 */
-	public const DBO_NOBUFFER = 2;
-	/** @var int Unused since 1.31 */
-	public const DBO_IGNORE = 4;
-	/** @var int Automatically start a transaction before running a query if none is active */
-	public const DBO_TRX = 8;
-	/** @var int Join load balancer transaction rounds (which control DBO_TRX) in non-CLI mode */
-	public const DBO_DEFAULT = 16;
-	/** @var int Use DB persistent connections if possible */
-	public const DBO_PERSISTENT = 32;
-	/** @var int DBA session mode; was used by Oracle */
-	public const DBO_SYSDBA = 64;
-	/** @var int Schema file mode; was used by Oracle */
-	public const DBO_DDLMODE = 128;
 	/**
 	 * @var int Enable SSL/TLS in connection protocol
 	 * @deprecated since 1.39 use 'ssl' parameter
@@ -280,38 +255,6 @@ interface IDatabase extends ISQLPlatform, DbQuoter {
 	 * @return bool Whether a connection to the database open
 	 */
 	public function isOpen();
-
-	/**
-	 * Set a flag for this connection
-	 *
-	 * @param int $flag One of (IDatabase::DBO_DEBUG, IDatabase::DBO_TRX)
-	 * @param string $remember IDatabase::REMEMBER_* constant [default: REMEMBER_NOTHING]
-	 */
-	public function setFlag( $flag, $remember = self::REMEMBER_NOTHING );
-
-	/**
-	 * Clear a flag for this connection
-	 *
-	 * @param int $flag One of (IDatabase::DBO_DEBUG, IDatabase::DBO_TRX)
-	 * @param string $remember IDatabase::REMEMBER_* constant [default: REMEMBER_NOTHING]
-	 */
-	public function clearFlag( $flag, $remember = self::REMEMBER_NOTHING );
-
-	/**
-	 * Restore the flags to their prior state before the last setFlag/clearFlag call
-	 *
-	 * @param string $state IDatabase::RESTORE_* constant. [default: RESTORE_PRIOR]
-	 * @since 1.28
-	 */
-	public function restoreFlags( $state = self::RESTORE_PRIOR );
-
-	/**
-	 * Returns a boolean whether the flag $flag is set for this connection
-	 *
-	 * @param int $flag One of the class IDatabase::DBO_* constants
-	 * @return bool
-	 */
-	public function getFlag( $flag );
 
 	/**
 	 * Return the currently selected domain ID
