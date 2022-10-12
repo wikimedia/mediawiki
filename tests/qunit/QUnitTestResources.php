@@ -56,7 +56,6 @@ return [
 			'tests/qunit/resources/jquery.lengthLimit.test.js',
 			'tests/qunit/resources/jquery.makeCollapsible.test.js',
 			'tests/qunit/resources/jquery.tablesorter.test.js',
-			'tests/qunit/resources/jquery.tablesorter.parsers.test.js',
 			'tests/qunit/resources/jquery.textSelection.test.js',
 			'tests/qunit/resources/mediawiki.base/errorLogger.test.js',
 			'tests/qunit/resources/mediawiki.base/mediawiki.base.test.js',
