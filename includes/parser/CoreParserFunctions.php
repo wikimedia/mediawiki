@@ -1433,7 +1433,7 @@ class CoreParserFunctions {
 				return '';
 			}
 			$resNow = substr(
-				$parser->getContentLanguage()->userAdjust( $rev->getTimestamp() ), $start, $len
+				$parser->getContentLanguage()->userAdjust( $rev->getTimestamp(), '' ), $start, $len
 			);
 			return $resNow;
 		}
