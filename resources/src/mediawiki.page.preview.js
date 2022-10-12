@@ -267,7 +267,7 @@
 			}
 		}
 
-		return api.post( params );
+		return api.post( params, { headers: { 'Promise-Non-Write-API-Action': 'true' } } );
 	}
 
 	/**
