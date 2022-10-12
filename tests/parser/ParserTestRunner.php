@@ -285,15 +285,10 @@ class ParserTestRunner {
 	 * @return array
 	 */
 	public static function getParserTestFiles() {
-		global $wgParserTestFiles;
-
 		// Add core test files
 		$files = array_map( static function ( $item ) {
 			return __DIR__ . "/$item";
 		}, self::$coreTestFiles );
-
-		// Plus legacy global files
-		$files = array_merge( $files, $wgParserTestFiles );
 
 		// Auto-discover extension parser tests
 		$registry = ExtensionRegistry::getInstance();

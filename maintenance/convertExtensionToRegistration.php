@@ -255,6 +255,11 @@ class ConvertExtensionToRegistration extends Maintenance {
 		if ( $out ) {
 			$this->json[$realName] = $out;
 		}
+		// FIXME: the ParserTestFiles key was deprecated in
+		// MW 1.30 and removed in MW 1.40.  If not all entries were filtered
+		// out by the above, we *should* recommend the user move the
+		// parser tests under `tests/parser` *not* generate an extension.json
+		// with a ParserTestFiles key that will no longer validate.
 	}
 
 	protected function handleCredits( $realName, $value ) {
