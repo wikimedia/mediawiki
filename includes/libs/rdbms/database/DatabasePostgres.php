@@ -21,6 +21,7 @@ namespace Wikimedia\Rdbms;
 
 use RuntimeException;
 use Wikimedia\Rdbms\Platform\PostgresPlatform;
+use Wikimedia\Rdbms\Replication\ReplicationReporter;
 use Wikimedia\WaitConditionLoop;
 
 /**
@@ -61,6 +62,11 @@ class DatabasePostgres extends Database {
 
 			$this->keywordTableMap = $params['keywordTableMap'];
 		}
+		$this->replicationReporter = new ReplicationReporter(
+			$params['topologyRole'],
+			$params['replLogger'],
+			$params['srvCache']
+		);
 
 		parent::__construct( $params );
 		$this->platform = new PostgresPlatform(

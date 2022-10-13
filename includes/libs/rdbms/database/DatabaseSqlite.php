@@ -28,6 +28,7 @@ use PDOStatement;
 use RuntimeException;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\Platform\SqlitePlatform;
+use Wikimedia\Rdbms\Replication\ReplicationReporter;
 
 /**
  * This is the SQLite database abstraction layer.
@@ -102,6 +103,11 @@ class DatabaseSqlite extends Database {
 			$params['queryLogger'],
 			$this->currentDomain,
 			$this->errorLogger
+		);
+		$this->replicationReporter = new ReplicationReporter(
+			$params['topologyRole'],
+			$params['replLogger'],
+			$params['srvCache']
 		);
 	}
 
@@ -582,11 +588,6 @@ class DatabaseSqlite extends Database {
 		// https://sqlite.org/lang_createtable.html#uniqueconst
 		// https://sqlite.org/lang_conflict.html
 		return false;
-	}
-
-	public function getTopologyBasedServerId() {
-		// Sqlite topologies trivially consist of single primary server for the dataset
-		return '0';
 	}
 
 	public function serverIsReadOnly() {

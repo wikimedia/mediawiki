@@ -2,6 +2,7 @@
 
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use MediaWiki\Tests\Unit\Libs\Rdbms\SQLPlatformTestHelper;
+use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\Database\DatabaseFlags;
 use Wikimedia\Rdbms\DatabaseDomain;
@@ -14,6 +15,7 @@ use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Rdbms\Platform\SQLPlatform;
 use Wikimedia\Rdbms\QueryStatus;
+use Wikimedia\Rdbms\Replication\ReplicationReporter;
 use Wikimedia\Rdbms\TransactionManager;
 use Wikimedia\RequestTimeout\CriticalSectionScope;
 use Wikimedia\TestingAccessWrapper;
@@ -445,9 +447,8 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			) ) ) )
 			->getMock();
 		$wdb = TestingAccessWrapper::newFromObject( $db );
-		$wdb->connLogger = new \Psr\Log\NullLogger();
-		$wdb->queryLogger = new \Psr\Log\NullLogger();
-		$wdb->replLogger = new \Psr\Log\NullLogger();
+		$wdb->connLogger = new NullLogger();
+		$wdb->queryLogger = new NullLogger();
 		$wdb->errorLogger = static function ( Throwable $e ) {
 		};
 		$wdb->deprecationLogger = static function ( $msg ) {
@@ -460,6 +461,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			'host' => 'localhost',
 			'user' => 'testuser'
 		];
+		$wdb->replicationReporter = new ReplicationReporter( IDatabase::ROLE_STREAMING_MASTER, new NullLogger(), new HashBagOStuff() );
 
 		$db->method( 'getServer' )->willReturn( '*dummy*' );
 		$db->setTransactionManager( new TransactionManager() );

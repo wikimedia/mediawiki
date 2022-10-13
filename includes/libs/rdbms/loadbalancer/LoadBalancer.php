@@ -1177,12 +1177,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				// Inject the PHP execution mode and the agent string
 				'cliMode' => $this->cliMode,
 				'agent' => $this->agent,
-				// Inject object and callback dependencies
-				'topologicalPrimaryConnRef' => $this->getConnectionRef(
-					self::DB_PRIMARY,
-					[],
-					$domain->getId()
-				),
 				'srvCache' => $this->srvCache,
 				'connLogger' => $this->connLogger,
 				'queryLogger' => $this->queryLogger,

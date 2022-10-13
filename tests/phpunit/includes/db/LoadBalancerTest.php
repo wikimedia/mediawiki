@@ -148,8 +148,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\LoadBalancer::getClusterName()
 	 */
 	public function testWithReplica() {
-		global $wgDBserver;
-
 		// Simulate web request with DBO_TRX
 		$lb = $this->newMultiServerLocalLoadBalancer( [], [ 'flags' => DBO_TRX ] );
 
@@ -172,11 +170,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame(
 			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'primary shows as primary' );
-		$this->assertSame(
-			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
-			$wConnWrap->topologicalPrimaryConnRef->getServerName(),
-			'cluster primary is set'
-		);
 		$this->assertTrue( $dbw->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on primary" );
 		$this->assertWriteAllowed( $dbw );
 
@@ -188,11 +181,6 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			$dbr::ROLE_STREAMING_REPLICA, $dbr->getTopologyRole(), 'replica shows as replica' );
 		$this->assertTrue( $dbr->isReadOnly(), 'replica shows as replica' );
-		$this->assertSame(
-			( $wgDBserver != '' ) ? $wgDBserver : 'localhost',
-			$rConnWrap->topologicalPrimaryConnRef->getServerName(),
-			'cluster master is set'
-		);
 		$this->assertTrue( $dbr->getFlag( $dbw::DBO_TRX ), "DBO_TRX set on replica" );
 		$this->assertSame( $dbr->getLBInfo( 'serverIndex' ), $lb->getReaderIndex() );
 
