@@ -4137,7 +4137,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Returns false to indicate that this Title belongs to the local wiki.
 	 *
-	 * @note The behavior of this method if considered undefined for interwiki links.
+	 * @note The behavior of this method is considered undefined for interwiki links.
 	 * At the moment, this method always returns false. But this may change in the future.
 	 *
 	 * @since 1.36
