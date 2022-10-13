@@ -13,14 +13,19 @@ use Sanitizer;
  * @unstable
  */
 class SkinComponentMenu implements SkinComponent {
+
 	/** @var string */
 	private $name;
+
 	/** @var array */
 	private $items;
+
 	/** @var MessageLocalizer */
 	private $localizer;
+
 	/** @var string */
 	private $content;
+
 	/** @var array */
 	private $linkOptions;
 
@@ -47,6 +52,7 @@ class SkinComponentMenu implements SkinComponent {
 
 	/**
 	 * @param string $key
+	 *
 	 * @return Message
 	 */
 	private function msg( string $key ): Message {
@@ -55,6 +61,7 @@ class SkinComponentMenu implements SkinComponent {
 
 	/**
 	 * @param string $name of the menu e.g. p-personal the name is personal.
+	 *
 	 * @return string that is human-readable corresponding to the menu.
 	 */
 	private function getMenuLabel( $name ) {
@@ -75,7 +82,6 @@ class SkinComponentMenu implements SkinComponent {
 	 */
 	public function getTemplateData(): array {
 		$name = $this->name;
-		$items = $this->items;
 		// Monobook and Vector historically render this portal as an element with ID p-cactions.
 		// To ensure compatibility with gadgets, it is renamed accordingly.
 		// @todo Port p-#cactions to #p-actions and drop these conditionals.
@@ -97,6 +103,8 @@ class SkinComponentMenu implements SkinComponent {
 			$id = Sanitizer::escapeIdForAttribute( "p-$name" );
 		}
 
+		$isEmptyContent = $this->content === '';
+		$isEmptyItems = count( $this->items ) === 0;
 		$data = [
 			'id' => $id,
 			'class' => 'mw-portlet ' . Sanitizer::escapeClass( "mw-portlet-$name" ),
@@ -105,11 +113,12 @@ class SkinComponentMenu implements SkinComponent {
 			// Will be populated by SkinAfterPortlet hook.
 			'html-after-portal' => '',
 			'html-before-portal' => '',
+			'is-empty' => $isEmptyContent && $isEmptyItems ? 'true' : 'false',
 		];
+
 		// Run the SkinAfterPortlet hook and if content is added, append it to the html-after-portal
 		// for output. In production this currently supports the Wikibase 'edit' link.
-		$content = $this->content;
-		if ( $content !== '' ) {
+		if ( !$isEmptyContent ) {
 			$data['html-after-portal'] = Html::rawElement(
 				'div',
 				[
@@ -118,13 +127,13 @@ class SkinComponentMenu implements SkinComponent {
 						Sanitizer::escapeClass( "after-portlet-$name" ),
 					],
 				],
-				$content
+				$this->content
 			);
 		}
 
 		$html = '';
 		$arrayItems = [];
-		foreach ( $items as $key => $item ) {
+		foreach ( $this->items as $key => $item ) {
 			$item = new SkinComponentListItem( $key, $item, $this->localizer, [], $this->linkOptions );
 			$itemData = $item->getTemplateData();
 			$html .= $itemData['html-item'];
@@ -134,7 +143,7 @@ class SkinComponentMenu implements SkinComponent {
 		$data['array-items'] = $arrayItems;
 
 		$data['label'] = $this->getMenuLabel( $name );
-		$data['class'] .= ( count( $items ) === 0 && $content === '' )
+		$data['class'] .= ( $isEmptyItems && $isEmptyContent )
 			? ' emptyPortlet' : '';
 		return $data;
 	}
