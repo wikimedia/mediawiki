@@ -99,9 +99,9 @@ class LoadMonitor implements ILoadMonitor {
 		$this->statsd = $statsFactory;
 	}
 
-	final public function scaleLoads( array &$weightByServer, $domain ) {
+	final public function scaleLoads( array &$weightByServer ) {
 		$serverIndexes = array_keys( $weightByServer );
-		$states = $this->getServerStates( $serverIndexes, $domain );
+		$states = $this->getServerStates( $serverIndexes );
 		$newScalesByServer = $states['weightScales'];
 		foreach ( $weightByServer as $i => $weight ) {
 			if ( isset( $newScalesByServer[$i] ) ) {
@@ -113,17 +113,16 @@ class LoadMonitor implements ILoadMonitor {
 		}
 	}
 
-	final public function getLagTimes( array $serverIndexes, $domain ) {
-		return $this->getServerStates( $serverIndexes, $domain )['lagTimes'];
+	final public function getLagTimes( array $serverIndexes ) {
+		return $this->getServerStates( $serverIndexes )['lagTimes'];
 	}
 
 	/**
 	 * @param array $serverIndexes
-	 * @param string|false $domain
 	 * @return array
 	 * @throws DBAccessError
 	 */
-	protected function getServerStates( array $serverIndexes, $domain ) {
+	protected function getServerStates( array $serverIndexes ) {
 		// Represent the cluster by the name of the primary DB
 		$cluster = $this->lb->getServerName( $this->lb->getWriterIndex() );
 
@@ -154,7 +153,7 @@ class LoadMonitor implements ILoadMonitor {
 		$value = $this->wanCache->getWithSetCallback(
 			$this->getStatesCacheKey( $this->wanCache, $serverIndexes ),
 			self::TIME_TILL_REFRESH, // 1 second logical expiry
-			function ( $oldValue, &$ttl ) use ( $serverIndexes, $domain, $staleValue, &$updated ) {
+			function ( $oldValue, &$ttl ) use ( $serverIndexes, $staleValue, &$updated ) {
 				// Double check for circular recursion in computeServerStates()/getWeightScale().
 				// Mainly, connection attempts should use LoadBalancer::getServerConnection()
 				// rather than something that will pick a server based on the server states.
@@ -170,7 +169,6 @@ class LoadMonitor implements ILoadMonitor {
 
 				return $this->computeServerStates(
 					$serverIndexes,
-					$domain,
 					$oldValue ?: $staleValue // fallback to local cache stale value
 				);
 			},
@@ -200,12 +198,11 @@ class LoadMonitor implements ILoadMonitor {
 
 	/**
 	 * @param array $serverIndexes
-	 * @param string|false $domain
 	 * @param array|false $priorStates
 	 * @return array
 	 * @throws DBAccessError
 	 */
-	protected function computeServerStates( array $serverIndexes, $domain, $priorStates ) {
+	protected function computeServerStates( array $serverIndexes, $priorStates ) {
 		// Check if there is just a primary DB (no replication involved)
 		if ( $this->lb->getServerCount() <= 1 ) {
 			return $this->getPlaceholderServerStates( $serverIndexes );
