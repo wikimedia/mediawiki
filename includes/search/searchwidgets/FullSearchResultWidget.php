@@ -279,8 +279,8 @@ class FullSearchResultWidget implements SearchResultWidget {
 	 */
 	protected function generateFileHtml( SearchResult $result ) {
 		$title = $result->getTitle();
-		// don't assume that result is a valid title; e.g. could be interwiki page
-		if ( $title === null || !$title->canExist() || !$title->exists() ) {
+		// don't assume that result is a valid title; e.g. could be an interwiki link target
+		if ( $title === null || !$title->canExist() ) {
 			return [ '', null, null ];
 		}
 
@@ -318,14 +318,14 @@ class FullSearchResultWidget implements SearchResultWidget {
 	 */
 	private function getThumbnail( SearchResult $result, int $size ): ?SearchResultThumbnail {
 		$title = $result->getTitle();
-		// don't assume that result is a valid title; e.g. could be interwiki page
-		if ( $title === null || !$title->canExist() || !$title->exists() ) {
+		// don't assume that result is a valid title; e.g. could be an interwiki link target
+		if ( $title === null || !$title->canExist() ) {
 			return null;
 		}
 
-		$thumbnails = $this->thumbnailProvider->getThumbnails( [ $title->getId() => $title ], $size );
+		$thumbnails = $this->thumbnailProvider->getThumbnails( [ $title->getArticleID() => $title ], $size );
 
-		return $thumbnails[ $title->getId() ] ?? null;
+		return $thumbnails[ $title->getArticleID() ] ?? null;
 	}
 
 	/**
@@ -335,8 +335,8 @@ class FullSearchResultWidget implements SearchResultWidget {
 	 */
 	private function generateThumbnailHtml( SearchResult $result, SearchResultThumbnail $thumbnail = null ): ?string {
 		$title = $result->getTitle();
-		// don't assume that result is a valid title; e.g. could be interwiki page
-		if ( $title === null || !$title->canExist() || !$title->exists() ) {
+		// don't assume that result is a valid title; e.g. could be an interwiki link target
+		if ( $title === null || !$title->canExist() ) {
 			return null;
 		}
 
