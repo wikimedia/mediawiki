@@ -63,28 +63,6 @@ use Wikimedia\TestingAccessWrapper;
 class ParserTestRunner {
 
 	/**
-	 * MediaWiki core parser test files, paths
-	 * will be prefixed with __DIR__ . '/'
-	 *
-	 * @var array
-	 */
-	private static $coreTestFiles = [
-		'badCharacters.txt',
-		'comments.txt',
-		'extLinks.txt',
-		'indentPre.txt',
-		'legacyMedia.txt',
-		'magicLinks.txt',
-		'magicWords.txt',
-		'media.txt',
-		'pWrapping.txt',
-		'parserTests.txt',
-		'pfeqParserTests.txt',
-		'preTags.txt',
-		'quotes.txt',
-	];
-
-	/**
 	 * @var array The status of each setup function
 	 */
 	private $setupDone = [
@@ -285,10 +263,8 @@ class ParserTestRunner {
 	 * @return array
 	 */
 	public static function getParserTestFiles() {
-		// Add core test files
-		$files = array_map( static function ( $item ) {
-			return __DIR__ . "/$item";
-		}, self::$coreTestFiles );
+		// Auto-discover core test files
+		$ptDirs = [ 'core' => __DIR__ ];
 
 		// Auto-discover extension parser tests
 		$registry = ExtensionRegistry::getInstance();
@@ -297,6 +273,10 @@ class ParserTestRunner {
 			if ( !is_dir( $dir ) ) {
 				continue;
 			}
+			$ptDirs[ $info['name'] ] = $dir;
+		}
+		$files = [];
+		foreach ( $ptDirs as $extName => $dir ) {
 			$counter = 1;
 			$dirIterator = new RecursiveIteratorIterator(
 				new RecursiveDirectoryIterator( $dir )
@@ -304,10 +284,10 @@ class ParserTestRunner {
 			foreach ( $dirIterator as $fileInfo ) {
 				/** @var SplFileInfo $fileInfo */
 				if ( str_ends_with( $fileInfo->getFilename(), '.txt' ) ) {
-					$name = $info['name'] . '_' . $counter;
+					$name = $extName . '_' . $counter;
 					while ( isset( $files[$name] ) ) {
 						$counter++;
-						$name = $info['name'] . '_' . $counter;
+						$name = $extName . '_' . $counter;
 					}
 					$files[$name] = $fileInfo->getPathname();
 				}

@@ -33,7 +33,6 @@ class ParserTestTopLevelSuite extends TestSuite {
 
 	/**
 	 * Include files shipped with MediaWiki core
-	 * (aka ParserTestRunner::$coreTestFiles)
 	 */
 	public const CORE_ONLY = 1;
 	/** Include non core files returned by
