@@ -4,7 +4,8 @@
 $( function () {
 	var $historyCompareForm = $( '#mw-history-compare' ),
 		$historySubmitter,
-		$lis = $( '#pagehistory .mw-contributions-list > li' );
+		$pagehistory = $( '#pagehistory' ),
+		$lis = $pagehistory.find( '.mw-contributions-list > li' );
 
 	/**
 	 * @ignore
@@ -68,7 +69,7 @@ $( function () {
 		return true;
 	}
 
-	$lis.find( 'input[name="diff"], input[name="oldid"]' ).on( 'click', updateDiffRadios );
+	$pagehistory.on( 'change', 'input[name="diff"], input[name="oldid"]', updateDiffRadios );
 
 	// Set initial state
 	updateDiffRadios();
