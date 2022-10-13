@@ -353,7 +353,7 @@
 	"skin-view-create": "创建",
 	"create-local": "添加本地描述",
 	"delete": "删除",
-	"undelete_short": "还原{{PLURAL:$1|一次编辑|$1次编辑}}",
+	"undelete_short": "还原{{PLURAL:$1|$1次编辑}}",
 	"viewdeleted_short": "查看{{PLURAL:$1|$1个被删除的编辑}}",
 	"protect": "保护",
 	"protect_change": "更改",

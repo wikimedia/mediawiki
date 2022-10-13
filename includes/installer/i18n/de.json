@@ -232,7 +232,7 @@
 	"config-upload-deleted": "Verzeichnis für gelöschte Dateien:",
 	"config-upload-deleted-help": "Bitte ein Verzeichnis auswählen, in dem gelöschte Dateien archiviert werden sollen.\nIdealerweise sollte es nicht über das Internet zugänglich sein.",
 	"config-personalization-settings": "Personalisierung",
-	"config-logo-summary": "Für jedes dieser Felder musst du ein Bild in der entsprechenden Größe hochladen und die URL in die unten stehenden Felder eingeben. Du kannst  <code>$wgStylePath</code> oder <code>$wgScriptPath</code> verwenden, wenn dein Logo relativ zu diesen Pfaden abgelegt ist. Du kannst jedes dieser Felder leer lassen. \n\nIn unterstützten Browsern kannst du auch Bilddateien aus deinem Dateisystem in die Eingabefelder oder den Vorschaubereich ziehen.",
+	"config-logo-summary": "Für jedes dieser Felder musst du ein Bild in der entsprechenden Größe hochladen und die URL in die unten stehenden Felder eingeben. Du kannst  <code>$wgStylePath</code> oder <code>$wgScriptPath</code> verwenden, wenn dein Logo relativ zu diesen Pfaden abgelegt ist. Du kannst jedes dieser Felder leer lassen.",
 	"config-logo-preview-main": "Hauptseite",
 	"config-logo-icon": "Logo (Icon):",
 	"config-logo-icon-help": "Dein Logo-Symbol sollte quadratisch und idealerweise größer als 50 Pixel oder ein SVG sein.",

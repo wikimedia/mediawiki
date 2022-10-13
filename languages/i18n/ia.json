@@ -3653,7 +3653,7 @@
 	"limitreport-cputime-value": "$1 {{PLURAL:$1|secunda|secundas}}",
 	"limitreport-walltime": "Tempore de uso real",
 	"limitreport-walltime-value": "$1 {{PLURAL:$1|secunda|secundas}}",
-	"limitreport-ppvisitednodes": "Numero de nodos de preprocessor visitate",
+	"limitreport-ppvisitednodes": "Numero de nodos visitate per le preprocessor",
 	"limitreport-postexpandincludesize": "Dimension de inclusion post expansion",
 	"limitreport-postexpandincludesize-value": "$1/$2 {{PLURAL:$2|byte|bytes}}",
 	"limitreport-templateargumentsize": "Dimension del argumento del patrono",

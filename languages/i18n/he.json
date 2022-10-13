@@ -3394,7 +3394,7 @@
 	"version-ext-colheader-version": "גרסה",
 	"version-ext-colheader-license": "רישיון",
 	"version-ext-colheader-description": "תיאור",
-	"version-ext-colheader-credits": "מחברים",
+	"version-ext-colheader-credits": "יוצרים",
 	"version-license-title": "רישיון עבור $1",
 	"version-license-not-found": "לא נמצא מידע מפורט על הרישיון עבור הרחבה זו.",
 	"version-credits-title": "תורמים ל{{GRAMMAR:תחילית|$1}}",

@@ -18,7 +18,8 @@
 			"Ukabia",
 			"Uzoma Ozurumba",
 			"Weather Top Wizard",
-			"아라"
+			"아라",
+			"Nwonwu Uchechukwu P"
 		]
 	},
 	"tog-underline": "Ahịrịàlà òjikọ:",
@@ -634,8 +635,8 @@
 	"yournick": "Ndè áhà gi òhúrù:",
 	"yourgender": "Nwayi/okpoho ma o nwoke:",
 	"gender-unknown": "M̀gbè ha tụ̀rụ̀ gị aka, ndiriusòrò g'ị jiri okwu ụ̀dịnàètitì a kàtara èkèrè gị m̀gbè o nwèrè ike ị",
-	"gender-male": "Òkò",
-	"gender-female": "Ányị̀",
+	"gender-male": "Ọ na-edezi ibe wiki",
+	"gender-female": "Ọ na-edezi ibe wiki",
 	"email": "ozi e-mail",
 	"prefs-help-email-required": "Áhàebeíbị e-mail gí di.",
 	"prefs-signature": "Áhà gi",

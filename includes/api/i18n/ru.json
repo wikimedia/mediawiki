@@ -53,7 +53,8 @@
 			"Дмитрий",
 			"Краснорядцева Елена",
 			"Лилиә",
-			"Марио"
+			"Марио",
+			"Deltaspace"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Документация]]\n* [[mw:Special:MyLanguage/API:Etiquette|Этикет и руководство по использованию]]\n* [[mw:Special:MyLanguage/API:FAQ|ЧаВО]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Почтовая рассылка]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Новости API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Ошибки и запросы]\n</div>\n<strong>Статус:</strong> MediaWiki API — зрелый и стабильный интерфейс, активно поддерживаемый и улучшаемый. Мы стараемся избегать ломающих изменений, однако изредка они могут быть необходимы. Подпишитесь на [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ почтовую рассылку mediawiki-api-announce], чтобы быть в курсе обновлений.\n\n<strong>Ошибочные запросы:</strong> Если API получает запрос с ошибкой, вернётся заголовок HTTP с ключом «MediaWiki-API-Error», после чего значение заголовка и код ошибки будут отправлены обратно и установлены в то же значение. Более подробную информацию см. [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Ошибки и предупреждения]].\n\n<p class=\"mw-apisandbox-link\"><strong>Тестирование:</strong> для удобства тестирования API-запросов, см. [[Special:ApiSandbox]].</p>",
@@ -767,7 +768,7 @@
 	"apihelp-query+extlinks-param-limit": "Сколько ссылок вернуть.",
 	"apihelp-query+extlinks-param-protocol": "Протокол ссылки. Если оставлено пустым, а <var>$1query</var> задано, будут найдены ссылки с протоколом <kbd>http</kbd>. Оставьте пустым и <var>$1query</var>, и данный параметр, чтобы получить список всех внешних ссылок.",
 	"apihelp-query+extlinks-param-query": "Поисковый запрос без протокола. Полезно для проверки, содержит ли определённая страница определённую внешнюю ссылку.",
-	"apihelp-query+extlinks-param-expandurl": "Раскрыть зависимые от протокола ссылки с какноничным протоколом.",
+	"apihelp-query+extlinks-param-expandurl": "Раскрыть зависимые от протокола ссылки с каноничным протоколом.",
 	"apihelp-query+extlinks-example-simple": "Получить внешние ссылки на странице <kbd>Main Page</kbd>.",
 	"apihelp-query+exturlusage-summary": "Перечислить страницы, содержащие данную ссылку.",
 	"apihelp-query+exturlusage-param-prop": "Какую информацию включить:",
@@ -778,7 +779,7 @@
 	"apihelp-query+exturlusage-param-query": "Поисковый запрос без протокола. См. [[Special:LinkSearch]]. Оставьте пустым для получение списка всех внешних ссылок.",
 	"apihelp-query+exturlusage-param-namespace": "Пространства имён для перечисления.",
 	"apihelp-query+exturlusage-param-limit": "Сколько страниц вернуть.",
-	"apihelp-query+exturlusage-param-expandurl": "Раскрыть зависимые от протокола ссылки с какноничным протоколом.",
+	"apihelp-query+exturlusage-param-expandurl": "Раскрыть зависимые от протокола ссылки с каноничным протоколом.",
 	"apihelp-query+exturlusage-example-simple": "Показать страницы, ссылающиеся на <kbd>https://www.mediawiki.org</kbd>.",
 	"apihelp-query+filearchive-summary": "Перечисление всех удалённых файлов.",
 	"apihelp-query+filearchive-param-from": "Название изображения, с которого начать перечисление.",

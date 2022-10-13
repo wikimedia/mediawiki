@@ -622,7 +622,7 @@
 	"resetpass_header": "Passwort ändern",
 	"oldpassword": "Altes Passwort:",
 	"newpassword": "Neues Passwort:",
-	"retypenew": "Neues Passwort (nochmal):",
+	"retypenew": "Neues Passwort (Wiederholung):",
 	"resetpass_submit": "Passwort übermitteln und anmelden",
 	"changepassword-success": "Dein Passwort wurde geändert!",
 	"changepassword-throttled": "Du hast kürzlich zu viele Anmeldeversuche unternommen.\nBitte warte $1, bevor du es erneut versuchst.",

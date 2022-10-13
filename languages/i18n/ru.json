@@ -3906,7 +3906,7 @@
 	"duration-years": "$1 {{PLURAL:$1|год|года|лет}}",
 	"duration-decades": "$1 {{PLURAL:$1|десятилетие|десятилетия|десятилетий}}",
 	"duration-centuries": "$1 {{PLURAL:$1|век|века|веков}}",
-	"duration-millennia": "$1 {{PLURAL:$1|тысячелетие|тысячелетия|тысячелетий}}",
+	"duration-millennia": "$1 {{PLURAL:$1|тысячелетие}}",
 	"rotate-comment": "Изображение повёрнуто на $1 градус{{PLURAL:$1||а|ов}} по часовой стрелке",
 	"limitreport-title": "Данные анализатора:",
 	"limitreport-cputime": "Использование времени процессора",

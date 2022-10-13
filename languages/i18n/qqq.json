@@ -4362,7 +4362,7 @@
 	"limitreport-cputime-value": "Format for the \"CPU time usage\" value in the limit report table. Parameters:\n* $1 - the time usage in seconds\n{{Identical|Second}}",
 	"limitreport-walltime": "Label for the \"Real time usage\" row in the limit report table.\n\nSee also:\n* {{msg-mw|Limitreport-cputime}}",
 	"limitreport-walltime-value": "Format for the \"Real time usage\" value in the limit report table. Parameters:\n* $1 - the time usage in seconds\n{{Identical|Second}}",
-	"limitreport-ppvisitednodes": "Label for the \"Preprocessor visited node count\" row in the limit report table",
+	"limitreport-ppvisitednodes": "Label for the \"Preprocessor visited node count\" row in the limit report table. This is the number of nodes visited by the preprocessor.",
 	"limitreport-ppvisitednodes-value": "{{optional}}\nFormat for the \"Preprocessor visited node count\" row in the limit report table.\n\nParameters:\n* $1 - the usage\n* $2 - the maximum",
 	"limitreport-postexpandincludesize": "Label for the \"Post-expand include size\" row in the limit report table",
 	"limitreport-postexpandincludesize-value": "Format for the \"Post-expand include size\" row in the limit report table. Parameters:\n* $1 - the usage (in bytes)\n* $2 - the maximum (in bytes)",

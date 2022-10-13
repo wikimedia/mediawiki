@@ -225,7 +225,7 @@
 	"config-upload-deleted": "Adresář pro smazané soubory:",
 	"config-upload-deleted-help": "Zvolte adresář, do kterého se mají archivovat smazané soubory.\nTento adresář by ideálně neměl být dostupný z webu.",
 	"config-personalization-settings": "Přizpůsobení",
-	"config-logo-summary": "Pro každé z těchto polí budete muset načíst soubor odpovídající velikosti a jeho URL zadat do políčka níže. Můžete použít <code>$wgStylePath</code> nebo <code>$wgScriptPath</code>, pokud je logo umístěno relativně k těmto cestám. Libovolná z těchto políček můžete ponechat prázdná.\n\nNa podporovaných prohlížečích můžete také soubory ze svého počítače přetáhnout do políček nebo plochy náhledu.",
+	"config-logo-summary": "Pro každé z těchto polí budete muset načíst soubor odpovídající velikosti a jeho URL zadat do políčka níže. Můžete použít <code>$wgStylePath</code> nebo <code>$wgScriptPath</code>, pokud je logo umístěno relativně k těmto cestám. Libovolná z těchto políček můžete ponechat prázdná.",
 	"config-logo-preview-main": "Hlavní strana",
 	"config-logo-icon": "Logo (ikona):",
 	"config-logo-icon-help": "Vaše logo ikona by měla být čtvercová a ideálně alespoň 50pixelová nebo SVG.",
