@@ -312,6 +312,13 @@ abstract class Skin extends ContextSource {
 	 *
 	 *     Default: `false`
 	 *
+	 *  - `supportsMwHeading`: Whether the skin supports new HTML markup for headings, which uses
+	 *     `<div class="mw-heading">` tags (https://www.mediawiki.org/wiki/Heading_HTML_changes).
+	 *     If false, MediaWiki will output the legacy markup instead.
+	 *
+	 *     Since: MW 1.43
+	 *     Default: `false` (will become `true` in and then will be removed in the future)
+	 *
 	 *  - `link`: An array of link option overriddes. See Skin::makeLink for the available options.
 	 *
 	 *     Default: `[]`
@@ -2402,6 +2409,7 @@ abstract class Skin extends ContextSource {
 			'bodyOnly' => false,
 			'clientPrefEnabled' => false,
 			'responsive' => false,
+			'supportsMwHeading' => false,
 			'link' => [],
 			'tempUserBanner' => false,
 			'wrapSiteNotice' => false,

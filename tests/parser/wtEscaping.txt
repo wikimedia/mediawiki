@@ -207,6 +207,8 @@ parsoid=html2wt
 # in the html2wt direction we emit '= = =' or '=<nowiki>=</nowiki>='
 !! test
 Headings: 4d. Short headings (2)
+!! config
+wgParserEnableLegacyHeadingDOM=false
 !! options
 parsoid=wt2html,html2html
 !! wikitext
@@ -219,9 +221,9 @@ parsoid=wt2html,html2html
 <p>=
 ==
 </p>
-<h1><span class="mw-headline" id=".3D">=</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: =">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
-<h1><span class="mw-headline" id=".3D.3D">==</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: ==">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
-<h2><span class="mw-headline" id=".3D_2">=</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: =">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="mw-heading mw-heading1"><h1 id=".3D">=</h1><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: =">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<div class="mw-heading mw-heading1"><h1 id=".3D.3D">==</h1><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: ==">edit</a><span class="mw-editsection-bracket">]</span></span></div>
+<div class="mw-heading mw-heading2"><h2 id=".3D_2">=</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: =">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 !! html/parsoid
 <p>=
 ==</p>
@@ -347,13 +349,14 @@ a
 !! test
 Headings: Used as horizontal rule
 !! config
+wgParserEnableLegacyHeadingDOM=false
 wgFragmentMode=[ "html5", "legacy" ]
 !! options
 parsoid=wt2html
 !! wikitext
 ===============
 !! html/php
-<h6><span id=".3D.3D.3D"></span><span class="mw-headline" id="===">===</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: ===">edit</a><span class="mw-editsection-bracket">]</span></span></h6>
+<div class="mw-heading mw-heading6"><h6 id="==="><span id=".3D.3D.3D"></span>===</h6><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: ===">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 !! html/parsoid
 <h6 id="==="><span id=".3D.3D.3D" typeof="mw:FallbackId"></span>===</h6>
 !! end

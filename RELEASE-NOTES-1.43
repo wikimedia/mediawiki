@@ -26,6 +26,12 @@ For notes on 1.42.x and older releases, see HISTORY.
 
 ==== New configuration ====
 
+* (T13555) $wgParserEnableLegacyHeadingDOM - Defaults to `true`, can be set to
+  `false` to enable new, more accessible HTML markup for wikitext headings.
+  Note that each skin must also use the 'supportsMwHeading' option to allow it.
+  More information: https://www.mediawiki.org/wiki/Heading_HTML_changes
+  In a future release the new markup will become the default,
+  and later this option will be removed.
 * …
 
 ==== Changed configuration ====
@@ -58,6 +64,12 @@ For notes on 1.42.x and older releases, see HISTORY.
         $this->getOutput()->addWikiMsg( $msg );
       }
     }
+* (T13555) Skins can enable the 'supportsMwHeading' option for new, more
+  accessible HTML markup for wikitext headings. MediaWiki's own styles and
+  scripts have been updated to support it, but your skin may also need updates.
+  More information: https://www.mediawiki.org/wiki/Heading_HTML_changes
+  A future release will emit deprecation warnings for skins with
+  'supportsMwHeading' set to false.
 * (T219397) New `Language::formatDurationBetweenTimestamps()` function added
   which takes two timestamps and a precision in order to calculate a more
   accurate text representation of duration.

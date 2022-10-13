@@ -377,16 +377,16 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 <p>Test document.
 </p>
 <meta property="mw:PageProp/toc" />
-<h2><span class="mw-headline" id="Section_1">Section 1</span><mw:editsection page="Test Page" section="1">Section 1</mw:editsection></h2>
+<div class="mw-heading mw-heading2"><h2 id="Section_1">Section 1</h2><mw:editsection page="Test Page" section="1">Section 1</mw:editsection></div>
 <p>One
 </p>
-<h2><span class="mw-headline" id="Section_2">Section 2</span><mw:editsection page="Test Page" section="2">Section 2</mw:editsection></h2>
+<div class="mw-heading mw-heading2"><h2 id="Section_2">Section 2</h2><mw:editsection page="Test Page" section="2">Section 2</mw:editsection></div>
 <p>Two
 </p>
-<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span></h3>
+<div class="mw-heading mw-heading3"><h3 id="Section_2.1">Section 2.1</h3></div>
 <p>Two point one
 </p>
-<h2><span class="mw-headline" id="Section_3">Section 3</span><mw:editsection page="Test Page" section="4">Section 3</mw:editsection></h2>
+<div class="mw-heading mw-heading2"><h2 id="Section_3">Section 3</h2><mw:editsection page="Test Page" section="4">Section 3</mw:editsection></div>
 <p>Three
 </p>
 EOF;
@@ -421,16 +421,16 @@ EOF;
 </ul>
 </div>
 
-<h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="mw-heading mw-heading2"><h2 id="Section_1">Section 1</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 <p>One
 </p>
-<h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="mw-heading mw-heading2"><h2 id="Section_2">Section 2</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 <p>Two
 </p>
-<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span></h3>
+<div class="mw-heading mw-heading3"><h3 id="Section_2.1">Section 2.1</h3></div>
 <p>Two point one
 </p>
-<h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="mw-heading mw-heading2"><h2 id="Section_3">Section 3</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 <p>Three
 </p>
 EOF
@@ -451,16 +451,16 @@ EOF
 </ul>
 </div>
 
-<h2><span class="mw-headline" id="Section_1">Section 1</span></h2>
+<div class="mw-heading mw-heading2"><h2 id="Section_1">Section 1</h2></div>
 <p>One
 </p>
-<h2><span class="mw-headline" id="Section_2">Section 2</span></h2>
+<div class="mw-heading mw-heading2"><h2 id="Section_2">Section 2</h2></div>
 <p>Two
 </p>
-<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span></h3>
+<div class="mw-heading mw-heading3"><h3 id="Section_2.1">Section 2.1</h3></div>
 <p>Two point one
 </p>
-<h2><span class="mw-headline" id="Section_3">Section 3</span></h2>
+<div class="mw-heading mw-heading2"><h2 id="Section_3">Section 3</h2></div>
 <p>Three
 </p>
 EOF
@@ -470,16 +470,16 @@ EOF
 <div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>Test document.
 </p>
 
-<h2><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="mw-heading mw-heading2"><h2 id="Section_1">Section 1</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 <p>One
 </p>
-<h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="mw-heading mw-heading2"><h2 id="Section_2">Section 2</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 <p>Two
 </p>
-<h3><span class="mw-headline" id="Section_2.1">Section 2.1</span></h3>
+<div class="mw-heading mw-heading3"><h3 id="Section_2.1">Section 2.1</h3></div>
 <p>Two point one
 </p>
-<h2><span class="mw-headline" id="Section_3">Section 3</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<div class="mw-heading mw-heading2"><h2 id="Section_3">Section 3</h2><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/w/index.php?title=Test_Page&amp;action=edit&amp;section=4" title="Edit section: Section 3">edit</a><span class="mw-editsection-bracket">]</span></span></div>
 <p>Three
 </p></div>
 EOF

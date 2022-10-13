@@ -1759,7 +1759,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 					'<p>* Not a list</p>',
 				], 'No section edit links' => [
 					[ '== Title ==' ],
-					"<h2><span class=\"mw-headline\" id=\"Title\">Title</span></h2>",
+					'<div class="mw-heading mw-heading2"><h2 id="Title">Title</h2></div>',
 				], 'With title at start' => [
 					[ '* {{PAGENAME}}', true, Title::makeTitle( NS_TALK, 'Some page' ) ],
 					"<ul><li>Some page</li></ul>\n",
@@ -1986,7 +1986,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			],
 			'No section edit links' => [
 				[ '== Header ==' ],
-				'<h2><span class="mw-headline" id="Header">Header</span></h2>',
+				'<div class="mw-heading mw-heading2"><h2 id="Header">Header</h2></div>',
 			]
 		];
 	}
@@ -3289,6 +3289,13 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$option = null,
 		Authority $performer = null
 	): OutputPage {
+		$this->overrideConfigValues( [
+			// Avoid configured skin affecting the headings
+			MainConfigNames::ParserEnableLegacyHeadingDOM => false,
+			MainConfigNames::DefaultSkin => 'fallback',
+			MainConfigNames::HiddenPrefs => [ 'skin' ],
+		] );
+
 		$context = new RequestContext();
 
 		$context->setConfig( new MultiConfig( [

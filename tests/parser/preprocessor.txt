@@ -408,6 +408,7 @@ Preprocessor precedence 14: broken language converter in comment
 Preprocessor precedence 15: broken brace markup in headings
 !! config
 wgFragmentMode=[ "html5", "legacy" ]
+wgParserEnableLegacyHeadingDOM=false
 !! options
 parsoid=wt2html
 !! wikitext
@@ -425,22 +426,22 @@ __NOTOC__ __NOEDITSECTION__
 ===6 foo-{bar 6===
 6
 !! html/php
-<h3><span id="1_foo.5Bbar_1"></span><span class="mw-headline" id="1_foo[bar_1">1 foo[bar 1</span></h3>
+<div class="mw-heading mw-heading3"><h3 id="1_foo[bar_1"><span id="1_foo.5Bbar_1"></span>1 foo[bar 1</h3></div>
 <p>1
 </p>
-<h3><span id="2_foo.5B.5Bbar_2"></span><span class="mw-headline" id="2_foo[[bar_2">2 foo[[bar 2</span></h3>
+<div class="mw-heading mw-heading3"><h3 id="2_foo[[bar_2"><span id="2_foo.5B.5Bbar_2"></span>2 foo[[bar 2</h3></div>
 <p>2
 </p>
-<h3><span id="3_foo.7Bbar_3"></span><span class="mw-headline" id="3_foo{bar_3">3 foo{bar 3</span></h3>
+<div class="mw-heading mw-heading3"><h3 id="3_foo{bar_3"><span id="3_foo.7Bbar_3"></span>3 foo{bar 3</h3></div>
 <p>3
 </p>
-<h3><span id="4_foo.7B.7Bbar_4"></span><span class="mw-headline" id="4_foo{{bar_4">4 foo{{bar 4</span></h3>
+<div class="mw-heading mw-heading3"><h3 id="4_foo{{bar_4"><span id="4_foo.7B.7Bbar_4"></span>4 foo{{bar 4</h3></div>
 <p>4
 </p>
-<h3><span id="5_foo.7B.7B.7Bbar_5"></span><span class="mw-headline" id="5_foo{{{bar_5">5 foo{{{bar 5</span></h3>
+<div class="mw-heading mw-heading3"><h3 id="5_foo{{{bar_5"><span id="5_foo.7B.7B.7Bbar_5"></span>5 foo{{{bar 5</h3></div>
 <p>5
 </p>
-<h3><span id="6_foo-.7Bbar_6"></span><span class="mw-headline" id="6_foo-{bar_6">6 foo-{bar 6</span></h3>
+<div class="mw-heading mw-heading3"><h3 id="6_foo-{bar_6"><span id="6_foo-.7Bbar_6"></span>6 foo-{bar 6</h3></div>
 <p>6
 </p>
 !! html/parsoid

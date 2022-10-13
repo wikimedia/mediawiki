@@ -793,6 +793,7 @@ return [
 				'useSelser' => true,
 			],
 			'ParserEnableLegacyMediaDOM' => false,
+			'ParserEnableLegacyHeadingDOM' => true,
 			'UseContentMediaStyles' => false,
 			'UseLegacyMediaStyles' => false,
 			'RawHtml' => false,

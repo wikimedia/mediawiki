@@ -289,7 +289,7 @@ class ApiParseTest extends ApiTestCase {
 			'section' => 1,
 		] );
 
-		$this->assertParsedToRegExp( '!<h2>.*Section 1.*</h2>\n<p>Content 1\n</p>!', $res );
+		$this->assertParsedToRegExp( '!<h2[^>]*>.*Section 1.*</h2>.*\n<p>Content 1\n</p>!', $res );
 	}
 
 	public function testInvalidSection() {
@@ -515,7 +515,7 @@ class ApiParseTest extends ApiTestCase {
 			'text' => 'Content',
 		] );
 
-		$this->assertParsedToRegExp( '!<h2>.*Title.*</h2>\n<p>Content\n</p>!', $res );
+		$this->assertParsedToRegExp( '!<h2[^>]*>.*Title.*</h2>.*\n<p>Content\n</p>!', $res );
 	}
 
 	public function testExistingSection() {
@@ -526,7 +526,7 @@ class ApiParseTest extends ApiTestCase {
 			'text' => "Intro\n\n== Section 1 ==\n\nContent\n\n== Section 2 ==\n\nMore content",
 		] );
 
-		$this->assertParsedToRegExp( '!<h2>.*Section 1.*</h2>\n<p>Content\n</p>!', $res );
+		$this->assertParsedToRegExp( '!<h2[^>]*>.*Section 1.*</h2>.*\n<p>Content\n</p>!', $res );
 	}
 
 	public function testNoPst() {

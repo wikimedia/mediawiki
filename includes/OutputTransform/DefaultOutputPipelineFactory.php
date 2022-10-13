@@ -3,8 +3,10 @@
 namespace MediaWiki\OutputTransform;
 
 use Language;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\OutputTransform\Stages\AddRedirectHeader;
 use MediaWiki\OutputTransform\Stages\AddWrapperDivClass;
 use MediaWiki\OutputTransform\Stages\DeduplicateStyles;
@@ -27,6 +29,12 @@ use Psr\Log\LoggerInterface;
  */
 class DefaultOutputPipelineFactory {
 
+	/** @internal */
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::ParserEnableLegacyHeadingDOM, // For HandleSectionLinks
+	];
+
+	private ServiceOptions $options;
 	private HookContainer $hookContainer;
 	private LoggerInterface $logger;
 	private TidyDriverBase $tidy;
@@ -35,6 +43,7 @@ class DefaultOutputPipelineFactory {
 	private TitleFactory $titleFactory;
 
 	public function __construct(
+		ServiceOptions $options,
 		HookContainer $hookContainer,
 		TidyDriverBase $tidy,
 		LanguageFactory $langFactory,
@@ -42,6 +51,7 @@ class DefaultOutputPipelineFactory {
 		LoggerInterface $logger,
 		TitleFactory $titleFactory
 	) {
+		$this->options = $options;
 		$this->hookContainer = $hookContainer;
 		$this->logger = $logger;
 		$this->langFactory = $langFactory;
@@ -63,7 +73,7 @@ class DefaultOutputPipelineFactory {
 			->addStage( new RenderDebugInfo( $this->hookContainer ) )
 			->addStage( new ExecutePostCacheTransformHooks( $this->hookContainer ) )
 			->addStage( new AddWrapperDivClass( $this->langFactory, $this->contentLang ) )
-			->addStage( new HandleSectionLinks( $this->titleFactory ) )
+			->addStage( new HandleSectionLinks( $this->options, $this->titleFactory ) )
 			->addStage( new HandleParsoidSectionLinks( $this->logger, $this->titleFactory ) )
 			->addStage( new HandleTOCMarkers( $this->tidy ) )
 			->addStage( new DeduplicateStyles() )

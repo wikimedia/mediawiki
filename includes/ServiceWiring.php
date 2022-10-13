@@ -751,6 +751,7 @@ return [
 
 	'DefaultOutputPipeline' => static function ( MediaWikiServices $services ): OutputTransformPipeline {
 		return ( new DefaultOutputPipelineFactory(
+			new ServiceOptions( DefaultOutputPipelineFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getHookContainer(),
 			$services->getTidy(),
 			$services->getLanguageFactory(),
@@ -2110,6 +2111,7 @@ return [
 				[
 					'name' => 'fallback',
 					'styles' => [ 'mediawiki.skinning.interface' ],
+					'supportsMwHeading' => true,
 					'templateDirectory' => __DIR__ . '/skins/templates/fallback',
 				]
 			]
@@ -2121,6 +2123,7 @@ return [
 				[
 					'name' => 'apioutput',
 					'styles' => [ 'mediawiki.skinning.interface' ],
+					'supportsMwHeading' => true,
 					'templateDirectory' => __DIR__ . '/skins/templates/apioutput',
 				]
 			]
