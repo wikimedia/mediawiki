@@ -147,6 +147,7 @@ class ParserTestPrinter extends TestRecorder {
 
 			if ( $this->showOutput ) {
 				print "--- Expected ---\n{$testResult->expected}\n";
+				// @phan-suppress-next-line SecurityCheck-XSS This is a CLI tool
 				print "--- Actual ---\n{$testResult->actual}\n";
 			}
 
