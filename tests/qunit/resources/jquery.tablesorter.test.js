@@ -28,31 +28,6 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		wgPageContentLanguage: 'en'
 	}
 } ), function () {
-
-	// Data set "planets"
-	var planetHeader = [ 'Planet', 'Radius (km)' ];
-	var mercury = [ 'Mercury', '2439.7' ];
-	var venus = [ 'Venus', '6051.8' ];
-	var earth = [ 'Earth', '6371.0' ];
-	var mars = [ 'Mars', '3390.0' ];
-	var jupiter = [ 'Jupiter', '69911' ];
-	var saturn = [ 'Saturn', '58232' ];
-	var planets = [ mercury, venus, earth, mars, jupiter, saturn ];
-	var planetsAscName = [ earth, jupiter, mars, mercury, saturn, venus ];
-	var planetsAscRadius = [ mercury, mars, venus, earth, saturn, jupiter ];
-	var planetsTotal = [ [ 'total', '146395.5' ] ];
-
-	// Data set "simple"
-	var a1 = [ 'A', '1' ];
-	var a2 = [ 'A', '2' ];
-	var a3 = [ 'A', '3' ];
-	var b1 = [ 'B', '1' ];
-	var b2 = [ 'B', '2' ];
-	var b3 = [ 'B', '3' ];
-	var simple = [ a2, b3, a1, a3, b2, b1 ];
-	var simpleAsc = [ a1, a2, a3, b1, b2, b3 ];
-	var simpleDescasc = [ b1, b2, b3, a1, a2, a3 ];
-
 	/**
 	 * Create an HTML table from an array of row arrays containing text strings.
 	 * First row will be header row. No fancy rowspan/colspan stuff.
@@ -105,30 +80,6 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	}
 
 	/**
-	 * Run a table test by building a table with the given data,
-	 * running some callback on it, then checking the results.
-	 *
-	 * @param {string} msg text to pass on to qunit for the comparison
-	 * @param {string[]} header cols to make the table
-	 * @param {string[][]} data rows/cols to make the table
-	 * @param {string[][]} expected rows/cols to compare against at end
-	 * @param {Function} callback Callback on $table before we compare
-	 */
-	function tableTest( msg, header, data, expected, callback ) {
-		QUnit.test( msg, function ( assert ) {
-			var $table = tableCreate( header, data );
-
-			// Let caller manipulate the table and setup sorting
-			callback( $table );
-
-			// Table sorting is done synchronously; if it ever needs to change back
-			// to asynchronous, we'll need a timeout or a callback here.
-			var extracted = tableExtract( $table );
-			assert.deepEqual( extracted, expected, msg );
-		} );
-	}
-
-	/**
 	 * Run a table test by building a table with the given HTML,
 	 * running some callback on it, then checking the results.
 	 *
@@ -159,128 +110,146 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	function reversed( arr ) {
 		// Clone array
 		var arr2 = arr.slice( 0 );
-
 		arr2.reverse();
-
 		return arr2;
 	}
 
-	// Sample data set using planets named and their radius
+	// Data set "planets"
+	var planetHeader = [ 'Planet', 'Radius (km)' ];
+	var mercury = [ 'Mercury', '2439.7' ];
+	var venus = [ 'Venus', '6051.8' ];
+	var earth = [ 'Earth', '6371.0' ];
+	var mars = [ 'Mars', '3390.0' ];
+	var jupiter = [ 'Jupiter', '69911' ];
+	var saturn = [ 'Saturn', '58232' ];
+	var planets = [ mercury, venus, earth, mars, jupiter, saturn ];
+	var planetsAscName = [ earth, jupiter, mars, mercury, saturn, venus ];
+	var planetsAscRadius = [ mercury, mars, venus, earth, saturn, jupiter ];
+	var planetsTotal = [ [ 'total', '146395.5' ] ];
 
-	tableTest(
-		'Basic planet table: sorting initially - ascending by name',
-		planetHeader,
-		planets,
-		planetsAscName,
-		function ( $table ) {
+	// Data set "simple"
+	var a1 = [ 'A', '1' ];
+	var a2 = [ 'A', '2' ];
+	var a3 = [ 'A', '3' ];
+	var b1 = [ 'B', '1' ];
+	var b2 = [ 'B', '2' ];
+	var b3 = [ 'B', '3' ];
+	var simple = [ a2, b3, a1, a3, b2, b1 ];
+	var simpleAsc = [ a1, a2, a3, b1, b2, b3 ];
+	var simpleDescasc = [ b1, b2, b3, a1, a2, a3 ];
+
+	QUnit.test(
+		'Planets: initial sort ascending by name',
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter( { sortList: [
 				{ 0: 'asc' }
 			] } );
+
+			assert.deepEqual( tableExtract( $table ), planetsAscName );
 		}
 	);
-	tableTest(
-		'Basic planet table: sorting initially - descending by radius',
-		planetHeader,
-		planets,
-		reversed( planetsAscRadius ),
-		function ( $table ) {
+	QUnit.test(
+		'Planets: initial sort descending by radius',
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter( { sortList: [
 				{ 1: 'desc' }
 			] } );
+
+			assert.deepEqual( tableExtract( $table ), reversed( planetsAscRadius ) );
 		}
 	);
-	tableTest(
-		'Basic planet table: ascending by name',
-		planetHeader,
-		planets,
-		planetsAscName,
-		function ( $table ) {
+	QUnit.test(
+		'Planets: ascending by name',
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), planetsAscName );
 		}
 	);
-	tableTest(
-		'Basic planet table: ascending by name a second time',
-		planetHeader,
-		planets,
-		planetsAscName,
-		function ( $table ) {
+	QUnit.test(
+		'Planets: ascending by name (again)',
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), planetsAscName );
 		}
 	);
-	tableTest(
-		'Basic planet table: ascending by name (multiple clicks)',
-		planetHeader,
-		planets,
-		planetsAscName,
-		function ( $table ) {
+	QUnit.test(
+		'Planets: ascending by name (multiple clicks)',
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 			$table.find( '.headerSort' ).eq( 1 ).trigger( 'click' );
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), planetsAscName );
 		}
 	);
-	tableTest(
-		'Basic planet table: descending by name',
-		planetHeader,
-		planets,
-		reversed( planetsAscName ),
-		function ( $table ) {
+	QUnit.test(
+		'Planets: descending by name',
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), reversed( planetsAscName ) );
 		}
 	);
-	tableTest(
-		'Basic planet table: return to initial sort',
-		planetHeader,
-		planets,
-		planets,
-		function ( $table ) {
+	QUnit.test(
+		'Planets: return to initial sort',
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' ).trigger( 'click' ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), planets );
 		}
 	);
-	tableTest(
-		'Basic planet table: ascending radius',
-		planetHeader,
-		planets,
-		planetsAscRadius,
-		function ( $table ) {
+	QUnit.test(
+		'Planets: ascending radius',
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 1 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), planetsAscRadius );
 		}
 	);
-	tableTest(
-		'Basic planet table: descending radius',
-		planetHeader,
-		planets,
-		reversed( planetsAscRadius ),
-		function ( $table ) {
+	QUnit.test(
+		'Planets: descending radius',
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, planets );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 1 ).trigger( 'click' ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), reversed( planetsAscRadius ) );
 		}
 	);
-	tableTest(
+	QUnit.test(
 		'Sorting multiple columns by passing sort list',
-		planetHeader,
-		simple,
-		simpleAsc,
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, simple );
 			$table.tablesorter(
 				{ sortList: [
 					{ 0: 'asc' },
 					{ 1: 'asc' }
 				] }
 			);
+
+			assert.deepEqual( tableExtract( $table ), simpleAsc );
 		}
 	);
-	tableTest(
+	QUnit.test(
 		'Sorting multiple columns by programmatically triggering sort()',
-		planetHeader,
-		simple,
-		simpleDescasc,
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, simple );
 			$table.tablesorter();
 			$table.data( 'tablesorter' ).sort(
 				[
@@ -288,14 +257,14 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 					{ 1: 'asc' }
 				]
 			);
+
+			assert.deepEqual( tableExtract( $table ), simpleDescasc );
 		}
 	);
-	tableTest(
+	QUnit.test(
 		'Reset to initial sorting by triggering sort() without any parameters',
-		planetHeader,
-		simple,
-		simpleAsc,
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, simple );
 			$table.tablesorter(
 				{ sortList: [
 					{ 0: 'asc' },
@@ -309,26 +278,26 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 				]
 			);
 			$table.data( 'tablesorter' ).sort();
+
+			assert.deepEqual( tableExtract( $table ), simpleAsc );
 		}
 	);
-	tableTest(
+	QUnit.test(
 		'Sort via click event after having initialized the tablesorter with initial sorting',
-		planetHeader,
-		simple,
-		simpleDescasc,
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, simple );
 			$table.tablesorter(
 				{ sortList: [ { 0: 'asc' }, { 1: 'asc' } ] }
 			);
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), simpleDescasc );
 		}
 	);
-	tableTest(
+	QUnit.test(
 		'Multi-sort via click event after having initialized the tablesorter with initial sorting',
-		planetHeader,
-		simple,
-		simpleAsc,
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, simple );
 			$table.tablesorter(
 				{ sortList: [ { 0: 'desc' }, { 1: 'desc' } ] }
 			);
@@ -341,6 +310,8 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 			var event = $.Event( 'click' );
 			event[ $table.data( 'tablesorter' ).config.sortMultiSortKey ] = true;
 			$table.find( '.headerSort' ).eq( 1 ).trigger( event );
+
+			assert.deepEqual( tableExtract( $table ), simpleAsc );
 		}
 	);
 	QUnit.test( 'Reset sorting making table appear unsorted', function ( assert ) {
@@ -380,11 +351,9 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 	var bbc2 = [ 'B', 'B', 'C', '2' ];
 	var caa4 = [ 'C', 'A', 'A', '4' ];
 	var colspanInitial = [ aab5, aaa1, abc3, bbc2, caa4 ];
-	tableTest( 'Sorting with colspanned headers: spanned column',
-		header4,
-		colspanInitial,
-		[ aaa1, aab5, abc3, bbc2, caa4 ],
-		function ( $table ) {
+	QUnit.test( 'Sorting with colspanned headers: spanned column',
+		function ( assert ) {
+			var $table = tableCreate( header4, colspanInitial );
 			// Make colspanned header for test
 			$table.find( 'tr th' ).eq( 1 ).remove();
 			$table.find( 'tr th' ).eq( 1 ).remove();
@@ -392,13 +361,13 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), [ aaa1, aab5, abc3, bbc2, caa4 ] );
 		}
 	);
-	tableTest( 'Sorting with colspanned headers: sort spanned column twice',
-		header4,
-		colspanInitial,
-		[ caa4, bbc2, abc3, aab5, aaa1 ],
-		function ( $table ) {
+	QUnit.test( 'Sorting with colspanned headers: sort spanned column twice',
+		function ( assert ) {
+			var $table = tableCreate( header4, colspanInitial );
 			// Make colspanned header for test
 			$table.find( 'tr th' ).eq( 1 ).remove();
 			$table.find( 'tr th' ).eq( 1 ).remove();
@@ -407,13 +376,13 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), [ caa4, bbc2, abc3, aab5, aaa1 ] );
 		}
 	);
-	tableTest( 'Sorting with colspanned headers: subsequent column',
-		header4,
-		colspanInitial,
-		[ aaa1, bbc2, abc3, caa4, aab5 ],
-		function ( $table ) {
+	QUnit.test( 'Sorting with colspanned headers: subsequent column',
+		function ( assert ) {
+			var $table = tableCreate( header4, colspanInitial );
 			// Make colspanned header for test
 			$table.find( 'tr th' ).eq( 1 ).remove();
 			$table.find( 'tr th' ).eq( 1 ).remove();
@@ -421,13 +390,13 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 1 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), [ aaa1, bbc2, abc3, caa4, aab5 ] );
 		}
 	);
-	tableTest( 'Sorting with colspanned headers: sort subsequent column twice',
-		header4,
-		colspanInitial,
-		[ aab5, caa4, abc3, bbc2, aaa1 ],
-		function ( $table ) {
+	QUnit.test( 'Sorting with colspanned headers: sort subsequent column twice',
+		function ( assert ) {
+			var $table = tableCreate( header4, colspanInitial );
 			// Make colspanned header for test
 			$table.find( 'tr th' ).eq( 1 ).remove();
 			$table.find( 'tr th' ).eq( 1 ).remove();
@@ -436,6 +405,8 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 1 ).trigger( 'click' );
 			$table.find( '.headerSort' ).eq( 1 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), [ aab5, caa4, abc3, bbc2, aaa1 ] );
 		}
 	);
 
@@ -470,59 +441,57 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 	} );
 
-	// Regression tests!
-	tableTest(
+	QUnit.test(
 		'T30775: German-style (dmy) short numeric dates',
-		[ 'Date' ],
-		[
-			// German-style dates are day-month-year
-			[ '11.11.2011' ],
-			[ '01.11.2011' ],
-			[ '02.10.2011' ],
-			[ '03.08.2011' ],
-			[ '09.11.2011' ]
-		],
-		[
-			// Sorted by ascending date
-			[ '03.08.2011' ],
-			[ '02.10.2011' ],
-			[ '01.11.2011' ],
-			[ '09.11.2011' ],
-			[ '11.11.2011' ]
-		],
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( [ 'Date' ], [
+				// German-style dates are day-month-year
+				[ '11.11.2011' ],
+				[ '01.11.2011' ],
+				[ '02.10.2011' ],
+				[ '03.08.2011' ],
+				[ '09.11.2011' ]
+			] );
 			mw.config.set( 'wgDefaultDateFormat', 'dmy' );
 			mw.config.set( 'wgPageContentLanguage', 'de' );
-
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), [
+				// Sorted by ascending date
+				[ '03.08.2011' ],
+				[ '02.10.2011' ],
+				[ '01.11.2011' ],
+				[ '09.11.2011' ],
+				[ '11.11.2011' ]
+			] );
 		}
 	);
 
-	tableTest(
+	QUnit.test(
 		'T30775: American-style (mdy) short numeric dates',
-		[ 'Date' ],
-		[
-			// American-style dates are month-day-year
-			[ '11.11.2011' ],
-			[ '01.11.2011' ],
-			[ '02.10.2011' ],
-			[ '03.08.2011' ],
-			[ '09.11.2011' ]
-		],
-		[
-			// Sorted by ascending date
-			[ '01.11.2011' ],
-			[ '02.10.2011' ],
-			[ '03.08.2011' ],
-			[ '09.11.2011' ],
-			[ '11.11.2011' ]
-		],
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( [ 'Date' ], [
+				// American-style dates are month-day-year
+				[ '11.11.2011' ],
+				[ '01.11.2011' ],
+				[ '02.10.2011' ],
+				[ '03.08.2011' ],
+				[ '09.11.2011' ]
+			] );
 			mw.config.set( 'wgDefaultDateFormat', 'mdy' );
 
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), [
+				// Sorted by ascending date
+				[ '01.11.2011' ],
+				[ '02.10.2011' ],
+				[ '03.08.2011' ],
+				[ '09.11.2011' ],
+				[ '11.11.2011' ]
+			] );
 		}
 	);
 
@@ -548,24 +517,24 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		[ '204.204.132.158' ],
 		[ '247.240.82.209' ]
 	];
-	tableTest(
+	QUnit.test(
 		'IPv4 address sorting (T19141)',
-		[ 'IP' ],
-		ipv4,
-		ipv4Sorted,
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( [ 'IP' ], ipv4 );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), ipv4Sorted );
 		}
 	);
-	tableTest(
+	QUnit.test(
 		'IPv4 address reverse sorting (T19141)',
-		[ 'IP' ],
-		ipv4,
-		reversed( ipv4Sorted ),
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( [ 'IP' ], ipv4 );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), reversed( ipv4Sorted ) );
 		}
 	);
 
@@ -611,12 +580,10 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		[ 'ä' ], // ä sorts after z in Swedish
 		[ 'Äpfel' ]
 	];
-	tableTest(
+	QUnit.test(
 		'Accented Characters with custom collation',
-		[ 'Name' ],
-		umlautWords,
-		umlautWordsSortedEn,
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( [ 'Name' ], umlautWords );
 			mw.config.set( 'tableSorterCollation', {
 				ä: 'ae',
 				ö: 'oe',
@@ -626,41 +593,34 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), umlautWordsSortedEn );
 		}
 	);
-	tableTest(
+	QUnit.test(
 		'Accented Characters Swedish locale',
-		[ 'Name' ],
-		umlautWords,
-		umlautWordsSortedSv,
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( [ 'Name' ], umlautWords );
 			mw.config.set( 'wgPageContentLanguage', 'sv' );
 
 			$table.tablesorter();
 			// eslint-disable-next-line no-jquery/no-sizzle
 			$table.find( '.headerSort:eq(0)' ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), umlautWordsSortedSv );
 		}
 	);
-	tableTest(
+	QUnit.test(
 		'Digraphs with custom collation',
-		[ 'City' ],
-		[
-			[ 'London' ],
-			[ 'Ljubljana' ],
-			[ 'Luxembourg' ],
-			[ 'Njivice' ],
-			[ 'Norwich' ],
-			[ 'New York' ]
-		],
-		[
-			[ 'London' ],
-			[ 'Luxembourg' ],
-			[ 'Ljubljana' ],
-			[ 'New York' ],
-			[ 'Norwich' ],
-			[ 'Njivice' ]
-		],
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( [ 'City' ], [
+				[ 'London' ],
+				[ 'Ljubljana' ],
+				[ 'Luxembourg' ],
+				[ 'Njivice' ],
+				[ 'Norwich' ],
+				[ 'New York' ]
+			] );
 			mw.config.set( 'tableSorterCollation', {
 				lj: 'lzzzz',
 				nj: 'nzzzz'
@@ -668,6 +628,15 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), [
+				[ 'London' ],
+				[ 'Luxembourg' ],
+				[ 'Ljubljana' ],
+				[ 'New York' ],
+				[ 'Norwich' ],
+				[ 'Njivice' ]
+			] );
 		}
 	);
 
@@ -700,12 +669,10 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		venus
 	];
 	var planetsRowspanII = [ jupiter, mercury, saturn, venus, [ 'Venus', '6371.0' ], [ 'Venus', '3390.0' ] ];
-	tableTest(
+	QUnit.test(
 		'Basic planet table: same value for multiple rows via rowspan',
-		planetHeader,
-		planets,
-		planetsRowspan,
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, planets );
 			// Modify the table to have a multiple-row-spanning cell:
 			// - Remove 2nd cell of 4th row, and, 2nd cell or 5th row.
 			$table.find( 'tr' ).eq( 3 ).find( 'td' ).eq( 1 ).remove();
@@ -716,14 +683,14 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), planetsRowspan );
 		}
 	);
-	tableTest(
+	QUnit.test(
 		'Basic planet table: same value for multiple rows via rowspan (sorting initially)',
-		planetHeader,
-		planets,
-		planetsRowspan,
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, planets );
 			// Modify the table to have a multiple-row-spanning cell:
 			// - Remove 2nd cell of 4th row, and, 2nd cell or 5th row.
 			$table.find( 'tr' ).eq( 3 ).find( 'td' ).eq( 1 ).remove();
@@ -735,14 +702,14 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 			$table.tablesorter( { sortList: [
 				{ 0: 'asc' }
 			] } );
+
+			assert.deepEqual( tableExtract( $table ), planetsRowspan );
 		}
 	);
-	tableTest(
+	QUnit.test(
 		'Basic planet table: Same value for multiple rows via rowspan II',
-		planetHeader,
-		planets,
-		planetsRowspanII,
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, planets );
 			// Modify the table to have a multiple-row-spanning cell:
 			// - Remove 1st cell of 4th row, and, 1st cell or 5th row.
 			$table.find( 'tr' ).eq( 3 ).find( 'td' ).eq( 0 ).remove();
@@ -753,84 +720,86 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), planetsRowspanII );
 		}
 	);
 
-	tableTest(
+	QUnit.test(
 		'Complex date parsing I',
-		[ 'date' ],
-		[
-			[ 'January, 19 2010' ],
-			[ 'April 21 1991' ],
-			[ '04 22 1991' ],
-			[ '5.12.1990' ],
-			[ 'December 12 \'10' ]
-		],
-		[
-			[ '5.12.1990' ],
-			[ 'April 21 1991' ],
-			[ '04 22 1991' ],
-			[ 'January, 19 2010' ],
-			[ 'December 12 \'10' ]
-		],
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( [ 'Date' ], [
+				[ 'January, 19 2010' ],
+				[ 'April 21 1991' ],
+				[ '04 22 1991' ],
+				[ '5.12.1990' ],
+				[ 'December 12 \'10' ]
+			] );
 			mw.config.set( 'wgDefaultDateFormat', 'mdy' );
 
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), [
+				[ '5.12.1990' ],
+				[ 'April 21 1991' ],
+				[ '04 22 1991' ],
+				[ 'January, 19 2010' ],
+				[ 'December 12 \'10' ]
+			] );
 		}
 	);
 
-	tableTest(
+	QUnit.test(
 		'Currency parsing I',
-		[ 'currency' ],
-		[
-			[ '1.02 $' ],
-			[ '$ 3.00' ],
-			[ '€ 2,99' ],
-			[ '$ 1.00' ],
-			[ '$3.50' ],
-			[ '$ 1.50' ],
-			[ '€ 0.99' ]
-		],
-		[
-			[ '€ 0.99' ],
-			[ '$ 1.00' ],
-			[ '1.02 $' ],
-			[ '$ 1.50' ],
-			[ '$ 3.00' ],
-			[ '$3.50' ],
-			// Commas sort after dots
-			// Not intentional but test to detect changes
-			[ '€ 2,99' ]
-		],
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( [ 'Currency' ], [
+				[ '1.02 $' ],
+				[ '$ 3.00' ],
+				[ '€ 2,99' ],
+				[ '$ 1.00' ],
+				[ '$3.50' ],
+				[ '$ 1.50' ],
+				[ '€ 0.99' ]
+			] );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), [
+				[ '€ 0.99' ],
+				[ '$ 1.00' ],
+				[ '1.02 $' ],
+				[ '$ 1.50' ],
+				[ '$ 3.00' ],
+				[ '$3.50' ],
+				// Commas sort after dots
+				// Not intentional but test to detect changes
+				[ '€ 2,99' ]
+			] );
 		}
 	);
 
-	tableTest(
+	QUnit.test(
 		'Handling of .sortbottom',
-		planetHeader,
-		planets.concat( planetsTotal ),
-		planetsAscName,
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, planets.concat( planetsTotal ) );
 			$table.find( 'tr' ).last().addClass( 'sortbottom' );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), planetsAscName );
 		}
 	);
 
-	tableTest(
+	QUnit.test(
 		'Handling of .sorttop',
-		planetHeader,
-		planetsTotal.concat( planets ),
-		planetsAscName,
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( planetHeader, planetsTotal.concat( planets ) );
 			$table.find( 'tbody > tr' ).first().addClass( 'sorttop' );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), planetsAscName );
 		}
 	);
 
@@ -1071,7 +1040,6 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 				text: 'D'
 			}
 		], 'Order matches expected order, using the current sortValue in $.data()' );
-
 	} );
 
 	var numbers = [
@@ -1090,19 +1058,23 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		[ '14' ],
 		[ '13,000' ]
 	];
-	tableTest( 'T10115: sort numbers with commas (ascending)',
-		[ 'Numbers' ], numbers, numbersAsc,
-		function ( $table ) {
+	QUnit.test( 'T10115: sort numbers with commas (ascending)',
+		function ( assert ) {
+			var $table = tableCreate( [ 'Numbers' ], numbers );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), numbersAsc );
 		}
 	);
 
-	tableTest( 'T10115: sort numbers with commas (descending)',
-		[ 'Numbers' ], numbers, reversed( numbersAsc ),
-		function ( $table ) {
+	QUnit.test( 'T10115: sort numbers with commas (descending)',
+		function ( assert ) {
+			var $table = tableCreate( [ 'Numbers' ], numbers );
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), reversed( numbersAsc ) );
 		}
 	);
 	// TODO add numbers sorting tests for T10115 with a different language
@@ -1131,75 +1103,75 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 		);
 	} );
 
-	tableTest(
+	QUnit.test(
 		'Correct date sorting I',
-		[ 'date' ],
-		[
-			[ '01 January 2010' ],
-			[ '05 February 2010' ],
-			[ '16 January 2010' ]
-		],
-		[
-			[ '01 January 2010' ],
-			[ '16 January 2010' ],
-			[ '05 February 2010' ]
-		],
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( [ 'Date' ], [
+				[ '01 January 2010' ],
+				[ '05 February 2010' ],
+				[ '16 January 2010' ]
+			] );
 			mw.config.set( 'wgDefaultDateFormat', 'mdy' );
 
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), [
+				[ '01 January 2010' ],
+				[ '16 January 2010' ],
+				[ '05 February 2010' ]
+			] );
 		}
 	);
 
-	tableTest(
+	QUnit.test(
 		'Correct date sorting II',
-		[ 'date' ],
-		[
-			[ 'January 01 2010' ],
-			[ 'February 05 2010' ],
-			[ 'January 16 2010' ]
-		],
-		[
-			[ 'January 01 2010' ],
-			[ 'January 16 2010' ],
-			[ 'February 05 2010' ]
-		],
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( [ 'Date' ], [
+				[ 'January 01 2010' ],
+				[ 'February 05 2010' ],
+				[ 'January 16 2010' ]
+			] );
 			mw.config.set( 'wgDefaultDateFormat', 'dmy' );
 
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), [
+				[ 'January 01 2010' ],
+				[ 'January 16 2010' ],
+				[ 'February 05 2010' ]
+			] );
 		}
 	);
 
-	tableTest(
+	QUnit.test(
 		'ISO date sorting',
-		[ 'ISO date' ],
-		[
-			[ '2010-02-01' ],
-			[ '2009-12-25T12:30:45.001Z' ],
-			[ '2010-01-31' ],
-			[ '2009' ],
-			[ '2009-12-25T12:30:45' ],
-			[ '2009-12-25T12:30:45.111' ],
-			[ '2009-12-25T12:30:45+01:00' ]
-		],
-		[
-			[ '2009' ],
-			[ '2009-12-25T12:30:45' ],
-			[ '2009-12-25T12:30:45.001Z' ],
-			[ '2009-12-25T12:30:45.111' ],
-			// Effectively 11:30 UTC (earlier than above). No longer timezone-aware (T47161).
-			[ '2009-12-25T12:30:45+01:00' ],
-			[ '2010-01-31' ],
-			[ '2010-02-01' ]
-		],
-		function ( $table ) {
+		function ( assert ) {
+			var $table = tableCreate( [ 'ISO date' ], [
+				[ '2010-02-01' ],
+				[ '2009-12-25T12:30:45.001Z' ],
+				[ '2010-01-31' ],
+				[ '2009' ],
+				[ '2009-12-25T12:30:45' ],
+				[ '2009-12-25T12:30:45.111' ],
+				[ '2009-12-25T12:30:45+01:00' ]
+			] );
 			mw.config.set( 'wgDefaultDateFormat', 'dmy' );
 
 			$table.tablesorter();
 			$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+
+			assert.deepEqual( tableExtract( $table ), [
+				[ '2009' ],
+				[ '2009-12-25T12:30:45' ],
+				[ '2009-12-25T12:30:45.001Z' ],
+				[ '2009-12-25T12:30:45.111' ],
+				// Effectively 11:30 UTC (earlier than above). No longer timezone-aware (T47161).
+				[ '2009-12-25T12:30:45+01:00' ],
+				[ '2010-01-31' ],
+				[ '2010-02-01' ]
+			] );
 		}
 	);
 
