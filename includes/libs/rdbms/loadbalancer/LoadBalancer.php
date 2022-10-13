@@ -115,16 +115,12 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private $trxRoundId = false;
 	/** @var string Stage of the current transaction round in the transaction round life-cycle */
 	private $trxRoundStage = self::ROUND_CURSORY;
-	/** @var Database Connection handle that caused a problem */
-	private $errorConnection;
 	/** @var int[] The group replica server indexes keyed by group */
 	private $readIndexByGroup = [];
 	/** @var DBPrimaryPos|false Replication sync position or false if not set */
 	private $waitForPos;
 	/** @var bool Whether the generic reader fell back to a lagged replica DB */
 	private $laggedReplicaMode = false;
-	/** @var string The last DB selection or connection error */
-	private $lastError = 'Unknown error';
 	/** @var string|false Reason this instance is read-only or false if not */
 	private $readOnlyReason = false;
 	/** @var int Total number of new connections ever made with this instance */
@@ -133,6 +129,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private $disabled = false;
 	/** @var bool Whether the session consistency callback already executed */
 	private $chronologyCallbackTriggered = false;
+
+	/** @var Database|null The last connection handle that caused a problem */
+	private $lastErrorConn;
 
 	/** @var DatabaseDomain[] Map of (domain ID => domain instance) */
 	private $nonLocalDomainCache = [];
@@ -512,14 +511,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 					break;
 				}
 			}
+			if ( $i < 0 ) {
+				$this->reportConnectionError( 'could not connect to any replica DB server' );
+			}
 		} elseif ( !isset( $this->servers[$i] ) ) {
 			throw new UnexpectedValueException( "Invalid server index index #$i" );
-		}
-
-		if ( $i === self::DB_REPLICA ) {
-			$this->lastError = 'Unknown error'; // set here in case of worse failure
-			$this->lastError = 'No working replica DB server: ' . $this->lastError;
-			$this->reportConnectionError();
 		}
 
 		return $i;
@@ -967,7 +963,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		if ( !$conn->isOpen() ) {
-			$this->errorConnection = $conn;
+			$this->lastErrorConn = $conn;
 			// Connection was made but later unrecoverably lost for some reason.
 			// Do not return a handle that will just throw exceptions on use, but
 			// let the calling code, e.g. getReaderIndex(), try another server.
@@ -1109,7 +1105,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			if ( $conn->isOpen() ) {
 				$this->conns[$poolKey][$i][] = $conn;
 			} else {
-				$this->errorConnection = $conn;
+				$this->connLogger->warning( __METHOD__ . ": connection error for $i/$domain" );
+				$this->lastErrorConn = $conn;
 				$conn = null;
 			}
 		}
@@ -1231,6 +1228,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$conn->initConnection();
 			++$this->connectionCounter;
 		} catch ( DBConnectionError $e ) {
+			$this->lastErrorConn = $conn;
 			// ignore; let the DB handle the logging
 		}
 
@@ -1312,35 +1310,52 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	/**
+	 * @param string $extraLbError Separat load balancer error
 	 * @throws DBConnectionError
 	 * @return never
 	 */
-	private function reportConnectionError() {
-		$conn = $this->errorConnection; // the connection which caused the error
-		$context = [
-			'method' => __METHOD__,
-			'last_error' => $this->lastError,
-		];
+	private function reportConnectionError( $extraLbError = '' ) {
+		if ( $this->lastErrorConn instanceof IDatabase ) {
+			$srvName = $this->lastErrorConn->getServerName();
+			$lastDbError = $this->lastErrorConn->lastError() ?: 'unknown error';
 
-		if ( $conn instanceof IDatabase ) {
-			$srvName = $conn->getServerName();
-			$this->connLogger->warning(
-				__METHOD__ . ": connection error: {last_error} ({db_server})",
-				$this->getConnLogContext( $conn, $context )
+			$exception = new DBConnectionError(
+				$this->lastErrorConn,
+				$extraLbError
+					? "{$extraLbError}; {$lastDbError} ({$srvName})"
+					: "{$lastDbError} ({$srvName})"
 			);
-			$error = $conn->lastError() ?: $this->lastError;
-			throw new DBConnectionError( $conn, "{$error} ($srvName)" );
+
+			if ( $extraLbError ) {
+				$this->connLogger->warning(
+					__METHOD__ . ": $extraLbError; {last_error} ({db_server})",
+					$this->getConnLogContext(
+						$this->lastErrorConn,
+						[
+							'method' => __METHOD__,
+							'last_error' => $lastDbError
+						]
+					)
+				);
+			}
 		} else {
-			// No last connection, probably due to all servers being too busy
-			$this->connLogger->error(
-				__METHOD__ .
-				": LB failure with no last connection. Connection error: {last_error}",
-				$context
+			$exception = new DBConnectionError(
+				null,
+				$extraLbError ?: 'could not connect to the DB server'
 			);
 
-			// If all servers were busy, "lastError" will contain something sensible
-			throw new DBConnectionError( null, $this->lastError );
+			if ( $extraLbError ) {
+				$this->connLogger->error(
+					__METHOD__ . ": $extraLbError",
+					[
+						'method' => __METHOD__,
+						'last_error' => '(last connection error missing)'
+					]
+				);
+			}
 		}
+
+		throw $exception;
 	}
 
 	public function getWriterIndex() {
