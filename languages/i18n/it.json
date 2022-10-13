@@ -1185,6 +1185,8 @@
 	"recentchangesdays-max": "(massimo $1 {{PLURAL:$1|giorno|giorni}})",
 	"recentchangescount": "Numero di modifiche da mostrare nelle ultime modifiche, cronologie e registri, per impostazione predefinita:",
 	"prefs-back-label": "Indietro",
+	"prefs-back-title": "Torna alle preferenze",
+	"prefs-description-rendering": "Configura skin, dimensioni e opzioni di lettura.",
 	"prefs-description-misc": "Personalizza l'indice dei contenuti.",
 	"prefs-help-recentchangescount": "Numero massimo: 1000",
 	"prefs-help-watchlist-token2": "Questa è la chiave segreta per il feed web dei tuoi osservati speciali.\nChiunque la conosce sarà in grado di leggere i tuoi osservati speciali, per cui non condividerla. Se necessario, [[Special:ResetTokens|puoi reimpostarla]].",

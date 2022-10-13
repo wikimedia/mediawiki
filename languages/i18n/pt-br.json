@@ -1197,6 +1197,7 @@
 	"timezoneuseserverdefault": "Utilizar padrão da wiki ($1)",
 	"timezoneuseoffset": "Outro (diferença de tempo de UTC)",
 	"timezone-useoffset-placeholder": "Exemplo de valores: \"-07:00\" ou \"01:00\"",
+	"timezone-invalid": "Fuso horário ou diferença horária inválidos.",
 	"servertime": "Horário do servidor:",
 	"guesstimezone": "Preencher a partir do navegador",
 	"timezoneregion-africa": "África",
