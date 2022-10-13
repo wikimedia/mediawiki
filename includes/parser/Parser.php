@@ -5714,7 +5714,7 @@ class Parser {
 	 * @return array
 	 * @since 1.6
 	 */
-	public function getTags() {
+	public function getTags(): array {
 		return array_keys( $this->mTagHooks );
 	}
 

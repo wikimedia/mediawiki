@@ -164,8 +164,7 @@ class SpecialVersion extends SpecialPage {
 					$licenseFound = true;
 				} elseif ( ( $extNode !== null ) && isset( $extNode['path'] ) ) {
 					$files = ExtensionInfo::getLicenseFileNames( dirname( $extNode['path'] ) );
-
-					if ( count( $files ) ) {
+					if ( $files ) {
 						$licenseFound = true;
 						foreach ( $files as $file ) {
 							$out->addWikiTextAsInterface(
@@ -518,21 +517,21 @@ class SpecialVersion extends SpecialPage {
 	 * @return string Wikitext
 	 */
 	private function getSkinCredits( array $credits ) {
-		if ( !isset( $credits['skin'] ) || count( $credits['skin'] ) === 0 ) {
+		if ( !isset( $credits['skin'] ) || !$credits['skin'] ) {
 			return '';
 		}
 
-		$out = Xml::element(
+		$out = Html::element(
 				'h2',
 				[ 'id' => 'mw-version-skin' ],
 				$this->msg( 'version-skins' )->text()
 			) .
-			Xml::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-skin' ] );
+			Html::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-skin' ] );
 
 		$this->firstExtOpened = false;
 		$out .= $this->getExtensionCategory( 'skin', null, $credits['skin'] );
 
-		$out .= Xml::closeElement( 'table' );
+		$out .= Html::closeElement( 'table' );
 
 		return $out;
 	}
@@ -649,38 +648,37 @@ class SpecialVersion extends SpecialPage {
 	 */
 	protected function getParserTags() {
 		$tags = $this->parser->getTags();
-
-		if ( count( $tags ) ) {
-			$out = Html::rawElement(
-				'h2',
-				[
-					'class' => 'mw-headline plainlinks',
-					'id' => 'mw-version-parser-extensiontags',
-				],
-				// @phan-suppress-next-line SecurityCheck-DoubleEscaped Using false for escape is safe
-				Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Tag_extensions',
-					$this->msg( 'version-parser-extensiontags' )->parse(),
-					false /* msg()->parse() already escapes */
-				)
-			);
-
-			array_walk( $tags, static function ( &$value ) {
-				// Bidirectional isolation improves readability in RTL wikis
-				$value = Html::element(
-					'bdi',
-					// Prevent < and > from slipping to another line
-					[
-						'style' => 'white-space: nowrap;',
-					],
-					"<$value>"
-				);
-			} );
-
-			$out .= $this->listToText( $tags );
-		} else {
-			$out = '';
+		if ( !$tags ) {
+			return '';
 		}
+
+		$out = Html::rawElement(
+			'h2',
+			[
+				'class' => 'mw-headline plainlinks',
+				'id' => 'mw-version-parser-extensiontags',
+			],
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped Using false for escape is safe
+			Linker::makeExternalLink(
+				'https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Tag_extensions',
+				$this->msg( 'version-parser-extensiontags' )->parse(),
+				false /* msg()->parse() already escapes */
+			)
+		);
+
+		array_walk( $tags, static function ( &$value ) {
+			// Bidirectional isolation improves readability in RTL wikis
+			$value = Html::element(
+				'bdi',
+				// Prevent < and > from slipping to another line
+				[
+					'style' => 'white-space: nowrap;',
+				],
+				"<$value>"
+			);
+		} );
+
+		$out .= $this->listToText( $tags );
 
 		return $out;
 	}
@@ -692,25 +690,25 @@ class SpecialVersion extends SpecialPage {
 	 */
 	protected function getParserFunctionHooks() {
 		$funcHooks = $this->parser->getFunctionHooks();
-		if ( count( $funcHooks ) ) {
-			$out = Html::rawElement(
-				'h2',
-				[
-					'class' => 'mw-headline plainlinks',
-					'id' => 'mw-version-parser-function-hooks',
-				],
-				// @phan-suppress-next-line SecurityCheck-DoubleEscaped Using false for escape is safe
-				Linker::makeExternalLink(
-					'https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Parser_functions',
-					$this->msg( 'version-parser-function-hooks' )->parse(),
-					false /* msg()->parse() already escapes */
-				)
-			);
-
-			$out .= $this->listToText( $funcHooks );
-		} else {
-			$out = '';
+		if ( !$funcHooks ) {
+			return '';
 		}
+
+		$out = Html::rawElement(
+			'h2',
+			[
+				'class' => 'mw-headline plainlinks',
+				'id' => 'mw-version-parser-function-hooks',
+			],
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped Using false for escape is safe
+			Linker::makeExternalLink(
+				'https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Parser_functions',
+				$this->msg( 'version-parser-function-hooks' )->parse(),
+				false /* msg()->parse() already escapes */
+			)
+		);
+
+		$out .= $this->listToText( $funcHooks );
 
 		return $out;
 	}
@@ -948,7 +946,7 @@ class SpecialVersion extends SpecialPage {
 	 */
 	private function getHooks() {
 		if ( $this->getConfig()->get( MainConfigNames::SpecialVersionShowHooks ) &&
-			count( $this->getConfig()->get( MainConfigNames::Hooks ) )
+			$this->getConfig()->get( MainConfigNames::Hooks )
 		) {
 			$myHooks = $this->getConfig()->get( MainConfigNames::Hooks );
 			ksort( $myHooks );
@@ -1047,10 +1045,9 @@ class SpecialVersion extends SpecialPage {
 	 * @param string|bool $extName Name of the extension for link creation,
 	 *   false if no links should be created
 	 * @param string $extDir Path to the extension root directory
-	 *
 	 * @return string HTML fragment
 	 */
-	public function listAuthors( $authors, $extName, $extDir ) {
+	public function listAuthors( $authors, $extName, $extDir ): string {
 		$hasOthers = false;
 		$linkRenderer = $this->getLinkRenderer();
 
@@ -1113,11 +1110,10 @@ class SpecialVersion extends SpecialPage {
 	 *
 	 * @param array $list List of elements to display
 	 * @param bool $sort Whether to sort the items in $list
-	 *
 	 * @return string
 	 */
-	public function listToText( $list, $sort = true ) {
-		if ( !count( $list ) ) {
+	private function listToText( array $list, bool $sort = true ): string {
+		if ( !$list ) {
 			return '';
 		}
 		if ( $sort ) {
@@ -1131,9 +1127,9 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Convert an array or object to a string for display.
 	 *
+	 * @internal For use by ApiQuerySiteinfo (TODO: Turn into more stable method)
 	 * @param mixed $list Will convert an array to string if given and return
 	 *   the parameter unaltered otherwise
-	 *
 	 * @return mixed
 	 */
 	public static function arrayToString( $list ) {
