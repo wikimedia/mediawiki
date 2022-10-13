@@ -46,9 +46,8 @@ interface ILoadMonitor extends LoggerAwareInterface, StatsdAwareInterface {
 	 * Perform load ratio adjustment before deciding which server to use
 	 *
 	 * @param int[] &$weightByServer Map of (server index => float weight)
-	 * @param string|false $domain
 	 */
-	public function scaleLoads( array &$weightByServer, $domain );
+	public function scaleLoads( array &$weightByServer );
 
 	/**
 	 * Get an estimate of replication lag (in seconds) for each server
@@ -56,8 +55,7 @@ interface ILoadMonitor extends LoggerAwareInterface, StatsdAwareInterface {
 	 * Values may be "false" if replication is too broken to estimate
 	 *
 	 * @param int[] $serverIndexes
-	 * @param string $domain
 	 * @return array Map of (server index => float|int|false)
 	 */
-	public function getLagTimes( array $serverIndexes, $domain );
+	public function getLagTimes( array $serverIndexes );
 }
