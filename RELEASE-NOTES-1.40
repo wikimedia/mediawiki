@@ -46,6 +46,8 @@ For notes on 1.39.x and older releases, see HISTORY.
 ==== Removed configuration ====
 * $wgShellboxUrl that was deprecated in 1.37 has now been removed,
   set $wgShellboxUrls instead.
+* $wgParserTestFiles which was deprecated in 1.30 has now been removed;
+  extensions can place their parser test files in `tests/parser` instead.
 * …
 
 === New user-facing features in 1.40 ===
@@ -144,6 +146,11 @@ because of Phabricator reports.
   removed.
 * LoadBalancer::haveIndex() and ::isNonZeroLoad(), deprecated in 1.34,
   have been removed.
+* The 'ParserTestFiles' key in the schema for extension.json has been removed.
+  This was deprecated in 1.30 and the corresponding $wgParserTestFiles
+  configuration variable has also been removed in this release.  Extensions
+  can put parser test files in their `tests/parser` directory to have them
+  automatically run.
 * PostgreSqlLockManager has been removed without deprecation.
 * …
 

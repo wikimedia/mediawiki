@@ -1833,8 +1833,6 @@ return [
 			'MetricsFormat' => null,
 			'MetricsPrefix' => 'mediawiki',
 			'PageInfoTransclusionLimit' => 50,
-			'ParserTestFiles' => [
-			],
 			'EnableJavaScriptTest' => false,
 			'CachePrefix' => false,
 			'DebugToolbar' => false,
@@ -2772,7 +2770,6 @@ return [
 				1 => 'null',
 			],
 			'MetricsPrefix' => 'string',
-			'ParserTestFiles' => 'object',
 			'OpenSearchTemplates' => 'object',
 			'NamespacesToBeSearchedDefault' => 'object',
 			'SitemapNamespaces' => [
@@ -3222,9 +3219,6 @@ return [
 			'additionalProperties' => [
 				'type' => 'string',
 			],
-		],
-		'ParserTestFiles' => [
-			'deprecated' => 'since 1.30',
 		],
 		'OpenSearchTemplate' => [
 			'deprecated' => 'since 1.25 Use $wgOpenSearchTemplates[\'application/x-suggestions+json\'] instead',

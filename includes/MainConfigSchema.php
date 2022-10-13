@@ -9572,25 +9572,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Parser test suite files to be run by parserTests.php when no specific
-	 * filename is passed to it.
-	 *
-	 * Extensions using extension.json will have any *.txt file in a
-	 * tests/parser/ directory automatically run.
-	 *
-	 * Core tests can be added to ParserTestRunner::$coreTestFiles.
-	 *
-	 * Use full paths.
-	 *
-	 * @deprecated since 1.30
-	 */
-	public const ParserTestFiles = [
-		'default' => [],
-		'type' => 'map',
-		'deprecated' => 'since 1.30',
-	];
-
-	/**
 	 * Allow running of QUnit tests via [[Special:JavaScriptTest]].
 	 */
 	public const EnableJavaScriptTest = [

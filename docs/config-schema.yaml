@@ -5960,18 +5960,6 @@ config-schema:
             InfoAction retrieves a list of transclusion links (both to and from).
             This number puts a limit on that query in the case of highly transcluded
             templates.
-    ParserTestFiles:
-        default: {  }
-        type: object
-        deprecated: 'since 1.30'
-        description: |-
-            Parser test suite files to be run by parserTests.php when no specific
-            filename is passed to it.
-            Extensions using extension.json will have any *.txt file in a
-            tests/parser/ directory automatically run.
-            Core tests can be added to ParserTestRunner::$coreTestFiles.
-            Use full paths.
-            @deprecated since 1.30
     EnableJavaScriptTest:
         default: false
         description: 'Allow running of QUnit tests via [[Special:JavaScriptTest]].'

@@ -184,9 +184,6 @@ return [
 		MainConfigNames::MessagesDirs => [
 			'mergeStrategy' => 'array_merge'
 		],
-		MainConfigNames::ParserTestFiles => [
-			'mergeStrategy' => 'array_merge'
-		],
 		MainConfigNames::SpecialContributeSkinsDisabled => [
 			'mergeStrategy' => 'array_merge'
 		],

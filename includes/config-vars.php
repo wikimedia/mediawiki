@@ -3297,13 +3297,6 @@ $wgMetricsPrefix = null;
 $wgPageInfoTransclusionLimit = null;
 
 /**
- * Config variable stub for the ParserTestFiles setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::ParserTestFiles
- * @deprecated since 1.30
- */
-$wgParserTestFiles = null;
-
-/**
  * Config variable stub for the EnableJavaScriptTest setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::EnableJavaScriptTest
  */

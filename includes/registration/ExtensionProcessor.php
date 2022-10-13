@@ -140,7 +140,6 @@ class ExtensionProcessor implements Processor {
 		'MessagePosterModule',
 		'MessagesDirs',
 		'OOUIThemePaths',
-		'ParserTestFiles',
 		'QUnitTestModule',
 		'ResourceFileModulePaths',
 		'ResourceModuleSkinStyles',
@@ -267,13 +266,6 @@ class ExtensionProcessor implements Processor {
 				'wgServiceWiringFiles',
 				$dir,
 				$info['ServiceWiringFiles']
-			);
-		}
-		if ( isset( $info['ParserTestFiles'] ) ) {
-			$this->extractPathBasedGlobal(
-				'wgParserTestFiles',
-				$dir,
-				$info['ParserTestFiles']
 			);
 		}
 		$name = $this->extractCredits( $path, $info );

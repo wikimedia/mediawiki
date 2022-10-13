@@ -3313,13 +3313,6 @@ class MainConfigNames {
 	public const PageInfoTransclusionLimit = 'PageInfoTransclusionLimit';
 
 	/**
-	 * Name constant for the ParserTestFiles setting, for use with Config::get()
-	 * @see MainConfigSchema::ParserTestFiles
-	 * @deprecated since 1.30
-	 */
-	public const ParserTestFiles = 'ParserTestFiles';
-
-	/**
 	 * Name constant for the EnableJavaScriptTest setting, for use with Config::get()
 	 * @see MainConfigSchema::EnableJavaScriptTest
 	 */
