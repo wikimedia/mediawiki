@@ -355,7 +355,7 @@ class PasswordReset implements LoggerAwareInterface {
 	 * @since 1.30
 	 */
 	private function isBlocked( User $user ) {
-		$block = $user->getBlock() ?: $user->getGlobalBlock();
+		$block = $user->getBlock();
 		if ( !$block ) {
 			return false;
 		}
