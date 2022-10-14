@@ -266,11 +266,6 @@ class SpecialUpload extends SpecialPage {
 	 * @param HTMLForm|string $form An HTMLForm instance or HTML string to show
 	 */
 	protected function showUploadForm( $form ) {
-		# Add links if file was previously deleted
-		if ( $this->mDesiredDestName ) {
-			$this->showViewDeletedLinks();
-		}
-
 		if ( $form instanceof HTMLForm ) {
 			$form->show();
 		} else {
@@ -347,33 +342,6 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		return $form;
-	}
-
-	/**
-	 * Shows the "view X deleted revisions link""
-	 */
-	protected function showViewDeletedLinks() {
-		$title = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
-		// Show a subtitle link to deleted revisions (to sysops et al only)
-		if ( $title instanceof Title ) {
-			$count = $title->getDeletedEditsCount();
-			if ( $count > 0 && $this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
-				$restorelink = $this->getLinkRenderer()->makeKnownLink(
-					SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
-					$this->msg( 'restorelink' )->numParams( $count )->text()
-				);
-				$link = $this->msg(
-					$this->getAuthority()->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted'
-				)->rawParams( $restorelink )->parseAsBlock();
-				$this->getOutput()->addHTML(
-					Html::rawElement(
-						'div',
-						[ 'id' => 'contentSub2' ],
-						$link
-					)
-				);
-			}
-		}
 	}
 
 	/**
