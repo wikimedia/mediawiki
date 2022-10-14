@@ -53,6 +53,8 @@ For notes on 1.39.x and older releases, see HISTORY.
 === New user-facing features in 1.40 ===
 * Ability to show thumbnails (provided via onSearchResultProvideThumbnail
   hook) for more than NS_FILE titles in Special:Search results.
+* New preference ('search-thumbnail-extra-namespaces') to allow users to
+  control whether to show more thumbnails (per $wgThumbnailNamespaces)
 * …
 
 === New developer features in 1.40 ===

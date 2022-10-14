@@ -558,7 +558,8 @@ class SpecialSearch extends SpecialPage {
 			$linkRenderer,
 			$this->getHookContainer(),
 			$this->repoGroup,
-			$this->thumbnailProvider
+			$this->thumbnailProvider,
+			$this->userOptionsManager
 		);
 
 		// Default (null) on. Can be explicitly disabled.

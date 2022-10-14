@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Preferences;
 
+use Config;
 use Html;
 use HTMLForm;
 use HTMLFormField;
@@ -113,6 +114,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/** @var SignatureValidatorFactory */
 	private $signatureValidatorFactory;
 
+	/** @var Config */
+	private $config;
+
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -163,6 +167,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param SkinFactory|null $skinFactory
 	 * @param UserGroupManager|null $userGroupManager
 	 * @param SignatureValidatorFactory|null $signatureValidatorFactory
+	 * @param Config|null $config
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -179,7 +184,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		Parser $parser = null,
 		SkinFactory $skinFactory = null,
 		UserGroupManager $userGroupManager = null,
-		SignatureValidatorFactory $signatureValidatorFactory = null
+		SignatureValidatorFactory $signatureValidatorFactory = null,
+		Config $config = null
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -215,6 +221,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->userGroupManager = $userGroupManager ?? $services()->getUserGroupManager();
 		$this->signatureValidatorFactory = $signatureValidatorFactory
 			?? $services()->getSignatureValidatorFactory();
+		$this->config = $config ?? $services()->getMainConfig();
 	}
 
 	/**
@@ -1483,6 +1490,37 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'help-message' => $context->msg( 'searchlimit-help', 500 ),
 			'filter' => IntvalFilter::class,
 		];
+
+		// show a preference for thumbnails from namespaces other than NS_FILE,
+		// only when there they're actually configured to be served
+		$thumbNamespaces = $this->config->get( 'ThumbnailNamespaces' );
+		$thumbNamespacesFormatted = array_combine(
+			$thumbNamespaces,
+			array_map(
+				static function ( $namespaceId ) use ( $context ) {
+					return $namespaceId === NS_MAIN
+						? $context->msg( 'blanknamespace' )->escaped()
+						: $context->getLanguage()->getFormattedNsText( $namespaceId );
+				},
+				$thumbNamespaces
+			)
+		);
+		$defaultThumbNamespacesFormatted = (array)array_intersect_key( $thumbNamespacesFormatted, [ NS_FILE => 1 ] );
+		$extraThumbNamespacesFormatted = (array)array_diff_key( $thumbNamespacesFormatted, [ NS_FILE => 1 ] );
+		if ( $extraThumbNamespacesFormatted ) {
+			$defaultPreferences['search-thumbnail-extra-namespaces'] = [
+				'type' => 'toggle',
+				'section' => 'searchoptions/searchmisc',
+				'label-message' => 'search-thumbnail-extra-namespaces-label',
+				'help-message' => $context->msg(
+					'search-thumbnail-extra-namespaces-message',
+					$context->getLanguage()->listToText( $extraThumbNamespacesFormatted ),
+					count( $extraThumbNamespacesFormatted ),
+					$context->getLanguage()->listToText( $defaultThumbNamespacesFormatted ),
+					count( $defaultThumbNamespacesFormatted )
+				),
+			];
+		}
 	}
 
 	/*
@@ -1562,8 +1600,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			}
 		}
 
-		$preferredSkins = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::SkinsPreferred );
+		$preferredSkins = $this->config->get( MainConfigNames::SkinsPreferred );
 		// Sort by the internal name, so that the ordering is the same for each display language,
 		// especially if some skin names are translated to use a different alphabet and some are not.
 		uksort( $validSkinNames, function ( $a, $b ) use ( $currentUserSkin, $preferredSkins ) {
