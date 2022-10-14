@@ -111,13 +111,13 @@ class HtmlOutputRendererHelper {
 	 * @param ParsoidOutputStash $parsoidOutputStash
 	 * @param IBufferingStatsdDataFactory $statsDataFactory
 	 * @param ParsoidOutputAccess $parsoidOutputAccess
-	 * @param HTMLTransformFactory|null $htmlTransformFactory
+	 * @param HTMLTransformFactory $htmlTransformFactory
 	 */
 	public function __construct(
 		ParsoidOutputStash $parsoidOutputStash,
 		IBufferingStatsdDataFactory $statsDataFactory,
 		ParsoidOutputAccess $parsoidOutputAccess,
-		HTMLTransformFactory $htmlTransformFactory = null
+		HTMLTransformFactory $htmlTransformFactory
 	) {
 		$this->parsoidOutputStash = $parsoidOutputStash;
 		$this->stats = $statsDataFactory;
@@ -277,7 +277,7 @@ class HtmlOutputRendererHelper {
 
 		// Check if variant conversion has to be performed
 		// NOTE: Variant conversion is performed on the fly, and kept outside the stash.
-		if ( $this->targetLanguageCode && $this->htmlTransformFactory ) {
+		if ( $this->targetLanguageCode ) {
 			$languageVariantConverter = $this->htmlTransformFactory->getLanguageVariantConverter( $this->page );
 			$parserOutput = $languageVariantConverter->convertParserOutputVariant(
 				$parserOutput,
