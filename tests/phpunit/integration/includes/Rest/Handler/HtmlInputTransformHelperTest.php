@@ -10,6 +10,7 @@ use MediaWiki\Message\TextFormatter;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
+use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Rest\Handler\HtmlInputTransformHelper;
 use MediaWiki\Rest\Handler\ParsoidFormatHelper;
@@ -17,16 +18,19 @@ use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
 use NullStatsdDataFactory;
 use ParserOptions;
+use ParserOutput;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\Parsoid\Utils\ContentUtils;
 use WikitextContent;
 
 /**
@@ -697,6 +701,128 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
+	public function provideOriginal() {
+		$unchangedPB = new PageBundle(
+			$this->getTextFromFile( 'MainPage-original.html' ),
+			$this->getJsonFromFile( 'MainPage-original.data-parsoid' ),
+			null,
+			Parsoid::defaultHTMLVersion()
+		);
+
+		$unchangedPO = PageBundleParserOutputConverter::parserOutputFromPageBundle( $unchangedPB );
+
+		$renderID = new ParsoidRenderID( 0, 'testing' );
+
+		yield 'no original data' => [
+			null,
+			null,
+			[
+				'MediaWiki has been successfully installed',
+				'== Getting started ==',
+			]
+		];
+
+		// should load original wikitext by revision id ////////////////////
+		yield 'should load original wikitext by revision id' => [
+			1, // will be replaced by the actual revid
+			$unchangedPB, // Expect selser, since HTML didn't change.
+			'UTContent', // Loaded from default test page revision. Selser should preserve it.
+		];
+
+		// should use wikitext from fake revision ////////////////////
+		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'HtmlInputTransformHelperTest' );
+		$rev = new MutableRevisionRecord( $page );
+		$rev->setContent( SlotRecord::MAIN, new WikitextContent( 'Goats are great!' ) );
+
+		yield 'should use wikitext from fake revision' => [
+			$rev, // will be replaced by the actual revid
+			$unchangedPO, // Expect selser, since HTML didn't change.
+			'Goats are great!', // Text from the fake revision. Selser should preserve it.
+		];
+
+		// should get original HTML from stash ////////////////////
+		yield 'should get original HTML from stash' => [
+			$rev, // will be replaced by the actual revid
+			$renderID, // Expect selser, since HTML didn't change.
+			'Goats are great!', // Text from the fake revision. Selser should preserve it.
+		];
+	}
+
+	/**
+	 * @dataProvider provideOriginal()
+	 *
+	 * @param RevisionRecord|int|null $rev
+	 * @param ParsoidRenderID|PageBundle|ParserOutput|null $originalRendering
+	 * @param string|string[] $expectedText
+	 *
+	 * @throws HttpException
+	 * @throws \MWException
+	 * @covers \MediaWiki\Rest\Handler\HtmlInputTransformHelper::setOriginal
+	 */
+	public function testSetOriginal( $rev, $originalRendering, $expectedText ) {
+		if ( is_int( $rev ) && $rev > 0 ) {
+			// If a revision ID is given, run the test with an actual existing revision ID
+			$page = $this->getExistingTestPage()->getTitle();
+			$rev = $page->getLatestRevID();
+		} else {
+			$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'HtmlInputTransformHelperTest' );
+		}
+
+		$originalPB = new PageBundle(
+			$this->getTextFromFile( 'MainPage-original.html' ),
+			$this->getJsonFromFile( 'MainPage-original.data-parsoid' ),
+			null,
+			Parsoid::defaultHTMLVersion()
+		);
+
+		$renderID = new ParsoidRenderID( 0, 'testing' );
+		$stash = $this->getServiceContainer()->getParsoidOutputStash();
+		$stash->set( $renderID, $originalPB );
+
+		$html = $this->getTextFromFile( 'MainPage-original.html' );
+
+		$params = [];
+		$body = [
+			'html' => $html
+		];
+
+		$helper = $this->newHelper();
+		$helper->init( $page, $body, $params );
+
+		$helper->setOriginal( $rev, $originalRendering );
+
+		$response = $this->createResponse();
+		$helper->putContent( $response );
+
+		$body = $response->getBody();
+		$body->rewind();
+		$text = $body->getContents();
+
+		foreach ( (array)$expectedText as $exp ) {
+			$this->assertStringContainsString( $exp, $text );
+		}
+	}
+
+	/**
+	 * @covers \MediaWiki\Rest\Handler\HtmlInputTransformHelper::getTransform
+	 */
+	public function testGetTransform() {
+		$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'HtmlInputTransformHelperTest' );
+		$html = '<p>kittens are cute</p>';
+
+		$params = [];
+		$body = [
+			'html' => $html
+		];
+
+		$helper = $this->newHelper();
+		$helper->init( $page, $body, $params );
+
+		$transform = $helper->getTransform();
+
+		$this->assertStringContainsString( 'kittens', ContentUtils::toXML( $transform->getModifiedDocument() ) );
+	}
+
 	/**
 	 * @covers \MediaWiki\Rest\Handler\HtmlInputTransformHelper
 	 * @covers \MediaWiki\Parser\Parsoid\HtmlToContentTransform
@@ -876,7 +1002,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 		// We are asking for a stash key that is not in the stash.
 		// However, a rendering with the corresponding key is in the ParserCache.
-		// Because of this, the code below will not throw to trigger a 412 response.
+		// Because of this, the code below will not trigger a 412 response.
 		$helper->init( $page, $body, $params );
 		$content = $helper->getContent();
 
