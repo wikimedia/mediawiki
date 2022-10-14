@@ -1724,14 +1724,17 @@
 				}
 
 				// Hide the 'wrappedhtml' parameter on format modules
-				// and make formatversion default to `latest` for humans
+				// and make formatversion default to the latest version for humans
 				// (even though machines get a different default for b/c)
 				if ( pi.group === 'format' ) {
 					pi.parameters = pi.parameters.filter( function ( p ) {
 						return p.name !== 'wrappedhtml';
 					} ).map( function ( p ) {
 						if ( p.name === 'formatversion' ) {
-							p.default = 'latest';
+							// Use the highest numeric value
+							p.default = p.type.reduce( function ( prev, current ) {
+								return !isNaN( current ) ? Math.max( prev, current ) : prev;
+							} );
 							p.required = true;
 						}
 						return p;
