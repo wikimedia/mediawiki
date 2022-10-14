@@ -43,22 +43,29 @@ class GenerateUcfirstOverrides extends Maintenance {
 		$this->addDescription(
 			'Generates a php source file containing a definition for mb_strtoupper overrides' );
 		$this->addOption( 'outfile', 'Output file', true, true, 'o' );
-		$this->addOption( 'override', 'Char table we want to override', true, true );
+		$this->addOption( 'override', 'Char table we want to override',
+			true, true, false, true );
 		$this->addOption( 'with', 'Char table we want to obtain', true, true );
 	}
 
 	public function execute() {
 		$outfile = $this->getOption( 'outfile' );
-		$from = $this->loadJson( $this->getOption( 'override' ) );
+		$fromTables = [];
+		foreach ( $this->getOption( 'override' ) as $fileName ) {
+			$fromTables[] = $this->loadJson( $fileName );
+		}
 		$to = $this->loadJson( $this->getOption( 'with' ) );
 		$overrides = [];
 
-		foreach ( $from as $lc => $uc ) {
-			$ref = $to[$lc] ?? null;
-			if ( $ref !== null && $ref !== $uc ) {
-				$overrides[$lc] = $ref;
+		foreach ( $fromTables as $from ) {
+			foreach ( $from as $lc => $uc ) {
+				$ref = $to[$lc] ?? null;
+				if ( $ref !== null && $ref !== $uc ) {
+					$overrides[$lc] = $ref;
+				}
 			}
 		}
+		ksort( $overrides );
 		$writer = new StaticArrayWriter();
 		file_put_contents(
 			$outfile,
