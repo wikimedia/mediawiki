@@ -78,7 +78,8 @@ class DidYouMeanWidget {
 		$original = $term;
 
 		return $this->specialSearch->msg( 'search-rewritten' )
-			->rawParams( $rewritten, $original )
+			->rawParams( $rewritten )
+			->params( $original )
 			->escaped();
 	}
 
