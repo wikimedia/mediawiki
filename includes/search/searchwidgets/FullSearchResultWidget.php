@@ -375,13 +375,17 @@ class FullSearchResultWidget implements SearchResultWidget {
 		if ( $thumb ) {
 			if ( $title->getNamespace() === NS_FILE ) {
 				// don't use a custom link, just use traditional thumbnail HTML
-				return $thumb->toHtml( [ 'desc-link' => true ] );
+				return $thumb->toHtml( [
+					'desc-link' => true,
+					'alt' => $this->specialPage->msg( 'search-thumbnail-alt' )->params( $title ),
+				] );
 			}
 
-			// thunbnails for non-file results should link to the relevant title
+			// thumbnails for non-file results should link to the relevant title
 			return $thumb->toHtml( [
 				'desc-link' => true,
-				'custom-title-link' => $title
+				'custom-title-link' => $title,
+				'alt' => $this->specialPage->msg( 'search-thumbnail-alt' )->params( $title ),
 			] );
 		}
 
@@ -443,7 +447,10 @@ class FullSearchResultWidget implements SearchResultWidget {
 		$path = MW_INSTALL_PATH . '/resources/lib/ooui/themes/wikimediaui/images/icons/imageLayoutFrameless.svg';
 		$this->thumbnailPlaceholderHtml = Html::rawElement(
 			'div',
-			[ 'class' => 'searchResultImage-thumbnail-placeholder' ],
+			[
+				'class' => 'searchResultImage-thumbnail-placeholder',
+				'aria-hidden' => 'true',
+			],
 			file_get_contents( $path )
 		);
 		return $this->thumbnailPlaceholderHtml;
