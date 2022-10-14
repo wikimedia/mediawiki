@@ -2103,7 +2103,7 @@
 	"apisandbox-intro": "Ta stran je namenjena preizkušanju <strong>spletne storitve MediaWiki-ja API</strong>.\nZa podrobnosti o uporabi API-ja glejte [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Main_page dokumentacijo API-ja]. Zgled: [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Tutorial#A_simple_query iskanje naslovov strani, ki vsebujejo določeno ključno besedo]. Izberite dejanje, da si ogledate več zgledov.\n\nUpoštevajte, da je to sicer peskovnik, vendar bodo dejanja, izvedena na tej strani, morda vplivala na viki.",
 	"apisandbox-submit": "Izvedi zahtevek",
 	"apisandbox-reset": "Počisti",
-	"apisandbox-retry": "Poskusite znova",
+	"apisandbox-retry": "Poskusi znova",
 	"apisandbox-loading": "Nalaganje informacij o modulu API »$1« ...",
 	"apisandbox-load-error": "Med nalaganjem informacij o modulu API »$1« je prišlo do napake: $2",
 	"apisandbox-no-parameters": "Modul API nima parametrov.",
