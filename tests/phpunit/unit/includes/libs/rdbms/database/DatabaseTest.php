@@ -447,8 +447,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			) ) ) )
 			->getMock();
 		$wdb = TestingAccessWrapper::newFromObject( $db );
-		$wdb->connLogger = new NullLogger();
-		$wdb->queryLogger = new NullLogger();
+		$wdb->logger = new NullLogger();
 		$wdb->errorLogger = static function ( Throwable $e ) {
 		};
 		$wdb->deprecationLogger = static function ( $msg ) {

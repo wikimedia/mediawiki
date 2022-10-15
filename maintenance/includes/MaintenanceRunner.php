@@ -458,7 +458,7 @@ class MaintenanceRunner {
 		}
 
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
-		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
+		$trxProfiler->setLogger( LoggerFactory::getInstance( 'rdbms' ) );
 		$trxProfiler->setExpectations( $limits['Maintenance'], __METHOD__ );
 	}
 

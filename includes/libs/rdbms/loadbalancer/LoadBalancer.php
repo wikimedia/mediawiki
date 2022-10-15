@@ -62,13 +62,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	/** @var StatsdDataFactoryInterface */
 	private $statsd;
 	/** @var LoggerInterface */
-	private $connLogger;
-	/** @var LoggerInterface */
-	private $queryLogger;
-	/** @var LoggerInterface */
-	private $replLogger;
-	/** @var LoggerInterface */
-	private $perfLogger;
+	private $logger;
 	/** @var callable Exception logger */
 	private $errorLogger;
 	/** @var callable Deprecation logger */
@@ -237,10 +231,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$this->deprecationLogger = $params['deprecationLogger'] ?? static function ( $msg ) {
 				trigger_error( $msg, E_USER_DEPRECATED );
 		};
-		$this->replLogger = $params['replLogger'] ?? new NullLogger();
-		$this->connLogger = $params['connLogger'] ?? new NullLogger();
-		$this->queryLogger = $params['queryLogger'] ?? new NullLogger();
-		$this->perfLogger = $params['perfLogger'] ?? new NullLogger();
+		$this->logger = $params['logger'] ?? new NullLogger();
 
 		$this->clusterName = $params['clusterName'] ?? null;
 		$this->profiler = $params['profiler'] ?? null;
@@ -373,7 +364,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				// that transactions are Strict Serializable anyway.
 				$flags &= ~self::CONN_TRX_AUTOCOMMIT;
 				$type = $this->getServerType( $this->getWriterIndex() );
-				$this->connLogger->info( __METHOD__ . ": CONN_TRX_AUTOCOMMIT disallowed ($type)" );
+				$this->logger->info( __METHOD__ . ": CONN_TRX_AUTOCOMMIT disallowed ($type)" );
 			} elseif ( isset( $this->tempTablesOnlyMode[$domain] ) ) {
 				// T202116: integration tests are active and queries should be all be using
 				// temporary clone tables (via prefix). Such tables are not visible across
@@ -423,7 +414,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 			$this->loadMonitor = new $class(
 				$this, $this->srvCache, $this->wanCache, $this->loadMonitorConfig );
-			$this->loadMonitor->setLogger( $this->replLogger );
+			$this->loadMonitor->setLogger( $this->logger );
 			$this->loadMonitor->setStatsdDataFactory( $this->statsd );
 		}
 
@@ -448,13 +439,13 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 				$srvName = $this->getServerName( $i );
 				if ( $lag === false && !is_infinite( $maxServerLag ) ) {
-					$this->replLogger->debug(
+					$this->logger->debug(
 						__METHOD__ . ": server {db_server} is not replicating?",
 						[ 'db_server' => $srvName ]
 					);
 					unset( $loads[$i] );
 				} elseif ( $lag > $maxServerLag ) {
-					$this->replLogger->debug(
+					$this->logger->debug(
 						__METHOD__ .
 							": server {db_server} has {lag} seconds of lag (>= {maxlag})",
 						[ 'db_server' => $srvName, 'lag' => $lag, 'maxlag' => $maxServerLag ]
@@ -522,8 +513,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		// Get the server weight array for this load group
 		$loads = $this->groupLoads[$group] ?? [];
 		if ( !$loads ) {
-			$this->connLogger->info( __METHOD__ . ": no loads for group $group" );
-
+			$this->logger->info( __METHOD__ . ": no loads for group $group" );
 			return false;
 		}
 
@@ -557,11 +547,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		// Record whether the generic reader index is in "lagged replica DB" mode
 		if ( $group === self::GROUP_GENERIC && $laggedReplicaMode ) {
 			$this->laggedReplicaMode = true;
-			$this->replLogger->debug( __METHOD__ . ": setting lagged replica mode" );
+			$this->logger->debug( __METHOD__ . ": setting lagged replica mode" );
 		}
 
 		$serverName = $this->getServerName( $i );
-		$this->connLogger->debug( __METHOD__ . ": using server $serverName for group '$group'" );
+		$this->logger->debug( __METHOD__ . ": using server $serverName for group '$group'" );
 
 		return $i;
 	}
@@ -615,7 +605,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			} else {
 				$i = false;
 				if ( $this->waitForPos && $this->waitForPos->asOfTime() ) {
-					$this->replLogger->debug( __METHOD__ . ": session has replication position" );
+					$this->logger->debug( __METHOD__ . ": session has replication position" );
 					// "chronologyCallback" sets "waitForPos" for session consistency.
 					// This triggers doWait() after connect, so it's especially good to
 					// avoid lagged servers so as to avoid excessive delay in that method.
@@ -629,7 +619,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				}
 				if ( $i === false && count( $currentLoads ) ) {
 					// All replica DBs lagged. Switch to read-only mode
-					$this->replLogger->error( __METHOD__ . ": excessive replication lag" );
+					$this->logger->error( __METHOD__ . ": excessive replication lag" );
 					$i = ArrayUtils::pickRandom( $currentLoads );
 					$laggedReplicaMode = true;
 				}
@@ -639,20 +629,20 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				// pickRandom() returned false.
 				// This is permanent and means the configuration or the load monitor
 				// wants us to return false.
-				$this->connLogger->debug( __METHOD__ . ": no suitable server found" );
+				$this->logger->debug( __METHOD__ . ": no suitable server found" );
 
 				return [ false, false ];
 			}
 
 			$serverName = $this->getServerName( $i );
-			$this->connLogger->debug( __METHOD__ . ": connecting to $serverName..." );
+			$this->logger->debug( __METHOD__ . ": connecting to $serverName..." );
 
 			// Get a connection to this server without triggering complementary connections
 			// to other servers (due to things like lag or read-only checks). We want to avoid
 			// the risk of overhead and recursion here.
 			$conn = $this->getServerConnection( $i, self::DOMAIN_ANY, self::CONN_SILENCE_ERRORS );
 			if ( !$conn ) {
-				$this->connLogger->warning( __METHOD__ . ": failed connecting to $serverName" );
+				$this->logger->warning( __METHOD__ . ": failed connecting to $serverName" );
 				unset( $currentLoads[$i] ); // avoid this server next iteration
 				$i = false;
 				continue;
@@ -664,7 +654,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		// If all servers were down, quit now
 		if ( $currentLoads === [] ) {
-			$this->connLogger->error( __METHOD__ . ": all servers down" );
+			$this->logger->error( __METHOD__ . ": all servers down" );
 		}
 
 		return [ $i, $laggedReplicaMode ];
@@ -681,7 +671,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			if ( $genericIndex !== self::READER_INDEX_NONE ) {
 				if ( !$this->awaitSessionPrimaryPos( $genericIndex ) ) {
 					$this->laggedReplicaMode = true;
-					$this->replLogger->debug( __METHOD__ . ": setting lagged replica mode" );
+					$this->logger->debug( __METHOD__ . ": setting lagged replica mode" );
 				}
 			}
 		} finally {
@@ -763,7 +753,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 			$conn = $this->pickAnyOpenConnection( $applicableConnsByServer, $autoCommitOnly );
 			if ( $conn ) {
-				$this->connLogger->debug( __METHOD__ . ": found '$type' connection to #$i." );
+				$this->logger->debug( __METHOD__ . ": found '$type' connection to #$i." );
 				break;
 			}
 		}
@@ -784,7 +774,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		foreach ( $connsByServer as $i => $conns ) {
 			foreach ( $conns as $conn ) {
 				if ( !$conn->isOpen() ) {
-					$this->connLogger->warning(
+					$this->logger->warning(
 						__METHOD__ .
 						": pooled DB handle for {db_server} (#$i) has no open connection.",
 						$this->getConnLogContext( $conn )
@@ -801,7 +791,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 					if ( $conn->trxLevel() ) {
 						// Some sort of bug left a transaction open
-						$this->connLogger->warning(
+						$this->logger->warning(
 							__METHOD__ .
 							": pooled DB handle for {db_server} (#$i) has a pending transaction.",
 							$this->getConnLogContext( $conn )
@@ -844,7 +834,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$knownReachedPos instanceof DBPrimaryPos &&
 			$knownReachedPos->hasReached( $this->waitForPos )
 		) {
-			$this->replLogger->debug(
+			$this->logger->debug(
 				__METHOD__ .
 				": replica DB {db_server} known to be caught up (pos >= $knownReachedPos).",
 				[ 'db_server' => $srvName ]
@@ -863,7 +853,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			// the risk of overhead and recursion here.
 			$conn = $this->getServerConnection( $index, self::DOMAIN_ANY, $flags );
 			if ( !$conn ) {
-				$this->replLogger->warning(
+				$this->logger->warning(
 					__METHOD__ . ': failed to connect to {db_server}',
 					[ 'db_server' => $srvName ]
 				);
@@ -875,7 +865,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$close = true;
 		}
 
-		$this->replLogger->info(
+		$this->logger->info(
 			__METHOD__ .
 			': waiting for replica DB {db_server} to catch up...',
 			$this->getConnLogContext( $conn )
@@ -1089,7 +1079,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				if ( !$domain->isUnspecified() ) {
 					$conn->selectDomain( $domain );
 				}
-				$this->connLogger->debug( __METHOD__ . ": reusing connection for $i/$domain" );
+				$this->logger->debug( __METHOD__ . ": reusing connection for $i/$domain" );
 				break;
 			}
 		}
@@ -1104,7 +1094,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			if ( $conn->isOpen() ) {
 				$this->conns[$poolKey][$i][] = $conn;
 			} else {
-				$this->connLogger->warning( __METHOD__ . ": connection error for $i/$domain" );
+				$this->logger->warning( __METHOD__ . ": connection error for $i/$domain" );
 				$this->lastErrorConn = $conn;
 				$conn = null;
 			}
@@ -1190,9 +1180,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				'cliMode' => $this->cliMode,
 				'agent' => $this->agent,
 				'srvCache' => $this->srvCache,
-				'connLogger' => $this->connLogger,
-				'queryLogger' => $this->queryLogger,
-				'replLogger' => $this->replLogger,
+				'logger' => $this->logger,
 				'errorLogger' => $this->errorLogger,
 				'deprecationLogger' => $this->deprecationLogger,
 				'profiler' => $this->profiler,
@@ -1226,9 +1214,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		if ( $conn->isOpen() ) {
-			$this->connLogger->debug( __METHOD__ . ": opened new connection for $i/$domain" );
+			$this->logger->debug( __METHOD__ . ": opened new connection for $i/$domain" );
 		} else {
-			$this->connLogger->warning(
+			$this->logger->warning(
 				__METHOD__ . ": connection error for $i/{db_domain}",
 				[ 'db_domain' => $domain->getId() ]
 			);
@@ -1237,7 +1225,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		// Log when many connection are made during a single request/script
 		$count = $this->getCurrentConnectionCount();
 		if ( $count >= self::CONN_HELD_WARN_THRESHOLD ) {
-			$this->perfLogger->warning(
+			$this->logger->warning(
 				__METHOD__ . ": {connections}+ connections made (primary={primarydb})",
 				$this->getConnLogContext(
 					$conn,
@@ -1300,7 +1288,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		if ( !$this->chronologyCallbackTriggered && $this->chronologyCallback ) {
 			$this->chronologyCallbackTriggered = true;
 			( $this->chronologyCallback )( $this ); // generally calls waitFor()
-			$this->connLogger->debug( __METHOD__ . ': executed chronology callback.' );
+			$this->logger->debug( __METHOD__ . ': executed chronology callback.' );
 		}
 	}
 
@@ -1322,7 +1310,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			);
 
 			if ( $extraLbError ) {
-				$this->connLogger->warning(
+				$this->logger->warning(
 					__METHOD__ . ": $extraLbError; {last_error} ({db_server})",
 					$this->getConnLogContext(
 						$this->lastErrorConn,
@@ -1340,7 +1328,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			);
 
 			if ( $extraLbError ) {
-				$this->connLogger->error(
+				$this->logger->error(
 					__METHOD__ . ": $extraLbError",
 					[
 						'method' => __METHOD__,
@@ -1471,7 +1459,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		if ( count( $params['servers'] ) == count( $this->servers ) ) {
 			return;
 		}
-		$this->connLogger->notice( 'Reconfiguring dbs!' );
+		$this->logger->notice( 'Reconfiguring dbs!' );
 		$newServers = [];
 		foreach ( $params['servers'] as $i => $server ) {
 			$newServers[] = $this->getServerNameFromConfig( $server );
@@ -1542,13 +1530,13 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		if ( !$found ) {
-			$this->connLogger->warning(
+			$this->logger->warning(
 				__METHOD__ .
 				": orphaned connection to database {$this->stringifyConn( $conn )} at '$srvName'."
 			);
 		}
 
-		$this->connLogger->debug(
+		$this->logger->debug(
 			__METHOD__ .
 			": closing connection to database {$this->stringifyConn( $conn )} at '$srvName'."
 		);
@@ -1623,7 +1611,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				} elseif ( $time > 0 ) {
 					$timeMs = $time * 1000;
 					$humanTimeMs = $timeMs > 1 ? round( $timeMs ) : round( $timeMs, 3 );
-					$this->perfLogger->debug(
+					$this->logger->debug(
 						"Transaction spent {time_ms}ms in writes, under the {$limit}s limit",
 						[ 'time_ms' => $humanTimeMs ]
 					);
@@ -1743,9 +1731,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			foreach ( $this->getOpenPrimaryConnections() as $conn ) {
 				if ( $conn->writesPending() ) {
 					// A callback from another handle wrote to this one and DBO_TRX is set
-					$this->queryLogger->warning( $fname . ": found writes pending." );
+					$this->logger->warning( $fname . ": found writes pending." );
 					$fnames = implode( ', ', $conn->pendingWriteAndCallbackCallers() );
-					$this->queryLogger->warning(
+					$this->logger->warning(
 						"$fname: found writes pending ($fnames).",
 						$this->getConnLogContext(
 							$conn,
@@ -1755,7 +1743,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				} elseif ( $conn->trxLevel() ) {
 					// A callback from another handle read from this one and DBO_TRX is set,
 					// which can easily happen if there is only one DB (no replicas)
-					$this->queryLogger->debug( "$fname: found empty transaction." );
+					$this->logger->debug( "$fname: found empty transaction." );
 				}
 				try {
 					$conn->commit( $fname, $conn::FLUSHING_ALL_PEERS );
@@ -2200,7 +2188,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		if ( !$pos ) {
 			// Get the current primary DB position, opening a connection only if needed
-			$this->replLogger->debug( __METHOD__ . ': no position passed; using current' );
+			$this->logger->debug( __METHOD__ . ': no position passed; using current' );
 			$index = $this->getWriterIndex();
 			$flags = self::CONN_SILENCE_ERRORS;
 			$primaryConn = $this->getAnyOpenConnection( $index, $flags );
@@ -2220,17 +2208,17 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		if ( $pos instanceof DBPrimaryPos ) {
-			$this->replLogger->debug( __METHOD__ . ': waiting' );
+			$this->logger->debug( __METHOD__ . ': waiting' );
 			$result = $conn->primaryPosWait( $pos, $timeout );
 			$ok = ( $result !== null && $result != -1 );
 			if ( $ok ) {
-				$this->replLogger->debug( __METHOD__ . ': done waiting (success)' );
+				$this->logger->debug( __METHOD__ . ': done waiting (success)' );
 			} else {
-				$this->replLogger->debug( __METHOD__ . ': done waiting (failure)' );
+				$this->logger->debug( __METHOD__ . ': done waiting (failure)' );
 			}
 		} else {
 			$ok = false; // something is misconfigured
-			$this->replLogger->error(
+			$this->logger->error(
 				__METHOD__ . ': could not get primary pos for {db_server}',
 				$this->getConnLogContext( $conn, [ 'exception' => new RuntimeException() ] )
 			);

@@ -873,7 +873,7 @@ class MediaWiki {
 		// Set DB query expectations for this HTTP request
 		$trxLimits = $this->config->get( MainConfigNames::TrxProfilerLimits );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
-		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
+		$trxProfiler->setLogger( LoggerFactory::getInstance( 'rdbms' ) );
 		$statsFactory = MediaWikiServices::getInstance()->getStatsdDataFactory();
 		$trxProfiler->setStatsdDataFactory( $statsFactory );
 		$trxProfiler->setRequestMethod( $request->getMethod() );

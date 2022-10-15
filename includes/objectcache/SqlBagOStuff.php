@@ -1714,8 +1714,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					[
 						// Make sure the handle uses autocommit mode
 						'flags' => ( $server['flags'] ?? 0 ) & ~IDatabase::DBO_TRX,
-						'connLogger' => $this->logger,
-						'queryLogger' => $this->logger
+						'logger' => $this->logger,
 					]
 				)
 			);

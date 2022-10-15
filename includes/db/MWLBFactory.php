@@ -151,10 +151,7 @@ class MWLBFactory {
 				return Profiler::instance()->scopedProfileIn( $section );
 			},
 			'trxProfiler' => Profiler::instance()->getTransactionProfiler(),
-			'replLogger' => LoggerFactory::getInstance( 'DBReplication' ),
-			'queryLogger' => LoggerFactory::getInstance( 'DBQuery' ),
-			'connLogger' => LoggerFactory::getInstance( 'DBConnection' ),
-			'perfLogger' => LoggerFactory::getInstance( 'DBPerformance' ),
+			'logger' => LoggerFactory::getInstance( 'rdbms' ),
 			'errorLogger' => [ MWExceptionHandler::class, 'logException' ],
 			'deprecationLogger' => [ static::class, 'logDeprecation' ],
 			'statsdDataFactory' => $this->statsdDataFactory,

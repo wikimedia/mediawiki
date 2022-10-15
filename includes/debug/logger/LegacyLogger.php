@@ -83,14 +83,6 @@ class LegacyLogger extends AbstractLogger {
 	];
 
 	/**
-	 * @var array
-	 */
-	protected static $dbChannels = [
-		'DBQuery' => true,
-		'DBConnection' => true
-	];
-
-	/**
 	 * Minimum level. This is just to allow faster discard of debugging
 	 * messages. Not all messages meeting the level will be logged.
 	 *
@@ -112,7 +104,7 @@ class LegacyLogger extends AbstractLogger {
 		global $wgDebugLogFile, $wgDBerrorLog, $wgDebugLogGroups, $wgDebugToolbar, $wgDebugRawPage;
 
 		$this->channel = $channel;
-		$this->isDB = isset( self::$dbChannels[$channel] );
+		$this->isDB = ( $channel === 'rdbms' );
 
 		// Calculate minimum level, duplicating some of the logic from log() and shouldEmit()
 		if ( !$wgDebugRawPage && wfIsDebugRawPage() ) {
@@ -171,7 +163,7 @@ class LegacyLogger extends AbstractLogger {
 			return;
 		}
 
-		if ( $this->channel === 'DBQuery'
+		if ( $this->isDB
 			&& $level === self::LEVEL_DEBUG
 			&& isset( $context['sql'] )
 		) {

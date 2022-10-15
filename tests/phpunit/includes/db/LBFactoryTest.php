@@ -23,7 +23,6 @@
  * @copyright © 2013 Wikimedia Foundation Inc.
  */
 
-use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
@@ -381,7 +380,6 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			'hostsByName' => [
 				'test-db1' => $wgDBserver,
 			],
-			'replLogger' => LoggerFactory::getInstance( 'DBReplication' ),
 			'loadMonitor' => [ 'class' => LoadMonitorNull::class ],
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $wgDBprefix ),
 			'agent' => 'MW-UNIT-TESTS'

@@ -100,13 +100,13 @@ class DatabaseSqlite extends Database {
 		$this->lockMgr = $this->makeLockManager();
 		$this->platform = new SqlitePlatform(
 			$this,
-			$params['queryLogger'],
+			$this->logger,
 			$this->currentDomain,
 			$this->errorLogger
 		);
 		$this->replicationReporter = new ReplicationReporter(
 			$params['topologyRole'],
-			$params['replLogger'],
+			$this->logger,
 			$params['srvCache']
 		);
 	}
@@ -180,7 +180,7 @@ class DatabaseSqlite extends Database {
 			// Persistent connections can avoid some schema index reading overhead.
 			// On the other hand, they can cause horrible contention with DBO_TRX.
 			if ( $this->getFlag( self::DBO_TRX ) || $this->getFlag( self::DBO_DEFAULT ) ) {
-				$this->connLogger->warning(
+				$this->logger->warning(
 					__METHOD__ . ": ignoring DBO_PERSISTENT due to DBO_TRX or DBO_DEFAULT",
 					$this->getLogContext()
 				);
@@ -702,7 +702,7 @@ class DatabaseSqlite extends Database {
 			// There is an additional bug regarding sorting this data after insert
 			// on older versions of sqlite shipped with ubuntu 12.04
 			// https://phabricator.wikimedia.org/T74367
-			$this->queryLogger->debug(
+			$this->logger->debug(
 				__FUNCTION__ .
 				': Quoting value containing null byte. ' .
 				'For consistency all binary data should have been ' .
@@ -767,7 +767,7 @@ class DatabaseSqlite extends Database {
 		);
 		if ( $temporary ) {
 			if ( preg_match( '/^\\s*CREATE\\s+VIRTUAL\\s+TABLE\b/i', $sqlCreateTable ) ) {
-				$this->queryLogger->debug(
+				$this->logger->debug(
 					"Table $oldName is virtual, can't create a temporary duplicate." );
 			} else {
 				$sqlCreateTable = str_replace(

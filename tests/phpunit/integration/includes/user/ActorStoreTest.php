@@ -640,7 +640,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 */
 	public function testAcquireActorId_canNotCreate( UserIdentityValue $actor, string $method ) {
 		// We rely on DB to protect against duplicates when inserting new actor
-		$this->setNullLogger( 'DBQuery' );
+		$this->setNullLogger( 'rdbms' );
 		$this->expectException( CannotCreateActorException::class );
 		$this->getStore()->$method( $actor, $this->db );
 	}
@@ -650,7 +650,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 */
 	public function testAcquireNowActorId_existing() {
 		// We rely on DB to protect against duplicates when inserting new actor
-		$this->setNullLogger( 'DBQuery' );
+		$this->setNullLogger( 'rdbms' );
 		$this->expectException( CannotCreateActorException::class );
 		$this->getStore()->createNewActor( new UserIdentityValue( 24, 'TestUser' ), $this->db );
 	}
