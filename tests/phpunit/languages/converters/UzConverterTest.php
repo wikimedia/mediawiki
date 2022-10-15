@@ -19,7 +19,9 @@
 /**
  * @covers UzConverter
  */
-class LanguageUzTest extends LanguageClassesTestCase {
+class UzConverterTest extends MediaWikiIntegrationTestCase {
+
+	use LanguageConverterTestTrait;
 
 	/**
 	 * @author Nikola Smolenski
@@ -119,7 +121,7 @@ class LanguageUzTest extends LanguageClassesTestCase {
 	 * @return string
 	 */
 	protected function convertTo( $text, $variant ) {
-		return $this->getLang()->getConverter()->convertTo( $text, $variant );
+		return $this->getLanguageConverter()->convertTo( $text, $variant );
 	}
 
 	protected function convertToCyrillic( $text ) {
