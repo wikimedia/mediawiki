@@ -205,6 +205,13 @@ with params ?useskin=vector&useformat=mobile
 	border-bottom: none; // stylelint-disable-line declaration-property-value-disallowed-list
 }
 
+.oo-ui-iconWidget.mw-prefs-icon {
+	color: @colorGray2;
+	margin: 0.5em 0.5em 0 0.5em;
+	width: 1.25em;
+	height: 1.25em;
+}
+
 .mw-prefs-title {
 	font-weight: normal;
 	font-size: 1em;
@@ -216,6 +223,7 @@ with params ?useskin=vector&useformat=mobile
 	font-weight: normal;
 	font-size: 0.875em;
 	line-height: 1.25em;
+	padding: 0 2.7em;
 	color: @colorGray7;
 	margin-top: 0 !important; /* stylelint-disable-line declaration-no-important */
 }
@@ -244,4 +252,14 @@ with params ?useskin=vector&useformat=mobile
 
 .mw-prefs-header-title {
 	display: inline-flex;
+}
+
+// stylelint-disable-next-line selector-class-pattern
+.content p {
+	margin: 0 0 0.75em 0 !important; // stylelint-disable-line declaration-no-important
+}
+
+// stylelint-disable-next-line selector-class-pattern
+.content h5 {
+	padding-bottom: 0.25em !important; // stylelint-disable-line declaration-no-important
 }

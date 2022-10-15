@@ -2,7 +2,7 @@
  * JavaScript for Special:Preferences: Tab navigation.
  */
 ( function () {
-	var useMobileLayout = mw.config.get( 'wgSpecialPreferencesUseMobileLayout' ) === null ? false : mw.config.get( 'wgSpecialPreferencesUseMobileLayout' );
+	var useMobileLayout = mw.config.get( 'wgSpecialPreferencesUseMobileLayout', false );
 	// New for T311717: Check if a user will display the mobile layout
 	if ( useMobileLayout ) {
 		$( function () {

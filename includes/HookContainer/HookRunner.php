@@ -304,6 +304,7 @@ class HookRunner implements
 	\MediaWiki\Hook\ParserTestTablesHook,
 	\MediaWiki\Hook\PasswordPoliciesForUserHook,
 	\MediaWiki\Hook\PostLoginRedirectHook,
+	\MediaWiki\Hook\PreferencesGetIconHook,
 	\MediaWiki\Hook\PreferencesGetLayoutHook,
 	\MediaWiki\Hook\PreferencesGetLegendHook,
 	\MediaWiki\Hook\PrefsEmailAuditHook,
@@ -3085,6 +3086,13 @@ class HookRunner implements
 		return $this->container->run(
 			'PreferencesFormPreSave',
 			[ $formData, $form, $user, &$result, $oldUserOptions ]
+		);
+	}
+
+	public function onPreferencesGetIcon( &$iconNames ) {
+		return $this->container->run(
+			'PreferencesGetIcon',
+			[ &$iconNames ]
 		);
 	}
 
