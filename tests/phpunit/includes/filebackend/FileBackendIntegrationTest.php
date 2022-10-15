@@ -36,7 +36,6 @@ use Wikimedia\TestingAccessWrapper;
  * @covers LockManagerGroup
  * @covers MemoryFileBackend
  * @covers MoveFileOp
- * @covers MySqlLockManager
  * @covers NullFileOp
  * @covers StoreFileOp
  * @covers TempFSFile
