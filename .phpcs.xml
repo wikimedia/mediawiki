@@ -95,8 +95,6 @@
 		<exclude-pattern>*/maintenance/update\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/userOptions\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/view\.php</exclude-pattern>
-		<!-- Language converters use the pattern of 2 classes in one file -->
-		<exclude-pattern>*/languages/*</exclude-pattern>
 		<!-- Skip violations in some tests for now -->
 		<exclude-pattern>*/tests/parser/*</exclude-pattern>
 		<exclude-pattern>*/tests/phpunit/maintenance/*</exclude-pattern>
