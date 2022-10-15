@@ -11,7 +11,10 @@
 /**
  * @covers TlyConverter
  */
-class LanguageTlyTest extends LanguageClassesTestCase {
+class TlyConverterTest extends MediaWikiIntegrationTestCase {
+
+	use LanguageConverterTestTrait;
+
 	/**
 	 * @covers LanguageConverter::convertTo
 	 */
@@ -81,7 +84,7 @@ class LanguageTlyTest extends LanguageClassesTestCase {
 	 * @return string
 	 */
 	protected function convertTo( $text, $variant ) {
-		return $this->getLang()->getConverter()->convertTo( $text, $variant );
+		return $this->getLanguageConverter()->convertTo( $text, $variant );
 	}
 
 	protected function convertToCyrillic( $text ) {
