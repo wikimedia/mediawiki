@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Specials\Contribute\ContributeFactory;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Special:Contribute, show user contribute options in the 1st tab
@@ -28,13 +29,25 @@ class SpecialContribute extends IncludableSpecialPage {
 	 * @inheritDoc
 	 */
 	public function getAssociatedNavigationLinks(): array {
+		return $this->getAssociatedNavigationLinksForUser( $this->getUser() );
+	}
+
+	/**
+	 * @param UserIdentity|null $targetUser
+	 * @return array
+	 */
+	public function getAssociatedNavigationLinksForUser( $targetUser ): array {
 		if ( !$this->isShowable() ) {
 			return [];
 		}
-		$userName = $this->getUser()->getName();
+		$viewer = $this->getUser();
+		// Don't show the links to Special:Contribute when viewing other users' contributions.
+		if ( $targetUser === null || !$viewer->equals( $targetUser ) ) {
+			return [];
+		}
 		return [
-			$this->getPageTitle( $userName )->getFullText(),
-			SpecialPage::getTitleFor( 'Contributions', $userName )->getFullText(),
+			$this->getPageTitle()->getFullText(),
+			SpecialPage::getTitleFor( 'Contributions', $targetUser->getName() )->getFullText(),
 		];
 	}
 
@@ -45,17 +58,8 @@ class SpecialContribute extends IncludableSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$request = $this->getRequest();
-		$target = $par ?? $request->getVal( 'target', '' );
-
-		$titleLocalUrl = $this->getPageTitle( $this->getUser()->getName() )->getLocalUrl();
-
-		if ( $target !== $this->getUser()->getName() ) {
-			$this->getOutput()->redirect( $titleLocalUrl );
-		}
-
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'contribute-title', $target )->escaped() );
+		$out->setPageTitle( $this->msg( 'contribute-title', $this->getUser()->getName() )->escaped() );
 		$out->addModuleStyles( [
 			'mediawiki.special',
 			'oojs-ui.styles.icons-content'
@@ -112,7 +116,7 @@ class SpecialContribute extends IncludableSpecialPage {
 	public function isShowable() {
 		$specialContributeSkinsDisabled = $this->getConfig()->get( 'SpecialContributeSkinsDisabled' );
 		return $this->hasCards() &&
-			!in_array( $this->getContext()->getSkin()->getSkinName(), $specialContributeSkinsDisabled );
+			!in_array( $this->getSkin()->getSkinName(), $specialContributeSkinsDisabled );
 	}
 
 }
