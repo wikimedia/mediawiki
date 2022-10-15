@@ -47,7 +47,7 @@ class Pingback {
 	 * @var int Revision ID of the JSON schema that describes the pingback payload.
 	 * The schema lives on Meta-Wiki, at <https://meta.wikimedia.org/wiki/Schema:MediaWikiPingback>.
 	 */
-	private const SCHEMA_REV = 15781718;
+	private const SCHEMA_REV = 20104427;
 
 	/** @var LoggerInterface */
 	protected $logger;
