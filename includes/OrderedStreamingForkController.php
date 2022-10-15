@@ -1,12 +1,14 @@
 <?php
 
+use MediaWiki\Maintenance\ForkController;
+
 /**
  * Reads lines of work from an input stream and farms them out to multiple
  * child streams. Each child has exactly one piece of work in flight at a given
  * moment. Writes the result of child's work to an output stream. If numProcs
  * <= zero the work will be performed in process.
  *
- * This class amends ForkController with the requirement that the output is
+ * This class amends MediaWiki\Maintenance\ForkController with the requirement that the output is
  * produced in the same exact order as input values were.
  *
  * Currently used by CirrusSearch extension to implement CLI search script.
