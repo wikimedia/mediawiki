@@ -1,7 +1,5 @@
 <?php
 /**
- * Class for managing forking command line scripts.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -28,9 +26,10 @@ use ObjectCache;
 use RedisConnectionPool;
 
 /**
- * Class for managing forking command line scripts.
- * Currently just does forking and process control, but it could easily be extended
- * to provide IPC and job dispatch.
+ * Manage forking inside CLI maintenance scripts.
+ *
+ * Only handles forking and process control. In the future, this could
+ * be extended to provide IPC and job dispatch.
  *
  * This class requires the posix and pcntl extensions.
  *
