@@ -2251,6 +2251,7 @@ class WANObjectCache implements
 	 * This sets stale keys' time-to-live at HOLDOFF_TTL seconds, which both avoids
 	 * broadcasting in mcrouter setups and also avoids races with new tombstones.
 	 *
+	 * @deprecated since 1.39 No longer supported.
 	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
 	 * @param int|float $purgeTimestamp UNIX timestamp of purge
 	 * @param bool &$isStale Whether the key is stale
@@ -2258,6 +2259,7 @@ class WANObjectCache implements
 	 * @since 1.28
 	 */
 	final public function reap( $key, $purgeTimestamp, &$isStale = false ) {
+		wfDeprecated( __METHOD__, '1.39' );
 		$valueSisterKey = $this->makeSisterKey( $key, self::TYPE_VALUE );
 
 		$minAsOf = $purgeTimestamp + self::HOLDOFF_TTL;
@@ -2283,6 +2285,7 @@ class WANObjectCache implements
 	/**
 	 * Set a "check" key to soon expire in the local cluster if it pre-dates $purgeTimestamp
 	 *
+	 * @deprecated since 1.39 No longer supported.
 	 * @param string $key Cache key made with makeKey()/makeGlobalKey()
 	 * @param int $purgeTimestamp UNIX timestamp of purge
 	 * @param bool &$isStale Whether the key is stale
@@ -2290,6 +2293,7 @@ class WANObjectCache implements
 	 * @since 1.28
 	 */
 	final public function reapCheckKey( $key, $purgeTimestamp, &$isStale = false ) {
+		wfDeprecated( __METHOD__, '1.39' );
 		$checkSisterKey = $this->makeSisterKey( $key, self::TYPE_TIMESTAMP );
 
 		$wrapped = $this->cache->get( $checkSisterKey );

@@ -201,7 +201,7 @@ class NameTableStore {
 				// As store returned an ID we know we inserted so delete from WAN cache
 				$dbw = $this->getDBConnection( DB_PRIMARY );
 				$dbw->onTransactionPreCommitOrIdle( function () {
-					$this->cache->delete( $this->getCacheKey() );
+					$this->cache->delete( $this->getCacheKey(), WANObjectCache::HOLDOFF_TTL_NONE );
 				}, __METHOD__ );
 			}
 			$this->tableCache = $table;
@@ -232,7 +232,7 @@ class NameTableStore {
 		$dbw = $this->getDBConnection( DB_PRIMARY, $connFlags );
 		$this->tableCache = $this->loadTable( $dbw );
 		$dbw->onTransactionPreCommitOrIdle( function () {
-			$this->cache->reap( $this->getCacheKey(), INF );
+			$this->cache->delete( $this->getCacheKey() );
 		}, __METHOD__ );
 
 		return $this->tableCache;

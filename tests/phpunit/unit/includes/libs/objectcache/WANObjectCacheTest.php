@@ -17,9 +17,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers WANObjectCache::getInterimValue
  * @covers WANObjectCache::setInterimValue
  */
-class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
-
-	use MediaWikiCoversValidator;
+class WANObjectCacheTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @param array $params
@@ -1978,6 +1976,9 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 * @covers WANObjectCache::reapCheckKey()
 	 */
 	public function testReap() {
+		$this->hideDeprecated( 'WANObjectCache::reap' );
+		$this->hideDeprecated( 'WANObjectCache::reapCheckKey' );
+
 		list( $cache, $bag ) = $this->newWanCache();
 		$vKey1 = wfRandomString();
 		$vKey2 = wfRandomString();
@@ -2036,6 +2037,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 * @covers WANObjectCache::reap()
 	 */
 	public function testReap_fail() {
+		$this->hideDeprecated( 'WANObjectCache::reap' );
+
 		$backend = $this->getMockBuilder( EmptyBagOStuff::class )
 			->onlyMethods( [ 'get', 'changeTTL' ] )->getMock();
 		$backend->expects( $this->once() )->method( 'get' )
@@ -2147,8 +2150,6 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$wanCache->getMulti( [ 'x', 'y' ], $ctls, [ 'check2' ] );
 		$wanCache->getWithSetCallback( 'p', 30, $valFunc );
 		$wanCache->getCheckKeyTime( 'zzz' );
-		$wanCache->reap( 'x', time() - 300 );
-		$wanCache->reap( 'zzz', time() - 300 );
 	}
 
 	public function testMcRouterSupportBroadcastDelete() {
