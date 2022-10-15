@@ -912,17 +912,13 @@ class SpecialContributions extends IncludableSpecialPage {
 	 * @inheritDoc
 	 */
 	public function getShortDescription( string $path = '' ): string {
-		$lowerPath = strtolower( explode( '/', $path )[0] );
-		$shortKey = 'special-tab-' . $lowerPath;
-		$shortKey .= '-short';
-		$msgShort = $this->msg( $shortKey );
-		return $msgShort->text();
+		return $this->msg( 'special-tab-contributions-short' )->text();
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function getAssociatedNavigationLinks(): array {
-		return ( new SpecialContribute() )->getAssociatedNavigationLinks();
+		return $this->getSpecialPageFactory()->getPage( 'Contribute' )->getAssociatedNavigationLinks();
 	}
 }

@@ -33,8 +33,8 @@ class SpecialContribute extends IncludableSpecialPage {
 		}
 		$userName = $this->getUser()->getName();
 		return [
-			static::getTitleFor( 'Contribute', $userName )->getFullText(),
-			static::getTitleFor( 'Contributions', $userName )->getFullText(),
+			$this->getPageTitle( $userName )->getFullText(),
+			SpecialPage::getTitleFor( 'Contributions', $userName )->getFullText(),
 		];
 	}
 
@@ -48,7 +48,7 @@ class SpecialContribute extends IncludableSpecialPage {
 		$request = $this->getRequest();
 		$target = $par ?? $request->getVal( 'target', '' );
 
-		$titleLocalUrl = static::getTitleFor( 'Contribute', $this->getUser()->getName() )->getLocalUrl();
+		$titleLocalUrl = $this->getPageTitle( $this->getUser()->getName() )->getLocalUrl();
 
 		if ( $target !== $this->getUser()->getName() ) {
 			$this->getOutput()->redirect( $titleLocalUrl );
@@ -92,11 +92,7 @@ class SpecialContribute extends IncludableSpecialPage {
 	 * @inheritDoc
 	 */
 	public function getShortDescription( string $path = '' ): string {
-		$lowerPath = strtolower( explode( '/', $path )[0] );
-		$shortKey = 'special-tab-' . $lowerPath;
-		$shortKey .= '-short';
-		$msgShort = $this->msg( $shortKey );
-		return $msgShort->text();
+		return $this->msg( 'special-tab-contribute-short' )->text();
 	}
 
 	/**
