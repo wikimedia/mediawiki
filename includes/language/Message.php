@@ -171,9 +171,9 @@ class Message implements MessageSpecifier, Serializable {
 	/**
 	 * In which language to get this message. Overrides the $interface setting.
 	 *
-	 * @var Language|false Explicit language object, or false for user language
+	 * @var Language|null Explicit language object, or null for user language
 	 */
-	protected $language = false;
+	protected $language = null;
 
 	/**
 	 * @var string The message key. If $keysToTry has more than one element,
@@ -248,7 +248,7 @@ class Message implements MessageSpecifier, Serializable {
 		$this->parameters = array_values( $params );
 		// User language is only resolved in getLanguage(). This helps preserve the
 		// semantic intent of "user language" across serialize() and unserialize().
-		$this->language = $language ?: false;
+		$this->language = $language;
 	}
 
 	/**
@@ -268,7 +268,7 @@ class Message implements MessageSpecifier, Serializable {
 	public function __serialize() {
 		return [
 			'interface' => $this->interface,
-			'language' => $this->language ? $this->language->getCode() : false,
+			'language' => $this->language ? $this->language->getCode() : null,
 			'key' => $this->key,
 			'keysToTry' => $this->keysToTry,
 			'parameters' => $this->parameters,
@@ -309,7 +309,7 @@ class Message implements MessageSpecifier, Serializable {
 		$this->language = $data['language']
 			? MediaWikiServices::getInstance()->getLanguageFactory()
 				->getLanguage( $data['language'] )
-			: false;
+			: null;
 
 		// Since 1.35, the key 'titlevalue' is set, instead of 'titlestr'.
 		if ( isset( $data['titlevalue'] ) ) {
@@ -380,8 +380,8 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return Language
 	 */
 	public function getLanguage() {
-		// Defaults to false which means current user language
-		return $this->language ?: RequestContext::getMain()->getLanguage();
+		// Defaults to null which means current user language
+		return $this->language ?? RequestContext::getMain()->getLanguage();
 	}
 
 	/**
@@ -840,7 +840,7 @@ class Message implements MessageSpecifier, Serializable {
 					->getLanguage( $lang );
 			}
 		} elseif ( $lang instanceof StubUserLang ) {
-			$this->language = false;
+			$this->language = null;
 		} else {
 			$type = gettype( $lang );
 			throw new MWException( __METHOD__ . " must be "
