@@ -227,7 +227,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			$stash,
 			new NullStatsdDataFactory(),
 			$access ?? $this->newMockParsoidOutputAccess(),
-			$this->getServiceContainer()->getHTMLTransformFactory()
+			$this->getServiceContainer()->getHtmlTransformFactory()
 		);
 
 		return $helper;

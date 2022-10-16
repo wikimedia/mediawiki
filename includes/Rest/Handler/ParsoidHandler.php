@@ -307,7 +307,7 @@ abstract class ParsoidHandler extends Handler {
 
 		$helper = new HtmlInputTransformHelper(
 			$this->siteConfig->metrics() ?: $services->getStatsdDataFactory(),
-			$services->getHTMLTransformFactory(),
+			$services->getHtmlTransformFactory(),
 			$services->getParsoidOutputStash(),
 			$services->getParsoidOutputAccess(),
 			$attribs['envOptions']
@@ -891,7 +891,7 @@ abstract class ParsoidHandler extends Handler {
 	) {
 		if ( $page instanceof PageConfig ) {
 			// TODO: Deprecate passing a PageConfig.
-			//       Ideally, callers would use HTMLTransform directly.
+			//       Ideally, callers would use HtmlToContentTransform directly.
 			// XXX: This is slow, and we already have the parsed title and ID inside the PageConfig...
 			$page = Title::newFromTextThrow( $page->getTitle() );
 		}
@@ -1085,7 +1085,7 @@ abstract class ParsoidHandler extends Handler {
 		);
 
 		$languageVariantConverter = MediaWikiServices::getInstance()
-			->getHTMLTransformFactory()
+			->getHtmlTransformFactory()
 			->getLanguageVariantConverter( $pageIdentity );
 		$languageVariantConverter->setPageConfig( $pageConfig );
 		$httpContentLanguage = $attribs['pagelanguage' ] ?? null;

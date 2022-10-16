@@ -8,8 +8,8 @@ use MediaWiki\MainConfigSchema;
 use MediaWiki\Message\Converter;
 use MediaWiki\Message\TextFormatter;
 use MediaWiki\Page\PageIdentityValue;
-use MediaWiki\Parser\Parsoid\HTMLTransform;
-use MediaWiki\Parser\Parsoid\HTMLTransformFactory;
+use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
+use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Rest\Handler\HtmlInputTransformHelper;
 use MediaWiki\Rest\Handler\ParsoidFormatHelper;
@@ -54,14 +54,14 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param array $methodOverrides
 	 *
-	 * @return MockObject|HTMLTransformFactory
+	 * @return MockObject|HtmlTransformFactory
 	 */
-	public function newMockHTMLTransformFactory( $methodOverrides = [] ): HTMLTransformFactory {
-		$factory = $this->createNoOpMock( HTMLTransformFactory::class, [ 'getHTMLTransform' ] );
+	public function newMockHtmlTransformFactory( $methodOverrides = [] ): HtmlTransformFactory {
+		$factory = $this->createNoOpMock( HtmlTransformFactory::class, [ 'getHtmlToContentTransform' ] );
 
-		$factory->method( 'getHTMLTransform' )->willReturnCallback(
+		$factory->method( 'getHtmlToContentTransform' )->willReturnCallback(
 			function ( $html ) use ( $methodOverrides ) {
-				return $this->newHTMLTransform( $html, $methodOverrides );
+				return $this->newHtmlToContentTransform( $html, $methodOverrides );
 			}
 		);
 
@@ -80,7 +80,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 		$helper = new HtmlInputTransformHelper(
 			new NullStatsdDataFactory(),
-			$this->newMockHTMLTransformFactory( $transformMethodOverrides ),
+			$this->newMockHtmlTransformFactory( $transformMethodOverrides ),
 			$this->getServiceContainer()->getParsoidOutputStash(),
 			$this->getServiceContainer()->getParsoidOutputAccess()
 		);
@@ -666,7 +666,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideResponse()
 	 * @covers \MediaWiki\Rest\Handler\HtmlInputTransformHelper
-	 * @covers \MediaWiki\Parser\Parsoid\HTMLTransform
+	 * @covers \MediaWiki\Parser\Parsoid\HtmlToContentTransform
 	 */
 	public function testResponse( $body, $params, $expectedText, array $expectedHeaders = [] ) {
 		if ( !empty( $params['oldid'] ) ) {
@@ -699,7 +699,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Rest\Handler\HtmlInputTransformHelper
-	 * @covers \MediaWiki\Parser\Parsoid\HTMLTransform
+	 * @covers \MediaWiki\Parser\Parsoid\HtmlToContentTransform
 	 */
 	public function testResponseForFakeRevision() {
 		$wikitext = 'Unsaved Revision Content';
@@ -931,8 +931,8 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$helper->getContent();
 	}
 
-	private function newHTMLTransform( $html, $methodOverrides = [] ): HTMLTransform {
-		$transform = $this->getMockBuilder( HTMLTransform::class )
+	private function newHtmlToContentTransform( $html, $methodOverrides = [] ): HtmlToContentTransform {
+		$transform = $this->getMockBuilder( HtmlToContentTransform::class )
 			->onlyMethods( array_keys( $methodOverrides ) )
 			->setConstructorArgs( [
 				$html,

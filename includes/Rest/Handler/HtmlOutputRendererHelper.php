@@ -29,7 +29,7 @@ use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageRecord;
-use MediaWiki\Parser\Parsoid\HTMLTransformFactory;
+use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
@@ -98,7 +98,7 @@ class HtmlOutputRendererHelper {
 	/** @var ParserOutput */
 	private $processedParserOutput;
 
-	/** @var HTMLTransformFactory */
+	/** @var HtmlTransformFactory */
 	private $htmlTransformFactory;
 
 	/** @var string|null */
@@ -111,13 +111,13 @@ class HtmlOutputRendererHelper {
 	 * @param ParsoidOutputStash $parsoidOutputStash
 	 * @param IBufferingStatsdDataFactory $statsDataFactory
 	 * @param ParsoidOutputAccess $parsoidOutputAccess
-	 * @param HTMLTransformFactory $htmlTransformFactory
+	 * @param HtmlTransformFactory $htmlTransformFactory
 	 */
 	public function __construct(
 		ParsoidOutputStash $parsoidOutputStash,
 		IBufferingStatsdDataFactory $statsDataFactory,
 		ParsoidOutputAccess $parsoidOutputAccess,
-		HTMLTransformFactory $htmlTransformFactory
+		HtmlTransformFactory $htmlTransformFactory
 	) {
 		$this->parsoidOutputStash = $parsoidOutputStash;
 		$this->stats = $statsDataFactory;
