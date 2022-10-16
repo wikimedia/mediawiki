@@ -1,21 +1,5 @@
 <?php
-
-use MediaWiki\Maintenance\ForkController;
-
 /**
- * Reads lines of work from an input stream and farms them out to multiple
- * child streams. Each child has exactly one piece of work in flight at a given
- * moment. Writes the result of child's work to an output stream. If numProcs
- * <= zero the work will be performed in process.
- *
- * This class amends MediaWiki\Maintenance\ForkController with the requirement that the output is
- * produced in the same exact order as input values were.
- *
- * Currently used by CirrusSearch extension to implement CLI search script.
- *
- * @ingroup Maintenance
- * @since 1.30
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -30,6 +14,30 @@ use MediaWiki\Maintenance\ForkController;
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @file
+ */
+
+namespace MediaWiki\Maintenance;
+
+/**
+ * Apply a transformation to values via a pool of sub processes.
+ *
+ * The controller reads lines from a given input stream, where each line
+ * describes work to be done. This work is then farmed out to multiple
+ * child streams that correspond to child procesess. Each child has exactly
+ * one piece of work in-flight at a given moment. The result of each work
+ * is written to an output stream.
+ *
+ * If numProcs is zero, the fallback is to perform work in-process instead.
+ *
+ * This class guarantees that the output is produced in the same exact order
+ * as input values were.
+ *
+ * Currently used by CirrusSearch extension to implement CLI search script.
+ *
+ * @ingroup Maintenance
+ * @since 1.30
  */
 class OrderedStreamingForkController extends ForkController {
 	/** @var callable */
@@ -222,3 +230,5 @@ class OrderedStreamingForkController extends ForkController {
 		}
 	}
 }
+
+class_alias( OrderedStreamingForkController::class, 'OrderedStreamingForkController' );
