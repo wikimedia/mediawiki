@@ -88,6 +88,7 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 		$includeDir = isset( $props['dir'] );
 		$includeAutonym = isset( $props['autonym'] );
 		$includeName = isset( $props['name'] );
+		$includeVariantnames = isset( $props['variantnames'] );
 		$includeFallbacks = isset( $props['fallbacks'] );
 		$includeVariants = isset( $props['variants'] );
 
@@ -194,12 +195,21 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 				$info['fallbacks'] = $fallbacks;
 			}
 
-			if ( $includeVariants ) {
+			if ( $includeVariants || $includeVariantnames ) {
 				$language = $this->languageFactory->getLanguage( $languageCode );
 				$converter = $this->languageConverterFactory->getLanguageConverter( $language );
 				$variants = $converter->getVariants();
-				ApiResult::setIndexedTagName( $variants, 'var' );
-				$info['variants'] = $variants;
+
+				if ( $includeVariants ) {
+					$info['variants'] = $variants;
+					ApiResult::setIndexedTagName( $info['variants'], 'var' );
+				}
+				if ( $includeVariantnames ) {
+					$info['variantnames'] = [];
+					foreach ( $variants as $variantCode ) {
+						$info['variantnames'][$variantCode] = $language->getVariantname( $variantCode );
+					}
+				}
 			}
 
 			$fit = $result->addValue( $rootPath, $languageCode, $info );
@@ -225,6 +235,7 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 					'dir',
 					'autonym',
 					'name',
+					'variantnames',
 					'fallbacks',
 					'variants',
 				],
