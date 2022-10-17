@@ -1346,6 +1346,7 @@
 	"recentchanges-label-plusminus": "صفحہ کا تبدیل شدہ حجم بلحاظ تعداد بائٹ",
 	"recentchanges-legend-heading": "<strong>اختصارات:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (نیز [[Special:NewPages|جدید صفحات کی فہرست]]) ملاحظہ فرمائیں",
+	"recentchanges-legend-watchlistexpiry": "زیر نظر عارضی صفحات",
 	"recentchanges-submit": "دکھائیں",
 	"rcfilters-tag-remove": "حذف «$1»",
 	"rcfilters-legend-heading": "<strong>اختصارات کی فہرست:</strong>",

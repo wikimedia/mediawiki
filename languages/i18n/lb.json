@@ -946,7 +946,7 @@
 	"searchrelated": "a Verbindng",
 	"searchall": "all",
 	"showingresults": "Hei gesitt der  {{PLURAL:$1| '''1''' Resultat|'''$1''' Resultater}}, ugefaange mat #'''$2'''.",
-	"showingresultsinrange": "Hei drënner {{PLURAL:$1|<strong>gëtt 1</strong> Resultat|gi(nn) <strong>$1</strong> Resultater}} aus dem Beräich #<strong>$2</strong> bis #<strong>$3</strong>.",
+	"showingresultsinrange": "Hei drënner {{PLURAL:$1|<strong>gëtt 1</strong> Resultat|gi(nn) <strong>$1</strong> Resultater}} aus dem Beräich #<strong>$2</strong> bis #<strong>$3</strong> ugewisen.",
 	"search-showingresults": "{{PLURAL:$4|Resultat <strong>$1</strong> of <strong>$3</strong>|Resultater <strong>$1 - $2</strong> vu(n) <strong>$3</strong>}}",
 	"search-nonefound": "Fir Är Ufro gouf näischt fonnt.",
 	"search-nonefound-thiswiki": "Et gouf op dësem Site näischt fonnt wat Ärer Ufro entsprécht.",

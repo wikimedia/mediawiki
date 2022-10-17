@@ -59,7 +59,8 @@
 			"Abuluntu",
 			"Mn00ch",
 			"Yupik",
-			"Gabriel Kielland"
+			"Gabriel Kielland",
+			"EdoAug"
 		]
 	},
 	"tog-underline": "Strek under lenker:",
@@ -2868,7 +2869,7 @@
 	"import-mapping-subpage": "Importer som undersider av følgende side:",
 	"import-upload-filename": "Filnavn:",
 	"import-upload-username-prefix": "Interwikiprefiks:",
-	"import-assign-known-users": "Tildel redigeringer til lokale brukere når brukernavnet eksisterer lokalt",
+	"import-assign-known-users": "Tilskriv redigeringer til lokale brukere hvis brukernavnet eksisterer lokalt",
 	"import-comment": "Kommentar:",
 	"importtext": "Eksporter filen fra kildewikien med [[Special:Export|eksporteringsverktøyet]].\nLagre den på din egen datamaskin og last den opp her.",
 	"importstart": "Importerer sider&nbsp;…",
@@ -3895,7 +3896,7 @@
 	"authmanager-domain-help": "Domene for ekstern autentisering.",
 	"authmanager-retype-help": "Passord igjen for å bekrefte.",
 	"authmanager-email-label": "E-post",
-	"authmanager-email-help": "Epostadresse",
+	"authmanager-email-help": "E-postadresse",
 	"authmanager-realname-label": "Virkelig navn",
 	"authmanager-realname-help": "Brukerens virkelige navn",
 	"authmanager-provider-password": "Passordbasert autentisering",

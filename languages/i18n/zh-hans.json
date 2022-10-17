@@ -475,7 +475,7 @@
 	"nstab-category": "分类",
 	"mainpage-nstab": "首页",
 	"nosuchaction": "无此操作",
-	"nosuchactiontext": "URL指定的操作无效。\n您可能输入了错误的URL地址，或点击了错误的链接。\n这也可能表明{{SITENAME}}使用的软件存在漏洞。",
+	"nosuchactiontext": "URL指定的操作无效。您可能输入了错误的URL地址，或点击了错误的链接。这也可能表明{{SITENAME}}使用的软件存在漏洞。",
 	"nosuchspecialpage": "此特殊页面不存在",
 	"nospecialpagetext": "<strong>您请求了一个无效的特殊页面。</strong>\n\n有效的特殊页面列表可以在[[Special:SpecialPages|{{int:specialpages}}]]找到。",
 	"error": "错误",
