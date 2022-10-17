@@ -1485,7 +1485,8 @@ return [
 			$services->getParser(),
 			$services->getSkinFactory(),
 			$services->getUserGroupManager(),
-			$services->getSignatureValidatorFactory()
+			$services->getSignatureValidatorFactory(),
+			$services->getMainConfig()
 		);
 		$factory->setLogger( LoggerFactory::getInstance( 'preferences' ) );
 

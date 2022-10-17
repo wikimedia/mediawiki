@@ -12,6 +12,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
 use MediaWiki\Search\SearchResultThumbnailProvider;
+use MediaWiki\User\UserOptionsManager;
 use RepoGroup;
 use SearchResult;
 use SpecialSearch;
@@ -40,19 +41,23 @@ class FullSearchResultWidget implements SearchResultWidget {
 	private $thumbnailProvider;
 	/** @var string */
 	private $thumbnailPlaceholderHtml;
+	/** @var UserOptionsManager */
+	private $userOptionsManager;
 
 	public function __construct(
 		SpecialSearch $specialPage,
 		LinkRenderer $linkRenderer,
 		HookContainer $hookContainer,
 		RepoGroup $repoGroup,
-		SearchResultThumbnailProvider $thumbnailProvider
+		SearchResultThumbnailProvider $thumbnailProvider,
+		UserOptionsManager $userOptionsManager
 	) {
 		$this->specialPage = $specialPage;
 		$this->linkRenderer = $linkRenderer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->repoGroup = $repoGroup;
 		$this->thumbnailProvider = $thumbnailProvider;
+		$this->userOptionsManager = $userOptionsManager;
 	}
 
 	/**
@@ -291,6 +296,16 @@ class FullSearchResultWidget implements SearchResultWidget {
 				[ 'class' => 'searchalttitle' ],
 				$this->specialPage->msg( 'search-file-match' )->escaped()
 			);
+		}
+
+		$allowExtraThumbsFromRequest = $this->specialPage->getRequest()->getVal( 'search-thumbnail-extra-namespaces' );
+		$allowExtraThumbsFromPreference = $this->userOptionsManager->getOption(
+			$this->specialPage->getUser(),
+			'search-thumbnail-extra-namespaces'
+		);
+		$allowExtraThumbs = (bool)( $allowExtraThumbsFromRequest ?? $allowExtraThumbsFromPreference );
+		if ( !$allowExtraThumbs && $title->getNamespace() !== NS_FILE ) {
+			return [ $html, null, null ];
 		}
 
 		$thumbnail = $this->getThumbnail( $result, self::THUMBNAIL_SIZE );

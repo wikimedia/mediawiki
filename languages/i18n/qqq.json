@@ -4349,6 +4349,8 @@
 	"searchsuggest-containing": "Label used in the special item of the search suggestions list which gives the user an option to perform a full text search for the term.",
 	"search-match-redirect-label": "Label for user preference to force redirect to a page during search if the page's title matches a search term",
 	"search-match-redirect-help": "Help text for user preference to force redirect to a page during search if the page's title matches a search term",
+	"search-thumbnail-extra-namespaces-label": "Label for user preference to enable thumbnails for additional namespaces",
+	"search-thumbnail-extra-namespaces-message": "Help text for user preference to enable thumbnails for additional namespaces. Parameters:\n* $1 - formatted list of extra namespaces for which thumbnails can be enabled\n* $2 - number of extra namespaces, used for PLURAL\n* $3 - formatted list of namespaces for which thumbnails are always displayed\n* $4 - number of default namespaces, used for PLURAL",
 	"searchlimit-label": "Used in [[Special:Preferences]], tab \"Search\".",
 	"searchlimit-help": "Shown as hint in [[Special:Preferences]], tab \"Search\".\nShown under [[Special:Preferences#mw-prefsection-lqt]]. $1 - The current maximum limit",
 	"api-clientside-error-noconnect": "Error shown when an API response fails to load due to a connection issue.",
