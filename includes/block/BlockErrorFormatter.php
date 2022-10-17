@@ -22,6 +22,8 @@ namespace MediaWiki\Block;
 
 use CommentStoreComment;
 use Language;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\User\UserIdentity;
 use Message;
@@ -38,13 +40,19 @@ class BlockErrorFormatter {
 	/** @var TitleFormatter */
 	private $titleFormatter;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * @param TitleFormatter $titleFormatter
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
-		TitleFormatter $titleFormatter
+		TitleFormatter $titleFormatter,
+		HookContainer $hookContainer
 	) {
 		$this->titleFormatter = $titleFormatter;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -186,6 +194,10 @@ class BlockErrorFormatter {
 		} elseif ( $block instanceof CompositeBlock ) {
 			$key = 'blockedtext-composite';
 		}
+
+		// runs a hook that allows extensions to check block characteristics
+		$this->hookRunner->onGetBlockErrorMessageKey( $block, $key );
+
 		return $key;
 	}
 
