@@ -267,7 +267,7 @@ class ApiQueryUsers extends ApiQueryBase {
 			if ( !isset( $data[$u] ) ) {
 				if ( $useNames ) {
 					$data[$u] = [ 'name' => $u ];
-					$urPage = new UserrightsPage;
+					$urPage = new SpecialUserRights;
 					$urPage->setContext( $context );
 
 					$iwUser = $urPage->fetchUser( $u );

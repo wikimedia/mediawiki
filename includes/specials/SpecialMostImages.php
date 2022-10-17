@@ -31,7 +31,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  *
  * @ingroup SpecialPage
  */
-class MostimagesPage extends ImageQueryPage {
+class SpecialMostImages extends ImageQueryPage {
 
 	/**
 	 * @param ILoadBalancer $loadBalancer
@@ -72,3 +72,9 @@ class MostimagesPage extends ImageQueryPage {
 		return 'highuse';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.40
+ */
+class_alias( SpecialMostImages::class, 'MostimagesPage' );
