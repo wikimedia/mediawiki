@@ -182,6 +182,7 @@ class HookRunner implements
 	\MediaWiki\Hook\FileUploadHook,
 	\MediaWiki\Hook\FormatAutocommentsHook,
 	\MediaWiki\Hook\GalleryGetModesHook,
+	\MediaWiki\Hook\GetBlockErrorMessageKey,
 	\MediaWiki\Hook\GetCacheVaryCookiesHook,
 	\MediaWiki\Hook\GetCanonicalURLHook,
 	\MediaWiki\Hook\GetDefaultSortkeyHook,
@@ -2587,6 +2588,13 @@ class HookRunner implements
 		return $this->container->run(
 			'MimeMagicInit',
 			[ $mimeMagic ]
+		);
+	}
+
+	public function onGetBlockErrorMessageKey( $block, &$key ) {
+		return $this->container->run(
+			'GetBlockErrorMessageKey',
+			[ $block, &$key ]
 		);
 	}
 

@@ -297,7 +297,8 @@ return [
 
 	'BlockErrorFormatter' => static function ( MediaWikiServices $services ): BlockErrorFormatter {
 		return new BlockErrorFormatter(
-			$services->getTitleFormatter()
+			$services->getTitleFormatter(),
+			$services->getHookContainer()
 		);
 	},
 
