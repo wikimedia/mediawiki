@@ -123,6 +123,9 @@ class SpecialListGroupRights extends SpecialPage {
 				);
 			}
 
+			$groupWithParentheses = $this->msg( 'parentheses' )->rawParams( $group )->escaped();
+			$groupname = "<br /><code>$groupWithParentheses</code>";
+
 			if ( $group === 'user' ) {
 				// Link to Special:listusers for implicit group 'user'
 				$grouplink = '<br />' . $linkRenderer->makeKnownLink(
@@ -149,7 +152,7 @@ class SpecialListGroupRights extends SpecialPage {
 
 			$id = $group == '*' ? false : Sanitizer::escapeIdForAttribute( $group );
 			$out->addHTML( Html::rawElement( 'tr', [ 'id' => $id ], "
-				<td>$grouppage$grouplink</td>
+				<td>$grouppage$groupname$grouplink</td>
 					<td>" .
 					$this->formatPermissions( $permissions, $revoke, $addgroups, $removegroups,
 						$addgroupsSelf, $removegroupsSelf ) .
