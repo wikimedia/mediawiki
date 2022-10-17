@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Khalid Mahmood",
-			"Abbas dhothar"
+			"Abbas dhothar",
+			"Bgo eiu"
 		]
 	},
 	"exif-imagewidth": "چوڑائی",
@@ -53,7 +54,7 @@
 	"exif-exposureprogram": "ایکسپویر پروگرام",
 	"exif-spectralsensitivity": "سپیکٹرل سنسیٹیوٹی",
 	"exif-isospeedratings": "ISO  سپیڈ ریٹنگ",
-	"exif-shutterspeedvalue": "!!!!شٹر دی تیزی",
+	"exif-shutterspeedvalue": "ایپیکس شٹر دی تیزی",
 	"exif-aperturevalue": "!!اپیکس!!اپرچر",
 	"exif-brightnessvalue": "اپیکس چانن",
 	"exif-exposurebiasvalue": "اپیکس کھلن بیاس",

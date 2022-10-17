@@ -19,7 +19,7 @@
 			"Chinamoonroll"
 		]
 	},
-	"tog-underline": "Garis ring betén pranala:",
+	"tog-underline": "Garis ring sor pranala:",
 	"tog-hideminor": "Engkebang uahan alit saking uahan sané mangkin",
 	"tog-hidepatrolled": "Engkebang uahan sané kakemitin saking uahan sané mangkin",
 	"tog-newpageshidepatrolled": "engkebang lembar mapatrol saking saking kepahan lembar anyar",
@@ -1375,6 +1375,7 @@
 	"recentchanges-label-plusminus": "Agengnyané kacané kauahin akéhnyané bita",
 	"recentchanges-legend-heading": "<strong>Legénda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (taler cingak [[Special:NewPages|bacakan kaca anyar]])",
+	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-legend-watchlistexpiry": "Kaca sané kaawasin ajebos",
 	"recentchanges-submit": "Sinahang",
 	"rcfilters-tag-remove": "Usap '$1'",

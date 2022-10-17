@@ -1691,7 +1691,7 @@
 	"listredirects": "Lista ta' rindirizzi",
 	"listduplicatedfiles": "Lista ta' fajls duplikati",
 	"listduplicatedfiles-summary": "Din hija lista ta' fajls fejn l-iktar verżjoni riċenti ta' fajl huwa duplikat ta' verżjoni iktar riċenti ta' xi fajls oħra. Fajls lokali biss huma kkunsidrati.",
-	"listduplicatedfiles-entry": "[[:File:$1|$1]] għandu [[$3|{{PLURAL:$2|dulikat|$2 duplikati}}]].",
+	"listduplicatedfiles-entry": "[[:File:$1|$1]] għandu [[$3|{{PLURAL:$2|duplikat|$2 duplikati}}]].",
 	"unusedtemplates": "Templates mhux użati",
 	"unusedtemplatestext": "F'din il-paġna hawn il-lista ta' paġni fl-ispazju tal-isem {{ns:template}} li mhumiex inklużi fl-ebda paġna. Qabel ma tħassarhom huwa opportun li tivverifika li dawn il-mudelli m'għandhomx ħoloq oħra.",
 	"unusedtemplateswlh": "links oħrajn",
