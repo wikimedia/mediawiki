@@ -999,7 +999,7 @@
 	"shown-title": "Паказваць $1 {{PLURAL:$1|вынік|вынікі(аў)}} на старонку",
 	"viewprevnext": "Гл. ($1 {{int:pipe-separator}} $2) ($3).",
 	"searchmenu-exists": "У {{GRAMMAR:месны|{{SITENAME}}}} ёсць старонка «[[:$1]]». {{PLURAL:$2|0=|Гл. таксама іншыя вынікі пошуку.}}",
-	"searchmenu-new": "Стварыце старонку «[[:$1]]» у гэтым вікі-праекце! Гл. таксама {{PLURAL:$2|0=|вынік|вынікі}} пошуку.",
+	"searchmenu-new": "Стварыце старонку «[[:$1]]» у гэтым вікі-праекце! {{PLURAL:$2|0=|Гл. таксама вынік пошуку.|Гл. таксама вынікі пошуку.}}",
 	"searchprofile-articles": "Артыкулы",
 	"searchprofile-images": "Мультымедыя",
 	"searchprofile-everything": "Усё",
