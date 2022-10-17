@@ -1077,7 +1077,7 @@ return [
 			],
 			'HiddenPrefs' => [
 			],
-			'InvalidUsernameCharacters' => '@:>',
+			'InvalidUsernameCharacters' => '@:>=',
 			'UserrightsInterwikiDelimiter' => '@',
 			'SecureLogin' => false,
 			'AuthenticationTokenVersion' => null,

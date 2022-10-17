@@ -41,6 +41,9 @@ For notes on 1.39.x and older releases, see HISTORY.
   length from 1 to 8 characters. The initial limit of 1 has been in place since
   MediaWiki 1.26. If you wish to allow shorter passwords, you can over-ride it
   in your LocalSettings following the guidance on MediaWiki.org.
+* (T254045) New accounts can no longer use an equals sign (=) in their
+  usernames because of issues it causes in wikitext syntax. This can be
+  adjusted by changing the value of $wgInvalidUsernameCharacters.
 * …
 
 ==== Removed configuration ====

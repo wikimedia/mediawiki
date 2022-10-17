@@ -7328,7 +7328,7 @@ class MainConfigSchema {
 	 * registration (regex metacharacters like / are escaped).
 	 */
 	public const InvalidUsernameCharacters = [
-		'default' => '@:>',
+		'default' => '@:>=',
 	];
 
 	/**
