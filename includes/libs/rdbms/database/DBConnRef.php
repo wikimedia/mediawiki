@@ -85,7 +85,7 @@ class DBConnRef implements IMaintainableDatabase {
 			// to take effect. The primary use case are replica servers being taken out of
 			// rotation, or the primary database changing.
 			if ( !$this->conn->trxLevel() ) {
-				$this->lb->closeConnection( $this->conn );
+				$this->conn->close();
 				$this->conn = null;
 			}
 		}
