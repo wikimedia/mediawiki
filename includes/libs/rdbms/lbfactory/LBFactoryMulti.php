@@ -350,4 +350,23 @@ class LBFactoryMulti extends LBFactory {
 	private function getSectionFromDatabase( $database ) {
 		return $this->sectionsByDB[$database] ?? self::CLUSTER_MAIN_DEFAULT;
 	}
+
+	public function reconfigure( array $conf ): void {
+		if ( !$conf ) {
+			return;
+		}
+
+		foreach ( $this->mainLBs as $lb ) {
+			$groupLoads = $conf['groupLoadsBySection'][$lb->getClusterName()];
+			$groupLoads[ILoadBalancer::GROUP_GENERIC] = $conf['sectionLoads'][$lb->getClusterName()] ?? [];
+			$config = [ 'servers' => $this->makeServerConfigArrays( $conf['serverTemplate'] ?? [], $groupLoads ) ];
+			$lb->reconfigure( $config );
+
+		}
+		foreach ( $this->externalLBs as $lb ) {
+			$groupLoads = [ ILoadBalancer::GROUP_GENERIC => $conf['externalLoads'][$lb->getClusterName()] ];
+			$config = [ 'servers' => $this->makeServerConfigArrays( $conf['serverTemplate'] ?? [], $groupLoads ) ];
+			$lb->reconfigure( $config );
+		}
+	}
 }

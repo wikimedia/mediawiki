@@ -1528,10 +1528,13 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return (bool)$this->getStreamingReplicaIndexes();
 	}
 
-	public function getServerName( $i ): string {
-		$name = $this->servers[$i]['serverName'] ?? ( $this->servers[$i]['host'] ?? '' );
-
+	private function getServerNameFromConfig( $config ) {
+		$name = $config['serverName'] ?? ( $config['host'] ?? '' );
 		return ( $name !== '' ) ? $name : 'localhost';
+	}
+
+	public function getServerName( $i ): string {
+		return $this->getServerNameFromConfig( $this->servers[$i] );
 	}
 
 	public function getServerInfo( $i ) {
@@ -1610,13 +1613,39 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		//       a transaction. So instead, we leave it to DBConnRef to close the
 		//       connection when it detects that the modcount has changed and no
 		//       transaction is open.
+		if ( count( $params['servers'] ) == count( $this->servers ) ) {
+			return;
+		}
+		$this->connLogger->notice( 'Reconfiguring dbs!' );
+		$newServers = [];
+		foreach ( $params['servers'] as $i => $server ) {
+			$newServers[] = $this->getServerNameFromConfig( $server );
+		}
 
-		$this->configure( $params );
+		$closeConnections = false;
+		foreach ( $this->servers as $i => $server ) {
+			if ( !in_array( $this->getServerNameFromConfig( $server ), $newServers ) ) {
+				// db depooled, remove it from list of servers
+				unset( $this->servers[$i] );
+				$this->groupLoads = [ self::GROUP_GENERIC => [] ];
+				foreach ( $params['servers'] as $j => $serverNew ) {
+					foreach ( ( $serverNew['groupLoads'] ?? [] ) as $group => $ratio ) {
+						$this->groupLoads[ $group ][ $j ] = $ratio;
+					}
+					$this->groupLoads[ self::GROUP_GENERIC ][ $j ] = $serverNew['load'];
+				}
+				$closeConnections = true;
+				$this->readIndexByGroup = [];
+				$this->conns = self::newTrackedConnectionsArray();
+			}
+		}
 
-		// Bump modification counter to invalidate the connections held by DBConnRef
-		// instances. This will cause the next call to a method on the DBConnRef
-		// to get a new connection from getConnectionInternal()
-		$this->modcount++;
+		if ( $closeConnections ) {
+			// Bump modification counter to invalidate the connections held by DBConnRef
+			// instances. This will cause the next call to a method on the DBConnRef
+			// to get a new connection from getConnectionInternal()
+			$this->modcount++;
+		}
 	}
 
 	public function disable( $fname = __METHOD__ ) {
