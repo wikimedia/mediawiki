@@ -4108,6 +4108,8 @@
 	"searchsuggest-containing": "Search for pages containing",
 	"search-match-redirect-label": "Redirect to exact matches when searching",
 	"search-match-redirect-help": "Select to get redirected to a page when that page title matches what you have searched for",
+	"search-thumbnail-extra-namespaces-label": "Show thumbnails in Special:Search",
+	"search-thumbnail-extra-namespaces-message": "Also show thumbnails for $1 {{PLURAL:$2|namespace|namespaces}}. Thumbnails for $3 are always shown.",
 	"searchlimit-label": "Number of search results to show on each page:",
 	"searchlimit-help": "Maximum number: $1",
 	"api-clientside-error-noconnect": "Could not connect to the server. Make sure you have a working internet connection and try again.",
