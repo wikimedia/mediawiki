@@ -21,8 +21,12 @@
  * @file
  */
 
+namespace MediaWiki\Feed;
+
+use LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use Title;
 
 /**
  * @defgroup Feed Feed
@@ -227,3 +231,5 @@ class FeedItem {
 
 	/** #@- */
 }
+
+class_alias( FeedItem::class, 'FeedItem' );

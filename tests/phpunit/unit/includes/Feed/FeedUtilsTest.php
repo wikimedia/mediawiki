@@ -1,7 +1,9 @@
 <?php
 
+use MediaWiki\Feed\FeedUtils;
+
 /**
- * @covers \FeedUtils
+ * @covers \MediaWiki\Feed\FeedUtils
  */
 class FeedUtilsTest extends MediaWikiUnitTestCase {
 

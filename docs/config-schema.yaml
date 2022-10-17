@@ -6394,8 +6394,8 @@ config-schema:
             ```
     FeedClasses:
         default:
-            rss: RSSFeed
-            atom: AtomFeed
+            rss: MediaWiki\Feed\RSSFeed
+            atom: MediaWiki\Feed\AtomFeed
         type: object
         description: |-
             Available feeds objects.

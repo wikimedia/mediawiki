@@ -10252,8 +10252,8 @@ class MainConfigSchema {
 	 */
 	public const FeedClasses = [
 		'default' => [
-			'rss' => 'RSSFeed',
-			'atom' => 'AtomFeed',
+			'rss' => \MediaWiki\Feed\RSSFeed::class,
+			'atom' => \MediaWiki\Feed\AtomFeed::class,
 		],
 		'type' => 'map',
 	];
