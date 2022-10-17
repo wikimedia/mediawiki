@@ -1272,6 +1272,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-unreadcount": "Legger til antallet uleste sider på brukerens overvåkningsliste (maksimalt $1; returnerer <samp>$2</samp> hvis det er flere).",
 	"apihelp-query+userinfo-paramvalue-prop-centralids": "Legger til sentrale ID-er og tilknytningsstatus for den gjeldende brukeren.",
 	"apihelp-query+userinfo-paramvalue-prop-latestcontrib": "Legger til datoen for brukerens siste bidrag.",
+	"apihelp-query+userinfo-paramvalue-prop-cancreateaccount": "Indikerer hvorvidt brukeren har lov til å opprette kontoer. Bruk [[Special:ApiHelp/query+users|<kbd>action=query&list=users&usprop=cancreate</kbd>]] for å sjekke om en spesifikk konto kan opprettes.",
 	"apihelp-query+userinfo-param-attachedwiki": "Med <kbd>$1prop=centralids</kbd>, indiker hvorvodt brukeren er koblet til wikien identifisert av denne ID-en.",
 	"apihelp-query+userinfo-example-simple": "Hent informasjon om den gjeldende brukeren.",
 	"apihelp-query+userinfo-example-data": "Hent ekstra informasjon om den gjeldende brukeren.",
