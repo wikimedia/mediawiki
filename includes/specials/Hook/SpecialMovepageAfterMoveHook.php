@@ -3,7 +3,7 @@
 namespace MediaWiki\Hook;
 
 use MediaWiki\Title\Title;
-use MovePageForm;
+use SpecialMovePage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -18,7 +18,7 @@ interface SpecialMovepageAfterMoveHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param MovePageForm $movePage
+	 * @param SpecialMovePage $movePage
 	 * @param Title $oldTitle
 	 * @param Title $newTitle
 	 * @return bool|void True or no return value to continue or false to abort

@@ -42,11 +42,6 @@
 			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
-		<exclude-pattern>*/includes/specials/SpecialMostimages\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialMovepage\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialUserrights\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialWantedfiles\.php</exclude-pattern>
-		<exclude-pattern>*/includes/specials/SpecialWantedpages\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/cleanupTitles\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/edit\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/findDeprecated\.php</exclude-pattern>

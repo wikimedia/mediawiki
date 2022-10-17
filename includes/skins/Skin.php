@@ -1388,7 +1388,7 @@ abstract class Skin extends ContextSource {
 					];
 				}
 
-				$sur = new UserrightsPage;
+				$sur = new SpecialUserRights;
 				$sur->setContext( $this->getContext() );
 				$canChange = $sur->userCanChangeRights( $user );
 				$delimiter = $this->getConfig()->get(

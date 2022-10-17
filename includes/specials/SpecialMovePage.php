@@ -41,7 +41,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  *
  * @ingroup SpecialPage
  */
-class MovePageForm extends UnlistedSpecialPage {
+class SpecialMovePage extends UnlistedSpecialPage {
 	/** @var Title */
 	protected $oldTitle = null;
 
@@ -1035,3 +1035,9 @@ class MovePageForm extends UnlistedSpecialPage {
 		return 'pagetools';
 	}
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.40
+ */
+class_alias( SpecialMovePage::class, 'MovePageForm' );

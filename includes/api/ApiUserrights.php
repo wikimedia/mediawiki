@@ -87,7 +87,7 @@ class ApiUserrights extends ApiBase {
 		$groupExpiries = [];
 		foreach ( $expiry as $index => $expiryValue ) {
 			$group = $add[$index];
-			$groupExpiries[$group] = UserrightsPage::expiryToTimestamp( $expiryValue );
+			$groupExpiries[$group] = SpecialUserRights::expiryToTimestamp( $expiryValue );
 
 			if ( $groupExpiries[$group] === false ) {
 				$this->dieWithError( [ 'apierror-invalidexpiry', wfEscapeWikiText( $expiryValue ) ] );
@@ -111,7 +111,7 @@ class ApiUserrights extends ApiBase {
 			}
 		}
 
-		$form = new UserrightsPage();
+		$form = new SpecialUserRights();
 		$form->setContext( $this->getContext() );
 		$r = [];
 		$r['user'] = $user->getName();
@@ -141,7 +141,7 @@ class ApiUserrights extends ApiBase {
 
 		$user = $params['user'] ?? '#' . $params['userid'];
 
-		$form = new UserrightsPage();
+		$form = new SpecialUserRights();
 		$form->setContext( $this->getContext() );
 		$status = $form->fetchUser( $user );
 		if ( !$status->isOK() ) {

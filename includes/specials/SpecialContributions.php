@@ -631,7 +631,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		}
 
 		# Add a link to change user rights for privileged users
-		$userrightsPage = new UserrightsPage();
+		$userrightsPage = new SpecialUserRights();
 		$userrightsPage->setContext( $sp->getContext() );
 		if ( $userrightsPage->userCanChangeRights( $target ) ) {
 			$tools['userrights'] = $linkRenderer->makeKnownLink(
