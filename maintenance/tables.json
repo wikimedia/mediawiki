@@ -1301,14 +1301,27 @@
 				"type": "binary",
 				"comment": "'el_index' truncated to 60 bytes to allow for sortable queries that aren't supported by a partial index",
 				"options": { "notnull": true, "length": 60 }
+			},
+			{
+				"name": "el_to_domain_index",
+				"type": "binary",
+				"comment": "Indexable domain",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			},
+			{
+				"name": "el_to_path",
+				"type": "blob",
+				"comment": "Path to the external link without considering the domain",
+				"options": { "length": 65530, "notnull": false }
 			}
 		],
 		"indexes": [
-			{ "name": "el_from", "columns": [ "el_from", "el_to" ], "unique": false, "options": { "lengths": [ null, 40 ] } },
+			{ "name": "el_from", "columns": [ "el_from" ], "unique": false },
 			{ "name": "el_to", "columns": [ "el_to", "el_from" ], "unique": false, "options": { "lengths": [ 60, null ] } },
 			{ "name": "el_index", "columns": [ "el_index" ], "unique": false, "options": { "lengths": [ 60 ] } },
 			{ "name": "el_index_60", "columns": [ "el_index_60", "el_id" ], "unique": false },
-			{ "name": "el_from_index_60", "columns": [ "el_from", "el_index_60", "el_id" ], "unique": false }
+			{ "name": "el_from_index_60", "columns": [ "el_from", "el_index_60", "el_id" ], "unique": false },
+			{ "name": "el_to_domain_index_to_path", "columns": [ "el_to_domain_index", "el_to_path" ], "unique": false, "options": { "lengths": [ null, 60 ] } }
 		],
 		"pk": [ "el_id" ]
 	},

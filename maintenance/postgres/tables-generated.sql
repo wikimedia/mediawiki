@@ -438,10 +438,12 @@ CREATE TABLE externallinks (
   el_to TEXT NOT NULL,
   el_index TEXT NOT NULL,
   el_index_60 TEXT NOT NULL,
+  el_to_domain_index TEXT DEFAULT '' NOT NULL,
+  el_to_path TEXT DEFAULT NULL,
   PRIMARY KEY(el_id)
 );
 
-CREATE INDEX el_from ON externallinks (el_from, el_to);
+CREATE INDEX el_from ON externallinks (el_from);
 
 CREATE INDEX el_to ON externallinks (el_to, el_from);
 
@@ -450,6 +452,8 @@ CREATE INDEX el_index ON externallinks (el_index);
 CREATE INDEX el_index_60 ON externallinks (el_index_60, el_id);
 
 CREATE INDEX el_from_index_60 ON externallinks (el_from, el_index_60, el_id);
+
+CREATE INDEX el_to_domain_index_to_path ON externallinks (el_to_domain_index, el_to_path);
 
 
 CREATE TABLE ip_changes (
