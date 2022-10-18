@@ -428,7 +428,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->addBodyClasses( [ 'd', 'e' ] );
 		$op->addBodyClasses( 'a' );
 
-		$this->assertStringContainsString( '"a mediawiki b c d e ltr',
+		$this->assertStringContainsString( '<body class="a mediawiki b c d e ',
 			'' . $op->headElement( $op->getContext()->getSkin() ) );
 	}
 

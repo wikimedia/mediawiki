@@ -919,6 +919,8 @@ class SpecialContributions extends IncludableSpecialPage {
 	 * @inheritDoc
 	 */
 	public function getAssociatedNavigationLinks(): array {
-		return $this->getSpecialPageFactory()->getPage( 'Contribute' )->getAssociatedNavigationLinks();
+		$specialContribute = $this->getSpecialPageFactory()->getPage( 'Contribute' );
+		'@phan-var SpecialContribute $specialContribute'; // @var SpecialContribute $specialContribute
+		return $specialContribute->getAssociatedNavigationLinksForUser( $this->getSkin()->getRelevantUser() );
 	}
 }
