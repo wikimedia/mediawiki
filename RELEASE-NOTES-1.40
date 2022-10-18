@@ -158,7 +158,8 @@ because of Phabricator reports.
   configuration variable has also been removed in this release.  Extensions
   can put parser test files in their `tests/parser` directory to have them
   automatically run.
-* PostgreSqlLockManager has been removed without deprecation.
+* DBLockManager, MySqlLockManager, and PostgreSqlLockManager have been
+  removed without deprecation.
 * …
 
 === Deprecations in 1.40 ===
