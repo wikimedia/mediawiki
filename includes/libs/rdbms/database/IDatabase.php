@@ -1060,15 +1060,17 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	public function wasErrorReissuable();
 
 	/**
-	 * Wait for the replica DB to catch up to a given primary DB position
+	 * Wait for the replica server to catch up to a given primary server position
 	 *
-	 * Note that this does not start any new transactions. If any existing transaction
-	 * is flushed, and this is called, then queries will reflect the point the DB was synced
-	 * up to (on success) without interference from REPEATABLE-READ snapshots.
+	 * Note that this does not start any new transactions.
+	 *
+	 * Callers might want to flush any existing transaction before invoking this method.
+	 * Upon success, this assures that replica server queries will reflect all changes up
+	 * to the given position, without interference from prior REPEATABLE-READ snapshots.
 	 *
 	 * @param DBPrimaryPos $pos
 	 * @param int $timeout The maximum number of seconds to wait for synchronisation
-	 * @return int|null Zero if the replica DB was past that position already,
+	 * @return int|null Zero if the replica DB server was past that position already,
 	 *   greater than zero if we waited for some period of time, less than
 	 *   zero if it timed out, and null on error
 	 * @throws DBError If an error occurs, {@see query}
@@ -1094,7 +1096,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	public function getPrimaryPos();
 
 	/**
-	 * @return bool Whether the DB is marked as read-only server-side
+	 * @return bool Whether the DB server is marked as read-only server-side
 	 * @throws DBError If an error occurs, {@see query}
 	 * @since 1.28
 	 */
@@ -1350,8 +1352,8 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *
 	 * Note that a call to IDatabase::rollback() will also roll back any open atomic sections.
 	 *
-	 * @note As a micro-optimization to save a few DB calls, this method may only
-	 *  be called when startAtomic() was called with the ATOMIC_CANCELABLE flag.
+	 * @note As an optimization to save rountrips, this method may only be called
+	 *   when startAtomic() was called with the ATOMIC_CANCELABLE flag.
 	 * @since 1.31
 	 * @see IDatabase::startAtomic
 	 * @param string $fname
@@ -1423,7 +1425,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @see Database::cancelAtomic
 	 *
 	 * @param string $fname Caller name (usually __METHOD__)
-	 * @param callable $callback Callback that issues DB updates
+	 * @param callable $callback Callback that issues write queries
 	 * @param string $cancelable Pass self::ATOMIC_CANCELABLE to use a
 	 *  savepoint and enable self::cancelAtomic() for this section.
 	 * @return mixed Result of the callback (since 1.28)
@@ -1524,7 +1526,8 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * This is intended for clearing out REPEATABLE-READ snapshots so that callers can
 	 * see a new point-in-time of the database. This is useful when one of many transaction
 	 * rounds finished and significant time will pass in the script's lifetime. It is also
-	 * useful to call on a replica DB after waiting on replication to catch up to the primary DB.
+	 * useful to call on a replica server after waiting on replication to catch up to the
+	 * primary server.
 	 *
 	 * @param string $fname Calling function name
 	 * @param string $flush Flush flag, set to situationally valid IDatabase::FLUSHING_*
@@ -1558,7 +1561,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	public function getLag();
 
 	/**
-	 * Get the replica DB lag when the current transaction started
+	 * Get the replica server lag when the current transaction started
 	 * or a general lag estimate if not transaction is active
 	 *
 	 * This is useful when transactions might use snapshot isolation
@@ -1649,7 +1652,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	/**
 	 * Acquire a named lock, flush any transaction, and return an RAII style unlocker object
 	 *
-	 * Only call this from outer transaction scope and when only one DB will be affected.
+	 * Only call this from outer transaction scope and when only one DB server will be affected.
 	 * See https://www.mediawiki.org/wiki/Database_transactions for details.
 	 *
 	 * This is suitable for transactions that need to be serialized using cooperative locks,
@@ -1689,7 +1692,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	public function setBigSelects( $value = true );
 
 	/**
-	 * @return bool Whether this DB is read-only
+	 * @return bool Whether this DB server is read-only
 	 * @since 1.27
 	 */
 	public function isReadOnly();
