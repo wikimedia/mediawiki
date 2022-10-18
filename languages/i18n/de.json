@@ -3778,6 +3778,8 @@
 	"searchsuggest-containing": "Suche nach Seiten mit",
 	"search-match-redirect-label": "Weiterleitung zum exakten Treffer beim Suchen",
 	"search-match-redirect-help": "Wähle dies aus, um zur Seite weiterzuleiten, wenn ein Seitenname mit dem Suchbegriff übereinstimmt",
+	"search-thumbnail-extra-namespaces-label": "Vorschaubilder in Spezial:Suche anzeigen",
+	"search-thumbnail-extra-namespaces-message": "Zeige auch Vorschaubilder für {{PLURAL:$2|den Namensraum|die Namensräume}} $1. Vorschaubilder für $3 werden immer angezeigt.",
 	"searchlimit-label": "Anzahl der Suchergebnisse, die auf jeder Seite angezeigt werden sollen:",
 	"searchlimit-help": "Maximale Anzahl: $1",
 	"api-clientside-error-noconnect": "Es konnte keine Verbindung zum Server hergestellt werden. Stelle sicher, dass du eine funktionierende Internetverbindung hast, und versuche es erneut.",

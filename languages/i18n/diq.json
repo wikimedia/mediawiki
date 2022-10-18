@@ -1056,6 +1056,7 @@
 	"recentchangesdays": "Rocê ke vurnayışanê peyênan de bıasê:",
 	"recentchangesdays-max": "Tewr zaf $1 {{PLURAL:$1|roc|roci}}",
 	"recentchangescount": "Vurnayışanê peyênan de, tarixê pelan u rocekan de amarê vurnayışanê hesabiyeyanê ke mocniyenê:",
+	"prefs-back-label": "Peyser",
 	"prefs-help-recentchangescount": "Reqemo azami: 1000",
 	"prefs-help-watchlist-token2": "Na pawıtış nımnayi kılta listada şımaya.\nOke kıliti zano şeno listeya tamaşann bıvino. Poğta coy ra kesiya me hesırne. \n[[Special:ResetTokens|Na kıliti reset kerdışi re tiyay bıploğne]].",
 	"prefs-help-tokenmanagement": "Lista temaşeyi hesabê ho ra şenê kılitê dızdeyê restışê rodayışê webi şenê bıvinê u reset kerê. Êyê ke kıliti zanê şenê lista temaşeyi to bıvinê, coki ra kesiya vıla mekerê.",

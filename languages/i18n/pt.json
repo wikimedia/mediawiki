@@ -3737,6 +3737,8 @@
 	"searchsuggest-containing": "Procurar páginas que contenham",
 	"search-match-redirect-label": "Redirecionar para correspondências exatas durante a pesquisa",
 	"search-match-redirect-help": "Selecionar para ser redirecionado para uma página quando o título dessa página corresponder ao texto que pesquisou",
+	"search-thumbnail-extra-namespaces-label": "Mostrar miniaturas em Especial:Pesquisar",
+	"search-thumbnail-extra-namespaces-message": "Mostrar também miniaturas para {{PLURAL:$2|o espaço nominal|os espaços nominais}} $1. São sempre mostradas miniaturas para $3.",
 	"searchlimit-label": "Número de resultados de pesquisa a mostrar em cada página:",
 	"searchlimit-help": "Número máximo: $1",
 	"api-clientside-error-noconnect": "Não foi possível ligar ao servidor. Certifique-se de que tem ligação à Internet e tente novamente.",

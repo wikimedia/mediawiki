@@ -450,7 +450,7 @@
 	"userlogout": "निर्गमन गर्नुहोस्",
 	"notloggedin": "तपाईंले प्रवेश गर्नुभएको छैन",
 	"userlogin-noaccount": "के खाता छैन ?",
-	"userlogin-joinproject": "{{SITENAME}} मा खाता खोल्नुहोस् ।",
+	"userlogin-joinproject": "{{SITENAME}}मा खाता खोल्नुहोस्",
 	"createaccount": "खाता खोल्नुहोस्",
 	"userlogin-resetpassword-link": "प्रवेश शब्द भुल्नुभयो?",
 	"userlogin-helplink2": "मलाई प्रवेश गर्नको लागि सहयोग गर्नुहोस्",
