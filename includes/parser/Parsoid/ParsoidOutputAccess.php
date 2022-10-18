@@ -375,7 +375,7 @@ class ParsoidOutputAccess {
 	 * @param PageIdentity $page
 	 * @param ParserOptions $parserOpts
 	 * @param array $envOptions
-	 * @param RevisionRecord|null $revision
+	 * @param RevisionRecord|int|null $revision
 	 *
 	 * @return Status
 	 */
@@ -383,8 +383,14 @@ class ParsoidOutputAccess {
 		PageIdentity $page,
 		ParserOptions $parserOpts,
 		array $envOptions,
-		?RevisionRecord $revision
+		$revision
 	): Status {
+		// NOTE: If we have a RevisionRecord already, just use it, there is no need to resolve $page to
+		//       a PageRecord (and it may not be possible if the page doesn't exist).
+		if ( !$revision instanceof RevisionRecord ) {
+			[ $page, $revision ] = $this->resolveRevision( $page, $revision );
+		}
+
 		$revId = $revision ? $revision->getId() : $page->getId();
 
 		$status = $this->parseInternal( $page, $envOptions, $revision, $parserOpts->getTargetLanguage() );
