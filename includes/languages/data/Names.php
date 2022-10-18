@@ -384,6 +384,7 @@ class Names {
 		'qug' => 'Runa shimi', # Kichwa/Northern Quechua (temporarily used until Kichwa has its own)
 		'rgn' => 'Rumagnôl', # Romagnol
 		'rif' => 'Tarifit', # Tarifit
+		'rki' => 'ရခိုင်', # Arakanese
 		'rm' => 'rumantsch', # Raeto-Romance
 		'rmc' => 'romaňi čhib', # Carpathian Romany
 		'rmy' => 'romani čhib', # Vlax Romany
