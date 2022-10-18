@@ -419,10 +419,11 @@ CREATE TABLE /*_*/externallinks (
   el_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
   el_from INTEGER UNSIGNED DEFAULT 0 NOT NULL,
   el_to BLOB NOT NULL, el_index BLOB NOT NULL,
-  el_index_60 BLOB NOT NULL
+  el_index_60 BLOB NOT NULL, el_to_domain_index BLOB DEFAULT '' NOT NULL,
+  el_to_path BLOB DEFAULT NULL
 );
 
-CREATE INDEX el_from ON /*_*/externallinks (el_from, el_to);
+CREATE INDEX el_from ON /*_*/externallinks (el_from);
 
 CREATE INDEX el_to ON /*_*/externallinks (el_to, el_from);
 
@@ -431,6 +432,8 @@ CREATE INDEX el_index ON /*_*/externallinks (el_index);
 CREATE INDEX el_index_60 ON /*_*/externallinks (el_index_60, el_id);
 
 CREATE INDEX el_from_index_60 ON /*_*/externallinks (el_from, el_index_60, el_id);
+
+CREATE INDEX el_to_domain_index_to_path ON /*_*/externallinks (el_to_domain_index, el_to_path);
 
 
 CREATE TABLE /*_*/ip_changes (

@@ -401,6 +401,30 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parse
 	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parseInternal
 	 */
+	public function testParseWithPageIdentityAndRevisionId() {
+		$page = $this->getExistingTestPage( __METHOD__ );
+		$pOpts = ParserOptions::newFromAnon();
+		$revId = $page->getLatest();
+
+		$parsoidOutputAccess = $this->getServiceContainer()->getParsoidOutputAccess();
+		$status = $parsoidOutputAccess->parse( $page->getTitle(), $pOpts, self::ENV_OPTS, $revId );
+
+		$this->assertInstanceOf( Status::class, $status );
+		$this->assertTrue( $status->isOK() );
+		$this->assertInstanceOf( ParserOutput::class, $status->getValue() );
+
+		/** @var ParserOutput $parserOutput */
+		$parserOutput = $status->getValue();
+		$this->assertStringContainsString( __METHOD__, $parserOutput->getText() );
+		$this->assertNotEmpty( $parserOutput->getExtensionData( 'parsoid-render-id' ) );
+		$this->assertNotEmpty( $parserOutput->getCacheRevisionId() );
+		$this->assertNotEmpty( $parserOutput->getCacheTime() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parse
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::parseInternal
+	 */
 	public function testParseWithNonExistingPageAndFakeRevision() {
 		$page = $this->getNonexistingTestPage( __METHOD__ );
 		$pOpts = ParserOptions::newFromAnon();
@@ -428,6 +452,71 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		// The revision ID is set to 0, so that's what is in the cache.
 		$this->assertSame( 0, $parserOutput->getCacheRevisionId() );
 		$this->assertNotEmpty( $parserOutput->getCacheTime() );
+	}
+
+	/**
+	 * Mock the language class based on a language code.
+	 *
+	 * @param string $langCode
+	 *
+	 * @return Language|Language&MockObject|MockObject
+	 */
+	private function getLanguageMock( string $langCode ) {
+		$language = $this->createMock( Language::class );
+		$language->method( 'getCode' )->willReturn( $langCode );
+
+		return $language;
+	}
+
+	/** @return Generator */
+	public function provideParserOptionsWithLanguageOverride() {
+		$parserOptions = $this->createMock( ParserOptions::class );
+		$parserOptions->method( 'getTargetLanguage' )
+			->willReturn( null );
+		yield 'ParserOptions with no language' => [ $parserOptions, 'en' ];
+
+		$langCode = 'de';
+		$parserOptions = $this->createMock( ParserOptions::class );
+		$parserOptions->method( 'getTargetLanguage' )
+			->willReturn( $this->getLanguageMock( $langCode ) );
+		yield 'ParserOptions for "de" language' => [ $parserOptions, $langCode ];
+
+		$langCode = 'ar';
+		$parserOptions = $this->createMock( ParserOptions::class );
+		$parserOptions->method( 'getTargetLanguage' )
+			->willReturn( $this->getLanguageMock( $langCode ) );
+		yield 'ParserOptions for "ar" language' => [ $parserOptions, $langCode ];
+	}
+
+	/**
+	 * @covers \MediaWiki\Rest\Handler\HtmlOutputRendererHelper::getParserOutput
+	 * @dataProvider provideParserOptionsWithLanguageOverride
+	 */
+	public function testGetParserOutputWithLanguageOverride( $parserOptions, $expectedLangCode ) {
+		$services = $this->getServiceContainer();
+		$parserOutputAccess = $services->getParsoidOutputAccess();
+
+		$page = $this->getExistingTestPage();
+
+		$status = $parserOutputAccess->getParserOutput( $page, $parserOptions );
+
+		$this->assertTrue( $status->isOK() );
+
+		// assert dummy content in parsoid output HTML
+		$html = $status->getValue()->getText();
+		$this->assertStringContainsString( 'UTContent', $html );
+
+		if ( $parserOptions->getTargetLanguage() !== null ) {
+			$targetLanguage = $parserOptions->getTargetLanguage()->getCode();
+			$this->assertSame( $expectedLangCode, $targetLanguage );
+			$this->assertInstanceOf( Language::class, $parserOptions->getTargetLanguage() );
+		} else {
+			$this->assertNull( $parserOptions->getTargetLanguage() );
+		}
+
+		// assert the page language in parsoid output HTML
+		$this->assertStringContainsString( 'lang="' . $expectedLangCode . '"', $html );
+		$this->assertStringContainsString( 'content="' . $expectedLangCode . '"', $html );
 	}
 
 }

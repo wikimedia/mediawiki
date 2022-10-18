@@ -154,7 +154,7 @@ class NewFilesPager extends RangeChronologicalPager {
 	}
 
 	public function getIndexField() {
-		return 'img_timestamp';
+		return [ [ 'img_timestamp', 'img_name' ] ];
 	}
 
 	protected function getStartBody() {

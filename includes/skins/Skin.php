@@ -30,6 +30,7 @@ use MediaWiki\Skin\SkinComponent;
 use MediaWiki\Skin\SkinComponentFooter;
 use MediaWiki\Skin\SkinComponentLink;
 use MediaWiki\Skin\SkinComponentListItem;
+use MediaWiki\Skin\SkinComponentMenu;
 use MediaWiki\Skin\SkinComponentRegistry;
 use MediaWiki\Skin\SkinComponentRegistryContext;
 use MediaWiki\User\UserIdentity;
@@ -2382,5 +2383,21 @@ abstract class Skin extends ContextSource {
 			$portletLinkOptions['text-wrapper'] = [ $portletLinkOptions['text-wrapper'] ];
 		}
 		return $portletLinkOptions;
+	}
+
+	/**
+	 * @param string $name of the portal e.g. p-personal the name is personal.
+	 * @param array $items that are accepted input to Skin::makeListItem
+	 *
+	 * @return array data that can be passed to a Mustache template that
+	 *   represents a single menu.
+	 */
+	final protected function getPortletData( string $name, array $items ): array {
+		$portletComponent = new SkinComponentMenu(
+			$name,
+			$items,
+			$this->getContext()
+		);
+		return $portletComponent->getTemplateData();
 	}
 }

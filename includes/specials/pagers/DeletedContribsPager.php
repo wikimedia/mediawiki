@@ -175,6 +175,13 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 		return new FakeResultWrapper( $result );
 	}
 
+	/**
+	 * @return string[]
+	 */
+	protected function getExtraSortFields() {
+		return [ 'ar_id' ];
+	}
+
 	public function getIndexField() {
 		return 'ar_timestamp';
 	}

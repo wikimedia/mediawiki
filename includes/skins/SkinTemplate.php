@@ -641,78 +641,6 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * @param string $name of the portal e.g. p-personal the name is personal.
-	 * @param array $items that are accepted input to Skin::makeListItem
-	 * @return array data that can be passed to a Mustache template that
-	 *   represents a single menu.
-	 */
-	private function getPortletData( $name, array $items ) {
-		// Monobook and Vector historically render this portal as an element with ID p-cactions
-		// This inconsistency is regretful from a code point of view
-		// However this ensures compatibility with gadgets.
-		// In future we should port p-#cactions to #p-actions and drop this rename.
-		if ( $name === 'actions' ) {
-			$name = 'cactions';
-		}
-
-		// user-menu is the new personal tools, without the notifications.
-		// A lot of user code and gadgets relies on it being named personal.
-		// This allows it to function as a drop-in replacement.
-		if ( $name === 'user-menu' ) {
-			$name = 'personal';
-		}
-
-		$legacyClasses = '';
-		if ( $name === 'category-normal' ) {
-			// retain historic category IDs and classes
-			$id = 'mw-normal-catlinks';
-			$legacyClasses .= ' mw-normal-catlinks';
-		} elseif ( $name === 'category-hidden' ) {
-			// retain historic category IDs and classes
-			$id = 'mw-hidden-catlinks';
-			$legacyClasses .= ' mw-hidden-catlinks mw-hidden-cats-hidden';
-		} else {
-			$id = Sanitizer::escapeIdForAttribute( "p-$name" );
-		}
-
-		$data = [
-			'id' => $id,
-			'class' => 'mw-portlet ' . Sanitizer::escapeClass( "mw-portlet-$name" ) . $legacyClasses,
-			'html-tooltip' => Linker::tooltip( $id ),
-			'html-items' => '',
-			// Will be populated by SkinAfterPortlet hook.
-			'html-after-portal' => '',
-			'html-before-portal' => '',
-		];
-		// Run the SkinAfterPortlet
-		// hook and if content is added appends it to the html-after-portal
-		// for output.
-		// Currently in production this supports the wikibase 'edit' link.
-		$content = $this->getAfterPortlet( $name );
-		if ( $content !== '' ) {
-			$data['html-after-portal'] = Html::rawElement(
-				'div',
-				[
-					'class' => [
-						'after-portlet',
-						Sanitizer::escapeClass( "after-portlet-$name" ),
-					],
-				],
-				$content
-			);
-		}
-
-		foreach ( $items as $key => $item ) {
-			$data['html-items'] .= $this->makeListItem( $key, $item );
-		}
-
-		$data['label'] = $this->getPortletLabel( $name );
-		$data['is-empty'] = count( $items ) === 0 && $content === '';
-		$data['class'] .= $data['is-empty'] ? ' emptyPortlet' : '';
-		return $data;
-	}
-
-	/**
 	 * Extends category links with Skin::getAfterPortlet functionality.
 	 * @return string HTML
 	 */
@@ -720,24 +648,6 @@ class SkinTemplate extends Skin {
 		$afterPortlet = $this->getPortletsTemplateData()['data-portlets']['data-category-normal']['html-after-portal']
 			?? '';
 		return parent::getCategoryLinks() . $afterPortlet;
-	}
-
-	/**
-	 * @param string $name of the portal e.g. p-personal the name is personal.
-	 * @return string that is human readable corresponding to the menu
-	 */
-	private function getPortletLabel( $name ) {
-		// For historic reasons for some menu items,
-		// there is no language key corresponding with its menu key.
-		$mappings = [
-			'tb' => 'toolbox',
-			'personal' => 'personaltools',
-			'lang' => 'otherlanguages',
-		];
-		$msgObj = $this->msg( $mappings[ $name ] ?? $name );
-		// If no message exists fallback to plain text (T252727)
-		$labelText = $msgObj->exists() ? $msgObj->text() : $name;
-		return $labelText;
 	}
 
 	/**
