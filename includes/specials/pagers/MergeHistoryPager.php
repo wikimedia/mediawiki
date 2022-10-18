@@ -158,6 +158,6 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	}
 
 	public function getIndexField() {
-		return 'rev_timestamp';
+		return [ [ 'rev_timestamp', 'rev_id' ] ];
 	}
 }
