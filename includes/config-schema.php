@@ -1044,6 +1044,7 @@ return [
 				'search-match-redirect' => true,
 				'search-special-page' => 'Search',
 				'searchlimit' => 20,
+				'search-thumbnail-extra-namespaces' => true,
 				'showhiddencats' => 0,
 				'shownumberswatching' => 1,
 				'showrollbackconfirmation' => 0,
