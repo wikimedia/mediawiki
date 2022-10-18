@@ -873,6 +873,7 @@
 	"apihelp-query+languageinfo-paramvalue-prop-dir": "Die Schreibrichtung der Sprache (entweder <code>ltr</code> oder <code>rtl</code>).",
 	"apihelp-query+languageinfo-paramvalue-prop-autonym": "Das Autonym der Sprache, d. h. der Name in dieser Sprache.",
 	"apihelp-query+languageinfo-paramvalue-prop-name": "Der Name der Sprache in der durch den Parameter <var>uselang</var> angegebenen Sprache, ggf. mit Sprach-Fallbacks.",
+	"apihelp-query+languageinfo-paramvalue-prop-variantnames": "Die Kurzbezeichnung für Sprachvarianten, die für Sprachumwandlungslinks verwendet werden.",
 	"apihelp-query+languageinfo-paramvalue-prop-fallbacks": "Die Sprachcodes der für diese Sprache konfigurierten Fallback-Sprachen. Der implizite endgültige Fallback auf „en“ ist nicht enthalten (einige Sprachen können jedoch explizit auf „en“ zurückgreifen).",
 	"apihelp-query+languageinfo-paramvalue-prop-variants": "Die Sprachcodes der Varianten, die von dieser Sprache unterstützt werden.",
 	"apihelp-query+languageinfo-param-code": "Sprachcodes der Sprachen, die zurückgegeben werden sollen, oder <code>*</code> für alle Sprachen.",

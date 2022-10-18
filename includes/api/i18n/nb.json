@@ -1288,7 +1288,7 @@
 	"apihelp-query+users-paramvalue-prop-emailable": "Tagger hvorvidt brukeren kan og ønsker å motta eposter via [[Special:Emailuser]].",
 	"apihelp-query+users-paramvalue-prop-gender": "Tagger kjønnet til brukeren. Returnerer «male», «female» eller «unknown».",
 	"apihelp-query+users-paramvalue-prop-centralids": "Legger til sentrale ID-er og tilkoblingsstatus for brukeren.",
-	"apihelp-query+users-paramvalue-prop-cancreate": "Indikerer hvorvidt en konto for gyldige men uregistrerte brukernavn kan opprettes.",
+	"apihelp-query+users-paramvalue-prop-cancreate": "Indikerer hvorvidt en konto for gyldige men uregistrerte brukernavn kan opprettes. For å sjekke hvorvidt den gjeldende brukeren kan utføre kontoopprettelsen, bruk [[Special:ApiHelp/query+userinfo|<kbd>action=query&meta=userinfo&uiprop=cancreateaccount</kbd>]].",
 	"apihelp-query+users-param-attachedwiki": "Med <kbd>$1prop=centralids</kbd>, indiker hvorvodt brukeren er koblet til wikien identifisert av denne ID-en.",
 	"apihelp-query+users-param-users": "En liste over brukere det skal hentes informasjon om.",
 	"apihelp-query+users-param-userids": "En liste over bruker-ID-er det skal hentes informasjon om.",
