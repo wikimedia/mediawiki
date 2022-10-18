@@ -3653,7 +3653,7 @@
 	"mediastatistics": "Statistike za slike i snimke",
 	"mediastatistics-summary": "Statistike o poslanih tipovima datoteka. Ovdje su uračunate samo najnovije verzije datoteka. Stare i obrisane verzije nisu uračunate.",
 	"mediastatistics-nbytes": "{{PLURAL:$1|Jedan bajt|$1 bajta|$1 bajtova}} ($2; $3%)",
-	"mediastatistics-bytespertype": "Ukupni obuhvat pasusa: {{PLURAL:$1|$1 bajt|$1 bajta|$1 bajtova}} ($2; $3%).",
+	"mediastatistics-bytespertype": "Ukupna veličina {{PLURAL:$4|$4 datoteke|$4 datoteka}} u ovom odlomku ($5%): {{PLURAL:$1|$1 bajt|$1 bajta|$1 bajtova}} ($2; $3%).",
 	"mediastatistics-allbytes": "Ukupna veličina {{PLURAL:$3|1=datoteke|svih $3 datoteka}}: {{PLURAL:$1|$1 bajt|$1 bajta|$1 bajtova}} ($2).",
 	"mediastatistics-table-mimetype": "MIME tip",
 	"mediastatistics-table-extensions": "Mogući dodaci",

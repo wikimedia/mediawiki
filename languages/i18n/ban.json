@@ -19,7 +19,7 @@
 			"Carma Citrawati"
 		]
 	},
-	"tog-underline": "Garis ring betén pranala:",
+	"tog-underline": "Garis ring sor pranala:",
 	"tog-hideminor": "Engkebang uahan alit saking uahan sané mangkin",
 	"tog-hidepatrolled": "Engkebang uahan sané kakemitin saking uahan sané mangkin",
 	"tog-newpageshidepatrolled": "engkebang lembar mapatrol saking saking kepahan lembar anyar",
@@ -3004,6 +3004,7 @@
 	"creditspage": "Krédit kaca",
 	"nocredits": "Nénten wénten pidarta krédit sané kasedia antuk kaca puniki.",
 	"spamprotectiontitle": "Saringan anti-spam",
+	"spamprotectiontext": "Téks sané jagi Ragané wedar sampun kacadel olih panyaring spam.\nIndik puniki minab krana olih pranala nuju situs jaba sané sampun nénten kalugra.",
 	"spamprotectionmatch": "Téks puniki ngamancing saringan spam iraga: $1",
 	"spambot_username": "Paresikan spam MediaWiki",
 	"spam_reverting": "Ngulihang nuju vérsi ungkur sané tan madaging pranala nuju $1",
