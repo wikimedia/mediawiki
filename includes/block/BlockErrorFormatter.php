@@ -195,7 +195,7 @@ class BlockErrorFormatter {
 			$key = 'blockedtext-composite';
 		}
 
-		// runs a hook that allows extensions to check block characteristics
+		// Allow extensions to modify the block error message
 		$this->hookRunner->onGetBlockErrorMessageKey( $block, $key );
 
 		return $key;
