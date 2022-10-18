@@ -33,9 +33,9 @@ $namespaceNames = [
 $defaultDateFormat = 'dmy';
 
 $dateFormats = [
-	'dmy time' => 'H:i',
+	'dmy time' => 'H.i',
 	'dmy date' => 'j. M Y',
-	'dmy both' => 'j. M Y "tme" H:i',
+	'dmy both' => 'j. M Y "tme" H.i',
 ];
 
 $linkTrail = '/^([a-zâčđŋšžäá]+)(.*)$/sDu';
