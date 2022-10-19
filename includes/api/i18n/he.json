@@ -950,6 +950,7 @@
 	"apihelp-query+languageinfo-paramvalue-prop-dir": "כיוון הכתיבה של השפה (<code>ltr</code> או <code>rtl</code>).",
 	"apihelp-query+languageinfo-paramvalue-prop-autonym": "השם העצמי של השפה, כלומר השם באותה השפה.",
 	"apihelp-query+languageinfo-paramvalue-prop-name": "השם בשפה בשפה שצוינה בפרמטר <var>uselang</var>, עם שפת גיבוי כשזה נחוץ.",
+	"apihelp-query+languageinfo-paramvalue-prop-variantnames": "השמות הקצרים להגווני השפה המשמשים לקישורי המרת שפה.",
 	"apihelp-query+languageinfo-paramvalue-prop-fallbacks": "קודי השפה של שפות הגיבוי שמוגדרים עבור השפה הזאת. הגיבוי המשתמע הסופי ל־\"en\" אינו כלול (אבל שפות אחדות יכולות להיות מגובות ב־\"en\" במפורש).",
 	"apihelp-query+languageinfo-paramvalue-prop-variants": "קודי השפה של ההגוונים שהשפה הזאת תומכת בהם.",
 	"apihelp-query+languageinfo-param-code": "קודי השפה של השפות שאמורות להיות מוחזרות, או <code>*</code> כדי לקבל את כל השפות.",

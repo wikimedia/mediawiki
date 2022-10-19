@@ -3640,6 +3640,8 @@
 	"searchsuggest-containing": "Cercar paginas que contine",
 	"search-match-redirect-label": "Rediriger al pagina si un recerca ha trovate un titulo exacte",
 	"search-match-redirect-help": "Selige isto pro esser redirigite a un pagina quando le titulo del pagina corresponde a lo que tu ha cercate",
+	"search-thumbnail-extra-namespaces-label": "Monstrar miniaturas in Special:Recerca",
+	"search-thumbnail-extra-namespaces-message": "Monstrar tamben miniaturas pro le spatio{{PLURAL:$2||s}} de nomines $1. Le miniaturas pro $3 se monstra sempre.",
 	"searchlimit-label": "Numero de resultatos de recerca a monstrar sur cata pagina:",
 	"searchlimit-help": "Numero maxime: $1",
 	"api-clientside-error-noconnect": "Impossibile connecter al servitor. Assecura te que le connexion a Internet functiona e tenta de novo.",
