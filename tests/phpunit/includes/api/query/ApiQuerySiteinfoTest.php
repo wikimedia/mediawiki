@@ -135,6 +135,9 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testNamespaceAliases() {
+		// XXX: why does this fail when the en-x-piglatin variant is enabled?
+		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, false );
+
 		$expected = $this->getServiceContainer()->getContentLanguage()->getNamespaceAliases();
 		$expected = array_map(
 			static function ( $key, $val ) {

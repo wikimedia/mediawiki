@@ -3117,6 +3117,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideSendCacheControl
 	 */
 	public function testSendCacheControl( array $options = [], array $expectations = [] ) {
+		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, $options['variant'] ?? false );
+
 		$output = $this->newInstance( [
 			'UseCdn' => $options['useCdn'] ?? false,
 		] );
@@ -3152,31 +3154,46 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		foreach ( $headers as $header => $default ) {
 			$value = $expectations[$header] ?? $default;
 			if ( $value === true ) {
-				$this->assertNotEmpty( $response->getHeader( $header ) );
+				$this->assertNotEmpty( $response->getHeader( $header ), "$header header" );
 			} elseif ( $value === false ) {
-				$this->assertNull( $response->getHeader( $header ) );
+				$this->assertNull( $response->getHeader( $header ), "$header header" );
 			} else {
-				$this->assertEquals( $value, $response->getHeader( $header ) );
+				$this->assertEquals( $value, $response->getHeader( $header ), "$header header" );
 			}
 		}
 	}
 
 	public function provideSendCacheControl() {
 		return [
-			'Default' => [],
-			'Logged out max-age' => [
+			'Vary on variant' => [
+				[
+					'variant' => true,
+				],
+				[
+					'Vary' => 'Accept-Encoding, Cookie, Accept-Language',
+				]
+			],
+			'Private per default' => [
+				[],
 				[
 					'Cache-Control' => 'private, must-revalidate, max-age=0',
 				],
 			],
-			'Cookies' => [
+			'Cookies force private' => [
 				[
 					'cookie' => true,
+					'useCdn' => true,
+					'cdnMaxAge' => 300,
 				],
+				[
+					'Cache-Control' => 'private, must-revalidate, max-age=0',
+				]
 			],
 			'Disable client cache' => [
 				[
 					'enableClientCache' => false,
+					'useCdn' => true,
+					'cdnMaxAge' => 300,
 				],
 				[
 					'Cache-Control' => 'no-cache, no-store, max-age=0, must-revalidate',

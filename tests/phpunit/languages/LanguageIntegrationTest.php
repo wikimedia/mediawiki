@@ -47,6 +47,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$newHooks = $wgHooks;
 		unset( $newHooks['LanguageGetTranslatedLanguageNames'] );
 		$this->overrideConfigValue( MainConfigNames::Hooks, $newHooks );
+		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 	}
 
 	/**

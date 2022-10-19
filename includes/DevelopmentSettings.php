@@ -69,7 +69,8 @@ unset( $logDir );
  */
 
 global $wgRateLimits, $wgEnableJavaScriptTest, $wgRestAPIAdditionalRouteFiles,
-	$wgDeferredUpdateStrategy, $wgParsoidSettings, $wgMaxArticleSize;
+	$wgPasswordAttemptThrottle, $wgForceDeferredUpdatesPreSend,
+	$wgParsoidSettings, $wgMaxArticleSize;
 
 // Set almost infinite rate limits. This allows integration tests to run unthrottled
 // in CI and for devs locally (T225796), but doesn't turn a large chunk of production
@@ -112,8 +113,9 @@ $wgParsoidSettings['html2wtLimits']['htmlSize'] = 100 * 1024; // in characters!
  * (Must reference a Phabricator ticket)
  */
 
-global $wgSQLMode, $wgLocalisationCacheConf,
-	$wgCacheDirectory, $wgEnableUploads, $wgCiteBookReferencing;
+global $wgSQLMode, $wgLocalisationCacheConf, $wgCiteBookReferencing,
+	$wgCacheDirectory, $wgEnableUploads, $wgUsePigLatinVariant,
+	$wgVisualEditorEnableWikitext, $wgDefaultUserOptions;
 
 // Enable MariaDB/MySQL strict mode (T108255)
 $wgSQLMode = 'STRICT_ALL_TABLES,ONLY_FULL_GROUP_BY';
@@ -132,6 +134,9 @@ $wgCacheDirectory = TempFSFile::getUsableTempDirectory() .
 
 // Enable uploads for FileImporter browser tests (T190829)
 $wgEnableUploads = true;
+
+// Enable en-x-piglatin variant conversion for testing
+$wgUsePigLatinVariant = true;
 
 // Enable the new wikitext mode for browser testing (T270240)
 $wgVisualEditorEnableWikitext = true;
