@@ -3768,6 +3768,8 @@
 	"searchsuggest-containing": "חיפוש דפים שמכילים",
 	"search-match-redirect-label": "מעבר ישיר לתוצאת חיפוש אם היא מהווה התאמה מדויקת לחיפוש",
 	"search-match-redirect-help": "סימון העדפה זו יגרום לכך שהדפדפן יעבור ישירות לדף שנמצא בחיפוש, אם כותרת הדף מתאימה למונח שחיפשת",
+	"search-thumbnail-extra-namespaces-label": "להציג תמונות ממוזערות ב־Special:Search",
+	"search-thumbnail-extra-namespaces-message": "להציג תמונות ממוזערות גם {{PLURAL:$2|מרחב השם|מרחבי השם}} $1. תמונות ממוזערות עבור $3 מוצגות תמיד.",
 	"searchlimit-label": "כמה תוצאות חיפוש להציג בכל דף:",
 	"searchlimit-help": "המספר המרבי: $1",
 	"api-clientside-error-noconnect": "הניסיון להתחבר לשרת נכשל. באפשרותך לוודא שהחיבור שלך לאינטרנט תקין ולנסות שוב.",
