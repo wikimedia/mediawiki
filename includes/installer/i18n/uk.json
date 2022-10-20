@@ -20,7 +20,8 @@
 			"Vlad5250",
 			"Ата",
 			"Тест",
-			"아라"
+			"아라",
+			"Пан Хаунд"
 		]
 	},
 	"config-desc": "Інсталятор MediaWiki",
@@ -229,6 +230,10 @@
 	"config-upload-help": "Завантаження файлів підставляє Ваш сервер під потенційні загрози.\nДетальнішу інформацію можна почитати у посібнику, [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security розділ про безпеку].\n\nЩоб дозволити завантаження файлів, змініть режим підпапки <code>images</code> у кореневій папці MediaWiki так, щоб сервер міг у неї записувати.\nПотім увімкніть цю опцію.",
 	"config-upload-deleted": "Каталог для вилучених файлів:",
 	"config-upload-deleted-help": "Оберіть папку для архівації видалених файлів.\nВ ідеалі, вона не має бути доступною через інтернет.",
+	"config-personalization-settings": "Персоналізація",
+	"config-logo-preview-main": "Головна сторінка",
+	"config-logo-icon": "Логотип (іконка):",
+	"config-logo-filedrop": "Перетягніть сюди файл зображення",
 	"config-instantcommons": "Увімкнути Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] — це функція, що дозволяє вікі використовувати зображення, звуки та інші медіа, розміщені у [https://commons.wikimedia.org/ Вікісховищі].\nДля цього MediaWiki необхідний доступ до інтернету.\n\nДодаткову інформацію стосовно цієї функції, включаючи інструкції, як її увімкнути у вікі, відмінних від Вікісховища, дивіться у [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos посібнику].",
 	"config-cc-error": "Механізм вибору ліцензії Creative Commons не дав результатів.\nВведіть назву ліцензії вручну.",

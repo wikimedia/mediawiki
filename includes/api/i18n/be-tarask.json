@@ -69,7 +69,7 @@
 	"apihelp-delete-summary": "Выдаліць старонку.",
 	"apihelp-delete-example-reason": "Выдаліць <kbd>Галоўную старонку</kbd> з пазначэньнем прычыны <kbd>Падрыхтоўка да пераносу</kbd>.",
 	"apihelp-edit-summary": "Ствараць і правіць старонкі.",
-	"apihelp-edit-param-sectiontitle": "Загаловак новага разьдзелу.",
+	"apihelp-edit-param-sectiontitle": "Загаловак новага разьдзелу пры выкарыстаньні <var>$1section=new</var>.",
 	"apihelp-edit-param-text": "Зьмест старонкі.",
 	"apihelp-edit-param-bot": "Пазначыць гэтую праўку як зробленую робатам.",
 	"apihelp-edit-param-createonly": "Ня правіць старонку, калі ўжо існуе.",
