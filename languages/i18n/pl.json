@@ -3787,6 +3787,8 @@
 	"searchsuggest-containing": "Szukaj stron zawierających tekst",
 	"search-match-redirect-label": "Przekieruj do właściwych wyników podczas wyszukiwania",
 	"search-match-redirect-help": "Przekieruj do strony, gdy jej tytuł odpowiada tekstowi wyszukiwania",
+	"search-thumbnail-extra-namespaces-label": "Wyświetlaj miniatury w {{#special:Search}}",
+	"search-thumbnail-extra-namespaces-message": "Wyświetlaj również miniatury dla $1 {{PLURAL:$2|przestrzeni nazw}}. Zawsze wyświetlane są miniatury dla $3.",
 	"searchlimit-label": "Liczba wyników do wyświetlenia na każdej stronie:",
 	"searchlimit-help": "Maksymalna liczba: $1",
 	"api-clientside-error-noconnect": "Nie udało się połączyć z serwerem. Upewnij się, że masz działające połączenie z internetem i spróbuj ponownie.",
