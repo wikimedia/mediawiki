@@ -23,6 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Feed\FeedItem;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Revision\MutableRevisionRecord;

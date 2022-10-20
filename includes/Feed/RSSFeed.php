@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Copyright © 2004 Brion Vibber <brion@pobox.com>
  * https://www.mediawiki.org/
@@ -22,95 +21,76 @@
  * @file
  */
 
-use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
+namespace MediaWiki\Feed;
 
 /**
- * Generate an Atom feed.
+ * Generate an RSS feed.
  *
  * @ingroup Feed
  */
-class AtomFeed extends ChannelFeed {
+class RSSFeed extends ChannelFeed {
+
 	/**
-	 * Format a date given timestamp, if one is given.
+	 * Format a date given a timestamp. If a timestamp is not given, nothing is returned
 	 *
-	 * @param string|int|null $timestamp
-	 * @return string|null
+	 * @param string|int|null $ts Timestamp
+	 * @return string|null Date string
 	 */
-	private function formatTime( $timestamp ) {
-		if ( $timestamp ) {
-			// need to use RFC 822 time format at least for rss2.0
-			return gmdate( 'Y-m-d\TH:i:s', (int)wfTimestamp( TS_UNIX, $timestamp ) );
+	private function formatTime( $ts ) {
+		if ( $ts ) {
+			return gmdate( 'D, d M Y H:i:s \G\M\T', (int)wfTimestamp( TS_UNIX, $ts ) );
 		}
 		return null;
 	}
 
 	/**
-	 * Outputs a basic header for Atom 1.0 feeds.
+	 * Output an RSS 2.0 header
 	 */
 	public function outHeader() {
 		$this->outXmlHeader();
 		// Manually escaping rather than letting Mustache do it because Mustache
 		// uses htmlentities, which does not work with XML
 		$templateParams = [
-			'language' => $this->xmlEncode( $this->getLanguage() ),
-			'feedID' => $this->getFeedId(),
 			'title' => $this->getTitle(),
 			'url' => $this->xmlEncode( wfExpandUrl( $this->getUrlUnescaped(), PROTO_CURRENT ) ),
-			'selfUrl' => $this->getSelfUrl(),
-			'timestamp' => $this->xmlEncode( $this->formatTime( wfTimestampNow() ) ),
 			'description' => $this->getDescription(),
+			'language' => $this->xmlEncode( $this->getLanguage() ),
 			'version' => $this->xmlEncode( MW_VERSION ),
+			'timestamp' => $this->xmlEncode( $this->formatTime( wfTimestampNow() ) )
 		];
-		print $this->templateParser->processTemplate( 'AtomHeader', $templateParams );
+		print $this->templateParser->processTemplate( 'RSSHeader', $templateParams );
 	}
 
 	/**
-	 * Atom 1.0 requires a unique, opaque IRI as a unique identifier
-	 * for every feed we create. For now just use the URL, but who
-	 * can tell if that's right? If we put options on the feed, do we
-	 * have to change the id? Maybe? Maybe not.
-	 *
-	 * @return string
-	 */
-	private function getFeedId() {
-		return $this->getSelfUrl();
-	}
-
-	/**
-	 * Atom 1.0 requests a self-reference to the feed.
-	 * @return string
-	 */
-	private function getSelfUrl() {
-		global $wgRequest;
-		return htmlspecialchars( $wgRequest->getFullRequestURL() );
-	}
-
-	/**
-	 * Output a given item.
-	 * @param FeedItem $item
+	 * Output an RSS 2.0 item
+	 * @param FeedItem $item Item to be output
 	 */
 	public function outItem( $item ) {
-		$mimeType = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::MimeType );
 		// Manually escaping rather than letting Mustache do it because Mustache
 		// uses htmlentities, which does not work with XML
 		$templateParams = [
-			"uniqueID" => $item->getUniqueID(),
 			"title" => $item->getTitle(),
-			"mimeType" => $this->xmlEncode( $mimeType ),
 			"url" => $this->xmlEncode( wfExpandUrl( $item->getUrlUnescaped(), PROTO_CURRENT ) ),
-			"date" => $this->xmlEncode( $this->formatTime( $item->getDate() ) ),
+			"permalink" => $item->rssIsPermalink,
+			"uniqueID" => $item->getUniqueID(),
 			"description" => $item->getDescription(),
+			"date" => $this->xmlEncode( $this->formatTime( $item->getDate() ) ),
 			"author" => $item->getAuthor()
 		];
-		print $this->templateParser->processTemplate( 'AtomItem', $templateParams );
+		$comments = $item->getCommentsUnescaped();
+		if ( $comments ) {
+			$commentsEscaped = $this->xmlEncode( wfExpandUrl( $comments, PROTO_CURRENT ) );
+			$templateParams["comments"] = $commentsEscaped;
+		}
+		print $this->templateParser->processTemplate( 'RSSItem', $templateParams );
 	}
 
 	/**
-	 * Outputs the footer for Atom 1.0 feed (basically '\</feed\>').
+	 * Output an RSS 2.0 footer
 	 */
 	public function outFooter() {
-		print "</feed>";
+		print "</channel></rss>";
 	}
 }
+
+class_alias( RSSFeed::class, 'RSSFeed' );

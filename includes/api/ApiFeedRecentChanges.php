@@ -19,6 +19,7 @@
  * @since 1.23
  */
 
+use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\MainConfigNames;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -113,7 +114,7 @@ class ApiFeedRecentChanges extends ApiBase {
 	}
 
 	/**
-	 * Return a ChannelFeed object.
+	 * Return a MediaWiki\Feed\ChannelFeed object.
 	 *
 	 * @param string $feedFormat Feed's format (either 'rss' or 'atom')
 	 * @param string $specialPageName Relevant special page name (either 'Recentchanges' or

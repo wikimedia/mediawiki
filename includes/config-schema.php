@@ -1914,8 +1914,8 @@ return [
 			'OverrideSiteFeed' => [
 			],
 			'FeedClasses' => [
-				'rss' => 'RSSFeed',
-				'atom' => 'AtomFeed',
+				'rss' => 'MediaWiki\\Feed\\RSSFeed',
+				'atom' => 'MediaWiki\\Feed\\AtomFeed',
 			],
 			'AdvertisedFeedTypes' => [
 				0 => 'atom',

@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Feed\FeedItem;
 use MediaWiki\MainConfigNames;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
