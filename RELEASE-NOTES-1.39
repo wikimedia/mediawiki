@@ -1,9 +1,15 @@
 = MediaWiki 1.39 =
 
-== MediaWiki 1.39.0-rc.1 ==
+== MediaWiki 1.39.0-rc.2 ==
 
 MediaWiki 1.39 is a pre-release testing branch, and is not recommended
 for use in production.
+
+=== Changes since MediaWiki 1.39.0-rc.1 ===
+* Localisation updates.
+* (T320282) Upgrading wikimedia/xmp-reader (0.8.3 => 0.8.4).
+
+== MediaWiki 1.39.0-rc.1 ==
 
 === Changes since MediaWiki 1.39.0-rc.0 ===
 * Localisation updates.
@@ -145,7 +151,7 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Updated wikimedia/scoped-callback from 3.0.0 to 4.0.0.
 * Updated wikimedia/services from 2.0.1 to 3.0.0.
 * Updated wikimedia/timestamp from 3.0.0 to 4.0.0.
-* Updated wikimedia/xmp-reader from 0.8.1 to 0.8.4.
+* Updated wikimedia/xmp-reader from 0.8.1 to 0.8.5.
 
 ===== Changed development-only external libraries =====
 * Updated composer/spdx-licenses from 1.5.5 to 1.5.6.
