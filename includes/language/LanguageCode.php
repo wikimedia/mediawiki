@@ -163,7 +163,7 @@ class LanguageCode {
 	}
 
 	/**
-	 * Get the normalised IETF language tag
+	 * Get the normalised IANA language tag
 	 * See unit test for examples.
 	 * See mediawiki.language.bcp47 for the JavaScript implementation.
 	 *
@@ -196,6 +196,57 @@ class LanguageCode {
 		}
 		$langCode = implode( '-', $codeBCP );
 		return $langCode;
+	}
+
+	/**
+	 * Convert standardized BCP 47 codes to the internal names used
+	 * by MediaWiki and returned by Language::getCode().  This function
+	 * should be the inverse of LanguageCode::bcp47().  Note that BCP 47
+	 * explicitly states that language codes are case insensitive.
+	 *
+	 * Since LanguageFactory::getLanguage() is pretty generous about
+	 * accepting aliases (as long as they are lowercased), this function
+	 * should be equivalent to:
+	 *   LanguageFactory::getLanguage(strtolower($code))->getCode()
+	 * but (a) better describes the caller's intention, and (b) should
+	 * be much more efficient in practice.
+	 *
+	 * @param string $code The standard BCP-47 language code
+	 * @return string A MediaWiki-internal code, as returned for example by
+	 *    Language::getCode()
+	 * @since 1.40
+	 */
+	public static function bcp47ToInternal( $code ) {
+		static $invertedLookup = [];
+		if ( !$invertedLookup ) {
+			// There should never be two different entries in
+			// NON_STANDARD_LANGUAGE_CODE_MAPPING which map *different*
+			// internal codes to the same external BCP-47 code.  That is,
+			// BCP-47 should preserve all the information from the internal
+			// code (discussed further above)[*].  But note the converse isn't
+			// true: multiple BCP-47 codes can alias to the same internal code:
+			//     BCP-47      internal
+			//   zh-Hans-CN => zh-cn    (in NON_STANDARD_LANGUAGE_CODE_MAPPING)
+			//   zh-Hans    => zh-hans  (not in " )
+			//   zh-CN      => zh-cn    (not in " )
+			//
+			// [*] eml/egl are the "exception that proves the rule": `egl` *is*
+			// (prematurely?) defined as an internal code, but only
+			// eml.wikipedia.org exists, and it defines its language as `eml`;
+			// for internal purposes `egl` should map back into `eml` until
+			// `eml` is deprecated (aka an `eml => egl` entry is added to
+			// DEPRECATED_LANGUAGE_CODE_MAPPING): T36217.
+			foreach ( self::NON_STANDARD_LANGUAGE_CODE_MAPPING as $internal => $bcp47 ) {
+				$invertedLookup[strtolower( $bcp47 )] = $internal;
+			}
+			// We deliberately do *not* use DEPRECATED_LANGUAGE_CODE_MAPPING
+			// here: deprecated codes are no longer valid mediawiki internal
+			// codes and we should never return them.
+		}
+		// Internal codes are all lowercase.  This also achieves
+		// case-insensitivity in the lookup.
+		$code = strtolower( $code );
+		return $invertedLookup[$code] ?? $code;
 	}
 
 	/**
