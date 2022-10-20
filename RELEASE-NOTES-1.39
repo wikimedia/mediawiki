@@ -515,6 +515,8 @@ because of Phabricator reports.
   ResourceLoaderStartUpModule, ResourceLoaderUserModule,
   ResourceLoaderUserOptionsModule, ResourceLoaderUserStylesModule,
   ResourceLoaderWikiModule.
+* WANObjectCache::reap() and WANObjectCache::reapCheckKey() have been
+  deprecated without replacement.
 * The following methods in WikiRevision and their interfaces
   ImportableUploadRevision and ImportableOldRevision are deprecated:
   - ::getUserObj() → ::getUser()
