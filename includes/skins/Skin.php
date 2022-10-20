@@ -2398,7 +2398,7 @@ abstract class Skin extends ContextSource {
 			$items,
 			$this->getContext(),
 			'',
-			[],
+			$this->defaultLinkOptions,
 			$this->getAfterPortlet( $name )
 		);
 		return $portletComponent->getTemplateData();
