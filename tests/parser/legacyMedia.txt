@@ -1,6 +1,6 @@
 !! options
 version=2
-parsoid-compatible=wt2html
+parsoid-compatible=wt2html,wt2wt
 !! end
 
 !! article

@@ -4,7 +4,7 @@
 # parser tests in integrated mode with Parsoid. This option is ignored
 # when this test file is run with Parsoid in standalone mode.
 !! options
-parsoid-compatible=wt2html
+parsoid-compatible=wt2html,wt2wt
 version=2
 !! end
 

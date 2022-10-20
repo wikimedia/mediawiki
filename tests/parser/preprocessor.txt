@@ -1,0 +1,531 @@
+# The parsoid-compatible option below is only relevant when we are running
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html,wt2wt
+version=2
+!! end
+
+!!article
+Foo
+!!text
+FOO
+!!endarticle
+
+!! article
+Template:1x
+!! text
+{{{1}}}
+!! endarticle
+
+!!article
+Template:Bullet
+!!text
+*Bar
+!!endarticle
+
+!! article
+Template:Precedence5
+!! text
+{{{{{1}}}}}
+!! endarticle
+
+!! article
+Template:Preprocessor_precedence_9
+!! text
+;4: {{{{1}}}}
+;5: {{{{{2}}}}}
+;6: {{{{{{3}}}}}}
+;7: {{{{{{{4}}}}}}}
+!! endarticle
+
+!! article
+Template:Preprocessor_precedence_10
+!! text
+;1: -{R|raw}-
+;2: -{{Bullet}}-
+;3: -{{{1}}}-
+;4: -{{{{2}}}}-
+;5: -{{{{{3}}}}}-
+;6: -{{{{{{4}}}}}}-
+;7: -{{{{{{{5}}}}}}}-
+!! endarticle
+
+###
+### Preprocessor precedence tests
+### See: https://www.mediawiki.org/wiki/Preprocessor_ABNF
+###
+##{{[[-{{{{{{[[Foo|bar}}]]}-}}}}}]]
+!! test
+Preprocessor precedence 1: link is rightmost opening
+!! options
+parsoid=wt2html
+!! wikitext
+{{[[Foo|bar}}]]
+
+But close-brace is not a valid character in a link title:
+{{[[Foo}}|bar]]
+
+However, we can still tell this was handled as a link in the preprocessor:
+{{1x|[[Foo}}|bar]]|bat}}
+!! html/php
+<p>{{<a href="/wiki/Foo" title="Foo">bar}}</a>
+</p><p>But close-brace is not a valid character in a link title:
+{{[[Foo}}|bar]]
+</p><p>However, we can still tell this was handled as a link in the preprocessor:
+[[Foo}}|bar]]
+</p>
+!! html/parsoid
+<p>{{<a rel="mw:WikiLink" href="./Foo" title="Foo">bar}}</a></p>
+<p>But close-brace is not a valid character in a link title: {{[[Foo}}|bar]]</p>
+<p>However, we can still tell this was handled as a link in the preprocessor: <span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[Foo}}|bar]]"},"2":{"wt":"bat"}},"i":0}}]}'>[[Foo}}|bar]]</span></p>
+!! end
+
+!! test
+Preprocessor precedence 2: template is rightmost opening
+!! options
+language=zh
+!! wikitext
+-{{1x|foo}-}}-
+!! html/php
+<p>-foo}--
+</p>
+!! html/parsoid
+<p>-<span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo}-"}},"i":0}}]}'>foo}-</span>-</p>
+!! end
+
+!! test
+Preprocessor precedence 3: language converter is rightmost opening
+!! options
+language=zh
+parsoid=wt2html
+!! wikitext
+{{1x|hi}}
+
+{{-{R|1x|hi}}}-
+
+[[-{R|raw]]}-
+!! html/php
+<p>hi
+</p><p>{{1x|hi}}
+</p><p>[[raw]]
+</p>
+!! html/parsoid
+<p><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"hi"}},"i":0}}]}'>hi</span></p>
+<p>{{<span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"1x|hi}}"}}'></span></p>
+<p>[[<span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw]]"}}'></span></p>
+!! end
+
+!! test
+Preprocessor precedence 4: left-most angle bracket
+!! options
+language=zh
+!! wikitext
+<!--{raw}-->
+!! html/php
+!! html/parsoid
+<!--{raw}-->
+!! end
+
+!! test
+Preprocessor precedence 5: tplarg takes precedence over template
+!! wikitext
+{{Precedence5|Bullet}}
+!! html/php
+<ul><li>Bar</li></ul>
+!! html/parsoid
+<ul about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Precedence5","href":"./Template:Precedence5"},"params":{"1":{"wt":"Bullet"}},"i":0}}]}'><li>Bar</li></ul>
+!! end
+
+!! test
+Preprocessor precedence 6: broken link is rightmost opening
+!! options
+parsoid=wt2html
+!! wikitext
+{{1x|[[Foo}}
+
+{{1x|[[Foo|bar|bat=baz}}
+!! html/php
+<p>{{1x|[[Foo}}
+</p><p>{{1x|[[Foo|bar|bat=baz}}
+</p>
+!! html/parsoid
+<p>{{1x|[[Foo}}</p>
+<p>{{1x|[[Foo|bar|bat=baz}}</p>
+!! end
+
+# This next test exposes a difference between PHP and Parsoid:
+# Given [[Foo|{{1x|Bar]]x}}y]]z:
+# 1) Both PHP and Parsoid ignore the `]]` inside the `1x` in the
+# "preprocessor" stage.  The `{{1x` extends until the `x}}`, and the
+# outer `[[Foo` extends until the `y]]`
+# 2a) But then the PHP preprocessor emits `[[Foo|Bar]]xy]]z` as an
+# intermediate result (after template expansion), and link processing
+# happens on this intermediate result, which moves the wikilink
+# boundary leftward to `[[Foo|Bar]]`
+# 2b) Parsoid works in a single step, so it's going to keep the
+# wikilink as extending to the `y]]`
+# 3a) Then PHP does linktrail processing which slurps up the trailing
+# `xy` inside the link.
+# 3b) Parsoid will do linktrail processing to slurp up the trailing
+# `z` inside the link.
+# This is "correct" behavior.  Parsoid's basic worldview is that the
+# `]]` inside the template shouldn't be allowed to leak out to affect
+# the surrounding wikilink.  PHP may match Parsoid (in the future)
+# if you use {{#balance}} (T114445).
+
+!! test
+Preprocessor precedence 7: broken template is rightmost opening
+!! options
+parsoid=wt2html
+!! wikitext
+[[Foo|{{1x|Bar]]
+
+[[Foo|{{1x|Bar]]-x}}-y]]-z
+
+Careful: linktrails can move the end of the wikilink:
+[[Foo|{{1x|y']]a}}l]]l
+!! html/php
+<p><a href="/wiki/Foo" title="Foo">{{1x|Bar</a>
+</p><p><a href="/wiki/Foo" title="Foo">Bar</a>-x-y]]-z
+</p><p>Careful: linktrails can move the end of the wikilink:
+<a href="/wiki/Foo" title="Foo">y'al</a>]]l
+</p>
+!! html/parsoid
+<p>[[Foo|{{1x|Bar]]</p>
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo"><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"Bar]]-x"}},"i":0}}]}'>Bar]]-x</span>-y</a>-z</p>
+<p>Careful: linktrails can move the end of the wikilink:
+<a rel="mw:WikiLink" href="./Foo" title="Foo"><span typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"y&#39;]]a"}},"i":0}}]}'>y']]a</span>ll</a></p>
+!! end
+
+!! test
+Preprocessor precedence 8: broken language converter is rightmost opening
+!! options
+language=zh
+!! wikitext
+[[Foo-{R|raw]]
+!! html
+<p>[[Foo-{R|raw]]
+</p>
+!! end
+
+!! test
+Preprocessor precedence 9: groups of braces
+!! wikitext
+{{Preprocessor precedence 9|Four|Bullet|1|2}}
+!! html/php
+<dl><dt>4</dt>
+<dd>{Four}</dd>
+<dt>5</dt>
+<dd></dd></dl>
+<ul><li>Bar</li></ul>
+<dl><dt>6</dt>
+<dd>Four</dd>
+<dt>7</dt>
+<dd>{Bullet}</dd></dl>
+!! html/parsoid+standalone
+<dl about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Preprocessor precedence 9","href":"./Template:Preprocessor_precedence_9"},"params":{"1":{"wt":"Four"},"2":{"wt":"Bullet"},"3":{"wt":"1"},"4":{"wt":"2"}},"i":0}}]}'><dt>4</dt><dd>{Four}</dd>
+<dt>5</dt><dd></dd></dl><ul about="#mwt1"><li>Bar</li></ul><span about="#mwt1">
+</span><dl about="#mwt1"><dt>6</dt><dd>Four</dd>
+<dt>7</dt><dd>{Bullet}</dd></dl>
+!! html/parsoid+integrated
+<dl about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"Preprocessor precedence 9","href":"./Template:Preprocessor_precedence_9"},"params":{"1":{"wt":"Four"},"2":{"wt":"Bullet"},"3":{"wt":"1"},"4":{"wt":"2"}},"i":0}}]}'><dt>4</dt><dd>{Four}</dd>
+<dt>5</dt><dd></dd></dl><span about="#mwt1">
+</span><ul about="#mwt1"><li>Bar</li></ul><span about="#mwt1">
+</span><dl about="#mwt1"><dt>6</dt><dd>Four</dd>
+<dt>7</dt><dd>{Bullet}</dd></dl>
+!! end
+
+!! test
+Preprocessor precedence 10: groups of braces with leading dash
+!! options
+language=zh
+!! wikitext
+{{Preprocessor precedence 10|Three|raw2|Bullet|1|2}}
+!! html/php
+<dl><dt>1</dt>
+<dd>raw</dd>
+<dt>2</dt>
+<dd>-</dd></dl>
+<ul><li>Bar-</li></ul>
+<dl><dt>3</dt>
+<dd>-Three-</dd>
+<dt>4</dt>
+<dd>raw2</dd>
+<dt>5</dt>
+<dd>-</dd></dl>
+<ul><li>Bar-</li></ul>
+<dl><dt>6</dt>
+<dd>-Three-</dd>
+<dt>7</dt>
+<dd>raw2</dd></dl>
+!! html/parsoid+standalone
+<dl about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"},{"k":"2"},{"k":"3"},{"k":"4"},{"k":"5"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"Preprocessor precedence 10","href":"./Template:Preprocessor_precedence_10"},"params":{"1":{"wt":"Three"},"2":{"wt":"raw2"},"3":{"wt":"Bullet"},"4":{"wt":"1"},"5":{"wt":"2"}},"i":0}}]}'><dt>1</dt><dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw"}}'></span></dd>
+<dt>2</dt><dd>-</dd></dl><ul about="#mwt1"><li>Bar-</li></ul><span about="#mwt1">
+</span><dl about="#mwt1"><dt>3</dt><dd>-Three-</dd>
+<dt>4</dt><dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw2"}}'></span></dd>
+<dt>5</dt><dd>-</dd></dl><ul about="#mwt1"><li>Bar-</li></ul><span about="#mwt1">
+</span><dl about="#mwt1"><dt>6</dt><dd>-Three-</dd>
+<dt>7</dt><dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw2"}}'></span></dd></dl>
+!! html/parsoid+integrated
+<dl about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"},{"k":"2"},{"k":"3"},{"k":"4"},{"k":"5"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"Preprocessor precedence 10","href":"./Template:Preprocessor_precedence_10"},"params":{"1":{"wt":"Three"},"2":{"wt":"raw2"},"3":{"wt":"Bullet"},"4":{"wt":"1"},"5":{"wt":"2"}},"i":0}}]}'><dt>1</dt><dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw"}}'></span></dd>
+<dt>2</dt><dd>-</dd></dl><span about="#mwt1">
+</span><ul about="#mwt1"><li>Bar-</li></ul><span about="#mwt1">
+</span><dl about="#mwt1"><dt>3</dt><dd>-Three-</dd>
+<dt>4</dt><dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw2"}}'></span></dd>
+<dt>5</dt><dd>-</dd></dl><span about="#mwt1">
+</span><ul about="#mwt1"><li>Bar-</li></ul><span about="#mwt1">
+</span><dl about="#mwt1"><dt>6</dt><dd>-Three-</dd>
+<dt>7</dt><dd><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"raw2"}}'></span></dd></dl>
+!! end
+
+!! test
+Preprocessor precedence 11: found during visual diff testing
+!! wikitext
+{{#tag:span|-{{#tag:span|-{{1x|x}}}}}}
+
+{{1x|-{{1x|-{{1x|x}}}}}}
+
+{{1x|-{{1x|x}}}}
+!! html/php
+<p><span>-<span>-x</span></span>
+</p><p>--x
+</p><p>-x
+</p>
+!! html/parsoid
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"#tag:span","function":"tag"},"params":{"1":{"wt":"-{{#tag:span|-{{1x|x}}}}"}},"i":0}}]}'>-<span>-x</span></span></p>
+
+<p><span about="#mwt4" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"-{{1x|-{{1x|x}}}}"}},"i":0}}]}'>--x</span></p>
+
+<p><span about="#mwt7" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"-{{1x|x}}"}},"i":0}}]}'>-x</span></p>
+!! end
+
+# FIXME: In integrated mode, the preprocessor returns {{1x|<tag>foo-{bar}bat</tag>}}
+# and doesn't expand it. This is a difference with legacy processing and could lead to
+# edge-case rendering diffs on pages wit broken language converter markup.
+# For now, we'll leave te integrated mode test as a known failure, but this isn't
+# very high priority to fix.
+!! test
+Preprocessor precedence 12: broken language converter closed by brace.
+!! options
+parsoid=wt2html
+!! wikitext
+This form breaks the template, which is unfortunate:
+*{{1x|foo-{bar}bat}}
+
+But if the broken language converter markup is inside an extension
+tag, nothing bad happens:
+*<nowiki>foo-{bar}bat</nowiki>
+*{{1x|<nowiki>foo-{bar}bat</nowiki>}}
+*<pre>foo-{bar}bat</pre>
+*{{1x|<pre>foo-{bar}bat</pre>}}
+
+<tag>foo-{bar}bat</tag>
+{{1x|<tag>foo-{bar}bat</tag>}}
+
+!! html/php
+<p>This form breaks the template, which is unfortunate:
+</p>
+<ul><li>{{1x|foo-{bar}bat}}</li></ul>
+<p>But if the broken language converter markup is inside an extension
+tag, nothing bad happens:
+</p>
+<ul><li>foo-&#123;bar}bat</li>
+<li>foo-&#123;bar}bat</li>
+<li><pre>foo-{bar}bat</pre></li>
+<li><pre>foo-{bar}bat</pre></li></ul>
+<pre>'foo-{bar}bat'
+array (
+)
+</pre>
+<pre>'foo-{bar}bat'
+array (
+)
+</pre>
+!! html/parsoid
+<p>This form breaks the template, which is unfortunate:</p>
+<ul><li>{{1x|foo-{bar}bat}}</li></ul>
+
+<p>But if the broken language converter markup is inside an extension
+tag, nothing bad happens:</p>
+<ul><li><span typeof="mw:Nowiki">foo-{bar}bat</span></li>
+<li><span typeof="mw:Nowiki mw:Transclusion" about="#mwt9" data-parsoid='{"pi":[[{"k":"1"}]],}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;nowiki>foo-{bar}bat&lt;/nowiki>"}},"i":0}}]}'>foo-{bar}bat</span></li>
+<li><pre typeof="mw:Extension/pre" about="#mwt11" data-parsoid='{"stx":"html"}' data-mw='{"name":"pre","attrs":{},"body":{"extsrc":"foo-{bar}bat"}}'>foo-{bar}bat</pre></li>
+<li><pre typeof="mw:Extension/pre mw:Transclusion" about="#mwt12" data-parsoid='{"stx":"html","pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;pre>foo-{bar}bat&lt;/pre>"}},"i":0}}]}'>foo-{bar}bat</pre></li></ul>
+
+<pre typeof="mw:Extension/tag" about="#mwt16" data-mw='{"name":"tag","attrs":{},"body":{"extsrc":"foo-{bar}bat"}}'>'foo-{bar}bat'
+array (
+)
+</pre>
+<pre typeof="mw:Extension/tag mw:Transclusion" about="#mwt17" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&lt;tag>foo-{bar}bat&lt;/tag>"}},"i":0}}]}'>'foo-{bar}bat'
+array (
+)
+</pre>
+!! end
+
+!! test
+Preprocessor precedence 13: broken language converter in external link
+!! options
+parsoid=wt2html
+!! wikitext
+*[http://example.com/-{foo Example in URL]
+*[http://example.com Example in -{link} description]
+*{{1x|[http://example.com/-{foo Breaks template, however]}}
+!! html/php
+<ul><li><a rel="nofollow" class="external text" href="http://example.com/-{foo">Example in URL</a></li>
+<li><a rel="nofollow" class="external text" href="http://example.com">Example in -{link} description</a></li>
+<li>{{1x|<a rel="nofollow" class="external text" href="http://example.com/-{foo">Breaks template, however</a>}}</li></ul>
+!! html/parsoid
+<ul>
+<li><a rel="mw:ExtLink" href="http://example.com/-{foo" class="external text">Example in URL</a></li>
+<li><a rel="mw:ExtLink" href="http://example.com" class="external text">Example in -{link} description</a></li>
+<li>{{1x|<a rel="mw:ExtLink" href="http://example.com/-{foo" class="external text">Breaks template, however</a>}}</li>
+</ul>
+!! end
+
+## Parsoid integrated mode will drop all comments in templates & template args
+!! test
+Preprocessor precedence 14: broken language converter in comment
+!! wikitext
+*<!--{{foo}}-->...should be ok
+*<!---{{foo}}-->...extra dashes
+*{{1x|foo<!-- -{bar} -->bat}}...should be ok
+!! html/php
+<ul><li>...should be ok</li>
+<li>...extra dashes</li>
+<li>foobat...should be ok</li></ul>
+!! html/parsoid+standalone
+<ul><li data-parsoid="{}"><!--{{foo}}-->...should be ok</li>
+<li data-parsoid="{}"><!--&#x2D;{{foo}}-->...extra dashes</li>
+<li data-parsoid="{}"><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo&lt;!-- -{bar} -->bat"}},"i":0}}]}'>foo</span><span about="#mwt1"><!-- &#x2D;{bar} --></span><span about="#mwt1">bat</span>...should be ok</li></ul>
+!! html/parsoid+integrated
+<ul><li data-parsoid="{}"><!--{{foo}}-->...should be ok</li>
+<li data-parsoid="{}"><!--&#x2D;{{foo}}-->...extra dashes</li>
+<li><span typeof="mw:Transclusion" about="#mwt2" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"foo&lt;!-- -{bar} -->bat"}},"i":0}}]}'>foobat</span>...should be ok</li>
+!! end
+
+!! test
+Preprocessor precedence 15: broken brace markup in headings
+!! config
+wgFragmentMode=[ "html5", "legacy" ]
+!! options
+parsoid=wt2html
+!! wikitext
+__NOTOC__ __NOEDITSECTION__
+===1 foo[bar 1===
+1
+===2 foo[[bar 2===
+2
+===3 foo{bar 3===
+3
+===4 foo{{bar 4===
+4
+===5 foo{{{bar 5===
+5
+===6 foo-{bar 6===
+6
+!! html/php
+<h3><span id="1_foo.5Bbar_1"></span><span class="mw-headline" id="1_foo[bar_1">1 foo[bar 1</span></h3>
+<p>1
+</p>
+<h3><span id="2_foo.5B.5Bbar_2"></span><span class="mw-headline" id="2_foo[[bar_2">2 foo[[bar 2</span></h3>
+<p>2
+</p>
+<h3><span id="3_foo.7Bbar_3"></span><span class="mw-headline" id="3_foo{bar_3">3 foo{bar 3</span></h3>
+<p>3
+</p>
+<h3><span id="4_foo.7B.7Bbar_4"></span><span class="mw-headline" id="4_foo{{bar_4">4 foo{{bar 4</span></h3>
+<p>4
+</p>
+<h3><span id="5_foo.7B.7B.7Bbar_5"></span><span class="mw-headline" id="5_foo{{{bar_5">5 foo{{{bar 5</span></h3>
+<p>5
+</p>
+<h3><span id="6_foo-.7Bbar_6"></span><span class="mw-headline" id="6_foo-{bar_6">6 foo-{bar 6</span></h3>
+<p>6
+</p>
+!! html/parsoid
+<meta property="mw:PageProp/notoc"/> <meta property="mw:PageProp/noeditsection"/>
+<h3 id="1_foo[bar_1"><span id="1_foo.5Bbar_1" typeof="mw:FallbackId"></span>1 foo[bar 1</h3>
+<p>1</p>
+<h3 id="2_foo[[bar_2"><span id="2_foo.5B.5Bbar_2" typeof="mw:FallbackId"></span>2 foo[[bar 2</h3>
+<p>2</p>
+<h3 id="3_foo{bar_3"><span id="3_foo.7Bbar_3" typeof="mw:FallbackId"></span>3 foo{bar 3</h3>
+<p>3</p>
+<h3 id="4_foo{{bar_4"><span id="4_foo.7B.7Bbar_4" typeof="mw:FallbackId"></span>4 foo{{bar 4</h3>
+<p>4</p>
+<h3 id="5_foo{{{bar_5"><span id="5_foo.7B.7B.7Bbar_5" typeof="mw:FallbackId"></span>5 foo{{{bar 5</h3>
+<p>5</p>
+<h3 id="6_foo-{bar_6"><span id="6_foo-.7Bbar_6" typeof="mw:FallbackId"></span>6 foo-{bar 6</h3>
+<p>6</p>
+!! end
+
+!! test
+Preprocessor precedence 16: matching closing braces to opening braces
+!! options
+language=zh
+parsoid=wt2html
+!! wikitext
+-{{{1x|foo}}bar}-
+!! html/php
+<p>foobar
+</p>
+!! html/parsoid
+<p><span typeof="mw:LanguageVariant" data-mw-variant='{"disabled":{"t":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"foo\"}},\"i\":0}}]}&#39;>foo&lt;/span>bar"}}'></span></p>
+!! end
+
+!! test
+Preprocessor precedence 17: template w/o target shouldn't prevent closing
+!! options
+parsoid=wt2html
+!! wikitext
+{{1x|hi {{}}}}
+!! html/php
+<p>hi {{}}
+</p>
+!! html/parsoid
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"hi {{}}"}},"i":0}}]}'>hi {{}}</span></p>
+!! end
+
+# Ensure we're using a language without variants for this test; even
+# if $wgUsePigLatinVariant is true.  We've picked `de` arbitrarily.
+!! test
+Preprocessor precedence 18: another rightmost wins scenario
+!! options
+parsoid=wt2html
+language=de
+!! wikitext
+{{ -{{{{1|tplarg}}} }} }-
+!! html/php
+<p>{{ -{tplarg }} }-
+</p>
+!! html/parsoid
+<p>{{ -{<span about="#mwt1" typeof="mw:Param" data-mw='{"parts":[{"templatearg":{"target":{"wt":"1"},"params":{"1":{"wt":"tplarg"}},"i":0}}]}'>tplarg</span> }} }-</p>
+!! end
+
+!! test
+Preprocessor precedence 19: break syntax
+!! options
+parsoid=wt2html
+!! wikitext
+-{{
+!! html/php
+<p>-{{
+</p>
+!! html/parsoid
+<p>-{{</p>
+!! end
+
+## Regression test for Parsoid
+!! test
+Language converter over extlink
+!! wikitext
+{{1x
+| [-{oh no]}-]
+}}
+!! html/php
+<pre>[-{oh no]}-]
+</pre>
+!! html/parsoid
+<pre about="#mwt1" typeof="mw:Transclusion" data-parsoid="{}" data-mw='{"parts":[{"template":{"target":{"wt":"1x\n","href":"./Template:1x"},"params":{"1":{"wt":" [-{oh no]}-]\n"}},"i":0}}]}'>[-{oh no]}-]</pre><span about="#mwt1">
+</span>
+!! end
