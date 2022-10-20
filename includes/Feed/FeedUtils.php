@@ -21,10 +21,22 @@
  * @ingroup Feed
  */
 
+namespace MediaWiki\Feed;
+
+use CommentStore;
+use Html;
+use Linker;
+use LogFormatter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use OutputPage;
+use RequestContext;
+use TextContent;
+use Title;
+use User;
+use UtfNormal;
 
 /**
  * Helper functions for feeds
@@ -36,11 +48,11 @@ class FeedUtils {
 	/**
 	 * Check whether feeds can be used and that $type is a valid feed type
 	 *
-	 * @since 1.36 $output parameter added
-	 *
 	 * @param string $type Feed type, as requested by the user
 	 * @param OutputPage|null $output Null falls back to $wgOut
 	 * @return bool
+	 * @since 1.36 $output parameter added
+	 *
 	 */
 	public static function checkFeedOutput( $type, $output = null ) {
 		$feed = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::Feed );
@@ -67,7 +79,7 @@ class FeedUtils {
 	/**
 	 * Format a diff for the newsfeed
 	 *
-	 * @param stdClass $row Row from the recentchanges table, including fields as
+	 * @param \stdClass $row Row from the recentchanges table, including fields as
 	 *  appropriate for CommentStore
 	 * @param string|null $formattedComment rc_comment in HTML format, or null
 	 *   to format it on demand.
@@ -98,8 +110,6 @@ class FeedUtils {
 	/**
 	 * Really format a diff for the newsfeed
 	 *
-	 * @deprecated since 1.38 use formatDiffRow2
-	 *
 	 * @param Title $title
 	 * @param int $oldid Old revision's id
 	 * @param int $newid New revision's id
@@ -107,9 +117,11 @@ class FeedUtils {
 	 * @param string $comment New revision's comment
 	 * @param string $actiontext Text of the action; in case of log event
 	 * @return string
+	 * @deprecated since 1.38 use formatDiffRow2
+	 *
 	 */
 	public static function formatDiffRow( $title, $oldid, $newid, $timestamp,
-		$comment, $actiontext = ''
+										 $comment, $actiontext = ''
 	) {
 		$formattedComment = MediaWikiServices::getInstance()->getCommentFormatter()
 			->format( $comment );
@@ -130,7 +142,7 @@ class FeedUtils {
 	 * @return string
 	 */
 	public static function formatDiffRow2( $title, $oldid, $newid, $timestamp,
-		$formattedComment, $actiontext = ''
+										  $formattedComment, $actiontext = ''
 	) {
 		$feedDiffCutoff = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::FeedDiffCutoff );
 
@@ -283,19 +295,19 @@ class FeedUtils {
 	 */
 	public static function applyDiffStyle( $text ) {
 		$styles = [
-			'diff'             => 'background-color: #fff; color: #202122;',
-			'diff-otitle'      => 'background-color: #fff; color: #202122; text-align: center;',
-			'diff-ntitle'      => 'background-color: #fff; color: #202122; text-align: center;',
-			'diff-addedline'   => 'color: #202122; font-size: 88%; border-style: solid; '
+			'diff' => 'background-color: #fff; color: #202122;',
+			'diff-otitle' => 'background-color: #fff; color: #202122; text-align: center;',
+			'diff-ntitle' => 'background-color: #fff; color: #202122; text-align: center;',
+			'diff-addedline' => 'color: #202122; font-size: 88%; border-style: solid; '
 				. 'border-width: 1px 1px 1px 4px; border-radius: 0.33em; border-color: #a3d3ff; '
 				. 'vertical-align: top; white-space: pre-wrap;',
 			'diff-deletedline' => 'color: #202122; font-size: 88%; border-style: solid; '
 				. 'border-width: 1px 1px 1px 4px; border-radius: 0.33em; border-color: #ffe49c; '
 				. 'vertical-align: top; white-space: pre-wrap;',
-			'diff-context'     => 'background-color: #f8f9fa; color: #202122; font-size: 88%; '
+			'diff-context' => 'background-color: #f8f9fa; color: #202122; font-size: 88%; '
 				. 'border-style: solid; border-width: 1px 1px 1px 4px; border-radius: 0.33em; '
 				. 'border-color: #eaecf0; vertical-align: top; white-space: pre-wrap;',
-			'diffchange'       => 'font-weight: bold; text-decoration: none;',
+			'diffchange' => 'font-weight: bold; text-decoration: none;',
 		];
 
 		foreach ( $styles as $class => $style ) {
@@ -308,3 +320,5 @@ class FeedUtils {
 	}
 
 }
+
+class_alias( FeedUtils::class, 'FeedUtils' );

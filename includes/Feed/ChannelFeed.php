@@ -22,8 +22,12 @@
  * @file
  */
 
+namespace MediaWiki\Feed;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use TemplateParser;
+use Title;
 
 /**
  * Class to support the outputting of syndication feeds in Atom and RSS format.
@@ -139,3 +143,5 @@ abstract class ChannelFeed extends FeedItem {
 		echo '<?xml version="1.0"?>' . "\n";
 	}
 }
+
+class_alias( ChannelFeed::class, 'ChannelFeed' );

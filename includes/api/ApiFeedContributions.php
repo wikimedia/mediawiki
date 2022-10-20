@@ -23,6 +23,7 @@
 use MediaWiki\Api\ApiHookRunner;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\Feed\FeedItem;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
@@ -282,7 +283,7 @@ class ApiFeedContributions extends ApiBase {
 			// XXX: we could get an HTML representation of the content via getParserOutput, but that may
 			//     contain JS magic and generally may not be suitable for inclusion in a feed.
 			//     Perhaps Content should have a getDescriptiveHtml method and/or a getSourceText method.
-			// Compare also FeedUtils::formatDiffRow.
+			// Compare also MediaWiki\Feed\FeedUtils::formatDiffRow.
 			$html = '';
 		}
 
