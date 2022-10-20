@@ -2396,7 +2396,10 @@ abstract class Skin extends ContextSource {
 		$portletComponent = new SkinComponentMenu(
 			$name,
 			$items,
-			$this->getContext()
+			$this->getContext(),
+			'',
+			[],
+			$this->getAfterPortlet( $name )
 		);
 		return $portletComponent->getTemplateData();
 	}

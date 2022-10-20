@@ -29,25 +29,37 @@ class SkinComponentMenu implements SkinComponent {
 	/** @var array */
 	private $linkOptions;
 
+	/** @var string */
+	private $htmlAfterContent;
+
+	/** @var string */
+	private $htmlBeforeContent;
+
 	/**
 	 * @param string $name
 	 * @param array $items
 	 * @param MessageLocalizer $localizer
-	 * @param string $content Shown at end of portlet.
+	 * @param string $content
 	 * @param array $linkOptions
+	 * @param string $htmlAfterContent
+	 * @param string $htmlBeforeContent
 	 */
 	public function __construct(
 		string $name,
 		array $items,
 		MessageLocalizer $localizer,
 		string $content = '',
-		array $linkOptions = []
+		array $linkOptions = [],
+		string $htmlAfterContent = '',
+		string $htmlBeforeContent = ''
 	) {
 		$this->name = $name;
 		$this->items = $items;
 		$this->localizer = $localizer;
 		$this->content = $content;
 		$this->linkOptions = $linkOptions;
+		$this->htmlAfterContent = $htmlAfterContent;
+		$this->htmlBeforeContent = $htmlBeforeContent;
 	}
 
 	/**
@@ -103,8 +115,11 @@ class SkinComponentMenu implements SkinComponent {
 			$id = Sanitizer::escapeIdForAttribute( "p-$name" );
 		}
 
-		$isEmptyContent = $this->content === '';
+		$isEmptyContent = empty( $this->content );
+		$isEmptyAfterContent = empty( $this->htmlAfterContent );
+		$isEmptyBeforeContent = empty( $this->htmlBeforeContent );
 		$isEmptyItems = count( $this->items ) === 0;
+		$isEmptyPortlet = ( $isEmptyContent && $isEmptyAfterContent && $isEmptyBeforeContent && $isEmptyItems );
 		$data = [
 			'id' => $id,
 			'class' => 'mw-portlet ' . Sanitizer::escapeClass( "mw-portlet-$name" ),
@@ -113,12 +128,11 @@ class SkinComponentMenu implements SkinComponent {
 			// Will be populated by SkinAfterPortlet hook.
 			'html-after-portal' => '',
 			'html-before-portal' => '',
-			'is-empty' => $isEmptyContent && $isEmptyItems ? 'true' : 'false',
+			'is-empty' => $isEmptyPortlet ? 'true' : 'false',
 		];
 
-		// Run the SkinAfterPortlet hook and if content is added, append it to the html-after-portal
 		// for output. In production this currently supports the Wikibase 'edit' link.
-		if ( !$isEmptyContent ) {
+		if ( !$isEmptyAfterContent ) {
 			$data['html-after-portal'] = Html::rawElement(
 				'div',
 				[
@@ -127,7 +141,20 @@ class SkinComponentMenu implements SkinComponent {
 						Sanitizer::escapeClass( "after-portlet-$name" ),
 					],
 				],
-				$this->content
+				$this->htmlAfterContent
+			);
+		}
+
+		if ( !$isEmptyBeforeContent ) {
+			$data['html-before-portal'] = Html::rawElement(
+				'div',
+				[
+					'class' => [
+						'before-portlet',
+						Sanitizer::escapeClass( "before-portlet-$name" ),
+					],
+				],
+				$this->htmlBeforeContent
 			);
 		}
 
@@ -143,8 +170,7 @@ class SkinComponentMenu implements SkinComponent {
 		$data['array-items'] = $arrayItems;
 
 		$data['label'] = $this->getMenuLabel( $name );
-		$data['class'] .= ( $isEmptyItems && $isEmptyContent )
-			? ' emptyPortlet' : '';
+		$data['class'] .= $isEmptyPortlet ? ' emptyPortlet' : '';
 		return $data;
 	}
 }
