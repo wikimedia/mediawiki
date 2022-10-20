@@ -57,6 +57,11 @@ class ReflectionSchemaSourceTest extends TestCase {
 		]
 	];
 
+	public const TEST_OBSOLETE = [
+		'type' => 'string',
+		'obsolete' => 'should be excluded'
+	];
+
 	public static function getDefaultTEST_DYNAMIC_DEFAULT_AUTO() {
 		// noop
 	}
@@ -78,6 +83,9 @@ class ReflectionSchemaSourceTest extends TestCase {
 
 		$this->assertArrayNotHasKey( 'NOT_PUBLIC', $schemas );
 		$this->assertArrayNotHasKey( 'NOT_A_SCHEMA', $schemas );
+
+		$this->assertArrayNotHasKey( 'TEST_OBSOLETE', $schemas );
+		$this->assertArrayHasKey( 'TEST_OBSOLETE', $settings['obsolete-config'] );
 
 		$this->assertArrayHasKey( 'TEST_INTEGER', $schemas );
 		$this->assertArrayHasKey( 'default', $schemas['TEST_INTEGER'] );
