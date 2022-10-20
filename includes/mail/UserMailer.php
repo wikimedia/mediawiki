@@ -53,28 +53,6 @@ class UserMailer {
 	}
 
 	/**
-	 * Creates a single string from an associative array
-	 *
-	 * @param array $headers Associative Array: keys are header field names,
-	 *                 values are ... values.
-	 * @param string $endl The end of line character.  Defaults to "\n"
-	 *
-	 * Note RFC2822 says newlines must be CRLF (\r\n)
-	 * but php mail naively "corrects" it and requires \n for the "correction" to work
-	 *
-	 * @return string
-	 */
-	private static function arrayToHeaderString( $headers, $endl = PHP_EOL ) {
-		$strings = [];
-		foreach ( $headers as $name => $value ) {
-			// Prevent header injection by stripping newlines from value
-			$value = self::sanitizeHeaderValue( $value );
-			$strings[] = "$name: $value";
-		}
-		return implode( $endl, $strings );
-	}
-
-	/**
 	 * Create a value suitable for the MessageId Header
 	 *
 	 * @return string
@@ -423,7 +401,6 @@ class UserMailer {
 			if ( count( $to ) > 1 ) {
 				$headers['To'] = 'undisclosed-recipients:;';
 			}
-			$headers = self::arrayToHeaderString( $headers, $endl );
 
 			wfDebug( "Sending mail via internal mail() function" );
 
