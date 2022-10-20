@@ -2038,7 +2038,7 @@
 	"nbytes": "$1 {{PLURAL:$1|বাইট|বাইট}}",
 	"ncategories": "$1 {{PLURAL:$1|বিষয়শ্রেণী|বিষয়শ্রেণীসমূহ}}",
 	"ninterwikis": "$1টি {{PLURAL:$1|আন্তঃউইকি}}",
-	"nlinks": "$1টি {{PLURAL:$1|সংযোগ|সংযোগসমূহ}}",
+	"nlinks": "$1টি {{PLURAL:$1|সংযোগ}}",
 	"nmembers": "$1টি {{PLURAL:$1|সদস্য}}",
 	"nmemberschanged": "$1 জন → $2 জন {{PLURAL:$2|সদস্য}}",
 	"nrevisions": "$1 {{PLURAL:$1|সংশোধন|সংশোধনসমূহ}}",
