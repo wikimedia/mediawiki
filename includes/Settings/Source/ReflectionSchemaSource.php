@@ -63,6 +63,7 @@ class ReflectionSchemaSource implements SettingsSource {
 	 */
 	public function load(): array {
 		$schemas = [];
+		$obsolete = [];
 
 		try {
 			$class = new ReflectionClass( $this->class );
@@ -75,6 +76,11 @@ class ReflectionSchemaSource implements SettingsSource {
 				$schema = $const->getValue();
 
 				if ( !is_array( $schema ) ) {
+					continue;
+				}
+
+				if ( isset( $schema['obsolete'] ) ) {
+					$obsolete[ $name ] = $schema['obsolete'];
 					continue;
 				}
 
@@ -108,7 +114,8 @@ class ReflectionSchemaSource implements SettingsSource {
 		}
 
 		return [
-			'config-schema' => $schemas
+			'config-schema' => $schemas,
+			'obsolete-config' => $obsolete
 		];
 	}
 

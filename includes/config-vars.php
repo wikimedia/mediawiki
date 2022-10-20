@@ -2021,13 +2021,6 @@ $wgShowRollbackEditCount = null;
 $wgEnableCanonicalServerLink = null;
 
 /**
- * Config variable stub for the MangleFlashPolicy setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::MangleFlashPolicy
- * @deprecated since 1.39; no longer has any effect
- */
-$wgMangleFlashPolicy = null;
-
-/**
  * Config variable stub for the ResourceModules setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ResourceModules
  */
@@ -3345,13 +3338,6 @@ $wgOpenSearchTemplate = null;
  * @see MediaWiki\MainConfigSchema::OpenSearchTemplates
  */
 $wgOpenSearchTemplates = null;
-
-/**
- * Config variable stub for the EnableOpenSearchSuggest setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::EnableOpenSearchSuggest
- * @deprecated since 1.35 No longer used
- */
-$wgEnableOpenSearchSuggest = null;
 
 /**
  * Config variable stub for the OpenSearchDefaultLimit setting, for use by phpdoc and IDEs.

@@ -84,6 +84,15 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * Check that currently loaded config does not use obsolete settings.
+	 */
+	public function testCurrentSettingsNotObsolete() {
+		global $wgSettings;
+		$obsolete = $wgSettings->detectObsoleteConfig();
+		$this->assertEquals( [], $obsolete );
+	}
+
+	/**
 	 * Check that currently loaded config does not have warnings.
 	 */
 	public function testCurrentSettingsHaveNoWarnings() {
@@ -198,6 +207,8 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	public function testSchemaCompleteness( $schema ) {
 		$type = $schema['type'] ?? null;
 		$type = (array)$type;
+
+		$this->assertArrayNotHasKey( 'obsolete', $schema, 'Obsolete schemas should have been filtered out' );
 
 		if ( isset( $schema['properties'] ) ) {
 			$this->assertContains(

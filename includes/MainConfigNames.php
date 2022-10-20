@@ -2037,13 +2037,6 @@ class MainConfigNames {
 	public const EnableCanonicalServerLink = 'EnableCanonicalServerLink';
 
 	/**
-	 * Name constant for the MangleFlashPolicy setting, for use with Config::get()
-	 * @see MainConfigSchema::MangleFlashPolicy
-	 * @deprecated since 1.39; no longer has any effect
-	 */
-	public const MangleFlashPolicy = 'MangleFlashPolicy';
-
-	/**
 	 * Name constant for the ResourceModules setting, for use with Config::get()
 	 * @see MainConfigSchema::ResourceModules
 	 */
@@ -3361,13 +3354,6 @@ class MainConfigNames {
 	 * @see MainConfigSchema::OpenSearchTemplates
 	 */
 	public const OpenSearchTemplates = 'OpenSearchTemplates';
-
-	/**
-	 * Name constant for the EnableOpenSearchSuggest setting, for use with Config::get()
-	 * @see MainConfigSchema::EnableOpenSearchSuggest
-	 * @deprecated since 1.35 No longer used
-	 */
-	public const EnableOpenSearchSuggest = 'EnableOpenSearchSuggest';
 
 	/**
 	 * Name constant for the OpenSearchDefaultLimit setting, for use with Config::get()
