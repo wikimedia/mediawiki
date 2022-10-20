@@ -1,0 +1,917 @@
+# The parsoid-compatible option below is only relevant when we are running
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html,wt2wt
+version=2
+!! end
+
+!! article
+Template:1x
+!! text
+{{{1}}}
+!! endarticle
+
+!! article
+Template:definition_list
+!! text
+one
+::two
+!! endarticle
+
+!! test
+Simple definition
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+;name :Definition
+!! html
+<dl><dt>name</dt>
+<dd>Definition</dd></dl>
+!! end
+
+!! test
+Definition list for indentation only
+!! wikitext
+:Indented text
+!! html
+<dl><dd>Indented text</dd></dl>
+!! end
+
+!! test
+Definition list with no space
+!! wikitext
+;name:Definition
+!! html
+<dl><dt>name</dt>
+<dd>Definition</dd></dl>
+!!end
+
+!! test
+Definition list with URL link
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+;http://example.com/ :definition
+!! html/php
+<dl><dt><a rel="nofollow" class="external free" href="http://example.com/">http://example.com/</a></dt>
+<dd>definition</dd></dl>
+!! html/parsoid
+<dl><dt><a rel="mw:ExtLink" href="http://example.com/" class="external free">http://example.com/</a></dt><dd data-parsoid='{"stx":"row"}'>definition</dd></dl>
+!! end
+
+!! test
+Definition list with bracketed URL link
+!! wikitext
+;[http://www.example.com/ Example]:Something about it
+!! html
+<dl><dt><a rel="nofollow" class="external text" href="http://www.example.com/">Example</a></dt>
+<dd>Something about it</dd></dl>
+!! end
+
+!! test
+Definition list with wikilink containing colon
+!! wikitext
+;[[Help:FAQ]]:The least-read page on Wikipedia
+!! html
+<dl><dt><a href="/index.php?title=Help:FAQ&amp;action=edit&amp;redlink=1" class="new" title="Help:FAQ (page does not exist)">Help:FAQ</a></dt>
+<dd>The least-read page on Wikipedia</dd></dl>
+!! end
+
+# At Brion's and JeLuF's insistence... :)
+!! test
+Definition list with news link containing colon
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+;news:alt.wikipedia.rox :This isn't even a real newsgroup!
+!! html/php
+<dl><dt><a rel="nofollow" class="external free" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a></dt>
+<dd>This isn't even a real newsgroup!</dd></dl>
+!! html/parsoid
+<dl><dt><a rel="mw:ExtLink" href="news:alt.wikipedia.rox" class="external free" data-parsoid='{"stx":"url"}'>news:alt.wikipedia.rox</a></dt><dd data-parsoid='{"stx":"row"}'>This isn't even a real newsgroup!</dd></dl>
+!! end
+
+!! test
+Malformed definition list with colon
+!! wikitext
+;news:alt.wikipedia.rox -- don't crash or enter an infinite loop
+!! html
+<dl><dt><a rel="nofollow" class="external free" href="news:alt.wikipedia.rox">news:alt.wikipedia.rox</a> -- don't crash or enter an infinite loop</dt></dl>
+!! end
+
+!! test
+Definition lists: colon in external link text
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+;[http://www.wikipedia2.org/ Wikipedia :The Next Generation] :OK, I made that up
+!! html/php
+<dl><dt><a rel="nofollow" class="external text" href="http://www.wikipedia2.org/">Wikipedia :The Next Generation</a></dt>
+<dd>OK, I made that up</dd></dl>
+!! html/parsoid
+<dl><dt><a rel="mw:ExtLink" href="http://www.wikipedia2.org/" class="external text">Wikipedia :The Next Generation</a></dt><dd data-parsoid='{"stx":"row"}'>OK, I made that up</dd></dl>
+!! end
+
+!! test
+Definition lists: colon in HTML attribute
+!! wikitext
+;<b style="display: inline">bold</b>
+!! html
+<dl><dt><b style="display: inline">bold</b></dt></dl>
+!! end
+
+!! test
+Definition lists: self-closed tag
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+;one<br/>two :two-line fun
+!! html
+<dl><dt>one<br />two</dt>
+<dd>two-line fun</dd></dl>
+!! end
+
+!! test
+Definition lists: ignore colons inside tags
+!! wikitext
+;one <b>two : tag <i>fun:</i>:</b>:def
+!! html
+<dl><dt>one <b>two&#160;: tag <i>fun:</i>:</b></dt>
+<dd>def</dd></dl>
+!! end
+
+!! test
+Definition lists: excess closed tags
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+;one</b>two :bad tag fun
+!! html/php
+<dl><dt>onetwo</dt>
+<dd>bad tag fun</dd></dl>
+!! html/parsoid
+<dl><dt>one<meta typeof="mw:Placeholder/StrippedTag" data-parsoid='{"src":"&lt;/b>","name":"b"}'/>two</dt><dd data-parsoid='{"stx":"row"}'>bad tag fun</dd></dl>
+!! end
+
+!! test
+T13748: Literal closing tags
+!! wikitext
+<dl>
+<dt>test 1</dt>
+<dd>test test test test test</dd>
+<dt>test 2</dt>
+<dd>test test test test test</dd>
+</dl>
+!! html
+<dl>
+<dt>test 1</dt>
+<dd>test test test test test</dd>
+<dt>test 2</dt>
+<dd>test test test test test</dd>
+</dl>
+!! end
+
+!! test
+Definition and unordered list using wiki syntax nested in unordered list using html tags.
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+<ul><li>
+;term :description
+*unordered
+</li></ul>
+!! html
+<ul><li>
+<dl><dt>term</dt>
+<dd>description</dd></dl>
+<ul><li>unordered</li></ul>
+</li></ul>
+!! end
+
+!! test
+Definition list with empty definition and following paragraph
+!! wikitext
+;term:
+
+Paragraph text
+!! html
+<dl><dt>term</dt>
+<dd></dd></dl>
+<p>Paragraph text
+</p>
+!! end
+
+!! test
+Nested definition lists using html syntax
+!! wikitext
+<dl><dt>x</dt>
+<dd>a</dd>
+<dd>b</dd></dl>
+!! html
+<dl><dt>x</dt>
+<dd>a</dd>
+<dd>b</dd></dl>
+!! end
+
+!! test
+Definition Lists: No nesting: Multiple dd's
+!! wikitext
+;x
+:a
+:b
+!! html
+<dl><dt>x</dt>
+<dd>a</dd>
+<dd>b</dd></dl>
+!! end
+
+!! test
+Definition Lists: Indentation: Regular
+!! wikitext
+:i1
+::i2
+:::i3
+!! html
+<dl><dd>i1
+<dl><dd>i2
+<dl><dd>i3</dd></dl></dd></dl></dd></dl>
+!! end
+
+!! test
+Definition Lists: Indentation: Missing 1st level
+!! wikitext
+::i2
+:::i3
+!! html
+<dl><dd><dl><dd>i2
+<dl><dd>i3</dd></dl></dd></dl></dd></dl>
+!! end
+
+!! test
+Definition Lists: Indentation: Multi-level indent
+!! wikitext
+:::i3
+!! html
+<dl><dd><dl><dd><dl><dd>i3</dd></dl></dd></dl></dd></dl>
+!! end
+
+!! test
+Definition Lists: Hacky use to indent tables
+!! wikitext
+::{|
+|foo
+|bar
+|}
+this text
+should be left alone
+!! html
+<dl><dd><dl><dd><table>
+<tbody><tr>
+<td>foo
+</td>
+<td>bar
+</td></tr></tbody></table></dd></dl></dd></dl>
+<p>this text
+should be left alone
+</p>
+!! end
+
+!! test
+Definition Lists: Hacky use to indent tables (with content following table)
+!! wikitext
+:{|
+|foo
+|bar
+|} <!--c1--> this text should be part of the dl
+!! html/php
+<dl><dd><table>
+<tbody><tr>
+<td>foo
+</td>
+<td>bar
+</td></tr></tbody></table>  this text should be part of the dl</dd></dl>
+!! html/parsoid
+<dl><dd><table>
+<tbody><tr>
+<td>foo
+</td>
+<td>bar
+</td></tr></tbody></table> <!--c1--> this text should be part of the dl</dd></dl>
+!! end
+
+!! test
+Definition Lists: Hacky use to indent tables, with comments (T65979)
+!! wikitext
+<!-- foo -->
+::{|
+|foo
+|bar
+|}<!-- bar -->
+this text
+should be left alone
+!! html/parsoid
+<!-- foo -->
+<dl><dd><dl><dd><table><tr>
+<td>foo</td>
+<td>bar</td>
+</tr></table><!-- bar --></dd></dl></dd></dl>
+<p>this text
+should be left alone</p>
+!! end
+
+!! test
+Definition Lists: Hacky use to indent tables, with comment before table
+!!options
+parsoid=wt2html
+!! wikitext
+::<!-- foo -->{|
+|foo
+|}
+!! html/parsoid
+<dl><dd><dl><dd><!-- foo --><table><tr>
+<td>foo</td>
+</tr></table></dd></dl></dd></dl>
+!! end
+
+# Note that the legacy parser closes the list completely for the
+# hacky-indent table and then reopens it; Parsoid emits the "expected"
+# output.  Parsoid team regards this as a bug in the legacy parser.
+!! test
+Definition Lists: Hack use to indent tables, in a nested list context (T262943)
+!! wikitext
+This is a discussion thread.
+
+:Parent comment.
+::Child comment
+::{|
+|With a
+|Table!
+|}
+!! html/php
+<p>This is a discussion thread.
+</p>
+<dl><dd>Parent comment.
+<dl><dd>Child comment</dd></dl></dd></dl>
+<dl><dd><dl><dd><table>
+<tbody><tr>
+<td>With a
+</td>
+<td>Table!
+</td></tr></tbody></table></dd></dl></dd></dl>
+!! html/parsoid
+<p>This is a discussion thread.</p>
+
+<dl><dd data-parsoid='{}'>Parent comment.
+<dl><dd data-parsoid='{}'>Child comment</dd>
+<dd data-parsoid='{}'><table>
+<tbody><tr data-parsoid='{"autoInsertedStart":true}'><td>With a</td>
+<td>Table!</td></tr>
+</tbody></table></dd></dl></dd></dl>
+!! end
+
+# The trailing whitespace in this test is to catch a regression in
+# Parsoid after T54473.
+!! test
+Definition Lists: Hacky use to indent tables (WS-insensitive)
+!! wikitext
+:{|
+|a
+|} 
+!! html/php
+<dl><dd><table>
+<tbody><tr>
+<td>a
+</td></tr></tbody></table></dd></dl>
+!! html/parsoid
+<dl><dd><table>
+<tbody><tr><td>a</td></tr>
+</tbody></table></dd></dl>
+!! end
+
+# wt2wt / html2wt will normalize newlines - so disabled those test modes
+!! test
+Definition Lists: Hacky use to indent tables (nl-insensitive)
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+:{|
+
+
+|a
+|}
+!! html/php
+<dl><dd><table>
+
+
+<tbody><tr>
+<td>a
+</td></tr></tbody></table></dd></dl>
+!! html/parsoid
+<dl><dd><table>
+<tbody><tr><td>a</td></tr>
+</tbody></table></dd></dl>
+!! end
+
+## The PHP parser treats : items (dd) without a corresponding ; item (dt)
+## as an empty dt item.  It also ignores all but the last ";" when followed
+## by ":" later on.  So, ";" are not ignored in ";;;t3" but are ignored  in
+## ";;;t3 :d1".  So, PHP parser behavior is a little inconsistent wrt multiple
+## ";"s.
+##
+## Ex: ";;t2 ::d2" is transformed into:
+##
+## <dl>
+##   <dt>t2 </dt>
+##   <dd>
+##     <dl>
+##       <dt></dt>
+##       <dd>d2</dd>
+##     </dl>
+##   </dd>
+## </dl>
+##
+## But, Parsoid treats "; :" as a tight atomic unit and excess ":" as plain text
+## So, the same wikitext above (;;t2 ::d2) is transformed into:
+##
+## <dl>
+##   <dt>
+##     <dl>
+##       <dt>t2 </dt>
+##       <dd>:d2</dd>
+##     </dl>
+##    </dt>
+## </dl>
+##
+## All Parsoid only definition list tests have this difference.
+##
+## See also: https://phabricator.wikimedia.org/T8569
+## and https://lists.wikimedia.org/pipermail/wikitext-l/2011-November/000483.html
+
+!! test
+Table / list interaction: indented table with lists in table contents
+!! wikitext
+:{|
+|-
+|a
+
+*b
+|-
+|c
+
+*d
+|}
+!! html
+<dl><dd><table>
+
+<tbody><tr>
+<td>a
+<ul><li>b</li></ul>
+</td></tr>
+<tr>
+<td>c
+<ul><li>d</li></ul>
+</td></tr></tbody></table></dd></dl>
+!! end
+
+!!test
+Table / list interaction: lists nested in tables nested in indented lists
+!! wikitext
+:{|
+|
+:a
+:b
+|
+*c
+*d
+|}
+
+*e
+*f
+!! html
+<dl><dd><table>
+<tbody><tr>
+<td>
+<dl><dd>a</dd>
+<dd>b</dd></dl>
+</td>
+<td>
+<ul><li>c</li>
+<li>d</li></ul>
+</td></tr></tbody></table></dd></dl>
+<ul><li>e</li>
+<li>f</li></ul>
+!!end
+
+!! test
+Definition Lists: Nesting: Multi-level (Parsoid only)
+!! wikitext
+;t1:d1
+;;t2::d2
+;;;t3:::d3
+!! html/parsoid
+<dl>
+  <dt>t1 </dt>
+  <dd>d1</dd>
+  <dt>
+    <dl>
+      <dt>t2 </dt>
+      <dd>:d2</dd>
+      <dt>
+        <dl>
+          <dt>t3 </dt>
+          <dd>::d3</dd>
+        </dl>
+      </dt>
+    </dl>
+  </dt>
+</dl>
+!! end
+
+
+!! test
+Definition Lists: Nesting: Test 2
+!! wikitext
+;t1
+::d2
+!! html
+<dl><dt>t1</dt>
+<dd>
+<dl><dd>d2</dd></dl></dd></dl>
+!! end
+
+
+!! test
+Definition Lists: Nesting: Test 3
+!! wikitext
+:;t1
+::::d2
+!! html
+<dl><dd><dl><dt>t1</dt>
+<dd>
+<dl><dd><dl><dd>d2</dd></dl></dd></dl></dd></dl></dd></dl>
+!! end
+
+
+!! test
+Definition Lists: Nesting: Test 4
+!! wikitext
+::;t3
+:::d3
+!! html
+<dl><dd><dl><dd><dl><dt>t3</dt>
+<dd>d3</dd></dl></dd></dl></dd></dl>
+!! end
+
+
+## The Parsoid team believes the following three test exposes a
+## bug in the PHP parser.  (Parsoid team thinks the PHP parser is
+## wrong to close the <dl> after the <dt> containing the <ul>.)
+## It also exposes a "misfeature" in tidy, which doesn't like
+## <dl> tags with a single <dt> child; it converts the <dt> into
+## a <dd> in that case.  (Parsoid leaves the <dt> alone!)
+!! test
+Definition Lists: Mixed Lists: Test 1
+!! wikitext
+:;*foo
+::*bar
+:;baz
+!! html/php
+<dl><dd><dl><dt><ul><li>foo</li>
+<li>bar</li></ul></dt></dl>
+<dl><dt>baz</dt></dl></dd></dl>
+!! html/php
+<dl><dd><dl><dt><ul><li>foo</li>
+<li>bar</li></ul></dt></dl>
+<dl><dt>baz</dt></dl></dd></dl>
+!! html/parsoid
+<dl>
+<dd><dl>
+<dt><ul>
+<li>foo
+</li>
+</ul></dt>
+<dd><ul>
+<li>bar
+</li>
+</ul></dd>
+<dt>baz</dt>
+</dl></dd>
+</dl>
+!! end
+
+!! test
+Definition Lists: Mixed Lists: Test 2
+!! wikitext
+*:d1
+*:d2
+!! html
+<ul><li><dl><dd>d1</dd>
+<dd>d2</dd></dl></li></ul>
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 3
+!! wikitext
+*:::d1
+*:::d2
+!! html
+<ul><li><dl><dd><dl><dd><dl><dd>d1</dd>
+<dd>d2</dd></dl></dd></dl></dd></dl></li></ul>
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 4
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+*;d1 :d2
+*;d3 :d4
+!! html
+<ul><li><dl><dt>d1</dt>
+<dd>d2</dd>
+<dt>d3</dt>
+<dd>d4</dd></dl></li></ul>
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 5
+!! wikitext
+*:d1
+*::d2
+!! html
+<ul><li><dl><dd>d1
+<dl><dd>d2</dd></dl></dd></dl></li></ul>
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 6
+!! wikitext
+#*:d1
+#*:::d3
+!! html
+<ol><li><ul><li><dl><dd>d1
+<dl><dd><dl><dd>d3</dd></dl></dd></dl></dd></dl></li></ul></li></ol>
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 7
+!! wikitext
+:*d1
+:*d2
+!! html
+<dl><dd><ul><li>d1</li>
+<li>d2</li></ul></dd></dl>
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 8
+!! wikitext
+:*d1
+::*d2
+!! html
+<dl><dd><ul><li>d1</li></ul>
+<dl><dd><ul><li>d2</li></ul></dd></dl></dd></dl>
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 9
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+*;foo :bar
+!! html
+<ul><li><dl><dt>foo</dt>
+<dd>bar</dd></dl></li></ul>
+!! end
+
+
+!! test
+Definition Lists: Mixed Lists: Test 10
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+*#;foo :bar
+!! html
+<ul><li><ol><li><dl><dt>foo</dt>
+<dd>bar</dd></dl></li></ol></li></ul>
+!! end
+
+# The Parsoid team disagrees with the PHP parser's seemingly-random
+# rules regarding dd/dt on the next few tests.  Parsoid is more
+# consistent, and recognizes the shared nesting and keeps the
+# still-open tags around until the nesting is complete.
+
+# This is a regression test for T175099
+!! test
+Definition Lists: Mixed Lists: Test 11
+!! wikitext
+;a
+:*b
+!! html/php
+<dl><dt>a</dt>
+<dd>
+<ul><li>b</li></ul></dd></dl>
+!! html/parsoid
+<dl><dt>a
+<dd><ul><li>b</li></ul></dd></dl>
+!! end
+
+# FIXME: Maybe get rid of this test?
+!! test
+Definition Lists: Mixed Lists: Test 12
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+*#*#;*;;foo :bar
+*#*#;boo :baz
+!! html/php
+<ul><li><ol><li><ul><li><ol><li><dl><dt>foo</dt>
+<dd><ul><li><dl><dt><dl><dt>bar</dt></dl></dt></dl></li></ul></dd></dl></li></ol></li></ul>
+<dl><dt>boo</dt>
+<dd>baz</dd></dl></li></ol></li></ul>
+!! html/parsoid
+<ul>
+<li>
+<ol>
+<li>
+<ul>
+<li>
+<ol>
+<li>
+<dl>
+<dt>
+<ul>
+<li>
+<dl>
+<dt>
+<dl>
+<dt>foo</dt>
+<dd data-parsoid='{"stx":"row"}'>bar</dd>
+</dl></dt>
+</dl></li>
+</ul></dt>
+<dt>boo</dt>
+<dd data-parsoid='{"stx":"row"}'>baz</dd>
+</dl></li>
+</ol></li>
+</ul></li>
+</ol></li>
+</ul>
+!! end
+
+!! test
+Definition Lists: Mixed Lists: Test 13
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+*#*#;*;;foo : bar
+*#*#;boo : baz
+!! html
+<ul><li><ol><li><ul><li><ol><li><dl><dt>foo</dt>
+<dd><ul><li><dl><dt><dl><dt>bar</dt></dl></dt></dl></li></ul></dd></dl></li></ol></li></ul>
+<dl><dt>boo</dt>
+<dd>baz</dd></dl></li></ol></li></ul>
+!! end
+
+# FIXME: Maybe get rid of this test?
+# From an old description in the Parsoid codebase:
+# * The test is wrong, there are two colons where there should be :;
+# * The PHP parser is wrong to close the <dl> after the <dt> containing the <ul>.
+!! test
+Definition Lists: Weird Ones: Test 1
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+*#;*::;;foo :bar (who uses this?)
+!! html/php
+<ul><li><ol><li><dl><dt>foo</dt>
+<dd><ul><li><dl><dd><dl><dd><dl><dt><dl><dt>bar (who uses this?)</dt></dl></dt></dl></dd></dl></dd></dl></li></ul></dd></dl></li></ol></li></ul>
+!! html/parsoid
+<ul>
+<li>
+<ol>
+<li>
+<dl>
+<dt>
+<ul>
+<li>
+<dl>
+<dd>
+<dl>
+<dd>
+<dl>
+<dt>
+<dl>
+<dt>foo</dt>
+<dd data-parsoid='{"stx":"row"}'>bar (who uses this?)</dd>
+</dl></dt>
+</dl></dd>
+</dl></dd>
+</dl></li>
+</ul></dt>
+</dl></li>
+</ol></li>
+</ul>
+!! end
+
+!! test
+Definition Lists: colons occurring in tags
+!! wikitext
+;a:b
+;'''a:b'''
+;<i>a:b</i>
+;<span>a:b</span>
+;<div>a:b</div>
+;<div>a
+:b</div>
+;{{1x|a:b}}
+;{{1x|''a:b''}}
+;;;''a:b''
+!! html/php
+<dl><dt>a</dt>
+<dd>b</dd>
+<dt><b>a:b</b></dt>
+<dt><i>a:b</i></dt>
+<dt><span>a:b</span></dt>
+<dt><div>a:b</div></dt>
+<dt><div>a</div></dt>
+<dd>b</dd>
+<dt>a</dt>
+<dd>b</dd>
+<dt><i>a:b</i></dt></dl>
+<dl><dt><dl><dt><dl><dt><i>a:b</i></dt></dl></dt></dl></dt></dl>
+!! html/parsoid
+<dl><dt>a</dt><dd data-parsoid='{"stx":"row"}'>b</dd>
+<dt><b>a:b</b></dt>
+<dt><i data-parsoid='{"stx":"html"}'>a:b</i></dt>
+<dt><span data-parsoid='{"stx":"html"}'>a:b</span></dt>
+<dt><div data-parsoid='{"stx":"html"}'>a:b</div></dt>
+<dt><div data-parsoid='{"stx":"html","autoInsertedEnd":true}'>a</div></dt>
+<dd>b<meta typeof="mw:Placeholder/StrippedTag" data-parsoid='{"src":"&lt;/div>","name":"div"}'/></dd>
+<dt><span about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"a:b"}},"i":0}}]}'>a:b</span></dt>
+<dt><i about="#mwt2" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"1"}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"&#39;&#39;a:b&#39;&#39;"}},"i":0}}]}'>a:b</i>
+<dl><dt><dl><dt><i>a:b</i></dt></dl></dt></dl></dt></dl>
+!! end
+
+# Parsoid's output differs here again because it shares
+# nesting between the two lists unlike the PHP parser.
+# Unsure which is more desirable.
+!! test
+Definition Lists: colons and tables 1
+!! wikitext
+:{|
+|x
+|}
+:{|
+|y
+|}
+!! html/php
+<dl><dd><table>
+<tbody><tr>
+<td>x
+</td></tr></tbody></table></dd></dl>
+<dl><dd><table>
+<tbody><tr>
+<td>y
+</td></tr></tbody></table></dd></dl>
+!! html/parsoid
+<dl><dd><table>
+<tr>
+<td>x
+</td></tr></table></dd>
+<dd><table>
+<tr>
+<td>y
+</td></tr></table></dd></dl>
+!! end
+
+# FIXME: Does this need a html/php section?
+!! test
+Definition Lists: template interaction
+!! wikitext
+::{{definition_list}}
+
+:one
+::{{definition_list}}
+:::two
+:::three
+::four
+!! html/parsoid
+<dl><dd><dl data-parsoid='{}'><dd about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[":",{"template":{"target":{"wt":"definition_list","href":"./Template:Definition_list"},"params":{},"i":0}}]}'>one</dd><span about="#mwt1">
+</span><dd about="#mwt1">two</dd></dl></dd></dl>
+
+<dl><dd data-parsoid='{}'>one
+<dl><dd about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":["::",{"template":{"target":{"wt":"definition_list","href":"./Template:Definition_list"},"params":{},"i":0}},"\n:::two\n:::three"]}'>one</dd><span about="#mwt2">
+</span><dd about="#mwt2">two
+<dl><dd>two</dd>
+<dd>three</dd></dl></dd>
+<dd data-parsoid='{}'>four</dd></dl></dd></dl>
+!! end
