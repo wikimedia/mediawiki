@@ -72,7 +72,7 @@ class Argon2Password extends Password {
 	 * @inheritDoc
 	 */
 	public function crypt( string $password ): void {
-		list( $algo, $params ) = $this->prepareParams();
+		[ $algo, $params ] = $this->prepareParams();
 		$this->hash = password_hash( $password, $algo, $params );
 	}
 
@@ -96,7 +96,7 @@ class Argon2Password extends Password {
 	 * @inheritDoc
 	 */
 	public function needsUpdate(): bool {
-		list( $algo, $params ) = $this->prepareParams();
+		[ $algo, $params ] = $this->prepareParams();
 		return password_needs_rehash( $this->hash, $algo, $params );
 	}
 }

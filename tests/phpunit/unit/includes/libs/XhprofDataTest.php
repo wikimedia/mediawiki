@@ -173,7 +173,7 @@ class XhprofDataTest extends PHPUnit\Framework\TestCase {
 
 		$last = null;
 		foreach ( $path as $key => $value ) {
-			list( $func, $call ) = XhprofData::splitKey( $key );
+			[ $func, $call ] = XhprofData::splitKey( $key );
 			$this->assertSame( $last, $func );
 			$last = $call;
 		}

@@ -39,7 +39,7 @@ class License {
 	 */
 	public function __construct( $str ) {
 		$str = $this->parse( $str );
-		list( $this->template, $this->text ) = $this->split( $str );
+		[ $this->template, $this->text ] = $this->split( $str );
 	}
 
 	/**
@@ -55,7 +55,7 @@ class License {
 	 * @return string[] Array with [template, text]
 	 */
 	protected function split( $str ) {
-		list( $text, $template ) = explode( '|', strrev( $str ), 2 );
+		[ $text, $template ] = explode( '|', strrev( $str ), 2 );
 		return [ strrev( $template ), strrev( $text ) ];
 	}
 }

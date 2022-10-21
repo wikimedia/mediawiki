@@ -480,7 +480,7 @@ class BacklinkCache {
 			$cacheEntry['numRows'] += $partitions['numRows'];
 			$cacheEntry['batches'] = array_merge( $cacheEntry['batches'], $partitions['batches'] );
 			if ( count( $partitions['batches'] ) ) {
-				list( , $lEnd ) = end( $partitions['batches'] );
+				[ , $lEnd ] = end( $partitions['batches'] );
 				$start = $lEnd + 1; // pick up after this inclusive range
 			}
 		} while ( $partitions['numRows'] >= $selectSize );

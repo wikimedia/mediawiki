@@ -438,7 +438,7 @@ RLPAGEMODULES = {$pageModulesJson};
 				}
 
 				// Link/embed each set
-				foreach ( $moduleSets as list( $embed, $moduleSet ) ) {
+				foreach ( $moduleSets as [ $embed, $moduleSet ] ) {
 					$moduleSetNames = array_keys( $moduleSet );
 					$context->setModules( $moduleSetNames );
 					if ( $embed ) {

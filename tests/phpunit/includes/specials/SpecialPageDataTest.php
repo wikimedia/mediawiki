@@ -118,7 +118,7 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 
 		try {
 			/** @var FauxResponse $response */
-			list( $output, $response ) = $this->executeSpecialPage( $subpage, $request );
+			[ $output, $response ] = $this->executeSpecialPage( $subpage, $request );
 
 			$this->assertEquals( $expCode, $response->getStatusCode(), "status code" );
 			$this->assertMatchesRegularExpression( $expRegExp, $output, "output" );
@@ -139,7 +139,7 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 		$request = new FauxRequest();
 		$request->response()->header( 'Status: 200 OK', true, 200 ); // init/reset
 
-		list( $output, ) = $this->executeSpecialPage( '', $request );
+		[ $output, ] = $this->executeSpecialPage( '', $request );
 
 		$this->assertStringContainsString( '(pagedata-text)', $output );
 	}

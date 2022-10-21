@@ -318,7 +318,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 				// Internal service, no getter
 				continue;
 			}
-			list( $service, $class ) = $case;
+			[ $service, $class ] = $case;
 			$getterCases[$name] = [
 				'get' . $service,
 				$class,

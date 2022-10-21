@@ -48,7 +48,7 @@ abstract class PrefixSearch {
 
 		$hasNamespace = SearchEngine::parseNamespacePrefixes( $search, false, true );
 		if ( $hasNamespace !== false ) {
-			list( $search, $namespaces ) = $hasNamespace;
+			[ $search, $namespaces ] = $hasNamespace;
 		}
 
 		return $this->searchBackend( $namespaces, $search, $limit, $offset );

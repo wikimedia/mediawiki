@@ -141,7 +141,7 @@ class BotPasswordStore implements IDBAccessObject {
 			return null;
 		}
 
-		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = $this->getDatabase( $index );
 		$row = $db->selectRow(
 			'bot_passwords',

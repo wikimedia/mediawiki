@@ -315,7 +315,7 @@ class SignatureValidator {
 		// the "subpage parameter" are not normalized for us.
 		$splinks = $pout->getLinksSpecial();
 		foreach ( $splinks as $dbkey => $unused ) {
-			list( $name, $subpage ) = $this->specialPageFactory->resolveAlias( $dbkey );
+			[ $name, $subpage ] = $this->specialPageFactory->resolveAlias( $dbkey );
 			if ( $name === 'Contributions' && $subpage ) {
 				$userTitle = $this->titleFactory->makeTitleSafe( NS_USER, $subpage );
 				if ( $userTitle && $userTitle->getText() === $username ) {

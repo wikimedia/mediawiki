@@ -65,7 +65,7 @@ class LanguageKk_cyrl extends Language {
 		$secondPerson = [ "з" ]; // 1st plural, 2nd formal
 		$thirdPerson = [ "ы", "і" ]; // 3rd
 
-		list( $wordEnding, $wordLastVowel ) = $this->lastLetter( $word, $allVowels );
+		[ $wordEnding, $wordLastVowel ] = $this->lastLetter( $word, $allVowels );
 
 		// Now convert the word
 		switch ( $case ) {
@@ -298,7 +298,7 @@ class LanguageKk_cyrl extends Language {
 		$secondPerson = [ "z" ]; // 1st plural, 2nd formal
 		$thirdPerson = [ "ı", "i" ]; // 3rd
 
-		list( $wordEnding, $wordLastVowel ) = $this->lastLetter( $word, $allVowels );
+		[ $wordEnding, $wordLastVowel ] = $this->lastLetter( $word, $allVowels );
 
 		// Now convert the word
 		switch ( $case ) {
@@ -531,7 +531,7 @@ class LanguageKk_cyrl extends Language {
 		$secondPerson = [ "ز" ]; // 1st plural, 2nd formal
 		$thirdPerson = [ "ى", "ٸ" ]; // 3rd
 
-		list( $wordEnding, $wordLastVowel ) = $this->lastLetter( $word, $allVowels );
+		[ $wordEnding, $wordLastVowel ] = $this->lastLetter( $word, $allVowels );
 
 		// Now convert the word
 		switch ( $case ) {

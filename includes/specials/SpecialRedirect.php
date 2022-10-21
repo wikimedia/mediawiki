@@ -253,7 +253,7 @@ class SpecialRedirect extends FormSpecialPage {
 			// so varnish cache.
 			$value = $status->getValue();
 			if ( is_array( $value ) ) {
-				list( $url, $code ) = $value;
+				[ $url, $code ] = $value;
 			} else {
 				$url = $value;
 				$code = 301;

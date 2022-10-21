@@ -557,7 +557,7 @@ abstract class Skin extends ContextSource {
 		if ( $title->isSpecialPage() ) {
 			$type = 'ns-special';
 			// T25315: provide a class based on the canonical special page name without subpages
-			list( $canonicalName ) = $services->getSpecialPageFactory()->resolveAlias( $title->getDBkey() );
+			[ $canonicalName ] = $services->getSpecialPageFactory()->resolveAlias( $title->getDBkey() );
 			if ( $canonicalName ) {
 				$type .= ' ' . Sanitizer::escapeClass( "mw-special-$canonicalName" );
 			} else {

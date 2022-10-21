@@ -255,7 +255,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 		}
 		if ( !$this->minTimestamp || !$this->maxTimestamp ) {
 			try {
-				list( $this->minTimestamp, $this->maxTimestamp ) = $this->getMinAndMaxForCat( $this->category );
+				[ $this->minTimestamp, $this->maxTimestamp ] = $this->getMinAndMaxForCat( $this->category );
 			} catch ( TimeoutException $e ) {
 				throw $e;
 			} catch ( Exception $e ) {

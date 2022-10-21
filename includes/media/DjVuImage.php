@@ -185,7 +185,7 @@ class DjVuImage {
 		// and report its information, hoping others are the same size.
 		$start = ftell( $file );
 		do {
-			list( $chunk, $length ) = $this->readChunk( $file );
+			[ $chunk, $length ] = $this->readChunk( $file );
 			if ( !$chunk ) {
 				break;
 			}
@@ -210,7 +210,7 @@ class DjVuImage {
 	}
 
 	private function getPageInfo( $file ) {
-		list( $chunk, $length ) = $this->readChunk( $file );
+		[ $chunk, $length ] = $this->readChunk( $file );
 		if ( $chunk != 'INFO' ) {
 			wfDebug( __METHOD__ . ": expected INFO chunk, got '$chunk'" );
 

@@ -736,7 +736,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		$sv = StatusValue::newFatal( 'fatal' );
 		$sv->warning( 'warning' );
 		$s = Status::wrap( $sv );
-		list( $se, $sw ) = $s->splitByErrorType();
+		[ $se, $sw ] = $s->splitByErrorType();
 		$this->assertTrue( $s->hasMessage( 'fatal' ) );
 		$this->assertTrue( $s->hasMessage( 'warning' ) );
 		$this->assertFalse( $s->isOK() );

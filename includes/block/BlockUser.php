@@ -243,7 +243,7 @@ class BlockUser {
 		$this->blockActionInfo = $blockActionInfo;
 
 		// Process block target
-		list( $this->target, $rawTargetType ) = $this->blockUtils->parseBlockTarget( $target );
+		[ $this->target, $rawTargetType ] = $this->blockUtils->parseBlockTarget( $target );
 		if ( $rawTargetType !== null ) { // Guard against invalid targets
 			$this->targetType = $rawTargetType;
 		} else {

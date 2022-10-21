@@ -228,7 +228,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			// Because 'iprange' might produce a huge number of ips, use a
 			// generator with batched lookup and continuation.
 			$userIter = call_user_func( function () use ( $dbSecondary, $sort, $op, $fname, $ipRange ) {
-				list( $start, $end ) = IPUtils::parseRange( $ipRange );
+				[ $start, $end ] = IPUtils::parseRange( $ipRange );
 				if ( $this->params['continue'] !== null ) {
 					$continue = explode( '|', $this->params['continue'] );
 					$this->dieContinueUsageIf( count( $continue ) != 4 );

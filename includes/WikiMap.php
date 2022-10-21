@@ -53,7 +53,7 @@ class WikiMap {
 
 		$wgConf->loadFullData();
 
-		list( $major, $minor ) = $wgConf->siteFromDB( $wikiID );
+		[ $major, $minor ] = $wgConf->siteFromDB( $wikiID );
 		if ( $major === null ) {
 			return null;
 		}

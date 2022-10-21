@@ -83,7 +83,7 @@ class CookieJar {
 		$bit = array_map( 'trim', explode( ';', $cookie ) );
 
 		if ( count( $bit ) >= 1 ) {
-			list( $name, $value ) = explode( '=', array_shift( $bit ), 2 );
+			[ $name, $value ] = explode( '=', array_shift( $bit ), 2 );
 			$attr = [];
 
 			foreach ( $bit as $piece ) {

@@ -81,7 +81,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 
 		$rows = [];
 		foreach ( $dataByEntity as $entity => $data ) {
-			list( $module, $variant ) = $this->getEntityNameComponents( $entity );
+			[ $module, $variant ] = $this->getEntityNameComponents( $entity );
 			if ( !is_array( $data[self::KEY_PATHS] ) ) {
 				throw new InvalidArgumentException( "Invalid entry for '$entity'" );
 			}
@@ -127,7 +127,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 		$dbw = $this->getPrimaryDB();
 		$disjunctionConds = [];
 		foreach ( (array)$entities as $entity ) {
-			list( $module, $variant ) = $this->getEntityNameComponents( $entity );
+			[ $module, $variant ] = $this->getEntityNameComponents( $entity );
 			$disjunctionConds[] = $dbw->makeList(
 				[ 'md_skin' => $variant, 'md_module' => $module ],
 				$dbw::LIST_AND
@@ -151,7 +151,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 	private function fetchDependencyBlobs( array $entities, IDatabase $db ) {
 		$modulesByVariant = [];
 		foreach ( $entities as $entity ) {
-			list( $module, $variant ) = $this->getEntityNameComponents( $entity );
+			[ $module, $variant ] = $this->getEntityNameComponents( $entity );
 			$modulesByVariant[$variant][] = $module;
 		}
 

@@ -52,7 +52,7 @@ class UpdateSpecialPages extends Maintenance {
 		$queryCacheLimit = (int)$config->get( MainConfigNames::QueryCacheLimit );
 		$disabledQueryPages = QueryPage::getDisabledQueryPages( $config );
 		foreach ( QueryPage::getPages() as $page ) {
-			list( , $special ) = $page;
+			[ , $special ] = $page;
 			$limit = $page[2] ?? $queryCacheLimit;
 
 			# --list : just show the name of pages

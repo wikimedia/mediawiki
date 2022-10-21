@@ -245,7 +245,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	 */
 	private function makeFromPregen( string $prefix, string $value ) {
 		// Split values
-		list( $local, $url ) = explode( ' ', $value, 2 );
+		[ $local, $url ] = explode( ' ', $value, 2 );
 		return new Interwiki( $prefix, $url, '', '', (int)$local );
 	}
 
@@ -282,7 +282,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 					continue;
 				}
 
-				list( $iw_local, $iw_url ) = explode( ' ', $row );
+				[ $iw_local, $iw_url ] = explode( ' ', $row );
 
 				if ( $local !== null && $local != $iw_local ) {
 					continue;

@@ -191,7 +191,7 @@ class JobRunner implements LoggerAwareInterface {
 			return $response;
 		}
 
-		list( , $maxLag ) = $this->lbFactory->getMainLB()->getMaxLag();
+		[ , $maxLag ] = $this->lbFactory->getMainLB()->getMaxLag();
 		if ( $maxLag >= self::MAX_ALLOWED_LAG ) {
 			// DB lag is already too high; caller can immediately try other wikis if applicable
 			$response['reached'] = 'replica-lag-limit';
@@ -591,7 +591,7 @@ class JobRunner implements LoggerAwareInterface {
 		if ( $maxBytes === null ) {
 			$m = [];
 			if ( preg_match( '!^(\d+)(k|m|g|)$!i', ini_get( 'memory_limit' ), $m ) ) {
-				list( , $num, $unit ) = $m;
+				[ , $num, $unit ] = $m;
 				$conv = [ 'g' => 1073741824, 'm' => 1048576, 'k' => 1024, '' => 1 ];
 				$maxBytes = (int)$num * $conv[strtolower( $unit )];
 			} else {

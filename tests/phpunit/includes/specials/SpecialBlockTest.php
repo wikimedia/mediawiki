@@ -868,7 +868,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	public function testGetTargetAndType( $par, $requestData, $expectedTarget ) {
 		$request = $requestData ? new FauxRequest( $requestData ) : null;
 		$page = $this->newSpecialPage();
-		list( $target, $type ) = $page->getTargetAndType( $par, $request );
+		[ $target, $type ] = $page->getTargetAndType( $par, $request );
 		$this->assertSame( $expectedTarget, $target );
 	}
 

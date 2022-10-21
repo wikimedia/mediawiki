@@ -687,7 +687,7 @@ class PermissionManager {
 			} elseif ( $title->isSpecialPage() ) {
 				// If it's a special page, ditch the subpage bit and check again
 				$name = $title->getDBkey();
-				list( $name, /* $subpage */ ) =
+				[ $name, /* $subpage */ ] =
 					$this->specialPageFactory->resolveAlias( $name );
 				if ( $name ) {
 					$pure = SpecialPage::getTitleFor( $name )->getPrefixedText();
@@ -750,7 +750,7 @@ class PermissionManager {
 	 */
 	private function isSameSpecialPage( $name, LinkTarget $page ): bool {
 		if ( $page->getNamespace() === NS_SPECIAL ) {
-			list( $thisName, /* $subpage */ ) =
+			[ $thisName, /* $subpage */ ] =
 				$this->specialPageFactory->resolveAlias( $page->getDBkey() );
 			if ( $name == $thisName ) {
 				return true;
@@ -1087,7 +1087,7 @@ class PermissionManager {
 		// TODO: remove & rework upon further use of LinkTarget
 		$title = Title::newFromLinkTarget( $page );
 		if ( $rigor !== self::RIGOR_QUICK && !$title->isUserConfigPage() ) {
-			list( $cascadingSources, $restrictions ) = $this->restrictionStore->getCascadeProtectionSources( $title );
+			[ $cascadingSources, $restrictions ] = $this->restrictionStore->getCascadeProtectionSources( $title );
 			// Cascading protection depends on more than this page...
 			// Several cascading protected pages may include this page...
 			// Check each cascading level

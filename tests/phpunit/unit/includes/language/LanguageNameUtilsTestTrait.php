@@ -522,7 +522,7 @@ trait LanguageNameUtilsTestTrait {
 
 	public function provideExceptionFromInvalidCode() {
 		$ret = [];
-		foreach ( static::provideIsValidBuiltInCode() as $desc => list( $code, $valid ) ) {
+		foreach ( static::provideIsValidBuiltInCode() as $desc => [ $code, $valid ] ) {
 			if ( $valid ) {
 				// Won't get an exception from this one
 				continue;

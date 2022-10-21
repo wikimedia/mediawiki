@@ -43,7 +43,7 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 			'method' => 'GET',
 			'url' => 'http://test/rest/42xyz42',
 			'headers' => []
-			// list( $rcode, $rdesc, $rhdrs, $rbody, $rerr )
+			// [ $rcode, $rdesc, $rhdrs, $rbody, $rerr ]
 		] )->willReturn( [ 200, 'OK', [], $data, 0 ] );
 		$result = $this->bag->get( '42xyz42' );
 		$this->assertEquals( 'somedata', $result );
@@ -64,7 +64,7 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 			'method' => 'GET',
 			'url' => 'http://test/rest/42xyz42',
 			'headers' => []
-			// list( $rcode, $rdesc, $rhdrs, $rbody, $rerr )
+			// [ $rcode, $rdesc, $rhdrs, $rbody, $rerr ]
 		] )->willReturn( [ 404, 'Not found', [], 'Nothing to see here', 0 ] );
 		$result = $this->bag->get( '42xyz42' );
 		$this->assertFalse( $result );
@@ -75,7 +75,7 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 			'method' => 'GET',
 			'url' => 'http://test/rest/42xyz42',
 			'headers' => []
-			// list( $rcode, $rdesc, $rhdrs, $rbody, $rerr )
+			// [ $rcode, $rdesc, $rhdrs, $rbody, $rerr ]
 		] )->willReturn( [ 0, '', [], '', 'cURL has failed you today' ] );
 		$result = $this->bag->get( '42xyz42' );
 		$this->assertFalse( $result );
@@ -87,7 +87,7 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 			'method' => 'GET',
 			'url' => 'http://test/rest/42xyz42',
 			'headers' => []
-			// list( $rcode, $rdesc, $rhdrs, $rbody, $rerr )
+			// [ $rcode, $rdesc, $rhdrs, $rbody, $rerr ]
 		] )->willReturn( [ 500, 'Too busy', [], 'Server is too busy', '' ] );
 		$result = $this->bag->get( '42xyz42' );
 		$this->assertFalse( $result );
@@ -113,7 +113,7 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 			'url' => 'http://test/rest/42xyz42',
 			'body' => $data,
 			'headers' => []
-			// list( $rcode, $rdesc, $rhdrs, $rbody, $rerr )
+			// [ $rcode, $rdesc, $rhdrs, $rbody, $rerr ]
 		] )->willReturn( [ 200, 'OK', [], 'Done', 0 ] );
 		$result = $this->bag->set( '42xyz42', 'somedata' );
 		$this->assertTrue( $result );
@@ -134,7 +134,7 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 			'method' => 'DELETE',
 			'url' => 'http://test/rest/42xyz42',
 			'headers' => []
-			// list( $rcode, $rdesc, $rhdrs, $rbody, $rerr )
+			// [ $rcode, $rdesc, $rhdrs, $rbody, $rerr ]
 		] )->willReturn( [ 200, 'OK', [], 'Done', 0 ] );
 		$result = $this->bag->delete( '42xyz42' );
 		$this->assertTrue( $result );

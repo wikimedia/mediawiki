@@ -1370,7 +1370,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	public function testNewRevisionFromArchiveRowAndSlots_getArchiveQueryInfo() {
 		$text = __METHOD__ . '-bä';
 		$title = Title::newFromText( __METHOD__ );
-		list( $store, $row, $slotRows, $orig ) = $this->buildRevisionStore( $text, $title );
+		[ $store, $row, $slotRows, $orig ] = $this->buildRevisionStore( $text, $title );
 		$storeRecord = $store->newRevisionFromArchiveRowAndSlots(
 			$row,
 			iterator_to_array( $slotRows )
@@ -1397,7 +1397,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	public function testNewRevisionFromArchiveRowAndSlots_getArchiveQueryInfoWithTitle( $getPageIdentity ) {
 		$text = __METHOD__ . '-bä';
 		$page = $getPageIdentity();
-		list( $store, $row, $slotRows, $orig ) = $this->buildRevisionStore( $text, $page );
+		[ $store, $row, $slotRows, $orig ] = $this->buildRevisionStore( $text, $page );
 		$storeRecord = $store->newRevisionFromArchiveRowAndSlots(
 			$row,
 			iterator_to_array( $slotRows ),
@@ -1431,7 +1431,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	public function testNewRevisionFromArchiveRowAndSlots_getArchiveQueryInfoWithTitleInArray( $array ) {
 		$text = __METHOD__ . '-bä';
 		$page = $array[ 'title' ];
-		list( $store, $row, $slotRows, $orig ) = $this->buildRevisionStore( $text, $page );
+		[ $store, $row, $slotRows, $orig ] = $this->buildRevisionStore( $text, $page );
 		$storeRecord = $store->newRevisionFromArchiveRowAndSlots(
 			$row,
 			iterator_to_array( $slotRows ),
@@ -1703,7 +1703,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	public function testInsertRevisionOn_archive( $getPageIdentity ) {
 		// This is a round trip test for deletion and undeletion of a
 		// revision row via the archive table.
-		list( $title, $pageIdentity ) = $getPageIdentity();
+		[ $title, $pageIdentity ] = $getPageIdentity();
 		$store = $this->getServiceContainer()->getRevisionStore();
 
 		$page = WikiPage::factory( $title );
@@ -2542,7 +2542,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$otherPageTitle = null,
 		array $options = []
 	) {
-		list( $title1, $pageIdentity ) = $getPageIdentity();
+		[ $title1, $pageIdentity ] = $getPageIdentity();
 		$text1 = __METHOD__ . '-bä';
 		$page1 = WikiPage::factory( $title1 );
 
@@ -2925,7 +2925,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	 * @param callable $getPageIdentity
 	 */
 	public function testGetFirstRevision( $getPageIdentity ) {
-		list( $pageTitle, $pageIdentity ) = $getPageIdentity();
+		[ $pageTitle, $pageIdentity ] = $getPageIdentity();
 		$editStatus = $this->editPage( $pageTitle->getPrefixedDBkey(), 'First Revision' );
 		$this->assertStatusGood( $editStatus, 'must create first revision' );
 		$firstRevId = $editStatus->getValue()['revision-record']->getID();

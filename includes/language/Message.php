@@ -1302,7 +1302,7 @@ class Message implements MessageSpecifier, Serializable {
 		$marker = $format === self::FORMAT_ESCAPED ? '$' : '$\'"';
 		$replacementKeys = [];
 		foreach ( $this->parameters as $n => $param ) {
-			list( $paramType, $value ) = $this->extractParam( $param, $format );
+			[ $paramType, $value ] = $this->extractParam( $param, $format );
 			if ( $type === 'before' ) {
 				if ( $paramType === 'before' ) {
 					$replacementKeys['$' . ( $n + 1 )] = $value;
@@ -1543,7 +1543,7 @@ class Message implements MessageSpecifier, Serializable {
 		$vars = [];
 		$list = [];
 		foreach ( $params as $n => $p ) {
-			list( $type, $value ) = $this->extractParam( $p, $format );
+			[ $type, $value ] = $this->extractParam( $p, $format );
 			$types[$type] = true;
 			$list[] = $value;
 			$vars[] = '$' . ( $n + 1 );

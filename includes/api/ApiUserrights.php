@@ -121,7 +121,7 @@ class ApiUserrights extends ApiBase {
 		$r = [];
 		$r['user'] = $user->getName();
 		$r['userid'] = $user->getId();
-		list( $r['added'], $r['removed'] ) = $form->doSaveUserGroups(
+		[ $r['added'], $r['removed'] ] = $form->doSaveUserGroups(
 			// Don't pass null to doSaveUserGroups() for array params, cast to empty array
 			$user, $add, (array)$params['remove'],
 			$params['reason'], (array)$tags, $groupExpiries

@@ -1029,7 +1029,7 @@ abstract class UploadBase {
 		 * We'll want to blacklist against *any* 'extension', and use
 		 * only the final one for the whitelist.
 		 */
-		list( $partname, $ext ) = $this->splitExtensions( $this->mFilteredName );
+		[ $partname, $ext ] = $this->splitExtensions( $this->mFilteredName );
 
 		if ( $ext !== [] ) {
 			$this->mFinalExtension = trim( end( $ext ) );
@@ -1565,7 +1565,7 @@ abstract class UploadBase {
 	 * @return bool|array
 	 */
 	public function checkSvgScriptCallback( $element, $attribs, $data = null ) {
-		list( $namespace, $strippedElement ) = $this->splitXmlNamespace( $element );
+		[ $namespace, $strippedElement ] = $this->splitXmlNamespace( $element );
 
 		// We specifically don't include:
 		// http://www.w3.org/1999/xhtml (T62771)

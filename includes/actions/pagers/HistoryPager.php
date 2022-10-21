@@ -501,7 +501,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 
 		# Tags
-		list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow(
+		[ $tagSummary, $newClasses ] = ChangeTags::formatSummaryRow(
 			$row->ts_tags,
 			'history',
 			$this->getContext()

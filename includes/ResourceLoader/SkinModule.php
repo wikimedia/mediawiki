@@ -397,7 +397,7 @@ class SkinModule extends LessVarFileModule {
 
 		// Bypass the current module paths so that these files are served from core,
 		// instead of the individual skin's module directory.
-		list( $defaultLocalBasePath, $defaultRemoteBasePath ) =
+		[ $defaultLocalBasePath, $defaultRemoteBasePath ] =
 			FileModule::extractBasePaths(
 				[],
 				null,

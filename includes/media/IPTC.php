@@ -346,13 +346,13 @@ class IPTC {
 		if ( count( $date ) === 1 ) {
 			// the standard says this should always be 1
 			// just double checking.
-			list( $date ) = self::convIPTC( $date, $charset );
+			[ $date ] = self::convIPTC( $date, $charset );
 		} else {
 			return null;
 		}
 
 		if ( count( $time ) === 1 ) {
-			list( $time ) = self::convIPTC( $time, $charset );
+			[ $time ] = self::convIPTC( $time, $charset );
 			$dateOnly = false;
 		} else {
 			$time = '000000+0000'; // placeholder

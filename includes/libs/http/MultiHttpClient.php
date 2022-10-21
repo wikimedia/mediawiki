@@ -143,7 +143,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - error     : Any error string
 	 * The map also stores integer-indexed copies of these values. This lets callers do:
 	 * @code
-	 * 		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $http->run( $req );
+	 * 		[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $http->run( $req );
 	 * @endcode
 	 * @param array $req HTTP request array
 	 * @param array $opts
@@ -173,7 +173,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - error   : Any error string
 	 * The map also stores integer-indexed copies of these values. This lets callers do:
 	 * @code
-	 *        list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $req['response'];
+	 *        [ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $req['response'];
 	 * @endcode
 	 * All headers in the 'headers' field are normalized to use lower case names.
 	 * This is true for the request headers and the response headers. Integer-indexed
@@ -323,7 +323,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 				$req['response']['error'] = "(curl error: no status set)";
 			}
 
-			// For convenience with the list() operator
+			// For convenience with array destructuring
 			$req['response'][0] = $req['response']['code'];
 			$req['response'][1] = $req['response']['reason'];
 			$req['response'][2] = $req['response']['headers'];
@@ -449,7 +449,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 				if ( strpos( $header, ":" ) === false ) {
 					return $length;
 				}
-				list( $name, $value ) = explode( ":", $header, 2 );
+				[ $name, $value ] = explode( ":", $header, 2 );
 				$name = strtolower( $name );
 				$value = trim( $value );
 				if ( isset( $req['response']['headers'][$name] ) ) {

@@ -181,7 +181,7 @@ class FileModule extends Module {
 		$hasTemplates = false;
 		// localBasePath and remoteBasePath both have unbelievably long fallback chains
 		// and need to be handled separately.
-		list( $this->localBasePath, $this->remoteBasePath ) =
+		[ $this->localBasePath, $this->remoteBasePath ] =
 			self::extractBasePaths( $options, $localBasePath, $remoteBasePath );
 
 		// Extract, validate and normalise remaining options
@@ -842,7 +842,7 @@ class FileModule extends Module {
 
 			// Add new file paths, remapping them to refer to our directories and not use settings
 			// from the module we're modifying, which come from the base definition.
-			list( $localBasePath, $remoteBasePath ) = self::extractBasePaths( $overrides );
+			[ $localBasePath, $remoteBasePath ] = self::extractBasePaths( $overrides );
 
 			foreach ( $paths as $path ) {
 				$styleFiles[] = new FilePath( $path, $localBasePath, $remoteBasePath );

@@ -363,7 +363,7 @@ function wfStreamThumb( array $params ) {
 		return;
 	} else {
 		// Generate the thumbnail locally
-		list( $thumb, $errorMsg ) = wfGenerateThumbnail( $img, $params, $thumbName, $thumbPath );
+		[ $thumb, $errorMsg ] = wfGenerateThumbnail( $img, $params, $thumbName, $thumbPath );
 	}
 
 	/** @var MediaTransformOutput|MediaTransformError|bool $thumb */
@@ -561,10 +561,10 @@ function wfExtractThumbRequestInfo( $thumbRel ) {
 
 	// Check if this is a thumbnail of an original in the local file repo
 	if ( preg_match( "!^((archive/)?$hashDirReg([^/]*)/([^/]*))$!", $thumbRel, $m ) ) {
-		list( /*all*/, $rel, $archOrTemp, $filename, $thumbname ) = $m;
+		[ /*all*/, $rel, $archOrTemp, $filename, $thumbname ] = $m;
 	// Check if this is a thumbnail of an temp file in the local file repo
 	} elseif ( preg_match( "!^(temp/)($hashDirReg([^/]*)/([^/]*))$!", $thumbRel, $m ) ) {
-		list( /*all*/, $archOrTemp, $rel, $filename, $thumbname ) = $m;
+		[ /*all*/, $archOrTemp, $rel, $filename, $thumbname ] = $m;
 	} else {
 		return null; // not a valid looking thumbnail request
 	}

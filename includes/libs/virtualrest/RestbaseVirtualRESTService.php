@@ -157,14 +157,14 @@ class RestbaseVirtualRESTService extends VirtualRESTService {
 	 */
 	public function onParsoid3Request( array $req, Closure $idGeneratorFunc ) {
 		$parts = explode( '/', $req['url'] );
-		list(
+		[
 			$targetWiki, // 'local'
 			$version, // 'v3'
 			$action, // 'transform' or 'page'
 			$format, // 'html' or 'wikitext'
 			// $title, // optional
 			// $revision, // optional
-		) = $parts;
+		] = $parts;
 		if ( $targetWiki !== 'local' ) {
 			throw new Exception( "Only 'local' target wiki is currently supported" );
 		} elseif ( $version !== 'v3' ) {

@@ -323,7 +323,7 @@ class ImageListPager extends TablePager {
 		$dbr = $this->getDatabase();
 		$prevTableName = $this->mTableName;
 		$this->mTableName = 'image';
-		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
+		[ $tables, $fields, $conds, $fname, $options, $join_conds ] =
 			$this->buildQueryInfo( $offset, $limit, $order );
 		$imageRes = $dbr->select( $tables, $fields, $conds, $fname, $options, $join_conds );
 		$this->mTableName = $prevTableName;
@@ -343,7 +343,7 @@ class ImageListPager extends TablePager {
 			$index = 'oi_' . substr( $index, 4 );
 		}
 
-		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
+		[ $tables, $fields, $conds, $fname, $options, $join_conds ] =
 			$this->buildQueryInfo( $offset, $limit, $order );
 		$oldimageRes = $dbr->select( $tables, $fields, $conds, $fname, $options, $join_conds );
 

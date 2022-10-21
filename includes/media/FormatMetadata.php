@@ -859,7 +859,7 @@ class FormatMetadata extends ContextSource {
 					case 'MaxApertureValue':
 						if ( strpos( $val, '/' ) !== false ) {
 							// need to expand this earlier to calculate fNumber
-							list( $n, $d ) = explode( '/', $val, 2 );
+							[ $n, $d ] = explode( '/', $val, 2 );
 							if ( is_numeric( $n ) && is_numeric( $d ) ) {
 								$val = (int)$n / (int)$d;
 							}

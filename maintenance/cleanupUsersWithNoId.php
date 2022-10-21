@@ -204,7 +204,7 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 			}
 
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable,PhanPossiblyUndeclaredVariable row is set
-			list( $next, $display ) = $this->makeNextCond( $dbw, $orderby, $row );
+			[ $next, $display ] = $this->makeNextCond( $dbw, $orderby, $row );
 			$this->output( "... $display\n" );
 			$lbFactory->waitForReplication();
 		}

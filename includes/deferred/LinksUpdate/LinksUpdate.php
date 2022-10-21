@@ -149,7 +149,7 @@ class LinksUpdate extends DataUpdate {
 				$ill = $this->getParserOutput()->getLanguageLinks();
 				$res = [];
 				foreach ( $ill as $link ) {
-					list( $key, $title ) = explode( ':', $link, 2 );
+					[ $key, $title ] = explode( ':', $link, 2 );
 					$res[$key] = $title;
 				}
 				return $res;

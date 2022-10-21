@@ -1275,7 +1275,7 @@ class SpecialPageFactory {
 	 * @return bool True if a special page exists with this name
 	 */
 	public function exists( $name ) {
-		list( $title, /*...*/ ) = $this->resolveAlias( $name );
+		[ $title, /*...*/ ] = $this->resolveAlias( $name );
 
 		$specialPageList = $this->getPageList();
 		return isset( $specialPageList[$title] );
@@ -1288,7 +1288,7 @@ class SpecialPageFactory {
 	 * @return SpecialPage|null SpecialPage object or null if the page doesn't exist
 	 */
 	public function getPage( $name ) {
-		list( $realName, /*...*/ ) = $this->resolveAlias( $name );
+		[ $realName, /*...*/ ] = $this->resolveAlias( $name );
 
 		$specialPageList = $this->getPageList();
 
@@ -1591,7 +1591,7 @@ class SpecialPageFactory {
 	 * @return Title|null Title or null if there is no such alias
 	 */
 	public function getTitleForAlias( $alias ) {
-		list( $name, $subpage ) = $this->resolveAlias( $alias );
+		[ $name, $subpage ] = $this->resolveAlias( $alias );
 		if ( $name != null ) {
 			return SpecialPage::getTitleFor( $name, $subpage );
 		}

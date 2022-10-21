@@ -1174,7 +1174,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @return DBConnRef
 	 */
 	private function getDBConnectionRefForQueryFlags( int $queryFlags ): DBConnRef {
-		list( $mode, ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
+		[ $mode, ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
 		return $this->loadBalancer->getConnectionRef( $mode, [], $this->dbDomain );
 	}
 

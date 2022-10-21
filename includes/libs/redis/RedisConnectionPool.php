@@ -228,10 +228,10 @@ class RedisConnectionPool implements LoggerAwareInterface {
 			// TCP connection
 			if ( preg_match( '/^\[(.+)\]:(\d+)$/', $server, $m ) ) {
 				// (ip, port)
-				list( $host, $port ) = [ $m[1], (int)$m[2] ];
+				[ $host, $port ] = [ $m[1], (int)$m[2] ];
 			} elseif ( preg_match( '/^((?:[\w]+\:\/\/)?[^:]+):(\d+)$/', $server, $m ) ) {
 				// (ip, uri or path, port)
-				list( $host, $port ) = [ $m[1], (int)$m[2] ];
+				[ $host, $port ] = [ $m[1], (int)$m[2] ];
 				if (
 					substr( $host, 0, 6 ) === 'tls://'
 					&& version_compare( phpversion( 'redis' ), '5.0.0' ) < 0
@@ -242,7 +242,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 				}
 			} else {
 				// (ip or path, port)
-				list( $host, $port ) = [ $server, 6379 ];
+				[ $host, $port ] = [ $server, 6379 ];
 			}
 		}
 

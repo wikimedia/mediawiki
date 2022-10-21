@@ -138,7 +138,7 @@ class Status extends StatusValue {
 	 * @return Status[]
 	 */
 	public function splitByErrorType() {
-		list( $errorsOnlyStatus, $warningsOnlyStatus ) = parent::splitByErrorType();
+		[ $errorsOnlyStatus, $warningsOnlyStatus ] = parent::splitByErrorType();
 		// phan/phan#2133?
 		'@phan-var Status $errorsOnlyStatus';
 		'@phan-var Status $warningsOnlyStatus';

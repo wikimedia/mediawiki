@@ -1442,7 +1442,7 @@ class ParserTestRunner {
 		if ( is_callable( $rawExpected ) ) {
 			$rawExpected = $rawExpected();
 		}
-		list( $actual, $expected ) = $normalizer( $rawActual, $rawExpected, false /* standalone */ );
+		[ $actual, $expected ] = $normalizer( $rawActual, $rawExpected, false /* standalone */ );
 		$passed = $actual === $expected;
 
 		$unexpectedPass = $expectedToFail && $passed;
@@ -1752,7 +1752,7 @@ class ParserTestRunner {
 			}
 			$mode = new ParserTestMode( 'selser', $test->changetree );
 		}
-		list( $out, $expected ) = $this->runSelserEditTest( $parsoid, $pageConfig, $test, $mode, $doc );
+		[ $out, $expected ] = $this->runSelserEditTest( $parsoid, $pageConfig, $test, $mode, $doc );
 		return new ParserTestResult(
 			$test,
 			$mode,
@@ -1783,7 +1783,7 @@ class ParserTestRunner {
 				$mode->changetree === $test->changetree,
 				"changetree should be consistent with mode"
 			);
-			list( $out, $expected ) = $this->runSelserEditTest( $parsoid, $pageConfig, $test, $mode, $doc );
+			[ $out, $expected ] = $this->runSelserEditTest( $parsoid, $pageConfig, $test, $mode, $doc );
 			return new ParserTestResult( $test, $mode, $expected, $out );
 		} else {
 			// this mode is a composite of multiple selser tests
@@ -1801,7 +1801,7 @@ class ParserTestRunner {
 				if ( $test->changetree ) {
 					// new mode with the generated changetree
 					$nmode = new ParserTestMode( 'selser', $test->changetree );
-					list( $out, $expected ) = $this->runSelserEditTest( $parsoid, $pageConfig, $test, $nmode, $doc );
+					[ $out, $expected ] = $this->runSelserEditTest( $parsoid, $pageConfig, $test, $nmode, $doc );
 					$testTitle = "TEST: {$test->testName} ($nmode)\n";
 					$bufOut .= $testTitle;
 					$bufExpected .= $testTitle;

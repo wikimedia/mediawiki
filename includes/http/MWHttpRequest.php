@@ -491,7 +491,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 		if ( (int)$this->respStatus > 0 && (int)$this->respStatus < 400 ) {
 			$this->status->setResult( true, (int)$this->respStatus );
 		} else {
-			list( $code, $message ) = explode( " ", $this->respStatus, 2 );
+			[ $code, $message ] = explode( " ", $this->respStatus, 2 );
 			$this->status->setResult( false, (int)$this->respStatus );
 			$this->status->fatal( "http-bad-status", $code, $message );
 		}

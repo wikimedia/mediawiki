@@ -135,7 +135,7 @@ class ApiBlock extends ApiBase {
 				$this->dieWithError( [ 'apierror-nosuchuserid', $params['userid'] ], 'nosuchuserid' );
 			}
 		}
-		list( $target, $targetType ) = $this->blockUtils->parseBlockTarget( $target );
+		[ $target, $targetType ] = $this->blockUtils->parseBlockTarget( $target );
 
 		if (
 			$params['noemail'] &&

@@ -95,7 +95,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 	 * @dataProvider provideTestAllPropsForSingleLanguage
 	 */
 	public function testAllPropsForSingleLanguage( string $langCode, array $expected ) {
-		list( $response, $continue ) = $this->doQuery( [
+		[ $response, $continue ] = $this->doQuery( [
 			'liprop' => 'code|bcp47|dir|autonym|name|fallbacks|variants|variantnames',
 			'licode' => $langCode,
 		] );
@@ -104,7 +104,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 	}
 
 	public function testNameInOtherLanguageForSingleLanguage() {
-		list( $response, $continue ) = $this->doQuery( [
+		[ $response, $continue ] = $this->doQuery( [
 			'liprop' => 'name',
 			'licode' => 'de',
 			'uselang' => 'pt',
@@ -119,7 +119,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 			return $time += 0.75;
 		} );
 
-		list( $response, $continue ) = $this->doQuery( [] );
+		[ $response, $continue ] = $this->doQuery( [] );
 
 		$this->assertCount( 2, $response );
 		$this->assertArrayHasKey( 'licontinue', $continue );
@@ -131,7 +131,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 			return $time += 1.5;
 		} );
 
-		list( $response, $continue ) = $this->doQuery( [
+		[ $response, $continue ] = $this->doQuery( [
 			'licode' => 'de',
 		] );
 
@@ -145,7 +145,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 		} );
 		$params = [ 'licode' => 'en|ru|zh|de|yue' ];
 
-		list( $response, $continue ) = $this->doQuery( $params );
+		[ $response, $continue ] = $this->doQuery( $params );
 
 		$this->assertCount( 2, $response );
 		$this->assertArrayHasKey( 'licontinue', $continue );
@@ -153,7 +153,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 
 		$time = 0;
 		$params = $continue + $params;
-		list( $response, $continue ) = $this->doQuery( $params );
+		[ $response, $continue ] = $this->doQuery( $params );
 
 		$this->assertCount( 2, $response );
 		$this->assertArrayHasKey( 'licontinue', $continue );
@@ -161,7 +161,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 
 		$time = 0;
 		$params = $continue + $params;
-		list( $response, $continue ) = $this->doQuery( $params );
+		[ $response, $continue ] = $this->doQuery( $params );
 
 		$this->assertCount( 1, $response );
 		$this->assertNull( $continue );
@@ -169,7 +169,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 	}
 
 	public function testResponseHasModulePathEvenIfEmpty() {
-		list( $response, $continue ) = $this->doQuery( [ 'licode' => '' ] );
+		[ $response, $continue ] = $this->doQuery( [ 'licode' => '' ] );
 		$this->assertSame( [], $response );
 		// the real test is that $res[0]['query']['languageinfo'] in doQuery() didn’t fail
 	}

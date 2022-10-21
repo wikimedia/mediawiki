@@ -3090,7 +3090,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 
 		if ( isset( $linksMigration::$mapping[$table] ) ) {
-			list( $blNamespace, $blTitle ) = $linksMigration->getTitleFields( $table );
+			[ $blNamespace, $blTitle ] = $linksMigration->getTitleFields( $table );
 			$linktargetQueryInfo = $linksMigration->getQueryInfo( $table );
 			$fields = $linktargetQueryInfo['fields'];
 			$tables = $linktargetQueryInfo['tables'];

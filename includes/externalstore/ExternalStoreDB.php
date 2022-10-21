@@ -63,7 +63,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	 * @see ExternalStoreMedium::fetchFromURL()
 	 */
 	public function fetchFromURL( $url ) {
-		list( $cluster, $id, $itemID ) = $this->parseURL( $url );
+		[ $cluster, $id, $itemID ] = $this->parseURL( $url );
 		$ret = $this->fetchBlob( $cluster, $id, $itemID );
 
 		if ( $itemID !== false && $ret !== false ) {
@@ -86,7 +86,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	public function batchFetchFromURLs( array $urls ) {
 		$batched = $inverseUrlMap = [];
 		foreach ( $urls as $url ) {
-			list( $cluster, $id, $itemID ) = $this->parseURL( $url );
+			[ $cluster, $id, $itemID ] = $this->parseURL( $url );
 			$batched[$cluster][$id][] = $itemID;
 			// false $itemID gets cast to int, but should be ok
 			// since we do === from the $itemID in $batched

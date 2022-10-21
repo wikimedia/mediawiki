@@ -141,7 +141,7 @@ class ApiModuleManager extends ContextSource {
 			return null;
 		}
 
-		list( $moduleGroup, $spec ) = $this->mModules[$moduleName];
+		[ $moduleGroup, $spec ] = $this->mModules[$moduleName];
 
 		if ( $group !== null && $moduleGroup !== $group ) {
 			return null;

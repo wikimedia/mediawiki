@@ -389,7 +389,7 @@ class ApiUpload extends ApiBase {
 		if ( $status->getMessage()->getKey() === 'uploadstash-exception' ) {
 			// The exceptions thrown by upload stash code and pretty silly and UploadBase returns poor
 			// Statuses for it. Just extract the exception details and parse them ourselves.
-			list( $exceptionType, $message ) = $status->getMessage()->getParams();
+			[ $exceptionType, $message ] = $status->getMessage()->getParams();
 			$debugMessage = 'Stashing temporary file failed: ' . $exceptionType . ' ' . $message;
 			wfDebug( __METHOD__ . ' ' . $debugMessage );
 		}

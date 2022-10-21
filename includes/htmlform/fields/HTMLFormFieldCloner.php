@@ -389,7 +389,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 
 			if ( $field instanceof HTMLHiddenField ) {
 				// HTMLHiddenField doesn't generate its own HTML
-				list( $name, $value, $params ) = $field->getHiddenFieldData( $v );
+				[ $name, $value, $params ] = $field->getHiddenFieldData( $v );
 				$hidden .= Html::hidden( $name, $value, $params ) . "\n";
 			} else {
 				$html .= $field->$getFieldHtmlMethod( $v );
@@ -517,7 +517,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 
 			if ( $field instanceof HTMLHiddenField ) {
 				// HTMLHiddenField doesn't generate its own HTML
-				list( $name, $value, $params ) = $field->getHiddenFieldData( $v );
+				[ $name, $value, $params ] = $field->getHiddenFieldData( $v );
 				$hidden .= Html::hidden( $name, $value, $params ) . "\n";
 			} else {
 				$html .= $field->getOOUI( $v );

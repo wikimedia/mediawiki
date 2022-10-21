@@ -206,7 +206,7 @@ class RevDelRevisionItem extends RevDelItem {
 		$attribs = [];
 		$tags = $this->getTags();
 		if ( $tags ) {
-			list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow(
+			[ $tagSummary, $classes ] = ChangeTags::formatSummaryRow(
 				$tags,
 				'revisiondelete',
 				$this->list->getContext()

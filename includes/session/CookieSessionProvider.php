@@ -125,7 +125,7 @@ class CookieSessionProvider extends SessionProvider {
 			$info['persisted'] = true;
 		}
 
-		list( $userId, $userName, $token ) = $this->getUserInfoFromCookies( $request );
+		[ $userId, $userName, $token ] = $this->getUserInfoFromCookies( $request );
 		if ( $userId !== null ) {
 			try {
 				$userInfo = UserInfo::newFromId( $userId );

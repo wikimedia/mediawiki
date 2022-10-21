@@ -228,7 +228,7 @@ class HTTPFileStreamer {
 	public static function parseRange( $range, $size ) {
 		$m = [];
 		if ( preg_match( '#^bytes=(\d*)-(\d*)$#', $range, $m ) ) {
-			list( , $start, $end ) = $m;
+			[ , $start, $end ] = $m;
 			if ( $start === '' && $end === '' ) {
 				$absRange = [ 0, $size - 1 ];
 			} elseif ( $start === '' ) {

@@ -97,7 +97,7 @@ class ApiComparePages extends ApiBase {
 		$this->getMain()->setCacheMode( 'public' );
 
 		// Get the 'from' RevisionRecord
-		list( $fromRev, $fromRelRev, $fromValsRev ) = $this->getDiffRevision( 'from', $params );
+		[ $fromRev, $fromRelRev, $fromValsRev ] = $this->getDiffRevision( 'from', $params );
 
 		// Get the 'to' RevisionRecord
 		if ( $params['torelative'] !== null ) {
@@ -112,7 +112,7 @@ class ApiComparePages extends ApiBase {
 			switch ( $params['torelative'] ) {
 				case 'prev':
 					// Swap 'from' and 'to'
-					list( $toRev, $toRelRev, $toValsRev ) = [ $fromRev, $fromRelRev, $fromValsRev ];
+					[ $toRev, $toRelRev, $toValsRev ] = [ $fromRev, $fromRelRev, $fromValsRev ];
 					$fromRev = $this->revisionStore->getPreviousRevision( $toRelRev );
 					$fromRelRev = $fromRev;
 					$fromValsRev = $fromRev;
@@ -171,7 +171,7 @@ class ApiComparePages extends ApiBase {
 					break;
 			}
 		} else {
-			list( $toRev, $toRelRev, $toValsRev ) = $this->getDiffRevision( 'to', $params );
+			[ $toRev, $toRelRev, $toValsRev ] = $this->getDiffRevision( 'to', $params );
 		}
 
 		// Handle missing from or to revisions (should never happen)

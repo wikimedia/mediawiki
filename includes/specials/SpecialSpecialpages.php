@@ -95,7 +95,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 
 		foreach ( $groups as $group => $sortedPages ) {
 			if ( strpos( $group, '/' ) !== false ) {
-				list( $group, $subGroup ) = explode( '/', $group, 2 );
+				[ $group, $subGroup ] = explode( '/', $group, 2 );
 				$out->wrapWikiMsg(
 					"<h3 class=\"mw-specialpagessubgroup\">$1</h3>\n",
 					"specialpages-group-$group-$subGroup"

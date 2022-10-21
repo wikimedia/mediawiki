@@ -375,7 +375,7 @@ class LinkBatch {
 	 */
 	public function constructSet( $prefix, $db ) {
 		if ( isset( $this->linksMigration::$prefixToTableMapping[$prefix] ) ) {
-			list( $blNamespace, $blTitle ) = $this->linksMigration->getTitleFields(
+			[ $blNamespace, $blTitle ] = $this->linksMigration->getTitleFields(
 				$this->linksMigration::$prefixToTableMapping[$prefix]
 			);
 		} else {

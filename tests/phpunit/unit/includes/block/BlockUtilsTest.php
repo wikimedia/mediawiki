@@ -93,7 +93,7 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 		$userIdentity = UserIdentityValue::newAnonymous( $ip );
 
 		$blockUtils = $this->getUtils();
-		list( $target, $type ) = $blockUtils->parseBlockTarget( $ip );
+		[ $target, $type ] = $blockUtils->parseBlockTarget( $ip );
 		$this->assertTrue( $userIdentity->equals( $target ) );
 		$this->assertSame( $type, AbstractBlock::TYPE_IP );
 

@@ -553,7 +553,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 			$usesTemp = $key === 'cs2_comment';
 
 			if ( $usesTemp ) {
-				list( $fields, $callback ) = $wstore->insertWithTempTable(
+				[ $fields, $callback ] = $wstore->insertWithTempTable(
 					$this->db, $key, $comment, $data
 				);
 			} else {
@@ -815,7 +815,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		};
 
 		$this->hideDeprecated( 'CommentStore::insertWithTempTable for ipb_reason' );
-		list( $fields, $callback ) = $store->insertWithTempTable( $this->db, 'ipb_reason', 'foo' );
+		[ $fields, $callback ] = $store->insertWithTempTable( $this->db, 'ipb_reason', 'foo' );
 		$this->assertIsCallable( $callback );
 	}
 

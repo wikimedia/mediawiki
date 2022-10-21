@@ -105,7 +105,7 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 	 * @return array
 	 */
 	protected function buildQueryInfo( $offset, $limit, $order ) {
-		list( $tables, $fields, $conds, $fname, $options, $join_conds ) = parent::buildQueryInfo(
+		[ $tables, $fields, $conds, $fname, $options, $join_conds ] = parent::buildQueryInfo(
 			$offset,
 			$limit,
 			$order

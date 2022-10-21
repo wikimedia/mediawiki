@@ -131,7 +131,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$hasNS = !isset( $settings['to_namespace'] );
 		if ( $hasNS ) {
 			if ( isset( $this->linksMigration::$mapping[$settings['linktable']] ) ) {
-				list( $bl_namespace, $bl_title ) = $this->linksMigration->getTitleFields( $settings['linktable'] );
+				[ $bl_namespace, $bl_title ] = $this->linksMigration->getTitleFields( $settings['linktable'] );
 			} else {
 				$bl_namespace = "{$p}_namespace";
 				$bl_title = "{$p}_title";
@@ -224,7 +224,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		}
 
 		// Populate the rest of the query
-		list( $idxNoFromNS, $idxWithFromNS ) = $settings['indexes'] ?? [ '', '' ];
+		[ $idxNoFromNS, $idxWithFromNS ] = $settings['indexes'] ?? [ '', '' ];
 		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 		if ( isset( $this->linksMigration::$mapping[$settings['linktable']] ) ) {
 			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive

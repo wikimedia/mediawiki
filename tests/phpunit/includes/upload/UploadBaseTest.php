@@ -134,7 +134,7 @@ class UploadBaseTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideCheckSvgScriptCallback
 	 */
 	public function testCheckSvgScriptCallback( $svg, $wellFormed, $filterMatch, $message ) {
-		list( $formed, $match ) = $this->upload->checkSvgString( $svg );
+		[ $formed, $match ] = $this->upload->checkSvgString( $svg );
 		$this->assertSame( $wellFormed, $formed, $message . " (well-formed)" );
 		$this->assertSame( $filterMatch, $match, $message . " (filter match)" );
 	}

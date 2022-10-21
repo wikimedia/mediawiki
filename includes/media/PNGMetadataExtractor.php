@@ -232,7 +232,7 @@ class PNGMetadataExtractor {
 					continue;
 				}
 
-				list( $keyword, $content ) = explode( "\x00", $buf, 2 );
+				[ $keyword, $content ] = explode( "\x00", $buf, 2 );
 				if ( $keyword === '' ) {
 					wfDebug( __METHOD__ . ": Empty tEXt keyword" );
 					continue;
@@ -264,7 +264,7 @@ class PNGMetadataExtractor {
 						continue;
 					}
 
-					list( $keyword, $postKeyword ) = explode( "\x00", $buf, 2 );
+					[ $keyword, $postKeyword ] = explode( "\x00", $buf, 2 );
 					if ( $keyword === '' || $postKeyword === '' ) {
 						wfDebug( __METHOD__ . ": Empty zTXt chunk" );
 						continue;

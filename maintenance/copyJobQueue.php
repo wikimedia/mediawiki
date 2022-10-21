@@ -65,10 +65,10 @@ class CopyJobQueue extends Maintenance {
 			$src = JobQueue::factory( $baseConfig + $wgJobQueueMigrationConfig[$srcKey] );
 			$dst = JobQueue::factory( $baseConfig + $wgJobQueueMigrationConfig[$dstKey] );
 
-			list( $total, $totalOK ) = $this->copyJobs( $src, $dst, $src->getAllQueuedJobs() );
+			[ $total, $totalOK ] = $this->copyJobs( $src, $dst, $src->getAllQueuedJobs() );
 			$this->output( "Copied $totalOK/$total queued $type jobs.\n" );
 
-			list( $total, $totalOK ) = $this->copyJobs( $src, $dst, $src->getAllDelayedJobs() );
+			[ $total, $totalOK ] = $this->copyJobs( $src, $dst, $src->getAllDelayedJobs() );
 			$this->output( "Copied $totalOK/$total delayed $type jobs.\n" );
 		}
 	}
