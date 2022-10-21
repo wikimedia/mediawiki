@@ -1634,7 +1634,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	public function testTranslateBlockExpiry( $expectedData, $str, $now, $desc ) {
 		$lang = $this->getLang();
 		if ( is_array( $expectedData ) ) {
-			list( $func, $arg ) = $expectedData;
+			[ $func, $arg ] = $expectedData;
 			$expected = $lang->$func( $arg );
 		} else {
 			$expected = $expectedData;

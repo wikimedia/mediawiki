@@ -252,7 +252,7 @@ class PPFrame_Hash implements PPFrame {
 					throw new MWException( __METHOD__ .
 						': found an array where a node descriptor should be' );
 				}
-				list( $contextName, $contextChildren ) = $contextNode;
+				[ $contextName, $contextChildren ] = $contextNode;
 			} else {
 				throw new MWException( __METHOD__ . ': Invalid parameter type' );
 			}

@@ -128,7 +128,7 @@ class LinkHolderArray {
 	 */
 	public function makeHolder( Title $nt, $text = '', $trail = '', $prefix = '' ) {
 		# Separate the link trail from the rest of the link
-		list( $inside, $trail ) = Linker::splitTrail( $trail );
+		[ $inside, $trail ] = Linker::splitTrail( $trail );
 
 		$key = $this->parent->nextLinkID();
 		$entry = [
@@ -438,7 +438,7 @@ class LinkHolderArray {
 
 				// loop over link holders
 				foreach ( $holderKeys as $key ) {
-					list( $ns, $index ) = explode( ':', $key, 2 );
+					[ $ns, $index ] = explode( ':', $key, 2 );
 					$entry =& $this->internals[$ns][$index];
 					$pdbk = $entry['pdbk'];
 
@@ -455,7 +455,7 @@ class LinkHolderArray {
 
 				// check if the object is a variant of a category
 				if ( isset( $categoryMap[$vardbk] ) ) {
-					list( $oldkey, $oldtitle ) = $categoryMap[$vardbk];
+					[ $oldkey, $oldtitle ] = $categoryMap[$vardbk];
 					if ( !isset( $varCategories[$oldkey] ) && !$oldtitle->exists() ) {
 						$varCategories[$oldkey] = $vardbk;
 					}
@@ -487,10 +487,10 @@ class LinkHolderArray {
 		return preg_replace_callback(
 			'/<!--(IW)?LINK\'" (.*?)-->/',
 			function ( $matches ) {
-				list( $unchanged, $isInterwiki, $key ) = $matches;
+				[ $unchanged, $isInterwiki, $key ] = $matches;
 
 				if ( !$isInterwiki ) {
-					list( $ns, $index ) = explode( ':', $key, 2 );
+					[ $ns, $index ] = explode( ':', $key, 2 );
 					return $this->internals[$ns][$index]['text'] ?? $unchanged;
 				} else {
 					return $this->interwikis[$key]['text'] ?? $unchanged;

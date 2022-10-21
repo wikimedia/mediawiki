@@ -509,7 +509,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		RevisionRecord $fromRev = null,
 		RevisionRecord $toRev = null
 	) {
-		list( $fromRev, $toRev ) = $this->orderRevisions( $fromRev, $toRev );
+		[ $fromRev, $toRev ] = $this->orderRevisions( $fromRev, $toRev );
 		return $this->revisionStore->countAuthorsBetween( $pageId, $fromRev,
 			$toRev, $this->getAuthority(), self::COUNT_LIMITS['editors'] );
 	}
@@ -606,7 +606,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		RevisionRecord $fromRev = null,
 		RevisionRecord $toRev = null
 	) {
-		list( $fromRev, $toRev ) = $this->orderRevisions( $fromRev, $toRev );
+		[ $fromRev, $toRev ] = $this->orderRevisions( $fromRev, $toRev );
 		return $this->revisionStore->countRevisionsBetween(
 			$pageId,
 			$fromRev,

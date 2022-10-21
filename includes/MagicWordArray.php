@@ -246,7 +246,7 @@ class MagicWordArray {
 				// continue;
 				throw new MWException( __METHOD__ . ': bad parameter name' );
 			}
-			list( /* $synIndex */, $magicName ) = $parts;
+			[ /* $synIndex */, $magicName ] = $parts;
 			$paramValue = next( $m );
 			return [ $magicName, $paramValue ];
 		}
@@ -319,7 +319,7 @@ class MagicWordArray {
 				throw new Exception( "preg_match_all error $error: $errorText" );
 			} elseif ( $res ) {
 				foreach ( $matches as $m ) {
-					list( $name, $param ) = $this->parseMatch( $m );
+					[ $name, $param ] = $this->parseMatch( $m );
 					$found[$name] = $param;
 				}
 			}
@@ -355,7 +355,7 @@ class MagicWordArray {
 		$regexes = $this->getRegexStart();
 		foreach ( $regexes as $regex ) {
 			if ( preg_match( $regex, $text, $m ) ) {
-				list( $id, ) = $this->parseMatch( $m );
+				[ $id, ] = $this->parseMatch( $m );
 				if ( strlen( $m[0] ) >= strlen( $text ) ) {
 					$text = '';
 				} else {

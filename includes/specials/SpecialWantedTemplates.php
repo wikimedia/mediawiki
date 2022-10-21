@@ -58,7 +58,7 @@ class SpecialWantedTemplates extends WantedQueryPage {
 
 	public function getQueryInfo() {
 		$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
-		list( $ns, $title ) = $this->linksMigration->getTitleFields( 'templatelinks' );
+		[ $ns, $title ] = $this->linksMigration->getTitleFields( 'templatelinks' );
 		return [
 			'tables' => array_merge( $queryInfo['tables'], [ 'page' ] ),
 			'fields' => [

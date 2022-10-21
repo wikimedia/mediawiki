@@ -161,7 +161,7 @@ trait DeprecationHelper {
 		// but to correctly support null coalescing for dynamic properties,
 		// e.g. $foo->bar ?? 'default'
 		if ( isset( $this->deprecatedPublicProperties[$name] ) ) {
-			list( $version, $class, $component, $getter ) = $this->deprecatedPublicProperties[$name];
+			[ $version, $class, $component, $getter ] = $this->deprecatedPublicProperties[$name];
 			$qualifiedName = $class . '::$' . $name;
 			wfDeprecated( $qualifiedName, $version, $component, 2 );
 			if ( $getter ) {
@@ -186,7 +186,7 @@ trait DeprecationHelper {
 
 	public function __get( $name ) {
 		if ( isset( $this->deprecatedPublicProperties[$name] ) ) {
-			list( $version, $class, $component, $getter ) = $this->deprecatedPublicProperties[$name];
+			[ $version, $class, $component, $getter ] = $this->deprecatedPublicProperties[$name];
 			$qualifiedName = $class . '::$' . $name;
 			wfDeprecated( $qualifiedName, $version, $component, 2 );
 			if ( $getter ) {
@@ -215,7 +215,7 @@ trait DeprecationHelper {
 
 	public function __set( $name, $value ) {
 		if ( isset( $this->deprecatedPublicProperties[$name] ) ) {
-			list( $version, $class, $component, , $setter ) = $this->deprecatedPublicProperties[$name];
+			[ $version, $class, $component, , $setter ] = $this->deprecatedPublicProperties[$name];
 			$qualifiedName = $class . '::$' . $name;
 			wfDeprecated( $qualifiedName, $version, $component, 2 );
 			if ( $setter ) {

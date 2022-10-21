@@ -354,7 +354,7 @@ class OldLocalFile extends LocalFile {
 		}
 
 		$dbw = $this->repo->getPrimaryDB();
-		list( $major, $minor ) = self::splitMime( $this->mime );
+		[ $major, $minor ] = self::splitMime( $this->mime );
 
 		wfDebug( __METHOD__ . ': upgrading ' . $this->archive_name . " to the current schema" );
 		$dbw->update( 'oldimage',

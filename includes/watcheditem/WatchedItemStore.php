@@ -642,7 +642,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$res = $queryBuilder->fetchResultSet();
 
 		$watcherCounts = [];
-		foreach ( $targetsWithVisitThresholds as list( $target ) ) {
+		foreach ( $targetsWithVisitThresholds as [ $target ] ) {
 			/** @var LinkTarget|PageIdentity $target */
 			$watcherCounts[$target->getNamespace()][$target->getDBkey()] = 0;
 		}
@@ -668,7 +668,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	): string {
 		$missingTargets = [];
 		$namespaceConds = [];
-		foreach ( $targetsWithVisitThresholds as list( $target, $threshold ) ) {
+		foreach ( $targetsWithVisitThresholds as [ $target, $threshold ] ) {
 			if ( $threshold === null ) {
 				$missingTargets[] = $target;
 				continue;

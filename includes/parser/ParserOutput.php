@@ -1853,7 +1853,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		}
 
 		if ( strpos( $key, '-' ) ) {
-			list( $ns, $name ) = explode( '-', $key, 2 );
+			[ $ns, $name ] = explode( '-', $key, 2 );
 			$this->mLimitReportJSData[$ns][$name] = $data;
 		} else {
 			$this->mLimitReportJSData[$key] = $data;

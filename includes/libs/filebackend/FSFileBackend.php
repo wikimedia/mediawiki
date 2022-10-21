@@ -188,11 +188,11 @@ class FSFileBackend extends FileBackendStore {
 	 * @return string|null
 	 */
 	protected function resolveToFSPath( $storagePath ) {
-		list( $fullCont, $relPath ) = $this->resolveStoragePathReal( $storagePath );
+		[ $fullCont, $relPath ] = $this->resolveStoragePathReal( $storagePath );
 		if ( $relPath === null ) {
 			return null; // invalid
 		}
-		list( , $shortCont, ) = FileBackend::splitStoragePath( $storagePath );
+		[ , $shortCont, ] = FileBackend::splitStoragePath( $storagePath );
 		$fsPath = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		if ( $relPath != '' ) {
 			$fsPath .= "/{$relPath}";
@@ -485,7 +485,7 @@ class FSFileBackend extends FileBackendStore {
 	 */
 	protected function doPrepareInternal( $fullCont, $dirRel, array $params ) {
 		$status = $this->newStatus();
-		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
+		[ , $shortCont, ] = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$fsDirectory = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		// Create the directory and its parents as needed...
@@ -521,7 +521,7 @@ class FSFileBackend extends FileBackendStore {
 
 	protected function doSecureInternal( $fullCont, $dirRel, array $params ) {
 		$status = $this->newStatus();
-		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
+		[ , $shortCont, ] = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$fsDirectory = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		// Seed new directories with a blank index.html, to prevent crawling...
@@ -549,7 +549,7 @@ class FSFileBackend extends FileBackendStore {
 
 	protected function doPublishInternal( $fullCont, $dirRel, array $params ) {
 		$status = $this->newStatus();
-		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
+		[ , $shortCont, ] = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$fsDirectory = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 		// Unseed new directories with a blank index.html, to allow crawling...
@@ -573,7 +573,7 @@ class FSFileBackend extends FileBackendStore {
 
 	protected function doCleanInternal( $fullCont, $dirRel, array $params ) {
 		$status = $this->newStatus();
-		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
+		[ , $shortCont, ] = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$fsDirectory = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 
@@ -620,7 +620,7 @@ class FSFileBackend extends FileBackendStore {
 	}
 
 	protected function doDirectoryExists( $fullCont, $dirRel, array $params ) {
-		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
+		[ , $shortCont, ] = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$fsDirectory = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 
@@ -639,7 +639,7 @@ class FSFileBackend extends FileBackendStore {
 	 * @return array|FSFileBackendDirList|null
 	 */
 	public function getDirectoryListInternal( $fullCont, $dirRel, array $params ) {
-		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
+		[ , $shortCont, ] = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$fsDirectory = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 
@@ -672,7 +672,7 @@ class FSFileBackend extends FileBackendStore {
 	 * @return array|FSFileBackendFileList|null
 	 */
 	public function getFileListInternal( $fullCont, $dirRel, array $params ) {
-		list( , $shortCont, ) = FileBackend::splitStoragePath( $params['dir'] );
+		[ , $shortCont, ] = FileBackend::splitStoragePath( $params['dir'] );
 		$contRoot = $this->containerFSRoot( $shortCont, $fullCont ); // must be valid
 		$fsDirectory = ( $dirRel != '' ) ? "{$contRoot}/{$dirRel}" : $contRoot;
 

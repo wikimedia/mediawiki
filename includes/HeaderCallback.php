@@ -103,7 +103,7 @@ class HeaderCallback {
 		foreach ( $values as $value ) {
 			// Set-Cookie header format: <cookie-name>=<cookie-value>; <non-sensitive attributes>
 			$parts = explode( ';', $value );
-			list( $name, $value ) = explode( '=', $parts[0], 2 );
+			[ $name, $value ] = explode( '=', $parts[0], 2 );
 			if ( strlen( $value ) > 8 ) {
 				$value = substr( $value, 0, 8 ) . '...';
 				$parts[0] = "$name=$value";

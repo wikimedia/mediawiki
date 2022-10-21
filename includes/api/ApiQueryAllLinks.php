@@ -132,7 +132,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 		$nsField = $pfx . 'namespace';
 		$titleField = $pfx . $this->fieldTitle;
 		if ( isset( $this->linksMigration::$mapping[$this->table] ) ) {
-			list( $nsField, $titleField ) = $this->linksMigration->getTitleFields( $this->table );
+			[ $nsField, $titleField ] = $this->linksMigration->getTitleFields( $this->table );
 			$queryInfo = $this->linksMigration->getQueryInfo( $this->table );
 			$this->addTables( $queryInfo['tables'] );
 			$this->addJoinConds( $queryInfo['joins'] );

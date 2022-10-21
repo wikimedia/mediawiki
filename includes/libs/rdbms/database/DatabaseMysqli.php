@@ -137,7 +137,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		} elseif ( substr_count( $server, ':/' ) == 1 ) {
 			// If we have a colon slash instead of a colon and a port number
 			// after the ip or hostname, assume it's the Unix domain socket path
-			list( $realServer, $socket ) = explode( ':', $server, 2 );
+			[ $realServer, $socket ] = explode( ':', $server, 2 );
 		} else {
 			$realServer = $server;
 		}

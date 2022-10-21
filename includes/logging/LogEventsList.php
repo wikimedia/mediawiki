@@ -399,7 +399,7 @@ class LogEventsList extends ContextSource {
 		$del = $this->getShowHideLinks( $row );
 
 		// Any tags...
-		list( $tagDisplay, $newClasses ) = ChangeTags::formatSummaryRow(
+		[ $tagDisplay, $newClasses ] = ChangeTags::formatSummaryRow(
 			$row->ts_tags,
 			'logevent',
 			$this->getContext()

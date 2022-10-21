@@ -650,7 +650,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @return array [ IDatabase $db, array $options ]
 	 */
 	private function getDBAndOptionsForQueryFlags( $queryFlags ): array {
-		list( $mode, $options ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
+		[ $mode, $options ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
 		return [ $this->loadBalancer->getConnectionRef( $mode, [] ), $options ];
 	}
 

@@ -115,7 +115,7 @@ trait MediaFileTrait {
 		$transformInfo = null;
 
 		try {
-			list( $width, $height ) = $file->getDisplayWidthHeight( $maxWidth, $maxHeight );
+			[ $width, $height ] = $file->getDisplayWidthHeight( $maxWidth, $maxHeight );
 			$transform = $file->transform( [ 'width' => $width, 'height' => $height ] );
 			if ( $transform && !$transform->isError() ) {
 				// $file->getSize() returns original size. Only include if dimensions match.

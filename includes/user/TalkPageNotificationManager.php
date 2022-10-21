@@ -225,7 +225,7 @@ class TalkPageNotificationManager {
 		}
 
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		list( $field, $id ) = $this->getQueryFieldAndId( $user );
+		[ $field, $id ] = $this->getQueryFieldAndId( $user );
 		// Get the "last viewed rev" timestamp from the oldest message notification
 		$timestamp = $dbr->selectField(
 			'user_newtalk',
@@ -267,7 +267,7 @@ class TalkPageNotificationManager {
 	 */
 	private function dbCheckNewUserMessages( UserIdentity $user ): bool {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		list( $field, $id ) = $this->getQueryFieldAndId( $user );
+		[ $field, $id ] = $this->getQueryFieldAndId( $user );
 		$ok = $dbr->selectField(
 			'user_newtalk',
 			$field,
@@ -301,7 +301,7 @@ class TalkPageNotificationManager {
 
 		// Mark the user as having new messages since this revision
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
-		list( $field, $id ) = $this->getQueryFieldAndId( $user );
+		[ $field, $id ] = $this->getQueryFieldAndId( $user );
 		$dbw->insert(
 			'user_newtalk',
 			[
@@ -324,7 +324,7 @@ class TalkPageNotificationManager {
 			return false;
 		}
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
-		list( $field, $id ) = $this->getQueryFieldAndId( $user );
+		[ $field, $id ] = $this->getQueryFieldAndId( $user );
 		$dbw->delete(
 			'user_newtalk',
 			[ $field => $id ],

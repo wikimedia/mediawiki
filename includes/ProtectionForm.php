@@ -290,7 +290,7 @@ class ProtectionForm {
 			return;
 		}
 
-		list( $cascadeSources, /* $restrictions */ ) =
+		[ $cascadeSources, /* $restrictions */ ] =
 			$this->restrictionStore->getCascadeProtectionSources( $this->mTitle );
 		if ( count( $cascadeSources ) > 0 ) {
 			$titles = '';

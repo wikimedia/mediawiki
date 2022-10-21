@@ -103,7 +103,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 				continue;
 			}
 
-			list( , $container ) = FileBackend::splitStoragePath( $path );
+			[ , $container ] = FileBackend::splitStoragePath( $path );
 
 			if ( $container === "{$this->repoName}-public" ) {
 				$name = basename( $path );

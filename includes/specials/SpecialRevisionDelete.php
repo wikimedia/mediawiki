@@ -578,7 +578,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			foreach ( $this->checks as $item ) {
 				// Messages: revdelete-hide-text, revdelete-hide-image, revdelete-hide-name,
 				// revdelete-hide-comment, revdelete-hide-user, revdelete-hide-restricted
-				list( $message, $name, $field ) = $item;
+				[ $message, $name, $field ] = $item;
 				$innerHTML = Xml::checkLabel(
 					$this->msg( $message )->text(),
 					$name,
@@ -606,7 +606,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			foreach ( $this->checks as $item ) {
 				// Messages: revdelete-hide-text, revdelete-hide-image, revdelete-hide-name,
 				// revdelete-hide-comment, revdelete-hide-user, revdelete-hide-restricted
-				list( $message, $name, $field ) = $item;
+				[ $message, $name, $field ] = $item;
 				// If there are several items, use third state by default...
 				if ( $this->submitClicked ) {
 					$selected = $this->getRequest()->getInt( $name, 0 /* unchecked */ );
@@ -717,7 +717,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	protected function extractBitParams() {
 		$bitfield = [];
 		foreach ( $this->checks as $item ) {
-			list( /* message */, $name, $field ) = $item;
+			[ /* message */, $name, $field ] = $item;
 			$val = $this->getRequest()->getInt( $name, 0 /* unchecked */ );
 			if ( $val < -1 || $val > 1 ) {
 				$val = -1; // -1 for existing value

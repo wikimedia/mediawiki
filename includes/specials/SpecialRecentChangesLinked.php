@@ -237,7 +237,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 					// TODO: Move this to LinksMigration
 					if ( isset( $linksMigration::$mapping[$link_table] ) ) {
 						$queryInfo = $linksMigration->getQueryInfo( $link_table, $link_table );
-						list( $nsField, $titleField ) = $linksMigration->getTitleFields( $link_table );
+						[ $nsField, $titleField ] = $linksMigration->getTitleFields( $link_table );
 						if ( in_array( 'linktarget', $queryInfo['tables'] ) ) {
 							$joinTable = 'linktarget';
 						} else {

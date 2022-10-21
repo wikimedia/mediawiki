@@ -368,7 +368,7 @@ class LinkRenderer {
 	public function normalizeTarget( $target ) {
 		$target = $this->castToLinkTarget( $target );
 		if ( $target->getNamespace() === NS_SPECIAL && !$target->isExternal() ) {
-			list( $name, $subpage ) = $this->specialPageFactory->resolveAlias(
+			[ $name, $subpage ] = $this->specialPageFactory->resolveAlias(
 				$target->getDBkey()
 			);
 			if ( $name ) {

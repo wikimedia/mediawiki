@@ -263,7 +263,7 @@ class RevisionStore
 	 * @return DBConnRef
 	 */
 	private function getDBConnectionRefForQueryFlags( $queryFlags ) {
-		list( $mode, ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
+		[ $mode, ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
 		return $this->getDBConnectionRef( $mode );
 	}
 
@@ -772,7 +772,7 @@ class RevisionStore
 	) {
 		$revisionRow = $this->getBaseRevisionRow( $dbw, $rev, $parentId );
 
-		list( $commentFields, $commentCallback ) =
+		[ $commentFields, $commentCallback ] =
 			$this->commentStore->insertWithTempTable(
 				$dbw,
 				'rev_comment',
@@ -780,7 +780,7 @@ class RevisionStore
 			);
 		$revisionRow += $commentFields;
 
-		list( $actorFields, $actorCallback ) =
+		[ $actorFields, $actorCallback ] =
 			$this->actorMigration->getInsertValuesWithTempTable(
 				$dbw,
 				'rev_user',
@@ -1123,7 +1123,7 @@ class RevisionStore
 	 * @return null|RecentChange
 	 */
 	public function getRecentChange( RevisionRecord $rev, $flags = 0 ) {
-		list( $dbType, ) = DBAccessObjectUtils::getDBOptions( $flags );
+		[ $dbType, ] = DBAccessObjectUtils::getDBOptions( $flags );
 
 		$rc = RecentChange::newFromConds(
 			[ 'rc_this_oldid' => $rev->getId( $this->wikiId ) ],
@@ -1416,7 +1416,7 @@ class RevisionStore
 	private function loadSlotRecordsFromDb( $revId, $queryFlags, PageIdentity $page ): array {
 		$revQuery = $this->getSlotsQueryInfo( [ 'content' ] );
 
-		list( $dbMode, $dbOptions ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
+		[ $dbMode, $dbOptions ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
 		$db = $this->getDBConnectionRef( $dbMode );
 
 		$res = $db->select(
@@ -2682,7 +2682,7 @@ class RevisionStore
 			return null;
 		}
 
-		list( $dbType, ) = DBAccessObjectUtils::getDBOptions( $flags );
+		[ $dbType, ] = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = $this->getDBConnectionRef( $dbType, [ 'contributions' ] );
 
 		$ts = $rev->getTimestamp();

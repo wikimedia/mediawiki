@@ -116,7 +116,7 @@ class ExternalStoreFactory implements LoggerAwareInterface {
 	 * @since 1.34
 	 */
 	public function getStoreForUrl( $url, array $params = [] ) {
-		list( $proto, $path ) = self::splitStorageUrl( $url );
+		[ $proto, $path ] = self::splitStorageUrl( $url );
 		if ( $path == '' ) { // bad URL
 			throw new ExternalStoreException( "Invalid URL '$url'" );
 		}
@@ -133,7 +133,7 @@ class ExternalStoreFactory implements LoggerAwareInterface {
 	 * @since 1.34
 	 */
 	public function getStoreLocationFromUrl( $url ) {
-		list( , $location ) = self::splitStorageUrl( $url );
+		[ , $location ] = self::splitStorageUrl( $url );
 		if ( $location == '' ) { // bad URL
 			throw new ExternalStoreException( "Invalid URL '$url'" );
 		}
@@ -150,7 +150,7 @@ class ExternalStoreFactory implements LoggerAwareInterface {
 	public function getUrlsByProtocol( array $urls ) {
 		$urlsByProtocol = [];
 		foreach ( $urls as $url ) {
-			list( $proto, ) = self::splitStorageUrl( $url );
+			[ $proto, ] = self::splitStorageUrl( $url );
 			$urlsByProtocol[$proto][] = $url;
 		}
 

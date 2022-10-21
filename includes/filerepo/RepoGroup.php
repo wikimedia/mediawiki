@@ -441,7 +441,7 @@ class RepoGroup {
 	 */
 	public function getFileProps( $fileName ) {
 		if ( FileRepo::isVirtualUrl( $fileName ) ) {
-			list( $repoName, /* $zone */, /* $rel */ ) = $this->splitVirtualUrl( $fileName );
+			[ $repoName, /* $zone */, /* $rel */ ] = $this->splitVirtualUrl( $fileName );
 			if ( $repoName === '' ) {
 				$repoName = 'local';
 			}

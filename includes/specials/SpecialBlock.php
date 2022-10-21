@@ -167,14 +167,14 @@ class SpecialBlock extends FormSpecialPage {
 		# need to extract *every* variable from the form just for processing here, but
 		# there are legitimate uses for some variables
 		$request = $this->getRequest();
-		list( $this->target, $this->type ) = self::getTargetAndType( $par, $request );
+		[ $this->target, $this->type ] = self::getTargetAndType( $par, $request );
 		if ( $this->target instanceof UserIdentity ) {
 			# Set the 'relevant user' in the skin, so it displays links like Contributions,
 			# User logs, UserRights, etc.
 			$this->getSkin()->setRelevantUser( $this->target );
 		}
 
-		list( $this->previousTarget, /*...*/ ) = $this->blockUtils
+		[ $this->previousTarget, /*...*/ ] = $this->blockUtils
 			->parseBlockTarget( $request->getVal( 'wpPreviousTarget' ) );
 		$this->requestedHideUser = $request->getBool( 'wpHideUser' );
 	}
@@ -817,7 +817,7 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		/** @var User $target */
-		list( $target, $type ) = $blockUtils->parseBlockTarget( $data['Target'] );
+		[ $target, $type ] = $blockUtils->parseBlockTarget( $data['Target'] );
 		if ( $type == DatabaseBlock::TYPE_USER ) {
 			$user = $target;
 			$target = $user->getName();

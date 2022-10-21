@@ -376,7 +376,7 @@ class NamespaceDupes extends Maintenance {
 		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 		if ( isset( $linksMigration::$mapping[$table] ) ) {
 			$queryInfo = $linksMigration->getQueryInfo( $table );
-			list( $namespaceField, $titleField ) = $linksMigration->getTitleFields( $table );
+			[ $namespaceField, $titleField ] = $linksMigration->getTitleFields( $table );
 		} else {
 			$queryInfo = [
 				'tables' => [ $table ],

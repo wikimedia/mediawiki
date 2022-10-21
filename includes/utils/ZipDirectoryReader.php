@@ -168,7 +168,7 @@ class ZipDirectoryReader {
 		try {
 			$this->readEndOfCentralDirectoryRecord();
 			if ( $this->zip64 ) {
-				list( $offset, $size ) = $this->findZip64CentralDirectory();
+				[ $offset, $size ] = $this->findZip64CentralDirectory();
 				$this->readCentralDirectory( $offset, $size );
 			} else {
 				if ( $this->eocdr['CD size'] == 0xffffffff
@@ -180,7 +180,7 @@ class ZipDirectoryReader {
 						'opening vulnerabilities on clients using OpenJDK 7 or later.' );
 				}
 
-				list( $offset, $size ) = $this->findOldCentralDirectory();
+				[ $offset, $size ] = $this->findOldCentralDirectory();
 				$this->readCentralDirectory( $offset, $size );
 			}
 		} catch ( ZipDirectoryReaderError $e ) {
@@ -606,7 +606,7 @@ class ZipDirectoryReader {
 		$size = 0;
 		foreach ( $struct as $type ) {
 			if ( is_array( $type ) ) {
-				list( , $fieldSize ) = $type;
+				[ , $fieldSize ] = $type;
 				$size += $fieldSize;
 			} else {
 				$size += $type;
@@ -648,7 +648,7 @@ class ZipDirectoryReader {
 		$pos = $offset;
 		foreach ( $struct as $key => $type ) {
 			if ( is_array( $type ) ) {
-				list( $typeName, $fieldSize ) = $type;
+				[ $typeName, $fieldSize ] = $type;
 				switch ( $typeName ) {
 					case 'string':
 						$data[$key] = substr( $string, $pos, $fieldSize );

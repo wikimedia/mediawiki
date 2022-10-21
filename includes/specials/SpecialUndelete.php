@@ -1191,7 +1191,7 @@ class SpecialUndelete extends SpecialPage {
 
 		// Tags
 		$attribs = [];
-		list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow(
+		[ $tagSummary, $classes ] = ChangeTags::formatSummaryRow(
 			$row->ts_tags,
 			'deletedhistory',
 			$this->getContext()

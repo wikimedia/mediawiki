@@ -718,7 +718,7 @@ abstract class ContentHandler {
 
 		if ( $title->inNamespace( NS_MEDIAWIKI ) ) {
 			// Parse mediawiki messages with correct target language
-			list( /* $unused */, $lang ) = $services->getMessageCache()->figureMessage( $title->getText() );
+			[ /* $unused */, $lang ] = $services->getMessageCache()->figureMessage( $title->getText() );
 			$pageLang = $services->getLanguageFactory()->getLanguage( $lang );
 		}
 

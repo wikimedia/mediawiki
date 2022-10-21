@@ -164,7 +164,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 				throw new ErrorPageError( $error, "{$error}text" );
 			default:
 				# It's a hook error
-				list( $title, $msg, $params ) = $error;
+				[ $title, $msg, $params ] = $error;
 				throw new ErrorPageError( $title, $msg, $params );
 		}
 

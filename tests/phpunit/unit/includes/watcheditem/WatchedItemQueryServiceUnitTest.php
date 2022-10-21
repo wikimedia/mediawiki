@@ -232,7 +232,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$this->assertIsArray( $items );
 		$this->assertCount( 2, $items );
 
-		foreach ( $items as list( $watchedItem, $recentChangeInfo ) ) {
+		foreach ( $items as [ $watchedItem, $recentChangeInfo ] ) {
 			$this->assertInstanceOf( WatchedItem::class, $watchedItem );
 			$this->assertIsArray( $recentChangeInfo );
 		}
@@ -391,7 +391,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$this->assertIsArray( $items );
 		$this->assertCount( 2, $items );
 
-		foreach ( $items as list( $watchedItem, $recentChangeInfo ) ) {
+		foreach ( $items as [ $watchedItem, $recentChangeInfo ] ) {
 			$this->assertInstanceOf( WatchedItem::class, $watchedItem );
 			$this->assertIsArray( $recentChangeInfo );
 		}

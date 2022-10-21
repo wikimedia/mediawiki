@@ -265,7 +265,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			$this->getCacheTTL(),
 			function ( $unused, &$ttl, &$setOpts ) use ( $blobAddress, $queryFlags, &$error ) {
 				// Ignore $setOpts; blobs are immutable and negatives are not cached
-				list( $result, $errors ) = $this->fetchBlobs( [ $blobAddress ], $queryFlags );
+				[ $result, $errors ] = $this->fetchBlobs( [ $blobAddress ], $queryFlags );
 				// No negative caching; negative hits on text rows may be due to corrupted replica DBs
 				$error = $errors[$blobAddress] ?? null;
 				return $result[$blobAddress];
@@ -297,7 +297,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		//        Caching behavior should be restored by reverting I94c6f9ba7b9caeeb as soon as
 		//        the root cause of T235188 has been resolved.
 
-		list( $blobsByAddress, $errors ) = $this->fetchBlobs( $blobAddresses, $queryFlags );
+		[ $blobsByAddress, $errors ] = $this->fetchBlobs( $blobAddresses, $queryFlags );
 
 		$blobsByAddress = array_map( static function ( $blob ) {
 			return $blob === false ? null : $blob;
@@ -328,7 +328,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		$errors = [];
 		foreach ( $blobAddresses as $blobAddress ) {
 			try {
-				list( $schema, $id ) = self::splitBlobAddress( $blobAddress );
+				[ $schema, $id ] = self::splitBlobAddress( $blobAddress );
 			} catch ( InvalidArgumentException $ex ) {
 				throw new BlobAccessException(
 					$ex->getMessage() . '. Use findBadBlobs.php to remedy.',
@@ -372,7 +372,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		$queryFlags |= DBAccessObjectUtils::hasFlags( $queryFlags, self::READ_LATEST )
 			? self::READ_LATEST_IMMUTABLE
 			: 0;
-		list( $index, $options, $fallbackIndex, $fallbackOptions ) =
+		[ $index, $options, $fallbackIndex, $fallbackOptions ] =
 			DBAccessObjectUtils::getDBOptions( $queryFlags );
 		// Text data is immutable; check replica DBs first.
 		$dbConnection = $this->getDBConnection( $index );
@@ -654,7 +654,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * @return int|null
 	 */
 	public function getTextIdFromAddress( $address ) {
-		list( $schema, $id, ) = self::splitBlobAddress( $address );
+		[ $schema, $id, ] = self::splitBlobAddress( $address );
 
 		if ( $schema !== 'tt' ) {
 			return null;

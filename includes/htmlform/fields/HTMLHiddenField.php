@@ -36,7 +36,7 @@ class HTMLHiddenField extends HTMLFormField {
 	}
 
 	public function getTableRow( $value ) {
-		list( $name, $value, $params ) = $this->getHiddenFieldData( $value );
+		[ $name, $value, $params ] = $this->getHiddenFieldData( $value );
 		$this->mParent->addHiddenField( $name, $value, $params );
 		return '';
 	}

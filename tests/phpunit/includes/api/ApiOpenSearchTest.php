@@ -13,7 +13,7 @@ class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 		$config->method( 'getSearchTypes' )
 			->willReturn( [ 'the one ring' ] );
 
-		list( $engine, $engineFactory ) = $this->replaceSearchEngine();
+		[ $engine, $engineFactory ] = $this->replaceSearchEngine();
 
 		$ctx = new RequestContext();
 		$apiMain = new ApiMain( $ctx );

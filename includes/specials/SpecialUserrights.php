@@ -559,7 +559,7 @@ class UserrightsPage extends SpecialPage {
 			$name = trim( $username );
 			$dbDomain = '';
 		} else {
-			list( $name, $dbDomain ) = array_map( 'trim', $parts );
+			[ $name, $dbDomain ] = array_map( 'trim', $parts );
 
 			if ( WikiMap::isCurrentWikiId( $dbDomain ) ) {
 				$dbDomain = '';
@@ -762,7 +762,7 @@ class UserrightsPage extends SpecialPage {
 			$flags
 		);
 
-		list( $groupCheckboxes, $canChangeAny ) =
+		[ $groupCheckboxes, $canChangeAny ] =
 			$this->groupCheckboxes( $groupMemberships, $user );
 		$this->getOutput()->addHTML(
 			Xml::openElement(

@@ -98,13 +98,13 @@ trait OOUIModule {
 		$themePaths = self::$builtinThemePaths;
 		$themePaths += ExtensionRegistry::getInstance()->getAttribute( 'OOUIThemePaths' );
 
-		list( $defaultLocalBasePath, $defaultRemoteBasePath ) =
+		[ $defaultLocalBasePath, $defaultRemoteBasePath ] =
 			FileModule::extractBasePaths();
 
 		// Allow custom themes' paths to be relative to the skin/extension that defines them,
 		// like with ResourceModuleSkinStyles
 		foreach ( $themePaths as &$paths ) {
-			list( $localBasePath, $remoteBasePath ) =
+			[ $localBasePath, $remoteBasePath ] =
 				FileModule::extractBasePaths( $paths );
 			if ( $localBasePath !== $defaultLocalBasePath || $remoteBasePath !== $defaultRemoteBasePath ) {
 				foreach ( $paths as &$path ) {

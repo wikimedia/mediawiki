@@ -483,7 +483,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		# Tags, if any.
 		if ( isset( $result->ts_tags ) ) {
-			list( $tagDisplay, $newClasses ) = ChangeTags::formatSummaryRow(
+			[ $tagDisplay, $newClasses ] = ChangeTags::formatSummaryRow(
 				$result->ts_tags,
 				'newpages',
 				$this->getContext()

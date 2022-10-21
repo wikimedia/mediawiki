@@ -183,7 +183,7 @@ class RemexCompatMunger implements TreeHandler {
 	) {
 		$isBlank = strspn( $text, "\t\n\f\r ", $start, $length ) === $length;
 
-		list( $parent, $refNode ) = $this->getParentForInsert( $preposition, $refElement );
+		[ $parent, $refNode ] = $this->getParentForInsert( $preposition, $refElement );
 		$parentData = $parent->snData;
 
 		if ( $preposition === TreeBuilder::UNDER ) {
@@ -270,7 +270,7 @@ class RemexCompatMunger implements TreeHandler {
 	public function insertElement( $preposition, $refElement, Element $element, $void,
 		$sourceStart, $sourceLength
 	) {
-		list( $parent, $newRef ) = $this->getParentForInsert( $preposition, $refElement );
+		[ $parent, $newRef ] = $this->getParentForInsert( $preposition, $refElement );
 		$parentData = $parent->snData;
 		$elementName = $element->htmlName;
 
@@ -488,7 +488,7 @@ class RemexCompatMunger implements TreeHandler {
 	}
 
 	public function comment( $preposition, $refElement, $text, $sourceStart, $sourceLength ) {
-		list( , $refNode ) = $this->getParentForInsert( $preposition, $refElement );
+		[ , $refNode ] = $this->getParentForInsert( $preposition, $refElement );
 		$this->serializer->comment( $preposition, $refNode, $text, $sourceStart, $sourceLength );
 	}
 

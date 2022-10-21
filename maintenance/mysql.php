@@ -135,7 +135,7 @@ class MysqlMaintenance extends Maintenance {
 		} elseif ( substr_count( $realServer, ':' ) == 1 ) {
 			// If we have a colon and something that's not a port number
 			// inside the hostname, assume it's the socket location
-			list( $realServer, $socket ) = explode( ':', $realServer, 2 );
+			[ $realServer, $socket ] = explode( ':', $realServer, 2 );
 		}
 
 		if ( $dbName === false ) {

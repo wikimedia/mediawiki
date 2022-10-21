@@ -323,7 +323,7 @@ class XmlTypeCheck {
 	}
 
 	private function elementClose() {
-		list( $name, $attribs ) = array_pop( $this->elementDataContext );
+		[ $name, $attribs ] = array_pop( $this->elementDataContext );
 		$data = array_pop( $this->elementData );
 		$this->stackDepth--;
 		$callbackReturn = false;

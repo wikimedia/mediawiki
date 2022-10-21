@@ -22,7 +22,7 @@ class SpecialContributeTest extends SpecialPageTestBase {
 	public function testExecute() {
 		try {
 			// Now only enabled for minerva skin
-			list( $html ) = $this->executeSpecialPage( $this->admin->getUser()->getName(), null, 'qqx', $this->admin, true );
+			[ $html ] = $this->executeSpecialPage( $this->admin->getUser()->getName(), null, 'qqx', $this->admin, true );
 			$this->assertStringContainsString( '<div class="mw-contribute-wrapper">', $html );
 			$this->assertStringContainsString( '<div class="mw-contribute-card-content">', $html );
 		} catch ( Exception $e ) {

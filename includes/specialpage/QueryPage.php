@@ -650,7 +650,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @return int[] list( $limit, $offset )
 	 */
 	protected function getLimitOffset() {
-		list( $limit, $offset ) = $this->getRequest()
+		[ $limit, $offset ] = $this->getRequest()
 			->getLimitOffsetForUser( $this->getUser() );
 		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
 			$maxResults = $this->getMaxResults();
@@ -717,7 +717,7 @@ abstract class QueryPage extends SpecialPage {
 		$out->setSyndicated( $this->isSyndicated() );
 
 		if ( $this->limit == 0 && $this->offset == 0 ) {
-			list( $this->limit, $this->offset ) = $this->getLimitOffset();
+			[ $this->limit, $this->offset ] = $this->getLimitOffset();
 		}
 		$dbLimit = $this->getDBLimit( $this->limit, $this->offset );
 		// @todo Use doQuery()

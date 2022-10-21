@@ -925,7 +925,7 @@ class WikiImporter {
 					// $title is either an array of two titles or false.
 					if ( is_array( $title ) ) {
 						$this->pageCallback( $title );
-						list( $pageInfo['_title'], $foreignTitle ) = $title;
+						[ $pageInfo['_title'], $foreignTitle ] = $title;
 					} else {
 						$badTitle = true;
 						$skip = true;

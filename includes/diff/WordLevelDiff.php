@@ -46,8 +46,8 @@ class WordLevelDiff extends \Diff {
 	 * @param string[] $linesAfter
 	 */
 	public function __construct( $linesBefore, $linesAfter ) {
-		list( $wordsBefore, $wordsBeforeStripped ) = $this->split( $linesBefore );
-		list( $wordsAfter, $wordsAfterStripped ) = $this->split( $linesAfter );
+		[ $wordsBefore, $wordsBeforeStripped ] = $this->split( $linesBefore );
+		[ $wordsAfter, $wordsAfterStripped ] = $this->split( $linesAfter );
 
 		try {
 			parent::__construct( $wordsBeforeStripped, $wordsAfterStripped );

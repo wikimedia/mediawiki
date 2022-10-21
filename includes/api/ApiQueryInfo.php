@@ -493,7 +493,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				array_values( $this->restrictionStore->listApplicableRestrictionTypes( $title ) );
 		}
 
-		list( $blNamespace, $blTitle ) = $this->linksMigration->getTitleFields( 'templatelinks' );
+		[ $blNamespace, $blTitle ] = $this->linksMigration->getTitleFields( 'templatelinks' );
 		$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
 
 		if ( count( $others ) ) {

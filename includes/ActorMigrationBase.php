@@ -250,7 +250,7 @@ class ActorMigrationBase {
 			$fields = [];
 			$joins = [];
 
-			list( $text, $actor ) = $this->getFieldNames( $key );
+			[ $text, $actor ] = $this->getFieldNames( $key );
 
 			if ( $this->readStage === SCHEMA_COMPAT_READ_OLD ) {
 				$fields[$key] = $key;
@@ -311,7 +311,7 @@ class ActorMigrationBase {
 			throw new InvalidArgumentException( "Must use getInsertValuesWithTempTable() for $key" );
 		}
 
-		list( $text, $actor ) = $this->getFieldNames( $key );
+		[ $text, $actor ] = $this->getFieldNames( $key );
 		$ret = [];
 		if ( $this->writeStage & SCHEMA_COMPAT_WRITE_OLD ) {
 			$ret[$key] = $user->getId();
@@ -352,7 +352,7 @@ class ActorMigrationBase {
 			throw new InvalidArgumentException( "Must use getInsertValues() for $key" );
 		}
 
-		list( $text, $actor ) = $this->getFieldNames( $key );
+		[ $text, $actor ] = $this->getFieldNames( $key );
 		$ret = [];
 		$callback = null;
 
@@ -475,7 +475,7 @@ class ActorMigrationBase {
 			}
 		}
 
-		list( $text, $actor ) = $this->getFieldNames( $key );
+		[ $text, $actor ] = $this->getFieldNames( $key );
 
 		// Combine data into conditions to be ORed together
 		if ( $this->readStage === SCHEMA_COMPAT_READ_NEW ) {

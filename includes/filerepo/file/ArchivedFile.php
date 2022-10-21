@@ -556,7 +556,7 @@ class ArchivedFile {
 			$envelope['blobs'] = $this->metadataBlobs;
 		}
 
-		list( $s, $blobAddresses ) = $this->metadataStorageHelper->getJsonMetadata( $this, $envelope );
+		[ $s, $blobAddresses ] = $this->metadataStorageHelper->getJsonMetadata( $this, $envelope );
 
 		// Repeated calls to this function should not keep inserting more blobs
 		$this->metadataBlobs += $blobAddresses;

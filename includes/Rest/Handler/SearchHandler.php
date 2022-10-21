@@ -160,7 +160,7 @@ class SearchHandler extends Handler {
 			if ( $results instanceof Status ) {
 				$status = $results;
 				if ( !$status->isOK() ) {
-					list( $error ) = $status->splitByErrorType();
+					[ $error ] = $status->splitByErrorType();
 					if ( $error->getErrors() ) { // Only throw for errors, suppress warnings (for now)
 						$errorMessages = $error->getMessage();
 						throw new LocalizedHttpException(

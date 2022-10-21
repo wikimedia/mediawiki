@@ -482,7 +482,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	 * @param mixed $value
 	 */
 	public function setSecret( $key, $value ) {
-		list( $encKey, $hmacKey ) = $this->getSecretKeys();
+		[ $encKey, $hmacKey ] = $this->getSecretKeys();
 		$serialized = serialize( $value );
 
 		// The code for encryption (with OpenSSL) and sealing is taken from
@@ -541,8 +541,8 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 			$this->logger->warning( $ex->getMessage(), [ 'exception' => $ex ] );
 			return $default;
 		}
-		list( $hmac, $iv, $ciphertext ) = $pieces;
-		list( $encKey, $hmacKey ) = $this->getSecretKeys();
+		[ $hmac, $iv, $ciphertext ] = $pieces;
+		[ $encKey, $hmacKey ] = $this->getSecretKeys();
 		$integCalc = hash_hmac( 'sha256', $iv . '.' . $ciphertext, $hmacKey, true );
 		if ( !hash_equals( $integCalc, base64_decode( $hmac ) ) ) {
 			$ex = new \Exception( 'Sealed secret has been tampered with, aborting.' );

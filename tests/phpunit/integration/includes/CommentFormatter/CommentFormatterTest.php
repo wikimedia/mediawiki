@@ -285,7 +285,7 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 	public function testFormatRevision( $comment, $isPublic, $isDeleted, $isAllowed, $useParentheses,
 		$expected
 	) {
-		list( $rev, $authority ) = $this->makeRevisionAndAuthority(
+		[ $rev, $authority ] = $this->makeRevisionAndAuthority(
 			$comment, $isDeleted, $isAllowed );
 		$formatter = $this->newCommentFormatter();
 		$result = $formatter->formatRevision(
@@ -304,7 +304,7 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 	public function testFormatRevisions( $comment, $isPublic, $isDeleted, $isAllowed, $useParentheses,
 		$expected
 	) {
-		list( $rev, $authority ) = $this->makeRevisionAndAuthority(
+		[ $rev, $authority ] = $this->makeRevisionAndAuthority(
 			$comment, $isDeleted, $isAllowed );
 		$formatter = $this->newCommentFormatter();
 		$result = $formatter->formatRevisions(
@@ -320,7 +320,7 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testFormatRevisionsById() {
-		list( $rev, $authority ) = $this->makeRevisionAndAuthority(
+		[ $rev, $authority ] = $this->makeRevisionAndAuthority(
 			'hello', false, false );
 		$formatter = $this->newCommentFormatter();
 		$result = $formatter->formatRevisions(
@@ -344,7 +344,7 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 	public function testCreateRevisionBatch( $comment, $isPublic, $isDeleted, $isAllowed, $useParentheses,
 		$expected
 	) {
-		list( $rev, $authority ) = $this->makeRevisionAndAuthority(
+		[ $rev, $authority ] = $this->makeRevisionAndAuthority(
 			$comment, $isDeleted, $isAllowed );
 		$formatter = $this->newCommentFormatter();
 		$result = $formatter->createRevisionBatch()
@@ -360,7 +360,7 @@ class CommentFormatterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testCreateRevisionBatchById() {
-		list( $rev, $authority ) = $this->makeRevisionAndAuthority(
+		[ $rev, $authority ] = $this->makeRevisionAndAuthority(
 			'hello', false, false );
 		$formatter = $this->newCommentFormatter();
 		$result = $formatter->createRevisionBatch()

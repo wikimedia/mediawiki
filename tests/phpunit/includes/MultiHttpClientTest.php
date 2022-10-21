@@ -62,7 +62,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		$httpRequest = $this->getHttpRequest( StatusValue::newGood( 200 ), 200 );
 		$this->setService( 'HttpRequestFactory', $this->mockHttpRequestFactory( $httpRequest ) );
 
-		list( $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ) = $this->client->run( [
+		[ $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ] = $this->client->run( [
 			'method' => 'GET',
 			'url' => "http://example.test",
 		] );
@@ -79,7 +79,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 			StatusValue::newFatal( 'http-invalid-url', 'http://www.example.test' ), 0 );
 		$this->setService( 'HttpRequestFactory', $this->mockHttpRequestFactory( $httpRequest ) );
 
-		list( $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ) = $this->client->run( [
+		[ $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ] = $this->client->run( [
 			'method' => 'GET',
 			'url' => "http://www.example.test",
 		] );
@@ -107,7 +107,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		];
 		$responses = $this->client->runMulti( $reqs );
 		foreach ( $responses as $response ) {
-			list( $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ) = $response['response'];
+			[ $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ] = $response['response'];
 			$this->assertSame( 200, $rcode );
 		}
 	}
@@ -133,7 +133,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		];
 		$responses = $this->client->runMulti( $reqs );
 		foreach ( $responses as $response ) {
-			list( $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ) = $response['response'];
+			[ $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ] = $response['response'];
 			$this->assertSame( 404, $rcode );
 		}
 	}
@@ -160,7 +160,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		$httpRequest = $this->getHttpRequest( StatusValue::newGood( 200 ), 200, $headers );
 		$this->setService( 'HttpRequestFactory', $this->mockHttpRequestFactory( $httpRequest ) );
 
-		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->client->run( [
+		[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->client->run( [
 			'method' => 'GET',
 			'url' => 'http://example.test',
 		] );

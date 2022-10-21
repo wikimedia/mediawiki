@@ -240,7 +240,7 @@ class BitmapHandler extends TransformationalImageHandler {
 		}
 
 		$rotation = isset( $params['disableRotation'] ) ? 0 : $this->getRotation( $image );
-		list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
+		[ $width, $height ] = $this->extractPreRotationDimensions( $params, $rotation );
 
 		$cmd = Shell::escape( ...array_merge(
 			[ $imageMagickConvertCommand ],
@@ -307,7 +307,7 @@ class BitmapHandler extends TransformationalImageHandler {
 					< $sharpenReductionThreshold
 				) {
 					// Hack, since $wgSharpenParameter is written specifically for the command line convert
-					list( $radius, $sigma ) = explode( 'x', $sharpenParameter, 2 );
+					[ $radius, $sigma ] = explode( 'x', $sharpenParameter, 2 );
 					$im->sharpenImage( (float)$radius, (float)$sigma );
 				}
 				$qualityVal = isset( $params['quality'] ) ? (string)$params['quality'] : null;
@@ -340,7 +340,7 @@ class BitmapHandler extends TransformationalImageHandler {
 			}
 
 			$rotation = isset( $params['disableRotation'] ) ? 0 : $this->getRotation( $image );
-			list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
+			[ $width, $height ] = $this->extractPreRotationDimensions( $params, $rotation );
 
 			$im->setImageBackgroundColor( new ImagickPixel( 'white' ) );
 
@@ -450,7 +450,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 			return $this->getMediaTransformError( $params, $errMsg );
 		}
-		list( $loader, $colorStyle, $useQuality, $saveType ) = $typemap[$params['mimeType']];
+		[ $loader, $colorStyle, $useQuality, $saveType ] = $typemap[$params['mimeType']];
 
 		if ( !function_exists( $loader ) ) {
 			$err = "Incomplete GD library configuration: missing function $loader";
@@ -481,7 +481,7 @@ class BitmapHandler extends TransformationalImageHandler {
 		$rotation = function_exists( 'imagerotate' ) && !isset( $params['disableRotation'] ) ?
 			$this->getRotation( $image ) :
 			0;
-		list( $width, $height ) = $this->extractPreRotationDimensions( $params, $rotation );
+		[ $width, $height ] = $this->extractPreRotationDimensions( $params, $rotation );
 		$dst_image = imagecreatetruecolor( $width, $height );
 
 		// Initialise the destination image to transparent instead of

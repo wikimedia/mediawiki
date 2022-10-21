@@ -169,7 +169,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 
 		// Avoid multiple queries for HtmlCacheUpdater::getUrls() call
 		$lb = $services->getLinkBatchFactory()->newLinkBatch();
-		foreach ( $this->pageTuples as list( $page, $delay ) ) {
+		foreach ( $this->pageTuples as [ $page, $delay ] ) {
 			$lb->addObj( $page );
 		}
 		$lb->execute();
@@ -178,14 +178,14 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 
 		// Resolve the titles into CDN URLs
 		$htmlCacheUpdater = $services->getHtmlCacheUpdater();
-		foreach ( $this->pageTuples as list( $page, $delay ) ) {
+		foreach ( $this->pageTuples as [ $page, $delay ] ) {
 			foreach ( $htmlCacheUpdater->getUrls( $page ) as $url ) {
 				// Use the highest rebound for duplicate URLs in order to handle the most lag
 				$reboundDelayByUrl[$url] = max( $reboundDelayByUrl[$url] ?? 0, $delay );
 			}
 		}
 
-		foreach ( $this->urlTuples as list( $url, $delay ) ) {
+		foreach ( $this->urlTuples as [ $url, $delay ] ) {
 			// Use the highest rebound for duplicate URLs in order to handle the most lag
 			$reboundDelayByUrl[$url] = max( $reboundDelayByUrl[$url] ?? 0, $delay );
 		}

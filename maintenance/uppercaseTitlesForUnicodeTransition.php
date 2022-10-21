@@ -281,7 +281,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			return false;
 		}
 
-		list( $base ) = explode( '/', $title, 2 );
+		[ $base ] = explode( '/', $title, 2 );
 		if ( !isset( $this->seenUsers[$base] ) ) {
 			// Can't use User directly because it might uppercase the name
 			$this->seenUsers[$base] = (bool)$db->selectField(

@@ -1429,7 +1429,7 @@ class ApiPageSet extends ApiBase {
 								$context->setTitle( $titleObj );
 								$context->setRequest( new FauxRequest );
 								$special->setContext( $context );
-								list( /* $alias */, $subpage ) = $this->specialPageFactory->resolveAlias( $dbkey );
+								[ /* $alias */, $subpage ] = $this->specialPageFactory->resolveAlias( $dbkey );
 								$target = $special->getRedirect( $subpage );
 							}
 						}

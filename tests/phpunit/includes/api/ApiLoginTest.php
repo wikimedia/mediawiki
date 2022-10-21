@@ -351,7 +351,7 @@ class ApiLoginTest extends ApiTestCase {
 			$throttle
 		);
 
-		list( $name, $password ) = $this->setUpForBotPassword();
+		[ $name, $password ] = $this->setUpForBotPassword();
 
 		for ( $i = 0; $i < $throttle[0]['count']; $i++ ) {
 			$this->doUserLogin( $name, 'incorrectpasswordincorrectpassword' );

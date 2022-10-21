@@ -187,7 +187,7 @@ class BufferingStatsdDataFactory extends StatsdDataFactory implements IBuffering
 	 */
 	public function getData() {
 		$data = [];
-		foreach ( $this->buffer as list( $key, $val, $metric ) ) {
+		foreach ( $this->buffer as [ $key, $val, $metric ] ) {
 			// Optimization: Don't bother transmitting a counter update with a delta of zero
 			if ( $metric === StatsdDataInterface::STATSD_METRIC_COUNT && !$val ) {
 				continue;

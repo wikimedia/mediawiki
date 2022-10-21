@@ -716,7 +716,7 @@ class SQLPlatform implements ISQLPlatform {
 			$from = '';
 		}
 
-		list( $startOpts, $preLimitTail, $postLimitTail ) = $this->makeSelectOptions( $options );
+		[ $startOpts, $preLimitTail, $postLimitTail ] = $this->makeSelectOptions( $options );
 
 		if ( is_array( $conds ) ) {
 			$where = $this->makeList( $conds, self::LIST_AND );
@@ -882,7 +882,7 @@ class SQLPlatform implements ISQLPlatform {
 			// Is there a JOIN clause for this table?
 			if ( isset( $join_conds[$alias] ) ) {
 				Assert::parameterType( 'array', $join_conds[$alias], "join_conds[$alias]" );
-				list( $joinType, $conds ) = $join_conds[$alias];
+				[ $joinType, $conds ] = $join_conds[$alias];
 				$tableClause = $this->normalizeJoinType( $joinType );
 				$tableClause .= ' ' . $joinedTable;
 				if ( isset( $use_index[$alias] ) ) { // has USE INDEX?
@@ -1032,7 +1032,7 @@ class SQLPlatform implements ISQLPlatform {
 		}
 
 		# Split database and table into proper variables.
-		list( $database, $schema, $prefix, $table ) = $this->qualifiedTableComponents( $name );
+		[ $database, $schema, $prefix, $table ] = $this->qualifiedTableComponents( $name );
 
 		# Quote $table and apply the prefix if not quoted.
 		# $tableName might be empty if this is called from Database::replaceVars()
@@ -1066,18 +1066,18 @@ class SQLPlatform implements ISQLPlatform {
 			$currentDomainPrefix = null;
 		}
 		if ( count( $dbDetails ) == 3 ) {
-			list( $database, $schema, $table ) = $dbDetails;
+			[ $database, $schema, $table ] = $dbDetails;
 			# We don't want any prefix added in this case
 			$prefix = '';
 		} elseif ( count( $dbDetails ) == 2 ) {
-			list( $database, $table ) = $dbDetails;
+			[ $database, $table ] = $dbDetails;
 			# We don't want any prefix added in this case
 			$prefix = '';
 			# In dbs that support it, $database may actually be the schema
 			# but that doesn't affect any of the functionality here
 			$schema = '';
 		} else {
-			list( $table ) = $dbDetails;
+			[ $table ] = $dbDetails;
 			if ( isset( $this->tableAliases[$table] ) ) {
 				$database = $this->tableAliases[$table]['dbname'];
 				$schema = is_string( $this->tableAliases[$table]['schema'] )
@@ -1396,7 +1396,7 @@ class SQLPlatform implements ISQLPlatform {
 
 	public function insertSqlText( $table, array $rows ) {
 		$encTable = $this->tableName( $table );
-		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
+		[ $sqlColumns, $sqlTuples ] = $this->makeInsertLists( $rows );
 
 		return "INSERT INTO $encTable ($sqlColumns) VALUES $sqlTuples";
 	}
@@ -1448,8 +1448,8 @@ class SQLPlatform implements ISQLPlatform {
 
 	public function insertNonConflictingSqlText( $table, array $rows ) {
 		$encTable = $this->tableName( $table );
-		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
-		list( $sqlVerb, $sqlOpts ) = $this->makeInsertNonConflictingVerbAndOptions();
+		[ $sqlColumns, $sqlTuples ] = $this->makeInsertLists( $rows );
+		[ $sqlVerb, $sqlOpts ] = $this->makeInsertNonConflictingVerbAndOptions();
 
 		return rtrim( "$sqlVerb $encTable ($sqlColumns) VALUES $sqlTuples $sqlOpts" );
 	}
@@ -1473,7 +1473,7 @@ class SQLPlatform implements ISQLPlatform {
 		array $selectOptions,
 		$selectJoinConds
 	) {
-		list( $sqlVerb, $sqlOpts ) = $this->isFlagInOptions( 'IGNORE', $insertOptions )
+		[ $sqlVerb, $sqlOpts ] = $this->isFlagInOptions( 'IGNORE', $insertOptions )
 			? $this->makeInsertNonConflictingVerbAndOptions()
 			: [ 'INSERT INTO', '' ];
 		$encDstTable = $this->tableName( $destTable );

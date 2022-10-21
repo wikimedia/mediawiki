@@ -257,7 +257,7 @@ class MemoryFileBackend extends FileBackendStore {
 	 * @return string|null
 	 */
 	protected function resolveHashKey( $storagePath ) {
-		list( $fullCont, $relPath ) = $this->resolveStoragePathReal( $storagePath );
+		[ $fullCont, $relPath ] = $this->resolveStoragePathReal( $storagePath );
 		if ( $relPath === null ) {
 			return null; // invalid
 		}

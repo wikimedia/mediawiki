@@ -206,7 +206,7 @@ class CategoryMembershipChangeJob extends Job {
 
 		// Parse the new revision and get the categories
 		$categoryChanges = $this->getExplicitCategoriesChanges( $page, $newRev, $oldRev );
-		list( $categoryInserts, $categoryDeletes ) = $categoryChanges;
+		[ $categoryInserts, $categoryDeletes ] = $categoryChanges;
 		if ( !$categoryInserts && !$categoryDeletes ) {
 			return; // nothing to do
 		}

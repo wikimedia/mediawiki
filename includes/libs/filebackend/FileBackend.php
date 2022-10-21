@@ -1543,7 +1543,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 	 * @return string|null Normalized storage path or null on failure
 	 */
 	final public static function normalizeStoragePath( $storagePath ) {
-		list( $backend, $container, $relPath ) = self::splitStoragePath( $storagePath );
+		[ $backend, $container, $relPath ] = self::splitStoragePath( $storagePath );
 		if ( $relPath !== null ) { // must be for this backend
 			$relPath = self::normalizeContainerPath( $relPath );
 			if ( $relPath !== null ) {
@@ -1569,7 +1569,7 @@ abstract class FileBackend implements LoggerAwareInterface {
 		// doesn't contain characters like '\', behavior can vary by platform. We should use
 		// explode() instead.
 		$storagePath = dirname( $storagePath );
-		list( , , $rel ) = self::splitStoragePath( $storagePath );
+		[ , , $rel ] = self::splitStoragePath( $storagePath );
 
 		return ( $rel === null ) ? null : $storagePath;
 	}

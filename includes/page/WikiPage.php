@@ -464,7 +464,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		}
 
 		if ( is_int( $from ) ) {
-			list( $index, $opts ) = DBAccessObjectUtils::getDBOptions( $from );
+			[ $index, $opts ] = DBAccessObjectUtils::getDBOptions( $from );
 			$loadBalancer = $this->getDBLoadBalancer();
 			$db = $loadBalancer->getConnectionRef( $index );
 			$data = $this->pageDataFromTitle( $db, $this->mTitle, $opts );
@@ -475,7 +475,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				&& $loadBalancer->hasOrMadeRecentPrimaryChanges()
 			) {
 				$from = self::READ_LATEST;
-				list( $index, $opts ) = DBAccessObjectUtils::getDBOptions( $from );
+				[ $index, $opts ] = DBAccessObjectUtils::getDBOptions( $from );
 				$db = $loadBalancer->getConnectionRef( $index );
 				$data = $this->pageDataFromTitle( $db, $this->mTitle, $opts );
 			}

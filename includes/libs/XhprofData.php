@@ -130,7 +130,7 @@ class XhprofData {
 
 		$keep = [];
 		foreach ( $data as $key => $stats ) {
-			list( $parent, $child ) = self::splitKey( $key );
+			[ $parent, $child ] = self::splitKey( $key );
 			if ( isset( $want[$parent] ) || isset( $want[$child] ) ) {
 				$keep[$key] = $stats;
 			}
@@ -165,7 +165,7 @@ class XhprofData {
 
 			$inclusive = [];
 			foreach ( $this->hieraData as $key => $stats ) {
-				list( $parent, $child ) = self::splitKey( $key );
+				[ $parent, $child ] = self::splitKey( $key );
 				if ( !isset( $inclusive[$child] ) ) {
 					$inclusive[$child] = [
 						'ct' => 0,
@@ -262,7 +262,7 @@ class XhprofData {
 			}
 
 			foreach ( $this->hieraData as $key => $stats ) {
-				list( $parent, $child ) = self::splitKey( $key );
+				[ $parent, $child ] = self::splitKey( $key );
 				if ( $parent !== null ) {
 					// Track call tree information
 					$this->complete[$child]['calls'][$parent] = $stats;

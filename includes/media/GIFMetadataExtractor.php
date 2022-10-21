@@ -92,7 +92,7 @@ class GIFMetadataExtractor {
 
 		// Read BPP
 		$buf = fread( $fh, 1 );
-		list( $bpp, $have_map ) = self::decodeBPP( $buf );
+		[ $bpp, $have_map ] = self::decodeBPP( $buf );
 
 		// Skip over background and aspect ratio
 		// @phan-suppress-next-line PhanPluginUseReturnValueInternalKnown
@@ -116,7 +116,7 @@ class GIFMetadataExtractor {
 
 				# # Read BPP
 				$buf = fread( $fh, 1 );
-				list( $bpp, $have_map ) = self::decodeBPP( $buf );
+				[ $bpp, $have_map ] = self::decodeBPP( $buf );
 
 				# # Read GCT
 				if ( $have_map ) {

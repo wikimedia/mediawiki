@@ -102,7 +102,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		$this->hasNS = $moduleName !== 'imageusage';
 		$this->linksMigration = $linksMigration;
 		if ( isset( $this->linksMigration::$mapping[$this->bl_table] ) ) {
-			list( $this->bl_ns, $this->bl_title ) = $this->linksMigration->getTitleFields( $this->bl_table );
+			[ $this->bl_ns, $this->bl_title ] = $this->linksMigration->getTitleFields( $this->bl_table );
 		} else {
 			$this->bl_ns = $prefix . '_namespace';
 			if ( $this->hasNS ) {

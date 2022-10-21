@@ -111,10 +111,10 @@ class MediaFileHandler extends SimpleHandler {
 	 * @return array response data
 	 */
 	private function getResponse( File $file ): array {
-		list( $maxWidth, $maxHeight ) = self::getImageLimitsFromOption(
+		[ $maxWidth, $maxHeight ] = self::getImageLimitsFromOption(
 			$this->getAuthority()->getUser(), 'imagesize'
 		);
-		list( $maxThumbWidth, $maxThumbHeight ) = self::getImageLimitsFromOption(
+		[ $maxThumbWidth, $maxThumbHeight ] = self::getImageLimitsFromOption(
 			$this->getAuthority()->getUser(), 'thumbsize'
 		);
 		$transforms = [

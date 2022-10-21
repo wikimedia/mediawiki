@@ -330,7 +330,7 @@ class Sanitizer {
 		# this might be possible using remex tidy itself
 		foreach ( $bits as $x ) {
 			if ( preg_match( self::ELEMENT_BITS_REGEX, $x, $regs ) ) {
-				list( /* $qbar */, $slash, $t, $params, $brace, $rest ) = $regs;
+				[ /* $qbar */, $slash, $t, $params, $brace, $rest ] = $regs;
 
 				$badtag = false;
 				$t = strtolower( $t );
@@ -1769,7 +1769,7 @@ class Sanitizer {
 		# Validate hostname portion
 		$matches = [];
 		if ( preg_match( '!^([^:]+:)(//[^/]+)?(.*)$!iD', $url, $matches ) ) {
-			list( /* $whole */, $protocol, $host, $rest ) = $matches;
+			[ /* $whole */, $protocol, $host, $rest ] = $matches;
 
 			// Characters that will be ignored in IDNs.
 			// https://datatracker.ietf.org/doc/html/rfc8264#section-9.13

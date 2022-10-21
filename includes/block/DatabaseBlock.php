@@ -251,7 +251,7 @@ class DatabaseBlock extends AbstractBlock {
 		# Be aware that the != '' check is explicit, since empty values will be
 		# passed by some callers (T31116)
 		if ( $vagueTarget != '' ) {
-			list( $target, $type ) = MediaWikiServices::getInstance()
+			[ $target, $type ] = MediaWikiServices::getInstance()
 				->getBlockUtils()
 				->parseBlockTarget( $vagueTarget );
 			switch ( $type ) {
@@ -269,7 +269,7 @@ class DatabaseBlock extends AbstractBlock {
 					break;
 
 				case self::TYPE_RANGE:
-					list( $start, $end ) = IPUtils::parseRange( $target );
+					[ $start, $end ] = IPUtils::parseRange( $target );
 					$conds['ipb_address'][] = (string)$target;
 					$conds[] = self::getRangeCond( $start, $end );
 					$conds = $db->makeList( $conds, LIST_OR );
@@ -352,7 +352,7 @@ class DatabaseBlock extends AbstractBlock {
 				# or take some floating point errors
 				$target = $block->getTargetName();
 				$max = IPUtils::isIPv6( $target ) ? 128 : 32;
-				list( $network, $bits ) = IPUtils::parseCIDR( $target );
+				[ $network, $bits ] = IPUtils::parseCIDR( $target );
 				$size = $max - $bits;
 
 				# Rank a range block covering a single IP equally with a single-IP block
@@ -689,7 +689,7 @@ class DatabaseBlock extends AbstractBlock {
 			case self::TYPE_IP:
 				return IPUtils::toHex( $this->target );
 			case self::TYPE_RANGE:
-				list( $start, /*...*/ ) = IPUtils::parseRange( $this->target );
+				[ $start, /*...*/ ] = IPUtils::parseRange( $this->target );
 				return $start;
 			default:
 				throw new MWException( "Block with invalid type" );
@@ -708,7 +708,7 @@ class DatabaseBlock extends AbstractBlock {
 			case self::TYPE_IP:
 				return IPUtils::toHex( $this->target );
 			case self::TYPE_RANGE:
-				list( /*...*/, $end ) = IPUtils::parseRange( $this->target );
+				[ /*...*/, $end ] = IPUtils::parseRange( $this->target );
 				return $end;
 			default:
 				throw new MWException( "Block with invalid type" );
@@ -868,7 +868,7 @@ class DatabaseBlock extends AbstractBlock {
 		$vagueTarget = null,
 		$fromPrimary = false
 	) {
-		list( $target, $type ) = MediaWikiServices::getInstance()
+		[ $target, $type ] = MediaWikiServices::getInstance()
 			->getBlockUtils()
 			->parseBlockTarget( $specificTarget );
 		if ( $type == self::TYPE_ID || $type == self::TYPE_AUTO ) {

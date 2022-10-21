@@ -162,7 +162,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$valid = false;
 			} else {
 				$logActions = array_fill_keys( $this->getAllowedLogActions(), true );
-				list( $type, $action ) = explode( '/', $logAction, 2 );
+				[ $type, $action ] = explode( '/', $logAction, 2 );
 				$valid = isset( $logActions[$logAction] ) || isset( $logActions[$type . '/*'] );
 			}
 

@@ -1525,7 +1525,7 @@ class WANObjectCache implements
 			// Regenerate the variant value if it is not newer than the main value at $key
 			// so that purges to the main key propagate to the variant value.
 			$this->logger->debug( "getWithSetCallback($key): using variant key" );
-			list( $value ) = $this->fetchOrRegenerate(
+			[ $value ] = $this->fetchOrRegenerate(
 				$this->makeGlobalKey( 'WANCache-key-variant', md5( $key ), (string)$version ),
 				$ttl,
 				$callback,
@@ -3057,7 +3057,7 @@ class WANObjectCache implements
 	 */
 	private function getProcessCache( $group ) {
 		if ( !isset( $this->processCaches[$group] ) ) {
-			list( , $size ) = explode( ':', $group );
+			[ , $size ] = explode( ':', $group );
 			$this->processCaches[$group] = new MapCacheLRU( (int)$size );
 			if ( $this->wallClockOverride !== null ) {
 				$this->processCaches[$group]->setMockTime( $this->wallClockOverride );

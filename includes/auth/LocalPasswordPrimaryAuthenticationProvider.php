@@ -203,7 +203,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return false;
 		}
 
-		list( $db, $options ) = \DBAccessObjectUtils::getDBOptions( $flags );
+		[ $db, $options ] = \DBAccessObjectUtils::getDBOptions( $flags );
 		return (bool)$this->loadBalancer->getConnectionRef( $db )->selectField(
 			[ 'user' ],
 			'user_id',

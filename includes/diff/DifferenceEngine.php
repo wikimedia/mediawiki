@@ -1963,7 +1963,7 @@ class DifferenceEngine extends ContextSource {
 		$old = $this->mOldid;
 		$new = $this->mNewid;
 
-		list( $this->mOldid, $this->mNewid ) = self::mapDiffPrevNext( $old, $new );
+		[ $this->mOldid, $this->mNewid ] = self::mapDiffPrevNext( $old, $new );
 		if ( $new === 'next' && $this->mNewid === false ) {
 			# if no result, NewId points to the newest old revision. The only newer
 			# revision is cur, which is "0".

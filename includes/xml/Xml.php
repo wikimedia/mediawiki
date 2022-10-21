@@ -389,7 +389,7 @@ class Xml {
 	public static function inputLabel( $label, $name, $id, $size = false,
 		$value = false, $attribs = []
 	) {
-		list( $label, $input ) = self::inputLabelSep( $label, $name, $id, $size, $value, $attribs );
+		[ $label, $input ] = self::inputLabelSep( $label, $name, $id, $size, $value, $attribs );
 		return $label . "\u{00A0}" . $input;
 	}
 

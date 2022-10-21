@@ -579,7 +579,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				];
 			}
 		} else {
-			list( , $lag, $index ) = $this->loadBalancer->getMaxLag();
+			[ , $lag, $index ] = $this->loadBalancer->getMaxLag();
 			$data[] = [
 				'host' => $showHostnames
 						? $this->loadBalancer->getServerName( $index )

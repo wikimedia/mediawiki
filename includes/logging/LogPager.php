@@ -266,7 +266,7 @@ class LogPager extends ReverseChronologicalPager {
 		if ( $this->types == [ 'rights' ] ) {
 			$parts = explode( $interwikiDelimiter, $page->getDBkey() );
 			if ( count( $parts ) == 2 ) {
-				list( $name, $database ) = array_map( 'trim', $parts );
+				[ $name, $database ] = array_map( 'trim', $parts );
 				if ( strstr( $database, '*' ) ) { // Search for wildcard in database name
 					$doUserRightsLogLike = true;
 				}

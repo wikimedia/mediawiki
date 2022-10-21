@@ -185,7 +185,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 
 		$value = false;
 		$valueSize = false;
-		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->client->run( $req );
+		[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->client->run( $req );
 		if ( $rcode === 200 && is_string( $rbody ) ) {
 			$value = $this->decodeBody( $rbody );
 			$valueSize = strlen( $rbody );
@@ -210,7 +210,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 			'headers' => $this->httpParams['writeHeaders'],
 		];
 
-		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->client->run( $req );
+		[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->client->run( $req );
 		$res = ( $rcode === 200 || $rcode === 201 || $rcode === 204 );
 		if ( !$res ) {
 			$this->handleError( "Failed to store $key", $rcode, $rerr, $rhdrs, $rbody );
@@ -238,7 +238,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 			'headers' => $this->httpParams['deleteHeaders'],
 		];
 
-		list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $this->client->run( $req );
+		[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->client->run( $req );
 		$res = in_array( $rcode, [ 200, 204, 205, 404, 410 ] );
 		if ( !$res ) {
 			$this->handleError( "Failed to delete $key", $rcode, $rerr, $rhdrs, $rbody );
@@ -304,7 +304,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 		if ( count( $pieces ) !== 3 || $pieces[0] !== $this->serializationType ) {
 			return false;
 		}
-		list( , $hmac, $serialized ) = $pieces;
+		[ , $hmac, $serialized ] = $pieces;
 		if ( $this->hmacKey !== '' ) {
 			$checkHmac = hash_hmac( 'sha256', $serialized, $this->hmacKey, true );
 			if ( !hash_equals( $checkHmac, base64_decode( $hmac ) ) ) {

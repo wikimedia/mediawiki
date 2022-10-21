@@ -154,7 +154,7 @@ class BlockUtils {
 	 * @return Status
 	 */
 	public function validateTarget( $value ): Status {
-		list( $target, $type ) = $this->parseBlockTarget( $value );
+		[ $target, $type ] = $this->parseBlockTarget( $value );
 
 		$status = Status::newGood( $target );
 
@@ -169,7 +169,7 @@ class BlockUtils {
 				break;
 
 			case AbstractBlock::TYPE_RANGE:
-				list( $ip, $range ) = explode( '/', $target, 2 );
+				[ $ip, $range ] = explode( '/', $target, 2 );
 
 				if ( IPUtils::isIPv4( $ip ) ) {
 					$status->merge( $this->validateIPv4Range( (int)$range ) );

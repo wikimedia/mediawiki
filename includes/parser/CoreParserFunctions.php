@@ -1077,7 +1077,7 @@ class CoreParserFunctions {
 	}
 
 	public static function special( $parser, $text ) {
-		list( $page, $subpage ) = MediaWikiServices::getInstance()->getSpecialPageFactory()->
+		[ $page, $subpage ] = MediaWikiServices::getInstance()->getSpecialPageFactory()->
 			resolveAlias( $text );
 		if ( $page ) {
 			$title = SpecialPage::getTitleFor( $page, $subpage );

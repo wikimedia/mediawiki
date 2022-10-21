@@ -164,14 +164,14 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 			);
 		}
 
-		list( $left, $continue ) =
+		[ $left, $continue ] =
 			$this->runQuery( $resultPageSet, $params['limit'], $start, $startId, $end );
 		if ( $end === null && $continue === null ) {
 			// Wrap around. We do this even if $left === 0 for continuation
 			// (saving a DB query in this rare case probably isn't worth the
 			// added code complexity it would require).
 			$end = $rand;
-			list( $left, $continue ) = $this->runQuery( $resultPageSet, $left, null, null, $end );
+			[ $left, $continue ] = $this->runQuery( $resultPageSet, $left, null, null, $end );
 		}
 
 		if ( $continue !== null ) {

@@ -235,7 +235,7 @@ class RefreshImageMetadata extends Maintenance {
 			$conds[] = $fieldPrefix . 'name <= ' . $dbw->addQuotes( $end );
 		}
 		if ( $mime !== false ) {
-			list( $major, $minor ) = File::splitMime( $mime );
+			[ $major, $minor ] = File::splitMime( $mime );
 			$conds[$fieldPrefix . 'major_mime'] = $major;
 			if ( $minor !== '*' ) {
 				$conds[$fieldPrefix . 'minor_mime'] = $minor;

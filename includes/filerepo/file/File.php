@@ -1096,7 +1096,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 			return null;
 		}
 		$extension = $this->getExtension();
-		list( $thumbExt, ) = $this->getHandler()->getThumbType(
+		[ $thumbExt, ] = $this->getHandler()->getThumbType(
 			$extension, $this->getMimeType(), $params );
 		$thumbName = $this->getHandler()->makeParamString( $params );
 

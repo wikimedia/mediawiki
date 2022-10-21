@@ -295,7 +295,7 @@ class WikitextContentHandler extends TextContentHandler {
 		$parserOptions = $cpoParams->getParserOptions();
 		$revId = $cpoParams->getRevId();
 
-		list( $redir, $text ) = $content->getRedirectTargetAndText();
+		[ $redir, $text ] = $content->getRedirectTargetAndText();
 		$parserOutput = $services->getParserFactory()->getInstance()
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			->parse( $text, $title, $parserOptions, true, true, $revId );

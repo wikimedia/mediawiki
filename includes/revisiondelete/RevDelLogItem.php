@@ -141,7 +141,7 @@ class RevDelLogItem extends RevDelItem {
 		$content = "$loglink $date $action $comment";
 		$attribs = [];
 		if ( $this->row->ts_tags ) {
-			list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow(
+			[ $tagSummary, $classes ] = ChangeTags::formatSummaryRow(
 				$this->row->ts_tags,
 				'revisiondelete',
 				$this->list->getContext()

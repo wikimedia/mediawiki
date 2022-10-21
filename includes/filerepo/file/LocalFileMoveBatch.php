@@ -138,7 +138,7 @@ class LocalFileMoveBatch {
 				continue;
 			}
 
-			list( $timestamp, $filename ) = $bits;
+			[ $timestamp, $filename ] = $bits;
 
 			if ( $this->oldName != $filename ) {
 				$this->logger->debug(
