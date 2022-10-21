@@ -10,6 +10,9 @@ use PHPUnit\Framework\TestCase;
  */
 class ScrambleMappingTest extends TestCase {
 	public function testMap() {
+		if ( !extension_loaded( 'gmp' ) && !extension_loaded( 'bcmath' ) ) {
+			$this->markTestSkipped( 'need extension gmp or bcmath' );
+		}
 		$map = new ScrambleMapping( [] );
 		$duplicates = 0;
 		// This has been verified up to 1e8 but for CI purposes we will use 200
