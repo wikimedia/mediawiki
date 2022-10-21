@@ -110,8 +110,7 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 		if ( $this->has( $key ) ) {
 			$this->ping( $key );
 		} elseif ( count( $this->cache ) >= $this->maxCacheKeys ) {
-			reset( $this->cache );
-			$evictKey = key( $this->cache );
+			$evictKey = array_key_first( $this->cache );
 			unset( $this->cache[$evictKey] );
 			unset( $this->timestamps[$evictKey] );
 		}
@@ -322,8 +321,7 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 
 		$this->maxCacheKeys = $maxKeys;
 		while ( count( $this->cache ) > $this->maxCacheKeys ) {
-			reset( $this->cache );
-			$evictKey = key( $this->cache );
+			$evictKey = array_key_first( $this->cache );
 			unset( $this->cache[$evictKey] );
 			unset( $this->timestamps[$evictKey] );
 		}

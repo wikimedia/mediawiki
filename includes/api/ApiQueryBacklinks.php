@@ -479,8 +479,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 				if ( count( $this->cont ) >= 7 ) {
 					$startAt = $this->cont[6];
 				} else {
-					reset( $this->resultArr );
-					$startAt = key( $this->resultArr );
+					$startAt = array_key_first( $this->resultArr );
 				}
 				$idx = 0;
 				foreach ( $this->resultArr as $pageID => $arr ) {
@@ -505,8 +504,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 					if ( count( $this->cont ) >= 8 && $pageID == $startAt ) {
 						$redirStartAt = $this->cont[7];
 					} else {
-						reset( $redirLinks );
-						$redirStartAt = key( $redirLinks );
+						$redirStartAt = array_key_first( $redirLinks );
 					}
 					foreach ( $redirLinks as $key => $redir ) {
 						if ( $key < $redirStartAt ) {

@@ -97,8 +97,7 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		];
 
 		if ( count( $this->bag ) > $this->maxCacheKeys ) {
-			reset( $this->bag );
-			$evictKey = key( $this->bag );
+			$evictKey = array_key_first( $this->bag );
 			unset( $this->bag[$evictKey] );
 		}
 
