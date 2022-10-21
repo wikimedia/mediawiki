@@ -80,7 +80,7 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		WikiPage $wikiPage = null,
 		IContextSource $context = null
 	): Article {
-		$context = $context ?? $this->getContext();
+		$context ??= $this->getContext();
 		if ( $wikiPage !== null ) {
 			$context->setWikiPage( $wikiPage );
 			$context->setTitle( $wikiPage->getTitle() );

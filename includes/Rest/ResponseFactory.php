@@ -76,7 +76,7 @@ class ResponseFactory {
 	 * @return Response
 	 */
 	public function createJson( $value, $contentType = null ) {
-		$contentType = $contentType ?? self::CT_JSON;
+		$contentType ??= self::CT_JSON;
 		$response = new Response( $this->encodeJson( $value ) );
 		$response->setHeader( 'Content-Type', $contentType );
 		return $response;

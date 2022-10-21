@@ -164,7 +164,7 @@ class ObjectCache {
 		}
 
 		$class = $params['class'];
-		$conf = $conf ?? $services->getMainConfig();
+		$conf ??= $services->getMainConfig();
 
 		// Do config normalization for SqlBagOStuff
 		if ( is_a( $class, SqlBagOStuff::class, true ) ) {

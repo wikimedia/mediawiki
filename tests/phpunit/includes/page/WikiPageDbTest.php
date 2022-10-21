@@ -104,7 +104,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			$page = $this->newPage( $page, $model );
 		}
 
-		$performer = $performer ?? $this->getTestUser()->getUser();
+		$performer ??= $this->getTestUser()->getUser();
 
 		if ( is_string( $content ) ) {
 			$content = ContentHandler::makeContent( $content, $page->getTitle(), $model );

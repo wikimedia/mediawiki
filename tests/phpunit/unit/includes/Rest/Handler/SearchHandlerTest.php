@@ -80,7 +80,7 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 
 		/** @var Language|MockObject $language */
 		$language = $this->createNoOpMock( Language::class );
-		$hookContainer = $hookContainer ?? $this->createHookContainer();
+		$hookContainer ??= $this->createHookContainer();
 		/** @var UserOptionsLookup|MockObject $userOptionsLookup */
 		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
 		$searchEngineConfig = new \SearchEngineConfig(

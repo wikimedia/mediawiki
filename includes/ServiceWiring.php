@@ -1013,7 +1013,7 @@ return [
 
 		$wanParams['cache'] = $store;
 		$wanParams['logger'] = $logger;
-		$wanParams['secret'] = $wanParams['secret'] ?? $mainConfig->get( MainConfigNames::SecretKey );
+		$wanParams['secret'] ??= $mainConfig->get( MainConfigNames::SecretKey );
 		if ( !$GLOBALS[ 'wgCommandLineMode' ] ) {
 			// Send the statsd data post-send on HTTP requests; avoid in CLI mode (T181385)
 			$wanParams['stats'] = $services->getStatsdDataFactory();

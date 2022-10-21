@@ -537,8 +537,8 @@ class SpecialContributions extends IncludableSpecialPage {
 		HookRunner $hookRunner = null
 	) {
 		// Fallback to global state, if not provided
-		$permissionManager = $permissionManager ?? MediaWikiServices::getInstance()->getPermissionManager();
-		$hookRunner = $hookRunner ?? Hooks::runner();
+		$permissionManager ??= MediaWikiServices::getInstance()->getPermissionManager();
+		$hookRunner ??= Hooks::runner();
 
 		$id = $target->getId();
 		$username = $target->getName();

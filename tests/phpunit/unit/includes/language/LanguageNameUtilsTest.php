@@ -22,7 +22,7 @@ class LanguageNameUtilsTest extends MediaWikiUnitTestCase {
 	 */
 	private function newObj( array $optionsArray = [] ): LanguageNameUtils {
 		// TODO Why is hookContainer unset here sometimes?
-		$this->hookContainer = $this->hookContainer ?? $this->createHookContainer();
+		$this->hookContainer ??= $this->createHookContainer();
 		return new LanguageNameUtils(
 			new ServiceOptions(
 				LanguageNameUtils::CONSTRUCTOR_OPTIONS,

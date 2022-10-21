@@ -53,7 +53,7 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 	 * @phan-param array{logger?:Psr\Log\LoggerInterface,asyncHandler?:callable,keyspace?:string,reportDupes?:bool,segmentationSize?:int,segmentedValueMaxSize?:int,maxKeys?:int} $params
 	 */
 	public function __construct( $params = [] ) {
-		$params['segmentationSize'] = $params['segmentationSize'] ?? INF;
+		$params['segmentationSize'] ??= INF;
 		parent::__construct( $params );
 
 		$this->token = microtime( true ) . ':' . mt_rand();

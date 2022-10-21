@@ -29,7 +29,7 @@
  */
 class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 	public function __construct( array $params = [] ) {
-		$params['segmentationSize'] = $params['segmentationSize'] ?? INF;
+		$params['segmentationSize'] ??= INF;
 		parent::__construct( $params );
 
 		if ( PHP_SAPI === 'cli' ) {

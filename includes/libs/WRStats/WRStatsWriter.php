@@ -49,7 +49,7 @@ class WRStatsWriter {
 	 */
 	public function incr( $name, ?EntityKey $entity = null, $value = 1 ) {
 		$metricSpec = $this->metricSpecs[$name] ?? null;
-		$entity = $entity ?? new LocalEntityKey;
+		$entity ??= new LocalEntityKey;
 		if ( $metricSpec === null ) {
 			throw new WRStatsError( __METHOD__ . ": Unrecognised metric \"$name\"" );
 		}
@@ -128,7 +128,7 @@ class WRStatsWriter {
 	 *   components. The default is the empty local entity.
 	 */
 	public function resetAll( ?array $entities = null ) {
-		$entities = $entities ?? [ new LocalEntityKey ];
+		$entities ??= [ new LocalEntityKey ];
 		$this->queuedValues = [];
 		$keys = [];
 		foreach ( $this->metricSpecs as $name => $metricSpec ) {

@@ -89,7 +89,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		MWTimestamp::setFakeTime( MWTimestamp::time() );
 
 		$value = $name === 'ipb_timestamp' ? MWTimestamp::time() : '';
-		$expected = $expected ?? MWTimestamp::getInstance()->format( 'H:i, j F Y' );
+		$expected ??= MWTimestamp::getInstance()->format( 'H:i, j F Y' );
 
 		$row = $row ?: (object)[];
 		$pager = $this->getBlockListPager();

@@ -655,7 +655,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 			if ( $this->localProxy !== false && $this->isLocalURL( $req['url'] ) ) {
 				$this->useReverseProxy( $req, $this->localProxy );
 			}
-			$req['query'] = $req['query'] ?? [];
+			$req['query'] ??= [];
 			$headers = []; // normalized headers
 			if ( isset( $req['headers'] ) ) {
 				foreach ( $req['headers'] as $name => $value ) {
@@ -681,7 +681,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 					'headers' => $logHeaders,
 				]
 			);
-			$req['flags'] = $req['flags'] ?? [];
+			$req['flags'] ??= [];
 		}
 	}
 

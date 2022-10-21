@@ -130,7 +130,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	private $extendedErrorBodyFields;
 
 	public function __construct( $params ) {
-		$params['segmentationSize'] = $params['segmentationSize'] ?? INF;
+		$params['segmentationSize'] ??= INF;
 		if ( empty( $params['url'] ) ) {
 			throw new InvalidArgumentException( 'URL parameter is required' );
 		}

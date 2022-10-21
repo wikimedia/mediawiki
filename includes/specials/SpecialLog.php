@@ -225,7 +225,7 @@ class SpecialLog extends SpecialPage {
 	 */
 	private function parseParams( FormOptions $opts, $par ) {
 		# Get parameters
-		$par = $par ?? '';
+		$par ??= '';
 		$parms = explode( '/', $par );
 		$symsForAll = [ '*', 'all' ];
 		if ( $parms[0] != '' &&
