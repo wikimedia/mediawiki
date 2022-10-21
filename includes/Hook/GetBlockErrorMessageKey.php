@@ -23,5 +23,5 @@ interface GetBlockErrorMessageKey {
 	 * @param string &$key
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onGetBlockErrorMessageKey( $block, &$key );
+	public function onGetBlockErrorMessageKey( Block $block, string &$key );
 }
