@@ -437,8 +437,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			} else {
 				$sortedServers = $this->serverTags;
 				ArrayUtils::consistentHashSort( $sortedServers, $key );
-				reset( $sortedServers );
-				$shardIndex = key( $sortedServers );
+				$shardIndex = array_key_first( $sortedServers );
 			}
 		}
 

@@ -164,8 +164,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		}
 		$theTitle = null;
 		foreach ( $map as $nsTitles ) {
-			reset( $nsTitles );
-			$key = key( $nsTitles );
+			$key = array_key_first( $nsTitles );
 			if ( $theTitle === null ) {
 				$theTitle = $key;
 			}

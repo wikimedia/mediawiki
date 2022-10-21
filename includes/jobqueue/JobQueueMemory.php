@@ -124,8 +124,7 @@ class JobQueueMemory extends JobQueue {
 		if ( $this->order === 'random' ) {
 			$key = array_rand( $unclaimed );
 		} else {
-			reset( $unclaimed );
-			$key = key( $unclaimed );
+			$key = array_key_first( $unclaimed );
 		}
 
 		$spec = $unclaimed[$key];
@@ -134,8 +133,7 @@ class JobQueueMemory extends JobQueue {
 
 		$job = $this->jobFromSpecInternal( $spec );
 
-		end( $claimed );
-		$job->setMetadata( 'claimId', key( $claimed ) );
+		$job->setMetadata( 'claimId', array_key_last( $claimed ) );
 
 		return $job;
 	}
