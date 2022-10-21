@@ -286,7 +286,7 @@ class ParserCache {
 		ParserOptions $options,
 		array $usedOptions = null
 	): string {
-		$usedOptions = $usedOptions ?? ParserOptions::allCacheVaryingOptions();
+		$usedOptions ??= ParserOptions::allCacheVaryingOptions();
 		// idhash seem to mean 'page id' + 'rendering hash' (r3710)
 		$pageid = $page->getId( PageRecord::LOCAL );
 		$title = $this->titleFactory->castFromPageIdentity( $page );

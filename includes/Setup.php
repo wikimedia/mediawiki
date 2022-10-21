@@ -129,7 +129,7 @@ if ( !interface_exists( LoggerInterface::class ) ) {
 }
 
 // Set $wgCommandLineMode to false if it wasn't set to true.
-$wgCommandLineMode = $wgCommandLineMode ?? false;
+$wgCommandLineMode ??= false;
 
 /**
  * $wgConf hold the site configuration.
@@ -138,7 +138,7 @@ $wgCommandLineMode = $wgCommandLineMode ?? false;
  */
 $wgConf = new SiteConfiguration;
 
-$wgAutoloadClasses = $wgAutoloadClasses ?? [];
+$wgAutoloadClasses ??= [];
 
 $wgSettings = new SettingsBuilder(
 	MW_INSTALL_PATH,

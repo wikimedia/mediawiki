@@ -283,8 +283,8 @@ class SwiftFileBackend extends FileBackendStore {
 		// Headers that are not strictly a function of the file content
 		$mutableHeaders = $this->extractMutableContentHeaders( $params['headers'] ?? [] );
 		// Make sure that the "content-type" header is set to something sensible
-		$mutableHeaders['content-type'] = $mutableHeaders['content-type']
-			?? $this->getContentType( $params['dst'], $params['content'], null );
+		$mutableHeaders['content-type']
+			??= $this->getContentType( $params['dst'], $params['content'], null );
 
 		$reqs = [ [
 			'method' => 'PUT',
@@ -370,8 +370,8 @@ class SwiftFileBackend extends FileBackendStore {
 		// Headers that are not strictly a function of the file content
 		$mutableHeaders = $this->extractMutableContentHeaders( $params['headers'] ?? [] );
 		// Make sure that the "content-type" header is set to something sensible
-		$mutableHeaders['content-type'] = $mutableHeaders['content-type']
-			?? $this->getContentType( $params['dst'], null, $params['src'] );
+		$mutableHeaders['content-type']
+			??= $this->getContentType( $params['dst'], null, $params['src'] );
 
 		$reqs = [ [
 			'method' => 'PUT',
@@ -1374,7 +1374,7 @@ class SwiftFileBackend extends FileBackendStore {
 			foreach ( $reqs as $stage => &$req ) {
 				list( $container, $relPath ) = $req['url'];
 				$req['url'] = $this->storageUrl( $auth, $container, $relPath );
-				$req['headers'] = $req['headers'] ?? [];
+				$req['headers'] ??= [];
 				$req['headers'] = $this->authTokenHeaders( $auth ) + $req['headers'];
 				$httpReqsByStage[$stage][$index] = $req;
 			}

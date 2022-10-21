@@ -1939,7 +1939,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	public function hasOrMadeRecentPrimaryChanges( $age = null ) {
-		$age = $age ?? $this->waitTimeout;
+		$age ??= $this->waitTimeout;
 
 		return ( $this->hasPrimaryChanges()
 			|| $this->lastPrimaryChangeTimestamp() > microtime( true ) - $age );

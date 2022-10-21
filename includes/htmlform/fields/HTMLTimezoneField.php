@@ -26,7 +26,7 @@ class HTMLTimezoneField extends HTMLSelectOrOtherField {
 		if ( isset( $params['options'] ) ) {
 			throw new InvalidArgumentException( "Options should not be provided to " . __CLASS__ );
 		}
-		$params['placeholder-message'] = $params['placeholder-message'] ?? 'timezone-useoffset-placeholder';
+		$params['placeholder-message'] ??= 'timezone-useoffset-placeholder';
 		$params['options'] = [];
 		parent::__construct( $params );
 		$lang = $this->mParent ? $this->mParent->getLanguage() : RequestContext::getMain()->getLanguage();

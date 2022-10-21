@@ -262,7 +262,7 @@ class TransactionManager {
 	 * @param Throwable $sessionError
 	 */
 	public function setSessionError( Throwable $sessionError ) {
-		$this->sessionError = $this->sessionError ?? $sessionError;
+		$this->sessionError ??= $sessionError;
 	}
 
 	/**

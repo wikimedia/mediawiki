@@ -95,7 +95,7 @@ class UsersPager extends AlphabeticPager {
 		$this->setContext( $context );
 
 		$request = $this->getRequest();
-		$par = $par ?? '';
+		$par ??= '';
 		$parms = explode( '/', $par );
 		$symsForAll = [ '*', 'user' ];
 

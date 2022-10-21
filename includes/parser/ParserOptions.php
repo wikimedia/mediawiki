@@ -1441,7 +1441,7 @@ class ParserOptions {
 	public function isSafeToCache( array $usedOptions = null ) {
 		$defaults = self::getDefaults();
 		$inCacheKey = self::getCacheVaryingOptionsHash();
-		$usedOptions = $usedOptions ?? array_keys( $this->options );
+		$usedOptions ??= array_keys( $this->options );
 		foreach ( $usedOptions as $option ) {
 			if ( empty( $inCacheKey[$option] ) && empty( self::$callbacks[$option] ) ) {
 				$v = $this->optionToString( $this->options[$option] ?? null );

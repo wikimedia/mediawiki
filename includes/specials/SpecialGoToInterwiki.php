@@ -50,7 +50,7 @@ class SpecialGoToInterwiki extends UnlistedSpecialPage {
 	}
 
 	public function execute( $par ) {
-		$par = $par ?? '';
+		$par ??= '';
 
 		// Allow forcing an interstitial for local interwikis. This is used
 		// when a redirect page is reached via a special page which resolves

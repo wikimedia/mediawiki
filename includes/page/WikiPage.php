@@ -2121,7 +2121,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @since 1.32
 	 */
 	public function doSecondaryDataUpdates( array $options = [] ) {
-		$options['recursive'] = $options['recursive'] ?? true;
+		$options['recursive'] ??= true;
 		$revision = $this->getRevisionRecord();
 		if ( !$revision || !$revision->getId() ) {
 			LoggerFactory::getInstance( 'wikipage' )->info(
@@ -2759,7 +2759,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			throw new InvalidArgumentException( 'Mismatching page ID' );
 		}
 
-		$user = $user ?? new UserIdentityValue( 0, 'unknown' );
+		$user ??= new UserIdentityValue( 0, 'unknown' );
 		$services = MediaWikiServices::getInstance();
 		$deletePage = $services->getDeletePageFactory()->newDeletePage(
 			$this,

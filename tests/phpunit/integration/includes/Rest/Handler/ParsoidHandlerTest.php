@@ -915,7 +915,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$attribs += self::DEFAULT_ATTRIBS;
 		$attribs['opts'] += self::DEFAULT_ATTRIBS['opts'];
-		$attribs['opts']['from'] = $attribs['opts']['from'] ?? 'html';
+		$attribs['opts']['from'] ??= 'html';
 		$attribs['envOptions'] += self::DEFAULT_ATTRIBS['envOptions'];
 
 		if ( $attribs['oldid'] ) {
@@ -945,7 +945,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$attribs = self::DEFAULT_ATTRIBS;
 		$attribs['opts'] += self::DEFAULT_ATTRIBS['opts'];
-		$attribs['opts']['from'] = $attribs['opts']['from'] ?? 'html';
+		$attribs['opts']['from'] ??= 'html';
 		$attribs['envOptions'] += self::DEFAULT_ATTRIBS['envOptions'];
 
 		$metrics = new class () extends MockMetrics {
@@ -1269,7 +1269,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$attribs += self::DEFAULT_ATTRIBS;
 		$attribs['opts'] += self::DEFAULT_ATTRIBS['opts'];
-		$attribs['opts']['from'] = $attribs['opts']['from'] ?? 'html';
+		$attribs['opts']['from'] ??= 'html';
 		$attribs['envOptions'] += self::DEFAULT_ATTRIBS['envOptions'];
 
 		$handler = $this->newParsoidHandler();

@@ -90,7 +90,7 @@ class MultiTitleFilter implements Filter {
 	 * @return PageStore
 	 */
 	private function getPageStore(): PageStore {
-		$this->pageStore = $this->pageStore ?? MediaWikiServices::getInstance()->getPageStore();
+		$this->pageStore ??= MediaWikiServices::getInstance()->getPageStore();
 		return $this->pageStore;
 	}
 
@@ -98,7 +98,7 @@ class MultiTitleFilter implements Filter {
 	 * @return TitleFormatter
 	 */
 	private function getTitleFormatter(): TitleFormatter {
-		$this->titleFormatter = $this->titleFormatter ?? MediaWikiServices::getInstance()->getTitleFormatter();
+		$this->titleFormatter ??= MediaWikiServices::getInstance()->getTitleFormatter();
 		return $this->titleFormatter;
 	}
 }

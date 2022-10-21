@@ -751,7 +751,7 @@ abstract class FileBackendStore extends FileBackend {
 		foreach ( $stats as $path => $stat ) {
 			if ( is_array( $stat ) ) {
 				// Strongly consistent backends might automatically set this flag
-				$stat['latest'] = $stat['latest'] ?? $latest;
+				$stat['latest'] ??= $latest;
 
 				$this->cheapCache->setField( $path, 'stat', $stat );
 				if ( isset( $stat['sha1'] ) ) {
@@ -1049,8 +1049,8 @@ abstract class FileBackendStore extends FileBackend {
 		$status = $this->newStatus();
 
 		// Always set some fields for subclass convenience
-		$params['options'] = $params['options'] ?? [];
-		$params['headers'] = $params['headers'] ?? [];
+		$params['options'] ??= [];
+		$params['headers'] ??= [];
 
 		// Don't stream it out as text/html if there was a PHP error
 		if ( ( empty( $params['headless'] ) || $params['headers'] ) && headers_sent() ) {

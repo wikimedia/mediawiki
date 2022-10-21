@@ -257,7 +257,7 @@ class ClientHtml {
 		// Change "client-nojs" class to client-js. This allows easy toggling of UI components.
 		// This must happen synchronously on every page view to avoid flashes of wrong content.
 		// See also startup/startup.js.
-		$nojsClass = $nojsClass ?? $this->getDocumentAttributes()['class'];
+		$nojsClass ??= $this->getDocumentAttributes()['class'];
 		$jsClass = preg_replace( '/(^|\s)client-nojs(\s|$)/', '$1client-js$2', $nojsClass );
 		$jsClassJson = $this->context->encodeJson( $jsClass );
 		$script = "

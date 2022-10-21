@@ -1927,7 +1927,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 
 		$this->setService( 'RestrictionStore', $mockRestrictionStore );
 
-		$options['expectedReturn'] = $options['expectedReturn'] ?? $return;
+		$options['expectedReturn'] ??= $return;
 
 		$comparisonMethod = isset( $options['weakCompareReturn'] ) ? 'assertEquals' : 'assertSame';
 
