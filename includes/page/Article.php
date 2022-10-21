@@ -1181,18 +1181,19 @@ class Article implements Page {
 		}
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$oldestRevisionTimestamp = $dbr->selectField(
+		$oldestRevisionRow = $dbr->selectRow(
 			'revision',
-			'MIN( rev_timestamp )',
+			[ 'rev_id', 'rev_timestamp' ],
 			[ 'rev_page' => $title->getArticleID() ],
-			__METHOD__
+			__METHOD__,
+			[ 'ORDER BY' => 'rev_timestamp ASC' ]
 		);
+		$oldestRevisionTimestamp = $oldestRevisionRow ? $oldestRevisionRow->rev_timestamp : false;
 
 		// New page patrol: Get the timestamp of the oldest revision which
 		// the revision table holds for the given page. Then we look
 		// whether it's within the RC lifespan and if it is, we try
-		// to get the recentchanges row belonging to that entry
-		// (with rc_new = 1).
+		// to get the recentchanges row belonging to that entry.
 		$recentPageCreation = false;
 		if ( $oldestRevisionTimestamp
 			&& RecentChange::isInRCLifespan( $oldestRevisionTimestamp, 21600 )
@@ -1200,12 +1201,7 @@ class Article implements Page {
 			// 6h tolerance because the RC might not be cleaned out regularly
 			$recentPageCreation = true;
 			$rc = RecentChange::newFromConds(
-				[
-					'rc_new' => 1,
-					'rc_timestamp' => $oldestRevisionTimestamp,
-					'rc_namespace' => $title->getNamespace(),
-					'rc_cur_id' => $title->getArticleID()
-				],
+				[ 'rc_this_oldid' => intval( $oldestRevisionRow->rev_id ) ],
 				__METHOD__
 			);
 			if ( $rc ) {

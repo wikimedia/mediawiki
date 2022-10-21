@@ -14,6 +14,11 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 	 */
 	private $article;
 
+	protected $tablesUsed = [
+		'revision',
+		'recentchanges',
+	];
+
 	/** creates a title object and its article object */
 	protected function setUp(): void {
 		parent::setUp();
@@ -76,17 +81,20 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 	 * @dataProvider provideShowPatrolFooter
 	 */
 	public function testShowPatrolFooter( $group, $title, $editPageText, $isEditedBySameUser, $expectedResult ) {
-		$context = new RequestContext();
-		$article = new Article( $title );
+		$testPage = $this->getNonexistingTestPage( $title );
 		$user1 = $this->getTestUser( $group )->getUser();
 		$user2 = $this->getTestUser()->getUser();
-		$context->setUser( $user1 );
-		$article->setContext( $context );
 		if ( $editPageText !== null ) {
 			$editedUser = $isEditedBySameUser ? $user1 : $user2;
-			$editIsGood = $this->editPage( $article->getPage(), $editPageText, '', NS_MAIN, $editedUser )->isGood();
+			$editIsGood = $this->editPage( $testPage, $editPageText, '', NS_MAIN, $editedUser )->isGood();
 			$this->assertTrue( $editIsGood, 'edited a page' );
 		}
+
+		$context = new RequestContext();
+		$context->setUser( $user1 );
+		$context->setTitle( $title );
+		$article = new Article( $title );
+		$article->setContext( $context );
 		$this->assertSame( $expectedResult, $article->showPatrolFooter() );
 	}
 
@@ -123,4 +131,34 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 			false
 		];
 	}
+
+	/**
+	 * Show patrol footer even if the page was moved (T162871).
+	 *
+	 * @covers Article::showPatrolFooter
+	 */
+	public function testShowPatrolFooterMovedPage() {
+		$oldTitle = Title::makeTitle( NS_USER, 'NewDraft' );
+		$newTitle = Title::makeTitle( NS_MAIN, 'NewDraft' );
+		$editor = $this->getTestUser()->getUser();
+
+		$editIsGood = $this->editPage( $oldTitle, 'Content', '', NS_USER, $editor )->isGood();
+		$this->assertTrue( $editIsGood, 'edited a page' );
+
+		$status = $this->getServiceContainer()
+			->getMovePageFactory()
+			->newMovePage( $oldTitle, $newTitle )
+			->move( $this->getTestUser()->getUser() );
+		$this->assertTrue( $status->isOK() );
+
+		$context = new RequestContext();
+		$article = new Article( $newTitle );
+		$sysop = $this->getTestUser( 'sysop' )->getUser();
+		$context->setUser( $sysop );
+		$context->setTitle( $newTitle );
+		$article->setContext( $context );
+
+		$this->assertTrue( $article->showPatrolFooter() );
+	}
+
 }
