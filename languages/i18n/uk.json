@@ -3888,6 +3888,8 @@
 	"searchsuggest-containing": "що містять…",
 	"search-match-redirect-label": "При пошуку перенаправляти на точні збіги",
 	"search-match-redirect-help": "Виберіть для переходу на сторінку, коли заголовок сторінки збігається з тим, що ви шукаєте",
+	"search-thumbnail-extra-namespaces-label": "Показувати мініатюри у Special:Пошук",
+	"search-thumbnail-extra-namespaces-message": "Також показати мініатюри для $1 {{PLURAL:$2| простір імен|простори імен}}. Мініатюри за $3 завжди показуються.",
 	"searchlimit-label": "Число результатів пошуку до показу на кожній сторінці:",
 	"searchlimit-help": "Максимальне число: $1",
 	"api-clientside-error-noconnect": "Не вдалося підключитися до сервера. Перевірте підключення до інтернету й спробуйте ще раз.",
