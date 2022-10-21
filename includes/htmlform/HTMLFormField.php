@@ -224,7 +224,7 @@ abstract class HTMLFormField {
 					if ( count( $params ) !== 2 ) {
 						throw new MWException( "$op takes exactly two parameters" );
 					}
-					list( $name, $value ) = $params;
+					[ $name, $value ] = $params;
 					if ( !is_string( $name ) || !is_string( $value ) ) {
 						throw new MWException( "Parameters for $op must be strings" );
 					}
@@ -272,7 +272,7 @@ abstract class HTMLFormField {
 
 			case '===':
 			case '!==':
-				list( $field, $value ) = $params;
+				[ $field, $value ] = $params;
 				$testValue = (string)$this->getNearestFieldValue( $alldata, $field, true, true );
 				switch ( $op ) {
 					case '===':
@@ -310,7 +310,7 @@ abstract class HTMLFormField {
 
 			case '===':
 			case '!==':
-				list( $name, $value ) = $params;
+				[ $name, $value ] = $params;
 				$field = $this->getNearestField( $name, true );
 				return [ $op, $field->getName(), $value ];
 		}
@@ -578,7 +578,7 @@ abstract class HTMLFormField {
 	 * @return string Complete HTML table row.
 	 */
 	public function getTableRow( $value ) {
-		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
+		[ $errors, $errorClass ] = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
 		$fieldType = $this->getClassName();
 		$helptext = $this->getHelpTextHtmlTable( $this->getHelpText() );
@@ -636,7 +636,7 @@ abstract class HTMLFormField {
 	 * @return string Complete HTML table row.
 	 */
 	public function getDiv( $value ) {
-		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
+		[ $errors, $errorClass ] = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
 		$fieldType = $this->getClassName();
 		$helptext = $this->getHelpTextHtmlDiv( $this->getHelpText() );
@@ -823,7 +823,7 @@ abstract class HTMLFormField {
 	 * @return string Complete HTML table row.
 	 */
 	public function getRaw( $value ) {
-		list( $errors, ) = $this->getErrorsAndErrorClass( $value );
+		[ $errors, ] = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
 		$helptext = $this->getHelpTextHtmlRaw( $this->getHelpText() );
 		$cellAttributes = [];
@@ -860,7 +860,7 @@ abstract class HTMLFormField {
 	 * @return string Complete HTML inline element
 	 */
 	public function getInline( $value ) {
-		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
+		[ $errors, $errorClass ] = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
 		$helptext = $this->getHelpTextHtmlDiv( $this->getHelpText() );
 		$cellAttributes = [];

@@ -351,7 +351,7 @@ class ImagePage extends Article {
 		$request = $context->getRequest();
 
 		if ( $this->displayImg->exists() ) {
-			list( $maxWidth, $maxHeight ) = $this->getImageLimitsFromOption( $user, 'imagesize' );
+			[ $maxWidth, $maxHeight ] = $this->getImageLimitsFromOption( $user, 'imagesize' );
 
 			# image
 			$page = $request->getIntOrNull( 'page' );
@@ -387,7 +387,7 @@ class ImagePage extends Article {
 					$height > $maxHeight ||
 					$this->displayImg->isVectorized()
 				) {
-					list( $width, $height ) = $this->displayImg->getDisplayWidthHeight(
+					[ $width, $height ] = $this->displayImg->getDisplayWidthHeight(
 						$maxWidth, $maxHeight, $page
 					);
 					$linktext = $context->msg( 'show-big-image' )->escaped();
@@ -691,7 +691,7 @@ EOT
 				$origMime = $this->displayImg->getMimeType();
 				$typeParams = $params;
 				$this->displayImg->getHandler()->normaliseParams( $this->displayImg, $typeParams );
-				list( $thumbExt, $thumbMime ) = $this->displayImg->getHandler()->getThumbType(
+				[ $thumbExt, $thumbMime ] = $this->displayImg->getHandler()->getThumbType(
 					$origExt, $origMime, $typeParams );
 				if ( $thumbMime !== $origMime ) {
 					$previewTypeDiffers = true;

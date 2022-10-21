@@ -67,7 +67,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 
 	private static function makeActorCases( $inputs, $expected ) {
 		foreach ( $expected as $inputName => $expectedCases ) {
-			foreach ( $expectedCases as list( $stages, $expected ) ) {
+			foreach ( $expectedCases as [ $stages, $expected ] ) {
 				foreach ( $stages as $stage ) {
 					$cases[$inputName . ', ' . $stage] = array_merge(
 						[ $stage ],
@@ -593,7 +593,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			$w = $this->getMigration( $writeStage );
 
 			if ( $usesTemp ) {
-				list( $fields, $callback ) = $w->getInsertValuesWithTempTable( $this->db, $key, $user );
+				[ $fields, $callback ] = $w->getInsertValuesWithTempTable( $this->db, $key, $user );
 			} else {
 				$fields = $w->getInsertValues( $this->db, $key, $user );
 			}
@@ -698,7 +698,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			$stage,
 			$this->getServiceContainer()->getActorStoreFactory()
 		);
-		list( $fields, $callback )
+		[ $fields, $callback ]
 			= $m->getInsertValuesWithTempTable( $this->db, 'am1_user', $this->getTestUser()->getUser() );
 		$this->assertIsCallable( $callback );
 	}
@@ -723,7 +723,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			$stage,
 			$this->getServiceContainer()->getActorStoreFactory()
 		);
-		list( $fields, $callback )
+		[ $fields, $callback ]
 			= $m->getInsertValuesWithTempTable( $this->db, 'foo_user', $this->getTestUser()->getUser() );
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( '$extra[foo_timestamp] is not provided' );
@@ -739,7 +739,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$userIdentity = new UserIdentityValue( $user->getId(), $user->getName() );
 
 		$m = $this->getMigration( $stage );
-		list( $fields, $callback ) =
+		[ $fields, $callback ] =
 			$m->getInsertValuesWithTempTable( $this->db, 'am2_user', $userIdentity );
 		$id = ++self::$amId;
 		$this->db->insert( 'actormigration2', [ 'am2_id' => $id ] + $fields, __METHOD__ );

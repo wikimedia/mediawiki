@@ -349,7 +349,7 @@ abstract class DatabaseMysqlBase extends Database {
 	public function tableExists( $table, $fname = __METHOD__ ) {
 		// Split database and table into proper variables as Database::tableName() returns
 		// shared tables prefixed with their database, which do not work in SHOW TABLES statements
-		list( $database, , $prefix, $table ) = $this->platform->qualifiedTableComponents( $table );
+		[ $database, , $prefix, $table ] = $this->platform->qualifiedTableComponents( $table );
 		$tableName = "{$prefix}{$table}";
 
 		if ( isset( $this->sessionTempTables[$tableName] ) ) {
@@ -884,7 +884,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return string
 	 */
 	public function getSoftwareLink() {
-		list( $variant ) = $this->getMySqlServerVariant();
+		[ $variant ] = $this->getMySqlServerVariant();
 		if ( $variant === 'MariaDB' ) {
 			return '[{{int:version-db-mariadb-url}} MariaDB]';
 		}
@@ -1054,7 +1054,7 @@ abstract class DatabaseMysqlBase extends Database {
 		string $fname
 	) {
 		$encTable = $this->tableName( $table );
-		list( $sqlColumns, $sqlTuples ) = $this->platform->makeInsertLists( $rows );
+		[ $sqlColumns, $sqlTuples ] = $this->platform->makeInsertLists( $rows );
 		$sqlColumnAssignments = $this->makeList( $set, self::LIST_SET );
 		// No need to expose __NEW.* since buildExcludedValue() uses VALUES(column)
 
@@ -1070,7 +1070,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 	protected function doReplace( $table, array $identityKey, array $rows, $fname ) {
 		$encTable = $this->tableName( $table );
-		list( $sqlColumns, $sqlTuples ) = $this->platform->makeInsertLists( $rows );
+		[ $sqlColumns, $sqlTuples ] = $this->platform->makeInsertLists( $rows );
 
 		$sql = "REPLACE INTO $encTable ($sqlColumns) VALUES $sqlTuples";
 
@@ -1256,7 +1256,7 @@ abstract class DatabaseMysqlBase extends Database {
 		// https://mariadb.com/kb/en/library/aborting-statements/
 		$timeoutMsec = intval( $options['MAX_EXECUTION_TIME'] ?? 0 );
 		if ( $timeoutMsec > 0 ) {
-			list( $vendor, $number ) = $this->getMySqlServerVariant();
+			[ $vendor, $number ] = $this->getMySqlServerVariant();
 			if ( $vendor === 'MariaDB' && version_compare( $number, '10.1.2', '>=' ) ) {
 				$timeoutSec = $timeoutMsec / 1000;
 				$sql = "SET STATEMENT max_statement_time=$timeoutSec FOR $sql";

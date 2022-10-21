@@ -81,7 +81,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 		$loggedInUser->saveSettings();
 
 		$fauxRequest = new FauxRequest( [ 'wpemail-blacklist' => true ], true );
-		list( $html, ) = $this->executeSpecialPage(
+		[ $html, ] = $this->executeSpecialPage(
 			$targetUser->getName(), $fauxRequest, 'qqx', $loggedInUser
 		);
 
@@ -104,7 +104,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 		$loggedInUser->saveSettings();
 
 		$fauxRequest = new FauxRequest( [ 'wpemail-blacklist' => false ], true );
-		list( $html, ) = $this->executeSpecialPage(
+		[ $html, ] = $this->executeSpecialPage(
 			$targetUser->getName(), $fauxRequest, 'qqx', $loggedInUser
 		);
 

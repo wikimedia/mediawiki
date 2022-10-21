@@ -92,9 +92,9 @@ class DatabaseDomain {
 		if ( count( $parts ) == 1 ) {
 			$database = $parts[0];
 		} elseif ( count( $parts ) == 2 ) {
-			list( $database, $prefix ) = $parts;
+			[ $database, $prefix ] = $parts;
 		} elseif ( count( $parts ) == 3 ) {
-			list( $database, $schema, $prefix ) = $parts;
+			[ $database, $schema, $prefix ] = $parts;
 		} else {
 			throw new InvalidArgumentException( "Domain '$domain' has too few or too many parts." );
 		}

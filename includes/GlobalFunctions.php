@@ -396,7 +396,7 @@ function wfCgiToArray( $query ) {
 			$key = $bit;
 			$value = '';
 		} else {
-			list( $key, $value ) = explode( '=', $bit );
+			[ $key, $value ] = explode( '=', $bit );
 		}
 		$key = urldecode( $key );
 		$value = urldecode( $value );

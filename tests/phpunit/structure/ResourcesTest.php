@@ -20,7 +20,7 @@ use Wikimedia\TestingAccessWrapper;
 class ResourcesTest extends MediaWikiIntegrationTestCase {
 
 	public function testStyleMedia() {
-		foreach ( self::provideMediaStylesheets() as list( $moduleName, $media, $filename, $css ) ) {
+		foreach ( self::provideMediaStylesheets() as [ $moduleName, $media, $filename, $css ] ) {
 			$cssText = CSSMin::minify( $css->cssText );
 
 			$this->assertStringNotContainsString(

@@ -204,7 +204,7 @@ class BotPassword implements IDBAccessObject {
 	 * @return Password
 	 */
 	private function getPassword() {
-		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $this->flags );
+		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $this->flags );
 		$db = self::getDB( $index );
 		$password = $db->selectField(
 			'bot_passwords',
@@ -424,7 +424,7 @@ class BotPassword implements IDBAccessObject {
 		if ( strpos( $username, $sep ) === false ) {
 			return self::loginHook( $username, null, Status::newFatal( 'botpasswords-invalid-name', $sep ) );
 		}
-		list( $name, $appId ) = explode( $sep, $username, 2 );
+		[ $name, $appId ] = explode( $sep, $username, 2 );
 
 		// Find the named user
 		$user = User::newFromName( $name );

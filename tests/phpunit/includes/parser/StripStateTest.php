@@ -122,7 +122,7 @@ class StripStateTest extends MediaWikiIntegrationTestCase {
 		$text = $ss->unstripNoWiki( $text );
 		$report = $ss->getLimitReport();
 		$messages = [];
-		foreach ( $report as list( $msg, $params ) ) {
+		foreach ( $report as [ $msg, $params ] ) {
 			$messages[$msg] = $params;
 		}
 		$this->assertSame( [ $depth - 1, 5 ], $messages['limitreport-unstrip-depth'] );

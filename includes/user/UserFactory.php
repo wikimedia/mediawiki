@@ -266,7 +266,7 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 		string $confirmationCode,
 		int $flags = self::READ_NORMAL
 	) {
-		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+		[ $index, $options ] = DBAccessObjectUtils::getDBOptions( $flags );
 
 		$db = $this->loadBalancer->getConnectionRef( $index );
 

@@ -210,8 +210,8 @@ class SpecialAllPages extends IncludableSpecialPage {
 			$out = $this->msg( 'allpages-bad-ns', $namespace )->parse();
 			$namespace = NS_MAIN;
 		} else {
-			list( $namespace, $fromKey, $from ) = $fromList;
-			list( , $toKey, $to ) = $toList;
+			[ $namespace, $fromKey, $from ] = $fromList;
+			[ , $toKey, $to ] = $toList;
 
 			$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 			$filterConds = [ 'page_namespace' => $namespace ];

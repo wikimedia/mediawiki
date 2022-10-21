@@ -61,7 +61,7 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 
 	public function testUserWithNoWatchedItems_displaysNoWatchlistMessage() {
 		$user = new TestUser( __METHOD__ );
-		list( $html, ) = $this->executeSpecialPage( '', null, 'qqx', $user->getUser() );
+		[ $html, ] = $this->executeSpecialPage( '', null, 'qqx', $user->getUser() );
 		$this->assertStringContainsString( '(nowatchlist)', $html );
 	}
 

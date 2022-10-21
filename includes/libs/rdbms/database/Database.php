@@ -687,7 +687,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected function assertIsWritablePrimary() {
 		$info = $this->getReadOnlyReason();
 		if ( $info ) {
-			list( $reason, $source ) = $info;
+			[ $reason, $source ] = $info;
 			if ( $source === 'role' ) {
 				throw new DBReadOnlyRoleError( $this, "Database is read-only: $reason" );
 			} else {
@@ -828,7 +828,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			return;
 		}
 
-		foreach ( $changes as list( $tmpTableType, $verb, $table ) ) {
+		foreach ( $changes as [ $tmpTableType, $verb, $table ] ) {
 			switch ( $verb ) {
 				case 'CREATE':
 					$this->sessionTempTables[$table] = [
@@ -998,7 +998,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				$pseudoPermanent = $this->flagsHolder::contains( $flags, self::QUERY_PSEUDO_PERMANENT );
 				$tempTableChanges = $this->getTempTableWrites( $sql, $pseudoPermanent );
 				$isPermWrite = !$tempTableChanges;
-				foreach ( $tempTableChanges as list( $tmpType ) ) {
+				foreach ( $tempTableChanges as [ $tmpType ] ) {
 					$isPermWrite = $isPermWrite || ( $tmpType !== self::TEMP_NORMAL );
 				}
 				// Permit temporary table writes on replica connections, but require a writable
@@ -2577,7 +2577,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	final public function endAtomic( $fname = __METHOD__ ) {
-		list( $savepointId, $sectionId ) = $this->transactionManager->onEndAtomic( $this, $fname );
+		[ $savepointId, $sectionId ] = $this->transactionManager->onEndAtomic( $this, $fname );
 
 		$runPostCommitCallbacks = false;
 
@@ -2620,7 +2620,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
 		$runPostRollbackCallbacks = false;
-		list( $savedFname, $excisedIds, $newTopSection, $savedSectionId, $savepointId ) =
+		[ $savedFname, $excisedIds, $newTopSection, $savedSectionId, $savepointId ] =
 			$this->transactionManager->cancelAtomic( $pos );
 
 		try {

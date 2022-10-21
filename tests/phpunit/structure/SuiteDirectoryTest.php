@@ -70,7 +70,7 @@ class SuiteDirectoryTest extends PHPUnit\Framework\TestCase {
 	}
 
 	private function isDirectoryIncluded( $dir, array $suiteInfos ) {
-		foreach ( $suiteInfos as list( $generalDirs, $excludedDirs ) ) {
+		foreach ( $suiteInfos as [ $generalDirs, $excludedDirs ] ) {
 			$found = false;
 			foreach ( $generalDirs as $generalDir ) {
 				if ( $this->isSameOrChildOfDirectory( $dir, $generalDir ) ) {

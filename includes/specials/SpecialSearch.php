@@ -278,7 +278,7 @@ class SpecialSearch extends SpecialPage {
 		$request = $this->getRequest();
 		$this->searchEngineType = $request->getVal( 'srbackend' );
 
-		list( $this->limit, $this->offset ) = $request->getLimitOffsetForUser(
+		[ $this->limit, $this->offset ] = $request->getLimitOffsetForUser(
 			$this->getUser(),
 			20,
 			'searchlimit'
@@ -517,7 +517,7 @@ class SpecialSearch extends SpecialPage {
 			} else {
 				$textStatus->merge( $this->loadStatus );
 			}
-			list( $error, $warning ) = $textStatus->splitByErrorType();
+			[ $error, $warning ] = $textStatus->splitByErrorType();
 			if ( $error->getErrors() ) {
 				$out->addHTML( Html::errorBox(
 					$error->getHTML( 'search-error' )

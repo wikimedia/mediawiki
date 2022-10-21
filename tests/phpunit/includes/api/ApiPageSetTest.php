@@ -39,7 +39,7 @@ class ApiPageSetTest extends ApiTestCase {
 	 * @dataProvider provideRedirectMergePolicy
 	 */
 	public function testRedirectMergePolicyWithArrayResult( $mergePolicy, $expect ) {
-		list( $target, $pageSet ) = $this->createPageSetWithRedirect();
+		[ $target, $pageSet ] = $this->createPageSetWithRedirect();
 		$pageSet->setRedirectMergePolicy( $mergePolicy );
 		$result = [
 			$target->getArticleID() => []
@@ -52,7 +52,7 @@ class ApiPageSetTest extends ApiTestCase {
 	 * @dataProvider provideRedirectMergePolicy
 	 */
 	public function testRedirectMergePolicyWithApiResult( $mergePolicy, $expect ) {
-		list( $target, $pageSet ) = $this->createPageSetWithRedirect();
+		[ $target, $pageSet ] = $this->createPageSetWithRedirect();
 		$pageSet->setRedirectMergePolicy( $mergePolicy );
 		$result = new ApiResult( false );
 		$result->addValue( null, 'pages', [
@@ -98,7 +98,7 @@ class ApiPageSetTest extends ApiTestCase {
 		$loopB = Title::makeTitle( NS_MAIN, 'UTPageRedirectTwo' );
 		$this->editPage( 'UTPageRedirectOne', '#REDIRECT [[UTPageRedirectTwo]]' );
 		$this->editPage( 'UTPageRedirectTwo', '#REDIRECT [[UTPageRedirectOne]]' );
-		list( $target, $pageSet ) = $this->createPageSetWithRedirect(
+		[ $target, $pageSet ] = $this->createPageSetWithRedirect(
 			'#REDIRECT [[UTPageRedirectOne]]'
 		);
 		$pageSet->setRedirectMergePolicy( static function ( $cur, $new ) {

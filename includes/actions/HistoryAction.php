@@ -344,9 +344,9 @@ class HistoryAction extends FormlessAction {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		if ( $direction === self::DIR_PREV ) {
-			list( $dirs, $oper ) = [ "ASC", ">=" ];
+			[ $dirs, $oper ] = [ "ASC", ">=" ];
 		} else { /* $direction === self::DIR_NEXT */
-			list( $dirs, $oper ) = [ "DESC", "<=" ];
+			[ $dirs, $oper ] = [ "DESC", "<=" ];
 		}
 
 		if ( $offset ) {

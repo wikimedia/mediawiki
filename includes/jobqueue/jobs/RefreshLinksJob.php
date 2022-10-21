@@ -146,7 +146,7 @@ class RefreshLinksJob extends Job {
 
 		} elseif ( isset( $this->params['pages'] ) ) {
 			// Job to update link tables for a set of titles
-			foreach ( $this->params['pages'] as list( $ns, $dbKey ) ) {
+			foreach ( $this->params['pages'] as [ $ns, $dbKey ] ) {
 				$title = Title::makeTitleSafe( $ns, $dbKey );
 				if ( $title && $title->canExist() ) {
 					$ok = $this->runForTitle( $title ) && $ok;

@@ -115,7 +115,7 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testResolveAlias() {
 		$this->overrideConfigValue( MainConfigNames::LanguageCode, 'de' );
 
-		list( $name, $param ) = $this->getFactory()->resolveAlias( 'Spezialseiten/Foo' );
+		[ $name, $param ] = $this->getFactory()->resolveAlias( 'Spezialseiten/Foo' );
 		$this->assertEquals( 'Specialpages', $name );
 		$this->assertEquals( 'Foo', $param );
 	}
@@ -194,7 +194,7 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 		} );
 		$reset = new ScopedCallback( 'restore_error_handler' );
 
-		list( $name, /*...*/ ) = $this->getFactory()->resolveAlias( $alias );
+		[ $name, /*...*/ ] = $this->getFactory()->resolveAlias( $alias );
 		$this->assertEquals( $expectedName, $name, "$test: Alias to name" );
 		$result = $this->getFactory()->getLocalNameFor( $name );
 		$this->assertEquals( $expectedAlias, $result, "$test: Alias to name to alias" );

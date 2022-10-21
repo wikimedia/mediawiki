@@ -252,7 +252,7 @@ class ApiParse extends ApiBase {
 				$titleObj = Title::newFromLinkTarget( $revLinkTarget );
 				$wgTitle = $titleObj;
 				$pageObj = $this->wikiPageFactory->newFromTitle( $titleObj );
-				list( $popts, $reset, $suppressCache ) = $this->makeParserOptions( $pageObj, $params );
+				[ $popts, $reset, $suppressCache ] = $this->makeParserOptions( $pageObj, $params );
 				$p_result = $this->getParsedContent(
 					$pageObj, $popts, $suppressCache, $pageid, $rev, $needContent
 				);
@@ -297,7 +297,7 @@ class ApiParse extends ApiBase {
 					$oldid = $pageObj->getLatest();
 				}
 
-				list( $popts, $reset, $suppressCache ) = $this->makeParserOptions( $pageObj, $params );
+				[ $popts, $reset, $suppressCache ] = $this->makeParserOptions( $pageObj, $params );
 				$p_result = $this->getParsedContent(
 					$pageObj, $popts, $suppressCache, $pageid, null, $needContent
 				);
@@ -332,12 +332,12 @@ class ApiParse extends ApiBase {
 			$wgTitle = $titleObj;
 			if ( $titleObj->canExist() ) {
 				$pageObj = $this->wikiPageFactory->newFromTitle( $titleObj );
-				list( $popts, $reset ) = $this->makeParserOptions( $pageObj, $params );
+				[ $popts, $reset ] = $this->makeParserOptions( $pageObj, $params );
 			} else { // A special page, presumably
 				// XXX: Why is this needed at all? Can't we just fail?
 				$pageObj = null;
 				$popts = ParserOptions::newCanonical( $this->getContext() );
-				list( $popts, $reset ) = $this->tweakParserOptions( $popts, $titleObj, $params );
+				[ $popts, $reset ] = $this->tweakParserOptions( $popts, $titleObj, $params );
 			}
 
 			$textProvided = $text !== null;

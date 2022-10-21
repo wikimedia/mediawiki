@@ -191,7 +191,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 			->getIntOption( $this->getUser(), 'rclimit' );
 		if ( !$this->mLimit ) {
 			// Don't override if a subclass calls $this->setLimit() in its constructor.
-			list( $this->mLimit, /* $offset */ ) = $this->mRequest
+			[ $this->mLimit, /* $offset */ ] = $this->mRequest
 				->getLimitOffsetForUser( $this->getUser() );
 		}
 
@@ -454,7 +454,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @return IResultWrapper
 	 */
 	public function reallyDoQuery( $offset, $limit, $order ) {
-		list( $tables, $fields, $conds, $fname, $options, $join_conds ) =
+		[ $tables, $fields, $conds, $fname, $options, $join_conds ] =
 			$this->buildQueryInfo( $offset, $limit, $order );
 
 		return $this->mDb->select( $tables, $fields, $conds, $fname, $options, $join_conds );

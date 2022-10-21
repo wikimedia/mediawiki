@@ -17,7 +17,7 @@ class CachedSourceTest extends TestCase {
 		$hashKey = 'abc123';
 		$ttl = 123;
 
-		list( $cache, $key ) = $this->createCacheMock( $hashKey );
+		[ $cache, $key ] = $this->createCacheMock( $hashKey );
 		$source = $this->createMock( CacheableSource::class );
 		$cacheSource = new CachedSource( $cache, $source );
 
@@ -69,7 +69,7 @@ class CachedSourceTest extends TestCase {
 		$settings = [ 'config' => [ 'Foo' => 'value' ] ];
 		$hashKey = 'abc123';
 
-		list( $cache, $key ) = $this->createCacheMock( $hashKey );
+		[ $cache, $key ] = $this->createCacheMock( $hashKey );
 		$source = $this->createMock( CacheableSource::class );
 		$cacheSource = new CachedSource( $cache, $source );
 
@@ -111,7 +111,7 @@ class CachedSourceTest extends TestCase {
 		$hashKey = 'abc123';
 		$expired = microtime( true ) - 1;
 
-		list( $cache, $key ) = $this->createCacheMock( $hashKey );
+		[ $cache, $key ] = $this->createCacheMock( $hashKey );
 		$source = $this->createMock( CacheableSource::class );
 		$cacheSource = new CachedSource( $cache, $source );
 
@@ -150,7 +150,7 @@ class CachedSourceTest extends TestCase {
 		$hashKey = 'abc123';
 		$expired = microtime( true ) - 1;
 
-		list( $cache, $key ) = $this->createCacheMock( $hashKey, [ 'lock' ] );
+		[ $cache, $key ] = $this->createCacheMock( $hashKey, [ 'lock' ] );
 		$source = $this->createMock( CacheableSource::class );
 		$cacheSource = new CachedSource( $cache, $source );
 

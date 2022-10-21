@@ -98,7 +98,7 @@ class Licenses extends HTMLFormField {
 			if ( strpos( $line, '*' ) !== 0 ) {
 				continue;
 			}
-			list( $level, $line ) = $this->trimStars( $line );
+			[ $level, $line ] = $this->trimStars( $line );
 
 			if ( strpos( $line, '|' ) !== false ) {
 				$obj = $this->buildLine( $line );

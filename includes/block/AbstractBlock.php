@@ -400,7 +400,7 @@ abstract class AbstractBlock implements Block {
 			$this->target = null;
 			$this->type = null;
 		} else {
-			list( $parsedTarget, $this->type ) = MediaWikiServices::getInstance()
+			[ $parsedTarget, $this->type ] = MediaWikiServices::getInstance()
 				->getBlockUtils()
 				->parseBlockTarget( $target );
 			if ( $parsedTarget !== null ) {

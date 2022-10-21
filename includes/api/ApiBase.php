@@ -804,7 +804,7 @@ abstract class ApiBase extends ContextSource {
 			// ApiSandbox.PageLayout.prototype.updateTemplatedParams().
 			// If you update this, see if that needs updating too.
 			while ( $toProcess ) {
-				list( $name, $targets, $settings ) = array_shift( $toProcess );
+				[ $name, $targets, $settings ] = array_shift( $toProcess );
 
 				foreach ( $targets as $placeholder => $target ) {
 					if ( !array_key_exists( $target, $results ) ) {
@@ -1254,7 +1254,7 @@ abstract class ApiBase extends ContextSource {
 				$error = [ $error ];
 			}
 			if ( is_string( $error[0] ) && isset( self::$blockMsgMap[$error[0]] ) && $user->getBlock() ) {
-				list( $msg, $code ) = self::$blockMsgMap[$error[0]];
+				[ $msg, $code ] = self::$blockMsgMap[$error[0]];
 				$status->fatal( ApiMessage::create( $msg, $code,
 					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Block is checked and not null
 					[ 'blockinfo' => $this->getBlockDetails( $user->getBlock() ) ]
@@ -1282,7 +1282,7 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		if ( $block ) {
-			foreach ( self::$blockMsgMap as $msg => list( $apiMsg, $code ) ) {
+			foreach ( self::$blockMsgMap as $msg => [ $apiMsg, $code ] ) {
 				if ( $status->hasMessage( $msg ) ) {
 					$status->replaceMessage( $msg, ApiMessage::create( $apiMsg, $code,
 						[ 'blockinfo' => $this->getBlockDetails( $block ) ]
@@ -1325,7 +1325,7 @@ abstract class ApiBase extends ContextSource {
 	protected function filterIDs( $fields, array $ids ) {
 		$min = INF;
 		$max = 0;
-		foreach ( $fields as list( $table, $field ) ) {
+		foreach ( $fields as [ $table, $field ] ) {
 			if ( isset( self::$filterIDsCache[$table][$field] ) ) {
 				$row = self::$filterIDsCache[$table][$field];
 			} else {

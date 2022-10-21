@@ -91,7 +91,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 				$this->specialPage->getUser()
 			)
 		);
-		list( $file, $desc, $thumb ) = $this->generateFileHtml( $result );
+		[ $file, $desc, $thumb ] = $this->generateFileHtml( $result );
 		$snippet = $result->getTextSnippet();
 		if ( $snippet ) {
 			$snippetWithEllipsis = $snippet . $this->specialPage->msg( 'ellipsis' );

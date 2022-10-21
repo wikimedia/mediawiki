@@ -150,13 +150,13 @@ class ApiQueryBlocks extends ApiQueryBase {
 			}
 
 			# Check range validity, if it's a CIDR
-			list( $ip, $range ) = IPUtils::parseCIDR( $params['ip'] );
+			[ $ip, $range ] = IPUtils::parseCIDR( $params['ip'] );
 			if ( $ip !== false && $range !== false && $range < $cidrLimit ) {
 				$this->dieWithError( [ 'apierror-cidrtoobroad', $type, $cidrLimit ] );
 			}
 
 			# Let IPUtils::parseRange handle calculating $upper, instead of duplicating the logic here.
-			list( $lower, $upper ) = IPUtils::parseRange( $params['ip'] );
+			[ $lower, $upper ] = IPUtils::parseRange( $params['ip'] );
 
 			# Extract the common prefix to any rangeblock affecting this IP/CIDR
 			$prefix = substr( $lower, 0, $prefixLen + (int)floor( $cidrLimit / 4 ) );

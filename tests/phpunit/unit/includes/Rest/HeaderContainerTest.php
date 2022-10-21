@@ -48,7 +48,7 @@ class HeaderContainerTest extends \MediaWikiUnitTestCase {
 	/** @dataProvider provideSetHeader */
 	public function testSetHeader( $setOps, $headers, $lines ) {
 		$hc = new HeaderContainer;
-		foreach ( $setOps as list( $name, $value ) ) {
+		foreach ( $setOps as [ $name, $value ] ) {
 			$hc->setHeader( $name, $value );
 		}
 		$this->assertSame( $headers, $hc->getHeaders() );
@@ -94,7 +94,7 @@ class HeaderContainerTest extends \MediaWikiUnitTestCase {
 	/** @dataProvider provideAddHeader */
 	public function testAddHeader( $addOps, $headers, $lines ) {
 		$hc = new HeaderContainer;
-		foreach ( $addOps as list( $name, $value ) ) {
+		foreach ( $addOps as [ $name, $value ] ) {
 			$hc->addHeader( $name, $value );
 		}
 		$this->assertSame( $headers, $hc->getHeaders() );
@@ -127,7 +127,7 @@ class HeaderContainerTest extends \MediaWikiUnitTestCase {
 	/** @dataProvider provideRemoveHeader */
 	public function testRemoveHeader( $addOps, $removeOps, $headers, $lines ) {
 		$hc = new HeaderContainer;
-		foreach ( $addOps as list( $name, $value ) ) {
+		foreach ( $addOps as [ $name, $value ] ) {
 			$hc->addHeader( $name, $value );
 		}
 		foreach ( $removeOps as $name ) {

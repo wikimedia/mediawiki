@@ -238,7 +238,7 @@ class SectionProfiler {
 			$this->logger->error( "Profiling error: $functionname" );
 			return;
 		}
-		list( $ofname, /* $ocount */, $ortime, $octime, $omem ) = $item;
+		[ $ofname, /* $ocount */, $ortime, $octime, $omem ] = $item;
 
 		if ( $functionname === 'close' ) {
 			$message = "Profile section ended by close(): {$ofname}";

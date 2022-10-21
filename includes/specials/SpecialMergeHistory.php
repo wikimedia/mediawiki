@@ -360,7 +360,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$comment = Linker::revComment( $revRecord );
 
 		// Tags, if any.
-		list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow(
+		[ $tagSummary, $classes ] = ChangeTags::formatSummaryRow(
 			$row->ts_tags,
 			'mergehistory',
 			$this->getContext()

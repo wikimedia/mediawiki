@@ -191,7 +191,7 @@ class ApiOpenSearch extends ApiBase {
 				$dbkey = $title->getDBkey();
 				$from = null;
 				if ( isset( $redirects[$ns][$dbkey] ) ) {
-					list( $ns, $dbkey ) = $redirects[$ns][$dbkey];
+					[ $ns, $dbkey ] = $redirects[$ns][$dbkey];
 					$from = $title;
 					$title = Title::makeTitle( $ns, $dbkey );
 				}

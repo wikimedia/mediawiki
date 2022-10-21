@@ -188,7 +188,7 @@ function wfImageAuthMain() {
 	Hooks::runner()->onImgAuthModifyHeaders( $title->getTitleValue(), $headers );
 
 	// Stream the requested file
-	list( $headers, $options ) = HTTPFileStreamer::preprocessHeaders( $headers );
+	[ $headers, $options ] = HTTPFileStreamer::preprocessHeaders( $headers );
 	wfDebugLog( 'img_auth', "Streaming `" . $filename . "`." );
 	$repo->streamFileWithStatus( $filename, $headers, $options );
 }

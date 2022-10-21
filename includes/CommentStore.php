@@ -566,7 +566,7 @@ class CommentStore {
 			throw new InvalidArgumentException( "Must use insertWithTempTable() for $key" );
 		}
 
-		list( $fields ) = $this->insertInternal( $dbw, $key, $comment, $data );
+		[ $fields ] = $this->insertInternal( $dbw, $key, $comment, $data );
 		return $fields;
 	}
 
@@ -604,7 +604,7 @@ class CommentStore {
 			wfDeprecated( __METHOD__ . " for $key", static::TEMP_TABLES[$key]['deprecatedIn'] );
 		}
 
-		list( $fields, $callback ) = $this->insertInternal( $dbw, $key, $comment, $data );
+		[ $fields, $callback ] = $this->insertInternal( $dbw, $key, $comment, $data );
 		if ( !$callback ) {
 			$callback = static function () {
 				// Do nothing.

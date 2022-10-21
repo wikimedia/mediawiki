@@ -100,7 +100,7 @@ class ChangeTagsLogItem extends RevisionItemBase {
 		$attribs = [];
 		$tags = $this->getTags();
 		if ( $tags ) {
-			list( $tagSummary, $classes ) = ChangeTags::formatSummaryRow(
+			[ $tagSummary, $classes ] = ChangeTags::formatSummaryRow(
 				$tags,
 				'edittags',
 				$this->list->getContext()

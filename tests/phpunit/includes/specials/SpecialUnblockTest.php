@@ -95,7 +95,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 			'wpTarget' => $target,
 			'wpReason' => '',
 		], true );
-		list( $html, ) = $this->executeSpecialPage( '', $request, 'qqx', $performer );
+		[ $html, ] = $this->executeSpecialPage( '', $request, 'qqx', $performer );
 
 		$this->assertStringContainsString( $expected, $html );
 	}
@@ -146,7 +146,7 @@ class SpecialUnblockTest extends SpecialPageTestBase {
 			'wpTarget' => $performer->getName(),
 			'wpReason' => '',
 		], true );
-		list( $html, ) = $this->executeSpecialPage( '', $request, 'qqx', $performer );
+		[ $html, ] = $this->executeSpecialPage( '', $request, 'qqx', $performer );
 
 		$this->assertStringContainsString( 'ipbnounblockself', $html );
 	}

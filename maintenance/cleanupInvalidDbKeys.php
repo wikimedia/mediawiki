@@ -124,7 +124,7 @@ TEXT
 	 * @param array $tableParams A child array of self::$tables
 	 */
 	protected function cleanupTable( $tableParams ) {
-		list( $table, $prefix ) = $tableParams;
+		[ $table, $prefix ] = $tableParams;
 		$idField = $tableParams['idField'] ?? "{$prefix}_id";
 		$nsField = $tableParams['nsField'] ?? "{$prefix}_namespace";
 		$titleField = $tableParams['titleField'] ?? "{$prefix}_title";
@@ -141,7 +141,7 @@ TEXT
 		$joinConds = [];
 		$tables = [ $table ];
 		if ( isset( $linksMigration::$mapping[$table] ) ) {
-			list( $nsField,$titleField ) = $linksMigration->getTitleFields( $table );
+			[ $nsField,$titleField ] = $linksMigration->getTitleFields( $table );
 			$joinConds = $linksMigration->getQueryInfo( $table )['joins'];
 			$tables = $linksMigration->getQueryInfo( $table )['tables'];
 		}

@@ -251,7 +251,7 @@ class FileBackendGroup {
 	 * @return FileBackend|null Backend or null on failure
 	 */
 	public function backendFromPath( $storagePath ) {
-		list( $backend, , ) = FileBackend::splitStoragePath( $storagePath );
+		[ $backend, , ] = FileBackend::splitStoragePath( $storagePath );
 		if ( $backend !== null && isset( $this->backends[$backend] ) ) {
 			return $this->get( $backend );
 		}

@@ -504,7 +504,7 @@ class SpecialExport extends SpecialPage {
 	 * @return array Associative array index by titles
 	 */
 	protected function getTemplates( $inputPages, $pageSet ) {
-		list( $nsField, $titleField ) = $this->linksMigration->getTitleFields( 'templatelinks' );
+		[ $nsField, $titleField ] = $this->linksMigration->getTitleFields( 'templatelinks' );
 		$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
 		return $this->getLinks( $inputPages, $pageSet,
 			$queryInfo['tables'],

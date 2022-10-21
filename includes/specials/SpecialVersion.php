@@ -820,7 +820,7 @@ class SpecialVersion extends SpecialPage {
 			$memcKey = $cache->makeKey(
 				'specialversion-ext-version-text', $extension['path'], $this->coreId
 			);
-			list( $vcsVersion, $vcsLink, $vcsDate ) = $cache->get( $memcKey );
+			[ $vcsVersion, $vcsLink, $vcsDate ] = $cache->get( $memcKey );
 
 			if ( !$vcsVersion ) {
 				wfDebug( "Getting VCS info for extension {$extension['name']}" );

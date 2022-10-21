@@ -133,7 +133,7 @@ class VirtualRESTServiceClient {
 	 *   - error   : Any cURL error string
 	 * The map also stores integer-indexed copies of these values. This lets callers do:
 	 * @code
-	 *     list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $client->run( $req );
+	 *     [ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $client->run( $req );
 	 * @endcode
 	 * @param array $req Virtual HTTP request maps
 	 * @return array Response array for request
@@ -153,7 +153,7 @@ class VirtualRESTServiceClient {
 	 *   - error   : Any cURL error string
 	 * The map also stores integer-indexed copies of these values. This lets callers do:
 	 * @code
-	 *     list( $rcode, $rdesc, $rhdrs, $rbody, $rerr ) = $responses[0];
+	 *     [ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $responses[0];
 	 * @endcode
 	 *
 	 * @param array[] $reqs Map of Virtual HTTP request maps
@@ -192,7 +192,7 @@ class VirtualRESTServiceClient {
 				$executeReqs[$index] = $req;
 			} else {
 				// Must be a virtual HTTP URL; resolve it
-				list( $prefix, $service ) = $this->getMountAndService( $req['url'] );
+				[ $prefix, $service ] = $this->getMountAndService( $req['url'] );
 				if ( !$service ) {
 					throw new UnexpectedValueException( "Path '{$req['url']}' has no service." );
 				}

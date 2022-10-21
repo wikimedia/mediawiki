@@ -70,7 +70,7 @@ class PPNode_Hash_Tree implements PPNode {
 	public function __construct( array $store, $index ) {
 		$this->store = $store;
 		$this->index = $index;
-		list( $this->name, $this->rawChildren ) = $this->store[$index];
+		[ $this->name, $this->rawChildren ] = $this->store[$index];
 	}
 
 	/**

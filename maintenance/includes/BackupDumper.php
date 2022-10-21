@@ -247,7 +247,7 @@ abstract class BackupDumper extends Maintenance {
 					if ( count( $split ) !== 2 ) {
 						$this->fatalError( 'Invalid output parameter' );
 					}
-					list( $type, $file ) = $split;
+					[ $type, $file ] = $split;
 					if ( $sink !== null ) {
 						$sinks[] = $sink;
 					}

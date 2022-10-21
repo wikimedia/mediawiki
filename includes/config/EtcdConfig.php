@@ -240,7 +240,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		$servers = $this->dsd->getServers() ?: [ [ $this->host, $this->port ] ];
 
 		foreach ( $servers as $server ) {
-			list( $host, $port ) = $server;
+			[ $host, $port ] = $server;
 
 			// Try to load the config from this particular server
 			$response = $this->fetchAllFromEtcdServer( $host, $port );
@@ -265,7 +265,7 @@ class EtcdConfig implements Config, LoggerAwareInterface {
 		}
 
 		// Retrieve all the values under the MediaWiki config directory
-		list( $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ) = $this->http->run( [
+		[ $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ] = $this->http->run( [
 			'method' => 'GET',
 			'url' => "{$this->protocol}://{$host}/v2/keys/{$this->directory}/?recursive=true",
 			'headers' => [

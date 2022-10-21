@@ -188,7 +188,7 @@ class WikitextContent extends TextContent {
 	 * @see Content::getRedirectTarget
 	 */
 	public function getRedirectTarget() {
-		list( $title, ) = $this->getRedirectTargetAndText();
+		[ $title, ] = $this->getRedirectTargetAndText();
 
 		return $title;
 	}

@@ -639,7 +639,7 @@ class WatchedItemQueryService {
 
 	private function getStartFromConds( IDatabase $db, array $options, array $startFrom ) {
 		$op = $options['dir'] === self::DIR_OLDER ? '<' : '>';
-		list( $rcTimestamp, $rcId ) = $startFrom;
+		[ $rcTimestamp, $rcId ] = $startFrom;
 		$rcTimestamp = $db->addQuotes( $db->timestamp( $rcTimestamp ) );
 		$rcId = (int)$rcId;
 		return $db->makeList(

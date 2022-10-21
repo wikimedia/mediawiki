@@ -145,7 +145,7 @@ class Validator {
 		}
 
 		// Get the content type
-		list( $ct ) = explode( ';', $request->getHeaderLine( 'Content-Type' ), 2 );
+		[ $ct ] = explode( ';', $request->getHeaderLine( 'Content-Type' ), 2 );
 		$ct = strtolower( trim( $ct ) );
 		if ( $ct === '' ) {
 			// No Content-Type was supplied. RFC 7231 § 3.1.1.5 allows this, but since it's probably a

@@ -98,7 +98,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 						// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
 						$this->mParser, $nt, $options, $descQuery );
 					# Fetch and register the file (file title may be different via hooks)
-					list( $img, $nt ) = $this->mParser->fetchFileAndTitle( $nt, $options );
+					[ $img, $nt ] = $this->mParser->fetchFileAndTitle( $nt, $options );
 				} else {
 					$img = $repoGroup->findFile( $nt );
 				}

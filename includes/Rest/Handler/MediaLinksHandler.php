@@ -132,7 +132,7 @@ class MediaLinksHandler extends SimpleHandler {
 		}, $results );
 
 		$files = $this->repoGroup->findFiles( $findTitles );
-		list( $maxWidth, $maxHeight ) = self::getImageLimitsFromOption(
+		[ $maxWidth, $maxHeight ] = self::getImageLimitsFromOption(
 			$this->getAuthority()->getUser(),
 			'imagesize'
 		);

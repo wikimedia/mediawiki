@@ -137,7 +137,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		// -- create page (or not) -----------------------------------------
 		if ( $text !== null ) {
-			list( $re ) = $this->doApiRequestWithToken( [
+			[ $re ] = $this->doApiRequestWithToken( [
 				'action' => 'edit',
 				'title' => $name,
 				'text' => $text, ] );
@@ -146,7 +146,7 @@ class ApiEditPageTest extends ApiTestCase {
 		}
 
 		// -- try append/prepend --------------------------------------------
-		list( $re ) = $this->doApiRequestWithToken( [
+		[ $re ] = $this->doApiRequestWithToken( [
 			'action' => 'edit',
 			'title' => $name,
 			$op . 'text' => $append, ] );
@@ -178,7 +178,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'summary'
 		);
 
-		list( $re ) = $this->doApiRequestWithToken( [
+		[ $re ] = $this->doApiRequestWithToken( [
 			'action' => 'edit',
 			'title' => $name,
 			'section' => '1',
@@ -216,7 +216,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		// Test on a page that does not already exist
 		$this->assertFalse( Title::newFromText( $name )->exists() );
-		list( $re ) = $this->doApiRequestWithToken( [
+		[ $re ] = $this->doApiRequestWithToken( [
 			'action' => 'edit',
 			'title' => $name,
 			'section' => 'new',
@@ -233,7 +233,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		// Now on one that does
 		$this->assertTrue( Title::newFromText( $name )->exists() );
-		list( $re2 ) = $this->doApiRequestWithToken( [
+		[ $re2 ] = $this->doApiRequestWithToken( [
 			'action' => 'edit',
 			'title' => $name,
 			'section' => 'new',
@@ -411,7 +411,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->forceRevisionDate( $rpage, '20120101020202' );
 
 		// try to save edit, following the redirect
-		list( $re, , ) = $this->doApiRequestWithToken( [
+		[ $re, , ] = $this->doApiRequestWithToken( [
 			'action' => 'edit',
 			'title' => $rname,
 			'text' => 'nix bar!',
@@ -615,7 +615,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->forceRevisionDate( $page, '20120101020202' );
 
 		// try to save edit, expect no conflict
-		list( $re, , ) = $this->doApiRequestWithToken( [
+		[ $re, , ] = $this->doApiRequestWithToken( [
 			'action' => 'edit',
 			'title' => $name,
 			'text' => 'nix bar!',
@@ -678,7 +678,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->forceRevisionDate( $rpage, '20120101020202' );
 
 		// try to save edit; should work, following the redirect.
-		list( $re, , ) = $this->doApiRequestWithToken( [
+		[ $re, , ] = $this->doApiRequestWithToken( [
 			'action' => 'edit',
 			'title' => $rname,
 			'text' => 'nix bar!',

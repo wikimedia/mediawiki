@@ -99,7 +99,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	public function testUpdate_pagelinks() {
 		/** @var Title $t */
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$po->addLink( Title::newFromText( "Foo" ) );
 		$po->addLink( Title::newFromText( "Bar" ) );
@@ -152,7 +152,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	public function testUpdate_pagelinks_move() {
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$po->addLink( Title::newFromText( "Foo" ) );
 		$this->assertLinksUpdate(
@@ -166,7 +166,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			]
 		);
 
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "User:Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "User:Testing", self::$testingPageId );
 		$po->addLink( Title::newFromText( "Foo" ) );
 		$this->assertMoveLinksUpdate(
 			$t,
@@ -188,7 +188,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	 */
 	public function testUpdate_externallinks() {
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$po->addExternalLink( "http://testing.com/wiki/Foo" );
 		$po->addExternalLink( "http://testing.com/wiki/Bar" );
@@ -241,7 +241,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		/** @var ParserOutput $po */
 		$this->overrideConfigValue( MainConfigNames::CategoryCollation, 'uppercase' );
 
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$po->addCategory( "Foo", "FOO" );
 		$po->addCategory( "Bar", "BAR" );
@@ -269,7 +269,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			]
 		);
 
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 		$po->addCategory( "Bar", "Bar" );
 		$po->addCategory( "Baz", "Baz" );
 
@@ -395,7 +395,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$this->overrideConfigValue( MainConfigNames::CategoryCollation, 'uppercase' );
 
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Old", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Old", self::$testingPageId );
 
 		$po->addCategory( "Bar", "BAR" );
 		$po->addCategory( "Foo", "FOO" );
@@ -424,7 +424,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "New", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "New", self::$testingPageId );
 
 		$po->addCategory( "Bar", "BAR" );
 		$po->addCategory( "Foo", "FOO" );
@@ -490,7 +490,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	 */
 	public function testUpdate_iwlinks() {
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$target1 = Title::makeTitleSafe( NS_MAIN, "T1", '', 'linksupdatetest' );
 		$target2 = Title::makeTitleSafe( NS_MAIN, "T2", '', 'linksupdatetest' );
@@ -511,7 +511,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$po->addInterwikiLink( $target2 );
 		$po->addInterwikiLink( $target3 );
@@ -534,7 +534,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	 */
 	public function testUpdate_templatelinks() {
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 		$linkTargetLookup = MediaWikiServices::getInstance()->getLinkTargetLookup();
 
 		$target1 = Title::newFromText( "Template:T1" );
@@ -557,7 +557,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$po->addTemplate( $target2, 23, 42 );
 		$po->addTemplate( $target3, 23, 42 );
@@ -580,7 +580,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	 */
 	public function testUpdate_imagelinks() {
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$po->addImage( "1.png" );
 		$po->addImage( "2.png" );
@@ -595,7 +595,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$po->addImage( "2.png" );
 		$po->addImage( "3.png" );
@@ -611,7 +611,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	public function testUpdate_imagelinks_move() {
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$po->addImage( "1.png" );
 		$po->addImage( "2.png" );
@@ -627,7 +627,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		);
 
 		$oldT = $t;
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "User:Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "User:Testing", self::$testingPageId );
 		$po->addImage( "1.png" );
 		$po->addImage( "2.png" );
 
@@ -650,7 +650,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$this->overrideConfigValue( MainConfigNames::CapitalLinks, true );
 
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$po->addLanguageLink( 'De:1' );
 		$po->addLanguageLink( 'En:1' );
@@ -669,7 +669,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			]
 		);
 
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 		$po->addLanguageLink( 'En:2' );
 		$po->addLanguageLink( 'Fr:1' );
 
@@ -691,7 +691,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	 */
 	public function testUpdate_page_props() {
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$fields = [ 'pp_propname', 'pp_value', 'pp_sortkey' ];
 		$cond = 'pp_page = ' . self::$testingPageId;
@@ -706,7 +706,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			]
 		);
 
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
 		$expected = [];
 		$po->setPageProperty( "bool", true );
@@ -739,7 +739,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			$t, $po, 'page_props', $fields, 'pp_page = ' . self::$testingPageId, $expected );
 
 		$expectedAssoc = [];
-		foreach ( $expected as list( $name, $value ) ) {
+		foreach ( $expected as [ $name, $value ] ) {
 			$expectedAssoc[$name] = $value;
 		}
 		$this->assertArrayEquals( $expectedAssoc, $update->getAddedProperties() );
@@ -806,7 +806,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	}
 
 	public function testIsRecursive() {
-		list( $title, $po ) = $this->makeTitleAndParserOutput( 'Test', 1 );
+		[ $title, $po ] = $this->makeTitleAndParserOutput( 'Test', 1 );
 		$linksUpdate = new LinksUpdate( $title, $po );
 		$this->assertTrue( $linksUpdate->isRecursive(), 'LinksUpdate is recursive by default' );
 
@@ -825,7 +825,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	 */
 	public function testNullEdit() {
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 		$po->addCategory( 'Test', 'Test' );
 		$po->addExternalLink( 'http://www.example.com/' );
 		$po->addImage( 'Test' );
@@ -876,7 +876,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$i = 123;
 
 		/** @var ParserOutput $po */
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 		$po->addCategory( $s, $s );
 		$po->addExternalLink( $s );
 		$po->addImage( $s );
@@ -905,13 +905,13 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	 * Integration test for numeric category names (T301433)
 	 */
 	public function testNumericCategory() {
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Test 1", self::$testingPageId + 1 );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Test 1", self::$testingPageId + 1 );
 		$po->addCategory( '123a', '123a' );
 		$update = new LinksUpdate( $t, $po );
 		$update->setStrictTestMode();
 		$update->doUpdate();
 
-		list( $t, $po ) = $this->makeTitleAndParserOutput( "Test 2", self::$testingPageId + 2 );
+		[ $t, $po ] = $this->makeTitleAndParserOutput( "Test 2", self::$testingPageId + 2 );
 		$po->addCategory( '123', '123' );
 		$update = new LinksUpdate( $t, $po );
 		$update->setStrictTestMode();

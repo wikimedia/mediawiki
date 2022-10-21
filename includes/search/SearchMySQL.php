@@ -60,7 +60,7 @@ class SearchMySQL extends SearchDatabase {
 			$langConverter = $services->getLanguageConverterFactory()->getLanguageConverter( $contLang );
 			foreach ( $m as $bits ) {
 				AtEase::suppressWarnings();
-				list( /* all */, $modifier, $term, $nonQuoted, $wildcard ) = $bits;
+				[ /* all */, $modifier, $term, $nonQuoted, $wildcard ] = $bits;
 				AtEase::restoreWarnings();
 
 				if ( $nonQuoted != '' ) {

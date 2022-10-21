@@ -46,7 +46,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 			'2011-04-01T00:00:00Z'
 		);
 
-		list( $data ) = $this->doApiRequest( [
+		[ $data ] = $this->doApiRequest( [
 				'action' => 'query',
 				'prop' => 'info',
 				'inprop' => 'watched|notificationtimestamp',
@@ -83,7 +83,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$page = $this->getExistingTestPage( 'Pluto' );
 		$title = $page->getTitle();
 
-		list( $data ) = $this->doApiRequest( [
+		[ $data ] = $this->doApiRequest( [
 				'action' => 'query',
 				'prop' => 'info',
 				'titles' => $title->getText(),
@@ -108,7 +108,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$page = $this->getExistingTestPage( 'Pluto' );
 		$title = $page->getTitle();
 
-		list( $data ) = $this->doApiRequest( [
+		[ $data ] = $this->doApiRequest( [
 				'action' => 'query',
 				'prop' => 'info',
 				'titles' => $title->getText(),
@@ -133,7 +133,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$page = $this->getExistingTestPage( 'Pluto' );
 		$title = $page->getTitle();
 
-		list( $data ) = $this->doApiRequest( [
+		[ $data ] = $this->doApiRequest( [
 				'action' => 'query',
 				'prop' => 'info',
 				'titles' => $title->getText(),
@@ -175,7 +175,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$page = $this->getExistingTestPage( 'Pluto' );
 		$title = $page->getTitle();
 
-		list( $data ) = $this->doApiRequest( [
+		[ $data ] = $this->doApiRequest( [
 				'action' => 'query',
 				'prop' => 'info',
 				'titles' => $title->getText(),
@@ -214,7 +214,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 		// Make sure it doesn't exist
 		$this->getNonexistingTestPage( $title2 );
 
-		list( $data ) = $this->doApiRequest( [
+		[ $data ] = $this->doApiRequest( [
 			'action' => 'query',
 			'prop' => 'info',
 			'titles' => $title->getPrefixedText() . '|' . $title2->getPrefixedText(),
@@ -248,7 +248,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 	 * @covers ::extractPageInfo
 	 */
 	public function testDisplayTitle() {
-		list( $data ) = $this->doApiRequest( [
+		[ $data ] = $this->doApiRequest( [
 			'action' => 'query',
 			'prop' => 'info',
 			'inprop' => 'displaytitle',

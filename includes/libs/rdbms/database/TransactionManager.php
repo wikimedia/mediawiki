@@ -207,7 +207,7 @@ class TransactionManager {
 				$this->trxStatusCause
 			);
 		} elseif ( $this->trxStatus === self::STATUS_TRX_OK && $this->trxStatusIgnoredCause ) {
-			list( $iLastError, $iLastErrno, $iFname ) = $this->trxStatusIgnoredCause;
+			[ $iLastError, $iLastErrno, $iFname ] = $this->trxStatusIgnoredCause;
 			call_user_func( $deprecationLogger,
 				"Caller from $fname ignored an error originally raised from $iFname: " .
 				"[$iLastErrno] $iLastError"
@@ -481,7 +481,7 @@ class TransactionManager {
 		}
 		// Check if the current section matches $fname
 		$pos = count( $this->trxAtomicLevels ) - 1;
-		list( $savedFname, $sectionId, $savepointId ) = $this->trxAtomicLevels[$pos];
+		[ $savedFname, $sectionId, $savepointId ] = $this->trxAtomicLevels[$pos];
 		$this->logger->debug( "endAtomic: leaving level $pos ($fname)", [ 'db_log_category' => 'trx' ] );
 
 		if ( $savedFname !== $fname ) {
@@ -498,7 +498,7 @@ class TransactionManager {
 		if ( $sectionId !== null ) {
 			// Find the (last) section with the given $sectionId
 			$pos = -1;
-			foreach ( $this->trxAtomicLevels as $i => list( $asFname, $asId, $spId ) ) {
+			foreach ( $this->trxAtomicLevels as $i => [ $asFname, $asId, $spId ] ) {
 				if ( $asId === $sectionId ) {
 					$pos = $i;
 				}
@@ -527,7 +527,7 @@ class TransactionManager {
 
 		// Check if the current section matches $fname
 		$pos = count( $this->trxAtomicLevels ) - 1;
-		list( $savedFname, $savedSectionId, $savepointId ) = $this->trxAtomicLevels[$pos];
+		[ $savedFname, $savedSectionId, $savepointId ] = $this->trxAtomicLevels[$pos];
 
 		if ( $excisedFnames ) {
 			$this->logger->debug( "cancelAtomic: canceling level $pos ($savedFname) " .

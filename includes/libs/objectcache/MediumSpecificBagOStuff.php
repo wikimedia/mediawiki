@@ -1148,7 +1148,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		foreach ( $keyInfo as $indexOrKey => $keyOrSizes ) {
 			if ( is_array( $keyOrSizes ) ) {
 				$key = $indexOrKey;
-				list( $sPayloadSize, $rPayloadSize ) = $keyOrSizes;
+				[ $sPayloadSize, $rPayloadSize ] = $keyOrSizes;
 			} else {
 				$key = $keyOrSizes;
 				$sPayloadSize = 0;

@@ -120,7 +120,7 @@ class LCStoreStaticArray implements LCStore {
 			return $encoded;
 		}
 
-		list( $type, $data ) = $encoded;
+		[ $type, $data ] = $encoded;
 
 		switch ( $type ) {
 			case 'v':

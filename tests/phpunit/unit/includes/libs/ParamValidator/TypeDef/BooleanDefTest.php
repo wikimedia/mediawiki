@@ -21,7 +21,7 @@ class BooleanDefTest extends TypeDefTestCase {
 			[ BooleanDef::$TRUEVALS, true ],
 			[ BooleanDef::$FALSEVALS, false ],
 			[ [ '' ], false ],
-		] as list( $vals, $expect ) ) {
+		] as [ $vals, $expect ] ) {
 			foreach ( $vals as $v ) {
 				yield "Value '$v'" => [ $v, $expect ];
 				$v2 = ucfirst( $v );

@@ -902,7 +902,7 @@ class Article implements Page {
 
 		// Run view updates for the newer revision being diffed (and shown
 		// below the diff if not diffOnly).
-		list( $old, $new ) = $de->mapDiffPrevNext( $oldid, $diff );
+		[ $old, $new ] = $de->mapDiffPrevNext( $oldid, $diff );
 		// New can be false, convert it to 0 - this conveniently means the latest revision
 		$this->mPage->doViewUpdates( $context->getAuthority(), (int)$new );
 	}

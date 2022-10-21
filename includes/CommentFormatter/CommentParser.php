@@ -397,7 +397,7 @@ class CommentParser {
 							$trail = "";
 						}
 						$linkRegexp = '/\[\[(.*?)\]\]' . preg_quote( $trail, '/' ) . '/';
-						list( $inside, $trail ) = Linker::splitTrail( $trail );
+						[ $inside, $trail ] = Linker::splitTrail( $trail );
 
 						$linkText = $text;
 						$linkTarget = Linker::normalizeSubpageLink( $selfLinkTarget, $match[1], $linkText );

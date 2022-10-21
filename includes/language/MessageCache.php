@@ -337,7 +337,7 @@ class MessageCache implements LoggerAwareInterface {
 
 		// Hash of the contents is stored in memcache, to detect if data-center cache
 		// or local cache goes out of date (e.g. due to replace() on some other server)
-		list( $hash, $hashVolatile ) = $this->getValidationHash( $code );
+		[ $hash, $hashVolatile ] = $this->getValidationHash( $code );
 		$this->cacheVolatile[$code] = $hashVolatile;
 
 		// Try the local cache and check against the cluster hash key...
@@ -730,7 +730,7 @@ class MessageCache implements LoggerAwareInterface {
 			return;
 		}
 
-		list( $msg, $code ) = $this->figureMessage( $title );
+		[ $msg, $code ] = $this->figureMessage( $title );
 		if ( strpos( $title, '/' ) !== false && $code === $this->contLangCode ) {
 			// Content language overrides do not use the /<code> suffix
 			return;
@@ -762,7 +762,7 @@ class MessageCache implements LoggerAwareInterface {
 			$this->clusterCache->makeKey( 'messages', $code )
 		);
 		if ( !$scopedLock ) {
-			foreach ( $replacements as list( $title ) ) {
+			foreach ( $replacements as [ $title ] ) {
 				$this->logger->error(
 					__METHOD__ . ': could not acquire lock to update {title} ({code})',
 					[ 'title' => $title, 'code' => $code ] );
@@ -785,7 +785,7 @@ class MessageCache implements LoggerAwareInterface {
 		// Can not inject the WikiPageFactory as it would break the installer since
 		// it instantiates MessageCache before the DB.
 		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
-		foreach ( $replacements as list( $title ) ) {
+		foreach ( $replacements as [ $title ] ) {
 			$page = $wikiPageFactory->newFromTitle( Title::makeTitle( NS_MEDIAWIKI, $title ) );
 			$page->loadPageData( $page::READ_LATEST );
 			$text = $this->getMessageTextFromContent( $page->getContent() );
@@ -834,7 +834,7 @@ class MessageCache implements LoggerAwareInterface {
 
 		// Purge the messages in the message blob store and fire any hook handlers
 		$blobStore = MediaWikiServices::getInstance()->getResourceLoader()->getMessageBlobStore();
-		foreach ( $replacements as list( $title, $msg ) ) {
+		foreach ( $replacements as [ $title, $msg ] ) {
 			$blobStore->updateMessage( $this->contLang->lcfirst( $msg ) );
 			$this->hookRunner->onMessageCacheReplace( $title, $newTextByTitle[$title] );
 		}

@@ -83,7 +83,7 @@ class DeleteLogFormatter extends LogFormatter {
 
 				$old = $this->parseBitField( $params[$paramStart + 1] );
 				$new = $this->parseBitField( $params[$paramStart + 2] );
-				list( $hid, $unhid, $extra ) = RevisionDeleter::getChanges( $new, $old );
+				[ $hid, $unhid, $extra ] = RevisionDeleter::getChanges( $new, $old );
 				$changes = [];
 				// messages used: revdelete-content-hid, revdelete-summary-hid, revdelete-uname-hid
 				foreach ( $hid as $v ) {
@@ -134,7 +134,7 @@ class DeleteLogFormatter extends LogFormatter {
 	protected function parseBitField( $string ) {
 		// Input is like ofield=2134 or just the number
 		if ( strpos( $string, 'field=' ) === 1 ) {
-			list( , $field ) = explode( '=', $string );
+			[ , $field ] = explode( '=', $string );
 
 			return (int)$field;
 		} else {

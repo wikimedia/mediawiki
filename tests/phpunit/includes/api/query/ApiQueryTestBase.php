@@ -42,7 +42,7 @@ STR;
 		$request = [];
 		$expected = [];
 		foreach ( $arrays as $array ) {
-			list( $req, $exp ) = $this->validateRequestExpectedPair( $array );
+			[ $req, $exp ] = $this->validateRequestExpectedPair( $array );
 			$request = array_merge_recursive( $request, $req );
 			$this->mergeExpected( $expected, $exp );
 		}
@@ -97,7 +97,7 @@ STR;
 	protected function check( $values, array $session = null,
 		$appendModule = false, User $user = null
 	) {
-		list( $req, $exp ) = $this->validateRequestExpectedPair( $values );
+		[ $req, $exp ] = $this->validateRequestExpectedPair( $values );
 		if ( !array_key_exists( 'action', $req ) ) {
 			$req['action'] = 'query';
 		}

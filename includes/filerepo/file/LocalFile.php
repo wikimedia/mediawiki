@@ -822,7 +822,7 @@ class LocalFile extends File {
 			return;
 		}
 
-		list( $major, $minor ) = self::splitMime( $this->mime );
+		[ $major, $minor ] = self::splitMime( $this->mime );
 
 		wfDebug( __METHOD__ . ': upgrading ' . $this->getName() . " to the current schema" );
 
@@ -906,7 +906,7 @@ class LocalFile extends File {
 			$this->mime = "{$info['major_mime']}/{$info['minor_mime']}";
 		} elseif ( isset( $info['mime'] ) ) {
 			$this->mime = $info['mime'];
-			list( $this->major_mime, $this->minor_mime ) = self::splitMime( $this->mime );
+			[ $this->major_mime, $this->minor_mime ] = self::splitMime( $this->mime );
 		}
 
 		if ( isset( $info['metadata'] ) ) {
@@ -1153,7 +1153,7 @@ class LocalFile extends File {
 			$envelope['blobs'] = $this->metadataBlobs;
 		}
 
-		list( $s, $blobAddresses ) = $this->metadataStorageHelper->getJsonMetadata( $this, $envelope );
+		[ $s, $blobAddresses ] = $this->metadataStorageHelper->getJsonMetadata( $this, $envelope );
 
 		// Repeated calls to this function should not keep inserting more blobs
 		$this->metadataBlobs += $blobAddresses;

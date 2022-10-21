@@ -128,7 +128,7 @@ class OrderedStreamingForkController extends ForkController {
 		while ( !feof( $this->input ) ) {
 			$line = trim( fgets( $this->input ) );
 			if ( $line ) {
-				list( $id, $data ) = json_decode( $line );
+				[ $id, $data ] = json_decode( $line );
 				$result = call_user_func( $this->workCallback, $data );
 				fwrite( $this->output, json_encode( [ $id, $result ] ) . "\n" );
 			}
@@ -204,7 +204,7 @@ class OrderedStreamingForkController extends ForkController {
 		stream_select( $read, $write, $except, $timeout );
 		foreach ( $read as $socket ) {
 			$line = fgets( $socket );
-			list( $id, $data ) = json_decode( trim( $line ) );
+			[ $id, $data ] = json_decode( trim( $line ) );
 			$this->receive( (int)$id, $data );
 			$sockets[] = $socket;
 			$idx = array_search( $socket, $used );

@@ -482,7 +482,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$readTime = (int)$this->getCurrentTime();
 		$keysByTableByShard = [];
 		foreach ( $keys as $key ) {
-			list( $shardIndex, $partitionTable ) = $this->getKeyLocation( $key );
+			[ $shardIndex, $partitionTable ] = $this->getKeyLocation( $key );
 			$keysByTableByShard[$shardIndex][$partitionTable][] = $key;
 		}
 
@@ -563,7 +563,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		$argsByKeyByTableByShard = [];
 		foreach ( $argsByKey as $key => $args ) {
-			list( $shardIndex, $partitionTable ) = $this->getKeyLocation( $key );
+			[ $shardIndex, $partitionTable ] = $this->getKeyLocation( $key );
 			$argsByKeyByTableByShard[$shardIndex][$partitionTable][$key] = $args;
 		}
 
@@ -623,7 +623,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		if ( $this->multiPrimaryMode ) {
 			// @TODO: use multi-row upsert() with VALUES() once supported in Database
-			foreach ( $argsByKey as $key => list( $value, $exptime ) ) {
+			foreach ( $argsByKey as $key => [ $value, $exptime ] ) {
 				$serialValue = $this->getSerialized( $value, $key );
 				$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
 				$db->upsert(
@@ -640,7 +640,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		} else {
 			// T288998: use REPLACE, if possible, to avoid cluttering the binlogs
 			$rows = [];
-			foreach ( $argsByKey as $key => list( $value, $exptime ) ) {
+			foreach ( $argsByKey as $key => [ $value, $exptime ] ) {
 				$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
 				$serialValue = $this->getSerialized( $value, $key );
 				$rows[] = $this->buildUpsertRow( $db, $key, $serialValue, $expiry, $mt );
@@ -747,7 +747,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$existingByKey = array_fill_keys( $existingKeys, true );
 
 		// @TODO: use multi-row upsert() with VALUES() once supported in Database
-		foreach ( $argsByKey as $key => list( $value, $exptime ) ) {
+		foreach ( $argsByKey as $key => [ $value, $exptime ] ) {
 			if ( isset( $existingByKey[$key] ) ) {
 				$this->logger->debug( __METHOD__ . ": $key already exists" );
 				continue;
@@ -815,7 +815,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		// @TODO: use multi-row upsert() with VALUES() once supported in Database
-		foreach ( $argsByKey as $key => list( $value, $exptime, $casToken ) ) {
+		foreach ( $argsByKey as $key => [ $value, $exptime, $casToken ] ) {
 			$curToken = $curTokensByKey[$key] ?? null;
 			if ( $curToken === null ) {
 				$this->logger->debug( __METHOD__ . ": $key does not exists" );
@@ -883,7 +883,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			foreach ( $res as $curRow ) {
 				$key = $curRow->keyname;
 				$serialValue = $this->dbDecodeSerialValue( $db, $curRow->value );
-				list( $exptime ) = $argsByKey[$key];
+				[ $exptime ] = $argsByKey[$key];
 				$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
 
 				$db->upsert(
@@ -897,7 +897,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			}
 		} else {
 			$keysBatchesByExpiry = [];
-			foreach ( $argsByKey as $key => list( $exptime ) ) {
+			foreach ( $argsByKey as $key => [ $exptime ] ) {
 				$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
 				$keysBatchesByExpiry[$expiry][] = $key;
 			}
@@ -948,7 +948,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		array $argsByKey,
 		array &$resByKey
 	) {
-		foreach ( $argsByKey as $key => list( $step, $init, $exptime ) ) {
+		foreach ( $argsByKey as $key => [ $step, $init, $exptime ] ) {
 			$mt = $this->makeTimestampedModificationToken( $mtime, $db );
 			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
 
@@ -1013,7 +1013,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		array $argsByKey,
 		array &$resByKey
 	) {
-		foreach ( $argsByKey as $key => list( $step, $init, $exptime ) ) {
+		foreach ( $argsByKey as $key => [ $step, $init, $exptime ] ) {
 			$mt = $this->makeTimestampedModificationToken( $mtime, $db );
 			$expiry = $this->makeNewKeyExpiry( $exptime, (int)$mtime );
 			$db->upsert(
@@ -1095,7 +1095,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		// which generally has fewer than 6 digits of meaningful precision but can still be useful
 		// in debugging (to see the token continuously change even during rapid testing).
 		$seconds = (int)$mtime;
-		list( , $microseconds ) = explode( '.', sprintf( '%.6F', $mtime ) );
+		[ , $microseconds ] = explode( '.', sprintf( '%.6F', $mtime ) );
 
 		$id = $db->getTopologyBasedServerId() ?? sprintf( '%u', crc32( $db->getServerName() ) );
 
@@ -1248,7 +1248,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		$set = [];
-		foreach ( $expressionsByColumn as $column => list( $updateExpression, $initExpression ) ) {
+		foreach ( $expressionsByColumn as $column => [ $updateExpression, $initExpression ] ) {
 			$rhs = $db->conditional(
 				'exptime >= ' . $db->addQuotes( $db->timestamp( $mtUnixTs ) ),
 				$updateExpression,
@@ -1563,7 +1563,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		$lockTsUnix = null;
 
-		list( $shardIndex ) = $this->getKeyLocation( $key );
+		[ $shardIndex ] = $this->getKeyLocation( $key );
 		try {
 			$db = $this->getConnection( $shardIndex );
 			$lockTsUnix = $db->lock( $key, __METHOD__, $timeout, $db::LOCK_TIMESTAMP );
@@ -1582,7 +1582,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
 
-		list( $shardIndex ) = $this->getKeyLocation( $key );
+		[ $shardIndex ] = $this->getKeyLocation( $key );
 
 		try {
 			$db = $this->getConnection( $shardIndex );

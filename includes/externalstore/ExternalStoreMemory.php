@@ -36,7 +36,7 @@ class ExternalStoreMemory extends ExternalStoreMedium {
 	private static $nextId = 0;
 
 	public function fetchFromURL( $url ) {
-		list( $location, $id ) = self::getURLComponents( $url );
+		[ $location, $id ] = self::getURLComponents( $url );
 		if ( $id === null ) {
 			throw new UnexpectedValueException( "Missing ID in URL component." );
 		}
@@ -81,7 +81,7 @@ class ExternalStoreMemory extends ExternalStoreMedium {
 	 */
 	private function getURLComponents( $url ) {
 		// @phan-suppress-next-line PhanSuspiciousBinaryAddLists It's intentional
-		list( $proto, $path ) = explode( '://', $url, 2 ) + [ null, null ];
+		[ $proto, $path ] = explode( '://', $url, 2 ) + [ null, null ];
 		if ( $proto !== 'memory' ) {
 			throw new UnexpectedValueException( "Got URL of protocol '$proto', not 'memory'." );
 		} elseif ( $path === null ) {

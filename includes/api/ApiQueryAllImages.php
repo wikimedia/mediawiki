@@ -260,7 +260,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 			$mimeConds = [];
 			foreach ( $params['mime'] as $mime ) {
-				list( $major, $minor ) = File::splitMime( $mime );
+				[ $major, $minor ] = File::splitMime( $mime );
 				$mimeConds[] = $db->makeList(
 					[
 						'img_major_mime' => $major,

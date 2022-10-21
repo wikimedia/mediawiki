@@ -197,8 +197,8 @@ class CrhConverter extends LanguageConverterSpecific {
 
 		$this->mExceptionsLoaded = true;
 		$crhExceptions = new MediaWiki\Languages\Data\CrhExceptions();
-		list( $this->mCyrl2LatnExceptions, $this->mLatn2CyrlExceptions,
-			$this->mCyrl2LatnPatterns, $this->mLatn2CyrlPatterns, $this->mCyrlCleanUpRegexes ) =
+		[ $this->mCyrl2LatnExceptions, $this->mLatn2CyrlExceptions,
+			$this->mCyrl2LatnPatterns, $this->mLatn2CyrlPatterns, $this->mCyrlCleanUpRegexes ] =
 			$crhExceptions->loadExceptions( self::L_LC . self::C_LC, self::L_UC . self::C_UC );
 	}
 

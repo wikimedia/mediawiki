@@ -597,7 +597,7 @@ class GlobalIdGenerator {
 	 * @throws RuntimeException
 	 */
 	protected function millisecondsSinceEpochBinary( array $time ) {
-		list( $sec, $msec ) = $time;
+		[ $sec, $msec ] = $time;
 		$ts = 1000 * $sec + $msec;
 		if ( $ts > 2 ** 52 ) {
 			throw new RuntimeException( __METHOD__ .
@@ -614,7 +614,7 @@ class GlobalIdGenerator {
 	 * @throws RuntimeException
 	 */
 	protected function intervalsSinceGregorianBinary( array $time, $delta = 0 ) {
-		list( $sec, $msec ) = $time;
+		[ $sec, $msec ] = $time;
 		$offset = '122192928000000000';
 
 		// 64 bit integers

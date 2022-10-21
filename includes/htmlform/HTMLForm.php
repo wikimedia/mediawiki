@@ -1526,7 +1526,7 @@ class HTMLForm extends ContextSource {
 		}
 		$elementstr = false;
 		if ( $elements instanceof Status ) {
-			list( $errorStatus, $warningStatus ) = $elements->splitByErrorType();
+			[ $errorStatus, $warningStatus ] = $elements->splitByErrorType();
 			$status = $elementsType === 'error' ? $errorStatus : $warningStatus;
 			if ( $status->isGood() ) {
 				$elementstr = '';

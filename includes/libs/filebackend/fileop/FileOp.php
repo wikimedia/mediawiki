@@ -85,7 +85,7 @@ abstract class FileOp {
 	) {
 		$this->backend = $backend;
 		$this->logger = $logger;
-		list( $required, $optional, $paths ) = $this->allowedParams();
+		[ $required, $optional, $paths ] = $this->allowedParams();
 		foreach ( $required as $name ) {
 			if ( isset( $params[$name] ) ) {
 				$this->params[$name] = $params[$name];

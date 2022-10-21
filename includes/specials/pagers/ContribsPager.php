@@ -262,7 +262,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 * @return IResultWrapper
 	 */
 	public function reallyDoQuery( $offset, $limit, $order ) {
-		list( $tables, $fields, $conds, $fname, $options, $join_conds ) = $this->buildQueryInfo(
+		[ $tables, $fields, $conds, $fname, $options, $join_conds ] = $this->buildQueryInfo(
 			$offset,
 			$limit,
 			$order
@@ -461,7 +461,7 @@ class ContribsPager extends RangeChronologicalPager {
 			return false;
 		}
 
-		list( $start, $end ) = IPUtils::parseRange( $ip );
+		[ $start, $end ] = IPUtils::parseRange( $ip );
 
 		return 'ipc_hex BETWEEN ' . $db->addQuotes( $start ) . ' AND ' . $db->addQuotes( $end );
 	}
@@ -804,7 +804,7 @@ class ContribsPager extends RangeChronologicalPager {
 			);
 
 			# Tags, if any.
-			list( $tagSummary, $newClasses ) = ChangeTags::formatSummaryRow(
+			[ $tagSummary, $newClasses ] = ChangeTags::formatSummaryRow(
 				$row->ts_tags,
 				'contributions',
 				$this->getContext()

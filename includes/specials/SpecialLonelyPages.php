@@ -84,7 +84,7 @@ class SpecialLonelyPages extends PageQueryPage {
 			'templatelinks',
 			'LEFT JOIN'
 		);
-		list( $ns, $title ) = $this->linksMigration->getTitleFields( 'templatelinks' );
+		[ $ns, $title ] = $this->linksMigration->getTitleFields( 'templatelinks' );
 		$tables = array_merge( [ 'page', 'pagelinks' ], $queryInfo['tables'] );
 		$conds = [
 			'pl_namespace IS NULL',

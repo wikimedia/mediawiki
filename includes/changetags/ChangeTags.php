@@ -822,7 +822,7 @@ class ChangeTags {
 		}
 
 		// do it!
-		list( $tagsAdded, $tagsRemoved, $initialTags ) = self::updateTags( $tagsToAdd,
+		[ $tagsAdded, $tagsRemoved, $initialTags ] = self::updateTags( $tagsToAdd,
 			$tagsToRemove, $rc_id, $rev_id, $log_id, $params, null, $user );
 		if ( !$tagsAdded && !$tagsRemoved ) {
 			// no-op, don't log it

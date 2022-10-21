@@ -113,7 +113,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		// Early return: read only mode
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
-		list( $authority, ) = $this->getAuthorityAndUserFactory( $userIdentity );
+		[ $authority, ] = $this->getAuthorityAndUserFactory( $userIdentity );
 
 		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
 		$watchedItemStore->expects( $this->never() )
@@ -133,7 +133,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		// Early return: User lacks `editmywatchlist`
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
-		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory( $userIdentity );
+		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory( $userIdentity );
 
 		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
 		$watchedItemStore->expects( $this->never() )
@@ -153,7 +153,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		// Early return: config with `EnotifUserTalk`, `EnotifWatchlist` and `ShowUpdatedMarker` are false
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
-		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory(
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
@@ -187,7 +187,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		];
 
 		$userIdentity = new UserIdentityValue( 0, 'User Name' );
-		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory(
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
@@ -217,7 +217,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		];
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
-		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory(
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
@@ -261,7 +261,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$title = $testPageFactory( 100, 0, 'SomeDbKey' );
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
-		list( $authority, ) = $this->getAuthorityAndUserFactory( $userIdentity );
+		[ $authority, ] = $this->getAuthorityAndUserFactory( $userIdentity );
 
 		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
 		$watchedItemStore->expects( $this->never() )
@@ -286,7 +286,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$title = $testPageFactory( 100, 0, 'SomeDbKey' );
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
-		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory( $userIdentity );
+		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory( $userIdentity );
 
 		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
 		$watchedItemStore->expects( $this->never() )
@@ -311,7 +311,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$title = $testPageFactory( 100, NS_USER_TALK, 'PageTitleGoesHere' );
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
-		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory(
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
@@ -345,7 +345,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		];
 
 		$userIdentity = new UserIdentityValue( 0, 'User Name' );
-		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory(
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
@@ -380,7 +380,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		];
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
-		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory(
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
@@ -557,7 +557,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	public function testSetWatchWithExpiry() {
 		// Already watched, but we're adding an expiry so 'addWatch' should be called.
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
-		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory(
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
@@ -609,7 +609,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	 */
 	public function testSetWatchSkipsIfAlreadyWatched() {
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
-		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory(
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
@@ -639,7 +639,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	 */
 	public function testSetWatchSkipsIfAlreadyUnWatched() {
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
-		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory(
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
@@ -665,7 +665,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	 */
 	public function testSetWatchWatchesIfWatch() {
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
-		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory(
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
@@ -691,7 +691,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	 */
 	public function testSetWatchUnwatchesIfUnwatch() {
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
-		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory(
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
@@ -715,7 +715,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	 */
 	public function testAddWatchNoCheckRights() {
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
-		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory(
 			$userIdentity,
 			[]
 		);
@@ -739,7 +739,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	 */
 	public function testAddWatchSuccess() {
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
-		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory(
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
@@ -763,7 +763,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	 */
 	public function testRemoveWatchUserHookAborted() {
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
-		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory(
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);
@@ -798,7 +798,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	 */
 	public function testRemoveWatchSuccess() {
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
-		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory(
 			$userIdentity,
 			[ 'editmywatchlist' ]
 		);

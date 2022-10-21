@@ -809,7 +809,7 @@ class Parser {
 			[ $this->mExpensiveFunctionCount, $this->mOptions->getExpensiveParserFunctionLimit() ]
 		);
 
-		foreach ( $this->mStripState->getLimitReport() as list( $key, $value ) ) {
+		foreach ( $this->mStripState->getLimitReport() as [ $key, $value ] ) {
 			$this->mOutput->setLimitReportData( $key, $value );
 		}
 
@@ -1289,7 +1289,7 @@ class Parser {
 				$inside = $p[5];
 			} else {
 				# tag
-				list( , $element, $attributes, $close, $inside ) = $p;
+				[ , $element, $attributes, $close, $inside ] = $p;
 			}
 
 			$marker = self::MARKER_PREFIX . "-$element-" . sprintf( '%08X', $n++ ) . self::MARKER_SUFFIX;
@@ -1313,7 +1313,7 @@ class Parser {
 					$tail = '';
 					$text = '';
 				} else {
-					list( , $tail, $text ) = $q;
+					[ , $tail, $text ] = $q;
 				}
 			}
 
@@ -2210,7 +2210,7 @@ class Parser {
 			} else {
 				# Have link text, e.g. [http://domain.tld/some.link text]s
 				# Check for trail
-				list( $dtrail, $trail ) = Linker::splitTrail( $trail );
+				[ $dtrail, $trail ] = Linker::splitTrail( $trail );
 			}
 
 			// Excluding protocol-relative URLs may avoid many false positives.
@@ -2514,7 +2514,7 @@ class Parser {
 			if ( $useLinkPrefixExtension ) {
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal $e2 is set under this condition
 				if ( preg_match( $e2, $s, $m ) ) {
-					list( , $s, $prefix ) = $m;
+					[ , $s, $prefix ] = $m;
 				} else {
 					$prefix = '';
 				}
@@ -2741,7 +2741,7 @@ class Parser {
 					$this, $nt, $options, $descQuery
 				);
 				# Fetch and register the file (file title may be different via hooks)
-				list( $file, $nt ) = $this->fetchFileAndTitle( $nt, $options );
+				[ $file, $nt ] = $this->fetchFileAndTitle( $nt, $options );
 				# Cloak with NOPARSE to avoid replacement in handleExternalLinks
 				$s .= $prefix . $this->armorLinks(
 					Linker::makeMediaLinkFile( $nt, $file, $text ) ) . $trail;
@@ -2777,7 +2777,7 @@ class Parser {
 	 * @return string HTML-wikitext mix oh yuck
 	 */
 	private function makeKnownLinkHolder( LinkTarget $nt, $text = '', $trail = '', $prefix = '' ) {
-		list( $inside, $trail ) = Linker::splitTrail( $trail );
+		[ $inside, $trail ] = Linker::splitTrail( $trail );
 
 		if ( $text == '' ) {
 			$text = htmlspecialchars( $this->titleFormatter->getPrefixedText( $nt ) );
@@ -3226,7 +3226,7 @@ class Parser {
 						": template inclusion denied for " . $title->getPrefixedDBkey()
 					);
 				} else {
-					list( $text, $title ) = $this->getTemplateDom( $title );
+					[ $text, $title ] = $this->getTemplateDom( $title );
 					if ( $text !== false ) {
 						$found = true;
 						$isChildObj = true;
@@ -3395,7 +3395,7 @@ class Parser {
 			}
 		}
 
-		list( $callback, $flags ) = $this->mFunctionHooks[$function];
+		[ $callback, $flags ] = $this->mFunctionHooks[$function];
 
 		$allArgs = [ $this ];
 		if ( $flags & self::SFH_OBJECT_ARGS ) {
@@ -3476,7 +3476,7 @@ class Parser {
 		$titleKey = CacheKeyHelper::getKeyForPage( $title );
 
 		if ( isset( $this->mTplRedirCache[$titleKey] ) ) {
-			list( $ns, $dbk ) = $this->mTplRedirCache[$titleKey];
+			[ $ns, $dbk ] = $this->mTplRedirCache[$titleKey];
 			$title = Title::makeTitle( $ns, $dbk );
 			$titleKey = CacheKeyHelper::getKeyForPage( $title );
 		}
@@ -3485,7 +3485,7 @@ class Parser {
 		}
 
 		# Cache miss, go to the database
-		list( $text, $title ) = $this->fetchTemplateAndTitle( $title );
+		[ $text, $title ] = $this->fetchTemplateAndTitle( $title );
 
 		if ( $text === false ) {
 			$this->mTplDomCache[$titleKey] = false;
@@ -4237,7 +4237,7 @@ class Parser {
 			$markerMatches = [];
 			if ( preg_match( "/^$markerRegex/", $headline, $markerMatches ) ) {
 				$serial = (int)$markerMatches[1];
-				list( $titleText, $sectionIndex ) = $this->mHeadings[$serial];
+				[ $titleText, $sectionIndex ] = $this->mHeadings[$serial];
 				$isTemplate = ( $titleText != $baseTitleText );
 				$headline = preg_replace( "/^$markerRegex\\s*/", "", $headline );
 			}
@@ -5209,7 +5209,7 @@ class Parser {
 				);
 
 				foreach ( $parameterMatches as $parameterMatch ) {
-					list( $magicName, $match ) = $mwArray->matchVariableStartToEnd( $parameterMatch );
+					[ $magicName, $match ] = $mwArray->matchVariableStartToEnd( $parameterMatch );
 					if ( !$magicName ) {
 						// Last pipe wins.
 						$label = $parameterMatch;
@@ -5229,7 +5229,7 @@ class Parser {
 								// invoked on an external link.
 								$linkValue = substr( $linkValue, 4, -2 );
 							}
-							list( $type, $target ) = $this->parseLinkParameter( $linkValue );
+							[ $type, $target ] = $this->parseLinkParameter( $linkValue );
 							if ( $type ) {
 								if ( $type === 'no-link' ) {
 									$target = true;
@@ -5373,12 +5373,12 @@ class Parser {
 			$this, $title, $options, $descQuery
 		);
 		# Fetch and register the file (file title may be different via hooks)
-		list( $file, $link ) = $this->fetchFileAndTitle( $link, $options );
+		[ $file, $link ] = $this->fetchFileAndTitle( $link, $options );
 
 		# Get parameter map
 		$handler = $file ? $file->getHandler() : false;
 
-		list( $paramMap, $mwArray ) = $this->getImageParams( $handler );
+		[ $paramMap, $mwArray ] = $this->getImageParams( $handler );
 
 		if ( !$file ) {
 			$this->addTrackingCategory( 'broken-file-category' );
@@ -5391,10 +5391,10 @@ class Parser {
 		$seenformat = false;
 		foreach ( $parts as $part ) {
 			$part = trim( $part );
-			list( $magicName, $value ) = $mwArray->matchVariableStartToEnd( $part );
+			[ $magicName, $value ] = $mwArray->matchVariableStartToEnd( $part );
 			$validated = false;
 			if ( isset( $paramMap[$magicName] ) ) {
-				list( $type, $paramName ) = $paramMap[$magicName];
+				[ $type, $paramName ] = $paramMap[$magicName];
 
 				# Special case; width and height come in one variable together
 				if ( $type === 'handler' && $paramName === 'width' ) {
@@ -5434,7 +5434,7 @@ class Parser {
 								$value = $this->stripAltText( $value, $holders );
 								break;
 							case 'link':
-								list( $paramName, $value ) =
+								[ $paramName, $value ] =
 									$this->parseLinkParameter(
 										$this->stripAltText( $value, $holders )
 									);

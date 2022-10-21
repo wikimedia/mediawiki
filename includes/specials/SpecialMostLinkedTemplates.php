@@ -84,7 +84,7 @@ class SpecialMostLinkedTemplates extends QueryPage {
 
 	public function getQueryInfo() {
 		$queryInfo = $this->linksMigration->getQueryInfo( 'templatelinks' );
-		list( $ns, $title ) = $this->linksMigration->getTitleFields( 'templatelinks' );
+		[ $ns, $title ] = $this->linksMigration->getTitleFields( 'templatelinks' );
 		return [
 			'tables' => $queryInfo['tables'],
 			'fields' => [

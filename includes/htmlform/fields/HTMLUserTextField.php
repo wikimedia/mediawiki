@@ -89,7 +89,7 @@ class HTMLUserTextField extends HTMLTextField {
 			return false;
 		}
 
-		list( $ip, $range ) = explode( '/', $value, 2 );
+		[ $ip, $range ] = explode( '/', $value, 2 );
 
 		if (
 			( IPUtils::isIPv4( $ip ) && $cidrIPRanges['IPv4'] == 32 ) ||
