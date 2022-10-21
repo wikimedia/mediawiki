@@ -457,8 +457,7 @@ class ArrayUtilsTest extends PHPUnit\Framework\TestCase {
 		foreach ( $expected as $key => $_ ) {
 			$sortedTags = $serverTags;
 			ArrayUtils::consistentHashSort( $sortedTags, $key );
-			reset( $sortedTags );
-			$dest = $serverTags[key( $sortedTags )];
+			$dest = $serverTags[array_key_first( $sortedTags )];
 
 			$actual[$key] = $dest;
 		}

@@ -5476,10 +5476,10 @@ class Parser {
 
 		# Process alignment parameters
 		if ( $params['horizAlign'] !== [] ) {
-			$params['frame']['align'] = key( $params['horizAlign'] );
+			$params['frame']['align'] = array_key_first( $params['horizAlign'] );
 		}
 		if ( $params['vertAlign'] !== [] ) {
-			$params['frame']['valign'] = key( $params['vertAlign'] );
+			$params['frame']['valign'] = array_key_first( $params['vertAlign'] );
 		}
 
 		$params['frame']['caption'] = $caption;

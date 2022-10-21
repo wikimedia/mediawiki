@@ -467,8 +467,7 @@ class WANObjectCache implements
 
 		if ( $curTTL === null || $curTTL <= 0 ) {
 			// Log the timestamp in case a corresponding set() call does not provide "walltime"
-			reset( $this->missLog );
-			unset( $this->missLog[key( $this->missLog )] );
+			unset( $this->missLog[array_key_first( $this->missLog )] );
 			$this->missLog[] = [ $key, $this->getCurrentTime() ];
 		}
 
