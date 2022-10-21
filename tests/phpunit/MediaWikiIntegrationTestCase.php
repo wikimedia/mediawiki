@@ -1709,7 +1709,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		self::$oldTablePrefix = $wgDBprefix;
 
-		$testPrefix = $testPrefix ?? self::getTestPrefixFor( $db );
+		$testPrefix ??= self::getTestPrefixFor( $db );
 
 		// switch to a temporary clone of the database
 		self::$useTemporaryTables = $useTemporaryTables ?? self::$useTemporaryTables;
@@ -2606,7 +2606,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param Authority|null $deleter
 	 */
 	protected function deletePage( ProperPageIdentity $page, string $summary = '', Authority $deleter = null ): void {
-		$deleter = $deleter ?? new UltimateAuthority( new UserIdentityValue( 0, 'MediaWiki default' ) );
+		$deleter ??= new UltimateAuthority( new UserIdentityValue( 0, 'MediaWiki default' ) );
 		MediaWikiServices::getInstance()->getDeletePageFactory()
 			->newDeletePage( $page, $deleter )
 			->deleteUnsafe( $summary );

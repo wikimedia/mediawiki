@@ -677,7 +677,7 @@ hello
 
 		$elmosEdit['wpSummary'] = 'Elmo\'s edit';
 		$bertasEdit['wpSummary'] = 'Bertas\'s edit';
-		$newEdit['wpSummary'] = $newEdit['wpSummary'] ?? 'new edit';
+		$newEdit['wpSummary'] ??= 'new edit';
 
 		// first edit: Elmo
 		$page = $this->assertEdit( __METHOD__, null, 'Elmo', $elmosEdit,

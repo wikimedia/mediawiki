@@ -115,7 +115,7 @@ class ExternalStoreAccess implements LoggerAwareInterface {
 	 * @throws ExternalStoreException
 	 */
 	public function insert( $data, array $params = [], array $tryStores = null ) {
-		$tryStores = $tryStores ?? $this->storeFactory->getWriteBaseUrls();
+		$tryStores ??= $this->storeFactory->getWriteBaseUrls();
 		if ( !$tryStores ) {
 			throw new ExternalStoreException( "List of external stores provided is empty." );
 		}

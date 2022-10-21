@@ -165,7 +165,7 @@ class DateFormatter {
 	 * @return DateFormatter
 	 */
 	public static function getInstance( Language $lang = null ) {
-		$lang = $lang ?? MediaWikiServices::getInstance()->getContentLanguage();
+		$lang ??= MediaWikiServices::getInstance()->getContentLanguage();
 		return MediaWikiServices::getInstance()->getDateFormatterFactory()->get( $lang );
 	}
 

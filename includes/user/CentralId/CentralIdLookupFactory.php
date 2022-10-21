@@ -102,7 +102,7 @@ class CentralIdLookupFactory {
 	 * @throws InvalidArgumentException if $providerId is not properly configured
 	 */
 	public function getLookup( string $providerId = null ): CentralIdLookup {
-		$providerId = $providerId ?? $this->defaultProvider;
+		$providerId ??= $this->defaultProvider;
 
 		if ( !array_key_exists( $providerId, $this->instanceCache ) ) {
 			$providerSpec = $this->providers[$providerId] ?? null;

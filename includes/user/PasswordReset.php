@@ -206,8 +206,8 @@ class PasswordReset implements LoggerAwareInterface {
 			return StatusValue::newFatal( 'badipaddress' );
 		}
 
-		$username = $username ?? '';
-		$email = $email ?? '';
+		$username ??= '';
+		$email ??= '';
 
 		$resetRoutes = $this->config->get( MainConfigNames::PasswordResetRoutes )
 			+ [ 'username' => false, 'email' => false ];

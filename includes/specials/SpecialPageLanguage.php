@@ -229,7 +229,7 @@ class SpecialPageLanguage extends FormSpecialPage {
 		}
 
 		// Load the page language from DB
-		$dbw = $dbw ?? wfGetDB( DB_PRIMARY );
+		$dbw ??= wfGetDB( DB_PRIMARY );
 		$oldLanguage = $dbw->selectField(
 			'page',
 			'page_lang',

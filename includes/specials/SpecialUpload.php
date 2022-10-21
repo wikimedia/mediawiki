@@ -62,7 +62,7 @@ class SpecialUpload extends SpecialPage {
 		parent::__construct( 'Upload', 'upload' );
 		// This class is extended and therefor fallback to global state - T265300
 		$services = MediaWikiServices::getInstance();
-		$repoGroup = $repoGroup ?? $services->getRepoGroup();
+		$repoGroup ??= $services->getRepoGroup();
 		$this->localRepo = $repoGroup->getLocalRepo();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
 		$this->nsInfo = $nsInfo ?? $services->getNamespaceInfo();

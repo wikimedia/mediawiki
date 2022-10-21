@@ -74,7 +74,7 @@ class ConnectionManager {
 	 * @return IDatabase
 	 */
 	private function getConnection( $i, ?array $groups = null, int $flags = 0 ) {
-		$groups = $groups ?? $this->groups;
+		$groups ??= $this->groups;
 		return $this->loadBalancer->getConnection( $i, $groups, $this->domain, $flags );
 	}
 
@@ -84,7 +84,7 @@ class ConnectionManager {
 	 * @return DBConnRef
 	 */
 	private function getConnectionRef( $i, array $groups = null ) {
-		$groups = $groups ?? $this->groups;
+		$groups ??= $this->groups;
 		return $this->loadBalancer->getConnectionRef( $i, $groups, $this->domain );
 	}
 
@@ -110,7 +110,7 @@ class ConnectionManager {
 	 * @return IDatabase
 	 */
 	public function getReadConnection( ?array $groups = null, int $flags = 0 ) {
-		$groups = $groups ?? $this->groups;
+		$groups ??= $this->groups;
 		return $this->getConnection( DB_REPLICA, $groups, $flags );
 	}
 
@@ -144,7 +144,7 @@ class ConnectionManager {
 	 * @deprecated since 1.38; Use getReadConnection()
 	 */
 	public function getReadConnectionRef( array $groups = null ) {
-		$groups = $groups ?? $this->groups;
+		$groups ??= $this->groups;
 		return $this->getConnectionRef( DB_REPLICA, $groups );
 	}
 
@@ -168,7 +168,7 @@ class ConnectionManager {
 	 * @deprecated since 1.39; Use getReadConnection()
 	 */
 	public function getLazyReadConnectionRef( array $groups = null ) {
-		$groups = $groups ?? $this->groups;
+		$groups ??= $this->groups;
 		return $this->getConnectionRef( DB_REPLICA, $groups );
 	}
 

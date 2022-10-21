@@ -1654,7 +1654,7 @@ class Linker {
 	 * @return string Full html of the TOC
 	 */
 	public static function tocList( $toc, Language $lang = null ) {
-		$lang = $lang ?? RequestContext::getMain()->getLanguage();
+		$lang ??= RequestContext::getMain()->getLanguage();
 
 		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
 

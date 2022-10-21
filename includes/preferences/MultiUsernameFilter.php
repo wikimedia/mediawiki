@@ -83,7 +83,7 @@ class MultiUsernameFilter implements Filter {
 	 * @return CentralIdLookup
 	 */
 	private function getLookup() {
-		$this->lookup = $this->lookup ?? MediaWikiServices::getInstance()->getCentralIdLookup();
+		$this->lookup ??= MediaWikiServices::getInstance()->getCentralIdLookup();
 		return $this->lookup;
 	}
 }
