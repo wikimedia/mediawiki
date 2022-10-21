@@ -250,7 +250,7 @@ class SiteStats {
 		$finalRow = new stdClass();
 		foreach ( $rows as $row ) {
 			foreach ( $fields as $field ) {
-				$finalRow->$field = $finalRow->$field ?? 0;
+				$finalRow->$field ??= 0;
 				if ( $row->$field ) {
 					$finalRow->$field += $row->$field;
 				}
