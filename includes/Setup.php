@@ -190,30 +190,35 @@ if ( !isset( $GLOBALS['wgScopeTest'] ) || $GLOBALS['wgScopeTest'] !== $wgScopeTe
 }
 unset( $wgScopeTest );
 
-if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
-	call_user_func( MW_CONFIG_CALLBACK, $wgSettings );
-} else {
-	wfDetectLocalSettingsFile( MW_INSTALL_PATH );
-
-	if ( getenv( 'MW_USE_LOCAL_SETTINGS_LOADER' ) ) {
-		// NOTE: This will not work for configuration variables that use a prefix
-		//       other than "wg".
-		$localSettingsLoader = new LocalSettingsLoader( $wgSettings, MW_INSTALL_PATH );
-		$localSettingsLoader->loadLocalSettingsFile( MW_CONFIG_FILE );
-		unset( $localSettingsLoader );
+try {
+	if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
+		call_user_func( MW_CONFIG_CALLBACK, $wgSettings );
 	} else {
-		if ( str_ends_with( MW_CONFIG_FILE, '.php' ) ) {
-			// make defaults available as globals
-			$wgSettings->apply();
-			require_once MW_CONFIG_FILE;
+		wfDetectLocalSettingsFile( MW_INSTALL_PATH );
+
+		if ( getenv( 'MW_USE_LOCAL_SETTINGS_LOADER' ) ) {
+			// NOTE: This will not work for configuration variables that use a prefix
+			//       other than "wg".
+			$localSettingsLoader = new LocalSettingsLoader( $wgSettings, MW_INSTALL_PATH );
+			$localSettingsLoader->loadLocalSettingsFile( MW_CONFIG_FILE );
+			unset( $localSettingsLoader );
 		} else {
-			$wgSettings->loadFile( MW_CONFIG_FILE );
+			if ( str_ends_with( MW_CONFIG_FILE, '.php' ) ) {
+				// make defaults available as globals
+				$wgSettings->apply();
+				require_once MW_CONFIG_FILE;
+			} else {
+				$wgSettings->loadFile( MW_CONFIG_FILE );
+			}
 		}
 	}
-}
 
-// Make settings loaded by LocalSettings.php available in globals for use here
-$wgSettings->apply();
+	// Make settings loaded by LocalSettings.php available in globals for use here
+	$wgSettings->apply();
+} catch ( MissingExtensionException $e ) {
+	// Make a common mistake give a friendly error
+	$e->render();
+}
 
 // If in a wiki-farm, load site-specific settings
 if ( $wgSettings->getConfig()->get( MainConfigNames::WikiFarmSettingsDirectory ) ) {
