@@ -1397,9 +1397,13 @@ class CoreParserFunctions {
 		int $len,
 		int $mtts
 	): string {
-		// Note that {{REVISIONTIMESTAMP}} works differently from
-		// {{REVISIONTIMESTAMP:{{PAGENAME}}}} even though $title is the same!
-		if ( $title->equals( $parser->getTitle() ) ) {
+		// If fetching the revision timestamp of the current page, substitute the
+		// speculative timestamp to be used when this revision is saved.  This
+		// avoids having to invalidate the cache immediately by assuming the "last
+		// saved revision" will in fact be this one.
+		// Don't do this for interface messages (eg, edit notices) however; in that
+		// case fall through and use the actual timestamp of the last saved revision.
+		if ( $title->equals( $parser->getTitle() ) && !$parser->getOptions()->getInterfaceMessage() ) {
 			// Get the timezone-adjusted timestamp to be used for this revision
 			$resNow = substr( $parser->getRevisionTimestamp(), $start, $len );
 			// Possibly set vary-revision if there is not yet an associated revision
