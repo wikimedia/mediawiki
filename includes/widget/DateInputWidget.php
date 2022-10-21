@@ -43,9 +43,13 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 	 *     translated to the user's language. (default: 'YYYY-MM-DD' or 'YYYY-MM', depending on
 	 *     `precision`)
 	 *   - string $config['precision'] Date precision to use, 'day' or 'month' (default: 'day')
-	 *   - string $config['mustBeAfter'] Validates the date to be after this.
+	 *   - string $config['min'] Validates the date to be no earlier than this.
 	 *     In the 'YYYY-MM-DD' or 'YYYY-MM' format, depending on `precision`.
-	 *   - string $config['mustBeBefore'] Validates the date to be before this.
+	 *   - string $config['mustBeAfter'] Validates the date to be after this. Overrides 'min'.
+	 *     In the 'YYYY-MM-DD' or 'YYYY-MM' format, depending on `precision`.
+	 *   - string $config['max'] Validates the date to be no later than this.
+	 *     In the 'YYYY-MM-DD' or 'YYYY-MM' format, depending on `precision`.
+	 *   - string $config['mustBeBefore'] Validates the date to be before this. Overrides 'max'.
 	 *     In the 'YYYY-MM-DD' or 'YYYY-MM' format, depending on `precision`.
 	 */
 	public function __construct( array $config = [] ) {
@@ -65,9 +69,13 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 		$this->precision = $config['precision'];
 		if ( isset( $config['mustBeAfter'] ) ) {
 			$this->mustBeAfter = $config['mustBeAfter'];
+		} elseif ( isset( $config['min'] ) ) {
+			$this->mustBeAfter = $this->modifyDate( $config['min'], '-1 day' );
 		}
 		if ( isset( $config['mustBeBefore'] ) ) {
 			$this->mustBeBefore = $config['mustBeBefore'];
+		} elseif ( isset( $config['max'] ) ) {
+			$this->mustBeBefore = $this->modifyDate( $config['max'], '+1 day' );
 		}
 
 		// Properties stored for the infused JS widget
@@ -101,16 +109,10 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 		// Calculate min/max attributes (which are skipped by TextInputWidget) and add to <input>
 		// min/max attributes are inclusive, but mustBeAfter/Before are exclusive
 		if ( $this->mustBeAfter !== null ) {
-			$min = new DateTime( $this->mustBeAfter );
-			$min = $min->modify( '+1 day' );
-			$min = $min->format( 'Y-m-d' );
-			$this->input->setAttributes( [ 'min' => $min ] );
+			$this->input->setAttributes( [ 'min' => $this->modifyDate( $this->mustBeAfter, '+1 day' ) ] );
 		}
 		if ( $this->mustBeBefore !== null ) {
-			$max = new DateTime( $this->mustBeBefore );
-			$max = $max->modify( '-1 day' );
-			$max = $max->format( 'Y-m-d' );
-			$this->input->setAttributes( [ 'max' => $max ] );
+			$this->input->setAttributes( [ 'max' => $this->modifyDate( $this->mustBeBefore, '-1 day' ) ] );
 		}
 
 		// Initialization
@@ -156,5 +158,11 @@ class DateInputWidget extends \OOUI\TextInputWidget {
 			->setAttributes( [
 				'type' => ( $config['precision'] === 'month' ) ? 'month' : 'date'
 			] );
+	}
+
+	private function modifyDate( string $date, string $modifier ): string {
+		$datetime = new DateTime( $date );
+		$datetime->modify( $modifier );
+		return $datetime->format( 'Y-m-d' );
 	}
 }
