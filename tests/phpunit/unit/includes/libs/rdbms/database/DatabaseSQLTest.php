@@ -47,16 +47,9 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	 * @covers Wikimedia\Rdbms\Database::queryMulti
 	 */
 	public function testQueryMulti( array $sqls, string $summarySql, array $resTriples ) {
-		$lastSql = null;
-		reset( $sqls );
 		foreach ( $resTriples as [ $res, $errno, $error ] ) {
 			$this->database->forceNextResult( $res, $errno, $error );
-			if ( $lastSql !== null && $errno ) {
-				$lastSql = current( $sqls );
-			}
-			next( $sqls );
 		}
-		$lastSql = $lastSql ?? end( $sqls );
 		$this->database->queryMulti( $sqls, __METHOD__, 0, $summarySql );
 		$this->assertLastSql( implode( '; ', $sqls ) );
 	}
