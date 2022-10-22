@@ -1186,7 +1186,7 @@ class Article implements Page {
 			[ 'rev_id', 'rev_timestamp' ],
 			[ 'rev_page' => $title->getArticleID() ],
 			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp ASC' ]
+			[ 'ORDER BY' => [ 'rev_timestamp', 'rev_id' ] ]
 		);
 		$oldestRevisionTimestamp = $oldestRevisionRow ? $oldestRevisionRow->rev_timestamp : false;
 
