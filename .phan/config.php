@@ -104,13 +104,6 @@ $cfg['exclude_analysis_directory_list'] = [
 	'includes/PHPVersionCheck.php',
 ];
 
-$cfg['suppress_issue_types'] = array_merge( $cfg['suppress_issue_types'], [
-	// approximate error count: 62
-	// Disabled temporarily as part of upgrade to PHP 7.4. Not actually an error,
-	// just not taking advantage of the ??= operator. Can be fixed in the near future.
-	'PhanPluginDuplicateExpressionAssignmentOperation',
-] );
-
 // Do not use aliases in core.
 // Use the correct name, because we don't need backward compatibility
 $cfg['enable_class_alias_support'] = false;
