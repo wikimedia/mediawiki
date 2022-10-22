@@ -128,7 +128,7 @@ class SkinComponentMenu implements SkinComponent {
 			// Will be populated by SkinAfterPortlet hook.
 			'html-after-portal' => '',
 			'html-before-portal' => '',
-			'is-empty' => $isEmptyPortlet ? 'true' : 'false',
+			'is-empty' => $isEmptyPortlet,
 		];
 
 		// for output. In production this currently supports the Wikibase 'edit' link.
