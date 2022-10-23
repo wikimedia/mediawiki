@@ -187,11 +187,11 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\SqlBlobStore::compressData
+	 * @requires extension zlib
 	 */
 	public function testCompressRevisionTextUtf8Gzip() {
 		$store = $this->getBlobStore();
 		$store->setCompressBlobs( true );
-		$this->checkPHPExtension( 'zlib' );
 
 		$row = (object)[ 'old_text' => "Wiki est l'\xc3\xa9cole superieur !" ];
 		$row->old_flags = $store->compressData( $row->old_text );
@@ -507,9 +507,9 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Storage\SqlBlobStore::expandBlob
 	 * @dataProvider provideExpandBlobWithZlibExtension
+	 * @requires extension zlib
 	 */
 	public function testGetRevisionWithZlibExtension( $expected, $flags, $raw ) {
-		$this->checkPHPExtension( 'zlib' );
 		$blobStore = $this->getBlobStore();
 		$this->assertEquals(
 			$expected,
@@ -527,9 +527,9 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Storage\SqlBlobStore::expandBlob
 	 * @dataProvider provideExpandBlobWithZlibExtension_badData
+	 * @requires extension zlib
 	 */
 	public function testGetRevisionWithZlibExtension_badData( $flags, $raw ) {
-		$this->checkPHPExtension( 'zlib' );
 		$blobStore = $this->getBlobStore();
 
 		$this->assertFalse(
@@ -589,10 +589,9 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Storage\SqlBlobStore::expandBlob
 	 * @dataProvider provideExpandBlobWithGzipAndLegacyEncoding
+	 * @requires extension zlib
 	 */
 	public function testGetRevisionWithGzipAndLegacyEncoding( $expected, $encoding, $flags, $raw ) {
-		$this->checkPHPExtension( 'zlib' );
-
 		$blobStore = $this->getBlobStore();
 		$blobStore->setLegacyEncoding( $encoding );
 
