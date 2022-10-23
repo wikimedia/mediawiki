@@ -1364,6 +1364,7 @@ more stuff
 	 * @covers WikiPage::factory
 	 */
 	public function testWikiPageFactory() {
+		$this->hideDeprecated( 'WikiPage::factory' );
 		$title = Title::makeTitle( NS_FILE, 'Someimage.png' );
 		$page = WikiPage::factory( $title );
 		$this->assertEquals( WikiFilePage::class, get_class( $page ) );
@@ -1667,6 +1668,7 @@ more stuff
 	 * @param callable $assertions
 	 */
 	public function testNewFromRow( $row, $assertions ) {
+		$this->hideDeprecated( 'WikiPage::newFromRow' );
 		$page = WikiPage::newFromRow( $row, WikiPage::READ_NORMAL );
 		$assertions( $page, $this );
 	}
@@ -1681,6 +1683,7 @@ more stuff
 	 * @dataProvider provideTestNewFromId_returnsNullOnBadPageId
 	 */
 	public function testNewFromId_returnsNullOnBadPageId( $pageId ) {
+		$this->hideDeprecated( 'WikiPage::newFromID' );
 		$this->assertNull( WikiPage::newFromID( $pageId ) );
 	}
 
@@ -1688,6 +1691,7 @@ more stuff
 	 * @covers WikiPage::newFromID
 	 */
 	public function testNewFromId_appearsToFetchCorrectRow() {
+		$this->hideDeprecated( 'WikiPage::newFromID' );
 		$createdPage = $this->createPage( __METHOD__, 'Xsfaij09' );
 		$fetchedPage = WikiPage::newFromID( $createdPage->getId() );
 		$this->assertSame( $createdPage->getId(), $fetchedPage->getId() );
@@ -1701,6 +1705,7 @@ more stuff
 	 * @covers WikiPage::newFromID
 	 */
 	public function testNewFromId_returnsNullOnNonExistingId() {
+		$this->hideDeprecated( 'WikiPage::newFromID' );
 		$this->assertNull( WikiPage::newFromID( 2147483647 ) );
 	}
 
@@ -2206,6 +2211,7 @@ more stuff
 	 * @throws MWException
 	 */
 	public function testWikiPageFactoryHookValid() {
+		$this->hideDeprecated( 'WikiPage::factory' );
 		$isCalled = false;
 		$expectedWikiPage = $this->createMock( WikiPage::class );
 
