@@ -211,7 +211,7 @@ class UserTimeCorrection {
 						$this->offset *= -1;
 					}
 					$this->valid = true;
-				} elseif ( ctype_digit( $data[0] ) ) {
+				} elseif ( preg_match( '/^[+-]?\d+$/', $data[0] ) ) {
 					// Just hours.
 					$this->offset = (int)$data[0] * 60;
 					$this->valid = true;
