@@ -949,6 +949,7 @@
 	"apihelp-query+languageinfo-paramvalue-prop-dir": "Dilin yazma yönü (<code>ltr</code> veya <code>rtl</code>).",
 	"apihelp-query+languageinfo-paramvalue-prop-autonym": "Dilin zıt anlamlısı, yani o dildeki isim.",
 	"apihelp-query+languageinfo-paramvalue-prop-name": "<var>uselang</var> parametresi tarafından belirtilen dildeki dil adı ve gerekirse dil yedekleri uygulanır.",
+	"apihelp-query+languageinfo-paramvalue-prop-variantnames": "Dil dönüştürme bağlantıları için kullanılan dil çeşitlerinin kısa adları.",
 	"apihelp-query+languageinfo-paramvalue-prop-fallbacks": "Bu dil için yapılandırılan yedek dillerin dil kodları. 'en' için örtük son geri dönüş dahil edilmemiştir (ancak bazı diller açıkça 'en' öğesine geri dönebilir).",
 	"apihelp-query+languageinfo-paramvalue-prop-variants": "Bu dil tarafından desteklenen değişkenlerin dil kodları.",
 	"apihelp-query+languageinfo-param-code": "Döndürülmesi gereken dillerin dil kodları veya tüm diller için <code>*</code>.",

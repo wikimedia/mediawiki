@@ -941,6 +941,7 @@
 	"apihelp-query+languageinfo-paramvalue-prop-dir": "Skriveretningen til språket (entent <code>ltr</code> eller <code>rtl</code>).",
 	"apihelp-query+languageinfo-paramvalue-prop-autonym": "Språkets autonym (dets navn på seg selv).",
 	"apihelp-query+languageinfo-paramvalue-prop-name": "Navnet på språket på språket angitt av parameteren <var>uselang</var>, med tilbakefallskjeder brukt hvis nødvendig.",
+	"apihelp-query+languageinfo-paramvalue-prop-variantnames": "De korte navnene for språkvarianter brukes i språkkonverteringslenker.",
 	"apihelp-query+languageinfo-paramvalue-prop-fallbacks": "Språkkodene til tilbakefallsspråkene konfigurert for dette språket. Det implisitte siste tilbakefallet til «en» inkluderes ikke (men noen språk kan falle tilbake til «en» eksplisitt).",
 	"apihelp-query+languageinfo-paramvalue-prop-variants": "Språkkodene til variantene som støttes av dette språket.",
 	"apihelp-query+languageinfo-param-code": "Språkkodene til språk som bør returneres, eller <code>*</code> for alle språk.",
