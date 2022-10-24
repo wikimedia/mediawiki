@@ -147,7 +147,6 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 		$next = '1=1';
 		$countAssigned = 0;
 		$countPrefixed = 0;
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
 		while ( true ) {
 			// Fetch the rows needing update
@@ -206,7 +205,7 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable,PhanPossiblyUndeclaredVariable row is set
 			[ $next, $display ] = $this->makeNextCond( $dbw, $orderby, $row );
 			$this->output( "... $display\n" );
-			$lbFactory->waitForReplication();
+			$this->waitForReplication();
 		}
 
 		$this->output(

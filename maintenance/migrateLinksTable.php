@@ -127,7 +127,7 @@ class MigrateLinksTable extends LoggedUpdateMaintenance {
 			$updated += $updatedInThisBatch;
 			$this->output( "Updated $updatedInThisBatch rows\n" );
 			// Sleep between batches for replication to catch up
-			MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
+			$this->waitForReplication();
 			$sleep = (int)$this->getOption( 'sleep', 0 );
 			if ( $sleep > 0 ) {
 				sleep( $sleep );

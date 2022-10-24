@@ -196,7 +196,6 @@ class ImportImages extends Maintenance {
 			: [];
 
 		# Batch "upload" operation
-		$lbFactory = $services->getDBLoadBalancerFactory();
 		$restrictionStore = $services->getRestrictionStore();
 		foreach ( $files as $file ) {
 			if ( $sleep && ( $processed > 0 ) ) {
@@ -380,7 +379,7 @@ class ImportImages extends Maintenance {
 					$this->output( "\nWaiting for replica DBs...\n" );
 					// Wait for replica DBs.
 					sleep( 2 ); # Why this sleep?
-					$lbFactory->waitForReplication();
+					$this->waitForReplication();
 
 					$this->output( "\nSetting image restrictions ..." );
 

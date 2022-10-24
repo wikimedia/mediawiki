@@ -372,7 +372,6 @@ class NamespaceDupes extends Maintenance {
 		$batchConds = [];
 		$fromField = "{$fieldPrefix}_from";
 		$batchSize = 500;
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 		if ( isset( $linksMigration::$mapping[$table] ) ) {
 			$queryInfo = $linksMigration->getQueryInfo( $table );
@@ -497,7 +496,7 @@ class NamespaceDupes extends Maintenance {
 				] )
 			];
 
-			$lbFactory->waitForReplication();
+			$this->waitForReplication();
 		}
 	}
 

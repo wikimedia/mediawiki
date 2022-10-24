@@ -118,7 +118,6 @@ class RefreshLinks extends Maintenance {
 		$this->getHookRunner()->onMaintenanceRefreshLinksInit( $this );
 
 		$what = $redirectsOnly ? "redirects" : "links";
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		if ( $oldRedirectsOnly ) {
 			# This entire code path is cut-and-pasted from below.  Hurrah.
@@ -145,7 +144,7 @@ class RefreshLinks extends Maintenance {
 			foreach ( $res as $row ) {
 				if ( !( ++$i % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$i\n" );
-					$lbFactory->waitForReplication();
+					$this->waitForReplication();
 				}
 				$this->fixRedirect( $row->page_id );
 			}
@@ -166,7 +165,7 @@ class RefreshLinks extends Maintenance {
 			foreach ( $res as $row ) {
 				if ( !( ++$i % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$i\n" );
-					$lbFactory->waitForReplication();
+					$this->waitForReplication();
 				}
 				if ( $redirectsOnly ) {
 					$this->fixRedirect( $row->page_id );
@@ -186,7 +185,7 @@ class RefreshLinks extends Maintenance {
 			for ( $id = $start; $id <= $end; $id++ ) {
 				if ( !( $id % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$id\n" );
-					$lbFactory->waitForReplication();
+					$this->waitForReplication();
 				}
 				$this->fixRedirect( $id );
 			}
@@ -198,7 +197,7 @@ class RefreshLinks extends Maintenance {
 				for ( $id = $start; $id <= $end; $id++ ) {
 					if ( !( $id % self::REPORTING_INTERVAL ) ) {
 						$this->output( "$id\n" );
-						$lbFactory->waitForReplication();
+						$this->waitForReplication();
 					}
 					self::fixLinksFromArticle( $id, $this->namespace );
 				}
@@ -298,7 +297,7 @@ class RefreshLinks extends Maintenance {
 	private function deleteLinksFromNonexistent( $start = null, $end = null, $batchSize = 100,
 		$chunkSize = 100000
 	) {
-		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
+		$this->waitForReplication();
 		$this->output( "Deleting illegal entries from the links tables...\n" );
 		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
 		do {
@@ -357,7 +356,6 @@ class RefreshLinks extends Maintenance {
 			'page_props' => 'pp_page',
 		];
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		foreach ( $linksTables as $table => $field ) {
 			$this->output( "    $table: 0" );
 			$tableStart = $start;
@@ -380,7 +378,7 @@ class RefreshLinks extends Maintenance {
 					$dbw->delete( $table, [ $field => $ids ], __METHOD__ );
 					$this->output( ", $counter" );
 					$tableStart = $ids[$numIds - 1] + 1;
-					$lbFactory->waitForReplication();
+					$this->waitForReplication();
 				}
 
 			} while ( $numIds >= $batchSize && ( $end === null || $tableStart <= $end ) );
@@ -451,7 +449,6 @@ class RefreshLinks extends Maintenance {
 		$i = 0;
 		$timestamp = '';
 		$lastId = 0;
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		do {
 			$finalConds = $conds;
 			$timestamp = $dbr->addQuotes( $timestamp );
@@ -470,7 +467,7 @@ class RefreshLinks extends Maintenance {
 			foreach ( $res as $row ) {
 				if ( !( ++$i % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$i\n" );
-					$lbFactory->waitForReplication();
+					$this->waitForReplication();
 				}
 				$lastId = $row->page_id;
 				$timestamp = $row->cl_timestamp;

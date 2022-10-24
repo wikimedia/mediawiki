@@ -308,7 +308,7 @@ class CompressOld extends Maintenance {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		for ( $pageId = $startId; $pageId <= $maxPageId; $pageId++ ) {
-			$lbFactory->waitForReplication();
+			$this->waitForReplication();
 
 			# Wake up
 			$dbr->ping();
