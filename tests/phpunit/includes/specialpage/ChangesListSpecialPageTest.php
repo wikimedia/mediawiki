@@ -1099,7 +1099,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 			],
 			[
 				// changeType
-				[ 'hidepageedits' => 1, 'hidenewpages' => 1, 'hidecategorization' => 1, 'hidelog' => 1, ],
+				[ 'hidepageedits' => 1, 'hidenewpages' => 1, 'hidecategorization' => 1, 'hidelog' => 1, 'hidenewuserlog' => 1 ],
 				true,
 				[],
 				true,
