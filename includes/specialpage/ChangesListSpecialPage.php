@@ -440,6 +440,28 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 							return $rc->getAttribute( 'rc_source' ) === RecentChange::SRC_LOG;
 						}
 					],
+					[
+						'name' => 'hidenewuserlog',
+						'label' => 'rcfilters-filter-newuserlogactions-label',
+						'description' => 'rcfilters-filter-newuserlogactions-description',
+						'default' => false,
+						'priority' => -6,
+						'queryCallable' => static function ( string $specialClassName, IContextSource $ctx,
+							IDatabase $dbr, &$tables, &$fields, &$conds, &$query_options, &$join_conds
+						) {
+							$conds[] = $dbr->makeList(
+								[
+									'rc_log_type != ' . $dbr->addQuotes( 'newusers' ),
+									'rc_log_type' => null
+								],
+								IDatabase::LIST_OR
+							);
+						},
+						'cssClassSuffix' => 'src-mw-newuserlog',
+						'isRowApplicableCallable' => static function ( IContextSource $ctx, RecentChange $rc ) {
+							return $rc->getAttribute( 'rc_log_type' ) === "newusers";
+						},
+					],
 				],
 			],
 
@@ -974,6 +996,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		$categoryFilter = $changeTypeGroup->getFilter( 'hidecategorization' );
 		$logactionsFilter = $changeTypeGroup->getFilter( 'hidelog' );
+		$lognewuserFilter = $changeTypeGroup->getFilter( 'hidenewuserlog' );
 		$pagecreationFilter = $changeTypeGroup->getFilter( 'hidenewpages' );
 
 		$significanceTypeGroup = $this->getFilterGroup( 'significance' );
@@ -990,6 +1013,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		}
 		$hideMinorFilter->conflictsWith(
 			$logactionsFilter,
+			'rcfilters-hideminor-conflicts-typeofchange-global',
+			'rcfilters-hideminor-conflicts-typeofchange',
+			'rcfilters-typeofchange-conflicts-hideminor'
+		);
+		$hideMinorFilter->conflictsWith(
+			$lognewuserFilter,
 			'rcfilters-hideminor-conflicts-typeofchange-global',
 			'rcfilters-hideminor-conflicts-typeofchange',
 			'rcfilters-typeofchange-conflicts-hideminor'
