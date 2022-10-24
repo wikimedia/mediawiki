@@ -435,9 +435,10 @@ class PageHistoryCountHandler extends SimpleHandler {
 		];
 
 		if ( $fromRev ) {
-			$oldTs = $dbr->addQuotes( $dbr->timestamp( $fromRev->getTimestamp() ) );
-			$cond[] = "(rev_timestamp = {$oldTs} AND rev_id > {$fromRev->getId()}) " .
-				"OR rev_timestamp > {$oldTs}";
+			$cond[] = $dbr->buildComparison( '>', [
+				'rev_timestamp' => $dbr->timestamp( $fromRev->getTimestamp() ),
+				'rev_id' => $fromRev->getId(),
+			] );
 		}
 
 		$edits = $dbr->selectRowCount(
@@ -481,9 +482,10 @@ class PageHistoryCountHandler extends SimpleHandler {
 			')'
 		];
 		if ( $fromRev ) {
-			$oldTs = $dbr->addQuotes( $dbr->timestamp( $fromRev->getTimestamp() ) );
-			$cond[] = "(rev_timestamp = {$oldTs} AND rev_id > {$fromRev->getId()}) " .
-				"OR rev_timestamp > {$oldTs}";
+			$cond[] = $dbr->buildComparison( '>', [
+				'rev_timestamp' => $dbr->timestamp( $fromRev->getTimestamp() ),
+				'rev_id' => $fromRev->getId(),
+			] );
 		}
 
 		$edits = $dbr->selectRowCount(
@@ -540,9 +542,10 @@ class PageHistoryCountHandler extends SimpleHandler {
 			$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . " = 0"
 		];
 		if ( $fromRev ) {
-			$oldTs = $dbr->addQuotes( $dbr->timestamp( $fromRev->getTimestamp() ) );
-			$cond[] = "(rev_timestamp = {$oldTs} AND rev_id > {$fromRev->getId()}) " .
-				"OR rev_timestamp > {$oldTs}";
+			$cond[] = $dbr->buildComparison( '>', [
+				'rev_timestamp' => $dbr->timestamp( $fromRev->getTimestamp() ),
+				'rev_id' => $fromRev->getId(),
+			] );
 		}
 		$edits = $dbr->selectRowCount(
 			[
@@ -582,9 +585,10 @@ class PageHistoryCountHandler extends SimpleHandler {
 			$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . " = 0"
 		];
 		if ( $fromRev ) {
-			$oldTs = $dbr->addQuotes( $dbr->timestamp( $fromRev->getTimestamp() ) );
-			$cond[] = "(rev_timestamp = {$oldTs} AND rev_id > {$fromRev->getId()}) " .
-				"OR rev_timestamp > {$oldTs}";
+			$cond[] = $dbr->buildComparison( '>', [
+				'rev_timestamp' => $dbr->timestamp( $fromRev->getTimestamp() ),
+				'rev_id' => $fromRev->getId(),
+			] );
 		}
 		$edits = $dbr->selectRowCount( 'revision', '1',
 			$cond,
