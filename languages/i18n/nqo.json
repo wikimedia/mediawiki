@@ -272,7 +272,7 @@
 	"sort-descending": "ߛߙߊߛߌ߰ߟߌ ߖߌ߰ߟߌ߬ ߓߟߏߡߊ߬",
 	"sort-ascending": "ߛߙߊߛߌ߰ߟߌ ߦߟߍ߬ ߓߟߏߡߊ߬",
 	"nstab-main": "ߞߐߜߍ",
-	"nstab-user": "{{ߞߐߜߍ߫ ߟߊߓߊ߯ߙߕߊ|$1GENDER}}",
+	"nstab-user": "{{GENDER:$1|ߞߐߜߍ߫ ߟߊߓߊ߯ߙߕߊ}}",
 	"nstab-media": "ߟߊߛߋߢߊ߫ ߞߐߜߍ",
 	"nstab-special": "ߞߐߜߍ߫ ߞߙߍߞߙߍߣߍ߲",
 	"nstab-project": "ߖߊ߬ߕߋ߬ߘߐ߬ߛߌ߰ ߞߐߜߍ",

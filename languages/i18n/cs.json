@@ -3746,6 +3746,8 @@
 	"searchsuggest-containing": "Hledat stránky obsahující",
 	"search-match-redirect-label": "Při hledání přesměrovávat na přesné výsledky",
 	"search-match-redirect-help": "Zaškrtněte, pokud chcete přesměrovat na stránku, jejíž název odpovídá hledanému řetězci",
+	"search-thumbnail-extra-namespaces-label": "Zobrazit náhledy v Speciální:Hledání",
+	"search-thumbnail-extra-namespaces-message": "Zobrazí také náhledy ve {{PLURAL:$2|jmenném prostoru|jmenných prostorech}} $1. Náhledy ve jmenném prostoru $3 se zobrazují vždy.",
 	"searchlimit-label": "Počet výsledků hledání na stránku:",
 	"searchlimit-help": "Maximální počet: $1",
 	"api-clientside-error-noconnect": "Nepodařilo se připojit k serveru. Ujistěte se, že máte funkční připojení k internetu a zkuste to znovu.",
