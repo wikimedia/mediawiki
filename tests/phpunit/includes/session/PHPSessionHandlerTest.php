@@ -165,11 +165,9 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expect, $_SESSION );
 
 		// Make sure session_reset() works too.
-		if ( function_exists( 'session_reset' ) ) {
-			$_SESSION['AuthenticationSessionTest'] = 'bogus';
-			session_reset();
-			$this->assertSame( $expect, $_SESSION );
-		}
+		$_SESSION['AuthenticationSessionTest'] = 'bogus';
+		session_reset();
+		$this->assertSame( $expect, $_SESSION );
 
 		// Re-fill the session, then test that session_destroy() works.
 		$_SESSION['AuthenticationSessionTest'] = $rand;
