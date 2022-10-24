@@ -360,8 +360,7 @@ class LinkRenderer {
 	/**
 	 * Normalizes the provided target
 	 *
-	 * @internal For use by deprecated Linker & DummyLinker
-	 *     ::normaliseSpecialPage() methods
+	 * @internal For use by Linker::getImageLinkMTOParams()
 	 * @param LinkTarget|PageReference $target
 	 * @return LinkTarget
 	 */

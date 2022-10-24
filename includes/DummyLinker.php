@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -66,11 +65,6 @@ class DummyLinker {
 			$namespace,
 			$title
 		);
-	}
-
-	public function normaliseSpecialPage( Title $title ) {
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		return $linkRenderer->normalizeTarget( $title );
 	}
 
 	public function makeExternalImage( $url, $alt = '' ) {

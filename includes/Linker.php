@@ -201,18 +201,6 @@ class Linker {
 	}
 
 	/**
-	 * @since 1.16.3
-	 * @deprecated since 1.35, use LinkRenderer::normalizeTarget()
-	 * @param LinkTarget $target
-	 * @return LinkTarget
-	 */
-	public static function normaliseSpecialPage( LinkTarget $target ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		return $linkRenderer->normalizeTarget( $target );
-	}
-
-	/**
 	 * Returns the filename part of an url.
 	 * Used as alternative text for external images.
 	 *
