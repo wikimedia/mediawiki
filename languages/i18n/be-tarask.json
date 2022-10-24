@@ -443,7 +443,7 @@
 	"userlogin-resetpassword-link": "Забылі пароль?",
 	"userlogin-helplink2": "Дапамога з уваходам у сыстэму",
 	"userlogin-loggedin": "Вы ўжо ўвайшлі як {{GENDER:$1|$1}}.\nДля ўваходу пад іншым удзельнікам скарыстайцеся формай унізе.",
-	"userlogin-reauth": "Вы мусіце ўвайсьці яшчэ раз, каб пацьвердзіць, што вы — гэта {{GENDER:$1|$1}}.",
+	"userlogin-reauth": "Каб пацьвердзіць, што вы — гэта {{GENDER:$1|$1}}, увайдзіце яшчэ раз.",
 	"userlogin-createanother": "Стварыць іншы рахунак",
 	"createacct-emailrequired": "Адрас электроннай пошты",
 	"createacct-emailoptional": "Адрас электроннай пошты (неабавязкова)",

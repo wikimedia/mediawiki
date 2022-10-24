@@ -1770,6 +1770,7 @@
 	"uploadstash-bad-path-unknown-type": "უჩინებუ ტიპი „$1“.",
 	"uploadstash-bad-path-unrecognized-thumb-name": "მინიატურაშ უჩინებუ ჯოხო.",
 	"uploadstash-bad-path-bad-format": "კილას „$1“ ჩილათერი ფორმატი უღუ.",
+	"uploadstash-file-not-found-no-thumb": "მინიატურაშ მიღებაქ ვემიხუჯინუ.",
 	"uploadstash-zero-length": "ნული სიგჷრძაშ ფაილი.",
 	"invalid-chunk-offset": "ჩილათერი დაჭყაფური ჭურჭული",
 	"img-auth-accessdenied": "ქიმინუა გოხურგელი რე",

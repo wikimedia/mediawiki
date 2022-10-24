@@ -584,7 +584,7 @@
 	"welcomecreation-msg": "Votre compte a été créé.\nVous pouvez modifier [[Special:Preferences|vos préférences]] pour {{SITENAME}} si vous le souhaitez.",
 	"yourname": "Nom d’utilisateur :",
 	"userlogin-yourname": "Nom d’utilisateur",
-	"userlogin-yourname-ph": "Entrez votre nom d’utilisateur",
+	"userlogin-yourname-ph": "Saisissez votre nom d’utilisateur",
 	"createacct-another-username-ph": "Entrez le nom d’utilisateur",
 	"yourpassword": "Mot de passe :",
 	"prefs-help-yourpassword": "La récupération de compte est activée. Voir $1 pour plus de paramètres.",

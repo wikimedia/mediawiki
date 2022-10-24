@@ -231,7 +231,8 @@
 			"DiegoAmbrocio",
 			"TehFrog",
 			"Enly M",
-			"Francodiaz7"
+			"Francodiaz7",
+			"DarkGames26"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -617,7 +618,7 @@
 	"logout-failed": "Error al cerrar sesión: $1",
 	"cannotlogoutnow-title": "No se puede cerrar sesión ahora",
 	"cannotlogoutnow-text": "No se puede cerrar sesión cuando se usa $1.",
-	"welcomeuser": "¡Bienvenido/a, $1!",
+	"welcomeuser": "¡{{GENDER:$1|Bienvenido|Bienvenida|Bienvenido/a}}, $1!",
 	"welcomecreation-msg": "Se ha creado tu cuenta.\nSi lo deseas, puedes cambiar tus [[Special:Preferences|preferencias]] para {{SITENAME}}.",
 	"yourname": "Usuario:",
 	"userlogin-yourname": "Usuario",

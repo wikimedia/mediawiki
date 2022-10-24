@@ -3043,7 +3043,7 @@
 	"pageinfo-edits": "Общ брой редакции",
 	"pageinfo-authors": "Общ брой на отделните автори",
 	"pageinfo-recent-edits": "Скорошен брой редакции (в рамките на $1)",
-	"pageinfo-recent-authors": "Скорошен брой на отделните автори",
+	"pageinfo-recent-authors": "Брой на отделните автори",
 	"pageinfo-magic-words": "{{PLURAL:$1|Вълшебна думичка|Вълшебни думички}} ($1)",
 	"pageinfo-hidden-categories": "{{PLURAL:$1|Скрита категория|Скрити категории}} ($1)",
 	"pageinfo-templates": "{{PLURAL:$1|Включен шаблон|Включени шаблони}} ($1)",

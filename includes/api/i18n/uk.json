@@ -1028,7 +1028,7 @@
 	"apihelp-query+protectedtitles-paramvalue-prop-level": "Додає рівень захисту.",
 	"apihelp-query+protectedtitles-example-simple": "Вивести список захищених назв.",
 	"apihelp-query+protectedtitles-example-generator": "Знайти посилання на захищені назви в основному просторі назв.",
-	"apihelp-query+querypage-summary": "Отримати список, кий дає спеціальна сторінка на базі QueryPage.",
+	"apihelp-query+querypage-summary": "Отримати список, який дає спеціальна сторінка на базі QueryPage.",
 	"apihelp-query+querypage-param-page": "Назва спеціальної сторінки. Зважте, що чутлива до регістру.",
 	"apihelp-query+querypage-param-limit": "Кількість результатів, які виводити.",
 	"apihelp-query+querypage-example-ancientpages": "Видати результати з [[Special:Ancientpages]].",

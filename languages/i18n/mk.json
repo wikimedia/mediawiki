@@ -2546,7 +2546,7 @@
 	"sp-contributions-concurrency-user": "За жал, од вашата корисничка сметка се поднесени премногу барања. Обидете се подоцна.",
 	"sp-contributions-concurrency-ip": "За жал, од вашата IP-адреса се поднесени премногу барања. Обидете се подоцна.",
 	"whatlinkshere": "Што води овде",
-	"whatlinkshere-count": "{{PLURAL:$1|Прикажана $1 ставка|Прикажани $1 ставки}}.",
+	"whatlinkshere-count": "{{PLURAL:$1|Прикажана е $1 ставка|Прикажани се $1 ставки}}.",
 	"whatlinkshere-title": "Страници со врски што водат до „$1“",
 	"whatlinkshere-page": "Страница:",
 	"linkshere": "Следните страници водат кон <strong>$2</strong>:",

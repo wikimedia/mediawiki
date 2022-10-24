@@ -1998,7 +1998,7 @@
 	"ipbenableautoblock": "Автоматічно блоковати IP адресы хоснованы тым хоснователём",
 	"ipbsubmit": "Заблоковати",
 	"ipbother": "Іншый час:",
-	"ipboptions": "2 годины:2 hours,1 день:1 day,3 днї:3 days,1 тыждень:1 week,2 тыжднї:2 weeks,1 місяць:1 month,3 місяцї:3 months,6 місяцїв:6 months,1 рік:1 year,неограніченї:infinite",
+	"ipboptions": "2 годины:2 hours,1 день:1 day,3 днї:3 days,1 тыждень:1 week,2 тыжднї:2 weeks,1 місяць:1 month,3 місяцї:3 months,6 місяцїв:6 months,1 рік:1 year,навсе:infinite",
 	"ipbhidename": "Сховати мено хоснователя в едітованях і списках",
 	"ipbwatchuser": "Слїдовати хосновательску і діскузну сторінку того хоснователя",
 	"ipb-disableusertalk": "Едітованя властной діскузії",

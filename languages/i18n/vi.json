@@ -2393,7 +2393,7 @@
 	"confirmdeletetext": "Bạn đang chuẩn bị xóa một trang cùng với tất cả lịch sử của nó.\nXin xác nhận việc bạn định làm, và hiểu rõ những hệ lụy của nó, và bạn thực hiện nó theo đúng [[{{MediaWiki:Policy-url}}|quy định]].",
 	"actioncomplete": "Đã thực hiện xong",
 	"actionfailed": "Tác vụ thất bại",
-	"deletedtext": "Đã xóa “$1”. Xem danh sách các tác vụ xóa gần nhất tại $2.",
+	"deletedtext": "Đã xóa “$1”.\nXem danh sách các tác vụ xóa gần nhất tại $2.",
 	"dellogpage": "Nhật trình xóa",
 	"dellogpagetext": "Dưới đây là danh sách các trang bị xóa gần đây nhất.",
 	"deletionlog": "nhật trình xóa",

@@ -587,7 +587,7 @@
 	"yourlanguage": "Langue:",
 	"yourvariant": "Différent:",
 	"yournick": "'Tit nom:",
-	"badsig": "Votre signature brute est pas bonne.  Regardez-voir les tags HTML.",
+	"badsig": "Votre signature brute n’est pas bonne. \nRegardez-voir les tags HTML.",
 	"badsiglength": "Votre 'tit nom est trop long.  Il faut que ça soye moins que $1 caractères.",
 	"gender-unknown": "Je préfère pas l’indiquer",
 	"gender-male": "Il change des pages du wiki",

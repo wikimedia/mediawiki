@@ -3293,7 +3293,7 @@
 	"mcrundo-missingparam": "請求缺少必要參數。",
 	"mcrundo-changed": "自您檢視差異之後，頁面有被變更過。請檢閱新的變更。",
 	"mcrundo-parse-failed": "解析新修訂失敗：$1",
-	"semicolon-separator": "；",
+	"semicolon-separator": "；​",
 	"comma-separator": "、​",
 	"colon-separator": "：​",
 	"word-separator": "",

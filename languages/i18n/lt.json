@@ -718,6 +718,7 @@
 	"token_suffix_mismatch": "'''Jūsų pakeitimas buvo atmestas, nes jūsų naršyklė iškraipė skyrybos ženklus keitimo žymėje. Keitimas buvo atmestas norint apsaugoti puslapio tekstą nuo sugadinimo. Taip kartais būna, kai jūs naudojate anoniminį tarpinio serverio paslaugą.'''",
 	"edit_form_incomplete": "'''Kai redaguoti formos dalys nepasiekė serverio; du kartus patikrinti, kad jūsų pakeitimai yra nesugadintos ir bandykite dar kartą.'''",
 	"editing": "Taisomas $1",
+	"edit-textarea-aria-label": "Pirminio \"vikiteksto\" redaktorius",
 	"creating": "Kuriamas straipsnis „$1“",
 	"editingsection": "Taisomas $1 (skyrelis)",
 	"editingcomment": "Taisomas $1 (naujas skyrius)",
