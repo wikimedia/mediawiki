@@ -260,21 +260,34 @@ class ParserTestRunner {
 	/**
 	 * Get list of filenames to extension and core parser tests
 	 *
+	 * @param array $dirs
 	 * @return array
 	 */
-	public static function getParserTestFiles() {
-		// Auto-discover core test files
-		$ptDirs = [ 'core' => __DIR__ ];
-
-		// Auto-discover extension parser tests
-		$registry = ExtensionRegistry::getInstance();
-		foreach ( $registry->getAllThings() as $info ) {
-			$dir = dirname( $info['path'] ) . '/tests/parser';
-			if ( !is_dir( $dir ) ) {
-				continue;
+	public static function getParserTestFiles( array $dirs = [] ): array {
+		if ( $dirs ) {
+			$ptDirs = [];
+			foreach ( $dirs as $i => $dir ) {
+				if ( !is_dir( $dir ) ) {
+					echo "$dir is not a directory. Skipping it.\n";
+					continue;
+				}
+				$ptDirs["_CLI{$i}_"] = $dir;
 			}
-			$ptDirs[ $info['name'] ] = $dir;
+		} else {
+			// Auto-discover core test files
+			$ptDirs = [ 'core' => __DIR__ ];
+
+			// Auto-discover extension parser tests
+			$registry = ExtensionRegistry::getInstance();
+			foreach ( $registry->getAllThings() as $info ) {
+				$dir = dirname( $info['path'] ) . '/tests/parser';
+				if ( !is_dir( $dir ) ) {
+					continue;
+				}
+				$ptDirs[ $info['name'] ] = $dir;
+			}
 		}
+
 		$files = [];
 		foreach ( $ptDirs as $extName => $dir ) {
 			$counter = 1;
