@@ -229,6 +229,7 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		$user = $this->createMock( User::class );
 
 		$user->method( 'getWikiId' )->willReturn( WikiAwareEntity::LOCAL );
+		$user->method( 'getName' )->willReturn( 'Alice' );
 
 		$block = new DatabaseBlock( [
 			'target' => new UserBlockTarget( $user ),

@@ -118,6 +118,8 @@ class BlockErrorFormatter {
 	 *  - reason: Reason for the block
 	 *  - expiry: Expiry time
 	 *  - timestamp: Time the block was created
+	 *  - talkPageDisabled: True if talk page access is prevented by the block
+	 *  - emailDisabled: True if email access is prevented by the block
 	 */
 	private function getBlockErrorInfo( Block $block ) {
 		$blocker = $block->getBlocker();
@@ -128,6 +130,8 @@ class BlockErrorFormatter {
 			'reason' => $block->getReasonComment(),
 			'expiry' => $block->getExpiry(),
 			'timestamp' => $block->getTimestamp(),
+			'talkPageDisabled' => $block->getTargetUserIdentity() ? $block->appliesToUsertalk() : false,
+			'emailDisabled' => $block->isEmailBlocked(),
 		];
 	}
 
@@ -250,6 +254,8 @@ class BlockErrorFormatter {
 	 *  - expiry: Expiry time, in the specified language
 	 *  - targetName: The target, as a bidi-embedded string
 	 *  - timestamp: Time the block was created, in the specified language
+	 *  - talkPageDisabled: True if talk page access is prevented by the block
+	 *  - emailDisabled: True if email access is prevented by the block
 	 */
 	private function getBlockErrorMessageParams(
 		Block $block,
@@ -288,6 +294,8 @@ class BlockErrorFormatter {
 			'expiry',
 			'targetName',
 			'timestamp',
+			'talkPageDisabled',
+			'emailDisabled',
 		];
 
 		$params = [];

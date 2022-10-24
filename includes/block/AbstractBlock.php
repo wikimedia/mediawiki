@@ -206,7 +206,7 @@ abstract class AbstractBlock implements Block {
 	 * @param null|bool $x Value to set (if null, just get the property value)
 	 * @return bool Value of the property
 	 */
-	public function isEmailBlocked( $x = null ) {
+	public function isEmailBlocked( $x = null ): bool {
 		return wfSetVar( $this->blockEmail, $x );
 	}
 
@@ -453,7 +453,7 @@ abstract class AbstractBlock implements Block {
 	 *  and if the target is a User, the target's userpage is used
 	 * @return bool The user can edit their talk page
 	 */
-	public function appliesToUsertalk( ?Title $usertalk = null ) {
+	public function appliesToUsertalk( ?Title $usertalk = null ): bool {
 		if ( !$usertalk ) {
 			if ( $this->target instanceof BlockTargetWithUserPage ) {
 				$usertalk = Title::makeTitle(

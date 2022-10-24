@@ -174,6 +174,13 @@ interface Block extends WikiAwareEntity {
 	public function isCreateAccountBlocked(): bool;
 
 	/**
+	 * Get the flag indicating whether this block blocks the target from
+	 * sending emails. (Note that the flag may be overridden depending on
+	 * global configs.)
+	 */
+	public function isEmailBlocked(): bool;
+
+	/**
 	 * Get whether the block is a hard block (affects logged-in users on a given IP/range).
 	 *
 	 * Note that temporary users are not considered logged-in here - they are always blocked
@@ -193,4 +200,11 @@ interface Block extends WikiAwareEntity {
 	 * @return Block[]
 	 */
 	public function toArray(): array;
+
+	/**
+	 * Returns whether the block prevents user talk page access. If this returns true, the user
+	 * will be unable to make any changes to their user talk page for the duration of the block.
+	 */
+	public function appliesToUsertalk(): bool;
+
 }

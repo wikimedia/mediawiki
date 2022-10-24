@@ -206,7 +206,7 @@ class CompositeBlock extends AbstractBlock {
 	/**
 	 * @inheritDoc
 	 */
-	public function appliesToUsertalk( ?Title $usertalk = null ) {
+	public function appliesToUsertalk( ?Title $usertalk = null ): bool {
 		return $this->methodReturnsValue( __FUNCTION__, true, $usertalk );
 	}
 
