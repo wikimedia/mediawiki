@@ -2958,7 +2958,7 @@
 	"redirect-logid": "Riggistro ID",
 	"redirect-not-exists": "Valore nun accucchiato",
 	"fileduplicatesearch": "Ascìa 'e file duprecate",
-	"fileduplicatesearch-summary": "Circa pe' file duprecate cu bbase 'o valore hash.",
+	"fileduplicatesearch-summary": "Ascia 'e file a doppio p' 'o valore hash.",
 	"fileduplicatesearch-filename": "Nomme d' 'o file",
 	"fileduplicatesearch-submit": "Ascia",
 	"fileduplicatesearch-info": "$1 × $2 pixel, dimenzione d' 'o file: $3<br />tipo MIME: $4",
