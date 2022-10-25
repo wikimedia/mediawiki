@@ -69,6 +69,8 @@ class ParserTestsMaintenance extends Maintenance {
 		$this->addOption( 'filter', 'Alias for --regex', false, true );
 		$this->addOption( 'file', 'Run test cases from a custom file instead of parserTests.txt',
 			false, true, false, true );
+		$this->addOption( 'dir', 'Run test cases for all *.txt files in a directory',
+			false, true, false, true );
 		$this->addOption( 'record', 'Record tests in database' );
 		$this->addOption( 'compare', 'Compare with recorded results, without updating the database.' );
 		$this->addOption( 'setversion', 'When using --record, set the version string to use (useful' .
@@ -208,8 +210,8 @@ class ParserTestsMaintenance extends Maintenance {
 		}
 
 		// Default parser tests and any set from extensions or local config
-		$files = $this->getOption( 'file', ParserTestRunner::getParserTestFiles() );
-
+		$dirs = $this->getOption( 'dir', [] );
+		$files = $this->getOption( 'file', ParserTestRunner::getParserTestFiles( $dirs ) );
 		$norm = $this->hasOption( 'norm' ) ? explode( ',', $this->getOption( 'norm' ) ) : [];
 
 		$selserOpt = $this->getOption( 'selser', false ); /* can also be 'noauto' */
