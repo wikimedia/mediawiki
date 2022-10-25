@@ -19,13 +19,15 @@
  * @file
  */
 
+use MediaWiki\StubObject\StubObject;
+
 /**
  * Testing the magic for __get(), __set(), and __call() for our
  * example global, $wgDummy, which would be an instance
- * of DemoStubbed but is wrapped in a StubObject
+ * of DemoStubbed but is wrapped in a MediaWiki\StubObject\StubObject
  * @author DannyS712
  *
- * @covers \StubObject
+ * @covers \MediaWiki\StubObject\StubObject
  */
 class StubObjectTest extends MediaWikiIntegrationTestCase {
 
@@ -80,7 +82,7 @@ class StubObjectTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetMagic() {
-		// StubObject::__get() returning DemoStubbed::$num
+		// MediaWiki\StubObject\StubObject::__get() returning DemoStubbed::$num
 		global $wgDummy;
 		$this->assertInstanceOf(
 			StubObject::class,
@@ -100,7 +102,7 @@ class StubObjectTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetMagic_virtual() {
-		// StubObject::__get() calling DemoStubbed::__get()
+		// MediaWiki\StubObject\StubObject::__get() calling DemoStubbed::__get()
 		global $wgDummy;
 		$this->assertInstanceOf(
 			StubObject::class,
@@ -120,7 +122,7 @@ class StubObjectTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSetMagic() {
-		// StubObject::__set() changing DemoStubbed::$num
+		// MediaWiki\StubObject\StubObject::__set() changing DemoStubbed::$num
 		global $wgDummy;
 		$this->assertInstanceOf(
 			StubObject::class,
@@ -141,7 +143,7 @@ class StubObjectTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSetMagic_virtual() {
-		// StubObject::__set() calling DemoStubbed::__set()
+		// MediaWiki\StubObject\StubObject::__set() calling DemoStubbed::__set()
 		global $wgDummy;
 		$this->assertInstanceOf(
 			StubObject::class,

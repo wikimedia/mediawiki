@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\StubObject\StubGlobalUser;
 
 require_once __DIR__ . '/Maintenance.php';
 

@@ -39,6 +39,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRenderingProvider;
 use MediaWiki\Search\ParserOutputSearchDataExtractor;
+use MediaWiki\StubObject\StubObject;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ScopedCallback;
 
@@ -724,7 +725,7 @@ abstract class ContentHandler {
 		}
 
 		// Simplify hook handlers by only passing objects of one type, in case nothing
-		// else has unstubbed the StubUserLang object by now.
+		// else has unstubbed the MediaWiki\StubObject\StubUserLang object by now.
 		StubObject::unstub( $wgLang );
 
 		$this->getHookRunner()->onPageContentLanguage( $title, $pageLang, $wgLang );

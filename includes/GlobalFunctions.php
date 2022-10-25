@@ -29,6 +29,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\ProcOpenError;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Shell\Shell;
+use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Utils\UrlUtils;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
