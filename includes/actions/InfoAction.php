@@ -407,6 +407,7 @@ class InfoAction extends FormlessAction {
 		];
 
 		// Page namespace
+		$pageInfo['header-basic'][] = [ $this->msg( 'pageinfo-namespace-id' ), $title->getNamespace() ];
 		$pageNamespace = $title->getNsText();
 		if ( $pageNamespace ) {
 			$pageInfo['header-basic'][] = [ $this->msg( 'pageinfo-namespace' ), $pageNamespace ];
