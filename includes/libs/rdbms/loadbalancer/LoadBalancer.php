@@ -1101,15 +1101,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			if ( $isShareable ) {
 				$conn = $poolConn;
 				// Make any required DB domain changes for the new reference
-				if ( !$domain->equals( $conn->getDomainID() ) ) {
-					if ( $domain->getDatabase() !== null ) {
-						// Select the new database, schema, and prefix
-						$conn->selectDomain( $domain );
-					} else {
-						// Stay on the current database, but update the schema/prefix
-						$conn->dbSchema( $domain->getSchema() );
-						$conn->tablePrefix( $domain->getTablePrefix() );
-					}
+				if ( !$domain->isUnspecified() ) {
+					$conn->selectDomain( $domain );
 				}
 				$this->connLogger->debug( __METHOD__ . ": reusing connection for $i/$domain" );
 				break;
