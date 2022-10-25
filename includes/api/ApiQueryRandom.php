@@ -78,12 +78,16 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		$this->addOption( 'LIMIT', $limit + 1 );
 
 		if ( $start !== null ) {
-			$start = $this->getDB()->addQuotes( $start );
+			$db = $this->getDB();
 			if ( $startId > 0 ) {
-				$startId = (int)$startId; // safety
-				$this->addWhere( "page_random = $start AND page_id >= $startId OR page_random > $start" );
+				$this->addWhere( $db->buildComparison( '>=', [
+					'page_random' => $start,
+					'page_id' => $startId,
+				] ) );
 			} else {
-				$this->addWhere( "page_random >= $start" );
+				$this->addWhere( $db->buildComparison( '>=', [
+					'page_random' => $start,
+				] ) );
 			}
 		}
 		if ( $end !== null ) {
