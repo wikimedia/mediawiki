@@ -34,15 +34,12 @@
  * @ingroup Cache
  */
 class APCUBagOStuff extends MediumSpecificBagOStuff {
-	/** @var bool Whether to trust the APC implementation to serialization */
-	private $nativeSerialize;
-
 	/**
 	 * @var string String to append to each APC key. This may be changed
 	 *  whenever the handling of values is changed, to prevent existing code
 	 *  from encountering older values which it cannot handle.
 	 */
-	private const KEY_SUFFIX = ':4';
+	private const KEY_SUFFIX = ':5';
 
 	/** @var int Max attempts for implicit CAS operations */
 	private static $CAS_MAX_ATTEMPTS = 100;
@@ -51,11 +48,10 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		// No use in segmenting values
 		$params['segmentationSize'] = INF;
 		parent::__construct( $params );
-		// The extension serializer is still buggy, unlike "php" and "igbinary"
-		$this->nativeSerialize = ( ini_get( 'apc.serializer' ) !== 'default' );
-		// Avoid back-dated values that expire too soon. In particular, regenerating a hot
-		// key before it expires should never have the end-result of purging that key. Using
-		// the web request time becomes increasingly problematic the longer the request lasts.
+		// Versions of apcu < 5.1.19 use apc.use_request_time=1 by default, causing new keys
+		// to be assigned timestamps based on the start of the PHP request/script. The longer
+		// the request has been running, the more likely that newly stored keys will instantly
+		// be seen as expired by other requests. Disable apc.use_request_time.
 		ini_set( 'apc.use_request_time', '0' );
 
 		if ( PHP_SAPI === 'cli' ) {
@@ -71,31 +67,31 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
 
-		$blob = apcu_fetch( $key . self::KEY_SUFFIX );
-		$value = $this->nativeSerialize ? $blob : $this->unserialize( $blob );
+		$value = apcu_fetch( $key . self::KEY_SUFFIX );
 		if ( $getToken && $value !== false ) {
 			// Note that if the driver handles serialization then this uses the PHP value
 			// as the token. This might require inspection or re-serialization in doCas().
-			$casToken = $blob;
+			$casToken = $value;
 		}
 
 		return $value;
 	}
 
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
-		$blob = $this->nativeSerialize ? $value : $this->getSerialized( $value, $key );
 		$ttl = $this->getExpirationAsTTL( $exptime );
-		return apcu_store( $key . self::KEY_SUFFIX, $blob, $ttl );
+
+		return apcu_store( $key . self::KEY_SUFFIX, $value, $ttl );
 	}
 
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		if ( apcu_exists( $key . self::KEY_SUFFIX ) ) {
+			// Avoid global write locks for high contention keys
 			return false;
 		}
 
-		$blob = $this->nativeSerialize ? $value : $this->getSerialized( $value, $key );
 		$ttl = $this->getExpirationAsTTL( $exptime );
-		return apcu_add( $key . self::KEY_SUFFIX, $blob, $ttl );
+
+		return apcu_add( $key . self::KEY_SUFFIX, $value, $ttl );
 	}
 
 	protected function doDelete( $key, $flags = 0 ) {
