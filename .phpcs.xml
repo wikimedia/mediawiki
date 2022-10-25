@@ -159,8 +159,6 @@
 		<exclude-pattern>*/maintenance/preprocessorFuzzTest\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/StatOutputs\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/generateCollationData\.php</exclude-pattern>
-		<!-- Language converters use the pattern of 2 classes in one file -->
-		<exclude-pattern>*/languages/*</exclude-pattern>
 		<!-- We don't care that much about violations in tests -->
 		<exclude-pattern>*/tests/*</exclude-pattern>
 	</rule>
