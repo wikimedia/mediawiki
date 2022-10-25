@@ -21,7 +21,6 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -44,17 +43,6 @@ class PageProps {
 
 	/** @var MapCacheLRU */
 	private $cache;
-
-	/**
-	 * @deprecated since 1.38, hard deprecated since 1.39
-	 * Use MediaWikiServices::getPageProps() instead
-	 *
-	 * @return PageProps
-	 */
-	public static function getInstance() {
-		wfDeprecated( __METHOD__, '1.38' );
-		return MediaWikiServices::getInstance()->getPageProps();
-	}
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
