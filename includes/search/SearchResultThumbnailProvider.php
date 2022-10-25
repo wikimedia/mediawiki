@@ -71,12 +71,12 @@ class SearchResultThumbnailProvider {
 			return null;
 		}
 
-		$localPath = $thumb->getLocalCopyPath();
-		$thumbSize = $localPath && file_exists( $localPath ) ? filesize( $localPath ) : null;
-
 		return new SearchResultThumbnail(
 			$thumb->getFile()->getMimeType(),
-			$thumbSize,
+			static function () use ( $thumb ) {
+				$localPath = $thumb->getLocalCopyPath();
+				return $localPath && file_exists( $localPath ) ? filesize( $localPath ) : null;
+			},
 			$thumb->getWidth(),
 			$thumb->getHeight(),
 			null,
