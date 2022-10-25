@@ -841,7 +841,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$revId = $revRecord->getId();
 
 		// Pretend the local test DB is a sister site
-		$wikiId = $this->db->getDomainID();
+		$wikiId = $this->getDb()->getDomainID();
 		$store = $this->getServiceContainer()->getRevisionStoreFactory()
 			->getRevisionStore( $wikiId );
 
@@ -878,7 +878,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->setService( 'TitleFactory', $noOpTitleFactory );
 
 		// Pretend the local test DB is a sister site
-		$wikiId = $this->db->getDomainID();
+		$wikiId = $this->getDb()->getDomainID();
 		$store = $this->getServiceContainer()->getRevisionStoreFactory()
 			->getRevisionStore( $wikiId );
 
@@ -1126,12 +1126,12 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		$revUser = $revRecord->getUser();
 		$actorId = $this->getServiceContainer()
-			->getActorNormalization()->findActorId( $revUser, $this->db );
+			->getActorNormalization()->findActorId( $revUser, $this->getDb() );
 
 		$fields = [
 			'rev_id' => (string)$revRecord->getId(),
 			'rev_page' => (string)$revRecord->getPageId(),
-			'rev_timestamp' => $this->db->timestamp( $revRecord->getTimestamp() ),
+			'rev_timestamp' => $this->getDb()->timestamp( $revRecord->getTimestamp() ),
 			'rev_actor' => $actorId,
 			'rev_user_text' => $revUser ? $revUser->getName() : '',
 			'rev_user' => (string)( $revUser ? $revUser->getId() : 0 ) ?: null,
@@ -1193,7 +1193,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$info = $store->getQueryInfo();
-		$row = $this->db->selectRow(
+		$row = $this->getDb()->selectRow(
 			$info['tables'],
 			$info['fields'],
 			[ 'rev_id' => $revRecord->getId() ],
@@ -1203,7 +1203,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$info = $store->getSlotsQueryInfo( [ 'content' ] );
-		$slotRows = $this->db->select(
+		$slotRows = $this->getDb()->select(
 			$info['tables'],
 			$info['fields'],
 			[ 'slot_revision_id' => $revRecord->getId() ],
@@ -1239,7 +1239,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$info = $store->getQueryInfo();
-		$row = $this->db->selectRow(
+		$row = $this->getDb()->selectRow(
 			$info['tables'],
 			$info['fields'],
 			[ 'rev_id' => $revRecord->getId() ],
@@ -1349,7 +1349,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsObject( $res, 'query failed' );
 
 		$info = $store->getSlotsQueryInfo( [ 'content' ] );
-		$slotRows = $this->db->select(
+		$slotRows = $this->getDb()->select(
 			$info['tables'],
 			$info['fields'],
 			[ 'slot_revision_id' => $orig->getId() ],
@@ -1579,12 +1579,12 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		];
 
 		// create an actor row for the empty user name (see also T225469)
-		$this->db->insert( 'actor', [ [
+		$this->getDb()->insert( 'actor', [ [
 			'actor_user' => $row->ar_user,
 			'actor_name' => $row->ar_user_text,
 		] ] );
 
-		$row->ar_actor = $this->db->insertId();
+		$row->ar_actor = $this->getDb()->insertId();
 
 		$record = @$store->newRevisionFromArchiveRow( $row );
 
@@ -1639,7 +1639,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getExistingTestPage();
 
 		$info = $store->getQueryInfo();
-		$row = $this->db->selectRow(
+		$row = $this->getDb()->selectRow(
 			$info['tables'],
 			$info['fields'],
 			[ 'rev_page' => $page->getId(), 'rev_id' => $page->getLatest() ],
@@ -1669,14 +1669,14 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->setService( 'TitleFactory', $noOpTitleFactory );
 
 		// Pretend the local test DB is a sister site
-		$wikiId = $this->db->getDomainID();
+		$wikiId = $this->getDb()->getDomainID();
 		$store = $this->getServiceContainer()->getRevisionStoreFactory()
 			->getRevisionStore( $wikiId );
 
 		$page = $this->getExistingTestPage();
 
 		$info = $store->getQueryInfo();
-		$row = $this->db->selectRow(
+		$row = $this->getDb()->selectRow(
 			$info['tables'],
 			$info['fields'],
 			[ 'rev_page' => $page->getId(), 'rev_id' => $page->getLatest() ],
@@ -2098,10 +2098,10 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		// Change the user name in the database, "behind the back" of the cache
 		$newUserName = "Renamed $userNameBefore";
-		$this->db->update( 'user',
+		$this->getDb()->update( 'user',
 			[ 'user_name' => $newUserName ],
 			[ 'user_id' => $rev->getUser()->getId() ] );
-		$this->db->update( 'actor',
+		$this->getDb()->update( 'actor',
 			[ 'actor_name' => $newUserName ],
 			[ 'actor_user' => $rev->getUser()->getId() ] );
 
@@ -2171,7 +2171,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$deletedBefore = $rev->getVisibility();
 
 		// Change the deleted bitmask in the database, "behind the back" of the cache
-		$this->db->update( 'revision',
+		$this->getDb()->update( 'revision',
 			[ 'rev_deleted' => RevisionRecord::DELETED_TEXT ],
 			[ 'rev_id' => $rev->getId() ] );
 
@@ -2212,10 +2212,10 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 		// Change the user name in the database
 		$newUserName = "Renamed $userNameBefore";
-		$this->db->update( 'user',
+		$this->getDb()->update( 'user',
 			[ 'user_name' => $newUserName ],
 			[ 'user_id' => $storeRecord->getUser()->getId() ] );
-		$this->db->update( 'actor',
+		$this->getDb()->update( 'actor',
 			[ 'actor_name' => $newUserName ],
 			[ 'actor_user' => $storeRecord->getUser()->getId() ] );
 
@@ -2261,7 +2261,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$deletedBefore = $storeRecord->getVisibility();
 
 		// Change the deleted bitmask in the database
-		$this->db->update( 'revision',
+		$this->getDb()->update( 'revision',
 			[ 'rev_deleted' => RevisionRecord::DELETED_TEXT ],
 			[ 'rev_id' => $storeRecord->getId() ] );
 
@@ -2572,7 +2572,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$store = $this->getServiceContainer()->getRevisionStore();
 
 		$queryInfo = $store->getArchiveQueryInfo();
-		$rows = $this->db->select(
+		$rows = $this->getDb()->select(
 			$queryInfo['tables'],
 			$queryInfo['fields'],
 			[ 'ar_rev_id' => [ $revRecord1->getId(), $revRecord2->getId() ] ],
@@ -2986,7 +2986,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$user = $userInitCallback( $this->getServiceContainer(), $ip );
 
 		$actorNormalization = $this->getServiceContainer()->getActorNormalization();
-		$actorId = $actorNormalization->findActorId( $user, $this->db );
+		$actorId = $actorNormalization->findActorId( $user, $this->getDb() );
 		$this->assertNull( $actorId, 'New actor has no actor_id' );
 
 		$page = $this->getTestPage();
@@ -2997,10 +2997,10 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			->setContent( 'main', new WikitextContent( 'Text' ) )
 			->setPageId( $page->getId() );
 
-		$return = $this->getServiceContainer()->getRevisionStore()->insertRevisionOn( $rev, $this->db );
+		$return = $this->getServiceContainer()->getRevisionStore()->insertRevisionOn( $rev, $this->getDb() );
 		$this->assertSame( $ip, $return->getUser()->getName() );
 
-		$actorId = $actorNormalization->findActorId( $user, $this->db );
+		$actorId = $actorNormalization->findActorId( $user, $this->getDb() );
 		$this->assertNotNull( $actorId );
 	}
 
@@ -3057,7 +3057,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testInsertRevisionOn_T202032() {
 		// This test only makes sense for MySQL
-		if ( $this->db->getType() !== 'mysql' ) {
+		if ( $this->getDb()->getType() !== 'mysql' ) {
 			$this->assertTrue( true );
 			return;
 		}
@@ -3065,12 +3065,12 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		// NOTE: must be done before checking MAX(rev_id)
 		$page = $this->getTestPage();
 
-		$maxRevId = $this->db->selectField( 'revision', 'MAX(rev_id)' );
+		$maxRevId = $this->getDb()->selectField( 'revision', 'MAX(rev_id)' );
 
 		// Construct a slot row that will conflict with the insertion of the next revision ID,
 		// to emulate the failure mode described in T202032. Nothing will ever read this row,
 		// we just need it to trigger a primary key conflict.
-		$this->db->insert( 'slots', [
+		$this->getDb()->insert( 'slots', [
 			'slot_revision_id' => $maxRevId + 1,
 			'slot_role_id' => 1,
 			'slot_content_id' => 0,
@@ -3085,7 +3085,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			->setPageId( $page->getId() );
 
 		$store = $this->getServiceContainer()->getRevisionStore();
-		$return = $store->insertRevisionOn( $rev, $this->db );
+		$return = $store->insertRevisionOn( $rev, $this->getDb() );
 
 		$this->assertSame( $maxRevId + 2, $return->getId() );
 
