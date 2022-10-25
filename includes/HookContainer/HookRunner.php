@@ -77,6 +77,7 @@ class HookRunner implements
 	\MediaWiki\Content\Hook\PageContentLanguageHook,
 	\MediaWiki\Content\Hook\PlaceNewSectionHook,
 	\MediaWiki\Content\Hook\SearchDataForIndexHook,
+	\MediaWiki\Content\Hook\SearchDataForIndex2Hook,
 	\MediaWiki\Specials\Contribute\Hook\ContributeCardsHook,
 	\MediaWiki\Diff\Hook\AbortDiffCacheHook,
 	\MediaWiki\Diff\Hook\ArticleContentOnDiffHook,
@@ -3294,12 +3295,19 @@ class HookRunner implements
 		);
 	}
 
-	public function onSearchDataForIndex( &$fields, $handler, $page, $output,
-		$engine
-	) {
+	public function onSearchDataForIndex( &$fields, $handler, $page, $output, $engine ) {
 		return $this->container->run(
 			'SearchDataForIndex',
 			[ &$fields, $handler, $page, $output, $engine ]
+		);
+	}
+
+	public function onSearchDataForIndex2( array &$fields, \ContentHandler $handler,
+		\WikiPage $page, \ParserOutput $output, \SearchEngine $engine, RevisionRecord $revision
+	) {
+		return $this->container->run(
+			'SearchDataForIndex2',
+			[ &$fields, $handler, $page, $output, $engine, $revision ]
 		);
 	}
 

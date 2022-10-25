@@ -66,6 +66,10 @@ For notes on 1.39.x and older releases, see HISTORY.
   passed to var_dump(), to make its use for debugging more feasible.
 * Added 'GetBlockErrorMessageKey' hook, allow extensions'
   block error messages to be received and displayed by BlockErrorFormatter.
+* Added an optional RevisionRecord param to:
+  - ContentHandler::getParserOutputForIndexing
+  - ContentHandler::getDataForSearchIndex
+  - the SearchDataForIndex hook is deprecated in favor of SearchDataForIndex2
 * …
 
 === External library changes in 1.40 ===

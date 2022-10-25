@@ -444,9 +444,9 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 				$fields['testDataField'] = 'test content';
 			} );
 
-		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
-		$output = $contentRenderer->getParserOutput( $page->getContent(), $title );
-		$data = $page->getContentHandler()->getDataForSearchIndex( $page, $output, $mockEngine );
+		$revision = $page->getRevisionRecord();
+		$output = $page->getContentHandler()->getParserOutputForIndexing( $page, null,  $revision );
+		$data = $page->getContentHandler()->getDataForSearchIndex( $page, $output, $mockEngine, $revision );
 		$this->assertArrayHasKey( 'text', $data );
 		$this->assertArrayHasKey( 'text_bytes', $data );
 		$this->assertArrayHasKey( 'language', $data );
@@ -461,8 +461,9 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	public function testParserOutputForIndexing() {
 		$title = Title::newFromText( 'Smithee', NS_MAIN );
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+		$revision = $page->getRevisionRecord();
 
-		$out = $page->getContentHandler()->getParserOutputForIndexing( $page );
+		$out = $page->getContentHandler()->getParserOutputForIndexing( $page, null, $revision );
 		$this->assertInstanceOf( ParserOutput::class, $out );
 		$this->assertStringContainsString( 'one who smiths', $out->getRawText() );
 	}
