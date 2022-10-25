@@ -1006,6 +1006,25 @@ class ParserTestRunner {
 	}
 
 	/**
+	 * Compute valid test modes based on requested modes and file-enabled modes
+	 * @param array $testModes
+	 * @param array $fileOptions
+	 * @return array
+	 */
+	public function computeValidTestModes( array $testModes, array $fileOptions ): array {
+		$modeRestriction = $fileOptions['parsoid-compatible'] ?? false;
+		if ( $modeRestriction !== false ) {
+			if ( is_string( $modeRestriction ) ) {
+				// shorthand
+				$modeRestriction = [ $modeRestriction ];
+			}
+			$testModes = array_values( array_intersect( $testModes, $modeRestriction ) );
+		}
+
+		return $testModes;
+	}
+
+	/**
 	 * Run the tests from a single file. staticSetup() and setupDatabase()
 	 * must have been called already.
 	 *
@@ -1013,17 +1032,23 @@ class ParserTestRunner {
 	 * @return bool True if passed all tests, false if any tests failed.
 	 */
 	public function runParsoidTests( string $filename ): bool {
-		$testModes = $this->getRequestedTestModes();
-		$skipMode = new ParserTestMode( $testModes[0] );
 		$testFileInfo = TestFileReader::read( $filename,
 			static function ( $msg ) {
 				wfDeprecatedMsg( $msg, '1.35', false, false );
 			}
 		);
 
+		// Intersect requested modes with test modes enabled in the file
+		$testModes = $this->computeValidTestModes(
+			$this->getRequestedTestModes(), $testFileInfo->fileOptions );
+
 		$this->checkSetupDone( 'staticSetup' );
 
 		// If any requirements are not met, mark all tests from the file as skipped
+		if ( !$testModes ) {
+			return true;
+		}
+		$skipMode = new ParserTestMode( $testModes[0] );
 		$skipMessage = $this->getFileSkipMessage( false, $testFileInfo->fileOptions, $filename );
 		if ( $skipMessage !== null ) {
 			foreach ( $testFileInfo->testCases as $test ) {
