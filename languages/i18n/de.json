@@ -1662,6 +1662,8 @@
 	"rcfilters-filter-categorization-description": "Einträge von Seiten, die zu Kategorien hinzugefügt oder aus ihnen entfernt wurden.",
 	"rcfilters-filter-logactions-label": "Logbucheinträge",
 	"rcfilters-filter-logactions-description": "Administrative Aktionen, Benutzerkontenerstellungen, Seitenlöschungen, hochgeladene Dateien …",
+	"rcfilters-filter-newuserlogactions-label": "Neue Benutzer",
+	"rcfilters-filter-newuserlogactions-description": "Logbucheinträge für die Benutzerkontoerstellung. Logbuch-Aktionen müssen ausgewählt werden.",
 	"rcfilters-hideminor-conflicts-typeofchange-global": "Der Filter „Kleine Bearbeitungen“ kollidiert mit einem oder mehreren Änderungstypfiltern, da bestimmte Änderungstypen nicht als „klein“ festgelegt werden können. Die kollidierenden Filter sind oben im Bereich der aktiven Filter markiert.",
 	"rcfilters-hideminor-conflicts-typeofchange": "Bestimmte Änderungstypen können nicht als „klein“ festgelegt werden, so dass dieser Filter mit den folgenden Änderungstypfiltern kollidiert: $1",
 	"rcfilters-typeofchange-conflicts-hideminor": "Dieser Änderungstypfilter kollidiert mit dem Filter „Kleine Bearbeitungen“. Bestimmte Änderungstypen können nicht als „klein“ festgelegt werden.",
