@@ -163,4 +163,38 @@ class SearchResultThumbnailProviderTest extends MediaWikiIntegrationTestCase {
 			$this->assertLessThanOrEqual( $expectedSize, $thumbnail->getHeight() );
 		}
 	}
+
+	/**
+	 * @covers \MediaWiki\Search\SearchResultThumbnailProvider::buildSearchResultThumbnailFromFile
+	 */
+	public function testBuildSearchResultThumbnailFromFileResultSize() {
+		$makeMockFile = function ( string $name, ?string $path = null ) {
+			$file = $this->createNoOpMock(
+				LocalFile::class,
+				[ 'transform', 'getName', 'getMimeType' ]
+			);
+
+			$thumb = new ThumbnailImage(
+				$file,
+				'https://media.example.com/static/thumb/' . $name,
+				$path ?: false,
+				[ 'width' => 100, 'height' => 100 ]
+			);
+
+			$file->method( 'transform' )->willReturn( $thumb );
+			$file->method( 'getName' )->willReturn( $name );
+			$file->method( 'getMimeType' )->willReturn( 'image/jpeg' );
+			return $file;
+		};
+
+		// no path available = nothing to generate a size from; expect null
+		$nullSize = $makeMockFile( 'Null_size.jpg' );
+		$result = $this->thumbnailProvider->buildSearchResultThumbnailFromFile( $nullSize );
+		$this->assertNull( $result->getSize() );
+
+		// mock with path to existing file; size (of that file) should be available
+		$hasSize = $makeMockFile( 'Has_size.jpg', __DIR__ . '/../../data/media/Wikimedia-logo.svg' );
+		$result = $this->thumbnailProvider->buildSearchResultThumbnailFromFile( $hasSize );
+		$this->assertEquals( 699, $result->getSize() );
+	}
 }
