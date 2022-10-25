@@ -55,6 +55,14 @@ use Wikimedia\WrappedStringList;
 class OutputPage extends ContextSource {
 	use ProtectedHookAccessorTrait;
 
+	// Constants for getJSVars()
+	private const JS_VAR_EARLY = 1;
+	private const JS_VAR_LATE = 2;
+
+	// Core config vars that opt-in to JS_VAR_LATE.
+	// Extensions use the 'LateJSConfigVarNames' attribute instead.
+	private const CORE_LATE_JS_CONFIG_VAR_NAMES = [];
+
 	/** @var string[][] Should be private. Used with addMeta() which adds "<meta>" */
 	protected $mMetatags = [];
 
@@ -3337,7 +3345,7 @@ class OutputPage extends ContextSource {
 					<= RL\Module::ORIGIN_CORE_INDIVIDUAL
 				) ? '1' : null,
 			] );
-			$rlClient->setConfig( $this->getJSVars() );
+			$rlClient->setConfig( $this->getJSVars( self::JS_VAR_EARLY ) );
 			$rlClient->setModules( $this->getModules( /*filter*/ true ) );
 			$rlClient->setModuleStyles( $moduleStyles );
 			$rlClient->setExemptStates( $exemptStates );
@@ -3500,14 +3508,17 @@ class OutputPage extends ContextSource {
 		// Legacy non-ResourceLoader scripts
 		$chunks[] = $this->mScripts;
 
+		$vars = $this->getJSVars( self::JS_VAR_LATE );
 		if ( $this->limitReportJSData ) {
+			$vars['wgPageParseReport'] = $this->limitReportJSData;
+		}
+		if ( $vars ) {
 			$chunks[] = ResourceLoader::makeInlineScript(
-				ResourceLoader::makeConfigSetScript(
-					[ 'wgPageParseReport' => $this->limitReportJSData ]
-				),
+				ResourceLoader::makeConfigSetScript( $vars ),
 				$this->CSP->getNonce()
 			);
 		}
+
 		// Keep the hook appendage separate to preserve WrappedString objects.
 		// This enables BaseTemplate::getTrail() to merge them where possible.
 		$this->getHookRunner()->onSkinAfterBottomScripts( $this->getSkin(), $extraHtml );
@@ -3549,13 +3560,22 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get an array containing the variables to be set in mw.config in JavaScript.
 	 *
-	 * Do not add things here which can be evaluated in RL\StartUpModule
-	 * - in other words, page-independent/site-wide variables (without state).
-	 * You will only be adding bloat to the html page and causing page caches to
-	 * have to be purged on configuration changes.
+	 * Do not add things here which can be evaluated in RL\StartUpModule,
+	 * in other words, page-independent/site-wide variables (without state).
+	 * These would add a blocking HTML cost to page rendering time, and require waiting for
+	 * HTTP caches to expire before configuration changes take effect everywhere.
+	 *
+	 * By default, these are loaded in the HTML head and block page rendering.
+	 * Config variable names can be set in CORE_LATE_JS_CONFIG_VAR_NAMES, or
+	 * for extensions via the 'LateJSConfigVarNames' attribute, to opt-in to
+	 * being sent from the end of the HTML body instead, to improve page load time.
+	 * In JavaScript, late variables should be accessed via mw.hook('wikipage.content').
+	 *
+	 * @param int|null $flag Return only the specified kind of variables: self::JS_VAR_EARLY or self::JS_VAR_LATE.
+	 *   For internal use only.
 	 * @return array
 	 */
-	public function getJSVars() {
+	public function getJSVars( ?int $flag = null ) {
 		$curRevisionId = 0;
 		$articleId = 0;
 		$canonicalSpecialPageName = false; # T23115
@@ -3694,7 +3714,22 @@ class OutputPage extends ContextSource {
 		$this->getHookRunner()->onMakeGlobalVariablesScript( $vars, $this );
 
 		// Merge in variables from addJsConfigVars last
-		return array_merge( $vars, $this->getJsConfigVars() );
+		$vars = array_merge( $vars, $this->getJsConfigVars() );
+
+		// Return only early or late vars if requested
+		if ( $flag !== null ) {
+			$lateVarNames =
+				array_fill_keys( self::CORE_LATE_JS_CONFIG_VAR_NAMES, true ) +
+				array_fill_keys( ExtensionRegistry::getInstance()->getAttribute( 'LateJSConfigVarNames' ), true );
+			foreach ( array_keys( $vars ) as $name ) {
+				// If the variable's late flag doesn't match the requested late flag, unset it
+				if ( isset( $lateVarNames[ $name ] ) !== ( $flag === self::JS_VAR_LATE ) ) {
+					unset( $vars[ $name ] );
+				}
+			}
+		}
+
+		return $vars;
 	}
 
 	/**
