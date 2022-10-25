@@ -1490,12 +1490,6 @@ class MainConfigNames {
 	public const WANObjectCaches = 'WANObjectCaches';
 
 	/**
-	 * Name constant for the EnableWANCacheReaper setting, for use with Config::get()
-	 * @see MainConfigSchema::EnableWANCacheReaper
-	 */
-	public const EnableWANCacheReaper = 'EnableWANCacheReaper';
-
-	/**
 	 * Name constant for the MainStash setting, for use with Config::get()
 	 * @see MainConfigSchema::MainStash
 	 */

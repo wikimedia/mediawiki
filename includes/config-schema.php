@@ -506,7 +506,6 @@ return [
 					'cacheId' => 0,
 				],
 			],
-			'EnableWANCacheReaper' => false,
 			'MainStash' => 'db-replicated',
 			'ParsoidCacheConfig' => [
 				'StashType' => null,
@@ -2601,7 +2600,6 @@ return [
 				2 => 'boolean',
 			],
 			'WANObjectCaches' => 'object',
-			'EnableWANCacheReaper' => 'boolean',
 			'ParsoidCacheConfig' => 'object',
 			'ChronologyProtectorStash' => [
 				0 => 'string',

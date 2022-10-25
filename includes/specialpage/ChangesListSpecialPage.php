@@ -18,7 +18,6 @@
  * @file
  */
 
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader as RL;
@@ -687,14 +686,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$this->getOutput()->setStatusCode( 500 );
 			$this->webOutputHeader( 0, $opts );
 			$this->outputTimeout();
-		}
-
-		if ( $this->getConfig()->get( MainConfigNames::EnableWANCacheReaper ) ) {
-			// Clean up any bad page entries for titles showing up in RC
-			DeferredUpdates::addUpdate( new WANCacheReapUpdate(
-				$this->getDB(),
-				LoggerFactory::getInstance( 'objectcache' )
-			) );
 		}
 
 		$this->includeRcFiltersApp();

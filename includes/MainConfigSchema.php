@@ -3933,21 +3933,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Verify and enforce WAN cache purges using reliable DB sources as streams.
-	 *
-	 * These secondary cache purges are de-duplicated via simple cache mutexes.
-	 * This improves consistency when cache purges are lost, which becomes more likely
-	 * as more cache servers are added or if there are multiple datacenters. Only keys
-	 * related to important mutable content will be checked.
-	 *
-	 * @since 1.29
-	 */
-	public const EnableWANCacheReaper = [
-		'default' => false,
-		'type' => 'boolean',
-	];
-
-	/**
 	 * The object store type of the main stash.
 	 *
 	 * This should be a fast storage system optimized for lightweight data, both ephemeral and

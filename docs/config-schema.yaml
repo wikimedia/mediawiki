@@ -2429,16 +2429,6 @@ config-schema:
             ];
             ```
             @since 1.26
-    EnableWANCacheReaper:
-        default: false
-        type: boolean
-        description: |-
-            Verify and enforce WAN cache purges using reliable DB sources as streams.
-            These secondary cache purges are de-duplicated via simple cache mutexes.
-            This improves consistency when cache purges are lost, which becomes more likely
-            as more cache servers are added or if there are multiple datacenters. Only keys
-            related to important mutable content will be checked.
-            @since 1.29
     MainStash:
         default: db-replicated
         description: |-

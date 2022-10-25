@@ -3262,17 +3262,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	}
 
 	/**
-	 * @param WANObjectCache $cache
-	 * @return string[]
-	 * @since 1.28
-	 */
-	public function getMutableCacheKeys( WANObjectCache $cache ) {
-		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-
-		return $linkCache->getMutableCacheKeys( $cache, $this->getTitle() );
-	}
-
-	/**
 	 * Ensure consistency when unserializing.
 	 * @note WikiPage objects should never be serialized in the first place.
 	 * But some extensions like AbuseFilter did (see T213006),
