@@ -3731,7 +3731,7 @@
 	"search-match-redirect-label": "Omdiriger til nøyaktig treff når man søker",
 	"search-match-redirect-help": "Velg denne for å bli omdirigert til siden når sidetittelen er nøyaktig det samme som det du søkte etter",
 	"search-thumbnail-extra-namespaces-label": "Vis miniatyrbilder i Spesial:Søk",
-	"search-thumbnail-extra-namespaces-message": "Vis også miniatyrbilder for {{PLURAL:$2|navnerommet|navnerommene}} $1. Miniatyrbilder for {{PLURAL:$4|navnerommet|navnerommene}} $3 vises alltid.",
+	"search-thumbnail-extra-namespaces-message": "Vis også miniatyrbilder for {{PLURAL:$2|navnerommet|navnerommene}} $1. Miniatyrbilder vises alltid for $3.",
 	"searchlimit-label": "Antall søkeresultater som skal vises på hver side:",
 	"searchlimit-help": "Maksimalt antall: $1",
 	"api-clientside-error-noconnect": "Kunne ikke koble til tjeneren. Sjekk at internettforbindelsen din virker og prøv igjen.",
