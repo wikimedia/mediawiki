@@ -3238,6 +3238,22 @@ class MainConfigSchema {
 		'type' => 'integer',
 	];
 
+	/**
+	 * Externallinks table schema migration stage.
+	 *
+	 * Use the SCHEMA_COMPAT_XXX flags. Supported values:
+	 *
+	 *   - SCHEMA_COMPAT_OLD
+	 *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
+	 *
+	 * History:
+	 *   - 1.40: Added
+	 */
+	public const ExternalLinksSchemaMigrationStage = [
+		'default' => SCHEMA_COMPAT_OLD,
+		'type' => 'integer',
+	];
+
 	// endregion -- End of DB settings
 
 	/***************************************************************************/

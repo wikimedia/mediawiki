@@ -1227,6 +1227,12 @@ $wgMaxExecutionTimeForExpensiveQueries = null;
 $wgTemplateLinksSchemaMigrationStage = null;
 
 /**
+ * Config variable stub for the ExternalLinksSchemaMigrationStage setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ExternalLinksSchemaMigrationStage
+ */
+$wgExternalLinksSchemaMigrationStage = null;
+
+/**
  * Config variable stub for the ContentHandlers setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ContentHandlers
  */

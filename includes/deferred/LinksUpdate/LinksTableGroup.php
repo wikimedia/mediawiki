@@ -38,7 +38,10 @@ class LinksTableGroup {
 			'needCollation' => true,
 		],
 		'externallinks' => [
-			'class' => ExternalLinksTable::class
+			'class' => ExternalLinksTable::class,
+			'services' => [
+				'MainConfig'
+			],
 		],
 		'imagelinks' => [
 			'class' => ImageLinksTable::class
