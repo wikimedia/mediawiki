@@ -80,10 +80,10 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Export\WikiExporterFactory;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
-use MediaWiki\HookContainer\DeprecatedHooks;
-use MediaWiki\HookContainer\GlobalHookRegistry;
+use MediaWiki\HookContainer\FauxGlobalHookArray;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
@@ -740,14 +740,29 @@ return [
 	},
 
 	'HookContainer' => static function ( MediaWikiServices $services ): HookContainer {
+		// NOTE: This is called while $services is being initialized, in order to call the
+		//       MediaWikiServices hook.
+
+		$configHooks = $services->getBootstrapConfig()->get( MainConfigNames::Hooks );
+
+		// If we are instantiating this service after $wgHooks was replaced by a fake,
+		// get the original array out of the object. This should only happen in the installer,
+		// when it calls resetMediaWikiServices().
+		if ( $configHooks instanceof FauxGlobalHookArray ) {
+			$configHooks = $configHooks->getOriginalArray();
+		}
+
 		$extRegistry = ExtensionRegistry::getInstance();
+		$extHooks = $extRegistry->getAttribute( 'Hooks' );
 		$extDeprecatedHooks = $extRegistry->getAttribute( 'DeprecatedHooks' );
-		$deprecatedHooks = new DeprecatedHooks( $extDeprecatedHooks );
-		$hookRegistry = new GlobalHookRegistry( $extRegistry, $deprecatedHooks );
-		return new HookContainer(
+
+		$hookRegistry = new StaticHookRegistry( $configHooks, $extHooks, $extDeprecatedHooks );
+		$hookContainer = new HookContainer(
 			$hookRegistry,
 			$services->getObjectFactory()
 		);
+
+		return $hookContainer;
 	},
 
 	'HtmlCacheUpdater' => static function ( MediaWikiServices $services ): HtmlCacheUpdater {

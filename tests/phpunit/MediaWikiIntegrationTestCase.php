@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\HookContainer\FauxGlobalHookArray;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\Logger\LegacySpi;
@@ -1054,12 +1055,19 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		if ( !isset( $GLOBALS[$name] ) ) {
 			$merged = $values;
 		} else {
-			if ( !is_array( $GLOBALS[$name] ) ) {
+			// NOTE: do not use array_merge, it screws up for numeric keys.
+			$merged = $GLOBALS[$name];
+
+			// HACK for fake $wgHooks. Replace it with the original array here,
+			// then let resetLegacyGlobals() turn it back into a fake.
+			if ( $merged instanceof FauxGlobalHookArray ) {
+				$merged = $merged->getOriginalArray();
+			}
+
+			if ( !is_array( $merged ) ) {
 				throw new MWException( "MW global $name is not an array." );
 			}
 
-			// NOTE: do not use array_merge, it screws up for numeric keys.
-			$merged = $GLOBALS[$name];
 			foreach ( $values as $k => $v ) {
 				$merged[$k] = $v;
 			}
@@ -1110,7 +1118,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			}
 		}
 
-		self::resetLegacyGlobals();
+		self::resetLegacyGlobals( $this->localServices );
 	}
 
 	/**
@@ -1187,7 +1195,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$newInstance->redefineService( $name, $callback );
 		}
 
-		self::resetLegacyGlobals();
+		self::resetLegacyGlobals( $newInstance );
 
 		return $newInstance;
 	}
@@ -1301,7 +1309,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		MediaWikiServices::forceGlobalInstance( $newServices );
 
-		self::resetLegacyGlobals();
+		self::resetLegacyGlobals( $newServices );
 
 		return $newServices;
 	}
@@ -1331,12 +1339,21 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		MediaWikiServices::forceGlobalInstance( self::$originalServices );
 		$currentServices->destroy();
 
-		self::resetLegacyGlobals();
+		self::resetLegacyGlobals( self::$originalServices );
 
 		return true;
 	}
 
-	private static function resetLegacyGlobals() {
+	private static function resetLegacyGlobals( MediaWikiServices $services ) {
+		global $wgHooks;
+
+		$hooks = $wgHooks instanceof FauxGlobalHookArray ? $wgHooks->getOriginalArray() : $wgHooks;
+
+		$wgHooks = new FauxGlobalHookArray(
+			$services->getHookContainer(),
+			$hooks
+		);
+
 		ParserOptions::clearStaticCache();
 
 		// User objects may hold service references!
