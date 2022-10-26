@@ -127,7 +127,6 @@ class SpecialPage implements MessageLocalizer {
 	 * @param string|false $subpage Subpage string, or false to not use a subpage
 	 * @param string $fragment The link fragment (after the "#")
 	 * @return Title
-	 * @throws MWException
 	 */
 	public static function getTitleFor( $name, $subpage = false, $fragment = '' ) {
 		return Title::newFromLinkTarget(
