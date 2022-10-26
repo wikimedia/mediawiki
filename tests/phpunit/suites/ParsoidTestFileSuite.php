@@ -46,22 +46,14 @@ class ParsoidTestFileSuite extends TestSuite {
 		if ( $skipMessage !== null ) {
 			return;
 		}
-		$validTestModes = $this->ptRunner->getRequestedTestModes();
 		// Dummy mode, for the purpose of satisfying the signature of getTestSkipMessage
 		// Only used for an isLegacy check, which should always be false for this file
 		$skipMode = new ParserTestMode( 'not-legacy' );
 
 		// This is expected to be set at this point. $skipMessage above will have
 		// skipped the file if not.
-		$modeRestriction = $this->ptFileInfo->fileOptions['parsoid-compatible'];
-		// Treat 'parsoid-compatible' as enabling all modes.
-		if ( $modeRestriction !== '' ) {
-			if ( is_string( $modeRestriction ) ) {
-				// shorthand
-				$modeRestriction = [ $modeRestriction ];
-			}
-			$validTestModes = array_intersect( $validTestModes, $modeRestriction );
-		}
+		$validTestModes = $this->ptRunner->computeValidTestModes(
+			$this->ptRunner->getRequestedTestModes(), $this->ptFileInfo->fileOptions );
 
 		$suite = $this;
 		foreach ( $this->ptFileInfo->testCases as $t ) {

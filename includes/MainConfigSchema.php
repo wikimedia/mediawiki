@@ -3238,6 +3238,22 @@ class MainConfigSchema {
 		'type' => 'integer',
 	];
 
+	/**
+	 * Externallinks table schema migration stage.
+	 *
+	 * Use the SCHEMA_COMPAT_XXX flags. Supported values:
+	 *
+	 *   - SCHEMA_COMPAT_OLD
+	 *   - SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD
+	 *
+	 * History:
+	 *   - 1.40: Added
+	 */
+	public const ExternalLinksSchemaMigrationStage = [
+		'default' => SCHEMA_COMPAT_OLD,
+		'type' => 'integer',
+	];
+
 	// endregion -- End of DB settings
 
 	/***************************************************************************/
@@ -3914,21 +3930,6 @@ class MainConfigSchema {
 			]
 		],
 		'type' => 'map',
-	];
-
-	/**
-	 * Verify and enforce WAN cache purges using reliable DB sources as streams.
-	 *
-	 * These secondary cache purges are de-duplicated via simple cache mutexes.
-	 * This improves consistency when cache purges are lost, which becomes more likely
-	 * as more cache servers are added or if there are multiple datacenters. Only keys
-	 * related to important mutable content will be checked.
-	 *
-	 * @since 1.29
-	 */
-	public const EnableWANCacheReaper = [
-		'default' => false,
-		'type' => 'boolean',
 	];
 
 	/**

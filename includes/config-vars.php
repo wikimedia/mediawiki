@@ -1227,6 +1227,12 @@ $wgMaxExecutionTimeForExpensiveQueries = null;
 $wgTemplateLinksSchemaMigrationStage = null;
 
 /**
+ * Config variable stub for the ExternalLinksSchemaMigrationStage setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ExternalLinksSchemaMigrationStage
+ */
+$wgExternalLinksSchemaMigrationStage = null;
+
+/**
  * Config variable stub for the ContentHandlers setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ContentHandlers
  */
@@ -1466,12 +1472,6 @@ $wgMainWANCache = null;
  * @see MediaWiki\MainConfigSchema::WANObjectCaches
  */
 $wgWANObjectCaches = null;
-
-/**
- * Config variable stub for the EnableWANCacheReaper setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::EnableWANCacheReaper
- */
-$wgEnableWANCacheReaper = null;
 
 /**
  * Config variable stub for the MainStash setting, for use by phpdoc and IDEs.

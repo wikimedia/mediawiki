@@ -66,6 +66,10 @@ For notes on 1.39.x and older releases, see HISTORY.
   passed to var_dump(), to make its use for debugging more feasible.
 * Added 'GetBlockErrorMessageKey' hook, allow extensions'
   block error messages to be received and displayed by BlockErrorFormatter.
+* Added an optional RevisionRecord param to:
+  - ContentHandler::getParserOutputForIndexing
+  - ContentHandler::getDataForSearchIndex
+  - the SearchDataForIndex hook is deprecated in favor of SearchDataForIndex2
 * …
 
 === External library changes in 1.40 ===
@@ -78,7 +82,7 @@ For notes on 1.39.x and older releases, see HISTORY.
 
 ==== Changed external libraries ====
 * Updated OOUI from v0.44.3 to v0.45.0.
-* Updated codex, codex-search, and codex-icons from v0.1.1 to v0.2.1.
+* Updated codex, codex-search, and codex-icons from v0.1.1 to v0.2.2.
 * Updated justinrainbow/json-schema from 5.2.11 to 5.2.12.
 * Updated symfony/yaml from 5.4.10 to 5.4.12.
 * Updated pear/net_smtp from 0.10.0 to 0.10.1.
@@ -132,6 +136,8 @@ because of Phabricator reports.
     It had no known usages.
 * BagOStuff::makeKeyInternal(), deprecated for public use in 1.36, is now a
   protected method of MediumSpecificBagOStuff.
+* WANObjectCache::reap() and WANObjectCache::reapCheckKey(), deprecated since
+  1.39, have been removed.
 * The EnqueueJob class, unused since 1.31, has been removed without
   deprecation.
 * ContextSource::getStats, deprecated since 1.27, has been removed.
@@ -147,6 +153,7 @@ because of Phabricator reports.
   been removed.
 * Global function wfQueriesMustScale, deprecated since 1.39, has been removed.
 * Global function wfLogProfilingData, deprecated since 1.38, has been removed.
+* Linker::normaliseSpecialPage(), deprecated since 1.35, has been removed.
 * JobQueueGroup::singleton() and ::destroySingletons(), deprecated since 1.37,
   have been removed.
 * Collation::singleton() and ::factory(), deprecated since 1.37, have been

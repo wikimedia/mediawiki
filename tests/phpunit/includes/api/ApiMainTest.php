@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\DBQueryError;
@@ -105,10 +106,10 @@ class ApiMainTest extends ApiTestCase {
 
 	public function testSuppressedLogin() {
 		// Testing some logic that changes the global $wgUser
-		// ApiMain will be setting it to a StubGlobalUser object, it should already
+		// ApiMain will be setting it to a MediaWiki\StubObject\StubGlobalUser object, it should already
 		// be one but in case its a full User object we will wrap the comparisons
-		// in StubGlobalUser::getRealUser() which will return the inner User object
-		// for a StubGlobalUser, or the actual User object if given a user.
+		// in MediaWiki\StubObject\StubGlobalUser::getRealUser() which will return the inner User object
+		// for a MediaWiki\StubObject\StubGlobalUser, or the actual User object if given a user.
 
 		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser
 		global $wgUser;

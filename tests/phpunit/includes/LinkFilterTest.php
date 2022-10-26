@@ -229,8 +229,9 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 		$matches = 0;
 
 		foreach ( $indexes as $index ) {
-			$matches += preg_match( $regex, $index );
-			$debugmsg .= "\t'$index'\n";
+			$indexString = implode( '', $index );
+			$matches += preg_match( $regex, $indexString );
+			$debugmsg .= "\t'$indexString'\n";
 		}
 
 		if ( !empty( $options['found'] ) ) {
@@ -313,34 +314,34 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			// Testcase for T30627
 			[
 				'https://example.org/test.cgi?id=12345',
-				[ 'https://org.example./test.cgi?id=12345' ]
+				[ [ 'https://org.example.', '/test.cgi?id=12345' ] ]
 			],
 			[
 				// mailtos are handled special
 				'mailto:wiki@wikimedia.org',
-				[ 'mailto:org.wikimedia.@wiki' ]
+				[ [ 'mailto:org.wikimedia.@wiki', '' ] ]
 			],
 			[
 				// mailtos are handled special
 				'mailto:wiki',
-				[ 'mailto:@wiki' ]
+				[ [ 'mailto:@wiki', '' ] ]
 			],
 
 			// file URL cases per T30627...
 			[
 				// three slashes: local filesystem path Unix-style
 				'file:///whatever/you/like.txt',
-				[ 'file://./whatever/you/like.txt' ]
+				[ [ 'file://.', '/whatever/you/like.txt' ] ]
 			],
 			[
 				// three slashes: local filesystem path Windows-style
 				'file:///c:/whatever/you/like.txt',
-				[ 'file://./c:/whatever/you/like.txt' ]
+				[ [ 'file://.', '/c:/whatever/you/like.txt' ] ]
 			],
 			[
 				// two slashes: UNC filesystem path Windows-style
 				'file://intranet/whatever/you/like.txt',
-				[ 'file://intranet./whatever/you/like.txt' ]
+				[ [ 'file://intranet.', '/whatever/you/like.txt' ] ]
 			],
 			// Multiple-slash cases that can sorta work on Mozilla
 			// if you hack it just right are kinda pathological,
@@ -353,39 +354,39 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			[
 				'//example.org/test.cgi?id=12345',
 				[
-					'http://org.example./test.cgi?id=12345',
-					'https://org.example./test.cgi?id=12345'
+					[ 'http://org.example.', '/test.cgi?id=12345' ],
+					[ 'https://org.example.', '/test.cgi?id=12345' ]
 				]
 			],
 
 			// IP addresses
 			[
 				'http://192.0.2.0/foo',
-				[ 'http://V4.192.0.2.0./foo' ]
+				[ [ 'http://V4.192.0.2.0.', '/foo' ] ]
 			],
 			[
 				'http://192.0.0002.0/foo',
-				[ 'http://V4.192.0.2.0./foo' ]
+				[ [ 'http://V4.192.0.2.0.', '/foo' ] ]
 			],
 			[
 				'http://[2001:db8::1]/foo',
-				[ 'http://V6.2001.DB8.0.0.0.0.0.1./foo' ]
+				[ [ 'http://V6.2001.DB8.0.0.0.0.0.1.', '/foo' ] ]
 			],
 
 			// Explicit specification of the DNS root
 			[
 				'http://example.com./foo',
-				[ 'http://com.example./foo' ]
+				[ [ 'http://com.example.', '/foo' ] ]
 			],
 			[
 				'http://192.0.2.0./foo',
-				[ 'http://V4.192.0.2.0./foo' ]
+				[ [ 'http://V4.192.0.2.0.', '/foo' ] ]
 			],
 
 			// Weird edge case
 			[
 				'http://.example.com/foo',
-				[ 'http://com.example../foo' ]
+				[ [ 'http://com.example..', '/foo' ] ]
 			],
 		];
 	}

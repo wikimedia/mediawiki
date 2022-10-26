@@ -506,7 +506,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$i = $this->getWriterIndex();
 		} elseif ( $i === self::DB_REPLICA ) {
 			foreach ( $groups as $group ) {
-				$groupIndex = $this->getReaderIndex( $group, $domain );
+				$groupIndex = $this->getReaderIndex( $group );
 				if ( $groupIndex !== false ) {
 					$i = $groupIndex; // group connection succeeded
 					break;
@@ -525,8 +525,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return $i;
 	}
 
-	public function getReaderIndex( $group = false, $domain = false ) {
-		$domain = $this->resolveDomainID( $domain );
+	public function getReaderIndex( $group = false ) {
 		$group = is_string( $group ) ? $group : self::GROUP_GENERIC;
 
 		if ( $this->getServerCount() == 1 ) {
@@ -630,7 +629,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			} else {
 				$i = false;
 				if ( $this->waitForPos && $this->waitForPos->asOfTime() ) {
-					$this->replLogger->debug( __METHOD__ . ": replication positions detected" );
+					$this->replLogger->debug( __METHOD__ . ": session has replication position" );
 					// "chronologyCallback" sets "waitForPos" for session consistency.
 					// This triggers doWait() after connect, so it's especially good to
 					// avoid lagged servers so as to avoid excessive delay in that method.
@@ -644,9 +643,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				}
 				if ( $i === false && count( $currentLoads ) ) {
 					// All replica DBs lagged. Switch to read-only mode
-					$this->replLogger->error(
-						__METHOD__ . ": all replica DBs lagged. Switch to read-only mode"
-					);
+					$this->replLogger->error( __METHOD__ . ": excessive replication lag" );
 					$i = ArrayUtils::pickRandom( $currentLoads );
 					$laggedReplicaMode = true;
 				}
@@ -656,22 +653,20 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				// pickRandom() returned false.
 				// This is permanent and means the configuration or the load monitor
 				// wants us to return false.
-				$this->connLogger->debug( __METHOD__ . ": pickRandom() returned false" );
+				$this->connLogger->debug( __METHOD__ . ": no suitable server found" );
 
 				return [ false, false ];
 			}
 
 			$serverName = $this->getServerName( $i );
-			$this->connLogger->debug( __METHOD__ . ": Using reader #$i: $serverName..." );
+			$this->connLogger->debug( __METHOD__ . ": connecting to $serverName..." );
 
 			// Get a connection to this server without triggering complementary connections
 			// to other servers (due to things like lag or read-only checks). We want to avoid
 			// the risk of overhead and recursion here.
 			$conn = $this->getServerConnection( $i, self::DOMAIN_ANY, self::CONN_SILENCE_ERRORS );
 			if ( !$conn ) {
-				$this->connLogger->warning(
-					__METHOD__ . ": failed connecting to $i/{db_domain}"
-				);
+				$this->connLogger->warning( __METHOD__ . ": failed connecting to $serverName" );
 				unset( $currentLoads[$i] ); // avoid this server next iteration
 				$i = false;
 				continue;
@@ -949,15 +944,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	public function getServerConnection( $i, $domain, $flags = 0 ) {
 		$domainInstance = DatabaseDomain::newFromId( $domain );
-
 		// Number of connections made before getting the server index and handle
 		$priorConnectionsMade = $this->connectionCounter;
 		// Get an open connection to this server (might trigger a new connection)
-		$conn = $this->reuseOrOpenConnectionForNewRef(
-			$i,
-			$domainInstance,
-			$flags
-		);
+		$conn = $this->reuseOrOpenConnectionForNewRef( $i, $domainInstance, $flags );
 		// Throw an error or otherwise bail out if the connection attempt failed
 		if ( !( $conn instanceof IDatabase ) ) {
 			if ( !self::fieldHasBit( $flags, self::CONN_SILENCE_ERRORS ) ) {
@@ -1101,15 +1091,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			if ( $isShareable ) {
 				$conn = $poolConn;
 				// Make any required DB domain changes for the new reference
-				if ( !$domain->equals( $conn->getDomainID() ) ) {
-					if ( $domain->getDatabase() !== null ) {
-						// Select the new database, schema, and prefix
-						$conn->selectDomain( $domain );
-					} else {
-						// Stay on the current database, but update the schema/prefix
-						$conn->dbSchema( $domain->getSchema() );
-						$conn->tablePrefix( $domain->getTablePrefix() );
-					}
+				if ( !$domain->isUnspecified() ) {
+					$conn->selectDomain( $domain );
 				}
 				$this->connLogger->debug( __METHOD__ . ": reusing connection for $i/$domain" );
 				break;
@@ -1971,7 +1954,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		if ( $this->hasStreamingReplicaServers() ) {
 			// This will set "laggedReplicaMode" as needed
-			$this->getReaderIndex( self::GROUP_GENERIC, self::DOMAIN_ANY );
+			$this->getReaderIndex( self::GROUP_GENERIC );
 		}
 
 		return $this->laggedReplicaMode;

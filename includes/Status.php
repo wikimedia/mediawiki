@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\StubObject\StubUserLang;
 
 /**
  * Generic operation result class

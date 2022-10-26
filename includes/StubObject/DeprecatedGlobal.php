@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\StubObject;
+
 /**
  * Class to allow throwing wfDeprecated warnings
  * when people use globals that we do not want them to.
@@ -44,10 +46,10 @@ class DeprecatedGlobal extends StubObject {
 		 * that gives the function that uses this object, since:
 		 *
 		 * 1 = this function ( _newObject )
-		 * 2 = StubObject::_unstub
-		 * 3 = StubObject::_call
-		 * 4 = StubObject::__call
-		 * 5 = DeprecatedGlobal::<method of global called>
+		 * 2 = MediaWiki\StubObject\StubObject::_unstub
+		 * 3 = MediaWiki\StubObject\StubObject::_call
+		 * 4 = MediaWiki\StubObject\StubObject::__call
+		 * 5 = MediaWiki\StubObject\DeprecatedGlobal::<method of global called>
 		 * 6 = Actual function using the global.
 		 * (the same applies to _get/__get or _set/__set instead of _call/__call)
 		 *
@@ -59,3 +61,5 @@ class DeprecatedGlobal extends StubObject {
 		return parent::_newObject();
 	}
 }
+
+class_alias( DeprecatedGlobal::class, 'DeprecatedGlobal' );

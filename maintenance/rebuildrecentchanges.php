@@ -316,7 +316,7 @@ class RebuildRecentchanges extends Maintenance {
 				'log_type' => array_diff( LogPage::validTypes(), $nonRCLogs ),
 			],
 			__METHOD__,
-			[ 'ORDER BY' => 'log_timestamp DESC' ],
+			[ 'ORDER BY' => [ 'log_timestamp DESC', 'log_id DESC' ] ],
 			$commentQuery['joins']
 		);
 

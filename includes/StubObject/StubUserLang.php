@@ -18,6 +18,11 @@
  * @file
  */
 
+namespace MediaWiki\StubObject;
+
+use Language;
+use RequestContext;
+
 /**
  * Stub object for the user language. Assigned to the $wgLang global.
  */
@@ -30,7 +35,10 @@ class StubUserLang extends StubObject {
 	/**
 	 * @return Language
 	 */
+	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	public function _newObject() {
 		return RequestContext::getMain()->getLanguage();
 	}
 }
+
+class_alias( StubUserLang::class, 'StubUserLang' );

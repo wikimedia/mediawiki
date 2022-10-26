@@ -18,6 +18,11 @@
  * @file
  */
 
+namespace MediaWiki\StubObject;
+
+use InvalidArgumentException;
+use User;
+
 /**
  * Stub object for the global user ($wgUser) that makes it possible to change the
  * relevant underlying object while still ensuring that deprecation warnings will
@@ -47,17 +52,18 @@ class StubGlobalUser extends StubObject {
 	/**
 	 * @return User
 	 */
+	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	public function _newObject() {
-		// Based on DeprecatedGlobal::_newObject
+		// Based on MediaWiki\StubObject\DeprecatedGlobal::_newObject
 		/*
 		 * Put the caller offset for wfDeprecated as 6, as
 		 * that gives the function that uses this object, since:
 		 *
 		 * 1 = this function ( _newObject )
-		 * 2 = StubGlobalUser::_unstub
-		 * 3 = StubObject::_call
-		 * 4 = StubObject::__call
-		 * 5 = StubGlobalUser::<method of global called>
+		 * 2 = MediaWiki\StubObject\StubGlobalUser::_unstub
+		 * 3 = MediaWiki\StubObject\StubObject::_call
+		 * 4 = MediaWiki\StubObject\StubObject::__call
+		 * 5 = MediaWiki\StubObject\StubGlobalUser::<method of global called>
 		 * 6 = Actual function using the global.
 		 * (the same applies to _get/__get or _set/__set instead of _call/__call)
 		 *
@@ -82,7 +88,7 @@ class StubGlobalUser extends StubObject {
 		global $wgUser;
 
 		self::$destructorDeprecationDisarmed = true;
-		// Supports StubGlobalUser parameter in case something fetched the existing value of
+		// Supports MediaWiki\StubObject\StubGlobalUser parameter in case something fetched the existing value of
 		// $wgUser, set it to something else, and now is trying to restore it
 		$realUser = self::getRealUser( $user );
 		$wgUser = new self( $realUser );
@@ -90,8 +96,8 @@ class StubGlobalUser extends StubObject {
 	}
 
 	/**
-	 * Get the relevant "real" user object based on either a User object or a StubGlobalUser
-	 * wrapper. Bypasses deprecation notices from converting a StubGlobalUser to an actual
+	 * Get the relevant "real" user object based on either a User object or a MediaWiki\StubObject\StubGlobalUser
+	 * wrapper. Bypasses deprecation notices from converting a MediaWiki\StubObject\StubGlobalUser to an actual
 	 * user, and does not change $wgUser.
 	 *
 	 * @param StubGlobalUser|User $globalUser
@@ -104,8 +110,8 @@ class StubGlobalUser extends StubObject {
 			return $globalUser;
 		} else {
 			throw new InvalidArgumentException(
-				'$globalUser must be a User (or StubGlobalUser), got ' .
-					( is_object( $globalUser ) ? get_class( $globalUser ) : gettype( $globalUser ) )
+				'$globalUser must be a User (or MediaWiki\StubObject\StubGlobalUser), got ' .
+				( is_object( $globalUser ) ? get_class( $globalUser ) : gettype( $globalUser ) )
 			);
 		}
 	}
@@ -116,7 +122,7 @@ class StubGlobalUser extends StubObject {
 	 * This is public, for the convenience of external callers wishing to access
 	 * properties, e.g. eval.php
 	 *
-	 * Overriding StubObject::_unstub because for some reason that thinks there is
+	 * Overriding MediaWiki\StubObject\StubObject::_unstub because for some reason that thinks there is
 	 * an unstub loop when trying to use the magic __set() logic, but there isn't
 	 * any loop because _newObject() returns a specific instance of User rather
 	 * than calling any methods that could then try to use $wgUser. The main difference
@@ -128,6 +134,7 @@ class StubGlobalUser extends StubObject {
 	 *   who called this function.
 	 * @return User The unstubbed version
 	 */
+	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	public function _unstub( $name = '_unstub', $level = 2 ) {
 		if ( !$GLOBALS[$this->global] instanceof self ) {
 			return $GLOBALS[$this->global]; // already unstubbed.
@@ -146,3 +153,5 @@ class StubGlobalUser extends StubObject {
 		}
 	}
 }
+
+class_alias( StubGlobalUser::class, 'StubGlobalUser' );

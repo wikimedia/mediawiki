@@ -31,6 +31,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
+use MediaWiki\StubObject\StubGlobalUser;
 use Wikimedia\AtEase\AtEase;
 
 /**

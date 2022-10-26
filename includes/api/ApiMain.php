@@ -28,6 +28,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Rest\HeaderParser\Origin;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\User\UserRigorOptions;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\ParamValidator\ParamValidator;

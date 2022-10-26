@@ -25,6 +25,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\StubObject\StubGlobalUser;
 
 require_once __DIR__ . '/Maintenance.php';
 

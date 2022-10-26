@@ -168,10 +168,9 @@ interface ILoadBalancer {
 	 * since the acquired connection for each group is preserved.
 	 *
 	 * @param string|false $group Query group or false for the generic group
-	 * @param string|false $domain DB domain ID or false for the local domain
 	 * @return int|false Specific server index, or false if no DB handle can be obtained
 	 */
-	public function getReaderIndex( $group = false, $domain = false );
+	public function getReaderIndex( $group = false );
 
 	/**
 	 * Set the primary position to reach before the next generic group DB query

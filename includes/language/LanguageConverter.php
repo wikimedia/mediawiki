@@ -29,6 +29,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\StubObject\StubUserLang;
 
 /**
  * Base class for multi-variant language conversion.

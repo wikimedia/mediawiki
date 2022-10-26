@@ -20,13 +20,14 @@
  */
 
 // phpcs:disable MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser
+use MediaWiki\StubObject\StubGlobalUser;
 
 /**
- * Tests the StubGlobalUser, including magic support for __get() and __set()
+ * Tests the MediaWiki\StubObject\StubGlobalUser, including magic support for __get() and __set()
  *
  * @author DannyS712
  *
- * @covers \StubGlobalUser
+ * @covers \MediaWiki\StubObject\StubGlobalUser
  */
 class StubGlobalUserTest extends MediaWikiIntegrationTestCase {
 
@@ -68,7 +69,7 @@ class StubGlobalUserTest extends MediaWikiIntegrationTestCase {
 	public function testRealUser_exception() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage(
-			'$globalUser must be a User (or StubGlobalUser), got integer'
+			'$globalUser must be a User (or MediaWiki\StubObject\StubGlobalUser), got integer'
 		);
 		StubGlobalUser::getRealUser( 12345 );
 	}
@@ -81,7 +82,7 @@ class StubGlobalUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf(
 			StubGlobalUser::class,
 			$wgUser,
-			'Check: $wgUser should be a StubGlobalUser at the start of the test'
+			'Check: $wgUser should be a MediaWiki\StubObject\StubGlobalUser at the start of the test'
 		);
 		$this->assertSame(
 			12345,
@@ -103,7 +104,7 @@ class StubGlobalUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf(
 			StubGlobalUser::class,
 			$wgUser,
-			'Check: $wgUser should be a StubGlobalUser at the start of the test'
+			'Check: $wgUser should be a MediaWiki\StubObject\StubGlobalUser at the start of the test'
 		);
 		$this->assertSame(
 			12345,
@@ -118,7 +119,7 @@ class StubGlobalUserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testSetMagic() {
-		// This test is why we need StubGlobalUser::_unstub to override StubObject::_unstub
+		// This test is why we need MediaWiki\StubObject\StubGlobalUser::_unstub to override MediaWiki\StubObject\StubObject::_unstub
 		// and not try to detect and throw exceptions in unstub loops - for some reason it
 		// thinks this creates a loop.
 
@@ -129,7 +130,7 @@ class StubGlobalUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf(
 			StubGlobalUser::class,
 			$wgUser,
-			'Check: $wgUser should be a StubGlobalUser at the start of the test'
+			'Check: $wgUser should be a MediaWiki\StubObject\StubGlobalUser at the start of the test'
 		);
 		$wgUser->mId = 2000;
 		$this->assertInstanceOf(

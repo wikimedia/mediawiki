@@ -25,6 +25,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\UserGroupMembershipParam;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\StubObject\StubUserLang;
 
 /**
  * The Message class deals with fetching and processing of interface message

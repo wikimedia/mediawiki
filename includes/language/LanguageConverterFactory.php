@@ -29,9 +29,9 @@ use IuConverter;
 use KkConverter;
 use KuConverter;
 use Language;
+use MediaWiki\StubObject\StubUserLang;
 use ShiConverter;
 use SrConverter;
-use StubUserLang;
 use TgConverter;
 use TlyConverter;
 use TrivialLanguageConverter;
@@ -146,7 +146,7 @@ class LanguageConverterFactory {
 	/**
 	 * Returns Converter instance for given language object
 	 *
-	 * @param Language|StubUserLang $lang
+	 * @param Language|\MediaWiki\StubObject\StubUserLang $lang
 	 * @return ILanguageConverter
 	 */
 	private function instantiateConverter( $lang ): ILanguageConverter {

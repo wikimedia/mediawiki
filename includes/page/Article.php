@@ -905,6 +905,9 @@ class Article implements Page {
 		[ $old, $new ] = $de->mapDiffPrevNext( $oldid, $diff );
 		// New can be false, convert it to 0 - this conveniently means the latest revision
 		$this->mPage->doViewUpdates( $context->getAuthority(), (int)$new );
+
+		// Add link to help page; see T321569
+		$context->getOutput()->addHelpLink( 'Help:Diff' );
 	}
 
 	protected function isDiffOnlyView() {

@@ -23,6 +23,10 @@
  *
  * @file
  */
+
+namespace MediaWiki\StubObject;
+
+use MWException;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
@@ -42,7 +46,7 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * another function, and the other function calls some method of the stub. The
  * best way to avoid this is to make constructors as lightweight as possible,
  * deferring any initialisation which depends on other modules. As a last
- * resort, you can use StubObject::isRealObject() to break the loop, but as a
+ * resort, you can use MediaWiki\StubObject\StubObject::isRealObject() to break the loop, but as a
  * general rule, the stub object mechanism should be transparent, and code
  * which refers to it should be kept to a minimum.
  *
@@ -84,7 +88,7 @@ class StubObject {
 	 * a infinite loop when unstubbing an object.
 	 *
 	 * @param object $obj Object to check.
-	 * @return bool True if $obj is not an instance of StubObject class.
+	 * @return bool True if $obj is not an instance of MediaWiki\StubObject\StubObject class.
 	 */
 	public static function isRealObject( $obj ) {
 		return is_object( $obj ) && !$obj instanceof self;
@@ -115,6 +119,7 @@ class StubObject {
 	 * @param array $args Arguments
 	 * @return mixed
 	 */
+	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	public function _call( $name, $args ) {
 		$this->_unstub( $name, 5 );
 		return call_user_func_array( [ $GLOBALS[$this->global], $name ], $args );
@@ -124,6 +129,7 @@ class StubObject {
 	 * Create a new object to replace this stub object.
 	 * @return object
 	 */
+	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	public function _newObject() {
 		$params = $this->factory
 			? [ 'factory' => $this->factory ]
@@ -132,9 +138,9 @@ class StubObject {
 		// ObjectFactory::getObjectFromSpec accepts an array, not just a callable (phan bug)
 		// @phan-suppress-next-line PhanTypeInvalidCallableArraySize
 		return ObjectFactory::getObjectFromSpec( $params + [
-			'args' => $this->params,
-			'closure_expansion' => false,
-		] );
+				'args' => $this->params,
+				'closure_expansion' => false,
+			] );
 	}
 
 	/**
@@ -155,6 +161,7 @@ class StubObject {
 	 * @param string $name Name of the property to get
 	 * @return mixed
 	 */
+	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	public function _get( $name ) {
 		$this->_unstub( "__get($name)", 5 );
 		return $GLOBALS[$this->global]->$name;
@@ -177,6 +184,7 @@ class StubObject {
 	 * @param string $name Name of the property to set
 	 * @param mixed $value New property value
 	 */
+	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	public function _set( $name, $value ) {
 		$this->_unstub( "__set($name)", 5 );
 		$GLOBALS[$this->global]->$name = $value;
@@ -205,6 +213,7 @@ class StubObject {
 	 * @return object The unstubbed version of itself
 	 * @throws MWException
 	 */
+	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	public function _unstub( $name = '_unstub', $level = 2 ) {
 		static $recursionLevel = 0;
 
@@ -226,3 +235,5 @@ class StubObject {
 		}
 	}
 }
+
+class_alias( StubObject::class, 'StubObject' );

@@ -167,8 +167,9 @@ class LinkFilter {
 	 * Converts a URL into a format for el_index
 	 * @since 1.33
 	 * @param string $url
-	 * @return string[] Usually one entry, but might be two in case of
+	 * @return string[][] Usually one entry, but might be two in case of
 	 *  protocol-relative URLs. Empty array on error.
+	 *  Each entry is an array in form of <host,path>
 	 */
 	public static function makeIndexes( $url ) {
 		// NOTE: If you change the output of this method, you'll probably have to increment self::VERSION!
@@ -204,18 +205,18 @@ class LinkFilter {
 		if ( isset( $bits['port'] ) ) {
 			$index .= ':' . $bits['port'];
 		}
-		$index .= $bits['path'] ?? '/';
+		$index2 = $bits['path'] ?? '/';
 		if ( isset( $bits['query'] ) ) {
-			$index .= '?' . $bits['query'];
+			$index2 .= '?' . $bits['query'];
 		}
 		if ( isset( $bits['fragment'] ) ) {
-			$index .= '#' . $bits['fragment'];
+			$index2 .= '#' . $bits['fragment'];
 		}
 
 		if ( $bits['scheme'] == '' ) {
-			return [ "http:$index", "https:$index" ];
+			return [ [ "http:$index", $index2 ], [ "https:$index", $index2 ] ];
 		} else {
-			return [ $index ];
+			return [ [ $index, $index2 ] ];
 		}
 	}
 

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
 
 /**
  * Content handler for File: files
@@ -36,7 +37,8 @@ class FileContentHandler extends WikitextContentHandler {
 	public function getDataForSearchIndex(
 		WikiPage $page,
 		ParserOutput $parserOutput,
-		SearchEngine $engine
+		SearchEngine $engine,
+		?RevisionRecord $revision = null
 	) {
 		$fields = [];
 

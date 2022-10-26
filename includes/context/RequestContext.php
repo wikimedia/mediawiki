@@ -27,6 +27,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Session\CsrfTokenSet;
+use MediaWiki\StubObject\StubGlobalUser;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
 use Wikimedia\NonSerializable\NonSerializableTrait;

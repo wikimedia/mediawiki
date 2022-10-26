@@ -4311,7 +4311,7 @@ class EditPage implements IEditObject {
 				'log_action' => 'delete',
 			],
 			__METHOD__,
-			[ 'ORDER BY' => 'log_timestamp DESC' ],
+			[ 'ORDER BY' => [ 'log_timestamp DESC', 'log_id DESC' ] ],
 			[
 				'actor' => [ 'JOIN', 'actor_id=log_actor' ],
 			] + $commentQuery['joins']

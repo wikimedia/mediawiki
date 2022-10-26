@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\StubObject\StubGlobalUser;
 
 require_once __DIR__ . '/Maintenance.php';
 

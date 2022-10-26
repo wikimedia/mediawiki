@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\StubObject\StubGlobalUser;
 use Wikimedia\TestingAccessWrapper;
 
 $optionsWithoutArgs = [ 'verbose' ];

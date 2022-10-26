@@ -1020,6 +1020,8 @@
 	"rcfilters-activefilters": "Актив фильтрле",
 	"rcfilters-quickfilters-placeholder-title": "Сакъланнган джибериуле алкъын джокъдула",
 	"rcfilters-savedqueries-defaultlabel": "Сакъланнган фильтрле",
+	"rcfilters-filter-newuserlogactions-label": "Джангы хайырланыучу",
+	"rcfilters-filter-newuserlogactions-description": "Хыйсаб джазыуну къураргъа журналны джазмалары. Регистрация этиу сайланыргъа керекди.",
 	"rcnotefrom": "Тюбюрекде <strong>$3, $4</strong> башлаб (<strong>$1</strong> дери) {{PLURAL:$5|тюрлендириу}} кёрюнедиле",
 	"rclistfrom": "$3 $2 башлаб джангы тюрлениулени кёргюз",
 	"rcshowhideminor": "гитче тюрлениулени $1",

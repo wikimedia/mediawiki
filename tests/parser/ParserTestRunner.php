@@ -33,6 +33,7 @@ use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\StubObject\StubGlobalUser;
 use Psr\Log\NullLogger;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Parsoid\Config\PageConfig;
@@ -260,21 +261,34 @@ class ParserTestRunner {
 	/**
 	 * Get list of filenames to extension and core parser tests
 	 *
+	 * @param array $dirs
 	 * @return array
 	 */
-	public static function getParserTestFiles() {
-		// Auto-discover core test files
-		$ptDirs = [ 'core' => __DIR__ ];
-
-		// Auto-discover extension parser tests
-		$registry = ExtensionRegistry::getInstance();
-		foreach ( $registry->getAllThings() as $info ) {
-			$dir = dirname( $info['path'] ) . '/tests/parser';
-			if ( !is_dir( $dir ) ) {
-				continue;
+	public static function getParserTestFiles( array $dirs = [] ): array {
+		if ( $dirs ) {
+			$ptDirs = [];
+			foreach ( $dirs as $i => $dir ) {
+				if ( !is_dir( $dir ) ) {
+					echo "$dir is not a directory. Skipping it.\n";
+					continue;
+				}
+				$ptDirs["_CLI{$i}_"] = $dir;
 			}
-			$ptDirs[ $info['name'] ] = $dir;
+		} else {
+			// Auto-discover core test files
+			$ptDirs = [ 'core' => __DIR__ ];
+
+			// Auto-discover extension parser tests
+			$registry = ExtensionRegistry::getInstance();
+			foreach ( $registry->getAllThings() as $info ) {
+				$dir = dirname( $info['path'] ) . '/tests/parser';
+				if ( !is_dir( $dir ) ) {
+					continue;
+				}
+				$ptDirs[ $info['name'] ] = $dir;
+			}
 		}
+
 		$files = [];
 		foreach ( $ptDirs as $extName => $dir ) {
 			$counter = 1;
@@ -993,6 +1007,25 @@ class ParserTestRunner {
 	}
 
 	/**
+	 * Compute valid test modes based on requested modes and file-enabled modes
+	 * @param array $testModes
+	 * @param array $fileOptions
+	 * @return array
+	 */
+	public function computeValidTestModes( array $testModes, array $fileOptions ): array {
+		$modeRestriction = $fileOptions['parsoid-compatible'] ?? false;
+		if ( $modeRestriction !== false ) {
+			if ( is_string( $modeRestriction ) ) {
+				// shorthand
+				$modeRestriction = [ $modeRestriction ];
+			}
+			$testModes = array_values( array_intersect( $testModes, $modeRestriction ) );
+		}
+
+		return $testModes;
+	}
+
+	/**
 	 * Run the tests from a single file. staticSetup() and setupDatabase()
 	 * must have been called already.
 	 *
@@ -1000,17 +1033,23 @@ class ParserTestRunner {
 	 * @return bool True if passed all tests, false if any tests failed.
 	 */
 	public function runParsoidTests( string $filename ): bool {
-		$testModes = $this->getRequestedTestModes();
-		$skipMode = new ParserTestMode( $testModes[0] );
 		$testFileInfo = TestFileReader::read( $filename,
 			static function ( $msg ) {
 				wfDeprecatedMsg( $msg, '1.35', false, false );
 			}
 		);
 
+		// Intersect requested modes with test modes enabled in the file
+		$testModes = $this->computeValidTestModes(
+			$this->getRequestedTestModes(), $testFileInfo->fileOptions );
+
 		$this->checkSetupDone( 'staticSetup' );
 
 		// If any requirements are not met, mark all tests from the file as skipped
+		if ( !$testModes ) {
+			return true;
+		}
+		$skipMode = new ParserTestMode( $testModes[0] );
 		$skipMessage = $this->getFileSkipMessage( false, $testFileInfo->fileOptions, $filename );
 		if ( $skipMessage !== null ) {
 			foreach ( $testFileInfo->testCases as $test ) {

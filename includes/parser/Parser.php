@@ -42,6 +42,7 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;

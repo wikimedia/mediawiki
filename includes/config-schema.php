@@ -384,6 +384,7 @@ return [
 			'DatabaseReplicaLagCritical' => 30,
 			'MaxExecutionTimeForExpensiveQueries' => 0,
 			'TemplateLinksSchemaMigrationStage' => 768,
+			'ExternalLinksSchemaMigrationStage' => 3,
 			'ContentHandlers' => [
 				'wikitext' => 'WikitextContentHandler',
 				'javascript' => 'JavaScriptContentHandler',
@@ -505,7 +506,6 @@ return [
 					'cacheId' => 0,
 				],
 			],
-			'EnableWANCacheReaper' => false,
 			'MainStash' => 'db-replicated',
 			'ParsoidCacheConfig' => [
 				'StashType' => null,
@@ -2555,6 +2555,7 @@ return [
 			'LBFactoryConf' => 'object',
 			'LocalDatabases' => 'array',
 			'TemplateLinksSchemaMigrationStage' => 'integer',
+			'ExternalLinksSchemaMigrationStage' => 'integer',
 			'ContentHandlers' => 'object',
 			'NamespaceContentModels' => 'object',
 			'TextModelsToParse' => 'array',
@@ -2599,7 +2600,6 @@ return [
 				2 => 'boolean',
 			],
 			'WANObjectCaches' => 'object',
-			'EnableWANCacheReaper' => 'boolean',
 			'ParsoidCacheConfig' => 'object',
 			'ChronologyProtectorStash' => [
 				0 => 'string',

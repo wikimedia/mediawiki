@@ -1454,6 +1454,8 @@
 	"rcfilters-filter-categorization-description": "Keitimai, kuriais puslapiai yra pridedami ar pašalinami iš kategorijų.",
 	"rcfilters-filter-logactions-label": "Įrašyti į sąrašą veiksmai",
 	"rcfilters-filter-logactions-description": "Administravimo veiksmai, paskyrų sukūrimai, puslapių trynimai, įkėlimai…",
+	"rcfilters-filter-newuserlogactions-label": "Nauji naudotojai",
+	"rcfilters-filter-newuserlogactions-description": "Žurnalo įrašai, skirti paskyros kūrimui. Turi būti pasirinkti registruojami veiksmai.",
 	"rcfilters-filtergroup-lastrevision": "Naujausios versijos",
 	"rcfilters-filter-lastrevision-label": "Naujausia versija",
 	"rcfilters-filter-lastrevision-description": "Tik naujausias puslapio keitimas.",
