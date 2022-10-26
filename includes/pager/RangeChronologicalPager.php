@@ -47,16 +47,18 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 		$this->rangeConds = [];
 
 		try {
+			// This is a chronological pager, so the first column should be some kind of timestamp
+			$timestampField = is_array( $this->mIndexField ) ? $this->mIndexField[0] : $this->mIndexField;
 			if ( $startStamp !== '' ) {
 				$startTimestamp = MWTimestamp::getInstance( $startStamp );
 				$startOffset = $this->mDb->timestamp( $startTimestamp->getTimestamp() );
-				$this->rangeConds[] = $this->mIndexField . '>=' . $this->mDb->addQuotes( $startOffset );
+				$this->rangeConds[] = $timestampField . '>=' . $this->mDb->addQuotes( $startOffset );
 			}
 
 			if ( $endStamp !== '' ) {
 				$endTimestamp = MWTimestamp::getInstance( $endStamp );
 				$endOffset = $this->mDb->timestamp( $endTimestamp->getTimestamp() );
-				$this->rangeConds[] = $this->mIndexField . '<=' . $this->mDb->addQuotes( $endOffset );
+				$this->rangeConds[] = $timestampField . '<=' . $this->mDb->addQuotes( $endOffset );
 
 				// populate existing variables for compatibility with parent
 				$this->mYear = (int)$endTimestamp->format( 'Y' );
