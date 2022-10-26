@@ -130,7 +130,10 @@
 			"あたまボーズ",
 			"Funa-enpitu",
 			"Makoto Asai",
-			"Skskbooi"
+			"Skskbooi",
+			"Kokage si",
+			"ギャラクシーライナー",
+			"春春眠眠"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -2506,7 +2509,7 @@
 	"cantrollback": "編集を差し戻せません。\n最後の投稿者が、このページの唯一の作者です。",
 	"alreadyrolled": "ページ[[:$1]]の[[User:$2|$2]] ([[User talk:$2|トーク]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) による編集を巻き戻せません。\n他の利用者が既に編集または巻き戻しを行ったためです。\n\nこのページの最後の編集は[[User:$3|$3]] ([[User talk:$3|トーク]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) によるものです。",
 	"editcomment": "編集内容の要約: <em>$1</em>",
-	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|トーク]]) による編集を [[User:$1|$1]] による直前の版へ差し戻しました",
+	"revertpage": "[[Special:Contributions/$2|$2]] ([[User talk:$2|トーク]]) による版を [[User:$1|$1]] による版へ巻き戻し。",
 	"revertpage-anon": "[[Special:Contributions/$2|$2]] による編集を [[User:$1|$1]] による直前の版へ差し戻しました",
 	"revertpage-nouser": "非表示の利用者による編集を {{GENDER:$1|[[User:$1|$1]]}} による直前の版へ差し戻しました",
 	"rollback-success": "{{GENDER:$3|$1}} による編集を巻き戻しました。\n直前の {{GENDER:$4|$2}} による版へ変更されました。",

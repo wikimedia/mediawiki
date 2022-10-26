@@ -171,7 +171,8 @@
 			"아라",
 			"Fraxinus.cs",
 			"Le Loi",
-			"MirandaBlack"
+			"MirandaBlack",
+			"UniCollab"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -305,7 +306,7 @@
 	"anontalk": "Обсуждение",
 	"navigation": "Навигация",
 	"and": "&#32;и",
-	"faq": "ЧаВО",
+	"faq": "ЧЗВ",
 	"actions": "Действия",
 	"namespaces": "Пространства имён",
 	"variants": "Варианты",
