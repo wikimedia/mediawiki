@@ -3233,6 +3233,7 @@
 	"pageinfo-default-sort": "Clé de tri par défaut",
 	"pageinfo-length": "Taille de la page (en octets)",
 	"pageinfo-namespace": "Espace de noms",
+	"pageinfo-namespace-id": "Identifiant dʼespace de noms",
 	"pageinfo-article-id": "ID de la page",
 	"pageinfo-language": "Langue du contenu de la page",
 	"pageinfo-language-change": "modifier",

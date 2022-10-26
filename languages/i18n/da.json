@@ -2241,6 +2241,7 @@
 	"enotif_minoredit": "Dette er en mindre ændring",
 	"created": "oprettet",
 	"changed": "ændret",
+	"deletepage-deletetalk": "Slet den tilhørende diskussionsside",
 	"deletepage-submit": "Slet side",
 	"confirm": "Bekræft",
 	"excontent": "indholdet var: '$1'",

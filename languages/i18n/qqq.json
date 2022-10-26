@@ -300,7 +300,7 @@
 	"monday": "{{Doc-weekdays}}\nName of the day of the week.\n{{Identical|Monday}}",
 	"tuesday": "{{Doc-weekdays}}\nName of the day of the week.\n{{Identical|Tuesday}}",
 	"wednesday": "{{Doc-weekdays}}\nName of the day of the week.\n{{Identical|Wednesday}}",
-	"thursday": "ကြာသားပတီးနိ",
+	"thursday": "{{doc-weekdays}}\n{{Identical|Thursday}}",
 	"friday": "{{doc-weekdays}}\n{{Identical|Friday}}",
 	"saturday": "{{doc-weekdays}}\n{{Identical|Saturday}}",
 	"sun": "'''This doesn't mean \"Sun\", the shining star in the sky.''' It's a short form of \"Sunday\".\n\n{{doc-weekdays}}",

@@ -3019,6 +3019,7 @@
 	"pageinfo-default-sort": "Privzeti razvrstilni ključ",
 	"pageinfo-length": "Dolžina strani (v zlogih)",
 	"pageinfo-namespace": "Imenski prostor",
+	"pageinfo-namespace-id": "ID imenskega prostora",
 	"pageinfo-article-id": "ID strani",
 	"pageinfo-language": "Jezik vsebine strani",
 	"pageinfo-language-change": "spremeni",
