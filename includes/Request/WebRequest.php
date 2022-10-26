@@ -23,19 +23,26 @@
  * @file
  */
 
+namespace MediaWiki\Request;
+
+use FatalError;
+use FauxResponse;
+use Hooks;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\UserIdentity;
+use MWException;
+use WebResponse;
 use Wikimedia\IPUtils;
 
 // The point of this class is to be a wrapper around super globals
 // phpcs:disable MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
 
 /**
- * The WebRequest class encapsulates getting at data passed in the
+ * The MediaWiki\Request\WebRequest class encapsulates getting at data passed in the
  * URL or via a POSTed form stripping illegal input characters and
  * normalizing Unicode sequences.
  *
@@ -68,7 +75,7 @@ class WebRequest {
 	protected $headers = [];
 
 	/**
-	 * Flag to make WebRequest::getHeader return an array of values.
+	 * Flag to make MediaWiki\Request\WebRequest::getHeader return an array of values.
 	 * @since 1.26
 	 */
 	public const GETHEADER_LIST = 1;
@@ -139,8 +146,8 @@ class WebRequest {
 	 * provided by the server if any and use that to set a 'title' parameter.
 	 *
 	 * This internal method handles many odd cases and is tailored specifically for
-	 * used by WebRequest::interpolateTitle, for index.php requests.
-	 * Consider using WebRequest::getRequestPathSuffix for other path-related use cases.
+	 * used by MediaWiki\Request\WebRequest::interpolateTitle, for index.php requests.
+	 * Consider using MediaWiki\Request\WebRequest::getRequestPathSuffix for other path-related use cases.
 	 *
 	 * @param string $want If this is not 'all', then the function
 	 * will return an empty array if it determines that the URL is
@@ -229,10 +236,10 @@ class WebRequest {
 	 *
 	 * If the request URL does not match, false is returned.
 	 *
-	 * @since 1.35
 	 * @param string $basePath The base URL path. Trailing slashes will be
 	 *   stripped.
 	 * @return string|false
+	 * @since 1.35
 	 */
 	public static function getRequestPathSuffix( $basePath ) {
 		$basePath = rtrim( $basePath, '/' ) . '/';
@@ -303,7 +310,7 @@ class WebRequest {
 
 	/**
 	 * Detect the protocol from $_SERVER.
-	 * This is for use prior to Setup.php, when no WebRequest object is available.
+	 * This is for use prior to Setup.php, when no MediaWiki\Request\WebRequest object is available.
 	 * At other times, use the non-static function getProtocol().
 	 *
 	 * @return string
@@ -311,7 +318,7 @@ class WebRequest {
 	public static function detectProtocol() {
 		if ( ( !empty( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] !== 'off' ) ||
 			( isset( $_SERVER['HTTP_X_FORWARDED_PROTO'] ) &&
-			$_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https' ) ) {
+				$_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https' ) ) {
 			return 'https';
 		} else {
 			return 'http';
@@ -478,10 +485,10 @@ class WebRequest {
 	 *
 	 * Array values are discarded for security reasons. Use {@see getArray} or {@see getIntArray}.
 	 *
-	 * @since 1.28
 	 * @param string $name
 	 * @param string|null $default
 	 * @return string|null The value, or $default if none set
+	 * @since 1.28
 	 */
 	public function getRawVal( $name, $default = null ) {
 		$name = strtr( $name, '.', '_' ); // See comment in self::getGPCVal()
@@ -639,10 +646,10 @@ class WebRequest {
 	 * Guaranteed to return a float; non-numeric input will typically
 	 * return 0.
 	 *
-	 * @since 1.23
 	 * @param string $name
 	 * @param float $default
 	 * @return float
+	 * @since 1.23
 	 */
 	public function getFloat( $name, $default = 0.0 ) {
 		// @phan-suppress-next-line PhanTypeMismatchArgument getRawVal does not return null here
@@ -740,8 +747,8 @@ class WebRequest {
 	 * useful for other entry points. No transformation is performed on the
 	 * values.
 	 *
-	 * @since 1.34
 	 * @return string[]
+	 * @since 1.34
 	 */
 	public function getQueryValuesOnly() {
 		return $this->queryParams;
@@ -751,9 +758,9 @@ class WebRequest {
 	 * Get the values passed via POST.
 	 * No transformation is performed on the values.
 	 *
+	 * @return string[]
 	 * @since 1.32
 	 * @codeCoverageIgnore
-	 * @return string[]
 	 */
 	public function getPostValues() {
 		return $_POST;
@@ -825,10 +832,10 @@ class WebRequest {
 	 *
 	 * This might unpersist an existing session if it was invalid.
 	 *
+	 * @return Session
 	 * @since 1.27
 	 * @note For performance, keep the session locally if you will be making
 	 *  much use of it instead of calling this method repeatedly.
-	 * @return Session
 	 */
 	public function getSession() {
 		if ( $this->sessionId !== null ) {
@@ -845,9 +852,9 @@ class WebRequest {
 
 	/**
 	 * Set the session for this request
-	 * @since 1.27
-	 * @internal For use by MediaWiki\Session classes only
 	 * @param SessionId $sessionId
+	 * @internal For use by MediaWiki\Session classes only
+	 * @since 1.27
 	 */
 	public function setSessionId( SessionId $sessionId ) {
 		$this->sessionId = $sessionId;
@@ -855,9 +862,9 @@ class WebRequest {
 
 	/**
 	 * Get the session id for this request, if any
-	 * @since 1.27
-	 * @internal For use by MediaWiki\Session classes only
 	 * @return SessionId|null
+	 * @internal For use by MediaWiki\Session classes only
+	 * @since 1.27
 	 */
 	public function getSessionId() {
 		return $this->sessionId;
@@ -916,8 +923,8 @@ class WebRequest {
 	 * Return the path and query string portion of the main request URI.
 	 * This will be suitable for use as a relative link in HTML output.
 	 *
-	 * @throws MWException
 	 * @return string
+	 * @throws MWException
 	 */
 	public static function getGlobalRequestURL() {
 		// This method is called on fatal errors; it should not depend on anything complex.
@@ -962,8 +969,8 @@ class WebRequest {
 	 * Return the path and query string portion of the request URI.
 	 * This will be suitable for use as a relative link in HTML output.
 	 *
-	 * @throws MWException
 	 * @return string
+	 * @throws MWException
 	 */
 	public function getRequestURL() {
 		return self::getGlobalRequestURL();
@@ -1084,7 +1091,7 @@ class WebRequest {
 	}
 
 	/**
-	 * Return a WebRequestUpload object corresponding to the key
+	 * Return a MediaWiki\Request\WebRequestUpload object corresponding to the key
 	 *
 	 * @param string $key
 	 * @return WebRequestUpload
@@ -1134,12 +1141,12 @@ class WebRequest {
 	 *
 	 * @param string $name Case-insensitive header name
 	 * @param int $flags Bitwise combination of:
-	 *   WebRequest::GETHEADER_LIST  Treat the header as a comma-separated list
+	 *   MediaWiki\Request\WebRequest::GETHEADER_LIST  Treat the header as a comma-separated list
 	 *                               of values, as described in RFC 2616 § 4.2.
 	 *                               (since 1.26).
 	 * @return string|string[]|false False if header is unset; otherwise the
 	 *  header value(s) as either a string (the default) or an array, if
-	 *  WebRequest::GETHEADER_LIST flag was set.
+	 *  MediaWiki\Request\WebRequest::GETHEADER_LIST flag was set.
 	 */
 	public function getHeader( $name, $flags = 0 ) {
 		$this->initHeaders();
@@ -1237,8 +1244,8 @@ class WebRequest {
 	/**
 	 * Fetch the raw IP from the request
 	 *
-	 * @since 1.19
 	 * @return string|null
+	 * @since 1.19
 	 */
 	protected function getRawIP() {
 		$remoteAddr = $_SERVER['REMOTE_ADDR'] ?? null;
@@ -1256,8 +1263,8 @@ class WebRequest {
 	 * Work out the IP address based on various globals
 	 * For trusted proxies, use the XFF client IP (first of the chain)
 	 *
-	 * @since 1.19
 	 * @return string
+	 * @since 1.19
 	 */
 	public function getIP() {
 		global $wgUsePrivateIPs;
@@ -1471,3 +1478,5 @@ class WebRequest {
 		return false;
 	}
 }
+
+class_alias( WebRequest::class, 'WebRequest' );

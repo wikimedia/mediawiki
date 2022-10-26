@@ -1,13 +1,14 @@
 <?php
 
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Request\WebRequest;
 
 class ApiTestContext extends RequestContext {
 
 	/**
 	 * Returns a DerivativeContext with the request variables in place
 	 *
-	 * @param WebRequest $request WebRequest request object including parameters and session
+	 * @param WebRequest $request MediaWiki\Request\WebRequest request object including parameters and session
 	 * @param Authority|null $performer
 	 * @return DerivativeContext
 	 */

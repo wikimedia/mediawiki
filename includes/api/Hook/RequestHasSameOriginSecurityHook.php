@@ -2,8 +2,6 @@
 
 namespace MediaWiki\Api\Hook;
 
-use WebRequest;
-
 /**
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "RequestHasSameOriginSecurity" to register handlers implementing this interface.
@@ -17,11 +15,11 @@ interface RequestHasSameOriginSecurityHook {
 	 * Note that if the "somehow" involves HTTP headers, you'll probably need to make sure
 	 * the header is varied on.
 	 *
-	 * @since 1.35
-	 *
-	 * @param WebRequest $request
+	 * @param \MediaWiki\Request\WebRequest $request
 	 * @return bool|void True or no return value to continue, or false to indicate a lack of
 	 *   same-origin security
+	 * @since 1.35
+	 *
 	 */
 	public function onRequestHasSameOriginSecurity( $request );
 }

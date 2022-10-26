@@ -257,7 +257,7 @@ class Article implements Page {
 	 * @see getRevIdFetched()
 	 *
 	 * @return int The oldid of the article that is was requested in the constructor or via the
-	 *         context's WebRequest.
+	 *         context's MediaWiki\Request\WebRequest.
 	 */
 	public function getOldID() {
 		if ( $this->mOldId === null ) {

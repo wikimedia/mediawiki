@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Request\WebRequest;
 use Wikimedia\IPUtils;
 
 /**

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\SessionBackend;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\SessionProvider;

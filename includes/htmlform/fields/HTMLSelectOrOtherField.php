@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Request\WebRequest;
+
 /**
  * Select dropdown field, with an additional "other" textbox.
  *

@@ -22,6 +22,7 @@ use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\Throttler;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\BotPasswordSessionProvider;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\UserIdentity;

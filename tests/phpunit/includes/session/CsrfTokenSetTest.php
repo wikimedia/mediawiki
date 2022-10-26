@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Tests\Session;
 
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Session\SessionManager;
 use MediaWikiIntegrationTestCase;
 use User;
-use WebRequest;
 
 /**
  * @covers \MediaWiki\Session\CsrfTokenSet

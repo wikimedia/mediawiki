@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
+
 class MWRestrictionsTest extends MediaWikiUnitTestCase {
 
 	protected static $restrictionsForChecks;

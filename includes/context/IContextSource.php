@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\CsrfTokenSetProvider;
 
 /**

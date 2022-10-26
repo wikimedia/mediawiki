@@ -8,6 +8,8 @@ use MediaWiki\Block\SystemBlock;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RateLimitSubject;
+use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Assert\PreconditionException;
@@ -1008,7 +1010,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			$req2,
 			$request,
-			'Creating a user by passing a WebRequest successfully sets the request, ' .
+			'Creating a user by passing a MediaWiki\Request\WebRequest successfully sets the request, ' .
 				'instead of using $wgRequest'
 		);
 	}

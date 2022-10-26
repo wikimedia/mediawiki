@@ -91,14 +91,14 @@ class OutputHandler {
 	 * Get the "file extension" that some client apps will estimate from
 	 * the currently-requested URL.
 	 *
-	 * This isn't a WebRequest method, because we need it before the class loads.
+	 * This isn't a MediaWiki\Request\WebRequest method, because we need it before the class loads.
 	 * @todo As of 2018, this actually runs after autoloader in Setup.php, so
-	 * WebRequest seems like a good place for this.
+	 * MediaWiki\Request\WebRequest seems like a good place for this.
 	 *
 	 * @return string
 	 */
 	private static function findUriExtension() {
-		// @todo FIXME: this sort of dupes some code in WebRequest::getRequestUrl()
+		// @todo FIXME: this sort of dupes some code in MediaWiki\Request\WebRequest::getRequestUrl()
 		if ( isset( $_SERVER['REQUEST_URI'] ) ) {
 			// Strip the query string...
 			$path = explode( '?', $_SERVER['REQUEST_URI'], 2 )[0];

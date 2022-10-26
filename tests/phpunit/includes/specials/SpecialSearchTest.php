@@ -3,6 +3,7 @@
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\FauxRequest;
 
 /**
  * Test class for SpecialSearch class
@@ -89,7 +90,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			$this->newUserWithSearchNS( $userOptions )
 		);
 		/*
-		$context->setRequest( new FauxRequest( [
+		$context->setRequest( new MediaWiki\Request\FauxRequest( [
 			'ns5'=>true,
 			'ns6'=>true,
 		] ));

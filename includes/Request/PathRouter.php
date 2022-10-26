@@ -20,8 +20,12 @@
  * @file
  */
 
+namespace MediaWiki\Request;
+
+use FatalError;
+
 /**
- * PathRouter class.
+ * MediaWiki\Request\PathRouter class.
  * This class can take patterns such as /wiki/$1 and use them to
  * parse query parameters out of REQUEST_URI paths.
  *
@@ -73,7 +77,7 @@
 class PathRouter {
 
 	/**
-	 * @var stdClass[]
+	 * @var \stdClass[]
 	 */
 	private $patterns = [];
 
@@ -166,11 +170,11 @@ class PathRouter {
 	}
 
 	/**
-	 * @internal For use by WebRequest::getPathInfo
 	 * @param string $path To be given to add()
 	 * @param string $varName Full name of configuration variable for use
 	 *  in error message and url to mediawiki.org Manual (e.g. "wgExample").
 	 * @throws FatalError If path is invalid
+	 * @internal For use by MediaWiki\Request\WebRequest::getPathInfo
 	 */
 	public function validateRoute( $path, $varName ) {
 		if ( $path && !preg_match( '/^(https?:\/\/|\/)/', $path ) ) {
@@ -186,10 +190,10 @@ class PathRouter {
 
 	/**
 	 * Add a new path pattern to the path router with the strict option on
-	 * @see self::add
 	 * @param string|array $path
 	 * @param array $params
 	 * @param array $options
+	 * @see self::add
 	 */
 	public function addStrict( $path, $params = [], $options = [] ) {
 		$options['strict'] = true;
@@ -209,7 +213,7 @@ class PathRouter {
 	}
 
 	/**
-	 * @param stdClass $pattern
+	 * @param \stdClass $pattern
 	 * @return float|int
 	 */
 	protected static function makeWeight( $pattern ) {
@@ -266,7 +270,7 @@ class PathRouter {
 		}
 
 		// We know the difference between null (no matches) and
-		// [] (a match with no data) but our WebRequest caller
+		// [] (a match with no data) but our MediaWiki\Request\WebRequest caller
 		// expects [] even when we have no matches so return
 		// a [] when we have null
 		return $matches ?? [];
@@ -292,7 +296,7 @@ class PathRouter {
 
 	/**
 	 * @param string $path
-	 * @param stdClass $pattern
+	 * @param \stdClass $pattern
 	 * @return array|null
 	 */
 	protected static function extractTitle( $path, $pattern ) {
@@ -422,10 +426,10 @@ class PathRouter {
 	}
 
 	/**
-	 * @internal For use by Title and WebRequest only.
 	 * @param array $actionPaths
 	 * @param string $articlePath
 	 * @return string[]|false
+	 * @internal For use by Title and MediaWiki\Request\WebRequest only.
 	 */
 	public static function getActionPaths( array $actionPaths, $articlePath ) {
 		if ( !$actionPaths ) {
@@ -439,3 +443,5 @@ class PathRouter {
 		return $actionPaths;
 	}
 }
+
+class_alias( PathRouter::class, 'PathRouter' );

@@ -32,6 +32,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Watchlist\WatchlistManager;
 
 /**

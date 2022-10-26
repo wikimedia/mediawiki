@@ -1,9 +1,10 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\WebRequest;
 
 /**
- * @group WebRequest
+ * @group MediaWiki\Request\WebRequest
  */
 class WebRequestTest extends MediaWikiIntegrationTestCase {
 
@@ -168,7 +169,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 	 * @covers WebRequest::normalizeUnicode
 	 */
 	public function testGetValNormal() {
-		// Assert that WebRequest normalises GPC data using UtfNormal\Validator
+		// Assert that MediaWiki\Request\WebRequest normalises GPC data using UtfNormal\Validator
 		$input = "a \x00 null";
 		$normal = "a \xef\xbf\xbd null";
 		$req = $this->mockWebRequest( [ 'x' => $input, 'y' => [ $input, $input ] ] );
@@ -346,7 +347,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 	 * @covers WebRequest::getText
 	 */
 	public function testGetText() {
-		// Avoid FauxRequest (overrides getText)
+		// Avoid MediaWiki\Request\FauxRequest (overrides getText)
 		$req = $this->mockWebRequest( [ 'crlf' => "Va\r\nlue" ] );
 		$this->assertSame( "Va\nlue", $req->getText( 'crlf' ), 'CR stripped' );
 	}

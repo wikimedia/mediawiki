@@ -20,7 +20,10 @@
  * @file
  */
 
+namespace MediaWiki\Request;
+
 use MediaWiki\MediaWikiServices;
+use Sanitizer;
 
 // The point of this class is to be a wrapper around super globals
 // phpcs:disable MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
@@ -41,7 +44,7 @@ class WebRequestUpload {
 	protected $fileInfo;
 
 	/**
-	 * Constructor. Should only be called by WebRequest
+	 * Constructor. Should only be called by MediaWiki\Request\WebRequest
 	 *
 	 * @param WebRequest $request The associated request
 	 * @param string $key Key in $_FILES array (name of form field)
@@ -116,8 +119,8 @@ class WebRequestUpload {
 	/**
 	 * Return the client specified content type
 	 *
-	 * @since 1.35
 	 * @return string|null Type or null if non-existent
+	 * @since 1.35
 	 */
 	public function getType() {
 		if ( !$this->exists() ) {
@@ -166,3 +169,5 @@ class WebRequestUpload {
 		return false;
 	}
 }
+
+class_alias( WebRequestUpload::class, 'WebRequestUpload' );

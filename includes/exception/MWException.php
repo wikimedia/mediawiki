@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Request\WebRequest;
+
 /**
  * MediaWiki exception
  *
