@@ -39,7 +39,7 @@ class ChangeTagsLogList extends ChangeTagsList {
 		$ids = array_map( 'intval', $this->ids );
 		$queryInfo = DatabaseLogEntry::getSelectQueryData();
 		$queryInfo['conds'] += [ 'log_id' => $ids ];
-		$queryInfo['options'] += [ 'ORDER BY' => 'log_id DESC' ];
+		$queryInfo['options'] += [ 'ORDER BY' => [ 'log_timestamp DESC', 'log_id DESC' ] ];
 		ChangeTags::modifyDisplayQuery(
 			$queryInfo['tables'],
 			$queryInfo['fields'],
