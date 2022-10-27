@@ -281,15 +281,6 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );
-		$sortFlag = '';
-		if ( !$ascendingOrder ) {
-			$sortFlag = ' DESC';
-		}
-		if ( $params['sort'] == 'timestamp' ) {
-			$this->addOption( 'ORDER BY', 'img_timestamp' . $sortFlag );
-		} else {
-			$this->addOption( 'ORDER BY', 'img_name' . $sortFlag );
-		}
 
 		$res = $this->select( __METHOD__ );
 
