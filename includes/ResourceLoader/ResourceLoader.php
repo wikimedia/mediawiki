@@ -935,7 +935,13 @@ class ResourceLoader implements LoggerAwareInterface {
 			header( 'Cache-Control: private, no-cache, must-revalidate' );
 			header( 'Pragma: no-cache' );
 		} else {
-			header( "Cache-Control: public, max-age=$maxage, s-maxage=$maxage" );
+			// T132418: When a resource expires mid-way a browsing session, prefer to renew it in
+			// the background instead of blocking the next page load (eg. startup module, or CSS).
+			$staleDirective = ( $maxage > self::MAXAGE_RECOVER
+				? ", stale-while-revalidate=" . min( 60, intval( $maxage / 2 ) )
+				: ''
+			);
+			header( "Cache-Control: public, max-age=$maxage, s-maxage=$maxage" . $staleDirective );
 			header( 'Expires: ' . ConvertibleTimestamp::convert( TS_RFC2822, time() + $maxage ) );
 		}
 		foreach ( $extra as $header ) {
