@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @group Standalone
  * @coversNothing
  */
 class ForeignResourceStructureTest extends \PHPUnit\Framework\TestCase {
