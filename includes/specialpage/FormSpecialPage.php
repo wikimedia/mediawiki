@@ -21,8 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\Request\DerivativeRequest;
-
 /**
  * Special page which uses an HTMLForm to handle processing.  This is mostly a
  * clone of FormAction.  More special pages should be built this way; maybe this could be

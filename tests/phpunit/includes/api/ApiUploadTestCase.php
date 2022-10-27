@@ -9,7 +9,7 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 
 	/**
 	 * @since 1.37
-	 * @var array Used to fake $_FILES in tests and given to MediaWiki\Request\FauxRequest
+	 * @var array Used to fake $_FILES in tests and given to FauxRequest
 	 */
 	protected $requestDataFiles = [];
 

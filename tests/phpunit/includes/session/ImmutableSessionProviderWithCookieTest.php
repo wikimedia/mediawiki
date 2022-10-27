@@ -114,7 +114,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 
 	public function testGetSessionIdFromCookie() {
 		$this->overrideConfigValue( MainConfigNames::CookiePrefix, 'wgCookiePrefix' );
-		$request = new \MediaWiki\Request\FauxRequest();
+		$request = new \FauxRequest();
 		$request->setCookies( [
 			'' => 'empty---------------------------',
 			'Foo' => 'foo-----------------------------',
@@ -169,7 +169,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 		$sentResponse->expects( $this->never() )->method( 'setCookie' );
 		$sentResponse->expects( $this->never() )->method( 'header' );
 
-		$sentRequest = $this->getMockBuilder( \MediaWiki\Request\FauxRequest::class )
+		$sentRequest = $this->getMockBuilder( \FauxRequest::class )
 			->onlyMethods( [ 'response' ] )->getMock();
 		$sentRequest->method( 'response' )
 			->willReturn( $sentResponse );
@@ -223,13 +223,13 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 
 		// No cookie
 		$priv->sessionCookieName = null;
-		$request = new \MediaWiki\Request\FauxRequest();
+		$request = new \FauxRequest();
 		$provider->persistSession( $backend, $request );
 		$this->assertSame( [], $request->response()->getCookies() );
 
 		// Cookie
 		$priv->sessionCookieName = 'session';
-		$request = new \MediaWiki\Request\FauxRequest();
+		$request = new \FauxRequest();
 		$time = time();
 		$provider->persistSession( $backend, $request );
 
@@ -289,13 +289,13 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 
 		// No cookie
 		$priv->sessionCookieName = null;
-		$request = new \MediaWiki\Request\FauxRequest();
+		$request = new \FauxRequest();
 		$provider->unpersistSession( $request );
 		$this->assertSame( null, $request->response()->getCookie( 'session', '' ) );
 
 		// Cookie
 		$priv->sessionCookieName = 'session';
-		$request = new \MediaWiki\Request\FauxRequest();
+		$request = new \FauxRequest();
 		$provider->unpersistSession( $request );
 		$this->assertSame( '', $request->response()->getCookie( 'session', '' ) );
 

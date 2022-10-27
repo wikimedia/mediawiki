@@ -3,7 +3,6 @@
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Request\FauxRequest;
 
 /**
  * Integration tests for the various edit constraints, ensuring

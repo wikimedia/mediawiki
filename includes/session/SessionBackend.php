@@ -28,9 +28,9 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Request\WebRequest;
 use Psr\Log\LoggerInterface;
 use User;
+use WebRequest;
 use Wikimedia\AtEase\AtEase;
 
 /**
@@ -113,7 +113,7 @@ final class SessionBackend {
 	/** @var int */
 	private $curIndex = 0;
 
-	/** @var \MediaWiki\Request\WebRequest[] Session requests */
+	/** @var WebRequest[] Session requests */
 	private $requests = [];
 
 	/** @var SessionProvider provider */
@@ -215,7 +215,7 @@ final class SessionBackend {
 
 	/**
 	 * Return a new Session for this backend
-	 * @param \MediaWiki\Request\WebRequest $request
+	 * @param WebRequest $request
 	 * @return Session
 	 */
 	public function getSession( WebRequest $request ) {
@@ -257,7 +257,7 @@ final class SessionBackend {
 
 	/**
 	 * Fetch the SessionId object
-	 * @internal For internal use by MediaWiki\Request\WebRequest
+	 * @internal For internal use by WebRequest
 	 * @return SessionId
 	 */
 	public function getSessionId() {
@@ -404,7 +404,7 @@ final class SessionBackend {
 	/**
 	 * Returns the request associated with a Session
 	 * @param int $index Session index
-	 * @return \MediaWiki\Request\WebRequest
+	 * @return WebRequest
 	 */
 	public function getRequest( $index ) {
 		if ( !isset( $this->requests[$index] ) ) {
@@ -661,7 +661,7 @@ final class SessionBackend {
 	/**
 	 * Save the session
 	 *
-	 * Update both the backend data and the associated MediaWiki\Request\WebRequest(s) to
+	 * Update both the backend data and the associated WebRequest(s) to
 	 * reflect the state of the SessionBackend. This might include
 	 * persisting or unpersisting the session.
 	 *
@@ -824,7 +824,7 @@ final class SessionBackend {
 
 	/**
 	 * Helper method for logging persistSession/unpersistSession calls.
-	 * @param \MediaWiki\Request\WebRequest $request
+	 * @param WebRequest $request
 	 * @param bool $persist True when persisting, false when unpersisting
 	 */
 	private function logPersistenceChange( WebRequest $request, bool $persist ) {

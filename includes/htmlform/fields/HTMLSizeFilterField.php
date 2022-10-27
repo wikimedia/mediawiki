@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\Request\WebRequest;
-
 /**
  * A size filter field for use on query-type special pages. It looks a bit like:
  *

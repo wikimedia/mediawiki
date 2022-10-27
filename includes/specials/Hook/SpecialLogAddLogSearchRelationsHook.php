@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use MediaWiki\Request\WebRequest;
+use WebRequest;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -18,7 +18,7 @@ interface SpecialLogAddLogSearchRelationsHook {
 	 * @since 1.35
 	 *
 	 * @param string $type String of the log type
-	 * @param WebRequest $request MediaWiki\Request\WebRequest object for getting the value provided by the current user
+	 * @param WebRequest $request WebRequest object for getting the value provided by the current user
 	 * @param array &$qc Array for query conditions to add
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

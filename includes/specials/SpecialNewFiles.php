@@ -23,7 +23,6 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Permissions\GroupPermissionsLookup;
-use MediaWiki\Request\DerivativeRequest;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class SpecialNewFiles extends IncludableSpecialPage {

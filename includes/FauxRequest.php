@@ -23,16 +23,12 @@
  * @file
  */
 
-namespace MediaWiki\Request;
-
-use MediaWiki;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
-use MWException;
 
 /**
- * MediaWiki\Request\WebRequest clone which takes values from a provided array.
+ * WebRequest clone which takes values from a provided array.
  *
  * @newable
  *
@@ -57,14 +53,14 @@ class FauxRequest extends WebRequest {
 	 * @throws MWException
 	 */
 	public function __construct( $data = [], $wasPosted = false,
-								$session = null, $protocol = 'http'
+		$session = null, $protocol = 'http'
 	) {
 		$this->requestTime = microtime( true );
 
 		if ( is_array( $data ) ) {
 			$this->data = $data;
 		} else {
-			throw new MWException( "MediaWiki\Request\FauxRequest() got bogus data" );
+			throw new MWException( "FauxRequest() got bogus data" );
 		}
 		$this->wasPosted = $wasPosted;
 		if ( $session instanceof MediaWiki\Session\Session ) {
@@ -76,7 +72,7 @@ class FauxRequest extends WebRequest {
 				$mwsession->set( $key, $value );
 			}
 		} elseif ( $session !== null ) {
-			throw new MWException( "MediaWiki\Request\FauxRequest() got bogus session" );
+			throw new MWException( "FauxRequest() got bogus session" );
 		}
 		$this->protocol = $protocol;
 	}
@@ -130,19 +126,19 @@ class FauxRequest extends WebRequest {
 	}
 
 	/**
+	 * @since 1.26
 	 * @param string $key Unprefixed name of the cookie to set
 	 * @param string|null $value Value of the cookie to set
 	 * @param string|null $prefix Cookie prefix. Defaults to $wgCookiePrefix
-	 * @since 1.26
 	 */
 	public function setCookie( $key, $value, $prefix = null ) {
 		$this->setCookies( [ $key => $value ], $prefix );
 	}
 
 	/**
+	 * @since 1.26
 	 * @param array $cookies
 	 * @param string|null $prefix Cookie prefix. Defaults to $wgCookiePrefix
-	 * @since 1.26
 	 */
 	public function setCookies( $cookies, $prefix = null ) {
 		if ( $prefix === null ) {
@@ -158,8 +154,8 @@ class FauxRequest extends WebRequest {
 	/**
 	 * Set fake upload data for all files
 	 *
-	 * @param (array|WebRequestUpload)[] $uploadData
 	 * @since 1.37
+	 * @param (array|WebRequestUpload)[] $uploadData
 	 */
 	public function setUploadData( $uploadData ) {
 		foreach ( $uploadData as $key => $data ) {
@@ -170,13 +166,13 @@ class FauxRequest extends WebRequest {
 	/**
 	 * Set fake upload data for one file with specific key
 	 *
+	 * @since 1.37
 	 * @param string $key
 	 * @param array|WebRequestUpload $data
-	 * @since 1.37
 	 */
 	public function setUpload( $key, $data ) {
 		if ( $data instanceof WebRequestUpload ) {
-			// cannot reuse MediaWiki\Request\WebRequestUpload, because it contains the original web request object
+			// cannot reuse WebRequestUpload, because it contains the original web request object
 			$data = [
 				'name' => $data->getName(),
 				'type' => $data->getType(),
@@ -195,7 +191,7 @@ class FauxRequest extends WebRequest {
 	}
 
 	/**
-	 * Return a MediaWiki\Request\FauxRequestUpload object corresponding to the key
+	 * Return a FauxRequestUpload object corresponding to the key
 	 *
 	 * @param string $key
 	 * @return FauxRequestUpload
@@ -205,17 +201,17 @@ class FauxRequest extends WebRequest {
 	}
 
 	/**
-	 * @param string $url
 	 * @since 1.25
+	 * @param string $url
 	 */
 	public function setRequestURL( $url ) {
 		$this->requestUrl = $url;
 	}
 
 	/**
-	 * @return string
 	 * @since 1.25 MWException( "getRequestURL not implemented" )
 	 * no longer thrown.
+	 * @return string
 	 */
 	public function getRequestURL() {
 		if ( $this->requestUrl === null ) {
@@ -237,8 +233,8 @@ class FauxRequest extends WebRequest {
 	}
 
 	/**
-	 * @param array $headers
 	 * @since 1.26
+	 * @param array $headers
 	 */
 	public function setHeaders( $headers ) {
 		foreach ( $headers as $name => $val ) {
@@ -293,5 +289,3 @@ class FauxRequest extends WebRequest {
 		return '127.0.0.1';
 	}
 }
-
-class_alias( FauxRequest::class, 'FauxRequest' );

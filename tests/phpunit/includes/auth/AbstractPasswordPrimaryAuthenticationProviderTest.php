@@ -127,7 +127,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 
 		$services = $this->getServiceContainer();
 		$manager = new AuthManager(
-			new \MediaWiki\Request\FauxRequest(),
+			new \FauxRequest(),
 			$services->getMainConfig(),
 			$services->getObjectFactory(),
 			$services->getHookContainer(),

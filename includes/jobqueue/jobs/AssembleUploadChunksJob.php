@@ -18,7 +18,6 @@
  * @file
  */
 
-use MediaWiki\Request\WebRequestUpload;
 use Wikimedia\ScopedCallback;
 
 /**

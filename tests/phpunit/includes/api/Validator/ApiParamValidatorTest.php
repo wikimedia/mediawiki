@@ -7,7 +7,7 @@ use ApiMain;
 use ApiMessage;
 use ApiTestCase;
 use ApiUsageException;
-use MediaWiki\Request\FauxRequest;
+use FauxRequest;
 use Message;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Message\MessageValue;

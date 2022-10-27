@@ -48,7 +48,6 @@ use LocalIdLookup;
 use LocalisationCache;
 use LocalRepo;
 use LogFormatter;
-use MediaWiki\Request\WebRequest;
 use MediaWiki\Settings\Source\JsonSchemaTrait;
 use MediaWikiSite;
 use MemcachedPeclBagOStuff;
@@ -81,6 +80,7 @@ use UserGroupExpiryJob;
 use UserOptionsUpdateJob;
 use WANObjectCache;
 use WatchlistExpiryJob;
+use WebRequest;
 use WikitextContentHandler;
 use WinCacheBagOStuff;
 

@@ -20,7 +20,6 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Request\WebRequest;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**

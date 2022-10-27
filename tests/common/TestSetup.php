@@ -91,7 +91,7 @@ class TestSetup {
 
 		// Generic MediaWiki\Session\SessionManager configuration for tests
 		// We use CookieSessionProvider because things might be expecting
-		// cookies to show up in a MediaWiki\Request\FauxRequest somewhere.
+		// cookies to show up in a FauxRequest somewhere.
 		$wgSessionProviders = [
 			[
 				'class' => MediaWiki\Session\CookieSessionProvider::class,

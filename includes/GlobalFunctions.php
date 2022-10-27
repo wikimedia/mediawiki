@@ -27,7 +27,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ProcOpenError;
-use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Shell\Shell;
 use MediaWiki\StubObject\StubUserLang;

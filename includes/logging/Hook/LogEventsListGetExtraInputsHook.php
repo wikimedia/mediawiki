@@ -20,7 +20,7 @@ interface LogEventsListGetExtraInputsHook {
 	 *
 	 * @param string $type Log type being displayed
 	 * @param LogEventsList $logEventsList LogEventsList object for context
-	 *   and access to the MediaWiki\Request\WebRequest
+	 *   and access to the WebRequest
 	 * @param string &$input HTML of an input element. Deprecated, use
 	 *   $formDescriptor instead.
 	 * @param array &$formDescriptor HTMLForm's form descriptor

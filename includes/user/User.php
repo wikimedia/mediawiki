@@ -37,7 +37,6 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Permissions\UserAuthority;
-use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
@@ -2398,7 +2397,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	}
 
 	/**
-	 * Get the MediaWiki\Request\WebRequest object to use with this object
+	 * Get the WebRequest object to use with this object
 	 *
 	 * @return WebRequest
 	 */
@@ -2453,7 +2452,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Persist this user's session (e.g. set cookies)
 	 *
-	 * @param WebRequest|null $request MediaWiki\Request\WebRequest object to use; the global request
+	 * @param WebRequest|null $request WebRequest object to use; the global request
 	 *        will be used if null is passed.
 	 * @param bool|null $secure Whether to force secure/insecure cookies or use default
 	 * @param bool $rememberMe Whether to add a Token cookie for elongated sessions
@@ -2932,7 +2931,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @since 1.27
 	 * @deprecated since 1.37. Use CsrfTokenSet::getToken instead
 	 * @param string|string[] $salt Optional function-specific data for hashing
-	 * @param WebRequest|null $request MediaWiki\Request\WebRequest object to use, or null to use the global request
+	 * @param WebRequest|null $request WebRequest object to use, or null to use the global request
 	 * @return MediaWiki\Session\Token The new edit token
 	 */
 	public function getEditTokenObject( $salt = '', $request = null ) {
@@ -2957,7 +2956,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @since 1.19
 	 * @deprecated since 1.37. Use CsrfTokenSet::getToken instead
 	 * @param string|string[] $salt Optional function-specific data for hashing
-	 * @param WebRequest|null $request MediaWiki\Request\WebRequest object to use, or null to use the global request
+	 * @param WebRequest|null $request WebRequest object to use, or null to use the global request
 	 * @return string The new edit token
 	 */
 	public function getEditToken( $salt = '', $request = null ) {
@@ -3506,7 +3505,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		if ( !$this->mThisAsAuthority ) {
 			// TODO: For users that are not User::isGlobalSessionUser,
 			// creating a UserAuthority here is incorrect, since it depends
-			// on global MediaWiki\Request\WebRequest, but that is what we've used to do before Authority.
+			// on global WebRequest, but that is what we've used to do before Authority.
 			// When PermissionManager is refactored into Authority, we need
 			// to provide base implementation, based on just user groups/rights,
 			// and use it here.

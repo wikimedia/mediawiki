@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\ResourceLoader;
 
-use MediaWiki\Request\FauxRequest;
+use FauxRequest;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\DerivativeContext;
 use MediaWiki\ResourceLoader\ResourceLoader;

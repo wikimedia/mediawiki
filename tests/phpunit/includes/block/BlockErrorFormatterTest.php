@@ -3,7 +3,6 @@
 use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
-use MediaWiki\Request\FauxRequest;
 
 /**
  * @todo Can this be converted to unit tests?

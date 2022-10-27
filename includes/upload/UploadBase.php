@@ -26,7 +26,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
-use MediaWiki\Request\WebRequest;
 use MediaWiki\Shell\Shell;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\AtEase\AtEase;
@@ -273,7 +272,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Initialize from a MediaWiki\Request\WebRequest. Override this in a subclass.
+	 * Initialize from a WebRequest. Override this in a subclass.
 	 *
 	 * @param WebRequest &$request
 	 */

@@ -26,13 +26,13 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Request\WebRequest;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Message;
 use MWCryptHash;
 use Psr\Log\LoggerInterface;
 use User;
+use WebRequest;
 use WebResponse;
 use Wikimedia\IPSet;
 use Wikimedia\IPUtils;
@@ -116,8 +116,9 @@ class BlockManager {
 	 * blocked, and does not determine whether the person using that account is affected
 	 * in practice by any IP address or cookie blocks.
 	 *
+	 * @internal This should only be called by User::getBlockedStatus
 	 * @param UserIdentity $user
-	 * @param \MediaWiki\Request\WebRequest|null $request The global request object if the user is the
+	 * @param WebRequest|null $request The global request object if the user is the
 	 *  global user (cases #1 and #2), otherwise null (case #3). The IP address and
 	 *  information from the request header are needed to find some types of blocks.
 	 * @param bool $fromReplica Whether to check the replica DB first.
@@ -126,7 +127,6 @@ class BlockManager {
 	 * @param bool $disableIpBlockExemptChecking This is used internally to prevent
 	 *   a infinite recursion with autopromote. See T270145.
 	 * @return AbstractBlock|null The most relevant block, or null if there is no block.
-	 * @internal This should only be called by User::getBlockedStatus
 	 */
 	public function getUserBlock(
 		UserIdentity $user,
@@ -229,7 +229,7 @@ class BlockManager {
 	 * Get the cookie block, if there is one.
 	 *
 	 * @param UserIdentity $user
-	 * @param \MediaWiki\Request\WebRequest $request
+	 * @param WebRequest $request
 	 * @return AbstractBlock[]
 	 */
 	private function getCookieBlock( UserIdentity $user, WebRequest $request ): array {
@@ -345,7 +345,7 @@ class BlockManager {
 	 * with a valid cookie or (2) removed, next time trackBlockWithCookie is called.
 	 *
 	 * @param UserIdentity $user
-	 * @param \MediaWiki\Request\WebRequest $request
+	 * @param WebRequest $request
 	 * @return DatabaseBlock|bool The block object, or false if none could be loaded.
 	 */
 	private function getBlockFromCookieValue(

@@ -186,7 +186,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testProvideSessionInfo() {
-		$request = new \MediaWiki\Request\FauxRequest;
+		$request = new \FauxRequest;
 		$request->setCookie( '_BPsession', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'wgCookiePrefix' );
 
 		$provider = $this->getProvider( null, null, false );
@@ -202,13 +202,13 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $provider->provideSessionInfo( $request ) );
 		$this->config->set( 'EnableBotPasswords', true );
 
-		$this->assertNull( $provider->provideSessionInfo( new \MediaWiki\Request\FauxRequest ) );
+		$this->assertNull( $provider->provideSessionInfo( new \FauxRequest ) );
 	}
 
 	public function testNewSessionInfoForRequest() {
 		$provider = $this->getProvider();
 		$user = static::getTestSysop()->getUser();
-		$request = $this->getMockBuilder( \MediaWiki\Request\FauxRequest::class )
+		$request = $this->getMockBuilder( \FauxRequest::class )
 			->onlyMethods( [ 'getIP' ] )->getMock();
 		$request->method( 'getIP' )
 			->willReturn( '127.0.0.1' );
@@ -236,7 +236,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$this->initProvider( $provider, $logger );
 
 		$user = static::getTestSysop()->getUser();
-		$request = $this->getMockBuilder( \MediaWiki\Request\FauxRequest::class )
+		$request = $this->getMockBuilder( \FauxRequest::class )
 			->onlyMethods( [ 'getIP' ] )->getMock();
 		$request->method( 'getIP' )
 			->willReturn( '127.0.0.1' );
@@ -288,7 +288,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
-		$request2 = $this->getMockBuilder( \MediaWiki\Request\FauxRequest::class )
+		$request2 = $this->getMockBuilder( \FauxRequest::class )
 			->onlyMethods( [ 'getIP' ] )->getMock();
 		$request2->method( 'getIP' )
 			->willReturn( '10.0.0.1' );
