@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use MediaWiki\Request\PathRouter;
+use PathRouter;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -13,7 +13,7 @@ use MediaWiki\Request\PathRouter;
  */
 interface WebRequestPathInfoRouterHook {
 	/**
-	 * This hook is called while building the MediaWiki\Request\PathRouter to parse the
+	 * This hook is called while building the PathRouter to parse the
 	 * REQUEST_URI.
 	 *
 	 * @since 1.35

@@ -23,11 +23,10 @@
 namespace MediaWiki\ResourceLoader;
 
 use Config;
+use FauxRequest;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReferenceValue;
-use MediaWiki\Request\FauxRequest;
-use MediaWiki\Request\WebRequest;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserRigorOptions;
 use Message;
@@ -35,6 +34,7 @@ use MessageLocalizer;
 use MessageSpecifier;
 use Psr\Log\LoggerInterface;
 use User;
+use WebRequest;
 
 /**
  * Context object that contains information about the state of a specific
@@ -99,14 +99,14 @@ class Context implements MessageLocalizer {
 
 	/**
 	 * @param ResourceLoader $resourceLoader
-	 * @param \MediaWiki\Request\WebRequest $request
+	 * @param WebRequest $request
 	 */
 	public function __construct( ResourceLoader $resourceLoader, WebRequest $request ) {
 		$this->resourceLoader = $resourceLoader;
 		$this->request = $request;
 		$this->logger = $resourceLoader->getLogger();
 
-		// Optimisation: Use MediaWiki\Request\WebRequest::getRawVal() instead of getVal(). We don't
+		// Optimisation: Use WebRequest::getRawVal() instead of getVal(). We don't
 		// need the slow Language+UTF logic meant for user input here. (f303bb9360)
 
 		// List of modules

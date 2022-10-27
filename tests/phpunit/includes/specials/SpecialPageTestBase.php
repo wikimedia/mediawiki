@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Request\WebRequest;
 
 /**
  * Base class for testing special pages.

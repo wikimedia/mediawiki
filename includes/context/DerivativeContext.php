@@ -20,7 +20,6 @@
  */
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Request\WebRequest;
 
 /**
  * An IContextSource implementation which will inherit context from another source

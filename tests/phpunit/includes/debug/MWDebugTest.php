@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\Request\FauxRequest;
 use Wikimedia\AtEase\AtEase;
 
 class MWDebugTest extends MediaWikiIntegrationTestCase {

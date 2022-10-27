@@ -4,8 +4,8 @@ namespace MediaWiki\Tests\Storage;
 
 use Article;
 use EditPage;
+use FauxRequest;
 use McrUndoAction;
-use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;

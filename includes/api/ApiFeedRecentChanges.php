@@ -21,7 +21,6 @@
 
 use MediaWiki\Feed\ChannelFeed;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;

@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\Request\FauxRequest;
 use Wikimedia\TestingAccessWrapper;
 
 /**

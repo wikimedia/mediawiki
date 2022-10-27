@@ -93,7 +93,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 		] );
 		$mwServices = $this->getServiceContainer();
 		$manager = new AuthManager(
-			new \MediaWiki\Request\FauxRequest,
+			new \FauxRequest,
 			$config,
 			new ObjectFactory( $this->createNoOpAbstractMock( ContainerInterface::class ) ),
 			$this->createHookContainer(),

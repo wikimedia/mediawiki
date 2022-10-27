@@ -136,7 +136,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$user = \User::newFromName( 'UTSysop' );
 		$provider = new ConfirmLinkSecondaryAuthenticationProvider;
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
-		$request = new \MediaWiki\Request\FauxRequest();
+		$request = new \FauxRequest();
 		$mwServices = $this->getServiceContainer();
 
 		$manager = $this->getMockBuilder( AuthManager::class )
@@ -246,7 +246,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 				],
 			],
 		] );
-		$request = new \MediaWiki\Request\FauxRequest();
+		$request = new \FauxRequest();
 		$mwServices = $this->getServiceContainer();
 		$manager = new AuthManager(
 			$request,

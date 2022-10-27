@@ -1215,7 +1215,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	}
 
 	/**
-	 * Fetch values for a FormOptions object from the MediaWiki\Request\WebRequest associated with this instance.
+	 * Fetch values for a FormOptions object from the WebRequest associated with this instance.
 	 *
 	 * Intended for subclassing, e.g. to add a backwards-compatibility layer.
 	 *

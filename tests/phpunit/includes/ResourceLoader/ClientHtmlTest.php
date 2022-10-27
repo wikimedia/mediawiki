@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\ResourceLoader;
 
+use FauxRequest;
 use HashConfig;
-use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader\ClientHtml;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\Module;

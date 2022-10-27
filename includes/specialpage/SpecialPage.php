@@ -29,7 +29,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Navigation\PrevNextNavigationRenderer;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Request\WebRequest;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 
 /**
@@ -844,7 +843,7 @@ class SpecialPage implements MessageLocalizer {
 	}
 
 	/**
-	 * Get the MediaWiki\Request\WebRequest being used for this instance
+	 * Get the WebRequest being used for this instance
 	 *
 	 * @return WebRequest
 	 * @since 1.18

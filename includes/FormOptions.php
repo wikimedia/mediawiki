@@ -26,8 +26,6 @@
  * @author Antoine Musso
  */
 
-use MediaWiki\Request\WebRequest;
-
 /**
  * Helper class to keep track of options when mixing links and form elements.
  *
@@ -36,26 +34,26 @@ use MediaWiki\Request\WebRequest;
  */
 class FormOptions implements ArrayAccess {
 	/** @name Type constants
-	 * Used internally to map an option value to a MediaWiki\Request\WebRequest accessor
+	 * Used internally to map an option value to a WebRequest accessor
 	 * @{
 	 */
 	/** Mark value for automatic detection (for simple data types only) */
 	public const AUTO = -1;
-	/** String type, maps guessType() to MediaWiki\Request\WebRequest::getText() */
+	/** String type, maps guessType() to WebRequest::getText() */
 	public const STRING = 0;
-	/** Integer type, maps guessType() to MediaWiki\Request\WebRequest::getInt() */
+	/** Integer type, maps guessType() to WebRequest::getInt() */
 	public const INT = 1;
-	/** Float type, maps guessType() to MediaWiki\Request\WebRequest::getFloat()
+	/** Float type, maps guessType() to WebRequest::getFloat()
 	 * @since 1.23
 	 */
 	public const FLOAT = 4;
-	/** Boolean type, maps guessType() to MediaWiki\Request\WebRequest::getBool() */
+	/** Boolean type, maps guessType() to WebRequest::getBool() */
 	public const BOOL = 2;
-	/** Integer type or null, maps to MediaWiki\Request\WebRequest::getIntOrNull()
+	/** Integer type or null, maps to WebRequest::getIntOrNull()
 	 * This is useful for the namespace selector.
 	 */
 	public const INTNULL = 3;
-	/** Array type, maps guessType() to MediaWiki\Request\WebRequest::getArray()
+	/** Array type, maps guessType() to WebRequest::getArray()
 	 * @since 1.29
 	 */
 	public const ARR = 5;
@@ -336,7 +334,7 @@ class FormOptions implements ArrayAccess {
 	# Reading values
 
 	/**
-	 * Fetch values for all options (or selected options) from the given MediaWiki\Request\WebRequest, making them
+	 * Fetch values for all options (or selected options) from the given WebRequest, making them
 	 * available for accessing with getValue() or consumeValue() etc.
 	 *
 	 * @param WebRequest $r The request to fetch values from

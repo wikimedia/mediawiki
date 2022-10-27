@@ -2,7 +2,6 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\SessionManager;
 
 abstract class ApiTestCase extends MediaWikiLangTestCase {
@@ -52,7 +51,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @param string|null $paramPrefix Prefix to prepend to parameters
 	 * @return array List of:
 	 * - the result data (array)
-	 * - the request (MediaWiki\Request\WebRequest)
+	 * - the request (WebRequest)
 	 * - the session data of the request (array)
 	 * - if $appendModule is true, the Api module $module
 	 * @throws ApiUsageException

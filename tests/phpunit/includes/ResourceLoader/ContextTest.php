@@ -3,14 +3,14 @@
 namespace MediaWiki\Tests\ResourceLoader;
 
 use EmptyResourceLoader;
+use FauxRequest;
 use HashConfig;
-use MediaWiki\Request\FauxRequest;
-use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWikiCoversValidator;
 use Message;
 use User;
+use WebRequest;
 
 /**
  * See also:

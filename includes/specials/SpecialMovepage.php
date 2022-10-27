@@ -162,7 +162,7 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		$request = $this->getRequest();
 
-		// Beware: The use of MediaWiki\Request\WebRequest::getText() is wanted! See T22365
+		// Beware: The use of WebRequest::getText() is wanted! See T22365
 		$target = $par ?? $request->getText( 'target' );
 		$oldTitleText = $request->getText( 'wpOldTitle', $target );
 		$this->oldTitle = Title::newFromText( $oldTitleText );

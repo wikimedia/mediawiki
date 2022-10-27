@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\Request\WebRequest;
-
 /**
  * Double field with a dropdown list constructed from a system message in the format
  *     * Optgroup header

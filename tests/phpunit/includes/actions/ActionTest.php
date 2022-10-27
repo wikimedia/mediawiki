@@ -5,7 +5,6 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Request\FauxRequest;
 
 /**
  * @covers Action
