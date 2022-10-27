@@ -2696,7 +2696,7 @@ class Language {
 	protected function mbUpperChar( $char ) {
 		$overrideUcfirstCharacters =
 			$this->config->get( MainConfigNames::OverrideUcfirstCharacters );
-		return $overrideUcfirstCharacters[$char] ?? mb_strtoupper( $char );
+		return $overrideUcfirstCharacters[$char] ?? mb_convert_case( $char, MB_CASE_TITLE );
 	}
 
 	/**
