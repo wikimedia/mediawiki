@@ -72,7 +72,6 @@ class WrapOldPasswords extends Maintenance {
 
 		$count = 0;
 		$minUserId = 0;
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		do {
 			if ( $update ) {
 				$this->beginTransaction( $dbw, __METHOD__ );
@@ -126,7 +125,7 @@ class WrapOldPasswords extends Maintenance {
 
 			if ( $update ) {
 				$this->commitTransaction( $dbw, __METHOD__ );
-				$lbFactory->waitForReplication();
+				$this->waitForReplication();
 
 				// Clear memcached so old passwords are wiped out
 				foreach ( $updateUsers as $user ) {

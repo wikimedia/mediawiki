@@ -117,7 +117,7 @@ class RebuildRecentchanges extends Maintenance {
 		);
 		foreach ( array_chunk( $rcids, $this->getBatchSize() ) as $rcidBatch ) {
 			$dbw->delete( 'recentchanges', [ 'rc_id' => $rcidBatch ], __METHOD__ );
-			$lbFactory->waitForReplication();
+			$this->waitForReplication();
 		}
 
 		$this->output( "Loading from page and revision tables...\n" );
@@ -180,7 +180,7 @@ class RebuildRecentchanges extends Maintenance {
 			);
 
 			if ( ( ++$inserted % $this->getBatchSize() ) == 0 ) {
-				$lbFactory->waitForReplication();
+				$this->waitForReplication();
 			}
 		}
 	}
@@ -272,7 +272,7 @@ class RebuildRecentchanges extends Maintenance {
 				$lastSize = $size;
 
 				if ( ( ++$updated % $this->getBatchSize() ) == 0 ) {
-					$lbFactory->waitForReplication();
+					$this->waitForReplication();
 				}
 			}
 		}
@@ -361,7 +361,7 @@ class RebuildRecentchanges extends Maintenance {
 			);
 
 			if ( ( ++$inserted % $this->getBatchSize() ) == 0 ) {
-				$lbFactory->waitForReplication();
+				$this->waitForReplication();
 			}
 		}
 	}
@@ -428,7 +428,7 @@ class RebuildRecentchanges extends Maintenance {
 					[ 'rc_id' => $rcidBatch ],
 					__METHOD__
 				);
-				$lbFactory->waitForReplication();
+				$this->waitForReplication();
 			}
 		}
 
@@ -456,7 +456,7 @@ class RebuildRecentchanges extends Maintenance {
 					[ 'rc_id' => $rcidBatch ],
 					__METHOD__
 				);
-				$lbFactory->waitForReplication();
+				$this->waitForReplication();
 			}
 		}
 	}
@@ -506,7 +506,7 @@ class RebuildRecentchanges extends Maintenance {
 			);
 
 			if ( ( ++$updates % $this->getBatchSize() ) == 0 ) {
-				$lbFactory->waitForReplication();
+				$this->waitForReplication();
 			}
 		}
 	}

@@ -151,8 +151,6 @@ class RefreshImageMetadata extends Maintenance {
 			'ORDER BY' => $fieldPrefix . 'name ASC',
 		];
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-
 		do {
 			$res = $dbw->select(
 				$fileQuery['tables'],
@@ -200,7 +198,7 @@ class RefreshImageMetadata extends Maintenance {
 				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable rows contains at least one item
 				$conds2 = [ $fieldPrefix . 'name > ' . $dbw->addQuotes( $row->$nameField ) ];
 			}
-			$lbFactory->waitForReplication();
+			$this->waitForReplication();
 			if ( $sleep ) {
 				sleep( $sleep );
 			}

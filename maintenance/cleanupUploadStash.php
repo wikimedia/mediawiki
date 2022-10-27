@@ -77,8 +77,6 @@ class CleanupUploadStash extends Maintenance {
 			// out-of-date someday
 			$stash = new UploadStash( $repo );
 
-			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-
 			$i = 0;
 			foreach ( $keys as $key ) {
 				$i++;
@@ -90,7 +88,7 @@ class CleanupUploadStash extends Maintenance {
 					$this->output( "Failed removing stashed upload with key: $key ($type)\n" );
 				}
 				if ( $i % 100 == 0 ) {
-					$lbFactory->waitForReplication();
+					$this->waitForReplication();
 					$this->output( "$i\n" );
 				}
 			}

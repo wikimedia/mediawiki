@@ -197,8 +197,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 			__METHOD__
 		);
 
-		$lbFactory = MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lbFactory->waitForReplication();
+		$this->waitForReplication();
 	}
 
 }

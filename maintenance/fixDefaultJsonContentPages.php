@@ -84,7 +84,6 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 		$content = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 		$dbw = $this->getDB( DB_PRIMARY );
 		if ( $content instanceof JsonContent ) {
-			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 			if ( $content->isValid() ) {
 				// Yay, actually JSON. We need to just change the
 				// page_content_model because revision will automatically
@@ -97,7 +96,7 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 					__METHOD__
 				);
 				$this->output( "done.\n" );
-				$lbFactory->waitForReplication();
+				$this->waitForReplication();
 			} else {
 				// Not JSON...force it to wikitext. We need to update the
 				// revision table so that these revisions are always processed
@@ -118,7 +117,7 @@ class FixDefaultJsonContentPages extends LoggedUpdateMaintenance {
 						[ 'rev_page' => $row->page_id, 'rev_id' => $chunk ],
 						__METHOD__
 					);
-					$lbFactory->waitForReplication();
+					$this->waitForReplication();
 				}
 				$this->output( "done.\n" );
 			}

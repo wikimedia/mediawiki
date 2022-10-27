@@ -25,7 +25,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -66,7 +65,6 @@ class RunBatchedQuery extends Maintenance {
 
 		$selectConds = $where;
 		$prevEnd = false;
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		$n = 1;
 		do {
@@ -105,7 +103,7 @@ class RunBatchedQuery extends Maintenance {
 
 			$affected = $dbw->affectedRows();
 			$this->output( "$affected rows affected\n" );
-			$lbFactory->waitForReplication();
+			$this->waitForReplication();
 		} while ( $res->numRows() );
 	}
 
