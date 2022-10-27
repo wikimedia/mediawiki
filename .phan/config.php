@@ -86,6 +86,7 @@ $cfg['directory_list'] = [
 	'resources/',
 	'tests/common/',
 	'tests/parser/',
+	'tests/phan',
 	'tests/phpunit/mocks/',
 	// Do NOT add .phan/stubs/ here: stubs are conditionally loaded in file_list
 ];
