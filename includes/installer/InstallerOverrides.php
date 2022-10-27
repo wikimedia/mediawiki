@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Request\WebRequest;
+
 /**
  * @since 1.20
  */

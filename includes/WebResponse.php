@@ -24,7 +24,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
 /**
- * Allow programs to request this object from WebRequest::response()
+ * Allow programs to request this object from MediaWiki\Request\WebRequest::response()
  * and handle all outputting (or lack of outputting) via it.
  * @ingroup HTTP
  */

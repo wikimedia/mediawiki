@@ -11,6 +11,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\SignatureValidatorFactory;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;
 use MediaWiki\Tests\Unit\DummyServicesTrait;

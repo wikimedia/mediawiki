@@ -135,6 +135,7 @@ $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'wgCookiePrefix' => 'string|false',
 	'wgOut' => 'OutputPage',
 	'wgExtraNamespaces' => 'string[]',
+	'wgRequest' => '\\MediaWiki\\Request\\WebRequest',
 ] );
 
 // Include a local config file if it exists

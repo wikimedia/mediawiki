@@ -5,6 +5,8 @@ use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
 use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 

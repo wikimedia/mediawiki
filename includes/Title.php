@@ -33,6 +33,7 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\ProperPageIdentity;
+use MediaWiki\Request\PathRouter;
 use MediaWiki\ResourceLoader\WikiModule;
 use MediaWiki\StubObject\StubUserLang;
 use Wikimedia\Assert\Assert;

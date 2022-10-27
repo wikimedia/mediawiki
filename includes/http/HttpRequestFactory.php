@@ -84,10 +84,10 @@ class HttpRequestFactory {
 	 *    - logger              A \Psr\Logger\LoggerInterface instance for debug logging
 	 *    - username            Username for HTTP Basic Authentication
 	 *    - password            Password for HTTP Basic Authentication
-	 *    - originalRequest     Information about the original request (as a WebRequest object or
+	 *    - originalRequest     Information about the original request (as a MediaWiki\Request\WebRequest object or
 	 *                          an associative array with 'ip' and 'userAgent').
 	 * @phpcs:ignore Generic.Files.LineLength
-	 * @phan-param array{timeout?:int|string,connectTimeout?:int|string,postData?:string|array,proxy?:?string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:?string,maxRedirects?:int,followRedirects?:bool,userAgent?:string,method?:string,logger?:\Psr\Log\LoggerInterface,username?:string,password?:string,originalRequest?:\WebRequest|array{ip:string,userAgent:string}} $options
+	 * @phan-param array{timeout?:int|string,connectTimeout?:int|string,postData?:string|array,proxy?:?string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:?string,maxRedirects?:int,followRedirects?:bool,userAgent?:string,method?:string,logger?:\Psr\Log\LoggerInterface,username?:string,password?:string,originalRequest?:\MediaWiki\Request\WebRequest|array{ip:string,userAgent:string}} $options
 	 * @param string $caller The method making this request, for profiling
 	 * @return MWHttpRequest
 	 * @see MWHttpRequest::__construct

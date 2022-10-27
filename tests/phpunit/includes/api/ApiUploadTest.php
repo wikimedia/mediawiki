@@ -191,7 +191,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$filekey = $result['upload']['filekey'];
 
 		// it should be visible from Special:UploadStash
-		// XXX ...but how to test this, with a fake WebRequest with the session?
+		// XXX ...but how to test this, with a fake MediaWiki\Request\WebRequest with the session?
 
 		// now we should try to release the file from stash
 		$this->clearFakeUploads();

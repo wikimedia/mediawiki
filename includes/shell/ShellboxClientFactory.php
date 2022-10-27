@@ -5,11 +5,11 @@ namespace MediaWiki\Shell;
 use GuzzleHttp\Psr7\Uri;
 use GuzzleHttp\RequestOptions;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Request\WebRequest;
 use RuntimeException;
 use Shellbox\Client;
 use Shellbox\RPC\LocalRpcClient;
 use Shellbox\RPC\RpcClient;
-use WebRequest;
 
 /**
  * This is a service which provides a configured client to access a remote

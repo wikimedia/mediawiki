@@ -39,6 +39,8 @@
  * @ingroup entrypoint
  */
 
+use MediaWiki\Request\WebRequest;
+
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 define( 'MW_ENTRY_POINT', 'img_auth' );
 require __DIR__ . '/includes/WebStart.php';

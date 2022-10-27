@@ -33,6 +33,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\User\BotPasswordStore;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
@@ -50,7 +51,6 @@ use SpecialPage;
 use Status;
 use StatusValue;
 use User;
-use WebRequest;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\ScopedCallback;
@@ -212,7 +212,7 @@ class AuthManager implements LoggerAwareInterface {
 	private $userOptionsManager;
 
 	/**
-	 * @param WebRequest $request
+	 * @param \MediaWiki\Request\WebRequest $request
 	 * @param Config $config
 	 * @param ObjectFactory $objectFactory
 	 * @param HookContainer $hookContainer
@@ -272,7 +272,7 @@ class AuthManager implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @return WebRequest
+	 * @return \MediaWiki\Request\WebRequest
 	 */
 	public function getRequest() {
 		return $this->request;

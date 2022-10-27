@@ -18,6 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\Request\WebRequest;
 use Wikimedia\IPSet;
 use Wikimedia\IPUtils;
 
@@ -120,7 +121,7 @@ class MWRestrictions {
 	}
 
 	/**
-	 * Test against the passed WebRequest
+	 * Test against the passed MediaWiki\Request\WebRequest
 	 * @param WebRequest $request
 	 * @return Status
 	 */

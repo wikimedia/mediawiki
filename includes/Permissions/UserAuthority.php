@@ -37,7 +37,7 @@ use Wikimedia\DebugInfo\DebugInfoTrait;
  *
  * @note This is intended as an intermediate step towards an implementation of Authority that
  * contains much of the logic currently in PermissionManager, and is based directly on
- * WebRequest and Session, rather than a User object. However, for now, code that needs an
+ * MediaWiki\Request\WebRequest and Session, rather than a User object. However, for now, code that needs an
  * Authority that reflects the current user and web request should use a User object directly.
  *
  * @unstable

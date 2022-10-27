@@ -23,6 +23,7 @@
 
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\WebRequest;
 
 /**
  * Class for the core installer web interface.
@@ -38,7 +39,7 @@ class WebInstaller extends Installer {
 	public $output;
 
 	/**
-	 * WebRequest object.
+	 * MediaWiki\Request\WebRequest object.
 	 *
 	 * @var WebRequest
 	 */

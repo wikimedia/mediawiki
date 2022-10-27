@@ -25,6 +25,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\RedirectLookup;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -350,7 +351,7 @@ class ApiEditPage extends ApiBase {
 			$this->dieWithError( 'apierror-badmd5' );
 		}
 
-		// EditPage wants to parse its stuff from a WebRequest
+		// EditPage wants to parse its stuff from a MediaWiki\Request\WebRequest
 		// That interface kind of sucks, but it's workable
 		$requestArray = [
 			// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive

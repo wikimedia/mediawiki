@@ -118,7 +118,7 @@ class ApiStashEdit extends ApiBase {
 			}
 		} else {
 			// 'text' was passed.  Trim and fix newlines so the key SHA1's
-			// match (see WebRequest::getText())
+			// match (see MediaWiki\Request\WebRequest::getText())
 			$text = rtrim( str_replace( "\r\n", "\n", $params['text'] ) );
 			$textHash = sha1( $text );
 		}

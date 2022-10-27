@@ -27,6 +27,7 @@ use MediaWiki\Feed\FeedUtils;
 use MediaWiki\Feed\RSSFeed;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\WebRequest;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IResultWrapper;
 

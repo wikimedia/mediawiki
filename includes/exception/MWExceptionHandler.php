@@ -20,6 +20,8 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
 use Psr\Log\LogLevel;
 use Wikimedia\NormalizedException\INormalizedException;
 use Wikimedia\Rdbms\DBError;

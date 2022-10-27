@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Request\WebRequest;
+
 /**
  * The parent class to generate form fields.  Any field type should
  * be a subclass of this.

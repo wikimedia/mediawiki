@@ -13,7 +13,7 @@ var config = require( './config.json' ),
 
 /**
  * Manage cookies in a way that is syntactically and functionally similar
- * to the `WebRequest#getCookie` and `WebResponse#setcookie` methods in PHP.
+ * to the `MediaWiki\Request\WebRequest#getCookie` and `WebResponse#setcookie` methods in PHP.
  *
  * @author Sam Smith <samsmith@wikimedia.org>
  * @author Matthew Flaschen <mflaschen@wikimedia.org>

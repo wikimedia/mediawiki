@@ -22,6 +22,7 @@
 
 use MediaWiki\Feed\FeedItem;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\FauxRequest;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 

@@ -2,6 +2,7 @@
 
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Request\FauxRequest;
 
 /**
  * @covers DerivativeContext
@@ -52,7 +53,7 @@ class DerivativeContextTest extends MediaWikiIntegrationTestCase {
 			'getter' => 'getLanguage',
 			'setter' => 'setLanguage'
 		];
-		yield 'get/set WebRequest' => [
+		yield 'get/set MediaWiki\Request\WebRequest' => [
 			'initialContext' => $initialContext,
 			'initialValue' => new FauxRequest(),
 			'newValue' => new FauxRequest(),

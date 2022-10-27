@@ -502,7 +502,7 @@ class SpecialContributions extends IncludableSpecialPage {
 								$msgKey,
 								$userObj->getName() # Support GENDER in 'sp-contributions-blocked-notice'
 							],
-							'offset' => '', # don't use WebRequest parameter offset
+							'offset' => '', # don't use MediaWiki\Request\WebRequest parameter offset
 							'wrap' => Html::rawElement(
 								'div',
 								[ 'class' => $class ],
