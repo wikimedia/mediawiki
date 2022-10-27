@@ -6,7 +6,8 @@
 			"Passawuth",
 			"Tuinui",
 			"아라",
-			"Bebiezaza"
+			"Bebiezaza",
+			"Lookruk"
 		]
 	},
 	"tog-underline": "ການຂີດເສັ້ນກ້ອງລິງກ໌:",
@@ -258,7 +259,7 @@
 	"sort-descending": "ລຽງແຕ່ໃຫຍ່ຫານ້ອຍ",
 	"sort-ascending": "ລຽງແຕ່ນ້ອຍຫາໃຫຍ່",
 	"nstab-main": "ໜ້າ",
-	"nstab-user": "ໜ້າຜູ້ໃຊ້",
+	"nstab-user": "{{GENDER:$1|ໜ້າຜູ້ໃຊ້}}",
 	"nstab-media": "ໜ້າສື່",
 	"nstab-special": "ໜ້າພິເສດ",
 	"nstab-project": "ໜ້າໂຄງການ",
@@ -687,7 +688,7 @@
 	"uctop": "ເທິງສຸດ",
 	"month": "ແຕ່ເດືອນ (ແລະກ່ອນໜ້ານັ້ນ):",
 	"year": "ແຕ່ປີ (ແລະກ່ອນໜ້ານັ້ນ):",
-	"sp-contributions-blocklog": "ບັນທຶກການຫ້າມ",
+	"sp-contributions-blocklog": "ບັນທຶກການບລົອກ",
 	"sp-contributions-talk": "ສົນທະນາ",
 	"sp-contributions-search": "ຊອກຫາ ການປະກອບສ່ວນ",
 	"sp-contributions-username": "ທີ່ຢູ່ IP ຫຼື ຊື່ຜູ້ໃຊ້:",
