@@ -26,6 +26,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\SimpleAuthority;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\PHPSessionHandler;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\User\TempUser\RealTempUserConfig;
@@ -38,7 +39,6 @@ use MWTimestamp;
 use RequestContext;
 use TestLogger;
 use User;
-use WebRequest;
 use Wikimedia\Assert\PreconditionException;
 
 /**

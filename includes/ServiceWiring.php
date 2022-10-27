@@ -13,7 +13,7 @@
  * - ServiceWiring is NOT a cache for arbitrary singletons.
  *
  * - Services MUST NOT vary their behaviour on global state, especially not
- *   WebRequest, RequestContext (T218555), or other details of the current
+ *   MediaWiki\Request\WebRequest, RequestContext (T218555), or other details of the current
  *   request or CLI process (e.g. "current" user or title). Doing so may
  *   cause a chain reaction and cause serious data corruption.
  *
@@ -131,6 +131,7 @@ use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidator;
 use MediaWiki\Preferences\SignatureValidatorFactory;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Revision\ArchivedRevisionLookup;
@@ -556,7 +557,7 @@ return [
 		$lbFactoryConfigBuilder->setDomainAliases( $instance );
 
 		// NOTE: This accesses ProxyLookup from the MediaWikiServices singleton
-		// for non-essential non-nonimal purposes (via WebRequest::getIP).
+		// for non-essential non-nonimal purposes (via MediaWiki\Request\WebRequest::getIP).
 		// This state is fine (and meant) to be consistent for a given PHP process,
 		// even if applied to the service container for a different wiki.
 		$lbFactoryConfigBuilder->applyGlobalState(

@@ -4,6 +4,8 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Request\DerivativeRequest;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\Token;
 
 /**
@@ -116,7 +118,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 *
 	 * Thus when on the /return subpage, we stash the request data in the session, redirect, then
 	 * use the session to detect that we have been redirected, recover the data and replace the
-	 * real WebRequest with a fake one that contains the saved data.
+	 * real MediaWiki\Request\WebRequest with a fake one that contains the saved data.
 	 *
 	 * @param string $subPage
 	 * @return bool False if execution should be stopped.

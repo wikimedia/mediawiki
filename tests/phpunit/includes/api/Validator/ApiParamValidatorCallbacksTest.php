@@ -7,7 +7,7 @@ use ApiMain;
 use ApiMessage;
 use ApiQueryBase;
 use ApiUploadTestCase;
-use FauxRequest;
+use MediaWiki\Request\FauxRequest;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\TestingAccessWrapper;
 

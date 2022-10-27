@@ -7,6 +7,7 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\FauxRequest;
 
 /**
  * @group Database

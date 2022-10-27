@@ -5,13 +5,13 @@ namespace MediaWiki\Tests\Action;
 use Article;
 use DerivativeContext;
 use ErrorPageError;
-use FauxRequest;
+use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
 use MediaWikiIntegrationTestCase;
 use RequestContext;
 use RollbackAction;
 use Title;
 use User;
-use WebRequest;
 
 /**
  * @coversDefaultClass RollbackAction

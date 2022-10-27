@@ -121,12 +121,11 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 
 		$numRows = $res->numRows();
 		$i = 0;
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		foreach ( $res as $row ) {
 			if ( $i % $this->getBatchSize() == 0 ) {
 				$this->output( sprintf(
 					"Done %d of %d, %5.3f%%  \r", $i, $numRows, $i / $numRows * 100 ) );
-				$lbFactory->waitForReplication();
+				$this->waitForReplication();
 			}
 
 			$file = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()

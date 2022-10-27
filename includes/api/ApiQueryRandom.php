@@ -137,7 +137,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 
 		// Since 'filterredir" will always be set in $params, we have to dig
-		// into the WebRequest to see if it was actually passed.
+		// into the MediaWiki\Request\WebRequest to see if it was actually passed.
 		$request = $this->getMain()->getRequest();
 		if ( $request->getCheck( $this->encodeParamName( 'filterredir' ) ) ) {
 			$this->requireMaxOneParameter( $params, 'filterredir', 'redirect' );

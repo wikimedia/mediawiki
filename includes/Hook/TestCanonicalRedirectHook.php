@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Hook;
 
+use MediaWiki\Request\WebRequest;
 use OutputPage;
 use Title;
-use WebRequest;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

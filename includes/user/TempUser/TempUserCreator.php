@@ -5,11 +5,11 @@ namespace MediaWiki\User\TempUser;
 use ExtensionRegistry;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\Throttler;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Session\Session;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserRigorOptions;
 use MWException;
-use WebRequest;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
@@ -95,7 +95,7 @@ class TempUserCreator implements TempUserConfig {
 	 * Acquire a serial number, create the corresponding user and log in.
 	 *
 	 * @param string|null $name Previously acquired name
-	 * @param WebRequest|null $request Request details, used for throttling
+	 * @param \MediaWiki\Request\WebRequest|null $request Request details, used for throttling
 	 * @return CreateStatus
 	 */
 	public function create( $name = null, WebRequest $request = null ): CreateStatus {

@@ -75,10 +75,9 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 			return true;
 		}
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$count = 0;
 		while ( true ) {
-			$lbFactory->waitForReplication();
+			$this->waitForReplication();
 
 			$arIds = $dbw->selectFieldValues(
 				'archive',

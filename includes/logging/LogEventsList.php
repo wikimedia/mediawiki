@@ -587,11 +587,11 @@ class LogEventsList extends ContextSource {
 	 * - msgKey Array If you want a nice box with a message, set this to the key of the message.
 	 *   First element is the message key, additional optional elements are parameters for the key
 	 *   that are processed with wfMessage
-	 * - offset Set to overwrite offset parameter in WebRequest
+	 * - offset Set to overwrite offset parameter in MediaWiki\Request\WebRequest
 	 *   set to '' to unset offset
 	 * - wrap String Wrap the message in html (usually something like "<div ...>$1</div>").
 	 * - flags Integer display flags (NO_ACTION_LINK,NO_EXTRA_USER_LINKS)
-	 * - useRequestParams boolean Set true to use Pager-related parameters in the WebRequest
+	 * - useRequestParams boolean Set true to use Pager-related parameters in the MediaWiki\Request\WebRequest
 	 * - useMaster boolean Use primary DB
 	 * - extraUrlParams array|bool Additional url parameters for "full log" link (if it is shown)
 	 * @return int Number of total log items (not limited by $lim)
@@ -669,7 +669,7 @@ class LogEventsList extends ContextSource {
 			$pager->mDb = wfGetDB( DB_PRIMARY );
 		}
 		// @phan-suppress-next-line PhanImpossibleCondition
-		if ( isset( $param['offset'] ) ) { # Tell pager to ignore WebRequest offset
+		if ( isset( $param['offset'] ) ) { # Tell pager to ignore MediaWiki\Request\WebRequest offset
 			$pager->setOffset( $param['offset'] );
 		}
 

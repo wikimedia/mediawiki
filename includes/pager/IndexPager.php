@@ -23,6 +23,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Navigation\PagerNavigationBuilder;
 use MediaWiki\Navigation\PrevNextNavigationRenderer;
+use MediaWiki\Request\WebRequest;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -335,7 +336,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 */
 	public function setLimit( $limit ) {
 		$limit = (int)$limit;
-		// WebRequest::getLimitOffsetForUser() puts a cap of 5000, so do same here.
+		// MediaWiki\Request\WebRequest::getLimitOffsetForUser() puts a cap of 5000, so do same here.
 		if ( $limit > 5000 ) {
 			$limit = 5000;
 		}

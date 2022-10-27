@@ -25,9 +25,9 @@ namespace MediaWiki\Session;
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\WebRequest;
 use Psr\Log\LoggerInterface;
 use User;
-use WebRequest;
 
 /**
  * Manages data for an authenticated session
@@ -85,7 +85,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 
 	/**
 	 * Returns the SessionId object
-	 * @internal For internal use by WebRequest
+	 * @internal For internal use by MediaWiki\Request\WebRequest
 	 * @return SessionId
 	 */
 	public function getSessionId() {
@@ -133,7 +133,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	 * Make this session not be persisted across requests
 	 *
 	 * This will remove persistence information (e.g. delete cookies)
-	 * from the associated WebRequest(s), and delete session data in the
+	 * from the associated MediaWiki\Request\WebRequest(s), and delete session data in the
 	 * backend. The session data will still be available via get() until
 	 * the end of the request.
 	 */
@@ -161,7 +161,7 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 
 	/**
 	 * Returns the request associated with this session
-	 * @return WebRequest
+	 * @return \MediaWiki\Request\WebRequest
 	 */
 	public function getRequest() {
 		return $this->backend->getRequest( $this->index );
@@ -280,12 +280,12 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
-	 * Fetch a copy of this session attached to an alternative WebRequest
+	 * Fetch a copy of this session attached to an alternative MediaWiki\Request\WebRequest
 	 *
 	 * Actions on the copy will affect this session too, and vice versa.
 	 *
 	 * @param WebRequest $request Any existing session associated with this
-	 *  WebRequest object will be overwritten.
+	 *  MediaWiki\Request\WebRequest object will be overwritten.
 	 * @return Session
 	 */
 	public function sessionWithRequest( WebRequest $request ) {

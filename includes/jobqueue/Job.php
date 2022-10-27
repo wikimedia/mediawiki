@@ -24,6 +24,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Request\WebRequest;
 
 /**
  * Class to both describe a background job and handle jobs.

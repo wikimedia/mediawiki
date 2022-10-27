@@ -23,6 +23,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Request\WebRequest;
 
 /**
  * @defgroup Actions Actions
@@ -141,7 +142,7 @@ abstract class Action implements MessageLocalizer {
 	}
 
 	/**
-	 * Get the WebRequest being used for this instance
+	 * Get the MediaWiki\Request\WebRequest being used for this instance
 	 * @since 1.17
 	 *
 	 * @return WebRequest

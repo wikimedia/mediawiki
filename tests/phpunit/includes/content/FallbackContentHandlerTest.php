@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Request\FauxRequest;
+
 /**
  * See also unit tests at \MediaWiki\Tests\Unit\FallbackContentHandlerTest
  *

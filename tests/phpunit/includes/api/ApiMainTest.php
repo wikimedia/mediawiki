@@ -2,6 +2,8 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Wikimedia\Rdbms\DBConnRef;
@@ -36,7 +38,7 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	/**
-	 * Test that the API will accept a FauxRequest and execute.
+	 * Test that the API will accept a MediaWiki\Request\FauxRequest and execute.
 	 */
 	public function testApi() {
 		$fauxRequest = new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] );
@@ -58,8 +60,8 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	/**
-	 * ApiMain behaves differently if passed a FauxRequest (mInternalMode set
-	 * to true) or a proper WebRequest (mInternalMode false).  For most tests
+	 * ApiMain behaves differently if passed a MediaWiki\Request\FauxRequest (mInternalMode set
+	 * to true) or a proper MediaWiki\Request\WebRequest (mInternalMode false).  For most tests
 	 * we can just set mInternalMode to false using TestingAccessWrapper, but
 	 * this doesn't work for the constructor.  This method returns an ApiMain
 	 * that's been set up in non-internal mode.
@@ -67,8 +69,8 @@ class ApiMainTest extends ApiTestCase {
 	 * Note that calling execute() will print to the console.  Wrap it in
 	 * ob_start()/ob_end_clean() to prevent this.
 	 *
-	 * @param array $requestData Query parameters for the WebRequest
-	 * @param array $headers Headers for the WebRequest
+	 * @param array $requestData Query parameters for the MediaWiki\Request\WebRequest
+	 * @param array $headers Headers for the MediaWiki\Request\WebRequest
 	 * @return ApiMain
 	 */
 	private function getNonInternalApiMain( array $requestData, array $headers = [] ) {

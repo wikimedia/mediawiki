@@ -142,7 +142,7 @@ class UpdateSpecialPages extends Maintenance {
 			$this->output( "Reconnected\n\n" );
 		}
 		// Wait for the replica DB to catch up
-		$lbFactory->waitForReplication();
+		$this->waitForReplication();
 	}
 
 	public function doSpecialPageCacheUpdates( $dbw ) {

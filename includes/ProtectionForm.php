@@ -29,6 +29,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Watchlist\WatchlistManager;
 
 /**

@@ -24,6 +24,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Request\WebRequest;
 
 /**
  * Implements uploading from a HTTP resource.

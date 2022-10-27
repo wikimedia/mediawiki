@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\WebRequest;
 
 class MediaWikiTest extends MediaWikiIntegrationTestCase {
 	private $oldServer, $oldGet, $oldPost;
@@ -153,7 +154,7 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testTryNormaliseRedirect( $url, $query, $title, $expectedRedirect = false ) {
 		// Set SERVER because interpolateTitle() doesn't use getRequestURL(),
-		// whereas tryNormaliseRedirect does(). Also, using WebRequest allows
+		// whereas tryNormaliseRedirect does(). Also, using MediaWiki\Request\WebRequest allows
 		// us to test some quirks in that class.
 		$_SERVER['REQUEST_URI'] = $url;
 		$_POST = [];
