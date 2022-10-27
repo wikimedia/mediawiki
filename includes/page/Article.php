@@ -1220,10 +1220,10 @@ class Article implements Page {
 		$recentFileUpload = false;
 		if ( ( !$rc || $rc->getAttribute( 'rc_patrolled' ) ) && $useFilePatrol
 			&& $title->getNamespace() === NS_FILE ) {
-			// Retrieve timestamp of most recent upload
+			// Retrieve timestamp from the current file (lastest upload)
 			$newestUploadTimestamp = $dbr->selectField(
 				'image',
-				'MAX( img_timestamp )',
+				'img_timestamp',
 				[ 'img_name' => $title->getDBkey() ],
 				__METHOD__
 			);
