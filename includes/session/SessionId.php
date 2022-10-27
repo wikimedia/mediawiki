@@ -27,7 +27,7 @@ namespace MediaWiki\Session;
  * Value object holding the session ID in a manner that can be globally
  * updated.
  *
- * This class exists because we want MediaWiki\Request\WebRequest to refer to the session, but it
+ * This class exists because we want WebRequest to refer to the session, but it
  * can't hold the Session itself due to issues with circular references and it
  * can't just hold the ID as a string because we need to be able to update the
  * ID when SessionBackend::resetId() is called.

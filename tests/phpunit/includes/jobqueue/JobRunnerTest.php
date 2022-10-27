@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Page\DeletePage;
-use MediaWiki\Request\WebRequest;
 
 /**
  * Class JobRunnerTest

@@ -425,10 +425,10 @@ class MWLBFactory {
 		Config $config,
 		IBufferingStatsdDataFactory $stats
 	): void {
-		// Use the global MediaWiki\Request\WebRequest singleton. The main reason for using this
-		// is to call MediaWiki\Request\WebRequest::getIP() which is non-trivial to reproduce statically
+		// Use the global WebRequest singleton. The main reason for using this
+		// is to call WebRequest::getIP() which is non-trivial to reproduce statically
 		// because it needs $wgUsePrivateIPs, as well as ProxyLookup and HookRunner services.
-		// TODO: Create a static version of MediaWiki\Request\WebRequest::getIP that accepts these three
+		// TODO: Create a static version of WebRequest::getIP that accepts these three
 		// as dependencies, and then call that here. The other uses of $req below can
 		// trivially use $_COOKIES, $_GET and $_SERVER instead.
 		$req = RequestContext::getMain()->getRequest();

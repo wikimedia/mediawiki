@@ -23,10 +23,8 @@
  * @file
  */
 
-namespace MediaWiki\Request;
-
 /**
- * Similar to MediaWiki\Request\FauxRequest, but only fakes URL parameters and method
+ * Similar to FauxRequest, but only fakes URL parameters and method
  * (POST or GET) and use the base request for the remaining stuff
  * (cookies, session and headers).
  *
@@ -101,5 +99,3 @@ class DerivativeRequest extends FauxRequest {
 		return $this->base->getElapsedTime();
 	}
 }
-
-class_alias( DerivativeRequest::class, 'DerivativeRequest' );

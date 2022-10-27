@@ -26,9 +26,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
-use MediaWiki\Request\FauxRequest;
-use MediaWiki\Request\WebRequest;
-use MediaWiki\Request\WebRequestUpload;
 use MediaWiki\Rest\HeaderParser\Origin;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\StubObject\StubGlobalUser;
@@ -44,7 +41,7 @@ use Wikimedia\Timestamp\TimestampException;
  * and use formatter to print results.
  * In case of an exception, an error message will be printed using the same formatter.
  *
- * To use API from another application, run it using MediaWiki\Request\FauxRequest object, in which
+ * To use API from another application, run it using FauxRequest object, in which
  * case any internal exceptions will not be handled but passed up to the caller.
  * After successful execution, use getResult() for the resulting data.
  *
@@ -520,7 +517,7 @@ class ApiMain extends ApiBase {
 	 *
 	 * @stable to call
 	 * @param IContextSource|WebRequest|null $context If this is an instance of
-	 *    MediaWiki\Request\FauxRequest, errors are thrown and no printing occurs
+	 *    FauxRequest, errors are thrown and no printing occurs
 	 * @param bool $enableWrite Should be set to true if the api may modify data
 	 */
 	public function __construct( $context = null, $enableWrite = false ) {
@@ -633,7 +630,7 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Return true if the API was started by other PHP code using MediaWiki\Request\FauxRequest
+	 * Return true if the API was started by other PHP code using FauxRequest
 	 * @return bool
 	 */
 	public function isInternalMode() {

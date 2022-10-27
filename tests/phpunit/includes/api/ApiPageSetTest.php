@@ -4,7 +4,6 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
-use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use Wikimedia\TestingAccessWrapper;
 

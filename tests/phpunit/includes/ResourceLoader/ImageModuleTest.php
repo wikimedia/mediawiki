@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\ResourceLoader;
 
 use EmptyResourceLoader;
-use MediaWiki\Request\FauxRequest;
+use FauxRequest;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\FilePath;
 use MediaWiki\ResourceLoader\Image;

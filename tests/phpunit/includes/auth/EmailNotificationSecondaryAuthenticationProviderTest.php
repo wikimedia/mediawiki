@@ -92,7 +92,7 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiInt
 		$hookContainer = $this->createHookContainer();
 		$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
 		$authManager = new AuthManager(
-			new \MediaWiki\Request\FauxRequest(),
+			new \FauxRequest(),
 			new \HashConfig(),
 			new ObjectFactory( $this->createNoOpAbstractMock( ContainerInterface::class ) ),
 			$hookContainer,

@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader as RL;
 use Wikimedia\Minify\CSSMin;
 use Wikimedia\TestingAccessWrapper;

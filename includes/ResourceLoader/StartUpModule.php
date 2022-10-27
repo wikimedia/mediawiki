@@ -156,7 +156,7 @@ class StartUpModule extends Module {
 	 */
 	public function getModuleRegistrations( Context $context ): string {
 		$resourceLoader = $context->getResourceLoader();
-		// Future developers: Use MediaWiki\Request\WebRequest::getRawVal() instead getVal().
+		// Future developers: Use WebRequest::getRawVal() instead getVal().
 		// The getVal() method performs slow Language+UTF logic. (f303bb9360)
 		$target = $context->getRequest()->getRawVal( 'target', 'desktop' );
 		$safemode = $context->getRequest()->getRawVal( 'safemode' ) === '1';

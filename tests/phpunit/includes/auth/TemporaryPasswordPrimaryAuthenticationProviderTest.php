@@ -50,7 +50,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 			$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
 
 			$this->manager = new AuthManager(
-				new \MediaWiki\Request\FauxRequest(),
+				new \FauxRequest(),
 				$config,
 				$objectFactory,
 				$hookContainer,

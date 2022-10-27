@@ -24,7 +24,7 @@
 namespace MediaWiki\Session;
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\Request\WebRequest;
+use WebRequest;
 
 /**
  * An ImmutableSessionProviderWithCookie doesn't persist the user, but
@@ -76,9 +76,9 @@ abstract class ImmutableSessionProviderWithCookie extends SessionProvider {
 	 * Only call this if $this->sessionCookieName !== null. If
 	 * sessionCookieName is null, do some logic (probably involving a call to
 	 * $this->hashToSessionId()) to create the single session ID corresponding
-	 * to this MediaWiki\Request\WebRequest instead of calling this method.
+	 * to this WebRequest instead of calling this method.
 	 *
-	 * @param \MediaWiki\Request\WebRequest $request
+	 * @param WebRequest $request
 	 * @return string|null
 	 */
 	protected function getSessionIdFromCookie( WebRequest $request ) {

@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Request\WebRequestUpload;
 
 /**
  * Backend for uploading files from chunks.

@@ -28,15 +28,15 @@ use Language;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Request\WebRequest;
 use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerInterface;
 use User;
+use WebRequest;
 
 /**
  * A SessionProvider provides SessionInfo and support for Session
  *
- * A SessionProvider is responsible for taking a MediaWiki\Request\WebRequest and determining
+ * A SessionProvider is responsible for taking a WebRequest and determining
  * the authenticated session that it's a part of. It does this by returning an
  * SessionInfo object with basic information about the session it thinks is
  * associated with the request, namely the session ID and possibly the
@@ -349,7 +349,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 *
 	 * @note For use by \MediaWiki\Session\SessionManager only
 	 * @param SessionInfo $info Any changes by mergeMetadata() will already be reflected here.
-	 * @param \MediaWiki\Request\WebRequest $request
+	 * @param WebRequest $request
 	 * @param array|null &$metadata Provider metadata, may be altered.
 	 * @return bool Return false to reject the SessionInfo after all.
 	 */
@@ -462,7 +462,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 *
 	 * @note For use by \MediaWiki\Session\SessionBackend only
 	 * @param SessionBackend $session Session to persist
-	 * @param \MediaWiki\Request\WebRequest $request Request into which to persist the session
+	 * @param WebRequest $request Request into which to persist the session
 	 */
 	abstract public function persistSession( SessionBackend $session, WebRequest $request );
 
@@ -475,7 +475,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 * this as a no-op.
 	 *
 	 * @note For use by \MediaWiki\Session\SessionManager only
-	 * @param \MediaWiki\Request\WebRequest $request Request from which to remove any session data
+	 * @param WebRequest $request Request from which to remove any session data
 	 */
 	abstract public function unpersistSession( WebRequest $request );
 

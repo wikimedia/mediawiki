@@ -23,7 +23,6 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Request\DerivativeRequest;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
@@ -324,7 +323,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	}
 
 	/**
-	 * Fetch values for a FormOptions object from the MediaWiki\Request\WebRequest associated with this instance.
+	 * Fetch values for a FormOptions object from the WebRequest associated with this instance.
 	 *
 	 * Maps old pre-1.23 request parameters Watchlist used to use (different from Recentchanges' ones)
 	 * to the current ones.

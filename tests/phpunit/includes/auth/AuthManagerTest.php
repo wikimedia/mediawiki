@@ -32,6 +32,7 @@ use Psr\Log\LogLevel;
 use ReadOnlyMode;
 use Status;
 use StatusValue;
+use WebRequest;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\ScopedCallback;
@@ -43,7 +44,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Auth\AuthManager
  */
 class AuthManagerTest extends \MediaWikiIntegrationTestCase {
-	/** @var \MediaWiki\Request\WebRequest */
+	/** @var WebRequest */
 	protected $request;
 	/** @var Config */
 	protected $config;
@@ -209,7 +210,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$this->config = new \HashConfig();
 		}
 		if ( $regen || !$this->request ) {
-			$this->request = new \MediaWiki\Request\FauxRequest();
+			$this->request = new \FauxRequest();
 		}
 		if ( $regen || !$this->objectFactory ) {
 			$services = $this->createNoOpAbstractMock( ContainerInterface::class );

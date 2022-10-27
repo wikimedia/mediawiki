@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Integration\Permissions;
 
 use Action;
 use ContentHandler;
+use FauxRequest;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
@@ -12,7 +13,6 @@ use MediaWiki\Block\SystemBlock;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;

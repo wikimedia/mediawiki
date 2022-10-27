@@ -2,7 +2,6 @@
 
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Permissions\UltimateAuthority;
-use MediaWiki\Request\FauxRequest;
 use MediaWiki\User\UserIdentityValue;
 
 /**

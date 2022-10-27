@@ -19,7 +19,6 @@
  */
 
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Request\WebRequest;
 
 /**
  * Request-dependent objects containers.

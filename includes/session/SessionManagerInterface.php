@@ -23,9 +23,9 @@
 
 namespace MediaWiki\Session;
 
-use MediaWiki\Request\WebRequest;
 use Psr\Log\LoggerAwareInterface;
 use User;
+use WebRequest;
 
 /**
  * This exists to make IDEs happy, so they don't see the
@@ -58,7 +58,7 @@ interface SessionManagerInterface extends LoggerAwareInterface {
 	 * @param bool $create If no session exists for $id, try to create a new one.
 	 *  May still return null if a session for $id exists but cannot be loaded.
 	 * @param WebRequest|null $request Corresponding request. Any existing
-	 *  session associated with this MediaWiki\Request\WebRequest object will be overwritten.
+	 *  session associated with this WebRequest object will be overwritten.
 	 * @return Session|null
 	 */
 	public function getSessionById( $id, $create = false, WebRequest $request = null );
@@ -69,8 +69,8 @@ interface SessionManagerInterface extends LoggerAwareInterface {
 	 * The first provider configured that is able to provide an empty session
 	 * will be used.
 	 *
-	 * @param \MediaWiki\Request\WebRequest|null $request Corresponding request. Any existing
-	 *  session associated with this MediaWiki\Request\WebRequest object will be overwritten.
+	 * @param WebRequest|null $request Corresponding request. Any existing
+	 *  session associated with this WebRequest object will be overwritten.
 	 * @return Session
 	 */
 	public function getEmptySession( WebRequest $request = null );

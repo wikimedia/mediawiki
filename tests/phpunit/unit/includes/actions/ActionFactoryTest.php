@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Actions\ActionFactory;
-use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;

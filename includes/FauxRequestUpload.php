@@ -20,8 +20,6 @@
  * @file
  */
 
-namespace MediaWiki\Request;
-
 /**
  * Object to fake the $_FILES array
  *
@@ -31,7 +29,7 @@ namespace MediaWiki\Request;
 class FauxRequestUpload extends WebRequestUpload {
 
 	/**
-	 * Constructor. Should only be called by MediaWiki\Request\FauxRequest
+	 * Constructor. Should only be called by FauxRequest
 	 *
 	 * @param array $data Array of *non*-urlencoded key => value pairs, the
 	 *   fake (whole) FILES values
@@ -47,5 +45,3 @@ class FauxRequestUpload extends WebRequestUpload {
 	}
 
 }
-
-class_alias( FauxRequestUpload::class, 'FauxRequestUpload' );

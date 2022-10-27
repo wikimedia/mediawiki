@@ -26,17 +26,17 @@ namespace MediaWiki\Session;
 use BagOStuff;
 use CachedBagOStuff;
 use Config;
+use FauxRequest;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Request\FauxRequest;
-use MediaWiki\Request\WebRequest;
 use MediaWiki\User\UserNameUtils;
 use MWException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
 use User;
+use WebRequest;
 
 /**
  * This serves as the entry point to the MediaWiki session handling system.
@@ -82,7 +82,7 @@ class SessionManager implements SessionManagerInterface {
 	/** @var Session|null */
 	private static $globalSession = null;
 
-	/** @var \MediaWiki\Request\WebRequest|null */
+	/** @var WebRequest|null */
 	private static $globalSessionRequest = null;
 
 	/** @var LoggerInterface */
@@ -148,12 +148,12 @@ class SessionManager implements SessionManagerInterface {
 		$request = \RequestContext::getMain()->getRequest();
 		if (
 			!self::$globalSession // No global session is set up yet
-			|| self::$globalSessionRequest !== $request // The global MediaWiki\Request\WebRequest changed
+			|| self::$globalSessionRequest !== $request // The global WebRequest changed
 			|| $id !== '' && self::$globalSession->getId() !== $id // Someone messed with session_id()
 		) {
 			self::$globalSessionRequest = $request;
 			if ( $id === '' ) {
-				// session_id() wasn't used, so fetch the Session from the MediaWiki\Request\WebRequest.
+				// session_id() wasn't used, so fetch the Session from the WebRequest.
 				// We use $request->getSession() instead of $singleton->getSessionForRequest()
 				// because doing the latter would require a public
 				// "$request->getSessionId()" method that would confuse end
@@ -296,10 +296,10 @@ class SessionManager implements SessionManagerInterface {
 	}
 
 	/**
-	 * @param \MediaWiki\Request\WebRequest|null $request
+	 * @see SessionManagerInterface::getEmptySession
+	 * @param WebRequest|null $request
 	 * @param string|null $id ID to force on the new session
 	 * @return Session
-	 * @see SessionManagerInterface::getEmptySession
 	 */
 	private function getEmptySessionInternal( WebRequest $request = null, $id = null ) {
 		if ( $id !== null ) {
@@ -367,8 +367,8 @@ class SessionManager implements SessionManagerInterface {
 	 * a session replication race on a subsequent edit/save cycle (e.g. in
 	 * a multi-dc setup, ref https://phabricator.wikimedia.org/T279664#8139533).
 	 *
-	 * @param \MediaWiki\Request\WebRequest|null $request Corresponding request. Any existing
-	 *  session associated with this MediaWiki\Request\WebRequest object will be overwritten.
+	 * @param WebRequest|null $request Corresponding request. Any existing
+	 *  session associated with this WebRequest object will be overwritten.
 	 * @return Session
 	 */
 	private function getInitialSession( WebRequest $request = null ) {
@@ -526,7 +526,7 @@ class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Fetch the SessionInfo(s) for a request
-	 * @param \MediaWiki\Request\WebRequest $request
+	 * @param WebRequest $request
 	 * @return SessionInfo|null
 	 */
 	private function getSessionInfoForRequest( WebRequest $request ) {
@@ -592,7 +592,7 @@ class SessionManager implements SessionManagerInterface {
 	 * Load and verify the session info against the store
 	 *
 	 * @param SessionInfo &$info Will likely be replaced with an updated SessionInfo instance
-	 * @param \MediaWiki\Request\WebRequest $request
+	 * @param WebRequest $request
 	 * @return bool Whether the session info matches the stored data (if any)
 	 */
 	private function loadSessionInfoFromStore( SessionInfo &$info, WebRequest $request ) {
@@ -879,11 +879,11 @@ class SessionManager implements SessionManagerInterface {
 
 	/**
 	 * Create a Session corresponding to the passed SessionInfo
-	 * @param SessionInfo $info
-	 * @param \MediaWiki\Request\WebRequest $request
-	 * @return Session
 	 * @internal For use by a SessionProvider that needs to specially create its
 	 *  own Session. Most session providers won't need this.
+	 * @param SessionInfo $info
+	 * @param WebRequest $request
+	 * @return Session
 	 */
 	public function getSessionFromInfo( SessionInfo $info, WebRequest $request ) {
 		// @codeCoverageIgnoreStart

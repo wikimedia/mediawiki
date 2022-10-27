@@ -11,8 +11,6 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
-use MediaWiki\Request\FauxRequest;
-use MediaWiki\Request\WebRequest;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\ExpectationFailedException;
