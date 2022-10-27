@@ -1498,7 +1498,7 @@
 	"upload-too-many-redirects": "यस युआरयलमा धेरै पुननिर्देशनहरू छन्",
 	"upload-http-error": "HTTP त्रुटि भयो: $1",
 	"upload-copy-upload-invalid-domain": "यस डोमेनबाट अपलोडहरूको प्रतिलिपि गर्न सकिदैन् ।",
-	"upload-dialog-title": "फाइल उर्ध्वभरण गर्नुहाेस्",
+	"upload-dialog-title": "चित्र उर्ध्वभरण गर्नुहाेस्",
 	"upload-dialog-button-cancel": "रद्द गर्नुहोस्",
 	"upload-dialog-button-back": "पछाडि",
 	"upload-dialog-button-done": "सकियो",

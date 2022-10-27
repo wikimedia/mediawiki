@@ -893,7 +893,7 @@
 	"group-all": "(ಎಲ್ಲವೂ)",
 	"group-user-member": "{{GENDER:$1|ಬಳಕೆದಾರ}}",
 	"group-autoconfirmed-member": "{{GENDER:$1|ಸ್ವಧೃಡೀಕೃತ ಬಳಕೆದಾರ}}",
-	"group-bot-member": "{{GENDER:$1|ಬೋಟ್}}",
+	"group-bot-member": "{{GENDER:$1|ಬಾಟ್}}",
 	"group-sysop-member": "{{GENDER:$1|ನಿರ್ವಾಹಕ}}",
 	"group-interface-admin-member": "{{GENDER:$1|ಇಂಟರ್ಫೇಸ್ ನಿರ್ವಾಹಕರು}}",
 	"group-bureaucrat-member": "{{GENDER:$1|ಮೇಲ್ವಿಚಾರಕ}}",

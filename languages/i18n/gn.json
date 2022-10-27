@@ -356,7 +356,7 @@
 	"tooltip-pt-preferences": "Che mbohoryha",
 	"tooltip-pt-mycontris": "Tysỹi che mba'emoĩmbyre",
 	"tooltip-ca-move": "Guerova kuatiarogue",
-	"tooltip-search": "Tojeheka {{SITENAME}} rehe",
+	"tooltip-search": "Eheka {{SITENAME}} rendápe",
 	"tooltip-search-fulltext": "Tojeheka kuatiaroguépe ko jehaipy",
 	"tooltip-p-logo": "Ape",
 	"tooltip-n-mainpage": "Eho ijapépe",
@@ -380,6 +380,6 @@
 	"watchlistedit-raw-removed": "$1 páginas han sido borradas:",
 	"version": "Mba'ereko",
 	"specialpages": "Kuatiarogue hekochĩchĩva",
-	"searchsuggest-search": "Tojeheka {{SITENAME}} rupi",
+	"searchsuggest-search": "Eheka {{SITENAME}} rendápe",
 	"nstab-mainpage": "Ape"
 }

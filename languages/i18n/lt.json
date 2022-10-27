@@ -712,7 +712,7 @@
 	"session_fail_preview_html": "Atsiprašome! Mes negalime apdoroti jūsų keitimo dėl sesijos duomenų praradimo.\n\n<em>Kadangi {{SITENAME}} grynasis HTML yra įjungtas, peržiūra yra paslėpta kaip atsargumo priemonė prieš JavaScript atakas.</em>\n\n<strong>Jei tai teisėtas keitimo bandymas, prašome pamėginti vėl.</strong> Jei tai nepadeda, pamėginkite [[Special:UserLogout|atsijungti]] ir prisijungti atgal, ir patikrinkite ar jūsų naršyklė leidžia šiam tinklapiui naudoti slapukus.",
 	"edit_form_incomplete": "'''Kai redaguoti formos dalys nepasiekė serverio; du kartus patikrinti, kad jūsų pakeitimai yra nesugadintos ir bandykite dar kartą.'''",
 	"editing": "Taisomas $1",
-	"edit-textarea-aria-label": "Pirminio \"vikiteksto\" redaktorius",
+	"edit-textarea-aria-label": "Vikiteksto šaltinio redaktorius",
 	"creating": "Kuriamas straipsnis „$1“",
 	"editingsection": "Taisomas $1 (skyrelis)",
 	"editingcomment": "Taisomas $1 (naujas skyrius)",
