@@ -3,18 +3,14 @@
 /**
  * @group BagOStuff
  * @covers APCUBagOStuff
+ * @requires extension apcu
  */
 class APCUBagOStuffTest extends BagOStuffTestBase {
 	protected function newCacheInstance() {
-		if ( function_exists( 'apcu_fetch' ) ) {
-			// Make sure the APCu methods actually store anything
-			if ( PHP_SAPI !== 'cli' || ini_get( 'apc.enable_cli' ) ) {
-				return new APCUBagOStuff( [] );
-			}
-
-			$this->markTestSkipped( 'apc.enable_cli=1 is required to run ' . __CLASS__ );
+		// Make sure the APCu methods actually store anything
+		if ( PHP_SAPI === 'cli' && !ini_get( 'apc.enable_cli' ) ) {
+			$this->markTestSkipped( 'apc.enable_cli=1 is required to run this test.' );
 		}
-
-		$this->markTestSkipped( 'apcu is required to run ' . __CLASS__ );
+		return new APCUBagOStuff( [] );
 	}
 }
