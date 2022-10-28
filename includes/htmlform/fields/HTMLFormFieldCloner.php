@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Request\DerivativeRequest;
+
 /**
  * A container for HTMLFormFields that allows for multiple copies of the set of
  * fields to be displayed to and entered by the user.

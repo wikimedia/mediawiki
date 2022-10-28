@@ -210,7 +210,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$this->config = new \HashConfig();
 		}
 		if ( $regen || !$this->request ) {
-			$this->request = new \FauxRequest();
+			$this->request = new \MediaWiki\Request\FauxRequest();
 		}
 		if ( $regen || !$this->objectFactory ) {
 			$services = $this->createNoOpAbstractMock( ContainerInterface::class );

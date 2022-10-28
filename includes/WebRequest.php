@@ -25,6 +25,9 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\PathRouter;
+use MediaWiki\Request\WebRequestUpload;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionManager;
@@ -1084,7 +1087,7 @@ class WebRequest {
 	}
 
 	/**
-	 * Return a WebRequestUpload object corresponding to the key
+	 * Return a MediaWiki\Request\WebRequestUpload object corresponding to the key
 	 *
 	 * @param string $key
 	 * @return WebRequestUpload

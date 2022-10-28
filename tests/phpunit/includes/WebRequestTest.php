@@ -346,7 +346,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 	 * @covers WebRequest::getText
 	 */
 	public function testGetText() {
-		// Avoid FauxRequest (overrides getText)
+		// Avoid MediaWiki\Request\FauxRequest (overrides getText)
 		$req = $this->mockWebRequest( [ 'crlf' => "Va\r\nlue" ] );
 		$this->assertSame( "Va\nlue", $req->getText( 'crlf' ), 'CR stripped' );
 	}

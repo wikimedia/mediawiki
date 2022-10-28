@@ -5,7 +5,7 @@ namespace MediaWiki\Tests\Action;
 use Article;
 use DerivativeContext;
 use ErrorPageError;
-use FauxRequest;
+use MediaWiki\Request\FauxRequest;
 use MediaWikiIntegrationTestCase;
 use RequestContext;
 use RollbackAction;

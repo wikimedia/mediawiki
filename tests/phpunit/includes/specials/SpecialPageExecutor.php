@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Request\FauxRequest;
 
 /**
  * @author Addshore

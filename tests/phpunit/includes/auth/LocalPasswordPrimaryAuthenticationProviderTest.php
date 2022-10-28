@@ -49,7 +49,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
 
 			$this->manager = new AuthManager(
-				new \FauxRequest(),
+				new \MediaWiki\Request\FauxRequest(),
 				$config,
 				$objectFactory,
 				$hookContainer,
