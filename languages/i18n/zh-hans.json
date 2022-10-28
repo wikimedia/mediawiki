@@ -3221,6 +3221,7 @@
 	"pageinfo-default-sort": "默认排序关键词",
 	"pageinfo-length": "页面长度（字节）",
 	"pageinfo-namespace": "命名空间",
+	"pageinfo-namespace-id": "命名空间ID",
 	"pageinfo-article-id": "页面ID",
 	"pageinfo-language": "页面内容语言",
 	"pageinfo-language-change": "更改",
