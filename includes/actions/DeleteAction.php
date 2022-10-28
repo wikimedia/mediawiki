@@ -83,8 +83,8 @@ class DeleteAction extends FormlessAction {
 	/**
 	 * @inheritDoc
 	 */
-	public function __construct( Page $page, IContextSource $context = null ) {
-		parent::__construct( $page, $context );
+	public function __construct( Article $article, IContextSource $context ) {
+		parent::__construct( $article, $context );
 		$services = MediaWikiServices::getInstance();
 		$this->watchlistManager = $services->getWatchlistManager();
 		$this->linkRenderer = $services->getLinkRenderer();

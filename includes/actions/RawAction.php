@@ -59,7 +59,7 @@ class RawAction extends FormlessAction {
 	private $restrictionStore;
 
 	/**
-	 * @param Page $page
+	 * @param Article $article
 	 * @param IContextSource $context
 	 * @param HookContainer $hookContainer
 	 * @param Parser $parser
@@ -68,7 +68,7 @@ class RawAction extends FormlessAction {
 	 * @param RestrictionStore $restrictionStore
 	 */
 	public function __construct(
-		Page $page,
+		Article $article,
 		IContextSource $context,
 		HookContainer $hookContainer,
 		Parser $parser,
@@ -76,7 +76,7 @@ class RawAction extends FormlessAction {
 		RevisionLookup $revisionLookup,
 		RestrictionStore $restrictionStore
 	) {
-		parent::__construct( $page, $context );
+		parent::__construct( $article, $context );
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->parser = $parser;
 		$this->permissionManager = $permissionManager;

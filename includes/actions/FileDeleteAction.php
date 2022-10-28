@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Actions;
 
+use Article;
 use DeleteAction;
 use ErrorPageError;
 use File;
@@ -30,7 +31,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
 use OldLocalFile;
-use Page;
 use PermissionsError;
 use Title;
 
@@ -50,8 +50,8 @@ class FileDeleteAction extends DeleteAction {
 	/**
 	 * @inheritDoc
 	 */
-	public function __construct( Page $page, IContextSource $context = null ) {
-		parent::__construct( $page, $context );
+	public function __construct( Article $article, IContextSource $context ) {
+		parent::__construct( $article, $context );
 		$services = MediaWikiServices::getInstance();
 		$this->file = $this->getArticle()->getFile();
 		$this->oldImage = $this->getRequest()->getText( 'oldimage', '' );

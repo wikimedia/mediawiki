@@ -95,7 +95,7 @@ class InfoAction extends FormlessAction {
 	private $linksMigration;
 
 	/**
-	 * @param Page $page
+	 * @param Article $article
 	 * @param IContextSource $context
 	 * @param Language $contentLanguage
 	 * @param HookContainer $hookContainer
@@ -115,7 +115,7 @@ class InfoAction extends FormlessAction {
 	 * @param LinksMigration $linksMigration
 	 */
 	public function __construct(
-		Page $page,
+		Article $article,
 		IContextSource $context,
 		Language $contentLanguage,
 		HookContainer $hookContainer,
@@ -134,7 +134,7 @@ class InfoAction extends FormlessAction {
 		RestrictionStore $restrictionStore,
 		LinksMigration $linksMigration
 	) {
-		parent::__construct( $page, $context );
+		parent::__construct( $article, $context );
 		$this->contentLanguage = $contentLanguage;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->languageNameUtils = $languageNameUtils;

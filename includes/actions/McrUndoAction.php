@@ -49,7 +49,7 @@ class McrUndoAction extends FormAction {
 	private $useRCPatrol;
 
 	/**
-	 * @param Page $page
+	 * @param Article $article
 	 * @param IContextSource $context
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param RevisionLookup $revisionLookup
@@ -57,14 +57,14 @@ class McrUndoAction extends FormAction {
 	 * @param Config $config
 	 */
 	public function __construct(
-		Page $page,
+		Article $article,
 		IContextSource $context,
 		ReadOnlyMode $readOnlyMode,
 		RevisionLookup $revisionLookup,
 		RevisionRenderer $revisionRenderer,
 		Config $config
 	) {
-		parent::__construct( $page, $context );
+		parent::__construct( $article, $context );
 		$this->readOnlyMode = $readOnlyMode;
 		$this->revisionLookup = $revisionLookup;
 		$this->revisionRenderer = $revisionRenderer;
