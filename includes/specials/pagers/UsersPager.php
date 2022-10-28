@@ -290,15 +290,10 @@ class UsersPager extends AlphabeticPager {
 		}
 
 		// Lookup groups for all the users
-		$dbr = $this->getDatabase();
-		$groupsQueryInfo = $this->userGroupManager->getQueryInfo();
-		$groupRes = $dbr->select(
-			$groupsQueryInfo['tables'],
-			$groupsQueryInfo['fields'],
-			[ 'ug_user' => $userIds ],
-			__METHOD__,
-			$groupsQueryInfo['joins']
-		);
+		$queryBuilder = $this->userGroupManager->newQueryBuilder( $this->getDatabase() );
+		$groupRes = $queryBuilder->where( [ 'ug_user' => $userIds ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		$cache = [];
 		$groups = [];
 		foreach ( $groupRes as $row ) {
@@ -311,7 +306,7 @@ class UsersPager extends AlphabeticPager {
 
 		// Give extensions a chance to add things like global user group data
 		// into the cache array to ensure proper output later on
-		$this->hookRunner->onUsersPagerDoBatchLookups( $dbr, $userIds, $cache, $groups );
+		$this->hookRunner->onUsersPagerDoBatchLookups( $this->getDatabase(), $userIds, $cache, $groups );
 
 		$this->userGroupCache = $cache;
 
