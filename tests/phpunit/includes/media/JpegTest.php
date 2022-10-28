@@ -5,6 +5,7 @@ use MediaWiki\MainConfigNames;
 /**
  * @group Media
  * @covers JpegHandler
+ * @requires extension exif
  */
 class JpegTest extends MediaWikiMediaTestCase {
 	/** @var JpegHandler */
@@ -12,7 +13,6 @@ class JpegTest extends MediaWikiMediaTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->checkPHPExtension( 'exif' );
 
 		$this->overrideConfigValue( MainConfigNames::ShowEXIF, true );
 

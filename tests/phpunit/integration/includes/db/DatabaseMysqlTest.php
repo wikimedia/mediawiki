@@ -16,6 +16,7 @@ use Wikimedia\Rdbms\TransactionManager;
  * @group mysql
  * @group Database
  * @group medium
+ * @requires extension mysqli
  */
 class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 	/** @var DatabaseMysqlBase */
@@ -23,10 +24,6 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-
-		if ( !extension_loaded( 'mysqli' ) ) {
-			$this->markTestSkipped( 'No MySQL support detected' );
-		}
 
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 		if ( $lb->getServerType( 0 ) !== 'mysql' ) {

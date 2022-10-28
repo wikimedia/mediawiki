@@ -9,6 +9,7 @@ use MediaWiki\MainConfigNames;
  * @group medium
  *
  * @covers BitmapHandler
+ * @requires extension exif
  */
 class ExifRotationTest extends MediaWikiMediaTestCase {
 
@@ -17,7 +18,6 @@ class ExifRotationTest extends MediaWikiMediaTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->checkPHPExtension( 'exif' );
 
 		$this->handler = new BitmapHandler();
 
