@@ -169,6 +169,8 @@ because of Phabricator reports.
   automatically run.
 * DBLockManager, MySqlLockManager, and PostgreSqlLockManager have been
   removed without deprecation.
+* MediaWikiTestCaseTrait::checkPHPExtension() has been removed without
+  deprecation. Use PHPUnit @requires annotations instead.
 * …
 
 === Deprecations in 1.40 ===

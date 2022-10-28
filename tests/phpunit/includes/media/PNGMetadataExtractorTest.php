@@ -13,10 +13,9 @@ class PNGMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Tests zTXt tag (compressed textual metadata)
+	 * @requires extension zlib
 	 */
 	public function testPngNativetZtxt() {
-		$this->checkPHPExtension( 'zlib' );
-
 		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
 			'Png-native-test.png' );
 		$expected = "foo bar baz foo foo foo foof foo foo foo foo";
