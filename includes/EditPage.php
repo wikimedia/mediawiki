@@ -4053,25 +4053,15 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Get the copyright warning, by default returns wikitext
+	 * Get the copyright warning.
 	 *
 	 * @param PageReference $page
 	 * @param string $format Output format, valid values are any function of a Message object
-	 * @param MessageLocalizer|Language|string|null $localizer A MessageLocalizer.
-	 *   For backwards-compatibility, a Language object, or a string language code, or omitting the
-	 *   parameter is also allowed, but emits deprecation warnings since 1.38.
+	 *   (e.g. 'parse', 'plain')
+	 * @param MessageLocalizer $localizer
 	 * @return string
 	 */
-	public static function getCopyrightWarning( $page, $format = 'plain', $localizer = null ) {
-		if ( !$localizer instanceof MessageLocalizer ) {
-			wfDeprecated( __METHOD__ . ' without MessageLocalizer', '1.38' );
-			$context = RequestContext::getMain();
-			if ( $localizer !== null ) {
-				$context = new DerivativeContext( $context );
-				$context->setLanguage( $localizer );
-			}
-			$localizer = $context;
-		}
+	public static function getCopyrightWarning( PageReference $page, string $format, MessageLocalizer $localizer ) {
 		$rightsText = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RightsText );
 		if ( $rightsText ) {
 			$copywarnMsg = [ 'copyrightwarning',

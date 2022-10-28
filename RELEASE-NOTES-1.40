@@ -175,6 +175,8 @@ because of Phabricator reports.
 * MediaWikiTestCaseTrait::checkPHPExtension() has been removed without
   deprecation. Use PHPUnit @requires annotations instead.
 * EditPage::getCopywarn(), deprecated since 1.38, has been removed.
+* EditPage::getCopyrightWarning() now requires a MessageLocalizer parameter.
+  Use of other parameter types or omitting it was deprecated since 1.38.
 * Article::viewRedirect(), deprecated since 1.30, has been removed.
 * Title::getNotificationTimestamp(), deprecated since 1.35, has been removed.
 * WikiRevision::$fileIsTemp property, deprecated since 1.29, has been removed.
