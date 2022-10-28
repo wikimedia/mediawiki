@@ -274,20 +274,20 @@ class WikiExporter {
 		// rev_deleted
 
 		$revQuery = $this->revisionStore->getQueryInfo( [ 'page' ] );
-		$res = $this->db->select(
-			$revQuery['tables'],
-			[
+		$res = $this->db->newSelectQueryBuilder()
+			->select( [
 				'rev_user_text' => $revQuery['fields']['rev_user_text'],
 				'rev_user' => $revQuery['fields']['rev_user'],
-			],
-			[
+			] )
+			->tables( $revQuery['tables'] )
+			->where( [
 				$this->db->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0',
 				$cond,
-			],
-			__METHOD__,
-			[ 'DISTINCT' ],
-			$revQuery['joins']
-		);
+			] )
+			->joinConds( $revQuery['joins'] )
+			->distinct()
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
 		foreach ( $res as $row ) {
 			$this->author_list .= "<contributor>" .
