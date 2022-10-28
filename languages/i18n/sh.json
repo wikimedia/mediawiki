@@ -2989,6 +2989,7 @@
 	"pageinfo-default-sort": "Podrazumijevani ključ sortiranja",
 	"pageinfo-length": "Dužina stranice (u bajtovima)",
 	"pageinfo-namespace": "Imenski prostor",
+	"pageinfo-namespace-id": "Naznaka imenskog prostora",
 	"pageinfo-article-id": "ID stranice",
 	"pageinfo-language": "Jezik sadržaja stranice",
 	"pageinfo-language-change": "smijeni",
