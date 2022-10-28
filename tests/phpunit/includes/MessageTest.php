@@ -6,6 +6,7 @@ use MediaWiki\Message\UserGroupMembershipParam;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\Assert\ParameterTypeException;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -892,7 +893,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * @covers Message::inLanguage
 	 */
 	public function testInLanguageThrows() {
-		$this->expectException( MWException::class );
+		$this->expectException( ParameterTypeException::class );
 		wfMessage( 'foo' )->inLanguage( 123 );
 	}
 
