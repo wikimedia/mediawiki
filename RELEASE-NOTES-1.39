@@ -435,6 +435,8 @@ because of Phabricator reports.
 * IDatabase::getTopologyRootPrimary() was removed.
 * User::blockedBy(), deprecated since 1.38, has been removed.
 * User::getBlockId(), deprecated since 1.38, has been removed.
+* AlphabeticPager::getOrderTypeMessages(), unused since 1.13, has been removed
+  without deprecation.
 
 === Deprecations in 1.39 ===
 * PageProps::getInstance(), deprecated since 1.38, emits deprecations warnings.
