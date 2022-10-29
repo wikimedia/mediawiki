@@ -1179,6 +1179,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-roles": "{{doc-apihelp-paramvalue|query+revisions+base|prop|roles}}",
 	"apihelp-query+revisions+base-paramvalue-prop-parsetree": "{{doc-apihelp-paramvalue|query+revisions+base|prop|parsetree|params=* $1 - Value of the constant CONTENT_MODEL_WIKITEXT|paramstart=2}}",
 	"apihelp-query+revisions+base-param-slots": "{{doc-apihelp-param|query+revisions+base|slots|description=the \"slots\" parameter to revision querying modules|noseealso=1}}",
+	"apihelp-query+revisions+base-param-contentformat-slot": "{{doc-apihelp-param|query+revisions+base|contentformat-&#x7B;slot}|description=the \"contentformat\" parameter to revision querying modules per slot|noseealso=1}}",
 	"apihelp-query+revisions+base-param-limit": "{{doc-apihelp-param|query+revisions+base|limit|description=the \"limit\" parameter to revision querying modules|noseealso=1}}",
 	"apihelp-query+revisions+base-param-expandtemplates": "{{doc-apihelp-param|query+revisions+base|expandtemplates|description=the \"expandtemplates\" parameter to revision querying modules|noseealso=1}}",
 	"apihelp-query+revisions+base-param-generatexml": "{{doc-apihelp-param|query+revisions+base|generatexml|description=the \"generatexml\" parameter to revision querying modules|noseealso=1}}",

@@ -1245,6 +1245,7 @@
 	"apihelp-query+revisions+base-paramvalue-prop-roles": "List content slot roles that exist in the revision.",
 	"apihelp-query+revisions+base-paramvalue-prop-parsetree": "Use <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> or <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd> instead. The XML parse tree of revision content (requires content model <code>$1</code>).",
 	"apihelp-query+revisions+base-param-slots": "Which revision slots to return data for, when slot-related properties are included in <var>$1props</var>. If omitted, data from the <kbd>main</kbd> slot will be returned in a backwards-compatible format.",
+	"apihelp-query+revisions+base-param-contentformat-slot": "Content serialization format used for output of content.",
 	"apihelp-query+revisions+base-param-limit": "Limit how many revisions will be returned.",
 	"apihelp-query+revisions+base-param-expandtemplates": "Use <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> instead. Expand templates in revision content (requires $1prop=content).",
 	"apihelp-query+revisions+base-param-generatexml": "Use <kbd>[[Special:ApiHelp/expandtemplates|action=expandtemplates]]</kbd> or <kbd>[[Special:ApiHelp/parse|action=parse]]</kbd> instead. Generate XML parse tree for revision content (requires $1prop=content).",
