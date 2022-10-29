@@ -9,6 +9,7 @@ use Exception;
 use HashBagOStuff;
 use Language;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
@@ -220,8 +221,9 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		BagOStuff $cache = null,
 		?ParsoidOutputAccess $access = null
 	): HtmlOutputRendererHelper {
+		$chFactory = $this->getServiceContainer()->getContentHandlerFactory();
 		$cache = $cache ?: new EmptyBagOStuff();
-		$stash = new SimpleParsoidOutputStash( $cache, 1 );
+		$stash = new SimpleParsoidOutputStash( $chFactory, $cache, 1 );
 
 		$helper = new HtmlOutputRendererHelper(
 			$stash,
@@ -312,7 +314,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'text to preview', $htmlresult );
 	}
 
-	public function testHtmlIsStashed() {
+	public function testHtmlIsStashedForExistingPage() {
 		[ $page, ] = $this->getExistingPageWithRevisions( __METHOD__ );
 
 		$cache = new HashBagOStuff();
@@ -328,8 +330,40 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$eTag = $helper->getETag();
 		$parsoidStashKey = ParsoidRenderID::newFromETag( $eTag );
 
-		$stash = new SimpleParsoidOutputStash( $cache, 1 );
+		$chFactory = $this->createNoOpMock( IContentHandlerFactory::class );
+		$stash = new SimpleParsoidOutputStash( $chFactory, $cache, 1 );
 		$this->assertNotNull( $stash->get( $parsoidStashKey ) );
+	}
+
+	public function testHtmlIsStashedForFakeRevision() {
+		$page = $this->getNonexistingTestPage();
+
+		$cache = new HashBagOStuff();
+		$helper = $this->newHelper( $cache );
+
+		$text = 'just some wikitext';
+
+		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
+		$helper->setContent( new WikitextContent( $text ) );
+		$helper->setStashingEnabled( true );
+
+		$htmlresult = $helper->getHtml()->getRawText();
+		$this->assertStringContainsString( $text, $htmlresult );
+
+		$eTag = $helper->getETag();
+		$parsoidStashKey = ParsoidRenderID::newFromETag( $eTag );
+
+		$chFactory = $this->getServiceContainer()->getContentHandlerFactory();
+		$stash = new SimpleParsoidOutputStash( $chFactory, $cache, 1 );
+
+		$selserContext = $stash->get( $parsoidStashKey );
+		$this->assertNotNull( $selserContext );
+
+		/** @var WikitextContent $stashedContent */
+		$stashedContent = $selserContext->getContent();
+		$this->assertNotNull( $stashedContent );
+		$this->assertInstanceOf( WikitextContent::class, $stashedContent );
+		$this->assertSame( $text, $stashedContent->getText() );
 	}
 
 	public function testStashRateLimit() {
