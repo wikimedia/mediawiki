@@ -46,24 +46,25 @@ abstract class AlphabeticPager extends IndexPager {
 			->setLastMsg( 'page_last' );
 
 		if ( is_array( $this->getIndexField() ) ) {
-			$extra = '';
 			$msgs = $this->getOrderTypeMessages();
-			foreach ( $msgs as $order => $msg ) {
-				if ( $extra !== '' ) {
-					$extra .= $this->msg( 'pipe-separator' )->escaped();
-				}
+			if ( $msgs ) {
+				$extra = '';
+				foreach ( $msgs as $order => $msg ) {
+					if ( $extra !== '' ) {
+						$extra .= $this->msg( 'pipe-separator' )->escaped();
+					}
 
-				if ( $order == $this->mOrderType ) {
-					$extra .= $this->msg( $msg )->escaped();
-				} else {
-					$extra .= $this->makeLink(
-						$this->msg( $msg )->escaped(),
-						[ 'order' => $order ]
-					);
+					if ( $order == $this->mOrderType ) {
+						$extra .= $this->msg( $msg )->escaped();
+					} else {
+						$extra .= $this->makeLink(
+							$this->msg( $msg )->escaped(),
+							[ 'order' => $order ]
+						);
+					}
 				}
+				$navBuilder->setExtra( $extra );
 			}
-
-			$navBuilder->setExtra( $extra );
 		}
 
 		$this->mNavigationBar = $navBuilder->getHtml();
