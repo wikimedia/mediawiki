@@ -173,6 +173,7 @@ because of Phabricator reports.
   deprecation. Use PHPUnit @requires annotations instead.
 * EditPage::getCopywarn(), deprecated since 1.38, has been removed.
 * Article::viewRedirect(), deprecated since 1.30, has been removed.
+* Title::getNotificationTimestamp(), deprecated since 1.35, has been removed.
 * …
 
 === Deprecations in 1.40 ===
