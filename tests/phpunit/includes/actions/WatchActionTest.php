@@ -132,7 +132,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 			$testContext
 		);
 
-		Hooks::register( 'WatchArticle', static function () {
+		$this->setTemporaryHook( 'WatchArticle', static function () {
 			return false;
 		} );
 

@@ -16,6 +16,8 @@ use Wikimedia\ObjectFactory\ObjectFactory;
 class FauxGlobalHookArrayTest extends \MediaWikiUnitTestCase {
 
 	public function testRegisterHandler() {
+		$this->expectDeprecationAndContinue( '/Accessing \$wgHooks directly is deprecated/' );
+
 		$counter = 0;
 
 		$handler = static function () use ( &$counter ) {
