@@ -182,6 +182,7 @@ because of Phabricator reports.
   since 1.38, now throws an exception.
 * FormatMetadata::flattenArrayContentLang(), deprecated since 1.36, has been
   removed.
+* WikiRevision::downloadSource(), deprecated since 1.31, has been removed.
 * …
 
 === Deprecations in 1.40 ===

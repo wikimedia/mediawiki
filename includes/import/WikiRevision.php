@@ -23,8 +23,6 @@
  * @file
  * @ingroup SpecialPage
  */
-use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\SlotRecord;
@@ -191,18 +189,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	/** @var bool */
 	private $mNoUpdates = false;
 
-	/**
-	 * @deprecated since 1.31, along with self::downloadSource()
-	 * @var Config
-	 */
-	private $config;
-
-	/**
-	 * @param Config $config Deprecated since 1.31, along with self::downloadSource(). Just pass an
-	 *  empty HashConfig.
-	 */
-	public function __construct( Config $config ) {
-		$this->config = $config;
+	public function __construct() {
 		$this->slots = new MutableRevisionSlots();
 	}
 
@@ -730,20 +717,6 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 		$importer = MediaWikiServices::getInstance()->getWikiRevisionUploadImporter();
 		$statusValue = $importer->import( $this );
 		return $statusValue->isGood();
-	}
-
-	/**
-	 * @since 1.12.2
-	 * @deprecated in 1.31. No replacement. Hard deprecated in 1.39.
-	 * @return bool|string
-	 */
-	public function downloadSource() {
-		wfDeprecated( __METHOD__, '1.31' );
-		$importer = new ImportableUploadRevisionImporter(
-			$this->config->get( MainConfigNames::EnableUploads ),
-			LoggerFactory::getInstance( 'UploadRevisionImporter' )
-		);
-		return $importer->downloadSource( $this );
 	}
 
 }

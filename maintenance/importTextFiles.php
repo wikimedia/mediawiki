@@ -134,7 +134,7 @@ class ImportTextFiles extends Maintenance {
 			}
 
 			$content = ContentHandler::makeContent( rtrim( $text ), $title );
-			$rev = new WikiRevision( MediaWikiServices::getInstance()->getMainConfig() );
+			$rev = new WikiRevision();
 			$rev->setContent( SlotRecord::MAIN, $content );
 			$rev->setTitle( $title );
 			$rev->setUserObj( $user );

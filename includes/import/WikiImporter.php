@@ -840,7 +840,7 @@ class WikiImporter {
 	 * @return mixed|false
 	 */
 	private function processLogItem( $logInfo ) {
-		$revision = new WikiRevision( $this->config );
+		$revision = new WikiRevision();
 
 		if ( isset( $logInfo['id'] ) ) {
 			$revision->setID( $logInfo['id'] );
@@ -1092,7 +1092,7 @@ class WikiImporter {
 	 * @return mixed|false
 	 */
 	private function processRevision( $pageInfo, $revisionInfo ) {
-		$revision = new WikiRevision( $this->config );
+		$revision = new WikiRevision();
 
 		$revId = $revisionInfo['id'] ?? 0;
 		if ( $revId ) {
@@ -1208,7 +1208,7 @@ class WikiImporter {
 	 * @return mixed
 	 */
 	private function processUpload( $pageInfo, $uploadInfo ) {
-		$revision = new WikiRevision( $this->config );
+		$revision = new WikiRevision();
 		$revId = $pageInfo['id'];
 		$title = $pageInfo['_title'];
 		$content = $this->makeContent( $title, $revId, $uploadInfo );
