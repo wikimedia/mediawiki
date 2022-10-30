@@ -38,7 +38,6 @@ use MediaWiki\Revision\SlotRecord;
  * @ingroup SpecialPage
  */
 class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
-	use DeprecationHelper;
 
 	/**
 	 * @since 1.2
@@ -189,14 +188,6 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 */
 	public $isTemp = false;
 
-	/**
-	 * @since 1.18
-	 * @deprecated since 1.29 use WikiRevision::isTempSrc()
-	 * First written to in 43d5d3b682cc1733ad01a837d11af4a402d57e6a
-	 * Actually introduced in 52cd34acf590e5be946b7885ffdc13a157c1c6cf
-	 */
-	private $fileIsTemp;
-
 	/** @var bool */
 	private $mNoUpdates = false;
 
@@ -213,8 +204,6 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	public function __construct( Config $config ) {
 		$this->config = $config;
 		$this->slots = new MutableRevisionSlots();
-
-		$this->deprecatePublicProperty( 'fileIsTemp', '1.29' );
 	}
 
 	/**
@@ -357,7 +346,6 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 */
 	public function setFileSrc( $src, $isTemp ) {
 		$this->fileSrc = $src;
-		$this->fileIsTemp = $isTemp;
 		$this->isTemp = $isTemp;
 	}
 
