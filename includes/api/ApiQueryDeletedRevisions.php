@@ -200,7 +200,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 					'ar_id' => $cont[1],
 				] ) );
 			} else {
-				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'string', 'string', 'int' ] );
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'string', 'timestamp', 'int' ] );
 				$this->addWhere( $db->buildComparison( $op, [
 					'ar_namespace' => $cont[0],
 					'ar_title' => $cont[1],

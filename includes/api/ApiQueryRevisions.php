@@ -218,7 +218,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
 
 			if ( $params['continue'] !== null ) {
-				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int' ] );
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'timestamp', 'int' ] );
 				$op = ( $params['dir'] === 'newer' ? '>=' : '<=' );
 				$continueTimestamp = $db->timestamp( $cont[0] );
 				$continueId = (int)$cont[1];

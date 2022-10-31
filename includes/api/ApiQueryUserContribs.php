@@ -409,13 +409,13 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		if ( $this->params['continue'] !== null ) {
 			if ( $this->multiUserMode ) {
 				$continue = $this->parseContinueParamOrDie( $this->params['continue'],
-					[ 'string', 'string', 'string', 'int' ] );
+					[ 'string', 'string', 'timestamp', 'int' ] );
 				$modeFlag = array_shift( $continue );
 				$this->dieContinueUsageIf( $modeFlag !== $this->orderBy );
 				$encUser = array_shift( $continue );
 			} else {
 				$continue = $this->parseContinueParamOrDie( $this->params['continue'],
-					[ 'string', 'int' ] );
+					[ 'timestamp', 'int' ] );
 			}
 			$op = ( $this->params['dir'] == 'older' ? '<=' : '>=' );
 			if ( $this->multiUserMode ) {

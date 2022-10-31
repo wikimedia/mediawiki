@@ -200,7 +200,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 			$this->addWhereRange( 'img_name', $ascendingOrder ? 'newer' : 'older', null, null );
 
 			if ( $params['continue'] !== null ) {
-				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'string' ] );
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'timestamp', 'string' ] );
 				$op = ( $ascendingOrder ? '>=' : '<=' );
 				$this->addWhere( $db->buildComparison( $op, [
 					'img_timestamp' => $db->timestamp( $cont[0] ),

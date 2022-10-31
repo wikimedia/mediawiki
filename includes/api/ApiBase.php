@@ -38,6 +38,7 @@ use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 use Wikimedia\ParamValidator\TypeDef\StringDef;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Timestamp\TimestampException;
 
 /**
  * This abstract class implements many basic API functions, and is the base of
@@ -1635,8 +1636,8 @@ abstract class ApiBase extends ContextSource {
 	 * or die with the 'badcontinue' error if the format, types, or number of parts is wrong.
 	 *
 	 * @param string $continue Value of 'continue' parameter obtained from extractRequestParams()
-	 * @param string[] $types Types of the expected parts in order, 'string' or 'int'
-	 * @return mixed[] Array containing strings and integers
+	 * @param string[] $types Types of the expected parts in order, 'string', 'int' or 'timestamp'
+	 * @return mixed[] Array containing strings, integers or timestamps
 	 * @throws ApiUsageException
 	 * @since 1.40
 	 */
@@ -1652,6 +1653,14 @@ abstract class ApiBase extends ContextSource {
 				case 'int':
 					$this->dieContinueUsageIf( $value !== (string)(int)$value );
 					$value = (int)$value;
+					break;
+				case 'timestamp':
+					try {
+						$dbTs = $this->getDB()->timestamp( $value );
+					} catch ( TimestampException $ex ) {
+						$dbTs = false;
+					}
+					$this->dieContinueUsageIf( $value !== $dbTs );
 					break;
 				default:
 					throw new InvalidArgumentException( "Unknown type '{$types[$i]}'" );
