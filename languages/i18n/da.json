@@ -3336,6 +3336,7 @@
 	"logentry-partialblock-reblock": "$1 {{GENDER:$2|ændrede}} blokeringsindstillinger for {{GENDER:$4|$3}} fra at redigere $7 med en udløbstid på $5 $6",
 	"logentry-suppress-block": "$1 {{GENDER:$2|blokerede}} {{GENDER:$4|$3}} med en udløbstid på $5 $6",
 	"logentry-suppress-reblock": "$1 {{GENDER:$2|ændrede}} blokeringsindstillinger for {{GENDER:$4|$3}} med en udløbstid på $5 $6",
+	"logentry-import-interwiki": "$1 {{GENDER:$2|importerede}} $3 fra en anden wiki",
 	"logentry-move-move": "$1 {{GENDER:$2|flyttede}} siden $3 til $4",
 	"logentry-move-move-noredirect": "$1 {{GENDER:$2|flyttede}} siden $3 til $4 uden at efterlade en omdirigering",
 	"logentry-move-move_redir": "$1 {{GENDER:$2|flyttede}} siden $3 til $4 hen over en omdirigering",
