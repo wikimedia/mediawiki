@@ -2370,6 +2370,7 @@
 	"pageid": "էջի ID՝ $1",
 	"passwordpolicies-group": "Խումբ",
 	"passwordpolicies-policies": "Սահմանափակումներ",
+	"userlogout-continue": "Ուզում եք դո՞ւրս գալ։",
 	"paramvalidator-help-type-user-subtype-name": "մասնակցային անուն",
 	"paramvalidator-help-type-user-subtype-id": "մասնակցի ID (օրինակ՝ \"#12345\")"
 }

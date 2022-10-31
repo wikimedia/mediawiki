@@ -171,7 +171,8 @@
 			"Ice bulldog",
 			"Fraxinus.cs",
 			"Le Loi",
-			"MirandaBlack"
+			"MirandaBlack",
+			"UniCollab"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -320,7 +321,7 @@
 	"anontalk": "Обсуждение",
 	"navigation": "Навигация",
 	"and": "&#32;и",
-	"faq": "ЧаВО",
+	"faq": "ЧЗВ",
 	"actions": "Действия",
 	"namespaces": "Пространства имён",
 	"variants": "Варианты",
@@ -1138,7 +1139,7 @@
 	"search-category": "(категория $1)",
 	"search-file-match": "(совпадает с содержимым файла)",
 	"search-suggest": "Возможно, вы имели в виду «$1».",
-	"search-rewritten": "Показаны результаты для $1. Для $2 результаты не найдены.",
+	"search-rewritten": "Показаны результаты для «$1». Для «$2» результаты не найдены.",
 	"search-interwiki-caption": "Результаты родственных проектов",
 	"search-interwiki-default": "Результаты из $1:",
 	"search-interwiki-more": "(ещё)",

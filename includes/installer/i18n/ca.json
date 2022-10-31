@@ -67,6 +67,7 @@
 	"config-no-fts3": "<strong>Avís:</strong> SQLite està compilat sense el [//sqlite.org/fts3.html mòdul FTS3], per tant les funcionalitats de cerca no estaran disponibles en aquesta instal·lació.",
 	"config-pcre-old": "<strong>Error fatal:</strong> Cal el PCRE $1 o superior.\nEl binari PHP que utilitzeu està enllaçat amb el PCRE $2.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE Més informació].",
 	"config-pcre-no-utf8": "<strong>Fatal:</strong> El mòdul PCRE de PHP sembla que no va compilar-se per funcionar amb PCRE_UTF8.\nMediaWiki necessita que UTF-8 funcioni correctament.",
+	"config-pcre-invalid-newline": "<strong>Fatal:</strong> el mòdul PCRE de PHP sembla que s'ha compilat amb PCRE_CONFIG_NEWLINE = -1 per a ANY.\nMediaWiki no és compatible amb aquesta configuració.",
 	"config-memory-raised": "El <code>memory_limit</code> del PHP és $1 i s'ha aixecat a $2.",
 	"config-memory-bad": "<strong>Avís:</strong> El <code>memory_limit</code> del PHP és $1.\nAixò és probablement massa baix.\nLa instal·lació pot fallar!",
 	"config-apc": "L'[https://www.php.net/apc APC] està instal·lat",
