@@ -1137,6 +1137,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Add a hidden field to the output
+	 * Array values are discarded for security reasons (per WebRequest::getVal)
 	 *
 	 * @param string $name Field name.  This will be used exactly as entered
 	 * @param mixed $value Field value
@@ -1145,14 +1146,18 @@ class HTMLForm extends ContextSource {
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function addHiddenField( $name, $value, array $attribs = [] ) {
-		$attribs += [ 'name' => $name ];
-		$this->mHiddenFields[] = [ $value, $attribs ];
+		if ( !is_array( $value ) ) {
+			// Per WebRequest::getVal: Array values are discarded for security reasons.
+			$attribs += [ 'name' => $name ];
+			$this->mHiddenFields[] = [ $value, $attribs ];
+		}
 
 		return $this;
 	}
 
 	/**
 	 * Add an array of hidden fields to the output
+	 * Array values are discarded for security reasons (per WebRequest::getVal)
 	 *
 	 * @since 1.22
 	 *
@@ -1163,6 +1168,10 @@ class HTMLForm extends ContextSource {
 	 */
 	public function addHiddenFields( array $fields ) {
 		foreach ( $fields as $name => $value ) {
+			if ( is_array( $value ) ) {
+				// Per WebRequest::getVal: Array values are discarded for security reasons.
+				continue;
+			}
 			$this->mHiddenFields[] = [ $value, [ 'name' => $name ] ];
 		}
 
