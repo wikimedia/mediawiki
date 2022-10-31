@@ -3016,6 +3016,7 @@
 	"pageinfo-default-sort": "Clave de ordination predefinite",
 	"pageinfo-length": "Dimension del pagina (in bytes)",
 	"pageinfo-namespace": "Spatio de nomines",
+	"pageinfo-namespace-id": "ID del spatio de nomines",
 	"pageinfo-article-id": "ID del pagina",
 	"pageinfo-language": "Lingua del contento del pagina",
 	"pageinfo-language-change": "cambiar",

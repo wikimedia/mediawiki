@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"1233qwer1234qwer4",
 			"Abdullahi",
 			"Abshirdheere",
 			"Amire80",
@@ -934,7 +935,7 @@
 	"restriction-level-all": "qaab kasto",
 	"undelete": "Fiiri boggaga la'tirtiray",
 	"undeletepage": "Fiiri dibna u sooceli boggaga la'tirtiray",
-	"undeletepagetitle": "'''Meeshaan waxa ay ka koobatahay raadka wixii laga tiray[[:$1|$1]]'''.",
+	"undeletepagetitle": "'''Meeshaan waxa ay ka koobatahay raadka wixii laga tiray [[:$1|$1]]'''.",
 	"viewdeletedpage": "Fiiri boggaga la'tirtiray",
 	"skin-action-viewdeleted": "Fiiri $1?",
 	"undeletebtn": "Sooceli",
