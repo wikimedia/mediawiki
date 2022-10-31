@@ -4,6 +4,8 @@
  * @author Legoktm
  */
 
+use MediaWiki\Request\FauxRequest;
+
 /**
  * @covers SpecialLog
  */

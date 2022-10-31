@@ -87,7 +87,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$reset[] = TestUtils::setSessionManagerSingleton( $this->getManager() );
 
 		$handler->enable = true;
-		$request = new \FauxRequest();
+		$request = new \MediaWiki\Request\FauxRequest();
 		$context->setRequest( $request );
 		$id = $request->getSession()->getId();
 
@@ -103,7 +103,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 
 		session_write_close();
 		$handler->enable = false;
-		$request = new \FauxRequest();
+		$request = new \MediaWiki\Request\FauxRequest();
 		$context->setRequest( $request );
 		$id = $request->getSession()->getId();
 
@@ -147,7 +147,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetSessionForRequest() {
 		$manager = $this->getManager();
-		$request = new \FauxRequest();
+		$request = new \MediaWiki\Request\FauxRequest();
 		$request->unpersist1 = false;
 		$request->unpersist2 = false;
 
@@ -437,7 +437,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 	public function testGetEmptySession() {
 		$manager = $this->getManager();
 		$pmanager = TestingAccessWrapper::newFromObject( $manager );
-		$request = new \FauxRequest();
+		$request = new \MediaWiki\Request\FauxRequest();
 
 		$providerBuilder = $this->getMockBuilder( \DummySessionProvider::class )
 			->onlyMethods( [ 'provideSessionInfo', 'newSessionInfo', '__toString' ] );
@@ -807,7 +807,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetSessionFromInfo() {
 		$manager = TestingAccessWrapper::newFromObject( $this->getManager() );
-		$request = new \FauxRequest();
+		$request = new \MediaWiki\Request\FauxRequest();
 
 		$id = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 
@@ -839,7 +839,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 	public function testBackendRegistration() {
 		$manager = $this->getManager();
 
-		$session = $manager->getSessionForRequest( new \FauxRequest );
+		$session = $manager->getSessionForRequest( new \MediaWiki\Request\FauxRequest );
 		$backend = TestingAccessWrapper::newFromObject( $session )->backend;
 		$sessionId = $session->getSessionId();
 		$id = (string)$sessionId;
@@ -910,7 +910,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$manager = $this->getManager();
 		$logger = new \TestLogger( true );
 		$manager->setLogger( $logger );
-		$request = new \FauxRequest();
+		$request = new \MediaWiki\Request\FauxRequest();
 
 		// TestingAccessWrapper can't handle methods with reference arguments, sigh.
 		$rClass = new \ReflectionClass( $manager );
@@ -1539,7 +1539,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$manager = new SessionManager();
 		$logger = $this->createMock( LoggerInterface::class );
 		$this->setLogger( 'session-ip', $logger );
-		$request = new \FauxRequest();
+		$request = new \MediaWiki\Request\FauxRequest();
 		$request->setIP( $ip );
 		$request->setCookie( 'mwuser-sessionId', $mwuser );
 

@@ -1,7 +1,9 @@
 <?php
 
+use MediaWiki\Request\PathRouter;
+
 /**
- * Tests for the PathRouter parsing.
+ * Tests for the MediaWiki\Request\PathRouter parsing.
  *
  * @covers PathRouter
  */

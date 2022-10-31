@@ -20,8 +20,13 @@
  * @file
  */
 
+namespace MediaWiki\Request;
+
+use FatalError;
+use stdClass;
+
 /**
- * PathRouter class.
+ * MediaWiki\Request\PathRouter class.
  * This class can take patterns such as /wiki/$1 and use them to
  * parse query parameters out of REQUEST_URI paths.
  *
@@ -166,11 +171,11 @@ class PathRouter {
 	}
 
 	/**
-	 * @internal For use by WebRequest::getPathInfo
 	 * @param string $path To be given to add()
 	 * @param string $varName Full name of configuration variable for use
 	 *  in error message and url to mediawiki.org Manual (e.g. "wgExample").
 	 * @throws FatalError If path is invalid
+	 * @internal For use by WebRequest::getPathInfo
 	 */
 	public function validateRoute( $path, $varName ) {
 		if ( $path && !preg_match( '/^(https?:\/\/|\/)/', $path ) ) {
@@ -186,10 +191,10 @@ class PathRouter {
 
 	/**
 	 * Add a new path pattern to the path router with the strict option on
-	 * @see self::add
 	 * @param string|array $path
 	 * @param array $params
 	 * @param array $options
+	 * @see self::add
 	 */
 	public function addStrict( $path, $params = [], $options = [] ) {
 		$options['strict'] = true;
@@ -422,10 +427,10 @@ class PathRouter {
 	}
 
 	/**
-	 * @internal For use by Title and WebRequest only.
 	 * @param array $actionPaths
 	 * @param string $articlePath
 	 * @return string[]|false
+	 * @internal For use by Title and WebRequest only.
 	 */
 	public static function getActionPaths( array $actionPaths, $articlePath ) {
 		if ( !$actionPaths ) {
@@ -439,3 +444,5 @@ class PathRouter {
 		return $actionPaths;
 	}
 }
+
+class_alias( PathRouter::class, 'PathRouter' );

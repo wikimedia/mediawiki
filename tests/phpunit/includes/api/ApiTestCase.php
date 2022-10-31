@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\SessionManager;
 
 abstract class ApiTestCase extends MediaWikiLangTestCase {

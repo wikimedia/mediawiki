@@ -26,6 +26,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\StubObject\StubGlobalUser;
 use Wikimedia\AtEase\AtEase;
@@ -703,7 +704,7 @@ class RequestContext implements IContextSource, MutableContext {
 			static function () use ( $importSessionFunc, $oUser, $oParams, $oRequest ) {
 				global $wgRequest;
 				$importSessionFunc( $oUser, $oParams );
-				// Restore the exact previous Request object (instead of leaving FauxRequest)
+				// Restore the exact previous Request object (instead of leaving MediaWiki\Request\FauxRequest)
 				RequestContext::getMain()->setRequest( $oRequest );
 				$wgRequest = RequestContext::getMain()->getRequest(); // b/c
 			}
@@ -714,14 +715,14 @@ class RequestContext implements IContextSource, MutableContext {
 	 * Create a new extraneous context. The context is filled with information
 	 * external to the current session.
 	 * - Title is specified by argument
-	 * - Request is a FauxRequest, or a FauxRequest can be specified by argument
+	 * - Request is a MediaWiki\Request\FauxRequest, or a MediaWiki\Request\FauxRequest can be specified by argument
 	 * - User is an anonymous user, for separation IPv4 localhost is used
 	 * - Language will be based on the anonymous user and request, may be content
 	 *   language or a uselang param in the fauxrequest data may change the lang
 	 * - Skin will be based on the anonymous user, should be the wiki's default skin
 	 *
 	 * @param Title $title Title to use for the extraneous request
-	 * @param WebRequest|array $request A WebRequest or data to use for a FauxRequest
+	 * @param WebRequest|array $request A WebRequest or data to use for a MediaWiki\Request\FauxRequest
 	 * @return RequestContext
 	 */
 	public static function newExtraneousContext( Title $title, $request = [] ) {

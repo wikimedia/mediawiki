@@ -2,6 +2,7 @@
 
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Request\FauxRequest;
 
 /**
  * @covers DerivativeContext

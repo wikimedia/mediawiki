@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Request\FauxRequest;
+
 abstract class ApiFormatTestBase extends MediaWikiIntegrationTestCase {
 
 	/**
@@ -85,7 +87,7 @@ abstract class ApiFormatTestBase extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGeneralEncoding
 	 * @param array $data Data to be encoded
 	 * @param string|Exception $expect String to expect, or exception expected to be thrown
-	 * @param array $params Query parameters to set in the FauxRequest
+	 * @param array $params Query parameters to set in the MediaWiki\Request\FauxRequest
 	 * @param array $options Options to pass to self::encodeData()
 	 */
 	public function testGeneralEncoding(
