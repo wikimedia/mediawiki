@@ -1558,6 +1558,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 *
 	 * @param string $ip IP address, uses current client if none given
 	 * @return bool True if blocked, false otherwise
+	 * @deprecated since 1.40. Use getBlock instead.
 	 */
 	public function isBlockedGlobally( $ip = '' ) {
 		return $this->getGlobalBlock( $ip ) instanceof AbstractBlock;
@@ -1572,6 +1573,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return AbstractBlock|null Block object if blocked, null otherwise
 	 * @throws FatalError
 	 * @throws MWException
+	 * @deprecated since 1.40. Use getBlock instead
 	 */
 	public function getGlobalBlock( $ip = '' ) {
 		if ( $this->mGlobalBlock !== null ) {

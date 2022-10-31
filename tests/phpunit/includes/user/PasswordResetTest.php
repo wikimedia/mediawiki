@@ -42,7 +42,6 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 		$user = $this->createMock( User::class );
 		$user->method( 'getName' )->willReturn( 'Foo' );
 		$user->method( 'getBlock' )->willReturn( $block );
-		$user->method( 'getGlobalBlock' )->willReturn( $globalBlock );
 		$user->method( 'isAllowed' )->with( 'editmyprivateinfo' )->willReturn( $canEditPrivate );
 
 		$passwordReset = new PasswordReset(
