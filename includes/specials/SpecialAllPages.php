@@ -241,15 +241,11 @@ class SpecialAllPages extends IncludableSpecialPage {
 
 				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 					$t = Title::newFromRow( $s );
-					if ( $t ) {
-						$out .= '<li' .
-							( $s->page_is_redirect ? ' class="allpagesredirect"' : '' ) .
-							'>' .
-							$linkRenderer->makeLink( $t ) .
-							"</li>\n";
-					} else {
-						$out .= '<li>[[' . htmlspecialchars( $s->page_title ) . "]]</li>\n";
-					}
+					$out .= '<li' .
+						( $t->isRedirect() ? ' class="allpagesredirect"' : '' ) .
+						'>' .
+						$linkRenderer->makeLink( $t ) .
+						"</li>\n";
 					$n++;
 				}
 				$out .= Html::closeElement( 'ul' );
