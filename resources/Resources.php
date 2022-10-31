@@ -74,10 +74,10 @@ return [
 		'class' => SkinModule::class,
 		'features' => [
 			'elements' => true,
-			'content' => true,
+			'content-media' => true,
 			'interface' => true,
+			'interface-message-box' => true,
 			'logo' => true,
-			'legacy' => true,
 		],
 	],
 	'jquery.makeCollapsible.styles' => [
