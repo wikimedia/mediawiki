@@ -23,10 +23,10 @@
 namespace MediaWiki\ResourceLoader;
 
 use Config;
-use FauxRequest;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserRigorOptions;
 use Message;

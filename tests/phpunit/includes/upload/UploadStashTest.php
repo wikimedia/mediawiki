@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Request\FauxRequest;
+
 /**
  * @group Database
  *

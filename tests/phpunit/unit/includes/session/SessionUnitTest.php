@@ -22,7 +22,7 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $backend, $priv->backend );
 		$this->assertSame( 42, $priv->index );
 
-		$request = new \FauxRequest();
+		$request = new \MediaWiki\Request\FauxRequest();
 		$priv2 = TestingAccessWrapper::newFromObject( $session->sessionWithRequest( $request ) );
 		$this->assertSame( $backend, $priv2->backend );
 		$this->assertNotSame( $priv->index, $priv2->index );

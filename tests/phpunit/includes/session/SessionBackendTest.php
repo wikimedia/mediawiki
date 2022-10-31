@@ -84,7 +84,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$backend = new SessionBackend( $id, $info, $this->store, $logger, $hookContainer, 10 );
 		$priv = TestingAccessWrapper::newFromObject( $backend );
 		$priv->persist = false;
-		$priv->requests = [ 100 => new \FauxRequest() ];
+		$priv->requests = [ 100 => new \MediaWiki\Request\FauxRequest() ];
 		$priv->requests[100]->setSessionId( $id );
 		$priv->usePhpSessionHandling = false;
 
@@ -201,9 +201,9 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
 
-		$request1 = new \FauxRequest();
+		$request1 = new \MediaWiki\Request\FauxRequest();
 		$session1 = $backend->getSession( $request1 );
-		$request2 = new \FauxRequest();
+		$request2 = new \MediaWiki\Request\FauxRequest();
 		$session2 = $backend->getSession( $request2 );
 
 		$this->assertInstanceOf( Session::class, $session1 );

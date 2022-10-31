@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Session\SessionManager;
 
 class FauxRequestTest extends MediaWikiIntegrationTestCase {

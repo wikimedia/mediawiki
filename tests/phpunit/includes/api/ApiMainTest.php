@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\StubObject\StubGlobalUser;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Wikimedia\Rdbms\DBConnRef;
@@ -36,7 +37,7 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	/**
-	 * Test that the API will accept a FauxRequest and execute.
+	 * Test that the API will accept a MediaWiki\Request\FauxRequest and execute.
 	 */
 	public function testApi() {
 		$fauxRequest = new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] );
@@ -58,7 +59,7 @@ class ApiMainTest extends ApiTestCase {
 	}
 
 	/**
-	 * ApiMain behaves differently if passed a FauxRequest (mInternalMode set
+	 * ApiMain behaves differently if passed a MediaWiki\Request\FauxRequest (mInternalMode set
 	 * to true) or a proper WebRequest (mInternalMode false).  For most tests
 	 * we can just set mInternalMode to false using TestingAccessWrapper, but
 	 * this doesn't work for the constructor.  This method returns an ApiMain
