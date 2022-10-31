@@ -934,6 +934,7 @@
 	"apihelp-query+languageinfo-paramvalue-prop-dir": "A direçión de scritûa da léngoa (ségge <code>ltr</code> ò <code>rtl</code>).",
 	"apihelp-query+languageinfo-paramvalue-prop-autonym": "L'outònimo da léngoa, sàiva a dî o nómme inte quélla léngoa.",
 	"apihelp-query+languageinfo-paramvalue-prop-name": "O nómme da léngoa inta léngoa specificâ da-o paràmetro <var>uselang</var>, con l'aplicaçión do fallback lengoìstico quànde o foîse necesâio.",
+	"apihelp-query+languageinfo-paramvalue-prop-variantnames": "I nómmi cùrti de variànte lengoìstiche dêuviæ pe-i ligàmmi de conversción lengoìstica.",
 	"apihelp-query+languageinfo-paramvalue-prop-fallbacks": "O còdice léngoe de léngoe de fallback configuræ pe sta léngoa chi. O fallback sotintéizo finâle a 'en' o no l'é inclûzo (scibén che de léngoe pêuan avéi 'en' cómme fallback esplìcito),",
 	"apihelp-query+languageinfo-paramvalue-prop-variants": "I còdichi léngoa de variànte suportæ da sta léngoa chi.",
 	"apihelp-query+languageinfo-param-code": "I còdichi léngoa de léngoe che doviéivan êse restitoîe, ò <code>*</code> pe tùtte e léngoe.",
