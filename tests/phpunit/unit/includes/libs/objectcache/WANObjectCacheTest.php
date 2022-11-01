@@ -27,6 +27,8 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		if ( isset( $params['broadcastRoutingPrefix'] ) ) {
 			// Convert mcrouter broadcast keys to regular keys in HashBagOStuff::delete() calls
 			$bag = new McrouterHashBagOStuff();
+		} elseif ( isset( $params['serialize'] ) ) {
+			$bag = new SerialHashBagOStuff();
 		} else {
 			$bag = new HashBagOStuff();
 		}
@@ -2502,5 +2504,19 @@ class NearExpiringWANObjectCache extends WANObjectCache {
 class PopularityRefreshingWANObjectCache extends WANObjectCache {
 	protected function worthRefreshPopular( $asOf, $ageNew, $timeTillRefresh, $now ) {
 		return ( ( $now - $asOf ) > $timeTillRefresh );
+	}
+}
+
+class SerialHashBagOStuff extends HashBagOStuff {
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		$serialized = parent::doGet( $key, $flags, $casToken );
+
+		return ( $serialized !== false ) ? $this->unserialize( $serialized ) : false;
+	}
+
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
+		$serialized = $this->getSerialized( $value, $key );
+
+		return parent::doSet( $key, $serialized, $exptime, $flags );
 	}
 }
