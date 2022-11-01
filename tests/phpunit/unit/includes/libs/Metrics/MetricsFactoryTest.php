@@ -26,7 +26,7 @@ class MetricsFactoryTest extends TestCase {
 		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new NullLogger );
 		$this->assertInstanceOf( CounterMetric::class, $m->getCounter( [
 			'name' => 'test',
-			'extension' => 'testExtension'
+			'component' => 'testComponent'
 		] ) );
 	}
 
@@ -34,7 +34,7 @@ class MetricsFactoryTest extends TestCase {
 		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new NullLogger );
 		$this->assertInstanceOf( GaugeMetric::class, $m->getGauge( [
 			'name' => 'test',
-			'extension' => 'testExtension'
+			'component' => 'testComponent'
 		] ) );
 	}
 
@@ -42,7 +42,7 @@ class MetricsFactoryTest extends TestCase {
 		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new NullLogger );
 		$this->assertInstanceOf( TimingMetric::class, $m->getTiming( [
 			'name' => 'test',
-			'extension' => 'testExtension'
+			'component' => 'testComponent'
 		] ) );
 	}
 
@@ -59,7 +59,7 @@ class MetricsFactoryTest extends TestCase {
 	public function testUnsetNameConfig() {
 		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new NullLogger );
 		$this->expectException( InvalidConfigurationException::class );
-		$m->getCounter( [ 'extension' => 'a' ] );
+		$m->getCounter( [ 'component' => 'a' ] );
 	}
 
 	public function testUnsetExtensionConfig() {
@@ -76,9 +76,9 @@ class MetricsFactoryTest extends TestCase {
 
 	public function testGetMetricWithLabelMismatch() {
 		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new NullLogger );
-		$m->getCounter( [ 'name' => 'test_metric', 'extension' => 'test', 'labels' => [ 'a' ] ] );
+		$m->getCounter( [ 'name' => 'test_metric', 'component' => 'test', 'labels' => [ 'a' ] ] );
 		$this->expectException( InvalidLabelsException::class );
-		$m->getCounter( [ 'name' => 'test_metric', 'extension' => 'test', 'labels' => [ 'a', 'b' ] ] );
+		$m->getCounter( [ 'name' => 'test_metric', 'component' => 'test', 'labels' => [ 'a', 'b' ] ] );
 	}
 
 	public function testNormalizeString() {
@@ -98,9 +98,9 @@ class MetricsFactoryTest extends TestCase {
 	public function testGetNullMetricOnNameCollision() {
 		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new NullLogger );
 		// define metric as counter 'test'
-		$m->getCounter( [ 'name' => 'test', 'extension' => 'testExtension' ] );
+		$m->getCounter( [ 'name' => 'test', 'component' => 'testComponent' ] );
 		// redefine metric as timing 'test'
-		$metric = $m->getTiming( [ 'name' => 'test', 'extension' => 'testExtension' ] );
+		$metric = $m->getTiming( [ 'name' => 'test', 'component' => 'testComponent' ] );
 		// gauge response must be null metric
 		$this->assertInstanceOf( NullMetric::class, $metric );
 		// NullMetric should not throw for any method call
@@ -113,10 +113,10 @@ class MetricsFactoryTest extends TestCase {
 			'format' => 'dogstatsd',
 		], new NullLogger );
 
-		$metric = $m->getCounter( [ 'name' => 'bar', 'extension' => 'test' ] );
+		$metric = $m->getCounter( [ 'name' => 'bar', 'component' => 'test' ] );
 		$metric->increment();
 		$metric->increment();
-		$metric = $m->getTiming( [ 'name' => 'foo', 'extension' => 'test' ] );
+		$metric = $m->getTiming( [ 'name' => 'foo', 'component' => 'test' ] );
 		$metric->observe( 3.14 );
 
 		$transport = $this->createMock( UDPTransport::class );

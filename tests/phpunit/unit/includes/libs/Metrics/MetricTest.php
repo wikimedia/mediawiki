@@ -24,7 +24,7 @@ class MetricTest extends TestCase {
 		'basic' => [
 			'config' => [
 				'name' => 'test.unit',
-				'extension' => 'testExtension',
+				'component' => 'testComponent',
 				'labels' => [],
 			],
 			'value' => 2,
@@ -33,7 +33,7 @@ class MetricTest extends TestCase {
 		'invalidLabel' => [
 			'config' => [
 				'name' => 'test.unit',
-				'extension' => 'testExtension',
+				'component' => 'testComponent',
 				'labels' => [ 'x' ]
 			],
 			'value' => 2,
@@ -42,7 +42,7 @@ class MetricTest extends TestCase {
 		'oneLabel' => [
 			'config' => [
 				'name' => 'test.unit',
-				'extension' => 'testExtension',
+				'component' => 'testComponent',
 				'labels' => [ 'x' ]
 			],
 			'value' => 2,
@@ -51,7 +51,7 @@ class MetricTest extends TestCase {
 		'multiLabel' => [
 			'config' => [
 				'name' => 'test.unit',
-				'extension' => 'testExtension',
+				'component' => 'testComponent',
 				'labels' => [ 'x', 'y' ]
 			],
 			'value' => 2,
@@ -60,34 +60,34 @@ class MetricTest extends TestCase {
 	];
 
 	public const RESULTS = [
-		'statsd.counter.basic' => [ 'mediawiki.testExtension.test_unit:2|c' ],
-		'statsd.counter.invalidLabel' => [ 'mediawiki.testExtension.test_unit.labelOne:2|c' ],
-		'statsd.counter.oneLabel' => [ 'mediawiki.testExtension.test_unit.labelOne:2|c' ],
-		'statsd.counter.multiLabel' => [ 'mediawiki.testExtension.test_unit.labelOne.labelTwo:2|c' ],
-		'statsd.gauge.basic' => [ 'mediawiki.testExtension.test_unit:2|g' ],
-		'statsd.gauge.invalidLabel' => [ 'mediawiki.testExtension.test_unit.labelOne:2|g' ],
-		'statsd.gauge.oneLabel' => [ 'mediawiki.testExtension.test_unit.labelOne:2|g' ],
-		'statsd.gauge.multiLabel' => [ 'mediawiki.testExtension.test_unit.labelOne.labelTwo:2|g' ],
-		'statsd.timing.basic' => [ 'mediawiki.testExtension.test_unit:2|ms' ],
-		'statsd.timing.invalidLabel' => [ 'mediawiki.testExtension.test_unit.labelOne:2|ms' ],
-		'statsd.timing.oneLabel' => [ 'mediawiki.testExtension.test_unit.labelOne:2|ms' ],
-		'statsd.timing.multiLabel' => [ 'mediawiki.testExtension.test_unit.labelOne.labelTwo:2|ms' ],
+		'statsd.counter.basic' => [ 'mediawiki.testComponent.test_unit:2|c' ],
+		'statsd.counter.invalidLabel' => [ 'mediawiki.testComponent.test_unit.labelOne:2|c' ],
+		'statsd.counter.oneLabel' => [ 'mediawiki.testComponent.test_unit.labelOne:2|c' ],
+		'statsd.counter.multiLabel' => [ 'mediawiki.testComponent.test_unit.labelOne.labelTwo:2|c' ],
+		'statsd.gauge.basic' => [ 'mediawiki.testComponent.test_unit:2|g' ],
+		'statsd.gauge.invalidLabel' => [ 'mediawiki.testComponent.test_unit.labelOne:2|g' ],
+		'statsd.gauge.oneLabel' => [ 'mediawiki.testComponent.test_unit.labelOne:2|g' ],
+		'statsd.gauge.multiLabel' => [ 'mediawiki.testComponent.test_unit.labelOne.labelTwo:2|g' ],
+		'statsd.timing.basic' => [ 'mediawiki.testComponent.test_unit:2|ms' ],
+		'statsd.timing.invalidLabel' => [ 'mediawiki.testComponent.test_unit.labelOne:2|ms' ],
+		'statsd.timing.oneLabel' => [ 'mediawiki.testComponent.test_unit.labelOne:2|ms' ],
+		'statsd.timing.multiLabel' => [ 'mediawiki.testComponent.test_unit.labelOne.labelTwo:2|ms' ],
 
-		'dogstatsd.counter.basic' => [ 'mediawiki.testExtension.test_unit:2|c' ],
-		'dogstatsd.counter.invalidLabel' => [ 'mediawiki.testExtension.test_unit:2|c|#x:labelOne' ],
-		'dogstatsd.counter.oneLabel' => [ 'mediawiki.testExtension.test_unit:2|c|#x:labelOne' ],
+		'dogstatsd.counter.basic' => [ 'mediawiki.testComponent.test_unit:2|c' ],
+		'dogstatsd.counter.invalidLabel' => [ 'mediawiki.testComponent.test_unit:2|c|#x:labelOne' ],
+		'dogstatsd.counter.oneLabel' => [ 'mediawiki.testComponent.test_unit:2|c|#x:labelOne' ],
 		'dogstatsd.counter.multiLabel' => [
-			'mediawiki.testExtension.test_unit:2|c|#x:labelOne,y:labelTwo' ],
-		'dogstatsd.gauge.basic' => [ 'mediawiki.testExtension.test_unit:2|g' ],
-		'dogstatsd.gauge.invalidLabel' => [ 'mediawiki.testExtension.test_unit:2|g|#x:labelOne' ],
-		'dogstatsd.gauge.oneLabel' => [ 'mediawiki.testExtension.test_unit:2|g|#x:labelOne' ],
+			'mediawiki.testComponent.test_unit:2|c|#x:labelOne,y:labelTwo' ],
+		'dogstatsd.gauge.basic' => [ 'mediawiki.testComponent.test_unit:2|g' ],
+		'dogstatsd.gauge.invalidLabel' => [ 'mediawiki.testComponent.test_unit:2|g|#x:labelOne' ],
+		'dogstatsd.gauge.oneLabel' => [ 'mediawiki.testComponent.test_unit:2|g|#x:labelOne' ],
 		'dogstatsd.gauge.multiLabel' => [
-			'mediawiki.testExtension.test_unit:2|g|#x:labelOne,y:labelTwo' ],
-		'dogstatsd.timing.basic' => [ 'mediawiki.testExtension.test_unit:2|ms' ],
-		'dogstatsd.timing.invalidLabel' => [ 'mediawiki.testExtension.test_unit:2|ms|#x:labelOne' ],
-		'dogstatsd.timing.oneLabel' => [ 'mediawiki.testExtension.test_unit:2|ms|#x:labelOne' ],
+			'mediawiki.testComponent.test_unit:2|g|#x:labelOne,y:labelTwo' ],
+		'dogstatsd.timing.basic' => [ 'mediawiki.testComponent.test_unit:2|ms' ],
+		'dogstatsd.timing.invalidLabel' => [ 'mediawiki.testComponent.test_unit:2|ms|#x:labelOne' ],
+		'dogstatsd.timing.oneLabel' => [ 'mediawiki.testComponent.test_unit:2|ms|#x:labelOne' ],
 		'dogstatsd.timing.multiLabel' => [
-			'mediawiki.testExtension.test_unit:2|ms|#x:labelOne,y:labelTwo' ],
+			'mediawiki.testComponent.test_unit:2|ms|#x:labelOne,y:labelTwo' ],
 	];
 
 	public function testValidateLabels() {
@@ -95,7 +95,7 @@ class MetricTest extends TestCase {
 		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new NullLogger );
 		$counter = $m->getCounter( [
 			'name' => 'test',
-			'extension' => 'testExtension',
+			'component' => 'testComponent',
 			'labels' => [ 'a', 'b' ]
 		] );
 		$counter->increment( [ 'a' ] );
@@ -152,21 +152,21 @@ class MetricTest extends TestCase {
 			$ten_percent = $m->getCounter(
 				[
 					'name' => 'test.sampled.ten',
-					'extension' => 'counter',
+					'component' => 'counter',
 					'sampleRate' => 0.1
 				]
 			);
 			$hundred_percent = $m->getCounter(
 				[
 					'name' => 'test.sampled.hundred',
-					'extension' => 'counter',
+					'component' => 'counter',
 					'sampleRate' => 1.0
 				]
 			);
 			$zero_percent = $m->getCounter(
 				[
 					'name' => 'test.sampled.zero',
-					'extension' => 'counter',
+					'component' => 'counter',
 					'sampleRate' => 0.0
 				]
 			);
