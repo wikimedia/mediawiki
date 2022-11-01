@@ -1720,30 +1720,6 @@ class Article implements Page {
 	 * Chances are you should just be using the ParserOutput from
 	 * WikitextContent::getParserOutput instead of calling this for redirects.
 	 *
-	 * @param Title|array $target Destination(s) to redirect
-	 * @param bool $appendSubtitle [optional]
-	 * @param bool $forceKnown Should the image be shown as a bluelink regardless of existence?
-	 * @return string Containing HTML with redirect link
-	 *
-	 * @deprecated since 1.30, hard-deprecated since 1.39
-	 */
-	public function viewRedirect( $target, $appendSubtitle = true, $forceKnown = false ) {
-		wfDeprecated( __METHOD__, '1.30' );
-		$lang = $this->getTitle()->getPageLanguage();
-		$out = $this->getContext()->getOutput();
-		if ( $appendSubtitle ) {
-			$out->addSubtitle( $this->getContext()->msg( 'redirectpagesub' ) );
-		}
-		$out->addModuleStyles( 'mediawiki.action.view.redirectPage' );
-		return static::getRedirectHeaderHtml( $lang, $target, $forceKnown );
-	}
-
-	/**
-	 * Return the HTML for the top of a redirect page
-	 *
-	 * Chances are you should just be using the ParserOutput from
-	 * WikitextContent::getParserOutput instead of calling this for redirects.
-	 *
 	 * @since 1.23
 	 * @param Language $lang
 	 * @param Title $target Destination to redirect

@@ -3723,21 +3723,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * Get the timestamp when this page was updated since the user last saw it.
-	 *
-	 * @deprecated since 1.35, hard deprecated since 1.39
-	 *
-	 * @param User $user
-	 * @return string|bool|null String timestamp, false if not watched, null if nothing is unseen
-	 */
-	public function getNotificationTimestamp( User $user ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getWatchlistManager()
-			->getTitleNotificationTimestamp( $user, $this );
-	}
-
-	/**
 	 * Generate strings used for xml 'id' names in monobook tabs
 	 *
 	 * @param string $prepend Defaults to 'nstab-'
