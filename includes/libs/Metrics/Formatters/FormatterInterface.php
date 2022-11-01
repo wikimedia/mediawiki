@@ -1,11 +1,6 @@
 <?php
 /**
- * UnsupportedFormatException
- *
- * Raised when a metrics format is defined in the LocalSettings
- * configuration, but is not supported.
- *
- * See: OutputFormats::SUPPORTED_OUTPUT_FORMATS and $wgMetricsFormat
+ * Metrics Formatter Interface
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,12 +19,23 @@
  *
  * @license GPL-2.0-or-later
  * @author Cole White
- * @since 1.38
+ * @since 1.41
  */
 
-namespace Wikimedia\Metrics\Exceptions;
+namespace Wikimedia\Metrics\Formatters;
 
-use InvalidArgumentException;
+use Wikimedia\Metrics\Metrics\CounterMetric;
+use Wikimedia\Metrics\Metrics\GaugeMetric;
+use Wikimedia\Metrics\Metrics\NullMetric;
+use Wikimedia\Metrics\Metrics\TimingMetric;
 
-class UnsupportedFormatException extends InvalidArgumentException {
+interface FormatterInterface {
+	/**
+	 * Renders metric to line format.
+	 *
+	 * @param string $prefix
+	 * @param CounterMetric|GaugeMetric|TimingMetric|NullMetric $metric
+	 * @return string[]
+	 */
+	public function getFormattedSamples( string $prefix, $metric ): array;
 }

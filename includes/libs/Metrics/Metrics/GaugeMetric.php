@@ -78,13 +78,6 @@ class GaugeMetric {
 		$this->metricUtils->addSample( new Sample( MetricsFactory::normalizeArray( $labels ), $value ) );
 	}
 
-	/**
-	 * @return string[]
-	 */
-	public function render(): array {
-		return $this->metricUtils->render();
-	}
-
 	public function getComponent(): string {
 		return $this->metricUtils->getComponent();
 	}
@@ -98,7 +91,7 @@ class GaugeMetric {
 	}
 
 	public function getSamples(): array {
-		return $this->metricUtils->getSamples();
+		return MetricUtils::getFilteredSamples( $this->getSampleRate(), $this->metricUtils->getSamples() );
 	}
 
 	public function getSampleRate(): float {

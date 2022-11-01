@@ -112,6 +112,7 @@ class MetricsFactoryTest extends TestCase {
 		$m = new MetricsFactory( [
 			'prefix' => 'mediawiki',
 			'format' => 'dogstatsd',
+			'target' => 'udp://127.0.0.1:65535'
 		], new MetricsCache, new NullLogger );
 
 		$metric = $m->getCounter( [ 'name' => 'bar', 'component' => 'test' ] );
