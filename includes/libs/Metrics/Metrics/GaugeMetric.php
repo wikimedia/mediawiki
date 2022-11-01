@@ -1,9 +1,8 @@
 <?php
 /**
- * Timing Metric Implementation
+ * Gauge Metric Implementation
  *
- * Timing metrics track duration data which can be broken into histograms.
- * They are identified by type 'ms'.
+ * Gauge Metrics can be set to any numeric value and are identified by type 'g'.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,18 +26,22 @@
 
 declare( strict_types=1 );
 
-namespace Wikimedia\Metrics;
+namespace Wikimedia\Metrics\Metrics;
 
-class TimingMetric {
+use Wikimedia\Metrics\MetricsFactory;
+use Wikimedia\Metrics\MetricUtils;
+use Wikimedia\Metrics\Sample;
+
+class GaugeMetric {
 
 	/**
 	 * The StatsD protocol type indicator:
-	 * https://github.com/statsd/statsd/blob/master/docs/metric_types.md
+	 * https://github.com/statsd/statsd/blob/v0.9.0/docs/metric_types.md
 	 * https://docs.datadoghq.com/developers/dogstatsd/datagram_shell/?tab=metrics
 	 *
 	 * @var string
 	 */
-	private const TYPE_INDICATOR = 'ms';
+	private const TYPE_INDICATOR = 'g';
 
 	/** @var MetricUtils */
 	private $metricUtils;
@@ -70,7 +73,7 @@ class TimingMetric {
 	 * @param float $value
 	 * @param string[] $labels
 	 */
-	public function observe( float $value, array $labels = [] ): void {
+	public function set( float $value, array $labels = [] ): void {
 		$this->validateLabels( $labels );
 		$this->metricUtils->addSample( new Sample( MetricsFactory::normalizeArray( $labels ), $value ) );
 	}

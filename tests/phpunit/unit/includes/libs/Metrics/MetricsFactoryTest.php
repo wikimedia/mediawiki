@@ -5,15 +5,15 @@ namespace Wikimedia\Tests\Metrics;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use UDPTransport;
-use Wikimedia\Metrics\CounterMetric;
 use Wikimedia\Metrics\Exceptions\InvalidConfigurationException;
 use Wikimedia\Metrics\Exceptions\InvalidLabelsException;
 use Wikimedia\Metrics\Exceptions\UndefinedPrefixException;
 use Wikimedia\Metrics\Exceptions\UnsupportedFormatException;
-use Wikimedia\Metrics\GaugeMetric;
+use Wikimedia\Metrics\Metrics\CounterMetric;
+use Wikimedia\Metrics\Metrics\GaugeMetric;
+use Wikimedia\Metrics\Metrics\NullMetric;
+use Wikimedia\Metrics\Metrics\TimingMetric;
 use Wikimedia\Metrics\MetricsFactory;
-use Wikimedia\Metrics\NullMetric;
-use Wikimedia\Metrics\TimingMetric;
 use Wikimedia\TestingAccessWrapper;
 
 /**

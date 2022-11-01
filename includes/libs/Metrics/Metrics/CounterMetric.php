@@ -1,8 +1,8 @@
 <?php
 /**
- * Gauge Metric Implementation
+ * Counter Metric Implementation
  *
- * Gauge Metrics can be set to any numeric value and are identified by type 'g'.
+ * Counter Metrics only ever increase and are identified by type 'c'.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,18 +26,22 @@
 
 declare( strict_types=1 );
 
-namespace Wikimedia\Metrics;
+namespace Wikimedia\Metrics\Metrics;
 
-class GaugeMetric {
+use Wikimedia\Metrics\MetricsFactory;
+use Wikimedia\Metrics\MetricUtils;
+use Wikimedia\Metrics\Sample;
+
+class CounterMetric {
 
 	/**
 	 * The StatsD protocol type indicator:
-	 * https://github.com/statsd/statsd/blob/v0.9.0/docs/metric_types.md
+	 * https://github.com/statsd/statsd/blob/master/docs/metric_types.md
 	 * https://docs.datadoghq.com/developers/dogstatsd/datagram_shell/?tab=metrics
 	 *
 	 * @var string
 	 */
-	private const TYPE_INDICATOR = 'g';
+	private const TYPE_INDICATOR = 'c';
 
 	/** @var MetricUtils */
 	private $metricUtils;
@@ -66,10 +70,17 @@ class GaugeMetric {
 	}
 
 	/**
-	 * @param float $value
 	 * @param string[] $labels
 	 */
-	public function set( float $value, array $labels = [] ): void {
+	public function increment( array $labels = [] ): void {
+		$this->incrementBy( 1, $labels );
+	}
+
+	/**
+	 * @param int $value
+	 * @param string[] $labels
+	 */
+	public function incrementBy( int $value, array $labels = [] ): void {
 		$this->validateLabels( $labels );
 		$this->metricUtils->addSample( new Sample( MetricsFactory::normalizeArray( $labels ), $value ) );
 	}

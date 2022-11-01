@@ -36,6 +36,10 @@ use UDPTransport;
 use Wikimedia\Metrics\Exceptions\InvalidConfigurationException;
 use Wikimedia\Metrics\Exceptions\UndefinedPrefixException;
 use Wikimedia\Metrics\Exceptions\UnsupportedFormatException;
+use Wikimedia\Metrics\Metrics\CounterMetric;
+use Wikimedia\Metrics\Metrics\GaugeMetric;
+use Wikimedia\Metrics\Metrics\NullMetric;
+use Wikimedia\Metrics\Metrics\TimingMetric;
 
 class MetricsFactory {
 
