@@ -20,6 +20,7 @@ use MediaWikiIntegrationTestCase;
 use MWTimestamp;
 use NullStatsdDataFactory;
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Http\Message\StreamInterface;
 use Psr\Log\NullLogger;
 use WANObjectCache;
 use Wikimedia\Message\MessageValue;
@@ -59,6 +60,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$this->parserCacheBagOStuff = new HashBagOStuff();
+		$this->overrideConfigValue( 'UsePigLatinVariant', true );
 	}
 
 	/**
@@ -126,7 +128,8 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			$services->getPageStore(),
 			$this->getParsoidOutputStash(),
 			$services->getStatsdDataFactory(),
-			$parsoidOutputAccess
+			$parsoidOutputAccess,
+			$services->getHTMLTransformFactory()
 		);
 
 		return $handler;
@@ -423,4 +426,67 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->executeRevisionHTMLRequest( $page->getLatest(), [ 'stash' => true ] );
 	}
 
+	/**
+	 * @dataProvider provideExecuteWithVariant
+	 */
+	public function testExecuteWithVariant(
+		string $format,
+		callable $bodyHtmlHandler,
+		string $expectedContentLanguage,
+		string $expectedVaryHeader
+	) {
+		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
+
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$this->editPage( $page, '<p>test language conversion</p>', 'Edited a page' );
+		$revRecord = $page->getRevisionRecord();
+
+		$acceptLanguage = 'en-x-piglatin';
+		$request = new RequestData(
+			[
+				'pathParams' => [ 'id' => $revRecord->getId() ],
+				'headers' => [
+					'Accept-Language' => $acceptLanguage
+				]
+			]
+		);
+
+		$handler = $this->newHandler();
+		$response = $this->executeHandler( $handler, $request, [
+			'format' => $format
+		] );
+
+		$responseBody = json_decode( $response->getBody(), true );
+		$htmlBody = $bodyHtmlHandler( $response->getBody() );
+		$contentLanguageHeader = $response->getHeaderLine( 'Content-Language' );
+		$varyHeader = $response->getHeaderLine( 'Vary' );
+
+		// html format doesn't return a response in JSON format
+		if ( $responseBody ) {
+			$this->assertResponseData( $revRecord, $responseBody );
+		}
+		$this->assertStringContainsString( '>esttay anguagelay onversioncay<', $htmlBody );
+		$this->assertEquals( $expectedContentLanguage, $contentLanguageHeader );
+		$this->assertStringContainsStringIgnoringCase( $expectedVaryHeader, $varyHeader );
+		$this->assertStringContainsString( $acceptLanguage, $response->getHeaderLine( 'ETag' ) );
+	}
+
+	public function provideExecuteWithVariant() {
+		yield 'with_html request should contain accept language but not content language' => [
+			'with_html',
+			static function ( StreamInterface $response ) {
+				return json_decode( $response->getContents(), true )['html'];
+			},
+			'',
+			'accept-language'
+		];
+		yield 'html request should contain accept and content language' => [
+			'html',
+			static function ( StreamInterface $response ) {
+				return $response->getContents();
+			},
+			'en-x-piglatin',
+			'accept-language'
+		];
+	}
 }

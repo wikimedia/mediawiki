@@ -8,6 +8,7 @@ use LogicException;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageLookup;
+use MediaWiki\Parser\Parsoid\HTMLTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
@@ -40,7 +41,8 @@ class RevisionHTMLHandler extends SimpleHandler {
 		PageLookup $pageLookup,
 		ParsoidOutputStash $parsoidOutputStash,
 		IBufferingStatsdDataFactory $statsDataFactory,
-		ParsoidOutputAccess $parsoidOutputAccess
+		ParsoidOutputAccess $parsoidOutputAccess,
+		HTMLTransformFactory $htmlTransformFactory
 	) {
 		$this->contentHelper = new RevisionContentHelper(
 			$config,
@@ -51,7 +53,8 @@ class RevisionHTMLHandler extends SimpleHandler {
 		$this->htmlHelper = new HtmlOutputRendererHelper(
 			$parsoidOutputStash,
 			$statsDataFactory,
-			$parsoidOutputAccess
+			$parsoidOutputAccess,
+			$htmlTransformFactory
 		);
 	}
 
@@ -68,6 +71,12 @@ class RevisionHTMLHandler extends SimpleHandler {
 		if ( $page && $revision ) {
 			$this->htmlHelper->init( $page, $this->getValidatedParams(), $user );
 			$this->htmlHelper->setRevision( $revision );
+
+			$request = $this->getRequest();
+			$acceptLanguage = $request->getHeaderLine( 'Accept-Language' ) ?: null;
+			if ( $acceptLanguage ) {
+				$this->htmlHelper->setVariantConversionLanguage( $acceptLanguage );
+			}
 		}
 	}
 
@@ -90,12 +99,14 @@ class RevisionHTMLHandler extends SimpleHandler {
 		Assert::invariant( $revisionRecord !== null, 'Revision should be known' );
 
 		$outputMode = $this->getOutputMode();
+		$setContentLanguageHeader = true;
 		switch ( $outputMode ) {
 			case 'html':
 				$parserOutput = $this->htmlHelper->getHtml();
 				$response = $this->getResponseFactory()->create();
 				// TODO: need to respect content-type returned by Parsoid.
 				$response->setHeader( 'Content-Type', 'text/html' );
+				$this->htmlHelper->putHeaders( $response, $setContentLanguageHeader );
 				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
 				$response->setBody( new StringStream( $parserOutput->getText() ) );
 				break;
@@ -104,6 +115,8 @@ class RevisionHTMLHandler extends SimpleHandler {
 				$body = $this->contentHelper->constructMetadata();
 				$body['html'] = $parserOutput->getText();
 				$response = $this->getResponseFactory()->createJson( $body );
+				// For JSON content, it doesn't make sense to set content language header
+				$this->htmlHelper->putHeaders( $response, !$setContentLanguageHeader );
 				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
 				break;
 			default:
