@@ -4053,17 +4053,6 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Get the copyright warning
-	 *
-	 * @deprecated since 1.38 Use getCopyrightWarning() instead.
-	 * @return string
-	 */
-	protected function getCopywarn() {
-		wfDeprecated( __METHOD__, '1.38' );
-		return self::getCopyrightWarning( $this->mTitle, 'plain', $this->getContext() );
-	}
-
-	/**
 	 * Get the copyright warning, by default returns wikitext
 	 *
 	 * @param PageReference $page
