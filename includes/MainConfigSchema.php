@@ -4947,7 +4947,6 @@ class MainConfigSchema {
 	 * represented as char_to_convert => conversion_override. See T219279 for details
 	 * on why this is useful during php version transitions.
 	 *
-	 * @warning: EXPERIMENTAL!
 	 * @since 1.34
 	 */
 	public const OverrideUcfirstCharacters = [

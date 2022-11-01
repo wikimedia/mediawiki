@@ -162,6 +162,11 @@ class Language {
 	private $config;
 
 	/**
+	 * @var array|null
+	 */
+	private $overrideUcfirstCharacters;
+
+	/**
 	 * Return a fallback chain for messages in getFallbacksFor
 	 * @since 1.32
 	 * @deprecated since 1.35, use LanguageFallback::MESSAGES
@@ -2658,13 +2663,23 @@ class Language {
 			// Assume this is a lowercase/uncased ASCII character
 			return ucfirst( $str );
 		}
-
 		$first = mb_substr( $str, 0, 1 );
-		return ( strlen( $first ) !== 1 )
-			// Assume this is a multibyte character and mb_internal_encoding() is appropriate
-			? $this->mbUpperChar( $first ) . mb_substr( $str, 1 )
-			// Assume this is a non-multibyte character and LC_CASE is appropriate
-			: ucfirst( $str );
+		if ( strlen( $first ) === 1 ) {
+			// Broken UTF-8?
+			return ucfirst( $str );
+		}
+
+		// Memoize the config table
+		$overrides = $this->overrideUcfirstCharacters
+			??= $this->config->get( MainConfigNames::OverrideUcfirstCharacters );
+
+		// Use the config table and fall back to MB_CASE_TITLE
+		$ucFirst = $overrides[$first] ?? mb_convert_case( $first, MB_CASE_TITLE );
+		if ( $ucFirst !== $first ) {
+			return $ucFirst . mb_substr( $str, 1 );
+		} else {
+			return $str;
+		}
 	}
 
 	/**
@@ -2678,25 +2693,6 @@ class Language {
 		} else {
 			return $this->isMultibyte( $str ) ? mb_strtoupper( $str ) : strtoupper( $str );
 		}
-	}
-
-	/**
-	 * Convert character to uppercase, allowing overrides of the default mb_upper
-	 * behaviour, which is buggy in many ways. Having a conversion table can be
-	 * useful during transitions between PHP versions where unicode changes happen.
-	 * This can make some resources unreachable on-wiki, see discussion at T219279.
-	 * Providing such a conversion table can allow to manage the transition period.
-	 *
-	 * @since 1.34
-	 *
-	 * @param string $char
-	 *
-	 * @return string
-	 */
-	protected function mbUpperChar( $char ) {
-		$overrideUcfirstCharacters =
-			$this->config->get( MainConfigNames::OverrideUcfirstCharacters );
-		return $overrideUcfirstCharacters[$char] ?? mb_convert_case( $char, MB_CASE_TITLE );
 	}
 
 	/**
