@@ -102,7 +102,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$title = $pageTitle === null ? $this->getTestPageTitle() : Title::newFromText( $pageTitle );
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		if ( !$page->exists() ) {
 			// Make sure we don't write to the live db.
@@ -668,7 +668,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewNullRevision( Title $title, $revDetails, $comment, $minor = false ) {
 		$user = TestUserRegistry::getMutableTestUser( __METHOD__ )->getUser();
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 
 		if ( !$page->exists() ) {
 			$page->doUserEditContent(
@@ -954,10 +954,10 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	public function provideRevisionByTitle() {
 		return [
 			[ function () {
-				return $this->getTestPage()->getTitle();
+				return $this->getTestPageTitle();
 			} ],
 			[ function () {
-				return $this->getTestPage()->getTitle()->toPageIdentity();
+				return $this->getTestPageTitle()->toPageIdentity();
 			} ]
 		];
 	}
@@ -1112,17 +1112,17 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	public function provideRevisionByTimestamp() {
 		return [
 			[ function () {
-				return $this->getTestPage()->getTitle();
+				return $this->getTestPageTitle();
 			} ],
 			[ function () {
-				return $this->getTestPage()->getTitle()->toPageIdentity();
+				return $this->getTestPageTitle()->toPageIdentity();
 			} ]
 		];
 	}
 
 	protected function revisionRecordToRow( RevisionRecord $revRecord, $options = [ 'page', 'user', 'comment' ] ) {
 		// XXX: the WikiPage object loads another RevisionRecord from the database. Not great.
-		$page = WikiPage::factory( $revRecord->getPage() );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $revRecord->getPage() );
 
 		$revUser = $revRecord->getUser();
 		$actorId = $this->getServiceContainer()
@@ -1331,7 +1331,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 
 	private function buildRevisionStore( string $text, PageIdentity $pageIdentity ) {
 		$store = $this->getServiceContainer()->getRevisionStore();
-		$page = WikiPage::factory( $pageIdentity );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $pageIdentity );
 		/** @var RevisionRecord $orig */
 		$orig = $page->doUserEditContent(
 			new WikitextContent( $text ),
@@ -1453,7 +1453,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$title = Title::newFromText( __METHOD__ );
 		$text = __METHOD__ . '-bä';
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		/** @var RevisionRecord $orig */
 		$orig = $page->doUserEditContent(
 			new WikitextContent( $text ),
@@ -1487,7 +1487,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$store = $this->getServiceContainer()->getRevisionStore();
 		$title = Title::newFromText( __METHOD__ );
 		$text = __METHOD__ . '-bä';
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		/** @var RevisionRecord $orig */
 		$orig = $page->doUserEditContent(
 			new WikitextContent( $text ),
@@ -1706,7 +1706,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		[ $title, $pageIdentity ] = $getPageIdentity();
 		$store = $this->getServiceContainer()->getRevisionStore();
 
-		$page = WikiPage::factory( $title );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		$user = $this->getTestSysop()->getUser();
 		/** @var RevisionRecord $orig */
 		$page->doUserEditContent( new WikitextContent( "First" ), $user, __METHOD__ . '-first' );
@@ -1774,7 +1774,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::getRevisionSizes
 	 */
 	public function testGetParentLengths() {
-		$page = WikiPage::factory( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		/** @var RevisionRecord $revRecordOne */
 		$revRecordOne = $page->doUserEditContent(
 			new WikitextContent( __METHOD__ ),
@@ -1810,7 +1810,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::getPreviousRevision
 	 */
 	public function testGetPreviousRevision() {
-		$page = WikiPage::factory( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		/** @var RevisionRecord $revRecordOne */
 		$revRecordOne = $page->doUserEditContent(
 			new WikitextContent( __METHOD__ ),
@@ -1842,7 +1842,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::getNextRevision
 	 */
 	public function testGetNextRevision() {
-		$page = WikiPage::factory( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		/** @var RevisionRecord $revRecordOne */
 		$revRecordOne = $page->doUserEditContent(
 			new WikitextContent( __METHOD__ ),
@@ -1947,7 +1947,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testCountRevisionsByPageId() {
 		$store = $this->getServiceContainer()->getRevisionStore();
-		$page = WikiPage::factory( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		$user = $this->getTestSysop()->getUser();
 
 		$this->assertSame(
@@ -1971,7 +1971,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testCountRevisionsByTitle() {
 		$store = $this->getServiceContainer()->getRevisionStore();
-		$page = WikiPage::factory( Title::newFromText( __METHOD__ ) );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( Title::newFromText( __METHOD__ ) );
 		$user = $this->getTestSysop()->getUser();
 
 		$this->assertSame(
@@ -2058,10 +2058,10 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	public function provideGetKnownCurrentRevision() {
 		return [
 			[ function () {
-				return $this->getTestPage()->getTitle();
+				return $this->getTestPageTitle();
 			} ],
 			[ function () {
-				return $this->getTestPage()->getTitle()->toPageIdentity();
+				return $this->getTestPageTitle()->toPageIdentity();
 			} ]
 		];
 	}
@@ -2544,11 +2544,11 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	) {
 		[ $title1, $pageIdentity ] = $getPageIdentity();
 		$text1 = __METHOD__ . '-bä';
-		$page1 = WikiPage::factory( $title1 );
+		$page1 = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title1 );
 
 		$title2 = $otherPageTitle ? Title::newFromText( $otherPageTitle ) : $title1;
 		$text2 = __METHOD__ . '-bö';
-		$page2 = $otherPageTitle ? WikiPage::factory( $title2 ) : $page1;
+		$page2 = $otherPageTitle ? $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title2 ) : $page1;
 
 		$sysop = $this->getTestSysop()->getUser();
 		/** @var RevisionRecord $revRecord1 */
