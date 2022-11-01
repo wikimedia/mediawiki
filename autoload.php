@@ -2753,6 +2753,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Metrics\\Metrics\\GaugeMetric' => __DIR__ . '/includes/libs/Metrics/Metrics/GaugeMetric.php',
 	'Wikimedia\\Metrics\\Metrics\\NullMetric' => __DIR__ . '/includes/libs/Metrics/Metrics/NullMetric.php',
 	'Wikimedia\\Metrics\\Metrics\\TimingMetric' => __DIR__ . '/includes/libs/Metrics/Metrics/TimingMetric.php',
+	'Wikimedia\\Metrics\\OutputFormats' => __DIR__ . '/includes/libs/Metrics/OutputFormats.php',
 	'Wikimedia\\Metrics\\Sample' => __DIR__ . '/includes/libs/Metrics/Sample.php',
 	'Wikimedia\\Mime\\MimeMap' => __DIR__ . '/includes/libs/mime/MimeMap.php',
 	'Wikimedia\\Mime\\MimeMapMinimal' => __DIR__ . '/includes/libs/mime/MimeMapMinimal.php',
