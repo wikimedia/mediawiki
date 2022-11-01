@@ -71,10 +71,7 @@ class GaugeMetric {
 	 */
 	public function set( float $value, array $labels = [] ): void {
 		$this->validateLabels( $labels );
-		$this->metricUtils->addSample( new Sample( [
-			'labels' => MetricsFactory::normalizeArray( $labels ),
-			'value' => $value
-		] ) );
+		$this->metricUtils->addSample( new Sample( MetricsFactory::normalizeArray( $labels ), $value ) );
 	}
 
 	/**

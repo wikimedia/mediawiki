@@ -31,27 +31,27 @@ namespace Wikimedia\Metrics;
 class Sample {
 
 	/** @var string[] */
-	private $labels;
+	private array $labelValues;
 
 	/** @var float */
-	private $value;
+	private float $value;
 
-	/** @param array $data associative array:
-	 *  - labels: (string[]) Array of label values associated with the metric
-	 *  - value: (numeric) The metric value
+	/**
+	 * @param string[] $labelValues
+	 * @param float $value
 	 */
-	public function __construct( array $data ) {
-		$this->labels = $data[ 'labels' ];
-		$this->value = $data[ 'value' ];
+	public function __construct( array $labelValues, float $value ) {
+		$this->labelValues = $labelValues;
+		$this->value = $value;
 	}
 
 	/** @return string[] */
-	public function getLabels(): array {
-		return $this->labels;
+	public function getLabelValues(): array {
+		return $this->labelValues;
 	}
 
 	/** @return float */
 	public function getValue(): float {
-		return (float)$this->value;
+		return $this->value;
 	}
 }
