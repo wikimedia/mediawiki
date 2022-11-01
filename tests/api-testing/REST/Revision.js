@@ -5,6 +5,7 @@ const { action, assert, REST, utils } = require( 'api-testing' );
 describe( 'Revision', () => {
 	const client = new REST();
 	const page = utils.title( 'Revision' );
+	const variantPage = 'MediaWiki:Privacy/crh';
 	let mindy;
 	let newrevid, pageid, param_summary;
 
@@ -130,6 +131,25 @@ describe( 'Revision', () => {
 
 			assert.strictEqual( status, 404 );
 		} );
+
+		it( 'should perform variant conversion', async () => {
+			const { body } = await client.get( `/page/${encodeURIComponent( variantPage )}/bare` );
+			const latestRevId = body.latest.id;
+
+			const { headers, text } = await client.get( `/revision/${latestRevId}/with_html`, null, {
+				'accept-language': 'crh-cyrl'
+			} );
+
+			assert.match( text, /Гизлилик эсасы/ );
+			assert.match( headers.vary, /\bAccept-Language\b/i );
+			assert.match( headers.etag, /crh-cyrl/ );
+			// Since with_html returns JSON, content language is not set
+			// but if its set, we expect it to be set correctly.
+			const contentLanguageHeader = headers[ 'content-language' ];
+			if ( contentLanguageHeader ) {
+				assert.match( headers[ 'content-language' ], /crh-cyrl/ );
+			}
+		} );
 	} );
 
 	describe( 'GET /revision/{id}/html', () => {
@@ -149,6 +169,20 @@ describe( 'Revision', () => {
 			const { status } = await client.get( '/revision/99999999/html' );
 
 			assert.strictEqual( status, 404 );
+		} );
+
+		it( 'should perform variant conversion', async () => {
+			const { body } = await client.get( `/page/${encodeURIComponent( variantPage )}/bare` );
+			const latestRevId = body.latest.id;
+
+			const { headers, text } = await client.get( `/revision/${latestRevId}/html`, null, {
+				'accept-language': 'crh-cyrl'
+			} );
+
+			assert.match( text, /Гизлилик эсасы/ );
+			assert.match( headers.vary, /\bAccept-Language\b/i );
+			assert.match( headers[ 'content-language' ], /crh-cyrl/ );
+			assert.match( headers.etag, /crh-cyrl/ );
 		} );
 	} );
 
