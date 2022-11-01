@@ -195,6 +195,7 @@ use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\DependencyStore\SqlModuleDependencyStore;
 use Wikimedia\Message\IMessageFormatterFactory;
+use Wikimedia\Metrics\MetricsCache;
 use Wikimedia\Metrics\MetricsFactory;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Parsoid\Config\Api\DataAccess as ApiDataAccess;
@@ -1100,6 +1101,10 @@ return [
 		return new MessageFormatterFactory();
 	},
 
+	'MetricsCache' => static function ( MediaWikiServices $services ): MetricsCache {
+		return new MetricsCache();
+	},
+
 	'MetricsFactory' => static function ( MediaWikiServices $services ): MetricsFactory {
 		$config = $services->getMainConfig();
 		return new MetricsFactory(
@@ -1108,6 +1113,7 @@ return [
 				'format' => $config->get( MainConfigNames::MetricsFormat ),
 				'prefix' => $config->get( MainConfigNames::MetricsPrefix ),
 			],
+			$services->getService( 'MetricsCache' ),
 			LoggerFactory::getInstance( 'Metrics' )
 		);
 	},

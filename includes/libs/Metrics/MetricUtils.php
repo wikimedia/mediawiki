@@ -31,6 +31,7 @@ declare( strict_types=1 );
 
 namespace Wikimedia\Metrics;
 
+use InvalidArgumentException;
 use Wikimedia\Metrics\Exceptions\InvalidConfigurationException;
 use Wikimedia\Metrics\Exceptions\InvalidLabelsException;
 
@@ -137,6 +138,22 @@ class MetricUtils {
 				'Not enough or too many labels provided to metric instance.'
 				. 'Configured: ' . json_encode( $this->labels ) . ' Provided: ' . json_encode( $labels )
 			);
+		}
+	}
+
+	/**
+	 * Determines if provided string is a valid name.
+	 *
+	 * @param string $name
+	 * @throws InvalidArgumentException
+	 * @throws InvalidConfigurationException
+	 */
+	public static function validateMetricName( string $name ): void {
+		if ( $name === '' ) {
+			throw new InvalidArgumentException( 'Metric name cannot be empty' );
+		}
+		if ( !preg_match( self::RE_VALID_NAME_AND_LABEL_NAME, $name ) ) {
+			throw new InvalidConfigurationException( "Invalid metric name: $name" );
 		}
 	}
 

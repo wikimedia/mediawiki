@@ -2743,6 +2743,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Metrics\\Exceptions\\UndefinedPrefixException' => __DIR__ . '/includes/libs/Metrics/Exceptions/UndefinedPrefixException.php',
 	'Wikimedia\\Metrics\\Exceptions\\UnsupportedFormatException' => __DIR__ . '/includes/libs/Metrics/Exceptions/UnsupportedFormatException.php',
 	'Wikimedia\\Metrics\\MetricUtils' => __DIR__ . '/includes/libs/Metrics/MetricUtils.php',
+	'Wikimedia\\Metrics\\MetricsCache' => __DIR__ . '/includes/libs/Metrics/MetricsCache.php',
 	'Wikimedia\\Metrics\\MetricsFactory' => __DIR__ . '/includes/libs/Metrics/MetricsFactory.php',
 	'Wikimedia\\Metrics\\Metrics\\CounterMetric' => __DIR__ . '/includes/libs/Metrics/Metrics/CounterMetric.php',
 	'Wikimedia\\Metrics\\Metrics\\GaugeMetric' => __DIR__ . '/includes/libs/Metrics/Metrics/GaugeMetric.php',

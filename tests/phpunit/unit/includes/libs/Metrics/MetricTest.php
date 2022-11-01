@@ -5,6 +5,7 @@ namespace Wikimedia\Tests\Metrics;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\Metrics\Exceptions\InvalidLabelsException;
+use Wikimedia\Metrics\MetricsCache;
 use Wikimedia\Metrics\MetricsFactory;
 
 /**
@@ -92,7 +93,7 @@ class MetricTest extends TestCase {
 
 	public function testValidateLabels() {
 		$this->expectException( InvalidLabelsException::class );
-		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new NullLogger );
+		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new MetricsCache, new NullLogger );
 		$counter = $m->getCounter( [
 			'name' => 'test',
 			'component' => 'testComponent',
@@ -133,7 +134,7 @@ class MetricTest extends TestCase {
 	}
 
 	public function handleFormat( $format ) {
-		$metricsFactory = new MetricsFactory( [ 'prefix' => 'mediawiki', 'format' => $format ], new NullLogger );
+		$metricsFactory = new MetricsFactory( [ 'prefix' => 'mediawiki', 'format' => $format ], new MetricsCache, new NullLogger );
 		foreach ( self::TYPES as $type ) {
 			$this->handleType( $type, $format, $metricsFactory );
 		}
@@ -148,7 +149,7 @@ class MetricTest extends TestCase {
 	public function testSampledMetrics() {
 		$rounds = 10;
 		foreach ( self::FORMATS as $format ) {
-			$m = new MetricsFactory( [ 'prefix' => $format, 'format' => $format ], new NullLogger );
+			$m = new MetricsFactory( [ 'prefix' => $format, 'format' => $format ], new MetricsCache, new NullLogger );
 			$ten_percent = $m->getCounter(
 				[
 					'name' => 'test.sampled.ten',
