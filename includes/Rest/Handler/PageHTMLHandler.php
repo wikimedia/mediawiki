@@ -8,6 +8,7 @@ use LogicException;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageLookup;
+use MediaWiki\Parser\Parsoid\HTMLTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
@@ -39,7 +40,8 @@ class PageHTMLHandler extends SimpleHandler {
 		PageLookup $pageLookup,
 		ParsoidOutputStash $parsoidOutputStash,
 		IBufferingStatsdDataFactory $statsDataFactory,
-		ParsoidOutputAccess $parsoidOutputAccess
+		ParsoidOutputAccess $parsoidOutputAccess,
+		HTMLTransformFactory $htmlTransformFactory
 	) {
 		$this->contentHelper = new PageContentHelper(
 			$config,
@@ -50,7 +52,8 @@ class PageHTMLHandler extends SimpleHandler {
 		$this->htmlHelper = new HtmlOutputRendererHelper(
 			$parsoidOutputStash,
 			$statsDataFactory,
-			$parsoidOutputAccess
+			$parsoidOutputAccess,
+			$htmlTransformFactory
 		);
 	}
 
@@ -64,6 +67,12 @@ class PageHTMLHandler extends SimpleHandler {
 		$page = $this->contentHelper->getPage();
 		if ( $page ) {
 			$this->htmlHelper->init( $page, $this->getValidatedParams(), $user );
+
+			$request = $this->getRequest();
+			$acceptLanguage = $request->getHeaderLine( 'Accept-Language' ) ?: null;
+			if ( $acceptLanguage ) {
+				$this->htmlHelper->setVariantConversionLanguage( $acceptLanguage );
+			}
 		}
 	}
 
@@ -85,11 +94,12 @@ class PageHTMLHandler extends SimpleHandler {
 		$parserOutputHtml = $parserOutput->getText( [ 'deduplicateStyles' => false ] );
 
 		$outputMode = $this->getOutputMode();
+		$setContentLanguageHeader = true;
 		switch ( $outputMode ) {
 			case 'html':
 				$response = $this->getResponseFactory()->create();
-				// TODO: need to respect content-type returned by Parsoid.
 				$response->setHeader( 'Content-Type', 'text/html' );
+				$this->htmlHelper->putHeaders( $response, $setContentLanguageHeader );
 				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
 				$response->setBody( new StringStream( $parserOutputHtml ) );
 				break;
@@ -97,6 +107,8 @@ class PageHTMLHandler extends SimpleHandler {
 				$body = $this->contentHelper->constructMetadata();
 				$body['html'] = $parserOutputHtml;
 				$response = $this->getResponseFactory()->createJson( $body );
+				// For JSON content, it doesn't make sense to set content language header
+				$this->htmlHelper->putHeaders( $response, !$setContentLanguageHeader );
 				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
 				break;
 			default:

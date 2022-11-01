@@ -8,6 +8,7 @@ use LogicException;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageLookup;
+use MediaWiki\Parser\Parsoid\HTMLTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
@@ -40,7 +41,8 @@ class RevisionHTMLHandler extends SimpleHandler {
 		PageLookup $pageLookup,
 		ParsoidOutputStash $parsoidOutputStash,
 		IBufferingStatsdDataFactory $statsDataFactory,
-		ParsoidOutputAccess $parsoidOutputAccess
+		ParsoidOutputAccess $parsoidOutputAccess,
+		HTMLTransformFactory $htmlTransformFactory
 	) {
 		$this->contentHelper = new RevisionContentHelper(
 			$config,
@@ -51,7 +53,8 @@ class RevisionHTMLHandler extends SimpleHandler {
 		$this->htmlHelper = new HtmlOutputRendererHelper(
 			$parsoidOutputStash,
 			$statsDataFactory,
-			$parsoidOutputAccess
+			$parsoidOutputAccess,
+			$htmlTransformFactory
 		);
 	}
 

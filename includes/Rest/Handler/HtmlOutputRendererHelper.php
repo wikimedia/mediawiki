@@ -29,11 +29,13 @@ use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageRecord;
+use MediaWiki\Parser\Parsoid\HTMLTransformFactory;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
+use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -93,19 +95,34 @@ class HtmlOutputRendererHelper {
 	/** @var ParserOutput */
 	private $parserOutput;
 
+	/** @var ParserOutput */
+	private $processedParserOutput;
+
+	/** @var HTMLTransformFactory */
+	private $htmlTransformFactory;
+
+	/** @var string|null */
+	private $sourceLanguageCode;
+
+	/** @var string|null */
+	private $targetLanguageCode;
+
 	/**
 	 * @param ParsoidOutputStash $parsoidOutputStash
 	 * @param IBufferingStatsdDataFactory $statsDataFactory
 	 * @param ParsoidOutputAccess $parsoidOutputAccess
+	 * @param HTMLTransformFactory|null $htmlTransformFactory
 	 */
 	public function __construct(
 		ParsoidOutputStash $parsoidOutputStash,
 		IBufferingStatsdDataFactory $statsDataFactory,
-		ParsoidOutputAccess $parsoidOutputAccess
+		ParsoidOutputAccess $parsoidOutputAccess,
+		HTMLTransformFactory $htmlTransformFactory = null
 	) {
 		$this->parsoidOutputStash = $parsoidOutputStash;
 		$this->stats = $statsDataFactory;
 		$this->parsoidOutputAccess = $parsoidOutputAccess;
+		$this->htmlTransformFactory = $htmlTransformFactory;
 	}
 
 	/**
@@ -210,10 +227,24 @@ class HtmlOutputRendererHelper {
 	}
 
 	/**
+	 * Set the language to be used for variant conversion
+	 * @param string $targetLanguageCode
+	 * @param null|string $sourceLanguageCode
+	 */
+	public function setVariantConversionLanguage( string $targetLanguageCode, ?string $sourceLanguageCode = null ) {
+		$this->targetLanguageCode = $targetLanguageCode;
+		$this->sourceLanguageCode = $sourceLanguageCode;
+	}
+
+	/**
 	 * @return ParserOutput a tuple with html and content-type
 	 * @throws LocalizedHttpException
 	 */
 	public function getHtml(): ParserOutput {
+		if ( $this->processedParserOutput ) {
+			return $this->processedParserOutput;
+		}
+
 		$parserOutput = $this->getParserOutput();
 
 		if ( $this->stash ) {
@@ -244,6 +275,18 @@ class HtmlOutputRendererHelper {
 			$this->stats->increment( 'htmloutputrendererhelper.stash.save' );
 		}
 
+		// Check if variant conversion has to be performed
+		// NOTE: Variant conversion is performed on the fly, and kept outside the stash.
+		if ( $this->targetLanguageCode && $this->htmlTransformFactory ) {
+			$languageVariantConverter = $this->htmlTransformFactory->getLanguageVariantConverter( $this->page );
+			$parserOutput = $languageVariantConverter->convertParserOutputVariant(
+				$parserOutput,
+				$this->targetLanguageCode,
+				$this->sourceLanguageCode
+			);
+		}
+
+		$this->processedParserOutput = $parserOutput;
 		return $parserOutput;
 	}
 
@@ -263,6 +306,10 @@ class HtmlOutputRendererHelper {
 			$eTag = "$renderID/{$this->flavor}/$suffix";
 		} else {
 			$eTag = "$renderID/{$this->flavor}";
+		}
+
+		if ( $this->targetLanguageCode ) {
+			$eTag .= "+lang:{$this->targetLanguageCode}";
 		}
 
 		return "\"{$eTag}\"";
@@ -379,7 +426,7 @@ class HtmlOutputRendererHelper {
 	 * @return string
 	 */
 	public function getHtmlOutputContentLanguage(): string {
-		$pageBundleData = $this->getParserOutput()->getExtensionData(
+		$pageBundleData = $this->getHtml()->getExtensionData(
 			PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY
 		);
 
@@ -391,6 +438,23 @@ class HtmlOutputRendererHelper {
 		}
 
 		return $pageBundleData['headers']['content-language'];
+	}
+
+	/**
+	 * Set the HTTP headers based on the response generated
+	 *
+	 * @param ResponseInterface $response
+	 * @param bool $setContentLanguageHeader
+	 * @return void
+	 */
+	public function putHeaders( ResponseInterface $response, bool $setContentLanguageHeader ) {
+		if ( $this->targetLanguageCode ) {
+			if ( $setContentLanguageHeader ) {
+				$response->setHeader( 'Content-Language', $this->getHtmlOutputContentLanguage() );
+			}
+
+			$response->addHeader( 'Vary', 'Accept-Language' );
+		}
 	}
 
 }
