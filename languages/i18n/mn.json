@@ -602,6 +602,7 @@
 	"postedit-confirmation-created": "Хуудас үүслээ.",
 	"postedit-confirmation-restored": "Хуудсыг сэргээлээ.",
 	"postedit-confirmation-saved": "Таны өөрчлөлт хадгалагдлаа.",
+	"postedit-confirmation-published": "Таны хийсэн засвар хадгалагдлаа.",
 	"edit-already-exists": "Шинэ хуудас үүсгэж чадсангүй.\nӨмнө үүсгэгдсэн байна.",
 	"defaultmessagetext": "Үндсэн мессеж текст",
 	"content-failed-to-parse": "$2 гэсэн агуулгыг $1 модел дээр авч чадсангүй: $3",
