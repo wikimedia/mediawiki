@@ -171,6 +171,7 @@ because of Phabricator reports.
   removed without deprecation.
 * MediaWikiTestCaseTrait::checkPHPExtension() has been removed without
   deprecation. Use PHPUnit @requires annotations instead.
+* EditPage::getCopywarn(), deprecated since 1.38, has been removed.
 * …
 
 === Deprecations in 1.40 ===
