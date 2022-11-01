@@ -247,6 +247,7 @@ because of Phabricator reports.
 === Other changes in 1.41 ===
 * ExternalLinksLookup::getExternalLinksForPage() now exists to centralize
   logic of looking up externallinks rows.
+* The update script no longer accepts the --skip-compat-checks option.
 * …
 
 == Compatibility ==

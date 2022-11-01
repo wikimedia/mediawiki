@@ -43,7 +43,6 @@ class UpdateMediaWiki extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'MediaWiki database updater' );
-		$this->addOption( 'skip-compat-checks', 'Skips compatibility checks, mostly for developers' );
 		$this->addOption( 'quick', 'Skip 5 second countdown before starting' );
 		$this->addOption( 'doshared', 'Also update shared tables' );
 		$this->addOption( 'noschema', 'Only do the updates that are not done during schema updates' );
@@ -67,20 +66,6 @@ class UpdateMediaWiki extends Maintenance {
 
 	public function getDbType() {
 		return Maintenance::DB_ADMIN;
-	}
-
-	private function compatChecks() {
-		$minimumPcreVersion = Installer::MINIMUM_PCRE_VERSION;
-
-		$pcreVersion = explode( ' ', PCRE_VERSION, 2 )[0];
-		if ( version_compare( $pcreVersion, $minimumPcreVersion, '<' ) ) {
-			$this->fatalError(
-				"PCRE $minimumPcreVersion or later is required.\n" .
-				"Your PHP binary is linked with PCRE $pcreVersion.\n\n" .
-				"More information:\n" .
-				"https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE\n\n" .
-				"ABORTING.\n" );
-		}
 	}
 
 	public function execute() {
@@ -130,13 +115,6 @@ class UpdateMediaWiki extends Maintenance {
 		$this->output( 'MediaWiki ' . MW_VERSION . " Updater\n\n" );
 
 		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
-
-		if ( !$this->hasOption( 'skip-compat-checks' ) ) {
-			$this->compatChecks();
-		} else {
-			$this->output( "Skipping compatibility checks, proceed at your own risk (Ctrl+C to abort)\n" );
-			$this->countDown( 5 );
-		}
 
 		// Check external dependencies are up to date
 		if ( !$this->hasOption( 'skip-external-dependencies' ) ) {
