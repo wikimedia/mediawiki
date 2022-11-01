@@ -41,11 +41,11 @@
 			"Սերգեյ Սաֆարյան"
 		]
 	},
-	"tog-underline": "ընդգծել հղումները՝",
+	"tog-underline": "Հղումների ընդգծում՝",
 	"tog-hideminor": "Թաքցնել չնչին խմբագրումները վերջին փոփոխությունների ցանկից",
 	"tog-hidepatrolled": "Թաքցնել պարեկված խմբագրումները վերջին փոփոխությունների ցանկից",
 	"tog-newpageshidepatrolled": "Թաքցնել պարեկված էջերը նոր էջերի ցանկից",
-	"tog-hidecategorization": "Թաքցնել էջերի կատեգորիզացիան",
+	"tog-hidecategorization": "Թաքցնել էջերի կատեգորիացումը",
 	"tog-extendwatchlist": "Ընդարձակել հսկացանկը՝ ցույց տալով բոլոր փոփոխությունները, այլ ոչ միայն վերջինները",
 	"tog-usenewrc": "Խմբավորել փոփոխությունները վերջին փոփոխություններում և հսկացանկում (պահանջում է JavaScript)",
 	"tog-numberheadings": "Ինքնաթվագրել վերնագրերը",
@@ -2375,6 +2375,7 @@
 	"pageid": "էջի ID՝ $1",
 	"passwordpolicies-group": "Խումբ",
 	"passwordpolicies-policies": "Սահմանափակումներ",
+	"userlogout-continue": "Ուզում եք դո՞ւրս գալ։",
 	"paramvalidator-help-type-user-subtype-name": "մասնակցային անուն",
 	"paramvalidator-help-type-user-subtype-id": "մասնակցի ID (օրինակ՝ \"#12345\")"
 }

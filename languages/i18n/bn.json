@@ -3831,6 +3831,7 @@
 	"mediastatistics-header-text": "পাঠগত",
 	"mediastatistics-header-executable": "সঞ্চালনযোগ্য",
 	"mediastatistics-header-archive": "সংকুচিত বিন্যাস",
+	"mediastatistics-header-3d": "ত্রিমাত্রিক",
 	"mediastatistics-header-total": "সকল ফাইল",
 	"json-warn-trailing-comma": "JSON থেকে $1টি সর্বশেষ {{PLURAL:$1|কমা}} সরানো হয়েছে",
 	"json-error-unknown": "JSON-এ একটি সমস্যা রয়েছে। ত্রুটি: $1",
