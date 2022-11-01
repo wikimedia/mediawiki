@@ -157,7 +157,6 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	public function getBody() {
 		$out = $this->getOutput();
 		$this->getHookRunner()->onPreferencesGetLayout( $useMobileLayout, $out->getSkin() );
-		$out->addJsConfigVars( [ 'wgSpecialPreferencesUseMobileLayout' => $useMobileLayout ] );
 
 		if ( $useMobileLayout ) {
 			// Import the icons used in the mobile view
