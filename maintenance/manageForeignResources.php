@@ -18,12 +18,14 @@
  * @file
  */
 
+use MediaWiki\ResourceLoader\ForeignResourceManager;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
  * Manage foreign resources registered with ResourceLoader.
  *
- * This uses the ForeignResourceManager class internally.
+ * This uses the MediaWiki\ResourceLoader\ForeignResourceManager class internally.
  * See also ForeignResourceStructureTest, which runs the "verify" action in CI.
  *
  * @ingroup Maintenance

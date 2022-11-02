@@ -18,7 +18,13 @@
  * @file
  */
 
+namespace MediaWiki\ResourceLoader;
+
+use Exception;
 use MediaWiki\MediaWikiServices;
+use PharData;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -119,8 +125,8 @@ class ForeignResourceManager {
 		$this->registry = Yaml::parseFile( $this->registryFile );
 		if ( $module === 'all' ) {
 			$modules = $this->registry;
-		} elseif ( isset( $this->registry[ $module ] ) ) {
-			$modules = [ $module => $this->registry[ $module ] ];
+		} elseif ( isset( $this->registry[$module] ) ) {
+			$modules = [ $module => $this->registry[$module] ];
 		} else {
 			$this->error( "Unknown module name.\n\nMust be one of:\n" .
 				wordwrap( implode( ', ', array_keys( $this->registry ) ), 80 ) .
@@ -205,7 +211,7 @@ class ForeignResourceManager {
 	 * @param mixed $data
 	 */
 	private function cacheSet( $key, $data ) {
-	    // phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 		@mkdir( $this->cacheDir, 0777, true );
 		file_put_contents( "{$this->cacheDir}/$key.data", $data, LOCK_EX );
 	}
@@ -308,7 +314,7 @@ class ForeignResourceManager {
 			throw new Exception( "Module '$moduleName' must have a 'src' key." );
 		}
 		// Download the resource to a temporary file and open it
-		$data = $this->fetch( $info['src'], $info['integrity' ], $moduleName );
+		$data = $this->fetch( $info['src'], $info['integrity'], $moduleName );
 		$tmpFile = "{$this->tmpParentDir}/$moduleName.tar";
 		$this->verbose( "... writing '$moduleName' src to $tmpFile\n" );
 		file_put_contents( $tmpFile, $data );
@@ -408,3 +414,5 @@ class ForeignResourceManager {
 		}
 	}
 }
+/** @deprecated since 1.40 */
+class_alias( ForeignResourceManager::class, 'ForeignResourceManager' );
