@@ -208,11 +208,15 @@ class MediaWikiSite extends Site {
 	 * @param string|bool $path
 	 *
 	 * @return string
+	 * @throws MWException If the file path cannot be determined.
 	 */
 	public function getFileUrl( $path = false ) {
 		$filePath = $this->getPath( self::PATH_FILE );
+		if ( $filePath === null ) {
+			throw new MWException( "PATH_FILE for site {$this->getGlobalId()} not known" );
+		}
 
-		if ( $filePath !== false ) {
+		if ( $path !== false ) {
 			$filePath = str_replace( '$1', $path, $filePath );
 		}
 

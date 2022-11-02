@@ -615,7 +615,7 @@ class Site implements Serializable {
 	}
 
 	/**
-	 * Returns the path of the provided type or false if there is no such path.
+	 * Returns the path of the provided type or null if there is no such path.
 	 *
 	 * @since 1.21
 	 *
