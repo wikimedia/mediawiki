@@ -246,7 +246,7 @@ abstract class DatabaseMysqlBase extends Database {
 				$error = $this->mysqlError();
 			}
 		} else {
-			$error = $this->mysqlError();
+			$error = $this->mysqlError() ?: $this->lastConnectError;
 		}
 
 		return $error;

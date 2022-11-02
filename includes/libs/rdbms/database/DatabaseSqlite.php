@@ -440,8 +440,9 @@ class DatabaseSqlite extends Database {
 		if ( is_object( $this->conn ) ) {
 			$e = $this->conn->errorInfo();
 
-			return $e[2] ?? '';
+			return $e[2] ?? $this->lastConnectError;
 		}
+
 		return 'No database connection';
 	}
 
@@ -456,6 +457,7 @@ class DatabaseSqlite extends Database {
 				return $info[1];
 			}
 		}
+
 		return 0;
 	}
 

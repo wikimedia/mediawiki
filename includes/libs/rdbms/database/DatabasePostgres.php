@@ -300,7 +300,7 @@ class DatabasePostgres extends Database {
 			if ( $this->lastResultHandle ) {
 				return pg_result_error( $this->lastResultHandle );
 			} else {
-				return pg_last_error();
+				return pg_last_error() ?: $this->lastConnectError;
 			}
 		}
 
