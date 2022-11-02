@@ -115,6 +115,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var int|null Rows affected by the last query to query() or its CRUD wrappers */
 	protected $affectedRowCount;
 
+	/** @var string Last error during connection; empty string if none */
+	protected $lastConnectError = '';
+
 	/** @var float UNIX timestamp */
 	private $lastPing = 0.0;
 	/** @var string The last SQL query attempted */
@@ -1564,7 +1567,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return DBConnectionError
 	 */
 	final protected function newExceptionAfterConnectError( $error ) {
-		// Connection was not fully initialized and is not safe for use
+		// Connection was not fully initialized and is not safe for use.
+		// Stash any error associated with the handle before destroying it.
+		$this->lastConnectError = $error;
 		$this->conn = null;
 
 		$this->connLogger->error(
