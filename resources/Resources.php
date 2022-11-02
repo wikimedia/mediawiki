@@ -2280,15 +2280,28 @@ return [
 
 	'mediawiki.special.preferences.ooui' => [
 		'targets' => [ 'desktop', 'mobile' ],
-		'scripts' => [
-			'resources/src/mediawiki.special.preferences.ooui/confirmClose.js',
-			'resources/src/mediawiki.special.preferences.ooui/convertmessagebox.js',
-			'resources/src/mediawiki.special.preferences.ooui/editfont.js',
-			'resources/src/mediawiki.special.preferences.ooui/mobile.js',
-			'resources/src/mediawiki.special.preferences.ooui/skinPrefs.js',
-			'resources/src/mediawiki.special.preferences.ooui/signature.js',
-			'resources/src/mediawiki.special.preferences.ooui/tabs.js',
-			'resources/src/mediawiki.special.preferences.ooui/timezone.js',
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.special.preferences.ooui",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.special.preferences.ooui",
+		'packageFiles' => [
+			'init.js',
+			'confirmClose.js',
+			'convertmessagebox.js',
+			'editfont.js',
+			'mobile.js',
+			'skinPrefs.js',
+			'signature.js',
+			'tabs.js',
+			'timezone.js',
+			[
+				'name' => 'config.json',
+				'callback' => static function ( Context $context ) {
+					$skinName = $context->getSkin();
+					$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+					$skin = $skinFactory->makeSkin( $skinName );
+					Hooks::runner()->onPreferencesGetLayout( $useMobileLayout, $skin );
+					return [ 'useMobileLayout' => $useMobileLayout ];
+				},
+			],
 		],
 		'messages' => [
 			'prefs-tabs-navigation-hint',
