@@ -62,9 +62,6 @@ class PagerNavigationBuilder {
 	/** @var string|null */
 	private $limitTooltipMsg = null;
 
-	/** @var string Additional HTML to display after the pager links */
-	private $extra = '';
-
 	/** @var callable|null $callback Function to call instead of makeLink().
 	 *   See IndexPager::makeLink() for the expected signature.
 	 */
@@ -240,15 +237,6 @@ class PagerNavigationBuilder {
 	}
 
 	/**
-	 * @param string $extra Additional HTML to display after the pager links
-	 * @return $this
-	 */
-	public function setExtra( string $extra ): PagerNavigationBuilder {
-		$this->extra = $extra;
-		return $this;
-	}
-
-	/**
 	 * @deprecated since 1.39
 	 * @param callable|null $callback Function to call instead of makeLink().
 	 *   See IndexPager::makeLink() for the expected signature.
@@ -376,9 +364,6 @@ class PagerNavigationBuilder {
 				return Message::rawParam( $limitLink );
 			}, $limitLinks ), 'pipe' )
 		)->escaped();
-		if ( $this->extra ) {
-			$html .= ' ' . $this->msg( 'parentheses' )->rawParams( $this->extra )->escaped();
-		}
 
 		return Html::rawElement( 'div', [ 'class' => 'mw-pager-navigation-bar' ], $html );
 	}
