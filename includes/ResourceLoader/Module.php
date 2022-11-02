@@ -883,9 +883,12 @@ abstract class Module implements LoggerAwareInterface {
 		}
 
 		$statTiming = microtime( true ) - $statStart;
-		$statName = strtr( $this->getName(), '.', '_' );
 		$stats->timing( "resourceloader_build.all", 1000 * $statTiming );
-		$stats->timing( "resourceloader_build.$statName", 1000 * $statTiming );
+		$name = $this->getName();
+		if ( $name !== null ) {
+			$statName = strtr( $name, '.', '_' );
+			$stats->timing( "resourceloader_build.$statName", 1000 * $statTiming );
+		}
 
 		return $content;
 	}
