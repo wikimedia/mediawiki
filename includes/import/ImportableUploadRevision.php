@@ -19,7 +19,7 @@ interface ImportableUploadRevision {
 
 	/**
 	 * @since 1.31
-	 * @return string
+	 * @return string TS_MW timestamp, a string with 14 digits
 	 */
 	public function getTimestamp();
 

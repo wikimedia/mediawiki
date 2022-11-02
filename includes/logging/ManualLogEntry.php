@@ -175,7 +175,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 * Set the timestamp of when the logged action took place.
 	 *
 	 * @since 1.19
-	 * @param string $timestamp
+	 * @param string $timestamp Can be in any format accepted by ConvertibleTimestamp
 	 */
 	public function setTimestamp( $timestamp ) {
 		$this->timestamp = $timestamp;
@@ -482,7 +482,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	}
 
 	/**
-	 * @return string|false
+	 * @return string|false TS_MW timestamp, a string with 14 digits
 	 */
 	public function getTimestamp() {
 		$ts = $this->timestamp ?? wfTimestampNow();
