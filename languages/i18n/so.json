@@ -9,7 +9,8 @@
 			"Macofe",
 			"Mimursal",
 			"Yariiska",
-			"아라"
+			"아라",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Linkiga hoos ka calaamadeysan:",
@@ -941,7 +942,7 @@
 	"restriction-level-all": "qaab kasto",
 	"undelete": "Fiiri boggaga la'tirtiray",
 	"undeletepage": "Fiiri dibna u sooceli boggaga la'tirtiray",
-	"undeletepagetitle": "'''Meeshaan waxa ay ka koobatahay raadka wixii laga tiray[[:$1|$1]]'''.",
+	"undeletepagetitle": "'''Meeshaan waxa ay ka koobatahay raadka wixii laga tiray [[:$1|$1]]'''.",
 	"viewdeletedpage": "Fiiri boggaga la'tirtiray",
 	"action-viewdeleted": "Fiiri $1?",
 	"undeletebtn": "Sooceli",
@@ -1156,7 +1157,6 @@
 	"limitreport-ppvisitednodes": "Tirooyinka gutinada ee maskaxda",
 	"limitreport-ppgeneratednodes": "Gutinada ay horay u soo booqatay maskaxda",
 	"limitreport-expensivefunctioncount": "Tirada isle'egta gutinada xilgudashada",
-	"view-view-foreign": "Ka fiiri $1",
 	"view-create-local": "Kudar faahfaahinta deegaanka",
 	"nstab-mainpage": "Bogga hore",
 	"skin-action-protect": "Difaac",

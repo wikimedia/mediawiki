@@ -35,7 +35,8 @@
 			"Vssun",
 			"Ævar Arnfjörð Bjarmason <avarab@gmail.com>",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Akbarali"
 		]
 	},
 	"tog-underline": "കണ്ണികൾക്ക് അടിവരയിടുക:",
@@ -2168,7 +2169,7 @@
 	"usermessage-editor": "വ്യവസ്ഥാസന്ദേശകൻ",
 	"watchlist": "ശ്രദ്ധിക്കുന്നവ",
 	"mywatchlist": "ശ്രദ്ധിക്കുന്നവ",
-	"watchlistfor2": "ഉപയോക്താവ്:$1 $2",
+	"watchlistfor2": "$1 -ന്",
 	"nowatchlist": "താങ്കൾ ശ്രദ്ധിക്കുന്ന താളുകളുടെ പട്ടികയിൽ ഇനങ്ങളൊന്നുമില്ല.",
 	"watchlistanontext": "താങ്കൾ ശ്രദ്ധിക്കുന്ന താളുകളുടെ പട്ടിക കാണുവാനോ തിരുത്തുവാനോ പ്രവേശിക്കുക.",
 	"watchnologin": "ലോഗിൻ ചെയ്തിട്ടില്ല",
@@ -3469,7 +3470,7 @@
 	"feedback-thanks-title": "നന്ദി!",
 	"feedback-useragent": "യൂസർ ഏജന്റ്:",
 	"searchsuggest-search": "{{SITENAME}} സംരംഭത്തിൽ തിരയുക",
-	"searchsuggest-containing": "ഉൾപ്പെടുന്നവ...",
+	"searchsuggest-containing": "ഉൾപ്പെടുന്ന പേജുകൾ തിരയുക",
 	"api-clientside-error-noconnect": "സെർവറുമായി ബന്ധപ്പെടാൻ കഴിഞ്ഞില്ല. പ്രവർത്തന സജ്ജമായ ഇന്റർനെറ്റ് ബന്ധം താങ്കൾക്കുണ്ടെന്ന് ഉറപ്പാക്കിയ ശേഷം വീണ്ടും ശ്രമിക്കുക.",
 	"api-clientside-error-http": "സെർവർ പിഴവ് അയച്ചിരിക്കുന്നു: എച്ച്.റ്റി.റ്റി.പി. $1.",
 	"api-clientside-error-timeout": "പ്രതീക്ഷിക്കപ്പെട്ട സമയത്തിനുള്ളിൽ സെർവർ പ്രതികരിച്ചില്ല.",
