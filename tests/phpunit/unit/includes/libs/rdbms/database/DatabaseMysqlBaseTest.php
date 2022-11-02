@@ -254,21 +254,14 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testPtHeartbeat( $lag ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->onlyMethods( [
-				'getLagDetectionMethod', 'fetchSecondsSinceHeartbeat', 'getSourceServerInfo' ] )
+			->onlyMethods( [ 'fetchSecondsSinceHeartbeat' ] )
 			->getMock();
 
-		$db->method( 'getLagDetectionMethod' )
-			->willReturn( 'pt-heartbeat' );
-
-		$db->method( 'getSourceServerInfo' )
-			->willReturn( [ 'serverId' => 172, 'asOf' => time() ] );
+		TestingAccessWrapper::newFromObject( $db )->lagDetectionMethod = 'pt-heartbeat';
 
 		$db->setLBInfo( 'replica', true );
 
-		$db->method( 'fetchSecondsSinceHeartbeat' )
-			->with( [ 'server_id' => 172 ] )
-			->willReturn( $lag );
+		$db->method( 'fetchSecondsSinceHeartbeat' )->willReturn( $lag );
 
 		/** @var IDatabase $db */
 		$db->setLBInfo( 'clusterMasterHost', 'db1052' );

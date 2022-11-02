@@ -448,18 +448,11 @@ abstract class DatabaseMysqlBase extends Database {
 	abstract protected function mysqlRealEscapeString( $s );
 
 	protected function doGetLag() {
-		if ( $this->getLagDetectionMethod() === 'pt-heartbeat' ) {
+		if ( $this->lagDetectionMethod === 'pt-heartbeat' ) {
 			return $this->getLagFromPtHeartbeat();
 		} else {
 			return $this->getLagFromSlaveStatus();
 		}
-	}
-
-	/**
-	 * @return string
-	 */
-	protected function getLagDetectionMethod() {
-		return $this->lagDetectionMethod;
 	}
 
 	/**
@@ -486,8 +479,6 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return float|false Seconds of lag
 	 */
 	protected function getLagFromPtHeartbeat() {
-		$options = $this->lagDetectionOptions;
-
 		$currentTrxInfo = $this->getRecordedTransactionLagStatus();
 		if ( $currentTrxInfo ) {
 			// There is an active transaction and the initial lag was already queried
@@ -495,6 +486,7 @@ abstract class DatabaseMysqlBase extends Database {
 			if ( $staleness > self::LAG_STALE_WARN_THRESHOLD ) {
 				// Avoid returning higher and higher lag value due to snapshot age
 				// given that the isolation level will typically be REPEATABLE-READ
+				// but UTC_TIMESTAMP() is not affected by point-in-time snapshots
 				$this->queryLogger->warning(
 					"Using cached lag value for {db_server} due to active transaction",
 					$this->getLogContext( [
@@ -508,32 +500,7 @@ abstract class DatabaseMysqlBase extends Database {
 			return $currentTrxInfo['lag'];
 		}
 
-		if ( isset( $options['conds'] ) ) {
-			// Custom/explicit method: specify the server_id or use logical channel names.
-			// This works well for multi-datacenter setups with read-only "standby masters"
-			// in secondary datacenters that are used as replication sources. The `heartbeat`
-			// row for the primary server can be found without resorting to slow queries to
-			// fetch the server_id of the primary.
-			$conds = $options['conds'];
-		} else {
-			// Standard method: determine source server ID (works with stock pt-heartbeat).
-			// This assumes that the immediate source server is the primary server.
-			$sourceInfo = $this->getSourceServerInfo();
-			if ( !$sourceInfo ) {
-				$this->queryLogger->error(
-					"Unable to query primary of {db_server} for server ID",
-					$this->getLogContext( [
-						'method' => __METHOD__
-					] )
-				);
-
-				return false; // could not get primary server ID
-			}
-
-			$conds = [ 'server_id' => $sourceInfo['serverId'] ];
-		}
-
-		$ago = $this->fetchSecondsSinceHeartbeat( $conds );
+		$ago = $this->fetchSecondsSinceHeartbeat();
 		if ( $ago !== null ) {
 			return max( $ago, 0.0 );
 		}
@@ -549,39 +516,23 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
-	 * Get information about the direct replication source server for this replica server
-	 *
-	 * This only queries the replica itself, avoiding outages due to primary failure
-	 *
-	 * @return array<string,mixed>|false Map or false on failure
-	 */
-	protected function getSourceServerInfo() {
-		$row = $this->getServerRoleStatus( 'SLAVE', __METHOD__ );
-		if ( $row ) {
-			// MariaDB uses Master_Server_Id; MySQL uses Source_Server_Id
-			// https://mariadb.com/kb/en/show-replica-status/
-			// https://dev.mysql.com/doc/refman/8.0/en/show-replica-status.html
-			$id = (int)( $row['Master_Server_Id'] ?? $row['Source_Server_Id'] ?? 0 );
-		} else {
-			$id = 0;
-		}
-
-		// Cache the ID if it was retrieved
-		return $id ? [ 'serverId' => $id, 'asOf' => time() ] : false;
-	}
-
-	/**
-	 * @param array $conds WHERE clause conditions to find a row
 	 * @return float|null Elapsed seconds since the newest beat or null if none was found
 	 * @see https://www.percona.com/doc/percona-toolkit/2.1/pt-heartbeat.html
 	 */
-	protected function fetchSecondsSinceHeartbeat( array $conds ) {
-		$whereSQL = $this->makeList( $conds, self::LIST_AND );
+	protected function fetchSecondsSinceHeartbeat() {
+		// Some setups might have pt-heartbeat running on each replica server.
+		// Exclude the row for events originating on this DB server. Assume that
+		// there is only one active replication channel and that any other row
+		// getting updates must be the row for the primary DB server.
+		$where = $this->makeList(
+			$this->lagDetectionOptions['conds'] ?? [ 'server_id != @@server_id' ],
+			self::LIST_AND
+		);
 		// User mysql server time so that query time and trip time are not counted.
 		// Use ORDER BY for channel based queries since that field might not be UNIQUE.
 		$res = $this->query(
 			"SELECT TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6)) AS us_ago " .
-			"FROM heartbeat.heartbeat WHERE $whereSQL ORDER BY ts DESC LIMIT 1",
+			"FROM heartbeat.heartbeat WHERE $where ORDER BY ts DESC LIMIT 1",
 			__METHOD__,
 			self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
@@ -591,7 +542,7 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	protected function getApproximateLagStatus() {
-		if ( $this->getLagDetectionMethod() === 'pt-heartbeat' ) {
+		if ( $this->lagDetectionMethod === 'pt-heartbeat' ) {
 			// Disable caching since this is fast enough and we don't want
 			// to be *too* pessimistic by having both the cache TTL and the
 			// pt-heartbeat interval count as lag in getSessionLagStatus()
