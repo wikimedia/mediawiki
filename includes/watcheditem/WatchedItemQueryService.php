@@ -638,23 +638,14 @@ class WatchedItemQueryService {
 	}
 
 	private function getStartFromConds( IDatabase $db, array $options, array $startFrom ) {
-		$op = $options['dir'] === self::DIR_OLDER ? '<' : '>';
+		$op = $options['dir'] === self::DIR_OLDER ? '<=' : '>=';
 		[ $rcTimestamp, $rcId ] = $startFrom;
-		$rcTimestamp = $db->addQuotes( $db->timestamp( $rcTimestamp ) );
+		$rcTimestamp = $db->timestamp( $rcTimestamp );
 		$rcId = (int)$rcId;
-		return $db->makeList(
-			[
-				"rc_timestamp $op $rcTimestamp",
-				$db->makeList(
-					[
-						"rc_timestamp = $rcTimestamp",
-						"rc_id $op= $rcId"
-					],
-					LIST_AND
-				)
-			],
-			LIST_OR
-		);
+		return $db->buildComparison( $op, [
+			'rc_timestamp' => $rcTimestamp,
+			'rc_id' => $rcId,
+		] );
 	}
 
 	private function getWatchedItemsForUserQueryConds(
@@ -674,15 +665,15 @@ class WatchedItemQueryService {
 		}
 
 		if ( isset( $options['from'] ) ) {
-			$op = $options['sort'] === self::SORT_ASC ? '>' : '<';
+			$op = $options['sort'] === self::SORT_ASC ? '>=' : '<=';
 			$conds[] = $this->getFromUntilTargetConds( $db, $options['from'], $op );
 		}
 		if ( isset( $options['until'] ) ) {
-			$op = $options['sort'] === self::SORT_ASC ? '<' : '>';
+			$op = $options['sort'] === self::SORT_ASC ? '<=' : '>=';
 			$conds[] = $this->getFromUntilTargetConds( $db, $options['until'], $op );
 		}
 		if ( isset( $options['startFrom'] ) ) {
-			$op = $options['sort'] === self::SORT_ASC ? '>' : '<';
+			$op = $options['sort'] === self::SORT_ASC ? '>=' : '<=';
 			$conds[] = $this->getFromUntilTargetConds( $db, $options['startFrom'], $op );
 		}
 
@@ -699,19 +690,10 @@ class WatchedItemQueryService {
 	 * @return string
 	 */
 	private function getFromUntilTargetConds( IDatabase $db, LinkTarget $target, $op ) {
-		return $db->makeList(
-			[
-				"wl_namespace $op " . $target->getNamespace(),
-				$db->makeList(
-					[
-						'wl_namespace = ' . $target->getNamespace(),
-						"wl_title $op= " . $db->addQuotes( $target->getDBkey() )
-					],
-					LIST_AND
-				)
-			],
-			LIST_OR
-		);
+		return $db->buildComparison( $op, [
+			'wl_namespace' => $target->getNamespace(),
+			'wl_title' => $target->getDBkey(),
+		] );
 	}
 
 	private function getWatchedItemsWithRCInfoQueryDbOptions( array $options ) {
