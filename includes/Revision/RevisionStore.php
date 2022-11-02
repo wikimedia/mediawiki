@@ -3080,29 +3080,29 @@ class RevisionStore
 		$options = []
 	) {
 		$options = (array)$options;
-		$oldCmp = '>';
-		$newCmp = '<';
-		if ( in_array( self::INCLUDE_OLD, $options ) ) {
+		if ( in_array( self::INCLUDE_OLD, $options ) || in_array( self::INCLUDE_BOTH, $options ) ) {
 			$oldCmp = '>=';
+		} else {
+			$oldCmp = '>';
 		}
-		if ( in_array( self::INCLUDE_NEW, $options ) ) {
+		if ( in_array( self::INCLUDE_NEW, $options ) || in_array( self::INCLUDE_BOTH, $options ) ) {
 			$newCmp = '<=';
-		}
-		if ( in_array( self::INCLUDE_BOTH, $options ) ) {
-			$oldCmp = '>=';
-			$newCmp = '<=';
+		} else {
+			$newCmp = '<';
 		}
 
 		$conds = [];
 		if ( $old ) {
-			$oldTs = $dbr->addQuotes( $dbr->timestamp( $old->getTimestamp() ) );
-			$conds[] = "(rev_timestamp = {$oldTs} AND rev_id {$oldCmp} {$old->getId( $this->wikiId )}) " .
-				"OR rev_timestamp > {$oldTs}";
+			$conds[] = $dbr->buildComparison( $oldCmp, [
+				'rev_timestamp' => $dbr->timestamp( $old->getTimestamp() ),
+				'rev_id' => $old->getId( $this->wikiId ),
+			] );
 		}
 		if ( $new ) {
-			$newTs = $dbr->addQuotes( $dbr->timestamp( $new->getTimestamp() ) );
-			$conds[] = "(rev_timestamp = {$newTs} AND rev_id {$newCmp} {$new->getId( $this->wikiId )}) " .
-				"OR rev_timestamp < {$newTs}";
+			$conds[] = $dbr->buildComparison( $newCmp, [
+				'rev_timestamp' => $dbr->timestamp( $new->getTimestamp() ),
+				'rev_id' => $new->getId( $this->wikiId ),
+			] );
 		}
 		return $conds;
 	}
