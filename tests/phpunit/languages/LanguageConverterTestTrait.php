@@ -9,7 +9,8 @@ trait LanguageConverterTestTrait {
 
 	protected function code(): string {
 		if ( preg_match( $this->codeRegex, get_class( $this ), $m ) ) {
-			return mb_strtolower( $m[1] );
+			# Normalize language code since classes uses underscores
+			return mb_strtolower( str_replace( '_', '-', $m[1] ) );
 		}
 		return 'en';
 	}
