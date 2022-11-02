@@ -51,12 +51,13 @@ class WordAccumulator {
 	 */
 	private function flushGroup( $new_tag ) {
 		if ( $this->group !== '' ) {
+			$encGroup = htmlspecialchars( $this->group, ENT_NOQUOTES );
 			if ( $this->tag == 'ins' ) {
-				$this->line .= "<ins{$this->insClass}>" . htmlspecialchars( $this->group ) . '</ins>';
+				$this->line .= "<ins{$this->insClass}>$encGroup</ins>";
 			} elseif ( $this->tag == 'del' ) {
-				$this->line .= "<del{$this->delClass}>" . htmlspecialchars( $this->group ) . '</del>';
+				$this->line .= "<del{$this->delClass}>$encGroup</del>";
 			} else {
-				$this->line .= htmlspecialchars( $this->group );
+				$this->line .= $encGroup;
 			}
 		}
 		$this->group = '';
