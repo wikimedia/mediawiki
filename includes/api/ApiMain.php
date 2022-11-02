@@ -577,7 +577,6 @@ class ApiMain extends ApiBase {
 			if ( $uselang === 'content' ) {
 				$uselang = $services->getContentLanguage()->getCode();
 			}
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable getRawVal does not return null
 			$code = RequestContext::sanitizeLangCode( $uselang );
 			$derivativeContext->setLanguage( $code );
 			if ( !$this->mInternalMode ) {

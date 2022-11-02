@@ -395,18 +395,21 @@ class RequestContext implements IContextSource, MutableContext {
 	/**
 	 * Accepts a language code and ensures it's sensible. Outputs a cleaned up language
 	 * code and replaces with $wgLanguageCode if not sensible.
-	 * @param string $code Language code
+	 * @param ?string $code Language code
 	 * @return string
 	 */
 	public static function sanitizeLangCode( $code ) {
 		global $wgLanguageCode;
 
+		if ( !$code ) {
+			return $wgLanguageCode;
+		}
+
 		// BCP 47 - letter case MUST NOT carry meaning
 		$code = strtolower( $code );
 
 		# Validate $code
-		if ( !$code
-			|| !MediaWikiServices::getInstance()->getLanguageNameUtils()
+		if ( !MediaWikiServices::getInstance()->getLanguageNameUtils()
 				->isValidCode( $code )
 			|| $code === 'qqq'
 		) {
