@@ -853,6 +853,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Debug\\DeprecatablePropertyArray' => __DIR__ . '/includes/debug/DeprecatablePropertyArray.php',
 	'MediaWiki\\Export\\WikiExporterFactory' => __DIR__ . '/includes/export/WikiExporterFactory.php',
 	'MediaWiki\\FileBackend\\FSFile\\TempFSFileFactory' => __DIR__ . '/includes/libs/filebackend/fsfile/TempFSFileFactory.php',
+	'MediaWiki\\HeaderCallback' => __DIR__ . '/includes/Request/HeaderCallback.php',
 	'MediaWiki\\Hook\\AbortEmailNotificationHook' => __DIR__ . '/includes/changes/Hook/AbortEmailNotificationHook.php',
 	'MediaWiki\\Hook\\AbortTalkPageEmailNotificationHook' => __DIR__ . '/includes/mail/Hook/AbortTalkPageEmailNotificationHook.php',
 	'MediaWiki\\Hook\\ActionBeforeFormDisplayHook' => __DIR__ . '/includes/actions/Hook/ActionBeforeFormDisplayHook.php',
