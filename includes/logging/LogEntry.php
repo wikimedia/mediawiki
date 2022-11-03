@@ -77,7 +77,7 @@ interface LogEntry {
 	/**
 	 * Get the timestamp when the action was executed.
 	 *
-	 * @return string
+	 * @return string TS_MW timestamp, a string with 14 digits
 	 */
 	public function getTimestamp();
 

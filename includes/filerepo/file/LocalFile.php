@@ -2513,7 +2513,7 @@ class LocalFile extends File {
 
 	/**
 	 * @stable to override
-	 * @return bool|string
+	 * @return bool|string TS_MW timestamp, a string with 14 digits
 	 */
 	public function getTimestamp() {
 		$this->load();

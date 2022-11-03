@@ -53,7 +53,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.2
-	 * @var string
+	 * @var string TS_MW timestamp, a string with 14 digits
 	 */
 	public $timestamp = "20010115000000";
 
@@ -439,7 +439,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.2
-	 * @return string
+	 * @return string TS_MW timestamp, a string with 14 digits
 	 */
 	public function getTimestamp() {
 		return $this->timestamp;
