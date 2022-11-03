@@ -129,8 +129,14 @@ class JsonContentHandler extends CodeContentHandler {
 		'@phan-var JsonContent $content';
 		// FIXME: WikiPage::doUserEditContent generates parser output before validation.
 		// As such, native data may be invalid (though output is discarded later in that case).
-		if ( $cpoParams->getGenerateHtml() && $content->isValid() ) {
-			$parserOutput->setText( $content->rootValueTable( $content->getData()->getValue() ) );
+		if ( $cpoParams->getGenerateHtml() ) {
+			if ( $content->isValid() ) {
+				$parserOutput->setText( $content->rootValueTable( $content->getData()->getValue() ) );
+			} else {
+				$error = wfMessage( 'invalid-json-data' )->parse();
+				$parserOutput->setText( $error );
+			}
+
 			$parserOutput->addModuleStyles( [ 'mediawiki.content.json' ] );
 		} else {
 			$parserOutput->setText( null );
