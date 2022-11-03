@@ -748,6 +748,7 @@ return [
 			$services->getContentHandlerFactory(),
 			$services->getParsoidSiteConfig(),
 			$services->getTitleFactory(),
+			$services->getLanguageConverterFactory(),
 			$services->getLanguageFactory()
 		);
 	},
