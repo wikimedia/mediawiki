@@ -307,6 +307,7 @@
 	"missingarticle-rev": "(المراجعه نمره: $1)",
 	"missingarticle-diff": "(الفرق: $1, $2)",
 	"readonly_lag": "قاعدة البيانات (الـ database) اتقفلت اوتوماتيكى علشان تقدر السيرڤرات الـ slave تلحق السيرڤر الـ master",
+	"timeouterror": "السيرفر انتهت فترته",
 	"internalerror": "غلط جوّانى",
 	"internalerror_info": "غلط جوّانى: $1",
 	"internalerror-fatal-exception": "استثناء مميت من النوع \"$1\"",

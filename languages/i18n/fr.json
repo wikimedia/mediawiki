@@ -2864,7 +2864,7 @@
 	"blocklist-editing-ns": "espaces de noms",
 	"blocklist-editing-action": "actions",
 	"ipblocklist-empty": "La liste des adresses IP bloquées est actuellement vide.",
-	"ipblocklist-no-results": "Aucun bloc correspondant trouvé pour l’adresse IP ou le nom d’utilisateur demandé.",
+	"ipblocklist-no-results": "Aucun blocage correspondant trouvé pour l’adresse IP ou le nom d’utilisateur demandé.",
 	"blocklink": "bloquer",
 	"unblocklink": "débloquer",
 	"change-blocklink": "modifier le blocage",

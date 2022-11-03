@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"SaldırganSincap",
-			"ديفيد"
+			"ديفيد",
+			"Meno25"
 		]
 	},
 	"rest-prefix-mismatch": "المسار المطلوب ($1) لم يكن داخل مسار جذر API REST ($2)",
@@ -41,5 +42,7 @@
 	"rest-update-cannot-create-page": "لا يمكن إنشاء الصفحة «$1» لأنها موجودة بالفعل. لتحديث الصفحة الحالية، قم بتوفير معرّف المراجعة الأساسي في البنية أسفل مفتاح «الأحدث» في نص الطلب.",
 	"rest-extraneous-csrf-token": "تم العثور على رمز CSRF غريب. يجب عدم استخدام رموز CSRF المميزة عند استخدام آليات المصادقة مثل OAuth الآمنة ضد هجمات CSRF.",
 	"rest-cannot-load-file": "لا يمكن تحميل ملف العنوان «$1».",
-	"rest-cross-origin-anon-write": "غير مسموح بطلبات الكتابة عبر الأصل المجهول"
+	"rest-cross-origin-anon-write": "غير مسموح بطلبات الكتابة عبر الأصل المجهول",
+	"rest-requires-safe-against-csrf": "تتطلب نقطة النهاية هذه موفر جلسة CSRF آمنًا.",
+	"rest-badtoken": "رمز CSRF المقدم غير صالح."
 }

@@ -32,7 +32,8 @@
 			"Trondtr",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Strek under lenkjer:",
@@ -59,7 +60,7 @@
 	"tog-enotifrevealaddr": "Vis e-postadressa mi i endrings-e-post",
 	"tog-shownumberswatching": "Vis kor mange som overvakar sida",
 	"tog-oldsig": "Noverande signatur:",
-	"tog-fancysig": "Handsam signaturar som wikitekst (utan automatisk lenking)",
+	"tog-fancysig": "Handsam signaturar som wikitekst (utan automatisk lenking til brukarsida di)",
 	"tog-uselivepreview": "Vis førehandsvisningar utan å laste sida på nytt",
 	"tog-forceeditsummary": "Spør meg når eg ikkje har skrive noko i endringssamandraget (eller standardmelding for attenderulling)",
 	"tog-watchlisthideown": "Gøym endringane mine i overvakingslista",
@@ -758,7 +759,7 @@
 	"rev-suppressed-text-view": "Denne sideversjonen har vorten '''gøymd'''.\nSom administrator kan du sjå han. Det finst kanskje meir informasjon i [{{fullurl:{{#Special:Log}}/suppress|page=$1}} utelatingsloggen].",
 	"rev-deleted-no-diff": "Du kan ikkje vise denne skilnaden fordi ein av versjonane er vorten '''sletta'''.\nDet finst kanskje detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
 	"rev-suppressed-no-diff": "Du kan ikkje sjå denne skilnaden av di ein av versjonane er vorten '''sletta'''.",
-	"rev-deleted-unhide-diff": "Ein av versjonane i denne skilnaden er vorten '''sletta'''.\nDet finst detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].\nDu kan framleis [$1 sjå skilnaden] om du ynskjer å halda fram.",
+	"rev-deleted-unhide-diff": "Ein av versjonane i denne skilnaden er vorten '''sletta'''.\nDet finst detaljar i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].\nDu kan framleis [$1 sjå skilnaden] om du ynskjer å halda fram.",
 	"rev-suppressed-unhide-diff": "Ein av sideversjonane i denne lista over versjonar er vorten '''løynd'''.\nDet finst detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} løyneloggen].\nDu kan framleis [$1 sjå skilnaden] om du ynskjer å halda fram.",
 	"rev-deleted-diff-view": "Ein av versjonane i skilnaden er vorten '''sletta'''.\nDu kan sjå skilnaden; detaljar finst i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
 	"rev-suppressed-diff-view": "Ei av endringane i skilnaden er vorten '''løynd'''.\nDu kan sjå skilnaden; detaljar finst i [{{fullurl:{{#Special:Log}}/suppcess|page={{FULLPAGENAMEE}}}} løyneloggen].",

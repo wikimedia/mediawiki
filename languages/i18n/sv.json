@@ -1062,7 +1062,7 @@
 	"search-category": "(kategorin $1)",
 	"search-file-match": "(överensstämmer filens innehåll)",
 	"search-suggest": "Menade du: $1",
-	"search-rewritten": "Visar resultat för $1. Sök istället efter $2.",
+	"search-rewritten": "Visar resultat för $1. Inga resultat hittades för $2.",
 	"search-interwiki-resultset-link": "Se alla resultat",
 	"search-interwiki-more": "(mer)",
 	"search-interwiki-more-results": "fler resultat",

@@ -91,7 +91,8 @@
 			"Тест",
 			"Чорний Кіт",
 			"아라",
-			"Пан Хаунд"
+			"Пан Хаунд",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Підкреслювання посилань:",
@@ -925,7 +926,7 @@
 	"rev-suppressed-text-view": "Ця версія сторінки була <strong>прихована</strong>.\nВи можете її переглядати; подробиці наведені у [{{fullurl:{{#Special:Log}}/suppress|page=$1}} журналі приховань].",
 	"rev-deleted-no-diff": "Ви не можете переглянути цю різницю версій, оскільки одна з версій сторінки <strong>вилучена</strong>.\nМожливо, деталі можна знайти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі вилучень].",
 	"rev-suppressed-no-diff": "Ви не можете переглянути це порівняння версій, оскільки одна з версій була <strong>вилучена</strong>.",
-	"rev-deleted-unhide-diff": "Одна з версій сторінки була <strong>вилучена</strong>.\nПодробиці наведені у [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі вилучень].\nВи все ще можете [$1 переглянути цю версію], якщо забажаєте.",
+	"rev-deleted-unhide-diff": "Одна з версій сторінки була <strong>вилучена</strong>.\nПодробиці наведені у [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].\nВи все ще можете [$1 переглянути цю версію], якщо забажаєте.",
 	"rev-suppressed-unhide-diff": "Ця версія сторінки була <strong>прихована</strong>.\nПодробиці наведені у [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі приховань].\nВи все ще можете [$1 переглянути цю різницю версій], якщо забажаєте.",
 	"rev-deleted-diff-view": "Одна з версій цього порівняння версій була <strong>вилучена</strong>.\nВи можете його переглянути; подробиці наведені у [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].",
 	"rev-suppressed-diff-view": "Одна з версій цього порівняння версій була <strong>прихована</strong>.\nВи можете переглянути його; подробиці наведені у [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналі приховань].",
