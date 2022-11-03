@@ -94,7 +94,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$this->addWhereRange( 'pt_title', $params['dir'], null, null );
 
 		if ( $params['continue'] !== null ) {
-			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int', 'string' ] );
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'timestamp', 'int', 'string' ] );
 			$op = ( $params['dir'] === 'newer' ? '>=' : '<=' );
 			$db = $this->getDB();
 			$this->addWhere( $db->buildComparison( $op, [

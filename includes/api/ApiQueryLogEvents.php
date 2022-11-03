@@ -192,7 +192,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->addWhereRange( 'log_id', $params['dir'], null, null );
 
 		if ( $params['continue'] !== null ) {
-			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int' ] );
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'timestamp', 'int' ] );
 			$op = ( $params['dir'] === 'newer' ? '>=' : '<=' );
 			$this->addWhere( $db->buildComparison( $op, [
 				'log_timestamp' => $db->timestamp( $cont[0] ),
