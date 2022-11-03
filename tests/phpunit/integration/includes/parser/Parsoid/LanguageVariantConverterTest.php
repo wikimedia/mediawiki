@@ -29,8 +29,8 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 				Parsoid::defaultHTMLVersion(),
 				[]
 			),
-			'en-x-piglatin',
 			null,
+			'en-x-piglatin',
 			null,
 			'>esttay anguagelay onversioncay<'
 		];
@@ -42,9 +42,9 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 				Parsoid::defaultHTMLVersion(),
 				[ 'content-language' => 'en' ]
 			),
+			null,
 			'en-x-piglatin',
 			'en',
-			null,
 			'>esttay anguagelay onversioncay<'
 		];
 		yield 'Source language is null' => [
@@ -55,8 +55,8 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 				Parsoid::defaultHTMLVersion(),
 				[ 'content-language' => 'sr' ]
 			),
-			'sr-el',
 			null,
+			'sr-el',
 			null,
 			'>Ovo je testna stranica<'
 		];
@@ -68,9 +68,9 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 				Parsoid::defaultHTMLVersion(),
 				[ 'content-language' => 'sr' ]
 			),
+			null,
 			'sr-el',
 			'sr-ec',
-			null,
 			'>Ovo je testna stranica<'
 		];
 		yield 'Content language is provided via HTTP header' => [
@@ -81,8 +81,47 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 				Parsoid::defaultHTMLVersion(),
 				[ 'content-language' => 'sr-ec' ]
 			),
+			'sr',
 			'sr-el',
 			'sr-ec',
+			'>Ovo je testna stranica<'
+		];
+		yield 'Content language is variant' => [
+			new PageBundle(
+				'<p>Ово је тестна страница</p>',
+				[ 'parsoid-data' ],
+				[ 'mw-data' ],
+				Parsoid::defaultHTMLVersion(),
+				[]
+			),
+			'sr-ec',
+			'sr-el',
+			null,
+			'>Ovo je testna stranica<'
+		];
+		yield 'No content-language, but source variant provided' => [
+			new PageBundle(
+				'<p>Ово је тестна страница</p>',
+				[ 'parsoid-data' ],
+				[ 'mw-data' ],
+				Parsoid::defaultHTMLVersion(),
+				[]
+			),
+			null,
+			'sr-el',
+			'sr-ec',
+			'>Ovo je testna stranica<'
+		];
+		yield 'Source variant is a base language code' => [
+			new PageBundle(
+				'<p>Ово је тестна страница</p>',
+				[ 'parsoid-data' ],
+				[ 'mw-data' ],
+				Parsoid::defaultHTMLVersion(),
+				[]
+			),
+			null,
+			'sr-el',
 			'sr',
 			'>Ovo je testna stranica<'
 		];
@@ -91,11 +130,11 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideConvertPageBundleVariant
 	 */
-	public function testConvertPageBundleVariant( PageBundle $pageBundle, $target, $source, $contentLanguage, $expected ) {
+	public function testConvertPageBundleVariant( PageBundle $pageBundle, $contentLanguage, $target, $source, $expected ) {
 		$page = $this->getExistingTestPage();
 		$languageVariantConverter = $this->getLanguageVariantConverter( $page );
 		if ( $contentLanguage ) {
-			$languageVariantConverter->setPageContentLanguage( $contentLanguage );
+			$languageVariantConverter->setPageLanguageOverride( $contentLanguage );
 		}
 
 		$outputPageBundle = $languageVariantConverter->convertPageBundleVariant( $pageBundle, $target, $source );
@@ -117,11 +156,11 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideConvertParserOutputVariant
 	 */
-	public function testConvertParserOutputVariant( ParserOutput $parserOutput, $target, $source, $contentLanguage, $expected ) {
+	public function testConvertParserOutputVariant( ParserOutput $parserOutput, $contentLanguage, $target, $source, $expected ) {
 		$page = $this->getExistingTestPage();
 		$languageVariantConverter = $this->getLanguageVariantConverter( $page );
 		if ( $contentLanguage ) {
-			$languageVariantConverter->setPageContentLanguage( $contentLanguage );
+			$languageVariantConverter->setPageLanguageOverride( $contentLanguage );
 		}
 
 		$modifiedParserOutput = $languageVariantConverter
@@ -144,7 +183,8 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getService( '_Parsoid' ),
 			MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidSettings ),
 			$this->getServiceContainer()->getParsoidSiteConfig(),
-			$this->getServiceContainer()->getTitleFactory()
+			$this->getServiceContainer()->getTitleFactory(),
+			$this->getServiceContainer()->getLanguageFactory()
 		);
 	}
 }
