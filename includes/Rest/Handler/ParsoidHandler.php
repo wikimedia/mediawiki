@@ -1090,7 +1090,7 @@ abstract class ParsoidHandler extends Handler {
 		$languageVariantConverter->setPageConfig( $pageConfig );
 		$httpContentLanguage = $attribs['pagelanguage' ] ?? null;
 		if ( $httpContentLanguage ) {
-			$languageVariantConverter->setPageContentLanguage( $httpContentLanguage );
+			$languageVariantConverter->setPageLanguageOverride( $httpContentLanguage );
 		}
 
 		try {

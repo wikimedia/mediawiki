@@ -3,6 +3,7 @@
 namespace MediaWiki\Parser\Parsoid;
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use TitleFactory;
@@ -33,6 +34,9 @@ class HTMLTransformFactory {
 	/** @var TitleFactory */
 	private $titleFactory;
 
+	/** @var LanguageFactory */
+	private $languageFactory;
+
 	/**
 	 * @param Parsoid $parsoid
 	 * @param array $parsoidSettings
@@ -40,6 +44,7 @@ class HTMLTransformFactory {
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param SiteConfig $siteConfig
 	 * @param TitleFactory $titleFactory
+	 * @param LanguageFactory $languageFactory
 	 */
 	public function __construct(
 		Parsoid $parsoid,
@@ -47,7 +52,8 @@ class HTMLTransformFactory {
 		PageConfigFactory $configFactory,
 		IContentHandlerFactory $contentHandlerFactory,
 		SiteConfig $siteConfig,
-		TitleFactory $titleFactory
+		TitleFactory $titleFactory,
+		LanguageFactory $languageFactory
 	) {
 		$this->parsoid = $parsoid;
 		$this->parsoidSettings = $parsoidSettings;
@@ -55,6 +61,7 @@ class HTMLTransformFactory {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->siteConfig = $siteConfig;
 		$this->titleFactory = $titleFactory;
+		$this->languageFactory = $languageFactory;
 	}
 
 	/**
@@ -91,7 +98,8 @@ class HTMLTransformFactory {
 			$this->parsoid,
 			$this->parsoidSettings,
 			$this->siteConfig,
-			$this->titleFactory
+			$this->titleFactory,
+			$this->languageFactory,
 		);
 	}
 

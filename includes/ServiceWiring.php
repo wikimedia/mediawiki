@@ -743,7 +743,8 @@ return [
 			$services->getParsoidPageConfigFactory(),
 			$services->getContentHandlerFactory(),
 			$services->getParsoidSiteConfig(),
-			$services->getTitleFactory()
+			$services->getTitleFactory(),
+			$services->getLanguageFactory()
 		);
 	},
 
