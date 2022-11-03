@@ -156,6 +156,7 @@ because of Phabricator reports.
 * Global function wfQueriesMustScale, deprecated since 1.39, has been removed.
 * Global function wfLogProfilingData, deprecated since 1.38, has been removed.
 * Linker::normaliseSpecialPage(), deprecated since 1.35, has been removed.
+* MWTimestamp::getHumanTimestamp(), deprecated since 1.26, has been removed.
 * JobQueueGroup::singleton() and ::destroySingletons(), deprecated since 1.37,
   have been removed.
 * Collation::singleton() and ::factory(), deprecated since 1.37, have been
