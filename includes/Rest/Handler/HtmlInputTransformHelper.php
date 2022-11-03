@@ -29,8 +29,8 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
-use MediaWiki\Parser\Parsoid\HTMLTransform;
-use MediaWiki\Parser\Parsoid\HTMLTransformFactory;
+use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
+use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
@@ -66,7 +66,7 @@ class HtmlInputTransformHelper {
 		MainConfigNames::ParsoidCacheConfig
 	];
 
-	/** @var HTMLTransformFactory */
+	/** @var HtmlTransformFactory */
 	private $htmlTransformFactory;
 
 	/** @var PageIdentity|null */
@@ -79,7 +79,7 @@ class HtmlInputTransformHelper {
 	private $parameters = null;
 
 	/**
-	 * @var HTMLTransform
+	 * @var HtmlToContentTransform
 	 */
 	private $transform;
 
@@ -100,14 +100,14 @@ class HtmlInputTransformHelper {
 
 	/**
 	 * @param StatsdDataFactoryInterface $statsDataFactory
-	 * @param HTMLTransformFactory $htmlTransformFactory
+	 * @param HtmlTransformFactory $htmlTransformFactory
 	 * @param ParsoidOutputStash $parsoidOutputStash
 	 * @param ParsoidOutputAccess $parsoidOutputAccess
 	 * @param array $envOptions
 	 */
 	public function __construct(
 		StatsdDataFactoryInterface $statsDataFactory,
-		HTMLTransformFactory $htmlTransformFactory,
+		HtmlTransformFactory $htmlTransformFactory,
 		ParsoidOutputStash $parsoidOutputStash,
 		ParsoidOutputAccess $parsoidOutputAccess,
 		array $envOptions = []
@@ -304,7 +304,7 @@ class HtmlInputTransformHelper {
 		$html = is_array( $body['html'] ) ? $body['html']['body'] : $body['html'];
 
 		// TODO: validate $body against a proper schema.
-		$this->transform = $this->htmlTransformFactory->getHTMLTransform(
+		$this->transform = $this->htmlTransformFactory->getHtmlToContentTransform(
 			$html,
 			$this->page
 		);

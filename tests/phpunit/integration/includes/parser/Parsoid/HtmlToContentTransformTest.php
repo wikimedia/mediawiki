@@ -8,7 +8,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
-use MediaWiki\Parser\Parsoid\HTMLTransform;
+use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -19,9 +19,9 @@ use Wikimedia\Parsoid\Utils\ContentUtils;
 use WikitextContent;
 
 /**
- * @covers \MediaWiki\Parser\Parsoid\HTMLTransform
+ * @covers \MediaWiki\Parser\Parsoid\HtmlToContentTransform
  */
-class HTMLTransformTest extends MediaWikiIntegrationTestCase {
+class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 	private const MODIFIED_HTML = '<html><head>' .
 	'<meta charset="utf-8"/><meta property="mw:htmlVersion" content="2.4.0"/></head>' .
 	'<body>Modified HTML</body></html>';
@@ -40,7 +40,7 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 		] ]
 	] ] ];
 
-	private function setOriginalData( HTMLTransform $transform ) {
+	private function setOriginalData( HtmlToContentTransform $transform ) {
 		$transform->setOriginalRevisionId( 1 );
 		$transform->setOriginalSchemaVersion( '2.4.0' );
 		$transform->setOriginalHtml( self::ORIG_HTML );
@@ -48,12 +48,12 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 		$transform->setOriginalDataParsoid( self::ORIG_DATA_PARSOID );
 	}
 
-	private function createHTMLTransform( $html = '' ) {
+	private function createHtmlToContentTransform( $html = '' ) {
 		/** @var PageConfigFactory|MockObject $pageConfigFactory */
 		$pageConfigFactory = $this->createNoOpMock( PageConfigFactory::class, [ 'create' ] );
 		$pageConfigFactory->method( 'create' )->willReturn( new MockPageConfig( [], null ) );
 
-		return new HTMLTransform(
+		return new HtmlToContentTransform(
 			$html ?? self::ORIG_HTML,
 			PageIdentityValue::localIdentity( 7, NS_MAIN, 'Test' ),
 			new Parsoid(
@@ -66,8 +66,8 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	private function createHTMLTransformWithOriginalData( $html = '' ) {
-		$transform = $this->createHTMLTransform( $html );
+	private function createHtmlToContentTransformWithOriginalData( $html = '' ) {
+		$transform = $this->createHtmlToContentTransform( $html );
 
 		// Set some options to assert on $transform object.
 		$transform->setOptions( [
@@ -81,7 +81,7 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetOriginalBodyRequiresValidDataParsoid() {
-		$transform = $this->createHTMLTransform( self::ORIG_HTML );
+		$transform = $this->createHtmlToContentTransform( self::ORIG_HTML );
 		$transform->setOriginalSchemaVersion( '2.4.0' );
 		$transform->setOriginalHtml( self::ORIG_HTML );
 
@@ -100,7 +100,7 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testHasOriginalHtml() {
-		$transform = $this->createHTMLTransform( self::MODIFIED_HTML );
+		$transform = $this->createHtmlToContentTransform( self::MODIFIED_HTML );
 		$this->assertFalse( $transform->hasOriginalHtml() );
 
 		$transform->setOriginalDataParsoid( self::ORIG_DATA_PARSOID );
@@ -111,10 +111,10 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetOriginalSchemaVersion() {
-		$transform = $this->createHTMLTransform( self::ORIG_HTML ); // no version inline
+		$transform = $this->createHtmlToContentTransform( self::ORIG_HTML ); // no version inline
 		$this->assertSame( Parsoid::defaultHTMLVersion(), $transform->getOriginalSchemaVersion() );
 
-		$transform = $this->createHTMLTransform( self::MODIFIED_HTML ); // has version inline
+		$transform = $this->createHtmlToContentTransform( self::MODIFIED_HTML ); // has version inline
 		$this->assertSame( '2.4.0', $transform->getOriginalSchemaVersion() );
 
 		$transform->setOriginalSchemaVersion( '2.3.0' );
@@ -122,14 +122,14 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetSchemaVersion() {
-		$transform = $this->createHTMLTransform( self::ORIG_HTML ); // no version inline
+		$transform = $this->createHtmlToContentTransform( self::ORIG_HTML ); // no version inline
 		$this->assertSame( Parsoid::defaultHTMLVersion(), $transform->getSchemaVersion() );
 
 		// Should have an effect, since the HTML has no version specified inline
 		$transform->setOriginalSchemaVersion( '2.3.0' );
 		$this->assertSame( '2.3.0', $transform->getSchemaVersion() );
 
-		$transform = $this->createHTMLTransform( self::MODIFIED_HTML ); // has version inline
+		$transform = $this->createHtmlToContentTransform( self::MODIFIED_HTML ); // has version inline
 		$this->assertSame( '2.4.0', $transform->getSchemaVersion() );
 
 		// Should have no impact, since the HTML has a version specified inline
@@ -138,7 +138,7 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testHasOriginalDataParsoid() {
-		$transform = $this->createHTMLTransform( self::MODIFIED_HTML );
+		$transform = $this->createHtmlToContentTransform( self::MODIFIED_HTML );
 		$this->assertFalse( $transform->hasOriginalDataParsoid() );
 
 		$transform->setOriginalDataParsoid( self::ORIG_DATA_PARSOID );
@@ -146,7 +146,7 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetOriginalHtml() {
-		$transform = $this->createHTMLTransform( self::MODIFIED_HTML );
+		$transform = $this->createHtmlToContentTransform( self::MODIFIED_HTML );
 
 		$this->assertFalse( $transform->hasOriginalHtml() );
 
@@ -158,7 +158,7 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetOriginalBody() {
-		$transform = $this->createHTMLTransform( self::MODIFIED_HTML );
+		$transform = $this->createHtmlToContentTransform( self::MODIFIED_HTML );
 		$transform->setOriginalSchemaVersion( '2.4.0' );
 		$transform->setOriginalHtml( self::ORIG_HTML );
 
@@ -169,7 +169,7 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testOldId() {
-		$transform = $this->createHTMLTransformWithOriginalData();
+		$transform = $this->createHtmlToContentTransformWithOriginalData();
 		$this->assertSame( 1, $transform->getOriginalRevisionId() );
 		$this->assertTrue( $transform->knowsOriginalRevision() );
 	}
@@ -179,19 +179,19 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 		$rev = new MutableRevisionRecord( $page );
 		$rev->setId( 1337 );
 
-		$transform = $this->createHTMLTransformWithOriginalData();
+		$transform = $this->createHtmlToContentTransformWithOriginalData();
 		$transform->setOriginalRevision( $rev );
 		$this->assertTrue( $transform->knowsOriginalRevision() );
 		$this->assertSame( $rev->getId(), $transform->getOriginalRevisionId() );
 	}
 
 	public function testGetContentModel() {
-		$transform = $this->createHTMLTransformWithOriginalData();
+		$transform = $this->createHtmlToContentTransformWithOriginalData();
 		$this->assertSame( 'wikitext', $transform->getContentModel() );
 	}
 
 	public function testGetEnvOpts() {
-		$transform = $this->createHTMLTransformWithOriginalData();
+		$transform = $this->createHtmlToContentTransformWithOriginalData();
 		$this->assertSame( 'byte', $transform->getOffsetType() );
 	}
 
@@ -201,7 +201,7 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 
 	public function testDowngrade() {
 		$html = $this->getTextFromFile( 'Minimal.html' ); // Uses profile version 2.4.0
-		$transform = $this->createHTMLTransform( $html );
+		$transform = $this->createHtmlToContentTransform( $html );
 
 		$transform->setOriginalSchemaVersion( '999.0.0' );
 		$transform->setOriginalHtml( $html );
@@ -219,7 +219,7 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 
 	public function testModifiedDataMW() {
 		$html = $this->getTextFromFile( 'Minimal-999.html' ); // Uses profile version 2.4.0
-		$transform = $this->createHTMLTransform( $html );
+		$transform = $this->createHtmlToContentTransform( $html );
 
 		$transform->setOriginalHtml( self::ORIG_HTML );
 		$transform->setOriginalDataParsoid( self::ORIG_DATA_PARSOID );
@@ -234,7 +234,7 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 
 	public function testMetrics() {
 		$html = '<html><body>xyz</body></html>'; // no schema version!
-		$transform = $this->createHTMLTransform( $html );
+		$transform = $this->createHtmlToContentTransform( $html );
 
 		$metrics = $this->createNoOpMock( StatsdDataFactoryInterface::class, [ 'increment' ] );
 		$metrics->expects( $this->atLeastOnce() )->method( 'increment' );
@@ -247,7 +247,7 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 
 	public function testHtmlSize() {
 		$html = '<html><body>hällö</body></html>'; // use some multi-byte characters
-		$transform = $this->createHTMLTransform( $html );
+		$transform = $this->createHtmlToContentTransform( $html );
 
 		// make sure it counts characters, not bytes
 		$this->assertSame( 31, $transform->getModifiedHtmlSize() );
@@ -255,7 +255,7 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 
 	public function testSetOriginalHTML() {
 		$html = '<html><body>xyz</body></html>'; // no schema version!
-		$transform = $this->createHTMLTransform( $html );
+		$transform = $this->createHtmlToContentTransform( $html );
 
 		// mainly check that this doesn't explode.
 		$transform->setOriginalSchemaVersion( '999.0.0' );
@@ -269,7 +269,7 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 		// Use HTML that contains a schema version!
 		// Otherwise, we won't trigger the right error.
 		$html = $this->getTextFromFile( 'Minimal.html' );
-		$transform = $this->createHTMLTransform( $html );
+		$transform = $this->createHtmlToContentTransform( $html );
 
 		$transform->getModifiedDocument();
 
@@ -280,7 +280,7 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testOffsetTypeMismatch() {
-		$transform = $this->createHTMLTransform( self::ORIG_HTML );
+		$transform = $this->createHtmlToContentTransform( self::ORIG_HTML );
 		$this->setOriginalData( $transform );
 
 		// Set some options to assert on $transform.
@@ -299,7 +299,7 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testHtmlToWikitextContent() {
-		$transform = $this->createHTMLTransform( self::ORIG_HTML );
+		$transform = $this->createHtmlToContentTransform( self::ORIG_HTML );
 
 		// Set some options to assert on $transform.
 		$transform->setOptions( [
@@ -314,7 +314,7 @@ class HTMLTransformTest extends MediaWikiIntegrationTestCase {
 
 	public function testHtmlToJsonContent() {
 		$jsonConfigHtml = $this->getTextFromFile( 'JsonConfig.html' );
-		$transform = $this->createHTMLTransform( $jsonConfigHtml );
+		$transform = $this->createHtmlToContentTransform( $jsonConfigHtml );
 
 		// Set some options to assert on $transform.
 		$transform->setOptions( [

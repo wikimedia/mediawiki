@@ -14,7 +14,7 @@ use Wikimedia\Parsoid\Parsoid;
  * @since 1.40
  * @unstable should be marked stable before 1.40 release
  */
-class HTMLTransformFactory {
+class HtmlTransformFactory {
 
 	/** @var Parsoid */
 	private $parsoid;
@@ -71,10 +71,10 @@ class HTMLTransformFactory {
 	 * @param string $modifiedHTML
 	 * @param PageIdentity $page
 	 *
-	 * @return HTMLTransform
+	 * @return HtmlToContentTransform
 	 */
-	public function getHTMLTransform( string $modifiedHTML, PageIdentity $page ) {
-		return new HTMLTransform(
+	public function getHtmlToContentTransform( string $modifiedHTML, PageIdentity $page ) {
+		return new HtmlToContentTransform(
 			$modifiedHTML,
 			$page,
 			$this->parsoid,

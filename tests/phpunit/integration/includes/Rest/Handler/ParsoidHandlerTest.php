@@ -8,8 +8,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
-use MediaWiki\Parser\Parsoid\HTMLTransform;
-use MediaWiki\Parser\Parsoid\HTMLTransformFactory;
+use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
+use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Rest\Handler\HtmlInputTransformHelper;
 use MediaWiki\Rest\Handler\ParsoidFormatHelper;
@@ -39,7 +39,7 @@ use Wikimedia\Parsoid\Parsoid;
 /**
  * @group Database
  * @covers \MediaWiki\Rest\Handler\ParsoidHandler
- * @covers \MediaWiki\Parser\Parsoid\HTMLTransform
+ * @covers \MediaWiki\Parser\Parsoid\HtmlToContentTransform
  */
 class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	use RestTestTrait;
@@ -1325,10 +1325,10 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$parsoid = $this->createNoOpMock( Parsoid::class, [ 'dom2wikitext' ] );
 		$parsoid->method( 'dom2wikitext' )->willThrowException( $throw );
 
-		// Make a fake HTMLTransformFactory that returns an HTMLTransform that uses the fake Parsoid.
-		/** @var HTMLTransformFactory|MockObject $factory */
-		$factory = $this->createNoOpMock( HTMLTransformFactory::class, [ 'getHTMLTransform' ] );
-		$factory->method( 'getHTMLTransform' )->willReturn( new HTMLTransform(
+		// Make a fake HtmlTransformFactory that returns an HtmlToContentTransform that uses the fake Parsoid.
+		/** @var HtmlTransformFactory|MockObject $factory */
+		$factory = $this->createNoOpMock( HtmlTransformFactory::class, [ 'getHtmlToContentTransform' ] );
+		$factory->method( 'getHtmlToContentTransform' )->willReturn( new HtmlToContentTransform(
 			$html,
 			$page,
 			$parsoid,
@@ -1337,8 +1337,8 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getContentHandlerFactory()
 		) );
 
-		// Use an HtmlInputTransformHelper that uses the fake HTMLTransformFactory, so it ends up
-		// using the HTMLTransform that has the fake Parsoid which throws an exception.
+		// Use an HtmlInputTransformHelper that uses the fake HtmlTransformFactory, so it ends up
+		// using the HtmlToContentTransform that has the fake Parsoid which throws an exception.
 		$handler = $this->newParsoidHandler( [
 			'getHtmlInputHelper' => function () use ( $factory, $page, $html ) {
 				$helper = new HtmlInputTransformHelper(

@@ -100,7 +100,7 @@ use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
-use MediaWiki\Parser\Parsoid\HTMLTransformFactory;
+use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
@@ -1065,11 +1065,11 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * @return HTMLTransformFactory
+	 * @return HtmlTransformFactory
 	 * @since 1.39
 	 */
-	public function getHTMLTransformFactory(): HTMLTransformFactory {
-		return $this->getService( 'HTMLTransformFactory' );
+	public function getHtmlTransformFactory(): HtmlTransformFactory {
+		return $this->getService( 'HtmlTransformFactory' );
 	}
 
 	/**

@@ -34,7 +34,7 @@ use Wikimedia\Parsoid\Utils\Timing;
  * @since 1.40
  * @unstable should be stable before 1.40 release
  */
-class HTMLTransform {
+class HtmlToContentTransform {
 	/** @var array */
 	private $options = [];
 

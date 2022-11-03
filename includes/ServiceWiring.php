@@ -119,7 +119,7 @@ use MediaWiki\Parser\ParserObserver;
 use MediaWiki\Parser\Parsoid\Config\DataAccess as MWDataAccess;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory as MWPageConfigFactory;
 use MediaWiki\Parser\Parsoid\Config\SiteConfig as MWSiteConfig;
-use MediaWiki\Parser\Parsoid\HTMLTransformFactory;
+use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GrantsLocalization;
@@ -736,8 +736,8 @@ return [
 		);
 	},
 
-	'HTMLTransformFactory' => static function ( MediaWikiServices $services ): HTMLTransformFactory {
-		return new HTMLTransformFactory(
+	'HtmlTransformFactory' => static function ( MediaWikiServices $services ): HtmlTransformFactory {
+		return new HtmlTransformFactory(
 			$services->getService( '_Parsoid' ),
 			$services->getMainConfig()->get( MainConfigNames::ParsoidSettings ),
 			$services->getParsoidPageConfigFactory(),
