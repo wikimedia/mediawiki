@@ -89,8 +89,10 @@ class PageArchive {
 		}, $results ) );
 		$conds = [
 			'ar_namespace' => $ns,
-			$dbr->makeList( [ 'ar_title' => $condTitles ], LIST_OR ) . " OR ar_title " .
-			$dbr->buildLike( $termDb, $dbr->anyString() )
+			$dbr->makeList( [
+				'ar_title' => $condTitles,
+				'ar_title' . $dbr->buildLike( $termDb, $dbr->anyString() ),
+			], LIST_OR ),
 		];
 
 		return self::listPages( $dbr, $conds );
