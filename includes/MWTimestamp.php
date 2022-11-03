@@ -48,35 +48,6 @@ class MWTimestamp extends ConvertibleTimestamp {
 	}
 
 	/**
-	 * Get the timestamp in a human-friendly relative format, e.g., "3 days ago".
-	 *
-	 * Determine the difference between the timestamp and the current time, and
-	 * generate a readable timestamp by returning "<N> <units> ago", where the
-	 * largest possible unit is used.
-	 *
-	 * @since 1.20
-	 * @since 1.22 Uses Language::getHumanTimestamp to produce the timestamp
-	 * @deprecated since 1.26 Use Language::getHumanTimestamp directly
-	 *
-	 * @param MWTimestamp|null $relativeTo The base timestamp to compare to (defaults to now)
-	 * @param UserIdentity|null $user User the timestamp is being generated for
-	 *  (or null to use main context's user)
-	 * @param Language|null $lang Language to use to make the human timestamp
-	 *  (or null to use main context's language)
-	 * @return string Formatted timestamp
-	 */
-	public function getHumanTimestamp(
-		MWTimestamp $relativeTo = null, UserIdentity $user = null, Language $lang = null
-	) {
-		wfDeprecated( __METHOD__, '1.26' );
-		if ( $lang === null ) {
-			$lang = RequestContext::getMain()->getLanguage();
-		}
-
-		return $lang->getHumanTimestamp( $this, $relativeTo, $user );
-	}
-
-	/**
 	 * Adjust the timestamp depending on the given user's preferences.
 	 *
 	 * @since 1.22
