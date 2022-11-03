@@ -183,7 +183,7 @@ class Xml {
 			$timestamp = MWTimestamp::getInstance();
 			$thisMonth = intval( $timestamp->format( 'n' ) );
 			$thisYear = intval( $timestamp->format( 'Y' ) );
-			if ( intval( $encMonth ) > $thisMonth ) {
+			if ( $encMonth > $thisMonth ) {
 				$thisYear--;
 			}
 			$encYear = $thisYear;

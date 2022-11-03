@@ -58,7 +58,9 @@ class Pbkdf2Password extends ParameterizedPassword {
 				true
 			);
 
-			// PHP < 8 raises a warning in case of an error, such as unknown algorithm...
+			// Note: this check is unnecessary in PHP 8.0+, since the warning cases
+			// were all converted to exceptions
+			'@phan-var string|false $hash';
 			if ( !is_string( $hash ) ) {
 				throw new PasswordError( 'Error when hashing password.' );
 			}

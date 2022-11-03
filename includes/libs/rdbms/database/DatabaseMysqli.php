@@ -196,7 +196,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	 */
 	public function lastErrno() {
 		if ( $this->conn instanceof mysqli ) {
-			return (int)$this->conn->errno;
+			return $this->conn->errno;
 		} else {
 			return mysqli_connect_errno();
 		}
