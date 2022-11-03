@@ -1257,7 +1257,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		// Provide a traditional hook point to allow extensions to configure services.
-		Hooks::runner()->onMediaWikiServices( $newServices );
+		$newServices->getHookContainer()->run( 'MediaWikiServices', [ $newServices ] );
 
 		// Use bootstrap config for all configuration.
 		// This allows config overrides via global variables to take effect.
@@ -2529,6 +2529,25 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected function clearHook( $hookName ) {
 		$this->localServices->getHookContainer()->clear( $hookName );
 		$this->temporaryHookHandlers[] = [ $hookName, false ];
+	}
+
+	/**
+	 * Remove all handlers for the given hooks for the duration of the current test case.
+	 * If called without any parameters, this clears all hooks.
+	 *
+	 * @param string[]|null $hookNames
+	 * @since 1.40
+	 */
+	protected function clearHooks( ?array $hookNames = null ) {
+		$hookContainer = $this->localServices->getHookContainer();
+
+		if ( $hookNames === null ) {
+			$hookNames = $hookContainer->getRegisteredHooks();
+		}
+
+		foreach ( $hookNames as $name ) {
+			$this->clearHook( $name );
+		}
 	}
 
 	/**
