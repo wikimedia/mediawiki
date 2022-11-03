@@ -127,7 +127,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			$this->addWhereRange( 'cl_from', $dir, null, null );
 
 			if ( $params['continue'] !== null ) {
-				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int' ] );
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'timestamp', 'int' ] );
 				$op = ( $dir === 'newer' ? '>=' : '<=' );
 				$db = $this->getDB();
 				$this->addWhere( $db->buildComparison( $op, [

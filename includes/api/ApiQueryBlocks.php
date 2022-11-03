@@ -120,7 +120,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$this->addWhereRange( 'ipb_id', $params['dir'], null, null );
 
 		if ( $params['continue'] !== null ) {
-			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int' ] );
+			$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'timestamp', 'int' ] );
 			$op = ( $params['dir'] == 'newer' ? '>=' : '<=' );
 			$this->addWhere( $db->buildComparison( $op, [
 				'ipb_timestamp' => $db->timestamp( $cont[0] ),

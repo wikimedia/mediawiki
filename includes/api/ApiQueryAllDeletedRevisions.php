@@ -306,7 +306,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 					'ar_title' => $cont[1],
 				] ) );
 			} elseif ( $mode == 'all' ) {
-				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'string', 'string', 'int' ] );
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'int', 'string', 'timestamp', 'int' ] );
 				$this->addWhere( $db->buildComparison( $op, [
 					'ar_namespace' => $cont[0],
 					'ar_title' => $cont[1],
@@ -314,7 +314,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 					'ar_id' => $cont[3],
 				] ) );
 			} else {
-				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'string', 'int' ] );
+				$cont = $this->parseContinueParamOrDie( $params['continue'], [ 'timestamp', 'int' ] );
 				$this->addWhere( $db->buildComparison( $op, [
 					'ar_timestamp' => $db->timestamp( $cont[0] ),
 					'ar_id' => $cont[1],
