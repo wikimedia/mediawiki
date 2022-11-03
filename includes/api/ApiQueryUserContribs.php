@@ -117,7 +117,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 
 		$sort = ( $this->params['dir'] == 'newer' ?
 			SelectQueryBuilder::SORT_ASC : SelectQueryBuilder::SORT_DESC );
-		$op = ( $this->params['dir'] == 'older' ? '<' : '>' );
+		$op = ( $this->params['dir'] == 'older' ? '<=' : '>=' );
 
 		// Create an Iterator that produces the UserIdentity objects we need, depending
 		// on which of the 'userprefix', 'userids', 'iprange', or 'user' params
@@ -134,21 +134,20 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$userIter = call_user_func( function () use ( $dbSecondary, $sort, $op, $fname ) {
 				$fromName = false;
 				if ( $this->params['continue'] !== null ) {
-					$continue = explode( '|', $this->params['continue'] );
-					$this->dieContinueUsageIf( count( $continue ) != 4 );
+					$continue = $this->parseContinueParamOrDie( $this->params['continue'],
+						[ 'string', 'string', 'string', 'int' ] );
 					$this->dieContinueUsageIf( $continue[0] !== 'name' );
 					$fromName = $continue[1];
 				}
 
 				$limit = 501;
 				do {
-					$from = $fromName ? "$op= " . $dbSecondary->addQuotes( $fromName ) : false;
 					$usersBatch = $this->userIdentityLookup
 						->newSelectQueryBuilder()
 						->caller( $fname )
 						->limit( $limit )
 						->whereUserNamePrefix( $this->params['userprefix'] )
-						->where( $from ? [ "actor_name $from" ] : [] )
+						->where( $fromName ? $dbSecondary->buildComparison( $op, [ 'actor_name' => $fromName ] ) : [] )
 						->orderByName( $sort )
 						->fetchUserIdentities();
 
@@ -183,14 +182,12 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$this->orderBy = 'id';
 			$this->multiUserMode = count( $ids ) > 1;
 
-			$from = false;
+			$fromId = false;
 			if ( $this->multiUserMode && $this->params['continue'] !== null ) {
-				$continue = explode( '|', $this->params['continue'] );
-				$this->dieContinueUsageIf( count( $continue ) != 4 );
+				$continue = $this->parseContinueParamOrDie( $this->params['continue'],
+					[ 'string', 'int', 'string', 'int' ] );
 				$this->dieContinueUsageIf( $continue[0] !== 'id' && $continue[0] !== 'actor' );
-				$fromId = (int)$continue[1];
-				$this->dieContinueUsageIf( $continue[1] !== (string)$fromId );
-				$from = "$op= $fromId";
+				$fromId = $continue[1];
 			}
 
 			$userIter = $this->userIdentityLookup
@@ -198,7 +195,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				->caller( __METHOD__ )
 				->whereUserIds( $ids )
 				->orderByUserId( $sort )
-				->where( $from ? [ "actor_id $from" ] : [] )
+				->where( $fromId ? $dbSecondary->buildComparison( $op, [ 'actor_id' => $fromId ] ) : [] )
 				->fetchUserIdentities();
 			$batchSize = count( $ids );
 		} elseif ( isset( $this->params['iprange'] ) ) {
@@ -230,13 +227,13 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$userIter = call_user_func( function () use ( $dbSecondary, $sort, $op, $fname, $ipRange ) {
 				[ $start, $end ] = IPUtils::parseRange( $ipRange );
 				if ( $this->params['continue'] !== null ) {
-					$continue = explode( '|', $this->params['continue'] );
-					$this->dieContinueUsageIf( count( $continue ) != 4 );
+					$continue = $this->parseContinueParamOrDie( $this->params['continue'],
+						[ 'string', 'string', 'string', 'int' ] );
 					$this->dieContinueUsageIf( $continue[0] !== 'name' );
 					$fromName = $continue[1];
 					$fromIPHex = IPUtils::toHex( $fromName );
 					$this->dieContinueUsageIf( $fromIPHex === false );
-					if ( $op == '<' ) {
+					if ( $op == '<=' ) {
 						$end = $fromIPHex;
 					} else {
 						$start = $fromIPHex;
@@ -306,20 +303,20 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$this->orderBy = 'name';
 			$this->multiUserMode = count( $names ) > 1;
 
-			$from = false;
+			$fromName = false;
 			if ( $this->multiUserMode && $this->params['continue'] !== null ) {
-				$continue = explode( '|', $this->params['continue'] );
-				$this->dieContinueUsageIf( count( $continue ) != 4 );
+				$continue = $this->parseContinueParamOrDie( $this->params['continue'],
+					[ 'string', 'string', 'string', 'int' ] );
 				$this->dieContinueUsageIf( $continue[0] !== 'name' && $continue[0] !== 'actor' );
 				$fromName = $continue[1];
-				$from = "$op= " . $dbSecondary->addQuotes( $fromName );
 			}
 
 			$userIter = $this->userIdentityLookup
 				->newSelectQueryBuilder()
 				->caller( __METHOD__ )
 				->whereUserNames( array_keys( $names ) )
-				->where( $from ? [ "actor_id $from" ] : [] )
+				// FIXME Why are we comparing a name to an ID? This doesn't look right…
+				->where( $fromName ? $dbSecondary->buildComparison( $op, [ 'actor_id' => $fromName ] ) : [] )
 				->orderByName( $sort )
 				->fetchUserIdentities();
 			$batchSize = count( $names );
