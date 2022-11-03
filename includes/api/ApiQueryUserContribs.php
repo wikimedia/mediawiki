@@ -179,14 +179,14 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				$ids[] = $uid;
 			}
 
-			$this->orderBy = 'id';
+			$this->orderBy = 'actor';
 			$this->multiUserMode = count( $ids ) > 1;
 
 			$fromId = false;
 			if ( $this->multiUserMode && $this->params['continue'] !== null ) {
 				$continue = $this->parseContinueParamOrDie( $this->params['continue'],
 					[ 'string', 'int', 'string', 'int' ] );
-				$this->dieContinueUsageIf( $continue[0] !== 'id' && $continue[0] !== 'actor' );
+				$this->dieContinueUsageIf( $continue[0] !== 'actor' );
 				$fromId = $continue[1];
 			}
 
@@ -300,31 +300,25 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				}
 			}
 
-			$this->orderBy = 'name';
+			$this->orderBy = 'actor';
 			$this->multiUserMode = count( $names ) > 1;
 
-			$fromName = false;
+			$fromId = false;
 			if ( $this->multiUserMode && $this->params['continue'] !== null ) {
 				$continue = $this->parseContinueParamOrDie( $this->params['continue'],
-					[ 'string', 'string', 'string', 'int' ] );
-				$this->dieContinueUsageIf( $continue[0] !== 'name' && $continue[0] !== 'actor' );
-				$fromName = $continue[1];
+					[ 'string', 'int', 'string', 'int' ] );
+				$this->dieContinueUsageIf( $continue[0] !== 'actor' );
+				$fromId = $continue[1];
 			}
 
 			$userIter = $this->userIdentityLookup
 				->newSelectQueryBuilder()
 				->caller( __METHOD__ )
 				->whereUserNames( array_keys( $names ) )
-				// FIXME Why are we comparing a name to an ID? This doesn't look right…
-				->where( $fromName ? $dbSecondary->buildComparison( $op, [ 'actor_id' => $fromName ] ) : [] )
 				->orderByName( $sort )
+				->where( $fromId ? $dbSecondary->buildComparison( $op, [ 'actor_id' => $fromId ] ) : [] )
 				->fetchUserIdentities();
 			$batchSize = count( $names );
-		}
-
-		// The DB query will order by actor so update $this->orderBy to match.
-		if ( $batchSize > 1 ) {
-			$this->orderBy = 'actor';
 		}
 
 		$count = 0;
@@ -647,8 +641,6 @@ class ApiQueryUserContribs extends ApiQueryBase {
 	private function continueStr( $row ) {
 		if ( $this->multiUserMode ) {
 			switch ( $this->orderBy ) {
-				case 'id':
-					return "id|$row->rev_user|$row->rev_timestamp|$row->rev_id";
 				case 'name':
 					return "name|$row->rev_user_text|$row->rev_timestamp|$row->rev_id";
 				case 'actor':
