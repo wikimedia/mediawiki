@@ -1505,8 +1505,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				$thumbNamespaces
 			)
 		);
-		$defaultThumbNamespacesFormatted = (array)array_intersect_key( $thumbNamespacesFormatted, [ NS_FILE => 1 ] );
-		$extraThumbNamespacesFormatted = (array)array_diff_key( $thumbNamespacesFormatted, [ NS_FILE => 1 ] );
+		$defaultThumbNamespacesFormatted =
+			array_intersect_key( $thumbNamespacesFormatted, [ NS_FILE => 1 ] ) ?? [];
+		$extraThumbNamespacesFormatted =
+			array_diff_key( $thumbNamespacesFormatted, [ NS_FILE => 1 ] );
 		if ( $extraThumbNamespacesFormatted ) {
 			$defaultPreferences['search-thumbnail-extra-namespaces'] = [
 				'type' => 'toggle',

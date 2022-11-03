@@ -77,7 +77,7 @@ class BcryptPassword extends ParameterizedPassword {
 		$hash = crypt( $password,
 			sprintf( '$2y$%02d$%s', (int)$this->params['rounds'], $this->args[0] ) );
 
-		if ( !is_string( $hash ) || strlen( $hash ) <= 13 ) {
+		if ( strlen( $hash ) <= 13 ) {
 			throw new PasswordError( 'Error when hashing password.' );
 		}
 
