@@ -1656,7 +1656,7 @@ class LocalFile extends File {
 	 *   reduce the upload time when uploading virtual URLs for which the file
 	 *   info is already known
 	 * @param string|bool $timestamp Timestamp for img_timestamp, or false to use the
-	 *   current time
+	 *   current time. Can be in any format accepted by ConvertibleTimestamp.
 	 * @param Authority|null $uploader object or null to use the context authority
 	 * @param string[] $tags Change tags to add to the log entry and page revision.
 	 *   (This doesn't check $uploader's permissions.)
@@ -1762,7 +1762,7 @@ class LocalFile extends File {
 	 * @param string $pageText
 	 * @param Authority $performer
 	 * @param bool|array $props
-	 * @param string|bool $timestamp
+	 * @param string|bool $timestamp Can be in any format accepted by ConvertibleTimestamp
 	 * @param string[] $tags
 	 * @param bool $createNullRevision Set to false to avoid creation of a null revision on file
 	 *   upload, see T193621
@@ -1826,7 +1826,7 @@ class LocalFile extends File {
 				'img_media_type' => $this->media_type,
 				'img_major_mime' => $this->major_mime,
 				'img_minor_mime' => $this->minor_mime,
-				'img_timestamp' => $timestamp,
+				'img_timestamp' => $dbw->timestamp( $timestamp ),
 				'img_metadata' => $this->getMetadataForDb( $dbw ),
 				'img_sha1' => $this->sha1
 			] + $commentFields + $actorFields,
@@ -1901,7 +1901,7 @@ class LocalFile extends File {
 					'img_media_type' => $this->media_type,
 					'img_major_mime' => $this->major_mime,
 					'img_minor_mime' => $this->minor_mime,
-					'img_timestamp' => $timestamp,
+					'img_timestamp' => $dbw->timestamp( $timestamp ),
 					'img_metadata' => $this->getMetadataForDb( $dbw ),
 					'img_sha1' => $this->sha1
 				] + $commentFields + $actorFields,
@@ -1938,7 +1938,7 @@ class LocalFile extends File {
 		$logEntry->setParameters(
 			[
 				'img_sha1' => $this->sha1,
-				'img_timestamp' => $timestamp,
+				'img_timestamp' => $dbw->timestamp( $timestamp ),
 			]
 		);
 		// Note we keep $logId around since during new image
@@ -2513,7 +2513,7 @@ class LocalFile extends File {
 
 	/**
 	 * @stable to override
-	 * @return bool|string
+	 * @return bool|string TS_MW timestamp, a string with 14 digits
 	 */
 	public function getTimestamp() {
 		$this->load();
