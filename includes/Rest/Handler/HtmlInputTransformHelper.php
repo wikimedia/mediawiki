@@ -42,6 +42,7 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MWUnknownContentModelException;
 use ParserOptions;
+use ParserOutput;
 use Status;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -236,7 +237,7 @@ class HtmlInputTransformHelper {
 		}
 
 		// If an etag is given in the body, use it as the render ID.
-		// fetchOriginalDataFromStash() will detect the Etag format.
+		// Note that we support ETag format in the renderid field.
 		if ( !empty( $body['original']['etag'] ) ) {
 			// @phan-suppress-next-line PhanTypeInvalidDimOffset false positive
 			$body['original']['renderid'] = $body['original']['etag'];
@@ -278,20 +279,24 @@ class HtmlInputTransformHelper {
 
 	/**
 	 * @param PageIdentity $page
-	 * @param array $body
+	 * @param array|string $body Body structure, or an HTML string
 	 * @param array $parameters
-	 * @param RevisionRecord|null $revision
+	 * @param RevisionRecord|null $originalRevision
 	 * @param Language|null $pageLanguage
 	 *
 	 * @throws HttpException
 	 */
 	public function init(
 		PageIdentity $page,
-		array $body,
+		$body,
 		array $parameters,
-		?RevisionRecord $revision = null,
+		?RevisionRecord $originalRevision = null,
 		?Language $pageLanguage = null
 	) {
+		if ( is_string( $body ) ) {
+			$body = [ 'html' => $body ];
+		}
+
 		self::normalizeParameters( $body, $parameters );
 
 		$this->page = $page;
@@ -318,74 +323,34 @@ class HtmlInputTransformHelper {
 			'offsetType' => $body['offsetType'] ?? $this->envOptions['offsetType'],
 		] );
 
-		if ( !isset( $body['original']['html'] ) && !empty( $body['original']['renderid'] ) ) {
-			// If the client asked for a render ID, load original data from stash
-			try {
-				$original = $this->fetchOriginalDataFromStash( $page, $body['original']['renderid'] );
-			} catch ( InvalidArgumentException $ex ) {
-				throw new HttpException(
-					'Bad stash key',
-					400,
-					[
-						'reason' => $ex->getMessage(),
-						'key' => $body['original']['renderid']
-					]
-				);
+		$original = $body['original'] ?? [];
+		$originalRendering = null;
+
+		if ( !isset( $original['html'] ) && !empty( $original['renderid'] ) ) {
+			$key = $original['renderid'];
+			if ( preg_match( '!^(W/)?".*"$!', $key ) ) {
+				$originalRendering = ParsoidRenderID::newFromETag( $key );
+			} else {
+				$originalRendering = ParsoidRenderID::newFromKey( $key );
 			}
-
-			if ( !$original ) {
-				// NOTE: When the client asked for a specific stash key (resp. etag),
-				//       we should fail with a 412 if we don't have the specific rendering.
-				//       On the other hand, of the client only provided a base revision ID,
-				//       we can re-parse and hope for the best.
-
-				throw new HttpException(
-					'No stashed content found for ' . $body['original']['renderid'], 412
-				);
-
-				// TODO: This class should provide getETag and getLastModified methods for use by
-				//       the REST endpoint, to provide proper support for conditionals.
-				//       However, that requires some refactoring of how HTTP conditional checks
-				//       work in the Handler base class.
-			}
-		} elseif ( !isset( $body['original']['html'] ) && !empty( $body['original']['revid'] ) ) {
-			// The client provided a revision ID, but not stash key.
-			// Try to get a rendering for the given revision, and use it as the basis for selser.
-			// Chances are good that the resulting diff will be reasonably clean.
-			// NOTE: If we don't have a revision ID, we should not attempt selser!
-			$original = $this->fetchOriginalDataFromParsoid( $page, $body['original']['revid'], true );
-		} else {
-			$original = $body['original'] ?? [];
-		}
-
-		// NOTE: We may have an 'original' key that contains no html, but
-		//       just wikitext. We can ignore that here, we only care if there is HTML.
-		if ( !empty( $original['html']['headers']['content-type'] ) ) {
-			$vOriginal = ParsoidFormatHelper::parseContentTypeHeader(
-				$original['html']['headers']['content-type']
+		} elseif ( !empty( $original['html'] ) || !empty( $original['data-parsoid'] ) ) {
+			// NOTE: We might have an incomplete PageBundle here, with no HTML but with data-parsoid!
+			// XXX: Do we need to support that, or can that just be a 400?
+			$originalRendering = new PageBundle(
+				$original['html']['body'] ?? '',
+				$original['data-parsoid']['body'] ?? null,
+				$original['data-mw']['body'] ?? null,
+				null, // will be derived from $original['html']['headers']['content-type']
+				$original['html']['headers'] ?? []
 			);
-
-			if ( $vOriginal ) {
-				$this->transform->setOriginalSchemaVersion( $vOriginal );
-			}
 		}
 
-		if ( $revision ) {
-			$this->transform->setOriginalRevision( $revision );
-		} elseif ( isset( $original['revid'] ) ) {
-			$this->transform->setOriginalRevisionId( $original['revid'] );
+		if ( !$originalRevision && !empty( $original['revid'] ) ) {
+			$originalRevision = (int)$original['revid'];
 		}
 
-		if ( isset( $original['html']['body'] ) ) {
-			$this->transform->setOriginalHtml( $original['html']['body'] );
-		}
-
-		if ( isset( $original['data-parsoid']['body'] ) ) {
-			$this->transform->setOriginalDataParsoid( $original['data-parsoid']['body'] );
-		}
-
-		if ( isset( $original['data-mw']['body'] ) ) {
-			$this->transform->setOriginalDataMW( $original['data-mw']['body'] );
+		if ( $originalRevision || $originalRendering ) {
+			$this->setOriginal( $originalRevision, $originalRendering );
 		}
 
 		if ( isset( $body['data-mw']['body'] ) ) {
@@ -401,6 +366,118 @@ class HtmlInputTransformHelper {
 		if ( isset( $original['source']['body'] ) ) {
 			// XXX: do we really have to support wikitext overrides?
 			$this->transform->setOriginalText( $original['source']['body'] );
+		}
+	}
+
+	/**
+	 * Return HTMLTransform object, so additional context can be provided by calling setters on it.
+	 * @return HtmlToContentTransform
+	 */
+	public function getTransform(): HtmlToContentTransform {
+		return $this->transform;
+	}
+
+	/**
+	 * Supply information about the revision and rendering that was the original basis of
+	 * the input HTML. This is used to apply selective serialization (selser), if possible.
+	 *
+	 * @param RevisionRecord|int|null $rev
+	 * @param ParsoidRenderID|PageBundle|ParserOutput|null $originalRendering
+	 */
+	public function setOriginal( $rev, $originalRendering ) {
+		if ( $originalRendering instanceof ParsoidRenderID ) {
+			$renderId = $originalRendering;
+
+			// If the client asked for a render ID, load original data from stash
+			try {
+				$originalRendering = $this->fetchOriginalDataFromStash( $renderId );
+			} catch ( InvalidArgumentException $ex ) {
+				throw new HttpException(
+					'Bad stash key',
+					400,
+					[
+						'reason' => $ex->getMessage(),
+						'key' => "$renderId"
+					]
+				);
+			}
+
+			if ( !$originalRendering ) {
+				// NOTE: When the client asked for a specific stash key (resp. etag),
+				//       we should fail with a 412 if we don't have the specific rendering.
+				//       On the other hand, of the client only provided a base revision ID,
+				//       we can re-parse and hope for the best.
+
+				throw new HttpException(
+					'No stashed content found for ' . $renderId, 412
+				);
+
+				// TODO: This class should provide getETag and getLastModified methods for use by
+				//       the REST endpoint, to provide proper support for conditionals.
+				//       However, that requires some refactoring of how HTTP conditional checks
+				//       work in the Handler base class.
+			}
+
+			if ( !$rev ) {
+				$rev = $renderId->getRevisionID();
+			}
+		} elseif ( !$originalRendering && $rev ) {
+			// The client provided a revision ID, but not stash key.
+			// Try to get a rendering for the given revision, and use it as the basis for selser.
+			// Chances are good that the resulting diff will be reasonably clean.
+			// NOTE: If we don't have a revision ID, we should not attempt selser!
+			$originalRendering = $this->fetchOriginalDataFromParsoid( $rev, true );
+		}
+
+		if ( $originalRendering instanceof ParserOutput ) {
+			$originalRendering = PageBundleParserOutputConverter::pageBundleFromParserOutput( $originalRendering );
+
+			// NOTE: Use the default if we got a ParserOutput object.
+			//       Don't apply the default if we got passed a PageBundle,
+			//       in that case, we want to require the version to be explicit.
+			if ( $originalRendering->version === null && !isset( $originalRendering->headers['content-type'] ) ) {
+				$originalRendering->version = Parsoid::defaultHTMLVersion();
+			}
+		}
+
+		if ( !$originalRendering instanceof PageBundle ) {
+			return;
+		}
+
+		if ( $originalRendering->version !== null ) {
+			$this->transform->setOriginalSchemaVersion( $originalRendering->version );
+		} elseif ( !empty( $originalRendering->headers['content-type'] ) ) {
+			$vOriginal = ParsoidFormatHelper::parseContentTypeHeader(
+				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Silly Phan, we just checked.
+				$originalRendering->headers['content-type']
+			);
+
+			if ( $vOriginal ) {
+				$this->transform->setOriginalSchemaVersion( $vOriginal );
+			}
+		}
+
+		if ( $rev instanceof RevisionRecord ) {
+			$this->transform->setOriginalRevision( $rev );
+		} elseif ( $rev && is_int( $rev ) ) {
+			$this->transform->setOriginalRevisionId( $rev );
+		}
+
+		// NOTE: We might have an incomplete PageBundle here, with no HTML.
+		//       PageBundle::$html is declared to not be nullable, so it would be set to the empty
+		//       string if not given. Note however that it might also be null, since it's a public field.
+		if ( $originalRendering->html !== null && $originalRendering->html !== '' ) {
+			$this->transform->setOriginalHtml( $originalRendering->html );
+		}
+
+		if ( $originalRendering->parsoid !== null ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Silly Phan, we just checked.
+			$this->transform->setOriginalDataParsoid( $originalRendering->parsoid );
+		}
+
+		if ( $originalRendering->mw !== null ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Silly Phan, we just checked.
+			$this->transform->setOriginalDataMW( $originalRendering->mw );
 		}
 	}
 
@@ -453,15 +530,22 @@ class HtmlInputTransformHelper {
 		$response->getBody()->write( $data );
 	}
 
-	private function fetchOriginalDataFromParsoid( PageIdentity $page, ?int $revId, bool $mayParse ): ?array {
+	/**
+	 * @param RevisionRecord|int $rev
+	 * @param bool $mayParse
+	 *
+	 * @return ParserOutput|null
+	 * @throws HttpException
+	 */
+	private function fetchOriginalDataFromParsoid( $rev, bool $mayParse ): ?ParserOutput {
 		$parserOptions = ParserOptions::newFromAnon();
 
 		try {
 			if ( $mayParse ) {
 				$status = $this->parsoidOutputAccess->getParserOutput(
-					$page,
+					$this->page,
 					$parserOptions,
-					$revId
+					$rev
 				);
 
 				if ( !$status->isOK() ) {
@@ -471,9 +555,9 @@ class HtmlInputTransformHelper {
 				$parserOutput = $status->getValue();
 			} else {
 				$parserOutput = $this->parsoidOutputAccess->getCachedParserOutput(
-					$page,
+					$this->page,
 					$parserOptions,
-					$revId
+					$rev
 				);
 			}
 		} catch ( RevisionAccessException $e ) {
@@ -489,19 +573,15 @@ class HtmlInputTransformHelper {
 			return null;
 		}
 
-		$pb = PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput );
-		$renderID = $this->parsoidOutputAccess->getParsoidRenderID( $parserOutput );
-
-		return $this->makeOriginalDataArrayFromPageBundle( $pb, $renderID );
+		return $parserOutput;
 	}
 
-	private function fetchOriginalDataFromStash( PageIdentity $page, string $key ): ?array {
-		if ( preg_match( '!^(W/)?".*"$!', $key ) ) {
-			$renderID = ParsoidRenderID::newFromETag( $key );
-		} else {
-			$renderID = ParsoidRenderID::newFromKey( $key );
-		}
-
+	/**
+	 * @param ParsoidRenderID $renderID
+	 *
+	 * @return PageBundle|null
+	 */
+	private function fetchOriginalDataFromStash( $renderID ): ?PageBundle {
 		$pb = $this->parsoidOutputStash->get( $renderID );
 
 		if ( !$pb ) {
@@ -509,56 +589,27 @@ class HtmlInputTransformHelper {
 			// Try to load it from the parser cache instead.
 			// On a wiki with low edit frequency, there is a good chance that it's still there.
 			try {
-				$original = $this->fetchOriginalDataFromParsoid( $page, $renderID->getRevisionID(), false );
+				$parserOutput = $this->fetchOriginalDataFromParsoid( $renderID->getRevisionID(), false );
+
+				if ( !$parserOutput ) {
+					return null;
+				}
+
+				$cachedRenderID = $this->parsoidOutputAccess->getParsoidRenderID( $parserOutput );
+				if ( $cachedRenderID->getKey() !== $renderID->getKey() ) {
+					// Nothing found in the parser cache, or it's not the correct rendering.
+					return null;
+				}
+
+				$original = PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput );
+				return $original;
 			} catch ( HttpException $e ) {
 				// If the revision isn't found, don't trigger a 404. Return null to trigger a 412.
 				return null;
 			}
-
-			if ( !$original || $original['html']['key'] !== $renderID->getKey() ) {
-				// Nothing found in the parser cache, or it's not the correct rendering.
-				return null;
-			}
-
-			return $original;
 		}
 
-		return $this->makeOriginalDataArrayFromPageBundle( $pb, $renderID );
-	}
-
-	/**
-	 * @param PageBundle $pb
-	 * @param ParsoidRenderID $renderID
-	 *
-	 * @return array
-	 */
-	private function makeOriginalDataArrayFromPageBundle(
-		PageBundle $pb,
-		ParsoidRenderID $renderID
-	): array {
-		$original = [
-			'contentmodel' => $pb->contentmodel,
-			'revid' => $renderID->getRevisionID(),
-			'html' => [
-				'version' => $pb->version,
-				'headers' => $pb->headers ?: [],
-				'body' => $pb->html,
-				'key' => $renderID->getKey(),
-			],
-			'data-parsoid' => [
-				'body' => $pb->parsoid,
-			],
-			'data-mw' => [
-				'body' => $pb->mw,
-			],
-		];
-
-		if ( $pb->version ) {
-			$original['html']['headers']['content-type'] =
-				ParsoidFormatHelper::getContentType( 'html', $pb->version );
-		}
-
-		return $original;
+		return $pb;
 	}
 
 	/**
