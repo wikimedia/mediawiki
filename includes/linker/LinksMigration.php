@@ -72,6 +72,10 @@ class LinksMigration {
 		$this->assertMapping( $table );
 		if ( $this->config->get( self::$mapping[$table]['config'] ) & SCHEMA_COMPAT_READ_NEW ) {
 			$targetId = $this->linkTargetLookup->getLinkTargetId( $linkTarget );
+			// Not found, it shouldn't pick anything
+			if ( !$targetId ) {
+				return [ '1=0' ];
+			}
 			return [
 				self::$mapping[$table]['target_id'] => $targetId,
 			];
