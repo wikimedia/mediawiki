@@ -560,7 +560,6 @@ $wgAutoloadLocalClasses = [
 	'HTMLApiField' => __DIR__ . '/includes/htmlform/fields/HTMLApiField.php',
 	'HTMLAutoCompleteSelectField' => __DIR__ . '/includes/htmlform/fields/HTMLAutoCompleteSelectField.php',
 	'HTMLButtonField' => __DIR__ . '/includes/htmlform/fields/HTMLButtonField.php',
-	'HTMLCacheUpdate' => __DIR__ . '/includes/deferred/HTMLCacheUpdate.php',
 	'HTMLCacheUpdateJob' => __DIR__ . '/includes/jobqueue/jobs/HTMLCacheUpdateJob.php',
 	'HTMLCheckField' => __DIR__ . '/includes/htmlform/fields/HTMLCheckField.php',
 	'HTMLCheckMatrix' => __DIR__ . '/includes/htmlform/fields/HTMLCheckMatrix.php',
