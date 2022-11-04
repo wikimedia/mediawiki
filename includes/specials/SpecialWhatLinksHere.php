@@ -256,14 +256,22 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$conds['imagelinks']['il_from_namespace'] = $namespaces;
 
 		if ( $offsetPageID ) {
-			$rel = $dir === 'prev' ? '<' : '>';
-			$conds['redirect'][] = "rd_from $rel $offsetPageID";
-			$conds['templatelinks'][] = "(tl_from_namespace = $offsetNamespace AND tl_from $rel $offsetPageID " .
-				"OR tl_from_namespace $rel $offsetNamespace)";
-			$conds['pagelinks'][] = "(pl_from_namespace = $offsetNamespace AND pl_from $rel $offsetPageID " .
-				"OR pl_from_namespace $rel $offsetNamespace)";
-			$conds['imagelinks'][] = "(il_from_namespace = $offsetNamespace AND il_from $rel $offsetPageID " .
-				"OR il_from_namespace $rel $offsetNamespace)";
+			$op = $dir === 'prev' ? '<' : '>';
+			$conds['redirect'][] = $dbr->buildComparison( $op, [
+				'rd_from' => $offsetPageID,
+			] );
+			$conds['templatelinks'][] = $dbr->buildComparison( $op, [
+				'tl_from_namespace' => $offsetNamespace,
+				'tl_from' => $offsetPageID,
+			] );
+			$conds['pagelinks'][] = $dbr->buildComparison( $op, [
+				'pl_from_namespace' => $offsetNamespace,
+				'pl_from' => $offsetPageID,
+			] );
+			$conds['imagelinks'][] = $dbr->buildComparison( $op, [
+				'il_from_namespace' => $offsetNamespace,
+				'il_from' => $offsetPageID,
+			] );
 		}
 
 		if ( $hideredirs ) {
