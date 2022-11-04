@@ -351,6 +351,12 @@ class HtmlInputTransformHelper {
 
 		if ( $originalRevision || $originalRendering ) {
 			$this->setOriginal( $originalRevision, $originalRendering );
+		} else {
+			if ( $this->page->exists() ) {
+				$this->stats->increment( 'html_input_transform.original_html.not_given.page_exists' );
+			} else {
+				$this->stats->increment( 'html_input_transform.original_html.not_given.page_not_exist' );
+			}
 		}
 
 		if ( isset( $body['data-mw']['body'] ) ) {
@@ -392,6 +398,7 @@ class HtmlInputTransformHelper {
 			try {
 				$originalRendering = $this->fetchOriginalDataFromStash( $renderId );
 			} catch ( InvalidArgumentException $ex ) {
+				$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.bad' );
 				throw new HttpException(
 					'Bad stash key',
 					400,
@@ -427,6 +434,14 @@ class HtmlInputTransformHelper {
 			// Chances are good that the resulting diff will be reasonably clean.
 			// NOTE: If we don't have a revision ID, we should not attempt selser!
 			$originalRendering = $this->fetchOriginalDataFromParsoid( $rev, true );
+
+			if ( $originalRendering ) {
+				$this->stats->increment( 'html_input_transform.original_html.given.as_revid.found' );
+			} else {
+				$this->stats->increment( 'html_input_transform.original_html.given.as_revid.not_found' );
+			}
+		} elseif ( $originalRendering ) {
+			$this->stats->increment( 'html_input_transform.original_html.given.verbatim' );
 		}
 
 		if ( $originalRendering instanceof ParserOutput ) {
@@ -584,7 +599,12 @@ class HtmlInputTransformHelper {
 	private function fetchOriginalDataFromStash( $renderID ): ?PageBundle {
 		$pb = $this->parsoidOutputStash->get( $renderID );
 
-		if ( !$pb ) {
+		if ( $pb ) {
+			$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.' .
+				'stash_hit.found.hit' );
+
+			return $pb;
+		} else {
 			// Looks like the rendering is gone from stash (or the client send us a bogus key).
 			// Try to load it from the parser cache instead.
 			// On a wiki with low edit frequency, there is a good chance that it's still there.
@@ -592,24 +612,33 @@ class HtmlInputTransformHelper {
 				$parserOutput = $this->fetchOriginalDataFromParsoid( $renderID->getRevisionID(), false );
 
 				if ( !$parserOutput ) {
+					$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.' .
+						'stash_miss_pc_fallback.not_found.miss' );
 					return null;
 				}
 
 				$cachedRenderID = $this->parsoidOutputAccess->getParsoidRenderID( $parserOutput );
 				if ( $cachedRenderID->getKey() !== $renderID->getKey() ) {
-					// Nothing found in the parser cache, or it's not the correct rendering.
+					$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.' .
+						'stash_miss_pc_fallback.not_found.mismatch' );
+
+					// It's not the correct rendering.
 					return null;
 				}
 
-				$original = PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput );
-				return $original;
+				$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.' .
+					'stash_miss_pc_fallback.found.hit' );
+
+				$pb = PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput );
+				return $pb;
 			} catch ( HttpException $e ) {
+				$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.' .
+					'stash_miss_pc_fallback.not_found.failed' );
+
 				// If the revision isn't found, don't trigger a 404. Return null to trigger a 412.
 				return null;
 			}
 		}
-
-		return $pb;
 	}
 
 	/**

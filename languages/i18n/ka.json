@@ -879,7 +879,6 @@
 	"mergehistory-comment": "გადატანა[[:$1]]-ის [[:$2]]-ში: $3",
 	"mergehistory-same-destination": "თავდაპირველი და სამიზნე გვერდები უნდა განსხვავდებოდეს.",
 	"mergehistory-reason": "მიზეზი:",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "გაერთიანებათა ჟურნალი",
 	"revertmerge": "შერწყმის გაუქმება",
 	"mergelogpagetext": "ქვემოთ წარმოდგენილია ამ გვერდის ბოლო გაერთიანებათა სია",

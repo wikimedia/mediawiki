@@ -2,7 +2,9 @@
 
 namespace MediaWiki\Tests\Rest\Helper;
 
+use BufferingStatsdDataFactory;
 use Exception;
+use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Message\Converter;
@@ -74,16 +76,19 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param array $transformMethodOverrides
+	 * @param StatsdDataFactory|null $stats
 	 *
 	 * @return HtmlInputTransformHelper
 	 * @throws Exception
 	 */
-	private function newHelper( $transformMethodOverrides = [] ): HtmlInputTransformHelper {
+	private function newHelper(
+		$transformMethodOverrides = [], StatsdDataFactory $stats = null
+	): HtmlInputTransformHelper {
 		// TODO: $cache = $cache ?: new EmptyBagOStuff();
 		// TODO: $stash = new SimpleParsoidOutputStash( $cache, 1 );
 
 		$helper = new HtmlInputTransformHelper(
-			new NullStatsdDataFactory(),
+			$stats ?: new NullStatsdDataFactory(),
 			$this->newMockHtmlTransformFactory( $transformMethodOverrides ),
 			$this->getServiceContainer()->getParsoidOutputStash(),
 			$this->getServiceContainer()->getParsoidOutputAccess()
@@ -681,8 +686,10 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			$page = PageIdentityValue::localIdentity( 7, NS_MAIN, $body['pageName'] ?? 'HtmlInputTransformHelperTest' );
 		}
 
+		$stats = new BufferingStatsdDataFactory( '' );
+
 		// TODO: find a way to test $pageLanguage
-		$helper = $this->newHelper();
+		$helper = $this->newHelper( [], $stats );
 		$helper->init( $page, $body, $params );
 
 		$response = $this->createResponse();
@@ -698,6 +705,28 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 		foreach ( (array)$expectedText as $exp ) {
 			$this->assertStringContainsString( $exp, $text );
+		}
+
+		// Ensure that exactly one key with the given prefix is set.
+		// This ensures that the number of keys set always adds up to 100%,
+		// for any set of keys under this prefix.
+		$this->assertMetricsCount( 1, $stats, 'html_input_transform.original_html.' );
+	}
+
+	private function assertMetricsCount( $expected, BufferingStatsdDataFactory $metrics, $prefix = '' ) {
+		$keys = [];
+		foreach ( $metrics->getData() as $datum ) {
+			if ( str_starts_with( $datum->getKey(), $prefix ) ) {
+				$keys[] = $datum->getKey();
+			}
+		}
+
+		$this->addToAssertionCount( 1 );
+		if ( count( $keys ) !== $expected ) {
+			$this->fail(
+				"Failed to assert that the number of metrics keys starting with '$prefix' is $expected. Keys: \n\t"
+				. implode( "\n\t", $keys )
+			);
 		}
 	}
 
@@ -786,7 +815,9 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			'html' => $html
 		];
 
-		$helper = $this->newHelper();
+		$stats = new BufferingStatsdDataFactory( '' );
+
+		$helper = $this->newHelper( [], $stats );
 		$helper->init( $page, $body, $params );
 
 		$helper->setOriginal( $rev, $originalRendering );
@@ -800,6 +831,15 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 		foreach ( (array)$expectedText as $exp ) {
 			$this->assertStringContainsString( $exp, $text );
+		}
+
+		// Ensure that exactly one key with the given prefix is set.
+		// This ensures that the number of keys set always adds up to 100%,
+		// for any set of keys under this prefix.
+		if ( $rev || $originalRendering ) {
+			$this->assertMetricsCount( 1, $stats, 'html_input_transform.original_html.given' );
+		} else {
+			$this->assertMetricsCount( 1, $stats, 'html_input_transform.original_html.not_given' );
 		}
 	}
 

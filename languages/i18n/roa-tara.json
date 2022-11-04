@@ -901,7 +901,6 @@
 	"mergehistory-comment": "Squagghiete [[:$1]] jndr'à [[:$2]]: $3",
 	"mergehistory-same-destination": "Le pàggene sorgende e de destinazione non ge ponne essere le stesse",
 	"mergehistory-reason": "Mutive:",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "Archivije de le scuagghiaminde",
 	"revertmerge": "Squascie",
 	"mergelogpagetext": "Stte stè 'na liste de le cchiù recende scuagghiaminde de le cunde de le vosce jndr'à 'n'otre.",

@@ -900,7 +900,6 @@
 	"mergehistory-comment": "Yhisti sivun [[:$1]] sivuun [[:$2]]: $3",
 	"mergehistory-same-destination": "Lähe- ja kohdesivut eivät voi olla samat",
 	"mergehistory-reason": "Syy:",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "Yhistämisloki",
 	"revertmerge": "Pane takashiin yhistäminen",
 	"mergelogpagetext": "Alla oon loki viimeisimmistä muutoshistuurioiden yhistämisistä.",

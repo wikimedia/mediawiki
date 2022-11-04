@@ -979,7 +979,6 @@
 	"mergehistory-reason": "Lý do:",
 	"mergehistory-source-deleted-reason": "Trang gốc tự động bị xóa sau khi trộn lịch sử vì mô hình nội dung của nó không hỗ trợ chức năng đổi hướng và không còn phiên bản khác",
 	"mergehistory-source-deleted": "Ngoài ra, [[:$1]] đã bị xóa vì nó không còn phiên bản (trừ phiên bản ẩn) và mô hình nội dung của nó không hỗ trợ chức năng đổi hướng.",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "Nhật trình trộn",
 	"revertmerge": "Bỏ trộn",
 	"mergelogpagetext": "Dưới đây là danh sách các thao tác trộn mới nhất của lịch sử một trang vào trang khác.",

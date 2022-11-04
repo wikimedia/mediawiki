@@ -667,7 +667,6 @@
 	"mergehistory-comment": "[[:$1]] gearfoege mei [[:$2]]: $3",
 	"mergehistory-same-destination": "De boarneside en de doelside kinne net deselde wêze",
 	"mergehistory-reason": "Reden:",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6 $7",
 	"mergelog": "Gearfoegingslogboek",
 	"revertmerge": "Gearfoeging ûngedien meitsje",
 	"mergelogpagetext": "Hjirûnder stiet in list fan resinte gearfoegings fan ien side-skiednis nei in oaren.",

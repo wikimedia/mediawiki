@@ -1011,7 +1011,6 @@
 	"mergehistory-reason": "Alasan:",
 	"mergehistory-source-deleted-reason": "Halaman sumber secara otomatis dihapus setelah penggabungan riwayat karena model kontennya tidak mendukung pengalihan dan tidak ada revisi tersisa.",
 	"mergehistory-source-deleted": "Selain itu, [[:$1]] telah dihapus karena tidak lagi memiliki revisi yang bisa dilihat dan model kontennya tidak mendukung meninggalkan pengalihan.",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "Log penggabungan",
 	"revertmerge": "Batalkan penggabungan",
 	"mergelogpagetext": "Di bawah ini adalah daftar penggabungan sejarah halaman ke halaman yang lain.",
