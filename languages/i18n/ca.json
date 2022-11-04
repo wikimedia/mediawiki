@@ -998,7 +998,6 @@
 	"mergehistory-reason": "Motiu:",
 	"mergehistory-source-deleted-reason": "La pàgina d'origen s'ha eliminat automàticament després de la fusió de l'historial atès que el seu model de contingut no permet les redireccions i no hi quedava cap revisió",
 	"mergehistory-source-deleted": "A més a més, s'ha suprimit [[:$1]] perquè ja no té cap revisió visible i el seu model de contingut no en permet les redireccions.",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "Registre de fusions",
 	"revertmerge": "Desfusiona",
 	"mergelogpagetext": "A sota hi ha una llista de les fusions més recents d'una pàgina d'historial en una altra.",

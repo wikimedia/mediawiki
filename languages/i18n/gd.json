@@ -820,7 +820,6 @@
 	"mergehistory-comment": "Chaidh [[:$1]] a cho-aonadh dha [[:$2]]: $3",
 	"mergehistory-same-destination": "Chan fhaod an tùs-duilleag is an duilleag targaide a bhith co-ionnann",
 	"mergehistory-reason": "Adhbhar:",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "Loga a' cho-aonaidh",
 	"revertmerge": "Dì-aonaich",
 	"mergelogpagetext": "Chì thu liosta nan co-aonaidhean as ùire eadar eachdraidh dhuilleagan gu h-ìosail.",

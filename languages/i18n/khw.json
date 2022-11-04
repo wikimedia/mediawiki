@@ -560,7 +560,6 @@
 	"revdelete-log": "وجہ:",
 	"revdel-restore": "ظاہریتو تبدیل کورے",
 	"mergehistory-reason": "وجہ:",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "نوشتو انضمام",
 	"revertmerge": "غیر ضم",
 	"history-title": "تاریخچہ \"$1\"",

@@ -1003,7 +1003,6 @@
 	"mergehistory-same-destination": "Lähde- ja kohdesivut eivät voi olla samat",
 	"mergehistory-reason": "Syy:",
 	"mergehistory-source-deleted": "Lisäksi [[:$1]] on poistettu, koska siinä ei enää ole näkyviä versioita ja sen sisältömalli ei tue ohjauksia.",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "Yhdistämisloki",
 	"revertmerge": "Peru yhdistäminen",
 	"mergelogpagetext": "Alla on loki viimeisimmistä muutoshistorioiden yhdistämisistä.",

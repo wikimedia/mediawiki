@@ -1047,7 +1047,6 @@
 	"mergehistory-reason": "Sebep:",
 	"mergehistory-source-deleted-reason": "Kaynak sayfa, içerik modeli yeniden yönlendirmeleri desteklemediği ve revizyon kalmadığı için geçmiş birleştirmeden sonra otomatik olarak silinir",
 	"mergehistory-source-deleted": "Ayrıca [[:$1]], artık görünür bir revizyona sahip olmadığı ve içerik modeli yeniden yönlendirmelerden ayrılmayı desteklemediği için silindi.",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6 $7",
 	"mergelog": "Birleştirme günlüğü",
 	"revertmerge": "Ayır",
 	"mergelogpagetext": "Aşağıdaki liste, sayfaların geçmiş versiyonlarının birbirleriyle en son birleştirilmelerini içerir",

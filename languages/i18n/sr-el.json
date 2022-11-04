@@ -937,7 +937,6 @@
 	"mergehistory-comment": "Stranica [[:$1]] je spojena u [[:$2]]: $3",
 	"mergehistory-same-destination": "Izvorna i odredišna stranica ne mogu biti iste",
 	"mergehistory-reason": "Razlog:",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "Dnevnik objedinjavanja",
 	"revertmerge": "rastavi",
 	"mergelogpagetext": "Ispod se nalazi spisak najnovijih objedinjavanja istorija jedne stranice u drugu.",

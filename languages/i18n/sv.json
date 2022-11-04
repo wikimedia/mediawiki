@@ -1014,7 +1014,6 @@
 	"mergehistory-reason": "Anledning:",
 	"mergehistory-source-deleted-reason": "Källsidan raderades automatiskt efter sammanslagningen av historiken eftersom dess innehållsmodell saknar stöd för omdirigeringar och det finns inga versioner kvar.",
 	"mergehistory-source-deleted": "Dessutom har [[:$1]] raderats eftersom den inte längre har några synliga versioner och dess innehållsmodell saknar stöd för att lämna omdirigeringar.",
-	"mergehistory-revisionrow": "$1($2) $3 . .$4 $5 $6",
 	"mergelog": "Sammanfogningslogg",
 	"revertmerge": "Återställ infogning",
 	"mergelogpagetext": "Detta är en lista över de senaste sammansfogningarna av sidhistoriker.",

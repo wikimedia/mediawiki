@@ -881,7 +881,6 @@
 	"mergehistory-comment": "Sameinaði [[:$1]] inn í [[:$2]]: $3",
 	"mergehistory-same-destination": "Upprunasíðan og marksíðan mega ekki vera sú sama",
 	"mergehistory-reason": "Ástæða:",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "Sameiningar skrá",
 	"revertmerge": "Taka aftur sameiningu",
 	"mergelogpagetext": "Þetta er skrá yfir síðustu sameiningar einnar síðu við aðra.",

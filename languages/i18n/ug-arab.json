@@ -806,7 +806,6 @@
 	"mergehistory-comment": "[[:$1]] نى [[:$2]] غا بىرلەشتۈرۈلدى: $3",
 	"mergehistory-same-destination": "مەنبە بەت بىلەن نىشان بەت ئوخشاش بولسا بولمايدۇ",
 	"mergehistory-reason": "سەۋەب:",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "بىرلەشتۈرۈش خاتىرىسى",
 	"revertmerge": "پارچىلا",
 	"mergelogpagetext": "تۆۋەندىكىسى يېقىندا بىر بەتنىڭ تۈزىتىش تارىخىنىڭ باشقا بىر بەتكە بىرلەشتۈرۈلگەنلىك تىزىملىكى",

@@ -961,7 +961,6 @@
 	"mergehistory-reason": "Motiv:",
 	"mergehistory-source-deleted-reason": "Pagina sursă ștearsă automată după unirea istoricului deoarece modelul său de conținut nu suportă redirecționări și nicio revizuire rămasă",
 	"mergehistory-source-deleted": "Adițional, [[:$1]] a fost ștearsă pentru că nu mai are vreo revizie vizibilă, iar modelul său de conținut nu suportă lăsarea de redirecționări.",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "Jurnal unificări",
 	"revertmerge": "Anulează îmbinarea",
 	"mergelogpagetext": "Mai jos este o listă a celor mai recente combinări ale istoricului unei pagini cu al alteia.",
