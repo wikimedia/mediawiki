@@ -24,9 +24,9 @@ class DatabaseFactoryTest extends PHPUnit\Framework\TestCase {
 			'dbname' => 'i'
 		];
 
-		$this->assertInstanceOf( DatabaseMysqli::class, $factory->create( 'mysqli', $p, $m ) );
-		$this->assertInstanceOf( DatabaseMysqli::class, $factory->create( 'MySqli', $p, $m ) );
-		$this->assertInstanceOf( DatabaseMysqli::class, $factory->create( 'MySQLi', $p, $m ) );
+		$this->assertInstanceOf( DatabaseMysqli::class, $factory->create( 'mysql', $p, $m ) );
+		$this->assertInstanceOf( DatabaseMysqli::class, $factory->create( 'MySql', $p, $m ) );
+		$this->assertInstanceOf( DatabaseMysqli::class, $factory->create( 'MySQL', $p, $m ) );
 		$this->assertInstanceOf( DatabasePostgres::class, $factory->create( 'postgres', $p, $m ) );
 		$this->assertInstanceOf( DatabasePostgres::class, $factory->create( 'Postgres', $p, $m ) );
 
