@@ -2469,6 +2469,58 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 			[ 'WANCache:improper-key', 'internal' ],
 		];
 	}
+
+	/**
+	 * @covers WANObjectCache::getWithSetCallback
+	 * @covers WANObjectCache::get
+	 * @covers WANObjectCache::set
+	 * @dataProvider provideCoalesceAndMcrouterSettings
+	 * @param array $params
+	 * @param string|null $keyNeedle
+	 */
+	public function testSegmentableValues( array $params, $keyNeedle ) {
+		list( $cache, $bag ) = $this->newWanCache( $params );
+		$mockWallClock = 1549343530.0;
+		$cache->setMockTime( $mockWallClock );
+		$key = $cache->makeGlobalKey( 'z', wfRandomString() );
+
+		$tiny = 418;
+		$small = wfRandomString( 32 );
+		// 64 * 8 * 32768 = 16 MiB, which will trigger segmentation
+		// assuming segmentationSize at default of 8 MiB.
+		$big = str_repeat( wfRandomString( 32 ) . '-' . wfRandomString( 32 ), 32768 );
+
+		$cases = [ 'tiny' => $tiny, 'small' => $small, 'big' => $big ];
+		foreach ( $cases as $case => $value ) {
+			$cache->set( $key, $value, 10, [ 'segmentable' => 1 ] );
+			$this->assertEquals( $value, $cache->get( $key ), "get $case" );
+			$this->assertEquals( [ $key => $value ], $cache->getMulti( [ $key ] ), "get $case" );
+
+			$this->assertTrue( $cache->delete( $key ), "delete $case" );
+			$this->assertFalse( $cache->get( $key ), "deleted $case" );
+			$this->assertEquals( [], $cache->getMulti( [ $key ] ), "deleted $case" );
+			$mockWallClock += 40;
+
+			$v = $cache->getWithSetCallback(
+				$key,
+				10,
+				static function ( $cache, $key, $oldValue ) use ( $value ) {
+					return "@$value";
+				},
+				[ 'segmentable' => 1 ]
+			);
+			$this->assertEquals( "@$value", $v, "get $case" );
+			$this->assertEquals( "@$value", $cache->get( $key ), "get $case" );
+
+			$this->assertTrue(
+				$cache->delete( $key ),
+				"prune $case"
+			);
+			$this->assertFalse( $cache->get( $key ), "pruned $case" );
+			$this->assertEquals( [], $cache->getMulti( [ $key ] ), "pruned $case" );
+			$mockWallClock += 40;
+		}
+	}
 }
 
 class McrouterHashBagOStuff extends HashBagOStuff {
