@@ -126,8 +126,8 @@ describe( 'Page Source', () => {
 
 			assert.match( text, /Гизлилик эсасы/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
-			assert.match( headers[ 'content-language' ], /crh-cyrl/ );
-			assert.match( headers.etag, /crh-cyrl/ );
+			assert.match( headers[ 'content-language' ], /crh-cyrl/i );
+			assert.match( headers.etag, /crh-cyrl/i );
 		} );
 	} );
 
@@ -177,13 +177,13 @@ describe( 'Page Source', () => {
 
 			assert.match( text, /Гизлилик эсасы/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
-			assert.match( headers.etag, /crh-cyrl/ );
+			assert.match( headers.etag, /crh-cyrl/i );
 
 			// Since with_html returns JSON, content language is not set
 			// but if its set, we expect it to be set correctly.
 			const contentLanguageHeader = headers[ 'content-language' ];
 			if ( contentLanguageHeader ) {
-				assert.match( headers[ 'content-language' ], /crh-cyrl/ );
+				assert.match( headers[ 'content-language' ], /crh-cyrl/i );
 			}
 		} );
 	} );
