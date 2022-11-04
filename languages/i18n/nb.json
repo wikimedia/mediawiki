@@ -3073,6 +3073,7 @@
 	"pageinfo-default-sort": "Standardsorteringsnøkkel",
 	"pageinfo-length": "Sidestørrelse (i byte)",
 	"pageinfo-namespace": "Navnerom",
+	"pageinfo-namespace-id": "Navneroms-ID",
 	"pageinfo-article-id": "Side-ID",
 	"pageinfo-language": "Språk for sideinnholdet",
 	"pageinfo-language-change": "endre",

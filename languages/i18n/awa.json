@@ -907,7 +907,6 @@
 	"mergehistory-comment": "[[:$2]] में [[:$1]] मिलाइ गय: $3",
 	"mergehistory-same-destination": "स्रोत अउर लक्ष्य पन्ना एक्कै नाई होई सकत हैं",
 	"mergehistory-reason": "कारण:",
-	"mergehistory-revisionrow": "$1 ($2) $3 . . $4 $5 $6",
 	"mergelog": "मिलावेक लॉग",
 	"revertmerge": "अलग करा जाअ",
 	"mergelogpagetext": "नीचे उ पन्नन कय सूची है जवने कय इतिहास हालिए में दूसरे पन्ना में मिलाइ ग रहा।",
