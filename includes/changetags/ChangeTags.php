@@ -248,7 +248,7 @@ class ChangeTags {
 	 * @since 1.34
 	 * @param string $tag
 	 * @param MessageLocalizer $context
-	 * @return Message|bool Tag description, or false if tag is to be hidden.
+	 * @return Message|false Tag description, or false if tag is to be hidden.
 	 */
 	public static function tagShortDescriptionMessage( $tag, MessageLocalizer $context ) {
 		$msg = $context->msg( "tag-$tag" );
@@ -277,7 +277,7 @@ class ChangeTags {
 	 *
 	 * @param string $tag
 	 * @param MessageLocalizer $context
-	 * @return string|bool Tag description or false if tag is to be hidden.
+	 * @return string|false Tag description or false if tag is to be hidden.
 	 * @since 1.25 Returns false if tag is to be hidden.
 	 */
 	public static function tagDescription( $tag, MessageLocalizer $context ) {
@@ -294,7 +294,7 @@ class ChangeTags {
 	 *
 	 * @param string $tag
 	 * @param MessageLocalizer $context
-	 * @return Message|bool Message object of the tag long description or false if
+	 * @return Message|false Message object of the tag long description or false if
 	 *  there is no description.
 	 */
 	public static function tagLongDescriptionMessage( $tag, MessageLocalizer $context ) {

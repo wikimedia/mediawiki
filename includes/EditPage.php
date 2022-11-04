@@ -225,7 +225,7 @@ class EditPage implements IEditObject {
 	private $mParserOutput;
 
 	/**
-	 * @var RevisionRecord|bool|null
+	 * @var RevisionRecord|false|null
 	 *
 	 * A RevisionRecord corresponding to $this->editRevId or $this->edittime
 	 */
@@ -369,7 +369,7 @@ class EditPage implements IEditObject {
 	/** @var bool */
 	private $edit;
 
-	/** @var bool|int */
+	/** @var int|false */
 	private $contentLength = false;
 
 	/**
@@ -1888,7 +1888,7 @@ class EditPage implements IEditObject {
 
 	/**
 	 * Attempt submission
-	 * @param array|bool &$resultDetails See docs for $result in internalAttemptSave @phan-output-reference
+	 * @param array|false &$resultDetails See docs for $result in internalAttemptSave @phan-output-reference
 	 * @throws UserBlockedError|ReadOnlyError|ThrottledError|PermissionsError
 	 * @return Status
 	 */
@@ -1923,7 +1923,7 @@ class EditPage implements IEditObject {
 	 * Handle status, such as after attempt save
 	 *
 	 * @param Status $status
-	 * @param array|bool $resultDetails
+	 * @param array|false $resultDetails
 	 *
 	 * @throws ErrorPageError
 	 * @return bool False, if output is done, true if rest of the form should be displayed
@@ -3074,7 +3074,7 @@ class EditPage implements IEditObject {
 	 * $this->allowNonTextContent to true to allow editing of non-textual
 	 * content.
 	 *
-	 * @param Content|null|bool|string $content
+	 * @param Content|null|false|string $content
 	 * @return string|false|null The editable text form of the content.
 	 *
 	 * @throws MWException If $content is not an instance of TextContent and
@@ -3100,8 +3100,8 @@ class EditPage implements IEditObject {
 	 * $this->allowNonTextContent to true to allow editing of non-textual
 	 * content.
 	 *
-	 * @param string|null|bool $text Text to unserialize
-	 * @return Content|bool|null The content object created from $text. If $text was false
+	 * @param string|null|false $text Text to unserialize
+	 * @return Content|false|null The content object created from $text. If $text was false
 	 *   or null, then false or null will be returned instead.
 	 *
 	 * @throws MWException If unserializing the text results in a Content
@@ -4839,7 +4839,7 @@ class EditPage implements IEditObject {
 	/**
 	 * Show "your edit contains spam" page with your diff and text
 	 *
-	 * @param string|array|bool $match Text (or array of texts) which triggered one or more filters
+	 * @param string|array|false $match Text (or array of texts) which triggered one or more filters
 	 */
 	public function spamPageWithContent( $match = false ) {
 		$this->textbox2 = $this->textbox1;

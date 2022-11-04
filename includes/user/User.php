@@ -222,7 +222,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/** @var AbstractBlock|null */
 	private $mBlock;
 
-	/** @var AbstractBlock|bool */
+	/** @var AbstractBlock|false */
 	private $mBlockedFromCreateAccount = false;
 
 	/** @var int User::READ_* constant bitfield used to load data */
@@ -579,7 +579,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 *   - 'creatable'  Valid for batch processes, login and account creation,
 	 *  except that true is accepted as an alias for 'valid', for BC.
 	 *
-	 * @return User|bool User object, or false if the username is invalid
+	 * @return User|false User object, or false if the username is invalid
 	 *  (e.g. if it contains illegal characters or is an IP address). If the
 	 *  username is not present in the database, the result will be a user object
 	 *  with a name, zero user ID and default settings.
@@ -687,7 +687,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @param int|null $userId User ID, if known
 	 * @param string|null $userName User name, if known
 	 * @param int|null $actorId Actor ID, if known
-	 * @param bool|string $dbDomain remote wiki to which the User/Actor ID applies, or false if none
+	 * @param string|false $dbDomain remote wiki to which the User/Actor ID applies, or false if none
 	 * @return User
 	 */
 	public static function newFromAnyId( $userId, $userName, $actorId, $dbDomain = false ) {
@@ -1038,7 +1038,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @note This no longer clears uncached lazy-initialised properties;
 	 *       the constructor does that instead.
 	 *
-	 * @param string|bool $name
+	 * @param string|false $name
 	 * @param int|null $actorId
 	 */
 	public function loadDefaults( $name = false, $actorId = null ) {
@@ -1965,7 +1965,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * Set the random token (used for persistent authentication)
 	 * Called from loadDefaults() among other places.
 	 *
-	 * @param string|bool $token If specified, set the token to this value
+	 * @param string|false $token If specified, set the token to this value
 	 */
 	public function setToken( $token = false ) {
 		$this->load();
@@ -2123,7 +2123,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * resetting it if it's empty (and saving changes).
 	 *
 	 * @param string $oname The option name to retrieve the token from
-	 * @return string|bool User's current value for the option, or false if this option is disabled.
+	 * @return string|false User's current value for the option, or false if this option is disabled.
 	 * @see resetTokenFromOption()
 	 * @see getOption()
 	 * @deprecated since 1.26 Applications should use the OAuth extension
@@ -2155,7 +2155,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * *Does not* save user's preferences (similarly to UserOptionsManager::setOption()).
 	 *
 	 * @param string $oname The option name to reset the token in
-	 * @return string|bool New token value, or false if this option is disabled.
+	 * @return string|false New token value, or false if this option is disabled.
 	 * @see getTokenFromOption()
 	 * @see UserOptionsManager::setOption
 	 */
@@ -2844,7 +2844,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Get whether the user is explicitly blocked from account creation.
 	 * @deprecated since 1.37. Instead use Authority::authorize* for createaccount permission.
-	 * @return bool|AbstractBlock
+	 * @return AbstractBlock|false
 	 */
 	public function isBlockedFromCreateAccount() {
 		$this->getBlockedStatus();
@@ -3244,7 +3244,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Get the timestamp of account creation.
 	 *
-	 * @return string|bool|null Timestamp of account creation, false for
+	 * @return string|false|null Timestamp of account creation, false for
 	 *  non-existent/anonymous user accounts, or null if existing account
 	 *  but information is not in database.
 	 */

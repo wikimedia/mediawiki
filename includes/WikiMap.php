@@ -166,7 +166,7 @@ class WikiMap {
 	 * @param string $page Page name (must be normalised before calling this function!)
 	 * @param string|null $fragmentId
 	 *
-	 * @return string|bool URL or false if the wiki was not found
+	 * @return string|false URL or false if the wiki was not found
 	 */
 	public static function getForeignURL( $wikiID, $page, $fragmentId = null ) {
 		$wiki = self::getWiki( $wikiID );
@@ -218,7 +218,7 @@ class WikiMap {
 
 	/**
 	 * @param string $url
-	 * @return bool|string Wiki ID or false
+	 * @return string|false Wiki ID or false
 	 * @since 1.30
 	 */
 	public static function getWikiFromUrl( $url ) {

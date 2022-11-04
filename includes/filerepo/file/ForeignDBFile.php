@@ -30,7 +30,7 @@ use Wikimedia\Rdbms\DBUnexpectedError;
 class ForeignDBFile extends LocalFile {
 
 	/**
-	 * @return ForeignDBRepo|bool
+	 * @return ForeignDBRepo|false
 	 */
 	public function getRepo() {
 		return $this->repo;

@@ -863,7 +863,7 @@ class Parser {
 	 *
 	 * @param string $text Text extension wants to have parsed
 	 * @param-taint $text escapes_htmlnoent
-	 * @param bool|PPFrame $frame The frame to use for expanding any template variables
+	 * @param PPFrame|false $frame The frame to use for expanding any template variables
 	 * @return string UNSAFE half-parsed HTML
 	 * @return-taint escaped
 	 * @since 1.8
@@ -888,7 +888,7 @@ class Parser {
 	 *
 	 * @param string $text Text extension wants to have parsed
 	 * @param-taint $text escapes_htmlnoent
-	 * @param bool|PPFrame $frame The frame to use for expanding any template variables
+	 * @param PPFrame|false $frame The frame to use for expanding any template variables
 	 * @return string Fully parsed HTML
 	 * @return-taint escaped
 	 */
@@ -932,7 +932,7 @@ class Parser {
 	 * @param ?PageReference $page
 	 * @param ParserOptions $options
 	 * @param int|null $revid
-	 * @param bool|PPFrame $frame
+	 * @param PPFrame|false $frame
 	 * @return mixed|string
 	 * @since 1.8
 	 */
@@ -959,7 +959,7 @@ class Parser {
 	 * hook.
 	 *
 	 * @param string $text Text to be expanded
-	 * @param bool|PPFrame $frame The frame to use for expanding any template variables
+	 * @param PPFrame|false $frame The frame to use for expanding any template variables
 	 * @return string
 	 * @since 1.19
 	 */
@@ -1572,7 +1572,7 @@ class Parser {
 	 * @param string $text The text to parse
 	 * @param-taint $text escapes_html
 	 * @param bool $isMain Whether this is being called from the main parse() function
-	 * @param PPFrame|bool $frame A pre-processor frame
+	 * @param PPFrame|false $frame A pre-processor frame
 	 *
 	 * @return string
 	 */
@@ -2242,7 +2242,7 @@ class Parser {
 	 *
 	 * @since 1.21
 	 * @internal
-	 * @param string|bool $url Optional URL, to extract the domain from for rel =>
+	 * @param string|false $url Optional URL, to extract the domain from for rel =>
 	 *   nofollow if appropriate
 	 * @param LinkTarget|null $title Optional LinkTarget, for wgNoFollowNsExceptions lookups
 	 * @return string|null Rel attribute for $url
@@ -2825,7 +2825,7 @@ class Parser {
 	 * Return value of a magic variable (like PAGENAME)
 	 *
 	 * @param string $index Magic variable identifier as mapped in MagicWordFactory::$mVariableIDs
-	 * @param bool|PPFrame $frame
+	 * @param PPFrame|false $frame
 	 *
 	 * @return string
 	 */
@@ -3562,7 +3562,7 @@ class Parser {
 	 * @since 1.34
 	 * @param LinkTarget $link
 	 * @param Parser|null $parser
-	 * @return RevisionRecord|bool False if missing
+	 * @return RevisionRecord|false False if missing
 	 */
 	public static function statelessFetchRevisionRecord( LinkTarget $link, $parser = null ) {
 		if ( $link instanceof PageIdentity ) {
@@ -3625,7 +3625,7 @@ class Parser {
 	 * Can be overridden via ParserOptions::setTemplateCallback().
 	 *
 	 * @param LinkTarget $page
-	 * @param bool|Parser $parser
+	 * @param Parser|false $parser
 	 *
 	 * @return array
 	 * @since 1.12
@@ -3804,7 +3804,7 @@ class Parser {
 	 *
 	 * @param LinkTarget $link
 	 * @param array $options Array of options to RepoGroup::findFile
-	 * @return File|bool
+	 * @return File|false
 	 */
 	protected function fetchFileNoRegister( LinkTarget $link, array $options = [] ) {
 		if ( isset( $options['broken'] ) ) {
@@ -4757,7 +4757,7 @@ class Parser {
 	 * Check that the user's signature contains no bad XML
 	 *
 	 * @param string $text
-	 * @return string|bool An expanded string, or false if invalid.
+	 * @return string|false An expanded string, or false if invalid.
 	 * @since 1.6
 	 */
 	public function validateSig( $text ) {
@@ -5331,7 +5331,7 @@ class Parser {
 	 *
 	 * @param LinkTarget $link
 	 * @param string $options
-	 * @param LinkHolderArray|bool $holders
+	 * @param LinkHolderArray|false $holders
 	 * @return string HTML
 	 * @since 1.5
 	 */
@@ -5638,7 +5638,7 @@ class Parser {
 
 	/**
 	 * @param string $caption
-	 * @param LinkHolderArray|bool $holders
+	 * @param LinkHolderArray|false $holders
 	 * @return mixed|string
 	 */
 	private function stripAltText( $caption, $holders ) {
@@ -5699,7 +5699,7 @@ class Parser {
 	 * values, so they can be safely tested and escaped.
 	 *
 	 * @param string &$text
-	 * @param bool|PPFrame $frame
+	 * @param PPFrame|false $frame
 	 * @return string
 	 * @deprecated since 1.35, internal callback should not have been public
 	 */
@@ -6167,7 +6167,7 @@ class Parser {
 	 * Accessor for the 'defaultsort' page property.
 	 * Unlike getDefaultSort(), will return false if none is set
 	 *
-	 * @return string|bool
+	 * @return string|false
 	 * @since 1.14
 	 * @deprecated since 1.38, use
 	 * $parser->getOutput()->getPageProperty('defaultsort') ?? false

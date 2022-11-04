@@ -44,8 +44,8 @@ class UploadFromStash extends UploadBase {
 
 	/**
 	 * @param UserIdentity|null $user Default: null Sometimes this won't exist, as when running from cron.
-	 * @param UploadStash|bool $stash Default: false
-	 * @param FileRepo|bool $repo Default: false
+	 * @param UploadStash|false $stash Default: false
+	 * @param FileRepo|false $repo Default: false
 	 */
 	public function __construct( UserIdentity $user = null, $stash = false, $repo = false ) {
 		if ( $repo ) {

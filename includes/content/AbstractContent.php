@@ -385,7 +385,7 @@ abstract class AbstractContent implements Content {
 	 * @stable to override
 	 * @since 1.21
 	 *
-	 * @param string|int|null|bool $sectionId
+	 * @param string|int|null|false $sectionId
 	 * @param Content $with
 	 * @param string $sectionTitle
 	 * @return null
@@ -516,7 +516,7 @@ abstract class AbstractContent implements Content {
 	 * @param string $toModel
 	 * @param string $lossy
 	 *
-	 * @return Content|bool
+	 * @return Content|false
 	 *
 	 * @see Content::convert()
 	 */

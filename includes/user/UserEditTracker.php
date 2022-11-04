@@ -33,7 +33,7 @@ class UserEditTracker {
 	private $jobQueueGroup;
 
 	/**
-	 * @var array
+	 * @var int[]
 	 *
 	 * Mapping of user id to edit count for caching
 	 * To avoid using non-sequential numerical keys, keys are in the form: `u⧼user id⧽`

@@ -112,7 +112,7 @@ class ActorStoreFactory {
 	}
 
 	/**
-	 * @param bool $wikiId
+	 * @param string|false $wikiId
 	 * @return UserIdentityLookup
 	 */
 	public function getUserIdentityLookup(
@@ -134,7 +134,7 @@ class ActorStoreFactory {
 	 * for the given $wikiId.
 	 *
 	 * @param string $table
-	 * @param bool $wikiId
+	 * @param string|false $wikiId
 	 * @return ILoadBalancer
 	 */
 	private function getLoadBalancerForTable(

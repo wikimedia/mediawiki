@@ -369,7 +369,7 @@ class Context implements MessageLocalizer {
 	 * If this is a request for an image, get the Image object.
 	 *
 	 * @since 1.25
-	 * @return Image|bool false if a valid object cannot be created
+	 * @return Image|false false if a valid object cannot be created
 	 */
 	public function getImageObj() {
 		if ( $this->imageObj === null ) {

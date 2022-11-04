@@ -42,7 +42,7 @@ class UserArrayFromResult extends UserArray implements Countable {
 	}
 
 	/**
-	 * @param bool|stdClass $row
+	 * @param stdClass|false $row
 	 * @return void
 	 */
 	protected function setCurrent( $row ) {

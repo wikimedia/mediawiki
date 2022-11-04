@@ -821,7 +821,7 @@ class ParserOptions {
 	/**
 	 * Class to use to wrap output from Parser::parse()
 	 * @since 1.30
-	 * @return string|bool
+	 * @return string|false
 	 */
 	public function getWrapOutputClass() {
 		return $this->getOption( 'wrapclass' );
@@ -832,7 +832,7 @@ class ParserOptions {
 	 * @since 1.30
 	 * @param string $className Class name to use for wrapping.
 	 *   Passing false to indicate "no wrapping" was deprecated in MediaWiki 1.31.
-	 * @return string|bool Current value
+	 * @return string|false Current value
 	 */
 	public function setWrapOutputClass( $className ) {
 		if ( $className === true ) { // DWIM, they probably want the default class name

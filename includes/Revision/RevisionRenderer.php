@@ -56,14 +56,14 @@ class RevisionRenderer {
 	/** @var ContentRenderer */
 	private $contentRenderer;
 
-	/** @var string|bool */
+	/** @var string|false */
 	private $dbDomain;
 
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param SlotRoleRegistry $roleRegistry
 	 * @param ContentRenderer $contentRenderer
-	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one
+	 * @param string|false $dbDomain DB domain of the relevant wiki or false for the current one
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,

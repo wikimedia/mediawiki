@@ -288,7 +288,7 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @see JobQueue::doPop()
-	 * @return RunnableJob|bool
+	 * @return RunnableJob|false
 	 */
 	protected function doPop() {
 		$dbw = $this->getPrimaryDB();
@@ -336,7 +336,7 @@ class JobQueueDB extends JobQueue {
 	 * @param string $uuid 32 char hex string
 	 * @param int $rand Random unsigned integer (31 bits)
 	 * @param bool $gte Search for job_random >= $random (otherwise job_random <= $random)
-	 * @return stdClass|bool Row|false
+	 * @return stdClass|false Row|false
 	 */
 	protected function claimRandom( $uuid, $rand, $gte ) {
 		$dbw = $this->getPrimaryDB();
@@ -414,7 +414,7 @@ class JobQueueDB extends JobQueue {
 	 * Reserve a row with a single UPDATE without holding row locks over RTTs...
 	 *
 	 * @param string $uuid 32 char hex string
-	 * @return stdClass|bool Row|false
+	 * @return stdClass|false Row|false
 	 */
 	protected function claimOldest( $uuid ) {
 		$dbw = $this->getPrimaryDB();
@@ -877,7 +877,7 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
-	 * @param array|bool $params
+	 * @param array|false $params
 	 * @return string
 	 */
 	protected static function makeBlob( $params ) {

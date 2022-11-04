@@ -60,7 +60,7 @@ class PageStoreRecord extends PageIdentityValue implements ExistingPageRecord {
 	 * The $row object must provide all fields listed in PageStoreRecord::REQUIRED_FIELDS.
 	 *
 	 * @param stdClass $row A row from the page table
-	 * @param string|bool $wikiId The Id of the wiki this page belongs to,
+	 * @param string|false $wikiId The Id of the wiki this page belongs to,
 	 *        or self::LOCAL for the local wiki.
 	 */
 	public function __construct( stdClass $row, $wikiId ) {
@@ -96,7 +96,7 @@ class PageStoreRecord extends PageIdentityValue implements ExistingPageRecord {
 	/**
 	 * The ID of the page'S latest revision.
 	 *
-	 * @param bool $wikiId
+	 * @param string|false $wikiId
 	 *
 	 * @return int
 	 */

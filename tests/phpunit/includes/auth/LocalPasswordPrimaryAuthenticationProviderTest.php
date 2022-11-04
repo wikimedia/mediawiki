@@ -448,7 +448,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 	/**
 	 * @dataProvider provideProviderChangeAuthenticationData
-	 * @param callable|bool $usernameTransform
+	 * @param callable|false $usernameTransform
 	 * @param string $type
 	 * @param bool $loginOnly
 	 * @param bool $changed

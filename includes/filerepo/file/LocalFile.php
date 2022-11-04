@@ -227,8 +227,8 @@ class LocalFile extends File {
 	 *
 	 * @param string $sha1 Base-36 SHA-1
 	 * @param LocalRepo $repo
-	 * @param string|bool $timestamp MW_timestamp (optional)
-	 * @return bool|LocalFile
+	 * @param string|false $timestamp MW_timestamp (optional)
+	 * @return static|false
 	 */
 	public static function newFromKey( $sha1, $repo, $timestamp = false ) {
 		$dbr = $repo->getReplicaDB();
@@ -325,7 +325,7 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * @return LocalRepo|bool
+	 * @return LocalRepo|false
 	 */
 	public function getRepo() {
 		return $this->repo;
@@ -335,7 +335,7 @@ class LocalFile extends File {
 	 * Get the memcached key for the main data for this file, or false if
 	 * there is no access to the shared cache.
 	 * @stable to override
-	 * @return string|bool
+	 * @return string|false
 	 */
 	protected function getCacheKey() {
 		return $this->repo->getSharedCacheKey( 'file', sha1( $this->getName() ) );
@@ -560,7 +560,7 @@ class LocalFile extends File {
 	/**
 	 * @param IDatabase $dbr
 	 * @param string $fname
-	 * @return string[]|bool
+	 * @return string[]|false
 	 */
 	private function loadExtraFieldsWithTimestamp( $dbr, $fname ) {
 		$fieldMap = false;
@@ -1304,7 +1304,7 @@ class LocalFile extends File {
 	/**
 	 * Get all thumbnail names previously generated for this file
 	 * @stable to override
-	 * @param string|bool $archiveName Name of an archive file, default false
+	 * @param string|false $archiveName Name of an archive file, default false
 	 * @return array First element is the base dir, then files in that base dir.
 	 */
 	protected function getThumbnails( $archiveName = false ) {
@@ -1575,7 +1575,7 @@ class LocalFile extends File {
 	 *  1      query for old versions, return first one
 	 *  2, ... return next old version from above query
 	 * @stable to override
-	 * @return stdClass|bool
+	 * @return stdClass|false
 	 */
 	public function nextHistoryLine() {
 		if ( !$this->exists() ) {
@@ -1651,11 +1651,11 @@ class LocalFile extends File {
 	 * @param string $comment Upload description
 	 * @param string $pageText Text to use for the new description page,
 	 *   if a new description page is created
-	 * @param int|bool $flags Flags for publish()
-	 * @param array|bool $props File properties, if known. This can be used to
+	 * @param int $flags Flags for publish()
+	 * @param array|false $props File properties, if known. This can be used to
 	 *   reduce the upload time when uploading virtual URLs for which the file
 	 *   info is already known
-	 * @param string|bool $timestamp Timestamp for img_timestamp, or false to use the
+	 * @param string|false $timestamp Timestamp for img_timestamp, or false to use the
 	 *   current time. Can be in any format accepted by ConvertibleTimestamp.
 	 * @param Authority|null $uploader object or null to use the context authority
 	 * @param string[] $tags Change tags to add to the log entry and page revision.
@@ -1761,8 +1761,8 @@ class LocalFile extends File {
 	 * @param string $comment
 	 * @param string $pageText
 	 * @param Authority $performer
-	 * @param bool|array $props
-	 * @param string|bool $timestamp Can be in any format accepted by ConvertibleTimestamp
+	 * @param array|false $props
+	 * @param string|false $timestamp Can be in any format accepted by ConvertibleTimestamp
 	 * @param string[] $tags
 	 * @param bool $createNullRevision Set to false to avoid creation of a null revision on file
 	 *   upload, see T193621
@@ -2427,7 +2427,7 @@ class LocalFile extends File {
 	/**
 	 * Get the URL of the file description page.
 	 * @stable to override
-	 * @return string|bool
+	 * @return string|false
 	 */
 	public function getDescriptionUrl() {
 		if ( !$this->title ) {
@@ -2513,7 +2513,7 @@ class LocalFile extends File {
 
 	/**
 	 * @stable to override
-	 * @return bool|string TS_MW timestamp, a string with 14 digits
+	 * @return string|false TS_MW timestamp, a string with 14 digits
 	 */
 	public function getTimestamp() {
 		$this->load();
@@ -2523,7 +2523,7 @@ class LocalFile extends File {
 
 	/**
 	 * @stable to override
-	 * @return bool|string
+	 * @return string|false
 	 */
 	public function getDescriptionTouched() {
 		if ( !$this->exists() ) {
