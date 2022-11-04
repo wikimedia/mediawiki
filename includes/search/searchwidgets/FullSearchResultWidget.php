@@ -399,7 +399,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 		// we'll only deal with width from now on since conventions for
 		// standard sizes have formed around width; height will simply
 		// follow according to aspect ratio
-		$rescaledWidth = round( $rescaleCoefficient * $thumbnail->getWidth() );
+		$rescaledWidth = (int)round( $rescaleCoefficient * $thumbnail->getWidth() );
 
 		// we'll also be looking at $wgThumbLimits to ensure that we pick
 		// from within the predefined list of sizes
