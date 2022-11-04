@@ -419,8 +419,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		if ( !isset( $this->loadMonitor ) ) {
 			$compat = [
 				'LoadMonitor' => LoadMonitor::class,
-				'LoadMonitorNull' => LoadMonitorNull::class,
-				'LoadMonitorMySQL' => LoadMonitorMySQL::class,
+				'LoadMonitorNull' => LoadMonitorNull::class
 			];
 
 			$class = $this->loadMonitorConfig['class'];

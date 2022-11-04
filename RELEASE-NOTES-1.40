@@ -176,6 +176,7 @@ because of Phabricator reports.
 * Article::viewRedirect(), deprecated since 1.30, has been removed.
 * Title::getNotificationTimestamp(), deprecated since 1.35, has been removed.
 * WikiRevision::$fileIsTemp property, deprecated since 1.29, has been removed.
+* LoadMonitorMysql was removed without deprecation. Use LoadMonitor instead.
 * …
 
 === Deprecations in 1.40 ===
