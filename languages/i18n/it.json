@@ -4124,7 +4124,7 @@
 	"userlogout-continue": "Vuoi davvero uscire?",
 	"userlogout-temp": "Sei sicuro di voler uscire? Non sarà possibile connettersi di nuovo con l'utenza temporanea.",
 	"paramvalidator-baduser": "Valore \"$2\" non valido per il parametro utente <var>$1</var>.",
-	"paramvalidator-help-type-user": "Type: {{PLURAL:$1|1=utente|2=elenco di utenti}}, {{PLURAL:$3|da|da uno qualsiasi}} $2",
+	"paramvalidator-help-type-user": "Tipo: {{PLURAL:$1|1=utente|2=elenco di utenti}}, {{PLURAL:$3|da|da uno qualsiasi}} $2",
 	"paramvalidator-help-type-user-subtype-name": "nome utente",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "Intervallo di IP",
