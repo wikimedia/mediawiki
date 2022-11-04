@@ -44,4 +44,58 @@ class ApiQueryRevisionsTest extends ApiTestCase {
 			}
 		}
 	}
+
+	/**
+	 * @group medium
+	 */
+	public function testResolvesPrevNextInDiffto() {
+		$pageName = 'Help:' . __METHOD__;
+		$page = $this->getExistingTestPage( $pageName );
+		$user = $this->getTestUser()->getUser();
+
+		$revRecord = $page->newPageUpdater( $user )
+			->setContent( SlotRecord::MAIN, new WikitextContent( 'Some text' ) )
+			->saveRevision( CommentStoreComment::newUnsavedComment( 'inserting more content' ) );
+
+		[ $rvDiffToPrev ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'revisions',
+			'titles' => $pageName,
+			'rvdiffto' => 'prev',
+		] );
+
+		$this->assertSame(
+			$revRecord->getId(),
+			$rvDiffToPrev['query']['pages'][$page->getId()]['revisions'][0]['revid']
+		);
+		$this->assertSame(
+			$revRecord->getId(),
+			$rvDiffToPrev['query']['pages'][$page->getId()]['revisions'][0]['diff']['to']
+		);
+		$this->assertSame(
+			$revRecord->getParentId(),
+			$rvDiffToPrev['query']['pages'][$page->getId()]['revisions'][0]['diff']['from']
+		);
+
+		[ $rvDiffToNext ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'revisions',
+			'titles' => $pageName,
+			'rvdiffto' => 'next',
+			'rvdir' => 'newer'
+		] );
+
+		$this->assertSame(
+			$revRecord->getParentId(),
+			$rvDiffToNext['query']['pages'][$page->getId()]['revisions'][0]['revid']
+		);
+		$this->assertSame(
+			$revRecord->getId(),
+			$rvDiffToNext['query']['pages'][$page->getId()]['revisions'][0]['diff']['to']
+		);
+		$this->assertSame(
+			$revRecord->getParentId(),
+			$rvDiffToNext['query']['pages'][$page->getId()]['revisions'][0]['diff']['from']
+		);
+	}
 }
