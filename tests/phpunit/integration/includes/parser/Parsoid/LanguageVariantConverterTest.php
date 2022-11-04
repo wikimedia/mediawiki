@@ -2,11 +2,13 @@
 
 namespace MediaWiki\Parser\Parsoid;
 
+use Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\PageIdentity;
 use MediaWikiIntegrationTestCase;
 use ParserOutput;
+use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Parsoid;
 
@@ -44,87 +46,81 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		];
 		yield 'Source language is null' => [
 			new PageBundle(
-				'<p>Ово је тестна страница</p>',
+				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
 				[ 'parsoid-data' ],
 				[ 'mw-data' ],
 				Parsoid::defaultHTMLVersion(),
-				[ 'content-language' => 'sr' ]
+				[ 'content-language' => 'crh' ]
 			),
 			null,
-			'sr-el',
+			'crh-Latn',
 			null,
-			'>Ovo je testna stranica<',
-			'sr-el|sr-Latn' // sr-el is accepted for backwards compatibility for now
+			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
 		yield 'Source language is explicit' => [
 			new PageBundle(
-				'<p>Ово је тестна страница</p>',
+				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
 				[ 'parsoid-data' ],
 				[ 'mw-data' ],
 				Parsoid::defaultHTMLVersion(),
-				[ 'content-language' => 'sr' ]
+				[ 'content-language' => 'crh' ]
 			),
 			null,
-			'sr-el',
-			'sr-ec',
-			'>Ovo je testna stranica<',
-			'sr-el|sr-Latn' // sr-el is accepted for backwards compatibility for now
+			'crh-Latn',
+			'crh-Cyrl',
+			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
 		yield 'Content language is provided via HTTP header' => [
 			new PageBundle(
-				'<p>Ово је тестна страница</p>',
+				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
 				[ 'parsoid-data' ],
 				[ 'mw-data' ],
 				Parsoid::defaultHTMLVersion(),
-				[ 'content-language' => 'sr-ec' ]
+				[ 'content-language' => 'crh-Cyrl' ]
 			),
-			'sr',
-			'sr-el',
-			'sr-ec',
-			'>Ovo je testna stranica<',
-			'sr-el|sr-Latn' // sr-el is accepted for backwards compatibility for now
+			'crh',
+			'crh-Latn',
+			'crh-Cyrl',
+			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
 		yield 'Content language is variant' => [
 			new PageBundle(
-				'<p>Ово је тестна страница</p>',
+				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
 				[ 'parsoid-data' ],
 				[ 'mw-data' ],
 				Parsoid::defaultHTMLVersion(),
 				[]
 			),
-			'sr-ec',
-			'sr-el',
+			'crh-Cyrl',
+			'crh-Latn',
 			null,
-			'>Ovo je testna stranica<',
-			'sr-el|sr-Latn' // sr-el is accepted for backwards compatibility for now
+			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
 		yield 'No content-language, but source variant provided' => [
 			new PageBundle(
-				'<p>Ово је тестна страница</p>',
+				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
 				[ 'parsoid-data' ],
 				[ 'mw-data' ],
 				Parsoid::defaultHTMLVersion(),
 				[]
 			),
 			null,
-			'sr-el',
-			'sr-ec',
-			'>Ovo je testna stranica<',
-			'sr-el|sr-Latn' // sr-el is accepted for backwards compatibility for now
+			'crh-Latn',
+			'crh-Cyrl',
+			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
 		yield 'Source variant is a base language code' => [
 			new PageBundle(
-				'<p>Ово је тестна страница</p>',
+				'<p>Бутун инсанлар сербестлик, менлик ве укъукъларда мусавий олып дунйагъа келелер.</p>',
 				[ 'parsoid-data' ],
 				[ 'mw-data' ],
 				Parsoid::defaultHTMLVersion(),
 				[]
 			),
 			null,
-			'sr-el',
-			'sr',
-			'>Ovo je testna stranica<',
-			'sr-el|sr-Latn' // sr-el is accepted for backwards compatibility for now
+			'crh-Latn',
+			'crh',
+			'>Butun insanlar serbestlik, menlik ve uquqlarda musaviy olıp dunyağa keleler.</'
 		];
 		yield 'Base language does not support variants' => [
 			new PageBundle(
@@ -174,17 +170,23 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getExistingTestPage();
 		$languageVariantConverter = $this->getLanguageVariantConverter( $page );
 		if ( $contentLanguage ) {
+			$contentLanguage = $this->getLanguageBcp47( $contentLanguage );
 			$languageVariantConverter->setPageLanguageOverride( $contentLanguage );
+		}
+		$target = $this->getLanguageBcp47( $target );
+		if ( $source ) {
+			$source = $this->getLanguageBcp47( $source );
 		}
 
 		$outputPageBundle = $languageVariantConverter->convertPageBundleVariant( $pageBundle, $target, $source );
 
 		$html = $outputPageBundle->toHtml();
-		$this->assertStringContainsString( $expected, $html );
+		$stripped = preg_replace( ':</?span[^>]*>:', '', $html );
+		$this->assertStringContainsString( $expected, $stripped );
 
 		if ( $expectedLanguage !== false ) {
-			$this->assertMatchesRegularExpression( "@<meta http-equiv=\"content-language\" content=\"($expectedLanguage)\"/>@", $html );
-			$this->assertMatchesRegularExpression( "@^$expectedLanguage@", $outputPageBundle->headers['content-language'] );
+			$this->assertMatchesRegularExpression( "@<meta http-equiv=\"content-language\" content=\"($expectedLanguage)\"/>@i", $html );
+			$this->assertMatchesRegularExpression( "@^$expectedLanguage@i", $outputPageBundle->headers['content-language'] );
 		}
 		$this->assertEquals( Parsoid::defaultHTMLVersion(), $outputPageBundle->version );
 	}
@@ -214,16 +216,22 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getExistingTestPage();
 		$languageVariantConverter = $this->getLanguageVariantConverter( $page );
 		if ( $contentLanguage ) {
+			$contentLanguage = $this->getLanguageBcp47( $contentLanguage );
 			$languageVariantConverter->setPageLanguageOverride( $contentLanguage );
+		}
+		$target = $this->getLanguageBcp47( $target );
+		if ( $source ) {
+			$source = $this->getLanguageBcp47( $source );
 		}
 
 		$modifiedParserOutput = $languageVariantConverter
 			->convertParserOutputVariant( $parserOutput, $target, $source );
 
 		$html = $modifiedParserOutput->getRawText();
-		$this->assertStringContainsString( $expected, $html );
+		$stripped = preg_replace( ':</?span[^>]*>:', '', $html );
+		$this->assertStringContainsString( $expected, $stripped );
 		if ( $expectedLanguage !== false ) {
-			$this->assertMatchesRegularExpression( "@<meta http-equiv=\"content-language\" content=\"($expectedLanguage)\"/>@", $html );
+			$this->assertMatchesRegularExpression( "@<meta http-equiv=\"content-language\" content=\"($expectedLanguage)\"/>@i", $html );
 		}
 
 		$extensionData = $modifiedParserOutput
@@ -231,8 +239,13 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( Parsoid::defaultHTMLVersion(), $extensionData['version'] );
 
 		if ( $expectedLanguage !== false ) {
-			$this->assertMatchesRegularExpression( "@^$expectedLanguage@", $extensionData['headers']['content-language'] );
+			$this->assertMatchesRegularExpression( "@^$expectedLanguage@i", $extensionData['headers']['content-language'] );
 		}
+	}
+
+	private function getLanguageBcp47( $bcp47Code ): Language {
+		$languageFactory = $this->getServiceContainer()->getLanguageFactory();
+		return $languageFactory->getLanguage( new Bcp47CodeValue( $bcp47Code ) );
 	}
 
 	private function getLanguageVariantConverter( PageIdentity $pageIdentity ): LanguageVariantConverter {

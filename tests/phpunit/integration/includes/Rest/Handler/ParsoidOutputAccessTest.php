@@ -578,7 +578,14 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	private function getLanguageMock( string $langCode ) {
 		$language = $this->createMock( Language::class );
 		$language->method( 'getCode' )->willReturn( $langCode );
-
+		$language->method( 'getDir' )->willReturn( 'ltr' );
+		$bcp47 = LanguageCode::bcp47( $langCode );
+		$language
+			->method( 'getHtmlCode' )
+			->willReturn( $bcp47 );
+		$language
+			->method( 'toBcp47Code' )
+			->willReturn( $bcp47 );
 		return $language;
 	}
 

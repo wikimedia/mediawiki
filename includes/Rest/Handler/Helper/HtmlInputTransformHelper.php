@@ -22,6 +22,7 @@ namespace MediaWiki\Rest\Handler\Helper;
 use Content;
 use InvalidArgumentException;
 use Language;
+use LanguageCode;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\SelserContext;
@@ -362,9 +363,12 @@ class HtmlInputTransformHelper {
 		}
 
 		if ( $pageLanguage ) {
-			$this->transform->setContentLanguage( $pageLanguage->getCode() );
+			$this->transform->setContentLanguage( $pageLanguage );
 		} elseif ( isset( $parameters['language'] ) && $parameters['language'] !== '' ) {
-			$this->transform->setContentLanguage( $parameters['language'] );
+			$pageLanguage = LanguageCode::normalizeNonstandardCodeAndWarn(
+				$parameters['language']
+			);
+			$this->transform->setContentLanguage( $pageLanguage );
 		}
 
 		if ( isset( $original['source']['body'] ) ) {
