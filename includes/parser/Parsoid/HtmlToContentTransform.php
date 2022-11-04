@@ -44,8 +44,8 @@ class HtmlToContentTransform {
 	/** @var ?string */
 	private $contentLanguage = null;
 
-	/** @var ?string */
-	private $originalText = null;
+	/** @var ?Content */
+	private $originalContent = null;
 
 	/** @var ?RevisionRecord */
 	private $originalRevision = null;
@@ -188,6 +188,16 @@ class HtmlToContentTransform {
 	 * @param string $text
 	 */
 	public function setOriginalText( string $text ): void {
+		$content = $this->getContentHandler()->unserializeContent( $text );
+		$this->setOriginalContent( $content );
+	}
+
+	/**
+	 * Sets the original content (such as wikitext).
+	 *
+	 * @param Content $content
+	 */
+	public function setOriginalContent( Content $content ): void {
 		if ( $this->pageConfig ) {
 			throw new LogicException( 'Cannot set text after using the PageConfig' );
 		}
@@ -195,7 +205,8 @@ class HtmlToContentTransform {
 			throw new LogicException( 'Cannot set wikitext after using the PageConfig' );
 		}
 
-		$this->originalText = $text;
+		$this->options['contentmodel'] = $content->getModel();
+		$this->originalContent = $content;
 	}
 
 	private function validatePageBundle( PageBundle $pb ) {
@@ -280,7 +291,7 @@ class HtmlToContentTransform {
 		if ( !$this->pageConfig ) {
 
 			// XXX: do we even have to support wikitext overrides? What's the use case?
-			if ( $this->originalText !== null ) {
+			if ( $this->originalContent !== null ) {
 				// Create a mutable revision record point to the same revision
 				// and set to the desired content.
 				$revision = new MutableRevisionRecord( $this->page );
@@ -288,11 +299,10 @@ class HtmlToContentTransform {
 					$revision->setId( $this->oldid );
 				}
 
-				$content = $this->getContentHandler()->unserializeContent( $this->originalText );
 				$revision->setSlot(
 					SlotRecord::newUnsaved(
 						SlotRecord::MAIN,
-						$content
+						$this->originalContent
 					)
 				);
 			} else {
@@ -482,8 +492,8 @@ class HtmlToContentTransform {
 		return $this->oldid;
 	}
 
-	public function knowsOriginalRevision(): bool {
-		return $this->originalRevision || $this->oldid;
+	public function knowsOriginalContent(): bool {
+		return $this->originalRevision || $this->oldid || $this->originalContent !== null;
 	}
 
 	public function getContentModel(): ?string {
@@ -592,13 +602,10 @@ class HtmlToContentTransform {
 	private function getSelserData(): ?SelserData {
 		$oldhtml = $this->hasOriginalHtml() ? $this->getOriginalHtml() : null;
 
-		// As per https://www.mediawiki.org/wiki/Parsoid/API#v1_API_entry_points
-		//   "Both it and the oldid parameter are needed for
-		//    clean round-tripping of HTML retrieved earlier with"
-		// So, no oldid => no selser
-		$hasOldId = $this->knowsOriginalRevision();
+		// Selser requires knowledge of the original wikitext.
+		$knowsOriginal = $this->knowsOriginalContent();
 
-		if ( $hasOldId && !empty( $this->parsoidSettings['useSelser'] ) ) {
+		if ( $knowsOriginal && !empty( $this->parsoidSettings['useSelser'] ) ) {
 			if ( !$this->getPageConfig()->getRevisionContent() ) {
 				throw new HttpException( 'Could not find previous revision. Has the page been locked / deleted?',
 					409 );

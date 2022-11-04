@@ -27,6 +27,7 @@ use InvalidArgumentException;
 use Language;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Edit\ParsoidOutputStash;
+use MediaWiki\Edit\SelserContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
@@ -391,12 +392,15 @@ class HtmlInputTransformHelper {
 	 * @param ParsoidRenderID|PageBundle|ParserOutput|null $originalRendering
 	 */
 	public function setOriginal( $rev, $originalRendering ) {
+		$content = null;
+
 		if ( $originalRendering instanceof ParsoidRenderID ) {
 			$renderId = $originalRendering;
+			$selserContext = null;
 
 			// If the client asked for a render ID, load original data from stash
 			try {
-				$originalRendering = $this->fetchOriginalDataFromStash( $renderId );
+				$selserContext = $this->fetchSelserContextFromStash( $renderId );
 			} catch ( InvalidArgumentException $ex ) {
 				$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.bad' );
 				throw new HttpException(
@@ -409,7 +413,7 @@ class HtmlInputTransformHelper {
 				);
 			}
 
-			if ( !$originalRendering ) {
+			if ( !$selserContext ) {
 				// NOTE: When the client asked for a specific stash key (resp. etag),
 				//       we should fail with a 412 if we don't have the specific rendering.
 				//       On the other hand, of the client only provided a base revision ID,
@@ -428,12 +432,19 @@ class HtmlInputTransformHelper {
 			if ( !$rev ) {
 				$rev = $renderId->getRevisionID();
 			}
+
+			$originalRendering = $selserContext->getPageBundle();
+			$content = $selserContext->getContent();
+
+			if ( $content ) {
+				$this->transform->setOriginalContent( $content );
+			}
 		} elseif ( !$originalRendering && $rev ) {
 			// The client provided a revision ID, but not stash key.
 			// Try to get a rendering for the given revision, and use it as the basis for selser.
 			// Chances are good that the resulting diff will be reasonably clean.
 			// NOTE: If we don't have a revision ID, we should not attempt selser!
-			$originalRendering = $this->fetchOriginalDataFromParsoid( $rev, true );
+			$originalRendering = $this->fetchParserOutputFromParsoid( $rev, true );
 
 			if ( $originalRendering ) {
 				$this->stats->increment( 'html_input_transform.original_html.given.as_revid.found' );
@@ -552,7 +563,7 @@ class HtmlInputTransformHelper {
 	 * @return ParserOutput|null
 	 * @throws HttpException
 	 */
-	private function fetchOriginalDataFromParsoid( $rev, bool $mayParse ): ?ParserOutput {
+	private function fetchParserOutputFromParsoid( $rev, bool $mayParse ): ?ParserOutput {
 		$parserOptions = ParserOptions::newFromAnon();
 
 		try {
@@ -594,22 +605,22 @@ class HtmlInputTransformHelper {
 	/**
 	 * @param ParsoidRenderID $renderID
 	 *
-	 * @return PageBundle|null
+	 * @return SelserContext|null
 	 */
-	private function fetchOriginalDataFromStash( $renderID ): ?PageBundle {
-		$pb = $this->parsoidOutputStash->get( $renderID );
+	private function fetchSelserContextFromStash( $renderID ): ?SelserContext {
+		$selserContext = $this->parsoidOutputStash->get( $renderID );
 
-		if ( $pb ) {
+		if ( $selserContext ) {
 			$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.' .
 				'stash_hit.found.hit' );
 
-			return $pb;
+			return $selserContext;
 		} else {
 			// Looks like the rendering is gone from stash (or the client send us a bogus key).
 			// Try to load it from the parser cache instead.
 			// On a wiki with low edit frequency, there is a good chance that it's still there.
 			try {
-				$parserOutput = $this->fetchOriginalDataFromParsoid( $renderID->getRevisionID(), false );
+				$parserOutput = $this->fetchParserOutputFromParsoid( $renderID->getRevisionID(), false );
 
 				if ( !$parserOutput ) {
 					$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.' .
@@ -630,7 +641,7 @@ class HtmlInputTransformHelper {
 					'stash_miss_pc_fallback.found.hit' );
 
 				$pb = PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput );
-				return $pb;
+				return new SelserContext( $pb, $renderID->getRevisionID() );
 			} catch ( HttpException $e ) {
 				$this->stats->increment( 'html_input_transform.original_html.given.as_renderid.' .
 					'stash_miss_pc_fallback.not_found.failed' );

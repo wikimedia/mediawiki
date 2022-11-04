@@ -6,20 +6,24 @@ use Composer\Semver\Semver;
 use JsonContent;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
+use MediaWiki\MainConfigNames;
+use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\PageIdentityValue;
-use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
+use MediaWiki\Parser\Parsoid\Config\PageConfig;
 use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
-use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Parsoid\Core\ClientError;
-use Wikimedia\Parsoid\Mocks\MockPageConfig;
+use Wikimedia\Parsoid\Core\SelserData;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
+use Wikimedia\TestingAccessWrapper;
 use WikitextContent;
 
 /**
  * @covers \MediaWiki\Parser\Parsoid\HtmlToContentTransform
+ * @group Database
  */
 class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 	private const MODIFIED_HTML = '<html><head>' .
@@ -49,10 +53,6 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function createHtmlToContentTransform( $html = '' ) {
-		/** @var PageConfigFactory|MockObject $pageConfigFactory */
-		$pageConfigFactory = $this->createNoOpMock( PageConfigFactory::class, [ 'create' ] );
-		$pageConfigFactory->method( 'create' )->willReturn( new MockPageConfig( [], null ) );
-
 		return new HtmlToContentTransform(
 			$html ?? self::ORIG_HTML,
 			PageIdentityValue::localIdentity( 7, NS_MAIN, 'Test' ),
@@ -60,8 +60,8 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 				$this->getServiceContainer()->getParsoidSiteConfig(),
 				$this->getServiceContainer()->getParsoidDataAccess()
 			),
-			[],
-			$pageConfigFactory,
+			MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidSettings ),
+			$this->getServiceContainer()->getParsoidPageConfigFactory(),
 			$this->getServiceContainer()->getContentHandlerFactory()
 		);
 	}
@@ -168,21 +168,65 @@ class HtmlToContentTransformTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	private function assertTransformHasOriginalContent( HtmlToContentTransform $transform, $text ) {
+		$this->assertTrue( $transform->knowsOriginalContent() );
+
+		$access = TestingAccessWrapper::newFromObject( $transform );
+
+		/** @var PageConfig $pageConfig */
+		$pageConfig = $access->getPageConfig();
+
+		$this->assertSame( $text, $pageConfig->getPageMainContent() );
+
+		/** @var ?SelserData $selserData */
+		$selserData = $access->getSelserData();
+
+		$this->assertNotNull( $selserData );
+	}
+
 	public function testOldId() {
+		$text = 'Lorem Ipsum';
+		$rev = $this->editPage( __METHOD__, $text )->getValue()['revision-record'];
+
 		$transform = $this->createHtmlToContentTransformWithOriginalData();
-		$this->assertSame( 1, $transform->getOriginalRevisionId() );
-		$this->assertTrue( $transform->knowsOriginalRevision() );
+		$transform->setOriginalRevisionId( $rev->getId() );
+
+		$this->assertSame( $rev->getId(), $transform->getOriginalRevisionId() );
+
+		$this->assertTransformHasOriginalContent( $transform, $text );
 	}
 
 	public function testSetOriginalRevision() {
+		$text = 'Lorem Ipsum';
+
 		$page = PageIdentityValue::localIdentity( 17, NS_MAIN, 'Test' );
 		$rev = new MutableRevisionRecord( $page );
-		$rev->setId( 1337 );
+		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 
 		$transform = $this->createHtmlToContentTransformWithOriginalData();
 		$transform->setOriginalRevision( $rev );
-		$this->assertTrue( $transform->knowsOriginalRevision() );
 		$this->assertSame( $rev->getId(), $transform->getOriginalRevisionId() );
+
+		$this->assertTransformHasOriginalContent( $transform, $text );
+	}
+
+	public function testSetOriginalText() {
+		$text = 'Lorem Ipsum';
+
+		$transform = $this->createHtmlToContentTransformWithOriginalData();
+		$transform->setOriginalText( $text );
+
+		$this->assertTransformHasOriginalContent( $transform, $text );
+	}
+
+	public function testSetOriginalContent() {
+		$text = 'Lorem Ipsum';
+
+		$transform = $this->createHtmlToContentTransformWithOriginalData();
+		$transform->setOriginalContent( new JsonContent( $text ) );
+
+		$this->assertTransformHasOriginalContent( $transform, $text );
+		$this->assertSame( CONTENT_MODEL_JSON, $transform->getContentModel() );
 	}
 
 	public function testGetContentModel() {
