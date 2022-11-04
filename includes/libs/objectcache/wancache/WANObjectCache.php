@@ -1983,7 +1983,7 @@ class WANObjectCache implements
 					$this->cache->getLastError( $watchPoint ) === self::ERR_NONE
 				) {
 					$this->logger->debug(
-						"checkAndSetCooloff($key): bounced; ${estimatedSize} byte(s), ${elapsed}s" );
+						"checkAndSetCooloff($key): bounced; {$estimatedSize} byte(s), {$elapsed}s" );
 					$this->stats->increment( "wanobjectcache.$kClass.cooloff_bounce" );
 
 					return false;
