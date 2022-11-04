@@ -17,32 +17,18 @@
  * @file
  */
 
-declare( strict_types=1 );
+namespace Wikimedia\Metrics\Exceptions;
 
-namespace Wikimedia\Metrics\Metrics;
+use RuntimeException;
 
 /**
- * Null Metric Implementation
+ * IllegalOperationException
  *
- * When a request from cache yields a type other than what was requested
- * or an unrecoverable situation has occurred, an instance of this class
- * should be passed to the caller to provide an interface that suppresses
- * method calls against it.
+ * This exception is raised when MetricsFactory or Metric gets an associative
+ * array as configuration that it cannot use to properly instantiate a Metric.
  *
  * @author Cole White
- * @since 1.38
+ * @since 1.41
  */
-class NullMetric {
-
-	/**
-	 * Silently suppress all undefined method calls.
-	 *
-	 * @param $method_name string
-	 * @param $args array
-	 * @return null
-	 */
-	public function __call( string $method_name, array $args ) {
-		return null;
-	}
-
+class IllegalOperationException extends RuntimeException {
 }

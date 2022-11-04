@@ -1,9 +1,5 @@
 <?php
 /**
- * Counter Metric Implementation
- *
- * Counter Metrics only ever increase and are identified by type 'c'.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,94 +14,137 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @license GPL-2.0-or-later
- * @author Cole White
- * @since 1.38
+ * @file
  */
 
 declare( strict_types=1 );
 
 namespace Wikimedia\Metrics\Metrics;
 
-use Wikimedia\Metrics\MetricsFactory;
+use InvalidArgumentException;
+use Psr\Log\LoggerInterface;
+use Wikimedia\Metrics\Exceptions\IllegalOperationException;
 use Wikimedia\Metrics\MetricUtils;
 use Wikimedia\Metrics\Sample;
 
-class CounterMetric {
+/**
+ * Counter Metric Implementation
+ *
+ * Counter Metrics only ever increase and are identified by type "c".
+ *
+ * @author Cole White
+ * @since 1.38
+ */
+class CounterMetric implements MetricInterface {
 
 	/**
 	 * The StatsD protocol type indicator:
-	 * https://github.com/statsd/statsd/blob/master/docs/metric_types.md
+	 * https://github.com/statsd/statsd/blob/v0.9.0/docs/metric_types.md
 	 * https://docs.datadoghq.com/developers/dogstatsd/datagram_shell/?tab=metrics
 	 *
 	 * @var string
 	 */
-	private const TYPE_INDICATOR = 'c';
+	private const TYPE_INDICATOR = "c";
 
-	/** @var MetricUtils */
-	private $metricUtils;
+	/** @var BaseMetricInterface */
+	private BaseMetricInterface $baseMetric;
 
-	/**
-	 * @param array $config associative array:
-	 *   - name: (string) The metric name
-	 *   - component: (string) The component generating the metric
-	 *   - labels: (array) List of metric dimensional instantiations for filters and aggregations
-	 *   - sampleRate: (float) Optional sampling rate to apply
-	 * @param MetricUtils $metricUtils
-	 */
-	public function __construct( array $config, MetricUtils $metricUtils ) {
-		$metricUtils->validateConfig( $config );
-		$metricUtils->setTypeIndicator( $this::TYPE_INDICATOR );
-		$this->metricUtils = $metricUtils;
+	/** @var LoggerInterface */
+	private LoggerInterface $logger;
+
+	/** @inheritDoc */
+	public function __construct( $baseMetric, $logger ) {
+		$this->baseMetric = $baseMetric;
+		$this->logger = $logger;
 	}
 
 	/**
-	 * Validate provided labels
+	 * Increments metric by one.
 	 *
 	 * @param string[] $labels
-	 */
-	public function validateLabels( array $labels = [] ) {
-		$this->metricUtils->validateLabels( $labels );
-	}
-
-	/**
-	 * @param string[] $labels
+	 * @return void
 	 */
 	public function increment( array $labels = [] ): void {
 		$this->incrementBy( 1, $labels );
 	}
 
 	/**
+	 * Increments metric by provided value.
+	 *
 	 * @param int $value
 	 * @param string[] $labels
+	 * @return void
 	 */
 	public function incrementBy( int $value, array $labels = [] ): void {
-		$this->validateLabels( $labels );
-		$this->metricUtils->addSample( new Sample( MetricsFactory::normalizeArray( $labels ), $value ) );
+		MetricUtils::validateLabels( $this->baseMetric->getLabelKeys(), $labels );
+		foreach ( $this->baseMetric->getLabelKeys() as $i => $labelKey ) {
+			$this->baseMetric->addLabel( $labelKey, $labels[$i] );
+		}
+		$this->baseMetric->addSample( new Sample( $this->baseMetric->getLabelValues(), $value ) );
 	}
 
-	public function getComponent(): string {
-		return $this->metricUtils->getComponent();
-	}
-
-	public function getLabelKeys(): array {
-		return $this->metricUtils->getLabelKeys();
-	}
-
+	/** @inheritDoc */
 	public function getName(): string {
-		return $this->metricUtils->getName();
+		return $this->baseMetric->getName();
 	}
 
-	public function getSamples(): array {
-		return MetricUtils::getFilteredSamples( $this->getSampleRate(), $this->metricUtils->getSamples() );
+	/** @inheritDoc */
+	public function getComponent(): string {
+		return $this->baseMetric->getComponent();
 	}
 
-	public function getSampleRate(): float {
-		return $this->metricUtils->getSampleRate();
-	}
-
+	/** @inheritDoc */
 	public function getTypeIndicator(): string {
 		return self::TYPE_INDICATOR;
+	}
+
+	/** @inheritDoc */
+	public function getSamples(): array {
+		return $this->baseMetric->getSamples();
+	}
+
+	/** @inheritDoc */
+	public function getSampleRate(): float {
+		return $this->baseMetric->getSampleRate();
+	}
+
+	/** @inheritDoc */
+	public function withSampleRate( float $sampleRate ) {
+		try {
+			$this->baseMetric->setSampleRate( $sampleRate );
+		} catch ( IllegalOperationException | InvalidArgumentException $ex ) {
+			$this->logger->error( $ex->getMessage() );
+			return new NullMetric;
+		}
+		return $this;
+	}
+
+	/** @inheritDoc */
+	public function getLabelKeys(): array {
+		return $this->baseMetric->getLabelKeys();
+	}
+
+	/** @inheritDoc */
+	public function withLabelKey( string $key ): CounterMetric {
+		$this->baseMetric->addLabelKey( $key );
+		return $this;
+	}
+
+	/** @inheritDoc */
+	public function withLabel( string $key, string $value ) {
+		try {
+			$this->baseMetric->addLabel( $key, $value );
+			$this->baseMetric->clearLabels(); // Support legacy behavior for now
+		} catch ( IllegalOperationException | InvalidArgumentException $ex ) {
+			$this->logger->error( $ex->getMessage() );
+			return new NullMetric;
+		}
+		return $this;
+	}
+
+	/** @inheritDoc */
+	public function fresh(): CounterMetric {
+		$this->baseMetric->clearLabels();
+		return $this;
 	}
 }
