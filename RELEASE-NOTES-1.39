@@ -7,7 +7,24 @@ for use in production.
 
 === Changes since MediaWiki 1.39.0-rc.1 ===
 * Localisation updates.
+* exception: Tolerate no service container when trying DB rollback.
 * (T320282) Upgrading wikimedia/xmp-reader (0.8.3 => 0.8.4).
+* objectcache: Deprecate WANObjectCache::reap() and ::reapCheckKey().
+* (T320864) When calling mail(), use an array for headers.
+* Upgrading wikimedia/xmp-reader (0.8.4 => 0.8.5).
+* (T321154) Call setFormIdentifier() on LogEventsList form.
+* When importing revision with same timestamp as latest revision, treat
+  it as the new latest.
+* (T320726) RandomImageGenerator::getImageSpec: Don't pass a float to mt_rand(),
+  for PHP 8.1.
+* (T298485, T322360) WikiExporter: Avoid calling reload in processing every row.
+* (T321551) pager: Fix null used for foreach in Pager::getNavigationBar.
+* (T321551) pager: Remove unused AlphabeticPager::getOrderTypeMessages()
+  support.
+* pager: Remove unused PagerNavigationBuilder::setExtra().
+* PagerNavigationBuilder: Document that nulls in setLinkQuery() etc. are
+  allowed.
+* (T322335) ApiQueryRevisionsBase: Fix 'rvdiffto' parameter handling on PHP 8.0.
 
 == MediaWiki 1.39.0-rc.1 ==
 
