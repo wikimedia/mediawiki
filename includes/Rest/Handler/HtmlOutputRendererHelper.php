@@ -26,6 +26,7 @@ use IBufferingStatsdDataFactory;
 use Language;
 use LogicException;
 use MediaWiki\Edit\ParsoidOutputStash;
+use MediaWiki\Edit\SelserContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageRecord;
@@ -257,12 +258,17 @@ class HtmlOutputRendererHelper {
 				);
 			}
 
+			$fakeRevision = ( is_object( $this->revisionOrId ) && $this->revisionOrId->getId() < 1 );
 			$parsoidStashKey = ParsoidRenderID::newFromKey(
 				$this->parsoidOutputAccess->getParsoidRenderID( $parserOutput )
 			);
 			$stashSuccess = $this->parsoidOutputStash->set(
 				$parsoidStashKey,
-				PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput )
+				new SelserContext(
+					PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput ),
+					$parsoidStashKey->getRevisionID(),
+					$fakeRevision ? $this->revisionOrId->getContent( SlotRecord::MAIN ) : null
+				)
 			);
 			if ( !$stashSuccess ) {
 				$this->stats->increment( 'htmloutputrendererhelper.stash.fail' );

@@ -1381,7 +1381,11 @@ return [
 			? ObjectCache::getInstance( $config['StashType'] )
 			: $services->getMainObjectStash();
 
-		return new SimpleParsoidOutputStash( $backend, $config['StashDuration'] );
+		return new SimpleParsoidOutputStash(
+			$services->getContentHandlerFactory(),
+			$backend,
+			$config['StashDuration']
+		);
 	},
 
 	'ParsoidPageConfigFactory' => static function ( MediaWikiServices $services ): MWPageConfigFactory {

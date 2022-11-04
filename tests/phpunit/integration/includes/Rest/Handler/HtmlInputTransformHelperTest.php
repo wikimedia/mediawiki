@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest\Helper;
 use BufferingStatsdDataFactory;
 use Exception;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
+use MediaWiki\Edit\SelserContext;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Message\Converter;
@@ -106,7 +107,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		return json_decode( $text, JSON_OBJECT_AS_ARRAY );
 	}
 
-	public function provideResponse() {
+	public function provideRequests() {
 		$profileVersion = '2.4.0';
 		$wikitextProfileUri = 'https://www.mediawiki.org/wiki/Specs/wikitext/1.0.0';
 		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;
@@ -673,7 +674,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideResponse()
+	 * @dataProvider provideRequests()
 	 * @covers \MediaWiki\Rest\Handler\HtmlInputTransformHelper
 	 * @covers \MediaWiki\Parser\Parsoid\HtmlToContentTransform
 	 */
@@ -738,11 +739,15 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 			Parsoid::defaultHTMLVersion()
 		);
 
+		$originalContent = new WikitextContent( 'Goats are great!' );
+		$selserContext = new SelserContext( $unchangedPB, 0, $originalContent );
+
 		$unchangedPO = PageBundleParserOutputConverter::parserOutputFromPageBundle( $unchangedPB );
 
 		$renderID = new ParsoidRenderID( 0, 'testing' );
 
 		yield 'no original data' => [
+			$selserContext,
 			null,
 			null,
 			[
@@ -753,6 +758,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 		// should load original wikitext by revision id ////////////////////
 		yield 'should load original wikitext by revision id' => [
+			$selserContext,
 			1, // will be replaced by the actual revid
 			$unchangedPB, // Expect selser, since HTML didn't change.
 			'UTContent', // Loaded from default test page revision. Selser should preserve it.
@@ -764,14 +770,16 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$rev->setContent( SlotRecord::MAIN, new WikitextContent( 'Goats are great!' ) );
 
 		yield 'should use wikitext from fake revision' => [
-			$rev, // will be replaced by the actual revid
+			$selserContext,
+			$rev,
 			$unchangedPO, // Expect selser, since HTML didn't change.
 			'Goats are great!', // Text from the fake revision. Selser should preserve it.
 		];
 
 		// should get original HTML from stash ////////////////////
 		yield 'should get original HTML from stash' => [
-			$rev, // will be replaced by the actual revid
+			$selserContext,
+			$rev,
 			$renderID, // Expect selser, since HTML didn't change.
 			'Goats are great!', // Text from the fake revision. Selser should preserve it.
 		];
@@ -780,33 +788,34 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideOriginal()
 	 *
+	 * @param SelserContext|null $stashed
 	 * @param RevisionRecord|int|null $rev
 	 * @param ParsoidRenderID|PageBundle|ParserOutput|null $originalRendering
 	 * @param string|string[] $expectedText
 	 *
 	 * @throws HttpException
 	 * @throws \MWException
-	 * @covers \MediaWiki\Rest\Handler\HtmlInputTransformHelper::setOriginal
+	 * @covers       \MediaWiki\Rest\Handler\HtmlInputTransformHelper::setOriginal
 	 */
-	public function testSetOriginal( $rev, $originalRendering, $expectedText ) {
+	public function testSetOriginal( ?SelserContext $stashed, $rev, $originalRendering, $expectedText ) {
 		if ( is_int( $rev ) && $rev > 0 ) {
 			// If a revision ID is given, run the test with an actual existing revision ID
-			$page = $this->getExistingTestPage()->getTitle();
-			$rev = $page->getLatestRevID();
+			$page = $this->getExistingTestPage();
+			$page = $page->getTitle();
+			$revId = $page->getLatestRevID() ?: 0;
+		} elseif ( $rev instanceof RevisionRecord ) {
+			$page = $rev->getPage();
+			$revId = $rev->getId() ?: 0;
 		} else {
 			$page = PageIdentityValue::localIdentity( 7, NS_MAIN, 'HtmlInputTransformHelperTest' );
+			$revId = 0;
 		}
 
-		$originalPB = new PageBundle(
-			$this->getTextFromFile( 'MainPage-original.html' ),
-			$this->getJsonFromFile( 'MainPage-original.data-parsoid' ),
-			null,
-			Parsoid::defaultHTMLVersion()
-		);
-
-		$renderID = new ParsoidRenderID( 0, 'testing' );
-		$stash = $this->getServiceContainer()->getParsoidOutputStash();
-		$stash->set( $renderID, $originalPB );
+		if ( $stashed ) {
+			$renderID = new ParsoidRenderID( $revId, 'testing' );
+			$stash = $this->getServiceContainer()->getParsoidOutputStash();
+			$stash->set( $renderID, $stashed );
+		}
 
 		$html = $this->getTextFromFile( 'MainPage-original.html' );
 
@@ -905,7 +914,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $wikitext, $body->getContents() );
 	}
 
-	public function testResponseWithRenderId() {
+	public function testResponseWithRenderIdForExistingRevision() {
 		$profileVersion = '2.4.0';
 		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;
 		$htmlContentType = "text/html;profile=\"$htmlProfileUri\"";
@@ -936,7 +945,63 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 		$params = [];
 
 		$stash = $this->getServiceContainer()->getParsoidOutputStash();
-		$stash->set( ParsoidRenderID::newFromETag( $eTag ), $pb );
+		$stash->set(
+			ParsoidRenderID::newFromETag( $eTag ),
+			new SelserContext( $pb, $page->getLatest() ),
+		);
+
+		$helper = $this->newHelper();
+		$helper->init( $page, $body, $params );
+
+		$content = $helper->getContent();
+
+		// Assert that we get back the old wikitext, not wikitext derived from the HTML.
+		// Since the supplied HTML is the same as the HTML in the stash, selser should
+		// decide that there is nothing to do and return the wikitext unchanged.
+		$this->assertSame( $oldWikitext, $content->serialize() );
+	}
+
+	public function testResponseWithRenderIdForUnsavedWikitext() {
+		$profileVersion = '2.4.0';
+		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;
+		$htmlContentType = "text/html;profile=\"$htmlProfileUri\"";
+
+		$htmlHeaders = [
+			'content-type' => $htmlContentType,
+		];
+
+		$page = $this->getNonexistingTestPage();
+
+		$html = $this->getTextFromFile( 'MainPage-original.html' );
+		$dataParsoid = $this->getJsonFromFile( 'MainPage-original.data-parsoid' );
+		$oldWikitext = 'Fake old wikitext';
+
+		$content = new WikitextContent( $oldWikitext );
+		$pb = new PageBundle(
+			$html,
+			$dataParsoid,
+			[],
+			$profileVersion,
+			$htmlHeaders,
+			CONTENT_MODEL_WIKITEXT
+		);
+
+		// NOTE: Using 0 as the prefix in the ETag indicates that the content does
+		// not correspond to a saved revision. Since we don't have a revision
+		// ID that we could use to load the wikitext from the database,
+		// the wikitext should be taken from the stash.
+		// That is the behavior asserted by this test case.
+		$eTag = '"0/just-a-test/edit"';
+
+		// Load the original data based on the ETag
+		$body = [ 'html' => $html, 'original' => [ 'renderid' => $eTag ] ];
+		$params = [];
+
+		$stash = $this->getServiceContainer()->getParsoidOutputStash();
+		$stash->set(
+			ParsoidRenderID::newFromETag( $eTag ),
+			new SelserContext( $pb, 0, $content )
+		);
 
 		$helper = $this->newHelper();
 		$helper->init( $page, $body, $params );

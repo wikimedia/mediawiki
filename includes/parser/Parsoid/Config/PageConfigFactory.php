@@ -123,6 +123,18 @@ class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 		} elseif ( !is_int( $revision ) ) {
 			$revisionRecord = $revision;
 		} else {
+			if ( $revision === 0 ) {
+				// The client may explicitly provide 0 as the revision ID to indicate that
+				// the content doesn't belong to any saved revision, and provide wikitext
+				// in some way. Calling code should handle this case and provide a (fake)
+				// RevisionRecord based on the data in the request. If we get here, the
+				// code processing the request didn't handle this case properly.
+				throw new \UnexpectedValueException(
+					"Got revision ID 0 indicating unsaved content. " .
+					"Unsaved content must be provided as a RevisionRecord object."
+				);
+			}
+
 			// Fetch the correct revision record by the supplied id.
 			// This accesses the replica DB and may (or may not) fail over to
 			// the primary DB if the revision isn't found.
