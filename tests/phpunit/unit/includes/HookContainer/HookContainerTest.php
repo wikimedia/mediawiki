@@ -263,6 +263,29 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
+		 * @covers \MediaWiki\HookContainer\HookContainer::getRegisteredHooks
+		 */
+		public function testGetRegisteredHooks() {
+			$configuredHooks = [ 'A' => 'strtoupper', 'X' => 'strtoupper' ];
+			$extensionHooks = [
+				'A' => [ 'handler' => 'Foo' ],
+				'Y' => [ 'handler' => 'Bar' ]
+			];
+
+			$mockObjectFactory = $this->getObjectFactory();
+			$hookContainer = new HookContainer(
+				new StaticHookRegistry( $configuredHooks, $extensionHooks ),
+				$mockObjectFactory
+			);
+
+			$hookContainer->register( 'A', 'strtoupper' );
+			$hookContainer->register( 'Z', 'strtoupper' );
+
+			$expected = [ 'A', 'X', 'Y', 'Z' ];
+			$this->assertArrayEquals( $expected, $hookContainer->getRegisteredHooks() );
+		}
+
+		/**
 		 * @dataProvider provideRunLegacyErrors
 		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
 		 * Test errors thrown with invalid handlers
