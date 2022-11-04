@@ -48,17 +48,6 @@ class HtmlFileCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	}
 
 	/**
-	 * @deprecated since 1.37 use newFromPages() instead
-	 * @param iterable<PageIdentity> $pages PageIdentity instances
-	 *
-	 * @return HtmlFileCacheUpdate
-	 */
-	public static function newFromTitles( $pages ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return self::newFromPages( $pages );
-	}
-
-	/**
 	 * @since 1.37
 	 * @param iterable<PageIdentity> $pages PageIdentity instances
 	 *
