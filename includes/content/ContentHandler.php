@@ -731,8 +731,7 @@ abstract class ContentHandler {
 		$this->getHookRunner()->onPageContentLanguage( $title, $pageLang, $wgLang );
 
 		if ( !$pageLang instanceof Language ) {
-			wfDeprecated( 'the hook PageContentLanguage with other types than a Language object in $pageLang', '1.33' );
-			$pageLang = wfGetLangObj( $pageLang );
+			throw new MWException( 'onPageContentLanguage() hook provided an invalid $pageLang object.' );
 		}
 
 		return $pageLang;

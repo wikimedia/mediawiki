@@ -177,6 +177,9 @@ because of Phabricator reports.
 * Title::getNotificationTimestamp(), deprecated since 1.35, has been removed.
 * WikiRevision::$fileIsTemp property, deprecated since 1.29, has been removed.
 * LoadMonitorMysql was removed without deprecation. Use LoadMonitor instead.
+* Return values in the parameter $pageLang of the PageContentLanguage hook with
+  other types than a Language object, deprecated since 1.33, hard deprecated
+  since 1.38, now throws an exception.
 * …
 
 === Deprecations in 1.40 ===
