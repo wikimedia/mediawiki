@@ -1938,7 +1938,7 @@ class LocalFile extends File {
 		$logEntry->setParameters(
 			[
 				'img_sha1' => $this->sha1,
-				'img_timestamp' => $dbw->timestamp( $timestamp ),
+				'img_timestamp' => $timestamp,
 			]
 		);
 		// Note we keep $logId around since during new image
