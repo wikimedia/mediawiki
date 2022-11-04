@@ -1095,44 +1095,6 @@ class FormatMetadata extends ContextSource {
 	}
 
 	/**
-	 * Flatten an array, using the content language for any messages.
-	 *
-	 * @param array $vals Array of values
-	 * @param string $type Type of array (either lang, ul, ol).
-	 *   lang = language assoc array with keys being the lang code
-	 *   ul = unordered list, ol = ordered list
-	 *   type can also come from the '_type' member of $vals.
-	 * @param bool|IContextSource $noHtml If to avoid returning anything resembling HTML.
-	 *   (Ugly hack for backwards compatibility with old MediaWiki).
-	 *   Setting this parameter to true is deprecated since 1.36.  This
-	 *   parameter can be set to a context, in which case it will be used for
-	 *   $context and $noHtml will default to false.
-	 * @param bool|IContextSource $context
-	 * @return string Single value (in wiki-syntax).
-	 * @since 1.23
-	 * @deprecated since 1.36, appears to have no callers. Hard deprecated since 1.39.
-	 */
-	public static function flattenArrayContentLang( $vals, $type = 'ul',
-		$noHtml = false, $context = false
-	) {
-		wfDeprecated( __METHOD__, '1.36' );
-		// Allow $noHtml to be omitted.
-		if ( $noHtml instanceof IContextSource ) {
-			$context = $noHtml;
-			$noHtml = false;
-		}
-		$obj = new FormatMetadata;
-		if ( $context ) {
-			$obj->setContext( $context );
-		}
-		$context = new DerivativeContext( $obj->getContext() );
-		$context->setLanguage( MediaWikiServices::getInstance()->getContentLanguage() );
-		$obj->setContext( $context );
-
-		return $obj->flattenArrayReal( $vals, $type, $noHtml );
-	}
-
-	/**
 	 * A function to collapse multivalued tags into a single value.
 	 * This turns an array of (for example) authors into a bulleted list.
 	 *
