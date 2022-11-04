@@ -194,7 +194,7 @@ class MediaWikiSite extends Site {
 	 * argument is provided, the marker will be replaced by it's value.
 	 *
 	 * @since 1.21
-	 * @param string|bool $path
+	 * @param string|false $path Not passing a string for this is deprecated since 1.40.
 	 * @return string
 	 */
 	public function getFileUrl( $path = false ) {
@@ -205,6 +205,8 @@ class MediaWikiSite extends Site {
 
 		if ( $path !== false ) {
 			$filePath = str_replace( '$1', $path, $filePath );
+		} else {
+			wfDeprecatedMsg( __METHOD__ . ': omitting $path is deprecated', '1.40' );
 		}
 
 		return $filePath;
