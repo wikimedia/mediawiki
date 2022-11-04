@@ -520,7 +520,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * Load the object from a database row
 	 *
 	 * @since 1.20
-	 * @param stdClass|bool $data DB row containing fields returned by getQueryInfo() or false
+	 * @param stdClass|false $data DB row containing fields returned by getQueryInfo() or false
 	 * @param string|int $from One of the following:
 	 *        - "fromdb" or WikiPage::READ_NORMAL if the data comes from a replica DB
 	 *        - "fromdbmaster" or WikiPage::READ_LATEST if the data comes from the primary DB
@@ -735,7 +735,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 	/**
 	 * Get the page_latest field
-	 * @param bool $wikiId
+	 * @param string|false $wikiId
 	 * @return int The rev_id of current revision
 	 */
 	public function getLatest( $wikiId = self::LOCAL ) {
@@ -951,7 +951,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * Determine whether a page would be suitable for being counted as an
 	 * article in the site_stats table based on the title & its content
 	 *
-	 * @param PreparedEdit|PreparedUpdate|bool $editInfo (false):
+	 * @param PreparedEdit|PreparedUpdate|false $editInfo (false):
 	 *   An object returned by prepareTextForEdit() or getCurrentUpdate() respectively;
 	 *   If false is given, the current database state will be used.
 	 *
@@ -1151,7 +1151,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * objects for same-wiki, non-special redirects and URLs for everything
 	 * else.
 	 * @param Title $rt Redirect target
-	 * @return bool|Title|string False, Title object of local target, or string with URL
+	 * @return Title|string|false False, Title object of local target, or string with URL
 	 */
 	public function getRedirectURL( $rt ) {
 		if ( !$rt ) {
@@ -1266,7 +1266,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param null|int $oldid Revision ID to get the text from, passing null or 0 will
 	 *   get the current revision (default value)
 	 * @param bool $noCache Do not read from or write to caches.
-	 * @return bool|ParserOutput ParserOutput or false if the revision was not found or is not public
+	 * @return ParserOutput|false ParserOutput or false if the revision was not found or is not public
 	 */
 	public function getParserOutput(
 		?ParserOptions $parserOptions = null, $oldid = null, $noCache = false
@@ -1376,7 +1376,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param IDatabase $dbw
 	 * @param int|null $pageId Custom page ID that will be used for the insert statement
 	 *
-	 * @return bool|int The newly created page_id key; false if the row was not
+	 * @return int|false The newly created page_id key; false if the row was not
 	 *   inserted, e.g. because the title already existed or because the specified
 	 *   page ID is already in use.
 	 */
@@ -1574,7 +1574,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	}
 
 	/**
-	 * @param string|int|null|bool $sectionId Section identifier as a number or string
+	 * @param string|int|null|false $sectionId Section identifier as a number or string
 	 * (e.g. 0, 1 or 'T-1'), null/false or an empty string for the whole page
 	 * or 'new' for a new section.
 	 * @param Content $sectionContent New content of the section.
@@ -1614,7 +1614,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	}
 
 	/**
-	 * @param string|int|null|bool $sectionId Section identifier as a number or string
+	 * @param string|int|null|false $sectionId Section identifier as a number or string
 	 * (e.g. 0, 1 or 'T-1'), null/false or an empty string for the whole page
 	 * or 'new' for a new section.
 	 * @param Content $sectionContent New content of the section.
@@ -1822,7 +1822,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * error will be returned. These two conditions are also possible with
 	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
 	 *
-	 * @param bool|int $originalRevId: The ID of an original revision that the edit
+	 * @param int|false $originalRevId: The ID of an original revision that the edit
 	 * restores or repeats. The new revision is expected to have the exact same content as
 	 * the given original revision. This is used with rollbacks and with dummy "null" revisions
 	 * which are created to record things like page moves.
@@ -3001,7 +3001,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * Auto-generates a deletion reason
 	 *
 	 * @param bool &$hasHistory Whether the page has a history
-	 * @return string|bool String containing deletion reason or empty string, or boolean false
+	 * @return string|false String containing deletion reason or empty string, or boolean false
 	 *    if no revision occurred
 	 */
 	public function getAutoDeleteReason( &$hasHistory = false ) {

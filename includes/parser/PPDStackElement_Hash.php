@@ -108,7 +108,7 @@ class PPDStackElement_Hash {
 	/**
 	 * Get the accumulator that would result if the close is not found.
 	 *
-	 * @param int|bool $openingCount
+	 * @param int|false $openingCount
 	 * @return array
 	 */
 	public function breakSyntax( $openingCount = false ) {

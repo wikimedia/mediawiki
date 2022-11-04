@@ -22,7 +22,7 @@ interface ConvertContentHook {
 	 * @param Content $content Content object to be converted
 	 * @param string $toModel ID of the content model to convert to
 	 * @param bool $lossy Whether lossy conversion is allowed
-	 * @param Content|bool &$result Output parameter, in case the handler function wants to
+	 * @param Content|false &$result Output parameter, in case the handler function wants to
 	 *   provide a converted Content object. Note that $result->getContentModel() must return
 	 *   $toModel.
 	 * @return bool|void True or no return value to continue or false to abort

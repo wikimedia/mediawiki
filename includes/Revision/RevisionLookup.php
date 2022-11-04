@@ -136,7 +136,7 @@ interface RevisionLookup extends IDBAccessObject {
 	 *
 	 * @param int $id
 	 * @param int $flags
-	 * @return string|bool False if not found
+	 * @return string|false False if not found
 	 * @since 1.34 (present earlier in RevisionStore)
 	 */
 	public function getTimestampFromId( $id, $flags = 0 );
@@ -152,7 +152,7 @@ interface RevisionLookup extends IDBAccessObject {
 	 * @param PageIdentity $page the associated page
 	 * @param int $revId current revision of this page
 	 *
-	 * @return RevisionRecord|bool Returns false if missing
+	 * @return RevisionRecord|false Returns false if missing
 	 */
 	public function getKnownCurrentRevision( PageIdentity $page, $revId = 0 );
 

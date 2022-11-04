@@ -2799,7 +2799,7 @@ class RevisionStore
 	 *
 	 * @param int $id
 	 * @param int $flags
-	 * @return string|bool False if not found
+	 * @return string|false False if not found
 	 */
 	public function getTimestampFromId( $id, $flags = 0 ) {
 		if ( $id instanceof Title ) {
@@ -2923,7 +2923,7 @@ class RevisionStore
 	 * @param PageIdentity $page the associated page
 	 * @param int $revId current revision of this page. Defaults to $title->getLatestRevID().
 	 *
-	 * @return RevisionRecord|bool Returns false if missing
+	 * @return RevisionRecord|false Returns false if missing
 	 */
 	public function getKnownCurrentRevision( PageIdentity $page, $revId = 0 ) {
 		$db = $this->getDBConnectionRef( DB_REPLICA );

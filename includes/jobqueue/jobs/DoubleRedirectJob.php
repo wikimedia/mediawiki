@@ -203,7 +203,7 @@ class DoubleRedirectJob extends Job {
 	 *
 	 * @param LinkTarget $title
 	 *
-	 * @return Title|bool The final Title after following all redirects, or false if
+	 * @return Title|false The final Title after following all redirects, or false if
 	 *  the page is not a redirect or the redirect loops.
 	 */
 	public static function getFinalDestination( $title ) {
@@ -259,7 +259,7 @@ class DoubleRedirectJob extends Job {
 	 * False will be returned if the user name specified in the
 	 * 'double-redirect-fixer' message is invalid.
 	 *
-	 * @return User|bool
+	 * @return User|false
 	 */
 	private function getUser() {
 		if ( !self::$user ) {

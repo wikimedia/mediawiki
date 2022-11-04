@@ -309,7 +309,7 @@ LUA;
 
 	/**
 	 * @see JobQueue::doPop()
-	 * @return RunnableJob|bool
+	 * @return RunnableJob|false
 	 * @throws JobQueueError
 	 */
 	protected function doPop() {
@@ -628,7 +628,7 @@ LUA;
 	 *
 	 * @param string $uid
 	 * @param RedisConnRef|Redis $conn
-	 * @return RunnableJob|bool Returns false if the job does not exist
+	 * @return RunnableJob|false Returns false if the job does not exist
 	 * @throws JobQueueError
 	 * @throws UnexpectedValueException
 	 */
@@ -703,7 +703,7 @@ LUA;
 
 	/**
 	 * @param array $fields
-	 * @return RunnableJob|bool
+	 * @return RunnableJob|false
 	 */
 	protected function getJobFromFields( array $fields ) {
 		$params = $fields['params'];
@@ -737,7 +737,7 @@ LUA;
 
 	/**
 	 * @param string $blob
-	 * @return array|bool Unserialized version of $blob or false
+	 * @return array|false Unserialized version of $blob or false
 	 */
 	protected function unserialize( $blob ) {
 		$fields = unserialize( $blob );

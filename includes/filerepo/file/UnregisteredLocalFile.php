@@ -41,7 +41,7 @@ class UnregisteredLocalFile extends File {
 	/** @var string */
 	protected $path;
 
-	/** @var bool|string */
+	/** @var string|false */
 	protected $mime;
 
 	/** @var array[]|bool[] Dimension data */
@@ -76,10 +76,10 @@ class UnregisteredLocalFile extends File {
 	 * A FileRepo object is not required here, unlike most other File classes.
 	 *
 	 * @throws MWException
-	 * @param Title|bool $title
-	 * @param FileRepo|bool $repo
-	 * @param string|bool $path
-	 * @param string|bool $mime
+	 * @param Title|false $title
+	 * @param FileRepo|false $repo
+	 * @param string|false $path
+	 * @param string|false $mime
 	 */
 	public function __construct( $title = false, $repo = false, $path = false, $mime = false ) {
 		if ( !( $title && $repo ) && !$path ) {
@@ -109,7 +109,7 @@ class UnregisteredLocalFile extends File {
 
 	/**
 	 * @param int $page
-	 * @return array|bool
+	 * @return array|false
 	 */
 	private function cachePageDimensions( $page = 1 ) {
 		$page = (int)$page;
@@ -156,7 +156,7 @@ class UnregisteredLocalFile extends File {
 	}
 
 	/**
-	 * @return bool|string
+	 * @return string|false
 	 */
 	public function getMimeType() {
 		if ( !isset( $this->mime ) ) {
@@ -202,7 +202,7 @@ class UnregisteredLocalFile extends File {
 	}
 
 	/**
-	 * @return bool|string
+	 * @return string|false
 	 */
 	public function getURL() {
 		if ( $this->repo ) {

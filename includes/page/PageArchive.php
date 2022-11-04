@@ -274,7 +274,7 @@ class PageArchive {
 	 * @param bool $unsuppress
 	 * @param string|string[]|null $tags Change tags to add to log entry
 	 *   ($user should be able to add the specified tags before this is called)
-	 * @return array|bool [ number of file revisions restored, number of image revisions
+	 * @return array|false [ number of file revisions restored, number of image revisions
 	 *   restored, log message ] on success, false on failure.
 	 */
 	public function undeleteAsUser(

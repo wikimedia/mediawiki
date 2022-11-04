@@ -163,7 +163,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @param LoggerInterface $logger
 	 * @param TempUserConfig $tempUserConfig
 	 * @param callable[] $clearCacheCallbacks
-	 * @param string|bool $dbDomain
+	 * @param string|false $dbDomain
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -959,7 +959,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * Purge expired memberships from the user_groups table
 	 * @internal
 	 * @note this could be slow and is intended for use in a background job
-	 * @return int|bool false if purging wasn't attempted (e.g. because of
+	 * @return int|false false if purging wasn't attempted (e.g. because of
 	 *  readonly), the number of rows purged (might be 0) otherwise
 	 */
 	public function purgeExpired() {

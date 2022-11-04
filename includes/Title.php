@@ -4128,7 +4128,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * At the moment, this method always returns false. But this may change in the future.
 	 *
 	 * @since 1.36
-	 * @return bool false
+	 * @return string|false Always self::LOCAL
 	 */
 	public function getWikiId() {
 		return self::LOCAL;

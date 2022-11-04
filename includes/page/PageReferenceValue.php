@@ -51,13 +51,13 @@ class PageReferenceValue implements PageReference {
 	/** @var string */
 	private $dbKey;
 
-	/** @var bool|string */
+	/** @var string|false */
 	private $wikiId;
 
 	/**
 	 * @param int $namespace A valid namespace ID. Validation is the caller's responsibility!
 	 * @param string $dbKey A valid DB key. Validation is the caller's responsibility!
-	 * @param string|bool $wikiId The Id of the wiki this page belongs to,
+	 * @param string|false $wikiId The Id of the wiki this page belongs to,
 	 *        or self::LOCAL for the local wiki.
 	 */
 	public function __construct( int $namespace, string $dbKey, $wikiId ) {

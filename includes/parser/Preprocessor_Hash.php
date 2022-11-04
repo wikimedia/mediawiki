@@ -44,7 +44,7 @@ class Preprocessor_Hash extends Preprocessor {
 	/** Cache format version */
 	protected const CACHE_VERSION = 3;
 
-	/** @var int|bool Min wikitext size for which to cache DOM tree */
+	/** @var int|false Min wikitext size for which to cache DOM tree */
 	protected $cacheThreshold;
 
 	/**

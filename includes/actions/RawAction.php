@@ -223,7 +223,7 @@ class RawAction extends FormlessAction {
 	 * Get the text that should be returned, or false if the page or revision
 	 * was not found.
 	 *
-	 * @return string|bool
+	 * @return string|false
 	 */
 	public function getRawText() {
 		$text = false;

@@ -598,7 +598,7 @@ class NamespaceDupes extends Maintenance {
 	 * @param int $ns The destination namespace ID
 	 * @param string $dbk The source DB key (i.e. page_title)
 	 * @param array $options Associative array of validated command-line options
-	 * @return Title|bool
+	 * @return Title|false
 	 */
 	private function getAlternateTitle( $ns, $dbk, $options ) {
 		$prefix = $options['add-prefix'];

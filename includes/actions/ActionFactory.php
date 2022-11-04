@@ -219,7 +219,7 @@ class ActionFactory {
 
 	/**
 	 * @param string $actionName should already be in all lowercase
-	 * @return string|callable|bool|Action|array|null The spec for the action, in any valid form,
+	 * @return string|callable|false|Action|array|null The spec for the action, in any valid form,
 	 *   based on $this->actionsConfig, or if not included there, CORE_ACTIONS, or null if the
 	 *   action does not exist.
 	 */
@@ -243,7 +243,7 @@ class ActionFactory {
 	 * @param string $actionName
 	 * @param Article $article
 	 * @param IContextSource $context
-	 * @return Action|bool|null False if the action is disabled, null if not recognized
+	 * @return Action|false|null False if the action is disabled, null if not recognized
 	 */
 	public function getAction(
 		string $actionName,

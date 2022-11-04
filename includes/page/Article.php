@@ -68,7 +68,7 @@ class Article implements Page {
 	/** @var Title|null Title from which we were redirected here, if any. */
 	public $mRedirectedFrom = null;
 
-	/** @var string|bool URL to redirect to or false if none */
+	/** @var string|false URL to redirect to or false if none */
 	public $mRedirectUrl = false;
 
 	/**
@@ -1942,7 +1942,7 @@ class Article implements Page {
 	 *
 	 * @param int|null $oldid Revision ID or null
 	 * @param UserIdentity|null $user The relevant user
-	 * @return ParserOutput|bool ParserOutput or false if the given revision ID is not found
+	 * @return ParserOutput|false ParserOutput or false if the given revision ID is not found
 	 */
 	public function getParserOutput( $oldid = null, UserIdentity $user = null ) {
 		if ( $user === null ) {

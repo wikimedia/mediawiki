@@ -232,7 +232,7 @@ class LocalRepo extends FileRepo {
 	 * Checks if there is a redirect named as $title
 	 *
 	 * @param PageIdentity|LinkTarget $title Title of file
-	 * @return bool|Title
+	 * @return Title|false
 	 */
 	public function checkRedirect( $title ) {
 		$title = File::normalizeTitle( $title, 'exception' );

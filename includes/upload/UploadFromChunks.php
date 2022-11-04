@@ -50,8 +50,8 @@ class UploadFromChunks extends UploadFromFile {
 	 * Setup local pointers to stash, repo and user (similar to UploadFromStash)
 	 *
 	 * @param User $user
-	 * @param UploadStash|bool $stash Default: false
-	 * @param FileRepo|bool $repo Default: false
+	 * @param UploadStash|false $stash Default: false
+	 * @param FileRepo|false $repo Default: false
 	 */
 	public function __construct( User $user, $stash = false, $repo = false ) {
 		$this->user = $user;

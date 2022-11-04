@@ -103,7 +103,7 @@ class UserGroupManagerFactory {
 	}
 
 	/**
-	 * @param string|bool $dbDomain
+	 * @param string|false $dbDomain
 	 * @return UserGroupManager
 	 */
 	public function getUserGroupManager( $dbDomain = false ): UserGroupManager {

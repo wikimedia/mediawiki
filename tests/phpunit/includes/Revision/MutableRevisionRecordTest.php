@@ -38,7 +38,7 @@ class MutableRevisionRecordTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideConstructor
 	 *
 	 * @param PageIdentity $page
-	 * @param bool $wikiId
+	 * @param string|false $wikiId
 	 * @param string|null $expectedException
 	 */
 	public function testConstructorAndGetters(

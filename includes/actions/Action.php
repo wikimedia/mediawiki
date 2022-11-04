@@ -80,7 +80,7 @@ abstract class Action implements MessageLocalizer {
 	 * @param string $action
 	 * @param Article $article
 	 * @param IContextSource|null $context Falls back to article's context
-	 * @return Action|bool|null False if the action is disabled, null
+	 * @return Action|false|null False if the action is disabled, null
 	 *     if it is not recognised
 	 */
 	final public static function factory(
