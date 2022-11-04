@@ -1837,7 +1837,6 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\LoadBalancer' => __DIR__ . '/includes/libs/rdbms/loadbalancer/LoadBalancer.php',
 	'Wikimedia\\Rdbms\\LoadBalancerSingle' => __DIR__ . '/includes/libs/rdbms/loadbalancer/LoadBalancerSingle.php',
 	'Wikimedia\\Rdbms\\LoadMonitor' => __DIR__ . '/includes/libs/rdbms/loadmonitor/LoadMonitor.php',
-	'Wikimedia\\Rdbms\\LoadMonitorMySQL' => __DIR__ . '/includes/libs/rdbms/loadmonitor/LoadMonitorMySQL.php',
 	'Wikimedia\\Rdbms\\LoadMonitorNull' => __DIR__ . '/includes/libs/rdbms/loadmonitor/LoadMonitorNull.php',
 	'Wikimedia\\Rdbms\\MWMySQLPlatform' => __DIR__ . '/includes/libs/rdbms/dbal/MWMySQLPlatform.php',
 	'Wikimedia\\Rdbms\\MWPostgreSqlPlatform' => __DIR__ . '/includes/libs/rdbms/dbal/MWPostgreSqlPlatform.php',
