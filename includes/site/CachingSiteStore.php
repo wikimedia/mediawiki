@@ -1,9 +1,5 @@
 <?php
-
 /**
- * Represents the site configuration of a wiki.
- * Holds a list of sites (ie SiteList), with a caching layer.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -19,58 +15,38 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.25
- *
  * @file
- * @ingroup Site
+ */
+
+/**
+ * Hold a configured list of sites (SiteList), with a caching layer.
  *
- * @license GPL-2.0-or-later
+ * @internal For use by core ServiceWiring only. The public interface is SiteStore
+ * @ingroup Site
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
 class CachingSiteStore implements SiteStore {
-
-	/**
-	 * @var SiteList|null
-	 */
-	private $sites = null;
-
-	/**
-	 * @var string|null
-	 */
-	private $cacheKey;
-
-	/**
-	 * @var int
-	 */
-	private $cacheTimeout;
-
-	/**
-	 * @var BagOStuff
-	 */
+	/** @var SiteStore */
+	private $siteStore;
+	/** @var BagOStuff */
 	private $cache;
 
-	/**
-	 * @var SiteStore
-	 */
-	private $siteStore;
+	/** @var string|null */
+	private $cacheKey = null;
+	/** @var SiteList|null */
+	private $sites = null;
 
 	/**
 	 * @param SiteStore $siteStore
 	 * @param BagOStuff $cache
-	 * @param string|null $cacheKey
-	 * @param int $cacheTimeout
 	 */
 	public function __construct(
 		SiteStore $siteStore,
-		BagOStuff $cache,
-		$cacheKey = null,
-		$cacheTimeout = 3600
+		BagOStuff $cache
 	) {
 		$this->siteStore = $siteStore;
 		$this->cache = $cache;
-		$this->cacheKey = $cacheKey;
-		$this->cacheTimeout = $cacheTimeout;
 	}
 
 	/**
@@ -89,8 +65,8 @@ class CachingSiteStore implements SiteStore {
 	 */
 	private function getCacheKey() {
 		if ( $this->cacheKey === null ) {
-			$type = 'SiteList#' . SiteList::getSerialVersionId();
-			$this->cacheKey = $this->cache->makeKey( "sites/$type" );
+			$version = SiteList::getSerialVersionId();
+			$this->cacheKey = $this->cache->makeKey( 'site-SiteList', $version );
 		}
 
 		return $this->cacheKey;
@@ -100,15 +76,16 @@ class CachingSiteStore implements SiteStore {
 	 * @see SiteStore::getSites
 	 *
 	 * @since 1.25
-	 *
 	 * @return SiteList
 	 */
 	public function getSites() {
 		if ( $this->sites === null ) {
 			$this->sites = $this->cache->getWithSetCallback(
 				$this->getCacheKey(),
-				$this->cacheTimeout,
-				[ $this->siteStore, 'getSites' ]
+				BagOStuff::TTL_HOUR,
+				function () {
+					return $this->siteStore->getSites();
+				}
 			);
 		}
 
@@ -119,9 +96,7 @@ class CachingSiteStore implements SiteStore {
 	 * @see SiteStore::getSite
 	 *
 	 * @since 1.25
-	 *
 	 * @param string $globalId
-	 *
 	 * @return Site|null
 	 */
 	public function getSite( $globalId ) {
@@ -134,9 +109,7 @@ class CachingSiteStore implements SiteStore {
 	 * @see SiteStore::saveSite
 	 *
 	 * @since 1.25
-	 *
 	 * @param Site $site
-	 *
 	 * @return bool Success indicator
 	 */
 	public function saveSite( Site $site ) {
@@ -147,13 +120,11 @@ class CachingSiteStore implements SiteStore {
 	 * @see SiteStore::saveSites
 	 *
 	 * @since 1.25
-	 *
 	 * @param Site[] $sites
-	 *
 	 * @return bool Success indicator
 	 */
 	public function saveSites( array $sites ) {
-		if ( empty( $sites ) ) {
+		if ( !$sites ) {
 			return true;
 		}
 
@@ -166,15 +137,12 @@ class CachingSiteStore implements SiteStore {
 	}
 
 	/**
-	 * Purges the internal and external cache of the site list, forcing the list.
+	 * Purge the internal and external cache of the site list, forcing the list.
 	 * of sites to be reloaded.
-	 *
-	 * Only use this for testing, as APC is typically used and is per-server
 	 *
 	 * @since 1.25
 	 */
 	public function reset() {
-		// purge cache
 		$this->cache->delete( $this->getCacheKey() );
 		$this->sites = null;
 	}
@@ -182,10 +150,11 @@ class CachingSiteStore implements SiteStore {
 	/**
 	 * Clears the list of sites stored.
 	 *
-	 * Only use this for testing, as APC is typically used and is per-server.
+	 * NOTE: The fact that this also clears the in-process cache is an internal
+	 * detail for PHPUnit testing only. The injected cache is generally APCU,
+	 * which is per-server, so the cache reset would not apply to any other web servers.
 	 *
 	 * @see SiteStore::clear()
-	 *
 	 * @return bool Success
 	 */
 	public function clear() {

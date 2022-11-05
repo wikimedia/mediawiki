@@ -1,11 +1,5 @@
 <?php
-
-use Wikimedia\Rdbms\ILoadBalancer;
-
 /**
- * Represents the site configuration of a wiki.
- * Holds a list of sites (ie SiteList), stored in the database.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,33 +15,27 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.25
- *
  * @file
- * @ingroup Site
+ */
+
+use Wikimedia\Rdbms\ILoadBalancer;
+
+/**
+ * Holds a list of sites stored in the database.
  *
- * @license GPL-2.0-or-later
+ * @since 1.25
+ * @ingroup Site
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  * @author Daniel Kinzler
  */
 class DBSiteStore implements SiteStore {
-
-	/**
-	 * @var SiteList|null
-	 */
+	/** @var SiteList|null */
 	protected $sites = null;
-
-	/**
-	 * @var ILoadBalancer
-	 */
+	/** @var ILoadBalancer */
 	private $dbLoadBalancer;
 
 	/**
 	 * @since 1.27
-	 *
-	 * @todo inject some kind of connection manager that is aware of the target wiki,
-	 * instead of injecting a LoadBalancer.
-	 *
 	 * @param ILoadBalancer $dbLoadBalancer
 	 */
 	public function __construct( ILoadBalancer $dbLoadBalancer ) {
@@ -58,7 +46,6 @@ class DBSiteStore implements SiteStore {
 	 * @see SiteStore::getSites
 	 *
 	 * @since 1.25
-	 *
 	 * @return SiteList
 	 */
 	public function getSites() {
@@ -138,9 +125,7 @@ class DBSiteStore implements SiteStore {
 	 * @see SiteStore::getSite
 	 *
 	 * @since 1.25
-	 *
 	 * @param string $globalId
-	 *
 	 * @return Site|null
 	 */
 	public function getSite( $globalId ) {
@@ -155,9 +140,7 @@ class DBSiteStore implements SiteStore {
 	 * @see SiteStore::saveSite
 	 *
 	 * @since 1.25
-	 *
 	 * @param Site $site
-	 *
 	 * @return bool Success indicator
 	 */
 	public function saveSite( Site $site ) {
@@ -168,9 +151,7 @@ class DBSiteStore implements SiteStore {
 	 * @see SiteStore::saveSites
 	 *
 	 * @since 1.25
-	 *
 	 * @param Site[] $sites
-	 *
 	 * @return bool Success indicator
 	 */
 	public function saveSites( array $sites ) {

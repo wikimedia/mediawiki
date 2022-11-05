@@ -1,11 +1,5 @@
 <?php
-
-use Wikimedia\RequestTimeout\TimeoutException;
-
 /**
- * Utility for importing site entries from XML.
- * For the expected format of the input, see docs/sitelist.md and docs/sitelist-1.0.xsd.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,12 +15,18 @@ use Wikimedia\RequestTimeout\TimeoutException;
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.25
- *
  * @file
- * @ingroup Site
+ */
+
+use Wikimedia\RequestTimeout\TimeoutException;
+
+/**
+ * Utility for importing site entries from XML.
  *
- * @license GPL-2.0-or-later
+ * For the expected format of the input, see docs/sitelist.md and docs/sitelist-1.0.xsd.
+ *
+ * @since 1.25
+ * @ingroup Site
  * @author Daniel Kinzler
  */
 class SiteImporter {
