@@ -1502,33 +1502,6 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * Generates diff, to be wrapped internally in a logging/instrumentation
-	 *
-	 * @param string $otext Old text, must be already segmented
-	 * @param string $ntext New text, must be already segmented
-	 *
-	 * @throws Exception If content handling for text content is configured in a way
-	 *   that makes maintaining B/C hard.
-	 * @return bool|string
-	 *
-	 * @deprecated since 1.32, use a TextSlotDiffRenderer instead.
-	 *  Hard deprecated since 1.39.
-	 */
-	protected function textDiff( $otext, $ntext ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		$slotDiffRenderer = $this->contentHandlerFactory
-			->getContentHandler( CONTENT_MODEL_TEXT )
-			->getSlotDiffRenderer( $this->getContext() );
-		if ( !( $slotDiffRenderer instanceof TextSlotDiffRenderer ) ) {
-			// Someone used the GetSlotDiffRenderer hook to replace the renderer.
-			// This is too unlikely to happen to bother handling properly.
-			throw new Exception( 'The slot diff renderer for text content should be a '
-				. 'TextSlotDiffRenderer subclass' );
-		}
-		return $slotDiffRenderer->getTextDiff( $otext, $ntext ) . $this->getDebugString();
-	}
-
-	/**
 	 * Generate a debug comment indicating diff generating time,
 	 * server node, and generator backend.
 	 *
