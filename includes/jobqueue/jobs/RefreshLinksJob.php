@@ -311,11 +311,12 @@ class RefreshLinksJob extends Job {
 			return $cachedOutput;
 		}
 
+		$causeAction = $this->params['causeAction'] ?? 'RefreshLinksJob';
 		$renderedRevision = $renderer->getRenderedRevision(
 			$revision,
 			$page->makeParserOptions( 'canonical' ),
 			null,
-			[ 'audience' => $revision::RAW ]
+			[ 'audience' => $revision::RAW, 'causeAction' => $causeAction ]
 		);
 
 		$parseTimestamp = wfTimestampNow(); // timestamp that parsing started

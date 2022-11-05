@@ -101,6 +101,8 @@ class RevisionRenderer {
 	 *        matched the $rev and $options. This mechanism is intended as a temporary stop-gap,
 	 *        for the time until caches have been changed to store RenderedRevision states instead
 	 *        of ParserOutput objects.
+	 *      - 'causeAction' the reason for rendering. This should be informative, for used for
+	 *        logging and debugging.
 	 * @phan-param array{use-master?:bool,audience?:int,known-revision-output?:ParserOutput} $hints
 	 *
 	 * @return RenderedRevision|null The rendered revision, or null if the audience checks fails.
@@ -128,6 +130,10 @@ class RevisionRenderer {
 			$options = ParserOptions::newCanonical(
 				$forPerformer ? $forPerformer->getUser() : 'canonical'
 			);
+		}
+
+		if ( isset( $hints['causeAction'] ) ) {
+			$options->setRenderReason( $hints['causeAction'] );
 		}
 
 		$usePrimary = $hints['use-master'] ?? false;

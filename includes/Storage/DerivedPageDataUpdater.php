@@ -190,7 +190,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		'causeAction' => null,
 		'causeAgent' => null,
 		'editResult' => null,
-		'approved' => false,
+		'approved' => false
 	];
 
 	/**
@@ -393,6 +393,25 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
+	}
+
+	/**
+	 * Set the cause action and cause agent, for logging and debugging.
+	 * If $causeAction or $causeAgent is null, any previously set value is preserved.
+	 *
+	 * @param ?string $causeAction
+	 * @param ?string $causeAgent
+	 *
+	 * @return void
+	 */
+	public function setCause( ?string $causeAction, ?string $causeAgent ) {
+		if ( $causeAction ) {
+			$this->options['causeAction'] = $causeAction;
+		}
+
+		if ( $causeAgent ) {
+			$this->options['causeAgent'] = $causeAgent;
+		}
 	}
 
 	/**
@@ -882,6 +901,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		}
 
 		$userPopts = ParserOptions::newFromUserAndLang( $user, $this->contLang );
+		$userPopts->setRenderReason( $this->options['causeAgent'] ?? 'unknown' );
+
 		$this->hookRunner->onArticlePrepareTextForEdit( $wikiPage, $userPopts );
 
 		$this->user = $user;
@@ -987,7 +1008,9 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 
 		$renderHints['generate-html'] = $this->shouldGenerateHTMLOnEdit();
 
-		// NOTE: we want a canonical rendering, so don't pass $this->user or ParserOptions
+		$renderHints['causeAction'] = $this->options['causeAction'] ?? 'unknown';
+
+			// NOTE: we want a canonical rendering, so don't pass $this->user or ParserOptions
 		// NOTE: the revision is either new or current, so we can bypass audience checks.
 		$this->renderedRevision = $this->revisionRenderer->getRenderedRevision(
 			$this->revision,
@@ -1371,7 +1394,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 				[
 					'use-master' => $this->usePrimary(),
 					'audience' => RevisionRecord::RAW,
-					'known-revision-output' => $options['known-revision-output'] ?? null
+					'known-revision-output' => $options['known-revision-output'] ?? null,
+					'causeAction' => $this->options['causeAction'] ?? 'unknown'
 				]
 			);
 
@@ -1702,6 +1726,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$this->assertHasRevision( __METHOD__ );
 
 		$userParserOptions = ParserOptions::newFromUser( $this->user );
+
 		// Decide whether to save the final canonical parser output based on the fact that
 		// users are typically redirected to viewing pages right after they edit those pages.
 		// Due to vary-revision-id, getting/saving that output here might require a reparse.
@@ -1836,6 +1861,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$wikiPage = $this->getWikiPage(); // TODO: ParserCache should accept a RevisionRecord instead
 		$rev = $this->getRevision();
 		$parserOpts = $this->getCanonicalParserOptions();
+
+		$parserOpts->setRenderReason( $this->options['causeAction'] ?? 'unknown' );
 
 		$mainSlot = $rev->getSlot( SlotRecord::MAIN );
 		if ( !$this->parsoidOutputAccess->supportsContentModel( $mainSlot->getModel() ) ) {

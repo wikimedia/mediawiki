@@ -269,6 +269,7 @@ class CategoryMembershipChangeJob extends Job {
 		$services = MediaWikiServices::getInstance();
 		$options = $page->makeParserOptions( 'canonical' );
 		$options->setTimestamp( $parseTimestamp );
+		$options->setRenderReason( 'CategoryMembershipChangeJob' );
 
 		$output = $rev instanceof RevisionStoreRecord && $rev->isCurrent()
 			? $services->getParserCache()->get( $page, $options )

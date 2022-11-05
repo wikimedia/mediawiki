@@ -497,6 +497,8 @@ class ParserCache {
 			'rev_id' => $revId
 		] );
 		$this->incrementStats( $page, 'save.success' );
+
+		$this->incrementStats( $page, 'save-reason.' . $popts->getRenderReason() );
 	}
 
 	/**

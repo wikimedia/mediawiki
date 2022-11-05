@@ -384,4 +384,13 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		ScopedCallback::consume( $fakeRevisionScope );
 		$this->assertFalse( $options->getCurrentRevisionRecordCallback()( $page ) );
 	}
+
+	public function testRenderReason() {
+		$options = ParserOptions::newFromAnon();
+
+		$this->assertIsString( $options->getRenderReason() );
+
+		$options->setRenderReason( 'just a test' );
+		$this->assertIsString( 'just a test', $options->getRenderReason() );
+	}
 }
