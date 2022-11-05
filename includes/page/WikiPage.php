@@ -54,10 +54,16 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
+ * @defgroup Page Page
+ */
+
+/**
  * Base representation for an editable wiki page.
  *
  * Some fields are public only for backwards-compatibility. Use accessor methods.
  * In the past, this class was part of Article.php and everything was public.
+ *
+ * @ingroup Page
  */
 class WikiPage implements Page, IDBAccessObject, PageRecord {
 	use NonSerializableTrait;

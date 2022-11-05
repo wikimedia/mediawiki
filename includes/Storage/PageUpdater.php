@@ -1,7 +1,5 @@
 <?php
 /**
- * Controller-like object for creating and updating pages by creating new revisions.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,8 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- *
- * @author Daniel Kinzler
  */
 
 namespace MediaWiki\Storage;
@@ -72,12 +68,13 @@ use WikiPage;
  * This allows application logic to safely perform edit conflict resolution using the parent
  * revision's content.
  *
- * @see docs/pageupdater.md for more information.
- *
  * MCR migration note: this replaces the relevant methods in WikiPage.
+ *
+ * @see docs/pageupdater.md for more information.
  *
  * @since 1.32
  * @ingroup Page
+ * @author Daniel Kinzler
  * @phan-file-suppress PhanTypeArraySuspiciousNullable Cannot read type of $this->status->value
  */
 class PageUpdater {
