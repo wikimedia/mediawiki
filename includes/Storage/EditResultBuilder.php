@@ -1,7 +1,5 @@
 <?php
 /**
- * Builder class for the EditResult object.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -18,8 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- *
- * @author Ostrzyciel
  */
 
 namespace MediaWiki\Storage;
@@ -35,6 +31,7 @@ use Wikimedia\Assert\Assert;
  *
  * @internal Only for use by PageUpdater
  * @since 1.35
+ * @author Ostrzyciel
  */
 class EditResultBuilder {
 

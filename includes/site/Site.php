@@ -1,12 +1,5 @@
 <?php
-
-use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Site\MediaWikiPageNameNormalizer;
-
 /**
- * Represents a single site.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -22,12 +15,18 @@ use MediaWiki\Site\MediaWikiPageNameNormalizer;
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @since 1.21
- *
  * @file
- * @ingroup Site
+ */
+
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Site\MediaWikiPageNameNormalizer;
+
+/**
+ * Represents a single site.
  *
- * @license GPL-2.0-or-later
+ * @since 1.21
+ * @ingroup Site
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class Site implements Serializable {

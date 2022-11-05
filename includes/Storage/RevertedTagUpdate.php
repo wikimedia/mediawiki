@@ -16,8 +16,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- *
- * @author Ostrzyciel
  */
 
 namespace MediaWiki\Storage;
@@ -38,6 +36,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * This class is used by RevertedTagUpdateJob to perform the actual update.
  *
  * @since 1.36
+ * @author Ostrzyciel
  */
 class RevertedTagUpdate implements DeferrableUpdate {
 

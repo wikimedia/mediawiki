@@ -31,8 +31,8 @@ use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
- * @author Addshore
  * @since 1.31
+ * @author Addshore
  */
 class NameTableStore {
 

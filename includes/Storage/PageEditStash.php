@@ -49,6 +49,7 @@ use WikiPage;
  * See also mediawiki.action.edit/stash.js.
  *
  * @since 1.34
+ * @ingroup Page
  */
 class PageEditStash {
 	/** @var BagOStuff */
