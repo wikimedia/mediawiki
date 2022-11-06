@@ -936,7 +936,7 @@
 [submodule "extensions/WikiSEO"]
 	path = extensions/WikiSEO
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiSEO
-	branch = REL1_38
+	branch = master
 	ignore = dirty
 [submodule "extensions/DummyFandoomMainpageTags"]
 	path = extensions/DummyFandoomMainpageTags
