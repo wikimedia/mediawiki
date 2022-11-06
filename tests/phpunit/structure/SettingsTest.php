@@ -69,8 +69,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 * Check that currently loaded settings validate against the schema.
 	 */
 	public function testCurrentSettingsValidate() {
-		global $wgSettings;
-		$validationResult = $wgSettings->validate();
+		$validationResult = SettingsBuilder::getInstance()->validate();
 		$this->assertStatusOK( $validationResult );
 	}
 
@@ -78,8 +77,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 * Check that currently loaded config does not use deprecated settings.
 	 */
 	public function testCurrentSettingsNotDeprecated() {
-		global $wgSettings;
-		$deprecations = $wgSettings->detectDeprecatedConfig();
+		$deprecations = SettingsBuilder::getInstance()->detectDeprecatedConfig();
 		$this->assertEquals( [], $deprecations );
 	}
 
@@ -87,8 +85,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 * Check that currently loaded config does not use obsolete settings.
 	 */
 	public function testCurrentSettingsNotObsolete() {
-		global $wgSettings;
-		$obsolete = $wgSettings->detectObsoleteConfig();
+		$obsolete = SettingsBuilder::getInstance()->detectObsoleteConfig();
 		$this->assertEquals( [], $obsolete );
 	}
 
@@ -96,8 +93,7 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 * Check that currently loaded config does not have warnings.
 	 */
 	public function testCurrentSettingsHaveNoWarnings() {
-		global $wgSettings;
-		$deprecations = $wgSettings->getWarnings();
+		$deprecations = SettingsBuilder::getInstance()->getWarnings();
 		$this->assertEquals( [], $deprecations );
 	}
 
