@@ -109,6 +109,7 @@ class AutoloadGenerator {
 	 * autoloader entry when the namespace matches the path.
 	 *
 	 * @since 1.32
+	 * @deprecated since 1.40 - PSR-4 classes are now included in the generated classmap
 	 * @param string[] $namespaces Associative array mapping namespace to path
 	 */
 	public function setPsr4Namespaces( array $namespaces ) {
@@ -186,24 +187,6 @@ class AutoloadGenerator {
 		}
 
 		$result = $this->collector->getClasses( $fileContents );
-
-		// Filter out classes that will be found by PSR4
-		$result = array_filter( $result, function ( $class ) use ( $inputPath ) {
-			$parts = explode( '\\', $class );
-			for ( $i = count( $parts ) - 1; $i > 0; $i-- ) {
-				$ns = implode( '\\', array_slice( $parts, 0, $i ) ) . '\\';
-				if ( isset( $this->psr4Namespaces[$ns] ) ) {
-					$expectedPath = $this->psr4Namespaces[$ns] . '/'
-						. implode( '/', array_slice( $parts, $i ) )
-						. '.php';
-					if ( $inputPath === $expectedPath ) {
-						return false;
-					}
-				}
-			}
-
-			return true;
-		} );
 
 		if ( $result ) {
 			$shortpath = substr( $inputPath, $len );
