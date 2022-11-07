@@ -182,6 +182,8 @@
 	"publishchanges": "發佈變更",
 	"publishpage-start": "發佈頁面…",
 	"publishchanges-start": "發佈變更…",
+	"userpage-userdoesnotexist": "用戶賬號「$1」沒有在此wiki上註冊。請在建立或編輯本頁前檢查。",
+	"userpage-userdoesnotexist-view": "用戶賬號「$1」尚未在此wiki上註冊。",
 	"blocked-notice-logextract": "這位{{GENDER:$1|用戶}}目前被封鎖。以下提供最近的封鎖日誌以供參考：",
 	"editing": "正在編輯 $1",
 	"template-protected": "（受保護）",

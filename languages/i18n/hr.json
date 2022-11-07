@@ -3377,6 +3377,8 @@
 	"searchsuggest-containing": "Traži stranice koje sadrže",
 	"search-match-redirect-label": "Preusmjeri na točne rezultate tijekom pretrage",
 	"search-match-redirect-help": "Odaberite za preusmjeravanje na stranicu kada se taj naslov podudara s onim što tražite",
+	"search-thumbnail-extra-namespaces-label": "Prikaži minijature sličica u Special:Search",
+	"search-thumbnail-extra-namespaces-message": "Prikaži minijature slika i u {{PLURAL:$2|imenskom prostoru|imenskim prostorima}} $1. Minijature slika uvijek su prikazane za $3.",
 	"searchlimit-label": "Broj rezultata pretrage koji će biti prikazan po svakoj stranici:",
 	"searchlimit-help": "Najveći broj: $1",
 	"api-clientside-error-noconnect": "Nije bilo moguće nastaviti zbog problema s mrežnim povezivanjem. Pobrinite se da imate internet konekciju koja radi i pokušajte ponovo.",
