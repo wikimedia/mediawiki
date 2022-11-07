@@ -331,7 +331,7 @@ class Preprocessor_Hash extends Preprocessor {
 						// comments.
 						$comments = [ [ $wsStart, $wsEnd ] ];
 						while ( substr( $text, $wsEnd + 1, 4 ) == '<!--' ) {
-							$c = strpos( $text, '-->', $wsEnd + 4 );
+							$c = strpos( $text, '-->', $wsEnd + 5 );
 							if ( $c === false ) {
 								break;
 							}
