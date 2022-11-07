@@ -1054,7 +1054,7 @@
 	"search-category": "(kategorin $1)",
 	"search-file-match": "(överensstämmer filens innehåll)",
 	"search-suggest": "Menade du: $1",
-	"search-rewritten": "Visar resultat för $1. Sök istället efter $2.",
+	"search-rewritten": "Visar resultat för $1. Inga resultat hittades för $2.",
 	"search-interwiki-caption": "Resultat från systerprojekt",
 	"search-interwiki-default": "Resultat från $1:",
 	"search-interwiki-more": "(mer)",

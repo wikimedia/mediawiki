@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"F Samaritani",
-			"Jaime Sulas"
+			"Jaime Sulas",
+			"Samaritanif"
 		]
 	},
 	"tog-underline": "Sutalìnia is acàpius:",
@@ -276,6 +277,7 @@
 	"enterlockreason": "Poni s'arraxoni de sa frimada, e su tempus chi nci at a bolli po ndi-dda liai",
 	"readonlytext": "Su database est a su momentu serrau a aciuntas o mudàntzias noas, incapat po manutentzioni ordinària, e a s'acabbu de cussa at a torrai normali.\n\nS'aministradori de sistema chi at impostu sa frimada at donau custa spricadura: $1",
 	"missing-article": "Su database no at agatau su scritu de una pàgina chi iat a essi dèpiu agatai asuta de su nòmini $2 de \"$1\".\n\nCustu incapitat de sòlitu sighendi unu cunfrontu de versionis o un'acàpiu a sa stòria bècia de una pàgina chi ant burrau.\n\nChi intamis no est aici, forsis as agatau unu bug in su software.\nPo praxeri intrega sceda de custu a un' [[Special:ListUsers/sysop|aministradori]], ponendi s'URL interessau.",
+	"missingarticle-diff": "(Diff: $1, $2)",
 	"badtitle": "Tìtulu faddiu",
 	"badtitletext": "Su tìtulu de sa pàgina pedia est faddiu, sbuidu o tenit acàpius intre is lìnguas o intre is wikis no currègïus.\nIat a podi cuntenni puru unu o prus caràtiris chi no fait a imperai in is tìtulus.",
 	"viewsource": "Càstia su còdixi wiki",
@@ -313,6 +315,7 @@
 	"createacct-benefit-body2": "{{PLURAL:$1|pàgina|pàginas}}",
 	"createacct-benefit-body3": "{{PLURAL:$1|ùrtimu contribudori|ùrtimus contribudoris}}",
 	"createaccounterror": "Non si podit criai su contu: $1",
+	"loginsuccesstitle": "Intrau",
 	"mailmypassword": "Muda su fueddu-crai",
 	"emailconfirmlink": "Poni s'indiritzu de curreu eletrònicu tuu",
 	"accountcreated": "Contu criau",

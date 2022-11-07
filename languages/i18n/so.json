@@ -9,7 +9,8 @@
 			"Macofe",
 			"Mimursal",
 			"Yariiska",
-			"아라"
+			"아라",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Linkiga hoos ka calaamadeysan:",
@@ -941,7 +942,7 @@
 	"restriction-level-all": "qaab kasto",
 	"undelete": "Fiiri boggaga la'tirtiray",
 	"undeletepage": "Fiiri dibna u sooceli boggaga la'tirtiray",
-	"undeletepagetitle": "'''Meeshaan waxa ay ka koobatahay raadka wixii laga tiray[[:$1|$1]]'''.",
+	"undeletepagetitle": "'''Meeshaan waxa ay ka koobatahay raadka wixii laga tiray [[:$1|$1]]'''.",
 	"viewdeletedpage": "Fiiri boggaga la'tirtiray",
 	"undeletebtn": "Sooceli",
 	"undeletelink": "fiiri/mar kale sameey",

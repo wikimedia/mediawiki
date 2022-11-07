@@ -653,6 +653,7 @@
 	"changeemail-submit": "Ŝanĝi retpoŝtadreson",
 	"changeemail-throttled": "Vi tro ofte provis ensaluti.\nBonvolu atendi $1, antaŭ ol provi denove.",
 	"changeemail-nochange": "Bonvolu entajpi alian novan retpoŝtan adreson.",
+	"changeemail-maxlength": "Via retadreso havu maksimume 255 signojn.",
 	"resettokens": "Restarigi la ĵetonojn",
 	"resettokens-text": "Vi povzs restarigi la ĵetonojn kiuj ebligas aliron al certaj privataj datumoj, kiuj estas ligataj kun via konto ĉi tie.\n\nVi faru tion, se vi akcidente konigis ilin kun iu aŭ se via konto estis malkonfidencigita.",
 	"resettokens-no-tokens": "Ne estas restarigeblaj ĵetonoj.",

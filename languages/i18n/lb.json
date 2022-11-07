@@ -20,7 +20,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"McDutchie",
-			"Talex42"
+			"Talex42",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Linken ënnersträichen:",
@@ -805,7 +806,7 @@
 	"rev-suppressed-text-view": "Dës Versioun vun der Säit gouf '''geläscht'''.\nDir kënnt se gesinn; méi Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 	"rev-deleted-no-diff": "Dir kënnt dësen Ënnerscheed net gesinn, well eng vun de Versiounen '''geläscht gouf'''.\nDetailer stinn eventuell am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 	"rev-suppressed-no-diff": "Dir kënnt dësen Diff (Ënnerscheed) net gesinn well eng vun de Versioune '''geläscht''' gouf.",
-	"rev-deleted-unhide-diff": "Eng vun de Versioune vun dësem Ënnerscheed gouf '''geläscht'''.\nDetailer stinn am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].\nDir kënnt [$1 mat dësem Link de Versiounsënnerscheed kucke] wann Dir weiderfuere wëllt.",
+	"rev-deleted-unhide-diff": "Eng vun de Versioune vun dësem Ënnerscheed gouf '''geläscht'''.\nDetailer stinn am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].\nDir kënnt [$1 mat dësem Link de Versiounsënnerscheed kucke] wann Dir weiderfuere wëllt.",
 	"rev-suppressed-unhide-diff": "Eng vun de Versioune vun dësem Ënnerscheed gouf '''geläscht'''.\nDetailer stinn am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].\nDir kënnt [$1 mat dësem Link de Versiounsënnerscheed kucke] wann Dir weiderfuere wëllt.",
 	"rev-deleted-diff-view": "Eng Versioun vun dësem Versiounsënnerscheed gouf '''geläscht'''.\nDir kënnt dësen Ënnerscheed gesinn; méi Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Logbuch vum Läschen].",
 	"rev-suppressed-diff-view": "Eng vun de Versioune vun dësem Ënnerscheed gouf '''ënnerdréckt.\nDir kënnt dësen Ënnerscheed gesinn; Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Logbuch vun den Ënnerdréckunge].",

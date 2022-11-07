@@ -31,11 +31,12 @@
 			"아라",
 			"Kasyap",
 			"McDutchie",
-			"Bvprasadenwiki"
+			"Bvprasadenwiki",
+			"Gopavasanth"
 		]
 	},
-	"tog-underline": "లంకె క్రీగీత:",
-	"tog-hideminor": "ఇటీవలి మార్పులలో చిన్న మార్పులను దాచు",
+	"tog-underline": "లింక్ అండర్‌లైన్:",
+	"tog-hideminor": "ఇటీవలి మార్పులలో తనిఖీ చేసిన మార్పులను దాచు",
 	"tog-hidepatrolled": "ఇటీవలి మార్పులలో తనిఖీ చేసిన మార్పులను దాచు",
 	"tog-newpageshidepatrolled": "కొత్త పేజీల జాబితా నుంచి తనిఖీ చేసిన పేజీలను దాచు",
 	"tog-hidecategorization": "పేజీల వర్గీకరణను దాచు",
