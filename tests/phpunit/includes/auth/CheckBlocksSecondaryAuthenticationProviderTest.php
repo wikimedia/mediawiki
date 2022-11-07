@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Auth;
 
+use FauxRequest;
 use HashConfig;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
@@ -185,7 +186,8 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 	) {
 		/** @var AuthManager|MockObject $authManager */
-		$authManager = $this->createNoOpMock( AuthManager::class );
+		$authManager = $this->createNoOpMock( AuthManager::class, [ 'getRequest' ] );
+		$authManager->method( 'getRequest' )->willReturn( new FauxRequest() );
 		$provider = new CheckBlocksSecondaryAuthenticationProvider(
 			[ 'blockDisablesLogin' => $blockDisablesLogin ]
 		);

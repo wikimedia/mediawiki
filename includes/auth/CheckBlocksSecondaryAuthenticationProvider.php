@@ -21,11 +21,9 @@
 
 namespace MediaWiki\Auth;
 
-use DerivativeContext;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use RequestContext;
 use StatusValue;
 
 /**
@@ -118,17 +116,18 @@ class CheckBlocksSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 				//   to fetch user rights for a central user.
 				// FIXME: T249444: there should probably be a way to force autocreation through blocks
 			) {
-				$language = \RequestContext::getMain()->getUser()->isSafeToLoad() ?
+				$formatter = MediaWikiServices::getInstance()->getBlockErrorFormatter();
+
+				$context = \RequestContext::getMain();
+
+				$language = $context->getUser()->isSafeToLoad() ?
 					\RequestContext::getMain()->getLanguage() :
 					MediaWikiServices::getInstance()->getContentLanguage();
 
-				// Block::getPermissionsError() is deprecated but actually works for global blocks,
-				// unlike its replacement.
-				$context = new DerivativeContext( RequestContext::getMain() );
-				$context->setLanguage( $language );
-				$context->setUser( $user );
+				$ip = $context->getRequest()->getIP();
+
 				return StatusValue::newFatal(
-					...$block->getPermissionsError( $context )
+					$formatter->getMessage( $block, $user, $language, $ip )
 				);
 			}
 		}
