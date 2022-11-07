@@ -3723,6 +3723,7 @@
 	"search-match-redirect-label": "검색에서 완전 일치하는 문서로 바로 이동하기",
 	"search-match-redirect-help": "선택하면 문서 제목과 검색한 구문이 일치할 때 해당 문서로 이동합니다",
 	"search-thumbnail-extra-namespaces-label": "특수:검색에서 섬네일 표시",
+	"search-thumbnail-extra-namespaces-message": "$1 {{PLURAL:$2|이름공간}}의 섬네일도 표시합니다. $3의 섬네일은 무조건 표시됩니다.",
 	"searchlimit-label": "페이지마다 표시할 검색 결과 수:",
 	"searchlimit-help": "최대 개수: $1",
 	"api-clientside-error-noconnect": "서버에 연결할 수 없습니다. 인터넷 연결이 올바르게 작동하는지 확인하고 다시 시도해 주십시오.",

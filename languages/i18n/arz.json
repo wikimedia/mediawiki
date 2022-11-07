@@ -751,6 +751,7 @@
 	"prefs-rc": "اخر التغييرات",
 	"prefs-watchlist": "ليستة المراقبه",
 	"prefs-watchlist-days": "الايام اللى تتعرض فى ليستة المراقبه:",
+	"prefs-watchlist-days-max": "الحد الاقصى $1 {{PLURAL:$1|يوم|ايام}}",
 	"prefs-watchlist-edits": "عدد التعديلات اللى بتتعرض فى لستةالمراقبة المتوسعة:",
 	"prefs-watchlist-edits-max": "(الرقم الاقصى: 1000)",
 	"prefs-watchlist-token": "مفتاح قايمة المراقبه:",

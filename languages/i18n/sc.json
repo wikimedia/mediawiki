@@ -516,7 +516,7 @@
 	"noarticletext": "In custu momentu sa pàgina est bòida.\nPodes [[Special:Search/{{PAGENAME}}|chircare custu tìtulu]] in àteras pàginas, <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chircare in is registros ligados] o puru [{{fullurl:{{FULLPAGENAME}}|action=edit}} creare sa pàgina]</span>.",
 	"noarticletext-nopermission": "In custu tempu sa pàgina rechesta est bùida.\nPodes [[Special:Search/{{PAGENAME}}|chircare custu tìtulu]] in is àteras pàginas, o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} chircare in is regìstros ligados]</span>, ma non tenes su permissu de creare custa pàgina.",
 	"userpage-userdoesnotexist": "Su contu de s'impitadore \"<nowiki>$1</nowiki>\" no est stadu registradu.\nPro praxere abbàida si boles a sèriu creare/cambiare custa pàgina.",
-	"userpage-userdoesnotexist-view": "Su contu de s'impitadore \"$1\" no est stadu registradu.",
+	"userpage-userdoesnotexist-view": "Su contu de s'impitadore \"$1\" no est registradu in custa wiki.",
 	"blocked-notice-logextract": "{{GENDER:.|Custu impitadore|Custa impitadora}} est {{GENDER:.|arreadu|arreada}}.\nS'ùrtimu elementu de su registru de sos arreamentos est marcadu inoghe in suta pro referèntzia:",
 	"usercssyoucanpreview": "<strong>Consìgiu:</strong> Imprea su butone \"{{int:showpreview}}\" pro testare su CSS nou in antis de sarvare.",
 	"userjsyoucanpreview": "<strong>Consìgiu:</strong> Imprea su butone \"{{int:showpreview}}\" pro testare su tuo JavaScript nou in antis de sarvare.",
