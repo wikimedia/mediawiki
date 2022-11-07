@@ -4,14 +4,13 @@ const { action, assert, REST, utils } = require( 'api-testing' );
 
 describe( 'Page Source', () => {
 	const page = utils.title( 'PageSource ' );
-	const variantPage = 'MediaWiki:Privacy/crh';
+	const variantPage = utils.title( 'PageSourceVariant' );
 	const client = new REST();
 	const anon = action.getAnon();
-	let mindy;
+	const baseEditText = "''Edit 1'' and '''Edit 2'''";
 
 	before( async () => {
-		mindy = await action.mindy();
-		await anon.edit( page, { text: "''Edit 1'' and '''Edit 2'''" } );
+		await anon.edit( page, { text: baseEditText } );
 	} );
 
 	describe( 'GET /page/{title}', () => {
@@ -22,7 +21,7 @@ describe( 'Page Source', () => {
 			assert.nestedPropertyVal( body, 'content_model', 'wikitext' );
 			assert.nestedPropertyVal( body, 'title', page );
 			assert.nestedPropertyVal( body, 'key', utils.dbkey( page ) );
-			assert.nestedPropertyVal( body, 'source', "''Edit 1'' and '''Edit 2'''" );
+			assert.nestedPropertyVal( body, 'source', baseEditText );
 		} );
 		it( 'Should return 404 error for non-existent page', async () => {
 			const dummyPageTitle = utils.title( 'DummyPage_' );
@@ -119,15 +118,15 @@ describe( 'Page Source', () => {
 			assert.match( postEditHeaders.etag, /^".*"$/, 'ETag must be present and not marked weak' );
 		} );
 		it( 'Should perform variant conversion', async () => {
-			await mindy.edit( variantPage, { text: 'Gizlilik esası' } );
-			const { headers, text } = await client.get( `/page/${encodeURIComponent( variantPage )}/html`, null, {
-				'accept-language': 'crh-cyrl'
+			await anon.edit( variantPage, { text: '<p>test language conversion</p>' } );
+			const { headers, text } = await client.get( `/page/${variantPage}/html`, null, {
+				'accept-language': 'en-x-piglatin'
 			} );
 
-			assert.match( text, /Гизлилик эсасы/ );
+			assert.match( text, /esttay anguagelay onversioncay/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
-			assert.match( headers[ 'content-language' ], /crh-cyrl/i );
-			assert.match( headers.etag, /crh-cyrl/i );
+			assert.match( headers[ 'content-language' ], /en-x-piglatin/i );
+			assert.match( headers.etag, /en-x-piglatin/i );
 		} );
 	} );
 
@@ -170,20 +169,20 @@ describe( 'Page Source', () => {
 			assert.notEqual( preEditEtag, postEditEtag );
 		} );
 		it( 'Should perform variant conversion', async () => {
-			await mindy.edit( variantPage, { text: 'Gizlilik esası' } );
-			const { headers, text } = await client.get( `/page/${encodeURIComponent( variantPage )}/with_html`, null, {
-				'accept-language': 'crh-cyrl'
+			await anon.edit( variantPage, { text: '<p>test language conversion</p>' } );
+			const { headers, text } = await client.get( `/page/${variantPage}/html`, null, {
+				'accept-language': 'en-x-piglatin'
 			} );
 
-			assert.match( text, /Гизлилик эсасы/ );
+			assert.match( text, /esttay anguagelay onversioncay/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
-			assert.match( headers.etag, /crh-cyrl/i );
+			assert.match( headers.etag, /en-x-piglatin/i );
 
 			// Since with_html returns JSON, content language is not set
 			// but if its set, we expect it to be set correctly.
 			const contentLanguageHeader = headers[ 'content-language' ];
 			if ( contentLanguageHeader ) {
-				assert.match( headers[ 'content-language' ], /crh-cyrl/i );
+				assert.match( headers[ 'content-language' ], /en-x-piglatin/i );
 			}
 		} );
 	} );

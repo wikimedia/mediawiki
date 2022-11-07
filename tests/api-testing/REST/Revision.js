@@ -5,7 +5,6 @@ const { action, assert, REST, utils } = require( 'api-testing' );
 describe( 'Revision', () => {
 	const client = new REST();
 	const page = utils.title( 'Revision' );
-	const variantPage = 'MediaWiki:Privacy/crh';
 	let mindy;
 	let newrevid, pageid, param_summary;
 
@@ -133,21 +132,19 @@ describe( 'Revision', () => {
 		} );
 
 		it( 'should perform variant conversion', async () => {
-			const { body } = await client.get( `/page/${encodeURIComponent( variantPage )}/bare` );
-			const latestRevId = body.latest.id;
-
-			const { headers, text } = await client.get( `/revision/${latestRevId}/with_html`, null, {
-				'accept-language': 'crh-cyrl'
+			const { headers, text } = await client.get( `/revision/${newrevid}/with_html`, null, {
+				'accept-language': 'en-x-piglatin'
 			} );
 
-			assert.match( text, /Гизлилик эсасы/ );
+			assert.match( text, /Ellohay/ );
+			assert.match( text, /Orldway/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
-			assert.match( headers.etag, /crh-cyrl/ );
+			assert.match( headers.etag, /en-x-piglatin/i );
 			// Since with_html returns JSON, content language is not set
 			// but if its set, we expect it to be set correctly.
 			const contentLanguageHeader = headers[ 'content-language' ];
 			if ( contentLanguageHeader ) {
-				assert.match( headers[ 'content-language' ], /crh-cyrl/ );
+				assert.match( headers[ 'content-language' ], /en-x-piglatin/i );
 			}
 		} );
 	} );
@@ -172,17 +169,15 @@ describe( 'Revision', () => {
 		} );
 
 		it( 'should perform variant conversion', async () => {
-			const { body } = await client.get( `/page/${encodeURIComponent( variantPage )}/bare` );
-			const latestRevId = body.latest.id;
-
-			const { headers, text } = await client.get( `/revision/${latestRevId}/html`, null, {
-				'accept-language': 'crh-cyrl'
+			const { headers, text } = await client.get( `/revision/${newrevid}/html`, null, {
+				'accept-language': 'en-x-piglatin'
 			} );
 
-			assert.match( text, /Гизлилик эсасы/ );
+			assert.match( text, /Ellohay/ );
+			assert.match( text, /Orldway/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
-			assert.match( headers[ 'content-language' ], /crh-cyrl/i );
-			assert.match( headers.etag, /crh-cyrl/i );
+			assert.match( headers[ 'content-language' ], /en-x-piglatin/i );
+			assert.match( headers.etag, /en-x-piglatin/i );
 		} );
 	} );
 
