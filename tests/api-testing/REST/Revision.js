@@ -181,8 +181,8 @@ describe( 'Revision', () => {
 
 			assert.match( text, /Гизлилик эсасы/ );
 			assert.match( headers.vary, /\bAccept-Language\b/i );
-			assert.match( headers[ 'content-language' ], /crh-cyrl/ );
-			assert.match( headers.etag, /crh-cyrl/ );
+			assert.match( headers[ 'content-language' ], /crh-cyrl/i );
+			assert.match( headers.etag, /crh-cyrl/i );
 		} );
 	} );
 
