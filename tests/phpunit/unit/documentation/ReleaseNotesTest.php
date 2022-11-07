@@ -73,7 +73,10 @@ class ReleaseNotesTest extends MediaWikiUnitTestCase {
 		$errors = [];
 		foreach ( $lines as $i => $line ) {
 			$length = mb_strlen( $line );
-			if ( $length <= $maxLength ) {
+			if ( $length <= $maxLength ||
+				// Lines with nothing but a long URL cannot be split further
+				preg_match( '/^\W*https?:\/\/\S*$/', $line )
+			) {
 				continue;
 			}
 			$num = $i + 1;
