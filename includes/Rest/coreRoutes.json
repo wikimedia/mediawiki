@@ -158,7 +158,8 @@
 			"ParsoidOutputStash",
 			"StatsdDataFactory",
 			"ParsoidOutputAccess",
-			"HtmlTransformFactory"
+			"HtmlTransformFactory",
+			"RedirectStore"
 		],
 		"format": "html"
 	},
@@ -173,7 +174,8 @@
 			"ParsoidOutputStash",
 			"StatsdDataFactory",
 			"ParsoidOutputAccess",
-			"HtmlTransformFactory"
+			"HtmlTransformFactory",
+			"RedirectStore"
 		],
 		"format": "with_html"
 	},

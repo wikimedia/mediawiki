@@ -86,8 +86,10 @@ describe( '/transform/ endpoint', function () {
 	const parsedUrl = new url.URL( client.req.app );
 	const PARSOID_URL = parsedUrl.href;
 	const endpointPrefix = client.pathPrefix = 'rest.php/coredev/v0';
-	const page = utils.title( 'TransformSource ' );
+	const page = utils.title( 'TransformSource_' );
+	const pageWithSpaces = page.replace( '_', ' ' );
 	const pageEncoded = encodeURIComponent( page );
+	const pageWithSpacesEncoded = encodeURIComponent( pageWithSpaces );
 	const pageContent = '{|\nhi\n|ho\n|}';
 	let revid;
 
@@ -645,7 +647,7 @@ describe( '/transform/ endpoint', function () {
 				.expect( function ( res ) {
 					res.headers.should.have.property( 'location' );
 					res.headers.location.should.equal(
-						PARSOID_URL + endpointPrefix + `/transform/wikitext/to/html/${pageEncoded}/${revid}`
+						PARSOID_URL + endpointPrefix + `/transform/wikitext/to/html/${pageWithSpacesEncoded}/${revid}`
 					);
 				} )
 				.end( done );
@@ -664,7 +666,7 @@ describe( '/transform/ endpoint', function () {
 				.expect( function ( res ) {
 					res.headers.should.have.property( 'location' );
 					res.headers.location.should.equal(
-						PARSOID_URL + endpointPrefix + `/transform/wikitext/to/pagebundle/${pageEncoded}/${revid}`
+						PARSOID_URL + endpointPrefix + `/transform/wikitext/to/pagebundle/${pageWithSpacesEncoded}/${revid}`
 					);
 				} )
 				.end( done );
@@ -682,7 +684,7 @@ describe( '/transform/ endpoint', function () {
 				.expect( function ( res ) {
 					res.headers.should.have.property( 'location' );
 					const expected = PARSOID_URL + endpointPrefix +
-						`/transform/wikitext/to/html/${pageEncoded}/`;
+						`/transform/wikitext/to/html/${pageWithSpacesEncoded}/`;
 
 					assert.strictEqual(
 						res.headers.location.startsWith( expected ), true, res.headers.location
