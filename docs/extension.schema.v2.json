@@ -1208,6 +1208,13 @@
 				"type": "string"
 			}
 		},
+		"LateJSConfigVarNames": {
+			"type": "array",
+			"description": "Names of JS config vars (as used in MakeGlobalVariablesScript hook or in ParserOutput::setJsConfigVar) that may be set from the end of the HTML body instead of the HTML head, to improve page load time. In JavaScript, these variables should be accessed via mw.hook('wikipage.content').",
+			"items": {
+				"type": "string"
+			}
+		},
 		"ReauthenticateTime": {
 			"type": "object",
 			"patternProperties": {

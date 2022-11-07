@@ -76,6 +76,7 @@ class ExtensionProcessor implements Processor {
 		'SkinOOUIThemes',
 		'SearchMappings',
 		'TrackingCategories',
+		'LateJSConfigVarNames',
 		'TempUserSerialProviders',
 		'TempUserSerialMappings',
 	];
