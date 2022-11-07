@@ -234,6 +234,8 @@ because of Phabricator reports.
 * BacklinkCache::get(), deprecated in 1.37, now emits deprecation warnings.
 * LanguageConverterFactory::isTitleConversionDisabled(), deprecated in 1.36,
   now emits deprecation warnings.
+* AbstractBlock::getPermissionsError(), deprecated in 1.35, now emits
+ deprecation warnings.
 * …
 
 === Other changes in 1.40 ===
