@@ -973,7 +973,7 @@ class MovePage {
 			'moved' => true,
 			'oldtitle' => $this->oldTitle,
 			'oldcountable' => $oldcountable,
-			'causeAction' => 'edit-page',
+			'causeAction' => 'MovePage',
 			'causeAgent' => $user->getName(),
 		];
 

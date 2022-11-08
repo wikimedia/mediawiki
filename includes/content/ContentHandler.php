@@ -1457,6 +1457,7 @@ abstract class ContentHandler {
 		// TODO: MCR: ContentHandler should be called per slot, not for the whole page.
 		// See T190066.
 		$parserOptions = $page->makeParserOptions( 'canonical' );
+		$parserOptions->setRenderReason( 'ParserOutputForIndexing' );
 		$parserOutputAccess = MediaWikiServices::getInstance()->getParserOutputAccess();
 		return $parserOutputAccess->getParserOutput(
 			$page,

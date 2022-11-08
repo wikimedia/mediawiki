@@ -2805,7 +2805,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$job = HTMLCacheUpdateJob::newForBacklinks(
 			$title,
 			'templatelinks',
-			[ 'causeAction' => 'page-create' ]
+			[ 'causeAction' => 'create-page' ]
 		);
 		$services->getJobQueueGroup()->lazyPush( $job );
 
@@ -2849,7 +2849,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$job = HTMLCacheUpdateJob::newForBacklinks(
 				$title,
 				'imagelinks',
-				[ 'causeAction' => 'page-delete' ]
+				[ 'causeAction' => 'delete-page' ]
 			);
 			$services->getJobQueueGroup()->lazyPush( $job );
 		}
@@ -2894,14 +2894,14 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
 				$title,
 				'templatelinks',
-				[ 'causeAction' => 'page-edit' ]
+				[ 'causeAction' => 'edit-page' ]
 			);
 		}
 		// Invalidate the caches of all pages which redirect here
 		$jobs[] = HTMLCacheUpdateJob::newForBacklinks(
 			$title,
 			'redirect',
-			[ 'causeAction' => 'page-edit' ]
+			[ 'causeAction' => 'edit-page' ]
 		);
 		$services = MediaWikiServices::getInstance();
 		$services->getJobQueueGroup()->lazyPush( $jobs );

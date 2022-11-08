@@ -728,6 +728,7 @@ class ApiParse extends ApiBase {
 	 */
 	private function makeParserOptions( WikiPage $pageObj, array $params ) {
 		$popts = $pageObj->makeParserOptions( $this->getContext() );
+		$popts->setRenderReason( 'api-parse' );
 		return $this->tweakParserOptions( $popts, $pageObj->getTitle(), $params );
 	}
 

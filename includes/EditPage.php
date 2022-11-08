@@ -4475,6 +4475,7 @@ class EditPage implements IEditObject {
 	 */
 	protected function getPreviewParserOptions() {
 		$parserOptions = $this->page->makeParserOptions( $this->context );
+		$parserOptions->setRenderReason( 'page-preview' );
 		$parserOptions->setIsPreview( true );
 		$parserOptions->setIsSectionPreview( $this->section !== null && $this->section !== '' );
 

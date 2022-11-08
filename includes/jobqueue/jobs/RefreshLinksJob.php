@@ -76,7 +76,7 @@ class RefreshLinksJob extends Job {
 			// Multiple pages per job make matches unlikely
 			!( isset( $params['pages'] ) && count( $params['pages'] ) != 1 )
 		);
-		$this->params += [ 'causeAction' => 'unknown', 'causeAgent' => 'unknown' ];
+		$this->params += [ 'causeAction' => 'RefreshLinksJob', 'causeAgent' => 'unknown' ];
 		// Tell JobRunner to not automatically wrap run() in a transaction round.
 		// Each runForTitle() call will manage its own rounds in order to run DataUpdates
 		// and to avoid contention as well.

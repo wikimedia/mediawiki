@@ -232,7 +232,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 			$options = [
 				'created' => $mustCreatePage,
 				'oldcountable' => 'no-change',
-				'causeAction' => 'edit-page',
+				'causeAction' => 'import-page',
 				'causeAgent' => $user->getName(),
 			];
 

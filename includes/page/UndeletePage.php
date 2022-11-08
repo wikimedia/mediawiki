@@ -680,7 +680,7 @@ class UndeletePage {
 					'created' => $created,
 					'oldcountable' => $oldcountable,
 					'restored' => true,
-					'causeAction' => 'edit-page',
+					'causeAction' => 'undelete-page',
 					'causeAgent' => $user->getName(),
 				];
 
@@ -697,7 +697,7 @@ class UndeletePage {
 				$job = HTMLCacheUpdateJob::newForBacklinks(
 					$page,
 					'imagelinks',
-					[ 'causeAction' => 'file-restore' ]
+					[ 'causeAction' => 'undelete-file' ]
 				);
 				$this->jobQueueGroup->lazyPush( $job );
 			}

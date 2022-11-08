@@ -1057,6 +1057,7 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		$parserOptions = $page->makeParserOptions( $this->getContext() );
+		$parserOptions->setRenderReason( 'diff-page' );
 		return $page->getParserOutput( $parserOptions, $revRecord->getId() );
 	}
 
