@@ -319,13 +319,20 @@ EOT;
 	 */
 	protected function makeStubDBFile( $dir, $db ) {
 		$file = DatabaseSqlite::generateFileName( $dir, $db );
+
 		if ( file_exists( $file ) ) {
 			if ( !is_writable( $file ) ) {
 				return Status::newFatal( 'config-sqlite-readonly', $file );
 			}
-		} elseif ( file_put_contents( $file, '' ) === false ) {
+			return Status::newGood();
+		}
+
+		$oldMask = umask( 0177 );
+		if ( file_put_contents( $file, '' ) === false ) {
+			umask( $oldMask );
 			return Status::newFatal( 'config-sqlite-cant-create-db', $file );
 		}
+		umask( $oldMask );
 
 		return Status::newGood();
 	}
