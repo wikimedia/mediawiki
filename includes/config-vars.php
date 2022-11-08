@@ -4375,7 +4375,7 @@ $wgFeaturePolicyReportOnly = null;
 $wgSkinsPreferred = null;
 
 /**
- * Config variable stub for the SpecialContributeSkinsDisabled setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::SpecialContributeSkinsDisabled
+ * Config variable stub for the SpecialContributeSkinsEnabled setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::SpecialContributeSkinsEnabled
  */
-$wgSpecialContributeSkinsDisabled = null;
+$wgSpecialContributeSkinsEnabled = null;
