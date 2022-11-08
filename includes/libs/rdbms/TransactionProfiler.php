@@ -107,8 +107,10 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * @param bool $value
 	 * @return bool Old value
 	 * @since 1.28
+	 * @deprecated Since 1.40
 	 */
 	public function setSilenced( bool $value ) {
+		wfDeprecated( __METHOD__, '1.40' );
 		$old = $this->silenced;
 		$this->silenced = $value;
 
@@ -116,13 +118,16 @@ class TransactionProfiler implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Disable the logging of warnings until the returned object goes out of scope or is consumed.
+	 * Disable the logging of warnings until the returned object goes out of scope or is consumed
+	 *
 	 * @return ScopedCallback
 	 */
 	public function silenceForScope() {
-		$oldSilenced = $this->setSilenced( true );
+		$oldSilenced = $this->silenced;
+		$this->silenced = true;
+
 		return new ScopedCallback( function () use ( $oldSilenced ) {
-			$this->setSilenced( $oldSilenced );
+			$this->silenced = $oldSilenced;
 		} );
 	}
 

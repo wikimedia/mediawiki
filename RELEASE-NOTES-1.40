@@ -196,6 +196,8 @@ because of Phabricator reports.
 * ParserOutput::{get,set}ExternalLinkTarget() and
   ParserOutput::{get,set}MaxTemplateDepth() have been deprecated and marked
   for @internal use only.
+* TransactionProfiler::setSilenced() is deprecated.
+  Use TransactionProfiler::silenceForScope() instead.
 * The class Pbkdf2Password was renamed to Pbkdf2PasswordUsingHashExtension,
   and the old name is now deprecated.
 * …
