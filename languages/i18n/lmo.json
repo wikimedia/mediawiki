@@ -27,7 +27,8 @@
 			"Sprüngli",
 			"V6rg",
 			"아라",
-			"Amire80"
+			"Amire80",
+			"S4b1nuz E.656"
 		]
 	},
 	"tog-underline": "Sottolinea i conligament:",
@@ -147,7 +148,7 @@
 	"period-am": "de la matina",
 	"period-pm": "del dopomezdì",
 	"pagecategories": "{{PLURAL:$1|Categoria|Categorie}}",
-	"category_header": "Articoi in la categoria \"$1\"",
+	"category_header": "Pagine in la categoria \"$1\"",
 	"subcategories": "Sotocategorie",
 	"category-media-header": "Fail in la categoria \"$1\"",
 	"category-empty": "''Adess quella categoria chì la gh'ha dent né de pagine né d'archivi multimediai''",
@@ -1999,7 +2000,7 @@
 	"withoutinterwiki-legend": "Prefiss",
 	"withoutinterwiki-submit": "Fà vedè",
 	"fewestrevisions": "Pagine con pussee poche revision",
-	"nbytes": "$1 {{PLURAL:$1|bait|bait}}",
+	"nbytes": "$1 {{PLURAL:$1|bait}}",
 	"ncategories": "$1 {{PLURAL:$1|Categoria|Categorie}}",
 	"ninterwikis": "$1 {{PLURAL:$1|interwiki}}",
 	"nlinks": "$1 {{PLURAL:$1|colegament|colegamencc}}",
@@ -2025,7 +2026,7 @@
 	"wantedfiles": "Fail domandad",
 	"wantedfiletext-cat": "I fail chì adree inn doprà, ma i esisten minga. I fail ospitad in di deposit de foeura i podarissen vesser in la lista anca s'i esisten minga. 'Sti falsi positiv chì i vegnarann <del>sbarrad</del>. La lista di pagine che gh'hann denter di fail ch'i esisten minga l'è presenta in [[:$1]].",
 	"wantedfiletext-cat-noforeign": "Sti fail chì vegnen doprad ma i esisten minga. De sorapù, di pagine che gh'hann denter di fail ch'i esisten minga l'è fada la lista in la [[:$1]].",
-	"wantedfiletext-nocat": "I fail chì adree inn doprà, ma i esisten minga. I fail ospitad in di deposit de foeura i podarissen vesser in la lista anca s'i esisten minga. 'Sti falsi positiv chì i vegnarann <del>sbarrad</del>.",
+	"wantedfiletext-nocat": "I fail chì adree inn doprà, ma i esisten minga. I fail ospitad in di deposit de foeura i podarissen vesser in la lista anca s'i esisten minga. 'Sti fals positiv chì i vegnarann <del>sbarrad</del>.",
 	"wantedfiletext-nocat-noforeign": "I fail chì adree inn doprà, ma i esisten minga.",
 	"wantedtemplates": "Modei ciamad",
 	"mostlinked": "Pagine con pussée tanti ligam",

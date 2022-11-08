@@ -6,7 +6,8 @@
 			"RebecaRwanda",
 			"Amire80",
 			"Ndahiro derrick",
-			"Rodrigue"
+			"Rodrigue",
+			"Eric Mukiza"
 		]
 	},
 	"tog-underline": "Ihuza umurongo:",
@@ -132,8 +133,11 @@
 	"nstab-main": "Inyandiko",
 	"nstab-user": "{{GENDER:$1|Urupapuro rw'umukoresha}}",
 	"nstab-special": "Urupapuro rwumwihariko",
+	"nstab-project": "urupapuro rw'umushinga",
 	"nstab-image": "Dosiye",
 	"nstab-mediawiki": "Ubutumwa",
+	"nstab-template": "Inyandikorugero",
+	"nstab-help": "Urupapuro rw'ubufasha",
 	"nstab-category": "Icyiciro",
 	"mainpage-nstab": "Intangiriro",
 	"viewsource": "Reba inkomoko",
@@ -260,5 +264,6 @@
 	"monthsall": "byose",
 	"specialpages": "Inyandiko zidasanzwe",
 	"htmlform-submit": "Ohereza",
-	"searchsuggest-search": "Shakisha {{SITENAME}}"
+	"searchsuggest-search": "Shakisha {{SITENAME}}",
+	"searchsuggest-containing": "Shakisha impapuro zirimo"
 }
