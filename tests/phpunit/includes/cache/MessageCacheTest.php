@@ -247,7 +247,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 
 		// Create an out-of-sequence revision by importing a
 		// revision with an old timestamp. Hacky.
-		$importRevision = new WikiRevision( new HashConfig() );
+		$importRevision = new WikiRevision();
 		$title = Title::newFromLinkTarget( $r3->getPageAsLinkTarget() );
 		$importRevision->setTitle( $title );
 		$importRevision->setComment( 'Imported edit' );

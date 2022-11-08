@@ -31,7 +31,7 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 		$services = $this->getServiceContainer();
 
 		$title = Title::newFromText( __CLASS__ . rand() );
-		$revision = new WikiRevision( $services->getMainConfig() );
+		$revision = new WikiRevision();
 		$revision->setTitle( $title );
 		$revision->setTags( $expectedTags );
 		$content = ContentHandler::makeContent( 'dummy edit', $title );
