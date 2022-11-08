@@ -14,6 +14,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		parent::setUp();
 
 		$this->overrideConfigValue( MainConfigNames::RenderHashAppend, '' );
+		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, false );
 
 		// This is crazy, but registering false, null, or other falsey values
 		// as a hook callback "works".

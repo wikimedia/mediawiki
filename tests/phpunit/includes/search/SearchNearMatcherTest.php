@@ -8,6 +8,12 @@ use MediaWiki\MainConfigNames;
 class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 	use LinkCacheTestTrait;
 
+	public function setUp(): void {
+		parent::setUp();
+
+		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, false );
+	}
+
 	public function nearMatchProvider() {
 		return [
 			'empty request returns nothing' => [ null, 'en', '', 'Near Match Test' ],

@@ -63,6 +63,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$services = $this->getServiceContainer();
 
 		$this->overrideConfigValue( MainConfigNames::DisableLangConversion, false );
+		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, false );
 		$this->config = $services->getMainConfig();
 	}
 

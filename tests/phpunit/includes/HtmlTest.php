@@ -8,6 +8,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		$this->overrideConfigValue( MainConfigNames::UseMediaWikiUIEverywhere, false );
+		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, false );
 
 		$langFactory = $this->getServiceContainer()->getLanguageFactory();
 		$contLangObj = $langFactory->getLanguage( 'en' );
