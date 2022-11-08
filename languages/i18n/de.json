@@ -3137,7 +3137,7 @@
 	"pageinfo-default-sort": "Standardsortierschlüssel",
 	"pageinfo-length": "Seitenlänge (in Bytes)",
 	"pageinfo-namespace": "Namensraum",
-	"pageinfo-namespace-id": "Namensraum-ID",
+	"pageinfo-namespace-id": "Namensraumkennnummer",
 	"pageinfo-article-id": "Seitenkennnummer",
 	"pageinfo-language": "Seiteninhaltssprache",
 	"pageinfo-language-change": "ändern",
