@@ -306,7 +306,13 @@ EOT;
 		}
 
 		# Open the main DB
-		return $this->getConnection();
+		$mainConnStatus = $this->getConnection();
+		// Use WAL mode. This has better performance
+		// when the DB is being read and written concurrently.
+		// This causes the DB to be created in this mode
+		// so we only have to do this on creation.
+		$mainConnStatus->value->query( "PRAGMA journal_mode=WAL", __METHOD__ );
+		return $mainConnStatus;
 	}
 
 	/**
