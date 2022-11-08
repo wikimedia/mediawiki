@@ -17,7 +17,8 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	 * @dataProvider codeProvider
 	 */
 	public function testLanguageConverters(
-		$code,
+		$langCode,
+		$mainVariantCode,
 		$type,
 		$variants,
 		$variantFallbacks,
@@ -25,7 +26,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		$flags,
 		$manualLevel
 	) {
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $code );
+		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langCode );
 		$factory = new LanguageConverterFactory(
 			MediaWikiServices::getInstance()->getObjectFactory(),
 			false,
@@ -42,7 +43,8 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		$this->verifyConverter(
 			$converter,
 			$lang,
-			$code,
+			$langCode,
+			$mainVariantCode,
 			$type,
 			$variants,
 			$variantFallbacks,
@@ -77,6 +79,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		$this->verifyConverter(
 			$converter,
 			$lang,
+			'en',
 			'en',
 			'EnConverter',
 			[ 'en', 'en-x-piglatin' ],
@@ -125,12 +128,12 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		return [
 			[ false, false, false ],
 			[ false, false, true ],
-			[ false,true,false ],
-			[ false,true,true ],
+			[ false, true, false ],
+			[ false, true, true ],
 			[ true, false, false ],
 			[ true, false, true ],
-			[ true,true,false ],
-			[ true,true,true ],
+			[ true, true, false ],
+			[ true, true, true ],
 		];
 	}
 
@@ -160,6 +163,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			$converter,
 			$lang,
 			'en',
+			'en',
 			'TrivialLanguageConverter',
 			[ 'en' ],
 			[],
@@ -172,7 +176,8 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	private function verifyConverter(
 		$converter,
 		$lang,
-		$code,
+		$langCode,
+		$mainVariantCode,
 		$type,
 		$variants,
 		$variantFallbacks,
@@ -186,8 +191,8 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			$testConverter = TestingAccessWrapper::newFromObject( $converter );
 			$this->assertSame( $lang, $testConverter->mLangObj, "Language should be as provided" );
 
-			$this->assertEquals( $code, $testConverter->getMainCode(),
-				"mMainLanguageCode should be as $code" );
+			$this->assertEquals( $langCode, $testConverter->getMainCode(),
+				"getMainCode should be as $langCode" );
 			$this->assertEquals( $manualLevel, $testConverter->getManualLevel(), "Manual Level" );
 
 			$this->assertEquals( $variants, $testConverter->getVariants(), "Variants" );
@@ -256,13 +261,13 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			'zh-yue', 'zu',
 		];
 		foreach ( $trivialWithNothingElseCodes as $code ) {
-			# $code, $type, $variants, $variantFallbacks, $variantNames, $flags, $manualLevel
-			yield $code => [ $code, 'TrivialLanguageConverter', [], [], [], [], [] ];
+			# $langCode, $mainVariantCode, $type, $variants, $variantFallbacks, $variantNames, $flags, $manualLevel
+			yield $code => [ $code, $code, 'TrivialLanguageConverter', [], [], [], [], [] ];
 		}
 
 		// Languages with a type of than TrivialLanguageConverter or with variants/flags/manual level
 		yield 'ban' => [
-			'ban', 'BanConverter',
+			'ban', 'ban', 'BanConverter',
 			[ 'ban', 'ban-bali', 'ban-x-dharma', 'ban-x-palmleaf', 'ban-x-pku' ],
 			[
 				'ban-bali' => 'ban',
@@ -279,7 +284,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'crh' => [
-			'crh', 'CrhConverter',
+			'crh', 'crh', 'CrhConverter',
 			[ 'crh', 'crh-cyrl', 'crh-latn' ],
 			[
 				'crh' => 'crh-latn',
@@ -293,7 +298,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'gan' => [
-			'gan', 'GanConverter',
+			'gan', 'gan', 'GanConverter',
 			[ 'gan', 'gan-hans', 'gan-hant' ],
 			[
 				'gan' => [ 'gan-hans', 'gan-hant' ],
@@ -307,7 +312,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'iu' => [
-			'iu', 'IuConverter',
+			'iu', 'iu', 'IuConverter',
 			[ 'iu', 'ike-cans', 'ike-latn' ],
 			[
 				'iu' => 'ike-cans',
@@ -321,7 +326,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'kk' => [
-			'kk', 'KkConverter',
+			'kk', 'kk', 'KkConverter',
 			[ 'kk', 'kk-cyrl', 'kk-latn', 'kk-arab', 'kk-kz', 'kk-tr', 'kk-cn' ],
 			[
 				'kk' => 'kk-cyrl',
@@ -343,7 +348,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'ku' => [
-			'ku', 'KuConverter',
+			'ku', 'ku', 'KuConverter',
 			[ 'ku', 'ku-arab', 'ku-latn' ],
 			[
 				'ku' => 'ku-latn',
@@ -357,11 +362,13 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'shi' => [
-			'shi', 'ShiConverter',
+			'shi', 'shi', 'ShiConverter',
 			[ 'shi', 'shi-tfng', 'shi-latn' ],
-			[ 'shi' => [ 'shi-latn', 'shi-tfng' ],'shi-tfng' => 'shi','shi-latn' => 'shi' ],
-			[], [],
 			[
+				'shi' => [ 'shi-latn', 'shi-tfng' ],
+				'shi-tfng' => 'shi',
+				'shi-latn' => 'shi'
+			], [], [], [
 				'shi' => 'bidirectional',
 				'shi-tfng' => 'bidirectional',
 				'shi-latn' => 'bidirectional'
@@ -369,8 +376,9 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'sr' => [
-			'sr', 'SrConverter',
-			[ 'sr', 'sr-ec', 'sr-el' ], [
+			'sr', 'sr', 'SrConverter',
+			[ 'sr', 'sr-ec', 'sr-el' ],
+			[
 				'sr' => 'sr-ec',
 				'sr-ec' => 'sr',
 				'sr-el' => 'sr'
@@ -391,7 +399,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'tg' => [
-			'tg', 'TgConverter',
+			'tg', 'tg', 'TgConverter',
 			[ 'tg', 'tg-latn' ],
 			[], [], [], [
 				'tg' => 'bidirectional',
@@ -400,7 +408,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'tly' => [
-			'tly', 'TlyConverter',
+			'tly', 'tly', 'TlyConverter',
 			[ 'tly', 'tly-cyrl' ],
 			[ 'tly-cyrl' => 'tly' ],
 			[],
@@ -415,7 +423,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'uz' => [
-			'uz', 'UzConverter',
+			'uz', 'uz', 'UzConverter',
 			[ 'uz', 'uz-latn', 'uz-cyrl' ],
 			[
 				'uz' => 'uz-latn',
@@ -485,6 +493,6 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			'zh-sg' => 'zh-sg',
 			'zh-tw' => 'zh-tw'
 		];
-		yield 'zh' => [ 'zh', 'ZhConverter', $zh_variants, $zh_variantfallbacks,[], $zh_flags, $zh_ml ];
+		yield 'zh' => [ 'zh', 'zh', 'ZhConverter', $zh_variants, $zh_variantfallbacks,[], $zh_flags, $zh_ml ];
 	}
 }
