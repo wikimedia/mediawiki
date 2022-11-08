@@ -63,7 +63,7 @@ abstract class DumpIterator extends Maintenance {
 
 		if ( $this->hasOption( 'file' ) ) {
 			$file = $this->getOption( 'file' );
-			$revision = new WikiRevision( $this->getConfig() );
+			$revision = new WikiRevision();
 			$text = file_get_contents( $file );
 			$title = Title::newFromText( rawurldecode( basename( $file, '.txt' ) ) );
 			$revision->setTitle( $title );
