@@ -184,7 +184,7 @@ return [
 		MainConfigNames::MessagesDirs => [
 			'mergeStrategy' => 'array_merge'
 		],
-		MainConfigNames::SpecialContributeSkinsDisabled => [
+		MainConfigNames::SpecialContributeSkinsEnabled => [
 			'mergeStrategy' => 'array_merge'
 		],
 	]

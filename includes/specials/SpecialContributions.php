@@ -29,6 +29,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Specials\Contribute\ContributeFactory;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
@@ -917,10 +918,20 @@ class SpecialContributions extends IncludableSpecialPage {
 
 	/**
 	 * @inheritDoc
+	 * @throws MWException
 	 */
 	public function getAssociatedNavigationLinks(): array {
-		$specialContribute = $this->getSpecialPageFactory()->getPage( 'Contribute' );
-		'@phan-var SpecialContribute $specialContribute'; // @var SpecialContribute $specialContribute
-		return $specialContribute->getAssociatedNavigationLinksForUser( $this->getSkin()->getRelevantUser() );
+		if (
+			ContributeFactory::isEnabledOnCurrentSkin(
+				$this->getSkin(),
+				$this->getConfig()->get( 'SpecialContributeSkinsEnabled' )
+			)
+		) {
+			return ContributeFactory::getAssociatedNavigationLinks(
+				$this->getUser(),
+				$this->getSkin()->getRelevantUser()
+			);
+		}
+		return [];
 	}
 }

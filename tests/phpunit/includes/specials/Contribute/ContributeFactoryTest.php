@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Specials\Contribute\Card\ContributeCard;
 use MediaWiki\Specials\Contribute\Card\ContributeCardActionLink;
 use MediaWiki\Specials\Contribute\ContributeFactory;
@@ -15,8 +16,13 @@ class ContributeFactoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Specials\Contribute\ContributeFactory::getCards
 	 */
 	public function testGetCards() {
-		$context = new RequestContext();
-		$factory = new ContributeFactory( $context );
+		$context = RequestContext::getMain();
+		$services = $this->getServiceContainer();
+		$hookContainer = $services->getHookContainer();
+		$factory = new ContributeFactory(
+			$context,
+			new HookRunner( $hookContainer )
+		);
 		$cards = $factory->getCards();
 		$this->assertIsArray( $cards );
 		$this->assertNotEmpty( $cards );
