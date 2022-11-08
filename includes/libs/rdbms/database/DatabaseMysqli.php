@@ -38,6 +38,7 @@ use Wikimedia\IPUtils;
  */
 class DatabaseMysqli extends DatabaseMysqlBase {
 	protected function doSingleStatementQuery( string $sql ): QueryStatus {
+		// Hide packet warnings caused by things like dropped connections
 		AtEase::suppressWarnings();
 		$res = $this->getBindingHandle()->query( $sql );
 		AtEase::restoreWarnings();
@@ -61,7 +62,10 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		}
 
 		$combinedSql = implode( ";\n", $sqls );
+		// Hide packet warnings caused by things like dropped connections
+		AtEase::suppressWarnings();
 		$conn->multi_query( $combinedSql );
+		AtEase::restoreWarnings();
 
 		reset( $sqls );
 		$done = false;

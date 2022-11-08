@@ -77,7 +77,7 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\Database::rollback()
 	 * @covers \Wikimedia\Rdbms\Database::flushSession()
 	 */
-	public function testConnectionLoss() {
+	public function testConnectionLossQuery() {
 		$row = $this->conn->query( 'SELECT connection_id() AS id', __METHOD__ )->fetchObject();
 		$encId = intval( $row->id );
 
@@ -146,6 +146,98 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 
 		$row = $this->conn->query( 'SELECT "x" AS v', __METHOD__ )->fetchObject();
 		$this->assertSame( 'x', $row->v, "Recovered" );
+
+		$adminConn->close( __METHOD__ );
+	}
+
+	/**
+	 * @covers \Wikimedia\Rdbms\Database::queryMulti()
+	 * @covers \Wikimedia\Rdbms\Database::rollback()
+	 * @covers \Wikimedia\Rdbms\Database::flushSession()
+	 */
+	public function testConnectionLossQueryMulti() {
+		$row = $this->conn->query( 'SELECT connection_id() AS id', __METHOD__ )->fetchObject();
+		$encId = intval( $row->id );
+
+		$adminConn = $this->newConnection();
+		$adminConn->query( "KILL $encId", __METHOD__ );
+
+		$qsById = $this->conn->queryMulti(
+			[ 'SELECT "x" AS v', 'SELECT "y" AS v', 'SELECT "z" AS v' ],
+			__METHOD__
+		);
+		$row1 = $qsById[0]->res->fetchObject();
+		$row2 = $qsById[1]->res->fetchObject();
+		$row3 = $qsById[2]->res->fetchObject();
+		$this->assertSame( 'x', $row1->v, "Recovered" );
+		$this->assertSame( 'y', $row2->v, "Recovered" );
+		$this->assertSame( 'z', $row3->v, "Recovered" );
+
+		$this->conn->startAtomic( __METHOD__ );
+		$this->assertSame( 1, $this->conn->trxLevel(), "Transaction exists" );
+		$row = $this->conn->query( 'SELECT connection_id() AS id', __METHOD__ )->fetchObject();
+		$encId = intval( $row->id );
+
+		$adminConn->query( "KILL $encId", __METHOD__ );
+		try {
+			$this->conn->queryMulti( [ 'SELECT 1', 'SELECT 2' ], __METHOD__ );
+			$this->fail( "No DBQueryDisconnectedError caught" );
+		} catch ( DBQueryDisconnectedError $e ) {
+			$this->assertTrue( $this->conn->isOpen(), "Reconnected" );
+			try {
+				$this->conn->endAtomic( __METHOD__ );
+				$this->fail( "No DBUnexpectedError caught" );
+			} catch ( DBUnexpectedError $e ) {
+				$this->assertInstanceOf( DBUnexpectedError::class, $e );
+			}
+
+			$this->assertSame( TransactionManager::STATUS_TRX_ERROR, $this->conn->trxStatus() );
+			try {
+				$this->conn->queryMulti( [ 'SELECT "x" AS w', 'SELECT "y" AS w' ], __METHOD__ );
+				$this->fail( "No DBTransactionStateError caught" );
+			} catch ( DBTransactionStateError $e ) {
+				$this->assertInstanceOf( DBTransactionStateError::class, $e );
+			}
+
+			$this->assertSame( 0, $this->conn->trxLevel(), "Transaction lost" );
+			$this->conn->rollback( __METHOD__ );
+			$this->assertSame( 0, $this->conn->trxLevel(), "No transaction" );
+
+			$qsById = $this->conn->queryMulti( [ 'SELECT "x" AS z', 'SELECT "y" AS z' ], __METHOD__ );
+			$row1 = $qsById[0]->res->fetchObject();
+			$row2 = $qsById[1]->res->fetchObject();
+			$this->assertSame( 'x', $row1->z, "Recovered" );
+			$this->assertSame( 'y', $row2->z, "Recovered" );
+		}
+
+		$this->conn->lock( 'session_lock_' . mt_rand(), __METHOD__, 0 );
+		$row = $this->conn->query( 'SELECT connection_id() AS id', __METHOD__ )->fetchObject();
+		$encId = intval( $row->id );
+		$adminConn->query( "KILL $encId", __METHOD__ );
+		try {
+			$this->conn->queryMulti( [ 'SELECT 1', 'SELECT 2' ], __METHOD__ );
+			$this->fail( "No DBQueryDisconnectedError caught" );
+		} catch ( DBQueryDisconnectedError $e ) {
+			$this->assertInstanceOf( DBQueryDisconnectedError::class, $e );
+		}
+
+		$this->assertTrue( $this->conn->isOpen(), "Reconnected" );
+		try {
+			$this->conn->queryMulti( [ 'SELECT "x" AS z', 'SELECT "y" AS z' ], __METHOD__ );
+			$this->fail( "No DBSessionStateError caught" );
+		} catch ( DBSessionStateError $e ) {
+			$this->assertInstanceOf( DBSessionStateError::class, $e );
+		}
+
+		$this->assertTrue( $this->conn->isOpen(), "Connection remains" );
+		$this->conn->rollback( __METHOD__ );
+		$this->conn->flushSession( __METHOD__ );
+
+		$qsById = $this->conn->queryMulti( [ 'SELECT "x" AS z', 'SELECT "y" AS z' ], __METHOD__ );
+		$row1 = $qsById[0]->res->fetchObject();
+		$row2 = $qsById[1]->res->fetchObject();
+		$this->assertSame( 'x', $row1->z, "Recovered" );
+		$this->assertSame( 'y', $row2->z, "Recovered" );
 
 		$adminConn->close( __METHOD__ );
 	}
