@@ -148,10 +148,7 @@ class Site implements Serializable {
 	 * Sets the global site identifier (ie enwiktionary).
 	 *
 	 * @since 1.21
-	 *
 	 * @param string|null $globalId
-	 *
-	 * @throws MWException
 	 */
 	public function setGlobalId( $globalId ) {
 		if ( $globalId !== null && !is_string( $globalId ) ) {
@@ -187,10 +184,7 @@ class Site implements Serializable {
 	 * Sets the group of the site (ie wikipedia).
 	 *
 	 * @since 1.21
-	 *
 	 * @param string $group
-	 *
-	 * @throws MWException
 	 */
 	public function setGroup( $group ) {
 		if ( !is_string( $group ) ) {
@@ -215,10 +209,7 @@ class Site implements Serializable {
 	 * Sets the source of the site data (ie 'local', 'wikidata', 'my-magical-repo').
 	 *
 	 * @since 1.21
-	 *
 	 * @param string $source
-	 *
-	 * @throws MWException
 	 */
 	public function setSource( $source ) {
 		if ( !is_string( $source ) ) {
@@ -245,10 +236,7 @@ class Site implements Serializable {
 	 * the actual site, where "key" is the local identifier.
 	 *
 	 * @since 1.21
-	 *
 	 * @param bool $shouldForward
-	 *
-	 * @throws MWException
 	 */
 	public function setForward( $shouldForward ) {
 		if ( !is_bool( $shouldForward ) ) {
@@ -286,8 +274,6 @@ class Site implements Serializable {
 	 * Returns the protocol of the site.
 	 *
 	 * @since 1.21
-	 *
-	 * @throws MWException
 	 * @return string
 	 */
 	public function getProtocol() {
@@ -314,14 +300,12 @@ class Site implements Serializable {
 	}
 
 	/**
-	 * Sets the path used to construct links with.
+	 * Set the path used to construct links with.
+	 *
 	 * Shall be equivalent to setPath( getLinkPathType(), $fullUrl ).
 	 *
 	 * @param string $fullUrl
-	 *
 	 * @since 1.21
-	 *
-	 * @throws MWException
 	 */
 	public function setLinkPath( $fullUrl ) {
 		$type = $this->getLinkPathType();
@@ -362,8 +346,9 @@ class Site implements Serializable {
 	}
 
 	/**
-	 * Returns the full URL for the given page on the site.
-	 * Or null if the needed information is not known.
+	 * Get the full URL for the given page on the site.
+	 *
+	 * Returns null if the needed information is not known.
 	 *
 	 * This generated URL is usually based upon the path returned by getLinkPath(),
 	 * but this is not a requirement.
@@ -371,9 +356,7 @@ class Site implements Serializable {
 	 * This implementation returns a URL constructed using the path returned by getLinkPath().
 	 *
 	 * @since 1.21
-	 *
 	 * @param bool|string $pageName
-	 *
 	 * @return string|null
 	 */
 	public function getPageUrl( $pageName = false ) {
@@ -591,15 +574,13 @@ class Site implements Serializable {
 	}
 
 	/**
-	 * Sets the path used to construct links with.
+	 * Set the path used to construct links with.
+	 *
 	 * Shall be equivalent to setPath( getLinkPathType(), $fullUrl ).
 	 *
 	 * @since 1.21
-	 *
 	 * @param string $pathType
 	 * @param string $fullUrl
-	 *
-	 * @throws MWException
 	 */
 	public function setPath( $pathType, $fullUrl ) {
 		if ( !is_string( $fullUrl ) ) {
