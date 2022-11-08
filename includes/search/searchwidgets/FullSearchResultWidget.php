@@ -373,7 +373,16 @@ class FullSearchResultWidget implements SearchResultWidget {
 
 		$thumb = $this->transformThumbnail( $img, $thumbnail );
 		if ( $thumb ) {
-			return $thumb->toHtml( [ 'desc-link' => true ] );
+			if ( $title->getNamespace() === NS_FILE ) {
+				// don't use a custom link, just use traditional thumbnail HTML
+				return $thumb->toHtml( [ 'desc-link' => true ] );
+			}
+
+			// thunbnails for non-file results should link to the relevant title
+			return $thumb->toHtml( [
+				'desc-link' => true,
+				'custom-title-link' => $title
+			] );
 		}
 
 		return $this->generateThumbnailPlaceholderHtml();
