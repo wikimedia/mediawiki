@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Specials\Contribute\ContributeFactory;
-use MediaWiki\User\UserIdentity;
 
 /**
  * Special:Contribute, show user contribute options in the 1st tab
@@ -12,43 +11,10 @@ use MediaWiki\User\UserIdentity;
 class SpecialContribute extends IncludableSpecialPage {
 
 	/**
-	 * @var array List of MediaWiki\Specials\Contribute\Card\ContributeCard
-	 * to show on the Special:Contribute page
-	 */
-	private array $cards = [];
-
-	/**
 	 * SpecialContribute constructor.
 	 */
 	public function __construct() {
 		parent::__construct( 'Contribute' );
-		$this->cards = ( new ContributeFactory( $this->getContext() ) )->getCards();
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function getAssociatedNavigationLinks(): array {
-		return $this->getAssociatedNavigationLinksForUser( $this->getUser() );
-	}
-
-	/**
-	 * @param UserIdentity|null $targetUser
-	 * @return array
-	 */
-	public function getAssociatedNavigationLinksForUser( $targetUser ): array {
-		if ( !$this->isShowable() ) {
-			return [];
-		}
-		$viewer = $this->getUser();
-		// Don't show the links to Special:Contribute when viewing other users' contributions.
-		if ( $targetUser === null || !$viewer->equals( $targetUser ) ) {
-			return [];
-		}
-		return [
-			$this->getPageTitle()->getFullText(),
-			SpecialPage::getTitleFor( 'Contributions', $targetUser->getName() )->getFullText(),
-		];
 	}
 
 	/**
@@ -74,11 +40,16 @@ class SpecialContribute extends IncludableSpecialPage {
 	 * @return string
 	 */
 	private function getContributePage() {
+		$contributeFactory = new ContributeFactory(
+			$this->getContext(),
+			$this->getHookRunner()
+		);
+		$cards = $contributeFactory->getCards();
 		$user = $this->getContext()->getUser();
 
 		$templateParser = new TemplateParser( __DIR__ . '/Contribute/Templates' );
 		$templateData = [
-			'cards' => $this->cards,
+			'cards' => $cards,
 			'userName' => $user->getName(),
 			'userPage' => $user->getUserPage(),
 			'contribute' => $this->msg( 'contribute' )->text(),
@@ -100,23 +71,29 @@ class SpecialContribute extends IncludableSpecialPage {
 	}
 
 	/**
-	 * Check if any cards are available to show on the Special:Contribute page
-	 *
-	 * @return bool
+	 * @inheritDoc
 	 */
-	private function hasCards() {
-		return count( $this->cards ) > 0;
+	public function getAssociatedNavigationLinks(): array {
+		if ( $this->isShowable() ) {
+			$user = $this->getUser();
+			return ContributeFactory::getAssociatedNavigationLinks(
+				$user,
+				$user
+			);
+		}
+		return [];
 	}
 
 	/**
-	 * Check if it is allowed to access the Special:Contribute page
+	 * Check if skin is allowed to access the Special:Contribute page
+	 * and the page have enough cards to be enabled
 	 *
 	 * @return bool
 	 */
-	public function isShowable() {
-		$specialContributeSkinsDisabled = $this->getConfig()->get( 'SpecialContributeSkinsDisabled' );
-		return $this->hasCards() &&
-			!in_array( $this->getSkin()->getSkinName(), $specialContributeSkinsDisabled );
+	public function isShowable(): bool {
+		return ContributeFactory::isEnabledOnCurrentSkin(
+			$this->getSkin(),
+			$this->getConfig()->get( 'SpecialContributeSkinsEnabled' )
+		);
 	}
-
 }

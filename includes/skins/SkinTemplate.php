@@ -24,6 +24,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\ResourceLoader as RL;
+use MediaWiki\Specials\Contribute\ContributeFactory;
 
 /**
  * Base class for QuickTemplate-based skins.
@@ -468,13 +469,7 @@ class SkinTemplate extends Skin {
 				$active = false;
 			}
 
-			$href = self::makeSpecialUrlSubpage( 'Contributions', $this->username );
-			$personal_urls['mycontris'] = [
-				'text' => $this->msg( 'mycontris' )->text(),
-				'href' => $href,
-				'active' => $active,
-				'icon' => 'userContributions'
-			];
+			$personal_urls = $this->makeContributionsLink( $personal_urls, 'mycontris', $this->username, $active );
 
 			// if we can't set the user, we can't unset it either
 			if ( !$this->isTempUser && $request->getSession()->canSetUser() ) {
@@ -507,12 +502,7 @@ class SkinTemplate extends Skin {
 					'active' => false,
 					'icon' => 'userTalk',
 				];
-				$personal_urls['anoncontribs'] = [
-					'text' => $this->msg( 'anoncontribs' )->text(),
-					'href' => self::makeSpecialUrlSubpage( 'Mycontributions', false ),
-					'active' => false,
-					'icon' => 'userContributions',
-				];
+				$personal_urls = $this->makeContributionsLink( $personal_urls, 'anoncontribs', null, false );
 			}
 		}
 		if ( $this->isTempUser || !$this->loggedin ) {
@@ -1673,4 +1663,57 @@ class SkinTemplate extends Skin {
 				throw new MWException( 'Unknown mode passed to SkinTemplate::makeSearchButton' );
 		}
 	}
+
+	/**
+	 * @return bool
+	 */
+	private function isSpecialContributeShowable(): bool {
+		return ContributeFactory::isEnabledOnCurrentSkin(
+			$this,
+			$this->getConfig()->get( 'SpecialContributeSkinsEnabled' )
+		);
+	}
+
+	/**
+	 * @param array &$personal_urls
+	 * @param string $key
+	 * @param string|null $userName
+	 * @param bool $active
+	 *
+	 * @return array
+	 */
+	private function makeContributionsLink(
+		array &$personal_urls,
+		string $key,
+		?string $userName = null,
+		bool $active = false
+	): array {
+		$isSpecialContributeShowable = $this->isSpecialContributeShowable();
+		$subpage = $userName ?? false;
+		if ( $isSpecialContributeShowable ) {
+			$href = self::makeSpecialUrlSubpage(
+				'Contribute',
+				false
+			);
+			$personal_urls['contribute'] = [
+				'text' => $this->msg( 'contribute' )->text(),
+				'href' => $href,
+				'active' => $href == $this->getTitle()->getLocalURL(),
+				'icon' => 'edit'
+			];
+		} else {
+			$href = self::makeSpecialUrlSubpage(
+				$subpage !== false ? 'Contributions' : 'Mycontributions',
+				$subpage
+			);
+			$personal_urls[$key] = [
+				'text' => $this->msg( $key )->text(),
+				'href' => $href,
+				'active' => $active,
+				'icon' => 'userContributions'
+			];
+		}
+		return $personal_urls;
+	}
+
 }

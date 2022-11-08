@@ -12377,9 +12377,8 @@ class MainConfigSchema {
 	 *
 	 * @since 1.40
 	 */
-	public const SpecialContributeSkinsDisabled = [
-		'default' => [ 'vector', 'vector-2022', 'monobook',
-			'timeless', 'modern', 'cologneblue', 'minerva' ],
+	public const SpecialContributeSkinsEnabled = [
+		'default' => [],
 		'type' => 'list',
 	];
 

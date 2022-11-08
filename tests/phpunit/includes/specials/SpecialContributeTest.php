@@ -8,8 +8,14 @@ use MediaWiki\Permissions\UltimateAuthority;
  * @covers SpecialContribute
  */
 class SpecialContributeTest extends SpecialPageTestBase {
+	/** @var string */
 	private $pageName = __CLASS__ . 'BlaBlaTest';
+
+	/** @var User */
 	private $admin;
+
+	/** @var SpecialContribute */
+	private $specialContribute;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -20,22 +26,35 @@ class SpecialContributeTest extends SpecialPageTestBase {
 	 * @covers SpecialContribute::execute
 	 */
 	public function testExecute() {
-		try {
-			// Now only enabled for minerva skin
-			[ $html ] = $this->executeSpecialPage( $this->admin->getUser()->getName(), null, 'qqx', $this->admin, true );
-			$this->assertStringContainsString( '<div class="mw-contribute-wrapper">', $html );
-			$this->assertStringContainsString( '<div class="mw-contribute-card-content">', $html );
-		} catch ( Exception $e ) {
-			// in case for other skins check if the page is not allowed to be shown
-			$this->assertStringContainsString( 'You are not allowed to execute the action you have requested.', $e->getMessage() );
-		}
+		$this->specialContribute = new SpecialContribute();
+		list( $html ) = $this->executeSpecialPage(
+			$this->admin->getUser()->getName(),
+			null,
+			'qqx',
+			$this->admin,
+			true
+		);
+		$this->assertStringContainsString( '<div class="mw-contribute-wrapper">', $html );
+		$this->assertStringContainsString( '<div class="mw-contribute-card-content">', $html );
+	}
+
+	public function testIsShowable() {
+		$this->specialContribute = new SpecialContribute();
+		$this->executeSpecialPage(
+			$this->admin->getUser()->getName(),
+			null,
+			'qqx',
+			$this->admin,
+			true
+		);
+		$this->assertFalse( $this->specialContribute->isShowable() );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	protected function newSpecialPage(): SpecialContribute {
-		return new SpecialContribute();
+		return $this->specialContribute;
 	}
 
 }
