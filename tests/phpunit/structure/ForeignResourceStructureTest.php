@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\ResourceLoader\ForeignResourceManager;
+
 /**
  * @group Standalone
  * @coversNothing

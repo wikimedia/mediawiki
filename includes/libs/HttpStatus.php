@@ -101,7 +101,7 @@ class HttpStatus {
 			return;
 		}
 
-		MediaWiki\HeaderCallback::warnIfHeadersSent();
+		\MediaWiki\Request\HeaderCallback::warnIfHeadersSent();
 		if ( $version === null ) {
 			$version = isset( $_SERVER['SERVER_PROTOCOL'] ) &&
 				$_SERVER['SERVER_PROTOCOL'] === 'HTTP/1.0' ?

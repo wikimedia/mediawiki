@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki;
+namespace MediaWiki\Request;
 
 /**
  * @since 1.29
@@ -113,3 +113,5 @@ class HeaderCallback {
 		return implode( "\n", $sanitizedValues );
 	}
 }
+
+class_alias( HeaderCallback::class, 'MediaWiki\\HeaderCallback' );
