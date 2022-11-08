@@ -153,8 +153,8 @@ class ApiOptions extends ApiBase {
 						[
 							'phab' => 'T259073',
 							'OptionName' => substr( $key, 0, 255 ),
-							'OptionValue' => substr( $value, 0, 255 ),
-							'OptionSize' => strlen( $value ),
+							'OptionValue' => substr( $value ?? '', 0, 255 ),
+							'OptionSize' => strlen( $value ?? '' ),
 							'OptionValidation' => $validation,
 							'UserId' => $user->getId(),
 							'RequestIP' => $this->getRequest()->getIP(),
