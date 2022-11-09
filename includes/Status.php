@@ -181,9 +181,9 @@ class Status extends StatusValue {
 	/**
 	 * Get the error list as a wikitext formatted list
 	 *
-	 * @param string|bool $shortContext A short enclosing context message name, to
+	 * @param string|false $shortContext A short enclosing context message name, to
 	 *        be used when there is a single error
-	 * @param string|bool $longContext A long enclosing context message name, for a list
+	 * @param string|false $longContext A long enclosing context message name, for a list
 	 * @param string|Language|StubUserLang|null $lang Language to use for processing messages
 	 * @return string
 	 */
@@ -236,8 +236,8 @@ class Status extends StatusValue {
 	 *
 	 * If both parameters are missing, and there is only one error, no bullet will be added.
 	 *
-	 * @param string|string[]|bool $shortContext A message name or an array of message names.
-	 * @param string|string[]|bool $longContext A message name or an array of message names.
+	 * @param string|string[]|false $shortContext A message name or an array of message names.
+	 * @param string|string[]|false $longContext A message name or an array of message names.
 	 * @param string|Language|StubUserLang|null $lang Language to use for processing messages
 	 * @return Message
 	 */
@@ -320,9 +320,9 @@ class Status extends StatusValue {
 
 	/**
 	 * Get the error message as HTML. This is done by parsing the wikitext error message
-	 * @param string|bool $shortContext A short enclosing context message name, to
+	 * @param string|false $shortContext A short enclosing context message name, to
 	 *        be used when there is a single error
-	 * @param string|bool $longContext A long enclosing context message name, for a list
+	 * @param string|false $longContext A long enclosing context message name, for a list
 	 * @param string|Language|null $lang Language to use for processing messages
 	 * @return string
 	 */

@@ -324,7 +324,7 @@ class LinkBatch {
 
 	/**
 	 * Perform the existence test query, return a result wrapper with page_id fields
-	 * @return bool|IResultWrapper
+	 * @return IResultWrapper|false
 	 */
 	public function doQuery() {
 		if ( $this->isEmpty() ) {
@@ -371,7 +371,7 @@ class LinkBatch {
 	 *
 	 * @param string $prefix The appropriate table's field name prefix ('page', 'pl', etc)
 	 * @param IDatabase $db DB object to use
-	 * @return string|bool String with SQL where clause fragment, or false if no items.
+	 * @return string|false String with SQL where clause fragment, or false if no items.
 	 */
 	public function constructSet( $prefix, $db ) {
 		if ( isset( $this->linksMigration::$prefixToTableMapping[$prefix] ) ) {

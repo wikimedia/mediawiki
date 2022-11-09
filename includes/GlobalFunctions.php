@@ -593,7 +593,7 @@ function wfUrlProtocolsWithoutProtRel() {
  *
  * @deprecated since 1.39, use UrlUtils::parse()
  * @param string $url A URL to parse
- * @return string[]|bool Bits of the URL in an associative array, or false on failure.
+ * @return string[]|false Bits of the URL in an associative array, or false on failure.
  *   Possible fields:
  *   - scheme: URI scheme (protocol), e.g. 'http', 'mailto'. Lowercase, always present, but can
  *       be an empty string for protocol-relative URLs.
@@ -1879,7 +1879,7 @@ function wfRelativePath( $path, $from ) {
  *                belongs to. May contain a single string if the query is only
  *                in one group.
  *
- * @param string|bool $wiki The wiki ID, or false for the current wiki
+ * @param string|false $wiki The wiki ID, or false for the current wiki
  *
  * Note: multiple calls to wfGetDB(DB_REPLICA) during the course of one request
  * will always return the same object, unless the underlying connection or load

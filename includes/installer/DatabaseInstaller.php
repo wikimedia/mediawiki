@@ -138,7 +138,7 @@ abstract class DatabaseInstaller {
 	 * If the DB type has no settings beyond those already configured with
 	 * getConnectForm(), this should return false.
 	 * @stable to override
-	 * @return string|bool
+	 * @return string|false
 	 */
 	public function getSettingsForm() {
 		return false;
@@ -205,7 +205,7 @@ abstract class DatabaseInstaller {
 	 *
 	 * @param string $sourceFileMethod
 	 * @param string $stepName
-	 * @param bool|string $tableThatMustNotExist
+	 * @param string|false $tableThatMustNotExist
 	 * @return Status
 	 */
 	private function stepApplySourceFile(
@@ -720,7 +720,7 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Get a standard web-user fieldset
-	 * @param string|bool $noCreateMsg Message to display instead of the creation checkbox.
+	 * @param string|false $noCreateMsg Message to display instead of the creation checkbox.
 	 *   Set this to false to show a creation checkbox (default).
 	 *
 	 * @return string

@@ -66,7 +66,7 @@ class ExternalStoreAccess implements LoggerAwareInterface {
 	 *
 	 * @param string $url The URL of the text to get
 	 * @param array $params Map of context parameters; same as ExternalStoreFactory::getStore()
-	 * @return string|bool The text stored or false on error
+	 * @return string|false The text stored or false on error
 	 * @throws ExternalStoreException
 	 */
 	public function fetchFromURL( $url, array $params = [] ) {
@@ -111,7 +111,7 @@ class ExternalStoreAccess implements LoggerAwareInterface {
 	 * @param string $data
 	 * @param array $params Map of context parameters; same as ExternalStoreFactory::getStore()
 	 * @param string[]|null $tryStores Base URLs to try, e.g. [ "DB://cluster1" ]
-	 * @return string|bool The URL of the stored data item, or false on error
+	 * @return string|false The URL of the stored data item, or false on error
 	 * @throws ExternalStoreException
 	 */
 	public function insert( $data, array $params = [], array $tryStores = null ) {

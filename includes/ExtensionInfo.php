@@ -14,7 +14,7 @@ class ExtensionInfo {
 	 *
 	 * @since 1.35
 	 *
-	 * @return bool|string False if no such file exists, otherwise returns
+	 * @return string|false False if no such file exists, otherwise returns
 	 * a path to it.
 	 */
 	public static function getAuthorsFileName( $dir ) {

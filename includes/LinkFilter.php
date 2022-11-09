@@ -246,7 +246,7 @@ class LinkFilter {
 	 *   - prefix: (string) Field prefix (default 'el'). The query will test
 	 *     fields '{$prefix}_index' and '{$prefix}_index_60'
 	 *   - db: (IDatabase|null) Database to use.
-	 * @return array|bool Conditions to be used for the query (to be ANDed) or
+	 * @return array|false Conditions to be used for the query (to be ANDed) or
 	 *  false on error. To determine if the query is constant on the
 	 *  el_index_60 field, check whether key 'el_index_60' is set.
 	 */
@@ -306,7 +306,7 @@ class LinkFilter {
 	 * @note You probably want self::getQueryConditions() instead
 	 * @param string $filterEntry Filter entry, @see self::getQueryConditions()
 	 * @param string $protocol Protocol (default http://)
-	 * @return array|bool Array to be passed to Database::buildLike() or false on error
+	 * @return array|false Array to be passed to Database::buildLike() or false on error
 	 */
 	public static function makeLikeArray( $filterEntry, $protocol = 'http://' ) {
 		$db = wfGetDB( DB_REPLICA );

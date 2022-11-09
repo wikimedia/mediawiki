@@ -682,7 +682,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * Run the constructed SELECT query, and return the first result row. If
 	 * there were no results, return false.
 	 *
-	 * @return bool|\stdClass
+	 * @return \stdClass|false
 	 */
 	public function fetchRow() {
 		return $this->db->selectRow( $this->tables, $this->fields, $this->conds, $this->caller,

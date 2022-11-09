@@ -37,7 +37,7 @@ class Http {
 	 * @param array $options Options to pass to MWHttpRequest object. See HttpRequestFactory::create
 	 *  docs
 	 * @param string $caller The method making this request, for profiling
-	 * @return string|bool (bool)false on failure or a string on success
+	 * @return string|false
 	 */
 	public static function request( $method, $url, array $options = [], $caller = __METHOD__ ) {
 		$ret = MediaWikiServices::getInstance()->getHttpRequestFactory()->request(
@@ -56,7 +56,7 @@ class Http {
 	 * @param string $url
 	 * @param array $options
 	 * @param string $caller The method making this request, for profiling
-	 * @return string|bool false on error
+	 * @return string|false false on error
 	 */
 	public static function get( $url, array $options = [], $caller = __METHOD__ ) {
 		$args = func_get_args();
@@ -80,7 +80,7 @@ class Http {
 	 * @param string $url
 	 * @param array $options
 	 * @param string $caller The method making this request, for profiling
-	 * @return string|bool false on error
+	 * @return string|false false on error
 	 */
 	public static function post( $url, array $options = [], $caller = __METHOD__ ) {
 		return self::request( 'POST', $url, $options, $caller );

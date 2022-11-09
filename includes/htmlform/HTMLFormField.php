@@ -21,7 +21,7 @@ abstract class HTMLFormField {
 	protected $mHelpClass = false;
 	protected $mDefault;
 	/**
-	 * @var array|bool|null
+	 * @var array|null|false
 	 */
 	protected $mOptions = false;
 	protected $mOptionsLabelsNotFromMessage = false;

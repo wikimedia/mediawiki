@@ -648,7 +648,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @param string $fname Caller function name
 	 * @param string|array $options Query options
 	 * @param array|string $join_conds Join conditions
-	 * @return stdClass|bool
+	 * @return stdClass|false
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function selectRow(

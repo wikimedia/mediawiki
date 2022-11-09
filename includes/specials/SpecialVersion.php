@@ -1156,7 +1156,7 @@ class SpecialVersion extends SpecialPage {
 
 	/**
 	 * @param string $dir Directory of the git checkout
-	 * @return bool|string Sha1 of commit HEAD points to
+	 * @return string|false Sha1 of commit HEAD points to
 	 */
 	public static function getGitHeadSha1( $dir ) {
 		return ( new GitInfo( $dir ) )->getHeadSHA1();
