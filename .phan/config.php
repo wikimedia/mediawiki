@@ -49,7 +49,12 @@ $cfg['exclude_file_list'] = array_merge(
 		// This file has invalid PHP syntax
 		'vendor/squizlabs/php_codesniffer/src/Standards/PSR2/Tests/Methods/MethodDeclarationUnitTest.inc',
 		// This file implements a polyfill for the JsonUnserializable class
-		'vendor/php-parallel-lint/php-parallel-lint/src/polyfill.php'
+		'vendor/php-parallel-lint/php-parallel-lint/src/polyfill.php',
+		// Avoid microsoft/tolerant-php-parser dependency
+		'maintenance/findDeprecated.php',
+		'maintenance/CodeCleanerGlobalsPass.php',
+		// Avoid nikic/php-parser dependency
+		'maintenance/shell.php',
 	]
 );
 
@@ -93,12 +98,47 @@ $cfg['directory_list'] = [
 	'maintenance/',
 	'mw-config/',
 	'resources/',
-	'vendor/',
 	'tests/common/',
 	'tests/parser/',
 	'tests/phpunit/mocks/',
 	// Do NOT add .phan/stubs/ here: stubs are conditionally loaded in file_list
 ];
+
+// Include only direct production dependencies in vendor/
+// Omit dev dependencies and most indirect dependencies
+
+$composerJson = json_decode(
+	file_get_contents( __DIR__ . '/../composer.json' ),
+	true
+);
+
+$directDeps = [];
+foreach ( $composerJson['require'] as $dep => $version ) {
+	$parts = explode( '/', $dep );
+	if ( count( $parts ) === 2 ) {
+		$directDeps[] = $dep;
+	}
+}
+
+// This is a list of all composer packages that are referenced by core but
+// are not listed as requirements in composer.json.
+$indirectDeps = [
+	'composer/spdx-licenses',
+	'doctrine/dbal',
+	'doctrine/sql-formatter',
+	'guzzlehttp/psr7',
+	'pear/net_url2',
+	'pear/pear-core-minimal',
+	'phpunit/phpunit',
+	'psr/http-message',
+	'seld/jsonlint',
+	'wikimedia/testing-access-wrapper',
+	'wikimedia/zest-css',
+];
+
+foreach ( [ ...$directDeps, ...$indirectDeps ] as $dep ) {
+	$cfg['directory_list'][] = "vendor/$dep";
+}
 
 $cfg['exclude_analysis_directory_list'] = [
 	'vendor/',
