@@ -30,12 +30,13 @@ use MediaWiki\Site\MediaWikiPageNameNormalizer;
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class MediaWikiSite extends Site {
+	/** The script path of a site, e.g. `/w/$1` related to $wgScriptPath */
 	public const PATH_FILE = 'file_path';
+	/** The article path of a site, e.g. `/wiki/$1` like $wgArticlePath */
 	public const PATH_PAGE = 'page_path';
 
 	/**
 	 * @since 1.21
-	 *
 	 * @param string $type
 	 */
 	public function __construct( $type = self::TYPE_MEDIAWIKI ) {
@@ -43,12 +44,10 @@ class MediaWikiSite extends Site {
 	}
 
 	/**
-	 * Returns the database form of the given title.
+	 * Get the database form of the given title.
 	 *
 	 * @since 1.21
-	 *
 	 * @param string $title The target page's title, in normalized form.
-	 *
 	 * @return string
 	 */
 	public function toDBKey( $title ) {
@@ -56,8 +55,9 @@ class MediaWikiSite extends Site {
 	}
 
 	/**
-	 * Returns the normalized form of the given page title, using the
-	 * normalization rules of the given site. If $followRedirect is set to true
+	 * Get the normalized form of the given page title.
+	 *
+	 * This uses to normalization rules of the given site. If $followRedirect is set to true
 	 * and the given title is a redirect, the redirect will be resolved and
 	 * the redirect target is returned.
 	 * Only titles of existing pages will be returned.
@@ -70,18 +70,14 @@ class MediaWikiSite extends Site {
 	 *   rules as implemented by the Title class.
 	 *
 	 * @see Site::normalizePageName
-	 *
 	 * @since 1.21
 	 * @since 1.37 Added $followRedirect
-	 *
 	 * @param string $pageName
 	 * @param int $followRedirect either MediaWikiPageNameNormalizer::FOLLOW_REDIRECT or
-	 * MediaWikiPageNameNormalizer::NOFOLLOW_REDIRECT
-	 *
+	 *  MediaWikiPageNameNormalizer::NOFOLLOW_REDIRECT
 	 * @return string|false The normalized form of the title,
-	 * or false to indicate an invalid title, a missing page,
-	 * or some other kind of error.
-	 * @throws MWException
+	 *  or false to indicate an invalid title, a missing page,
+	 *  or some other kind of error.
 	 */
 	public function normalizePageName( $pageName, $followRedirect = MediaWikiPageNameNormalizer::FOLLOW_REDIRECT ) {
 		if ( defined( 'MW_PHPUNIT_TEST' ) || defined( 'MW_DEV_ENV' ) ) {
@@ -108,11 +104,13 @@ class MediaWikiSite extends Site {
 	}
 
 	/**
+	 * Get the constant for getting or setting the script path.
+	 *
+	 * This configures how Site::setLinkPath() and Site::getLinkPath()
+	 * will work internally in terms of Site::setPath() and Site::getPath().
+	 *
 	 * @see Site::getLinkPathType
-	 * Returns Site::PATH_PAGE
-	 *
 	 * @since 1.21
-	 *
 	 * @return string
 	 */
 	public function getLinkPathType() {
@@ -120,10 +118,9 @@ class MediaWikiSite extends Site {
 	}
 
 	/**
-	 * Returns the relative page path.
+	 * Get the article path, as relative path only (without server).
 	 *
 	 * @since 1.21
-	 *
 	 * @return string
 	 */
 	public function getRelativePagePath() {
@@ -131,10 +128,9 @@ class MediaWikiSite extends Site {
 	}
 
 	/**
-	 * Returns the relative file path.
+	 * Get the script script, as relative path only (without server).
 	 *
 	 * @since 1.21
-	 *
 	 * @return string
 	 */
 	public function getRelativeFilePath() {
@@ -142,10 +138,9 @@ class MediaWikiSite extends Site {
 	}
 
 	/**
-	 * Sets the relative page path.
+	 * Set the article path.
 	 *
 	 * @since 1.21
-	 *
 	 * @param string $path
 	 */
 	public function setPagePath( $path ) {
@@ -153,10 +148,9 @@ class MediaWikiSite extends Site {
 	}
 
 	/**
-	 * Sets the relative file path.
+	 * Set the script path.
 	 *
 	 * @since 1.21
-	 *
 	 * @param string $path
 	 */
 	public function setFilePath( $path ) {
@@ -164,17 +158,16 @@ class MediaWikiSite extends Site {
 	}
 
 	/**
-	 * @see Site::getPageUrl
+	 * Get the full URL for the given page on the site.
 	 *
 	 * This implementation returns a URL constructed using the path returned by getLinkPath().
 	 * In addition to the default behavior implemented by Site::getPageUrl(), this
 	 * method converts the $pageName to DBKey-format by replacing spaces with underscores
 	 * before using it in the URL.
 	 *
+	 * @see Site::getPageUrl
 	 * @since 1.21
-	 *
 	 * @param string|bool $pageName Page name or false (default: false)
-	 *
 	 * @return string|null
 	 */
 	public function getPageUrl( $pageName = false ) {
@@ -193,21 +186,21 @@ class MediaWikiSite extends Site {
 	}
 
 	/**
-	 * Returns the full file path (ie site url + relative file path).
-	 * The path should go at the $1 marker. If the $path
+	 * Get the full URL to an entry point under a wiki's script path.
+	 *
+	 * This is the equivalent of wfScript() for other sites.
+	 *
+	 * The path should go at the `$1` marker. If the $path
 	 * argument is provided, the marker will be replaced by it's value.
 	 *
 	 * @since 1.21
-	 *
 	 * @param string|bool $path
-	 *
 	 * @return string
-	 * @throws MWException If the file path cannot be determined.
 	 */
 	public function getFileUrl( $path = false ) {
 		$filePath = $this->getPath( self::PATH_FILE );
 		if ( $filePath === null ) {
-			throw new MWException( "PATH_FILE for site {$this->getGlobalId()} not known" );
+			throw new RuntimeException( "getFileUrl called for {$this->getGlobalId()} while PATH_FILE is unset" );
 		}
 
 		if ( $path !== false ) {
