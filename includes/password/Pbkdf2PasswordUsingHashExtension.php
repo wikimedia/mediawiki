@@ -46,6 +46,7 @@ class Pbkdf2PasswordUsingHashExtension extends AbstractPbkdf2Password {
 		$hash = hash_pbkdf2( $digestAlgo, $password, $salt, $rounds, $length, true );
 		// Note: this check is unnecessary in PHP 8.0+, since the warning cases
 		// were all converted to exceptions
+		'@phan-var string|false $hash';
 		if ( !is_string( $hash ) ) {
 			throw new PasswordError( 'Error when hashing password.' );
 		}
