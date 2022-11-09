@@ -1160,19 +1160,19 @@ class RevisionStore
 		int $queryFlags = 0
 	) {
 		if ( $blobData !== null ) {
-			$cacheKey = $slot->hasAddress() ? $slot->getAddress() : null;
+			$blobAddress = $slot->hasAddress() ? $slot->getAddress() : null;
 
 			if ( $blobFlags === null ) {
 				// No blob flags, so use the blob verbatim.
 				$data = $blobData;
 			} else {
-				$data = $this->blobStore->expandBlob( $blobData, $blobFlags, $cacheKey );
+				$data = $this->blobStore->expandBlob( $blobData, $blobFlags, $blobAddress );
 				if ( $data === false ) {
 					throw new RevisionAccessException(
 						'Failed to expand blob data using flags {flags} (key: {cache_key})',
 						[
 							'flags' => $blobFlags,
-							'cache_key' => $cacheKey,
+							'cache_key' => $blobAddress,
 						]
 					);
 				}

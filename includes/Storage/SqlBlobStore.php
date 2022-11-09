@@ -466,12 +466,12 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * @param string|string[] $flags Blob flags, such as 'external' or 'gzip'.
 	 *   Note that not including 'utf-8' in $flags will cause the data to be decoded
 	 *   according to the legacy encoding specified via setLegacyEncoding.
-	 * @param string|null $cacheKey A blob address for use in the cache key. If not given,
+	 * @param string|null $blobAddress A blob address for use in the cache key. If not given,
 	 *   caching is disabled.
 	 *
 	 * @return false|string The expanded blob or false on failure
 	 */
-	public function expandBlob( $raw, $flags, $cacheKey = null ) {
+	public function expandBlob( $raw, $flags, $blobAddress = null ) {
 		if ( is_string( $flags ) ) {
 			$flags = explode( ',', $flags );
 		}
@@ -484,10 +484,10 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 				return false;
 			}
 
-			if ( $cacheKey ) {
+			if ( $blobAddress ) {
 				// The cached value should be decompressed, so handle that and return here.
 				return $this->cache->getWithSetCallback(
-					$this->getCacheKey( $cacheKey ),
+					$this->getCacheKey( $blobAddress ),
 					$this->getCacheTTL(),
 					function () use ( $url, $flags ) {
 						// Ignore $setOpts; blobs are immutable and negatives are not cached
