@@ -63,35 +63,40 @@ abstract class Profiler {
 	}
 
 	/**
+	 * @internal For use by Setup.php
+	 * @param array $profilerConf Value from $wgProfiler
+	 */
+	final public static function init( array $profilerConf ): void {
+		$params = $profilerConf + [
+			'class'     => ProfilerStub::class,
+			'sampling'  => 1,
+			'threshold' => 0.0,
+			'output'    => [],
+		];
+
+		// Avoid global func wfIsCLI() during setup
+		$inSample = $params['sampling'] === 1 ? true : ( mt_rand( 0, $params['sampling'] - 1 ) === 0 );
+		if ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' || !$inSample ) {
+			$params['class'] = ProfilerStub::class;
+		}
+
+		if ( !is_array( $params['output'] ) ) {
+			$params['output'] = [ $params['output'] ];
+		}
+
+		self::$instance = new $params['class']( $params );
+	}
+
+	/**
 	 * Singleton
 	 * @return Profiler
 	 */
 	final public static function instance() {
-		if ( self::$instance === null ) {
-			global $wgProfiler;
-
-			$params = ( $wgProfiler ?? [] ) + [
-				'class'     => ProfilerStub::class,
-				'sampling'  => 1,
-				'threshold' => 0.0,
-				'output'    => [],
-			];
-
-			$inSample = mt_rand( 0, $params['sampling'] - 1 ) === 0;
-			// wfIsCLI() is not available yet
-			if ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' || !$inSample ) {
-				$params['class'] = ProfilerStub::class;
-			}
-
-			// "Redundant attempt to cast $params['output'] of type array{} to array"
-			// Not correct, this could be a non-array if $wgProfiler sets it to a non-array.
-			// @phan-suppress-next-line PhanRedundantCondition
-			if ( !is_array( $params['output'] ) ) {
-				$params['output'] = [ $params['output'] ];
-			}
-
-			self::$instance = new $params['class']( $params );
+		if ( !self::$instance ) {
+			trigger_error( 'Called Profiler::instance before settings are loaded', E_USER_WARNING );
+			self::init( [] );
 		}
+
 		return self::$instance;
 	}
 
