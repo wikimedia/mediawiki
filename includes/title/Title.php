@@ -3895,6 +3895,27 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
+	 * Returns the Language object from the page language code saved in the database.
+	 * If $wgPageLanguageUseDB is set to false or there is no language saved in the database
+	 * it will return null.
+	 * If the language code in the database is invalid or unsupported, it will return the
+	 * content language.
+	 *
+	 * @return Language|null
+	 */
+	private function getDbPageLanguage(): ?Language {
+		$languageCode = $this->getDbPageLanguageCode();
+		if ( $languageCode === null ) {
+			return null;
+		}
+		$services = MediaWikiServices::getInstance();
+		if ( !$services->getLanguageNameUtils()->isKnownLanguageTag( $languageCode ) ) {
+			return $services->getContentLanguage();
+		}
+		return $services->getLanguageFactory()->getLanguage( $languageCode );
+	}
+
+	/**
 	 * Get the language in which the content of this page is written in
 	 * wikitext. Defaults to content language, but in certain cases it can be
 	 * e.g. $wgLang (such as special pages, which are in the user language).
@@ -3910,11 +3931,12 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		}
 
 		// Checking if DB language is set
-		$dbPageLanguage = $this->getDbPageLanguageCode();
+		$dbPageLanguage = $this->getDbPageLanguage();
 		if ( $dbPageLanguage ) {
-			return wfGetLangObj( $dbPageLanguage );
+			return $dbPageLanguage;
 		}
 
+		$services = MediaWikiServices::getInstance();
 		if ( !$this->mPageLanguage || $this->mPageLanguage[1] !== $wgLanguageCode ) {
 			// Note that this may depend on user settings, so the cache should
 			// be only per-request.
@@ -3922,13 +3944,12 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			// content to determine the page language!
 			// Checking $wgLanguageCode hasn't changed for the benefit of unit
 			// tests.
-			$contentHandler = MediaWikiServices::getInstance()
-				->getContentHandlerFactory()
+			$contentHandler = $services->getContentHandlerFactory()
 				->getContentHandler( $this->getContentModel() );
 			$langObj = $contentHandler->getPageLanguage( $this );
 			$this->mPageLanguage = [ $langObj->getCode(), $wgLanguageCode ];
 		} else {
-			$langObj = MediaWikiServices::getInstance()->getLanguageFactory()
+			$langObj = $services->getLanguageFactory()
 				->getLanguage( $this->mPageLanguage[0] );
 		}
 
@@ -3946,12 +3967,14 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	public function getPageViewLanguage() {
 		global $wgLang;
 
+		$services = MediaWikiServices::getInstance();
+
 		if ( $this->isSpecialPage() ) {
 			// If the user chooses a variant, the content is actually
 			// in a language whose code is the variant code.
 			$variant = $this->getLanguageConverter( $wgLang )->getPreferredVariant();
 			if ( $wgLang->getCode() !== $variant ) {
-				return MediaWikiServices::getInstance()->getLanguageFactory()
+				return $services->getLanguageFactory()
 					->getLanguage( $variant );
 			}
 
@@ -3959,12 +3982,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		}
 
 		// Checking if DB language is set
-		$dbPageLanguage = $this->getDbPageLanguageCode();
-		if ( $dbPageLanguage ) {
-			$pageLang = wfGetLangObj( $dbPageLanguage );
+		$pageLang = $this->getDbPageLanguage();
+		if ( $pageLang ) {
 			$variant = $this->getLanguageConverter( $pageLang )->getPreferredVariant();
 			if ( $pageLang->getCode() !== $variant ) {
-				$pageLang = MediaWikiServices::getInstance()->getLanguageFactory()
+				return $services->getLanguageFactory()
 					->getLanguage( $variant );
 			}
 
@@ -3974,8 +3996,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		// @note Can't be cached persistently, depends on user settings.
 		// @note ContentHandler::getPageViewLanguage() may need to load the
 		//   content to determine the page language!
-		$contentHandler = MediaWikiServices::getInstance()
-			->getContentHandlerFactory()
+		$contentHandler = $services->getContentHandlerFactory()
 			->getContentHandler( $this->getContentModel() );
 		$pageLang = $contentHandler->getPageViewLanguage( $this );
 		return $pageLang;
