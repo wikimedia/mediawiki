@@ -67,20 +67,6 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		$this->pageTuples = array_merge( $this->pageTuples, $update->pageTuples );
 	}
 
-	/**
-	 * Create an update object from an array of Title objects, or a TitleArray object
-	 *
-	 * @param PageReference[] $pages
-	 * @param string[] $urls
-	 *
-	 * @return CdnCacheUpdate
-	 * @deprecated Since 1.35 Use HtmlCacheUpdater instead. Hard deprecated since 1.39.
-	 */
-	public static function newFromTitles( $pages, $urls = [] ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return new CdnCacheUpdate( array_merge( $pages, $urls ) );
-	}
-
 	public function doUpdate() {
 		// Resolve the final list of URLs just before purging them (T240083)
 		$reboundDelayByUrl = $this->resolveReboundDelayByUrl();
