@@ -1097,10 +1097,16 @@ class Linker {
 	 * @param int $userId User id in database.
 	 * @param string $userName User name in database.
 	 * @param string|false $altUserName Text to display instead of the user name (optional)
+	 * @param string[] $attributes Extra HTML attributes. See Linker::link.
 	 * @return string HTML fragment
-	 * @since 1.16.3. $altUserName was added in 1.19.
+	 * @since 1.16.3. $altUserName was added in 1.19. $attributes was added in 1.40.
 	 */
-	public static function userLink( $userId, $userName, $altUserName = false ) {
+	public static function userLink(
+		$userId,
+		$userName,
+		$altUserName = false,
+		$attributes = []
+	) {
 		if ( $userName === '' || $userName === false || $userName === null ) {
 			wfDebug( __METHOD__ . ' received an empty username. Are there database errors ' .
 				'that need to be fixed?' );
@@ -1119,15 +1125,26 @@ class Linker {
 			$classes .= ' mw-anonuserlink'; // Separate link class for anons (T45179)
 		} else {
 			$page = TitleValue::tryNew( NS_USER, strtr( $userName, ' ', '_' ) );
+			if (
+				MediaWikiServices::getInstance()->getTempUserConfig()->isReservedName( $userName )
+			) {
+				$classes .= ' mw-tempuserlink';
+			}
 		}
 
 		// Wrap the output with <bdi> tags for directionality isolation
 		$linkText =
 			'<bdi>' . htmlspecialchars( $altUserName !== false ? $altUserName : $userName ) . '</bdi>';
 
+		if ( isset( $attributes['class'] ) ) {
+			$attributes['class'] .= ' ' . $classes;
+		} else {
+			$attributes['class'] = $classes;
+		}
+
 		return $page
-			? self::link( $page, $linkText, [ 'class' => $classes ] )
-			: Html::rawElement( 'span', [ 'class' => $classes ], $linkText );
+			? self::link( $page, $linkText, $attributes )
+			: Html::rawElement( 'span', $attributes, $linkText );
 	}
 
 	/**
