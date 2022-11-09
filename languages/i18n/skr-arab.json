@@ -621,7 +621,7 @@
 	"mergelog": "لاگ رلاؤ",
 	"revertmerge": "وکھریاں کرو",
 	"history-title": "\"$1\" دا ریکارڈ",
-	"difference-title": "\"$1\" دے نسخیاں دے درمیان فرق",
+	"difference-title": "$1: نسخیاں دے درمیان فرق",
 	"difference-title-multipage": "\"$1\" تے  \"$2\" ورقیاں دے درمیان فرق",
 	"difference-multipage": "(ورقیاں وچکار فرق)",
 	"lineno": "سطر $1:",
