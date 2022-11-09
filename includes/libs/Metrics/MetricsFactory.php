@@ -24,10 +24,9 @@ namespace Wikimedia\Metrics;
 use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use TypeError;
-use UDPTransport;
+use Wikimedia\Metrics\Emitters\EmitterInterface;
 use Wikimedia\Metrics\Exceptions\InvalidConfigurationException;
 use Wikimedia\Metrics\Exceptions\InvalidLabelsException;
-use Wikimedia\Metrics\Exceptions\UndefinedPrefixException;
 use Wikimedia\Metrics\Metrics\BaseMetric;
 use Wikimedia\Metrics\Metrics\CounterMetric;
 use Wikimedia\Metrics\Metrics\GaugeMetric;
@@ -53,20 +52,13 @@ class MetricsFactory {
 		'labels' => [],
 		'sampleRate' => 1.0,
 		'service' => '',
-		'format' => 'statsd',
 	];
 
 	/** @var MetricsCache */
 	private MetricsCache $cache;
 
-	/** @var string|null */
-	private ?string $target;
-
-	/** @var int */
-	private int $format;
-
-	/** @var string */
-	private string $prefix;
+	/** @var EmitterInterface */
+	private EmitterInterface $emitter;
 
 	/** @var LoggerInterface */
 	private LoggerInterface $logger;
@@ -74,21 +66,14 @@ class MetricsFactory {
 	/**
 	 * MetricsFactory builds, configures, and caches Metrics.
 	 *
-	 * @param array $config associative array:
-	 *   - prefix (string): The prefix applied to all metrics.  This could be the service name.
-	 *   - target (string): The URI of the statsd/statsd-exporter server.
-	 *   - format (string): The output format. See: MetricsFactory::SUPPORTED_OUTPUT_FORMATS
-	 *   - component: (string) The MediaWiki component this MetricsFactory instance is for.
 	 * @param MetricsCache $cache
+	 * @param EmitterInterface $emitter
 	 * @param LoggerInterface $logger
 	 */
-	public function __construct( array $config, MetricsCache $cache, LoggerInterface $logger ) {
+	public function __construct( MetricsCache $cache, EmitterInterface $emitter, LoggerInterface $logger ) {
 		$this->cache = $cache;
+		$this->emitter = $emitter;
 		$this->logger = $logger;
-		$this->target = $config['target'] ?? null;
-		$this->prefix = MetricUtils::normalizeString( $config['prefix'] ?? '' );
-		$this->validateInstanceConfig();
-		$this->format = OutputFormats::getFormatFromString( $config['format'] ?? 'null' );
 	}
 
 	/**
@@ -141,24 +126,8 @@ class MetricsFactory {
 	 * Send all buffered metrics to the target and destroy the cache.
 	 */
 	public function flush(): void {
-		if ( $this->target ) {
-			$this->send( UDPTransport::newFromString( $this->target ) );
-		}
+		$this->emitter->send();
 		$this->cache->clear();
-	}
-
-	/**
-	 * Render the buffer of samples, group them into payloads, and send them through the
-	 * provided UDPTransport instance.
-	 *
-	 * @param UDPTransport $transport
-	 */
-	protected function send( UDPTransport $transport ): void {
-		if ( $this->format > OutputFormats::NULL ) {
-			$renderer = new MetricsRenderer( $this->cache );
-			$emitter = new MetricsUDPEmitter( $renderer->withFormat( $this->format )->withPrefix( $this->prefix ) );
-			$emitter->withTransport( $transport )->send();
-		}
 	}
 
 	/**
@@ -231,24 +200,10 @@ class MetricsFactory {
 			);
 		}
 
-		$config['prefix'] = $this->prefix;
-		$config['format'] = $this->format;
 		$config['name'] = MetricUtils::normalizeString( $config['name'] );
 		$config['component'] = MetricUtils::normalizeString( $config['component'] );
 		$config['labels'] = MetricUtils::normalizeArray( $config['labels'] ?? [] );
 
 		return $config + self::DEFAULT_METRIC_CONFIG;
-	}
-
-	/**
-	 * Throw exception on invalid instance configuration.
-	 *
-	 * @return void
-	 * @throws InvalidArgumentException
-	 */
-	private function validateInstanceConfig(): void {
-		if ( $this->prefix === "" ) {
-			throw new UndefinedPrefixException( "'prefix' option is required and cannot be empty." );
-		}
 	}
 }

@@ -4,11 +4,12 @@ namespace Wikimedia\Tests\Metrics;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
+use Wikimedia\Metrics\Emitters\NullEmitter;
 use Wikimedia\Metrics\Exceptions\InvalidLabelsException;
 use Wikimedia\Metrics\MetricsCache;
 use Wikimedia\Metrics\MetricsFactory;
-use Wikimedia\Metrics\MetricsRenderer;
 use Wikimedia\Metrics\OutputFormats;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \Wikimedia\Metrics\Metrics\NullMetric
@@ -95,7 +96,7 @@ class MetricTest extends TestCase {
 
 	public function testValidateLabels() {
 		$this->expectException( InvalidLabelsException::class );
-		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new MetricsCache, new NullLogger );
+		$m = new MetricsFactory( new MetricsCache, new NullEmitter, new NullLogger );
 		$counter = $m->getCounter( [
 			'name' => 'test',
 			'component' => 'testComponent',
@@ -104,11 +105,14 @@ class MetricTest extends TestCase {
 		$counter->increment( [ 'a' ] );
 	}
 
-	public function handleTest( $test, $type, $format, $metricsFactory ) {
+	public function handleTest( $test, $type, $format ) {
 		$config = self::TESTS[$test];
 		$name = implode( '.', [ $format, $type, $test ] );
 		$this->setName( $name );
 		$this->cache->clear();
+		$formatter = OutputFormats::getNewFormatter( OutputFormats::getFormatFromString( $format ) );
+		$emitter = OutputFormats::getNewEmitter( 'mediawiki', $this->cache, $formatter );
+		$metricsFactory = new MetricsFactory( $this->cache, $emitter, new NullLogger );
 		switch ( $type ) {
 			case 'counter':
 				$metric = $metricsFactory->getCounter( $config['config'] );
@@ -125,23 +129,19 @@ class MetricTest extends TestCase {
 			case 'default':
 				break;
 		}
-		$renderer = new MetricsRenderer( $this->cache );
-		$renderer = $renderer->withPrefix( 'mediawiki' )
-			->withFormat( OutputFormats::getFormatFromString( $format ) );
-		$this->assertEquals( self::RESULTS[$name], $renderer->render() );
+		$this->assertEquals( self::RESULTS[$name], TestingAccessWrapper::newFromObject( $emitter )->render() );
 	}
 
-	public function handleType( $type, $format, $metricsFactory ) {
+	public function handleType( $type, $format ) {
 		foreach ( array_keys( self::TESTS ) as $test ) {
-			$this->handleTest( $test, $type, $format, $metricsFactory );
+			$this->handleTest( $test, $type, $format );
 		}
 	}
 
 	public function handleFormat( $format ) {
 		$this->cache = new MetricsCache();
-		$metricsFactory = new MetricsFactory( [ 'prefix' => 'mediawiki', 'format' => $format ], $this->cache, new NullLogger );
 		foreach ( self::TYPES as $type ) {
-			$this->handleType( $type, $format, $metricsFactory );
+			$this->handleType( $type, $format );
 		}
 	}
 
@@ -153,51 +153,37 @@ class MetricTest extends TestCase {
 
 	public function testSampledMetrics() {
 		$rounds = 10;
-		foreach ( self::FORMATS as $format ) {
-			$ten_cache = new MetricsCache();
-			$m = new MetricsFactory( [ 'prefix' => $format, 'format' => $format ], $ten_cache, new NullLogger );
-			$ten_percent_metrics = $m->getCounter(
-				[
-					'name' => 'test.sampled.ten',
-					'component' => 'counter',
-					'sampleRate' => 0.1
-				]
-			);
-			$all_cache = new MetricsCache();
-			$m = new MetricsFactory( [ 'prefix' => $format, 'format' => $format ], $all_cache, new NullLogger );
-			$all_metrics = $m->getCounter(
-				[
-					'name' => 'test.sampled.hundred',
-					'component' => 'counter',
-					'sampleRate' => 1.0
-				]
-			);
-			$zero_cache = new MetricsCache();
-			$m = new MetricsFactory( [ 'prefix' => $format, 'format' => $format ], $zero_cache, new NullLogger );
-			$zero_metrics = $m->getCounter(
-				[
-					'name' => 'test.sampled.zero',
-					'component' => 'counter',
-					'sampleRate' => 0.0
-				]
-			);
-			for ( $i = 0; $i < $rounds; $i++ ) {
-				$ten_percent_metrics->increment();
-				$all_metrics->increment();
-				$zero_metrics->increment();
-			}
-			$ten_renderer = new MetricsRenderer( $ten_cache );
-			$ten_renderer = $ten_renderer->withPrefix( $format )
-				->withFormat( OutputFormats::getFormatFromString( $format ) );
-			$zero_renderer = new MetricsRenderer( $zero_cache );
-			$zero_renderer = $zero_renderer->withPrefix( $format )
-				->withFormat( OutputFormats::getFormatFromString( $format ) );
-			$all_renderer = new MetricsRenderer( $all_cache );
-			$all_renderer = $all_renderer->withPrefix( $format )
-				->withFormat( OutputFormats::getFormatFromString( $format ) );
-			$this->assertLessThan( $rounds, count( $ten_renderer->render() ) ); // random
-			$this->assertCount( $rounds,  $all_renderer->render() );
-			$this->assertCount( 0, $zero_renderer->render() );
+		$m = new MetricsFactory( new MetricsCache, new NullEmitter, new NullLogger );
+		$ten_percent_metrics = $m->getCounter(
+			[
+				'name' => 'test.sampled.ten',
+				'component' => 'counter',
+				'sampleRate' => 0.1
+			]
+		);
+		$m = new MetricsFactory( new MetricsCache, new NullEmitter, new NullLogger );
+		$all_metrics = $m->getCounter(
+			[
+				'name' => 'test.sampled.hundred',
+				'component' => 'counter',
+				'sampleRate' => 1.0
+			]
+		);
+		$m = new MetricsFactory( new MetricsCache, new NullEmitter, new NullLogger );
+		$zero_metrics = $m->getCounter(
+			[
+				'name' => 'test.sampled.zero',
+				'component' => 'counter',
+				'sampleRate' => 0.0
+			]
+		);
+		for ( $i = 0; $i < $rounds; $i++ ) {
+			$ten_percent_metrics->increment();
+			$all_metrics->increment();
+			$zero_metrics->increment();
 		}
+		$this->assertLessThan( $rounds, count( $ten_percent_metrics->getSamples() ) ); // random
+		$this->assertCount( $rounds,  $all_metrics->getSamples() );
+		$this->assertCount( 0, $zero_metrics->getSamples() );
 	}
 }
