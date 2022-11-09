@@ -1073,19 +1073,6 @@ abstract class DatabaseMysqlBase extends Database {
 	protected function isKnownStatementRollbackError( $errno ) {
 		// https://mariadb.com/kb/en/mariadb-error-codes/
 		// https://dev.mysql.com/doc/mysql-errors/8.0/en/server-error-reference.html
-		if ( $errno === 1205 ) { // lock wait timeout
-			// Note that this is uncached to avoid stale values if SET is used
-			$res = $this->query(
-				"SELECT @@innodb_rollback_on_timeout AS Value",
-				__METHOD__,
-				self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
-			);
-			$row = $res ? $res->fetchObject() : false;
-			// https://dev.mysql.com/doc/refman/5.7/en/innodb-error-handling.html
-			// https://dev.mysql.com/doc/refman/5.5/en/innodb-parameters.html
-			return ( $row && !$row->Value );
-		}
-
 		return in_array(
 			$errno,
 			[ 3024, 1969, 1022, 1062, 1216, 1217, 1137, 1146, 1051, 1054 ],
