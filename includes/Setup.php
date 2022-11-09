@@ -305,6 +305,7 @@ define( 'MW_SERVICE_BOOTSTRAP_COMPLETE', 1 );
 
 MWExceptionRenderer::setShowExceptionDetails( $wgShowExceptionDetails );
 MWExceptionHandler::installHandler( $wgLogExceptionBacktrace, $wgPropagateErrors );
+Profiler::init( $wgProfiler );
 
 // Non-trivial validation of: $wgServer
 // The FatalError page only renders cleanly after MWExceptionHandler is installed.
