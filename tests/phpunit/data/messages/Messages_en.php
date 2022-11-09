@@ -9,3 +9,4 @@
 $namespaceNames = [];
 $specialPageAliases = [];
 $preloadedMessages = [];
+$rtl = false;
