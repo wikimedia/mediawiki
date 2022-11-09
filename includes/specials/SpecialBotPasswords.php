@@ -89,12 +89,15 @@ class SpecialBotPasswords extends FormSpecialPage {
 		$this->requireLogin();
 		$this->addHelpLink( 'Manual:Bot_passwords' );
 
-		$par = trim( $par );
-		if ( strlen( $par ) === 0 ) {
-			$par = null;
-		} elseif ( strlen( $par ) > BotPassword::APPID_MAXLENGTH ) {
-			throw new ErrorPageError( 'botpasswords', 'botpasswords-bad-appid',
-				[ htmlspecialchars( $par ) ] );
+		if ( $par !== null ) {
+			$par = trim( $par );
+			if ( $par === '' ) {
+				$par = null;
+			} elseif ( strlen( $par ) > BotPassword::APPID_MAXLENGTH ) {
+				throw new ErrorPageError(
+					'botpasswords', 'botpasswords-bad-appid', [ htmlspecialchars( $par ) ]
+				);
+			}
 		}
 
 		parent::execute( $par );
