@@ -76,7 +76,9 @@ class MappedIterator extends FilterIterator {
 	}
 
 	public function accept(): bool {
-		$value = call_user_func( $this->vCallback, $this->getInnerIterator()->current() );
+		$inner = $this->getInnerIterator();
+		'@phan-var Iterator $inner';
+		$value = call_user_func( $this->vCallback, $inner->current() );
 		$ok = ( $this->aCallback ) ? call_user_func( $this->aCallback, $value ) : true;
 		if ( $ok ) {
 			$this->cache['current'] = $value;
