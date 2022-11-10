@@ -78,6 +78,8 @@ For notes on 1.39.x and older releases, see HISTORY.
 * Vue development mode is enabled by default in DevelopmentSettings.php
 * The Linker::specialLink() method can now link to a Special page's with a sub-
   page or action parameter set, e.g. [[Special:Contributions/JohnDoe]].
+* The MediaWiki-Docker development environment is now configured to
+  run on PHP 8.1 by default, up from PHP 7.4 now that that's EOL.
 * …
 
 === External library changes in 1.40 ===
