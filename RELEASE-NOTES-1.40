@@ -210,6 +210,9 @@ because of Phabricator reports.
 * Calling MediaWikiSite::getFileUrl() without a $path argument is deprecated.
   If you need the "generic" full file path, with $1 not replaced by anything,
   call $site->getPath( MediaWikiSite::PATH_FILE ) directly.
+* In SessionConsistentConnectionManager, the methods
+  getReadConnectionRef() and getWriteConnectionRef() are deprecated;
+  the ConnectionManager methods they override had been deprecated already.
 * …
 
 === Other changes in 1.40 ===
