@@ -135,20 +135,12 @@ trait ApiMessageTrait {
 		$this->apiData = $data;
 	}
 
-	public function serialize(): string {
-		return serialize( $this->__serialize() );
-	}
-
 	public function __serialize() {
 		return [
 			'parent' => parent::__serialize(),
 			'apiCode' => $this->apiCode,
 			'apiData' => $this->apiData,
 		];
-	}
-
-	public function unserialize( $serialized ): void {
-		$this->__unserialize( unserialize( $serialized ) );
 	}
 
 	public function __unserialize( $data ) {

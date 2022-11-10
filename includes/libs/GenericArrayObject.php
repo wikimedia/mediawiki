@@ -179,17 +179,6 @@ abstract class GenericArrayObject extends ArrayObject {
 	/**
 	 * @see Serializable::serialize
 	 *
-	 * @since 1.20
-	 *
-	 * @return string
-	 */
-	public function serialize(): string {
-		return serialize( $this->__serialize() );
-	}
-
-	/**
-	 * @see Serializable::serialize
-	 *
 	 * @since 1.38
 	 *
 	 * @return array
@@ -212,17 +201,6 @@ abstract class GenericArrayObject extends ArrayObject {
 			'data' => $this->getArrayCopy(),
 			'index' => $this->indexOffset,
 		];
-	}
-
-	/**
-	 * @see Serializable::unserialize
-	 *
-	 * @since 1.20
-	 *
-	 * @param string $serialization
-	 */
-	public function unserialize( $serialization ): void {
-		$this->__unserialize( unserialize( $serialization ) );
 	}
 
 	/**
