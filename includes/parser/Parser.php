@@ -499,7 +499,7 @@ class Parser {
 		$this->urlUtils = $urlUtils;
 		$this->mExtLinkBracketedRegex = '/\[(((?i)' . $this->urlUtils->validProtocols() . ')' .
 			self::EXT_LINK_ADDR .
-			self::EXT_LINK_URL_CLASS . '*)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F\\x{FFFD}]*?)\]/Su';
+			self::EXT_LINK_URL_CLASS . '*)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F\\x{FFFD}]*)\]/Su';
 
 		$this->magicWordFactory = $magicWordFactory;
 
@@ -2163,15 +2163,13 @@ class Parser {
 	 * Make sure to run tests/parser/parserTests.php if you change this code.
 	 *
 	 * @param string $text
-	 * @throws MWException
 	 * @return string
 	 */
 	private function handleExternalLinks( $text ) {
 		$bits = preg_split( $this->mExtLinkBracketedRegex, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
 		// @phan-suppress-next-line PhanTypeComparisonFromArray See phan issue #3161
 		if ( $bits === false ) {
-			throw new MWException( "PCRE needs to be compiled with "
-				. "--enable-unicode-properties in order for MediaWiki to function" );
+			throw new RuntimeException( "PCRE failure" );
 		}
 		$s = array_shift( $bits );
 
