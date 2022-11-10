@@ -216,7 +216,6 @@ abstract class ParsoidHandler extends Handler {
 			'body_only' => $request->getQueryParams()['body_only'] ?? $body['body_only'] ?? null,
 			'errorEnc' => ParsoidFormatHelper::ERROR_ENCODING[$opts['format']] ?? 'plain',
 			'iwp' => WikiMap::getCurrentWikiId(), // PORT-FIXME verify
-			'subst' => (bool)( $request->getQueryParams()['subst'] ?? $body['subst'] ?? null ),
 			'offsetType' => $body['offsetType']
 				?? $request->getQueryParams()['offsetType']
 				// Lint requests should return UCS2 offsets by default
@@ -672,7 +671,6 @@ abstract class ParsoidHandler extends Handler {
 		$oldid = $attribs['oldid'];
 
 		$needsPageBundle = ( $format === ParsoidFormatHelper::FORMAT_PAGEBUNDLE );
-		$doSubst = ( $wikitext !== null && $attribs['subst'] );
 
 		// Performance Timing options
 		// init refers to time elapsed before parsing begins
@@ -685,20 +683,6 @@ abstract class ParsoidHandler extends Handler {
 		}
 
 		$parsoid = $this->newParsoid();
-
-		if ( $doSubst ) {
-			if ( $format !== ParsoidFormatHelper::FORMAT_HTML ) {
-				throw new HttpException(
-					'Substitution is only supported for the HTML format.', 501
-				);
-			}
-			$wikitext = $parsoid->substTopLevelTemplates(
-				$pageConfig, (string)$wikitext
-			);
-			$pageConfig = $this->createPageConfig(
-				$attribs['pageName'], $attribs['oldid'], $wikitext
-			);
-		}
 
 		if (
 			!empty( $this->parsoidSettings['devAPI'] ) &&
@@ -732,9 +716,6 @@ abstract class ParsoidHandler extends Handler {
 
 		$reqOpts = $attribs['envOptions'] + [
 				'pageBundle' => $needsPageBundle,
-				// When substing, set data-parsoid to be discarded, so that the subst'ed
-				// content is considered new when it comes back.
-				'discardDataParsoid' => $doSubst,
 				'contentmodel' => $opts['contentmodel'] ?? null,
 			];
 
