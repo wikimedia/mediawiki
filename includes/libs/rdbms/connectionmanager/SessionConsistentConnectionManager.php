@@ -93,6 +93,7 @@ class SessionConsistentConnectionManager extends ConnectionManager {
 	 * @param string[]|null $groups
 	 *
 	 * @return DBConnRef
+	 * @deprecated since 1.40; Use getReadConnection()
 	 */
 	public function getReadConnectionRef( array $groups = null ) {
 		if ( $this->forceWriteConnection ) {
@@ -106,6 +107,7 @@ class SessionConsistentConnectionManager extends ConnectionManager {
 	 * @since 1.29
 	 *
 	 * @return DBConnRef
+	 * @deprecated since 1.40; Use getWriteConnection()
 	 */
 	public function getWriteConnectionRef() {
 		$this->prepareForUpdates();
