@@ -29,7 +29,7 @@ use MediaWiki\Site\MediaWikiPageNameNormalizer;
  * @ingroup Site
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
-class Site implements Serializable {
+class Site {
 	public const TYPE_UNKNOWN = 'unknown';
 	public const TYPE_MEDIAWIKI = 'mediawiki';
 
@@ -654,17 +654,6 @@ class Site implements Serializable {
 	/**
 	 * @see Serializable::serialize
 	 *
-	 * @since 1.21
-	 *
-	 * @return string
-	 */
-	public function serialize(): string {
-		return serialize( $this->__serialize() );
-	}
-
-	/**
-	 * @see Serializable::serialize
-	 *
 	 * @since 1.38
 	 *
 	 * @return array
@@ -682,17 +671,6 @@ class Site implements Serializable {
 			'forward' => $this->forward,
 			'internalid' => $this->internalId,
 		];
-	}
-
-	/**
-	 * @see Serializable::unserialize
-	 *
-	 * @since 1.21
-	 *
-	 * @param string $serialized
-	 */
-	public function unserialize( $serialized ): void {
-		$this->__unserialize( unserialize( $serialized ) );
 	}
 
 	/**
