@@ -218,16 +218,6 @@ class SpecialUpload extends SpecialPage {
 			);
 		}
 
-		// Global blocks
-		if ( $user->isBlockedGlobally() ) {
-			throw new UserBlockedError(
-				$user->getGlobalBlock(),
-				$user,
-				$this->getLanguage(),
-				$this->getRequest()->getIP()
-			);
-		}
-
 		# Check whether we actually want to allow changing stuff
 		$this->checkReadOnly();
 
