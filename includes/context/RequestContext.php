@@ -619,8 +619,6 @@ class RequestContext implements IContextSource, MutableContext {
 	 * to an empty string unless session importing is *truly* needed. This
 	 * feature is somewhat deprecated.
 	 *
-	 * @note suhosin.session.encrypt may interfere with this method.
-	 *
 	 * @param array $params Result of RequestContext::exportSession()
 	 * @return ScopedCallback
 	 * @throws MWException

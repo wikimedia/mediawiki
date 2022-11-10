@@ -1187,8 +1187,8 @@ class EditPage implements IEditObject {
 
 			if ( $this->textbox1 === '' && !$request->getCheck( 'wpTextbox1' ) ) {
 				// wpTextbox1 field is missing, possibly due to being "too big"
-				// according to some filter rules such as Suhosin's setting for
-				// suhosin.request.max_value_length (d'oh)
+				// according to some filter rules that may have been configured
+				// for security reasons.
 				$this->incompleteForm = true;
 			} else {
 				// If we receive the last parameter of the request, we can fairly
