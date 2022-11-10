@@ -465,9 +465,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	public function run( TestResult $result = null ): TestResult {
-		if ( $result === null ) {
-			$result = $this->createResult();
-		}
+		$result ??= $this->createResult();
 
 		try {
 			$this->overrideMwServices();
@@ -1677,9 +1675,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		IMaintainableDatabase $db,
 		$prefix = null
 	) {
-		if ( $prefix === null ) {
-			$prefix = self::getTestPrefixFor( $db );
-		}
+		$prefix ??= self::getTestPrefixFor( $db );
 
 		if ( isset( $db->_originalTablePrefix ) ) {
 			return null;
@@ -2540,12 +2536,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.40
 	 */
 	protected function clearHooks( ?array $hookNames = null ) {
-		$hookContainer = $this->localServices->getHookContainer();
-
-		if ( $hookNames === null ) {
-			$hookNames = $hookContainer->getRegisteredHooks();
-		}
-
+		$hookNames ??= $this->localServices->getHookContainer()->getRegisteredHooks();
 		foreach ( $hookNames as $name ) {
 			$this->clearHook( $name );
 		}
@@ -2603,10 +2594,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$page = $services->getWikiPageFactory()->newFromTitle( $title );
 		}
 
-		if ( $performer === null ) {
-			$performer = static::getTestUser()->getAuthority();
-		}
-
 		if ( is_string( $content ) ) {
 			$content = $services->getContentHandlerFactory()
 				->getContentHandler( $title->getContentModel() )
@@ -2615,7 +2602,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		return $page->doUserEditContent(
 			$content,
-			$performer,
+			$performer ?? static::getTestUser()->getAuthority(),
 			$summary
 		);
 	}
