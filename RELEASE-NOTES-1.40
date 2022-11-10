@@ -207,6 +207,9 @@ because of Phabricator reports.
   Use TransactionProfiler::silenceForScope() instead.
 * The class Pbkdf2Password was renamed to Pbkdf2PasswordUsingHashExtension,
   and the old name is now deprecated.
+* Calling MediaWikiSite::getFileUrl() without a $path argument is deprecated.
+  If you need the "generic" full file path, with $1 not replaced by anything,
+  call $site->getPath( MediaWikiSite::PATH_FILE ) directly.
 * …
 
 === Other changes in 1.40 ===
