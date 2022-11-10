@@ -58,7 +58,8 @@
 			"Withoutaname",
 			"Xð",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"P.T.Đ"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -2947,6 +2948,7 @@
 	"javascripttest-qunit-intro": "Xem [$1 tài liệu kiểm thử] tại mediawiki.org.",
 	"tooltip-pt-userpage": "Trang cá nhân của tôi",
 	"tooltip-pt-anonuserpage": "Trang của IP bạn đang dùng",
+	"tooltip-pt-tmpuserpage": "Tên người dùng tạm thời được tạo tự động của bạn",
 	"tooltip-pt-mytalk": "Thảo luận với tôi",
 	"tooltip-pt-anontalk": "Thảo luận với địa chỉ IP này",
 	"tooltip-pt-preferences": "Tùy chọn cá nhân của tôi",
@@ -4148,5 +4150,9 @@
 	"skin-action-protect": "Khóa",
 	"skin-action-undelete": "Phục hồi",
 	"skin-action-delete": "Xóa",
-	"skin-action-move": "Di chuyển"
+	"skin-action-move": "Di chuyển",
+	"newpages-showhide-bots": "$1 bot",
+	"newpages-showhide-patrolled": "$1 sửa đổi đã tuần tra",
+	"newpages-showhide-redirect": "$1 đổi hướng",
+	"newpages-showhide-registered": "$1 thành viên có tài khoản"
 }

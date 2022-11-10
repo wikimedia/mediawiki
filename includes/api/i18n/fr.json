@@ -1690,7 +1690,7 @@
 	"apierror-copyuploadbaddomain": "Les téléversements par URL ne sont pas autorisés depuis ce domaine.",
 	"apierror-copyuploadbadurl": "Les téléversements ne sont pas autorisés depuis cette URL.",
 	"apierror-create-titleexists": "Les titres existants ne peuvent pas être protégés avec <kbd>create</kbd>.",
-	"apierror-csp-report": "Erreur lors du traitement du rapport CSP: $1.",
+	"apierror-csp-report": "Erreur lors du traitement du rapport CSP : $1.",
 	"apierror-deletedrevs-param-not-1-2": "Le paramètre <var>$1</var> ne peut pas être utilisé dans les modes 1 ou 2.",
 	"apierror-deletedrevs-param-not-3": "Le paramètre <var>$1</var> ne peut pas être utilisé dans le mode 3.",
 	"apierror-edit-invalidredirect": "Impossible de modifier <kbd>$1</kbd> en suivant une redirection, car la cible <kbd>$2</kbd> n’est pas valide.",
@@ -1886,7 +1886,7 @@
 	"api-feed-error-title": "Erreur ($1)",
 	"api-usage-docref": "Voir $1 concernant l’utilisation de l’API.",
 	"api-usage-mailinglist-ref": "S’abonner à la liste de diffusion mediawiki-api-announce sur &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; pour les signalisations d’obsolescence de l’API ou de modifications en rupture.",
-	"api-exception-trace": "$1 à $2($3)\n$4",
+	"api-exception-trace": "$1 à $2:$3\n$4",
 	"api-credits-header": "Remerciements",
 	"api-credits": "Développeurs de l’API :\n* Yuri Astrakhan (créateur, développeur en chef de sept. 2006 à sept. 2007)\n* Roan Kattouw (développeur en chef de sept. 2007 à 2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (développeur en chef de 2013 à 2020)\n\nVeuillez envoyer vos commentaires, suggestions et questions à mediawiki-api@lists.wikimedia.org\nou remplir un rapport de bogue sur https://phabricator.wikimedia.org/."
 }

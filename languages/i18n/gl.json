@@ -33,7 +33,8 @@
 			"Xabier Cid",
 			"Xosecalvo",
 			"Xosé",
-			"לערי ריינהארט"
+			"לערי ריינהארט",
+			"S4b1nuz E.656"
 		]
 	},
 	"tog-underline": "Subliñar as ligazóns:",
@@ -938,7 +939,7 @@
 	"mergelogpagetext": "A continuación hai unha lista coas fusións máis recentes do historial dunha páxina co doutra.",
 	"history-title": "$1: Historial de revisións",
 	"difference-title": "Diferenzas entre revisións de «$1»",
-	"difference-title-multipage": "«$1» e «$2»ː Diferenzas entre as páxinas",
+	"difference-title-multipage": "«$1» e «$2»: Diferenzas entre as páxinas",
 	"difference-multipage": "(Diferenzas entre páxinas)",
 	"lineno": "Liña $1:",
 	"compareselectedversions": "Comparar as versións seleccionadas",

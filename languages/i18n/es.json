@@ -232,7 +232,8 @@
 			"ZhaleyLeitnib",
 			"לערי ריינהארט",
 			"ديفيد",
-			"아라"
+			"아라",
+			"Raos10"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -1154,7 +1155,7 @@
 	"mergehistory-reason": "Motivo:",
 	"mergehistory-source-deleted-reason": "La página de origen ha sido borrada automáticamente tras la fusión de historiales porque su modelo de contenido no permite las redirecciones y no quedaban revisiones por trasladar",
 	"mergehistory-source-deleted": "Adicionalmente se ha borrado la página [[:$1]] porque no quedan revisiones visibles y su modelo de contenido no permite la creación de redirecciones.",
-	"mergehistory-revisionrow": "$1 ( $2 ) $3 . . $4 $5 $6 $7",
+	"mergehistory-revisionrow": "$1 ($2) $3 — $4 $5 $6 $7",
 	"mergelog": "Registro de fusiones",
 	"revertmerge": "Deshacer fusión",
 	"mergelogpagetext": "A continuación se muestra una lista de las fusiones de historiales más recientes.",

@@ -659,7 +659,7 @@
 	"apihelp-query+blocks-paramvalue-prop-id": "添加封鎖 ID。",
 	"apihelp-query+blocks-paramvalue-prop-user": "添加已封鎖使用者的使用者名稱。",
 	"apihelp-query+blocks-paramvalue-prop-userid": "添加已封鎖使用者的使用者 ID。",
-	"apihelp-query+blocks-paramvalue-prop-by": "添加進行封鎖中的使用者之使用者名稱。",
+	"apihelp-query+blocks-paramvalue-prop-by": "加入執行封鎖的使用者名稱。",
 	"apihelp-query+blocks-paramvalue-prop-byid": "添加進行封鎖中的使用者之使用者 ID。",
 	"apihelp-query+blocks-paramvalue-prop-timestamp": "添加當封鎖生效的時間戳記。",
 	"apihelp-query+blocks-paramvalue-prop-expiry": "添加當封鎖到期的時間戳記。",

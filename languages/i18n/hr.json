@@ -2699,6 +2699,7 @@
 	"tooltip-search": "Pretraži projekt {{SITENAME}}",
 	"tooltip-search-go": "Idi na stranicu s ovim imenom ako ona postoji",
 	"tooltip-search-fulltext": "Traži ovaj tekst na svim stranicama",
+	"tooltip-p-cactions": "Više mogućnosti",
 	"tooltip-p-logo": "Posjeti glavnu stranicu",
 	"tooltip-p-personal": "Suradnički izbornik",
 	"tooltip-n-mainpage": "Posjeti glavnu stranicu",

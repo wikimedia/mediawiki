@@ -39,7 +39,8 @@
 			"กิ๊ฟ เลิกล่ะ สายแข็ง",
 			"จักรกฤช วงศ์สระหลวง (Jakkrit Vongsraluang) / PaePae",
 			"วรากร อึ้งวิเชียร (Varakorn Ungvichian)",
-			"아라"
+			"아라",
+			"Lookruk"
 		]
 	},
 	"tog-underline": "การขีดเส้นใต้ลิงก์:",
@@ -3249,7 +3250,7 @@
 	"version-ext-colheader-name": "ส่วนขยาย",
 	"version-skin-colheader-name": "แบบหน้าตา",
 	"version-ext-colheader-version": "รุ่น",
-	"version-ext-colheader-license": "ใบอนุญาต",
+	"version-ext-colheader-license": "สัญญาอนุญาต",
 	"version-ext-colheader-description": "คำอธิบาย",
 	"version-ext-colheader-credits": "ผู้ประพันธ์",
 	"version-license-title": "ใบอนุญาตสำหรับ $1",

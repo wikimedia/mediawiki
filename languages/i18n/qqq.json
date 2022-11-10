@@ -240,7 +240,8 @@
 			"ديفيد",
 			"আফতাবুজ্জামান",
 			"គីមស៊្រុន",
-			"아라"
+			"아라",
+			"YaThaWinTha"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -365,7 +366,7 @@
 	"noindex-category": "{{tracking category name}}\nName of the [[mw:Special:MyLanguage/Help:Tracking categories|tracking category]] where pages with the <nowiki>__NOINDEX__</nowiki> behavior switch are listed.\n\nFor description of this behavior switch see [[mw:Special:MyLanguage/Help:Magic_words#Behavior_switches|MediaWiki]].\n\nSee also:\n* {{msg-mw|Noindex-category-desc}}",
 	"broken-file-category": "{{tracking category name}}\nName of [[mw:Special:MyLanguage/Help:Tracking categories|tracking category]] where pages that embed files that do not exist (\"broken images\") are listed.\n\nSee also:\n* {{msg-mw|Broken-file-category-desc}}",
 	"categoryviewer-pagedlinks": "{{Optional}}\nThe pagination links in category viewer. Parameters:\n* $1 - the previous link, uses {{msg-mw|Prevn}}\n* $2 - the next link, uses {{msg-mw|Nextn}}",
-	"category-header-numerals": "{{Optional}}\nA header for all pages whose titles start with a number. This is used on category pages. This should only be translated if your language uses a different method to indicate a range of numbers (other than a dash).\n* $1 – 0 (or localized equivalent)\n* $2 – 9 (or localized equivalent)",
+	"category-header-numerals": "{{Optional}}\nA header for all pages whose titles start with a number. This is used on category pages. This should only be translated if your language uses a different method to indicate a range of numbers like:\n* 0–9 (en-dash)\n* 0~9 (tilde symbol)\n* 0 – 9 (en-dash surrounded with non-breaking spaces)\n* 0—9 (em-dash)\n* 0…9 (horizontal ellipsis)\n* 0〜9 (CJK tilde-shaped dash)\n* (or other localized equivalents)",
 	"about": "{{Identical|About}}",
 	"article": "A 'content page' is a page that forms part of the purpose of the wiki. It includes the main page and pages in the main namespace and any other namespaces that are included when the wiki is customised. For example on Wikimedia Commons 'content pages' include pages in the file and category namespaces. On Wikinews 'content pages' include pages in the Portal namespace. For technical definition of 'content namespaces' see [[mw:Manual:Using_custom_namespaces#Content_namespaces|MediaWiki]].\n\nPossible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.\n\n{{Identical|Content page}}",
 	"newwindow": "Below the edit form, next to \"{{msg-mw|Edithelp}}\".",
@@ -510,7 +511,7 @@
 	"confirmable-no": "{{Doc-actionlink}}\nText of a button that will cancel triggering of a potentially uncancellable action.\n\nSee also:\n* {{msg-mw|confirmable-confirm}}\n* {{msg-mw|confirmable-yes}}\n{{Identical|No}}",
 	"thisisdeleted": "Message shown on a deleted page when the user has the undelete right. Parameters:\n* $1 - a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text\nSee also:\n* {{msg-mw|viewdeleted}}",
 	"viewdeleted": "Message shown on a deleted page when the user does not have the undelete right (but has the deletedhistory right).\n\nParameters:\n* $1 - a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text\nSee also:\n* {{msg-mw|thisisdeleted}}",
-	"restorelink": "This text is always displayed in conjunction with the {{msg-mw|thisisdeleted}} message (View or restore $1?). The user will see\nView or restore <nowiki>{{PLURAL:$1|one deleted edit|$1 deleted edits}}</nowiki>?    i.e ''View or restore one deleted edit?''     or\n''View or restore n deleted edits?''",
+	"restorelink": "This text is always displayed in conjunction with the {{msg-mw|thisisdeleted}} message (View or restore $1?). The user will see\nView or restore <nowiki>{{PLURAL:$1|one deleted edit|$1 deleted edits}}</nowiki>?    i.e. ''View or restore one deleted edit?''     or\n''View or restore n deleted edits?''",
 	"feed-invalid": "Result of check whether feed type is valid or not.",
 	"feed-unavailable": "This message is displayed when a user tries to use an RSS or Atom feed on a wiki where such feeds have been disabled.",
 	"site-rss-feed": "Used in the HTML header of a wiki's RSS feed.\nHTML markup cannot be used.\n\nParameters:\n* $1 - <nowiki>{{SITENAME}}</nowiki>\n{{Identical|S1 RSS/Atom feed}}",
