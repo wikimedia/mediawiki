@@ -377,8 +377,7 @@ class PHPSessionHandler implements \SessionHandlerInterface {
 		if ( self::$instance !== $this ) {
 			throw new \UnexpectedValueException( __METHOD__ . ': Wrong instance called!' );
 		}
-		$before = date( 'YmdHis', time() );
-		$this->store->deleteObjectsExpiringBefore( $before );
+		$this->store->deleteObjectsExpiringBefore( wfTimestampNow() );
 		return true;
 	}
 }
