@@ -115,7 +115,6 @@
 	"config-using-uri": "使用服务器URL“<nowiki>$1$2</nowiki>”。",
 	"config-uploads-not-safe": "<strong>警告：</strong>您的默认上传目录<code>$1</code>存在允许执行任意脚本的漏洞。尽管MediaWiki会对所有已上传的文件进行安全检查，但我们仍然强烈建议您在启用上传功能前[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security 关闭该安全漏洞]。",
 	"config-no-cli-uploads-check": "<strong>警告：</strong>在CLI安装过程中，没有对您的默认上传目录（<code>$1</code>）进行执行任意脚本的漏洞检查。",
-	"config-suhosin-max-value-length": "Suhosin已经安装并将GET请求的参数长度限制在$1字节。\nMediaWiki需要<code>suhosin.get.max_value_length</code>至少为$2。请在<code>php.ini</code>中停用此设定，或将参数长度增加至$3。",
 	"config-using-32bit": "<strong>警告：</strong>您的系统似乎是32位系统。我们[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit 不建议您]使用32位系统。",
 	"config-db-type": "数据库类型：",
 	"config-db-host": "数据库主机：",

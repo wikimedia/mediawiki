@@ -84,7 +84,6 @@
 	"config-using-uri": "सर्वर के URL \"<nowiki>$1$2</nowiki>\" का इस्तेमाल किया जा रहा है।",
 	"config-uploads-not-safe": "<strong>चेतावनी:</strong> अपलोड्स के लिए आपका डिफ़ॉल्ट डिरेक्ट्री <code>$1</code> है जिसमें स्क्रिप्ट्स को चलाने पर प्रभाव हो सकता है।\nहालाँकि मीडियाविकि सुरक्षा के संभव खतरों के लिए अपलोड की गई सभी फ़ाइलों की जाँच करता है, अपलोड सक्षम करने से पहले, [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security close सुरक्षा के इस मुद्दे को सुलझाना] सर्वोत्तम प्रथा है।",
 	"config-no-cli-uploads-check": "<strong>चेतावनी:</strong> अपलोड्स के लिए आपके डिफ़ॉल्ट डिरेक्ट्री (<code>$1</code>) पर CLI के ज़रिए स्थापना के दौरान स्थापित स्क्रिप्ट्स से सुरक्षा की कमज़ोरियों का निरीक्षण नहीं हुआ है।",
-	"config-suhosin-max-value-length": "Suhosin को स्थापित किया गया है और यह GET पैरामीटर के <code>length</code> को $1 बाइट्स पर सीमित करता है।\nमीडियाविकि पर <code>suhosin.get.max_value_length</code> को कम-से-कम $2 होना होगा। इस सेटिंग को अक्षम करें, या <code>php.ini</code> में इस वैल्यू को $3 तक बढ़ाएँ।",
 	"config-using-32bit": "<strong>चेतावनी:</strong> ऐसा लगता है कि आपका सिस्टम 32-बिट पूर्णांकों पर चल रहा है। ऐसा करना [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit अनुशंसित नहीं] है।",
 	"config-db-type": "डेटाबेस प्रकार:",
 	"config-db-host": "डेटाबेस होस्ट:",

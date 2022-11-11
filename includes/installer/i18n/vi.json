@@ -85,7 +85,6 @@
 	"config-using-uri": "Sẽ sử dụng URL máy chủ “<nowiki>$1$2</nowiki>”.",
 	"config-uploads-not-safe": "<strong>Cảnh báo:</strong> Thư mục tải lên mặc định của bạn, <code>$1</code>, đang có lỗ hỏng bảo mật, dễ bị khai thác bởi các đoạn mã thực thi xấu.\nMặc dù MediaWiki kiểm tra tất cả các tập tin tải lên để tránh nguy cơ bảo mật, chúng tôi đặc biệt khuyến cáo [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security đóng lỗ hỏng bảo mật này lại] trước khi kích hoạt tính năng tải lên.",
 	"config-no-cli-uploads-check": "<strong>Cảnh báo:</strong> Thư mục tải lên mặc định của bạn (<code>$1</code>) không được kiểm tra lỗ hỏng bảo mật dễ bị khai thác bởi các đoạn mã thực thi xấu trong quá trình cài đặt giao diện dòng lệnh.",
-	"config-suhosin-max-value-length": "Suhosin được cài đặt và hạn chế tham số GET <code>length</code> (độ dài) không thể vượt quá $1 byte.\nMediaWiki cần <code>suhosin.get.max_value_length</code> có giá trị tối thiểu $2. Hãy tắt tùy chọn này hoặc tăng nó lên $3 trong <code>php.ini</code>.",
 	"config-using-32bit": "<strong>Cảnh báo:</strong> Máy của bạn hình như sử dụng các số nguyên 32 bit. Chế độ này [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit không được khuyên khích].",
 	"config-db-type": "Kiểu cơ sở dữ liệu:",
 	"config-db-host": "Máy chủ của cơ sở dữ liệu:",

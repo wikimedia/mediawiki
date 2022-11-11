@@ -126,7 +126,6 @@
 	"config-using-uri": "Utilizando la URL del servidor \"<nowiki>$1$2</nowiki>\".",
 	"config-uploads-not-safe": "<strong>Advertencia:</strong> tu directorio predeterminado para las cargas, <code>$1</code>, es vulnerable a la ejecución de scripts arbitrarios.\nAunque MediaWiki comprueba todos los archivos cargados por si hubiese amenazas de seguridad, es altamente recomendable [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security cerrar esta vulnerabilidad de seguridad] antes de activar las cargas.",
 	"config-no-cli-uploads-check": "<strong>Advertencia:</strong> tu directorio predeterminado para cargas (<code>$1</code>) no está comprobado contra la vulnerabilidad\n de ejecución arbitraria de \"scripts\" durante la instalación por línea de comandos.",
-	"config-suhosin-max-value-length": "Suhosin está instalado y limita el parámetro GET <code>length</code> a $1 bytes.\nMediaWiki requiere que <code>suhosin.get.max_value_length</code> sea al menos $2. Deshabilita esta configuración o aumenta este valor a $3 en <code>php.ini</code>.",
 	"config-using-32bit": "<strong>Atención:</strong> parece que el sistema funciona con enteros de 32 bits. Esto está [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit desaconsejado].",
 	"config-db-type": "Tipo de base de datos:",
 	"config-db-host": "Servidor de la base de datos:",

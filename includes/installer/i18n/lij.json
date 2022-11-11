@@ -79,7 +79,6 @@
 	"config-using-uri": "URL do sèrver in ûzo \"<nowiki>$1$2</nowiki>\".",
 	"config-uploads-not-safe": "<strong>Atençión:</strong> a directory predefinîa pe-i caregaménti <code>$1</code> a l'é vulneràbile a l'ezecuçión arbitrâia de script.\nScibén che, a diféiza da seguéssa, MediaWiki a contròlla tùtti i file càregæ, o l'é forteménte racomandòu de [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security serâ quésta minàccia] prìmma d'abilitâ i caregaménti.",
 	"config-no-cli-uploads-check": "<strong>Atençion:</strong> a directory predefinîa pe-i caregaménti (<code>$1</code>) a no l'é stæta verificâ pî-a vulnerabilitæ in sce l'ezecuçión arbitrâia de script inte l'instalaçión da lìnia de comàndo.",
-	"config-suhosin-max-value-length": "Suhosin o l'é instalèu e o lìmita o paràmetro GET <code>length</code> a $1 byte.\nMediaWiki a domànda 'n valô pe <code>suhosin.get.max_value_length</code> a-o mêno de $2. Dizatîva quésta inpostaçión, ò aoménta 'sto valô chi a $3 in <code>php.ini</code>.",
 	"config-using-32bit": "<strong>Atençión:</strong> o pâ che o tò scistêma o l'adêuvia di intrêghi a 32-bit, fæto ch'o no l'é racomandòu.",
 	"config-db-type": "Tîpo de bànca dæti:",
 	"config-db-host": "Host da bànca dæti:",
