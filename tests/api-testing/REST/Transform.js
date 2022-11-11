@@ -965,7 +965,7 @@ describe( '/transform/ endpoint', function () {
 				.end( done );
 		} );
 
-		( skipForNow ? describe.skip : describe )( 'Variant conversion', function () {
+		describe( 'Variant conversion', function () {
 
 			it( 'should perform variant conversion for transform given pagelanguage in HTTP header (html)', function ( done ) {
 				client.req
@@ -984,6 +984,9 @@ describe( '/transform/ endpoint', function () {
 			} );
 
 			it( 'should perform variant conversion for transform given pagelanguage in HTTP header (pagebundle)', function ( done ) {
+				if ( skipForNow ) {
+					return this.skip();
+				} // page bundle not supported
 				client.req
 					.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 					.set( 'Accept-Language', 'sr-el' )
@@ -1025,6 +1028,9 @@ describe( '/transform/ endpoint', function () {
 			} );
 
 			it( 'should perform variant conversion for transform given pagelanguage in JSON header (pagebundle)', function ( done ) {
+				if ( skipForNow ) {
+					return this.skip();
+				} // page bundle not supported
 				client.req
 					.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 					.set( 'Accept-Language', 'sr-el' )
@@ -1053,6 +1059,7 @@ describe( '/transform/ endpoint', function () {
 				client.req
 					.post( endpointPrefix + '/transform/wikitext/to/html/' )
 					.set( 'Accept-Language', 'sr-el' )
+					.set( 'Content-Language', 'sr' )
 					.send( {
 						original: { revid: 104 },
 						wikitext: {
@@ -1068,6 +1075,9 @@ describe( '/transform/ endpoint', function () {
 			} );
 
 			it( 'should perform variant conversion for transform given pagelanguage from oldid (pagebundle)', function ( done ) {
+				if ( skipForNow ) {
+					return this.skip();
+				} // page bundle not supported
 				client.req
 					.post( endpointPrefix + '/transform/wikitext/to/pagebundle/' )
 					.set( 'Accept-Language', 'sr-el' )
