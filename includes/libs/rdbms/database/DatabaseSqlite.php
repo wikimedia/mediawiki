@@ -67,7 +67,9 @@ class DatabaseSqlite extends Database {
 		// Optimizations for TEMPORARY tables
 		'temp_store' => [ 'FILE', 'MEMORY' ],
 		// Optimizations for disk use and page cache
-		'mmap_size' => 'integer'
+		'mmap_size' => 'integer',
+		// How many DB pages to keep in memory
+		'cache_size' => 'integer',
 	];
 
 	/** @var SQLPlatform */
