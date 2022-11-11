@@ -74,7 +74,7 @@ class ExecutableFinder {
 
 			$output = Shell::command( $command, $versionInfo[0] )
 				->includeStderr()->execute()->getStdout();
-			if ( strstr( $output, $versionInfo[1] ) !== false ) {
+			if ( str_contains( $output, $versionInfo[1] ) ) {
 				return $command;
 			}
 		}

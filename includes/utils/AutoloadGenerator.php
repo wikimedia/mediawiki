@@ -127,7 +127,7 @@ class AutoloadGenerator {
 	 */
 	private function shouldExclude( $path ) {
 		foreach ( $this->excludePaths as $dir ) {
-			if ( strpos( $path, $dir ) === 0 ) {
+			if ( str_starts_with( $path, $dir ) ) {
 				return true;
 			}
 		}
