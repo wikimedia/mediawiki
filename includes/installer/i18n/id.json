@@ -93,7 +93,6 @@
 	"config-using-uri": "Menggunakan URL server \"<nowiki>$1$2</nowiki>\".",
 	"config-uploads-not-safe": "'''Peringatan:''' Direktori bawaan pengunggahan <code>$1</code> Anda rentan terhadap eksekusi skrip yang sewenang-wenang.\nMeskipun MediaWiki memeriksa semua berkas unggahan untuk ancaman keamanan, sangat dianjurkan untuk [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security menutup kerentanan keamanan ini] sebelum mengaktifkan pengunggahan.",
 	"config-no-cli-uploads-check": "<strong>Peringatan:</strong> Direktori default Anda untuk unggahan (<code>$1</code>) tidak diperiksa untuk kerentanan terhadap\neksekusi script sewenang-wenang selama instalasi CLI.",
-	"config-suhosin-max-value-length": "Suhosin terpasang dan membatasi parameter GET <code>length</code> sebesar $1 bita.\nMediaWiki mengharuskan nilai <code>suhosin.get.max_value_length</code> ditetapkan paling tidak $2. Matikan pengaturan ini, atau naikkan nilai ini menjadi $3 dalam <code>php.ini</code>.",
 	"config-using-32bit": "<strong>Peringatan:</strong> sistem Anda tampaknya dijalankan dengan integer 32-bit. Ini [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit tidak disarankan].",
 	"config-db-type": "Jenis basis data:",
 	"config-db-host": "Inang basis data:",

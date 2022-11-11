@@ -95,7 +95,6 @@
 	"config-using-uri": "Die Server-URL „<nowiki>$1$2</nowiki>“ wird verwendet.",
 	"config-uploads-not-safe": "'''Warnung:''' Das Standardverzeichnis für hochgeladene Dateien <code>$1</code> ist für die willkürliche Ausführung von Skripten anfällig.\nObwohl MediaWiki die hochgeladenen Dateien auf Sicherheitsrisiken überprüft, wird dennoch dringend empfohlen, diese [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security Sicherheitslücke] zu schließen, bevor das Hochladen von Dateien aktiviert wird.",
 	"config-no-cli-uploads-check": "'''Warnung''': Das Standardverzeichnis für hochgeladene Dateien (<code>$1</code>) wird, während der Installation über die Kommandozeile, nicht auf Sicherheitsanfälligkeiten hinsichtlich willkürlicher Skriptausführungen geprüft.",
-	"config-suhosin-max-value-length": "Suhosin ist installiert und beschränkt die Länge des GET-Parameters auf $1 Bytes.\nMediaWiki wird nur funktionieren, wenn code>suhosin.get.max_value_length</code> $2 oder höher ist. Deaktiviere diese Einstellung oder ändere sie in <code>php.ini</code> zu $3.",
 	"config-using-32bit": "<strong>Warnung:</strong> Es scheint, als ob dein System mit 32-Bit-Ganzzahlen läuft. Dies wird [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:32-bit nicht empfohlen].",
 	"config-db-type": "Datenbanksystem:",
 	"config-db-host": "Datenbankserver:",

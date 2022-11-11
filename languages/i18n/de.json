@@ -734,7 +734,7 @@
 	"showpreview": "Vorschau zeigen",
 	"showdiff": "Änderungen zeigen",
 	"blankarticle": "<strong>Warnung:</strong> Die Seite, die du erstellst, ist leer.\nWenn du erneut auf „$1“ klickst, wird die Seite ohne Inhalt erstellt.",
-	"anoneditwarning": "<strong>Warnung:</strong> Du bist nicht angemeldet. Deine IP-Adresse wird bei Bearbeitungen öffentlich sichtbar. <strong>[$1 Melde dich an]</strong> oder <strong>[$2 erstelle ein Benutzerkonto]</strong>, damit Bearbeitungen deinem Benutzernamen zugeordnet werden.",
+	"anoneditwarning": "<strong>Warnung:</strong> Du bist nicht angemeldet. Deine IP-Adresse wird bei Bearbeitungen öffentlich sichtbar. <strong>[$1 Melde dich an]</strong> oder <strong>[$2 erstelle ein Benutzerkonto]</strong>, damit Bearbeitungen deinem Benutzernamen zugeordnet werden. Ein eigenes Benutzerkonto hat eine ganze Reihe von Vorteilen.",
 	"autocreate-edit-warning": "<strong>Warnung:</strong> Du bist nicht angemeldet. Deine Eingabe wird einem <strong>automatisch generierten Namen</strong> zugeordnet, indem ein Cookie in deinem Browser gespeichert wird. Deine IP-Adresse wird für vertrauenswürdige Benutzer sichtbar sein. Wenn du dich <strong>[$1 anmeldest]</strong> oder <strong>[$2 ein Konto erstellst]</strong>, werden deine Bearbeitungen einem von dir gewählten Namen zugeordnet; dies hat auch weitere Vorzüge.",
 	"anonpreviewwarning": "<em>Du bist nicht angemeldet. Beim Veröffentlichen wird deine IP-Adresse in der Versionsgeschichte aufgezeichnet.</em>",
 	"autocreate-preview-warning": "<em>Du bist nicht angemeldet. Dein Beitrag wird einem automatisch generierten Namen zugeordnet und deine IP-Adresse ist für die Administratoren sichtbar.</em>",
