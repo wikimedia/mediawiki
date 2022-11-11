@@ -130,7 +130,9 @@ class SpecialAutoblockList extends SpecialPage {
 	 */
 	protected function getBlockListPager() {
 		$conds = [
-			'ipb_parent_block_id IS NOT NULL'
+			'ipb_parent_block_id IS NOT NULL',
+			// ipb_parent_block_id <> 0 because of T282890
+			'ipb_parent_block_id <> 0',
 		];
 		# Is the user allowed to see hidden blocks?
 		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
