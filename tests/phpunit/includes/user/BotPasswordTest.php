@@ -45,7 +45,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$mock2->method( 'isAttached' )
 			->willReturn( false );
 		$mock2->method( 'lookupUserNames' )
-			->will( $this->returnArgument( 0 ) );
+			->willReturnArgument( 0 );
 		$mock2->expects( $this->never() )->method( 'lookupCentralIds' );
 
 		$this->mergeMwGlobalArrayValue( 'wgCentralIdLookupProviders', [
