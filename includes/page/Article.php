@@ -1364,7 +1364,7 @@ class Article implements Page {
 				$block->getType() != DatabaseBlock::TYPE_AUTO &&
 				(
 					$block->isSitewide() ||
-					$user->isBlockedFrom( $title, true )
+					$services->getPermissionManager()->isBlockedFrom( $user, $title, true )
 				)
 			) {
 				// Show log extract if the user is sitewide blocked or is partially
