@@ -1,6 +1,0 @@
-<IfModule rewrite_module>
-	RewriteEngine On
-	RewriteOptions inherit
-	# Fix for bug T64289
-	Options +FollowSymLinks
-</IfModule>
