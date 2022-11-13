@@ -194,6 +194,8 @@ because of Phabricator reports.
 * DifferenceEngine::textDiff(), deprecated since 1.32, has been removed.
 * Skin::getSearchPageTitle() and Skin::setSearchPageTitle(), deprecated since
   1.38, have been removed.
+* DifferenceEngine::getDiffBodyCacheKey(), deprecated since 1.31, has been
+  removed.
 * …
 
 === Deprecations in 1.40 ===

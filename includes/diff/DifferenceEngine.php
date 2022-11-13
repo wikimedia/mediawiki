@@ -1174,21 +1174,7 @@ class DifferenceEngine extends ContextSource {
 		$cache = $services->getMainWANObjectCache();
 		$stats = $services->getStatsdDataFactory();
 		if ( $this->mOldid && $this->mNewid ) {
-			// Check if subclass is still using the old way
-			// for backwards-compatibility
-			$detected = MWDebug::detectDeprecatedOverride(
-				$this,
-				__CLASS__,
-				'getDiffBodyCacheKey',
-				'1.31'
-			);
-			$key = null;
-			if ( $detected ) {
-				$key = $this->getDiffBodyCacheKey();
-			}
-			if ( $key === null ) {
-				$key = $cache->makeKey( ...$this->getDiffBodyCacheKeyParams() );
-			}
+			$key = $cache->makeKey( ...$this->getDiffBodyCacheKeyParams() );
 
 			// Try cache
 			if ( !$this->mRefreshCache ) {
@@ -1353,19 +1339,6 @@ class DifferenceEngine extends ContextSource {
 		$this->mNewid = 987654321;
 
 		// This will repeat a bunch of unnecessary key fields for each slot. Not nice but harmless.
-		$detected = MWDebug::detectDeprecatedOverride(
-			$this,
-			__CLASS__,
-			'getDiffBodyCacheKey',
-			'1.31'
-		);
-		if ( $detected ) {
-			$cacheString = $this->getDiffBodyCacheKey();
-			if ( $cacheString ) {
-				return [ $cacheString ];
-			}
-		}
-
 		$params = $this->getDiffBodyCacheKeyParams();
 
 		// Try to get rid of the standard keys to keep the cache key human-readable:
