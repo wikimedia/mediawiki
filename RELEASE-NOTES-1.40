@@ -192,6 +192,8 @@ because of Phabricator reports.
 * HtmlFileCacheUpdate::newFromTitles(), deprecated since 1.37, has been
   removed.
 * DifferenceEngine::textDiff(), deprecated since 1.32, has been removed.
+* Skin::getSearchPageTitle() and Skin::setSearchPageTitle(), deprecated since
+  1.38, have been removed.
 * …
 
 === Deprecations in 1.40 ===

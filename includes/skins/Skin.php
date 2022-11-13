@@ -2288,29 +2288,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @deprecated since 1.38 Use SpecialPage::newSearchPage instead.
-	 */
-	public function getSearchPageTitle(): Title {
-		wfDeprecated( __METHOD__, '1.38 Use SpecialPage::newSearchPage' );
-		return SpecialPage::newSearchPage( $this->getUser() );
-	}
-
-	/**
-	 * @deprecated since 1.38 to change the search page title change the value of the
-	 *  preference 'search-special-page' instead.
-	 */
-	public function setSearchPageTitle( Title $title ) {
-		wfDeprecated( __METHOD__, '1.38 Use SpecialPage::newSearchPage' );
-		$userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
-		$user = $this->getUser();
-		$currentTitle = $userOptionsManager->getOption( $user, 'search-special-page' );
-		$newTitle = $title->getText();
-		if ( $currentTitle !== $newTitle ) {
-			$userOptionsManager->setOption( $user, 'search-special-page', $newTitle );
-		}
-	}
-
-	/**
 	 * Returns skin options
 	 * Recommended to use SkinFactory::getSkinOptions instead
 	 *
