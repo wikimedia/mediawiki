@@ -411,7 +411,7 @@ class SkinTemplate extends Skin {
 		$pageurl = $title->getLocalURL();
 		$services = MediaWikiServices::getInstance();
 		$authManager = $services->getAuthManager();
-		$permissionManager = $services->getPermissionManager();
+		$groupPermissionsLookup = $services->getGroupPermissionsLookup();
 		$returnto = $this->getReturnToParam();
 
 		/* set up the default links for the personal toolbar */
@@ -520,7 +520,7 @@ class SkinTemplate extends Skin {
 
 			if ( $authManager->canAuthenticateNow() ) {
 				// TODO: easy way to get anon authority
-				$key = $permissionManager->groupHasPermission( '*', 'read' )
+				$key = $groupPermissionsLookup->groupHasPermission( '*', 'read' )
 					? 'login'
 					: 'login-private';
 				$personal_urls[$key] = $login_url;
