@@ -99,7 +99,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 			} );
 
 		$mock->method( 'timestamp' )
-			->will( $this->returnArgument( 0 ) );
+			->willReturnArgument( 0 );
 
 		$mock->method( 'bitAnd' )
 			->willReturnCallback( static function ( $a, $b ) {

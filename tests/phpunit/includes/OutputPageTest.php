@@ -2966,16 +2966,16 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $op->isTOCEnabled() );
 
 		$pOut1 = $this->createParserOutputStub();
-		$pOut1->method( 'getOutputFlag' )->will( $this->returnValueMap( [
+		$pOut1->method( 'getOutputFlag' )->willReturnMap( [
 			[ ParserOutputFlags::SHOW_TOC, false ],
-		] ) );
+		] );
 		$op->addParserOutputMetadata( $pOut1 );
 		$this->assertFalse( $op->isTOCEnabled() );
 
 		$pOut2 = $this->createParserOutputStub();
-		$pOut2->method( 'getOutputFlag' )->will( $this->returnValueMap( [
+		$pOut2->method( 'getOutputFlag' )->willReturnMap( [
 			[ ParserOutputFlags::SHOW_TOC, true ],
-		] ) );
+		] );
 		$op->addParserOutput( $pOut2 );
 		$this->assertTrue( $op->isTOCEnabled() );
 

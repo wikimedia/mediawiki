@@ -34,7 +34,7 @@ class EntryPointTest extends \MediaWikiIntegrationTestCase {
 	private function createCorsUtils() {
 		$cors = $this->createMock( CorsUtils::class );
 		$cors->method( 'modifyResponse' )
-			->will( $this->returnArgument( 1 ) );
+			->willReturnArgument( 1 );
 
 		return $cors;
 	}

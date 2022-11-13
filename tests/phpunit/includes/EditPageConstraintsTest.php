@@ -621,9 +621,9 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	public function testSpamRegexConstraint() {
 		$spamChecker = $this->createMock( SpamChecker::class );
 		$spamChecker->method( 'checkContent' )
-			->will( $this->returnArgument( 0 ) );
+			->willReturnArgument( 0 );
 		$spamChecker->method( 'checkSummary' )
-			->will( $this->returnArgument( 0 ) );
+			->willReturnArgument( 0 );
 		$this->setService( 'SpamChecker', $spamChecker );
 
 		$edit = [
