@@ -149,8 +149,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			"rc_id $order",
 		] );
 
-		$this->addWhereFld( 'rc_namespace', $params['namespace'] );
-
 		if ( $params['type'] !== null ) {
 			try {
 				$this->addWhereFld( 'rc_type', RecentChange::parseToRCType( $params['type'] ) );
@@ -164,9 +162,13 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$titleObj = Title::newFromText( $title );
 			if ( $titleObj === null || $titleObj->isExternal() ) {
 				$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $title ) ] );
+			} elseif ( $params['namespace'] && !in_array( $titleObj->getNamespace(), $params['namespace'] ) ) {
+				$this->requireMaxOneParameter( $params, 'title', 'namespace' );
 			}
 			$this->addWhereFld( 'rc_namespace', $titleObj->getNamespace() );
 			$this->addWhereFld( 'rc_title', $titleObj->getDBkey() );
+		} else {
+			$this->addWhereFld( 'rc_namespace', $params['namespace'] );
 		}
 
 		if ( $params['show'] !== null ) {
