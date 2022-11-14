@@ -94,14 +94,13 @@ class PurgeChangedFiles extends Maintenance {
 
 		// Find out which actions we should be concerned with
 		$typeOpt = $this->getOption( 'type', 'all' );
-		$validTypes = array_keys( self::$typeMappings );
 		if ( $typeOpt === 'all' ) {
 			// Convert 'all' to all registered types
-			$typeOpt = implode( ',', $validTypes );
+			$typeOpt = implode( ',', array_keys( self::$typeMappings ) );
 		}
 		$typeList = explode( ',', $typeOpt );
 		foreach ( $typeList as $type ) {
-			if ( !in_array( $type, $validTypes ) ) {
+			if ( !isset( self::$typeMappings[$type] ) ) {
 				$this->error( "\nERROR: Unknown type: {$type}\n" );
 				$this->maybeHelp( true );
 			}

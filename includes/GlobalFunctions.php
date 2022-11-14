@@ -860,8 +860,9 @@ function wfGetLangObj( $langcode = false ) {
 		return $wgLang;
 	}
 
-	$validCodes = array_keys( $services->getLanguageNameUtils()->getLanguageNames() );
-	if ( in_array( $langcode, $validCodes ) ) {
+	$languageNames = $services->getLanguageNameUtils()->getLanguageNames();
+	// FIXME: Can we use isSupportedLanguage here?
+	if ( isset( $languageNames[$langcode] ) ) {
 		# $langcode corresponds to a valid language.
 		return $services->getLanguageFactory()->getLanguage( $langcode );
 	}

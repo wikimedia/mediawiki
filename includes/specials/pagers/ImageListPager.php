@@ -212,7 +212,6 @@ class ImageListPager extends TablePager {
 		if ( $this->mIncluding ) {
 			return false;
 		}
-		$sortable = array_keys( self::INDEX_FIELDS );
 		/* For reference, the indices we can use for sorting are:
 		 * On the image table: img_actor_timestamp, img_size, img_timestamp
 		 * On oldimage: oi_actor_timestamp, oi_name_timestamp
@@ -230,7 +229,7 @@ class ImageListPager extends TablePager {
 			return $field === 'img_name';
 		}
 
-		return in_array( $field, $sortable );
+		return isset( self::INDEX_FIELDS[$field] );
 	}
 
 	public function getQueryInfo() {

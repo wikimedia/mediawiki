@@ -51,8 +51,6 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 			}
 		}
 
-		$knownDeps = array_keys( $data['modules'] );
-
 		// Avoid an assert for each module to keep the test fast.
 		// Instead, perform a single assertion against everything at once.
 		// When all is good, actual/expected are both empty arrays.
@@ -67,7 +65,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 		/** @var RL\Module $module */
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			foreach ( $module->getDependencies( $data['context'] ) as $dep ) {
-				if ( !in_array( $dep, $knownDeps, true ) ) {
+				if ( !isset( $data['modules'][$dep] ) ) {
 					$actualUnknown[$moduleName][] = $dep;
 					$expectedUnknown[$moduleName] = [];
 				}
