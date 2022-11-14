@@ -1,8 +1,6 @@
 <?php
 /** Newari (नेपाल भाषा)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  *

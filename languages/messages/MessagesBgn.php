@@ -1,8 +1,6 @@
 <?php
 /** Western Balochi (روچ کپتین بلوچی)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  *

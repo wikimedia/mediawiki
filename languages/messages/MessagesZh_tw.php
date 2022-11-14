@@ -1,8 +1,6 @@
 <?php
 /** Chinese (Taiwan) (‪中文(臺灣)‬)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  *

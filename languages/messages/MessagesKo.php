@@ -1,8 +1,6 @@
 <?php
 /** Korean (한국어)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  *

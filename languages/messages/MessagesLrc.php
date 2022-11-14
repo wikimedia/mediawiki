@@ -1,8 +1,6 @@
 <?php
 /** Northern Luri (لۊری شومالی)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  *

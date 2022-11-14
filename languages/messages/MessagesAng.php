@@ -1,8 +1,6 @@
 <?php
 /** Old English (Ænglisc)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  */

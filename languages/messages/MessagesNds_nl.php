@@ -1,8 +1,6 @@
 <?php
 /** Low Saxon (Netherlands) (Nedersaksies)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  *

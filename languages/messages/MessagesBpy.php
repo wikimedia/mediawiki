@@ -1,8 +1,6 @@
 <?php
 /** Bishnupria Manipuri (বিষ্ণুপ্রিয়া মণিপুরী)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  */
