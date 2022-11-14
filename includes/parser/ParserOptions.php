@@ -139,6 +139,12 @@ class ParserOptions {
 	private $mExtraKey = '';
 
 	/**
+	 * The reason for rendering the content.
+	 * @var string
+	 */
+	private $renderReason = 'unknown';
+
+	/**
 	 * Fetch an option and track that is was accessed
 	 * @since 1.30
 	 * @param string $name Option name
@@ -1502,6 +1508,24 @@ class ParserOptions {
 			$linkCache->clearLink( $title );
 			$this->setCurrentRevisionRecordCallback( $oldCallback );
 		} );
+	}
+
+	/**
+	 * Returns reason for rendering the content. This human-readable, intended for logging and debugging only.
+	 * Expected values include "edit", "view", "purge", "LinksUpdate", etc.
+	 * @return string
+	 */
+	public function getRenderReason(): string {
+		return $this->renderReason;
+	}
+
+	/**
+	 * Sets reason for rendering the content. This human-readable, intended for logging and debugging only.
+	 * Expected values include "edit", "view", "purge", "LinksUpdate", etc.
+	 * @param string $renderReason
+	 */
+	public function setRenderReason( string $renderReason ): void {
+		$this->renderReason = $renderReason;
 	}
 }
 

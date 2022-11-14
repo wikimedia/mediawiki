@@ -321,6 +321,8 @@ class PageUpdater {
 		$this->setFlags( $flags );
 
 		// Load the data from the primary database if needed. Needed to check flags.
+		$this->derivedDataUpdater->setCause( 'page-edit', $this->author->getName() );
+
 		$this->grabParentRevision();
 		if ( !$this->derivedDataUpdater->isUpdatePrepared() ) {
 			// Avoid statsd noise and wasted cycles check the edit stash (T136678)

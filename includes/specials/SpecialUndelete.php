@@ -657,7 +657,7 @@ class SpecialUndelete extends SpecialPage {
 				$revRecord,
 				$popts,
 				$user,
-				[ 'audience' => RevisionRecord::FOR_THIS_USER ]
+				[ 'audience' => RevisionRecord::FOR_THIS_USER, 'causeAction' => 'undelete-preview' ]
 			);
 
 			// Fail hard if the audience check fails, since we already checked
