@@ -420,7 +420,9 @@ class Article implements Page {
 	 */
 	public function getRevIdFetched() {
 		if ( $this->fetchResult && $this->fetchResult->isOK() ) {
-			return $this->fetchResult->value->getId();
+			/** @var RevisionRecord $rev */
+			$rev = $this->fetchResult->getValue();
+			return $rev->getId();
 		} else {
 			return $this->mPage->getLatest();
 		}
