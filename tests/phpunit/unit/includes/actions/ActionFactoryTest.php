@@ -183,7 +183,9 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 		$factory = $this->getFactory( [
 			'actions' => [
 				'edit' => true,
-				'info' => [ $this, 'getInfoAction' ],
+				'info' => function ( Article $article, IContextSource $context ) {
+					return $this->createMock( InfoAction::class );
+				},
 			]
 		] );
 		$article = $this->getArticle();
@@ -199,18 +201,6 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 			$infoAction,
 			'Callable used as a factory'
 		);
-	}
-
-	/**
-	 * Callback for ObjectFactory
-	 *
-	 * @param Article $article
-	 * @param IContextSource $context
-	 * @return InfoAction
-	 */
-	public function getInfoAction( Article $article, IContextSource $context ) {
-		// Don't worry about all of the services that InfoAction really uses
-		return $this->createMock( InfoAction::class );
 	}
 
 	public function provideGetActionName() {
