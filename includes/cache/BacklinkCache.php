@@ -29,6 +29,7 @@ use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -171,18 +172,16 @@ class BacklinkCache {
 	 * @param int|bool $startId
 	 * @param int|bool $endId
 	 * @param int|float $max Integer, or INF for no max
-	 * @return Iterator Iterator of PageIdentity objects
+	 * @return Iterator<PageIdentity>
 	 * @since 1.37
 	 */
 	public function getLinkPages(
 		string $table, $startId = false, $endId = false, $max = INF
 	): Iterator {
-		return ( function () use ( $table, $startId, $endId, $max ): Iterator {
-			foreach ( $this->queryLinks( $table, $startId, $endId, $max ) as $row ) {
-				yield PageIdentityValue::localIdentity(
-					$row->page_id, $row->page_namespace, $row->page_title );
-			}
-		} )();
+		foreach ( $this->queryLinks( $table, $startId, $endId, $max ) as $row ) {
+			yield PageIdentityValue::localIdentity(
+				$row->page_id, $row->page_namespace, $row->page_title );
+		}
 	}
 
 	/**
@@ -552,16 +551,14 @@ class BacklinkCache {
 	/**
 	 * Get a PageIdentity iterator for cascade-protected template/file use backlinks
 	 *
-	 * @return Iterator Iterator of PageIdentity objects
+	 * @return Iterator<PageIdentity>
 	 * @since 1.37
 	 */
 	public function getCascadeProtectedLinkPages(): Iterator {
-		return ( function (): Iterator {
-			foreach ( $this->getCascadeProtectedLinksInternal() as $row ) {
-				yield PageIdentityValue::localIdentity(
-					$row->page_id, $row->page_namespace, $row->page_title );
-			}
-		} )();
+		foreach ( $this->getCascadeProtectedLinksInternal() as $row ) {
+			yield PageIdentityValue::localIdentity(
+				$row->page_id, $row->page_namespace, $row->page_title );
+		}
 	}
 
 	/**
