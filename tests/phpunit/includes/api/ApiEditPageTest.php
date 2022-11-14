@@ -862,7 +862,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testUndoToInvalidRev() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
-		$revId = $this->editPage( $name, 'Some text' )->value['revision-record']
+		$revId = $this->editPage( $name, 'Some text' )->getNewRevision()
 			->getId();
 		$revId++;
 
@@ -893,9 +893,9 @@ class ApiEditPageTest extends ApiTestCase {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 		$titleObj = Title::newFromText( $name );
 
-		$revId1 = $this->editPage( $name, '1' )->value['revision-record']->getId();
-		$revId2 = $this->editPage( $name, '2' )->value['revision-record']->getId();
-		$revId3 = $this->editPage( $name, '3' )->value['revision-record']->getId();
+		$revId1 = $this->editPage( $name, '1' )->getNewRevision()->getId();
+		$revId2 = $this->editPage( $name, '2' )->getNewRevision()->getId();
+		$revId3 = $this->editPage( $name, '3' )->getNewRevision()->getId();
 
 		// Make the middle revision disappear
 		$dbw = wfGetDB( DB_PRIMARY );
@@ -924,9 +924,9 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->editPage( $name, '0' );
 
-		$revId1 = $this->editPage( $name, '1' )->value['revision-record']->getId();
+		$revId1 = $this->editPage( $name, '1' )->getNewRevision()->getId();
 
-		$revId2 = $this->editPage( $name, '2' )->value['revision-record']->getId();
+		$revId2 = $this->editPage( $name, '2' )->getNewRevision()->getId();
 
 		// Hide the middle revision
 		$list = RevisionDeleter::createList( 'revision',
@@ -959,9 +959,9 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->editPage( $name, '0' );
 
-		$revId2 = $this->editPage( $name, '2' )->value['revision-record']->getId();
+		$revId2 = $this->editPage( $name, '2' )->getNewRevision()->getId();
 
-		$revId1 = $this->editPage( $name, '1' )->value['revision-record']->getId();
+		$revId1 = $this->editPage( $name, '1' )->getNewRevision()->getId();
 
 		// Now monkey with the timestamp
 		$dbw = wfGetDB( DB_PRIMARY );
@@ -994,7 +994,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->editPage( $name, '1' );
 
-		$revId = $this->editPage( $name, '2' )->value['revision-record']->getId();
+		$revId = $this->editPage( $name, '2' )->getNewRevision()->getId();
 
 		$this->editPage( $name, '3' );
 
@@ -1015,8 +1015,8 @@ class ApiEditPageTest extends ApiTestCase {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
 		$this->editPage( $name, '0' );
-		$revId1 = $this->editPage( $name, '1' )->value['revision-record']->getId();
-		$revId2 = $this->editPage( $name, '2' )->value['revision-record']->getId();
+		$revId1 = $this->editPage( $name, '1' )->getNewRevision()->getId();
+		$revId2 = $this->editPage( $name, '2' )->getNewRevision()->getId();
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1035,7 +1035,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->editPage( "$name-1", 'Some text' );
 		$revId = $this->editPage( "$name-1", 'Some more text' )
-			->value['revision-record']->getId();
+			->getNewRevision()->getId();
 
 		$this->editPage( "$name-2", 'Some text' );
 
@@ -1053,10 +1053,10 @@ class ApiEditPageTest extends ApiTestCase {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
 		$revId1 = $this->editPage( "$name-1", 'Some text' )
-			->value['revision-record']->getId();
+			->getNewRevision()->getId();
 
 		$revId2 = $this->editPage( "$name-2", 'Some text' )
-			->value['revision-record']->getId();
+			->getNewRevision()->getId();
 
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( "r$revId1 is not a revision of $name-2." );

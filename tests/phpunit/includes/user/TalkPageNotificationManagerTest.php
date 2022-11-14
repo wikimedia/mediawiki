@@ -36,7 +36,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 			$this->getTestSysop()->getUser()
 		);
 		$this->assertStatusGood( $status, 'create revision of user talk' );
-		return $status->getValue()['revision-record'];
+		return $status->getNewRevision();
 	}
 
 	private function getManager(

@@ -67,7 +67,7 @@ class ApiMoveTest extends ApiTestCase {
 	 * @return int ID of created page
 	 */
 	protected function createPage( $name ) {
-		return $this->editPage( $name, 'Content' )->value['revision-record']->getPageId();
+		return $this->editPage( $name, 'Content' )->getNewRevision()->getPageId();
 	}
 
 	public function testFromWithFromid() {

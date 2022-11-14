@@ -2594,7 +2594,6 @@ class EditPage implements IEditObject {
 				CommentStoreComment::newUnsavedComment( trim( $this->summary ) ),
 				$flags
 			);
-		/** @var Status $doEditStatus */
 		$doEditStatus = $pageUpdater->getStatus();
 
 		if ( !$doEditStatus->isOK() ) {
@@ -2602,9 +2601,9 @@ class EditPage implements IEditObject {
 			// Show the edit conflict page for certain recognized errors from doEdit(),
 			// but don't show it for errors from extension hooks
 			if (
-				$doEditStatus->hasMessage( 'edit-gone-missing' ) ||
-				$doEditStatus->hasMessage( 'edit-conflict' ) ||
-				$doEditStatus->hasMessage( 'edit-already-exists' )
+				$doEditStatus->failedBecausePageMissing() ||
+				$doEditStatus->failedBecausePageExists() ||
+				$doEditStatus->failedBecauseOfConflict()
 			) {
 				$this->isConflict = true;
 				// Destroys data doEdit() put in $status->value but who cares
@@ -2613,7 +2612,7 @@ class EditPage implements IEditObject {
 			return $doEditStatus;
 		}
 
-		$result['nullEdit'] = $doEditStatus->hasMessage( 'edit-no-change' );
+		$result['nullEdit'] = !$doEditStatus->wasRevisionCreated();
 		if ( $result['nullEdit'] ) {
 			// We don't know if it was a null edit until now, so increment here
 			$requestUser->pingLimiter( 'linkpurge' );

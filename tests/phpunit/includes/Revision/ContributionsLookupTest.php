@@ -86,13 +86,13 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		self::$storedDeltas = [ 1 => 5, 2 => 11, 3 => -2, 4 => -6 ];
 
 		self::$storedRevisions[1] = $this->editPage( __METHOD__ . '_1', $revisionText[1], 'test', NS_MAIN, $user )
-			->getValue()['revision-record'];
+			->getNewRevision();
 		self::$storedRevisions[2] = $this->editPage( __METHOD__ . '_2', $revisionText[2], 'test', NS_TALK, $user )
-			->getValue()['revision-record'];
+			->getNewRevision();
 		self::$storedRevisions[3] = $this->editPage( __METHOD__ . '_1', $revisionText[3], 'test', NS_MAIN, $user )
-			->getValue()['revision-record'];
+			->getNewRevision();
 		self::$storedRevisions[4] = $this->editPage( __METHOD__ . '_2', $revisionText[4], 'test', NS_TALK, $user )
-			->getValue()['revision-record'];
+			->getNewRevision();
 
 		ChangeTags::defineTag( self::TAG1 );
 		ChangeTags::defineTag( self::TAG2 );
@@ -161,9 +161,9 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestUser()->getUser();
 
 		$rev1 = $this->editPage( __METHOD__ . '_1', 'foo', 'test', NS_MAIN, $user )
-			->getValue()['revision-record'];
+			->getNewRevision();
 		$rev2 = $this->editPage( __METHOD__ . '_2', 'bar', 'test', NS_TALK, $user )
-			->getValue()['revision-record'];
+			->getNewRevision();
 
 		// Parent of revision 1 is not in revision table (deleted)
 		$this->db->update(

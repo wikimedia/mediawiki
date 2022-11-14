@@ -41,6 +41,7 @@ use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\PageUpdaterFactory;
+use MediaWiki\Storage\PageUpdateStatus;
 use MediaWiki\Storage\PreparedUpdate;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentity;
@@ -1838,7 +1839,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param int $undidRevId Id of revision that was undone or 0
 	 *
 	 * @throws MWException
-	 * @return Status Possible errors:
+	 * @return PageUpdateStatus Possible errors:
 	 *     edit-hook-aborted: The ArticleSave hook aborted the edit but didn't
 	 *       set the fatal flag of $status.
 	 *     edit-gone-missing: In update mode, but the article didn't exist.
@@ -1862,7 +1863,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$originalRevId = false,
 		$tags = [],
 		$undidRevId = 0
-	) {
+	): PageUpdateStatus {
 		$useNPPatrol = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::UseNPPatrol );
 		$useRCPatrol = MediaWikiServices::getInstance()->getMainConfig()->get(
