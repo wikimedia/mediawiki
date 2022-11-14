@@ -373,7 +373,16 @@ class FullSearchResultWidget implements SearchResultWidget {
 
 		$thumb = $this->transformThumbnail( $img, $thumbnail );
 		if ( $thumb ) {
-			return $thumb->toHtml( [ 'desc-link' => true ] );
+			if ( $title->getNamespace() === NS_FILE ) {
+				// don't use a custom link, just use traditional thumbnail HTML
+				return $thumb->toHtml( [ 'desc-link' => true ] );
+			}
+
+			// thunbnails for non-file results should link to the relevant title
+			return $thumb->toHtml( [
+				'desc-link' => true,
+				'custom-title-link' => $title
+			] );
 		}
 
 		return $this->generateThumbnailPlaceholderHtml();
@@ -394,7 +403,8 @@ class FullSearchResultWidget implements SearchResultWidget {
 		// smallest size to match (or exceed) $size
 		$thumbnailMaxDimension = max( $thumbnail->getWidth(), $thumbnail->getHeight() );
 		$thumbnailMinDimension = min( $thumbnail->getWidth(), $thumbnail->getHeight() );
-		$rescaleCoefficient = $thumbnailMaxDimension / $thumbnailMinDimension;
+		$rescaleCoefficient = $thumbnailMinDimension
+			? $thumbnailMaxDimension / $thumbnailMinDimension : 1;
 
 		// we'll only deal with width from now on since conventions for
 		// standard sizes have formed around width; height will simply
