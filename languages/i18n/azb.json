@@ -26,7 +26,8 @@
 			"ییلماز",
 			"아라",
 			"Bir morty",
-			"Amire80"
+			"Amire80",
+			"Ziraksima"
 		]
 	},
 	"tog-underline": "باغلانتی‌لارین آلتینی خطله:",
@@ -62,6 +63,7 @@
 	"tog-watchlisthideminor": "کیچیک دَییشیک‌لیک‌لری ایزله‌دیک‌لردن گیزلت",
 	"tog-watchlisthideliu": "گیریش ائتمیش ایشلدن‌لرین دَییشیک‌لیک‌لرینی ایزله‌دیک‌لردن گیزلت",
 	"tog-watchlistreloadautomatically": "بیر فیلتر دییشیلسه، ایزله‌دیکلر لیستی‌نی اوْتوماتیک اوْلاراق یئنیله (جاواایسکریپت گرکلی)",
+	"tog-watchlistunwatchlinks": "دَییشیکلیکلرله باخیلان صفحه‌لره بیرباشا ایزله‌مه‌یین/ایزله‌یین مارکرلری علاوه ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) ائدین (وضعیتی دَییشمک اوچون جاوااسکریپت طلب اولونور)",
 	"tog-watchlisthideanons": "تانینمامیش ایشلدن‌لرین دَییشیک‌لیک‌لرینی ایزله‌دیک‌لردن گیزلت",
 	"tog-watchlisthidepatrolled": "نظارتلنمیش دَییشیکلیکلری گؤزله‌دیکلردن گیزلت",
 	"tog-watchlisthidecategorization": "صفحه‌لرین بؤلمه‌‌لرینی گیزلت",
@@ -183,6 +185,7 @@
 	"help": "کؤمک",
 	"help-mediawiki": "مدیاویکی‌یه گؤره کؤمک",
 	"search": "آختار",
+	"search-ignored-headings": "#<!-- بو خطَی اولدوغو کیمی بوراخین --> <pre>\n# او باشلیقلار کی آختاریشلا نظره آلینمایاجاق.\n# بونا دَییشیکلیکلر باشلیقلی صفحه ایندکسلشدیریلدیکدن سونرا قوَه‌یه مینیر.\n# You can force page reindexing by doing a null edit.\n# The syntax is as follows:\n#   * Everything from a \"#\" character to the end of the line is a comment.\n#   * Every non-blank line is the exact title to ignore, case and everything.\nReferences\nExternal links\nSee also\n #</pre> <!-- leave this line exactly as it is -->",
 	"searchbutton": "آختار",
 	"go": "گئت",
 	"searcharticle": "گئت",

@@ -208,7 +208,7 @@
 	"exif-personinimage": "Personne représentée",
 	"exif-originalimageheight": "Hauteur de l’image avant qu’elle ait été recadrée",
 	"exif-originalimagewidth": "Largeur de l’image avant recadrage",
-	"exif-contact-value": "$1\n\n$2\n<div class=\"adr\">\n$3\n\n$6 $4, $5\n\n$7\n</div>\n$8",
+	"exif-contact-value": "$1\n\n$2\n<div class=\"adr\">\n$3\n\n$6 $4, $5\n$7\n</div>\n$8",
 	"exif-subjectnewscode-value": "$2 ($1)",
 	"exif-compression-1": "Non compressé",
 	"exif-compression-2": "Codage de la longueur de compression Huffman modifiée de dimension 1 pour le groupe 3 du CCITT",

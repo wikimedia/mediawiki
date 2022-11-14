@@ -39,7 +39,8 @@
 			"NP-chaonay",
 			"Prame Tan",
 			"Thas Tayapongsak",
-			"Trisorn Triboon"
+			"Trisorn Triboon",
+			"Lookruk"
 		]
 	},
 	"tog-underline": "การขีดเส้นใต้ลิงก์:",
@@ -3250,7 +3251,7 @@
 	"version-ext-colheader-name": "ส่วนขยาย",
 	"version-skin-colheader-name": "แบบหน้าตา",
 	"version-ext-colheader-version": "รุ่น",
-	"version-ext-colheader-license": "ใบอนุญาต",
+	"version-ext-colheader-license": "สัญญาอนุญาต",
 	"version-ext-colheader-description": "คำอธิบาย",
 	"version-ext-colheader-credits": "ผู้ประพันธ์",
 	"version-license-title": "ใบอนุญาตสำหรับ $1",

@@ -46,7 +46,7 @@
 	"paramvalidator-help-type-boolean": "النوع: {{PLURAL:$1| 1 = منطقي | 2 = قائمة منطقية}}",
 	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2| 0 = يجب أن يكون فارغًا | يمكن أن يكون فارغًا ، أو $1 }}",
 	"paramvalidator-help-type-enum": "{{PLURAL:$1| 1 = إحدى القيم التالية | 2 = القيم (منفصلة بـ U + 007C (أنبوب) ، أو ابدأ القائمة بـ U + 001F وافصل بـ U + 001F)}}: $2",
-	"paramvalidator-help-type-expiry": "النوع: {{PLURAL:$1| 1 = انتهاء الصلاحية | 2 = قائمة انتهاء الصلاحية}}.! N !! N! قد تكون نسبية (على سبيل المثال <kbd>5 أشهر</kbd> أو <kbd>أسبوعين</kbd> ) أو مطلقة (على سبيل المثال ، 2014 ، <kbd>18T12: 34: 56Z</kbd> ). لعدم انتهاء الصلاحية ، استخدم $2 .",
+	"paramvalidator-help-type-expiry": "النوع: {{PLURAL:$1|1=انتهاء الصلاحية|2=قائمة انتهاء الصلاحية}}.\n\nقد تكون نسبية (على سبيل المثال <kbd>5 أشهر</kbd> أو <kbd>أسبوعين</kbd> ) أو مطلقة (على سبيل المثال <kbd>2014-09-18T12:34:56Z</kbd>). لعدم انتهاء الصلاحية ، استخدم $2.",
 	"paramvalidator-help-type-float": "النوع: {{PLURAL:$1| 1 = float | 2 = قائمة العوامات}}",
 	"paramvalidator-help-type-integer": "النوع: {{PLURAL:$1| 1 = عدد صحيح | 2 = قائمة الأعداد الصحيحة}}",
 	"paramvalidator-help-type-limit": "النوع: عدد صحيح أو \"ماكس\"",

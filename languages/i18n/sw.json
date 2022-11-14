@@ -822,7 +822,7 @@
 	"searchprofile-images-tooltip": "Tafuta mafaili",
 	"searchprofile-everything-tooltip": "Tafuta wiki nzima (pamoja na kurasa za majadiliano)",
 	"searchprofile-advanced-tooltip": "Tafuta katika maeneo ya wiki utakayoyachagua",
-	"search-result-size": "$1 ({{PLURAL:$2|neno 1|maneno $2}})",
+	"search-result-size": "$1 ({{PLURAL:$2|neno moja|maneno $2}})",
 	"search-result-category-size": "{{PLURAL:$1|ukurasa 1|kurasa $1}} ({{PLURAL:$2|kijamii 1|vijamii $2}}, {{PLURAL:$3|faili 1|mafaili $3}})",
 	"search-redirect": "(elekezo toka kwa $1)",
 	"search-section": "(fungu $1)",
