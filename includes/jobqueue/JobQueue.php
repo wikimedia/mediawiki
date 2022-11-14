@@ -627,7 +627,7 @@ abstract class JobQueue {
 	 * This does not include jobs that are currently acquired or delayed.
 	 * Note: results may be stale if the queue is concurrently modified.
 	 *
-	 * @return Iterator
+	 * @return Iterator<RunnableJob>
 	 * @throws JobQueueError
 	 */
 	abstract public function getAllQueuedJobs();
@@ -637,7 +637,7 @@ abstract class JobQueue {
 	 * Note: results may be stale if the queue is concurrently modified.
 	 *
 	 * @stable to override
-	 * @return Iterator
+	 * @return Iterator<RunnableJob>
 	 * @throws JobQueueError
 	 * @since 1.22
 	 */
@@ -652,7 +652,7 @@ abstract class JobQueue {
 	 * will be returned due to jobs being acknowledged and deleted
 	 *
 	 * @stable to override
-	 * @return Iterator
+	 * @return Iterator<RunnableJob>
 	 * @throws JobQueueError
 	 * @since 1.26
 	 */
@@ -664,7 +664,7 @@ abstract class JobQueue {
 	 * Get an iterator to traverse over all abandoned jobs in this queue
 	 *
 	 * @stable to override
-	 * @return Iterator
+	 * @return Iterator<RunnableJob>
 	 * @throws JobQueueError
 	 * @since 1.25
 	 */

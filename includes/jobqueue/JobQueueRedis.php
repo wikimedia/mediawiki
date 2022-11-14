@@ -514,7 +514,7 @@ LUA;
 
 	/**
 	 * @see JobQueue::getAllQueuedJobs()
-	 * @return Iterator
+	 * @return Iterator<RunnableJob>
 	 * @throws JobQueueError
 	 */
 	public function getAllQueuedJobs() {
@@ -530,7 +530,7 @@ LUA;
 
 	/**
 	 * @see JobQueue::getAllDelayedJobs()
-	 * @return Iterator
+	 * @return Iterator<RunnableJob>
 	 * @throws JobQueueError
 	 */
 	public function getAllDelayedJobs() {
@@ -546,7 +546,7 @@ LUA;
 
 	/**
 	 * @see JobQueue::getAllAcquiredJobs()
-	 * @return Iterator
+	 * @return Iterator<RunnableJob>
 	 * @throws JobQueueError
 	 */
 	public function getAllAcquiredJobs() {
@@ -562,7 +562,7 @@ LUA;
 
 	/**
 	 * @see JobQueue::getAllAbandonedJobs()
-	 * @return Iterator
+	 * @return Iterator<RunnableJob>
 	 * @throws JobQueueError
 	 */
 	public function getAllAbandonedJobs() {
@@ -579,7 +579,7 @@ LUA;
 	/**
 	 * @param RedisConnRef $conn
 	 * @param array $uids List of job UUIDs
-	 * @return MappedIterator
+	 * @return MappedIterator<RunnableJob>
 	 */
 	protected function getJobIterator( RedisConnRef $conn, array $uids ) {
 		return new MappedIterator(

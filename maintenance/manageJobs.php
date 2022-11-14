@@ -77,7 +77,7 @@ class ManageJobs extends Maintenance {
 		$skipped = 0;
 		foreach ( $queue->getAllAbandonedJobs() as $job ) {
 			/** @var Job $job */
-			if ( $job->getQueuedTimestamp() < wfTimestamp( TS_UNIX, $lastRepushTime ) ) {
+			if ( $job instanceof Job && $job->getQueuedTimestamp() < wfTimestamp( TS_UNIX, $lastRepushTime ) ) {
 				++$skipped;
 				continue; // already re-pushed in prior round
 			}
