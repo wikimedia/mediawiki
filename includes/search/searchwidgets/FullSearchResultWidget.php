@@ -403,7 +403,8 @@ class FullSearchResultWidget implements SearchResultWidget {
 		// smallest size to match (or exceed) $size
 		$thumbnailMaxDimension = max( $thumbnail->getWidth(), $thumbnail->getHeight() );
 		$thumbnailMinDimension = min( $thumbnail->getWidth(), $thumbnail->getHeight() );
-		$rescaleCoefficient = $thumbnailMaxDimension / $thumbnailMinDimension;
+		$rescaleCoefficient = $thumbnailMinDimension
+			? $thumbnailMaxDimension / $thumbnailMinDimension : 1;
 
 		// we'll only deal with width from now on since conventions for
 		// standard sizes have formed around width; height will simply
