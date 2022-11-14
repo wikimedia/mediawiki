@@ -202,13 +202,12 @@ class UserSelectQueryBuilder extends SelectQueryBuilder {
 	 */
 	public function fetchUserIdentities(): Iterator {
 		$this->fields( [ 'actor_id', 'actor_name', 'actor_user' ] );
-		return call_user_func( function () {
-			$result = $this->fetchResultSet();
-			foreach ( $result as $row ) {
-				yield $this->actorStore->newActorFromRow( $row );
-			}
-			$result->free();
-		} );
+
+		$result = $this->fetchResultSet();
+		foreach ( $result as $row ) {
+			yield $this->actorStore->newActorFromRow( $row );
+		}
+		$result->free();
 	}
 
 	/**
