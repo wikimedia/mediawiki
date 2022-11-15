@@ -45,7 +45,8 @@ final class PageBundleParserOutputConverter {
 				'parsoid' => $pageBundle->parsoid,
 				'mw' => $pageBundle->mw,
 				'version' => $pageBundle->version,
-				'headers' => $pageBundle->headers
+				'headers' => $pageBundle->headers,
+				'contentmodel' => $pageBundle->contentmodel,
 			]
 		);
 
@@ -66,7 +67,8 @@ final class PageBundleParserOutputConverter {
 			$pageBundleData['parsoid'] ?? [],
 			$pageBundleData['mw'] ?? [],
 			$pageBundleData['version'] ?? null,
-			$pageBundleData['headers'] ?? []
+			$pageBundleData['headers'] ?? [],
+			$pageBundleData['contentmodel'] ?? null
 		);
 	}
 

@@ -23,7 +23,6 @@ use Config;
 use HashConfig;
 use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
-use Language;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
@@ -43,6 +42,7 @@ use ParserOptions;
 use ParserOutput;
 use Status;
 use UnexpectedValueException;
+use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
@@ -238,41 +238,28 @@ class ParsoidOutputAccess {
 	}
 
 	/**
-	 * @param PageIdentity $page
-	 * @param array $envOptions
-	 * @param ?RevisionRecord $revision
-	 * @param Language|null $languageOverride
+	 * @param PageConfig $pageConfig
+	 * @param array $parsoidOptions
 	 *
 	 * @return Status
 	 */
 	private function parseInternal(
-		PageIdentity $page,
-		array $envOptions,
-		?RevisionRecord $revision = null,
-		Language $languageOverride = null
+		PageConfig $pageConfig,
+		array $parsoidOptions
 	): Status {
 		$defaultOptions = [
 			'pageBundle' => true,
 			'prefix' => $this->parsoidWikiId,
-			'pageName' => $page,
-			'htmlVariantLanguage' => $languageOverride ? $languageOverride->getCode() : null,
+			'pageName' => $pageConfig->getTitle(),
+			'htmlVariantLanguage' => $pageConfig->getPageLanguage(),
 			'outputContentVersion' => Parsoid::defaultHTMLVersion(),
 		];
 
 		try {
-			$langCode = $languageOverride ? $languageOverride->getCode() : null;
-			$pageConfig = $this->parsoidPageConfigFactory->create(
-				$page,
-				null,
-				$revision,
-				null,
-				$langCode,
-				$this->options->get( MainConfigNames::ParsoidSettings )
-			);
 			$startTime = microtime( true );
 			$pageBundle = $this->parsoid->wikitext2html(
 				$pageConfig,
-				$envOptions + $defaultOptions
+				$parsoidOptions + $defaultOptions
 			);
 
 			$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle );
@@ -281,7 +268,7 @@ class ParsoidOutputAccess {
 				LoggerFactory::getInstance( 'slow-parsoid' )
 					->info( 'Parsing {title} was slow, took {time} seconds', [
 						'time' => number_format( $time, 2 ),
-						'title' => (string)$page,
+						'title' => $pageConfig->getTitle(),
 					] );
 			}
 			return Status::newGood( $parserOutput );
@@ -381,7 +368,7 @@ class ParsoidOutputAccess {
 	/**
 	 * @param PageIdentity $page
 	 * @param ParserOptions $parserOpts
-	 * @param array $envOptions
+	 * @param array $parsoidOptions
 	 * @param RevisionRecord|int|null $revision
 	 *
 	 * @return Status
@@ -389,7 +376,7 @@ class ParsoidOutputAccess {
 	public function parse(
 		PageIdentity $page,
 		ParserOptions $parserOpts,
-		array $envOptions,
+		array $parsoidOptions,
 		$revision
 	): Status {
 		// NOTE: If we have a RevisionRecord already, just use it, there is no need to resolve $page to
@@ -398,9 +385,18 @@ class ParsoidOutputAccess {
 			[ $page, $revision ] = $this->resolveRevision( $page, $revision );
 		}
 
-		$revId = $revision ? $revision->getId() : $page->getId();
+		$languageOverride = $parserOpts->getTargetLanguage();
+		$langCode = $languageOverride ? $languageOverride->getCode() : null;
+		$pageConfig = $this->parsoidPageConfigFactory->create(
+			$page,
+			null,
+			$revision,
+			null,
+			$langCode,
+			$this->options->get( MainConfigNames::ParsoidSettings )
+		);
 
-		$status = $this->parseInternal( $page, $envOptions, $revision, $parserOpts->getTargetLanguage() );
+		$status = $this->parseInternal( $pageConfig, $parsoidOptions );
 
 		if ( !$status->isOK() ) {
 			return $status;
@@ -411,6 +407,7 @@ class ParsoidOutputAccess {
 		// TODO: when we make tighter integration with Parsoid, render ID should become
 		// a standard ParserOutput property. Nothing else needs it now, so don't generate
 		// it in ParserCache just yet.
+		$revId = $revision->getId();
 		$parsoidRenderId = new ParsoidRenderID( $revId, $this->globalIdGenerator->newUUIDv1() );
 		$parserOutput->setExtensionData( self::RENDER_ID_KEY, $parsoidRenderId->getKey() );
 

@@ -109,7 +109,6 @@ class PageHTMLHandler extends SimpleHandler {
 		switch ( $outputMode ) {
 			case 'html':
 				$response = $this->getResponseFactory()->create();
-				$response->setHeader( 'Content-Type', 'text/html' );
 				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
 				$response->setBody( new StringStream( $parserOutputHtml ) );
 				break;
