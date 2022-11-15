@@ -47,7 +47,8 @@ class SelectQueryBuilder extends JoinGroupBase {
 	protected $db;
 
 	/**
-	 * @internal
+	 * Only for use in subclasses. To create a SelectQueryBuilder instance,
+	 * use `$db->newSelectQueryBuilder()` instead.
 	 *
 	 * @param IDatabase $db
 	 */
