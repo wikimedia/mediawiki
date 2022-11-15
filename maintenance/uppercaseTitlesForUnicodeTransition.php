@@ -606,7 +606,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			[ $titleField ],
 			$pkFields
 		);
-		$contFields = array_reverse( array_merge( [ $titleField ], $pkFields ) );
+		$contFields = array_merge( [ $titleField ], $pkFields );
 
 		$lastReplicationWait = 0.0;
 		$count = 0;
@@ -618,22 +618,16 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 					$res = $db->select(
 						$table,
 						$selectFields,
-						array_merge( [ "$nsField = $ns", $like ], $cont ),
+						[ "$nsField = $ns", $like, $db->buildComparison( '>', $cont ) ],
 						__METHOD__,
 						[ 'ORDER BY' => array_merge( [ $titleField ], $pkFields ), 'LIMIT' => $batchSize ]
 					);
 					$cont = [];
 					foreach ( $res as $row ) {
-						$cont = '';
+						$cont = [];
 						foreach ( $contFields as $field ) {
-							$v = $db->addQuotes( $row->$field );
-							if ( $cont === '' ) {
-								$cont = "$field > $v";
-							} else {
-								$cont = "$field > $v OR $field = $v AND ($cont)";
-							}
+							$cont[ $field ] = $row->$field;
 						}
-						$cont = [ $cont ];
 
 						if ( $op === self::MOVE ) {
 							$ns = is_int( $nsField ) ? $nsField : (int)$row->$nsField;

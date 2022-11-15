@@ -261,12 +261,13 @@ class FindBadBlobs extends Maintenance {
 	private function loadRevisionsByTimestamp( int $afterId, string $fromTimestamp, $batchSize ) {
 		$db = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		$queryInfo = $this->revisionStore->getQueryInfo();
-		$quotedTimestamp = $db->addQuotes( $fromTimestamp );
 		$rows = $db->newSelectQueryBuilder()
 			->select( $queryInfo['fields'] )
 			->tables( $queryInfo['tables'] )
-			->where( "rev_timestamp > $quotedTimestamp OR "
-				. "(rev_timestamp = $quotedTimestamp AND rev_id > $afterId )" )
+			->where( $db->buildComparison( '>', [
+				'rev_timestamp' => $fromTimestamp,
+				'rev_id' => $afterId,
+			] ) )
 			->joinConds( $queryInfo['joins'] )
 			->useIndex( [ 'revision' => 'rev_timestamp' ] )
 			->orderBy( [ 'rev_timestamp', 'rev_id' ] )

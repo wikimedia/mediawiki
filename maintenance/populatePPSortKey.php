@@ -47,9 +47,10 @@ class PopulatePPSortKey extends LoggedUpdateMaintenance {
 		while ( true ) {
 			$conditions = [ 'pp_sortkey IS NULL' ];
 			if ( $lastPageValue !== 0 ) {
-				$conditions[] = 'pp_page > ' . $dbw->addQuotes( $lastPageValue ) . ' OR ' .
-					'( pp_page = ' . $dbw->addQuotes( $lastPageValue ) .
-					' AND pp_propname > ' . $dbw->addQuotes( $lastProp ) . ' )';
+				$conditions[] = $dbw->buildComparison( '>', [
+					'pp_page' => $lastPageValue,
+					'pp_propname' => $lastProp,
+				] );
 			}
 
 			$res = $dbw->select(

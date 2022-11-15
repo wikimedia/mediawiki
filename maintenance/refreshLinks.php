@@ -451,9 +451,10 @@ class RefreshLinks extends Maintenance {
 		$lastId = 0;
 		do {
 			$finalConds = $conds;
-			$timestamp = $dbr->addQuotes( $timestamp );
-			$finalConds[] =
-				"(cl_timestamp > $timestamp OR (cl_timestamp = $timestamp AND cl_from > $lastId))";
+			$finalConds[] = $dbr->buildComparison( '>', [
+				'cl_timestamp' => $timestamp,
+				'cl_from' => $lastId,
+			] );
 			$res = $dbr->select( [ 'page', 'categorylinks' ],
 				[ 'page_id', 'cl_timestamp' ],
 				$finalConds,
