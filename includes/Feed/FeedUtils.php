@@ -24,6 +24,7 @@
 namespace MediaWiki\Feed;
 
 use CommentStore;
+use DerivativeContext;
 use Html;
 use Linker;
 use LogFormatter;
@@ -182,8 +183,7 @@ class FeedUtils {
 				if ( !$revRecord ) {
 					$diffText = false;
 				} else {
-					$mainContext = RequestContext::getMain();
-					$context = clone RequestContext::getMain();
+					$context = new DerivativeContext( RequestContext::getMain() );
 					$context->setTitle( $title );
 
 					$model = $revRecord->getSlot(
@@ -192,11 +192,11 @@ class FeedUtils {
 					)->getModel();
 					$contentHandler = $contentHandlerFactory->getContentHandler( $model );
 					$de = $contentHandler->createDifferenceEngine( $context, $oldid, $newid );
-					$lang = $mainContext->getLanguage();
-					$user = $mainContext->getUser();
+					$lang = $context->getLanguage();
+					$user = $context->getUser();
 					$diffText = $de->getDiff(
-						$mainContext->msg( 'previousrevision' )->text(), // hack
-						$mainContext->msg( 'revisionasof',
+						$context->msg( 'previousrevision' )->text(), // hack
+						$context->msg( 'revisionasof',
 							$lang->userTimeAndDate( $timestamp, $user ),
 							$lang->userDate( $timestamp, $user ),
 							$lang->userTime( $timestamp, $user ) )->text() );
