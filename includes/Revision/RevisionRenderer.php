@@ -127,9 +127,9 @@ class RevisionRenderer {
 		}
 
 		if ( !$options ) {
-			$options = ParserOptions::newCanonical(
-				$forPerformer ? $forPerformer->getUser() : 'canonical'
-			);
+			$options = $forPerformer ?
+				ParserOptions::newFromUser( $forPerformer->getUser() ) :
+				ParserOptions::newFromAnon();
 		}
 
 		if ( isset( $hints['causeAction'] ) ) {
