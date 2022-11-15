@@ -216,6 +216,7 @@ because of Phabricator reports.
 * In SessionConsistentConnectionManager, the methods
   getReadConnectionRef() and getWriteConnectionRef() are deprecated;
   the ConnectionManager methods they override had been deprecated already.
+* Database::wasErrorReissuable() is deprecated.
 * …
 
 === Other changes in 1.40 ===
