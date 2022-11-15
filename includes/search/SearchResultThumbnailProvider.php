@@ -16,7 +16,7 @@ use RepoGroup;
  */
 class SearchResultThumbnailProvider {
 
-	public const THUMBNAIL_SIZE = 200;
+	public const THUMBNAIL_SIZE = 60;
 
 	/** @var RepoGroup */
 	private $repoGroup;
@@ -90,7 +90,7 @@ class SearchResultThumbnailProvider {
 	 * @param int|null $size size of thumbnail height and width in points
 	 * @return SearchResultThumbnail[] array of $pageId => SearchResultThumbnail
 	 */
-	public function getThumbnails( array $pageIdentities, int $size = null ): array {
+	public function getThumbnails( array $pageIdentities, ?int $size = 60 ): array {
 		// add filenames for NS_FILE pages by default
 		$fileNamesByPageId = $this->getFileNamesByPageId( $pageIdentities );
 		$results = [];
