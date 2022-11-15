@@ -334,10 +334,10 @@ class ApiParse extends ApiBase {
 			if ( $titleObj->canExist() ) {
 				$pageObj = $this->wikiPageFactory->newFromTitle( $titleObj );
 				[ $popts, $reset ] = $this->makeParserOptions( $pageObj, $params );
-			} else { // A special page, presumably
-				// XXX: Why is this needed at all? Can't we just fail?
+			} else {
+				// Allow parsing wikitext in the context of special pages (T51477)
 				$pageObj = null;
-				$popts = ParserOptions::newCanonical( $this->getContext() );
+				$popts = ParserOptions::newFromContext( $this->getContext() );
 				[ $popts, $reset ] = $this->tweakParserOptions( $popts, $titleObj, $params );
 			}
 
