@@ -1056,6 +1056,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * Note that the transaction may have been lost, discarding prior writes and results
 	 *
 	 * @return bool
+	 * @deprecated Since 1.40
 	 */
 	public function wasErrorReissuable();
 
