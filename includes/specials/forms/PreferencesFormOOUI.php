@@ -156,7 +156,9 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	 */
 	public function getBody() {
 		$out = $this->getOutput();
-		$this->getHookRunner()->onPreferencesGetLayout( $useMobileLayout, $out->getSkin() );
+		$skin = $out->getSkin();
+		$this->getHookRunner()->onPreferencesGetLayout( $useMobileLayout,
+			$skin->getSkinName(), [ 'isResponsive' => $skin->isResponsive() ] );
 
 		if ( $useMobileLayout ) {
 			// Import the icons used in the mobile view
