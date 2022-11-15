@@ -60,16 +60,17 @@ class ParsoidRenderID {
 	 * @param string $eTag ETag with double quotes,
 	 *   see https://www.rfc-editor.org/rfc/rfc7232#section-2.3
 	 *
-	 * @return self
+	 * @return ParsoidRenderID|null The render ID embedded in the ETag,
+	 *         or null if the ETag was malformed.
 	 * @see newFromKey() if ETag already has outside quotes trimmed
 	 *
 	 */
-	public static function newFromETag( string $eTag ): self {
-		[ $revisionID, $uniqueID ] = explode( '/', trim( $eTag, '"' ) );
-
-		if ( $revisionID === null || $uniqueID === null ) {
-			throw new InvalidArgumentException( 'Bad ETag: ' . $eTag );
+	public static function newFromETag( string $eTag ): ?self {
+		if ( !preg_match( '@^(?:W/)?"(\d+)/([^/]+)(:?/.*)?"$@', $eTag, $m ) ) {
+			return null;
 		}
+
+		[ , $revisionID, $uniqueID ] = $m;
 
 		return new self( (int)$revisionID, $uniqueID );
 	}
