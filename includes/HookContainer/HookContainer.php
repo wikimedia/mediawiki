@@ -428,6 +428,20 @@ class HookContainer implements SalvageableService {
 	}
 
 	/**
+	 * Returns the names of all hooks that have at least one handler registered.
+	 * @return array
+	 */
+	public function getHookNames(): array {
+		$names = array_merge(
+			array_keys( $this->dynamicHandlers ),
+			array_keys( $this->registry->getGlobalHooks() ),
+			array_keys( $this->registry->getExtensionHooks() )
+		);
+
+		return array_unique( $names );
+	}
+
+	/**
 	 * Returns the names of all hooks that have handlers registered.
 	 * Note that this may include hook handlers that have been disabled using clear().
 	 *

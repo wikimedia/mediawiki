@@ -26,6 +26,7 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader\SkinModule;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserGroupManager;
@@ -968,12 +969,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function appendSubscribedHooks( $property ) {
-		$hooks = $this->getConfig()->get( MainConfigNames::Hooks );
-		$myWgHooks = $hooks;
-		ksort( $myWgHooks );
+		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		$hookNames = $hookContainer->getHookNames();
+		sort( $hookNames );
 
 		$data = [];
-		foreach ( $myWgHooks as $name => $subscribers ) {
+		foreach ( $hookNames as $name ) {
+			$subscribers = $hookContainer->getLegacyHandlers( $name );
+
 			$arr = [
 				'name' => $name,
 				'subscribers' => array_map( [ SpecialVersion::class, 'arrayToString' ], $subscribers ),
