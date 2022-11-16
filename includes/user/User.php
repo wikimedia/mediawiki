@@ -2494,9 +2494,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * Log this user out.
 	 */
 	public function logout() {
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$user = $this;
-		if ( $this->getHookRunner()->onUserLogout( $user ) ) {
+		if ( $this->getHookRunner()->onUserLogout( $this ) ) {
 			$this->doLogout();
 		}
 	}
@@ -3209,10 +3207,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		$emailAuthentication = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::EmailAuthentication );
 		$this->load();
-		// Avoid PHP 7.1 warning of passing $this by reference
-		$user = $this;
 		$confirmed = true;
-		if ( $this->getHookRunner()->onEmailConfirmed( $user, $confirmed ) ) {
+		if ( $this->getHookRunner()->onEmailConfirmed( $this, $confirmed ) ) {
 			if ( $this->isAnon() ) {
 				return false;
 			}
