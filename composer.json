@@ -87,7 +87,7 @@
 		"giorgiosironi/eris": "^0.13.0",
 		"hamcrest/hamcrest-php": "^2.0",
 		"johnkary/phpunit-speedtrap": "^4.0",
-		"mediawiki/mediawiki-codesniffer": "39.0.0",
+		"mediawiki/mediawiki-codesniffer": "40.0.1",
 		"mediawiki/mediawiki-phan-config": "0.12.0",
 		"nikic/php-parser": "^4.10.2",
 		"php-parallel-lint/php-console-highlighter": "1.0.0",
