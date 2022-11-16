@@ -1,0 +1,15 @@
+diff --git a/includes/libs/virtualrest/VirtualRESTServiceClient.php b/includes/libs/virtualrest/VirtualRESTServiceClient.php
+index 88ba9815ea..707057bf61 100644
+--- a/includes/libs/virtualrest/VirtualRESTServiceClient.php
++++ b/includes/libs/virtualrest/VirtualRESTServiceClient.php
+@@ -250,6 +250,10 @@ class VirtualRESTServiceClient {
+ 				}
+ 			}
+ 
++			if ( wfIsWindows() ) {
++				$executeReqs[0]['url'] = str_replace( "%2F", "%252F", $executeReqs[0]['url'] );
++			}
++
+ 			// Run the actual work HTTP requests
+ 			foreach ( $this->http->runMulti( $executeReqs ) as $index => $ranReq ) {
+ 				$doneReqs[$index] = $ranReq;
