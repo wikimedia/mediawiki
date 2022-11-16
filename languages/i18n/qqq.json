@@ -1826,7 +1826,7 @@
 	"rcfilters-filter-user-experience-level-newcomer-label": "Label for the filter for showing edits made by new editors.",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Description for the filter for showing edits made by new editors. The user has created the account less than 4 days ago (4th day included) ''or'' has made less than 10 edits (10 included).",
 	"rcfilters-filter-user-experience-level-learner-label": "Label for the filter for showing edits made by learning editors.",
-	"rcfilters-filter-user-experience-level-learner-description": "Description for the filter for showing edits made by learning editors.",
+	"rcfilters-filter-user-experience-level-learner-description": "Description for the filter for showing edits made by learning editors.\n\n* \"Newcomers\" is  {{msg-mw|Rcfilters-filter-user-experience-level-newcomer-label}}\n* \"Experienced users\" is {{msg-mw|Rcfilters-filter-user-experience-level-experienced-label}}",
 	"rcfilters-filter-user-experience-level-experienced-label": "Label for the filter for showing edits made by experienced editors.",
 	"rcfilters-filter-user-experience-level-experienced-description": "Description for the filter for showing edits made by experienced editors.",
 	"rcfilters-filtergroup-automated": "Title for the filter group for editor automation type.",
