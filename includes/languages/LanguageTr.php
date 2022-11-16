@@ -27,9 +27,9 @@
  * ı (U+0131 LATIN SMALL LETTER DOTLESS I) -> I (U+0049 LATIN CAPITAL LETTER I),
  * i (U+0069 LATIN SMALL LETTER I) -> İ (U+0130 LATIN CAPITAL LETTER I WITH DOT ABOVE).
  *
- * Unicode CaseFolding.txt defines this case as type 'T', a special case for Turkic languages:
- * tr and az. PHP 7.3 parser ignores this special cases. so we have to override the
- * ucfirst and lcfirst methods.
+ * Unicode CaseFolding.txt defines these mappings as type 'T', which means that
+ * they are only for the Turkic languages, tr and az. PHP ignores these mappings,
+ * so we have to override the ucfirst and lcfirst methods.
  *
  * See https://en.wikipedia.org/wiki/Dotted_and_dotless_I and T30040
  *

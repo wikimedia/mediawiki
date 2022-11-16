@@ -45,8 +45,8 @@ class FloatDef extends NumericDef {
 	}
 
 	public function stringifyValue( $name, $value, array $settings, array $options ) {
-		// Ensure sufficient precision for round-tripping. PHP_FLOAT_DIG was added in PHP 7.2.
-		$digits = defined( 'PHP_FLOAT_DIG' ) ? PHP_FLOAT_DIG : 15;
+		// Ensure sufficient precision for round-tripping
+		$digits = PHP_FLOAT_DIG;
 		return sprintf( "%.{$digits}g", $value );
 	}
 
