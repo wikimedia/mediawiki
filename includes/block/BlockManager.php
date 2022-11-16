@@ -213,11 +213,9 @@ class BlockManager {
 		} elseif ( count( $blocks ) === 1 ) {
 			return $blocks[ 0 ];
 		} else {
-			return new CompositeBlock( [
-				'address' => $ip,
-				'reason' => new Message( 'blockedtext-composite-reason' ),
-				'originalBlocks' => $blocks,
-			] );
+			$compositeBlock = CompositeBlock::createFromBlocks( ...$blocks );
+			$compositeBlock->setTarget( $ip );
+			return $compositeBlock;
 		}
 	}
 
