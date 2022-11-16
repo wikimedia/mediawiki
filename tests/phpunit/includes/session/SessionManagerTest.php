@@ -1492,7 +1492,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			'id' => $id,
 			'userInfo' => $userInfo
 		] );
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [
+		$manager->setHookContainer( $this->createHookContainer( [
 			'SessionCheckInfo' => [ function ( &$reason, $i, $r, $m, $d ) use (
 				$info, $metadata, $data, $request, &$called
 			) {
@@ -1505,14 +1505,14 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 				$called = true;
 				return false;
 			} ]
-		] );
+		] ) );
 		$this->assertFalse( $loadSessionInfoFromStore( $info ) );
 		$this->assertTrue( $called );
 		$this->assertSame( [
 			[ LogLevel::WARNING, 'Session "{session}": Hook aborted' ],
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'SessionCheckInfo' => [] ] );
+		$manager->setHookContainer( $this->createHookContainer() );
 
 		// forceUse deletes bad backend data
 		$this->store->setSessionMeta( $id, [ 'userToken' => 'Bad' ] + $metadata );
