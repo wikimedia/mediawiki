@@ -1503,7 +1503,11 @@ class SpecialPageFactory {
 		$wgRequest = $context->getRequest();
 		$wgUser = $context->getUser();
 		$wgLang = $context->getLanguage();
-		$main->setTitle( $title );
+		// FIXME: Once reasonably certain that no SpecialPage subclasses
+		// rely on direct RequestContext::getMain instead of their local
+		// context getters, these can be removed (T323184)
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		@$main->setTitle( $title );
 		$main->setOutput( $context->getOutput() );
 		$main->setRequest( $context->getRequest() );
 		$main->setUser( $context->getUser() );
@@ -1518,7 +1522,8 @@ class SpecialPageFactory {
 		$wgRequest = $glob['request'];
 		$wgUser = $glob['user'];
 		$wgLang = $glob['language'];
-		$main->setTitle( $ctx['title'] );
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		@$main->setTitle( $ctx['title'] );
 		$main->setOutput( $ctx['output'] );
 		$main->setRequest( $ctx['request'] );
 		$main->setUser( $ctx['user'] );
