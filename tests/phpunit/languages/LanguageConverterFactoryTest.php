@@ -18,7 +18,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	 */
 	public function testLanguageConverters(
 		$langCode,
-		$mainVariantCode,
+		$staticDefaultVariant,
 		$type,
 		$variants,
 		$variantFallbacks,
@@ -44,7 +44,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			$converter,
 			$lang,
 			$langCode,
-			$mainVariantCode,
+			$staticDefaultVariant,
 			$type,
 			$variants,
 			$variantFallbacks,
@@ -177,7 +177,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		$converter,
 		$lang,
 		$langCode,
-		$mainVariantCode,
+		$staticDefaultVariant,
 		$type,
 		$variants,
 		$variantFallbacks,
@@ -193,6 +193,8 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 
 			$this->assertEquals( $langCode, $testConverter->getMainCode(),
 				"getMainCode should be as $langCode" );
+			$this->assertEquals( $staticDefaultVariant, $testConverter->getStaticDefaultVariant(),
+				"getStaticDefaultVariant should be as $staticDefaultVariant" );
 			$this->assertEquals( $manualLevel, $testConverter->getManualLevel(), "Manual Level" );
 
 			$this->assertEquals( $variants, $testConverter->getVariants(), "Variants" );

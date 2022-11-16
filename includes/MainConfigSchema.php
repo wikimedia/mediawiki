@@ -4765,7 +4765,8 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Default variant code, if false, the default will be the language code
+	 * Default variant code. If false, the default will be the static default
+	 * variant of the language.
 	 */
 	public const DefaultLanguageVariant = [
 		'default' => false,

@@ -59,6 +59,27 @@ abstract class LanguageConverter implements ILanguageConverter {
 		'zh',
 	];
 
+	/**
+	 * static default variant of languages supporting variants
+	 * for use with DefaultOptionsLookup.php
+	 * @since 1.40
+	 * @var string[]
+	 */
+	public static $languagesWithStaticDefaultVariant = [
+		'ban' => 'ban',
+		'en' => 'en',
+		'crh' => 'crh',
+		'gan' => 'gan',
+		'iu' => 'iu',
+		'kk' => 'kk',
+		'ku' => 'ku',
+		'shi' => 'shi',
+		'sr' => 'sr',
+		'tg' => 'tg',
+		'uz' => 'uz',
+		'zh' => 'zh',
+	];
+
 	private $mTablesLoaded = false;
 
 	/**
@@ -127,12 +148,27 @@ abstract class LanguageConverter implements ILanguageConverter {
 	}
 
 	/**
-	 * Get main language code.
+	 * Get the language code with converter (the "main" language code).
+	 * Page language code would be the same of the language code with converter.
+	 * Note that this code might not included as one of the variant languages.
 	 * @since 1.36
 	 *
 	 * @return string
 	 */
 	abstract public function getMainCode(): string;
+
+	/**
+	 * Get static default variant.
+	 * For use of specify the default variant form when it differents from the
+	 *  default "unconverted/mixed-variant form".
+	 * @since 1.40
+	 *
+	 * @return string
+	 */
+	protected function getStaticDefaultVariant(): string {
+		$code = $this->getMainCode();
+		return self::$languagesWithStaticDefaultVariant[$code] ?? $code;
+	}
 
 	/**
 	 * Get supported variants of the language.
@@ -270,10 +306,10 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 *
 	 * @param string $variant The language code of the variant
 	 * @return string|array The code of the fallback language or the
-	 *   main code if there is no fallback
+	 *   static default variant if there is no fallback
 	 */
 	public function getVariantFallbacks( $variant ) {
-		return $this->getVariantsFallbacks()[$variant] ?? $this->getMainCode();
+		return $this->getVariantsFallbacks()[$variant] ?? $this->getStaticDefaultVariant();
 	}
 
 	/**
@@ -320,7 +356,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 		if ( $req ) {
 			return $req;
 		}
-		return $this->getMainCode();
+
+		return $this->getStaticDefaultVariant();
 	}
 
 	/**
@@ -344,7 +381,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 		if ( $req ) {
 			return $req;
 		}
-		return $this->getMainCode();
+
+		return $this->getStaticDefaultVariant();
 	}
 
 	/**
@@ -420,7 +458,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 			if ( $user->isRegistered() ) {
 				// Get language variant preference from logged in users
 				if (
-					$this->getMainCode() ==
+					$this->getMainCode() ===
 					$services->getContentLanguage()->getCode()
 				) {
 					$optionName = 'variant';
@@ -470,7 +508,10 @@ abstract class LanguageConverter implements ILanguageConverter {
 			// We record these fallback variants, and process
 			// them later.
 			$fallbacks = $this->getVariantFallbacks( $language );
-			if ( is_string( $fallbacks ) && $fallbacks !== $this->getMainCode() ) {
+			if (
+				is_string( $fallbacks ) &&
+				$fallbacks !== $this->getStaticDefaultVariant()
+			) {
 				$fallbackLanguages[] = $fallbacks;
 			} elseif ( is_array( $fallbacks ) ) {
 				$fallbackLanguages =
