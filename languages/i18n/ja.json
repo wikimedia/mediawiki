@@ -309,6 +309,7 @@
 	"unprotect": "保護の設定変更",
 	"newpage": "新規ページ",
 	"newpage-desc": "リクエストされたトピックの新規ページを作成します。",
+	"view-missing-pages": "見つからないページを表示",
 	"talkpagelinktext": "トーク",
 	"specialpage": "特別ページ",
 	"personaltools": "個人用ツール",
