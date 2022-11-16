@@ -2972,7 +2972,9 @@ config-schema:
         description: 'Whether to enable language variant conversion for links.'
     DefaultLanguageVariant:
         default: false
-        description: 'Default variant code, if false, the default will be the language code'
+        description: |-
+            Default variant code. If false, the default will be the static default
+            variant of the language.
     UsePigLatinVariant:
         default: false
         description: |-
