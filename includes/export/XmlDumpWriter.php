@@ -407,8 +407,6 @@ class XmlDumpWriter {
 			$out .= "      " . Xml::element( 'sha1', null, strval( $sha1 ) ) . "\n";
 		}
 
-		// Avoid PHP 7.1 warning from passing $this by reference
-		$writer = $this;
 		$text = '';
 		if ( $contentMode === self::WRITE_CONTENT ) {
 			/** @var Content $content */
@@ -421,7 +419,7 @@ class XmlDumpWriter {
 
 			$text = $content ? $content->serialize() : '';
 		}
-		$this->hookRunner->onXmlDumpWriterWriteRevision( $writer, $out, $row, $text, $rev );
+		$this->hookRunner->onXmlDumpWriterWriteRevision( $this, $out, $row, $text, $rev );
 
 		$out .= "    </revision>\n";
 
