@@ -24,10 +24,52 @@ use StatusValue;
 use function array_key_exists;
 
 /**
- * Utility for loading settings files.
+ * Builder class for constructing a Config object from a set of sources
+ * during bootstrap. The SettingsBuilder is used in Setup.php to load
+ * and combine settings files and eventually produce the Config object that
+ * will be used to configure MediaWiki.
+ *
+ * The SettingsBuilder object keeps track of "stages" of initialization that
+ * correspond to sections of Setup.php:
+ *
+ * The initial stage is "loading". In this stage, SettingsSources are added
+ * to the SettingsBuilder using the load* methods. This sets up the config
+ * schema and applies custom configuration values.
+ *
+ * Once all settings sources have been loaded, the SettingsBuilder is moved to the
+ * "registration" stage by calling enterRegistrationStage().
+ * In this stage, config values may still be altered, but no settings sources may
+ * be loaded. During the "registration" stage, dynamic defaults are applied,
+ * extension registration callbacks are executed, and maintenance scripts have an
+ * opportunity to manipulate settings.
+ *
+ * Finally, the SettingsBuilder is moved to the "operation" stage by calling
+ * enterOperationStage(). This renders the SettingsBuilder read only: config values
+ * may no longer be changed. At this point, it becomes safe to use the Config object
+ * returned by getConfig() to initialize the service container.
+ *
  * @since 1.38
  */
 class SettingsBuilder {
+
+	/**
+	 * @var int The initial stage in which settings can be loaded,
+	 * but config values cannot be accessed.
+	 */
+	private const STAGE_LOADING = 1;
+
+	/**
+	 * @var int The intermediate stage in which settings can no longer be loaded,
+	 * but config values can be accessed and manipulated programmatically.
+	 */
+	private const STAGE_REGISTRATION = 10;
+
+	/**
+	 * @var int The final stage in which config values can be accessed, but can
+	 * no longer be changed.
+	 */
+	private const STAGE_READ_ONLY = 100;
+
 	/** @var string */
 	private $baseDir;
 
@@ -66,11 +108,12 @@ class SettingsBuilder {
 	private $settingsConfig;
 
 	/**
-	 * When we're done applying all settings.
+	 * The stage of the settings builder. This is used to determine
+	 * which settings are allowed to be changed.
 	 *
-	 * @var bool
+	 * @var int see self::STAGE_*
 	 */
-	private $finished = false;
+	private $stage = self::STAGE_LOADING;
 
 	/**
 	 * Whether we have to apply reverse-merging when applying defaults.
@@ -149,12 +192,13 @@ class SettingsBuilder {
 
 	/**
 	 * Load settings from a {@link SettingsSource}.
+	 * Only allowed during the "loading" stage.
 	 *
 	 * @param SettingsSource $source
 	 * @return $this
 	 */
 	public function load( SettingsSource $source ): self {
-		$this->assertNotFinished();
+		$this->assertStillLoading( __METHOD__ );
 
 		// XXX: We may want to cache the entire batch instead, see T304493.
 		$this->currentBatch[] = $this->wrapSource( $source );
@@ -171,6 +215,24 @@ class SettingsBuilder {
 	 */
 	public function loadArray( array $newSettings ): self {
 		return $this->load( new ArraySource( $newSettings ) );
+	}
+
+	/**
+	 * Load settings from an array.
+	 * For internal use. Allowed during "loading" and "registration" stage.
+	 *
+	 * @param array $newSettings
+	 * @param string $func
+	 *
+	 * @return $this
+	 */
+	private function loadArrayInternal( array $newSettings, string $func ): self {
+		$this->assertNotReadOnly( $func );
+
+		$source = new ArraySource( $newSettings );
+		$this->currentBatch[] = $this->wrapSource( $source );
+
+		return $this;
 	}
 
 	/**
@@ -344,7 +406,7 @@ class SettingsBuilder {
 			return $this;
 		}
 
-		$this->assertNotFinished();
+		$this->assertNotReadOnly( __METHOD__ );
 		$this->config = null;
 
 		// XXX: We may want to cache the entire batch after merging together
@@ -594,7 +656,7 @@ class SettingsBuilder {
 	 * @return $this
 	 */
 	public function putConfigValues( array $values ): self {
-		return $this->loadArray( [ 'config' => $values ] );
+		return $this->loadArrayInternal( [ 'config' => $values ], __METHOD__ );
 	}
 
 	/**
@@ -625,7 +687,24 @@ class SettingsBuilder {
 	 * @return $this
 	 */
 	public function overrideConfigValues( array $values ): self {
-		return $this->loadArray( [ 'config-overrides' => $values ] );
+		return $this->loadArrayInternal( [ 'config-overrides' => $values ], __METHOD__ );
+	}
+
+	/**
+	 * Register hook handlers.
+	 *
+	 * @param array<string,mixed> $handlers An associative array using the same structure
+	 *        as the Hooks config setting:
+	 *        Each value is a list of handler callbacks for the hook.
+	 *
+	 * @return $this
+	 * @see HookContainer::register()
+	 */
+	public function registerHookHandlers( array $handlers ): self {
+		// NOTE: Rely on the merge strategy for the Hooks setting.
+		// TODO: Make hook handlers a separate structure in settings files,
+		//       like they are in extension.json.
+		return $this->loadArrayInternal( [ 'config' => [ 'Hooks' => $handlers ] ], __METHOD__ );
 	}
 
 	/**
@@ -636,6 +715,10 @@ class SettingsBuilder {
 	 * @return Config
 	 */
 	public function getConfig(): Config {
+		// XXX: Would be nice if we could forbid using this method
+		//   before enterRegistrationStage() is called. But we need
+		//   access to some configuration earlier, e.g. WikiFarmSettingsDirectory.
+
 		if ( $this->config && !$this->currentBatch ) {
 			return $this->config;
 		}
@@ -650,25 +733,45 @@ class SettingsBuilder {
 		$this->currentBatch = [];
 	}
 
-	private function assertNotFinished(): void {
-		if ( $this->finished ) {
+	private function assertNotReadOnly( string $func ): void {
+		if ( $this->stage === self::STAGE_READ_ONLY ) {
 			throw new SettingsBuilderException(
-				"Tried applying settings too late after applying settings have finalized."
+				"$func not supported in operation stage."
+			);
+		}
+	}
+
+	private function assertStillLoading( string $func ): void {
+		if ( $this->stage !== self::STAGE_LOADING ) {
+			throw new SettingsBuilderException(
+				"$func only supported while still in the loading stage."
 			);
 		}
 	}
 
 	/**
-	 * Settings can't be loaded and applied after calling this
-	 * method.
+	 * Sets the SettingsBuilder read-only.
 	 *
-	 * @internal Most likely called only in Setup.php.
+	 * Call this before using the configuration returned by getConfig() to construct services objects
+	 * or initialize the service container.
 	 *
-	 * @return void
+	 * @internal For use in Setup.php.
 	 */
-	public function finalize(): void {
+	public function enterReadOnlyStage(): void {
 		$this->apply();
-		$this->finished = true;
+		$this->stage = self::STAGE_READ_ONLY;
+	}
+
+	/**
+	 * Prevents additional settings from being loaded, but still allows manipulation of config values.
+	 *
+	 * Call this before applying dynamic defaults and executing extension registration callbacks.
+	 *
+	 * @internal For use in Setup.php.
+	 */
+	public function enterRegistrationStage(): void {
+		$this->apply();
+		$this->stage = self::STAGE_REGISTRATION;
 	}
 
 	/**
@@ -692,7 +795,7 @@ class SettingsBuilder {
 	 * @param string $msg
 	 */
 	public function warning( string $msg ) {
-		$this->assertNotFinished();
+		$this->assertNotReadOnly( __METHOD__ );
 		$this->warnings[] = trim( $msg );
 	}
 

@@ -137,7 +137,7 @@ class BenchmarkSettings extends Benchmarker {
 				$settingsBuilder->load(
 					new PhpSettingsSource( MW_INSTALL_PATH . '/includes/config-schema.php' )
 				);
-				$settingsBuilder->finalize(); // applies some dynamic defaults
+				$settingsBuilder->enterRegistrationStage(); // applies some dynamic defaults
 
 				// phpcs:ignore MediaWiki.Usage.ForbiddenFunctions.extract
 				extract( $GLOBALS );

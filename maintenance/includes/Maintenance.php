@@ -951,11 +951,8 @@ abstract class Maintenance {
 		$overrides['ShowExceptionDetails'] = true;
 		$overrides['ShowHostname'] = true;
 
-		$ini = [
-			'max_execution_time' => 0,
-		];
-
-		$settingsBuilder->loadArray( [ 'config' => $overrides, 'php-ini' => $ini ] );
+		ini_set( 'max_execution_time', '0' );
+		$settingsBuilder->putConfigValues( $overrides );
 	}
 
 	/**
