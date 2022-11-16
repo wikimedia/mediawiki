@@ -57,7 +57,7 @@ XDEBUG_ENABLE=true
 XHPROF_ENABLE=true
 ```
 
-Next, run the following command to add your user ID and group ID to your `.env` file:
+Non-Windows users: Next, run the following command to add your user ID and group ID to your `.env` file:
 
 ```sh
 echo "MW_DOCKER_UID=$(id -u)
