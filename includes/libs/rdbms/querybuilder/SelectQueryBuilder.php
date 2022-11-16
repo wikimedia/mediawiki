@@ -3,6 +3,13 @@
 namespace Wikimedia\Rdbms;
 
 /**
+ * A query builder for SELECT queries with a fluent interface.
+ *
+ * Any particular query builder object should only be used for a single database query,
+ * and not be reused afterwards. However, to run multiple similar queries,
+ * you can create a “template” query builder to set up most of the query,
+ * and then clone the object (and potentially modify the clone) for each individual query.
+ *
  * Note that none of the methods in this class are stable to override.
  * The goal of extending this class is creating specialized query builders,
  * like {@link \MediaWiki\Page\PageSelectQueryBuilder}
