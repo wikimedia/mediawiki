@@ -5,7 +5,6 @@ namespace MediaWiki\Rest\Handler;
 use LanguageCode;
 use LogicException;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\RedirectStore;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
@@ -25,6 +24,7 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
  * @package MediaWiki\Rest\Handler
  */
 class PageHTMLHandler extends SimpleHandler {
+	use PageRedirectHandlerTrait;
 
 	/** @var HtmlOutputRendererHelper */
 	private $htmlHelper;
@@ -82,6 +82,13 @@ class PageHTMLHandler extends SimpleHandler {
 		$this->contentHelper->checkAccess();
 		$page = $this->contentHelper->getPage();
 		$isSystemMessage = $this->contentHelper->useDefaultSystemMessage();
+		$params = $this->getRequest()->getQueryParams();
+
+		if ( array_key_exists( 'redirect', $params ) ) {
+			$followWikiRedirects = $params['redirect'] !== 'no';
+		} else {
+			$followWikiRedirects = true;
+		}
 
 		// The call to $this->contentHelper->getPage() should not return null if
 		// $this->contentHelper->checkAccess() did not throw.
@@ -93,12 +100,19 @@ class PageHTMLHandler extends SimpleHandler {
 		if ( $isSystemMessage ) {
 			$parserOutput = $this->getSystemMessageOutput();
 		} else {
-			'@phan-var ExistingPageRecord $page';
-			$pageRedirectResponse = $this->createPageRedirectResponse( $page );
+			'@phan-var \MediaWiki\Page\ExistingPageRecord $page';
+			$redirectResponse = $this->createRedirectResponseIfNeeded(
+				$page,
+				$followWikiRedirects,
+				$this->contentHelper->getTitleText(),
+				$this->titleFormatter,
+				$this->redirectStore
+			);
 
-			if ( $pageRedirectResponse !== null ) {
-				return $pageRedirectResponse;
+			if ( $redirectResponse !== null ) {
+				return $redirectResponse;
 			}
+
 			$parserOutput = $this->htmlHelper->getHtml();
 		}
 
@@ -116,6 +130,20 @@ class PageHTMLHandler extends SimpleHandler {
 			case 'with_html':
 				$body = $this->contentHelper->constructMetadata();
 				$body['html'] = $parserOutputHtml;
+
+				if ( $page ) {
+					// If param redirect=no is present, that means this page can be a redirect
+					// check for a redirectTargetUrl and send it to the body as `redirect_target`
+					'@phan-var \MediaWiki\Page\ExistingPageRecord $page';
+					$redirectTargetUrl = $this->getWikiRedirectTargetUrl(
+						$page, $this->redirectStore, $this->titleFormatter
+					);
+
+					if ( $redirectTargetUrl ) {
+						$body['redirect_target'] = $redirectTargetUrl;
+					}
+				}
+
 				$response = $this->getResponseFactory()->createJson( $body );
 				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
 				break;
@@ -129,44 +157,6 @@ class PageHTMLHandler extends SimpleHandler {
 		}
 
 		return $response;
-	}
-
-	/**
-	 * Check for Page Redirects and create a Redirect Response
-	 * @param ExistingPageRecord $page
-	 * @return Response|null
-	 */
-	private function createPageRedirectResponse( ExistingPageRecord $page ): ?Response {
-		$titleAsRequested = $this->contentHelper->getTitleText();
-		$normalizedTitle = $this->titleFormatter->getPrefixedDBkey( $page );
-
-		// Check for normalization redirects
-		if ( $titleAsRequested !== $normalizedTitle ) {
-			$redirectTargetUrl = $this->getRouteUrl( [
-				"title" => $normalizedTitle
-			] );
-			return $this->getResponseFactory()->createPermanentRedirect( $redirectTargetUrl );
-		}
-
-		$params = $this->getRequest()->getQueryParams();
-		$redirectParam = $params['redirect'] ?? null;
-		$redirectTarget = $this->redirectStore->getRedirectTarget( $page );
-
-		if ( $redirectTarget === null ) {
-			return null;
-		}
-
-		// Check if page is a redirect
-		if ( $page->isRedirect() && $redirectParam !== 'no' ) {
-			$redirectTargetUrl = $this->getRouteUrl( [
-				"title" => $this->titleFormatter->getPrefixedDBkey(
-					$redirectTarget
-				)
-			] );
-			return $this->getResponseFactory()->createTemporaryRedirect( $redirectTargetUrl );
-		}
-
-		return null;
 	}
 
 	private function getSystemMessageOutput(): ParserOutput {
