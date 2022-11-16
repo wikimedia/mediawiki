@@ -1,0 +1,45 @@
+--- a/PdfHandler/includes/PdfHandler.php
++++ b/PdfHandler/includes/PdfHandler.php
+@@ -206,17 +206,31 @@ class PdfHandler extends ImageHandler {
+ 			"-q",
+ 			$srcPath
+ 		);
+-		$cmd .= " | " . wfEscapeShellArg(
+-			$wgPdfPostProcessor,
+-			"-depth",
+-			"8",
+-			"-quality",
+-			$wgPdfHandlerJpegQuality,
+-			"-resize",
+-			$width,
+-			"-",
+-			$dstPath
+-		);
++		if ( wfIsWindows() ) {
++			$cmd .= " | " . wfEscapeShellArg(
++				$wgPdfPostProcessor,
++				"-",
++				"-depth",
++				"8",
++				"-quality",
++				$wgPdfHandlerJpegQuality,
++				"-resize",
++				$width,
++				$dstPath
++			);
++		} else {
++			$cmd .= " | " . wfEscapeShellArg(
++				$wgPdfPostProcessor,
++				"-depth",
++				"8",
++				"-quality",
++				$wgPdfHandlerJpegQuality,
++				"-resize",
++				$width,
++				"-",
++				$dstPath
++			);
++		}
+ 		$cmd .= ")";
+ 
+ 		wfDebug( __METHOD__ . ": $cmd\n" );

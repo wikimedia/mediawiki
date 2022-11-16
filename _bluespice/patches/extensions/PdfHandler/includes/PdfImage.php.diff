@@ -1,0 +1,31 @@
+--- a/PdfHandler/includes/PdfImage.php
++++ b/PdfHandler/includes/PdfImage.php
+@@ -129,6 +129,9 @@ class PdfImage {
+ 				'-meta',         # Report XMP metadata
+ 				$this->mFilename,
+ 			];
++			if ( wfIsWindows () ) {
++				$cmdMeta = $wgPdfInfo . " -enc UTF-8 -meta " . $this->mFilename;
++			}
+ 			$resultMeta = Shell::command( $cmdMeta )
+ 				->execute();
+ 
+@@ -138,6 +141,9 @@ class PdfImage {
+ 				'-l', '9999999', # Report page sizes for all pages
+ 				$this->mFilename,
+ 			];
++			if ( wfIsWindows () ) {
++				$cmdPages = $wgPdfInfo . " -enc UTF-8 -l 9999999 " . $this->mFilename;
++			}
+ 			$resultPages = Shell::command( $cmdPages )
+ 				->execute();
+ 
+@@ -149,7 +155,7 @@ class PdfImage {
+ 
+ 		// Read text layer
+ 		if ( isset( $wgPdftoText ) ) {
+-			$cmd = [ $wgPdftoText,  $this->mFilename, '-' ];
++			$cmd = "{$wgPdftoText} {$this->mFilename}";
+ 			$result = Shell::command( $cmd )
+ 				->execute();
+ 			$retval = $result->getExitCode();
