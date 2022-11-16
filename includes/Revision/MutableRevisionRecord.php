@@ -380,9 +380,8 @@ class MutableRevisionRecord extends RevisionRecord {
 	 *
 	 * @return MutableRevisionSlots
 	 */
-	public function getSlots(): RevisionSlots {
-		// Overwritten just guarantee the more narrow return type.
-		// TODO Update return typehint once full return type covariance is allowed (PHP 7.4+, T278139)
+	public function getSlots(): MutableRevisionSlots {
+		// Overwritten just to guarantee the more narrow return type.
 		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return parent::getSlots();
 	}
