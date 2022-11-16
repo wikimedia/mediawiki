@@ -56,13 +56,14 @@ class Argon2PasswordTest extends PasswordTestCase {
 				false,
 				':argon2:$argon2i$v=19$m=1024,t=2,p=2$UGZqTWJRUkI1alVNTGRUbA$RcASw9XUWjCDO9WNnuVkGkEylURUW/CcNwSffdFwN74',
 				'password',
+			],
+			// argon2id
+			[
+				true,
+				':argon2:$argon2id$v=19$m=65536,t=1,p=1$SS51Z0U2bkQ5Mk1GYUNQOQ$jdN3UnHn6MHOaOeWiX+RqRhcwVPLLDlEAKPvDt/qKIY',
+				'password'
 			]
 		];
-
-		if ( defined( 'PASSWORD_ARGON2ID' ) ) {
-			// @todo: Argon2id cases
-			$result = array_merge( $result, [] );
-		}
 
 		return $result;
 	}
@@ -86,8 +87,7 @@ class Argon2PasswordTest extends PasswordTestCase {
 	}
 
 	public function testPartialConfig() {
-		// The default options changed in PHP 7.2.21 and 7.3.8. This seems to be the only way to
-		// fetch them at runtime.
+		// Get the default options
 		$options = password_get_info( password_hash( '', PASSWORD_ARGON2I ) )['options'];
 
 		$factory = new PasswordFactory();
