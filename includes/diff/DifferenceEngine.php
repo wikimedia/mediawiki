@@ -1270,21 +1270,6 @@ class DifferenceEngine extends ContextSource {
 	}
 
 	/**
-	 * Returns the cache key for diff body text or content.
-	 *
-	 * @deprecated since 1.31, use getDiffBodyCacheKeyParams() instead.
-	 *  Hard deprecated in 1.39.
-	 * @since 1.23
-	 *
-	 * @throws MWException
-	 * @return string|null
-	 */
-	protected function getDiffBodyCacheKey() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return null;
-	}
-
-	/**
 	 * Get the cache key parameters
 	 *
 	 * Subclasses can replace the first element in the array to something
