@@ -117,7 +117,8 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			$this->getParsoidOutputStash(),
 			$services->getStatsdDataFactory(),
 			$parsoidOutputAccess,
-			$services->getHtmlTransformFactory()
+			$services->getHtmlTransformFactory(),
+			$services->getRedirectStore()
 		);
 
 		return $handler;
@@ -167,6 +168,51 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( '<!DOCTYPE html>', $htmlResponse );
 		$this->assertStringContainsString( '<html', $htmlResponse );
 		$this->assertStringContainsString( self::HTML, $htmlResponse );
+	}
+
+	public function testTemporaryRedirectHtmlOnly() {
+		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
+
+		$targetPageTitle = 'HtmlEndpointTestPage';
+		$redirectPageTitle = 'RedirectPage';
+		$this->getExistingTestPage( $targetPageTitle );
+		$status = $this->editPage( $redirectPageTitle, "#REDIRECT [[$targetPageTitle]]" );
+		$this->assertStatusOK( $status );
+
+		$request = new RequestData(
+			[ 'pathParams' => [ 'title' => $redirectPageTitle ] ]
+		);
+
+		$handler = $this->newHandler();
+		$response = $this->executeHandler( $handler, $request, [
+			'format' => 'html',
+			'path' => '/page/{title}/html'
+		] );
+
+		$this->assertEquals( 307, $response->getStatusCode() );
+		$this->assertStringContainsString( $targetPageTitle, $response->getHeaderLine( 'location' ) );
+	}
+
+	public function testPermanentRedirectHtmlOnly() {
+		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
+		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage with spaces' );
+		$this->assertTrue(
+			$this->editPage( $page, self::WIKITEXT )->isGood(),
+			'Edited a page'
+		);
+
+		$request = new RequestData(
+			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
+		);
+
+		$handler = $this->newHandler();
+		$response = $this->executeHandler( $handler, $request, [
+			'format' => 'html',
+			'path' => '/page/{title}/html'
+		] );
+
+		$this->assertEquals( 301, $response->getStatusCode() );
+		$this->assertStringContainsString( $page->getTitle()->getPrefixedDBkey(), $response->getHeaderLine( 'location' ) );
 	}
 
 	/**

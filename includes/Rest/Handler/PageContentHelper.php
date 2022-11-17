@@ -244,6 +244,11 @@ class PageContentHelper {
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => true,
 			],
+			'redirect' => [
+				Handler::PARAM_SOURCE => 'query',
+				ParamValidator::PARAM_TYPE => [ 'no' ],
+				ParamValidator::PARAM_REQUIRED => false,
+			]
 		];
 	}
 
