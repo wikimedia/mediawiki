@@ -110,11 +110,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/** @var int Article ID, fetched from the link cache on demand */
 	public $mArticleID = -1;
 
-	/** @var bool|int ID of most recent revision */
+	/** @var int|false ID of most recent revision */
 	protected $mLatestID = false;
 
 	/**
-	 * @var bool|string ID of the page's content model, i.e. one of the
+	 * @var string|false ID of the page's content model, i.e. one of the
 	 *   CONTENT_MODEL_XXX constants
 	 */
 	private $mContentModel = false;
@@ -157,7 +157,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/** @var array|null The (string) language code of the page's language and content code. */
 	private $mPageLanguage;
 
-	/** @var string|bool|null The page language code from the database, null if not saved in
+	/** @var string|false|null The page language code from the database, null if not saved in
 	 * the database or false if not loaded, yet.
 	 */
 	private $mDbPageLanguage = false;
@@ -582,7 +582,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * Load Title object fields from a DB row.
 	 * If false is given, the title will be treated as non-existing.
 	 *
-	 * @param stdClass|bool $row Database row
+	 * @param stdClass|false $row Database row
 	 */
 	public function loadFromRow( $row ) {
 		if ( $row ) { // page found
@@ -2136,7 +2136,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @since 1.19 (r105919)
 	 * @param array|string $query
-	 * @param string|string[]|bool $query2
+	 * @param string|string[]|false $query2
 	 * @return string
 	 */
 	private static function fixUrlQueryArgs( $query, $query2 = false ) {
@@ -2173,7 +2173,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @see self::getLocalURL for the arguments.
 	 * @see wfExpandUrl
 	 * @param string|array $query
-	 * @param string|string[]|bool $query2
+	 * @param string|string[]|false $query2
 	 * @param string|int|null $proto Protocol type to use in URL
 	 * @return string The URL
 	 */
@@ -2235,7 +2235,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *   not used for interwiki links. Can be specified as an associative array as well,
 	 *   e.g., [ 'action' => 'edit' ] (keys and values will be URL-escaped).
 	 *   Some query patterns will trigger various shorturl path replacements.
-	 * @param string|string[]|bool $query2 An optional secondary query array. This one MUST
+	 * @param string|string[]|false $query2 An optional secondary query array. This one MUST
 	 *   be an array. If a string is passed it will be interpreted as a deprecated
 	 *   variant argument and urlencoded into a variant= argument.
 	 *   This second query argument will be added to the $query
@@ -2332,8 +2332,8 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * HTML-escaped if it's being output in HTML.
 	 *
 	 * @param string|array $query
-	 * @param bool $query2
-	 * @param string|int|bool $proto A PROTO_* constant on how the URL should be expanded,
+	 * @param string|string[]|false $query2
+	 * @param string|int|false $proto A PROTO_* constant on how the URL should be expanded,
 	 *                               or false (default) for no expansion
 	 * @see self::getLocalURL for the arguments.
 	 * @return string The URL
@@ -2360,7 +2360,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @see self::getLocalURL for the arguments.
 	 * @param string|array $query
-	 * @param string|bool $query2 Deprecated
+	 * @param string|false $query2 Deprecated
 	 * @return string The URL
 	 */
 	public function getInternalURL( $query = '', $query2 = false ) {
@@ -2381,7 +2381,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @see self::getLocalURL for the arguments.
 	 * @param string|array $query
-	 * @param string|bool $query2 Deprecated
+	 * @param string|false $query2 Deprecated
 	 * @return string The URL
 	 * @since 1.18
 	 */
@@ -3616,7 +3616,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * - SkinTemplate:
 	 *    - Label the create action as "Edit", if the page can be an override.
 	 *
-	 * @return string|bool
+	 * @return string|false
 	 */
 	public function getDefaultMessageText() {
 		if ( $this->mNamespace !== NS_MEDIAWIKI ) { // Just in case

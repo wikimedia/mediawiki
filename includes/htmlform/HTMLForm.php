@@ -244,7 +244,7 @@ class HTMLForm extends ContextSource {
 	/**
 	 * Form action URL. false means we will use the URL to set Title
 	 * @since 1.19
-	 * @var bool|string
+	 * @var string|false
 	 */
 	protected $mAction = false;
 

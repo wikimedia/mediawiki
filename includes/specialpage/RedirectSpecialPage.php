@@ -71,7 +71,7 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 *
 	 * @stable to override
 	 * @param string|null $subpage
-	 * @return array|bool
+	 * @return array|false
 	 */
 	public function getRedirectQuery( $subpage ) {
 		$params = [];

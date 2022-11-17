@@ -312,7 +312,7 @@ class Category {
 	/**
 	 * Fetch a TitleArray of up to $limit category members, beginning after the
 	 * category sort key $offset.
-	 * @param int|bool $limit
+	 * @param int|false $limit
 	 * @param string $offset
 	 * @return TitleArray TitleArray object for category members.
 	 */

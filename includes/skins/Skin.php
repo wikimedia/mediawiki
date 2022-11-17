@@ -1720,7 +1720,7 @@ abstract class Skin extends ContextSource {
 	 * Get a cached notice
 	 *
 	 * @param string $name Message name, or 'default' for $wgSiteNotice
-	 * @return string|bool HTML fragment, or false to indicate that the caller
+	 * @return string|false HTML fragment, or false to indicate that the caller
 	 *   should fall back to the next notice in its sequence
 	 */
 	private function getCachedNotice( $name ) {

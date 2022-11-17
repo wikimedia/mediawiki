@@ -61,7 +61,7 @@ class ArrayUtils {
 	 * an element and return the appropriate key
 	 *
 	 * @param array $weights
-	 * @return bool|int|string
+	 * @return int|string|false
 	 */
 	public static function pickRandom( $weights ) {
 		if ( !is_array( $weights ) || count( $weights ) == 0 ) {

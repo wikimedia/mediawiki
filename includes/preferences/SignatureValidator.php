@@ -204,7 +204,7 @@ class SignatureValidator {
 
 	/**
 	 * @param string $signature Signature before PST
-	 * @return string|bool Signature with PST applied, or false if applying PST yields wikitext that
+	 * @return string|false Signature with PST applied, or false if applying PST yields wikitext that
 	 *     would change if PST was applied again
 	 */
 	protected function applyPreSaveTransform( string $signature ) {

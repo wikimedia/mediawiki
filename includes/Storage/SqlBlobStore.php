@@ -84,7 +84,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	private $compressBlobs = false;
 
 	/**
-	 * @var bool|string
+	 * @var string|false
 	 */
 	private $legacyEncoding = false;
 

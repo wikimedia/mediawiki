@@ -167,7 +167,7 @@ class MediaWikiSite extends Site {
 	 *
 	 * @see Site::getPageUrl
 	 * @since 1.21
-	 * @param string|bool $pageName Page name or false (default: false)
+	 * @param string|false $pageName Page name or false (default: false)
 	 * @return string|null
 	 */
 	public function getPageUrl( $pageName = false ) {

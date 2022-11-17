@@ -272,7 +272,7 @@ class VersionChecker {
 	 * Handle a simple dependency to MediaWiki core or PHP. See handleMediaWikiDependency and
 	 * handlePhpDependency for details.
 	 *
-	 * @param Constraint|bool $version The version installed
+	 * @param Constraint|false $version The version installed
 	 * @param string $constraint The required version constraint for this dependency
 	 * @param string $checkedExt The Extension, which depends on this dependency
 	 * @return bool false if no error, true else

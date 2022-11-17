@@ -70,7 +70,7 @@ class OutputPage extends ContextSource {
 	/** @var array */
 	protected $mLinktags = [];
 
-	/** @var string|bool */
+	/** @var string|false */
 	protected $mCanonicalUrl = false;
 
 	/**

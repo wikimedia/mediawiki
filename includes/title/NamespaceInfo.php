@@ -396,7 +396,7 @@ class NamespaceInfo {
 	 * Returns the canonical (English) name for a given index
 	 *
 	 * @param int $index Namespace index
-	 * @return string|bool If no canonical definition.
+	 * @return string|false If no canonical definition.
 	 */
 	public function getCanonicalName( $index ) {
 		$nslist = $this->getCanonicalNamespaces();

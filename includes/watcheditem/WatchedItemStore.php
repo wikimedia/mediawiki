@@ -932,7 +932,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @since 1.27
 	 * @param UserIdentity $user
 	 * @param LinkTarget[] $targets
-	 * @return (bool|string|null)[][] two dimensional array, first is namespace, second is database key,
+	 * @return (string|null|false)[][] two dimensional array, first is namespace, second is database key,
 	 *                 value is the notification timestamp or null, or false if not available
 	 */
 	public function getNotificationTimestampsBatch( UserIdentity $user, array $targets ): array {
@@ -1517,8 +1517,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param LinkTarget|PageIdentity $title deprecated passing LinkTarget since 1.36
 	 * @param WatchedItem|null $item
 	 * @param string $force
-	 * @param int|bool $oldid The ID of the last revision that the user viewed
-	 * @return bool|string|null
+	 * @param int|false $oldid The ID of the last revision that the user viewed
+	 * @return string|null|false
 	 */
 	private function getNotificationTimestamp(
 		UserIdentity $user,

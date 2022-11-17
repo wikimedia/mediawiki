@@ -281,7 +281,7 @@ class MagicWordArray {
 	 *
 	 * @param string $text
 	 *
-	 * @return string|bool False on failure
+	 * @return string|false False on failure
 	 */
 	public function matchStartToEnd( $text ) {
 		$hash = $this->getHash();

@@ -43,7 +43,7 @@ interface IResultWrapper extends Countable, SeekableIterator {
 	 * $row->fieldname, with fields acting like member variables. If no more rows are available,
 	 * false is returned.
 	 *
-	 * @return stdClass|bool
+	 * @return stdClass|false
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	public function fetchObject();
@@ -52,7 +52,7 @@ interface IResultWrapper extends Countable, SeekableIterator {
 	 * Fetch the next row from the given result object, in associative array form. Fields are
 	 * retrieved with $row['fieldname']. If no more rows are available, false is returned.
 	 *
-	 * @return array|bool
+	 * @return array|false
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
 	public function fetchRow();
@@ -75,7 +75,7 @@ interface IResultWrapper extends Countable, SeekableIterator {
 	public function free();
 
 	/**
-	 * @return stdClass|array|bool
+	 * @return stdClass|array|false
 	 */
 	#[\ReturnTypeWillChange]
 	public function current();

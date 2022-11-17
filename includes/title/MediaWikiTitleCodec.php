@@ -136,7 +136,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	/**
 	 * @see TitleFormatter::formatTitle()
 	 *
-	 * @param int|bool $namespace The namespace ID (or false, if the namespace should be ignored)
+	 * @param int|false $namespace The namespace ID (or false, if the namespace should be ignored)
 	 * @param string $text The page title. Should be valid. Only minimal normalization is applied.
 	 *        Underscores will be replaced.
 	 * @param string $fragment The fragment name (may be empty).
