@@ -477,11 +477,6 @@ class MediaWiki {
 						$this->context->setWikiPage( $article->getPage() );
 					}
 				}
-			} else {
-				// Article may have been changed by hook
-				// NOTE: This also clears any action cache
-				$this->context->setTitle( $article->getTitle() );
-				$this->context->setWikiPage( $article->getPage() );
 			}
 		}
 
