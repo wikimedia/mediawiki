@@ -30,6 +30,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Settings\SettingsBuilder;
 use Wikimedia\Rdbms\DatabaseSqlite;
 
 /**
@@ -278,14 +279,14 @@ class UpdateMediaWiki extends Maintenance {
 	}
 
 	private function validateSettings() {
-		global $wgSettings;
+		$settings = SettingsBuilder::getInstance();
 
 		$warnings = [];
-		if ( $wgSettings->getWarnings() ) {
-			$warnings = $wgSettings->getWarnings();
+		if ( $settings->getWarnings() ) {
+			$warnings = $settings->getWarnings();
 		}
 
-		$status = $wgSettings->validate();
+		$status = $settings->validate();
 		if ( !$status->isOk() ) {
 			foreach ( $status->getErrorsByType( 'error' ) as $msg ) {
 				$msg = wfMessage( $msg['message'], ...$msg['params'] );
@@ -293,12 +294,12 @@ class UpdateMediaWiki extends Maintenance {
 			}
 		}
 
-		$deprecations = $wgSettings->detectDeprecatedConfig();
+		$deprecations = $settings->detectDeprecatedConfig();
 		foreach ( $deprecations as $key => $msg ) {
 			$warnings[] = "$key is deprecated: $msg";
 		}
 
-		$obsolete = $wgSettings->detectObsoleteConfig();
+		$obsolete = $settings->detectObsoleteConfig();
 		foreach ( $obsolete as $key => $msg ) {
 			$warnings[] = "$key is obsolete: $msg";
 		}
