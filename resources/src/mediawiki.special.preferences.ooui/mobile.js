@@ -2,43 +2,39 @@
  * JavaScript for Special:Preferences: Tab navigation.
  */
 ( function () {
-	$( function () {
-		// this function takes all the checkboxes in the Preferences of mobile & displays them as toggle switches
-		$( 'span.oo-ui-checkboxInputWidget' ).each( function () {
-			var checkboxinputDisplayedAsToggleSwitch = OO.ui.infuse( $( this ) );
-			var toggleSwitch = new OO.ui.ToggleSwitchWidget( {
-				value: checkboxinputDisplayedAsToggleSwitch.isSelected(),
-				disabled: checkboxinputDisplayedAsToggleSwitch.disabled
+	// this function takes all the checkboxes in the Preferences of mobile & displays them as toggle switches
+	// naming the function makes it easier to find in performance profiler tools.
+	// local runtime: 12ms (+/- 2ms) total
+	function insertToggles() {
+		var checkboxes = document.querySelectorAll( 'span.oo-ui-checkboxInputWidget' );
+		// Iterate through DOM elements instead of JQuery collection
+		Array.prototype.forEach.call( checkboxes, function ( checkboxWidget ) {
+			// Use DOM elements when OOUI functionality isn't required
+			var checkboxInput = checkboxWidget.querySelector( 'input' );
+			// It's fine to use OOUI to implement UI elements
+			var toggleSwitchWidget = new OO.ui.ToggleSwitchWidget( {
+				value: checkboxInput.checked,
+				disabled: checkboxInput.disabled
 			} );
-			var $checkboxBeingDisplayedAsToggleSwitch = checkboxinputDisplayedAsToggleSwitch.$element;
-			toggleSwitch.$element.insertAfter( $checkboxBeingDisplayedAsToggleSwitch );
-			$checkboxBeingDisplayedAsToggleSwitch.hide();
-
-			// check to see if the toggle/ckbox is enabled (can be disabled due to requirements for display)
-			// @TODO  Jsn.sherman
-			// It occurred to me that we should probably check to see what happens if a checkbox already has
-			// it's own custom onclick/onchange event handling. I think we'd end up paving right over it.
-			// I thought to create that scenario locally to see if we should check for it and return early
-			// (before replacing the checkbox), but I ran out of time.
-			if ( toggleSwitch.disabled ) {
-				return;
-			}
-
-			// listening on checkbox change is required to make the clicking work
-			$checkboxBeingDisplayedAsToggleSwitch.on( 'change', function () {
-				// disable checkbox
-				$checkboxBeingDisplayedAsToggleSwitch.attr( 'disabled', true );
-				var cbval = $checkboxBeingDisplayedAsToggleSwitch.getValue();
-				toggleSwitch.setValue( cbval );
+			// No more event or state handling is required
+			// since we only create one OOUI Widget per checkbox
+			toggleSwitchWidget.on( 'change', function ( value ) {
+				toggleSwitchWidget.setValue( value );
+				checkboxInput.checked = value;
 			} );
 
-			toggleSwitch.on( 'change', function ( value ) {
-				toggleSwitch.setValue( value );
-				$checkboxBeingDisplayedAsToggleSwitch.find( 'input' ).prop(
-					'checked', value );
-			} );
+			// Use native JS methods to insert elements into the DOM
+			// OO.ui.Widget.$element returns a JQuery object
+			// That object is iterable and wraps a single DOM element, so
+			// OO.ui.Widget.$element[ 0 ] is the DOM element rendition of this OOUI widget
+			checkboxWidget.insertAdjacentElement( 'afterend', toggleSwitchWidget.$element[ 0 ] );
+			// Use native JS methods to manage visibility of DOM elements
+			checkboxWidget.classList.add( 'hidden' );
+			// @TODO: T323050 verify that this doesn't break any exising checkbox handling
 		} );
-
+	}
+	$( function () {
+		insertToggles();
 		var $prefContent, prefContentId;
 		var options = OO.ui.infuse( $( '.mw-mobile-preferences-container' ) );
 		var $preferencesContainer = $( '#preferences' );
