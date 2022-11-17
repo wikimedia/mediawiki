@@ -1990,6 +1990,10 @@ class SQLPlatform implements ISQLPlatform {
 		array $identityKey,
 		array $rows
 	) {
+		if ( !$set ) {
+			throw new DBLanguageError( "Update assignment list can't be empty for upsert" );
+		}
+
 		// Sloppy callers might construct the SET array using the ROW array, leaving redundant
 		// column definitions for identity key columns. Detect this for backwards compatibility.
 		$soleRow = ( count( $rows ) == 1 ) ? reset( $rows ) : null;
