@@ -56,7 +56,7 @@ class CoreMagicVariables {
 		ServiceOptions $svcOptions,
 		LoggerInterface $logger
 	): ?string {
-		$pageLang = $parser->getFunctionLang();
+		$pageLang = $parser->getTargetLanguage();
 		$title = $parser->getTitle();
 
 		switch ( $id ) {

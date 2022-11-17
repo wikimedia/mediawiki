@@ -3,14 +3,28 @@
 const { action, assert, REST, utils } = require( 'api-testing' );
 
 describe( 'Page Source', () => {
-	const page = utils.title( 'PageSource ' );
+	const page = utils.title( 'PageSource_' );
+	const pageWithSpaces = page.replace( '_', ' ' );
 	const variantPage = utils.title( 'PageSourceVariant' );
+
+	const redirectPage = utils.title( 'Redirect ' );
+
 	const client = new REST();
 	const anon = action.getAnon();
 	const baseEditText = "''Edit 1'' and '''Edit 2'''";
 
 	before( async () => {
+		const mindy = await action.mindy();
 		await anon.edit( page, { text: baseEditText } );
+
+		// Setup page with redirects
+		await anon.edit( redirectPage, { text: `Original name is ${redirectPage}` } );
+		const token = await mindy.token();
+		await mindy.action( 'move', {
+			from: redirectPage,
+			to: redirectPage.replace( 'Redirect', 'Redirected' ),
+			token
+		}, true );
 	} );
 
 	describe( 'GET /page/{title}', () => {
@@ -19,7 +33,7 @@ describe( 'Page Source', () => {
 			assert.deepEqual( status, 200, text );
 			assert.containsAllKeys( body, [ 'latest', 'id', 'key', 'license', 'title', 'content_model', 'source' ] );
 			assert.nestedPropertyVal( body, 'content_model', 'wikitext' );
-			assert.nestedPropertyVal( body, 'title', page );
+			assert.nestedPropertyVal( body, 'title', pageWithSpaces );
 			assert.nestedPropertyVal( body, 'key', utils.dbkey( page ) );
 			assert.nestedPropertyVal( body, 'source', baseEditText );
 		} );
@@ -55,9 +69,9 @@ describe( 'Page Source', () => {
 			assert.deepEqual( status, 200, text );
 			assert.containsAllKeys( body, [ 'latest', 'id', 'key', 'license', 'title', 'content_model', 'html_url' ] );
 			assert.nestedPropertyVal( body, 'content_model', 'wikitext' );
-			assert.nestedPropertyVal( body, 'title', page );
+			assert.nestedPropertyVal( body, 'title', pageWithSpaces );
 			assert.nestedPropertyVal( body, 'key', utils.dbkey( page ) );
-			assert.match( body.html_url, new RegExp( `/page/${encodeURIComponent( page )}/html$` ) );
+			assert.match( body.html_url, new RegExp( `/page/${encodeURIComponent( pageWithSpaces )}/html$` ) );
 		} );
 		it( 'Should return 404 error for non-existent page', async () => {
 			const dummyPageTitle = utils.title( 'DummyPage_' );
@@ -86,6 +100,23 @@ describe( 'Page Source', () => {
 	} );
 
 	describe( 'GET /page/{title}/html', () => {
+		it( 'Title normalization should return permanent redirect (301)', async () => {
+			const { status, text } = await client.get( `/page/${redirectPage}/html` );
+			assert.deepEqual( status, 301, text );
+		} );
+
+		it( 'Wiki redirects should return legacy temporary redirect (307)', async () => {
+			const redirectPageDbkey = utils.dbkey( redirectPage );
+			const { status, text } = await client.get( `/page/${redirectPageDbkey}/html` );
+			assert.deepEqual( status, 307, text );
+		} );
+
+		it( 'Bypass redirects with query param redirect=no', async () => {
+			const redirectPageDbkey = utils.dbkey( redirectPage );
+			const { status, text } = await client.get( `/page/${redirectPageDbkey}/html`, { redirect: 'no' } );
+			assert.deepEqual( status, 200, text );
+		} );
+
 		it( 'Should successfully return page HTML', async () => {
 			const { status, headers, text } = await client.get( `/page/${page}/html` );
 			assert.deepEqual( status, 200, text );
@@ -131,12 +162,29 @@ describe( 'Page Source', () => {
 	} );
 
 	describe( 'GET /page/{title}/with_html', () => {
+		it( 'Title normalization should return permanent redirect (301)', async () => {
+			const { status, text } = await client.get( `/page/${redirectPage}/with_html` );
+			assert.deepEqual( status, 301, text );
+		} );
+
+		it( 'Wiki redirects should return legacy temporary redirect (307)', async () => {
+			const redirectPageDbkey = utils.dbkey( redirectPage );
+			const { status, text } = await client.get( `/page/${redirectPageDbkey}/with_html` );
+			assert.deepEqual( status, 307, text );
+		} );
+
+		it( 'Bypass redirects with query param redirect=no', async () => {
+			const redirectPageDbkey = utils.dbkey( redirectPage );
+			const { status, text } = await client.get( `/page/${redirectPageDbkey}/with_html`, { redirect: 'no' } );
+			assert.deepEqual( status, 200, text );
+		} );
+
 		it( 'Should successfully return page HTML and metadata for Wikitext page', async () => {
 			const { status, body, text } = await client.get( `/page/${page}/with_html` );
 			assert.deepEqual( status, 200, text );
 			assert.containsAllKeys( body, [ 'latest', 'id', 'key', 'license', 'title', 'content_model', 'html' ] );
 			assert.nestedPropertyVal( body, 'content_model', 'wikitext' );
-			assert.nestedPropertyVal( body, 'title', page );
+			assert.nestedPropertyVal( body, 'title', pageWithSpaces );
 			assert.nestedPropertyVal( body, 'key', utils.dbkey( page ) );
 			assert.match( body.html, /<html / );
 			assert.match( body.html, /Edit \w+<\/b>/ );

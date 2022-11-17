@@ -7,7 +7,9 @@ use IBufferingStatsdDataFactory;
 use LogicException;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageLookup;
+use MediaWiki\Page\RedirectStore;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -33,6 +35,12 @@ class PageHTMLHandler extends SimpleHandler {
 	/** @var PageContentHelper */
 	private $contentHelper;
 
+	/** @var TitleFormatter */
+	private $titleFormatter;
+
+	/** @var RedirectStore */
+	private $redirectStore;
+
 	public function __construct(
 		Config $config,
 		RevisionLookup $revisionLookup,
@@ -41,8 +49,11 @@ class PageHTMLHandler extends SimpleHandler {
 		ParsoidOutputStash $parsoidOutputStash,
 		IBufferingStatsdDataFactory $statsDataFactory,
 		ParsoidOutputAccess $parsoidOutputAccess,
-		HtmlTransformFactory $htmlTransformFactory
+		HtmlTransformFactory $htmlTransformFactory,
+		RedirectStore $redirectStore
 	) {
+		$this->titleFormatter = $titleFormatter;
+		$this->redirectStore = $redirectStore;
 		$this->contentHelper = new PageContentHelper(
 			$config,
 			$revisionLookup,
@@ -82,12 +93,17 @@ class PageHTMLHandler extends SimpleHandler {
 	 */
 	public function run(): Response {
 		$this->contentHelper->checkAccess();
-
 		$page = $this->contentHelper->getPage();
 
 		// The call to $this->contentHelper->getPage() should not return null if
 		// $this->contentHelper->checkAccess() did not throw.
 		Assert::invariant( $page !== null, 'Page should be known' );
+
+		$pageRedirectResponse = $this->createPageRedirectResponse( $page );
+
+		if ( $pageRedirectResponse !== null ) {
+			return $pageRedirectResponse;
+		}
 
 		$parserOutput = $this->htmlHelper->getHtml();
 		// Do not de-duplicate styles, Parsoid already does it in a slightly different way (T300325)
@@ -116,6 +132,44 @@ class PageHTMLHandler extends SimpleHandler {
 		}
 
 		return $response;
+	}
+
+	/**
+	 * Check for Page Redirects and create a Redirect Response
+	 * @param ExistingPageRecord $page
+	 * @return Response|null
+	 */
+	private function createPageRedirectResponse( ExistingPageRecord $page ): ?Response {
+		$titleAsRequested = $this->contentHelper->getTitleText();
+		$normalizedTitle = $this->titleFormatter->getPrefixedDBkey( $page );
+
+		// Check for normalization redirects
+		if ( $titleAsRequested !== $normalizedTitle ) {
+			$redirectTargetUrl = $this->getRouteUrl( [
+				"title" => $normalizedTitle
+			] );
+			return $this->getResponseFactory()->createPermanentRedirect( $redirectTargetUrl );
+		}
+
+		$params = $this->getRequest()->getQueryParams();
+		$redirectParam = $params['redirect'] ?? null;
+		$redirectTarget = $this->redirectStore->getRedirectTarget( $page );
+
+		if ( $redirectTarget === null ) {
+			return null;
+		}
+
+		// Check if page is a redirect
+		if ( $page->isRedirect() && $redirectParam !== 'no' ) {
+			$redirectTargetUrl = $this->getRouteUrl( [
+				"title" => $this->titleFormatter->getPrefixedDBkey(
+					$redirectTarget
+				)
+			] );
+			return $this->getResponseFactory()->createTemporaryRedirect( $redirectTargetUrl );
+		}
+
+		return null;
 	}
 
 	/**

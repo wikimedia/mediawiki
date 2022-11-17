@@ -160,7 +160,7 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function formatDate( $parser, $date, $defaultPref = null ) {
-		$lang = $parser->getFunctionLang();
+		$lang = $parser->getTargetLanguage();
 		$df = MediaWikiServices::getInstance()->getDateFormatterFactory()->get( $lang );
 
 		$date = trim( $date );
@@ -336,14 +336,14 @@ class CoreParserFunctions {
 	 */
 	public static function formatnum( $parser, $num = '', $arg = null ) {
 		if ( self::matchAgainstMagicword( $parser->getMagicWordFactory(), 'rawsuffix', $arg ) ) {
-			$func = [ $parser->getFunctionLang(), 'parseFormattedNumber' ];
+			$func = [ $parser->getTargetLanguage(), 'parseFormattedNumber' ];
 		} elseif (
 			self::matchAgainstMagicword( $parser->getMagicWordFactory(), 'nocommafysuffix', $arg )
 		) {
-			$func = [ $parser->getFunctionLang(), 'formatNumNoSeparators' ];
+			$func = [ $parser->getTargetLanguage(), 'formatNumNoSeparators' ];
 			$func = self::getLegacyFormatNum( $parser, $func );
 		} else {
-			$func = [ $parser->getFunctionLang(), 'formatNum' ];
+			$func = [ $parser->getTargetLanguage(), 'formatNum' ];
 			$func = self::getLegacyFormatNum( $parser, $func );
 		}
 		return $parser->markerSkipCallback( $num, $func );
@@ -387,7 +387,7 @@ class CoreParserFunctions {
 	 */
 	public static function grammar( $parser, $case = '', $word = '' ) {
 		$word = $parser->killMarkers( $word );
-		return $parser->getFunctionLang()->convertGrammar( $word, $case );
+		return $parser->getTargetLanguage()->convertGrammar( $word, $case );
 	}
 
 	/**
@@ -424,7 +424,7 @@ class CoreParserFunctions {
 		} elseif ( $username === '' && $parser->getOptions()->getInterfaceMessage() ) {
 			$gender = $genderCache->getGenderOf( $parser->getOptions()->getUserIdentity(), __METHOD__ );
 		}
-		$ret = $parser->getFunctionLang()->gender( $gender, $forms );
+		$ret = $parser->getTargetLanguage()->gender( $gender, $forms );
 		return $ret;
 	}
 
@@ -435,10 +435,10 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function plural( $parser, $text = '', ...$forms ) {
-		$text = $parser->getFunctionLang()->parseFormattedNumber( $text );
+		$text = $parser->getTargetLanguage()->parseFormattedNumber( $text );
 		settype( $text, ctype_digit( $text ) ? 'int' : 'float' );
 		// @phan-suppress-next-line PhanTypeMismatchArgument Phan does not handle settype
-		return $parser->getFunctionLang()->convertPlural( $text, $forms );
+		return $parser->getTargetLanguage()->convertPlural( $text, $forms );
 	}
 
 	/**
@@ -447,7 +447,7 @@ class CoreParserFunctions {
 	 * @return string
 	 */
 	public static function bidi( $parser, $text = '' ) {
-		return $parser->getFunctionLang()->embedBidi( $text );
+		return $parser->getTargetLanguage()->embedBidi( $text );
 	}
 
 	/**
@@ -592,42 +592,42 @@ class CoreParserFunctions {
 	}
 
 	public static function numberofpages( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::pages(), $raw, $parser->getFunctionLang() );
+		return self::formatRaw( SiteStats::pages(), $raw, $parser->getTargetLanguage() );
 	}
 
 	public static function numberofusers( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::users(), $raw, $parser->getFunctionLang() );
+		return self::formatRaw( SiteStats::users(), $raw, $parser->getTargetLanguage() );
 	}
 
 	public static function numberofactiveusers( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::activeUsers(), $raw, $parser->getFunctionLang() );
+		return self::formatRaw( SiteStats::activeUsers(), $raw, $parser->getTargetLanguage() );
 	}
 
 	public static function numberofarticles( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::articles(), $raw, $parser->getFunctionLang() );
+		return self::formatRaw( SiteStats::articles(), $raw, $parser->getTargetLanguage() );
 	}
 
 	public static function numberoffiles( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::images(), $raw, $parser->getFunctionLang() );
+		return self::formatRaw( SiteStats::images(), $raw, $parser->getTargetLanguage() );
 	}
 
 	public static function numberofadmins( $parser, $raw = null ) {
 		return self::formatRaw(
 			SiteStats::numberingroup( 'sysop' ),
 			$raw,
-			$parser->getFunctionLang()
+			$parser->getTargetLanguage()
 		);
 	}
 
 	public static function numberofedits( $parser, $raw = null ) {
-		return self::formatRaw( SiteStats::edits(), $raw, $parser->getFunctionLang() );
+		return self::formatRaw( SiteStats::edits(), $raw, $parser->getTargetLanguage() );
 	}
 
 	public static function pagesinnamespace( $parser, $namespace = 0, $raw = null ) {
 		return self::formatRaw(
 			SiteStats::pagesInNs( intval( $namespace ) ),
 			$raw,
-			$parser->getFunctionLang()
+			$parser->getTargetLanguage()
 		);
 	}
 
@@ -635,7 +635,7 @@ class CoreParserFunctions {
 		return self::formatRaw(
 			SiteStats::numberingroup( strtolower( $name ) ),
 			$raw,
-			$parser->getFunctionLang()
+			$parser->getTargetLanguage()
 		);
 	}
 
@@ -893,7 +893,7 @@ class CoreParserFunctions {
 
 		$title = Title::makeTitleSafe( NS_CATEGORY, $name );
 		if ( !$title ) { # invalid title
-			return self::formatRaw( 0, $raw, $parser->getFunctionLang() );
+			return self::formatRaw( 0, $raw, $parser->getTargetLanguage() );
 		}
 		$languageConverter = MediaWikiServices::getInstance()
 			->getLanguageConverterFactory()
@@ -920,7 +920,7 @@ class CoreParserFunctions {
 		}
 
 		$count = $cache[$name][$type];
-		return self::formatRaw( $count, $raw, $parser->getFunctionLang() );
+		return self::formatRaw( $count, $raw, $parser->getTargetLanguage() );
 	}
 
 	/**
@@ -936,7 +936,7 @@ class CoreParserFunctions {
 		$title = Title::newFromText( $page );
 
 		if ( !is_object( $title ) ) {
-			return self::formatRaw( 0, $raw, $parser->getFunctionLang() );
+			return self::formatRaw( 0, $raw, $parser->getTargetLanguage() );
 		}
 
 		// fetch revision from cache/database and return the value
@@ -946,7 +946,7 @@ class CoreParserFunctions {
 			// We've had bugs where rev_len was not being recorded for empty pages, see T135414
 			$length = 0;
 		}
-		return self::formatRaw( $length, $raw, $parser->getFunctionLang() );
+		return self::formatRaw( $length, $raw, $parser->getTargetLanguage() );
 	}
 
 	/**

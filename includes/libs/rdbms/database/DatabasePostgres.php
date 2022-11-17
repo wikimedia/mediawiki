@@ -553,6 +553,32 @@ __INDEXATTR__;
 		return $currval;
 	}
 
+	/**
+	 * @param string $table
+	 * @return array<string,string>
+	 */
+	public function getValueTypesForWithClause( $table ) {
+		$typesByColumn = [];
+
+		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
+		$encTable = $this->addQuotes( $table );
+		foreach ( $this->getCoreSchemas() as $schema ) {
+			$encSchema = $this->addQuotes( $schema );
+			$sql = "SELECT column_name,udt_name " .
+				"FROM information_schema.columns " .
+				"WHERE table_name = $encTable AND table_schema = $encSchema";
+			$res = $this->query( $sql, __METHOD__, $flags );
+			if ( $res->numRows() ) {
+				foreach ( $res as $row ) {
+					$typesByColumn[$row->column_name] = $row->udt_name;
+				}
+				break;
+			}
+		}
+
+		return $typesByColumn;
+	}
+
 	public function textFieldSize( $table, $field ) {
 		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 		$encTable = $this->tableName( $table );

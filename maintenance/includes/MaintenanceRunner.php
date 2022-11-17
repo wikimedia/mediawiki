@@ -55,7 +55,7 @@ class MaintenanceRunner {
 			true
 		);
 		$this->parameters->addOption( 'server', "The protocol and server name to use in URLs, e.g. " .
-			"http://en.wikipedia.org. This is sometimes necessary because " .
+			"https://en.wikipedia.org. This is sometimes necessary because " .
 			"server name detection may fail in command line scripts.", false, true );
 		$this->parameters->addOption( 'profiler', 'Profiler output format (usually "text")', false, true );
 

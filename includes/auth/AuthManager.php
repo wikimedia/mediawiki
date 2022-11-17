@@ -1869,7 +1869,8 @@ class AuthManager implements LoggerAwareInterface {
 		] );
 
 		// Ignore warnings about primary connections/writes...hard to avoid here
-		$trxProfilerSilencedScope = \Profiler::instance()->getTransactionProfiler()->silenceForScope();
+		$trxProfiler = \Profiler::instance()->getTransactionProfiler();
+		$scope = $trxProfiler->silenceForScope( $trxProfiler::EXPECTATION_REPLICAS_ONLY );
 		try {
 			$status = $user->addToDatabase();
 			if ( !$status->isOK() ) {
@@ -1931,7 +1932,7 @@ class AuthManager implements LoggerAwareInterface {
 			$logEntry->insert();
 		}
 
-		ScopedCallback::consume( $trxProfilerSilencedScope );
+		ScopedCallback::consume( $scope );
 
 		if ( $login ) {
 			$remember = $source === self::AUTOCREATE_SOURCE_TEMP;

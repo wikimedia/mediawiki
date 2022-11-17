@@ -19,6 +19,7 @@
  */
 namespace Wikimedia\Rdbms\Platform;
 
+use Wikimedia\Rdbms\DBLanguageError;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -158,6 +159,51 @@ class PostgresPlatform extends SQLPlatform {
 		$fld = "array_to_string(array_agg($field)," . $this->quoter->addQuotes( $delim ) . ')';
 
 		return '(' . $this->selectSQLText( $table, $fld, $conds, null, [], $join_conds ) . ')';
+	}
+
+	public function makeInsertLists( array $rows, $aliasPrefix = '', array $typeByColumn = [] ) {
+		$firstRow = $rows[0];
+		if ( !is_array( $firstRow ) || !$firstRow ) {
+			throw new DBLanguageError( 'Got an empty row list or empty row' );
+		}
+		// List of columns that define the value tuple ordering
+		$tupleColumns = array_keys( $firstRow );
+
+		$valueTuples = [];
+		foreach ( $rows as $row ) {
+			$rowColumns = array_keys( $row );
+			// VALUES(...) requires a uniform correspondence of (column => value)
+			if ( $rowColumns !== $tupleColumns ) {
+				throw new DBLanguageError(
+					'Got row columns (' . implode( ', ', $rowColumns ) . ') ' .
+					'instead of expected (' . implode( ', ', $tupleColumns ) . ')'
+				);
+			}
+			// Make the value tuple that defines this row
+			$typedRowValues = [];
+			foreach ( $row as $column => $value ) {
+				$type = $typeByColumn[$column] ?? null;
+				if ( $value === null ) {
+					$typedRowValues[] = 'NULL';
+				} elseif ( $type !== null ) {
+					$typedRowValues[] = $this->quoter->addQuotes( $value ) . '::' . $type;
+				} else {
+					$typedRowValues[] = $this->quoter->addQuotes( $value );
+				}
+			}
+			$valueTuples[] = '(' . implode( ',', $typedRowValues ) . ')';
+		}
+
+		$magicAliasFields = [];
+		foreach ( $tupleColumns as $column ) {
+			$magicAliasFields[] = $aliasPrefix . $column;
+		}
+
+		return [
+			$this->makeList( $tupleColumns, self::LIST_NAMES ),
+			implode( ',', $valueTuples ),
+			$this->makeList( $magicAliasFields, self::LIST_NAMES )
+		];
 	}
 
 	protected function makeInsertNonConflictingVerbAndOptions() {

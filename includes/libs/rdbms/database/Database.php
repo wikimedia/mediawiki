@@ -1953,15 +1953,24 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Check if there is a SQL assignment expression in $set
 		$useWith = isset( $set[0] );
 
+		// Subclasses might need explicit type casting within "WITH...AS (VALUES ...)"
+		// so that these CTE rows can be referenced within the SET clause assigments.
+		$typeByColumn = $useWith ? $this->getValueTypesForWithClause( $table ) : [];
+
 		$affectedRowCount = 0;
 		$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 		try {
 			foreach ( $rows as $row ) {
 				// Update any existing conflicting row (including ones inserted from $rows)
-				[ $sqlColumns, $sqlTuples, $sqlVals ] = $this->platform->makeInsertLists( [ $row ], '__' );
-				$sqlConditions = $this->platform->makeKeyCollisionCondition( [ $row ], $identityKey );
-				// Since "WITH...AS (VALUES ...)" loses type information, subclasses should
-				// override with method if that might cause problems with the SET clause.
+				[ $sqlColumns, $sqlTuples, $sqlVals ] = $this->platform->makeInsertLists(
+					[ $row ],
+					'__',
+					$typeByColumn
+				);
+				$sqlConditions = $this->platform->makeKeyCollisionCondition(
+					[ $row ],
+					$identityKey
+				);
 				// https://www.sqlite.org/lang_update.html
 				// https://mariadb.com/kb/en/with/
 				// https://dev.mysql.com/doc/refman/8.0/en/update.html
@@ -1991,6 +2000,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->endAtomic( $fname );
 		// Set the affected row count for the whole operation
 		$this->affectedRowCount = $affectedRowCount;
+	}
+
+	/**
+	 * @param string $table
+	 * @return array<string,string>
+	 */
+	public function getValueTypesForWithClause( $table ) {
+		return [];
 	}
 
 	/**
