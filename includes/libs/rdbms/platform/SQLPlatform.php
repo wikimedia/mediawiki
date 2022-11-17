@@ -1409,10 +1409,11 @@ class SQLPlatform implements ISQLPlatform {
 	 *
 	 * @param array[] $rows Non-empty list of (column => value) maps
 	 * @param string $aliasPrefix Optional prefix to prepend to the magic alias names
+	 * @param string[] $typeByColumn Optional map of (column => data type)
 	 * @return array (comma-separated columns, comma-separated tuples, comma-separated aliases)
 	 * @since 1.35
 	 */
-	public function makeInsertLists( array $rows, $aliasPrefix = '' ) {
+	public function makeInsertLists( array $rows, $aliasPrefix = '', array $typeByColumn = [] ) {
 		$firstRow = $rows[0];
 		if ( !is_array( $firstRow ) || !$firstRow ) {
 			throw new DBLanguageError( 'Got an empty row list or empty row' );
