@@ -1110,7 +1110,7 @@ class Message implements MessageSpecifier {
 	 * @since 1.17
 	 *
 	 * @param mixed $raw
-	 * @param-taint $raw html,raw_param
+	 * @param-taint $raw html
 	 *
 	 * @return array Array with a single "raw" key.
 	 */
