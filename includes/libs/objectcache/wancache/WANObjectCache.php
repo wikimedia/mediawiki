@@ -158,6 +158,8 @@ class WANObjectCache implements
 
 	/** @var int Reads/second assumed during a hypothetical cache write stampede for a key */
 	private $keyHighQps;
+	/** @var int Stand-in value size assumed during hypothetical cache write stampede for a key */
+	private $keyHighByteSize;
 	/** @var float Max tolerable bytes/second to spend on a cache write stampede for a key */
 	private $keyHighUplinkBps;
 
@@ -218,12 +220,12 @@ class WANObjectCache implements
 	/** Seconds to keep dependency purge keys around */
 	private const CHECK_KEY_TTL = self::TTL_YEAR;
 	/** Seconds to keep interim value keys for tombstoned keys around */
-	private const INTERIM_KEY_TTL = 1;
+	private const INTERIM_KEY_TTL = 2;
 
 	/** Seconds to keep lock keys around */
 	private const LOCK_TTL = 10;
 	/** Seconds to no-op key set() calls to avoid large blob I/O stampedes */
-	private const COOLOFF_TTL = 1;
+	private const COOLOFF_TTL = 2;
 	/** Seconds to ramp up the chance of regeneration due to expected time-till-refresh */
 	private const RAMPUP_TTL = 30;
 
@@ -338,6 +340,9 @@ class WANObjectCache implements
 	 *       a single key. This is used to decide when the overhead of checking short-lived
 	 *       write throttling keys is worth it.
 	 *       [default: 100]
+	 *   - keyHighByteSize: value size assumed during hypothetical cache write stampede for a key.
+	 *       This is only used when the actual value size is expensive to determine.
+	 *       [default: 128Kb]
 	 *   - keyHighUplinkBps: maximum tolerable bytes/second to spend on a cache write stampede
 	 *       for a single key. This is used to decide when the overhead of checking short-lived
 	 *       write throttling keys is worth it. [default: (1/100 of a 1Gbps link)]
@@ -358,6 +363,7 @@ class WANObjectCache implements
 		}
 
 		$this->keyHighQps = $params['keyHighQps'] ?? 100;
+		$this->keyHighByteSize = $params['keyHighByteSize'] ?? ( 128 * 1024 );
 		$this->keyHighUplinkBps = $params['keyHighUplinkBps'] ?? ( 1e9 / 8 / 100 );
 
 		$this->setLogger( $params['logger'] ?? new NullLogger() );
@@ -1952,13 +1958,12 @@ class WANObjectCache implements
 	 * @return bool Whether it is OK to proceed with a key set operation
 	 */
 	private function checkAndSetCooloff( $key, $kClass, $value, $elapsed, $hasLock ) {
-		// Roughly estimate the size of the value once serialized. This does not account
-		// for the use of non-PHP serialization (e.g. igbinary/msgpack/json), compression
-		// (e.g. gzip/lzma), nor protocol overhead.
-		if ( is_string( $value ) ) {
-			$estimatedSize = strlen( $value );
+		if ( is_scalar( $value ) ) {
+			// Roughly estimate the size of the value once serialized
+			$hypotheticalSize = strlen( (string)$value );
 		} else {
-			$estimatedSize = strlen( serialize( $value ) );
+			// Treat the value is a generic sizable object
+			$hypotheticalSize = $this->keyHighByteSize;
 		}
 
 		if ( !$hasLock ) {
@@ -1982,7 +1987,7 @@ class WANObjectCache implements
 			//  - 300 misses (100/s), 1KB value, 1250000 bps limit => 800000 bps (low risk)
 			//  - 300 misses (100/s), 10KB value, 1250000 bps limit => 8000000 bps (high risk)
 			//  - 300 misses (100/s), 100KB value, 1250000 bps limit => 80000000 bps (high risk)
-			if ( ( $missesPerSecForHighQPS * $estimatedSize ) >= $this->keyHighUplinkBps ) {
+			if ( ( $missesPerSecForHighQPS * $hypotheticalSize ) >= $this->keyHighUplinkBps ) {
 				$cooloffSisterKey = $this->makeSisterKey( $key, self::TYPE_COOLOFF );
 				$watchPoint = $this->cache->watchErrors();
 				if (
@@ -1990,8 +1995,7 @@ class WANObjectCache implements
 					// Don't treat failures due to I/O errors as the key being in cool-off
 					$this->cache->getLastError( $watchPoint ) === self::ERR_NONE
 				) {
-					$this->logger->debug(
-						"checkAndSetCooloff($key): bounced; {$estimatedSize} byte(s), {$elapsed}s" );
+					$this->logger->debug( "checkAndSetCooloff($key): bounced; ${elapsed}s" );
 					$this->stats->increment( "wanobjectcache.$kClass.cooloff_bounce" );
 
 					return false;
@@ -2001,7 +2005,7 @@ class WANObjectCache implements
 
 		// Corresponding metrics for cache writes that actually get sent over the write
 		$this->stats->timing( "wanobjectcache.$kClass.regen_set_delay", 1e3 * $elapsed );
-		$this->stats->updateCount( "wanobjectcache.$kClass.regen_set_bytes", $estimatedSize );
+		$this->stats->updateCount( "wanobjectcache.$kClass.regen_set_bytes", $hypotheticalSize );
 
 		return true;
 	}
