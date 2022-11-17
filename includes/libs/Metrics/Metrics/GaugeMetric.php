@@ -84,4 +84,28 @@ class GaugeMetric {
 	public function render(): array {
 		return $this->metricUtils->render();
 	}
+
+	public function getComponent(): string {
+		return $this->metricUtils->getComponent();
+	}
+
+	public function getLabelKeys(): array {
+		return $this->metricUtils->getLabelKeys();
+	}
+
+	public function getName(): string {
+		return $this->metricUtils->getName();
+	}
+
+	public function getSamples(): array {
+		return $this->metricUtils->getSamples();
+	}
+
+	public function getSampleRate(): float {
+		return $this->metricUtils->getSampleRate();
+	}
+
+	public function getTypeIndicator(): string {
+		return self::TYPE_INDICATOR;
+	}
 }

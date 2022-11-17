@@ -140,6 +140,26 @@ class MetricUtils {
 		}
 	}
 
+	public function getComponent(): string {
+		return $this->component;
+	}
+
+	public function getLabelKeys(): array {
+		return $this->labels;
+	}
+
+	public function getName(): string {
+		return $this->name;
+	}
+
+	public function getSamples(): array {
+		return $this->samples;
+	}
+
+	public function getSampleRate(): float {
+		return $this->sampleRate;
+	}
+
 	/**
 	 * Get set of samples filtered according to configured sampleRate.
 	 * @return array
