@@ -64,6 +64,31 @@ abstract class ParserCacheSerializationTestCases {
 			. '\xca\x49\x01\x00\x85\x11\x4a\x0d\x0b\x00\x00\x00",
 	];
 
+	private const SECTIONS = [
+		[
+			'toclevel' => 0,
+			'line' => 'heading_1',
+			'level' => 1,
+			'number' => '1.0',
+			'index' => 'T-1',
+			'fromTitle' => '',
+			'byteOffset' => null,
+			'anchor' => 'heading_1',
+			'linkAnchor' => '#heading_1',
+		],
+		[
+			'toclevel' => 1,
+			'line' => 'heading_2',
+			'level' => 2,
+			'number' => '2.0',
+			'index' => 'T-2',
+			'fromTitle' => '',
+			'byteOffset' => null,
+			'anchor' => 'heading_2',
+			'linkAnchor' => '#heading_2'
+		],
+	];
+
 	private const CACHE_TIME = '20010419042521';
 
 	/**
@@ -212,6 +237,9 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadata->setHideNewSection( true );
 		$parserOutputWithMetadata->setNewSection( true );
 		$parserOutputWithMetadata->setFlag( 'test' );
+
+		$parserOutputWithSections = new ParserOutput( '' );
+		$parserOutputWithSections->setSections( self::SECTIONS );
 
 		$parserOutputWithMetadataPost1_31 = new ParserOutput( '' );
 		$parserOutputWithMetadataPost1_31->addWrapperDivClass( 'test_wrapper' );
@@ -393,6 +421,12 @@ abstract class ParserCacheSerializationTestCases {
 					$testCase->assertTrue( $object->getNewSection() );
 					$testCase->assertTrue( $object->getFlag( 'test' ) );
 					$testCase->assertArrayEquals( [ 'test' ], $object->getAllFlags() );
+				}
+			],
+			'withSections' => [
+				'instance' => $parserOutputWithSections,
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+					$testCase->assertArrayEquals( self::SECTIONS, $object->getSections() );
 				}
 			],
 			'withMetadataPost1_31' => [
