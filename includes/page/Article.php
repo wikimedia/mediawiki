@@ -479,6 +479,7 @@ class Article implements Page {
 		$outputPage->setPreventClickjacking( false );
 
 		$parserOptions = $this->getParserOptions();
+
 		$poOptions = [];
 		# Allow extensions to vary parser options used for article rendering
 		Hooks::runner()->onArticleParserOptions( $this, $parserOptions );
@@ -1949,6 +1950,7 @@ class Article implements Page {
 			$parserOptions = $this->getParserOptions();
 		} else {
 			$parserOptions = $this->mPage->makeParserOptions( $user );
+			$parserOptions->setRenderReason( 'page-view' );
 		}
 
 		return $this->mPage->getParserOutput( $parserOptions, $oldid );
@@ -1959,7 +1961,9 @@ class Article implements Page {
 	 * @return ParserOptions
 	 */
 	public function getParserOptions() {
-		return $this->mPage->makeParserOptions( $this->getContext() );
+		$parserOptions = $this->mPage->makeParserOptions( $this->getContext() );
+		$parserOptions->setRenderReason( 'page-view' );
+		return $parserOptions;
 	}
 
 	/**

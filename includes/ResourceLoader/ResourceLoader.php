@@ -81,15 +81,6 @@ use XmlJsCode;
  */
 
 /**
- * PHP 7.2 hack to work around the issue described at https://phabricator.wikimedia.org/T166010#5962098
- * Load the Context class when ResourceLoader is loaded.
- * phpcs:disable Generic.Files.OneObjectStructurePerFile.MultipleFound
- * phpcs:disable MediaWiki.Files.ClassMatchesFilename.NotMatch
- */
-class Context72Hack extends Context {
-}
-
-/**
  * ResourceLoader is a loading system for JavaScript and CSS resources.
  *
  * For higher level documentation, see <https://www.mediawiki.org/wiki/ResourceLoader/Architecture>.

@@ -151,7 +151,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.17
-	 * @var bool|string
+	 * @var string|false
 	 */
 	public $sha1base36 = false;
 
@@ -551,7 +551,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.17
-	 * @return bool|string
+	 * @return string|false
 	 */
 	public function getSha1() {
 		if ( $this->sha1base36 ) {
@@ -562,7 +562,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 
 	/**
 	 * @since 1.31
-	 * @return bool|string
+	 * @return string|false
 	 */
 	public function getSha1Base36() {
 		if ( $this->sha1base36 ) {

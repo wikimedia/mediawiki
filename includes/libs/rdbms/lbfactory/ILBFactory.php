@@ -74,6 +74,12 @@ interface ILBFactory {
 	public function destroy();
 
 	/**
+	 * Reload the configuration if necessary.
+	 * This may or may not have any effect.
+	 */
+	public function autoReconfigure(): void;
+
+	/**
 	 * Get the local (and default) database domain ID of connection handles
 	 *
 	 * @see DatabaseDomain

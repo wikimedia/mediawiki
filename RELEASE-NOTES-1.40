@@ -70,6 +70,7 @@ For notes on 1.39.x and older releases, see HISTORY.
   - ContentHandler::getParserOutputForIndexing
   - ContentHandler::getDataForSearchIndex
   - the SearchDataForIndex hook is deprecated in favor of SearchDataForIndex2
+* Vue development mode is enabled by default in DevelopmentSettings.php
 * …
 
 === External library changes in 1.40 ===
@@ -196,6 +197,8 @@ because of Phabricator reports.
   1.38, have been removed.
 * DifferenceEngine::getDiffBodyCacheKey(), deprecated since 1.31, has been
   removed.
+* ForeignDBViaLBRepo::getMasterDB(), LocalRepo::getMasterDB(), and
+  JobQueueDB::getMasterDB(), deprecated since 1.37, have been removed.
 * …
 
 === Deprecations in 1.40 ===

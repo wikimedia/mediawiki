@@ -471,7 +471,7 @@ class ImportImages extends Maintenance {
 	 * @param string $file Base path
 	 * @param string $auxExtension The extension to be appended to the base path
 	 * @param int $maxStrip The maximum number of extensions to strip from the base path (default: 1)
-	 * @return string|bool
+	 * @return string|false
 	 */
 	private function findAuxFile( $file, $auxExtension, $maxStrip = 1 ) {
 		if ( strpos( $auxExtension, '.' ) !== 0 ) {
@@ -507,7 +507,7 @@ class ImportImages extends Maintenance {
 	 * @param string $wiki_host
 	 * @param string $file
 	 *
-	 * @return string|bool
+	 * @return string|false
 	 */
 	private function getFileCommentFromSourceWiki( $wiki_host, $file ) {
 		$url = $wiki_host . '/api.php?action=query&format=xml&titles=File:'

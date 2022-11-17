@@ -308,6 +308,7 @@ class McrUndoAction extends FormAction {
 			$note = $this->context->msg( 'previewnote' )->plain() . ' ' . $continueEditing;
 
 			$parserOptions = $this->getWikiPage()->makeParserOptions( $this->context );
+			$parserOptions->setRenderReason( 'page-preview' );
 			$parserOptions->setIsPreview( true );
 			$parserOptions->setIsSectionPreview( false );
 

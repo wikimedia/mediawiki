@@ -787,7 +787,7 @@ class LogEventsList extends ContextSource {
 	 * @param IDatabase $db
 	 * @param string $audience Public/user
 	 * @param Authority|null $performer User to check, required when audience isn't public
-	 * @return string|bool String on success, false on failure.
+	 * @return string|false String on success, false on failure.
 	 * @throws InvalidArgumentException
 	 */
 	public static function getExcludeClause( $db, $audience = 'public', Authority $performer = null ) {

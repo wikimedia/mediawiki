@@ -440,7 +440,7 @@ class SpecialPage implements MessageLocalizer {
 	 * a stolen account (e.g. a reauthentication). What exactly that will mean is decided by the
 	 * authentication framework.
 	 * @stable to override
-	 * @return bool|string False or the argument for AuthManager::securitySensitiveOperationStatus().
+	 * @return string|false False or the argument for AuthManager::securitySensitiveOperationStatus().
 	 *   Typically a special page needing elevated security would return its name here.
 	 */
 	protected function getLoginSecurityLevel() {

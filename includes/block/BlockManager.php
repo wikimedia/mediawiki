@@ -346,7 +346,7 @@ class BlockManager {
 	 *
 	 * @param UserIdentity $user
 	 * @param WebRequest $request
-	 * @return DatabaseBlock|bool The block object, or false if none could be loaded.
+	 * @return DatabaseBlock|false The block object, or false if none could be loaded.
 	 */
 	private function getBlockFromCookieValue(
 		UserIdentity $user,
@@ -493,7 +493,7 @@ class BlockManager {
 	 * Wrapper for mocking in tests.
 	 *
 	 * @param string $hostname DNSBL query
-	 * @return string[]|bool IPv4 array, or false if the IP is not blacklisted
+	 * @return string[]|false IPv4 array, or false if the IP is not blacklisted
 	 */
 	protected function checkHost( $hostname ) {
 		return gethostbynamel( $hostname );

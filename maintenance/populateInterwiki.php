@@ -71,7 +71,7 @@ TEXT
 	}
 
 	/**
-	 * @return array[]|bool The 'interwikimap' sub-array or false on failure.
+	 * @return array[]|false The 'interwikimap' sub-array or false on failure.
 	 */
 	protected function fetchLinks() {
 		$url = wfArrayToCgi( [

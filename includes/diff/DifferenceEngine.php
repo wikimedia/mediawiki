@@ -1057,6 +1057,7 @@ class DifferenceEngine extends ContextSource {
 		}
 
 		$parserOptions = $page->makeParserOptions( $this->getContext() );
+		$parserOptions->setRenderReason( 'diff-page' );
 		return $page->getParserOutput( $parserOptions, $revRecord->getId() );
 	}
 
@@ -1266,21 +1267,6 @@ class DifferenceEngine extends ContextSource {
 		$userLang = $this->getLanguage()->getHtmlCode();
 		return Html::rawElement( 'tr', [ 'class' => 'mw-diff-slot-header', 'lang' => $userLang ],
 			Html::element( 'th', [ 'colspan' => $columnCount ], $headerText ) );
-	}
-
-	/**
-	 * Returns the cache key for diff body text or content.
-	 *
-	 * @deprecated since 1.31, use getDiffBodyCacheKeyParams() instead.
-	 *  Hard deprecated in 1.39.
-	 * @since 1.23
-	 *
-	 * @throws MWException
-	 * @return string|null
-	 */
-	protected function getDiffBodyCacheKey() {
-		wfDeprecated( __METHOD__, '1.31' );
-		return null;
 	}
 
 	/**

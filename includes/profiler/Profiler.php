@@ -34,7 +34,7 @@ use Wikimedia\ScopedCallback;
  * @ingroup Profiler
  */
 abstract class Profiler {
-	/** @var string|bool Profiler ID for bucketing data */
+	/** @var string|false Profiler ID for bucketing data */
 	protected $profileID = false;
 	/** @var array All of the params passed from $wgProfiler */
 	protected $params = [];

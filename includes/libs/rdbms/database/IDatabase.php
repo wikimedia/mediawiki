@@ -648,7 +648,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @param string $fname Caller function name
 	 * @param string|array $options Query options
 	 * @param array|string $join_conds Join conditions
-	 * @return stdClass|bool
+	 * @return stdClass|false
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function selectRow(
@@ -935,7 +935,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	);
 
 	/**
-	 * Delete all rows in a table that match a condition which includes a join.
+	 * Delete all rows in a table that match a condition which includes a join
 	 *
 	 * For safety, an empty $conds will not delete everything. If you want to
 	 * delete all rows where the join condition matches, set $conds=IDatabase::ALL_ROWS.
@@ -943,7 +943,7 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * DO NOT put the join condition in $conds.
 	 *
 	 * @param string $delTable The table to delete from.
-	 * @param string $joinTable The other table.
+	 * @param string $joinTable The reference table used by the join (not modified).
 	 * @param string $delVar The variable to join on, in the first table.
 	 * @param string $joinVar The variable to join on, in the second table.
 	 * @param array|string $conds Condition array of field names mapped to variables,

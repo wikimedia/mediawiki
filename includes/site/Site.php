@@ -356,7 +356,7 @@ class Site {
 	 * This implementation returns a URL constructed using the path returned by getLinkPath().
 	 *
 	 * @since 1.21
-	 * @param bool|string $pageName
+	 * @param string|false $pageName
 	 * @return string|null
 	 */
 	public function getPageUrl( $pageName = false ) {

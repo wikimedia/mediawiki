@@ -49,7 +49,7 @@ class HTMLCacheUpdateJob extends Job {
 			// Multiple pages per job make matches unlikely
 			!( isset( $params['pages'] ) && count( $params['pages'] ) != 1 )
 		);
-		$this->params += [ 'causeAction' => 'unknown', 'causeAgent' => 'unknown' ];
+		$this->params += [ 'causeAction' => 'HTMLCacheUpdateJob', 'causeAgent' => 'unknown' ];
 	}
 
 	/**

@@ -415,6 +415,16 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 	}
 
 	/**
+	 * @return string[] [ $causeAction, $causeAgent ]
+	 */
+	private function getCause(): array {
+		return [
+			$this->options['causeAction'] ?? 'unknown',
+			$this->options['causeAgent'] ?? 'unknown',
+		];
+	}
+
+	/**
 	 * Transition function for managing the life cycle of this instances.
 	 *
 	 * @see docs/pageupdater.md for documentation of the life cycle.
@@ -1008,7 +1018,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 
 		$renderHints['generate-html'] = $this->shouldGenerateHTMLOnEdit();
 
-		$renderHints['causeAction'] = $this->options['causeAction'] ?? 'unknown';
+		[ $causeAction, ] = $this->getCause();
+		$renderHints['causeAction'] = $causeAction;
 
 			// NOTE: we want a canonical rendering, so don't pass $this->user or ParserOptions
 		// NOTE: the revision is either new or current, so we can bypass audience checks.
@@ -1385,6 +1396,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		if ( $this->renderedRevision ) {
 			$this->renderedRevision->updateRevision( $revision );
 		} else {
+			[ $causeAction, ] = $this->getCause();
 			// NOTE: we want a canonical rendering, so don't pass $this->user or ParserOptions
 			// NOTE: the revision is either new or current, so we can bypass audience checks.
 			$this->renderedRevision = $this->revisionRenderer->getRenderedRevision(
@@ -1395,7 +1407,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 					'use-master' => $this->usePrimary(),
 					'audience' => RevisionRecord::RAW,
 					'known-revision-output' => $options['known-revision-output'] ?? null,
-					'causeAction' => $this->options['causeAction'] ?? 'unknown'
+					'causeAction' => $causeAction
 				]
 			);
 
@@ -1798,8 +1810,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		}
 
 		$triggeringUser = $this->options['triggeringUser'] ?? $this->user;
-		$causeAction = $this->options['causeAction'] ?? 'unknown';
-		$causeAgent = $this->options['causeAgent'] ?? 'unknown';
+		[ $causeAction, $causeAgent ] = $this->getCause();
 		if ( isset( $options['known-revision-output'] ) ) {
 			$this->getRenderedRevision()->setRevisionParserOutput( $options['known-revision-output'] );
 		}
@@ -1862,7 +1873,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		$rev = $this->getRevision();
 		$parserOpts = $this->getCanonicalParserOptions();
 
-		$parserOpts->setRenderReason( $this->options['causeAction'] ?? 'unknown' );
+		[ $causeAction, ] = $this->getCause();
+		$parserOpts->setRenderReason( $causeAction );
 
 		$mainSlot = $rev->getSlot( SlotRecord::MAIN );
 		if ( !$this->parsoidOutputAccess->supportsContentModel( $mainSlot->getModel() ) ) {

@@ -797,16 +797,6 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
-	 * @deprecated since 1.37
-	 * @throws JobQueueConnectionError
-	 * @return IMaintainableDatabase
-	 */
-	public function getMasterDB() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->getPrimaryDB();
-	}
-
-	/**
 	 * @param int $index (DB_REPLICA/DB_PRIMARY)
 	 * @return IMaintainableDatabase
 	 */

@@ -55,7 +55,7 @@ class EditResultBuilder {
 	/** @var bool */
 	private $isNew = false;
 
-	/** @var int|bool */
+	/** @var int|false */
 	private $originalRevisionId = false;
 
 	/** @var RevisionRecord|null */
@@ -191,7 +191,7 @@ class EditResultBuilder {
 	}
 
 	/**
-	 * @param RevisionRecord|int|bool|null $originalRevision
+	 * @param RevisionRecord|int|false|null $originalRevision
 	 *   RevisionRecord or revision ID for the original revision.
 	 *   False or null to unset.
 	 */

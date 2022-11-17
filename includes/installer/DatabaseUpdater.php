@@ -943,7 +943,7 @@ abstract class DatabaseUpdater {
 	 * @note protected since 1.35
 	 *
 	 * @param string $table Table to drop.
-	 * @param string|bool $patch String of patch file that will drop the table. Default: false.
+	 * @param string|false $patch String of patch file that will drop the table. Default: false.
 	 * @param bool $fullpath Whether $patch is a full path. Default: false.
 	 * @return bool False if this was skipped because schema changes are skipped
 	 */

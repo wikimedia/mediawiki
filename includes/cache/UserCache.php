@@ -71,7 +71,7 @@ class UserCache {
 	 *
 	 * @param int $userId
 	 * @param string $prop User property
-	 * @return mixed|bool The property or false if the user does not exist
+	 * @return mixed|false The property or false if the user does not exist
 	 */
 	public function getProp( $userId, $prop ) {
 		if ( !isset( $this->cache[$userId][$prop] ) ) {

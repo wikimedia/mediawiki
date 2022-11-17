@@ -204,7 +204,7 @@ class SiteImporter {
 	/**
 	 * @param DOMElement $element
 	 * @param string $name
-	 * @param string|null|bool $default
+	 * @param string|null|false $default
 	 *
 	 * @return null|string
 	 * @throws MWException If the attribute is not found and no default is provided
@@ -228,7 +228,7 @@ class SiteImporter {
 	/**
 	 * @param DOMElement $element
 	 * @param string $name
-	 * @param string|null|bool $default
+	 * @param string|null|false $default
 	 *
 	 * @return null|string
 	 * @throws MWException If the child element is not found and no default is provided

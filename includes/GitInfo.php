@@ -203,7 +203,7 @@ class GitInfo {
 	/**
 	 * Get the HEAD of the repo (without any opening "ref: ")
 	 *
-	 * @return string|bool The HEAD (git reference or SHA1) or false
+	 * @return string|false The HEAD (git reference or SHA1) or false
 	 */
 	public function getHead() {
 		if ( !isset( $this->cache['head'] ) ) {
@@ -227,7 +227,7 @@ class GitInfo {
 	/**
 	 * Get the SHA1 for the current HEAD of the repo
 	 *
-	 * @return string|bool A SHA1 or false
+	 * @return string|false A SHA1 or false
 	 */
 	public function getHeadSHA1() {
 		if ( !isset( $this->cache['headSHA1'] ) ) {
@@ -259,7 +259,7 @@ class GitInfo {
 	 * Get the commit date of HEAD entry of the git code repository
 	 *
 	 * @since 1.22
-	 * @return int|bool Commit date (UNIX timestamp) or false
+	 * @return int|false Commit date (UNIX timestamp) or false
 	 */
 	public function getHeadCommitDate() {
 		$gitBin = $this->options->get( MainConfigNames::GitBin );
@@ -300,7 +300,7 @@ class GitInfo {
 	/**
 	 * Get the name of the current branch, or HEAD if not found
 	 *
-	 * @return string|bool The branch name, HEAD, or false
+	 * @return string|false The branch name, HEAD, or false
 	 */
 	public function getCurrentBranch() {
 		if ( !isset( $this->cache['branch'] ) ) {
@@ -318,7 +318,7 @@ class GitInfo {
 	/**
 	 * Get an URL to a web viewer link to the HEAD revision.
 	 *
-	 * @return string|bool String if a URL is available or false otherwise
+	 * @return string|false String if a URL is available or false otherwise
 	 */
 	public function getHeadViewUrl() {
 		$url = $this->getRemoteUrl();
@@ -344,7 +344,7 @@ class GitInfo {
 
 	/**
 	 * Get the URL of the remote origin.
-	 * @return string|bool String if a URL is available or false otherwise.
+	 * @return string|false String if a URL is available or false otherwise.
 	 */
 	protected function getRemoteUrl() {
 		if ( !isset( $this->cache['remoteURL'] ) ) {
@@ -447,7 +447,7 @@ class GitInfo {
 
 	/**
 	 * @see self::getHeadViewUrl()
-	 * @return bool|string
+	 * @return string|false
 	 */
 	public static function headViewUrl() {
 		return self::repo()->getHeadViewUrl();
