@@ -31,15 +31,6 @@ use WANObjectCache;
 use Wikimedia\Rdbms\Database;
 
 /**
- * PHP 7.2 hack to work around the issue described at https://phabricator.wikimedia.org/T166010#5962098
- * Load the ResourceLoader class when MessageBlobStore is loaded.
- * phpcs:disable Generic.Files.OneObjectStructurePerFile.MultipleFound
- * phpcs:disable MediaWiki.Files.ClassMatchesFilename.NotMatch
- */
-class ResourceLoader72Hack extends ResourceLoader {
-}
-
-/**
  * This class generates message blobs for use by ResourceLoader.
  *
  * A message blob is a JSON object containing the interface messages for a
