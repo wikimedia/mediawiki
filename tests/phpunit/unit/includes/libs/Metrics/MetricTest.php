@@ -8,10 +8,10 @@ use Wikimedia\Metrics\Exceptions\InvalidLabelsException;
 use Wikimedia\Metrics\MetricsFactory;
 
 /**
- * @covers \Wikimedia\Metrics\NullMetric
- * @covers \Wikimedia\Metrics\CounterMetric
- * @covers \Wikimedia\Metrics\GaugeMetric
- * @covers \Wikimedia\Metrics\TimingMetric
+ * @covers \Wikimedia\Metrics\Metrics\NullMetric
+ * @covers \Wikimedia\Metrics\Metrics\CounterMetric
+ * @covers \Wikimedia\Metrics\Metrics\GaugeMetric
+ * @covers \Wikimedia\Metrics\Metrics\TimingMetric
  * @covers \Wikimedia\Metrics\MetricUtils
  */
 class MetricTest extends TestCase {

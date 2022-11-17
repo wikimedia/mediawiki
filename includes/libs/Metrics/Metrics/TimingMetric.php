@@ -1,8 +1,9 @@
 <?php
 /**
- * Counter Metric Implementation
+ * Timing Metric Implementation
  *
- * Counter Metrics only ever increase and are identified by type 'c'.
+ * Timing metrics track duration data which can be broken into histograms.
+ * They are identified by type 'ms'.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,9 +27,13 @@
 
 declare( strict_types=1 );
 
-namespace Wikimedia\Metrics;
+namespace Wikimedia\Metrics\Metrics;
 
-class CounterMetric {
+use Wikimedia\Metrics\MetricsFactory;
+use Wikimedia\Metrics\MetricUtils;
+use Wikimedia\Metrics\Sample;
+
+class TimingMetric {
 
 	/**
 	 * The StatsD protocol type indicator:
@@ -37,7 +42,7 @@ class CounterMetric {
 	 *
 	 * @var string
 	 */
-	private const TYPE_INDICATOR = 'c';
+	private const TYPE_INDICATOR = 'ms';
 
 	/** @var MetricUtils */
 	private $metricUtils;
@@ -66,17 +71,10 @@ class CounterMetric {
 	}
 
 	/**
+	 * @param float $value
 	 * @param string[] $labels
 	 */
-	public function increment( array $labels = [] ): void {
-		$this->incrementBy( 1, $labels );
-	}
-
-	/**
-	 * @param int $value
-	 * @param string[] $labels
-	 */
-	public function incrementBy( int $value, array $labels = [] ): void {
+	public function observe( float $value, array $labels = [] ): void {
 		$this->validateLabels( $labels );
 		$this->metricUtils->addSample( new Sample( MetricsFactory::normalizeArray( $labels ), $value ) );
 	}
