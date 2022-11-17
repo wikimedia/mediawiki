@@ -233,7 +233,6 @@ class HistoryPager extends ReverseChronologicalPager {
 				'id' => 'mw-history-compare'
 			] ) . "\n";
 			$s .= Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n";
-			$s .= Html::hidden( 'action', 'historysubmit' ) . "\n";
 			$s .= Html::hidden( 'type', 'revision' ) . "\n";
 
 			$this->buttons .= Html::openElement(
@@ -279,8 +278,8 @@ class HistoryPager extends ReverseChronologicalPager {
 			'button',
 			[
 				'type' => 'submit',
-				'name' => $name,
-				'value' => '1',
+				'name' => 'action',
+				'value' => $name,
 				'class' => "historysubmit mw-history-$name-button mw-ui-button",
 			],
 			$this->msg( $msg )->text()
