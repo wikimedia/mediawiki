@@ -164,7 +164,6 @@ class PageEditStash {
 		} else {
 			$pageUpdater->setContent( SlotRecord::MAIN, $content );
 
-			// FIXME: pass causeAction down to DerivedPageDataUpdater?!
 			$update = $pageUpdater->prepareUpdate( EDIT_INTERNAL ); // applies pre-safe transform
 			$output = $update->getCanonicalParserOutput(); // causes content to be parsed
 			$output->setCacheTime( $update->getRevision()->getTimestamp() );

@@ -355,7 +355,7 @@ class LinksUpdate extends DataUpdate {
 	 * @param BacklinkCache|null $backlinkCache
 	 */
 	public static function queueRecursiveJobsForTable(
-		PageIdentity $page, $table, $action = 'unknown', $userName = 'unknown', ?BacklinkCache $backlinkCache = null
+		PageIdentity $page, $table, $action = 'LinksUpdate', $userName = 'unknown', ?BacklinkCache $backlinkCache = null
 	) {
 		$title = Title::castFromPageIdentity( $page );
 		if ( !$backlinkCache ) {
