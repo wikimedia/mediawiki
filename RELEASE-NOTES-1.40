@@ -199,6 +199,9 @@ because of Phabricator reports.
   removed.
 * ForeignDBViaLBRepo::getMasterDB(), LocalRepo::getMasterDB(), and
   JobQueueDB::getMasterDB(), deprecated since 1.37, have been removed.
+* Clarified that the InitializeArticleMaybeRedirect hook should not change
+  its $article parameter; the behavior when doing so was previously
+  undocumented.
 * …
 
 === Deprecations in 1.40 ===
