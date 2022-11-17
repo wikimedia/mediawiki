@@ -384,11 +384,11 @@ class ApiStashEditTest extends ApiTestCase {
 			$this->getServiceContainer()->getPageEditStash() );
 		$cache = $editStash->cache;
 
-		$editInfo = $cache->get( $key );
+		$editInfo = $editStash->unserializeStashInfo( $cache->get( $key ) );
 		$editInfo->output->setCacheTime( wfTimestamp( TS_MW,
 			wfTimestamp( TS_UNIX, $editInfo->output->getCacheTime() ) - $howOld - 1 ) );
 
-		$cache->set( $key, $editInfo );
+		$cache->set( $key, $editStash->serializeStashInfo( $editInfo ) );
 	}
 
 	public function testCheckCacheOldNoEdits() {
