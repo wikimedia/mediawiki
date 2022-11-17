@@ -241,7 +241,8 @@
 			"আফতাবুজ্জামান",
 			"គីមស៊្រុន",
 			"아라",
-			"YaThaWinTha"
+			"YaThaWinTha",
+			"Wnme"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -900,7 +901,7 @@
 	"showpreview": "The text of the button to preview the page you are editing. See also {{msg-mw|showdiff}}, {{msg-mw|savearticle}} and {{msg-mw|Publishchanges}} for the other buttons.\n\nSee also:\n* {{msg-mw|Showpreview}}\n* {{msg-mw|Accesskey-preview}}\n* {{msg-mw|Tooltip-preview}}\n{{Identical|Show preview}}",
 	"showdiff": "Button below the edit page. See also {{msg-mw|Showpreview}} and {{msg-mw|Savearticle}} for the other buttons.\n\nSee also:\n* {{msg-mw|Showdiff}}\n* {{msg-mw|Accesskey-diff}}\n* {{msg-mw|Tooltip-diff}}\n{{Identical|Show change}}",
 	"blankarticle": "Notice displayed once after the user tries to save an empty page.\n\nParameters:\n* $1 – The label of the save button – one of {{msg-mw|savearticle}} or {{msg-mw|savechanges}} on save-labelled wiki, or {{msg-mw|publishpage}} or {{msg-mw|publishchanges}} on publish-labelled wikis.",
-	"anoneditwarning": "Shown when editing a page anonymously.\n\nParameters:\n* $1 – A link to log in, <nowiki>{{fullurl:Special:UserLogin|returnto={{FULLPAGENAMEE}}}}</nowiki>\n* $2 – A link to sign up, <nowiki>{{fullurl:Special:CreateAccount|returnto={{FULLPAGENAMEE}}}}</nowiki>\n\nSee also:\n* {{msg-mw|Mobile-frontend-editor-anonwarning}}",
+	"anoneditwarning": "A warning message, when user tries to edit without logging in.\n\nParameters:\n* $1 – A link to log in, <nowiki>{{fullurl:Special:UserLogin|returnto={{FULLPAGENAMEE}}}}</nowiki>\n* $2 – A link to sign up, <nowiki>{{fullurl:Special:CreateAccount|returnto={{FULLPAGENAMEE}}}}</nowiki>\n\nSee also:\n* {{msg-mw|Mobile-frontend-editor-anonwarning}}",
 	"autocreate-edit-warning": "Shown when editing a page anonymously when temporary user auto-creation is enabled.\n\nParameters:\n* $1 – A link to log in, <nowiki>{{fullurl:Special:UserLogin|returnto={{FULLPAGENAMEE}}}}</nowiki>\n* $2 – A link to sign up, <nowiki>{{fullurl:Special:CreateAccount|returnto={{FULLPAGENAMEE}}}}</nowiki>\n\nSee also:\n* {{msg-mw|Mobile-frontend-editor-anonwarning}}",
 	"anonpreviewwarning": "See also:\n* {{msg-mw|Anoneditwarning}}",
 	"autocreate-preview-warning": "Shown when previewing a page anonymously, when temporary user auto-creation is enabled. See also:\n* {{msg-mw|Autocreate-edit-warning}}",
@@ -1812,7 +1813,7 @@
 	"rcfilters-filter-user-experience-level-newcomer-label": "Label for the filter for showing edits made by new editors.",
 	"rcfilters-filter-user-experience-level-newcomer-description": "Description for the filter for showing edits made by new editors. The user has created the account less than 4 days ago (4th day included) ''or'' has made less than 10 edits (10 included).",
 	"rcfilters-filter-user-experience-level-learner-label": "Label for the filter for showing edits made by learning editors.",
-	"rcfilters-filter-user-experience-level-learner-description": "Description for the filter for showing edits made by learning editors.",
+	"rcfilters-filter-user-experience-level-learner-description": "Description for the filter for showing edits made by learning editors.\n\n* \"Newcomers\" is  {{msg-mw|Rcfilters-filter-user-experience-level-newcomer-label}}\n* \"Experienced users\" is {{msg-mw|Rcfilters-filter-user-experience-level-experienced-label}}",
 	"rcfilters-filter-user-experience-level-experienced-label": "Label for the filter for showing edits made by experienced editors.",
 	"rcfilters-filter-user-experience-level-experienced-description": "Description for the filter for showing edits made by experienced editors.",
 	"rcfilters-filtergroup-automated": "Title for the filter group for editor automation type.",

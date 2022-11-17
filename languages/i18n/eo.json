@@ -791,6 +791,7 @@
 	"defaultmessagetext": "Implicita mesaĝa teksto",
 	"content-failed-to-parse": "Oni malsukcesis analizi $2-entenon laŭ la $1-modelo: $3",
 	"invalid-content-data": "Enhavo estas nevalida",
+	"invalid-json-data": "Nevalida JSON: $1",
 	"content-not-allowed-here": "Enhavo de $1 ne estas permesita en paĝo [[:$2]] en traktujo \"$3\"",
 	"confirmleave-warning": "Forlaso de ĉi tiu paĝo povas kaŭzi, ke vi perdos ajnajn ŝanĝojn, kiujn vi faris.",
 	"editpage-invalidcontentmodel-title": "Enhava modelo ne subtenata",

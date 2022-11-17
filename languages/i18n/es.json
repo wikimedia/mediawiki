@@ -233,7 +233,8 @@
 			"לערי ריינהארט",
 			"ديفيد",
 			"아라",
-			"Raos10"
+			"Raos10",
+			"SpikeShroom"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -253,7 +254,7 @@
 	"tog-watchrollback": "Añadir a mi lista de seguimiento las páginas en las que haya realizado una reversión",
 	"tog-minordefault": "Marcar todas las ediciones como menores de manera predeterminada",
 	"tog-previewontop": "Mostrar previsualización antes del cuadro de edición",
-	"tog-previewonfirst": "Mostrar la vista previa al iniciar la edición",
+	"tog-previewonfirst": "Mostrar previsualización al iniciar la edición",
 	"tog-enotifwatchlistpages": "Enviarme un mensaje de correo cuando se modifique una página o un archivo de mi lista de seguimiento",
 	"tog-enotifusertalkpages": "Enviarme un mensaje de correo cuando se modifique mi página de discusión",
 	"tog-enotifminoredits": "Notificarme también por correo electrónico los cambios menores de las páginas y archivos",

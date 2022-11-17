@@ -26,7 +26,8 @@
 			"列维劳德",
 			"星海",
 			"烈羽",
-			"Lakejason0"
+			"Lakejason0",
+			"Willy1018"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|說明文件]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etiquette 與使用指南]]\n* [[mw:Special:MyLanguage/API:FAQ|常見問題]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api 郵寄清單]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API公告]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R 報告錯誤及請求功能]\n</div>\n<strong>狀態資訊：</strong>MediaWiki API 已是成熟、穩定，並積極支援以改善的介面。儘管我們儘可能避免，但仍偶有需要重大變更的情況，請訂閱[https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ mediawiki-api-announce 郵寄清單]以便獲得更新通知。\n\n<strong>錯誤的請求：</strong>當 API 收到錯誤的請求，會發出以「MediaWiki-API-Error」為鍵的 HTTP 標頭欄位，隨後標頭欄位的值，以及傳回的錯誤碼會設為相同值。詳細資訊請參閱 [[mw:Special:MyLanguage/API:Errors_and_warnings|API: 錯誤與警告]]。\n\n<p class=\"mw-apisandbox-link\"><strong>測試：</strong>要簡化 API 請求的測試過程，請見 [[Special:ApiSandbox]]。</p>",
@@ -1439,7 +1440,7 @@
 	"apihelp-undelete-param-title": "要恢復的頁面標題。",
 	"apihelp-undelete-param-reason": "還原的原因。",
 	"apihelp-undelete-param-tags": "在刪除日誌裡更改套用到項目的標籤。",
-	"apihelp-undelete-param-timestamps": "要復原的修訂時間戳記。若 <var>$1timestamps</var> 與 <var>$1fileids</var> 皆為空，則所有都會被復原。",
+	"apihelp-undelete-param-timestamps": "要恢復的修訂時間戳記。若<var>$1timestamps</var> 與 <var>$1fileids</var>皆為空，則所有修訂都會恢復。",
 	"apihelp-undelete-param-fileids": "要復原的檔案修訂 ID。若 <var>$1timestamps</var> 與 <var>$1fileids</var> 皆為空，則所有都會被復原。",
 	"apihelp-undelete-param-watchlist": "使用偏好設定無條件地將頁面加入至或移除自目前使用者的監視清單（略過機器人使用者），或不更改監視。",
 	"apihelp-undelete-param-watchlistexpiry": "監視清單期限時間戳記。忽略此參數會維持目前期限不變。",
@@ -1864,5 +1865,5 @@
 	"api-usage-mailinglist-ref": "在 &lt;https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/&gt; 的 mediawiki-api-announce 郵件清單做出訂閱，來取得 API 棄用與重大修訂的通知。",
 	"api-exception-trace": "$1位在$2的第$3行\n$4",
 	"api-credits-header": "製作群",
-	"api-credits": "API 開發人員：\n* Roan Kattouw (首席開發者 Sep 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (創立者，首席開發者 Sep 2006–Sep 2007)\n* Brad Jorsch (首席開發者 2013–present)\n\n請傳送您的評論、建議以及問題至 mediawiki-api@lists.wikimedia.org\n或者回報問題至 https://phabricator.wikimedia.org/。"
+	"api-credits": "API 開發人員：\n* Roan Kattouw (首席開發者 Sep 2007–2009)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Yuri Astrakhan (創立者，首席開發者 Sep 2006–Sep 2007)\n* Brad Jorsch (首席開發者 2013–2020)\n\n請傳送您的評論、建議以及問題至 mediawiki-api@lists.wikimedia.org\n或者回報問題至 https://phabricator.wikimedia.org/。"
 }

@@ -1100,7 +1100,7 @@
 	"nextn-title": "{{PLURAL:$1|Risultato successivo|$1 risultati successivi}}",
 	"shown-title": "Mostra {{PLURAL:$1|un risultato|$1 risultati}} per pagina",
 	"viewprevnext": "Vedi ($1 {{int:pipe-separator}} $2) ($3).",
-	"searchmenu-exists": "C'è una pagina il cui nome è \"[[:$1]]\"su {{SITENAME}}. {{PLURAL:$2|0=|Vedi anche gli altri risultati trovati.}}",
+	"searchmenu-exists": "C'è una pagina il cui nome è \"[[:$1]]\" su {{SITENAME}}. {{PLURAL:$2|0=|Vedi anche gli altri risultati trovati.}}",
 	"searchmenu-new": "Crea la pagina \"[[:$1]]\" su questo wiki! {{PLURAL:$2|0=|Vedi anche la pagina trovata con la tua ricerca.|Vedi anche i risultati della ricerca}}",
 	"searchprofile-articles": "Pagine di contenuti",
 	"searchprofile-images": "Multimedia",
