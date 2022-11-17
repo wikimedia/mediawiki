@@ -13,6 +13,7 @@ use MediaWiki\Settings\Cache\CachedSource;
 use MediaWiki\Settings\Config\ConfigBuilder;
 use MediaWiki\Settings\Config\ConfigSchema;
 use MediaWiki\Settings\Config\ConfigSchemaAggregator;
+use MediaWiki\Settings\Config\GlobalConfigBuilder;
 use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\Source\ArraySource;
 use MediaWiki\Settings\Source\FileSource;
@@ -85,6 +86,35 @@ class SettingsBuilder {
 
 	/** @var string[] */
 	private $warnings = [];
+
+	/**
+	 * Accessor for the global SettingsBuilder instance.
+	 *
+	 * @note It is always preferable to have a SettingsBuilder injected!
+	 *       But as long as we can't to this everywhere, this is the preferred way of
+	 *       getting the global instance of SettingsBuilder.
+	 *
+	 * @return SettingsBuilder
+	 */
+	public static function getInstance(): self {
+		static $instance = null;
+
+		if ( !$instance ) {
+			// NOTE: SettingsBuilder is used during bootstrap, before MediaWikiServices
+			//       is available. It has to be, because it is used to construct the
+			//       configuration that is used when constructing services. Because of
+			//       this, we have to instantiate SettingsBuilder directly, we can't
+			//       use service wiring.
+			$instance = new SettingsBuilder(
+				MW_INSTALL_PATH,
+				ExtensionRegistry::getInstance(),
+				new GlobalConfigBuilder( 'wg' ),
+				new PhpIniSink()
+			);
+		}
+
+		return $instance;
+	}
 
 	/**
 	 * @param string $baseDir

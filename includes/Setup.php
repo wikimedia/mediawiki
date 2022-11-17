@@ -56,8 +56,6 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\HeaderCallback;
-use MediaWiki\Settings\Config\GlobalConfigBuilder;
-use MediaWiki\Settings\Config\PhpIniSink;
 use MediaWiki\Settings\DynamicDefaultValues;
 use MediaWiki\Settings\LocalSettingsLoader;
 use MediaWiki\Settings\SettingsBuilder;
@@ -142,12 +140,7 @@ $wgConf = new SiteConfiguration;
 
 $wgAutoloadClasses ??= [];
 
-$wgSettings = new SettingsBuilder(
-	MW_INSTALL_PATH,
-	ExtensionRegistry::getInstance(),
-	new GlobalConfigBuilder( 'wg' ),
-	new PhpIniSink()
-);
+$wgSettings = SettingsBuilder::getInstance();
 
 if ( defined( 'MW_USE_CONFIG_SCHEMA_CLASS' ) ) {
 	// Load config schema from MainConfigSchema. Useful for running scripts that

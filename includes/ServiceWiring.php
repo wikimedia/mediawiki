@@ -144,6 +144,7 @@ use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Settings\Config\ConfigSchema;
+use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\CommandFactory;
 use MediaWiki\Shell\ShellboxClientFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
@@ -427,8 +428,9 @@ return [
 	},
 
 	'ConfigSchema' => static function ( MediaWikiServices $services ): ConfigSchema {
-		global $wgSettings; // TODO: have Setup.php declare this service
-		return $wgSettings->getConfigSchema();
+		/** @var SettingsBuilder $settings */
+		$settings = $services->get( '_SettingsBuilder' );
+		return $settings->getConfigSchema();
 	},
 
 	'ConfiguredReadOnlyMode' => static function ( MediaWikiServices $services ): ConfiguredReadOnlyMode {
@@ -2311,6 +2313,10 @@ return [
 			$services->getParsoidSiteConfig(),
 			$services->getParsoidDataAccess()
 		);
+	},
+
+	'_SettingsBuilder' => static function ( MediaWikiServices $services ): SettingsBuilder {
+		return SettingsBuilder::getInstance();
 	},
 
 	'_SqlBlobStore' => static function ( MediaWikiServices $services ): SqlBlobStore {
