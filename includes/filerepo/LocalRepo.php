@@ -525,16 +525,6 @@ class LocalRepo extends FileRepo {
 	}
 
 	/**
-	 * Get a connection to the primary DB
-	 * @deprecated since 1.37
-	 * @return IDatabase
-	 */
-	public function getMasterDB() {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->getPrimaryDB();
-	}
-
-	/**
 	 * Get a callback to get a DB handle given an index (DB_REPLICA/DB_PRIMARY)
 	 * @return Closure
 	 */

@@ -197,6 +197,8 @@ because of Phabricator reports.
   1.38, have been removed.
 * DifferenceEngine::getDiffBodyCacheKey(), deprecated since 1.31, has been
   removed.
+* ForeignDBViaLBRepo::getMasterDB(), LocalRepo::getMasterDB(), and
+  JobQueueDB::getMasterDB(), deprecated since 1.37, have been removed.
 * …
 
 === Deprecations in 1.40 ===
