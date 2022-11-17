@@ -1,8 +1,9 @@
 <?php
 /**
- * Counter Metric Implementation
+ * Timing Metric Implementation
  *
- * Counter Metrics only ever increase and are identified by type 'c'.
+ * Timing metrics track duration data which can be broken into histograms.
+ * They are identified by type 'ms'.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,9 +27,13 @@
 
 declare( strict_types=1 );
 
-namespace Wikimedia\Metrics;
+namespace Wikimedia\Metrics\Metrics;
 
-class CounterMetric {
+use Wikimedia\Metrics\MetricsFactory;
+use Wikimedia\Metrics\MetricUtils;
+use Wikimedia\Metrics\Sample;
+
+class TimingMetric {
 
 	/**
 	 * The StatsD protocol type indicator:
@@ -37,7 +42,7 @@ class CounterMetric {
 	 *
 	 * @var string
 	 */
-	private const TYPE_INDICATOR = 'c';
+	private const TYPE_INDICATOR = 'ms';
 
 	/** @var MetricUtils */
 	private $metricUtils;
@@ -45,7 +50,7 @@ class CounterMetric {
 	/**
 	 * @param array $config associative array:
 	 *   - name: (string) The metric name
-	 *   - extension: (string) The extension generating the metric
+	 *   - component: (string) The component generating the metric
 	 *   - labels: (array) List of metric dimensional instantiations for filters and aggregations
 	 *   - sampleRate: (float) Optional sampling rate to apply
 	 * @param MetricUtils $metricUtils
@@ -66,22 +71,12 @@ class CounterMetric {
 	}
 
 	/**
+	 * @param float $value
 	 * @param string[] $labels
 	 */
-	public function increment( array $labels = [] ): void {
-		$this->incrementBy( 1, $labels );
-	}
-
-	/**
-	 * @param int $value
-	 * @param string[] $labels
-	 */
-	public function incrementBy( int $value, array $labels = [] ): void {
+	public function observe( float $value, array $labels = [] ): void {
 		$this->validateLabels( $labels );
-		$this->metricUtils->addSample( new Sample( [
-			'labels' => MetricsFactory::normalizeArray( $labels ),
-			'value' => $value
-		] ) );
+		$this->metricUtils->addSample( new Sample( MetricsFactory::normalizeArray( $labels ), $value ) );
 	}
 
 	/**
@@ -89,5 +84,29 @@ class CounterMetric {
 	 */
 	public function render(): array {
 		return $this->metricUtils->render();
+	}
+
+	public function getComponent(): string {
+		return $this->metricUtils->getComponent();
+	}
+
+	public function getLabelKeys(): array {
+		return $this->metricUtils->getLabelKeys();
+	}
+
+	public function getName(): string {
+		return $this->metricUtils->getName();
+	}
+
+	public function getSamples(): array {
+		return $this->metricUtils->getSamples();
+	}
+
+	public function getSampleRate(): float {
+		return $this->metricUtils->getSampleRate();
+	}
+
+	public function getTypeIndicator(): string {
+		return self::TYPE_INDICATOR;
 	}
 }

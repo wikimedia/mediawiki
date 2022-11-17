@@ -43,7 +43,7 @@ class MetricUtils {
 	protected $prefix;
 
 	/** @var string */
-	protected $extension;
+	protected $component;
 
 	/** @var string */
 	protected $format;
@@ -67,14 +67,14 @@ class MetricUtils {
 	 * @param array $config associative array:
 	 *   - prefix: (string) The prefix prepended to the start of the metric name.
 	 *   - name: (string) The metric name
-	 *   - extension: (string) The extension generating the metric
+	 *   - component: (string) The component generating the metric
 	 *   - labels: (array) List of metric dimensional instantiations for filters and aggregations
 	 *   - sampleRate: (float) Optional sampling rate to apply
 	 *   - format: (string) The expected output format -- one of MetricsFactory::SUPPORTED_OUTPUT_FORMATS
 	 */
 	public function validateConfig( $config ) {
 		$this->prefix = $config['prefix'];
-		$this->extension = $config['extension'];
+		$this->component = $config['component'];
 		$this->name = $config['name'];
 		$this->sampleRate = $config['sampleRate'];
 		$this->format = $config['format'];
@@ -140,6 +140,26 @@ class MetricUtils {
 		}
 	}
 
+	public function getComponent(): string {
+		return $this->component;
+	}
+
+	public function getLabelKeys(): array {
+		return $this->labels;
+	}
+
+	public function getName(): string {
+		return $this->name;
+	}
+
+	public function getSamples(): array {
+		return $this->samples;
+	}
+
+	public function getSampleRate(): float {
+		return $this->sampleRate;
+	}
+
 	/**
 	 * Get set of samples filtered according to configured sampleRate.
 	 * @return array
@@ -165,7 +185,7 @@ class MetricUtils {
 	 */
 	private function renderStatsD( Sample $sample ): string {
 		$stat = implode( '.',
-			array_merge( [ $this->prefix, $this->extension, $this->name ], $sample->getLabels() )
+			array_merge( [ $this->prefix, $this->component, $this->name ], $sample->getLabelValues() )
 		);
 		$value = ':' . $sample->getValue();
 		$type = '|' . $this->typeIndicator;
@@ -182,8 +202,8 @@ class MetricUtils {
 	 * @return string
 	 */
 	private function renderDogStatsD( Sample $sample ): string {
-		$stat = implode( '.', [ $this->prefix, $this->extension, $this->name ] );
-		$sampleLabels = $sample->getLabels();
+		$stat = implode( '.', [ $this->prefix, $this->component, $this->name ] );
+		$sampleLabels = $sample->getLabelValues();
 		$labels = [];
 		foreach ( $this->labels as $i => $label ) {
 			$labels[] = $label . ':' . $sampleLabels[$i];

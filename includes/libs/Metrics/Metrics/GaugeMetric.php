@@ -26,7 +26,11 @@
 
 declare( strict_types=1 );
 
-namespace Wikimedia\Metrics;
+namespace Wikimedia\Metrics\Metrics;
+
+use Wikimedia\Metrics\MetricsFactory;
+use Wikimedia\Metrics\MetricUtils;
+use Wikimedia\Metrics\Sample;
 
 class GaugeMetric {
 
@@ -45,7 +49,7 @@ class GaugeMetric {
 	/**
 	 * @param array $config associative array:
 	 *   - name: (string) The metric name
-	 *   - extension: (string) The extension generating the metric
+	 *   - component: (string) The component generating the metric
 	 *   - labels: (array) List of metric dimensional instantiations for filters and aggregations
 	 *   - sampleRate: (float) Optional sampling rate to apply
 	 * @param MetricUtils $metricUtils
@@ -71,10 +75,7 @@ class GaugeMetric {
 	 */
 	public function set( float $value, array $labels = [] ): void {
 		$this->validateLabels( $labels );
-		$this->metricUtils->addSample( new Sample( [
-			'labels' => MetricsFactory::normalizeArray( $labels ),
-			'value' => $value
-		] ) );
+		$this->metricUtils->addSample( new Sample( MetricsFactory::normalizeArray( $labels ), $value ) );
 	}
 
 	/**
@@ -82,5 +83,29 @@ class GaugeMetric {
 	 */
 	public function render(): array {
 		return $this->metricUtils->render();
+	}
+
+	public function getComponent(): string {
+		return $this->metricUtils->getComponent();
+	}
+
+	public function getLabelKeys(): array {
+		return $this->metricUtils->getLabelKeys();
+	}
+
+	public function getName(): string {
+		return $this->metricUtils->getName();
+	}
+
+	public function getSamples(): array {
+		return $this->metricUtils->getSamples();
+	}
+
+	public function getSampleRate(): float {
+		return $this->metricUtils->getSampleRate();
+	}
+
+	public function getTypeIndicator(): string {
+		return self::TYPE_INDICATOR;
 	}
 }

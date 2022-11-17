@@ -28,7 +28,7 @@
 
 declare( strict_types=1 );
 
-namespace Wikimedia\Metrics;
+namespace Wikimedia\Metrics\Metrics;
 
 class NullMetric {
 
