@@ -45,7 +45,7 @@ class GaugeMetric {
 	/**
 	 * @param array $config associative array:
 	 *   - name: (string) The metric name
-	 *   - extension: (string) The extension generating the metric
+	 *   - component: (string) The component generating the metric
 	 *   - labels: (array) List of metric dimensional instantiations for filters and aggregations
 	 *   - sampleRate: (float) Optional sampling rate to apply
 	 * @param MetricUtils $metricUtils

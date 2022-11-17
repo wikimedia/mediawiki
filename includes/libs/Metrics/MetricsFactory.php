@@ -48,7 +48,7 @@ class MetricsFactory {
 	/** @var array */
 	private const DEFAULT_METRIC_CONFIG = [
 		// 'name' => required,
-		// 'extension' => required,
+		// 'component' => required,
 		'labels' => [],
 		'sampleRate' => 1.0,
 		'service' => '',
@@ -105,14 +105,14 @@ class MetricsFactory {
 	 *
 	 * @param array $config associative array:
 	 *   - name: (string) The metric name
-	 *   - extension: (string) The extension generating the metric
+	 *   - component: (string) The component generating the metric
 	 *   - labels: (array) List of metric dimensional instantiations for filters and aggregations
 	 *   - sampleRate: (float) Optional sampling rate to apply
 	 * @return CounterMetric|NullMetric
 	 */
 	public function getCounter( array $config = [] ) {
 		$config = $this->getValidConfig( $config );
-		$name = self::getFormattedName( $config['name'], $config['extension'] );
+		$name = self::getFormattedName( $config['name'], $config['component'] );
 		try {
 			$metric = $this->getCachedMetric( $name, CounterMetric::class );
 		} catch ( TypeError $ex ) {
@@ -134,13 +134,13 @@ class MetricsFactory {
 	 *
 	 * @param array $config associative array:
 	 *   name: (string) The metric name.
-	 *   extension: (string) The extension generating the metric.
+	 *   component: (string) The component generating the metric.
 	 *   labels: (array) Labels that further identify the metric.
 	 * @return GaugeMetric|NullMetric
 	 */
 	public function getGauge( array $config = [] ) {
 		$config = $this->getValidConfig( $config );
-		$name = self::getFormattedName( $config['name'], $config['extension'] );
+		$name = self::getFormattedName( $config['name'], $config['component'] );
 		try {
 			$metric = $this->getCachedMetric( $name, GaugeMetric::class );
 		} catch ( TypeError $ex ) {
@@ -162,14 +162,14 @@ class MetricsFactory {
 	 *
 	 * @param array $config associative array:
 	 *   - name: (string) The metric name
-	 *   - extension: (string) The extension generating the metric
+	 *   - component: (string) The component generating the metric
 	 *   - labels: (array) List of metric dimensional instantiations for filters and aggregations
 	 *   - sampleRate: (float) Optional sampling rate to apply
 	 * @return TimingMetric|NullMetric
 	 */
 	public function getTiming( array $config = [] ) {
 		$config = $this->getValidConfig( $config );
-		$name = self::getFormattedName( $config['name'], $config['extension'] );
+		$name = self::getFormattedName( $config['name'], $config['component'] );
 		try {
 			$metric = $this->getCachedMetric( $name, TimingMetric::class );
 		} catch ( TypeError $ex ) {
@@ -265,16 +265,16 @@ class MetricsFactory {
 	 * Get the metric formatted name.
 	 *
 	 * Takes the provided name and constructs a more specific name by combining
-	 * the service, extension, and name options.
+	 * the service, component, and name options.
 	 *
 	 * @param string $name
-	 * @param string $extension
+	 * @param string $component
 	 * @return string
 	 */
-	private function getFormattedName( string $name, string $extension ): string {
+	private function getFormattedName( string $name, string $component ): string {
 		return implode(
 			self::NAME_DELIMITER,
-			[ $this->prefix, $extension, self::normalizeString( $name ) ]
+			[ $this->prefix, $component, self::normalizeString( $name ) ]
 		);
 	}
 
@@ -287,7 +287,7 @@ class MetricsFactory {
 	 *
 	 * @param array $config associative array:
 	 *   - name: (string) The metric name
-	 *   - extension: (string) The extension generating the metric
+	 *   - component: (string) The component generating the metric
 	 *   - labels: (array) List of metric dimensional instantiations for filters and aggregations
 	 *   - sampleRate: (float) Optional sampling rate to apply
 	 * @return array
@@ -299,16 +299,16 @@ class MetricsFactory {
 				'\'name\' configuration option is required and cannot be empty.'
 			);
 		}
-		if ( !isset( $config['extension'] ) ) {
+		if ( !isset( $config['component'] ) ) {
 			throw new InvalidConfigurationException(
-				'\'extension\' configuration option is required and cannot be empty.'
+				'\'component\' configuration option is required and cannot be empty.'
 			);
 		}
 
 		$config['prefix'] = $this->prefix;
 		$config['format'] = $this->format;
 		$config['name'] = self::normalizeString( $config['name'] );
-		$config['extension'] = self::normalizeString( $config['extension'] );
+		$config['component'] = self::normalizeString( $config['component'] );
 		$config['labels'] = self::normalizeArray( $config['labels'] ?? [] );
 
 		return $config + self::DEFAULT_METRIC_CONFIG;

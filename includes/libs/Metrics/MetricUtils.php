@@ -43,7 +43,7 @@ class MetricUtils {
 	protected $prefix;
 
 	/** @var string */
-	protected $extension;
+	protected $component;
 
 	/** @var string */
 	protected $format;
@@ -67,14 +67,14 @@ class MetricUtils {
 	 * @param array $config associative array:
 	 *   - prefix: (string) The prefix prepended to the start of the metric name.
 	 *   - name: (string) The metric name
-	 *   - extension: (string) The extension generating the metric
+	 *   - component: (string) The component generating the metric
 	 *   - labels: (array) List of metric dimensional instantiations for filters and aggregations
 	 *   - sampleRate: (float) Optional sampling rate to apply
 	 *   - format: (string) The expected output format -- one of MetricsFactory::SUPPORTED_OUTPUT_FORMATS
 	 */
 	public function validateConfig( $config ) {
 		$this->prefix = $config['prefix'];
-		$this->extension = $config['extension'];
+		$this->component = $config['component'];
 		$this->name = $config['name'];
 		$this->sampleRate = $config['sampleRate'];
 		$this->format = $config['format'];
@@ -165,7 +165,7 @@ class MetricUtils {
 	 */
 	private function renderStatsD( Sample $sample ): string {
 		$stat = implode( '.',
-			array_merge( [ $this->prefix, $this->extension, $this->name ], $sample->getLabels() )
+			array_merge( [ $this->prefix, $this->component, $this->name ], $sample->getLabels() )
 		);
 		$value = ':' . $sample->getValue();
 		$type = '|' . $this->typeIndicator;
@@ -182,7 +182,7 @@ class MetricUtils {
 	 * @return string
 	 */
 	private function renderDogStatsD( Sample $sample ): string {
-		$stat = implode( '.', [ $this->prefix, $this->extension, $this->name ] );
+		$stat = implode( '.', [ $this->prefix, $this->component, $this->name ] );
 		$sampleLabels = $sample->getLabels();
 		$labels = [];
 		foreach ( $this->labels as $i => $label ) {
