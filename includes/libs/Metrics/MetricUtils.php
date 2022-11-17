@@ -165,7 +165,7 @@ class MetricUtils {
 	 */
 	private function renderStatsD( Sample $sample ): string {
 		$stat = implode( '.',
-			array_merge( [ $this->prefix, $this->component, $this->name ], $sample->getLabels() )
+			array_merge( [ $this->prefix, $this->component, $this->name ], $sample->getLabelValues() )
 		);
 		$value = ':' . $sample->getValue();
 		$type = '|' . $this->typeIndicator;
@@ -183,7 +183,7 @@ class MetricUtils {
 	 */
 	private function renderDogStatsD( Sample $sample ): string {
 		$stat = implode( '.', [ $this->prefix, $this->component, $this->name ] );
-		$sampleLabels = $sample->getLabels();
+		$sampleLabels = $sample->getLabelValues();
 		$labels = [];
 		foreach ( $this->labels as $i => $label ) {
 			$labels[] = $label . ':' . $sampleLabels[$i];
