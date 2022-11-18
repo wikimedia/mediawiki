@@ -20,7 +20,6 @@
 namespace MediaWiki\Rest\Handler;
 
 use Content;
-use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use Language;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
@@ -72,7 +71,7 @@ class HtmlInputTransformHelper {
 	/** @var PageIdentity|null */
 	private $page = null;
 
-	/** @var IBufferingStatsdDataFactory */
+	/** @var StatsdDataFactoryInterface */
 	private $stats;
 
 	/** @var array|null */
@@ -380,6 +379,19 @@ class HtmlInputTransformHelper {
 	 */
 	public function getTransform(): HtmlToContentTransform {
 		return $this->transform;
+	}
+
+	/**
+	 * Set metrics sink.
+	 *
+	 * @param StatsdDataFactoryInterface $stats
+	 */
+	public function setMetrics( StatsdDataFactoryInterface $stats ) {
+		$this->stats = $stats;
+
+		if ( $this->transform ) {
+			$this->transform->setMetrics( $stats );
+		}
 	}
 
 	/**

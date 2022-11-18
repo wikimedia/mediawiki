@@ -5,14 +5,16 @@ namespace MediaWiki\Tests\Rest\Handler;
 use DeferredUpdates;
 use Exception;
 use HashBagOStuff;
-use HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
+use MediaWiki\Rest\Handler\HtmlOutputRendererHelper;
+use MediaWiki\Rest\Handler\PageContentHelper;
 use MediaWiki\Rest\Handler\PageHTMLHandler;
+use MediaWiki\Rest\Handler\PageRestHelperFactory;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWikiIntegrationTestCase;
@@ -109,16 +111,31 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			$services->getParsoidPageConfigFactory()
 		);
 
+		$helperFactory = $this->createNoOpMock(
+			PageRestHelperFactory::class,
+			[ 'newPageContentHelper', 'newHtmlOutputRendererHelper' ]
+		);
+
+		$helperFactory->method( 'newPageContentHelper' )
+			->willReturn( new PageContentHelper(
+				new ServiceOptions( PageContentHelper::CONSTRUCTOR_OPTIONS, $config ),
+				$services->getRevisionLookup(),
+				$services->getTitleFormatter(),
+				$services->getPageStore()
+			) );
+
+		$helperFactory->method( 'newHtmlOutputRendererHelper' )
+			->willReturn( new HtmlOutputRendererHelper(
+				$this->getParsoidOutputStash(),
+				$services->getStatsdDataFactory(),
+				$parsoidOutputAccess,
+				$services->getHtmlTransformFactory()
+			) );
+
 		$handler = new PageHTMLHandler(
-			new HashConfig( $config ),
-			$services->getRevisionLookup(),
 			$services->getTitleFormatter(),
-			$services->getPageStore(),
-			$this->getParsoidOutputStash(),
-			$services->getStatsdDataFactory(),
-			$parsoidOutputAccess,
-			$services->getHtmlTransformFactory(),
-			$services->getRedirectStore()
+			$services->getRedirectStore(),
+			$helperFactory
 		);
 
 		return $handler;

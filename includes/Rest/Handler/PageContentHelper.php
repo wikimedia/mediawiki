@@ -3,6 +3,7 @@
 namespace MediaWiki\Rest\Handler;
 
 use Config;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageLookup;
@@ -26,8 +27,16 @@ use Wikimedia\ParamValidator\ParamValidator;
 class PageContentHelper {
 	private const MAX_AGE_200 = 5;
 
-	/** @var Config */
-	protected $config;
+	/**
+	 * @internal
+	 */
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::RightsUrl,
+		MainConfigNames::RightsText,
+	];
+
+	/** @var ServiceOptions */
+	protected $options;
 
 	/** @var RevisionLookup */
 	protected $revisionLookup;
@@ -51,18 +60,23 @@ class PageContentHelper {
 	protected $pageRecord = false;
 
 	/**
-	 * @param Config $config
+	 * @param ServiceOptions|Config $options
 	 * @param RevisionLookup $revisionLookup
 	 * @param TitleFormatter $titleFormatter
 	 * @param PageLookup $pageLookup
 	 */
 	public function __construct(
-		Config $config,
+		$options,
 		RevisionLookup $revisionLookup,
 		TitleFormatter $titleFormatter,
 		PageLookup $pageLookup
 	) {
-		$this->config = $config;
+		if ( $options instanceof Config ) {
+			// Temporary compatibility hack for VisualEditor.
+			$options = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $options );
+		}
+
+		$this->options = $options;
 		$this->revisionLookup = $revisionLookup;
 		$this->titleFormatter = $titleFormatter;
 		$this->pageLookup = $pageLookup;
@@ -228,8 +242,8 @@ class PageContentHelper {
 				->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )
 				->getModel(),
 			'license' => [
-				'url' => $this->config->get( MainConfigNames::RightsUrl ),
-				'title' => $this->config->get( MainConfigNames::RightsText )
+				'url' => $this->options->get( MainConfigNames::RightsUrl ),
+				'title' => $this->options->get( MainConfigNames::RightsText )
 			],
 		];
 	}

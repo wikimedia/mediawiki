@@ -22,6 +22,7 @@ namespace MediaWiki\Rest\Handler;
 use Content;
 use IBufferingStatsdDataFactory;
 use Language;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\SelserContext;
@@ -108,13 +109,13 @@ class HtmlOutputRendererHelper {
 
 	/**
 	 * @param ParsoidOutputStash $parsoidOutputStash
-	 * @param IBufferingStatsdDataFactory $statsDataFactory
+	 * @param StatsdDataFactoryInterface $statsDataFactory
 	 * @param ParsoidOutputAccess $parsoidOutputAccess
 	 * @param HtmlTransformFactory $htmlTransformFactory
 	 */
 	public function __construct(
 		ParsoidOutputStash $parsoidOutputStash,
-		IBufferingStatsdDataFactory $statsDataFactory,
+		StatsdDataFactoryInterface $statsDataFactory,
 		ParsoidOutputAccess $parsoidOutputAccess,
 		HtmlTransformFactory $htmlTransformFactory
 	) {

@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use BagOStuff;
 use Exception;
-use HashConfig;
 use MediaWiki\Rest\Handler\RevisionSourceHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -36,6 +35,11 @@ class RevisionSourceHandlerTest extends MediaWikiIntegrationTestCase {
 			'text',
 			'content'
 		];
+
+		$this->overrideConfigValues( [
+			'RightsUrl' => 'https://example.com/rights',
+			'RightsText' => 'some rights',
+		] );
 	}
 
 	/**
@@ -45,13 +49,7 @@ class RevisionSourceHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function newHandler( BagOStuff $cache = null ): RevisionSourceHandler {
 		$handler = new RevisionSourceHandler(
-			new HashConfig( [
-				'RightsUrl' => 'https://example.com/rights',
-				'RightsText' => 'some rights',
-			] ),
-			$this->getServiceContainer()->getRevisionLookup(),
-			$this->getServiceContainer()->getTitleFormatter(),
-			$this->getServiceContainer()->getPageStore()
+			$this->getServiceContainer()->getPageRestHelperFactory()
 		);
 
 		return $handler;

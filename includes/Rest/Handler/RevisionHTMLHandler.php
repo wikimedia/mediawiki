@@ -2,20 +2,12 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use Config;
-use IBufferingStatsdDataFactory;
 use LogicException;
-use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\PageLookup;
-use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
-use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\StringStream;
-use MediaWiki\Revision\RevisionLookup;
-use TitleFormatter;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -34,28 +26,9 @@ class RevisionHTMLHandler extends SimpleHandler {
 	/** @var RevisionContentHelper */
 	private $contentHelper;
 
-	public function __construct(
-		Config $config,
-		RevisionLookup $revisionLookup,
-		TitleFormatter $titleFormatter,
-		PageLookup $pageLookup,
-		ParsoidOutputStash $parsoidOutputStash,
-		IBufferingStatsdDataFactory $statsDataFactory,
-		ParsoidOutputAccess $parsoidOutputAccess,
-		HtmlTransformFactory $htmlTransformFactory
-	) {
-		$this->contentHelper = new RevisionContentHelper(
-			$config,
-			$revisionLookup,
-			$titleFormatter,
-			$pageLookup
-		);
-		$this->htmlHelper = new HtmlOutputRendererHelper(
-			$parsoidOutputStash,
-			$statsDataFactory,
-			$parsoidOutputAccess,
-			$htmlTransformFactory
-		);
+	public function __construct( PageRestHelperFactory $helperFactory ) {
+		$this->contentHelper = $helperFactory->newRevisionContentHelper();
+		$this->htmlHelper = $helperFactory->newHtmlOutputRendererHelper();
 	}
 
 	protected function postValidationSetup() {

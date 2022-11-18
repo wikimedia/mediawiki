@@ -2,21 +2,14 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use Config;
-use IBufferingStatsdDataFactory;
 use LogicException;
-use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ExistingPageRecord;
-use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\RedirectStore;
-use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
-use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\StringStream;
-use MediaWiki\Revision\RevisionLookup;
 use TitleFormatter;
 use Wikimedia\Assert\Assert;
 
@@ -42,30 +35,14 @@ class PageHTMLHandler extends SimpleHandler {
 	private $redirectStore;
 
 	public function __construct(
-		Config $config,
-		RevisionLookup $revisionLookup,
 		TitleFormatter $titleFormatter,
-		PageLookup $pageLookup,
-		ParsoidOutputStash $parsoidOutputStash,
-		IBufferingStatsdDataFactory $statsDataFactory,
-		ParsoidOutputAccess $parsoidOutputAccess,
-		HtmlTransformFactory $htmlTransformFactory,
-		RedirectStore $redirectStore
+		RedirectStore $redirectStore,
+		PageRestHelperFactory $helperFactory
 	) {
 		$this->titleFormatter = $titleFormatter;
 		$this->redirectStore = $redirectStore;
-		$this->contentHelper = new PageContentHelper(
-			$config,
-			$revisionLookup,
-			$titleFormatter,
-			$pageLookup
-		);
-		$this->htmlHelper = new HtmlOutputRendererHelper(
-			$parsoidOutputStash,
-			$statsDataFactory,
-			$parsoidOutputAccess,
-			$htmlTransformFactory
-		);
+		$this->contentHelper = $helperFactory->newPageContentHelper();
+		$this->htmlHelper = $helperFactory->newHtmlOutputRendererHelper();
 	}
 
 	protected function postValidationSetup() {

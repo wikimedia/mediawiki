@@ -304,13 +304,15 @@ abstract class ParsoidHandler extends Handler {
 			}
 		}
 
-		$helper = new HtmlInputTransformHelper(
-			$this->siteConfig->metrics() ?: $services->getStatsdDataFactory(),
-			$services->getHtmlTransformFactory(),
-			$services->getParsoidOutputStash(),
-			$services->getParsoidOutputAccess(),
+		$helper = $services->getPageRestHelperFactory()->newHtmlInputTransformHelper(
 			$attribs['envOptions']
 		);
+
+		$metrics = $this->siteConfig->metrics();
+
+		if ( $metrics ) {
+			$helper->setMetrics( $metrics );
+		}
 
 		$parameters = $attribs['opts'] + $attribs;
 		$body = $attribs['opts'];

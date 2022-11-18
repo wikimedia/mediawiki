@@ -1692,6 +1692,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Rest\\Handler\\PageHTMLHandler' => __DIR__ . '/includes/Rest/Handler/PageHTMLHandler.php',
 	'MediaWiki\\Rest\\Handler\\PageHistoryCountHandler' => __DIR__ . '/includes/Rest/Handler/PageHistoryCountHandler.php',
 	'MediaWiki\\Rest\\Handler\\PageHistoryHandler' => __DIR__ . '/includes/Rest/Handler/PageHistoryHandler.php',
+	'MediaWiki\\Rest\\Handler\\PageRestHelperFactory' => __DIR__ . '/includes/Rest/Handler/PageRestHelperFactory.php',
 	'MediaWiki\\Rest\\Handler\\PageSourceHandler' => __DIR__ . '/includes/Rest/Handler/PageSourceHandler.php',
 	'MediaWiki\\Rest\\Handler\\ParsoidFormatHelper' => __DIR__ . '/includes/Rest/Handler/ParsoidFormatHelper.php',
 	'MediaWiki\\Rest\\Handler\\ParsoidHandler' => __DIR__ . '/includes/Rest/Handler/ParsoidHandler.php',
