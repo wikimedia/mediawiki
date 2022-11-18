@@ -5794,7 +5794,10 @@ class Parser {
 		# Process section extraction flags
 		$flags = 0;
 		$sectionParts = explode( '-', $sectionId );
-		$sectionIndex = array_pop( $sectionParts );
+		// The section ID may either be a magic string such as 'new' (which should be treated as 0),
+		// or a numbered section ID in the format of "T-<section index>".
+		// Explicitly coerce the section index into a number accordingly. (T323373)
+		$sectionIndex = (int)array_pop( $sectionParts );
 		foreach ( $sectionParts as $part ) {
 			if ( $part === 'T' ) {
 				$flags |= Preprocessor::DOM_FOR_INCLUSION;
@@ -5804,7 +5807,7 @@ class Parser {
 		# Check for empty input
 		if ( strval( $text ) === '' ) {
 			# Only sections 0 and T-0 exist in an empty document
-			if ( $sectionIndex == 0 ) {
+			if ( $sectionIndex === 0 ) {
 				if ( $mode === 'get' ) {
 					return '';
 				}
@@ -5827,7 +5830,7 @@ class Parser {
 		$node = $root->getFirstChild();
 
 		# Find the target section
-		if ( $sectionIndex == 0 ) {
+		if ( $sectionIndex === 0 ) {
 			# Section zero doesn't nest, level=big
 			$targetLevel = 1000;
 		} else {
