@@ -44,4 +44,51 @@ class ApiQueryRevisionsTest extends ApiTestCase {
 			}
 		}
 	}
+
+	/**
+	 * @dataProvider provideSectionNewTestCases
+	 * @param string $pageContent
+	 * @param string $expectedSectionContent
+	 * @group medium
+	 */
+	public function testSectionNewReturnsEmptyContentForPageWithSection(
+		$pageContent,
+		$expectedSectionContent
+	) {
+		$pageName = 'Help:' . __METHOD__;
+		$page = $this->getExistingTestPage( $pageName );
+
+		$status = $page->doEditContent(
+			ContentHandler::makeContent( $pageContent, $page->getTitle() ),
+			'inserting content'
+		);
+
+		$response = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'revisions',
+			'titles' => $pageName,
+			'rvprop' => 'content',
+			'rvslots' => 'main',
+			'rvsection' => 'new'
+		] );
+
+		$this->assertArrayHasKey( 'query', $response[0] );
+		$this->assertArrayHasKey( 'pages', $response[0]['query'] );
+
+		$this->assertSame(
+			$expectedSectionContent,
+			$response[0]['query']['pages'][$page->getId()]['revisions'][0]['slots']['main']['content']
+		);
+	}
+
+	public function provideSectionNewTestCases() {
+		yield 'page with existing section' => [
+			"==A section==\ntext",
+			''
+		];
+		yield 'page with no sections' => [
+			'This page has no sections',
+			'This page has no sections'
+		];
+	}
 }
