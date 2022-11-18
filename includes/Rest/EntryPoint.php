@@ -34,16 +34,21 @@ class EntryPoint {
 	private static $mainRequest;
 
 	/**
+	 * @param MediaWikiServices $services
 	 * @param IContextSource $context
 	 * @param RequestInterface $request
 	 * @param ResponseFactory $responseFactory
 	 * @param CorsUtils $cors
+	 *
 	 * @return Router
 	 */
 	private static function createRouter(
-		IContextSource $context, RequestInterface $request, ResponseFactory $responseFactory, CorsUtils $cors
+		MediaWikiServices $services,
+		IContextSource $context,
+		RequestInterface $request,
+		ResponseFactory $responseFactory,
+		CorsUtils $cors
 	): Router {
-		$services = MediaWikiServices::getInstance();
 		$conf = $services->getMainConfig();
 
 		$authority = $context->getAuthority();
@@ -114,7 +119,7 @@ class EntryPoint {
 
 		$request = self::getMainRequest();
 
-		$router = self::createRouter( $context, $request, $responseFactory, $cors );
+		$router = self::createRouter( $services, $context, $request, $responseFactory, $cors );
 
 		$entryPoint = new self(
 			$context,
