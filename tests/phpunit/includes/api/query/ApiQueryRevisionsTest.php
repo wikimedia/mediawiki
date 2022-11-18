@@ -98,4 +98,47 @@ class ApiQueryRevisionsTest extends ApiTestCase {
 			$rvDiffToNext['query']['pages'][$page->getId()]['revisions'][0]['diff']['from']
 		);
 	}
+
+	/**
+	 * @dataProvider provideSectionNewTestCases
+	 * @param string $pageContent
+	 * @param string $expectedSectionContent
+	 * @group medium
+	 */
+	public function testSectionNewReturnsEmptyContentForPageWithSection(
+		$pageContent,
+		$expectedSectionContent
+	) {
+		$pageName = 'Help:' . __METHOD__;
+		$page = $this->getExistingTestPage( $pageName );
+		$user = $this->getTestUser()->getUser();
+		$revRecord = $page->newPageUpdater( $user )
+			->setContent( SlotRecord::MAIN, new WikitextContent( $pageContent ) )
+			->saveRevision( CommentStoreComment::newUnsavedComment( 'inserting content' ) );
+
+		[ $response ] = $this->doApiRequest( [
+			'action' => 'query',
+			'prop' => 'revisions',
+			'revids' => $revRecord->getId(),
+			'rvprop' => 'content|ids',
+			'rvslots' => 'main',
+			'rvsection' => 'new'
+		] );
+
+		$this->assertSame(
+			$expectedSectionContent,
+			$response['query']['pages'][$page->getId()]['revisions'][0]['slots']['main']['content']
+		);
+	}
+
+	public function provideSectionNewTestCases() {
+		yield 'page with existing section' => [
+			"==A section==\ntext",
+			''
+		];
+		yield 'page with no sections' => [
+			'This page has no sections',
+			'This page has no sections'
+		];
+	}
 }
