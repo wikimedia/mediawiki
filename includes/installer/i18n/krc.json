@@ -75,6 +75,7 @@
 	"config-no-cli-uri": "<strong>Эсгертиу:</strong> Чыртданда бир <code>--scriptpath</code> белгиленмегенди, тынгылау бла хайырланады: <code>$1</code>.",
 	"config-using-server": "Сервер аты болуб \"<nowiki>$1</nowiki>\" хайырланады.",
 	"config-using-uri": "Сервер URL болуб \"<nowiki>$1$2</nowiki>\" хайырланады.",
+	"config-uploads-not-safe": "<strong>Эсгертиу:</strong> <code>$1</code> джюклеулеригиз ючюн тынгылауда хайырланнган директориягъыз, кеси аллына чыкъгъан скриптлеге къаршчы джакъсызды.\nMediaWiki джюкленнген бютеу файлла къоркъуулагъа контроль этилселе да, джюклеулени джандыргъынчы [https://www.mediawiki.org/wiki/Manual:Security/tr#Upload_security бу къоркъуусузлукъ ачыкъны джабарыгъызны] бек тилейбиз.",
 	"config-db-wiki-settings": "Бу Викини идентификациясы",
 	"config-db-name": "Билгиле базаны аты:",
 	"config-mysql-innodb": "InnoDB",
