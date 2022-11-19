@@ -153,7 +153,8 @@ class EmailNotification {
 		// update wl_notificationtimestamp for watchers
 		$watchers = [];
 		if ( $config->get( MainConfigNames::EnotifWatchlist ) ||
-		$config->get( MainConfigNames::ShowUpdatedMarker ) ) {
+			$config->get( MainConfigNames::ShowUpdatedMarker )
+		) {
 			$watchers = $mwServices->getWatchedItemStore()->updateNotificationTimestamp(
 				$editor->getUser(),
 				$title,
@@ -167,16 +168,16 @@ class EmailNotification {
 		// don't bother creating a job/trying to send emails, unless it's a
 		// talk page with an applicable notification.
 		if ( $watchers === [] &&
-		!count( $config->get( MainConfigNames::UsersNotifiedOnAllChanges ) ) ) {
+			!count( $config->get( MainConfigNames::UsersNotifiedOnAllChanges ) )
+		) {
 			$sendEmail = false;
 			// Only send notification for non minor edits, unless $wgEnotifMinorEdits
 			if ( !$minorEdit ||
 				( $config->get( MainConfigNames::EnotifMinorEdits ) &&
 					!$editor->isAllowed( 'nominornewtalk' ) )
 			) {
-				$isUserTalkPage = ( $title->getNamespace() === NS_USER_TALK );
 				if ( $config->get( MainConfigNames::EnotifUserTalk )
-					&& $isUserTalkPage
+					&& $title->getNamespace() === NS_USER_TALK
 					&& $this->canSendUserTalkEmail( $editor->getUser(), $title, $minorEdit )
 				) {
 					$sendEmail = true;
@@ -239,8 +240,6 @@ class EmailNotification {
 		# 1. EmailNotification for pages (other than user_talk pages) must be enabled
 		# 2. minor edits (changes) are only regarded if the global flag indicates so
 
-		$isUserTalkPage = ( $title->getNamespace() === NS_USER_TALK );
-
 		$this->title = $title;
 		$this->timestamp = $timestamp;
 		$this->summary = $summary;
@@ -264,7 +263,7 @@ class EmailNotification {
 				!$editor->isAllowed( 'nominornewtalk' ) )
 		) {
 			if ( $config->get( MainConfigNames::EnotifUserTalk )
-				&& $isUserTalkPage
+				&& $title->getNamespace() === NS_USER_TALK
 				&& $this->canSendUserTalkEmail( $editor->getUser(), $title, $minorEdit )
 			) {
 				$targetUser = User::newFromName( $title->getText() );
@@ -318,9 +317,8 @@ class EmailNotification {
 	private function canSendUserTalkEmail( UserIdentity $editor, $title, $minorEdit ) {
 		$services = MediaWikiServices::getInstance();
 		$config = $services->getMainConfig();
-		$isUserTalkPage = ( $title->getNamespace() === NS_USER_TALK );
 
-		if ( !$config->get( MainConfigNames::EnotifUserTalk ) || !$isUserTalkPage ) {
+		if ( !$config->get( MainConfigNames::EnotifUserTalk ) || $title->getNamespace() !== NS_USER_TALK ) {
 			return false;
 		}
 
@@ -332,7 +330,8 @@ class EmailNotification {
 		} elseif ( $targetUser->getId() == $editor->getId() ) {
 			wfDebug( __METHOD__ . ": user edited their own talk page, no notification sent" );
 		} elseif ( $config->get( MainConfigNames::BlockDisablesLogin ) &&
-		$targetUser->getBlock() ) {
+			$targetUser->getBlock()
+		) {
 			// @TODO Partial blocks should not prevent the user from logging in.
 			//       see: https://phabricator.wikimedia.org/T208895
 			wfDebug( __METHOD__ . ": talk page owner is blocked and cannot login, no notification sent" );
@@ -489,8 +488,7 @@ class EmailNotification {
 			$this->composeCommonMailtext( $messageCache );
 		}
 
-		if ( MediaWikiServices::getInstance()->getMainConfig()
-		->get( MainConfigNames::EnotifImpersonal ) ) {
+		if ( MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::EnotifImpersonal ) ) {
 			$this->mailTargets[] = MailAddress::newFromUser( $user );
 		} else {
 			$this->sendPersonalised( $user, $source );
@@ -501,8 +499,7 @@ class EmailNotification {
 	 * Send any queued mails
 	 */
 	private function sendMails() {
-		if ( MediaWikiServices::getInstance()->getMainConfig()
-		->get( MainConfigNames::EnotifImpersonal ) ) {
+		if ( MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::EnotifImpersonal ) ) {
 			$this->sendImpersonal( $this->mailTargets );
 		}
 	}
