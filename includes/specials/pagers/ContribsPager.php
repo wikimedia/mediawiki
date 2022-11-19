@@ -695,7 +695,7 @@ class ContribsPager extends RangeChronologicalPager {
 				$revRecord,
 				null,
 				!$row->page_is_new,
-				$this->getHookRunner(),
+				$this->hookRunner,
 				$page,
 				$this->getContext(),
 				$this->getLinkRenderer()
