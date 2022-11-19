@@ -291,7 +291,8 @@ class SpecialUpload extends SpecialPage {
 			$this->getLinkRenderer(),
 			$this->localRepo,
 			$this->getContentLanguage(),
-			$this->nsInfo
+			$this->nsInfo,
+			$this->getHookContainer()
 		);
 		$form->setTitle( $this->getPageTitle() ); // Remove subpage
 
