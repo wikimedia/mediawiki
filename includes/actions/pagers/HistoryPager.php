@@ -23,6 +23,8 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -66,6 +68,9 @@ class HistoryPager extends ReverseChronologicalPager {
 	/** @var CommentFormatter */
 	private $commentFormatter;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * @var RevisionRecord[] Revisions, with the key being their result offset
 	 */
@@ -86,6 +91,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @param LinkBatchFactory|null $linkBatchFactory
 	 * @param WatchlistManager|null $watchlistManager
 	 * @param CommentFormatter|null $commentFormatter
+	 * @param HookContainer|null $hookContainer
 	 */
 	public function __construct(
 		HistoryAction $historyPage,
@@ -96,7 +102,8 @@ class HistoryPager extends ReverseChronologicalPager {
 		$day = 0,
 		LinkBatchFactory $linkBatchFactory = null,
 		WatchlistManager $watchlistManager = null,
-		CommentFormatter $commentFormatter = null
+		CommentFormatter $commentFormatter = null,
+		HookContainer $hookContainer = null
 	) {
 		parent::__construct( $historyPage->getContext() );
 		$this->historyPage = $historyPage;
@@ -110,6 +117,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->watchlistManager = $watchlistManager
 			?? $services->getWatchlistManager();
 		$this->commentFormatter = $commentFormatter ?? $services->getCommentFormatter();
+		$this->hookRunner = new HookRunner( $hookContainer ?? $services->getHookContainer() );
 	}
 
 	// For hook compatibility...
@@ -146,7 +154,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$this->tagFilter
 		);
 
-		$this->getHookRunner()->onPageHistoryPager__getQueryInfo( $this, $queryInfo );
+		$this->hookRunner->onPageHistoryPager__getQueryInfo( $this, $queryInfo );
 
 		return $queryInfo;
 	}
@@ -169,7 +177,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	protected function doBatchLookups() {
-		if ( !$this->getHookRunner()->onPageHistoryPager__doBatchLookups( $this, $this->mResult ) ) {
+		if ( !$this->hookRunner->onPageHistoryPager__doBatchLookups( $this, $this->mResult ) ) {
 			return;
 		}
 
@@ -485,7 +493,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			}
 		}
 		// Allow extension to add their own links here
-		$this->getHookRunner()->onHistoryTools(
+		$this->hookRunner->onHistoryTools(
 			$revRecord,
 			$tools,
 			$previousRevRecord,
@@ -516,7 +524,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$attribs = [ 'data-mw-revid' => $revRecord->getId() ];
 
-		$this->getHookRunner()->onPageHistoryLineEnding( $this, $row, $s, $classes, $attribs );
+		$this->hookRunner->onPageHistoryLineEnding( $this, $row, $s, $classes, $attribs );
 		$attribs = array_filter( $attribs,
 			[ Sanitizer::class, 'isReservedDataAttribute' ],
 			ARRAY_FILTER_USE_KEY

@@ -313,7 +313,8 @@ class HistoryAction extends FormlessAction {
 			$d,
 			$services->getLinkBatchFactory(),
 			$watchlistManager,
-			$services->getCommentFormatter()
+			$services->getCommentFormatter(),
+			$services->getHookContainer()
 		);
 		$out->addHTML(
 			$pager->getNavigationBar() .
