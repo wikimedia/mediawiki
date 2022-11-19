@@ -56,6 +56,9 @@ class ActionFactory {
 	/** @var ObjectFactory */
 	private $objectFactory;
 
+	/** @var HookContainer */
+	private $hookContainer;
+
 	/** @var HookRunner */
 	private $hookRunner;
 
@@ -104,7 +107,6 @@ class ActionFactory {
 			'class' => InfoAction::class,
 			'services' => [
 				'ContentLanguage',
-				'HookContainer',
 				'LanguageNameUtils',
 				'LinkBatchFactory',
 				'LinkRenderer',
@@ -148,7 +150,6 @@ class ActionFactory {
 		'raw' => [
 			'class' => RawAction::class,
 			'services' => [
-				'HookContainer',
 				'Parser',
 				'PermissionManager',
 				'RevisionLookup',
@@ -214,6 +215,7 @@ class ActionFactory {
 		$this->actionsConfig = $actionsConfig;
 		$this->logger = $logger;
 		$this->objectFactory = $objectFactory;
+		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
@@ -310,6 +312,7 @@ class ActionFactory {
 				'assertClass' => Action::class
 			]
 		);
+		$actionObj->setHookContainer( $this->hookContainer );
 		return $actionObj;
 	}
 

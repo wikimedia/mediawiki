@@ -376,7 +376,7 @@ class McrUndoAction extends FormAction {
 
 		$newRev = $this->getNewRevision();
 		if ( !$newRev->hasSameContent( $curRev ) ) {
-			$hookRunner = Hooks::runner();
+			$hookRunner = $this->getHookRunner();
 			foreach ( $newRev->getSlotRoles() as $slotRole ) {
 				$slot = $newRev->getSlot( $slotRole, RevisionRecord::RAW );
 

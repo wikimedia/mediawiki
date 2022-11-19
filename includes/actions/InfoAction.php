@@ -23,8 +23,6 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinksMigration;
@@ -48,9 +46,6 @@ class InfoAction extends FormlessAction {
 
 	/** @var Language */
 	private $contentLanguage;
-
-	/** @var HookRunner */
-	private $hookRunner;
 
 	/** @var LanguageNameUtils */
 	private $languageNameUtils;
@@ -98,7 +93,6 @@ class InfoAction extends FormlessAction {
 	 * @param Article $article
 	 * @param IContextSource $context
 	 * @param Language $contentLanguage
-	 * @param HookContainer $hookContainer
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param LinkRenderer $linkRenderer
@@ -118,7 +112,6 @@ class InfoAction extends FormlessAction {
 		Article $article,
 		IContextSource $context,
 		Language $contentLanguage,
-		HookContainer $hookContainer,
 		LanguageNameUtils $languageNameUtils,
 		LinkBatchFactory $linkBatchFactory,
 		LinkRenderer $linkRenderer,
@@ -136,7 +129,6 @@ class InfoAction extends FormlessAction {
 	) {
 		parent::__construct( $article, $context );
 		$this->contentLanguage = $contentLanguage;
-		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->languageNameUtils = $languageNameUtils;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->linkRenderer = $linkRenderer;
@@ -242,7 +234,7 @@ class InfoAction extends FormlessAction {
 		$pageInfo = $this->pageInfo();
 
 		// Allow extensions to add additional information
-		$this->hookRunner->onInfoAction( $this->getContext(), $pageInfo );
+		$this->getHookRunner()->onInfoAction( $this->getContext(), $pageInfo );
 
 		// Render page information
 		foreach ( $pageInfo as $header => $infoTable ) {
