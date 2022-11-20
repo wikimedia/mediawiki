@@ -121,6 +121,7 @@ class BacklinkCache {
 	 * @return BacklinkCache
 	 */
 	public static function get( PageReference $page ): self {
+		wfDeprecated( __METHOD__, '1.37' );
 		$backlinkCacheFactory = MediaWikiServices::getInstance()->getBacklinkCacheFactory();
 
 		return $backlinkCacheFactory->getBacklinkCache( $page );
