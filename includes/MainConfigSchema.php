@@ -4905,7 +4905,7 @@ class MainConfigSchema {
 
 	public static function getDefaultLocaltimezone(): string {
 		// This defaults to the `date.timezone` value of the PHP INI option. If this option is not set,
-		// it falls back to UTC. Prior to PHP 7.0, this fallback produced a warning.
+		// it falls back to UTC.
 		$localtimezone = date_default_timezone_get();
 		if ( !$localtimezone ) {
 			// Make doubly sure we have a valid time zone, even if date_default_timezone_get()
