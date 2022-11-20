@@ -473,7 +473,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 */
 	public function expandBlob( $raw, $flags, $blobAddress = null ) {
 		if ( is_string( $flags ) ) {
-			$flags = explode( ',', $flags );
+			$flags = self::explodeFlags( $flags );
 		}
 
 		// Use external methods for external objects, text in table is URL-only then
@@ -682,6 +682,16 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 */
 	public static function makeAddressFromTextId( $id ) {
 		return 'tt:' . $id;
+	}
+
+	/**
+	 * Split a comma-separated old_flags value into its constituent parts
+	 *
+	 * @param string $flagsString
+	 * @return array
+	 */
+	public static function explodeFlags( string $flagsString ) {
+		return $flagsString === '' ? [] : explode( ',', $flagsString );
 	}
 
 	/**

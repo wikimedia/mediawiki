@@ -22,101 +22,160 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+use MediaWiki\Maintenance\UndoLog;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Storage\SqlBlobStore;
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	$optionsWithArgs = [ 'm' ];
+require_once __DIR__ . '/../Maintenance.php';
 
-	require_once __DIR__ . '/../CommandLineInc.php';
+class ResolveStubs extends Maintenance {
+	/** @var UndoLog|null */
+	private $undoLog;
 
-	resolveStubs();
-}
+	public function __construct() {
+		parent::__construct();
+		$this->setBatchSize( 1000 );
+		$this->addOption( 'dry-run', 'Don\'t update any rows' );
+		$this->addOption( 'undo', 'Undo log location', false, true );
+	}
 
-/**
- * Convert history stubs that point to an external row to direct
- * external pointers
- */
-function resolveStubs() {
-	$fname = 'resolveStubs';
+	/**
+	 * Convert history stubs that point to an external row to direct
+	 * external pointers
+	 */
+	public function execute() {
+		$dbw = $this->getDB( DB_PRIMARY );
+		$dbr = $this->getDB( DB_REPLICA );
+		$maxID = $dbr->selectField( 'text', 'MAX(old_id)', '', __METHOD__ );
+		$blockSize = $this->getBatchSize();
+		$dryRun = $this->getOption( 'dry-run' );
+		$this->setUndoLog( new UndoLog( $this->getOption( 'undo' ), $dbw ) );
 
-	$dbr = wfGetDB( DB_REPLICA );
-	$maxID = $dbr->selectField( 'text', 'MAX(old_id)', '', $fname );
-	$blockSize = 10000;
-	$numBlocks = intval( $maxID / $blockSize ) + 1;
-	$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$numBlocks = intval( $maxID / $blockSize ) + 1;
+		$numResolved = 0;
+		$numTotal = 0;
+		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
-	for ( $b = 0; $b < $numBlocks; $b++ ) {
-		$lbFactory->waitForReplication();
+		for ( $b = 0; $b < $numBlocks; $b++ ) {
+			$lbFactory->waitForReplication();
 
-		printf( "%5.2f%%\n", $b / $numBlocks * 100 );
-		$start = intval( $maxID / $numBlocks ) * $b + 1;
-		$end = intval( $maxID / $numBlocks ) * ( $b + 1 );
+			$this->output( sprintf( "%5.2f%%\n", $b / $numBlocks * 100 ) );
+			$start = $blockSize * $b + 1;
+			$end = $blockSize * ( $b + 1 );
 
-		$res = $dbr->select( 'text', [ 'old_id', 'old_text', 'old_flags' ],
-			"old_id>=$start AND old_id<=$end " .
-			"AND old_flags LIKE '%object%' AND old_flags NOT LIKE '%external%' " .
-			'AND LOWER(CONVERT(LEFT(old_text,22) USING latin1)) = \'o:15:"historyblobstub"\'',
-			$fname );
-		foreach ( $res as $row ) {
-			resolveStub( $row->old_id, $row->old_text, $row->old_flags );
+			$res = $dbr->select( 'text', [ 'old_id', 'old_text', 'old_flags' ],
+				"old_id>=$start AND old_id<=$end " .
+				"AND old_flags LIKE '%object%' AND old_flags NOT LIKE '%external%' " .
+				// LOWER() doesn't work on binary text, need to convert
+				'AND LOWER(CONVERT(LEFT(old_text,22) USING latin1)) = \'o:15:"historyblobstub"\'',
+				__METHOD__ );
+			foreach ( $res as $row ) {
+				$numResolved += $this->resolveStub( $row, $dryRun ) ? 1 : 0;
+				$numTotal++;
+			}
 		}
+		$this->output( "100%\n" );
+		$this->output( "$numResolved of $numTotal stubs resolved\n" );
 	}
-	print "100%\n";
+
+	/**
+	 * @param UndoLog $undoLog
+	 */
+	public function setUndoLog( UndoLog $undoLog ) {
+		$this->undoLog = $undoLog;
+	}
+
+	/**
+	 * Resolve a history stub.
+	 *
+	 * This is called by MoveToExternal
+	 *
+	 * @param stdClass $row The existing text row
+	 * @param bool $dryRun
+	 * @return bool
+	 */
+	public function resolveStub( $row, $dryRun ) {
+		$id = $row->old_id;
+		$stub = unserialize( $row->old_text );
+		$flags = SqlBlobStore::explodeFlags( $row->old_flags );
+
+		$dbr = $this->getDB( DB_REPLICA );
+		$dbw = $this->getDB( DB_PRIMARY );
+
+		if ( !( $stub instanceof HistoryBlobStub ) ) {
+			print "Error at old_id $id: found object of class " . get_class( $stub ) .
+				", expecting HistoryBlobStub\n";
+			return false;
+		}
+
+		$mainId = $stub->getLocation();
+		if ( !$mainId ) {
+			print "Error at old_id $id: falsey location\n";
+			return false;
+		}
+
+		# Get the main text row
+		$mainTextRow = $dbr->selectRow(
+			'text',
+			[ 'old_text', 'old_flags' ],
+			[ 'old_id' => $mainId ],
+			__METHOD__
+		);
+
+		if ( !$mainTextRow ) {
+			print "Error at old_id $id: can't find main text row old_id $mainId\n";
+			return false;
+		}
+
+		$mainFlags = SqlBlobStore::explodeFlags( $mainTextRow->old_flags );
+		$mainText = $mainTextRow->old_text;
+
+		if ( !in_array( 'external', $mainFlags ) ) {
+			print "Error at old_id $id: target $mainId is not external\n";
+			return false;
+		}
+		if ( preg_match( '!^DB://([^/]*)/([^/]*)/[0-9a-f]{32}$!', $mainText ) ) {
+			print "Error at old_id $id: target $mainId is a CGZ pointer\n";
+			return false;
+		}
+		if ( preg_match( '!^DB://([^/]*)/([^/]*)/[0-9]{1,6}$!', $mainText ) ) {
+			print "Error at old_id $id: target $mainId is a DHB pointer\n";
+			return false;
+		}
+		if ( !preg_match( '!^DB://([^/]*)/([^/]*)$!', $mainText ) ) {
+			print "Error at old_id $id: target $mainId has unrecognised text\n";
+			return false;
+		}
+
+		# Preserve the legacy encoding flag, but switch from object to external
+		if ( in_array( 'utf-8', $flags ) ) {
+			$newFlags = 'utf-8,external';
+		} else {
+			$newFlags = 'external';
+		}
+		$newText = $mainText . '/' . $stub->getHash();
+
+		# Update the row
+		if ( $dryRun ) {
+			$this->output( "Resolve $id => $newFlags $newText\n" );
+		} else {
+			$updated = $this->undoLog->update(
+				'text',
+				[
+					'old_flags' => $newFlags,
+					'old_text' => $newText
+				],
+				(array)$row,
+				__METHOD__
+			);
+			if ( !$updated ) {
+				$this->output( "Updated of old_id $id failed to match\n" );
+				return false;
+			}
+		}
+		return true;
+	}
 }
 
-/**
- * Resolve a history stub
- * @param int $id
- * @param string $stubText
- * @param string $flags
- */
-function resolveStub( $id, $stubText, $flags ) {
-	$fname = 'resolveStub';
-
-	$stub = unserialize( $stubText );
-	$flags = explode( ',', $flags );
-
-	$dbr = wfGetDB( DB_REPLICA );
-	$dbw = wfGetDB( DB_PRIMARY );
-
-	if ( strtolower( get_class( $stub ) ) !== 'historyblobstub' ) {
-		print "Error found object of class " . get_class( $stub ) . ", expecting historyblobstub\n";
-
-		return;
-	}
-
-	# Get the (maybe) external row
-	$externalRow = $dbr->selectRow(
-		'text',
-		[ 'old_text' ],
-		[
-			'old_id' => $stub->getLocation(),
-			'old_flags' . $dbr->buildLike( $dbr->anyString(), 'external', $dbr->anyString() )
-		],
-		$fname
-	);
-
-	if ( !$externalRow ) {
-		# Object wasn't external
-		return;
-	}
-
-	# Preserve the legacy encoding flag, but switch from object to external
-	if ( in_array( 'utf-8', $flags ) ) {
-		$newFlags = 'external,utf-8';
-	} else {
-		$newFlags = 'external';
-	}
-
-	# Update the row
-	# print "oldid=$id\n";
-	$dbw->update( 'text',
-		[ /* SET */
-			'old_flags' => $newFlags,
-			'old_text' => $externalRow->old_text . '/' . $stub->getHash()
-		],
-		[ /* WHERE */
-			'old_id' => $id
-		], $fname
-	);
-}
+$maintClass = ResolveStubs::class;
+require_once RUN_MAINTENANCE_IF_MAIN;
