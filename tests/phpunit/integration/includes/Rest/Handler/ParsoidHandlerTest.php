@@ -19,6 +19,7 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Rest\RestTestTrait;
@@ -37,6 +38,7 @@ use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\DOM\Document;
 use Wikimedia\Parsoid\Mocks\MockMetrics;
 use Wikimedia\Parsoid\Parsoid;
+use WikitextContent;
 
 /**
  * @group Database
@@ -53,7 +55,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		'titleMissing' => false,
 		'pageName' => '',
 		'oldid' => null,
-		'body_only' => true,
+		'body_only' => null,
 		'errorEnc' => 'plain',
 		'iwp' => 'exwiki',
 		'subst' => null,
@@ -81,7 +83,13 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 	public function setUp(): void {
 		// enable Pig Latin variant conversion
-		$this->overrideConfigValue( 'UsePigLatinVariant', true );
+		$this->overrideConfigValues( [
+			'UsePigLatinVariant' => true,
+			'ParsoidSettings' => [
+				'useSelser' => true,
+				'linting' => true,
+			]
+		] );
 	}
 
 	private function createRouter( $authority, $request ) {
@@ -314,8 +322,13 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		return $handler;
 	}
 
-	private function getPageConfig( PageIdentity $page ): PageConfig {
-		return $this->getServiceContainer()->getParsoidPageConfigFactory()->create( $page );
+	private function getPageConfig( PageIdentity $page, $text = null ): PageConfig {
+		$rev = null;
+		if ( $text !== null ) {
+			$rev = new MutableRevisionRecord( $page );
+			$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
+		}
+		return $this->getServiceContainer()->getParsoidPageConfigFactory()->create( $page, null, $rev );
 	}
 
 	private function getPageConfigFactory( PageIdentity $page ): PageConfigFactory {
@@ -1728,5 +1741,210 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( $value, $pb['html']['headers'][$key] );
 		}
 	}
+
+	public function provideWt2html() {
+		$profileVersion = '2.6.0';
+		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;
+		$pbProfileUri = 'https://www.mediawiki.org/wiki/Specs/pagebundle/' . $profileVersion;
+
+		$htmlContentType = "text/html; charset=utf-8; profile=\"$htmlProfileUri\"";
+		$pbContentType = "application/json; charset=utf-8; profile=\"$pbProfileUri\"";
+		$lintContentType = "application/json";
+
+		$htmlHeaders = [
+			'content-type' => $htmlContentType,
+		];
+
+		$pbHeaders = [
+			'content-type' => $pbContentType,
+		];
+
+		$lintHeaders = [
+			'content-type' => $lintContentType,
+		];
+
+		// should get from a title and revision (html) ///////////////////////////////////
+		$expectedText = [
+			'>UTContent<',
+			'<html', // full document
+			'data-parsoid=' // annotated
+		];
+
+		$unexpectedText = [];
+
+		$attribs = [
+			'oldid' => 1, // will be replaced by a real revision id
+		];
+		yield 'should get from a title and revision (hmtl)' => [
+			$attribs,
+			null,
+			$expectedText,
+			$unexpectedText,
+			$htmlHeaders
+		];
+
+		// should get from a title and revision (pagebundle) ///////////////////////////////////
+		$expectedText = [ // bits of json
+			'UTContent</p>',
+			'"contentmodel":"wikitext"',
+			'"body":"<!DOCTYPE html>'
+		];
+
+		$unexpectedText = [];
+
+		$attribs = [
+			'oldid' => 1, // will be replaced by a real revision id
+			'opts' => [ 'format' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE ]
+		];
+		yield 'should get from a title and revision (pagebundle)' => [
+			$attribs,
+			null,
+			$expectedText,
+			$unexpectedText,
+			$pbHeaders
+		];
+
+		// should parse the given wikitext ///////////////////////////////////
+		$wikitext = 'lorem ipsum';
+		$expectedText = [
+			'>lorem ipsum<',
+			'<html', // full document
+			'data-parsoid=' // annotated
+		];
+
+		$unexpectedText = [];
+
+		$attribs = [];
+		yield 'should parse the given wikitext' => [
+			$attribs,
+			$wikitext,
+			$expectedText,
+			$unexpectedText,
+			$htmlHeaders
+		];
+
+		// should parse the given wikitext (body_only) ///////////////////////////////////
+		$wikitext = 'lorem ipsum';
+		$expectedText = [ '>lorem ipsum<' ];
+
+		$unexpectedText = [ '<html' ];
+
+		$attribs = [
+			'body_only' => true
+		];
+		yield 'should parse the given wikitext (body_only)' => [
+			$attribs,
+			$wikitext,
+			$expectedText,
+			$unexpectedText,
+			$htmlHeaders
+		];
+
+		// should lint the given wikitext ///////////////////////////////////
+		$wikitext = "{|\nhi\n|ho\n|}";
+		$expectedText = [
+			'"type":"fostered"',
+			'"dsr"'
+		];
+
+		$unexpectedText = [
+			'<html'
+		];
+
+		$attribs = [
+			'opts' => [ 'format' => ParsoidFormatHelper::FORMAT_LINT ]
+		];
+
+		yield 'should lint the given wikitext' => [
+			$attribs,
+			$wikitext,
+			$expectedText,
+			$unexpectedText,
+			$lintHeaders
+		];
+
+		// should parse the given JSON ///////////////////////////////////
+		$wikitext = '{ "color": "green" }';
+
+		// should be rendered as table, not interpreted as wikitext
+		$expectedText = [
+			'>color</th>',
+			'>green</td>',
+			'<html',
+		];
+
+		$unexpectedText = [ '<p>' ];
+
+		$attribs = [
+			'opts' => [
+				'contentmodel' => CONTENT_MODEL_JSON,
+			]
+		];
+		yield 'should parse the given JSON' => [
+			$attribs,
+			$wikitext,
+			$expectedText,
+			$unexpectedText,
+			$htmlHeaders
+		];
+	}
+
+	/**
+	 * @dataProvider provideWt2html
+	 *
+	 * @param array $attribs
+	 * @param string $text
+	 * @param string[] $expectedHtml
+	 * @param string[] $unexpectedHtml
+	 * @param string[] $expectedHeaders
+	 */
+	public function testWt2html(
+		array $attribs,
+		?string $text,
+		array $expectedHtml,
+		array $unexpectedHtml,
+		array $expectedHeaders = []
+	) {
+		$hmtlProfileUri = 'https://www.mediawiki.org/wiki/Specs/html/2.6.0';
+		$expectedHeaders += [
+			'content-type' => "text/x-wiki; charset=utf-8; profile=\"$hmtlProfileUri\"",
+		];
+
+		$page = $this->getExistingTestPage();
+		$pageConfig = $this->getPageConfig( $page, $text );
+
+		$attribs += self::DEFAULT_ATTRIBS;
+		$attribs['opts'] += self::DEFAULT_ATTRIBS['opts'];
+		$attribs['opts']['from'] ??= 'wikitext';
+		$attribs['opts']['format'] ??= 'html';
+		$attribs['envOptions'] += self::DEFAULT_ATTRIBS['envOptions'];
+
+		if ( $attribs['oldid'] ) {
+			// Set the actual ID of an existing revision
+			$attribs['oldid'] = $page->getLatest();
+		}
+
+		$handler = $this->newParsoidHandler();
+
+		$response = $handler->wt2html( $pageConfig, $attribs, $text );
+		$body = $response->getBody();
+		$body->rewind();
+		$html = $body->getContents();
+
+		foreach ( $expectedHeaders as $name => $value ) {
+			$this->assertSame( $value, $response->getHeaderLine( $name ) );
+		}
+
+		foreach ( $expectedHtml as $exp ) {
+			$this->assertStringContainsString( $exp, $html );
+		}
+
+		foreach ( $unexpectedHtml as $exp ) {
+			$this->assertStringNotContainsString( $exp, $html );
+		}
+	}
+
+	// TODO: test wt2html failure modes
+	// TODO: test redlinks
 
 }
