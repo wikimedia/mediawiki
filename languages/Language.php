@@ -4711,7 +4711,7 @@ class Language {
 
 	/**
 	 * Format a bitrate for output, using an appropriate
-	 * unit (bps, kbps, Mbps, Gbps, Tbps, Pbps, Ebps, Zbps or Ybps) according to
+	 * unit (bps, kbps, Mbps, Gbps, Tbps, Pbps, Ebps, Zbps, Ybps, Rbps or Qbps) according to
 	 *   the magnitude in question.
 	 *
 	 * This use base 1000. For base 1024 use formatSize(), for another base
@@ -4721,6 +4721,8 @@ class Language {
 	 * @return string
 	 */
 	public function formatBitrate( $bps ) {
+		// bitrate-petabits, bitrate-exabits, bitrate-zettabits, bitrate-yottabits, bitrate-ronnabits,
+		// bitrate-quettabits
 		return $this->formatComputingNumbers( $bps, 1000, "bitrate-$1bits" );
 	}
 
@@ -4736,7 +4738,7 @@ class Language {
 				$this->getMessageFromDB( str_replace( '$1', '', $messageKey ) )
 			);
 		}
-		$sizes = [ '', 'kilo', 'mega', 'giga', 'tera', 'peta', 'exa', 'zeta', 'yotta' ];
+		$sizes = [ '', 'kilo', 'mega', 'giga', 'tera', 'peta', 'exa', 'zeta', 'yotta', 'ronna', 'quetta' ];
 		$index = 0;
 
 		$maxIndex = count( $sizes ) - 1;
@@ -4760,7 +4762,7 @@ class Language {
 
 	/**
 	 * Format a size in bytes for output, using an appropriate
-	 * unit (B, KB, MB, GB, TB, PB, EB, ZB or YB) according to the magnitude in question
+	 * unit (B, KB, MB, GB, TB, PB, EB, ZB, YB, RB or QB) according to the magnitude in question
 	 *
 	 * This method use base 1024. For base 1000 use formatBitrate(), for
 	 * another base see formatComputingNumbers()
@@ -4769,6 +4771,7 @@ class Language {
 	 * @return string Plain text (not HTML)
 	 */
 	public function formatSize( $size ) {
+		// size-petabytes, size-exabytes, size-zettabytes, size-yottabytes, size-ronnabytes, size-quettabytes
 		return $this->formatComputingNumbers( $size, 1024, "size-$1bytes" );
 	}
 
