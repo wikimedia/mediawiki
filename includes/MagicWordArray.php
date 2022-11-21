@@ -175,6 +175,7 @@ class MagicWordArray {
 	 * @deprecated since 1.36 Appears to have no uses.
 	 */
 	public function getVariableRegex() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return str_replace( "\\$1", "(.*?)", $this->getRegex() );
 	}
 

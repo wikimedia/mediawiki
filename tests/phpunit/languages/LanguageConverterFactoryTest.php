@@ -26,6 +26,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		$flags,
 		$manualLevel
 	) {
+		$this->hideDeprecated( LanguageConverterFactory::class . '::isTitleConversionDisabled' );
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langCode );
 		$factory = new LanguageConverterFactory(
 			MediaWikiServices::getInstance()->getObjectFactory(),
@@ -60,6 +61,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	 * @covers ::getLanguageConverter
 	 */
 	public function testCreateFromCodeEnPigLatin() {
+		$this->hideDeprecated( LanguageConverterFactory::class . '::isTitleConversionDisabled' );
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 		$factory = new LanguageConverterFactory(
 			MediaWikiServices::getInstance()->getObjectFactory(),
@@ -97,6 +99,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	 * @dataProvider booleanProvider
 	 */
 	public function testDisabledBooleans( $pigLatinDisabled, $conversionDisabled, $titleDisabled ) {
+		$this->hideDeprecated( LanguageConverterFactory::class . '::isTitleConversionDisabled' );
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 		$factory = new LanguageConverterFactory(
 			MediaWikiServices::getInstance()->getObjectFactory(),
@@ -143,6 +146,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	 * @covers ::getLanguageConverter
 	 */
 	public function testDefaultContentLanguageFallback() {
+		$this->hideDeprecated( LanguageConverterFactory::class . '::isTitleConversionDisabled' );
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
 		$factory = new LanguageConverterFactory(
 			MediaWikiServices::getInstance()->getObjectFactory(),

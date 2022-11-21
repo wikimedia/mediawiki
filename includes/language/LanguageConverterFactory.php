@@ -197,6 +197,7 @@ class LanguageConverterFactory {
 	 * @deprecated since 1.36 Should use ::isLinkConversionDisabled() instead
 	 */
 	public function isTitleConversionDisabled() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return $this->isTitleConversionDisabled;
 	}
 
