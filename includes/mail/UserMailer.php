@@ -175,35 +175,6 @@ class UserMailer {
 	}
 
 	/**
-	 * Whether the PEAR Mail_mime library is usable. This will
-	 * try and load it if it is not already.
-	 *
-	 * @return bool
-	 */
-	private static function isMailMimeUsable() {
-		static $usable = null;
-		if ( $usable === null ) {
-			$usable = class_exists( Mail_mime::class );
-		}
-		return $usable;
-	}
-
-	/**
-	 * Whether the PEAR Mail library is usable. This will
-	 * try and load it if it is not already.
-	 *
-	 * @return bool
-	 */
-	private static function isMailUsable() {
-		static $usable = null;
-		if ( $usable === null ) {
-			$usable = class_exists( Mail::class );
-		}
-
-		return $usable;
-	}
-
-	/**
 	 * Helper function fo UserMailer::send() which does the actual sending. It expects a $to
 	 * list which the UserMailerSplitTo hook would not split further.
 	 * @param MailAddress[] $to Array of recipients' email addresses
@@ -230,7 +201,6 @@ class UserMailer {
 		$smtp = $mainConfig->get( MainConfigNames::SMTP );
 		$enotifMaxRecips = $mainConfig->get( MainConfigNames::EnotifMaxRecips );
 		$additionalMailParams = $mainConfig->get( MainConfigNames::AdditionalMailParams );
-		$mime = null;
 
 		$replyto = $options['replyTo'] ?? null;
 		$contentType = $options['contentType'] ?? 'text/plain; charset=UTF-8';
@@ -313,29 +283,21 @@ class UserMailer {
 		if ( is_array( $body ) ) {
 			// we are sending a multipart message
 			wfDebug( "Assembling multipart mime email" );
-			if ( !self::isMailMimeUsable() ) {
-				wfDebug( "PEAR Mail_Mime package is not installed. Falling back to text email." );
-				// remove the html body for text email fall back
-				$body = $body['text'];
-			} else {
-				// pear/mail_mime is already loaded by this point
-				if ( wfIsWindows() ) {
-					$body['text'] = str_replace( "\n", "\r\n", $body['text'] );
-					$body['html'] = str_replace( "\n", "\r\n", $body['html'] );
-				}
-				$mime = new Mail_mime( [
-					'eol' => $endl,
-					'text_charset' => 'UTF-8',
-					'html_charset' => 'UTF-8'
-				] );
-				$mime->setTXTBody( $body['text'] );
-				$mime->setHTMLBody( $body['html'] );
-				$body = $mime->get(); // must call get() before headers()
-				$headers = $mime->headers( $headers );
+			if ( wfIsWindows() ) {
+				$body['text'] = str_replace( "\n", "\r\n", $body['text'] );
+				$body['html'] = str_replace( "\n", "\r\n", $body['html'] );
 			}
-		}
-		if ( $mime === null ) {
-			// sending text only, either deliberately or as a fallback
+			$mime = new Mail_mime( [
+				'eol' => $endl,
+				'text_charset' => 'UTF-8',
+				'html_charset' => 'UTF-8'
+			] );
+			$mime->setTXTBody( $body['text'] );
+			$mime->setHTMLBody( $body['html'] );
+			$body = $mime->get(); // must call get() before headers()
+			$headers = $mime->headers( $headers );
+		} else {
+			// sending text only
 			if ( wfIsWindows() ) {
 				$body = str_replace( "\n", "\r\n", $body );
 			}
@@ -365,11 +327,6 @@ class UserMailer {
 		}
 
 		if ( is_array( $smtp ) ) {
-			// Check if pear/mail is already loaded (via composer)
-			if ( !self::isMailUsable() ) {
-				throw new MWException( 'PEAR mail package is not installed' );
-			}
-
 			$recips = array_map( 'strval', $to );
 
 			AtEase::suppressWarnings();
