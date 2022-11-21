@@ -390,4 +390,53 @@ class HandlerTest extends \MediaWikiUnitTestCase {
 		$this->assertEmpty( $response->getHeaderLine( 'Last-Modified' ) );
 	}
 
+	public function provideCacheControl() {
+		yield 'nothing' => [
+			'GET',
+			[],
+			''
+		];
+
+		yield 'cookie' => [
+			'GET',
+			[
+				'Cookie' => 'foo=bar',
+				'Cache-Control' => 'max-age=123'
+			],
+			'private,no-cache,s-maxage=0'
+		];
+
+		yield 'POST with cache control' => [
+			'POST',
+			[
+				'Cache-Control' => 'max-age=123'
+			],
+			'max-age=123'
+		];
+
+		yield 'POST use default cache control' => [
+			'POST',
+			[],
+			'private,no-cache,s-maxage=0'
+		];
+	}
+
+	/**
+	 * @dataProvider provideCacheControl
+	 */
+	public function testCacheControl( string $method, array $headers, $expected ) {
+		$response = new Response();
+
+		foreach ( $headers as $name => $value ) {
+			$response->setHeader( $name, $value );
+		}
+
+		$handler = $this->newHandler( [ 'getRequest' ] );
+		$handler->method( 'getRequest' )->willReturn( new RequestData( [ 'method' => $method ] ) );
+
+		$handler->applyCacheControl( $response );
+
+		$this->assertSame( $expected, $response->getHeaderLine( 'Cache-Control' ) );
+	}
+
 }

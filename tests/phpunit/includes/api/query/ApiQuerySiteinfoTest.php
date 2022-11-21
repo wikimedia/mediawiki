@@ -675,8 +675,6 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testGetHooks() {
-		global $wgHooks;
-
 		// Make sure there's something to report on
 		$this->setTemporaryHook( 'somehook',
 			static function () {
@@ -684,12 +682,11 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			}
 		);
 
-		$expectedNames = $wgHooks;
-		ksort( $expectedNames );
-
+		$hookContainer = $this->getServiceContainer()->getHookContainer();
+		$expectedNames = $hookContainer->getHookNames();
 		$actualNames = array_column( $this->doQuery( 'showhooks' ), 'name' );
 
-		$this->assertSame( array_keys( $expectedNames ), $actualNames );
+		$this->assertArrayEquals( $expectedNames, $actualNames );
 	}
 
 	public function testContinuation() {

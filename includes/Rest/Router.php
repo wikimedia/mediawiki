@@ -492,6 +492,8 @@ class Router {
 		// Set Last-Modified and ETag headers in the response if available
 		$handler->applyConditionalResponseHeaders( $response );
 
+		$handler->applyCacheControl( $response );
+
 		return $response;
 	}
 

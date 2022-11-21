@@ -422,6 +422,37 @@ namespace MediaWiki\HookContainer {
 		}
 
 		/**
+		 * @covers \MediaWiki\HookContainer\HookContainer::getHookNames
+		 */
+		public function testGetHookNames() {
+			$fooHandler = [ 'handler' => [
+				'name' => 'FooHookHandler',
+				'class' => 'FooExtension\\Hooks'
+			] ];
+
+			$container = $this->newHookContainer(
+				[
+					'A' => static function () {
+						// noop
+					}
+				],
+				[
+					'B' => $fooHandler
+				]
+			);
+
+			$container->register( 'C', 'strtoupper' );
+
+			$this->assertArrayEquals( [ 'A', 'B', 'C' ], $container->getHookNames() );
+
+			// make sure we are getting each hook name only once
+			$container->register( 'B', 'strtoupper' );
+			$container->register( 'A', 'strtoupper' );
+
+			$this->assertArrayEquals( [ 'A', 'B', 'C' ], $container->getHookNames() );
+		}
+
+		/**
 		 * @covers \MediaWiki\HookContainer\HookContainer::run
 		 * @covers \MediaWiki\HookContainer\HookContainer::normalizeHandler
 		 * Test HookContainer::run() throws exceptions appropriately
