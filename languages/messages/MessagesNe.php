@@ -46,6 +46,11 @@ $specialPageAliases = [
 	'Listgrouprights'           => [ 'प्रयोगकर्ता_समूह_अधिकार' ],
 ];
 
+/** @phpcs-require-sorted-array */
+$magicWords = [
+	'redirect'                  => [ '0', '#अनुप्रेषित', '#REDIRECT' ],
+];
+
 $digitTransformTable = [
 	'0' => '०', # U+0966
 	'1' => '१', # U+0967
