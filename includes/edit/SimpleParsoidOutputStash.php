@@ -34,6 +34,10 @@ class SimpleParsoidOutputStash implements ParsoidOutputStash {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
+	private function makeCacheKey( ParsoidRenderID $renderId ): string {
+		return $this->bagOfStuff->makeKey( 'ParsoidOutputStash', $renderId->getKey() );
+	}
+
 	/**
 	 * Before we stash, we serialize & encode into JSON the relevant
 	 * parts of the data we need to construct a page bundle in the future.
@@ -46,7 +50,7 @@ class SimpleParsoidOutputStash implements ParsoidOutputStash {
 	public function set( ParsoidRenderID $renderId, SelserContext $selserContext ): bool {
 		$jsonic = $this->selserContextToJsonArray( $selserContext );
 
-		$key = $renderId->getKey();
+		$key = $this->makeCacheKey( $renderId );
 		return $this->bagOfStuff->set( $key, $jsonic, $this->duration );
 	}
 
@@ -60,7 +64,8 @@ class SimpleParsoidOutputStash implements ParsoidOutputStash {
 	 * @return SelserContext|null
 	 */
 	public function get( ParsoidRenderId $renderId ): ?SelserContext {
-		$jsonic = $this->bagOfStuff->get( $renderId->getKey() ) ?? [];
+		$key = $this->makeCacheKey( $renderId );
+		$jsonic = $this->bagOfStuff->get( $key ) ?? [];
 
 		if ( !is_array( $jsonic ) ) {
 			// Defend against old stashed data.
