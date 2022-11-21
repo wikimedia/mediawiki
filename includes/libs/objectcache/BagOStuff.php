@@ -818,7 +818,7 @@ abstract class BagOStuff implements
 			// and thus has the format of "<scope>:<collection>[:<constant or variable>]..."
 			$components = explode( ':', $key, 3 );
 			// Handle legacy callers that fail to use the key building methods
-			$collection = $components[1] ?? $components[0];
+			$collection = $components[1] ?? 'UNKNOWN';
 			$statsGroup = 'objectcache';
 		}
 

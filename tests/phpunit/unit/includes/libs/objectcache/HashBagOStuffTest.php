@@ -1,5 +1,6 @@
 <?php
 
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -180,5 +181,49 @@ class HashBagOStuffTest extends PHPUnit\Framework\TestCase {
 			$this->assertSame( 1, $cache->get( $key ), "Kept $key" );
 		}
 		$this->assertFalse( $cache->get( 'bar' ), 'Evicted bar' );
+	}
+
+	/**
+	 * Ensure updateOpStats doesn't get confused.
+	 *
+	 * @covers MediumSpecificBagOStuff::updateOpStats
+	 */
+	public function testUpdateOpStats() {
+		$counts = [];
+
+		$stats = $this->createMock( StatsdDataFactoryInterface::class );
+		$stats->method( 'updateCount' )->willReturnCallback(
+			static function ( $name, $delta ) use ( &$counts ) {
+				$counts[$name] = ( $counts[$name] ?? 0 ) + $delta;
+			}
+		);
+
+		$cache = new HashBagOStuff( [
+			'stats' => $stats
+		] );
+		$cache = TestingAccessWrapper::newFromObject( $cache );
+
+		$cache->updateOpStats(
+			'frob',
+			[
+				// The value is the key
+				$cache->makeKey( 'Foo', '123456' ),
+
+				// The value is a tuble of ( bytes sent, bytes received )
+				$cache->makeGlobalKey( 'Bar', '123456' ) => [ 5, 3 ],
+
+				// The key is not a proper key
+				'1337BABE-123456' => [ 5, 3 ],
+			]
+		);
+
+		$this->assertSame( 1, $counts['objectcache.Foo.frob_call_rate'] );
+		$this->assertSame( 1, $counts['objectcache.Bar.frob_call_rate'] );
+		$this->assertSame( 1, $counts['objectcache.UNKNOWN.frob_call_rate'] );
+
+		$this->assertSame( 3, $counts['objectcache.Bar.frob_bytes_read'] );
+		$this->assertSame( 5, $counts['objectcache.Bar.frob_bytes_sent'] );
+		$this->assertSame( 3, $counts['objectcache.UNKNOWN.frob_bytes_read'] );
+		$this->assertSame( 5, $counts['objectcache.UNKNOWN.frob_bytes_sent'] );
 	}
 }
