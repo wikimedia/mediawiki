@@ -24,6 +24,12 @@ use MediaWiki\MediaWikiServices;
 
 /**
  * Pointer object for an item within a CGZ blob stored in the text table.
+ *
+ * WARNING: Objects of this class are serialized and permanently stored in the DB.
+ * Do not change the name or visibility of any property!
+ *
+ * Note: the property visibility was changed in 2020 from public to protected.
+ * This may cause problems in future.
  */
 class HistoryBlobStub {
 	/**

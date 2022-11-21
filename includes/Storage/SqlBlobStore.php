@@ -591,7 +591,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			$blob = $obj->getText();
 		}
 
-		// Needed to support old revisions left over from the 1.4 / 1.5 migration.
+		// Needed to support old revisions from before MW 1.5.
 		if ( $blob !== false && $this->legacyEncoding
 			&& !in_array( 'utf-8', $blobFlags ) && !in_array( 'utf8', $blobFlags )
 		) {
