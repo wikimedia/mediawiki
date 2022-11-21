@@ -296,6 +296,28 @@ abstract class Handler {
 	}
 
 	/**
+	 * Apply cache control to enforce privacy.
+	 *
+	 * @param ResponseInterface $response
+	 */
+	public function applyCacheControl( ResponseInterface $response ) {
+		// NOTE: keep this consistent with the logic in OutputPage::sendCacheControl
+
+		if ( $response->getHeaderLine( 'Cookie' ) ) {
+			// If the response sets cookies, it must not be cached in proxies!
+			$response->setHeader( 'Cache-Control', 'private,no-cache,s-maxage=0' );
+		}
+
+		if ( !$response->getHeaderLine( 'Cache-Control' ) ) {
+			$rqMethod = $this->getRequest()->getMethod();
+			if ( $rqMethod !== 'GET' && $rqMethod !== 'HEAD' ) {
+				// Responses to requests other than GET or HEAD should not be cacheable per default.
+				$response->setHeader( 'Cache-Control', 'private,no-cache,s-maxage=0' );
+			}
+		}
+	}
+
+	/**
 	 * Fetch ParamValidator settings for parameters
 	 *
 	 * Every setting must include self::PARAM_SOURCE to specify which part of
