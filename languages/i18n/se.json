@@ -1081,6 +1081,8 @@
 	"version-specialpages": "Erenomáš siiddut",
 	"version-ext-license": "Liseansa",
 	"version-ext-colheader-license": "Liseansa",
+	"version-software-version": "Veršuvdna",
+	"version-libraries-version": "Veršuvdna",
 	"version-libraries-license": "Liseansa",
 	"redirect-file": "Fiilanamma",
 	"fileduplicatesearch-filename": "Fiilanamma:",
@@ -1104,5 +1106,6 @@
 	"mediastatistics-header-unknown": "Dovdameahttun",
 	"mw-widgets-mediasearch-input-placeholder": "Oza mediaid",
 	"mw-widgets-mediasearch-recent-uploads": "{{GENDER:$1|Don}} leat gieskat lásten",
-	"log-action-filter-all": "Buot"
+	"log-action-filter-all": "Buot",
+	"paramvalidator-help-type-user-subtype-ip": "IP-čujuhus"
 }
