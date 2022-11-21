@@ -227,6 +227,8 @@ because of Phabricator reports.
 * Database::wasErrorReissuable() is deprecated.
 * Parser::getFunctionLang() has been deprecated; use
   Parser::getTargetLanguage() instead.
+* MagicWordArray::getVariableRegex(), deprecated in 1.36, now emits deprecation
+  warnings.
 * …
 
 === Other changes in 1.40 ===
