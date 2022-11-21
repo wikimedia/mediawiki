@@ -3821,7 +3821,7 @@
 	"restore-count-revisions": "{{PLURAL:$1|$1个修订版本}}",
 	"restore-count-files": "{{PLURAL:$1|$1个文件}}",
 	"logentry-delete-event": "$1{{GENDER:$2|更改}}$3{{PLURAL:$5|$5个日志事件}}的可见性：$4",
-	"logentry-delete-revision": "$1{{GENDER:$2|更改}}页面$3{{PLURAL:$5|$5个版本}}的可见性：$4",
+	"logentry-delete-revision": "$1{{GENDER:$2|更改}}页面$3中{{PLURAL:$5|$5个版本}}的可见性：$4",
 	"logentry-delete-event-legacy": "$1{{GENDER:$2|更改}}$3日志事件的可见性",
 	"logentry-delete-revision-legacy": "$1{{GENDER:$2|更改}}页面$3版本的可见性",
 	"logentry-suppress-delete": "$1{{GENDER:$2|已屏蔽}}页面$3",
