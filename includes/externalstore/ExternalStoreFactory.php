@@ -77,7 +77,11 @@ class ExternalStoreFactory implements LoggerAwareInterface {
 			throw new ExternalStoreException( "Protocol '$proto' is not enabled." );
 		}
 
-		$class = 'ExternalStore' . ucfirst( $proto );
+		if ( $protoLowercase === 'db' ) {
+			$class = 'ExternalStoreDB';
+		} else {
+			$class = 'ExternalStore' . ucfirst( $proto );
+		}
 		if ( isset( $params['wiki'] ) ) {
 			$params += [ 'domain' => $params['wiki'] ]; // b/c
 		}
