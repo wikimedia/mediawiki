@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use BagOStuff;
 use Exception;
-use HashConfig;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler\PageSourceHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -36,6 +36,11 @@ class PageSourceHandlerTest extends MediaWikiIntegrationTestCase {
 			'text',
 			'content'
 		];
+
+		$this->overrideConfigValues( [
+			MainConfigNames::RightsUrl => 'https://example.com/rights',
+			MainConfigNames::RightsText => 'some rights',
+		] );
 	}
 
 	/**
@@ -45,13 +50,8 @@ class PageSourceHandlerTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function newHandler( BagOStuff $cache = null ): PageSourceHandler {
 		$handler = new PageSourceHandler(
-			new HashConfig( [
-				'RightsUrl' => 'https://example.com/rights',
-				'RightsText' => 'some rights',
-			] ),
-			$this->getServiceContainer()->getRevisionLookup(),
 			$this->getServiceContainer()->getTitleFormatter(),
-			$this->getServiceContainer()->getPageStore()
+			$this->getServiceContainer()->getPageRestHelperFactory()
 		);
 
 		return $handler;

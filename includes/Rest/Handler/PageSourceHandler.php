@@ -2,14 +2,11 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use Config;
 use LogicException;
-use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
-use MediaWiki\Revision\RevisionLookup;
 use TitleFormatter;
 use Wikimedia\Assert\Assert;
 
@@ -26,19 +23,9 @@ class PageSourceHandler extends SimpleHandler {
 	/** @var PageContentHelper */
 	private $contentHelper;
 
-	public function __construct(
-		Config $config,
-		RevisionLookup $revisionLookup,
-		TitleFormatter $titleFormatter,
-		PageLookup $pageLookup
-	) {
+	public function __construct( TitleFormatter $titleFormatter, PageRestHelperFactory $helperFactory ) {
 		$this->titleFormatter = $titleFormatter;
-		$this->contentHelper = new PageContentHelper(
-			$config,
-			$revisionLookup,
-			$titleFormatter,
-			$pageLookup
-		);
+		$this->contentHelper = $helperFactory->newPageContentHelper();
 	}
 
 	protected function postValidationSetup() {

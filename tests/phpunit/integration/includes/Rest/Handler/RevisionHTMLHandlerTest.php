@@ -5,13 +5,15 @@ namespace MediaWiki\Tests\Rest\Handler;
 use DeferredUpdates;
 use Exception;
 use HashBagOStuff;
-use HashConfig;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
+use MediaWiki\Rest\Handler\HtmlOutputRendererHelper;
+use MediaWiki\Rest\Handler\PageRestHelperFactory;
+use MediaWiki\Rest\Handler\RevisionContentHelper;
 use MediaWiki\Rest\Handler\RevisionHTMLHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
@@ -19,7 +21,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
 use NullStatsdDataFactory;
-use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Http\Message\StreamInterface;
 use Psr\Log\NullLogger;
 use WANObjectCache;
@@ -27,7 +28,6 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
-use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * @covers \MediaWiki\Rest\Handler\RevisionHTMLHandler
@@ -69,14 +69,6 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @return RevisionHTMLHandler
 	 */
 	private function newHandler( ?Parsoid $parsoid = null ): RevisionHTMLHandler {
-		/** @var GlobalIdGenerator|MockObject $idGenerator */
-		$idGenerator = $this->createNoOpMock( GlobalIdGenerator::class, [ 'newUUIDv1' ] );
-		$idGenerator->method( 'newUUIDv1' )->willReturnCallback(
-			static function () {
-				return 'uuid' . ++self::$uuidCounter;
-			}
-		);
-
 		$parserCacheFactoryOptions = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
 			'CacheEpoch' => '20200202112233',
 			'OldRevisionParserCacheExpireTime' => 60 * 60,
@@ -111,25 +103,39 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			$parserCacheFactory,
 			$services->getPageStore(),
 			$services->getRevisionLookup(),
-			$idGenerator,
+			$services->getGlobalIdGenerator(),
 			$services->getStatsdDataFactory(),
 			$parsoid ?? new Parsoid(
-				$services->get( 'ParsoidSiteConfig' ),
-				$services->get( 'ParsoidDataAccess' )
-			),
+			$services->get( 'ParsoidSiteConfig' ),
+			$services->get( 'ParsoidDataAccess' )
+		),
 			$services->getParsoidSiteConfig(),
 			$services->getParsoidPageConfigFactory()
 		);
 
+		$helperFactory = $this->createNoOpMock(
+			PageRestHelperFactory::class,
+			[ 'newRevisionContentHelper', 'newHtmlOutputRendererHelper' ]
+		);
+
+		$helperFactory->method( 'newRevisionContentHelper' )
+			->willReturn( new RevisionContentHelper(
+				new ServiceOptions( RevisionContentHelper::CONSTRUCTOR_OPTIONS, $config ),
+				$services->getRevisionLookup(),
+				$services->getTitleFormatter(),
+				$services->getPageStore()
+			) );
+
+		$helperFactory->method( 'newHtmlOutputRendererHelper' )
+			->willReturn( new HtmlOutputRendererHelper(
+				$this->getParsoidOutputStash(),
+				$services->getStatsdDataFactory(),
+				$parsoidOutputAccess,
+				$services->getHtmlTransformFactory()
+			) );
+
 		$handler = new RevisionHTMLHandler(
-			new HashConfig( $config ),
-			$services->getRevisionLookup(),
-			$services->getTitleFormatter(),
-			$services->getPageStore(),
-			$this->getParsoidOutputStash(),
-			$services->getStatsdDataFactory(),
-			$parsoidOutputAccess,
-			$services->getHtmlTransformFactory()
+			$helperFactory
 		);
 
 		return $handler;

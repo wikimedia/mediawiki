@@ -36,10 +36,7 @@
 		"path": "/v1/revision/{id}",
 		"class": "MediaWiki\\Rest\\Handler\\RevisionSourceHandler",
 		"services": [
-			"MainConfig",
-			"RevisionLookup",
-			"TitleFormatter",
-			"PageStore"
+			"PageRestHelperFactory"
 		],
 		"format": "source"
 	},
@@ -47,14 +44,7 @@
 		"path": "/v1/revision/{id}/html",
 		"class": "MediaWiki\\Rest\\Handler\\RevisionHTMLHandler",
 		"services": [
-			"MainConfig",
-			"RevisionLookup",
-			"TitleFormatter",
-			"PageStore",
-			"ParsoidOutputStash",
-			"StatsdDataFactory",
-			"ParsoidOutputAccess",
-			"HtmlTransformFactory"
+			"PageRestHelperFactory"
 		],
 		"format": "html"
 	},
@@ -62,14 +52,7 @@
 		"path": "/v1/revision/{id}/with_html",
 		"class": "MediaWiki\\Rest\\Handler\\RevisionHTMLHandler",
 		"services": [
-			"MainConfig",
-			"RevisionLookup",
-			"TitleFormatter",
-			"PageStore",
-			"ParsoidOutputStash",
-			"StatsdDataFactory",
-			"ParsoidOutputAccess",
-			"HtmlTransformFactory"
+			"PageRestHelperFactory"
 		],
 		"format": "with_html"
 	},
@@ -77,10 +60,7 @@
 		"path": "/v1/revision/{id}/bare",
 		"class": "MediaWiki\\Rest\\Handler\\RevisionSourceHandler",
 		"services": [
-			"MainConfig",
-			"RevisionLookup",
-			"TitleFormatter",
-			"PageStore"
+			"PageRestHelperFactory"
 		],
 		"format": "bare"
 	},
@@ -129,10 +109,8 @@
 		"path": "/v1/page/{title}",
 		"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
 		"services": [
-			"MainConfig",
-			"RevisionLookup",
 			"TitleFormatter",
-			"PageStore"
+			"PageRestHelperFactory"
 		],
 		"format": "source"
 	},
@@ -140,10 +118,8 @@
 		"path": "/v1/page/{title}/bare",
 		"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
 		"services": [
-			"MainConfig",
-			"RevisionLookup",
 			"TitleFormatter",
-			"PageStore"
+			"PageRestHelperFactory"
 		],
 		"format": "bare"
 	},
@@ -151,15 +127,9 @@
 		"path": "/v1/page/{title}/html",
 		"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
 		"services": [
-			"MainConfig",
-			"RevisionLookup",
 			"TitleFormatter",
-			"PageStore",
-			"ParsoidOutputStash",
-			"StatsdDataFactory",
-			"ParsoidOutputAccess",
-			"HtmlTransformFactory",
-			"RedirectStore"
+			"RedirectStore",
+			"PageRestHelperFactory"
 		],
 		"format": "html"
 	},
@@ -167,15 +137,9 @@
 		"path": "/v1/page/{title}/with_html",
 		"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
 		"services": [
-			"MainConfig",
-			"RevisionLookup",
 			"TitleFormatter",
-			"PageStore",
-			"ParsoidOutputStash",
-			"StatsdDataFactory",
-			"ParsoidOutputAccess",
-			"HtmlTransformFactory",
-			"RedirectStore"
+			"RedirectStore",
+			"PageRestHelperFactory"
 		],
 		"format": "with_html"
 	},

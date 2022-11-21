@@ -133,6 +133,7 @@ use MediaWiki\Preferences\SignatureValidator;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\ResourceLoader\MessageBlobStore;
 use MediaWiki\ResourceLoader\ResourceLoader;
+use MediaWiki\Rest\Handler\PageRestHelperFactory;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\MainSlotRoleHandler;
@@ -1201,6 +1202,19 @@ return [
 		return new PageProps(
 			$services->getLinkBatchFactory(),
 			$services->getDBLoadBalancer()
+		);
+	},
+
+	'PageRestHelperFactory' => static function ( MediaWikiServices $services ): PageRestHelperFactory {
+		return new PageRestHelperFactory(
+			new ServiceOptions( PageRestHelperFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getRevisionLookup(),
+			$services->getTitleFormatter(),
+			$services->getPageStore(),
+			$services->getParsoidOutputStash(),
+			$services->getStatsdDataFactory(),
+			$services->getParsoidOutputAccess(),
+			$services->getHtmlTransformFactory()
 		);
 	},
 

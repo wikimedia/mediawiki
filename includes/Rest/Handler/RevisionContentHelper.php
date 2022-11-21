@@ -119,8 +119,8 @@ class RevisionContentHelper extends PageContentHelper {
 				'title' => $this->titleFormatter->getPrefixedText( $page ),
 			],
 			'license' => [
-				'url' => $this->config->get( MainConfigNames::RightsUrl ),
-				'title' => $this->config->get( MainConfigNames::RightsText )
+				'url' => $this->options->get( MainConfigNames::RightsUrl ),
+				'title' => $this->options->get( MainConfigNames::RightsText )
 			],
 		];
 

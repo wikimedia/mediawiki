@@ -111,6 +111,7 @@ use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\ResourceLoader\ResourceLoader;
+use MediaWiki\Rest\Handler\PageRestHelperFactory;
 use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\RevisionFactory;
@@ -1380,6 +1381,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getPageProps(): PageProps {
 		return $this->getService( 'PageProps' );
+	}
+
+	/**
+	 * @return PageRestHelperFactory
+	 * @since 1.40
+	 */
+	public function getPageRestHelperFactory(): PageRestHelperFactory {
+		return $this->getService( 'PageRestHelperFactory' );
 	}
 
 	/**
