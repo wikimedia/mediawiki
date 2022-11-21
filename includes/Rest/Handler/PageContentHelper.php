@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ExistingPageRecord;
@@ -68,22 +67,17 @@ class PageContentHelper {
 	private $pageIdentity = false;
 
 	/**
-	 * @param ServiceOptions|Config $options
+	 * @param ServiceOptions $options
 	 * @param RevisionLookup $revisionLookup
 	 * @param TitleFormatter $titleFormatter
 	 * @param PageLookup $pageLookup
 	 */
 	public function __construct(
-		$options,
+		ServiceOptions $options,
 		RevisionLookup $revisionLookup,
 		TitleFormatter $titleFormatter,
 		PageLookup $pageLookup
 	) {
-		if ( $options instanceof Config ) {
-			// Temporary compatibility hack for VisualEditor.
-			$options = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $options );
-		}
-
 		$this->options = $options;
 		$this->revisionLookup = $revisionLookup;
 		$this->titleFormatter = $titleFormatter;
