@@ -17,28 +17,35 @@
 	}
 
 	.mw-contribute-tabs-content {
-		background-color: @colorGray14;
+		background-color: @colorGray15;
 	}
 
 	.mw-contribute-content-area {
-		padding: 24px 16px;
+		display: flex;
+		flex-flow: row wrap;
+		column-gap: 24px;
+		row-gap: 24px;
 	}
 
 	.mw-contribute-card {
 		text-decoration: none;
+		border: 1px solid @colorGray12;
+		border-radius: 2px;
+		box-shadow: 0 1px 2px 0 rgba( 0, 0, 0, 0.1 );
+		background-color: #fff;
 
 		&:hover {
 			text-decoration: none;
 		}
+
+		&:last-of-type .mw-contribute-card-content {
+			margin-bottom: 0;
+		}
 	}
 
 	.mw-contribute-card-content {
-		background-color: #fff;
 		padding: 12px;
 		color: @colorGray2;
-		margin-bottom: 24px;
-		border-radius: 2px;
-		box-shadow: 0 1px 2px 0 rgba( 0, 0, 0, 0.1 );
 	}
 
 	.mw-contribute-card-title {
@@ -57,6 +64,37 @@
 	.mw-contribute-card-action {
 		color: @color-primary;
 		padding-left: 28px;
+		padding-top: 4px;
 		font-size: @font-size-base * 0.875;
+		font-weight: bold;
+	}
+
+	// Narrow screens
+	@media only screen and ( max-width: @width-breakpoint-tablet ) {
+		/* stylelint-disable-next-line selector-class-pattern */
+		.content {
+			margin: 0;
+		}
+
+		.mw-contribute-content-area {
+			padding: 24px 16px;
+		}
+
+		.mw-contribute-card {
+			width: 100%;
+		}
+	}
+
+	// Wide screens
+	@media only screen and ( min-width: @width-breakpoint-tablet ) {
+		.mw-contribute-content-area {
+			padding: 32px;
+		}
+
+		.mw-contribute-card {
+			// We need 2 cards per row. that is 50% width.
+			// Then reduce 24px for column gap and 2px for border margins
+			width: ~'calc(50% - (1/2)*24px - 2px)';
+		}
 	}
 }
