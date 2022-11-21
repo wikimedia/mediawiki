@@ -192,6 +192,7 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 	 * @covers BacklinkCache::get
 	 */
 	public function testGet() {
+		$this->hideDeprecated( 'BacklinkCache::get' );
 		$page = PageReferenceValue::localReference( NS_CATEGORY, "kittens" );
 		$cache = BacklinkCache::get( $page );
 		$this->assertTrue( $cache->getPage()->isSamePageAs( $page ) );
