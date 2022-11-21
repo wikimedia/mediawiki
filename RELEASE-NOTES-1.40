@@ -230,6 +230,8 @@ because of Phabricator reports.
 * MagicWordArray::getVariableRegex(), deprecated in 1.36, now emits deprecation
   warnings.
 * BacklinkCache::get(), deprecated in 1.37, now emits deprecation warnings.
+* LanguageConverterFactory::isTitleConversionDisabled(), deprecated in 1.36,
+  now emits deprecation warnings.
 * …
 
 === Other changes in 1.40 ===
