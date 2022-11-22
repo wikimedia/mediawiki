@@ -280,12 +280,11 @@ class CommentStore {
 					);
 				}
 				$id = $row["{$key}_id"];
-				$row2 = $db->selectRow(
-					'comment',
-					[ 'comment_id', 'comment_text', 'comment_data' ],
-					[ 'comment_id' => $id ],
-					__METHOD__
-				);
+				$row2 = $db->newSelectQueryBuilder()
+					->select( [ 'comment_id', 'comment_text', 'comment_data' ] )
+					->from( 'comment' )
+					->where( [ 'comment_id' => $id ] )
+					->caller( __METHOD__ )->fetchRow();
 			}
 			if ( !$row2 && ( $tempTableStage & SCHEMA_COMPAT_READ_OLD ) &&
 				array_key_exists( "{$key}_pk", $row )
@@ -298,17 +297,15 @@ class CommentStore {
 				}
 				$t = static::TEMP_TABLES[$key];
 				$id = $row["{$key}_pk"];
-				$row2 = $db->selectRow(
+				$row2 = $db->newSelectQueryBuilder()
+					->select( [ 'comment_id', 'comment_text', 'comment_data' ] )
 					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
-					[ $t['table'], 'comment' ],
-					[ 'comment_id', 'comment_text', 'comment_data' ],
+					->from( $t['table'] )
 					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
-					[ $t['pk'] => $id ],
-					__METHOD__,
-					[],
+					->join( 'comment', null, [ "comment_id = {$t['field']}" ] )
 					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
-					[ 'comment' => [ 'JOIN', [ "comment_id = {$t['field']}" ] ] ]
-				);
+					->where( [ $t['pk'] => $id ] )
+					->caller( __METHOD__ )->fetchRow();
 			}
 			if ( $row2 === null && $fallback && isset( $row[$key] ) ) {
 				wfLogWarning( "Using deprecated fallback handling for comment $key" );
@@ -464,16 +461,15 @@ class CommentStore {
 			}
 
 			$hash = self::hash( $comment->text, $dbData );
-			$commentId = $dbw->selectField(
-				'comment',
-				'comment_id',
-				[
+			$commentId = $dbw->newSelectQueryBuilder()
+				->select( 'comment_id' )
+				->from( 'comment' )
+				->where( [
 					'comment_hash' => $hash,
 					'comment_text' => $comment->text,
 					'comment_data' => $dbData,
-				],
-				__METHOD__
-			);
+				] )
+				->caller( __METHOD__ )->fetchField();
 			if ( !$commentId ) {
 				$dbw->insert(
 					'comment',

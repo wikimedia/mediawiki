@@ -88,13 +88,11 @@ class Category {
 			return true;
 		}
 
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$row = $dbr->selectRow(
-			'category',
-			[ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ],
-			$where,
-			__METHOD__
-		);
+		$row = $this->loadBalancer->getConnectionRef( DB_REPLICA )->newSelectQueryBuilder()
+			->select( [ 'cat_id', 'cat_title', 'cat_pages', 'cat_subcats', 'cat_files' ] )
+			->from( 'category' )
+			->where( $where )
+			->caller( __METHOD__ )->fetchRow();
 
 		if ( !$row ) {
 			# Okay, there were no contents.  Nothing to initialize.
@@ -317,25 +315,24 @@ class Category {
 	 * @return TitleArray TitleArray object for category members.
 	 */
 	public function getMembers( $limit = false, $offset = '' ) {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 		$queryBuilder = $dbr->newSelectQueryBuilder();
 		$queryBuilder->select( [ 'page_id', 'page_namespace', 'page_title', 'page_len',
 				'page_is_redirect', 'page_latest' ] )
 			->from( 'categorylinks' )
 			->join( 'page', null, [ 'cl_from = page_id' ] )
 			->where( [ 'cl_to' => $this->getName() ] )
-			->orderBy( 'cl_sortkey' )
-			->caller( __METHOD__ );
+			->orderBy( 'cl_sortkey' );
 
 		if ( $limit ) {
 			$queryBuilder->limit( $limit );
 		}
 
 		if ( $offset !== '' ) {
-			$queryBuilder->andWhere( 'cl_sortkey > ' . $dbr->addQuotes( $offset ) );
+			$queryBuilder->andWhere( $dbr->buildComparison( '>', [ 'cl_sortkey' => $offset ] ) );
 		}
 
-		$result = TitleArray::newFromResult( $queryBuilder->fetchResultSet() );
+		$result = TitleArray::newFromResult( $queryBuilder->caller( __METHOD__ )->fetchResultSet() );
 
 		return $result;
 	}
@@ -384,26 +381,27 @@ class Category {
 
 		// Lock all the `categorylinks` records and gaps for this category;
 		// this is a separate query due to postgres limitations
-		$dbw->selectRowCount(
-			[ 'categorylinks', 'page' ],
-			'*',
-			[ 'cl_to' => $this->mName, 'page_id = cl_from' ],
-			__METHOD__,
-			[ 'LOCK IN SHARE MODE' ]
-		);
+		$dbw->newSelectQueryBuilder()
+			->select( '*' )
+			->from( 'categorylinks' )
+			->join( 'page', null, 'page_id = cl_from' )
+			->where( [ 'cl_to' => $this->mName ] )
+			->lockInShareMode()
+			->caller( __METHOD__ )->fetchRowCount();
+
 		// Get the aggregate `categorylinks` row counts for this category
 		$catCond = $dbw->conditional( [ 'page_namespace' => NS_CATEGORY ], '1', 'NULL' );
 		$fileCond = $dbw->conditional( [ 'page_namespace' => NS_FILE ], '1', 'NULL' );
-		$result = $dbw->selectRow(
-			[ 'categorylinks', 'page' ],
-			[
+		$result = $dbw->newSelectQueryBuilder()
+			->select( [
 				'pages' => 'COUNT(*)',
 				'subcats' => "COUNT($catCond)",
 				'files' => "COUNT($fileCond)"
-			],
-			[ 'cl_to' => $this->mName, 'page_id = cl_from' ],
-			__METHOD__
-		);
+			] )
+			->from( 'categorylinks' )
+			->join( 'page', null, 'page_id = cl_from' )
+			->where( [ 'cl_to' => $this->mName ] )
+			->caller( __METHOD__ )->fetchRow();
 
 		$shouldExist = $result->pages > 0 || $this->getPage()->exists();
 
@@ -496,29 +494,27 @@ class Category {
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
 
-		$typeOccurances = $dbw->selectFieldValues(
-			'categorylinks',
-			'cl_type',
-			[ 'cl_to' => $this->getName() ],
-			__METHOD__,
-			[ 'LIMIT' => $maxSize + 1 ]
-		);
+		$typeOccurances = $dbw->newSelectQueryBuilder()
+			->select( 'cl_type' )
+			->from( 'categorylinks' )
+			->where( [ 'cl_to' => $this->getName() ] )
+			->limit( $maxSize + 1 )
+			->caller( __METHOD__ )->fetchFieldValues();
 
 		if ( !$typeOccurances ) {
 			$doRefresh = true; // delete any category table entry
 		} elseif ( count( $typeOccurances ) <= $maxSize ) {
 			$countByType = array_count_values( $typeOccurances );
-			$doRefresh = !$dbw->selectField(
-				'category',
-				'1',
-				[
+			$doRefresh = !$dbw->newSelectQueryBuilder()
+				->select( '1' )
+				->from( 'category' )
+				->where( [
 					'cat_title' => $this->getName(),
 					'cat_pages' => $countByType['page'] ?? 0,
 					'cat_subcats' => $countByType['subcat'] ?? 0,
 					'cat_files' => $countByType['file'] ?? 0
-				],
-				__METHOD__
-			);
+				] )
+				->caller( __METHOD__ )->fetchField();
 		} else {
 			$doRefresh = false; // category is too big
 		}
