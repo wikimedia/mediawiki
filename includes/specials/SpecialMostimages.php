@@ -24,7 +24,6 @@
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  */
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -35,14 +34,10 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class MostimagesPage extends ImageQueryPage {
 
 	/**
-	 * @param ILoadBalancer|string $loadBalancer
+	 * @param ILoadBalancer $loadBalancer
 	 */
-	public function __construct( $loadBalancer ) {
-		parent::__construct( is_string( $loadBalancer ) ? $loadBalancer : 'Mostimages' );
-		// This class is extended and therefor fallback to global state - T265307
-		if ( !$loadBalancer instanceof ILoadBalancer ) {
-			$loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		}
+	public function __construct( ILoadBalancer $loadBalancer ) {
+		parent::__construct( 'Mostimages' );
 		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
