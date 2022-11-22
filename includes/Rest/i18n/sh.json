@@ -21,5 +21,9 @@
 	"rest-pagehistory-timestamp-error": "Nije moguće dohvatiti vremensku oznaku za navedenu izmjenu ($1)",
 	"rest-compare-permission-denied": "Korisnik nema pristup zatraženim izmjenama",
 	"rest-compare-wrong-content": "$1 mjesto izmjene koja je naznačena parametrom $2 ima tip sadržaja što se ne može pretvoriti u tekst.",
-	"rest-bad-content-model": "Loš model sadržaja: $1"
+	"rest-bad-content-model": "Loš model sadržaja: $1",
+	"rest-update-cannot-create-page": "Stranica \"$1\" ne može se napraviti jer već postoji. Za podnoviti postojeću stranicu, navedite naznaku osnovne izmjene u strukturi sadržaja ispod ključa \"najnovije\" u tijelu zahtjeva.",
+	"rest-extraneous-csrf-token": "Pronađen suvišni CSRF žeton. Ovakvi žetoni ne smiju se koristiti pri korištenju mehanizama autentikacije kao OAuth koji su sigurni od CSRF napada.",
+	"rest-cannot-load-file": "Datoteka kod naslova \"$1\" ne može se učitati.",
+	"rest-cross-origin-anon-write": "Anonimni zahtjevi za pisanje iz različitih izvora nisu dopušteni"
 }
