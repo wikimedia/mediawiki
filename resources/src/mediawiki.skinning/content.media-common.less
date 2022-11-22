@@ -79,6 +79,7 @@ figure[ typeof~='mw:Audio/Frame' ] {
 	display: table;
 	text-align: center;
 	border-collapse: collapse;
+	line-height: 0;
 
 	> a {
 		// The addition of the class is needed for higher specificity
@@ -157,6 +158,7 @@ figure[ typeof~='mw:Audio/Frame' ] {
 		 */
 		> span.mw-broken-media {
 			display: inline-block;
+			line-height: 1.6em;
 			/* The extra horizontal margin here is to make up for the lack of a border */
 			margin: 3px 4px;
 			/* This is hardcoded in Linker::makeThumbLink2 for broken media */
