@@ -142,7 +142,7 @@ describe( 'Page', function () {
 		assert.strictEqual( await EditPage.heading.getText(), 'View source for ' + name );
 	} );
 
-	it.skip( 'should be undoable', async function () {
+	it( 'should be undoable', async function () {
 
 		// create
 		await bot.edit( name, content, 'create to edit and undo' );
