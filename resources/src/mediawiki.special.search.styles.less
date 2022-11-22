@@ -55,11 +55,21 @@
 	}
 }
 
-@media only screen and ( min-width: 720px ) {
-	.mw-search-results-info,
+@media only screen and ( min-width: @width-breakpoint-desktop ) {
 	.mw-search-results-container,
+	.mw-search-results-info {
+		width: calc( 100% / 12 * 8 );
+	}
+
 	.mw-search-profile-tabs {
 		width: 50em;
+	}
+}
+
+@media only screen and ( min-width: 1440px ) {
+	.mw-search-results-container,
+	.mw-search-results-info {
+		width: calc( 100% / 12 * 7 );
 	}
 }
 

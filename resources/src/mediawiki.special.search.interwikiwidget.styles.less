@@ -6,6 +6,8 @@
 /* stylelint-disable selector-class-pattern */
 
 .mw-searchresults-has-iw {
+	position: relative;
+
 	.iw-results {
 		list-style: none;
 		margin: 0;
@@ -112,28 +114,25 @@
 		visibility: visible;
 	}
 
-	/* Tablet and up */
-	@media only screen and ( min-width: @width-breakpoint-tablet ) {
+	/* Desktop and up */
+	@media only screen and ( min-width: @width-breakpoint-desktop ) {
 		#mw-interwiki-results {
-			width: 30%;
-			display: inline-block;
-			/* Used to align interwiki sidebar with the top of the main search results */
-			margin-left: 8%;
-			/* Since inline-block causes whitespace issues, this is 8 instead of 10% */
-		}
-
-		.mw-search-results-info,
-		.mw-search-results-container {
-			float: left;
-			width: 60%;
-			clear: left;
-			max-width: 60%;
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: calc( 100% / 12 * 3 );
 		}
 
 		.iw-resultset:nth-child( 1 ) {
 			.iw-result__header {
 				border-top: unset;
 			}
+		}
+	}
+
+	@media only screen and ( min-width: 1440px ) {
+		#mw-interwiki-results {
+			margin-right: calc( 100% / 12 );
 		}
 	}
 
@@ -145,8 +144,8 @@
 }
 
 .mw-searchresults-has-iw.mw-searchresults-has-offset {
-	/* Tablet and up */
-	@media only screen and ( max-width: @width-breakpoint-tablet ) {
+	/* Desktop and up */
+	@media only screen and ( max-width: @width-breakpoint-desktop ) {
 		#mw-interwiki-results {
 			display: none;
 		}
