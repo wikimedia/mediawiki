@@ -956,8 +956,6 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 
 		$metadata = $dbw->decodeBlob( $dbw->selectField( 'image', 'img_metadata',
 			[ 'img_name' => 'Test.pdf' ], __METHOD__ ) );
-		// Cast to string to work around PDO SQLite bug in PHP<8.1
-		$metadata = (string)$metadata;
 		$this->assertStringMatchesFormat( $expected, $metadata );
 	}
 
