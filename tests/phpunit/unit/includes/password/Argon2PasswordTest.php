@@ -56,13 +56,14 @@ class Argon2PasswordTest extends PasswordTestCase {
 				false,
 				':argon2:$argon2i$v=19$m=1024,t=2,p=2$UGZqTWJRUkI1alVNTGRUbA$RcASw9XUWjCDO9WNnuVkGkEylURUW/CcNwSffdFwN74',
 				'password',
+			],
+			// argon2id
+			[
+				true,
+				':argon2:$argon2id$v=19$m=65536,t=1,p=1$SS51Z0U2bkQ5Mk1GYUNQOQ$jdN3UnHn6MHOaOeWiX+RqRhcwVPLLDlEAKPvDt/qKIY',
+				'password'
 			]
 		];
-
-		if ( defined( 'PASSWORD_ARGON2ID' ) ) {
-			// @todo: Argon2id cases
-			$result = array_merge( $result, [] );
-		}
 
 		return $result;
 	}
@@ -83,32 +84,5 @@ class Argon2PasswordTest extends PasswordTestCase {
 			[ true, ':argon2:$argon2i$v=19$m=1024,t=666,p=2$<whatever>' ],
 			[ true, ':argon2:$argon2i$v=19$m=1024,t=2,p=666$<whatever>' ],
 		];
-	}
-
-	public function testPartialConfig() {
-		// The default options changed in PHP 7.2.21 and 7.3.8. This seems to be the only way to
-		// fetch them at runtime.
-		$options = password_get_info( password_hash( '', PASSWORD_ARGON2I ) )['options'];
-
-		$factory = new PasswordFactory();
-		$factory->register( 'argon2', [
-			'class' => Argon2Password::class,
-			'algo' => 'argon2i',
-		] );
-
-		$partialPassword = $factory->newFromType( 'argon2' );
-		$partialPassword->crypt( 'password' );
-
-		$factory2 = new PasswordFactory();
-		$factory2->register( 'argon2', [
-			'class' => Argon2Password::class,
-			'algo' => 'argon2i',
-		] + $options );
-
-		$fullPassword = $factory2->newFromCiphertext( $partialPassword->toString() );
-
-		$this->assertFalse( $fullPassword->needsUpdate(),
-			'Options not set for a password should fall back to defaults'
-		);
 	}
 }

@@ -7142,8 +7142,8 @@ class MainConfigSchema {
 				'class' => Argon2Password::class,
 
 				// Algorithm used:
-				// * 'argon2i' is optimized against side-channel attacks (PHP 7.2+)
-				// * 'argon2id' is optimized against both side-channel and GPU cracking (PHP 7.3+)
+				// * 'argon2i' is optimized against side-channel attacks
+				// * 'argon2id' is optimized against both side-channel and GPU cracking
 				// * 'auto' to use best available algorithm. If you're using more than one server, be
 				//   careful when you're mixing PHP versions because newer PHP might generate hashes that
 				//   older versions might would not understand.

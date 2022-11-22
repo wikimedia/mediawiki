@@ -40,8 +40,7 @@ class Argon2Password extends Password {
 	 * @inheritDoc
 	 */
 	protected function isSupported(): bool {
-		// It is actually possible to have a PHP build with Argon2i but not Argon2id
-		return defined( 'PASSWORD_ARGON2I' ) || defined( 'PASSWORD_ARGON2ID' );
+		return defined( 'PASSWORD_ARGON2ID' );
 	}
 
 	/**
@@ -53,10 +52,8 @@ class Argon2Password extends Password {
 				$algo = PASSWORD_ARGON2I;
 				break;
 			case 'argon2id':
-				$algo = PASSWORD_ARGON2ID;
-				break;
 			case 'auto':
-				$algo = defined( 'PASSWORD_ARGON2ID' ) ? PASSWORD_ARGON2ID : PASSWORD_ARGON2I;
+				$algo = PASSWORD_ARGON2ID;
 				break;
 			default:
 				throw new LogicException( "Unexpected algo: {$this->config['algo']}" );
