@@ -44,16 +44,6 @@ use MediaWiki\Permissions\Authority;
 abstract class Action implements MessageLocalizer {
 
 	/**
-	 * Page on which we're performing the action
-	 * @since 1.17
-	 * @deprecated since 1.35, use {@link getArticle()} ?? {@link getWikiPage()}. Must be removed.
-	 * @internal
-	 *
-	 * @var WikiPage|Article|ImagePage|CategoryPage|Page
-	 */
-	protected $page;
-
-	/**
 	 * @var Article
 	 * @since 1.35
 	 */
@@ -266,47 +256,12 @@ abstract class Action implements MessageLocalizer {
 	 *
 	 * @stable to call
 	 *
-	 * @param Article|WikiPage|Page $page
-	 * 	Calling with anything other then Article is deprecated since 1.35
-	 * @param IContextSource|null $context
+	 * @param Article $article
+	 * @param IContextSource $context
 	 */
-	public function __construct(
-		Page $page,
-		IContextSource $context = null
-	) {
-		if ( $context === null ) {
-			wfWarn( __METHOD__ . ' called without providing a Context object.' );
-		}
-
-		$this->page = $page;// @todo remove b/c
-		$this->article = self::convertPageToArticle( $page, $context, __METHOD__ );
+	public function __construct( Article $article, IContextSource $context ) {
+		$this->article = $article;
 		$this->context = $context;
-	}
-
-	private static function convertPageToArticle(
-		Page $page,
-		?IContextSource $context,
-		string $method
-	): Article {
-		if ( $page instanceof Article ) {
-			return $page;
-		}
-
-		if ( !$page instanceof WikiPage ) {
-			throw new LogicException(
-				$method . ' called with unknown Page: ' . get_class( $page )
-			);
-		}
-
-		wfDeprecated(
-			$method . ' with: ' . get_class( $page ),
-			'1.35'
-		);
-
-		return Article::newFromWikiPage(
-			$page,
-			$context ?? RequestContext::getMain()
-		);
 	}
 
 	/**
