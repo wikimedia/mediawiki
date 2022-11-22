@@ -20,7 +20,7 @@ For more detailed usage information, see the
 [section about icons on the documentation website](https://doc.wikimedia.org/codex/main/icons/overview.html).
 
 ## Building the icons
-You will need to build the icons in this package in order to be able to build the `codex`
+You will need to build the icons in this package to be able to build the `codex`
 and `codex-docs` packages, and to run their development modes. To build the icons, run
 `npm run build` in the `packages/codex-icons` directory (or run
 `npm run -w @wikimedia/codex-icons build` in the root directory).
