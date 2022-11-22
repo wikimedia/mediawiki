@@ -29,7 +29,6 @@ use AppendIterator;
 use DBAccessObjectUtils;
 use ExternalStoreAccess;
 use IDBAccessObject;
-use IExpiringStore;
 use InvalidArgumentException;
 use MWException;
 use StatusValue;
@@ -268,7 +267,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 				$error = $errors[$blobAddress] ?? null;
 				return $result[$blobAddress];
 			},
-			[ 'pcGroup' => self::TEXT_CACHE_GROUP, 'pcTTL' => IExpiringStore::TTL_PROC_LONG ]
+			$this->getCacheOptions()
 		);
 
 		if ( $error ) {
@@ -453,6 +452,19 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	}
 
 	/**
+	 * Get the cache key options for a given Blob
+	 *
+	 * @return array<string,mixed>
+	 */
+	private function getCacheOptions() {
+		return [
+			'pcGroup' => self::TEXT_CACHE_GROUP,
+			'pcTTL' => WANObjectCache::TTL_PROC_LONG,
+			'segmentable' => true
+		];
+	}
+
+	/**
 	 * Expand a raw data blob according to the flags given.
 	 *
 	 * MCR migration note: this replaced Revision::getRevisionText
@@ -496,7 +508,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 
 						return $blob === false ? false : $this->decompressData( $blob, $flags );
 					},
-					[ 'pcGroup' => self::TEXT_CACHE_GROUP, 'pcTTL' => WANObjectCache::TTL_PROC_LONG ]
+					$this->getCacheOptions()
 				);
 			} else {
 				$blob = $this->extStoreAccess->fetchFromURL( $url, [ 'domain' => $this->dbDomain ] );
