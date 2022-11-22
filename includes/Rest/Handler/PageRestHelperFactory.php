@@ -99,6 +99,10 @@ class PageRestHelperFactory {
 		);
 	}
 
+	public function newHtmlMessageOutputHelper(): HtmlMessageOutputHelper {
+		return new HtmlMessageOutputHelper();
+	}
+
 	public function newHtmlInputTransformHelper( $envOptions = [] ): HtmlInputTransformHelper {
 		return new HtmlInputTransformHelper(
 			$this->stats,

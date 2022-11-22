@@ -8,6 +8,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
+use MediaWiki\Rest\Handler\HtmlMessageOutputHelper;
 use MediaWiki\Rest\Handler\HtmlOutputRendererHelper;
 use MediaWiki\Rest\Handler\LanguageLinksHandler;
 use MediaWiki\Rest\Handler\PageContentHelper;
@@ -83,7 +84,7 @@ trait PageHandlerTestTrait {
 
 		$helperFactory = $this->createNoOpMock(
 			PageRestHelperFactory::class,
-			[ 'newPageContentHelper', 'newHtmlOutputRendererHelper' ]
+			[ 'newPageContentHelper', 'newHtmlOutputRendererHelper', 'newHtmlMessageOutputHelper' ]
 		);
 
 		$helperFactory->method( 'newPageContentHelper' )
@@ -94,15 +95,20 @@ trait PageHandlerTestTrait {
 				$services->getPageStore()
 			) );
 
+		$parsoidOutputStash = $this->getParsoidOutputStash();
 		$helperFactory->method( 'newHtmlOutputRendererHelper' )
-			->willReturn( new HtmlOutputRendererHelper(
-				$this->getParsoidOutputStash(),
-				$services->getStatsdDataFactory(),
-				$parsoidOutputAccess,
-				$services->getHtmlTransformFactory(),
-				$services->getContentHandlerFactory(),
-				$services->getLanguageFactory()
-			) );
+			->willReturn(
+				new HtmlOutputRendererHelper(
+					$parsoidOutputStash,
+					$services->getStatsdDataFactory(),
+					$parsoidOutputAccess,
+					$services->getHtmlTransformFactory(),
+					$services->getContentHandlerFactory(),
+					$services->getLanguageFactory()
+				)
+			);
+		$helperFactory->method( 'newHtmlMessageOutputHelper' )
+			->willReturn( new HtmlMessageOutputHelper() );
 
 		return new PageHTMLHandler(
 			$services->getTitleFormatter(),
