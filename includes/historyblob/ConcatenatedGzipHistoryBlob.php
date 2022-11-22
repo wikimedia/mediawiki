@@ -23,6 +23,9 @@
 /**
  * Concatenated gzip (CGZ) storage
  * Improves compression ratio by concatenating like objects before gzipping
+ *
+ * WARNING: Objects of this class are serialized and permanently stored in the DB.
+ * Do not change the name or visibility of any property!
  */
 class ConcatenatedGzipHistoryBlob implements HistoryBlob {
 	/** @var int */
