@@ -498,7 +498,7 @@ class TransactionManager {
 		if ( $sectionId !== null ) {
 			// Find the (last) section with the given $sectionId
 			$pos = -1;
-			foreach ( $this->trxAtomicLevels as $i => [ $asFname, $asId, $spId ] ) {
+			foreach ( $this->trxAtomicLevels as $i => [ , $asId, ] ) {
 				if ( $asId === $sectionId ) {
 					$pos = $i;
 				}

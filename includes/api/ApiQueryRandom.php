@@ -175,7 +175,7 @@ class ApiQueryRandom extends ApiQueryGeneratorBase {
 			// (saving a DB query in this rare case probably isn't worth the
 			// added code complexity it would require).
 			$end = $rand;
-			[ $left, $continue ] = $this->runQuery( $resultPageSet, $left, null, null, $end );
+			[ , $continue ] = $this->runQuery( $resultPageSet, $left, null, null, $end );
 		}
 
 		if ( $continue !== null ) {

@@ -215,7 +215,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->contentLanguage->needsGenderDistinction()
 		) {
 			$usernames = [];
-			foreach ( $items as [ $watchedItem, $recentChangeInfo ] ) {
+			foreach ( $items as [ $watchedItem, ] ) {
 				/** @var WatchedItem $watchedItem */
 				$linkTarget = $watchedItem->getTarget();
 				if ( $this->namespaceInfo->hasGenderDistinction( $linkTarget->getNamespace() ) ) {

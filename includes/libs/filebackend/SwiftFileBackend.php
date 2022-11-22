@@ -303,7 +303,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$method = __METHOD__;
 		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
-			[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $request['response'];
+			[ $rcode, $rdesc, , , $rerr ] = $request['response'];
 			if ( $rcode === 201 || $rcode === 202 ) {
 				// good
 			} elseif ( $rcode === 412 ) {
@@ -390,7 +390,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$method = __METHOD__;
 		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
-			[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $request['response'];
+			[ $rcode, $rdesc, , , $rerr ] = $request['response'];
 			if ( $rcode === 201 || $rcode === 202 ) {
 				// good
 			} elseif ( $rcode === 412 ) {
@@ -445,7 +445,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$method = __METHOD__;
 		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
-			[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $request['response'];
+			[ $rcode, $rdesc, , , $rerr ] = $request['response'];
 			if ( $rcode === 201 ) {
 				// good
 			} elseif ( $rcode === 404 ) {
@@ -507,7 +507,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$method = __METHOD__;
 		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
-			[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $request['response'];
+			[ $rcode, $rdesc, , , $rerr ] = $request['response'];
 			if ( $request['method'] === 'PUT' && $rcode === 201 ) {
 				// good
 			} elseif ( $request['method'] === 'DELETE' && $rcode === 204 ) {
@@ -554,7 +554,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$method = __METHOD__;
 		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
-			[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $request['response'];
+			[ $rcode, $rdesc, , , $rerr ] = $request['response'];
 			if ( $rcode === 204 ) {
 				// good
 			} elseif ( $rcode === 404 ) {
@@ -617,7 +617,7 @@ class SwiftFileBackend extends FileBackendStore {
 
 		$method = __METHOD__;
 		$handler = function ( array $request, StatusValue $status ) use ( $method, $params ) {
-			[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $request['response'];
+			[ $rcode, $rdesc, , , $rerr ] = $request['response'];
 			if ( $rcode === 202 ) {
 				// good
 			} elseif ( $rcode === 404 ) {
@@ -865,7 +865,7 @@ class SwiftFileBackend extends FileBackendStore {
 		] + self::DEFAULT_HTTP_OPTIONS;
 		$reqs = $this->http->runMulti( $reqs, $opts );
 		foreach ( $reqs as $path => $op ) {
-			[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $op['response'];
+			[ $rcode, $rdesc, $rhdrs, , $rerr ] = $op['response'];
 			if ( $rcode >= 200 && $rcode <= 299 ) {
 				rewind( $op['stream'] ); // start from the beginning
 				$content = (string)stream_get_contents( $op['stream'] );
@@ -1176,7 +1176,7 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 
 		$handle = fopen( 'php://output', 'wb' );
-		[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->http->run( [
+		[ $rcode, $rdesc, , , $rerr ] = $this->http->run( [
 			'method' => 'GET',
 			'url' => $this->storageUrl( $auth, $srcCont, $srcRel ),
 			'headers' => $this->authTokenHeaders( $auth )
@@ -1241,7 +1241,7 @@ class SwiftFileBackend extends FileBackendStore {
 		] + self::DEFAULT_HTTP_OPTIONS;
 		$reqs = $this->http->runMulti( $reqs, $opts );
 		foreach ( $reqs as $path => $op ) {
-			[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $op['response'];
+			[ $rcode, $rdesc, $rhdrs, , $rerr ] = $op['response'];
 			fclose( $op['stream'] ); // close open handle
 			if ( $rcode >= 200 && $rcode <= 299 ) {
 				/** @var TempFSFile $tmpFile */
@@ -1481,7 +1481,7 @@ class SwiftFileBackend extends FileBackendStore {
 				return self::$RES_ERROR;
 			}
 
-			[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->http->run( [
+			[ $rcode, $rdesc, $rhdrs, , $rerr ] = $this->http->run( [
 				'method' => 'HEAD',
 				'url' => $this->storageUrl( $auth, $container ),
 				'headers' => $this->authTokenHeaders( $auth )
@@ -1539,7 +1539,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$writeUsers = array_merge( $this->secureWriteUsers, [ $this->swiftUser ] );
 		}
 
-		[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->http->run( [
+		[ $rcode, $rdesc, , , $rerr ] = $this->http->run( [
 			'method' => 'PUT',
 			'url' => $this->storageUrl( $auth, $container ),
 			'headers' => $this->authTokenHeaders( $auth ) + [
@@ -1576,7 +1576,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status;
 		}
 
-		[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->http->run( [
+		[ $rcode, $rdesc, , , $rerr ] = $this->http->run( [
 			'method' => 'DELETE',
 			'url' => $this->storageUrl( $auth, $container ),
 			'headers' => $this->authTokenHeaders( $auth )
@@ -1634,7 +1634,7 @@ class SwiftFileBackend extends FileBackendStore {
 			$query['delimiter'] = $delim;
 		}
 
-		[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->http->run( [
+		[ $rcode, $rdesc, , $rbody, $rerr ] = $this->http->run( [
 			'method' => 'GET',
 			'url' => $this->storageUrl( $auth, $fullCont ),
 			'query' => $query,
@@ -1701,7 +1701,7 @@ class SwiftFileBackend extends FileBackendStore {
 		] + self::DEFAULT_HTTP_OPTIONS;
 		$reqs = $this->http->runMulti( $reqs, $opts );
 		foreach ( $reqs as $path => $op ) {
-			[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $op['response'];
+			[ $rcode, $rdesc, $rhdrs, , $rerr ] = $op['response'];
 			if ( $rcode === 200 || $rcode === 204 ) {
 				// Update the object if it is missing some headers
 				if ( !empty( $params['requireSHA1'] ) ) {
@@ -1770,7 +1770,7 @@ class SwiftFileBackend extends FileBackendStore {
 				// Skew the timestamp for worst case to avoid using stale credentials
 				$this->authSessionTimestamp = time() - (int)ceil( $this->authTTL / 2 );
 			} else { // cache miss
-				[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->http->run( [
+				[ $rcode, , $rhdrs, , ] = $this->http->run( [
 					'method' => 'GET',
 					'url' => "{$this->swiftAuthUrl}/v1.0",
 					'headers' => [

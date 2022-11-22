@@ -165,7 +165,7 @@ class XhprofData {
 
 			$inclusive = [];
 			foreach ( $this->hieraData as $key => $stats ) {
-				[ $parent, $child ] = self::splitKey( $key );
+				[ , $child ] = self::splitKey( $key );
 				if ( !isset( $inclusive[$child] ) ) {
 					$inclusive[$child] = [
 						'ct' => 0,
