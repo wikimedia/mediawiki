@@ -243,6 +243,10 @@ class WikiTextStructure {
 	 * @return string|null
 	 */
 	public function getDefaultSort() {
-		return $this->parserOutput->getPageProperty( 'defaultsort' );
+		$sort = $this->parserOutput->getPageProperty( 'defaultsort' );
+		if ( $sort === false ) {
+			return null;
+		}
+		return $sort;
 	}
 }
