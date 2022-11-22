@@ -2296,9 +2296,7 @@ return [
 				'name' => 'config.json',
 				'callback' => static function ( Context $context ) {
 					$skinName = $context->getSkin();
-					$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
-					$skin = $skinFactory->makeSkin( $skinName );
-					Hooks::runner()->onPreferencesGetLayout( $useMobileLayout, $skin );
+					Hooks::runner()->onPreferencesGetLayout( $useMobileLayout, $skinName );
 					return [ 'useMobileLayout' => $useMobileLayout ];
 				},
 			],
