@@ -3661,6 +3661,8 @@
 	"searchsuggest-containing": "Căutați după pagini care conțin",
 	"search-match-redirect-label": "Redirecționează la potrivile exacte în timpul căutării",
 	"search-match-redirect-help": "Selectați pentru a fi redirecționat către o pagină atunci când titlul acesteia se potrivește cu ceea ce ați căutat",
+	"search-thumbnail-extra-namespaces-label": "Afișează imagini în miniatură la Special:Căutare",
+	"search-thumbnail-extra-namespaces-message": "Afișează imagini în miniatură și pentru {{PLURAL:$2|spațiul|spațiile}} de nume $1. Imagini în miniatură pentru $3 sunt mereu afișate.",
 	"searchlimit-label": "Numărul de rezultate al căutării de afișat pe fiecare pagină:",
 	"searchlimit-help": "Număr maxim: 500",
 	"api-clientside-error-noconnect": "Nu se poate conecta la server. Asigurați-vă că aveți o conexiune la internet funcțională și încercați din nou.",
