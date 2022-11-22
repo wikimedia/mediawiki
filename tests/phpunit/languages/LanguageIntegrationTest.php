@@ -1117,7 +1117,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[
 				1024 * 1024,
 				"1 MB",
-				"1,024 megabytes"
+				"1 megabyte"
 			],
 			[
 				1024 * 1024 * 1024,
@@ -1137,7 +1137,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[
 				1024 ** 6,
 				"1 EB",
-				"1,024 exabyte"
+				"1 exabyte"
 			],
 			[
 				1024 ** 7,
@@ -1158,6 +1158,11 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 				1024 ** 10,
 				"1 QB",
 				"1 quettabyte"
+			],
+			[
+				1024 ** 11,
+				"1,024 QB",
+				"1,024 quettabytes"
 			],
 			// How big!? THIS BIG!
 		];
