@@ -3105,10 +3105,12 @@ class HookRunner implements
 		);
 	}
 
-	public function onPreferencesGetLayout( &$useMobileLayout, $skin ) {
+	public function onPreferencesGetLayout( &$useMobileLayout, $skinName,
+		$skinProperties = []
+	) {
 		return $this->container->run(
 			'PreferencesGetLayout',
-			[ &$useMobileLayout, $skin ]
+			[ &$useMobileLayout, $skinName, $skinProperties ]
 		);
 	}
 
