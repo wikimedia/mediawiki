@@ -796,6 +796,8 @@ class Sanitizer {
 			// Line continuation
 			return '';
 		} elseif ( $matches[2] !== '' ) {
+			# hexdec could return a float if the match is too long, but the
+			# regexp in question limits the string length to 6.
 			$char = UtfNormal\Utils::codepointToUtf8( hexdec( $matches[2] ) );
 		} elseif ( $matches[3] !== '' ) {
 			$char = $matches[3];
@@ -1312,6 +1314,8 @@ class Sanitizer {
 	 * @return null|string
 	 */
 	private static function decCharReference( $codepoint ) {
+		# intval() will (safely) saturate at the maximum signed integer
+		# value if $codepoint is too many digits
 		$point = intval( $codepoint );
 		if ( self::validateCodepoint( $point ) ) {
 			return sprintf( '&#%d;', $point );
@@ -1325,6 +1329,12 @@ class Sanitizer {
 	 * @return null|string
 	 */
 	private static function hexCharReference( $codepoint ) {
+		# hexdec() will return a float (not an int) if $codepoint is too
+		# long, so protect against that.  The largest valid codepoint is
+		# 0x10FFFF.
+		if ( strlen( ltrim( $codepoint, '0' ) ) > 6 ) {
+			return null;
+		}
 		$point = hexdec( $codepoint );
 		if ( self::validateCodepoint( $point ) ) {
 			return sprintf( '&#x%x;', $point );
@@ -1401,6 +1411,12 @@ class Sanitizer {
 		} elseif ( $matches[2] != '' ) {
 			return self::decodeChar( intval( $matches[2] ) );
 		} elseif ( $matches[3] != '' ) {
+			# hexdec will return a float if the string is too long (!) so
+			# check the length of the string first.
+			if ( strlen( ltrim( $matches[3], '0' ) ) > 6 ) {
+				// Invalid character reference.
+				return UtfNormal\Constants::UTF8_REPLACEMENT;
+			}
 			return self::decodeChar( hexdec( $matches[3] ) );
 		}
 		# Last case should be an ampersand by itself

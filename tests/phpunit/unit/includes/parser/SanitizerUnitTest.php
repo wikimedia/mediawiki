@@ -39,9 +39,23 @@ class SanitizerUnitTest extends MediaWikiUnitTestCase {
 				'&foo;',
 				'&foo;',
 			],
-			'Invalid numbered entity' => [
+			'Invalid numbered entity (decimal)' => [
 				UtfNormal\Constants::UTF8_REPLACEMENT,
-				"&#88888888888888;",
+				"&#888888888888888888;",
+			],
+			'Invalid numbered entity (hex)' => [
+				UtfNormal\Constants::UTF8_REPLACEMENT,
+				"&#x88888888888888888;",
+			],
+			// These cases are also "very large" numbers, but they will
+			// truncate down to ASCII.  So be careful.
+			'Invalid numbered entity w/ valid truncation (decimal)' => [
+				UtfNormal\Constants::UTF8_REPLACEMENT,
+				"&#18446744073709551681;",
+			],
+			'Invalid numbered entity w/ valid truncation (hex)' => [
+				UtfNormal\Constants::UTF8_REPLACEMENT,
+				"&#x10000000000000041;",
 			],
 		];
 	}
