@@ -7,7 +7,7 @@ abstract class Pbkdf2PasswordTestCase extends PasswordTestCase {
 		return [ 'pbkdf2' => [
 			'class' => static::getPbkdf2PasswordClass(),
 			'algo' => 'sha256',
-			'cost' => '10000',
+			'cost' => '1000',
 			'length' => '128',
 		] ];
 	}

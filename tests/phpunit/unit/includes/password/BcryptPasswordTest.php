@@ -11,7 +11,7 @@ class BcryptPasswordTest extends PasswordTestCase {
 	protected function getTypeConfigs() {
 		return [ 'bcrypt' => [
 			'class' => BcryptPassword::class,
-			'cost' => 9,
+			'cost' => 4,
 		] ];
 	}
 
