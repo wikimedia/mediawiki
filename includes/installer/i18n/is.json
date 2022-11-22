@@ -93,7 +93,7 @@
 	"config-install-step-done": "lokið",
 	"config-install-step-failed": "mistókst",
 	"config-install-pg-commit": "Virkja breytingar",
-	"config-install-tables": "Töflur búnar til",
+	"config-install-tables": "Bý til töflur, fyrsta þrep",
 	"config-download-localsettings": "Ná í <code>LocalSettings.php</code>",
 	"config-help": "hjálp",
 	"config-help-tooltip": "Smella til að þenja út",

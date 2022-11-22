@@ -2172,7 +2172,7 @@
 	"block-options": "Papildu iespējas:",
 	"block-prevent-edit": "Labošana",
 	"block-reason": "Iemesls:",
-	"block-target": "Lietotājvārds vai IP adrese:",
+	"block-target": "Lietotājvārds, IP adrese vai IP diapazons:",
 	"block-target-placeholder": "Lietotājvārds, 1.1.1.42, vai 1.1.1.42/16",
 	"unblockip": "Atbloķēt lietotāju",
 	"unblockiptext": "Šeit var atbloķēt iepriekš nobloķētu IP adresi vai lietotāja vārdu (atjaunot viņiem rakstīšanas piekļuvi).",
