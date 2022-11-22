@@ -42,7 +42,7 @@
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class Preprocessor_Hash extends Preprocessor {
 	/** Cache format version */
-	protected const CACHE_VERSION = 3;
+	protected const CACHE_VERSION = 4;
 
 	/** @var int|false Min wikitext size for which to cache DOM tree */
 	protected $cacheThreshold;
@@ -112,22 +112,29 @@ class Preprocessor_Hash extends Preprocessor {
 			$flags |= self::DOM_LANG_CONVERSION_DISABLED;
 		}
 
+		$domTreeArray = null;
 		if (
 			$this->cacheThreshold !== false &&
 			strlen( $text ) >= $this->cacheThreshold &&
 			( $flags & self::DOM_UNCACHED ) != self::DOM_UNCACHED
 		) {
-			$domTreeArray = $this->wanCache->getWithSetCallback(
+			$domTreeJson = $this->wanCache->getWithSetCallback(
 				$this->wanCache->makeKey( 'preprocess-hash', sha1( $text ), $flags ),
 				$this->wanCache::TTL_DAY,
-				function () use ( $text, $flags ) {
-					return $this->buildDomTreeArrayFromText( $text, $flags );
+				function () use ( $text, $flags, &$domTreeArray ) {
+					$domTreeArray = $this->buildDomTreeArrayFromText( $text, $flags );
+
+					return json_encode(
+						$domTreeArray,
+						JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+					);
 				},
-				[ 'version' => self::CACHE_VERSION ]
+				[ 'version' => self::CACHE_VERSION, 'segmentable' => true ]
 			);
-		} else {
-			$domTreeArray = $this->buildDomTreeArrayFromText( $text, $flags );
+			$domTreeArray ??= json_decode( $domTreeJson );
 		}
+
+		$domTreeArray ??= $this->buildDomTreeArrayFromText( $text, $flags );
 
 		return new PPNode_Hash_Tree( $domTreeArray, 0 );
 	}
