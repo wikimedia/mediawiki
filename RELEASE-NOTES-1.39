@@ -25,6 +25,10 @@ for use in production.
 * PagerNavigationBuilder: Document that nulls in setLinkQuery() etc. are
   allowed.
 * (T322335) ApiQueryRevisionsBase: Fix 'rvdiffto' parameter handling on PHP 8.0.
+* (T314096) TestFileEditor: Fix string interpolation.
+* (T289926) api: Fix minor PHP 8.1 incompatibility in ApiOptions.
+* (T322803) SpecialBotPasswords: Don't pass null to trim().
+* (T289926) Fix incomplete ITextFormatter mocks.
 
 == MediaWiki 1.39.0-rc.1 ==
 
