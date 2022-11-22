@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Parser\Parsoid;
 
-use InvalidArgumentException;
 use Language;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Page\PageIdentity;
@@ -163,11 +162,6 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 
 		// Create mocks
 		$parsoidSettings = [];
-
-		if ( !$isLanguageConversionEnabled ) {
-			$this->expectException( InvalidArgumentException::class );
-			$this->expectExceptionMessage( 'LanguageConversion is not supported' );
-		}
 
 		$pageBundleMock = $this->getPageBundleMock( $pageBundleLanguageCode );
 		$languageVariantConverter = $this->getLanguageVariantConverter(
