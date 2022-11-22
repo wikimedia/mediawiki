@@ -5,6 +5,8 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.38.4 ===
+* Localisation updates.
+* (T323082) Upgrading wikimedia/xmp-reader (0.8.1 => 0.8.5).
 
 == MediaWiki 1.38.4 ==
 
