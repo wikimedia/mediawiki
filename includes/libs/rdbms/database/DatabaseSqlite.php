@@ -669,6 +669,11 @@ class DatabaseSqlite extends Database {
 		if ( $b instanceof Blob ) {
 			$b = $b->fetch();
 		}
+		if ( $b === null ) {
+			// An empty blob is decoded as null in PHP before PHP 8.1.
+			// It was probably fixed as a side-effect of caa710037e663fd78f67533b29611183090068b2
+			$b = '';
+		}
 
 		return $b;
 	}
