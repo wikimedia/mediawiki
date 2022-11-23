@@ -352,7 +352,7 @@ class DatabaseBlock extends AbstractBlock {
 				# or take some floating point errors
 				$target = $block->getTargetName();
 				$max = IPUtils::isIPv6( $target ) ? 128 : 32;
-				[ $network, $bits ] = IPUtils::parseCIDR( $target );
+				[ , $bits ] = IPUtils::parseCIDR( $target );
 				$size = $max - $bits;
 
 				# Rank a range block covering a single IP equally with a single-IP block

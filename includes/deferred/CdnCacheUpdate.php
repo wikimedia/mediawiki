@@ -155,7 +155,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 
 		// Avoid multiple queries for HtmlCacheUpdater::getUrls() call
 		$lb = $services->getLinkBatchFactory()->newLinkBatch();
-		foreach ( $this->pageTuples as [ $page, $delay ] ) {
+		foreach ( $this->pageTuples as [ $page, ] ) {
 			$lb->addObj( $page );
 		}
 		$lb->execute();

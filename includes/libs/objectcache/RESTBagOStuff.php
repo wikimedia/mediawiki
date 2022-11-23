@@ -210,7 +210,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 			'headers' => $this->httpParams['writeHeaders'],
 		];
 
-		[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->client->run( $req );
+		[ $rcode, , $rhdrs, $rbody, $rerr ] = $this->client->run( $req );
 		$res = ( $rcode === 200 || $rcode === 201 || $rcode === 204 );
 		if ( !$res ) {
 			$this->handleError( "Failed to store $key", $rcode, $rerr, $rhdrs, $rbody );
@@ -238,7 +238,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 			'headers' => $this->httpParams['deleteHeaders'],
 		];
 
-		[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->client->run( $req );
+		[ $rcode, , $rhdrs, $rbody, $rerr ] = $this->client->run( $req );
 		$res = in_array( $rcode, [ 200, 204, 205, 404, 410 ] );
 		if ( !$res ) {
 			$this->handleError( "Failed to delete $key", $rcode, $rerr, $rhdrs, $rbody );

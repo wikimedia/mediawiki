@@ -860,7 +860,7 @@ abstract class HTMLFormField {
 	 * @return string Complete HTML inline element
 	 */
 	public function getInline( $value ) {
-		[ $errors, $errorClass ] = $this->getErrorsAndErrorClass( $value );
+		[ $errors, ] = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
 		$helptext = $this->getHelpTextHtmlDiv( $this->getHelpText() );
 		$cellAttributes = [];
