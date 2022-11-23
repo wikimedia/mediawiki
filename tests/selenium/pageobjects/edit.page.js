@@ -14,16 +14,16 @@ class EditPage extends Page {
 		super.openTitle( title, { action: 'edit', vehidebetadialog: 1, hidewelcomedialog: 1 } );
 	}
 
-	preview( name, content ) {
-		this.openForEditing( name );
-		this.content.setValue( content );
-		this.previewButton.click();
+	async preview( name, content ) {
+		await this.openForEditing( name );
+		await this.content.setValue( content );
+		await this.previewButton.click();
 	}
 
-	edit( name, content ) {
-		this.openForEditing( name );
-		this.content.setValue( content );
-		this.save.click();
+	async edit( name, content ) {
+		await this.openForEditing( name );
+		await this.content.setValue( content );
+		await this.save.click();
 	}
 }
 

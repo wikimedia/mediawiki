@@ -11,11 +11,11 @@ class ProtectPage extends Page {
 		super.openTitle( title, { action: 'protect' } );
 	}
 
-	protect( title, reason, editProtect ) {
-		this.open( title );
-		this.reason.setValue( reason );
-		this.editProtectSelect.selectByVisibleText( editProtect );
-		this.submit.click();
+	async protect( title, reason, editProtect ) {
+		await this.open( title );
+		await this.reason.setValue( reason );
+		await this.editProtectSelect.selectByVisibleText( editProtect );
+		await this.submit.click();
 	}
 
 }
