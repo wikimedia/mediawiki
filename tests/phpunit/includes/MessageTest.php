@@ -897,8 +897,8 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @covers Message::__serialize
-	 * @covers Message::__unserialize
+	 * @covers Message::serialize
+	 * @covers Message::unserialize
 	 */
 	public function testSerialization() {
 		$msg = new Message( 'parentheses' );
