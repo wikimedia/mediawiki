@@ -12,6 +12,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWikiIntegrationTestCase;
+use Title;
 
 /**
  * @covers \MediaWiki\Rest\Handler\PageContentHelper
@@ -20,7 +21,7 @@ use MediaWikiIntegrationTestCase;
 class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
 
-	private const NO_REVISION_ETAG = '"b620cd7841f9ea8f545f11cc44ce794f848fa2d3"';
+	private const NO_REVISION_ETAG = '"7afa43d0f642f1fda1b8e30f4f67243049f5fe77"';
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -124,12 +125,8 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $helper->getPage() );
 
 		$this->assertFalse( $helper->hasContent() );
-		$this->assertFalse( $helper->isAccessible() );
 
 		$this->assertNull( $helper->getTargetRevision() );
-
-		$this->assertNull( $helper->getLastModified() );
-		$this->assertSame( self::NO_REVISION_ETAG, $helper->getETag() );
 
 		try {
 			$helper->getContent();
@@ -166,7 +163,7 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $helper->getPage() );
 
 		$this->assertFalse( $helper->hasContent() );
-		$this->assertFalse( $helper->isAccessible() );
+		$this->assertTrue( $helper->isAccessible() );
 
 		$this->assertNull( $helper->getTargetRevision() );
 
@@ -198,6 +195,8 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getLastModified()
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getETag()
 	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::checkAccess()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::useDefaultSystemMessage()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getDefaultSystemMessage()
 	 */
 	public function testForbidenPage() {
 		$page = $this->getExistingTestPage( __METHOD__ );
@@ -211,6 +210,8 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $helper->getPage()->isSamePageAs( $title ) );
 
 		$this->assertTrue( $helper->hasContent() );
+		$this->assertFalse( $helper->useDefaultSystemMessage() );
+		$this->assertNull( $helper->getDefaultSystemMessage() );
 		$this->assertFalse( $helper->isAccessible() );
 
 		$this->assertNull( $helper->getLastModified() );
@@ -221,6 +222,83 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		} catch ( HttpException $ex ) {
 			$this->assertSame( 403, $ex->getCode() );
 		}
+	}
+
+	/**
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::hasContent()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::useDefaultSystemMessage()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getDefaultSystemMessage()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getTitleText()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getPage()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::isAccessible()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::hasContent()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getTargetRevision()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getContent()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getLastModified()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getETag()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::checkAccess()
+	 */
+	public function testForbiddenMessagePage() {
+		$page = $this->getNonexistingTestPage(
+			Title::newFromText( 'MediaWiki:Logouttext' )
+		);
+		$title = $page->getTitle();
+		$helper = $this->newHelper(
+			[ 'title' => $title->getPrefixedDBkey() ],
+			$this->mockAnonNullAuthority()
+		);
+
+		$this->assertSame( $title->getPrefixedDBkey(), $helper->getTitleText() );
+		$this->assertNull( $helper->getPage() );
+
+		$this->assertTrue( $helper->hasContent() );
+		$this->assertTrue( $helper->useDefaultSystemMessage() );
+		$this->assertNotNull( $helper->getDefaultSystemMessage() );
+		$this->assertFalse( $helper->isAccessible() );
+
+		$this->assertNull( $helper->getLastModified() );
+
+		$this->expectException( HttpException::class );
+		$this->expectExceptionCode( 403 );
+		$helper->checkAccess();
+	}
+
+	/**
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::hasContent()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::useDefaultSystemMessage()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getDefaultSystemMessage()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getTitleText()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getPage()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::isAccessible()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::hasContent()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getTargetRevision()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getContent()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getLastModified()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::getETag()
+	 * @covers \MediaWiki\Rest\Handler\PageContentHelper::checkAccess()
+	 */
+	public function testMessagePage() {
+		$page = $this->getNonexistingTestPage(
+			Title::newFromText( 'MediaWiki:Logouttext' )
+		);
+		$title = $page->getTitle();
+		$helper = $this->newHelper(
+			[ 'title' => $title->getPrefixedDBkey() ],
+			$this->mockAnonUltimateAuthority()
+		);
+
+		$this->assertSame( $title->getPrefixedDBkey(), $helper->getTitleText() );
+		$this->assertNull( $helper->getPage() );
+
+		$this->assertTrue( $helper->hasContent() );
+		$this->assertTrue( $helper->useDefaultSystemMessage() );
+		$this->assertNotNull( $helper->getDefaultSystemMessage() );
+		$this->assertTrue( $helper->isAccessible() );
+
+		$this->assertNull( $helper->getLastModified() );
+
+		// The line below should not throw any exception
+		$helper->checkAccess();
 	}
 
 	/**

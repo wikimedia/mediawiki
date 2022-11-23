@@ -2596,4 +2596,23 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotEmpty( $title->getContentModel() );
 	}
 
+	/**
+	 * @covers Title::getDefaultSystemMessage
+	 */
+	public function testGetDefaultSystemMessage() {
+		$title = Title::makeTitle( NS_MEDIAWIKI, 'Logouttext' );
+
+		$this->assertInstanceOf( Message::class, $title->getDefaultSystemMessage() );
+		$this->assertStringContainsString( 'You are now logged out', $title->getDefaultMessageText() );
+	}
+
+	/**
+	 * @covers Title::getDefaultSystemMessage
+	 */
+	public function testGetDefaultSystemMessageReturnsNull() {
+		$title = Title::makeTitle( NS_MAIN, 'Some title' );
+
+		$this->assertNull( $title->getDefaultSystemMessage() );
+	}
+
 }
