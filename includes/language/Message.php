@@ -138,7 +138,7 @@ use MediaWiki\StubObject\StubUserLang;
  * @newable
  * @ingroup Language
  */
-class Message implements MessageSpecifier {
+class Message implements MessageSpecifier, Serializable {
 	/** Use message text as-is */
 	public const FORMAT_PLAIN = 'plain';
 	/** Use normal wikitext -> HTML parsing (the result will be wrapped in a block-level HTML tag) */
@@ -254,6 +254,15 @@ class Message implements MessageSpecifier {
 
 	/**
 	 * @see Serializable::serialize()
+	 * @since 1.26
+	 * @return string
+	 */
+	public function serialize(): string {
+		return serialize( $this->__serialize() );
+	}
+
+	/**
+	 * @see Serializable::serialize()
 	 * @since 1.38
 	 * @return array
 	 */
@@ -278,6 +287,15 @@ class Message implements MessageSpecifier {
 	/**
 	 * @see Serializable::unserialize()
 	 * @since 1.38
+	 * @param string $serialized
+	 */
+	public function unserialize( $serialized ): void {
+		$this->__unserialize( unserialize( $serialized ) );
+	}
+
+	/**
+	 * @see Serializable::unserialize()
+	 * @since 1.26
 	 * @param array $data
 	 */
 	public function __unserialize( $data ) {
