@@ -209,7 +209,7 @@ abstract class ParserCacheSerializationTestCases {
 		$parserOutputWithMetadata->addCategory( 'category1', '2' );
 		$parserOutputWithMetadata->setIndicator( 'indicator1', 'indicator1_value' );
 		$parserOutputWithMetadata->setTitleText( 'title_text1' );
-		$parserOutputWithMetadata->setSections( [ 'section1', 'section2' ] );
+		$parserOutputWithMetadata->setSections( self::SECTIONS );
 		$parserOutputWithMetadata->addLink( Title::makeTitle( NS_MAIN, 'Link1' ), 42 );
 		$parserOutputWithMetadata->addLink( Title::makeTitle( NS_USER, 'Link2' ), 43 );
 		$parserOutputWithMetadata->addTemplate(
@@ -383,7 +383,7 @@ abstract class ParserCacheSerializationTestCases {
 					], $object->getCategories() );
 					$testCase->assertArrayEquals( [ 'indicator1' => 'indicator1_value' ], $object->getIndicators() );
 					$testCase->assertSame( 'title_text1', $object->getTitleText() );
-					$testCase->assertArrayEquals( [ 'section1', 'section2' ], $object->getSections() );
+					$testCase->assertArrayEquals( self::SECTIONS, $object->getSections() );
 					$testCase->assertArrayEquals( [
 						NS_MAIN => [ 'Link1' => 42 ],
 						NS_USER => [ 'Link2' => 43 ]
