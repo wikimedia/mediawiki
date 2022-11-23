@@ -125,12 +125,37 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			'sr',
 			'>Ovo je testna stranica<'
 		];
+		yield 'Base language does not support variants' => [
+			new PageBundle(
+				'<p>Hallo Wereld</p>',
+				[ 'parsoid-data' ],
+				[ 'mw-data' ],
+				Parsoid::defaultHTMLVersion(),
+				[]
+			),
+			'nl',
+			'nl-be',
+			null,
+			'>Hallo Wereld<',
+			false // The output language is currently not indicated. Should be expected to be 'nl' in the future.
+		];
 	}
 
 	/**
 	 * @dataProvider provideConvertPageBundleVariant
 	 */
-	public function testConvertPageBundleVariant( PageBundle $pageBundle, $contentLanguage, $target, $source, $expected ) {
+	public function testConvertPageBundleVariant(
+		PageBundle $pageBundle,
+		$contentLanguage,
+		$target,
+		$source,
+		$expected,
+		$expectedLanguage = null
+	) {
+		if ( $expectedLanguage === null ) {
+			$expectedLanguage = $target;
+		}
+
 		$page = $this->getExistingTestPage();
 		$languageVariantConverter = $this->getLanguageVariantConverter( $page );
 		if ( $contentLanguage ) {
@@ -141,8 +166,11 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 
 		$html = $outputPageBundle->toHtml();
 		$this->assertStringContainsString( $expected, $html );
-		$this->assertStringContainsString( "<meta http-equiv=\"content-language\" content=\"$target\"/>", $html );
-		$this->assertEquals( $target, $outputPageBundle->headers['content-language'] );
+
+		if ( $expectedLanguage !== false ) {
+			$this->assertStringContainsString( "<meta http-equiv=\"content-language\" content=\"$expectedLanguage\"/>", $html );
+			$this->assertEquals( $expectedLanguage, $outputPageBundle->headers['content-language'] );
+		}
 		$this->assertEquals( Parsoid::defaultHTMLVersion(), $outputPageBundle->version );
 	}
 
@@ -156,7 +184,18 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideConvertParserOutputVariant
 	 */
-	public function testConvertParserOutputVariant( ParserOutput $parserOutput, $contentLanguage, $target, $source, $expected ) {
+	public function testConvertParserOutputVariant(
+		ParserOutput $parserOutput,
+		$contentLanguage,
+		$target,
+		$source,
+		$expected,
+		$expectedLanguage = null
+	) {
+		if ( $expectedLanguage === null ) {
+			$expectedLanguage = $target;
+		}
+
 		$page = $this->getExistingTestPage();
 		$languageVariantConverter = $this->getLanguageVariantConverter( $page );
 		if ( $contentLanguage ) {
@@ -168,12 +207,17 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 
 		$html = $modifiedParserOutput->getRawText();
 		$this->assertStringContainsString( $expected, $html );
-		$this->assertStringContainsString( "<meta http-equiv=\"content-language\" content=\"$target\"/>", $html );
+		if ( $expectedLanguage !== false ) {
+			$this->assertStringContainsString( "<meta http-equiv=\"content-language\" content=\"$target\"/>", $html );
+		}
 
 		$extensionData = $modifiedParserOutput
 			->getExtensionData( PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY );
-		$this->assertEquals( $target, $extensionData['headers']['content-language'] );
 		$this->assertEquals( Parsoid::defaultHTMLVersion(), $extensionData['version'] );
+
+		if ( $expectedLanguage !== false ) {
+			$this->assertEquals( $target, $extensionData['headers']['content-language'] );
+		}
 	}
 
 	private function getLanguageVariantConverter( PageIdentity $pageIdentity ): LanguageVariantConverter {
