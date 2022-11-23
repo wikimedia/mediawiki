@@ -26,8 +26,6 @@
  * @file
  */
 
-use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
@@ -42,9 +40,6 @@ use MediaWiki\Revision\SlotRecord;
  * @ingroup Actions
  */
 class RawAction extends FormlessAction {
-
-	/** @var HookRunner */
-	private $hookRunner;
 
 	/** @var Parser */
 	private $parser;
@@ -61,7 +56,6 @@ class RawAction extends FormlessAction {
 	/**
 	 * @param Article $article
 	 * @param IContextSource $context
-	 * @param HookContainer $hookContainer
 	 * @param Parser $parser
 	 * @param PermissionManager $permissionManager
 	 * @param RevisionLookup $revisionLookup
@@ -70,14 +64,12 @@ class RawAction extends FormlessAction {
 	public function __construct(
 		Article $article,
 		IContextSource $context,
-		HookContainer $hookContainer,
 		Parser $parser,
 		PermissionManager $permissionManager,
 		RevisionLookup $revisionLookup,
 		RestrictionStore $restrictionStore
 	) {
 		parent::__construct( $article, $context );
-		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->parser = $parser;
 		$this->permissionManager = $permissionManager;
 		$this->revisionLookup = $revisionLookup;
@@ -210,7 +202,7 @@ class RawAction extends FormlessAction {
 			$response->statusHeader( 404 );
 		}
 
-		if ( !$this->hookRunner->onRawPageViewBeforeOutput( $this, $text ) ) {
+		if ( !$this->getHookRunner()->onRawPageViewBeforeOutput( $this, $text ) ) {
 			wfDebug( __METHOD__ . ": RawPageViewBeforeOutput hook broke raw page output." );
 		}
 
