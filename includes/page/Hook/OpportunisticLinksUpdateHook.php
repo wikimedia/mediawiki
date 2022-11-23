@@ -2,9 +2,9 @@
 
 namespace MediaWiki\Page\Hook;
 
-use Page;
 use ParserOutput;
 use Title;
+use WikiPage;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.
@@ -24,7 +24,7 @@ interface OpportunisticLinksUpdateHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param Page $page Page that was rendered
+	 * @param WikiPage $page WikiPage that was rendered
 	 * @param Title $title Title of the rendered page
 	 * @param ParserOutput $parserOutput ParserOutput resulting from rendering the page
 	 * @return bool|void True or no return value to continue, or false to abort
