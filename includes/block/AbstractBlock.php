@@ -422,7 +422,7 @@ abstract class AbstractBlock implements Block {
 	 * Get the key and parameters for the corresponding error message.
 	 *
 	 * @deprecated since 1.35 Use BlockErrorFormatter::getMessage instead, and
-	 *  build the array using Message::getKey and Message::getParams.
+	 *  build the array using Message::getKey and Message::getParams.Hard deprecated since 1.40.
 	 * @since 1.22
 	 * @param IContextSource $context
 	 * @return array A message array: either a list of strings, the first of which
@@ -431,6 +431,7 @@ abstract class AbstractBlock implements Block {
 	 * @phan-return non-empty-array
 	 */
 	public function getPermissionsError( IContextSource $context ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$message = MediaWikiServices::getInstance()
 			->getBlockErrorFormatter()->getMessage(
 				$this,
