@@ -19,11 +19,6 @@ describe( 'Special:RecentChanges', function () {
 	} );
 
 	it( 'shows page creation', async function () {
-		// Don't try to run wikitext-specific tests if the test namespace isn't wikitext by default.
-		if ( await Util.isTargetNotWikitext( name ) ) {
-			this.skip();
-		}
-
 		await bot.edit( name, content );
 		await browser.waitUntil( async () => {
 			const result = await bot.request( {
