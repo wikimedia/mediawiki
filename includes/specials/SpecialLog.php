@@ -287,7 +287,10 @@ class SpecialLog extends SpecialPage {
 			$pager->getDay(),
 			$pager->getFilterParams(),
 			$pager->getTagFilter(),
-			$pager->getAction()
+			$pager->getAction(),
+			[
+				'offender' => $opts->getValue( 'offender' ),
+			]
 		);
 
 		# Insert list
