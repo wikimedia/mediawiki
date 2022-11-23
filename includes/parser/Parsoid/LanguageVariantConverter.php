@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Parser\Parsoid;
 
-use InvalidArgumentException;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
@@ -98,7 +97,8 @@ class LanguageVariantConverter {
 	 * @param string $targetVariantCode
 	 * @param string|null $sourceVariantCode
 	 *
-	 * @return PageBundle
+	 * @return PageBundle The converted PageBundle, or the object passed in as
+	 * 	       $pageBundle if the conversion is not supported.
 	 * @throws HttpException
 	 */
 	public function convertPageBundleVariant(
@@ -110,7 +110,8 @@ class LanguageVariantConverter {
 			$this->getBaseAndSourceLanguageCode( $pageBundle, $sourceVariantCode );
 
 		if ( !$this->siteConfig->langConverterEnabledForLanguage( $pageLanguageCode ) ) {
-			throw new InvalidArgumentException( "LanguageConversion is not supported for $pageLanguageCode." );
+			// If the language doesn't support variants, just return the content unmodified.
+			return $pageBundle;
 		}
 
 		$pageConfig = $this->getPageConfig( $pageLanguageCode, $sourceVariantCode );
