@@ -506,18 +506,20 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	public function getReaderIndex( $group = false ) {
 		$group = is_string( $group ) ? $group : self::GROUP_GENERIC;
 
-		if ( $this->getServerCount() == 1 ) {
-			// Skip the load balancing if there's only one server
+		if ( !$this->hasReplicaServers() ) {
+			// There is only one possible server to use (the primary)
 			return $this->getWriterIndex();
 		}
 
 		$index = $this->getExistingReaderIndex( $group );
 		if ( $index !== self::READER_INDEX_NONE ) {
-			// A reader index was already selected and "waitForPos" was handled
+			// A reader index was already selected for this query group. Keep using it,
+			// since any session replication position was already waited on and any
+			// active transaction will be reused (e.g. for point-in-time snapshots).
 			return $index;
 		}
 
-		// Use the server weight array for this load group
+		// Get the server weight array for this load group
 		$loads = $this->groupLoads[$group] ?? [];
 		if ( !$loads ) {
 			$this->connLogger->info( __METHOD__ . ": no loads for group $group" );
@@ -525,26 +527,33 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			return false;
 		}
 
-		// Scale the configured load ratios according to each server's load and state
+		// Load any session replication positions, before any connection attempts,
+		// since reading them afterwards can only cause more delay due to possibly
+		// seeing even higher replication positions (e.g. from concurrent requests).
+		$this->loadSessionPrimaryPos();
+
+		// Scale the configured load ratios according to each server's load/state.
+		// This can sometimes trigger server connections due to cache regeneration.
 		$this->getLoadMonitor()->scaleLoads( $loads );
 
-		// Pick a server to use, accounting for weights, load, lag, and "waitForPos"
-		$this->lazyLoadReplicationPositions(); // optimizes server candidate selection
+		// Pick a server, accounting for weight, load, lag, and session consistency
 		[ $i, $laggedReplicaMode ] = $this->pickReaderIndex( $loads );
 		if ( $i === false ) {
-			// DB connection unsuccessful
+			// Connection attempts failed
 			return false;
 		}
 
-		// If data seen by queries is expected to reflect the transactions committed as of
-		// or after a given replication position then wait for the DB to apply those changes
-		if ( $this->waitForPos && $i !== $this->getWriterIndex() && !$this->doWait( $i ) ) {
+		// If data seen by queries is expected to reflect writes from a prior transaction,
+		// then wait for the chosen server to apply those changes. This is used to improve
+		// session consistency.
+		if ( !$this->awaitSessionPrimaryPos( $i ) ) {
 			// Data will be outdated compared to what was expected
 			$laggedReplicaMode = true;
 		}
 
-		// Cache the reader index for future DB_REPLICA handles
+		// Keep using this server for DB_REPLICA handles for this group
 		$this->setExistingReaderIndex( $group, $i );
+
 		// Record whether the generic reader index is in "lagged replica DB" mode
 		if ( $group === self::GROUP_GENERIC && $laggedReplicaMode ) {
 			$this->laggedReplicaMode = true;
@@ -558,20 +567,20 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	/**
-	 * Get the server index chosen by the load balancer for use with the given query group
+	 * Get the server index chosen for DB_REPLICA connections for the given query group
 	 *
 	 * @param string $group Query group; use false for the generic group
-	 * @return int Server index or LoadBalancer::READER_INDEX_NONE if none was chosen
+	 * @return int Specific server index or LoadBalancer::READER_INDEX_NONE if none was chosen
 	 */
 	protected function getExistingReaderIndex( $group ) {
 		return $this->readIndexByGroup[$group] ?? self::READER_INDEX_NONE;
 	}
 
 	/**
-	 * Set the server index chosen by the load balancer for use with the given query group
+	 * Set the server index chosen for DB_REPLICA connections for the given query group
 	 *
 	 * @param string $group Query group; use false for the generic group
-	 * @param int $index The index of a specific server
+	 * @param int $index Specific server index
 	 */
 	private function setExistingReaderIndex( $group, $index ) {
 		if ( $index < 0 ) {
@@ -669,9 +678,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$genericIndex = $this->getExistingReaderIndex( self::GROUP_GENERIC );
 			// If a generic reader connection was already established, then wait now.
 			// Otherwise, wait until a connection is established in getReaderIndex().
-			if ( $genericIndex > $this->getWriterIndex() && !$this->doWait( $genericIndex ) ) {
-				$this->laggedReplicaMode = true;
-				$this->replLogger->debug( __METHOD__ . ": setting lagged replica mode" );
+			if ( $genericIndex !== self::READER_INDEX_NONE ) {
+				if ( !$this->awaitSessionPrimaryPos( $genericIndex ) ) {
+					$this->laggedReplicaMode = true;
+					$this->replLogger->debug( __METHOD__ . ": setting lagged replica mode" );
+				}
 			}
 		} finally {
 			// Restore the older position if it was higher since this is used for lag-protection
@@ -690,7 +701,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			foreach ( $this->getStreamingReplicaIndexes() as $i ) {
 				if ( $this->serverHasLoadInAnyGroup( $i ) ) {
 					$start = microtime( true );
-					$ok = $this->doWait( $i, $timeout ) && $ok;
+					$ok = $this->awaitSessionPrimaryPos( $i, $timeout ) && $ok;
 					$timeout -= intval( microtime( true ) - $start );
 					if ( $timeout <= 0 ) {
 						break; // timeout reached
@@ -809,15 +820,22 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	/**
 	 * Wait for a given replica DB to catch up to the primary DB pos stored in "waitForPos"
 	 *
+	 * @see loadSessionPrimaryPos()
+	 *
 	 * @param int $index Specific server index
 	 * @param int|null $timeout Max seconds to wait; default is "waitTimeout"
-	 * @return bool
+	 * @return bool Success
 	 */
-	private function doWait( $index, $timeout = null ) {
+	private function awaitSessionPrimaryPos( $index, $timeout = null ) {
 		$timeout = max( 1, intval( $timeout ?: $this->waitTimeout ) );
 
-		// Check if we already know that the DB has reached this point
+		if ( !$this->waitForPos || $index === $this->getWriterIndex() ) {
+			return true;
+		}
+
 		$srvName = $this->getServerName( $index );
+
+		// Check if we already know that the DB has reached this point
 		$key = $this->srvCache->makeGlobalKey( __CLASS__, 'last-known-pos', $srvName, 'v2' );
 
 		/** @var DBPrimaryPos $knownReachedPos */
@@ -1207,12 +1225,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			// ignore; let the DB handle the logging
 		}
 
-		// Try to maintain session consistency for clients that trigger write transactions
-		// in a request or script and then return soon after in another request or script.
-		// This requires cooperation with ChronologyProtector and the application wiring.
 		if ( $conn->isOpen() ) {
 			$this->connLogger->debug( __METHOD__ . ": opened new connection for $i/$domain" );
-			$this->lazyLoadReplicationPositions();
 		} else {
 			$this->connLogger->warning(
 				__METHOD__ . ": connection error for $i/{db_domain}",
@@ -1274,9 +1288,15 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	/**
-	 * Make sure that any "waitForPos" positions are loaded and available to doWait()
+	 * Make sure that any "waitForPos" replication positions are loaded and available
+	 *
+	 * Each load balancer cluster has up to one replication position for the session.
+	 * These are used when data read by queries is expected to reflect writes caused
+	 * by a prior request/script from the same client.
+	 *
+	 * @see awaitSessionPrimaryPos()
 	 */
-	private function lazyLoadReplicationPositions() {
+	private function loadSessionPrimaryPos() {
 		if ( !$this->chronologyCallbackTriggered && $this->chronologyCallback ) {
 			$this->chronologyCallbackTriggered = true;
 			( $this->chronologyCallback )( $this ); // generally calls waitFor()
