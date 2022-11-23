@@ -1045,6 +1045,7 @@ return [
 	],
 	'mediawiki.Upload' => [
 		'scripts' => 'resources/src/mediawiki.Upload.js',
+		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => [
 			'mediawiki.api',
 		],
@@ -1052,6 +1053,7 @@ return [
 	'mediawiki.ForeignUpload' => [
 		'localBasePath' => "$wgBaseDirectory/resources/src",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src",
+		'targets' => [ 'desktop', 'mobile' ],
 		'packageFiles' => [
 			'mediawiki.ForeignUpload.js',
 			[
@@ -1091,6 +1093,7 @@ return [
 			'resources/src/mediawiki.Upload.BookletLayout/mw.widgets.StashedFileWidget.js',
 			'resources/src/mediawiki.Upload.BookletLayout/BookletLayout.js',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 		'styles' => [
 			'resources/src/mediawiki.Upload.BookletLayout/BookletLayout.css',
 		],
@@ -1139,6 +1142,7 @@ return [
 	'mediawiki.ForeignStructuredUpload.BookletLayout' => [
 		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.ForeignStructuredUpload.BookletLayout",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.ForeignStructuredUpload.BookletLayout",
+		'targets' => [ 'desktop', 'mobile' ],
 		'packageFiles' => [
 			"index.js",
 			'ForeignStructuredUpload.js',
