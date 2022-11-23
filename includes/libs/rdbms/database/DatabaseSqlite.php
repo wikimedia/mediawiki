@@ -714,18 +714,6 @@ class DatabaseSqlite extends Database {
 		}
 	}
 
-	/**
-	 * No-op version of deadlockLoop
-	 *
-	 * @param mixed ...$args
-	 * @return mixed
-	 */
-	public function deadlockLoop( ...$args ) {
-		$function = array_shift( $args );
-
-		return $function( ...$args );
-	}
-
 	public function doLockIsFree( string $lockName, string $method ) {
 		// Only locks by this thread will be checked
 		return true;

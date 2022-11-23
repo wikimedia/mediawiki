@@ -306,6 +306,7 @@ because of Phabricator reports.
 * Title.js's confusingly-named getName() and getNameText() methods, for using
   media files' pages, have been renamed to getFileNameWithoutExtension() and
   getFileNameTextWithoutExtension() respectively. The old names are deprecated.
+* IMaintainableDatabase::deadlockLoop() was removed without deprecation.
 * …
 
 === Other changes in 1.40 ===
