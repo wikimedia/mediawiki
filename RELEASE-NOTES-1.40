@@ -204,6 +204,7 @@ because of Phabricator reports.
 * Clarified that the InitializeArticleMaybeRedirect hook should not change
   its $article parameter; the behavior when doing so was previously
   undocumented.
+* The $rtt parameter to IDatabase::ping() was removed without deprecation.
 * …
 
 === Deprecations in 1.40 ===

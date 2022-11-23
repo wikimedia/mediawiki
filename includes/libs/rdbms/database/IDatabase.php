@@ -1546,10 +1546,9 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	/**
 	 * Ping the server and try to reconnect if it there is no connection
 	 *
-	 * @param float|null &$rtt Value to store the estimated RTT [optional]
 	 * @return bool Success or failure
 	 */
-	public function ping( &$rtt = null );
+	public function ping();
 
 	/**
 	 * Get the amount of replication lag for this database server
