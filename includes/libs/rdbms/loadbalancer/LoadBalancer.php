@@ -535,9 +535,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		// Use the server weight array for this load group
-		if ( isset( $this->groupLoads[$group] ) ) {
-			$loads = $this->groupLoads[$group];
-		} else {
+		$loads = $this->groupLoads[$group] ?? [];
+		if ( !$loads ) {
 			$this->connLogger->info( __METHOD__ . ": no loads for group $group" );
 
 			return false;
