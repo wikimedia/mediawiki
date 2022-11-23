@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use LanguageCode;
 use LogicException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ExistingPageRecord;
@@ -10,8 +11,11 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\StringStream;
+use ParserOutput;
 use TitleFormatter;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Parsoid\Utils\ContentUtils;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * A handler that returns Parsoid HTML for the following routes:
@@ -52,8 +56,14 @@ class PageHTMLHandler extends SimpleHandler {
 
 		$this->contentHelper->init( $user, $this->getValidatedParams() );
 
-		$page = $this->contentHelper->getPage();
-		if ( $page ) {
+		$page = $this->contentHelper->getPageIdentity();
+
+		if ( $this->contentHelper->useDefaultSystemMessage() ) {
+			// We can't use the helper object with system messages.
+			// TODO: We should have an implementation of HtmlOutputRendererHelper
+			//       for system messages in the future.
+			// Currently NO OP.
+		} elseif ( $page ) {
 			$this->htmlHelper->init( $page, $this->getValidatedParams(), $user );
 
 			$request = $this->getRequest();
@@ -71,28 +81,35 @@ class PageHTMLHandler extends SimpleHandler {
 	public function run(): Response {
 		$this->contentHelper->checkAccess();
 		$page = $this->contentHelper->getPage();
+		$isSystemMessage = $this->contentHelper->useDefaultSystemMessage();
 
 		// The call to $this->contentHelper->getPage() should not return null if
 		// $this->contentHelper->checkAccess() did not throw.
-		Assert::invariant( $page !== null, 'Page should be known' );
+		Assert::invariant(
+			$page !== null || $isSystemMessage,
+			'Page should be known or be a valid system message page'
+		);
 
-		$pageRedirectResponse = $this->createPageRedirectResponse( $page );
+		if ( $isSystemMessage ) {
+			$parserOutput = $this->getSystemMessageOutput();
+		} else {
+			'@phan-var ExistingPageRecord $page';
+			$pageRedirectResponse = $this->createPageRedirectResponse( $page );
 
-		if ( $pageRedirectResponse !== null ) {
-			return $pageRedirectResponse;
+			if ( $pageRedirectResponse !== null ) {
+				return $pageRedirectResponse;
+			}
+			$parserOutput = $this->htmlHelper->getHtml();
 		}
 
-		$parserOutput = $this->htmlHelper->getHtml();
 		// Do not de-duplicate styles, Parsoid already does it in a slightly different way (T300325)
 		$parserOutputHtml = $parserOutput->getText( [ 'deduplicateStyles' => false ] );
 
 		$outputMode = $this->getOutputMode();
-		$setContentLanguageHeader = true;
 		switch ( $outputMode ) {
 			case 'html':
 				$response = $this->getResponseFactory()->create();
 				$response->setHeader( 'Content-Type', 'text/html' );
-				$this->htmlHelper->putHeaders( $response, $setContentLanguageHeader );
 				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
 				$response->setBody( new StringStream( $parserOutputHtml ) );
 				break;
@@ -100,12 +117,15 @@ class PageHTMLHandler extends SimpleHandler {
 				$body = $this->contentHelper->constructMetadata();
 				$body['html'] = $parserOutputHtml;
 				$response = $this->getResponseFactory()->createJson( $body );
-				// For JSON content, it doesn't make sense to set content language header
-				$this->htmlHelper->putHeaders( $response, !$setContentLanguageHeader );
 				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
 				break;
 			default:
 				throw new LogicException( "Unknown HTML type $outputMode" );
+		}
+
+		if ( !$isSystemMessage ) {
+			$setContentLanguageHeader = ( $outputMode === 'html' );
+			$this->htmlHelper->putHeaders( $response, $setContentLanguageHeader );
 		}
 
 		return $response;
@@ -149,6 +169,21 @@ class PageHTMLHandler extends SimpleHandler {
 		return null;
 	}
 
+	private function getSystemMessageOutput(): ParserOutput {
+		$message = $this->contentHelper->getDefaultSystemMessage();
+
+		$messageDom = DOMUtils::parseHTML( $message->parse() );
+		DOMUtils::appendToHead( $messageDom, 'meta', [
+			'http-equiv' => 'content-language',
+			'content' => LanguageCode::bcp47( $message->getLanguage()->getCode() ),
+		] );
+
+		$messageDocHtml = ContentUtils::toXML( $messageDom );
+
+		// TODO: Set language in the response headers.
+		return new ParserOutput( $messageDocHtml );
+	}
+
 	/**
 	 * Returns an ETag representing a page's source. The ETag assumes a page's source has changed
 	 * if the latest revision of a page has been made private, un-readable for another reason,
@@ -156,8 +191,15 @@ class PageHTMLHandler extends SimpleHandler {
 	 * @return string|null
 	 */
 	protected function getETag(): ?string {
-		if ( !$this->contentHelper->isAccessible() ) {
+		if ( !$this->contentHelper->isAccessible() || !$this->contentHelper->hasContent() ) {
 			return null;
+		}
+
+		if ( $this->contentHelper->useDefaultSystemMessage() ) {
+			// XXX: We end up generating the HTML twice. Would be nice to avoid that.
+			// But messages are small, and not hit a lot...
+			$output = $this->getSystemMessageOutput();
+			return '"message/' . sha1( $output->getRawText() ) . '/' . $this->getOutputMode() . '"';
 		}
 
 		// Vary eTag based on output mode
@@ -168,9 +210,14 @@ class PageHTMLHandler extends SimpleHandler {
 	 * @return string|null
 	 */
 	protected function getLastModified(): ?string {
-		if ( !$this->contentHelper->isAccessible() ) {
+		if ( !$this->contentHelper->isAccessible() || !$this->contentHelper->hasContent() ) {
 			return null;
 		}
+
+		if ( $this->contentHelper->useDefaultSystemMessage() ) {
+			return null;
+		}
+
 		return $this->htmlHelper->getLastModified();
 	}
 

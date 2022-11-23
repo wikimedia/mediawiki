@@ -23,11 +23,14 @@ use NullStatsdDataFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Http\Message\StreamInterface;
 use Psr\Log\NullLogger;
+use Title;
 use WANObjectCache;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\Parsoid\Utils\ContentUtils;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 use WikiPage;
 
 /**
@@ -164,6 +167,35 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( self::HTML, $data['html'] );
 	}
 
+	public function testExecuteWithHtmlForSystemMessagePage() {
+		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
+		$title = Title::newFromText( 'MediaWiki:Logouttext' );
+		$page = $this->getNonexistingTestPage( $title );
+
+		$request = new RequestData(
+			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
+		);
+
+		$handler = $this->newHandler();
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request, [
+			'format' => 'with_html'
+		] );
+
+		// Let's create and test on a full HTML document since system message pages
+		// will not return a full HTML document by default.
+		$data['html'] = ContentUtils::toXML( DOMUtils::parseHTML( $data['html'] ) );
+
+		$this->assertSame( $title->getPrefixedDBkey(), $data['key'] );
+		$this->assertSame( $title->getPrefixedText(), $data['title'] );
+		$this->assertStringContainsString( '<!DOCTYPE html>', $data['html'] );
+		$this->assertStringContainsString( '<html', $data['html'] );
+		$this->assertStringContainsString( '<meta http-equiv', $data['html'] );
+		$this->assertStringContainsString( 'content="en"', $data['html'] );
+
+		$msg = wfMessage( 'logouttext' )->inLanguage( 'en' )->useDatabase( false );
+		$this->assertStringContainsString( $msg->parse(), $data['html'] );
+	}
+
 	public function testExecuteHtmlOnly() {
 		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
@@ -185,6 +217,34 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( '<!DOCTYPE html>', $htmlResponse );
 		$this->assertStringContainsString( '<html', $htmlResponse );
 		$this->assertStringContainsString( self::HTML, $htmlResponse );
+	}
+
+	public function testExecuteHtmlOnlyForSystemMessagePage() {
+		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
+		$title = Title::newFromText( 'MediaWiki:Logouttext/de' );
+		$page = $this->getNonexistingTestPage( $title );
+
+		$request = new RequestData(
+			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
+		);
+
+		$handler = $this->newHandler();
+		$response = $this->executeHandler( $handler, $request, [
+			'format' => 'html'
+		] );
+
+		$htmlResponse = (string)$response->getBody();
+		// Let's create and test on a full HTML document since system message pages
+		// will not return a full HTML document by default.
+		$htmlResponse = ContentUtils::toXML( DOMUtils::parseHTML( $htmlResponse ) );
+
+		$this->assertStringContainsString( '<!DOCTYPE html>', $htmlResponse );
+		$this->assertStringContainsString( '<html', $htmlResponse );
+		$this->assertStringContainsString( '<meta http-equiv', $htmlResponse );
+		$this->assertStringContainsString( 'content="de"', $htmlResponse );
+
+		$msg = wfMessage( 'logouttext' )->inLanguage( 'de' )->useDatabase( false );
+		$this->assertStringContainsString( $msg->parse(), $htmlResponse );
 	}
 
 	public function testTemporaryRedirectHtmlOnly() {
@@ -427,7 +487,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$handler = $this->newHandler();
-		$this->executeHandler( $handler, $request );
+		$this->executeHandler( $handler, $request, [ 'format' => 'html' ] );
 	}
 
 	/**

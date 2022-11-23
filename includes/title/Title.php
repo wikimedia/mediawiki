@@ -3619,19 +3619,33 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return string|false
 	 */
 	public function getDefaultMessageText() {
+		$message = $this->getDefaultSystemMessage();
+
+		return $message ? $message->plain() : false;
+	}
+
+	/**
+	 * Same as getDefaultMessageText, but returns a Message object.
+	 *
+	 * @see ::getDefaultMessageText
+	 *
+	 * @return ?Message
+	 */
+	public function getDefaultSystemMessage(): ?Message {
 		if ( $this->mNamespace !== NS_MEDIAWIKI ) { // Just in case
-			return false;
+			return null;
 		}
 
 		[ $name, $lang ] = MediaWikiServices::getInstance()->getMessageCache()->figureMessage(
 			MediaWikiServices::getInstance()->getContentLanguage()->lcfirst( $this->getText() )
 		);
+
 		$message = wfMessage( $name )->inLanguage( $lang )->useDatabase( false );
 
 		if ( $message->exists() ) {
-			return $message->plain();
+			return $message;
 		} else {
-			return false;
+			return null;
 		}
 	}
 

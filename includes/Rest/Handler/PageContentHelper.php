@@ -6,20 +6,25 @@ use Config;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ExistingPageRecord;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
+use Message;
 use TextContent;
+use Title;
 use TitleFormatter;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use WikitextContent;
 
 /**
  * @internal for use by core REST infrastructure
@@ -58,6 +63,9 @@ class PageContentHelper {
 
 	/** @var ExistingPageRecord|false|null */
 	protected $pageRecord = false;
+
+	/** @var PageIdentity|false|null */
+	private $pageIdentity = false;
 
 	/**
 	 * @param ServiceOptions|Config $options
@@ -110,6 +118,22 @@ class PageContentHelper {
 			$this->pageRecord = $this->pageLookup->getExistingPageByText( $titleText );
 		}
 		return $this->pageRecord;
+	}
+
+	public function getPageIdentity(): ?PageIdentity {
+		if ( $this->pageIdentity === false ) {
+			$this->pageIdentity = $this->getPage();
+		}
+
+		if ( $this->pageIdentity === null ) {
+			$titleText = $this->getTitleText();
+			if ( !$titleText ) {
+				return null;
+			}
+			$this->pageIdentity = $this->pageLookup->getPageByText( $titleText );
+		}
+
+		return $this->pageIdentity;
 	}
 
 	/**
@@ -177,7 +201,7 @@ class PageContentHelper {
 	 * @return bool
 	 */
 	public function isAccessible(): bool {
-		$page = $this->getPage();
+		$page = $this->getPageIdentity();
 		return $page && $this->authority->probablyCan( 'read', $page );
 	}
 
@@ -219,27 +243,34 @@ class PageContentHelper {
 	 * @return bool
 	 */
 	public function hasContent(): bool {
-		return (bool)$this->getPage();
+		return $this->useDefaultSystemMessage() || (bool)$this->getPage();
 	}
 
 	/**
 	 * @return array
 	 */
 	public function constructMetadata(): array {
-		$page = $this->getPage();
-		$revision = $this->getTargetRevision();
+		if ( $this->useDefaultSystemMessage() ) {
+			$title = Title::newFromText( $this->getTitleText() );
+			$content = new WikitextContent( $title->getDefaultMessageText() );
+			$revision = new MutableRevisionRecord( $title );
+			$revision->setPageId( 0 );
+			$revision->setId( 0 );
+			$revision->setContent( SlotRecord::MAIN, $content );
+		} else {
+			$revision = $this->getTargetRevision();
+		}
+
+		$page = $revision->getPage();
 		return [
 			'id' => $page->getId(),
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 			'key' => $this->titleFormatter->getPrefixedDBkey( $page ),
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
 			'title' => $this->titleFormatter->getPrefixedText( $page ),
 			'latest' => [
 				'id' => $revision->getId(),
 				'timestamp' => wfTimestampOrNull( TS_ISO_8601, $revision->getTimestamp() )
 			],
-			'content_model' => $this->getTargetRevision()
-				->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )
+			'content_model' => $revision->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )
 				->getModel(),
 			'license' => [
 				'url' => $this->options->get( MainConfigNames::RightsUrl ),
@@ -284,6 +315,25 @@ class PageContentHelper {
 	}
 
 	/**
+	 * If the page is a system message page. When the content gets
+	 * overridden to create an actual page, this method returns false.
+	 *
+	 * @return bool
+	 */
+	public function useDefaultSystemMessage(): bool {
+		return $this->getDefaultSystemMessage() !== null && $this->getPage() === null;
+	}
+
+	/**
+	 * @return Message|null
+	 */
+	public function getDefaultSystemMessage(): ?Message {
+		$title = Title::newFromText( $this->getTitleText() );
+
+		return $title ? $title->getDefaultSystemMessage() : null;
+	}
+
+	/**
 	 * @throws LocalizedHttpException if the content is not accessible
 	 */
 	public function checkAccess() {
@@ -296,8 +346,8 @@ class PageContentHelper {
 			);
 		}
 
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Validated by hasContent
-		if ( !$this->authority->authorizeRead( 'read', $this->getPage() ) ) {
+		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable
+		if ( !$this->authority->authorizeRead( 'read', $this->getPageIdentity() ) ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-permission-denied-title' )->plaintextParams( $titleText ),
 				403
@@ -305,7 +355,7 @@ class PageContentHelper {
 		}
 
 		$revision = $this->getTargetRevision();
-		if ( !$revision ) {
+		if ( !$revision && !$this->useDefaultSystemMessage() ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-no-revision' )->plaintextParams( $titleText ),
 				404
