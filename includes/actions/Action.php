@@ -63,6 +63,11 @@ abstract class Action implements MessageLocalizer {
 	 */
 	protected $fields;
 
+	/** @var HookContainer|null */
+	private $hookContainer;
+	/** @var HookRunner|null */
+	private $hookRunner;
+
 	/**
 	 * Get an appropriate Action subclass for the given action
 	 * @since 1.17
@@ -233,12 +238,25 @@ abstract class Action implements MessageLocalizer {
 	}
 
 	/**
+	 * @since 1.40
+	 * @internal For use by ActionFactory
+	 * @param HookContainer $hookContainer
+	 */
+	public function setHookContainer( HookContainer $hookContainer ) {
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
+	}
+
+	/**
 	 * @since 1.35
 	 * @internal since 1.37
 	 * @return HookContainer
 	 */
 	protected function getHookContainer() {
-		return MediaWikiServices::getInstance()->getHookContainer();
+		if ( !$this->hookContainer ) {
+			$this->hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		}
+		return $this->hookContainer;
 	}
 
 	/**
@@ -248,7 +266,10 @@ abstract class Action implements MessageLocalizer {
 	 * @return HookRunner
 	 */
 	protected function getHookRunner() {
-		return new HookRunner( $this->getHookContainer() );
+		if ( !$this->hookRunner ) {
+			$this->hookRunner = new HookRunner( $this->getHookContainer() );
+		}
+		return $this->hookRunner;
 	}
 
 	/**
