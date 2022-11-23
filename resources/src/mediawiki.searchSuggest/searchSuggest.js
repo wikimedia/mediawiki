@@ -226,16 +226,31 @@
 		// The function used when the user makes a selection
 		function selectFunction( $input, source ) {
 			var context = $input.data( 'suggestionsContext' ),
-				text = $input.val();
+				text = $input.val(),
+				url = $( this ).parent( 'a' ).attr( 'href' );
 
-			// Selecting via keyboard triggers a form submission. That will fire
-			// the submit-form event in addition to this click-result event.
-			if ( source !== 'keyboard' ) {
+			// We want to track a click-result XOR a submit-form action.
+			// If the source was 'click' (or otherwise non-'keyboard'),
+			// track it and then let the rest of the event proceed as normal.
+			// If the source was 'keyboard', and we have a URL
+			// (from the <a> that the result was wrapped in, see renderFunction()),
+			// then also track a click, prevent the regular form submit,
+			// and instead directly navigate to the URL as if it had been clicked.
+			// If the source was 'keyboard', but we have no URL,
+			// then we have to let the regular form submit go through,
+			// so skip the click tracking in that case to avoid duplicate tracking.
+			if ( source === 'keyboard' && url || source !== 'keyboard' ) {
 				mw.track( 'mediawiki.searchSuggest', {
 					action: 'click-result',
 					numberOfResults: context.config.suggestions.length,
 					index: context.config.suggestions.indexOf( text )
 				} );
+
+				if ( source === 'keyboard' ) {
+					window.location.assign( url );
+					// prevent default and stop propagation
+					return false;
+				}
 			}
 
 			// allow the form to be submitted
@@ -387,7 +402,9 @@
 
 		var $searchForm = $searchInput.closest( 'form' );
 		$searchForm
-			// track the form submit event
+			// Track the form submit event.
+			// Note that the form is mainly submitted for manual user input;
+			// selecting a suggestion is tracked as a click instead (see selectFunction()).
 			.on( 'submit', function () {
 				var context = $searchInput.data( 'suggestionsContext' );
 				mw.track( 'mediawiki.searchSuggest', {
