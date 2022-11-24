@@ -1875,6 +1875,7 @@
 	"tooltip-search": "Որոնել {{SITENAME}} կայքում",
 	"tooltip-search-go": "Անցնել այս ճշգրիտ անվանումով էջին",
 	"tooltip-search-fulltext": "Գտնել այս տեքստով էջերը",
+	"tooltip-p-cactions": "Այլ ընտրանքներ",
 	"tooltip-p-logo": "Այցելեք Գլխավոր Էջը",
 	"tooltip-n-mainpage": "Այցելեք Գլխավոր Էջը",
 	"tooltip-n-mainpage-description": "Անցնել գլխավոր էջ",

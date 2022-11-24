@@ -84,7 +84,8 @@
 			"Zache",
 			"ZeiP",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Valtlai"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -2417,6 +2418,7 @@
 	"actioncomplete": "Toiminto suoritettu",
 	"actionfailed": "Toiminto epäonnistui",
 	"deletedtext": "”$1” on poistettu.\nSivulla $2 on lista viimeaikaisista poistoista.",
+	"deleted-page-and-talkpage": "\"$1\" ja \"$2\" on poistettu.\nMuita äskettäisiä poistoja on kohteessa $3.",
 	"dellogpage": "Poistoloki",
 	"dellogpagetext": "Alla on loki viimeisimmistä poistoista.",
 	"deletionlog": "poistoloki",

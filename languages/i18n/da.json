@@ -79,7 +79,8 @@
 			"Tjernobyl",
 			"Urhixidur",
 			"Weblars",
-			"아라"
+			"아라",
+			"SiGNOUT"
 		]
 	},
 	"tog-underline": "Understregning af links:",
@@ -752,7 +753,7 @@
 	"editingsection": "Redigerer $1 (afsnit)",
 	"editingcomment": "Redigerer $1 (nyt afsnit)",
 	"editconflict": "Redigeringskonflikt: $1",
-	"explainconflict": "Nogen har ændret denne side, efter du startede på at redigere den.\nDen øverste tekstboks indeholder den aktuelle tekst.\nDine ændringer er vist i den nederste tekstboks.\nDu er nødt til at sammenflette dine ændringer med den eksisterende tekst.\n<strong>Kun</strong> teksten i den øverste tekstboks vil blive gemt når du trykker \"$1\".",
+	"explainconflict": "En anden har ændret denne side, efter du startede på at redigere den.\nDen øverste tekstboks indeholder den aktuelle tekst.\nDine ændringer er vist i den nederste tekstboks.\nDu er nødt til at sammenflette dine ændringer med den eksisterende tekst.\n<strong>Kun</strong> teksten i den øverste tekstboks vil blive gemt når du trykker \"$1\".",
 	"yourtext": "Din tekst",
 	"storedversion": "Den gemte version",
 	"editingold": "<strong>ADVARSEL: Du redigerer en gammel version af denne side.</strong>\nHvis du gemmer den, vil alle ændringer foretaget siden denne revision blive overskrevet og tabt.",
@@ -806,6 +807,7 @@
 	"invalid-content-data": "Ugyldig indholdsdata",
 	"invalid-json-data": "Ugyldig JSON: $1",
 	"content-not-allowed-here": "Indholdet \"$1\" er ikke tilladt på siden [[:$2]] i sprækken \"$3\"",
+	"confirmleave-warning": "Hvis du forlader denne side, kan det medføre, at du mister eventuelle ændringer, du har foretaget.",
 	"editpage-invalidcontentmodel-title": "Indholdsmodellen er ikke understøttet",
 	"editpage-invalidcontentmodel-text": "Indholdsmodellen »$1« er ikke understøttet.",
 	"editpage-notsupportedcontentformat-title": "Indholdsformatet understøttes ikke",
@@ -844,7 +846,7 @@
 	"unstrip-depth-category": "Sider hvor dybdegrænsen for unstrip er nået",
 	"unstrip-size-category": "Sider hvor størrelsesgrænsen for unstrip er nået",
 	"converter-manual-rule-error": "Fejl opdaget i manuel sprogkonvertingsregel",
-	"undo-success": "Redigeringen kan fjernes.\nKontroller venligst sammenligningen herunder for at bekræfte at det er hvad du ønsker at gøre, og gem så ændringerne for at fuldføre fjernelsen.",
+	"undo-success": "Redigeringen kan fortrydes.\nKontroller venligst sammenligningen herunder for at bekræfte at det er hvad du ønsker at gøre, og gem så ændringerne for at fuldføre fjernelsen.",
 	"undo-failure": "Redigeringen kunne ikke fjernes på grund af konflikter med efterfølgende redigeringer.",
 	"undo-norev": "Redigeringen kunne ikke fjernes fordi den ikke findes eller er blevet slettet.",
 	"undo-nochange": "Ændringen ser ud til allerede at være blevet fjernet.",
