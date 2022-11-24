@@ -56,6 +56,8 @@ class TransactionManager {
 	private $trxId;
 	/** @var float|null UNIX timestamp at the time of BEGIN for the last transaction */
 	private $trxTimestamp = null;
+	/** @var float|null Round trip time estimate for queries during this transaction */
+	private $trxRoundTripDelay = null;
 	/** @var int Transaction status */
 	private $trxStatus = self::STATUS_TRX_NONE;
 	/** @var Throwable|null The cause of any unresolved transaction state error, or, null */
@@ -127,8 +129,9 @@ class TransactionManager {
 	 * TODO: This should be removed once all usages have been migrated here
 	 * @param string $mode One of IDatabase::TRANSACTION_* values
 	 * @param string $fname method name
+	 * @param float $rtt Trivial query round-trip-delay
 	 */
-	public function newTrxId( $mode, $fname ) {
+	public function newTrxId( $mode, $fname, $rtt ) {
 		$this->trxId = new TransactionIdentifier();
 		$this->trxStatus = self::STATUS_TRX_OK;
 		$this->trxStatusCause = null;
@@ -150,6 +153,7 @@ class TransactionManager {
 		$this->trxDoneWrites = false;
 		$this->trxAtomicCounter = 0;
 		$this->trxTimestamp = microtime( true );
+		$this->trxRoundTripDelay = $rtt;
 	}
 
 	/**
@@ -326,18 +330,17 @@ class TransactionManager {
 		$this->trxWriteCallers[] = $fname;
 	}
 
-	public function pendingWriteQueryDuration( IDatabase $db, $type = IDatabase::ESTIMATE_TOTAL ) {
+	public function pendingWriteQueryDuration( $type = IDatabase::ESTIMATE_TOTAL ) {
 		if ( !$this->trxLevel() ) {
 			return false;
 		} elseif ( !$this->trxDoneWrites ) {
 			return 0.0;
 		}
-		if ( $type == IDatabase::ESTIMATE_DB_APPLY ) {
-			$rtt = null;
-			// passed by reference
-			$db->ping( $rtt );
-			return $this->calculateLastTrxApplyTime( $rtt );
+
+		if ( $type === IDatabase::ESTIMATE_DB_APPLY ) {
+			return $this->calculateLastTrxApplyTime( $this->trxRoundTripDelay );
 		}
+
 		return $this->trxWriteDuration;
 	}
 
@@ -601,7 +604,7 @@ class TransactionManager {
 				$db->getServerName(),
 				$db->getDomainID(),
 				$oldId,
-				$this->pendingWriteQueryDuration( $db, IDatabase::ESTIMATE_TOTAL ),
+				$this->pendingWriteQueryDuration( IDatabase::ESTIMATE_TOTAL ),
 				$this->trxWriteAffectedRows
 			);
 		}

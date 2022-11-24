@@ -126,8 +126,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private $lastWriteTime = false;
 	/** @var string|false */
 	private $lastPhpError = false;
-	/** @var float Query round trip time estimate */
-	private $lastRoundTripEstimate = 0.0;
 
 	/** @var int|null Current critical section numeric ID */
 	private $csmId;
@@ -1218,10 +1216,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$qs->flags = $errflags;
 			$numRowsReturned += $qs->rowsReturned;
 			$numRowsAffected += $qs->rowsAffected;
-		}
-
-		if ( !$multiMode && $statementsById['*'] === self::PING_QUERY ) {
-			$this->lastRoundTripEstimate = $queryRuntime;
 		}
 
 		$this->transactionManager->recordQueryCompletion(
@@ -2740,13 +2734,17 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->assertHasConnectionHandle();
 
 		$cs = $this->commenceCriticalSection( __METHOD__ );
+		$timeStart = microtime( true );
 		try {
 			$this->doBegin( $fname );
 		} catch ( DBError $e ) {
 			$this->completeCriticalSection( __METHOD__, $cs );
 			throw $e;
 		}
-		$this->transactionManager->newTrxId( $mode, $fname );
+		$timeEnd = microtime( true );
+		// Treat "BEGIN" as a trivial query to gauge the RTT delay
+		$rtt = max( $timeEnd - $timeStart, 0.0 );
+		$this->transactionManager->newTrxId( $mode, $fname, $rtt );
 		// With REPEATABLE-READ isolation, the first SELECT establishes the read snapshot,
 		// so get the replication lag estimate before any transaction SELECT queries come in.
 		// This way, the lag estimate reflects what will actually be read. Also, if heartbeat
@@ -2962,22 +2960,22 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	abstract protected function fetchAffectedRowCount();
 
-	public function ping( &$rtt = null ) {
-		// Avoid hitting the server if it was hit recently
+	public function ping() {
 		if ( $this->isOpen() ) {
-			if ( ( microtime( true ) - $this->lastPing ) < self::PING_TTL &&
-				( !func_num_args() || $this->lastRoundTripEstimate > 0 )
-			) {
-				$rtt = $this->lastRoundTripEstimate;
-				return true; // don't care about $rtt
+			// If the connection was recently used, assume that it is still good
+			if ( ( microtime( true ) - $this->lastPing ) < self::PING_TTL ) {
+				return true;
 			}
-			// This will reconnect if possible or return false if not
-			$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_SILENCE_ERRORS | self::QUERY_CHANGE_NONE;
-			$ok = ( $this->query( self::PING_QUERY, __METHOD__, $flags ) !== false );
-			if ( $ok ) {
-				$rtt = $this->lastRoundTripEstimate;
-			}
+			// Send a trivial query to test the connection, triggering an automatic
+			// reconnection attempt if the connection was lost
+			$res = $this->query(
+				self::PING_QUERY,
+				__METHOD__,
+				self::QUERY_IGNORE_DBO_TRX | self::QUERY_SILENCE_ERRORS | self::QUERY_CHANGE_NONE,
+			);
+			$ok = ( $res !== false );
 		} else {
+			// Try to re-establish a connection
 			$ok = $this->replaceLostConnection( null, __METHOD__ );
 		}
 
@@ -3768,7 +3766,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function pendingWriteQueryDuration( $type = self::ESTIMATE_TOTAL ) {
-		return $this->transactionManager->pendingWriteQueryDuration( $this, $type );
+		return $this->transactionManager->pendingWriteQueryDuration( $type );
 	}
 
 	public function pendingWriteCallers() {
