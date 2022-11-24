@@ -1836,6 +1836,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Rest\\Handler\\ParsoidHandler' => __DIR__ . '/includes/Rest/Handler/ParsoidHandler.php',
 	'MediaWiki\\Rest\\Handler\\RevisionHTMLHandler' => __DIR__ . '/includes/Rest/Handler/RevisionHTMLHandler.php',
 	'MediaWiki\\Rest\\Handler\\RevisionSourceHandler' => __DIR__ . '/includes/Rest/Handler/RevisionSourceHandler.php',
+	'MediaWiki\\Rest\\Handler\\RootSpecHandler' => __DIR__ . '/includes/Rest/Handler/RootSpecHandler.php',
 	'MediaWiki\\Rest\\Handler\\SearchHandler' => __DIR__ . '/includes/Rest/Handler/SearchHandler.php',
 	'MediaWiki\\Rest\\Handler\\TransformHandler' => __DIR__ . '/includes/Rest/Handler/TransformHandler.php',
 	'MediaWiki\\Rest\\Handler\\UpdateHandler' => __DIR__ . '/includes/Rest/Handler/UpdateHandler.php',
