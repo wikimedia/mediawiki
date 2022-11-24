@@ -470,20 +470,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			}
 		}
 
-		# Find out if all the replica DBs with non-zero load are lagged
-		$sum = 0;
-		foreach ( $loads as $load ) {
-			$sum += $load;
-		}
-		if ( $sum == 0 ) {
-			# No appropriate DB servers except maybe the primary and some replica DBs with zero load
-			# Do NOT use the primary DB
-			# Instead, this function will return false, triggering read-only mode,
-			# and a lagged replica DB will be used instead.
-			return false;
-		}
-
-		if ( count( $loads ) == 0 ) {
+		if ( array_sum( $loads ) == 0 ) {
+			// All the replicas with non-zero load are lagged and the primary has zero load.
+			// Inform caller so that it can use switch to read-only mode and use a lagged replica.
 			return false;
 		}
 
