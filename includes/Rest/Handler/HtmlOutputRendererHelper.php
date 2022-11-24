@@ -108,6 +108,14 @@ class HtmlOutputRendererHelper {
 	private $targetLanguageCode;
 
 	/**
+	 * Flags to be passed as $options to ParsoidOutputAccess::getParserOutput,
+	 * to control parser cache access.
+	 *
+	 * @var int Use ParsoidOutputAccess::OPT_*
+	 */
+	private $parsoidOutputAccessOptions = 0;
+
+	/**
 	 * @param ParsoidOutputStash $parsoidOutputStash
 	 * @param StatsdDataFactoryInterface $statsDataFactory
 	 * @param ParsoidOutputAccess $parsoidOutputAccess
@@ -139,6 +147,18 @@ class HtmlOutputRendererHelper {
 		}
 
 		$this->flavor = $flavor;
+	}
+
+	/**
+	 * Controls how the parser cache is used.
+	 *
+	 * @param bool $read Whether we should look for cached output before parsing
+	 * @param bool $write Whether we should cache output after parsing
+	 */
+	public function setUseParserCache( bool $read, bool $write ) {
+		$this->parsoidOutputAccessOptions =
+			( $read ? 0 : ParsoidOutputAccess::OPT_FORCE_PARSE ) |
+			( $write ? 0 : ParsoidOutputAccess::OPT_NO_UPDATE_CACHE );
 	}
 
 	/**
@@ -386,7 +406,8 @@ class HtmlOutputRendererHelper {
 				$status = $this->parsoidOutputAccess->getParserOutput(
 					$this->page,
 					$parserOptions,
-					$this->revisionOrId
+					$this->revisionOrId,
+					$this->parsoidOutputAccessOptions
 				);
 			} else {
 				$status = $this->parsoidOutputAccess->parse(

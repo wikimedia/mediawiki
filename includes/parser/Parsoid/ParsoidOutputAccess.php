@@ -69,6 +69,11 @@ class ParsoidOutputAccess {
 	/** @var int Do not check the cache before parsing (force parse) */
 	public const OPT_FORCE_PARSE = 1;
 
+	/**
+	 * @var int Do not update the cache after parsing.
+	 */
+	public const OPT_NO_UPDATE_CACHE = 2;
+
 	public const CONSTRUCTOR_OPTIONS = [
 		MainConfigNames::ParsoidCacheConfig,
 		MainConfigNames::ParsoidSettings,
@@ -206,10 +211,14 @@ class ParsoidOutputAccess {
 		}
 
 		$startTime = microtime( true );
-		$status = $this->parse( $page, $parserOpts, [ 'pageBundle' => true ], $revision );
+		$status = $this->parse( $page, $parserOpts, [], $revision );
 		$time = microtime( true ) - $startTime;
 
-		if ( $status->isOK() ) {
+		if ( !$status->isOK() ) {
+			$this->stats->increment( $statsKey . '.save.notok' );
+		} elseif ( $options & self::OPT_NO_UPDATE_CACHE ) {
+			$this->stats->increment( $statsKey . '.save.disabled' );
+		} else {
 			if ( $time > $this->parsoidCacheConfig->get( 'CacheThresholdTime' ) ) {
 				$parserOutput = $status->getValue();
 				$now = $parserOutput->getCacheTime();
@@ -223,8 +232,6 @@ class ParsoidOutputAccess {
 			} else {
 				$this->stats->increment( $statsKey . '.save.skipfast' );
 			}
-		} else {
-			$this->stats->increment( $statsKey . '.save.notok' );
 		}
 
 		return $status;

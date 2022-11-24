@@ -16,9 +16,11 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\PageRecord;
+use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
+use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Rest\Handler\HtmlOutputRendererHelper;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
@@ -28,6 +30,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
 use NullStatsdDataFactory;
+use ParserCache;
 use ParserOptions;
 use ParserOutput;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -36,6 +39,7 @@ use Status;
 use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
+use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\TestingAccessWrapper;
@@ -544,6 +548,57 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	private function newRealParsoidOutputAccess( $overrides = [] ) {
+		if ( isset( $overrides['parsoid'] ) ) {
+			$parsoid = $overrides['parsoid'];
+		} else {
+			$parsoid = $this->createNoOpMock( Parsoid::class, [ 'wikitext2html' ] );
+			$parsoid->method( 'wikitext2html' )
+				->willReturn( new PageBundle( 'This is HTML' ) );
+		}
+
+		if ( isset( $overrides['parserCache'] ) ) {
+			$parserCache = $overrides['parserCache'];
+		} else {
+			$parserCache = $this->createNoOpMock( ParserCache::class, [ 'get', 'save' ] );
+			$parserCache->method( 'get' )->willReturn( false );
+			$parserCache->method( 'save' )->willReturn( null );
+		}
+
+		if ( isset( $overrides['revisionCache'] ) ) {
+			$revisionCache = $overrides['revisionCache'];
+		} else {
+			$revisionCache = $this->createNoOpMock( RevisionOutputCache::class, [ 'get', 'save' ] );
+			$revisionCache->method( 'get' )->willReturn( false );
+			$revisionCache->method( 'save' )->willReturn( null );
+		}
+
+		$parserCacheFactory = $this->createNoOpMock(
+			ParserCacheFactory::class,
+			[ 'getParserCache', 'getRevisionOutputCache' ]
+		);
+		$parserCacheFactory->method( 'getParserCache' )->willReturn( $parserCache );
+		$parserCacheFactory->method( 'getRevisionOutputCache' )->willReturn( $revisionCache );
+
+		$services = $this->getServiceContainer();
+
+		return new ParsoidOutputAccess(
+			new ServiceOptions(
+				ParsoidOutputAccess::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig(),
+				[ 'ParsoidWikiID' => 'MyWiki' ]
+			),
+			$parserCacheFactory,
+			$this->createNoOpMock( PageLookup::class ),
+			$services->getRevisionLookup(),
+			$services->getGlobalIdGenerator(),
+			new NullStatsdDataFactory(),
+			$parsoid,
+			$services->getParsoidSiteConfig(),
+			$services->getParsoidPageConfigFactory()
+		);
+	}
+
 	/**
 	 * @dataProvider provideHandlesParsoidError
 	 */
@@ -558,26 +613,59 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			->willThrowException( $parsoidException );
 
 		/** @var ParsoidOutputAccess|MockObject $access */
-		$access = new ParsoidOutputAccess(
-			new ServiceOptions(
-				ParsoidOutputAccess::CONSTRUCTOR_OPTIONS,
-				$this->getServiceContainer()->getMainConfig(),
-				[ 'ParsoidWikiID' => 'MyWiki' ]
-			),
-			$this->getServiceContainer()->getParserCacheFactory(),
-			$this->createNoOpMock( PageLookup::class ),
-			$this->getServiceContainer()->getRevisionLookup(),
-			$this->getServiceContainer()->getGlobalIdGenerator(),
-			new NullStatsdDataFactory(),
-			$parsoid,
-			$this->getServiceContainer()->getParsoidSiteConfig(),
-			$this->getServiceContainer()->getParsoidPageConfigFactory()
-		);
+		$access = $this->newRealParsoidOutputAccess( [
+			'parsoid' => $parsoid
+		] );
 
 		$helper = $this->newHelper( null, $access );
 		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
 
 		$this->expectExceptionObject( $expectedException );
+		$helper->getHtml();
+	}
+
+	public function testDisableParserCacheWrite() {
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		// NOTE: The save() method is not supported and will throw!
+		//       The point of this test case is asserting that save() isn't called.
+		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'get' ] );
+		$parserCache->method( 'get' )->willReturn( false );
+
+		/** @var ParsoidOutputAccess|MockObject $access */
+		$access = $this->newRealParsoidOutputAccess( [
+			'parserCache' => $parserCache,
+			'revisionCache' => $this->createNoOpMock( RevisionOutputCache::class ),
+		] );
+
+		$helper = $this->newHelper( null, $access );
+		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
+
+		// Set read = true, write = false
+		$helper->setUseParserCache( true, false );
+		$helper->getHtml();
+	}
+
+	public function testDisableParserCacheRead() {
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		// NOTE: The get() method is not supported and will throw!
+		//       The point of this test case is asserting that get() isn't called.
+		//       We also check that save() is still called.
+		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'save' ] );
+		$parserCache->expects( $this->once() )->method( 'save' );
+
+		/** @var ParsoidOutputAccess|MockObject $access */
+		$access = $this->newRealParsoidOutputAccess( [
+			'parserCache' => $parserCache,
+			'revisionCache' => $this->createNoOpMock( RevisionOutputCache::class ),
+		] );
+
+		$helper = $this->newHelper( null, $access );
+		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
+
+		// Set read = false, write = true
+		$helper->setUseParserCache( false, true );
 		$helper->getHtml();
 	}
 
