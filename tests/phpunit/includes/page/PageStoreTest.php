@@ -764,7 +764,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		$this->getExistingTestPage( $title->getSubpage( 'B' ) );
 
 		$pageStore = $this->getPageStore();
-		$this->assertEmpty( $pageStore->getSubpages( $title, 100 ) );
+		$this->assertCount( 0, $pageStore->getSubpages( $title, 100 ) );
 	}
 
 	/**

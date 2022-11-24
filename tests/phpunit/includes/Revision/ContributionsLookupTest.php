@@ -242,7 +242,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$segment0 =
 			$contributionsLookup->getContributions( $target, 10, self::$performer, '', 'not-a-tag' );
 
-		$this->assertEmpty( $segment0->getRevisions() );
+		$this->assertSame( [], $segment0->getRevisions() );
 	}
 
 	/**

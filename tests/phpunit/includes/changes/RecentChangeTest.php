@@ -542,7 +542,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		$errors = $rc->doMarkPatrolled(
 			$this->mockUserAuthorityWithPermissions( $this->user, [ 'patrol', 'autopatrol' ] )
 		);
-		$this->assertEmpty( $errors );
+		$this->assertSame( [], $errors );
 
 		$reloadedRC = RecentChange::newFromId( $rc->getAttribute( 'rc_id' ) );
 		$this->assertSame( '1', $reloadedRC->getAttribute( 'rc_patrolled' ) );

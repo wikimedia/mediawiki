@@ -414,7 +414,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		$this->overrideUserPermissions( $this->user, [ 'edit' ] );
 
-		$this->assertEmpty( $permissionManager->getPermissionErrors( 'edit', $this->user, $title ) );
+		$this->assertSame( [], $permissionManager->getPermissionErrors( 'edit', $this->user, $title ) );
 		$this->assertTrue( $permissionManager->userCan( 'edit', $this->user, $title ) );
 	}
 
@@ -444,7 +444,8 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 				$title
 			)
 		);
-		$this->assertEmpty(
+		$this->assertSame(
+			[],
 			$permissionManager->getPermissionErrors(
 				'edit',
 				$user,
