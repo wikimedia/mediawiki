@@ -58,6 +58,7 @@ use MWOldPassword;
 use MWSaltedPassword;
 use NamespaceInfo;
 use NullJob;
+use ParsoidCachePrewarmJob;
 use PatrolLogFormatter;
 use ProtectLogFormatter;
 use PublishStashedFileJob;
@@ -11071,6 +11072,7 @@ class MainConfigSchema {
 			'revertedTagUpdate' => RevertedTagUpdateJob::class,
 			'null' => NullJob::class,
 			'userEditCountInit' => UserEditCountInitJob::class,
+			'parsoidCachePrewarm' => ParsoidCachePrewarmJob::class,
 		],
 		'type' => 'map',
 	];
