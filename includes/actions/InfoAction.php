@@ -285,15 +285,13 @@ class InfoAction extends FormlessAction {
 	protected function makeHeader( $header, $canonicalId ) {
 		return Html::rawElement(
 			'h2',
-			[ 'id' => Sanitizer::escapeIdForAttribute( $canonicalId ) ],
+			[ 'id' => Sanitizer::escapeIdForAttribute( $header ) ],
 			Html::element(
 				'span',
-				[
-					'class' => 'mw-headline',
-					'id' => Sanitizer::escapeIdForAttribute( $header ),
-				],
-				$header
-			)
+				[ 'id' => Sanitizer::escapeIdForAttribute( $canonicalId ) ],
+				''
+			) .
+			htmlspecialchars( $header )
 		);
 	}
 

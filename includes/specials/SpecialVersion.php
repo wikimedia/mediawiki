@@ -654,15 +654,14 @@ class SpecialVersion extends SpecialPage {
 
 		$out = Html::rawElement(
 			'h2',
-			[
-				'class' => 'mw-headline plainlinks',
-				'id' => 'mw-version-parser-extensiontags',
-			],
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped Using false for escape is safe
-			Linker::makeExternalLink(
-				'https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Tag_extensions',
-				$this->msg( 'version-parser-extensiontags' )->parse(),
-				false /* msg()->parse() already escapes */
+			[ 'id' => 'mw-version-parser-extensiontags' ],
+			Html::rawElement(
+				'span',
+				[ 'class' => 'plainlinks' ],
+				Linker::makeExternalLink(
+					'https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Tag_extensions',
+					$this->msg( 'version-parser-extensiontags' )->text()
+				)
 			)
 		);
 
@@ -696,15 +695,14 @@ class SpecialVersion extends SpecialPage {
 
 		$out = Html::rawElement(
 			'h2',
-			[
-				'class' => 'mw-headline plainlinks',
-				'id' => 'mw-version-parser-function-hooks',
-			],
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped Using false for escape is safe
-			Linker::makeExternalLink(
-				'https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Parser_functions',
-				$this->msg( 'version-parser-function-hooks' )->parse(),
-				false /* msg()->parse() already escapes */
+			[ 'id' => 'mw-version-parser-function-hooks' ],
+			Html::rawElement(
+				'span',
+				[ 'class' => 'plainlinks' ],
+				Linker::makeExternalLink(
+					'https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Parser_functions',
+					$this->msg( 'version-parser-function-hooks' )->text()
+				)
 			)
 		);
 
