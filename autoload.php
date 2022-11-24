@@ -2336,6 +2336,7 @@ $wgAutoloadLocalClasses = [
 	'SendPasswordResetEmailUpdate' => __DIR__ . '/includes/deferred/SendPasswordResetEmailUpdate.php',
 	'SerializedValueContainer' => __DIR__ . '/includes/libs/objectcache/serialized/SerializedValueContainer.php',
 	'SevenZipStream' => __DIR__ . '/maintenance/includes/SevenZipStream.php',
+	'ShConverter' => __DIR__ . '/includes/language/converters/ShConverter.php',
 	'ShiConverter' => __DIR__ . '/includes/language/converters/ShiConverter.php',
 	'ShowJobs' => __DIR__ . '/maintenance/showJobs.php',
 	'ShowSiteStats' => __DIR__ . '/maintenance/showSiteStats.php',
