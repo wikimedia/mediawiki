@@ -217,11 +217,11 @@ abstract class LBFactory implements ILBFactory {
 	 * this calls reconfigure() on all load balancers, which causes them to invalidate
 	 * any existing connections and re-connect using the new configuration.
 	 *
-	 * @note This invalidates the current transaction ticket.
-	 *
-	 * @warning This must only be called in top level code such as the execute()
-	 * method of a maintenance script. Any database connection in use when this
-	 * method is called will become defunct.
+	 * Long-running processes should call this from time to time
+	 * (but not too often, because it is somewhat expensive),
+	 * preferably after each batch.
+	 * Maintenance scripts can do that by calling $this->waitForReplication(),
+	 * which calls this method.
 	 */
 	public function autoReconfigure(): void {
 		if ( !$this->configCallback ) {
