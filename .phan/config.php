@@ -27,7 +27,6 @@ $cfg['minimum_target_php_version'] = '7.4.3';
 
 $cfg['file_list'] = array_merge(
 	$cfg['file_list'],
-	class_exists( PEAR::class ) ? [] : [ '.phan/stubs/mail.php' ],
 	class_exists( ValueError::class ) ? [] : [ '.phan/stubs/ValueError.php' ],
 	class_exists( Socket::class ) ? [] : [ '.phan/stubs/Socket.php' ],
 	class_exists( AllowDynamicProperties::class ) ? [] : [ '.phan/stubs/AllowDynamicProperties.php' ],
