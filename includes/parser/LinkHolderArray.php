@@ -409,70 +409,72 @@ class LinkHolderArray {
 			}
 		}
 
-		if ( !$linkBatch->isEmpty() ) {
-			// construct query
-			$dbr = wfGetDB( DB_REPLICA );
+		if ( $linkBatch->isEmpty() ) {
+			return;
+		}
 
-			$varRes = $dbr->newSelectQueryBuilder()
-				->select( LinkCache::getSelectFields() )
-				->from( 'page' )
-				->where( [ $linkBatch->constructSet( 'page', $dbr ) ] )
-				->caller( __METHOD__ )
-				->fetchResultSet();
+		// construct query
+		$dbr = wfGetDB( DB_REPLICA );
 
-			$pagemap = [];
-			$linkRenderer = $this->parent->getLinkRenderer();
+		$varRes = $dbr->newSelectQueryBuilder()
+			->select( LinkCache::getSelectFields() )
+			->from( 'page' )
+			->where( [ $linkBatch->constructSet( 'page', $dbr ) ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 
-			// for each found variants, figure out link holders and replace
-			foreach ( $varRes as $s ) {
-				$variantTitle = Title::makeTitle( $s->page_namespace, $s->page_title );
-				$varPdbk = $variantTitle->getPrefixedDBkey();
-				$vardbk = $variantTitle->getDBkey();
+		$pagemap = [];
+		$linkRenderer = $this->parent->getLinkRenderer();
 
-				$holderKeys = [];
-				if ( isset( $variantMap[$varPdbk] ) ) {
-					$holderKeys = $variantMap[$varPdbk];
-					$linkCache->addGoodLinkObjFromRow( $variantTitle, $s );
-					$output->addLink( $variantTitle, $s->page_id );
-				}
+		// for each found variants, figure out link holders and replace
+		foreach ( $varRes as $s ) {
+			$variantTitle = Title::makeTitle( $s->page_namespace, $s->page_title );
+			$varPdbk = $variantTitle->getPrefixedDBkey();
+			$vardbk = $variantTitle->getDBkey();
 
-				// loop over link holders
-				foreach ( $holderKeys as $key ) {
-					[ $ns, $index ] = explode( ':', $key, 2 );
-					$entry =& $this->internals[$ns][$index];
-					$pdbk = $entry['pdbk'];
+			$holderKeys = [];
+			if ( isset( $variantMap[$varPdbk] ) ) {
+				$holderKeys = $variantMap[$varPdbk];
+				$linkCache->addGoodLinkObjFromRow( $variantTitle, $s );
+				$output->addLink( $variantTitle, $s->page_id );
+			}
 
-					if ( !isset( $classes[$pdbk] ) || $classes[$pdbk] === 'new' ) {
-						// found link in some of the variants, replace the link holder data
-						$entry['title'] = $variantTitle;
-						$entry['pdbk'] = $varPdbk;
+			// loop over link holders
+			foreach ( $holderKeys as $key ) {
+				[ $ns, $index ] = explode( ':', $key, 2 );
+				$entry =& $this->internals[$ns][$index];
+				$pdbk = $entry['pdbk'];
 
-						// set pdbk and colour
-						$classes[$varPdbk] = $linkRenderer->getLinkClasses( $variantTitle );
-						$pagemap[$s->page_id] = $pdbk;
-					}
-				}
+				if ( !isset( $classes[$pdbk] ) || $classes[$pdbk] === 'new' ) {
+					// found link in some of the variants, replace the link holder data
+					$entry['title'] = $variantTitle;
+					$entry['pdbk'] = $varPdbk;
 
-				// check if the object is a variant of a category
-				if ( isset( $categoryMap[$vardbk] ) ) {
-					[ $oldkey, $oldtitle ] = $categoryMap[$vardbk];
-					if ( !isset( $varCategories[$oldkey] ) && !$oldtitle->exists() ) {
-						$varCategories[$oldkey] = $vardbk;
-					}
+					// set pdbk and colour
+					$classes[$varPdbk] = $linkRenderer->getLinkClasses( $variantTitle );
+					$pagemap[$s->page_id] = $pdbk;
 				}
 			}
-			$this->hookRunner->onGetLinkColours( $pagemap, $classes, $this->parent->getTitle() );
 
-			// rebuild the categories in original order (if there are replacements)
-			if ( $varCategories !== [] ) {
-				$newCats = [];
-				$originalCats = $output->getCategories();
-				foreach ( $originalCats as $cat => $sortkey ) {
-					// make the replacement
-					$newCats[$varCategories[$cat] ?? $cat] = $sortkey;
+			// check if the object is a variant of a category
+			if ( isset( $categoryMap[$vardbk] ) ) {
+				[ $oldkey, $oldtitle ] = $categoryMap[$vardbk];
+				if ( !isset( $varCategories[$oldkey] ) && !$oldtitle->exists() ) {
+					$varCategories[$oldkey] = $vardbk;
 				}
-				$output->setCategories( $newCats );
 			}
+		}
+		$this->hookRunner->onGetLinkColours( $pagemap, $classes, $this->parent->getTitle() );
+
+		// rebuild the categories in original order (if there are replacements)
+		if ( $varCategories !== [] ) {
+			$newCats = [];
+			$originalCats = $output->getCategories();
+			foreach ( $originalCats as $cat => $sortkey ) {
+				// make the replacement
+				$newCats[$varCategories[$cat] ?? $cat] = $sortkey;
+			}
+			$output->setCategories( $newCats );
 		}
 	}
 
