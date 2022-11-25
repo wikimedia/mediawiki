@@ -75,16 +75,13 @@ $cfg['analyzed_file_extensions'] = array_merge(
 );
 
 $cfg['autoload_internal_extension_signatures'] = [
-	'dom' => '.phan/internal_stubs/dom.phan_php',
 	'excimer' => '.phan/internal_stubs/excimer.php',
 	'imagick' => '.phan/internal_stubs/imagick.phan_php',
 	'memcached' => '.phan/internal_stubs/memcached.phan_php',
-	'oci8' => '.phan/internal_stubs/oci8.phan_php',
 	'pcntl' => '.phan/internal_stubs/pcntl.phan_php',
 	'pgsql' => '.phan/internal_stubs/pgsql.phan_php',
 	'redis' => '.phan/internal_stubs/redis.phan_php',
 	'sockets' => '.phan/internal_stubs/sockets.phan_php',
-	'sqlsrv' => '.phan/internal_stubs/sqlsrv.phan_php',
 	'tideways' => '.phan/internal_stubs/tideways.phan_php',
 	'wikidiff2' => '.phan/internal_stubs/wikidiff.php'
 ];
