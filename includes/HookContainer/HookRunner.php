@@ -115,14 +115,11 @@ class HookRunner implements
 	\MediaWiki\Hook\ArticleRevisionVisibilitySetHook,
 	\MediaWiki\Hook\ArticleUpdateBeforeRedirectHook,
 	\MediaWiki\Hook\BadImageHook,
-	\MediaWiki\Hook\BaseTemplateAfterPortletHook,
 	\MediaWiki\Hook\BeforeInitializeHook,
 	\MediaWiki\Hook\BeforePageDisplayHook,
 	\MediaWiki\Hook\BeforePageRedirectHook,
 	\MediaWiki\Hook\BeforeParserFetchFileAndTitleHook,
-	\MediaWiki\Hook\BeforeParserFetchTemplateAndtitleHook,
 	\MediaWiki\Hook\BeforeParserFetchTemplateRevisionRecordHook,
-	\MediaWiki\Hook\BeforeParserrenderImageGalleryHook,
 	\MediaWiki\Hook\BeforeWelcomeCreationHook,
 	\MediaWiki\Hook\BitmapHandlerCheckImageAreaHook,
 	\MediaWiki\Hook\BitmapHandlerTransformHook,
@@ -221,7 +218,6 @@ class HookRunner implements
 	\MediaWiki\Hook\InfoActionHook,
 	\MediaWiki\Hook\InitializeArticleMaybeRedirectHook,
 	\MediaWiki\Hook\InternalParseBeforeLinksHook,
-	\MediaWiki\Hook\InternalParseBeforeSanitizeHook,
 	\MediaWiki\Hook\IRCLineURLHook,
 	\MediaWiki\Hook\IsTrustedProxyHook,
 	\MediaWiki\Hook\IsUploadAllowedFromUrlHook,
@@ -232,9 +228,7 @@ class HookRunner implements
 	\MediaWiki\Hook\LinkerMakeExternalImageHook,
 	\MediaWiki\Hook\LinkerMakeExternalLinkHook,
 	\MediaWiki\Hook\LinkerMakeMediaLinkFileHook,
-	\MediaWiki\Hook\LinksUpdateAfterInsertHook,
 	\MediaWiki\Hook\LinksUpdateCompleteHook,
-	\MediaWiki\Hook\LinksUpdateConstructedHook,
 	\MediaWiki\Hook\LinksUpdateHook,
 	\MediaWiki\Hook\LocalFilePurgeThumbnailsHook,
 	\MediaWiki\Hook\LocalFile__getHistoryHook,
@@ -920,13 +914,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onBaseTemplateAfterPortlet( $template, $portlet, &$html ) {
-		return $this->container->run(
-			'BaseTemplateAfterPortlet',
-			[ $template, $portlet, &$html ]
-		);
-	}
-
 	public function onBeforeDisplayNoArticleText( $article ) {
 		return $this->container->run(
 			'BeforeDisplayNoArticleText',
@@ -967,15 +954,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onBeforeParserFetchTemplateAndtitle( $parser, $title, &$skip,
-		&$id
-	) {
-		return $this->container->run(
-			'BeforeParserFetchTemplateAndtitle',
-			[ $parser, $title, &$skip, &$id ]
-		);
-	}
-
 	public function onBeforeParserFetchTemplateRevisionRecord(
 		?LinkTarget $contextTitle, LinkTarget $title,
 		bool &$skip, ?RevisionRecord &$revRecord
@@ -983,13 +961,6 @@ class HookRunner implements
 		return $this->container->run(
 			'BeforeParserFetchTemplateRevisionRecord',
 			[ $contextTitle, $title, &$skip, &$revRecord ]
-		);
-	}
-
-	public function onBeforeParserrenderImageGallery( $parser, $ig ) {
-		return $this->container->run(
-			'BeforeParserrenderImageGallery',
-			[ $parser, $ig ]
 		);
 	}
 
@@ -2193,13 +2164,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onInternalParseBeforeSanitize( $parser, &$text, $stripState ) {
-		return $this->container->run(
-			'InternalParseBeforeSanitize',
-			[ $parser, &$text, $stripState ]
-		);
-	}
-
 	public function onInterwikiLoadPrefix( $prefix, &$iwData ) {
 		return $this->container->run(
 			'InterwikiLoadPrefix',
@@ -2337,24 +2301,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onLinksUpdateAfterInsert( $linksUpdate, $table, $insertions ) {
-		return $this->container->run(
-			'LinksUpdateAfterInsert',
-			[ $linksUpdate, $table, $insertions ]
-		);
-	}
-
 	public function onLinksUpdateComplete( $linksUpdate, $ticket ) {
 		return $this->container->run(
 			'LinksUpdateComplete',
 			[ $linksUpdate, $ticket ]
-		);
-	}
-
-	public function onLinksUpdateConstructed( $linksUpdate ) {
-		return $this->container->run(
-			'LinksUpdateConstructed',
-			[ $linksUpdate ]
 		);
 	}
 
