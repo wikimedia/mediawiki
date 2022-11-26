@@ -386,8 +386,8 @@ class HandlerTest extends \MediaWikiUnitTestCase {
 
 		$response = new Response();
 		$handler->applyConditionalResponseHeaders( $response );
-		$this->assertEmpty( $response->getHeaderLine( 'ETag' ) );
-		$this->assertEmpty( $response->getHeaderLine( 'Last-Modified' ) );
+		$this->assertSame( '', $response->getHeaderLine( 'ETag' ) );
+		$this->assertSame( '', $response->getHeaderLine( 'Last-Modified' ) );
 	}
 
 	public function provideCacheControl() {

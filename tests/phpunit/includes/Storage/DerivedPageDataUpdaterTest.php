@@ -641,7 +641,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$dataUpdates = $updater->getSecondaryDataUpdates();
 
-		$this->assertEmpty( $dataUpdates );
+		$this->assertSame( [], $dataUpdates );
 	}
 
 	/**

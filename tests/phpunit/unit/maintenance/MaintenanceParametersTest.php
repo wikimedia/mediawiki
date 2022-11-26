@@ -214,7 +214,7 @@ class MaintenanceParametersTest extends TestCase {
 
 		$params->validate();
 		$this->assertFalse( $params->hasErrors() );
-		$this->assertEmpty( $params->getErrors() );
+		$this->assertSame( [], $params->getErrors() );
 
 		$this->assertSame( $expectedOptions, $params->getOptions() );
 		$this->assertSame( $expectedArgs, $params->getArgs() );
