@@ -20,9 +20,14 @@
  * @file
  */
 
+namespace MediaWiki\Title;
+
+use MalformedTitleException;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
+use MessageLocalizer;
+use Title;
 
 /**
  * Creates Title objects.
@@ -86,8 +91,8 @@ class TitleFactory {
 	 * @see Title::newFromText
 	 * @param string|int|null $text
 	 * @param int $defaultNamespace
-	 * @throws InvalidArgumentException
 	 * @return Title|null
+	 * @throws \InvalidArgumentException
 	 */
 	public function newFromText( $text, $defaultNamespace = NS_MAIN ): ?Title {
 		return Title::newFromText( $text, $defaultNamespace );
@@ -97,8 +102,8 @@ class TitleFactory {
 	 * @see Title::newFromTextThrow
 	 * @param string $text
 	 * @param int $defaultNamespace
-	 * @throws MalformedTitleException
 	 * @return Title
+	 * @throws MalformedTitleException
 	 */
 	public function newFromTextThrow( $text, $defaultNamespace = NS_MAIN ): Title {
 		return Title::newFromTextThrow( $text, $defaultNamespace );
@@ -124,10 +129,10 @@ class TitleFactory {
 	}
 
 	/**
+	 * @deprecated since 1.38 use a PageStore QueryBuilder instead
 	 * @see Title::newFromIDs
 	 * @param int[] $ids
 	 * @return Title[]
-	 * @deprecated since 1.38 use a PageStore QueryBuilder instead
 	 */
 	public function newFromIDs( $ids ): array {
 		wfDeprecated( __METHOD__, '1.38' );
@@ -136,7 +141,7 @@ class TitleFactory {
 
 	/**
 	 * @see Title::newFromRow
-	 * @param stdClass $row
+	 * @param \stdClass $row
 	 * @return Title
 	 */
 	public function newFromRow( $row ): Title {
@@ -177,3 +182,5 @@ class TitleFactory {
 	}
 
 }
+
+class_alias( TitleFactory::class, 'TitleFactory' );

@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Title\TitleArray;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**

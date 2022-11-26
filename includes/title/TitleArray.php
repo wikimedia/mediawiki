@@ -24,6 +24,10 @@
  * @file
  */
 
+namespace MediaWiki\Title;
+
+use Iterator;
+use Title;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -57,3 +61,5 @@ abstract class TitleArray implements Iterator {
 	 */
 	abstract public function key(): int;
 }
+
+class_alias( TitleArray::class, 'TitleArray' );

@@ -28,9 +28,9 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Title\TitleFactory;
 use ParserCache;
 use Psr\Log\LoggerInterface;
-use TitleFactory;
 use WANObjectCache;
 
 /**

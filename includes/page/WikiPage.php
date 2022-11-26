@@ -43,6 +43,7 @@ use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Storage\PreparedUpdate;
 use MediaWiki\Storage\RevisionSlotsUpdate;
+use MediaWiki\Title\TitleArray;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Assert\Assert;

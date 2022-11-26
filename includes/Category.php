@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Title\TitleArray;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**

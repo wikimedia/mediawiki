@@ -5,10 +5,10 @@ namespace MediaWiki\Tests\Unit\Revision;
 use ContentHandler;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Revision\MainSlotRoleHandler;
+use MediaWiki\Title\TitleFactory;
 use MediaWikiUnitTestCase;
 use MockTitleTrait;
 use Title;
-use TitleFactory;
 
 /**
  * @covers \MediaWiki\Revision\MainSlotRoleHandler

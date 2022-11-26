@@ -6,7 +6,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
-use TitleFactory;
+use MediaWiki\Title\TitleFactory;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Parsoid;
 

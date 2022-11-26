@@ -27,6 +27,7 @@ use MediaWiki\Json\JsonCodec;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheMetadata;
+use MediaWiki\Title\TitleFactory;
 use Psr\Log\LoggerInterface;
 
 /**

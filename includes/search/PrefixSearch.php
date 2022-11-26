@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\TitleArray;
 
 /**
  * Handles searching prefixes of titles and finding any page
