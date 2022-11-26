@@ -5862,7 +5862,7 @@ config-schema:
             Profiler `class`. Check individual Profiler subclasses for additional
             options that may be available.
             Profiler subclasses available in MediaWiki core:
-            - ProfilerXhprof: Based on XHProf or Tideways.
+            - ProfilerXhprof: Based on XHProf or Tideways-XHProf.
             - ProfilerExcimer: Based on Excimer.
             - ProfilerSectionOnly
             Profiler output classes available in MediaWiki:

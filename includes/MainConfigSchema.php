@@ -9440,7 +9440,7 @@ class MainConfigSchema {
 	 *
 	 * Profiler subclasses available in MediaWiki core:
 	 *
-	 * - ProfilerXhprof: Based on XHProf or Tideways.
+	 * - ProfilerXhprof: Based on XHProf or Tideways-XHProf.
 	 * - ProfilerExcimer: Based on Excimer.
 	 * - ProfilerSectionOnly
 	 *

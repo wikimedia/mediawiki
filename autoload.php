@@ -2850,7 +2850,6 @@ $wgAutoloadLocalClasses = [
 	'WrapOldPasswords' => __DIR__ . '/maintenance/wrapOldPasswords.php',
 	'XCFHandler' => __DIR__ . '/includes/media/XCFHandler.php',
 	'XMLRCFeedFormatter' => __DIR__ . '/includes/rcfeed/XMLRCFeedFormatter.php',
-	'Xhprof' => __DIR__ . '/includes/libs/Xhprof.php',
 	'XhprofData' => __DIR__ . '/includes/libs/XhprofData.php',
 	'Xml' => __DIR__ . '/includes/xml/Xml.php',
 	'XmlDumpWriter' => __DIR__ . '/includes/export/XmlDumpWriter.php',
