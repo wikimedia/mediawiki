@@ -20,6 +20,7 @@
 
 use MediaWiki\Actions\FileDeleteAction;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\TitleArray;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**

@@ -23,10 +23,10 @@ namespace MediaWiki\Preferences;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 use ParserOptions;
-use TitleFactory;
 
 /**
  * @since 1.38

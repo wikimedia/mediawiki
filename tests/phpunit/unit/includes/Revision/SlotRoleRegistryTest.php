@@ -10,9 +10,9 @@ use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\SlotRoleHandler;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableStore;
+use MediaWiki\Title\TitleFactory;
 use MediaWikiUnitTestCase;
 use Title;
-use TitleFactory;
 use Wikimedia\Assert\PostconditionException;
 
 /**

@@ -24,6 +24,10 @@
  * @file
  */
 
+namespace MediaWiki\Title;
+
+use Countable;
+use Title;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -53,7 +57,7 @@ class TitleArrayFromResult extends TitleArray implements Countable {
 	}
 
 	/**
-	 * @param stdClass|false $row
+	 * @param \stdClass|false $row
 	 * @return void
 	 */
 	protected function setCurrent( $row ) {
@@ -98,3 +102,5 @@ class TitleArrayFromResult extends TitleArray implements Countable {
 		return $this->current !== false;
 	}
 }
+
+class_alias( TitleArrayFromResult::class, 'TitleArrayFromResult' );

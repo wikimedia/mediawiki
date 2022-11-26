@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Title\TitleArrayFromResult;
+
 /**
  * @author Addshore
  * @covers TitleArrayFromResult
