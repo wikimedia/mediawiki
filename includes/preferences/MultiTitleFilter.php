@@ -23,7 +23,7 @@ namespace MediaWiki\Preferences;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Page\ProperPageIdentity;
-use TitleFactory;
+use MediaWiki\Title\TitleFactory;
 use TitleFormatter;
 
 class MultiTitleFilter implements Filter {

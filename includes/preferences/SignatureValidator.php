@@ -25,6 +25,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 use MultiHttpClient;
@@ -32,7 +33,6 @@ use ParserFactory;
 use ParserOptions;
 use ParsoidVirtualRESTService;
 use SpecialPage;
-use TitleFactory;
 use VirtualRESTServiceClient;
 
 /**

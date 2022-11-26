@@ -36,6 +36,7 @@ use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Request\PathRouter;
 use MediaWiki\ResourceLoader\WikiModule;
 use MediaWiki\StubObject\StubUserLang;
+use MediaWiki\Title\TitleArray;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\IDatabase;

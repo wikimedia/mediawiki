@@ -22,6 +22,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Title\TitleFactory;
 
 /**
  * Class to invalidate the CDN and HTMLFileCache entries associated with URLs/titles

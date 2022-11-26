@@ -160,6 +160,7 @@ use MediaWiki\Storage\RevertedTagUpdateManager;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\Tidy\RemexDriver;
 use MediaWiki\Tidy\TidyDriverBase;
+use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;

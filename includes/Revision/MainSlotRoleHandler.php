@@ -27,8 +27,8 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Title\TitleFactory;
 use MWUnknownContentModelException;
-use TitleFactory;
 
 /**
  * A SlotRoleHandler for the main slot. While most slot roles serve a specific purpose and

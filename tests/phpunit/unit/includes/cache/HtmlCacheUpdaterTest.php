@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Title\TitleFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**

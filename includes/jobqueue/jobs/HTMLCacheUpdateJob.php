@@ -21,6 +21,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Title\TitleArray;
 
 /**
  * Job to purge the HTML/file cache for all pages that link to or use another page or file

@@ -20,6 +20,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\TitleArray;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
