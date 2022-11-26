@@ -196,7 +196,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideExpandAttributesEmpty
 	 */
 	public function testExpandAttributesEmpty( array $attribs ) {
-		$this->assertEmpty( Html::expandAttributes( $attribs ) );
+		$this->assertSame( '', Html::expandAttributes( $attribs ) );
 	}
 
 	public function provideExpandAttributesClass() {

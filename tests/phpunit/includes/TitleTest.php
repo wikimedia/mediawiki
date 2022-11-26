@@ -2257,7 +2257,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->getExistingTestPage( $title->getSubpage( 'A' ) );
 		$this->getExistingTestPage( $title->getSubpage( 'B' ) );
 
-		$this->assertEmpty( $title->getSubpages() );
+		$this->assertSame( [], $title->getSubpages() );
 	}
 
 	public function provideNamespaces() {
