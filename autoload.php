@@ -614,6 +614,7 @@ $wgAutoloadLocalClasses = [
 	'HistoryBlob' => __DIR__ . '/includes/historyblob/HistoryBlob.php',
 	'HistoryBlobCurStub' => __DIR__ . '/includes/historyblob/HistoryBlobCurStub.php',
 	'HistoryBlobStub' => __DIR__ . '/includes/historyblob/HistoryBlobStub.php',
+	'HistoryBlobUtils' => __DIR__ . '/includes/historyblob/HistoryBlobUtils.php',
 	'HistoryPager' => __DIR__ . '/includes/actions/pagers/HistoryPager.php',
 	'Hooks' => __DIR__ . '/includes/Hooks.php',
 	'Html' => __DIR__ . '/includes/Html.php',

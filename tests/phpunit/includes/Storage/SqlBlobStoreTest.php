@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Storage;
 
+use ConcatenatedGzipHistoryBlob;
 use ExternalStoreAccess;
 use ExternalStoreFactory;
 use HashBagOStuff;
@@ -9,7 +10,6 @@ use InvalidArgumentException;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiIntegrationTestCase;
-use TitleValue;
 use WANObjectCache;
 use Wikimedia\Rdbms\LoadBalancer;
 
@@ -84,6 +84,12 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $store->getUseExternalStore() );
 	}
 
+	private function makeObjectBlob( $text ) {
+		$obj = new ConcatenatedGzipHistoryBlob();
+		$obj->setText( $text );
+		return serialize( $obj );
+	}
+
 	public function provideDecompress() {
 		yield '(no legacy encoding), empty in empty out' => [ false, '', [], '' ];
 		yield '(no legacy encoding), string in string out' => [ false, 'A', [], 'A' ];
@@ -96,17 +102,16 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 			// gzip string below generated with serialize( 'JOJO' )
 			false, "s:4:\"JOJO\";", [ 'object' ], false,
 		];
+
 		yield '(no legacy encoding), serialized object in with object flag returns string' => [
 			false,
-			// Using a TitleValue object as it has a getText method (which is needed)
-			serialize( new TitleValue( 0, 'HHJJDDFF' ) ),
+			$this->makeObjectBlob( 'HHJJDDFF' ),
 			[ 'object' ],
 			'HHJJDDFF',
 		];
 		yield '(no legacy encoding), serialized object in with object & gzip flag returns string' => [
 			false,
-			// Using a TitleValue object as it has a getText method (which is needed)
-			gzdeflate( serialize( new TitleValue( 0, '8219JJJ840' ) ) ),
+			gzdeflate( $this->makeObjectBlob( '8219JJJ840' ) ),
 			[ 'object', 'gzip' ],
 			'8219JJJ840',
 		];
@@ -124,13 +129,13 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 		];
 		yield '(ISO-8859-1 encoding), serialized object in with object flags returns string' => [
 			'ISO-8859-1',
-			serialize( new TitleValue( 0, iconv( 'utf-8', 'ISO-8859-1', "3®Àþ3" ) ) ),
+			$this->makeObjectBlob( iconv( 'utf-8', 'ISO-8859-1', "3®Àþ3" ) ),
 			[ 'object' ],
 			'3®Àþ3',
 		];
 		yield '(ISO-8859-1 encoding), serialized object in with object & gzip flags returns string' => [
 			'ISO-8859-1',
-			gzdeflate( serialize( new TitleValue( 0, iconv( 'utf-8', 'ISO-8859-1', "2®Àþ2" ) ) ) ),
+			gzdeflate( $this->makeObjectBlob( iconv( 'utf-8', 'ISO-8859-1', "2®Àþ2" ) ) ),
 			[ 'gzip', 'object' ],
 			'2®Àþ2',
 		];

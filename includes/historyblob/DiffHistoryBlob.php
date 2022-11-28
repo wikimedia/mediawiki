@@ -322,7 +322,7 @@ class DiffHistoryBlob implements HistoryBlob {
 	public function __wakeup() {
 		// addItem() doesn't work if mItems is partially filled from mDiffs
 		$this->mFrozen = true;
-		$info = unserialize( gzinflate( $this->mCompressed ) );
+		$info = HistoryBlobUtils::unserializeArray( gzinflate( $this->mCompressed ) );
 		$this->mCompressed = null;
 
 		if ( !$info ) {

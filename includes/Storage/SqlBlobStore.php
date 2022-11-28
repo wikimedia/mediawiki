@@ -28,6 +28,7 @@ namespace MediaWiki\Storage;
 use AppendIterator;
 use DBAccessObjectUtils;
 use ExternalStoreAccess;
+use HistoryBlobUtils;
 use IDBAccessObject;
 use InvalidArgumentException;
 use MWException;
@@ -595,8 +596,8 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 
 		if ( in_array( 'object', $blobFlags ) ) {
 			# Generic compressed storage
-			$obj = unserialize( $blob );
-			if ( !is_object( $obj ) ) {
+			$obj = HistoryBlobUtils::unserialize( $blob );
+			if ( !$obj ) {
 				// Invalid object
 				return false;
 			}
