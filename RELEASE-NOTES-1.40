@@ -234,6 +234,10 @@ because of Phabricator reports.
   removed.
 * ExternalStoreDB::getMaster(), deprecated since 1.37, has been removed.
 * DeletePage::deletionWasScheduled(), deprecated since 1.38, has been removed.
+* When running tests, the serialize_precision INI setting is now set to -1
+  (current PHP default) instead of 17. Extension tests may need to be adjusted
+  accordingly; string representations of floating-point numbers in serialized
+  or JSON-encoded data may change.
 * …
 
 === Deprecations in 1.40 ===
