@@ -10,6 +10,7 @@ use User;
  *
  * @stable to implement
  * @ingroup Hooks
+ * @deprecated since 1.40. Use GetUserBlockHook instead.
  */
 interface UserIsBlockedGloballyHook {
 	/**
