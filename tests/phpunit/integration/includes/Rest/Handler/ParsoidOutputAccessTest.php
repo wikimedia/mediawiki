@@ -254,6 +254,33 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
 	}
 
+	/**
+	 * Tests that getParserOutput() will force a parse since we know that
+	 * the revision is not in the cache.
+	 *
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
+	 */
+	public function testLatestRevisionWithNoUpdateCache() {
+		$access = $this->getParsoidOutputAccessWithCache( 2 );
+		$parserOptions = $this->getParserOptions();
+
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$this->editPage( $page, self::WIKITEXT );
+
+		$status = $access->getParserOutput(
+			$page,
+			$parserOptions,
+			null,
+			ParsoidOutputAccess::OPT_NO_UPDATE_CACHE
+		);
+		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
+
+		// Get the ParserOutput again, this should trigger a new parse
+		// since we suppressed caching above.
+		$status = $access->getParserOutput( $page, $parserOptions );
+		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
+	}
+
 	public function provideCacheThresholdData() {
 		return [
 			yield "fast parse" => [ 1, 2 ], // high threshold, no caching
