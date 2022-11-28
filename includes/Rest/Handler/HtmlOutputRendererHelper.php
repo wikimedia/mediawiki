@@ -49,6 +49,11 @@ use User;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Parsoid\Core\ClientError;
+use Wikimedia\Parsoid\Core\PageBundle;
+use Wikimedia\Parsoid\Parsoid;
+use Wikimedia\Parsoid\Utils\ContentUtils;
+use Wikimedia\Parsoid\Utils\DOMUtils;
 
 /**
  * Helper for getting output of a given wikitext page rendered by parsoid.
@@ -67,7 +72,7 @@ class HtmlOutputRendererHelper {
 	];
 
 	/** @var string[] */
-	private const OUTPUT_FLAVORS = [ 'view', 'stash', 'fragment' ];
+	private const OUTPUT_FLAVORS = [ 'view', 'stash', 'fragment', 'edit' ];
 
 	/** @var ParsoidOutputStash */
 	private $parsoidOutputStash;
@@ -126,6 +131,20 @@ class HtmlOutputRendererHelper {
 	private $parsoidOutputAccessOptions = 0;
 
 	/**
+	 * @see the $options parameter on Parsoid::wikitext2html
+	 * @var array
+	 */
+	private $parsoidOptions = [];
+
+	/**
+	 * Whether the result can be cached in the parser cache and the web cache.
+	 * Set to false when bespoke options are set.
+	 *
+	 * @var bool
+	 */
+	private $isCacheable = true;
+
+	/**
 	 * @param ParsoidOutputStash $parsoidOutputStash
 	 * @param StatsdDataFactoryInterface $statsDataFactory
 	 * @param ParsoidOutputAccess $parsoidOutputAccess
@@ -150,8 +169,12 @@ class HtmlOutputRendererHelper {
 	}
 
 	/**
-	 * Sets the given flavor to use for Wikitext -> HTML
-	 * transformations.
+	 * Sets the given flavor to use for Wikitext -> HTML transformations.
+	 *
+	 * Flavors may influence parser options, parsoid options, and DOM transformations.
+	 * They will be reflected by the ETag returned by getETag().
+	 *
+	 * Flavors cannot be combined. For more fine-grained control, use setOption
 	 *
 	 * @param string $flavor
 	 *
@@ -163,6 +186,28 @@ class HtmlOutputRendererHelper {
 		}
 
 		$this->flavor = $flavor;
+	}
+
+	/**
+	 * Set the desired profile version for the output.
+	 *
+	 * @param string $version
+	 *
+	 * @throws HttpException If the given version is not supported (status 406)
+	 */
+	public function setOutputProfileVersion( $version ) {
+		$outputContentVersion = Parsoid::resolveContentVersion( $version );
+
+		if ( !$outputContentVersion ) {
+			throw new HttpException( "Unsupported profile version: $version", 406 );
+		}
+
+		// Only set the option if the value isn't the default!
+		if ( $outputContentVersion !== Parsoid::defaultHTMLVersion() ) {
+			// See Parsoid::wikitext2html
+			$this->parsoidOptions['outputContentVersion'] = $outputContentVersion;
+			$this->isCacheable = false;
+		}
 	}
 
 	/**
@@ -208,6 +253,14 @@ class HtmlOutputRendererHelper {
 	public function setRevision( $revisionOrId ): void {
 		Assert::parameterType( [ RevisionRecord::class, 'integer' ], $revisionOrId, '$revision' );
 		$this->revisionOrId = $revisionOrId;
+
+		if ( !$this->getRevisionId() ) {
+			// If we have a RevisionRecord but no revision ID, we are dealing with a fake
+			// revision used for editor previews or mode switches. The wikitext is coming
+			// from the request, not the database, so the result is not cacheable for re-use
+			// by others (though it can be stashed for use by the same client).
+			$this->isCacheable = false;
+		}
 	}
 
 	/**
@@ -302,6 +355,7 @@ class HtmlOutputRendererHelper {
 	/**
 	 * @return ParserOutput a tuple with html and content-type
 	 * @throws LocalizedHttpException
+	 * @throws ClientError
 	 */
 	public function getHtml(): ParserOutput {
 		if ( $this->processedParserOutput ) {
@@ -341,6 +395,16 @@ class HtmlOutputRendererHelper {
 				);
 			}
 			$this->stats->increment( 'htmloutputrendererhelper.stash.save' );
+		}
+
+		if ( $this->flavor === 'edit' ) {
+			$pb = $this->getPageBundle();
+
+			// Inject data-parsoid and data-mw attributes.
+			// XXX: Would be nice if we had a DOM handy.
+			$doc = DOMUtils::parseHTML( $parserOutput->getRawText() );
+			PageBundle::apply( $doc, $pb );
+			$parserOutput->setText( ContentUtils::toXML( $doc ) );
 		}
 
 		// Check if variant conversion has to be performed
@@ -423,17 +487,17 @@ class HtmlOutputRendererHelper {
 				$parserOptions->setTargetLanguage( $this->pageLanguage );
 			}
 
-			// XXX: $envOptions are really parser options, and they should be integrated with
-			//      the ParserOptions class. That would allow us to use hte ParserCache with
+			// XXX: $parsoidOptions are really parser options, and they should be integrated with
+			//      the ParserOptions class. That would allow us to use the ParserCache with
 			//      various flavors.
-			$envOptions = [];
+			$parsoidOptions = $this->parsoidOptions;
 
 			// NOTE: VisualEditor would set this flavor when transforming from Wikitext to HTML
 			//       for the purpose of editing when doing parsefragment (in body only mode).
 			if ( $this->flavor === 'fragment' ) {
-				$envOptions += [
+				$parsoidOptions += [
 					'body_only' => true,
-					'wrapSections' => false,
+					'wrapSections' => false
 				];
 			}
 
@@ -445,7 +509,7 @@ class HtmlOutputRendererHelper {
 			$fakeRevision = !$this->getRevisionId() && $this->revisionOrId !== null;
 			$pageRecordAvailable = $this->page instanceof PageRecord;
 
-			if ( $pageRecordAvailable && !$fakeRevision && !$envOptions ) {
+			if ( $pageRecordAvailable && !$fakeRevision && !$parsoidOptions && $this->isCacheable ) {
 				$status = $this->parsoidOutputAccess->getParserOutput(
 					$this->page,
 					$parserOptions,
@@ -456,7 +520,7 @@ class HtmlOutputRendererHelper {
 				$status = $this->parsoidOutputAccess->parse(
 					$this->page,
 					$parserOptions,
-					$envOptions,
+					$parsoidOptions,
 					$this->revisionOrId
 				);
 			}
@@ -521,9 +585,25 @@ class HtmlOutputRendererHelper {
 			if ( $setContentLanguageHeader ) {
 				$response->setHeader( 'Content-Language', $this->getHtmlOutputContentLanguage() );
 			}
-
 			$response->addHeader( 'Vary', 'Accept-Language' );
 		}
+
+		// XXX: if Parsoid returns Vary headers, set them here?!
+
+		if ( !$this->isCacheable ) {
+			$response->setHeader( 'Cache-Control', 'private,no-cache,s-maxage=0' );
+		}
+	}
+
+	/**
+	 * Returns the rendered HTML as a PageBundle object.
+	 *
+	 * @return PageBundle
+	 */
+	public function getPageBundle(): PageBundle {
+		// XXX: converting between PageBundle and ParserOutput is inefficient!
+		$parserOutput = $this->getParserOutput();
+		return PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput );
 	}
 
 	/**

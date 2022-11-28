@@ -23,6 +23,7 @@ use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Rest\Handler\HtmlOutputRendererHelper;
 use MediaWiki\Rest\LocalizedHttpException;
+use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -165,7 +166,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$lang = $parserOpts->getTargetLanguage();
 		$lang = $lang ? $lang->getCode() : 'en';
 
-		$html = "<!DOCTYPE html><html lang=\"$lang\">$html</html>";
+		$html = "<!DOCTYPE html><html lang=\"$lang\"><body><div id='t3s7'>$html</div></body></html>";
 
 		if ( $rev instanceof RevisionRecord ) {
 			$rev = $rev->getId();
@@ -175,7 +176,9 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$pout->setCacheRevisionId( $rev ?: $page->getLatest() );
 		$pout->setCacheTime( wfTimestampNow() ); // will use fake time
 		$pout->setExtensionData( PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY, [
-			'parsoid' => [ 'ids' => [] ],
+			'parsoid' => [ 'ids' => [
+				't3s7' => [ 'dsr' => [ 0, 0, 0, 0 ] ],
+			] ],
 			'mw' => [ 'ids' => [] ],
 			'version' => '08-15',
 			'headers' => [
@@ -311,6 +314,22 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'en-x-piglatin', $helper->getETag() );
 	}
 
+	public function testGetHtmlWithVersion() {
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		$helper = $this->newHelper();
+		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
+
+		// Calling setParsoidOptions must disable caching and force the ETag to null
+		$helper->setOutputProfileVersion( '999.0.0' );
+
+		$helper->getHtml();
+
+		$response = new Response();
+		$helper->putHeaders( $response, true );
+		$this->assertStringContainsString( 'private', $response->getHeaderLine( 'Cache-Control' ) );
+	}
+
 	public function testGetPreviewHtml_setContent() {
 		$page = $this->getNonexistingTestPage();
 
@@ -414,6 +433,23 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertStringContainsString( self::MOCK_HTML, $htmlresult );
 		$this->assertStringContainsString( '"body_only":true', $htmlresult );
+	}
+
+	public function testGetHtmlForEdit() {
+		$page = $this->getExistingTestPage();
+
+		$helper = $this->newHelper();
+		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
+		$helper->setContentSource( 'hello {{world}}', CONTENT_MODEL_WIKITEXT );
+		$helper->setFlavor( 'edit' );
+
+		$htmlresult = $helper->getHtml()->getRawText();
+
+		$this->assertStringContainsString( 'edit', $helper->getETag() );
+
+		$this->assertStringContainsString( 'hello', $htmlresult );
+		$this->assertStringContainsString( 'data-parsoid=', $htmlresult );
+		$this->assertStringContainsString( '"dsr":', $htmlresult );
 	}
 
 	/**
