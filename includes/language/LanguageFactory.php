@@ -21,14 +21,15 @@
 namespace MediaWiki\Languages;
 
 use Config;
+use InvalidArgumentException;
 use Language;
 use LanguageConverter;
 use LocalisationCache;
+use LogicException;
 use MapCacheLRU;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
-use MWException;
 use NamespaceInfo;
 
 /**
@@ -118,9 +119,11 @@ class LanguageFactory {
 	/**
 	 * Get a cached or new language object for a given language code
 	 * with normalization of the language code.
+	 *
+	 * If the language code comes from user input, check LanguageNameUtils::isValidCode()
+	 * before calling this method.
+	 *
 	 * @param string $code
-	 * @throws MWException if the language code contains dangerous characters, e.g. HTML special
-	 *  characters or characters illegal in MediaWiki titles.
 	 * @return Language
 	 */
 	public function getLanguage( $code ): Language {
@@ -131,9 +134,11 @@ class LanguageFactory {
 	/**
 	 * Get a cached or new language object for a given language code
 	 * without normalization of the language code.
+	 *
+	 * If the language code comes from user input, check LanguageNameUtils::isValidCode()
+	 * before calling this method.
+	 *
 	 * @param string $code
-	 * @throws MWException if the language code contains dangerous characters, e.g. HTML special
-	 *  characters or characters illegal in MediaWiki titles.
 	 * @return Language
 	 * @since 1.39
 	 */
@@ -147,15 +152,15 @@ class LanguageFactory {
 	}
 
 	/**
-	 * Create a language object for a given language code
+	 * Create a language object for a given language code.
+	 *
 	 * @param string $code
 	 * @param bool $fallback Whether we're going through language fallback chain
-	 * @throws MWException if the language code or fallback sequence is invalid
 	 * @return Language
 	 */
 	private function newFromCode( $code, $fallback = false ): Language {
 		if ( !$this->langNameUtils->isValidCode( $code ) ) {
-			throw new MWException( "Invalid language code \"$code\"" );
+			throw new InvalidArgumentException( "Invalid language code \"$code\"" );
 		}
 
 		$constructorArgs = [
@@ -192,7 +197,7 @@ class LanguageFactory {
 			}
 		}
 
-		throw new MWException( "Invalid fallback sequence for language '$code'" );
+		throw new LogicException( "Invalid fallback sequence for language '$code'" );
 	}
 
 	/**

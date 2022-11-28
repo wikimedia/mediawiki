@@ -320,9 +320,12 @@ class Language {
 
 	/**
 	 * Get a cached or new language object for a given language code
+	 *
+	 * If the language code comes from user input, check ::isValidCode()
+	 * before calling this method.
+	 *
 	 * @deprecated since 1.35, use LanguageFactory
 	 * @param string $code
-	 * @throws MWException if the language code is invalid
 	 * @return Language
 	 */
 	public static function factory( $code ) {
