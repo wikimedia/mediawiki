@@ -35,13 +35,7 @@ class DeprecatedHooks {
 	 */
 	private $deprecatedHooks = [
 		'AddNewAccount' => [ 'deprecatedVersion' => '1.27', 'silent' => true ],
-		'BaseTemplateAfterPortlet' => [ 'deprecatedVersion' => '1.35' ],
-		'BeforeParserFetchTemplateAndtitle' => [ 'deprecatedVersion' => '1.36' ],
-		'BeforeParserrenderImageGallery' => [ 'deprecatedVersion' => '1.35' ],
 		'EditPageBeforeEditToolbar' => [ 'deprecatedVersion' => '1.36' ],
-		'InternalParseBeforeSanitize' => [ 'deprecatedVersion' => '1.35' ],
-		'LinksUpdateConstructed' => [ 'deprecatedVersion' => '1.38' ],
-		'LinksUpdateAfterInsert' => [ 'deprecatedVersion' => '1.38' ],
 		'LocalFile::getHistory' => [ 'deprecatedVersion' => '1.37' ],
 		'MagicWordwgVariableIDs' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'PageContentSave' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],

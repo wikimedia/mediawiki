@@ -205,6 +205,13 @@ because of Phabricator reports.
   its $article parameter; the behavior when doing so was previously
   undocumented.
 * The $rtt parameter to IDatabase::ping() was removed without deprecation.
+* The following deprecated hooks have been removed:
+  - BaseTemplateAfterPortlet, deprecated in 1.35
+  - BeforeParserFetchTemplateAndtitle, deprecated in 1.36
+  - BeforeParserrenderImageGallery, deprecated in 1.35
+  - InternalParseBeforeSanitize, deprecated in 1.35
+  - LinksUpdateConstructed, deprecated in 1.38
+  - LinksUpdateAfterInsert, deprecated in 1.38
 * …
 
 === Deprecations in 1.40 ===
