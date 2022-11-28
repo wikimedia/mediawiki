@@ -1602,7 +1602,6 @@ class Parser {
 			$text = $this->replaceVariables( $text );
 		}
 
-		$this->hookRunner->onInternalParseBeforeSanitize( $this, $text, $this->mStripState );
 		$text = Sanitizer::internalRemoveHtmlTags(
 			$text,
 			// Callback from the Sanitizer for expanding items found in
@@ -3656,13 +3655,6 @@ class Parser {
 				$contextTitle, $title,
 				$skip, $revRecord
 			);
-			if ( !$skip && !$revRecord ) {
-				# Deprecated legacy hook
-				Hooks::runner()->onBeforeParserFetchTemplateAndtitle(
-					// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
-					$parser, $title, $skip, $id
-				);
-			}
 
 			if ( $skip ) {
 				$text = false;
@@ -5139,8 +5131,6 @@ class Parser {
 			$ig->setHeights( $params['heights'] );
 		}
 		$ig->setAdditionalOptions( $params );
-
-		$this->hookRunner->onBeforeParserrenderImageGallery( $this, $ig );
 
 		$lines = StringUtils::explode( "\n", $text );
 		foreach ( $lines as $line ) {

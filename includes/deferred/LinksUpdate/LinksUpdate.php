@@ -180,15 +180,10 @@ class LinksUpdate extends DataUpdate {
 			$page,
 			$services->getLinkTargetLookup(),
 			$config->get( MainConfigNames::UpdateRowsPerQuery ),
-			function ( $table, $rows ) {
-				$this->getHookRunner()->onLinksUpdateAfterInsert( $this, $table, $rows );
-			},
 			$config->get( MainConfigNames::TempCategoryCollations )
 		);
 		// TODO: this does not have to be called in LinksDeletionUpdate
 		$this->tableFactory->setParserOutput( $parserOutput );
-
-		$this->getHookRunner()->onLinksUpdateConstructed( $this );
 	}
 
 	public function setTransactionTicket( $ticket ) {

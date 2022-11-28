@@ -194,9 +194,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	protected function getAfterPortlet( $name ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		$html = '';
-		$content = '';
-		$this->getHookRunner()->onBaseTemplateAfterPortlet( $this, $name, $content );
-		$content .= $this->getSkin()->getAfterPortlet( $name );
+		$content = $this->getSkin()->getAfterPortlet( $name );
 
 		if ( $content !== '' ) {
 			$html = Html::rawElement(
