@@ -1215,7 +1215,9 @@ return [
 			$services->getParsoidOutputStash(),
 			$services->getStatsdDataFactory(),
 			$services->getParsoidOutputAccess(),
-			$services->getHtmlTransformFactory()
+			$services->getHtmlTransformFactory(),
+			$services->getContentHandlerFactory(),
+			$services->getLanguageFactory()
 		);
 	},
 

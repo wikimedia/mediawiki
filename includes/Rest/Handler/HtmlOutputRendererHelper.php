@@ -24,8 +24,10 @@ use IBufferingStatsdDataFactory;
 use Language;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\ParsoidOutputStash;
 use MediaWiki\Edit\SelserContext;
+use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageRecord;
@@ -34,11 +36,13 @@ use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Rest\Handler;
+use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MWUnknownContentModelException;
 use ParserOptions;
 use ParserOutput;
 use User;
@@ -101,11 +105,17 @@ class HtmlOutputRendererHelper {
 	/** @var HtmlTransformFactory */
 	private $htmlTransformFactory;
 
-	/** @var string|null */
-	private $sourceLanguageCode;
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
+	/** @var LanguageFactory */
+	private $languageFactory;
 
 	/** @var string|null */
-	private $targetLanguageCode;
+	private $sourceLanguageCode = null;
+
+	/** @var string|null */
+	private $targetLanguageCode = null;
 
 	/**
 	 * Flags to be passed as $options to ParsoidOutputAccess::getParserOutput,
@@ -120,17 +130,23 @@ class HtmlOutputRendererHelper {
 	 * @param StatsdDataFactoryInterface $statsDataFactory
 	 * @param ParsoidOutputAccess $parsoidOutputAccess
 	 * @param HtmlTransformFactory $htmlTransformFactory
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param LanguageFactory $languageFactory
 	 */
 	public function __construct(
 		ParsoidOutputStash $parsoidOutputStash,
 		StatsdDataFactoryInterface $statsDataFactory,
 		ParsoidOutputAccess $parsoidOutputAccess,
-		HtmlTransformFactory $htmlTransformFactory
+		HtmlTransformFactory $htmlTransformFactory,
+		IContentHandlerFactory $contentHandlerFactory,
+		LanguageFactory $languageFactory
 	) {
 		$this->parsoidOutputStash = $parsoidOutputStash;
 		$this->stats = $statsDataFactory;
 		$this->parsoidOutputAccess = $parsoidOutputAccess;
 		$this->htmlTransformFactory = $htmlTransformFactory;
+		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->languageFactory = $languageFactory;
 	}
 
 	/**
@@ -201,6 +217,7 @@ class HtmlOutputRendererHelper {
 	 * This will create a fake revision for rendering, the revision ID will be 0.
 	 *
 	 * @see setRevision
+	 * @see setContentSource
 	 *
 	 * @param Content $content
 	 */
@@ -213,9 +230,35 @@ class HtmlOutputRendererHelper {
 	}
 
 	/**
-	 * @param Language $pageLanguage
+	 * Set the content to render. Useful when rendering for previews
+	 * or when switching the editor from source mode to visual mode.
+	 *
+	 * This will create a fake revision for rendering, the revision ID will be 0.
+	 *
+	 * @param string $source The source data, e.g. wikitext
+	 * @param string $model The content model indicating how to interpret $source, e.g. CONTENT_MODEL_WIKITEXT
+	 *
+	 * @see setRevision
+	 * @see setContent
 	 */
-	public function setPageLanguage( Language $pageLanguage ): void {
+	public function setContentSource( string $source, string $model ): void {
+		try {
+			$handler = $this->contentHandlerFactory->getContentHandler( $model );
+			$content = $handler->unserializeContent( $source );
+			$this->setContent( $content );
+		} catch ( MWUnknownContentModelException $ex ) {
+			throw new HttpException( 'Bad content model: ' . $model, 400 );
+		}
+	}
+
+	/**
+	 * @param Language|string $pageLanguage
+	 */
+	public function setPageLanguage( $pageLanguage ): void {
+		if ( is_string( $pageLanguage ) ) {
+			$pageLanguage = $this->languageFactory->getLanguage( $pageLanguage );
+		}
+
 		$this->pageLanguage = $pageLanguage;
 	}
 
@@ -224,7 +267,7 @@ class HtmlOutputRendererHelper {
 	 * @param array $parameters
 	 * @param User $user
 	 * @param RevisionRecord|int|null $revision DEPRECATED, use setRevision()
-	 * @param Language|null $pageLanguage
+	 * @param Language|null $pageLanguage DEPRECATED, use setPageLanguage()
 	 */
 	public function init(
 		PageIdentity $page,
@@ -277,7 +320,7 @@ class HtmlOutputRendererHelper {
 				);
 			}
 
-			$fakeRevision = ( is_object( $this->revisionOrId ) && $this->revisionOrId->getId() < 1 );
+			$fakeRevision = !$this->getRevisionId() && $this->revisionOrId !== null;
 			$parsoidStashKey = ParsoidRenderID::newFromKey(
 				$this->parsoidOutputAccess->getParsoidRenderID( $parserOutput )
 			);
@@ -399,7 +442,7 @@ class HtmlOutputRendererHelper {
 			//       the current revision or the revision must have an ID.
 			// If we have a revision and the ID is 0 or null, then it's a fake revision
 			// representing a preview.
-			$fakeRevision = ( is_object( $this->revisionOrId ) && $this->revisionOrId->getId() < 1 );
+			$fakeRevision = !$this->getRevisionId() && $this->revisionOrId !== null;
 			$pageRecordAvailable = $this->page instanceof PageRecord;
 
 			if ( $pageRecordAvailable && !$fakeRevision && !$envOptions ) {
@@ -481,6 +524,17 @@ class HtmlOutputRendererHelper {
 
 			$response->addHeader( 'Vary', 'Accept-Language' );
 		}
+	}
+
+	/**
+	 * Returns the ID of the revision that is being rendered.
+	 * If this is not 0, the rendering is for a revision present in the database.
+	 * If it is 0, the revision is a fake revision representing e.g. a preview.
+	 *
+	 * @return int
+	 */
+	public function getRevisionId(): int {
+		return is_object( $this->revisionOrId ) ? (int)$this->revisionOrId->getId() : (int)$this->revisionOrId;
 	}
 
 }
