@@ -156,15 +156,11 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return AuthenticationResponse::newAbstain();
 		}
 
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$row = $dbr->selectRow(
-			'user',
-			[
-				'user_id', 'user_newpassword', 'user_newpass_time',
-			],
-			[ 'user_name' => $username ],
-			__METHOD__
-		);
+		$row = $this->loadBalancer->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+			->select( [ 'user_id', 'user_newpassword', 'user_newpass_time' ] )
+			->from( 'user' )
+			->where( [ 'user_name' => $username ] )
+			->caller( __METHOD__ )->fetchRow();
 		if ( !$row ) {
 			return AuthenticationResponse::newAbstain();
 		}
@@ -205,13 +201,11 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return false;
 		}
 
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$row = $dbr->selectRow(
-			'user',
-			[ 'user_newpassword', 'user_newpass_time' ],
-			[ 'user_name' => $username ],
-			__METHOD__
-		);
+		$row = $this->loadBalancer->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+			->select( [ 'user_newpassword', 'user_newpass_time' ] )
+			->from( 'user' )
+			->where( [ 'user_name' => $username ] )
+			->caller( __METHOD__ )->fetchRow();
 		if ( !$row ) {
 			return false;
 		}
@@ -234,13 +228,12 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		}
 
 		[ $db, $options ] = \DBAccessObjectUtils::getDBOptions( $flags );
-		return (bool)$this->loadBalancer->getConnectionRef( $db )->selectField(
-			[ 'user' ],
-			'user_id',
-			[ 'user_name' => $username ],
-			__METHOD__,
-			$options
-		);
+		return (bool)$this->loadBalancer->getConnection( $db )->newSelectQueryBuilder()
+			->select( [ 'user_id' ] )
+			->from( 'user' )
+			->where( [ 'user_name' => $username ] )
+			->options( $options )
+			->caller( __METHOD__ )->fetchField();
 	}
 
 	public function providerAllowsAuthenticationDataChange(
@@ -261,13 +254,11 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return \StatusValue::newGood( 'ignored' );
 		}
 
-		$row = $this->loadBalancer->getConnectionRef( DB_PRIMARY )->selectRow(
-			'user',
-			[ 'user_id', 'user_newpass_time' ],
-			[ 'user_name' => $username ],
-			__METHOD__
-		);
-
+		$row = $this->loadBalancer->getConnection( DB_PRIMARY )->newSelectQueryBuilder()
+			->select( [ 'user_id', 'user_newpass_time' ] )
+			->from( 'user' )
+			->where( [ 'user_name' => $username ] )
+			->caller( __METHOD__ )->fetchRow();
 		if ( !$row ) {
 			return \StatusValue::newGood( 'ignored' );
 		}
