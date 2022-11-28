@@ -9,7 +9,7 @@
 		"qunit": "grunt qunit",
 		"doc": "jsduck",
 		"postdoc": "grunt copy:jsduck",
-		"selenium-daily": "MW_SCRIPT_PATH=/w npm run selenium-test -- --suite daily --mochaOpts.grep @daily",
+		"selenium-daily": "npm run selenium-test -- --suite daily --mochaOpts.grep @daily",
 		"selenium-test": "wdio ./tests/selenium/wdio.conf.js"
 	},
 	"devDependencies": {
