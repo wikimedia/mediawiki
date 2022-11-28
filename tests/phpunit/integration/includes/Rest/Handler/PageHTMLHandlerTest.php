@@ -132,7 +132,9 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 				$this->getParsoidOutputStash(),
 				$services->getStatsdDataFactory(),
 				$parsoidOutputAccess,
-				$services->getHtmlTransformFactory()
+				$services->getHtmlTransformFactory(),
+				$services->getContentHandlerFactory(),
+				$services->getLanguageFactory()
 			) );
 
 		$handler = new PageHTMLHandler(

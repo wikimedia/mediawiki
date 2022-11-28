@@ -4,7 +4,9 @@ namespace MediaWiki\Rest\Handler;
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\ParsoidOutputStash;
+use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Page\PageLookup;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
@@ -29,6 +31,8 @@ class PageRestHelperFactory {
 	private StatsdDataFactoryInterface $stats;
 	private ParsoidOutputAccess $parsoidOutputAccess;
 	private HtmlTransformFactory $htmlTransformFactory;
+	private IContentHandlerFactory $contentHandlerFactory;
+	private LanguageFactory $languageFactory;
 
 	/**
 	 * @param ServiceOptions $options
@@ -39,6 +43,8 @@ class PageRestHelperFactory {
 	 * @param StatsdDataFactoryInterface $statsDataFactory
 	 * @param ParsoidOutputAccess $parsoidOutputAccess
 	 * @param HtmlTransformFactory $htmlTransformFactory
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param LanguageFactory $languageFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -48,7 +54,9 @@ class PageRestHelperFactory {
 		ParsoidOutputStash $parsoidOutputStash,
 		StatsdDataFactoryInterface $statsDataFactory,
 		ParsoidOutputAccess $parsoidOutputAccess,
-		HtmlTransformFactory $htmlTransformFactory
+		HtmlTransformFactory $htmlTransformFactory,
+		IContentHandlerFactory $contentHandlerFactory,
+		LanguageFactory $languageFactory
 	) {
 		$this->options = $options;
 		$this->revisionLookup = $revisionLookup;
@@ -58,6 +66,8 @@ class PageRestHelperFactory {
 		$this->stats = $statsDataFactory;
 		$this->parsoidOutputAccess = $parsoidOutputAccess;
 		$this->htmlTransformFactory = $htmlTransformFactory;
+		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->languageFactory = $languageFactory;
 	}
 
 	public function newRevisionContentHelper(): RevisionContentHelper {
@@ -83,7 +93,9 @@ class PageRestHelperFactory {
 			$this->parsoidOutputStash,
 			$this->stats,
 			$this->parsoidOutputAccess,
-			$this->htmlTransformFactory
+			$this->htmlTransformFactory,
+			$this->contentHandlerFactory,
+			$this->languageFactory
 		);
 	}
 

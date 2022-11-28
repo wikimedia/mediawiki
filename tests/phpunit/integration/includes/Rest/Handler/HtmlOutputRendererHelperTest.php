@@ -229,11 +229,15 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$cache = $cache ?: new EmptyBagOStuff();
 		$stash = new SimpleParsoidOutputStash( $chFactory, $cache, 1 );
 
+		$services = $this->getServiceContainer();
+
 		$helper = new HtmlOutputRendererHelper(
 			$stash,
 			new NullStatsdDataFactory(),
 			$access ?? $this->newMockParsoidOutputAccess(),
-			$this->getServiceContainer()->getHtmlTransformFactory()
+			$services->getHtmlTransformFactory(),
+			$services->getContentHandlerFactory(),
+			$services->getLanguageFactory()
 		);
 
 		return $helper;
@@ -287,6 +291,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		if ( $rev ) {
 			$helper->setRevision( $rev );
+			$this->assertSame( $rev, $helper->getRevisionId() );
 		}
 
 		$htmlresult = $helper->getHtml()->getRawText();
@@ -306,12 +311,24 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'en-x-piglatin', $helper->getETag() );
 	}
 
-	public function testGetPreviewHtml() {
+	public function testGetPreviewHtml_setContent() {
 		$page = $this->getNonexistingTestPage();
 
 		$helper = $this->newHelper();
 		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
 		$helper->setContent( new WikitextContent( 'text to preview' ) );
+
+		$htmlresult = $helper->getHtml()->getRawText();
+
+		$this->assertStringContainsString( 'text to preview', $htmlresult );
+	}
+
+	public function testGetPreviewHtml_setContentSource() {
+		$page = $this->getNonexistingTestPage();
+
+		$helper = $this->newHelper();
+		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
+		$helper->setContentSource( 'text to preview', CONTENT_MODEL_WIKITEXT );
 
 		$htmlresult = $helper->getHtml()->getRawText();
 
@@ -684,13 +701,12 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testGetParserOutputWithLanguageOverride() {
-		$language = $this->getLanguageMock( 'ar' );
 		$helper = $this->newHelper();
 
 		[ $page, $revision ] = $this->getNonExistingPageWithFakeRevision( __METHOD__ );
 
 		$helper->init( $page, [], $this->newUser(), $revision );
-		$helper->setPageLanguage( $language );
+		$helper->setPageLanguage( 'ar' );
 
 		// check nominal content language
 		$this->assertSame( 'ar', $helper->getHtmlOutputContentLanguage() );
