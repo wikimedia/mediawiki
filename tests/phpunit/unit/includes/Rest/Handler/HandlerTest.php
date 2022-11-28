@@ -13,6 +13,7 @@ use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\BodyValidator;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\Session\Session;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Message\MessageValue;
@@ -401,15 +402,17 @@ class HandlerTest extends \MediaWikiUnitTestCase {
 		yield 'nothing' => [
 			'GET',
 			[],
+			false, // no persistent session
 			''
 		];
 
-		yield 'cookie' => [
+		yield 'set-cookie in response' => [
 			'GET',
 			[
 				'Set-Cookie' => 'foo=bar',
 				'Cache-Control' => 'max-age=123'
 			],
+			false, // no persistent session
 			'private,no-cache,s-maxage=0'
 		];
 
@@ -418,12 +421,21 @@ class HandlerTest extends \MediaWikiUnitTestCase {
 			[
 				'Cache-Control' => 'max-age=123'
 			],
+			false, // no persistent session
 			'max-age=123'
 		];
 
 		yield 'POST use default cache control' => [
 			'POST',
 			[],
+			false, // no persistent session
+			'private,no-cache,s-maxage=0'
+		];
+
+		yield 'persistent session' => [
+			'GET',
+			[ 'Cache-Control' => 'max-age=123' ],
+			true, // persistent session
 			'private,no-cache,s-maxage=0'
 		];
 	}
@@ -431,15 +443,24 @@ class HandlerTest extends \MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideCacheControl
 	 */
-	public function testCacheControl( string $method, array $headers, $expected ) {
+	public function testCacheControl(
+		string $method,
+		array $headers,
+		bool $hasPersistentSession,
+		$expected
+	) {
 		$response = new Response();
 
 		foreach ( $headers as $name => $value ) {
 			$response->setHeader( $name, $value );
 		}
 
-		$handler = $this->newHandler( [ 'getRequest' ] );
+		$session = $this->createMock( Session::class );
+		$session->method( 'isPersistent' )->willReturn( $hasPersistentSession );
+
+		$handler = $this->newHandler( [ 'getRequest', 'getSession' ] );
 		$handler->method( 'getRequest' )->willReturn( new RequestData( [ 'method' => $method ] ) );
+		$handler->method( 'getSession' )->willReturn( $session );
 
 		$handler->applyCacheControl( $response );
 
