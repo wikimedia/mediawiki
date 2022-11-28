@@ -745,7 +745,7 @@
 	"missing-revision": "Версія #$1 сторінки «{{FULLPAGENAME}}» не існує.\n\nІмовірно, Ви перейшли за застарілим посиланням на вилучену сторінку.\nПодробиці можна дізнатися з [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналу вилучень].",
 	"missing-revision-content": "Не вдалось завантажити вміст версії #$1 сторінки «$2».",
 	"userpage-userdoesnotexist": "Користувач під назвою \"$1\" не зареєстрований на цій Вікі.\nПереконайтеся, що ви хочете створити/редагувати цю сторінку.",
-	"userpage-userdoesnotexist-view": "Обліковий запис користувача \"$1\" не зареєстровано на цій Вікі.",
+	"userpage-userdoesnotexist-view": "Обліковий запис користувача «$1» не зареєстровано у цій вікі.",
 	"blocked-notice-logextract": "{{GENDER:$1|Цей користувач|Ця користувачка}} наразі {{GENDER:$1|заблокований|заблокована}}.\nОстанній запис у журналі блокувань такий:",
 	"clearyourcache": "<strong>Увага:</strong> Після публікування слід очистити кеш браузера, щоб побачити зміни.\n* <strong>Firefox / Safari:</strong> тримайте <em>Shift</em>, коли натискаєте <em>Оновити</em>, або натисніть <em>Ctrl-F5</em> чи <em>Ctrl-Shift-R</em> (<em>⌘-R</em> на Apple Mac)\n* <strong>Google Chrome:</strong> натисніть <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> на Apple Mac)\n* <strong>Internet Explorer / Edge:</strong> тримайте <em>Ctrl</em>, коли натискаєте <em>Оновити</em>, або натисніть <em>Ctrl-F5</em>\n* <strong>Opera:</strong> натисніть <em>Ctrl-F5</em>",
 	"usercssyoucanpreview": "<strong>Підказка:</strong> використовуйте кнопку «{{int:showpreview}}», щоб протестувати ваш новий CSS перед публікацією.",
