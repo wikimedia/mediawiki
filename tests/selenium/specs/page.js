@@ -35,7 +35,7 @@ describe( 'Page', function () {
 		assert.strictEqual( await EditPage.heading.getText(), 'Creating ' + name );
 		assert.strictEqual( await EditPage.displayedContent.getText(), content );
 		assert( await EditPage.content.isDisplayed(), 'editor is still present' );
-		assert( await !EditPage.conflictingContent.isDisplayed(), 'no edit conflict happened' );
+		assert( !( await EditPage.conflictingContent.isDisplayed() ), 'no edit conflict happened' );
 
 		// T269566: Popup with text
 		// 'Leave site? Changes that you made may not be saved. Cancel/Leave'
@@ -77,7 +77,7 @@ describe( 'Page', function () {
 
 		// check
 		assert.strictEqual( await EditPage.heading.getText(), name );
-		assert( await EditPage.displayedContent.getText().includes( editContent ) );
+		assert.match( await EditPage.displayedContent.getText(), new RegExp( editContent ) );
 	} );
 
 	it( 'should have history @daily', async function () {
@@ -117,7 +117,7 @@ describe( 'Page', function () {
 		await RestorePage.restore( name, 'restore reason' );
 
 		// check
-		assert.strictEqual( await RestorePage.displayedContent.getText(), name + ' has been restored\n\nConsult the deletion log for a record of recent deletions and restorations.' );
+		assert.strictEqual( await RestorePage.displayedContent.getText(), name + ' has been undeleted\n\nConsult the deletion log for a record of recent deletions and restorations.' );
 	} );
 
 	it( 'should be protectable', async function () {

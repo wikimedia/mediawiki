@@ -15,8 +15,8 @@ describe( 'Special:Watchlist', function () {
 		bot = await Api.bot();
 	} );
 
-	beforeEach( function () {
-		LoginPage.loginAdmin();
+	beforeEach( async function () {
+		await LoginPage.loginAdmin();
 	} );
 
 	it( 'should show page with new edit', async function () {

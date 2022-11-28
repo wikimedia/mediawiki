@@ -11,10 +11,10 @@ class RestorePage extends Page {
 		super.openTitle( 'Special:Undelete/' + subject );
 	}
 
-	restore( subject, reason ) {
-		this.open( subject );
-		this.reason.setValue( reason );
-		this.submit.click();
+	async restore( subject, reason ) {
+		await this.open( subject );
+		await this.reason.setValue( reason );
+		await this.submit.click();
 	}
 }
 
