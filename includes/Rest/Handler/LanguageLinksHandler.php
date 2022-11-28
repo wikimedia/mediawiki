@@ -107,14 +107,12 @@ class LanguageLinksHandler extends SimpleHandler {
 
 	private function fetchLinks( $pageId ) {
 		$result = [];
-		$res = $this->loadBalancer->getConnectionRef( DB_REPLICA )
-			->select(
-				'langlinks',
-				'*',
-				[ 'll_from' => $pageId ],
-				__METHOD__,
-				[ 'ORDER BY' => 'll_lang' ]
-			);
+		$res = $this->loadBalancer->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+			->select( [ 'll_title', 'll_lang' ] )
+			->from( 'langlinks' )
+			->where( [ 'll_from' => $pageId ] )
+			->orderBy( 'll_lang' )
+			->caller( __METHOD__ )->fetchResultSet();
 		foreach ( $res as $item ) {
 			try {
 				$targetTitle = $this->titleParser->parseTitle( $item->ll_title );
