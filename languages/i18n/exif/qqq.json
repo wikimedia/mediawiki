@@ -549,7 +549,7 @@
 	"exif-gpsdestdistance-m": "{{exif-qqq}}\n{{Related|Exif-gpsdestdistance}}",
 	"exif-gpsdestdistance-n": "{{exif-qqq}}\n{{Related|Exif-gpsdestdistance}}",
 	"exif-gpsdop-excellent": "Parameters:\n* $1 - the actual HDOP/PDOP value (less than or equal to 2 for excellent). See https://en.wikipedia.org/wiki/Dilution_of_precision_(navigation)\n{{Related|Exif-gpsdop}}",
-	"exif-gpsdop-good": "Parameters:\n* $1 - the actual HDOP/PDOP value (2-5 for good). See https://en.wikipedia.org/wiki/Dilution_of_precision_(navigation)\n{{Related|Exif-gpsdop}}",
+	"exif-gpsdop-good": "Parameters:\n* $1 - the actual HDOP/PDOP value (2-5 for good). See https://en.wikipedia.org/wiki/Dilution_of_precision_(navigation)\n{{Related|Exif-gpsdop}}\n{{Identical|Good}}",
 	"exif-gpsdop-moderate": "Parameters:\n* $1 - the actual HDOP/PDOP value (5-10 for moderate). See https://en.wikipedia.org/wiki/Dilution_of_precision_(navigation)\n{{Related|Exif-gpsdop}}\n{{Identical|Moderate}}",
 	"exif-gpsdop-fair": "{{exif-qqq}}\n\nParameters:\n* $1 - the actual HDOP/PDOP value (10-20 for fair). See https://en.wikipedia.org/wiki/Dilution_of_precision_(navigation)\n\n{{Related|Exif-gpsdop}}",
 	"exif-gpsdop-poor": "Parameters:\n* $1 - the actual HDOP/PDOP value (greater than 20 for poor). See https://en.wikipedia.org/wiki/Dilution_of_precision_(navigation)\n{{Related|Exif-gpsdop}}",

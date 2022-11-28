@@ -25,7 +25,8 @@
 			"Anyaegbumercy",
 			"Ennydavids",
 			"Lebron jay",
-			"Ucmbachu"
+			"Ucmbachu",
+			"Karen"
 		]
 	},
 	"tog-underline": "Ahịrịàlà òjikọ:",
@@ -344,12 +345,14 @@
 	"cannotdelete-title": "Enweghi ike ehichapụ ihuakwụkwọ \"$1\"",
 	"delete-scheduled": "A na-ahazi ihu akwụkwọ \" $1 \" maka nhichapụ.\nBiko nwee ndidi.",
 	"delete-hook-aborted": "Nko wepụrụ ihichapụ.\nỌ nyeghị nkọwa.",
+	"no-null-revision": "Enweghị ike ịkepụta nchikọta efu ọhụrụ maka ibe \" $1 \"",
 	"badtitle": "Ishi edemede öjö",
 	"badtitletext": "Íshí ihü Í chọrọ à díghị ézíbóté, efù, mà ȯ dị jikodo di jikodo nke ojö na nke íshí asụsụ-mmékotárí ma wiki-mmékotárí.\nO nwèríkí nwé édé ótù ma nke ozor nke ékwéghị na íshí ihü.",
 	"title-invalid": "Ihu ndị achọrọ adịghị",
 	"title-invalid-empty": "Ibe aha a rịọrọ di efu ma ọ bụ nwere naanị aha nke namespace.",
 	"title-invalid-utf8": "Ịhụ ana atụ anya nwere nhazi UTF-8 n'adịghị.",
 	"title-invalid-interwiki": "Aha ibe a rịọrọ nwere njikọ interwiki nke enweghị ike iji mee ihe na aha.",
+	"title-invalid-talk-namespace": "Aha ibe I chọrọ na-arutu aka n'ibe nkata na-enweghị ike ịdị.",
 	"title-invalid-characters": "Isiokwu Ihu achọrọ nwere akara:\"$1\" n'adịghị",
 	"title-invalid-too-long": "Aha peeji a rịọrọ toro ogologo.  Ọ ga-abụrịrị ihe karịghi $1 {{PLURAL:$1|byte|bytes}} n'itinye koodu UTF-8",
 	"title-invalid-leading-colon": "Isi mbido peeji a rịọrọ nwere  Kpọm kpom na-ezighi ezi na mbido.",

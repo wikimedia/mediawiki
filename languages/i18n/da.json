@@ -79,7 +79,8 @@
 			"Antonla",
 			"KnudW",
 			"MinecraftAustralia",
-			"Peterleth"
+			"Peterleth",
+			"SiGNOUT"
 		]
 	},
 	"tog-underline": "Understregning af links:",
@@ -814,6 +815,7 @@
 	"content-failed-to-parse": "Kunne ikke fortolke $2-indholdet af $1-modellen: $3",
 	"invalid-content-data": "Ugyldig indholdsdata",
 	"content-not-allowed-here": "Indholdet \"$1\" er ikke tilladt på siden [[:$2]] i sprækken \"$3\"",
+	"confirmleave-warning": "Hvis du forlader denne side, kan det medføre, at du mister eventuelle ændringer, du har foretaget.",
 	"editwarning-warning": "Hvis du forlader siden nu, risikerer du at miste alle ændringer, som du har lavet.\nDenne advarsel kan slås fra under \"{{int:prefs-editing}}\" i dine indstillinger.",
 	"editpage-invalidcontentmodel-title": "Indholdsmodellen er ikke understøttet",
 	"editpage-invalidcontentmodel-text": "Indholdsmodellen »$1« er ikke understøttet.",

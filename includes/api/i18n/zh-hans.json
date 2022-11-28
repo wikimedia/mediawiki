@@ -75,7 +75,7 @@
 	"apihelp-block-param-expiry": "到期时间。可以是相对时间（例如<kbd>5 months</kbd>或<kbd>2 weeks</kbd>）或绝对时间（例如<kbd>2014-09-18T12:34:56Z</kbd>）。如果设置为<kbd>infinite</kbd>、<kbd>indefinite</kbd>或<kbd>never</kbd>，封禁将无限期。",
 	"apihelp-block-param-reason": "封禁的原因。",
 	"apihelp-block-param-anononly": "只封禁匿名用户（也就是说禁止此 IP 地址的匿名编辑）。",
-	"apihelp-block-param-nocreate": "防止创建帐户。",
+	"apihelp-block-param-nocreate": "防止创建账号。",
 	"apihelp-block-param-autoblock": "自动封禁最近使用的IP地址，以及以后他们尝试登陆使用的IP地址。",
 	"apihelp-block-param-noemail": "阻止用户通过wiki发送电子邮件。（需要<code>blockemail</code>权限）。",
 	"apihelp-block-param-hidename": "从封禁日志中隐藏用户名。（需要<code>hideuser</code>权限）。",

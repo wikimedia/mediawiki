@@ -2282,7 +2282,7 @@
 	"activeusers-noresult": "لم يعثر على أي مستخدمين",
 	"activeusers-submit": "عرض المستخدمين النشطين",
 	"listgrouprights": "صلاحيات مجموعات المستخدمين",
-	"listgrouprights-summary": "التالي قائمة بمجموعات المستخدمين المعرفة في هذا الويكي، بصلاحياتهم المصاحبة.\nربما تكون هناك [[{{MediaWiki:Listgrouprights-helppage}}|معلومات إضافية]] حول الصلاحيات المنفردة.",
+	"listgrouprights-summary": "هادي ليستة د لمجموعات لخدايميا لي معرّفة ف هاد لويكي، و الصلاحيات ديالهوم. يقدرو يكونو [[{{MediaWiki:Listgrouprights-helppage}}|معلومات إضافية]] على صلاحيات محددة.",
 	"listgrouprights-key": "عنوان:\n* <span class=\"listgrouprights-granted\">صلاحية ممنوحة</span>\n* <span class=\"listgrouprights-revoked\">صلاحية مسحوبة</span>",
 	"listgrouprights-group": "المجموعة",
 	"listgrouprights-rights": "الصلاحيات",

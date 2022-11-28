@@ -348,7 +348,7 @@
 	"logging-out-notify": "توھان جي ٻاھر نڪرڻ تي عمل ڪيو پيو وڃي، مھرباني ڪري ٿورو انتظار ڪندا.",
 	"logout-failed": "ھاڻي نٿو نڪري سگهجي: $1",
 	"cannotlogoutnow-title": "ھاڻي نٿو نڪري سگهجي",
-	"cannotlogoutnow-text": "$1 استعمال ڪرڻ دوران خارج ٿيڻ ممڪن نہ آھي.",
+	"cannotlogoutnow-text": "$1 استعمال ڪرڻ دوران باھر نڪرڻ ممڪن نہ آھي.",
 	"welcomeuser": "ڀليڪار، $1!",
 	"welcomecreation-msg": "توھان جو کاتو کلي چڪو آھي.\nتوھان {{SITENAME}} لاءِ پنھنجون [[Special:Preferences|ترجيحون]] جيڪڏھن وڻي تہ بدلائي سگهو ٿا.",
 	"yourname": "واپرائيندڙنانءُ:",
