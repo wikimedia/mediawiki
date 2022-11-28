@@ -100,17 +100,11 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return AuthenticationResponse::newAbstain();
 		}
 
-		$fields = [
-			'user_id', 'user_password', 'user_password_expires',
-		];
-
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$row = $dbr->selectRow(
-			'user',
-			$fields,
-			[ 'user_name' => $username ],
-			__METHOD__
-		);
+		$row = $this->loadBalancer->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+			->select( [ 'user_id', 'user_password', 'user_password_expires' ] )
+			->from( 'user' )
+			->where( [ 'user_name' => $username ] )
+			->caller( __METHOD__ )->fetchRow();
 		if ( !$row ) {
 			// Do not reveal whether its bad username or
 			// bad password to prevent username enumeration
@@ -176,13 +170,11 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return false;
 		}
 
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$row = $dbr->selectRow(
-			'user',
-			[ 'user_password' ],
-			[ 'user_name' => $username ],
-			__METHOD__
-		);
+		$row = $this->loadBalancer->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+			->select( [ 'user_password' ] )
+			->from( 'user' )
+			->where( [ 'user_name' => $username ] )
+			->caller( __METHOD__ )->fetchRow();
 		if ( !$row ) {
 			return false;
 		}
@@ -204,13 +196,12 @@ class LocalPasswordPrimaryAuthenticationProvider
 		}
 
 		[ $db, $options ] = \DBAccessObjectUtils::getDBOptions( $flags );
-		return (bool)$this->loadBalancer->getConnectionRef( $db )->selectField(
-			[ 'user' ],
-			'user_id',
-			[ 'user_name' => $username ],
-			__METHOD__,
-			$options
-		);
+		return (bool)$this->loadBalancer->getConnection( $db )->newSelectQueryBuilder()
+			->select( [ 'user_id' ] )
+			->from( 'user' )
+			->where( [ 'user_name' => $username ] )
+			->options( $options )
+			->caller( __METHOD__ )->fetchField();
 	}
 
 	public function providerAllowsAuthenticationDataChange(
@@ -230,12 +221,11 @@ class LocalPasswordPrimaryAuthenticationProvider
 			$username = $this->userNameUtils->getCanonical( $req->username,
 				UserRigorOptions::RIGOR_USABLE );
 			if ( $username !== false ) {
-				$row = $this->loadBalancer->getConnectionRef( DB_PRIMARY )->selectRow(
-					'user',
-					[ 'user_id' ],
-					[ 'user_name' => $username ],
-					__METHOD__
-				);
+				$row = $this->loadBalancer->getConnection( DB_PRIMARY )->newSelectQueryBuilder()
+					->select( [ 'user_id' ] )
+					->from( 'user' )
+					->where( [ 'user_name' => $username ] )
+					->caller( __METHOD__ )->fetchRow();
 				if ( $row ) {
 					$sv = \StatusValue::newGood();
 					if ( $req->password !== null ) {
