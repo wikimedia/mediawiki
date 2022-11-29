@@ -4049,6 +4049,7 @@
 	"tag-filter": "Caption of a filter shown on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)",
 	"tag-filter-submit": "Caption of the submit button displayed next to the tag filter on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)\n\n{{Identical|Filter}}",
 	"tag-hidden": "Label used in a dropdown listing all available tags, when the tag has no human-readable name, because it is ''hidden'' (not shown on histories, recent changes, diffs, etc.).\n\nParameters:\n$1 - internal tag name (usually in English)",
+	"tag-link-other-edits": "Label used to link to a filtered view of Recent Changes showing other edits also tagged with this tag",
 	"tag-list-wrapper": "Wrapper for the list of tags shown on recent changes, watchlists, history pages and diffs. The message will be wrapped in {{msg-mw|parentheses-start}} and {{msg-mw|parentheses-end}} if set. \n\nParameters:\n* $1 - number of distinct tags for given edit\n* $2 - comma-separated list of tags for given edit",
 	"tag-mw-contentmodelchange": "Change tag for edits that change the content model of a page",
 	"tag-mw-contentmodelchange-description": "Description for \"content model change\" change tag",
