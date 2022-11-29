@@ -76,6 +76,8 @@ For notes on 1.39.x and older releases, see HISTORY.
   - ContentHandler::getDataForSearchIndex
   - the SearchDataForIndex hook is deprecated in favor of SearchDataForIndex2
 * Vue development mode is enabled by default in DevelopmentSettings.php
+* The Linker::specialLink() method can now link to a Special page's with a sub-
+  page or action parameter set, e.g. [[Special:Contributions/JohnDoe]].
 * …
 
 === External library changes in 1.40 ===
