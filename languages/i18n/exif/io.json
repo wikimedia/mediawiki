@@ -7,7 +7,7 @@
 		]
 	},
 	"exif-imagewidth": "Larjeso",
-	"exif-imagelength": "Alteso",
+	"exif-imagelength": "Altajo",
 	"exif-bitspersample": "Bicoki* per kompozanto",
 	"exif-orientation": "Orientizo",
 	"exif-xresolution": "Horizontala distingivo",
@@ -65,6 +65,7 @@
 	"exif-gpsspeed-k": "Kilometri per horo",
 	"exif-gpsspeed-m": "Milii per horo",
 	"exif-dc-publisher": "Publikigero",
+	"exif-dc-rights": "Uzo-permisi",
 	"exif-rating-rejected": "Rejektita",
 	"exif-usepanoramaviewer-true": "Yes"
 }
