@@ -1518,7 +1518,7 @@ class EditPage implements IEditObject {
 
 						if ( $content === false ) {
 							# Warn the user that something went wrong
-							$undoMsg = 'failure';
+							$undoMsg = 'norev';
 						}
 					}
 
@@ -1664,13 +1664,16 @@ class EditPage implements IEditObject {
 		$undoContent = $undoRev->getContent( SlotRecord::MAIN );
 		$undoAfterContent = $oldRev->getContent( SlotRecord::MAIN );
 		$undoIsLatest = $this->page->getRevisionRecord()->getId() === $undoRev->getId();
+		if ( $currentContent === null
+			|| $undoContent === null
+			|| $undoAfterContent === null
+		) {
+			return false;
+		}
 
 		return $handler->getUndoContent(
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Content is for public use
 			$currentContent,
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Content is for public use
 			$undoContent,
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Content is for public use
 			$undoAfterContent,
 			$undoIsLatest
 		);
@@ -3074,13 +3077,16 @@ class EditPage implements IEditObject {
 	 * content.
 	 *
 	 * @param Content|null|false|string $content
-	 * @return string|false|null The editable text form of the content.
+	 * @return string The editable text form of the content.
 	 *
 	 * @throws MWException If $content is not an instance of TextContent and
 	 *   $this->allowNonTextContent is not true.
 	 */
 	private function toEditText( $content ) {
-		if ( $content === null || $content === false || is_string( $content ) ) {
+		if ( $content === null || $content === false ) {
+			return '';
+		}
+		if ( is_string( $content ) ) {
 			return $content;
 		}
 
@@ -3876,7 +3882,6 @@ class EditPage implements IEditObject {
 		);
 
 		$this->context->getOutput()->addHTML(
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable False positive, text is not null
 			Html::textarea( $name, $builder->addNewLineAtEnd( $text ), $attribs )
 		);
 	}

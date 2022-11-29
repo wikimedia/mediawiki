@@ -6,6 +6,7 @@ use ExternalStoreAccess;
 use ExternalStoreFactory;
 use HashBagOStuff;
 use InvalidArgumentException;
+use MediaWiki\Storage\BadBlobException;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiIntegrationTestCase;
@@ -214,7 +215,8 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testSimpleStoreGetBlobKnownBad() {
 		$store = $this->getBlobStore();
-		$this->assertSame( '', $store->getBlob( 'bad:lost?bug=T12345' ) );
+		$this->expectException( BadBlobException::class );
+		$store->getBlob( 'bad:lost?bug=T12345' );
 	}
 
 	/**
