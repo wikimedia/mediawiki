@@ -343,14 +343,6 @@ abstract class RevDelList extends RevisionListBase {
 	}
 
 	/**
-	 * @deprecated since 1.37; please use reloadFromPrimary() instead.
-	 */
-	public function reloadFromMaster() {
-		wfDeprecated( __METHOD__, '1.37' );
-		$this->reloadFromPrimary();
-	}
-
-	/**
 	 * Record a log entry on the action
 	 * @param string $logType One of (delete,suppress)
 	 * @param array $params Associative array of parameters:

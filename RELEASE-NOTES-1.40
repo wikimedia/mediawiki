@@ -213,6 +213,12 @@ because of Phabricator reports.
   - InternalParseBeforeSanitize, deprecated in 1.35
   - LinksUpdateConstructed, deprecated in 1.38
   - LinksUpdateAfterInsert, deprecated in 1.38
+* RemexDriver::__construct() now only accepts a ServiceOptions instance as
+  the only argument. Passing an array was deprecated since 1.36.
+* TidyDriverBase::supportsValidate(), deprecated since 1.36, has been removed.
+* RevDelList::reloadFromMaster(), deprecated since 1.37, has been removed.
+* DatabasePostgres::remappedTableName(), deprecated since 1.37, has been
+  removed.
 * …
 
 === Deprecations in 1.40 ===
