@@ -217,6 +217,8 @@ because of Phabricator reports.
   the only argument. Passing an array was deprecated since 1.36.
 * TidyDriverBase::supportsValidate(), deprecated since 1.36, has been removed.
 * RevDelList::reloadFromMaster(), deprecated since 1.37, has been removed.
+* DatabasePostgres::remappedTableName(), deprecated since 1.37, has been
+  removed.
 * …
 
 === Deprecations in 1.40 ===

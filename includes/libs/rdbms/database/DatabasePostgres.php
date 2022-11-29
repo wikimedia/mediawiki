@@ -513,17 +513,6 @@ __INDEXATTR__;
 
 	/**
 	 * @param string $name
-	 * @return string Value of $name or remapped name if $name is a reserved keyword
-	 * @deprecated since 1.37. Reserved identifiers should be quoted where necessary
-	 */
-	public function remappedTableName( $name ) {
-		wfDeprecated( __METHOD__, '1.37' );
-
-		return $this->keywordTableMap[$name] ?? $name;
-	}
-
-	/**
-	 * @param string $name
 	 * @param string $format
 	 * @return string Qualified and encoded (if requested) table name
 	 */
