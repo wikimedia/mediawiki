@@ -4694,7 +4694,7 @@ config-schema:
     SessionProviders:
         type: object
         default:
-            MediaWiki\Session\CookieSessionProvider: { class: MediaWiki\Session\CookieSessionProvider, args: [{ priority: 30, callUserSetCookiesHook: true }] }
+            MediaWiki\Session\CookieSessionProvider: { class: MediaWiki\Session\CookieSessionProvider, args: [{ priority: 30 }] }
             MediaWiki\Session\BotPasswordSessionProvider: { class: MediaWiki\Session\BotPasswordSessionProvider, args: [{ priority: 75 }], services: [GrantsInfo] }
         description: |-
             MediaWiki\Session\SessionProvider configuration.
