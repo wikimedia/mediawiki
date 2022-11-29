@@ -932,7 +932,7 @@
 	"excontent": "sisdisdolii: ”$1”",
 	"exbeforeblank": "sisdoallu ovdal gurrema: «$1»",
 	"delete-confirm": "Sihko \"$1\"",
-	"historywarning": "Siiddu, man aiggot sihkut, lea rievdaduvvon dávjit go oktii:",
+	"historywarning": "<strong>FUOM!</strong> Siiddus, man don áiggut sihkkut, lea rievdadanhistorjá ja dat lea rievdaduvvon {{PLURAL:$1|oktii|2=guktii|3=golbmii|4=njelljii|5=vihttii|6=guhttii|7=čihččii|8=gákcii|9=okcii|$1 geardde}}:",
 	"confirmdeletetext": "Leat sihkumin siiddu dahje fiilla ja buot dan historjjá. Ádde dagu váikkuhsaid ja sihko {{GRAMMAR:genitive|{{SITENAME}}}} [[{{MediaWiki:Policy-url}}|geavahaid]] mielde.",
 	"actioncomplete": "Doaibma lea dahkkon",
 	"deletedtext": "\"$1\" lea sihkojuvvon.\nSiiddus $2 lea listu maŋimus sihkomiin.",
