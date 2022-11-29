@@ -58,7 +58,8 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			null,
 			'sr-el',
 			null,
-			'>Ovo je testna stranica<'
+			'>Ovo je testna stranica<',
+			'sr-el|sr-Latn' // sr-el is accepted for backwards compatibility for now
 		];
 		yield 'Source language is explicit' => [
 			new PageBundle(
@@ -71,7 +72,8 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			null,
 			'sr-el',
 			'sr-ec',
-			'>Ovo je testna stranica<'
+			'>Ovo je testna stranica<',
+			'sr-el|sr-Latn' // sr-el is accepted for backwards compatibility for now
 		];
 		yield 'Content language is provided via HTTP header' => [
 			new PageBundle(
@@ -84,7 +86,8 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			'sr',
 			'sr-el',
 			'sr-ec',
-			'>Ovo je testna stranica<'
+			'>Ovo je testna stranica<',
+			'sr-el|sr-Latn' // sr-el is accepted for backwards compatibility for now
 		];
 		yield 'Content language is variant' => [
 			new PageBundle(
@@ -97,7 +100,8 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			'sr-ec',
 			'sr-el',
 			null,
-			'>Ovo je testna stranica<'
+			'>Ovo je testna stranica<',
+			'sr-el|sr-Latn' // sr-el is accepted for backwards compatibility for now
 		];
 		yield 'No content-language, but source variant provided' => [
 			new PageBundle(
@@ -110,7 +114,8 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			null,
 			'sr-el',
 			'sr-ec',
-			'>Ovo je testna stranica<'
+			'>Ovo je testna stranica<',
+			'sr-el|sr-Latn' // sr-el is accepted for backwards compatibility for now
 		];
 		yield 'Source variant is a base language code' => [
 			new PageBundle(
@@ -123,7 +128,8 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			null,
 			'sr-el',
 			'sr',
-			'>Ovo je testna stranica<'
+			'>Ovo je testna stranica<',
+			'sr-el|sr-Latn' // sr-el is accepted for backwards compatibility for now
 		];
 		yield 'Base language does not support variants' => [
 			new PageBundle(
@@ -168,8 +174,8 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( $expected, $html );
 
 		if ( $expectedLanguage !== false ) {
-			$this->assertStringContainsString( "<meta http-equiv=\"content-language\" content=\"$expectedLanguage\"/>", $html );
-			$this->assertEquals( $expectedLanguage, $outputPageBundle->headers['content-language'] );
+			$this->assertMatchesRegularExpression( "@<meta http-equiv=\"content-language\" content=\"($expectedLanguage)\"/>@", $html );
+			$this->assertMatchesRegularExpression( "@^$expectedLanguage@", $outputPageBundle->headers['content-language'] );
 		}
 		$this->assertEquals( Parsoid::defaultHTMLVersion(), $outputPageBundle->version );
 	}
@@ -208,7 +214,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		$html = $modifiedParserOutput->getRawText();
 		$this->assertStringContainsString( $expected, $html );
 		if ( $expectedLanguage !== false ) {
-			$this->assertStringContainsString( "<meta http-equiv=\"content-language\" content=\"$target\"/>", $html );
+			$this->assertMatchesRegularExpression( "@<meta http-equiv=\"content-language\" content=\"($expectedLanguage)\"/>@", $html );
 		}
 
 		$extensionData = $modifiedParserOutput
@@ -216,7 +222,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( Parsoid::defaultHTMLVersion(), $extensionData['version'] );
 
 		if ( $expectedLanguage !== false ) {
-			$this->assertEquals( $target, $extensionData['headers']['content-language'] );
+			$this->assertMatchesRegularExpression( "@^$expectedLanguage@", $extensionData['headers']['content-language'] );
 		}
 	}
 
