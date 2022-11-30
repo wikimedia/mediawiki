@@ -511,7 +511,7 @@
 	"newarticle": "(نواں)",
 	"newarticletext": "تسیں ایسے صفحے دے جوڑ توں ایتھے پہنچے او جیڑا حلے تک نہیں بݨیا۔<br />\nاس صفحہ بݨاؤنے آسطے تھلے دتے گۓ ڈبے وچ لکھݨا شروع کر دیو (زیادہ رہنمائی آستے اے ویکھو [$1 <br />مدد دا صفحہ])۔\nاگر تسیں ایتھے غلطی نال پہنچے او تے اپنے کھوجی توں \"بیک\" دا بٹن دبا دیو۔",
 	"anontalkpagetext": "----'' ایہ اک گمنام ورتن والے دا گل بات دا صفحہ اے جینے حالے کھاتہ نئیں کھولیا یا او اینون ورتدا نئیں۔\nسانوں فیر نمبراں والا آئی پی پتہ ورتنا پوے گا اونوں لئی. ایہو جیہا آئی پی پتہ گئی ورتن والے ورت سکدے نیں۔ \nاگر تسیں اک گمنام ورتن والے او تے اے مسوس کردے او جے پیڑی گل بات تواڈی بارے ہوئی اے، مہربانی کرکے [[Special:CreateAccount|create an account]] یا [[Special:UserLogin|log in]] اگے کسے مسلے توں بچن گمنام ورتن والیاں کولوں",
-	"noarticletext": "اس ویلے اس صفحے تے کج نہیں لکھیا ہویا تسیں [[Special:Search/{{PAGENAME}}|اس صفحے دے ناں نوں دوجے صفحیاں تے کھوج سکدے او]] یا فیر [{{fullurl:{{FULLPAGENAME}}|action=edit}} اس صفحے نوں لکھ سکدے او۔]",
+	"noarticletext": "ایس ویلے ایس صفحے تے کج نہیں لکھیا ہویا۔ تسیں [[Special:Search/{{PAGENAME}}|ایس صفحے دے ناں نوں دوجے صفحیاں تے کھوج سکدے او]] یا فیر [{{fullurl:{{FULLPAGENAME}}|action=edit}} ایس صفحے بݨا] سکدے او۔",
 	"noarticletext-nopermission": "ایس ویلے ایس صفحے تے کوئی لکھت نئیں۔ \nتسیں [[Special:Search/{{PAGENAME}}|search for this page title]] دوسریاں صفحیاں تے،\nیا <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>۔",
 	"userpage-userdoesnotexist": "ورتن کھاتہ \"$1\" رجسٹر نئیں ہویا۔\nمہربانی کرکے دسو جے تسیں ای ھفا بنانا/بدلنا چاندے او۔",
 	"userpage-userdoesnotexist-view": "''$1'' کھاتا رجسٹرڈ نئیں اے۔",

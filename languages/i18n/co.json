@@ -273,6 +273,7 @@
 	"post-expand-template-inclusion-warning": "'''Attenti:''' a dimensione di i mudelli inclusi è troppa maiò.\nParechji mudelli ùn seranu micca inclusi.",
 	"post-expand-template-inclusion-category": "Pagine per e quale a dimensione di i mudelli inclusi supereghja a limita",
 	"post-expand-template-argument-category": "Pagine cuntinenti argumenti di mudellu mancanti",
+	"undo-summary-anon": "Disfà a mudifica $1 di [[Special:Contributions/$2|$2]]",
 	"currentrev": "Ultima revisione",
 	"currentrev-asof": "Versione attuale di e $1",
 	"revisionasof": "Versione di e $1",

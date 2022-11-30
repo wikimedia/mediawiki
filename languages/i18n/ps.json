@@ -14,7 +14,8 @@
 			"Vlad5250",
 			"عثمان خان شاہ",
 			"아라",
-			"1233qwer1234qwer4"
+			"1233qwer1234qwer4",
+			"Af420"
 		]
 	},
 	"tog-underline": "کرښنې تړنې:",
@@ -583,6 +584,8 @@
 	"savechanges": "بدلونونه خوندي کول",
 	"publishpage": "مخ خپرول",
 	"publishchanges": "بدلونونه خپرول",
+	"publishpage-start": "پاڼه خپره کړه…",
+	"publishchanges-start": "بدلونونه خپرول…",
 	"preview": "مخليدنه",
 	"showpreview": "مخليدنه",
 	"showdiff": "بدلونونه ښکاره کول",

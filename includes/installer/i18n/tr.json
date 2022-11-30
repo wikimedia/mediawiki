@@ -238,7 +238,7 @@
 	"config-upload-deleted": "Silinen dosyalar için dizin:",
 	"config-upload-deleted-help": "Silinmiş dosyaların arşivleneceği bir dizin seçin.\nİdeal olarak, bu webden erişilebilir olmamalıdır.",
 	"config-personalization-settings": "Kişiselleştirme",
-	"config-logo-summary": "Bu alanların her biri için uygun boyutta bir resim yüklemeniz ve URL'yi aşağıdaki kutulara girmeniz gerekecektir. Logonuz bu yollara göreyse, <code>$wgStylePath</code> veya <code>$wgScriptPath</code> kullanabilirsiniz. Bu kutulardan herhangi birini boş bırakabilirsiniz.\n\nDesteklenen tarayıcılarda, resimdosyalarını dosya sisteminizden giriş kutularına veya önizleme alanına da sürükleyebilirsiniz.",
+	"config-logo-summary": "Bu alanların her biri için uygun boyutta bir resim yüklemeniz ve URL'yi aşağıdaki kutulara girmeniz gerekecektir. Logonuz bu yollara göreyse, <code>$wgStylePath</code> veya <code>$wgScriptPath</code> kullanabilirsiniz. Bu kutulardan herhangi birini boş bırakabilirsiniz.",
 	"config-logo-preview-main": "Anasayfa",
 	"config-logo-icon": "Logo (ikon)",
 	"config-logo-icon-help": "Logo simgeniz kare olmalı ve ideal olarak 50 pikselden veya bir SVG'den büyük olmalıdır.",
