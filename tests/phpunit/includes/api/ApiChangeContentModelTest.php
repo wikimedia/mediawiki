@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Api;
 use ApiUsageException;
 use IDBAccessObject;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Status\Status;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\Title\Title;
@@ -72,6 +73,40 @@ class ApiChangeContentModelTest extends ApiTestCase {
 			],
 			null,
 			$this->mockAnonAuthorityWithoutPermissions( [ 'editcontentmodel' ] ) );
+	}
+
+	/**
+	 * Test that the `editcontentmodel` rate limit is enforced
+	 */
+	public function testRateLimitApplies() {
+		$limiter = $this->createNoOpMock(
+			RateLimiter::class,
+			[ 'limit', 'isLimitable', ]
+		);
+		$limiter->method( 'limit' )
+			->willReturnCallback( function ( $user, $action, $incr ) {
+				if ( $action === 'editcontentmodel' ) {
+					$this->assertSame( 1, $incr );
+					return true;
+				}
+				return false;
+			} );
+		$limiter->method( 'isLimitable' )
+			->willReturn( true );
+
+		$this->setService( 'RateLimiter', $limiter );
+
+		$this->setExpectedApiException( [
+			'apierror-ratelimited',
+			wfMessage( 'action-ratelimited' )
+		] );
+
+		$this->doApiRequestWithToken( [
+			'action' => 'changecontentmodel',
+			'title' => 'ExistingPage',
+			'summary' => 'test',
+			'model' => 'text'
+		] );
 	}
 
 	/**
