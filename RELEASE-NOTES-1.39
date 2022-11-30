@@ -1,6 +1,6 @@
 = MediaWiki 1.39 =
 
-== MediaWiki 1.39.0-rc.2 ==
+== MediaWiki 1.39.0 ==
 
 MediaWiki 1.39 is a pre-release testing branch, and is not recommended
 for use in production.
@@ -29,6 +29,10 @@ for use in production.
 * (T289926) api: Fix minor PHP 8.1 incompatibility in ApiOptions.
 * (T322803) SpecialBotPasswords: Don't pass null to trim().
 * (T289926) Fix incomplete ITextFormatter mocks.
+* Language: Handle ronna and quetta.
+* (T72510) rdbms: make SqlitePlatform::tableName() apply double quotes.
+* (T323373) Parser: Fix extractSections() behavior for PHP >= 8.0.
+* .gitattributes: Ship docker-compose.yml to the tarball.
 
 == MediaWiki 1.39.0-rc.1 ==
 
