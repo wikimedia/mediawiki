@@ -1,16 +1,7 @@
 @import 'variables.less';
 
 figure[ typeof~='mw:File/Thumb' ],
-figure[ typeof~='mw:File/Frame' ],
-/* TODO: Remove "Image|Video|Audio" when version 2.4.0 of the content is no
- * longer supported
- */
-figure[ typeof~='mw:Image/Thumb' ],
-figure[ typeof~='mw:Video/Thumb' ],
-figure[ typeof~='mw:Audio/Thumb' ],
-figure[ typeof~='mw:Image/Frame' ],
-figure[ typeof~='mw:Video/Frame' ],
-figure[ typeof~='mw:Audio/Frame' ] {
+figure[ typeof~='mw:File/Frame' ] {
 	border: @border-thumbinner-screen;
 	border-bottom: 0;  // No border to figcaption
 	background-color: @background-color-thumbinner-screen;
@@ -45,13 +36,7 @@ figure[ typeof~='mw:Audio/Frame' ] {
 }
 
 /* Magnify clip, not present for broken media */
-figure[ typeof~='mw:File/Thumb' ]:not( [ typeof~='mw:Error' ] ),
-/* TODO: Remove "Image|Video|Audio" when version 2.4.0 of the content is no
- * longer supported
- */
-figure[ typeof~='mw:Image/Thumb' ]:not( [ typeof~='mw:Error' ] ),
-figure[ typeof~='mw:Video/Thumb' ]:not( [ typeof~='mw:Error' ] ),
-figure[ typeof~='mw:Audio/Thumb' ]:not( [ typeof~='mw:Error' ] ) {
+figure[ typeof~='mw:File/Thumb' ]:not( [ typeof~='mw:Error' ] ) {
 	> figcaption:before {
 		content: '';
 		width: 15px;
