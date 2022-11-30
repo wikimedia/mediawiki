@@ -1995,7 +1995,7 @@ class WANObjectCache implements
 					// Don't treat failures due to I/O errors as the key being in cool-off
 					$this->cache->getLastError( $watchPoint ) === self::ERR_NONE
 				) {
-					$this->logger->debug( "checkAndSetCooloff($key): bounced; ${elapsed}s" );
+					$this->logger->debug( "checkAndSetCooloff($key): bounced; {$elapsed}s" );
 					$this->stats->increment( "wanobjectcache.$kClass.cooloff_bounce" );
 
 					return false;
