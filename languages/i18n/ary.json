@@ -704,7 +704,7 @@
 	"mergehistory-reason": "سباب:",
 	"mergelog": "سجل الدمج",
 	"revertmerge": "فرًق",
-	"history-title": "تاريخ: \"$1\"",
+	"history-title": "\"$1\": تاريخ",
 	"difference-title": "الفرق بين المراجعتين ديال: \"$1\"",
 	"difference-multipage": "(لفرق بين الصفحات)",
 	"lineno": "سطر $1:",
