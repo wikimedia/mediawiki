@@ -21,7 +21,6 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $pageBundle->headers, $extensionData['headers'] );
 		$this->assertSame( $pageBundle->headers['content-language'], $extensionData['headers']['content-language'] );
 		$this->assertSame( $pageBundle->version, $extensionData['version'] );
-		$this->assertSame( $pageBundle->contentmodel, $extensionData['contentmodel'] );
 	}
 
 	public function provideParserOutputFromPageBundle() {
@@ -31,8 +30,7 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 				[ 'ids' => '1.33' ],
 				[ 'ids' => '1.33' ],
 				'1.x',
-				[ 'content-language' => 'abc' ],
-				'testing'
+				[ 'content-language' => 'abc' ]
 			)
 		];
 
@@ -61,7 +59,6 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $extensionData['version'] ?? null, $pageBundle->version );
 		$this->assertSame( $extensionData['headers'] ?? [], $pageBundle->headers );
 		$this->assertSame( $extensionData['headers']['content-language'], $pageBundle->headers['content-language'] );
-		$this->assertSame( $extensionData['contentmodel'] ?? null, $pageBundle->contentmodel );
 	}
 
 	public function providePageBundleFromParserOutput() {
@@ -72,8 +69,7 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 					'parsoid' => [ 'ids' => '1.22' ],
 					'mw' => [],
 					'version' => '2.x',
-					'headers' => [ 'content-language' => 'xyz' ],
-					'testing'
+					'headers' => [ 'content-language' => 'xyz' ]
 				]
 			)
 		];
