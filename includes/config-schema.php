@@ -1087,7 +1087,6 @@ return [
 					'args' => [
 						0 => [
 							'priority' => 30,
-							'callUserSetCookiesHook' => true,
 						],
 					],
 				],

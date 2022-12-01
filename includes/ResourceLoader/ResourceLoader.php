@@ -303,13 +303,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @codeCoverageIgnore
 	 */
 	public function registerTestModules(): void {
-		$testModulesMeta = [ 'qunit' => [] ];
-		$this->hookRunner->onResourceLoaderTestModules( $testModulesMeta, $this );
-
 		$extRegistry = ExtensionRegistry::getInstance();
-		// In case of conflict, the deprecated hook has precedence.
-		$testModules = $testModulesMeta['qunit']
-			+ $extRegistry->getAttribute( 'QUnitTestModules' );
+		$testModules = $extRegistry->getAttribute( 'QUnitTestModules' );
 
 		$testModuleNames = [];
 		foreach ( $testModules as $name => &$module ) {

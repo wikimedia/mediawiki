@@ -295,7 +295,6 @@ class HookRunner implements
 	\MediaWiki\Hook\ParserOptionsRegisterHook,
 	\MediaWiki\Hook\ParserOutputPostCacheTransformHook,
 	\MediaWiki\Hook\ParserPreSaveTransformCompleteHook,
-	\MediaWiki\Hook\ParserSectionCreateHook,
 	\MediaWiki\Hook\ParserTestGlobalsHook,
 	\MediaWiki\Hook\ParserTestTablesHook,
 	\MediaWiki\Hook\PasswordPoliciesForUserHook,
@@ -505,7 +504,6 @@ class HookRunner implements
 	\MediaWiki\Search\Hook\SpecialSearchProfileFormHook,
 	\MediaWiki\Session\Hook\SessionCheckInfoHook,
 	\MediaWiki\Session\Hook\SessionMetadataHook,
-	\MediaWiki\Session\Hook\UserSetCookiesHook,
 	\MediaWiki\Shell\Hook\WfShellWikiCmdHook,
 	\MediaWiki\Skins\Hook\SkinAfterPortletHook,
 	\MediaWiki\Skins\Hook\SkinPageReadyConfigHook,
@@ -550,7 +548,6 @@ class HookRunner implements
 	\MediaWiki\User\Hook\UserIsLockedHook,
 	\MediaWiki\User\Hook\UserLoadAfterLoadFromSessionHook,
 	\MediaWiki\User\Hook\UserLoadDefaultsHook,
-	\MediaWiki\User\Hook\UserLoadFromDatabaseHook,
 	\MediaWiki\User\Hook\UserLogoutHook,
 	\MediaWiki\User\Hook\UserRemoveGroupHook,
 	\MediaWiki\User\Hook\UserSaveSettingsHook,
@@ -2973,15 +2970,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onParserSectionCreate( $parser, $section, &$sectionContent,
-		$showEditLinks
-	) {
-		return $this->container->run(
-			'ParserSectionCreate',
-			[ $parser, $section, &$sectionContent, $showEditLinks ]
-		);
-	}
-
 	public function onParserTestGlobals( &$globals ) {
 		return $this->container->run(
 			'ParserTestGlobals',
@@ -4252,13 +4240,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onUserLoadFromDatabase( $user, &$s ) {
-		return $this->container->run(
-			'UserLoadFromDatabase',
-			[ $user, &$s ]
-		);
-	}
-
 	public function onLoadUserOptions( UserIdentity $user, array &$options ): void {
 		$this->container->run(
 			'LoadUserOptions',
@@ -4350,13 +4331,6 @@ class HookRunner implements
 		return $this->container->run(
 			'UserSendConfirmationMail',
 			[ $user, &$mail, $info ]
-		);
-	}
-
-	public function onUserSetCookies( $user, &$session, &$cookies ) {
-		return $this->container->run(
-			'UserSetCookies',
-			[ $user, &$session, &$cookies ]
 		);
 	}
 

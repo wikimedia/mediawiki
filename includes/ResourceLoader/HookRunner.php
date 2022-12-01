@@ -14,8 +14,7 @@ class HookRunner implements
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderForeignApiModulesHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderRegisterModulesHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderSiteModulePagesHook,
-	\MediaWiki\ResourceLoader\Hook\ResourceLoaderSiteStylesModulePagesHook,
-	\MediaWiki\ResourceLoader\Hook\ResourceLoaderTestModulesHook
+	\MediaWiki\ResourceLoader\Hook\ResourceLoaderSiteStylesModulePagesHook
 {
 	/** @var HookContainer */
 	private $container;
@@ -60,14 +59,6 @@ class HookRunner implements
 		$this->container->run(
 			'ResourceLoaderSiteStylesModulePages',
 			[ $skin, &$pages ],
-			[ 'abortable' => false ]
-		);
-	}
-
-	public function onResourceLoaderTestModules( array &$testModules, ResourceLoader $rl ): void {
-		$this->container->run(
-			'ResourceLoaderTestModules',
-			[ &$testModules, $rl ],
 			[ 'abortable' => false ]
 		);
 	}
