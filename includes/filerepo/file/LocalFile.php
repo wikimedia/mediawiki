@@ -2024,6 +2024,7 @@ class LocalFile extends File {
 						/** @var RevisionRecord $revRecord */
 						$revRecord = $status->value['revision-record'];
 						// Associate new page revision id
+						// @phan-suppress-next-line PhanUndeclaredMethod False positive, see T323205
 						$logEntry->setAssociatedRevId( $revRecord->getId() );
 					}
 					// This relies on the resetArticleID() call in WikiPage::insertOn(),
@@ -2031,6 +2032,7 @@ class LocalFile extends File {
 					if ( isset( $status->value['revision-record'] ) ) {
 						/** @var RevisionRecord $revRecord */
 						$revRecord = $status->value['revision-record'];
+						// @phan-suppress-next-line PhanUndeclaredMethod False positive, see T323205
 						$updateLogPage = $revRecord->getPageId();
 					}
 				} else {
