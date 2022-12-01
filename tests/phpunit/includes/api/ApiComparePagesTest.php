@@ -29,7 +29,7 @@ class ApiComparePagesTest extends ApiTestCase {
 		if ( !$status->isOK() ) {
 			$this->fail( "Failed to create $title: " . $status->getWikiText( false, false, 'en' ) );
 		}
-		return $status->value['revision-record']->getId();
+		return $status->getNewRevision()->getId();
 	}
 
 	public function addDBDataOnce() {

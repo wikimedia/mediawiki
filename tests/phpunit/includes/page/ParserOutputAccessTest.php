@@ -379,7 +379,7 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$access = $this->getParserOutputAccessWithCache();
 
 		$page = $this->getNonexistingTestPage( __METHOD__ );
-		$rev = $this->editPage( $page, 'Hello \'\'World\'\'!' )->getValue()['revision-record'];
+		$rev = $this->editPage( $page, 'Hello \'\'World\'\'!' )->getNewRevision();
 
 		// When $rev is passed, it should be detected to be the latest revision.
 		$parserOptions = $this->getParserOptions();
@@ -397,8 +397,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$access = $this->getParserOutputAccessWithCache();
 
 		$page = $this->getNonexistingTestPage( __METHOD__ );
-		$firstRev = $this->editPage( $page, 'First' )->getValue()['revision-record'];
-		$secondRev = $this->editPage( $page, 'Second' )->getValue()['revision-record'];
+		$firstRev = $this->editPage( $page, 'First' )->getNewRevision();
+		$secondRev = $this->editPage( $page, 'Second' )->getNewRevision();
 
 		// output is for the second revision (write to ParserCache)
 		$parserOptions = $this->getParserOptions();
@@ -421,8 +421,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$access = $this->getParserOutputAccessNoCache();
 
 		$page = $this->getNonexistingTestPage( __METHOD__ );
-		$firstRev = $this->editPage( $page, 'First' )->getValue()['revision-record'];
-		$secondRev = $this->editPage( $page, 'Second' )->getValue()['revision-record'];
+		$firstRev = $this->editPage( $page, 'First' )->getNewRevision();
+		$secondRev = $this->editPage( $page, 'Second' )->getNewRevision();
 
 		$this->revisionDelete( $firstRev );
 		$firstRev =
@@ -444,8 +444,8 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$access = $this->getParserOutputAccessNoCache();
 
 		$page = $this->getNonexistingTestPage( __METHOD__ );
-		$firstRev = $this->editPage( $page, 'First' )->getValue()['revision-record'];
-		$secondRev = $this->editPage( $page, 'Second' )->getValue()['revision-record'];
+		$firstRev = $this->editPage( $page, 'First' )->getNewRevision();
+		$secondRev = $this->editPage( $page, 'Second' )->getNewRevision();
 
 		$this->revisionDelete( $firstRev );
 		$firstRev =

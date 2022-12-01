@@ -142,9 +142,9 @@ class ApiPageSetTest extends ApiTestCase {
 
 	public function testSpecialRedirects() {
 		$id1 = $this->editPage( 'UTApiPageSet', 'UTApiPageSet in the default language' )
-			->value['revision-record']->getPageId();
+			->getNewRevision()->getPageId();
 		$id2 = $this->editPage( 'UTApiPageSet/de', 'UTApiPageSet in German' )
-			->value['revision-record']->getPageId();
+			->getNewRevision()->getPageId();
 
 		$user = $this->getTestUser()->getUser();
 		$userName = $user->getName();

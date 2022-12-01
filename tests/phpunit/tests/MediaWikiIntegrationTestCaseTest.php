@@ -3,7 +3,6 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use PHPUnit\Framework\AssertionFailedError;
 use Psr\Log\LoggerInterface;
@@ -548,10 +547,9 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 	public function assertEditPage( $expected, $page, $content ) {
 		$status = $this->editPage( $page, $content );
 		$this->assertStatusOK( $status );
-		$this->assertNotNull( $status->getValue()['revision-record'] );
+		$this->assertNotNull( $status->getNewRevision() );
 
-		/** @var RevisionRecord $rev */
-		$rev = $status->getValue()['revision-record'];
+		$rev = $status->getNewRevision();
 		$cnt = $rev->getContent( SlotRecord::MAIN );
 
 		$this->assertSame( $expected, $cnt->serialize() );

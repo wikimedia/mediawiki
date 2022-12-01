@@ -23,7 +23,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\Blob;
@@ -2000,7 +1999,6 @@ class LocalFile extends File {
 		$purgeUpdate = new AutoCommitUpdate(
 			$dbw,
 			__METHOD__,
-			/** @suppress PhanTypeArraySuspiciousNullable False positives with $this->status->value */
 			function () use (
 				$reupload, $wikiPage, $newPageContent, $comment, $performer,
 				$logEntry, $logId, $descId, $tags, $fname
@@ -2020,19 +2018,13 @@ class LocalFile extends File {
 						EDIT_NEW | EDIT_SUPPRESS_RC
 					);
 
-					if ( isset( $status->value['revision-record'] ) ) {
-						/** @var RevisionRecord $revRecord */
-						$revRecord = $status->value['revision-record'];
+					$revRecord = $status->getNewRevision();
+					if ( $revRecord ) {
 						// Associate new page revision id
-						// @phan-suppress-next-line PhanUndeclaredMethod False positive, see T323205
 						$logEntry->setAssociatedRevId( $revRecord->getId() );
-					}
-					// This relies on the resetArticleID() call in WikiPage::insertOn(),
-					// which is triggered on $descTitle by doUserEditContent() above.
-					if ( isset( $status->value['revision-record'] ) ) {
-						/** @var RevisionRecord $revRecord */
-						$revRecord = $status->value['revision-record'];
-						// @phan-suppress-next-line PhanUndeclaredMethod False positive, see T323205
+
+						// This relies on the resetArticleID() call in WikiPage::insertOn(),
+						// which is triggered on $descTitle by doUserEditContent() above.
 						$updateLogPage = $revRecord->getPageId();
 					}
 				} else {
