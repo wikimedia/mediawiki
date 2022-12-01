@@ -232,8 +232,8 @@ with params ?useskin=vector&useformat=mobile
 	display: flex;
 }
 
-.mw-prefs-hidden {
-	display: none;
+.mw-prefs-content-header + div {
+	margin-top: 50px;
 }
 
 .mw-prefs-content-header {
@@ -242,6 +242,30 @@ with params ?useskin=vector&useformat=mobile
 	display: block;
 	border-bottom: 1px solid @colorGray12;
 	box-shadow: 0 0.25em 0.125em -0.1875em rgba( 0, 0, 0, 0.25 );
+	position: fixed;
+	background: #fff;
+	z-index: 100;
+	margin-top: -52px;
+	padding-top: 16px;
+}
+
+.mw-prefs-content-page div.oo-ui-widget.oo-ui-widget-enabled {
+	margin-left: 10px;
+	margin-right: 5px;
+	padding-top: 16px;
+}
+
+.oo-ui-window-body .mw-htmlform-submit-buttons {
+	padding-left: 16px;
+}
+
+.oo-ui-window-body #preferences {
+	position: sticky;
+	bottom: 0;
+}
+
+.oo-ui-window-body .oo-ui-fieldLayout-messages {
+	background-color: #fff;
 }
 
 .oo-ui-iconWidget.mw-prefs-header-icon {
