@@ -1,9 +1,11 @@
 = MediaWiki 1.39 =
 
-== MediaWiki 1.39.0 ==
+== MediaWiki 1.39.1 ==
 
-MediaWiki 1.39 is a pre-release testing branch, and is not recommended
-for use in production.
+=== Changes since MediaWiki 1.39.0 ===
+* Localisation updates.
+
+== MediaWiki 1.39.0 ==
 
 === Changes since MediaWiki 1.39.0-rc.1 ===
 * Localisation updates.
