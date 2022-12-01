@@ -2593,7 +2593,7 @@
 	"autoblockid": "Autoblocare #$1",
 	"block": "Blocare utilizator",
 	"unblock": "Deblocare utilizator",
-	"changeblockip": "Schimbă blocare",
+	"changeblockip": "Schimbare blocare",
 	"blockip": "Blocare {{GENDER:$1|utilizator|utilizatoare}}",
 	"blockiptext": "Folosiți formularul de mai jos pentru a bloca accesul la modificare al unei adrese IP specifice sau al unui nume de utilizator.\nAcest lucru ar trebui făcut doar pentru a preveni vandalismul, și în acord cu [[{{MediaWiki:Policy-url}}|politica]].\nCompletați un motiv specific mai jos (de exemplu, citând paginile care au fost vandalizate).\nPuteți bloca range-uri de adrese IP folosind notația [https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing CIDR]; cea mai mică mască permisă este /$1 pentru IPv4 și /$2 pentru IPv6.",
 	"ipaddressorusername": "Adresă IP, nume de utilizator sau ID blocare:",

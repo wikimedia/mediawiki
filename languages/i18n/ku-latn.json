@@ -626,7 +626,7 @@
 	"viewpagelogs": "Guhartinên vê rûpelê bibîne",
 	"nohistory": "Dîroka guhartina vê rûpelê nîne.",
 	"currentrev": "Guhartoya niha",
-	"currentrev-asof": "Guhartoya herî kevn a $1",
+	"currentrev-asof": "Guhartoya herî nû ya $1",
 	"revisionasof": "Guhartoya $1",
 	"revision-info": "Guhartoya $1 ya ji aliyê {{GENDER:$6|$2}}$7 ve",
 	"previousrevision": "← Guhartoya kevintir",

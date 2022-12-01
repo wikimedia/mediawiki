@@ -276,6 +276,7 @@
 	"databaseerror": "Tiätuvuáđufeilâ",
 	"databaseerror-function": "Funktio: $1",
 	"databaseerror-error": "Feilâ: $1",
+	"laggedreplicamode": "<strong>Huám!</strong> Siijđost iä lah veltihánnáá vorâs nubástusah.",
 	"readonly": "Tiätuvuáđu lii luuhâst",
 	"missingarticle-rev": "(versio nro: $1)",
 	"timeouterror": "Server äigipotkim",
@@ -979,7 +980,7 @@
 	"rcshowhideminor": "$1 smavvâ nubástusah",
 	"rcshowhideminor-show": "Čääiti",
 	"rcshowhideminor-hide": "Čievâ",
-	"rcshowhidebots": "$1 botâh",
+	"rcshowhidebots": "$1 bottijd",
 	"rcshowhidebots-show": "Čääiti",
 	"rcshowhidebots-hide": "Čievâ",
 	"rcshowhideliu": "$1 registeristum kevtteid",
@@ -1282,7 +1283,7 @@
 	"watchlist-hide": "Čievâ",
 	"watchlist-submit": "Čääiti",
 	"wlshowhideminor": "smavvâ nubástusah",
-	"wlshowhidebots": "boteh",
+	"wlshowhidebots": "bottijd",
 	"wlshowhideliu": "registeristum kevtteid",
 	"wlshowhideanons": "anonyym kevtteeh",
 	"wlshowhidepatr": "tärhistum nubástusah",
@@ -1683,6 +1684,7 @@
 	"feedback-back": "Maassâd",
 	"feedback-cancel": "Jooskâ",
 	"feedback-close": "Vaalmâš",
+	"feedback-dialog-title": "Addel macâttâs",
 	"feedback-message": "Viestâ:",
 	"feedback-subject": "Fáddá:",
 	"feedback-submit": "Vuolgât",
@@ -1749,5 +1751,6 @@
 	"skin-action-protect": "Suoijii",
 	"skin-action-undelete": "Maaccât",
 	"skin-action-delete": "Siho",
-	"skin-action-move": "Sirde"
+	"skin-action-move": "Sirde",
+	"newpages-showhide-bots": "$1 bottijd"
 }

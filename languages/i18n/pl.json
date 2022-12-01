@@ -2628,7 +2628,7 @@
 	"sp-contributions-blocked-notice-anon-partial": "Ten adres IP jest obecnie częściowo zablokowany. Ostatni wpis rejestru blokad jest pokazany poniżej.",
 	"sp-contributions-search": "Szukaj wkładu",
 	"sp-contributions-username": "Adres IP lub nazwa użytkownika:",
-	"sp-contributions-toponly": "Pokaż tylko ostatnie wersje",
+	"sp-contributions-toponly": "Pokaż tylko ostatnie wersje strony",
 	"sp-contributions-newonly": "Pokazuj tylko edycje tworzące nową stronę",
 	"sp-contributions-hideminor": "Ukryj drobne zmiany",
 	"sp-contributions-submit": "Szukaj",

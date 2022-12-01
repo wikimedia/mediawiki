@@ -3258,7 +3258,7 @@
 	"table_pager_limit_submit": "Πήγαινε",
 	"table_pager_empty": "Κανένα αποτέλεσμα",
 	"autosumm-blank": "Διαγραφή του περιεχομένου της σελίδας",
-	"autosumm-replace": "Αντικατάσταση σελίδας με '$1'",
+	"autosumm-replace": "Αντικατάσταση σελίδας με «$1»",
 	"autoredircomment": "Ανακατεύθυνση στη σελίδα [[$1]]",
 	"autosumm-removed-redirect": "Αφαιρέθηκε ανακατεύθυνση προς το [[$1]]",
 	"autosumm-changed-redirect-target": "Άλλαξε στόχος ανακατεύθυνσης από το [[$1]] στο [[$2]]",

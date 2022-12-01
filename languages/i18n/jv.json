@@ -3191,6 +3191,7 @@
 	"gotointerwiki-invalid": "Sesirah kang diisèkaké ora trep.",
 	"gotointerwiki-external": "Panjenengan arep metu {{SITENAME}} saperlu marani [[$2]], situs jaringan manca.\n\n'''[$1 Bacutaké menyang $1]'''",
 	"undelete-cantedit": "Panjenengan ora bisa wurung mbusak kaca iki amarga panjenengan ora kawogan mbesut kaca iki.",
+	"changeslist-nocomment": "Tanpa ringkesan besutan",
 	"skin-view-create-local": "Wuwuhi wedharan enggonan",
 	"nstab-mainpage": "Pendhapa",
 	"skin-view-edit-local": "Besut wedharan enggonan",
