@@ -275,6 +275,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 				->addClasses( [ 'mw-prefs-description' ] )
 			);
 			$contentDiv = ( new OOUI\Tag( 'div' ) )->addClasses( [ 'mw-prefs-hidden' ] );
+			$contentDiv->addClasses( [ 'mw-prefs-content-page' ] );
 			$contentDiv->setAttributes( [
 				'id' => 'mw-prefs-option-' . $key . '-content'
 			] );
