@@ -62,7 +62,7 @@
 		"wikimedia/minify": "2.3.0",
 		"wikimedia/normalized-exception": "1.0.1",
 		"wikimedia/object-factory": "4.0.0",
-		"wikimedia/parsoid": "^0.16.0-a1@alpha",
+		"wikimedia/parsoid": "0.16.0",
 		"wikimedia/php-session-serializer": "2.0.1",
 		"wikimedia/purtle": "1.0.8",
 		"wikimedia/relpath": "3.0.0",
