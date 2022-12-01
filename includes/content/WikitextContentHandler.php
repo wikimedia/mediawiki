@@ -170,6 +170,7 @@ class WikitextContentHandler extends TextContentHandler {
 		$fields['text'] = $structure->getMainText(); // overwrites one from ContentHandler
 		$fields['auxiliary_text'] = $structure->getAuxiliaryText();
 		$fields['defaultsort'] = $structure->getDefaultSort();
+		$fields['file_text'] = null;
 
 		// Until we have full first-class content handler for files, we invoke it explicitly here
 		if ( $page->getTitle()->getNamespace() === NS_FILE ) {
