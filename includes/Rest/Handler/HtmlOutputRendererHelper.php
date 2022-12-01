@@ -174,6 +174,8 @@ class HtmlOutputRendererHelper {
 	 * Flavors may influence parser options, parsoid options, and DOM transformations.
 	 * They will be reflected by the ETag returned by getETag().
 	 *
+	 * Flavors cannot be combined. For more fine-grained control, use setOption
+	 *
 	 * @param string $flavor
 	 *
 	 * @return void
@@ -575,20 +577,14 @@ class HtmlOutputRendererHelper {
 	 * Set the HTTP headers based on the response generated
 	 *
 	 * @param ResponseInterface $response
-	 * @param bool $forHtml Whether the response will be HTML (rather than JSON)
-	 *
+	 * @param bool $setContentLanguageHeader
 	 * @return void
 	 */
-	public function putHeaders( ResponseInterface $response, bool $forHtml = true ) {
-		if ( $forHtml ) {
-			// For HTML we want to set the Content-Language. For JSON, we probably don't.
-			$response->setHeader( 'Content-Language', $this->getHtmlOutputContentLanguage() );
-
-			$pb = $this->getPageBundle();
-			ParsoidFormatHelper::setContentType( $response, ParsoidFormatHelper::FORMAT_HTML, $pb->version );
-		}
-
+	public function putHeaders( ResponseInterface $response, bool $setContentLanguageHeader ) {
 		if ( $this->targetLanguageCode ) {
+			if ( $setContentLanguageHeader ) {
+				$response->setHeader( 'Content-Language', $this->getHtmlOutputContentLanguage() );
+			}
 			$response->addHeader( 'Vary', 'Accept-Language' );
 		}
 
@@ -596,12 +592,6 @@ class HtmlOutputRendererHelper {
 
 		if ( !$this->isCacheable ) {
 			$response->setHeader( 'Cache-Control', 'private,no-cache,s-maxage=0' );
-		}
-
-		// TODO: cache control for stable HTML? See ContentHelper::setCacheControl
-
-		if ( $this->getRevisionId() ) {
-			$response->setHeader( 'Content-Revision-Id', (string)$this->getRevisionId() );
 		}
 	}
 
