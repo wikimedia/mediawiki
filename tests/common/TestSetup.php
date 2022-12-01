@@ -97,7 +97,6 @@ class TestSetup {
 				'class' => MediaWiki\Session\CookieSessionProvider::class,
 				'args' => [ [
 					'priority' => 30,
-					'callUserSetCookiesHook' => true,
 				] ],
 			],
 		];

@@ -4523,18 +4523,6 @@ class Parser {
 				$sections[$i] = $head[$i - 1] . $block;
 			}
 
-			/**
-			 * Send a hook, one per section.
-			 * The idea here is to be able to make section-level DIVs, but to do so in a
-			 * lower-impact, more correct way than r50769
-			 *
-			 * $this : caller
-			 * $section : the section number
-			 * &$sectionContent : ref to the content of the section
-			 * $maybeShowEditLinks : boolean describing whether this section has an edit link
-			 */
-			$this->hookRunner->onParserSectionCreate( $this, $i, $sections[$i], $maybeShowEditLink );
-
 			$i++;
 		}
 
