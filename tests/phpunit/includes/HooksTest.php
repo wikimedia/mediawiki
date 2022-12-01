@@ -40,8 +40,8 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 				'changed-static',
 				'original'
 			],
-			[ 'Global function', [ 'NothingFunction' ], 'changed-func', 'original' ],
-			[ 'Global function with data', [ 'NothingFunctionData', 'data' ], 'data', 'original' ],
+			[ 'Global function', [ 'wfNothingFunction' ], 'changed-func', 'original' ],
+			[ 'Global function with data', [ 'wfNothingFunctionData', 'data' ], 'data', 'original' ],
 			[ 'Closure', [ static function ( &$foo, $bar ) {
 				$foo = 'changed-closure';
 
@@ -288,13 +288,13 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	}
 }
 
-function NothingFunction( &$foo, &$bar ) {
+function wfNothingFunction( &$foo, &$bar ) {
 	$foo = 'changed-func';
 
 	return true;
 }
 
-function NothingFunctionData( $data, &$foo, &$bar ) {
+function wfNothingFunctionData( $data, &$foo, &$bar ) {
 	$foo = $data;
 
 	return true;
