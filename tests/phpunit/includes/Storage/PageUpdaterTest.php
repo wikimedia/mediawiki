@@ -135,7 +135,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $updater->getNewRevision(), 'getNewRevision()' );
 		$this->assertInstanceOf(
 			RevisionRecord::class,
-			$updater->getStatus()->value['revision-record']
+			$updater->getStatus()->getNewRevision()
 		);
 
 		// check the EditResult object
@@ -233,7 +233,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $updater->getNewRevision(), 'getNewRevision()' );
 		$this->assertInstanceOf(
 			RevisionRecord::class,
-			$updater->getStatus()->value['revision-record']
+			$updater->getStatus()->getNewRevision()
 		);
 		$this->assertTrue( $updater->wasRevisionCreated(), 'wasRevisionCreated()' );
 
@@ -770,7 +770,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$status = $updater->getStatus();
 		$this->assertStatusOK( $status );
-		$rev = $status->getValue()['revision-record'];
+		$rev = $status->getNewRevision();
 		$slot = $rev->getSlot( 'derivedslot' );
 		$this->assertTrue( $slot->getContent()->equals( $content ) );
 	}
@@ -795,7 +795,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater->setSlot( $derived );
 		$updater->updateRevision( $rev1->getId( $rev1->getWikiId() ) );
 
-		$rev2 = $updater->getStatus()->getValue()['revision-record'];
+		$rev2 = $updater->getStatus()->getNewRevision();
 		$slot = $rev2->getSlot( 'derivedslot' );
 		$this->assertTrue( $slot->getContent()->equals( $content ) );
 	}
@@ -825,7 +825,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater->setSlot( $derived );
 		$updater->updateRevision( $rev1->getId( $rev1->getWikiId() ) );
 
-		$rev3 = $updater->getStatus()->getValue()['revision-record'];
+		$rev3 = $updater->getStatus()->getNewRevision();
 		$slot = $rev3->getSlot( 'derivedslot' );
 		$this->assertTrue( $slot->getContent()->equals( $content ) );
 	}
