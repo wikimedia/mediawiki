@@ -5,7 +5,6 @@ namespace MediaWiki\Tests\Maintenance;
 use ContentHandler;
 use Exception;
 use FetchText;
-use MediaWiki\Revision\RevisionRecord;
 use MediaWikiIntegrationTestCase;
 use MWException;
 use PHPUnit\Framework\ExpectationFailedException;
@@ -122,10 +121,7 @@ class FetchTextTest extends MediaWikiIntegrationTestCase {
 		);
 
 		if ( $status->isGood() ) {
-			$value = $status->getValue();
-
-			/** @var RevisionRecord $revision */
-			$revision = $value['revision-record'];
+			$revision = $status->getNewRevision();
 			$address = $revision->getSlot( 'main' )->getAddress();
 			return $address;
 		}

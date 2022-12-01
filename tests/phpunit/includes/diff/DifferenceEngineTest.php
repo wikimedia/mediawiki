@@ -75,7 +75,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 				NS_MAIN,
 				$user
 			);
-			$revisions[] = $status->value['revision-record']->getId();
+			$revisions[] = $status->getNewRevision()->getId();
 		}
 
 		return $revisions;

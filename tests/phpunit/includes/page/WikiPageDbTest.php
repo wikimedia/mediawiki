@@ -296,9 +296,9 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		$this->assertStatusOK( $status, 'OK' );
 		$this->assertTrue( $status->value['new'], 'new' );
-		$this->assertNotNull( $status->value['revision-record'], 'revision-record' );
+		$this->assertNotNull( $status->getNewRevision(), 'revision-record' );
 
-		$statusRevRecord = $status->value['revision-record'];
+		$statusRevRecord = $status->getNewRevision();
 		$this->assertSame( $statusRevRecord->getId(), $page->getRevisionRecord()->getId() );
 		$this->assertSame( $statusRevRecord->getSha1(), $page->getRevisionRecord()->getSha1() );
 		$this->assertTrue(
@@ -354,7 +354,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$status = $page->doUserEditContent( $content, $user2, 'This changes nothing', EDIT_UPDATE, false );
 		$this->assertStatusOK( $status, 'OK' );
 		$this->assertFalse( $status->value['new'], 'new' );
-		$this->assertNull( $status->value['revision-record'], 'revision-record' );
+		$this->assertNull( $status->getNewRevision(), 'revision-record' );
 		$this->assertNotNull( $page->getRevisionRecord() );
 		$this->assertTrue(
 			$page->getRevisionRecord()->getContent( SlotRecord::MAIN )->equals( $content ),
@@ -372,8 +372,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$status = $page->doUserEditContent( $content, $user1, "testing 2", EDIT_UPDATE );
 		$this->assertStatusOK( $status, 'OK' );
 		$this->assertFalse( $status->value['new'], 'new' );
-		$this->assertNotNull( $status->value['revision-record'], 'revision-record' );
-		$statusRevRecord = $status->value['revision-record'];
+		$this->assertNotNull( $status->getNewRevision(), 'revision-record' );
+		$statusRevRecord = $status->getNewRevision();
 		$this->assertSame( $statusRevRecord->getId(), $page->getRevisionRecord()->getId() );
 		$this->assertSame( $statusRevRecord->getSha1(), $page->getRevisionRecord()->getSha1() );
 		$this->assertFalse(
@@ -466,8 +466,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertStatusOK( $status1, 'OK' );
 		$this->assertStatusOK( $status2, 'OK' );
 
-		$this->assertTrue( isset( $status1->value['revision-record'] ), 'OK' );
-		$this->assertFalse( isset( $status2->value['revision-record'] ), 'OK' );
+		$this->assertNotNull( $status1->getNewRevision(), 'OK' );
+		$this->assertNull( $status2->getNewRevision(), 'OK' );
 	}
 
 	/**

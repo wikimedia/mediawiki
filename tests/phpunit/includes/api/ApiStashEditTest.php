@@ -191,7 +191,7 @@ class ApiStashEditTest extends ApiTestCase {
 
 	public function testPageWithNoRevisions() {
 		$name = ucfirst( __FUNCTION__ );
-		$revRecord = $this->editPage( $name, '' )->value['revision-record'];
+		$revRecord = $this->editPage( $name, '' )->getNewRevision();
 
 		$this->setExpectedApiException( [ 'apierror-missingrev-pageid', $revRecord->getPageId() ] );
 
@@ -209,7 +209,7 @@ class ApiStashEditTest extends ApiTestCase {
 
 	public function testExistingPage() {
 		$name = ucfirst( __FUNCTION__ );
-		$revRecord = $this->editPage( $name, '' )->value['revision-record'];
+		$revRecord = $this->editPage( $name, '' )->getNewRevision();
 
 		$this->doStash( [ 'title' => $name, 'baserevid' => $revRecord->getId() ] );
 	}
@@ -218,7 +218,7 @@ class ApiStashEditTest extends ApiTestCase {
 		$this->markTestSkippedIfNoDiff3();
 
 		$name = ucfirst( __FUNCTION__ );
-		$oldRevRecord = $this->editPage( $name, "A\n\nB" )->value['revision-record'];
+		$oldRevRecord = $this->editPage( $name, "A\n\nB" )->getNewRevision();
 		$this->editPage( $name, "A\n\nC" );
 
 		$this->doStash( [
@@ -230,7 +230,7 @@ class ApiStashEditTest extends ApiTestCase {
 
 	public function testEditConflict() {
 		$name = ucfirst( __FUNCTION__ );
-		$oldRevRecord = $this->editPage( $name, 'A' )->value['revision-record'];
+		$oldRevRecord = $this->editPage( $name, 'A' )->getNewRevision();
 		$this->editPage( $name, 'B' );
 
 		$this->doStash( [
@@ -251,7 +251,7 @@ class ApiStashEditTest extends ApiTestCase {
 			'',
 			NS_MAIN,
 			$performer
-		)->value['revision-record'];
+		)->getNewRevision();
 		$this->editPage(
 			$title,
 			new WikitextContent( 'Text' ),
@@ -268,7 +268,7 @@ class ApiStashEditTest extends ApiTestCase {
 
 	public function testDeletedRevision() {
 		$name = ucfirst( __FUNCTION__ );
-		$oldRevRecord = $this->editPage( $name, 'A' )->value['revision-record'];
+		$oldRevRecord = $this->editPage( $name, 'A' )->getNewRevision();
 		$this->editPage( $name, 'B' );
 
 		$this->setExpectedApiException(
@@ -286,7 +286,7 @@ class ApiStashEditTest extends ApiTestCase {
 
 	public function testDeletedRevisionSection() {
 		$name = ucfirst( __FUNCTION__ );
-		$oldRevRecord = $this->editPage( $name, 'A' )->value['revision-record'];
+		$oldRevRecord = $this->editPage( $name, 'A' )->getNewRevision();
 		$this->editPage( $name, 'B' );
 
 		$this->setExpectedApiException( 'apierror-sectionreplacefailed' );

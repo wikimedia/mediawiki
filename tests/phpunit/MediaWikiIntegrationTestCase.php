@@ -13,6 +13,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Storage\PageUpdateStatus;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestResult;
@@ -2571,7 +2572,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param string $summary Optional summary string for the revision
 	 * @param int $defaultNs Optional namespace id
 	 * @param Authority|null $performer If null, static::getTestUser()->getAuthority() is used.
-	 * @return Status Object as returned by WikiPage::doUserEditContent()
+	 * @return PageUpdateStatus Object as returned by WikiPage::doUserEditContent()
 	 * @throws MWException If this test cases's needsDB() method doesn't return true.
 	 *         Test cases can use "@group Database" to enable database test support,
 	 *         or list the tables under testing in $this->tablesUsed, or override the
