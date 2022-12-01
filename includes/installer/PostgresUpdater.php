@@ -109,12 +109,12 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'user_former_groups', 'ufg_group', 'TEXT', '' ],
 			[ 'dropFkey', 'user_former_groups', 'ufg_user' ],
 			[ 'checkIndex', 'ipb_address_unique', [
-				[ 'ipb_address', 'text_ops', 'btree', 0 ],
-				[ 'ipb_user', 'int4_ops', 'btree', 0 ],
-				[ 'ipb_auto', 'int2_ops', 'btree', 0 ],
+					[ 'ipb_address', 'text_ops', 'btree', 0 ],
+					[ 'ipb_user', 'int4_ops', 'btree', 0 ],
+					[ 'ipb_auto', 'int2_ops', 'btree', 0 ],
+				],
+				'CREATE UNIQUE INDEX ipb_address_unique ON ipblocks (ipb_address,ipb_user,ipb_auto)'
 			],
-				'CREATE UNIQUE INDEX ipb_address_unique ' .
-				'ON ipblocks (ipb_address,ipb_user,ipb_auto)' ],
 
 			// 1.36
 			[ 'setDefault', 'bot_passwords', 'bp_token', '' ],
@@ -203,11 +203,12 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropPgIndex', 'watchlist', 'wl_user_namespace_title' ],
 			[ 'addPgIndex', 'watchlist', 'namespace_title', '(wl_namespace, wl_title)' ],
 			[ 'checkIndex', 'wl_user', [
-				[ 'wl_user', 'text_ops', 'btree', 1 ],
-				[ 'wl_namespace', 'int4_ops', 'btree', 1 ],
-				[ 'wl_title', 'text_ops', 'btree', 1 ],
+					[ 'wl_user', 'text_ops', 'btree', 1 ],
+					[ 'wl_namespace', 'int4_ops', 'btree', 1 ],
+					[ 'wl_title', 'text_ops', 'btree', 1 ],
+				],
+				'CREATE UNIQUE INDEX "wl_user" ON "watchlist" (wl_user, wl_namespace, wl_title)'
 			],
-				'CREATE UNIQUE INDEX "wl_user" ON "watchlist" (wl_user, wl_namespace, wl_title) ' ],
 			[ 'changeField', 'sites', 'site_domain', 'VARCHAR(255)', '' ],
 			[ 'renameIndex', 'sites', 'site_global_key', 'sites_global_key' ],
 			[ 'renameIndex', 'sites', 'site_type', 'sites_type' ],
@@ -262,12 +263,13 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgIndex', 'categorylinks', 'cl_timestamp', '(cl_to, cl_timestamp)' ],
 			[ 'addPgIndex', 'categorylinks', 'cl_collation_ext', '(cl_collation, cl_to, cl_type, cl_from)' ],
 			[ 'checkIndex', 'cl_sortkey', [
-				[ 'cl_to', 'text_ops', 'btree', 1 ],
-				[ 'cl_type', 'text_ops', 'btree', 1 ],
-				[ 'cl_sortkey', 'text_ops', 'btree', 1 ],
-				[ 'cl_from', 'text_ops', 'btree', 1 ],
+					[ 'cl_to', 'text_ops', 'btree', 1 ],
+					[ 'cl_type', 'text_ops', 'btree', 1 ],
+					[ 'cl_sortkey', 'text_ops', 'btree', 1 ],
+					[ 'cl_from', 'text_ops', 'btree', 1 ],
+				],
+				'CREATE INDEX cl_sortkey ON categorylinks (cl_to, cl_type, cl_sortkey, cl_from)'
 			],
-				'CREATE INDEX cl_sortkey ON categorylinks (cl_to, cl_type, cl_sortkey, cl_from)' ],
 			[ 'renameIndex', 'logging', 'logging_type_name', 'type_time' ],
 			[ 'renameIndex', 'logging', 'logging_actor_time_backwards',	'actor_time' ],
 			[ 'renameIndex', 'logging', 'logging_page_time', 'page_time' ],
@@ -434,10 +436,11 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'revision', 'rev_comment_id', 'BIGINT', 'rev_comment_id::BIGINT DEFAULT 0' ],
 			[ 'changeField', 'revision', 'rev_actor', 'BIGINT', 'rev_actor::BIGINT DEFAULT 0' ],
 			[ 'checkIndex', 'rev_page_id', [
-				[ 'rev_page', 'int4_ops', 'btree', 1 ],
-				[ 'rev_id', 'int4_ops', 'btree', 1 ],
+					[ 'rev_page', 'int4_ops', 'btree', 1 ],
+					[ 'rev_id', 'int4_ops', 'btree', 1 ],
+				],
+				'CREATE INDEX rev_page_id ON revision (rev_page,rev_id)'
 			],
-				'CREATE INDEX rev_page_id ON revision (rev_page,rev_id)' ],
 			[ 'addTable', 'searchindex', 'patch-searchindex-table.sql' ],
 			[ 'addPgIndex', 'oldimage', 'oi_timestamp', '(oi_timestamp)' ],
 			[ 'renameIndex', 'page', 'name_title', 'page_name_title' ],
