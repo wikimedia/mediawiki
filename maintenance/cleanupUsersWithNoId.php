@@ -99,20 +99,15 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 	 * @return string[] [ string $next, string $display ]
 	 */
 	private function makeNextCond( $dbw, $indexFields, $row ) {
-		$next = '';
 		$display = [];
-		for ( $i = count( $indexFields ) - 1; $i >= 0; $i-- ) {
-			$field = $indexFields[$i];
+		$conds = [];
+		foreach ( $indexFields as $field ) {
 			$display[] = $field . '=' . $row->$field;
-			$value = $dbw->addQuotes( $row->$field );
-			if ( $next === '' ) {
-				$next = "$field > $value";
-			} else {
-				$next = "$field > $value OR $field = $value AND ($next)";
-			}
+			$conds[ $field ] = $row->$field;
 		}
-		$display = implode( ' ', array_reverse( $display ) );
-		return [ $next, $display ];
+		$display = implode( ' ', $display );
+		$conds = $dbw->buildComparison( '>', $conds );
+		return [ $conds, $display ];
 	}
 
 	/**
