@@ -1,40 +1,28 @@
 /*!
- * JavaScript for Special:Preferences: Tab navigation.
+ * JavaScript for Special:Preferences: mobileLayout.
  */
 ( function () {
-	// this function takes all the checkboxes in the Preferences of mobile & displays them as toggle switches
-	// naming the function makes it easier to find in performance profiler tools.
-	// local runtime: 12ms (+/- 2ms) total
+	/*
+	 * Adds a ToggleSwitchWidget to control each checkboxWidget
+	 * Hides each checkboxWidget
+	 */
 	function insertToggles() {
 		var checkboxes = document.querySelectorAll( 'span.oo-ui-checkboxInputWidget' );
-		// Iterate through DOM elements instead of JQuery collection
 		Array.prototype.forEach.call( checkboxes, function ( checkboxWidget ) {
-			// Use DOM elements when OOUI functionality isn't required
 			var checkboxInput = checkboxWidget.querySelector( 'input' );
-			// It's fine to use OOUI to implement UI elements
 			var toggleSwitchWidget = new OO.ui.ToggleSwitchWidget( {
 				value: checkboxInput.checked,
 				disabled: checkboxInput.disabled
 			} );
-			// No more event or state handling is required
-			// since we only create one OOUI Widget per checkbox
 			toggleSwitchWidget.on( 'change', function ( value ) {
 				toggleSwitchWidget.setValue( value );
 				checkboxInput.checked = value;
 			} );
-
-			// Use native JS methods to insert elements into the DOM
-			// OO.ui.Widget.$element returns a JQuery object
-			// That object is iterable and wraps a single DOM element, so
-			// OO.ui.Widget.$element[ 0 ] is the DOM element rendition of this OOUI widget
 			checkboxWidget.insertAdjacentElement( 'afterend', toggleSwitchWidget.$element[ 0 ] );
-			// Use native JS methods to manage visibility of DOM elements
 			checkboxWidget.classList.add( 'hidden' );
-			// @TODO: T323050 verify that this doesn't break any exising checkbox handling
 		} );
 	}
 	$( function () {
-
 		insertToggles();
 		var options, windowManager, preferencesForm, prefOptionsContainer, prefContent, prefFormWrapper;
 		options = OO.ui.infuse( document.querySelector( '.mw-mobile-preferences-container' ) );
