@@ -968,6 +968,8 @@ describe( '/transform/ endpoint', function () {
 		} );
 
 		describe( 'Variant conversion', function () {
+			// NOTE: Continue to accept sr-el for a while, to remain compatible with older versions of the parsoid lib.
+			const expectedCodeSerbianLatin = /sr-el|sr-Latn/;
 
 			it( 'should perform variant conversion for transform given pagelanguage in HTTP header (html)', function ( done ) {
 				client.req
@@ -977,7 +979,7 @@ describe( '/transform/ endpoint', function () {
 					.send( {
 						wikitext: 'абвг abcd x'
 					} )
-					.expect( 'Content-Language', 'sr-el' )
+					.expect( 'Content-Language', expectedCodeSerbianLatin )
 					.expect( 'Vary', /\bAccept-Language\b/i )
 					.expect( validHtmlResponse( ( doc ) => {
 						doc.body.textContent.should.equal( 'abvg abcd x' );
@@ -1003,7 +1005,7 @@ describe( '/transform/ endpoint', function () {
 						const headers = res.body.html.headers;
 						headers.should.have.property( 'content-language' );
 						headers.should.have.property( 'vary' );
-						headers[ 'content-language' ].should.equal( 'sr-el' );
+						headers[ 'content-language' ].should.equal( expectedCodeSerbianLatin );
 						headers.vary.should.match( /\bAccept-Language\b/i );
 					} )
 					.end( done );
@@ -1021,7 +1023,7 @@ describe( '/transform/ endpoint', function () {
 							body: 'абвг abcd x'
 						}
 					} )
-					.expect( 'Content-Language', 'sr-el' )
+					.expect( 'Content-Language', expectedCodeSerbianLatin )
 					.expect( 'Vary', /\bAccept-Language\b/i )
 					.expect( validHtmlResponse( ( doc ) => {
 						doc.body.textContent.should.equal( 'abvg abcd x' );
@@ -1051,7 +1053,7 @@ describe( '/transform/ endpoint', function () {
 						const headers = res.body.html.headers;
 						headers.should.have.property( 'content-language' );
 						headers.should.have.property( 'vary' );
-						headers[ 'content-language' ].should.equal( 'sr-el' );
+						headers[ 'content-language' ].should.match( expectedCodeSerbianLatin );
 						headers.vary.should.match( /\bAccept-Language\b/i );
 					} )
 					.end( done );
@@ -1068,7 +1070,7 @@ describe( '/transform/ endpoint', function () {
 							body: 'абвг abcd x'
 						}
 					} )
-					.expect( 'Content-Language', 'sr-el' )
+					.expect( 'Content-Language', expectedCodeSerbianLatin )
 					.expect( 'Vary', /\bAccept-Language\b/i )
 					.expect( validHtmlResponse( ( doc ) => {
 						doc.body.textContent.should.equal( 'abvg abcd x' );
@@ -1094,7 +1096,7 @@ describe( '/transform/ endpoint', function () {
 						const headers = res.body.html.headers;
 						headers.should.have.property( 'content-language' );
 						headers.should.have.property( 'vary' );
-						headers[ 'content-language' ].should.equal( 'sr-el' );
+						headers[ 'content-language' ].should.match( expectedCodeSerbianLatin );
 						headers.vary.should.match( /\bAccept-Language\b/i );
 					} )
 					.end( done );
