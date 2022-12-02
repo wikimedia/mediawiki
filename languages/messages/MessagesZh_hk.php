@@ -20,6 +20,16 @@ $fallback = 'zh-hant, zh-tw, zh, zh-hans';
 
 $fallback8bitEncoding = 'Big5-HKSCS';
 
+$namespaceNames = [
+	NS_USER             => '用戶',
+	NS_USER_TALK        => '用戶討論',
+];
+
+$namespaceAliases = [
+	"用戶" => NS_USER,
+	"用戶討論" => NS_USER_TALK,
+];
+
 /** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'ComparePages'              => [ '頁面比較' ],
