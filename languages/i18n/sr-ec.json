@@ -2231,7 +2231,7 @@
 	"listgrouprights-namespaceprotection-header": "Ограничења именских простора",
 	"listgrouprights-namespaceprotection-namespace": "Именски простор",
 	"listgrouprights-namespaceprotection-restrictedto": "Права потребна за уређивање",
-	"listgrants": "Дозволе",
+	"listgrants": "Списак дозвола",
 	"listgrants-grant": "Дозвола",
 	"listgrants-rights": "Права",
 	"listgrants-grant-display": "$1 <code>($2)</code>",
