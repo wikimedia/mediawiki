@@ -187,7 +187,11 @@ class HtmlOutputRendererHelper {
 	}
 
 	/**
-	 * Set the desired profile version for the output.
+	 * Set the desired Parsoid profile version for the output.
+	 * The actual output version is selected to be compatible with the one given here,
+	 * per the rules of semantic versioning.
+	 *
+	 * @note Will disable caching if the effective output version is different from the default.
 	 *
 	 * @param string $version
 	 *
@@ -204,6 +208,22 @@ class HtmlOutputRendererHelper {
 		if ( $outputContentVersion !== Parsoid::defaultHTMLVersion() ) {
 			// See Parsoid::wikitext2html
 			$this->parsoidOptions['outputContentVersion'] = $outputContentVersion;
+			$this->isCacheable = false;
+		}
+	}
+
+	/**
+	 * Set the desired offset type for data-parsoid attributes.
+	 *
+	 * @note Will disable caching if the given offset type is different from the default.
+	 *
+	 * @param string $offsetType One of the offset types accepted by Parsoid::wikitext2html.
+	 */
+	public function setOffsetType( $offsetType ) {
+		// Only set the option if the value isn't the default (see Wikimedia\Parsoid\Config\Env)!
+		// See Parsoid::wikitext2html for possible values.
+		if ( $offsetType !== 'byte' ) {
+			$this->parsoidOptions['offsetType'] = $offsetType;
 			$this->isCacheable = false;
 		}
 	}
