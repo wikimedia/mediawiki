@@ -26,6 +26,7 @@ use MediaWiki\Message\UserGroupMembershipParam;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\StubObject\StubUserLang;
+use Wikimedia\Assert\Assert;
 
 /**
  * The Message class deals with fetching and processing of interface message
@@ -828,7 +829,6 @@ class Message implements MessageSpecifier, Serializable {
 	 * @since 1.17
 	 * @param Language|StubUserLang|string $lang Language code or Language object.
 	 * @return Message $this
-	 * @throws MWException
 	 */
 	public function inLanguage( $lang ) {
 		$previousLanguage = $this->language;
@@ -843,10 +843,8 @@ class Message implements MessageSpecifier, Serializable {
 		} elseif ( $lang instanceof StubUserLang ) {
 			$this->language = null;
 		} else {
-			$type = gettype( $lang );
-			throw new MWException( __METHOD__ . " must be "
-				. "passed a String or Language object; $type given"
-			);
+			// Always throws. Moved here as an optimization.
+			Assert::parameterType( [ Language::class, StubUserLang::class, 'string' ], $lang, '$lang' );
 		}
 
 		if ( $this->language !== $previousLanguage ) {
