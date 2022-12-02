@@ -993,7 +993,11 @@ class MessageCache implements LoggerAwareInterface {
 		// Normalise title-case input (with some inlining)
 		$lckey = self::normalizeKey( $key );
 
-		$this->hookRunner->onMessageCache__get( $lckey );
+		// Fandom change: Workaround T193271 performance regression by letting extensions signal
+		// that a particular message key cannot exist in the database
+		if ( !$this->hookRunner->onMessageCache__get( $lckey ) ) {
+			return false;
+		}
 
 		// Loop through each language in the fallback list until we find something useful
 		$message = $this->getMessageFromFallbackChain(
