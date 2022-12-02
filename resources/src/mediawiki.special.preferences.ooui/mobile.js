@@ -2,12 +2,14 @@
  * JavaScript for Special:Preferences: mobileLayout.
  */
 ( function () {
+	// Define a window manager to control the dialogs
+	var dialogFactory = new OO.Factory();
+	var windowManager = new OO.ui.WindowManager( { factory: dialogFactory } );
 	/*
-	 * Adds a ToggleSwitchWidget to control each checkboxWidget
-	 * Hides each checkboxWidget
+	 * Add a ToggleSwitchWidget to control each checkboxWidget
+	 * Hide each checkboxWidget
 	 */
-	function insertToggles() {
-		var checkboxes = document.querySelectorAll( 'span.oo-ui-checkboxInputWidget' );
+	function insertToggles( checkboxes ) {
 		Array.prototype.forEach.call( checkboxes, function ( checkboxWidget ) {
 			var checkboxInput = checkboxWidget.querySelector( 'input' );
 			var toggleSwitchWidget = new OO.ui.ToggleSwitchWidget( {
@@ -22,63 +24,67 @@
 			checkboxWidget.classList.add( 'hidden' );
 		} );
 	}
-	$( function () {
-		insertToggles();
-		var options, windowManager, preferencesForm, prefOptionsContainer, prefContent, prefFormWrapper;
-		options = OO.ui.infuse( document.querySelector( '.mw-mobile-preferences-container' ) );
-		windowManager = new OO.ui.WindowManager();
-		preferencesForm = document.querySelector( '#mw-prefs-form' );
-		prefOptionsContainer = document.querySelector( '#mw-prefs-container' );
-		prefFormWrapper = document.querySelector( '.mw-htmlform-ooui-wrapper' );
-
-		function showContent( element ) {
-			prefContent = document.querySelector( '#' + element.elementId + '-content' );
-			prefContent.classList.remove( 'mw-prefs-hidden' );
-			prefOptionsContainer.classList.add( 'mw-prefs-hidden' );
-			prefOptionsContainer.removeAttribute( 'style' );
-			preferencesForm.insertBefore( prefContent, preferencesForm.firstChild );
-
-			function PrefDialog( config ) {
-				PrefDialog.super.call( this, config );
-			}
-
-			OO.inheritClass( PrefDialog, OO.ui.Dialog );
-			PrefDialog.static.name = element.elementId;
-			PrefDialog.static.escapable = false;
-			PrefDialog.prototype.initialize = function () {
-				PrefDialog.super.prototype.initialize.call( this );
-				this.content = new OO.ui.PanelLayout( { padded: true, expanded: true } );
-				this.$body.append( preferencesForm );
-			};
-
-			PrefDialog.prototype.getBodyHeight = function () {
-				return this.content.$element.outerHeight( true );
-			};
-
-			var prefDialog = new PrefDialog( { size: 'full' } );
-
-			$( document.body ).append( windowManager.$element );
-			windowManager.addWindows( [ prefDialog ] );
-			windowManager.openWindow( prefDialog );
-
-			if ( prefDialog.isOpening() ) {
-				document.querySelector( '#mw-mf-viewport' ).classList.add( 'hidden' );
-			}
+	/*
+	 * Configure and register a dialog for a pref section
+	 */
+	function sectionDialog( sectionId, sectionHead, sectionBody ) {
+		function PrefDialog() {
+			var conf = { classes: [ 'overlay-content', 'mw-mobile-pref-window' ] };
+			PrefDialog.super.call( this, conf );
 		}
+		OO.inheritClass( PrefDialog, OO.ui.Dialog );
+		PrefDialog.static.name = sectionId;
+		PrefDialog.static.escapable = true;
+		PrefDialog.static.size = 'larger';
+		PrefDialog.prototype.initialize = function () {
+			insertToggles( sectionBody.querySelectorAll( 'span.oo-ui-checkboxInputWidget' ) );
+			this.name = sectionId;
+			PrefDialog.super.prototype.initialize.call( this );
+			this.$head.append( sectionHead );
+			this.$head[ 0 ].classList.add( 'mw-mobile-pref-dialog-head' );
+			this.$body.append( sectionBody );
+			this.content = new OO.ui.PanelLayout( { padded: true, expanded: true } );
+			this.$body[ 0 ].classList.add( 'mw-mobile-pref-dialog-body' );
+		};
 
-		options.items.forEach( function ( element ) {
-			document.querySelector( '#' + element.elementId ).addEventListener( 'click', function () {
-				showContent( element );
+		dialogFactory.register( PrefDialog );
+	}
+	// DOM-dependant code
+	$( function () {
+		/*
+		 * Initialize Dialogs for all pref sections
+		 */
+		function initDialogs() {
+			// Query the document once, then query that returned element afterwards.
+			var preferencesForm = document.querySelector( '#mw-prefs-form' );
+			var prefButtons = preferencesForm.querySelector( 'div.mw-prefs-buttons' );
+			var sections = preferencesForm.querySelectorAll( '.mw-mobile-prefsection' );
+			// Move the form buttons (such as save) into the dialog after opening.
+			windowManager.on( 'opening', function ( win, opened ) {
+				if ( opened ) {
+					win.$foot[ 0 ].appendChild( prefButtons );
+				}
 			} );
-
-			var backButtonId = '#' + element.elementId + '-back-button';
-			document.querySelector( backButtonId ).addEventListener( 'click', function () {
-				prefContent.classList.add( 'mw-prefs-hidden' );
-				prefOptionsContainer.classList.remove( 'mw-prefs-hidden' );
-				prefFormWrapper.insertBefore( preferencesForm, prefFormWrapper.firstChild );
-				document.querySelector( '#mw-mf-viewport' ).classList.remove( 'hidden' );
-				windowManager.currentWindow.close();
+			// Move the form buttons (such as save) back to the main form while closing.
+			windowManager.on( 'closing', function () {
+				preferencesForm.querySelector( '#preferences' ).appendChild( prefButtons );
 			} );
-		} );
+			// Add the window manager to the form
+			$( preferencesForm ).append( windowManager.$element );
+			// add event listeners and register a dialog for each section
+			Array.prototype.forEach.call( sections, function ( section ) {
+				var sectionContent = preferencesForm.querySelector( '#' + section.id + '-content' );
+				var sectionBody = sectionContent.querySelector( 'div > div.oo-ui-widget' );
+				var sectionHead = sectionContent.querySelector( '#' + section.id + '-head' );
+				sectionHead.querySelector( '#' + section.id + '-back-button' ).addEventListener( 'click', function () {
+					windowManager.closeWindow( section.id );
+				} );
+				preferencesForm.querySelector( '#' + section.id ).addEventListener( 'click', function () {
+					windowManager.openWindow( section.id );
+				} );
+				sectionDialog( section.id, sectionHead, sectionBody );
+			} );
+		}
+		initDialogs();
 	} );
 }() );
