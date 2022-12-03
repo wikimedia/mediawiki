@@ -1336,7 +1336,7 @@
 [submodule "extensions/SecureLinkFixer"]
 	path = extensions/SecureLinkFixer
 	url = https://github.com/wikimedia/mediawiki-extensions-SecureLinkFixer
-	branch = master
+	branch = REL1_38
 	ignore = dirty
 [submodule "extensions/PageAssessments"]
 	path = extensions/PageAssessments
