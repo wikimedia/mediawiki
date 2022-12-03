@@ -266,6 +266,11 @@ because of Phabricator reports.
 * …
 
 === Other changes in 1.40 ===
+* Calling RecentChange::doMarkPatrolled() with $auto = true has no effect and
+  logs a warning. Since 1.31, it would mark the change as manually patrolled,
+  but would not log it as such in patrol log and would still require
+  'autopatrol' right (not 'patrol'). Generally, whether a change should become
+  autopatrolled, is usually determined before it's inserted in the database.
 * …
 
 == Compatibility ==

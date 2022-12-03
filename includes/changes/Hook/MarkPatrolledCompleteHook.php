@@ -19,9 +19,8 @@ interface MarkPatrolledCompleteHook {
 	 *
 	 * @param int $rcid ID of the revision marked as patrolled
 	 * @param User $user User who marked the edit patrolled
-	 * @param bool $wcOnlySysopsCanPatrol Config setting indicating whether the user must be a
-	 *   sysop to patrol the edit
-	 * @param bool $auto True if the edit is being marked as patrolled automatically
+	 * @param bool $wcOnlySysopsCanPatrol Always false
+	 * @param bool $auto Always false
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onMarkPatrolledComplete( $rcid, $user, $wcOnlySysopsCanPatrol,

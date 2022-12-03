@@ -618,12 +618,16 @@ class RecentChange implements Taggable {
 	 * NOTE: Can also return 'rcpatroldisabled', 'hookaborted' and
 	 * 'markedaspatrollederror-noautopatrol' as errors
 	 * @param Authority $performer User performing the action
-	 * @param bool $auto For automatic patrol
+	 * @param bool|null $auto Unused. Passing true logs a warning.
 	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
 	 *   ($user should be able to add the specified tags before this is called)
 	 * @return array[] Array of permissions errors, see PermissionManager::getPermissionErrors()
 	 */
-	public function doMarkPatrolled( Authority $performer, $auto = false, $tags = null ) {
+	public function doMarkPatrolled( Authority $performer, $auto = null, $tags = null ) {
+		if ( $auto ) {
+			wfWarn( __METHOD__ . ' with $auto = true' );
+			return [];
+		}
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
 		$useRCPatrol = $mainConfig->get( MainConfigNames::UseRCPatrol );
 		$useNPPatrol = $mainConfig->get( MainConfigNames::UseNPPatrol );
@@ -643,11 +647,10 @@ class RecentChange implements Taggable {
 			$this->getAttribute( 'rc_log_type' ) == 'upload' ) ) ) {
 			$status->fatal( 'rcpatroldisabled' );
 		}
-		// Automatic patrol needs "autopatrol", ordinary patrol needs "patrol"
-		$performer->authorizeWrite( $auto ? 'autopatrol' : 'patrol', $this->getTitle(), $status );
+		$performer->authorizeWrite( 'patrol', $this->getTitle(), $status );
 		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
 		if ( !Hooks::runner()->onMarkPatrolled(
-			$this->getAttribute( 'rc_id' ), $user, false, $auto, $tags )
+			$this->getAttribute( 'rc_id' ), $user, false, false, $tags )
 		) {
 			$status->fatal( 'hookaborted' );
 		}
@@ -667,10 +670,10 @@ class RecentChange implements Taggable {
 		// Actually set the 'patrolled' flag in RC
 		$this->reallyMarkPatrolled();
 		// Log this patrol event
-		PatrolLog::record( $this, $auto, $performer->getUser(), $tags );
+		PatrolLog::record( $this, false, $performer->getUser(), $tags );
 
 		Hooks::runner()->onMarkPatrolledComplete(
-			$this->getAttribute( 'rc_id' ), $user, false, $auto );
+			$this->getAttribute( 'rc_id' ), $user, false, false );
 
 		return [];
 	}
