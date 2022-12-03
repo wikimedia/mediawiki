@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * Test class for ReverseChronologicalPagerTest methods.
  *
@@ -7,70 +9,80 @@
  *
  * @author Geoffrey Mon <geofbot@gmail.com>
  */
-class ReverseChronologicalPagerTest extends MediaWikiLangTestCase {
+class ReverseChronologicalPagerTest extends MediaWikiIntegrationTestCase {
+
+	/**
+	 * @covers ReverseChronologicalPager::getDateCond
+	 * @dataProvider provideGetDateCond
+	 */
+	public function testGetDateCond( $params, $expected ) {
+		$pager = $this->getMockForAbstractClass( ReverseChronologicalPager::class );
+		$pagerWrapper = TestingAccessWrapper::newFromObject( $pager );
+		$db = wfGetDB( DB_PRIMARY );
+
+		$pager->getDateCond( ...$params );
+		$this->assertEquals( $pagerWrapper->endOffset, $db->timestamp( $expected ) );
+	}
+
+	/**
+	 * Data provider in description => [ [ param1, ... ], expected output ] format
+	 */
+	public function provideGetDateCond() {
+		yield 'Test year and month' => [
+			[ 2006, 6 ], '20060701000000'
+		];
+		yield 'Test year, month, and day' => [
+			[ 2006, 6, 5 ], '20060606000000'
+		];
+		yield 'Test month overflow into the next year' => [
+			[ 2006, 12 ], '20070101000000'
+		];
+		yield 'Test day overflow to the next month' => [
+			[ 2006, 6, 30 ], '20060701000000'
+		];
+		yield 'Test invalid month (should use end of year)' => [
+			[ 2006, -1 ], '20070101000000'
+		];
+		yield 'Test invalid day (should use end of month)' => [
+			[ 2006, 6, 1337 ], '20060701000000'
+		];
+		yield 'Test last day of year' => [
+			[ 2006, 12, 31 ], '20070101000000'
+		];
+		yield 'Test invalid day that overflows to next year' => [
+			[ 2006, 12, 32 ], '20070101000000'
+		];
+		yield '3-digit year, T287621' => [
+			[ 720, 1, 5 ], '07200106000000'
+		];
+		yield 'Y2K38 bug' => [
+			[ 2042, 1, 5 ], '20320101000000'
+		];
+	}
 
 	/**
 	 * @covers ReverseChronologicalPager::getDateCond
 	 */
-	public function testGetDateCond() {
+	public function testGetDateCondSpecial() {
 		$pager = $this->getMockForAbstractClass( ReverseChronologicalPager::class );
+		$pagerWrapper = TestingAccessWrapper::newFromObject( $pager );
 		$timestamp = MWTimestamp::getInstance();
 		$db = wfGetDB( DB_PRIMARY );
 
 		$currYear = $timestamp->format( 'Y' );
 		$currMonth = $timestamp->format( 'n' );
 
-		// Test that getDateCond sets and returns mOffset
-		$this->assertEquals( $pager->getDateCond( 2006, 6 ), $pager->mOffset );
-
-		// Test year and month
-		$pager->getDateCond( 2006, 6 );
-		$this->assertEquals( $pager->mOffset, $db->timestamp( '20060701000000' ) );
-
-		// Test year, month, and day
-		$pager->getDateCond( 2006, 6, 5 );
-		$this->assertEquals( $pager->mOffset, $db->timestamp( '20060606000000' ) );
-
-		// Test month overflow into the next year
-		$pager->getDateCond( 2006, 12 );
-		$this->assertEquals( $pager->mOffset, $db->timestamp( '20070101000000' ) );
-
-		// Test day overflow to the next month
-		$pager->getDateCond( 2006, 6, 30 );
-		$this->assertEquals( $pager->mOffset, $db->timestamp( '20060701000000' ) );
-
-		// Test invalid month (should use end of year)
-		$pager->getDateCond( 2006, -1 );
-		$this->assertEquals( $pager->mOffset, $db->timestamp( '20070101000000' ) );
-
-		// Test invalid day (should use end of month)
-		$pager->getDateCond( 2006, 6, 1337 );
-		$this->assertEquals( $pager->mOffset, $db->timestamp( '20060701000000' ) );
-
-		// Test last day of year
-		$pager->getDateCond( 2006, 12, 31 );
-		$this->assertEquals( $pager->mOffset, $db->timestamp( '20070101000000' ) );
-
-		// Test invalid day that overflows to next year
-		$pager->getDateCond( 2006, 12, 32 );
-		$this->assertEquals( $pager->mOffset, $db->timestamp( '20070101000000' ) );
+		// Test that getDateCond sets and returns offset
+		$this->assertEquals( $pager->getDateCond( 2006, 6 ), $pagerWrapper->endOffset );
 
 		// Test month past current month (should use previous year)
 		if ( $currMonth < 5 ) {
 			$pager->getDateCond( -1, 5 );
-			$this->assertEquals( $pager->mOffset, $db->timestamp( $currYear - 1 . '0601000000' ) );
+			$this->assertEquals( $pagerWrapper->endOffset, $db->timestamp( $currYear - 1 . '0601000000' ) );
 		}
 		if ( $currMonth < 12 ) {
 			$pager->getDateCond( -1, 12 );
-			$this->assertEquals( $pager->mOffset, $db->timestamp( $currYear . '0101000000' ) );
+			$this->assertEquals( $pagerWrapper->endOffset, $db->timestamp( $currYear . '0101000000' ) );
 		}
-
-		// 3-digit year, T287621
-		$pager->getDateCond( 720, 1, 5 );
-		$this->assertEquals( $pager->mOffset, $db->timestamp( '07200106000000' ) );
-
-		// Y2K38 bug
-		$pager->getDateCond( 2042, 1, 5 );
-		$this->assertEquals( $pager->mOffset, $db->timestamp( '20320101000000' ) );
 	}
 }

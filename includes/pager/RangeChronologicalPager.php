@@ -27,8 +27,8 @@ use Wikimedia\Timestamp\TimestampException;
  */
 abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 
-	/** @var string[] */
-	protected $rangeConds = [];
+	/** @var string */
+	protected $startOffset;
 
 	/**
 	 * Set and return a date range condition using timestamps provided by the user.
@@ -38,73 +38,46 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 	 *
 	 * @stable to override
 	 *
-	 * @param string $startStamp Timestamp of the beginning of the date range (or empty)
-	 * @param string $endStamp Timestamp of the end of the date range (or empty)
+	 * @param string $startTime Timestamp of the beginning of the date range (or empty)
+	 * @param string $endTime Timestamp of the end of the date range (or empty)
 	 * @return array|null Database conditions to satisfy the specified date range
 	 *     or null if dates are invalid
 	 */
-	public function getDateRangeCond( $startStamp, $endStamp ) {
-		$this->rangeConds = [];
+	public function getDateRangeCond( $startTime, $endTime ) {
+		// Construct the conds array for compatibility with callers (if any)
+		$rangeConds = [];
 
+		// This is a chronological pager, so the first column should be some kind of timestamp
+		$timestampField = is_array( $this->mIndexField ) ? $this->mIndexField[0] : $this->mIndexField;
 		try {
-			// This is a chronological pager, so the first column should be some kind of timestamp
-			$timestampField = is_array( $this->mIndexField ) ? $this->mIndexField[0] : $this->mIndexField;
-			if ( $startStamp !== '' ) {
-				$startTimestamp = MWTimestamp::getInstance( $startStamp );
-				$startOffset = $this->mDb->timestamp( $startTimestamp->getTimestamp() );
-				$this->rangeConds[] = $timestampField . '>=' . $this->mDb->addQuotes( $startOffset );
+			if ( $startTime !== '' ) {
+				$startTimestamp = MWTimestamp::getInstance( $startTime );
+				$this->startOffset = $this->mDb->timestamp( $startTimestamp->getTimestamp() );
+				$rangeConds[] = $this->mDb->buildComparison( '>=', [ $timestampField => $this->startOffset ] );
 			}
 
-			if ( $endStamp !== '' ) {
-				$endTimestamp = MWTimestamp::getInstance( $endStamp );
-				$endOffset = $this->mDb->timestamp( $endTimestamp->getTimestamp() );
-				$this->rangeConds[] = $timestampField . '<=' . $this->mDb->addQuotes( $endOffset );
+			if ( $endTime !== '' ) {
+				$endTimestamp = MWTimestamp::getInstance( $endTime );
+				// Turned to use '<' for consistency with the parent class,
+				// add one second for compatibility with existing use cases
+				$endTimestamp->timestamp = $endTimestamp->timestamp->modify( '+1 second' );
+				$this->endOffset = $this->mDb->timestamp( $endTimestamp->getTimestamp() );
+				$rangeConds[] = $this->mDb->buildComparison( '<', [ $timestampField => $this->endOffset ] );
 
 				// populate existing variables for compatibility with parent
 				$this->mYear = (int)$endTimestamp->format( 'Y' );
 				$this->mMonth = (int)$endTimestamp->format( 'm' );
 				$this->mDay = (int)$endTimestamp->format( 'd' );
-				$this->mOffset = $endOffset;
 			}
 		} catch ( TimestampException $ex ) {
 			return null;
 		}
 
-		return $this->rangeConds;
+		return $rangeConds;
 	}
 
 	/**
-	 * Takes ReverseChronologicalPager::getDateCond parameters and repurposes
-	 * them to work with timestamp-based getDateRangeCond.
-	 *
-	 * @stable to override
-	 *
-	 * @param int $year Year up to which we want revisions
-	 * @param int $month Month up to which we want revisions
-	 * @param int $day [optional] Day up to which we want revisions. Default is end of month.
-	 * @return string|null Timestamp or null if year and month are false/invalid
-	 */
-	public function getDateCond( $year, $month, $day = -1 ) {
-		// run through getDateRangeCond so rangeConds, mOffset, ... are set
-		$legacyTimestamp = self::getOffsetDate( $year, $month, $day );
-		// ReverseChronologicalPager uses strict inequality for the end date ('<'),
-		// but this class uses '<=' and expects extending classes to handle modifying the end date.
-		// Therefore, we need to subtract one second from the output of getOffsetDate to make it
-		// work with the '<=' inequality used in this class.
-		$legacyTimestamp->timestamp = $legacyTimestamp->timestamp->modify( '-1 second' );
-		$this->getDateRangeCond( '', $legacyTimestamp->getTimestamp( TS_MW ) );
-		return $this->mOffset;
-	}
-
-	/**
-	 * Build variables to use by the database wrapper.
-	 *
-	 * @stable to override
-	 *
-	 * @param string $offset Index offset, inclusive
-	 * @param int $limit Exact query limit
-	 * @param bool $order IndexPager::QUERY_ASCENDING or IndexPager::QUERY_DESCENDING
-	 * @return array
+	 * @inheritDoc
 	 */
 	protected function buildQueryInfo( $offset, $limit, $order ) {
 		[ $tables, $fields, $conds, $fname, $options, $join_conds ] = parent::buildQueryInfo(
@@ -112,9 +85,10 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 			$limit,
 			$order
 		);
-
-		if ( $this->rangeConds ) {
-			$conds = array_merge( $conds, $this->rangeConds );
+		// End of the range has been added by ReverseChronologicalPager
+		if ( $this->startOffset ) {
+			$timestampField = is_array( $this->mIndexField ) ? $this->mIndexField[0] : $this->mIndexField;
+			$conds[] = $this->mDb->buildComparison( '>=', [ $timestampField => $this->startOffset ] );
 		}
 
 		return [ $tables, $fields, $conds, $fname, $options, $join_conds ];

@@ -114,12 +114,6 @@ class SpecialLog extends SpecialPage {
 			}
 		}
 
-		# Don't let the user get stuck with a certain date
-		if ( $opts->getValue( 'offset' ) || $opts->getValue( 'dir' ) == 'prev' ) {
-			$opts->setValue( 'year', '' );
-			$opts->setValue( 'month', '' );
-		}
-
 		// If the user doesn't have the right permission to view the specific
 		// log type, throw a PermissionsError
 		// If the log type is invalid, just show all public logs
