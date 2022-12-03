@@ -796,31 +796,6 @@ class LocalisationCache {
 	}
 
 	/**
-	 * Given an array mapping language code to localisation value, such as is
-	 * found in extension *.i18n.php files, iterate through a fallback sequence
-	 * to merge the given data with an existing primary value.
-	 *
-	 * Returns true if any data from the extension array was used, false
-	 * otherwise.
-	 * @param array $codeSequence
-	 * @param string $key
-	 * @param mixed &$value
-	 * @param mixed $fallbackValue
-	 * @return bool
-	 */
-	protected function mergeExtensionItem( $codeSequence, $key, &$value, $fallbackValue ) {
-		$used = false;
-		foreach ( $codeSequence as $code ) {
-			if ( isset( $fallbackValue[$code] ) ) {
-				$this->mergeItem( $key, $value, $fallbackValue[$code] );
-				$used = true;
-			}
-		}
-
-		return $used;
-	}
-
-	/**
 	 * Gets the combined list of messages dirs from
 	 * core and extensions
 	 *
