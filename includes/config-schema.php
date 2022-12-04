@@ -2003,7 +2003,6 @@ return [
 			],
 			'SpecialPages' => [
 			],
-			'AutoloadAttemptLowercase' => false,
 			'ExtensionCredits' => [
 			],
 			'Hooks' => [
@@ -3216,9 +3215,6 @@ return [
 				'type' => 'boolean',
 			],
 		],
-		'AutoloadAttemptLowercase' => [
-			'deprecated' => 'since 1.35',
-		],
 		'JobBackoffThrottling' => [
 			'additionalProperties' => [
 				'type' => 'number',
@@ -3261,5 +3257,6 @@ return [
 	'obsolete-config' => [
 		'MangleFlashPolicy' => 'Since 1.39; no longer has any effect.',
 		'EnableOpenSearchSuggest' => 'Since 1.35, no longer used',
+		'AutoloadAttemptLowercase' => 'Since 1.40; no longer has any effect.',
 	],
 ];

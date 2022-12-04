@@ -3860,13 +3860,6 @@ class MainConfigNames {
 	public const SpecialPages = 'SpecialPages';
 
 	/**
-	 * Name constant for the AutoloadAttemptLowercase setting, for use with Config::get()
-	 * @see MainConfigSchema::AutoloadAttemptLowercase
-	 * @deprecated since 1.35
-	 */
-	public const AutoloadAttemptLowercase = 'AutoloadAttemptLowercase';
-
-	/**
 	 * Name constant for the ExtensionCredits setting, for use with Config::get()
 	 * @see MainConfigSchema::ExtensionCredits
 	 */

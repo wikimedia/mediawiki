@@ -51,6 +51,8 @@ For notes on 1.39.x and older releases, see HISTORY.
   set $wgShellboxUrls instead.
 * $wgParserTestFiles which was deprecated in 1.30 has now been removed;
   extensions can place their parser test files in `tests/parser` instead.
+* (T231412) $wgAutoloadAttemptLowercase, which was deprecated in 1.35,
+  no longer has any effect.
 * …
 
 === New user-facing features in 1.40 ===

@@ -118,26 +118,6 @@
 		<exclude-pattern>*/tests/phpunit/integration/includes/GlobalFunctions/*</exclude-pattern>
 	</rule>
 	<rule ref="Generic.PHP.NoSilencedErrors.Discouraged">
-		<!--
-		Our normal policy of using Wikimedia\AtEase does not always make sense tests.
-
-		AtEase cannot be cleanly used in tests that also use expectException() as
-		the restoreWarnings() call would never be reached:
-
-			$this->expectException( PasswordError::class );
-			AtEase::suppressWarnings();
-			$password->crypt( 'whatever' );
-			AtEase::restoreWarnings();
-
-		The above will stop at crypt(), as expected, and leave AtEase in a dirty
-		state for unrelated tests.
-
-		TODO: Stop using PHPUnit TestCase directly. Require with a structure test
-		or with a high-level check in our run() hook, that all test cases use either
-		MediaWikiUnitTestCase or MediaWikiIntegrationTestCase. Otherwise the check
-		in MediaWikiTestCaseTrait can still be bypassed and cause a random failures.
-
-		-->
 		<exclude-pattern>*/tests/*</exclude-pattern>
 	</rule>
 	<rule ref="Generic.Files.OneObjectStructurePerFile.MultipleFound">
