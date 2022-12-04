@@ -43,10 +43,6 @@ $cfg['file_list'] = array_merge(
 $cfg['exclude_file_list'] = array_merge(
 	$cfg['exclude_file_list'],
 	[
-		// This file has invalid PHP syntax
-		'vendor/squizlabs/php_codesniffer/src/Standards/PSR2/Tests/Methods/MethodDeclarationUnitTest.inc',
-		// This file implements a polyfill for the JsonUnserializable class
-		'vendor/php-parallel-lint/php-parallel-lint/src/polyfill.php',
 		// Avoid microsoft/tolerant-php-parser dependency
 		'maintenance/findDeprecated.php',
 		'maintenance/CodeCleanerGlobalsPass.php',
@@ -68,11 +64,6 @@ if ( PHP_VERSION_ID >= 80000 ) {
 		]
 	);
 }
-
-$cfg['analyzed_file_extensions'] = array_merge(
-	$cfg['analyzed_file_extensions'] ?? [ 'php' ],
-	[ 'inc' ]
-);
 
 $cfg['autoload_internal_extension_signatures'] = [
 	'excimer' => '.phan/internal_stubs/excimer.php',
