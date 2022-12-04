@@ -4659,7 +4659,7 @@ config-schema:
         type: array
         description: 'An array of preferences to not show for the user'
     InvalidUsernameCharacters:
-        default: '@:>'
+        default: '@:>='
         description: |-
             Characters to prevent during new account creations.
             This is used in a regular expression character class during
