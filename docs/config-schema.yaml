@@ -6747,14 +6747,6 @@ config-schema:
             special pages to either a class name to be instantiated, or a callback to use for
             creating the special page object. In both cases, the result must be an instance of
             SpecialPage.
-    AutoloadAttemptLowercase:
-        default: false
-        deprecated: 'since 1.35'
-        description: |-
-            Switch controlling legacy case-insensitive classloading.
-            Do not disable if your wiki must support data created by PHP4, or by
-            MediaWiki 1.4 or earlier.
-            @deprecated since 1.35
     ExtensionCredits:
         default: {  }
         type: object
