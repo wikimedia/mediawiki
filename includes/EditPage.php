@@ -2960,7 +2960,7 @@ class EditPage implements IEditObject {
 			}
 
 			if ( !$userExists && !$ip ) {
-				$out->addHtml( Html::warningBox(
+				$out->addHTML( Html::warningBox(
 					$out->msg( 'userpage-userdoesnotexist', wfEscapeWikiText( $username ) )->parse(),
 					'mw-userpage-userdoesnotexist'
 				) );
@@ -3504,14 +3504,14 @@ class EditPage implements IEditObject {
 					// Let sysop know that this will make private content public if saved
 
 					if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
-						$out->addHtml(
+						$out->addHTML(
 							Html::warningBox(
 								$out->msg( 'rev-deleted-text-permission', $this->mTitle->getPrefixedDBkey() )->parse(),
 								'plainlinks'
 							)
 						);
 					} elseif ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
-						$out->addHtml(
+						$out->addHTML(
 							Html::warningBox(
 								// title used in wikilinks, should not contain whitespaces
 								$out->msg( 'rev-deleted-text-view', $this->mTitle->getPrefixedDBkey() )->parse(),

@@ -280,7 +280,7 @@ EOF;
 
 	// REMOVE THIS ONCE Parser::TOC_START IS REMOVED
 	public static function provideGetTextBackCompat() {
-		$toc = self::provideGetTextToc();
+		$toc = self::provideGetTextToC();
 		$text = <<<EOF
 <p>Test document.
 </p>
@@ -386,7 +386,7 @@ EOF
 	// REMOVE THIS ONCE ParserCache is transitioned to <meta> placeholder
 	public static function provideGetTextBackCompat2() {
 		// phpcs:disable Generic.Files.LineLength
-		$toc = self::provideGetTextToc();
+		$toc = self::provideGetTextToC();
 		$text = <<<EOF
 <p>Test document.
 </p>
@@ -490,7 +490,7 @@ EOF
 	}
 
 	public static function provideGetText() {
-		$toc = self::provideGetTextToc();
+		$toc = self::provideGetTextToC();
 		$text = <<<EOF
 <p>Test document.
 </p>

@@ -346,7 +346,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 			$this->context->setConfig( $config );
 		}
 
-		$page = $this->getNonExistingTestPage( 'Page1' );
+		$page = $this->getNonexistingTestPage( 'Page1' );
 		$this->assertTrue( $this->editPage( $page, 'Edit1' )->isGood(), 'edited a page' );
 		$rev1 = $page->getRevisionRecord();
 		$this->assertTrue( $this->editPage( $page, 'Edit2' )->isGood(), 'edited a page' );

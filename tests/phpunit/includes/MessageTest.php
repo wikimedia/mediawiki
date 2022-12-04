@@ -910,7 +910,7 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertSame( '(<a>foo</a>)', $msg->parse() );
 		$title = TestingAccessWrapper::newFromObject( $msg )->contextPage;
 		$this->assertInstanceOf( PageReference::class, $title );
-		$this->assertSame( 'Testing', $title->getDbKey() );
+		$this->assertSame( 'Testing', $title->getDBkey() );
 
 		$msg = new Message( 'mainpage' );
 		$msg->inLanguage( 'de' );

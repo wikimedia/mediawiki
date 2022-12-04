@@ -421,7 +421,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			if ( !$this->userNameUtils->isIP( $userObj->getName() )
 				&& !IPUtils::isValidRange( $userObj->getName() )
 			) {
-				$this->getOutput()->addHtml( Html::warningBox(
+				$this->getOutput()->addHTML( Html::warningBox(
 					$this->getOutput()->msg( 'contributions-userdoesnotexist',
 						wfEscapeWikiText( $userObj->getName() ) )->parse(),
 					'mw-userpage-userdoesnotexist'

@@ -21,7 +21,7 @@ class UserEditCountInitJobTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getMutableTestUser()->getUser();
 
 		if ( $startingEditCount !== false ) {
-			$this->getServiceContainer()->getDbLoadBalancer()
+			$this->getServiceContainer()->getDBLoadBalancer()
 				->getConnectionRef( DB_PRIMARY )
 				->update(
 					'user',

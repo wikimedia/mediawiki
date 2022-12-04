@@ -757,7 +757,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'',
 			__METHOD__
 		);
-		$res = Title::newFromId( $maxPageId + 1 );
+		$res = Title::newFromID( $maxPageId + 1 );
 		$this->assertNull( $res, 'newFromID returns null for missing ids' );
 	}
 

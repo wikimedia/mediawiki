@@ -550,7 +550,7 @@ class SpecialUndelete extends SpecialPage {
 				$msg = $revRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED )
 					? [ 'rev-suppressed-text-permission', $titleText ]
 					: [ 'rev-deleted-text-permission', $titleText ];
-				$out->addHtml(
+				$out->addHTML(
 					Html::warningBox(
 						$this->msg( $msg[0], $msg[1] )->parse(),
 						'plainlinks'
@@ -562,7 +562,7 @@ class SpecialUndelete extends SpecialPage {
 			$msg = $revRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED )
 				? [ 'rev-suppressed-text-view', $titleText ]
 				: [ 'rev-deleted-text-view', $titleText ];
-			$out->addHtml(
+			$out->addHTML(
 				Html::warningBox(
 					$this->msg( $msg[0], $msg[1] )->parse(),
 					'plainlinks'

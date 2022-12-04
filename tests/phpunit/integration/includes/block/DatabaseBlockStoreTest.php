@@ -142,7 +142,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 'autoIds', $result );
 		$this->assertCount( 0, $result['autoIds'] );
 
-		$retrievedBlock = DatabaseBlock::newFromId( $result['id'] );
+		$retrievedBlock = DatabaseBlock::newFromID( $result['id'] );
 		$this->assertTrue( $block->equals( $retrievedBlock ) );
 	}
 
@@ -247,7 +247,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 'autoIds', $result );
 		$this->assertCount( 1, $result['autoIds'] );
 
-		$retrievedBlock = DatabaseBlock::newFromId( $result['autoIds'][0] );
+		$retrievedBlock = DatabaseBlock::newFromID( $result['autoIds'][0] );
 		$this->assertSame( $block->getId(), $retrievedBlock->getParentBlockId() );
 		$this->assertAutoblockEqualsBlock( $block, $retrievedBlock );
 	}
@@ -269,8 +269,8 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$store = $this->getStore();
 		$result = $store->updateBlock( $existingBlock );
 
-		$updatedBlock = DatabaseBlock::newFromId( $result['id'] );
-		$autoblock = DatabaseBlock::newFromId( $result['autoIds'][0] );
+		$updatedBlock = DatabaseBlock::newFromID( $result['id'] );
+		$autoblock = DatabaseBlock::newFromID( $result['autoIds'][0] );
 
 		$this->assertTrue( $updatedBlock->equals( $existingBlock ) );
 		$this->assertAutoblockEqualsBlock( $existingBlock, $autoblock );
@@ -284,7 +284,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$store = $this->getStore();
 		$result = $store->updateBlock( $existingBlock );
 
-		$updatedBlock = DatabaseBlock::newFromId( $result['id'] );
+		$updatedBlock = DatabaseBlock::newFromID( $result['id'] );
 
 		$this->assertTrue( $updatedBlock->equals( $existingBlock ) );
 		$this->assertCount( 0, $result['autoIds'] );
@@ -295,8 +295,8 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$existingBlock->isAutoblocking( true );
 		$result = $store->updateBlock( $existingBlock );
 
-		$updatedBlock = DatabaseBlock::newFromId( $result['id'] );
-		$autoblock = DatabaseBlock::newFromId( $result['autoIds'][0] );
+		$updatedBlock = DatabaseBlock::newFromID( $result['id'] );
+		$autoblock = DatabaseBlock::newFromID( $result['autoIds'][0] );
 
 		$this->assertTrue( $updatedBlock->equals( $existingBlock ) );
 		$this->assertAutoblockEqualsBlock( $existingBlock, $autoblock );
@@ -316,7 +316,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$store = $this->getStore();
 		$result = $store->updateBlock( $existingBlock );
 
-		$retrievedBlock = DatabaseBlock::newFromId( $result['id'] );
+		$retrievedBlock = DatabaseBlock::newFromID( $result['id'] );
 		$this->assertCount(
 			$expectedCount,
 			$retrievedBlock->getRestrictions()

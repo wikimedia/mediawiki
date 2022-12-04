@@ -86,11 +86,11 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 
 	public function testBasics() {
 		$provider = $this->getProvider( null );
-		$this->assertFalse( $provider->persistsSessionID() );
+		$this->assertFalse( $provider->persistsSessionId() );
 		$this->assertFalse( $provider->canChangeUser() );
 
 		$provider = $this->getProvider( 'Foo' );
-		$this->assertTrue( $provider->persistsSessionID() );
+		$this->assertTrue( $provider->persistsSessionId() );
 		$this->assertFalse( $provider->canChangeUser() );
 
 		$msg = $provider->whyNoSession();

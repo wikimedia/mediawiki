@@ -485,7 +485,7 @@ trait DummyServicesTrait {
 			$dataKey = $this->getWatchedItemStoreKey( $user, $target );
 			return isset( $this->watchedItemStoreData[ $dataKey ] );
 		} );
-		$mock->method( 'isTempWatched' )->willreturnCallback( function ( $user, $target ) {
+		$mock->method( 'isTempWatched' )->willReturnCallback( function ( $user, $target ) {
 			$dataKey = $this->getWatchedItemStoreKey( $user, $target );
 			return isset( $this->watchedItemStoreData[ $dataKey ] ) &&
 				$this->watchedItemStoreData[ $dataKey ] !== true;

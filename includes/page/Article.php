@@ -1358,7 +1358,7 @@ class Article implements Page {
 			}
 
 			if ( !( $user && $user->isRegistered() ) && !$ip ) { # User does not exist
-				$outputPage->addHtml( Html::warningBox(
+				$outputPage->addHTML( Html::warningBox(
 					$context->msg( 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) )->parse(),
 					'mw-userpage-userdoesnotexist'
 				) );
@@ -1518,7 +1518,7 @@ class Article implements Page {
 			RevisionRecord::DELETED_TEXT,
 			$this->getContext()->getAuthority()
 		) ) {
-			$outputPage->addHtml(
+			$outputPage->addHTML(
 				Html::warningBox(
 					$outputPage->msg( 'rev-deleted-text-permission', $titleText )->parse(),
 					'plainlinks'
@@ -1533,7 +1533,7 @@ class Article implements Page {
 			$link = $this->getTitle()->getFullURL( "oldid={$oldid}&unhide=1" );
 			$msg = $this->mRevisionRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ?
 				'rev-suppressed-text-unhide' : 'rev-deleted-text-unhide';
-			$outputPage->addHtml(
+			$outputPage->addHTML(
 				Html::warningBox(
 					$outputPage->msg( $msg, $link )->parse(),
 					'plainlinks'
@@ -1546,7 +1546,7 @@ class Article implements Page {
 			$msg = $this->mRevisionRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED )
 				? [ 'rev-suppressed-text-view', $titleText ]
 				: [ 'rev-deleted-text-view', $titleText ];
-			$outputPage->addHtml(
+			$outputPage->addHTML(
 				Html::warningBox(
 					$outputPage->msg( $msg[0], $msg[1] )->parse(),
 					'plainlinks'
