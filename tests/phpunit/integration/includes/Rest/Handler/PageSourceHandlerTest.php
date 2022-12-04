@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use BagOStuff;
 use Exception;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler\PageSourceHandler;
@@ -20,6 +19,7 @@ use WikiPage;
  */
 class PageSourceHandlerTest extends MediaWikiIntegrationTestCase {
 	use HandlerTestTrait;
+	use PageHandlerTestTrait;
 
 	private const WIKITEXT = 'Hello \'\'\'World\'\'\'';
 
@@ -44,17 +44,11 @@ class PageSourceHandlerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param BagOStuff|null $cache
 	 * @return PageSourceHandler
 	 * @throws Exception
 	 */
-	private function newHandler( BagOStuff $cache = null ): PageSourceHandler {
-		$handler = new PageSourceHandler(
-			$this->getServiceContainer()->getTitleFormatter(),
-			$this->getServiceContainer()->getPageRestHelperFactory()
-		);
-
-		return $handler;
+	private function newHandler(): PageSourceHandler {
+		return $this->newPageSourceHandler();
 	}
 
 	public function testExecuteBare() {

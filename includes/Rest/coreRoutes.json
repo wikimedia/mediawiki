@@ -110,6 +110,7 @@
 		"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
 		"services": [
 			"TitleFormatter",
+			"RedirectStore",
 			"PageRestHelperFactory"
 		],
 		"format": "source"
@@ -119,6 +120,7 @@
 		"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
 		"services": [
 			"TitleFormatter",
+			"RedirectStore",
 			"PageRestHelperFactory"
 		],
 		"format": "bare"

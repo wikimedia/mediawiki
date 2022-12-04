@@ -45,6 +45,7 @@ describe( 'POST /page', () => {
 		it( 'should create a page if it does not exist', async () => {
 			const titleSuffix = utils.title();
 			const title = 'A B+C:D@E-' + titleSuffix;
+			const normalizedTitle = utils.dbkey( title );
 
 			// In "title style" encoding, spaces turn to underscores,
 			// colons are preserved, and slashes and pluses get encoded.
@@ -74,13 +75,14 @@ describe( 'POST /page', () => {
 			checkSourceResponse( title, reqBody, redirBody );
 
 			// construct request to fetch content
-			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${title}` );
+			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${normalizedTitle}` );
 			assert.equal( sourceStatus, 200 );
 			checkSourceResponse( title, reqBody, sourceBody );
 		} );
 
 		it( 'should create a page with specified model', async () => {
 			const title = utils.title( 'Edit Test ' );
+			const normalizedTitle = utils.dbkey( title );
 
 			// TODO: Test with a model different from the default. This however requires
 			//       the changecontentmodel permission, which anons don't have.
@@ -96,7 +98,7 @@ describe( 'POST /page', () => {
 			assert.equal( editStatus, 201 );
 			checkEditResponse( title, reqBody, editBody );
 
-			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${title}` );
+			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${normalizedTitle}` );
 			assert.equal( sourceStatus, 200 );
 			checkSourceResponse( title, reqBody, sourceBody );
 		} );
