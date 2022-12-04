@@ -41,6 +41,7 @@ describe( 'PUT /page/{title}', () => {
 	describe( 'successful operation', () => {
 		it( 'should create a page if it does not exist', async () => {
 			const title = utils.title( 'Edit Test ' );
+			const normalizedTitle = utils.dbkey( title );
 
 			const reqBody = {
 				token: anonToken,
@@ -52,13 +53,14 @@ describe( 'PUT /page/{title}', () => {
 			assert.equal( editStatus, 201 );
 			checkEditResponse( title, reqBody, editBody );
 
-			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${title}` );
+			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${normalizedTitle}` );
 			assert.equal( sourceStatus, 200 );
 			checkSourceResponse( title, reqBody, sourceBody );
 		} );
 
 		it( 'should create a page with specific content model', async () => {
 			const title = utils.title( 'Edit Test ' );
+			const normalizedTitle = utils.dbkey( title );
 
 			// TODO: test a content model different from the default.
 			//       But that requires the chnagecontentmodel permission, which anons don't have.
@@ -73,13 +75,14 @@ describe( 'PUT /page/{title}', () => {
 			assert.equal( editStatus, 201 );
 			checkEditResponse( title, reqBody, editBody );
 
-			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${title}` );
+			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${normalizedTitle}` );
 			assert.equal( sourceStatus, 200 );
 			checkSourceResponse( title, reqBody, sourceBody );
 		} );
 
 		it( 'should update an existing page', async () => {
 			const title = utils.title( 'Edit Test ' );
+			const normalizedTitle = utils.dbkey( title );
 
 			// create
 			const firstRev = await mindy.edit( title, {} );
@@ -96,7 +99,7 @@ describe( 'PUT /page/{title}', () => {
 			checkEditResponse( title, reqBody, editBody );
 			assert.isAbove( editBody.latest.id, firstRev.newrevid );
 
-			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${title}` );
+			const { status: sourceStatus, body: sourceBody } = await client.get( `/page/${normalizedTitle}` );
 			assert.equal( sourceStatus, 200 );
 			checkSourceResponse( title, reqBody, sourceBody );
 		} );

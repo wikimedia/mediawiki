@@ -8,6 +8,7 @@ describe( 'Page Source', () => {
 	const variantPage = utils.title( 'PageSourceVariant' );
 
 	const redirectPage = utils.title( 'Redirect ' );
+	const redirectedPage = redirectPage.replace( 'Redirect', 'Redirected' );
 
 	const client = new REST();
 	const anon = action.getAnon();
@@ -22,12 +23,25 @@ describe( 'Page Source', () => {
 		const token = await mindy.token();
 		await mindy.action( 'move', {
 			from: redirectPage,
-			to: redirectPage.replace( 'Redirect', 'Redirected' ),
+			to: redirectedPage,
 			token
 		}, true );
 	} );
 
 	describe( 'GET /page/{title}', () => {
+		it( 'Title normalization should return permanent redirect (301)', async () => {
+			const { status, text } = await client.get( `/page/${redirectPage}` );
+			assert.deepEqual( status, 301, text );
+		} );
+
+		it( 'When a wiki redirect exists, it should ne present in the body response', async () => {
+			const redirectPageDbkey = utils.dbkey( redirectPage );
+			const redirectedPageDbKey = utils.dbkey( redirectedPage );
+			const { status, body: { redirect_target }, text } = await client.get( `/page/${redirectPageDbkey}` );
+			assert.deepEqual( status, 200, text );
+			assert.match( redirect_target, new RegExp( `/page/${encodeURIComponent( redirectedPageDbKey )}$` ) );
+		} );
+
 		it( 'Should successfully return page source and metadata for Wikitext page', async () => {
 			const { status, body, text } = await client.get( `/page/${page}` );
 			assert.deepEqual( status, 200, text );
@@ -64,6 +78,19 @@ describe( 'Page Source', () => {
 	} );
 
 	describe( 'GET /page/{title}/bare', () => {
+		it( 'Title normalization should return permanent redirect (301)', async () => {
+			const { status, text } = await client.get( `/page/${redirectPage}/bare` );
+			assert.deepEqual( status, 301, text );
+		} );
+
+		it( 'When a wiki redirect exists, it should ne present in the body response', async () => {
+			const redirectPageDbkey = utils.dbkey( redirectPage );
+			const redirectedPageDbKey = utils.dbkey( redirectedPage );
+			const { status, body: { redirect_target }, text } = await client.get( `/page/${redirectPageDbkey}/bare` );
+			assert.deepEqual( status, 200, text );
+			assert.match( redirect_target, new RegExp( `/page/${encodeURIComponent( redirectedPageDbKey )}/bare$` ) );
+		} );
+
 		it( 'Should successfully return page bare', async () => {
 			const { status, body, text } = await client.get( `/page/${page}/bare` );
 			assert.deepEqual( status, 200, text );
@@ -105,7 +132,7 @@ describe( 'Page Source', () => {
 			assert.deepEqual( status, 301, text );
 		} );
 
-		it( 'Wiki redirects should return legacy temporary redirect (307)', async () => {
+		it( 'Wiki redirects should return temporary redirect (307)', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
 			const { status, text } = await client.get( `/page/${redirectPageDbkey}/html` );
 			assert.deepEqual( status, 307, text );
@@ -167,7 +194,7 @@ describe( 'Page Source', () => {
 			assert.deepEqual( status, 301, text );
 		} );
 
-		it( 'Wiki redirects should return legacy temporary redirect (307)', async () => {
+		it( 'Wiki redirects should return temporary redirect (307)', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
 			const { status, text } = await client.get( `/page/${redirectPageDbkey}/with_html` );
 			assert.deepEqual( status, 307, text );
@@ -175,7 +202,9 @@ describe( 'Page Source', () => {
 
 		it( 'Bypass redirects with query param redirect=no', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
-			const { status, text } = await client.get( `/page/${redirectPageDbkey}/with_html`, { redirect: 'no' } );
+			const redirectedPageDbKey = utils.dbkey( redirectedPage );
+			const { status, body: { redirect_target }, text } = await client.get( `/page/${redirectPageDbkey}/with_html`, { redirect: 'no' } );
+			assert.match( redirect_target, new RegExp( `/page/${encodeURIComponent( redirectedPageDbKey )}/with_html$` ) );
 			assert.deepEqual( status, 200, text );
 		} );
 

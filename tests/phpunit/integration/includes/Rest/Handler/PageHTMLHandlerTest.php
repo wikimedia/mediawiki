@@ -5,26 +5,15 @@ namespace MediaWiki\Tests\Rest\Handler;
 use DeferredUpdates;
 use Exception;
 use HashBagOStuff;
-use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MainConfigSchema;
-use MediaWiki\Parser\ParserCacheFactory;
-use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
-use MediaWiki\Rest\Handler\HtmlOutputRendererHelper;
-use MediaWiki\Rest\Handler\PageContentHelper;
 use MediaWiki\Rest\Handler\PageHTMLHandler;
-use MediaWiki\Rest\Handler\PageRestHelperFactory;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
-use NullStatsdDataFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Http\Message\StreamInterface;
-use Psr\Log\NullLogger;
 use Title;
-use WANObjectCache;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\ResourceLimitExceededException;
@@ -39,6 +28,7 @@ use WikiPage;
  */
 class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	use HandlerTestTrait;
+	use PageHandlerTestTrait;
 	use HTMLHandlerTestTrait;
 
 	private const WIKITEXT = 'Hello \'\'\'World\'\'\'';
@@ -70,80 +60,7 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @return PageHTMLHandler
 	 */
 	private function newHandler( ?Parsoid $parsoid = null ): PageHTMLHandler {
-		$parserCacheFactoryOptions = new ServiceOptions( ParserCacheFactory::CONSTRUCTOR_OPTIONS, [
-			'CacheEpoch' => '20200202112233',
-			'OldRevisionParserCacheExpireTime' => 60 * 60,
-		] );
-
-		$services = $this->getServiceContainer();
-		$parserCacheFactory = new ParserCacheFactory(
-			$this->parserCacheBagOStuff,
-			new WANObjectCache( [ 'cache' => $this->parserCacheBagOStuff, ] ),
-			$this->createHookContainer(),
-			new JsonCodec(),
-			new NullStatsdDataFactory(),
-			new NullLogger(),
-			$parserCacheFactoryOptions,
-			$services->getTitleFactory(),
-			$services->getWikiPageFactory()
-		);
-
-		$config = [
-			'RightsUrl' => 'https://example.com/rights',
-			'RightsText' => 'some rights',
-			'ParsoidCacheConfig' =>
-				MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidCacheConfig )
-		];
-
-		$parsoidOutputAccess = new ParsoidOutputAccess(
-			new ServiceOptions(
-				ParsoidOutputAccess::CONSTRUCTOR_OPTIONS,
-				$services->getMainConfig(),
-				[ 'ParsoidWikiID' => 'MyWiki' ]
-			),
-			$parserCacheFactory,
-			$services->getPageStore(),
-			$services->getRevisionLookup(),
-			$services->getGlobalIdGenerator(),
-			$services->getStatsdDataFactory(),
-			$parsoid ?? new Parsoid(
-				$services->get( 'ParsoidSiteConfig' ),
-				$services->get( 'ParsoidDataAccess' )
-			),
-			$services->getParsoidSiteConfig(),
-			$services->getParsoidPageConfigFactory()
-		);
-
-		$helperFactory = $this->createNoOpMock(
-			PageRestHelperFactory::class,
-			[ 'newPageContentHelper', 'newHtmlOutputRendererHelper' ]
-		);
-
-		$helperFactory->method( 'newPageContentHelper' )
-			->willReturn( new PageContentHelper(
-				new ServiceOptions( PageContentHelper::CONSTRUCTOR_OPTIONS, $config ),
-				$services->getRevisionLookup(),
-				$services->getTitleFormatter(),
-				$services->getPageStore()
-			) );
-
-		$helperFactory->method( 'newHtmlOutputRendererHelper' )
-			->willReturn( new HtmlOutputRendererHelper(
-				$this->getParsoidOutputStash(),
-				$services->getStatsdDataFactory(),
-				$parsoidOutputAccess,
-				$services->getHtmlTransformFactory(),
-				$services->getContentHandlerFactory(),
-				$services->getLanguageFactory()
-			) );
-
-		$handler = new PageHTMLHandler(
-			$services->getTitleFormatter(),
-			$services->getRedirectStore(),
-			$helperFactory
-		);
-
-		return $handler;
+		return $this->newPageHtmlHandler( $parsoid );
 	}
 
 	public function testExecuteWithHtml() {
@@ -247,51 +164,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$msg = wfMessage( 'logouttext' )->inLanguage( 'de' )->useDatabase( false );
 		$this->assertStringContainsString( $msg->parse(), $htmlResponse );
-	}
-
-	public function testTemporaryRedirectHtmlOnly() {
-		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
-
-		$targetPageTitle = 'HtmlEndpointTestPage';
-		$redirectPageTitle = 'RedirectPage';
-		$this->getExistingTestPage( $targetPageTitle );
-		$status = $this->editPage( $redirectPageTitle, "#REDIRECT [[$targetPageTitle]]" );
-		$this->assertStatusOK( $status );
-
-		$request = new RequestData(
-			[ 'pathParams' => [ 'title' => $redirectPageTitle ] ]
-		);
-
-		$handler = $this->newHandler();
-		$response = $this->executeHandler( $handler, $request, [
-			'format' => 'html',
-			'path' => '/page/{title}/html'
-		] );
-
-		$this->assertEquals( 307, $response->getStatusCode() );
-		$this->assertStringContainsString( $targetPageTitle, $response->getHeaderLine( 'location' ) );
-	}
-
-	public function testPermanentRedirectHtmlOnly() {
-		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
-		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage with spaces' );
-		$this->assertTrue(
-			$this->editPage( $page, self::WIKITEXT )->isGood(),
-			'Edited a page'
-		);
-
-		$request = new RequestData(
-			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
-		);
-
-		$handler = $this->newHandler();
-		$response = $this->executeHandler( $handler, $request, [
-			'format' => 'html',
-			'path' => '/page/{title}/html'
-		] );
-
-		$this->assertEquals( 301, $response->getStatusCode() );
-		$this->assertStringContainsString( $page->getTitle()->getPrefixedDBkey(), $response->getHeaderLine( 'location' ) );
 	}
 
 	/**
