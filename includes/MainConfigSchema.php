@@ -10851,16 +10851,20 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Switch controlling legacy case-insensitive classloading.
+	 * Obsolete switch that controlled legacy case-insensitive classloading.
 	 *
-	 * Do not disable if your wiki must support data created by PHP4, or by
-	 * MediaWiki 1.4 or earlier.
+	 * Case-insensitive classloading was needed for loading data that had
+	 * been serialized by PHP 4 with the class names converted to lowercase.
+	 * It is no longer necessary since 1.31; the lowercase forms in question
+	 * are now listed in autoload.php (T166759).
 	 *
 	 * @deprecated since 1.35
 	 */
 	public const AutoloadAttemptLowercase = [
 		'default' => false,
-		'deprecated' => 'since 1.35',
+		'obsolete' => 'Since 1.40; no longer has any effect.',
+		'description' => 'Has been emitting warnings since 1.39 (LTS). ' .
+			'Can be removed completely in 1.44, assuming 1.43 is an LTS release.'
 	];
 
 	/**

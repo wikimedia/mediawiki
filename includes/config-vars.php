@@ -3844,13 +3844,6 @@ $wgValidSkinNames = null;
 $wgSpecialPages = null;
 
 /**
- * Config variable stub for the AutoloadAttemptLowercase setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::AutoloadAttemptLowercase
- * @deprecated since 1.35
- */
-$wgAutoloadAttemptLowercase = null;
-
-/**
  * Config variable stub for the ExtensionCredits setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ExtensionCredits
  */
