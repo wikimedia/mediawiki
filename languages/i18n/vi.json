@@ -1045,7 +1045,7 @@
 	"showingresults": "Dưới đây là cho đến <strong>$1</strong> kết quả bắt đầu từ #<strong>$2</strong>.",
 	"showingresultsinrange": "Dưới đây là cho tới <strong>$1</strong> kết quả từ #<strong>$2</strong> đến #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Kết quả thứ <strong>$1</strong> trong tổng số <strong>$3</strong>|Các kết quả <strong>$1 – $2</strong> trong tổng số <strong>$3</strong>}}",
-	"search-nonefound": "Không có kết quả nào khớp với từ khoá.",
+	"search-nonefound": "Không có kết quả nào khớp với từ khóa tìm kiếm.",
 	"search-nonefound-thiswiki": "Không có kết quả nào khớp với truy câu truy vấn trong $3.",
 	"powersearch-legend": "Tìm kiếm nâng cao",
 	"powersearch-ns": "Tìm trong không gian tên:",
