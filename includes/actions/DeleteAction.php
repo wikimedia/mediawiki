@@ -293,7 +293,7 @@ class DeleteAction extends FormlessAction {
 	private function showBacklinksWarning(): void {
 		$backlinkCache = $this->backlinkCacheFactory->getBacklinkCache( $this->getTitle() );
 		if ( $backlinkCache->hasLinks( 'pagelinks' ) || $backlinkCache->hasLinks( 'templatelinks' ) ) {
-			$this->getOutput()->addHtml(
+			$this->getOutput()->addHTML(
 				Html::warningBox(
 					$this->msg( 'deleting-backlinks-warning' )->parse(),
 					'plainlinks'
@@ -306,7 +306,7 @@ class DeleteAction extends FormlessAction {
 		$title = $this->getTitle();
 		$subpageCount = count( $title->getSubpages( 51 ) );
 		if ( $subpageCount ) {
-			$this->getOutput()->addHtml(
+			$this->getOutput()->addHTML(
 				Html::warningBox(
 					$this->msg( 'deleting-subpages-warning' )->numParams( $subpageCount )->parse(),
 					'plainlinks'
@@ -318,7 +318,7 @@ class DeleteAction extends FormlessAction {
 			$talkPageTitle = $this->titleFactory->newFromLinkTarget( $this->namespaceInfo->getTalkPage( $title ) );
 			$subpageCount = count( $talkPageTitle->getSubpages( 51 ) );
 			if ( $subpageCount ) {
-				$this->getOutput()->addHtml(
+				$this->getOutput()->addHTML(
 					Html::warningBox(
 						$this->msg( 'deleting-talkpage-subpages-warning' )->numParams( $subpageCount )->parse(),
 						'plainlinks'

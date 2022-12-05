@@ -76,7 +76,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 			return;
 		}
 
-		$dbw = $this->getPrimaryDB();
+		$dbw = $this->getPrimaryDb();
 		$depsBlobByEntity = $this->fetchDependencyBlobs( array_keys( $dataByEntity ), $dbw );
 
 		$rows = [];
@@ -124,7 +124,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 			return;
 		}
 
-		$dbw = $this->getPrimaryDB();
+		$dbw = $this->getPrimaryDb();
 		$disjunctionConds = [];
 		foreach ( (array)$entities as $entity ) {
 			[ $module, $variant ] = $this->getEntityNameComponents( $entity );

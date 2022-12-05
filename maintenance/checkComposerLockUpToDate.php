@@ -40,7 +40,7 @@ class CheckComposerLockUpToDate extends Maintenance {
 		$installed = $lock->getInstalledDependencies();
 		foreach ( $json->getRequiredDependencies() as $name => $version ) {
 			if ( isset( $installed[$name] ) ) {
-				if ( !SemVer::satisfies( $installed[$name]['version'], $version ) ) {
+				if ( !Semver::satisfies( $installed[$name]['version'], $version ) ) {
 					$this->output(
 						"$name: {$installed[$name]['version']} installed, $version required.\n"
 					);

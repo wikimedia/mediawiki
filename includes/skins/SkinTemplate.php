@@ -1455,7 +1455,7 @@ class SkinTemplate extends Skin {
 			}
 			$specialAssociatedNavigationLinks['special-specialAssociatedNavigationLinks-link-' . strval( $i ) ] = [
 				'text' => $text,
-				'href' => $relatedTitle->getLocalUrl(),
+				'href' => $relatedTitle->getLocalURL(),
 				'class' => $relatedTitle->equals( $title ) ? 'selected' : '',
 			];
 		}

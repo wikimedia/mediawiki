@@ -69,7 +69,7 @@ abstract class AbstractContributionHandler extends Handler {
 		/** @var UserIdentity $user */
 		$user = $this->getValidatedParams()['user'];
 		$name = $user->getName();
-		if ( !$this->userNameUtils->isIp( $name ) && !$user->isRegistered() ) {
+		if ( !$this->userNameUtils->isIP( $name ) && !$user->isRegistered() ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-nonexistent-user', [ $name ] ), 404
 			);

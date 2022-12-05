@@ -548,7 +548,7 @@ class SpecialSearch extends SpecialPage {
 		$this->getHookRunner()->onSpecialSearchResults( $term, $titleMatches, $textMatches );
 
 		// Close <div class='mw-search-results-info'>
-		$out->addHtml( '</div>' );
+		$out->addHTML( '</div>' );
 
 		// Although $num might be 0 there can still be secondary or inline
 		// results to display.

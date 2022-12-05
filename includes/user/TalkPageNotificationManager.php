@@ -126,7 +126,7 @@ class TalkPageNotificationManager {
 		// Abort if the hook says so. (Echo doesn't abort, it just queues its own update)
 		if ( !$this->hookRunner->onUserClearNewTalkNotification(
 			$user,
-			$oldRev ? $oldRev->getID() : 0
+			$oldRev ? $oldRev->getId() : 0
 		) ) {
 			return;
 		}

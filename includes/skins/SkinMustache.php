@@ -100,7 +100,7 @@ class SkinMustache extends SkinTemplate {
 			'html-user-language-attributes' => $this->prepareUserLanguageAttributes(),
 
 			// links
-			'link-mainpage' => Title::newMainPage()->getLocalUrl(),
+			'link-mainpage' => Title::newMainPage()->getLocalURL(),
 		];
 
 		foreach ( $this->options['messages'] ?? [] as $message ) {

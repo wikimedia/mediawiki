@@ -157,7 +157,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$this->getExistingTestPage( 'AccidentalRecreationConstraintPage' );
 
 		// And now delete it, so that there is a deletion log
-		$page = $this->getNonExistingTestPage( 'AccidentalRecreationConstraintPage' );
+		$page = $this->getNonexistingTestPage( 'AccidentalRecreationConstraintPage' );
 		$title = $page->getTitle();
 
 		// Set the time of the deletion to be a specific time, so we can be sure to start the
@@ -169,7 +169,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			[ 'log_timestamp' => $dbw->timestamp( '20200101000000' ) ],
 			[
 				'log_namespace' => $title->getNamespace(),
-				'log_title' => $title->getDBKey(),
+				'log_title' => $title->getDBkey(),
 				'log_type' => 'delete',
 				'log_action' => 'delete'
 			],
