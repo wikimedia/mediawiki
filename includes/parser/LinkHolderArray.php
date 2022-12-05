@@ -33,9 +33,9 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Parser
  */
 class LinkHolderArray {
-	/** @var array[][] */
+	/** @var array<int,array<int,array>> Indexed by numeric namespace and link ids, {@see Parser::nextLinkID} */
 	public $internals = [];
-	/** @var array[] */
+	/** @var array<int,array> Indexed by numeric link id */
 	public $interwikis = [];
 	/** @var int */
 	public $size = 0;
@@ -189,14 +189,13 @@ class LinkHolderArray {
 
 		foreach ( $this->internals as $ns => $entries ) {
 			foreach ( $entries as [ 'title' => $title, 'pdbk' => $pdbk ] ) {
-				/** @var Title $title */
-
 				# Skip invalid entries.
 				# Result will be ugly, but prevents crash.
 				if ( $title === null ) {
 					continue;
 				}
 
+				/** @var Title $title */
 				# Check if it's a static known link, e.g. interwiki
 				if ( $title->isAlwaysKnown() ) {
 					$classes[$pdbk] = '';
@@ -327,7 +326,7 @@ class LinkHolderArray {
 
 	/**
 	 * Modify $this->internals and $classes according to language variant linking rules
-	 * @param array &$classes
+	 * @param string[] &$classes
 	 */
 	protected function doVariants( &$classes ) {
 		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
@@ -443,7 +442,7 @@ class LinkHolderArray {
 			// loop over link holders
 			foreach ( $holderKeys as $key ) {
 				[ $ns, $index ] = explode( ':', $key, 2 );
-				$entry =& $this->internals[$ns][$index];
+				$entry =& $this->internals[(int)$ns][(int)$index];
 				$pdbk = $entry['pdbk'];
 
 				if ( !isset( $classes[$pdbk] ) || $classes[$pdbk] === 'new' ) {
@@ -494,7 +493,7 @@ class LinkHolderArray {
 
 				if ( !$isInterwiki ) {
 					[ $ns, $index ] = explode( ':', $key, 2 );
-					return $this->internals[$ns][$index]['text'] ?? $unchanged;
+					return $this->internals[(int)$ns][(int)$index]['text'] ?? $unchanged;
 				} else {
 					return $this->interwikis[$key]['text'] ?? $unchanged;
 				}
