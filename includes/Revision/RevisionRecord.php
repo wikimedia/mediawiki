@@ -145,20 +145,39 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * Note that for mutable Content objects, each call to this method will return a
 	 * fresh clone.
 	 *
-	 * MCR migration note: this replaced Revision::getContent
+	 * Use getContentOrThrow() for more specific error information.
 	 *
 	 * @param string $role The role name of the desired slot
 	 * @param int $audience
 	 * @param Authority|null $performer user on whose behalf to check
 	 *
-	 * @return Content|null The content of the given slot, or null if access is forbidden.
+	 * @return Content|null The content of the given slot, or null on error
 	 */
 	public function getContent( $role, $audience = self::FOR_PUBLIC, Authority $performer = null ): ?Content {
-		// XXX: throwing an exception would be nicer, but would a further
-		// departure from the old signature of Revision::getContent() when it existed,
-		// and thus result in more complex and error prone refactoring.
-		if ( !$this->audienceCan( self::DELETED_TEXT, $audience, $performer ) ) {
+		try {
+			$content = $this->getSlot( $role, $audience, $performer )->getContent();
+		} catch ( BadRevisionException | SuppressedDataException $e ) {
 			return null;
+		}
+		return $content->copy();
+	}
+
+	/**
+	 * Get the Content of the given slot of this revision.
+	 *
+	 * @param string $role The role name of the desired slot
+	 * @param int $audience
+	 * @param Authority|null $performer user on whose behalf to check
+	 *
+	 * @return Content
+	 * @throws SuppressedDataException if the content is not viewable by the given audience
+	 * @throws BadRevisionException if the content is missing or corrupted
+	 * @throws RevisionAccessException
+	 */
+	public function getContentOrThrow( $role, $audience = self::FOR_PUBLIC, Authority $performer = null ): Content {
+		if ( !$this->audienceCan( self::DELETED_TEXT, $audience, $performer ) ) {
+			throw new SuppressedDataException(
+				'Access to the content has been suppressed for this audience' );
 		}
 
 		$content = $this->getSlot( $role, $audience, $performer )->getContent();

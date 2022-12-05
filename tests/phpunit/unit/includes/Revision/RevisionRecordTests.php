@@ -284,6 +284,38 @@ trait RevisionRecordTests {
 		);
 	}
 
+	/**
+	 * @dataProvider provideGetSlot_audience
+	 */
+	public function testGetContentOrThrow_audience( $visibility, $permissions, $userCan,
+		$publicCan
+	) {
+		$performer = $this->mockRegisteredAuthorityWithPermissions( $permissions );
+		$rev = $this->newRevision( [ 'rev_deleted' => $visibility ] );
+
+		$exception = null;
+		try {
+			$rev->getContentOrThrow( SlotRecord::MAIN, RevisionRecord::RAW );
+		} catch ( SuppressedDataException $exception ) {
+		}
+		$this->assertNull( $exception, 'raw can' );
+
+		$exception = null;
+		try {
+			$rev->getContentOrThrow( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC );
+		} catch ( SuppressedDataException $exception ) {
+		}
+		$this->assertSame( $publicCan, $exception === null, 'public can' );
+
+		$exception = null;
+		try {
+			$rev->getContentOrThrow( SlotRecord::MAIN,
+				RevisionRecord::FOR_THIS_USER, $performer );
+		} catch ( SuppressedDataException $exception ) {
+		}
+		$this->assertSame( $userCan, $exception === null, 'user can' );
+	}
+
 	public function testGetSlot() {
 		$rev = $this->newRevision();
 

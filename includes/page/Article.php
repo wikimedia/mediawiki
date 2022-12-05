@@ -26,6 +26,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Revision\BadRevisionException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
@@ -521,8 +522,13 @@ class Article implements Page {
 		}
 		$poOptions += [ 'includeDebugInfo' => true ];
 
-		$continue =
-			$this->generateContentOutput( $authority, $parserOptions, $oldid, $outputPage, $poOptions );
+		try {
+			$continue =
+				$this->generateContentOutput( $authority, $parserOptions, $oldid, $outputPage, $poOptions );
+		} catch ( BadRevisionException $e ) {
+			$continue = false;
+			$this->showViewError( wfMessage( 'badrevision' )->text() );
+		}
 
 		if ( !$continue ) {
 			return;

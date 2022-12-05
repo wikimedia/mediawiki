@@ -45,6 +45,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Storage\BadBlobException;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\NameTableStore;
@@ -1166,7 +1167,12 @@ class RevisionStore
 				// No blob flags, so use the blob verbatim.
 				$data = $blobData;
 			} else {
-				$data = $this->blobStore->expandBlob( $blobData, $blobFlags, $blobAddress );
+				try {
+					$data = $this->blobStore->expandBlob( $blobData, $blobFlags, $blobAddress );
+				} catch ( BadBlobException $e ) {
+					throw new BadRevisionException( $e->getMessage(), [], 0, $e );
+				}
+
 				if ( $data === false ) {
 					throw new RevisionAccessException(
 						'Failed to expand blob data using flags {flags} (key: {cache_key})',
@@ -1182,6 +1188,8 @@ class RevisionStore
 			$address = $slot->getAddress();
 			try {
 				$data = $this->blobStore->getBlob( $address, $queryFlags );
+			} catch ( BadBlobException $e ) {
+				throw new BadRevisionException( $e->getMessage(), [], 0, $e );
 			} catch ( BlobAccessException $e ) {
 				throw new RevisionAccessException(
 					'Failed to load data blob from {address}'

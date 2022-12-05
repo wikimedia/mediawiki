@@ -711,6 +711,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					if ( !$engine->wasCacheHit() ) {
 						$this->numUncachedDiffs++;
 					}
+					foreach ( $engine->getRevisionLoadErrors() as $msg ) {
+						$this->addWarning( $msg );
+					}
 				}
 			} else {
 				$vals['diff']['notcached'] = true;

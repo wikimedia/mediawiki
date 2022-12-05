@@ -29,6 +29,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Revision\BadRevisionException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
@@ -235,6 +236,9 @@ class DifferenceEngine extends ContextSource {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
+	/** @var Message[] */
+	private $revisionLoadErrors = [];
+
 	/** #@- */
 
 	/**
@@ -343,8 +347,14 @@ class DifferenceEngine extends ContextSource {
 		$slots = [];
 		foreach ( $roles as $role ) {
 			$slots[$role] = [
-				'old' => isset( $oldSlots[$role] ) ? $oldSlots[$role]->getContent() : null,
-				'new' => isset( $newSlots[$role] ) ? $newSlots[$role]->getContent() : null,
+				'old' => $this->loadSingleSlot(
+					$oldSlots[$role] ?? null,
+					'old'
+				),
+				'new' => $this->loadSingleSlot(
+					$newSlots[$role] ?? null,
+					'new'
+				)
 			];
 		}
 		// move main slot to front
@@ -352,6 +362,59 @@ class DifferenceEngine extends ContextSource {
 			$slots = [ SlotRecord::MAIN => $slots[SlotRecord::MAIN] ] + $slots;
 		}
 		return $slots;
+	}
+
+	/**
+	 * Load the content of a single slot record
+	 *
+	 * @param SlotRecord|null $slot
+	 * @param string $which "new" or "old"
+	 * @return Content|null
+	 */
+	private function loadSingleSlot( ?SlotRecord $slot, string $which ) {
+		if ( !$slot ) {
+			return null;
+		}
+		try {
+			return $slot->getContent();
+		} catch ( BadRevisionException $e ) {
+			$this->addRevisionLoadError( $which );
+			return null;
+		}
+	}
+
+	/**
+	 * Set a message to show as a notice at the top of the page
+	 *
+	 * @param string $which "new" or "old"
+	 */
+	private function addRevisionLoadError( $which ) {
+		$this->revisionLoadErrors[] = $this->msg( $which === 'new'
+			? 'difference-bad-new-revision' : 'difference-bad-old-revision'
+		);
+	}
+
+	/**
+	 * If errors were encountered while loading the revision contents, this
+	 * will return an array of Messages describing the errors.
+	 *
+	 * @return Message[]
+	 */
+	public function getRevisionLoadErrors() {
+		return $this->revisionLoadErrors;
+	}
+
+	/**
+	 * Determine whether there was an error loading the new revision
+	 * @return bool
+	 */
+	private function hasNewRevisionLoadError() {
+		foreach ( $this->revisionLoadErrors as $error ) {
+			if ( $error->getKey() === 'difference-bad-new-revision' ) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/** @inheritDoc */
@@ -841,6 +904,13 @@ class DifferenceEngine extends ContextSource {
 				$msg = $suppressed ? 'rev-suppressed-diff-view' : 'rev-deleted-diff-view';
 				$notice = Html::warningBox( $this->msg( $msg )->parse(), 'plainlinks' );
 			}
+
+			# Add an error if the content can't be loaded
+			$this->getSlotContents();
+			foreach ( $this->getRevisionLoadErrors() as $msg ) {
+				$notice .= Html::warningBox( $msg->parse() );
+			}
+
 			$this->showDiff( $oldHeader, $newHeader, $notice );
 			if ( !$diffOnly ) {
 				$this->renderNewRevision();
@@ -988,6 +1058,10 @@ class DifferenceEngine extends ContextSource {
 				// New revision is unsaved; bail out.
 				// TODO in theory rendering the new revision is a meaningful thing to do
 				// even if it's unsaved, but a lot of untangling is required to do it safely.
+				return;
+			}
+			if ( $this->hasNewRevisionLoadError() ) {
+				// There was an error loading the new revision
 				return;
 			}
 
@@ -1815,6 +1889,9 @@ class DifferenceEngine extends ContextSource {
 			// revision that's not readable to the user, but check it just in case.
 			$this->mOldContent = $oldRevision->getContent( SlotRecord::MAIN,
 				RevisionRecord::FOR_THIS_USER, $this->getAuthority() );
+			if ( !$this->mOldContent ) {
+				$this->addRevisionLoadError( 'old' );
+			}
 		} else {
 			$this->mOldPage = null;
 			$this->mOldRevisionRecord = $this->mOldid = false;
@@ -1824,6 +1901,9 @@ class DifferenceEngine extends ContextSource {
 		$this->mNewPage = Title::newFromLinkTarget( $newRevision->getPageAsLinkTarget() );
 		$this->mNewContent = $newRevision->getContent( SlotRecord::MAIN,
 			RevisionRecord::FOR_THIS_USER, $this->getAuthority() );
+		if ( !$this->mNewContent ) {
+			$this->addRevisionLoadError( 'new' );
+		}
 
 		$this->mRevisionsIdsLoaded = $this->mRevisionsLoaded = true;
 		$this->mTextLoaded = $oldRevision ? 2 : 1;

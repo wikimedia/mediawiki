@@ -216,6 +216,9 @@ class ApiComparePages extends ApiBase {
 				$difftext[$role] = $de->getDiffBodyForRole( $role );
 			}
 		}
+		foreach ( $de->getRevisionLoadErrors() as $msg ) {
+			$this->addWarning( $msg );
+		}
 
 		// Fill in the response
 		$vals = [];

@@ -226,28 +226,22 @@ class RenderedRevision implements SlotRenderingProvider {
 		if ( !isset( $this->slotsOutput[ $role ] )
 			|| ( $withHtml && !$this->slotsOutput[ $role ]->hasText() )
 		) {
-			$content = $this->revision->getContent( $role, $this->audience, $this->performer );
+			$content = $this->revision->getContentOrThrow( $role, $this->audience, $this->performer );
 
-			if ( !$content ) {
-				throw new SuppressedDataException(
-					'Access to the content has been suppressed for this audience'
+			// XXX: allow SlotRoleHandler to control the ParserOutput?
+			$output = $this->getSlotParserOutputUncached( $content, $withHtml );
+
+			if ( $withHtml && !$output->hasText() ) {
+				throw new LogicException(
+					'HTML generation was requested, but '
+					. get_class( $content )
+					. ' that passed to '
+					. 'ContentRenderer::getParserOutput() returns a ParserOutput with no text set.'
 				);
-			} else {
-				// XXX: allow SlotRoleHandler to control the ParserOutput?
-				$output = $this->getSlotParserOutputUncached( $content, $withHtml );
-
-				if ( $withHtml && !$output->hasText() ) {
-					throw new LogicException(
-						'HTML generation was requested, but '
-						. get_class( $content )
-						. ' that passed to '
-						. 'ContentRenderer::getParserOutput() returns a ParserOutput with no text set.'
-					);
-				}
-
-				// Detach watcher, to ensure option use is not recorded in the wrong ParserOutput.
-				$this->options->registerWatcher( null );
 			}
+
+			// Detach watcher, to ensure option use is not recorded in the wrong ParserOutput.
+			$this->options->registerWatcher( null );
 
 			$this->slotsOutput[ $role ] = $output;
 		}

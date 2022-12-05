@@ -265,13 +265,20 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 				[ $result, $errors ] = $this->fetchBlobs( [ $blobAddress ], $queryFlags );
 				// No negative caching; negative hits on text rows may be due to corrupted replica DBs
 				$error = $errors[$blobAddress] ?? null;
+				if ( $error ) {
+					$ttl = WANObjectCache::TTL_UNCACHEABLE;
+				}
 				return $result[$blobAddress];
 			},
 			$this->getCacheOptions()
 		);
 
 		if ( $error ) {
-			throw new BlobAccessException( $error );
+			if ( $error[0] === 'badrevision' ) {
+				throw new BadBlobException( $error[1] );
+			} else {
+				throw new BlobAccessException( $error[1] );
+			}
 		}
 
 		Assert::postcondition( is_string( $blob ), 'Blob must not be null' );
@@ -301,10 +308,9 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		}, $blobsByAddress );
 
 		$result = StatusValue::newGood( $blobsByAddress );
-		if ( $errors ) {
-			foreach ( $errors as $error ) {
-				$result->warning( 'internalerror', $error );
-			}
+		foreach ( $errors as $error ) {
+			// @phan-suppress-next-line PhanParamTooFewUnpack
+			$result->warning( ...$error );
 		}
 		return $result;
 	}
@@ -316,8 +322,12 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * @param int $queryFlags
 	 *
 	 * @throws BlobAccessException
-	 * @return array [ $result, $errors ] A map of blob addresses to successfully fetched blobs
-	 *         or false if fetch failed, plus and array of errors
+	 * @return array [ $result, $errors ] A list with the following elements:
+	 *   - The result: a map of blob addresses to successfully fetched blobs
+	 *     or false if fetch failed
+	 *   - Errors: a map of blob addresses to error information about the blob.
+	 *     On success, the relevant key will be absent. Each error is a list of
+	 *     parameters to be passed to StatusValue::warning().
 	 */
 	private function fetchBlobs( $blobAddresses, $queryFlags ) {
 		$textIdToBlobAddress = [];
@@ -336,26 +346,33 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 
 			// TODO: MCR: also support 'ex' schema with ExternalStore URLs, plus flags encoded in the URL!
 			if ( $schema === 'bad' ) {
-				// Database row was marked as "known bad", no need to trigger an error.
+				// Database row was marked as "known bad"
 				wfDebug(
 					__METHOD__
 					. ": loading known-bad content ($blobAddress), returning empty string"
 				);
 				$result[$blobAddress] = '';
-				continue;
+				$errors[$blobAddress] = [
+					'badrevision',
+					'The content of this revision is missing or corrupted (bad schema)'
+				];
 			} elseif ( $schema === 'tt' ) {
 				$textId = intval( $id );
 
 				if ( $textId < 1 || $id !== (string)$textId ) {
-					$errors[$blobAddress] = "Bad blob address: $blobAddress."
-						. ' Use findBadBlobs.php to remedy.';
+					$errors[$blobAddress] = [
+						'internalerror',
+						"Bad blob address: $blobAddress. Use findBadBlobs.php to remedy."
+					];
 					$result[$blobAddress] = false;
 				}
 
 				$textIdToBlobAddress[$textId] = $blobAddress;
 			} else {
-				$errors[$blobAddress] = "Unknown blob address schema: $schema."
-					. ' Use findBadBlobs.php to remedy.';
+				$errors[$blobAddress] = [
+					'internalerror',
+					"Unknown blob address schema: $schema. Use findBadBlobs.php to remedy."
+				];
 				$result[$blobAddress] = false;
 			}
 		}
@@ -414,8 +431,10 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 				$blob = $this->expandBlob( $row->old_text, $row->old_flags, $blobAddress );
 			}
 			if ( $blob === false ) {
-				$errors[$blobAddress] = "Bad data in text row {$row->old_id}."
-					. ' Use findBadBlobs.php to remedy.';
+				$errors[$blobAddress] = [
+					'internalerror',
+					"Bad data in text row {$row->old_id}. Use findBadBlobs.php to remedy."
+				];
 			}
 			$result[$blobAddress] = $blob;
 		}
@@ -424,8 +443,10 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		if ( count( $result ) !== count( $blobAddresses ) ) {
 			foreach ( $blobAddresses as $blobAddress ) {
 				if ( !isset( $result[$blobAddress ] ) ) {
-					$errors[$blobAddress] = "Unable to fetch blob at $blobAddress."
-						. ' Use findBadBlobs.php to remedy.';
+					$errors[$blobAddress] = [
+						'internalerror',
+						"Unable to fetch blob at $blobAddress. Use findBadBlobs.php to remedy."
+					];
 					$result[$blobAddress] = false;
 				}
 			}
@@ -482,10 +503,16 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 *   caching is disabled.
 	 *
 	 * @return false|string The expanded blob or false on failure
+	 * @throws BlobAccessException
 	 */
 	public function expandBlob( $raw, $flags, $blobAddress = null ) {
 		if ( is_string( $flags ) ) {
 			$flags = explode( ',', $flags );
+		}
+		if ( in_array( 'error', $flags ) ) {
+			throw new BadBlobException(
+				"The content of this revision is missing or corrupted (error flag)"
+			);
 		}
 
 		// Use external methods for external objects, text in table is URL-only then
