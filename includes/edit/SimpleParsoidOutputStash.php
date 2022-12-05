@@ -59,7 +59,7 @@ class SimpleParsoidOutputStash implements ParsoidOutputStash {
 	 * if we have something in the stash that matches a given rendering or
 	 * will just return an empty array if no entry in the stash.
 	 *
-	 * @param ParsoidRenderId $renderId
+	 * @param ParsoidRenderID $renderId
 	 *
 	 * @return SelserContext|null
 	 */
