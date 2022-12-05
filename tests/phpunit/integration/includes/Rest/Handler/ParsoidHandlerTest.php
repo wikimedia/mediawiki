@@ -7,9 +7,11 @@ use Generator;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
+use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Rest\Handler\HtmlInputTransformHelper;
 use MediaWiki\Rest\Handler\ParsoidFormatHelper;
@@ -26,6 +28,7 @@ use MediaWiki\Tests\Rest\RestTestTrait;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use NullStatsdDataFactory;
+use ParserCache;
 use PHPUnit\Framework\MockObject\MockObject;
 use TitleValue;
 use Wikimedia\Message\ITextFormatter;
@@ -248,12 +251,12 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			}
 
 			public function wt2html(
-				PageConfig $pageConfig,
+				PageConfig $pageConfigConfig,
 				array $attribs,
 				?string $wikitext = null
 			) {
 				return parent::wt2html(
-					$pageConfig,
+					$pageConfigConfig,
 					$attribs,
 					$wikitext
 				);
@@ -1910,6 +1913,8 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		array $unexpectedHtml,
 		array $expectedHeaders = []
 	) {
+		// $this->overrideConfigValue( 'TemporaryParsoidHandlerParserCacheWriteRatio', 0 );
+
 		$hmtlProfileUri = 'https://www.mediawiki.org/wiki/Specs/html/2.6.0';
 		$expectedHeaders += [
 			'content-type' => "text/x-wiki; charset=utf-8; profile=\"$hmtlProfileUri\"",
@@ -1947,6 +1952,43 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		foreach ( $unexpectedHtml as $exp ) {
 			$this->assertStringNotContainsString( $exp, $html );
 		}
+	}
+
+	public function testWt2html_ParserCache() {
+		$page = $this->getExistingTestPage();
+		$pageConfig = $this->getPageConfig( $page );
+
+		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'save', 'get' ] );
+
+		// This is the critical assertion in this test case: the save() method should
+		// be called exactly once!
+		$parserCache->expects( $this->once() )->method( 'save' );
+		$parserCache->method( 'get' )->willReturn( false );
+
+		$parserCacheFactory = $this->createNoOpMock(
+			ParserCacheFactory::class,
+			[ 'getParserCache', 'getRevisionOutputCache' ]
+		);
+		$parserCacheFactory->method( 'getParserCache' )->willReturn( $parserCache );
+		$parserCacheFactory->method( 'getRevisionOutputCache' )->willReturn(
+			$this->createNoOpMock( RevisionOutputCache::class )
+		);
+
+		$this->setService( 'ParserCacheFactory', $parserCacheFactory );
+
+		$attribs = self::DEFAULT_ATTRIBS;
+		$attribs['opts']['from'] = 'wikitext';
+		$attribs['opts']['format'] = 'html';
+
+		$handler = $this->newParsoidHandler();
+
+		// This should trigger a parser cache write, because we didn't set a write-ratio
+		$handler->wt2html( $pageConfig, $attribs );
+
+		$this->overrideConfigValue( 'TemporaryParsoidHandlerParserCacheWriteRatio', 0 );
+
+		// This should not trigger a parser cache write, because we set the write-ration to 0
+		$handler->wt2html( $pageConfig, $attribs );
 	}
 
 	// TODO: test wt2html failure modes
