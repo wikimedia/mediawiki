@@ -344,7 +344,7 @@ class UploadFromUrl extends UploadBase {
 			wfDebugLog( 'fileupload', 'Download by URL completed successfully.' );
 		} else {
 			// @phan-suppress-next-line PhanPossiblyUndeclaredVariable Always set after loop
-			wfDebugLog( 'fileupload', $status->getWikitext( false, false, 'en' ) );
+			wfDebugLog( 'fileupload', $status->getWikiText( false, false, 'en' ) );
 			wfDebugLog(
 				'fileupload',
 				// @phan-suppress-next-line PhanPossiblyUndeclaredVariable Always set after loop

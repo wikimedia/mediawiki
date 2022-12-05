@@ -2885,12 +2885,12 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		[ $pageTitle, $pageIdentity ] = $getPageIdentity();
 		$editStatus = $this->editPage( $pageTitle->getPrefixedDBkey(), 'First Revision' );
 		$this->assertStatusGood( $editStatus, 'must create first revision' );
-		$firstRevId = $editStatus->getNewRevision()->getID();
+		$firstRevId = $editStatus->getNewRevision()->getId();
 		$editStatus = $this->editPage( $pageTitle->getPrefixedText(), 'New Revision' );
 		$this->assertStatusGood( $editStatus, 'must create new revision' );
 		$this->assertNotSame(
 			$firstRevId,
-			$editStatus->getNewRevision()->getID(),
+			$editStatus->getNewRevision()->getId(),
 			'new revision must have different id'
 		);
 		$this->assertSame(

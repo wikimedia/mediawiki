@@ -263,7 +263,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 
 		// test the newest reverted revision
 		$newestRevertedRev = $this->revisionStore->getRevisionById(
-			$er->getnewestRevertedRevisionId()
+			$er->getNewestRevertedRevisionId()
 		);
 		$expectedNewestRevertedRev = $this->revisions[$expectedNewestRevertedRevKey];
 		$this->assertSame(

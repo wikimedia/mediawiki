@@ -287,7 +287,7 @@ class UpdateMediaWiki extends Maintenance {
 		}
 
 		$status = $settings->validate();
-		if ( !$status->isOk() ) {
+		if ( !$status->isOK() ) {
 			foreach ( $status->getErrorsByType( 'error' ) as $msg ) {
 				$msg = wfMessage( $msg['message'], ...$msg['params'] );
 				$warnings[] = $msg->text();

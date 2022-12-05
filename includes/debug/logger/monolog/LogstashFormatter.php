@@ -54,7 +54,7 @@ class LogstashFormatter extends \Monolog\Formatter\LogstashFormatter {
 	public function format( array $record ): string {
 		$record = \Monolog\Formatter\NormalizerFormatter::format( $record );
 		if ( $this->version === self::V1 ) {
-			$message = $this->formatv1( $record );
+			$message = $this->formatV1( $record );
 		} elseif ( $this->version === self::V0 ) {
 			$message = $this->formatV0( $record );
 		} else {

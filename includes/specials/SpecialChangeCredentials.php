@@ -262,7 +262,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 			$out->redirect( $returnUrl );
 		} else {
 			// messages used: changecredentials-success removecredentials-success
-			$out->addHtml(
+			$out->addHTML(
 				Html::successBox(
 					$out->msg( static::$messagePrefix . '-success' )->parse()
 				)

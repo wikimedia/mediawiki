@@ -645,6 +645,6 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$validateParams = new ValidationParams( $page, 0 );
 
 		$status = $contentHandler->validateSave( $content, $validateParams );
-		$this->assertEquals( $expectedResult, $status->isOk() );
+		$this->assertEquals( $expectedResult, $status->isOK() );
 	}
 }

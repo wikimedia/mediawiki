@@ -462,7 +462,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideTestPageFactoryAndIntWithDbUnsafeVersion() {
-		foreach ( $this->provideIntWithDBUnsafeVersion() as $dbint ) {
+		foreach ( $this->provideIntWithDbUnsafeVersion() as $dbint ) {
 			foreach ( $this->provideTestPageFactory() as $testPageFactory ) {
 				yield [ $dbint[0], $testPageFactory[0] ];
 			}

@@ -63,7 +63,7 @@ class SimpleParsoidOutputStash implements ParsoidOutputStash {
 	 *
 	 * @return SelserContext|null
 	 */
-	public function get( ParsoidRenderId $renderId ): ?SelserContext {
+	public function get( ParsoidRenderID $renderId ): ?SelserContext {
 		$key = $this->makeCacheKey( $renderId );
 		$jsonic = $this->bagOfStuff->get( $key ) ?? [];
 

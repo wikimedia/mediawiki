@@ -2175,7 +2175,7 @@ class Language {
 					->getUser()
 					->getDatePreference();
 			} else {
-				$userOptionsLookup = MediawikiServices::getInstance()->getUserOptionsLookup();
+				$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 				$datePreference = (string)$userOptionsLookup->getDefaultOption( 'date' );
 			}
 		} else {

@@ -832,7 +832,7 @@ class DifferenceEngine extends ContextSource {
 					$this->getTitle()->getFullURL( $query )
 				];
 			}
-			$out->addHtml( Html::warningBox( $this->msg( ...$msg )->parse(), 'plainlinks' ) );
+			$out->addHTML( Html::warningBox( $this->msg( ...$msg )->parse(), 'plainlinks' ) );
 		# Otherwise, output a regular diff...
 		} else {
 			# Add deletion notice if the user is viewing deleted content

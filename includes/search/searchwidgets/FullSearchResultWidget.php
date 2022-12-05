@@ -441,7 +441,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 		}
 
 		$path = MW_INSTALL_PATH . '/resources/lib/ooui/themes/wikimediaui/images/icons/imageLayoutFrameless.svg';
-		$this->thumbnailPlaceholderHtml = HTML::rawElement(
+		$this->thumbnailPlaceholderHtml = Html::rawElement(
 			'div',
 			[ 'class' => 'searchResultImage-thumbnail-placeholder' ],
 			file_get_contents( $path )
