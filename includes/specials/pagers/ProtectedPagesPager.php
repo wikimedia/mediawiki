@@ -21,6 +21,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
+use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use Wikimedia\Rdbms\ILoadBalancer;
 

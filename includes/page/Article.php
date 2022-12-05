@@ -20,6 +20,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

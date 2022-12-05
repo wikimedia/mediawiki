@@ -21,6 +21,8 @@
  * @file
  */
 
+use MediaWiki\Linker\Linker;
+
 /**
  * Compact stacked vertical format for forms, implemented using OOUI widgets.
  *

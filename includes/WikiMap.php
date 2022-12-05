@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DatabaseDomain;
 

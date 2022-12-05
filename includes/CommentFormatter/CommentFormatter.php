@@ -400,7 +400,7 @@ class CommentFormatter {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
 		}
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_COMMENT ) ) {
-			$class = \Linker::getRevisionDeletedClass( $revRecord );
+			$class = \MediaWiki\Linker\Linker::getRevisionDeletedClass( $revRecord );
 			return " <span class=\"$class comment\">$block</span>";
 		}
 		return $block;
