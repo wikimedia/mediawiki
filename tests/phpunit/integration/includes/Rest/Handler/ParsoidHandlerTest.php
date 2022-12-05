@@ -1754,9 +1754,11 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$profileVersion = '2.6.0';
 		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;
 		$pbProfileUri = 'https://www.mediawiki.org/wiki/Specs/pagebundle/' . $profileVersion;
+		$dpProfileUri = 'https://www.mediawiki.org/wiki/Specs/data-parsoid/' . $profileVersion;
 
 		$htmlContentType = "text/html; charset=utf-8; profile=\"$htmlProfileUri\"";
 		$pbContentType = "application/json; charset=utf-8; profile=\"$pbProfileUri\"";
+		$dpContentType = "application/json; charset=utf-8; profile=\"$dpProfileUri\"";
 		$lintContentType = "application/json";
 
 		$htmlHeaders = [
@@ -1793,16 +1795,33 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		// should get from a title and revision (pagebundle) ///////////////////////////////////
 		$expectedText = [ // bits of json
+			'"body":"<!DOCTYPE html>',
 			'UTContent</p>',
-			'"contentmodel":"wikitext"',
-			'"body":"<!DOCTYPE html>'
+			'contentmodel' => 'wikitext',
+			'data-parsoid' => [
+				'headers' => [
+					'content-type' => $dpContentType,
+				],
+				'body' => [
+					'counter' => 2,
+					'ids' => [
+						'mwAA' => [ 'dsr' => [ 0, 9, 0, 0 ] ],
+						'mwAQ' => [],
+						'mwAg' => [ 'dsr' => [ 0, 9, 0, 0 ] ],
+					],
+					'offsetType' => 'ucs2', // as provided in the input
+				]
+			],
 		];
 
 		$unexpectedText = [];
 
 		$attribs = [
 			'oldid' => 1, // will be replaced by a real revision id
-			'opts' => [ 'format' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE ]
+			'opts' => [ 'format' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE ],
+			'envOptions' => [
+				'offsetType' => 'ucs2', // make sure this is looped through to data-parsoid attribute
+			]
 		];
 		yield 'should get from a title and revision (pagebundle)' => [
 			$attribs,
@@ -1902,14 +1921,14 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @param array $attribs
 	 * @param string $text
-	 * @param string[] $expectedHtml
+	 * @param string[] $expectedData
 	 * @param string[] $unexpectedHtml
 	 * @param string[] $expectedHeaders
 	 */
 	public function testWt2html(
 		array $attribs,
 		?string $text,
-		array $expectedHtml,
+		array $expectedData,
 		array $unexpectedHtml,
 		array $expectedHeaders = []
 	) {
@@ -1939,18 +1958,26 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$response = $handler->wt2html( $pageConfig, $attribs, $text );
 		$body = $response->getBody();
 		$body->rewind();
-		$html = $body->getContents();
+		$data = $body->getContents();
 
 		foreach ( $expectedHeaders as $name => $value ) {
 			$this->assertSame( $value, $response->getHeaderLine( $name ) );
 		}
 
-		foreach ( $expectedHtml as $exp ) {
-			$this->assertStringContainsString( $exp, $html );
+		// HACK: try to parse as json, just in case:
+		$jsonData = json_decode( $data, JSON_OBJECT_AS_ARRAY );
+
+		foreach ( $expectedData as $index => $exp ) {
+			if ( is_int( $index ) ) {
+				$this->assertStringContainsString( $exp, $data );
+			} else {
+				$this->assertArrayHasKey( $index, $jsonData );
+				$this->assertSame( $exp, $jsonData[$index] );
+			}
 		}
 
 		foreach ( $unexpectedHtml as $exp ) {
-			$this->assertStringNotContainsString( $exp, $html );
+			$this->assertStringNotContainsString( $exp, $data );
 		}
 	}
 

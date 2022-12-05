@@ -328,10 +328,12 @@ abstract class ParsoidHandler extends Handler {
 			$helper->setContentSource( $source, $model );
 		}
 
-		if ( isset( $attribs['envOptions']['outputContentVersion'] )
-			&& $attribs['envOptions']['outputContentVersion'] !== Parsoid::defaultHTMLVersion()
-		) {
+		if ( isset( $attribs['envOptions']['outputContentVersion'] ) ) {
 			$helper->setOutputProfileVersion( $attribs['envOptions']['outputContentVersion'] );
+		}
+
+		if ( isset( $attribs['envOptions']['offsetType'] ) ) {
+			$helper->setOffsetType( $attribs['envOptions']['offsetType'] );
 		}
 
 		if ( isset( $attribs['pagelanguage'] ) ) {
