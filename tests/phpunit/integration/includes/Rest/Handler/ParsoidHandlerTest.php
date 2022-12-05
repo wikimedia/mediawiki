@@ -7,9 +7,11 @@ use Generator;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
+use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Rest\Handler\HtmlInputTransformHelper;
 use MediaWiki\Rest\Handler\ParsoidFormatHelper;
@@ -26,6 +28,7 @@ use MediaWiki\Tests\Rest\RestTestTrait;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use NullStatsdDataFactory;
+use ParserCache;
 use PHPUnit\Framework\MockObject\MockObject;
 use TitleValue;
 use Wikimedia\Message\ITextFormatter;
@@ -248,12 +251,12 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			}
 
 			public function wt2html(
-				PageConfig $pageConfig,
+				PageConfig $pageConfigConfig,
 				array $attribs,
 				?string $wikitext = null
 			) {
 				return parent::wt2html(
-					$pageConfig,
+					$pageConfigConfig,
 					$attribs,
 					$wikitext
 				);
@@ -1751,9 +1754,11 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$profileVersion = '2.6.0';
 		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;
 		$pbProfileUri = 'https://www.mediawiki.org/wiki/Specs/pagebundle/' . $profileVersion;
+		$dpProfileUri = 'https://www.mediawiki.org/wiki/Specs/data-parsoid/' . $profileVersion;
 
 		$htmlContentType = "text/html; charset=utf-8; profile=\"$htmlProfileUri\"";
 		$pbContentType = "application/json; charset=utf-8; profile=\"$pbProfileUri\"";
+		$dpContentType = "application/json; charset=utf-8; profile=\"$dpProfileUri\"";
 		$lintContentType = "application/json";
 
 		$htmlHeaders = [
@@ -1790,16 +1795,33 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		// should get from a title and revision (pagebundle) ///////////////////////////////////
 		$expectedText = [ // bits of json
+			'"body":"<!DOCTYPE html>',
 			'UTContent</p>',
-			'"contentmodel":"wikitext"',
-			'"body":"<!DOCTYPE html>'
+			'contentmodel' => 'wikitext',
+			'data-parsoid' => [
+				'headers' => [
+					'content-type' => $dpContentType,
+				],
+				'body' => [
+					'counter' => 2,
+					'ids' => [
+						'mwAA' => [ 'dsr' => [ 0, 9, 0, 0 ] ],
+						'mwAQ' => [],
+						'mwAg' => [ 'dsr' => [ 0, 9, 0, 0 ] ],
+					],
+					'offsetType' => 'ucs2', // as provided in the input
+				]
+			],
 		];
 
 		$unexpectedText = [];
 
 		$attribs = [
 			'oldid' => 1, // will be replaced by a real revision id
-			'opts' => [ 'format' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE ]
+			'opts' => [ 'format' => ParsoidFormatHelper::FORMAT_PAGEBUNDLE ],
+			'envOptions' => [
+				'offsetType' => 'ucs2', // make sure this is looped through to data-parsoid attribute
+			]
 		];
 		yield 'should get from a title and revision (pagebundle)' => [
 			$attribs,
@@ -1899,17 +1921,19 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @param array $attribs
 	 * @param string $text
-	 * @param string[] $expectedHtml
+	 * @param string[] $expectedData
 	 * @param string[] $unexpectedHtml
 	 * @param string[] $expectedHeaders
 	 */
 	public function testWt2html(
 		array $attribs,
 		?string $text,
-		array $expectedHtml,
+		array $expectedData,
 		array $unexpectedHtml,
 		array $expectedHeaders = []
 	) {
+		// $this->overrideConfigValue( 'TemporaryParsoidHandlerParserCacheWriteRatio', 0 );
+
 		$hmtlProfileUri = 'https://www.mediawiki.org/wiki/Specs/html/2.6.0';
 		$expectedHeaders += [
 			'content-type' => "text/x-wiki; charset=utf-8; profile=\"$hmtlProfileUri\"",
@@ -1934,19 +1958,64 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$response = $handler->wt2html( $pageConfig, $attribs, $text );
 		$body = $response->getBody();
 		$body->rewind();
-		$html = $body->getContents();
+		$data = $body->getContents();
 
 		foreach ( $expectedHeaders as $name => $value ) {
 			$this->assertSame( $value, $response->getHeaderLine( $name ) );
 		}
 
-		foreach ( $expectedHtml as $exp ) {
-			$this->assertStringContainsString( $exp, $html );
+		// HACK: try to parse as json, just in case:
+		$jsonData = json_decode( $data, JSON_OBJECT_AS_ARRAY );
+
+		foreach ( $expectedData as $index => $exp ) {
+			if ( is_int( $index ) ) {
+				$this->assertStringContainsString( $exp, $data );
+			} else {
+				$this->assertArrayHasKey( $index, $jsonData );
+				$this->assertSame( $exp, $jsonData[$index] );
+			}
 		}
 
 		foreach ( $unexpectedHtml as $exp ) {
-			$this->assertStringNotContainsString( $exp, $html );
+			$this->assertStringNotContainsString( $exp, $data );
 		}
+	}
+
+	public function testWt2html_ParserCache() {
+		$page = $this->getExistingTestPage();
+		$pageConfig = $this->getPageConfig( $page );
+
+		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'save', 'get' ] );
+
+		// This is the critical assertion in this test case: the save() method should
+		// be called exactly once!
+		$parserCache->expects( $this->once() )->method( 'save' );
+		$parserCache->method( 'get' )->willReturn( false );
+
+		$parserCacheFactory = $this->createNoOpMock(
+			ParserCacheFactory::class,
+			[ 'getParserCache', 'getRevisionOutputCache' ]
+		);
+		$parserCacheFactory->method( 'getParserCache' )->willReturn( $parserCache );
+		$parserCacheFactory->method( 'getRevisionOutputCache' )->willReturn(
+			$this->createNoOpMock( RevisionOutputCache::class )
+		);
+
+		$this->setService( 'ParserCacheFactory', $parserCacheFactory );
+
+		$attribs = self::DEFAULT_ATTRIBS;
+		$attribs['opts']['from'] = 'wikitext';
+		$attribs['opts']['format'] = 'html';
+
+		$handler = $this->newParsoidHandler();
+
+		// This should trigger a parser cache write, because we didn't set a write-ratio
+		$handler->wt2html( $pageConfig, $attribs );
+
+		$this->overrideConfigValue( 'TemporaryParsoidHandlerParserCacheWriteRatio', 0 );
+
+		// This should not trigger a parser cache write, because we set the write-ration to 0
+		$handler->wt2html( $pageConfig, $attribs );
 	}
 
 	// TODO: test wt2html failure modes

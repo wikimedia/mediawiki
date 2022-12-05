@@ -314,7 +314,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'en-x-piglatin', $helper->getETag() );
 	}
 
-	public function testGetHtmlWithVersion() {
+	public function testGetPageBundleWithOptions() {
 		$page = $this->getExistingTestPage( __METHOD__ );
 
 		$helper = $this->newHelper();
@@ -322,8 +322,14 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		// Calling setParsoidOptions must disable caching and force the ETag to null
 		$helper->setOutputProfileVersion( '999.0.0' );
+		$helper->setOffsetType( 'ucs2' );
 
-		$helper->getHtml();
+		$pb = $helper->getPageBundle();
+
+		// NOTE: Check that the options are present in the HTML.
+		//       We don't do real parsing, so this is how they are represented in the output.
+		$this->assertStringContainsString( '"outputContentVersion":"999.0.0"', $pb->html );
+		$this->assertStringContainsString( '"offsetType":"ucs2"', $pb->html );
 
 		$response = new Response();
 		$helper->putHeaders( $response, true );

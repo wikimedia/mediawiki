@@ -24,9 +24,11 @@ use ExtensionRegistry;
 use InvalidArgumentException;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
@@ -37,7 +39,6 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\SlotRecord;
 use MobileContext;
-use ParserOutput;
 use RequestContext;
 use Title;
 use WikiMap;
@@ -62,6 +63,7 @@ use WikitextContent;
  * Base class for Parsoid handlers.
  */
 abstract class ParsoidHandler extends Handler {
+
 	// TODO logging, timeouts(?), CORS
 	// TODO content negotiation (routes.js routes.acceptable)
 	// TODO handle MaxConcurrentCallsError (pool counter?)
@@ -277,6 +279,72 @@ abstract class ParsoidHandler extends Handler {
 
 		$this->requestAttributes = $attribs;
 		return $this->requestAttributes;
+	}
+
+	/**
+	 * @param array $attribs
+	 * @param ?string $source
+	 * @param PageConfig|PageIdentity $page
+	 *
+	 * @return HtmlOutputRendererHelper
+	 */
+	private function getHtmlOutputRendererHelper(
+		array $attribs,
+		?string $source,
+		$page
+	): HtmlOutputRendererHelper {
+		$services = MediaWikiServices::getInstance();
+
+		// Support PageConfig for backwards compatibility.
+		// We should leave it to lower level code to create it.
+		if ( $page instanceof PageConfig ) {
+			$title = $page->getTitle();
+			$page = $services->getPageStore()->getPageByText( $title );
+
+			if ( !$page ) {
+				throw new HttpException( "Bad title: $title", 400 );
+			}
+		}
+
+		$helper = new HtmlOutputRendererHelper(
+			$services->getParsoidOutputStash(),
+			$services->getStatsdDataFactory(),
+			$services->getParsoidOutputAccess(),
+			$services->getHtmlTransformFactory(),
+			$services->getContentHandlerFactory(),
+			$services->getLanguageFactory()
+		);
+
+		$user = RequestContext::getMain()->getUser();
+
+		$params = [];
+		$helper->init( $page, $params, $user );
+
+		// XXX: should default to the page's content model?
+		$model = $attribs['opts']['contentmodel']
+			?? ( $attribs['envOptions']['contentmodel'] ?? CONTENT_MODEL_WIKITEXT );
+
+		if ( $source !== null ) {
+			$helper->setContentSource( $source, $model );
+		}
+
+		if ( isset( $attribs['envOptions']['outputContentVersion'] ) ) {
+			$helper->setOutputProfileVersion( $attribs['envOptions']['outputContentVersion'] );
+		}
+
+		if ( isset( $attribs['envOptions']['offsetType'] ) ) {
+			$helper->setOffsetType( $attribs['envOptions']['offsetType'] );
+		}
+
+		if ( isset( $attribs['pagelanguage'] ) ) {
+			$helper->setPageLanguage( $attribs['pagelanguage'] );
+		}
+
+		if ( isset( $attribs['envOptions']['htmlVariantLanguage'] ) ) {
+			$helper->setVariantConversionLanguage( $attribs['envOptions']['htmlVariantLanguage'] );
+		}
+
+		return $helper;
 	}
 
 	/**
@@ -618,6 +686,43 @@ abstract class ParsoidHandler extends Handler {
 	}
 
 	/**
+	 * @param LinkTarget $redirectTarget
+	 * @param string $domain
+	 * @param string $format
+	 *
+	 * @throws ResponseException
+	 */
+	private function followWikiRedirect( $redirectTarget, $domain, $format ): void {
+		$pageStore = MediaWikiServices::getInstance()->getPageStore();
+		$titleFormatter = MediaWikiServices::getInstance()->getTitleFormatter();
+		$redirectTarget = $pageStore->getPageForLink( $redirectTarget );
+
+		if ( $redirectTarget instanceof ExistingPageRecord ) {
+			$pathParams = [
+				'domain' => $domain,
+				'format' => $format,
+				'title' => $titleFormatter->getPrefixedDBkey( $redirectTarget ),
+				'revision' => $redirectTarget->getLatest()
+			];
+
+			// NOTE: Core doesn't have REST endpoints that return raw wikitext,
+			//       so the below will fail unless the methods are overwritten.
+			if ( $redirectTarget->exists() ) {
+				$redirectPath = $this->getRevisionContentEndpoint( ParsoidFormatHelper::FORMAT_WIKITEXT );
+			} else {
+				$redirectPath = $this->getPageContentEndpoint( ParsoidFormatHelper::FORMAT_WIKITEXT );
+			}
+			throw new ResponseException(
+				$this->createRedirectResponse(
+					$redirectPath,
+					$pathParams,
+					$this->getRequest()->getQueryParams()
+				)
+			);
+		}
+	}
+
+	/**
 	 * Expand the current URL with the latest revision number and redirect there.
 	 *
 	 * @param PageConfig $pageConfig
@@ -654,6 +759,37 @@ abstract class ParsoidHandler extends Handler {
 		return $this->createRedirectResponse( $newPath, $pathParams, $this->getRequest()->getQueryParams() );
 	}
 
+	public function wtLint( PageConfig $pageConfig, array $attribs, ?string $wikitext = null ) {
+		$envOptions = $attribs['envOptions'];
+		$oldid = $attribs['oldid'];
+
+		if ( $wikitext === null && $oldid !== null ) {
+			$envOptions['logLinterData'] = true;
+		}
+
+		try {
+			$parsoid = $this->newParsoid();
+			return $parsoid->wikitext2lint( $pageConfig, $envOptions );
+		} catch ( ClientError $e ) {
+			throw new HttpException( $e->getMessage(), 400 );
+		} catch ( ResourceLimitExceededException $e ) {
+			throw new HttpException( $e->getMessage(), 413 );
+		}
+	}
+
+	private function allowParserCacheWrite() {
+		$config = RequestContext::getMain()->getConfig();
+
+		// HACK: remove before the release of MW 1.40 / early 2023.
+		if ( $config->has( 'TemporaryParsoidHandlerParserCacheWriteRatio' ) ) {
+			// We need to be careful about ramping up the cache writes,
+			// so we don't run out of disk space.
+			return wfRandom() < $config->get( 'TemporaryParsoidHandlerParserCacheWriteRatio' );
+		}
+
+		return true;
+	}
+
 	/**
 	 * Wikitext -> HTML helper.
 	 * Spec'd in https://phabricator.wikimedia.org/T75955 and the API tests.
@@ -662,6 +798,7 @@ abstract class ParsoidHandler extends Handler {
 	 * @param array $attribs Request attributes from getRequestAttributes()
 	 * @param ?string $wikitext Wikitext to transform (or null to use the
 	 *   page specified in the request attributes).
+	 *
 	 * @return Response
 	 */
 	protected function wt2html(
@@ -672,74 +809,66 @@ abstract class ParsoidHandler extends Handler {
 		$format = $opts['format'];
 		$oldid = $attribs['oldid'];
 
-		$needsPageBundle = ( $format === ParsoidFormatHelper::FORMAT_PAGEBUNDLE );
+		if ( $format === ParsoidFormatHelper::FORMAT_LINT ) {
+			$lints = $this->wtLint( $pageConfig, $attribs, $wikitext );
+			$response = $this->getResponseFactory()->createJson( $lints );
+			return $response;
+		}
 
 		// Performance Timing options
 		// init refers to time elapsed before parsing begins
 		$metrics = $this->metrics;
 		$timing = Timing::start( $metrics );
 
-		if ( Semver::satisfies( $attribs['envOptions']['outputContentVersion'],
-			'!=' . Parsoid::defaultHTMLVersion() ) ) {
-			$metrics->increment( 'wt2html.parse.version.notdefault' );
-		}
+		$helper = $this->getHtmlOutputRendererHelper(
+			$attribs,
+			$wikitext,
+			$pageConfig
+		);
 
-		$parsoid = $this->newParsoid();
+		if ( !$this->allowParserCacheWrite() ) {
+			// NOTE: In theory, we want to always write to the parser cache. However,
+			//       the ParserCache takes a lot of disk space, and we need to have fine grained control
+			//       over when we write to it, so we can avoid running out of disc space.
+			$helper->setUseParserCache( true, false );
+		}
 
 		if (
 			!empty( $this->parsoidSettings['devAPI'] ) &&
 			( $request->getQueryParams()['follow_redirects'] ?? false )
 		) {
-			$content = $pageConfig->getRevisionContent();
+			$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+			$revision = $revisionStore->getRevisionById( $helper->getRevisionId() );
+			$content = $revision->getContent( SlotRecord::MAIN );
 			$redirectTarget = $content ? $content->getRedirectTarget() : null;
 			if ( $redirectTarget ) {
-				$redirectInfo = $this->dataAccess->getPageInfo(
-					$pageConfig, [ $redirectTarget ]
-				);
-				$pathParams = [
-					'domain' => $attribs['envOptions']['domain'],
-					'format' => $format,
-					'title' => $redirectTarget,
-					'revision' => $redirectInfo['revId']
-				];
-
-				// NOTE: Core doesn't have REST endpoints that return raw wikitext,
-				//       so the below will fail unless the methods are overwritten.
-				if ( $redirectInfo['revId'] ) {
-					$redirectPath = $this->getRevisionContentEndpoint( ParsoidFormatHelper::FORMAT_WIKITEXT );
-				} else {
-					$redirectPath = $this->getPageContentEndpoint( ParsoidFormatHelper::FORMAT_WIKITEXT );
-				}
-				throw new ResponseException(
-					$this->createRedirectResponse( $redirectPath, $pathParams, $request->getQueryParams() )
+				$this->followWikiRedirect(
+					$redirectTarget,
+					$attribs['envOptions']['domain'],
+					$format
 				);
 			}
 		}
 
-		$reqOpts = $attribs['envOptions'] + [
-				'pageBundle' => $needsPageBundle,
-				'contentmodel' => $opts['contentmodel'] ?? null,
-			];
+		$needsPageBundle = ( $format === ParsoidFormatHelper::FORMAT_PAGEBUNDLE );
 
-		// VE, the only client using body_only property,
-		// doesn't want section tags when this flag is set.
-		// (T181226)
+		if ( Semver::satisfies( $attribs['envOptions']['outputContentVersion'],
+			'!=' . Parsoid::defaultHTMLVersion() ) ) {
+			$metrics->increment( 'wt2html.parse.version.notdefault' );
+		}
+
 		if ( $attribs['body_only'] ) {
-			$reqOpts['wrapSections'] = false;
-			$reqOpts['body_only'] = true;
+			$helper->setFlavor( 'fragment' );
+		} elseif ( !$needsPageBundle ) {
+			// Inline data-parsoid. This will happen when no special params are set.
+			$helper->setFlavor( 'edit' );
 		}
 
 		if ( $wikitext === null && $oldid !== null ) {
-			$reqOpts['logLinterData'] = true;
 			$mstr = 'pageWithOldid';
 		} else {
 			$mstr = 'wt';
 		}
-
-		// XXX: Not necessary, since it's in the pageConfig
-		// if ( isset( $attribs['pagelanguage'] ) ) {
-		// 	$reqOpts['pagelanguage'] = $attribs['pagelanguage'];
-		// }
 
 		$timing->end( "wt2html.$mstr.init" );
 		$metrics->timing(
@@ -748,87 +877,73 @@ abstract class ParsoidHandler extends Handler {
 		);
 		$parseTiming = Timing::start( $metrics );
 
-		if ( $format === ParsoidFormatHelper::FORMAT_LINT ) {
-			try {
-				$lints = $parsoid->wikitext2lint( $pageConfig, $reqOpts );
-			} catch ( ClientError $e ) {
-				throw new HttpException( $e->getMessage(), 400 );
-			} catch ( ResourceLimitExceededException $e ) {
-				throw new HttpException( $e->getMessage(), 413 );
-			}
-			$response = $this->getResponseFactory()->createJson( $lints );
+		if ( $needsPageBundle ) {
+			$pb = $helper->getPageBundle();
+
+			$response = $this->getResponseFactory()->createJson( $pb->responseData() );
+			$helper->putHeaders( $response, false );
+
+			ParsoidFormatHelper::setContentType(
+				$response,
+				ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
+				$pb->version
+			);
 		} else {
-			$parserOutput = new ParserOutput();
-			try {
-				$out = $parsoid->wikitext2html(
-					$pageConfig, $reqOpts, $headers, $parserOutput
-				);
-			} catch ( ClientError $e ) {
-				throw new HttpException( $e->getMessage(), 400 );
-			} catch ( ResourceLimitExceededException $e ) {
-				throw new HttpException( $e->getMessage(), 413 );
+			$out = $helper->getHtml();
+
+			$response = $this->getResponseFactory()->create();
+			$response->getBody()->write( $out->getRawText() );
+
+			$helper->putHeaders( $response, true );
+
+			// XXX: Since we don't enable stashing, the ETag is not really useful.
+			$eTag = $helper->getETag();
+			if ( $eTag ) {
+				$response->setHeader( 'ETag', $eTag );
 			}
-			if ( $needsPageBundle ) {
-				$response = $this->getResponseFactory()->createJson( $out->responseData() );
-				ParsoidFormatHelper::setContentType( $response, ParsoidFormatHelper::FORMAT_PAGEBUNDLE,
-					$out->version );
-			} else {
-				$response = $this->getResponseFactory()->create();
-				ParsoidFormatHelper::setContentType( $response, ParsoidFormatHelper::FORMAT_HTML,
-					$attribs['envOptions']['outputContentVersion'] );
-				$response->getBody()->write( $out );
-				// @phan-suppress-next-next-line PhanTypeArraySuspiciousNullable $headers can't be null after the
-				// method call, but the docblock of wikitext2html doesn't say that.
-				$response->setHeader( 'Content-Language', $headers['content-language'] );
-				// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Same.
-				$response->addHeader( 'Vary', $headers['vary'] );
+		}
+
+		// XXX: For pagebundle requests, this can be somewhat inflated
+		// because of pagebundle json-encoding overheads
+		$outSize = $response->getBody()->getSize();
+		$parseTime = $parseTiming->end( "wt2html.$mstr.parse" );
+		$timing->end( 'wt2html.total' );
+		$metrics->timing( "wt2html.$mstr.size.output", $outSize );
+
+		// Ignore slow parse metrics for non-oldid parses
+		if ( $mstr === 'pageWithOldid' ) {
+			if ( $parseTime > 3000 ) {
+				LoggerFactory::getInstance( 'slow-parsoid' )
+					->info( 'Parsing {title} was slow, took {time} seconds', [
+						'time' => number_format( $parseTime / 1000, 2 ),
+						'title' => $pageConfig->getTitle(),
+					] );
 			}
 
-			// NOTE: We used to generate an ETag here, but since it was random every time and the
-			//       output wasn't stored anywhere, it could not possibly match anything, ever.
+			if ( $parseTime > 10 && $outSize > 100 ) {
+				// * Don't bother with this metric for really small parse times
+				//   p99 for initialization time is ~7ms according to grafana.
+				//   So, 10ms ensures that startup overheads don't skew the metrics
+				// * For body_only=false requests, <head> section isn't generated
+				//   and if the output is small, per-request overheads can skew
+				//   the timePerKB metrics.
 
-			// FIXME: For pagebundle requests, this can be somewhat inflated
-			// because of pagebundle json-encoding overheads
-			$outSize = $response->getBody()->getSize();
-			$parseTime = $parseTiming->end( "wt2html.$mstr.parse" );
-			$timing->end( 'wt2html.total' );
-			$metrics->timing( "wt2html.$mstr.size.output", $outSize );
+				// NOTE: This is slightly misleading since there are fixed costs
+				// for generating output like the <head> section and should be factored in,
+				// but this is good enough for now as a useful first degree of approxmation.
+				$timePerKB = $parseTime * 1024 / $outSize;
+				$metrics->timing( 'wt2html.timePerKB', $timePerKB );
 
-			// Ignore slow parse metrics for non-oldid parses
-			if ( $mstr === 'pageWithOldid' ) {
-				if ( $parseTime > 3000 ) {
+				if ( $timePerKB > 500 ) {
+					// At 100ms/KB, even a 100KB page which isn't that large will take 10s.
+					// So, we probably want to shoot for a threshold under 100ms.
+					// But, let's start with 500ms+ outliers first and see what we uncover.
 					LoggerFactory::getInstance( 'slow-parsoid' )
-						->info( 'Parsing {title} was slow, took {time} seconds', [
+						->info( 'Parsing {title} was slow, timePerKB took {timePerKB} ms, total: {time} seconds', [
 							'time' => number_format( $parseTime / 1000, 2 ),
+							'timePerKB' => number_format( $timePerKB, 1 ),
 							'title' => $pageConfig->getTitle(),
 						] );
-				}
-
-				if ( $parseTime > 10 && $outSize > 100 ) {
-					// * Don't bother with this metric for really small parse times
-					//   p99 for initialization time is ~7ms according to grafana.
-					//   So, 10ms ensures that startup overheads don't skew the metrics
-					// * For body_only=false requests, <head> section isn't generated
-					//   and if the output is small, per-request overheads can skew
-					//   the timePerKB metrics.
-
-					// FIXME: This is slightly misleading since there are fixed costs
-					// for generating output like the <head> section and should be factored in,
-					// but this is good enough for now as a useful first degree of approxmation.
-					$timePerKB = $parseTime * 1024 / $outSize;
-					$metrics->timing( 'wt2html.timePerKB', $timePerKB );
-
-					if ( $timePerKB > 500 ) {
-						// At 100ms/KB, even a 100KB page which isn't that large will take 10s.
-						// So, we probably want to shoot for a threshold under 100ms.
-						// But, let's start with 500ms+ outliers first and see what we uncover.
-						LoggerFactory::getInstance( 'slow-parsoid' )
-							->info( 'Parsing {title} was slow, timePerKB took {timePerKB} ms, total: {time} seconds', [
-								'time' => number_format( $parseTime / 1000, 2 ),
-								'timePerKB' => number_format( $timePerKB, 1 ),
-								'title' => $pageConfig->getTitle(),
-							] );
-					}
 				}
 			}
 		}
@@ -836,19 +951,15 @@ abstract class ParsoidHandler extends Handler {
 		if ( $wikitext !== null ) {
 			// Don't cache requests when wt is set in case somebody uses
 			// GET for wikitext parsing
+			// XXX: can we just refuse to do wikitext parsing in a GET request?
 			$response->setHeader( 'Cache-Control', 'private,no-cache,s-maxage=0' );
 		} elseif ( $oldid !== null ) {
-			// FIXME this should be handled in core (cf OutputPage::sendCacheControl)
+			// XXX: can this go away? Parsoid's PageContent class doesn't expose supressed revision content.
 			if ( $request->getHeaderLine( 'Cookie' ) ||
 				$request->getHeaderLine( 'Authorization' ) ) {
 				// Don't cache requests with a session.
 				$response->setHeader( 'Cache-Control', 'private,no-cache,s-maxage=0' );
 			}
-			// Indicate the MediaWiki revision in a header as well for
-			// ease of extraction in clients.
-			$response->setHeader( 'Content-Revision-Id', $oldid );
-		} else {
-			throw new LogicException( 'Should be unreachable' );
 		}
 		return $response;
 	}

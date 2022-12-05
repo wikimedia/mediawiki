@@ -174,8 +174,6 @@ class HtmlOutputRendererHelper {
 	 * Flavors may influence parser options, parsoid options, and DOM transformations.
 	 * They will be reflected by the ETag returned by getETag().
 	 *
-	 * Flavors cannot be combined. For more fine-grained control, use setOption
-	 *
 	 * @param string $flavor
 	 *
 	 * @return void
@@ -189,7 +187,11 @@ class HtmlOutputRendererHelper {
 	}
 
 	/**
-	 * Set the desired profile version for the output.
+	 * Set the desired Parsoid profile version for the output.
+	 * The actual output version is selected to be compatible with the one given here,
+	 * per the rules of semantic versioning.
+	 *
+	 * @note Will disable caching if the effective output version is different from the default.
 	 *
 	 * @param string $version
 	 *
@@ -206,6 +208,22 @@ class HtmlOutputRendererHelper {
 		if ( $outputContentVersion !== Parsoid::defaultHTMLVersion() ) {
 			// See Parsoid::wikitext2html
 			$this->parsoidOptions['outputContentVersion'] = $outputContentVersion;
+			$this->isCacheable = false;
+		}
+	}
+
+	/**
+	 * Set the desired offset type for data-parsoid attributes.
+	 *
+	 * @note Will disable caching if the given offset type is different from the default.
+	 *
+	 * @param string $offsetType One of the offset types accepted by Parsoid::wikitext2html.
+	 */
+	public function setOffsetType( $offsetType ) {
+		// Only set the option if the value isn't the default (see Wikimedia\Parsoid\Config\Env)!
+		// See Parsoid::wikitext2html for possible values.
+		if ( $offsetType !== 'byte' ) {
+			$this->parsoidOptions['offsetType'] = $offsetType;
 			$this->isCacheable = false;
 		}
 	}
@@ -577,14 +595,20 @@ class HtmlOutputRendererHelper {
 	 * Set the HTTP headers based on the response generated
 	 *
 	 * @param ResponseInterface $response
-	 * @param bool $setContentLanguageHeader
+	 * @param bool $forHtml Whether the response will be HTML (rather than JSON)
+	 *
 	 * @return void
 	 */
-	public function putHeaders( ResponseInterface $response, bool $setContentLanguageHeader ) {
+	public function putHeaders( ResponseInterface $response, bool $forHtml = true ) {
+		if ( $forHtml ) {
+			// For HTML we want to set the Content-Language. For JSON, we probably don't.
+			$response->setHeader( 'Content-Language', $this->getHtmlOutputContentLanguage() );
+
+			$pb = $this->getPageBundle();
+			ParsoidFormatHelper::setContentType( $response, ParsoidFormatHelper::FORMAT_HTML, $pb->version );
+		}
+
 		if ( $this->targetLanguageCode ) {
-			if ( $setContentLanguageHeader ) {
-				$response->setHeader( 'Content-Language', $this->getHtmlOutputContentLanguage() );
-			}
 			$response->addHeader( 'Vary', 'Accept-Language' );
 		}
 
@@ -592,6 +616,12 @@ class HtmlOutputRendererHelper {
 
 		if ( !$this->isCacheable ) {
 			$response->setHeader( 'Cache-Control', 'private,no-cache,s-maxage=0' );
+		}
+
+		// TODO: cache control for stable HTML? See ContentHelper::setCacheControl
+
+		if ( $this->getRevisionId() ) {
+			$response->setHeader( 'Content-Revision-Id', (string)$this->getRevisionId() );
 		}
 	}
 
