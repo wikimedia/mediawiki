@@ -127,10 +127,7 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 		// order of $languageCodes is guaranteed by LanguageNameUtils::getLanguageNames()
 		// and preserved by array_values() + array_intersect()
 
-		$continue = $this->getParameter( 'continue' );
-		if ( $continue === null ) {
-			$continue = reset( $languageCodes );
-		}
+		$continue = $this->getParameter( 'continue' ) ?? reset( $languageCodes );
 
 		$result = $this->getResult();
 		$rootPath = [

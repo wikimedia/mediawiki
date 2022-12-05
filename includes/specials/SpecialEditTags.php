@@ -406,10 +406,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 		}
 
 		// Evaluate incoming request data
-		$tagList = $request->getArray( 'wpTagList' );
-		if ( $tagList === null ) {
-			$tagList = [];
-		}
+		$tagList = $request->getArray( 'wpTagList' ) ?? [];
 		$existingTags = $request->getVal( 'wpExistingTags' );
 		if ( $existingTags === null || $existingTags === '' ) {
 			$existingTags = [];

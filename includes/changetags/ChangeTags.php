@@ -793,12 +793,6 @@ class ChangeTags {
 	public static function updateTagsWithChecks( $tagsToAdd, $tagsToRemove,
 		$rc_id, $rev_id, $log_id, $params, string $reason, Authority $performer
 	) {
-		if ( $tagsToAdd === null ) {
-			$tagsToAdd = [];
-		}
-		if ( $tagsToRemove === null ) {
-			$tagsToRemove = [];
-		}
 		if ( !$tagsToAdd && !$tagsToRemove ) {
 			// no-op, don't bother
 			return Status::newGood( (object)[
@@ -807,6 +801,9 @@ class ChangeTags {
 				'removedTags' => [],
 			] );
 		}
+
+		$tagsToAdd ??= [];
+		$tagsToRemove ??= [];
 
 		// are we allowed to do this?
 		$result = self::canUpdateTags( $tagsToAdd, $tagsToRemove, $performer );

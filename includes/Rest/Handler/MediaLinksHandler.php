@@ -188,11 +188,7 @@ class MediaLinksHandler extends SimpleHandler {
 	 */
 	protected function getLastModified(): ?string {
 		$page = $this->getPage();
-		if ( !$page ) {
-			return null;
-		}
-
-		return $page->getTouched();
+		return $page ? $page->getTouched() : null;
 	}
 
 	/**

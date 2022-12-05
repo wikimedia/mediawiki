@@ -1393,8 +1393,7 @@ abstract class ContentHandler {
 		SearchEngine $engine,
 		RevisionRecord $revision = null
 	) {
-		$fieldData = [];
-		$revision = $revision ?? $page->getRevisionRecord();
+		$revision ??= $page->getRevisionRecord();
 		if ( $revision === null ) {
 			LoggerFactory::getInstance( 'search' )->warning(
 				"Called getDataForSearchIndex on the page {page_id} for which the " .
@@ -1406,6 +1405,7 @@ abstract class ContentHandler {
 		Assert::invariant( $revision->getPageId() === $page->getId(),
 			'$revision and $page must target the same page_id' );
 
+		$fieldData = [];
 		$content = $revision->getContent( SlotRecord::MAIN );
 
 		if ( $content ) {

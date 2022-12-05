@@ -91,15 +91,9 @@ class MWTimestamp extends ConvertibleTimestamp {
 		Language $lang = null,
 		array $chosenIntervals = []
 	) {
-		if ( $relativeTo === null ) {
-			$relativeTo = new self;
-		}
-		if ( $user === null ) {
-			$user = RequestContext::getMain()->getUser();
-		}
-		if ( $lang === null ) {
-			$lang = RequestContext::getMain()->getLanguage();
-		}
+		$relativeTo ??= new self();
+		$user ??= RequestContext::getMain()->getUser();
+		$lang ??= RequestContext::getMain()->getLanguage();
 
 		$ts = '';
 		$diff = $this->diff( $relativeTo );

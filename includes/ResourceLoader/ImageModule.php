@@ -480,15 +480,11 @@ class ImageModule extends Module {
 	public static function extractLocalBasePath( array $options, $localBasePath = null ) {
 		global $IP;
 
-		if ( $localBasePath === null ) {
-			$localBasePath = $IP;
-		}
-
 		if ( array_key_exists( 'localBasePath', $options ) ) {
 			$localBasePath = (string)$options['localBasePath'];
 		}
 
-		return $localBasePath;
+		return $localBasePath ?? $IP;
 	}
 
 	/**

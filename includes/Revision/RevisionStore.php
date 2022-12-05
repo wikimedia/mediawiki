@@ -2683,10 +2683,7 @@ class RevisionStore
 		[ $dbType, ] = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = $this->getDBConnectionRef( $dbType, [ 'contributions' ] );
 
-		$ts = $rev->getTimestamp();
-		if ( $ts === null ) {
-			$ts = $this->getTimestampFromId( $revisionIdValue, $flags );
-		}
+		$ts = $rev->getTimestamp() ?? $this->getTimestampFromId( $revisionIdValue, $flags );
 		if ( $ts === false ) {
 			// XXX Should this be moved into getTimestampFromId?
 			$ts = $db->selectField( 'archive', 'ar_timestamp',

@@ -2401,10 +2401,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return WebRequest
 	 */
 	public function getRequest() {
-		if ( $this->mRequest ) {
-			return $this->mRequest;
-		}
-		return RequestContext::getMain()->getRequest();
+		return $this->mRequest ?? RequestContext::getMain()->getRequest();
 	}
 
 	/**

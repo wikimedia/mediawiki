@@ -446,14 +446,11 @@ class LogFormatter {
 			// case 'suppress' --private log -- aaron  (so we know who to blame in a few years :-D)
 			// default:
 		}
-		if ( $text === null ) {
-			$text = $this->getPlainActionText();
-		}
 
 		$this->plaintext = false;
 		$this->irctext = false;
 
-		return $text;
+		return $text ?? $this->getPlainActionText();
 	}
 
 	/**

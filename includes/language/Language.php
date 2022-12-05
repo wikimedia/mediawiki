@@ -2484,9 +2484,7 @@ class Language {
 	public function getHumanTimestamp(
 		MWTimestamp $time, MWTimestamp $relativeTo = null, UserIdentity $user = null
 	) {
-		if ( $relativeTo === null ) {
-			$relativeTo = new MWTimestamp();
-		}
+		$relativeTo ??= new MWTimestamp();
 		if ( $user === null ) {
 			$user = RequestContext::getMain()->getUser();
 		} else {

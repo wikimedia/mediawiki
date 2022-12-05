@@ -796,9 +796,7 @@ class ChangesList extends ContextSource {
 	 * @return bool
 	 */
 	public static function userCan( $rc, $field, Authority $performer = null ) {
-		if ( $performer === null ) {
-			$performer = RequestContext::getMain()->getAuthority();
-		}
+		$performer ??= RequestContext::getMain()->getAuthority();
 
 		if ( $rc->mAttribs['rc_type'] == RC_LOG ) {
 			return LogEventsList::userCanBitfield( $rc->mAttribs['rc_deleted'], $field, $performer );

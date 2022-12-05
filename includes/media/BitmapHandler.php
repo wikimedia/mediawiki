@@ -537,12 +537,8 @@ class BitmapHandler extends TransformationalImageHandler {
 	public static function imageJpegWrapper( $dst_image, $thumbPath, $quality = null ) {
 		$jpegQuality = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::JpegQuality );
 
-		if ( $quality === null ) {
-			$quality = $jpegQuality;
-		}
-
 		imageinterlace( $dst_image );
-		imagejpeg( $dst_image, $thumbPath, $quality );
+		imagejpeg( $dst_image, $thumbPath, $quality ?? $jpegQuality );
 	}
 
 	/**
