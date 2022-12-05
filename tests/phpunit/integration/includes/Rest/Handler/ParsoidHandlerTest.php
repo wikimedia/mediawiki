@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
+use Composer\Semver\Semver;
 use Exception;
 use Generator;
 use MediaWiki\MainConfigNames;
@@ -353,6 +354,38 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	private function getJsonFromFile( string $name ): array {
 		$text = $this->getTextFromFile( $name );
 		return json_decode( $text, JSON_OBJECT_AS_ARRAY );
+	}
+
+	// Mostly lifted from the contentTypeMatcher in tests/api-testing/REST/Transform.js
+	private function contentTypeMatcher( string $expected, string $actual ): bool {
+		if ( $expected === 'application/json' ) {
+			return $actual === $expected;
+		}
+
+		$pattern = '/^([-\w]+\/[-\w]+); charset=utf-8; profile="https:\/\/www.mediawiki.org\/wiki\/Specs\/([-\w]+)\/(\d+\.\d+\.\d+)"$/';
+
+		preg_match( $pattern, $expected, $expectedParts );
+		if ( !$expectedParts ) {
+			return false;
+		}
+		[ , $expectedMime, $expectedSpec, $expectedVersion ] = $expectedParts;
+
+		preg_match( $pattern, $actual, $actualParts );
+		if ( !$actualParts ) {
+			return false;
+		}
+		[ , $actualMime, $actualSpec, $actualVersion ] = $actualParts;
+
+		// Match version using caret semantics
+		if ( !Semver::satisfies( $actualVersion, "^{$expectedVersion}" ) ) {
+			return false;
+		}
+
+		if ( $actualMime !== $expectedMime || $actualSpec !== $expectedSpec ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	public function provideHtml2wt() {
@@ -1961,7 +1994,12 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$data = $body->getContents();
 
 		foreach ( $expectedHeaders as $name => $value ) {
-			$this->assertSame( $value, $response->getHeaderLine( $name ) );
+			$responseHeaderValue = $response->getHeaderLine( $name );
+			if ( $name === 'content-type' ) {
+				$this->assertTrue( $this->contentTypeMatcher( $value, $responseHeaderValue ) );
+			} else {
+				$this->assertSame( $value, $responseHeaderValue );
+			}
 		}
 
 		// HACK: try to parse as json, just in case:
@@ -1972,7 +2010,13 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 				$this->assertStringContainsString( $exp, $data );
 			} else {
 				$this->assertArrayHasKey( $index, $jsonData );
-				$this->assertSame( $exp, $jsonData[$index] );
+				if ( $index === 'data-parsoid' ) {
+					// FIXME: Assert headers as well
+					$this->assertArrayHasKey( 'body', $jsonData[$index] );
+					$this->assertSame( $exp['body'], $jsonData[$index]['body'] );
+				} else {
+					$this->assertSame( $exp, $jsonData[$index] );
+				}
 			}
 		}
 
