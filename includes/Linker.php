@@ -1671,6 +1671,7 @@ class Linker {
 	}
 
 	/**
+	 * @internal For use by ParserOutput and API modules
 	 * Generate a table of contents from a section tree.
 	 *
 	 * @since 1.16.3. $lang added in 1.17
