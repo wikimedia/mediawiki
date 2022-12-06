@@ -347,9 +347,11 @@ class ActionFactory {
 			return 'nosuchaction';
 		}
 
-		// Workaround for T22966: inability of IE to provide an action dependent
-		// on which submit button is clicked.
+		// TODO: Remove legacy historysubmit handling for cached action=history
+		// after one week (Nov 2022, T314008).
 		if ( $actionName === 'historysubmit' ) {
+			// Workaround for T22966: inability of IE to provide an action dependent
+			// on which submit button is clicked.
 			if ( $request->getBool( 'revisiondelete' ) ) {
 				$actionName = 'revisiondelete';
 			} elseif ( $request->getBool( 'editchangetags' ) ) {

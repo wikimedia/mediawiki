@@ -90,20 +90,27 @@ $( function () {
 	// the page look broken for a second in slow browsers and might show the form broken
 	// again when coming back from a "next" page.
 	$historyCompareForm.on( 'submit', function ( e ) {
-		var $copyForm, $copyRadios, $copyAction;
+		var $copyForm, $copyRadios;
 
 		if ( $historySubmitter ) {
 			$copyForm = $historyCompareForm.clone();
 			$copyRadios = $copyForm.find( '#pagehistory .mw-contributions-list > li' ).find( 'input[name="diff"], input[name="oldid"]' );
-			$copyAction = $copyForm.find( '> [name="action"]' );
 
-			// Remove action=historysubmit and ids[..]=..
+			// Emulate what native submit does by preserving the clicked button as hidden field
+			if ( $historySubmitter.attr( 'name' ) ) {
+				$( '<input>' ).prop( {
+					type: 'hidden',
+					name: $historySubmitter.attr( 'name' ),
+					value: $historySubmitter.attr( 'value' )
+				} ).appendTo( $copyForm );
+			}
+
+			// When comparing revisions, disable any checked revisiondelete ids[..]=.. checkboxes
 			// eslint-disable-next-line no-jquery/no-class-state
 			if ( $historySubmitter.hasClass( 'mw-history-compareselectedversions-button' ) ) {
-				$copyAction.remove();
 				$copyForm.find( 'input[name^="ids["]:checked' ).prop( 'checked', false );
 
-			// Remove diff=&oldid=, change action=historysubmit to revisiondelete, remove revisiondelete
+			// When using revisiondelete or editchangetags, strip diff=/oldid= radios
 			} else if (
 				// eslint-disable-next-line no-jquery/no-class-state
 				$historySubmitter.hasClass( 'mw-history-revisiondelete-button' ) ||
@@ -111,7 +118,6 @@ $( function () {
 				$historySubmitter.hasClass( 'mw-history-editchangetags-button' )
 			) {
 				$copyRadios.remove();
-				$copyAction.val( $historySubmitter.attr( 'name' ) );
 				// eslint-disable-next-line no-jquery/no-sizzle
 				$copyForm.find( ':submit' ).remove();
 			}
