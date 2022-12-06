@@ -831,7 +831,11 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers \Mediawiki\Page\RedirectLookup::getRedirectTarget
 	 */
 	public function testGetRedirectTarget( $title, $model, $text, $target ) {
-		$this->overrideConfigValue( MainConfigNames::CapitalLinks, true );
+		$this->overrideConfigValues( [
+			MainConfigNames::CapitalLinks => true,
+			// The file redirect can trigger http request with UseInstantCommons = true
+			MainConfigNames::ForeignFileRepos => [],
+		] );
 
 		$page = $this->createPage( $title, $text, $model );
 
@@ -850,6 +854,9 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::isRedirect
 	 */
 	public function testIsRedirect( $title, $model, $text, $target ) {
+		// The file redirect can trigger http request with UseInstantCommons = true
+		$this->overrideConfigValue( MainConfigNames::ForeignFileRepos, [] );
+
 		$page = $this->createPage( $title, $text, $model );
 		$this->assertEquals( $target !== null, $page->isRedirect() );
 	}
