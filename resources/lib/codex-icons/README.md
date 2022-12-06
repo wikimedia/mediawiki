@@ -17,7 +17,7 @@ and pass it to the `CdxIcon` component from the `@wikimedia/codex` package:
 `<cdx-icon :icon="cdxIconAlert">`.
 
 For more detailed usage information, see the
-[section about icons on the documentation website](https://doc.wikimedia.org/codex/main/icons/overview.html).
+[section about icons on the documentation website](https://doc.wikimedia.org/codex/latest/icons/overview.html).
 
 ## Building the icons
 You will need to build the icons in this package to be able to build the `codex`
