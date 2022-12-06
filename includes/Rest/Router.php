@@ -4,6 +4,7 @@ namespace MediaWiki\Rest;
 
 use AppendIterator;
 use BagOStuff;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
@@ -13,6 +14,7 @@ use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
+use NullStatsdDataFactory;
 use Throwable;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -80,6 +82,9 @@ class Router {
 	/** @var Session */
 	private $session;
 
+	/** @var StatsdDataFactoryInterface */
+	private $metrics;
+
 	/**
 	 * @internal
 	 * @var array
@@ -135,6 +140,8 @@ class Router {
 		$this->errorReporter = $errorReporter;
 		$this->hookContainer = $hookContainer;
 		$this->session = $session;
+
+		$this->metrics = new NullStatsdDataFactory();
 	}
 
 	/**
@@ -402,14 +409,25 @@ class Router {
 		$request->setPathParams( array_map( 'rawurldecode', $match['params'] ) );
 		$handler = $this->createHandler( $request, $match['userData'] );
 
+		// Replace any characters that may have a special meaning in the metrics DB.
+		$metricsKey = 'REST/endpoint/' . strtr( $handler->getPath(), [
+				'{' => '_',
+				'}' => '_',
+			] );
+
+		$this->metrics->increment( "$metricsKey.req.$requestMethod" );
+
 		try {
-			return $this->executeHandler( $handler );
+			$response = $this->executeHandler( $handler );
 		} catch ( HttpException $e ) {
-			return $this->responseFactory->createFromException( $e );
+			$response = $this->responseFactory->createFromException( $e );
 		} catch ( Throwable $e ) {
 			$this->errorReporter->reportError( $e, $handler, $request );
-			return $this->responseFactory->createFromException( $e );
+			$response = $this->responseFactory->createFromException( $e );
 		}
+
+		$this->metrics->increment( "$metricsKey.response.status" . $response->getStatusCode() );
+		return $response;
 	}
 
 	/**
@@ -503,6 +521,16 @@ class Router {
 	 */
 	public function setCors( CorsUtils $cors ): self {
 		$this->cors = $cors;
+
+		return $this;
+	}
+
+	/**
+	 * @param StatsdDataFactoryInterface $metrics
+	 * @return self
+	 */
+	public function setMetrics( StatsdDataFactoryInterface $metrics ): self {
+		$this->metrics = $metrics;
 
 		return $this;
 	}
