@@ -176,7 +176,7 @@ class RevisionContentHelper extends PageContentHelper {
 		}
 
 		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable Validated by hasContent
-		if ( !$this->authority->authorizeRead( 'read', $this->getPage() ) ) {
+		if ( !$this->isAccessible() || !$this->authority->authorizeRead( 'read', $this->getPageIdentity() ) ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-permission-denied-revision' )->plaintextParams( $revId ),
 				403

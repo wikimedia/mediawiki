@@ -148,8 +148,16 @@ describe( 'Page Source', () => {
 			const { status, headers, text } = await client.get( `/page/${page}/html` );
 			assert.deepEqual( status, 200, text );
 			assert.match( headers[ 'content-type' ], /^text\/html/ );
-			assert.match( text, /<html / );
+			assert.match( text, /<html\b/ );
 			assert.match( text, /Edit \w+<\/b>/ );
+		} );
+		it( 'Should successfully return page HTML for a system message', async () => {
+			const msg = 'MediaWiki:Newpage-desc';
+			const { status, headers, text } = await client.get( `/page/${msg}/html` );
+			assert.deepEqual( status, 200, text );
+			assert.match( headers[ 'content-type' ], /^text\/html/ );
+			assert.match( text, /<html\b/ );
+			assert.match( text, /Start a new page/ );
 		} );
 		it( 'Should return 404 error for non-existent page', async () => {
 			const dummyPageTitle = utils.title( 'DummyPage_' );
@@ -215,8 +223,21 @@ describe( 'Page Source', () => {
 			assert.nestedPropertyVal( body, 'content_model', 'wikitext' );
 			assert.nestedPropertyVal( body, 'title', pageWithSpaces );
 			assert.nestedPropertyVal( body, 'key', utils.dbkey( page ) );
-			assert.match( body.html, /<html / );
+			assert.match( body.html, /<html\b/ );
 			assert.match( body.html, /Edit \w+<\/b>/ );
+		} );
+		it( 'Should successfully return page HTML and metadata for a system message', async () => {
+			const msg = 'MediaWiki:Newpage-desc';
+			const { status, body, text } = await client.get( `/page/${msg}/with_html` );
+			assert.deepEqual( status, 200, text );
+			assert.containsAllKeys( body, [ 'latest', 'id', 'key', 'license', 'title', 'content_model', 'html' ] );
+			assert.nestedPropertyVal( body, 'content_model', 'wikitext' );
+			assert.nestedPropertyVal( body, 'title', msg );
+			assert.nestedPropertyVal( body, 'key', utils.dbkey( msg ) );
+			assert.nestedPropertyVal( body, 'id', 0 );
+			assert.nestedPropertyVal( body.latest, 'id', 0 );
+			assert.match( body.html, /<html\b/ );
+			assert.match( body.html, /Start a new page/ );
 		} );
 		it( 'Should return 404 error for non-existent page', async () => {
 			const dummyPageTitle = utils.title( 'DummyPage_' );
