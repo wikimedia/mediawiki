@@ -464,7 +464,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropPgField', 'page', 'page_restrictions' ],
 			[ 'migrateTemplatelinks' ],
 			[ 'changeNullableField', 'templatelinks', 'tl_target_id', 'NOT NULL', true ],
-			[ 'changePrimaryKey', 'templatelinks', [ 'tl_from', 'tl_target_id' ], 'templatelinks_pk' ],
+			[ 'changePrimaryKey', 'templatelinks', [ 'tl_from', 'tl_target_id' ] ],
 			[ 'dropField', 'templatelinks', 'tl_title', 'patch-templatelinks-drop-tl_title.sql' ],
 
 			// 1.40
