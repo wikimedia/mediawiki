@@ -508,7 +508,17 @@ class HtmlToContentTransform {
 		$vOriginal = $pb->version;
 		$vEdited = $this->getSchemaVersion();
 
-		return $vOriginal !== null && $vOriginal !== $vEdited;
+		// Downgrades are only expected to be between major version
+		//
+		// RESTBase was only expected to store latest version.  If a client asked for a version
+		// not satisfied by the latest version, it would downgrade the stored version where
+		// possible.  So, it's the original version that needs to satisfy the edited version,
+		// otherwise it needs downgrading.
+		//
+		// There's also the case where an old version is not stored and a re-parse must occur.
+		// Here again the original version generated will be the latest, either satisfying
+		// the edited or needing downgrading.
+		return $vOriginal !== null && !Semver::satisfies( $vOriginal, "^{$vEdited}" );
 	}
 
 	private function downgradeOriginalData( PageBundle $pb, string $targetSchemaVersion ) {
