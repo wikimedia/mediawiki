@@ -105,6 +105,15 @@ codex:
     package/LICENSE:
     package/README.md:
 
+codex-design-tokens:
+  type: tar
+  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-0.4.0.tgz
+  integrity: sha384-9yhgf2o/Cy1UfWsEGCwJN7SzjSQGPeYLgI9pkC/cJEi2iexevqWtwuiiotvFnHSJ
+  dest:
+    package/dist/theme-wikimedia-ui.less:
+    package/LICENSE:
+    package/README.md:
+
 codex-icons:
   type: tar
   src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.4.0.tgz
