@@ -1689,6 +1689,16 @@ QUnit.module( 'jquery.tablesorter', QUnit.newMwEnvironment( {
 			] );
 		} );
 
+		QUnit.test( 'DMY Dates', function ( assert ) {
+			mw.config.set( {
+				wgDefaultDateFormat: 'dmy',
+				wgPageContentLanguage: 'it'
+			} );
+			this.parser( assert, 'date', [
+				[ '1º January 2010', true, 20100101, 'T305375 - dates with the ordinal indicator º' ]
+			] );
+		} );
+
 		QUnit.test( 'Clobbered Dates', function ( assert ) {
 			this.parser( assert, 'date', [
 				[ 'January, 19 2010 - January, 20 2010', false, '99999999', 'Date range with hyphen' ],
