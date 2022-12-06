@@ -228,6 +228,8 @@ because of Phabricator reports.
 * RevDelList::reloadFromMaster(), deprecated since 1.37, has been removed.
 * DatabasePostgres::remappedTableName(), deprecated since 1.37, has been
   removed.
+* ExternalStoreDB::getMaster(), deprecated since 1.37, has been removed.
+* DeletePage::deletionWasScheduled(), deprecated since 1.38, has been removed.
 * …
 
 === Deprecations in 1.40 ===
