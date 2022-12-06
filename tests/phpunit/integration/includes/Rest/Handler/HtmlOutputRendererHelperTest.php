@@ -75,6 +75,10 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		return $count === null ? $this->any() : $this->exactly( $count );
 	}
 
+	public function getParsoidRenderID( ParserOutput $pout ) {
+		return new ParsoidRenderID( $pout->getCacheRevisionId(), $pout->getCacheTime() );
+	}
+
 	/**
 	 * @return MockObject|ParsoidOutputAccess
 	 */
@@ -104,6 +108,9 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 				return Status::newGood( $pout );
 			} );
 
+		$parsoid->method( 'getParsoidRenderID' )
+			->willReturnCallback( [ $this, 'getParsoidRenderID' ] );
+
 		$parsoid->expects( $this->exactlyOrAny( $expectedCalls[ 'parse' ] ) )
 			->method( 'parse' )
 			->willReturnCallback( function (
@@ -126,9 +133,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		$parsoid->expects( $this->exactlyOrAny( $expectedCalls[ 'getParsoidRenderID' ] ) )
 			->method( 'getParsoidRenderID' )
-			->willReturnCallback( static function ( ParserOutput $pout ) {
-				return new ParsoidRenderID( $pout->getCacheRevisionId(), $pout->getCacheTime() );
-			} );
+			->willReturnCallback( [ $this, 'getParsoidRenderID' ] );
 
 		return $parsoid;
 	}
@@ -470,12 +475,15 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		// First, test it works if nothing was cached yet.
 		$helper = $this->newHelper( $cache );
 		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser(), $rev );
-		$etag = $helper->getETag();
-		$lastModified = $helper->getLastModified();
-		$helper->getHtml(); // put HTML into the cache
+
+		// put HTML into the cache
+		$pout = $helper->getHtml();
+
+		$renderId = $this->getParsoidRenderID( $pout );
+		$lastModified = $pout->getCacheTime();
 
 		// make sure the etag didn't change after getHtml();
-		$this->assertSame( $etag, $helper->getETag() );
+		$this->assertStringContainsString( $renderId->getKey(), $helper->getETag() );
 		$this->assertSame(
 			MWTimestamp::convert( TS_MW, $lastModified ),
 			MWTimestamp::convert( TS_MW, $helper->getLastModified() )
@@ -494,7 +502,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$helper = $this->newHelper( $cache );
 		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser(), $rev );
 
-		$this->assertNotSame( $etag, $helper->getETag() );
+		$this->assertStringNotContainsString( $renderId->getKey(), $helper->getETag() );
 		$this->assertSame(
 			MWTimestamp::convert( TS_MW, $now ),
 			MWTimestamp::convert( TS_MW, $helper->getLastModified() )
@@ -524,17 +532,17 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 				return Status::newGood( $pout );
 			} );
 		$poa->method( 'getParsoidRenderID' )
-			->willReturnCallback( static function ( ParserOutput $pout ) {
-				return new ParsoidRenderID( 1, $pout->getCacheTime() );
-			} );
+			->willReturnCallback( [ $this, 'getParsoidRenderID' ] );
 
 		$helper = $this->newHelper( null, $poa );
 		$helper->init( $fakePage, self::PARAM_DEFAULTS, $this->newUser() );
 		$helper->setRevision( $fakeRevision );
-		$etag = $helper->getETag();
-		$lastModified = $helper->getLastModified();
 
-		$this->assertSame( $etag, $helper->getETag() );
+		$pout = $helper->getHtml();
+		$renderId = $this->getParsoidRenderID( $pout );
+		$lastModified = $pout->getCacheTime();
+
+		$this->assertStringContainsString( $renderId->getKey(), $helper->getETag() );
 		$this->assertSame(
 			MWTimestamp::convert( TS_MW, $lastModified ),
 			MWTimestamp::convert( TS_MW, $helper->getLastModified() )
