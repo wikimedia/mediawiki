@@ -347,18 +347,6 @@ class DeletePage {
 	}
 
 	/**
-	 * @return bool Whether (part of) the deletion was scheduled
-	 * @throws BadMethodCallException If no deletions were attempted
-	 * @deprecated since 1.38, use ::deletionsWereScheduled() instead.
-	 */
-	public function deletionWasScheduled(): bool {
-		wfDeprecated( __METHOD__, '1.38' );
-		$this->assertDeletionAttempted();
-		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable,PhanTypeMismatchReturnNullable
-		return $this->wasScheduled[self::PAGE_BASE];
-	}
-
-	/**
 	 * @return bool[] Whether the deletions were scheduled
 	 * @throws BadMethodCallException If no deletions were attempted
 	 */
