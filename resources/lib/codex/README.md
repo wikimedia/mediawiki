@@ -5,7 +5,7 @@ Codex is a toolkit for building user interfaces within the Wikimedia Design Syst
 - Icons, in the `@wikimedia/codex-icons` package
 <!-- Once ready, add design tokens to this list -->
 
-For more details, read the [Codex documentation](https://doc.wikimedia.org/codex/main/).
+For more details, read the [Codex documentation](https://doc.wikimedia.org/codex/latest/).
 
 ## Using Codex components
 To use a component, import it from this package:
