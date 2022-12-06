@@ -500,6 +500,7 @@ class HtmlOutputRendererHelper {
 	private function getParserOutput(): ParserOutput {
 		if ( !$this->parserOutput ) {
 			$parserOptions = ParserOptions::newFromAnon();
+			$parserOptions->setRenderReason( __METHOD__ );
 
 			if ( $this->pageLanguage ) {
 				$parserOptions->setTargetLanguage( $this->pageLanguage );
