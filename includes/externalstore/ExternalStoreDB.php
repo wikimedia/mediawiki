@@ -187,16 +187,6 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	}
 
 	/**
-	 * @deprecated since 1.37; please use getPrimary() instead.
-	 * @param string $cluster Cluster name
-	 * @return \Wikimedia\Rdbms\IMaintainableDatabase
-	 */
-	public function getMaster( $cluster ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		return $this->getPrimary( $cluster );
-	}
-
-	/**
 	 * @param array $server Primary DB server configuration array for LoadBalancer
 	 * @return string|false Database domain ID or false
 	 */
