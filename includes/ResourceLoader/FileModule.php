@@ -244,24 +244,6 @@ class FileModule extends Module {
 					break;
 			}
 		}
-		// In future this should be expanded to cover modules using packageFiles as well.
-		$isModernCode = $this->requiresES6();
-		if ( $isModernCode ) {
-			// If targets omitted, modern code should automatically default to mobile+desktop targets.
-			$isNotMobileTargeted = !in_array( 'mobile', $this->targets );
-			// Modern JavaScript should never be restricted to desktop-only (see T323542)
-			if ( $isNotMobileTargeted ) {
-				// Add the mobile target to these modules.
-				$this->targets[] = 'mobile';
-				$targetsSpecified = isset( $options['targets'] );
-				// If the user intentionally tried to avoid adding to mobile log a warning.
-				if ( $targetsSpecified ) {
-					$this->getLogger()->warning( "When 'es6' is enabled, module will automatically target mobile.", [
-						'module' => $this->getName(),
-					] );
-				}
-			}
-		}
 		if ( isset( $options['scripts'] ) && isset( $options['packageFiles'] ) ) {
 			throw new InvalidArgumentException( "A module may not set both 'scripts' and 'packageFiles'" );
 		}

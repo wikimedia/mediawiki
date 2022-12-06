@@ -958,15 +958,5 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		$this->assertFalse( $module->requiresES6(), 'requiresES6 is false when set to false' );
 		$module = new FileModule( [ 'es6' => true ] );
 		$this->assertTrue( $module->requiresES6(), 'requiresES6 is true when set to true' );
-		$module = new FileModule( [ 'es6' => true, 'targets' => 'desktop' ] );
-		$this->assertEquals( $module->getTargets(), [ 'desktop', 'mobile' ], 'Targets ignored if es6 is set.' );
-		$module = new FileModule( [ 'es6' => true, 'targets' => [ 'desktop' ] ] );
-		$this->assertEquals( $module->getTargets(), [ 'desktop', 'mobile' ], 'Targets ignored if es6 is set.' );
-
-		// Check if it's still possible to define modules targetting mobile.
-		$module = new FileModule( [ 'es6' => true, 'targets' => 'mobile' ] );
-		$this->assertTrue( $module->requiresES6(), 'requiresES6 is true when set to true' );
-		$module = new FileModule( [ 'es6' => true, 'targets' => [ 'mobile' ] ] );
-		$this->assertTrue( $module->requiresES6(), 'requiresES6 is true when set to true' );
 	}
 }
