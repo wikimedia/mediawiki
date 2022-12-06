@@ -319,7 +319,7 @@ class PageUpdater {
 		$this->setFlags( $flags );
 
 		// Load the data from the primary database if needed. Needed to check flags.
-		$this->derivedDataUpdater->setCause( 'page-edit', $this->author->getName() );
+		$this->derivedDataUpdater->setCause( 'edit-page', $this->author->getName() );
 
 		$this->grabParentRevision();
 		if ( !$this->derivedDataUpdater->isUpdatePrepared() ) {
