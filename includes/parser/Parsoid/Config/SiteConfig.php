@@ -469,17 +469,6 @@ class SiteConfig extends ISiteConfig {
 			}
 			if ( in_array( $prefix, $extraLangPrefixes, true ) ) {
 				$val['extralanglink'] = true;
-
-				/**
-				 * ApiQuerySiteinfo adds a 'linktext' field, but Parsoid
-				 * doesn't use this -- and because it uses wfMessage()
-				 * it implicitly uses a MessageCache which would have to
-				 * be injected here.
-				 */
-				// $linktext = wfMessage( "interlanguage-link-$prefix" );
-				// if ( !$linktext->isDisabled() ) {
-				// 	$val['linktext'] = $linktext->text();
-				// }
 			}
 
 			$this->interwikiMap[$prefix] = $val;
