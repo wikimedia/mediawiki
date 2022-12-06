@@ -26,13 +26,6 @@ if ( !process.env.MW_SERVER || !process.env.MW_SCRIPT_PATH ) {
  * - https://webdriver.io/docs/options/
  */
 exports.config = {
-	// ==================
-	// Automation Protocols
-	// ==================
-
-	// See https://webdriver.io/docs/automationProtocols/
-	automationProtocol: 'devtools',
-
 	// ======
 	// Custom conf keys for MediaWiki
 	//
