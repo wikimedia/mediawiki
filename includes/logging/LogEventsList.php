@@ -118,6 +118,11 @@ class LogEventsList extends ContextSource {
 		$formDescriptor['user'] = $this->getUserInputDesc( $user );
 		$formDescriptor['page'] = $this->getTitleInputDesc( $page );
 
+		// Title pattern, if allowed
+		if ( !$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
+			$formDescriptor['pattern'] = $this->getTitlePatternDesc( $pattern );
+		}
+
 		// Add extra inputs if any
 		// This could either be a form descriptor array or a string with raw HTML.
 		// We need it to work in both cases and show a deprecation warning if it
@@ -135,11 +140,6 @@ class LogEventsList extends ContextSource {
 			// We'll add this to the footer of the form later
 			$extraInputsString = $extraInputsDescriptor;
 			wfDeprecated( '$input in LogEventsListGetExtraInputs hook', '1.32' );
-		}
-
-		// Title pattern, if allowed
-		if ( !$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
-			$formDescriptor['pattern'] = $this->getTitlePatternDesc( $pattern );
 		}
 
 		// Date menu
