@@ -3044,15 +3044,19 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		}
 
 		$dbw = wfGetDB( DB_PRIMARY );
+		$res = $dbw->newSelectQueryBuilder()
+			->select( [ 'cat_id', 'cat_title' ] )
+			->from( 'category' )
+			->where( [ 'cat_title' => array_merge( $added, $deleted ) ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
+		$existingCategories = [];
+		foreach ( $res as $row ) {
+			$existingCategories[$row->cat_id] = $row->cat_title;
+		}
 
 		if ( count( $added ) ) {
-			$existingAdded = $dbw->selectFieldValues(
-				'category',
-				'cat_title',
-				[ 'cat_title' => $added ],
-				__METHOD__
-			);
-
+			$existingAdded = array_intersect( $existingCategories, $added );
 			// For category rows that already exist, do a plain
 			// UPDATE instead of INSERT...ON DUPLICATE KEY UPDATE
 			// to avoid creating gaps in the cat_id sequence.
@@ -3060,7 +3064,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				$dbw->update(
 					'category',
 					$addFields,
-					[ 'cat_title' => $existingAdded ],
+					[ 'cat_id' => array_keys( $existingAdded ) ],
 					__METHOD__
 				);
 			}
@@ -3087,10 +3091,11 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		}
 
 		if ( count( $deleted ) ) {
+			$existingDeleted = array_intersect( $existingCategories, $deleted );
 			$dbw->update(
 				'category',
 				$removeFields,
-				[ 'cat_title' => $deleted ],
+				[ 'cat_id' => array_keys( $existingDeleted ) ],
 				__METHOD__
 			);
 		}
