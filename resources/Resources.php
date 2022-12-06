@@ -307,6 +307,7 @@ return [
 		'deprecated' => true,
 		'scripts' => 'resources/src/jquery.tipsy/jquery.tipsy.js',
 		'styles' => 'resources/src/jquery.tipsy/jquery.tipsy.css',
+		'targets' => [ 'mobile', 'desktop' ],
 	],
 
 	/* jQuery UI */
