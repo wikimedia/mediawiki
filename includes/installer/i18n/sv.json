@@ -221,7 +221,7 @@
 	"config-upload-deleted": "Katalog för raderade filer:",
 	"config-upload-deleted-help": "Välja en katalog i vilken raderade filer arkiveras.\nHelst bör denna inte vara tillgängliga från webben.",
 	"config-personalization-settings": "Personalisering",
-	"config-logo-summary": "För varje fält behöver du ladda upp en bild med lämplig storlek och ange webbadressen i fälten nedanför. Du kan använda <code>$wgStylePath</code> eller <code>$wgScriptPath</code> om din logotyp är relativ till dessa sökvägar. Du kan lämna dessa fält tomma. \n\nI webbläsare som har stöd kan du också dra och släppa bildfiler från ditt filsystem till inmatningsfälten eller förhandsvisningsrutorna.",
+	"config-logo-summary": "För varje fält behöver du ladda upp en bild med lämplig storlek och ange webbadressen i fälten nedanför. Du kan använda <code>$wgStylePath</code> eller <code>$wgScriptPath</code> om din logotyp är relativ till dessa sökvägar. Du kan lämna dessa fält tomma.",
 	"config-logo-preview-main": "Huvudsida",
 	"config-logo-icon": "Logotyp (ikon)",
 	"config-logo-icon-help": "Din logotypikon bör vara en fyrkant och helst vara minst 50px eller en SVG.",

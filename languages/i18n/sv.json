@@ -1072,7 +1072,7 @@
 	"showingresultsinrange": "Nedan visas upp till {{PLURAL:$3|<strong>1</strong> resultat|<strong>$1</strong> resultat}} mellan nummer <strong>$2</strong> och nummer <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Resultat <strong>$1</strong> av <strong>$3</strong>|Resultat <strong>$1 – $2</strong> av <strong>$3</strong>}}",
 	"search-nonefound": "Inga resultat matchade frågan.",
-	"search-nonefound-thiswiki": "Inga resultat matchade frågan på denna webbplats.",
+	"search-nonefound-thiswiki": "Inga resultat matchade frågan på $3.",
 	"powersearch-legend": "Avancerad sökning",
 	"powersearch-ns": "Sök i namnrymderna:",
 	"powersearch-togglelabel": "Kryssa:",

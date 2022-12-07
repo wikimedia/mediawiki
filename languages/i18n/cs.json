@@ -61,7 +61,8 @@
 			"YjM",
 			"לערי ריינהארט",
 			"TheMatto58",
-			"Spotter"
+			"Spotter",
+			"JAn Dudík"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -1041,7 +1042,7 @@
 	"showingresultsinrange": "Níže zobrazuji nejvýše <strong>$1</strong> {{PLURAL:$1|výsledek|výsledky|výsledků}} v rozsahu #<strong>$2</strong>–#<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Výsledek <strong>$1</strong> z <strong>$3</strong>|Výsledky <strong>$1–$2</strong> z <strong>$3</strong>}}",
 	"search-nonefound": "Na váš dotaz nebyly nalezeny žádné výsledky.",
-	"search-nonefound-thiswiki": "Pro tento dotaz nebyly nalezeny žádné odpovídající výsledky na této wiki.",
+	"search-nonefound-thiswiki": "Na dotaz nebyly nalezeny žádné výsledky v $3.",
 	"powersearch-legend": "Rozšířené vyhledávání",
 	"powersearch-ns": "Hledat ve jmenných prostorech:",
 	"powersearch-togglelabel": "Zaškrtnout:",
