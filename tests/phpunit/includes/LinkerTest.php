@@ -786,4 +786,38 @@ class LinkerTest extends MediaWikiLangTestCase {
 			],
 		];
 	}
+
+	/**
+	 * @covers Linker::specialLink
+	 * @dataProvider provideSpecialLink
+	 */
+	public function testSpecialLink( $expected, $target, $key = null ) {
+		$this->overrideConfigValue( MainConfigNames::ArticlePath, '/wiki/$1' );
+
+		$this->assertEquals( $expected, Linker::specialLink( $target, $key ) );
+	}
+
+	public static function provideSpecialLink() {
+		yield 'Recent Changes' => [
+			'<a href="/wiki/Special:RecentChanges" title="Special:RecentChanges">Recent changes</a>',
+			'Recentchanges'
+		];
+
+		yield 'Contributions' => [
+			'<a href="/wiki/Special:Contributions" title="Special:Contributions">User contributions</a>',
+			'Contributions'
+		];
+
+		yield 'Contributions, custom key' => [
+			'<a href="/wiki/Special:Contributions" title="Special:Contributions">⧼made-up-display-key⧽</a>',
+			'Contributions',
+			'made-up-display-key'
+		];
+
+		yield 'Userlogin' => [
+			'<a href="/wiki/Special:UserLogin" title="Special:UserLogin">Log in</a>',
+			'Userlogin',
+			'login'
+		];
+	}
 }
