@@ -1818,7 +1818,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$attribs = [
 			'oldid' => 1, // will be replaced by a real revision id
 		];
-		yield 'should get from a title and revision (hmtl)' => [
+		yield 'should get from a title and revision (html)' => [
 			$attribs,
 			null,
 			$expectedText,
@@ -1967,9 +1967,9 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	) {
 		// $this->overrideConfigValue( 'TemporaryParsoidHandlerParserCacheWriteRatio', 0 );
 
-		$hmtlProfileUri = 'https://www.mediawiki.org/wiki/Specs/html/2.6.0';
+		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/html/2.6.0';
 		$expectedHeaders += [
-			'content-type' => "text/x-wiki; charset=utf-8; profile=\"$hmtlProfileUri\"",
+			'content-type' => "text/x-wiki; charset=utf-8; profile=\"$htmlProfileUri\"",
 		];
 
 		$page = $this->getExistingTestPage();
