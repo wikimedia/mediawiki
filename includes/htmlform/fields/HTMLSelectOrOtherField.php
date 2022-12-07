@@ -59,6 +59,10 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 			$tbAttribs['maxlength'] = $this->mParams['maxlength'];
 		}
 
+		if ( isset( $this->mParams['minlength'] ) ) {
+			$tbAttribs['minlength'] = $this->mParams['minlength'];
+		}
+
 		$textbox = Html::input( $this->mName . '-other', $valInSelect ? '' : $value, 'text', $tbAttribs );
 
 		$wrapperAttribs = [
@@ -124,6 +128,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 			'disabled',
 			'tabindex',
 			'maxlength',
+			'minlength',
 		];
 
 		$textAttribs += OOUI\Element::configFromHtmlAttributes(
