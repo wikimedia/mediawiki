@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.45.0
+ * OOUI v0.46.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-09-28T14:26:11Z
+ * Date: 2022-12-07T15:23:34Z
  */
 ( function ( OO ) {
 
@@ -3497,6 +3497,7 @@ OO.ui.OutlineOptionWidget.prototype.setRemovable = function ( removable ) {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.OutlineOptionWidget.prototype.setLevel = function ( level ) {
+	level = level || 0;
 	if ( this.level === level ) {
 		return this;
 	}
