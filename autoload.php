@@ -2025,6 +2025,7 @@ $wgAutoloadLocalClasses = [
 	'MessageLocalizer' => __DIR__ . '/includes/language/MessageLocalizer.php',
 	'MessageSpecifier' => __DIR__ . '/includes/libs/MessageSpecifier.php',
 	'MetadataStorageHelper' => __DIR__ . '/includes/filerepo/file/MetadataStorageHelper.php',
+	'MigrateExternallinks' => __DIR__ . '/maintenance/migrateExternallinks.php',
 	'MigrateFileRepoLayout' => __DIR__ . '/maintenance/migrateFileRepoLayout.php',
 	'MigrateLinksTable' => __DIR__ . '/maintenance/migrateLinksTable.php',
 	'MigrateRevisionActorTemp' => __DIR__ . '/maintenance/migrateRevisionActorTemp.php',
