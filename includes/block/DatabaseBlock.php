@@ -53,8 +53,8 @@ class DatabaseBlock extends AbstractBlock {
 	/** @var bool */
 	private $mAuto;
 
-	/** @var int */
-	private $mParentBlockId;
+	/** @var int|null */
+	private $mParentBlockId = null;
 
 	/** @var int */
 	private $mId;
@@ -431,7 +431,9 @@ class DatabaseBlock extends AbstractBlock {
 		$this->mAuto = (bool)$row->ipb_auto;
 		$this->setHideName( (bool)$row->ipb_deleted );
 		$this->mId = (int)$row->ipb_id;
-		$this->mParentBlockId = (int)$row->ipb_parent_block_id;
+		// Blocks with no parent id should have ipb_parent_block_id as null,
+		// don't save that as 0 though, see T282890
+		$this->mParentBlockId = $row->ipb_parent_block_id ? (int)$row->ipb_parent_block_id : null;
 
 		$this->setBlocker( MediaWikiServices::getInstance()
 			->getActorNormalization()
@@ -759,7 +761,10 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return int|null If this is an autoblock, ID of the parent block; otherwise null
 	 */
 	public function getParentBlockId() {
-		return $this->mParentBlockId;
+		// Sanity: this shouldn't have been 0, because when it was set in
+		// initFromRow() we converted 0 to null, in case the object was serialized
+		// and then unserialized, force 0 back to null, see T282890
+		return $this->mParentBlockId ?: null;
 	}
 
 	/**
