@@ -11,7 +11,7 @@ class EditPage extends Page {
 	get previewButton() { return $( '#wpPreview' ); }
 
 	openForEditing( title ) {
-		super.openTitle( title, { action: 'edit', vehidebetadialog: 1, hidewelcomedialog: 1 } );
+		super.openTitle( title, { action: 'submit', vehidebetadialog: 1, hidewelcomedialog: 1 } );
 	}
 
 	async preview( name, content ) {

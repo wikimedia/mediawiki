@@ -33,6 +33,7 @@ use MediaWiki\Page\PageRecord;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\RevisionOutputCache;
+use MediaWiki\Rest\HttpException;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -41,7 +42,6 @@ use ParserCache;
 use ParserOptions;
 use ParserOutput;
 use Status;
-use UnexpectedValueException;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Parsoid\Core\ClientError;
@@ -165,11 +165,19 @@ class ParsoidOutputAccess {
 	 * @return bool
 	 */
 	public function supportsContentModel( string $model ): bool {
+		// FIXME: We shouldn't pretend we can render things that we clearly can't.
+		// This is a messy fix for T324711.
+		// The real solution is T311728.
+		return true;
+
+		// TODO: restore correct behavior, once we have T311728:
+		/*
 		if ( $model === CONTENT_MODEL_WIKITEXT ) {
 			return true;
 		}
 
 		return $this->siteConfig->getContentModelHandler( $model ) !== null;
+		*/
 	}
 
 	/**
@@ -190,11 +198,6 @@ class ParsoidOutputAccess {
 		$isOld = $revision->getId() !== $page->getLatest();
 
 		$statsKey = $isOld ? 'ParsoidOutputAccess.Cache.revision' : 'ParsoidOutputAccess.Cache.parser';
-
-		$mainSlot = $revision->getSlot( SlotRecord::MAIN );
-		if ( !$this->supportsContentModel( $mainSlot->getModel() ) ) {
-			throw new UnexpectedValueException( 'Parsoid does not support content model ' . $mainSlot->getModel() );
-		}
 
 		if ( !( $options & self::OPT_FORCE_PARSE ) ) {
 			$parserOutput = $this->getCachedParserOutputInternal(
@@ -383,6 +386,12 @@ class ParsoidOutputAccess {
 		//       a PageRecord (and it may not be possible if the page doesn't exist).
 		if ( !$revision instanceof RevisionRecord ) {
 			[ $page, $revision ] = $this->resolveRevision( $page, $revision );
+		}
+
+		$mainSlot = $revision->getSlot( SlotRecord::MAIN );
+		if ( !$this->supportsContentModel( $mainSlot->getModel() ) ) {
+			// TODO: throw an internal exception here, convert to HttpError in HtmlOutputRendererHelper.
+			throw new HttpException( 'Parsoid does not support content model ' . $mainSlot->getModel(), 400 );
 		}
 
 		$languageOverride = $parserOpts->getTargetLanguage();
