@@ -15,13 +15,5 @@ exports.config = { ...config,
 	specs: [
 		'tests/selenium/specs/**/*.js',
 		'tests/selenium/wdio-mediawiki/specs/*.js'
-	],
-
-	suites: {
-		daily: [
-			'tests/selenium/wdio-mediawiki/specs/*.js',
-			'tests/selenium/specs/page.js',
-			'tests/selenium/specs/user.js'
-		]
-	}
+	]
 };

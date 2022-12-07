@@ -18,7 +18,7 @@ describe( 'Special:RecentChanges', function () {
 		name = Util.getTestString();
 	} );
 
-	it( 'shows page creation', async function () {
+	it( 'shows page creation @daily', async function () {
 		await bot.edit( name, content );
 		await browser.waitUntil( async () => {
 			const result = await bot.request( {
@@ -30,7 +30,11 @@ describe( 'Special:RecentChanges', function () {
 		} );
 
 		await RecentChangesPage.open();
-
+		await RecentChangesPage.liveUpdates.click();
+		await browser.waitUntil(
+			async () => ( await RecentChangesPage.titles[ 0 ].getText() ) === name,
+			{ timeout: 10000 }
+		);
 		assert.strictEqual( await RecentChangesPage.titles[ 0 ].getText(), name );
 	} );
 
