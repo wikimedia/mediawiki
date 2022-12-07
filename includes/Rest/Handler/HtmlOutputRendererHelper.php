@@ -272,7 +272,7 @@ class HtmlOutputRendererHelper {
 		Assert::parameterType( [ RevisionRecord::class, 'integer' ], $revisionOrId, '$revision' );
 		$this->revisionOrId = $revisionOrId;
 
-		if ( !$this->getRevisionId() ) {
+		if ( $this->getRevisionId() === null ) {
 			// If we have a RevisionRecord but no revision ID, we are dealing with a fake
 			// revision used for editor previews or mode switches. The wikitext is coming
 			// from the request, not the database, so the result is not cacheable for re-use
@@ -392,7 +392,7 @@ class HtmlOutputRendererHelper {
 				);
 			}
 
-			$fakeRevision = !$this->getRevisionId() && $this->revisionOrId !== null;
+			$isFakeRevision = $this->getRevisionId() === null;
 			$parsoidStashKey = ParsoidRenderID::newFromKey(
 				$this->parsoidOutputAccess->getParsoidRenderID( $parserOutput )
 			);
@@ -401,7 +401,7 @@ class HtmlOutputRendererHelper {
 				new SelserContext(
 					PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput ),
 					$parsoidStashKey->getRevisionID(),
-					$fakeRevision ? $this->revisionOrId->getContent( SlotRecord::MAIN ) : null
+					$isFakeRevision ? $this->revisionOrId->getContent( SlotRecord::MAIN ) : null
 				)
 			);
 			if ( !$stashSuccess ) {
@@ -525,10 +525,10 @@ class HtmlOutputRendererHelper {
 			//       the current revision or the revision must have an ID.
 			// If we have a revision and the ID is 0 or null, then it's a fake revision
 			// representing a preview.
-			$fakeRevision = !$this->getRevisionId() && $this->revisionOrId !== null;
+			$isFakeRevision = $this->getRevisionId() === null;
 			$pageRecordAvailable = $this->page instanceof PageRecord;
 
-			if ( $pageRecordAvailable && !$fakeRevision && !$parsoidOptions && $this->isCacheable ) {
+			if ( $pageRecordAvailable && !$isFakeRevision && !$parsoidOptions && $this->isCacheable ) {
 				$status = $this->parsoidOutputAccess->getParserOutput(
 					$this->page,
 					$parserOptions,
@@ -639,13 +639,28 @@ class HtmlOutputRendererHelper {
 
 	/**
 	 * Returns the ID of the revision that is being rendered.
-	 * If this is not 0, the rendering is for a revision present in the database.
-	 * If it is 0, the revision is a fake revision representing e.g. a preview.
 	 *
-	 * @return int
+	 * This will return 0 if no revision has been specified, so the current revision
+	 * will be rendered.
+	 *
+	 * This wil return null if RevisionRecord has been set but that RevisionRecord
+	 * does not have a revision ID, e.g. when rendering a preview.
+	 *
+	 * @return ?int
 	 */
-	public function getRevisionId(): int {
-		return is_object( $this->revisionOrId ) ? (int)$this->revisionOrId->getId() : (int)$this->revisionOrId;
+	public function getRevisionId(): ?int {
+		if ( !$this->revisionOrId ) {
+			// If we don't have a revision set or it's 0, we are rendering the current revision.
+			return 0;
+		}
+
+		if ( is_object( $this->revisionOrId ) ) {
+			// NOTE: return null even of getId() gave us 0
+			return $this->revisionOrId->getId() ?: null;
+		}
+
+		// It's a revision ID, just return it
+		return (int)$this->revisionOrId;
 	}
 
 }
