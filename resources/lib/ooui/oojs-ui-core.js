@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.45.0
+ * OOUI v0.46.0
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2022 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2022-09-28T14:26:11Z
+ * Date: 2022-12-07T15:23:34Z
  */
 ( function ( OO ) {
 
@@ -4863,7 +4863,7 @@ OO.ui.mixin.FloatableElement = function OoUiMixinFloatableElement( config ) {
 OO.ui.mixin.FloatableElement.prototype.setFloatableElement = function ( $floatable ) {
 	if ( this.$floatable ) {
 		this.$floatable.removeClass( 'oo-ui-floatableElement-floatable' );
-		this.$floatable.css( { left: '', top: '' } );
+		this.$floatable.css( { top: '', left: '', bottom: '', right: '' } );
 	}
 
 	this.$floatable = $floatable.addClass( 'oo-ui-floatableElement-floatable' );
@@ -4973,7 +4973,7 @@ OO.ui.mixin.FloatableElement.prototype.togglePositioning = function ( positionin
 				this.$floatableClosestScrollable = null;
 			}
 
-			this.$floatable.css( { left: '', right: '', top: '' } );
+			this.$floatable.css( { top: '', left: '', bottom: '', right: '' } );
 		}
 	}
 
@@ -11267,6 +11267,7 @@ OO.ui.CheckboxMultiselectInputWidget.prototype.focus = function () {
  *  instruct the browser to focus this widget.
  * @cfg {boolean} [readOnly=false] Prevent changes to the value of the text input.
  * @cfg {number} [maxLength] Maximum number of characters allowed in the input.
+ * @cfg {number} [minLength] Minimum number of characters allowed in the input.
  *
  *  For unfortunate historical reasons, this counts the number of UTF-16 code units rather than
  *  Unicode codepoints, which means that codepoints outside the Basic Multilingual Plane (e.g.
@@ -11336,6 +11337,9 @@ OO.ui.TextInputWidget = function OoUiTextInputWidget( config ) {
 	}
 	if ( config.maxLength !== undefined ) {
 		this.$input.attr( 'maxlength', config.maxLength );
+	}
+	if ( config.minLength !== undefined ) {
+		this.$input.attr( 'minlength', config.minLength );
 	}
 	if ( config.autofocus ) {
 		this.$input.attr( 'autofocus', 'autofocus' );
@@ -12331,9 +12335,6 @@ OO.ui.ComboBoxInputWidget = function OoUiComboBoxInputWidget( config ) {
 		autocomplete: false
 	}, config );
 
-	// ComboBoxInputWidget shouldn't support `multiline`
-	config.multiline = false;
-
 	// See InputWidget#reusePreInfuseDOM about `config.$input`
 	if ( config.$input ) {
 		config.$input.removeAttr( 'list' );
@@ -12636,6 +12637,8 @@ OO.ui.ComboBoxInputWidget.prototype.setOptions = function ( options ) {
  *  See <https://www.mediawiki.org/wiki/OOUI/Concepts#Overlays>.
  *
  * @throws {Error} An error is thrown if no widget is specified
+ *
+ * @property {OO.ui.Widget} fieldWidget
  */
 OO.ui.FieldLayout = function OoUiFieldLayout( fieldWidget, config ) {
 	// Allow passing positional parameters inside the config object
