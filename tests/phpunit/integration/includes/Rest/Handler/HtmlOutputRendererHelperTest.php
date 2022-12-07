@@ -292,19 +292,22 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		[ $page, $revisions ] = $this->getExistingPageWithRevisions( __METHOD__ );
 
 		// Test with just the revision ID, not the object! We do that elsewhere.
-		$rev = $revRef ? $revisions[ $revRef ]->getId() : null;
+		$revId = $revRef ? $revisions[ $revRef ]->getId() : null;
 
 		$helper = $this->newHelper();
 		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
 
-		if ( $rev ) {
-			$helper->setRevision( $rev );
-			$this->assertSame( $rev, $helper->getRevisionId() );
+		if ( $revId ) {
+			$helper->setRevision( $revId );
+			$this->assertSame( $revId, $helper->getRevisionId() );
+		} else {
+			// current revision
+			$this->assertSame( 0, $helper->getRevisionId() );
 		}
 
 		$htmlresult = $helper->getHtml()->getRawText();
 
-		$this->assertStringContainsString( $this->getMockHtml( $rev ), $htmlresult );
+		$this->assertStringContainsString( $this->getMockHtml( $revId ), $htmlresult );
 	}
 
 	public function testGetHtmlWithVariant() {
@@ -347,6 +350,9 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$helper = $this->newHelper();
 		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
 		$helper->setContent( new WikitextContent( 'text to preview' ) );
+
+		// getRevisionId() should return null for fake revisions.
+		$this->assertNull( $helper->getRevisionId() );
 
 		$htmlresult = $helper->getHtml()->getRawText();
 
@@ -482,6 +488,13 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$renderId = $this->getParsoidRenderID( $pout );
 		$lastModified = $pout->getCacheTime();
 
+		if ( $rev ) {
+			$this->assertSame( $rev->getId(), $helper->getRevisionId() );
+		} else {
+			// current revision
+			$this->assertSame( 0, $helper->getRevisionId() );
+		}
+
 		// make sure the etag didn't change after getHtml();
 		$this->assertStringContainsString( $renderId->getKey(), $helper->getETag() );
 		$this->assertSame(
@@ -537,6 +550,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$helper = $this->newHelper( null, $poa );
 		$helper->init( $fakePage, self::PARAM_DEFAULTS, $this->newUser() );
 		$helper->setRevision( $fakeRevision );
+
+		$this->assertNull( $helper->getRevisionId() );
 
 		$pout = $helper->getHtml();
 		$renderId = $this->getParsoidRenderID( $pout );

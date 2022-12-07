@@ -30,6 +30,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -298,12 +299,7 @@ abstract class ParsoidHandler extends Handler {
 		// Support PageConfig for backwards compatibility.
 		// We should leave it to lower level code to create it.
 		if ( $page instanceof PageConfig ) {
-			$title = $page->getTitle();
-			$page = $services->getPageStore()->getPageByText( $title );
-
-			if ( !$page ) {
-				throw new HttpException( "Bad title: $title", 400 );
-			}
+			$page = $this->getPageConfigToIdentity( $page );
 		}
 
 		$helper = new HtmlOutputRendererHelper(
@@ -364,12 +360,7 @@ abstract class ParsoidHandler extends Handler {
 		// Support PageConfig for backwards compatibility.
 		// We should leave it to lower level code to create it.
 		if ( $page instanceof PageConfig ) {
-			$title = $page->getTitle();
-			$page = $services->getPageStore()->getPageByText( $title );
-
-			if ( !$page ) {
-				throw new HttpException( "Bad title: $title", 400 );
-			}
+			$page = $this->getPageConfigToIdentity( $page );
 		}
 
 		$helper = $services->getPageRestHelperFactory()->newHtmlInputTransformHelper(
@@ -837,10 +828,9 @@ abstract class ParsoidHandler extends Handler {
 			!empty( $this->parsoidSettings['devAPI'] ) &&
 			( $request->getQueryParams()['follow_redirects'] ?? false )
 		) {
-			$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-			$revision = $revisionStore->getRevisionById( $helper->getRevisionId() );
-			$content = $revision->getContent( SlotRecord::MAIN );
-			$redirectTarget = $content ? $content->getRedirectTarget() : null;
+			$page = $this->getPageConfigToIdentity( $pageConfig );
+			$redirectLookup = MediaWikiServices::getInstance()->getRedirectLookup();
+			$redirectTarget = $redirectLookup->getRedirectTarget( $page );
 			if ( $redirectTarget ) {
 				$this->followWikiRedirect(
 					$redirectTarget,
@@ -1219,6 +1209,28 @@ abstract class ParsoidHandler extends Handler {
 		if ( !$pb->validate( $contentVersion, $errorMessage ) ) {
 			throw new HttpException( $errorMessage, 400 );
 		}
+	}
+
+	/**
+	 * @param PageConfig $page
+	 *
+	 * @return ProperPageIdentity
+	 * @throws HttpException
+	 */
+	private function getPageConfigToIdentity( PageConfig $page ): ProperPageIdentity {
+		$services = MediaWikiServices::getInstance();
+
+		$title = $page->getTitle();
+		$page = $services->getPageStore()->getPageByText( $title );
+
+		if ( !$page ) {
+			throw new HttpException(
+				"Bad title: $title",
+				400
+			);
+		}
+
+		return $page;
 	}
 
 }
