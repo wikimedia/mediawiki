@@ -60,6 +60,7 @@ return [
 		'group' => Module::GROUP_NOSCRIPT,
 	],
 	'filepage' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'class' => WikiModule::class,
 		'styles' => [ 'MediaWiki:Filepage.css' ],
 	],
@@ -848,6 +849,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.filewarning' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => 'resources/src/mediawiki.filewarning/filewarning.js',
 		'styles' => 'resources/src/mediawiki.filewarning/filewarning.less',
 		'dependencies' => [
@@ -1408,6 +1410,7 @@ return [
 		'messages' => [ 'protect-unchain-permissions' ]
 	],
 	'mediawiki.action.view.metadata' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.view.metadata.css',
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.metadata.js',
 		'messages' => [
@@ -1463,6 +1466,7 @@ return [
 		],
 	],
 	'mediawiki.action.view.filepage' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'styles' => [
 			'resources/src/mediawiki.action/mediawiki.action.view.filepage.print.less' =>
 				[ 'media' => 'print' ],
