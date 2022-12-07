@@ -9,7 +9,10 @@ use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Rest\Handler\HtmlOutputRendererHelper;
+use MediaWiki\Rest\Handler\LanguageLinksHandler;
 use MediaWiki\Rest\Handler\PageContentHelper;
+use MediaWiki\Rest\Handler\PageHistoryCountHandler;
+use MediaWiki\Rest\Handler\PageHistoryHandler;
 use MediaWiki\Rest\Handler\PageHTMLHandler;
 use MediaWiki\Rest\Handler\PageRestHelperFactory;
 use MediaWiki\Rest\Handler\PageSourceHandler;
@@ -117,6 +120,43 @@ trait PageHandlerTestTrait {
 			$services->getTitleFormatter(),
 			$services->getRedirectStore(),
 			$services->getPageRestHelperFactory()
+		);
+	}
+
+	public function newPageHistoryHandler() {
+		$services = $this->getServiceContainer();
+		return new PageHistoryHandler(
+			$services->getRevisionStore(),
+			$services->getNameTableStoreFactory(),
+			$services->getGroupPermissionsLookup(),
+			$services->getDBLoadBalancer(),
+			$services->getPageStore(),
+			$services->getTitleFormatter()
+		);
+	}
+
+	public function newPageHistoryCountHandler() {
+		$services = $this->getServiceContainer();
+		return new PageHistoryCountHandler(
+			$services->getRevisionStore(),
+			$services->getNameTableStoreFactory(),
+			$services->getGroupPermissionsLookup(),
+			$services->getDBLoadBalancer(),
+			new WANObjectCache( [ 'cache' => $this->parserCacheBagOStuff, ] ),
+			$services->getPageStore(),
+			$services->getActorMigration(),
+			$services->getTitleFormatter()
+		);
+	}
+
+	public function newLanguageLinksHandler() {
+		$services = $this->getServiceContainer();
+		return new LanguageLinksHandler(
+			$services->getDBLoadBalancer(),
+			$services->getLanguageNameUtils(),
+			$services->getTitleFormatter(),
+			$services->getTitleParser(),
+			$services->getPageStore(),
 		);
 	}
 

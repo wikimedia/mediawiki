@@ -15,6 +15,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
+use TitleFormatter;
 use WANObjectCache;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
@@ -26,6 +27,8 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * Handler class for Core REST API endpoints that perform operations on revisions
  */
 class PageHistoryCountHandler extends SimpleHandler {
+	use PageRedirectHandlerTrait;
+
 	/** The maximum number of counts to return per type of revision */
 	private const COUNT_LIMITS = [
 		'anonymous' => 10000,
@@ -65,6 +68,9 @@ class PageHistoryCountHandler extends SimpleHandler {
 	/** @var ActorMigration */
 	private $actorMigration;
 
+	/** @var TitleFormatter */
+	private $titleFormatter;
+
 	/** @var RevisionRecord|false|null */
 	private $revision = false;
 
@@ -82,6 +88,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @param WANObjectCache $cache
 	 * @param PageLookup $pageLookup
 	 * @param ActorMigration $actorMigration
+	 * @param TitleFormatter $titleFormatter
 	 */
 	public function __construct(
 		RevisionStore $revisionStore,
@@ -90,7 +97,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 		ILoadBalancer $loadBalancer,
 		WANObjectCache $cache,
 		PageLookup $pageLookup,
-		ActorMigration $actorMigration
+		ActorMigration $actorMigration,
+		TitleFormatter $titleFormatter
 	) {
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $nameTableStoreFactory->getChangeTagDef();
@@ -99,6 +107,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		$this->cache = $cache;
 		$this->pageLookup = $pageLookup;
 		$this->actorMigration = $actorMigration;
+		$this->titleFormatter = $titleFormatter;
 	}
 
 	private function normalizeType( $type ) {
@@ -143,7 +152,9 @@ class PageHistoryCountHandler extends SimpleHandler {
 	public function run( $title, $type ) {
 		$normalizedType = $this->normalizeType( $type );
 		$this->validateParameterCombination( $normalizedType );
+		$params = $this->getValidatedParams();
 		$page = $this->getPage();
+
 		if ( !$page ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-nonexistent-title',
@@ -160,6 +171,17 @@ class PageHistoryCountHandler extends SimpleHandler {
 				),
 				403
 			);
+		}
+
+		'@phan-var \MediaWiki\Page\ExistingPageRecord $page';
+		$redirectResponse = $this->createNormalizationRedirectResponseIfNeeded(
+			$page,
+			$params['title'] ?? null,
+			$this->titleFormatter
+		);
+
+		if ( $redirectResponse !== null ) {
+			return $redirectResponse;
 		}
 
 		$count = $this->getCount( $normalizedType );

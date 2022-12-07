@@ -43,11 +43,17 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$pageSourceHandler = $this->newPageSourceHandler();
 		$pageHtmlHandler = $this->newPageHtmlHandler();
+		$pageHistoryHandler = $this->newPageHistoryHandler();
+		$pageHistoryCountHandler = $this->newPageHistoryCountHandler();
+		$languageLinksHandler = $this->newLanguageLinksHandler();
 		$this->handlers = [
 			'source' => $pageSourceHandler,
 			'bare' => $pageSourceHandler,
 			'html' => $pageHtmlHandler,
 			'with_html' => $pageHtmlHandler,
+			'history' => $pageHistoryHandler,
+			'history_count' => $pageHistoryCountHandler,
+			'links_language' => $languageLinksHandler,
 		];
 	}
 
@@ -92,13 +98,6 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 			'source',
 			'/page/{title}',
 			[],
-			307
-		];
-
-		yield [
-			'source',
-			'/page/{title}',
-			[ 'redirect' => 'no' ],
 			200
 		];
 
@@ -106,13 +105,6 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 			'bare',
 			'/page/{title}/bare',
 			[],
-			307
-		];
-
-		yield [
-			'bare',
-			'/page/{title}/bare',
-			[ 'redirect' => 'no' ],
 			200
 		];
 
@@ -150,7 +142,7 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider permanentRedirectProvider
 	 */
-	public function testPermanentRedirect( $format, $path ) {
+	public function testPermanentRedirect( $format, $path, $extraPathParams = [] ) {
 		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 		$page = $this->getExistingTestPage( 'SourceEndpointTestPage with spaces' );
 		$this->assertTrue(
@@ -158,8 +150,9 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 			'Edited a page'
 		);
 
+		$pathParams = [ 'title' => $page->getTitle()->getPrefixedText() ] + $extraPathParams;
 		$request = new RequestData(
-			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
+			[ 'pathParams' => $pathParams ]
 		);
 
 		$handler = $this->handlers[$format];
@@ -177,5 +170,8 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 		yield [ 'bare', '/page/{title}/bare' ];
 		yield [ 'html', '/page/{title}/html' ];
 		yield [ 'with_html', '/page/{title}/with_html' ];
+		yield [ 'history', '/page/{title}/history' ];
+		yield [ 'history_count', '/page/{title}/history/counts/{type}', [ 'type' => 'edits' ] ];
+		yield [ 'links_language', '/page/{title}/links/language' ];
 	}
 }

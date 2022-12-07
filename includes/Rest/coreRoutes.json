@@ -21,7 +21,8 @@
 			"DBLoadBalancer",
 			"MainWANObjectCache",
 			"PageStore",
-			"ActorMigration"
+			"ActorMigration",
+			"TitleFormatter"
 		]
 	},
 	{
