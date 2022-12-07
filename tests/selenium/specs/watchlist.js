@@ -19,7 +19,8 @@ describe( 'Special:Watchlist', function () {
 		await LoginPage.loginAdmin();
 	} );
 
-	it( 'should show page with new edit @daily', async function () {
+	// Skipped on 2022-12-07 because of T324237
+	it.skip( 'should show page with new edit @daily', async function () {
 		const title = Util.getTestString( 'Title-' );
 
 		// create
