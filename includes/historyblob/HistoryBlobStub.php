@@ -128,19 +128,13 @@ class HistoryBlobStub {
 			if ( in_array( 'gzip', $flags ) ) {
 				// This shouldn't happen, but a bug in the compress script
 				// may at times gzip-compress a HistoryBlob object row.
-				$obj = unserialize( gzinflate( $row->old_text ) );
+				$obj = HistoryBlobUtils::unserialize( gzinflate( $row->old_text ), true );
 			} else {
-				$obj = unserialize( $row->old_text );
-			}
-
-			if ( !is_object( $obj ) ) {
-				// Correct for old double-serialization bug.
-				$obj = unserialize( $obj );
+				$obj = HistoryBlobUtils::unserialize( $row->old_text, true );
 			}
 
 			// Save this item for reference; if pulling many
 			// items in a row we'll likely use it again.
-			$obj->uncompress();
 			self::$blobCache = [ $this->mOldId => $obj ];
 		}
 

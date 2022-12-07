@@ -119,7 +119,7 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob {
 	 */
 	public function uncompress() {
 		if ( $this->mCompressed ) {
-			$this->mItems = unserialize( gzinflate( $this->mItems ) );
+			$this->mItems = HistoryBlobUtils::unserializeArray( gzinflate( $this->mItems ) );
 			$this->mCompressed = false;
 		}
 	}

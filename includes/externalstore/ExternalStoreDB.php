@@ -323,7 +323,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		}
 		if ( $itemID !== false && $ret !== false ) {
 			// Unserialise object; caller extracts item
-			$ret = unserialize( $ret );
+			$ret = HistoryBlobUtils::unserialize( $ret );
 		}
 
 		$externalBlobCache = [ $cacheID => $ret ];
@@ -400,7 +400,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 				$ret[$id] = $row->blob_text;
 			} else {
 				// multi result stored per blob
-				$ret[$id] = unserialize( $row->blob_text );
+				$ret[$id] = HistoryBlobUtils::unserialize( $row->blob_text );
 			}
 		}
 	}
