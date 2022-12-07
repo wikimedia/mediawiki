@@ -386,7 +386,16 @@ return [
 			'TemplateLinksSchemaMigrationStage' => 768,
 			'ExternalLinksSchemaMigrationStage' => 3,
 			'ContentHandlers' => [
-				'wikitext' => 'WikitextContentHandler',
+				'wikitext' => [
+					'class' => 'WikitextContentHandler',
+					'services' => [
+						0 => 'TitleFactory',
+						1 => 'ParserFactory',
+						2 => 'GlobalIdGenerator',
+						3 => 'LanguageNameUtils',
+						4 => 'MagicWordFactory',
+					],
+				],
 				'javascript' => 'JavaScriptContentHandler',
 				'json' => 'JsonContentHandler',
 				'css' => 'CssContentHandler',
