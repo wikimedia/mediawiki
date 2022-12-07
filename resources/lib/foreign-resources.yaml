@@ -294,8 +294,8 @@ oojs-router:
 
 ooui:
   type: tar
-  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.45.0.tgz
-  integrity: sha384-lLqVSE+MkZPSIUStCfMdVQ+9hXnq/LBONQgHne7SLmpUCBsHAIGmq0jxc0LKf4tL
+  src: https://registry.npmjs.org/oojs-ui/-/oojs-ui-0.46.0.tgz
+  integrity: sha384-rRpOHG1CwBduc3+rHatuv74URQP1mS6c9KlD1HHzVWME7mzCWJkNgJ/1GwjMgIeK
 
   dest:
     # Main stuff
