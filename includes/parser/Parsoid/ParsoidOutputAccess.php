@@ -165,11 +165,19 @@ class ParsoidOutputAccess {
 	 * @return bool
 	 */
 	public function supportsContentModel( string $model ): bool {
+		// FIXME: We shouldn't pretend we can render things that we clearly can't.
+		// This is a messy fix for T324711.
+		// The real solution is T311728.
+		return true;
+
+		// TODO: restore correct behavior, once we have T311728:
+		/*
 		if ( $model === CONTENT_MODEL_WIKITEXT ) {
 			return true;
 		}
 
 		return $this->siteConfig->getContentModelHandler( $model ) !== null;
+		*/
 	}
 
 	/**
