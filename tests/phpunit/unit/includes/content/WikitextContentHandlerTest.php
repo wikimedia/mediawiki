@@ -2,11 +2,16 @@
 
 namespace MediaWiki\Tests\Unit;
 
+use MagicWordFactory;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRenderingProvider;
+use MediaWiki\Title\TitleFactory;
 use MediaWikiUnitTestCase;
 use MWException;
+use ParserFactory;
 use Title;
+use Wikimedia\UUID\GlobalIdGenerator;
 use WikitextContent;
 use WikitextContentHandler;
 
@@ -18,12 +23,23 @@ use WikitextContentHandler;
  */
 class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 
+	private function newWikitextContentHandler(): WikitextContentHandler {
+		return new WikitextContentHandler(
+			CONTENT_MODEL_WIKITEXT,
+			$this->createMock( TitleFactory::class ),
+			$this->createMock( ParserFactory::class ),
+			$this->createMock( GlobalIdGenerator::class ),
+			$this->createMock( LanguageNameUtils::class ),
+			$this->createMock( MagicWordFactory::class )
+		);
+	}
+
 	/**
 	 * @covers ::serializeContent
 	 */
 	public function testSerializeContent() {
 		$content = new WikitextContent( 'hello world' );
-		$handler = new WikitextContentHandler();
+		$handler = $this->newWikitextContentHandler();
 
 		$this->assertEquals( 'hello world', $handler->serializeContent( $content ) );
 		$this->assertEquals(
@@ -39,7 +55,7 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 	 * @covers ::unserializeContent
 	 */
 	public function testUnserializeContent() {
-		$handler = new WikitextContentHandler();
+		$handler = $this->newWikitextContentHandler();
 
 		$content = $handler->unserializeContent( 'hello world' );
 		$this->assertEquals( 'hello world', $content->getText() );
@@ -55,7 +71,7 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 	 * @covers WikitextContentHandler::makeEmptyContent
 	 */
 	public function testMakeEmptyContent() {
-		$handler = new WikitextContentHandler();
+		$handler = $this->newWikitextContentHandler();
 		$content = $handler->makeEmptyContent();
 
 		$this->assertTrue( $content->isEmpty() );
@@ -75,7 +91,7 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 	 * @covers ::isSupportedFormat
 	 */
 	public function testIsSupportedFormat( $format, $supported ) {
-		$handler = new WikitextContentHandler();
+		$handler = $this->newWikitextContentHandler();
 		$this->assertEquals( $supported, $handler->isSupportedFormat( $format ) );
 	}
 
@@ -83,7 +99,7 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 	 * @covers ::supportsDirectEditing
 	 */
 	public function testSupportsDirectEditing() {
-		$handler = new WikiTextContentHandler();
+		$handler = $this->newWikiTextContentHandler();
 		$this->assertTrue( $handler->supportsDirectEditing(), 'direct editing is supported' );
 	}
 
@@ -94,7 +110,7 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 		$title = $this->createMock( Title::class );
 		$content = new WikitextContent( '' );
 		$srp = $this->createMock( SlotRenderingProvider::class );
-		$handler = new WikitextContentHandler();
+		$handler = $this->newWikitextContentHandler();
 
 		$updates = $handler->getSecondaryDataUpdates( $title, $content, SlotRecord::MAIN, $srp );
 
@@ -106,7 +122,7 @@ class WikitextContentHandlerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetDeletionUpdates() {
 		$title = $this->createMock( Title::class );
-		$handler = new WikitextContentHandler();
+		$handler = $this->newWikitextContentHandler();
 
 		$updates = $handler->getDeletionUpdates( $title, SlotRecord::MAIN );
 		$this->assertEquals( [], $updates );

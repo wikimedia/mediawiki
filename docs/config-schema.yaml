@@ -1994,7 +1994,7 @@ config-schema:
               - 1.40: Added
     ContentHandlers:
         default:
-            wikitext: WikitextContentHandler
+            wikitext: { class: WikitextContentHandler, services: [TitleFactory, ParserFactory, GlobalIdGenerator, LanguageNameUtils, MagicWordFactory] }
             javascript: JavaScriptContentHandler
             json: JsonContentHandler
             css: CssContentHandler
@@ -2003,7 +2003,7 @@ config-schema:
         type: object
         description: |-
             Plugins for page content model handling.
-            Each entry in the array maps a model id to a class name or callback
+            Each entry in the array maps a model id to an ObjectFactory specification
             that creates an instance of the appropriate ContentHandler subclass.
             @since 1.21
     NamespaceContentModels:
