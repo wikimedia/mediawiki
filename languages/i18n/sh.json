@@ -3134,6 +3134,8 @@
 	"sunday-at": "nedjelja u $1",
 	"yesterday-at": "jučer u $1",
 	"bad_image_list": "Koristi se sljedeći format:\n\nRazmatraju se samo stavke u spisku (linije koje počinju sa *).\nPrvi link u liniji mora biti povezan sa lošom datotekom/fajlom.\nSvi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje se datoteka/fajl pojavljuje ''inline''.",
+	"variantname-sh-cyrl": "Ћирилица",
+	"variantname-sh-latn": "Latinica",
 	"metadata": "Metapodaci",
 	"metadata-help": "Ova datoteka sadrži dodatne podatke koje je vjerovatno dodala digitalna kamera ili skener tokom snimanja ili digitalizacije. Ako je datoteka mijenjana, podaci možda nisu u skladu sa stvarnim stanjem.",
 	"metadata-expand": "Pokaži dodatne detalje",
