@@ -24,7 +24,8 @@ describe( 'Page', function () {
 		name = Util.getTestString( 'BeforeEach-name-' );
 	} );
 
-	it( 'should be previewable', async function () {
+	it( 'should be previewable @daily', async function () {
+		await UserLoginPage.loginAdmin();
 		await EditPage.preview( name, content );
 
 		assert.strictEqual( await EditPage.heading.getText(), 'Creating ' + name );
@@ -38,8 +39,9 @@ describe( 'Page', function () {
 		await browser.reloadSession();
 	} );
 
-	it( 'should be creatable', async function () {
+	it( 'should be creatable @daily', async function () {
 		// create
+		await UserLoginPage.loginAdmin();
 		await EditPage.edit( name, content );
 
 		// check
@@ -47,7 +49,7 @@ describe( 'Page', function () {
 		assert.strictEqual( await EditPage.displayedContent.getText(), content );
 	} );
 
-	it( 'should be re-creatable', async function () {
+	it( 'should be re-creatable @daily', async function () {
 		const initialContent = Util.getTestString( 'initialContent-' );
 
 		// create and delete
@@ -55,6 +57,7 @@ describe( 'Page', function () {
 		await bot.delete( name, 'delete prior to recreate' );
 
 		// re-create
+		await UserLoginPage.loginAdmin();
 		await EditPage.edit( name, content );
 
 		// check
@@ -84,7 +87,7 @@ describe( 'Page', function () {
 		assert.strictEqual( await HistoryPage.comment.getText(), `created with "${content}"` );
 	} );
 
-	it( 'should be deletable', async function () {
+	it( 'should be deletable @daily', async function () {
 		// create
 		await bot.edit( name, content, 'create for delete' );
 
@@ -94,13 +97,10 @@ describe( 'Page', function () {
 		await DeletePage.delete( name, 'delete reason' );
 
 		// check
-		assert.strictEqual(
-			await DeletePage.displayedContent.getText(),
-			'"' + name + '" has been deleted. See deletion log for a record of recent deletions.\n\nReturn to Main Page.'
-		);
+		assert.match( await DeletePage.displayedContent.getText(), new RegExp( `"${name}" has been deleted.` ) );
 	} );
 
-	it( 'should be restorable', async function () {
+	it( 'should be restorable @daily', async function () {
 		// create and delete
 		await bot.edit( name, content, 'create for delete' );
 		await bot.delete( name, 'delete for restore' );
@@ -115,7 +115,7 @@ describe( 'Page', function () {
 		assert.strictEqual( await RestorePage.displayedContent.getText(), name + ' has been undeleted\n\nConsult the deletion log for a record of recent deletions and restorations.' );
 	} );
 
-	it( 'should be protectable', async function () {
+	it( 'should be protectable @daily', async function () {
 
 		await bot.edit( name, content, 'create for protect' );
 
@@ -137,7 +137,7 @@ describe( 'Page', function () {
 		assert.strictEqual( await EditPage.heading.getText(), 'View source for ' + name );
 	} );
 
-	it( 'should be undoable', async function () {
+	it( 'should be undoable @daily', async function () {
 
 		// create
 		await bot.edit( name, content, 'create to edit and undo' );

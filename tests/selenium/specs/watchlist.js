@@ -19,7 +19,7 @@ describe( 'Special:Watchlist', function () {
 		await LoginPage.loginAdmin();
 	} );
 
-	it( 'should show page with new edit', async function () {
+	it( 'should show page with new edit @daily', async function () {
 		const title = Util.getTestString( 'Title-' );
 
 		// create
