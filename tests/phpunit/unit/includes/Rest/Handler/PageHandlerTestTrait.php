@@ -78,7 +78,8 @@ trait PageHandlerTestTrait {
 				$services->get( 'ParsoidDataAccess' )
 			),
 			$services->getParsoidSiteConfig(),
-			$services->getParsoidPageConfigFactory()
+			$services->getParsoidPageConfigFactory(),
+			$services->getContentHandlerFactory()
 		);
 
 		$helperFactory = $this->createNoOpMock(

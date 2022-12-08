@@ -1394,7 +1394,8 @@ return [
 			$services->getStatsdDataFactory(),
 			$services->getService( '_Parsoid' ),
 			$services->getParsoidSiteConfig(),
-			$services->getParsoidPageConfigFactory()
+			$services->getParsoidPageConfigFactory(),
+			$services->getContentHandlerFactory()
 		);
 	},
 
