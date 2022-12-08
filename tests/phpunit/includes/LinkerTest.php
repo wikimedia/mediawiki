@@ -792,7 +792,10 @@ class LinkerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideSpecialLink
 	 */
 	public function testSpecialLink( $expected, $target, $key = null ) {
-		$this->overrideConfigValue( MainConfigNames::ArticlePath, '/wiki/$1' );
+		$this->overrideConfigValues( [
+			MainConfigNames::Script => '/w/index.php',
+			MainConfigNames::ArticlePath => '/wiki/$1',
+		] );
 
 		$this->assertEquals( $expected, Linker::specialLink( $target, $key ) );
 	}
@@ -801,6 +804,11 @@ class LinkerTest extends MediaWikiLangTestCase {
 		yield 'Recent Changes' => [
 			'<a href="/wiki/Special:RecentChanges" title="Special:RecentChanges">Recent changes</a>',
 			'Recentchanges'
+		];
+
+		yield 'Recent Changes, only for a given tag' => [
+			'<a href="/w/index.php?title=Special:RecentChanges&amp;tagfilter=blanking" title="Special:RecentChanges">Recent changes</a>',
+			'Recentchanges?tagfilter=blanking'
 		];
 
 		yield 'Contributions' => [
@@ -814,9 +822,33 @@ class LinkerTest extends MediaWikiLangTestCase {
 			'made-up-display-key'
 		];
 
+		yield 'Contributions, targetted' => [
+			'<a href="/wiki/Special:Contributions/JohnDoe" title="Special:Contributions/JohnDoe">User contributions</a>',
+			'Contributions/JohnDoe'
+		];
+
+		yield 'Contributions, targetted, topOnly' => [
+			'<a href="/wiki/Special:Contributions/JohnDoe%3FtopOnly%3D1" title="Special:Contributions/JohnDoe?topOnly=1">User contributions</a>',
+			'Contributions/JohnDoe?topOnly=1'
+		];
+
 		yield 'Userlogin' => [
 			'<a href="/wiki/Special:UserLogin" title="Special:UserLogin">Log in</a>',
 			'Userlogin',
+			'login'
+		];
+
+		yield 'Userlogin, returnto' => [
+			'<a href="/w/index.php?title=Special:UserLogin&amp;returnto=Main+Page" title="Special:UserLogin">Log in</a>',
+			'Userlogin?returnto=Main+Page',
+			'login'
+		];
+
+		yield 'Userlogin, targetted' => [
+			// Note that this special page doesn't have any support for and doesn't do anything with
+			// the subtitle; this is here as demonstration that Linker doesn't care.
+			'<a href="/wiki/Special:UserLogin/JohnDoe" title="Special:UserLogin/JohnDoe">Log in</a>',
+			'Userlogin/JohnDoe',
 			'login'
 		];
 	}
