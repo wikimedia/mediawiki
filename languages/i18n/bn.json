@@ -1042,7 +1042,7 @@
 	"showingresultsinrange": "<strong>$2</strong> থেকে <strong>$3</strong> নং পরিসীমার মধ্যে থাকা {{PLURAL:$1|<strong>১টি</strong> ফলাফল|<strong>$1টি</strong> ফলাফল}} নিচে দেখানো হচ্ছে।",
 	"search-showingresults": "মোট {{PLURAL:$4|<strong>$3</strong>টি ফলাফলের মধ্যে <strong>$1</strong>টি ফলাফল|<strong>$3</strong>টি ফলাফলের মধ্যে <strong>$1 - $2</strong>টি ফলাফল}}",
 	"search-nonefound": "অনুসন্ধানকৃত জিজ্ঞাসার সাথে মিলে যায় এমন কোনো ফলাফল নেই।",
-	"search-nonefound-thiswiki": "অনুসন্ধানকৃত জিজ্ঞাসার সাথে মিলে যায় এমন কোনো ফলাফল এই সাইটে নেই।",
+	"search-nonefound-thiswiki": "অনুসন্ধানকৃত জিজ্ঞাসার সাথে মিলে যায় এমন কোনো ফলাফল এই $3 সাইটে নেই।",
 	"powersearch-legend": "উন্নত অনুসন্ধান",
 	"powersearch-ns": "নামস্থানগুলিতে অনুসন্ধান করুন:",
 	"powersearch-togglelabel": "নির্বাচন করুন:",

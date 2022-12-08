@@ -985,7 +985,7 @@
 	"showingresultsinrange": "Dolje {{PLURAL:$1|je prikazan '''$1''' rezultat|su prikazana '''$1''' rezultata|je prikazano '''$1''' rezultata}}, u rasponu od '''$2''' do '''$3'''.",
 	"search-showingresults": "{{PLURAL:$4|Rezultat <strong>$1</strong> od <strong>$3</strong>|Rezultati <strong>$1 – $2</strong> od <strong>$3</strong>}}",
 	"search-nonefound": "Ne postoje rezultati koji se podudaraju s upitom.",
-	"search-nonefound-thiswiki": "Nema rezultata na ovim stranicama koji se podudaraju s upitom.",
+	"search-nonefound-thiswiki": "Nema rezultata koji se podudaraju s upitom u $3.",
 	"powersearch-legend": "Napredno pretraživanje",
 	"powersearch-ns": "Traži u imenskom prostoru:",
 	"powersearch-togglelabel": "Uključi:",

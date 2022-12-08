@@ -1055,7 +1055,7 @@
 	"showingresultsinrange": "Es mostren a continuació fins a {{PLURAL:$1|<strong>1</strong> resultat|<strong>$1</strong> resultats}} de #<strong>$2</strong> a #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Resultat <strong>$1</strong> de <strong>$3</strong>|Resultats <strong>$1 - $2</strong> de <strong>$3</strong>}}",
 	"search-nonefound": "La cerca no ha donat cap resultat.",
-	"search-nonefound-thiswiki": "No hi ha cap resultat que coincideixi amb la consulta en aquest lloc web.",
+	"search-nonefound-thiswiki": "No hi ha cap resultat que coincideixi amb la consulta a $3.",
 	"powersearch-legend": "Cerca avançada",
 	"powersearch-ns": "Cerca als espais de noms:",
 	"powersearch-togglelabel": "Activar:",

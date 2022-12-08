@@ -24,7 +24,8 @@
 			"Sikjes",
 			"Sjoerddebruin",
 			"Southparkfan",
-			"Valhallasw"
+			"Valhallasw",
+			"Elderson"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentatie]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etiquette & gebruiksrichtlijnen]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ E-maillijst]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ API-aankondigingen]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & verzoeken]\n</div>\n<strong>Status:</strong> De MediaWiki API is een stabiele interface die actief ondersteund en verbeterd wordt. Hoewel we het proberen te voorkomen, is het mogelijk dat er soms wijzigingen worden aangebracht die bepaalde API-verzoek kunnen verhinderen; abonneer u op de [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ e-maillijst mediawiki-api-announce] voor meldingen over wijzigingen.\n\n<strong>Foutieve verzoeken:</strong> als de API foutieve verzoeken ontvangt, wordt er geantwoord met een HTTP-header met de sleutel \"MediaWiki-API-Error\" en daarna worden de waarde van de header en de foutcode op dezelfde waarde ingesteld. Zie [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Foutmeldingen en waarschuwingen]] voor meer informatie.\n\n<p class=\"mw-apisandbox-link\"><strong>Testen:</strong> u kunt [[Special:ApiSandbox|eenvoudig API-verzoeken testen]].</p>",
@@ -50,7 +51,7 @@
 	"apihelp-block-param-reason": "Reden voor blokkade.",
 	"apihelp-block-param-anononly": "Alleen anonieme gebruikers blokkeren (d.w.z. anonieme bewerkingen via dit IP-adres uitschakelen).",
 	"apihelp-block-param-nocreate": "Het aanmaken van accounts verhinderen.",
-	"apihelp-block-param-autoblock": "Automatisch het laatst gebruikte IP-adres blokkeren, en tevens ieder volgend IP-adres waarvanaf de gebruiker probeert aan te melden.",
+	"apihelp-block-param-autoblock": "Automatisch het laatst gebruikte IP-adres blokkeren, en tevens ieder volgend IP-adres waar vanaf de gebruiker probeert aan te melden.",
 	"apihelp-block-param-noemail": "Het sturen van e-mail via wiki verhinderen. (Vereist het <code>blockemail</code>-recht.)",
 	"apihelp-block-param-hidename": "De gebruikersnaam in het blokkeerlogboek verbergen. (Vereist het <code>hideuser</code>-recht.)",
 	"apihelp-block-param-allowusertalk": "De gebruiker toestaan om de eigen overlegpagina te bewerken (afhankelijk van <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
