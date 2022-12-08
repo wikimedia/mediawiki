@@ -4744,5 +4744,16 @@
 	"newpages-showhide-bots": "Option text in [[Special:NewPages]]. Parameters:\n* $1 - the \"show/hide\" command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}",
 	"newpages-showhide-patrolled": "Option text in [[Special:NewPages]]. Parameters:\n* $1 - the \"show/hide\" command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}",
 	"newpages-showhide-redirect": "Option text in [[Special:NewPages]]. Parameters:\n* $1 - the \"show/hide\" command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}",
-	"newpages-showhide-registered": "Option text in [[Special:NewPages]]. Parameters:\n* $1 - the \"show/hide\" command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}"
+	"newpages-showhide-registered": "Option text in [[Special:NewPages]]. Parameters:\n* $1 - the \"show/hide\" command, with the text taken from either {{msg-mw|show}} or {{msg-mw|hide}}",
+	"blockedtext-made-by": "Used as component for a block error message. $1 - the blocking sysop (with a link to their user page if they are a local user)",
+	"blockedtext-reason-comment": "Used as component for a block error message. $1 - the reason for the block",
+	"blockedtext-start-time": "Used as component for a block error message. $1 - the timestamp when the block started",
+	"blockedtext-expiration-time": "Used as component for a block error message. $1 - the expiry of the block",
+	"blockedtext-expiration-longest-block": "Used as component for a block error message. $1 - the expiry of the block",
+	"blockedtext-intended-blockee": "Used as component for a block error message. $1 - the intended target of the block",
+	"blockedtext-contact-blocker-admin": "Used as component for a block error message. $1 - the blocking sysop (with a link to their user page if they are a local user)",
+	"blockedtext-block-ip": "Used as component for a block error message. $1 - the IP address",
+	"blockedtext-block-id": "Used as component for a block error message. $1 - the block ID",
+	"blockedtext-include-details-queries": "Used as component for a block error message"
+
 }
