@@ -978,11 +978,29 @@ class Linker {
 	 * @return string
 	 */
 	public static function specialLink( $name, $key = '' ) {
+		$subpage = false;
+
+		if ( str_contains( $name, '/' ) ) {
+			$subpage = substr( $name, strpos( $name, '/' ) + 1 );
+			$name = substr( $name, 0, strpos( $name, '/' ) );
+		}
+
+		$getParams = [];
+		if ( str_contains( $name, '?' ) ) {
+			$getParams = wfCgiToArray( substr( $name, strpos( $name, '?' ) + 1 ) );
+			$name = substr( $name, 0, strpos( $name, '?' ) );
+		}
+
 		if ( $key == '' ) {
 			$key = strtolower( $name );
 		}
 
-		return self::linkKnown( SpecialPage::getTitleFor( $name ), wfMessage( $key )->escaped() );
+		return self::linkKnown(
+			SpecialPage::getTitleFor( $name, $subpage ),
+			wfMessage( $key )->escaped(),
+			[],
+			$getParams
+		);
 	}
 
 	/**
