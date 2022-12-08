@@ -23,6 +23,7 @@
  * @since 1.19
  */
 
+use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;

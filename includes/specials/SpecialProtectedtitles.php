@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\ILoadBalancer;
 

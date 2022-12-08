@@ -60,7 +60,6 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$this->parserCacheBagOStuff = new HashBagOStuff();
-		$this->overrideConfigValue( 'UsePigLatinVariant', true );
 	}
 
 	/**

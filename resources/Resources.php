@@ -2417,8 +2417,9 @@ return [
 		],
 	],
 	'mediawiki.special.userlogin.login.styles' => [
-		'styles' => [
-			'resources/src/mediawiki.special.userlogin.login.styles/login.less',
+		'targets' => [ 'desktop', 'mobile' ],
+		'skinStyles' => [
+			'default' => 'resources/src/mediawiki.special.userlogin.login.styles/login.less',
 		],
 	],
 	'mediawiki.special.createaccount' => [
@@ -2442,8 +2443,9 @@ return [
 		],
 	],
 	'mediawiki.special.userlogin.signup.styles' => [
-		'styles' => [
-			'resources/src/mediawiki.special.userlogin.signup.styles/signup.less',
+		'targets' => [ 'desktop', 'mobile' ],
+		'skinStyles' => [
+			'default' => 'resources/src/mediawiki.special.userlogin.signup.styles/signup.less',
 		],
 	],
 	'mediawiki.special.userrights' => [

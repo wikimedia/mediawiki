@@ -17,11 +17,6 @@ use Wikimedia\Parsoid\Parsoid;
 class TransformHandlerTest extends MediaWikiIntegrationTestCase {
 	use HandlerTestTrait;
 
-	public function setUp(): void {
-		// enable Pig Latin variant conversion
-		$this->overrideConfigValue( 'UsePigLatinVariant', true );
-	}
-
 	public function provideRequest() {
 		$profileVersion = Parsoid::AVAILABLE_VERSIONS[0];
 		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;

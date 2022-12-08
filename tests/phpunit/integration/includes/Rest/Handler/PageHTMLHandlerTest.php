@@ -51,7 +51,6 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$this->parserCacheBagOStuff = new HashBagOStuff();
-		$this->overrideConfigValue( 'UsePigLatinVariant', true );
 	}
 
 	/**

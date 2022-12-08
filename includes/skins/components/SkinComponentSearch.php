@@ -4,7 +4,7 @@ namespace MediaWiki\Skin;
 
 use Config;
 use Html;
-use Linker;
+use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use Message;
 use MessageLocalizer;

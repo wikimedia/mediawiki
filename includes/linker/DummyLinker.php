@@ -1,6 +1,13 @@
 <?php
 
+namespace MediaWiki\Linker;
+
+use IContextSource;
+use Language;
 use MediaWiki\Revision\RevisionRecord;
+use Parser;
+use Title;
+use User;
 
 /**
  * @since 1.18
@@ -435,3 +442,5 @@ class DummyLinker {
 	}
 
 }
+
+class_alias( DummyLinker::class, 'DummyLinker' );

@@ -19,6 +19,8 @@
  * @ingroup Change tagging
  */
 
+use MediaWiki\Linker\Linker;
+
 /**
  * Item class for a live revision table row with its associated change tags.
  * @since 1.25
