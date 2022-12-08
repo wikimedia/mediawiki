@@ -902,7 +902,7 @@
 	"mergelog": "Zapisnik spajanja",
 	"revertmerge": "Vrati spajanje",
 	"mergelogpagetext": "Ispod je spisak nedavnih spajanja historija stranica.",
-	"history-title": "$1: historija izmjena",
+	"history-title": "$1 – historija izmjena",
 	"difference-title": "$1: razlika između verzija",
 	"difference-title-multipage": "$1 i $2: Razlike između stranica",
 	"difference-multipage": "(Razlika između stranica)",

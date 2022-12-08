@@ -1034,7 +1034,7 @@
 	"showingresultsinrange": "{{PLURAL:$1|מוצגת תוצאה <strong>אחת</strong>|מוצגות עד <strong>$1</strong> תוצאות}} בין המספרים <strong>$2</strong> ו־<strong>$3</strong>:",
 	"search-showingresults": "{{PLURAL:$4|תוצאה <strong>$1</strong> מתוך <strong>$3</strong>|תוצאות <strong>$1 – $2</strong> מתוך <strong>$3</strong>}}",
 	"search-nonefound": "לא נמצאו תוצאות המתאימות לחיפוש.",
-	"search-nonefound-thiswiki": "לא נמצאו תוצאות המתאימות לחיפוש באתר זה.",
+	"search-nonefound-thiswiki": "לא נמצאו תוצאות המתאימות לחיפוש באתר $3.",
 	"powersearch-legend": "חיפוש מתקדם",
 	"powersearch-ns": "חיפוש על־פי מרחבי שם:",
 	"powersearch-togglelabel": "בחירה:",

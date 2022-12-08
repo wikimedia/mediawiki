@@ -1000,7 +1000,7 @@
 	"showingresultsinrange": "In basso es monstrate usque a {{PLURAL:$1|<strong>1</strong> resultato|<strong>$1</strong> resultatos}} inter #<strong>$2</strong> e #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Resultato <strong>$1</strong> de <strong>$3</strong>|Resultatos <strong>$1 - $2</strong> de <strong>$3</strong>}}",
 	"search-nonefound": "Le recerca non ha producite resultatos.",
-	"search-nonefound-thiswiki": "Le recerca non ha producite resultatos in iste sito.",
+	"search-nonefound-thiswiki": "Le recerca non ha producite resultatos sur iste sito.",
 	"powersearch-legend": "Recerca avantiate",
 	"powersearch-ns": "Cercar in spatios de nomines:",
 	"powersearch-togglelabel": "Seliger:",

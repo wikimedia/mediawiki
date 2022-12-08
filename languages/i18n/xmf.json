@@ -1003,7 +1003,7 @@
 	"showingresultsinrange": "გიმე მოჩამილი რე {{PLURAL:$1|<strong>1</strong> შედეგი|<strong>$1</strong> შედეგი}}, $2-შე $3-შახ დიაპაზონს.",
 	"search-showingresults": "{{PLURAL:$4|შედეგი <strong>$1</strong> შე <strong>$3</strong>|შედეგი <strong>$1 - $2</strong> შე <strong>$3</strong>}}",
 	"search-nonefound": "თქვანი მოგორაფილიშ მუთუნნერ მანგი შედეგიქ ვეძირჷ.",
-	"search-nonefound-thiswiki": "თქვანი მოგორაფილიშ მუთუნნერ მანგი შედეგიქ ვეძირჷ.",
+	"search-nonefound-thiswiki": "ვიკიპროექტის $3, თქვანი მუნაგორეფუშ მუთუნნერ მანგი შედეგიქ ვეძირჷ.",
 	"powersearch-legend": "გოძინელი გორუა",
 	"powersearch-ns": "დოგორ ჯოხოეფიშ ოფირჩას:",
 	"powersearch-togglelabel": "მეღანკუა:",

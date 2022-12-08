@@ -39,7 +39,8 @@
 			"לערי ריינהארט",
 			"ديفيد",
 			"아라",
-			"Armenoid"
+			"Armenoid",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Հղումների ընդգծում՝",
@@ -912,6 +913,7 @@
 	"group-autoconfirmed": "Ավտովավերացված մասնակիցներ",
 	"group-bot": "Բոտեր",
 	"group-sysop": "Ադմիններ",
+	"group-interface-admin": "Ինտերֆեյսի ադմինիստրատորներ",
 	"group-bureaucrat": "Բյուրոկրատներ",
 	"group-suppress": "Հսկիչներ",
 	"group-all": "(բոլոր)",
@@ -925,6 +927,7 @@
 	"grouppage-autoconfirmed": "{{ns:project}}:Ավտովավերացված մասնակիցներ",
 	"grouppage-bot": "{{ns:project}}:Բոտեր",
 	"grouppage-sysop": "{{ns:project}}:Ադմինիստրատոր",
+	"grouppage-interface-admin": "{{ns:project}}:Ինտերֆեյսի ադմինիստրատորներ",
 	"grouppage-bureaucrat": "{{ns:project}}:Բյուրոկրատներ",
 	"grouppage-suppress": "{{ns:project}}:Հսկիչ",
 	"right-read": "Դիտել էջեր",

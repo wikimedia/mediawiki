@@ -1005,7 +1005,7 @@
 	"showingresultsinrange": "Ніжэй паказаныя да {{PLURAL:$1|<strong>$1</strong> выніку ў|<strong>$1</strong> вынікаў у}} дыяпазоне ад <strong>$2</strong> да <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|1=Вынік <strong>$1</strong> з <strong>$3</strong>|Вынікі <strong>$1—$2</strong> з <strong>$3</strong>}}",
 	"search-nonefound": "Супадзеньняў па запыце ня знойдзена.",
-	"search-nonefound-thiswiki": "Супадзеньняў па запыце ня знойдзена на гэтым сайце.",
+	"search-nonefound-thiswiki": "Ня знойдзена вынікаў, якія супадаюць з запытам $3.",
 	"powersearch-legend": "Удасканалены пошук",
 	"powersearch-ns": "Шукаць у прасторах назваў:",
 	"powersearch-togglelabel": "Пазначыць:",

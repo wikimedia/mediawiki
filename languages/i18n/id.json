@@ -1072,7 +1072,7 @@
 	"showingresultsinrange": "Menampilkan sampai dengan {{PLURAL:$1|<strong>1</strong> hasil|<strong>$1</strong> hasil}} dalam rentang #<strong>$2</strong> sampai #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Hasil <strong>$1</strong> dari <strong>$3</strong>|Hasil <strong>$1 - $2</strong> dari <strong>$3</strong>}}",
 	"search-nonefound": "Tidak ada hasil yang sesuai dengan kriteria.",
-	"search-nonefound-thiswiki": "Tidak ada hasil yang sesuai dengan permintaan di situs ini.",
+	"search-nonefound-thiswiki": "Tidak ada hasil yang sesuai dengan kueri di $3.",
 	"powersearch-legend": "Pencarian tingkat lanjut",
 	"powersearch-ns": "Mencari dalam ruang nama:",
 	"powersearch-togglelabel": "Pilih:",
