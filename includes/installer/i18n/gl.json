@@ -277,7 +277,7 @@
 	"config-install-stats": "Iniciando as estatísticas",
 	"config-install-keys": "Xerando as claves secretas",
 	"config-install-updates": "Evitar executar actualizacións innecesarias",
-	"config-install-updates-failed": "<strong>Error:</strong> a inserción de claves de actualización nas táboas fallou co seguinte erro: $1",
+	"config-install-updates-failed": "<strong>Erro:</strong> A inserción de claves de actualización nas táboas fallou co seguinte erro: $1",
 	"config-install-sysop": "Creando a conta de usuario de administrador",
 	"config-install-subscribe-fail": "Non se puido subscribir á lista mediawiki-announce[https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce]: $1",
 	"config-install-subscribe-notpossible": "cURL non está instalado e <code>allow_url_fopen</code> non está dispoñible.",

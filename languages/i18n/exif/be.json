@@ -9,7 +9,8 @@
 			"Mikalai Udodau",
 			"Yury Tarasievich",
 			"Хомелка",
-			"Чаховіч Уладзіслаў"
+			"Чаховіч Уладзіслаў",
+			"Plaga med"
 		]
 	},
 	"exif-imagewidth": "Шырыня",
@@ -142,7 +143,7 @@
 	"exif-objectname": "Кароткая назва",
 	"exif-specialinstructions": "Асобыя ўказанні",
 	"exif-headline": "Загаловак",
-	"exif-credit": "Пастаўшчык, хто падаў малюнак",
+	"exif-credit": "Той, хто прадаставіў гэты відарыс. Можа адрознівацца ад стваральніка відарыса. Гэта ўласнасць IPTC-iim 2:110",
 	"exif-source": "Крыніца",
 	"exif-editstatus": "Рэдакцыйны статут выявы",
 	"exif-urgency": "Актуальнасць",

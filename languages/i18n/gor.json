@@ -861,6 +861,7 @@
 	"searchall": "nga'amila",
 	"search-showingresults": "{{PLURAL:$4|hASIL <strong>$1</strong> of <strong>$3</strong>|Hasil <strong>$1 - $2</strong> lonto <strong>$3</strong>}}",
 	"search-nonefound": "Diya'a hasili mohumayawa lo kriteria",
+	"search-nonefound-thiswiki": "Diya'a hasili mohumayawa lo kuweri to $3.",
 	"powersearch-legend": "Mololohu lebeliyo ma'o",
 	"powersearch-ns": "Mololohu to huwali lo tanggulo:",
 	"powersearch-togglelabel": "Cek:",

@@ -1072,7 +1072,7 @@
 	"showingresultsinrange": "#<strong>$2</strong>부터 #<strong>$3</strong>까지의 범위에서 <strong>$1</strong>개의 {{PLURAL:$1|결과}}가 아래에 보입니다.",
 	"search-showingresults": "{{PLURAL:$4|결과 <strong>$3</strong>개 중 <strong>$1</strong>개|결과 <strong>$3</strong>개 중 <strong>$1 - $2</strong>개}}",
 	"search-nonefound": "검색어와 일치하는 결과가 없습니다.",
-	"search-nonefound-thiswiki": "이 사이트에서 검색어와 일치하는 결과가 없습니다.",
+	"search-nonefound-thiswiki": "$3에서 검색어와 일치하는 결과가 없습니다.",
 	"powersearch-legend": "고급 검색",
 	"powersearch-ns": "다음 이름공간에서 검색:",
 	"powersearch-togglelabel": "선택:",

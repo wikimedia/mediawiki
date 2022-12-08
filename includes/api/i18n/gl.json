@@ -50,7 +50,7 @@
 	"apihelp-block-param-noemail": "Impide que o usuario envíe correos electrónicos a través da wiki. (Require o permiso <code>blockemail</code>).",
 	"apihelp-block-param-hidename": "Ocultar o nome de usuario do rexistro de bloqueos. (Precisa do permiso <code>hideuser</code>).",
 	"apihelp-block-param-allowusertalk": "Permitir que o usuario edite a súa propia páxina de conversa (depende de <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",
-	"apihelp-block-param-reblock": "Se o usuario xa está bloqueado, sobreescribir o bloqueo existente.",
+	"apihelp-block-param-reblock": "Se o usuario xa está bloqueado, sobrescribir o bloqueo existente.",
 	"apihelp-block-param-watchuser": "Vixiar a páxina de usuario ou direccións IP e a de conversa deste usuario",
 	"apihelp-block-param-tags": "Cambiar as etiquetas a aplicar á entrada no rexistro de bloqueos.",
 	"apihelp-block-param-partial": "Bloquear a un usuario en determinadas páxinas ou espazos de nomes no canto de todo o sitio.",

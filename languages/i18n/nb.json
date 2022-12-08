@@ -1043,7 +1043,7 @@
 	"showingresultsinrange": "Nedenfor vises opptil {{PLURAL:$1|<strong>ett</strong> resultat|<strong>$1</strong> resultater}} fra og med nummer <strong>$2</strong> til og med nummer <strong>$3</strong>.",
 	"search-showingresults": "Resultat <strong>{{PLURAL:$4|$1|$1–$2}}</strong> av <strong>$3</strong>",
 	"search-nonefound": "Ingen resultater passet til søket.",
-	"search-nonefound-thiswiki": "Ingen resultater på dette nettstedet passet med spørringen.",
+	"search-nonefound-thiswiki": "Ingen resultater på $3 passet med spørringen.",
 	"powersearch-legend": "Avansert søk",
 	"powersearch-ns": "Søk i navnerom:",
 	"powersearch-togglelabel": "Merk:",

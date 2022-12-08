@@ -1017,7 +1017,7 @@
 	"showingresultsinrange": "Подолу {{PLURAL:$1|е прикажана до <strong>една</strong> ставка|се прикажани до <strong>$1</strong> ставки}} во опсег од <strong>$2</strong> до <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Ставка <strong>$1</strong> од <strong>$3</strong>|Ставки <strong>$1 - $2</strong> од <strong>$3</strong>}}",
 	"search-nonefound": "Нема исходни ставки што одговараат на бараното.",
-	"search-nonefound-thiswiki": "Нема ставки што одговараат на бараното на ова мрежно место.",
+	"search-nonefound-thiswiki": "Нема ставки што одговараат на бараното на $3.",
 	"powersearch-legend": "Напредно пребарување",
 	"powersearch-ns": "Пребарај во следниве именски простори:",
 	"powersearch-togglelabel": "Избор:",

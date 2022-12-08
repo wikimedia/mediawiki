@@ -720,7 +720,7 @@
 	"showingresultsinrange": "Hjirûnder {{PLURAL:$1|<strong>1</strong> resultaat|<strong>$1</strong> resultaten}}, werjûn de rige fan nû. <strong>$2</strong> oant en mei <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Resultaat <strong>$1</strong> fan <strong>$3</strong>|Resultaten <strong>$1 – $2</strong> fan <strong>$3</strong>}}",
 	"search-nonefound": "Der binne gjin resultaten foar jo sykopdracht.",
-	"search-nonefound-thiswiki": "Der binne gjin resultaten foar jo sykopdracht op dit webstee.",
+	"search-nonefound-thiswiki": "Der binne gjin resultaten foar jo sykopdracht op {{GRAMMAR:l|$3}}.",
 	"powersearch-legend": "Utwreidich sykje",
 	"powersearch-ns": "Nammeromten trochsykje:",
 	"powersearch-togglelabel": "Oanfinkje:",
