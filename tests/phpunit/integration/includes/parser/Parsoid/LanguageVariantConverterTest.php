@@ -15,11 +15,6 @@ use Wikimedia\Parsoid\Parsoid;
  * @covers MediaWiki\Parser\Parsoid\LanguageVariantConverter
  */
 class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
-	public function setUp(): void {
-		// enable Pig Latin variant conversion
-		$this->overrideConfigValue( 'UsePigLatinVariant', true );
-	}
-
 	public function provideConvertPageBundleVariant() {
 		yield 'No source or base, rely on page language (en)' => [
 			new PageBundle(

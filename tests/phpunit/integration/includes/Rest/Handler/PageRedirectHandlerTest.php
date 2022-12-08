@@ -39,7 +39,6 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$this->parserCacheBagOStuff = new HashBagOStuff();
-		$this->overrideConfigValue( 'UsePigLatinVariant', true );
 
 		$pageSourceHandler = $this->newPageSourceHandler();
 		$pageHtmlHandler = $this->newPageHtmlHandler();
