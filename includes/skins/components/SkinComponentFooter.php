@@ -8,7 +8,7 @@ use Config;
 use CreditsAction;
 use Html;
 use HtmlArmor;
-use Linker;
+use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Title;

@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Api\Validator\ApiParamValidator;
+use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

@@ -22,6 +22,7 @@
 
 use HtmlFormatter\HtmlFormatter;
 use MediaWiki\ExtensionInfo;
+use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ParamValidator\ParamValidator;

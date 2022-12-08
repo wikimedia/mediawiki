@@ -20,14 +20,37 @@
  * @file
  */
 
+namespace MediaWiki\Linker;
+
+use Config;
+use ContextSource;
+use DerivativeContext;
+use DOMXPath;
+use ExternalUserNames;
+use File;
+use Hooks;
+use Html;
+use HtmlArmor;
 use HtmlFormatter\HtmlFormatter;
-use MediaWiki\Linker\LinkTarget;
+use IContextSource;
+use Language;
+use MediaTransformOutput;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
+use Message;
+use MessageLocalizer;
+use Parser;
+use RequestContext;
+use SpecialPage;
+use Title;
+use TitleValue;
+use User;
+use WatchedItem;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Xml;
 
 /**
  * Some internal bits split of from Skin.php. These functions are used
@@ -1378,7 +1401,7 @@ class Linker {
 		$doc = $formatter->getDoc();
 		$xpath = new DOMXPath( $doc );
 		$nodes = $xpath->query( '//a[@href]' );
-		/** @var DOMElement $node */
+		/** @var \DOMElement $node */
 		foreach ( $nodes as $node ) {
 			$node->setAttribute(
 				'href',
@@ -2313,3 +2336,5 @@ class Linker {
 	}
 
 }
+
+class_alias( Linker::class, 'Linker' );

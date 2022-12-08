@@ -25,6 +25,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\Linker\Linker;
 
 /**
  * Searches the database for files of the requested hash, comparing this with the

@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
-use DummyLinker;
 use File;
+use MediaWiki\Linker\DummyLinker;
 use Parser;
 use Title;
 
