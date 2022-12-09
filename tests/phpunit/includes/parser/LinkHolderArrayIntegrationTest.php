@@ -55,7 +55,7 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 			$this->createHookContainer()
 		);
 		$parser = $this->createMock( Parser::class );
-		$parser->method( 'nextLinkID' )->willReturn( 'dummy link' );
+		$parser->method( 'nextLinkID' )->willReturn( 9 );
 		$link->parent = $parser;
 		$title = $this->createMock( Title::class );
 		$title->method( 'getPrefixedDBkey' )->willReturn( $nsText );
@@ -75,7 +75,7 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 		if ( $isExternal ) {
 			$this->assertArrayEquals(
 				[
-					'dummy link' => [
+					9 => [
 						'title' => $title,
 						'text' => 'test3 prefixtest1 texttest',
 						'pdbk' => $nsText,
@@ -88,7 +88,7 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 			$this->assertArrayEquals(
 				[
 					1234 => [
-						'dummy link' => [
+						9 => [
 							'title' => $title,
 							'text' => 'test3 prefixtest1 texttest',
 							'pdbk' => $nsText,
@@ -105,22 +105,22 @@ class LinkHolderArrayIntegrationTest extends MediaWikiLangTestCase {
 		yield [
 			'dummy string',
 			false,
-			'<!--LINK\'" 1234:dummy link-->2 trail',
+			'<!--LINK\'" 1234:9-->2 trail',
 		];
 		yield [
 			'<!--LINK\'" q:w:e-->',
 			false,
-			'<!--LINK\'" 1234:dummy link-->2 trail',
+			'<!--LINK\'" 1234:9-->2 trail',
 		];
 		yield [
 			'dummy string',
 			true,
-			'<!--IWLINK\'" dummy link-->2 trail',
+			'<!--IWLINK\'" 9-->2 trail',
 		];
 		yield [
 			'<!--LINK\'" q:w:e-->',
 			true,
-			'<!--IWLINK\'" dummy link-->2 trail',
+			'<!--IWLINK\'" 9-->2 trail',
 		];
 	}
 }
