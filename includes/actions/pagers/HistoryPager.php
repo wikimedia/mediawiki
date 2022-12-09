@@ -229,12 +229,13 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->buttons = '';
 		if ( $this->getNumRows() > 0 ) {
 			$this->getOutput()->wrapWikiMsg( "<div class='mw-history-legend'>\n$1\n</div>", 'histlegend' );
+			// Main form for comparing revisions
 			$s = Html::openElement( 'form', [
 				'action' => wfScript(),
 				'id' => 'mw-history-compare'
 			] ) . "\n";
 			$s .= Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) . "\n";
-			$s .= Html::hidden( 'type', 'revision' ) . "\n";
+			$s .= Html::hidden( 'type', 'revision', [ 'form' => 'mw-history-revisionactions' ] ) . "\n";
 
 			$this->buttons .= Html::openElement(
 				'div', [ 'class' => 'mw-history-compareselectedversions' ] );
@@ -255,6 +256,17 @@ class HistoryPager extends ReverseChronologicalPager {
 					'editchangetags', 'history-edit-tags' );
 			}
 			if ( $actionButtons ) {
+				// Prepend a mini-form for changing visibility and editing tags.
+				// Checkboxes and buttons are associated with it using the <input form="…"> attribute.
+				//
+				// This makes the submitted parameters cleaner (on supporting browsers - all except IE 11):
+				// the 'mw-history-compare' form submission will omit the `ids[…]` parameters, and the
+				// 'mw-history-revisionactions' form submission will omit the `diff` and `oldid` parameters.
+				$s = Html::rawElement( 'form', [
+					'action' => wfScript(),
+					'id' => 'mw-history-revisionactions',
+				], Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) ) . "\n" . $s;
+
 				$this->buttons .= Xml::tags( 'div', [ 'class' =>
 					'mw-history-revisionactions' ], $actionButtons );
 			}
@@ -282,6 +294,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				'name' => 'action',
 				'value' => $name,
 				'class' => "historysubmit mw-history-$name-button mw-ui-button",
+				'form' => 'mw-history-revisionactions',
 			],
 			$this->msg( $msg )->text()
 		) . "\n";
@@ -385,7 +398,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			// Otherwise, enable the checkbox...
 			} else {
 				$del = Xml::check( 'showhiderevisions', false,
-					[ 'name' => 'ids[' . $revRecord->getId() . ']' ] );
+					[ 'name' => 'ids[' . $revRecord->getId() . ']', 'form' => 'mw-history-revisionactions' ] );
 			}
 		// User can only view deleted revisions...
 		} elseif ( $revRecord->getVisibility() && $this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
