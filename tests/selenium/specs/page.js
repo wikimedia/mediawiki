@@ -39,7 +39,7 @@ describe( 'Page', function () {
 		await browser.reloadSession();
 	} );
 
-	it( 'should be creatable @daily', async function () {
+	it( 'should be creatable', async function () {
 		// create
 		await UserLoginPage.loginAdmin();
 		await EditPage.edit( name, content );
@@ -49,7 +49,7 @@ describe( 'Page', function () {
 		assert.strictEqual( await EditPage.displayedContent.getText(), content );
 	} );
 
-	it( 'should be re-creatable @daily', async function () {
+	it( 'should be re-creatable', async function () {
 		const initialContent = Util.getTestString( 'initialContent-' );
 
 		// create and delete
@@ -87,7 +87,7 @@ describe( 'Page', function () {
 		assert.strictEqual( await HistoryPage.comment.getText(), `created with "${content}"` );
 	} );
 
-	it( 'should be deletable @daily', async function () {
+	it( 'should be deletable', async function () {
 		// create
 		await bot.edit( name, content, 'create for delete' );
 
@@ -100,7 +100,7 @@ describe( 'Page', function () {
 		assert.match( await DeletePage.displayedContent.getText(), new RegExp( `"${name}" has been deleted.` ) );
 	} );
 
-	it( 'should be restorable @daily', async function () {
+	it( 'should be restorable', async function () {
 		// create and delete
 		await bot.edit( name, content, 'create for delete' );
 		await bot.delete( name, 'delete for restore' );
