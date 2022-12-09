@@ -18,7 +18,7 @@ describe( 'Special:RecentChanges', function () {
 		name = Util.getTestString();
 	} );
 
-	it( 'shows page creation @daily', async function () {
+	it( 'shows page creation', async function () {
 		await bot.edit( name, content );
 		await browser.waitUntil( async () => {
 			const result = await bot.request( {
