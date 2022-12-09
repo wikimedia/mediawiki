@@ -460,45 +460,27 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideDoMarkPatrolledPermissions() {
-		yield 'auto, no autopatrol' => [
-			'lackingPermissions' => [ 'autopatrol' ],
-			'auto' => true,
-			'expectedError' => 'missing-autopatrol'
-		];
-		yield 'no patrol' => [
-			'lackingPermissions' => [ 'patrol' ],
-			'auto' => false,
-			'expectedError' => 'missing-patrol'
-		];
-	}
-
 	/**
-	 * @dataProvider provideDoMarkPatrolledPermissions
 	 * @covers RecentChange::doMarkPatrolled
 	 */
-	public function testDoMarkPatrolledPermissions(
-		array $lackingPermissions,
-		bool $auto,
-		string $expectError
-	) {
+	public function testDoMarkPatrolledPermissions() {
 		$rc = $this->getDummyEditRecentChange();
 		$performer = $this->mockRegisteredAuthority( static function (
 			string $permission,
 			PageIdentity $page,
 			PermissionStatus $status
-		) use ( $lackingPermissions ) {
-			if ( in_array( $permission, $lackingPermissions ) ) {
-				$status->fatal( "missing-$permission" );
+		) {
+			if ( $permission === 'patrol' ) {
+				$status->fatal( 'missing-patrol' );
 				return false;
 			}
 			return true;
 		} );
 		$errors = $rc->doMarkPatrolled(
 			$performer,
-			$auto
+			false
 		);
-		$this->assertContains( [ $expectError ], $errors );
+		$this->assertContains( [ 'missing-patrol' ], $errors );
 	}
 
 	/**

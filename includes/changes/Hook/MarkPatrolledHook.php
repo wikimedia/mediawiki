@@ -19,9 +19,8 @@ interface MarkPatrolledHook {
 	 *
 	 * @param int $rcid ID of the revision to be marked patrolled
 	 * @param User $user User marking the revision as patrolled
-	 * @param bool $wcOnlySysopsCanPatrol Config setting indicating whether the user needs to be a
-	 *   sysop in order to mark an edit patrolled
-	 * @param bool $auto True if the edit is being marked as patrolled automatically
+	 * @param bool $wcOnlySysopsCanPatrol Always false
+	 * @param bool $auto Always false
 	 * @param string[] &$tags Tags to be applied to the patrol log entry
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
