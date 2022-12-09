@@ -194,24 +194,24 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 
 	public function provideReplaceText() {
 		yield [
-			'<!--LINK\'" q:w:e--> <!-- <!-- <!--IWLINK\'" q:w:e-->',
-			'<!--LINK\'" q:w:e--> <!-- <!-- <!--IWLINK\'" q:w:e-->',
+			'<!--LINK\'" 101:9--> <!-- <!-- <!--IWLINK\'" 9-->',
+			'<!--LINK\'" 101:9--> <!-- <!-- <!--IWLINK\'" 9-->',
 		];
 		yield [
 			'<!--<!--<!--LINK\'" 101:1-->-->-->',
 			'<!--<!--dummy 1-->-->',
 		];
 		yield [
-			'<!--LINK\'" q:w:e--><!--LINK\'" 101:1-->  <!--LINK\'" 102:2-->',
-			'<!--LINK\'" q:w:e-->dummy 1  dummy 2',
+			'<!--LINK\'" 101:9--><!--LINK\'" 101:1-->  <!--LINK\'" 102:2-->',
+			'<!--LINK\'" 101:9-->dummy 1  dummy 2',
 		];
 		yield [
-			'<!--IWLINK\'" q:w:e--><!--IWLINK\'" 3-->  <!--IWLINK\'" 4-->',
-			'<!--IWLINK\'" q:w:e-->dummy 3  dummy 4',
+			'<!--IWLINK\'" 9--><!--IWLINK\'" 3-->  <!--IWLINK\'" 4-->',
+			'<!--IWLINK\'" 9-->dummy 3  dummy 4',
 		];
 		yield [
-			'<!--IWLINK\'" q:w:e-->  <!--LINK\'" 101:1--><!--IWLINK\'" 4-->',
-			'<!--IWLINK\'" q:w:e-->  dummy 1dummy 4',
+			'<!--IWLINK\'" 9-->  <!--LINK\'" 101:1--><!--IWLINK\'" 4-->',
+			'<!--IWLINK\'" 9-->  dummy 1dummy 4',
 		];
 		yield [
 			'<!--LINK\'" 101:1--><!--LINK\'" 101:1--><!--LINK\'" 101:1-->',
