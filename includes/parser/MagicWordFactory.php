@@ -21,6 +21,9 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
+use Language;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 
@@ -294,3 +297,5 @@ class MagicWordFactory {
 		return new MagicWordArray( $names, $this );
 	}
 }
+
+class_alias( MagicWordFactory::class, 'MagicWordFactory' );

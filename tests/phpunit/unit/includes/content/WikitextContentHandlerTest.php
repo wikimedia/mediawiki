@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Tests\Unit;
 
-use MagicWordFactory;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRenderingProvider;
 use MediaWiki\Title\TitleFactory;

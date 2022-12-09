@@ -3,8 +3,8 @@
 namespace MediaWiki\Tests\Unit;
 
 use FileContentHandler;
-use MagicWordFactory;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Title\TitleFactory;
 use MediaWikiUnitTestCase;
 use ParserFactory;
