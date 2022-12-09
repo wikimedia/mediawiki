@@ -1001,17 +1001,20 @@ class Linker {
 	 * @return string
 	 */
 	public static function specialLink( $name, $key = '' ) {
-		$subpage = false;
-
-		if ( str_contains( $name, '/' ) ) {
-			$subpage = substr( $name, strpos( $name, '/' ) + 1 );
-			$name = substr( $name, 0, strpos( $name, '/' ) );
+		$queryPos = strpos( $name, '?' );
+		if ( $queryPos !== false ) {
+			$getParams = wfCgiToArray( substr( $name, $queryPos + 1 ) );
+			$name = substr( $name, 0, $queryPos );
+		} else {
+			$getParams = [];
 		}
 
-		$getParams = [];
-		if ( str_contains( $name, '?' ) ) {
-			$getParams = wfCgiToArray( substr( $name, strpos( $name, '?' ) + 1 ) );
-			$name = substr( $name, 0, strpos( $name, '?' ) );
+		$slashPos = strpos( $name, '/' );
+		if ( $slashPos !== false ) {
+			$subpage = substr( $name, $slashPos + 1 );
+			$name = substr( $name, 0, $slashPos );
+		} else {
+			$subpage = false;
 		}
 
 		if ( $key == '' ) {

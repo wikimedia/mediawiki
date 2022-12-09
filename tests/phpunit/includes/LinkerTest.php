@@ -829,7 +829,7 @@ class LinkerTest extends MediaWikiLangTestCase {
 		];
 
 		yield 'Contributions, targetted, topOnly' => [
-			'<a href="/wiki/Special:Contributions/JohnDoe%3FtopOnly%3D1" title="Special:Contributions/JohnDoe?topOnly=1">User contributions</a>',
+			'<a href="/w/index.php?title=Special:Contributions/JohnDoe&amp;topOnly=1" title="Special:Contributions/JohnDoe">User contributions</a>',
 			'Contributions/JohnDoe?topOnly=1'
 		];
 
