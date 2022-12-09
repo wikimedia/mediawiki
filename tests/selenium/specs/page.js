@@ -115,7 +115,7 @@ describe( 'Page', function () {
 		assert.strictEqual( await RestorePage.displayedContent.getText(), name + ' has been undeleted\n\nConsult the deletion log for a record of recent deletions and restorations.' );
 	} );
 
-	it( 'should be protectable @daily', async function () {
+	it( 'should be protectable', async function () {
 
 		await bot.edit( name, content, 'create for protect' );
 

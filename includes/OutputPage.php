@@ -587,7 +587,7 @@ class OutputPage extends ContextSource {
 			return;
 		}
 		$warnings[$this->mTarget][$moduleName] = true;
-		$this->getResourceLoader()->getLogger()->warning(
+		$this->getResourceLoader()->getLogger()->debug(
 			'Module "{module}" not loadable on target "{target}".',
 			[
 				'module' => $moduleName,
