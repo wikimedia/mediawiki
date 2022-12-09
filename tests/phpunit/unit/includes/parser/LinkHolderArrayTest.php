@@ -26,40 +26,40 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 
 		$link1->internals = [
 			100 => [
-				'dummy' => 'dummy entries 1',
-				'dummy entries 1' => 'dummy entries 1',
+				10 => 'dummy entries 1',
+				11 => 'dummy entries 1',
 			],
 			101 => [
-				'dummy' => 'dummy entries 1',
-				'dummy entries 1' => 'dummy entries 1',
+				10 => 'dummy entries 1',
+				11 => 'dummy entries 1',
 			],
 		];
 		$link2->internals = [
 			100 => [
-				'dummy' => 'dummy entries 2',
-				'dummy entries 2' => 'dummy entries 2',
+				10 => 'dummy entries 2',
+				12 => 'dummy entries 2',
 			],
 			102 => [
-				'dummy' => 'dummy entries 2',
-				'dummy entries 2' => 'dummy entries 2',
+				10 => 'dummy entries 2',
+				12 => 'dummy entries 2',
 			],
 		];
 		$link1->interwikis = [
-			'dummy' => [
+			10 => [
 				'dummy' => 'dummy interwikis 1',
 				'dummy interwikis 1' => 'dummy interwikis 1',
 			],
-			'dummy interwikis 1' => [
+			18 => [
 				'dummy' => 'dummy interwikis 1',
 				'dummy entries 1' => 'dummy interwikis 1',
 			],
 		];
 		$link2->interwikis = [
-			'dummy' => [
+			10 => [
 				'dummy' => 'dummy interwikis 2',
 				'dummy interwikis 2' => 'dummy interwikis 2',
 			],
-			'dummy interwikis 2' => [
+			19 => [
 				'dummy' => 'dummy interwikis 2',
 				'dummy interwikis 2' => 'dummy interwikis 2',
 			],
@@ -73,17 +73,17 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 		$this->assertArrayEquals(
 			[
 				100 => [
-					'dummy' => 'dummy entries 1',
-					'dummy entries 1' => 'dummy entries 1',
-					'dummy entries 2' => 'dummy entries 2',
+					10 => 'dummy entries 1',
+					11 => 'dummy entries 1',
+					12 => 'dummy entries 2',
 				],
 				101 => [
-					'dummy' => 'dummy entries 1',
-					'dummy entries 1' => 'dummy entries 1',
+					10 => 'dummy entries 1',
+					11 => 'dummy entries 1',
 				],
 				102 => [
-					'dummy' => 'dummy entries 2',
-					'dummy entries 2' => 'dummy entries 2',
+					10 => 'dummy entries 2',
+					12 => 'dummy entries 2',
 				],
 			],
 			$link1->internals
@@ -92,12 +92,12 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 		$this->assertArrayEquals(
 			[
 				100 => [
-					'dummy' => 'dummy entries 2',
-					'dummy entries 2' => 'dummy entries 2',
+					10 => 'dummy entries 2',
+					12 => 'dummy entries 2',
 				],
 				102 => [
-					'dummy' => 'dummy entries 2',
-					'dummy entries 2' => 'dummy entries 2',
+					10 => 'dummy entries 2',
+					12 => 'dummy entries 2',
 				],
 			],
 			$link2->internals
@@ -105,15 +105,15 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 
 		$this->assertArrayEquals(
 			[
-				'dummy' => [
+				10 => [
 					'dummy' => 'dummy interwikis 1',
 					'dummy interwikis 1' => 'dummy interwikis 1',
 				],
-				'dummy interwikis 1' => [
+				18 => [
 					'dummy' => 'dummy interwikis 1',
 					'dummy entries 1' => 'dummy interwikis 1',
 				],
-				'dummy interwikis 2' => [
+				19 => [
 					'dummy' => 'dummy interwikis 2',
 					'dummy interwikis 2' => 'dummy interwikis 2',
 				],
@@ -122,11 +122,11 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 		);
 		$this->assertArrayEquals(
 			[
-				'dummy' => [
+				10 => [
 					'dummy' => 'dummy interwikis 2',
 					'dummy interwikis 2' => 'dummy interwikis 2',
 				],
-				'dummy interwikis 2' => [
+				19 => [
 					'dummy' => 'dummy interwikis 2',
 					'dummy interwikis 2' => 'dummy interwikis 2',
 				],
@@ -178,12 +178,12 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 			$linkHolderArray->replaceText( $input )
 		);
 		$linkHolderArray->internals = [
-			101 => [ 'b:c' => [ 'text' => 'dummy 1' ] ],
-			102 => [ 'x:c' => [ 'text' => 'dummy 2' ] ],
+			101 => [ 1 => [ 'text' => 'dummy 1' ] ],
+			102 => [ 2 => [ 'text' => 'dummy 2' ] ],
 		];
 		$linkHolderArray->interwikis = [
-			'a:b:c' => [ 'text' => 'dummy 3' ],
-			'z:x:c' => [ 'text' => 'dummy 4' ],
+			3 => [ 'text' => 'dummy 3' ],
+			4 => [ 'text' => 'dummy 4' ],
 		];
 
 		$this->assertSame(
@@ -198,27 +198,27 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 			'<!--LINK\'" q:w:e--> <!-- <!-- <!--IWLINK\'" q:w:e-->',
 		];
 		yield [
-			'<!--<!--<!--LINK\'" 101:b:c-->-->-->',
+			'<!--<!--<!--LINK\'" 101:1-->-->-->',
 			'<!--<!--dummy 1-->-->',
 		];
 		yield [
-			'<!--LINK\'" q:w:e--><!--LINK\'" 101:b:c-->  <!--LINK\'" 102:x:c-->',
+			'<!--LINK\'" q:w:e--><!--LINK\'" 101:1-->  <!--LINK\'" 102:2-->',
 			'<!--LINK\'" q:w:e-->dummy 1  dummy 2',
 		];
 		yield [
-			'<!--IWLINK\'" q:w:e--><!--IWLINK\'" a:b:c-->  <!--IWLINK\'" z:x:c-->',
+			'<!--IWLINK\'" q:w:e--><!--IWLINK\'" 3-->  <!--IWLINK\'" 4-->',
 			'<!--IWLINK\'" q:w:e-->dummy 3  dummy 4',
 		];
 		yield [
-			'<!--IWLINK\'" q:w:e-->  <!--LINK\'" 101:b:c--><!--IWLINK\'" z:x:c-->',
+			'<!--IWLINK\'" q:w:e-->  <!--LINK\'" 101:1--><!--IWLINK\'" 4-->',
 			'<!--IWLINK\'" q:w:e-->  dummy 1dummy 4',
 		];
 		yield [
-			'<!--LINK\'" 101:b:c--><!--LINK\'" 101:b:c--><!--LINK\'" 101:b:c-->',
+			'<!--LINK\'" 101:1--><!--LINK\'" 101:1--><!--LINK\'" 101:1-->',
 			'dummy 1dummy 1dummy 1',
 		];
 		yield [
-			'<!--IWLINK\'" z:x:c--><!--IWLINK\'" z:x:c--><!--IWLINK\'" z:x:c-->',
+			'<!--IWLINK\'" 4--><!--IWLINK\'" 4--><!--IWLINK\'" 4-->',
 			'dummy 4dummy 4dummy 4',
 		];
 	}
@@ -244,7 +244,7 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 		$title->method( 'isExternal' )->willReturn( true );
 
 		$link->interwikis = [
-			'key' => [
+			9 => [
 				'title' => $title,
 				'text' => 'text',
 			],
@@ -269,11 +269,11 @@ class LinkHolderArrayTest extends MediaWikiUnitTestCase {
 			'dummy text',
 		];
 		yield [
-			'<!--IWLINK\'" key-->',
+			'<!--IWLINK\'" 9-->',
 			'new text',
 		];
 		yield [
-			'text1<!--IWLINK\'" key--><!--IWLINK\'" key-->  text2',
+			'text1<!--IWLINK\'" 9--><!--IWLINK\'" 9-->  text2',
 			'text1new textnew text  text2',
 		];
 	}
