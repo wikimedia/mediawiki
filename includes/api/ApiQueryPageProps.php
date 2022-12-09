@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Page\PageProps;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

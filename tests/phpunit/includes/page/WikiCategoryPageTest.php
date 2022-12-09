@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Page\PageProps;
+
 class WikiCategoryPageTest extends MediaWikiLangTestCase {
 
 	/**
