@@ -88,6 +88,7 @@ use Wikimedia\ScopedCallback;
  *
  * @ingroup Parser
  */
+#[AllowDynamicProperties]
 class Parser {
 
 	# Flags for Parser::setFunctionHook
