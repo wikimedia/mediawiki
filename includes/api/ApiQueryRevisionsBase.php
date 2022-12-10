@@ -20,10 +20,10 @@
  * @file
  */
 
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
-use MediaWiki\Linker\Linker;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -89,6 +89,9 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	/** @var ContentTransformer */
 	private $contentTransformer;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/**
 	 * @since 1.37 Support injection of services
 	 * @stable to call
@@ -101,6 +104,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	 * @param SlotRoleRegistry|null $slotRoleRegistry
 	 * @param ContentRenderer|null $contentRenderer
 	 * @param ContentTransformer|null $contentTransformer
+	 * @param CommentFormatter|null $commentFormatter
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
@@ -111,7 +115,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		ParserFactory $parserFactory = null,
 		SlotRoleRegistry $slotRoleRegistry = null,
 		ContentRenderer $contentRenderer = null,
-		ContentTransformer $contentTransformer = null
+		ContentTransformer $contentTransformer = null,
+		CommentFormatter $commentFormatter = null
 	) {
 		parent::__construct( $queryModule, $moduleName, $paramPrefix );
 		// This class is part of the stable interface and
@@ -123,6 +128,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		$this->slotRoleRegistry = $slotRoleRegistry ?? $services->getSlotRoleRegistry();
 		$this->contentRenderer = $contentRenderer ?? $services->getContentRenderer();
 		$this->contentTransformer = $contentTransformer ?? $services->getContentTransformer();
+		$this->commentFormatter = $commentFormatter ?? $services->getCommentFormatter();
 	}
 
 	public function execute() {
@@ -405,7 +411,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				}
 
 				if ( $this->fld_parsedcomment ) {
-					$vals['parsedcomment'] = Linker::formatComment(
+					$vals['parsedcomment'] = $this->commentFormatter->format(
 						$comment, Title::newFromLinkTarget( $revision->getPageAsLinkTarget() )
 					);
 				}
