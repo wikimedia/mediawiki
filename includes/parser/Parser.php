@@ -92,6 +92,7 @@ use Wikimedia\ScopedCallback;
  *
  * @ingroup Parser
  */
+#[AllowDynamicProperties]
 class Parser {
 	use DeprecationHelper;
 
