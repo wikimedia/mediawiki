@@ -156,7 +156,7 @@
 			},
 			{
 				"name": "comment_text",
-				"comment": "Text comment summarizing the change. This text is shown in the history and other changes lists, rendered in a subset of wiki markup by Linker::formatComment(). Size limits are enforced at the application level, and should take care to crop UTF-8 strings appropriately.",
+				"comment": "Text comment summarizing the change. This text is shown in the history and other changes lists, rendered in a subset of wiki markup by MediaWiki\\CommentFormatter\\CommentFormatter::format(). Size limits are enforced at the application level, and should take care to crop UTF-8 strings appropriately.",
 				"type": "blob",
 				"options": { "length": 65535, "notnull": true }
 			},
