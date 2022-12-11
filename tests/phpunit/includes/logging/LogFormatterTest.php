@@ -289,7 +289,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		$formatter = LogFormatter::newFromEntry( $entry );
 		$formatter->setContext( $this->context );
 
-		$comment = ltrim( Linker::commentBlock( $entry->getComment() ) );
+		$comment = ltrim( $this->getServiceContainer()->getCommentFormatter()->formatBlock( $entry->getComment() ) );
 
 		$this->assertEquals( $comment, $formatter->getComment() );
 	}

@@ -27,7 +27,6 @@ use CommentStore;
 use DerivativeContext;
 use Html;
 use LogFormatter;
-use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
@@ -97,7 +96,7 @@ class FeedUtils {
 		if ( $row->rc_deleted & RevisionRecord::DELETED_COMMENT ) {
 			$formattedComment = wfMessage( 'rev-deleted-comment' )->escaped();
 		} elseif ( $formattedComment === null ) {
-			$formattedComment = Linker::formatComment(
+			$formattedComment = MediaWikiServices::getInstance()->getCommentFormatter()->format(
 				CommentStore::getStore()->getComment( 'rc_comment', $row )->text );
 		}
 		return self::formatDiffRow2( $titleObj,

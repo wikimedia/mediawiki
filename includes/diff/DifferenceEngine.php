@@ -21,6 +21,7 @@
  * @ingroup DifferenceEngine
  */
 
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\Linker;
@@ -237,6 +238,9 @@ class DifferenceEngine extends ContextSource {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/** @var Message[] */
 	private $revisionLoadErrors = [];
 
@@ -281,6 +285,7 @@ class DifferenceEngine extends ContextSource {
 		$this->hookRunner = new HookRunner( $services->getHookContainer() );
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
+		$this->commentFormatter = $services->getCommentFormatter();
 	}
 
 	/**
@@ -789,7 +794,8 @@ class DifferenceEngine extends ContextSource {
 			$ldel = $this->revisionDeleteLink( $oldRevRecord );
 			$oldRevisionHeader = $this->getRevisionHeader( $oldRevRecord, 'complete' );
 			$oldChangeTags = ChangeTags::formatSummaryRow( $this->mOldTags, 'diff', $this->getContext() );
-			$oldRevComment = Linker::revComment( $oldRevRecord, !$diffOnly, !$this->unhide );
+			$oldRevComment = $this->commentFormatter
+				->formatRevision( $oldRevRecord, $user, !$diffOnly, !$this->unhide );
 
 			if ( $oldRevComment === '' ) {
 				$defaultComment = $this->msg( 'changeslist-nocomment' )->escaped();
@@ -860,7 +866,7 @@ class DifferenceEngine extends ContextSource {
 		$newRevisionHeader = $this->getRevisionHeader( $newRevRecord, 'complete' ) .
 			' ' . implode( ' ', $formattedRevisionTools );
 		$newChangeTags = ChangeTags::formatSummaryRow( $this->mNewTags, 'diff', $this->getContext() );
-		$newRevComment = Linker::revComment( $newRevRecord, !$diffOnly, !$this->unhide );
+		$newRevComment = $this->commentFormatter->formatRevision( $newRevRecord, $user, !$diffOnly, !$this->unhide );
 
 		if ( $newRevComment === '' ) {
 			$defaultComment = $this->msg( 'changeslist-nocomment' )->escaped();
