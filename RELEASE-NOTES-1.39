@@ -19,6 +19,9 @@ PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 * (T324489) Upgrading wikimedia/parsoid (v0.16.0 => v0.16.1).
 * Updated pear/mail (v1.4.1 => v1.5.0).
 * Removed wikimedia/dodo (v0.4.0).
+* (T324910) On pages using multi-content revisions, the raw content of a
+  specific slot can be retrieved using the action=raw&slot=<role-name> query
+  parameters.
 
 == MediaWiki 1.39.0 ==
 
