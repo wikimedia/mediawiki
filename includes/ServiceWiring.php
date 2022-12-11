@@ -106,6 +106,7 @@ use MediaWiki\Page\DeletePageFactory;
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\PageCommandFactory;
+use MediaWiki\Page\PageProps;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\Page\ParserOutputAccess;

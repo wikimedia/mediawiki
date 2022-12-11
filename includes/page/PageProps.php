@@ -20,9 +20,12 @@
  * @file
  */
 
+namespace MediaWiki\Page;
+
+use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\TitleArray;
+use Title;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -281,3 +284,5 @@ class PageProps {
 		$this->cache->setField( 0, $pageID, $pageProperties );
 	}
 }
+
+class_alias( PageProps::class, 'PageProps' );
