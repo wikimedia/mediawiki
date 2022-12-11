@@ -18,7 +18,7 @@ version=2
 #  (default)  generate HTML output
 #  pst        apply pre-save transform
 #  msg        apply message transform
-#  comment    run through Linker::formatComment() instead of main parser
+#  comment    run through MediaWiki\CommentFormatter\CommentFormatter::format() instead of main parser
 #
 # Options for adding metadata to the output:
 #

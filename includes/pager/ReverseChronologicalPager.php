@@ -38,6 +38,8 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	public $mDay;
 	/** @var string */
 	private $lastHeaderDate;
+	/** @var string */
+	protected $endOffset;
 
 	/**
 	 * @param string $date
@@ -169,7 +171,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	}
 
 	/**
-	 * Set and return the mOffset timestamp such that we can get all revisions with
+	 * Set and return the offset timestamp such that we can get all revisions with
 	 * a timestamp up to the specified parameters.
 	 *
 	 * @stable to override
@@ -185,7 +187,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		$day = (int)$day;
 
 		// Basic validity checks for year and month
-		// If year and month are invalid, don't update the mOffset
+		// If year and month are invalid, don't update the offset
 		if ( $year <= 0 && ( $month <= 0 || $month >= 13 ) ) {
 			return null;
 		}
@@ -200,17 +202,18 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			$this->mYear = (int)$selectedDate->format( 'Y' );
 			$this->mMonth = (int)$selectedDate->format( 'm' );
 			$this->mDay = (int)$selectedDate->format( 'd' );
-			$this->mOffset = $this->mDb->timestamp( $timestamp->getTimestamp() );
+			// Don't mess with mOffset which IndexPager uses
+			$this->endOffset = $this->mDb->timestamp( $timestamp->getTimestamp() );
 		} catch ( TimestampException $e ) {
 			// Invalid user provided timestamp (T149257)
 			return null;
 		}
 
-		return $this->mOffset;
+		return $this->endOffset;
 	}
 
 	/**
-	 * Core logic of determining the mOffset timestamp such that we can get all items with
+	 * Core logic of determining the offset timestamp such that we can get all items with
 	 * a timestamp up to the specified parameters. Given parameters for a day up to which to get
 	 * items, this function finds the timestamp of the day just after the end of the range for use
 	 * in an database strict inequality filter.
@@ -285,5 +288,22 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		}
 
 		return MWTimestamp::getInstance( "{$ymd}000000" );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	protected function buildQueryInfo( $offset, $limit, $order ) {
+		[ $tables, $fields, $conds, $fname, $options, $join_conds ] = parent::buildQueryInfo(
+			$offset,
+			$limit,
+			$order
+		);
+		if ( $this->endOffset ) {
+			$timestampField = is_array( $this->mIndexField ) ? $this->mIndexField[0] : $this->mIndexField;
+			$conds[] = $this->mDb->buildComparison( '<', [ $timestampField => $this->endOffset ] );
+		}
+
+		return [ $tables, $fields, $conds, $fname, $options, $join_conds ];
 	}
 }
