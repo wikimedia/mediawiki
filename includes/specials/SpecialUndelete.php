@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
@@ -120,6 +121,9 @@ class SpecialUndelete extends SpecialPage {
 	/** @var ArchivedRevisionLookup */
 	private $archivedRevisionLookup;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param RevisionStore $revisionStore
@@ -134,6 +138,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @param SearchEngineFactory $searchEngineFactory
 	 * @param UndeletePageFactory $undeletePageFactory
 	 * @param ArchivedRevisionLookup $archivedRevisionLookup
+	 * @param CommentFormatter $commentFormatter
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
@@ -148,7 +153,8 @@ class SpecialUndelete extends SpecialPage {
 		WikiPageFactory $wikiPageFactory,
 		SearchEngineFactory $searchEngineFactory,
 		UndeletePageFactory $undeletePageFactory,
-		ArchivedRevisionLookup $archivedRevisionLookup
+		ArchivedRevisionLookup $archivedRevisionLookup,
+		CommentFormatter $commentFormatter
 	) {
 		parent::__construct( 'Undelete', 'deletedhistory' );
 		$this->permissionManager = $permissionManager;
@@ -164,6 +170,7 @@ class SpecialUndelete extends SpecialPage {
 		$this->searchEngineFactory = $searchEngineFactory;
 		$this->undeletePageFactory = $undeletePageFactory;
 		$this->archivedRevisionLookup = $archivedRevisionLookup;
+		$this->commentFormatter = $commentFormatter;
 	}
 
 	public function doesWrites() {
@@ -832,7 +839,7 @@ class SpecialUndelete extends SpecialPage {
 			Linker::revUserTools( $revRecord ) . '<br />' .
 			'</div>' .
 			'<div id="mw-diff-' . $prefix . 'title3">' .
-			$minor . Linker::revComment( $revRecord ) . $rdel . '<br />' .
+			$minor . $this->commentFormatter->formatRevision( $revRecord, $user ) . $rdel . '<br />' .
 			'</div>' .
 			'<div id="mw-diff-' . $prefix . 'title5">' .
 			$tagSummary[0] . '<br />' .
@@ -1188,7 +1195,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		// Edit summary
-		$comment = Linker::revComment( $revRecord );
+		$comment = $this->commentFormatter->formatRevision( $revRecord, $user );
 
 		// Tags
 		$attribs = [];
@@ -1393,7 +1400,7 @@ class SpecialUndelete extends SpecialPage {
 		}
 
 		$comment = $file->getDescription( File::FOR_THIS_USER, $this->getAuthority() );
-		$link = Linker::commentBlock( $comment );
+		$link = $this->commentFormatter->formatBlock( $comment );
 
 		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
 			$link = Html::rawElement(

@@ -19,6 +19,7 @@
  * @ingroup Pager
  */
 
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\Linker;
@@ -60,6 +61,9 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 	/** @var RevisionFactory */
 	private $revisionFactory;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/**
 	 * @param IContextSource $context
 	 * @param CommentStore $commentStore
@@ -67,6 +71,7 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 	 * @param LinkRenderer $linkRenderer
 	 * @param ILoadBalancer $loadBalancer
 	 * @param RevisionFactory $revisionFactory
+	 * @param CommentFormatter $commentFormatter
 	 * @param string $target
 	 * @param string|int $namespace
 	 */
@@ -77,6 +82,7 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 		LinkRenderer $linkRenderer,
 		ILoadBalancer $loadBalancer,
 		RevisionFactory $revisionFactory,
+		CommentFormatter $commentFormatter,
 		$target,
 		$namespace
 	) {
@@ -92,6 +98,7 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->commentStore = $commentStore;
 		$this->revisionFactory = $revisionFactory;
+		$this->commentFormatter = $commentFormatter;
 	}
 
 	public function getDefaultQuery() {
@@ -321,7 +328,7 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 			$last = htmlspecialchars( $this->messages['diff'] );
 		}
 
-		$comment = Linker::revComment( $revRecord );
+		$comment = $this->commentFormatter->formatRevision( $revRecord, $user );
 		$date = $this->getLanguage()->userTimeAndDate( $revRecord->getTimestamp(), $user );
 
 		if ( !$this->getAuthority()->isAllowed( 'undelete' ) ||

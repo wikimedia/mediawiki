@@ -437,6 +437,7 @@ class SpecialPageFactory {
 				'UserFactory',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
+				'CommentFormatter',
 			]
 		],
 		'Preferences' => [
@@ -561,6 +562,7 @@ class SpecialPageFactory {
 				'RevisionLookup',
 				'NamespaceInfo',
 				'UserOptionsLookup',
+				'CommentFormatter',
 			]
 		],
 		'Recentchanges' => [
@@ -596,6 +598,7 @@ class SpecialPageFactory {
 				'UserNameUtils',
 				'UserNamePrefixSearch',
 				'UserCache',
+				'CommentFormatter',
 			]
 		],
 		'Filepath' => [
@@ -824,6 +827,7 @@ class SpecialPageFactory {
 				'SearchEngineFactory',
 				'UndeletePageFactory',
 				'ArchivedRevisionLookup',
+				'CommentFormatter',
 			],
 		],
 		'Whatlinkshere' => [
@@ -845,6 +849,7 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'DBLoadBalancer',
 				'RevisionStore',
+				'CommentFormatter',
 			]
 		],
 		'ExpandTemplates' => [

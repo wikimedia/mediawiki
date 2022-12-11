@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionFactory;
@@ -64,6 +65,9 @@ class SpecialDeletedContributions extends SpecialPage {
 	/** @var UserNamePrefixSearch */
 	private $userNamePrefixSearch;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
@@ -73,6 +77,7 @@ class SpecialDeletedContributions extends SpecialPage {
 	 * @param UserFactory $userFactory
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
+	 * @param CommentFormatter $commentFormatter
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
@@ -82,7 +87,8 @@ class SpecialDeletedContributions extends SpecialPage {
 		NamespaceInfo $namespaceInfo,
 		UserFactory $userFactory,
 		UserNameUtils $userNameUtils,
-		UserNamePrefixSearch $userNamePrefixSearch
+		UserNamePrefixSearch $userNamePrefixSearch,
+		CommentFormatter $commentFormatter
 	) {
 		parent::__construct( 'DeletedContributions', 'deletedhistory' );
 		$this->permissionManager = $permissionManager;
@@ -93,6 +99,7 @@ class SpecialDeletedContributions extends SpecialPage {
 		$this->userFactory = $userFactory;
 		$this->userNameUtils = $userNameUtils;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
+		$this->commentFormatter = $commentFormatter;
 	}
 
 	/**
@@ -164,6 +171,7 @@ class SpecialDeletedContributions extends SpecialPage {
 			$this->getLinkRenderer(),
 			$this->loadBalancer,
 			$this->revisionFactory,
+			$this->commentFormatter,
 			$target,
 			$opts->getValue( 'namespace' )
 		);
