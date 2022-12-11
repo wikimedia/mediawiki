@@ -416,7 +416,7 @@ function wfProxyThumbnailRequest( $img, $thumbName ) {
 	// Instead of generating the thumbnail ourselves, we proxy the request to another service
 	$thumbProxiedUrl = $thumbProxyUrl . $img->getThumbRel( $thumbName );
 
-	$req = MWHttpRequest::factory( $thumbProxiedUrl );
+	$req = MediaWikiServices::getInstance()->getHttpRequestFactory()->create( $thumbProxiedUrl );
 	$secret = $img->getRepo()->getThumbProxySecret();
 
 	// Pass a secret key shared with the proxied service if any
