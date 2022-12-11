@@ -71,6 +71,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 		$revisionRenderer = $services->getRevisionRenderer();
 		$revisionLookup = $services->getRevisionLookup();
 		$readOnlyMode = $services->getReadOnlyMode();
+		$commentFormatter = $services->getCommentFormatter();
 		$config = $services->getMainConfig();
 		return new class(
 			$article,
@@ -78,6 +79,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			$readOnlyMode,
 			$revisionLookup,
 			$revisionRenderer,
+			$commentFormatter,
 			$config
 		) extends McrUndoAction {
 			public function show() {
