@@ -14,7 +14,7 @@
 	var con = window.console;
 
 	/**
-	 * Log a message to window.console, if possible.
+	 * Log a message to window.console.
 	 *
 	 * Useful to force logging of some errors that are otherwise hard to detect (i.e., this logs
 	 * also in production mode). Gets console references in each invocation instead of caching the
@@ -28,20 +28,18 @@
 	 * @param {string} [data.module] Name of module which caused the error
 	 */
 	function logError( topic, data ) {
-		if ( con.log ) {
-			var e = data.exception;
-			var msg = ( e ? 'Exception' : 'Error' ) +
-				' in ' + data.source +
-				( data.module ? ' in module ' + data.module : '' ) +
-				( e ? ':' : '.' );
+		var e = data.exception;
+		var msg = ( e ? 'Exception' : 'Error' ) +
+			' in ' + data.source +
+			( data.module ? ' in module ' + data.module : '' ) +
+			( e ? ':' : '.' );
 
-			con.log( msg );
+		con.log( msg );
 
-			// If we have an exception object, log it to the warning channel to trigger
-			// proper stacktraces in browsers that support it.
-			if ( e && con.warn ) {
-				con.warn( e );
-			}
+		// If we have an exception object, log it to the warning channel to trigger
+		// proper stacktraces in browsers that support it.
+		if ( e ) {
+			con.warn( e );
 		}
 	}
 
@@ -169,13 +167,9 @@
 	/**
 	 * Write a message to the browser console's warning channel.
 	 *
-	 * This method is a no-op in browsers that don't implement the Console API.
-	 *
 	 * @param {...string} msg Messages to output to console
 	 */
-	log.warn = con.warn ?
-		Function.prototype.bind.call( con.warn, con ) :
-		function () {};
+	log.warn = Function.prototype.bind.call( con.warn, con );
 
 	/**
 	 * @class mw
