@@ -211,6 +211,8 @@
 
 		assert.strictEqual( title.getNamespaceId(), 6 );
 		assert.strictEqual( title.getNamespacePrefix(), 'File:' );
+		assert.strictEqual( title.getFileNameWithoutExtension(), 'Foo_bar' );
+		assert.strictEqual( title.getFileNameTextWithoutExtension(), 'Foo bar' );
 		assert.strictEqual( title.getName(), 'Foo_bar' );
 		assert.strictEqual( title.getNameText(), 'Foo bar' );
 		assert.strictEqual( title.getExtension(), 'JPG' );
@@ -225,6 +227,8 @@
 
 		title = new mw.Title( '.foo' );
 		assert.strictEqual( title.getPrefixedText(), '.foo' );
+		assert.strictEqual( title.getFileNameWithoutExtension(), '' );
+		assert.strictEqual( title.getFileNameTextWithoutExtension(), '' );
 		assert.strictEqual( title.getName(), '' );
 		assert.strictEqual( title.getNameText(), '' );
 		assert.strictEqual( title.getExtension(), 'foo' );
@@ -238,9 +242,11 @@
 		var title;
 
 		title = new mw.Title( 'File:quux pif.jpg' );
+		assert.strictEqual( title.getFileNameTextWithoutExtension(), 'Quux pif', 'First character of title' );
 		assert.strictEqual( title.getNameText(), 'Quux pif', 'First character of title' );
 
 		title = new mw.Title( 'File:Glarg_foo_glang.jpg' );
+		assert.strictEqual( title.getFileNameTextWithoutExtension(), 'Glarg foo glang', 'Underscores' );
 		assert.strictEqual( title.getNameText(), 'Glarg foo glang', 'Underscores' );
 
 		title = new mw.Title( 'User:ABC.DEF' );
@@ -479,6 +485,8 @@
 				prefix = '[' + caseItem.typeOfUrl + ' URL] ';
 
 				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
+				assert.strictEqual( title.getFileNameTextWithoutExtension(), caseItem.nameText,
+					prefix + 'Filename matches original' );
 				assert.strictEqual( title.getNameText(), caseItem.nameText, prefix + 'Filename matches original' );
 				assert.strictEqual( title.getPrefixedText(), caseItem.prefixedText, prefix + 'File page title matches original' );
 				assert.strictEqual( title.getNamespaceId(), 6, prefix + 'Namespace ID matches File namespace' );
@@ -753,6 +761,8 @@
 				prefix = '[' + caseItem.typeOfName + '] ';
 
 				assert.notStrictEqual( title, null, prefix + 'Parses successfully' );
+				assert.strictEqual( title.getFileNameTextWithoutExtension(),
+					caseItem.nameText, prefix + 'Filename matches original' );
 				assert.strictEqual( title.getNameText(), caseItem.nameText, prefix + 'Filename matches original' );
 				assert.strictEqual( title.getPrefixedText(), caseItem.prefixedText, prefix + 'File page title matches original' );
 				assert.strictEqual( title.getNamespaceId(), 6, prefix + 'Namespace ID matches File namespace' );
