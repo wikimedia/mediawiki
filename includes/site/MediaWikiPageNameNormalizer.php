@@ -21,8 +21,9 @@
 namespace MediaWiki\Site;
 
 use FormatJson;
-use Http;
 use InvalidArgumentException;
+use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\MediaWikiServices;
 use UtfNormal\Validator;
 
 /**
@@ -40,19 +41,18 @@ class MediaWikiPageNameNormalizer {
 	public const NOFOLLOW_REDIRECT = 2;
 
 	/**
-	 * @var Http
+	 * @var HttpRequestFactory
 	 */
-	private $http;
+	private $httpRequestFactory;
 
 	/**
-	 * @param Http|null $http
+	 * @param HttpRequestFactory|null $httpRequestFactory
 	 */
-	public function __construct( Http $http = null ) {
-		if ( !$http ) {
-			$http = new Http();
+	public function __construct( $httpRequestFactory = null ) {
+		if ( !$httpRequestFactory instanceof HttpRequestFactory ) {
+			$httpRequestFactory = MediaWikiServices::getInstance()->getHttpRequestFactory();
 		}
-
-		$this->http = $http;
+		$this->httpRequestFactory = $httpRequestFactory;
 	}
 
 	/**
@@ -120,9 +120,9 @@ class MediaWikiPageNameNormalizer {
 
 		// Go on call the external site
 		// @todo we need a good way to specify a timeout here.
-		$ret = $this->http->get( $url, [], __METHOD__ );
+		$ret = $this->httpRequestFactory->get( $url, [], __METHOD__ );
 
-		if ( $ret === false ) {
+		if ( $ret === null ) {
 			wfDebugLog( "MediaWikiSite", "call to external site failed: $url" );
 			return false;
 		}
