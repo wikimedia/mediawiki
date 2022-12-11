@@ -67,16 +67,10 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	/**
-	 * Copied from LinkerTest so that LinkerTest can be deleted once deprecation
-	 * and removal of Linker::formatComment() is complete.
-	 *
-	 * @return array[]
-	 */
 	public function provideFormatComment() {
 		$wikiId = 'enwiki'; // $wgConf has a fake entry for this
 		return [
-			// Linker::formatComment
+			// MediaWiki\CommentFormatter\CommentFormatter::format
 			[
 				'a&lt;script&gt;b',
 				'a<script>b',
@@ -93,7 +87,7 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 				"try &lt;script&gt;evil&lt;/scipt&gt; things",
 				"try <script>evil</scipt> things",
 			],
-			// Linker::formatAutocomments
+			// MediaWiki\CommentFormatter\CommentParser::doSectionLinks
 			[
 				'<span dir="auto"><span class="autocomment"><a href="/wiki/Special:BlankPage#autocomment" title="Special:BlankPage">→‎autocomment</a></span></span>',
 				"/* autocomment */",
@@ -190,7 +184,7 @@ class CommentParserTest extends \MediaWikiIntegrationTestCase {
 				"/* autocomment */",
 				false, false, $wikiId
 			],
-			// Linker::formatLinksInComment
+			// MediaWiki\CommentFormatter\CommentParser::doWikiLinks
 			[
 				'abc <a href="/wiki/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">link</a> def',
 				"abc [[link]] def",
