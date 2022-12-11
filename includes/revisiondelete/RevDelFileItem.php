@@ -191,7 +191,8 @@ class RevDelFileItem extends RevDelItem {
 	 */
 	protected function getComment() {
 		if ( $this->file->userCan( File::DELETED_COMMENT, $this->list->getAuthority() ) ) {
-			$block = Linker::commentBlock( $this->file->getDescription() );
+			$block = MediaWikiServices::getInstance()->getCommentFormatter()
+				->formatBlock( $this->file->getDescription() );
 		} else {
 			$block = ' ' . $this->list->msg( 'rev-deleted-comment' )->escaped();
 		}
