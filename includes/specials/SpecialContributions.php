@@ -196,15 +196,10 @@ class SpecialContributions extends IncludableSpecialPage {
 			$this->opts['bot'] = '1';
 		}
 
-		$skip = $request->getText( 'offset' ) || $request->getText( 'dir' ) == 'prev';
-		# Offset overrides year/month selection
-		if ( !$skip ) {
-			$this->opts['year'] = $request->getIntOrNull( 'year' );
-			$this->opts['month'] = $request->getIntOrNull( 'month' );
-
-			$this->opts['start'] = $request->getVal( 'start' );
-			$this->opts['end'] = $request->getVal( 'end' );
-		}
+		$this->opts['year'] = $request->getIntOrNull( 'year' );
+		$this->opts['month'] = $request->getIntOrNull( 'month' );
+		$this->opts['start'] = $request->getVal( 'start' );
+		$this->opts['end'] = $request->getVal( 'end' );
 
 		$id = 0;
 		if ( ExternalUserNames::isExternal( $target ) ) {

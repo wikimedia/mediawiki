@@ -675,15 +675,6 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	/**
-	 * @inheritDoc
-	 */
-	public function getDefaultQuery() {
-		parent::getDefaultQuery();
-		unset( $this->mDefaultQuery['date-range-to'] );
-		return $this->mDefaultQuery;
-	}
-
-	/**
 	 * Set the "prevent clickjacking" flag; for example if a write operation
 	 * if possible from the generated HTML.
 	 * @param bool $flag

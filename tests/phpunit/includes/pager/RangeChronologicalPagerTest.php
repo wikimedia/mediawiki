@@ -7,7 +7,7 @@
  *
  * @author Geoffrey Mon <geofbot@gmail.com>
  */
-class RangeChronologicalPagerTest extends MediaWikiLangTestCase {
+class RangeChronologicalPagerTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers RangeChronologicalPager::getDateCond
@@ -26,14 +26,14 @@ class RangeChronologicalPagerTest extends MediaWikiLangTestCase {
 	 */
 	public function getDateCondProvider() {
 		return [
-			[ 2016, 12, 5, '20161205235959' ],
-			[ 2016, 12, 31, '20161231235959' ],
-			[ 2016, 12, 1337, '20161231235959' ],
-			[ 2016, 1337, 1337, '20161231235959' ],
-			[ 2016, 1337, -1, '20161231235959' ],
-			[ 2016, 12, 32, '20161231235959' ],
-			[ 2016, 12, -1, '20161231235959' ],
-			[ 2016, -1, -1, '20161231235959' ],
+			[ 2016, 12, 5, '20161206000000' ],
+			[ 2016, 12, 31, '20170101000000' ],
+			[ 2016, 12, 1337, '20170101000000' ],
+			[ 2016, 1337, 1337, '20170101000000' ],
+			[ 2016, 1337, -1, '20170101000000' ],
+			[ 2016, 12, 32, '20170101000000' ],
+			[ 2016, 12, -1, '20170101000000' ],
+			[ 2016, -1, -1, '20170101000000' ],
 		];
 	}
 
@@ -55,24 +55,24 @@ class RangeChronologicalPagerTest extends MediaWikiLangTestCase {
 		return [
 			[
 				'20161201000000',
-				'20161203000000',
+				'20161202235959',
 				[
-					'>=' . $db->addQuotes( $db->timestamp( '20161201000000' ) ),
-					'<=' . $db->addQuotes( $db->timestamp( '20161203000000' ) ),
+					$db->buildComparison( '>=', [ '' => $db->timestamp( '20161201000000' ) ] ),
+					$db->buildComparison( '<', [ '' => $db->timestamp( '20161203000000' ) ] ),
 				],
 			],
 			[
 				'',
-				'20161203000000',
+				'20161202235959',
 				[
-					'<=' . $db->addQuotes( $db->timestamp( '20161203000000' ) ),
+					$db->buildComparison( '<', [ '' => $db->timestamp( '20161203000000' ) ] ),
 				],
 			],
 			[
 				'20161201000000',
 				'',
 				[
-					'>=' . $db->addQuotes( $db->timestamp( '20161201000000' ) ),
+					$db->buildComparison( '>=', [ '' => $db->timestamp( '20161201000000' ) ] ),
 				],
 			],
 			[ '', '', [] ],
