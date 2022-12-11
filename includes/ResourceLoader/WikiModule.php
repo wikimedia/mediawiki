@@ -432,9 +432,6 @@ class WikiModule extends Module {
 				[ $style, false, $remoteDir, true ]
 			);
 			$media = $options['media'] ?? 'all';
-			if ( !isset( $styles[$media] ) ) {
-				$styles[$media] = [];
-			}
 			$style = ResourceLoader::makeComment( $titleText ) . $style;
 			$styles[$media][] = $style;
 		}

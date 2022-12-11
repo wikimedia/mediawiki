@@ -175,10 +175,6 @@ class LinkBatch {
 			// T137083
 			return;
 		}
-		if ( !array_key_exists( $ns, $this->data ) ) {
-			$this->data[$ns] = [];
-		}
-
 		$this->data[$ns][strtr( $dbkey, ' ', '_' )] = 1;
 	}
 
