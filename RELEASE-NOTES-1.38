@@ -22,6 +22,9 @@ THIS IS NOT A RELEASE YET
 * PostgresUpdater: Remove trailing space from 'user_id ' column.
 * (T304515) LCStoreStaticArray: atomically replace the cache file.
 * (T324890, T324891, T324901) Parser: Allow dynamic properties on PHP 8.2.
+* (T324910) On pages using multi-content revisions, the raw content of a
+  specific slot can be retrieved using the action=raw&slot=<role-name> query
+  parameters.
 
 == MediaWiki 1.38.4 ==
 
