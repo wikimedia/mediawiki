@@ -117,12 +117,7 @@ class EnhancedChangesList extends ChangesList {
 	 */
 	protected function addCacheEntry( RCCacheEntry $cacheEntry ) {
 		$cacheGroupingKey = $this->makeCacheGroupingKey( $cacheEntry );
-
-		if ( !isset( $this->rc_cache[$cacheGroupingKey] ) ) {
-			$this->rc_cache[$cacheGroupingKey] = [];
-		}
-
-		array_push( $this->rc_cache[$cacheGroupingKey], $cacheEntry );
+		$this->rc_cache[$cacheGroupingKey][] = $cacheEntry;
 	}
 
 	/**

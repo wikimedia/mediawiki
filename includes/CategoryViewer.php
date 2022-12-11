@@ -641,9 +641,6 @@ class CategoryViewer extends ContextSource {
 		# Kind of like array_flip() here, but we keep duplicates in an
 		# array instead of dropping them.
 		foreach ( $columns as $article => $char ) {
-			if ( !isset( $colContents[$char] ) ) {
-				$colContents[$char] = [];
-			}
 			$colContents[$char][] = $article;
 		}
 

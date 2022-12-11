@@ -729,16 +729,10 @@ class FileModule extends Module {
 		foreach ( $list as $key => $value ) {
 			if ( is_int( $key ) ) {
 				// File name as the value
-				if ( !isset( $collatedFiles['all'] ) ) {
-					$collatedFiles['all'] = [];
-				}
 				$collatedFiles['all'][] = $value;
 			} elseif ( is_array( $value ) ) {
 				// File name as the key, options array as the value
 				$optionValue = $value['media'] ?? 'all';
-				if ( !isset( $collatedFiles[$optionValue] ) ) {
-					$collatedFiles[$optionValue] = [];
-				}
 				$collatedFiles[$optionValue][] = $key;
 			}
 		}
