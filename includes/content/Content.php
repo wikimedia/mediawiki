@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Parser\MagicWord;
+
 /**
  * Base interface for representing page content.
  *

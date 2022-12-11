@@ -32,6 +32,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageProps;
 use MediaWiki\Page\RedirectLookup;
+use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;

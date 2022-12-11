@@ -37,6 +37,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Parser\MagicWordArray;
+use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\Request\FauxRequest;

@@ -27,6 +27,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\MagicWord;
 
 /**
  * Content object for wiki text pages.

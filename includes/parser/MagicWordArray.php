@@ -22,8 +22,12 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
+use Exception;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MWException;
 
 /**
  * Class for handling an array of magic words
@@ -368,3 +372,5 @@ class MagicWordArray {
 		return false;
 	}
 }
+
+class_alias( MagicWordArray::class, 'MagicWordArray' );

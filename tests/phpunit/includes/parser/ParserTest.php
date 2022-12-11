@@ -4,6 +4,8 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Parser\MagicWord;
+use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Utils\UrlUtils;

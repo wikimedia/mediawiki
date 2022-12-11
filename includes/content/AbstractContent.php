@@ -32,6 +32,7 @@ use MediaWiki\Content\Transform\PreloadTransformParamsValue;
 use MediaWiki\Content\Transform\PreSaveTransformParamsValue;
 use MediaWiki\Content\ValidationParams;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\MagicWord;
 
 /**
  * Base implementation for content objects.
