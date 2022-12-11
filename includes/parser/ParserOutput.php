@@ -1095,9 +1095,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			// Don't record self links -  [[#Foo]]
 			return;
 		}
-		if ( !isset( $this->mLinks[$ns] ) ) {
-			$this->mLinks[$ns] = [];
-		}
 		if ( $id === null ) {
 			$page = MediaWikiServices::getInstance()->getPageStore()->getPageForLink( $link );
 			$id = $page->getId();
@@ -1128,13 +1125,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	public function addTemplate( $link, $page_id, $rev_id ): void {
 		$ns = $link->getNamespace();
 		$dbk = $link->getDBkey();
-		if ( !isset( $this->mTemplates[$ns] ) ) {
-			$this->mTemplates[$ns] = [];
-		}
 		$this->mTemplates[$ns][$dbk] = $page_id;
-		if ( !isset( $this->mTemplateIds[$ns] ) ) {
-			$this->mTemplateIds[$ns] = [];
-		}
 		$this->mTemplateIds[$ns][$dbk] = $rev_id; // For versioning
 	}
 
@@ -1149,9 +1140,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			throw new MWException( 'Non-interwiki link passed, internal parser error.' );
 		}
 		$prefix = $link->getInterwiki();
-		if ( !isset( $this->mInterwikiLinks[$prefix] ) ) {
-			$this->mInterwikiLinks[$prefix] = [];
-		}
 		$this->mInterwikiLinks[$prefix][$link->getDBkey()] = 1;
 	}
 

@@ -21,7 +21,12 @@
  * @ingroup Parser
  */
 
+namespace MediaWiki\Parser;
+
+use Language;
 use MediaWiki\MediaWikiServices;
+use MWException;
+use StringUtils;
 
 /**
  * This class encapsulates "magic words" such as "#redirect", __NOTOC__, etc.
@@ -152,8 +157,11 @@ class MagicWord {
 		$this->mRegexStart = "/^(?:{$this->mBaseRegex})/{$case}";
 		$this->mRegexStartToEnd = "/^(?:{$this->mBaseRegex})$/{$case}";
 		$this->mVariableRegex = str_replace( "\\$1", "(.*?)", $this->mRegex );
-		$this->mVariableStartToEndRegex = str_replace( "\\$1", "(.*?)",
-			"/^(?:{$this->mBaseRegex})$/{$case}" );
+		$this->mVariableStartToEndRegex = str_replace(
+			"\\$1",
+			"(.*?)",
+			"/^(?:{$this->mBaseRegex})$/{$case}"
+		);
 	}
 
 	/**
@@ -460,3 +468,5 @@ class MagicWord {
 		return $this->mId;
 	}
 }
+
+class_alias( MagicWord::class, 'MagicWord' );

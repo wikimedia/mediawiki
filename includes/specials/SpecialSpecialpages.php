@@ -62,9 +62,6 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 		/** @var SpecialPage $page */
 		foreach ( $pages as $page ) {
 			$group = $page->getFinalGroupName();
-			if ( !isset( $groups[$group] ) ) {
-				$groups[$group] = [];
-			}
 			$groups[$group][$page->getDescription()] = [
 				$page->getPageTitle(),
 				$page->isRestricted(),

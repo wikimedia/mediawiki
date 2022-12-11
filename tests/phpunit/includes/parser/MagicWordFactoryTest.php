@@ -1,7 +1,11 @@
 <?php
 
+use MediaWiki\Parser\MagicWord;
+use MediaWiki\Parser\MagicWordArray;
+use MediaWiki\Parser\MagicWordFactory;
+
 /**
- * @covers \MagicWordFactory
+ * @covers \MediaWiki\Parser\MagicWordFactory
  *
  * @author Derick N. Alangi
  */
