@@ -247,7 +247,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 				'expanded' => false,
 				'content' => [],
 				'framed' => false,
-				'classes' => [ 'mw-mobile-preferences-option' ]
+				'classes' => [ 'mw-mobile-prefsection' ]
 			] );
 
 			$iconHeaderDiv = ( new OOUI\Tag( 'div' ) )
@@ -277,20 +277,24 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 			$contentDiv = ( new OOUI\Tag( 'div' ) )->addClasses( [ 'mw-prefs-hidden' ] );
 			$contentDiv->addClasses( [ 'mw-prefs-content-page' ] );
 			$contentDiv->setAttributes( [
-				'id' => 'mw-prefs-option-' . $key . '-content'
+				'id' => 'mw-mobile-prefs-' . $key . '-content'
 			] );
-			$contentHeader = ( new OOUI\Tag( 'div' ) )->addClasses( [ 'mw-prefs-content-header' ] );
+			$contentHeader = ( new OOUI\Tag( 'div' ) )->setAttributes( [
+				'id' => 'mw-mobile-prefs-' . $key . '-head'
+			] );
 			$contentHeaderBackButton = new OOUI\IconWidget( [
-				'icon' => 'previous',
+				'icon' => 'close',
 				'label' => $this->msg( "prefs-back-label" ),
 				'title' => $this->msg( "prefs-back-title" ),
-				'classes' => [ 'mw-prefs-header-icon' ],
+				'classes' => [ 'mw-prefs-header-icon', 'mw-ui-icon' ],
 			] );
 			$contentHeaderBackButton->setAttributes( [
-				'id' => 'mw-prefs-option-' . $key . '-back-button',
+				'id' => 'mw-mobile-prefs-' . $key . '-back-button',
 			] );
-			$contentHeaderTitle = ( new OOUI\Tag( 'h5' ) )
-				->appendContent( $label )->addClasses( [ 'mw-prefs-header-title' ] );
+			$contentHeaderTitle = ( new OOUI\Tag( 'h5' ) )->setAttributes( [
+				'id' => 'mw-mobile-prefs-' . $key . '-title',
+			] );
+			$contentHeaderTitle->appendContent( $label )->addClasses( [ 'mw-prefs-header-title' ] );
 			$formContent = new OOUI\Widget( [
 				'content' => new OOUI\HtmlSnippet( $content )
 			] );
@@ -301,7 +305,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 			$contentDiv->appendContent( $hiddenForm );
 			$prefPanel->appendContent( $contentDiv );
 			$prefPanel->setAttributes( [
-				'id' => 'mw-prefs-option-' . $key,
+				'id' => 'mw-mobile-prefs-' . $key,
 			] );
 			$prefPanel->setInfusable( true );
 			$prefPanels[] = $prefPanel;
