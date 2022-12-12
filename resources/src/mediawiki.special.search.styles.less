@@ -12,12 +12,11 @@
 	.mw-search-exists,
 	.mw-search-createlink,
 	.searchdidyoumean {
-		margin-top: 24px;
 		margin-bottom: 0;
 		float: none;
 	}
 
-	// If more than one message is present at the same time, reduce margin in between
+	// If more than one message is present at the same time, add a bit of margin in between
 	.searchdidyoumean + .searchresults .mw-search-createlink,
 	.mw-search-nonefound + .mw-search-createlink {
 		margin-top: 12px;
@@ -53,6 +52,11 @@
 			font-size: 114%;
 		}
 	}
+}
+
+.mw-search-results-container,
+.mw-search-results-info {
+	float: left;
 }
 
 @media only screen and ( min-width: @width-breakpoint-desktop ) {
