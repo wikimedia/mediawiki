@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Parser\Parsoid;
 
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
@@ -43,10 +44,18 @@ class LanguageVariantConverter {
 
 	/** @var TitleFactory */
 	private $titleFactory;
-	private LanguageFactory $languageFactory;
+
+	/** @var LanguageConverterFactory */
+	private $languageConverterFactory;
+
+	/** @var LanguageFactory */
+	private $languageFactory;
 
 	/** @var string */
 	private $pageLanguageOverride;
+
+	/** @var bool */
+	private $isFallbackLanguageConverterEnabled = true;
 
 	public function __construct(
 		PageIdentity $pageIdentity,
@@ -55,6 +64,7 @@ class LanguageVariantConverter {
 		array $parsoidSettings,
 		SiteConfig $siteConfig,
 		TitleFactory $titleFactory,
+		LanguageConverterFactory $languageConverterFactory,
 		LanguageFactory $languageFactory
 	) {
 		$this->pageConfigFactory = $pageConfigFactory;
@@ -63,10 +73,10 @@ class LanguageVariantConverter {
 		$this->parsoidSettings = $parsoidSettings;
 		$this->siteConfig = $siteConfig;
 		$this->titleFactory = $titleFactory;
-		$this->languageFactory = $languageFactory;
-
 		// @phan-suppress-next-line PhanPossiblyNullTypeMismatchProperty
 		$this->pageTitle = $this->titleFactory->castFromPageIdentity( $this->pageIdentity );
+		$this->languageConverterFactory = $languageConverterFactory;
+		$this->languageFactory = $languageFactory;
 	}
 
 	/**
@@ -116,6 +126,40 @@ class LanguageVariantConverter {
 
 		$pageConfig = $this->getPageConfig( $pageLanguageCode, $sourceVariantCode );
 
+		if ( !$this->parsoid->implementsLanguageConversion( $pageConfig, $targetVariantCode ) ) {
+			if ( $this->isFallbackLanguageConverterEnabled ) {
+				$baseLanguage = $this->languageFactory->getParentLanguage( $targetVariantCode );
+				$languageConverter = $this->languageConverterFactory->getLanguageConverter( $baseLanguage );
+
+				$convertedHtml = $languageConverter->convertTo( $pageBundle->html, $targetVariantCode );
+				$targetVariantPageBundle = new PageBundle(
+					$convertedHtml,
+					[],
+					[],
+					$pageBundle->version,
+					[ 'content-language' => $targetVariantCode ]
+				);
+
+				// Hack: Even though variant conversion for the language is not supported by Parsoid, we pass the
+				// HTML to parsoid for variant conversion in order to add metadata that is missing when we use the
+				// core LanguageConverter directly.
+				$targetVariantPageBundle = $this->parsoid->pb2pb(
+					$pageConfig, 'variant', $targetVariantPageBundle,
+					[
+						'variant' => [
+							'source' => $sourceVariantCode,
+							'target' => $targetVariantCode
+						]
+					]
+				);
+
+				return $targetVariantPageBundle;
+			}
+
+			// Fallback variant conversion is not enabled, return the page bundle as is.
+			return $pageBundle;
+		}
+
 		$modifiedPageBundle = $this->parsoid->pb2pb(
 			$pageConfig, 'variant', $pageBundle,
 			[
@@ -147,6 +191,14 @@ class LanguageVariantConverter {
 		$modifiedPageBundle = $this->convertPageBundleVariant( $pageBundle, $targetVariantCode, $sourceVariantCode );
 
 		return PageBundleParserOutputConverter::parserOutputFromPageBundle( $modifiedPageBundle );
+	}
+
+	/**
+	 * Disable fallback language variant converter
+	 * @return void
+	 */
+	public function disableFallbackLanguageConverter(): void {
+		$this->isFallbackLanguageConverterEnabled = false;
 	}
 
 	private function getPageConfig( string $pageLanguageCode, ?string $sourceVariantCode ): PageConfig {
