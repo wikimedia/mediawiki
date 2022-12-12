@@ -160,7 +160,6 @@ class SearchResultThumbnailProviderTest extends MediaWikiIntegrationTestCase {
 			// confirm thumbnail dimensions
 			$expectedSize = $size ?? SearchResultThumbnailProvider::THUMBNAIL_SIZE;
 			$this->assertLessThanOrEqual( $expectedSize, $thumbnail->getWidth() );
-			$this->assertLessThanOrEqual( $expectedSize, $thumbnail->getHeight() );
 		}
 	}
 }
