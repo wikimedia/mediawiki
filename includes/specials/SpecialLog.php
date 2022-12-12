@@ -85,6 +85,7 @@ class SpecialLog extends SpecialPage {
 		$opts->add( 'month', null, FormOptions::INTNULL );
 		$opts->add( 'day', null, FormOptions::INTNULL );
 		$opts->add( 'tagfilter', '' );
+		$opts->add( 'tagInvert', false );
 		$opts->add( 'offset', '' );
 		$opts->add( 'dir', '' );
 		$opts->add( 'offender', '' );
@@ -256,7 +257,8 @@ class SpecialLog extends SpecialPage {
 			$opts->getValue( 'logid' ),
 			$this->linkBatchFactory,
 			$this->loadBalancer,
-			$this->actorNormalization
+			$this->actorNormalization,
+			$opts->getValue( 'tagInvert' )
 		);
 
 		$this->addHeader( $opts->getValue( 'type' ) );
@@ -284,7 +286,8 @@ class SpecialLog extends SpecialPage {
 			$pager->getAction(),
 			[
 				'offender' => $opts->getValue( 'offender' ),
-			]
+			],
+			$pager->getTagInvert()
 		);
 
 		# Insert list
