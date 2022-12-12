@@ -103,17 +103,13 @@ class MediaLinksHandler extends SimpleHandler {
 	 * @return array the results
 	 */
 	private function getDbResults( int $pageId ) {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		return $dbr->selectFieldValues(
-			'imagelinks',
-			'il_to',
-			[ 'il_from' => $pageId ],
-			__METHOD__,
-			[
-				'ORDER BY' => 'il_to',
-				'LIMIT' => self::MAX_NUM_LINKS + 1,
-			]
-		);
+		return $this->loadBalancer->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+			->select( 'il_to' )
+			->from( 'imagelinks' )
+			->where( [ 'il_from' => $pageId ] )
+			->orderBy( 'il_to' )
+			->limit( self::MAX_NUM_LINKS + 1 )
+			->caller( __METHOD__ )->fetchFieldValues();
 	}
 
 	/**
