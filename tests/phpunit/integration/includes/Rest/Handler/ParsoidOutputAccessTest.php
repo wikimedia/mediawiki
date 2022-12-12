@@ -54,11 +54,16 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param int $expectedParses
 	 * @param array $parsoidCacheConfig
+	 * @param BagOStuff|null $parserCacheBag
 	 *
 	 * @return ParsoidOutputAccess
 	 * @throws Exception
 	 */
-	private function getParsoidOutputAccessWithCache( $expectedParses, $parsoidCacheConfig = [] ) {
+	private function getParsoidOutputAccessWithCache(
+		$expectedParses,
+		$parsoidCacheConfig = [],
+		?BagOStuff $parserCacheBag = null
+	) {
 		$stats = new NullStatsdDataFactory();
 		$services = $this->getServiceContainer();
 
@@ -72,7 +77,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$parserCacheFactory = new ParserCacheFactory(
-			new HashBagOStuff(),
+			$parserCacheBag ?: new HashBagOStuff(),
 			new WANObjectCache( [ 'cache' => new HashBagOStuff(), ] ),
 			$this->createHookContainer(),
 			new JsonCodec(),
@@ -287,6 +292,36 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
 	}
 
+	/**
+	 * Tests that getParserOutput() will not call Parsoid and will not write to ParserCache
+	 * for unsupported content models.
+	 *
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
+	 */
+	public function testDummyContentForBadModel() {
+		// Expect no cache writes!
+		$cacheBag = $this->getMockBuilder( HashBagOStuff::class )
+			->onlyMethods( [ 'set', 'setMulti' ] )
+			->getMock();
+		$cacheBag->expects( $this->never() )->method( 'set' );
+		$cacheBag->expects( $this->never() )->method( 'setMulti' );
+
+		// Expect no calls to parsoid!
+		$access = $this->getParsoidOutputAccessWithCache( 0, [], $cacheBag );
+		$parserOptions = $this->getParserOptions();
+
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$this->editPage( $page, new JavaScriptContent( '"not wikitext"' ) );
+
+		$status = $access->getParserOutput( $page, $parserOptions );
+		$this->assertContainsHtml( 'Dummy output', $status );
+
+		// Get the ParserOutput again, this should trigger a new parse
+		// since we suppressed caching for non-wikitext content.
+		$status = $access->getParserOutput( $page, $parserOptions );
+		$this->assertContainsHtml( 'Dummy output', $status );
+	}
+
 	public function provideCacheThresholdData() {
 		return [
 			yield "fast parse" => [ 1, 2 ], // high threshold, no caching
@@ -378,8 +413,6 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideSupportsContentModels
 	 */
 	public function testSupportsContentModel( $model, $expected ) {
-		$this->markTestSkipped( 'Broken by fix for T324711. Restore once we have T311728.' );
-
 		$access = $this->getParsoidOutputAccessWithCache( 0 );
 		$this->assertSame( $expected, $access->supportsContentModel( $model ) );
 	}
