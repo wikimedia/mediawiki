@@ -66,6 +66,11 @@ class ContribsPager extends RangeChronologicalPager {
 	private $tagFilter;
 
 	/**
+	 * @var bool Set to true to invert the tag selection
+	 */
+	private $tagInvert;
+
+	/**
 	 * @var bool Set to true to invert the namespace selection
 	 */
 	private $nsInvert;
@@ -199,6 +204,7 @@ class ContribsPager extends RangeChronologicalPager {
 
 		$this->namespace = $options['namespace'] ?? '';
 		$this->tagFilter = $options['tagfilter'] ?? false;
+		$this->tagInvert = $options['tagInvert'] ?? false;
 		$this->nsInvert = $options['nsInvert'] ?? false;
 		$this->associated = $options['associated'] ?? false;
 
@@ -419,7 +425,8 @@ class ContribsPager extends RangeChronologicalPager {
 			$queryInfo['conds'],
 			$queryInfo['join_conds'],
 			$queryInfo['options'],
-			$this->tagFilter
+			$this->tagFilter,
+			$this->tagInvert,
 		);
 
 		$this->hookRunner->onContribsPager__getQueryInfo( $this, $queryInfo );

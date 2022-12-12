@@ -189,6 +189,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		), static function ( $el ) {
 			return $el !== '';
 		} );
+		$this->opts['tagInvert'] = $request->getBool( 'tagInvert' );
 
 		// Allows reverts to have the bot flag in recent changes. It is just here to
 		// be passed in the form at the top of the page
@@ -644,7 +645,7 @@ class SpecialContributions extends IncludableSpecialPage {
 	/**
 	 * Generates the namespace selector form with hidden attributes.
 	 * @param array $pagerOptions with keys contribs, user, deletedOnly, limit, target, topOnly,
-	 *  newOnly, hideMinor, namespace, associated, nsInvert, tagfilter, year, start, end
+	 *  newOnly, hideMinor, namespace, associated, nsInvert, tagfilter, tagInvert, year, start, end
 	 * @return string HTML fragment
 	 */
 	protected function getForm( array $pagerOptions ) {
@@ -671,6 +672,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			'hideMinor',
 			'associated',
 			'tagfilter',
+			'tagInvert',
 			'title',
 		];
 
@@ -731,6 +733,14 @@ class SpecialContributions extends IncludableSpecialPage {
 			'label-message' => [ 'tag-filter', 'parse' ],
 			'name' => 'tagfilter',
 			'size' => 20,
+			'section' => 'contribs-top',
+		];
+		$fields['tagInvert'] = [
+			'type' => 'check',
+			'id' => 'tagInvert',
+			'label' => $this->msg( 'invert' ),
+			'name' => 'tagInvert',
+			'hide-if' => [ '===', 'tagfilter', '' ],
 			'section' => 'contribs-top',
 		];
 
@@ -880,6 +890,7 @@ class SpecialContributions extends IncludableSpecialPage {
 				'hideMinor' => $this->opts['hideMinor'],
 				'nsInvert' => $this->opts['nsInvert'],
 				'associated' => $this->opts['associated'],
+				'tagInvert' => $this->opts['tagInvert'],
 			];
 
 			$this->pager = new ContribsPager(
