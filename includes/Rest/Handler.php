@@ -88,15 +88,6 @@ abstract class Handler {
 	}
 
 	/**
-	 * Returns the path this handler is bound to, including path variables.
-	 *
-	 * @return string
-	 */
-	public function getPath(): string {
-		return $this->getConfig()['path'];
-	}
-
-	/**
 	 * Get the Router. The return type declaration causes it to raise
 	 * a fatal error if init() has not yet been called.
 	 * @return Router
