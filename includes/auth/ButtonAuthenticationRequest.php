@@ -21,8 +21,8 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\Language\RawMessage;
 use Message;
-use RawMessage;
 
 /**
  * This is an authentication request that just implements a simple button.

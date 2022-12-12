@@ -17,6 +17,8 @@
  *
  * @file
  */
+
+use MediaWiki\Language\RawMessage;
 use MediaWiki\MediaWikiServices;
 
 /**

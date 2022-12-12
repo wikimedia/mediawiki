@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Language\RawMessage;
+
 /**
  * Extension of Message implementing IApiMessage
  * @newable

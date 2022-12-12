@@ -18,6 +18,11 @@
  * @file
  */
 
+namespace MediaWiki\Language;
+
+use InvalidArgumentException;
+use Message;
+
 /**
  * Variant of the Message class.
  *
@@ -72,3 +77,5 @@ class RawMessage extends Message {
 	}
 
 }
+
+class_alias( RawMessage::class, 'RawMessage' );

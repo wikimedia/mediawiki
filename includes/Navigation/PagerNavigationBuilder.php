@@ -3,10 +3,10 @@
 namespace MediaWiki\Navigation;
 
 use Html;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\Page\PageReference;
 use Message;
 use MessageLocalizer;
-use RawMessage;
 use RuntimeException;
 use Title;
 

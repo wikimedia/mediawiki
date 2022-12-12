@@ -102,7 +102,7 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 	public function describeCredentials() {
 		return [
 			'provider' => wfMessage( 'authmanager-provider-temporarypassword' ),
-			'account' => new \RawMessage( '$1', [ $this->username ] ),
+			'account' => new \MediaWiki\Language\RawMessage( '$1', [ $this->username ] ),
 		] + parent::describeCredentials();
 	}
 

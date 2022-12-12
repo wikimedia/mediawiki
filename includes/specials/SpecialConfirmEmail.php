@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Language\RawMessage;
 use MediaWiki\User\UserFactory;
 use Wikimedia\ScopedCallback;
 

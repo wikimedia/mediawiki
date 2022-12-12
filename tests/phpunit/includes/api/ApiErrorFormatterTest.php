@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Language\RawMessage;
 use Wikimedia\TestingAccessWrapper;
 
 /**
