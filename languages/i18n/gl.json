@@ -2170,7 +2170,7 @@
 	"apisandbox-continue-help": "\"{{int:apisandbox-continue}}\" [https://www.mediawiki.org/wiki/Special:MyLanguage/API:Query#Continuing_queries continuará] a última petición; \"{{int:apisandbox-continue-clear}}\" limpará os parámetros relativos á continuación.",
 	"apisandbox-param-limit": "Indicar <kbd>max</kbd> para usar o límite máximo.",
 	"apisandbox-multivalue-all-namespaces": "$1 (Tódolos espazos de nomes)",
-	"apisandbox-multivalue-all-values": "$1 (Tódolos valores)",
+	"apisandbox-multivalue-all-values": "$1 (tódolos valores)",
 	"booksources": "Fontes bibliográficas",
 	"booksources-search-legend": "Procurar fontes bibliográficas",
 	"booksources-isbn": "ISBN:",

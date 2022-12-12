@@ -2876,7 +2876,7 @@
 	"movepagetalktext": "Eğer bu kutuyu işaretlerseniz, ilişkili tartışma sayfası da, eğer hâlihazırda aynı adlı bir tartışma sayfası yoksa, otomatik olarak yeni isme taşınacaktır.\n\nSayfanın bulunması durumunda, isteniyorsa sayfayı kendiniz taşımalı veya birleştirmelisiniz.",
 	"moveuserpage-warning": "<strong>Uyarı:</strong> Bir kullanıcı sayfasını taşımak üzeresiniz. Lütfen sadece sayfanın taşınacağına, ancak kullanıcının yeniden <em>adlandırılmayacağına</em> dikkat edin.",
 	"movecategorypage-warning": "<strong>Uyarı:</strong> Bir kategori sayfasını taşımak üzeresiniz. Lütfen yalnızca sayfanın taşınacağını ve eski kategoride yer alan sayfaların tekrar <em>kategorilendirilmeyeceğini</em> unutmayın.",
-	"movenologintext": "Sayfanın adını değiştirebilmek için kayıtlı ve [[Special:UserLogin|oturm açmış]] olmanız gerekmektedir.",
+	"movenologintext": "Sayfanın adını değiştirebilmek için kayıtlı ve [[Special:UserLogin|oturum açmış]] olmanız gerekmektedir.",
 	"movenotallowed": "Sayfaları taşımaya izniniz yok.",
 	"movenotallowedfile": "Dosyaları taşımaya izniniz yok.",
 	"cant-move-user-page": "Kullanıcı sayfalarını taşımaya izniniz yok (altsayfalardan başka).",
