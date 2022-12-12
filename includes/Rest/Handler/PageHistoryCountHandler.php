@@ -342,12 +342,11 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @return int|null
 	 */
 	private function loggingTableTime( $pageId ) {
-		$res = $this->loadBalancer->getConnectionRef( DB_REPLICA )->selectField(
-			'logging',
-			'MAX(log_timestamp)',
-			[ 'log_page' => $pageId ],
-			__METHOD__
-		);
+		$res = $this->loadBalancer->getConnection( DB_REPLICA )->newSelectQueryBuilder()
+			->select( 'MAX(log_timestamp)' )
+			->from( 'logging' )
+			->where( [ 'log_page' => $pageId ] )
+			->caller( __METHOD__ )->fetchField();
 		return $res ? (int)wfTimestamp( TS_UNIX, $res ) : null;
 	}
 
@@ -423,35 +422,27 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @return int the count
 	 */
 	protected function getAnonCount( $pageId, RevisionRecord $fromRev = null ) {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-
-		$revQuery = $this->actorMigration->getJoin( 'rev_user' );
-
-		$cond = [
-			'rev_page' => $pageId,
-			'actor_user IS NULL',
-			$dbr->bitAnd( 'rev_deleted',
-				RevisionRecord::DELETED_TEXT | RevisionRecord::DELETED_USER ) . " = 0"
-		];
+		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'revision' )
+			->join( 'actor', null, 'rev_actor = actor_id' )
+			->where( [
+				'rev_page' => $pageId,
+				'actor_user IS NULL',
+				$dbr->bitAnd( 'rev_deleted',
+					RevisionRecord::DELETED_TEXT | RevisionRecord::DELETED_USER ) . " = 0"
+			] )
+			->limit( self::COUNT_LIMITS['anonymous'] + 1 ); // extra to detect truncation
 
 		if ( $fromRev ) {
-			$cond[] = $dbr->buildComparison( '>', [
+			$queryBuilder->andWhere( $dbr->buildComparison( '>', [
 				'rev_timestamp' => $dbr->timestamp( $fromRev->getTimestamp() ),
 				'rev_id' => $fromRev->getId(),
-			] );
+			] ) );
 		}
 
-		$edits = $dbr->selectRowCount(
-			[
-				'revision',
-			] + $revQuery['tables'],
-			'1',
-			$cond,
-			__METHOD__,
-			[ 'LIMIT' => self::COUNT_LIMITS['anonymous'] + 1 ], // extra to detect truncation
-			$revQuery['joins']
-		);
-		return $edits;
+		return $queryBuilder->caller( __METHOD__ )->fetchRowCount();
 	}
 
 	/**
@@ -535,41 +526,27 @@ class PageHistoryCountHandler extends SimpleHandler {
 			return 0;
 		}
 
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'revision' )
+			->join( 'change_tag', null, 'ct_rev_id = rev_id' )
+			->where( [
+				'rev_page' => $pageId,
+				'ct_tag_id' => $tagIds,
+				$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . " = 0"
+			] )
+			->groupBy( 'rev_id' )
+			->limit( self::COUNT_LIMITS['reverted'] + 1 ); // extra to detect truncation
 
-		$cond = [
-			'rev_page' => $pageId,
-			$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . " = 0"
-		];
 		if ( $fromRev ) {
-			$cond[] = $dbr->buildComparison( '>', [
+			$queryBuilder->andWhere( $dbr->buildComparison( '>', [
 				'rev_timestamp' => $dbr->timestamp( $fromRev->getTimestamp() ),
 				'rev_id' => $fromRev->getId(),
-			] );
+			] ) );
 		}
-		$edits = $dbr->selectRowCount(
-			[
-				'revision',
-				'change_tag'
-			],
-			'1',
-			[ 'rev_page' => $pageId ],
-			__METHOD__,
-			[
-				'LIMIT' => self::COUNT_LIMITS['reverted'] + 1, // extra to detect truncation
-				'GROUP BY' => 'rev_id'
-			],
-			[
-				'change_tag' => [
-					'JOIN',
-					[
-						'ct_rev_id = rev_id',
-						'ct_tag_id' => $tagIds,
-					]
-				],
-			]
-		);
-		return $edits;
+
+		return $queryBuilder->caller( __METHOD__ )->fetchRowCount();
 	}
 
 	/**
@@ -578,25 +555,25 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @return int the count
 	 */
 	protected function getMinorCount( $pageId, RevisionRecord $fromRev = null ) {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$cond = [
-			'rev_page' => $pageId,
-			'rev_minor_edit != 0',
-			$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . " = 0"
-		];
+		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->select( '1' )
+			->from( 'revision' )
+			->where( [
+				'rev_page' => $pageId,
+				'rev_minor_edit != 0',
+				$dbr->bitAnd( 'rev_deleted', RevisionRecord::DELETED_TEXT ) . " = 0"
+			] )
+			->limit( self::COUNT_LIMITS['minor'] + 1 ); // extra to detect truncation
+
 		if ( $fromRev ) {
-			$cond[] = $dbr->buildComparison( '>', [
+			$queryBuilder->andWhere( $dbr->buildComparison( '>', [
 				'rev_timestamp' => $dbr->timestamp( $fromRev->getTimestamp() ),
 				'rev_id' => $fromRev->getId(),
-			] );
+			] ) );
 		}
-		$edits = $dbr->selectRowCount( 'revision', '1',
-			$cond,
-			__METHOD__,
-			[ 'LIMIT' => self::COUNT_LIMITS['minor'] + 1 ] // extra to detect truncation
-		);
 
-		return $edits;
+		return $queryBuilder->caller( __METHOD__ )->fetchRowCount();
 	}
 
 	/**
