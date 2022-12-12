@@ -285,7 +285,7 @@ abstract class ParsoidHandler extends Handler {
 	/**
 	 * @param array $attribs
 	 * @param ?string $source
-	 * @param PageConfig|PageIdentity $page
+	 * @param PageConfig $page
 	 * @param ?int $revId
 	 *
 	 * @return HtmlOutputRendererHelper
@@ -293,16 +293,14 @@ abstract class ParsoidHandler extends Handler {
 	private function getHtmlOutputRendererHelper(
 		array $attribs,
 		?string $source,
-		$page,
+		PageConfig $page,
 		?int $revId
 	): HtmlOutputRendererHelper {
 		$services = MediaWikiServices::getInstance();
 
-		// Support PageConfig for backwards compatibility.
-		// We should leave it to lower level code to create it.
-		if ( $page instanceof PageConfig ) {
-			$page = $this->getPageConfigToIdentity( $page );
-		}
+		// TODO: This method (and wt2html) should take a PageIdentity + revId,
+		//       to reduce the usage of PageConfig in MW core.
+		$page = $this->getPageConfigToIdentity( $page );
 
 		$helper = new HtmlOutputRendererHelper(
 			$services->getParsoidOutputStash(),
