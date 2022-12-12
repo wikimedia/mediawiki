@@ -140,6 +140,20 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			'>Hallo Wereld<',
 			false // The output language is currently not indicated. Should be expected to be 'nl' in the future.
 		];
+		yield 'Variant conversion with fallback to core LanguageConverter' => [
+			new PageBundle(
+				'<p>Siltemeniñ astın sız:</p>',
+				[ 'parsoid-data' ],
+				[ 'mw-data' ],
+				Parsoid::defaultHTMLVersion(),
+				[]
+			),
+			null,
+			'kk-cyrl',
+			'kk-latn',
+			'<p>Сілтеменің астын сыз:</p>',
+			'kk-cyrl|kk-Cyrl'
+		];
 	}
 
 	/**
@@ -229,6 +243,7 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			MainConfigSchema::getDefaultValue( MainConfigNames::ParsoidSettings ),
 			$this->getServiceContainer()->getParsoidSiteConfig(),
 			$this->getServiceContainer()->getTitleFactory(),
+			$this->getServiceContainer()->getLanguageConverterFactory(),
 			$this->getServiceContainer()->getLanguageFactory()
 		);
 	}

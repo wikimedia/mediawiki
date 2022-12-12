@@ -6,16 +6,18 @@ describe( 'Page Source', () => {
 	const page = utils.title( 'PageSource_' );
 	const pageWithSpaces = page.replace( '_', ' ' );
 	const variantPage = utils.title( 'PageSourceVariant' );
+	const fallbackVariantPage = 'MediaWiki:Tog-underline/kk-latn';
 
 	const redirectPage = utils.title( 'Redirect ' );
 	const redirectedPage = redirectPage.replace( 'Redirect', 'Redirected' );
 
 	const client = new REST();
 	const anon = action.getAnon();
+	let mindy;
 	const baseEditText = "''Edit 1'' and '''Edit 2'''";
 
 	before( async () => {
-		const mindy = await action.mindy();
+		mindy = await action.mindy();
 		await anon.edit( page, { text: baseEditText } );
 
 		// Setup page with redirects
@@ -194,6 +196,17 @@ describe( 'Page Source', () => {
 			assert.match( headers[ 'content-language' ], /en-x-piglatin/i );
 			assert.match( headers.etag, /en-x-piglatin/i );
 		} );
+		it( 'Should perform fallback variant conversion', async () => {
+			await mindy.edit( fallbackVariantPage, { text: 'Siltemeniñ astın sız:' } );
+			const { headers, text } = await client.get( `/page/${encodeURIComponent( fallbackVariantPage )}/html`, null, {
+				'accept-language': 'kk-cyrl'
+			} );
+
+			assert.match( text, /Сілтеменің астын сыз:/ );
+			assert.match( headers.vary, /\bAccept-Language\b/i );
+			assert.match( headers[ 'content-language' ], /kk-cyrl/i );
+			assert.match( headers.etag, /kk-cyrl/i );
+		} );
 	} );
 
 	describe( 'GET /page/{title}/with_html', () => {
@@ -281,6 +294,23 @@ describe( 'Page Source', () => {
 			const contentLanguageHeader = headers[ 'content-language' ];
 			if ( contentLanguageHeader ) {
 				assert.match( headers[ 'content-language' ], /en-x-piglatin/i );
+			}
+		} );
+		it( 'Should perform fallback variant conversion', async () => {
+			await mindy.edit( fallbackVariantPage, { text: 'Siltemeniñ astın sız:' } );
+			const { headers, text } = await client.get( `/page/${encodeURIComponent( fallbackVariantPage )}/html`, null, {
+				'accept-language': 'kk-cyrl'
+			} );
+
+			assert.match( text, /Сілтеменің астын сыз:/ );
+			assert.match( headers.vary, /\bAccept-Language\b/i );
+			assert.match( headers.etag, /kk-cyrl/i );
+
+			// Since with_html returns JSON, content language is not set
+			// but if its set, we expect it to be set correctly.
+			const contentLanguageHeader = headers[ 'content-language' ];
+			if ( contentLanguageHeader ) {
+				assert.match( headers[ 'content-language' ], /kk-cyrl/i );
 			}
 		} );
 	} );

@@ -3,6 +3,8 @@
 namespace MediaWiki\Parser\Parsoid;
 
 use Language;
+use LanguageConverter;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -259,6 +261,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 			$parsoidSettings,
 			$siteConfigMock,
 			$titleFactoryMock,
+			$this->getLanguageConverterFactoryMock(),
 			$languageFactoryMock
 		);
 
@@ -310,6 +313,9 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 			$mock->expects( $this->never() )
 				->method( 'pb2pb' );
 		}
+
+		$mock->method( 'implementsLanguageConversion' )
+			->willReturn( true );
 
 		return $mock;
 	}
@@ -397,6 +403,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 		$mock->headers = [
 			'content-language' => $languageCode
 		];
+		$mock->html = 'test message';
 		return $mock;
 	}
 
@@ -419,5 +426,18 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 			->willReturn( $languageCode );
 
 		return $languageMock;
+	}
+
+	private function getLanguageConverterFactoryMock() {
+		$languageConverterFactoryMock = $this->createMock( LanguageConverterFactory::class );
+		$languageConverter = $this->createMock( LanguageConverter::class );
+		$languageConverter->method( 'convertTo' )
+			->willReturnCallback( static function ( $text, $code ) {
+				return $text;
+			} );
+		$languageConverterFactoryMock->method( 'getLanguageConverter' )
+			->willReturn( $languageConverter );
+
+		return $languageConverterFactoryMock;
 	}
 }
