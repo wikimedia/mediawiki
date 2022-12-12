@@ -822,13 +822,8 @@ return [
 			'oojs-ui-windows',
 		],
 		'messages' => [
-			'feedback-adding',
-			'feedback-back',
-			'feedback-bugcheck',
 			'feedback-dialog-intro',
 			'feedback-external-bug-report-button',
-			'feedback-bugnew',
-			'feedback-bugornote',
 			'feedback-cancel',
 			'feedback-close',
 			'feedback-dialog-title',
