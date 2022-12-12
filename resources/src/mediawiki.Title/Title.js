@@ -778,6 +778,38 @@ Title.prototype = {
 	},
 
 	/**
+	 * Get the page name as if it is a file name, without extension or namespace prefix,
+	 * in the canonical form with underscores instead of spaces. For example, the title
+	 * "File:Example_image.svg" will be returned as "Example_image".
+	 *
+	 * Note that this method will work for non-file titles but probably give nonsensical results.
+	 * A title like "User:Dr._J._Fail" will be returned as "Dr._J"! Use #getMain instead.
+	 *
+	 * @return {string}
+	 */
+	getFileNameWithoutExtension: function () {
+		var ext = this.getExtension();
+		if ( ext === null ) {
+			return this.getMain();
+		}
+		return this.getMain().slice( 0, -ext.length - 1 );
+	},
+
+	/**
+	 * Get the page name as if it is a file name, without extension or namespace prefix,
+	 * in the human-readable form with spaces instead of underscores. For example, the title
+	 * "File:Example_image.svg" will be returned as "Example image".
+	 *
+	 * Note that this method will work for non-file titles but probably give nonsensical results.
+	 * A title like "User:Dr._J._Fail" will be returned as "Dr. J"! Use #getMainText instead.
+	 *
+	 * @return {string}
+	 */
+	getFileNameTextWithoutExtension: function () {
+		return text( this.getFileNameWithoutExtension() );
+	},
+
+	/**
 	 * Get the page name as if it is a file name, without extension or namespace prefix. Warning,
 	 * this is usually not what you want! A title like "User:Dr._J._Fail" will be returned as
 	 * "Dr. J"! Use #getMain or #getMainText for the actual page name.
@@ -785,13 +817,10 @@ Title.prototype = {
 	 * @return {string} File name without file extension, in the canonical form with underscores
 	 *  instead of spaces. For example, the title "File:Example_image.svg" will be returned as
 	 *  "Example_image".
+	 *  @deprecated since 1.40, use #getFileNameWithoutExtension instead
 	 */
 	getName: function () {
-		var ext = this.getExtension();
-		if ( ext === null ) {
-			return this.getMain();
-		}
-		return this.getMain().slice( 0, -ext.length - 1 );
+		return this.getFileNameWithoutExtension();
 	},
 
 	/**
@@ -802,9 +831,10 @@ Title.prototype = {
 	 * @return {string} File name without file extension, formatted with spaces instead of
 	 *  underscores. For example, the title "File:Example_image.svg" will be returned as
 	 *  "Example image".
+	 *  @deprecated since 1.40, use #getFileNameTextWithoutExtension instead
 	 */
 	getNameText: function () {
-		return text( this.getName() );
+		return text( this.getFileNameTextWithoutExtension() );
 	},
 
 	/**
