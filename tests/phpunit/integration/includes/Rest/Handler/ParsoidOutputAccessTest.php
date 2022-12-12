@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Hook\ParserLogLinterDataHook;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
@@ -263,6 +264,35 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 			ParsoidOutputAccess::OPT_FORCE_PARSE
 		);
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
+	}
+
+	/**
+	 * Tests that the ParserLogLinterData hook is triggered when the OPT_LOG_LINT_DATA
+	 * flag is set.
+	 *
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
+	 */
+	public function testLatestRevisionWithLogLint() {
+		$this->overrideConfigValue( MainConfigNames::ParsoidSettings, [
+			'linting' => true
+		] );
+
+		$mockHandler = $this->createMock( ParserLogLinterDataHook::class );
+		$mockHandler->expects( $this->once() ) // this is the critical assertion in this test case!
+		->method( 'onParserLogLinterData' );
+
+		$this->setTemporaryHook(
+			'ParserLogLinterData',
+			$mockHandler
+		);
+
+		// Use the real ParsoidOutputAccess, so we use the real hook container.
+		$access = $this->getServiceContainer()->getParsoidOutputAccess();
+		$parserOptions = $this->getParserOptions();
+
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		$access->getParserOutput( $page, $parserOptions, null, ParsoidOutputAccess::OPT_LOG_LINT_DATA );
 	}
 
 	/**
