@@ -287,6 +287,27 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
 	}
 
+	/**
+	 * Tests that getParserOutput() will not write to ParserCache for non-wikitext content.
+	 *
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidOutputAccess::getParserOutput
+	 */
+	public function testOnlyCacheWikitext() {
+		$access = $this->getParsoidOutputAccessWithCache( 2 );
+		$parserOptions = $this->getParserOptions();
+
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$this->editPage( $page, new JavaScriptContent( '"not wikitext"' ) );
+
+		$status = $access->getParserOutput( $page, $parserOptions );
+		$this->assertContainsHtml( self::MOCKED_HTML . ' of "not wikitext"', $status );
+
+		// Get the ParserOutput again, this should trigger a new parse
+		// since we suppressed caching for non-wikitext content.
+		$status = $access->getParserOutput( $page, $parserOptions );
+		$this->assertContainsHtml( self::MOCKED_HTML . ' of "not wikitext"', $status );
+	}
+
 	public function provideCacheThresholdData() {
 		return [
 			yield "fast parse" => [ 1, 2 ], // high threshold, no caching

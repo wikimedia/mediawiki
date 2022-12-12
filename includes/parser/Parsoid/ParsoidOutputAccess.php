@@ -213,6 +213,8 @@ class ParsoidOutputAccess {
 			}
 		}
 
+		$mainSlot = $revision->getSlot( SlotRecord::MAIN );
+
 		$startTime = microtime( true );
 		$status = $this->parse( $page, $parserOpts, [], $revision );
 		$time = microtime( true ) - $startTime;
@@ -221,6 +223,12 @@ class ParsoidOutputAccess {
 			$this->stats->increment( $statsKey . '.save.notok' );
 		} elseif ( $options & self::OPT_NO_UPDATE_CACHE ) {
 			$this->stats->increment( $statsKey . '.save.disabled' );
+		} elseif ( $mainSlot->getModel() !== CONTENT_MODEL_WIKITEXT ) {
+			// TODO: We really want to cache for all supported content models.
+			// But supportsContentModels() lies, because of T324711.
+			// This causes us to render garbage output for all content models, which we shouldn't cache.
+			// NOTE: this will become irrelevant when we implement T311648.
+			$this->stats->increment( $statsKey . '.save.badmodel' );
 		} else {
 			if ( $time > $this->parsoidCacheConfig->get( 'CacheThresholdTime' ) ) {
 				$parserOutput = $status->getValue();
