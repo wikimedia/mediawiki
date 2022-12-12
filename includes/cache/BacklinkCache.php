@@ -37,6 +37,7 @@ use MediaWiki\Title\TitleArrayFromResult;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * Class for fetching backlink lists, approximate backlink counts and
@@ -218,42 +219,26 @@ class BacklinkCache {
 			$res = $this->fullResultCache[$table];
 		} else {
 			wfDebug( __METHOD__ . ": got results from DB" );
+			$queryBuilder = $this->initQueryBuilderForTable( $table, $select );
 			$fromField = $this->getPrefix( $table ) . '_from';
-			$conds = $this->getConditions( $table );
 			// Use the from field in the condition rather than the joined page_id,
 			// because databases are stupid and don't necessarily propagate indexes.
 			if ( $startId ) {
-				$conds[] = "$fromField >= " . intval( $startId );
+				$queryBuilder->where(
+					$this->getDB()->buildComparison( '>=', [ $fromField => $startId ] )
+				);
 			}
 			if ( $endId ) {
-				$conds[] = "$fromField <= " . intval( $endId );
+				$queryBuilder->where(
+					$this->getDB()->buildComparison( '<=', [ $fromField => $endId ] )
+				);
 			}
-			$options = [ 'ORDER BY' => $fromField ];
+			$queryBuilder->orderBy( $fromField );
 			if ( is_finite( $max ) && $max > 0 ) {
-				$options['LIMIT'] = $max;
+				$queryBuilder->limit( $max );
 			}
 
-			if ( $select === 'ids' ) {
-				// Just select from the backlink table and ignore the page JOIN
-				$res = $this->getDB()->select(
-					$table,
-					[ 'page_id' => $fromField ],
-					array_filter( (array)$conds, static function ( $clause ) { // kind of janky
-						return !preg_match( '/(\b|=)page_id(\b|=)/', (string)$clause );
-					} ),
-					__METHOD__,
-					$options
-				);
-			} else {
-				// Select from the backlink table and JOIN with page title information
-				$res = $this->getDB()->select(
-					[ $table, 'page' ],
-					[ 'page_namespace', 'page_title', 'page_id' ],
-					$conds,
-					__METHOD__,
-					array_merge( [ 'STRAIGHT_JOIN' ], $options )
-				);
-			}
+			$res = $queryBuilder->caller( __METHOD__ )->fetchResultSet();
 
 			if ( $select === 'all' && !$startId && !$endId && $res->numRows() < $max ) {
 				// The full results fit within the limit, so cache them
@@ -296,47 +281,66 @@ class BacklinkCache {
 	}
 
 	/**
-	 * Get the SQL condition array for selecting backlinks, with a join
-	 * on the page table.
+	 * Initialize a new SelectQueryBuilder for selecting backlinks,
+	 * with a join on the page table if needed.
+	 *
 	 * @param string $table
+	 * @param string $select
+	 * @return SelectQueryBuilder
 	 * @throws MWException
-	 * @return array
 	 */
-	protected function getConditions( $table ) {
+	private function initQueryBuilderForTable( string $table, string $select ): SelectQueryBuilder {
 		$prefix = $this->getPrefix( $table );
+		$queryBuilder = $this->getDB()->newSelectQueryBuilder();
+		$joinPageTable = $select !== 'ids';
+
+		if ( $select === 'ids' ) {
+			$queryBuilder->select( [ 'page_id' => $prefix . '_from' ] );
+		} else {
+			$queryBuilder->select( [ 'page_namespace', 'page_title', 'page_id' ] );
+		}
+		$queryBuilder->from( $table );
+
+		/**
+		 * If the table is one of the tables known to this method,
+		 * we can use a nice join() method later, always joining on page_id={$prefix}_from.
+		 * If the table is unknown here, and only supported via a hook,
+		 * the hook only produces a single $conds array,
+		 * so we have to use a traditional / ANSI-89 JOIN,
+		 * with the page table just added to the list of tables and the join conds in the WHERE part.
+		 */
+		$knownTable = true;
 
 		switch ( $table ) {
 			case 'pagelinks':
-				$conds = [
+				$queryBuilder->where( [
 					"{$prefix}_namespace" => $this->page->getNamespace(),
 					"{$prefix}_title" => $this->page->getDBkey(),
-					"page_id={$prefix}_from"
-				];
+				] );
 				break;
 			case 'templatelinks':
 				$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
-				$conds = $linksMigration->getLinksConditions( $table, TitleValue::newFromPage( $this->page ) );
-				$conds[] = "page_id={$prefix}_from";
+				$queryBuilder->where(
+					$linksMigration->getLinksConditions( $table, TitleValue::newFromPage( $this->page ) ) );
 				break;
 			case 'redirect':
-				$conds = [
+				$queryBuilder->where( [
 					"{$prefix}_namespace" => $this->page->getNamespace(),
 					"{$prefix}_title" => $this->page->getDBkey(),
 					$this->getDB()->makeList( [
 						"{$prefix}_interwiki" => '',
 						"{$prefix}_interwiki IS NULL",
 					], LIST_OR ),
-					"page_id={$prefix}_from"
-				];
+				] );
 				break;
 			case 'imagelinks':
 			case 'categorylinks':
-				$conds = [
+				$queryBuilder->where( [
 					"{$prefix}_to" => $this->page->getDBkey(),
-					"page_id={$prefix}_from"
-				];
+				] );
 				break;
 			default:
+				$knownTable = false;
 				$conds = null;
 				$this->getHookRunner()->onBacklinkCacheGetConditions( $table,
 					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
@@ -347,9 +351,26 @@ class BacklinkCache {
 				if ( !$conds ) {
 					throw new MWException( "Invalid table \"$table\" in " . __CLASS__ );
 				}
+				if ( $joinPageTable ) {
+					$queryBuilder->table( 'page' ); // join condition in $conds
+				} else {
+					// remove any page_id condition from $conds
+					$conds = array_filter( (array)$conds, static function ( $clause ) { // kind of janky
+						return !preg_match( '/(\b|=)page_id(\b|=)/', (string)$clause );
+					} );
+				}
+				$queryBuilder->where( $conds );
+				break;
 		}
 
-		return $conds;
+		if ( $knownTable && $joinPageTable ) {
+			$queryBuilder->join( 'page', null, "page_id={$prefix}_from" );
+		}
+		if ( $joinPageTable ) {
+			$queryBuilder->straightJoinOption();
+		}
+
+		return $queryBuilder;
 	}
 
 	/**
@@ -586,33 +607,29 @@ class BacklinkCache {
 
 		// @todo: use UNION without breaking tests that use temp tables
 		$resSets = [];
-		$conds = [
-			'tl_from = pr_page',
-			'pr_cascade' => 1,
-			'page_id = tl_from'
-		];
 		$linksMigration = MediaWikiServices::getInstance()->getLinksMigration();
 		$linkConds = $linksMigration->getLinksConditions( 'templatelinks', TitleValue::newFromPage( $this->page ) );
-		$resSets[] = $dbr->select(
-			[ 'templatelinks', 'page_restrictions', 'page' ],
-			[ 'page_namespace', 'page_title', 'page_id' ],
-			array_merge( $conds, $linkConds ),
-			__METHOD__,
-			[ 'DISTINCT' ]
-		);
+		$resSets[] = $dbr->newSelectQueryBuilder()
+			->select( [ 'page_namespace', 'page_title', 'page_id' ] )
+			->from( 'templatelinks' )
+			->join( 'page_restrictions', null, 'tl_from = pr_page' )
+			->join( 'page', null, 'page_id = tl_from' )
+			->where( $linkConds )
+			->andWhere( [ 'pr_cascade' => 1 ] )
+			->distinct()
+			->caller( __METHOD__ )->fetchResultSet();
 		if ( $this->page->getNamespace() === NS_FILE ) {
-			$resSets[] = $dbr->select(
-				[ 'imagelinks', 'page_restrictions', 'page' ],
-				[ 'page_namespace', 'page_title', 'page_id' ],
-				[
+			$resSets[] = $dbr->newSelectQueryBuilder()
+				->select( [ 'page_namespace', 'page_title', 'page_id' ] )
+				->from( 'imagelinks' )
+				->join( 'page_restrictions', null, 'il_from = pr_page' )
+				->join( 'page', null, 'page_id = il_from' )
+				->where( [
 					'il_to' => $this->page->getDBkey(),
-					'il_from = pr_page',
 					'pr_cascade' => 1,
-					'page_id = il_from'
-				],
-				__METHOD__,
-				[ 'DISTINCT' ]
-			);
+				] )
+				->distinct()
+				->caller( __METHOD__ )->fetchResultSet();
 		}
 
 		// Combine and de-duplicate the results
