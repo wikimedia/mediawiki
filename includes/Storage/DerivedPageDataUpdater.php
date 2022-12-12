@@ -1896,6 +1896,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 			$parserOpts,
 			$rev,
 			ParsoidOutputAccess::OPT_FORCE_PARSE
+			| ParsoidOutputAccess::OPT_LOG_LINT_DATA
 		);
 
 		if ( !$status->isOK() ) {

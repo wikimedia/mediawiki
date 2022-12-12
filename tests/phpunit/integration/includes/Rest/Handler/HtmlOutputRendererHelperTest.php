@@ -11,6 +11,7 @@ use Language;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
+use MediaWiki\Hook\ParserLogLinterDataHook;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
@@ -320,6 +321,35 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$htmlResult = $helper->getHtml()->getRawText();
 		$this->assertStringContainsString( self::MOCK_HTML_VARIANT, $htmlResult );
 		$this->assertStringContainsString( 'en-x-piglatin', $helper->getETag() );
+	}
+
+	public function testGetHtmlWithLint() {
+		$this->overrideConfigValue( MainConfigNames::ParsoidSettings, [
+			'linting' => true
+		] );
+
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		$mockHandler = $this->createMock( ParserLogLinterDataHook::class );
+		$mockHandler->expects( $this->once() ) // this is the critical assertion in this test case!
+			->method( 'onParserLogLinterData' );
+
+		$this->setTemporaryHook(
+			'ParserLogLinterData',
+			$mockHandler
+		);
+
+		// Use the real ParsoidOutputAccess, so we use the real hook container.
+		$access = $this->getServiceContainer()->getParsoidOutputAccess();
+
+		$helper = $this->newHelper( null, $access );
+		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
+
+		// Enabling linter data logging should cause the above hook to be called.
+		$helper->logLinterData();
+
+		// Do it.
+		$helper->getHtml();
 	}
 
 	public function testGetPageBundleWithOptions() {
