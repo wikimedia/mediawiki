@@ -856,6 +856,8 @@ abstract class ParsoidHandler extends Handler {
 		}
 
 		if ( $wikitext === null && $oldid !== null ) {
+			// Run the linter while parsing
+			$helper->logLinterData();
 			$mstr = 'pageWithOldid';
 		} else {
 			$mstr = 'wt';

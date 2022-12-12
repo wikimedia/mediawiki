@@ -122,6 +122,9 @@ class HtmlOutputRendererHelper {
 	/** @var string|null */
 	private $targetLanguageCode = null;
 
+	/** @var bool */
+	private $logLinterData = false;
+
 	/**
 	 * Flags to be passed as $options to ParsoidOutputAccess::getParserOutput,
 	 * to control parser cache access.
@@ -184,6 +187,13 @@ class HtmlOutputRendererHelper {
 		}
 
 		$this->flavor = $flavor;
+	}
+
+	/**
+	 * @return void
+	 */
+	public function logLinterData(): void {
+		$this->logLinterData = true;
 	}
 
 	/**
@@ -517,6 +527,12 @@ class HtmlOutputRendererHelper {
 				$parsoidOptions += [
 					'body_only' => true,
 					'wrapSections' => false
+				];
+			}
+
+			if ( $this->logLinterData ) {
+				$parsoidOptions += [
+					'logLinterData' => true
 				];
 			}
 
