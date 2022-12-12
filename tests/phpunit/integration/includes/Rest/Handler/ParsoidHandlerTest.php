@@ -331,12 +331,23 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		return $handler;
 	}
 
-	private function getPageConfig( PageIdentity $page, $text = null ): PageConfig {
+	/**
+	 * @param PageIdentity $page
+	 * @param int|string|RevisionRecord|null $revIdOrText
+	 *
+	 * @return PageConfig
+	 * @throws \MWException
+	 */
+	private function getPageConfig( PageIdentity $page, $revIdOrText = null ): PageConfig {
 		$rev = null;
-		if ( $text !== null ) {
+		if ( is_string( $revIdOrText ) ) {
 			$rev = new MutableRevisionRecord( $page );
-			$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
+			$rev->setContent( SlotRecord::MAIN, new WikitextContent( $revIdOrText ) );
+		} else {
+			// may be null or an int or a RevisionRecord
+			$rev = $revIdOrText;
 		}
+
 		return $this->getServiceContainer()->getParsoidPageConfigFactory()->create( $page, null, $rev );
 	}
 
@@ -1808,7 +1819,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		// should get from a title and revision (html) ///////////////////////////////////
 		$expectedText = [
-			'>UTContent<',
+			'>First Revision Content<',
 			'<html', // full document
 			'data-parsoid=' // annotated
 		];
@@ -1829,7 +1840,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		// should get from a title and revision (pagebundle) ///////////////////////////////////
 		$expectedText = [ // bits of json
 			'"body":"<!DOCTYPE html>',
-			'UTContent</p>',
+			'First Revision Content</p>',
 			'contentmodel' => 'wikitext',
 			'data-parsoid' => [
 				'headers' => [
@@ -1837,10 +1848,10 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 				],
 				'body' => [
 					'counter' => 2,
-					'ids' => [
-						'mwAA' => [ 'dsr' => [ 0, 9, 0, 0 ] ],
+					'ids' => [ // NOTE: match "First Revision Content"
+						'mwAA' => [ 'dsr' => [ 0, 22, 0, 0 ] ],
 						'mwAQ' => [],
-						'mwAg' => [ 'dsr' => [ 0, 9, 0, 0 ] ],
+						'mwAg' => [ 'dsr' => [ 0, 22, 0, 0 ] ],
 					],
 					'offsetType' => 'ucs2', // as provided in the input
 				]
@@ -1965,15 +1976,14 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		array $unexpectedHtml,
 		array $expectedHeaders = []
 	) {
-		// $this->overrideConfigValue( 'TemporaryParsoidHandlerParserCacheWriteRatio', 0 );
-
 		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/html/2.6.0';
 		$expectedHeaders += [
 			'content-type' => "text/x-wiki; charset=utf-8; profile=\"$htmlProfileUri\"",
 		];
 
-		$page = $this->getExistingTestPage();
-		$pageConfig = $this->getPageConfig( $page, $text );
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$status = $this->editPage( $page, 'First Revision Content' );
+		$currentRev = $status->getNewRevision();
 
 		$attribs += self::DEFAULT_ATTRIBS;
 		$attribs['opts'] += self::DEFAULT_ATTRIBS['opts'];
@@ -1983,11 +1993,16 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		if ( $attribs['oldid'] ) {
 			// Set the actual ID of an existing revision
-			$attribs['oldid'] = $page->getLatest();
+			$attribs['oldid'] = $currentRev->getId();
+
+			// Make sure we are testing against a non-current revision
+			$this->editPage( $page, 'this is not the content you are looking for' );
 		}
 
 		$handler = $this->newParsoidHandler();
 
+		$revTextOrId = $text ?? $attribs['oldid'] ?? null;
+		$pageConfig = $this->getPageConfig( $page, $revTextOrId );
 		$response = $handler->wt2html( $pageConfig, $attribs, $text );
 		$body = $response->getBody();
 		$body->rewind();
