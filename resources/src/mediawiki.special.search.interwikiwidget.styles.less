@@ -6,8 +6,6 @@
 /* stylelint-disable selector-class-pattern */
 
 .mw-searchresults-has-iw {
-	position: relative;
-
 	.iw-results {
 		list-style: none;
 		margin: 0;
@@ -117,10 +115,9 @@
 	/* Desktop and up */
 	@media only screen and ( min-width: @width-breakpoint-desktop ) {
 		#mw-interwiki-results {
-			position: absolute;
-			top: 0;
-			right: 0;
+			display: inline-block;
 			width: calc( 100% / 12 * 3 );
+			margin-left: calc( 100% / 12 );
 		}
 
 		.iw-resultset:nth-child( 1 ) {
