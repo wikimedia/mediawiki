@@ -33,7 +33,6 @@ use MediaWiki\Page\PageRecord;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\Config\PageConfigFactory;
 use MediaWiki\Parser\RevisionOutputCache;
-use MediaWiki\Rest\HttpException;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
@@ -165,19 +164,11 @@ class ParsoidOutputAccess {
 	 * @return bool
 	 */
 	public function supportsContentModel( string $model ): bool {
-		// FIXME: We shouldn't pretend we can render things that we clearly can't.
-		// This is a messy fix for T324711.
-		// The real solution is T311728.
-		return true;
-
-		// TODO: restore correct behavior, once we have T311728:
-		/*
 		if ( $model === CONTENT_MODEL_WIKITEXT ) {
 			return true;
 		}
 
 		return $this->siteConfig->getContentModelHandler( $model ) !== null;
-		*/
 	}
 
 	/**
@@ -223,7 +214,7 @@ class ParsoidOutputAccess {
 			$this->stats->increment( $statsKey . '.save.notok' );
 		} elseif ( $options & self::OPT_NO_UPDATE_CACHE ) {
 			$this->stats->increment( $statsKey . '.save.disabled' );
-		} elseif ( $mainSlot->getModel() !== CONTENT_MODEL_WIKITEXT ) {
+		} elseif ( !$this->supportsContentModel( $mainSlot->getModel() ) ) {
 			// TODO: We really want to cache for all supported content models.
 			// But supportsContentModels() lies, because of T324711.
 			// This causes us to render garbage output for all content models, which we shouldn't cache.
@@ -397,9 +388,22 @@ class ParsoidOutputAccess {
 		}
 
 		$mainSlot = $revision->getSlot( SlotRecord::MAIN );
-		if ( !$this->supportsContentModel( $mainSlot->getModel() ) ) {
-			// TODO: throw an internal exception here, convert to HttpError in HtmlOutputRendererHelper.
-			throw new HttpException( 'Parsoid does not support content model ' . $mainSlot->getModel(), 400 );
+		$contentModel = $mainSlot->getModel();
+		if ( !$this->supportsContentModel( $contentModel ) ) {
+			// This is a messy fix for T324711. The real solution is T311648. For now, just return fake output.
+
+			$msg = "Dummy output. Parsoid does not support content model $contentModel. See T324711.";
+			$output = new ParserOutput( $msg );
+			$status = Status::newGood( $output );
+			return $status;
+
+			// TODO: go back to throwing, once RESTbase no longer expects to get a parsoid rendering for
+			//any kind of content (T324711).
+			/*
+				// TODO: throw an internal exception here, convert to HttpError in HtmlOutputRendererHelper.
+				throw new HttpException( 'Parsoid does not support content model ' . $mainSlot->getModel(), 400 );
+			}
+			*/
 		}
 
 		$languageOverride = $parserOpts->getTargetLanguage();
