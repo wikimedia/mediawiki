@@ -49,7 +49,7 @@ class UploadStashFile extends UnregisteredLocalFile {
 			// and is in this repo's temp zone.
 			$repoTempPath = $repo->getZonePath( 'temp' );
 			if ( ( !$repo->validateFilename( $path ) ) ||
-				( strpos( $path, $repoTempPath ) !== 0 )
+				!str_starts_with( $path, $repoTempPath )
 			) {
 				wfDebug( "UploadStash: tried to construct an UploadStashFile "
 					. "from a file that should already exist at '$path', but path is not valid" );

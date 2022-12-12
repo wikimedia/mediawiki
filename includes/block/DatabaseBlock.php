@@ -412,7 +412,7 @@ class DatabaseBlock extends AbstractBlock {
 	 */
 	protected static function getIpFragment( $hex ) {
 		$blockCIDRLimit = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::BlockCIDRLimit );
-		if ( substr( $hex, 0, 3 ) == 'v6-' ) {
+		if ( str_starts_with( $hex, 'v6-' ) ) {
 			return 'v6-' . substr( substr( $hex, 3 ), 0, (int)floor( $blockCIDRLimit['IPv6'] / 4 ) );
 		} else {
 			return substr( $hex, 0, (int)floor( $blockCIDRLimit['IPv4'] / 4 ) );
@@ -539,7 +539,7 @@ class DatabaseBlock extends AbstractBlock {
 
 		foreach ( $lines as $line ) {
 			# List items only
-			if ( substr( $line, 0, 1 ) !== '*' ) {
+			if ( !str_starts_with( $line, '*' ) ) {
 				continue;
 			}
 

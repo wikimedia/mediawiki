@@ -122,8 +122,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 			$skip = false;
 			$messages_filtered = [];
 			foreach ( $messages_target as $message ) {
-				// === 0: must be at beginning of string (position 0)
-				if ( strpos( $message, $params['prefix'] ) === 0 ) {
+				if ( str_starts_with( $message, $params['prefix'] ) ) {
 					if ( !$skip ) {
 						$skip = true;
 					}
@@ -139,8 +138,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 		if ( isset( $params['filter'] ) ) {
 			$messages_filtered = [];
 			foreach ( $messages_target as $message ) {
-				// !== is used because filter can be at the beginning of the string
-				if ( strpos( $message, $params['filter'] ) !== false ) {
+				if ( str_contains( $message, $params['filter'] ) ) {
 					$messages_filtered[] = $message;
 				}
 			}

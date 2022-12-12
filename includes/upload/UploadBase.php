@@ -1316,8 +1316,7 @@ abstract class UploadBase {
 		# ugly hack: for text files, always look at the entire file.
 		# For binary field, just check the first K.
 
-		$isText = strpos( $mime, 'text/' ) === 0;
-		if ( $isText ) {
+		if ( str_starts_with( $mime, 'text/' ) ) {
 			$chunk = file_get_contents( $file );
 		} else {
 			$fp = fopen( $file, 'rb' );
@@ -1335,9 +1334,9 @@ abstract class UploadBase {
 		}
 
 		# decode from UTF-16 if needed (could be used for obfuscation).
-		if ( substr( $chunk, 0, 2 ) == "\xfe\xff" ) {
+		if ( str_starts_with( $chunk, "\xfe\xff" ) ) {
 			$enc = 'UTF-16BE';
-		} elseif ( substr( $chunk, 0, 2 ) == "\xff\xfe" ) {
+		} elseif ( str_starts_with( $chunk, "\xff\xfe" ) ) {
 			$enc = 'UTF-16LE';
 		} else {
 			$enc = null;
@@ -1359,7 +1358,7 @@ abstract class UploadBase {
 
 		// Some browsers will interpret obscure xml encodings as UTF-8, while
 		// PHP/expat will interpret the given encoding in the xml declaration (T49304)
-		if ( $extension == 'svg' || strpos( $mime, 'image/svg' ) === 0 ) {
+		if ( $extension == 'svg' || str_starts_with( $mime, 'image/svg' ) ) {
 			if ( self::checkXMLEncodingMissmatch( $file ) ) {
 				return true;
 			}
@@ -1446,7 +1445,7 @@ abstract class UploadBase {
 			wfDebug( __METHOD__ . ": Unmatched XML declaration start" );
 
 			return true;
-		} elseif ( substr( $contents, 0, 4 ) == "\x4C\x6F\xA7\x94" ) {
+		} elseif ( str_starts_with( $contents, "\x4C\x6F\xA7\x94" ) ) {
 			// EBCDIC encoded XML
 			wfDebug( __METHOD__ . ": EBCDIC Encoded XML" );
 
@@ -1550,7 +1549,7 @@ abstract class UploadBase {
 		];
 		if ( $type !== 'PUBLIC'
 			|| !in_array( $systemId, $allowedDTDs )
-			|| strpos( $publicId, "-//W3C//" ) !== 0
+			|| !str_starts_with( $publicId, "-//W3C//" )
 		) {
 			return [ 'upload-scripted-dtd' ];
 		}
@@ -1665,7 +1664,7 @@ abstract class UploadBase {
 			$stripped = $this->stripXmlNamespace( $attrib );
 			$value = strtolower( $value );
 
-			if ( substr( $stripped, 0, 2 ) == 'on' ) {
+			if ( str_starts_with( $stripped, 'on' ) ) {
 				wfDebug( __METHOD__
 					. ": Found event-handler attribute '$attrib'='$value' in uploaded file." );
 
@@ -1678,8 +1677,8 @@ abstract class UploadBase {
 			# and fragment are allowed.
 			if ( $stripped == 'href'
 				&& $value !== ''
-				&& strpos( $value, 'data:' ) !== 0
-				&& strpos( $value, '#' ) !== 0
+				&& !str_starts_with( $value, 'data:' )
+				&& !str_starts_with( $value, '#' )
 			) {
 				if ( !( $strippedElement === 'a'
 					&& preg_match( '!^https?://!i', $value ) )
@@ -1730,7 +1729,7 @@ abstract class UploadBase {
 			# use set to add href attribute to parent element
 			if ( $strippedElement == 'set'
 				&& $stripped == 'attributename'
-				&& strpos( $value, 'href' ) !== false
+				&& str_contains( $value, 'href' )
 			) {
 				wfDebug( __METHOD__ . ": Found svg setting href attribute '$value' in uploaded file." );
 
@@ -1901,7 +1900,7 @@ abstract class UploadBase {
 		$exitCodeMap = $antivirusSetup[$antivirus]['codemap'];
 		$msgPattern = $antivirusSetup[$antivirus]['messagepattern'] ?? null;
 
-		if ( strpos( $command, "%f" ) === false ) {
+		if ( !str_contains( $command, "%f" ) ) {
 			# simple pattern: append file to scan
 			$command .= " " . Shell::escape( $file );
 		} else {
@@ -2103,7 +2102,7 @@ abstract class UploadBase {
 		}
 
 		foreach ( self::getFilenamePrefixBlacklist() as $prefix ) {
-			if ( substr( $partname, 0, strlen( $prefix ) ) == $prefix ) {
+			if ( str_starts_with( $partname, $prefix ) ) {
 				return [
 					'warning' => 'bad-prefix',
 					'file' => $file,

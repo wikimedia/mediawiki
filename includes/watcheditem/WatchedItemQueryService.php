@@ -372,7 +372,7 @@ class WatchedItemQueryService {
 		return array_filter(
 			get_object_vars( $row ),
 			static function ( $key ) {
-				return substr( $key, 0, 3 ) === 'rc_';
+				return str_starts_with( $key, 'rc_' );
 			},
 			ARRAY_FILTER_USE_KEY
 		);

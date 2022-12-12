@@ -270,7 +270,7 @@ class ApiFormatXml extends ApiFormatBase {
 
 			return;
 		}
-		if ( substr( $nt->getText(), -4 ) !== '.xsl' ) {
+		if ( !str_ends_with( $nt->getText(), '.xsl' ) ) {
 			$this->addWarning( 'apiwarn-invalidxmlstylesheetext' );
 
 			return;

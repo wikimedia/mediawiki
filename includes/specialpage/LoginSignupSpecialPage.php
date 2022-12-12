@@ -296,7 +296,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				// A wiki without HTTPS login support should set $wgServer to
 				// http://somehost, in which case the secure URL generated
 				// above won't actually start with https://
-				if ( substr( $url, 0, 8 ) === 'https://' ) {
+				if ( str_starts_with( $url, 'https://' ) ) {
 					$this->mSecureLoginUrl = $url;
 				}
 			}

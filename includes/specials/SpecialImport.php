@@ -164,7 +164,7 @@ class SpecialImport extends SpecialPage {
 				if ( $hasSubprojects ) {
 					$subproject = $request->getVal( 'subproject' );
 					// Trim "project::" prefix added for JS
-					if ( strpos( $subproject, $interwiki . '::' ) === 0 ) {
+					if ( str_starts_with( $subproject, $interwiki . '::' ) ) {
 						$subproject = substr( $subproject, strlen( $interwiki . '::' ) );
 					}
 					$fullInterwikiPrefix .= ':' . $subproject;

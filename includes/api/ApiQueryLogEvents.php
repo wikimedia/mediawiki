@@ -157,7 +157,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			// Do validation of action param, list of allowed actions can contains wildcards
 			// Allow the param, when the actions is in the list or a wildcard version is listed.
 			$logAction = $params['action'];
-			if ( strpos( $logAction, '/' ) === false ) {
+			if ( !str_contains( $logAction, '/' ) ) {
 				// all items in the list have a slash
 				$valid = false;
 			} else {

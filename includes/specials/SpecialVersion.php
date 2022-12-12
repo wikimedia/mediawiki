@@ -136,7 +136,7 @@ class SpecialVersion extends SpecialPage {
 					$file = ExtensionInfo::getAuthorsFileName( dirname( $extNode['path'] ) );
 					if ( $file ) {
 						$wikiText = file_get_contents( $file );
-						if ( substr( $file, -4 ) === '.txt' ) {
+						if ( str_ends_with( $file, '.txt' ) ) {
 							$wikiText = Html::element(
 								'pre',
 								[
@@ -598,7 +598,7 @@ class SpecialVersion extends SpecialPage {
 			. Html::closeElement( 'tr' );
 
 		foreach ( $dependencies as $name => $info ) {
-			if ( !is_array( $info ) || strpos( $info['type'], 'mediawiki-' ) === 0 ) {
+			if ( !is_array( $info ) || str_starts_with( $info['type'], 'mediawiki-' ) ) {
 				// Skip any extensions or skins since they'll be listed
 				// in their proper section
 				continue;
@@ -1086,7 +1086,7 @@ class SpecialVersion extends SpecialPage {
 					$text = $this->msg( 'version-poweredby-others' )->escaped();
 				}
 				$list[] = $text;
-			} elseif ( substr( $item, -5 ) == ' ...]' ) {
+			} elseif ( str_ends_with( $item, ' ...]' ) ) {
 				$hasOthers = true;
 				$list[] = $this->getOutput()->parseInlineAsInterface(
 					substr( $item, 0, -4 ) . $this->msg( 'version-poweredby-others' )->text() . "]"

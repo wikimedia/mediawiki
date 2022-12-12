@@ -147,7 +147,7 @@ class ExternalUserNames {
 	 * @return bool true if it's external, false otherwise.
 	 */
 	public static function isExternal( $username ) {
-		return strpos( $username, '>' ) !== false;
+		return str_contains( $username, '>' );
 	}
 
 	/**

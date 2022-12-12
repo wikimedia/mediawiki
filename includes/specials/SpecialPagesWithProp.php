@@ -222,7 +222,7 @@ class SpecialPagesWithProp extends QueryPage {
 		if ( $result->pp_value !== '' ) {
 			// Do not show very long or binary values on the special page
 			$valueLength = strlen( $result->pp_value );
-			$isBinary = strpos( $result->pp_value, "\0" ) !== false;
+			$isBinary = str_contains( $result->pp_value, "\0" );
 			$isTooLong = $valueLength > 1024;
 
 			if ( $isBinary || $isTooLong ) {

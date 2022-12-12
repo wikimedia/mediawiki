@@ -95,12 +95,12 @@ class Licenses extends HTMLFormField {
 		$lines = explode( "\n", $this->msg );
 
 		foreach ( $lines as $line ) {
-			if ( strpos( $line, '*' ) !== 0 ) {
+			if ( !str_starts_with( $line, '*' ) ) {
 				continue;
 			}
 			[ $level, $line ] = $this->trimStars( $line );
 
-			if ( strpos( $line, '|' ) !== false ) {
+			if ( str_contains( $line, '|' ) ) {
 				$obj = $this->buildLine( $line );
 				$this->stackItem( $this->lines, $levels, $obj );
 			} else {

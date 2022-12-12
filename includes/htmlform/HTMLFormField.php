@@ -138,7 +138,7 @@ abstract class HTMLFormField {
 			}
 		}
 
-		if ( $backCompat && substr( $name, 0, 2 ) === 'wp' &&
+		if ( $backCompat && str_starts_with( $name, 'wp' ) &&
 			!$this->mParent->hasField( $name )
 		) {
 			// Don't break the existed use cases.

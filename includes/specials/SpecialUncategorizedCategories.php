@@ -73,7 +73,7 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 				->inContentLanguage()->plain();
 			$proposedTitles = explode( "\n", $exList );
 			foreach ( $proposedTitles as $titleStr ) {
-				if ( strpos( $titleStr, '*' ) !== 0 ) {
+				if ( !str_starts_with( $titleStr, '*' ) ) {
 					continue;
 				}
 				$titleStr = preg_replace( "/^\\*\\s*/", '', $titleStr );

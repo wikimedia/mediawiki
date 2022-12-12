@@ -630,7 +630,7 @@ class SpecialUpload extends SpecialPage {
 
 		$pageText = $comment . "\n";
 		$headerText = '== ' . $msg['filedesc'] . ' ==';
-		if ( $comment !== '' && strpos( $comment, $headerText ) === false ) {
+		if ( $comment !== '' && !str_contains( $comment, $headerText ) ) {
 			// prepend header to page text unless it's already there (or there is no content)
 			$pageText = $headerText . "\n" . $pageText;
 		}

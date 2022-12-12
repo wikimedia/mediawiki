@@ -306,7 +306,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	public static function splitMime( ?string $mime ) {
 		if ( $mime === null ) {
 			return [ 'unknown', 'unknown' ];
-		} elseif ( strpos( $mime, '/' ) !== false ) {
+		} elseif ( str_contains( $mime, '/' ) ) {
 			return explode( '/', $mime, 2 );
 		} else {
 			return [ $mime, 'unknown' ];

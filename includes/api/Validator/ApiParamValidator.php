@@ -276,7 +276,7 @@ class ApiParamValidator {
 				foreach ( $settings[ApiBase::PARAM_TEMPLATE_VARS] as $key => $target ) {
 					if ( !preg_match( '/^[^{}]+$/', $key ) ) {
 						$ret['issues'][] = "PARAM_TEMPLATE_VARS keys may not contain '{' or '}', got \"$key\"";
-					} elseif ( strpos( $name, '{' . $key . '}' ) === false ) {
+					} elseif ( !str_contains( $name, '{' . $key . '}' ) ) {
 						$ret['issues'][] = "Parameter name must contain PARAM_TEMPLATE_VARS key {{$key}}";
 					}
 					if ( !is_string( $target ) && !is_int( $target ) ) {
