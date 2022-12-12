@@ -56,6 +56,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		'shi',
 		'sr',
 		'tg',
+		'tly',
 		'uz',
 		'zh',
 	];
@@ -78,6 +79,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		'shi' => 'shi',
 		'sr' => 'sr',
 		'tg' => 'tg',
+		'tly' => 'tly',
 		'uz' => 'uz',
 		'zh' => 'zh',
 	];
