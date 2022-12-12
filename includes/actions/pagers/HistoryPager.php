@@ -286,7 +286,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	private function getRevisionButton( $name, $msg ) {
-		$this->setPreventClickjacking( true );
+		$this->preventClickjacking = true;
 		$element = Html::element(
 			'button',
 			[
@@ -388,7 +388,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		// Show checkboxes for each revision, to allow for revision deletion and
 		// change tags
 		if ( $canRevDelete || $this->showTagEditUI ) {
-			$this->setPreventClickjacking( true );
+			$this->preventClickjacking = true;
 			// If revision was hidden from sysops and we don't need the checkbox
 			// for anything else, disable it
 			if ( !$this->showTagEditUI
@@ -472,7 +472,7 @@ class HistoryPager extends ReverseChronologicalPager {
 					[ 'verify', 'noBrackets' ]
 				);
 				if ( $rollbackLink ) {
-					$this->setPreventClickjacking( true );
+					$this->preventClickjacking = true;
 					$tools[] = $rollbackLink;
 				}
 			}
@@ -672,15 +672,6 @@ class HistoryPager extends ReverseChronologicalPager {
 			return false;
 		}
 		return parent::isNavigationBarShown();
-	}
-
-	/**
-	 * Set the "prevent clickjacking" flag; for example if a write operation
-	 * if possible from the generated HTML.
-	 * @param bool $flag
-	 */
-	private function setPreventClickjacking( bool $flag ) {
-		$this->preventClickjacking = $flag;
 	}
 
 	/**
