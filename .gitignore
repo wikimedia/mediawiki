@@ -39,6 +39,8 @@ sftp-config.json
 /images/timeline
 ## Extension:Score
 /images/lilypond
+## Extension:Phonos
+/images/phonos-render
 ## Extension:TimedMediaHandler
 /images/transcoded
 /images/tmp
