@@ -26,26 +26,12 @@
 .mw-email-authenticated .oo-ui-labelWidget { }
 */
 
-/*
- * Use `position: sticky` on supported browsers, degrades gracefully in
- * all others, therefore no `@supports` feature query to reduce code complexity.
- */
 .mw-prefs-buttons {
 	background-color: #fff;
-	.position-sticky();
-	bottom: 0;
-	margin-top: -1px;
 	border-top: 1px solid #c8ccd1;
 	padding: 1em 0;
 	// Add top box shadow on top only to emphasize content is scrollable underneath `sticky`.
 	box-shadow: 0 -4px 4px -4px rgba( 0, 0, 0, 0.25 );
-}
-
-// Support Edge: The `position: sticky` rule above causes the buttons to
-// disappear in RTL languages on Microsoft Edge. This magically fixes the issue. See T220706.
-#preferences {
-	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-	filter: brightness( 1 );
 }
 
 /* This is needed because add extra buttons in a weird way */
@@ -191,17 +177,17 @@
 These are used when users navigate to Special:Preferences
 with params ?useskin=vector&useformat=mobile
 */
-.mw-mobile-preferences-option {
+.mw-mobile-prefsection {
 	cursor: pointer;
 	padding-top: 0.3125em;
 	border-bottom: 0.0625em solid @colorGray12;
 }
 
-.mw-mobile-preferences-option:hover {
+.mw-mobile-prefsection:hover {
 	background-color: @colorGray15;
 }
 
-.mw-mobile-preferences-option:last-child {
+.mw-mobile-prefsection:last-child {
 	border-bottom: none; // stylelint-disable-line declaration-property-value-disallowed-list
 }
 
@@ -232,36 +218,88 @@ with params ?useskin=vector&useformat=mobile
 	display: flex;
 }
 
-.mw-prefs-content-header + div {
-	margin-top: 50px;
+/* Override default inline styles for 'larger' dialog */
+.oo-ui-windowManager-modal > .oo-ui-dialog.oo-ui-window-active.mw-mobile-pref-window {
+	padding-top: 0;
 }
 
-.mw-prefs-content-header {
+/* Overriding default inline styles for 'larger' dialog */
+.mw-mobile-pref-window > .oo-ui-window-frame {
+	width: auto !important; /* stylelint-disable-line declaration-no-important */
+	height: 100% !important; /* stylelint-disable-line declaration-no-important */
+	max-height: 100% !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.oo-ui-window-head.mw-mobile-pref-dialog-head {
 	width: 100%;
-	height: 3.125em;
-	display: block;
+	height: 3em;
+	display: flex;
+	align-items: center;
 	border-bottom: 1px solid @colorGray12;
 	box-shadow: 0 0.25em 0.125em -0.1875em rgba( 0, 0, 0, 0.25 );
 	position: fixed;
 	background: #fff;
-	z-index: 100;
-	margin-top: -52px;
-	padding-top: 16px;
 }
 
-.mw-prefs-content-page div.oo-ui-widget.oo-ui-widget-enabled {
-	margin-left: 10px;
+.oo-ui-window-head.mw-mobile-pref-dialog-head > div > h5.mw-prefs-header-title {
+	font-size: 1em;
+	font-weight: bold;
+	line-height: 1.25em;
+}
+
+.oo-ui-window-body.mw-mobile-pref-dialog-body {
 	margin-right: 5px;
-	padding-top: 16px;
+	margin-top: 49px;
+	padding-bottom: 66px;
 }
 
-.oo-ui-window-body .mw-htmlform-submit-buttons {
+.oo-ui-window-body.mw-mobile-pref-dialog-body > div.oo-ui-widget-enabled > div {
+	padding: 16px;
+}
+
+.oo-ui-window-body.mw-mobile-pref-dialog-body > div.oo-ui-widget-enabled > div:last-child {
+	margin-bottom: 16px;
+}
+
+/* T317110: sub-section title  */
+.oo-ui-window-body.mw-mobile-pref-dialog-body > div.oo-ui-widget-enabled > div.mw-prefs-fieldset-wrapper > fieldset.oo-ui-fieldsetLayout.oo-ui-labelElement > legend.oo-ui-fieldsetLayout-header {
+	border-bottom: 1px #000 solid;
+	max-width: 100%;
+}
+
+/* T317110: sub-section and sub-sub-section titles  */
+.oo-ui-window-body.mw-mobile-pref-dialog-body div.oo-ui-widget-enabled > div.mw-prefs-fieldset-wrapper > fieldset.oo-ui-fieldsetLayout.oo-ui-labelElement > legend.oo-ui-fieldsetLayout-header > span.oo-ui-labelElement-label {
+	font-size: 1em;
+	font-weight: bold;
+	line-height: 1.25em;
+	margin-bottom: 12px;
+}
+
+/* T317110: preference separation  */
+.oo-ui-window-body.mw-mobile-pref-dialog-body div.oo-ui-widget-enabled > div.mw-prefs-fieldset-wrapper > fieldset.oo-ui-fieldsetLayout > div.oo-ui-fieldsetLayout-group > div.oo-ui-widget-enabled > div > div {
+	padding: 12px 0;
+	margin: 0;
+	border-bottom: 1px #eaecf0 solid;
+}
+
+/* T317110: preference label  */
+.oo-ui-window-body.mw-mobile-pref-dialog-body .oo-ui-labelElement-label {
+	line-height: 1.25em;
+}
+
+/* T317110: help text  */
+.oo-ui-window-body.mw-mobile-pref-dialog-body div.oo-ui-fieldLayout-body label.oo-ui-inline-help.oo-ui-labelElement-label.oo-ui-labelElement.oo-ui-labelWidget {
+	font-size: 0.875em;
+	line-height: 1.25em;
+}
+
+/* T317110: non-interactive text */
+.oo-ui-window-body.mw-mobile-pref-dialog-body .oo-ui-labelElement-label.oo-ui-labelElement.oo-ui-labelWidget {
+	color: #72777d;
+}
+
+.oo-ui-window-foot > .mw-prefs-buttons {
 	padding-left: 16px;
-}
-
-.oo-ui-window-body #preferences {
-	position: sticky;
-	bottom: 0;
 }
 
 .oo-ui-window-body .oo-ui-fieldLayout-messages {
@@ -271,7 +309,9 @@ with params ?useskin=vector&useformat=mobile
 .oo-ui-iconWidget.mw-prefs-header-icon {
 	color: @colorGray2;
 	cursor: pointer;
-	margin: 0.25em 0.5em;
+	width: 1.25em;
+	height: 1.25em;
+	margin: 0 16px 0 17px;
 }
 
 .mw-prefs-header-title {
