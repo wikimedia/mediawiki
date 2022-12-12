@@ -161,6 +161,7 @@ class ApiFeedRecentChanges extends ApiBase {
 			'namespace' => [
 				ParamValidator::PARAM_TYPE => 'namespace',
 			],
+			// TODO: Rename this option to 'invertnamespaces'?
 			'invert' => false,
 			'associated' => false,
 
@@ -190,6 +191,7 @@ class ApiFeedRecentChanges extends ApiBase {
 			'tagfilter' => [
 				ParamValidator::PARAM_TYPE => 'string',
 			],
+			'inverttags' => false,
 
 			'target' => [
 				ParamValidator::PARAM_TYPE => 'string',

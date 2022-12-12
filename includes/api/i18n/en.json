@@ -235,6 +235,7 @@
 	"apihelp-feedrecentchanges-param-hidemyself": "Hide changes made by the current user.",
 	"apihelp-feedrecentchanges-param-hidecategorization": "Hide category membership changes.",
 	"apihelp-feedrecentchanges-param-tagfilter": "Filter by tag.",
+	"apihelp-feedrecentchanges-param-inverttags": "All edits except ones tagged with the selected ones.",
 	"apihelp-feedrecentchanges-param-target": "Show only changes on pages linked from this page.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Show changes on pages linked to the selected page instead.",
 	"apihelp-feedrecentchanges-example-simple": "Show recent changes.",
