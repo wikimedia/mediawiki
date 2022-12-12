@@ -47,19 +47,12 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 
 		$services = $this->createNoOpMock(
 			MediaWikiServices::class,
-			[
-				'getMainConfig',
-				'getHookContainer',
-				'getObjectFactory',
-				'getLocalServerObjectCache',
-				'getStatsdDataFactory',
-			]
+			[ 'getMainConfig', 'getHookContainer', 'getObjectFactory', 'getLocalServerObjectCache' ]
 		);
 		$services->method( 'getMainConfig' )->willReturn( $config );
 		$services->method( 'getHookContainer' )->willReturn( $hookContainer );
 		$services->method( 'getObjectFactory' )->willReturn( $objectFactory );
 		$services->method( 'getLocalServerObjectCache' )->willReturn( new EmptyBagOStuff() );
-		$services->method( 'getStatsdDataFactory' )->willReturn( new NullStatsdDataFactory() );
 
 		return $services;
 	}
