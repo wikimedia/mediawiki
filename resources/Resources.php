@@ -1928,6 +1928,7 @@ return [
 			'rcfilters-tag-prefix-namespace',
 			'rcfilters-tag-prefix-namespace-inverted',
 			'rcfilters-tag-prefix-tags',
+			'rcfilters-tag-prefix-tags-inverted',
 			'rcfilters-exclude-button-off',
 			'rcfilters-exclude-button-on',
 			'rcfilters-view-tags',

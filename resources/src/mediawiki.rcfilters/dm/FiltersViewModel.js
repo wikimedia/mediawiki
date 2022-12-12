@@ -919,8 +919,8 @@ FiltersViewModel.prototype.areVisibleFiltersEmpty = function () {
 };
 
 /**
- * Check whether the invert state is a valid one. A valid invert state is one where
- * there are actual namespaces selected.
+ * Check whether the namespace invert state is a valid one. A valid invert state is one
+ * where there are actual namespaces selected.
  *
  * This is done to compare states to previous ones that may have had the invert model
  * selected but effectively had no namespaces, so are not effectively different than
@@ -929,9 +929,26 @@ FiltersViewModel.prototype.areVisibleFiltersEmpty = function () {
  * @return {boolean} Invert is effectively selected
  */
 FiltersViewModel.prototype.areNamespacesEffectivelyInverted = function () {
-	return this.getInvertModel().isSelected() &&
+	return this.getNamespacesInvertModel().isSelected() &&
 		this.findSelectedItems().some( function ( itemModel ) {
 			return itemModel.getGroupModel().getName() === 'namespace';
+		} );
+};
+
+/**
+ * Check whether the tag invert state is a valid one. A valid invert state is one
+ * where there are actual tags selected.
+ *
+ * This is done to compare states to previous ones that may have had the invert model
+ * selected but effectively had no tags, so are not effectively different than
+ * ones where invert is not selected.
+ *
+ * @return {boolean} Invert is effectively selected
+ */
+FiltersViewModel.prototype.areTagsEffectivelyInverted = function () {
+	return this.getTagsInvertModel().isSelected() &&
+		this.findSelectedItems().some( function ( itemModel ) {
+			return itemModel.getGroupModel().getName() === 'tagfilter';
 		} );
 };
 
@@ -1260,13 +1277,40 @@ FiltersViewModel.prototype.isHighlightEnabled = function () {
 };
 
 /**
+ * Toggle the inverted tags property on and off.
+ * Propagate the change to tag filter items.
+ *
+ * @param {boolean} enable Inverted property is enabled
+ */
+FiltersViewModel.prototype.toggleInvertedTags = function ( enable ) {
+	this.toggleFilterSelected( this.getTagsInvertModel().getName(), enable );
+};
+
+/**
  * Toggle the inverted namespaces property on and off.
  * Propagate the change to namespace filter items.
  *
  * @param {boolean} enable Inverted property is enabled
  */
 FiltersViewModel.prototype.toggleInvertedNamespaces = function ( enable ) {
-	this.toggleFilterSelected( this.getInvertModel().getName(), enable );
+	this.toggleFilterSelected( this.getNamespacesInvertModel().getName(), enable );
+};
+
+/**
+ * Get the model object that represents the 'invert' filter
+ *
+ * @param {string} view
+ * @return {mw.rcfilters.dm.FilterItem|null}
+ */
+FiltersViewModel.prototype.getInvertModel = function ( view ) {
+	if ( view === 'namespaces' ) {
+		return this.getNamespacesInvertModel();
+	}
+	if ( view === 'tags' ) {
+		return this.getTagsInvertModel();
+	}
+
+	return null;
 };
 
 /**
@@ -1274,8 +1318,17 @@ FiltersViewModel.prototype.toggleInvertedNamespaces = function ( enable ) {
  *
  * @return {mw.rcfilters.dm.FilterItem}
  */
-FiltersViewModel.prototype.getInvertModel = function () {
+FiltersViewModel.prototype.getNamespacesInvertModel = function () {
 	return this.getGroup( 'invertGroup' ).getItemByParamName( 'invert' );
+};
+
+/**
+ * Get the model object that represents the 'invert' filter
+ *
+ * @return {mw.rcfilters.dm.FilterItem}
+ */
+FiltersViewModel.prototype.getTagsInvertModel = function () {
+	return this.getGroup( 'invertTagsGroup' ).getItemByParamName( 'inverttags' );
 };
 
 /**

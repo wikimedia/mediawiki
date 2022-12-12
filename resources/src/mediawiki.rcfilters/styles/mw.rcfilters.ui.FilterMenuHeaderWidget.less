@@ -20,13 +20,14 @@
 		border-bottom: 1px solid @colorGray12;
 		background-color: @colorGray15;
 
-		&-invert,
 		&-highlight {
 			min-width: 1em;
 			// Using the same padding that the filter item
 			// uses, so the button is aligned with the highlight
 			// buttons for the filters
 			padding-right: 12 / @font-size-system-ui / @font-size-vector;
+			// Set the left-padding here, so that the invert buttons have the same padding
+			padding-left: 12 / @font-size-system-ui / @font-size-vector;
 		}
 
 		&-back {
