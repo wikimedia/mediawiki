@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 use DeferredUpdates;
 use Exception;
 use HashBagOStuff;
+use MediaWiki\Hook\ParserLogLinterDataHook;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Rest\Handler\PageHTMLHandler;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -83,6 +84,34 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( '<!DOCTYPE html>', $data['html'] );
 		$this->assertStringContainsString( '<html', $data['html'] );
 		$this->assertStringContainsString( self::HTML, $data['html'] );
+	}
+
+	public function testExecuteWillLint() {
+		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
+
+		$this->overrideConfigValue( MainConfigNames::ParsoidSettings, [
+			'linting' => true
+		] );
+
+		$mockHandler = $this->createMock( ParserLogLinterDataHook::class );
+		$mockHandler->expects( $this->once() ) // this is the critical assertion in this test case!
+		->method( 'onParserLogLinterData' );
+
+		$this->setTemporaryHook(
+			'ParserLogLinterData',
+			$mockHandler
+		);
+
+		$page = $this->getExistingTestPage( 'HtmlEndpointTestPage/with/slashes' );
+
+		$request = new RequestData(
+			[ 'pathParams' => [ 'title' => $page->getTitle()->getPrefixedText() ] ]
+		);
+
+		$handler = $this->newHandler();
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request, [
+			'format' => 'with_html'
+		] );
 	}
 
 	public function testExecuteWithHtmlForSystemMessagePage() {

@@ -852,11 +852,6 @@ abstract class ParsoidHandler extends Handler {
 		}
 
 		if ( $wikitext === null && $oldid !== null ) {
-			// Run the linter only while parsing a full page associated with an oldid
-			// The linter extension will confirm for us that the oldid is the latest revision
-			// since recording the lint job will run at a later time and this may no longer
-			// be the latest revision.
-			$helper->logLinterData();
 			$mstr = 'pageWithOldid';
 		} else {
 			$mstr = 'wt';

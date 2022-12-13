@@ -323,7 +323,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'en-x-piglatin', $helper->getETag() );
 	}
 
-	public function testGetHtmlWithLint() {
+	public function testGetHtmlWillLint() {
 		$this->overrideConfigValue( MainConfigNames::ParsoidSettings, [
 			'linting' => true
 		] );
@@ -344,9 +344,6 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 
 		$helper = $this->newHelper( null, $access );
 		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
-
-		// Enabling linter data logging should cause the above hook to be called.
-		$helper->logLinterData();
 
 		// Do it.
 		$helper->getHtml();
