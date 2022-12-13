@@ -432,7 +432,7 @@ class Preprocessor_Hash extends Preprocessor {
 					$attrEnd = $tagEndPos;
 					// Find closing tag
 					if (
-						!isset( $noMoreClosingTag[$name] ) &&
+						!isset( $noMoreClosingTag[$lowerName] ) &&
 						preg_match( "/<\/" . preg_quote( $name, '/' ) . "\s*>/i",
 							$text, $matches, PREG_OFFSET_CAPTURE, $tagEndPos + 1 )
 					) {
@@ -452,7 +452,7 @@ class Preprocessor_Hash extends Preprocessor {
 							self::addLiteral( $accum,
 								substr( $text, $tagStartPos, $tagEndPos + 1 - $tagStartPos ) );
 							// Cache results, otherwise we have O(N^2) performance for input like <foo><foo><foo>...
-							$noMoreClosingTag[$name] = true;
+							$noMoreClosingTag[$lowerName] = true;
 							continue;
 						}
 					}
