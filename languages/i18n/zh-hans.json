@@ -185,7 +185,8 @@
 			"魔琴",
 			"아라",
 			"LittlePaw365",
-			"Nervie"
+			"Nervie",
+			"Lantianjialiang"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -1176,7 +1177,7 @@
 	"showingresultsinrange": "下面显示#<strong>$2</strong>至#<strong>$3</strong>区间的{{PLURAL:$1|<strong>$1</strong>条结果}}。",
 	"search-showingresults": "{{PLURAL:$4|第<strong>$1</strong>条结果，共<strong>$3</strong>条|第<strong>$1-$2</strong>条结果，共<strong>$3</strong>条}}",
 	"search-nonefound": "找不到和查询相匹配的结果。",
-	"search-nonefound-thiswiki": "在$3找不到匹配查询的结果。",
+	"search-nonefound-thiswiki": "在这个网站中找不到和查询相匹配的结果。",
 	"powersearch-legend": "高级搜索",
 	"powersearch-ns": "搜索命名空间：",
 	"powersearch-togglelabel": "选择：",
