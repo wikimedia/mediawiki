@@ -1054,7 +1054,7 @@
 	"showingresultsinrange": "Παρακάτω {{PLURAL:$1|εμφανίζεται μέχρι <strong>1</strong> αποτέλεσμα|εμφανίζονται μέχρι <strong>$1</strong> αποτελέσματα}} σε εύρος από το Νο <strong>$2</strong> μέχρι το Νο <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$5|Αποτέλεσμα <strong>$1</strong> από <strong>$3</strong>|Αποτελέσματα <strong>$1 - $2</strong> από <strong>$3</strong>}}",
 	"search-nonefound": "Δεν υπάρχουν αποτελέσματα που να ικανοποιούν το ερώτημα.",
-	"search-nonefound-thiswiki": "Δεν υπήρχαν αποτελέσματα που να ταιριάζουν με το ερώτημα στην $3.",
+	"search-nonefound-thiswiki": "Δεν υπήρχαν αποτελέσματα που να ταιριάζουν με το ερώτημα σε αυτόν τον ιστότοπο.",
 	"powersearch-legend": "Αναλυτική αναζήτηση",
 	"powersearch-ns": "Αναζήτηση στους ονοματοχώρους:",
 	"powersearch-togglelabel": "Επιλογή:",
