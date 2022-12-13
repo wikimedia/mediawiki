@@ -1171,7 +1171,6 @@
 	"logentry-upload-upload": "$1 {{GENDER:$2|ներբեռնուած է}} $3",
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|վերբեռնեց}} $3ի նոր տարբերակ",
 	"rightsnone": "(ոչ մէկ)",
-	"feedback-back": "Ետ",
 	"feedback-cancel": "Չեղարկել",
 	"feedback-close": "Եղած է",
 	"feedback-thanks-title": "Շնորհակալութիւն",

@@ -2090,7 +2090,6 @@
 	"logentry-upload-upload": "$1 {{GENDER:$2|hate barkirin}} $3",
 	"logentry-upload-overwrite": "$1 versiyoneke nû ya $3 {{GENDER:$2|hilbar kir}}",
 	"rightsnone": "(tune)",
-	"feedback-back": "Paşve",
 	"feedback-cancel": "Betal bike",
 	"feedback-close": "Çêbû",
 	"feedback-message": "Peyam:",

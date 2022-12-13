@@ -1292,8 +1292,6 @@
 	"logentry-newusers-autocreate": "Автоматтуу түрдө $1 эсеп жазуусу түзүлдү",
 	"logentry-upload-upload": "$1 $3 жактан {{GENDER:$2|жүктөлдү}}",
 	"rightsnone": "(жок)",
-	"feedback-adding": "Баракка пикирди кошуу…",
-	"feedback-bugnew": "Мен текшердим. Жаңы ката жөнүндө маалымдоо",
 	"feedback-cancel": "Жокко чыгаруу",
 	"feedback-close": "Даяр",
 	"feedback-error1": "Ката. API'ден белгисиз натыйжа",

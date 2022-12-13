@@ -877,7 +877,6 @@
 	"htmlform-user-not-exists": "<strong>$1</strong> የለን።",
 	"restore-count-files": "{{PLURAL:$1|1 ፋይል|$1 ፋይላት}}",
 	"rightsnone": "(ዋላ ሓደ)",
-	"feedback-back": "ተመለስ",
 	"feedback-cancel": "ኣትርፍ",
 	"feedback-close": "ተወዲኡ",
 	"feedback-message": "መልእኽቲ፦",

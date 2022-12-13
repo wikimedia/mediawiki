@@ -2366,8 +2366,6 @@
 	"logentry-newusers-create2": "$1 alianzisha akaunti ya mtumiaji $3",
 	"logentry-newusers-autocreate": "Akaunti ya mtumiaji $1 {{GENDER:$2|ilianzishwa}} na mashine",
 	"rightsnone": "(hana)",
-	"feedback-adding": "Maoni yanaongezwa katika ukurasa...",
-	"feedback-back": "Rudi",
 	"feedback-cancel": "Batilisha",
 	"feedback-close": "Tayari",
 	"feedback-error1": "Hitilafu: Hatokeo ya API hayafahamiki",

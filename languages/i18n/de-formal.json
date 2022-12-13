@@ -597,8 +597,6 @@
 	"watchlistedit-clear-explain": "Alle Seiten werden ausnahmslos von Ihrer Beobachtungsliste entfernt.",
 	"specialpages": "Spezialseiten",
 	"dberr-again": "Warten Sie bitte einige Minuten und versuchen Sie dann, die Seite erneut zu laden.",
-	"feedback-bugcheck": "Super! Bitte überprüfen Sie noch, ob es sich hierbei nicht um einen bereits [$1 bekannten Fehler] handelt.",
-	"feedback-bugornote": "Sofern Sie detailliert ein technisches Problem beschreiben möchten, melden Sie bitte [$1 einen Fehler].\nAnderenfalls können Sie auch das untenstehende einfache Formular nutzen. Ihr Kommentar wird, zusammen mit Ihrem Benutzernamen und der Version des von Ihnen verwendeten Webbrowsers sowie Betriebssystems, auf der Seite „[$3 $2]“ hinzugefügt.",
 	"feedback-cancel": "Abbrechen",
 	"feedback-thanks": "Vielen Dank. Ihre Rückmeldung wurde auf der Seite „[$2 $1]“ gespeichert.",
 	"searchsuggest-search": "{{SITENAME}} durchsuchen",

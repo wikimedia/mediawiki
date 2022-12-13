@@ -2689,7 +2689,6 @@
 	"logentry-upload-upload": "$1 {{GENDER:$2|បានផ្ទុកឡើង}} $3",
 	"log-name-tag": "កំណត់ត្រានៃការដាក់ស្លាក",
 	"rightsnone": "(ទទេ)",
-	"feedback-adding": "កំពុងបន្ថែមមតិយោបល់ទៅលើទំព័រ...",
 	"feedback-cancel": "បោះបង់​",
 	"feedback-close": "រួចរាល់",
 	"feedback-error1": "បញ្ហា៖ លទ្ធផលមិនស្គាល់ពី API",
