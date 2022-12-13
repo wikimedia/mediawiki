@@ -168,7 +168,7 @@ class Preprocessor_Hash extends Preprocessor {
 		$xmlishRegex = implode( '|', array_merge( $xmlishElements, $ignoredTags ) );
 
 		// Use "A" modifier (anchored) instead of "^", because ^ doesn't work with an offset
-		$elementsRegex = "~($xmlishRegex)(?:\s|\/>|>)|(!--)~iA";
+		$elementsRegex = "~(?:$xmlishRegex)(?=\s|\/>|>)|!--~iA";
 
 		$stack = new PPDStack_Hash;
 
@@ -296,10 +296,9 @@ class Preprocessor_Hash extends Preprocessor {
 			}
 
 			if ( $found === 'angle' ) {
-				$matches = false;
 				// Handle </onlyinclude>
 				if ( $enableOnlyinclude
-					&& str_starts_with( substr( $text, $i ), '</onlyinclude>' )
+					&& substr_compare( $text, '</onlyinclude>', $i, 14 ) === 0
 				) {
 					$findOnlyinclude = true;
 					continue;
@@ -312,8 +311,9 @@ class Preprocessor_Hash extends Preprocessor {
 					++$i;
 					continue;
 				}
+				$name = $matches[0];
 				// Handle comments
-				if ( isset( $matches[2] ) && $matches[2] === '!--' ) {
+				if ( $name === '!--' ) {
 					// To avoid leaving blank lines, when a sequence of
 					// space-separated comments is both preceded and followed by
 					// a newline (ignoring spaces), then
@@ -328,22 +328,25 @@ class Preprocessor_Hash extends Preprocessor {
 						$i = $lengthText;
 					} else {
 						// Search backwards for leading whitespace
+						// $wsStart is the first char of the comment (first of the leading space or '<')
 						$wsStart = $i ? ( $i - strspn( $revText, " \t", $lengthText - $i ) ) : 0;
 
+						// $wsEnd will be the char *after* the comment (after last space or the '>' if there's no space)
+						$wsEnd = $endPos + 3; // add length of -->
 						// Search forwards for trailing whitespace
-						// $wsEnd will be the position of the last space (or the '>' if there's none)
-						$wsEnd = $endPos + 2 + strspn( $text, " \t", $endPos + 3 );
+						$wsEnd += strspn( $text, " \t", $wsEnd );
 
-						// Keep looking forward as long as we're finding more
-						// comments.
+						// Keep looking forward as long as we're finding more comments on the line
 						$comments = [ [ $wsStart, $wsEnd ] ];
-						while ( substr( $text, $wsEnd + 1, 4 ) === '<!--' ) {
-							$c = strpos( $text, '-->', $wsEnd + 5 );
+						while ( substr_compare( $text, '<!--', $wsEnd, 4 ) === 0 ) {
+							$c = strpos( $text, '-->', $wsEnd + 4 );
 							if ( $c === false ) {
 								break;
 							}
-							$c += 2 + strspn( $text, " \t", $c + 3 );
-							$comments[] = [ $wsEnd + 1, $c ];
+							$c += 3; // add length of -->
+							// Search forwards for trailing whitespace
+							$c += strspn( $text, " \t", $c );
+							$comments[] = [ $wsEnd, $c ];
 							$wsEnd = $c;
 						}
 
@@ -351,8 +354,8 @@ class Preprocessor_Hash extends Preprocessor {
 						// TODO: This could theoretically be done if $wsStart === 0, i.e. for comments at
 						// the overall start. That's not how Sanitizer::removeHTMLcomments() did it, but
 						// it's a possible beneficial b/c break.
-						if ( $wsStart > 0 && substr( $text, $wsStart - 1, 1 ) === "\n"
-							&& substr( $text, $wsEnd + 1, 1 ) === "\n"
+						if ( $wsStart > 0 && substr_compare( $text, "\n", $wsStart - 1, 1 ) === 0
+							&& substr_compare( $text, "\n", $wsEnd, 1 ) === 0
 						) {
 							// Remove leading whitespace from the end of the accumulator
 							$wsLength = $i - $wsStart;
@@ -367,13 +370,12 @@ class Preprocessor_Hash extends Preprocessor {
 							}
 
 							// Dump all but the last comment to the accumulator
-							foreach ( $comments as $j => $com ) {
-								$startPos = $com[0];
-								$endPos = $com[1] + 1;
-								if ( $j === count( $comments ) - 1 ) {
-									break;
-								}
-								$inner = substr( $text, $startPos, $endPos - $startPos );
+							// $endPos includes the newline from the if above, want also eat that
+							[ $startPos, $endPos ] = array_pop( $comments );
+							foreach ( $comments as $com ) {
+								[ $cStartPos, $cEndPos ] = $com;
+								// $cEndPos is the next char, no +1 needed to get correct length between start/end
+								$inner = substr( $text, $cStartPos, $cEndPos - $cStartPos );
 								$accum[] = [ 'comment', [ $inner ] ];
 							}
 
@@ -387,7 +389,7 @@ class Preprocessor_Hash extends Preprocessor {
 
 						if ( $stack->top ) {
 							$part = $stack->top->getCurrentPart();
-							if ( !( isset( $part->commentEnd ) && $part->commentEnd === $wsStart - 1 ) ) {
+							if ( $part->commentEnd !== $wsStart - 1 ) {
 								$part->visualEnd = $wsStart;
 							}
 							// Else comments abutting, no change in visual end
@@ -399,7 +401,6 @@ class Preprocessor_Hash extends Preprocessor {
 					}
 					continue;
 				}
-				$name = $matches[1];
 				$attrStart = $i + strlen( $name ) + 1;
 
 				// Find end of tag
@@ -532,7 +533,7 @@ class Preprocessor_Hash extends Preprocessor {
 				// (end anchor, etc.) are inefficient.
 				$wsLength = strspn( $revText, " \t", $lengthText - $i );
 				$searchStart = $i - $wsLength;
-				if ( isset( $part->commentEnd ) && $searchStart - 1 === $part->commentEnd ) {
+				if ( $part->commentEnd === $searchStart - 1 ) {
 					// Comment found at line end
 					// Search for equals signs before the comment
 					$searchStart = $part->visualEnd;
@@ -698,7 +699,7 @@ class Preprocessor_Hash extends Preprocessor {
 					# The invocation is at the start of the line if lineStart is set in
 					# the stack, and all opening brackets are used up.
 					if ( $maxCount === $matchingCount &&
-						!empty( $piece->lineStart ) &&
+						$piece->lineStart &&
 						$piece->savedPrefix === ''
 					) {
 						$children[] = [ '@lineStart', [ 1 ] ];
