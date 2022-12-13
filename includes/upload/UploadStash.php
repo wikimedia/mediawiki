@@ -378,12 +378,11 @@ class UploadStash {
 
 		// this is a cheap query. it runs on the primary DB so that this function
 		// still works when there's lag. It won't be called all that often.
-		$row = $dbw->selectRow(
-			'uploadstash',
-			'us_user',
-			[ 'us_key' => $key ],
-			__METHOD__
-		);
+		$row = $dbw->newSelectQueryBuilder()
+			->select( 'us_user' )
+			->from( 'uploadstash' )
+			->where( [ 'us_key' => $key ] )
+			->caller( __METHOD__ )->fetchRow();
 
 		if ( !$row ) {
 			throw new UploadStashNoSuchKeyException(
@@ -444,13 +443,11 @@ class UploadStash {
 			);
 		}
 
-		$dbr = $this->repo->getReplicaDB();
-		$res = $dbr->select(
-			'uploadstash',
-			'us_key',
-			[ 'us_user' => $this->user->getId() ],
-			__METHOD__
-		);
+		$res = $this->repo->getReplicaDB()->newSelectQueryBuilder()
+			->select( 'us_key' )
+			->from( 'uploadstash' )
+			->where( [ 'us_user' => $this->user->getId() ] )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		if ( !is_object( $res ) || $res->numRows() == 0 ) {
 			// nothing to do.
@@ -518,17 +515,16 @@ class UploadStash {
 			$dbr = $this->repo->getReplicaDB();
 		}
 
-		$row = $dbr->selectRow(
-			'uploadstash',
-			[
+		$row = $dbr->newSelectQueryBuilder()
+			->select( [
 				'us_user', 'us_key', 'us_orig_path', 'us_path', 'us_props',
 				'us_size', 'us_sha1', 'us_mime', 'us_media_type',
 				'us_image_width', 'us_image_height', 'us_image_bits',
 				'us_source_type', 'us_timestamp', 'us_status',
-			],
-			[ 'us_key' => $key ],
-			__METHOD__
-		);
+			] )
+			->from( 'uploadstash' )
+			->where( [ 'us_key' => $key ] )
+			->caller( __METHOD__ )->fetchRow();
 
 		if ( !is_object( $row ) ) {
 			// key wasn't present in the database. this will happen sometimes.
