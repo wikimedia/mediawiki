@@ -1228,7 +1228,8 @@ return [
 		'dependencies' => [
 			'jquery.suggestions',
 			'mediawiki.api'
-		]
+		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.util' => [
 		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.util",
@@ -1339,6 +1340,7 @@ return [
 			'mediawiki.storage',
 			'mediawiki.icon',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.action.edit.preview' => [
 		'packageFiles' => [
@@ -1442,6 +1444,7 @@ return [
 			'postedit-temp-created-label',
 			'postedit-temp-created',
 		],
+		'targets' => [ 'desktop', 'mobile' ]
 	],
 	'mediawiki.action.view.redirect' => [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.view.redirect.js',
@@ -1764,6 +1767,7 @@ return [
 			'mediawiki.util',
 			'jquery.spinner',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 
 	/* MediaWiki Special pages */
@@ -1781,6 +1785,7 @@ return [
 				'styles/mw.rcfilters.ui.ChangesListWrapperWidget.highlightCircles.seenunseen.less',
 			],
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	// TODO consider renaming to mediawiki.rcfilters.filters following merge of
 	// mediawiki.rcfilters.filters.dm into mediawiki.rcfilters.filters.ui, see T256836
@@ -2180,6 +2185,7 @@ return [
 		'dependencies' => [
 			'user.options',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	// This bundles various small scripts that relate to moderation or curation
 	// in some way, and:
@@ -2449,6 +2455,7 @@ return [
 			'mediawiki.notification.convertmessagebox',
 			'jquery.lengthLimit',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.watchlist' => [
 		'scripts' => [
@@ -2476,6 +2483,7 @@ return [
 			'oojs-ui.styles.icons-interactions',
 			'user.options',
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 
 	/* MediaWiki Installer */
