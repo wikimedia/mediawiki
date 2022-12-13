@@ -1821,7 +1821,6 @@ class OutputPage extends ContextSource {
 	 * Get/set the ParserOptions object to use for wikitext parsing
 	 *
 	 * @return ParserOptions
-	 * @suppress PhanUndeclaredProperty For isBogus
 	 */
 	public function parserOptions() {
 		if ( !$this->mParserOptions ) {
@@ -1831,7 +1830,6 @@ class OutputPage extends ContextSource {
 				// either.
 				$po = ParserOptions::newFromAnon();
 				$po->setAllowUnsafeRawHtml( false );
-				$po->isBogus = true;
 				return $po;
 			}
 
