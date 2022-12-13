@@ -874,6 +874,9 @@ class MediaWiki {
 		$trxLimits = $this->config->get( MainConfigNames::TrxProfilerLimits );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
+		$statsFactory = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$trxProfiler->setStatsdDataFactory( $statsFactory );
+		$trxProfiler->setRequestMethod( $request->getMethod() );
 		if ( $request->hasSafeMethod() ) {
 			$trxProfiler->setExpectations( $trxLimits['GET'], __METHOD__ );
 		} else {

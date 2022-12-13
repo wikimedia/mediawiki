@@ -19,10 +19,13 @@
  */
 namespace Wikimedia\Rdbms;
 
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use NullStatsdDataFactory;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
+use StatsdAwareInterface;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -35,13 +38,17 @@ use Wikimedia\ScopedCallback;
  * @ingroup Profiler
  * @ingroup Database
  */
-class TransactionProfiler implements LoggerAwareInterface {
+class TransactionProfiler implements LoggerAwareInterface, StatsdAwareInterface {
 	/** @var LoggerInterface */
 	private $logger;
+	/** @var StatsdDataFactoryInterface */
+	private $stats;
 	/** @var array<string,array> Map of (event name => map of FLD_* class constants) */
 	private $expect;
 	/** @var array<string,int> Map of (event name => current hits) */
 	private $hits;
+	/** @var array<string,int> Map of (event name => violation counter) */
+	private $violations;
 	/** @var array<string,int> Map of (event name => silence counter) */
 	private $silenced;
 
@@ -56,6 +63,9 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 * @phan-var array<string,array<int,array{0:string,1:float,2:float}>>
 	 */
 	private $dbTrxMethodTimes;
+
+	/** @var string|null HTTP request method; null for CLI mode */
+	private $method;
 
 	/** @var float|null */
 	private $wallClockOverride;
@@ -104,10 +114,23 @@ class TransactionProfiler implements LoggerAwareInterface {
 		$this->silenced = array_fill_keys( self::EVENT_NAMES, 0 );
 
 		$this->setLogger( new NullLogger() );
+		$this->setStatsdDataFactory( new NullStatsdDataFactory() );
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
+	}
+
+	public function setStatsdDataFactory( StatsdDataFactoryInterface $statsFactory ) {
+		$this->stats = $statsFactory;
+	}
+
+	/**
+	 * @param ?string $method HTTP method; null for CLI mode
+	 * @return void
+	 */
+	public function setRequestMethod( ?string $method ) {
+		$this->method = $method;
 	}
 
 	/**
@@ -447,6 +470,7 @@ class TransactionProfiler implements LoggerAwareInterface {
 		);
 
 		$this->hits = array_fill_keys( self::COUNTER_EVENT_NAMES, 0 );
+		$this->violations = array_fill_keys( self::EVENT_NAMES, 0 );
 	}
 
 	/**
@@ -491,13 +515,21 @@ class TransactionProfiler implements LoggerAwareInterface {
 		?string $trxId = null,
 		?string $serverName = null
 	) {
+		$violations = ++$this->violations[$event];
+		// First violation; check if this is a web request
+		if ( $violations === 1 && $this->method !== null ) {
+			$this->stats->increment( "rdbms_trxprofiler_warnings.$event.{$this->method}" );
+		}
+
 		$max = $this->expect[$event][self::FLD_LIMIT];
 		$by = $this->expect[$event][self::FLD_FNAME];
+
 		$message = "Expectation ($event <= $max) by $by not met (actual: {actualSeconds})";
 		if ( $trxId ) {
 			$message .= ' in trx #{trxId}';
 		}
 		$message .= ":\n{query}\n";
+
 		$this->logger->warning(
 			$message,
 			[

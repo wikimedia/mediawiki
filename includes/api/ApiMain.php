@@ -1917,16 +1917,21 @@ class ApiMain extends ApiBase {
 	 * @param ApiBase $module
 	 */
 	protected function setRequestExpectations( ApiBase $module ) {
-		$limits = $this->getConfig()->get( MainConfigNames::TrxProfilerLimits );
+		$request = $this->getRequest();
+
+		$trxLimits = $this->getConfig()->get( MainConfigNames::TrxProfilerLimits );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->setLogger( LoggerFactory::getInstance( 'DBPerformance' ) );
-		if ( $this->getRequest()->hasSafeMethod() ) {
-			$trxProfiler->setExpectations( $limits['GET'], __METHOD__ );
-		} elseif ( $this->getRequest()->wasPosted() && !$module->isWriteMode() ) {
-			$trxProfiler->setExpectations( $limits['POST-nonwrite'], __METHOD__ );
-			$this->getRequest()->markAsSafeRequest();
+		$statsFactory = MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$trxProfiler->setStatsdDataFactory( $statsFactory );
+		$trxProfiler->setRequestMethod( $request->getMethod() );
+		if ( $request->hasSafeMethod() ) {
+			$trxProfiler->setExpectations( $trxLimits['GET'], __METHOD__ );
+		} elseif ( $request->wasPosted() && !$module->isWriteMode() ) {
+			$trxProfiler->setExpectations( $trxLimits['POST-nonwrite'], __METHOD__ );
+			$request->markAsSafeRequest();
 		} else {
-			$trxProfiler->setExpectations( $limits['POST'], __METHOD__ );
+			$trxProfiler->setExpectations( $trxLimits['POST'], __METHOD__ );
 		}
 	}
 

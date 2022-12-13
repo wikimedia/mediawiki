@@ -211,7 +211,10 @@ abstract class Profiler {
 	}
 
 	/**
-	 * Log the data to the backing store for all ProfilerOutput instances that have one
+	 * Log data to all the applicable backing stores
+	 *
+	 * This logs the profiling data to the backing store for each configured ProfilerOutput
+	 * instance. It also logs any request data for the TransactionProfiler instance.
 	 *
 	 * @since 1.25
 	 */
