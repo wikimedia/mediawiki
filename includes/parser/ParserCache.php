@@ -498,7 +498,8 @@ class ParserCache {
 		] );
 		$this->incrementStats( $page, 'save_success' );
 
-		$this->incrementStats( $page, 'reason.' . $popts->getRenderReason() );
+		$reasonKey = preg_replace( '/\W+/', '_', $popts->getRenderReason() );
+		$this->incrementStats( $page, "reason.$reasonKey" );
 	}
 
 	/**
