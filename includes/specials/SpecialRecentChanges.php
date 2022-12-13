@@ -374,7 +374,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$conds,
 			$join_conds,
 			$query_options,
-			$tagFilter
+			$tagFilter,
+			$opts['inverttags']
 		);
 
 		if ( !$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds,
@@ -801,7 +802,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$extraOpts['namespace'] = $this->namespaceFilterForm( $opts );
 
 		$tagFilter = ChangeTags::buildTagFilterSelector(
-			$opts['tagfilter'], false, $this->getContext() );
+			$opts['tagfilter'], false, $this->getContext()
+		);
 		if ( count( $tagFilter ) ) {
 			$extraOpts['tagfilter'] = $tagFilter;
 		}

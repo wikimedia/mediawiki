@@ -1131,10 +1131,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		}
 
 		$opts->add( 'namespace', '', FormOptions::STRING );
+		// TODO: Rename this option to 'invertnamespaces'?
 		$opts->add( 'invert', false );
 		$opts->add( 'associated', false );
 		$opts->add( 'urlversion', 1 );
 		$opts->add( 'tagfilter', '' );
+		$opts->add( 'inverttags', false );
 
 		$opts->add( 'days', $this->getDefaultDays(), FormOptions::FLOAT );
 		$opts->add( 'limit', $this->getDefaultLimit(), FormOptions::INT );
@@ -1509,11 +1511,12 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			$conds,
 			$join_conds,
 			$query_options,
-			''
+			'',
+			$opts[ 'inverttags' ]
 		);
 
-		if ( !$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds,
-			$opts )
+		if (
+			!$this->runMainQueryHook( $tables, $fields, $conds, $query_options, $join_conds, $opts )
 		) {
 			return false;
 		}
