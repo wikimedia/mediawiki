@@ -1365,7 +1365,7 @@ const al = re($e), Le = F({
       e.disabled || (g = a.value) == null || g.focus();
     }
     function ne(g) {
-      !o.value || e.disabled || e.menuItems.length === 0 || g.key === " " && c.value || o.value.delegateKeyNavigation(g);
+      !o.value || e.disabled || e.menuItems.length === 0 || g.key === " " || o.value.delegateKeyNavigation(g);
     }
     return te(c, () => {
       $.value = !1;
@@ -1391,7 +1391,7 @@ const al = re($e), Le = F({
   }
 }), Ue = () => {
   De((e) => ({
-    "3630e383": e.currentWidthInPx
+    "1dfe40f2": e.currentWidthInPx
   }));
 }, We = Le.setup;
 Le.setup = We ? (e, t) => (Ue(), We(e, t)) : Ue;
@@ -1726,7 +1726,7 @@ const Bo = /* @__PURE__ */ V(il, [["render", vl]]), hl = re($e), Fe = F({
       d.value = !1, n.value = !1;
     }
     function g(v) {
-      !i.value || e.disabled || e.menuItems.length === 0 && !s["no-results"] || v.key === " " && n.value || i.value.delegateKeyNavigation(v);
+      !i.value || e.disabled || e.menuItems.length === 0 && !s["no-results"] || v.key === " " || i.value.delegateKeyNavigation(v);
     }
     return te(c, (v) => {
       if (v !== null) {
@@ -1755,7 +1755,7 @@ const Bo = /* @__PURE__ */ V(il, [["render", vl]]), hl = re($e), Fe = F({
   }
 }), Pe = () => {
   De((e) => ({
-    "016ac659": e.currentWidthInPx
+    "115093d8": e.currentWidthInPx
   }));
 }, Qe = Fe.setup;
 Fe.setup = Qe ? (e, t) => (Pe(), Qe(e, t)) : Pe;
@@ -2864,7 +2864,7 @@ const To = /* @__PURE__ */ V(lo, [["render", io]]), ro = F({
       }
     }
     function rt(_) {
-      if (!n.value || !L.value || _.key === " " && c.value)
+      if (!n.value || !L.value || _.key === " ")
         return;
       const U = n.value.getHighlightedMenuItem();
       switch (_.key) {
