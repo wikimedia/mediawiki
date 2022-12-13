@@ -27,6 +27,12 @@ use Wikimedia\Timestamp\TimestampException;
  */
 abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 
+	/**
+	 * @var string[]
+	 * @deprecated since 1.40, use $startOffset and $endOffset instead.
+	 */
+	protected $rangeConds;
+
 	/** @var string */
 	protected $startOffset;
 
@@ -44,8 +50,8 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 	 *     or null if dates are invalid
 	 */
 	public function getDateRangeCond( $startTime, $endTime ) {
-		// Construct the conds array for compatibility with callers (if any)
-		$rangeConds = [];
+		// Construct the conds array for compatibility with callers and derived classes
+		$this->rangeConds = [];
 
 		// This is a chronological pager, so the first column should be some kind of timestamp
 		$timestampField = is_array( $this->mIndexField ) ? $this->mIndexField[0] : $this->mIndexField;
@@ -53,7 +59,7 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 			if ( $startTime !== '' ) {
 				$startTimestamp = MWTimestamp::getInstance( $startTime );
 				$this->startOffset = $this->mDb->timestamp( $startTimestamp->getTimestamp() );
-				$rangeConds[] = $this->mDb->buildComparison( '>=', [ $timestampField => $this->startOffset ] );
+				$this->rangeConds[] = $this->mDb->buildComparison( '>=', [ $timestampField => $this->startOffset ] );
 			}
 
 			if ( $endTime !== '' ) {
@@ -62,7 +68,7 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 				// add one second for compatibility with existing use cases
 				$endTimestamp->timestamp = $endTimestamp->timestamp->modify( '+1 second' );
 				$this->endOffset = $this->mDb->timestamp( $endTimestamp->getTimestamp() );
-				$rangeConds[] = $this->mDb->buildComparison( '<', [ $timestampField => $this->endOffset ] );
+				$this->rangeConds[] = $this->mDb->buildComparison( '<', [ $timestampField => $this->endOffset ] );
 
 				// populate existing variables for compatibility with parent
 				$this->mYear = (int)$endTimestamp->format( 'Y' );
@@ -73,7 +79,7 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 			return null;
 		}
 
-		return $rangeConds;
+		return $this->rangeConds;
 	}
 
 	/**
@@ -89,6 +95,9 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 		if ( $this->startOffset ) {
 			$timestampField = is_array( $this->mIndexField ) ? $this->mIndexField[0] : $this->mIndexField;
 			$conds[] = $this->mDb->buildComparison( '>=', [ $timestampField => $this->startOffset ] );
+		} elseif ( $this->rangeConds ) {
+			// Keep compatibility with some derived classes, T325034
+			$conds = array_merge( $conds, $this->rangeConds );
 		}
 
 		return [ $tables, $fields, $conds, $fname, $options, $join_conds ];
