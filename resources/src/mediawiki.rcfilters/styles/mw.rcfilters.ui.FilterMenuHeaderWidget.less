@@ -23,7 +23,6 @@
 		&-invert,
 		&-highlight {
 			min-width: 1em;
-			vertical-align: middle;
 			// Using the same padding that the filter item
 			// uses, so the button is aligned with the highlight
 			// buttons for the filters
@@ -32,7 +31,6 @@
 
 		&-back {
 			width: 1em;
-			vertical-align: middle;
 
 			.mw-rcfilters-ui-filterMenuHeaderWidget-backButton:first-child {
 				// Overwrite `.oo-ui-buttonElement-frameless.oo-ui-iconElement:first-child`
@@ -43,7 +41,10 @@
 		&-title {
 			position: relative;
 			width: 100%;
-			vertical-align: middle;
 		}
+	}
+
+	.mw-rcfilters-ui-cell {
+		vertical-align: middle;
 	}
 }
