@@ -127,37 +127,27 @@ class LanguageVariantConverter {
 		$pageConfig = $this->getPageConfig( $pageLanguageCode, $sourceVariantCode );
 
 		if ( !$this->parsoid->implementsLanguageConversion( $pageConfig, $targetVariantCode ) ) {
-			if ( $this->isFallbackLanguageConverterEnabled ) {
-				$baseLanguage = $this->languageFactory->getParentLanguage( $targetVariantCode );
-				$languageConverter = $this->languageConverterFactory->getLanguageConverter( $baseLanguage );
-
-				$convertedHtml = $languageConverter->convertTo( $pageBundle->html, $targetVariantCode );
-				$targetVariantPageBundle = new PageBundle(
-					$convertedHtml,
-					[],
-					[],
-					$pageBundle->version,
-					[ 'content-language' => $targetVariantCode ]
-				);
-
-				// Hack: Even though variant conversion for the language is not supported by Parsoid, we pass the
-				// HTML to parsoid for variant conversion in order to add metadata that is missing when we use the
-				// core LanguageConverter directly.
-				$targetVariantPageBundle = $this->parsoid->pb2pb(
-					$pageConfig, 'variant', $targetVariantPageBundle,
-					[
-						'variant' => [
-							'source' => $sourceVariantCode,
-							'target' => $targetVariantCode
-						]
-					]
-				);
-
-				return $targetVariantPageBundle;
+			if ( !$this->isFallbackLanguageConverterEnabled ) {
+				// Fallback variant conversion is not enabled, return the page bundle as is.
+				return $pageBundle;
 			}
 
-			// Fallback variant conversion is not enabled, return the page bundle as is.
-			return $pageBundle;
+			$baseLanguage = $this->languageFactory->getParentLanguage( $targetVariantCode );
+			$languageConverter = $this->languageConverterFactory->getLanguageConverter( $baseLanguage );
+
+			$convertedHtml = $languageConverter->convertTo( $pageBundle->html, $targetVariantCode );
+
+			// Hack: Pass the HTML to parsoid for variant conversion in order to add metadata that is
+			// missing when we use the core LanguageConverter directly.
+
+			// Replace the original page bundle, so Parsoid gets the converted HTML as input.
+			$pageBundle = new PageBundle(
+				$convertedHtml,
+				[],
+				[],
+				$pageBundle->version,
+				[ 'content-language' => $targetVariantCode ]
+			);
 		}
 
 		$modifiedPageBundle = $this->parsoid->pb2pb(
