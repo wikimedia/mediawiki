@@ -1515,12 +1515,7 @@ class EditPage implements IEditObject {
 						] ) );
 						return false;
 					} else {
-						$content = $this->getUndoContent( $undorev, $oldrev );
-
-						if ( $content === false ) {
-							# Warn the user that something went wrong
-							$undoMsg = 'norev';
-						}
+						$content = $this->getUndoContent( $undorev, $oldrev, $undoMsg );
 					}
 
 					if ( $undoMsg === null ) {
@@ -1651,10 +1646,13 @@ class EditPage implements IEditObject {
 	 *        URL parameter.
 	 * @param RevisionRecord $oldRev Revision that is being restored. Corresponds to
 	 *        `undoafter` URL parameter.
+	 * @param ?string &$error If false is returned, this will be set to "norev"
+	 *   if the revision failed to load, or "failure" if the content handler
+	 *   failed to merge the required changes.
 	 *
 	 * @return Content|false
 	 */
-	private function getUndoContent( RevisionRecord $undoRev, RevisionRecord $oldRev ) {
+	private function getUndoContent( RevisionRecord $undoRev, RevisionRecord $oldRev, &$error ) {
 		$handler = $this->contentHandlerFactory
 			->getContentHandler( $undoRev->getSlot(
 				SlotRecord::MAIN,
@@ -1669,15 +1667,20 @@ class EditPage implements IEditObject {
 			|| $undoContent === null
 			|| $undoAfterContent === null
 		) {
+			$error = 'norev';
 			return false;
 		}
 
-		return $handler->getUndoContent(
+		$content = $handler->getUndoContent(
 			$currentContent,
 			$undoContent,
 			$undoAfterContent,
 			$undoIsLatest
 		);
+		if ( $content === false ) {
+			$error = 'failure';
+		}
+		return $content;
 	}
 
 	/**
@@ -2708,7 +2711,7 @@ class EditPage implements IEditObject {
 			return false;
 		}
 
-		$undoContent = $this->getUndoContent( $undoRev, $oldRev );
+		$undoContent = $this->getUndoContent( $undoRev, $oldRev, $undoError );
 		if ( !$undoContent ) {
 			return false;
 		}
