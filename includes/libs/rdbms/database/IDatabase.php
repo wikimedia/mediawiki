@@ -284,21 +284,22 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	public function insertId();
 
 	/**
-	 * Get the RDBMS-specific error code from the last query statement
+	 * Get the RDBMS-specific error code from the last attempted query statement
 	 *
 	 * @return int|string Error code (integer or hexadecimal depending on RDBMS type)
 	 */
 	public function lastErrno();
 
 	/**
-	 * Get the RDBMS-specific error description from the last query statement
+	 * Get the RDBMS-specific error description from the last attempted query statement
 	 *
 	 * @return string
 	 */
 	public function lastError();
 
 	/**
-	 * Get the number of rows affected by the last write query.
+	 * Get the number of rows affected by the last attempted query statement
+	 *
 	 * Similar to https://www.php.net/mysql_affected_rows but includes rows matched
 	 * but not changed (ie. an UPDATE which sets all fields to the same value they already have).
 	 * To get the old mysql_affected_rows behavior, include non-equality of the fields in WHERE.
@@ -354,6 +355,9 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *
 	 * However, the query wrappers themselves should call this function.
 	 *
+	 * Callers should avoid the use of statements like BEGIN, COMMIT, and ROLLBACK.
+	 * Methods like startAtomic(), endAtomic(), and cancelAtomic() can be used instead.
+	 *
 	 * @param string $sql Single-statement SQL query
 	 * @param string $fname Caller name; used for profiling/SHOW PROCESSLIST comments
 	 * @param int $flags Bit field of IDatabase::QUERY_* constants.
@@ -366,7 +370,12 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	public function query( $sql, $fname = __METHOD__, $flags = 0 );
 
 	/**
-	 * Run a batch of SQL query statements and return the results.
+	 * Run a batch of SQL query statements and return the results
+	 *
+	 * If any statement results in an error, subsequent statements will not be attempted.
+	 *
+	 * Callers should avoid the use of statements like BEGIN, COMMIT, and ROLLBACK.
+	 * Methods like startAtomic(), endAtomic(), and cancelAtomic() can be used instead.
 	 *
 	 * @see IDatabase::query()
 	 *
@@ -375,6 +384,8 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * @param int $flags Bit field of IDatabase::QUERY_* constants
 	 * @param string|null $summarySql Virtual SQL for profiling (e.g. "UPSERT INTO TABLE 'x'")
 	 * @return array<string,QueryStatus> Ordered map of (statement ID => QueryStatus)
+	 * @throws DBQueryError If a query is issued, fails, and QUERY_SILENCE_ERRORS is not set.
+	 * @throws DBExpectedError If a query is not, and cannot, be issued yet (non-DBQueryError)
 	 * @since 1.39
 	 */
 	public function queryMulti(
@@ -733,6 +744,9 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	/**
 	 * Insert row(s) into a table, in the provided order
 	 *
+	 * This operation will be seen by affectedRows()/insertId() as one query statement,
+	 * regardless of how many statements are actually sent by the class implementation.
+	 *
 	 * @param string $table Table name
 	 * @param array|array[] $rows Row(s) to insert, as either:
 	 *   - A string-keyed map of (column name => value) defining a new row. Values are
@@ -753,6 +767,9 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 
 	/**
 	 * Update all rows in a table that match a given condition
+	 *
+	 * This operation will be seen by affectedRows()/insertId() as one query statement,
+	 * regardless of how many statements are actually sent by the class implementation.
 	 *
 	 * @param string $table Table name
 	 * @param array $set Combination map/list where each string-keyed entry maps a column
@@ -873,6 +890,9 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *     This does not apply to RDBMS types that use predicate locking nor those that
 	 *     just lock the whole table or databases anyway.
 	 *
+	 * This operation will be seen by affectedRows()/insertId() as one query statement,
+	 * regardless of how many statements are actually sent by the class implementation.
+	 *
 	 * @param string $table The table name
 	 * @param string|string[]|string[][] $uniqueKeys Column name or non-empty list of column
 	 *   name lists that define all applicable unique keys on the table. There must only be
@@ -898,7 +918,8 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 * for the provided rows to conflict even among themselves; it is preferable for the
 	 * caller to de-duplicate such input beforehand.
 	 *
-	 * @see IDatabase::buildExcludedValue()
+	 * This operation will be seen by affectedRows()/insertId() as one query statement,
+	 * regardless of how many statements are actually sent by the class implementation.
 	 *
 	 * @see IDatabase::buildExcludedValue()
 	 *
@@ -942,6 +963,9 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *
 	 * DO NOT put the join condition in $conds.
 	 *
+	 * This operation will be seen by affectedRows()/insertId() as one query statement,
+	 * regardless of how many statements are actually sent by the class implementation.
+	 *
 	 * @param string $delTable The table to delete from.
 	 * @param string $joinTable The reference table used by the join (not modified).
 	 * @param string $delVar The variable to join on, in the first table.
@@ -963,6 +987,9 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	/**
 	 * Delete all rows in a table that match a condition
 	 *
+	 * This operation will be seen by affectedRows()/insertId() as one query statement,
+	 * regardless of how many statements are actually sent by the class implementation.
+	 *
 	 * @param string $table Table name
 	 * @param string|array $conds Array of conditions. See $conds in IDatabase::select()
 	 *   In order to prevent possible performance or replication issues or damaging a data
@@ -981,6 +1008,9 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	 *  determine the value of a column, this may break replication on
 	 *  databases using statement-based replication if the SELECT is not
 	 *  deterministically ordered.
+	 *
+	 * This operation will be seen by affectedRows()/insertId() as one query statement,
+	 * regardless of how many statements are actually sent by the class implementation.
 	 *
 	 * @param string $destTable The table name to insert into
 	 * @param string|array $srcTable May be either a table name, or an array of table names
