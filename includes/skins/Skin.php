@@ -2180,17 +2180,19 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Prepare the subtitle of the page for output in the skin if one has been set.
 	 * @since 1.35
+	 * @param bool $withContainer since 1.40, when provided the mw-content-subtitle element will be output too.
 	 * @return string HTML
 	 */
-	final public function prepareSubtitle() {
+	final public function prepareSubtitle( bool $withContainer = true ) {
 		$out = $this->getOutput();
 		$subpagestr = $this->subPageSubtitleInternal();
 		if ( $subpagestr !== '' ) {
 			$subpagestr = Html::rawElement( 'div', [ 'class' => 'subpages' ], $subpagestr );
 		}
-		return Html::rawElement( 'div', [
+		$html = $subpagestr . $out->getSubtitle();
+		return $withContainer ? Html::rawElement( 'div', [
 			'id' => 'mw-content-subtitle',
-		] + $this->getUserLanguageAttributes(), $subpagestr . $out->getSubtitle() );
+		] + $this->getUserLanguageAttributes(), $html ) : $html;
 	}
 
 	/**
