@@ -1015,24 +1015,23 @@
 		// Process styles (see also mw.loader.implement)
 		// * { "css": [css, ..] }
 		// * { "url": { <media>: [url, ..] } }
-		if ( registry[ module ].style ) {
-			for ( var key in registry[ module ].style ) {
-				var value = registry[ module ].style[ key ];
+		var style = registry[ module ].style;
+		if ( style ) {
+			// Array of CSS strings under key 'css'
+			// { "css": [css, ..] }
+			if ( 'css' in style ) {
+				for ( var i = 0; i < style.css.length; i++ ) {
+					addEmbeddedCSS( style.css[ i ], cssHandle() );
+				}
+			}
 
-				// Array of CSS strings under key 'css'
-				// { "css": [css, ..] }
-				if ( key === 'css' ) {
-					for ( var i = 0; i < value.length; i++ ) {
-						addEmbeddedCSS( value[ i ], cssHandle() );
-					}
-				// Plain object with array of urls under a media-type key
-				// { "url": { <media>: [url, ..] } }
-				} else if ( key === 'url' ) {
-					for ( var media in value ) {
-						var urls = value[ media ];
-						for ( var j = 0; j < urls.length; j++ ) {
-							addLink( urls[ j ], media, marker );
-						}
+			// Plain object with array of urls under a media-type key
+			// { "url": { <media>: [url, ..] } }
+			if ( 'url' in style ) {
+				for ( var media in style.url ) {
+					var urls = style.url[ media ];
+					for ( var j = 0; j < urls.length; j++ ) {
+						addLink( urls[ j ], media, marker );
 					}
 				}
 			}
