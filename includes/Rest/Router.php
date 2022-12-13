@@ -4,6 +4,7 @@ namespace MediaWiki\Rest;
 
 use AppendIterator;
 use BagOStuff;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
@@ -13,6 +14,7 @@ use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
 use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\Session\Session;
+use NullStatsdDataFactory;
 use Throwable;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -80,6 +82,9 @@ class Router {
 	/** @var Session */
 	private $session;
 
+	/** @var StatsdDataFactoryInterface */
+	private $stats;
+
 	/**
 	 * @internal
 	 * @var array
@@ -135,6 +140,8 @@ class Router {
 		$this->errorReporter = $errorReporter;
 		$this->hookContainer = $hookContainer;
 		$this->session = $session;
+
+		$this->stats = new NullStatsdDataFactory();
 	}
 
 	/**
@@ -402,14 +409,34 @@ class Router {
 		$request->setPathParams( array_map( 'rawurldecode', $match['params'] ) );
 		$handler = $this->createHandler( $request, $match['userData'] );
 
+		// Replace any characters that may have a special meaning in the metrics DB.
+		$pathForMetrics = $handler->getPath();
+		$pathForMetrics = strtr( $pathForMetrics, '{}:', '-' );
+		$pathForMetrics = strtr( $pathForMetrics, '/.', '_' );
+
+		$statTime = microtime( true );
+
 		try {
-			return $this->executeHandler( $handler );
+			$response = $this->executeHandler( $handler );
 		} catch ( HttpException $e ) {
-			return $this->responseFactory->createFromException( $e );
+			$response = $this->responseFactory->createFromException( $e );
 		} catch ( Throwable $e ) {
 			$this->errorReporter->reportError( $e, $handler, $request );
-			return $this->responseFactory->createFromException( $e );
+			$response = $this->responseFactory->createFromException( $e );
 		}
+
+		// gather metrics
+		if ( $response->getStatusCode() >= 400 ) {
+			// count how often we return which error code
+			$statusCode = $response->getStatusCode();
+			$this->stats->increment( "rest_api_errors.$pathForMetrics.$requestMethod.$statusCode" );
+		} else {
+			// measure how long it takes to generate a response
+			$microtime = ( microtime( true ) - $statTime ) * 1000;
+			$this->stats->timing( "rest_api_latency.$pathForMetrics.$requestMethod", $microtime );
+		}
+
+		return $response;
 	}
 
 	/**
@@ -503,6 +530,17 @@ class Router {
 	 */
 	public function setCors( CorsUtils $cors ): self {
 		$this->cors = $cors;
+
+		return $this;
+	}
+
+	/**
+	 * @param StatsdDataFactoryInterface $stats
+	 *
+	 * @return self
+	 */
+	public function setStats( StatsdDataFactoryInterface $stats ): self {
+		$this->stats = $stats;
 
 		return $this;
 	}
