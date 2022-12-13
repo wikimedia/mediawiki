@@ -91,7 +91,7 @@
 
 			// Update browser history and address bar. But not if we came here from a history
 			// event, in which case the url is already updated by the browser.
-			if ( history.pushState && !hist ) {
+			if ( !hist ) {
 				history.pushState( { tag: 'mw-pagination' }, document.title, url );
 			}
 		} );
@@ -127,15 +127,13 @@
 
 		bindPageNavigation( $multipageimage );
 
-		// Update the url using the History API (if available)
-		if ( history.pushState && history.replaceState ) {
-			history.replaceState( { tag: 'mw-pagination' }, '' );
-			$( window ).on( 'popstate', function ( e ) {
-				var state = e.originalEvent.state;
-				if ( state && state.tag === 'mw-pagination' ) {
-					switchPage( location.href, true );
-				}
-			} );
-		}
+		// Update the url using the History API
+		history.replaceState( { tag: 'mw-pagination' }, '' );
+		$( window ).on( 'popstate', function ( e ) {
+			var state = e.originalEvent.state;
+			if ( state && state.tag === 'mw-pagination' ) {
+				switchPage( location.href, true );
+			}
+		} );
 	} );
 }() );
