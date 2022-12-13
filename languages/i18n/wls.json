@@ -612,7 +612,6 @@
 	"logentry-newusers-autocreate": "Ko te nūmelo $1 ne'e {{GENDER:$2|fa'u}} fakahagatonu",
 	"logentry-upload-upload": "$1 {{GENDER:$2|fakahū}} $3",
 	"logentry-upload-overwrite": "Ko te $1 {{GENDER:$2|ne'e fakahū}} ko he fakafo'ou o te $3",
-	"feedback-back": "Ki muli",
 	"feedback-cancel": "Fakafisi",
 	"feedback-close": "'Osi",
 	"feedback-thanks-title": "Mālō!",

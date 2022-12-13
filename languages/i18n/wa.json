@@ -1689,7 +1689,6 @@
 	"logentry-upload-upload": "$1 {{GENDER:$2|}}a-st eberweté $3",
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|a-z eberweté}} ene novele modêye di $3",
 	"rightsnone": "(nouk)",
-	"feedback-adding": "Vosse messaedje a stî håyné sol pådje...",
 	"feedback-cancel": "Rinoncî",
 	"feedback-close": "Fwait",
 	"feedback-message": "Messaedje",

@@ -2702,8 +2702,6 @@
 	"logentry-upload-upload": "$1 $3 faylını {{GENDER:$2|yüklədi}}.",
 	"logentry-upload-overwrite": "$1 $3 faylının yeni versiyasını {{GENDER:$2|yüklədi}}",
 	"rightsnone": "(yoxdur)",
-	"feedback-back": "Əvvəlki",
-	"feedback-bugnew": "Mən yoxladım. Yeni xəta barədə xəbər ver",
 	"feedback-cancel": "İmtina",
 	"feedback-close": "Oldu",
 	"feedback-message": "Mesaj:",

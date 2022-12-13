@@ -1581,7 +1581,6 @@
 	"logentry-upload-upload": "$1  {{GENDER:$2|ပတိုန်ပၠောပ်လဝ်}} $3",
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|ပလံင်ပၠောပ်လဝ်}} မူလိက် $3ဏအ် တၟိမွဲ",
 	"rightsnone": "(ဟွံမဲ)",
-	"feedback-back": "ကလေင်",
 	"feedback-cancel": "တးပဲါ",
 	"feedback-close": "တုဲဒှ်",
 	"feedback-message": "မေတ်သုက်:",

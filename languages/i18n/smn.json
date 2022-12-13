@@ -1683,7 +1683,6 @@
 	"logentry-newusers-autocreate": "Kevtteetubdâldâh $1 {{GENDER:$2|rahtui}} automaatlávt",
 	"logentry-upload-upload": "$1 {{GENDER:$2|vuorkkij}} tiätuvuárhá $3",
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|vuorkkij}} uđđâ versio tiätuvuárhást $3",
-	"feedback-back": "Maassâd",
 	"feedback-cancel": "Jooskâ",
 	"feedback-close": "Vaalmâš",
 	"feedback-dialog-title": "Addel macâttâs",

@@ -2266,7 +2266,6 @@
 	"logentry-upload-upload": "$1 {{GENDER:$2|ներբեռնել է}} $3",
 	"logentry-upload-overwrite": "$1 {{GENDER:$2|վերբեռնեց}} $3-ի նոր տարբերակ",
 	"rightsnone": "(ոչ մի)",
-	"feedback-back": "Հետ",
 	"feedback-cancel": "Չեղարկել",
 	"feedback-close": "Արված է",
 	"feedback-message": "Հաղորդագրություն․",

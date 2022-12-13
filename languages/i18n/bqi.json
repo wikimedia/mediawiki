@@ -1767,7 +1767,6 @@
 	"logentry-upload-upload": "$1 {{GENDER:$2|سوڤار کرداْ}} $3",
 	"logentry-upload-overwrite": "$1 یٱ نوسقاْ تازاْ ز $3 ناْ {{GENDER:$2|سوڤار کرد}}",
 	"rightsnone": "(هيش كوم)",
-	"feedback-back": "دیندا",
 	"feedback-cancel": "ٱنجومشیڤ کردن",
 	"feedback-close": "ٱنجوم ڤابی",
 	"feedback-message": "پاٛیغوم:",
