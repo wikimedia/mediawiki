@@ -102,6 +102,19 @@ class TestUserRegistry {
 	}
 
 	/**
+	 * Call clearInstanceCache() on all User objects known to the registry.
+	 * This ensures that the User objects do not retain stale references
+	 * to service objects.
+	 *
+	 * @since 1.39
+	 */
+	public static function clearInstanceCaches() {
+		foreach ( self::$testUsers as $user ) {
+			$user->getUser()->clearInstanceCache();
+		}
+	}
+
+	/**
 	 * @todo It would be nice if this were a non-static method of TestUser
 	 * instead, but that doesn't seem possible without friends?
 	 *

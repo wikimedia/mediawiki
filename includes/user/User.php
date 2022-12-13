@@ -1365,11 +1365,25 @@ class User implements Authority, UserIdentity, UserEmailContact {
 
 		if ( $wgFullyInitialised && $this->mFrom ) {
 			$services = MediaWikiServices::getInstance();
-			$services->getPermissionManager()->invalidateUsersRightsCache( $this );
-			$services->getUserOptionsManager()->clearUserOptionsCache( $this );
-			$services->getTalkPageNotificationManager()->clearInstanceCache( $this );
-			$services->getUserGroupManager()->clearCache( $this );
-			$services->getUserEditTracker()->clearUserEditCache( $this );
+			if ( $services->peekService( 'PermissionManager' ) ) {
+				$services->getPermissionManager()->invalidateUsersRightsCache( $this );
+			}
+
+			if ( $services->peekService( 'UserOptionsManager' ) ) {
+				$services->getUserOptionsManager()->clearUserOptionsCache( $this );
+			}
+
+			if ( $services->peekService( 'TalkPageNotificationManager' ) ) {
+				$services->getTalkPageNotificationManager()->clearInstanceCache( $this );
+			}
+
+			if ( $services->peekService( 'UserGroupManager' ) ) {
+				$services->getUserGroupManager()->clearCache( $this );
+			}
+
+			if ( $services->peekService( 'UserEditTracker' ) ) {
+				$services->getUserEditTracker()->clearUserEditCache( $this );
+			}
 		}
 
 		if ( $reloadFrom ) {
