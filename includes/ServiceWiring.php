@@ -316,7 +316,8 @@ return [
 	'BlockErrorFormatter' => static function ( MediaWikiServices $services ): BlockErrorFormatter {
 		return new BlockErrorFormatter(
 			$services->getTitleFormatter(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getUserNameUtils()
 		);
 	},
 
