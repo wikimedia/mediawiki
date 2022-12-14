@@ -104,7 +104,6 @@ function wfThumbHandle404() {
  */
 function wfStreamThumb( array $params ) {
 	global $wgVaryOnXFP;
-	$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 	$headers = []; // HTTP headers to send
 
@@ -131,9 +130,11 @@ function wfStreamThumb( array $params ) {
 	$isTemp = ( isset( $params['temp'] ) && $params['temp'] );
 	unset( $params['temp'] ); // handlers don't care
 
+	$services = MediaWikiServices::getInstance();
+
 	// Some basic input validation
 	$fileName = strtr( $fileName, '\\/', '__' );
-	$localRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
+	$localRepo = $services->getRepoGroup()->getLocalRepo();
 
 	// Actually fetch the image. Method depends on whether it is archived or not.
 	if ( $isTemp ) {
@@ -169,11 +170,11 @@ function wfStreamThumb( array $params ) {
 
 	// Check permissions if there are read restrictions
 	$varyHeader = [];
-	if ( !in_array( 'read', $permissionManager->getGroupPermissions( [ '*' ] ), true ) ) {
+	if ( !$services->getGroupPermissionsLookup()->groupHasPermission( '*', 'read' ) ) {
 		$user = RequestContext::getMain()->getUser();
 		$imgTitle = $img->getTitle();
 
-		if ( !$imgTitle || !$permissionManager->userCan( 'read', $user, $imgTitle ) ) {
+		if ( !$imgTitle || !$services->getPermissionManager()->userCan( 'read', $user, $imgTitle ) ) {
 			wfThumbError( 403, 'Access denied. You do not have permission to access ' .
 				'the source file.' );
 			return;
@@ -336,7 +337,7 @@ function wfStreamThumb( array $params ) {
 		$streamtime = microtime( true ) - $starttime;
 
 		if ( $status->isOK() ) {
-			MediaWikiServices::getInstance()->getStatsdDataFactory()->timing(
+			$services->getStatsdDataFactory()->timing(
 				'media.thumbnail.stream', $streamtime
 			);
 		} else {
