@@ -187,14 +187,6 @@ class HtmlOutputRendererHelper {
 	}
 
 	/**
-	 * @return void
-	 */
-	public function logLinterData(): void {
-		$this->parsoidOutputAccessOptions =
-			$this->parsoidOutputAccessOptions | ParsoidOutputAccess::OPT_LOG_LINT_DATA;
-	}
-
-	/**
 	 * Set the desired Parsoid profile version for the output.
 	 * The actual output version is selected to be compatible with the one given here,
 	 * per the rules of semantic versioning.
@@ -537,11 +529,16 @@ class HtmlOutputRendererHelper {
 			$pageRecordAvailable = $this->page instanceof PageRecord;
 
 			if ( $pageRecordAvailable && !$isFakeRevision && !$parsoidOptions && $this->isCacheable ) {
+				// Always log lint info when generating cacheable output.
+				// We are not really interested in lint data for old revisions, but
+				// we don't have a good way to tell at this point.
+				$flags = $this->parsoidOutputAccessOptions | ParsoidOutputAccess::OPT_LOG_LINT_DATA;
+
 				$status = $this->parsoidOutputAccess->getParserOutput(
 					$this->page,
 					$parserOptions,
 					$this->revisionOrId,
-					$this->parsoidOutputAccessOptions
+					$flags
 				);
 			} else {
 				$status = $this->parsoidOutputAccess->parse(
