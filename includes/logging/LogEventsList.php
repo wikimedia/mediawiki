@@ -105,9 +105,11 @@ class LogEventsList extends ContextSource {
 	 * @param string $tagFilter Tag to select by default
 	 * @param string|null $action
 	 * @param array $extras
+	 * @param bool $tagInvert whether tags are filtered for (false) or out (true)
 	 */
 	public function showOptions( $types = [], $user = '', $page = '', $pattern = false, $year = 0,
-		$month = 0, $day = 0, $filter = null, $tagFilter = '', $action = null, $extras = []
+		$month = 0, $day = 0, $filter = null, $tagFilter = '', $action = null, $extras = [],
+		$tagInvert = false
 	) {
 		// For B/C, we take strings, but make sure they are converted...
 		$types = ( $types === '' ) ? [] : (array)$types;
@@ -157,6 +159,13 @@ class LogEventsList extends ContextSource {
 			'label-message' => 'tag-filter',
 			'default' => $tagFilter,
 		];
+		$formDescriptor['tagInvert'] = [
+			'type' => 'check',
+			'name' => 'tagInvert',
+			'label-message' => 'invert',
+			'hide-if' => [ '===', 'tagfilter', '' ],
+			'default' => $tagInvert,
+		];
 
 		// Filter links
 		if ( $filter ) {
@@ -177,7 +186,7 @@ class LogEventsList extends ContextSource {
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $context );
 		$htmlForm
 			->setSubmitTextMsg( 'logeventslist-submit' )
-			->setMethod( 'get' )
+			->setMethod( 'GET' )
 			->setWrapperLegendMsg( 'log' )
 			// T321154
 			->setFormIdentifier( 'logeventslist' );
