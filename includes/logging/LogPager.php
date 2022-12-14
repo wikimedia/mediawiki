@@ -64,6 +64,9 @@ class LogPager extends ReverseChronologicalPager {
 	/** @var string */
 	private $mTagFilter;
 
+	/** @var bool */
+	private $mTagInvert;
+
 	/** @var LogEventsList */
 	public $mLogEventsList;
 
@@ -89,13 +92,15 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param LinkBatchFactory|null $linkBatchFactory
 	 * @param ILoadBalancer|null $loadBalancer
 	 * @param ActorNormalization|null $actorNormalization
+	 * @param bool $tagInvert whether tags are filtered for (false) or out (true)
 	 */
 	public function __construct( $list, $types = [], $performer = '', $page = '',
 		$pattern = false, $conds = [], $year = false, $month = false, $day = false,
 		$tagFilter = '', $action = '', $logId = 0,
 		LinkBatchFactory $linkBatchFactory = null,
 		ILoadBalancer $loadBalancer = null,
-		ActorNormalization $actorNormalization = null
+		ActorNormalization $actorNormalization = null,
+		$tagInvert = false
 	) {
 		$services = MediaWikiServices::getInstance();
 		// Set database before parent constructor to avoid setting it there with wfGetDB
@@ -118,6 +123,7 @@ class LogPager extends ReverseChronologicalPager {
 		$this->limitAction( $action );
 		$this->getDateCond( $year, $month, $day );
 		$this->mTagFilter = (string)$tagFilter;
+		$this->mTagInvert = (bool)$tagInvert;
 	}
 
 	public function getDefaultQuery() {
@@ -408,7 +414,7 @@ class LogPager extends ReverseChronologicalPager {
 		];
 		# Add ChangeTags filter query
 		ChangeTags::modifyDisplayQuery( $info['tables'], $info['fields'], $info['conds'],
-			$info['join_conds'], $info['options'], $this->mTagFilter );
+			$info['join_conds'], $info['options'], $this->mTagFilter, $this->mTagInvert );
 
 		return $info;
 	}
@@ -494,6 +500,10 @@ class LogPager extends ReverseChronologicalPager {
 
 	public function getTagFilter() {
 		return $this->mTagFilter;
+	}
+
+	public function getTagInvert() {
+		return $this->mTagInvert;
 	}
 
 	public function getAction() {
