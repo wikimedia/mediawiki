@@ -26,6 +26,7 @@
 			"Xiplus",
 			"Zhxy 519",
 			"列维劳德",
+			"捍粵者",
 			"星海",
 			"烈羽"
 		]
@@ -284,7 +285,7 @@
 	"apihelp-import-param-tags": "更改標籤套用到在匯入日誌裡的項目，以及在匯入頁面裡的無效修訂。",
 	"apihelp-import-example-import": "以完整歷史紀錄匯入 [[meta:Help:ParserFunctions]] 至命名空間 100。",
 	"apihelp-linkaccount-summary": "從第三方供應者來連結帳號至目前的使用者。",
-	"apihelp-linkaccount-example-link": "開始進行從 <kbd>Example</kbd> 連結至帳號的程序。",
+	"apihelp-linkaccount-example-link": "開始從<kbd>Example</kbd>連結至帳號",
 	"apihelp-login-summary": "登入並取得身分核對 cookies",
 	"apihelp-login-extended-description": "此操作僅用於與 [[Special:BotPasswords]] 一起使用，用於主帳號登入的功能已棄用，並且可能會在不帶有警告的情況下失敗。要安全登入主帳號，請使用 <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>。",
 	"apihelp-login-extended-description-nobotpasswords": "此操作已被棄用，且可能在不帶警告的情況下失敗。要安全登入請使用 <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>。",

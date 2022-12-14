@@ -3492,6 +3492,7 @@
 	"tag-filter": "[[Special:Tags|Markierungs]]-Filter:",
 	"tag-filter-submit": "Filter",
 	"tag-hidden": "$1 (versteckte Markierung)",
+	"tag-link-other-edits": "weitere Bearbeitungen",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Markierung|Markierungen}}]]: $2",
 	"tag-mw-contentmodelchange": "Änderung des Inhaltsmodells",
 	"tag-mw-contentmodelchange-description": "Bearbeitungen, die [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel das Inhaltsmodell einer Seite ändern]",
