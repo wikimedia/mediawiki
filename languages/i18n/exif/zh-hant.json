@@ -12,7 +12,8 @@
 			"Mark85296341",
 			"Pseudo Classes",
 			"Waihorace",
-			"Xiplus"
+			"Xiplus",
+			"捍粵者"
 		]
 	},
 	"exif-imagewidth": "寬度",
@@ -314,7 +315,7 @@
 	"exif-gpslongitude-w": "西經",
 	"exif-gpsaltitude-above-sealevel": "海拔 $1 {{PLURAL:$1|公尺}}",
 	"exif-gpsaltitude-below-sealevel": "海拔負 $1 {{PLURAL:$1|公尺}}",
-	"exif-gpsstatus-a": "測量進行中",
+	"exif-gpsstatus-a": "測量中",
 	"exif-gpsstatus-v": "測量互通性",
 	"exif-gpsmeasuremode-2": "二維測量",
 	"exif-gpsmeasuremode-3": "三維測量",

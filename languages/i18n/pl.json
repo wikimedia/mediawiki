@@ -1089,7 +1089,7 @@
 	"showingresultsinrange": "Poniżej wyświetlono co najwyżej {{PLURAL:$1|<strong>1</strong> wynik|<strong>$1</strong> wyniki|<strong>$1</strong> wyników}} w zakresie od <strong>$2</strong> do <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Wynik <strong>$1</strong> z <strong>$3</strong>|Wyniki <strong>$1 – $2</strong> z <strong>$3</strong>}}",
 	"search-nonefound": "Brak wyników spełniających kryteria podane w zapytaniu.",
-	"search-nonefound-thiswiki": "Brak wyników spełniających kryteria podane w zapytaniu $3.",
+	"search-nonefound-thiswiki": "Brak wyników spełniających kryteria podane w zapytaniu na tej wiki.",
 	"powersearch-legend": "Wyszukiwanie zaawansowane",
 	"powersearch-ns": "Przeszukaj przestrzenie nazw:",
 	"powersearch-togglelabel": "Zaznacz:",
