@@ -130,6 +130,7 @@ use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RestrictionStore;
+use MediaWiki\PoolCounter\PoolCounterFactory;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidator;
@@ -1501,6 +1502,14 @@ return [
 			$services->getTempUserConfig(),
 			$services->getUserFactory(),
 			$services->getActionFactory()
+		);
+	},
+
+	'PoolCounterFactory' => static function ( MediaWikiServices $services ): PoolCounterFactory {
+		$mainConfig = $services->getMainConfig();
+		return new PoolCounterFactory(
+			$mainConfig->get( MainConfigNames::PoolCounterConf ),
+			$mainConfig->get( MainConfigNames::PoolCountClientConf )
 		);
 	},
 
