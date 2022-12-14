@@ -1025,7 +1025,7 @@
 	"showingresultsinrange": "{{PLURAL:$1|1=Приказан је <strong>један</strong> резултат|Приказан је <strong>$1</strong> резултат|Приказана су <strong>$1</strong> резултата|Приказано је <strong>$1</strong> резултата}}; опсег: од <strong>$2</strong> до <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Резултат <strong>$1</strong> од <strong>$3</strong>|Резултати <strong>$1—$2</strong> од <strong>$3</strong>}}",
 	"search-nonefound": "Нису пронађени резултати који одговарају упиту.",
-	"search-nonefound-thiswiki": "Нема резултата на $3 који се поклапају с термином претраге.",
+	"search-nonefound-thiswiki": "Нису пронађени резултати који одговарају упиту.",
 	"powersearch-legend": "Напредна претрага",
 	"powersearch-ns": "Претрага по именским просторима:",
 	"powersearch-togglelabel": "Изабери:",

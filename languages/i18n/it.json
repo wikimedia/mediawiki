@@ -1127,7 +1127,7 @@
 	"showingresultsinrange": "{{PLURAL:$1|Viene mostrato|Vengono mostrati}} sotto {{PLURAL:$1|<strong>1</strong> risultato|<strong>$1</strong> risultati}} dal <strong>$2</strong> al <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Risultato <strong>$1</strong> di <strong>$3</strong>|Risultati <strong>$1 - $2</strong> di <strong>$3</strong>}}",
 	"search-nonefound": "La ricerca non ha prodotto risultati.",
-	"search-nonefound-thiswiki": "La ricerca non ha prodotto risultati in $3.",
+	"search-nonefound-thiswiki": "La ricerca non ha prodotto risultati in questo sito.",
 	"powersearch-legend": "Ricerca avanzata",
 	"powersearch-ns": "Cerca nei namespace:",
 	"powersearch-togglelabel": "Seleziona:",

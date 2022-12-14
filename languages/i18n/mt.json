@@ -176,6 +176,7 @@
 	"history_small": "kronoloġija",
 	"updatedmarker": "ġiet modifikata mill-aħħar żjara tiegħek",
 	"printableversion": "Verżjoni għall-ipprintjar",
+	"printableversion-deprecated-warning": "Il-verżjoni stampabbli m'għadhiex appoġġjata u jista' jkollha żbalji ta' rendering. Jekk jogħġbok aġġorna l-bookmarks tal-browser tiegħek u jekk jogħġbok uża l-funzjoni tal-istampar tal-browser default minflok.",
 	"permalink": "Ħolqa permanenti",
 	"print": "Ipprintja",
 	"view": "Ara",

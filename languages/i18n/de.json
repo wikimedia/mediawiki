@@ -1099,7 +1099,7 @@
 	"showingresultsinrange": "Unten {{PLURAL:$1|wird <strong>ein</strong> Ergebnis|werden bis zu <strong>$1</strong> Ergebnisse}} im Bereich <strong>$2</strong> bis <strong>$3</strong> angezeigt.",
 	"search-showingresults": "{{PLURAL:$4|Ergebnis <strong>$1</strong> von <strong>$3</strong>|Ergebnisse <strong>$1 bis $2</strong> von <strong>$3</strong>}}",
 	"search-nonefound": "Zu deiner Suchanfrage wurden keine Ergebnisse gefunden.",
-	"search-nonefound-thiswiki": "Es gibt auf $3 keine der Suchanfrage entsprechenden Ergebnisse.",
+	"search-nonefound-thiswiki": "Es gibt auf dieser Website keine der Suchanfrage entsprechenden Ergebnisse.",
 	"powersearch-legend": "Erweiterte Suche",
 	"powersearch-ns": "Suche in Namensräumen:",
 	"powersearch-togglelabel": "Wähle aus:",
