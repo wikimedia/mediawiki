@@ -236,6 +236,7 @@
 	"apihelp-feedrecentchanges-param-hidemyself": "{{doc-apihelp-param|feedrecentchanges|hidemyself}}",
 	"apihelp-feedrecentchanges-param-hidecategorization": "{{doc-apihelp-param|feedrecentchanges|hidecategorization}}",
 	"apihelp-feedrecentchanges-param-tagfilter": "{{doc-apihelp-param|feedrecentchanges|tagfilter}}",
+	"apihelp-feedrecentchanges-param-inverttags": "{{doc-apihelp-param|feedrecentchanges|inverttags}}",
 	"apihelp-feedrecentchanges-param-target": "{{doc-apihelp-param|feedrecentchanges|target}}",
 	"apihelp-feedrecentchanges-param-showlinkedto": "{{doc-apihelp-param|feedrecentchanges|showlinkedto}}",
 	"apihelp-feedrecentchanges-example-simple": "{{doc-apihelp-example|feedrecentchanges}}",
