@@ -3,7 +3,9 @@
 namespace MediaWiki\User;
 
 use ActorMigration;
+use DBAccessObjectUtils;
 use DeferredUpdates;
+use IDBAccessObject;
 use InvalidArgumentException;
 use JobQueueGroup;
 use UserEditCountInitJob;
@@ -139,22 +141,24 @@ class UserEditTracker {
 	 * Get the user's first edit timestamp
 	 *
 	 * @param UserIdentity $user
+	 * @param int $flags bit field, see IDBAccessObject::READ_XXX
 	 * @return string|false Timestamp of first edit, or false for non-existent/anonymous user
 	 *  accounts.
 	 */
-	public function getFirstEditTimestamp( UserIdentity $user ) {
-		return $this->getUserEditTimestamp( $user, self::FIRST_EDIT );
+	public function getFirstEditTimestamp( UserIdentity $user, int $flags = IDBAccessObject::READ_NORMAL ) {
+		return $this->getUserEditTimestamp( $user, self::FIRST_EDIT, $flags );
 	}
 
 	/**
 	 * Get the user's latest edit timestamp
 	 *
 	 * @param UserIdentity $user
+	 * @param int $flags bit field, see IDBAccessObject::READ_XXX
 	 * @return string|false Timestamp of latest edit, or false for non-existent/anonymous user
 	 *  accounts.
 	 */
-	public function getLatestEditTimestamp( UserIdentity $user ) {
-		return $this->getUserEditTimestamp( $user, self::LATEST_EDIT );
+	public function getLatestEditTimestamp( UserIdentity $user, int $flags = IDBAccessObject::READ_NORMAL ) {
+		return $this->getUserEditTimestamp( $user, self::LATEST_EDIT, $flags );
 	}
 
 	/**
@@ -162,18 +166,20 @@ class UserEditTracker {
 	 *
 	 * @param UserIdentity $user
 	 * @param int $type either self::FIRST_EDIT or ::LATEST_EDIT
+	 * @param int $flags bit field, see IDBAccessObject::READ_XXX
 	 * @return string|false Timestamp of edit, or false for non-existent/anonymous user accounts.
 	 */
-	private function getUserEditTimestamp( UserIdentity $user, int $type ) {
+	private function getUserEditTimestamp( UserIdentity $user, int $type, int $flags = IDBAccessObject::READ_NORMAL ) {
 		if ( !$user->isRegistered() ) {
 			return false;
 		}
+		list( $index ) = DBAccessObjectUtils::getDBOptions( $flags );
 
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$actorWhere = $this->actorMigration->getWhere( $dbr, 'rev_user', $user );
+		$db = $this->loadBalancer->getConnectionRef( $index );
+		$actorWhere = $this->actorMigration->getWhere( $db, 'rev_user', $user );
 
 		$sortOrder = ( $type === self::FIRST_EDIT ) ? 'ASC' : 'DESC';
-		$time = $dbr->selectField(
+		$time = $db->selectField(
 			[ 'revision' ] + $actorWhere['tables'],
 			'rev_timestamp',
 			[ $actorWhere['conds'] ],
