@@ -52,9 +52,6 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class BacklinkCache {
 
-	/** @var BacklinkCache */
-	protected static $instance;
-
 	/**
 	 * Multi dimensions array representing batches. Keys are:
 	 *  > (string) links table name
