@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 use Composer\Semver\Semver;
 use Exception;
 use Generator;
+use JavaScriptContent;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\PageIdentity;
@@ -2075,6 +2076,31 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		// This should not trigger a parser cache write, because we set the write-ration to 0
 		$handler->wt2html( $pageConfig, $attribs );
+	}
+
+	public function testWt2html_BadContentModel() {
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$this->editPage( $page, new JavaScriptContent( '"not wikitext"' ) );
+		$pageConfig = $this->getPageConfig( $page );
+
+		$attribs = self::DEFAULT_ATTRIBS;
+		$attribs['opts']['from'] = 'wikitext';
+		// Asking for a 'pagebundle' here because of T325137.
+		$attribs['opts']['format'] = 'pagebundle';
+
+		$handler = $this->newParsoidHandler();
+		$response = $handler->wt2html( $pageConfig, $attribs );
+
+		$this->assertSame( 200, $response->getStatusCode() );
+
+		$body = $response->getBody();
+		$body->rewind();
+		$data = $body->getContents();
+
+		$jsonData = json_decode( $data, JSON_OBJECT_AS_ARRAY );
+
+		$this->assertIsArray( $jsonData );
+		$this->assertStringContainsString( "Dummy output", $jsonData['html']['body'] );
 	}
 
 	// TODO: test wt2html failure modes
