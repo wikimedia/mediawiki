@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
@@ -118,6 +119,9 @@ class Article implements Page {
 	 */
 	private $userOptionsLookup;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/**
 	 * @var RevisionRecord|null Revision to be shown
 	 *
@@ -140,6 +144,7 @@ class Article implements Page {
 		$this->watchlistManager = $services->getWatchlistManager();
 		$this->userNameUtils = $services->getUserNameUtils();
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
+		$this->commentFormatter = $services->getCommentFormatter();
 	}
 
 	/**
@@ -1626,9 +1631,10 @@ class Article implements Page {
 					$tdtime,
 					$revisionUser ? $revisionUser->getName() : ''
 				)
-				->rawParams( Linker::revComment(
+				->rawParams( $this->commentFormatter->formatRevision(
 					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revisionRecord known to exists
 					$revisionRecord,
+					$user,
 					true,
 					true
 				) )

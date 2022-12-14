@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Revision\RevisionStore;
@@ -27,6 +28,9 @@ class DeletedContribsPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var RevisionStore */
 	private $revisionStore;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	protected function setUp(): void {
 		parent::setUp();
 
@@ -36,6 +40,7 @@ class DeletedContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$this->linkRenderer = $services->getLinkRenderer();
 		$this->loadBalancer = $services->getDBLoadBalancer();
 		$this->revisionStore = $services->getRevisionStore();
+		$this->commentFormatter = $services->getCommentFormatter();
 		$this->pager = $this->getDeletedContribsPager();
 	}
 
@@ -47,6 +52,7 @@ class DeletedContribsPagerTest extends MediaWikiIntegrationTestCase {
 			$this->linkRenderer,
 			$this->loadBalancer,
 			$this->revisionStore,
+			$this->commentFormatter,
 			$target,
 			$namespace
 		);

@@ -728,7 +728,8 @@ class LogFormatter {
 	 */
 	public function getComment() {
 		if ( $this->canView( LogPage::DELETED_COMMENT ) ) {
-			$comment = Linker::commentBlock( $this->entry->getComment() );
+			$comment = MediaWikiServices::getInstance()->getCommentFormatter()
+				->formatBlock( $this->entry->getComment() );
 			// No hard coded spaces thanx
 			$element = ltrim( $comment );
 			if ( $this->entry->isDeleted( LogPage::DELETED_COMMENT ) ) {

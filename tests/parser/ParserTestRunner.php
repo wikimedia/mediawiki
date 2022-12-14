@@ -27,7 +27,6 @@
  */
 
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
-use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutputFlags;
@@ -1339,7 +1338,7 @@ class ParserTestRunner {
 			$replace = $opts['replace'][1];
 			$out = $parser->replaceSection( $wikitext, $section, $replace );
 		} elseif ( isset( $opts['comment'] ) ) {
-			$out = Linker::formatComment( $wikitext, $title, $local );
+			$out = MediaWikiServices::getInstance()->getCommentFormatter()->format( $wikitext, $title, $local );
 		} elseif ( isset( $opts['preload'] ) ) {
 			$out = $parser->getPreloadText( $wikitext, $title, $options );
 		} else {
