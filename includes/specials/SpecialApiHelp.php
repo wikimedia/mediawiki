@@ -62,13 +62,13 @@ class SpecialApiHelp extends UnlistedSpecialPage {
 		// These are for linking from wikitext, since url parameters are a pain
 		// to do.
 		while ( true ) {
-			if ( substr( $par, 0, 4 ) === 'sub/' ) {
+			if ( str_starts_with( $par, 'sub/' ) ) {
 				$par = substr( $par, 4 );
 				$options['submodules'] = 1;
 				continue;
 			}
 
-			if ( substr( $par, 0, 5 ) === 'rsub/' ) {
+			if ( str_starts_with( $par, 'rsub/' ) ) {
 				$par = substr( $par, 5 );
 				$options['recursivesubmodules'] = 1;
 				continue;

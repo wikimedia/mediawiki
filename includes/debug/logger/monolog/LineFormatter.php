@@ -71,7 +71,7 @@ class LineFormatter extends MonologLineFormatter {
 		// Will be output for a '%exception%' placeholder in format
 		$prettyException = '';
 		if ( isset( $record['context']['exception'] ) &&
-			strpos( $this->format, '%exception%' ) !== false
+			str_contains( $this->format, '%exception%' )
 		) {
 			$e = $record['context']['exception'];
 			unset( $record['context']['exception'] );
@@ -87,7 +87,7 @@ class LineFormatter extends MonologLineFormatter {
 
 		$output = parent::format( $record );
 
-		if ( strpos( $output, '%exception%' ) !== false ) {
+		if ( str_contains( $output, '%exception%' ) ) {
 			$output = str_replace( '%exception%', $prettyException, $output );
 		}
 		return $output;

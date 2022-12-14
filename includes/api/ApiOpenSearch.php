@@ -78,7 +78,7 @@ class ApiOpenSearch extends ApiBase {
 				$format = $allowedParams['format'][ParamValidator::PARAM_DEFAULT];
 			}
 
-			if ( substr( $format, -2 ) === 'fm' ) {
+			if ( str_ends_with( $format, 'fm' ) ) {
 				$this->format = substr( $format, 0, -2 );
 				$this->fm = 'fm';
 			} else {

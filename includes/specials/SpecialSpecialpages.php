@@ -91,7 +91,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 		$includesCachedPages = false;
 
 		foreach ( $groups as $group => $sortedPages ) {
-			if ( strpos( $group, '/' ) !== false ) {
+			if ( str_contains( $group, '/' ) ) {
 				[ $group, $subGroup ] = explode( '/', $group, 2 );
 				$out->wrapWikiMsg(
 					"<h3 class=\"mw-specialpagessubgroup\">$1</h3>\n",

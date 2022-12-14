@@ -66,11 +66,11 @@ class ApiParamInfo extends ApiBase {
 				if ( $path === '*' || $path === '**' ) {
 					$path = "main+$path";
 				}
-				if ( substr( $path, -2 ) === '+*' || substr( $path, -2 ) === ' *' ) {
+				if ( str_ends_with( $path, '+*' ) || str_ends_with( $path, ' *' ) ) {
 					$submodules = true;
 					$path = substr( $path, 0, -2 );
 					$recursive = false;
-				} elseif ( substr( $path, -3 ) === '+**' || substr( $path, -3 ) === ' **' ) {
+				} elseif ( str_ends_with( $path, '+**' ) || str_ends_with( $path, ' **' ) ) {
 					$submodules = true;
 					$path = substr( $path, 0, -3 );
 					$recursive = true;

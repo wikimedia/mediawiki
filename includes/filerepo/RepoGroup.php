@@ -423,7 +423,7 @@ class RepoGroup {
 	 * @return string[] Containing repo, zone and rel
 	 */
 	private function splitVirtualUrl( $url ) {
-		if ( substr( $url, 0, 9 ) != 'mwrepo://' ) {
+		if ( !str_starts_with( $url, 'mwrepo://' ) ) {
 			throw new MWException( __METHOD__ . ': unknown protocol' );
 		}
 

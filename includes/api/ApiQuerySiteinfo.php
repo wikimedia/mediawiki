@@ -549,7 +549,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			}
 
 			$val['url'] = wfExpandUrl( $row['iw_url'], PROTO_CURRENT );
-			$val['protorel'] = substr( $row['iw_url'], 0, 2 ) == '//';
+			$val['protorel'] = str_starts_with( $row['iw_url'], '//' );
 			if ( isset( $row['iw_wikiid'] ) && $row['iw_wikiid'] !== '' ) {
 				$val['wikiid'] = $row['iw_wikiid'];
 			}
@@ -687,7 +687,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		$data = [];
 		$installed = new ComposerInstalled( $path );
 		foreach ( $installed->getInstalledDependencies() as $name => $info ) {
-			if ( strpos( $info['type'], 'mediawiki-' ) === 0 ) {
+			if ( str_starts_with( $info['type'], 'mediawiki-' ) ) {
 				// Skip any extensions or skins since they'll be listed
 				// in their proper section
 				continue;

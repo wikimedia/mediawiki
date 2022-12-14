@@ -382,12 +382,12 @@ class BotPassword implements IDBAccessObject {
 	public static function canonicalizeLoginData( $username, $password ) {
 		$sep = self::getSeparator();
 		// the strlen check helps minimize the password information obtainable from timing
-		if ( strlen( $password ) >= self::PASSWORD_MINLENGTH && strpos( $username, $sep ) !== false ) {
+		if ( strlen( $password ) >= self::PASSWORD_MINLENGTH && str_contains( $username, $sep ) ) {
 			// the separator is not valid in new usernames but might appear in legacy ones
 			if ( preg_match( '/^[0-9a-w]{' . self::PASSWORD_MINLENGTH . ',}$/', $password ) ) {
 				return [ $username, $password ];
 			}
-		} elseif ( strlen( $password ) > self::PASSWORD_MINLENGTH && strpos( $password, $sep ) !== false ) {
+		} elseif ( strlen( $password ) > self::PASSWORD_MINLENGTH && str_contains( $password, $sep ) ) {
 			$segments = explode( $sep, $password );
 			$password = array_pop( $segments );
 			$appId = implode( $sep, $segments );
@@ -421,7 +421,7 @@ class BotPassword implements IDBAccessObject {
 
 		// Split name into name+appId
 		$sep = self::getSeparator();
-		if ( strpos( $username, $sep ) === false ) {
+		if ( !str_contains( $username, $sep ) ) {
 			return self::loginHook( $username, null, Status::newFatal( 'botpasswords-invalid-name', $sep ) );
 		}
 		[ $name, $appId ] = explode( $sep, $username, 2 );

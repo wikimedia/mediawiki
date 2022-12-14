@@ -2160,7 +2160,7 @@ class HTMLForm extends ContextSource {
 		// As browser remove the query string before submitting GET forms,
 		// it means that the title would be lost. In such case use script path instead
 		// and put title in an hidden field (see getHiddenFields()).
-		if ( strpos( $articlePath, '?' ) !== false && $this->getMethod() === 'get' ) {
+		if ( str_contains( $articlePath, '?' ) && $this->getMethod() === 'get' ) {
 			return $this->getConfig()->get( MainConfigNames::Script );
 		}
 

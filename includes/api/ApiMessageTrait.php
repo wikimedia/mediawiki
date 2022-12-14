@@ -102,9 +102,9 @@ trait ApiMessageTrait {
 			} elseif ( $key === 'apierror-missingparam' ) {
 				// @todo: Kill this case along with ApiBase::$messageMap
 				$this->apiCode = 'no' . $this->getParams()[0];
-			} elseif ( substr( $key, 0, 8 ) === 'apiwarn-' ) {
+			} elseif ( str_starts_with( $key, 'apiwarn-' ) ) {
 				$this->apiCode = substr( $key, 8 );
-			} elseif ( substr( $key, 0, 9 ) === 'apierror-' ) {
+			} elseif ( str_starts_with( $key, 'apierror-' ) ) {
 				$this->apiCode = substr( $key, 9 );
 			} else {
 				$this->apiCode = $key;

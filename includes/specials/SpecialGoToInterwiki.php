@@ -58,7 +58,7 @@ class SpecialGoToInterwiki extends UnlistedSpecialPage {
 		// RedirectSpecialPage::personallyIdentifiableTarget). See the hack
 		// for avoiding T109724 in MediaWiki::performRequest (which also
 		// explains why we can't use a query parameter instead).
-		$force = ( strpos( $par, 'force/' ) === 0 );
+		$force = str_starts_with( $par, 'force/' );
 		if ( $force ) {
 			$par = substr( $par, 6 );
 		}

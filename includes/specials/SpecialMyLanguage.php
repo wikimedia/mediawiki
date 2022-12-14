@@ -123,7 +123,7 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 			$provided = Title::newFromText( $subpage );
 			$base = $provided;
 
-			if ( $provided && strpos( $subpage, '/' ) !== false ) {
+			if ( $provided && str_contains( $subpage, '/' ) ) {
 				$pos = strrpos( $subpage, '/' );
 				$basepage = substr( $subpage, 0, $pos );
 				$code = substr( $subpage, $pos + 1 );
