@@ -95,8 +95,8 @@ CLDRPluralRuleParser:
 
 codex:
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.4.0.tgz
-  integrity: sha512-nmguZRw+LOPJkloX8DTIOCzHAqp6bx42ouGFI6JBNKsH/K31iuRfL5PLZdhk9JQf/LfidpfYE5LNmKecOdJApg==
+  src: https://registry.npmjs.org/@wikimedia/codex/-/codex-0.4.2.tgz
+  integrity: sha512-+J+3b3ItWJ75yHRMpZLuuwo6rX3FmgfsRp5KOZn69sOPom7LMhSk2dvuQTyJkFaCBy8y/DF+/8/ACuSuSzVChA==
   dest:
     package/dist/codex.es.js:
     package/dist/codex.umd.js:
@@ -107,8 +107,8 @@ codex:
 
 codex-design-tokens:
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-0.4.0.tgz
-  integrity: sha384-9yhgf2o/Cy1UfWsEGCwJN7SzjSQGPeYLgI9pkC/cJEi2iexevqWtwuiiotvFnHSJ
+  src: https://registry.npmjs.org/@wikimedia/codex-design-tokens/-/codex-design-tokens-0.4.2.tgz
+  integrity: sha384-3gyxG8uuw4uTkvvsbdp8DSvmFleFfIhjZjIzPf8mc8lGs5KCHAFU3JceJtI5o3e2
   dest:
     package/dist/theme-wikimedia-ui.less:
     package/LICENSE:
@@ -116,8 +116,8 @@ codex-design-tokens:
 
 codex-icons:
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.4.0.tgz
-  integrity: sha384-vCWysHc8228BIkgrmsE1vDjX15xGcf+d7KkLB2uSkVrV1A+A9oTfe4dlUtUNl25W
+  src: https://registry.npmjs.org/@wikimedia/codex-icons/-/codex-icons-0.4.2.tgz
+  integrity: sha384-PQjzn38gPu9fPHVC4QqIqDgRjpA1AhI0e0KdoJcNhyXfrB01Egp2Z6hgzMsHQlD3
   dest:
     package/dist/codex-icons.json:
     package/LICENSE:
@@ -125,8 +125,8 @@ codex-icons:
 
 codex-search:
   type: tar
-  src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.4.0.tgz
-  integrity: sha384-xJ268uuFqFds4D8VNXEbqlBIMmfJYqeSKlrJt6wJlDAP/1m9f14vxMOOEA1wblKE
+  src: https://registry.npmjs.org/@wikimedia/codex-search/-/codex-search-0.4.2.tgz
+  integrity: sha384-vV/2MZc5VfubDxGAMAPfM1S6ZWQzHBDqZM3v4UdbyOxTmkF3Upjl+t0T+LwP4sOg
   dest:
     package/dist/codex-search.es.js:
     package/dist/codex-search.umd.js:

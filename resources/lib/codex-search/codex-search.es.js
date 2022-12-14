@@ -104,12 +104,12 @@ const at = L({
       "cdx-icon--flipped": r.value === "rtl" && o.value !== null && tt(e.icon, o.value)
     })), a = p(
       () => et(e.icon, o.value || "", r.value || "ltr")
-    ), s = p(() => typeof a.value == "string" ? a.value : ""), f = p(() => typeof a.value != "string" ? a.value.path : "");
+    ), s = p(() => typeof a.value == "string" ? a.value : ""), m = p(() => typeof a.value != "string" ? a.value.path : "");
     return {
       rootElement: n,
       rootClasses: d,
       iconSvg: s,
-      iconPath: f,
+      iconPath: m,
       onClick: (b) => {
         t("click", b);
       }
@@ -330,8 +330,8 @@ const Bt = /* @__PURE__ */ V(yt, [["render", At]]), _t = L({
       t("change", "highlighted", !0);
     }, u = () => {
       t("change", "highlighted", !1);
-    }, l = (f) => {
-      f.button === 0 && t("change", "active", !0);
+    }, l = (m) => {
+      m.button === 0 && t("change", "active", !0);
     }, r = () => {
       t("change", "selected", !0);
     }, o = p(() => e.searchQuery.length > 0), d = p(() => ({
@@ -377,7 +377,7 @@ function kt(e, t, n, u, l, r) {
         class: "cdx-menu-item__content"
       }, {
         default: Q(() => {
-          var s, f, $, b, _, w;
+          var s, m, $, b, _, w;
           return [
             e.showThumbnail ? (c(), x(o, {
               key: 0,
@@ -397,7 +397,7 @@ function kt(e, t, n, u, l, r) {
               }, null, 8, ["title", "search-query", "lang"])) : (c(), v("span", {
                 key: 1,
                 class: "cdx-menu-item__text__label",
-                lang: (f = e.language) == null ? void 0 : f.label
+                lang: (m = e.language) == null ? void 0 : m.label
               }, [
                 A("bdi", null, E(e.title), 1)
               ], 8, It)),
@@ -600,7 +600,7 @@ const Ht = L({
     "delegateKeyNavigation"
   ],
   setup(e, { emit: t, slots: n, attrs: u }) {
-    const l = p(() => (e.footer && e.menuItems ? [...e.menuItems, e.footer] : e.menuItems).map((m) => Se($e({}, m), {
+    const l = p(() => (e.footer && e.menuItems ? [...e.menuItems, e.footer] : e.menuItems).map((f) => Se($e({}, f), {
       id: De("menu-item")
     }))), r = p(() => n["no-results"] ? e.showNoResultsSlot !== null ? e.showNoResultsSlot : l.value.length === 0 : !1), o = C(null), d = C(null);
     function a() {
@@ -608,22 +608,22 @@ const Ht = L({
         (i) => i.value === e.selected
       );
     }
-    function s(i, m) {
+    function s(i, f) {
       var y;
-      if (!(m && m.disabled))
+      if (!(f && f.disabled))
         switch (i) {
           case "selected":
-            t("update:selected", (y = m == null ? void 0 : m.value) != null ? y : null), t("update:expanded", !1), d.value = null;
+            t("update:selected", (y = f == null ? void 0 : f.value) != null ? y : null), t("update:expanded", !1), d.value = null;
             break;
           case "highlighted":
-            o.value = m || null;
+            o.value = f || null;
             break;
           case "active":
-            d.value = m || null;
+            d.value = f || null;
             break;
         }
     }
-    const f = p(() => {
+    const m = p(() => {
       if (o.value !== null)
         return l.value.findIndex(
           (i) => i.value === o.value.value
@@ -634,27 +634,27 @@ const Ht = L({
     }
     function b(i) {
       var B;
-      const m = (j) => {
+      const f = (j) => {
         for (let q = j - 1; q >= 0; q--)
           if (!l.value[q].disabled)
             return l.value[q];
       };
       i = i || l.value.length;
-      const y = (B = m(i)) != null ? B : m(l.value.length);
+      const y = (B = f(i)) != null ? B : f(l.value.length);
       $(y);
     }
     function _(i) {
-      const m = (B) => l.value.find((j, q) => !j.disabled && q > B);
+      const f = (B) => l.value.find((j, q) => !j.disabled && q > B);
       i = i != null ? i : -1;
-      const y = m(i) || m(-1);
+      const y = f(i) || f(-1);
       $(y);
     }
-    function w(i, m = !0) {
+    function w(i, f = !0) {
       function y() {
         t("update:expanded", !0), s("highlighted", a());
       }
       function B() {
-        m && (i.preventDefault(), i.stopPropagation());
+        f && (i.preventDefault(), i.stopPropagation());
       }
       switch (i.key) {
         case "Enter":
@@ -663,9 +663,9 @@ const Ht = L({
         case "Tab":
           return e.expanded && (o.value && t("update:selected", o.value.value), t("update:expanded", !1)), !0;
         case "ArrowUp":
-          return B(), e.expanded ? (o.value === null && s("highlighted", a()), b(f.value)) : y(), O(), !0;
+          return B(), e.expanded ? (o.value === null && s("highlighted", a()), b(m.value)) : y(), O(), !0;
         case "ArrowDown":
-          return B(), e.expanded ? (o.value === null && s("highlighted", a()), _(f.value)) : y(), O(), !0;
+          return B(), e.expanded ? (o.value === null && s("highlighted", a()), _(m.value)) : y(), O(), !0;
         case "Home":
           return B(), e.expanded ? (o.value === null && s("highlighted", a()), _()) : y(), O(), !0;
         case "End":
@@ -686,9 +686,9 @@ const Ht = L({
     J(re, (i) => {
       i && t("load-more");
     });
-    function F(i, m) {
+    function F(i, f) {
       if (i) {
-        g[m] = i.$el;
+        g[f] = i.$el;
         const y = e.visibleItemLimit;
         if (!y || e.menuItems.length < y)
           return;
@@ -696,13 +696,13 @@ const Ht = L({
           y,
           Math.max(2, Math.floor(0.2 * e.menuItems.length))
         );
-        m === e.menuItems.length - B && (N.value = i.$el);
+        f === e.menuItems.length - B && (N.value = i.$el);
       }
     }
     function O() {
-      if (!e.visibleItemLimit || e.visibleItemLimit > e.menuItems.length || f.value === void 0)
+      if (!e.visibleItemLimit || e.visibleItemLimit > e.menuItems.length || m.value === void 0)
         return;
-      const i = f.value >= 0 ? f.value : 0;
+      const i = m.value >= 0 ? m.value : 0;
       g[i].scrollIntoView({
         behavior: "smooth",
         block: "nearest"
@@ -714,26 +714,26 @@ const Ht = L({
         K.value = null;
         return;
       }
-      const i = g[0], m = g[e.visibleItemLimit];
+      const i = g[0], f = g[e.visibleItemLimit];
       if (K.value = de(
         i,
-        m
+        f
       ), e.footer) {
         const y = g[g.length - 1];
         H.value = y.scrollHeight;
       }
     }
-    function de(i, m) {
+    function de(i, f) {
       const y = i.getBoundingClientRect().top;
-      return m.getBoundingClientRect().top - y + 2;
+      return f.getBoundingClientRect().top - y + 2;
     }
     X(() => {
       document.addEventListener("mouseup", k);
     }), Ie(() => {
       document.removeEventListener("mouseup", k);
     }), J(Z(e, "expanded"), (i) => pe(this, null, function* () {
-      const m = a();
-      !i && o.value && m === void 0 && s("highlighted"), i && m !== void 0 && s("highlighted", m), i && (yield se(), ue(), yield se(), O());
+      const f = a();
+      !i && o.value && f === void 0 && s("highlighted"), i && f !== void 0 && s("highlighted", f), i && (yield se(), ue(), yield se(), O());
     })), J(Z(e, "menuItems"), (i) => pe(this, null, function* () {
       i.length < g.length && (g.length = i.length), e.expanded && (yield se(), ue(), yield se(), O());
     }), { deep: !0 });
@@ -801,14 +801,14 @@ function zt(e, t, n, u, l, r) {
         T(e.$slots, "no-results")
       ])) : I("", !0),
       (c(!0), v(ge, null, Ke(e.computedMenuItems, (a, s) => {
-        var f, $;
+        var m, $;
         return c(), x(o, G({
           key: a.value,
           ref_for: !0,
           ref: (b) => e.assignTemplateRef(b, s)
         }, a, {
           selected: a.value === e.selected,
-          active: a.value === ((f = e.activeMenuItem) == null ? void 0 : f.value),
+          active: a.value === ((m = e.activeMenuItem) == null ? void 0 : m.value),
           highlighted: a.value === (($ = e.highlightedMenuItem) == null ? void 0 : $.value),
           "show-thumbnail": e.showThumbnail,
           "bold-label": e.boldLabel,
@@ -1198,7 +1198,7 @@ const pn = /* @__PURE__ */ V(dn, [["render", hn]]), fn = L({
     "load-more"
   ],
   setup(e, { attrs: t, emit: n, slots: u }) {
-    const { searchResults: l, searchFooterUrl: r, debounceInterval: o } = Pe(e), d = C(), a = C(), s = De("typeahead-search-menu"), f = C(!1), $ = C(!1), b = C(!1), _ = C(!1), w = C(e.initialInputValue), k = C(""), g = p(() => {
+    const { searchResults: l, searchFooterUrl: r, debounceInterval: o } = Pe(e), d = C(), a = C(), s = De("typeahead-search-menu"), m = C(!1), $ = C(!1), b = C(!1), _ = C(!1), w = C(e.initialInputValue), k = C(""), g = p(() => {
       var h, S;
       return (S = (h = a.value) == null ? void 0 : h.getHighlightedMenuItem()) == null ? void 0 : S.id;
     }), N = C(null), re = p(() => ({
@@ -1211,7 +1211,7 @@ const pn = /* @__PURE__ */ V(dn, [["render", hn]]), fn = L({
       () => r.value ? { value: z, url: r.value } : void 0
     ), K = p(() => ({
       "cdx-typeahead-search--show-thumbnail": e.showThumbnail,
-      "cdx-typeahead-search--expanded": f.value,
+      "cdx-typeahead-search--expanded": m.value,
       "cdx-typeahead-search--auto-expand-width": e.showThumbnail && e.autoExpandWidth
     })), {
       rootClasses: H,
@@ -1229,8 +1229,8 @@ const pn = /* @__PURE__ */ V(dn, [["render", hn]]), fn = L({
     }));
     let P, R;
     function ae(h, S = !1) {
-      F.value && F.value.label !== h && F.value.value !== h && (N.value = null), R !== void 0 && (clearTimeout(R), R = void 0), h === "" ? f.value = !1 : ($.value = !0, u["search-results-pending"] && (R = setTimeout(() => {
-        _.value && (f.value = !0), b.value = !0;
+      F.value && F.value.label !== h && F.value.value !== h && (N.value = null), R !== void 0 && (clearTimeout(R), R = void 0), h === "" ? m.value = !1 : ($.value = !0, u["search-results-pending"] && (R = setTimeout(() => {
+        _.value && (m.value = !0), b.value = !0;
       }, Qt))), P !== void 0 && (clearTimeout(P), P = void 0);
       const U = () => {
         n("input", h);
@@ -1246,11 +1246,11 @@ const pn = /* @__PURE__ */ V(dn, [["render", hn]]), fn = L({
       }
       N.value = h, h !== null && (w.value = F.value ? F.value.label || String(F.value.value) : "");
     }
-    function m() {
-      _.value = !0, (k.value || b.value) && (f.value = !0);
+    function f() {
+      _.value = !0, (k.value || b.value) && (m.value = !0);
     }
     function y() {
-      _.value = !1, f.value = !1;
+      _.value = !1, m.value = !1;
     }
     function B(h) {
       const Ce = h, { id: S } = Ce, U = oe(Ce, ["id"]);
@@ -1283,7 +1283,7 @@ const pn = /* @__PURE__ */ V(dn, [["render", hn]]), fn = L({
     }
     function Fe(h) {
       var S;
-      f.value = !1, (S = a.value) == null || S.clearActive(), B(h);
+      m.value = !1, (S = a.value) == null || S.clearActive(), B(h);
     }
     function xe(h) {
       if (F.value)
@@ -1298,15 +1298,15 @@ const pn = /* @__PURE__ */ V(dn, [["render", hn]]), fn = L({
       }
     }
     function Me(h) {
-      if (!a.value || !k.value || h.key === " " && f.value)
+      if (!a.value || !k.value || h.key === " ")
         return;
       const S = a.value.getHighlightedMenuItem();
       switch (h.key) {
         case "Enter":
-          S && (S.value === z ? window.location.assign(r.value) : a.value.delegateKeyNavigation(h, !1)), f.value = !1;
+          S && (S.value === z ? window.location.assign(r.value) : a.value.delegateKeyNavigation(h, !1)), m.value = !1;
           break;
         case "Tab":
-          f.value = !1;
+          m.value = !1;
           break;
         default:
           a.value.delegateKeyNavigation(h);
@@ -1316,7 +1316,7 @@ const pn = /* @__PURE__ */ V(dn, [["render", hn]]), fn = L({
     return X(() => {
       e.initialInputValue && ae(e.initialInputValue, !0);
     }), J(Z(e, "searchResults"), () => {
-      k.value = w.value.trim(), _.value && $.value && k.value.length > 0 && (f.value = !0), R !== void 0 && (clearTimeout(R), R = void 0), $.value = !1, b.value = !1;
+      k.value = w.value.trim(), _.value && $.value && k.value.length > 0 && (m.value = !0), R !== void 0 && (clearTimeout(R), R = void 0), $.value = !1, b.value = !1;
     }), {
       form: d,
       menu: a,
@@ -1328,7 +1328,7 @@ const pn = /* @__PURE__ */ V(dn, [["render", hn]]), fn = L({
       asSearchResult: ce,
       inputValue: w,
       searchQuery: k,
-      expanded: f,
+      expanded: m,
       showPending: b,
       rootClasses: H,
       rootStyle: ue,
@@ -1336,7 +1336,7 @@ const pn = /* @__PURE__ */ V(dn, [["render", hn]]), fn = L({
       menuConfig: he,
       onUpdateInputValue: ae,
       onUpdateMenuSelection: i,
-      onFocus: m,
+      onFocus: f,
       onBlur: y,
       onSearchResultClick: B,
       onSearchResultKeyboardNavigation: q,
@@ -1423,11 +1423,11 @@ function An(e, t, n, u, l, r) {
                 ])
               ], 2)
             ]),
-            default: Q(({ menuItem: s, active: f }) => [
+            default: Q(({ menuItem: s, active: m }) => [
               s.value === e.MenuFooterValue ? (c(), v("a", {
                 key: 0,
                 class: M(["cdx-typeahead-search__search-footer", {
-                  "cdx-typeahead-search__search-footer__active": f
+                  "cdx-typeahead-search__search-footer__active": m
                 }]),
                 href: e.asSearchResult(s).url,
                 onClickCapture: be(($) => e.onSearchFooterClick(e.asSearchResult(s)), ["stop"])
