@@ -595,7 +595,8 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['subtitle'] ) ) {
-			$result_array['subtitle'] = $context->getSkin()->prepareSubtitle();
+			// Get the subtitle without its container element to support UI refreshing
+			$result_array['subtitle'] = $context->getSkin()->prepareSubtitle( false );
 		}
 
 		if ( isset( $prop['headitems'] ) ) {
