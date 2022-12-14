@@ -267,7 +267,10 @@ return [
 	},
 
 	'BacklinkCacheFactory' => static function ( MediaWikiServices $services ): BacklinkCacheFactory {
-		return new BacklinkCacheFactory( $services->getMainWANObjectCache() );
+		return new BacklinkCacheFactory(
+			$services->getMainWANObjectCache(),
+			$services->getHookContainer()
+		);
 	},
 
 	'BadFileLookup' => static function ( MediaWikiServices $services ): BadFileLookup {
