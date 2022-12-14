@@ -98,6 +98,7 @@ services:
   ```sh
   docker compose exec mediawiki /bin/bash /docker/install.sh
   ```
+  Windows users: make sure you run the above command in PowerShell as it does not work in Bash.
 
 Done! The wiki should now be available for you at <http://localhost:8080>.
 
@@ -370,4 +371,11 @@ values are set correctly:
 ```php
 $wgScriptPath = '/w';
 $wgSQLiteDataDir = "/var/www/html/w/cache/sqlite";
+```
+
+### Windows users, "(Cannot access the database: No database connection (unknown))"
+
+The permissions with the `cache/sqlite` directory have to be set manually on Windows:
+```sh
+docker compose exec mediawiki chmod -R o+rwx cache/sqlite
 ```
