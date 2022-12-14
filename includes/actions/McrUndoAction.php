@@ -5,6 +5,7 @@
  * @ingroup Actions
  */
 
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionStatus;
@@ -46,6 +47,9 @@ class McrUndoAction extends FormAction {
 	/** @var RevisionRenderer */
 	private $revisionRenderer;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/** @var bool */
 	private $useRCPatrol;
 
@@ -55,6 +59,7 @@ class McrUndoAction extends FormAction {
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param RevisionLookup $revisionLookup
 	 * @param RevisionRenderer $revisionRenderer
+	 * @param CommentFormatter $commentFormatter
 	 * @param Config $config
 	 */
 	public function __construct(
@@ -63,6 +68,7 @@ class McrUndoAction extends FormAction {
 		ReadOnlyMode $readOnlyMode,
 		RevisionLookup $revisionLookup,
 		RevisionRenderer $revisionRenderer,
+		CommentFormatter $commentFormatter,
 		Config $config
 	) {
 		parent::__construct( $article, $context );
@@ -470,8 +476,14 @@ class McrUndoAction extends FormAction {
 		];
 
 		if ( $request->getCheck( 'wpSummary' ) ) {
-			$ret['summarypreview']['default'] = Xml::tags( 'div', [ 'class' => 'mw-summary-preview' ],
-				Linker::commentBlock( trim( $request->getVal( 'wpSummary' ) ), $this->getTitle(), false )
+			$ret['summarypreview']['default'] = Xml::tags(
+				'div',
+				[ 'class' => 'mw-summary-preview' ],
+				$this->commentFormatter->formatBlock(
+					trim( $request->getVal( 'wpSummary' ) ),
+					$this->getTitle(),
+					false
+				)
 			);
 		} else {
 			unset( $ret['summarypreview'] );
