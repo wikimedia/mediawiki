@@ -26,7 +26,8 @@
  */
 
 use MediaWiki\Cache\CacheKeyHelper;
-use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
@@ -53,7 +54,6 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  * Introduced by r47317
  */
 class BacklinkCache {
-	use ProtectedHookAccessorTrait;
 
 	/** @var BacklinkCache */
 	protected static $instance;
@@ -85,6 +85,9 @@ class BacklinkCache {
 	/** @var WANObjectCache */
 	protected $wanCache;
 
+	/** @var HookRunner */
+	private $hookRunner;
+
 	/**
 	 * Local copy of a database object.
 	 *
@@ -106,11 +109,17 @@ class BacklinkCache {
 	 * Create a new BacklinkCache
 	 *
 	 * @param WANObjectCache $wanCache
+	 * @param HookContainer $hookContainer
 	 * @param PageReference $page Page to create a backlink cache for
 	 */
-	public function __construct( WANObjectCache $wanCache, PageReference $page ) {
+	public function __construct(
+		WANObjectCache $wanCache,
+		HookContainer $hookContainer,
+		PageReference $page
+	) {
 		$this->page = $page;
 		$this->wanCache = $wanCache;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -271,7 +280,7 @@ class BacklinkCache {
 		} else {
 			$prefix = null;
 			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
-			$this->getHookRunner()->onBacklinkCacheGetPrefix( $table, $prefix );
+			$this->hookRunner->onBacklinkCacheGetPrefix( $table, $prefix );
 			if ( $prefix ) {
 				return $prefix;
 			} else {
@@ -342,7 +351,7 @@ class BacklinkCache {
 			default:
 				$knownTable = false;
 				$conds = null;
-				$this->getHookRunner()->onBacklinkCacheGetConditions( $table,
+				$this->hookRunner->onBacklinkCacheGetConditions( $table,
 					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 					Title::castFromPageReference( $this->page ),
 					// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
