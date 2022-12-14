@@ -173,7 +173,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			$text = $final;
 			foreach ( $this->mFlatOptions as $option ) {
 				$match = $option . $this->msg( 'colon-separator' )->inContentLanguage()->text();
-				if ( strpos( $final, $match ) === 0 ) {
+				if ( str_starts_with( $final, $match ) ) {
 					$list = $option;
 					$text = substr( $final, strlen( $match ) );
 					break;

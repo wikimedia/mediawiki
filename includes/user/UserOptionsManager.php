@@ -369,7 +369,7 @@ class UserOptionsManager extends UserOptionsLookup {
 				$mapping[$key] = 'registered-checkmatrix';
 			} elseif ( isset( $specialOptions[$key] ) ) {
 				$mapping[$key] = 'special';
-			} elseif ( substr( $key, 0, 7 ) === 'userjs-' ) {
+			} elseif ( str_starts_with( $key, 'userjs-' ) ) {
 				$mapping[$key] = 'userjs';
 			} else {
 				$mapping[$key] = 'unused';

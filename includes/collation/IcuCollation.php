@@ -265,7 +265,7 @@ class IcuCollation extends Collation {
 		$this->primaryCollator->setStrength( Collator::PRIMARY );
 
 		// If the special suffix for numeric collation is present, turn on numeric collation.
-		if ( substr( $locale, -5, 5 ) === '-u-kn' ) {
+		if ( str_ends_with( $locale, '-u-kn' ) ) {
 			$this->useNumericCollation = true;
 			// Strip off the special suffix so it doesn't trip up fetchFirstLetterData().
 			$this->locale = substr( $this->locale, 0, -5 );

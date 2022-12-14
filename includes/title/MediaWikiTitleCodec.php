@@ -496,15 +496,15 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		# reachable due to the way web browsers deal with 'relative' URLs.
 		# Also, they conflict with subpage syntax.  Forbid them explicitly.
 		if (
-			strpos( $dbkey, '.' ) !== false &&
+			str_contains( $dbkey, '.' ) &&
 			(
 				$dbkey === '.' || $dbkey === '..' ||
-				strpos( $dbkey, './' ) === 0 ||
-				strpos( $dbkey, '../' ) === 0 ||
-				strpos( $dbkey, '/./' ) !== false ||
-				strpos( $dbkey, '/../' ) !== false ||
-				substr( $dbkey, -2 ) == '/.' ||
-				substr( $dbkey, -3 ) == '/..'
+				str_starts_with( $dbkey, './' ) ||
+				str_starts_with( $dbkey, '../' ) ||
+				str_contains( $dbkey, '/./' ) ||
+				str_contains( $dbkey, '/../' ) ||
+				str_ends_with( $dbkey, '/.' ) ||
+				str_ends_with( $dbkey, '/..' )
 			)
 		) {
 			$exception = ( $this->createMalformedTitleException )( 'title-invalid-relative', $text );

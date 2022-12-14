@@ -337,7 +337,7 @@ class ImageListPager extends TablePager {
 		# Hacky...
 		$oldIndex = $this->mIndexField;
 		foreach ( $this->mIndexField as &$index ) {
-			if ( substr( $index, 0, 4 ) !== 'img_' ) {
+			if ( !str_starts_with( $index, 'img_' ) ) {
 				throw new MWException( "Expected to be sorting on an image table field" );
 			}
 			$index = 'oi_' . substr( $index, 4 );

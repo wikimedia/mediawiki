@@ -1493,8 +1493,8 @@ class LocalFile extends File {
 		foreach ( $files as $file ) {
 			# Check that the reference (filename or sha1) is part of the thumb name
 			# This is a basic check to avoid erasing unrelated directories
-			if ( strpos( $file, $reference ) !== false
-				|| strpos( $file, "-thumbnail" ) !== false // "short" thumb name
+			if ( str_contains( $file, $reference )
+				|| str_contains( $file, "-thumbnail" ) // "short" thumb name
 			) {
 				$purgeList[] = "{$dir}/{$file}";
 			}

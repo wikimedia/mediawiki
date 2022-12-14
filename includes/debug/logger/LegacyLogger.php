@@ -393,7 +393,7 @@ class LegacyLogger extends AbstractLogger {
 	 * @return string Interpolated message
 	 */
 	public static function interpolate( $message, array $context ) {
-		if ( strpos( $message, '{' ) !== false ) {
+		if ( str_contains( $message, '{' ) ) {
 			$replace = [];
 			foreach ( $context as $key => $val ) {
 				$replace['{' . $key . '}'] = self::flatten( $val );
@@ -514,7 +514,7 @@ class LegacyLogger extends AbstractLogger {
 	 * @param string $file Filename
 	 */
 	public static function emit( $text, $file ) {
-		if ( substr( $file, 0, 4 ) == 'udp:' ) {
+		if ( str_starts_with( $file, 'udp:' ) ) {
 			$transport = UDPTransport::newFromString( $file );
 			$transport->emit( $text );
 		} else {

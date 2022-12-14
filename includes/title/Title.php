@@ -473,7 +473,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		# For compatibility with old buggy URLs. "+" is usually not valid in titles,
 		# but some URLs used it as a space replacement and they still come
 		# from some external search tools.
-		if ( strpos( self::legalChars(), '+' ) === false ) {
+		if ( !str_contains( self::legalChars(), '+' ) ) {
 			$url = strtr( $url, '+', ' ' );
 		}
 
@@ -1420,7 +1420,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	public function isSubpage() {
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->
 			hasSubpages( $this->mNamespace )
-			? strpos( $this->getText(), '/' ) !== false
+			? str_contains( $this->getText(), '/' )
 			: false;
 	}
 
@@ -1434,7 +1434,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		// @todo And the prefix should be localized, too!
 
 		return $this->mNamespace === NS_MEDIAWIKI &&
-			strpos( $this->getText(), 'Conversiontable/' ) === 0;
+			str_starts_with( $this->getText(), 'Conversiontable/' );
 	}
 
 	/**
@@ -1558,7 +1558,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 				$this->hasContentModel( CONTENT_MODEL_CSS )
 				// paranoia - a MediaWiki: namespace page with mismatching extension and content
 				// model is probably by mistake and might get handled incorrectly (see e.g. T112937)
-				|| substr( $this->mDbkeyform, -4 ) === '.css'
+				|| str_ends_with( $this->mDbkeyform, '.css' )
 			)
 		);
 	}
@@ -1576,7 +1576,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 				$this->hasContentModel( CONTENT_MODEL_JSON )
 				// paranoia - a MediaWiki: namespace page with mismatching extension and content
 				// model is probably by mistake and might get handled incorrectly (see e.g. T112937)
-				|| substr( $this->mDbkeyform, -5 ) === '.json'
+				|| str_ends_with( $this->mDbkeyform, '.json' )
 			)
 		);
 	}
@@ -1594,7 +1594,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 				$this->hasContentModel( CONTENT_MODEL_JAVASCRIPT )
 				// paranoia - a MediaWiki: namespace page with mismatching extension and content
 				// model is probably by mistake and might get handled incorrectly (see e.g. T112937)
-				|| substr( $this->mDbkeyform, -3 ) === '.js'
+				|| str_ends_with( $this->mDbkeyform, '.js' )
 			)
 		);
 	}
@@ -1837,7 +1837,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return string
 	 */
 	private static function normalizeFragment( $fragment ) {
-		if ( strpos( $fragment, '#' ) === 0 ) {
+		if ( str_starts_with( $fragment, '#' ) ) {
 			$fragment = substr( $fragment, 1 );
 		}
 		return strtr( $fragment, '_', ' ' );
@@ -3462,7 +3462,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	public function isSubpageOf( Title $title ) {
 		return $this->mInterwiki === $title->mInterwiki
 			&& $this->mNamespace == $title->mNamespace
-			&& strpos( $this->mDbkeyform, $title->mDbkeyform . '/' ) === 0;
+			&& str_starts_with( $this->mDbkeyform, $title->mDbkeyform . '/' );
 	}
 
 	/**

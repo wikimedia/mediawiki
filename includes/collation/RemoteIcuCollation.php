@@ -98,7 +98,7 @@ class RemoteIcuCollation extends Collation {
 		}
 
 		// If the special suffix for numeric collation is present, turn on numeric collation.
-		if ( substr( $locale, -5, 5 ) === '-u-kn' ) {
+		if ( str_ends_with( $locale, '-u-kn' ) ) {
 			$mainCollator->setAttribute( Collator::NUMERIC_COLLATION, Collator::ON );
 		}
 		$ret = [];

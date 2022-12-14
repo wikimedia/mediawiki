@@ -283,7 +283,7 @@ class FileRepo {
 	 * @return bool
 	 */
 	public static function isVirtualUrl( $url ) {
-		return substr( $url, 0, 9 ) == 'mwrepo://';
+		return str_starts_with( $url, 'mwrepo://' );
 	}
 
 	/**
@@ -353,7 +353,7 @@ class FileRepo {
 	 * @return string
 	 */
 	public function resolveVirtualUrl( $url ) {
-		if ( substr( $url, 0, 9 ) != 'mwrepo://' ) {
+		if ( !str_starts_with( $url, 'mwrepo://' ) ) {
 			throw new MWException( __METHOD__ . ': unknown protocol' );
 		}
 		$bits = explode( '/', substr( $url, 9 ), 3 );

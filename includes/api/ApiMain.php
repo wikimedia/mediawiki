@@ -1631,9 +1631,9 @@ class ApiMain extends ApiBase {
 		}
 		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $etag is declared when $ifNoneMatch is true
 		if ( $ifNoneMatch && $etag !== null ) {
-			$test = substr( $etag, 0, 2 ) === 'W/' ? substr( $etag, 2 ) : $etag;
+			$test = str_starts_with( $etag, 'W/' ) ? substr( $etag, 2 ) : $etag;
 			$match = array_map( static function ( $s ) {
-				return substr( $s, 0, 2 ) === 'W/' ? substr( $s, 2 ) : $s;
+				return str_starts_with( $s, 'W/' ) ? substr( $s, 2 ) : $s;
 			}, $ifNoneMatch );
 			$return304 = in_array( $test, $match, true );
 		} else {
