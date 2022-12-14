@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserRigorOptions;
@@ -46,6 +47,9 @@ class SpecialListFiles extends IncludableSpecialPage {
 	/** @var UserCache */
 	private $userCache;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/**
 	 * @param RepoGroup $repoGroup
 	 * @param ILoadBalancer $loadBalancer
@@ -53,6 +57,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
 	 * @param UserCache $userCache
+	 * @param CommentFormatter $commentFormatter
 	 */
 	public function __construct(
 		RepoGroup $repoGroup,
@@ -60,7 +65,8 @@ class SpecialListFiles extends IncludableSpecialPage {
 		CommentStore $commentStore,
 		UserNameUtils $userNameUtils,
 		UserNamePrefixSearch $userNamePrefixSearch,
-		UserCache $userCache
+		UserCache $userCache,
+		CommentFormatter $commentFormatter
 	) {
 		parent::__construct( 'Listfiles' );
 		$this->repoGroup = $repoGroup;
@@ -69,6 +75,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 		$this->userNameUtils = $userNameUtils;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
 		$this->userCache = $userCache;
+		$this->commentFormatter = $commentFormatter;
 	}
 
 	public function execute( $par ) {
@@ -105,6 +112,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$this->repoGroup,
 			$this->userCache,
 			$this->userNameUtils,
+			$this->commentFormatter,
 			$userName,
 			$search,
 			$this->including(),

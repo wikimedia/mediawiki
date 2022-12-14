@@ -19,7 +19,7 @@
  * @ingroup Pager
  */
 
-use MediaWiki\Linker\Linker;
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserNameUtils;
@@ -61,6 +61,9 @@ class ImageListPager extends TablePager {
 	/** @var UserCache */
 	private $userCache;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/**
 	 * The unique sort fields for the sort options for unique paginate
 	 */
@@ -78,6 +81,7 @@ class ImageListPager extends TablePager {
 	 * @param RepoGroup $repoGroup
 	 * @param UserCache $userCache
 	 * @param UserNameUtils $userNameUtils
+	 * @param CommentFormatter $commentFormatter
 	 * @param string $userName
 	 * @param string $search
 	 * @param bool $including
@@ -91,6 +95,7 @@ class ImageListPager extends TablePager {
 		RepoGroup $repoGroup,
 		UserCache $userCache,
 		UserNameUtils $userNameUtils,
+		CommentFormatter $commentFormatter,
 		$userName,
 		$search,
 		$including,
@@ -134,6 +139,7 @@ class ImageListPager extends TablePager {
 		$this->commentStore = $commentStore;
 		$this->localRepo = $repoGroup->getLocalRepo();
 		$this->userCache = $userCache;
+		$this->commentFormatter = $commentFormatter;
 	}
 
 	/**
@@ -507,7 +513,7 @@ class ImageListPager extends TablePager {
 			case 'img_description':
 				$field = $this->mCurrentRow->description_field;
 				$value = $this->commentStore->getComment( $field, $this->mCurrentRow )->text;
-				return Linker::formatComment( $value );
+				return $this->commentFormatter->format( $value );
 			case 'count':
 				return htmlspecialchars( $this->getLanguage()->formatNum( intval( $value ) + 1 ) );
 			case 'top':
