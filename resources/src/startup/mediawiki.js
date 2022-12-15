@@ -17,8 +17,7 @@
 	 * Log a message to window.console.
 	 *
 	 * Useful to force logging of some errors that are otherwise hard to detect (i.e., this logs
-	 * also in production mode). Gets console references in each invocation instead of caching the
-	 * reference, so that debugging tools loaded later are supported (e.g. Firebug Lite in IE).
+	 * also in production mode).
 	 *
 	 * @private
 	 * @param {string} topic Stream name passed by mw.track
