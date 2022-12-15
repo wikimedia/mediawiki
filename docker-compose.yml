@@ -7,7 +7,7 @@
 version: '3.7'
 services:
   mediawiki:
-    image: docker-registry.wikimedia.org/dev/buster-php74-fpm:1.0.0-s3
+    image: docker-registry.wikimedia.org/dev/buster-php81-fpm:1.0.0
     user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
     volumes:
       - ./:/var/www/html/w:cached
@@ -41,7 +41,7 @@ services:
       MW_LOG_DIR: /var/www/html/w/cache
 
   mediawiki-jobrunner:
-    image: docker-registry.wikimedia.org/dev/buster-php74-jobrunner:1.0.0-s2
+    image: docker-registry.wikimedia.org/dev/buster-php81-jobrunner:1.0.0
     user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
     volumes:
       - ./:/var/www/html/w:cached
