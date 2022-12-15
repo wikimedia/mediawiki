@@ -107,6 +107,7 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 	public function testGetLinks(
 		array $expectedTitles, string $title, string $table, $startId = false, $endId = false, $max = INF
 	) {
+		$this->hideDeprecated( 'BacklinkCache::getLinks' );
 		$startId = $startId ? Title::newFromText( $startId )->getId() : false;
 		$endId = $endId ? Title::newFromText( $endId )->getId() : false;
 		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
@@ -168,6 +169,7 @@ class BacklinkCacheTest extends MediaWikiIntegrationTestCase {
 	 * @covers BacklinkCache::getCascadeProtectedLinks
 	 */
 	public function testGetCascadeProtectedLinks() {
+		$this->hideDeprecated( 'BacklinkCache::getCascadeProtectedLinks' );
 		$blcFactory = $this->getServiceContainer()->getBacklinkCacheFactory();
 		$backlinkCache = $blcFactory->getBacklinkCache( Title::makeTitle( NS_TEMPLATE, 'BacklinkCacheTestA' ) );
 		$iterator = $backlinkCache->getCascadeProtectedLinks();

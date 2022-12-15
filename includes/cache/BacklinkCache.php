@@ -73,7 +73,7 @@ class BacklinkCache {
 	 * Contains the whole links from a database result.
 	 * This is raw data that will be partitioned in $partitionCache
 	 *
-	 * Initialized with BacklinkCache::getLinks()
+	 * Initialized with BacklinkCache::queryLinks()
 	 * Cleared with BacklinkCache::clear()
 	 * @var IResultWrapper[]
 	 */
@@ -124,7 +124,7 @@ class BacklinkCache {
 	 * Currently, only one cache instance can exist; callers that
 	 * need multiple backlink cache objects should keep them in scope.
 	 *
-	 * @deprecated since 1.37 Use BacklinkCacheFactory::getBacklinkCache() instead
+	 * @deprecated since 1.37 Use BacklinkCacheFactory::getBacklinkCache() instead. Hard deprecated in 1.40.
 	 *
 	 * @param PageReference $page Page to get a backlink cache for
 	 * @return BacklinkCache
@@ -197,7 +197,7 @@ class BacklinkCache {
 	/**
 	 * Get the backlinks for a given table. Cached in process memory only.
 	 *
-	 * @deprecated in 1.37, use getLinkPages()
+	 * @deprecated in 1.37, use getLinkPages(). Hard deprecated in 1.40.
 	 * @param string $table
 	 * @param int|bool $startId
 	 * @param int|bool $endId
@@ -205,6 +205,7 @@ class BacklinkCache {
 	 * @return TitleArrayFromResult
 	 */
 	public function getLinks( $table, $startId = false, $endId = false, $max = INF ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		return TitleArray::newFromResult( $this->queryLinks( $table, $startId, $endId, $max ) );
 	}
 
@@ -594,11 +595,12 @@ class BacklinkCache {
 	/**
 	 * Get a Title iterator for cascade-protected template/file use backlinks
 	 *
-	 * @deprecated since 1.37, use getCascadeProtectedLinkPages()
+	 * @deprecated since 1.37, use getCascadeProtectedLinkPages(). Hard deprecated in 1.40.
 	 * @return TitleArray
 	 * @since 1.25
 	 */
 	public function getCascadeProtectedLinks() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return TitleArray::newFromResult(
 			new FakeResultWrapper( $this->getCascadeProtectedLinksInternal() ) );
 	}
