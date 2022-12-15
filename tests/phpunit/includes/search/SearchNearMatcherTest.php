@@ -17,7 +17,7 @@ class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 	public function nearMatchProvider() {
 		return [
 			'empty request returns nothing' => [ null, 'en', '', 'Near Match Test' ],
-			'with a hash returns nothing' => [ null, 'en', '#near match test',  'Near Match Test' ],
+			'with a hash returns nothing' => [ null, 'en', '#near match test', 'Near Match Test' ],
 			'wrong seach string returns nothing' => [
 				null, 'en', ':', 'Near Match Test'
 			],
@@ -44,7 +44,7 @@ class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 			],
 			'check language with variants direct' => [ 'Near', 'tg', 'near', 'Near' ],
 			'check language with variants converted' => [ 'Near', 'tg', 'неар', 'Near' ],
-			'no matching' => [ null, 'en', 'near match test',  'Far Match Test' ],
+			'no matching' => [ null, 'en', 'near match test', 'Far Match Test' ],
 			// Special cases: files
 			'file ok' => [ 'File:Example.svg', 'en', 'File:Example.svg', 'File:Example.svg' ],
 			'file not ok' => [ null, 'en', 'File:Example_s.svg', 'File:Example.svg' ],

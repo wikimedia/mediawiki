@@ -56,7 +56,7 @@ class ConfigBuilderBaseTest extends TestCase {
 	public function testBuild() {
 		$builder = new GlobalConfigBuilder();
 		$builder
-			->set( 'foo',  'bar' )
+			->set( 'foo', 'bar' )
 			->set( 'baz', 'quu' );
 		$this->assertSame( 'bar', $builder->build()->get( 'foo' ) );
 		$this->assertSame( 'quu', $builder->build()->get( 'baz' ) );

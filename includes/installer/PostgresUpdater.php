@@ -271,7 +271,7 @@ class PostgresUpdater extends DatabaseUpdater {
 				'CREATE INDEX cl_sortkey ON categorylinks (cl_to, cl_type, cl_sortkey, cl_from)'
 			],
 			[ 'renameIndex', 'logging', 'logging_type_name', 'type_time' ],
-			[ 'renameIndex', 'logging', 'logging_actor_time_backwards',	'actor_time' ],
+			[ 'renameIndex', 'logging', 'logging_actor_time_backwards', 'actor_time' ],
 			[ 'renameIndex', 'logging', 'logging_page_time', 'page_time' ],
 			[ 'renameIndex', 'logging', 'logging_times', 'times' ],
 			[ 'renameIndex', 'logging', 'logging_actor_type_time', 'log_actor_type_time' ],

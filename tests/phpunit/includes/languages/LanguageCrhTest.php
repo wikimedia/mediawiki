@@ -90,7 +90,7 @@ class LanguageCrhTest extends LanguageClassesTestCase {
 			// Roman numerals vs Initials, part 1 - Roman numeral initials without spaces
 			[ 'А.Б.Дж.Д.М. Къадырова XII', 'A.B.C.D.M. Qadırova XII' ],
 			// Roman numerals vs Initials, part 2 - Roman numeral initials with spaces
-			[ 'Г. Х. Ы. В. X. Л. Меметов III',  'G. H. I. V. X. L. Memetov III' ],
+			[ 'Г. Х. Ы. В. X. Л. Меметов III', 'G. H. I. V. X. L. Memetov III' ],
 
 			// ALL CAPS, made up acronyms
 			[ 'НЪАБ', 'ÑAB' ], [ 'КЪЫДЖ', 'QIC' ], [ 'ГЪУК', 'ĞUK' ], [ 'ДЖОТ', 'COT' ], [ 'ДЖА', 'CA' ],

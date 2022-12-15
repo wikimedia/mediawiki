@@ -1393,7 +1393,7 @@ EOF
 		$po->addExtraCSPStyleSrc( 'xyzzy.com' );
 
 		$this->assertEquals( $po->getExtraCSPScriptSrcs(), [ 'foo.com', 'bar.com' ], 'Script' );
-		$this->assertEquals( $po->getExtraCSPDefaultSrcs(),  [ 'baz.com' ], 'Default' );
+		$this->assertEquals( $po->getExtraCSPDefaultSrcs(), [ 'baz.com' ], 'Default' );
 		$this->assertEquals( $po->getExtraCSPStyleSrcs(), [ 'fred.com', 'xyzzy.com' ], 'Style' );
 	}
 

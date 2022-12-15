@@ -192,7 +192,7 @@ class SqlitePlatformTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideReplaceVars
 	 */
 	public function testReplaceVars( $expected, $sql ) {
-		$this->assertEquals( $expected,  $this->replaceVars( $sql ) );
+		$this->assertEquals( $expected, $this->replaceVars( $sql ) );
 	}
 
 	public function testTableName() {

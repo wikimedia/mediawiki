@@ -145,7 +145,7 @@ class SkinComponentLink implements SkinComponent {
 						$attrs
 					);
 				}
-				$html = Html::rawElement( $element['tag'],  $attrs, $html );
+				$html = Html::rawElement( $element['tag'], $attrs, $html );
 			}
 		}
 

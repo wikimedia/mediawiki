@@ -30,7 +30,7 @@ class MwHttpRequestToResponseInterfaceAdapterTest extends MediaWikiUnitTestCase 
 		$mwHttpReq = $this->newMockMWHttpRequestWithHeaders( $headers );
 
 		$response = new MwHttpRequestToResponseInterfaceAdapter( $mwHttpReq );
-		$this->assertEquals( $headers,  $response->getHeaders() );
+		$this->assertEquals( $headers, $response->getHeaders() );
 	}
 
 	public function testHasHeader() {
