@@ -114,6 +114,7 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 				title: mw.msg( 'namespaces' ),
 				labelPrefixKey: { default: 'rcfilters-tag-prefix-namespace', inverted: 'rcfilters-tag-prefix-namespace-inverted' },
 				separator: ';',
+				supportsAll: false,
 				fullCoverage: true,
 				filters: items
 			} ]
@@ -142,6 +143,7 @@ Controller.prototype.initialize = function ( filterStructure, namespaceStructure
 				title: 'rcfilters-view-tags', // Message key
 				labelPrefixKey: 'rcfilters-tag-prefix-tags',
 				separator: '|',
+				supportsAll: false,
 				fullCoverage: false,
 				filters: tagList
 			} ]

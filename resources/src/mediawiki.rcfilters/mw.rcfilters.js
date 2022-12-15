@@ -30,10 +30,11 @@ mw.rcfilters = {
 
 			return arr;
 		},
-		normalizeParamOptions: function ( givenOptions, legalOptions ) {
+		normalizeParamOptions: function ( givenOptions, legalOptions, supportsAll ) {
 			var result = [];
+			supportsAll = supportsAll === undefined ? true : !!supportsAll;
 
-			if ( givenOptions.indexOf( 'all' ) > -1 ) {
+			if ( supportsAll && givenOptions.indexOf( 'all' ) > -1 ) {
 				// If anywhere in the values there's 'all', we
 				// treat it as if only 'all' was selected.
 				// Example: param=valid1,valid2,all
