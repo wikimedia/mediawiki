@@ -39,11 +39,13 @@ use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MWUnknownContentModelException;
 use ParserOptions;
 use ParserOutput;
+use Status;
 use User;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
@@ -505,45 +507,13 @@ class HtmlOutputRendererHelper {
 				$parserOptions->setTargetLanguage( $this->pageLanguage );
 			}
 
-			// XXX: $parsoidOptions are really parser options, and they should be integrated with
-			//      the ParserOptions class. That would allow us to use the ParserCache with
-			//      various flavors.
-			$parsoidOptions = $this->parsoidOptions;
-
-			// NOTE: VisualEditor would set this flavor when transforming from Wikitext to HTML
-			//       for the purpose of editing when doing parsefragment (in body only mode).
-			if ( $this->flavor === 'fragment' ) {
-				$parsoidOptions += [
-					'body_only' => true,
-					'wrapSections' => false
-				];
-			}
-
-			// NOTE: ParsoidOutputAccess::getParserOutput() should be used for revisions
-			//       that comes from the database. Either this revision is null to indicate
-			//       the current revision or the revision must have an ID.
-			// If we have a revision and the ID is 0 or null, then it's a fake revision
-			// representing a preview.
-			$isFakeRevision = $this->getRevisionId() === null;
-
-			if ( !$isFakeRevision && !$parsoidOptions && $this->isCacheable ) {
-				// Always log lint info when generating cacheable output.
-				// We are not really interested in lint data for old revisions, but
-				// we don't have a good way to tell at this point.
-				$flags = $this->parsoidOutputAccessOptions | ParsoidOutputAccess::OPT_LOG_LINT_DATA;
-
-				$status = $this->parsoidOutputAccess->getParserOutput(
-					$this->page,
-					$parserOptions,
-					$this->revisionOrId,
-					$flags
-				);
-			} else {
-				$status = $this->parsoidOutputAccess->parse(
-					$this->page,
-					$parserOptions,
-					$parsoidOptions,
-					$this->revisionOrId
+			try {
+				$status = $this->getParserOutputInternal( $parserOptions );
+			} catch ( RevisionAccessException $e ) {
+				throw new LocalizedHttpException(
+					MessageValue::new( 'rest-nonexistent-title' ),
+					404,
+					[ 'reason' => $e->getMessage() ]
 				);
 			}
 
@@ -664,6 +634,57 @@ class HtmlOutputRendererHelper {
 
 		// It's a revision ID, just return it
 		return (int)$this->revisionOrId;
+	}
+
+	/**
+	 * @param ParserOptions $parserOptions
+	 *
+	 * @return Status
+	 */
+	private function getParserOutputInternal( ParserOptions $parserOptions ): Status {
+		// XXX: $parsoidOptions are really parser options, and they should be integrated with
+		//      the ParserOptions class. That would allow us to use the ParserCache with
+		//      various flavors.
+		$parsoidOptions = $this->parsoidOptions;
+
+		// NOTE: VisualEditor would set this flavor when transforming from Wikitext to HTML
+		//       for the purpose of editing when doing parsefragment (in body only mode).
+		if ( $this->flavor === 'fragment' ) {
+			$parsoidOptions += [
+				'body_only' => true,
+				'wrapSections' => false
+			];
+		}
+
+		// NOTE: ParsoidOutputAccess::getParserOutput() should be used for revisions
+		//       that comes from the database. Either this revision is null to indicate
+		//       the current revision or the revision must have an ID.
+		// If we have a revision and the ID is 0 or null, then it's a fake revision
+		// representing a preview.
+		$isFakeRevision = $this->getRevisionId() === null;
+
+		if ( !$isFakeRevision && !$parsoidOptions && $this->isCacheable ) {
+			// Always log lint info when generating cacheable output.
+			// We are not really interested in lint data for old revisions, but
+			// we don't have a good way to tell at this point.
+			$flags = $this->parsoidOutputAccessOptions | ParsoidOutputAccess::OPT_LOG_LINT_DATA;
+
+			$status = $this->parsoidOutputAccess->getParserOutput(
+				$this->page,
+				$parserOptions,
+				$this->revisionOrId,
+				$flags
+			);
+		} else {
+			$status = $this->parsoidOutputAccess->parse(
+				$this->page,
+				$parserOptions,
+				$parsoidOptions,
+				$this->revisionOrId
+			);
+		}
+
+		return $status;
 	}
 
 }
