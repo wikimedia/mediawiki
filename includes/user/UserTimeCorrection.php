@@ -26,6 +26,7 @@ use DateInterval;
 use DateTime;
 use DateTimeZone;
 use Exception;
+use MWTimestamp;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
@@ -79,7 +80,7 @@ class UserTimeCorrection {
 		DateTime $relativeToDate = null,
 		int $systemOffset = 0
 	) {
-		$this->date = $relativeToDate ?? new DateTime();
+		$this->date = $relativeToDate ?? new DateTime( '@' . MWTimestamp::time() );
 		$this->valid = false;
 		$this->parse( $timeCorrection, $systemOffset );
 	}
