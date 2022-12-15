@@ -46,7 +46,7 @@ class SkinComponentSearchTest extends MediaWikiUnitTestCase {
 			'html-input-attributes'
 		];
 		foreach ( $expectedKeys as $key ) {
-			$this->assertArrayHasKey( $key, $data,  $key . ' is in array' );
+			$this->assertArrayHasKey( $key, $data, $key . ' is in array' );
 		}
 		$this->assertEquals( 'Search', $data['search-special-page-title'] );
 		$this->assertEquals( '/w/index.php', $data['form-action'] );

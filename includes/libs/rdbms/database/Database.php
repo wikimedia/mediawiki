@@ -30,6 +30,7 @@ use Throwable;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database\DatabaseFlags;
 use Wikimedia\Rdbms\Platform\SQLPlatform;
+use Wikimedia\Rdbms\Replication\ReplicationReporter;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\CriticalSectionScope;
 use Wikimedia\ScopedCallback;
@@ -50,8 +51,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $connLogger;
 	/** @var LoggerInterface */
 	protected $queryLogger;
-	/** @var LoggerInterface */
-	protected $replLogger;
 	/** @var callable Error logging callback */
 	protected $errorLogger;
 	/** @var callable Deprecation logging callback */
@@ -70,9 +69,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var object|resource|null Database connection */
 	protected $conn;
 
-	/** @var ?IDatabase Lazy handle to the most authoritative primary server for the dataset */
-	protected $topologicalPrimaryConnRef;
-
 	/** @var string|null Server that this instance is currently connected to */
 	protected $server;
 	/** @var string|null User that this instance is currently connected under the name of */
@@ -85,8 +81,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $cliMode;
 	/** @var string Agent name for query profiling */
 	protected $agent;
-	/** @var string Replication topology role of the server; one of the class ROLE_* constants */
-	protected $topologyRole;
 	/** @var array<string,mixed> Connection parameters used by initConnection() and open() */
 	protected $connectionParams;
 	/** @var string[]|int[]|float[] SQL variables values to use for all new connections */
@@ -108,9 +102,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $sessionNamedLocks = [];
 	/** @var array<string,array> Map of (name => (type,pristine,trx ID)) for current temp tables */
 	protected $sessionTempTables = [];
-
-	/** @var array|null Replication lag estimate at the time of BEGIN for the last transaction */
-	private $trxReplicaLagStatus = null;
 
 	/** @var int|null Affected row count for the last query statement */
 	protected $affectedRowCount;
@@ -198,6 +189,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var SQLPlatform */
 	protected $platform;
 
+	/** @var ReplicationReporter */
+	protected $replicationReporter;
+
 	/**
 	 * @note exceptions for missing libraries/drivers should be thrown in initConnection()
 	 * @stable to call
@@ -226,7 +220,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		];
 
 		$this->lbInfo = $params['lbInfo'] ?? [];
-		$this->topologicalPrimaryConnRef = $params['topologicalPrimaryConnRef'] ?? null;
 		$this->connectionVariables = $params['variables'] ?? [];
 		// Set SQL mode, default is turning them all off, can be overridden or skipped with null
 		if ( is_string( $params['sqlMode'] ?? null ) ) {
@@ -238,14 +231,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->cliMode = (bool)$params['cliMode'];
 		$this->agent = (string)$params['agent'];
 		$this->serverName = $params['serverName'];
-		$this->topologyRole = $params['topologyRole'];
 		$this->nonNativeInsertSelectBatchSize = $params['nonNativeInsertSelectBatchSize'] ?? 10000;
 
 		$this->srvCache = $params['srvCache'];
 		$this->profiler = is_callable( $params['profiler'] ) ? $params['profiler'] : null;
 		$this->connLogger = $params['connLogger'];
 		$this->queryLogger = $params['queryLogger'];
-		$this->replLogger = $params['replLogger'];
 		$this->errorLogger = $params['errorLogger'];
 		$this->deprecationLogger = $params['deprecationLogger'];
 
@@ -263,6 +254,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->currentDomain,
 			$this->errorLogger
 		);
+		// Children classes must set $this->replicationReporter.
 	}
 
 	/**
@@ -343,9 +335,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - lbInfo: Optional map of field/values for the managing load balancer instance.
 	 *      The "master" and "replica" fields are used to flag the replication role of this
 	 *      database server and whether methods like getLag() should actually issue queries.
-	 *   - topologicalPrimaryConnRef: lazy-connecting IDatabase handle to the most authoritative
-	 *      primary database server for the cluster that this database belongs to. This handle is
-	 *      used for replication status purposes. This is generally managed by LoadBalancer.
 	 *   - connLogger: Optional PSR-3 logger interface instance.
 	 *   - queryLogger: Optional PSR-3 logger interface instance.
 	 *   - profiler : Optional callback that takes a section name argument and returns
@@ -404,14 +393,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function getServerInfo() {
 		return $this->getServerVersion();
-	}
-
-	public function getTopologyBasedServerId() {
-		return null;
-	}
-
-	public function getTopologyRole() {
-		return $this->topologyRole;
 	}
 
 	/**
@@ -1096,7 +1077,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$priorSessInfo = $this->getCriticalSessionInfo();
 
 		// Get the transaction-aware SQL string used for profiling
-		$prefix = ( $this->topologyRole === self::ROLE_STREAMING_MASTER ) ? 'role-primary: ' : '';
+		$prefix = ( $this->getTopologyRole() === self::ROLE_STREAMING_MASTER ) ? 'role-primary: ' : '';
 		$generalizedSql = new GeneralizedSql( $summarySql, $prefix );
 
 		// Start profile section
@@ -2321,34 +2302,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @inheritDoc
-	 * @since 1.37
-	 * @stable to override
-	 */
-	public function primaryPosWait( DBPrimaryPos $pos, $timeout ) {
-		# Real waits are implemented in the subclass.
-		return 0;
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function getReplicaPos() {
-		# Stub
-		return false;
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function getPrimaryPos() {
-		# Stub
-		return false;
-	}
-
-	/**
-	 * @inheritDoc
 	 * @stable to override
 	 */
 	public function serverIsReadOnly() {
@@ -2753,13 +2706,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Treat "BEGIN" as a trivial query to gauge the RTT delay
 		$rtt = max( $timeEnd - $timeStart, 0.0 );
 		$this->transactionManager->newTrxId( $mode, $fname, $rtt );
-		// With REPEATABLE-READ isolation, the first SELECT establishes the read snapshot,
-		// so get the replication lag estimate before any transaction SELECT queries come in.
-		// This way, the lag estimate reflects what will actually be read. Also, if heartbeat
-		// tables are used, this avoids counting snapshot lag as part of replication lag.
-		$this->trxReplicaLagStatus = null; // clear cached value first
-		$this->trxReplicaLagStatus = $this->getApproximateLagStatus();
-
+		$this->replicationReporter->resetReplicationLagStatus( $this );
 		$this->completeCriticalSection( __METHOD__, $cs );
 	}
 
@@ -3043,52 +2990,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $ok;
 	}
 
-	public function getSessionLagStatus() {
-		return $this->getRecordedTransactionLagStatus() ?: $this->getApproximateLagStatus();
-	}
-
-	/**
-	 * Get the replica DB lag when the current transaction started
-	 *
-	 * This is useful given that transactions might use point-in-time read snapshots,
-	 * in which case the lag estimate should be recorded just before the transaction
-	 * establishes the read snapshot (either BEGIN or the first SELECT/write query).
-	 *
-	 * If snapshots are not used, it is still safe to be pessimistic.
-	 *
-	 * This returns null if there is no transaction or the lag status was not yet recorded.
-	 *
-	 * @return array|null ('lag': seconds or false, 'since': UNIX timestamp of BEGIN) or null
-	 * @since 1.27
-	 */
-	final protected function getRecordedTransactionLagStatus() {
-		return $this->trxLevel() ? $this->trxReplicaLagStatus : null;
-	}
-
-	/**
-	 * Get a replica DB lag estimate for this server at the start of a transaction
-	 *
-	 * This is a no-op unless the server is known a priori to be a replica DB
-	 *
-	 * @stable to override
-	 * @return array ('lag': seconds or false on error, 'since': UNIX timestamp of estimate)
-	 * @since 1.27
-	 */
-	protected function getApproximateLagStatus() {
-		if ( $this->topologyRole === self::ROLE_STREAMING_REPLICA ) {
-			// Avoid exceptions as this is used internally in critical sections
-			try {
-				$lag = $this->getLag();
-			} catch ( DBError $e ) {
-				$lag = false;
-			}
-		} else {
-			$lag = 0;
-		}
-
-		return [ 'lag' => $lag, 'since' => microtime( true ) ];
-	}
-
 	/**
 	 * Merge the result of getSessionLagStatus() for several DBs
 	 * using the most pessimistic values to estimate the lag of
@@ -3129,31 +3030,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		return $res;
-	}
-
-	public function getLag() {
-		if ( $this->topologyRole === self::ROLE_STREAMING_MASTER ) {
-			return 0; // this is the primary DB
-		} elseif ( $this->topologyRole === self::ROLE_STATIC_CLONE ) {
-			return 0; // static dataset
-		}
-
-		return $this->doGetLag();
-	}
-
-	/**
-	 * Get the amount of replication lag for this database server
-	 *
-	 * Callers should avoid using this method while a transaction is active
-	 *
-	 * @see getLag()
-	 *
-	 * @stable to override
-	 * @return float|int|false Database replication lag in seconds or false on error
-	 * @throws DBError
-	 */
-	protected function doGetLag() {
-		return 0;
 	}
 
 	/**
@@ -3499,10 +3375,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return array|false Tuple of (read-only reason, "role" or "lb") or false if it is not
 	 */
 	protected function getReadOnlyReason() {
-		if ( $this->topologyRole === self::ROLE_STREAMING_REPLICA ) {
-			return [ 'Server is configured as a read-only replica database.', 'role' ];
-		} elseif ( $this->topologyRole === self::ROLE_STATIC_CLONE ) {
-			return [ 'Server is configured as a read-only static clone database.', 'role' ];
+		$reason = $this->replicationReporter->getTopologyBasedReadOnlyReason();
+		if ( $reason ) {
+			return $reason;
 		}
 
 		$reason = $this->getLBInfo( self::LB_READ_ONLY_REASON );
@@ -3999,6 +3874,41 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/* End of methods delegated to SQLPlatform. */
+
+	/* Start of methods delegated to ReplicationReporter. */
+	public function primaryPosWait( DBPrimaryPos $pos, $timeout ) {
+		return $this->replicationReporter->primaryPosWait( $this, $pos, $timeout );
+	}
+
+	public function getReplicaPos() {
+		return $this->replicationReporter->getReplicaPos( $this );
+	}
+
+	public function getPrimaryPos() {
+		return $this->replicationReporter->getPrimaryPos( $this );
+	}
+
+	public function getTopologyRole() {
+		return $this->replicationReporter->getTopologyRole();
+	}
+
+	public function getTopologyBasedServerId() {
+		return $this->replicationReporter->getTopologyBasedServerId( $this );
+	}
+
+	protected function getApproximateLagStatus() {
+		return $this->replicationReporter->getApproximateLagStatus( $this );
+	}
+
+	public function getLag() {
+		return $this->replicationReporter->getLag( $this );
+	}
+
+	public function getSessionLagStatus() {
+		return $this->replicationReporter->getSessionLagStatus( $this );
+	}
+
+	/* End of methods delegated to ReplicationReporter. */
 }
 
 /**

@@ -1566,7 +1566,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$titleObj = Title::newFromText( $name );
 
 		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
-		$watchlistManager->addWatch( $user,  $titleObj );
+		$watchlistManager->addWatch( $user, $titleObj );
 
 		$this->assertFalse( $titleObj->exists() );
 		$this->assertTrue( $watchlistManager->isWatched( $user, $titleObj ) );

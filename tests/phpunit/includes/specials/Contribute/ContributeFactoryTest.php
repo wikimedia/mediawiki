@@ -36,7 +36,7 @@ class ContributeFactoryTest extends MediaWikiIntegrationTestCase {
 				$context->msg( 'view-missing-pages' )->text()
 			) ) )->toArray();
 		$this->assertArrayEquals( [ 'title', 'icon', 'description', 'action' ], array_keys( $defaltCard ) );
-		$this->assertArrayEquals( $expectedCard,  $defaltCard );
+		$this->assertArrayEquals( $expectedCard, $defaltCard );
 	}
 
 }

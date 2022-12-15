@@ -1895,7 +1895,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	public static function provideUcfirst() {
 		return [
 			[ 'alice', 'Alice', 'simple ASCII string', false ],
-			[ 'århus',  'Århus', 'unicode string', false ],
+			[ 'århus', 'Århus', 'unicode string', false ],
 			// overrides do not affect ASCII characters
 			[ 'foo', 'Foo', 'ASCII is not overridden', [ 'f' => 'b' ] ],
 			// but they do affect non-ascii ones

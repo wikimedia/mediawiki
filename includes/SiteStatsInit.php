@@ -160,7 +160,7 @@ class SiteStatsInit {
 	 */
 	public static function doPlaceholderInit() {
 		$dbw = self::getDB( DB_PRIMARY );
-		$exists = (bool)$dbw->selectField( 'site_stats', '1', [ 'ss_row_id' => 1 ],  __METHOD__ );
+		$exists = (bool)$dbw->selectField( 'site_stats', '1', [ 'ss_row_id' => 1 ], __METHOD__ );
 		if ( !$exists ) {
 			$dbw->insert(
 				'site_stats',

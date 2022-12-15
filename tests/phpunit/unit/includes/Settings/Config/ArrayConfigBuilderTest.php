@@ -31,7 +31,7 @@ class ArrayConfigBuilderTest extends TestCase {
 
 	public function testBuild() {
 		$this->builder
-			->set( 'foo',  'bar' )
+			->set( 'foo', 'bar' )
 			->set( 'baz', 'quu' );
 
 		$config = $this->builder->build();

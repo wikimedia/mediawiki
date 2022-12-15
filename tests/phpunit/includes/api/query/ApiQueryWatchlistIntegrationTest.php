@@ -1409,7 +1409,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 				],
 			]
 		);
-		$this->watchPages( $user, [ $target1, $target2,	$target3 ] );
+		$this->watchPages( $user, [ $target1, $target2, $target3 ] );
 
 		$firstResult = $this->doListWatchlistRequest( [ 'wllimit' => 2, 'wlprop' => 'title' ] );
 		$this->assertArrayHasKey( 'continue', $firstResult[0] );

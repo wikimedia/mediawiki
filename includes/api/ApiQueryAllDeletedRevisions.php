@@ -278,7 +278,7 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			// uncached at this point, and the non-generator case needs an actor
 			// join anyway so adding this join here is normally free. This should
 			// use the ar_actor_timestamp index.
-			$this->addWhereFld( 'actor_name',  $params['user'] );
+			$this->addWhereFld( 'actor_name', $params['user'] );
 		} elseif ( $params['excludeuser'] !== null ) {
 			$this->addWhere( 'actor_name<>' . $db->addQuotes( $params['excludeuser'] ) );
 		}

@@ -348,7 +348,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$rl = new EmptyResourceLoader;
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'must have a "loadScript" key' );
-		$rl->addSource( 'foo',  [ 'x' => 'https://example.org/w/load.php' ] );
+		$rl->addSource( 'foo', [ 'x' => 'https://example.org/w/load.php' ] );
 	}
 
 	public static function provideLoaderImplement() {
