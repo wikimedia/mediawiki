@@ -20,17 +20,52 @@
 namespace Wikimedia\Rdbms;
 
 /**
- * Create and track the database connections and transactions for a given database cluster.
+ * This class is a delegate to ILBFactory for a given database cluster
  *
- * This class is a delegate to ILBFactory for a given database cluster (separated for the
- * LBFactoryMulti use case).
+ * ILoadBalancer tracks the database connections and transactions for a given database cluster.
+ * A "cluster" is considered to be the set of database servers that manage a given dataset.
+ * Within a given cluster, each database server can have one of the following roles:
+ *  - sole-primary: the server used by this datacenter for writes from the application
+ *  - co-primary: one of several servers used by this datacenter for writes from the application,
+ *     relying on asynchronous replication to synchronize their copies of the dataset
+ *  - replica: a server used only for reads from the application, relying on asynchronous
+ *     replication to apply writes from the primary server or co-primary servers
+ *  - static clone: a server that only accepts reads from the application, does not replicate,
+ *     and has a copy of the final dataset, which must be static (all the servers reject writes)
  *
- * A "cluster" is defined as a primary database with zero or more replica databases.
- * Typically, the replica DBs replicate from the primary asynchronously. The first node in the
- * "servers" configuration array is always considered the "primary". However, this class can still
- * be used when all or some of the "replica" DBs are multi-primary peers of the primary or even
- * when all the DBs are non-replicating clones of each other holding read-only data. Thus, the
- * role of "primary" is in some cases merely nominal.
+ * Single-datacenter database clusters consist of either:
+ *   - A sole-primary server and zero or more replica servers
+ *   - A set of static clone servers
+ *
+ * Multi-datacenter database clusters either consist of either:
+ *   - A sole-primary server and zero or more replica servers in the "primary datacenter"
+ *     (the one datacenter meant to handle requests/jobs that mutate the database), and zero or
+ *     more replica servers in each "secondary datacenter" (all the other datacenters)
+ *   - A co-primary server and zero or more replica servers within each datacenter
+ *   - A set of static clone servers in each datacenter
+ *
+ * The term "primary" refers to the server used by this datacenter for handling writes,
+ * whether it is a sole-primary or co-primary.
+ *
+ * The "servers" configuration array contains the list of database servers to use for operations
+ * originating from the the local datacenter. The first entry must refer to the server to use for
+ * write and read-for-write operations (e.g. the "writer server"):
+ *   - If there is a primary server, then the first entry must refer to it, even if the primary
+ *     server resides in a remote datacenter
+ *   - If there are co-primary servers, then the first entry must refer to the one in the local
+ *     datacenter
+ *   - If the servers are static clones, then the first entry can refer to any of them, since the
+ *     concept of a "writer server" is merely nominal
+ *
+ * On an infrastructure level, circular replication setups can have more than one database server
+ * act as a replication "source" within the same datacenter, provided that no more than one of the
+ * servers are writable at any time, namely the "writer server". The other source servers will be
+ * treated as replicas by the load balancer, but can be quickly promoted to the "writer server" by
+ * the site admin as needed.
+ *
+ * Likewise, Galera Cluster setups still require the choice of a single "writer server" for each
+ * datacenter. Limiting the number of servers that initiate transactions helps reduce the rate of
+ * aborted transactions due to wsrep conflicts.
  *
  * By default, each DB server uses DBO_DEFAULT for its 'flags' setting, unless explicitly set
  * otherwise in configuration. DBO_DEFAULT behavior depends on whether 'cliMode' is set:
@@ -52,11 +87,12 @@ namespace Wikimedia\Rdbms;
  * weighted random selection, adjustments thereof by LoadMonitor, and the amount of replication
  * lag on each DB server. Lag checks might cause problems in certain setups, so they should be
  * tuned in the server configuration maps as follows:
- *   - Primary + N Replica(s): set 'max lag' to an appropriate threshold for avoiding any database
- *      lagged by this much or more. If all DBs are this lagged, then the load balancer considers
- *      the cluster to be read-only.
- *   - Galera Cluster: Seconds_Behind_Master will be 0, so there probably is nothing to tune.
- *      Note that lag is still possible depending on how wsrep-sync-wait is set server-side.
+ *   - Sole-primary + N Replica(s): set 'max lag' to an appropriate threshold for avoiding any
+ *      replica database lagged by this much or more. If all replicas are this lagged, then the
+ *      load balancer considers the cluster to be read-only.
+ *   - Per-datacenter co-primary + N Replica(s): set 'max lag' to an appropriate threshold for
+ *      avoiding any replica database lagged by this much or more. If all replicas are this
+ *      lagged, then the load balancer considers the cluster to be read-only.
  *   - Read-only archive clones: set 'is static' in the server configuration maps. This will
  *      treat all such DBs as having 0 lag.
  *   - Externally updated dataset clones: set 'is static' in the server configuration maps.
@@ -66,10 +102,10 @@ namespace Wikimedia\Rdbms;
  *      the load balancer ignore whatever it detects as the lag of the logical replica is (which
  *      would probably just randomly bounce around).
  *
- * If using a SQL proxy service, it would probably be best to have two proxy hosts for the
- * load balancer to talk to. One would be the 'host' of the primary server entry and another for
- * the (logical) replica server entry. The proxy could map the load balancer's "replica" DB to
- * any number of physical replica DBs.
+ * If using a SQL proxy service, it would probably be best to have two proxy hosts for the load
+ * balancer to talk to. One would be the 'host' of the "writer server" entry and another for the
+ * (logical) replica server entry. The proxy could map the load balancer's "replica" DB to any
+ * number of physical replica DBs.
  *
  * @since 1.28
  * @ingroup Database
@@ -106,7 +142,11 @@ interface ILoadBalancer {
 	public const CONN_REFRESH_READ_ONLY = 8;
 
 	/**
-	 * Get the logical name of the database cluster
+	 * Get the name of the overall cluster of database servers managing the dataset
+	 *
+	 * Note that the cluster might contain servers in multiple datacenters.
+	 * The load balancer instance only needs to be aware of the local replica servers,
+	 * along with either the sole-primary server or the local co-primary server.
 	 *
 	 * This is useful for identifying a cluster or replicated dataset, even when:
 	 *  - The primary server is sometimes swapped with another one
@@ -114,7 +154,7 @@ interface ILoadBalancer {
 	 *    datacenter having the writable primary server and the other datacenters having a
 	 *    read-only replica in the "primary" server slot
 	 *  - The dataset is replicated among multiple datacenters, via circular replication,
-	 *    with each datacenter having its own "primary" server
+	 *    with each datacenter having its own "co-primary" server
 	 *
 	 * @return string
 	 * @since 1.36
@@ -354,9 +394,15 @@ interface ILoadBalancer {
 	public function getMaintenanceConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): DBConnRef;
 
 	/**
-	 * Get the specific server index of the primary server
+	 * Get the specific server index of the "writer server"
 	 *
-	 * @return int
+	 * The "writer server" is the server that should be used to source writes and critical reads
+	 * originating from the local datacenter. The "writer server" will be one of the following:
+	 *   - The primary, for single-primary setups (even if it resides in a remote datacenter)
+	 *   - The "preferred" co-primary relative to the local datacenter, for multi-primary setups
+	 *   - The "preferred" static clone, for static clone server setups (e.g. no replication)
+	 *
+	 * @return int Specific server index
 	 */
 	public function getWriterIndex();
 
@@ -370,8 +416,11 @@ interface ILoadBalancer {
 	/**
 	 * Whether there are any replica servers configured
 	 *
-	 * This counts both servers using streaming replication from the primary server and
-	 * servers that just have a clone of the static dataset found on the primary server
+	 * This scans the list of servers defined in configuration, checking for:
+	 *  - Servers that are listed after the primary and not flagged with "is static";
+	 *    such servers are assumed to be typical streaming replicas
+	 *  - Servers that are listed after the primary and flagged with "is static";
+	 *    such servers are assumed to have a clone of the static dataset (matching the primary)
 	 *
 	 * @return bool
 	 * @since 1.34
@@ -381,12 +430,9 @@ interface ILoadBalancer {
 	/**
 	 * Whether any replica servers use streaming replication from the primary server
 	 *
-	 * Generally this is one less than getServerCount(), though it might otherwise
-	 * return a lower number if some of the servers are configured with "is static".
-	 * That flag is used when both the server has no active replication setup and the
-	 * dataset is either read-only or occasionally updated out-of-band. For example,
-	 * a script might import a new geographic information dataset each week by writing
-	 * it to each server and later directing the application to use the new version.
+	 * This scans the list of servers defined in configuration, checking for:
+	 *  - Servers that are listed after the primary and not flagged with "is static";
+	 *    such servers are assumed to be typical streaming replicas
 	 *
 	 * It is possible for some replicas to be configured with "is static" but not
 	 * others, though it generally should either be set for all or none of the replicas.

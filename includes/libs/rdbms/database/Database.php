@@ -331,7 +331,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - variables: Optional map of session variables to set after connecting. This can be
 	 *      used to adjust lock timeouts or encoding modes and the like.
 	 *   - serverName : Optional readable name for the database server.
-	 *   - topologyRole: Optional IDatabase::ROLE_* constant for the database server.
+	 *   - topologyRole: Optional IDatabase::ROLE_* constant that defines the replication role
+	 *     that this server plays within the parent database cluster.
 	 *   - lbInfo: Optional map of field/values for the managing load balancer instance.
 	 *      The "master" and "replica" fields are used to flag the replication role of this
 	 *      database server and whether methods like getLag() should actually issue queries.
