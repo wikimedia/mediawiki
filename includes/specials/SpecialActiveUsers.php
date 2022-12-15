@@ -178,18 +178,24 @@ class SpecialActiveUsers extends SpecialPage {
 		$intro = $this->msg( 'activeusers-intro' )->numParams( $days )->parse();
 
 		// Mention the level of cache staleness...
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA, 'recentchanges' );
-		$rcMax = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', '', __METHOD__ );
+		$dbr = $this->loadBalancer->getConnection( ILoadBalancer::DB_REPLICA );
+		$rcMax = $dbr->newSelectQueryBuilder()
+			->select( 'MAX(rc_timestamp)' )
+			->from( 'recentchanges' )
+			->caller( __METHOD__ )->fetchField();
 		if ( $rcMax ) {
-			$cTime = $dbr->selectField( 'querycache_info',
-				'qci_timestamp',
-				[ 'qci_type' => 'activeusers' ],
-				__METHOD__
-			);
+			$cTime = $dbr->newSelectQueryBuilder()
+				->select( 'qci_timestamp' )
+				->from( 'querycache_info' )
+				->where( [ 'qci_type' => 'activeusers' ] )
+				->caller( __METHOD__ )->fetchField();
 			if ( $cTime ) {
 				$secondsOld = (int)wfTimestamp( TS_UNIX, $rcMax ) - (int)wfTimestamp( TS_UNIX, $cTime );
 			} else {
-				$rcMin = $dbr->selectField( 'recentchanges', 'MIN(rc_timestamp)', '', __METHOD__ );
+				$rcMin = $dbr->newSelectQueryBuilder()
+					->select( 'MIN(rc_timestamp)' )
+					->from( 'recentchanges' )
+					->caller( __METHOD__ )->fetchField();
 				$secondsOld = time() - (int)wfTimestamp( TS_UNIX, $rcMin );
 			}
 			if ( $secondsOld > 0 ) {
