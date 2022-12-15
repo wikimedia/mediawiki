@@ -19,11 +19,10 @@
  */
 namespace Wikimedia\Rdbms;
 
-use InvalidArgumentException;
 use RuntimeException;
-use stdClass;
 use Wikimedia\Rdbms\Platform\ISQLPlatform;
 use Wikimedia\Rdbms\Platform\MySQLPlatform;
+use Wikimedia\Rdbms\Replication\MysqlReplicationReporter;
 
 /**
  * MySQL database abstraction layer.
@@ -40,14 +39,6 @@ use Wikimedia\Rdbms\Platform\MySQLPlatform;
  * @see Database
  */
 abstract class DatabaseMysqlBase extends Database {
-	/** @var MySQLPrimaryPos */
-	protected $lastKnownReplicaPos;
-	/** @var string Method to detect replica DB lag */
-	protected $lagDetectionMethod;
-	/** @var array Method to detect replica DB lag */
-	protected $lagDetectionOptions = [];
-	/** @var bool bool Whether to use GTID methods */
-	protected $useGTIDs = false;
 	/** @var string|null */
 	protected $sslKeyPath;
 	/** @var string|null */
@@ -67,19 +58,11 @@ abstract class DatabaseMysqlBase extends Database {
 	/** @var bool|null */
 	protected $defaultBigSelects;
 
-	/** @var bool|null */
-	private $insertSelectIsSafe;
-	/** @var stdClass|null */
-	private $replicationInfoRow;
-
-	// Cache getServerId() for 24 hours
-	private const SERVER_ID_CACHE_TTL = 86400;
-
-	/** @var float Warn if lag estimates are made for transactions older than this many seconds */
-	private const LAG_STALE_WARN_THRESHOLD = 0.100;
-
 	/** @var ISQLPlatform */
 	protected $platform;
+
+	/** @var MysqlReplicationReporter */
+	protected $replicationReporter;
 
 	/**
 	 * Additional $params include:
@@ -93,7 +76,6 @@ abstract class DatabaseMysqlBase extends Database {
 	 *       row having a server_id matching that of the immediate replication source server
 	 *       for the given replica.
 	 *   - useGTIDs : use GTID methods like MASTER_GTID_WAIT() when possible.
-	 *   - insertSelectIsSafe : force that native INSERT SELECT is or is not safe [default: null]
 	 *   - sslKeyPath : path to key file [default: null]
 	 *   - sslCertPath : path to certificate file [default: null]
 	 *   - sslCAFile: path to a single certificate authority PEM file [default: null]
@@ -102,9 +84,6 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param array $params
 	 */
 	public function __construct( array $params ) {
-		$this->lagDetectionMethod = $params['lagDetectionMethod'] ?? 'Seconds_Behind_Master';
-		$this->lagDetectionOptions = $params['lagDetectionOptions'] ?? [];
-		$this->useGTIDs = !empty( $params['useGTIDs' ] );
 		foreach ( [ 'KeyPath', 'CertPath', 'CAFile', 'CAPath', 'Ciphers' ] as $name ) {
 			$var = "ssl{$name}";
 			if ( isset( $params[$var] ) ) {
@@ -112,14 +91,20 @@ abstract class DatabaseMysqlBase extends Database {
 			}
 		}
 		$this->utf8Mode = !empty( $params['utf8Mode'] );
-		$this->insertSelectIsSafe = isset( $params['insertSelectIsSafe'] )
-			? (bool)$params['insertSelectIsSafe'] : null;
 		parent::__construct( $params );
 		$this->platform = new MySQLPlatform(
 			$this,
 			$params['queryLogger'],
 			$this->currentDomain,
 			$this->errorLogger
+		);
+		$this->replicationReporter = new MysqlReplicationReporter(
+			$params['topologyRole'],
+			$params['replLogger'],
+			$params['srvCache'],
+			$params['lagDetectionMethod'] ?? 'Seconds_Behind_Master',
+			$params['lagDetectionOptions'] ?? [],
+			!empty( $params['useGTIDs' ] )
 		);
 	}
 
@@ -261,7 +246,7 @@ abstract class DatabaseMysqlBase extends Database {
 	abstract protected function mysqlError( $conn = null );
 
 	protected function isInsertSelectSafe( array $insertOptions, array $selectOptions ) {
-		$row = $this->getReplicationSafetyInfo();
+		$row = $this->replicationReporter->getReplicationSafetyInfo( $this );
 		// For row-based-replication, the resulting changes will be relayed, not the query
 		if ( $row->binlog_format === 'ROW' ) {
 			return true;
@@ -281,25 +266,6 @@ abstract class DatabaseMysqlBase extends Database {
 			in_array( 'NO_AUTO_COLUMNS', $insertOptions ) ||
 			(int)$row->innodb_autoinc_lock_mode === 0
 		);
-	}
-
-	/**
-	 * @return stdClass Process cached row
-	 */
-	protected function getReplicationSafetyInfo() {
-		if ( $this->replicationInfoRow === null ) {
-			$this->replicationInfoRow = $this->selectRow(
-				false,
-				[
-					'innodb_autoinc_lock_mode' => '@@innodb_autoinc_lock_mode',
-					'binlog_format' => '@@binlog_format',
-				],
-				[],
-				__METHOD__
-			);
-		}
-
-		return $this->replicationInfoRow;
 	}
 
 	/**
@@ -446,381 +412,6 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return mixed
 	 */
 	abstract protected function mysqlRealEscapeString( $s );
-
-	protected function doGetLag() {
-		if ( $this->lagDetectionMethod === 'pt-heartbeat' ) {
-			return $this->getLagFromPtHeartbeat();
-		} else {
-			return $this->getLagFromSlaveStatus();
-		}
-	}
-
-	/**
-	 * @return int|false Second of lag
-	 */
-	protected function getLagFromSlaveStatus() {
-		$res = $this->query(
-			'SHOW SLAVE STATUS',
-			__METHOD__,
-			self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
-		);
-		$row = $res ? $res->fetchObject() : false;
-		// If the server is not replicating, there will be no row
-		if ( $row && strval( $row->Seconds_Behind_Master ) !== '' ) {
-			// https://mariadb.com/kb/en/delayed-replication/
-			// https://dev.mysql.com/doc/refman/5.6/en/replication-delayed.html
-			return intval( $row->Seconds_Behind_Master + ( $row->SQL_Remaining_Delay ?? 0 ) );
-		}
-
-		return false;
-	}
-
-	/**
-	 * @return float|false Seconds of lag
-	 */
-	protected function getLagFromPtHeartbeat() {
-		$currentTrxInfo = $this->getRecordedTransactionLagStatus();
-		if ( $currentTrxInfo ) {
-			// There is an active transaction and the initial lag was already queried
-			$staleness = microtime( true ) - $currentTrxInfo['since'];
-			if ( $staleness > self::LAG_STALE_WARN_THRESHOLD ) {
-				// Avoid returning higher and higher lag value due to snapshot age
-				// given that the isolation level will typically be REPEATABLE-READ
-				// but UTC_TIMESTAMP() is not affected by point-in-time snapshots
-				$this->queryLogger->warning(
-					"Using cached lag value for {db_server} due to active transaction",
-					$this->getLogContext( [
-						'method' => __METHOD__,
-						'age' => $staleness,
-						'exception' => new RuntimeException()
-					] )
-				);
-			}
-
-			return $currentTrxInfo['lag'];
-		}
-
-		$ago = $this->fetchSecondsSinceHeartbeat();
-		if ( $ago !== null ) {
-			return max( $ago, 0.0 );
-		}
-
-		$this->queryLogger->error(
-			"Unable to find pt-heartbeat row for {db_server}",
-			$this->getLogContext( [
-				'method' => __METHOD__
-			] )
-		);
-
-		return false;
-	}
-
-	/**
-	 * @return float|null Elapsed seconds since the newest beat or null if none was found
-	 * @see https://www.percona.com/doc/percona-toolkit/2.1/pt-heartbeat.html
-	 */
-	protected function fetchSecondsSinceHeartbeat() {
-		// Some setups might have pt-heartbeat running on each replica server.
-		// Exclude the row for events originating on this DB server. Assume that
-		// there is only one active replication channel and that any other row
-		// getting updates must be the row for the primary DB server.
-		$where = $this->makeList(
-			$this->lagDetectionOptions['conds'] ?? [ 'server_id != @@server_id' ],
-			self::LIST_AND
-		);
-		// User mysql server time so that query time and trip time are not counted.
-		// Use ORDER BY for channel based queries since that field might not be UNIQUE.
-		$res = $this->query(
-			"SELECT TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6)) AS us_ago " .
-			"FROM heartbeat.heartbeat WHERE $where ORDER BY ts DESC LIMIT 1",
-			__METHOD__,
-			self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
-		);
-		$row = $res ? $res->fetchObject() : false;
-
-		return $row ? ( $row->us_ago / 1e6 ) : null;
-	}
-
-	protected function getApproximateLagStatus() {
-		if ( $this->lagDetectionMethod === 'pt-heartbeat' ) {
-			// Disable caching since this is fast enough and we don't want
-			// to be *too* pessimistic by having both the cache TTL and the
-			// pt-heartbeat interval count as lag in getSessionLagStatus()
-			return parent::getApproximateLagStatus();
-		}
-
-		$key = $this->srvCache->makeGlobalKey( 'mysql-lag', $this->getServerName() );
-		$approxLag = $this->srvCache->get( $key );
-		if ( !$approxLag ) {
-			$approxLag = parent::getApproximateLagStatus();
-			$this->srvCache->set( $key, $approxLag, 1 );
-		}
-
-		return $approxLag;
-	}
-
-	public function primaryPosWait( DBPrimaryPos $pos, $timeout ) {
-		if ( !( $pos instanceof MySQLPrimaryPos ) ) {
-			throw new InvalidArgumentException( "Position not an instance of MySQLPrimaryPos" );
-		}
-
-		if ( $this->topologyRole === self::ROLE_STATIC_CLONE ) {
-			$this->queryLogger->debug(
-				"Bypassed replication wait; database has a static dataset",
-				$this->getLogContext( [ 'method' => __METHOD__, 'raw_pos' => $pos ] )
-			);
-
-			return 0; // this is a copy of a read-only dataset with no primary DB
-		} elseif ( $this->lastKnownReplicaPos && $this->lastKnownReplicaPos->hasReached( $pos ) ) {
-			$this->queryLogger->debug(
-				"Bypassed replication wait; replication known to have reached {raw_pos}",
-				$this->getLogContext( [ 'method' => __METHOD__, 'raw_pos' => $pos ] )
-			);
-
-			return 0; // already reached this point for sure
-		}
-
-		// Call doQuery() directly, to avoid opening a transaction if DBO_TRX is set
-		if ( $pos->getGTIDs() ) {
-			// Get the GTIDs from this replica server too see the domains (channels)
-			$refPos = $this->getReplicaPos();
-			if ( !$refPos ) {
-				$this->queryLogger->error(
-					"Could not get replication position on replica DB to compare to {raw_pos}",
-					$this->getLogContext( [ 'method' => __METHOD__, 'raw_pos' => $pos ] )
-				);
-
-				return -1; // this is the primary DB itself?
-			}
-			// GTIDs with domains (channels) that are active and are present on the replica
-			$gtidsWait = $pos::getRelevantActiveGTIDs( $pos, $refPos );
-			if ( !$gtidsWait ) {
-				$this->queryLogger->error(
-					"No active GTIDs in {raw_pos} share a domain with those in {current_pos}",
-					$this->getLogContext( [
-						'method' => __METHOD__,
-						'raw_pos' => $pos,
-						'current_pos' => $refPos
-					] )
-				);
-
-				return -1; // $pos is from the wrong cluster?
-			}
-			// Wait on the GTID set
-			$gtidArg = $this->addQuotes( implode( ',', $gtidsWait ) );
-			if ( strpos( $gtidArg, ':' ) !== false ) {
-				// MySQL GTIDs, e.g "source_id:transaction_id"
-				$sql = "SELECT WAIT_FOR_EXECUTED_GTID_SET($gtidArg, $timeout)";
-			} else {
-				// MariaDB GTIDs, e.g."domain:server:sequence"
-				$sql = "SELECT MASTER_GTID_WAIT($gtidArg, $timeout)";
-			}
-			$waitPos = implode( ',', $gtidsWait );
-		} else {
-			// Wait on the binlog coordinates
-			$encFile = $this->addQuotes( $pos->getLogFile() );
-			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-			$encPos = intval( $pos->getLogPosition()[$pos::CORD_EVENT] );
-			$sql = "SELECT MASTER_POS_WAIT($encFile, $encPos, $timeout)";
-			$waitPos = $pos->__toString();
-		}
-
-		$start = microtime( true );
-		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
-		$res = $this->query( $sql, __METHOD__, $flags );
-		$row = $res->fetchRow();
-		$seconds = max( microtime( true ) - $start, 0 );
-
-		// Result can be NULL (error), -1 (timeout), or 0+ per the MySQL manual
-		$status = ( $row[0] !== null ) ? intval( $row[0] ) : null;
-		if ( $status === null ) {
-			$this->replLogger->error(
-				"An error occurred while waiting for replication to reach {wait_pos}",
-				$this->getLogContext( [
-					'raw_pos' => $pos,
-					'wait_pos' => $waitPos,
-					'sql' => $sql,
-					'seconds_waited' => $seconds,
-					'exception' => new RuntimeException()
-				] )
-			);
-		} elseif ( $status < 0 ) {
-			$this->replLogger->error(
-				"Timed out waiting for replication to reach {wait_pos}",
-				$this->getLogContext( [
-					'raw_pos' => $pos,
-					'wait_pos' => $waitPos,
-					'timeout' => $timeout,
-					'sql' => $sql,
-					'seconds_waited' => $seconds,
-					'exception' => new RuntimeException()
-				] )
-			);
-		} elseif ( $status >= 0 ) {
-			$this->replLogger->debug(
-				"Replication has reached {wait_pos}",
-				$this->getLogContext( [
-					'raw_pos' => $pos,
-					'wait_pos' => $waitPos,
-					'seconds_waited' => $seconds,
-				] )
-			);
-			// Remember that this position was reached to save queries next time
-			$this->lastKnownReplicaPos = $pos;
-		}
-
-		return $status;
-	}
-
-	/**
-	 * Get the position of the primary DB from SHOW SLAVE STATUS
-	 *
-	 * @return MySQLPrimaryPos|false
-	 */
-	public function getReplicaPos() {
-		$now = microtime( true ); // as-of-time *before* fetching GTID variables
-
-		if ( $this->useGTIDs() ) {
-			// Try to use GTIDs, fallbacking to binlog positions if not possible
-			$data = $this->getServerGTIDs( __METHOD__ );
-			// Use gtid_slave_pos for MariaDB and gtid_executed for MySQL
-			foreach ( [ 'gtid_slave_pos', 'gtid_executed' ] as $name ) {
-				if ( isset( $data[$name] ) && strlen( $data[$name] ) ) {
-					return new MySQLPrimaryPos( $data[$name], $now );
-				}
-			}
-		}
-
-		$data = $this->getServerRoleStatus( 'SLAVE', __METHOD__ );
-		if ( $data && strlen( $data['Relay_Master_Log_File'] ) ) {
-			return new MySQLPrimaryPos(
-				"{$data['Relay_Master_Log_File']}/{$data['Exec_Master_Log_Pos']}",
-				$now
-			);
-		}
-
-		return false;
-	}
-
-	/**
-	 * Get the position of the primary DB from SHOW MASTER STATUS
-	 *
-	 * @return MySQLPrimaryPos|false
-	 */
-	public function getPrimaryPos() {
-		$now = microtime( true ); // as-of-time *before* fetching GTID variables
-
-		$pos = false;
-		if ( $this->useGTIDs() ) {
-			// Try to use GTIDs, fallbacking to binlog positions if not possible
-			$data = $this->getServerGTIDs( __METHOD__ );
-			// Use gtid_binlog_pos for MariaDB and gtid_executed for MySQL
-			foreach ( [ 'gtid_binlog_pos', 'gtid_executed' ] as $name ) {
-				if ( isset( $data[$name] ) && strlen( $data[$name] ) ) {
-					$pos = new MySQLPrimaryPos( $data[$name], $now );
-					break;
-				}
-			}
-			// Filter domains that are inactive or not relevant to the session
-			if ( $pos ) {
-				$pos->setActiveOriginServerId( $this->getServerId() );
-				$pos->setActiveOriginServerUUID( $this->getServerUUID() );
-				if ( isset( $data['gtid_domain_id'] ) ) {
-					$pos->setActiveDomain( $data['gtid_domain_id'] );
-				}
-			}
-		}
-
-		if ( !$pos ) {
-			$data = $this->getServerRoleStatus( 'MASTER', __METHOD__ );
-			if ( $data && strlen( $data['File'] ) ) {
-				$pos = new MySQLPrimaryPos( "{$data['File']}/{$data['Position']}", $now );
-			}
-		}
-
-		return $pos;
-	}
-
-	/**
-	 * @inheritDoc
-	 * @return string|null 32 bit integer ID; null if not applicable or unknown
-	 */
-	public function getTopologyBasedServerId() {
-		return $this->getServerId();
-	}
-
-	/**
-	 * @return string Value of server_id (32-bit integer, unique to the replication topology)
-	 * @throws DBQueryError
-	 */
-	protected function getServerId() {
-		$fname = __METHOD__;
-		return $this->srvCache->getWithSetCallback(
-			$this->srvCache->makeGlobalKey( 'mysql-server-id', $this->getServerName() ),
-			self::SERVER_ID_CACHE_TTL,
-			function () use ( $fname ) {
-				$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
-				$res = $this->query( "SELECT @@server_id AS id", $fname, $flags );
-
-				return $res->fetchObject()->id;
-			}
-		);
-	}
-
-	/**
-	 * @return string|null Value of server_uuid (hyphenated 128-bit hex string, globally unique)
-	 * @throws DBQueryError
-	 */
-	protected function getServerUUID() {
-		$fname = __METHOD__;
-		return $this->srvCache->getWithSetCallback(
-			$this->srvCache->makeGlobalKey( 'mysql-server-uuid', $this->getServerName() ),
-			self::SERVER_ID_CACHE_TTL,
-			function () use ( $fname ) {
-				$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
-				$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'server_uuid'", $fname, $flags );
-				$row = $res->fetchObject();
-
-				return $row ? $row->Value : null;
-			}
-		);
-	}
-
-	/**
-	 * @param string $fname
-	 * @return string[]
-	 */
-	protected function getServerGTIDs( $fname = __METHOD__ ) {
-		$map = [];
-
-		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
-
-		// Get global-only variables like gtid_executed
-		$res = $this->query( "SHOW GLOBAL VARIABLES LIKE 'gtid_%'", $fname, $flags );
-		foreach ( $res as $row ) {
-			$map[$row->Variable_name] = $row->Value;
-		}
-		// Get session-specific (e.g. gtid_domain_id since that is were writes will log)
-		$res = $this->query( "SHOW SESSION VARIABLES LIKE 'gtid_%'", $fname, $flags );
-		foreach ( $res as $row ) {
-			$map[$row->Variable_name] = $row->Value;
-		}
-
-		return $map;
-	}
-
-	/**
-	 * @param string $role One of "MASTER"/"SLAVE"
-	 * @param string $fname
-	 * @return array<string,mixed>|null Latest available server status row; false on failure
-	 */
-	protected function getServerRoleStatus( $role, $fname = __METHOD__ ) {
-		$flags = self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
-		$res = $this->query( "SHOW $role STATUS", $fname, $flags );
-		$row = $res ? $res->fetchRow() : false;
-
-		return ( $row ?: null );
-	}
 
 	public function serverIsReadOnly() {
 		// Avoid SHOW to avoid internal temporary tables
@@ -1208,13 +799,6 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		return $sql;
-	}
-
-	/**
-	 * @return bool Whether GTID support is used (mockable for testing)
-	 */
-	protected function useGTIDs() {
-		return $this->useGTIDs;
 	}
 }
 

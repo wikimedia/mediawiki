@@ -32,6 +32,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\Rdbms\MySQLPrimaryPos;
 use Wikimedia\Rdbms\Platform\MySQLPlatform;
+use Wikimedia\Rdbms\Replication\MysqlReplicationReporter;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -252,20 +253,21 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideLagAmounts
 	 */
 	public function testPtHeartbeat( $lag ) {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
+		/** @var IDatabase $db */
+		$db = $this->getMockBuilder( IDatabase::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$db->setLBInfo( 'replica', true );
+
+		$replicationReporter = $this->getMockBuilder( MysqlReplicationReporter::class )
 			->disableOriginalConstructor()
 			->onlyMethods( [ 'fetchSecondsSinceHeartbeat' ] )
 			->getMock();
 
-		TestingAccessWrapper::newFromObject( $db )->lagDetectionMethod = 'pt-heartbeat';
+		TestingAccessWrapper::newFromObject( $replicationReporter )->lagDetectionMethod = 'pt-heartbeat';
+		$replicationReporter->method( 'fetchSecondsSinceHeartbeat' )->willReturn( $lag );
 
-		$db->setLBInfo( 'replica', true );
-
-		$db->method( 'fetchSecondsSinceHeartbeat' )->willReturn( $lag );
-
-		/** @var IDatabase $db */
-		$db->setLBInfo( 'clusterMasterHost', 'db1052' );
-		$lagEst = $db->getLag();
+		$lagEst = $replicationReporter->getLag( $db );
 
 		$this->assertGreaterThan( $lag - 0.010, $lagEst, "Correct heatbeat lag" );
 		$this->assertLessThan( $lag + 0.010, $lagEst, "Correct heatbeat lag" );
@@ -290,7 +292,10 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase
 	 */
 	public function testServerGtidTable( $gtable, $rBLtable, $mBLtable, $rGTIDs, $mGTIDs ) {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
+		$db = $this->getMockBuilder( IDatabase::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$replicationReporter = $this->getMockBuilder( MysqlReplicationReporter::class )
 			->disableOriginalConstructor()
 			->onlyMethods( [
 				'useGTIDs',
@@ -301,10 +306,10 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			] )
 			->getMock();
 
-		$db->method( 'useGTIDs' )->willReturn( true );
-		$db->method( 'getServerGTIDs' )->willReturn( $gtable );
-		$db->method( 'getServerRoleStatus' )->willReturnCallback(
-			static function ( $role ) use ( $rBLtable, $mBLtable ) {
+		$replicationReporter->method( 'useGTIDs' )->willReturn( true );
+		$replicationReporter->method( 'getServerGTIDs' )->willReturn( $gtable );
+		$replicationReporter->method( 'getServerRoleStatus' )->willReturnCallback(
+			static function ( $db, $role ) use ( $rBLtable, $mBLtable ) {
 				if ( $role === 'SLAVE' ) {
 					return $rBLtable;
 				} elseif ( $role === 'MASTER' ) {
@@ -314,19 +319,19 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 				return null;
 			}
 		);
-		$db->method( 'getServerId' )->willReturn( 1 );
-		$db->method( 'getServerUUID' )->willReturn( '2E11FA47-71CA-11E1-9E33-C80AA9429562' );
+		$replicationReporter->method( 'getServerId' )->willReturn( 1 );
+		$replicationReporter->method( 'getServerUUID' )->willReturn( '2E11FA47-71CA-11E1-9E33-C80AA9429562' );
 
-		/** @var DatabaseMysqlBase $db */
+		/** @var DatabaseMysqlBase $replicationReporter */
 		if ( is_array( $rGTIDs ) ) {
-			$this->assertEquals( $rGTIDs, $db->getReplicaPos()->getGTIDs() );
+			$this->assertEquals( $rGTIDs, $replicationReporter->getReplicaPos( $db )->getGTIDs() );
 		} else {
-			$this->assertFalse( $db->getReplicaPos() );
+			$this->assertFalse( $replicationReporter->getReplicaPos( $db ) );
 		}
 		if ( is_array( $mGTIDs ) ) {
-			$this->assertEquals( $mGTIDs, $db->getPrimaryPos()->getGTIDs() );
+			$this->assertEquals( $mGTIDs, $replicationReporter->getPrimaryPos( $db )->getGTIDs() );
 		} else {
-			$this->assertFalse( $db->getPrimaryPos() );
+			$this->assertFalse( $replicationReporter->getPrimaryPos( $db ) );
 		}
 	}
 
@@ -451,99 +456,6 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		$roundtripPos = unserialize( serialize( $pos ) );
 
 		$this->assertEquals( $pos, $roundtripPos );
-	}
-
-	/**
-	 * @dataProvider provideInsertSelectCases
-	 */
-	public function testInsertSelectIsSafe( $insertOpts, $selectOpts, $row, $safe ) {
-		$db = $this->getMockBuilder( DatabaseMysqli::class )
-			->disableOriginalConstructor()
-			->onlyMethods( [ 'getReplicationSafetyInfo' ] )
-			->getMock();
-		$db->method( 'getReplicationSafetyInfo' )->willReturn( (object)$row );
-		$dbw = TestingAccessWrapper::newFromObject( $db );
-
-		/** @var Database $dbw */
-		$this->assertEquals( $safe, $dbw->isInsertSelectSafe( $insertOpts, $selectOpts ) );
-	}
-
-	public function provideInsertSelectCases() {
-		return [
-			[
-				[],
-				[],
-				[
-					'innodb_autoinc_lock_mode' => '2',
-					'binlog_format' => 'ROW',
-				],
-				true
-			],
-			[
-				[],
-				[ 'LIMIT' => 100 ],
-				[
-					'innodb_autoinc_lock_mode' => '2',
-					'binlog_format' => 'ROW',
-				],
-				true
-			],
-			[
-				[],
-				[ 'LIMIT' => 100 ],
-				[
-					'innodb_autoinc_lock_mode' => '0',
-					'binlog_format' => 'STATEMENT',
-				],
-				false
-			],
-			[
-				[],
-				[],
-				[
-					'innodb_autoinc_lock_mode' => '2',
-					'binlog_format' => 'STATEMENT',
-				],
-				false
-			],
-			[
-				[ 'NO_AUTO_COLUMNS' ],
-				[ 'LIMIT' => 100 ],
-				[
-					'innodb_autoinc_lock_mode' => '0',
-					'binlog_format' => 'STATEMENT',
-				],
-				false
-			],
-			[
-				[],
-				[],
-				[
-					'innodb_autoinc_lock_mode' => 0,
-					'binlog_format' => 'STATEMENT',
-				],
-				true
-			],
-			[
-				[ 'NO_AUTO_COLUMNS' ],
-				[],
-				[
-					'innodb_autoinc_lock_mode' => 2,
-					'binlog_format' => 'STATEMENT',
-				],
-				true
-			],
-			[
-				[ 'NO_AUTO_COLUMNS' ],
-				[],
-				[
-					'innodb_autoinc_lock_mode' => 0,
-					'binlog_format' => 'STATEMENT',
-				],
-				true
-			],
-
-		];
 	}
 
 	public function testBuildIntegerCast() {

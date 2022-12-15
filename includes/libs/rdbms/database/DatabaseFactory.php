@@ -63,9 +63,6 @@ class DatabaseFactory {
 	 *   - lbInfo: Optional map of field/values for the managing load balancer instance.
 	 *      The "master" and "replica" fields are used to flag the replication role of this
 	 *      database server and whether methods like getLag() should actually issue queries.
-	 *   - topologicalPrimaryConnRef: lazy-connecting IDatabase handle to the most authoritative
-	 *      primary database server for the cluster that this database belongs to. This handle is
-	 *      used for replication status purposes. This is generally managed by LoadBalancer.
 	 *   - connLogger: Optional PSR-3 logger interface instance.
 	 *   - queryLogger: Optional PSR-3 logger interface instance.
 	 *   - profiler : Optional callback that takes a section name argument and returns
@@ -104,7 +101,6 @@ class DatabaseFactory {
 				'serverName' => null,
 				'topologyRole' => null,
 				// Objects and callbacks
-				'topologicalPrimaryConnRef' => $params['topologicalPrimaryConnRef'] ?? null,
 				'srvCache' => $params['srvCache'] ?? new HashBagOStuff(),
 				'profiler' => $params['profiler'] ?? null,
 				'trxProfiler' => $params['trxProfiler'] ?? new TransactionProfiler(),
