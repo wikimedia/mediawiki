@@ -20,7 +20,7 @@
  * @file
  */
 
-use MediaWiki\Linker\Linker;
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
@@ -60,6 +60,9 @@ class ApiQueryUserContribs extends ApiQueryBase {
 	/** @var ActorMigration */
 	private $actorMigration;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
@@ -69,6 +72,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 	 * @param RevisionStore $revisionStore
 	 * @param NameTableStore $changeTagDefStore
 	 * @param ActorMigration $actorMigration
+	 * @param CommentFormatter $commentFormatter
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -78,7 +82,8 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		UserNameUtils $userNameUtils,
 		RevisionStore $revisionStore,
 		NameTableStore $changeTagDefStore,
-		ActorMigration $actorMigration
+		ActorMigration $actorMigration,
+		CommentFormatter $commentFormatter
 	) {
 		parent::__construct( $query, $moduleName, 'uc' );
 		$this->commentStore = $commentStore;
@@ -87,6 +92,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $changeTagDefStore;
 		$this->actorMigration = $actorMigration;
+		$this->commentFormatter = $commentFormatter;
 	}
 
 	private $params, $multiUserMode, $orderBy, $parentLens;
@@ -600,7 +606,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				}
 
 				if ( $this->fld_parsedcomment ) {
-					$vals['parsedcomment'] = Linker::formatComment( $comment, $title );
+					$vals['parsedcomment'] = $this->commentFormatter->format( $comment, $title );
 				}
 			}
 		}

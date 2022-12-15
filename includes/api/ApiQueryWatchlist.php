@@ -20,7 +20,7 @@
  * @file
  */
 
-use MediaWiki\Linker\Linker;
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
@@ -50,6 +50,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	/** @var GenderCache */
 	private $genderCache;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
@@ -58,6 +61,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	 * @param Language $contentLanguage
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param GenderCache $genderCache
+	 * @param CommentFormatter $commentFormatter
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -66,7 +70,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		WatchedItemQueryService $watchedItemQueryService,
 		Language $contentLanguage,
 		NamespaceInfo $namespaceInfo,
-		GenderCache $genderCache
+		GenderCache $genderCache,
+		CommentFormatter $commentFormatter
 	) {
 		parent::__construct( $query, $moduleName, 'wl' );
 		$this->commentStore = $commentStore;
@@ -74,6 +79,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$this->contentLanguage = $contentLanguage;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->genderCache = $genderCache;
+		$this->commentFormatter = $commentFormatter;
 	}
 
 	public function execute() {
@@ -415,7 +421,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				}
 
 				if ( $this->fld_parsedcomment ) {
-					$vals['parsedcomment'] = Linker::formatComment( $comment, $title );
+					$vals['parsedcomment'] = $this->commentFormatter->format( $comment, $title );
 				}
 			}
 		}

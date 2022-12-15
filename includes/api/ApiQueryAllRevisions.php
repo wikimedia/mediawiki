@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
@@ -58,6 +59,7 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ContentRenderer $contentRenderer
 	 * @param ContentTransformer $contentTransformer
+	 * @param CommentFormatter $commentFormatter
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -69,7 +71,8 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 		ActorMigration $actorMigration,
 		NamespaceInfo $namespaceInfo,
 		ContentRenderer $contentRenderer,
-		ContentTransformer $contentTransformer
+		ContentTransformer $contentTransformer,
+		CommentFormatter $commentFormatter
 	) {
 		parent::__construct(
 			$query,
@@ -80,7 +83,8 @@ class ApiQueryAllRevisions extends ApiQueryRevisionsBase {
 			$parserFactory,
 			$slotRoleRegistry,
 			$contentRenderer,
-			$contentTransformer
+			$contentTransformer,
+			$commentFormatter
 		);
 		$this->revisionStore = $revisionStore;
 		$this->actorMigration = $actorMigration;

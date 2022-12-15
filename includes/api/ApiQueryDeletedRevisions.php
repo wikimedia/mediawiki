@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Content\Transform\ContentTransformer;
@@ -62,6 +63,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param ContentRenderer $contentRenderer
 	 * @param ContentTransformer $contentTransformer
+	 * @param CommentFormatter $commentFormatter
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -73,7 +75,8 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 		NameTableStore $changeTagDefStore,
 		LinkBatchFactory $linkBatchFactory,
 		ContentRenderer $contentRenderer,
-		ContentTransformer $contentTransformer
+		ContentTransformer $contentTransformer,
+		CommentFormatter $commentFormatter
 	) {
 		parent::__construct(
 			$query,
@@ -84,7 +87,8 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 			$parserFactory,
 			$slotRoleRegistry,
 			$contentRenderer,
-			$contentTransformer
+			$contentTransformer,
+			$commentFormatter
 		);
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $changeTagDefStore;
