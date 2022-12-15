@@ -15,7 +15,6 @@ use MediaWiki\Hook\ParserLogLinterDataHook;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
-use MediaWiki\Page\PageLookup;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
@@ -709,7 +708,7 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 				[ 'ParsoidWikiID' => 'MyWiki' ]
 			),
 			$parserCacheFactory,
-			$this->createNoOpMock( PageLookup::class ),
+			$services->getPageStore(),
 			$services->getRevisionLookup(),
 			$services->getGlobalIdGenerator(),
 			new NullStatsdDataFactory(),
@@ -741,6 +740,29 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
 
 		$this->expectExceptionObject( $expectedException );
+		$helper->getHtml();
+	}
+
+	public function testWillUseParserCache() {
+		$page = $this->getExistingTestPage( __METHOD__ );
+
+		// NOTE: Use a simple PageIdentity here, to make sure the relevant PageRecord
+		//       will be looked up as needed.
+		$page = PageIdentityValue::localIdentity( $page->getId(), $page->getNamespace(), $page->getDBkey() );
+
+		// This is the key assertion in this test case: get() and save() are both called.
+		$parserCache = $this->createNoOpMock( ParserCache::class, [ 'get', 'save' ] );
+		$parserCache->expects( $this->once() )->method( 'get' )->willReturn( false );
+		$parserCache->expects( $this->once() )->method( 'save' );
+
+		$access = $this->newRealParsoidOutputAccess( [
+			'parserCache' => $parserCache,
+			'revisionCache' => $this->createNoOpMock( RevisionOutputCache::class ),
+		] );
+
+		$helper = $this->newHelper( null, $access );
+		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
+
 		$helper->getHtml();
 	}
 
