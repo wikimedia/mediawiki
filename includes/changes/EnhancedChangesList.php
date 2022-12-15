@@ -436,7 +436,7 @@ class EnhancedChangesList extends ChangesList {
 			$data['comment'] = $this->insertComment( $rcObj );
 		}
 
-		# Rollback
+		# Rollback, thanks etc...
 		$data['rollback'] = $this->getRollback( $rcObj );
 
 		# Tags

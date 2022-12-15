@@ -691,23 +691,24 @@ class ContribsPager extends RangeChronologicalPager {
 			# Mark current revisions
 			$topmarktext = '';
 
+			$pagerTools = $page ? new PagerTools(
+				$revRecord,
+				null,
+				!$row->page_is_new,
+				$this->getHookRunner(),
+				$page,
+				$this->getContext(),
+				$this->getLinkRenderer()
+			) : null;
 			if ( $row->rev_id === $row->page_latest ) {
 				$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
 				$classes[] = 'mw-contributions-current';
-				# Add rollback link
-				if ( !$row->page_is_new &&
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
-					$this->getAuthority()->probablyCan( 'rollback', $page ) &&
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
-					$this->getAuthority()->probablyCan( 'edit', $page )
-				) {
+			}
+			if ( $pagerTools ) {
+				if ( $pagerTools->shouldPreventClickjacking() ) {
 					$this->setPreventClickjacking( true );
-					$topmarktext .= ' ' . Linker::generateRollback(
-						$revRecord,
-						$this->getContext(),
-						[ 'noBrackets' ]
-					);
 				}
+				$topmarktext .= $pagerTools->toHTML();
 			}
 			# Is there a visible previous revision?
 			if ( $revRecord->getParentId() !== 0 &&
