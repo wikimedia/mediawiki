@@ -1105,7 +1105,7 @@
 	"mergehistory-fail-permission": "没有足够权限合并历史。",
 	"mergehistory-fail-self-merge": "来源页面与目的页面相同。",
 	"mergehistory-fail-timestamps-overlap": "来源修订版本重复，或在目的修订版本之后出现。",
-	"mergehistory-fail-toobig": "由于超出$1的限制而无法执行历史合并，$1个版本将被移动。",
+	"mergehistory-fail-toobig": "由于超出$1{{PLURAL:$1|个修订版本}}的移动限制，无法执行历史合并。",
 	"mergehistory-no-source": "来源页面$1不存在。",
 	"mergehistory-no-destination": "目的页面$1不存在。",
 	"mergehistory-invalid-source": "来源页面必须是一个有效的标题。",
