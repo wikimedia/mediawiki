@@ -27,6 +27,7 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
@@ -650,6 +651,16 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			new LocalizedHttpException(
 				new MessageValue( 'rest-resource-limit-exceeded' ),
 				413,
+				[
+					'reason' => 'TEST_TEST'
+				]
+			)
+		];
+		yield 'RevisionAccessException' => [
+			new RevisionAccessException( 'TEST_TEST' ),
+			new LocalizedHttpException(
+				new MessageValue( 'rest-nonexistent-title' ),
+				404,
 				[
 					'reason' => 'TEST_TEST'
 				]
