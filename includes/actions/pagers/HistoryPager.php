@@ -466,60 +466,19 @@ class HistoryPager extends ReverseChronologicalPager {
 			$classes[] = 'mw-history-line-updated';
 		}
 
-		$tools = [];
-
-		# Rollback and undo links
-
-		if ( $previousRevRecord && $this->getAuthority()->probablyCan( 'edit', $this->getTitle() ) ) {
-			if ( $latest && $this->getAuthority()->probablyCan( 'rollback', $this->getTitle() )
-			) {
-				// Get a rollback link without the brackets
-				$rollbackLink = Linker::generateRollback(
-					$revRecord,
-					$this->getContext(),
-					[ 'verify', 'noBrackets' ]
-				);
-				if ( $rollbackLink ) {
-					$this->preventClickjacking = true;
-					$tools[] = $rollbackLink;
-				}
-			}
-
-			if ( !$revRecord->isDeleted( RevisionRecord::DELETED_TEXT )
-				&& !$previousRevRecord->isDeleted( RevisionRecord::DELETED_TEXT )
-			) {
-				# Create undo tooltip for the first (=latest) line only
-				$undoTooltip = $latest
-					? [ 'title' => $this->msg( 'tooltip-undo' )->text() ]
-					: [];
-				$undolink = $this->getLinkRenderer()->makeKnownLink(
-					$this->getTitle(),
-					$this->msg( 'editundo' )->text(),
-					$undoTooltip,
-					[
-						'action' => 'edit',
-						'undoafter' => $previousRevRecord->getId(),
-						'undo' => $revRecord->getId()
-					]
-				);
-				$tools[] = "<span class=\"mw-history-undo\">{$undolink}</span>";
-			}
-		}
-		// Allow extension to add their own links here
-		$this->hookRunner->onHistoryTools(
+		$pagerTools = new PagerTools(
 			$revRecord,
-			$tools,
 			$previousRevRecord,
-			$user
+			$latest && $previousRevRecord,
+			$this->getHookRunner(),
+			$this->getTitle(),
+			$this->getContext(),
+			$this->getLinkRenderer()
 		);
-
-		if ( $tools ) {
-			$s2 .= ' ' . Html::openElement( 'span', [ 'class' => 'mw-changeslist-links' ] );
-			foreach ( $tools as $tool ) {
-				$s2 .= Html::rawElement( 'span', [], $tool );
-			}
-			$s2 .= Html::closeElement( 'span' );
+		if ( $pagerTools->shouldPreventClickjacking() ) {
+			$this->preventClickjacking = true;
 		}
+		$s2 .= $pagerTools->toHTML();
 
 		# Tags
 		[ $tagSummary, $newClasses ] = ChangeTags::formatSummaryRow(

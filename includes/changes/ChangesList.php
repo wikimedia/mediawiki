@@ -828,33 +828,46 @@ class ChangesList extends ContextSource {
 	 * @param RecentChange &$rc
 	 */
 	public function insertRollback( &$s, &$rc ) {
-		if ( $rc->mAttribs['rc_type'] == RC_EDIT
-			&& $rc->mAttribs['rc_this_oldid']
-			&& $rc->mAttribs['rc_cur_id']
-			&& $rc->getAttribute( 'page_latest' ) == $rc->mAttribs['rc_this_oldid']
-		) {
-			$title = $rc->getTitle();
+		$this->insertPageTools( $s, $rc );
+	}
+
+	/**
+	 * Insert an extensible set of page tools into the changelist row
+	 * which includes a rollback link and undo link if applicable.
+	 *
+	 * @param string &$s
+	 * @param RecentChange &$rc
+	 *
+	 */
+	private function insertPageTools( &$s, &$rc ) {
+		$title = $rc->getTitle();
+		$revRecord = new MutableRevisionRecord( $title );
+		$revRecord->setId( (int)$rc->mAttribs['rc_this_oldid'] );
+		$revRecord->setVisibility( (int)$rc->mAttribs['rc_deleted'] );
+		$user = new UserIdentityValue(
+			(int)$rc->mAttribs['rc_user'],
+			$rc->mAttribs['rc_user_text']
+		);
+		$revRecord->setUser( $user );
+
+		$tools = new PagerTools(
+			$revRecord,
+			null,
 			/** Check for rollback permissions, disallow special pages, and only
 			 * show a link on the top-most revision
 			 */
-			if ( $this->getAuthority()->probablyCan( 'rollback', $title ) ) {
-				$revRecord = new MutableRevisionRecord( $title );
-				$revRecord->setId( (int)$rc->mAttribs['rc_this_oldid'] );
-				$revRecord->setVisibility( (int)$rc->mAttribs['rc_deleted'] );
-				$user = new UserIdentityValue(
-					(int)$rc->mAttribs['rc_user'],
-					$rc->mAttribs['rc_user_text']
-				);
-				$revRecord->setUser( $user );
+			$rc->mAttribs['rc_type'] == RC_EDIT
+				&& $rc->mAttribs['rc_this_oldid']
+				&& $rc->mAttribs['rc_cur_id']
+				&& $rc->getAttribute( 'page_latest' ) == $rc->mAttribs['rc_this_oldid'],
+			$this->getHookRunner(),
+			$title,
+			$this->getContext(),
+			// @todo: Inject
+			MediaWikiServices::getInstance()->getLinkRenderer()
+		);
 
-				$s .= ' ';
-				$s .= Linker::generateRollback(
-					$revRecord,
-					$this->getContext(),
-					[ 'noBrackets' ]
-				);
-			}
-		}
+		$s .= $tools->toHTML();
 	}
 
 	/**
