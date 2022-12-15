@@ -227,6 +227,7 @@
 	"apihelp-feedrecentchanges-param-hidemyself": "Ocultar mudanças feitas pelo utilizador atual.",
 	"apihelp-feedrecentchanges-param-hidecategorization": "Ocultar mudanças de pertença a categorias.",
 	"apihelp-feedrecentchanges-param-tagfilter": "Filtrar por etiqueta.",
+	"apihelp-feedrecentchanges-param-inverttags": "Todas as edições, exceto as marcadas com as etiquetas selecionadas.",
 	"apihelp-feedrecentchanges-param-target": "Mostrar apenas mudanças em páginas afluentes a esta.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Mostrar mudanças em páginas com hiperligações para a página selecionada.",
 	"apihelp-feedrecentchanges-example-simple": "Mostrar mudanças recentes.",

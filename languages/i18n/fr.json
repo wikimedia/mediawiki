@@ -3729,6 +3729,7 @@
 	"tag-filter": "Filtrer les [[Special:Tags|balises]] :",
 	"tag-filter-submit": "Filtrer",
 	"tag-hidden": "$1 (balise masquée)",
+	"tag-link-other-edits": "autres modifications",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Balise|Balises}}]] : $2",
 	"tag-mw-contentmodelchange": "Modification du modèle de contenu",
 	"tag-mw-contentmodelchange-description": "Modifications qui [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel changent le modèle de contenu] d’une page",

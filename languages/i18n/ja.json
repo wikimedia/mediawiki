@@ -3632,6 +3632,7 @@
 	"tag-filter": "[[Special:Tags|タグ]]絞り込み:",
 	"tag-filter-submit": "絞り込み",
 	"tag-hidden": "$1（隠しタグ）",
+	"tag-link-other-edits": "その他の編集",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|タグ}}]]: $2",
 	"tag-mw-contentmodelchange": "コンテンツモデルの変更",
 	"tag-mw-contentmodelchange-description": "ページの[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel コンテンツモデルを変更]する",

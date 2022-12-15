@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Kly",
-			"Winston Sung"
+			"Winston Sung",
+			"捍粵者"
 		]
 	},
 	"paramvalidator-badbool": "用於布林值參數「$1」的值「$2」無效。傳遞$3為 true，傳遞$5為 false。",
@@ -57,7 +58,7 @@
 	"paramvalidator-help-type-number-min": "{{PLURAL:$1|1=數值|2=數值}}不可小於 $2。",
 	"paramvalidator-help-type-presenceboolean": "類型：布林值",
 	"paramvalidator-help-type-string-maxbytes": "不能超過 $1 {{PLURAL:$1|位元組|位元組}}。",
-	"paramvalidator-help-type-string-maxchars": "不能超過 $1 個{{PLURAL:$1|字元|字元}}。",
+	"paramvalidator-help-type-string-maxchars": "不能長過$1{{PLURAL:$1|字元}}。",
 	"paramvalidator-help-type-timestamp": "類型：{{PLURAL:$1|1=時間戳記|2=時間戳記列表}}",
 	"paramvalidator-help-type-upload": "必須使用 multipart/form-data 以檔案上傳的方式傳送。"
 }

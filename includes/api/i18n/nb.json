@@ -224,6 +224,7 @@
 	"apihelp-feedrecentchanges-param-hidemyself": "Skjul endringer gjort av den aktuelle brukeren.",
 	"apihelp-feedrecentchanges-param-hidecategorization": "Skjul endringer i kategorimedlemsskap.",
 	"apihelp-feedrecentchanges-param-tagfilter": "Filtrer etter tagger.",
+	"apihelp-feedrecentchanges-param-inverttags": "Alle redigeringer utenom de som har de valgte taggene.",
 	"apihelp-feedrecentchanges-param-target": "Vis bare endringer på sider som lenkes fra denne siden.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Vis endringer på sider som lenker til den valgte siden i stedet.",
 	"apihelp-feedrecentchanges-example-simple": "Vis siste endringer.",

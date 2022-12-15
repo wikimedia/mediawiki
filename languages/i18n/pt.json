@@ -3451,6 +3451,7 @@
 	"tag-filter": "Filtro de [[Special:Tags|etiquetas]]:",
 	"tag-filter-submit": "Filtrar",
 	"tag-hidden": "$1 (etiqueta oculta)",
+	"tag-link-other-edits": "outras edições",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etiqueta|Etiquetas}}]]: $2",
 	"tag-mw-contentmodelchange": "alteração do modelo de conteúdo",
 	"tag-mw-contentmodelchange-description": "Edições que [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel alteram o modelo de conteúdo] de uma página",
