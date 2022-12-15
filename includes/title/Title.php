@@ -3235,7 +3235,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			$isSingleRevRedirect = !$dbw->selectField(
 				'revision',
 				'1',
-				[ 'rev_page' => $this->mArticleID,  'rev_id != ' . (int)$this->mLatestID ],
+				[ 'rev_page' => $this->mArticleID, 'rev_id != ' . (int)$this->mLatestID ],
 				__METHOD__,
 				[ 'FOR UPDATE' ]
 			);

@@ -458,7 +458,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 			} );
 
 		$revision = $page->getRevisionRecord();
-		$output = $page->getContentHandler()->getParserOutputForIndexing( $page, null,  $revision );
+		$output = $page->getContentHandler()->getParserOutputForIndexing( $page, null, $revision );
 		$data = $page->getContentHandler()->getDataForSearchIndex( $page, $output, $mockEngine, $revision );
 		$this->assertArrayHasKey( 'text', $data );
 		$this->assertArrayHasKey( 'text_bytes', $data );

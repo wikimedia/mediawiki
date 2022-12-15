@@ -167,7 +167,7 @@ class WebResponse {
 			$legacyOptions = $options;
 			$legacyOptions['sameSiteLegacy'] = false;
 			$legacyOptions['sameSite'] = '';
-			$this->setCookie( "ss0-$name",  $value, $expire, $legacyOptions );
+			$this->setCookie( "ss0-$name", $value, $expire, $legacyOptions );
 		}
 
 		if ( $expire === null ) {

@@ -151,7 +151,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$provider = new CheckBlocksSecondaryAuthenticationProvider(
 			[ 'blockDisablesLogin' => $blockDisablesLogin ]
 		);
-		$this->initProvider( $provider,  new HashConfig(), null, $authManager );
+		$this->initProvider( $provider, new HashConfig(), null, $authManager );
 
 		$user = $this->getAnyBlockedUser( $blockType, $blockOptions );
 
@@ -191,7 +191,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$provider = new CheckBlocksSecondaryAuthenticationProvider(
 			[ 'blockDisablesLogin' => $blockDisablesLogin ]
 		);
-		$this->initProvider( $provider,  new HashConfig(), null, $authManager );
+		$this->initProvider( $provider, new HashConfig(), null, $authManager );
 
 		$user = $this->getAnyBlockedUser( $blockType, $blockOptions );
 
