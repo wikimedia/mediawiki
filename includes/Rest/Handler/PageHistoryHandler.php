@@ -27,6 +27,8 @@ use Wikimedia\Rdbms\IResultWrapper;
  * Handler class for Core REST API endpoints that perform operations on revisions
  */
 class PageHistoryHandler extends SimpleHandler {
+	use PageRedirectHandlerTrait;
+
 	private const REVISIONS_RETURN_LIMIT = 20;
 	private const ALLOWED_FILTER_TYPES = [ 'anonymous', 'bot', 'reverted', 'minor' ];
 
@@ -126,6 +128,7 @@ class PageHistoryHandler extends SimpleHandler {
 		}
 
 		$page = $this->getPage();
+
 		if ( !$page ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-nonexistent-title',
@@ -140,6 +143,17 @@ class PageHistoryHandler extends SimpleHandler {
 					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ] ),
 				403
 			);
+		}
+
+		'@phan-var \MediaWiki\Page\ExistingPageRecord $page';
+		$redirectResponse = $this->createNormalizationRedirectResponseIfNeeded(
+			$page,
+			$params['title'] ?? null,
+			$this->titleFormatter
+		);
+
+		if ( $redirectResponse !== null ) {
+			return $redirectResponse;
 		}
 
 		$relativeRevId = $params['older_than'] ?? $params['newer_than'] ?? 0;
