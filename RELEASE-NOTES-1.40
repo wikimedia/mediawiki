@@ -272,6 +272,8 @@ because of Phabricator reports.
   - ::loadRestrictionsFromRows()
 * The class Pbkdf2Password was renamed to Pbkdf2PasswordUsingHashExtension,
   and the old name is now deprecated.
+* WikiPage::factory(), ::newFromID() and ::newFromRow, deprecated in 1.36, now
+  emit deprecation warnings.
 * Calling MediaWikiSite::getFileUrl() without a $path argument is deprecated.
   If you need the "generic" full file path, with $1 not replaced by anything,
   call $site->getPath( MediaWikiSite::PATH_FILE ) directly.
