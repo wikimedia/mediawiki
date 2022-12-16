@@ -1811,6 +1811,8 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers Title::loadRestrictions
 	 */
 	public function testLoadRestrictions() {
+		$this->hideDeprecated( Title::class . '::areRestrictionsLoaded' );
+		$this->hideDeprecated( Title::class . '::getRestrictionExpiry' );
 		$title = Title::newFromText( 'UTPage1' );
 		$title->loadRestrictions();
 		$this->assertTrue( $title->areRestrictionsLoaded() );
@@ -1871,6 +1873,9 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideRestrictionsRows
 	 */
 	public function testloadRestrictionsFromRows( $rows ) {
+		$this->hideDeprecated( Title::class . '::loadRestrictionsFromRows' );
+		$this->hideDeprecated( Title::class . '::getRestrictions' );
+		$this->hideDeprecated( Title::class . '::getRestrictionExpiry' );
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
 		$title->loadRestrictionsFromRows( $rows );
 		$this->assertSame(
@@ -1906,6 +1911,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	public function testRestrictionStoreForwarding(
 		string $method, array $params, $return, array $options = []
 	) {
+		$this->hideDeprecated( Title::class . '::' . $method );
 		$expectedParams = $options['expectedParams'] ?? $params;
 
 		if ( isset( $options['static'] ) ) {
@@ -1993,6 +1999,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers Title::getRestrictions
 	 */
 	public function testGetRestrictions() {
+		$this->hideDeprecated( Title::class . '::getRestrictions' );
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
 		$rs = $this->getServiceContainer()->getRestrictionStore();
 		$wrapper = TestingAccessWrapper::newFromObject( $rs );
@@ -2012,6 +2019,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers Title::getAllRestrictions
 	 */
 	public function testGetAllRestrictions() {
+		$this->hideDeprecated( Title::class . '::getAllRestrictions' );
 		$restrictions = [
 			'a' => [ 'sysop' ],
 			'b' => [ 'sysop' ],
@@ -2033,6 +2041,8 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers Title::getRestrictionExpiry
 	 */
 	public function testGetRestrictionExpiry() {
+		$this->hideDeprecated( Title::class . '::getRestrictionExpiry' );
+		$this->hideDeprecated( Title::class . '::getRestrictions' );
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
 		$rs = $this->getServiceContainer()->getRestrictionStore();
 		$wrapper = TestingAccessWrapper::newFromObject( $rs );
@@ -2059,6 +2069,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers Title::isSemiProtected
 	 */
 	public function testIsSemiProtected() {
+		$this->hideDeprecated( Title::class . '::isSemiProtected' );
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
 		$this->overrideConfigValues( [
 			MainConfigNames::SemiprotectedRestrictionLevels => [ 'autoconfirmed' ],
@@ -2088,6 +2099,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers Title::isProtected
 	 */
 	public function testIsProtected() {
+		$this->hideDeprecated( Title::class . '::isProtected' );
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
 		$this->overrideConfigValues( [
 			MainConfigNames::RestrictionLevels => [ '', 'autoconfirmed', 'sysop' ],
@@ -2109,6 +2121,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers Title::isCascadeProtected
 	 */
 	public function testIsCascadeProtected() {
+		$this->hideDeprecated( Title::class . '::isCascadeProtected' );
 		$page = $this->getExistingTestPage( 'UTest1' );
 		$title = $page->getTitle();
 		$rs = $this->getServiceContainer()->getRestrictionStore();
@@ -2142,6 +2155,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @group Broken
 	 */
 	public function testGetCascadeProtectionSources() {
+		$this->hideDeprecated( Title::class . '::getCascadeProtectionSources' );
 		$page = $this->getExistingTestPage( 'UTest1' );
 		$title = $page->getTitle();
 

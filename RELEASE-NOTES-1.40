@@ -255,6 +255,21 @@ because of Phabricator reports.
   for @internal use only.
 * TransactionProfiler::setSilenced() is deprecated.
   Use TransactionProfiler::silenceForScope() instead.
+* The following methods in the Title class, deprecated since 1.37, emits
+  deprecations warnings:
+  - ::areCascadeProtectionSourcesLoaded()
+  - ::areRestrictionsCascading()
+  - ::areRestrictionsLoaded()
+  - ::getAllRestrictions()
+  - ::getCascadeProtectionSources()
+  - ::getFilteredRestrictionTypes()
+  - ::getRestrictionExpiry()
+  - ::getRestrictionTypes()
+  - ::getRestrictions()
+  - ::isCascadeProtected()
+  - ::isProtected()
+  - ::isSemiProtected()
+  - ::loadRestrictionsFromRows()
 * The class Pbkdf2Password was renamed to Pbkdf2PasswordUsingHashExtension,
   and the old name is now deprecated.
 * Calling MediaWikiSite::getFileUrl() without a $path argument is deprecated.
