@@ -14,6 +14,7 @@ use RuntimeException;
 use WANObjectCache;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\LoadBalancer;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -83,6 +84,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 					return $this->db->$method( ...$args );
 				} );
 		}
+		$mock->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $mock ) );
 		return $mock;
 	}
 

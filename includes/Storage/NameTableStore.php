@@ -365,16 +365,14 @@ class NameTableStore {
 	 * @return string[]
 	 */
 	private function loadTable( IDatabase $db ) {
-		$result = $db->select(
-			$this->table,
-			[
+		$result = $db->newSelectQueryBuilder()
+			->select( [
 				'id' => $this->idField,
 				'name' => $this->nameField
-			],
-			[],
-			__METHOD__,
-			[ 'ORDER BY' => 'id' ]
-		);
+			] )
+			->from( $this->table )
+			->orderBy( 'id' )
+			->caller( __METHOD__ )->fetchResultSet();
 
 		$assocArray = [];
 		foreach ( $result as $row ) {
