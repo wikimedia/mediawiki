@@ -1,0 +1,71 @@
+<?php
+
+namespace MediaWiki\Tests\Rest\Helper;
+
+use MediaWiki\Rest\Handler\HtmlMessageOutputHelper;
+use MediaWikiIntegrationTestCase;
+
+/**
+ * @covers \MediaWiki\Rest\Handler\HtmlMessageOutputHelper
+ * @group Database
+ */
+class HtmlMessageOutputHelperTest extends MediaWikiIntegrationTestCase {
+	private function newHelper(): HtmlMessageOutputHelper {
+		return new HtmlMessageOutputHelper();
+	}
+
+	/**
+	 * @covers \MediaWiki\Rest\Handler\HtmlMessageOutputHelper::init
+	 * @covers \MediaWiki\Rest\Handler\HtmlMessageOutputHelper::getHtml
+	 */
+	public function testGetHtml() {
+		$page = $this->getNonexistingTestPage( 'MediaWiki:Logouttext' );
+
+		$helper = $this->newHelper();
+		$helper->init( $page );
+
+		$this->assertSame( 0, $page->getLatest() );
+
+		$htmlresult = $helper->getHtml()->getRawText();
+
+		$this->assertStringContainsString( 'You are now logged out', $htmlresult );
+		// Check that we have a full HTML document in English
+		$this->assertStringContainsString( '<html', $htmlresult );
+		$this->assertStringContainsString( 'content="en"', $htmlresult );
+	}
+
+	/**
+	 * @covers \MediaWiki\Rest\Handler\HtmlMessageOutputHelper::init
+	 * @covers \MediaWiki\Rest\Handler\HtmlMessageOutputHelper::getETag
+	 */
+	public function testGetETag() {
+		$page = $this->getNonexistingTestPage( 'MediaWiki:Logouttext' );
+
+		$helper = $this->newHelper();
+		$helper->init( $page );
+
+		$etag = $helper->getETag();
+
+		$this->assertStringContainsString( '"message/', $etag );
+	}
+
+	/**
+	 * @covers \MediaWiki\Rest\Handler\HtmlMessageOutputHelper::init
+	 * @covers \MediaWiki\Rest\Handler\HtmlMessageOutputHelper::getHtml
+	 */
+	public function testGetHtmlWithLanguageCode() {
+		$page = $this->getNonexistingTestPage( 'MediaWiki:Logouttext/de' );
+
+		$helper = $this->newHelper();
+		$helper->init( $page );
+
+		$this->assertSame( 0, $page->getLatest() );
+
+		$htmlresult = $helper->getHtml()->getRawText();
+
+		$this->assertStringContainsString( 'Du bist nun abgemeldet', $htmlresult );
+		// Check that we have a full HTML document in English
+		$this->assertStringContainsString( '<html', $htmlresult );
+		$this->assertStringContainsString( 'content="de"', $htmlresult );
+	}
+}
