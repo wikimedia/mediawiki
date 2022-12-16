@@ -219,25 +219,19 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			] ] );
 
 			// Actually count the actions using a subquery (T66505 and T66507)
-			$tables = [ 'recentchanges', 'actor' ];
-			$joins = [
-				'actor' => [ 'JOIN', 'rc_actor = actor_id' ],
-			];
 			$timestamp = $db->timestamp( (int)wfTimestamp( TS_UNIX ) - $activeUserSeconds );
+			$subqueryBuilder = $db->newSelectQueryBuilder()
+				->select( 'COUNT(*)' )
+				->from( 'recentchanges' )
+				->join( 'actor', null, 'rc_actor = actor_id' )
+				->where( [
+					'actor_user = user_id',
+					'rc_type != ' . $db->addQuotes( RC_EXTERNAL ), // no wikidata
+					'rc_log_type IS NULL OR rc_log_type != ' . $db->addQuotes( 'newusers' ),
+					$db->buildComparison( '>=', [ 'rc_timestamp' => $timestamp ] ),
+				] );
 			$this->addFields( [
-				'recentactions' => '(' . $db->selectSQLText(
-					$tables,
-					'COUNT(*)',
-					[
-						'actor_user = user_id',
-						'rc_type != ' . $db->addQuotes( RC_EXTERNAL ), // no wikidata
-						'rc_log_type IS NULL OR rc_log_type != ' . $db->addQuotes( 'newusers' ),
-						'rc_timestamp >= ' . $db->addQuotes( $timestamp ),
-					],
-					__METHOD__,
-					[],
-					$joins
-				) . ')'
+				'recentactions' => '(' . $subqueryBuilder->caller( __METHOD__ )->getSQL() . ')'
 			] );
 		}
 
