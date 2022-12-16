@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use ActorMigration;
 use ChangeTags;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageLookup;
@@ -15,6 +14,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
+use MediaWiki\User\ActorMigration;
 use TitleFormatter;
 use WANObjectCache;
 use Wikimedia\Message\MessageValue;

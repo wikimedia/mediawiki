@@ -20,7 +20,6 @@
 
 namespace MediaWiki;
 
-use ActorMigration;
 use BagOStuff;
 use CentralIdLookup;
 use CommentStore;
@@ -135,6 +134,7 @@ use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Storage\RevertedTagUpdateManager;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\Title\TitleFactory;
+use MediaWiki\User\ActorMigration;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;

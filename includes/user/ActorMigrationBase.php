@@ -20,8 +20,10 @@
  * @file
  */
 
-use MediaWiki\User\ActorStoreFactory;
-use MediaWiki\User\UserIdentity;
+namespace MediaWiki\User;
+
+use InvalidArgumentException;
+use ReflectionClass;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -111,9 +113,9 @@ class ActorMigrationBase {
 		if ( $readStage === 0 ) {
 			throw new InvalidArgumentException( '$stage must include a read mode' );
 		}
-		if ( !in_array( $readStage,
-			[ SCHEMA_COMPAT_READ_OLD, SCHEMA_COMPAT_READ_TEMP, SCHEMA_COMPAT_READ_NEW ] )
-		) {
+		if ( !in_array(
+			$readStage, [ SCHEMA_COMPAT_READ_OLD, SCHEMA_COMPAT_READ_TEMP, SCHEMA_COMPAT_READ_NEW ]
+		) ) {
 			throw new InvalidArgumentException( 'Cannot read multiple schemas' );
 		}
 		if ( $readStage === SCHEMA_COMPAT_READ_OLD && !( $writeStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
@@ -155,7 +157,7 @@ class ActorMigrationBase {
 	 * @stable to override
 	 *
 	 * @return string
-	 * @throws ReflectionException
+	 * @throws \ReflectionException
 	 */
 	protected function getInstanceName() {
 		if ( ( new ReflectionClass( $this ) )->isAnonymous() ) {
@@ -261,8 +263,10 @@ class ActorMigrationBase {
 				if ( $tempTableInfo ) {
 					$alias = "temp_$key";
 					$tables[$alias] = $tempTableInfo['table'];
-					$joins[$alias] = [ 'JOIN',
-						"{$alias}.{$tempTableInfo['pk']} = {$tempTableInfo['joinPK']}" ];
+					$joins[$alias] = [
+						'JOIN',
+						"{$alias}.{$tempTableInfo['pk']} = {$tempTableInfo['joinPK']}",
+					];
 					$joinField = "{$alias}.{$tempTableInfo['field']}";
 				} else {
 					$joinField = $actor;
@@ -317,12 +321,9 @@ class ActorMigrationBase {
 			$ret[$key] = $user->getId();
 			$ret[$text] = $user->getName();
 		}
-		if ( $this->writeStage & SCHEMA_COMPAT_WRITE_TEMP
-			|| $this->writeStage & SCHEMA_COMPAT_WRITE_NEW
-		) {
-			$ret[$actor] = $this->actorStoreFactory
-				->getActorNormalization( $dbw->getDomainID() )
-				->acquireActorId( $user, $dbw );
+		if ( $this->writeStage & SCHEMA_COMPAT_WRITE_TEMP || $this->writeStage & SCHEMA_COMPAT_WRITE_NEW ) {
+			$ret[$actor] =
+				$this->actorStoreFactory->getActorNormalization( $dbw->getDomainID() )->acquireActorId( $user, $dbw );
 		}
 		return $ret;
 	}
@@ -345,9 +346,11 @@ class ActorMigrationBase {
 		$fieldInfo = $this->getFieldInfo( $key );
 		$tempTableInfo = $fieldInfo['tempTable'] ?? null;
 		if ( isset( $fieldInfo['formerTempTableVersion'] ) ) {
-			wfDeprecated( __METHOD__ . " for $key",
+			wfDeprecated(
+				__METHOD__ . " for $key",
 				$fieldInfo['formerTempTableVersion'],
-				$fieldInfo['component'] ?? 'MediaWiki' );
+				$fieldInfo['component'] ?? 'MediaWiki'
+			);
 		} elseif ( !$tempTableInfo ) {
 			throw new InvalidArgumentException( "Must use getInsertValues() for $key" );
 		}
@@ -488,8 +491,10 @@ class ActorMigrationBase {
 				if ( $tempTableInfo ) {
 					$alias = "temp_$key";
 					$tables[$alias] = $tempTableInfo['table'];
-					$joins[$alias] = [ 'JOIN',
-						"{$alias}.{$tempTableInfo['pk']} = {$tempTableInfo['joinPK']}" ];
+					$joins[$alias] = [
+						'JOIN',
+						"{$alias}.{$tempTableInfo['pk']} = {$tempTableInfo['joinPK']}",
+					];
 					$joinField = "{$alias}.{$tempTableInfo['field']}";
 				} else {
 					$joinField = $actor;
@@ -513,3 +518,5 @@ class ActorMigrationBase {
 		];
 	}
 }
+
+class_alias( ActorMigrationBase::class, 'ActorMigrationBase' );

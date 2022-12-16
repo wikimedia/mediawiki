@@ -1,8 +1,9 @@
 <?php
 
+namespace MediaWiki\User;
+
+use InvalidArgumentException;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\ActorStoreFactory;
-use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -38,7 +39,7 @@ class ActorMigration extends ActorMigrationBase {
 					'revactor_timestamp' => 'rev_timestamp',
 					'revactor_page' => 'rev_page',
 				],
-			]
+			],
 		],
 
 		// Deprecated since 1.34
@@ -69,8 +70,8 @@ class ActorMigration extends ActorMigrationBase {
 		'ipb_by' => [
 			'deprecatedVersion' => '1.37',
 			'textField' => 'ipb_by_text',
-			'actorField' => 'ipb_by_actor'
-		]
+			'actorField' => 'ipb_by_actor',
+		],
 	];
 
 	/**
@@ -93,7 +94,8 @@ class ActorMigration extends ActorMigrationBase {
 	) {
 		if ( $stage & SCHEMA_COMPAT_OLD ) {
 			throw new InvalidArgumentException(
-				'The old actor table schema is no longer supported' );
+				'The old actor table schema is no longer supported'
+			);
 		}
 		parent::__construct(
 			self::FIELD_INFOS,
@@ -141,3 +143,5 @@ class ActorMigration extends ActorMigrationBase {
 	}
 
 }
+
+class_alias( ActorMigration::class, 'ActorMigration' );
