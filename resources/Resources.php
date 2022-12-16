@@ -1416,11 +1416,6 @@ return [
 		'dependencies' => 'mediawiki.action.view.filepage',
 	],
 
-	// @deprecated To be removed one week after If406ce2ae38eb165 is merged.
-	'mediawiki.action.view.categoryPage.styles' => [
-		'styles' => 'resources/src/mediawiki.action.styles/categoryPage.less',
-		'targets' => [ 'desktop', 'mobile' ]
-	],
 	'mediawiki.action.view.postEdit' => [
 		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.action",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.action",
