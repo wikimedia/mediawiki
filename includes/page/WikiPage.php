@@ -203,9 +203,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *
 	 * @throws MWException
 	 * @return WikiPage|WikiCategoryPage|WikiFilePage
-	 * @deprecated since 1.36, use WikiPageFactory::newFromTitle instead
+	 * @deprecated since 1.36, hard deprecated 1.40, use WikiPageFactory::newFromTitle instead
 	 */
 	public static function factory( PageIdentity $pageIdentity ) {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $pageIdentity );
 	}
 
@@ -218,9 +219,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *        - "fromdbmaster" or WikiPage::READ_LATEST to select from the primary database
 	 *
 	 * @return WikiPage|null
-	 * @deprecated since 1.36, use WikiPageFactory::newFromID instead
+	 * @deprecated since 1.36, hard deprecated 1.40, use WikiPageFactory::newFromID instead
 	 */
 	public static function newFromID( $id, $from = 'fromdb' ) {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()->getWikiPageFactory()->newFromID( $id, $from );
 	}
 
@@ -234,9 +236,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *        - "fromdbmaster" or WikiPage::READ_LATEST: from the primary DB
 	 *        - "forupdate" or WikiPage::READ_LOCKING: from the primary DB using SELECT FOR UPDATE
 	 * @return WikiPage
-	 * @deprecated since 1.36, use WikiPageFactory::newFromRow instead
+	 * @deprecated since 1.36, hard deprecated 1.40, use WikiPageFactory::newFromRow instead
 	 */
 	public static function newFromRow( $row, $from = 'fromdb' ) {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()->getWikiPageFactory()->newFromRow( $row, $from );
 	}
 
