@@ -79,7 +79,7 @@ class LanguageVariantConverterUnitTest extends MediaWikiUnitTestCase {
 		$isLanguageConversionEnabled = true;
 
 		// Set expected language codes
-		$titleLanguageCode = $titleLanguageCode ?? 'en';
+		$titleLanguageCode ??= 'en';
 		$targetLanguageCode = 'en-us';
 
 		$parsoidSettings = [];

@@ -2410,7 +2410,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Get a filtered list of all restriction types supported by this wiki.
 	 *
-	 * @deprecated since 1.37, use RestrictionStore::listAllRestrictionTypes instead
+	 * @deprecated since 1.37, hard deprecated 1.40, use RestrictionStore::listAllRestrictionTypes instead
 	 *
 	 * @param bool $exists True to get all restriction types that apply to
 	 * titles that do exist, False for all restriction types that apply to
@@ -2418,6 +2418,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return array
 	 */
 	public static function getFilteredRestrictionTypes( $exists = true ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		return MediaWikiServices::getInstance()
 			->getRestrictionStore()
 			->listAllRestrictionTypes( $exists );
@@ -2426,11 +2427,12 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Returns restriction types for the current Title
 	 *
-	 * @deprecated since 1.37, use RestrictionStore::listApplicableRestrictionTypes instead
+	 * @deprecated since 1.37, hard deprecated 1.40, use RestrictionStore::listApplicableRestrictionTypes instead
 	 *
 	 * @return array Applicable restriction types
 	 */
 	public function getRestrictionTypes() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return MediaWikiServices::getInstance()
 			->getRestrictionStore()
 			->listApplicableRestrictionTypes( $this );
@@ -2463,12 +2465,13 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * Is this page "semi-protected" - the *only* protection levels are listed
 	 * in $wgSemiprotectedRestrictionLevels?
 	 *
-	 * @deprecated since 1.37, use RestrictionStore::isSemiProtected instead
+	 * @deprecated since 1.37, hard deprecated 1.40, use RestrictionStore::isSemiProtected instead
 	 *
 	 * @param string $action Action to check (default: edit)
 	 * @return bool
 	 */
 	public function isSemiProtected( $action = 'edit' ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		return MediaWikiServices::getInstance()->getRestrictionStore()->isSemiProtected(
 			$this, $action
 		);
@@ -2477,13 +2480,14 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Does the title correspond to a protected article?
 	 *
-	 * @deprecated since 1.37, use RestrictionStore::isProtected instead
+	 * @deprecated since 1.37, hard deprecated 1.40, use RestrictionStore::isProtected instead
 	 *
 	 * @param string $action The action the page is protected from,
 	 * by default checks all actions.
 	 * @return bool
 	 */
 	public function isProtected( $action = '' ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		return MediaWikiServices::getInstance()->getRestrictionStore()->isProtected(
 			$this, $action
 		);
@@ -2492,11 +2496,12 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Cascading protection: Return true if cascading restrictions apply to this page, false if not.
 	 *
-	 * @deprecated since 1.37, use RestrictionStore::isCascadeProtected instead
+	 * @deprecated since 1.37, hard deprecated 1.40, use RestrictionStore::isCascadeProtected instead
 	 *
 	 * @return bool If the page is subject to cascading restrictions.
 	 */
 	public function isCascadeProtected() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return MediaWikiServices::getInstance()->getRestrictionStore()->isCascadeProtected( $this );
 	}
 
@@ -2504,12 +2509,13 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * Determines whether cascading protection sources have already been loaded from
 	 * the database.
 	 *
-	 * @deprecated since 1.37, use RestrictionStore::areCascadeProtectionSourcesLoaded instead
+	 * @deprecated since 1.37, hard deprecated 1.40, use RestrictionStore::areCascadeProtectionSourcesLoaded instead
 	 *
 	 * @return bool
 	 * @since 1.23
 	 */
 	public function areCascadeProtectionSourcesLoaded() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return MediaWikiServices::getInstance()->getRestrictionStore()
 			->areCascadeProtectionSourcesLoaded( $this );
 	}
@@ -2517,7 +2523,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Cascading protection: Get the source of any cascading restrictions on this page.
 	 *
-	 * @deprecated since 1.37, use RestrictionStore::getCascadeProtectionSources instead
+	 * @deprecated since 1.37, hard deprecated 1.40, use RestrictionStore::getCascadeProtectionSources instead
 	 *
 	 * @param bool $getPages Whether or not to retrieve the actual pages
 	 *        that the restrictions have come from and the actual restrictions
@@ -2530,6 +2536,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *        or an empty array if $getPages is false.
 	 */
 	public function getCascadeProtectionSources( $getPages = true ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$restrictionStore = MediaWikiServices::getInstance()->getRestrictionStore();
 		if ( !$getPages ) {
 			return [ $restrictionStore->isCascadeProtected( $this ), [] ];
@@ -2543,13 +2550,14 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Accessor for mRestrictionsLoaded
 	 *
-	 * @deprecated since 1.37, use RestrictionStore::areRestrictionsLoaded instead
+	 * @deprecated since 1.37, hard deprecated 1.40, use RestrictionStore::areRestrictionsLoaded instead
 	 *
 	 * @return bool Whether or not the page's restrictions have already been
 	 * loaded from the database
 	 * @since 1.23
 	 */
 	public function areRestrictionsLoaded() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return MediaWikiServices::getInstance()
 			->getRestrictionStore()
 			->areRestrictionsLoaded( $this );
@@ -2558,7 +2566,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Accessor/initialisation for mRestrictions
 	 *
-	 * @deprecated since 1.37, use RestrictionStore::getRestrictions instead
+	 * @deprecated since 1.37, hard deprecated 1.40, use RestrictionStore::getRestrictions instead
 	 *
 	 * @param string $action Action that permission needs to be checked for
 	 * @return array Restriction levels needed to take the action. All levels are
@@ -2567,32 +2575,35 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *     be mapped to 'editprotected' and 'editsemiprotected' respectively.
 	 */
 	public function getRestrictions( $action ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		return MediaWikiServices::getInstance()->getRestrictionStore()->getRestrictions( $this, $action );
 	}
 
 	/**
 	 * Accessor/initialisation for mRestrictions
 	 *
-	 * @deprecated since 1.37, use RestrictionStore::getAllRestrictions instead
+	 * @deprecated since 1.37, hard deprecated 1.40, use RestrictionStore::getAllRestrictions instead
 	 *
 	 * @return array Keys are actions, values are arrays as returned by
 	 *     Title::getRestrictions()
 	 * @since 1.23
 	 */
 	public function getAllRestrictions() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return MediaWikiServices::getInstance()->getRestrictionStore()->getAllRestrictions( $this );
 	}
 
 	/**
 	 * Get the expiry time for the restriction against a given action
 	 *
-	 * @deprecated since 1.37, use RestrictionStore::getRestrictionExpiry instead
+	 * @deprecated since 1.37, hard deprecated 1.40, use RestrictionStore::getRestrictionExpiry instead
 	 *
 	 * @param string $action
 	 * @return string|bool 14-char timestamp, or 'infinity' if the page is protected forever
 	 *     or not protected at all, or false if the action is not recognised.
 	 */
 	public function getRestrictionExpiry( $action ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		return MediaWikiServices::getInstance()->getRestrictionStore()->getRestrictionExpiry(
 			$this, $action
 		) ?? false;
@@ -2601,11 +2612,12 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Returns cascading restrictions for the current article
 	 *
-	 * @deprecated since 1.37, use RestrictionStore::areRestrictionsCascading instead
+	 * @deprecated since 1.37, hard deprecated 1.40, use RestrictionStore::areRestrictionsCascading instead
 	 *
 	 * @return bool
 	 */
 	public function areRestrictionsCascading() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return MediaWikiServices::getInstance()
 			->getRestrictionStore()
 			->areRestrictionsCascading( $this );
@@ -2616,11 +2628,12 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * and page_restrictions table for this existing page.
 	 * Public for usage by LiquidThreads.
 	 *
-	 * @deprecated since 1.37, use RestrictionStore::loadRestrictionsFromRows instead
+	 * @deprecated since 1.37, hard deprecated 1.40, use RestrictionStore::loadRestrictionsFromRows instead
 	 *
 	 * @param stdClass[] $rows Array of db result objects
 	 */
 	public function loadRestrictionsFromRows( $rows ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		MediaWikiServices::getInstance()->getRestrictionStore()->loadRestrictionsFromRows(
 			$this, $rows
 		);
