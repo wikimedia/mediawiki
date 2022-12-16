@@ -77,6 +77,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $serverName;
 	/** @var bool Whether this PHP instance is for a CLI script */
 	protected $cliMode;
+	/** @var int|null Maximum seconds to wait on connection attempts */
+	protected $connectTimeout;
+	/** @var int|null Maximum seconds to wait on receiving query results */
+	protected $receiveTimeout;
 	/** @var string Agent name for query profiling */
 	protected $agent;
 	/** @var array<string,mixed> Connection parameters used by initConnection() and open() */
@@ -220,6 +224,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$flags = (int)$params['flags'];
 		$this->flagsHolder = new DatabaseFlags( $flags );
 		$this->ssl = $params['ssl'] ?? (bool)( $flags & self::DBO_SSL );
+		$this->connectTimeout = $params['connectTimeout'] ?? null;
+		$this->receiveTimeout = $params['receiveTimeout'] ?? null;
 		$this->cliMode = (bool)$params['cliMode'];
 		$this->agent = (string)$params['agent'];
 		$this->serverName = $params['serverName'];
@@ -316,6 +322,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - flags : Optional bit field of DBO_* constants that define connection, protocol,
 	 *      buffering, and transaction behavior. It is STRONGLY advised to leave the DBO_DEFAULT
 	 *      flag in place UNLESS this database simply acts as a key/value store.
+	 *   - ssl : Whether to use TLS connections.
 	 *   - driver: Optional name of a specific DB client driver. For MySQL, there is only the
 	 *      'mysqli' driver; the old one 'mysql' has been removed.
 	 *   - variables: Optional map of session variables to set after connecting. This can be
@@ -326,6 +333,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - lbInfo: Optional map of field/values for the managing load balancer instance.
 	 *      The "master" and "replica" fields are used to flag the replication role of this
 	 *      database server and whether methods like getLag() should actually issue queries.
+	 *   - connectTimeout: Optional timeout, in seconds, for connection attempts.
+	 *   - receiveTimeout: Optional timeout, in seconds, for receiving query results.
 	 *   - logger: Optional PSR-3 logger interface instance.
 	 *   - profiler : Optional callback that takes a section name argument and returns
 	 *      a ScopedCallback instance that ends the profile section in its destructor.
