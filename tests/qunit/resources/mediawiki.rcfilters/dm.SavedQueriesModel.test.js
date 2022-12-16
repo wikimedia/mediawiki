@@ -38,6 +38,14 @@
 				name: 'invert',
 				default: '0'
 			} ]
+		}, {
+			name: 'invertTagsGroup',
+			type: 'boolean',
+			hidden: true,
+			filters: [ {
+				name: 'inverttags',
+				default: '0'
+			} ]
 		} ],
 		queriesFilterRepresentation = {
 			queries: {
@@ -247,6 +255,7 @@
 						{
 							filter1: '1',
 							invert: '1',
+							inverttags: '1',
 							filter15: '1', // Invalid filter - removed
 							filter2: '0', // Falsey value - removed
 							group1__filter1_color: 'c3',
@@ -258,7 +267,9 @@
 							label: 'label2',
 							data: {
 								params: {
-									filter1: '1' // Invert will be dropped because there are no namespaces
+									filter1: '1'
+									// 'invert' is dropped because there are no namespaces
+									// 'inverttags' is dropped because there are no tags
 								},
 								highlights: {
 									group1__filter1_color: 'c3'
@@ -443,11 +454,28 @@
 						label: 'Namespaces',
 						type: 'string_options',
 						separator: ';',
+						supportsAll: false,
 						filters: [
 							{ name: 0, label: 'Main', cssClass: 'namespace-0' },
 							{ name: 1, label: 'Talk', cssClass: 'namespace-1' },
 							{ name: 2, label: 'User', cssClass: 'namespace-2' },
 							{ name: 3, label: 'User talk', cssClass: 'namespace-3' }
+						]
+					} ]
+				},
+				tags: {
+					label: 'Tags',
+					trigger: '#',
+					groups: [ {
+						name: 'tagfilter',
+						label: 'Tags',
+						type: 'string_options',
+						separator: '|',
+						supportsAll: false,
+						filters: [
+							{ name: 'foo', label: 'Foo', cssClass: 'tag-foo' },
+							{ name: 'bar', label: 'Bar', cssClass: 'tag-bar' },
+							{ name: 'baz', label: 'Baz', cssClass: 'tag-baz' }
 						]
 					} ]
 				}
@@ -515,6 +543,67 @@
 				}
 			},
 			'Invert parameter saved if there are namespaces.'
+		);
+
+		// Reset
+		filtersModel.initializeFilters( filterDefinition, viewsDefinition );
+		filtersModel.toggleFiltersSelected( {
+			group1__filter3: true,
+			invertTagsGroup__inverttags: true
+		} );
+		itemID = queriesModel.addNewQuery(
+			'label1', // Label
+			filtersModel.getMinimizedParamRepresentation(),
+			true, // isDefault
+			'3456' // ID
+		);
+		item = queriesModel.getItemByID( itemID );
+
+		assert.deepEqual(
+			item.getState(),
+			{
+				label: 'label1',
+				data: {
+					params: {
+						filter1: '1',
+						filter2: '1'
+					},
+					highlights: {}
+				}
+			},
+			'Inverttags parameter is not saved if there are no tags.'
+		);
+
+		// Reset
+		filtersModel.initializeFilters( filterDefinition, viewsDefinition );
+		filtersModel.toggleFiltersSelected( {
+			group1__filter3: true,
+			invertTagsGroup__inverttags: true,
+			tagfilter__foo: true
+		} );
+		itemID = queriesModel.addNewQuery(
+			'label1', // Label
+			filtersModel.getMinimizedParamRepresentation(),
+			true, // isDefault
+			'4567' // ID
+		);
+		item = queriesModel.getItemByID( itemID );
+
+		assert.deepEqual(
+			item.getState(),
+			{
+				label: 'label1',
+				data: {
+					params: {
+						filter1: '1',
+						filter2: '1',
+						inverttags: '1',
+						tagfilter: 'foo'
+					},
+					highlights: {}
+				}
+			},
+			'Inverttags parameter saved if there are tags.'
 		);
 	} );
 }() );

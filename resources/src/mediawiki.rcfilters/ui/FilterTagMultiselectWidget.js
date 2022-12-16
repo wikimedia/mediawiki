@@ -771,7 +771,7 @@ FilterTagMultiselectWidget.prototype.createTagItemWidget = function ( data ) {
 		return new FilterTagItemWidget(
 			this.controller,
 			this.model,
-			this.model.getInvertModel(),
+			this.model.getInvertModel( filterItem.getGroupModel().getView() ),
 			filterItem,
 			{
 				$overlay: this.$overlay
