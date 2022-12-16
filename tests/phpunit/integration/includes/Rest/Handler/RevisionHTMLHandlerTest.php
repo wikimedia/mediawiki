@@ -109,7 +109,8 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			$services->get( 'ParsoidDataAccess' )
 		),
 			$services->getParsoidSiteConfig(),
-			$services->getParsoidPageConfigFactory()
+			$services->getParsoidPageConfigFactory(),
+			$services->getContentHandlerFactory()
 		);
 
 		$helperFactory = $this->createNoOpMock(

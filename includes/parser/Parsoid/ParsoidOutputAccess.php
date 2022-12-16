@@ -25,6 +25,7 @@ use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use Liuggio\StatsdClient\Factory\StatsdDataFactory;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
@@ -37,6 +38,7 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MWUnknownContentModelException;
 use ParserCache;
 use ParserOptions;
 use ParserOutput;
@@ -120,6 +122,9 @@ class ParsoidOutputAccess {
 	/** @var string */
 	private $parsoidWikiId;
 
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param ParserCacheFactory $parserCacheFactory
@@ -130,6 +135,7 @@ class ParsoidOutputAccess {
 	 * @param Parsoid $parsoid
 	 * @param SiteConfig $siteConfig
 	 * @param PageConfigFactory $parsoidPageConfigFactory
+	 * @param IContentHandlerFactory $contentHandlerFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -140,7 +146,8 @@ class ParsoidOutputAccess {
 		IBufferingStatsdDataFactory $stats,
 		Parsoid $parsoid,
 		SiteConfig $siteConfig,
-		PageConfigFactory $parsoidPageConfigFactory
+		PageConfigFactory $parsoidPageConfigFactory,
+		IContentHandlerFactory $contentHandlerFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
@@ -155,6 +162,7 @@ class ParsoidOutputAccess {
 		$this->parsoid = $parsoid;
 		$this->siteConfig = $siteConfig;
 		$this->parsoidPageConfigFactory = $parsoidPageConfigFactory;
+		$this->contentHandlerFactory = $contentHandlerFactory;
 
 		// NOTE: This is passed as the "prefix" option to parsoid, which it uses
 		//       to locate wiki specific configuration in the baseconfig directory.
@@ -171,6 +179,19 @@ class ParsoidOutputAccess {
 	public function supportsContentModel( string $model ): bool {
 		if ( $model === CONTENT_MODEL_WIKITEXT ) {
 			return true;
+		}
+
+		// Check if the content model serializes to wikitext.
+		// NOTE: We could use isSupportedFormat( CONTENT_FORMAT_WIKITEXT ) if PageContent::getContent()
+		//       would specify the format when calling serialize().
+		try {
+			$handler = $this->contentHandlerFactory->getContentHandler( $model );
+			if ( $handler->getDefaultFormat() === CONTENT_FORMAT_WIKITEXT ) {
+				return true;
+			}
+		} catch ( MWUnknownContentModelException $ex ) {
+			// If the content model is not known, it can't be supported.
+			return false;
 		}
 
 		return $this->siteConfig->getContentModelHandler( $model ) !== null;

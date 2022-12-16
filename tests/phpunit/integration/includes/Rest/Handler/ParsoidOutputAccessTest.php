@@ -107,7 +107,8 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$stats,
 			$this->newMockParsoid( $expectedParses ),
 			$services->getParsoidSiteConfig(),
-			$services->getParsoidPageConfigFactory()
+			$services->getParsoidPageConfigFactory(),
+			$services->getContentHandlerFactory()
 		);
 	}
 
@@ -436,6 +437,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		yield [ CONTENT_MODEL_WIKITEXT, true ];
 		yield [ CONTENT_MODEL_JSON, true ];
 		yield [ CONTENT_MODEL_JAVASCRIPT, false ];
+		yield [ 'with-text', true ];
 		yield [ 'xyzzy', false ];
 	}
 
@@ -443,6 +445,13 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideSupportsContentModels
 	 */
 	public function testSupportsContentModel( $model, $expected ) {
+		$contentHandlers = $this->getConfVar( 'ContentHandlers' );
+		$this->overrideConfigValue( 'ContentHandlers', [
+			'with-text' => [ 'factory' => static function () {
+				return new TextContentHandler( 'with-text', [ CONTENT_FORMAT_WIKITEXT, 'plain/test' ] );
+			} ],
+		] + $contentHandlers );
+
 		$access = $this->getParsoidOutputAccessWithCache( 0 );
 		$this->assertSame( $expected, $access->supportsContentModel( $model ) );
 	}
