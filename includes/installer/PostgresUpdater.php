@@ -569,11 +569,7 @@ END;
 			__METHOD__
 		);
 		$row = $r->fetchRow();
-		if ( !$row ) {
-			return null;
-		}
-
-		return $row[0];
+		return $row ? $row[0] : null;
 	}
 
 	protected function ruleDef( $table, $rule ) {

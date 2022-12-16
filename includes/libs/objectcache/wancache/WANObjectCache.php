@@ -852,7 +852,7 @@ class WANObjectCache implements
 
 		$now = $this->getCurrentTime();
 		$ttl = (int)$ttl;
-		$walltime = $walltime ?? $this->timeSinceLoggedMiss( $key, $now );
+		$walltime ??= $this->timeSinceLoggedMiss( $key, $now );
 		$dataSnapshotLag = ( $dataReadSince !== null ) ? max( 0, $now - $dataReadSince ) : 0;
 		$dataCombinedLag = $dataReplicaLag + $dataSnapshotLag;
 

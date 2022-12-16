@@ -148,11 +148,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 				continue;
 			}
 
-			if ( $previousRevision === null ) {
-				$previousRevision = $this->revisionStore->getPreviousRevision(
-					$revertedRevision
-				);
-			}
+			$previousRevision ??= $this->revisionStore->getPreviousRevision( $revertedRevision );
 			if ( $previousRevision !== null &&
 				$revertedRevision->hasSameContent( $previousRevision )
 			) {

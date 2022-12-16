@@ -585,7 +585,7 @@ class SessionManager implements SessionManagerInterface {
 			);
 		}
 
-		return $retInfos ? $retInfos[0] : null;
+		return $retInfos[0] ?? null;
 	}
 
 	/**

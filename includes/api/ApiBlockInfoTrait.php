@@ -47,9 +47,7 @@ trait ApiBlockInfoTrait {
 		Block $block,
 		$language = null
 	) {
-		if ( $language === null ) {
-			$language = $this->getLanguage();
-		}
+		$language ??= $this->getLanguage();
 
 		$blocker = $block->getBlocker();
 

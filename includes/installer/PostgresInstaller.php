@@ -311,20 +311,12 @@ class PostgresInstaller extends DatabaseInstaller {
 
 	protected function canCreateAccounts() {
 		$perms = $this->getInstallUserPermissions();
-		if ( !$perms ) {
-			return false;
-		}
-
-		return $perms->rolsuper === 't' || $perms->rolcreaterole === 't';
+		return $perms && ( $perms->rolsuper === 't' || $perms->rolcreaterole === 't' );
 	}
 
 	protected function isSuperUser() {
 		$perms = $this->getInstallUserPermissions();
-		if ( !$perms ) {
-			return false;
-		}
-
-		return $perms->rolsuper === 't';
+		return $perms && $perms->rolsuper === 't';
 	}
 
 	public function getSettingsForm() {

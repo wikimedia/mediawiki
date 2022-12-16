@@ -196,11 +196,8 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 	 * @see MWHttpRequest::__construct
 	 */
 	public static function factory( $url, array $options = null, $caller = __METHOD__ ) {
-		if ( $options === null ) {
-			$options = [];
-		}
 		return MediaWikiServices::getInstance()->getHttpRequestFactory()
-			->create( $url, $options, $caller );
+			->create( $url, $options ?? [], $caller );
 	}
 
 	/**

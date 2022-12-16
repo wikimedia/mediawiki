@@ -551,11 +551,8 @@ class RecentChange implements Taggable {
 	 * @param array|null $feeds Optional feeds to send to, defaults to $wgRCFeeds
 	 */
 	public function notifyRCFeeds( array $feeds = null ) {
-		$rcFeeds =
+		$feeds ??=
 			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::RCFeeds );
-		if ( $feeds === null ) {
-			$feeds = $rcFeeds;
-		}
 
 		$performer = $this->getPerformerIdentity();
 

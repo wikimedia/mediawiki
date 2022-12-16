@@ -78,11 +78,8 @@ class OOUIIconPackModule extends OOUIImageModule {
 
 	public static function extractLocalBasePath( array $options, $localBasePath = null ) {
 		global $IP;
-		if ( $localBasePath === null ) {
-			$localBasePath = $IP;
-		}
 		// Ignore any 'localBasePath' present in $options, this always refers to files in MediaWiki core
-		return $localBasePath;
+		return $localBasePath ?? $IP;
 	}
 }
 

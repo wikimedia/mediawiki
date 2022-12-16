@@ -134,10 +134,6 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		array $blockRestrictions = [],
 		$tags = []
 	): BlockUser {
-		if ( $tags === null ) {
-			$tags = [];
-		}
-
 		return new BlockUser(
 			$this->options,
 			$this->blockRestrictionStore,
@@ -156,7 +152,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 			$reason,
 			$blockOptions,
 			$blockRestrictions,
-			$tags
+			$tags ?? []
 		);
 	}
 

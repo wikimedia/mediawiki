@@ -344,12 +344,8 @@ class LogPage {
 			$params = [ $params ];
 		}
 
-		if ( $comment === null ) {
-			$comment = '';
-		}
-
 		# Trim spaces on user supplied text
-		$comment = trim( $comment );
+		$comment = trim( $comment ?? '' );
 
 		$this->action = $action;
 		$this->target = $target;

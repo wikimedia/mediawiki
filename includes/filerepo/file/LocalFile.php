@@ -2424,11 +2424,8 @@ class LocalFile extends File {
 	 * @return string|false
 	 */
 	public function getDescriptionUrl() {
-		if ( !$this->title ) {
-			return false; // Avoid hard failure when the file does not exist. T221812
-		}
-
-		return $this->title->getLocalURL();
+		// Avoid hard failure when the file does not exist. T221812
+		return $this->title ? $this->title->getLocalURL() : false;
 	}
 
 	/**

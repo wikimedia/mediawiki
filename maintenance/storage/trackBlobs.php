@@ -322,10 +322,7 @@ class TrackBlobs {
 				}
 				continue;
 			}
-			$table = $extDB->getLBInfo( 'blobs table' );
-			if ( $table === null ) {
-				$table = 'blobs';
-			}
+			$table = $extDB->getLBInfo( 'blobs table' ) ?? 'blobs';
 			if ( !$extDB->tableExists( $table, __METHOD__ ) ) {
 				echo "No blobs table on cluster $cluster\n";
 				continue;

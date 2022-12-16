@@ -357,11 +357,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 		// not memoized (i.e. there return value is not cached) since
 		// new information might appear during processing after this
 		// is first called.
-		if ( $req ) {
-			return $req;
-		}
-
-		return $this->getStaticDefaultVariant();
+		return $req ?? $this->getStaticDefaultVariant();
 	}
 
 	/**
@@ -372,21 +368,13 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$defaultLanguageVariant = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::DefaultLanguageVariant );
 
-		$req = $this->getURLVariant();
+		$req = $this->getURLVariant() ?? $this->getHeaderVariant();
 
-		if ( !$req ) {
-			$req = $this->getHeaderVariant();
-		}
-
-		if ( $defaultLanguageVariant && !$req ) {
+		if ( !$req && $defaultLanguageVariant ) {
 			$req = $this->validateVariant( $defaultLanguageVariant );
 		}
 
-		if ( $req ) {
-			return $req;
-		}
-
-		return $this->getStaticDefaultVariant();
+		return $req ?? $this->getStaticDefaultVariant();
 	}
 
 	/**
@@ -817,9 +805,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 			return '';
 		}
 
-		if ( $variant === null ) {
-			$variant = $this->getPreferredVariant();
-		}
+		$variant ??= $this->getPreferredVariant();
 
 		$cache = MediaWikiServices::getInstance()->getLocalServerObjectCache();
 		$key = $cache->makeKey( 'languageconverter', 'namespace-text', $index, $variant );

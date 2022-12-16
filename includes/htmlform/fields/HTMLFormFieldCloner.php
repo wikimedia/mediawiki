@@ -237,10 +237,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			return $this->getDefault();
 		}
 
-		$values = $request->getArray( $this->mName );
-		if ( $values === null ) {
-			$values = [];
-		}
+		$values = $request->getArray( $this->mName ) ?? [];
 
 		$ret = [];
 		foreach ( $values as $key => $value ) {

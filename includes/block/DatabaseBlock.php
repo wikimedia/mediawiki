@@ -378,9 +378,6 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return string
 	 */
 	public static function getRangeCond( $start, $end = null ) {
-		if ( $end === null ) {
-			$end = $start;
-		}
 		# Per T16634, we want to include relevant active rangeblocks; for
 		# rangeblocks, we want to include larger ranges which enclose the given
 		# range. We know that all blocks must be smaller than $wgBlockCIDRLimit,
@@ -392,7 +389,7 @@ class DatabaseBlock extends AbstractBlock {
 		# Fairly hard to make a malicious SQL statement out of hex characters,
 		# but stranger things have happened...
 		$safeStart = $dbr->addQuotes( $start );
-		$safeEnd = $dbr->addQuotes( $end );
+		$safeEnd = $dbr->addQuotes( $end ?? $start );
 
 		return $dbr->makeList(
 			[

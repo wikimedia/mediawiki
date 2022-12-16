@@ -83,13 +83,9 @@ abstract class Action implements MessageLocalizer {
 		Article $article,
 		IContextSource $context = null
 	) {
-		if ( $context === null ) {
-			$context = $article->getContext();
-		}
-
 		return MediaWikiServices::getInstance()
 			->getActionFactory()
-			->getAction( $action, $article, $context );
+			->getAction( $action, $article, $context ?? $article->getContext() );
 	}
 
 	/**

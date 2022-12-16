@@ -120,11 +120,7 @@ class WikiMap {
 	 */
 	public static function getWikiName( $wikiID ) {
 		$wiki = self::getWiki( $wikiID );
-
-		if ( $wiki ) {
-			return $wiki->getDisplayName();
-		}
-		return $wikiID;
+		return $wiki ? $wiki->getDisplayName() : $wikiID;
 	}
 
 	/**

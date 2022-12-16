@@ -305,14 +305,11 @@ class CoreParserFunctions {
 	}
 
 	public static function urlFunction( $func, $s = '', $arg = null ) {
-		$title = Title::newFromText( $s );
 		# Due to order of execution of a lot of bits, the values might be encoded
 		# before arriving here; if that's true, then the title can't be created
 		# and the variable will fail. If we can't get a decent title from the first
 		# attempt, url-decode and try for a second.
-		if ( $title === null ) {
-			$title = Title::newFromURL( urldecode( $s ) );
-		}
+		$title = Title::newFromText( $s ) ?? Title::newFromURL( urldecode( $s ) );
 		if ( $title !== null ) {
 			# Convert NS_MEDIA -> NS_FILE
 			if ( $title->inNamespace( NS_MEDIA ) ) {
@@ -990,13 +987,9 @@ class CoreParserFunctions {
 		$titleObject = Title::newFromText( $title ) ?? $parser->getTitle();
 		$restrictionStore = MediaWikiServices::getInstance()->getRestrictionStore();
 		if ( $restrictionStore->areRestrictionsLoaded( $titleObject ) || $parser->incrementExpensiveFunctionCount() ) {
-			$expiry = $restrictionStore->getRestrictionExpiry( $titleObject, strtolower( $type ) );
 			// getRestrictionExpiry() returns null on invalid type; trying to
 			// match protectionlevel() function that returns empty string instead
-			if ( $expiry === null ) {
-				$expiry = '';
-			}
-			return $expiry;
+			return $restrictionStore->getRestrictionExpiry( $titleObject, strtolower( $type ) ) ?? '';
 		}
 		return '';
 	}
