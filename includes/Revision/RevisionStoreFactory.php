@@ -26,7 +26,6 @@
 
 namespace MediaWiki\Revision;
 
-use ActorMigration;
 use BagOStuff;
 use CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -35,6 +34,7 @@ use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Title\TitleFactory;
+use MediaWiki\User\ActorMigration;
 use MediaWiki\User\ActorStoreFactory;
 use Psr\Log\LoggerInterface;
 use WANObjectCache;

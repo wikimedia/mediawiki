@@ -30,6 +30,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
+use MediaWiki\User\ActorMigration;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

@@ -2,7 +2,6 @@
 
 namespace MediaWiki\User;
 
-use ActorMigration;
 use DBAccessObjectUtils;
 use DeferredUpdates;
 use IDBAccessObject;

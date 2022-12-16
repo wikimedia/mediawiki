@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Page;
 
-use ActorMigration;
 use CommentStoreComment;
 use ManualLogEntry;
 use MediaWiki\Config\ServiceOptions;
@@ -35,6 +34,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\User\ActorMigration;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;

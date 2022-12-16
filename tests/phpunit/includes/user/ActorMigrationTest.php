@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\User\ActorMigration;
+use MediaWiki\User\ActorMigrationBase;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserIdentity;
@@ -688,7 +690,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 * @param int $stage
 	 */
 	public function testInsertWithTempTableDeprecated( $stage ) {
-		$this->hideDeprecated( 'ActorMigrationBase::getInsertValuesWithTempTable for am1_user' );
+		$this->hideDeprecated( 'MediaWiki\User\ActorMigrationBase::getInsertValuesWithTempTable for am1_user' );
 		$m = new ActorMigrationBase(
 			[
 				'am1_user' => [
@@ -830,7 +832,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			}
 		};
 
-		$this->hideDeprecated( 'ActorMigrationBase for \'hard\'' );
+		$this->hideDeprecated( 'MediaWiki\User\ActorMigrationBase for \'hard\'' );
 
 		$m->checkDeprecationForTest( 'valid' );
 		$m->checkDeprecationForTest( 'soft' );
@@ -839,7 +841,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			$m->checkDeprecationForTest( 'gone' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
-				'Use of ActorMigrationBase for \'gone\' was removed in MediaWiki 1.34',
+				'Use of MediaWiki\User\ActorMigrationBase for \'gone\' was removed in MediaWiki 1.34',
 				$ex->getMessage()
 			);
 		}
