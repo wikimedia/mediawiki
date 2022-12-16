@@ -235,8 +235,8 @@ abstract class AuthenticationRequest {
 	 */
 	public function describeCredentials() {
 		return [
-			'provider' => new \RawMessage( '$1', [ get_called_class() ] ),
-			'account' => new \RawMessage( '$1', [ $this->getUniqueId() ] ),
+			'provider' => new \MediaWiki\Language\RawMessage( '$1', [ get_called_class() ] ),
+			'account' => new \MediaWiki\Language\RawMessage( '$1', [ $this->getUniqueId() ] ),
 		];
 	}
 

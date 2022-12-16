@@ -3,6 +3,7 @@
 use MediaWiki\Json\JsonUnserializable;
 use MediaWiki\Json\JsonUnserializableTrait;
 use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;

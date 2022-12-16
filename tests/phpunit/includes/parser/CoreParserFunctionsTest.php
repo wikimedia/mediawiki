@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Language\RawMessage;
+
 /**
  * @group Database
  * @covers CoreParserFunctions

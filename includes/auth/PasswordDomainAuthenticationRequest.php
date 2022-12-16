@@ -58,7 +58,7 @@ class PasswordDomainAuthenticationRequest extends PasswordAuthenticationRequest 
 				'help' => wfMessage( 'authmanager-domain-help' ),
 			];
 			foreach ( $this->domainList as $domain ) {
-				$ret['domain']['options'][$domain] = new \RawMessage( '$1', [ $domain ] );
+				$ret['domain']['options'][$domain] = new \MediaWiki\Language\RawMessage( '$1', [ $domain ] );
 			}
 		}
 

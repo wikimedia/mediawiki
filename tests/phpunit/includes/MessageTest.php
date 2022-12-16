@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Message\UserGroupMembershipParam;

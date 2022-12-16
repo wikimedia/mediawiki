@@ -22,6 +22,7 @@
  * @author Tyler Romeo, 2012
  */
 
+use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;

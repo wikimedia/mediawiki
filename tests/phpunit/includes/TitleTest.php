@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;

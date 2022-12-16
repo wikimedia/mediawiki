@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Language\RawMessage;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
