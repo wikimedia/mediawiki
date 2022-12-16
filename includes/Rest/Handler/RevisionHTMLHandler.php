@@ -42,8 +42,7 @@ class RevisionHTMLHandler extends SimpleHandler {
 		$revision = $this->contentHelper->getTargetRevision();
 
 		if ( $page && $revision ) {
-			$this->htmlHelper->init( $page, $this->getValidatedParams(), $user );
-			$this->htmlHelper->setRevision( $revision );
+			$this->htmlHelper->init( $page, $this->getValidatedParams(), $user, $revision );
 
 			$request = $this->getRequest();
 			$acceptLanguage = $request->getHeaderLine( 'Accept-Language' ) ?: null;

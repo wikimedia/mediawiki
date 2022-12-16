@@ -20,6 +20,7 @@
 namespace MediaWiki\Rest\Handler;
 
 use Content;
+use HttpError;
 use IBufferingStatsdDataFactory;
 use Language;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
@@ -50,7 +51,6 @@ use User;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
-use Wikimedia\Parsoid\Core\ClientError;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Parsoid;
 use Wikimedia\Parsoid\Utils\ContentUtils;
@@ -63,7 +63,7 @@ use Wikimedia\Parsoid\Utils\DOMUtils;
  *
  * @unstable Pending consolidation of the Parsoid extension with core code.
  */
-class HtmlOutputRendererHelper {
+class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	/**
 	 * @internal
 	 * @var string[]
@@ -271,6 +271,11 @@ class HtmlOutputRendererHelper {
 	 */
 	public function setRevision( $revisionOrId ): void {
 		Assert::parameterType( [ RevisionRecord::class, 'integer' ], $revisionOrId, '$revision' );
+
+		if ( is_int( $revisionOrId ) && $revisionOrId <= 0 ) {
+			throw new HttpError( 400, "Bad revision ID: $revisionOrId" );
+		}
+
 		$this->revisionOrId = $revisionOrId;
 
 		if ( $this->getRevisionId() === null ) {
@@ -335,11 +340,15 @@ class HtmlOutputRendererHelper {
 	}
 
 	/**
+	 * Initializes the helper with the given parameters like the page
+	 * we're dealing with, parameters gotten from the request inputs,
+	 * and the revision if any is available.
+	 *
 	 * @param PageIdentity $page
 	 * @param array $parameters
 	 * @param User $user
-	 * @param RevisionRecord|int|null $revision DEPRECATED, use setRevision()
-	 * @param Language|null $pageLanguage DEPRECATED, use setPageLanguage()
+	 * @param RevisionRecord|int|null $revision
+	 * @param Language|null $pageLanguage
 	 */
 	public function init(
 		PageIdentity $page,
@@ -350,9 +359,15 @@ class HtmlOutputRendererHelper {
 	) {
 		$this->page = $page;
 		$this->user = $user;
-		$this->revisionOrId = $revision;
-		$this->pageLanguage = $pageLanguage;
 		$this->stash = $parameters['stash'] ?? false;
+
+		if ( $revision !== null ) {
+			$this->setRevision( $revision );
+		}
+
+		if ( $pageLanguage !== null ) {
+			$this->setPageLanguage( $pageLanguage );
+		}
 
 		if ( $this->stash ) {
 			$this->setFlavor( 'stash' );
@@ -362,19 +377,18 @@ class HtmlOutputRendererHelper {
 	}
 
 	/**
-	 * Set the language to be used for variant conversion
-	 * @param string $targetLanguageCode
-	 * @param null|string $sourceLanguageCode
+	 * @inheritDoc
 	 */
-	public function setVariantConversionLanguage( string $targetLanguageCode, ?string $sourceLanguageCode = null ) {
+	public function setVariantConversionLanguage(
+		string $targetLanguageCode,
+		?string $sourceLanguageCode = null
+	): void {
 		$this->targetLanguageCode = $targetLanguageCode;
 		$this->sourceLanguageCode = $sourceLanguageCode;
 	}
 
 	/**
-	 * @return ParserOutput a tuple with html and content-type
-	 * @throws LocalizedHttpException
-	 * @throws ClientError
+	 * @inheritDoc
 	 */
 	public function getHtml(): ParserOutput {
 		if ( $this->processedParserOutput ) {
@@ -442,11 +456,7 @@ class HtmlOutputRendererHelper {
 	}
 
 	/**
-	 * Returns an ETag uniquely identifying the HTML output.
-	 *
-	 * @param string $suffix A suffix to attach to the etag.
-	 *
-	 * @return string|null
+	 * @inheritDoc
 	 */
 	public function getETag( string $suffix = '' ): ?string {
 		$parserOutput = $this->getParserOutput();
@@ -467,16 +477,14 @@ class HtmlOutputRendererHelper {
 	}
 
 	/**
-	 * Returns the time at which the HTML was rendered.
-	 *
-	 * @return string|null
+	 * @inheritDoc
 	 */
 	public function getLastModified(): ?string {
 		return $this->getParserOutput()->getCacheTime();
 	}
 
 	/**
-	 * @return array
+	 * @inheritDoc
 	 */
 	public function getParamSettings(): array {
 		return [
@@ -566,14 +574,9 @@ class HtmlOutputRendererHelper {
 	}
 
 	/**
-	 * Set the HTTP headers based on the response generated
-	 *
-	 * @param ResponseInterface $response
-	 * @param bool $forHtml Whether the response will be HTML (rather than JSON)
-	 *
-	 * @return void
+	 * @inheritDoc
 	 */
-	public function putHeaders( ResponseInterface $response, bool $forHtml = true ) {
+	public function putHeaders( ResponseInterface $response, bool $forHtml = true ): void {
 		if ( $forHtml ) {
 			// For HTML we want to set the Content-Language. For JSON, we probably don't.
 			$response->setHeader( 'Content-Language', $this->getHtmlOutputContentLanguage() );

@@ -1965,7 +1965,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideWt2html
 	 *
 	 * @param array $attribs
-	 * @param string $text
+	 * @param string|null $text
 	 * @param string[] $expectedData
 	 * @param string[] $unexpectedHtml
 	 * @param string[] $expectedHeaders
