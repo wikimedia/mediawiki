@@ -10,7 +10,7 @@ var ItemMenuOptionWidget = require( './ItemMenuOptionWidget.js' ),
  * @constructor
  * @param {mw.rcfilters.Controller} controller RCFilters controller
  * @param {mw.rcfilters.dm.FiltersViewModel} filtersViewModel
- * @param {mw.rcfilters.dm.FilterItem} invertModel
+ * @param {mw.rcfilters.dm.FilterItem|null} invertModel
  * @param {mw.rcfilters.dm.FilterItem} itemModel Filter item model
  * @param {mw.rcfilters.ui.HighlightPopupWidget} highlightPopup Shared highlight color picker popup
  * @param {Object} config Configuration object
@@ -65,10 +65,7 @@ FilterMenuOptionWidget.prototype.onGroupModelUpdate = function () {
  * Set the current muted view of the widget based on its state
  */
 FilterMenuOptionWidget.prototype.setCurrentMuteState = function () {
-	if (
-		this.model.getGroupModel().getView() === 'namespaces' &&
-		this.invertModel.isSelected()
-	) {
+	if ( this.invertModel && this.invertModel.isSelected() ) {
 		// This is an inverted behavior than the other rules, specifically
 		// for inverted namespaces
 		this.setFlags( {
