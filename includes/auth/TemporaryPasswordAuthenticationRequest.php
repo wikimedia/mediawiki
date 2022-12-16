@@ -21,8 +21,10 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\Language\RawMessage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use PasswordFactory;
 
 /**
  * This represents the intention to set a temporary password for the user.
@@ -81,7 +83,7 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 			}
 		}
 
-		$password = \PasswordFactory::generateRandomPasswordString( $minLength );
+		$password = PasswordFactory::generateRandomPasswordString( $minLength );
 
 		return new self( $password );
 	}
@@ -102,7 +104,7 @@ class TemporaryPasswordAuthenticationRequest extends AuthenticationRequest {
 	public function describeCredentials() {
 		return [
 			'provider' => wfMessage( 'authmanager-provider-temporarypassword' ),
-			'account' => new \MediaWiki\Language\RawMessage( '$1', [ $this->username ] ),
+			'account' => new RawMessage( '$1', [ $this->username ] ),
 		] + parent::describeCredentials();
 	}
 
