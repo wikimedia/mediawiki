@@ -18,7 +18,7 @@
  * @file
  */
 
-use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Navigation\PagerNavigationBuilder;
@@ -73,7 +73,6 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup Pager
  */
 abstract class IndexPager extends ContextSource implements Pager {
-	use ProtectedHookAccessorTrait;
 
 	/** Backwards-compatible constant for $mDefaultDirection field (do not change) */
 	public const DIR_ASCENDING = false;
@@ -1043,5 +1042,15 @@ abstract class IndexPager extends ContextSource implements Pager {
 			$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		}
 		return $this->linkRenderer;
+	}
+
+	/**
+	 * @since 1.35 (moved from trait to class in 1.40)
+	 * @deprecated and emits warnings since 1.40 Inject a HookContainer instead
+	 * @return HookContainer
+	 */
+	protected function getHookContainer() {
+		wfDeprecated( __METHOD__, '1.40' );
+		return MediaWikiServices::getInstance()->getHookContainer();
 	}
 }
