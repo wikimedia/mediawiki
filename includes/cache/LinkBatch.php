@@ -260,9 +260,7 @@ class LinkBatch {
 
 		// For each returned entry, add it to the list of good links, and remove it from $remaining
 
-		if ( $this->pageIdentities === null ) {
-			$this->pageIdentities = [];
-		}
+		$this->pageIdentities ??= [];
 
 		$ids = [];
 		$remaining = $this->data;

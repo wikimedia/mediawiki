@@ -242,9 +242,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			$this->parseContent = $params['parse'];
 			if ( $this->parseContent ) {
 				// Must manually initialize unset limit
-				if ( $this->limit === null ) {
-					$this->limit = 1;
-				}
+				$this->limit ??= 1;
 			}
 			$this->section = $params['section'] ?? false;
 		}

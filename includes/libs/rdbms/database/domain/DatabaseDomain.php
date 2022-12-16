@@ -199,9 +199,7 @@ class DatabaseDomain {
 	 * @return string
 	 */
 	public function getId(): string {
-		if ( $this->equivalentString === null ) {
-			$this->equivalentString = $this->convertToString();
-		}
+		$this->equivalentString ??= $this->convertToString();
 
 		return $this->equivalentString;
 	}

@@ -204,9 +204,7 @@ class LinkRenderer {
 			'href' => $url,
 		] + $this->mergeAttribs( $attribs, $extraAttribs );
 
-		if ( $text === null ) {
-			$text = $this->getLinkText( $target );
-		}
+		$text ??= $this->getLinkText( $target );
 
 		return $this->buildAElement( $target, $text, $attribs, true );
 	}
@@ -293,9 +291,7 @@ class LinkRenderer {
 			'href' => $url,
 		] + $this->mergeAttribs( $attribs, $extraAttribs );
 
-		if ( $text === null ) {
-			$text = $this->getLinkText( $target );
-		}
+		$text ??= $this->getLinkText( $target );
 
 		return $this->buildAElement( $target, $text, $attribs, false );
 	}

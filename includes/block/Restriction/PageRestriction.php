@@ -71,9 +71,7 @@ class PageRestriction extends AbstractRestriction {
 
 			// If the title does not exist, set to false to prevent multiple database
 			// queries.
-			if ( $this->title === null ) {
-				$this->title = false;
-			}
+			$this->title ??= false;
 		}
 
 		return $this->title;

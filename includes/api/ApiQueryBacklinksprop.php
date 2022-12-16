@@ -165,9 +165,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$theTitle = null;
 		foreach ( $map as $nsTitles ) {
 			$key = array_key_first( $nsTitles );
-			if ( $theTitle === null ) {
-				$theTitle = $key;
-			}
+			$theTitle ??= $key;
 			if ( count( $nsTitles ) > 1 || $key !== $theTitle ) {
 				$sortby[$bl_title] = 'string';
 				break;

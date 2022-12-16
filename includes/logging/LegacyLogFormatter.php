@@ -54,9 +54,7 @@ class LegacyLogFormatter extends LogFormatter {
 	private $revert = null;
 
 	public function getComment() {
-		if ( $this->comment === null ) {
-			$this->comment = parent::getComment();
-		}
+		$this->comment ??= parent::getComment();
 
 		// Make sure we execute the LogLine hook so that we immediately return
 		// the correct value.

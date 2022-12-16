@@ -188,12 +188,10 @@ class CategoryMembershipChange {
 			$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 
 			$correspondingRc = $revisionStore->getRecentChange( $this->revision );
-			if ( $correspondingRc === null ) {
-				$correspondingRc = $revisionStore->getRecentChange(
-					$this->revision,
-					RevisionStore::READ_LATEST
-				);
-			}
+			$correspondingRc ??= $revisionStore->getRecentChange(
+				$this->revision,
+				RevisionStore::READ_LATEST
+			);
 			if ( $correspondingRc !== null ) {
 				$bot = $correspondingRc->getAttribute( 'rc_bot' ) ?: 0;
 				$ip = $correspondingRc->getAttribute( 'rc_ip' ) ?: '';

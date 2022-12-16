@@ -1968,9 +1968,7 @@ class OutputPage extends ContextSource {
 	public function addWikiTextAsInterface(
 		$text, $linestart = true, PageReference $title = null
 	) {
-		if ( $title === null ) {
-			$title = $this->getTitle();
-		}
+		$title ??= $this->getTitle();
 		if ( !$title ) {
 			throw new MWException( 'Title is null' );
 		}
@@ -2018,9 +2016,7 @@ class OutputPage extends ContextSource {
 	public function addWikiTextAsContent(
 		$text, $linestart = true, PageReference $title = null
 	) {
-		if ( $title === null ) {
-			$title = $this->getTitle();
-		}
+		$title ??= $this->getTitle();
 		if ( !$title ) {
 			throw new MWException( 'Title is null' );
 		}
@@ -3182,13 +3178,9 @@ class OutputPage extends ContextSource {
 	 * @param string|null $returntoquery Query string for the return to link
 	 */
 	public function returnToMain( $unused = null, $returnto = null, $returntoquery = null ) {
-		if ( $returnto == null ) {
-			$returnto = $this->getRequest()->getText( 'returnto' );
-		}
+		$returnto ??= $this->getRequest()->getText( 'returnto' );
 
-		if ( $returntoquery == null ) {
-			$returntoquery = $this->getRequest()->getText( 'returntoquery' );
-		}
+		$returntoquery ??= $this->getRequest()->getText( 'returntoquery' );
 
 		if ( $returnto === '' ) {
 			$returnto = Title::newMainPage();

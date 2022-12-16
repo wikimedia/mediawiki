@@ -69,9 +69,7 @@ class RawMessage extends Message {
 	 */
 	public function fetchMessage() {
 		// Just in case the message is unset somewhere.
-		if ( $this->message === null ) {
-			$this->message = $this->key;
-		}
+		$this->message ??= $this->key;
 
 		return $this->message;
 	}

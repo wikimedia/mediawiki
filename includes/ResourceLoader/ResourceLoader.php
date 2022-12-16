@@ -1930,10 +1930,8 @@ MESSAGE;
 			}
 		);
 		$stats->increment( $incKey );
-		if ( $result === null ) {
-			// Cached failure
-			$result = $data;
-		}
+		// Use $data on cache failure
+		$result ??= $data;
 
 		return $result;
 	}

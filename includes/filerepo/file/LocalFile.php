@@ -1723,10 +1723,8 @@ class LocalFile extends File {
 			// updated and we must therefore update the DB too.
 			$oldver = $status->value;
 
-			if ( $uploader === null ) {
-				// Uploader argument is optional, fall back to the context authority
-				$uploader = RequestContext::getMain()->getAuthority();
-			}
+			// Uploader argument is optional, fall back to the context authority
+			$uploader ??= RequestContext::getMain()->getAuthority();
 
 			$uploadStatus = $this->recordUpload3(
 				$oldver,

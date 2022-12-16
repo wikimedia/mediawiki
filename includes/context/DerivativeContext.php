@@ -212,11 +212,9 @@ class DerivativeContext extends ContextSource implements MutableContext {
 			return $this->getContext()->getActionName();
 		}
 
-		if ( $this->action === null ) {
-			$this->action = MediaWikiServices::getInstance()
-				->getActionFactory()
-				->getActionName( $this );
-		}
+		$this->action ??= MediaWikiServices::getInstance()
+			->getActionFactory()
+			->getActionName( $this );
 
 		return $this->action;
 	}

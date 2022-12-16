@@ -61,9 +61,7 @@ class GenderCache {
 	 * @return string
 	 */
 	protected function getDefault() {
-		if ( $this->default === null ) {
-			$this->default = $this->userOptionsLookup->getDefaultOption( 'gender' );
-		}
+		$this->default ??= $this->userOptionsLookup->getDefaultOption( 'gender' );
 
 		return $this->default;
 	}

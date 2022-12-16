@@ -882,9 +882,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( !$sqls ) {
 			return [];
 		}
-		if ( $summarySql === null ) {
-			$summarySql = reset( $sqls );
-		}
+		$summarySql ??= reset( $sqls );
 		// Make sure that this caller is allowed to issue these query statements
 		foreach ( $sqls as $sql ) {
 			$this->assertQueryIsCurrentlyAllowed( $sql, $fname );

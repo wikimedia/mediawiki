@@ -118,9 +118,7 @@ class RevisionArchiveRecord extends RevisionRecord {
 	public function getSize() {
 		// If length is null, calculate and remember it (potentially SLOW!).
 		// This is for compatibility with old database rows that don't have the field set.
-		if ( $this->mSize === null ) {
-			$this->mSize = $this->mSlots->computeSize();
-		}
+		$this->mSize ??= $this->mSlots->computeSize();
 
 		return $this->mSize;
 	}
@@ -132,9 +130,7 @@ class RevisionArchiveRecord extends RevisionRecord {
 	public function getSha1() {
 		// If hash is null, calculate it and remember (potentially SLOW!)
 		// This is for compatibility with old database rows that don't have the field set.
-		if ( $this->mSha1 === null ) {
-			$this->mSha1 = $this->mSlots->computeSha1();
-		}
+		$this->mSha1 ??= $this->mSlots->computeSha1();
 
 		return $this->mSha1;
 	}
