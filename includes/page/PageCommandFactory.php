@@ -21,7 +21,6 @@
 
 namespace MediaWiki\Page;
 
-use ActorMigration;
 use BagOStuff;
 use CommentStore;
 use Config;
@@ -39,6 +38,7 @@ use MediaWiki\Revision\ArchivedRevisionLookup;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Title\TitleFactory;
+use MediaWiki\User\ActorMigration;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;

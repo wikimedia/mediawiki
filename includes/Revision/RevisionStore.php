@@ -25,7 +25,6 @@
 
 namespace MediaWiki\Revision;
 
-use ActorMigration;
 use BagOStuff;
 use CommentStore;
 use CommentStoreComment;
@@ -52,6 +51,7 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\Title\TitleFactory;
+use MediaWiki\User\ActorMigration;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
 use MWException;

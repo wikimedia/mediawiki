@@ -26,6 +26,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\User\ActorMigration;
 use Wikimedia\IPUtils;
 
 /**

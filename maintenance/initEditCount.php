@@ -25,6 +25,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\ActorMigration;
 
 class InitEditCount extends Maintenance {
 	public function __construct() {
