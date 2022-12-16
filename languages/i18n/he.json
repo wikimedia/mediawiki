@@ -1033,6 +1033,7 @@
 	"search-relatedarticle": "קשור",
 	"search-invalid-sort-order": "סדר המיון \"$1\" אינו חוקי; תוצאות החיפוש יסודרו בהתאם לברירת המחדל. סדרי המיון החוקיים הם: $2",
 	"search-unknown-profile": "סוג החיפוש \"$1\" אינו חוקי; החיפוש יתבצע בהתאם לברירת המחדל.",
+	"search-thumbnail-alt": "תמונה ממוזערת עבור $1",
 	"searchrelated": "קשור",
 	"searchall": "הכול",
 	"showingresults": "{{PLURAL:$1|מוצגת תוצאה <strong>אחת</strong>|מוצגות עד <strong>$1</strong> תוצאות}} החל ממספר <strong>$2</strong>:",

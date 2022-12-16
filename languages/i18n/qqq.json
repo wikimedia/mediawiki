@@ -242,6 +242,7 @@
 			"ديفيد",
 			"আফতাবুজ্জামান",
 			"គីមស៊្រុន",
+			"捍粵者",
 			"아라"
 		]
 	},
@@ -3304,7 +3305,7 @@
 	"import-parse-failure": "Error message shown when importing one or more pages to the wiki via an XML file, if the import failed because the XML in the file could not be parsed.",
 	"import-noarticle": "Used as error message when importing from interwiki.\n\nSee also:\n* {{msg-mw|Import-noarticle}}\n* {{msg-mw|Importbadinterwiki}}",
 	"import-nonewrevisions": "Used in [[Special:Import]].",
-	"xml-error-string": "Parameters:\n* $1 - Some kind of message, perhaps name of the error?\n* $2 - line number\n* $3 - column number\n* $4 - ?? $this->mByte . $this->mContext\n* $5 - error description\nExample:\n* Import failed: XML import parse failure at line 1, col 1 (byte 3; \"- <mediawiki xml\"): Empty document",
+	"xml-error-string": "Parameters:\n* $1 - Some kind of message, perhaps error name?\n* $2 - line number\n* $3 - column number\n* $4 - ?? $this->mByte . $this->mContext\n* $5 - error description\nExample:\n* Import failed: XML import parse failure at line 1, col 1 (byte 3; \"- <mediawiki xml\"): Empty document",
 	"import-upload": "Used on [[Special:Import]].\n\nRelated messages:\n* {{msg-mw|right-importupload}} (the user right for this)",
 	"import-token-mismatch": "Used as error message in [[Special:Import]].\n\nSee also:\n* {{msg-mw|import-invalid-interwiki}}\n* {{msg-mw|Importunknownsource}}\n\n{{Identical|Loss of session data}}",
 	"import-invalid-interwiki": "Used as error message in [[Special:Import]].\n\nSee also:\n* {{msg-mw|import-token-mismatch}}\n* {{msg-mw|import-invalid-interwiki}}\n* {{msg-mw|Importunknownsource}}",

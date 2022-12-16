@@ -999,6 +999,7 @@
 	"search-relatedarticle": "Connexe",
 	"search-invalid-sort-order": "Le ordine de assortimento de $1 non es recognoscite; le ordine predefinite essera applicate. Le ordines de assortimento valide es: $2",
 	"search-unknown-profile": "Le profilo de recerca de $1 non es recognoscite. Le profilo de recerca predefinite essera applicate.",
+	"search-thumbnail-alt": "Miniatura pro $1",
 	"searchrelated": "connexe",
 	"searchall": "totes",
 	"showingresults": "Infra se monstra non plus de {{PLURAL:$1|'''1''' resultato|'''$1''' resultatos}} a partir del numero '''$2'''.",
