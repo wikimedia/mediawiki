@@ -278,14 +278,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	public function getClusterName(): string {
-		if ( $this->clusterName !== null ) {
-			$name = $this->clusterName;
-		} else {
-			// Fallback to the current primary name if not specified
-			$name = $this->getServerName( $this->getWriterIndex() );
-		}
-
-		return $name;
+		// Fallback to the current primary name if not specified
+		return $this->clusterName ?? $this->getServerName( $this->getWriterIndex() );
 	}
 
 	public function getLocalDomainID(): string {
@@ -1753,7 +1747,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		$this->trxRoundStage = $oldStage;
 
-		return $errors ? $errors[0] : null;
+		return $errors[0] ?? null;
 	}
 
 	public function runPrimaryTransactionListenerCallbacks( $fname = __METHOD__ ) {
@@ -1777,7 +1771,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 		$this->trxRoundStage = self::ROUND_CURSORY;
 
-		return $errors ? $errors[0] : null;
+		return $errors[0] ?? null;
 	}
 
 	public function rollbackPrimaryChanges( $fname = __METHOD__ ) {

@@ -1245,9 +1245,7 @@ abstract class ApiBase extends ContextSource {
 	 * @return Status
 	 */
 	public function errorArrayToStatus( array $errors, User $user = null ) {
-		if ( $user === null ) {
-			$user = $this->getUser();
-		}
+		$user ??= $this->getUser();
 
 		$status = Status::newGood();
 		foreach ( $errors as $error ) {

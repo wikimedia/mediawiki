@@ -52,10 +52,7 @@ class HistoryBlobCurStub {
 	public function getText() {
 		$dbr = wfGetDB( DB_REPLICA );
 		$row = $dbr->selectRow( 'cur', [ 'cur_text' ], [ 'cur_id' => $this->mCurId ], __METHOD__ );
-		if ( !$row ) {
-			return false;
-		}
-		return $row->cur_text;
+		return $row ? $row->cur_text : false;
 	}
 }
 

@@ -459,11 +459,7 @@ __INDEXATTR__;
 			$this->strencode( $this->indexName( $index ) ) .
 			")'";
 		$res = $this->query( $sql, $fname, $flags );
-		if ( !$res ) {
-			return false;
-		}
-
-		return $res->numRows() > 0;
+		return $res && $res->numRows() > 0;
 	}
 
 	/**

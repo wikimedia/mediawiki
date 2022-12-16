@@ -1010,10 +1010,7 @@ class MessageCache implements LoggerAwareInterface {
 			// Let's not load nonexistent languages for those
 			// They usually have more than one slash.
 			if ( count( $parts ) === 2 && $parts[1] !== '' ) {
-				$message = $this->localisationCache->getSubitem( $parts[1], 'messages', $parts[0] );
-				if ( $message === null ) {
-					$message = false;
-				}
+				$message = $this->localisationCache->getSubitem( $parts[1], 'messages', $parts[0] ) ?? false;
 			}
 		}
 

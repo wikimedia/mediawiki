@@ -716,11 +716,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @return string
 	 */
 	protected function getContinueStr( $img, $start = null ) {
-		if ( $start === null ) {
-			$start = $img->getTimestamp();
-		}
-
-		return $img->getOriginalTitle()->getDBkey() . '|' . $start;
+		return $img->getOriginalTitle()->getDBkey() . '|' . ( $start ?? $img->getTimestamp() );
 	}
 
 	public function getAllowedParams() {

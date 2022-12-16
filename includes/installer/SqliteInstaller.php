@@ -110,12 +110,7 @@ class SqliteInstaller extends DatabaseInstaller {
 	 * @return string
 	 */
 	private static function realpath( $path ) {
-		$result = realpath( $path );
-		if ( !$result ) {
-			return $path;
-		}
-
-		return $result;
+		return realpath( $path ) ?: $path;
 	}
 
 	/**

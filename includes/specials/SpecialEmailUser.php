@@ -312,11 +312,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		Hooks::runner()->onUserCanSendEmail( $user, $hookErr );
 		Hooks::runner()->onEmailUserPermissionsErrors( $user, $editToken, $hookErr );
 
-		if ( $hookErr ) {
-			return $hookErr;
-		}
-
-		return null;
+		return $hookErr ?: null;
 	}
 
 	/**

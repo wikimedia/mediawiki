@@ -574,9 +574,7 @@ abstract class AbstractContent implements Content {
 		);
 
 		if ( $detectGPODeprecatedOverride || $detectFPODeprecatedOverride ) {
-			if ( $options === null ) {
-				$options = ParserOptions::newFromAnon();
-			}
+			$options ??= ParserOptions::newFromAnon();
 
 			$po = new ParserOutput();
 			$options->registerWatcher( [ $po, 'recordOption' ] );

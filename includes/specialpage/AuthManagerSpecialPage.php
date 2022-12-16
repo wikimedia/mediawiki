@@ -86,11 +86,11 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 	 */
 	protected function setRequest( array $data, $wasPosted = null ) {
 		$request = $this->getContext()->getRequest();
-		if ( $wasPosted === null ) {
-			$wasPosted = $request->wasPosted();
-		}
-		$this->savedRequest = new DerivativeRequest( $request, $data + $request->getQueryValues(),
-			$wasPosted );
+		$this->savedRequest = new DerivativeRequest(
+			$request,
+			$data + $request->getQueryValues(),
+			$wasPosted ?? $request->wasPosted()
+		);
 	}
 
 	/**

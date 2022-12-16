@@ -109,10 +109,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 	 * @return array
 	 */
 	public static function getPropertyNames( $filter = null ) {
-		if ( $filter === null ) {
-			$filter = self::$propertyFilter;
-		}
-		return parent::getPropertyNames( $filter );
+		return parent::getPropertyNames( $filter ?? self::$propertyFilter );
 	}
 
 	/**
@@ -122,10 +119,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 	 * @return array
 	 */
 	public static function getPropertyMessages( $filter = null ) {
-		if ( $filter === null ) {
-			$filter = self::$propertyFilter;
-		}
-		return parent::getPropertyMessages( $filter );
+		return parent::getPropertyMessages( $filter ?? self::$propertyFilter );
 	}
 
 	public function getAllowedParams() {

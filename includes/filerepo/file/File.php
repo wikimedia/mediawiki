@@ -784,12 +784,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 */
 	public function getCommonMetaArray() {
 		$handler = $this->getHandler();
-
-		if ( !$handler ) {
-			return false;
-		}
-
-		return $handler->getCommonMetaArray( $this );
+		return $handler ? $handler->getCommonMetaArray( $this ) : false;
 	}
 
 	/**
@@ -2016,11 +2011,8 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return array[]|false
 	 */
 	public function formatMetadata( $context = false ) {
-		if ( !$this->getHandler() ) {
-			return false;
-		}
-
-		return $this->getHandler()->formatMetadata( $this, $context );
+		$handler = $this->getHandler();
+		return $handler ? $handler->formatMetadata( $this, $context ) : false;
 	}
 
 	/**

@@ -287,9 +287,6 @@ class FileModule extends Module {
 		// The different ways these checks are done, and their ordering, look very silly,
 		// but were preserved for backwards-compatibility just in case. Tread lightly.
 
-		if ( $localBasePath === null ) {
-			$localBasePath = $IP;
-		}
 		if ( $remoteBasePath === null ) {
 			$remoteBasePath = MediaWikiServices::getInstance()->getMainConfig()
 				->get( MainConfigNames::ResourceBasePath );
@@ -327,7 +324,7 @@ class FileModule extends Module {
 			$remoteBasePath = '/';
 		}
 
-		return [ $localBasePath, $remoteBasePath ];
+		return [ $localBasePath ?? $IP, $remoteBasePath ];
 	}
 
 	/**
