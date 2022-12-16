@@ -199,7 +199,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 
 	public function getCacheMode( $params ) {
 		if ( $params['prop'] !== null && in_array( 'parsedcomment', $params['prop'] ) ) {
-			// formatComment() calls wfMessage() among other things
+			// MediaWiki\CommentFormatter\CommentFormatter::formatItems() calls wfMessage() among other things
 			return 'anon-public-user-private';
 		} else {
 			return 'public';

@@ -671,7 +671,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			return 'private';
 		}
 		if ( $params['prop'] !== null && in_array( 'parsedcomment', $params['prop'] ) ) {
-			// formatComment() calls wfMessage() among other things
+			// MediaWiki\CommentFormatter\CommentFormatter::formatItems() calls wfMessage() among other things
 			return 'anon-public-user-private';
 		}
 

@@ -513,7 +513,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 			if ( $canShowField( File::DELETED_COMMENT ) ) {
 				if ( $pcomment ) {
-					$vals['parsedcomment'] = Linker::formatComment(
+					$vals['parsedcomment'] = MediaWikiServices::getInstance()->getCommentFormatter()->format(
 						$file->getDescription( File::RAW ), $file->getTitle() );
 				}
 				if ( $comment ) {
