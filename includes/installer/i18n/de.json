@@ -238,7 +238,7 @@
 	"config-logo-wordmark": "Wortmarke (optional):",
 	"config-logo-wordmark-help": "Der Name deiner Webseite. Wenn nicht definiert, wird in der Regel auf Text zurückgegriffen. Idealerweise ein SVG mit einer Höhe von 30 Pixel oder weniger.",
 	"config-logo-tagline": "Tagline (optional):",
-	"config-logo-tagline-help": "Die Tagline deiner Website. Nur verwenden, wenn du oben eine Wortmarke definiert hast. Wenn du keine Wortmarke definiert hast, wird diese in der Regel in Text umgewandelt. Die kombinierte Höhe von Tagline und Wortmarke sollte in der Regel 50 Pixel nicht überschreiten.",
+	"config-logo-tagline-help": "Die Slogan deiner Website. Nur verwenden, wenn du oben eine Wortmarke definiert hast. Wenn du keine Wortmarke definiert hast, wird diese in der Regel in Text umgewandelt. Die kombinierte Höhe von Slogan und Wortmarke sollte in der Regel 50 Pixel nicht überschreiten.",
 	"config-logo-sidebar": "Logo in der Seitenleiste (optional):",
 	"config-logo-filedrop": "Hier eine Bilddatei ablegen",
 	"config-logo-sidebar-help": "Einige MediaWiki-Skins enthalten ein Logo mit 160 Pixel Höhe als Teil des Seitenleistenmenüs. Wenn es nicht definiert ist, ist es dasselbe wie das oben definierte Symbol. Vielleicht möchtest du eine eigene Grafik haben, die Wortmarke und Icon kombiniert.",
@@ -327,6 +327,7 @@
 	"config-screenshot": "Bildschirmfoto",
 	"config-extension-not-found": "Die Registrierungsdatei für die Erweiterung „$1“ konnte nicht gefunden werden",
 	"config-extension-dependency": "Bei der Installation der Erweiterung „$1“ ist ein Abhängigkeitsfehler aufgetreten: $2",
+	"config-ext-skins-more-info": "weitere Informationen",
 	"mainpagetext": "<strong>MediaWiki wurde installiert.</strong>",
 	"mainpagedocfooter": "Hilfe zur Benutzung und Konfiguration der Wiki-Software findest du im [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Benutzerhandbuch].\n\n== Starthilfen ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Liste der Konfigurationsparameter]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Häufige Fragen zu MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Mailingliste zu neuen Versionen von MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Übersetze MediaWiki für deine Sprache]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Erfahre, wie du Spam auf deinem Wiki bekämpfen kannst]"
 }

@@ -3475,6 +3475,7 @@
 	"tag-filter": "[[Special:Tags|Labelfilter]]:",
 	"tag-filter-submit": "Filteren",
 	"tag-hidden": "$1 (verborgen label)",
+	"tag-link-other-edits": "andere bewerkingen",
 	"tag-list-wrapper": "[[Special:Tags|Label{{PLURAL:$1||s}}]]: $2",
 	"tag-mw-contentmodelchange": "inhoudsmodel wijzigen",
 	"tag-mw-contentmodelchange-description": "Bewerkingen die [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel het  inhoudsmodel van een pagina wijzigen]",

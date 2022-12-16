@@ -1101,6 +1101,7 @@
 	"search-relatedarticle": "Verwandte",
 	"search-invalid-sort-order": "Die Sortierreihenfolge von $1 wurde nicht erkannt und deshalb wird die Standardsortierung angewendet. Gültige Sortierreihenfolgen sind: $2",
 	"search-unknown-profile": "Das Suchprofil von $1 wurde nicht erkannt und deshalb wird das Standardsuchprofil angewendet.",
+	"search-thumbnail-alt": "Vorschaubild für $1",
 	"searchrelated": "verwandt",
 	"searchall": "alle",
 	"showingresults": "Hier {{PLURAL:$1|ist '''1''' Ergebnis|sind '''$1''' Ergebnisse}}, beginnend mit Nummer '''$2.'''",
