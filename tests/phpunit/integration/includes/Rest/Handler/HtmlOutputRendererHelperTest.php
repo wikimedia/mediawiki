@@ -714,7 +714,8 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 			new NullStatsdDataFactory(),
 			$parsoid,
 			$services->getParsoidSiteConfig(),
-			$services->getParsoidPageConfigFactory()
+			$services->getParsoidPageConfigFactory(),
+			$services->getContentHandlerFactory()
 		);
 	}
 

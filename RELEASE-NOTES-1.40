@@ -287,6 +287,8 @@ because of Phabricator reports.
   deprecated in 1.37, now emit deprecation warnings.
 * LanguageConverterFactory::isTitleConversionDisabled(), deprecated in 1.36,
   now emits deprecation warnings.
+* IndexPager::getHookContainer is deprecated and emits deprecation warnings.
+  Inject a HookContainer instead.
 * AbstractBlock::getPermissionsError(), deprecated in 1.35, now emits
   deprecation warnings.
 * The following functions are deprecated: isBlockedGlobally, getGlobalBlock.

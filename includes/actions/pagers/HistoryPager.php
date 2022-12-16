@@ -470,7 +470,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$revRecord,
 			$previousRevRecord,
 			$latest && $previousRevRecord,
-			$this->getHookRunner(),
+			$this->hookRunner,
 			$this->getTitle(),
 			$this->getContext(),
 			$this->getLinkRenderer()
