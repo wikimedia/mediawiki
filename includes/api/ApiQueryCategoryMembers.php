@@ -240,7 +240,10 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				// @todo Security issue - if the user has no right to view next
 				// title, it will still be shown
 				if ( $params['sort'] == 'timestamp' ) {
-					$this->setContinueEnumParameter( 'continue', "$row->cl_timestamp|$row->cl_from" );
+					$this->setContinueEnumParameter(
+						'continue',
+						$this->getDB()->timestamp( $row->cl_timestamp ) . "|$row->cl_from"
+					);
 				} else {
 					$sortkey = bin2hex( $row->cl_sortkey );
 					$this->setContinueEnumParameter( 'continue',
@@ -285,7 +288,10 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					null, $vals );
 				if ( !$fit ) {
 					if ( $params['sort'] == 'timestamp' ) {
-						$this->setContinueEnumParameter( 'continue', "$row->cl_timestamp|$row->cl_from" );
+						$this->setContinueEnumParameter(
+							'continue',
+							$this->getDB()->timestamp( $row->cl_timestamp ) . "|$row->cl_from"
+						);
 					} else {
 						$sortkey = bin2hex( $row->cl_sortkey );
 						$this->setContinueEnumParameter( 'continue',
