@@ -1760,10 +1760,13 @@ class DifferenceEngine extends ContextSource {
 
 		$title = $rev->getPageAsLinkTarget();
 
-		$header = $this->linkRenderer->makeKnownLink( $title, $header->text(), [],
-			[ 'oldid' => $rev->getId() ] );
-
 		if ( $this->userCanEdit( $rev ) ) {
+			$header = $this->linkRenderer->makeKnownLink(
+				$title,
+				$header->text(),
+				[],
+				[ 'oldid' => $rev->getId() ]
+			);
 			$editQuery = [ 'action' => 'edit' ];
 			if ( !$rev->isCurrent() ) {
 				$editQuery['oldid'] = $rev->getId();
@@ -1778,15 +1781,16 @@ class DifferenceEngine extends ContextSource {
 				[ 'class' => 'mw-diff-edit' ],
 				$editLink
 			);
-			if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
-				$header = Html::rawElement(
-					'span',
-					[ 'class' => Linker::getRevisionDeletedClass( $rev ) ],
-					$header
-				);
-			}
 		} else {
-			$header = Html::rawElement( 'span', [ 'class' => 'history-deleted' ], $header );
+			$header = $header->escaped();
+		}
+
+		if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
+			return Html::rawElement(
+				'span',
+				[ 'class' => Linker::getRevisionDeletedClass( $rev ) ],
+				$header
+			);
 		}
 
 		return $header;

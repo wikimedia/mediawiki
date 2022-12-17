@@ -458,8 +458,11 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		// Always show the timestamp
 		$this->assertStringContainsString( '(revisionasof:', $revisionHeaderHtml );
 
-		// FIXME Show no link when the user is not allowed - T325450
-		$this->assertStringContainsString( 'oldid=' . $revs[1], $revisionHeaderHtml );
+		if ( $allowedAction === 'none' ) {
+			$this->assertStringNotContainsString( 'oldid=' . $revs[1], $revisionHeaderHtml );
+		} else {
+			$this->assertStringContainsString( 'oldid=' . $revs[1], $revisionHeaderHtml );
+		}
 		if ( $allowedAction === 'edit' ) {
 			$this->assertStringContainsString( '(editold)', $revisionHeaderHtml );
 		} else {
@@ -476,8 +479,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		} else {
 			$this->assertStringContainsString( 'history-deleted', $revisionHeaderHtml );
 		}
-		// FIXME Show mw-history-suppressed even the user is not allowed - T325450
-		if ( $deletedFlag === 'suppressed' && $allowedAction !== 'none' ) {
+		if ( $deletedFlag === 'suppressed' ) {
 			$this->assertStringContainsString( 'mw-history-suppressed', $revisionHeaderHtml );
 		} else {
 			$this->assertStringNotContainsString( 'mw-history-suppressed', $revisionHeaderHtml );
