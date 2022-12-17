@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -416,4 +417,83 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		return $revision;
 	}
 
+	/**
+	 * @dataProvider provideRevisionHeader
+	 */
+	public function testRevisionHeader( $deletedFlag, $allowedAction ) {
+		$revs = self::$revisions;
+
+		if ( $deletedFlag !== 'none' ) {
+			$this->revisionDelete(
+				$revs[1],
+				[
+					RevisionRecord::DELETED_TEXT => 1,
+					RevisionRecord::DELETED_RESTRICTED => $deletedFlag === 'suppressed' ? 1 : 0,
+				],
+				'Testing'
+			);
+		}
+
+		$context = new DerivativeContext( $this->context );
+		$context->setLanguage( 'qqx' );
+		$permissionSet = [];
+		if ( $allowedAction !== 'none' ) {
+			if ( $allowedAction === 'edit' ) {
+				$permissionSet[] = 'edit';
+			}
+			if ( $deletedFlag === 'suppressed' ) {
+				$permissionSet[] = 'suppressrevision';
+			} else {
+				$permissionSet[] = 'deletedtext';
+			}
+		}
+		$context->setAuthority(
+			new SimpleAuthority( $this->getTestUser()->getUser(), $permissionSet )
+		);
+
+		$diffEngine = new DifferenceEngine( $context, $revs[1], $revs[2], 2, true, true );
+		$this->assertTrue( $diffEngine->loadRevisionData() );
+		$revisionHeaderHtml = $diffEngine->getRevisionHeader( $diffEngine->getOldRevision(), 'complete' );
+
+		// Always show the timestamp
+		$this->assertStringContainsString( '(revisionasof:', $revisionHeaderHtml );
+
+		// FIXME Show no link when the user is not allowed - T325450
+		$this->assertStringContainsString( 'oldid=' . $revs[1], $revisionHeaderHtml );
+		if ( $allowedAction === 'edit' ) {
+			$this->assertStringContainsString( '(editold)', $revisionHeaderHtml );
+		} else {
+			$this->assertStringNotContainsString( '(editold)', $revisionHeaderHtml );
+		}
+		if ( $allowedAction === 'view' ) {
+			$this->assertStringContainsString( '(viewsourceold)', $revisionHeaderHtml );
+		} else {
+			$this->assertStringNotContainsString( '(viewsourceold)', $revisionHeaderHtml );
+		}
+
+		if ( $deletedFlag === 'none' ) {
+			$this->assertStringNotContainsString( 'history-deleted', $revisionHeaderHtml );
+		} else {
+			$this->assertStringContainsString( 'history-deleted', $revisionHeaderHtml );
+		}
+		// FIXME Show mw-history-suppressed even the user is not allowed - T325450
+		if ( $deletedFlag === 'suppressed' && $allowedAction !== 'none' ) {
+			$this->assertStringContainsString( 'mw-history-suppressed', $revisionHeaderHtml );
+		} else {
+			$this->assertStringNotContainsString( 'mw-history-suppressed', $revisionHeaderHtml );
+		}
+	}
+
+	public function provideRevisionHeader() {
+		return [
+			[ 'none', 'view' ],
+			[ 'none', 'edit' ],
+			[ 'deleted', 'none' ],
+			[ 'deleted', 'view' ],
+			[ 'deleted', 'edit' ],
+			[ 'suppressed', 'none' ],
+			[ 'suppressed', 'view' ],
+			[ 'suppressed', 'edit' ],
+		];
+	}
 }
