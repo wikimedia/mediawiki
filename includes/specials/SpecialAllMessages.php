@@ -152,7 +152,7 @@ class SpecialAllMessages extends SpecialPage {
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
 		$htmlForm
 			->setMethod( 'get' )
-			->setIntro( $this->msg( 'allmessagestext' ) )
+			->setPreHtml( $this->msg( 'allmessagestext' ) )
 			->setWrapperLegendMsg( 'allmessages' )
 			->setSubmitTextMsg( 'allmessages-filter-submit' )
 			->prepareForm()

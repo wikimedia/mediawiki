@@ -178,7 +178,7 @@ class SpecialChangeCredentials extends AuthManagerSpecialPage {
 		$req = reset( $requests );
 		$info = $req->describeCredentials();
 
-		$form->addPreText(
+		$form->addPreHtml(
 			Html::openElement( 'dl' )
 			. Html::element( 'dt', [], $this->msg( 'credentialsform-provider' )->text() )
 			. Html::element( 'dd', [], $info['provider']->text() )

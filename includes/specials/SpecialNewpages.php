@@ -380,7 +380,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			)
 			->setSubmitTextMsg( 'newpages-submit' )
 			->setWrapperLegendMsg( 'newpages' )
-			->addFooterText( Html::rawElement(
+			->addFooterHtml( Html::rawElement(
 				'div',
 				[],
 				$this->filterLinks()

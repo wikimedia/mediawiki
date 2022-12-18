@@ -360,7 +360,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		// By now we are supposed to be sure that $this->mTarget is a user name
 		$htmlForm
 			->setTitle( $this->getPageTitle() ) // Remove subpage
-			->addPreText( $this->msg( 'emailpagetext', $this->mTarget )->parse() )
+			->addPreHtml( $this->msg( 'emailpagetext', $this->mTarget )->parse() )
 			->setSubmitTextMsg( 'emailsend' )
 			->setSubmitCallback( [ __CLASS__, 'submit' ] )
 			->setFormIdentifier( 'sendEmailForm' )
