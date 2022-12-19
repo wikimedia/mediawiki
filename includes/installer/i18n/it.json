@@ -329,6 +329,7 @@
 	"config-screenshot": "screenshot",
 	"config-extension-not-found": "Impossibile trovare il file di registrazione per l'estensione \"$1\"",
 	"config-extension-dependency": "Si è verificato un errore di dipendenza durante l'installazione dell'estensione \"$1\": $2",
+	"config-ext-skins-more-info": "ulteriori informazioni",
 	"mainpagetext": "<strong>MediaWiki è stato installato.</strong>",
 	"mainpagedocfooter": "Consulta la [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents guida utente] per maggiori informazioni sull'uso di questo software wiki.\n\n== Per iniziare ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Impostazioni di configurazione]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Domande frequenti su MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Mailing list annunci MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Trova MediaWiki nella tua lingua]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Imparare a combattere lo spam sul tuo wiki]"
 }

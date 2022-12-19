@@ -326,6 +326,7 @@
 	"config-screenshot": "スクリーンショット",
 	"config-extension-not-found": "拡張機能「$1」の登録ファイルは見つかりませんでした",
 	"config-extension-dependency": "拡張機能「$1」のインストール中に依存関係エラーが発生しました: $2",
+	"config-ext-skins-more-info": "詳細情報",
 	"mainpagetext": "<strong>MediaWiki はインストール済みです。</strong>",
 	"mainpagedocfooter": "ウィキソフトウェアの使い方に関する情報は[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 利用者案内]を参照してください。\n\n== はじめましょう ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings/ja 設定の一覧]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/ja MediaWiki よくある質問]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki リリース情報メーリングリスト]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation/ja MediaWiki をご使用の言語へ翻訳]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam ご使用のウィキでスパムと戦う方法を学ぶ]"
 }

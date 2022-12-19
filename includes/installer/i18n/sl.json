@@ -217,6 +217,7 @@
 	"config-screenshot": "zaslonski posnetek",
 	"config-extension-not-found": "Registracijske datoteke za razširitev »$1« ni bilo mogoče najti",
 	"config-extension-dependency": "Pri nameščanju razširitve »$1« je prišlo do napake odvisnosti: $2",
+	"config-ext-skins-more-info": "več informacij",
 	"mainpagetext": "<strong>Programje MediaWiki je bilo nameščeno.</strong>",
 	"mainpagedocfooter": "Oglejte si [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Uporabniški priročnik] za informacije o uporabi vikiprogramja.\n\n== Kako začeti ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Seznam konfiguracijskih nastavitev]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Pogosta vprašanja o MediaWikiju]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Poštni seznam izdaj MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Prevedite MediaWiki v svoj jezik]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Seznanite se s preprečevanjem smetja v svojem vikiju]"
 }

@@ -1607,6 +1607,7 @@
 	"rcfilters-filter-previousrevision-description": "Visi keitimai, kurie nėra „paskutinė versija“.",
 	"rcfilters-filter-excluded": "Įkelta",
 	"rcfilters-tag-prefix-namespace-inverted": "<strong>:ne</strong> $1",
+	"rcfilters-tag-prefix-tags-inverted": "<strong>#ne</strong> $1",
 	"rcfilters-exclude-button-off": "Įkelti pasirinktus",
 	"rcfilters-exclude-button-on": "Įkeliami pasirinktieji",
 	"rcfilters-view-tags": "Pažymėti keitimai",
