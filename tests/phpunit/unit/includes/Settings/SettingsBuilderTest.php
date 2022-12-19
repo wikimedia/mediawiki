@@ -128,11 +128,23 @@ class SettingsBuilderTest extends TestCase {
 		$config = $configBuilder->build();
 		$this->assertSame( 'TEST', $config->get( 'Something' ) );
 
-		// Finalize and lock loading & applying anymore settings
-		$setting->finalize();
+		// Check that after enterRegistrationStage(), we can still override config,
+		// but we can't load settings sources.
+		$setting->enterRegistrationStage();
+		$setting->overrideConfigValue( 'Foo', 'bar' );
 
 		$this->expectException( SettingsBuilderException::class );
 		$setting->loadFile( 'fixtures/settings.json' )->apply();
+	}
+
+	public function testSettingConfigAfterLock() {
+		$setting = $this->newSettingsBuilder();
+
+		// Check that after enterOperationStage(), we can't override config.
+		$setting->enterReadOnlyStage();
+
+		$this->expectException( SettingsBuilderException::class );
+		$setting->overrideConfigValue( 'Foo', 'bar' );
 	}
 
 	public function testLoadingExtensions() {
@@ -352,6 +364,16 @@ class SettingsBuilderTest extends TestCase {
 		$config = $setting->getConfig();
 		$this->assertSame( [ 111 ], $config->get( 'a' ) );
 		$this->assertSame( 22, $config->get( 'b' ) );
+	}
+
+	public function testRegisterHookHandler() {
+		$setting = $this->newSettingsBuilder();
+
+		$hookName = 'TestHookForSettingsBuilderTest';
+		$setting->registerHookHandlers( [ $hookName => [ 'strtolower' ] ] );
+
+		$config = $setting->getConfig();
+		$this->assertArrayHasKey( $hookName, $config->get( 'Hooks' ) );
 	}
 
 	public function testApplyPurgesState() {

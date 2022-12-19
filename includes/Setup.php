@@ -220,6 +220,16 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 // Make settings loaded by LocalSettings.php available in globals for use here
 $wgSettings->apply();
 
+// If in a wiki-farm, load site-specific settings
+if ( $wgSettings->getConfig()->get( MainConfigNames::WikiFarmSettingsDirectory ) ) {
+	$wikiFarmSettingsLoader = new WikiFarmSettingsLoader( $wgSettings );
+	$wikiFarmSettingsLoader->loadWikiFarmSettings();
+	unset( $wikiFarmSettingsLoader );
+}
+
+// All settings should be loaded now.
+$wgSettings->enterRegistrationStage();
+
 /**
  * Customization point after all loading (constants, functions, classes,
  * LocalSettings). Specifically, this is before usage of
@@ -231,13 +241,6 @@ if ( defined( 'MW_SETUP_CALLBACK' ) ) {
 	call_user_func( MW_SETUP_CALLBACK, $wgSettings );
 	// Make any additional settings available in globals for use here
 	$wgSettings->apply();
-}
-
-// If in a wiki-farm, load site-specific settings
-if ( $wgSettings->getConfig()->get( MainConfigNames::WikiFarmSettingsDirectory ) ) {
-	$wikiFarmSettingsLoader = new WikiFarmSettingsLoader( $wgSettings );
-	$wikiFarmSettingsLoader->loadWikiFarmSettings();
-	unset( $wikiFarmSettingsLoader );
 }
 
 // Apply dynamic defaults declared in config schema callbacks.
@@ -252,8 +255,6 @@ $wgSettings->apply();
 // callbacks in the config schema.
 require __DIR__ . '/SetupDynamicConfig.php';
 
-// All settings should be loaded now.
-$wgSettings->finalize();
 if ( $wgBaseDirectory !== MW_INSTALL_PATH ) {
 	throw new FatalError(
 		'$wgBaseDirectory must not be modified in settings files! ' .
@@ -269,10 +270,13 @@ if ( $wgRequestTimeLimit && !$wgCommandLineMode ) {
 /**
  * Load queued extensions
  */
-
+ExtensionRegistry::getInstance()->setSettingsBuilder( $wgSettings );
 ExtensionRegistry::getInstance()->loadFromQueue();
 // Don't let any other extensions load
 ExtensionRegistry::getInstance()->finish();
+
+// Config can no longer be changed.
+$wgSettings->enterReadOnlyStage();
 
 // Set an appropriate locale (T291234)
 // setlocale() will return the locale name actually set.
