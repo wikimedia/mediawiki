@@ -46,6 +46,9 @@ use Wikimedia\ObjectFactory\ObjectFactory;
  * Install the poolcounterd service from
  * <https://gerrit.wikimedia.org/g/mediawiki/services/poolcounter> to
  * enable this feature.
+ *
+ * @since 1.16
+ * @stable to extend
  */
 abstract class PoolCounter {
 	/* Return codes */
@@ -127,7 +130,15 @@ abstract class PoolCounter {
 		}
 		$conf = $poolCounterConf[$type];
 
+		if ( ( $conf['class'] ?? null ) === 'PoolCounter_Client' ) {
+			// Since 1.16: Introduced, as an extension.
+			// Since 1.36: Namespaced extension, with alias.
+			// Since 1.40: Moved to core.
+			$conf['class'] = MediaWiki\PoolCounter\PoolCounterClient::class;
+		}
+
 		/** @var PoolCounter $poolCounter */
+		// @phan-suppress-next-line PhanTypeInvalidCallableArraySize https://github.com/phan/phan/issues/1648
 		$poolCounter = ObjectFactory::getObjectFromSpec(
 			$conf,
 			[

@@ -432,6 +432,12 @@ return [
 			'MaxArticleSize' => 2048,
 			'MemoryLimit' => '50M',
 			'PoolCounterConf' => null,
+			'PoolCountClientConf' => [
+				'servers' => [
+					0 => '127.0.0.1',
+				],
+				'timeout' => 0.1,
+			],
 			'MaxUserDBWriteDuration' => false,
 			'MaxJobDBWriteDuration' => false,
 			'LinkHolderBatchSize' => 1000,
@@ -2584,6 +2590,7 @@ return [
 				0 => 'object',
 				1 => 'null',
 			],
+			'PoolCountClientConf' => 'object',
 			'MaxUserDBWriteDuration' => [
 				0 => 'integer',
 				1 => 'boolean',

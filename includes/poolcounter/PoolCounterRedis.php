@@ -48,7 +48,6 @@ use Psr\Log\LoggerInterface;
  * pools to appear as full when they are not. Using volatile-ttl and bumping memory-samples
  * in redis.conf can be helpful otherwise.
  *
- * @ingroup Redis
  * @since 1.23
  */
 class PoolCounterRedis extends PoolCounter {
