@@ -158,7 +158,7 @@ class SpecialActiveUsers extends SpecialPage {
 		HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
 			// For the 'multiselect' field values to be preserved on submit
 			->setFormIdentifier( 'specialactiveusers' )
-			->setIntro( $this->getIntroText() )
+			->setPreHtml( $this->getIntroText() )
 			->setWrapperLegendMsg( 'activeusers' )
 			->setSubmitTextMsg( 'activeusers-submit' )
 			// prevent setting subpage and 'username' parameter at the same time

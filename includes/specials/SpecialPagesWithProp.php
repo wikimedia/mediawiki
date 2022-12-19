@@ -118,7 +118,7 @@ class SpecialPagesWithProp extends QueryPage {
 			->setTitle( $this->getPageTitle() ) // Remove subpage
 			->setSubmitCallback( [ $this, 'onSubmit' ] )
 			->setWrapperLegendMsg( 'pageswithprop-legend' )
-			->addHeaderText( $this->msg( 'pageswithprop-text' )->parseAsBlock() )
+			->addHeaderHtml( $this->msg( 'pageswithprop-text' )->parseAsBlock() )
 			->setSubmitTextMsg( 'pageswithprop-submit' )
 			->prepareForm();
 		$form->displayForm( false );
