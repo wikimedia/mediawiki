@@ -2941,6 +2941,8 @@
 	"feedback-useragent": "Браузер:",
 	"searchsuggest-search": "Лахар",
 	"searchsuggest-containing": "АгӀонаш лахар, чулацам болу",
+	"search-thumbnail-extra-namespaces-label": "Special:Search чохь миниатюраш гайта",
+	"search-thumbnail-extra-namespaces-message": "Иштта гайта миниатюраш $1 {{PLURAL:$2|цӀерийн меттиган|цӀерийн меттигийн}}. $3 миниатюраш гуттара а гойту.",
 	"searchlimit-label": "Кариначера дукхалла хӀора агӀонна:",
 	"searchlimit-help": "Максимум маьӀна: 500",
 	"api-clientside-error-noconnect": "Таро йац сервер тӀе хоттадала. Тешна хилла, хьан Интернет йу аьлла, тӀакха йуха а хьажа.",

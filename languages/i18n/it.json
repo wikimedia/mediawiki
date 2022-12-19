@@ -1129,6 +1129,7 @@
 	"search-relatedarticle": "Risultati correlati",
 	"search-invalid-sort-order": "L'ordine di visualizzazione di $1 non è riconosciuto, sarà applicato l'ordine predefinito.\nGli ordini di visualizzazione validi sono: $2",
 	"search-unknown-profile": "Il profilo di ricerca $1 è sconosciuto, verrà utilizzato il profilo di ricerca predefinito.",
+	"search-thumbnail-alt": "Miniatura per $1",
 	"searchrelated": "correlati",
 	"searchall": "tutti",
 	"showingresults": "Di seguito {{PLURAL:$1|viene presentato al massimo '''1''' risultato|vengono presentati al massimo '''$1''' risultati}} a partire dal numero '''$2'''.",

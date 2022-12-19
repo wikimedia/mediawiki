@@ -217,6 +217,7 @@
 	"apihelp-feedrecentchanges-param-hidemyself": "O l'ascónde e modìfiche fæte da l'uténte atoâle.",
 	"apihelp-feedrecentchanges-param-hidecategorization": "Ascóndi e variaçioìn d'apartenénsa a-e categorîe.",
 	"apihelp-feedrecentchanges-param-tagfilter": "Fìltra pe etichétta.",
+	"apihelp-feedrecentchanges-param-inverttags": "Tùtte e modìfiche fêua de quélle indichæ co-e etichétte seleçionæ.",
 	"apihelp-feedrecentchanges-param-target": "Móstra sôlo e modìfiche a-e pàgine colegæ da quésta pàgina.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Mósta sôlo i cangiaménti a-e pàgine colegæ a quélla specificâ.",
 	"apihelp-feedrecentchanges-example-simple": "Móstra i ùrtimi cangiaménti.",

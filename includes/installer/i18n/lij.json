@@ -308,6 +308,7 @@
 	"config-screenshot": "screenshot",
 	"config-extension-not-found": "Inposcìbile trovâ o file de registraçión pe l'estensción \"$1\"",
 	"config-extension-dependency": "O s'é verificòu 'n erô de dipendénsa inte l'instalaçión de l'estensción \"$1\": $2",
+	"config-ext-skins-more-info": "ciù informaçioìn",
 	"mainpagetext": "<strong>MediaWiki o l'é stæto instalòu.</strong>",
 	"mainpagedocfooter": "Consùlta a [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents goìdda uténte] pe avéi ciù informaçioîn in sce l'ûzo de quésto software wiki.\n\n== Pe iniçiâ ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Inpostaçioîn de configuraçión]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Domànde fæte de sovénte in sce MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Mailing list anónçi MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Trêuva MediaWiki inta tò léngoa]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Inpréndi a conbàtte o spam in sciâ tò wiki]"
 }
