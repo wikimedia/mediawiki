@@ -1389,7 +1389,8 @@ return [
 			$services->getHookContainer(),
 			$services->getContentTransformer(),
 			$services->getReadOnlyMode(),
-			$services->getParserFactory() // *legacy* parser factory
+			$services->getParserFactory(), // *legacy* parser factory
+			$services->getLinkBatchFactory()
 		);
 	},
 

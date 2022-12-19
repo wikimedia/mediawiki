@@ -21,9 +21,9 @@ namespace MediaWiki\Parser\Parsoid\Config;
 
 use ContentHandler;
 use File;
-use LinkBatch;
 use MediaTransformError;
 use MediaWiki\BadFileLookup;
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\HookContainer\HookContainer;
@@ -81,6 +81,9 @@ class DataAccess extends IDataAccess {
 	/** @var ReadOnlyMode */
 	private $readOnlyMode;
 
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
 	/**
 	 * @param ServiceOptions $config MediaWiki main configuration object
 	 * @param RepoGroup $repoGroup
@@ -91,6 +94,7 @@ class DataAccess extends IDataAccess {
 	 *   database is read-only.
 	 * @param ParserFactory $parserFactory A legacy parser factory,
 	 *   for PST/preprocessing/extension handling
+	 * @param LinkBatchFactory $linkBatchFactory
 	 */
 	public function __construct(
 		ServiceOptions $config,
@@ -99,7 +103,8 @@ class DataAccess extends IDataAccess {
 		HookContainer $hookContainer,
 		ContentTransformer $contentTransformer,
 		ReadOnlyMode $readOnlyMode,
-		ParserFactory $parserFactory
+		ParserFactory $parserFactory,
+		LinkBatchFactory $linkBatchFactory
 	) {
 		$config->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->config = $config;
@@ -108,6 +113,7 @@ class DataAccess extends IDataAccess {
 		$this->hookContainer = $hookContainer;
 		$this->contentTransformer = $contentTransformer;
 		$this->readOnlyMode = $readOnlyMode;
+		$this->linkBatchFactory = $linkBatchFactory;
 
 		$this->hookRunner = new HookRunner( $hookContainer );
 
@@ -184,7 +190,8 @@ class DataAccess extends IDataAccess {
 				$titleObjs[$name] = $t;
 			}
 		}
-		$linkBatch = new LinkBatch( $titleObjs );
+		$linkBatch = $this->linkBatchFactory->newLinkBatch( $titleObjs );
+		$linkBatch->setCaller( __METHOD__ );
 		$linkBatch->execute();
 
 		foreach ( $titleObjs as $obj ) {
