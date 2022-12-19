@@ -185,7 +185,8 @@
 			"Vantasyfan",
 			"Wzl19371",
 			"LittlePaw365",
-			"Nervie"
+			"Nervie",
+			"Lantianjialiang"
 		]
 	},
 	"tog-underline": "链接下划线：",
@@ -1095,7 +1096,7 @@
 	"mergehistory-fail-permission": "没有足够权限合并历史。",
 	"mergehistory-fail-self-merge": "来源页面与目的页面相同。",
 	"mergehistory-fail-timestamps-overlap": "来源修订版本重复，或在目的修订版本之后出现。",
-	"mergehistory-fail-toobig": "由于超出$1的限制而无法执行历史合并，$1个版本将被移动。",
+	"mergehistory-fail-toobig": "由于超出$1{{PLURAL:$1|个修订版本}}的移动限制，无法执行历史合并。",
 	"mergehistory-no-source": "来源页面$1不存在。",
 	"mergehistory-no-destination": "目的页面$1不存在。",
 	"mergehistory-invalid-source": "来源页面必须是一个有效的标题。",
@@ -1169,7 +1170,7 @@
 	"showingresultsinrange": "下面显示#<strong>$2</strong>至#<strong>$3</strong>区间的{{PLURAL:$1|<strong>$1</strong>条结果}}。",
 	"search-showingresults": "{{PLURAL:$4|第<strong>$1</strong>条结果，共<strong>$3</strong>条|第<strong>$1-$2</strong>条结果，共<strong>$3</strong>条}}",
 	"search-nonefound": "找不到和查询相匹配的结果。",
-	"search-nonefound-thiswiki": "在此网站找不到匹配查询的结果。",
+	"search-nonefound-thiswiki": "在这个网站中找不到和查询相匹配的结果。",
 	"powersearch-legend": "高级搜索",
 	"powersearch-ns": "搜索命名空间：",
 	"powersearch-togglelabel": "选择：",
