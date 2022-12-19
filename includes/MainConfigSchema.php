@@ -3593,21 +3593,51 @@ class MainConfigSchema {
 	 * ] ];
 	 * ```
 	 *
-	 * **Example using C daemon from https://www.mediawiki.org/wiki/Extension:PoolCounter:**
+	 * **Example using C daemon from <https://gerrit.wikimedia.org/g/mediawiki/services/poolcounter>**
 	 *
 	 * ```
+	 * $wgPoolCountClientConf = [
+	 *   'servers' => [ '127.0.0.1' ],
+	 *   'timeout' => 0.5,
+	 *   'connect_timeout' => 0.01,
+	 * ];
+	 *
 	 * $wgPoolCounterConf = [ 'ArticleView' => [
-	 *   'class' => MediaWiki\Extension\PoolCounter\Client::class,
+	 *   'class' => MediaWiki\PoolCounter\PoolCounterClient::class,
 	 *   'timeout' => 15, // wait timeout in seconds
 	 *   'workers' => 5, // maximum number of active threads in each pool
 	 *   'maxqueue' => 50, // maximum number of total threads in each pool
 	 *   ... any extension-specific options...
 	 * ] ];
 	 * ```
+	 *
+	 * @since 1.16
 	 */
 	public const PoolCounterConf = [
 		'default' => null,
 		'type' => '?map',
+	];
+
+	/**
+	 * Configuration array for the PoolCounter client.
+	 *
+	 * - servers: Array of hostnames, or hostname:port. The default port is 7531.
+	 * - timeout: Connection timeout.
+	 * - connect_timeout: [Since 1.28] Alternative connection timeout. If set, it is used
+	 *   instead of `timeout` and will be retried once if a connection fails
+	 *   to be established. Background: https://phabricator.wikimedia.org/T105378.
+	 *
+	 * @see MediaWiki\PoolCounter\PoolCounterClient
+	 * @since 1.16
+	 */
+	public const PoolCountClientConf = [
+		'default' => [
+			'servers' => [
+				'127.0.0.1'
+			],
+			'timeout' => 0.1,
+		],
+		'type' => 'map',
 	];
 
 	/**

@@ -1394,6 +1394,12 @@ class MainConfigNames {
 	public const PoolCounterConf = 'PoolCounterConf';
 
 	/**
+	 * Name constant for the PoolCountClientConf setting, for use with Config::get()
+	 * @see MainConfigSchema::PoolCountClientConf
+	 */
+	public const PoolCountClientConf = 'PoolCountClientConf';
+
+	/**
 	 * Name constant for the MaxUserDBWriteDuration setting, for use with Config::get()
 	 * @see MainConfigSchema::MaxUserDBWriteDuration
 	 */
