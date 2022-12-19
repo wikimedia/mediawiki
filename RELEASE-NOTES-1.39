@@ -5,6 +5,7 @@
 === Changes since MediaWiki 1.39.0 ===
 * Localisation updates.
 * Upgrading wikimedia/xmp-reader (0.8.5 => 0.8.6).
+* (T324489) Upgrading wikimedia/parsoid (v0.16.0 => v0.16.1).
 
 == MediaWiki 1.39.0 ==
 
