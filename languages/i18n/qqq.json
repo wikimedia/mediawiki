@@ -242,7 +242,8 @@
 			"Saurmandal",
 			"Darzz",
 			"Wnme",
-			"YaThaWinTha"
+			"YaThaWinTha",
+			"捍粵者"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1280,8 +1281,8 @@
 	"showingresults": "This message is used on some special pages such as [[Special:WantedCategories]]. Parameters:\n* $1 ― the total number of results in the batch shown\n* $2 ― the number of the first item listed\n\nNote that numbers given in $1 and $2 are preformated (and may contain locale-specific group separators or digits), so they cannot be used in the 1st parameter for the <code><nowiki>{{</nowiki>PLURAL:''number''<nowiki>|</nowiki>''textual variants...''<nowiki>}}</nowiki></code> parser funtion, which only accepts raw numbers written with ASCII digits.\n\n{{Int:Seealso}}{{Colon}}\n* {{msg-mw|Showingresultsnum}}",
 	"showingresultsinrange": "Used in pagination of [[Special:MostLinkedCategories]]. Parameters:\n* $1 ― the total number of results in the batch shown\n* $2 ― the number of the first item listed\n* $3 ― the number of last item in the batch shown\n\nNote that numbers given in $2 and $3 are preformated (and may contain locale-specific group separators or digits), so they cannot be used in the 1st parameter for the <code><nowiki>{{</nowiki>PLURAL:''number''<nowiki>|</nowiki>''textual variants...''<nowiki>}}</nowiki></code> parser funtion, which only accepts raw numbers written with ASCII digits.\n\nSee also {{msg-mw|Showingresults}}",
 	"search-showingresults": "Used in search results of [[Special:Search]]. Parameters:\n* $1 - minimum offset\n* $2 - maximum offset\n* $3 - total number of results\n* $4 - number of results",
-	"search-nonefound": "Message shown when a search returned no results (when using the default MediaWiki search engine). Parameters:\n* $1 - the search term, wikitext-escaped\n* $2 - the search term, unescaped (unused by default but may be used in combination with <nowiki>{{urlencode:}}</nowiki> to create URLs)\n * $3 - The current localized project name",
-	"search-nonefound-thiswiki": "Message shown when a search in current wiki returned no results (when using the default MediaWiki search engine) but search in other wikis did return results. Parameters:\n* $1 - the search term, wikitext-escaped\n* $2 - the search term, unescaped (unused by default but may be used in combination with <nowiki>{{urlencode:}}</nowiki> to create URLs)",
+	"search-nonefound": "Message shown when a search returned no results (when using the default MediaWiki search engine). Parameters:\n* $1 - the search term, wikitext-escaped\n* $2 - the search term, unescaped (unused by default but may be used in combination with <nowiki>{{urlencode:}}</nowiki> to create URLs)",
+	"search-nonefound-thiswiki": "Message shown when a search in current wiki returned no results (when using the default MediaWiki search engine) but search in other wikis did return results.",
 	"powersearch-legend": "Advanced search\n\n{{Identical|Advanced search}}",
 	"powersearch-ns": "Used in the extended search form at [[Special:Search]]",
 	"powersearch-togglelabel": "Used in [{{canonicalurl:Special:Search|advanced=1}} Advanced search]. Synonym: \"Select\" as verb.\n{{Identical|Check}}",
@@ -1842,7 +1843,7 @@
 	"rcfilters-filter-previousrevision-description": "Description for the filter for showing changes on previous revisions of a page.",
 	"rcfilters-filter-excluded": "Label for a menu item in [[Special:RecentChanges]] noting that the item is being excluded from the results.",
 	"rcfilters-tag-prefix-namespace": "Prefix for the namespace tags in [[Special:RecentChanges]]. Namespace tags use a colon (:) as prefix. Please keep this format.\n\nParameters:\n* $1 - Filter name.",
-	"rcfilters-tag-prefix-namespace-inverted": "Prefix for the namespace inverted tags in [[Special:RecentChanges]]. Namespace tags use a colon (:) as prefix. Please keep this format.\n\nParameters:\n* $1 - Filter name.\n{{Identical|Not}}",
+	"rcfilters-tag-prefix-namespace-inverted": "Prefix for inverted namespace tags in [[Special:RecentChanges]]. Namespace tags use a colon (:) as prefix. Please keep this format.\n\nParameters:\n* $1 - Filter name.\n{{Identical|Not}}",
 	"rcfilters-tag-prefix-tags": "Prefix for the edit tags in [[Special:RecentChanges]]. Edit tags use a hash (#) as prefix. Please keep this format.\n\nParameters:\n* $1 - Tag display name.",
 	"rcfilters-exclude-button-off": "Title for the button that excludes selected namespaces, when it is not yet active.",
 	"rcfilters-exclude-button-on": "Title for the button that excludes selected namespaces, when it is active.",
@@ -3242,7 +3243,7 @@
 	"import-parse-failure": "Error message shown when importing one or more pages to the wiki via an XML file, if the import failed because the XML in the file could not be parsed.",
 	"import-noarticle": "Used as error message when importing from interwiki.\n\nSee also:\n* {{msg-mw|Import-noarticle}}\n* {{msg-mw|Importbadinterwiki}}",
 	"import-nonewrevisions": "Used in [[Special:Import]].",
-	"xml-error-string": "Parameters:\n* $1 - Some kind of message, perhaps name of the error?\n* $2 - line number\n* $3 - column number\n* $4 - ?? $this->mByte . $this->mContext\n* $5 - error description\nExample:\n* Import failed: XML import parse failure at line 1, col 1 (byte 3; \"- <mediawiki xml\"): Empty document",
+	"xml-error-string": "Parameters:\n* $1 - Some kind of message, perhaps error name?\n* $2 - line number\n* $3 - column number\n* $4 - ?? $this->mByte . $this->mContext\n* $5 - error description\nExample:\n* Import failed: XML import parse failure at line 1, col 1 (byte 3; \"- <mediawiki xml\"): Empty document",
 	"import-upload": "Used on [[Special:Import]].\n\nRelated messages:\n* {{msg-mw|right-importupload}} (the user right for this)",
 	"import-token-mismatch": "Used as error message in [[Special:Import]].\n\nSee also:\n* {{msg-mw|import-invalid-interwiki}}\n* {{msg-mw|Importunknownsource}}\n\n{{Identical|Loss of session data}}",
 	"import-invalid-interwiki": "Used as error message in [[Special:Import]].\n\nSee also:\n* {{msg-mw|import-token-mismatch}}\n* {{msg-mw|import-invalid-interwiki}}\n* {{msg-mw|Importunknownsource}}",

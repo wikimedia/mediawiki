@@ -21,7 +21,8 @@
 			"MuratTheTurkish",
 			"ToniSant",
 			"Weather Top Wizard",
-			"Amire80"
+			"Amire80",
+			"Mtanti"
 		]
 	},
 	"tog-underline": "Sottolinjar tal-ħoloq:",
@@ -68,6 +69,7 @@
 	"tog-useeditwarning": "Avżani kull meta nħalli paġna ta' modifika b'modifiki li għadhom ma ġewx salvati",
 	"tog-prefershttps": "Dejjem uża konnessjoni sigura meta tidħol fil-kont",
 	"tog-showrollbackconfirmation": "Uri sejħa ta' konferma meta tkun ikklikkjata ħolqa biex treġġa lura (rollback)",
+	"tog-requireemail": "Ibgħat ittri elettroniki biex jinbidel il-password biss meta jiġu pprovduti kemm l-indirizz elettroniku kif ukoll l-isem l-użatur.",
 	"underline-always": "Dejjem",
 	"underline-never": "Qatt",
 	"underline-default": "Jżommu tieghek l-issettjar għal tal-browser jew tas-ġilda",
@@ -178,6 +180,7 @@
 	"help": "Għajnuna",
 	"help-mediawiki": "Għajnuna dwar MediaWiki",
 	"search": "Fittex",
+	"search-ignored-headings": " #<!-- ħalli din il-linja eżatti kif inhi --> <pre> \n# Intestaturi li se jiġu injorati mit-tfittxija.\n# Tibdil f'dan jidħol fis-seħħ hekk kif il-paġna bl-intestatura tkun indiċjata.\n# Tista' ġġiegħel ir-ri-indiċjar tal-paġna billi tagħmel editjar null.\n# Is-sintassi hija kif ġej:\n#   * Kollox minn karattru \"#\" sat-tmiem tal-linja huwa kumment.\n#   * Kull linja mhux vojta hija t-titlu eżatt li wieħed għandu jinjora, kapitalizzazzjoni u kollox. \nReferenzi\nĦoloq esterni\nAra wkoll\n #</pre> <!-- ħalli din il-linja eżatti kif inhi -->",
 	"searchbutton": "Fittex",
 	"go": "Mur",
 	"searcharticle": "Mur",
@@ -186,6 +189,7 @@
 	"history_small": "kronoloġija",
 	"updatedmarker": "ġiet modifikata mill-aħħar żjara tiegħek",
 	"printableversion": "Verżjoni għall-ipprintjar",
+	"printableversion-deprecated-warning": "Il-verżjoni stampabbli m'għadhiex appoġġjata u jista' jkollha żbalji ta' rendering. Jekk jogħġbok aġġorna l-bookmarks tal-browser tiegħek u jekk jogħġbok uża l-funzjoni tal-istampar tal-browser default minflok.",
 	"permalink": "Ħolqa permanenti",
 	"print": "Ipprintja",
 	"view": "Ara",

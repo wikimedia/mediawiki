@@ -879,7 +879,7 @@
 	"creating": "Création de $1",
 	"editingsection": "Modification de $1 (section)",
 	"editingcomment": "Modification de $1 (nouvelle section)",
-	"editconflict": "Conflit de modification : $1",
+	"editconflict": "Conflit de modification : $1",
 	"explainconflict": "Cette page a été changée après que vous avez commencé à la modifier.\nLa zone de modification supérieure contient le texte tel qu’il est actuellement enregistré dans la base de données.\nVos modifications apparaissent dans la zone de modification inférieure.\nVous allez devoir fusionner vos modifications dans le texte existant.\n<strong>Seul</strong> le texte de la zone supérieure sera sauvegardé si vous cliquez sur « $1 ».",
 	"yourtext": "Votre texte",
 	"storedversion": "La version enregistrée",
@@ -3188,7 +3188,7 @@
 	"pageinfo-default-sort": "Clé de tri par défaut",
 	"pageinfo-length": "Taille de la page (en octets)",
 	"pageinfo-namespace": "Espace de noms",
-	"pageinfo-article-id": "ID de la page",
+	"pageinfo-article-id": "Identifiant de la page",
 	"pageinfo-language": "Langue du contenu de la page",
 	"pageinfo-language-change": "modifier",
 	"pageinfo-content-model": "Modèle de contenu de la page",
@@ -4230,7 +4230,7 @@
 	"specialmute-login-required": "Veuillez vous connecter pour mettre à jour vos préférences de mise en sourdine d’utilisateurs.",
 	"mute-preferences": "Préférences de mise en sourdine",
 	"revid": "version $1",
-	"pageid": "ID de page $1",
+	"pageid": "Identifiant de page $1",
 	"interfaceadmin-info": "$1\n\nLes droits pour modifier les fichiers CSS/JS/JSON globaux au site ont été récemment séparés du droit <code>editinterface</code>. Si vous ne comprenez pas pourquoi vous avez cette erreur, voyez [[mw:Special:MyLanguage/MediaWiki_1.32/interface-admin]].",
 	"rawhtml-notallowed": "Les balises &lt;html&gt; ne peuvent pas être utilisées en dehors des pages normales.",
 	"gotointerwiki": "Quitter {{SITENAME}}",
@@ -4270,5 +4270,5 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "plage d’adresses IP",
 	"paramvalidator-help-type-user-subtype-interwiki": "nom interwiki (par ex. « préfixe>NomParExemple »)",
-	"paramvalidator-help-type-user-subtype-id": "ID utilisateur (par ex. « #12345 »)"
+	"paramvalidator-help-type-user-subtype-id": "identifiant de l’utilisateur (par ex. « #12345 »)"
 }

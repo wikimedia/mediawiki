@@ -3368,7 +3368,7 @@
 	"tag-mw-replace": "Înlocuit",
 	"tag-mw-replace-description": "Editări care șterg mai mult de 90% din conținutul unei pagini",
 	"tag-mw-rollback": "Revenire",
-	"tag-mw-rollback-description": "Modificările care anulează retroactiv modificările anterioare utilizând linkul de redirecționare",
+	"tag-mw-rollback-description": "Modificări care anulează retroactiv modificări anterioare utilizând legătura de revenire",
 	"tag-mw-undo": "Anulare",
 	"tag-mw-undo-description": "Modificările care anulează editările anterioare folosind linkul anulează",
 	"tags-title": "Etichete",

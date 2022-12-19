@@ -3696,6 +3696,8 @@
 	"limitreport-templateargumentsize-value": "$1/$2 {{PLURAL:$2|byte|bytes}}",
 	"limitreport-expansiondepth": "Profunditat màxima d'expansió",
 	"limitreport-expensivefunctioncount": "Nombre de funcions d'anàlisi dispendioses",
+	"limitreport-unstrip-depth": "Profunditat de recursió de la funció «unstrip»",
+	"limitreport-unstrip-size": "Mida després de l'expansió de la funció «unstrip»",
 	"limitreport-unstrip-size-value": "$1/$2 {{PLURAL:$2|byte|bytes}}",
 	"expandtemplates": "Expansió de plantilles",
 	"expand_templates_intro": "Aquesta pàgina especial expandeix de forma recursiva totes les plantilles d'un wikitext donat.\nTambé expandeix les funcions sintàctiques, com ara <code><nowiki>{{</nowiki>#language:…}}</code>, i les variables predefinides, com <code><nowiki>{{</nowiki>CURRENTDAY}}</code> &mdash;de fet, gairebé tot que estigui entre claus dobles.",

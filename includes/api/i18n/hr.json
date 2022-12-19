@@ -21,10 +21,11 @@
 	"api-help-examples": "{{PLURAL:$1|Primjer|Primjeri}}:",
 	"api-help-permissions": "{{PLURAL:$1|Dozvola|Dozvole}}:",
 	"api-help-permissions-granted-to": "{{PLURAL:$1|Dodijeljeno na}}: $2",
-	"apierror-assertuserfailed": "suradnik nije prijavljen.",
+	"apierror-assertuserfailed": "Niste više prijavljeni, tako da radnja nije mogla biti dovršena.",
 	"apierror-badtoken": "Žeton CSRF nije valjan.",
 	"apierror-mustbeloggedin-generic": "Morate biti prijavljeni.",
 	"apierror-mustbeloggedin-linkaccounts": "Da biste povezali suradničke račune morate biti prijavljeni.",
 	"apierror-mustbeloggedin-removeauth": "Da biste uklonili podatke za provjeru autentičnosti morate biti prijavljeni.",
-	"apierror-mustbeloggedin": "Morate biti prijavljeni za $1."
+	"apierror-mustbeloggedin": "Morate biti prijavljeni za $1.",
+	"apierror-nosuchrevid": "Ne postoji izmjena s oznakom $1."
 }

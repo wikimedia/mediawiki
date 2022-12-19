@@ -2577,6 +2577,7 @@
 	"tag-filter": "[[Special:Tags|نښلن]] چاڼگر:",
 	"tag-filter-submit": "چاڼگر",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|نښلن|نښلنونه}}]]: $2",
+	"tag-mw-new-redirect": "نوی بېرته راګرځول",
 	"tag-mw-blank": "بسته بندي",
 	"tag-mw-replace": "ځايناستول",
 	"tag-mw-rollback": "په شابېول",
