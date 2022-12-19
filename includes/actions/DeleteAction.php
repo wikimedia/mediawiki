@@ -402,7 +402,7 @@ class DeleteAction extends FormlessAction {
 
 		$options = Xml::listDropDownOptions(
 			$dropDownReason,
-			[ 'other' => $this->getFormMsg( self::MSG_REASON_DROPDOWN_OTHER )->inContentLanguage()->text() ]
+			[ 'other' => $this->getFormMsg( self::MSG_REASON_DROPDOWN_OTHER )->text() ]
 		);
 		$options = Xml::listDropDownOptionsOoui( $options );
 
