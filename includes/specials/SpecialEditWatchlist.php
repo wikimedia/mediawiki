@@ -697,7 +697,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		# 'accesskey-watchlistedit-normal-submit', 'tooltip-watchlistedit-normal-submit'
 		$form->setSubmitTooltip( 'watchlistedit-normal-submit' );
 		$form->setWrapperLegendMsg( 'watchlistedit-normal-legend' );
-		$form->addHeaderText( $this->msg( 'watchlistedit-normal-explain' )->parse() );
+		$form->addHeaderHtml( $this->msg( 'watchlistedit-normal-explain' )->parse() );
 		$form->setSubmitCallback( [ $this, 'submitNormal' ] );
 
 		return $form;
@@ -785,7 +785,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		# Used message keys: 'accesskey-watchlistedit-raw-submit', 'tooltip-watchlistedit-raw-submit'
 		$form->setSubmitTooltip( 'watchlistedit-raw-submit' );
 		$form->setWrapperLegendMsg( 'watchlistedit-raw-legend' );
-		$form->addHeaderText( $this->msg( 'watchlistedit-raw-explain' )->parse() );
+		$form->addHeaderHtml( $this->msg( 'watchlistedit-raw-explain' )->parse() );
 		$form->setSubmitCallback( [ $this, 'submitRaw' ] );
 
 		return $form;
@@ -803,7 +803,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		# Used message keys: 'accesskey-watchlistedit-clear-submit', 'tooltip-watchlistedit-clear-submit'
 		$form->setSubmitTooltip( 'watchlistedit-clear-submit' );
 		$form->setWrapperLegendMsg( 'watchlistedit-clear-legend' );
-		$form->addHeaderText( $this->msg( 'watchlistedit-clear-explain' )->parse() );
+		$form->addHeaderHtml( $this->msg( 'watchlistedit-clear-explain' )->parse() );
 		$form->setSubmitCallback( [ $this, 'submitClear' ] );
 		$form->setSubmitDestructive();
 

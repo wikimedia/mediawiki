@@ -127,7 +127,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 		$message = ( $i > 1 ) ? 'passwordreset-text-many' : 'passwordreset-text-one';
 
-		$form->setHeaderText( $this->msg( $message, $i )->parseAsBlock() );
+		$form->setHeaderHtml( $this->msg( $message, $i )->parseAsBlock() );
 		$form->setSubmitTextMsg( 'mailmypassword' );
 	}
 

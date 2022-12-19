@@ -109,7 +109,7 @@ class SpecialUnblock extends SpecialPage {
 				)->unblock();
 			} )
 			->setSubmitTextMsg( 'ipusubmit' )
-			->addPreText( $this->msg( 'unblockiptext' )->parseAsBlock() );
+			->addPreHtml( $this->msg( 'unblockiptext' )->parseAsBlock() );
 
 		if ( $form->show() ) {
 			switch ( $this->type ) {

@@ -120,7 +120,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 		$form->setSubmitTextMsg( 'changeemail-submit' );
 		$form->addHiddenFields( $this->getRequest()->getValues( 'returnto', 'returntoquery' ) );
 
-		$form->addHeaderText( $this->msg( 'changeemail-header' )->parseAsBlock() );
+		$form->addHeaderHtml( $this->msg( 'changeemail-header' )->parseAsBlock() );
 		$form->setSubmitID( 'change_email_submit' );
 	}
 
