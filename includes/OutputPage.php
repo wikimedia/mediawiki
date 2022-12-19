@@ -2096,6 +2096,8 @@ class OutputPage extends ContextSource {
 		}
 		$this->setIndicators( $result );
 
+		$this->setSections( $parserOutput->getSections() );
+
 		// FIXME: Best practice is for OutputPage to be an accumulator, as
 		// addParserOutputMetadata() may be called multiple times, but the
 		// following lines overwrite any previous data.  These should

@@ -4424,7 +4424,6 @@ class EditPage implements IEditObject {
 			$parserOutput = $parserResult['parserOutput'];
 			$previewHTML = $parserResult['html'];
 			$this->mParserOutput = $parserOutput;
-			$out->setSections( $parserOutput->getSections() );
 			$out->addParserOutputMetadata( $parserOutput );
 			if ( $out->userCanPreview() ) {
 				$out->addContentOverride( $this->getTitle(), $content );
