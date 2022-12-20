@@ -1,8 +1,6 @@
 <?php
 /** Fiji Hindi (Latin script) (Fiji Hindi)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  */

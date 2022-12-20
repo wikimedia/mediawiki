@@ -1,8 +1,6 @@
 <?php
 /** Basa Banyumasan (Basa Banyumasan)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  *

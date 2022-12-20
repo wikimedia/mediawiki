@@ -1,8 +1,6 @@
 <?php
 /** Cantonese (粵語)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  *

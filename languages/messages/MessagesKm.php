@@ -1,8 +1,6 @@
 <?php
 /** Khmer (ភាសាខ្មែរ)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  *

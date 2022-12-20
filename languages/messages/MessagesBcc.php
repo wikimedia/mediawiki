@@ -1,8 +1,6 @@
 <?php
 /** Southern Balochi (جهلسری بلوچی)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  */

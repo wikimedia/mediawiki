@@ -1,8 +1,6 @@
 <?php
 /** Assamese (অসমীয়া)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  */
