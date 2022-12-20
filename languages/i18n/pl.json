@@ -2583,7 +2583,7 @@
 	"undeletehistory": "Odtworzenie strony spowoduje przywrócenie także jej wszystkich poprzednich wersji.\nJeśli od czasu usunięcia ktoś utworzył nową stronę o tej samej nazwie, odtwarzane wersje znajdą się w jej historii, a obecna wersja pozostanie bez zmian.",
 	"undeleterevdel": "Odtworzenie nie zostanie przeprowadzone, jeśli mogłoby spowodować częściowe usunięcie aktualnej wersji strony lub pliku.\nW takiej sytuacji należy odznaczyć lub przywrócić widoczność najnowszej usuniętej wersji.",
 	"undeletehistorynoadmin": "Ta strona została usunięta.\nPrzyczyna usunięcia podana jest w podsumowaniu poniżej, razem z danymi użytkownika, który edytował stronę przed usunięciem.\nSama treść usuniętych wersji jest dostępna jedynie dla administratorów.",
-	"undelete-revision": "Usunięto wersję $1 (z $5 $4) autorstwa $3:",
+	"undelete-revision": "Usunięta wersja $1 (z $5 $4) autorstwa $3:",
 	"undeleterevision-missing": "Nieprawidłowa lub brakująca wersja.\nMożesz mieć zły link lub wersja mogła zostać odtworzona lub usunięta z archiwum.",
 	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Jedna wersja nie mogła być przywrócona|$1 wersje nie mogły być przywrócone|$1 wersji nie mogło być przywróconych}}, ponieważ {{PLURAL:$1|jej|ich}} <code>rev_id</code> jest już w użyciu.",
 	"undelete-nodiff": "Nie znaleziono poprzednich wersji.",
