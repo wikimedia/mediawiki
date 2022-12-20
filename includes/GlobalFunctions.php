@@ -1120,11 +1120,13 @@ function wfFormatStackFrame( $frame ) {
 /**
  * @todo document
  *
+ * @deprecated with warnings since 1.40
  * @param int $offset
  * @param int $limit
  * @return string
  */
 function wfShowingResults( $offset, $limit ) {
+	wfDeprecated( __FUNCTION__, '1.40' );
 	return wfMessage( 'showingresults' )->numParams( $limit, $offset + 1 )->parse();
 }
 
