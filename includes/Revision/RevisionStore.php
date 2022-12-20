@@ -1184,10 +1184,10 @@ class RevisionStore
 				throw new BadRevisionException( $e->getMessage(), [], 0, $e );
 			} catch ( BlobAccessException $e ) {
 				throw new RevisionAccessException(
-					'Failed to load data blob from {address}'
+					'Failed to load data blob from {address} for revision {revision}. '
 						. 'If this problem persist, use the findBadBlobs maintenance script '
 						. 'to investigate the issue and mark bad blobs.',
-					[ 'address' => $e->getMessage() ],
+					[ 'address' => $e->getMessage(), 'revision' => $slot->getRevision() ],
 					0,
 					$e
 				);
