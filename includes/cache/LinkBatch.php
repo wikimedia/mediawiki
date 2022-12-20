@@ -328,19 +328,18 @@ class LinkBatch {
 		}
 
 		// This is similar to LinkHolderArray::replaceInternal
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$table = 'page';
-		$fields = LinkCache::getSelectFields();
+		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+		$queryBuilder = $dbr->newSelectQueryBuilder()
+			->select( LinkCache::getSelectFields() )
+			->from( 'page' )
+			->where( $this->constructSet( 'page', $dbr ) );
 
-		$conds = $this->constructSet( 'page', $dbr );
-
-		// Do query
 		$caller = __METHOD__;
 		if ( strval( $this->caller ) !== '' ) {
 			$caller .= " (for {$this->caller})";
 		}
 
-		return $dbr->select( $table, $fields, $conds, $caller );
+		return $queryBuilder->caller( $caller )->fetchResultSet();
 	}
 
 	/**
