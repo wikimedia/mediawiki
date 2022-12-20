@@ -2596,6 +2596,7 @@ class Language {
 	 * Gets the localized friendly name for a group, if it exists. For example,
 	 * "Administrators" or "Bureaucrats"
 	 *
+	 * @since 1.38
 	 * @param string $group Internal group name
 	 * @return string Localized friendly group name
 	 */
@@ -2608,6 +2609,7 @@ class Language {
 	 * Gets the localized name for a member of a group, if it exists. For example,
 	 * "administrator" or "bureaucrat"
 	 *
+	 * @since 1.38
 	 * @param string $group Internal group name
 	 * @param string|UserIdentity $member
 	 * @return string Localized name for group member

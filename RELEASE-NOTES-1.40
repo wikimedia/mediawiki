@@ -293,6 +293,9 @@ because of Phabricator reports.
 * IndexPager::getHookContainer is deprecated and emits deprecation warnings.
   Inject a HookContainer instead.
 * Global function wfShowingResults is deprecated and emits deprecation warnings.
+* UserGroupMembership::getGroupMemberName is deprecated, the deprecation of
+  UserGroupMembership::getGroupName in 1.38 missed a release note.
+  Use Language::getGroupMemberName or ::getGroupName instead.
 * AbstractBlock::getPermissionsError(), deprecated in 1.35, now emits
   deprecation warnings.
 * The following functions are deprecated: isBlockedGlobally, getGlobalBlock.
