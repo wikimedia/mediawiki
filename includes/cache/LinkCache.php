@@ -543,18 +543,17 @@ class LinkCache implements LoggerAwareInterface {
 	 * @return stdClass|false
 	 */
 	private function fetchPageRow( IDatabase $db, int $ns, string $dbkey, $options = [] ) {
-		$fields = self::getSelectFields();
+		$queryBuilder = $db->newSelectQueryBuilder()
+			->select( self::getSelectFields() )
+			->from( 'page' )
+			->where( [ 'page_namespace' => $ns, 'page_title' => $dbkey ] )
+			->options( $options );
+
 		if ( $this->usePersistentCache( $ns ) ) {
-			$fields[] = 'page_touched';
+			$queryBuilder->field( 'page_touched' );
 		}
 
-		return $db->selectRow(
-			'page',
-			$fields,
-			[ 'page_namespace' => $ns, 'page_title' => $dbkey ],
-			__METHOD__,
-			$options
-		);
+		return $queryBuilder->caller( __METHOD__ )->fetchRow();
 	}
 
 	/**
