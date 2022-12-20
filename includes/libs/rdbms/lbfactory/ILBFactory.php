@@ -23,7 +23,22 @@ use Generator;
 use InvalidArgumentException;
 
 /**
- * Manager of ILoadBalancer objects, and indirectly of IDatabase connections.
+ * Manager of ILoadBalancer objects and, indirectly, IDatabase connections
+ *
+ * Each Load balancer instances corresponds to a specific database cluster.
+ * A "cluster" is the set of database servers that manage a given dataset.
+ *
+ * The "core" clusters are meant to colocate the most basic and highly relational application
+ * data for one or more "sister projects" managed by this site. This allows for highly flexible
+ * queries. Each project is identified by a database domain. Note that if there are several
+ * projects stored on a cluster, then the cluster dataset is a superset of the dataset for each
+ * of those projects.
+ *
+ * The "external" clusters are meant to provide places for bulk text storage, to colocate bulky
+ * relational data from specific modules, and to colocate data from cross-project modules such
+ * as authentication systems. An external cluster can have a database/schema for each project.
+ *
+ * @see ILoadBalancer
  *
  * @ingroup Database
  * @since 1.28
@@ -226,7 +241,7 @@ interface ILBFactory {
 	);
 
 	/**
-	 * Commit all replica DB transactions so as to flush any REPEATABLE-READ or SSI snapshot
+	 * Commit all replica database server transactions, clearing any REPEATABLE-READ/SSI snapshots
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *
@@ -243,7 +258,7 @@ interface ILBFactory {
 	 *
 	 * This is useful for two main cases:
 	 *   - a) Committing changes to the masters
-	 *   - b) Releasing the snapshot on all connections, primary and replica DBs
+	 *   - b) Releasing the snapshot on all connections to database servers
 	 *
 	 * @param string $fname Caller name
 	 * @param array $options Options map:
@@ -334,7 +349,7 @@ interface ILBFactory {
 	public function hasPrimaryChanges();
 
 	/**
-	 * Determine if any lagged replica DB connection was used
+	 * Detemine if any lagged replica database server connection was used
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *
@@ -353,10 +368,10 @@ interface ILBFactory {
 	public function hasOrMadeRecentPrimaryChanges( $age = null );
 
 	/**
-	 * Waits for the replica DBs to catch up to the current primary position
+	 * Waits for the replica database server to catch up to the current primary position
 	 *
-	 * Use this when updating very large numbers of rows, as in maintenance scripts,
-	 * to avoid causing too much lag. Of course, this is a no-op if there are no replica DBs.
+	 * Use this when updating very large numbers of rows, as in maintenance scripts, to
+	 * avoid causing too much lag. This is a no-op if there are no replica database servers.
 	 *
 	 * By default this waits on all DB clusters actually used in this request.
 	 * This makes sense when lag being waiting on is caused by the code that does this check.

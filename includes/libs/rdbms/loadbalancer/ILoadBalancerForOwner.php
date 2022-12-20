@@ -38,12 +38,19 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 
 	/**
 	 * @param array $params Parameter map with keys:
-	 *  - servers : List of server info structures
+	 *  - servers : List of server configuration maps, starting with either the global master
+	 *     or local datacenter multi-master, and optionally followed by local datacenter replicas.
+	 *     Each server configuration map has the same format as the Database::factory() $params
+	 *     argument, with the following additional optional fields:
+	 *      - type: the DB type (sqlite, mysql, postgres,...)
+	 *      - groupLoads: map of (group => weight for this server) [optional]
+	 *      - max lag: per-server override of the "maxLag" option below [optional]
+	 *      - is static: whether the dataset is static *and* this server has a copy [optional]
 	 *  - localDomain: A DatabaseDomain or domain ID string
-	 *  - loadMonitor : LoadMonitor::__construct() parameters with "class" field. [optional]
-	 *  - readOnlyReason : Reason the primary DB is read-only if so [optional]
+	 *  - loadMonitor : LoadMonitor::__construct() parameters with "class" field [optional]
+	 *  - readOnlyReason : Reason the primary server is read-only if so [optional]
 	 *  - waitTimeout : Maximum time to wait for replicas for consistency [optional]
-	 *  - maxLag: Try to avoid DB replicas with lag above this many seconds [optional]
+	 *  - maxLag: Try to avoid replica servers with lag above this many seconds [optional]
 	 *  - srvCache : BagOStuff object for server cache [optional]
 	 *  - wanCache : WANObjectCache object [optional]
 	 *  - databaseFactory: DatabaseFactory object [optional]
@@ -61,7 +68,9 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	 *  - errorLogger : Callback that takes an Exception and logs it [optional]
 	 *  - deprecationLogger: Callback to log a deprecation warning [optional]
 	 *  - roundStage: STAGE_POSTCOMMIT_* class constant; for internal use [optional]
-	 *  - clusterName: The logical name of the DB cluster [optional]
+	 *  - clusterName: The name of the overall (single/multi-datacenter) cluster of servers
+	 *     managing the dataset, regardless of 'servers' excluding replicas and
+	 *     multi-masters from remote datacenter [optional]
 	 *  - criticalSectionProvider: CriticalSectionProvider instance [optional]
 	 */
 	public function __construct( array $params );
