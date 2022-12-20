@@ -1,8 +1,6 @@
 <?php
 /** Chinese (Hong Kong) (‪中文(香港)‬)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  *

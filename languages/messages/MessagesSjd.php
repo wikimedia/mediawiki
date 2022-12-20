@@ -1,8 +1,6 @@
 <?php
 /** Kildin Sami (кӣллт са̄мь кӣлл)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  *

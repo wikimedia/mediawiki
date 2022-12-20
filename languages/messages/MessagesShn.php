@@ -1,8 +1,6 @@
 <?php
 /** Shan (ၵႂၢမ်းတႆးလူင်)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  */

@@ -1,8 +1,6 @@
 <?php
 /** Crimean Tatar (Latin script) (qırımtatarca (Latin))
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  */

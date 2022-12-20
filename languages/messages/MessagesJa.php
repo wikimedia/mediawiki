@@ -1,8 +1,6 @@
 <?php
 /** Japanese (日本語)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  */

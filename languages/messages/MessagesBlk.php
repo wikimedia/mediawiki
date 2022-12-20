@@ -1,8 +1,6 @@
 <?php
 /** Pa'O (ပအိုဝ်ႏဘာႏသာႏ)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  *

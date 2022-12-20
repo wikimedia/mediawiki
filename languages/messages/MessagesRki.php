@@ -1,8 +1,6 @@
 <?php
 /** Arakanese (ရခိုင်)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  *

@@ -4,7 +4,6 @@
  * information excluding interface strings, which are stored in JSON files.
  *
  * Please see https://www.mediawiki.org/wiki/Localisation for more information.
- * To improve a translation please visit https://translatewiki.net
  */
 
 /**

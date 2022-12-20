@@ -1,8 +1,6 @@
 <?php
 /** Northern Thai (ᨣᩤᩴᨾᩮᩬᩥᨦ)
  *
- * To improve a translation please visit https://translatewiki.net
- *
  * @file
  * @ingroup Languages
  *
