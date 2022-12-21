@@ -337,6 +337,7 @@
 	"config-screenshot": "скриншот",
 	"config-extension-not-found": "Не удалось найти файл регистрации для расширения «$1»",
 	"config-extension-dependency": "При установке расширения «$1» возникла ошибка зависимости: $2",
+	"config-ext-skins-more-info": "подробнее",
 	"mainpagetext": "<strong>MediaWiki успешно установлена.</strong>",
 	"mainpagedocfooter": "Информацию по работе с этой вики можно найти в [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents справочном руководстве].\n\n== Начало работы ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Список возможных настроек];\n* [https://www.mediawiki.org/wiki/Manual:FAQ/ru Часто задаваемые вопросы и ответы по MediaWiki];\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Рассылка уведомлений о выходе новых версий MediaWiki].\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Перевод MediaWiki на свой язык]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Узнайте, как бороться со спамом в вашей вики]"
 }

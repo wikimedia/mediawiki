@@ -25,7 +25,7 @@
 	"exif-jpeginterchangeformatlength": "Zlogov JPEG-podatkov",
 	"exif-whitepoint": "Kromatičnost bele točke",
 	"exif-primarychromaticities": "Kromatičnosti osnovnih barv",
-	"exif-ycbcrcoefficients": "Koeficient matrice transformacije barvnega prostora",
+	"exif-ycbcrcoefficients": "Koeficienti matrike transformacije barvnega prostora",
 	"exif-referenceblackwhite": "Par črnih in belih referenčnih vrednosti",
 	"exif-datetime": "Datum in čas spremembe datoteke",
 	"exif-imagedescription": "Naslov slike",
