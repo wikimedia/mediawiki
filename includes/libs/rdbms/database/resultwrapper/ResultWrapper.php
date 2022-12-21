@@ -137,9 +137,7 @@ abstract class ResultWrapper implements IResultWrapper {
 
 	#[\ReturnTypeWillChange]
 	public function current() {
-		if ( $this->currentRow === null ) {
-			$this->currentRow = $this->fetchObject();
-		}
+		$this->currentRow ??= $this->fetchObject();
 
 		return $this->currentRow;
 	}
@@ -158,9 +156,7 @@ abstract class ResultWrapper implements IResultWrapper {
 	}
 
 	public function getFieldNames() {
-		if ( $this->fieldNames === null ) {
-			$this->fieldNames = $this->doGetFieldNames();
-		}
+		$this->fieldNames ??= $this->doGetFieldNames();
 		return $this->fieldNames;
 	}
 }

@@ -836,9 +836,7 @@ class ApiUpload extends ApiBase {
 	 */
 	protected function performUpload( $warnings ) {
 		// Use comment as initial page text by default
-		if ( $this->mParams['text'] === null ) {
-			$this->mParams['text'] = $this->mParams['comment'];
-		}
+		$this->mParams['text'] ??= $this->mParams['comment'];
 
 		/** @var LocalFile $file */
 		$file = $this->mUpload->getLocalFile();

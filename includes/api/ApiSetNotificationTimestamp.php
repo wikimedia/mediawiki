@@ -230,9 +230,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 	 * @return ApiPageSet
 	 */
 	private function getPageSet() {
-		if ( $this->mPageSet === null ) {
-			$this->mPageSet = new ApiPageSet( $this );
-		}
+		$this->mPageSet ??= new ApiPageSet( $this );
 
 		return $this->mPageSet;
 	}

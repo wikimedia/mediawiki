@@ -757,9 +757,7 @@ class EnhancedChangesList extends ChangesList {
 		} elseif ( $query !== null ) {
 			wfDeprecated( __METHOD__ . ' with $query parameter', '1.36' );
 		}
-		if ( $useParentheses === null ) {
-			$useParentheses = true;
-		}
+		$useParentheses ??= true;
 		$pageTitle = $rc->getTitle();
 		if ( $rc->getAttribute( 'rc_type' ) == RC_CATEGORIZE ) {
 			// For categorizations we must swap the category title with the page title!

@@ -374,9 +374,7 @@ class MediaWikiServices extends ServiceContainer {
 
 		self::failIfResetNotAllowed( __METHOD__ );
 
-		if ( $bootstrapConfig === null ) {
-			$bootstrapConfig = self::$instance->getBootstrapConfig();
-		}
+		$bootstrapConfig ??= self::$instance->getBootstrapConfig();
 
 		$oldInstance = self::$instance;
 

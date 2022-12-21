@@ -986,16 +986,10 @@ class LocalisationCache {
 		unset( $page );
 
 		# If there were no plural rules, return an empty array
-		if ( $allData['pluralRules'] === null ) {
-			$allData['pluralRules'] = [];
-		}
-		if ( $allData['compiledPluralRules'] === null ) {
-			$allData['compiledPluralRules'] = [];
-		}
+		$allData['pluralRules'] ??= [];
+		$allData['compiledPluralRules'] ??= [];
 		# If there were no plural rule types, return an empty array
-		if ( $allData['pluralRuleTypes'] === null ) {
-			$allData['pluralRuleTypes'] = [];
-		}
+		$allData['pluralRuleTypes'] ??= [];
 
 		# Set the list keys
 		$allData['list'] = [];

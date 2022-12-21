@@ -2333,9 +2333,7 @@ class AuthManager implements LoggerAwareInterface {
 			if ( !$req->action || $forceAction ) {
 				$req->action = $action;
 			}
-			if ( $req->username === null ) {
-				$req->username = $username;
-			}
+			$req->username ??= $username;
 		}
 	}
 

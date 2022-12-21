@@ -147,9 +147,7 @@ abstract class GenericArrayObject extends ArrayObject {
 			);
 		}
 
-		if ( $index === null ) {
-			$index = $this->getNewOffset();
-		}
+		$index ??= $this->getNewOffset();
 
 		if ( $this->preSetElement( $index, $value ) ) {
 			parent::offsetSet( $index, $value );

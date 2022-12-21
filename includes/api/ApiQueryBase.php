@@ -115,9 +115,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return IDatabase
 	 */
 	protected function getDB() {
-		if ( $this->mDb === null ) {
-			$this->mDb = $this->getQuery()->getDB();
-		}
+		$this->mDb ??= $this->getQuery()->getDB();
 
 		return $this->mDb;
 	}
@@ -171,9 +169,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return SelectQueryBuilder
 	 */
 	protected function getQueryBuilder() {
-		if ( $this->queryBuilder === null ) {
-			$this->queryBuilder = $this->getDB()->newSelectQueryBuilder();
-		}
+		$this->queryBuilder ??= $this->getDB()->newSelectQueryBuilder();
 		return $this->queryBuilder;
 	}
 
@@ -497,9 +493,8 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return bool Whether the element fit in the result
 	 */
 	protected function addPageSubItem( $pageId, $item, $elemname = null ) {
-		if ( $elemname === null ) {
-			$elemname = $this->getModulePrefix();
-		}
+		$elemname ??= $this->getModulePrefix();
+
 		$result = $this->getResult();
 		$fit = $result->addValue( [ 'query', 'pages', $pageId,
 			$this->getModuleName() ], null, $item );

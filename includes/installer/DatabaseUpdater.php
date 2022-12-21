@@ -698,9 +698,7 @@ abstract class DatabaseUpdater {
 	 * @return bool False if patch is skipped.
 	 */
 	protected function applyPatch( $path, $isFullPath = false, $msg = null ) {
-		if ( $msg === null ) {
-			$msg = "Applying $path patch";
-		}
+		$msg ??= "Applying $path patch";
 		if ( $this->skipSchema ) {
 			$this->output( "...skipping schema change ($msg).\n" );
 

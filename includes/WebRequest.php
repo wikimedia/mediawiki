@@ -264,9 +264,7 @@ class WebRequest {
 	 * @return string
 	 */
 	public static function detectServer( $assumeProxiesUseDefaultProtocolPorts = null ) {
-		if ( $assumeProxiesUseDefaultProtocolPorts === null ) {
-			$assumeProxiesUseDefaultProtocolPorts = $GLOBALS['wgAssumeProxiesUseDefaultProtocolPorts'];
-		}
+		$assumeProxiesUseDefaultProtocolPorts ??= $GLOBALS['wgAssumeProxiesUseDefaultProtocolPorts'];
 
 		$proto = self::detectProtocol();
 		$stdPort = $proto === 'https' ? 443 : 80;
@@ -372,9 +370,7 @@ class WebRequest {
 	 * @return string
 	 */
 	public function getProtocol() {
-		if ( $this->protocol === null ) {
-			$this->protocol = self::detectProtocol();
-		}
+		$this->protocol ??= self::detectProtocol();
 		return $this->protocol;
 	}
 
@@ -795,9 +791,7 @@ class WebRequest {
 	 */
 	public function getRawInput() {
 		static $input = null;
-		if ( $input === null ) {
-			$input = file_get_contents( 'php://input' );
-		}
+		$input ??= file_get_contents( 'php://input' );
 		return $input;
 	}
 
