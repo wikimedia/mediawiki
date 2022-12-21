@@ -6,10 +6,29 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 
+/**
+ * Generate a set of tools for a revision.
+ * @since 1.40
+ */
 class PagerTools {
 	private $preventClickjacking = false;
 	private $tools = [];
 
+	/**
+	 * Generate a set of tools for a revision.
+	 * Will performs permission checks where necessary.
+	 * @param RevisionRecord $revRecord The revision to generate tools for.
+	 * @param RevisionRecord|null $previousRevRecord The previous revision (if any). Optional.
+	 *   Used to produce undo links.
+	 * @param bool $showRollbackLink Whether to show the rollback link. Only set to true if the
+	 *   revision is the latest revision of its page and it has a parent.
+	 *   FIXME why don't we do these checks ourselves?
+	 * @param HookRunner $hookRunner
+	 * @param PageIdentity $title The page to generate tools for. It is the caller's responsibility
+	 *   to ensure that the page is already in the link cache.
+	 * @param IContextSource $context
+	 * @param LinkRenderer $linkRenderer
+	 */
 	public function __construct(
 		RevisionRecord $revRecord,
 		?RevisionRecord $previousRevRecord,
@@ -59,6 +78,8 @@ class PagerTools {
 			}
 		}
 		// Allow extension to add their own links here
+		// FIXME previously this was only called on history; restore that and deprecate in favor
+		//   of a more generic hook.
 		$hookRunner->onHistoryTools(
 			$revRecord,
 			$tools,
