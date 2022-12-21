@@ -21,11 +21,24 @@ use Profiler;
  */
 class MaintenanceRunner {
 
-	/** @var ?Maintenance */
+	/**
+	 * Identifies the script to execute in a way that setup() understands.
+	 *
+	 * @var ?string
+	 */
+	private $script = null;
+
+	/** @var string[]|null */
+	private $scriptArgv = null;
+
+	/** @var Maintenance|null */
 	private $scriptObject = null;
 
 	/** @var MaintenanceParameters */
 	private $parameters;
+
+	/** @var bool */
+	private $runFromWrapper = false;
 
 	/**
 	 * Default constructor. Children should call this *first* if implementing
@@ -65,12 +78,118 @@ class MaintenanceRunner {
 	}
 
 	/**
-	 * Initialize the runner
+	 * @param int $code
 	 *
-	 * @param string $scriptClass
+	 * @return never
 	 */
-	public function init( string $scriptClass ) {
+	private function showHelpAndExit( $code = 0 ) {
+		foreach ( $this->parameters->getErrors() as $error ) {
+			$this->error( "$error\n" );
+			$code = 1;
+		}
+
+		$this->parameters->setDescription( 'Runner for maintenance scripts' );
+
+		$help = $this->parameters->getHelp();
+		echo $help;
+		exit( $code );
+	}
+
+	/**
+	 * Initialize the runner from the given command line arguments
+	 * as passed to a wrapper script.
+	 *
+	 * @note Called before Setup.php
+	 *
+	 * @param string[] $argv The arguments passed from the command line,
+	 *        including the wrapper script at index 0, and usually
+	 *        the script to run at index 1.
+	 */
+	public function initFromWrapper( array $argv ) {
+		$scriptClass = null;
+
+		$this->parameters->setName( $argv[0] );
+		$this->parameters->setAllowUnregisteredOptions( true );
+		$this->parameters->addArg(
+			'script',
+			'The class name of the maintenance script to run. ' .
+				'Dots (.) are supported as namespace separator. ' .
+				'"MyExt:SomeScript" expands to "MediaWiki\Extension\MyExt\Maintenance\SomeScript".',
+			true
+		);
+
+		$this->runFromWrapper = true;
+		$this->parameters->loadWithArgv( $argv, 1 );
+
+		// script params
+		$argv = array_slice( $argv, 2 );
+
+		if ( $this->parameters->validate() ) {
+			$scriptClass = $this->parameters->getArg( 0 );
+
+			// Special handling for the 'help' command
+			if ( $scriptClass === 'help' ) {
+				if ( $this->parameters->hasArg( 1 ) ) {
+					$scriptClass = $this->parameters->getArg( 1 );
+
+					// turn <help> <command> into <command> --help
+					$this->parameters->loadWithArgv( [ $scriptClass ] );
+					$argv = [ '--help' ];
+				} else {
+					// same as no command
+					$scriptClass = null;
+				}
+			}
+		}
+
+		if ( $scriptClass ) {
+			// Support "$ext:$script" format
+			if ( preg_match( '/^([\w.\\\\]+):([\w.\\\\]+)$/', $scriptClass, $m ) ) {
+				$scriptClass = "MediaWiki\\Extension\\{$m[1]}\\Maintenance\\{$m[2]}";
+			}
+
+			// Accept dot (.) as namespace separators as well.
+			// Backslashes are just annoying on the command line.
+			$scriptClass = strtr( $scriptClass, '.', '\\' );
+
+			// Strip another argument from $argv!
+			$this->initInternal( $scriptClass, $argv );
+		} else {
+			$this->showHelpAndExit();
+		}
+	}
+
+	/**
+	 * Initialize the runner for the given class.
+	 * This is used when running scripts directly, without a wrapper.
+	 *
+	 * @note Called before Setup.php
+	 *
+	 * @param string $scriptClass The script class to run
+	 * @param string[] $argv The arguments to passed to the script, including
+	 *        the script itself at index 0.
+	 */
+	public function initForClass( string $scriptClass, $argv ) {
+		$this->runFromWrapper = false;
+		$this->script = $scriptClass;
+		$this->parameters->setName( $argv[0] );
+		$this->parameters->loadWithArgv( $argv );
+		$this->initInternal( $scriptClass, array_slice( $argv, 1 ) );
+	}
+
+	/**
+	 * Initialize the runner.
+	 * @note Called before Setup.php
+	 *
+	 * @param string $scriptClass The script to run
+	 * @param string[] $scriptArgv The arguments to pass to the maintenance script,
+	 *        not including the script itself.
+	 */
+	private function initInternal( string $scriptClass, array $scriptArgv ) {
 		global $IP, $wgCommandLineMode;
+
+		$this->script = $scriptClass;
+		$this->scriptArgv = $scriptArgv;
 
 		# Abort if called from a web server
 		# wfIsCLI() is not available yet
@@ -95,28 +214,8 @@ class MaintenanceRunner {
 			ini_set( 'display_errors', 'stderr' );
 		}
 
-		// Get an object to start us off
-		$this->scriptObject = new $scriptClass();
-
 		// make sure we clean up after ourselves.
 		register_shutdown_function( [ $this, 'cleanup' ] );
-
-		$scriptParams = $this->scriptObject->getParameters();
-		$scriptParams->mergeOptions( $this->parameters );
-		$this->parameters = $scriptParams;
-
-		// Basic checks and such
-		$this->scriptObject->setup();
-
-		// Set the memory limit
-		// Note we need to set it again later in case LocalSettings changed it
-		$this->adjustMemoryLimit();
-
-		// Set max execution time to 0 (no limit). PHP.net says that
-		// "When running PHP from the command line the default setting is 0."
-		// But sometimes this doesn't seem to be the case.
-		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal Scalar okay with php8.1
-		ini_set( 'max_execution_time', 0 );
 
 		$wgCommandLineMode = true;
 
@@ -127,17 +226,58 @@ class MaintenanceRunner {
 	}
 
 	/**
-	 * Returns the maintenance script name.
+	 * MW_FINAL_SETUP_CALLBACK handler, for setting up the Maintenance object.
 	 *
-	 * Safe to call after init().
+	 * @param SettingsBuilder $settings
+	 */
+	public function setup( SettingsBuilder $settings ) {
+		// NOTE: we can't check this earlier, since we need the autoloader to be initialized.
+		if ( !class_exists( $this->script ) ) {
+			$this->fatalError( "{$this->script} not found.\n" );
+		}
+
+		// Initialize the actual Maintenance object
+		// TODO: allow the script to be specified by an alias name
+		$this->scriptObject = new $this->script();
+		$this->scriptObject->setName( $this->getName() );
+
+		if ( !$this->scriptObject instanceof Maintenance ) {
+			$this->fatalError( "{$this->script} is not a maintenance script.\n" );
+		}
+
+		// Inject runner stuff into the script's parameter definitions.
+		// This is mainly used when printing help.
+		$scriptParameters = $this->scriptObject->getParameters();
+
+		if ( $this->runFromWrapper ) {
+			$scriptParameters->setUsagePrefix( 'php ' . $this->parameters->getName() );
+		}
+
+		$scriptParameters->mergeOptions( $this->parameters );
+		$this->parameters = $scriptParameters;
+
+		// Ingest argv
+		$this->scriptObject->loadWithArgv( $this->scriptArgv );
+
+		// Basic checks and such
+		$this->scriptObject->setup();
+
+		// Set the memory limit
+		$this->adjustMemoryLimit();
+
+		// Override any config settings
+		$this->overrideConfig( $settings );
+	}
+
+	/**
+	 * Returns the maintenance script name to show in the help message.
 	 *
 	 * @return string
 	 */
 	public function getName(): string {
-		// The name has been initialized by Maintenance::loadParamsAndArgs(),
-		// which has been called by Maintenance::setup(), which was called
-		// by $this->init().
-		return $this->scriptObject->getName();
+		// Once one of the init methods was called, getArg( 0 ) should always
+		// return something.
+		return $this->parameters->getArg( 0 ) ?? 'UNKNOWN';
 	}
 
 	/**
@@ -173,6 +313,7 @@ class MaintenanceRunner {
 
 	/**
 	 * Define how settings are loaded (e.g. LocalSettings.php)
+	 * @note Called before Setup.php
 	 *
 	 * @internal
 	 * @return void
@@ -215,13 +356,11 @@ class MaintenanceRunner {
 	}
 
 	/**
-	 * MW_SETUP_CALLBACK handler, for overriding config.
-	 *
 	 * @param SettingsBuilder $settingsBuilder
 	 *
 	 * @return void
 	 */
-	public function overrideConfig( SettingsBuilder $settingsBuilder ) {
+	private function overrideConfig( SettingsBuilder $settingsBuilder ) {
 		$config = $settingsBuilder->getConfig();
 
 		if ( $this->scriptObject->getDbType() === Maintenance::DB_NONE ) {
@@ -243,7 +382,6 @@ class MaintenanceRunner {
 		}
 
 		$this->scriptObject->finalSetup( $settingsBuilder );
-		$this->adjustMemoryLimit();
 	}
 
 	/**
@@ -374,9 +512,6 @@ class MaintenanceRunner {
 
 		$bt = debug_backtrace();
 		$count = count( $bt );
-		if ( $count < 2 ) {
-			return false;
-		}
 		if ( $bt[0]['class'] !== self::class || $bt[0]['function'] !== 'shouldExecute' ) {
 			return false; // last call should be to this function
 		}
@@ -396,7 +531,9 @@ class MaintenanceRunner {
 	 * @return void
 	 */
 	public function cleanup() {
-		$this->scriptObject->cleanupChanneled();
+		if ( $this->scriptObject ) {
+			$this->scriptObject->cleanupChanneled();
+		}
 	}
 
 }

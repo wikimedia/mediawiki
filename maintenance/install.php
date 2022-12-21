@@ -126,7 +126,7 @@ class CommandLineInstaller extends Maintenance {
 		}
 
 		try {
-			$installer = InstallerOverrides::getCliInstaller( $siteName, $adminName, $this->mOptions );
+			$installer = InstallerOverrides::getCliInstaller( $siteName, $adminName, $this->parameters->getOptions() );
 		} catch ( \MediaWiki\Installer\InstallException $e ) {
 			$this->output( $e->getStatus()->getMessage( false, false, 'en' )->text() . "\n" );
 			return false;
@@ -170,7 +170,7 @@ class CommandLineInstaller extends Maintenance {
 			if ( $dbpass === false ) {
 				$this->fatalError( "Couldn't open $dbpassfile" );
 			}
-			$this->mOptions['dbpass'] = trim( $dbpass, "\r\n" );
+			$this->setOption( 'dbpass', trim( $dbpass, "\r\n" ) );
 		}
 	}
 
@@ -187,7 +187,7 @@ class CommandLineInstaller extends Maintenance {
 			if ( $pass === false ) {
 				$this->fatalError( "Couldn't open $passfile" );
 			}
-			$this->mOptions['pass'] = trim( $pass, "\r\n" );
+			$this->setOption( 'pass', trim( $pass, "\r\n" ) );
 		} elseif ( $this->getOption( 'pass' ) === null ) {
 			$this->fatalError( 'You need to provide the option "pass" or "passfile"' );
 		}

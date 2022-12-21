@@ -220,6 +220,22 @@ class MaintenanceParametersTest extends TestCase {
 		$this->assertSame( $expectedArgs, $params->getArgs() );
 	}
 
+	public function testLoadSkip() {
+		$params = new MaintenanceParameters();
+		$params->addOption( 'value', 'value option', false, true, 'v' );
+
+		$argv = [ 'A', '--value', 'V', 'B' ];
+
+		$params->loadWithArgv( $argv );
+		$this->assertSame( 'A', $params->getArg( 0 ) );
+
+		$params->loadWithArgv( $argv, 1 );
+		$this->assertSame( 'B', $params->getArg( 0 ) );
+
+		$params->loadWithArgv( $argv, 2 );
+		$this->assertSame( 'V', $params->getArg( 0 ) );
+	}
+
 	public function provideBadArgv() {
 		yield 'nothing' => [
 			[],

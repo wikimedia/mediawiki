@@ -231,10 +231,10 @@ if ( $wgSettings->getConfig()->get( MainConfigNames::WikiFarmSettingsDirectory )
 $wgSettings->enterRegistrationStage();
 
 /**
- * Customization point after all loading (constants, functions, classes,
- * LocalSettings). Specifically, this is before usage of
- * settings, before instantiation of Profiler (and other singletons), and
- * before any setup functions or hooks run.
+ * Customization point after most things are loaded (constants, functions, classes,
+ * LocalSettings.
+ * Note that this runs before extensions are registered, and before most singletons become
+ * available, and before MediaWikiServices is initialized.
  */
 
 if ( defined( 'MW_SETUP_CALLBACK' ) ) {
@@ -274,6 +274,17 @@ ExtensionRegistry::getInstance()->setSettingsBuilder( $wgSettings );
 ExtensionRegistry::getInstance()->loadFromQueue();
 // Don't let any other extensions load
 ExtensionRegistry::getInstance()->finish();
+
+/**
+ * Customization point after ALL loading (constants, functions, classes,
+ * LocalSettings, extensions, dynamic defaults).
+ * Note that this runs before MediaWikiServices is initialized.
+ */
+if ( defined( 'MW_FINAL_SETUP_CALLBACK' ) ) {
+	call_user_func( MW_FINAL_SETUP_CALLBACK, $wgSettings );
+	// Make any additional settings available in globals for use below
+	$wgSettings->apply();
+}
 
 // Config can no longer be changed.
 $wgSettings->enterReadOnlyStage();

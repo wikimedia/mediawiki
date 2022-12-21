@@ -74,6 +74,9 @@ class MaintenanceParameters {
 	/** @var string[] */
 	private $errors = [];
 
+	/** @var string */
+	private $usagePrefix = 'php';
+
 	/**
 	 * Returns a reference to a member field.
 	 * This is a backwards compatibility hack, it should be removed as soon as possible!
@@ -311,6 +314,8 @@ class MaintenanceParameters {
 		$this->mOptDefs = $other->mOptDefs + $this->mOptDefs;
 		$this->mShortOptionMap = $other->mShortOptionMap + $this->mShortOptionMap;
 
+		$this->mOptionGroups = array_merge_recursive( $this->mOptionGroups, $other->mOptionGroups );
+
 		$this->clear();
 	}
 
@@ -318,14 +323,19 @@ class MaintenanceParameters {
 	 * Load params and arguments from a given array
 	 * of command-line arguments
 	 *
-	 * @param array $argv
+	 * @param array $argv The argument array.
+	 * @param int $skip Skip that many elements at the beginning of $argv.
 	 */
-	public function loadWithArgv( array $argv ) {
+	public function loadWithArgv( array $argv, int $skip = 0 ) {
 		$this->clear();
 
 		$options = [];
 		$args = [];
 		$this->optionsSequence = [];
+
+		// Ignore a number of arguments at the beginning of the array.
+		// Typically used to ignore the script name at index 0.
+		$argv = array_slice( $argv, $skip );
 
 		# Parse arguments
 		for ( $arg = reset( $argv ); $arg !== false; $arg = next( $argv ) ) {
@@ -445,6 +455,15 @@ class MaintenanceParameters {
 	}
 
 	/**
+	 * Get the script name, as shown in the help message
+	 *
+	 * @return string
+	 */
+	public function getName(): string {
+		return $this->mName;
+	}
+
+	/**
 	 * Force option and argument values.
 	 *
 	 * @internal
@@ -520,7 +539,7 @@ class MaintenanceParameters {
 		if ( $this->mDescription ) {
 			$output[] = "\n" . wordwrap( $this->mDescription, $screenWidth ) . "\n";
 		}
-		$output[] = "\nUsage: php " . basename( $this->mName );
+		$output[] = "\nUsage: {$this->usagePrefix} " . basename( $this->mName );
 
 		// ... append parameters ...
 		if ( $this->mOptDefs ) {
@@ -639,6 +658,13 @@ class MaintenanceParameters {
 	 */
 	public function getArgs(): array {
 		return $this->mArgs;
+	}
+
+	/**
+	 * @param string $usagePrefix
+	 */
+	public function setUsagePrefix( string $usagePrefix ) {
+		$this->usagePrefix = $usagePrefix;
 	}
 
 }
