@@ -201,7 +201,15 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		$def = !$request->wasPosted();
 
-		$this->reason = $request->getText( 'wpReason' );
+		$reasonList = $request->getText( 'wpReasonList', 'other' );
+		$reason = $request->getText( 'wpReason' );
+		if ( $reasonList === 'other' ) {
+			$this->reason = $reason;
+		} elseif ( $reason !== '' ) {
+			$this->reason = $reasonList . $this->msg( 'colon-separator' )->inContentLanguage()->text() . $reason;
+		} else {
+			$this->reason = $reasonList;
+		}
 		$this->moveTalk = $request->getBool( 'wpMovetalk', $def );
 		$this->fixRedirects = $request->getBool( 'wpFixRedirects', $def );
 		$this->leaveRedirect = $request->getBool( 'wpLeaveRedirect', $def );
@@ -445,6 +453,26 @@ class MovePageForm extends UnlistedSpecialPage {
 			]
 		);
 
+		$options = Xml::listDropDownOptions(
+			$this->msg( 'movepage-reason-dropdown' )->inContentLanguage()->text(),
+			[ 'other' => $this->msg( 'movereasonotherlist' )->text() ]
+		);
+		$options = Xml::listDropDownOptionsOoui( $options );
+
+		$fields[] = new OOUI\FieldLayout(
+			new OOUI\DropdownInputWidget( [
+				'name' => 'wpReasonList',
+				'inputId' => 'wpReasonList',
+				'infusable' => true,
+				'value' => 'other',
+				'options' => $options,
+			] ),
+			[
+				'label' => $this->msg( 'movereason' )->text(),
+				'align' => 'top',
+			]
+		);
+
 		// HTML maxlength uses "UTF-16 code units", which means that characters outside BMP
 		// (e.g. emojis) count for two each. This limit is overridden in JS to instead count
 		// Unicode codepoints.
@@ -457,7 +485,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				'value' => $this->reason,
 			] ),
 			[
-				'label' => $this->msg( 'movereason' )->text(),
+				'label' => $this->msg( 'moveotherreason' )->text(),
 				'align' => 'top',
 			]
 		);
@@ -619,6 +647,15 @@ class MovePageForm extends UnlistedSpecialPage {
 				'content' => $form,
 			] )
 		);
+		if ( $this->getAuthority()->isAllowed( 'editinterface' ) ) {
+			$link = $this->getLinkRenderer()->makeKnownLink(
+				$this->msg( 'movepage-reason-dropdown' )->inContentLanguage()->getTitle(),
+				$this->msg( 'movepage-edit-reasonlist' )->text(),
+				[],
+				[ 'action' => 'edit' ]
+			);
+			$out->addHTML( Html::rawElement( 'p', [ 'class' => 'mw-movepage-editreasons' ], $link ) );
+		}
 
 		$this->showLogFragment( $this->oldTitle );
 		$this->showSubpages( $this->oldTitle );
