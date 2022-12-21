@@ -846,12 +846,6 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function deadlockLoop( ...$args ) {
-		$this->assertRoleAllowsWrites();
-
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function listViews( $prefix = null, $fname = __METHOD__ ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
