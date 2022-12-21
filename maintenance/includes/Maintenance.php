@@ -669,6 +669,7 @@ abstract class Maintenance {
 	 * to it.
 	 * @param string $maintClass A name of a child maintenance class
 	 * @param string|null $classFile Full path of where the child is
+	 * @stable to override
 	 * @return Maintenance
 	 */
 	public function runChild( $maintClass, $classFile = null ) {
@@ -699,10 +700,11 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Do some checking and basic setup
+	 * Provides subclasses with an opportunity to perform initial checks.
+	 * @stable to override
 	 */
 	public function setup() {
-		$this->loadParamsAndArgs();
+		// noop
 	}
 
 	/**
@@ -747,11 +749,21 @@ abstract class Maintenance {
 	}
 
 	/**
+	 * @since 1.40
+	 * @internal
+	 * @param string $name
+	 */
+	public function setName( string $name ) {
+		$this->mSelf = $name;
+		$this->parameters->setName( $this->mSelf );
+	}
+
+	/**
 	 * Load params and arguments from a given array
 	 * of command-line arguments
 	 *
 	 * @since 1.27
-	 * @param array $argv
+	 * @param array $argv The argument array, not including the script itself.
 	 */
 	public function loadWithArgv( $argv ) {
 		if ( $this->mDescription ) {
@@ -771,7 +783,7 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Process command line arguments
+	 * Process command line arguments when running as a child script
 	 *
 	 * @param string|null $self The name of the script, if any
 	 * @param array|null $opts An array of options, in form of key=>value
@@ -789,8 +801,7 @@ abstract class Maintenance {
 		}
 
 		# If we've already loaded input (either by user values or from $argv)
-		# skip on loading it again. The array_shift() will corrupt values if
-		# it's run again and again
+		# skip on loading it again.
 		if ( $this->mInputLoaded ) {
 			$this->loadSpecialVars();
 
