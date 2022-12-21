@@ -329,6 +329,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$names = array_column( $data, 'name' );
 
 		$this->assertSame( array_keys( $wgGroupPermissions ), $names );
+		$userAllGroups = $this->getServiceContainer()->getUserGroupManager()->listAllGroups();
 
 		foreach ( $data as $val ) {
 			if ( !$numInGroup ) {
@@ -350,7 +351,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			if ( $val['name'] === 'viscount' ) {
 				$viscountFound = true;
 				$this->assertSame( [ 'perambulate' ], $val['rights'] );
-				$this->assertSame( User::getAllGroups(), $val['add'] );
+				$this->assertSame( $userAllGroups, $val['add'] );
 			} elseif ( $val['name'] === 'bot' ) {
 				$this->assertArrayNotHasKey( 'add', $val );
 				$this->assertArrayNotHasKey( 'remove', $val );
