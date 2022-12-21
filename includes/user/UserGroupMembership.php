@@ -115,10 +115,11 @@ class UserGroupMembership {
 			$group = $ugm;
 		}
 
+		$uiLanguage = $context->getLanguage();
 		if ( $userName !== null ) {
-			$groupName = self::getGroupMemberName( $group, $userName );
+			$groupName = $uiLanguage->getGroupMemberName( $group, $userName );
 		} else {
-			$groupName = self::getGroupName( $group );
+			$groupName = $uiLanguage->getGroupName( $group );
 		}
 
 		// link to the group description page, if it exists
@@ -141,7 +142,6 @@ class UserGroupMembership {
 
 		if ( $expiry ) {
 			// format the expiry to a nice string
-			$uiLanguage = $context->getLanguage();
 			$uiUser = $context->getUser();
 			$expiryDT = $uiLanguage->userTimeAndDate( $expiry, $uiUser );
 			$expiryD = $uiLanguage->userDate( $expiry, $uiUser );
