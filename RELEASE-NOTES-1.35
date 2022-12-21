@@ -9,6 +9,7 @@ declare 1.35 as supporting PHP 8.0/8.1.
 
 PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
+PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 
 == MediaWiki 1.35.9 ==
 
@@ -16,7 +17,13 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.35.8 ===
 * Localisation updates.
+* (T319000) WebInstaller: Don't try and run trim() on null.
+* (T320864) When calling mail(), use an array for headers.
+* (T311567) In ManualLogEntry, cast the comment to string.
 * (T323082) Upgrading wikimedia/xmp-reader (0.7.0 => 0.8.5).
+* Language: Handle ronna and quetta.
+* (T304515) LCStoreStaticArray: atomically replace the cache file.
+* (T324890, T324891, T324901) Parser: Allow dynamic properties on PHP 8.2.
 
 == MediaWiki 1.35.8 ==
 
