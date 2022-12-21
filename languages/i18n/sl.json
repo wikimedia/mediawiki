@@ -777,7 +777,7 @@
 	"unsupported-content-model": "<strong>Opozorilo:</strong> Model vsebine $1 v tem vikiju ni podprt.",
 	"unsupported-content-diff": "Primerjave niso podprte za model vsebine $1.",
 	"unsupported-content-diff2": "Primerjave med vsebinskima modeloma $1 in $2 v tem vikiju niso podprte.",
-	"duplicate-args-warning": "<strong>Opozorilo:</strong> [[:$1]] kliče [[:$2]] z več kot eno vrednostjo za parameter »$3«. Uporabili bomo samo zadnjo navedeno vrednost.",
+	"duplicate-args-warning": "<strong>Opozorilo:</strong> [[:$1]] kliče [[:$2]] z več kot eno vrednostjo za parameter »$3«. Uporabljena bo samo zadnja navedena vrednost.",
 	"duplicate-args-category": "Strani s podvojenimi argumenti v klicih predlog",
 	"duplicate-args-category-desc": "Stran vsebuje klice predlog, ki vsebujejo dvojnike argumentov, kot sta <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ali <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''Opozorilo:''' Ta stran vsebuje preveč klicev funkcije razčlenjevalnika kode.\n\nStran naj bi vsebovala manj kot $2 {{PLURAL:$2|klic|klica|klice|klicev}}, trenutno {{PLURAL:$1|je v uporabi $1 klic|sta v uporabi $1 klica|so v uporabi $1 klici|je v uporabi $1 klicev}}.",

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Agam Riyandana",
 			"Arifin.wijaya",
 			"ArlandGa",
 			"Bennylin",
@@ -316,6 +317,7 @@
 	"config-screenshot": "tangkapan layar",
 	"config-extension-not-found": "Tidak dapat menemukan berkas registrasi untuk ekstensi \"$1\"",
 	"config-extension-dependency": "Galat dependensi terjadi ketika memasang ekstensi \"$1\": $2.",
+	"config-ext-skins-more-info": "informasi lebih lanjut",
 	"mainpagetext": "<strong>MediaWiki telah terpasang.</strong>",
 	"mainpagedocfooter": "Baca [https://www.mediawiki.org/wiki/Help:Contents Panduan Pengguna] untuk cara penggunaan perangkat lunak wiki ini.\n\n== Memulai ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Daftar pengaturan konfigurasi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Pertanyaan yang sering diajukan mengenai MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Milis rilis MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Pelokalan MediaWiki untuk bahasa Anda]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Belajar bagaimana menghadapi spam di wiki lokal]"
 }
