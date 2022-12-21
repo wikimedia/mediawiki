@@ -259,7 +259,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		);
 
 		// increase the edit count
-		$user->incEditCount();
+		$this->getServiceContainer()->getUserEditTracker()->incrementUserEditCount( $user );
 		$user->clearInstanceCache();
 
 		$this->assertSame(
@@ -273,7 +273,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * Test User::editCount
 	 * @group medium
 	 * @covers User::getEditCount
-	 * @covers User::incEditCount
 	 */
 	public function testGetEditCountForAnons() {
 		$user = User::newFromName( 'Anonymous' );
@@ -284,7 +283,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->assertNull(
-			$user->incEditCount(),
+			$this->getServiceContainer()->getUserEditTracker()->incrementUserEditCount( $user ),
 			'Edit count cannot be increased for anonymous users'
 		);
 
@@ -300,6 +299,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::incEditCount
 	 */
 	public function testIncEditCount() {
+		$this->hideDeprecated( 'User::incEditCount' );
 		$user = $this->getMutableTestUser()->getUser();
 		$user->incEditCount();
 

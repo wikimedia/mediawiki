@@ -3333,9 +3333,10 @@ class User implements Authority, UserIdentity, UserEmailContact {
 
 	/**
 	 * Schedule a deferred update to update the user's edit count
-	 * @deprecated since 1.37
+	 * @deprecated since 1.37, hard deprecated 1.40. Use UserEditTracker::incrementUserEditCount
 	 */
 	public function incEditCount() {
+		wfDeprecated( __METHOD__, '1.37' );
 		MediaWikiServices::getInstance()->getUserEditTracker()->incrementUserEditCount( $this );
 	}
 
