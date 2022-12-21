@@ -1101,9 +1101,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 * @return IEContentAnalyzer
 	 */
 	protected function getIEContentAnalyzer(): IEContentAnalyzer {
-		if ( $this->IEAnalyzer === null ) {
-			$this->IEAnalyzer = new IEContentAnalyzer;
-		}
+		$this->IEAnalyzer ??= new IEContentAnalyzer;
 		return $this->IEAnalyzer;
 	}
 }

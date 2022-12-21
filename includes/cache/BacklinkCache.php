@@ -169,9 +169,7 @@ class BacklinkCache {
 	 * @return IDatabase
 	 */
 	protected function getDB() {
-		if ( $this->db === null ) {
-			$this->db = wfGetDB( DB_REPLICA );
-		}
+		$this->db ??= wfGetDB( DB_REPLICA );
 
 		return $this->db;
 	}

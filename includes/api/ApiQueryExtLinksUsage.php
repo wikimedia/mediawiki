@@ -75,9 +75,7 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		$orderBy = [];
 
 		if ( $query !== null && $query !== '' ) {
-			if ( $protocol === null ) {
-				$protocol = 'http://';
-			}
+			$protocol ??= 'http://';
 
 			// Normalize query to match the normalization applied for the externallinks table
 			$query = Parser::normalizeLinkUrl( $protocol . $query );

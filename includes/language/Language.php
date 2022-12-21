@@ -3152,11 +3152,8 @@ class Language {
 	 */
 	public function getSpecialPageAliases() {
 		// Cache aliases because it may be slow to load them
-		if ( $this->mExtendedSpecialPageAliases === null ) {
-			// Initialise array
-			$this->mExtendedSpecialPageAliases =
-				$this->localisationCache->getItem( $this->mCode, 'specialPageAliases' );
-		}
+		$this->mExtendedSpecialPageAliases ??=
+			$this->localisationCache->getItem( $this->mCode, 'specialPageAliases' );
 
 		return $this->mExtendedSpecialPageAliases;
 	}
@@ -4384,9 +4381,7 @@ class Language {
 	 * @return string
 	 */
 	public function getHtmlCode() {
-		if ( $this->mHtmlCode === null ) {
-			$this->mHtmlCode = LanguageCode::bcp47( $this->getCode() );
-		}
+		$this->mHtmlCode ??= LanguageCode::bcp47( $this->getCode() );
 		return $this->mHtmlCode;
 	}
 
@@ -4570,9 +4565,7 @@ class Language {
 	 */
 	public function formatExpiry( $expiry, $format = true, $infinity = 'infinity', $user = null ) {
 		static $dbInfinity;
-		if ( $dbInfinity === null ) {
-			$dbInfinity = wfGetDB( DB_REPLICA )->getInfinity();
-		}
+		$dbInfinity ??= wfGetDB( DB_REPLICA )->getInfinity();
 
 		if ( $expiry == '' || $expiry === 'infinity' || $expiry == $dbInfinity ) {
 			return $format === true

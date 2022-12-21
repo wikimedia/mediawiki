@@ -53,9 +53,7 @@ class CheckBlocksSecondaryAuthenticationProvider extends AbstractSecondaryAuthen
 
 	/** @inheritDoc */
 	protected function postInitSetup() {
-		if ( $this->blockDisablesLogin === null ) {
-			$this->blockDisablesLogin = $this->config->get( MainConfigNames::BlockDisablesLogin );
-		}
+		$this->blockDisablesLogin ??= $this->config->get( MainConfigNames::BlockDisablesLogin );
 	}
 
 	/** @inheritDoc */

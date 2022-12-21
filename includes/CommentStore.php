@@ -447,9 +447,7 @@ class CommentStore {
 		if ( ( $this->stage & SCHEMA_COMPAT_WRITE_NEW ) && !$comment->id ) {
 			$dbData = $comment->data;
 			if ( !$comment->message instanceof RawMessage ) {
-				if ( $dbData === null ) {
-					$dbData = [ '_null' => true ];
-				}
+				$dbData ??= [ '_null' => true ];
 				$dbData['_message'] = self::encodeMessage( $comment->message );
 			}
 			if ( $dbData !== null ) {

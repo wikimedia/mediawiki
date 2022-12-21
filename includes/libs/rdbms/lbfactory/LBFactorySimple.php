@@ -87,9 +87,7 @@ class LBFactorySimple extends LBFactory {
 	}
 
 	public function getMainLB( $domain = false ): ILoadBalancer {
-		if ( $this->mainLB === null ) {
-			$this->mainLB = $this->newMainLB( $domain );
-		}
+		$this->mainLB ??= $this->newMainLB( $domain );
 
 		return $this->mainLB;
 	}

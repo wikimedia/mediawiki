@@ -94,20 +94,12 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	}
 
 	protected function postInitSetup() {
-		if ( $this->emailEnabled === null ) {
-			$this->emailEnabled = $this->config->get( MainConfigNames::EnableEmail );
-		}
-		if ( $this->newPasswordExpiry === null ) {
-			$this->newPasswordExpiry = $this->config->get( MainConfigNames::NewPasswordExpiry );
-		}
-		if ( $this->passwordReminderResendTime === null ) {
-			$this->passwordReminderResendTime =
-				$this->config->get( MainConfigNames::PasswordReminderResendTime );
-		}
-		if ( $this->allowRequiringEmail === null ) {
-			$this->allowRequiringEmail =
-				$this->config->get( MainConfigNames::AllowRequiringEmailForResets );
-		}
+		$this->emailEnabled ??= $this->config->get( MainConfigNames::EnableEmail );
+		$this->newPasswordExpiry ??= $this->config->get( MainConfigNames::NewPasswordExpiry );
+		$this->passwordReminderResendTime ??=
+			$this->config->get( MainConfigNames::PasswordReminderResendTime );
+		$this->allowRequiringEmail ??=
+			$this->config->get( MainConfigNames::AllowRequiringEmailForResets );
 	}
 
 	protected function getPasswordResetData( $username, $data ) {

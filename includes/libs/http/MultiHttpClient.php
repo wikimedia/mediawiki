@@ -127,9 +127,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 				$this->$key = $options[$key];
 			}
 		}
-		if ( $this->logger === null ) {
-			$this->logger = new NullLogger;
-		}
+		$this->logger ??= new NullLogger;
 	}
 
 	/**

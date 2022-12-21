@@ -351,9 +351,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 */
 	public function getSize() {
 		// If not known, re-calculate and remember. Will be reset when slots change.
-		if ( $this->mSize === null ) {
-			$this->mSize = $this->mSlots->computeSize();
-		}
+		$this->mSize ??= $this->mSlots->computeSize();
 
 		return $this->mSize;
 	}
@@ -367,9 +365,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 */
 	public function getSha1() {
 		// If not known, re-calculate and remember. Will be reset when slots change.
-		if ( $this->mSha1 === null ) {
-			$this->mSha1 = $this->mSlots->computeSha1();
-		}
+		$this->mSha1 ??= $this->mSlots->computeSha1();
 
 		return $this->mSha1;
 	}

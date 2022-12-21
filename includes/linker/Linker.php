@@ -1825,9 +1825,7 @@ class Linker {
 		IContextSource $context = null,
 		$options = [ 'verify' ]
 	) {
-		if ( $context === null ) {
-			$context = RequestContext::getMain();
-		}
+		$context ??= RequestContext::getMain();
 
 		$editCount = false;
 		if ( in_array( 'verify', $options, true ) ) {
@@ -1959,9 +1957,7 @@ class Linker {
 		// To config which pages are affected by miser mode
 		$disableRollbackEditCountSpecialPage = [ 'Recentchanges', 'Watchlist' ];
 
-		if ( $context === null ) {
-			$context = RequestContext::getMain();
-		}
+		$context ??= RequestContext::getMain();
 
 		$title = $revRecord->getPageAsLinkTarget();
 		$revUser = $revRecord->getUser();

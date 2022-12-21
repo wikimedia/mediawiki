@@ -632,10 +632,8 @@ class InfoAction extends FormlessAction {
 			switch ( count( $protections ) ) {
 				case 0:
 					$message = $this->getNamespaceProtectionMessage( $title );
-					if ( $message === null ) {
-						// Allow all users
-						$message = $this->msg( 'protect-default' )->escaped();
-					}
+					// Allow all users by default
+					$message ??= $this->msg( 'protect-default' )->escaped();
 					break;
 
 				case 1:

@@ -94,9 +94,7 @@ trait SearchApi {
 
 		$alternatives = $this->searchEngineConfig->getSearchTypes();
 		if ( count( $alternatives ) > 1 ) {
-			if ( $alternatives[0] === null ) {
-				$alternatives[0] = self::$BACKEND_NULL_PARAM;
-			}
+			$alternatives[0] ??= self::$BACKEND_NULL_PARAM;
 			$params['backend'] = [
 				ParamValidator::PARAM_DEFAULT => $this->searchEngineConfig->getSearchType(),
 				ParamValidator::PARAM_TYPE => $alternatives,

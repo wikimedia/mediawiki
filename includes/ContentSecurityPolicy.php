@@ -548,10 +548,7 @@ class ContentSecurityPolicy {
 		if ( !self::isNonceRequired( $this->mwConfig ) ) {
 			return false;
 		}
-		if ( $this->nonce === null ) {
-			$rand = random_bytes( 15 );
-			$this->nonce = base64_encode( $rand );
-		}
+		$this->nonce ??= base64_encode( random_bytes( 15 ) );
 
 		return $this->nonce;
 	}

@@ -496,9 +496,7 @@ class ApiEditPage extends ApiBase {
 			$baseContentModel = $baseContent ? $baseContent->getModel() : null;
 		}
 
-		if ( $baseContentModel === null ) {
-			$baseContentModel = $pageObj->getContentModel();
-		}
+		$baseContentModel ??= $pageObj->getContentModel();
 
 		// However, allow the content models to possibly differ if we are intentionally
 		// changing them or we are doing an undo edit that is reverting content model change.

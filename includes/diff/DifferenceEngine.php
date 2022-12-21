@@ -445,10 +445,8 @@ class DifferenceEngine extends ContextSource {
 	 * @return Language
 	 */
 	public function getDiffLang() {
-		if ( $this->mDiffLang === null ) {
-			# Default language in which the diff text is written.
-			$this->mDiffLang = $this->getTitle()->getPageLanguage();
-		}
+		# Default language in which the diff text is written.
+		$this->mDiffLang ??= $this->getTitle()->getPageLanguage();
 
 		return $this->mDiffLang;
 	}

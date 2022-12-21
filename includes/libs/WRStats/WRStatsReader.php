@@ -153,9 +153,7 @@ class WRStatsReader {
 	 * @return float|int
 	 */
 	private function now() {
-		if ( $this->now === null ) {
-			$this->now = microtime( true );
-		}
+		$this->now ??= microtime( true );
 		return $this->now;
 	}
 

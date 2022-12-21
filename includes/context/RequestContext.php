@@ -121,11 +121,9 @@ class RequestContext implements IContextSource, MutableContext {
 	 * @return Config
 	 */
 	public function getConfig() {
-		if ( $this->config === null ) {
-			// @todo In the future, we could move this to WebStart.php so
-			// the Config object is ready for when initialization happens
-			$this->config = MediaWikiServices::getInstance()->getMainConfig();
-		}
+		// @todo In the future, we could move this to WebStart.php so
+		// the Config object is ready for when initialization happens
+		$this->config ??= MediaWikiServices::getInstance()->getMainConfig();
 
 		return $this->config;
 	}
@@ -158,11 +156,9 @@ class RequestContext implements IContextSource, MutableContext {
 	 * @return Timing
 	 */
 	public function getTiming() {
-		if ( $this->timing === null ) {
-			$this->timing = new Timing( [
-				'logger' => LoggerFactory::getInstance( 'Timing' )
-			] );
-		}
+		$this->timing ??= new Timing( [
+			'logger' => LoggerFactory::getInstance( 'Timing' )
+		] );
 		return $this->timing;
 	}
 
@@ -289,11 +285,9 @@ class RequestContext implements IContextSource, MutableContext {
 		//
 		// This value is frequently needed in OutputPage and in various
 		// Skin-related methods and classes.
-		if ( $this->action === null ) {
-			$this->action = MediaWikiServices::getInstance()
-				->getActionFactory()
-				->getActionName( $this );
-		}
+		$this->action ??= MediaWikiServices::getInstance()
+			->getActionFactory()
+			->getActionName( $this );
 
 		return $this->action;
 	}
@@ -324,9 +318,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 * @return OutputPage
 	 */
 	public function getOutput() {
-		if ( $this->output === null ) {
-			$this->output = new OutputPage( $this );
-		}
+		$this->output ??= new OutputPage( $this );
 
 		return $this->output;
 	}
@@ -551,9 +543,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 * @return RequestContext
 	 */
 	public static function getMain(): RequestContext {
-		if ( self::$instance === null ) {
-			self::$instance = new self;
-		}
+		self::$instance ??= new self;
 
 		return self::$instance;
 	}

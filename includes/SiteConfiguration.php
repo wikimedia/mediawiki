@@ -490,9 +490,7 @@ class SiteConfiguration {
 	protected function mergeParams( $wiki, $site, array $params, array $wikiTags ) {
 		$ret = $this->getWikiParams( $wiki );
 
-		if ( $ret['suffix'] === null ) {
-			$ret['suffix'] = $site;
-		}
+		$ret['suffix'] ??= $site;
 
 		// Make tags based on the db suffix (e.g. wiki family) automatically
 		// available for use in wgConf. The user does not have to maintain

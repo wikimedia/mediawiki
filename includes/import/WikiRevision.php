@@ -464,11 +464,9 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @throws MWUnknownContentModelException
 	 */
 	public function getContentHandler() {
-		if ( $this->contentHandler === null ) {
-			$this->contentHandler = MediaWikiServices::getInstance()
-				->getContentHandlerFactory()
-				->getContentHandler( $this->getModel() );
-		}
+		$this->contentHandler ??= MediaWikiServices::getInstance()
+			->getContentHandlerFactory()
+			->getContentHandler( $this->getModel() );
 
 		return $this->contentHandler;
 	}
@@ -505,9 +503,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @return string
 	 */
 	public function getModel() {
-		if ( $this->model === null ) {
-			$this->model = $this->getTitle()->getContentModel();
-		}
+		$this->model ??= $this->getTitle()->getContentModel();
 
 		return $this->model;
 	}
@@ -518,9 +514,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @return string
 	 */
 	public function getFormat() {
-		if ( $this->format === null ) {
-			$this->format = $this->getContentHandler()->getDefaultFormat();
-		}
+		$this->format ??= $this->getContentHandler()->getDefaultFormat();
 
 		return $this->format;
 	}

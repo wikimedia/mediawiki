@@ -250,10 +250,8 @@ class ApiFeedWatchlist extends ApiBase {
 	}
 
 	private function getWatchlistModule() {
-		if ( $this->watchlistModule === null ) {
-			$this->watchlistModule = $this->getMain()->getModuleManager()->getModule( 'query' )
-				->getModuleManager()->getModule( 'watchlist' );
-		}
+		$this->watchlistModule ??= $this->getMain()->getModuleManager()->getModule( 'query' )
+			->getModuleManager()->getModule( 'watchlist' );
 
 		return $this->watchlistModule;
 	}
