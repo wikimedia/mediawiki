@@ -1558,12 +1558,13 @@ class PermissionManager {
 	 * from anyone.
 	 *
 	 * @since 1.34
-	 * @deprecated since 1.36 Use GroupPermissionsLookup instead
+	 * @deprecated since 1.36, hard-deprecated since 1.40. Use GroupPermissionsLookup instead.
 	 * @param string $group Group to check
 	 * @param string $role Role to check
 	 * @return bool
 	 */
 	public function groupHasPermission( $group, $role ): bool {
+		wfDeprecated( __METHOD__, '1.36' );
 		return $this->groupPermissionsLookup->groupHasPermission( $group, $role );
 	}
 
@@ -1571,11 +1572,12 @@ class PermissionManager {
 	 * Get the permissions associated with a given list of groups
 	 *
 	 * @since 1.34
-	 * @deprecated since 1.36 Use GroupPermissionsLookup instead
+	 * @deprecated since 1.36, hard-deprecated since 1.40. Use GroupPermissionsLookup instead.
 	 * @param string[] $groups internal group names
 	 * @return string[] permission key names for given groups combined
 	 */
 	public function getGroupPermissions( $groups ): array {
+		wfDeprecated( __METHOD__, '1.36' );
 		return $this->groupPermissionsLookup->getGroupPermissions( $groups );
 	}
 
@@ -1583,11 +1585,12 @@ class PermissionManager {
 	 * Get all the groups who have a given permission
 	 *
 	 * @since 1.34
-	 * @deprecated since 1.36, use GroupPermissionsLookup instead.
+	 * @deprecated since 1.36, hard-deprecated since 1.40. use GroupPermissionsLookup instead.
 	 * @param string $role Role to check
 	 * @return string[] internal group names with the given permission
 	 */
 	public function getGroupsWithPermission( $role ): array {
+		wfDeprecated( __METHOD__, '1.36' );
 		return $this->groupPermissionsLookup->getGroupsWithPermission( $role );
 	}
 

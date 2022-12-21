@@ -368,7 +368,7 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		$hookContainer->method( 'run' )
 			->willReturn( true );
 
-		// Overrides needed in case `groupHasPermission` is called
+		// Overrides needed in case `GroupPermissionsLookup::groupHasPermission` is called
 		$config = [
 			MainConfigNames::GroupPermissions => [
 				'autoconfirmed' => [
