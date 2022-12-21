@@ -60,13 +60,14 @@ class GeneratePhpCharToUpperMappings extends Maintenance {
 		$jsUpperChars = json_decode( $result->getStdout() );
 		'@phan-var string[] $jsUpperChars';
 
+		$contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
 		for ( $i = 0; $i <= 0x10ffff; $i++ ) {
 			if ( $i >= 0xd800 && $i <= 0xdfff ) {
 				// Skip surrogate pairs
 				continue;
 			}
 			$char = \UtfNormal\Utils::codepointToUtf8( $i );
-			$phpUpper = MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $char );
+			$phpUpper = $contentLanguage->ucfirst( $char );
 			$jsUpper = $jsUpperChars[$i];
 			if ( $jsUpper !== $phpUpper ) {
 				if ( $char === $phpUpper ) {
