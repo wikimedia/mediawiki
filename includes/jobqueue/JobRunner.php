@@ -23,10 +23,7 @@
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
-use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBError;
@@ -40,7 +37,7 @@ use Wikimedia\ScopedCallback;
  * @ingroup JobQueue
  * @since 1.24
  */
-class JobRunner implements LoggerAwareInterface {
+class JobRunner {
 
 	/**
 	 * @internal For use by ServiceWiring
@@ -96,51 +93,32 @@ class JobRunner implements LoggerAwareInterface {
 	}
 
 	/**
+	 * @internal For use by ServiceWiring
+	 * @param ServiceOptions $serviceOptions
+	 * @param ILBFactory $lbFactory
+	 * @param JobQueueGroup $jobQueueGroup The JobQueueGroup for this wiki
+	 * @param ReadOnlyMode $readOnlyMode
+	 * @param LinkCache $linkCache
+	 * @param StatsdDataFactoryInterface $statsdDataFactory
 	 * @param LoggerInterface $logger
-	 * @return void
-	 * @deprecated since 1.35. Rely on the logger passed in the constructor.
-	 */
-	public function setLogger( LoggerInterface $logger ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$this->logger = $logger;
-	}
-
-	/**
-	 * Calling this directly is deprecated.
-	 * Obtain an instance via MediaWikiServices instead.
-	 * @param ServiceOptions|LoggerInterface|null $serviceOptions
-	 * @param ILBFactory|null $lbFactory
-	 * @param JobQueueGroup|null $jobQueueGroup The JobQueueGroup for this wiki
-	 * @param ReadOnlyMode|null $readOnlyMode
-	 * @param LinkCache|null $linkCache
-	 * @param StatsdDataFactoryInterface|null $statsdDataFactory
-	 * @param LoggerInterface|null $logger
 	 */
 	public function __construct(
-		$serviceOptions = null,
-		ILBFactory $lbFactory = null,
-		JobQueueGroup $jobQueueGroup = null,
-		ReadOnlyMode $readOnlyMode = null,
-		LinkCache $linkCache = null,
-		StatsdDataFactoryInterface $statsdDataFactory = null,
-		LoggerInterface $logger = null
+		ServiceOptions $serviceOptions,
+		ILBFactory $lbFactory,
+		JobQueueGroup $jobQueueGroup,
+		ReadOnlyMode $readOnlyMode,
+		LinkCache $linkCache,
+		StatsdDataFactoryInterface $statsdDataFactory,
+		LoggerInterface $logger
 	) {
-		if ( !$serviceOptions || $serviceOptions instanceof LoggerInterface ) {
-			wfDeprecated( __METHOD__ . ' called directly. Use MediaWikiServices instead', '1.39' );
-			$logger = $serviceOptions;
-			$serviceOptions = new ServiceOptions(
-				static::CONSTRUCTOR_OPTIONS,
-				MediaWikiServices::getInstance()->getMainConfig()
-			);
-		}
-
+		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $serviceOptions;
-		$this->lbFactory = $lbFactory ?? MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$this->jobQueueGroup = $jobQueueGroup ?? MediaWikiServices::getInstance()->getJobQueueGroup();
-		$this->readOnlyMode = $readOnlyMode ?: MediaWikiServices::getInstance()->getReadOnlyMode();
-		$this->linkCache = $linkCache ?? MediaWikiServices::getInstance()->getLinkCache();
-		$this->stats = $statsdDataFactory ?? MediaWikiServices::getInstance()->getStatsdDataFactory();
-		$this->logger = $logger ?? LoggerFactory::getInstance( 'runJobs' );
+		$this->lbFactory = $lbFactory;
+		$this->jobQueueGroup = $jobQueueGroup;
+		$this->readOnlyMode = $readOnlyMode;
+		$this->linkCache = $linkCache;
+		$this->stats = $statsdDataFactory;
+		$this->logger = $logger;
 	}
 
 	/**

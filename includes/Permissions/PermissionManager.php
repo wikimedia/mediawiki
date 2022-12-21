@@ -1478,7 +1478,7 @@ class PermissionManager {
 		$rightsCacheKey = $this->getRightsCacheKey( $user );
 		if ( !isset( $this->usersRights[ $rightsCacheKey ] ) ) {
 			$userObj = User::newFromIdentity( $user );
-			$this->usersRights[ $rightsCacheKey ] = $this->getGroupPermissions(
+			$this->usersRights[ $rightsCacheKey ] = $this->groupPermissionsLookup->getGroupPermissions(
 				$this->userGroupManager->getUserEffectiveGroups( $user )
 			);
 			// Hook requires a full User object
@@ -1730,7 +1730,7 @@ class PermissionManager {
 				$right = 'editsemiprotected'; // BC
 			}
 			if ( $right != '' ) {
-				$namespaceRightGroups[$right] = $this->getGroupsWithPermission( $right );
+				$namespaceRightGroups[$right] = $this->groupPermissionsLookup->getGroupsWithPermission( $right );
 			}
 		}
 
@@ -1751,7 +1751,7 @@ class PermissionManager {
 			) {
 				// Do any of the namespace rights imply the restriction right? (see explanation above)
 				foreach ( $namespaceRightGroups as $groups ) {
-					if ( !array_diff( $groups, $this->getGroupsWithPermission( $right ) ) ) {
+					if ( !array_diff( $groups, $this->groupPermissionsLookup->getGroupsWithPermission( $right ) ) ) {
 						// Yes, this one does.
 						continue 2;
 					}
