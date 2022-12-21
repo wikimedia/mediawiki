@@ -96,7 +96,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $called, "getServerName() optimized for DB_PRIMARY" );
 
 		$dbw->ensureConnection();
-		$this->assertTrue( $called );
+		$this->assertFalse( $called, "Session replication pos not used with single server" );
 		$this->assertSame(
 			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'master shows as master'
 		);
