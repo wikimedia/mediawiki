@@ -293,6 +293,7 @@ because of Phabricator reports.
   deprecated in 1.37, now emit deprecation warnings.
 * LanguageConverterFactory::isTitleConversionDisabled(), deprecated in 1.36,
   now emits deprecation warnings.
+* User::incEditCount(), deprecated in 1.37, now emits deprecation warnings.
 * IndexPager::getHookContainer is deprecated and emits deprecation warnings.
   Inject a HookContainer instead.
 * Global function wfShowingResults is deprecated and emits deprecation warnings.
