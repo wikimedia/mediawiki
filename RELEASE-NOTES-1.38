@@ -1,12 +1,27 @@
 = MediaWiki 1.38 =
 
+PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
+PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
+PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
+
 == MediaWiki 1.38.5 ==
 
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.38.4 ===
 * Localisation updates.
+* Tests: Explicit cast to int in RandomImageGenerator test (php8 warnings).
+* (T319000) WebInstaller: Don't try and run trim() on null.
+* (T318753) Installer: Disable logo dropper for now.
+* (T320864) When calling mail(), use an array for headers.
+* (T311567) In ManualLogEntry, cast the comment to string.
+* (T289926) api: Fix minor PHP 8.1 incompatibility in ApiOptions.
+* (T322803) SpecialBotPasswords: Don't pass null to trim().
 * (T323082) Upgrading wikimedia/xmp-reader (0.8.1 => 0.8.5).
+* Language: Handle ronna and quetta.
+* PostgresUpdater: Remove trailing space from 'user_id ' column.
+* (T304515) LCStoreStaticArray: atomically replace the cache file.
+* (T324890, T324891, T324901) Parser: Allow dynamic properties on PHP 8.2.
 
 == MediaWiki 1.38.4 ==
 
