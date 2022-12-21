@@ -22,7 +22,6 @@
  */
 
 use Wikimedia\Rdbms\ChronologyProtector;
-use Wikimedia\Rdbms\DBPrimaryPos;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\MySQLPrimaryPos;
 
@@ -110,23 +109,19 @@ class ChronologyProtectorTest extends PHPUnit\Framework\TestCase {
 		$cp = new ChronologyProtector( $bag, $client, null, $secret );
 
 		$clientPostIndex = 0;
-		$cp->stageSessionReplicationPosition( $lb );
+		$cp->stageSessionPrimaryPos( $lb );
 		$cp->persistSessionReplicationPositions( $clientPostIndex );
 
 		// Do it a second time so the values that were written the first
 		// time get read from the cache.
 		$replicationPos = '3-4-5';
 		$time++;
-		$cp->stageSessionReplicationPosition( $lb );
+		$cp->stageSessionPrimaryPos( $lb );
 		$cp->persistSessionReplicationPositions( $clientPostIndex );
 
-		$lb->method( 'waitFor' )->willReturnCallback(
-			function ( DBPrimaryPos $pos ) use ( &$replicationPos, &$time ) {
-				$this->assertSame( $time, $pos->asOfTime() );
-				$this->assertSame( "$replicationPos", "$pos" );
-			}
-		);
-		$cp->applySessionReplicationPosition( $lb );
+		$waitForPos = $cp->yieldSessionPrimaryPos( $lb );
+		$this->assertNotNull( $waitForPos );
+		$this->assertSame( $time, $waitForPos->asOfTime() );
+		$this->assertSame( "$replicationPos", "$waitForPos" );
 	}
-
 }
