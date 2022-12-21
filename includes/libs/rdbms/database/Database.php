@@ -161,13 +161,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var int Writes to this temporary table effect lastDoneWrites() */
 	private const TEMP_PSEUDO_PERMANENT = 2;
 
-	/** @var int Number of times to re-try an operation in case of deadlock */
-	private const DEADLOCK_TRIES = 4;
-	/** @var int Minimum time to wait before retry, in microseconds */
-	private const DEADLOCK_DELAY_MIN = 500000;
-	/** @var int Maximum time to wait before retry */
-	private const DEADLOCK_DELAY_MAX = 1500000;
-
 	/** How long before it is worth doing a dummy query to test the connection */
 	private const PING_TTL = 1.0;
 	/** Dummy SQL query */
@@ -2258,45 +2251,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	protected function isKnownStatementRollbackError( $errno ) {
 		return false; // don't know; it could have caused a transaction rollback
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function deadlockLoop( ...$args ) {
-		$function = array_shift( $args );
-		$tries = self::DEADLOCK_TRIES;
-
-		$this->begin( __METHOD__ );
-
-		$retVal = null;
-		/** @var Throwable $e */
-		$e = null;
-		do {
-			try {
-				$retVal = $function( ...$args );
-				break;
-			} catch ( DBQueryError $e ) {
-				if ( $this->wasDeadlock() ) {
-					// Retry after a randomized delay
-					usleep( mt_rand( self::DEADLOCK_DELAY_MIN, self::DEADLOCK_DELAY_MAX ) );
-				} else {
-					// Throw the error back up
-					throw $e;
-				}
-			}
-		} while ( --$tries > 0 );
-
-		if ( $tries <= 0 ) {
-			// Too many deadlocks; give up
-			$this->rollback( __METHOD__ );
-			throw $e;
-		} else {
-			$this->commit( __METHOD__ );
-
-			return $retVal;
-		}
 	}
 
 	/**
