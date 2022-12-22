@@ -436,6 +436,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		$servers = [
 			[ // master
+				'serverName' => 'db1',
 				'host' => 'db1001',
 				'user' => 'wikiuser',
 				'password' => 'none',
@@ -445,6 +446,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 				'load' => 100
 			],
 			[ // emulated replica
+				'serverName' => 'db2',
 				'host' => 'db1002',
 				'user' => 'wikiuser',
 				'password' => 'none',
