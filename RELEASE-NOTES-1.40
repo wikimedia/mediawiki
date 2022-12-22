@@ -62,6 +62,9 @@ For notes on 1.39.x and older releases, see HISTORY.
   control whether to show more thumbnails (per $wgThumbnailNamespaces)
 * (T301063) Change tags now also link to a filtered view of Recent Changes, to
   make it easy to find similarly-tagged recent edits.
+* (T324910) On pages using multi-content revisions, the raw content of a
+  specific slot can be retrieved using the action=raw&slot=<role-name> query
+  parameters.
 * …
 
 === New developer features in 1.40 ===
