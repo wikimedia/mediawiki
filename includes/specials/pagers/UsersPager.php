@@ -30,6 +30,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -74,12 +75,16 @@ class UsersPager extends AlphabeticPager {
 	/** @var UserGroupManager */
 	private $userGroupManager;
 
+	/** @var UserIdentityLookup */
+	private $userIdentityLookup;
+
 	/**
 	 * @param IContextSource $context
 	 * @param HookContainer $hookContainer
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserGroupManager $userGroupManager
+	 * @param UserIdentityLookup $userIdentityLookup
 	 * @param string|null $par
 	 * @param bool|null $including Whether this page is being transcluded in
 	 * another page
@@ -90,6 +95,7 @@ class UsersPager extends AlphabeticPager {
 		LinkBatchFactory $linkBatchFactory,
 		ILoadBalancer $loadBalancer,
 		UserGroupManager $userGroupManager,
+		UserIdentityLookup $userIdentityLookup,
 		$par,
 		$including
 	) {
@@ -140,6 +146,7 @@ class UsersPager extends AlphabeticPager {
 		$this->userGroupManager = $userGroupManager;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->linkBatchFactory = $linkBatchFactory;
+		$this->userIdentityLookup = $userIdentityLookup;
 	}
 
 	/**
@@ -175,7 +182,10 @@ class UsersPager extends AlphabeticPager {
 		if ( $this->requestedUser != '' ) {
 			# Sorted either by account creation or name
 			if ( $this->creationSort ) {
-				$conds[] = 'user_id >= ' . intval( User::idFromName( $this->requestedUser ) );
+				$userIdentity = $this->userIdentityLookup->getUserIdentityByName( $this->requestedUser );
+				if ( $userIdentity && $userIdentity->isRegistered() ) {
+					$conds[] = 'user_id >= ' . $userIdentity->getId();
+				}
 			} else {
 				$conds[] = 'user_name >= ' . $dbr->addQuotes( $this->requestedUser );
 			}
