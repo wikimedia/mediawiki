@@ -112,17 +112,20 @@ class ExternalUserNames {
 		}
 
 		if ( $this->assignKnownUsers ) {
-			if ( User::idFromName( $name ) ) {
+			$userIdentityLookup = MediaWikiServices::getInstance()->getUserIdentityLookup();
+			$userIdentity = $userIdentityLookup->getUserIdentityByName( $name );
+			if ( $userIdentity && $userIdentity->isRegistered() ) {
 				return $name;
 			}
 
 			// See if any extension wants to create it.
 			if ( !isset( $this->triedCreations[$name] ) ) {
 				$this->triedCreations[$name] = true;
-				if ( !Hooks::runner()->onImportHandleUnknownUser( $name ) &&
-					User::idFromName( $name, User::READ_LATEST )
-				) {
-					return $name;
+				if ( !Hooks::runner()->onImportHandleUnknownUser( $name ) ) {
+					$userIdentity = $userIdentityLookup->getUserIdentityByName( $name, IDBAccessObject::READ_LATEST );
+					if ( $userIdentity && $userIdentity->isRegistered() ) {
+						return $name;
+					}
 				}
 			}
 		}
