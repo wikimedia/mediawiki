@@ -231,7 +231,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$userName = $testUser->getUser()->getName();
 
 		$dbw = wfGetDB( DB_PRIMARY );
-		$id = \User::idFromName( $userName );
+		$id = $testUser->getUser()->getId();
 
 		$req = new PasswordAuthenticationRequest();
 		$req->action = AuthManager::ACTION_LOGIN;

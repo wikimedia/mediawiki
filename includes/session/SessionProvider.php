@@ -494,7 +494,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 * normal login (i.e. there is no way to undo the prevention of access).
 	 *
 	 * Note that the passed user name might not exist locally (i.e.
-	 * User::idFromName( $username ) === 0); the name should still be
+	 * UserIdentity::getId() === 0); the name should still be
 	 * prevented, if applicable.
 	 *
 	 * @stable to override
