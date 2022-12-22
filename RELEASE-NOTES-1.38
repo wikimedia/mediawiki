@@ -4,6 +4,13 @@ PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 PHP 8.1 workboard: https://phabricator.wikimedia.org/tag/php_8.1_support/
 PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 
+== MediaWiki 1.38.6 ==
+
+THIS IS NOT A RELEASE YET
+
+=== Changes since MediaWiki 1.38.5 ===
+* Localisation updates.
+
 == MediaWiki 1.38.5 ==
 
 This is a security and maintenance release of the MediaWiki 1.38 branch.
