@@ -148,6 +148,7 @@ class StatusValue {
 	 * Each error is a (message:string or MessageSpecifier,params:array) map
 	 *
 	 * @return array[]
+	 * @phan-return array{type:'warning'|'error', message:string|MessageSpecifier, params:array}[]
 	 */
 	public function getErrors() {
 		return $this->errors;
@@ -191,6 +192,7 @@ class StatusValue {
 	 * parameters as separate array elements.
 	 *
 	 * @param array $newError
+	 * @phan-param array{type:'warning'|'error', message:string|MessageSpecifier, params:array} $newError
 	 * @return $this
 	 */
 	private function addError( array $newError ) {
@@ -304,6 +306,7 @@ class StatusValue {
 	 *
 	 * @param string $type
 	 * @return array[]
+	 * @phan-return array{type:'warning'|'error', message:string|MessageSpecifier, params:array}[]
 	 */
 	public function getErrorsByType( $type ) {
 		$result = [];
