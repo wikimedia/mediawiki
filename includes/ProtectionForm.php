@@ -555,7 +555,7 @@ class ProtectionForm {
 				'flatlist' => true,
 				'options' => Xml::listDropDownOptions(
 					$this->mContext->msg( 'protect-dropdown' )->inContentLanguage()->text(),
-					[ 'other' => $this->mContext->msg( 'protect-otherreason-op' )->inContentLanguage()->text() ]
+					[ 'other' => $this->mContext->msg( 'protect-otherreason-op' )->text() ]
 				),
 				'default' => $this->mReasonSelection,
 			];
