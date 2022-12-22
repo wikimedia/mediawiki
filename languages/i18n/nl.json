@@ -2884,6 +2884,8 @@
 	"movesubpagetalktext": "De bijbehorende overlegpagina heeft $1 {{PLURAL:$1|deelpagina|deelpagina's}} hierbeneden getoond.",
 	"movenosubpage": "Deze pagina heeft geen deelpagina's.",
 	"movereason": "Reden:",
+	"moveotherreason": "Andere reden:",
+	"movereasonotherlist": "Andere reden",
 	"revertmove": "terugdraaien",
 	"delete_and_move_text": "Onder de naam \"[[:$1]]\" bestaat al een pagina.\nWilt u deze verwijderen om plaats te maken voor de te hernoemen pagina?",
 	"delete_redirect_and_move_text": "De doelpagina \"[[:$1]]\" bestaat al als een doorverwijzing.\nWilt u deze verwijderen om plaats te maken voor de te hernoemen pagina?",

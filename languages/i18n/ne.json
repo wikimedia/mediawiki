@@ -3361,6 +3361,7 @@
 	"skin-action-delete": "हटाउने",
 	"skin-action-move": "सार्नुहोस्",
 	"newpages-showhide-bots": "बोटहरू $1",
+	"newpages-showhide-patrolled": "गस्ती सम्पादनहरू $1",
 	"newpages-showhide-redirect": "अनुप्रेषणहरू $1",
 	"newpages-showhide-registered": "खाता खोलेका प्रयोगकर्ताहरू $1"
 }
