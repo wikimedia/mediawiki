@@ -13,7 +13,7 @@ PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 
 == MediaWiki 1.35.9 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.35 branch.
 
 === Changes since MediaWiki 1.35.8 ===
 * Localisation updates.
@@ -24,6 +24,7 @@ THIS IS NOT A RELEASE YET
 * Language: Handle ronna and quetta.
 * (T304515) LCStoreStaticArray: atomically replace the cache file.
 * (T324890, T324891, T324901) Parser: Allow dynamic properties on PHP 8.2.
+* (T322637) SECURITY: sqlite should not create DB file world-readable.
 
 == MediaWiki 1.35.8 ==
 
