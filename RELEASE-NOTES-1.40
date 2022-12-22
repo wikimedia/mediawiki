@@ -102,6 +102,7 @@ For notes on 1.39.x and older releases, see HISTORY.
 * Updated guzzlehttp/guzzle 7.4.5 to 7.5.0.
 * Updated wikimedia/shellbox from 3.0.0 to 4.0.0.
 * Updated wikimedia/xmp-reader from 0.8.4 to 0.9.1.
+* Updated wikimedia/remex-html from 3.0.2 to 3.0.3.
 
 ===== Changed development-only external libraries =====
 * Updated grunt from 1.5.2 to 1.5.3.
