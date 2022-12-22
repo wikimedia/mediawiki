@@ -6,6 +6,8 @@ PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 
 == MediaWiki 1.39.1 ==
 
+This is a security and maintenance release of the MediaWiki 1.39 branch.
+
 === Changes since MediaWiki 1.39.0 ===
 * Localisation updates.
 * PostgresUpdater: Remove trailing space from 'user_id ' column.
@@ -22,6 +24,7 @@ PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 * (T324910) On pages using multi-content revisions, the raw content of a
   specific slot can be retrieved using the action=raw&slot=<role-name> query
   parameters.
+* (T322637) SECURITY: sqlite should not create DB file world-readable.
 
 == MediaWiki 1.39.0 ==
 
