@@ -2,6 +2,28 @@ Change notes from older releases. For current info, see RELEASE-NOTES-1.40.
 
 = MediaWiki 1.39 =
 
++== MediaWiki 1.39.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.39 branch.
+
+=== Changes since MediaWiki 1.39.0 ===
+* Localisation updates.
+* PostgresUpdater: Remove trailing space from 'user_id ' column.
+* (T304515) LCStoreStaticArray: atomically replace the cache file.
+* (T324516) postgres: Fix upgrade for templatelinks primary key.
+* (T324890, T324891, T324901) Parser: Allow dynamic properties on PHP 8.2.
+* (T324513) uuid\GlobalIdGenerator: Check if getmyuid() exists.
+* (T314099) OutputPage: Remove unused dynamic property ParserOptions->isBogus.
+* (T314099) api: Remove use of undeclared property in action=comparepages.
+* Upgrading wikimedia/xmp-reader (0.8.5 => 0.8.6).
+* (T324489) Upgrading wikimedia/parsoid (v0.16.0 => v0.16.1).
+* Updated pear/mail (v1.4.1 => v1.5.0).
+* Removed wikimedia/dodo (v0.4.0).
+* (T324910) On pages using multi-content revisions, the raw content of a
+  specific slot can be retrieved using the action=raw&slot=<role-name> query
+  parameters.
+* (T322637) SECURITY: sqlite should not create DB file world-readable.
+
 == MediaWiki 1.39.0 ==
 
 === Changes since MediaWiki 1.39.0-rc.1 ===
@@ -155,6 +177,7 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Updated jQuery from v3.6.0 to v3.6.1.
 * Updated OOUI from v0.43.2 to v0.44.3.
 * Updated composer/semver from 3.2.6 to 3.3.2.
+* Updated pear/mail (v1.4.1 => v1.5.0).
 * Updated symfony/polyfill-php73 from 1.25.0 to 1.26.0.
 * Updated symfony/polyfill-php80 from 1.25.0 to 1.26.0.
 * Updated symfony/yaml from 5.4.3 to 5.4.10.
@@ -167,12 +190,15 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Updated wikimedia/scoped-callback from 3.0.0 to 4.0.0.
 * Updated wikimedia/services from 2.0.1 to 3.0.0.
 * Updated wikimedia/timestamp from 3.0.0 to 4.0.0.
-* Updated wikimedia/xmp-reader from 0.8.1 to 0.8.5.
+* Updated wikimedia/xmp-reader from 0.8.1 to 0.8.6.
 
 ===== Changed development-only external libraries =====
 * Updated composer/spdx-licenses from 1.5.5 to 1.5.6.
 * Updated doctrine/dbal for PHP < 7.3 from 2.13.6 to 2.13.9.
 * Updated doctrine/dbal for PHP >= 7.3 from 3.1.5 to 3.4.2.
+
+==== Removed external libraries ====
+* Removed wikimedia/dodo (v0.4.0).
 
 === Bug fixes in 1.39 ===
 * (T314013) $wgExtraNamespaces no longer overrides canonical namespace names
@@ -673,6 +699,29 @@ There's usually someone online in #mediawiki on irc.libera.chat.
 
 = MediaWiki 1.38 =
 
+== MediaWiki 1.38.5 ==
+
+This is a security and maintenance release of the MediaWiki 1.38 branch.
+
+=== Changes since MediaWiki 1.38.4 ===
+* Localisation updates.
+* Tests: Explicit cast to int in RandomImageGenerator test (php8 warnings).
+* (T319000) WebInstaller: Don't try and run trim() on null.
+* (T318753) Installer: Disable logo dropper for now.
+* (T320864) When calling mail(), use an array for headers.
+* (T311567) In ManualLogEntry, cast the comment to string.
+* (T289926) api: Fix minor PHP 8.1 incompatibility in ApiOptions.
+* (T322803) SpecialBotPasswords: Don't pass null to trim().
+* (T323082) Upgrading wikimedia/xmp-reader (0.8.1 => 0.8.5).
+* Language: Handle ronna and quetta.
+* PostgresUpdater: Remove trailing space from 'user_id ' column.
+* (T304515) LCStoreStaticArray: atomically replace the cache file.
+* (T324890, T324891, T324901) Parser: Allow dynamic properties on PHP 8.2.
+* (T324910) On pages using multi-content revisions, the raw content of a
+  specific slot can be retrieved using the action=raw&slot=<role-name> query
+  parameters.
+* (T322637) SECURITY: sqlite should not create DB file world-readable.
+
 == MediaWiki 1.38.4 ==
 
 This is a maintenance release of the MediaWiki 1.38 branch.
@@ -705,7 +754,7 @@ This is a security and maintenance release of the MediaWiki 1.38 branch.
   strlen().
 * (T312300) SpecialDiff: Don't pass null to explode().
 * (T312680) parser: Fix CoreParserFunctions::urlencode() null coalescence $arg.
- (T289926) Handle null passed to wfShorthandToInteger() and Html::element().
+* (T289926) Handle null passed to wfShorthandToInteger() and Html::element().
 * (T289926) Ensure that strlen() does not get passed a (valid) null.
 * (T312301) SpecialDiff: Don't pass null to trim().
 * Hooks: Use more meaningful name for SkinAfterPortlet hook parameter.
@@ -3753,6 +3802,21 @@ There's usually someone online in #mediawiki on irc.libera.chat.
 
 = MediaWiki 1.35 =
 
+== MediaWiki 1.35.9 ==
+
+This is a security and maintenance release of the MediaWiki 1.35 branch.
+
+=== Changes since MediaWiki 1.35.8 ===
+* Localisation updates.
+* (T319000) WebInstaller: Don't try and run trim() on null.
+* (T320864) When calling mail(), use an array for headers.
+* (T311567) In ManualLogEntry, cast the comment to string.
+* (T323082) Upgrading wikimedia/xmp-reader (0.7.0 => 0.8.5).
+* Language: Handle ronna and quetta.
+* (T304515) LCStoreStaticArray: atomically replace the cache file.
+* (T324890, T324891, T324901) Parser: Allow dynamic properties on PHP 8.2.
+* (T322637) SECURITY: sqlite should not create DB file world-readable.
+
 == MediaWiki 1.35.8 ==
 
 This is a security and maintenance release of the MediaWiki 1.35 branch.
@@ -4607,7 +4671,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Updated psr/log from 1.0.2 to 1.1.3.
 * Updated jquery.i18n from 1.0.5 to 1.0.7.
 * Updated guzzlehttp/guzzle from 6.3.3 to 6.5.8.
-* Updated wikimedia/xmp-reader from 0.6.3 to 0.7.0.
+* Updated wikimedia/xmp-reader from 0.6.3 to 0.8.5.
   Fixes error log spam with too-large XMP data, and adds support for GPano tags.
 * Updated wikimedia/base-convert from v2.0.0 to v2.0.1.
 * Updated composer/semver from 1.5.0 to 1.5.1.
