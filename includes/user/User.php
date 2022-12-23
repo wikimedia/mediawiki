@@ -273,6 +273,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	public function &__get( $name ) {
 		// A shortcut for $mRights deprecation phase
 		if ( $name === 'mRights' ) {
+			// hard deprecated since 1.40
+			wfDeprecated( 'User::$mRights', '1.34' );
 			$copy = MediaWikiServices::getInstance()
 				->getPermissionManager()
 				->getUserPermissions( $this );
@@ -302,6 +304,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		// A shortcut for $mRights deprecation phase, only known legitimate use was for
 		// testing purposes, other uses seem bad in principle
 		if ( $name === 'mRights' ) {
+			// hard deprecated since 1.40
+			wfDeprecated( 'User::$mRights', '1.34' );
 			MediaWikiServices::getInstance()->getPermissionManager()->overrideUserRightsForTesting(
 				$this,
 				$value ?? []
