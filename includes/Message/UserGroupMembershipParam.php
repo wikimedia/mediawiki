@@ -26,6 +26,9 @@ namespace MediaWiki\Message;
 use MediaWiki\User\UserIdentity;
 use Stringable;
 
+/**
+ * @since 1.38
+ */
 class UserGroupMembershipParam implements Stringable {
 	/** @var string */
 	private $group;

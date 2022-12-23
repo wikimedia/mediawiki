@@ -102,6 +102,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getGroupPermissions
 	 */
 	public function testGroupPermissions() {
+		$this->hideDeprecated( 'User::getGroupPermissions' );
 		$rights = User::getGroupPermissions( [ 'unittesters' ] );
 		$this->assertContains( 'runtest', $rights );
 		$this->assertNotContains( 'writetest', $rights );
@@ -119,6 +120,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getGroupPermissions
 	 */
 	public function testRevokePermissions() {
+		$this->hideDeprecated( 'User::getGroupPermissions' );
 		$rights = User::getGroupPermissions( [ 'unittesters', 'formertesters' ] );
 		$this->assertNotContains( 'runtest', $rights );
 		$this->assertNotContains( 'writetest', $rights );
@@ -131,6 +133,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getGroupsWithPermission
 	 */
 	public function testGetGroupsWithPermission( array $expected, $right ) {
+		$this->hideDeprecated( 'User::getGroupsWithPermission' );
 		$result = User::getGroupsWithPermission( $right );
 		$this->assertArrayEquals( $expected, $result );
 	}

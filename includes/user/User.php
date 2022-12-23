@@ -273,6 +273,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	public function &__get( $name ) {
 		// A shortcut for $mRights deprecation phase
 		if ( $name === 'mRights' ) {
+			// hard deprecated since 1.40
+			wfDeprecated( 'User::$mRights', '1.34' );
 			$copy = MediaWikiServices::getInstance()
 				->getPermissionManager()
 				->getUserPermissions( $this );
@@ -302,6 +304,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		// A shortcut for $mRights deprecation phase, only known legitimate use was for
 		// testing purposes, other uses seem bad in principle
 		if ( $name === 'mRights' ) {
+			// hard deprecated since 1.40
+			wfDeprecated( 'User::$mRights', '1.34' );
 			MediaWikiServices::getInstance()->getPermissionManager()->overrideUserRightsForTesting(
 				$this,
 				$value ?? []
@@ -3265,26 +3269,28 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Get the permissions associated with a given list of groups
 	 *
-	 * @deprecated since 1.34, use GroupPermissionsLookup::getGroupPermissions() instead in 1.36+,
-	 *    or PermissionManager::getGroupPermissions() in 1.34 and 1.35
+	 * @deprecated since 1.34, hard-deprecated since 1.40, use GroupPermissionsLookup::getGroupPermissions() instead
+	 *    in 1.36+, or PermissionManager::getGroupPermissions() in 1.34 and 1.35
 	 *
 	 * @param string[] $groups internal group names
 	 * @return string[] permission key names for given groups combined
 	 */
 	public static function getGroupPermissions( $groups ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getGroupPermissionsLookup()->getGroupPermissions( $groups );
 	}
 
 	/**
 	 * Get all the groups who have a given permission
 	 *
-	 * @deprecated since 1.34, use GroupPermissionsLookup::getGroupsWithPermission() instead in 1.36+,
-	 *    or PermissionManager::getGroupsWithPermission() in 1.34 and 1.35
+	 * @deprecated since 1.34, hard-deprecated since 1.40, use GroupPermissionsLookup::getGroupsWithPermission() instead
+	 *    in 1.36+, or PermissionManager::getGroupsWithPermission() in 1.34 and 1.35
 	 *
 	 * @param string $role Role to check
 	 * @return string[] internal group names with the given permission
 	 */
 	public static function getGroupsWithPermission( $role ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getGroupPermissionsLookup()->getGroupsWithPermission( $role );
 	}
 
@@ -3295,8 +3301,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * PermissionManager::isEveryoneAllowed() instead. That properly checks if it's revoked
 	 * from anyone.
 	 *
-	 * @deprecated since 1.34, use GroupPermissionsLookup::groupHasPermission() instead in 1.36+,
-	 *    or PermissionManager::groupHasPermission() in 1.34 and 1.35
+	 * @deprecated since 1.34, hard-deprecated since 1.40, use GroupPermissionsLookup::groupHasPermission() instead
+	 *    in 1.36+, or PermissionManager::groupHasPermission() in 1.34 and 1.35
 	 *
 	 * @since 1.21
 	 * @param string $group Group to check
@@ -3304,6 +3310,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return bool
 	 */
 	public static function groupHasPermission( $group, $role ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getGroupPermissionsLookup()
 			->groupHasPermission( $group, $role );
 	}

@@ -7,6 +7,7 @@ use HashConfig;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use PHPUnit\Framework\MockObject\MockObject;
+use RequestContext;
 use User;
 use Wikimedia\TestingAccessWrapper;
 
@@ -75,17 +76,26 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	 */
 	private function getBlockedUser( array $blockOptions ): User {
 		$user = $this->getMutableTestUser()->getUser();
-		$wrappedUser = TestingAccessWrapper::newFromObject( $user );
+		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$block = new DatabaseBlock( $blockOptions + [
 			'address' => $user,
 			'by' => $this->getTestSysop()->getUser(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 		] );
-		$wrappedUser->mBlock = $block;
-		$wrappedUser->mBlockedby = $block->getByName();
-		$wrappedUser->mBlockreason = $block->getReason();
-		$wrappedUser->mHideName = false;
+		$blockStore->insertBlock( $block );
+		if ( $block->getType() === DatabaseBlock::TYPE_IP ) {
+			// When an ip is blocked, the provided user object needs to know the ip
+			// That allows BlockManager::getUserBlock to load the ip block for this user
+			$request = $this->getMockBuilder( FauxRequest::class )
+				->onlyMethods( [ 'getIP' ] )->getMock();
+			$request->method( 'getIP' )
+				->willReturn( $blockOptions['address'] );
+			// The global request is used by User::getRequest
+			RequestContext::getMain()->setRequest( $request );
+			// The ip from request is only used for the global user
+			RequestContext::getMain()->setUser( $user );
+		}
 
 		return $user;
 	}

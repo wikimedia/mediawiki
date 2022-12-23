@@ -24,6 +24,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -63,6 +64,7 @@ class ActiveUsersPager extends UsersPager {
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserGroupManager $userGroupManager
+	 * @param UserIdentityLookup $userIdentityLookup
 	 * @param FormOptions $opts
 	 */
 	public function __construct(
@@ -71,6 +73,7 @@ class ActiveUsersPager extends UsersPager {
 		LinkBatchFactory $linkBatchFactory,
 		ILoadBalancer $loadBalancer,
 		UserGroupManager $userGroupManager,
+		UserIdentityLookup $userIdentityLookup,
 		FormOptions $opts
 	) {
 		parent::__construct(
@@ -79,6 +82,7 @@ class ActiveUsersPager extends UsersPager {
 			$linkBatchFactory,
 			$loadBalancer,
 			$userGroupManager,
+			$userIdentityLookup,
 			null,
 			null
 		);

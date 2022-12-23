@@ -143,6 +143,7 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 		$countAssigned = 0;
 		$countPrefixed = 0;
 		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
+		$userIdentityLookup = MediaWikiServices::getInstance()->getUserIdentityLookup();
 		while ( true ) {
 			// Fetch the rows needing update
 			$res = $dbw->newSelectQueryBuilder()
@@ -166,13 +167,15 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 
 				$id = 0;
 				if ( $this->assign ) {
-					$id = User::idFromName( $name );
-					if ( !$id ) {
+					$userIdentity = $userIdentityLookup->getUserIdentityByName( $name );
+					if ( !$userIdentity || !$userIdentity->isRegistered() ) {
 						// See if any extension wants to create it.
 						if ( !isset( $this->triedCreations[$name] ) ) {
 							$this->triedCreations[$name] = true;
 							if ( !$this->getHookRunner()->onImportHandleUnknownUser( $name ) ) {
-								$id = User::idFromName( $name, User::READ_LATEST );
+								$userIdentity = $userIdentityLookup
+									->getUserIdentityByName( $name, IDBAccessObject::READ_LATEST );
+								$id = $userIdentity ? $userIdentity->getId() : 0;
 							}
 						}
 					}

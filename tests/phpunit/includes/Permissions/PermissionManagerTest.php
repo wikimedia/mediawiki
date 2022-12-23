@@ -1005,6 +1005,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGroupPermissions() {
+		$this->hideDeprecated( 'MediaWiki\\Permissions\\PermissionManager::getGroupPermissions' );
 		$rights = $this->getServiceContainer()->getPermissionManager()
 			->getGroupPermissions( [ 'unittesters' ] );
 		$this->assertContains( 'runtest', $rights );
@@ -1021,6 +1022,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	}
 
 	public function testRevokePermissions() {
+		$this->hideDeprecated( 'MediaWiki\\Permissions\\PermissionManager::getGroupPermissions' );
 		$rights = $this->getServiceContainer()->getPermissionManager()
 			->getGroupPermissions( [ 'unittesters', 'formertesters' ] );
 		$this->assertNotContains( 'runtest', $rights );
@@ -1033,6 +1035,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideGetGroupsWithPermission
 	 */
 	public function testGetGroupsWithPermission( $expected, $right ) {
+		$this->hideDeprecated( 'MediaWiki\\Permissions\\PermissionManager::getGroupsWithPermission' );
 		$result = $this->getServiceContainer()->getPermissionManager()
 			->getGroupsWithPermission( $right );
 		sort( $result );
@@ -1085,6 +1088,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGroupHasPermission() {
+		$this->hideDeprecated( 'MediaWiki\\Permissions\\PermissionManager::groupHasPermission' );
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
 
 		$result = $permissionManager->groupHasPermission(
