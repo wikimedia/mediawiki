@@ -232,6 +232,7 @@
 	"apihelp-feedrecentchanges-param-hidemyself": "Geçerli kullanıcı tarafından yapılan değişiklikleri gizleyin.",
 	"apihelp-feedrecentchanges-param-hidecategorization": "Kategori üyeliği değişikliklerini gizleyin.",
 	"apihelp-feedrecentchanges-param-tagfilter": "Etikete göre filtre.",
+	"apihelp-feedrecentchanges-param-inverttags": "Seçilenlerle etiketlenenler dışındaki tüm değişiklikler.",
 	"apihelp-feedrecentchanges-param-target": "Yalnızca bu sayfadan bağlantı verilen sayfalardaki değişiklikleri gösterin.",
 	"apihelp-feedrecentchanges-param-showlinkedto": "Bunun yerine seçilen sayfaya bağlı sayfalardaki değişiklikleri gösterin.",
 	"apihelp-feedrecentchanges-example-simple": "Son değişiklikleri gösterin.",

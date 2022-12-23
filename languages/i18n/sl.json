@@ -398,7 +398,7 @@
 	"virus-badscanner": "Slaba konfiguracija: neznani virus skener: ''$1''",
 	"virus-scanfailed": "pregled ni uspel (koda $1)",
 	"virus-unknownscanner": "neznan antivirusni program:",
-	"logouttext": "<strong>Odjavili ste se.</strong>\n\nNekatere strani bodo morda še naprej prikazane, kot da ste prijavljeni, dokler ne boste izpraznili predpomnilnika brskalnika.",
+	"logouttext": "<strong>Odjavili ste se.</strong>\n\nNekatere strani bodo morda še naprej prikazane, kot da ste prijavljeni, dokler ne boste počistili predpomnilnika brskalnika.",
 	"logging-out-notify": "Trenutno se odjavljate. Prosimo, počakajte.",
 	"logout-failed": "Trenutno se ne morete odjaviti: $1",
 	"cannotlogoutnow-title": "Trenutno se ne morete odjaviti",

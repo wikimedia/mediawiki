@@ -332,6 +332,7 @@
 	"config-screenshot": "ekran görüntüsü",
 	"config-extension-not-found": "\"$1\" uzantısı için kayıt dosyası bulunamadı",
 	"config-extension-dependency": "\"$1\" uzantısı kurulurken bir bağımlılık hatası oluştu: $2",
+	"config-ext-skins-more-info": "daha fazla bilgi",
 	"mainpagetext": "<strong>MediaWiki başarı ile kuruldu.</strong>",
 	"mainpagedocfooter": "Viki yazılımının kullanımı hakkında bilgi almak için [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents kullanıcı rehberine] bakınız.\n\n== Yeni Başlayanlar ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Yapılandırma ayarlarının listesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki SSS]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki sürüm e-posta listesi]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Diliniz için MediaWiki'yi yerelleştirin]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Vikinizde spam ile nasıl savaşılacağını öğrenin]"
 }

@@ -7,6 +7,7 @@
 			"Max20091",
 			"Minh Nguyen",
 			"NguoiDungKhongDinhDanh",
+			"Nguyenphutrong2",
 			"Vinhtantran"
 		]
 	},
@@ -93,6 +94,7 @@
 	"apihelp-feedrecentchanges-param-hidepatrolled": "Ẩn thay đổi đã tuần tra.",
 	"apihelp-feedrecentchanges-param-hidemyself": "Ẩn thay đổi do người dùng hiện tại thực hiện.",
 	"apihelp-feedrecentchanges-param-tagfilter": "Lọc theo thẻ.",
+	"apihelp-feedrecentchanges-param-inverttags": "Tất cả các chỉnh sửa ngoại trừ những chỉnh sửa được gắn thẻ với những chỉnh sửa đã chọn.",
 	"apihelp-feedrecentchanges-example-simple": "Xem thay đổi gần đây.",
 	"apihelp-feedrecentchanges-example-30days": "Hiển thị các thay đổi trong 30 ngày gần đây.",
 	"apihelp-feedwatchlist-summary": "Trả về nguồn cấp danh sách theo dõi.",
