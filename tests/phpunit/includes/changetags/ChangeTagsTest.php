@@ -350,7 +350,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 				[
 					'tables' => [ 'recentchanges', 'change_tag' ],
 					'fields' => [ 'rc_id', 'rc_timestamp', 'ts_tags' => $groupConcats['recentchanges'] ],
-					'conds' => [ "rc_timestamp > '20170714183203'", 'change_tag.ct_tag_id IS NULL' ],
+					'conds' => [ "rc_timestamp > '20170714183203'", 'ct_tag_id IS NULL' ],
 					'join_conds' => [ 'change_tag' => [ 'LEFT JOIN', [ 'ct_rc_id=rc_id', 'ct_tag_id' => [ 1, 2 ] ] ] ],
 					'options' => [ 'ORDER BY' => 'rc_timestamp DESC' ],
 				],
