@@ -24,6 +24,7 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserIdentityLookup;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -42,20 +43,26 @@ class SpecialActiveUsers extends SpecialPage {
 	/** @var UserGroupManager */
 	private $userGroupManager;
 
+	/** @var UserIdentityLookup */
+	private $userIdentityLookup;
+
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserGroupManager $userGroupManager
+	 * @param UserIdentityLookup $userIdentityLookup
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		ILoadBalancer $loadBalancer,
-		UserGroupManager $userGroupManager
+		UserGroupManager $userGroupManager,
+		UserIdentityLookup $userIdentityLookup
 	) {
 		parent::__construct( 'Activeusers' );
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->loadBalancer = $loadBalancer;
 		$this->userGroupManager = $userGroupManager;
+		$this->userIdentityLookup = $userIdentityLookup;
 	}
 
 	/**
@@ -88,6 +95,7 @@ class SpecialActiveUsers extends SpecialPage {
 			$this->linkBatchFactory,
 			$this->loadBalancer,
 			$this->userGroupManager,
+			$this->userIdentityLookup,
 			$opts
 		);
 		$usersBody = $pager->getBody();

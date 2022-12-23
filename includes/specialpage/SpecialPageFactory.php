@@ -359,6 +359,7 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'DBLoadBalancer',
 				'UserGroupManager',
+				'UserIdentityLookup',
 			]
 		],
 		'Block' => [
@@ -487,6 +488,7 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'DBLoadBalancer',
 				'UserGroupManager',
+				'UserIdentityLookup',
 			]
 		],
 		'Listadmins' => [
