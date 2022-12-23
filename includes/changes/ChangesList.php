@@ -838,6 +838,16 @@ class ChangesList extends ContextSource {
 	 *
 	 */
 	private function insertPageTools( &$s, &$rc ) {
+		// FIXME Some page tools (e.g. thanks) might make sense for log entries.
+		if ( !in_array( $rc->mAttribs['rc_type'], [ RC_EDIT, RC_NEW ] )
+			// FIXME When would either of these not exist when type is RC_EDIT? Document.
+			|| !$rc->mAttribs['rc_this_oldid']
+			|| !$rc->mAttribs['rc_cur_id']
+		) {
+			return;
+		}
+
+		// Construct a fake revision for PagerTools. FIXME can't we just obtain the real one?
 		$title = $rc->getTitle();
 		$revRecord = new MutableRevisionRecord( $title );
 		$revRecord->setId( (int)$rc->mAttribs['rc_this_oldid'] );
@@ -851,13 +861,9 @@ class ChangesList extends ContextSource {
 		$tools = new PagerTools(
 			$revRecord,
 			null,
-			/** Check for rollback permissions, disallow special pages, and only
-			 * show a link on the top-most revision
-			 */
-			$rc->mAttribs['rc_type'] == RC_EDIT
-				&& $rc->mAttribs['rc_this_oldid']
-				&& $rc->mAttribs['rc_cur_id']
-				&& $rc->getAttribute( 'page_latest' ) == $rc->mAttribs['rc_this_oldid'],
+			// only show a rollback link on the top-most revision
+			$rc->getAttribute( 'page_latest' ) == $rc->mAttribs['rc_this_oldid']
+				&& $rc->mAttribs['rc_type'] != RC_NEW,
 			$this->getHookRunner(),
 			$title,
 			$this->getContext(),
