@@ -178,6 +178,8 @@ class UserGroupMembership {
 	 * @param string $group Internal group name
 	 * @param string|UserIdentity $member Username or UserIdentity of member for gender
 	 * @return string Localized name for group member
+	 * @deprecated since 1.40, use Language::getGroupMemberName or
+	 *   Message::objectParm with instance of UserGroupMembershipParam
 	 */
 	public static function getGroupMemberName( $group, $member ) {
 		return RequestContext::getMain()->getLanguage()->getGroupMemberName( $group, $member );
