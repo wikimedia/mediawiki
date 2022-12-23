@@ -678,12 +678,11 @@ class ContribsPager extends RangeChronologicalPager {
 		// ContributionsLineEnding hook below.
 		// FIXME: have some better way for extensions to provide formatted rows.
 		$revRecord = $this->tryCreatingRevisionRecord( $row, $page );
-		if ( $revRecord ) {
+		if ( $revRecord && $page ) {
 			$revRecord = $this->revisionStore->newRevisionFromRow( $row, 0, $page );
 			$attribs['data-mw-revid'] = $revRecord->getId();
 
 			$link = $linkRenderer->makeLink(
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$page,
 				$page->getPrefixedText(),
 				[ 'class' => 'mw-contributions-title' ],
@@ -692,31 +691,28 @@ class ContribsPager extends RangeChronologicalPager {
 			# Mark current revisions
 			$topmarktext = '';
 
-			$pagerTools = $page ? new PagerTools(
+			$pagerTools = new PagerTools(
 				$revRecord,
 				null,
-				!$row->page_is_new,
+				$row->rev_id === $row->page_latest && !$row->page_is_new,
 				$this->hookRunner,
 				$page,
 				$this->getContext(),
 				$this->getLinkRenderer()
-			) : null;
+			);
 			if ( $row->rev_id === $row->page_latest ) {
 				$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
 				$classes[] = 'mw-contributions-current';
 			}
-			if ( $pagerTools ) {
-				if ( $pagerTools->shouldPreventClickjacking() ) {
-					$this->setPreventClickjacking( true );
-				}
-				$topmarktext .= $pagerTools->toHTML();
+			if ( $pagerTools->shouldPreventClickjacking() ) {
+				$this->setPreventClickjacking( true );
 			}
+			$topmarktext .= $pagerTools->toHTML();
 			# Is there a visible previous revision?
 			if ( $revRecord->getParentId() !== 0 &&
 				$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() )
 			) {
 				$difftext = $linkRenderer->makeKnownLink(
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 					$page,
 					new HtmlArmor( $this->messages['diff'] ),
 					[ 'class' => 'mw-changeslist-diff' ],
@@ -729,7 +725,6 @@ class ContribsPager extends RangeChronologicalPager {
 				$difftext = $this->messages['diff'];
 			}
 			$histlink = $linkRenderer->makeKnownLink(
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 				$page,
 				new HtmlArmor( $this->messages['hist'] ),
 				[ 'class' => 'mw-changeslist-history' ],
@@ -794,7 +789,6 @@ class ContribsPager extends RangeChronologicalPager {
 				$flags[] = ChangesList::flag( 'minor' );
 			}
 
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
 			$del = Linker::getRevDeleteLink( $authority, $revRecord, $page );
 			if ( $del !== '' ) {
 				$del .= ' ';
