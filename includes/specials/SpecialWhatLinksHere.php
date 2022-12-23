@@ -703,9 +703,14 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			->setMethod( 'GET' )
 			->setTitle( $this->getPageTitle() )
 			->setWrapperLegendMsg( 'whatlinkshere' )
-			->setSubmitTextMsg( 'whatlinkshere-submit' );
+			->setSubmitTextMsg( 'whatlinkshere-submit' )
+			// Have a dummy callback for trySubmit()
+			// TODO: Refactor to fully utilize submit callback
+			->setSubmitCallback( static function () {
+				return true;
+			} )->prepareForm();
 
-		return $form->prepareForm()->getHTML( false );
+		return $form->getHTML( $form->trySubmit() );
 	}
 
 	/**
