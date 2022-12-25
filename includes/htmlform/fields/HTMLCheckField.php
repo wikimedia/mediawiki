@@ -125,6 +125,13 @@ class HTMLCheckField extends HTMLFormField {
 	}
 
 	/**
+	 * @return bool
+	 */
+	public function getDefault() {
+		return (bool)$this->mDefault;
+	}
+
+	/**
 	 * @stable to override
 	 * @param WebRequest $request
 	 *
@@ -141,7 +148,7 @@ class HTMLCheckField extends HTMLFormField {
 				? !$request->getBool( $this->mName )
 				: $request->getBool( $this->mName );
 		} else {
-			return (bool)$this->getDefault();
+			return $this->getDefault();
 		}
 	}
 }
