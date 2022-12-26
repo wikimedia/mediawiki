@@ -1368,7 +1368,7 @@
 	"right-viewmywatchlist": "Melihat daftar pantauan Anda sendiri",
 	"right-editmywatchlist": "Sunting daftar pantau Anda sendiri (ingatlah bahwa beberapa tindakan tetap akan menambahkan halaman walaupun tanpa hak ini)",
 	"right-viewmyprivateinfo": "Melihat data pribadi Anda sendiri (misal: alamat surel, nama asli)",
-	"right-editmyprivateinfo": "Edit data pribadi Anda sendiri (misalnya alamat email, nama asli) dan minta email pengaturan ulang kata sandi",
+	"right-editmyprivateinfo": "Menyunting data pribadi Anda sendiri (seperti alamat surel, nama asli) dan meminta surel pengaturan ulang kata sandi",
 	"right-editmyoptions": "Menyunting preferensi Anda sendiri",
 	"right-rollback": "Mengembalikan dengan cepat suntingan-suntingan pengguna terakhir yang menyunting halaman tertentu",
 	"right-markbotedits": "Menandai pengembalian revisi sebagai suntingan bot",

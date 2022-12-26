@@ -1091,7 +1091,7 @@
 	"showingresultsinrange": "بالأسفل {{PLURAL:$1|نتيجة واحدة|<strong>$1</strong> نتائج|<strong>$1</strong> نتيجة}} في النطاق من <strong>$2</strong> إلى <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|النتائج <strong>$1</strong> من <strong>$3</strong>|النتائج <strong>$1 - $2</strong> من أصل <strong>$3</strong>}}",
 	"search-nonefound": "لا توجد نتائج تطابق الاستعلام.",
-	"search-nonefound-thiswiki": "لا توجد نتائج تطابق الاستعلام في $3.",
+	"search-nonefound-thiswiki": "لا توجد نتائج تطابق الاستعلام في هذا الموقع.",
 	"powersearch-legend": "بحث متقدم",
 	"powersearch-ns": "بحث في النطاقات:",
 	"powersearch-togglelabel": "اختر:",

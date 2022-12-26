@@ -1911,6 +1911,7 @@
 	"autosumm-blank": "Sahifadagi barcha matn oʻchirib tashlandi",
 	"autoredircomment": "[[$1]]ga yoʻnaltirildi",
 	"autosumm-new": "„$1“ yozuvi orqali yangi sahifa yaratildi",
+	"autosumm-newblank": "Boʻsh sahifa yaratildi",
 	"size-bytes": "$1 bayt",
 	"size-pixel": "$1 {{PLURAL:$1|piksel}}",
 	"watchlisttools-clear": "Kuzatuv roʻyxatingizni tozalash",
