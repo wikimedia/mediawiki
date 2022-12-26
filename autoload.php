@@ -631,6 +631,7 @@ $wgAutoloadLocalClasses = [
 	'IDBAccessObject' => __DIR__ . '/includes/libs/rdbms/IDBAccessObject.php',
 	'IDatabase' => __DIR__ . '/includes/libs/rdbms/database/IDatabase.php',
 	'IExpiringStore' => __DIR__ . '/includes/libs/objectcache/utils/IExpiringStore.php',
+	'IForeignRepoWithDB' => __DIR__ . '/includes/filerepo/IForeignRepoWithDB.php',
 	'IForeignRepoWithMWApi' => __DIR__ . '/includes/filerepo/IForeignRepoWithMWApi.php',
 	'IJobSpecification' => __DIR__ . '/includes/jobqueue/IJobSpecification.php',
 	'ILanguageConverter' => __DIR__ . '/includes/language/ILanguageConverter.php',
