@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Kly",
-			"Xiplus"
+			"Xiplus",
+			"捍粵者"
 		]
 	},
 	"rest-prefix-mismatch": "請求的路徑（$1）不在REST API的根路徑（$2）內",
@@ -22,7 +23,7 @@
 	"rest-pagehistory-timestamp-error": "指定的修訂（$1）無法取得時間戳記",
 	"rest-pagehistorycount-type-unrecognized": "指定的計算類型（$1）無效",
 	"rest-pagehistorycount-parameters-invalid": "指定的參數組合不支援。",
-	"rest-compare-page-mismatch": "所指定的修訂屬於不同頁面，拒絕進行比較。",
+	"rest-compare-page-mismatch": "指定的修訂屬不同頁面，不可比較。",
 	"rest-compare-permission-denied": "使用者沒有權限來存取請求修訂",
 	"rest-compare-nonexistent": "由參數$1指定的修訂不存在。",
 	"rest-compare-inaccessible": "由參數$1指定的修訂不可公開存取。",

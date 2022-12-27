@@ -1122,7 +1122,7 @@
 	"showingresultsinrange": "Apresenta-se abaixo {{PLURAL:$1|<strong>1</strong> resultado|até <strong>$1</strong> resultados}} no intervalo #<strong>$2</strong> a #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Resultado <strong>$1</strong> de <strong>$3</strong>|Resultados <strong>$1 - $2</strong> de <strong>$3</strong>}}",
 	"search-nonefound": "Não há resultados que correspondam à consulta.",
-	"search-nonefound-thiswiki": "Não há resultados que correspondam à consulta em $3.",
+	"search-nonefound-thiswiki": "Não existem resultados que correspondam à consulta neste ''site''.",
 	"powersearch-legend": "Pesquisa avançada",
 	"powersearch-ns": "Pesquisar nos espaços nominais:",
 	"powersearch-togglelabel": "Selecionar:",
