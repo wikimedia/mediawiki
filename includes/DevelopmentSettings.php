@@ -15,7 +15,7 @@
  *
  * To keep your Git copy clean and easier to work with, it is recommended
  * to copy this to your LocalSettings.php and enable them as-needed.
- * This are not enabled by default as they make the wiki considerably
+ * These are not enabled by default as they make the wiki considerably
  * slower and/or significantly alter how things work or look.
  *
  * See https://www.mediawiki.org/wiki/How_to_debug
