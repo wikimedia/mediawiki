@@ -38,6 +38,9 @@ class MWCallbackStream implements StreamInterface {
 
 	private $callback;
 
+	/** @var StreamInterface */
+	protected $stream;
+
 	public function __construct( callable $cb ) {
 		$this->stream = Utils::streamFor();
 		$this->callback = $cb;
