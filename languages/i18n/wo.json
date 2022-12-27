@@ -13,7 +13,8 @@
 			"SF-Language",
 			"Urhixidur",
 			"Vlad5250",
-			"아라"
+			"아라",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Rëddaatu lëkkalekaay yi :",
@@ -495,7 +496,7 @@
 	"rev-deleted-text-view": "Bii sumb bu xët wii dañ koo '''far'''.\nLi nga doon yorkat moo tax nga man gis mbind mi. Saytul [{{fullurl:{{#Special:Log}}/delete|page=$1}} jaar-jaaru far] yi ngir yeneeni xibaar.",
 	"rev-suppressed-text-view": "Bii sumb bu wii xët dees koo '''faroon'''.\nSaytukat yi man nañu koo gis ba-tay; saytul  [{{fullurl:{{#Special:Log}}/suppress|page=$1}} jaar-jaaru far] yi ngir yenneni xamle.",
 	"rev-deleted-no-diff": "Manoo wone gii méngale  ndax benn ci sumb yi dañu koo '''far'''.\nMan ngaa ami xibaar ci [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jaar-jaaru far] yi.",
-	"rev-deleted-unhide-diff": "Benn ci sumb yi ngay méngale dees koo '''far'''.\nMan ngaa ami xamle ci [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jaar-jaaru far] yi.\nLi nga doon yorkat tax na ba-tay nga man a [$1 gis gii wuute] su la neexee.",
+	"rev-deleted-unhide-diff": "Benn ci sumb yi ngay méngale dees koo '''far'''.\nMan ngaa ami xamle ci [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jaar-jaaru far] yi.\nLi nga doon yorkat tax na ba-tay nga man a [$1 gis gii wuute] su la neexee.",
 	"rev-delundel": "wone/nëbb",
 	"revisiondelete": "Far/Deloosiwaati sumb",
 	"revdelete-nooldid-title": "Waxoo ban sumb",

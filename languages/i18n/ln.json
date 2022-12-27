@@ -6,7 +6,8 @@
 			"DannyS712",
 			"Eruedin",
 			"Moyogo",
-			"TMg"
+			"TMg",
+			"BamLifa"
 		]
 	},
 	"tog-underline": "Kotíya sulimá na bikangisi:",
@@ -152,7 +153,7 @@
 	"page-atom-feed": "Ebale Atom ya «$1»",
 	"red-link-title": "$1 (lonkásá  ezalí tɛ̂)",
 	"nstab-main": "lonkásá",
-	"nstab-user": "Lonkásá la mosáleli",
+	"nstab-user": "{{GENDER:$1|Lokasa ya mosaleli}}",
 	"nstab-media": "Mediá",
 	"nstab-special": "Lonkásá gudi",
 	"nstab-project": "Etalí",

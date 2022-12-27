@@ -214,7 +214,7 @@
 	"config-upload-deleted": "Directory pe-i file scàssæ:",
 	"config-upload-deleted-help": "Çèrni 'na directory inta quæ archiviâ i file scàssæ.\nIdealménte, quésta a no doviéiva êse acescìbile da-o web.",
 	"config-personalization-settings": "Personalizaçión",
-	"config-logo-summary": "Pe ciaschedùn de sti cànpi chi o l'é necesâio caregâ 'n'inmàgine da-e dimenscioìn apropriæ, meténdo l'URL inta cazélla de sótta. Se peu dêuviâ <code>$wgStylePath</code> òpû <code>$wgScriptPath</code> se o lögo o fa riferiménto a sti percórsci chi. A ògni mòddo, e cazélle se pêuan lasciâ vêue.\n\nCo-i browser sùportæ se peu strascinâ 'n'inmàgine da-o pròpio scistêma òperatîvo inte cazélle de inseriménto ò inte l'àrea de anteprìmma.",
+	"config-logo-summary": "Pe ciaschedùn de sti cànpi chi o l'é necesâio caregâ 'n'inmàgine da-e dimenscioìn apropiæ, meténdo l'URL inta cazélla de sótta. Se peu dêuviâ <code>$wgStylePath</code> òpû <code>$wgScriptPath</code> se o lögo o fa riferiménto a sti percórsci chi. A ògni mòddo, e cazélle se pêuan lasciâ vêue.",
 	"config-logo-preview-main": "Pàgina prinçipâ",
 	"config-logo-icon": "Lögo (icónn-a):",
 	"config-logo-icon-help": "L'icónn-a do tò lögo a doviéiva êse quadrâta e co-ina resoluçión ciù âta de 50px, òpû into formâto SVG.",

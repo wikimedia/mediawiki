@@ -173,7 +173,7 @@ class TestFileEditor {
 							$test[$i]['deleted'] = true;
 							break;
 						default:
-							throw new Exception( "Unknown op: ${change['op']}" );
+							throw new Exception( "Unknown op: {$change['op']}" );
 					}
 					// Acknowledge
 					// Note that we use the old section name for the rename op

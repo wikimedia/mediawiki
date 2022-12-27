@@ -221,7 +221,7 @@
 	"config-upload-deleted": "Mappe for slettede filer:",
 	"config-upload-deleted-help": "Velg en mappe for å arkivere slettede filer.\nIdeelt burde ikke denne være tilgjengelig for nettet.",
 	"config-personalization-settings": "Personalisering",
-	"config-logo-summary": "For hvert av disse feltene må du laste opp et bilde av passende størrelse, og skrive inn URL-en i boksene nedenfor. Du kan bruke <code>$wgStylePath</code> eller <code>$wgScriptPath</code> hvis logoen din ligger relativt til en av disse stiene. Du kan la boksene være tomme om ønskelig.\n\nI støttede nettlesere kan du også dra bildefila fra filsystemet ditt til boksene eller forhåndsvisningsområdet.",
+	"config-logo-summary": "For hvert av disse feltene må du laste opp et bilde av passende størrelse, og skrive inn URL-en i boksene nedenfor. Du kan bruke <code>$wgStylePath</code> eller <code>$wgScriptPath</code> hvis logoen din ligger relativt til en av disse stiene. Du kan la boksene være tomme om ønskelig.",
 	"config-logo-preview-main": "Hovedside",
 	"config-logo-icon": "Logo (ikon)",
 	"config-logo-icon-help": "Logoikonet bør være kvadratisk og ideelt minst 50px eller en SVG.",

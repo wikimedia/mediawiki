@@ -235,7 +235,7 @@
 	"config-upload-deleted": "Directory per i file cancellati:",
 	"config-upload-deleted-help": "Scegli una directory in cui archiviare i file cancellati.\nIdealmente, questa non dovrebbe essere accessibile dal web.",
 	"config-personalization-settings": "Personalizzazione",
-	"config-logo-summary": "Per ciascuno di questi  campi, è necessario caricare un'immagine di dimensioni appropriate, ed immettere l' URL nella casella sotto. È possibile utilizzare <code>$wgStylePath</code> oppure <code>$wgScriptPath</code> se il logo è relativo a tali percorsi. È possibile lasciare una di queste caselle vuote.\n\nCon i browsers supportati è possibile trascinare le immagini dal sistema operativo nelle caselle di inserimento o nell'area di anteprima.",
+	"config-logo-summary": "Per ciascuno di questi  campi, è necessario caricare un'immagine di dimensioni appropriate, ed immettere l' URL nella casella sotto. È possibile utilizzare <code>$wgStylePath</code> oppure <code>$wgScriptPath</code> se il logo è relativo a tali percorsi. È possibile lasciare una di queste caselle vuote.",
 	"config-logo-preview-main": "Pagina principale",
 	"config-logo-icon": "Logo (icona)",
 	"config-logo-icon-help": "La tua icona del logo dovrebbe essere quadrata e possibilmente avere o più di 50px di risoluzione, oppure essere un file SVG.",

@@ -131,7 +131,10 @@
 			"赤城。",
 			"青子守歌",
 			"고솜",
-			"아라"
+			"아라",
+			"Kokage si",
+			"ギャラクシーライナー",
+			"バレロン"
 		]
 	},
 	"tog-underline": "リンクの下線:",
@@ -1117,7 +1120,7 @@
 	"showingresultsinrange": "<strong>$2</strong> 件目から <strong>$3</strong> 件目までの範囲内で最大 {{PLURAL:$1|<strong>$1</strong> 件の結果}}を表示しています。",
 	"search-showingresults": "{{PLURAL:$4|<strong>$3</strong> 件中の <strong>$1</strong> 件目|<strong>$3</strong> 件中の <strong>$1</strong> 件目から <strong>$2</strong> 件目}}",
 	"search-nonefound": "問い合わせに合致する検索結果はありませんでした。",
-	"search-nonefound-thiswiki": "クエリに一致する結果はこのサイトにはありませんでした。",
+	"search-nonefound-thiswiki": "一致する結果はありません",
 	"powersearch-legend": "高度な検索",
 	"powersearch-ns": "名前空間を指定して検索:",
 	"powersearch-togglelabel": "チェックを入れる:",

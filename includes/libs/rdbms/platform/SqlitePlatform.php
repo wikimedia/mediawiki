@@ -78,20 +78,13 @@ class SqlitePlatform extends SQLPlatform {
 		return 'CAST ( ' . $field . ' AS TEXT )';
 	}
 
-	/**
-	 * Use MySQL's naming (accounts for prefix etc) but remove surrounding backticks
-	 *
-	 * @param string $name
-	 * @param string $format
-	 * @return string
-	 */
 	public function tableName( $name, $format = 'quoted' ) {
-		// table names starting with sqlite_ are reserved
-		if ( strpos( $name, 'sqlite_' ) === 0 ) {
+		if ( preg_match( '/^sqlite_[a-z_]+$/', $name ) ) {
+			// Such names are reserved for internal SQLite tables
 			return $name;
 		}
 
-		return str_replace( '"', '', parent::tableName( $name, $format ) );
+		return parent::tableName( $name, $format );
 	}
 
 	protected function makeSelectOptions( array $options ) {
