@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Deferred\LinksUpdate\LinksUpdate;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;

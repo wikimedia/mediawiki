@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\ChangeTags\Taggable;
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;

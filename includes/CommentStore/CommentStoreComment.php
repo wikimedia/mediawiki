@@ -18,8 +18,12 @@
  * @file
  */
 
+namespace MediaWiki\CommentStore;
+
+use InvalidArgumentException;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MediaWikiServices;
+use Message;
 
 /**
  * Value object for a comment stored by CommentStore.
@@ -91,3 +95,5 @@ class CommentStoreComment {
 		}
 	}
 }
+
+class_alias( CommentStoreComment::class, 'CommentStoreComment' );

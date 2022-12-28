@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Collation\CollationFactory;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;

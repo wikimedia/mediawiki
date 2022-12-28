@@ -20,10 +20,10 @@
 
 namespace MediaWiki\Block;
 
-use CommentStoreComment;
 use DeprecationHelper;
 use IContextSource;
 use InvalidArgumentException;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Storage\Hook;
 
-use CommentStoreComment;
 use Content;
+use MediaWiki\CommentStore\CommentStoreComment;
 use StatusValue;
 use User;
 use WikiPage;

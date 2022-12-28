@@ -23,6 +23,7 @@
  * @since 1.19
  */
 
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;

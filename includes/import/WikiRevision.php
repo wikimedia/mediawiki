@@ -23,6 +23,8 @@
  * @file
  * @ingroup SpecialPage
  */
+
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\SlotRecord;

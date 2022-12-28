@@ -25,6 +25,7 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\ActorMigration;
 use Wikimedia\Rdbms\IDatabase;

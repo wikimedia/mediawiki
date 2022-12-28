@@ -19,6 +19,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Permissions\PermissionManager;
 
 /**

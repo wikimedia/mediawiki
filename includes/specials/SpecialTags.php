@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
 
 /**

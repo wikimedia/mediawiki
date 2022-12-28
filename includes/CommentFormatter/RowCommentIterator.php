@@ -3,8 +3,8 @@
 namespace MediaWiki\CommentFormatter;
 
 use ArrayIterator;
-use CommentStore;
 use IteratorIterator;
+use MediaWiki\CommentStore\CommentStore;
 use TitleValue;
 use Traversable;
 
