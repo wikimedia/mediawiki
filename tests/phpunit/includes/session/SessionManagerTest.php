@@ -381,11 +381,13 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$id = $manager->generateSessionId();
 		$this->assertNull( $manager->getSessionById( $id, false ) );
 
+		$userIdentity = $this->getServiceContainer()->getUserIdentityLookup()
+			->getUserIdentityByName( 'UTSysop' );
 		// Known but unloadable session ID
 		$this->logger->setCollect( true );
 		$id = $manager->generateSessionId();
 		$this->store->setSession( $id, [ 'metadata' => [
-			'userId' => User::idFromName( 'UTSysop' ),
+			'userId' => $userIdentity->getId(),
 			'userToken' => 'bad',
 		] ] );
 
@@ -401,7 +403,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 
 		// Store isn't checked if the session is already loaded
 		$this->store->setSession( $id, [ 'metadata' => [
-			'userId' => User::idFromName( 'UTSysop' ),
+			'userId' => $userIdentity->getId(),
 			'userToken' => 'bad',
 		] ] );
 		$session2 = $manager->getSessionById( $id, false );
