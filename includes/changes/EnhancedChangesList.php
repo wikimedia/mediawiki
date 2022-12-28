@@ -757,7 +757,6 @@ class EnhancedChangesList extends ChangesList {
 		} elseif ( $query !== null ) {
 			wfDeprecated( __METHOD__ . ' with $query parameter', '1.36' );
 		}
-		$useParentheses ??= true;
 		$pageTitle = $rc->getTitle();
 		if ( $rc->getAttribute( 'rc_type' ) == RC_CATEGORIZE ) {
 			// For categorizations we must swap the category title with the page title!
@@ -778,7 +777,7 @@ class EnhancedChangesList extends ChangesList {
 				'curid' => $rc->getAttribute( 'rc_cur_id' )
 			]
 		);
-		if ( $useParentheses ) {
+		if ( $useParentheses !== false ) {
 			$retVal = $this->msg( 'parentheses' )
 			->rawParams( $rc->difflink . $this->message['pipe-separator']
 				. $histLink )->escaped();

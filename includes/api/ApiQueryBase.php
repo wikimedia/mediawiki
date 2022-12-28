@@ -493,16 +493,16 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return bool Whether the element fit in the result
 	 */
 	protected function addPageSubItem( $pageId, $item, $elemname = null ) {
-		$elemname ??= $this->getModulePrefix();
-
 		$result = $this->getResult();
 		$fit = $result->addValue( [ 'query', 'pages', $pageId,
 			$this->getModuleName() ], null, $item );
 		if ( !$fit ) {
 			return false;
 		}
-		$result->addIndexedTagName( [ 'query', 'pages', $pageId,
-			$this->getModuleName() ], $elemname );
+		$result->addIndexedTagName(
+			[ 'query', 'pages', $pageId, $this->getModuleName() ],
+			$elemname ?? $this->getModulePrefix()
+		);
 
 		return true;
 	}

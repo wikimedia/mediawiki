@@ -1852,9 +1852,9 @@ class ApiMain extends ApiBase {
 		}
 
 		// See if custom printer is used
-		$this->mPrinter = $module->getCustomPrinter();
-		// Create an appropriate printer if not set
-		$this->mPrinter ??= $this->createPrinterByName( $params['format'] );
+		$this->mPrinter = $module->getCustomPrinter() ??
+			// Create an appropriate printer if not set
+			$this->createPrinterByName( $params['format'] );
 
 		if ( $request->getProtocol() === 'http' &&
 			(

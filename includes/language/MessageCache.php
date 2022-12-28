@@ -1470,8 +1470,8 @@ class MessageCache implements LoggerAwareInterface {
 	 * @since 1.29
 	 */
 	public function updateMessageOverride( LinkTarget $linkTarget, Content $content = null ) {
-		$msgText = $this->getMessageTextFromContent( $content );
-		$msgText ??= false; // treat null as not existing
+		// treat null as not existing
+		$msgText = $this->getMessageTextFromContent( $content ) ?? false;
 
 		$this->replace( $linkTarget->getDBkey(), $msgText );
 
