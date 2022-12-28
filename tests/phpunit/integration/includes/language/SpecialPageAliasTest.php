@@ -74,8 +74,9 @@ class SpecialPageAliasTest extends MediaWikiIntegrationTestCase {
 	 * @return Generator
 	 */
 	public function validSpecialPageAliasesProvider() {
+		$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
 		foreach ( self::$langNames as $code => $_ ) {
-			$specialPageAliases = $this->getSpecialPageAliases( $code );
+			$specialPageAliases = $this->getSpecialPageAliases( $languageNameUtils, $code );
 			if ( $specialPageAliases ) {
 				yield [ $code, $specialPageAliases ];
 			}
@@ -83,12 +84,13 @@ class SpecialPageAliasTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param LanguageNameUtils $languageNameUtils
 	 * @param string $code
 	 *
 	 * @return string[][]
 	 */
-	protected function getSpecialPageAliases( string $code ): array {
-		$file = Language::getMessagesFileName( $code );
+	protected function getSpecialPageAliases( LanguageNameUtils $languageNameUtils, string $code ): array {
+		$file = $languageNameUtils->getMessagesFileName( $code );
 
 		if ( is_readable( $file ) ) {
 			include $file;
