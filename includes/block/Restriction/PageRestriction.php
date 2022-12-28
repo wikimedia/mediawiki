@@ -66,13 +66,9 @@ class PageRestriction extends AbstractRestriction {
 	 * @return \Title|false
 	 */
 	public function getTitle() {
-		if ( $this->title === null ) {
-			$this->title = \Title::newFromID( $this->value );
-
-			// If the title does not exist, set to false to prevent multiple database
-			// queries.
-			$this->title ??= false;
-		}
+		// If the title does not exist, set to false to prevent multiple database
+		// queries.
+		$this->title ??= \Title::newFromID( $this->value ) ?? false;
 
 		return $this->title;
 	}

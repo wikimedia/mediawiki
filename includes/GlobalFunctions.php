@@ -1041,9 +1041,7 @@ function wfDebugBacktrace( $limit = 0 ) {
 function wfBacktrace( $raw = null ) {
 	global $wgCommandLineMode;
 
-	$raw ??= $wgCommandLineMode;
-
-	if ( $raw ) {
+	if ( $raw ?? $wgCommandLineMode ) {
 		$frameFormat = "%s line %s calls %s()\n";
 		$traceFormat = "%s";
 	} else {

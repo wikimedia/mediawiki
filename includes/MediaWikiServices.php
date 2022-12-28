@@ -374,11 +374,11 @@ class MediaWikiServices extends ServiceContainer {
 
 		self::failIfResetNotAllowed( __METHOD__ );
 
-		$bootstrapConfig ??= self::$instance->getBootstrapConfig();
-
 		$oldInstance = self::$instance;
-
-		self::$instance = self::newInstance( $bootstrapConfig, 'load' );
+		self::$instance = self::newInstance(
+			$bootstrapConfig ?? self::$instance->getBootstrapConfig(),
+			'load'
+		);
 
 		// Provides a traditional hook point to allow extensions to configure services.
 		$runner = new HookRunner( $oldInstance->getHookContainer() );
