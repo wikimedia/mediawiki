@@ -3,13 +3,15 @@
 		"authors": [
 			"Nirjal stha",
 			"पर्वत सुबेदी",
-			"सरोज कुमार ढकाल"
+			"सरोज कुमार ढकाल",
+			"बडा काजी"
 		]
 	},
 	"apihelp-block-param-user": "प्रतिबन्ध गर्नुपर्ने प्रयोगकर्ता",
-	"apihelp-edit-param-minor": "सामान्य सम्पादन।",
+	"apihelp-edit-param-minor": "यो सम्पादनलाई सानो सम्पादनको रूपमा चिन्ह लगाउनुहोस्।",
 	"apihelp-edit-example-edit": "पृष्ठ सम्पादन गर्नुहोस्।",
 	"apihelp-emailuser-summary": "प्रयोगकर्तालाई इमेल गर्नुहोस्।",
+	"apihelp-feedrecentchanges-param-hidepatrolled": "गस्ती गरिएका परिवर्तनहरू लुकाउनुहोस्।",
 	"apihelp-parse-param-prop": "जानकारीको कुन भाग लिनेः",
 	"apihelp-userrights-param-user": "प्रयोगकर्ता"
 }

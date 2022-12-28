@@ -2959,7 +2959,7 @@
 	"feedback-submit": "אײַנגעבן",
 	"feedback-thanks": "ייש\"כ! אײַער פֿידבעק איז געווארן ארויפגעלעגט צום בלאט \"[$2 $1]\".",
 	"searchsuggest-search": "זוכן {{SITENAME}}",
-	"searchsuggest-containing": "כולל…",
+	"searchsuggest-containing": "זוכן בלעטער וואס אנטהאלטן",
 	"api-clientside-error-timeout": "דער סערווירער האט ניט געענטפֿערט אינערהאַלב דער דערוואַרטעטער צייַט.",
 	"api-error-badtoken": "אינערלעכער גרײַז: סימן טויג נישט.",
 	"api-error-emptypage": "שאפן נייע ליידיקע בלעטער איז נישט ערלויבט.",
