@@ -2341,11 +2341,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 				}
 			}
 
-			if ( $created ) {
-				$this->assertNotNull( \User::idFromName( $username ) );
-			} else {
-				$this->assertNull( \User::idFromName( $username ) );
-			}
+			$userIdentity = $this->userIdentityLookup->getUserIdentityByName( $username );
+			$this->assertSame( $created, $userIdentity && $userIdentity->isRegistered() );
 
 			$first = false;
 		}
