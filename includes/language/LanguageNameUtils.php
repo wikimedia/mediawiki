@@ -272,7 +272,6 @@ class LanguageNameUtils {
 	 * @param string $include See getLanguageNames(), except this defaults to self::ALL instead of
 	 *   self::DEFINED
 	 * @return string Language name or empty
-	 * @since 1.20
 	 */
 	public function getLanguageName( $code, $inLanguage = self::AUTONYMS, $include = self::ALL ) {
 		$code = strtolower( $code );
