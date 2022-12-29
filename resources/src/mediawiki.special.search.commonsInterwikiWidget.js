@@ -13,7 +13,7 @@
 					.addClass( 'iw-result__mini-gallery__image' )
 					.attr( {
 						style: 'background-image: url(' + imageThumbnailSrc + ')',
-						href: '/wiki/' + result.title
+						href: new mw.Title( result.title ).getUrl()
 					} ).append(
 						$( '<span>' ).addClass( 'iw-result__mini-gallery__caption' )
 							.text( result.title )
@@ -33,7 +33,12 @@
 				itemTemplateOutput
 			),
 			$( '<div>' ).addClass( 'iw-result__footer' ).append(
-				$( '<a>' ).attr( 'href', '/w/index.php?title=Special:Search&search=' + encodeURIComponent( pageQuery ) + '&fulltext=1&profile=images' )
+				$( '<a>' )
+					.attr( 'href', new mw.Title( 'Special:Search' ).getUrl( {
+						search: pageQuery,
+						fulltext: 1,
+						profile: 'images'
+					} ) )
 					.text( mw.msg( 'search-interwiki-more-results' ) )
 			)
 		);
