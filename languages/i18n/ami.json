@@ -8,7 +8,8 @@
 			"Ljying",
 			"Panay Masaw",
 			"Vickylin77s",
-			"嚴美鳳"
+			"嚴美鳳",
+			"Iyumu"
 		]
 	},
 	"tog-underline": "malaliting to la^noay a konis.",
@@ -147,12 +148,12 @@
 	"youhavenewmessagesfromusers": "{{PLURAL:$4|Ira ko no miso}}nani---ay {{PLURAL:$3|roma a micokaymasay |$3 micokaymasay }}a $1 ($2)。",
 	"newmessageslinkplural": "{{PLURAL:$1|cecay faelohay a lihaf|999= faelohay a lihaf}}",
 	"newmessagesdifflinkplural": "ngata {{PLURAL:$1| falic }}",
-	"editsection": "misinanot",
-	"editold": "misinanot",
+	"editsection": "mikawit",
+	"editold": "mikawit",
 	"viewsourceold": "misongila’ a minengneng to yin-se-ma",
-	"editlink": "misinanot",
+	"editlink": "mikawit",
 	"viewsourcelink": "misongila’ a minengneng to yin-se-ma",
-	"editsectionhint": "misinanot to rekad：$1",
+	"editsectionhint": "mikawit to rekad：$1",
 	"toc": "tanenengan",
 	"showtoc": "pahapinang",
 	"hidetoc": "himed",

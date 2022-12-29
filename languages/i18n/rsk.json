@@ -979,7 +979,7 @@
 	"showingresultsinrange": "Кус нїжей{{PLURAL:$1|1=Приказани <strong>єден</strong> резултат|Приказани <strong>$1</strong> резултати}}; обсяг: од <strong>$2</strong> до <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Резултат <strong>$1</strong> of <strong>$3</strong>|Резултати <strong>$1 – $2</strong> од <strong>$3</strong>}}",
 	"search-nonefound": "Нє були пренайдзени  резултати хтори одвитую на питанє",
-	"search-nonefound-thiswiki": "Нєт резултати на $3 хтори ше поклопюю зоз термином преглєдованя.",
+	"search-nonefound-thiswiki": "Нєт резултати хтори одвитую питаню на тим сайту.",
 	"powersearch-legend": "Напредне пре̠гєдованє",
 	"powersearch-ns": "Преглєдованє по просторох назвох:",
 	"powersearch-togglelabel": "превер:",

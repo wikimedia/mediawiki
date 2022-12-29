@@ -242,7 +242,10 @@
 			"គីមស៊្រុន",
 			"아라",
 			"YaThaWinTha",
-			"Wnme"
+			"Wnme",
+			"Nguyenphutrong2",
+			"Okras",
+			"捍粵者"
 		]
 	},
 	"sidebar": "{{notranslate}}",
@@ -1864,7 +1867,7 @@
 	"rcfilters-filter-previousrevision-description": "Description for the filter for showing changes on previous revisions of a page.",
 	"rcfilters-filter-excluded": "Label for a menu item in [[Special:RecentChanges]] noting that the item is being excluded from the results.",
 	"rcfilters-tag-prefix-namespace": "Prefix for the namespace tags in [[Special:RecentChanges]]. Namespace tags use a colon (:) as prefix. Please keep this format.\n\nParameters:\n* $1 - Filter name.",
-	"rcfilters-tag-prefix-namespace-inverted": "Prefix for the namespace inverted tags in [[Special:RecentChanges]]. Namespace tags use a colon (:) as prefix. Please keep this format.\n\nParameters:\n* $1 - Filter name.\n{{Identical|Not}}",
+	"rcfilters-tag-prefix-namespace-inverted": "Prefix for inverted namespace tags in [[Special:RecentChanges]]. Namespace tags use a colon (:) as prefix. Please keep this format.\n\nParameters:\n* $1 - Filter name.\n{{Identical|Not}}",
 	"rcfilters-tag-prefix-tags": "Prefix for the edit tags in [[Special:RecentChanges]]. Edit tags use a hash (#) as prefix. Please keep this format.\n\nParameters:\n* $1 - Tag display name.",
 	"rcfilters-exclude-button-off": "Title for the button that excludes selected namespaces, when it is not yet active.",
 	"rcfilters-exclude-button-on": "Title for the button that excludes selected namespaces, when it is active.",
@@ -2980,7 +2983,7 @@
 	"ipboptions": "Options for the duration of the block.\n\n{{doc-mediawiki-options-list}}\n\n{{Identical|Infinite}}",
 	"ipbhidename": "This is the label for a checkbox in the user block form on [[Special:Block]].\n\nSee also:\n* {{msg-mw|ipbemailban}}\n* {{msg-mw|ipb-disableusertalk}}\n* {{msg-mw|ipbenableautoblock}}\n* {{msg-mw|ipbwatchuser}}\n* {{msg-mw|ipb-hardblock}}",
 	"ipbwatchuser": "This is an option on [[Special:BlockIP]] to watch the user page and talk page of the blocked user\n\nSee also:\n* {{msg-mw|ipbemailban}}\n* {{msg-mw|ipb-disableusertalk}}\n* {{msg-mw|ipbenableautoblock}}\n* {{msg-mw|ipbhidename}}\n* {{msg-mw|ipb-hardblock}}",
-	"ipb-disableusertalk": "{{doc-singularthey}}\nUsed as label for checkbox in [[Special:Block]].\n\nSee also:\n* {{msg-mw|ipbemailban}}\n* {{msg-mw|ipbenableautoblock}}\n* {{msg-mw|ipbhidename}}\n* {{msg-mw|ipbwatchuser}}\n* {{msg-mw|ipb-hardblock}}",
+	"ipb-disableusertalk": "{{Doc-singularthey}}\nUsed as label for checkbox in [[Special:Block]] (this special page is only accessible by administrators that can change user permissions).\n\n* {{msg-mw|ipbemailban}}\n* {{msg-mw|ipbenableautoblock}}\n* {{msg-mw|ipbhidename}}\n* {{msg-mw|ipbwatchuser}}\n* {{msg-mw|ipb-hardblock}}",
 	"ipb-change-block": "Confirmation checkbox required for blocks that would override an earlier block. Appears together with {{msg-mw|ipb-needreblock}}.",
 	"ipb-confirm": "Used as hidden field in the form on [[Special:Block]].",
 	"ipb-sitewide": "A type of block the user can select from on [[Special:Block]].",
@@ -3283,7 +3286,7 @@
 	"import-parse-failure": "Error message shown when importing one or more pages to the wiki via an XML file, if the import failed because the XML in the file could not be parsed.",
 	"import-noarticle": "Used as error message when importing from interwiki.\n\nSee also:\n* {{msg-mw|Import-noarticle}}\n* {{msg-mw|Importbadinterwiki}}",
 	"import-nonewrevisions": "Used in [[Special:Import]].",
-	"xml-error-string": "Parameters:\n* $1 - Some kind of message, perhaps name of the error?\n* $2 - line number\n* $3 - column number\n* $4 - ?? $this->mByte . $this->mContext\n* $5 - error description\nExample:\n* Import failed: XML import parse failure at line 1, col 1 (byte 3; \"- <mediawiki xml\"): Empty document",
+	"xml-error-string": "Parameters:\n* $1 - Some kind of message, perhaps error name?\n* $2 - line number\n* $3 - column number\n* $4 - ?? $this->mByte . $this->mContext\n* $5 - error description\nExample:\n* Import failed: XML import parse failure at line 1, col 1 (byte 3; \"- <mediawiki xml\"): Empty document",
 	"import-upload": "Used on [[Special:Import]].\n\nRelated messages:\n* {{msg-mw|right-importupload}} (the user right for this)",
 	"import-token-mismatch": "Used as error message in [[Special:Import]].\n\nSee also:\n* {{msg-mw|import-invalid-interwiki}}\n* {{msg-mw|Importunknownsource}}\n\n{{Identical|Loss of session data}}",
 	"import-invalid-interwiki": "Used as error message in [[Special:Import]].\n\nSee also:\n* {{msg-mw|import-token-mismatch}}\n* {{msg-mw|import-invalid-interwiki}}\n* {{msg-mw|Importunknownsource}}",
