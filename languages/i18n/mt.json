@@ -286,6 +286,7 @@
 	"sort-descending": "Ordni dixxendenti",
 	"sort-ascending": "Ordni axxendenti",
 	"sort-initial": "Ordni inizzjali (sort initial)",
+	"sort-rowspan-error": "Din il-paġna fiha tabella li għandha l-attribut rowspan jindika li suppost tkopri aktar ringieli milli fil-fatt hemm fit-tabella. Tista' tirranġa din il-problema billi teditja l-paġna.",
 	"nstab-main": "Paġna",
 	"nstab-user": "{{GENDER:$1|Paġna tal-utent}}",
 	"nstab-media": "Paġna tal-medja",

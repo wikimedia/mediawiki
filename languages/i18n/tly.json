@@ -11,7 +11,8 @@
 			"QeneralĞasım",
 			"Tuzkozbir",
 			"Гусейн",
-			"아라"
+			"아라",
+			"Patriot Kor"
 		]
 	},
 	"tog-underline": "Linki jintono rijə bıkəş:",
@@ -395,8 +396,8 @@
 	"yourdiff": "Тавутон",
 	"templatesused": "{{PLURAL:$1|Нымунә|Нымунәјон}} есәтнә сәһифә око дојдә:",
 	"templatesusedpreview": "{{PLURAL:$1|1=Нымунә, око доә бедә|Нымунәјон, око доә бедән}} бә нав дијә кардеј рижимәдә:",
-	"template-protected": "(мыдофијә кардә быә)",
-	"template-semiprotected": "(тикәј мыдофијә быә)",
+	"template-protected": "(nığo doe bıə)",
+	"template-semiprotected": "(nim nığo doe bıə)",
 	"hiddencategories": "Ын сәһифә аидијотыш һесте бә {{PLURAL:$1|1 нијони kateqoriya|$1 нијони kateqoriyon}}:",
 	"permissionserrors": "Дастрәси хәто",
 	"permissionserrorstext-withaction": "Шымәку ни иҹозә бә ым һәрәкәти $2, бә дыго {{PLURAL:$1|сәбәби|сәбәбон}} горнә:",
