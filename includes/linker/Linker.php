@@ -25,16 +25,15 @@ namespace MediaWiki\Linker;
 use Config;
 use ContextSource;
 use DerivativeContext;
-use DOMXPath;
 use ExternalUserNames;
 use File;
 use Hooks;
 use Html;
 use HtmlArmor;
-use HtmlFormatter\HtmlFormatter;
 use IContextSource;
 use Language;
 use MediaTransformOutput;
+use MediaWiki\HtmlHelper;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
@@ -51,6 +50,7 @@ use WatchedItem;
 use Wikimedia\IPUtils;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Rdbms\SelectQueryBuilder;
+use Wikimedia\RemexHtml\Serializer\SerializerNode;
 use Xml;
 
 /**
@@ -1440,18 +1440,17 @@ class Linker {
 	 * @return string HTML
 	 */
 	public static function expandLocalLinks( string $html ) {
-		$formatter = new HtmlFormatter( $html );
-		$doc = $formatter->getDoc();
-		$xpath = new DOMXPath( $doc );
-		$nodes = $xpath->query( '//a[@href]' );
-		/** @var \DOMElement $node */
-		foreach ( $nodes as $node ) {
-			$node->setAttribute(
-				'href',
-				wfExpandUrl( $node->getAttribute( 'href' ), PROTO_RELATIVE )
-			);
-		}
-		return $formatter->getText( 'html' );
+		return HtmlHelper::modifyElements(
+			$html,
+			static function ( SerializerNode $node ): bool {
+				return $node->name === 'a' && isset( $node->attrs['href'] );
+			},
+			static function ( SerializerNode $node ): SerializerNode {
+				$node->attrs['href'] =
+					wfExpandUrl( $node->attrs['href'], PROTO_RELATIVE );
+				return $node;
+			}
+		);
 	}
 
 	/**
