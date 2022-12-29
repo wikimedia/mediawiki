@@ -9,6 +9,7 @@
 			"DannyS712",
 			"Ebe123",
 			"Lhoussine AIT TAYFST",
+			"Mhab Zdan1",
 			"Zanatos",
 			"아라"
 		]
@@ -104,6 +105,8 @@
 	"oct": "Uktubr",
 	"nov": "Nuwanbir",
 	"dec": "Dujanbir",
+	"period-am": "AM",
+	"period-pm": "PM",
 	"pagecategories": "{{PLURAL:$1|Taggayt|Taggayin}}",
 	"category_header": "Tasniwin n taggayt \"$1\"",
 	"subcategories": "Tiduggayin",
