@@ -19,6 +19,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\StubObject\StubGlobalUser;
 
@@ -120,7 +121,7 @@ class DeleteEqualMessages extends Maintenance {
 		// Load message information
 		if ( $langCode ) {
 			$langCodes = $services->getLanguageNameUtils()
-				->getLanguageNames( null, 'mwfile' );
+				->getLanguageNames( LanguageNameUtils::AUTONYMS, LanguageNameUtils::SUPPORTED );
 			if ( $langCode === '*' ) {
 				// All valid lang-code subpages in NS_MEDIAWIKI that
 				// override the messsages in that language
