@@ -1,47 +1,47 @@
 ( function () {
 
 	var api = new mw.Api(),
-		pageUrl = new mw.Uri(),
-		imagesText = new mw.Message( mw.messages, 'searchprofile-images' ),
-		moreResultsText = new mw.Message( mw.messages, 'search-interwiki-more-results' );
+		pageUrl = new mw.Uri();
 
 	function itemTemplate( results ) {
 
-		var resultOutput = '', i, result, imageCaption, imageThumbnailSrc;
+		return results.map( function ( result ) {
+			var imageThumbnailSrc = result.thumbnail ? result.thumbnail.source : '';
 
-		for ( i = 0; i < results.length; i++ ) {
-			result = results[ i ];
-			imageCaption = mw.html.element( 'span', { class: 'iw-result__mini-gallery__caption' }, result.title );
-			imageThumbnailSrc = ( result.thumbnail ) ? result.thumbnail.source : '';
-			resultOutput += '<div class="iw-result__mini-gallery">' +
-						/* escaping response content */
-						mw.html.element( 'a', {
-							href: '/wiki/' + result.title,
-							class: 'iw-result__mini-gallery__image',
-							style: 'background-image: url(' + imageThumbnailSrc + ');'
-						}, new mw.html.Raw( imageCaption ) ) +
-					'</div>';
-		}
+			return $( '<div>' ).addClass( 'iw-result__mini-gallery' ).append(
+				$( '<a>' )
+					.addClass( 'iw-result__mini-gallery__image' )
+					.attr( {
+						style: 'background-image: url(' + imageThumbnailSrc + ')',
+						href: new mw.Title( result.title ).getUrl()
+					} ).append(
+						$( '<span>' ).addClass( 'iw-result__mini-gallery__caption' )
+							.text( result.title )
+					)
+			);
+		} );
 
-		return resultOutput;
 	}
 
 	function itemWrapperTemplate( pageQuery, itemTemplateOutput ) {
 
-		return '<li class="iw-resultset iw-resultset--image" data-iw-resultset-pos="0">' +
-				'<div class="iw-result__header">' +
-					'<strong>' + imagesText.escaped() + '</strong>' +
-				'</div>' +
-				'<div class="iw-result__content">' +
-				/* template output has been sanitized by mw.html.element */
-				itemTemplateOutput +
-				'</div>' +
-				'<div class="iw-result__footer">' +
-					'<a href="/w/index.php?title=Special:Search&search=' + encodeURIComponent( pageQuery ) + '&fulltext=1&profile=images">' +
-						moreResultsText.escaped() +
-					'</a>' +
-				'</div>' +
-			'</li>';
+		return $( '<li>' ).addClass( 'iw-resultset iw-resultset--image' ).attr( 'data-iw-resultset-pos', 0 ).append(
+			$( '<div>' ).addClass( 'iw-result__header' ).append(
+				$( '<strong>' ).text( mw.msg( 'searchprofile-images' ) )
+			),
+			$( '<div>' ).addClass( 'iw-result__content' ).append(
+				itemTemplateOutput
+			),
+			$( '<div>' ).addClass( 'iw-result__footer' ).append(
+				$( '<a>' )
+					.attr( 'href', new mw.Title( 'Special:Search' ).getUrl( {
+						search: pageQuery,
+						fulltext: 1,
+						profile: 'images'
+					} ) )
+					.text( mw.msg( 'search-interwiki-more-results' ) )
+			)
+		);
 
 	}
 
@@ -57,7 +57,7 @@
 		pithumbsize: 300,
 		formatversion: 2
 	} ).done( function ( resp ) {
-		var results = ( resp.query && resp.query.pages ) ? resp.query.pages : false,
+		var results = resp.query && resp.query.pages || false,
 			multimediaWidgetTemplate;
 
 		if ( !results ) {

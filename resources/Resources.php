@@ -2349,8 +2349,8 @@ return [
 		'scripts' => 'resources/src/mediawiki.special.search.commonsInterwikiWidget.js',
 		'dependencies' => [
 			'mediawiki.api',
-			'mediawiki.Uri',
-			'mediawiki.jqueryMsg'
+			'mediawiki.Title',
+			'mediawiki.Uri'
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 		'messages' => [
