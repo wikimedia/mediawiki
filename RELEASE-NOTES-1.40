@@ -296,6 +296,9 @@ because of Phabricator reports.
   deprecated in 1.37, now emit deprecation warnings.
 * LanguageConverterFactory::isTitleConversionDisabled(), deprecated in 1.36,
   now emits deprecation warnings.
+* Language::getFileName(), ::getMessagesFileName() and
+  ::getJsonMessagesFileName(), deprecated in 1.34,
+  now emit deprecation warnings.
 * User::incEditCount(), deprecated in 1.37, now emits deprecation warnings.
 * The ability to override and use User::$mRights, deprecated in 1.34, now emits
   deprecation warnings.

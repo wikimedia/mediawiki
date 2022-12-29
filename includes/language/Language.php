@@ -4407,7 +4407,7 @@ class Language {
 	/**
 	 * Get the name of a file for a certain language code
 	 *
-	 * @deprecated since 1.34, use LanguageNameUtils
+	 * @deprecated since 1.34, use LanguageNameUtils, hard-deprecated since 1.40
 	 * @param string $prefix Prepend this to the filename
 	 * @param string $code Language code
 	 * @param string $suffix Append this to the filename
@@ -4415,28 +4415,31 @@ class Language {
 	 * @return string $prefix . $mangledCode . $suffix
 	 */
 	public static function getFileName( $prefix, $code, $suffix = '.php' ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()
 			->getFileName( $prefix, $code, $suffix );
 	}
 
 	/**
-	 * @deprecated since 1.34, use LanguageNameUtils
+	 * @deprecated since 1.34, use LanguageNameUtils, hard-deprecated since 1.40
 	 * @param string $code
 	 * @return string
 	 */
 	public static function getMessagesFileName( $code ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()
 			->getMessagesFileName( $code );
 	}
 
 	/**
-	 * @deprecated since 1.34, use LanguageNameUtils
+	 * @deprecated since 1.34, use LanguageNameUtils, hard-deprecated since 1.40
 	 * @param string $code
 	 * @return string
 	 * @throws MWException
 	 * @since 1.23
 	 */
 	public static function getJsonMessagesFileName( $code ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()
 			->getJsonMessagesFileName( $code );
 	}
