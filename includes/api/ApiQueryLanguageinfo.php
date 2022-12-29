@@ -93,7 +93,7 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 		$includeVariants = isset( $props['variants'] );
 
 		$targetLanguageCode = $this->getLanguage()->getCode();
-		$include = 'all';
+		$include = LanguageNameUtils::ALL;
 
 		$availableLanguageCodes = array_keys( $this->languageNameUtils->getLanguageNames(
 			// MediaWiki and extensions may return different sets of language codes

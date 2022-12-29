@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ResourceLoader\CodexModule;
@@ -1580,7 +1581,7 @@ return [
 			[ 'name' => 'names.json', 'callback' => static function ( Context $context ) {
 				return MediaWikiServices::getInstance()
 					->getLanguageNameUtils()
-					->getLanguageNames( $context->getLanguage(), 'all' );
+					->getLanguageNames( $context->getLanguage(), LanguageNameUtils::ALL );
 			} ],
 		],
 		'dependencies' => 'mediawiki.language',
