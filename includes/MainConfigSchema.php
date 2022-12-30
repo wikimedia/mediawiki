@@ -6331,9 +6331,10 @@ class MainConfigSchema {
 	public const UrlProtocols = [
 		'default' => [
 			'bitcoin:', 'ftp://', 'ftps://', 'geo:', 'git://', 'gopher://', 'http://',
-			'https://', 'irc://', 'ircs://', 'magnet:', 'mailto:', 'mms://', 'news:',
-			'nntp://', 'redis://', 'sftp://', 'sip:', 'sips:', 'sms:', 'ssh://',
-			'svn://', 'tel:', 'telnet://', 'urn:', 'worldwind://', 'xmpp:', '//'
+			'https://', 'irc://', 'ircs://', 'magnet:', 'mailto:', 'matrix:', 'mms://',
+			'news:', 'nntp://', 'redis://', 'sftp://', 'sip:', 'sips:', 'sms:',
+			'ssh://', 'svn://', 'tel:', 'telnet://', 'urn:', 'worldwind://', 'xmpp:',
+			'//',
 		],
 		'type' => 'list',
 	];
