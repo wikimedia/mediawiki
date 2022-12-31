@@ -74,10 +74,6 @@ class CommentStore {
 			'stage' => MIGRATION_OLD,
 			'deprecatedIn' => null,
 		],
-		'img_description' => [
-			'stage' => MIGRATION_NEW,
-			'deprecatedIn' => '1.32',
-		],
 	];
 
 	/**
@@ -151,7 +147,6 @@ class CommentStore {
 
 			$tempTableStage = static::TEMP_TABLES[$key]['stage'] ?? MIGRATION_NEW;
 			if ( $tempTableStage & SCHEMA_COMPAT_READ_OLD ) {
-				// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 				$fields["{$key}_pk"] = static::TEMP_TABLES[$key]['joinPK'];
 			}
 			if ( $tempTableStage & SCHEMA_COMPAT_READ_NEW ) {
@@ -195,12 +190,9 @@ class CommentStore {
 				if ( $tempTableStage & SCHEMA_COMPAT_READ_OLD ) {
 					$t = static::TEMP_TABLES[$key];
 					$alias = "temp_$key";
-					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 					$tables[$alias] = $t['table'];
-					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 					$joins[$alias] = [ $join, "{$alias}.{$t['pk']} = {$t['joinPK']}" ];
 					if ( ( $tempTableStage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_OLD ) {
-						// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 						$joinField = "{$alias}.{$t['field']}";
 					} else {
 						// Nothing hits this code path for now, but will in the future when we set
@@ -208,7 +200,6 @@ class CommentStore {
 						// merging revision_comment_temp into revision.
 						// @codeCoverageIgnoreStart
 						$joins[$alias][0] = 'LEFT JOIN';
-						// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 						$joinField = "(CASE WHEN {$key}_id != 0 THEN {$key}_id ELSE {$alias}.{$t['field']} END)";
 						throw new LogicException( 'Nothing should reach this code path at this time' );
 						// @codeCoverageIgnoreEnd
@@ -300,11 +291,8 @@ class CommentStore {
 				$id = $row["{$key}_pk"];
 				$row2 = $db->newSelectQueryBuilder()
 					->select( [ 'comment_id', 'comment_text', 'comment_data' ] )
-					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 					->from( $t['table'] )
-					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 					->join( 'comment', null, [ "comment_id = {$t['field']}" ] )
-					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 					->where( [ $t['pk'] => $id ] )
 					->caller( __METHOD__ )->fetchRow();
 			}
@@ -514,12 +502,9 @@ class CommentStore {
 				$commentId = $comment->id;
 				$callback = static function ( $id ) use ( $dbw, $commentId, $t, $func ) {
 					$dbw->insert(
-						// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 						$t['table'],
 						[
-							// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 							$t['pk'] => $id,
-							// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset Only set for stage old
 							$t['field'] => $commentId,
 						],
 						$func
@@ -568,8 +553,7 @@ class CommentStore {
 	/**
 	 * Insert a comment in a temporary table in preparation for a row that references it
 	 *
-	 * This is currently needed for "rev_comment" and "img_description". In the
-	 * future that requirement will be removed.
+	 * This is currently needed for "rev_comment". In the future that requirement will be removed.
 	 *
 	 * @note It's recommended to include both the call to this method and the
 	 *  row insert in the same transaction.
@@ -596,6 +580,7 @@ class CommentStore {
 		if ( !isset( static::TEMP_TABLES[$key] ) ) {
 			throw new InvalidArgumentException( "Must use insert() for $key" );
 		} elseif ( isset( static::TEMP_TABLES[$key]['deprecatedIn'] ) ) {
+			// @phan-suppress-next-line PhanTypeMismatchArgument 'deprecatedIn' is usually string
 			wfDeprecated( __METHOD__ . " for $key", static::TEMP_TABLES[$key]['deprecatedIn'] );
 		}
 

@@ -200,6 +200,9 @@ because of Phabricator reports.
 * Article::viewRedirect(), deprecated since 1.30, has been removed.
 * Title::getNotificationTimestamp(), deprecated since 1.35, has been removed.
 * WikiRevision::$fileIsTemp property, deprecated since 1.29, has been removed.
+* Use of CommentStore::insertWithTempTable() with 'img_description' is no
+  longer supported, it was deprecated since 1.32. Use CommentStore::insert()
+  instead.
 * LoadMonitorMysql was removed without deprecation. Use LoadMonitor instead.
 * Return values in the parameter $pageLang of the PageContentLanguage hook with
   other types than a Language object, deprecated since 1.33, hard deprecated
