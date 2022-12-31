@@ -385,6 +385,8 @@ return [
 			'MaxExecutionTimeForExpensiveQueries' => 0,
 			'TemplateLinksSchemaMigrationStage' => 768,
 			'ExternalLinksSchemaMigrationStage' => 3,
+			'CommentTempTableSchemaMigrationStage' => [
+			],
 			'ContentHandlers' => [
 				'wikitext' => [
 					'class' => 'WikitextContentHandler',
@@ -2563,6 +2565,7 @@ return [
 			'LocalDatabases' => 'array',
 			'TemplateLinksSchemaMigrationStage' => 'integer',
 			'ExternalLinksSchemaMigrationStage' => 'integer',
+			'CommentTempTableSchemaMigrationStage' => 'object',
 			'ContentHandlers' => 'object',
 			'NamespaceContentModels' => 'object',
 			'TextModelsToParse' => 'array',
