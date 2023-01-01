@@ -139,6 +139,43 @@ class MWExceptionHandler {
 	}
 
 	/**
+	 * Roll back any open database transactions
+	 *
+	 * This method is used to attempt to recover from exceptions
+	 */
+	private static function rollbackPrimaryChanges() {
+		if ( !MediaWikiServices::hasInstance() ) {
+			// MediaWiki isn't fully initialized yet, it's not safe to access services.
+			// This also means that there's nothing to roll back yet.
+			return;
+		}
+
+		$services = MediaWikiServices::getInstance();
+		if ( $services->isServiceDisabled( 'DBLoadBalancerFactory' ) ) {
+			// The DBLoadBalancerFactory is disabled, possibly because we are in the installer,
+			// or we are in the process of shutting MediaWiki. At this point, any DB transactions
+			// would already have been committed or rolled back.
+			return;
+		}
+
+		// Roll back DBs to avoid transaction notices. This might fail
+		// to roll back some databases due to connection issues or exceptions.
+		// However, any sensible DB driver will roll back implicitly anyway.
+		try {
+			$lbFactory = $services->getDBLoadBalancerFactory();
+			$lbFactory->rollbackPrimaryChanges( __METHOD__ );
+			$lbFactory->flushPrimarySessions( __METHOD__ );
+		} catch ( DBError $e ) {
+			// If the DB is unreachable, rollback() will throw an error
+			// and the error report() method might need messages from the DB,
+			// which would result in an exception loop. PHP may escalate such
+			// errors to "Exception thrown without a stack frame" fatals, but
+			// it's better to be explicit here.
+			self::logException( $e, self::CAUGHT_BY_HANDLER );
+		}
+	}
+
+	/**
 	 * Roll back any open database transactions and log the stack trace of the throwable
 	 *
 	 * This method is used to attempt to recover from exceptions
@@ -151,24 +188,7 @@ class MWExceptionHandler {
 		Throwable $e,
 		$catcher = self::CAUGHT_BY_OTHER
 	) {
-		$services = MediaWikiServices::getInstance();
-		if ( !$services->isServiceDisabled( 'DBLoadBalancerFactory' ) ) {
-			// Rollback DBs to avoid transaction notices. This might fail
-			// to rollback some databases due to connection issues or exceptions.
-			// However, any sensible DB driver will rollback implicitly anyway.
-			try {
-				$lbFactory = $services->getDBLoadBalancerFactory();
-				$lbFactory->rollbackPrimaryChanges( __METHOD__ );
-				$lbFactory->flushPrimarySessions( __METHOD__ );
-			} catch ( DBError $e2 ) {
-				// If the DB is unreachable, rollback() will throw an error
-				// and the error report() method might need messages from the DB,
-				// which would result in an exception loop. PHP may escalate such
-				// errors to "Exception thrown without a stack frame" fatals, but
-				// it's better to be explicit here.
-				self::logException( $e2, $catcher );
-			}
-		}
+		self::rollbackPrimaryChanges();
 
 		self::logException( $e, $catcher );
 	}

@@ -51,7 +51,7 @@
 	"apihelp-block-param-reason": "Reden voor blokkade.",
 	"apihelp-block-param-anononly": "Alleen anonieme gebruikers blokkeren (d.w.z. anonieme bewerkingen via dit IP-adres uitschakelen).",
 	"apihelp-block-param-nocreate": "Het aanmaken van accounts verhinderen.",
-	"apihelp-block-param-autoblock": "Automatisch het laatst gebruikte IP-adres blokkeren, en tevens ieder volgend IP-adres waarvanaf de gebruiker probeert aan te melden.",
+	"apihelp-block-param-autoblock": "Automatisch het laatst gebruikte IP-adres blokkeren, en tevens ieder volgend IP-adres waar vanaf de gebruiker probeert aan te melden.",
 	"apihelp-block-param-noemail": "Het sturen van e-mail via wiki verhinderen. (Vereist het <code>blockemail</code>-recht.)",
 	"apihelp-block-param-hidename": "De gebruikersnaam in het blokkeerlogboek verbergen. (Vereist het <code>hideuser</code>-recht.)",
 	"apihelp-block-param-allowusertalk": "De gebruiker toestaan om de eigen overlegpagina te bewerken (afhankelijk van <var>[[mw:Special:MyLanguage/Manual:$wgBlockAllowsUTEdit|$wgBlockAllowsUTEdit]]</var>).",

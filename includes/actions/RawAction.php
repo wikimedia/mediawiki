@@ -237,10 +237,20 @@ class RawAction extends FormlessAction {
 			$request->response()->header( "Last-modified: $lastmod" );
 
 			// Public-only due to cache headers
-			$content = $rev->getContent( SlotRecord::MAIN );
+			// Fetch specific slot if defined
+			$slot = $this->getRequest()->getText( 'slot' );
+			if ( $slot ) {
+				if ( $rev->hasSlot( $slot ) ) {
+					$content = $rev->getContent( $slot );
+				} else {
+					$content = null;
+				}
+			} else {
+				$content = $rev->getContent( SlotRecord::MAIN );
+			}
 
 			if ( $content === null ) {
-				// revision not found (or suppressed)
+				// revision or slot not found (or suppressed)
 			} elseif ( !$content instanceof TextContent ) {
 				// non-text content
 				wfHttpError( 415, "Unsupported Media Type", "The requested page uses the content model `"

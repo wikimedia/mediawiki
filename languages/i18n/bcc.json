@@ -17,7 +17,8 @@
 			"RigiMahnoor",
 			"Sultanselim baloch",
 			"ZxxZxxZ",
-			"아라"
+			"아라",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": ":لینکاں کِشک کن",
@@ -709,7 +710,7 @@
 	"rev-suppressed-text-view": "ائ ویرایش چه ائ پیج '''دیم داشت''' بوت.\nبلکین اطلاعات گون آئی همگرنچء مان [{{fullurl:{{#Special:Log}}/suppress|page=$1}} دیم داشتانی سیاهگ]. موجوت بیت انت.",
 	"rev-deleted-no-diff": "ائ ویرایش چه ائ پیج '''هزپ بیتگ انت'''.\nبلکین اطلاعات گون آئی همگرنچء مان  [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} هزپانی سیاهگ]. موجوت بیت انت.",
 	"rev-suppressed-no-diff": "شما نتوان ات ائ ٹگل بیتگانء بگند ات، پرچا که یکء چه نسخگ ان \"\"هزپ بیتگ انت\"\".",
-	"rev-deleted-unhide-diff": "یکء چه ائ دوئین نسخگ ان '''هزپ بیتگ انت'''.\nبلکین اطلاعات گون آئی همگرنچء مان [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} هزپانی سیاهگ] موجوت بیت انت.\nشما هنچوش اگان بلوٹ ات توان ات [$1 ائ نسخگء بچار ات].",
+	"rev-deleted-unhide-diff": "یکء چه ائ دوئین نسخگ ان '''هزپ بیتگ انت'''.\nبلکین اطلاعات گون آئی همگرنچء مان [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} هزپانی سیاهگ] موجوت بیت انت.\nشما هنچوش اگان بلوٹ ات توان ات [$1 ائ نسخگء بچار ات].",
 	"rev-suppressed-unhide-diff": "ائ ویرایش چه ائ پیج '''دیم داشت''' بوت.\nبلکین اطلاعات گون آئی همگرنچء مان [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} دیم داشتانی سیاهگ]. موجوت بیت انت.\nشما هنچوش اگان بلوٹ ات توان ات [$1 ائ نسخگء بچار ات].",
 	"rev-deleted-diff-view": "ائ ویرایش چه ائ پیج '''هزپ بیتگ انت'''.\nبلکین اطلاعات گون آئی همگرنچء مان [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} هزپانی سیاهگ]. موجوت بیت انت.",
 	"rev-suppressed-diff-view": "ائ ویرایش چه ائ پیج '''دیم داشت''' بوت.\nبلکین اطلاعات گون آئی همگرنچء مان [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} دیم داشتانی سیاهگ]. موجوت بیت انت.",

@@ -232,7 +232,7 @@ class NameTableStore {
 		$dbw = $this->getDBConnection( DB_PRIMARY, $connFlags );
 		$this->tableCache = $this->loadTable( $dbw );
 		$dbw->onTransactionPreCommitOrIdle( function () {
-			$this->cache->reap( $this->getCacheKey(), INF );
+			$this->cache->delete( $this->getCacheKey() );
 		}, __METHOD__ );
 
 		return $this->tableCache;

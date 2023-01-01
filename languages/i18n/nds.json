@@ -19,7 +19,8 @@
 			"Vlad5250",
 			"Zylbath",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Verwies ünnerstrieken",
@@ -533,7 +534,7 @@
 	"rev-deleted-text-unhide": "Disse Version is nu wegdaan un is nich mehr apen in’t Archiv to sehn.\nDetails dorto staht in dat [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lösch-Logbook].\nAs Administrator kannst du de Version [$1 över dissen Lenk] ankieken.",
 	"rev-deleted-text-view": "Disse Version is wegsmeten worrn un is nich mehr apen in’t Archiv to sehn.\nAs Administrater op {{SITENAME}} kannst du ehr aver noch jümmer sehn.\nMehr över dat Wegsmieten is in dat [{{fullurl:{{#Special:Log}}/suppress|page=$1}} Lösch-Logbook] to finnen.",
 	"rev-deleted-no-diff": "Du kannst dissen Ünnerscheed nich ankieken. Een von de Versionen is nich mehr apen in’t Archiv to sehn.\nMehr dorto steiht in dat [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Wegsmiet-Logbook].",
-	"rev-deleted-unhide-diff": "Een vun de Versionen vun dissen Ünnerscheed is nich mehr apen in’t Archiv to sehn.\nDetails staht in’t [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Wegsmiet-Logbook].\nAs Administrater kannst du [$1 mit dissen Lenk] den Ünnerscheed ankieken.",
+	"rev-deleted-unhide-diff": "Een vun de Versionen vun dissen Ünnerscheed is nich mehr apen in’t Archiv to sehn.\nDetails staht in’t [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Wegsmiet-Logbook].\nDu kannst [$1 mit dissen Lenk] den Ünnerscheed ankieken.",
 	"rev-delundel": "wiesen/versteken",
 	"rev-showdeleted": "wiesen",
 	"revisiondelete": "Versionen wegsmieten/wedderhalen",

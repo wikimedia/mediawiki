@@ -363,5 +363,9 @@
 	"exif-urgency-normal": "Normalno ($1)",
 	"exif-urgency-low": "Nisko ($1)",
 	"exif-urgency-high": "Visoko ($1)",
-	"exif-urgency-other": "Priorite definiran od korisnika ($1)"
+	"exif-urgency-other": "Priorite definiran od korisnika ($1)",
+	"exif-usepanoramaviewer-true": "Da",
+	"exif-usepanoramaviewer-false": "Ne",
+	"exif-exposurelockused-true": "Da",
+	"exif-exposurelockused-false": "Ne"
 }

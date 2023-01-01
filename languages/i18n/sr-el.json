@@ -235,7 +235,7 @@
 	"redirectedfrom": "(preusmereno sa $1)",
 	"redirectpagesub": "Preusmerenje",
 	"redirectto": "Preusmerava na:",
-	"lastmodifiedat": "Ova stranica je poslednji put uređena na datum $1 u $2 č.",
+	"lastmodifiedat": "Datum i vreme poslednje izmene stranice: $1 u $2.",
 	"viewcount": "Ovoj stranici je pristupljeno {{PLURAL:$1|jedanput|$1 puta}}.",
 	"protectedpage": "Zaštićena stranica",
 	"jumpto": "Pređi na:",

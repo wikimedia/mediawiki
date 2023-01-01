@@ -26,7 +26,8 @@
 			"Xiaomingyan",
 			"Xiplus",
 			"蘭斯特",
-			"아라"
+			"아라",
+			"Willy1018"
 		]
 	},
 	"config-desc": "MediaWiki 安裝程式",
@@ -235,7 +236,7 @@
 	"config-upload-deleted": "已刪除檔案的目錄：",
 	"config-upload-deleted-help": "請選擇用來存放已刪除檔案的目錄。\n理想情況下，此目錄不可被網頁直接存取。",
 	"config-personalization-settings": "個人化",
-	"config-logo-summary": "對於這些各個欄位，您需要上傳適當大小的圖片，並在下方方框輸入 URL。若您的標誌與 <code>$wgStylePath</code> 或是 <code>$wgScriptPath</code> 這些路徑相關，您可以拿來使用。您也可以對這些任一方框留空。\n\n您也能在支援的瀏覽器上，從您的檔案系統拖拉圖片檔案到輸入框或是預覽區域裡。",
+	"config-logo-summary": "對於這些各個欄位，您需要上傳適當大小的圖片，並在下方方框輸入 URL。若您的標誌與 <code>$wgStylePath</code> 或是 <code>$wgScriptPath</code> 這些路徑相關，您可以拿來使用。您也可以對這些任一方框留空。",
 	"config-logo-preview-main": "首頁",
 	"config-logo-icon": "標誌（圖示）",
 	"config-logo-icon-help": "您的標誌模樣應採用方形，一般會是超過 50 像素或是 SVG 格式。",

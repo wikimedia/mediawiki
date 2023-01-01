@@ -97,7 +97,8 @@
 			"نصوح",
 			"وهراني",
 			"아라",
-			"Dr-Taher"
+			"Dr-Taher",
+			"FShbib"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -876,7 +877,7 @@
 	"expansion-depth-exceeded-category-desc": "الصفحة تجاوزت الحد الأقصى لعمق التوسيع.",
 	"expansion-depth-exceeded-warning": "الصفحة تجاوزت عمق التوسيع",
 	"parser-unstrip-loop-warning": "حلقة معراة تم الكشف عنها",
-	"unstrip-depth-warning": "تعدى حد العودية Unstrip  ($1)",
+	"unstrip-depth-warning": "تعدى حد العمق Unstrip ($1)",
 	"unstrip-depth-category": "الصفحات التي يتم تجاوز حد عمق أونستريب فيها",
 	"unstrip-depth-category-desc": "الصفحة تتجاوز حد عمق unstrip.",
 	"unstrip-size-warning": "تم تجاوز حد الحجم Unstrip ($1)",
@@ -1088,7 +1089,7 @@
 	"showingresultsinrange": "بالأسفل {{PLURAL:$1|نتيجة واحدة|<strong>$1</strong> نتائج|<strong>$1</strong> نتيجة}} في النطاق من <strong>$2</strong> إلى <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|النتائج <strong>$1</strong> من <strong>$3</strong>|النتائج <strong>$1 - $2</strong> من أصل <strong>$3</strong>}}",
 	"search-nonefound": "لا توجد نتائج تطابق الاستعلام.",
-	"search-nonefound-thiswiki": "لا توجد نتائج تطابق الاستعلام في هذا الموقع.",
+	"search-nonefound-thiswiki": "لا توجد نتائج تطابق الاستعلام في $3.",
 	"powersearch-legend": "بحث متقدم",
 	"powersearch-ns": "بحث في النطاقات:",
 	"powersearch-togglelabel": "اختر:",
@@ -2292,7 +2293,7 @@
 	"activeusers-noresult": "لم يعثر على أي مستخدمين",
 	"activeusers-submit": "عرض المستخدمين النشطين",
 	"listgrouprights": "صلاحيات مجموعات المستخدمين",
-	"listgrouprights-summary": "التالي قائمة بمجموعات المستخدمين المعرفة في هذا الويكي، بصلاحياتهم المصاحبة.\nربما تكون هناك [[{{MediaWiki:Listgrouprights-helppage}}|معلومات إضافية]] حول الصلاحيات المنفردة.",
+	"listgrouprights-summary": "فيما يلي قائمة بمجموعات المستخدمين المحددة في هذا الويكي،  مع حقوق الوصول المرتبطة بها. قد تكون هناك [[{{MediaWiki:Listgrouprights-helppage}}|معلومات إضافية]] على صلاحيات محددة.",
 	"listgrouprights-key": "عنوان:\n* <span class=\"listgrouprights-granted\">صلاحية ممنوحة</span>\n* <span class=\"listgrouprights-revoked\">صلاحية مسحوبة</span>",
 	"listgrouprights-group": "المجموعة",
 	"listgrouprights-rights": "الصلاحيات",

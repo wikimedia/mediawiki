@@ -353,7 +353,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'sites', 'site_protocol', 'sites_protocol' ],
 			[ 'renameIndex', 'sites', 'site_domain', 'sites_domain' ],
 			[ 'renameIndex', 'sites', 'site_forward', 'sites_forward' ],
-			[ 'dropFkey', 'user_newtalk', 'user_id ' ],
+			[ 'dropFkey', 'user_newtalk', 'user_id' ],
 			[ 'renameIndex', 'user_newtalk', 'user_newtalk_id', 'un_user_id' ],
 			[ 'renameIndex', 'user_newtalk', 'user_newtalk_ip', 'un_user_ip' ],
 			[ 'changeField', 'interwiki', 'iw_prefix', 'VARCHAR(32)', '' ],
@@ -597,7 +597,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropPgField', 'page', 'page_restrictions' ],
 			[ 'migrateTemplatelinks' ],
 			[ 'changeNullableField', 'templatelinks', 'tl_target_id', 'NOT NULL', true ],
-			[ 'changePrimaryKey', 'templatelinks', [ 'tl_from', 'tl_target_id' ], 'templatelinks_pk' ],
+			[ 'changePrimaryKey', 'templatelinks', [ 'tl_from', 'tl_target_id' ] ],
 			[ 'dropField', 'templatelinks', 'tl_title', 'patch-templatelinks-drop-tl_title.sql' ],
 		];
 	}
