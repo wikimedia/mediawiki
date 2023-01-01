@@ -22,31 +22,31 @@ class PagerNavigationBuilder {
 
 	/** @var PageReference */
 	protected $page;
-	/** @var array<string,string> */
+	/** @var array<string,?string> */
 	protected $linkQuery = [];
 
-	/** @var array<string,string>|null */
+	/** @var array<string,?string>|null */
 	private $prevLinkQuery = null;
 	/** @var string */
 	private $prevMsg = 'prevn';
 	/** @var string|null */
 	private $prevTooltipMsg = null;
 
-	/** @var array<string,string>|null */
+	/** @var array<string,?string>|null */
 	private $nextLinkQuery = null;
 	/** @var string */
 	private $nextMsg = 'nextn';
 	/** @var string|null */
 	private $nextTooltipMsg = null;
 
-	/** @var array<string,string>|null */
+	/** @var array<string,?string>|null */
 	private $firstLinkQuery = null;
 	/** @var string|null */
 	private $firstMsg = null;
 	/** @var string|null */
 	private $firstTooltipMsg = null;
 
-	/** @var array<string,string>|null */
+	/** @var array<string,?string>|null */
 	private $lastLinkQuery = null;
 	/** @var string|null */
 	private $lastMsg = null;
@@ -61,9 +61,6 @@ class PagerNavigationBuilder {
 	private $limitLinkQueryParam = 'limit';
 	/** @var string|null */
 	private $limitTooltipMsg = null;
-
-	/** @var string Additional HTML to display after the pager links */
-	private $extra = '';
 
 	/** @var callable|null $callback Function to call instead of makeLink().
 	 *   See IndexPager::makeLink() for the expected signature.
@@ -87,7 +84,7 @@ class PagerNavigationBuilder {
 	}
 
 	/**
-	 * @param array<string,string> $linkQuery
+	 * @param array<string,?string> $linkQuery
 	 * @return $this
 	 */
 	public function setLinkQuery( array $linkQuery ): PagerNavigationBuilder {
@@ -96,7 +93,7 @@ class PagerNavigationBuilder {
 	}
 
 	/**
-	 * @param array<string,string>|null $prevLinkQuery
+	 * @param array<string,?string>|null $prevLinkQuery
 	 * @return $this
 	 */
 	public function setPrevLinkQuery( ?array $prevLinkQuery ): PagerNavigationBuilder {
@@ -123,7 +120,7 @@ class PagerNavigationBuilder {
 	}
 
 	/**
-	 * @param array<string,string>|null $nextLinkQuery
+	 * @param array<string,?string>|null $nextLinkQuery
 	 * @return $this
 	 */
 	public function setNextLinkQuery( ?array $nextLinkQuery ): PagerNavigationBuilder {
@@ -150,7 +147,7 @@ class PagerNavigationBuilder {
 	}
 
 	/**
-	 * @param array<string,string>|null $firstLinkQuery
+	 * @param array<string,?string>|null $firstLinkQuery
 	 * @return $this
 	 */
 	public function setFirstLinkQuery( ?array $firstLinkQuery ): PagerNavigationBuilder {
@@ -177,7 +174,7 @@ class PagerNavigationBuilder {
 	}
 
 	/**
-	 * @param array<string,string>|null $lastLinkQuery
+	 * @param array<string,?string>|null $lastLinkQuery
 	 * @return $this
 	 */
 	public function setLastLinkQuery( ?array $lastLinkQuery ): PagerNavigationBuilder {
@@ -236,15 +233,6 @@ class PagerNavigationBuilder {
 	 */
 	public function setLimitTooltipMsg( ?string $limitTooltipMsg ): PagerNavigationBuilder {
 		$this->limitTooltipMsg = $limitTooltipMsg;
-		return $this;
-	}
-
-	/**
-	 * @param string $extra Additional HTML to display after the pager links
-	 * @return $this
-	 */
-	public function setExtra( string $extra ): PagerNavigationBuilder {
-		$this->extra = $extra;
 		return $this;
 	}
 
@@ -376,9 +364,6 @@ class PagerNavigationBuilder {
 				return Message::rawParam( $limitLink );
 			}, $limitLinks ), 'pipe' )
 		)->escaped();
-		if ( $this->extra ) {
-			$html .= ' ' . $this->msg( 'parentheses' )->rawParams( $this->extra )->escaped();
-		}
 
 		return Html::rawElement( 'div', [ 'class' => 'mw-pager-navigation-bar' ], $html );
 	}

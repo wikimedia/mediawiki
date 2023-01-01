@@ -6,7 +6,8 @@
 			"Nemo bis",
 			"RebecaRwanda",
 			"Rodrigue",
-			"Vogone"
+			"Vogone",
+			"Eric Mukiza"
 		]
 	},
 	"tog-underline": "Ihuza umurongo:",
@@ -137,11 +138,15 @@
 	"nstab-main": "Inyandiko",
 	"nstab-user": "{{GENDER:$1|Urupapuro rw'umukoresha}}",
 	"nstab-special": "Urupapuro rwumwihariko",
+	"nstab-project": "urupapuro rw'umushinga",
 	"nstab-image": "Dosiye",
 	"nstab-mediawiki": "Ubutumwa",
+	"nstab-template": "Inyandikorugero",
+	"nstab-help": "Urupapuro rw'ubufasha",
 	"nstab-category": "Icyiciro",
 	"mainpage-nstab": "Intangiriro",
 	"viewsource": "Reba inkomoko",
+	"skin-action-viewsource": "Reba inkomoko",
 	"login": "Injira",
 	"userlogout": "Sohoka",
 	"pt-login": "Injira",
@@ -173,7 +178,7 @@
 	"nextn": "{{PLURAL:$1|ubukurikira|$1}}",
 	"shown-title": "Show $1 {{PLURAL:$1|igisubizo|ibisubizo}} ku rupapuro",
 	"viewprevnext": "Reba ($1 {{int:pipe-separator}} $2) ($3)",
-	"searchmenu-new": "<strong>Tangiza urubuga \"[[:$1]]\" kuriyi wiki!</strong> {{PLURAL:$2|0=|Reba nanone urupapuro rubonetse hashingiwe kubyo washakishije.|Reba ibyavuye mugushakisha.}}",
+	"searchmenu-new": "Tangiza urubuga \"[[:$1]]\" kuriyi wiki! {{PLURAL:$2|0=|Reba nanone urupapuro rubonetse hashingiwe kubyo washakishije.|Reba ibyavuye mugushakisha.}}",
 	"searchprofile-articles": "Ibiri mumpapuro",
 	"searchprofile-images": "Amashusho n'ibindi",
 	"searchprofile-everything": "Burikintu cyose",
@@ -266,5 +271,6 @@
 	"specialpages": "Inyandiko zidasanzwe",
 	"htmlform-submit": "Ohereza",
 	"searchsuggest-search": "Shakisha {{SITENAME}}",
+	"searchsuggest-containing": "Shakisha impapuro zirimo",
 	"skin-action-move": "Imura"
 }

@@ -1373,7 +1373,7 @@
 	"locknoconfirm": "Rin va gruyerakiray me al prakel.",
 	"lockdbsuccesssub": "Ixatcanhara va origak.",
 	"unlockdbsuccesssub": "Dimixatcayan origak.",
-	"lockdbsuccesstext": "Origak ke {{SITENAME}} al zo ixatcar.\n\nN'oubliez pas de la déverrouiller lorsque vous aurez terminé votre opération de maintenance.",
+	"lockdbsuccesstext": "The database has been locked.<br />\nRemember to [[Special:UnlockDB|remove the lock]] after your maintenance is complete.",
 	"unlockdbsuccesstext": "La base de données de {{SITENAME}} est déverrouillée.",
 	"databasenotlocked": "Origak me zo ixatcar.",
 	"move-page": "Arrundara va $1",

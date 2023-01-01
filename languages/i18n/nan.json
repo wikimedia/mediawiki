@@ -18,7 +18,8 @@
 			"Yoxem",
 			"唐吉訶德的侍從",
 			"進也",
-			"아라"
+			"아라",
+			"沈澄心"
 		]
 	},
 	"tog-underline": "Liân-kiat oē té-sûn:",
@@ -782,8 +783,8 @@
 	"rcshowhidemine-show": "hiàn",
 	"rcshowhidemine-hide": "am",
 	"rclinks": "Hían-sī $2 ji̍t lāi siōng sin ê $1 hāng kái-piàn",
-	"diff": "Cheng-chha",
-	"hist": "ls",
+	"diff": "cheng-chha",
+	"hist": "le̍k-sú",
 	"hide": "am",
 	"show": "hían-sī",
 	"minoreditletter": "~",

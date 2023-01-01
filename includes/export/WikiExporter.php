@@ -559,7 +559,6 @@ class WikiExporter {
 					. ' revision ' . $revRow->rev_id . ': ' . $ex->getMessage() );
 			}
 			$lastRow = $revRow;
-			$this->reloadDBConfig();
 		}
 
 		if ( $rowCarry ) {

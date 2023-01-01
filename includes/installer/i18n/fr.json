@@ -244,7 +244,7 @@
 	"config-upload-deleted": "Répertoire pour les fichiers supprimés :",
 	"config-upload-deleted-help": "Choisissez un répertoire qui servira à archiver les fichiers supprimés.\nIdéalement, il ne devrait pas être accessible depuis le web.",
 	"config-personalization-settings": "Personnalisation",
-	"config-logo-summary": "Pour chacun de ces champs, vous devrez télécharger une image de la taille appropriée, et saisir l’URL dans les cases ci-dessous. Vous pouvez utiliser <code>$wgStylePath</code> ou <code>$wgScriptPath</code> si votre logo se rapporte à ces chemins. Vous pouvez laisser n’importe laquelle de ces cases vide. \n\nSur les navigateurs pris en charge, vous pouvez aussi tirer des fichiers image depuis votre système de fichiers vers les cases de saisie ou dans la zone d’aperçu.",
+	"config-logo-summary": "Pour chacun de ces champs, vous devrez téléverser une image à la taille appropriée, et saisir l’URL dans les cases ci-dessous. Vous pouvez utiliser <code>$wgStylePath</code> ou <code>$wgScriptPath</code> si votre logo se rapporte à ces chemins. Vous pouvez laisser n’importe laquelle de ces cases vide.",
 	"config-logo-preview-main": "Page d’accueil",
 	"config-logo-icon": "Logo (icône) :",
 	"config-logo-icon-help": "Votre icône de logo doit être carrée et faire, dans l’idéal, plus de 50px, ou être un SVG.",

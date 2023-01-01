@@ -214,7 +214,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		} else {
 			$latestRevTimestamp = 0;
 		}
-		if ( $importableRevision->getTimestamp() > $latestRevTimestamp ) {
+		if ( $importableRevision->getTimestamp() >= $latestRevTimestamp ) {
 			$changed = $page->updateRevisionOn( $dbw, $inserted, $latestRevId );
 		} else {
 			$changed = false;

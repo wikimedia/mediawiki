@@ -50,10 +50,15 @@ trait HandlerTestTrait {
 		Authority $authority = null,
 		bool $csrfSafe = false
 	) {
-		$formatter = $this->createMock( ITextFormatter::class );
-		$formatter->method( 'format' )->willReturnCallback( static function ( MessageValue $msg ) {
-			return $msg->dump();
-		} );
+		$formatter = new class implements ITextFormatter {
+			public function getLangCode() {
+				return 'qqx';
+			}
+
+			public function format( MessageValue $message ) {
+				return $message->dump();
+			}
+		};
 
 		/** @var ResponseFactory|MockObject $responseFactory */
 		$responseFactory = new ResponseFactory( [ 'qqx' => $formatter ] );

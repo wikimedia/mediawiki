@@ -622,15 +622,15 @@ class DatabaseSqlite extends Database {
 	 * @return SQLiteField|false False on failure
 	 */
 	public function fieldInfo( $table, $field ) {
-		$tableName = $this->tableName( $table );
+		$tableRaw = $this->tableName( $table, 'raw' );
 		$res = $this->query(
-			'PRAGMA table_info(' . $this->addQuotes( $tableName ) . ')',
+			'PRAGMA table_info(' . $this->addQuotes( $tableRaw ) . ')',
 			__METHOD__,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
 		foreach ( $res as $row ) {
 			if ( $row->name == $field ) {
-				return new SQLiteField( $row, $tableName );
+				return new SQLiteField( $row, $tableRaw );
 			}
 		}
 

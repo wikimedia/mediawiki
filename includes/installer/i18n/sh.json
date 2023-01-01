@@ -117,7 +117,7 @@
 	"config-invalid-db-name": "Ime baze podataka „$1” nije važeće.\nKoristite samo ASCII-slova (a-z, A-Z), brojeve (0-9) i podvlake (_).",
 	"config-invalid-db-prefix": "Prefiks baze podataka „$1” nije važeći.\nKoristite samo ASCII-slova (a-z, A-Z), brojeve (0-9), podvlake (_) i crtice (-).",
 	"config-connection-error": "$1.\n\nProvjerite host, korisničko ime i lozinku i pokušajte ponovno. Ako kao host baze podataka koristite \"localhost\", zamijenite ga \"127.0.0.1\" (ili obrnuto).",
-	"config-invalid-schema": "Šema za MediaWiki „$1” nije važeća.\nKoristite samo ASCII slova (a-z, A-Z), brojeve (0-9) i podvlake (_).",
+	"config-invalid-schema": "Šema za MediaWiki „$1” nije važeća.\nKoristite samo slova, brojeve i podvlake.",
 	"config-postgres-old": "Zahtijeva se PostgreSQL $1 ili noviji. Vi imate $2.",
 	"config-sqlite-name-help": "Odaberite ime koje će predstavljati vaš wiki.\nNe koristite razmake i crte.\nOvo će se koristiti za ime datoteke SQLite-podataka.",
 	"config-sqlite-parent-unwritable-group": "Nije moguće izraditi direktorijum <code><nowiki>$1</nowiki></code> \njer mrežni poslužitelj ne može pisati u matični direktorijum <code><nowiki>$2</nowiki></code>.\n\nIdentificiran je korisnik pod kojim radi vaš mrežni poslužitelj.\nDa biste nastavili, namjestite da može zapisivati u direktorijum <code><nowiki>$3</nowiki></code>.\nNa Unix/Linux sistemu učinite sljedeće:\n\n<pre>cd $2\nmkdir $3\nchgrp $4 $3\nchmod g+w $3</pre>",

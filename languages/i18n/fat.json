@@ -286,7 +286,7 @@
 	"shown-title": "Yi {{PLURAL:$1|nsunsuando}} $1 kyerɛ wɔ kratafa biara mu",
 	"viewprevnext": "Hwɛ ($1 {{no mu:pipe-separator}} $2) ($3)",
 	"searchmenu-exists": "<strong>Kratafa bi wɔ hɔ a wɔato no dzin \"[[:$1]]\" wɔ wiki yi do.</strong> {{PLURAL:$2|0=|Hwɛ nhwehwɛmu nsunsuando nkaa no so.}}",
-	"searchmenu-new": "<strong>Yɛ kratafa no \"[[:$1]]\" wɔ dɛm wiki! yi do</strong> {{PLURAL:$2|0=|Hwɛ kratafa no a wo nhwehwɛmu no ehu no so.|Hwɛ nhwehwɛmu nsunsuando ahorow no so.}}",
+	"searchmenu-new": "Yɛ kratafa no \"[[:$1]]\" wɔ dɛm wiki yi do! {{PLURAL:$2|0=|Hwɛ kratafa no a wo nhwehwɛmu no ehu no so.|Hwɛ nhwehwɛmu nsunsuando ahorow no so.}}",
 	"searchprofile-articles": "Nkratafa a wɔkyerɛ dza ɔwɔ mu",
 	"searchprofile-images": "Nsɛnkyerɛkwanhorow",
 	"searchprofile-everything": "Biribiara",
