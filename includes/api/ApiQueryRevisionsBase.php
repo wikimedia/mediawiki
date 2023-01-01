@@ -64,6 +64,12 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		$fld_content = false, $fld_tags = false, $fld_contentmodel = false, $fld_roles = false,
 		$fld_parsetree = false;
 
+	/**
+	 * The number of uncached diffs that had to be generated for this request.
+	 * @var int
+	 */
+	private $numUncachedDiffs = 0;
+
 	/** @var RevisionStore */
 	private $revisionStore;
 
@@ -203,7 +209,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 			// Check whether the revision exists and is readable,
 			// DifferenceEngine returns a rather ambiguous empty
 			// string if that's not the case
-			if ( $params['diffto'] != 0 ) {
+			if ( is_numeric( $params['diffto'] ) && $params['diffto'] != 0 ) {
 				$difftoRev = $this->revisionStore->getRevisionById( $params['diffto'] );
 				if ( !$difftoRev ) {
 					$this->dieWithError( [ 'apierror-nosuchrevid', $params['diffto'] ] );
@@ -659,9 +665,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		}
 
 		if ( $content && ( $this->diffto !== null || $this->difftotext !== null ) ) {
-			static $n = 0; // Number of uncached diffs we've had
-
-			if ( $n < $this->getConfig()->get( MainConfigNames::APIMaxUncachedDiffs ) ) {
+			if ( $this->numUncachedDiffs < $this->getConfig()->get( MainConfigNames::APIMaxUncachedDiffs ) ) {
 				$vals['diff'] = [];
 				$context = new DerivativeContext( $this->getContext() );
 				$context->setTitle( $title );
@@ -704,7 +708,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 					$difftext = $engine->getDiffBody();
 					ApiResult::setContentValue( $vals['diff'], 'body', $difftext );
 					if ( !$engine->wasCacheHit() ) {
-						$n++;
+						$this->numUncachedDiffs++;
 					}
 				}
 			} else {

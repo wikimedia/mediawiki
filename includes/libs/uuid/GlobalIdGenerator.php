@@ -39,7 +39,7 @@ class GlobalIdGenerator {
 	protected $tmpDir;
 	/** @var string
 	 * File prefix containing user ID to prevent collisions
-	 * if multiple users run MediaWiki (T268420)
+	 * if multiple users run MediaWiki (T268420) and getmyuid() is enabled
 	 */
 	protected $uniqueFilePrefix;
 	/** @var string Local file path */
@@ -97,7 +97,9 @@ class GlobalIdGenerator {
 			throw new InvalidArgumentException( "No temp directory provided" );
 		}
 		$this->tmpDir = $tempDirectory;
-		$this->uniqueFilePrefix = self::FILE_PREFIX . getmyuid();
+		// Check if getmyuid exists, it could be disabled for security reasons - T324513
+		$fileSuffix = function_exists( 'getmyuid' ) ? getmyuid() : '';
+		$this->uniqueFilePrefix = self::FILE_PREFIX . $fileSuffix;
 		$this->nodeIdFile = $tempDirectory . '/' . $this->uniqueFilePrefix . '-UID-nodeid';
 		// If different processes run as different users, they may have different temp dirs.
 		// This is dealt with by initializing the clock sequence number and counters randomly.

@@ -47,43 +47,8 @@ abstract class AlphabeticPager extends IndexPager {
 			->setFirstMsg( 'page_first' )
 			->setLastMsg( 'page_last' );
 
-		if ( is_array( $this->getIndexField() ) ) {
-			$extra = '';
-			$msgs = $this->getOrderTypeMessages();
-			foreach ( $msgs as $order => $msg ) {
-				if ( $extra !== '' ) {
-					$extra .= $this->msg( 'pipe-separator' )->escaped();
-				}
-
-				if ( $order == $this->mOrderType ) {
-					$extra .= $this->msg( $msg )->escaped();
-				} else {
-					$extra .= $this->makeLink(
-						$this->msg( $msg )->escaped(),
-						[ 'order' => $order ]
-					);
-				}
-			}
-
-			$navBuilder->setExtra( $extra );
-		}
-
 		$this->mNavigationBar = $navBuilder->getHtml();
 
 		return $this->mNavigationBar;
-	}
-
-	/**
-	 * If this supports multiple order type messages, give the message key for
-	 * enabling each one in getNavigationBar.  The return type is an associative
-	 * array whose keys must exactly match the keys of the array returned
-	 * by getIndexField(), and whose values are message keys.
-	 *
-	 * @stable to override
-	 *
-	 * @return array|null
-	 */
-	protected function getOrderTypeMessages() {
-		return null;
 	}
 }

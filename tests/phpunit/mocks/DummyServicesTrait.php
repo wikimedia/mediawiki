@@ -379,16 +379,15 @@ trait DummyServicesTrait {
 
 		$logger = $options['logger'] ?? new NullLogger();
 
-		$textFormatter = $options['textFormatter'] ?? false;
-		if ( !$textFormatter ) {
-			$textFormatter = $this->getMockForAbstractClass( ITextFormatter::class );
-			$textFormatter->method( 'format' )
-				->willReturnCallback(
-					static function ( MessageValue $message ) {
-						return $message->getKey();
-					}
-				);
-		}
+		$textFormatter = $options['textFormatter'] ?? new class implements ITextFormatter {
+			public function getLangCode() {
+				return 'qqx';
+			}
+
+			public function format( MessageValue $message ) {
+				return $message->getKey();
+			}
+		};
 
 		$titleParser = $options['titleParser'] ?? false;
 		if ( !$titleParser ) {
