@@ -4591,6 +4591,9 @@ config-schema:
             - 'Maintenance script'
             - 'Template namespace initialisation script'
             - ScriptImporter
+            - 'Delete page script'
+            - 'Move page script'
+            - 'Command line script'
             - 'Unknown user'
             - 'msg:double-redirect-fixer'
             - 'msg:usermessage-editor'
