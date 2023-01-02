@@ -5,7 +5,6 @@ namespace MediaWiki\Tests\Rest\Handler;
 use ApiUsageException;
 use FormatJson;
 use HashConfig;
-use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Rest\Handler\UpdateHandler;
@@ -42,29 +41,19 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 			'RightsText' => 'CC-BY-SA 4.0'
 		] );
 
-		/** @var IContentHandlerFactory|MockObject $contentHandlerFactory */
-		$contentHandlerFactory =
-			$this->createNoOpMock(
-				IContentHandlerFactory::class,
-				[ 'isDefinedModel', 'getContentHandler' ]
-			);
+		$wikitextContentHandler = new WikitextContentHandler(
+			CONTENT_MODEL_WIKITEXT,
+			$this->createMock( TitleFactory::class ),
+			$this->createMock( ParserFactory::class ),
+			$this->createMock( GlobalIdGenerator::class ),
+			$this->createMock( LanguageNameUtils::class ),
+			$this->createMock( MagicWordFactory::class )
+		);
 
-		$contentHandlerFactory
-			->method( 'isDefinedModel' )
-			->willReturnMap( [
-				[ CONTENT_MODEL_WIKITEXT, true ],
-			] );
-
-		$contentHandlerFactory
-			->method( 'getContentHandler' )
-			->willReturn( new WikitextContentHandler(
-				CONTENT_MODEL_WIKITEXT,
-				$this->createMock( TitleFactory::class ),
-				$this->createMock( ParserFactory::class ),
-				$this->createMock( GlobalIdGenerator::class ),
-				$this->createMock( LanguageNameUtils::class ),
-				$this->createMock( MagicWordFactory::class )
-			) );
+		// Only wikitext is defined, returns specific handler instance
+		$contentHandlerFactory = $this->getDummyContentHandlerFactory(
+			[ CONTENT_MODEL_WIKITEXT => $wikitextContentHandler ]
+		);
 
 		// DummyServicesTrait::getDummyMediaWikiTitleCodec
 		$titleCodec = $this->getDummyMediaWikiTitleCodec();

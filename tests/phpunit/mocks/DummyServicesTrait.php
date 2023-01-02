@@ -30,6 +30,7 @@ use Language;
 use MalformedTitleException;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigSchema;
@@ -83,6 +84,41 @@ trait DummyServicesTrait {
 		}
 		$defaultSettings = iterator_to_array( MainConfigSchema::listDefaultValues() );
 		return $defaultSettings;
+	}
+
+	/**
+	 * @param array $contentHandlers map of content model to a ContentHandler object to
+	 *   return (or to `true` for a content model to be defined but not actually have any
+	 *   content handlers).
+	 * @param string[] $allContentFormats specific content formats to claim support for,
+	 *   by default none
+	 * @return IContentHandlerFactory
+	 */
+	private function getDummyContentHandlerFactory(
+		array $contentHandlers = [],
+		array $allContentFormats = []
+	): IContentHandlerFactory {
+		$contentHandlerFactory = $this->createMock( IContentHandlerFactory::class );
+		$contentHandlerFactory->method( 'getContentHandler' )
+			->willReturnCallback(
+				static function ( string $modelId ) use ( $contentHandlers ) {
+					// interface has a return typehint, if $contentHandlers
+					// doesn't have that key or the value isn't an instance of
+					// ContentHandler will throw exception
+					return $contentHandlers[ $modelId ];
+				}
+			);
+		$contentHandlerFactory->method( 'getContentModels' )
+			->willReturn( array_keys( $contentHandlers ) );
+		$contentHandlerFactory->method( 'getAllContentFormats' )
+			->willReturn( $allContentFormats );
+		$contentHandlerFactory->method( 'isDefinedModel' )
+			->willReturnCallback(
+				static function ( string $modelId ) use ( $contentHandlers ) {
+					return array_key_exists( $modelId, $contentHandlers );
+				}
+			);
+		return $contentHandlerFactory;
 	}
 
 	/**

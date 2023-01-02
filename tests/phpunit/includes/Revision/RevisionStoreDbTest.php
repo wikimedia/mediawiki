@@ -9,7 +9,6 @@ use FallbackContent;
 use HashBagOStuff;
 use IDBAccessObject;
 use InvalidArgumentException;
-use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -26,6 +25,7 @@ use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\SqlBlobStore;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
@@ -55,6 +55,7 @@ use WikitextContent;
  * @group RevisionStore
  */
 class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
+	use DummyServicesTrait;
 
 	/**
 	 * @var Title
@@ -900,12 +901,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		);
 		$revRecord = $status->getNewRevision();
 
-		$mockContentHandlerFactory =
-			$this->createNoOpMock( IContentHandlerFactory::class, [ 'isDefinedModel' ] );
-
-		$mockContentHandlerFactory->method( 'isDefinedModel' )
-			->willReturn( false );
-
+		$mockContentHandlerFactory = $this->getDummyContentHandlerFactory();
 		$this->setService( 'ContentHandlerFactory', $mockContentHandlerFactory );
 		$store = $this->getServiceContainer()->getRevisionStore();
 

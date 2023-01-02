@@ -3,8 +3,8 @@
 namespace MediaWiki\Tests\Unit\Revision;
 
 use ContentHandler;
-use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Revision\MainSlotRoleHandler;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\TitleFactory;
 use MediaWikiUnitTestCase;
 use MockTitleTrait;
@@ -14,6 +14,7 @@ use Title;
  * @covers \MediaWiki\Revision\MainSlotRoleHandler
  */
 class MainSlotRoleHandlerTest extends MediaWikiUnitTestCase {
+	use DummyServicesTrait;
 	use MockTitleTrait;
 
 	/**
@@ -33,8 +34,10 @@ class MainSlotRoleHandlerTest extends MediaWikiUnitTestCase {
 		// handler that returns true directly
 		$contentHandler = $this->createMock( ContentHandler::class );
 		$contentHandler->method( 'canBeUsedOn' )->willReturn( true );
-		$contentHandlerFactory = $this->createMock( IContentHandlerFactory::class );
-		$contentHandlerFactory->method( 'getContentHandler' )->willReturn( $contentHandler );
+		$contentHandlerFactory = $this->getDummyContentHandlerFactory( [
+			CONTENT_MODEL_WIKITEXT => $contentHandler,
+			CONTENT_MODEL_TEXT => $contentHandler,
+		] );
 
 		// TitleFactory that for these tests is only called with Title objects, so just
 		// return them

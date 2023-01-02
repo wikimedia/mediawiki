@@ -3,10 +3,10 @@
 namespace MediaWiki\Tests\Unit\Edit;
 
 use HashBagOStuff;
-use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Edit\SelserContext;
 use MediaWiki\Edit\SimpleParsoidOutputStash;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use TextContentHandler;
 use Wikimedia\Parsoid\Core\PageBundle;
 use WikitextContent;
@@ -16,9 +16,10 @@ use WikitextContent;
  * @covers \MediaWiki\Edit\SelserContext
  */
 class SimpleParsoidOutputStashTest extends \MediaWikiUnitTestCase {
+	use DummyServicesTrait;
 
 	public function testSetAndGetWithNoContent() {
-		$chFactory = $this->createNoOpMock( IContentHandlerFactory::class );
+		$chFactory = $this->getDummyContentHandlerFactory();
 		$stash = new SimpleParsoidOutputStash( $chFactory, new HashBagOStuff(), 12 );
 
 		$key = new ParsoidRenderID( 7, 'acme' );
@@ -35,12 +36,9 @@ class SimpleParsoidOutputStashTest extends \MediaWikiUnitTestCase {
 			return new WikitextContent( $data );
 		} );
 
-		$chFactory = $this->createNoOpMock( IContentHandlerFactory::class, [ 'getContentHandler' ] );
-		$chFactory->method( 'getContentHandler' )
-			->with( CONTENT_MODEL_WIKITEXT )
-			->willReturn(
-				$contentHandler
-			);
+		$chFactory = $this->getDummyContentHandlerFactory(
+			[ CONTENT_MODEL_WIKITEXT => $contentHandler ]
+		);
 
 		$stash = new SimpleParsoidOutputStash( $chFactory, new HashBagOStuff(), 12 );
 
