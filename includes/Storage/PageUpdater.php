@@ -22,13 +22,13 @@ namespace MediaWiki\Storage;
 
 use AtomicSectionUpdate;
 use ChangeTags;
-use CommentStoreComment;
 use Content;
 use ContentHandler;
 use DeferredUpdates;
 use InvalidArgumentException;
 use LogicException;
 use ManualLogEntry;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\ValidationParams;

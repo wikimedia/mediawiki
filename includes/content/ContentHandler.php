@@ -26,6 +26,7 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\Content\Transform\PreloadTransformParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;

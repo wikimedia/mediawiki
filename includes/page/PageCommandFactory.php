@@ -22,12 +22,12 @@
 namespace MediaWiki\Page;
 
 use BagOStuff;
-use CommentStore;
 use Config;
 use ContentModelChange;
 use JobQueueGroup;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Collation\CollationFactory;
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;

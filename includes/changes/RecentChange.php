@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\ChangeTags\Taggable;
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;

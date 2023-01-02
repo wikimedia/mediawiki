@@ -23,9 +23,9 @@
 namespace MediaWiki\Block;
 
 use AutoCommitUpdate;
-use CommentStore;
 use DeferredUpdates;
 use InvalidArgumentException;
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;

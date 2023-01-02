@@ -27,7 +27,7 @@
 namespace MediaWiki\Revision;
 
 use BagOStuff;
-use CommentStore;
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Page\PageStoreFactory;

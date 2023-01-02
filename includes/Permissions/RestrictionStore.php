@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Permissions;
 
-use CommentStore;
 use DBAccessObjectUtils;
 use IDBAccessObject;
 use LinkCache;
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;

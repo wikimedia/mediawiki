@@ -26,6 +26,7 @@
 
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\CommentItem;
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;

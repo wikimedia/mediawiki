@@ -23,6 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\RestrictionStore;
 use Wikimedia\Rdbms\ILoadBalancer;

@@ -22,8 +22,8 @@
 
 namespace MediaWiki\Revision;
 
-use CommentStoreComment;
 use InvalidArgumentException;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;

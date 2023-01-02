@@ -23,10 +23,10 @@
 
 namespace MediaWiki\Feed;
 
-use CommentStore;
 use DerivativeContext;
 use Html;
 use LogFormatter;
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;

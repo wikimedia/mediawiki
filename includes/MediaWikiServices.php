@@ -22,7 +22,6 @@ namespace MediaWiki;
 
 use BagOStuff;
 use CentralIdLookup;
-use CommentStore;
 use Config;
 use ConfigFactory;
 use ConfiguredReadOnlyMode;
@@ -60,6 +59,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\CommentFormatter\RowCommentFormatter;
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Renderer\ContentRenderer;

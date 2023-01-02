@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;

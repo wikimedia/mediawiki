@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;

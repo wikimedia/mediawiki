@@ -2,7 +2,7 @@
 
 namespace MediaWiki\CommentFormatter;
 
-use CommentStore;
+use MediaWiki\CommentStore\CommentStore;
 use Traversable;
 use Wikimedia\Rdbms\IResultWrapper;
 
