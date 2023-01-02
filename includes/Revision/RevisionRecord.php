@@ -22,9 +22,9 @@
 
 namespace MediaWiki\Revision;
 
-use CommentStoreComment;
 use Content;
 use InvalidArgumentException;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Linker\LinkTarget;

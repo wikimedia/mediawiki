@@ -23,6 +23,7 @@
  * @file
  */
 
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;

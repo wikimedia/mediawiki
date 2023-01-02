@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;

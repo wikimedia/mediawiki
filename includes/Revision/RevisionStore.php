@@ -26,14 +26,14 @@
 namespace MediaWiki\Revision;
 
 use BagOStuff;
-use CommentStore;
-use CommentStoreComment;
 use Content;
 use DBAccessObjectUtils;
 use FallbackContent;
 use IDBAccessObject;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\HookContainer\HookContainer;

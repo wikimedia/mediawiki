@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Block;
 
-use CommentStore;
 use Hooks;
 use Html;
 use InvalidArgumentException;
@@ -30,6 +29,7 @@ use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
+use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;

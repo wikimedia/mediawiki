@@ -18,29 +18,25 @@
  * @file
  */
 
+namespace MediaWiki\CommentStore;
+
+use FormatJson;
+use InvalidArgumentException;
+use Language;
+use LogicException;
 use MediaWiki\Language\RawMessage;
-use MediaWiki\MediaWikiServices;
+use Message;
+use OverflowException;
+use stdClass;
 use Wikimedia\Rdbms\IDatabase;
 
-/**
- * @defgroup CommentStore CommentStore
- *
- * The Comment store in MediaWiki is responsible for storing edit summaries,
- * log action comments and other such short strings (referred to as "comments").
- *
- * The CommentStore class handles the database abstraction for reading
- * and writing comments, which are represented by CommentStoreComment objects.
- *
- * Data is internally stored in the `comment` table.
- */
-
-/**
+/*
  * Handle database storage of comments such as edit summaries and log reasons.
  *
  * @ingroup CommentStore
- * @since 1.30
+ * @since 1.40
  */
-class CommentStore {
+class CommentStoreBase {
 
 	/**
 	 * Maximum length of a comment in UTF-8 characters. Longer comments will be truncated.
@@ -65,16 +61,7 @@ class CommentStore {
 	 *  - stage: Migration stage
 	 *  - deprecatedIn: Version when using insertWithTempTable() was deprecated
 	 */
-	protected const TEMP_TABLES = [
-		'rev_comment' => [
-			'table' => 'revision_comment_temp',
-			'pk' => 'revcomment_rev',
-			'field' => 'revcomment_comment_id',
-			'joinPK' => 'rev_id',
-			'stage' => MIGRATION_OLD,
-			'deprecatedIn' => null,
-		],
-	];
+	private $tempTables;
 
 	/**
 	 * @var int One of the MIGRATION_* constants, or an appropriate combination
@@ -91,13 +78,13 @@ class CommentStore {
 	private $lang;
 
 	/**
+	 * @param array $tempTables Define fields that use temporary tables for transitional purposes
 	 * @param Language $lang Language to use for comment truncation. Defaults
 	 *  to content language.
 	 * @param int $stage One of the MIGRATION_* constants, or an appropriate
-	 *  combination of SCHEMA_COMPAT_* constants. Always MIGRATION_NEW for
-	 *  MediaWiki core since 1.33.
+	 *  combination of SCHEMA_COMPAT_* constants.
 	 */
-	public function __construct( Language $lang, $stage ) {
+	public function __construct( $tempTables, Language $lang, $stage ) {
 		if ( ( $stage & SCHEMA_COMPAT_WRITE_BOTH ) === 0 ) {
 			throw new InvalidArgumentException( '$stage must include a write mode' );
 		}
@@ -105,17 +92,9 @@ class CommentStore {
 			throw new InvalidArgumentException( '$stage must include a read mode' );
 		}
 
-		$this->stage = $stage;
+		$this->tempTables = $tempTables;
 		$this->lang = $lang;
-	}
-
-	/**
-	 * @since 1.31
-	 * @deprecated in 1.31 Use DI to inject a CommentStore instance into your class.
-	 * @return CommentStore
-	 */
-	public static function getStore() {
-		return MediaWikiServices::getInstance()->getCommentStore();
+		$this->stage = $stage;
 	}
 
 	/**
@@ -145,9 +124,9 @@ class CommentStore {
 				$fields["{$key}_old"] = $key;
 			}
 
-			$tempTableStage = static::TEMP_TABLES[$key]['stage'] ?? MIGRATION_NEW;
+			$tempTableStage = $this->tempTables[$key]['stage'] ?? MIGRATION_NEW;
 			if ( $tempTableStage & SCHEMA_COMPAT_READ_OLD ) {
-				$fields["{$key}_pk"] = static::TEMP_TABLES[$key]['joinPK'];
+				$fields["{$key}_pk"] = $this->tempTables[$key]['joinPK'];
 			}
 			if ( $tempTableStage & SCHEMA_COMPAT_READ_NEW ) {
 				$fields["{$key}_id"] = "{$key}_id";
@@ -186,9 +165,9 @@ class CommentStore {
 			} else { // READ_BOTH or READ_NEW
 				$join = ( $this->stage & SCHEMA_COMPAT_READ_OLD ) ? 'LEFT JOIN' : 'JOIN';
 
-				$tempTableStage = static::TEMP_TABLES[$key]['stage'] ?? MIGRATION_NEW;
+				$tempTableStage = $this->tempTables[$key]['stage'] ?? MIGRATION_NEW;
 				if ( $tempTableStage & SCHEMA_COMPAT_READ_OLD ) {
-					$t = static::TEMP_TABLES[$key];
+					$t = $this->tempTables[$key];
 					$alias = "temp_$key";
 					$tables[$alias] = $t['table'];
 					$joins[$alias] = [ $join, "{$alias}.{$t['pk']} = {$t['joinPK']}" ];
@@ -196,7 +175,7 @@ class CommentStore {
 						$joinField = "{$alias}.{$t['field']}";
 					} else {
 						// Nothing hits this code path for now, but will in the future when we set
-						// static::TEMP_TABLES['rev_comment']['stage'] to MIGRATION_WRITE_NEW while
+						// $this->tempTables['rev_comment']['stage'] to MIGRATION_WRITE_NEW while
 						// merging revision_comment_temp into revision.
 						// @codeCoverageIgnoreStart
 						$joins[$alias][0] = 'LEFT JOIN';
@@ -262,7 +241,7 @@ class CommentStore {
 			}
 			$data = null;
 		} else {
-			$tempTableStage = static::TEMP_TABLES[$key]['stage'] ?? MIGRATION_NEW;
+			$tempTableStage = $this->tempTables[$key]['stage'] ?? MIGRATION_NEW;
 			$row2 = null;
 			if ( ( $tempTableStage & SCHEMA_COMPAT_READ_NEW ) && array_key_exists( "{$key}_id", $row ) ) {
 				if ( !$db ) {
@@ -287,7 +266,7 @@ class CommentStore {
 						. "does have fields for getCommentLegacy()"
 					);
 				}
-				$t = static::TEMP_TABLES[$key];
+				$t = $this->tempTables[$key];
 				$id = $row["{$key}_pk"];
 				$row2 = $db->newSelectQueryBuilder()
 					->select( [ 'comment_id', 'comment_text', 'comment_data' ] )
@@ -495,9 +474,9 @@ class CommentStore {
 		}
 
 		if ( $this->stage & SCHEMA_COMPAT_WRITE_NEW ) {
-			$tempTableStage = static::TEMP_TABLES[$key]['stage'] ?? MIGRATION_NEW;
+			$tempTableStage = $this->tempTables[$key]['stage'] ?? MIGRATION_NEW;
 			if ( $tempTableStage & SCHEMA_COMPAT_WRITE_OLD ) {
-				$t = static::TEMP_TABLES[$key];
+				$t = $this->tempTables[$key];
 				$func = __METHOD__;
 				$commentId = $comment->id;
 				$callback = static function ( $id ) use ( $dbw, $commentId, $t, $func ) {
@@ -541,7 +520,7 @@ class CommentStore {
 			// @codeCoverageIgnoreEnd
 		}
 
-		$tempTableStage = static::TEMP_TABLES[$key]['stage'] ?? MIGRATION_NEW;
+		$tempTableStage = $this->tempTables[$key]['stage'] ?? MIGRATION_NEW;
 		if ( $tempTableStage & SCHEMA_COMPAT_WRITE_OLD ) {
 			throw new InvalidArgumentException( "Must use insertWithTempTable() for $key" );
 		}
@@ -577,11 +556,10 @@ class CommentStore {
 			// @codeCoverageIgnoreEnd
 		}
 
-		if ( !isset( static::TEMP_TABLES[$key] ) ) {
+		if ( !isset( $this->tempTables[$key] ) ) {
 			throw new InvalidArgumentException( "Must use insert() for $key" );
-		} elseif ( isset( static::TEMP_TABLES[$key]['deprecatedIn'] ) ) {
-			// @phan-suppress-next-line PhanTypeMismatchArgument 'deprecatedIn' is usually string
-			wfDeprecated( __METHOD__ . " for $key", static::TEMP_TABLES[$key]['deprecatedIn'] );
+		} elseif ( isset( $this->tempTables[$key]['deprecatedIn'] ) ) {
+			wfDeprecated( __METHOD__ . " for $key", $this->tempTables[$key]['deprecatedIn'] );
 		}
 
 		[ $fields, $callback ] = $this->insertInternal( $dbw, $key, $comment, $data );

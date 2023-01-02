@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Block;
 
-use CommentStoreComment;
 use Language;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Page\PageReferenceValue;

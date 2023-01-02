@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\DBQueryError;

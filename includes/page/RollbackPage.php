@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Page;
 
-use CommentStoreComment;
 use ManualLogEntry;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;

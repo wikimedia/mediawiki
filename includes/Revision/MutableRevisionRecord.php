@@ -22,9 +22,9 @@
 
 namespace MediaWiki\Revision;
 
-use CommentStoreComment;
 use Content;
 use InvalidArgumentException;
+use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentity;
