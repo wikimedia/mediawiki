@@ -22,7 +22,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param Title $old
 	 * @param Title $new
-	 * @param array $params Valid keys are: db, options, nsInfo, wiStore, repoGroup, contentHandlerFactory.
+	 * @param array $params Valid keys are: db, options,
 	 *   options is an indexed array that will overwrite our defaults, not a ServiceOptions, so it
 	 *   need not contain all keys.
 	 * @return MovePage
@@ -31,10 +31,6 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$mockLB = $this->createNoOpMock( LoadBalancer::class, [ 'getConnectionRef' ] );
 		$mockLB->method( 'getConnectionRef' )
 			->willReturn( $params['db'] ?? $this->createNoOpMock( IDatabase::class ) );
-
-		// If we don't use a manual mock for something specific, get a full
-		// NamespaceInfo service from DummyServicesTrait::getDummyNamespaceInfo
-		$nsInfo = $params['nsInfo'] ?? $this->getDummyNamespaceInfo();
 
 		return new MovePage(
 			$old,
@@ -48,13 +44,12 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				]
 			),
 			$mockLB,
-			$nsInfo,
-			$params['wiStore'] ?? $this->createMock( WatchedItemStore::class ),
-			$params['repoGroup'] ?? $this->makeMockRepoGroup(
+			$this->getDummyNamespaceInfo(),
+			$this->createMock( WatchedItemStore::class ),
+			$this->makeMockRepoGroup(
 				[ 'Existent.jpg', 'Existent2.jpg', 'Existent-file-no-page.jpg' ]
 			),
-			$params['contentHandlerFactory']
-				?? $this->getServiceContainer()->getContentHandlerFactory(),
+			$this->getServiceContainer()->getContentHandlerFactory(),
 			$this->getServiceContainer()->getRevisionStore(),
 			$this->getServiceContainer()->getSpamChecker(),
 			$this->getServiceContainer()->getHookContainer(),
@@ -131,17 +126,10 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$iwLookup->method( 'isValidInterwiki' )
 			->willReturn( true );
 
-		$this->setService(
-			'InterwikiLookup',
-			$iwLookup
-		);
+		$this->setService( 'InterwikiLookup', $iwLookup );
 
-		if ( is_string( $old ) ) {
-			$old = Title::newFromText( $old );
-		}
-		if ( is_string( $new ) ) {
-			$new = Title::newFromText( $new );
-		}
+		$old = $old instanceof Title ? $old : Title::newFromText( $old );
+		$new = $new instanceof Title ? $new : Title::newFromText( $new );
 		$mp = $this->newMovePageWithMocks( $old, $new, [ 'options' => $extraOptions ] );
 		$this->assertSame( $expectedErrors, $mp->isValidMove()->getErrorsArray() );
 	}
@@ -284,8 +272,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideIsValidMove
 	 *
-	 * @param string $old Old name
-	 * @param string $new New name
+	 * @param string|Title $old Old name
+	 * @param string|Title $new New name
 	 * @param array $expectedErrors
 	 * @param array $extraOptions
 	 */
@@ -294,17 +282,10 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$iwLookup->method( 'isValidInterwiki' )
 			->willReturn( true );
 
-		$this->setService(
-			'InterwikiLookup',
-			$iwLookup
-		);
+		$this->setService( 'InterwikiLookup', $iwLookup );
 
-		if ( is_string( $old ) ) {
-			$old = Title::newFromText( $old );
-		}
-		if ( is_string( $new ) ) {
-			$new = Title::newFromText( $new );
-		}
+		$old = $old instanceof Title ? $old : Title::newFromText( $old );
+		$new = $new instanceof Title ? $new : Title::newFromText( $new );
 
 		$createRedirect = $extraOptions['createRedirect'] ?? true;
 		unset( $extraOptions['createRedirect'] );
