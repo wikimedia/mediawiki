@@ -1440,6 +1440,7 @@ class SkinTemplate extends Skin {
 			// not a valid special page
 			return [];
 		}
+		$special->setContext( $this );
 		$associatedNavigationLinks = $special->getAssociatedNavigationLinks();
 		// If no sub pages we should not render.
 		if ( count( $associatedNavigationLinks ) === 0 ) {
