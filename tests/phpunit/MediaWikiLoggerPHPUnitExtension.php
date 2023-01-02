@@ -4,6 +4,7 @@ use MediaWiki\Logger\LogCapturingSpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Logger\Spi;
 use PHPUnit\Runner\AfterIncompleteTestHook;
+use PHPUnit\Runner\AfterLastTestHook;
 use PHPUnit\Runner\AfterRiskyTestHook;
 use PHPUnit\Runner\AfterSkippedTestHook;
 use PHPUnit\Runner\AfterSuccessfulTestHook;
@@ -11,7 +12,7 @@ use PHPUnit\Runner\AfterTestErrorHook;
 use PHPUnit\Runner\AfterTestFailureHook;
 use PHPUnit\Runner\AfterTestHook;
 use PHPUnit\Runner\AfterTestWarningHook;
-use PHPUnit\Runner\BeforeTestHook;
+use PHPUnit\Runner\BeforeFirstTestHook;
 
 /**
  * Replaces the logging SPI on each test run. This allows another component
@@ -20,7 +21,7 @@ use PHPUnit\Runner\BeforeTestHook;
  * Also logs test start and end messages to the original log.
  */
 class MediaWikiLoggerPHPUnitExtension implements
-	BeforeTestHook,
+	BeforeFirstTestHook,
 	AfterRiskyTestHook,
 	AfterIncompleteTestHook,
 	AfterSkippedTestHook,
@@ -28,7 +29,8 @@ class MediaWikiLoggerPHPUnitExtension implements
 	AfterTestErrorHook,
 	AfterTestWarningHook,
 	AfterTestFailureHook,
-	AfterTestHook
+	AfterTestHook,
+	AfterLastTestHook
 {
 	/**
 	 * @var string[]
@@ -43,11 +45,10 @@ class MediaWikiLoggerPHPUnitExtension implements
 	/**
 	 * @inheritDoc
 	 */
-	public function executeBeforeTest( string $test ): void {
+	public function executeBeforeFirstTest(): void {
 		$this->originalSpi = LoggerFactory::getProvider();
 		$this->spi = new LogCapturingSpi( $this->originalSpi );
 		LoggerFactory::registerProvider( $this->spi );
-		$this->log( "Start test $test" );
 	}
 
 	/** @inheritDoc */
@@ -102,6 +103,13 @@ class MediaWikiLoggerPHPUnitExtension implements
 
 	/** @inheritDoc */
 	public function executeAfterTest( string $test, float $time ): void {
+		if ( $this->spi ) {
+			$this->spi->clearLogs();
+		}
+	}
+
+	/** @inheritDoc */
+	public function executeAfterLastTest(): void {
 		LoggerFactory::registerProvider( $this->originalSpi );
 		$this->originalSpi = null;
 		$this->spi = null;

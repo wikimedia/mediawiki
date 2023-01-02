@@ -1576,7 +1576,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			// Remember for restoreLoggers()
 			$this->loggers[$channel] ??= $prev;
 		} else {
-			throw new LogicException( __METHOD__ . ': cannot set logger for ' . get_class( $provider ) );
+			throw new LogicException( "Cannot set logger for '$channel' via " . get_class( $provider ) );
 		}
 	}
 

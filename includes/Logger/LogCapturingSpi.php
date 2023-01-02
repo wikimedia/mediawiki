@@ -32,6 +32,10 @@ class LogCapturingSpi implements Spi {
 		return $this->logs;
 	}
 
+	public function clearLogs(): void {
+		$this->logs = [];
+	}
+
 	/** @inheritDoc */
 	public function getLogger( $channel ) {
 		if ( !isset( $this->singletons[$channel] ) ) {

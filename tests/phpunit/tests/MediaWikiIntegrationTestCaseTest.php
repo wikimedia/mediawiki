@@ -244,22 +244,13 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $mockService, MediaWikiServices::getInstance()->getDBLoadBalancer() );
 	}
 
-	public function testLoggersAreRestoredOnTearDown_replacingExistingLogger__before() {
+	public function testLoggersAreRestoredOnTearDown_replacingExistingLogger() {
 		$oldLogger = LoggerFactory::getInstance( 'foo' );
 		$logger = new NullLogger();
 		$this->setLogger( 'foo', $logger );
 		$overriddenLogger = LoggerFactory::getInstance( 'foo' );
 		$this->assertSame( $logger, $overriddenLogger );
 		$this->assertNotSame( $oldLogger, $overriddenLogger );
-		return $oldLogger;
-	}
-
-	/**
-	 * @depends testLoggersAreRestoredOnTearDown_replacingExistingLogger__before
-	 */
-	public function testLoggersAreRestoredOnTearDown_replacingExistingLogger__after( LoggerInterface $mockLogger ) {
-		$curLogger = LoggerFactory::getInstance( 'foo' );
-		$this->assertNotSame( $mockLogger, $curLogger );
 	}
 
 	public function testLoggersAreRestoredOnTearDown_replacingNonExistingLogger__before() {
