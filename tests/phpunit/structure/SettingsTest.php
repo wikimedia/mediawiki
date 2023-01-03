@@ -120,10 +120,14 @@ class SettingsTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideConfigGeneration
 	 */
 	public function testConfigGeneration( string $option, string $expectedFile ) {
-		$script = MW_INSTALL_PATH . '/maintenance/generateConfigSchema.php';
-		$schemaGenerator = Shell::makeScriptCommand( $script, [ $option, 'php://stdout' ] );
+		$script = MW_INSTALL_PATH . '/maintenance/run.php';
+		$schemaGenerator = Shell::makeScriptCommand( $script, [ 'GenerateConfigSchema', $option, 'php://stdout' ] );
 		$result = $schemaGenerator->execute();
-		$this->assertSame( 0, $result->getExitCode(), 'Config generation must finish successfully' );
+		$this->assertSame(
+			0,
+			$result->getExitCode(),
+			'Config generation must finish successfully.' . "\n" . $result->getStderr()
+		);
 
 		$errors = $result->getStderr();
 		$errors = preg_replace( '/^Xdebug:.*\n/m', '', $errors );
