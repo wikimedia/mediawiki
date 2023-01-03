@@ -113,7 +113,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			$text .= "* time:{{REVISIONTIMESTAMP}}!\n";
 			$text .= "* [[Link It]]\n";
 
-			$content = [ 'main' => new WikitextContent( $text ) ];
+			$content = [ SlotRecord::MAIN => new WikitextContent( $text ) ];
 		}
 
 		/** @var MockObject|RevisionRecord $mock */
@@ -201,7 +201,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$text = "(ONE)<includeonly>(TWO)</includeonly><noinclude>#{{:$name}}#</noinclude>";
 
 		$content = [
-			'main' => new WikitextContent( $text )
+			SlotRecord::MAIN => new WikitextContent( $text )
 		];
 
 		$rev = $this->getMockRevision( RevisionStoreRecord::class, $title, null, 0, $content );
@@ -397,7 +397,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetRevisionParserOutput_multi() {
 		$content = [
-			'main' => new WikitextContent( '[[Kittens]]' ),
+			SlotRecord::MAIN => new WikitextContent( '[[Kittens]]' ),
 			'aux' => new WikitextContent( '[[Goats]]' ),
 		];
 

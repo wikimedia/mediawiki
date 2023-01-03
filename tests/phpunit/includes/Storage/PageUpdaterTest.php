@@ -340,7 +340,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		// The positive case with setForceEmptyRevision() causing a new revision to be created
 		// is tested
 		$this->expectException( LogicException::class );
-		$updater->setContent( 'main', new TextContent( 'Changed Content' ) );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Changed Content' ) );
 		$summary = CommentStoreComment::newUnsavedComment( 'dummy revision' );
 		$updater->saveRevision( $summary );
 	}
@@ -633,7 +633,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		// plain text content should fail in aux slot (the main slot doesn't care)
 		$updater = $page->newPageUpdater( $user )
-			->setContent( 'main', new TextContent( 'Main Content' ) )
+			->setContent( SlotRecord::MAIN, new TextContent( 'Main Content' ) )
 			->setContent( 'aux', new TextContent( 'Aux Content' ) );
 
 		$summary = CommentStoreComment::newUnsavedComment( 'udpate?!' );
@@ -689,7 +689,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		// Create page
 		$page = $wikiPageFactory->newFromTitle( $title );
 		$updater = $page->newPageUpdater( $user )
-			->setContent( 'main', new TextContent( 'Content 1' ) );
+			->setContent( SlotRecord::MAIN, new TextContent( 'Content 1' ) );
 		$updater->saveRevision( $summary, EDIT_NEW );
 		$this->assertTrue( $updater->wasSuccessful(), 'wasSuccessful()' );
 
@@ -701,7 +701,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$updater = $page->newPageUpdater( $user );
 		$updater->grabParentRevision();
 
-		$updater->setContent( 'main', new TextContent( 'Content 2' ) );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Content 2' ) );
 
 		// Force the article ID to something invalid,
 		// to emulate confusion due to a page move.

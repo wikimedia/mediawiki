@@ -400,7 +400,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		yield 'Multi-slot revision insertion' => [
 			[
 				'content' => [
-					'main' => new WikitextContent( 'Chicken' ),
+					SlotRecord::MAIN => new WikitextContent( 'Chicken' ),
 					'aux' => new TextContent( 'Egg' ),
 				],
 				'page' => true,
@@ -641,13 +641,13 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	public function provideNewNullRevision() {
 		yield [
 			Title::newFromText( 'UTPage_notAutoCreated' ),
-			[ 'content' => [ 'main' => new WikitextContent( 'Flubber1' ) ] ],
+			[ 'content' => [ SlotRecord::MAIN => new WikitextContent( 'Flubber1' ) ] ],
 			CommentStoreComment::newUnsavedComment( __METHOD__ . ' comment1' ),
 			true,
 		];
 		yield [
 			Title::newFromText( 'UTPage_notAutoCreated' ),
-			[ 'content' => [ 'main' => new WikitextContent( 'Flubber2' ) ] ],
+			[ 'content' => [ SlotRecord::MAIN => new WikitextContent( 'Flubber2' ) ] ],
 			CommentStoreComment::newUnsavedComment( __METHOD__ . ' comment2', [ 'a' => 1 ] ),
 			false,
 		];
@@ -655,7 +655,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			Title::newFromText( 'UTPage_notAutoCreated' ),
 			[
 				'content' => [
-					'main' => new WikitextContent( 'Chicken' ),
+					SlotRecord::MAIN => new WikitextContent( 'Chicken' ),
 					'aux' => new WikitextContent( 'Omelet' ),
 				],
 			],
@@ -2947,7 +2947,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$rev->setTimestamp( '20180101000000' )
 			->setComment( CommentStoreComment::newUnsavedComment( 'test' ) )
 			->setUser( $user )
-			->setContent( 'main', new WikitextContent( 'Text' ) )
+			->setContent( SlotRecord::MAIN, new WikitextContent( 'Text' ) )
 			->setPageId( $page->getId() );
 
 		$return = $this->getServiceContainer()->getRevisionStore()->insertRevisionOn( $rev, $this->getDb() );
@@ -3034,7 +3034,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$rev->setTimestamp( '20180101000000' )
 			->setComment( CommentStoreComment::newUnsavedComment( 'test' ) )
 			->setUser( $this->getTestUser()->getUser() )
-			->setContent( 'main', new WikitextContent( 'Text' ) )
+			->setContent( SlotRecord::MAIN, new WikitextContent( 'Text' ) )
 			->setPageId( $page->getId() );
 
 		$store = $this->getServiceContainer()->getRevisionStore();

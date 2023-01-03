@@ -321,7 +321,7 @@ trait RevisionRecordTests {
 
 		$slot = $rev->getSlot( SlotRecord::MAIN );
 		$this->assertNotNull( $slot, 'getSlot()' );
-		$this->assertSame( 'main', $slot->getRole(), 'getRole()' );
+		$this->assertSame( SlotRecord::MAIN, $slot->getRole(), 'getRole()' );
 	}
 
 	public function testHasSlot() {

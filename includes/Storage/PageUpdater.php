@@ -544,7 +544,7 @@ class PageUpdater {
 	/**
 	 * Set the new content for the given slot role
 	 *
-	 * @param string $role A slot role name (such as "main")
+	 * @param string $role A slot role name (such as SlotRecord::MAIN)
 	 * @param Content $content
 	 * @return $this
 	 */
@@ -600,7 +600,7 @@ class PageUpdater {
 	 * preventing the new revision, and any subsequent revisions, from
 	 * inheriting the slot with this role.
 	 *
-	 * @param string $role A slot role name (but not "main")
+	 * @param string $role A slot role name (but not SlotRecord::MAIN)
 	 */
 	public function removeSlot( $role ) {
 		$this->ensureRoleNotRequired( $role );

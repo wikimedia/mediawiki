@@ -14,6 +14,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;
 use MediaWiki\User\UserIdentityValue;
@@ -1155,7 +1156,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	private function getJavascriptRevision( Title $title, User $user, $text ) {
 		$content = ContentHandler::makeContent( $text, $title, CONTENT_MODEL_JAVASCRIPT );
 		$revision = new MutableRevisionRecord( $title );
-		$revision->setContent( 'main', $content );
+		$revision->setContent( SlotRecord::MAIN, $content );
 		return $revision;
 	}
 
@@ -1173,7 +1174,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			->getContentHandler( CONTENT_MODEL_JAVASCRIPT )
 			->makeRedirectContent( $redirectTargetTitle );
 		$revision = new MutableRevisionRecord( $title );
-		$revision->setContent( 'main', $content );
+		$revision->setContent( SlotRecord::MAIN, $content );
 		return $revision;
 	}
 

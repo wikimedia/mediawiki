@@ -74,7 +74,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		$contentHandler = ContentHandler::getForModelID( $model );
 		$content = $contentHandler->unserializeContent( $text );
 
-		$rev = $this->addMultiSlotRevision( $page, [ 'main' => $content ], $summary );
+		$rev = $this->addMultiSlotRevision( $page, [ SlotRecord::MAIN => $content ], $summary );
 
 		if ( !$rev ) {
 			throw new MWException( "Could not create revision" );

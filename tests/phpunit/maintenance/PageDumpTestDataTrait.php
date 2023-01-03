@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\Maintenance;
 use Exception;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MWException;
 use RequestContext;
 use RevisionDeleter;
@@ -71,7 +72,7 @@ trait PageDumpTestDataTrait {
 			$this->rev1_1 = $this->addMultiSlotRevision(
 				$page,
 				[
-					'main' => new WikitextContent( 'BackupDumperTestP1Text1' ),
+					SlotRecord::MAIN => new WikitextContent( 'BackupDumperTestP1Text1' ),
 					'aux' => new WikitextContent( 'BackupDumperTestP1Text1/aux' ),
 				],
 				"BackupDumperTestP1Summary1"
