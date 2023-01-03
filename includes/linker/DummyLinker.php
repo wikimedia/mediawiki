@@ -369,7 +369,7 @@ class DummyLinker {
 	public function generateRollback(
 		RevisionRecord $revRecord,
 		IContextSource $context = null,
-		$options = [ 'verify' ]
+		$options = []
 	) {
 		return Linker::generateRollback(
 			$revRecord,

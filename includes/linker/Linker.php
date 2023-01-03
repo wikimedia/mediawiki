@@ -1802,12 +1802,13 @@ class Linker {
 	 * changes, so this allows sysops to combat a busy vandal without bothering
 	 * other users.
 	 *
-	 * If the option verify is set this function will return the link only in case the
-	 * revision can be reverted. Please note that due to performance limitations
-	 * it might be assumed that a user isn't the only contributor of a page while
-	 * (s)he is, which will lead to useless rollback links. Furthermore this wont
-	 * work if $wgShowRollbackEditCount is disabled, so this can only function
-	 * as an additional check.
+	 * This function will return the link only in case the revision can be reverted
+	 * (not all revisions are by the same user, and the last revision by a different
+	 * user is visible). Please note that due to performance limitations it might be
+	 * assumed that a user isn't the only contributor of a page while (s)he is, which
+	 * will lead to useless rollback links. Furthermore this won't work if
+	 * $wgShowRollbackEditCount is disabled, so this can only function as an
+	 * additional check.
 	 *
 	 * If the option noBrackets is set the rollback link wont be enclosed in "[]".
 	 *
@@ -1823,16 +1824,13 @@ class Linker {
 	public static function generateRollback(
 		RevisionRecord $revRecord,
 		IContextSource $context = null,
-		$options = [ 'verify' ]
+		$options = []
 	) {
 		$context ??= RequestContext::getMain();
 
-		$editCount = false;
-		if ( in_array( 'verify', $options, true ) ) {
-			$editCount = self::getRollbackEditCount( $revRecord, true );
-			if ( $editCount === false ) {
-				return '';
-			}
+		$editCount = self::getRollbackEditCount( $revRecord );
+		if ( $editCount === false ) {
+			return '';
 		}
 
 		$inner = self::buildRollbackLink( $revRecord, $context, $editCount );
@@ -1861,23 +1859,26 @@ class Linker {
 
 	/**
 	 * This function will return the number of revisions which a rollback
-	 * would revert and, if $verify is set it will verify that a revision
-	 * can be reverted (that the user isn't the only contributor and the
-	 * revision we might rollback to isn't deleted). These checks can only
-	 * function as an additional check as this function only checks against
-	 * the last $wgShowRollbackEditCount edits.
+	 * would revert and will verify that a revision can be reverted (that
+	 * the user isn't the only contributor and the revision we might
+	 * rollback to isn't deleted). These checks can only function as an
+	 * additional check as this function only checks against the last
+	 * $wgShowRollbackEditCount edits.
 	 *
-	 * Returns null if $wgShowRollbackEditCount is disabled or false if $verify
-	 * is set and the user is the only contributor of the page.
+	 * Returns null if $wgShowRollbackEditCount is disabled or false if
+	 * the user is the only contributor of the page.
 	 *
 	 * @todo Unused outside of this file - should it be made private?
 	 *
 	 * @param RevisionRecord $revRecord (Switched from the old Revision class to RevisionRecord
 	 *    since 1.35)
-	 * @param bool $verify Try to verify that this revision can really be rolled back
+	 * @param bool $verify Deprecated since 1.40, has no effect.
 	 * @return int|false|null
 	 */
-	public static function getRollbackEditCount( RevisionRecord $revRecord, $verify ) {
+	public static function getRollbackEditCount( RevisionRecord $revRecord, $verify = true ) {
+		if ( func_num_args() > 1 ) {
+			wfDeprecated( __METHOD__ . ' with $verify parameter', '1.40' );
+		}
 		$showRollbackEditCount = MediaWikiServices::getInstance()->getMainConfig()
 			->get( MainConfigNames::ShowRollbackEditCount );
 
@@ -1908,10 +1909,9 @@ class Linker {
 		$moreRevs = false;
 		foreach ( $res as $row ) {
 			if ( $row->rev_user_text != $revUserText ) {
-				if ( $verify &&
-					( $row->rev_deleted & RevisionRecord::DELETED_TEXT
-						|| $row->rev_deleted & RevisionRecord::DELETED_USER
-				) ) {
+				if ( $row->rev_deleted & RevisionRecord::DELETED_TEXT
+					|| $row->rev_deleted & RevisionRecord::DELETED_USER
+				) {
 					// If the user or the text of the revision we might rollback
 					// to is deleted in some way we can't rollback. Similar to
 					// the checks in WikiPage::commitRollback.
@@ -1923,7 +1923,7 @@ class Linker {
 			$editCount++;
 		}
 
-		if ( $verify && $editCount <= $showRollbackEditCount && !$moreRevs ) {
+		if ( $editCount <= $showRollbackEditCount && !$moreRevs ) {
 			// We didn't find at least $wgShowRollbackEditCount revisions made by the current user
 			// and there weren't any other revisions. That means that the current user is the only
 			// editor, so we can't rollback
@@ -1995,7 +1995,7 @@ class Linker {
 		$msg = [ 'rollbacklink' ];
 		if ( is_int( $showRollbackEditCount ) && $showRollbackEditCount > 0 ) {
 			if ( !is_numeric( $editCount ) ) {
-				$editCount = self::getRollbackEditCount( $revRecord, false );
+				$editCount = self::getRollbackEditCount( $revRecord );
 			}
 
 			if ( $editCount > $showRollbackEditCount ) {
