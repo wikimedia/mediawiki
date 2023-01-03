@@ -277,10 +277,10 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 				'slot_content_id' => 1,
 				'content_address' => null, // touched
 				'model_name' => 'x',
-				'role_name' => 'main',
+				'role_name' => SlotRecord::MAIN,
 				'slot_origin' => null // touched
 			],
-			new DummyContentForTesting( 'main' )
+			new DummyContentForTesting( SlotRecord::MAIN )
 		);
 		$auxSlot = new SlotRecord(
 			(object)[
@@ -298,7 +298,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 		$record->setSlot( $mainSlot );
 		$record->setSlot( $auxSlot );
 
-		$this->assertSame( [ 'main' ], $record->getOriginalSlots()->getSlotRoles() );
+		$this->assertSame( [ SlotRecord::MAIN ], $record->getOriginalSlots()->getSlotRoles() );
 		$this->assertSame( $mainSlot, $record->getOriginalSlots()->getSlot( SlotRecord::MAIN ) );
 
 		$this->assertSame( [ 'aux' ], $record->getInheritedSlots()->getSlotRoles() );
@@ -447,7 +447,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 				'slot_content_id' => 1,
 				'content_address' => null,
 				'model_name' => 'x',
-				'role_name' => 'main',
+				'role_name' => SlotRecord::MAIN,
 				'slot_origin' => null
 			],
 			static function () {

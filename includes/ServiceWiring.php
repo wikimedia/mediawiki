@@ -145,6 +145,7 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreFactory;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Settings\Config\ConfigSchema;
@@ -1883,7 +1884,7 @@ return [
 		$hookContainer = $services->getHookContainer();
 		$titleFactory = $services->getTitleFactory();
 		$registry->defineRole(
-			'main',
+			SlotRecord::MAIN,
 			static function () use ( $config, $contentHandlerFactory, $hookContainer, $titleFactory ) {
 				return new MainSlotRoleHandler(
 					$config->get( MainConfigNames::NamespaceContentModels ),

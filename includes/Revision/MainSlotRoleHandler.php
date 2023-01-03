@@ -71,7 +71,7 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 		HookContainer $hookContainer,
 		TitleFactory $titleFactory
 	) {
-		parent::__construct( 'main', CONTENT_MODEL_WIKITEXT );
+		parent::__construct( SlotRecord::MAIN, CONTENT_MODEL_WIKITEXT );
 		$this->namespaceContentModels = $namespaceContentModels;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );

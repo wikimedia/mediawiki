@@ -188,7 +188,7 @@ class SlotRoleRegistry {
 	 */
 	public function getRequiredRoles( PageIdentity $page ) {
 		// TODO: allow this to be overwritten per namespace (or page type)
-		return [ 'main' ];
+		return [ SlotRecord::MAIN ];
 	}
 
 	/**
