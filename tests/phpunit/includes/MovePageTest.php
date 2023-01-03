@@ -187,12 +187,12 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				Title::makeTitle( NS_MAIN, '>' ),
 				// @todo First error message should be more specific, or maybe we should make moving
 				// such pages valid if they actually exist somehow in the database
-				[ [ 'movepage-source-doesnt-exist' ], [ 'movepage-invalid-target-title' ] ],
+				[ [ 'movepage-source-doesnt-exist', '<' ], [ 'movepage-invalid-target-title' ] ],
 			],
 			'Move nonexistent' => [
 				'Nonexistent',
 				'Nonexistent2',
-				[ [ 'movepage-source-doesnt-exist' ] ],
+				[ [ 'movepage-source-doesnt-exist', 'Nonexistent' ] ],
 			],
 			'Move over existing' => [
 				'Existent',
