@@ -48,7 +48,7 @@ class PagerTools {
 				$rollbackLink = Linker::generateRollback(
 					$revRecord,
 					$context,
-					[ 'verify', 'noBrackets' ]
+					[ 'noBrackets' ]
 				);
 				if ( $rollbackLink ) {
 					$this->preventClickjacking = true;
