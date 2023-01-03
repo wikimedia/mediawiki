@@ -126,7 +126,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			$out->addHTML( $tmp );
 
 			$pout = $this->parser->parse( $output, $title, $options );
-			$rawhtml = $pout->getText();
+			$rawhtml = $pout->getText( [ 'enableSectionEditLinks' => false ] );
 			if ( $generateRawHtml && strlen( $rawhtml ) > 0 ) {
 				// @phan-suppress-next-line SecurityCheck-DoubleEscaped Wanted here to display the html
 				$out->addHTML( $this->makeOutput( $rawhtml, 'expand_templates_html_output' ) );
@@ -273,7 +273,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			'dir' => $lang->getDir(),
 			'lang' => $lang->getHtmlCode(),
 		] ) );
-		$out->addParserOutputContent( $pout );
+		$out->addParserOutputContent( $pout, [ 'enableSectionEditLinks' => false ] );
 		$out->addHTML( Html::closeElement( 'div' ) );
 		$out->setCategoryLinks( $pout->getCategories() );
 	}
