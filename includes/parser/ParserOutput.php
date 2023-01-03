@@ -2419,6 +2419,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @return array
 	 */
 	protected function toJsonArray(): array {
+		// WARNING: When changing how this class is serialized, follow the instructions
+		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
+
 		$data = [
 			'Text' => $this->mText,
 			'LanguageLinks' => $this->mLanguageLinks,
@@ -2492,6 +2495,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 */
 	protected function initFromJson( JsonUnserializer $unserializer, array $jsonData ): void {
 		parent::initFromJson( $unserializer, $jsonData );
+
+		// WARNING: When changing how this class is serialized, follow the instructions
+		// at <https://www.mediawiki.org/wiki/Manual:Parser_cache/Serialization_compatibility>!
 
 		$this->mText = $jsonData['Text'];
 		$this->mLanguageLinks = $jsonData['LanguageLinks'];
