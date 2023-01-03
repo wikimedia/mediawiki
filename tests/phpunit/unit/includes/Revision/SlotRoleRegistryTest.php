@@ -7,6 +7,7 @@ use LogicException;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Revision\MainSlotRoleHandler;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleHandler;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableStore;
@@ -144,7 +145,7 @@ class SlotRoleRegistryTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetRequiredRoles() {
 		$registry = $this->newSlotRoleRegistry();
-		$registry->defineRole( 'main', function ( $role ) {
+		$registry->defineRole( SlotRecord::MAIN, function ( $role ) {
 			return new MainSlotRoleHandler(
 				[],
 				$this->createMock( IContentHandlerFactory::class ),
@@ -154,7 +155,7 @@ class SlotRoleRegistryTest extends MediaWikiUnitTestCase {
 		} );
 
 		$title = $this->createMock( Title::class );
-		$this->assertEquals( [ 'main' ], $registry->getRequiredRoles( $title ) );
+		$this->assertEquals( [ SlotRecord::MAIN ], $registry->getRequiredRoles( $title ) );
 	}
 
 	/**
@@ -162,7 +163,7 @@ class SlotRoleRegistryTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetAllowedRoles() {
 		$registry = $this->newSlotRoleRegistry();
-		$registry->defineRole( 'main', function ( $role ) {
+		$registry->defineRole( SlotRecord::MAIN, function ( $role ) {
 			return new MainSlotRoleHandler(
 				[],
 				$this->createMock( IContentHandlerFactory::class ),
@@ -173,7 +174,7 @@ class SlotRoleRegistryTest extends MediaWikiUnitTestCase {
 		$registry->defineRoleWithModel( 'FOO', CONTENT_MODEL_TEXT );
 
 		$title = $this->createMock( Title::class );
-		$this->assertEquals( [ 'main', 'foo' ], $registry->getAllowedRoles( $title ) );
+		$this->assertEquals( [ SlotRecord::MAIN, 'foo' ], $registry->getAllowedRoles( $title ) );
 	}
 
 	/**

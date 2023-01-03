@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Maintenance;
 
 use BaseDump;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWikiLangTestCase;
 use TextPassDumper;
 use WikiExporter;
@@ -126,7 +127,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 
 		$asserter->setVarMapping(
 			'rev1_1_main_text',
-			$getPrefetchText( $this->rev1_1->getPageId(), $this->rev1_1->getId(), 'main' )
+			$getPrefetchText( $this->rev1_1->getPageId(), $this->rev1_1->getId(), SlotRecord::MAIN )
 		);
 		$asserter->setVarMapping(
 			'rev1_1_aux_text',
@@ -134,23 +135,23 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 		);
 		$asserter->setVarMapping(
 			'rev2_1_main_text',
-			$getPrefetchText( $this->rev2_1->getPageId(), $this->rev2_1->getId(), 'main' )
+			$getPrefetchText( $this->rev2_1->getPageId(), $this->rev2_1->getId(), SlotRecord::MAIN )
 		);
 		$asserter->setVarMapping(
 			'rev2_2_main_text',
-			$getPrefetchText( $this->rev2_2->getPageId(), $this->rev2_2->getId(), 'main' )
+			$getPrefetchText( $this->rev2_2->getPageId(), $this->rev2_2->getId(), SlotRecord::MAIN )
 		);
 		$asserter->setVarMapping(
 			'rev2_3_main_text',
-			$getPrefetchText( $this->rev2_3->getPageId(), $this->rev2_3->getId(), 'main' )
+			$getPrefetchText( $this->rev2_3->getPageId(), $this->rev2_3->getId(), SlotRecord::MAIN )
 		);
 		$asserter->setVarMapping(
 			'rev2_4_main_text',
-			$getPrefetchText( $this->rev2_4->getPageId(), $this->rev2_4->getId(), 'main' )
+			$getPrefetchText( $this->rev2_4->getPageId(), $this->rev2_4->getId(), SlotRecord::MAIN )
 		);
 		$asserter->setVarMapping(
 			'rev4_1_main_text',
-			$getPrefetchText( $this->rev4_1->getPageId(), $this->rev4_1->getId(), 'main' )
+			$getPrefetchText( $this->rev4_1->getPageId(), $this->rev4_1->getId(), SlotRecord::MAIN )
 		);
 
 		$asserter->open( $nameFull );
@@ -280,10 +281,10 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 					$asserter->assertRevision(
 						$this->rev1_1->getId() + $i * self::$numOfRevs,
 						$this->rev1_1->getComment()->text,
-						$this->getSlotTextId( $this->rev1_1->getSlot( 'main' ) ),
+						$this->getSlotTextId( $this->rev1_1->getSlot( SlotRecord::MAIN ) ),
 						false,
 						$this->rev1_1->getSha1(),
-						$this->getSlotText( $this->rev1_1->getSlot( 'main' ) )
+						$this->getSlotText( $this->rev1_1->getSlot( SlotRecord::MAIN ) )
 					);
 					$asserter->assertPageEnd();
 
@@ -300,36 +301,36 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 					$asserter->assertRevision(
 						$this->rev2_1->getId() + $i * self::$numOfRevs,
 						$this->rev2_1->getComment()->text,
-						$this->getSlotTextId( $this->rev2_1->getSlot( 'main' ) ),
+						$this->getSlotTextId( $this->rev2_1->getSlot( SlotRecord::MAIN ) ),
 						false,
 						$this->rev2_1->getSha1(),
-						$this->getSlotText( $this->rev2_1->getSlot( 'main' ) )
+						$this->getSlotText( $this->rev2_1->getSlot( SlotRecord::MAIN ) )
 					);
 					$asserter->assertRevision(
 						$this->rev2_2->getId() + $i * self::$numOfRevs,
 						$this->rev2_2->getComment()->text,
-						$this->getSlotTextId( $this->rev2_2->getSlot( 'main' ) ),
+						$this->getSlotTextId( $this->rev2_2->getSlot( SlotRecord::MAIN ) ),
 						false,
 						$this->rev2_2->getSha1(),
-						$this->getSlotText( $this->rev2_2->getSlot( 'main' ) ),
+						$this->getSlotText( $this->rev2_2->getSlot( SlotRecord::MAIN ) ),
 						$this->rev2_1->getId() + $i * self::$numOfRevs
 					);
 					$asserter->assertRevision(
 						$this->rev2_3->getId() + $i * self::$numOfRevs,
 						$this->rev2_3->getComment()->text,
-						$this->getSlotTextId( $this->rev2_3->getSlot( 'main' ) ),
+						$this->getSlotTextId( $this->rev2_3->getSlot( SlotRecord::MAIN ) ),
 						false,
 						$this->rev2_3->getSha1(),
-						$this->getSlotText( $this->rev2_3->getSlot( 'main' ) ),
+						$this->getSlotText( $this->rev2_3->getSlot( SlotRecord::MAIN ) ),
 						$this->rev2_2->getId() + $i * self::$numOfRevs
 					);
 					$asserter->assertRevision(
 						$this->rev2_4->getId() + $i * self::$numOfRevs,
 						$this->rev2_4->getComment()->text,
-						$this->getSlotTextId( $this->rev2_4->getSlot( 'main' ) ),
+						$this->getSlotTextId( $this->rev2_4->getSlot( SlotRecord::MAIN ) ),
 						false,
 						$this->rev2_4->getSha1(),
-						$this->getSlotText( $this->rev2_4->getSlot( 'main' ) ),
+						$this->getSlotText( $this->rev2_4->getSlot( SlotRecord::MAIN ) ),
 						$this->rev2_3->getId() + $i * self::$numOfRevs
 					);
 					$asserter->assertPageEnd();
@@ -347,10 +348,10 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 					$asserter->assertRevision(
 						$this->rev4_1->getId() + $i * self::$numOfRevs,
 						$this->rev4_1->getComment()->text,
-						$this->getSlotTextId( $this->rev4_1->getSlot( 'main' ) ),
+						$this->getSlotTextId( $this->rev4_1->getSlot( SlotRecord::MAIN ) ),
 						false,
 						$this->rev4_1->getSha1(),
-						$this->getSlotText( $this->rev4_1->getSlot( 'main' ) ),
+						$this->getSlotText( $this->rev4_1->getSlot( SlotRecord::MAIN ) ),
 						false,
 						"BackupTextPassTestModel",
 						"text/plain"

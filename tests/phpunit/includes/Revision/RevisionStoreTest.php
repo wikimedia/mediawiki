@@ -6,6 +6,7 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\IncompleteRevisionException;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Revision\SlotRecord;
 use MediaWikiIntegrationTestCase;
 use MWException;
 use MWTimestamp;
@@ -408,7 +409,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 		$revStore->checkContent(
 			$content,
 			new PageIdentityValue( 0, NS_MAIN, 'Example', PageIdentityValue::LOCAL ),
-			'main'
+			SlotRecord::MAIN
 		);
 		// Avoid issues with no assertions for the non-exception case
 		$this->addToAssertionCount( 1 );

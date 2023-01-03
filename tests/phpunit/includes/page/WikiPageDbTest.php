@@ -111,7 +111,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		}
 
 		if ( !is_array( $content ) ) {
-			$content = [ 'main' => $content ];
+			$content = [ SlotRecord::MAIN => $content ];
 		}
 
 		$updater = $page->newPageUpdater( $performer );
@@ -721,7 +721,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$page = new WikiPage( Title::newFromText( __METHOD__ ) );
 		$page = $this->createPage(
 			$page,
-			[ 'main' => $mainContent1 ]
+			[ SlotRecord::MAIN => $mainContent1 ]
 		);
 
 		$dataUpdates = $page->getDeletionUpdates( $page->getRevisionRecord() );

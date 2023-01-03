@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Unit\Revision;
 
 use ContentHandler;
 use MediaWiki\Revision\MainSlotRoleHandler;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Title\TitleFactory;
 use MediaWikiUnitTestCase;
@@ -65,7 +66,7 @@ class MainSlotRoleHandlerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testConstruction() {
 		$handler = $this->getRoleHandler( [] );
-		$this->assertSame( 'main', $handler->getRole() );
+		$this->assertSame( SlotRecord::MAIN, $handler->getRole() );
 		$this->assertSame( 'slot-name-main', $handler->getNameMessageKey() );
 
 		$hints = $handler->getOutputLayoutHints();

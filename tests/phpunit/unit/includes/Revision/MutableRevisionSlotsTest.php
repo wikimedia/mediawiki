@@ -68,12 +68,12 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 		$slotA = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$slots->setSlot( $slotA );
 		$this->assertSame( $slotA, $slots->getSlot( SlotRecord::MAIN ) );
-		$this->assertSame( [ 'main' => $slotA ], $slots->getSlots() );
+		$this->assertSame( [ SlotRecord::MAIN => $slotA ], $slots->getSlots() );
 
 		$slotB = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'B' ) );
 		$slots->setSlot( $slotB );
 		$this->assertSame( $slotB, $slots->getSlot( SlotRecord::MAIN ) );
-		$this->assertSame( [ 'main' => $slotB ], $slots->getSlots() );
+		$this->assertSame( [ SlotRecord::MAIN => $slotB ], $slots->getSlots() );
 	}
 
 	/**
@@ -93,7 +93,7 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 		$slotC = $this->newSavedSlot( 'foo', new WikitextContent( 'C' ) );
 		$slots->inheritSlot( $slotB );
 		$slots->inheritSlot( $slotC );
-		$this->assertSame( [ 'main', 'foo' ], $slots->getSlotRoles() );
+		$this->assertSame( [ SlotRecord::MAIN, 'foo' ], $slots->getSlotRoles() );
 		$this->assertNotSame( $slotB, $slots->getSlot( SlotRecord::MAIN ) );
 		$this->assertNotSame( $slotC, $slots->getSlot( 'foo' ) );
 		$this->assertTrue( $slots->getSlot( SlotRecord::MAIN )->isInherited() );
@@ -110,7 +110,7 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 		$slotA = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$slots->setSlot( $slotA );
 		$this->assertSame( $slotA, $slots->getSlot( SlotRecord::MAIN ) );
-		$this->assertSame( [ 'main' => $slotA ], $slots->getSlots() );
+		$this->assertSame( [ SlotRecord::MAIN => $slotA ], $slots->getSlots() );
 
 		$newContent = new WikitextContent( 'B' );
 		$slots->setContent( SlotRecord::MAIN, $newContent );
@@ -121,7 +121,7 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 		$slotA = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
 		$slots = new MutableRevisionSlots( [ $slotA ] );
 
-		$this->assertSame( [ 'main' => $slotA ], $slots->getSlots() );
+		$this->assertSame( [ SlotRecord::MAIN => $slotA ], $slots->getSlots() );
 
 		$slots->removeSlot( SlotRecord::MAIN );
 		$this->assertSame( [], $slots->getSlots() );

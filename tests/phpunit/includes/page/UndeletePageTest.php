@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Page\UndeletePage;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
 
@@ -63,7 +64,7 @@ class UndeletePageTest extends MediaWikiIntegrationTestCase {
 		$performer = static::getTestUser()->getUser();
 		$content = ContentHandler::makeContent( $content, $page->getTitle(), CONTENT_MODEL_WIKITEXT );
 		$updater = $page->newPageUpdater( UserIdentityValue::newAnonymous( $this->ipEditor ) )
-			->setContent( 'main', $content );
+			->setContent( SlotRecord::MAIN, $content );
 
 		$revisionRecord = $updater->saveRevision( CommentStoreComment::newUnsavedComment( "testing" ) );
 		if ( !$updater->wasSuccessful() ) {

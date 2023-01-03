@@ -108,7 +108,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		}
 
 		if ( !is_array( $content ) ) {
-			$content = [ 'main' => $content ];
+			$content = [ SlotRecord::MAIN => $content ];
 		}
 
 		$this->getDerivedPageDataUpdater( $page ); // flush cached instance before.
@@ -250,11 +250,11 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $updater->getRevision() );
 		$this->assertNotNull( $updater->getRenderedRevision() );
 
-		$this->assertEquals( [ 'main', 'aux' ], $updater->getSlots()->getSlotRoles() );
-		$this->assertEquals( [ 'main' ], array_keys( $updater->getSlots()->getOriginalSlots() ) );
+		$this->assertEquals( [ SlotRecord::MAIN, 'aux' ], $updater->getSlots()->getSlotRoles() );
+		$this->assertEquals( [ SlotRecord::MAIN ], array_keys( $updater->getSlots()->getOriginalSlots() ) );
 		$this->assertEquals( [ 'aux' ], array_keys( $updater->getSlots()->getInheritedSlots() ) );
-		$this->assertEquals( [ 'main', 'aux' ], $updater->getModifiedSlotRoles() );
-		$this->assertEquals( [ 'main', 'aux' ], $updater->getTouchedSlotRoles() );
+		$this->assertEquals( [ SlotRecord::MAIN, 'aux' ], $updater->getModifiedSlotRoles() );
+		$this->assertEquals( [ SlotRecord::MAIN, 'aux' ], $updater->getTouchedSlotRoles() );
 
 		$mainSlot = $updater->getRawSlot( SlotRecord::MAIN );
 		$this->assertInstanceOf( SlotRecord::class, $mainSlot );
@@ -396,11 +396,11 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotNull( $updater1->getRevision() );
 		$this->assertNotNull( $updater1->getRenderedRevision() );
 
-		$this->assertEquals( [ 'main' ], $updater1->getSlots()->getSlotRoles() );
-		$this->assertEquals( [ 'main' ], array_keys( $updater1->getSlots()->getOriginalSlots() ) );
+		$this->assertEquals( [ SlotRecord::MAIN ], $updater1->getSlots()->getSlotRoles() );
+		$this->assertEquals( [ SlotRecord::MAIN ], array_keys( $updater1->getSlots()->getOriginalSlots() ) );
 		$this->assertEquals( [], array_keys( $updater1->getSlots()->getInheritedSlots() ) );
-		$this->assertEquals( [ 'main' ], $updater1->getModifiedSlotRoles() );
-		$this->assertEquals( [ 'main' ], $updater1->getTouchedSlotRoles() );
+		$this->assertEquals( [ SlotRecord::MAIN ], $updater1->getModifiedSlotRoles() );
+		$this->assertEquals( [ SlotRecord::MAIN ], $updater1->getTouchedSlotRoles() );
 
 		// TODO: MCR: test multiple slots, test slot removal!
 
@@ -735,7 +735,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->createRevision(
 			$page,
 			__METHOD__,
-			[ 'main' => $mainContent1, $role => $auxContent1 ]
+			[ SlotRecord::MAIN => $mainContent1, $role => $auxContent1 ]
 		);
 
 		$update = new RevisionSlotsUpdate();
@@ -1034,7 +1034,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsCountableNoModifiedSlots() {
 		$page = $this->getPage( __METHOD__ );
-		$content = [ 'main' => new WikitextContent( '[[Test]]' ) ];
+		$content = [ SlotRecord::MAIN => new WikitextContent( '[[Test]]' ) ];
 		$rev = $this->createRevision( $page, 'first', $content );
 		$nullRevision = MutableRevisionRecord::newFromParentRevision( $rev );
 		$nullRevision->setId( 14 );
@@ -1051,7 +1051,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	public function testDoUpdates() {
 		$page = $this->getPage( __METHOD__ );
 
-		$content = [ 'main' => new WikitextContent( 'first [[main]]' ) ];
+		$content = [ SlotRecord::MAIN => new WikitextContent( 'first [[main]]' ) ];
 
 		$content['aux'] = new WikitextContent( 'Aux [[Nix]]' );
 
@@ -1128,7 +1128,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getPage( __METHOD__ );
 
 		// Case where user has canonical parser options
-		$content = [ 'main' => new WikitextContent( 'rev ID ver #1: {{REVISIONID}}' ) ];
+		$content = [ SlotRecord::MAIN => new WikitextContent( 'rev ID ver #1: {{REVISIONID}}' ) ];
 		$rev = $this->createRevision( $page, 'first', $content );
 		$pcache = $this->getServiceContainer()->getParserCache();
 		$pcache->deleteOptionsKey( $page );
@@ -1164,7 +1164,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 			'thumbsize',
 			$userOptionsManager->getOption( $user, 'thumbsize' ) + 1
 		);
-		$content = [ 'main' => new WikitextContent( 'rev ID ver #2: {{REVISIONID}}' ) ];
+		$content = [ SlotRecord::MAIN => new WikitextContent( 'rev ID ver #2: {{REVISIONID}}' ) ];
 		$rev = $this->createRevision( $page, 'first', $content, $user );
 		$pcache = $services->getParserCache();
 		$pcache->deleteOptionsKey( $page );
@@ -1199,7 +1199,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	public function testEnqueueRevertedTagUpdateJob( bool $approved, int $queueSize ) {
 		$page = $this->getPage( __METHOD__ );
 
-		$content = [ 'main' => new WikitextContent( '1' ) ];
+		$content = [ SlotRecord::MAIN => new WikitextContent( '1' ) ];
 		$rev = $this->createRevision( $page, '', $content );
 		$editResult = new EditResult(
 			false,
@@ -1278,7 +1278,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestUser()->getUser();
 
 		$update = new RevisionSlotsUpdate();
-		$update->modifyContent( 'main', new WikitextContent( 'first [[Main]]' ) );
+		$update->modifyContent( SlotRecord::MAIN, new WikitextContent( 'first [[Main]]' ) );
 		$update->modifyContent( 'aux', new WikitextContent( 'Aux [[Nix]]' ) );
 
 		// Emulate update after edit ----------
@@ -1361,7 +1361,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestUser()->getUser();
 
 		$update = new RevisionSlotsUpdate();
-		$update->modifyContent( 'main', new JavaScriptContent( '{ first: "main"; }' ) );
+		$update->modifyContent( SlotRecord::MAIN, new JavaScriptContent( '{ first: "main"; }' ) );
 
 		// Emulate update after edit ----------
 		$parserCacheFactory = $this->getServiceContainer()->getParserCacheFactory();
