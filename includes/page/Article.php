@@ -1636,7 +1636,7 @@ class Article implements Page {
 					$revisionRecord,
 					$user,
 					true,
-					true
+					!$unhide
 				) )
 				->parse() .
 			"</div>";
