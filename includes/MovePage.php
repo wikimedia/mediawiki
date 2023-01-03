@@ -239,7 +239,7 @@ class MovePage {
 			}
 			$status->fatal( 'immobile-source-namespace', $nsText );
 		} elseif ( !$this->oldTitle->exists() ) {
-			$status->fatal( 'movepage-source-doesnt-exist' );
+			$status->fatal( 'movepage-source-doesnt-exist', $this->oldTitle->getPrefixedText() );
 		}
 
 		if ( $this->newTitle->isExternal() ) {
