@@ -94,13 +94,13 @@ abstract class DatabaseMysqlBase extends Database {
 		parent::__construct( $params );
 		$this->platform = new MySQLPlatform(
 			$this,
-			$params['queryLogger'],
+			$this->logger,
 			$this->currentDomain,
 			$this->errorLogger
 		);
 		$this->replicationReporter = new MysqlReplicationReporter(
 			$params['topologyRole'],
-			$params['replLogger'],
+			$this->logger,
 			$params['srvCache'],
 			$params['lagDetectionMethod'] ?? 'Seconds_Behind_Master',
 			$params['lagDetectionOptions'] ?? [],

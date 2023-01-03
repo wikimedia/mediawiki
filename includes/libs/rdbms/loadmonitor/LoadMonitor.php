@@ -46,7 +46,7 @@ class LoadMonitor implements ILoadMonitor {
 	/** @var WANObjectCache */
 	protected $wanCache;
 	/** @var LoggerInterface */
-	protected $replLogger;
+	protected $logger;
 	/** @var StatsdDataFactoryInterface */
 	protected $statsd;
 
@@ -84,7 +84,7 @@ class LoadMonitor implements ILoadMonitor {
 		$this->lb = $lb;
 		$this->srvCache = $srvCache;
 		$this->wanCache = $wCache;
-		$this->replLogger = new NullLogger();
+		$this->logger = new NullLogger();
 		$this->statsd = new NullStatsdDataFactory();
 
 		$this->movingAveRatio = $options['movingAveRatio'] ?? 0.1;
@@ -92,7 +92,7 @@ class LoadMonitor implements ILoadMonitor {
 	}
 
 	public function setLogger( LoggerInterface $logger ) {
-		$this->replLogger = $logger;
+		$this->logger = $logger;
 	}
 
 	public function setStatsdDataFactory( StatsdDataFactoryInterface $statsFactory ) {
@@ -108,7 +108,7 @@ class LoadMonitor implements ILoadMonitor {
 				$weightByServer[$i] = (int)ceil( $weight * $newScalesByServer[$i] );
 			} else { // server recently added to config?
 				$host = $this->lb->getServerName( $i );
-				$this->replLogger->error( __METHOD__ . ": host $host not in cache" );
+				$this->logger->error( __METHOD__ . ": host $host not in cache" );
 			}
 		}
 	}
@@ -134,7 +134,7 @@ class LoadMonitor implements ILoadMonitor {
 		$srvCacheKey = $this->getStatesCacheKey( $this->srvCache, $serverIndexes );
 		$value = $this->srvCache->get( $srvCacheKey );
 		if ( $value && $value['timestamp'] > $minAsOfTime ) {
-			$this->replLogger->debug( __METHOD__ . ": used fresh '$cluster' cluster status" );
+			$this->logger->debug( __METHOD__ . ": used fresh '$cluster' cluster status" );
 
 			return $value; // cache hit
 		}
@@ -142,7 +142,7 @@ class LoadMonitor implements ILoadMonitor {
 		// (b) Value is stale/missing; try to use/refresh the shared cache
 		$scopedLock = $this->srvCache->getScopedLock( $srvCacheKey, 0, 10 );
 		if ( !$scopedLock && $value ) {
-			$this->replLogger->debug( __METHOD__ . ": used stale '$cluster' cluster status" );
+			$this->logger->debug( __METHOD__ . ": used stale '$cluster' cluster status" );
 			// (b1) Another thread on this server is already checking the shared cache
 			return $value;
 		}
@@ -183,9 +183,9 @@ class LoadMonitor implements ILoadMonitor {
 		);
 
 		if ( $updated ) {
-			$this->replLogger->info( __METHOD__ . ": regenerated '$cluster' cluster status" );
+			$this->logger->info( __METHOD__ . ": regenerated '$cluster' cluster status" );
 		} else {
-			$this->replLogger->debug( __METHOD__ . ": used cached '$cluster' cluster status" );
+			$this->logger->debug( __METHOD__ . ": used cached '$cluster' cluster status" );
 		}
 
 		// Backfill the local server cache
@@ -256,7 +256,7 @@ class LoadMonitor implements ILoadMonitor {
 			// Mark replication lag on this server as "false" if it is unreachable
 			if ( !$conn ) {
 				$lagTimes[$i] = $isPrimary ? 0 : false;
-				$this->replLogger->error(
+				$this->logger->error(
 					__METHOD__ . ": host {db_server} is unreachable",
 					[ 'db_server' => $host ]
 				);
@@ -273,14 +273,14 @@ class LoadMonitor implements ILoadMonitor {
 			$lagTimes[$i] = $lag;
 
 			if ( $lag === false ) {
-				$this->replLogger->error(
+				$this->logger->error(
 					__METHOD__ . ": host {db_server} is not replicating?",
 					[ 'db_server' => $host ]
 				);
 			} else {
 				$this->statsd->timing( "loadbalancer.lag.$cluster.$statHost", $lag * 1000 );
 				if ( $lag > $this->lagWarnThreshold ) {
-					$this->replLogger->warning(
+					$this->logger->warning(
 						"Server {db_server} has {lag} seconds of lag (>= {maxlag})",
 						[
 							'db_server' => $host,

@@ -62,9 +62,7 @@ class DatabaseTestHelper extends Database {
 			'srvCache' => new HashBagOStuff(),
 			'profiler' => null,
 			'trxProfiler' => new TransactionProfiler(),
-			'connLogger' => new NullLogger(),
-			'queryLogger' => new NullLogger(),
-			'replLogger' => new NullLogger(),
+			'logger' => new NullLogger(),
 			'errorLogger' => static function ( Exception $e ) {
 				wfWarn( get_class( $e ) . ': ' . $e->getMessage() );
 			},
@@ -81,7 +79,7 @@ class DatabaseTestHelper extends Database {
 		$this->flagsHolder = new DatabaseFlags( 0 );
 		$this->replicationReporter = new ReplicationReporter(
 			$params['topologyRole'],
-			$params['replLogger'],
+			$params['logger'],
 			$params['srvCache']
 		);
 

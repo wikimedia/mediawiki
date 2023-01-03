@@ -70,7 +70,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$lb = new LoadBalancer( [
 			// Simulate web request with DBO_TRX
 			'servers' => [ $this->makeServerConfig( DBO_TRX ) ],
-			'queryLogger' => MediaWiki\Logger\LoggerFactory::getInstance( 'DBQuery' ),
+			'logger' => MediaWiki\Logger\LoggerFactory::getInstance( 'rdbms' ),
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
 			'chronologyCallback' => static function () use ( &$called ) {
 				$called = true;
@@ -348,7 +348,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		return new LoadBalancer( $lbExtra + [
 			'servers' => $servers,
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
-			'queryLogger' => MediaWiki\Logger\LoggerFactory::getInstance( 'DBQuery' ),
+			'logger' => MediaWiki\Logger\LoggerFactory::getInstance( 'rdbms' ),
 			'loadMonitor' => [ 'class' => LoadMonitorNull::class ],
 			'clusterName' => 'main-test-cluster'
 		] );
@@ -832,7 +832,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		$lb1 = new LoadBalancer( [
 			'servers' => [ $this->makeServerConfig() ],
-			'queryLogger' => MediaWiki\Logger\LoggerFactory::getInstance( 'DBQuery' ),
+			'logger' => MediaWiki\Logger\LoggerFactory::getInstance( 'rdbms' ),
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
 			'chronologyCallback' => static function () use ( &$called ) {
 				$called = true;
@@ -843,7 +843,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		$lb2 = new LoadBalancer( [
 			'servers' => [ $this->makeServerConfig() ],
-			'queryLogger' => MediaWiki\Logger\LoggerFactory::getInstance( 'DBQuery' ),
+			'logger' => MediaWiki\Logger\LoggerFactory::getInstance( 'rdbms' ),
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
 			'chronologyCallback' => static function () use ( &$called ) {
 				$called = true;
