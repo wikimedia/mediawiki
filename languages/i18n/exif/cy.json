@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Afalau",
 			"Lloffiwr",
 			"Robin Owain",
 			"Thaf",
@@ -190,6 +191,7 @@
 	"exif-copyrighted-true": "Hawlfraint",
 	"exif-copyrighted-false": "Statws yr hawlfraint heb ei osod",
 	"exif-photometricinterpretation-1": "Du a gwyn (du yw 0)",
+	"exif-photometricinterpretation-3": "Palet",
 	"exif-unknowndate": "Dyddiad anhysbys",
 	"exif-orientation-1": "Normal",
 	"exif-orientation-2": "Wedi troi tu chwith ar lorwedd",
@@ -345,5 +347,9 @@
 	"exif-urgency-normal": "Cyffredin ($1)",
 	"exif-urgency-low": "Isel ($1)",
 	"exif-urgency-high": "Uchel ($1)",
-	"exif-urgency-other": "Blaenoriaeth yn ôl y defnyddiwr ($1)"
+	"exif-urgency-other": "Blaenoriaeth yn ôl y defnyddiwr ($1)",
+	"exif-usepanoramaviewer-true": "Ie",
+	"exif-usepanoramaviewer-false": "Na",
+	"exif-exposurelockused-true": "Ie",
+	"exif-exposurelockused-false": "Na"
 }
