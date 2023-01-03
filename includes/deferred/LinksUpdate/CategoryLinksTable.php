@@ -314,15 +314,19 @@ class CategoryLinksTable extends TitleLinksTable {
 			$addedChunks = array_chunk( $insertedLinks, $size );
 			foreach ( $addedChunks as $chunk ) {
 				$wp->updateCategoryCounts( $chunk, [], $this->getSourcePageId() );
-				$lbf->commitAndWaitForReplication(
-					__METHOD__, $this->getTransactionTicket(), [ 'domain' => $domainId ] );
+				if ( count( $addedChunks ) > 1 ) {
+					$lbf->commitAndWaitForReplication(
+						__METHOD__, $this->getTransactionTicket(), [ 'domain' => $domainId ] );
+				}
 			}
 
 			$deletedChunks = array_chunk( $deletedLinks, $size );
 			foreach ( $deletedChunks as $chunk ) {
 				$wp->updateCategoryCounts( [], $chunk, $this->getSourcePageId() );
-				$lbf->commitAndWaitForReplication(
-					__METHOD__, $this->getTransactionTicket(), [ 'domain' => $domainId ] );
+				if ( count( $deletedChunks ) > 1 ) {
+					$lbf->commitAndWaitForReplication(
+						__METHOD__, $this->getTransactionTicket(), [ 'domain' => $domainId ] );
+				}
 			}
 
 		}
