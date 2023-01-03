@@ -2217,7 +2217,7 @@
 	"cantrollback": "Non ge se pò annullà stu cangiamende;\nl'urteme condrebbutore jè sulamende l'autore de sta pàgene.",
 	"alreadyrolled": "Non ge se pò annulla l'urteme cangiamende de [[:$1]] da [[User:$2|$2]] ([[User talk:$2|'Ngazzaminde]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);\nquacche otre ha cangiate o annullate ggià 'a pàgene.\n\nL'urteme cangiamende d'a pàgene ere de [[User:$3|$3]] ([[User talk:$3|'Ngazzaminde]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 	"editcomment": "'U riepileghe d'u cangiamende ere: <em>$1</em>.",
-	"revertpage": "Cangiaminde annullate da [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) a l'urtema versione da [[User:$1|$1]]",
+	"revertpage": "Cangiaminde annullate da [[Special:Contributions/$2|$2]] ([[User talk:$2|'ngazzaminde]]) a l'urtema versione da [[User:$1|$1]]",
 	"revertpage-nouser": "Le cangiaminde annullate da 'n'utende scunnute a l'urtema revisione da {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "Cangiaminde annullate da {{GENDER:$3|$1}};\nturnate rrete a l'urtema versione de {{GENDER:$4|$2}}.",
 	"sessionfailure-title": "Sessione fallite",
