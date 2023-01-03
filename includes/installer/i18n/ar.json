@@ -19,7 +19,8 @@
 			"ديفيد",
 			"روخو",
 			"محمد أحمد عبد الفتاح",
-			"NEHAOUA"
+			"NEHAOUA",
+			"Michel Bakni"
 		]
 	},
 	"config-desc": "مثبت برمجيات ميدياويكي",
@@ -268,7 +269,7 @@
 	"config-skins-must-enable-default": "يجب تمكين المظهر المختار كإعداد افتراضي.",
 	"config-install-alreadydone": "<strong>تحذير:</strong> يبدو أنك قد قمت بالفعل بتثبيت ميدياويكي وتحاول تثبيته مرة أخرى. الرجاء التوجه إلى الصفحة التالية.",
 	"config-install-begin": "عن طريق الضغط على «{{int:config-continue}}»، سوف تبدأ تثبيت ميدياويكي. إذا كنت لا تزال ترغب في إجراء تغييرات، اضغط على «{{int:config-back}}».",
-	"config-install-step-done": "تم بنجاح",
+	"config-install-step-done": "تمت",
 	"config-install-step-failed": "فشل",
 	"config-install-extensions": "متضمنا الامتدادات",
 	"config-install-database": "إنشاء قاعدة البيانات",

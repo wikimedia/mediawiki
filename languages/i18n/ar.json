@@ -99,7 +99,8 @@
 			"아라",
 			"Dr-Taher",
 			"FShbib",
-			"Helmoony"
+			"Helmoony",
+			"Mhab Zdan1"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -2696,7 +2697,7 @@
 	"ipb-pages-label": "الصفحات",
 	"ipb-namespaces-label": "نطاقات",
 	"badipaddress": "عنوان أيبي غير صحيح",
-	"blockipsuccesssub": "تم المنع بنجاح",
+	"blockipsuccesssub": "نجحت عملية المنع",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] تم منعه.<br />\nانظر [[Special:BlockList|قائمة منع الأيبي]] لمراجعة حالات المنع.",
 	"ipb-empty-block": "رفع المنع ليس لديه أي قيود ممكنة.",
 	"ipb-block-not-found": "لم يمكن فرض المنع، إلا أننا لم نجد منع قائم مفروض على \"$1\". لو استمرت هذه المشكلة، يرجى [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users الإبلاغ عنها].",

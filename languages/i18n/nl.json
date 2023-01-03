@@ -2695,7 +2695,7 @@
 	"ipb-blockingself": "U staat op het punt uzelf te blokkeren. Weet u zeker dat u dat wilt doen?",
 	"ipb-confirmhideuser": "U staat op het punt een gebruiker te blokkeren met de optie \"gebruiker verbergen\". Hiermee wordt de gebruikersnaam in alle lijsten en logboekregels verborgen. Weet u het zeker?",
 	"ipb-confirmaction": "Weet u zeker dat u dit wilt doen? Selecteer dan het selectievakje \"{{int:ipb-confirm}}\" hieronder.",
-	"ipb-edit-dropdown": "Lijst van redenen bewerken",
+	"ipb-edit-dropdown": "Redenen voor blokkeren bewerken",
 	"ipb-unblock-addr": "$1 deblokkeren",
 	"ipb-unblock": "Een gebruiker of IP-adres deblokkeren",
 	"ipb-blocklist": "Bestaande blokkades bekijken",
