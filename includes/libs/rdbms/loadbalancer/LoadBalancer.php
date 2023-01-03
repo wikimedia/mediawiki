@@ -190,10 +190,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @return void
 	 */
 	protected function configure( array $params ): void {
-		if ( !isset( $params['servers'] ) || !count( $params['servers'] ) ) {
-			throw new InvalidArgumentException( 'Missing or empty "servers" parameter' );
-		}
-
 		$localDomain = isset( $params['localDomain'] )
 			? DatabaseDomain::newFromId( $params['localDomain'] )
 			: DatabaseDomain::newUnspecified();
@@ -201,18 +197,14 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		$this->maxLag = $params['maxLag'] ?? self::MAX_LAG_DEFAULT;
 
-		$listKey = -1;
 		$this->servers = [];
 		$this->groupLoads = [ self::GROUP_GENERIC => [] ];
-		foreach ( $params['servers'] as $i => $server ) {
-			if ( ++$listKey !== $i ) {
-				throw new UnexpectedValueException( 'List expected for "servers" parameter' );
+		foreach ( $this->normalizeServerMaps( $params['servers'] ?? [] ) as $i => $server ) {
+			$this->servers[$i] = $server;
+			foreach ( $server['groupLoads'] as $group => $weight ) {
+				$this->groupLoads[$group][$i] = $weight;
 			}
-			$this->servers[ $i ] = $server;
-			foreach ( ( $server['groupLoads'] ?? [] ) as $group => $ratio ) {
-				$this->groupLoads[ $group ][ $i ] = $ratio;
-			}
-			$this->groupLoads[ self::GROUP_GENERIC ][ $i ] = $server['load'];
+			$this->groupLoads[self::GROUP_GENERIC][$i] = $server['load'];
 		}
 
 		$this->waitTimeout = $params['waitTimeout'] ?? self::MAX_WAIT_DEFAULT;
@@ -1400,8 +1392,33 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return ( $name !== '' ) ? $name : 'localhost';
 	}
 
+	private function normalizeServerMaps( array $servers, array &$indexBySrvName = null ) {
+		if ( !$servers ) {
+			throw new InvalidArgumentException( 'Missing or empty "servers" parameter' );
+		}
+
+		$listKey = -1;
+		$indexBySrvName = [];
+		foreach ( $servers as $i => $server ) {
+			if ( ++$listKey !== $i ) {
+				throw new UnexpectedValueException( 'List expected for "servers" parameter' );
+			}
+			$srvName = $server['serverName'] ?? $server['host'] ?? '';
+			$srvName = ( $srvName !== '' ) ? $srvName : 'localhost';
+			if ( isset( $indexBySrvName[$srvName] ) ) {
+				// Duplicate server names confuse caching, logging, and reconfigure()
+				throw new UnexpectedValueException( 'Duplicate server name "' . $srvName . '"' );
+			}
+			$indexBySrvName[$srvName] = $i;
+			$servers[$i]['serverName'] = $srvName;
+			$servers[$i]['groupLoads'] ??= [];
+		}
+
+		return $servers;
+	}
+
 	public function getServerName( $i ): string {
-		return $this->getServerNameFromConfig( $this->servers[$i] );
+		return $this->servers[$i]['serverName'] ?? 'localhost';
 	}
 
 	public function getServerInfo( $i ) {
