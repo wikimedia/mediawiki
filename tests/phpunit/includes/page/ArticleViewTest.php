@@ -402,13 +402,11 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		// Test for the hidden values
 		$this->assertStringContainsString( 'Test A', $html );
 		$this->assertStringContainsString( $revisions[1]->getUser()->getName(), $subtitle );
-		// FIXME, make hidden content visible on unhide=1
-		$this->assertStringNotContainsString( '(parentheses: Rev 1)', $subtitle );
+		$this->assertStringContainsString( '(parentheses: Rev 1)', $subtitle );
 
 		// Should not contain the rev-del messages
 		$this->assertStringNotContainsString( '(rev-deleted-user)', $subtitle );
-		// FIXME, make hidden content visible on unhide=1
-		$this->assertStringContainsString( '(rev-deleted-comment)', $subtitle );
+		$this->assertStringNotContainsString( '(rev-deleted-comment)', $subtitle );
 
 		$realContext->setUser( $oldUser );
 	}
