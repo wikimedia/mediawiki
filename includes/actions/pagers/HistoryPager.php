@@ -56,6 +56,9 @@ class HistoryPager extends ReverseChronologicalPager {
 	/** @var string */
 	private $tagFilter;
 
+	/** @var string|null|false */
+	private $notificationTimestamp;
+
 	/** @var RevisionStore */
 	private $revisionStore;
 
@@ -118,6 +121,9 @@ class HistoryPager extends ReverseChronologicalPager {
 			?? $services->getWatchlistManager();
 		$this->commentFormatter = $commentFormatter ?? $services->getCommentFormatter();
 		$this->hookRunner = new HookRunner( $hookContainer ?? $services->getHookContainer() );
+		$this->notificationTimestamp = $this->getConfig()->get( MainConfigNames::ShowUpdatedMarker )
+			? $this->watchlistManager->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
+			: false;
 	}
 
 	// For hook compatibility...
@@ -161,19 +167,6 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	public function getIndexField() {
 		return [ [ 'rev_timestamp', 'rev_id' ] ];
-	}
-
-	/**
-	 * @param stdClass $row
-	 * @return string
-	 */
-	public function formatRow( $row ) {
-		$notifTimestamp = $this->getConfig()->get( MainConfigNames::ShowUpdatedMarker )
-			? $this->watchlistManager
-				->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
-			: false;
-
-		return $this->historyLine( $row, $notifTimestamp, $this->getResultOffset() );
 	}
 
 	protected function doBatchLookups() {
@@ -342,14 +335,11 @@ class HistoryPager extends ReverseChronologicalPager {
 	/**
 	 * Returns a row from the history printout.
 	 *
-	 * @todo document some more, and maybe clean up the code (some params redundant?)
-	 *
-	 * @param stdClass $row The database row corresponding to the previous line.
-	 * @param string|false $notificationtimestamp
-	 * @param int $resultOffset The offset into the current result set
+	 * @param stdClass $row The database row corresponding to the current line.
 	 * @return string HTML output for the row
 	 */
-	private function historyLine( $row, $notificationtimestamp, $resultOffset ) {
+	public function formatRow( $row ) {
+		$resultOffset = $this->getResultOffset();
 		$numRows = min( $this->mResult->numRows(), $this->mLimit );
 
 		$firstInList = $resultOffset === ( $this->mIsBackwards ? $numRows - 1 : 0 );
@@ -461,7 +451,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s2 = "<span class=\"comment mw-comment-none\">$defaultComment</span>";
 		}
 
-		if ( $notificationtimestamp && ( $row->rev_timestamp >= $notificationtimestamp ) ) {
+		if ( $this->notificationTimestamp && $row->rev_timestamp >= $this->notificationTimestamp ) {
 			$s2 .= ' <span class="updatedmarker">' . $this->msg( 'updatedmarker' )->escaped() . '</span>';
 			$classes[] = 'mw-history-line-updated';
 		}
