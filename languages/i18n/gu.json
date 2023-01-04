@@ -573,7 +573,7 @@
 	"noarticletext": "આ પાનામાં હાલમાં કોઇ લખાણ નથી.\nતમે બીજાં પાનાંમાં [[Special:Search/{{PAGENAME}}|આ પાનાંના શીર્ષક માટે શોધી શકો છો]], <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} સંલગ્ન માહિતિ પત્રકોમાં શોધી શકો છો],\nઅથવા [{{fullurl:{{FULLPAGENAME}}|action=edit}} આ પાનું બનાવી શકો છો]</span>.",
 	"noarticletext-nopermission": "આ પાનામાં હાલમાં કોઇ માહિતિ નથી.\nતમે  [[Special:Search/{{PAGENAME}}|આ શબ્દ]] ધરાવતાં અન્ય લેખો શોધી શકો છો, અથવા <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} સંલગ્ન માહિતિ પત્રકોમાં શોધી શકો છો], પરંતુ તમને આ પાનું બનાવવાની મંજૂરી નથી.",
 	"userpage-userdoesnotexist": "સભ્ય ખાતું \"<nowiki>$1</nowiki>\"ની નોંધણીનથી થઈ.\nશું તમે ખરેખર આ પાનાની રચના કે ફેરફાર કરવા માંગો છો",
-	"userpage-userdoesnotexist-view": "સભ્ય ખાતા \"$1\" ની નોંધણી થયેલ નથી.",
+	"userpage-userdoesnotexist-view": "સભ્ય ખાતા \"$1\" ની નોંધણી આ વિકિ પર થયેલ નથી.",
 	"blocked-notice-logextract": "આ સભ્ય હાલમાં પ્રતિબંધિત છે.\nતમારા નીરીક્ષણ માટે તાજેતરમાં પ્રતિબંધિત થયેલા સભ્યોની યાદિ આપી છે.",
 	"clearyourcache": "<strong>નોંધ:</strong> પાનું પ્રકાશિત કર્યા પછી, તમારે તમારા બ્રાઉઝરની કૅશ બાયપાસ કરવાની આવશ્યકતા પડી શકે છે.\n*<strong>ફાયરફોક્સ / સફારી:</strong> </em>શીફ્ટ<em> દબાવેલી રાખીને ''રિલોડ'' પર ક્લિક કરો, અથવા તો <em>Ctrl-F5</em> કે <em>Ctrl-R<em> દબાવો (મેક પર <em>⌘-R</em>)\n*<strong>ગુગલ ક્રોમ:</strong> <em>Ctrl-Shift-R</em> દબાવો (મેક પર <em>⌘-Shift-R</em>)\n*<strong>ઈન્ટરનેટ એક્સપ્લોરર/એજ:</strong> <em>Ctrl</em> દબાવેલી રાખીને <em>રિફ્રેશ</em> પર ક્લિક કરો, અથવા <em>Ctrl-F5</em> દબાવો\n*<strong>Opera:</strong> <em>Ctrl-F5</em> દબાવો",
 	"usercssyoucanpreview": "'''ટીપ:''' તમારા નવા CSSને સાચવતા પહેલા  \"{{int:showpreview}}\" બટન વાપરી ચકાસણી કરો.",
