@@ -145,6 +145,7 @@ class ActionFactory {
 				'ReadOnlyMode',
 				'RevisionLookup',
 				'RevisionRenderer',
+				'CommentFormatter',
 				'MainConfig',
 			],
 		],
