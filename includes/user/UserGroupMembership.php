@@ -151,6 +151,7 @@ class UserGroupMembership {
 				return $context->msg( 'group-membership-link-with-expiry' )
 					->params( $groupLink, $expiryDT, $expiryD, $expiryT )->text();
 			} else {
+				// @phan-suppress-next-line SecurityCheck-XSS False positive, only XSS if wiki format
 				$groupLink = Message::rawParam( $groupLink );
 				return $context->msg( 'group-membership-link-with-expiry' )
 					->params( $groupLink, $expiryDT, $expiryD, $expiryT )->escaped();
