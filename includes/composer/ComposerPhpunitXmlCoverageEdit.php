@@ -1,4 +1,5 @@
 <?php
+use PHPUnit\Util\Xml\Loader as XmlLoader;
 
 /**
  * This program is free software; you can redistribute it and/or modify
@@ -37,14 +38,13 @@ class ComposerPhpunitXmlCoverageEdit {
 				'e.g. "composer phpunit:coverage-edit -- extensions/BoilerPlate"' );
 		}
 		$project = current( $args );
-		$phpunitXml = \PHPUnit\Util\Xml::loadFile( $IP . '/phpunit.xml.dist' );
-		$whitelist = iterator_to_array( $phpunitXml->getElementsByTagName( 'whitelist' ) );
+		$phpunitXml = ( new XmlLoader )->loadFile( $IP . '/phpunit.xml.dist' );
+		$include = iterator_to_array( $phpunitXml->getElementsByTagName( 'include' ) );
 		/** @var DOMNode $childNode */
-		foreach ( $whitelist as $childNode ) {
+		foreach ( $include as $childNode ) {
 			$childNode->parentNode->removeChild( $childNode );
 		}
-		$whitelistElement = $phpunitXml->createElement( 'whitelist' );
-		$whitelistElement->setAttribute( 'addUncoveredFilesFromWhitelist', 'false' );
+		$whitelistElement = $phpunitXml->createElement( 'include' );
 		// TODO: Use AutoloadClasses from extension.json to load the relevant directories
 		foreach ( [ 'includes', 'src', 'maintenance' ] as $dir ) {
 			$dirElement = $phpunitXml->createElement( 'directory', $project . '/' . $dir );
@@ -52,7 +52,7 @@ class ComposerPhpunitXmlCoverageEdit {
 			$whitelistElement->appendChild( $dirElement );
 
 		}
-		$phpunitXml->getElementsByTagName( 'filter' )->item( 0 )
+		$phpunitXml->getElementsByTagName( 'coverage' )->item( 0 )
 			->appendChild( $whitelistElement );
 		$phpunitXml->formatOutput = true;
 		$phpunitXml->save( $IP . '/phpunit.xml' );
