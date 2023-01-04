@@ -2557,7 +2557,6 @@ $wgAutoloadLocalClasses = [
 	'ThrottledError' => __DIR__ . '/includes/exception/ThrottledError.php',
 	'ThumbnailImage' => __DIR__ . '/includes/media/ThumbnailImage.php',
 	'ThumbnailRenderJob' => __DIR__ . '/includes/jobqueue/jobs/ThumbnailRenderJob.php',
-	'TidyUpT39714' => __DIR__ . '/maintenance/tidyUpT39714.php',
 	'TiffHandler' => __DIR__ . '/includes/media/TiffHandler.php',
 	'Timing' => __DIR__ . '/includes/libs/Timing.php',
 	'Title' => __DIR__ . '/includes/title/Title.php',
