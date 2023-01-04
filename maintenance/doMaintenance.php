@@ -37,9 +37,8 @@ if ( !defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
 	exit( 1 );
 }
 
-// Wasn't included from the file scope, halt execution (probably wanted the class)
-// If a class is using CommandLineInc (old school maintenance), they definitely
-// cannot be included and will proceed with execution
+// Wasn't included from the file scope, halt execution (probably wanted the class).
+// This typically happens when a maintenance script is executed using run.php.
 // @phan-suppress-next-line PhanSuspiciousValueComparisonInGlobalScope
 if ( !MaintenanceRunner::shouldExecute() && $maintClass != CommandLineInc::class ) {
 	return;
@@ -82,6 +81,19 @@ if ( !defined( 'MW_FINAL_SETUP_CALLBACK' ) ) {
 // enable MediaWikiServices)
 require_once "$IP/includes/Setup.php";
 
+// We only get here if the script was invoked directly.
+// If it was loaded by MaintenanceRunner, MaintenanceRunner::shouldExecute() would have returned false,
+// and we would have returned from this file early.
+
+echo "\n";
+echo "*******************************************************************************\n";
+echo "NOTE: Do not run maintenance scripts directly, use maintenance/run.php instead!\n";
+echo "      Running scripts directly has been deprecated in MediaWiki 1.40.\n";
+echo "      It may not work for some (or any) scripts in the future.\n";
+echo "*******************************************************************************\n";
+echo "\n";
+
+// Do it!
 $success = $runner->run();
 
 // Exit with an error status if execute() returned false
