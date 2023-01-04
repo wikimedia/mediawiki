@@ -21,10 +21,18 @@ class BenchmarkEval extends Benchmarker {
 		$this->addOption( 'code',
 			'The code to run',
 			false, true, 'e' );
-		$this->addArg( 'input-file', 'Input file', false );
+		$this->addOption( 'setup',
+			'Code to run once before the first iteration',
+			false, true );
+		$this->addArg( 'input-file', 'Input file for measured code body', false );
 	}
 
 	public function execute() {
+		if ( $this->hasOption( 'setup' ) ) {
+			$setupCode = $this->getOption( 'setup' ) . ';';
+			eval( $setupCode );
+		}
+
 		if ( $this->hasOption( 'code' ) ) {
 			$code = $this->getOption( 'code' );
 		} elseif ( $this->hasArg( 0 ) ) {
