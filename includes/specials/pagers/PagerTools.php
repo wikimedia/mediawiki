@@ -79,7 +79,7 @@ class PagerTools {
 		}
 		// Allow extension to add their own links here
 		// FIXME previously this was only called on history; restore that and deprecate in favor
-		//   of a more generic hook.
+		//   of a more generic hook (See T326180)
 		$hookRunner->onHistoryTools(
 			$revRecord,
 			$tools,
