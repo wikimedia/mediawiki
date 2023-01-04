@@ -109,7 +109,7 @@ CREATE INDEX ls_log_id ON log_search (ls_log_id);
 
 CREATE TABLE change_tag (
   ct_id SERIAL NOT NULL,
-  ct_rc_id INT DEFAULT NULL,
+  ct_rc_id BIGINT DEFAULT NULL,
   ct_log_id INT DEFAULT NULL,
   ct_rev_id INT DEFAULT NULL,
   ct_params TEXT DEFAULT NULL,
@@ -796,7 +796,7 @@ CREATE INDEX img_media_mime ON image (
 
 
 CREATE TABLE recentchanges (
-  rc_id SERIAL NOT NULL,
+  rc_id BIGSERIAL NOT NULL,
   rc_timestamp TIMESTAMPTZ NOT NULL,
   rc_actor BIGINT NOT NULL,
   rc_namespace INT DEFAULT 0 NOT NULL,

@@ -328,7 +328,7 @@
 			{
 				"name": "ct_rc_id",
 				"comment": "RCID for the change",
-				"type": "integer",
+				"type": "bigint",
 				"options": { "unsigned": true, "notnull": false, "default": null }
 			},
 			{
@@ -3091,7 +3091,7 @@
 		"columns": [
 			{
 				"name": "rc_id",
-				"type": "integer",
+				"type": "bigint",
 				"options": {
 					"autoincrement": true,
 					"unsigned": true,

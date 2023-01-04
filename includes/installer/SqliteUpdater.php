@@ -159,6 +159,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			// 1.43
 			[ 'migratePagelinks' ],
 			[ 'modifyField', 'revision', 'rev_id', 'patch-revision-cleanup.sql' ],
+			[ 'modifyField', 'change_tag', 'ct_rc_id', 'patch-change_tag-ct_rc_id.sql' ],
 		];
 	}
 
