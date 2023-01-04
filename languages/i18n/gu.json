@@ -1429,7 +1429,7 @@
 	"unusedtemplates": "વણ વપરાયેલાં ઢાંચા",
 	"unusedtemplatestext": "આ પાનું નામ સ્થળ {{ns:template}} માં આવેલ અને અન્ય પાનામાં ન સમાવિષ્ટ પાના ની યાદિ બતાવે છે.\nઢાંચાને હટાવતા પહેલા તેમાં વપરાયેલી અન્ય પાનાને જોડતી કડીઓ તપાસી લેશો.",
 	"unusedtemplateswlh": "અન્ય કડીઓ",
-	"randompage": "કોઈ પણ એક લેખ",
+	"randompage": "કોઈ પણ એક પાનું",
 	"randompage-nopages": "આ {{PLURAL:$2|નામસ્થળ|નામસ્થળો}}માં કોઇ પાના નથી: $1.",
 	"randomincategory": "શ્રેણીમાં ગમે તે પાનું",
 	"randomincategory-invalidcategory": "\"$1\" એ યોગ્ય શ્રેણી નામ નથી.",

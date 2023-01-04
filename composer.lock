@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0ec8952433b239ddc10bb74b5b8ff761",
+    "content-hash": "6c65dabd1e62975a5dc99dae3b672f1d",
     "packages": [
         {
             "name": "addshore/psr-6-mediawiki-bagostuff-adapter",
@@ -4166,35 +4166,38 @@
         },
         {
             "name": "wikimedia/xmp-reader",
-            "version": "0.7.0",
+            "version": "0.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wikimedia/xmp-reader.git",
-                "reference": "4b8ab8ea23cc2ccf2530738081cb4e146d55b86b"
+                "reference": "99e6c9397d281f3c9842f3e72588fc04ef3e6fa4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wikimedia/xmp-reader/zipball/4b8ab8ea23cc2ccf2530738081cb4e146d55b86b",
-                "reference": "4b8ab8ea23cc2ccf2530738081cb4e146d55b86b",
+                "url": "https://api.github.com/repos/wikimedia/xmp-reader/zipball/99e6c9397d281f3c9842f3e72588fc04ef3e6fa4",
+                "reference": "99e6c9397d281f3c9842f3e72588fc04ef3e6fa4",
                 "shasum": ""
             },
             "require": {
                 "ext-iconv": "*",
+                "ext-libxml": "*",
                 "ext-xml": "*",
+                "ext-xmlreader": "*",
                 "php": ">=7.2.9",
                 "psr/log": "^1.0",
-                "wikimedia/at-ease": "1.2 || 2.0",
-                "wikimedia/scoped-callback": "^1.0 || ^2.0 || ^3.0",
-                "wikimedia/timestamp": "^1.0 || ^2.0 || ^3.0"
+                "wikimedia/at-ease": "^2.0.0",
+                "wikimedia/scoped-callback": "^1.0 || ^2.0 || ^3.0 || ^4.0",
+                "wikimedia/timestamp": "^1.0 || ^2.0 || ^3.0 || ^4.0"
             },
             "require-dev": {
                 "ext-exif": "*",
-                "jakub-onderka/php-console-highlighter": "0.3.2",
-                "jakub-onderka/php-parallel-lint": "1.0.0",
-                "mediawiki/mediawiki-codesniffer": "29.0.0",
-                "mediawiki/minus-x": "0.3.2",
-                "ockcyp/covers-validator": "0.5.1 || 0.6.1",
-                "phpunit/phpunit": "4.8.36 || ^6.5"
+                "mediawiki/mediawiki-codesniffer": "39.0.0",
+                "mediawiki/mediawiki-phan-config": "0.11.1",
+                "mediawiki/minus-x": "1.1.1",
+                "ockcyp/covers-validator": "1.4.0",
+                "php-parallel-lint/php-console-highlighter": "1.0.0",
+                "php-parallel-lint/php-parallel-lint": "1.3.2",
+                "phpunit/phpunit": "^8.5"
             },
             "type": "library",
             "autoload": {
@@ -4221,7 +4224,10 @@
                 "parse",
                 "xmp"
             ],
-            "time": "2020-01-16T19:03:42+00:00"
+            "support": {
+                "source": "https://github.com/wikimedia/xmp-reader/tree/0.8.5"
+            },
+            "time": "2022-10-20T14:10:29+00:00"
         },
         {
             "name": "wikimedia/zest-css",

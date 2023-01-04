@@ -1150,6 +1150,7 @@
 	"deleteotherreason": "Iban/dugang nga rason:",
 	"deletereasonotherlist": "Iban nga rason",
 	"rollbacklink": "panumbalik",
+	"rollbacklinkcount": "ibalik $1 {{PLURAL:$1|pagbag-o|mga pagbag-o}}",
 	"protectlogpage": "Proteksiyon log",
 	"protectedarticle": "protektado \"[[$1]]\"",
 	"modifiedarticleprotection": "bag-ohon ang proteksiyon lebel para \"[[$1]]\"",

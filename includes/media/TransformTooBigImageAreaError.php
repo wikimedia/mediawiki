@@ -39,6 +39,8 @@ class TransformTooBigImageAreaError extends MediaTransformError {
 	public function __construct( $params, $maxImageArea ) {
 		$msg = wfMessage( 'thumbnail_toobigimagearea' );
 		$msg->params(
+			// messages used: size-pixel, size-kilopixel, size-megapixel, size-gigapixel, size-terapixel,
+			// size-petapixel, size-exapixel, size-zettapixel, size-yottapixel, size-ronnapixel, size-quettapixel
 			$msg->getLanguage()->formatComputingNumbers( $maxImageArea, 1000, "size-$1pixel" )
 		);
 

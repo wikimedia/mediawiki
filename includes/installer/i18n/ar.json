@@ -16,7 +16,10 @@
 			"DannyS712",
 			"Hhaboh162002",
 			"Omda4wady",
-			"SaldırganSincap"
+			"SaldırganSincap",
+			"FiberAhmed",
+			"NEHAOUA",
+			"أَحمد"
 		]
 	},
 	"config-desc": "مثبت برمجيات ميدياويكي",
@@ -71,6 +74,7 @@
 	"config-no-fts3": "<strong>تحذير:</strong> يتم تجميع SQLite بدون [//sqlite.org/fts3.html FTS3 module]; ستكون ميزات البحث غير متوفرة في هذه الواجهة الخلفية.",
 	"config-pcre-old": "<strong>فادح:</strong> مطلوب إصدار PCRE  رقم $1 أو أحدث،\nترتبط ثنائية PHP الخاصة بك بإصدار PCRE رقم $2.\n[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Errors_and_symptoms/PCRE مزيد من المعلومات].",
 	"config-pcre-no-utf8": "<strong>فادح:</strong> يبدو أن وحدة PCRE في PHP يتم تجميعها بدون دعم PCRE_UTF8، \nيتطلب ميدياويكي دعم UTF-8 ليعمل بشكل صحيح.",
+	"config-pcre-invalid-newline": "خطأ <strong>فادح:</strong> يبدو أن وحدة PCRE الخاصة بـ PHP قد تم تجميعها باستخدام PCRE_CONFIG_NEWLINE = -1 لـ ANY.! N! MediaWiki غير متوافق مع هذا التكوين.",
 	"config-memory-raised": "<code>memory_limit</code> في PHP $1 ومرتفعة إلى $2.",
 	"config-memory-bad": "<strong>تحذير:</strong> في PHP <code>memory_limit</code> $1،\nهذا على الارجح منخفض جدا;\nقد يفشل التثبيت!",
 	"config-apc": "تثبيت [https://www.php.net/apc APC]",

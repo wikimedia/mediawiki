@@ -2816,7 +2816,7 @@
 	"days": "{{PLURAL:$1|$1 日}}",
 	"weeks": "{{PLURAL:$1|$1 個禮拜}}",
 	"months": "{{PLURAL:$1|$1 個月}}",
-	"years": "{{PLURAL:$1|$1 年}}",
+	"years": "$1年",
 	"ago": "$1 之前",
 	"just-now": "啱啱",
 	"hours-ago": "$1{{PLURAL:$1|個鐘}}之前",

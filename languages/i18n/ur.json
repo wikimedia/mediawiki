@@ -42,7 +42,8 @@
 			"محبوب عالم",
 			"محمد افضل",
 			"පසිඳු කාවින්ද",
-			"아라"
+			"아라",
+			"TheAafi"
 		]
 	},
 	"tog-underline": "ربط کی خط کشیدگی:",
@@ -219,7 +220,7 @@
 	"edit-local": "مقامی وضاحت میں ترمیم",
 	"create": "تخلیق",
 	"create-local": "مقامی وضاحت کا اندراج",
-	"delete": "حذف",
+	"delete": "حذف کریں",
 	"undelete_short": "بحال {{PLURAL:$1|ایک ترمیم|$1 ترامیم}}",
 	"viewdeleted_short": "{{PLURAL:$1|ایک ترمیم حذف ہو چکی|$1 ترامیم حذف ہو چکیں}} دیکھیں",
 	"protect": "محفوظ",
@@ -1346,6 +1347,7 @@
 	"recentchanges-label-plusminus": "صفحہ کا تبدیل شدہ حجم بلحاظ تعداد بائٹ",
 	"recentchanges-legend-heading": "<strong>اختصارات:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (نیز [[Special:NewPages|جدید صفحات کی فہرست]]) ملاحظہ فرمائیں",
+	"recentchanges-legend-watchlistexpiry": "زیر نظر عارضی صفحات",
 	"recentchanges-submit": "دکھائیں",
 	"rcfilters-tag-remove": "حذف «$1»",
 	"rcfilters-legend-heading": "<strong>اختصارات کی فہرست:</strong>",

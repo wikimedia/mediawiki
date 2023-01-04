@@ -81,6 +81,7 @@ use Wikimedia\ScopedCallback;
  *
  * @ingroup Parser
  */
+#[AllowDynamicProperties]
 class Parser {
 	/**
 	 * Update this version number when the ParserOutput format

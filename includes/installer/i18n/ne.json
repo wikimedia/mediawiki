@@ -9,7 +9,8 @@
 			"बिप्लब आनन्द",
 			"राम प्रसाद जोशी",
 			"सरोज कुमार ढकाल",
-			"हिमाल सुबेदी"
+			"हिमाल सुबेदी",
+			"बडा काजी"
 		]
 	},
 	"config-desc": "मेडियाविकिको लागि स्थापक",
@@ -53,7 +54,7 @@
 	"config-ns-other-default": "MyWiki",
 	"config-admin-box": "प्रवन्धक खाता",
 	"config-admin-name": "तपाईंको प्रयोगकर्ता नाम:",
-	"config-admin-password": "पासवर्ड:",
+	"config-admin-password": "प्रवेश शब्द:",
 	"config-admin-email": "इमेल ठेगाना:",
 	"config-optional-continue": "मलाई थप प्रश्नहरू सोध्नुहोस् ।",
 	"config-profile": "प्रयोगकर्ता अधिकार प्रोफाइल:",

@@ -19,7 +19,7 @@
 			"Chinamoonroll"
 		]
 	},
-	"tog-underline": "Garis ring betén pranala:",
+	"tog-underline": "Garis ring sor pranala:",
 	"tog-hideminor": "Engkebang uahan alit saking uahan sané mangkin",
 	"tog-hidepatrolled": "Engkebang uahan sané kakemitin saking uahan sané mangkin",
 	"tog-newpageshidepatrolled": "engkebang lembar mapatrol saking saking kepahan lembar anyar",
@@ -968,7 +968,7 @@
 	"showingresultsinrange": "Ring mentén puniki kasinahang {{PLURAL:$1|<strong>1</strong> asil|<strong>$1</strong> asil}}, ring pentangan #<strong>$2</strong> nganti #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Asil <strong>$1</strong> saking <strong>$3</strong>|Asil <strong>$1 – $2</strong> saking <strong>$3</strong>}}",
 	"search-nonefound": "Nénten wénten asil sané cocok sareng kuéri.",
-	"search-nonefound-thiswiki": "Nénten wénten asil sané cocok sareng kuéri ring situs puniki.",
+	"search-nonefound-thiswiki": "Nénten wénten asil sané cocok sareng kuéri ring $3.",
 	"powersearch-legend": "Parerehan lantur",
 	"powersearch-ns": "Rereh ring genah wastan:",
 	"powersearch-togglelabel": "Pilih:",
@@ -1375,6 +1375,7 @@
 	"recentchanges-label-plusminus": "Agengnyané kacané kauahin akéhnyané bita",
 	"recentchanges-legend-heading": "<strong>Legénda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (taler cingak [[Special:NewPages|bacakan kaca anyar]])",
+	"recentchanges-legend-plusminus": "(<em>±123</em>)",
 	"recentchanges-legend-watchlistexpiry": "Kaca sané kaawasin ajebos",
 	"recentchanges-submit": "Sinahang",
 	"rcfilters-tag-remove": "Usap '$1'",

@@ -20,7 +20,8 @@
 			"לערי ריינהארט",
 			"아라",
 			"McDutchie",
-			"Talex42"
+			"Talex42",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Linken ënnersträichen:",
@@ -805,7 +806,7 @@
 	"rev-suppressed-text-view": "Dës Versioun vun der Säit gouf '''geläscht'''.\nDir kënnt se gesinn; méi Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 	"rev-deleted-no-diff": "Dir kënnt dësen Ënnerscheed net gesinn, well eng vun de Versiounen '''geläscht gouf'''.\nDetailer stinn eventuell am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 	"rev-suppressed-no-diff": "Dir kënnt dësen Diff (Ënnerscheed) net gesinn well eng vun de Versioune '''geläscht''' gouf.",
-	"rev-deleted-unhide-diff": "Eng vun de Versioune vun dësem Ënnerscheed gouf '''geläscht'''.\nDetailer stinn am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].\nDir kënnt [$1 mat dësem Link de Versiounsënnerscheed kucke] wann Dir weiderfuere wëllt.",
+	"rev-deleted-unhide-diff": "Eng vun de Versioune vun dësem Ënnerscheed gouf '''geläscht'''.\nDetailer stinn am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].\nDir kënnt [$1 mat dësem Link de Versiounsënnerscheed kucke] wann Dir weiderfuere wëllt.",
 	"rev-suppressed-unhide-diff": "Eng vun de Versioune vun dësem Ënnerscheed gouf '''geläscht'''.\nDetailer stinn am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].\nDir kënnt [$1 mat dësem Link de Versiounsënnerscheed kucke] wann Dir weiderfuere wëllt.",
 	"rev-deleted-diff-view": "Eng Versioun vun dësem Versiounsënnerscheed gouf '''geläscht'''.\nDir kënnt dësen Ënnerscheed gesinn; méi Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Logbuch vum Läschen].",
 	"rev-suppressed-diff-view": "Eng vun de Versioune vun dësem Ënnerscheed gouf '''ënnerdréckt.\nDir kënnt dësen Ënnerscheed gesinn; Detailer fannt Dir am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Logbuch vun den Ënnerdréckunge].",
@@ -946,10 +947,10 @@
 	"searchrelated": "a Verbindng",
 	"searchall": "all",
 	"showingresults": "Hei gesitt der  {{PLURAL:$1| '''1''' Resultat|'''$1''' Resultater}}, ugefaange mat #'''$2'''.",
-	"showingresultsinrange": "Hei drënner {{PLURAL:$1|<strong>gëtt 1</strong> Resultat|gi(nn) <strong>$1</strong> Resultater}} aus dem Beräich #<strong>$2</strong> bis #<strong>$3</strong>.",
+	"showingresultsinrange": "Hei drënner {{PLURAL:$1|<strong>gëtt 1</strong> Resultat|gi(nn) <strong>$1</strong> Resultater}} aus dem Beräich #<strong>$2</strong> bis #<strong>$3</strong> ugewisen.",
 	"search-showingresults": "{{PLURAL:$4|Resultat <strong>$1</strong> of <strong>$3</strong>|Resultater <strong>$1 - $2</strong> vu(n) <strong>$3</strong>}}",
 	"search-nonefound": "Fir Är Ufro gouf näischt fonnt.",
-	"search-nonefound-thiswiki": "Et gouf op dësem Site näischt fonnt wat Ärer Ufro entsprécht.",
+	"search-nonefound-thiswiki": "Et gouf näischt fonnt wat Ärer Ufro op $3 entsprécht.",
 	"powersearch-legend": "Erweidert Sich",
 	"powersearch-ns": "Sichen an den Nummraim:",
 	"powersearch-togglelabel": "Markéieren:",

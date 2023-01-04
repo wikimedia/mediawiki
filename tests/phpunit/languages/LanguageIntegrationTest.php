@@ -1135,6 +1135,16 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 				"1 YB",
 				"1 yottabyte"
 			],
+			[
+				1024 ** 9,
+				"1 RB",
+				"1 ronnabyte"
+			],
+			[
+				1024 ** 10,
+				"1 QB",
+				"1 quettabyte"
+			],
 			// How big!? THIS BIG!
 		];
 	}
@@ -1205,8 +1215,18 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			],
 			[
 				10 ** 27,
-				"1,000 Ybps",
-				"1,000 yottabits per second"
+				"1 Rbps",
+				"1 ronnabits per second"
+			],
+			[
+				10 ** 30,
+				"1 Qbps",
+				"1 quettabit per second"
+			],
+			[
+				10 ** 33,
+				"1,000 Qbps",
+				"1,000 quettabits per second"
 			],
 		];
 	}

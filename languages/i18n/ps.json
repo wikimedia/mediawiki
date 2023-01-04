@@ -13,7 +13,9 @@
 			"Matma Rex",
 			"Vlad5250",
 			"عثمان خان شاہ",
-			"아라"
+			"아라",
+			"1233qwer1234qwer4",
+			"Af420"
 		]
 	},
 	"tog-underline": "کرښنې تړنې:",
@@ -592,6 +594,8 @@
 	"savechanges": "بدلونونه خوندي کول",
 	"publishpage": "مخ خپرول",
 	"publishchanges": "بدلونونه خپرول",
+	"publishpage-start": "پاڼه خپره کړه…",
+	"publishchanges-start": "بدلونونه خپرول…",
 	"preview": "مخليدنه",
 	"showpreview": "مخليدنه",
 	"showdiff": "بدلونونه ښکاره کول",
@@ -747,7 +751,7 @@
 	"rev-suppressed-text-view": "د دې مخ بڼه <strong>ړنگه شوه</strong>.\nد دې مخ اړونده تفصيل په [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ړنگون يادښت] کې موندلی شی.",
 	"rev-deleted-no-diff": "د دې مخ بڼه <strong>ړنگه شوه</strong>.\nد دې مخ اړونده تفصيل په [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ړنگون يادښت] کې موندلی شی.",
 	"rev-suppressed-no-diff": "تاسو دا توپیر نه شو لیدلی ځکه چې د بیاکتنې څخه یو یې <strong>ړنګ شویدی</strong>.",
-	"rev-deleted-unhide-diff": "د دې مخ بیاکتنه روانه <strong>ماتول ده</strong>.\nتفصيلات په دې ځای کې موندل کيداى شي[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} د ماتولو يادښت].\nتاسو لا هم کولی شئ [$1 دا بیاکتنه وګورئ] که تاسو غواړئ چې پرمخ بوځي.",
+	"rev-deleted-unhide-diff": "د دې مخ بیاکتنه روانه <strong>ماتول ده</strong>.\nتفصيلات په دې ځای کې موندل کيداى شي[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} د ماتولو يادښت].\nتاسو لا هم کولی شئ [$1 دا بیاکتنه وګورئ] که تاسو غواړئ چې پرمخ بوځي.",
 	"rev-suppressed-unhide-diff": "د دې مخ بیاکتنه روانه <strong>ماتول ده</strong>.\nتفصيلات په دې ځای کې موندل کيداى شي[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} د ماتولو يادښت].\nتاسو لا هم کولی شئ [$1 دا بیاکتنه وګورئ] که تاسو غواړئ چې پرمخ بوځي.",
 	"rev-deleted-diff-view": "ددې مخ سمون ''' ړنګ شوی '''.\nتاسو کولی شئ دا وګورئ؛ دا کېدای شي اړوند معلومات [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}ړنګ شوی] په کې شامل وي.",
 	"rev-suppressed-diff-view": "د دې مخ بڼه <strong>ړنگه شوه</strong>.\nد دې مخ اړونده تفصيل په [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} ړنگون يادښت] کې موندلی شی.",
@@ -2573,6 +2577,7 @@
 	"tag-filter": "[[Special:Tags|نښلن]] چاڼگر:",
 	"tag-filter-submit": "چاڼگر",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|نښلن|نښلنونه}}]]: $2",
+	"tag-mw-new-redirect": "نوی بېرته راګرځول",
 	"tag-mw-blank": "بسته بندي",
 	"tag-mw-replace": "ځايناستول",
 	"tag-mw-rollback": "په شابېول",

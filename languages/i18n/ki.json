@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Stephenwanjau",
-			"Kwisha"
+			"Kwisha",
+			"Ngangaesther"
 		]
 	},
 	"underline-always": "Mahinda mothe",
@@ -15,6 +16,36 @@
 	"tuesday": "Wagatatu",
 	"wednesday": "Wakana",
 	"thursday": "Wagatano",
+	"friday": "Wagatano",
+	"saturday": "jumamothi",
+	"sun": "Kiumia",
+	"january": "mweri wa mbere",
+	"february": "mweri wa keri",
+	"march": "mweri wa gatato",
+	"april": "mweri wa kana",
+	"may_long": "mweri wa itano",
+	"june": "mweri wa gatadato",
+	"july": "mweri wa muguaja",
+	"august": "mweri wa kanana",
+	"september": "mweri wa kenda",
+	"october": "mweri wa ikumi",
+	"november": "mweri wa ikumi na imwe",
+	"december": "mweri wa ikumi na igiri",
+	"february-gen": "mweri wa keri",
+	"march-gen": "mweri wa gatatu",
+	"april-gen": "mweri wa kana",
+	"may-gen": "mweri wa gatano",
+	"june-gen": "mweri wa gatandato",
+	"july-gen": "mweri wa muguaja",
+	"august-gen": "mweri wa kanana",
+	"september-gen": "mweri wa kenda",
+	"october-gen": "mweri wa ikumi",
+	"november-gen": "mweri wa ikumi na imwe",
+	"december-gen": "mweri wa ikũmi na igiri",
+	"nstab-image": "failo",
+	"nstab-help": "handu ha uteithio",
 	"action-delete": "Futa",
-	"protectedarticle": "nimenyeriri [[$1]]"
+	"move": "thie",
+	"protectedarticle": "nimenyeriri [[$1]]",
+	"movereason": "gitumi"
 }

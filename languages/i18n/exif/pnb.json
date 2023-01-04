@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Khalid Mahmood",
-			"Abbas dhothar"
+			"Abbas dhothar",
+			"Bgo eiu"
 		]
 	},
 	"exif-imagewidth": "چوڑائی",
@@ -53,7 +54,7 @@
 	"exif-exposureprogram": "ایکسپویر پروگرام",
 	"exif-spectralsensitivity": "سپیکٹرل سنسیٹیوٹی",
 	"exif-isospeedratings": "ISO  سپیڈ ریٹنگ",
-	"exif-shutterspeedvalue": "!!!!شٹر دی تیزی",
+	"exif-shutterspeedvalue": "ایپیکس شٹر دی تیزی",
 	"exif-aperturevalue": "!!اپیکس!!اپرچر",
 	"exif-brightnessvalue": "اپیکس چانن",
 	"exif-exposurebiasvalue": "اپیکس کھلن بیاس",
@@ -173,7 +174,7 @@
 	"exif-disclaimer": "منکرنا",
 	"exif-contentwarning": "لکھت توں خبردار",
 	"exif-giffilecomment": "جی آئی ایف شائل کومنٹ",
-	"exif-intellectualgenre": "آئیٹم ٹائپ",
+	"exif-intellectualgenre": "مد دی قسم",
 	"exif-subjectnewscode": "سبجیکٹ کوڈ",
 	"exif-scenecode": "آئی پی ٹی سی سین کوڈ",
 	"exif-event": "ہوند دسی گئی۔",
@@ -199,7 +200,7 @@
 	"exif-planarconfiguration-1": "چنکی فارمیٹ",
 	"exif-planarconfiguration-2": "پلانر فارمیٹ",
 	"exif-colorspace-65535": "ناں ناپیا گیا",
-	"exif-componentsconfiguration-0": "ہے نئیں",
+	"exif-componentsconfiguration-0": "موجود نہیں اے",
 	"exif-exposureprogram-0": "بیان نئیں کیتا گیا",
 	"exif-exposureprogram-1": "ول",
 	"exif-exposureprogram-2": "عام پروگرام",

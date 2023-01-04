@@ -6,7 +6,8 @@
 			"Elisardojm",
 			"Prevert",
 			"Toliño",
-			"Xosé"
+			"Xosé",
+			"ArenaL5"
 		]
 	},
 	"exif-imagewidth": "Ancho",
@@ -204,7 +205,7 @@
 	"exif-photometricinterpretation-2": "RGB",
 	"exif-photometricinterpretation-3": "Paleta",
 	"exif-photometricinterpretation-4": "Máscara de transparencia",
-	"exif-photometricinterpretation-5": "Separados (Probablemente CMYK)",
+	"exif-photometricinterpretation-5": "Separados (probablemente CMYK)",
 	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (codificación ICC)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (codificación ITU)",

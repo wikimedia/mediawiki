@@ -231,7 +231,10 @@
 			"DiegoAmbrocio",
 			"TehFrog",
 			"Enly M",
-			"Francodiaz7"
+			"Francodiaz7",
+			"DarkGames26",
+			"Raos10",
+			"SpikeShroom"
 		]
 	},
 	"tog-underline": "Subrayar enlaces:",
@@ -617,7 +620,7 @@
 	"logout-failed": "Error al cerrar sesión: $1",
 	"cannotlogoutnow-title": "No se puede cerrar sesión ahora",
 	"cannotlogoutnow-text": "No se puede cerrar sesión cuando se usa $1.",
-	"welcomeuser": "¡Bienvenido/a, $1!",
+	"welcomeuser": "¡{{GENDER:$1|Bienvenido|Bienvenida|Bienvenido/a}}, $1!",
 	"welcomecreation-msg": "Se ha creado tu cuenta.\nSi lo deseas, puedes cambiar tus [[Special:Preferences|preferencias]] para {{SITENAME}}.",
 	"yourname": "Usuario:",
 	"userlogin-yourname": "Usuario",
@@ -1215,7 +1218,7 @@
 	"showingresultsinrange": "Abajo se muestran hasta {{PLURAL:$1|<strong>1</strong> resultado|<strong>$1</strong> resultados}} entre el n.º <strong>$2</strong> y el n.º <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Resultado <strong>$1</strong> de <strong>$3</strong>|Resultados <strong>$1 - $2</strong> de <strong>$3</strong>}}",
 	"search-nonefound": "No hay resultados que cumplan los criterios de búsqueda.",
-	"search-nonefound-thiswiki": "No hay resultados que cumplan los criterios de búsqueda en este sitio.",
+	"search-nonefound-thiswiki": "No hay resultados que cumplan los criterios de búsqueda in $3",
 	"powersearch-legend": "Búsqueda avanzada",
 	"powersearch-ns": "Buscar en los espacios de nombres:",
 	"powersearch-togglelabel": "Seleccionar:",
