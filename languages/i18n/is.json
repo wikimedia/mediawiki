@@ -2555,6 +2555,7 @@
 	"movesubpagetalktext": "Samsvarandi spjallsíðan hefur $1 {{PLURAL:$1|undirsíðu|undirsíður}} sem {{PLURAL:$1|er sýnd|eru sýndar}} hér fyrir neðan.",
 	"movenosubpage": "Þessi síða hefur engar undirsíður.",
 	"movereason": "Ástæða:",
+	"movepage-reason-dropdown": "* Algengar ástæður fyrir færslu\n** Stafsetningarvilla í titli",
 	"revertmove": "taka til baka",
 	"delete_and_move_text": "Marksíðan „[[:$1]]“ er þegar til. Viltu eyða henni til þess að rýma til fyrir flutningi?",
 	"delete_and_move_confirm": "Já, eyða síðunni",
