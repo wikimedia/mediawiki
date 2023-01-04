@@ -85,6 +85,8 @@ For notes on 1.39.x and older releases, see HISTORY.
   page or action parameter set, e.g. [[Special:Contributions/JohnDoe]].
 * The MediaWiki-Docker development environment is now configured to
   run on PHP 8.1 by default, up from PHP 7.4 now that that's EOL.
+* Maintenance scripts can (and should) now be executed using
+  maintenance/run.php.
 * …
 
 === External library changes in 1.40 ===
@@ -323,6 +325,8 @@ because of Phabricator reports.
   GlobalBlocks are now added into CompositeBlocks via the GetUserBlock hook.
 * Language::isWellFormedLanguageTag(), deprecated in 1.39, now emits deprecation
   notices. Please use LanguageCode::isWellFormedLanguageTag() instead.
+* Executing maintenance scripts directly is deprecated. The maintenance/run.php
+  entry point should be used instead.
 * Title.js's confusingly-named getName() and getNameText() methods, for using
   media files' pages, have been renamed to getFileNameWithoutExtension() and
   getFileNameTextWithoutExtension() respectively. The old names are deprecated.
