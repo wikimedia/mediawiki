@@ -41,6 +41,9 @@
 			this.showCurrentImage();
 			return false;
 		}.bind( this ) );
+		this.$gallery.addClass( 'mw-gallery-slideshow-ooui' );
+		// Allow others to extend
+		mw.hook( 'mediawiki.gallery.init' ).fire( this.$gallery[ 0 ] );
 	};
 
 	/* Properties */
@@ -262,8 +265,8 @@
 
 			this.$imgContainer.empty().append( $imgLink );
 		} else {
-			// 2b. No image found (e.g. file doesn't exist)
-			this.$imgContainer.text( $imageLi.find( '.thumb' ).text() );
+			// 2b. No image found (e.g. file doesn't exist or mobile lazy loading thumbnail)
+			this.$imgContainer.html( $imageLi.find( '.thumb' ).html() );
 		}
 
 		// 3. Copy caption
