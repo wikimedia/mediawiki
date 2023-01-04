@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Maintenance;
 
-use Config;
 use Exception;
 use LCStoreNull;
 use LogicException;
@@ -11,7 +10,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
-use MWException;
 use Profiler;
 use ReflectionClass;
 
@@ -115,11 +113,11 @@ class MaintenanceRunner {
 		$this->parameters->addArg(
 			'script',
 			'The name of the maintenance script to run. ' .
-			'Can be given as a class name or file name. ' .
-			'Dots (.) are supported as namespace separator. ' .
-			'"MyExt:SomeScript" expands to "MediaWiki\Extension\MyExt\Maintenance\SomeScript". ' .
-			'If a plain name is given, this is assumed to refer to a file in ' .
-			'the maintenance directory',
+				'Can be given as a class name or file name. ' .
+				'Dots (.) are supported as namespace separator. ' .
+				'"MyExt:SomeScript" expands to "MediaWiki\Extension\MyExt\Maintenance\SomeScript". ' .
+				'If a plain name is given, this is assumed to refer to a file in ' .
+				'the maintenance directory',
 			true
 		);
 
@@ -427,39 +425,19 @@ class MaintenanceRunner {
 		$output = $this->parameters->getOption( 'profiler' );
 		if ( $output ) {
 			// Per-script profiling; useful for debugging
-			$this->activateProfiler( $output, $config );
+			$profilerConf = $config->get( MainConfigNames::Profiler );
+			if ( isset( $profilerConf['class'] ) ) {
+				$profilerConf = [
+					'sampling' => 1,
+					'output' => [ $output ],
+					'cliEnable' => true,
+				] + $profilerConf;
+				// Override $wgProfiler. This is passed to Profiler::init() by Setup.php.
+				$settingsBuilder->putConfigValue( MainConfigNames::Profiler, $profilerConf );
+			}
 		}
 
 		$this->scriptObject->finalSetup( $settingsBuilder );
-	}
-
-	/**
-	 * Activate the profiler (assuming $wgProfiler is set)
-	 *
-	 * @param string $output
-	 * @param Config $config
-	 *
-	 * @throws MWException
-	 */
-	private function activateProfiler( string $output, Config $config ) {
-		$profiler = $config->get( MainConfigNames::Profiler );
-		$limits = $config->get( MainConfigNames::TrxProfilerLimits );
-
-		if ( isset( $profiler['class'] ) ) {
-			$class = $profiler['class'];
-			/** @var Profiler $profiler */
-			$profiler = new $class(
-				[ 'sampling' => 1, 'output' => [ $output ] ]
-				+ $profiler
-				+ [ 'threshold' => 0.0 ]
-			);
-			$profiler->setAllowOutput();
-			Profiler::replaceStubInstance( $profiler );
-		}
-
-		$trxProfiler = Profiler::instance()->getTransactionProfiler();
-		$trxProfiler->setLogger( LoggerFactory::getInstance( 'rdbms' ) );
-		$trxProfiler->setExpectations( $limits['Maintenance'], __METHOD__ );
 	}
 
 	/**
@@ -477,8 +455,21 @@ class MaintenanceRunner {
 	 *         passed through from Maintenance::execute().
 	 */
 	public function run(): bool {
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+
+		// Apply warning thresholds and output mode to Profiler.
+		// This MUST happen after Setup.php calls MaintenanceRunner::setup,
+		// $wgSettings->apply(), and Profiler::init(). Otherwise, calling
+		// Profiler::instance() would create a ProfilerStub even when $wgProfiler
+		// and --profiler are set.
+		$limits = $config->get( MainConfigNames::TrxProfilerLimits );
+		$trxProfiler = Profiler::instance()->getTransactionProfiler();
+		$trxProfiler->setLogger( LoggerFactory::getInstance( 'rdbms' ) );
+		$trxProfiler->setExpectations( $limits['Maintenance'], __METHOD__ );
+		Profiler::instance()->setAllowOutput();
+
 		// Initialize main config instance
-		$this->scriptObject->setConfig( MediaWikiServices::getInstance()->getMainConfig() );
+		$this->scriptObject->setConfig( $config );
 
 		// Double check required extensions are installed
 		$this->scriptObject->checkRequiredExtensions();

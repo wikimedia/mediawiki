@@ -72,11 +72,24 @@ abstract class Profiler {
 			'sampling'  => 1,
 			'threshold' => 0.0,
 			'output'    => [],
+			'cliEnable' => false,
 		];
 
 		// Avoid global func wfIsCLI() during setup
+		$isCLI = ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
 		$inSample = $params['sampling'] === 1 ? true : ( mt_rand( 0, $params['sampling'] - 1 ) === 0 );
-		if ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' || !$inSample ) {
+		if (
+			!$inSample ||
+			// On CLI, profiling is disabled by default, and can be explicitly enabled
+			// via the `--profiler` option, which MediaWiki\Maintenance\MaintenanceRunner::setup
+			// translates into 'cliEnable'.
+			// See also $wgProfiler docs.
+			//
+			// For this to work, Setup.php must call Profiler::init() after handling of
+			// MW_FINAL_SETUP_CALLBACK, which is what doMaintenance.php uses to call
+			// MaintenanceRunner::setup.
+			( $isCLI && !$params['cliEnable'] )
+		) {
 			$params['class'] = ProfilerStub::class;
 		}
 
@@ -98,21 +111,6 @@ abstract class Profiler {
 		}
 
 		return self::$instance;
-	}
-
-	/**
-	 * Replace the current profiler with $profiler if no non-stub profiler is set
-	 *
-	 * @param Profiler $profiler
-	 * @throws MWException
-	 * @since 1.25
-	 */
-	final public static function replaceStubInstance( Profiler $profiler ) {
-		if ( self::$instance && !( self::$instance instanceof ProfilerStub ) ) {
-			throw new MWException( 'Could not replace non-stub profiler instance.' );
-		} else {
-			self::$instance = $profiler;
-		}
 	}
 
 	/**
