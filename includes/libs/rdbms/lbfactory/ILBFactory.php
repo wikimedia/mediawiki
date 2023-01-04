@@ -472,14 +472,6 @@ interface ILBFactory {
 	public function appendShutdownCPIndexAsQuery( $url, $index );
 
 	/**
-	 * Get the client ID of the ChronologyProtector instance
-	 *
-	 * @return string Client ID
-	 * @since 1.34
-	 */
-	public function getChronologyProtectorClientId();
-
-	/**
 	 * Inject HTTP request header/cookie information during setup of this instance
 	 *
 	 * @param array $info Map of fields, including:
