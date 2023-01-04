@@ -1,4 +1,12 @@
 # OOUI Release History
+## 0.44.4 / 2022-12-12
+### Code
+* build: .gitreview: Swap defaultbranch for track (Sam Reed)
+* docs: Fix and add all missing PHPDoc tags (Thiemo Kreuz)
+* php: Declare all class properties (Umherirrender)
+* php: Fix undeclared method issues from phan (Umherirrender)
+* PHP: Optimize code initializing default configuration (Thiemo Kreuz)
+
 ## v0.44.3 / 2022-08-16
 ### Features
 * DropdownWidget: Add screen reader support while collapsed (Bartosz Dziewoński)
