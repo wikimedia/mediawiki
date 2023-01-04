@@ -124,8 +124,59 @@ ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapp
 
 /* Slideshow */
 ul.gallery.mw-gallery-slideshow {
-	display: block;
-	margin: 4em 0;
+	display: flex;
+	margin: auto;
+	width: 100%;
+	// Should be synced with mediawiki.page.gallery.slideshow.js
+	height: 75vh;
+	text-align: center;
+	overflow: hidden;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+
+	li {
+		scroll-snap-align: start;
+		flex-shrink: 0;
+		height: 100%;
+		text-align: center;
+		display: flex;
+		flex-flow: column;
+		// override inline style
+		// stylelint-disable-next-line declaration-no-important
+		width: 100% !important;
+
+		> div {
+			max-width: none;
+			margin: auto;
+		}
+	}
+
+	&:not( .mw-gallery-slideshow-ooui ) {
+		// Reserve space at top of gallery while OOUI loads.
+		li:before {
+			.client-js & {
+				content: '';
+				width: 100%;
+				display: block;
+				padding: 1.3em 0;
+				// equivalent to the OOUI icon button height:
+				height: 32px;
+			}
+		}
+
+		.thumb {
+			height: 100%;
+			// override inline style
+			// stylelint-disable-next-line declaration-no-important
+			width: 100% !important;
+		}
+
+		img {
+			height: 100%;
+			width: auto;
+		}
+	}
 
 	.gallerycaption {
 		font-size: 1.3em;
@@ -163,10 +214,6 @@ ul.gallery.mw-gallery-slideshow {
 	.gallerybox {
 		&.slideshow-current {
 			background: #efefef;
-		}
-
-		> div {
-			max-width: 120px;
 		}
 
 		div.thumb {
