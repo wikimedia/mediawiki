@@ -63,8 +63,7 @@ class DatabaseFactory {
 	 *   - lbInfo: Optional map of field/values for the managing load balancer instance.
 	 *      The "master" and "replica" fields are used to flag the replication role of this
 	 *      database server and whether methods like getLag() should actually issue queries.
-	 *   - connLogger: Optional PSR-3 logger interface instance.
-	 *   - queryLogger: Optional PSR-3 logger interface instance.
+	 *   - logger: Optional PSR-3 logger interface instance.
 	 *   - profiler : Optional callback that takes a section name argument and returns
 	 *      a ScopedCallback instance that ends the profile section in its destructor.
 	 *      These will be called in query(), using a simplified version of the SQL that
@@ -104,9 +103,7 @@ class DatabaseFactory {
 				'srvCache' => $params['srvCache'] ?? new HashBagOStuff(),
 				'profiler' => $params['profiler'] ?? null,
 				'trxProfiler' => $params['trxProfiler'] ?? new TransactionProfiler(),
-				'connLogger' => $params['connLogger'] ?? new NullLogger(),
-				'queryLogger' => $params['queryLogger'] ?? new NullLogger(),
-				'replLogger' => $params['replLogger'] ?? new NullLogger(),
+				'logger' => $params['logger'] ?? new NullLogger(),
 				'errorLogger' => $params['errorLogger'] ?? static function ( Throwable $e ) {
 					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 				},

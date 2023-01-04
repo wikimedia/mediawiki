@@ -31,7 +31,6 @@ use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
-use Psr\Log\NullLogger;
 use StatusValue;
 use TestUserRegistry;
 use TextContent;
@@ -217,9 +216,6 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 				'srvCache' => new HashBagOStuff(),
 				'profiler' => null,
 				'trxProfiler' => new TransactionProfiler(),
-				'connLogger' => new NullLogger(),
-				'queryLogger' => new NullLogger(),
-				'replLogger' => new NullLogger(),
 				'errorLogger' => static function () {
 				},
 				'deprecationLogger' => static function () {

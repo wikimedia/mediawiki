@@ -770,6 +770,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		if ( $oldTitle ) {
 			$update->setMoveDetails( $oldTitle );
 		}
+		$this->setTransactionTicket( $update );
 
 		$update->doUpdate();
 
@@ -842,6 +843,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 
 		$update = new LinksUpdate( $t, $po );
 		$update->setStrictTestMode();
+		$this->setTransactionTicket( $update );
 		$update->doUpdate();
 
 		$dbw = wfGetDB( DB_PRIMARY );
@@ -908,12 +910,14 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Test 1", self::$testingPageId + 1 );
 		$po->addCategory( '123a', '123a' );
 		$update = new LinksUpdate( $t, $po );
+		$this->setTransactionTicket( $update );
 		$update->setStrictTestMode();
 		$update->doUpdate();
 
 		[ $t, $po ] = $this->makeTitleAndParserOutput( "Test 2", self::$testingPageId + 2 );
 		$po->addCategory( '123', '123' );
 		$update = new LinksUpdate( $t, $po );
+		$this->setTransactionTicket( $update );
 		$update->setStrictTestMode();
 		$update->doUpdate();
 
@@ -922,6 +926,12 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			'cat_pages',
 			[ 'cat_title' => '123a' ],
 			[ [ '1' ] ]
+		);
+	}
+
+	private function setTransactionTicket( LinksUpdate $update ) {
+		$update->setTransactionTicket(
+			$this->getServiceContainer()->getDBLoadBalancerFactory()->getEmptyTransactionTicket( __METHOD__ )
 		);
 	}
 }

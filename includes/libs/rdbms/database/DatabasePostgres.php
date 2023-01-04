@@ -62,18 +62,19 @@ class DatabasePostgres extends Database {
 
 			$this->keywordTableMap = $params['keywordTableMap'];
 		}
-		$this->replicationReporter = new ReplicationReporter(
-			$params['topologyRole'],
-			$params['replLogger'],
-			$params['srvCache']
-		);
 
 		parent::__construct( $params );
+
 		$this->platform = new PostgresPlatform(
 			$this,
-			$params['queryLogger'],
+			$this->logger,
 			$this->currentDomain,
 			$this->errorLogger
+		);
+		$this->replicationReporter = new ReplicationReporter(
+			$params['topologyRole'],
+			$this->logger,
+			$params['srvCache']
 		);
 	}
 
@@ -284,7 +285,7 @@ class DatabasePostgres extends Database {
 			PGSQL_DIAG_SOURCE_FUNCTION
 		];
 		foreach ( $diags as $d ) {
-			$this->queryLogger->debug( sprintf( "PgSQL ERROR(%d): %s",
+			$this->logger->debug( sprintf( "PgSQL ERROR(%d): %s",
 				$d, pg_result_error_field( $this->lastResultHandle, $d ) ) );
 		}
 	}
@@ -853,7 +854,7 @@ __INDEXATTR__;
 		if ( $this->schemaExists( $desiredSchema ) ) {
 			if ( in_array( $desiredSchema, $this->getSchemas() ) ) {
 				$this->platform->setCoreSchema( $desiredSchema );
-				$this->queryLogger->debug(
+				$this->logger->debug(
 					"Schema \"" . $desiredSchema . "\" already in the search path\n" );
 			} else {
 				// Prepend the desired schema to the search path (T17816)
@@ -861,12 +862,12 @@ __INDEXATTR__;
 				array_unshift( $search_path, $this->platform->addIdentifierQuotes( $desiredSchema ) );
 				$this->setSearchPath( $search_path );
 				$this->platform->setCoreSchema( $desiredSchema );
-				$this->queryLogger->debug(
+				$this->logger->debug(
 					"Schema \"" . $desiredSchema . "\" added to the search path\n" );
 			}
 		} else {
 			$this->platform->setCoreSchema( $this->getCurrentSchema() );
-			$this->queryLogger->debug(
+			$this->logger->debug(
 				"Schema \"" . $desiredSchema . "\" not found, using current \"" .
 				$this->getCoreSchema() . "\"\n" );
 		}

@@ -696,10 +696,12 @@ class HTMLForm extends ContextSource {
 		}
 
 		# Check for validation
+		$hasNonDefault = false;
 		foreach ( $this->mFlatFields as $fieldname => $field ) {
 			if ( !array_key_exists( $fieldname, $this->mFieldData ) ) {
 				continue;
 			}
+			$hasNonDefault = $hasNonDefault || $this->mFieldData[$fieldname] !== $field->getDefault();
 			if ( $field->isDisabled( $this->mFieldData ) ) {
 				continue;
 			}
@@ -717,6 +719,14 @@ class HTMLForm extends ContextSource {
 		}
 
 		if ( !$valid ) {
+			// Treat as not submitted if got nothing from the user on GET forms.
+			if ( !$hasNonDefault && $this->getMethod() === 'get' &&
+				( $this->mFormIdentifier === null ||
+					$this->getRequest()->getCheck( 'wpFormIdentifier' ) )
+			) {
+				$this->mWasSubmitted = false;
+				return false;
+			}
 			return $hoistedErrors;
 		}
 

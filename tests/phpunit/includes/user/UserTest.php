@@ -1428,7 +1428,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		if ( $expect === 'exception' ) {
 			// T248195: Duplicate entry errors will log the exception, don't fail because of that.
-			$this->setNullLogger( 'DBQuery' );
+			$this->setNullLogger( 'rdbms' );
 			$this->expectException( Exception::class );
 		}
 		$user = User::newSystemUser( $name, $options );

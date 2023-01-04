@@ -48,9 +48,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var CriticalSectionProvider|null */
 	protected $csProvider;
 	/** @var LoggerInterface */
-	protected $connLogger;
-	/** @var LoggerInterface */
-	protected $queryLogger;
+	protected $logger;
 	/** @var callable Error logging callback */
 	protected $errorLogger;
 	/** @var callable Deprecation logging callback */
@@ -191,8 +189,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @param array $params Parameters passed from Database::factory()
 	 */
 	public function __construct( array $params ) {
+		$this->logger = $params['logger'] ?? new NullLogger();
 		$this->transactionManager = new TransactionManager(
-			$params['queryLogger'],
+			$this->logger,
 			$params['trxProfiler']
 		);
 		$this->connectionParams = [
@@ -228,8 +227,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$this->srvCache = $params['srvCache'];
 		$this->profiler = is_callable( $params['profiler'] ) ? $params['profiler'] : null;
-		$this->connLogger = $params['connLogger'];
-		$this->queryLogger = $params['queryLogger'];
 		$this->errorLogger = $params['errorLogger'];
 		$this->deprecationLogger = $params['deprecationLogger'];
 
@@ -243,7 +240,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		);
 		$this->platform = new SQLPlatform(
 			$this,
-			$params['queryLogger'],
+			$this->logger,
 			$this->currentDomain,
 			$this->errorLogger
 		);
@@ -329,8 +326,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - lbInfo: Optional map of field/values for the managing load balancer instance.
 	 *      The "master" and "replica" fields are used to flag the replication role of this
 	 *      database server and whether methods like getLag() should actually issue queries.
-	 *   - connLogger: Optional PSR-3 logger interface instance.
-	 *   - queryLogger: Optional PSR-3 logger interface instance.
+	 *   - logger: Optional PSR-3 logger interface instance.
 	 *   - profiler : Optional callback that takes a section name argument and returns
 	 *      a ScopedCallback instance that ends the profile section in its destructor.
 	 *      These will be called in query(), using a simplified version of the SQL that
@@ -375,14 +371,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * Set the PSR-3 logger interface to use for query logging. (The logger
-	 * interfaces for connection logging and error logging can be set with the
-	 * constructor.)
+	 * Set the PSR-3 logger interface to use.
 	 *
 	 * @param LoggerInterface $logger
 	 */
 	public function setLogger( LoggerInterface $logger ) {
-		$this->queryLogger = $logger;
+		$this->logger = $logger;
 	}
 
 	public function getServerInfo() {
@@ -622,7 +616,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// T217819, T231443: this is probably just LoadBalancer trying to recover from
 			// errors and shutdown. Log any problems and move on since the request has to
 			// end one way or another. Throwing errors is not very useful at some point.
-			$this->queryLogger->error( $error, [ 'db_log_category' => 'query' ] );
+			$this->logger->error( $error, [ 'db_log_category' => 'query' ] );
 		}
 
 		// Note that various subclasses call close() at the start of open(), which itself is
@@ -1201,7 +1195,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		// Avoid the overhead of logging calls unless debug mode is enabled
 		if ( $this->flagsHolder->getFlag( self::DBO_DEBUG ) ) {
-			$this->queryLogger->debug(
+			$this->logger->debug(
 				"{method} [{runtime}s] {db_server}: {sql}",
 				$this->getLogContext( [
 					'method' => $fname,
@@ -1404,7 +1398,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $blockers ) {
-			$this->connLogger->warning(
+			$this->logger->warning(
 				"Silent reconnection to {db_server} could not be attempted: {error}",
 				$this->getLogContext( [
 					'error' => 'session state loss (' . implode( ', ', $blockers ) . ')',
@@ -1486,7 +1480,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	public function reportQueryError( $error, $errno, $sql, $fname, $ignore = false ) {
 		if ( $ignore ) {
-			$this->queryLogger->debug(
+			$this->logger->debug(
 				"SQL ERROR (ignored): $error",
 				[ 'db_log_category' => 'query' ]
 			);
@@ -1505,7 +1499,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private function getQueryExceptionAndLog( $error, $errno, $sql, $fname ) {
 		// Information that instances of the same problem have in common should
 		// not be normalized (T255202).
-		$this->queryLogger->error(
+		$this->logger->error(
 			"Error $errno from $fname, {error} {sql1line} {db_server}",
 			$this->getLogContext( [
 				'method' => __METHOD__,
@@ -1547,7 +1541,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->lastConnectError = $error;
 		$this->conn = null;
 
-		$this->connLogger->error(
+		$this->logger->error(
 			"Error connecting to {db_server} as user {db_user}: {error}",
 			$this->getLogContext( [
 				'error' => $error,
@@ -2739,7 +2733,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->transactionManager->setTrxStatusToNone();
 			$this->transactionManager->clearPreEndCallbacks();
 			if ( $this->transactionManager->trxLevel() <= TransactionManager::STATUS_TRX_ERROR ) {
-				$this->connLogger->info(
+				$this->logger->info(
 					"$fname: acknowledged server-side transaction loss on {db_server}",
 					$this->getLogContext()
 				);
@@ -2800,7 +2794,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// server-side config variables are lost (the invocation of this method is assumed to
 		// imply that such losses are tolerable).
 		if ( $this->transactionManager->sessionStatus() <= TransactionManager::STATUS_SESS_ERROR ) {
-			$this->connLogger->info(
+			$this->logger->info(
 				"$fname: acknowledged server-side session loss on {db_server}",
 				$this->getLogContext()
 			);
@@ -2916,7 +2910,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->lastPing = microtime( true );
 			$ok = true;
 
-			$this->connLogger->warning(
+			$this->logger->warning(
 				$fname . ': lost connection to {db_server} with error {errno}; reconnected',
 				$this->getLogContext( [
 					'exception' => new RuntimeException(),
@@ -2927,7 +2921,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		} catch ( DBConnectionError $e ) {
 			$ok = false;
 
-			$this->connLogger->error(
+			$this->logger->error(
 				$fname . ': lost connection to {db_server} with error {errno}; reconnection failed: {connect_msg}',
 				$this->getLogContext( [
 					'exception' => new RuntimeException(),
@@ -3179,7 +3173,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			];
 		} else {
 			$locked = false;
-			$this->queryLogger->info(
+			$this->logger->info(
 				__METHOD__ . " failed to acquire lock '{lockname}'",
 				[
 					'lockname' => $lockName,
@@ -3213,7 +3207,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $released ) {
 			unset( $this->sessionNamedLocks[$lockName] );
 		} else {
-			$this->queryLogger->warning(
+			$this->logger->warning(
 				__METHOD__ . " failed to release lock '$lockName'\n",
 				[ 'db_log_category' => 'locking' ]
 			);
@@ -3492,7 +3486,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @throws DBConnectionError
 	 */
 	public function __clone() {
-		$this->connLogger->warning(
+		$this->logger->warning(
 			"Cloning " . static::class . " is not recommended; forking connection",
 			[
 				'exception' => new RuntimeException(),

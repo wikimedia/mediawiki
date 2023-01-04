@@ -53,13 +53,7 @@ abstract class LBFactory implements ILBFactory {
 	/** @var StatsdDataFactoryInterface */
 	private $statsd;
 	/** @var LoggerInterface */
-	private $replLogger;
-	/** @var LoggerInterface */
-	private $connLogger;
-	/** @var LoggerInterface */
-	private $queryLogger;
-	/** @var LoggerInterface */
-	private $perfLogger;
+	private $logger;
 	/** @var callable Error logger */
 	private $errorLogger;
 	/** @var callable Deprecation logger */
@@ -123,9 +117,6 @@ abstract class LBFactory implements ILBFactory {
 	private const ROUND_ROLLBACK_CALLBACKS = 'within-rollback-callbacks';
 	private const ROUND_ROLLBACK_SESSIONS = 'within-rollback-session';
 
-	private static $loggerFields =
-		[ 'replLogger', 'connLogger', 'queryLogger', 'perfLogger' ];
-
 	/**
 	 * @var callable
 	 */
@@ -173,9 +164,7 @@ abstract class LBFactory implements ILBFactory {
 
 		$this->databaseFactory = $conf['databaseFactory'] ?? new DatabaseFactory();
 
-		foreach ( self::$loggerFields as $key ) {
-			$this->$key = $conf[ $key ] ?? new NullLogger();
-		}
+		$this->logger = $conf['logger'] ?? new NullLogger();
 		$this->errorLogger = $conf['errorLogger'] ?? static function ( Throwable $e ) {
 				trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 		};
@@ -311,13 +300,13 @@ abstract class LBFactory implements ILBFactory {
 		$chronProt = $this->getChronologyProtector();
 		if ( ( $flags & self::SHUTDOWN_NO_CHRONPROT ) != self::SHUTDOWN_NO_CHRONPROT ) {
 			$this->shutdownChronologyProtector( $chronProt, $cpIndex );
-			$this->replLogger->debug( __METHOD__ . ': finished ChronologyProtector shutdown' );
+			$this->logger->debug( __METHOD__ . ': finished ChronologyProtector shutdown' );
 		}
 		$cpClientId = $chronProt->getClientId();
 
 		$this->commitPrimaryChanges( __METHOD__ );
 
-		$this->replLogger->debug( 'LBFactory shutdown completed' );
+		$this->logger->debug( 'LBFactory shutdown completed' );
 	}
 
 	public function getAllLBs() {
@@ -337,7 +326,7 @@ abstract class LBFactory implements ILBFactory {
 
 	public function flushReplicaSnapshots( $fname = __METHOD__ ) {
 		if ( $this->trxRoundId !== false && $this->trxRoundId !== $fname ) {
-			$this->queryLogger->warning(
+			$this->logger->warning(
 				"$fname: transaction round '{$this->trxRoundId}' still running",
 				[ 'exception' => new RuntimeException() ]
 			);
@@ -494,7 +483,7 @@ abstract class LBFactory implements ILBFactory {
 			foreach ( $callersByDB as $db => $callers ) {
 				$msg .= "$db: " . implode( '; ', $callers ) . "\n";
 			}
-			$this->queryLogger->info( $msg );
+			$this->logger->info( $msg );
 		}
 	}
 
@@ -604,7 +593,7 @@ abstract class LBFactory implements ILBFactory {
 
 	public function getEmptyTransactionTicket( $fname ) {
 		if ( $this->hasPrimaryChanges() ) {
-			$this->queryLogger->error(
+			$this->logger->error(
 				__METHOD__ . ": $fname does not have outer scope",
 				[ 'exception' => new RuntimeException() ]
 			);
@@ -617,8 +606,8 @@ abstract class LBFactory implements ILBFactory {
 
 	final public function commitAndWaitForReplication( $fname, $ticket, array $opts = [] ) {
 		if ( $ticket !== $this->ticket ) {
-			$this->perfLogger->error(
-				__METHOD__ . ": $fname does not have outer scope",
+			$this->logger->error(
+				__METHOD__ . ": $fname does not have outer scope ($ticket vs {$this->ticket})",
 				[ 'exception' => new RuntimeException() ]
 			);
 
@@ -628,7 +617,7 @@ abstract class LBFactory implements ILBFactory {
 		// The transaction owner and any caller with the empty transaction ticket can commit
 		// so that getEmptyTransactionTicket() callers don't risk seeing DBTransactionError.
 		if ( $this->trxRoundId !== false && $fname !== $this->trxRoundId ) {
-			$this->queryLogger->info( "$fname: committing on behalf of {$this->trxRoundId}" );
+			$this->logger->info( "$fname: committing on behalf of {$this->trxRoundId}" );
 			$fnameEffective = $this->trxRoundId;
 		} else {
 			$fnameEffective = $fname;
@@ -671,7 +660,7 @@ abstract class LBFactory implements ILBFactory {
 			$this->requestInfo['ChronologyPositionIndex'],
 			$this->secret
 		);
-		$this->chronProt->setLogger( $this->replLogger );
+		$this->chronProt->setLogger( $this->logger );
 
 		if ( $this->cliMode ) {
 			$this->chronProt->setEnabled( false );
@@ -682,10 +671,10 @@ abstract class LBFactory implements ILBFactory {
 		} elseif ( $this->cpStash instanceof EmptyBagOStuff ) {
 			// No where to store any DB positions and wait for them to appear
 			$this->chronProt->setEnabled( false );
-			$this->replLogger->debug( 'Cannot use ChronologyProtector with EmptyBagOStuff' );
+			$this->logger->debug( 'Cannot use ChronologyProtector with EmptyBagOStuff' );
 		}
 
-		$this->replLogger->debug(
+		$this->logger->debug(
 			__METHOD__ . ': request info ' .
 			json_encode( $this->requestInfo, JSON_PRETTY_PRINT )
 		);
@@ -732,10 +721,7 @@ abstract class LBFactory implements ILBFactory {
 			'databaseFactory' => $this->databaseFactory,
 			'profiler' => $this->profiler,
 			'trxProfiler' => $this->trxProfiler,
-			'queryLogger' => $this->queryLogger,
-			'connLogger' => $this->connLogger,
-			'replLogger' => $this->replLogger,
-			'perfLogger' => $this->perfLogger,
+			'logger' => $this->logger,
 			'errorLogger' => $this->errorLogger,
 			'deprecationLogger' => $this->deprecationLogger,
 			'statsdDataFactory' => $this->statsd,
