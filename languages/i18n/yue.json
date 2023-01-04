@@ -46,7 +46,8 @@
 			"Yfdyh000",
 			"Yueman",
 			"Z423x5c6",
-			"아라"
+			"아라",
+			"Al12si"
 		]
 	},
 	"tog-underline": "連結加底線：",
@@ -2050,6 +2051,12 @@
 	"addedwatchtext": "「[[:$1]]」同佢個討論頁已加入到你嘅[[Special:Watchlist|監視清單]]度。",
 	"addedwatchtext-talk": "「[[:$1]]」同佢有拏褦嘅版已加入咗你嘅[[Special:Watchlist|監視清單]]。",
 	"addedwatchtext-short": "「$1」呢一版已經加咗入監視清單。",
+	"addedwatchexpiry-options-label": "監視期限：",
+	"addedwatchexpiryhours": "｢[[:$1]]｣ 同佢嘅討論頁成功加咗入去你嘅[[Special:Watchlist|監視清單]]，期限係幾個鐘。",
+	"addedwatchexpiryhours-talk": "「[[:$1]]」同佢有拏褦嘅版已加入咗你嘅[[Special:Watchlist|監視清單]]，期限係幾個鐘。",
+	"addedwatchexpirytext": "｢[[:$1]]｣ 同佢嘅討論頁成功加咗入去你嘅[[Special:Watchlist|監視清單]]，期限係$2。",
+	"addedwatchexpirytext-talk": "「[[:$1]]」同佢有拏褦嘅版已加入咗你嘅[[Special:Watchlist|監視清單]]，期限係$2。",
+	"addedwatchindefinitelytext-talk": "「[[:$1]]」同佢有拏褦嘅版已加入咗你嘅[[Special:Watchlist|監視清單]]，期限暫時冇。",
 	"removewatch": "響監視清單度拎走",
 	"removedwatchtext": "「[[:$1]]」同佢個討論頁已經喺[[Special:Watchlist|你嘅監視清單]]度刪除。",
 	"removedwatchtext-talk": "「[[:$1]]」同佢啲相關嘅版已經喺[[Special:Watchlist|你嘅監視清單]]度刪除。",
@@ -2875,6 +2882,7 @@
 	"confirm-purge-bottom": "清理一版係會清除快取同埋強迫顯示最現時嘅修訂。",
 	"confirm-watch-button": "好",
 	"confirm-watch-top": "將呢一版加入你嘅監視清單？",
+	"confirm-watch-label": "監視期限：",
 	"watchlist-expiry-options": "永久:infinite,1個禮拜:1 week,1個月:1 month,3個月:3 months,6個月:6 months",
 	"confirm-watch-button-expiry": "監視",
 	"confirm-unwatch-button": "好",

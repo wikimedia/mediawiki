@@ -1044,7 +1044,7 @@
 	"showingresultsinrange": "Malsupre montriĝas {{PLURAL:$1|<strong>1</strong> rezulto|<strong>$1</strong> rezultoj}} en la intervalo #<strong>$2</strong> ĝis #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Rezulto <strong>$1</strong> el <strong>$3</strong>|Rezultoj <strong>$1 - $2</strong> el <strong>$3</strong>}}",
 	"search-nonefound": "La serĉomendo rezultis kun neniuj trafoj.",
-	"search-nonefound-thiswiki": "Neniu rezulto kongruis la peton tra tiu retejo.",
+	"search-nonefound-thiswiki": "Ne estis rezultoj kongruantaj al la demando en $3 .",
 	"powersearch-legend": "Progresa serĉo",
 	"powersearch-ns": "Serĉi en nomspacoj:",
 	"powersearch-togglelabel": "Elekti:",

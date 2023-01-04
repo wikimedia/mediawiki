@@ -510,7 +510,7 @@
 	"revdelete-hide-user": "Cacher le nom ou l'adresse IP de l'useur",
 	"revdelete-hide-restricted": "Appliquer ces restrictions aux administrateurs et les autres useurs",
 	"revdelete-suppress": "Supprimer les données des administrateurs ainsi que celles des autres utilisateurs",
-	"revdelete-unsuppress": "Enlever les restrictions des versions rétablies",
+	"revdelete-unsuppress": "Retirer les restrictions des versions restaurées",
 	"revdelete-log": "Raison:",
 	"revdelete-submit": "Appliquer à la version choisie",
 	"revdelete-success": "'''Vous avez bien changé la visibilité des versions.'''",

@@ -48,6 +48,10 @@ class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 				'&lt;script>alert("evil!")&lt;/script>"' .
 				'</td></tr></tbody></table>',
 			],
+			[
+				'{ broken JSON ]',
+				'Invalid JSON: $1',
+			],
 		];
 	}
 
@@ -56,7 +60,11 @@ class JsonContentHandlerIntegrationTest extends MediaWikiLangTestCase {
 	 * @covers JsonContentHandler::fillParserOutput
 	 */
 	public function testFillParserOutput( $data, $expected ) {
-		$content = new JsonContent( FormatJson::encode( $data ) );
+		if ( !is_string( $data ) ) {
+			$data = FormatJson::encode( $data );
+		}
+
+		$content = new JsonContent( $data );
 		$contentRenderer = $this->getServiceContainer()->getContentRenderer();
 		$parserOutput = $contentRenderer->getParserOutput(
 			$content,

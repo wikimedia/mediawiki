@@ -959,7 +959,7 @@ class ChangeTags {
 						'LEFT JOIN',
 						[ $join_cond, 'ct_tag_id' => $filterTagIds ]
 					];
-					$conds[] = "$tagTable.ct_tag_id IS NULL";
+					$conds[] = "ct_tag_id IS NULL";
 				}
 			} else {
 				$tables[] = $tagTable;

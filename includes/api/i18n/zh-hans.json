@@ -983,6 +983,7 @@
 	"apihelp-query+languageinfo-paramvalue-prop-variants": "此语言所支持的变体的语言代码。",
 	"apihelp-query+languageinfo-param-code": "应返回的语言的语言代码，或所有语言<code>*</code>。",
 	"apihelp-query+languageinfo-example-simple": "获取所有支持语言的语言代码。",
+	"apihelp-query+languageinfo-example-autonym-name-de": "获取所有支持语言的自名（某语言中对该语言本身的称呼）和其德语名称。",
 	"apihelp-query+languageinfo-example-bcp47-dir": "获取所有支持语言的BCP-47语言代码和书写方向。",
 	"apihelp-query+links-summary": "从指定页面返回所有链接。",
 	"apihelp-query+links-param-namespace": "只显示这些命名空间的链接。",

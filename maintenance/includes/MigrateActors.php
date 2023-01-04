@@ -100,10 +100,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		}
 
 		$errors = 0;
-		$errors += $this->migrateToTemp(
-			'revision', 'rev_id', [ 'revactor_timestamp' => 'rev_timestamp', 'revactor_page' => 'rev_page' ],
-			'rev_user', 'rev_user_text', 'revactor_rev', 'revactor_actor'
-		);
+		$errors += $this->migrate( 'revision', 'rev_id', 'rev_user', 'rev_user_text', 'rev_actor' );
 		$errors += $this->migrate( 'archive', 'ar_id', 'ar_user', 'ar_user_text', 'ar_actor' );
 		$errors += $this->migrate( 'ipblocks', 'ipb_id', 'ipb_by', 'ipb_by_text', 'ipb_by_actor' );
 		$errors += $this->migrate( 'image', 'img_name', 'img_user', 'img_user_text', 'img_actor' );
@@ -333,118 +330,6 @@ class MigrateActors extends LoggedUpdateMaintenance {
 			list( $next, $display ) = $this->makeNextCond( $dbw, $primaryKey, $lastRow );
 			$this->output( "... $display\n" );
 			$lbFactory->waitForReplication();
-		}
-
-		$this->output(
-			"Completed migration, updated $countUpdated row(s) with $countActors new actor(s), "
-			. "$countErrors error(s)\n"
-		);
-		return $countErrors;
-	}
-
-	/**
-	 * Migrate actors in a table to a temporary table.
-	 *
-	 * Assumes the new table is named "{$table}_actor_temp", and it has two
-	 * columns, in order, being the primary key of the original table and the
-	 * actor ID field.
-	 * Blanks the name field when migrating.
-	 *
-	 * @param string $table Table to migrate
-	 * @param string $primaryKey Primary key of the table.
-	 * @param array $extra Extra fields to copy
-	 * @param string $userField User ID field name
-	 * @param string $nameField User name field name
-	 * @param string $newPrimaryKey Primary key of the new table.
-	 * @param string $actorField Actor field name
-	 * @return int Number of errors
-	 */
-	protected function migrateToTemp(
-		$table, $primaryKey, $extra, $userField, $nameField, $newPrimaryKey, $actorField
-	) {
-		if ( !$this->doTable( $table ) ) {
-			$this->output( "Skipping $table, not included in --tables\n" );
-			return 0;
-		}
-
-		$dbw = $this->getDB( DB_PRIMARY );
-		if ( !$dbw->fieldExists( $table, $userField, __METHOD__ ) ) {
-			$this->output( "No need to migrate $table.$userField, field does not exist\n" );
-			return 0;
-		}
-
-		$complainedAboutUsers = [];
-
-		$newTable = $table . '_actor_temp';
-		$this->output(
-			"Beginning migration of $table.$userField and $table.$nameField to $newTable.$actorField\n"
-		);
-		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->waitForReplication();
-
-		$actorIdSubquery = $this->makeActorIdSubquery( $dbw, $userField, $nameField );
-		$next = [];
-		$countUpdated = 0;
-		$countActors = 0;
-		$countErrors = 0;
-		while ( true ) {
-			// Fetch the rows needing update
-			$res = $dbw->select(
-				[ $table, $newTable ],
-				[ $primaryKey, $userField, $nameField, 'actor_id' => $actorIdSubquery ] + $extra,
-				[ $newPrimaryKey => null ] + $next,
-				__METHOD__,
-				[
-					'ORDER BY' => $primaryKey,
-					'LIMIT' => $this->mBatchSize,
-				],
-				[
-					$newTable => [ 'LEFT JOIN', "{$primaryKey}={$newPrimaryKey}" ],
-				]
-			);
-			if ( !$res->numRows() ) {
-				break;
-			}
-
-			// Insert new actors for rows that need one
-			$rows = iterator_to_array( $res );
-			$lastRow = end( $rows );
-			$countActors += $this->addActorsForRows(
-				$dbw, $nameField, $rows, $complainedAboutUsers, $countErrors
-			);
-
-			// Update rows
-			if ( $rows ) {
-				$inserts = [];
-				foreach ( $rows as $row ) {
-					if ( !$row->actor_id ) {
-						list( , $display ) = $this->makeNextCond( $dbw, [ $primaryKey ], $row );
-						$this->error(
-							"Could not make actor for row with $display "
-							. "$userField={$row->$userField} $nameField={$row->$nameField}\n"
-						);
-						$countErrors++;
-						continue;
-					}
-					$ins = [
-						$newPrimaryKey => $row->$primaryKey,
-						$actorField => $row->actor_id,
-					];
-					foreach ( $extra as $to => $from ) {
-						// It's aliased
-						$ins[$to] = $row->$to;
-					}
-					$inserts[] = $ins;
-				}
-				$this->beginTransaction( $dbw, __METHOD__ );
-				$dbw->insert( $newTable, $inserts, __METHOD__ );
-				$countUpdated += $dbw->affectedRows();
-				$this->commitTransaction( $dbw, __METHOD__ );
-			}
-
-			// Calculate the "next" condition
-			list( $n, $display ) = $this->makeNextCond( $dbw, [ $primaryKey ], $lastRow );
-			$next = [ $n ];
-			$this->output( "... $display\n" );
 		}
 
 		$this->output(

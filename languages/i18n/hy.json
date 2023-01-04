@@ -39,7 +39,8 @@
 			"לערי ריינהארט",
 			"ديفيد",
 			"아라",
-			"Armenoid"
+			"Armenoid",
+			"Vlad5250"
 		]
 	},
 	"tog-underline": "Հղումների ընդգծում՝",
@@ -209,7 +210,7 @@
 	"skin-action-unprotect": "Փոխել պաշտպանությունը",
 	"unprotect": "Փոխել պաշտպանությունը",
 	"newpage": "Նոր էջ",
-	"talkpagelinktext": "քննարկում",
+	"talkpagelinktext": "Քննարկում",
 	"specialpage": "Հատուկ էջ",
 	"personaltools": "Անձնական գործիքներ",
 	"talk": "քննարկում",
@@ -795,6 +796,7 @@
 	"prefs-edits": "Խմբագրումների քանակը.",
 	"prefsnologintext2": "Նախընտրությունները փոփոխելու համար անհրաժեշտ է $1։",
 	"prefs-skin": "Տեսք",
+	"prefs-skin-prefs": "Տեսքի կարգավորումներ",
 	"skin-preview": "նախադիտել",
 	"datedefault": "Առանց նախընտրության",
 	"prefs-user-pages": "Մասնակցային էջերը",
@@ -912,6 +914,7 @@
 	"group-autoconfirmed": "Ավտովավերացված մասնակիցներ",
 	"group-bot": "Բոտեր",
 	"group-sysop": "Ադմիններ",
+	"group-interface-admin": "Ինտերֆեյսի ադմինիստրատորներ",
 	"group-bureaucrat": "Բյուրոկրատներ",
 	"group-suppress": "Հսկիչներ",
 	"group-all": "(բոլոր)",
@@ -925,6 +928,7 @@
 	"grouppage-autoconfirmed": "{{ns:project}}:Ավտովավերացված մասնակիցներ",
 	"grouppage-bot": "{{ns:project}}:Բոտեր",
 	"grouppage-sysop": "{{ns:project}}:Ադմինիստրատոր",
+	"grouppage-interface-admin": "{{ns:project}}:Ինտերֆեյսի ադմինիստրատորներ",
 	"grouppage-bureaucrat": "{{ns:project}}:Բյուրոկրատներ",
 	"grouppage-suppress": "{{ns:project}}:Հսկիչ",
 	"right-read": "Դիտել էջեր",

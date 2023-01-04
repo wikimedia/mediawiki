@@ -3,13 +3,38 @@
 		"authors": [
 			"Lloffiwr",
 			"Robin Owain",
-			"Xxglennxx"
+			"Xxglennxx",
+			"Afalau"
 		]
 	},
 	"config-desc": "Y gosodwr ar gyfer MediaWiki",
 	"config-title": "Gosod MediaWiki $1",
 	"config-information": "Gwybodaeth",
 	"config-localsettings-upgrade": "Rydym wedi canfod ffeil <code>LocalSettings.php</code>.\nI uwchraddio'r gosodiad yma, rhowch fanylion y<code>$wgUpgradeKey</code> yn y blwch isod.\nFe'i cewch yn <code>LocalSettings.php</code>.",
-	"mainpagetext": "'''Wedi llwyddo gosod meddalwedd MediaWiki yma'''",
-	"mainpagedocfooter": "\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Rhestr osodiadau wrth gyflunio]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Cwestiynau poblogaidd ar MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Lleoleiddiwch MediaWiki ar gyfer eich iaith]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Dysgwch sut i ymladd sbam ar eich wici]"
+	"config-localsettings-cli-upgrade": "Canfuwyd ffeil <code>LocalSettings.php</code>.\n\nI uwchraddio'r gosodiad hwn, cychwynnwch <code>update.php</code> yn ei le",
+	"config-localsettings-key": "Allwedd uwchraddio:",
+	"config-your-language": "Eich iaith:",
+	"config-wiki-language": "Iaith y wici:",
+	"config-back": "← Nôl",
+	"config-continue": "Ymlaen →",
+	"config-page-language": "Iaith",
+	"config-page-options": "Dewisiadau",
+	"config-page-install": "Gosod",
+	"config-header-mysql": "Gosodiadau MariaDB/MySQL",
+	"config-header-postgres": "Gosodiadau PostgreSQL",
+	"config-header-sqlite": "Gosodiadau SQLite",
+	"config-ns-other-default": "MyWiki",
+	"config-admin-name": "Eich enw defnyddiwr:",
+	"config-admin-password": "Cyfrinair:",
+	"config-admin-password-confirm": "Cyfrinair eto:",
+	"config-profile-wiki": "Agor wici",
+	"config-logo-icon": "Logo (eicon):",
+	"config-logo-sidebar": "Logo bar ochr (dewisol):",
+	"config-extensions": "Ychwanegynnau",
+	"config-skins": "Gweddau",
+	"config-help": "help",
+	"config-help-tooltip": "cliciwch i ehangu",
+	"config-screenshot": "sgrinlun",
+	"mainpagetext": "<strong>Gosodwyd MediaWici yn llwyddiannus.</strong>",
+	"mainpagedocfooter": "Edrychwch dros [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents Ganllaw y Defnyddiwr] am wybodaeth ar ddefnyddio meddalwedd wici.\n\n== Dechrau arni ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Gosodiadau ffurfweddu]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Cwestiynau Cyffredin MediaWiki]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ Cylchlythyr MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources Cyfieithu MediaWiki i'ch iaith]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam Dysgu sut i ymladd sbam ar eich wici]"
 }

@@ -555,14 +555,20 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeNullableField', 'user', 'user_touched', 'NOT NULL', true ],
 
 			// 1.37
+			[ 'setDefault', 'user', 'user_name', '' ],
+			[ 'setDefault', 'user', 'user_token', '' ],
+			[ 'setDefault', 'user', 'user_real_name', '' ],
+			[ 'setDefault', 'user', 'user_email', '' ],
+			[ 'setDefault', 'user', 'user_newpassword', '' ],
+			[ 'setDefault', 'user', 'user_password', '' ],
 			[ 'changeNullableField', 'user', 'user_token', 'NOT NULL', true ],
 			[ 'changeNullableField', 'user', 'user_real_name', 'NOT NULL', true ],
 			[ 'changeNullableField', 'user', 'user_email', 'NOT NULL', true ],
 			[ 'changeNullableField', 'user', 'user_newpassword', 'NOT NULL', true ],
 			[ 'changeNullableField', 'user', 'user_password', 'NOT NULL', true ],
-			[ 'setDefault', 'user', 'user_name', '' ],
-			[ 'setDefault', 'user', 'user_token', '' ],
-			[ 'setDefault', 'user', 'user_real_name', '' ],
+			[ 'dropDefault', 'user', 'user_email' ],
+			[ 'dropDefault', 'user', 'user_newpassword' ],
+			[ 'dropDefault', 'user', 'user_password' ],
 			[ 'dropConstraint', 'user', 'user_name', 'unique' ],
 			[ 'addField', 'objectcache', 'modtoken', 'patch-objectcache-modtoken.sql' ],
 			[ 'dropFkey', 'revision', 'rev_page' ],
@@ -597,7 +603,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropPgField', 'page', 'page_restrictions' ],
 			[ 'migrateTemplatelinks' ],
 			[ 'changeNullableField', 'templatelinks', 'tl_target_id', 'NOT NULL', true ],
-			[ 'changePrimaryKey', 'templatelinks', [ 'tl_from', 'tl_target_id' ], 'templatelinks_pk' ],
+			[ 'changePrimaryKey', 'templatelinks', [ 'tl_from', 'tl_target_id' ] ],
 			[ 'dropField', 'templatelinks', 'tl_title', 'patch-templatelinks-drop-tl_title.sql' ],
 		];
 	}

@@ -953,7 +953,7 @@
 	"showingresultsinrange": "Sýni allt að <strong>$1</strong> {{PLURAL:$1|niðurstöðu|niðurstöður}} á bilinu <strong>$2</strong> til <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Niðurstaða|Niðurstöður}} <strong>$1-$2</strong> af <strong>$3</strong>",
 	"search-nonefound": "Engar niðurstöður pössuðu við fyrirspurnina.",
-	"search-nonefound-thiswiki": "Engar niðurstöður fundust við fyrirspurninni á þessu vefsvæði.",
+	"search-nonefound-thiswiki": "Engar niðurstöður samsvöruðu fyrirspurninni í $3 .",
 	"powersearch-legend": "Ítarlegri leit",
 	"powersearch-ns": "Leita í nafnrýmum:",
 	"powersearch-togglelabel": "Athuga:",

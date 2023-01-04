@@ -27,7 +27,8 @@
 			"Walesson",
 			"Warley Felipe C.",
 			"YuriNikolai",
-			555
+			555,
+			"Fúlvio"
 		]
 	},
 	"config-desc": "O instalador do MediaWiki",
@@ -238,7 +239,7 @@
 	"config-upload-deleted": "Diretório para arquivos excluídos:",
 	"config-upload-deleted-help": "Escolha um diretório no qual serão armazenados os arquivos excluídos. \nIdealmente, este não deveria ser acessível pela web.",
 	"config-personalization-settings": "Personalização",
-	"config-logo-summary": "Para cada um destes campos terá de carregar uma imagem de tamanho apropriado e introduzir um URL nas caixas abaixo. Pode usar <code>$wgStylePath</code> ou <code>$wgScriptPath</code> se o seu logótipo for relativo a esses caminhos. Pode deixar quaisquer das caixas em branco.\n\nNos <i>browsers</i> suportados também pode arrastar ficheiros de imagens do seu sistema de ficheiros para dentro das caixas de introdução ou da área de antevisão.",
+	"config-logo-summary": "Para cada um destes campos terá de carregar uma imagem de tamanho apropriado e introduzir um URL nas caixas abaixo. Pode usar <code>$wgStylePath</code> ou <code>$wgScriptPath</code> se o seu logótipo for relativo a esses caminhos. Pode deixar quaisquer das caixas em branco.",
 	"config-logo-preview-main": "Página principal",
 	"config-logo-icon": "Logótipo (ícone)",
 	"config-logo-wordmark": "Marca nominativa (opcional)",
@@ -323,6 +324,7 @@
 	"config-nofile": "O arquivo \"$1\" não foi encontrado. Ele foi apagado?",
 	"config-extension-link": "Você sabia que sua wiki suporta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensões]?\n\nVocê pode explorar as [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensões por categoria]",
 	"config-skins-screenshots": "$1 (screenshots: $2)",
+	"config-skins-screenshot": "$1 ($2)",
 	"config-extensions-requires": "$1 (requer $2)",
 	"config-screenshot": "capturas de tela",
 	"config-extension-not-found": "Não foi possível encontrar o arquivo de registo da extensão \"$1\"",

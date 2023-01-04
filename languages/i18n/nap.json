@@ -956,7 +956,7 @@
 	"showingresultsinrange": "{{PLURAL:$1|Vene mmustato|Veneno mmustate}} abbascio {{PLURAL:$1|<strong>1</strong> risultato|<strong>$1</strong> risultate}} d' 'o <strong>$2</strong> a 'o <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Risultato <strong>$1</strong> 'e <strong>$3</strong>|Risultate <strong>$1 - $2</strong> 'e <strong>$3</strong>}}",
 	"search-nonefound": "'A ricerca nun ha produtto risultate.",
-	"search-nonefound-thiswiki": "Nun ce stevano risultate p' 'a ricerca fatta.",
+	"search-nonefound-thiswiki": "Nun ce stevano risultate p' 'a ricerca int'a $3",
 	"powersearch-legend": "Ricerca avanzata",
 	"powersearch-ns": "Ascìa dint' 'o namespace:",
 	"powersearch-togglelabel": "Cuntrolla:",

@@ -91,7 +91,8 @@
 			"فلورانس",
 			"محک",
 			"아라",
-			"Mskf1383"
+			"Mskf1383",
+			"Af420"
 		]
 	},
 	"tog-underline": "خط کشیدن زیر پیوندها:",
@@ -864,7 +865,7 @@
 	"node-count-exceeded-warning": "صفحه از حداکثر تعداد گره فراتر رفته‌است",
 	"expansion-depth-exceeded-category": "صفحه‌هایی که از حداکثر عمق بسط دادن تجاوز کرده‌اند",
 	"expansion-depth-exceeded-category-desc": "رده برای صفحاتی که در آنها از عمق گسترش فراتر رفته است.",
-	"expansion-depth-exceeded-warning": "صفحه حداکثر عمق بسط دادن تجاوز کرد",
+	"expansion-depth-exceeded-warning": "صفحه از حداکثر عمق بسط دادن تجاوز کرد",
 	"parser-unstrip-loop-warning": "حلقه در دستور unstrip پیدا شد",
 	"unstrip-depth-warning": "از حداکثر ارجاع در دستور unstrip تجاوز شد ($1)",
 	"unstrip-depth-category": "صفحه‌هایی که در آن‌ها از محدودیت عمق برهنه‌سازی تجاوز شده",
@@ -1077,7 +1078,7 @@
 	"showingresultsinrange": "نمایش در پائین تا {{PLURAL:$1|<strong>1</strong> نتیجه|<strong>$1</strong> نتیجه}} در محدودهٔ #<strong>$2</strong> تا #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|نتیجه <strong>$1</strong> از <strong>$3</strong>|نتایج <strong>$1 - $2</strong> از <strong>$3</strong>}}",
 	"search-nonefound": "هیچ نتیجه‌ای مطابق با پرسمان وجود نداشت.",
-	"search-nonefound-thiswiki": "نتیجه‌ای منطبق با این درخواست در این وب‌گاه موجود نبود.",
+	"search-nonefound-thiswiki": "نتیجه‌ای منطبق با این پرسمان در این وبگاه موجود نبود.",
 	"powersearch-legend": "جستجوی پیشرفته",
 	"powersearch-ns": "جستجو در فضاهای نام:",
 	"powersearch-togglelabel": "بررسی:",

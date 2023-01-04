@@ -19,7 +19,8 @@
 			"唐吉訶德的侍從",
 			"進也",
 			"아라",
-			"沈澄心"
+			"沈澄心",
+			"SupaplexTW"
 		]
 	},
 	"tog-underline": "Liân-kiat oē té-sûn:",
@@ -277,7 +278,7 @@
 	"sort-descending": "Hā-kàng pâi-lia̍t",
 	"sort-ascending": "Seng-koân pâi-lia̍t",
 	"nstab-main": "Bûn-chiuⁿ",
-	"nstab-user": "Iōng-chiá ê ia̍h",
+	"nstab-user": "{{GENDER:$1|Iōng-chiá ê ia̍h}}",
 	"nstab-media": "Mûi-thé",
 	"nstab-special": "Te̍k-sû-ia̍h",
 	"nstab-project": "Sū-kang ia̍h",
@@ -1225,6 +1226,7 @@
 	"tags-active-yes": "Tio̍h",
 	"tags-active-no": "M̄-tio̍h",
 	"deletepage": "Thâi ia̍h",
+	"htmlform-submit": "Thê-kau",
 	"logentry-delete-delete": "$1 kā ia̍h-bīn $3 {{GENDER:$2|thâi tiāu}}",
 	"logentry-delete-delete_redir": "$1 ēng têng-siá lâi kā choán-ia̍h $3 {{GENDER:$2|thâi-tiāu}}",
 	"logentry-move-move": "$1 {{GENDER:$2|sóa}} $3 chit ia̍h khì $4",
