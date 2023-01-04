@@ -1,0 +1,7 @@
+<IfModule php7_module>
+php_flag engine off
+</IfModule>
+# In php8, php dropped the version number.
+<IfModule php_module>
+php_flag engine off
+</IfModule>
