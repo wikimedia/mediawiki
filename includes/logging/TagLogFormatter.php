@@ -61,8 +61,10 @@ class TagLogFormatter extends LogFormatter {
 		}
 
 		if ( $isRevLink ) {
+			// @phan-suppress-next-line SecurityCheck-XSS Unlikely positive, only if language format is bad
 			$params[3] = Message::rawParam( $link );
 		} else {
+			// @phan-suppress-next-line SecurityCheck-XSS Unlikely positive, only if language format is bad
 			$params[4] = Message::rawParam( $link );
 		}
 
