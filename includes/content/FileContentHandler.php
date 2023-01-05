@@ -54,7 +54,10 @@ class FileContentHandler extends WikitextContentHandler {
 
 		$handler = $file->getHandler();
 		if ( $handler ) {
-			$fields['file_text'] = $handler->getEntireText( $file );
+			$fileText = $handler->getEntireText( $file );
+			if ( $fileText !== false ) {
+				$fields['file_text'] = $fileText;
+			}
 		}
 		$fields['file_media_type'] = $file->getMediaType();
 		$fields['file_mime'] = $file->getMimeType();
