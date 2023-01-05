@@ -1887,14 +1887,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 	}
 
-	/**
-	 * @return string
-	 * @since 1.32
-	 */
-	public function getTransactionRoundStage() {
-		return $this->trxRoundStage;
-	}
-
 	public function hasPrimaryConnection() {
 		return $this->isOpen( $this->getWriterIndex() );
 	}
