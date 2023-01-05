@@ -99,6 +99,12 @@
 		"wikimedia/testing-access-wrapper": "~2.0",
 		"wmde/hamcrest-html-matchers": "^1.0.0"
 	},
+	"repositories": [
+		{
+			"type": "git",
+			"url": "https://github.com/ejegg/login-and-pay-with-amazon-sdk-php"
+		}
+	],
 	"replace": {
 		"symfony/polyfill-ctype": "1.99",
 		"symfony/polyfill-mbstring": "1.99"
@@ -163,6 +169,9 @@
 	},
 	"config": {
 		"optimize-autoloader": true,
+		"platform": {
+			"php": "7.4.30"
+		},
 		"prepend-autoloader": false,
 		"allow-plugins": {
 			"composer/package-versions-deprecated": true,
@@ -173,7 +182,8 @@
 	"extra": {
 		"merge-plugin": {
 			"include": [
-				"composer.local.json"
+				"composer.local.json",
+				"extensions/*/composer.json"
 			],
 			"merge-dev": false
 		}

@@ -62,7 +62,6 @@ phpunit.xml
 .phan/local-config.php
 
 # Composer
-/composer.lock
 /composer.local.json
 /composer.phar
 
