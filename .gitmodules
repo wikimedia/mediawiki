@@ -21,4 +21,16 @@
 [submodule "vendor"]
 	path = vendor
 	url = https://gerrit.wikimedia.org/r/mediawiki/vendor
+	branch = fundraising/REL1_39
+[submodule "extensions/cldr"]
+	path = extensions/cldr
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/cldr
 	branch = REL1_39
+[submodule "extensions/DonationInterface"]
+	path = extensions/DonationInterface
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/DonationInterface
+	branch = deployment
+[submodule "extensions/FundraisingEmailUnsubscribe"]
+	path = extensions/FundraisingEmailUnsubscribe
+	url = https://gerrit.wikimedia.org/r/mediawiki/extensions/FundraisingEmailUnsubscribe
+	branch = master
