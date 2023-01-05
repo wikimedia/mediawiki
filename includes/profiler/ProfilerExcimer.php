@@ -76,7 +76,9 @@ class ProfilerExcimer extends Profiler {
 	public function getFunctionStats() {
 		$this->close();
 		$cpuStats = $this->cpuProf->getLog()->aggregateByFunction();
+		'@phan-var array $cpuStats';
 		$realStats = $this->realProf->getLog()->aggregateByFunction();
+		'@phan-var array $realStats';
 		$allNames = array_keys( $realStats + $cpuStats );
 		$cpuSamples = $this->cpuProf->getLog()->getEventCount();
 		$realSamples = $this->realProf->getLog()->getEventCount();
@@ -131,7 +133,9 @@ class ProfilerExcimer extends Profiler {
 		$cpuLog = $this->cpuProf->getLog();
 		$realLog = $this->realProf->getLog();
 		$cpuStats = $cpuLog->aggregateByFunction();
+		'@phan-var array $cpuStats';
 		$realStats = $realLog->aggregateByFunction();
+		'@phan-var array $realStats';
 		$allNames = array_keys( $cpuStats + $realStats );
 		$cpuSamples = $cpuLog->getEventCount();
 		$realSamples = $realLog->getEventCount();
