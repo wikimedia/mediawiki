@@ -10,8 +10,25 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.39.1 ===
 * Localisation updates.
+* (T325872) ChangeTags: Remove table name from condition.
+* (T324895) MWCallbackStream: Add explicit $stream property.
+* (T297031, T326039) PostgresUpdater: Move setDefault ahead of
+  changeNullableField.
+* (T321319) Produce HTML for invalid JSON.
+* (T215466, T326071) MigrateActors: Write to revsion table (Follow-up 24115a8).
+* (T223027) ReservedUsernames config: Add reserved names from maintenance
+  scripts.
 * (T325000, T324896) Updated OOUI from v0.44.3 to v0.44.4.
+* Remove /images .htaccess rules that are no longer relevent.
+* Disable php in .htaccess of images directory as a hardening measure.
+* (T322583) Include missing message parameter in message.
+* LocalFileTest: use encodeBlob/decodeBlob for img_metadata.
+* DatabaseSqlite: fix null blobs.
+* rdbms: avoid pg_escape_bytea() call-style deprecation notices.
+* (T322278) Improve LocalisationCache post-merge validation check.
 * (T324408, T326367) Updated wikimedia/remex-html from 3.0.2 to 3.0.3.
+* (T322278) Fix the remaining Phan failures on PHP 8.1.
+* (T322278, T326367) Respond to some messages from Phan on PHP 8.1.
 
 == MediaWiki 1.39.1 ==
 
