@@ -176,10 +176,10 @@ class ImportExportTest extends MediaWikiLangTestCase {
 	 * @return string[]
 	 */
 	private function getSiteVars( $schemaVersion ) {
-		global $wgSitename, $wgDBname, $wgVersion, $wgCapitalLinks;
+		global $wgSitename, $wgDBname, $wgCapitalLinks;
 
 		$vars = [];
-		$vars['mw_version'] = $wgVersion;
+		$vars['mw_version'] = MW_VERSION;
 		$vars['schema_version'] = $schemaVersion;
 
 		$vars['site_name'] = $wgSitename;
