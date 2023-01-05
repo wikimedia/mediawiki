@@ -3306,14 +3306,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function setBigSelects( $value = true ) {
-		// no-op
-	}
-
 	public function isReadOnly() {
 		return ( $this->getReadOnlyReason() !== false );
 	}

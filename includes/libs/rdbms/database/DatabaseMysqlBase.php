@@ -565,29 +565,6 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 	}
 
-	/**
-	 * @param bool $value
-	 */
-	public function setBigSelects( $value = true ) {
-		if ( $value === 'default' ) {
-			if ( $this->defaultBigSelects === null ) {
-				# Function hasn't been called before so it must already be set to the default
-				return;
-			} else {
-				$value = $this->defaultBigSelects;
-			}
-		} elseif ( $this->defaultBigSelects === null ) {
-			$this->defaultBigSelects =
-				(bool)$this->selectField( false, '@@sql_big_selects', '', __METHOD__ );
-		}
-
-		$this->query(
-			"SET sql_big_selects=" . ( $value ? '1' : '0' ),
-			__METHOD__,
-			self::QUERY_CHANGE_TRX
-		);
-	}
-
 	protected function doUpsert(
 		string $table,
 		array $rows,

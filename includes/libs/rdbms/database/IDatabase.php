@@ -1711,17 +1711,6 @@ interface IDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	public function namedLocksEnqueue();
 
 	/**
-	 * Allow or deny "big selects" for this session only. This is done by setting
-	 * the sql_big_selects session variable.
-	 *
-	 * This is a MySQL-specific feature.
-	 *
-	 * @param bool|string $value True for allow, false for deny, or "default" to
-	 *   restore the initial value
-	 */
-	public function setBigSelects( $value = true );
-
-	/**
 	 * @return bool Whether this DB server is read-only
 	 * @since 1.27
 	 */
