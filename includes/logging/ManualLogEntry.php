@@ -24,7 +24,6 @@
  */
 
 use MediaWiki\ChangeTags\Taggable;
-use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
@@ -288,8 +287,8 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 
 		$this->timestamp ??= wfTimestampNow();
 
-		$actorId = MediaWikiServices::getInstance()->getActorStore()
-			->acquireActorId( $this->getPerformerIdentity(), $dbw );
+		$services = MediaWikiServices::getInstance();
+		$actorId = $services->getActorStore()->acquireActorId( $this->getPerformerIdentity(), $dbw );
 
 		// Trim spaces on user supplied text
 		$comment = trim( $this->getComment() ?? '' );
@@ -317,7 +316,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		if ( isset( $this->deleted ) ) {
 			$data['log_deleted'] = $this->deleted;
 		}
-		$data += CommentStore::getStore()->insert( $dbw, 'log_comment', $comment );
+		$data += $services->getCommentStore()->insert( $dbw, 'log_comment', $comment );
 
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$this->id = $dbw->insertId();

@@ -432,13 +432,13 @@ class SpecialPageFactory {
 			'services' => [
 				'PermissionManager',
 				'DBLoadBalancer',
-				'CommentStore',
 				'RevisionFactory',
 				'NamespaceInfo',
 				'UserFactory',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
 				'CommentFormatter',
+				'LinkBatchFactory',
 			]
 		],
 		'Preferences' => [

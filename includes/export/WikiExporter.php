@@ -93,6 +93,9 @@ class WikiExporter {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var CommentStore */
+	private $commentStore;
+
 	/**
 	 * Returns the default export schema version, as defined by the XmlDumpSchemaVersion setting.
 	 * @return string
@@ -104,6 +107,7 @@ class WikiExporter {
 
 	/**
 	 * @param IDatabase $db
+	 * @param CommentStore $commentStore
 	 * @param HookContainer $hookContainer
 	 * @param RevisionStore $revisionStore
 	 * @param TitleParser $titleParser
@@ -117,6 +121,7 @@ class WikiExporter {
 	 */
 	public function __construct(
 		$db,
+		CommentStore $commentStore,
 		HookContainer $hookContainer,
 		RevisionStore $revisionStore,
 		TitleParser $titleParser,
@@ -125,10 +130,14 @@ class WikiExporter {
 		$limitNamespaces = null
 	) {
 		$this->db = $db;
+		$this->commentStore = $commentStore;
 		$this->history = $history;
-		// TODO: add a $hookContainer parameter to XmlDumpWriter so that we can inject
-		// and then be able to convert the factory test to a unit test
-		$this->writer = new XmlDumpWriter( $text, self::schemaVersion() );
+		$this->writer = new XmlDumpWriter(
+			$text,
+			self::schemaVersion(),
+			$hookContainer,
+			$commentStore
+		);
 		$this->sink = new DumpOutput();
 		$this->text = $text;
 		$this->limitNamespaces = $limitNamespaces;
@@ -333,7 +342,7 @@ class WikiExporter {
 			$where[] = $cond;
 		}
 
-		$commentQuery = CommentStore::getStore()->getJoin( 'log_comment' );
+		$commentQuery = $this->commentStore->getJoin( 'log_comment' );
 
 		$tables = array_merge(
 			[ 'logging', 'actor' ], $commentQuery['tables']

@@ -25,7 +25,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\ActorMigration;
 use Wikimedia\Rdbms\IDatabase;
@@ -88,7 +87,7 @@ class RebuildRecentchanges extends Maintenance {
 	 */
 	private function rebuildRecentChangesTablePass1( ILBFactory $lbFactory ) {
 		$dbw = $this->getDB( DB_PRIMARY );
-		$commentStore = CommentStore::getStore();
+		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
 
 		if ( $this->hasOption( 'from' ) && $this->hasOption( 'to' ) ) {
 			$this->cutoffFrom = (int)wfTimestamp( TS_UNIX, $this->getOption( 'from' ) );
@@ -289,7 +288,7 @@ class RebuildRecentchanges extends Maintenance {
 		global $wgLogRestrictions, $wgFilterLogTypes;
 
 		$dbw = $this->getDB( DB_PRIMARY );
-		$commentStore = CommentStore::getStore();
+		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
 		$nonRCLogs = array_merge( array_keys( $wgLogRestrictions ),
 			array_keys( $wgFilterLogTypes ),
 			[ 'create' ] );

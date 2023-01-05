@@ -18,7 +18,6 @@
  * @file
  */
 
-use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Edit\PreparedEdit;
@@ -2167,13 +2166,14 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	public function doUpdateRestrictions( array $limit, array $expiry,
 		&$cascade, $reason, UserIdentity $user, $tags = []
 	) {
-		$readOnlyMode = MediaWikiServices::getInstance()->getReadOnlyMode();
+		$services = MediaWikiServices::getInstance();
+		$readOnlyMode = $services->getReadOnlyMode();
 		if ( $readOnlyMode->isReadOnly() ) {
 			return Status::newFatal( wfMessage( 'readonlytext', $readOnlyMode->getReason() ) );
 		}
 
 		$this->loadPageData( 'fromdbmaster' );
-		$restrictionStore = MediaWikiServices::getInstance()->getRestrictionStore();
+		$restrictionStore = $services->getRestrictionStore();
 		$restrictionStore->loadRestrictions( $this->mTitle, IDBAccessObject::READ_LATEST );
 		$restrictionTypes = $restrictionStore->listApplicableRestrictionTypes( $this->mTitle );
 		$id = $this->getId();
@@ -2249,7 +2249,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$nullRevisionRecord = null;
 
 		if ( $id ) { // Protection of existing page
-			$legacyUser = MediaWikiServices::getInstance()->getUserFactory()->newFromUserIdentity( $user );
+			$legacyUser = $services->getUserFactory()->newFromUserIdentity( $user );
 			if ( !$this->getHookRunner()->onArticleProtect( $this, $legacyUser, $limit, $reason ) ) {
 				return Status::newGood();
 			}
@@ -2265,7 +2265,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				$editrestriction[$key] = 'editsemiprotected'; // backwards compatibility
 			}
 
-			$cascadingRestrictionLevels = MediaWikiServices::getInstance()->getMainConfig()
+			$cascadingRestrictionLevels = $services->getMainConfig()
 				->get( MainConfigNames::CascadingRestrictionLevels );
 
 			foreach ( array_keys( $cascadingRestrictionLevels, 'sysop' ) as $key ) {
@@ -2354,7 +2354,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$cascade = false;
 
 			if ( $limit['create'] != '' ) {
-				$commentFields = CommentStore::getStore()->insert( $dbw, 'pt_reason', $reason );
+				$commentFields = $services->getCommentStore()->insert( $dbw, 'pt_reason', $reason );
 				$dbw->replace( 'protected_titles',
 					[ [ 'pt_namespace', 'pt_title' ] ],
 					[

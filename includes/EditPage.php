@@ -477,6 +477,9 @@ class EditPage implements IEditObject {
 	/** @var RestrictionStore */
 	private $restrictionStore;
 
+	/** @var CommentStore */
+	private $commentStore;
+
 	/**
 	 * @stable to call
 	 * @param Article $article
@@ -518,6 +521,7 @@ class EditPage implements IEditObject {
 		$this->linkRenderer = $services->getLinkRenderer();
 		$this->linkBatchFactory = $services->getLinkBatchFactory();
 		$this->restrictionStore = $services->getRestrictionStore();
+		$this->commentStore = $services->getCommentStore();
 
 		$this->deprecatePublicProperty( 'mArticle', '1.30', __CLASS__ );
 		$this->deprecatePublicProperty( 'mTitle', '1.30', __CLASS__ );
@@ -3241,8 +3245,7 @@ class EditPage implements IEditObject {
 
 		if ( $this->formtype === 'save' && $this->wasDeletedSinceLastEdit() ) {
 			$username = $this->lastDelete->actor_name;
-			$comment = CommentStore::getStore()
-				->getComment( 'log_comment', $this->lastDelete )->text;
+			$comment = $this->commentStore->getComment( 'log_comment', $this->lastDelete )->text;
 
 			// It is better to not parse the comment at all than to have templates expanded in the middle
 			// TODO: can the checkLabel be moved outside of the div so that wrapWikiMsg could be used?
@@ -4281,7 +4284,7 @@ class EditPage implements IEditObject {
 	 */
 	private function getLastDelete(): ?stdClass {
 		$dbr = wfGetDB( DB_REPLICA );
-		$commentQuery = CommentStore::getStore()->getJoin( 'log_comment' );
+		$commentQuery = $this->commentStore->getJoin( 'log_comment' );
 		$data = $dbr->selectRow(
 			array_merge( [ 'logging' ], $commentQuery['tables'], [ 'actor' ] ),
 			[
