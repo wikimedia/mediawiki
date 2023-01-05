@@ -77,6 +77,7 @@ class McrUndoAction extends FormAction {
 		$this->readOnlyMode = $readOnlyMode;
 		$this->revisionLookup = $revisionLookup;
 		$this->revisionRenderer = $revisionRenderer;
+		$this->commentFormatter = $commentFormatter;
 		$this->useRCPatrol = $config->get( MainConfigNames::UseRCPatrol );
 	}
 
