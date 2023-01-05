@@ -1183,8 +1183,8 @@
 							"description": "Path to style files. '{module}' will be replaced with the module's name."
 						},
 						"images": {
-							"type": [ "string", "null" ],
-							"description": "Path to images (optional). '{module}' will be replaced with the module's name."
+							"type": "string",
+							"description": "Path to image definition files. '{module}' will be replaced with the module's name. If the files don't exist, default theme's images will be used instead."
 						}
 					}
 				}
