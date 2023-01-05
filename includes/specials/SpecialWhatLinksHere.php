@@ -127,7 +127,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$this->opts = $opts;
 
 		$this->target = Title::newFromText( $opts->getValue( 'target' ) );
-		if ( !$this->target ) {
+		if ( !$this->target || !$this->target->canExist() ) {
 			if ( !$this->including() ) {
 				$out->addHTML( $this->whatlinkshereForm() );
 			}
@@ -656,6 +656,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				'id' => 'mw-whatlinkshere-target',
 				'label-message' => 'whatlinkshere-page',
 				'section' => 'whatlinkshere-target',
+				'creatable' => true,
 			],
 			'namespace' => [
 				'type' => 'namespaceselect',
