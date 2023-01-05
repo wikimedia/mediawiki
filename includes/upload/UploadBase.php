@@ -1663,10 +1663,16 @@ abstract class UploadBase {
 		}
 
 		foreach ( $attribs as $attrib => $value ) {
-			$stripped = $this->stripXmlNamespace( $attrib );
+			// If attributeNamespace is '', it is relative to its element's namespace
+			[ $attributeNamespace, $stripped ] = self::splitXmlNamespace( $attrib );
 			$value = strtolower( $value );
 
-			if ( str_starts_with( $stripped, 'on' ) ) {
+			if ( !(
+					// Inkscape elements have valid attribs that start with on and are safe, fail all others
+					$namespace === 'http://www.inkscape.org/namespaces/inkscape' &&
+					$attributeNamespace === ''
+				) && str_starts_with( $stripped, 'on' )
+			) {
 				wfDebug( __METHOD__
 					. ": Found event-handler attribute '$attrib'='$value' in uploaded file." );
 
