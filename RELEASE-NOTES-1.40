@@ -254,6 +254,9 @@ because of Phabricator reports.
   (current PHP default) instead of 17. Extension tests may need to be adjusted
   accordingly; string representations of floating-point numbers in serialized
   or JSON-encoded data may change.
+* ::getChronologyProtectorClientId in ILBFactory and LBFactory
+  have been removed without deprecation as they are unused.
+* LBFactory::getTransactionRoundStage, unused, is removed without deprecation.
 * …
 
 === Deprecations in 1.40 ===

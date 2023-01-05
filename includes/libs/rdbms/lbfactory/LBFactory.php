@@ -813,10 +813,6 @@ abstract class LBFactory implements ILBFactory {
 		return $url; // no primary/replica clusters touched
 	}
 
-	public function getChronologyProtectorClientId() {
-		return $this->getChronologyProtector()->getClientId();
-	}
-
 	/**
 	 * Build a string conveying the client and write index of the chronology protector data
 	 *
