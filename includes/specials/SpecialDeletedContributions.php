@@ -22,8 +22,8 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
-use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionFactory;
@@ -48,9 +48,6 @@ class SpecialDeletedContributions extends SpecialPage {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
-	/** @var CommentStore */
-	private $commentStore;
-
 	/** @var RevisionFactory */
 	private $revisionFactory;
 
@@ -69,38 +66,41 @@ class SpecialDeletedContributions extends SpecialPage {
 	/** @var CommentFormatter */
 	private $commentFormatter;
 
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
 	/**
 	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
-	 * @param CommentStore $commentStore
 	 * @param RevisionFactory $revisionFactory
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param UserFactory $userFactory
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
 	 * @param CommentFormatter $commentFormatter
+	 * @param LinkBatchFactory $linkBatchFactory
 	 */
 	public function __construct(
 		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
-		CommentStore $commentStore,
 		RevisionFactory $revisionFactory,
 		NamespaceInfo $namespaceInfo,
 		UserFactory $userFactory,
 		UserNameUtils $userNameUtils,
 		UserNamePrefixSearch $userNamePrefixSearch,
-		CommentFormatter $commentFormatter
+		CommentFormatter $commentFormatter,
+		LinkBatchFactory $linkBatchFactory
 	) {
 		parent::__construct( 'DeletedContributions', 'deletedhistory' );
 		$this->permissionManager = $permissionManager;
 		$this->loadBalancer = $loadBalancer;
-		$this->commentStore = $commentStore;
 		$this->revisionFactory = $revisionFactory;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->userFactory = $userFactory;
 		$this->userNameUtils = $userNameUtils;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
 		$this->commentFormatter = $commentFormatter;
+		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
 	/**
@@ -167,12 +167,12 @@ class SpecialDeletedContributions extends SpecialPage {
 
 		$pager = new DeletedContribsPager(
 			$this->getContext(),
-			$this->commentStore,
 			$this->getHookContainer(),
 			$this->getLinkRenderer(),
 			$this->loadBalancer,
 			$this->revisionFactory,
 			$this->commentFormatter,
+			$this->linkBatchFactory,
 			$target,
 			$opts->getValue( 'namespace' )
 		);
