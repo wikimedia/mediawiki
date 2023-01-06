@@ -42,8 +42,6 @@
 			return false;
 		}.bind( this ) );
 		this.$gallery.addClass( 'mw-gallery-slideshow-ooui' );
-		// Allow others to extend
-		mw.hook( 'mediawiki.gallery.init' ).fire( this.$gallery[ 0 ] );
 	};
 
 	/* Properties */
@@ -242,6 +240,8 @@
 	mw.GallerySlideshow.prototype.showCurrentImage = function ( init ) {
 		var $thumbnail, $imgLink,
 			$imageLi = this.getCurrentImage(),
+			thumbAlt = $imageLi.data( 'alt' ),
+			thumbUrl = $imageLi.data( 'src' ),
 			$caption = $imageLi.find( '.gallerytext' );
 
 		// The order of the following is important for size calculations
@@ -252,12 +252,15 @@
 		$imageLi.addClass( 'slideshow-current' );
 
 		this.$thumbnail = $imageLi.find( 'img' );
-		if ( this.$thumbnail.length ) {
-			// 2. Create and show thumbnail
-			this.$img = $( '<img>' ).attr( {
-				src: this.$thumbnail.attr( 'src' ),
-				alt: this.$thumbnail.attr( 'alt' )
-			} );
+		// 2a. Create thumbnail.
+		this.$img = $( '<img>' ).attr( {
+			// prefer dataset if available, as less likely to be manipulated.
+			src: thumbUrl || this.$thumbnail.attr( 'src' ),
+			alt: thumbAlt || this.$thumbnail.attr( 'alt' )
+		} );
+
+		if ( this.$img.attr( 'src' ) ) {
+			// 2b. Show thumbnail
 			// 'image' class required for detection by MultimediaViewer
 			$imgLink = $( '<a>' ).addClass( 'image' )
 				.attr( 'href', $imageLi.find( 'a' ).eq( 0 ).attr( 'href' ) )
@@ -265,7 +268,6 @@
 
 			this.$imgContainer.empty().append( $imgLink );
 		} else {
-			// 2b. No image found (e.g. file doesn't exist or mobile lazy loading thumbnail)
 			this.$imgContainer.html( $imageLi.find( '.thumb' ).html() );
 		}
 
