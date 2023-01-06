@@ -1,0 +1,267 @@
+# The parsoid-compatible option below is only relevant when we are running
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html,wt2wt
+version=2
+!! end
+
+!! article
+Main Page
+!! text
+blah blah
+!! endarticle
+
+!! article
+Template:1x
+!! text
+{{{1}}}
+!! endarticle
+
+### Redirects, Parsoid-only
+
+!! test
+1. Simple redirect to page
+!! wikitext
+#REDIRECT [[Main Page]]
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Main_Page"/>
+!! end
+
+!! test
+2. Other redirect variants
+!! wikitext
+#REDIRECT [[Main_Page]]
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Main_Page" data-parsoid='{"src":"#REDIRECT ","a":{"href":"./Main_Page"},"sa":{"href":"Main_Page"}}'/>
+!! end
+
+# Not a valid redirect in PHP (although perhaps it was, once upon a time)
+# This tests the Parsoid bail-out code.
+!! test
+3. Other redirect variants
+!! options
+parsoid=wt2html
+!! wikitext
+#REDIRECT [[<nowiki>[[Bar]]</nowiki>]]
+!! html/parsoid
+<ol><li>REDIRECT [[<span typeof="mw:Nowiki">[[Bar]]</span>]]</li></ol>
+!! end
+
+!! test
+4. Redirect to a templated destination
+!! wikitext
+#REDIRECT [[{{1x|Foo}}bar]]
+!! html/parsoid
+<link about="#mwt2" typeof="mw:ExpandedAttrs" rel="mw:PageProp/redirect" href="./Foobar" data-parsoid='{"a":{"href":"./Foobar"},"sa":{"href":"{{1x|Foo}}bar"}}' data-mw='{"attribs":[[{"txt":"href"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"Foo\"}},\"i\":0}}]}&#39;>Foo&lt;/span>bar"}]]}'/>
+!! end
+
+!! test
+Empty redirect
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+#REDIRECT [[]]
+!! html/parsoid
+<ol>
+<li>REDIRECT [[]]</li></ol>
+!! end
+
+!! test
+Optional colon in #REDIRECT
+!! options
+# the colon is archaic syntax.  we support it for wt2html, but we
+# don't care that it roundtrips back to the modern syntax.
+parsoid=wt2html,html2html
+!! wikitext
+#REDIRECT:[[Main Page]]
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Main_Page"/>
+!! end
+
+!! test
+Whitespace in #REDIRECT with optional colon
+!! options
+# the colon and gratuitous whitespace is archaic syntax.  we support
+# it for wt2html, but we don't care that it roundtrips back to the
+# modern syntax (without extra whitespace)
+parsoid=wt2html,html2html
+!! wikitext
+ 
+ #REDIRECT 
+: 
+[[Main Page]]
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Main_Page"/>
+!! end
+
+!! test
+Piped link in #REDIRECT
+!! options
+# content after piped link is ignored.  we support this syntax,
+# but don't care that the piped link is lost when we roundtrip this.
+parsoid=wt2html
+!! wikitext
+#REDIRECT [[Main Page|bar]]
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Main_Page"/>
+!! end
+
+!! test
+Redirect to category (T104502)
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+#REDIRECT [[Category:Foo]]
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Category:Foo"/>
+!! end
+
+!! test
+Redirect to category with URL encoding (T104502)
+!! options
+parsoid=wt2html
+!! wikitext
+#REDIRECT [[Category%3AFoo]]
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Category:Foo"/>
+!! end
+
+!! test
+Redirect to category page
+!! wikitext
+#REDIRECT [[:Category:Foo]]
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Category:Foo"/>
+!! end
+
+!! test
+Redirect to image page (1)
+!! wikitext
+#REDIRECT [[File:Wiki.png]]
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./File:Wiki.png"/>
+!! end
+
+!! test
+Redirect to image page (2)
+!! wikitext
+#REDIRECT [[Image:Wiki.png]]
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./File:Wiki.png"  data-parsoid='{"src":"#REDIRECT ","a":{"href":"./File:Wiki.png"},"sa":{"href":"Image:Wiki.png"}}'/>
+!! end
+
+# html2wt disabled because wts serializes as "#REDIRECT [[:en:File:Wiki.png]]"
+# Next test confirms this.
+!! test
+Redirect to language (1) (T104918)
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+#REDIRECT [[en:File:Wiki.png]]
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="//en.wikipedia.org/wiki/File:Wiki.png"/>
+!! end
+
+!! test
+Redirect to language (2) (T104918)
+!! wikitext
+#REDIRECT [[:en:File:Wiki.png]]
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="//en.wikipedia.org/wiki/File:Wiki.png"/>
+!! end
+
+!! test
+Redirect to interwiki (T104918)
+!! wikitext
+#REDIRECT [[meatball:File:Wiki.png]]
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="http://www.usemod.com/cgi-bin/mb.pl?File:Wiki.png"/>
+!! end
+
+!! test
+Non-English #REDIRECT
+!! options
+language=is
+!! wikitext
+#TILVÍSUN [[Main Page]]
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Main_Page" data-parsoid='{"src":"#TILVÍSUN ","a":{"href":"./Main_Page"},"sa":{"href":"Main Page"}}'/>
+!! end
+
+!! test
+Redirect syntax under text isn't considered a redirect
+!! wikitext
+some text
+
+#redirect [[Main Page]]
+!! html/parsoid
+<p>some text</p>
+
+<ol data-parsoid='{}'><li data-parsoid='{}'>redirect <a rel="mw:WikiLink" href="./Main_Page" title="Main Page" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page"},"sa":{"href":"Main Page"}}'>Main Page</a></li></ol>
+!! end
+
+!! test
+New redirect
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>Foo<link rel="mw:PageProp/redirect" href="./Foo"/></p>
+!! wikitext
+#REDIRECT [[Foo]]
+Foo
+!! end
+
+!! test
+Redirect followed by block on the same line
+!! options
+parsoid=wt2html
+!! wikitext
+#REDIRECT [[Main Page]]<!-- haha -->==hi==
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Main_Page"/><!-- haha --><h2 id="hi">hi</h2>
+!! end
+
+!! test
+Redirect followed by a newline
+!! wikitext
+#REDIRECT [[Main Page]]
+A newline
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Main_Page"/>
+<p>A newline</p>
+!! end
+
+!! test
+Redirect followed by multiple newlines
+!! wikitext
+#REDIRECT [[Main Page]]
+
+
+A newline
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Main_Page"/>
+
+<p><br/>
+A newline</p>
+!! end
+
+!! test
+Drop duplicate redirects
+!! options
+parsoid=html2wt
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Foo"/>
+<link rel="mw:PageProp/redirect" href="./Bar"/>
+<link rel="mw:PageProp/redirect" href="./Baz"/>
+!! wikitext
+#REDIRECT [[Foo]]
+!! end
+
+!! test
+Redirect containing double quotes and spaces
+!! wikitext
+#REDIRECT [[Cool "Gator"]]
+!! html/parsoid
+<link rel="mw:PageProp/redirect" href="./Cool_%22Gator%22" data-parsoid='{"src":"#REDIRECT ","a":{"href":"./Cool_%22Gator%22"},"sa":{"href":"Cool \"Gator\""}}'/>
+!! end

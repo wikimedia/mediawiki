@@ -91,6 +91,12 @@ Template:table_cell_content_with_leading_spc
  | foo
 !! endarticle
 
+!! article
+Test
+!! text
+foo
+!! end
+
 ###
 ### Parsoid edge case regression tests
 ###
@@ -109,7 +115,7 @@ parsoid=wt2html,wt2wt
 |test
 |}]]
 !! html/php
-<p><a href="/index.php?title=Test&amp;action=edit&amp;redlink=1" class="new" title="Test (page does not exist)">
+<p><a href="/wiki/Test" title="Test">
 </a></p><table>
 
 <tbody><tr>
@@ -117,7 +123,7 @@ parsoid=wt2html,wt2wt
 </td></tr></tbody></table>
 <p class="mw-empty-elt"></p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Test" title="Test" class="new" data-parsoid='{"stx":"piped","a":{"href":"./Test"},"sa":{"href":"Test"}}'>
+<p><a rel="mw:WikiLink" href="./Test" title="Test">
 <table>
 
 <tbody><tr data-parsoid='{"autoInsertedStart":true}'><td>test</td></tr>
@@ -854,7 +860,7 @@ parsoid=wt2html
 Invalid text in table attributes should be preserved by selective serializer
 !! options
 parsoid={
-  "modes": ["selser"],
+  "modes": [ "selser" ],
   "changes": [
     ["td:first-child", "text", "abc"],
     ["td + td", "text", "xyz"]
@@ -1703,3 +1709,50 @@ parsoid=html2wt
 </td></tr>
 </tbody></table>
 !! end
+
+!! article
+Eau
+!! text
+Dummy article to suppress redlinks in tests
+!! end
+
+!! test
+T319143 - copy-pasting of cells, before
+!! options
+parsoid={
+  "modes": [ "selser" ],
+  "changes": [
+    ["td", "before", "<td data-parsoid=\"{}\"><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"stx\":\"simple\",\"a\":{\"href\":\"./Eau\"},\"sa\":{\"href\":\"Eau\"},\"dsr\":[4,11,2,2]}'>Eau</a></td>"]
+  ]
+}
+!! wikitext
+{|
+|[[Eau]]
+|}
+!! wikitext/edited
+{|
+|[[Eau]]
+|[[Eau]]
+|}
+!! end
+
+!! test
+T319143 - copy-pasting of cells, after
+!! options
+parsoid={
+  "modes": [ "selser" ],
+  "changes": [
+    ["td", "after", "<td data-parsoid=\"{}\"><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"stx\":\"simple\",\"a\":{\"href\":\"./Eau\"},\"sa\":{\"href\":\"Eau\"},\"dsr\":[4,11,2,2]}'>Eau</a></td>"]
+  ]
+}
+!! wikitext
+{|
+|[[Eau]]
+|}
+!! wikitext/edited
+{|
+|[[Eau]]
+|[[Eau]]
+|}
+!! end
+
