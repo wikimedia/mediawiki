@@ -215,7 +215,7 @@ class LinksUpdate extends DataUpdate {
 		if ( !$this->mId ) {
 			// Probably due to concurrent deletion or renaming of the page
 			$logger = LoggerFactory::getInstance( 'SecondaryDataUpdate' );
-			$logger->notice(
+			$logger->warning(
 				'LinksUpdate: The Title object yields no ID. Perhaps the page was deleted?',
 				[
 					'page_title' => $this->mTitle->getPrefixedDBkey(),

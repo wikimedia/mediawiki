@@ -131,7 +131,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 
 		if ( count( $revertedRevisionIds ) > $maxDepth ) {
 			// This revert exceeds the depth limit
-			$this->logger->notice(
+			$this->logger->info(
 				'The revert is deeper than $wgRevertedTagMaxDepth. Skipping...',
 				$extraParams
 			);
@@ -215,7 +215,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 		if ( $this->getRevertRevision()->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			// The revert's text is marked as deleted, which probably means the update
 			// shouldn't be executed.
-			$this->logger->notice(
+			$this->logger->info(
 				'The revert\'s text had been marked as deleted before the update was ' .
 				'executed. Skipping...',
 				$extraParams
@@ -228,7 +228,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 			// This is already marked as reverted, which means the update was delayed
 			// until the edit is approved. Apparently, the edit was not approved, as
 			// it was reverted, so the update should not be performed.
-			$this->logger->notice(
+			$this->logger->info(
 				'The revert had been reverted before the update was executed. Skipping...',
 				$extraParams
 			);

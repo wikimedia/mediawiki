@@ -437,7 +437,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 
 		$this->assertSame( [
 			[
-				LogLevel::NOTICE,
+				LogLevel::INFO,
 				'The revert\'s text had been marked as deleted before the update was ' .
 					'executed. Skipping...',
 			],
@@ -485,7 +485,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 
 		$this->assertSame( [
 			[
-				LogLevel::NOTICE,
+				LogLevel::INFO,
 				'The revert had been reverted before the update was executed. Skipping...'
 			],
 		], $logger->getBuffer() );
@@ -576,7 +576,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 
 		$this->assertSame( [
 			[
-				LogLevel::NOTICE,
+				LogLevel::INFO,
 				'The revert is deeper than $wgRevertedTagMaxDepth. Skipping...'
 			],
 		], $logger->getBuffer() );
