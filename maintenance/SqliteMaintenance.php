@@ -24,7 +24,8 @@
 use MediaWiki\MediaWikiServices;
 
 use Wikimedia\AtEase\AtEase;
-use Wikimedia\Rdbms\DatabaseSqlite;
+use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\IMaintainableDatabase;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -50,13 +51,12 @@ class SqliteMaintenance extends Maintenance {
 		// Should work even if we use a non-SQLite database
 		if ( $this->hasOption( 'check-syntax' ) ) {
 			$this->checkSyntax();
-
 			return;
 		}
 
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$dbw = $lb->getConnectionRef( DB_PRIMARY );
-		if ( !( $dbw instanceof DatabaseSqlite ) ) {
+		$dbw = $lb->getMaintenanceConnectionRef( DB_PRIMARY );
+		if ( $dbw->getType() !== 'sqlite' ) {
 			$this->error( "This maintenance script requires a SQLite database.\n" );
 
 			return;
@@ -75,8 +75,9 @@ class SqliteMaintenance extends Maintenance {
 		}
 	}
 
-	private function vacuum( DatabaseSqlite $dbw ) {
-		$prevSize = filesize( $dbw->getDbFilePath() );
+	private function vacuum( DBConnRef $dbw ) {
+		// Call non-standard DatabaseSqlite::getDbFilePath method
+		$prevSize = filesize( $dbw->__call( 'getDbFilePath', [] ) );
 		if ( $prevSize == 0 ) {
 			$this->fatalError( "Can't vacuum an empty database.\n" );
 		}
@@ -92,7 +93,7 @@ class SqliteMaintenance extends Maintenance {
 		}
 	}
 
-	private function integrityCheck( DatabaseSqlite $dbw ) {
+	private function integrityCheck( IMaintainableDatabase $dbw ) {
 		$this->output( "Performing database integrity checks:\n" );
 		$res = $dbw->query( 'PRAGMA integrity_check', __METHOD__ );
 
@@ -107,10 +108,10 @@ class SqliteMaintenance extends Maintenance {
 		}
 	}
 
-	private function backup( DatabaseSqlite $dbw, $fileName ) {
+	private function backup( DBConnRef $dbw, $fileName ) {
 		$this->output( "Backing up database:\n   Locking..." );
 		$dbw->query( 'BEGIN IMMEDIATE TRANSACTION', __METHOD__ );
-		$ourFile = $dbw->getDbFilePath();
+		$ourFile = $dbw->__call( 'getDbFilePath', [] );
 		$this->output( "   Copying database file $ourFile to $fileName..." );
 		AtEase::suppressWarnings();
 		if ( !copy( $ourFile, $fileName ) ) {
