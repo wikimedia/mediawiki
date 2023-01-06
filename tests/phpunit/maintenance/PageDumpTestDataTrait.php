@@ -253,9 +253,9 @@ trait PageDumpTestDataTrait {
 	}
 
 	private function setSiteVarMappings( DumpAsserter $asserter ) {
-		global $wgSitename, $wgDBname, $wgVersion, $wgCapitalLinks;
+		global $wgSitename, $wgDBname, $wgCapitalLinks;
 
-		$asserter->setVarMapping( 'mw_version', $wgVersion );
+		$asserter->setVarMapping( 'mw_version', MW_VERSION );
 		$asserter->setVarMapping( 'schema_version', $asserter->getSchemaVersion() );
 
 		$asserter->setVarMapping( 'site_name', $wgSitename );
