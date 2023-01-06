@@ -162,6 +162,11 @@ because of Phabricator reports.
   1.39, have been removed.
 * The EnqueueJob class, unused since 1.31, has been removed without
   deprecation.
+* JobQueueGroup::singleton() and ::destroySingletons(), deprecated since 1.37,
+  have been removed.
+* JobRunner no longer supports manually calling the constructor,
+  use MediaWikiServices::getInstance()->getJobRunner() instead.
+* JobRunner::setLogger, deprecated since 1.35, has been removed.
 * ContextSource::getStats, deprecated since 1.27, has been removed.
 * The following public properties of Parser, deprecated in 1.35,
   have been made private: Parser::$mLinkId, Parser::$mIncludeSizes,
@@ -178,12 +183,8 @@ because of Phabricator reports.
 * The HTMLCacheUpdate class, deprecated since 1.34, has been removed.
 * Linker::normaliseSpecialPage(), deprecated since 1.35, has been removed.
 * MWTimestamp::getHumanTimestamp(), deprecated since 1.26, has been removed.
-* JobQueueGroup::singleton() and ::destroySingletons(), deprecated since 1.37,
-  have been removed.
 * Collation::singleton() and ::factory(), deprecated since 1.37, have been
   removed.
-* LoadBalancer::haveIndex() and ::isNonZeroLoad(), deprecated in 1.34,
-  have been removed.
 * SpecialVersion::listToText() and SpecialVersion::arrayToString()
   have become private or internal without deprecation.
 * The 'ParserTestFiles' key in the schema for extension.json has been removed.
@@ -206,13 +207,9 @@ because of Phabricator reports.
 * Use of CommentStore::insertWithTempTable() with 'img_description' is no
   longer supported, it was deprecated since 1.32. Use CommentStore::insert()
   instead.
-* LoadMonitorMysql was removed without deprecation. Use LoadMonitor instead.
 * Return values in the parameter $pageLang of the PageContentLanguage hook with
   other types than a Language object, deprecated since 1.33, hard deprecated
   since 1.38, now throws an exception.
-* For the JobRunner it is no longer safe to manually call the constructor,
-  use MediaWikiServices::getInstance()->getJobRunner() instead.
-* JobRunner::setLogger, deprecated since 1.35, has been removed.
 * FormatMetadata::flattenArrayContentLang(), deprecated since 1.36, has been
   removed.
 * WikiRevision::downloadSource(), deprecated since 1.31, has been removed.
@@ -230,7 +227,18 @@ because of Phabricator reports.
 * Clarified that the InitializeArticleMaybeRedirect hook should not change
   its $article parameter; the behavior when doing so was previously
   undocumented.
-* The $rtt parameter to IDatabase::ping() was removed without deprecation.
+* IDatabase::ping()'s $rtt parameter was removed without deprecation.
+* IDatabase::setBigSelects(), unused, was removed without deprecation.
+* IMaintainableDatabase::deadlockLoop() was removed without deprecation.
+* DatabasePostgres::remappedTableName(), deprecated since 1.37, has been
+  removed.
+* ILBFactory::getChronologyProtectorClientId, unused, was removed without
+  deprecation.
+* LoadBalancer::haveIndex() and ::isNonZeroLoad(), deprecated in 1.34,
+  have been removed.
+* LoadBalancer::getTransactionRoundStage, unused, was removed without
+  deprecation.
+* LoadMonitorMysql was removed without deprecation. Use LoadMonitor instead.
 * The following deprecated hooks have been removed:
   - BaseTemplateAfterPortlet, deprecated in 1.35
   - BeforeParserFetchTemplateAndtitle, deprecated in 1.36
@@ -246,18 +254,12 @@ because of Phabricator reports.
   the only argument. Passing an array was deprecated since 1.36.
 * TidyDriverBase::supportsValidate(), deprecated since 1.36, has been removed.
 * RevDelList::reloadFromMaster(), deprecated since 1.37, has been removed.
-* DatabasePostgres::remappedTableName(), deprecated since 1.37, has been
-  removed.
 * ExternalStoreDB::getMaster(), deprecated since 1.37, has been removed.
 * DeletePage::deletionWasScheduled(), deprecated since 1.38, has been removed.
 * When running tests, the serialize_precision INI setting is now set to -1
   (current PHP default) instead of 17. Extension tests may need to be adjusted
   accordingly; string representations of floating-point numbers in serialized
   or JSON-encoded data may change.
-* ::getChronologyProtectorClientId in ILBFactory and LBFactory
-  have been removed without deprecation as they are unused.
-* LBFactory::getTransactionRoundStage, unused, is removed without deprecation.
-* IDatabase::setBigSelects(), unused, is removed without deprecation.
 * …
 
 === Deprecations in 1.40 ===
@@ -334,7 +336,6 @@ because of Phabricator reports.
 * Title.js's confusingly-named getName() and getNameText() methods, for using
   media files' pages, have been renamed to getFileNameWithoutExtension() and
   getFileNameTextWithoutExtension() respectively. The old names are deprecated.
-* IMaintainableDatabase::deadlockLoop() was removed without deprecation.
 * …
 
 === Other changes in 1.40 ===
