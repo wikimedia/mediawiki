@@ -3195,6 +3195,7 @@
 	"searchsuggest-search": "{{SITENAME}}मा खोज्नुहोस्",
 	"searchsuggest-containing": "समावेश पृष्ठहरू खोज्नुहोस्",
 	"searchlimit-help": "अधिकतम संख्या: $1",
+	"api-clientside-error-noconnect": "सर्भरमा जडान गर्न सकिएन। तपाईंसँग काम गर्ने इन्टरनेट जडान छ भनी सुनिश्चित गर्नुहोस् र फेरि प्रयास गर्नुहोस्।",
 	"api-clientside-error-timeout": "अपेक्षित समय भित्रमा सर्वरले प्रतिक्रिया देखाएन।",
 	"api-clientside-error-aborted": "अनुरोध रद्द गरियो।",
 	"api-error-badtoken": "आन्तरिक समस्याः खराब टोकन ।",

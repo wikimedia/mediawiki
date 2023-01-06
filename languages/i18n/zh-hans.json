@@ -3636,7 +3636,7 @@
 	"tag-filter": "[[Special:Tags|标签]]过滤器：",
 	"tag-filter-submit": "过滤器",
 	"tag-hidden": "$1（隐藏的标签）",
-	"tag-link-other-edits": "其它编辑",
+	"tag-link-other-edits": "其他编辑",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|标签}}]]：$2",
 	"tag-mw-contentmodelchange": "内容模型更改",
 	"tag-mw-contentmodelchange-description": "更改页面[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel 内容模型]的编辑",

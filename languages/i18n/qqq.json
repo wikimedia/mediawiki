@@ -2022,7 +2022,7 @@
 	"fileexists-thumbnail-yes": "{{doc-important|''thumb'' is a magic word. Leave it untranslated!}}\nParameters:\n* $1 - name of thumbnail file",
 	"file-thumbnail-no": "Error message at [[Special:Upload]]. Parameters:\n* $1 - String (e.g. \"180px-\")",
 	"fileexists-forbidden": "{{doc-important|''thumb'' and ''center'' are magic words. Leave it untranslated!}}\nParameters:\n* $1 - name of the existing file",
-	"fileexists-shared-forbidden": "{{doc-important|''thumb'' and ''center'' are magic words. Leave it untranslated!}}\nError message at [[Special:Upload]].\nParameters:\n* $1 - name of the existing file",
+	"fileexists-shared-forbidden": "{{doc-important|''thumb'' and ''center'' are magic words. Leave them untranslated!}}\nError message at [[Special:Upload]].\nParameters:\n* $1 - name of the existing file",
 	"fileexists-no-change": "Used in [[Special:Upload]] to warn when the upload is an exact duplicate of the current version of the file.\nParameters:\n* $1 - name of the existing file",
 	"fileexists-duplicate-version": "Used in [[Special:Upload]] to warn when the upload is an exact duplicate of (an) older version(s) of the file\nParameters:\n* $1 - name of the existing file\n* $2 - Amount of matching older versions (PLURAL support)",
 	"file-exists-duplicate": "Used as warning in [[Special:Upload]].\nThis message is followed by the gallery of the duplicate files.\n\nParameters:\n* $1 - number of duplicate files",
