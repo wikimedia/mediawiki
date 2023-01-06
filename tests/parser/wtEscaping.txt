@@ -1,0 +1,1908 @@
+# The parsoid-compatible option below is only relevant when we are running
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html,wt2wt
+version=2
+!! end
+
+# This is the standard article assumed to exist.
+!! article
+Main Page
+!! text
+blah blah
+!! endarticle
+
+!!article
+Foo
+!!text
+FOO
+!!endarticle
+
+!! article
+Söfnuður
+!! text
+Test.
+!! endarticle
+
+!! article
+00
+!! text
+This is 00.
+!! endarticle
+
+!! article
+Template:1x
+!! text
+{{{1}}}
+!! endarticle
+
+#### ----------------------------------------------------------------
+#### The following section of tests are primarily to test
+#### wikitext escaping capabilities of Parsoid.  Given that
+#### escaping can be done any number of ways, the wikitext (input)
+#### is always adjusted to reflect how Parsoid adds nowiki
+#### escape tags.
+####
+#### We are marking several tests as parsoid-only since the
+#### HTML in the result section is different from what the
+#### PHP parser generates for it.
+#### ----------------------------------------------------------------
+
+
+#### --------------- Headings ---------------
+#### 0. Unnested
+#### 1. Nested inside html <h1>=foo=</h1>
+#### 2. Outside heading nest on a single line <h1>foo</h1>*bar
+#### 3. Nested inside html with wikitext split by html tags
+#### 4. No escape needed
+#### 5. Empty headings <h1></h1>
+#### 6. Heading chars in SOL context
+#### ----------------------------------------
+
+!! test
+Headings: 0. Unnested
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>=foo=</p>
+
+<p> =foo=
+<!--cmt-->
+=foo=</p>
+
+<p>=foo<i>a</i>=</p>
+!! wikitext
+<nowiki>=foo=</nowiki>
+
+<nowiki/>=foo=
+<!--cmt-->
+<nowiki>=foo=</nowiki>
+
+=foo''a''<nowiki>=</nowiki>
+!!end
+
+# New headings and existing headings are handled differently
+!! test
+Headings: 1. Nested inside html
+!! options
+parsoid=html2wt
+!! html/parsoid
+<h1>=foo=</h1>
+<h2>=foo=</h2>
+<h3>=foo=</h3>
+
+<h1 data-parsoid='{}'>=foo=</h1>
+<h2 data-parsoid='{}'>=foo=</h2>
+<h3 data-parsoid='{}'>=foo=</h3>
+<h4 data-parsoid='{}'>=foo=</h4>
+<h5 data-parsoid='{}'>=foo=</h5>
+<h6 data-parsoid='{}'>=foo=</h6>
+!! wikitext
+= =foo= =
+
+== =foo= ==
+
+=== =foo= ===
+
+=<nowiki>=foo=</nowiki>=
+==<nowiki>=foo=</nowiki>==
+===<nowiki>=foo=</nowiki>===
+====<nowiki>=foo=</nowiki>====
+=====<nowiki>=foo=</nowiki>=====
+======<nowiki>=foo=</nowiki>======
+!! end
+
+!! test
+Headings: 2. Outside heading nest on a single line <h1>foo</h1>*bar
+!! options
+parsoid=html2wt
+!! html/parsoid
+<h1>foo</h1>*bar
+<h1>foo</h1>=bar
+<h1>foo</h1>=bar=
+!! wikitext
+= foo =
+<nowiki>*</nowiki>bar
+
+= foo =
+=bar
+
+= foo =
+<nowiki>=bar=</nowiki>
+!!end
+
+!! test
+Headings: 3. Nested inside html with wikitext split by html tags
+!! options
+parsoid=html2wt
+!! html/parsoid
+<h1>=<b>bold</b>foo=</h1>
+!! wikitext
+= ='''bold'''foo= =
+!!end
+
+!! test
+Headings: 4a. No escaping needed (testing just h1 and h2)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<h1>=foo</h1>
+<h1>foo=</h1>
+<h1> =foo= </h1>
+<h1>=foo= bar</h1>
+<h2>=foo</h2>
+<h2>foo=</h2>
+<h1>=</h1>
+<h1><i>=</i>foo=</h1>
+!! wikitext
+= =foo =
+
+= foo= =
+
+= =foo= =
+
+= =foo= bar =
+
+== =foo ==
+
+== foo= ==
+
+= = =
+
+= ''=''foo= =
+!!end
+
+!! test
+Headings: 4b. No escaping needed (inside p-tags)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>=foo= x
+=foo= <s></s>
+</p>
+!! wikitext
+=foo= x
+=foo= <s></s>
+!! html/php
+<p>=foo= x
+=foo= <s></s>
+</p>
+!!end
+
+!! test
+Headings: 4c. Short headings (1)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>===
+</p>
+!! wikitext
+<nowiki>===</nowiki>
+!! html/php
+<p>===
+</p>
+!! end
+
+# in the html2wt direction we emit '= = =' or '=<nowiki>=</nowiki>='
+!! test
+Headings: 4d. Short headings (2)
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+=
+==
+===
+====
+=====
+!! html/php
+<p>=
+==
+</p>
+<h1><span class="mw-headline" id=".3D">=</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: =">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
+<h1><span class="mw-headline" id=".3D.3D">==</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: ==">edit</a><span class="mw-editsection-bracket">]</span></span></h1>
+<h2><span class="mw-headline" id=".3D_2">=</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: =">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+!! html/parsoid
+<p>=
+==</p>
+<h1 id="="><span id=".3D" typeof="mw:FallbackId"></span>=</h1>
+<h1 id="=="><span id=".3D.3D" typeof="mw:FallbackId"></span>==</h1>
+<h2 id="=_2"><span id=".3D_2" typeof="mw:FallbackId"></span>=</h2>
+!! end
+
+!! test
+Headings: 5. Empty headings
+!! options
+parsoid=html2wt
+!! html/parsoid
+<h1 data-parsoid='{}'></h1>
+
+<h2 data-parsoid='{}'></h2>
+
+<h3 data-parsoid='{}'></h3>
+
+<h4 data-parsoid='{}'></h4>
+
+<h5 data-parsoid='{}'></h5>
+
+<h6 data-parsoid='{}'></h6>
+!! wikitext
+!! end
+
+!! test
+Headings: 6a. Heading chars in SOL context (with trailing spaces)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>=a=</p>
+
+<p>=a=</p> 
+
+<p>=a=</p>	
+!! wikitext
+<nowiki>=a=</nowiki>
+
+<nowiki>=a=</nowiki> 
+
+<nowiki>=a=</nowiki>	
+!!end
+
+!! test
+Headings: 6b. Heading chars in SOL context (with trailing newlines)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>=a=
+b</p>
+
+<p>=a= 
+b</p>
+
+<p>=a=	
+b</p>
+!! wikitext
+<nowiki>=a=</nowiki>
+b
+
+<nowiki>=a=</nowiki> 
+b
+
+<nowiki>=a=</nowiki>	
+b
+!!end
+
+!! test
+Headings: 6c. Heading chars in SOL context (leading newline break)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>a
+=b=</p>
+!! wikitext
+a
+<nowiki>=b=</nowiki>
+!!end
+
+!! test
+Headings: 6d. Heading chars in SOL context (with interspersed comments)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<!--c0--><p>=a=</p>
+
+<!--c1--><p>=a=</p> <!--c2-->	 <!--c3-->
+!! wikitext
+<!--c0--><nowiki>=a=</nowiki>
+
+<!--c1--><nowiki>=a=</nowiki> <!--c2-->	 <!--c3-->
+!!end
+
+!! test
+Headings: 6d. Heading chars in SOL context (No escaping needed)
+!! options
+parsoid=html2wt
+!! html/parsoid
+=a=<div>b</div>
+!! wikitext
+=a=<div>b</div>
+!!end
+
+!! test
+Headings: 7. Insert a newline between new content and headings
+!! options
+parsoid=html2wt
+!! html/parsoid
+<h2>NEW</h2>
+<p>new</p>
+<h2 data-parsoid='{}'>A</h2>
+<p data-parsoid='{}'>a</p>
+!! wikitext
+== NEW ==
+new
+
+==A==
+a
+!! end
+
+!! test
+Headings: Used as horizontal rule
+!! config
+wgFragmentMode=[ "html5", "legacy" ]
+!! options
+parsoid=wt2html
+!! wikitext
+===============
+!! html/php
+<h6><span id=".3D.3D.3D"></span><span class="mw-headline" id="===">===</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: ===">edit</a><span class="mw-editsection-bracket">]</span></span></h6>
+!! html/parsoid
+<h6 id="==="><span id=".3D.3D.3D" typeof="mw:FallbackId"></span>===</h6>
+!! end
+
+#### --------------- Lists ---------------
+#### 0. Outside nests (*foo, etc.)
+#### 1. Nested inside html <ul><li>*foo</li></ul>
+#### 2. Inside definition lists
+#### 3. Only bullets at start should be escaped
+#### 4. No escapes needed
+#### 5. No unnecessary escapes
+#### 6. Escape bullets in SOL position
+#### 7. Escape bullets in a multi-line context
+#### ----------------------------------------
+
+!! test
+Lists: 0. Outside nests
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>*foo</p>
+
+<p>#foo</p>
+
+<p>;Foo:bar</p>
+!! wikitext
+<nowiki>*</nowiki>foo
+
+<nowiki>#</nowiki>foo
+
+<nowiki>;</nowiki>Foo<nowiki>:</nowiki>bar
+!!end
+
+## Making these next 3 tests Parsoid-only since they are html2wt tests
+## to test wikitext escaping, and insignificant whitespace diffs
+## cause PHP parser tests to barf
+!! test
+Lists: 1. Nested inside html (No unnecessary escapes)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<ul>
+<li>*foo</li>
+<li>#foo</li>
+<li>:foo</li>
+<li>;foo</li>
+<li data-parsoid='{}'>*foo</li>
+<li data-parsoid='{}'>#foo</li>
+<li data-parsoid='{}'>:foo</li>
+<li data-parsoid='{}'>;foo</li>
+</ul>
+
+<ol>
+<li>*foo</li>
+<li>#foo</li>
+<li>:foo</li>
+<li>;foo</li>
+<li data-parsoid='{}'>*foo</li>
+<li data-parsoid='{}'>#foo</li>
+<li data-parsoid='{}'>:foo</li>
+<li data-parsoid='{}'>;foo</li>
+</ol>
+!! wikitext
+* *foo
+* #foo
+* :foo
+* ;foo
+*<nowiki>*foo</nowiki>
+*<nowiki>#foo</nowiki>
+*<nowiki>:foo</nowiki>
+*<nowiki>;foo</nowiki>
+
+# *foo
+# #foo
+# :foo
+# ;foo
+#<nowiki>*foo</nowiki>
+#<nowiki>#foo</nowiki>
+#<nowiki>:foo</nowiki>
+#<nowiki>;foo</nowiki>
+!!end
+
+!! test
+Lists: 2. Inside definition lists
+!! options
+parsoid=html2wt
+!! html/parsoid
+<dl><dt>;foo</dt></dl>
+<dl><dt>:foo</dt></dl>
+<dl><dt>:foo</dt>
+<dd>bar</dd></dl>
+<dl><dd>:foo</dd></dl>
+!! wikitext
+; ;foo
+
+; <nowiki>:foo</nowiki>
+
+; <nowiki>:foo</nowiki>
+: bar
+
+: :foo
+!!end
+
+!! test
+Lists: 3. Only bullets at start of text in wikitext-generated HTML should be escaped
+!! options
+parsoid=html2wt
+!! html/parsoid
+<ul>
+<li>*foo*bar</li>
+<li data-parsoid='{}'>*foo<i>it</i>*bar</li>
+</ul>
+!! wikitext
+* *foo*bar
+*<nowiki>*foo</nowiki>''it''*bar
+!!end
+
+!! test
+Lists: 4. No escapes needed
+!! options
+parsoid=html2wt
+!! html/parsoid
+<ul>
+<li>foo*bar
+</li>
+</ul>
+<ul>
+<li><i>foo</i>*bar
+</li>
+</ul>
+<ul>
+<li><a rel="mw:WikiLink" href="Foo" title="Foo">Foo</a>: bar
+</li>
+</ul>
+<ul>
+<li><a rel="mw:WikiLink" href="Foo" title="Foo">Foo</a>*bar
+</li>
+</ul>
+!! wikitext
+*foo*bar
+
+*''foo''*bar
+
+*[[Foo]]: bar
+
+*[[Foo]]*bar
+!!end
+
+!! test
+Lists: 5. No unnecessary escapes
+!! options
+parsoid=html2wt
+!! html/parsoid
+<ul><li> bar <span>[[foo]]</span></li></ul>
+<ul><li> =bar <span>[[foo]]</span></li></ul>
+<ul><li> [[bar <span>[[foo]]</span></li></ul>
+<ul><li> ]]bar <span>[[foo]]</span></li></ul>
+<ul><li> =bar <span>foo]]</span>=</li></ul>
+<ul><li> <s></s>: a</li></ul>
+<ul><li> <i>* foo</i></li></ul>
+
+!! wikitext
+* bar <span><nowiki>[[foo]]</nowiki></span>
+
+* =bar <span><nowiki>[[foo]]</nowiki></span>
+
+* [[bar <span><nowiki>[[foo]]</nowiki></span>
+
+* ]]bar <span><nowiki>[[foo]]</nowiki></span>
+
+* =bar <span>foo]]</span>=
+
+* <s></s>: a
+
+* ''* foo''
+!!end
+
+!! test
+Lists: 6. Escape bullets in SOL position
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><!--cmt-->*foo</p>
+!! wikitext
+<!--cmt--><nowiki>*</nowiki>foo
+!!end
+
+!! test
+Lists: 7. Escape bullets in a multi-line context
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>a
+*b
+</p>
+!! wikitext
+a
+<nowiki>*</nowiki>b
+!!end
+
+!! test
+Lists: 8. Escape colons only if not present in tags
+!! options
+parsoid=html2wt
+!! html/parsoid
+<dl><dt>a:b<i>c:d</i></dt></dl>
+!! wikitext
+; <nowiki>a:b</nowiki>''c:d''
+!! end
+
+#### --------------- HRs ---------------
+#### 1. Single line
+#### -----------------------------------
+
+!! test
+HRs: 1. Single line
+!! options
+parsoid=html2wt
+!! html/parsoid
+<hr />----
+<hr />=foo=
+<hr />*foo
+!! wikitext
+----<nowiki>----</nowiki>
+----=foo=
+----*foo
+!! end
+
+#### --------------- Tables ---------------
+#### 1a. Simple example
+#### 1b. No escaping needed (!foo)
+#### 1c. No escaping needed (|foo)
+#### 1d. No escaping needed (|}foo)
+####
+#### 2a. Nested in td (<td>foo|bar</td>)
+#### 2b. Nested in td (<td>foo||bar</td>)
+#### 2c. Nested in td -- no escaping needed(<td>foo!!bar</td>)
+####
+#### 3a. Nested in th (<th>foo!bar</th>)
+#### 3b. Nested in th (<th>foo!!bar</th>)
+#### 3c. Nested in th -- no escaping needed(<th>foo||bar</th>)
+####
+#### 4a. Escape -
+#### 4b. Escape +
+#### 4c. No escaping needed
+#### --------------------------------------
+
+!! test
+Tables: 1a. Simple example
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>{|
+|}
+</p>
+!! wikitext
+<nowiki>{|</nowiki>
+|}
+!! end
+
+!! test
+Tables: 1b. No escaping needed
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>!foo
+</p>
+!! wikitext
+!foo
+!! end
+
+!! test
+Tables: 1c. No escaping needed
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>|foo
+</p>
+!! wikitext
+|foo
+!! end
+
+!! test
+Tables: 1d. No escaping needed
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>|}foo
+</p>
+!! wikitext
+|}foo
+!! end
+
+!! test
+Tables: 2a. Nested in td
+!! options
+parsoid=html2wt
+!! html/parsoid
+<table><tbody><tr>
+<td>foo|bar</td></tr>
+<tr><td>x<div>a|b</div></td>
+</tbody></table>
+!! wikitext
+{|
+|<nowiki>foo|bar</nowiki>
+|-
+|x<div><nowiki>a|b</nowiki></div>
+|}
+!! html/php
+<table>
+<tbody><tr>
+<td>foo|bar
+</td></tr>
+<tr>
+<td>x<div>a|b</div>
+</td></tr></tbody></table>
+!! end
+
+!! test
+Tables: 2b. Nested in td
+!! options
+parsoid=html2wt
+!! html/parsoid
+<table><tbody><tr>
+<td>foo||bar</td>
+<td>a<i>b||c</i></td>
+<td>a<i><div>b||c</div></i></td>
+</tr></tbody></table>
+!! wikitext
+{|
+|<nowiki>foo||bar</nowiki>
+|a''<nowiki>b||c</nowiki>''
+|a''<div><nowiki>b||c</nowiki></div>''
+|}
+!! html/php
+<table>
+<tbody><tr>
+<td>foo||bar
+</td>
+<td>a<i>b||c</i>
+</td>
+<td>a<i><div>b||c</div></i>
+</td></tr></tbody></table>
+!! end
+
+!! test
+Tables: 2c. Nested in td -- no escaping needed
+!! options
+parsoid=html2wt
+!! html/*
+<table>
+<tbody><tr>
+<td>foo!!bar
+</td></tr></tbody></table>
+!! wikitext
+{|
+|foo!!bar
+|}
+!! end
+
+!! test
+Tables: 3a. Nested in th
+!! options
+parsoid=html2wt
+!! html/*
+<table>
+<tbody><tr>
+<th>foo!bar
+</th></tr></tbody></table>
+!! wikitext
+{|
+!foo!bar
+|}
+!! end
+
+!! test
+Tables: 3b. Nested in th
+!! options
+parsoid=html2wt
+!! html/parsoid
+<table><tbody>
+<tr><th>foo!!bar</th>
+<th><i>foo|bar</i></th>
+<th><i>foo!!bar</i></th>
+<th><i><span>foo!!bar</span></i></th>
+</tr></tbody></table>
+!! wikitext
+{|
+!<nowiki>foo!!bar</nowiki>
+!''<nowiki>foo|bar</nowiki>''
+!''<nowiki>foo!!bar</nowiki>''
+!''<span><nowiki>foo!!bar</nowiki></span>''
+|}
+!! html/php
+<table>
+<tbody><tr>
+<th>foo!!bar
+</th>
+<th><i>foo|bar</i>
+</th>
+<th><i>foo!!bar</i>
+</th>
+<th><i><span>foo!!bar</span></i>
+</th></tr></tbody></table>
+!! end
+
+!! test
+Tables: 3c. Nested in th
+!! options
+parsoid=html2wt
+!! html/parsoid
+<table><tbody>
+<tr><th>foo||bar</th>
+<th><span typeof="mw:Nowiki">foo||bar</span></th>
+</tr></tbody></table>
+!! wikitext
+{|
+!<nowiki>foo||bar</nowiki>
+!<nowiki>foo||bar</nowiki>
+|}
+!! html/php
+<table>
+<tbody><tr>
+<th>foo||bar
+</th>
+<th>foo||bar
+</th></tr></tbody></table>
+!! end
+
+!! test
+Tables: 4a. Escape -
+!! options
+parsoid=html2wt
+!! html/*
+<table>
+<tbody><tr>
+<th>-bar
+</th></tr>
+<tr>
+<td>-bar
+</td></tr></tbody></table>
+!! wikitext
+{|
+!-bar
+|-
+| -bar
+|}
+!! end
+
+!! test
+Tables: 4b. Escape +
+!! options
+parsoid=html2wt
+!! html/*
+<table>
+<tbody><tr>
+<th>+bar
+</th></tr>
+<tr>
+<td>+bar
+</td></tr></tbody></table>
+!! wikitext
+{|
+!+bar
+|-
+| +bar
+|}
+!! end
+
+!! test
+Tables: 4c. No escaping needed
+!! options
+parsoid=html2wt
+!! html/parsoid
+<table><tbody>
+<tr><td>foo-bar</td><td>foo+bar</td></tr>
+<tr><td><i>foo</i>-bar</td><td><i>foo</i>+bar</td></tr>
+<tr><td>foo
+<p>bar|baz
++bar
+-bar</p></td></tr>
+<tr><td>x
+<div>a|b</div></td>
+</tbody></table>
+!! wikitext
+{|
+|foo-bar
+|foo+bar
+|-
+|''foo''-bar
+|''foo''+bar
+|-
+|foo
+bar|baz
++bar
+-bar
+|-
+|x
+<div>a|b</div>
+|}
+!! html/php
+<table>
+<tbody><tr>
+<td>foo-bar
+</td>
+<td>foo+bar
+</td></tr>
+<tr>
+<td><i>foo</i>-bar
+</td>
+<td><i>foo</i>+bar
+</td></tr>
+<tr>
+<td>foo
+<p>bar|baz
++bar
+-bar
+</p>
+</td></tr>
+<tr>
+<td>x
+<div>a|b</div>
+</td></tr></tbody></table>
+!! end
+
+## FIXME: Looks like normalizing needs to learn about attrSepSrc
+!! test
+Tables: 4d. No escaping needed
+!! options
+parsoid=html2wt
+!! html/parsoid
+<table>
+<tbody><tr><td><a rel="mw:WikiLink" href="./Foo" title="Foo">Foo</a>-bar</td>
+<td data-parsoid='{"startTagSrc":"|","attrSepSrc":"|"}'>+1</td>
+<td data-parsoid='{"startTagSrc":"|","attrSepSrc":"|"}'>-2</td></tr>
+</tbody></table>
+!! wikitext
+{|
+|[[Foo]]-bar
+||+1
+||-2
+|}
+!! html/php
+<table>
+<tbody><tr>
+<td><a href="/wiki/Foo" title="Foo">Foo</a>-bar
+</td>
+<td>+1
+</td>
+<td>-2
+</td></tr></tbody></table>
+!! end
+
+!! test
+Tables: 4e. Escape }
+!! options
+parsoid=html2wt
+!! html/parsoid
+<table>
+<tr><td>}</td></tr>
+<tr><td>x</td><td data-parsoid='{"stx":"row"}'>}</td></tr></table>
+</table>
+!! wikitext
+{|
+| }
+|-
+|x||}
+|}
+!! html/php
+<table>
+<tbody><tr>
+<td>}
+</td></tr>
+<tr>
+<td>x</td>
+<td>}
+</td></tr></tbody></table>
+!! end
+
+!! test
+Tables: 5. Empty table cells should get whitespace to avoid need for nowikis
+!! options
+parsoid=html2wt
+!! html/parsoid
+<table><tr><td></td><td align="center" data-parsoid='{"stx":"row"}'></td><td data-parsoid='{"stx":"row"}'></td></tr></table>
+
+<table><tr><td></td><td align="center"></td><td></td></tr></table>
+
+<table><tr><td></td><td align="center" data-parsoid='{"stx":"row", "startTagSrc":"{{!}}{{!}}"}'></td><td data-parsoid='{"stx":"row"}'></td></tr></table>
+
+<table><tr><th></th><th align="center" data-parsoid='{"stx":"row"}'></th><th data-parsoid='{"stx":"row"}'></th></tr></table>
+!! wikitext
+{|
+| || align="center" | ||
+|}
+
+{|
+|
+| align="center" |
+|
+|}
+
+{|
+| {{!}}{{!}} align="center" | ||
+|}
+
+{|
+! !! align="center" | !!
+|}
+!! html/php
+<table>
+<tbody><tr>
+<td></td>
+<td align="center"></td>
+<td>
+</td></tr></tbody></table>
+<table>
+<tbody><tr>
+<td>
+</td>
+<td align="center">
+</td>
+<td>
+</td></tr></tbody></table>
+<table>
+<tbody><tr>
+<td></td>
+<td align="center"></td>
+<td>
+</td></tr></tbody></table>
+<table>
+<tbody><tr>
+<th></th>
+<th align="center"></th>
+<th>
+</th></tr></tbody></table>
+!! end
+
+!! test
+T97430: Don't emit empty nowiki pairs around marker meta tags
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>*This is a long sentence here that will make the nowiki algo split up the nowikis into multiple pairs
+|** Make this another long long long sentence forcing the nowiki algo to split up the nowikis.</p>
+!! wikitext
+<nowiki>*</nowiki>This is a long sentence here that will make the nowiki algo split up the nowikis into multiple pairs
+|** Make this another long long long sentence forcing the nowiki algo to split up the nowikis.
+!! end
+
+!! test
+Unclosed xmlish element in table line shouldn't eat end delimiters
+!! options
+parsoid=html2wt
+!! html/parsoid
+<table>
+<tbody><tr><td> &lt;foo</td>
+<td> bar></td></tr>
+</tbody></table>
+!! wikitext
+{|
+| <foo
+| bar>
+|}
+!! html/php
+<table>
+<tbody><tr>
+<td>&lt;foo
+</td>
+<td>bar&gt;
+</td></tr></tbody></table>
+!! end
+
+#### --------------- Links ----------------
+#### 1. Quote marks in link text
+#### 2. Wikilinks: Escapes needed
+#### 3. Wikilinks: No escapes needed
+#### 4. Extlinks: Escapes needed
+#### 5. Extlinks: No escapes needed
+#### --------------------------------------
+!! test
+Links 1. WikiLinks: No escapes needed
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="Foo" title="Foo">Foo<i>boo</i></a>
+<a rel="mw:WikiLink" href="Foo" title="Foo">[Foobar]</a>
+<a rel="mw:WikiLink" href="Foo" title="Foo">x [Foobar] x</a></p>
+!! wikitext
+[[Foo|Foo''boo'']]
+[[Foo|[Foobar]]]
+[[Foo|x [Foobar] x]]
+!! html/php
+<p><a href="/wiki/Foo" title="Foo">Foo<i>boo</i></a>
+<a href="/wiki/Foo" title="Foo">[Foobar]</a>
+<a href="/wiki/Foo" title="Foo">x [Foobar] x</a>
+</p>
+!! end
+
+!! test
+Links 2. WikiLinks: Escapes needed
+!! options
+parsoid=html2wt
+!! html/parsoid
+<a href="Foo" rel="mw:WikiLink">Foobar]</a>
+<a href="Foo" rel="mw:WikiLink">x [http://google.com g] x</a>
+<a href="Foo" rel="mw:WikiLink">[[Bar]]</a>
+<a href="Foo" rel="mw:WikiLink">x [[Bar]] x</a>
+<a href="Foo" rel="mw:WikiLink">|Bar</a>
+<a href="Foo" rel="mw:WikiLink">]]bar</a>
+<a href="Foo" rel="mw:WikiLink">[[bar</a>
+<a href="Foo" rel="mw:WikiLink">x [[ y</a>
+<a href="Foo" rel="mw:WikiLink">x ]] y</a>
+<a href="Foo" rel="mw:WikiLink">x ]] y [[ z</a>
+!! wikitext
+[[Foo|<nowiki>Foobar]</nowiki>]]
+[[Foo|x <nowiki>[http://google.com g]</nowiki> x]]
+[[Foo|<nowiki>[[Bar]]</nowiki>]]
+[[Foo|<nowiki>x [[Bar]] x</nowiki>]]
+[[Foo||Bar]]
+[[Foo|<nowiki>]]bar</nowiki>]]
+[[Foo|<nowiki>[[bar</nowiki>]]
+[[Foo|<nowiki>x [[ y</nowiki>]]
+[[Foo|<nowiki>x ]] y</nowiki>]]
+[[Foo|<nowiki>x ]] y [[ z</nowiki>]]
+!! html/php
+<p><a href="/wiki/Foo" title="Foo">Foobar]</a>
+<a href="/wiki/Foo" title="Foo">x [http://google.com g] x</a>
+<a href="/wiki/Foo" title="Foo">[[Bar]]</a>
+<a href="/wiki/Foo" title="Foo">x [[Bar]] x</a>
+<a href="/wiki/Foo" title="Foo">|Bar</a>
+<a href="/wiki/Foo" title="Foo">]]bar</a>
+<a href="/wiki/Foo" title="Foo">[[bar</a>
+<a href="/wiki/Foo" title="Foo">x [[ y</a>
+<a href="/wiki/Foo" title="Foo">x ]] y</a>
+<a href="/wiki/Foo" title="Foo">x ]] y [[ z</a>
+</p>
+!! end
+
+!! test
+Links 3. WikiLinks: No escapes needed
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="Foo">[Foobar</a>
+<a rel="mw:WikiLink" href="Foo" title="Foo">foo|bar</a></p>
+!! wikitext
+[[Foo|[Foobar]]
+[[Foo|foo|bar]]
+!! html/php
+<p><a href="/wiki/Foo" title="Foo">[Foobar</a>
+<a href="/wiki/Foo" title="Foo">foo|bar</a>
+</p>
+!! end
+
+!! test
+Links 4. ExtLinks: Escapes needed
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://google.com">[google]</a>
+<a rel="mw:ExtLink" href="http://google.com">google]</a>
+<a rel="mw:ExtLink" href="http://google.com">goog] le</a></p>
+<p>[http://google.com]</p>
+<p>[http://google.com google]</p>
+<p>[<a rel="mw:ExtLink" href="http://google.com">http://google.com</a>]</p>
+<p>[<a rel="mw:ExtLink" href="http://google.com" about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"http://google.com"}},"i":0}}]}'>http://google.com</a>]</p>
+!! wikitext
+[http://google.com <nowiki>[google]</nowiki>]
+[http://google.com <nowiki>google]</nowiki>]
+[http://google.com <nowiki>goog] le</nowiki>]
+
+<nowiki>[http://google.com]</nowiki>
+
+<nowiki>[http://google.com google]</nowiki>
+
+[http://google.com<nowiki>]</nowiki>
+
+[{{1x|http://google.com}}<nowiki>]</nowiki>
+!! html/php
+<p><a rel="nofollow" class="external text" href="http://google.com">[google]</a>
+<a rel="nofollow" class="external text" href="http://google.com">google]</a>
+<a rel="nofollow" class="external text" href="http://google.com">goog] le</a>
+</p><p>[http://google.com]
+</p><p>[http://google.com google]
+</p><p>[<a rel="nofollow" class="external free" href="http://google.com">http://google.com</a>]
+</p><p>[<a rel="nofollow" class="external free" href="http://google.com">http://google.com</a>]
+</p>
+!! end
+
+!! test
+Links 5. ExtLinks: No escapes needed
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://google.com">[google</a></p>
+<p>[<a ref="mw:ExtLink" href="http://google.com"></a>]</p>
+!! wikitext
+[http://google.com [google]
+
+[[http://google.com]]
+!! html/php
+<p><a rel="nofollow" class="external text" href="http://google.com">[google</a>
+</p><p>[<a rel="nofollow" class="external autonumber" href="http://google.com">[1]</a>]
+</p>
+!! end
+
+!! test
+Links 6. Add <nowiki/>s between text-nodes and url-links when required (T66300)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>x<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>y
+<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>?x
+<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>&amp;x
+<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>'x
+<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>,x
+<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>.x
+<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>;x
+<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>:x
+<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>;x
+<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>!x
+<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>=x
+<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>(x)
+<a rel="mw:ExtLink" href="http://example.com(x" data-parsoid='{"stx":"url"}'>http://example.com(x</a>)
+</p>
+!! wikitext
+x<nowiki/>http://example.com<nowiki/>y
+http://example.com<nowiki/>?x
+http://example.com<nowiki/>&x
+http://example.com<nowiki/>'x
+http://example.com<nowiki/>,x
+http://example.com<nowiki/>.x
+http://example.com<nowiki/>;x
+http://example.com<nowiki/>:x
+http://example.com<nowiki/>;x
+http://example.com<nowiki/>!x
+http://example.com<nowiki/>=x
+http://example.com<nowiki/>(x)
+http://example.com(x<nowiki/>)
+!! end
+
+!! test
+Links 7a. Don't add spurious <nowiki/>s between text-nodes and url-links (T66300)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>x
+<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>
+y
+"<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>"
+(<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>)
+(<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>) foo
+<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>,
+<a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>, foo
+</p>
+!! wikitext
+x
+http://example.com
+y
+"http://example.com"
+(http://example.com)
+(http://example.com) foo
+http://example.com,
+http://example.com, foo
+!! html/php
+<p>x
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>
+y
+"<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>"
+(<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>)
+(<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>) foo
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>,
+<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>, foo
+</p>
+!! end
+
+!! test
+Links 7b. Don't add spurious <nowiki/>s between text-nodes and url-links (T66300)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><a rel="mw:ExtLink" href="http://example.com" data-parsoid='{"stx":"url"}'>http://example.com</a>.,;:!?\
+-<a rel="mw:ExtLink" href="http://example.com">http://example.com</a>:</p>
+!! wikitext
+http://example.com.,;:!?\
+-http://example.com:
+!! html/php
+<p><a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>.,;:!?\
+-<a rel="nofollow" class="external free" href="http://example.com">http://example.com</a>:
+</p>
+!! end
+
+!! test
+Links 8. Add <nowiki/>s between text-nodes and RFC-links when required (T66300)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><a href="https://tools.ietf.org/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>4
+<a href="https://tools.ietf.org/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>y
+X<a href="https://tools.ietf.org/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>y</p>
+!! wikitext
+RFC 123<nowiki/>4
+RFC 123<nowiki/>y
+X<nowiki/>RFC 123<nowiki/>y
+!! end
+
+!! test
+Links 9. Don't add spurious <nowiki/>s between text-nodes and RFC-links (T66300)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><a href="https://tools.ietf.org/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>?foo
+<a href="https://tools.ietf.org/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>&amp;foo
+-<a href="https://tools.ietf.org/html/rfc123" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>RFC 123</a>-
+</p>
+!! wikitext
+RFC 123?foo
+RFC 123&foo
+-RFC 123-
+!! html/php
+<p><a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc123">RFC 123</a>?foo
+<a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc123">RFC 123</a>&amp;foo
+-<a class="external mw-magiclink-rfc" rel="nofollow" href="https://tools.ietf.org/html/rfc123">RFC 123</a>-
+</p>
+!! end
+
+!! test
+Links 10. Add <nowiki/>s between text-nodes and PMID-links when required (T66300)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><a href="//www.ncbi.nlm.nih.gov/pubmed/123?dopt=Abstract" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>PMID 123</a>4
+<a href="//www.ncbi.nlm.nih.gov/pubmed/123?dopt=Abstract" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>PMID 123</a>y
+X<a href="//www.ncbi.nlm.nih.gov/pubmed/123?dopt=Abstract" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>PMID 123</a>y
+!! wikitext
+PMID 123<nowiki/>4
+PMID 123<nowiki/>y
+X<nowiki/>PMID 123<nowiki/>y
+!! end
+
+!! test
+Links 11. Don't add spurious <nowiki/>s between text-nodes and PMID-links (T66300)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><a href="//www.ncbi.nlm.nih.gov/pubmed/123?dopt=Abstract" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>PMID 123</a>?foo
+<a href="//www.ncbi.nlm.nih.gov/pubmed/123?dopt=Abstract" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>PMID 123</a>&foo
+-<a href="//www.ncbi.nlm.nih.gov/pubmed/123?dopt=Abstract" rel="mw:ExtLink" data-parsoid='{"stx":"magiclink"}'>PMID 123</a>-
+</p>
+!! wikitext
+PMID 123?foo
+PMID 123&foo
+-PMID 123-
+!! html/php
+<p><a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/123?dopt=Abstract">PMID 123</a>?foo
+<a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/123?dopt=Abstract">PMID 123</a>&amp;foo
+-<a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/123?dopt=Abstract">PMID 123</a>-
+</p>
+!! end
+
+!! test
+Links 12. Add <nowiki/>s between text-nodes and ISBN-links when required (T66300)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a>1
+<a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a>x
+a<a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a>b
+</p>
+!! wikitext
+ISBN 1234567890<nowiki/>1
+ISBN 1234567890<nowiki/>x
+a<nowiki/>ISBN 1234567890<nowiki/>b
+!! end
+
+!! test
+Links 13. Don't add spurious <nowiki/>s between text-nodes and ISBN-links (T66300)
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>-<a href="./Special:BookSources/1234567890" rel="mw:WikiLink" data-parsoid='{"stx":"magiclink"}'>ISBN 1234567890</a>'s
+!! wikitext
+-ISBN 1234567890's
+!! html/php
+<p>-<a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1234567890</a>'s
+</p>
+!! end
+
+!! test
+Links 14. Protect link-like plain text. (Parsoid bug T78425)
+!! options
+parsoid=html2wt
+!! html/*
+<p>this is not a link: http://example.com
+</p>
+!! wikitext
+this is not a link: <nowiki>http://example.com</nowiki>
+!! end
+
+!! test
+Links 15. Link trails can't become link prefixes.
+!! options
+language=is
+parsoid=html2wt
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="Söfnuður" title="Söfnuður" data-parsoid='{"stx":"simple","tail":"-"}'>Söfnuður-</a><a rel="mw:WikiLink" href="00" title="00">00</a></p>
+!! wikitext
+[[Söfnuður]]-[[00]]
+!! html/php
+<p><a href="/wiki/S%C3%B6fnu%C3%B0ur" title="Söfnuður">Söfnuður-</a><a href="/wiki/00" title="00">00</a>
+</p>
+!! end
+
+# This example actually from lnwiki, but arwiki has the same link
+# prefix and equivalent link trail for this purpose.
+!! test
+Links 17. Link trails (T236183)
+!! options
+language=ar
+!! wikitext
+[[Likalo]]&nbsp;·
+[[Pusupúsu]]&nbsp;·
+!! html/php
+<p><a href="/index.php?title=Likalo&amp;action=edit&amp;redlink=1" class="new" title="Likalo (الصفحة غير موجودة)">Likalo</a>&#160;·
+<a href="/index.php?title=Pusup%C3%BAsu&amp;action=edit&amp;redlink=1" class="new" title="Pusupúsu (الصفحة غير موجودة)">Pusupúsu</a>&#160;·
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Likalo?action=edit&amp;redlink=1" title="Likalo" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Likalo"},"sa":{"href":"Likalo"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Likalo"]}}'>Likalo</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>·
+<a rel="mw:WikiLink" href="./Pusupúsu?action=edit&amp;redlink=1" title="Pusupúsu" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Pusupúsu"},"sa":{"href":"Pusupúsu"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Pusupúsu"]}}'>Pusupúsu</a><span typeof="mw:Entity" data-parsoid='{"src":"&amp;nbsp;","srcContent":" "}'> </span>·</p>
+!! end
+
+#### --------------- Quotes ---------------
+#### 1. Quotes inside <b> and <i>
+#### 2. Link fragments separated by <i> and <b> tags
+#### 3. Link fragments inside <i> and <b>
+#### 4. No escaping needed
+#### --------------------------------------
+!! test
+1a. Quotes inside <b> and <i>
+!! options
+parsoid=html2wt
+!! html/*
+<p><i>'foo'</i>
+<i>''foo''</i>
+<i>'''foo'''</i>
+<i>foo</i>'s
+<b>'foo'</b>
+<b>''foo''</b>
+<b>'''foo'''</b>
+<b>foo'<i>bar'</i>baz</b>
+<b>foo</b>'s
+'<i>foo</i>
+<i>foo</i>'
+<i>foo'</i>'
+'<i>foo</i>'
+'<b>foo</b>
+<b>foo</b>'
+'<b>foo</b>'
+<i>fools'<span> errand</span></i>
+<i><span>fool</span>'s errand</i>
+'<i>foo</i> bar '<i>baz</i>
+a|!*#-:;+-~[]{}b'<i>x</i>
+</p>
+!! wikitext
+''<nowiki/>'foo'''
+''<nowiki>''foo''</nowiki>''
+''<nowiki>'''foo'''</nowiki>''
+''foo''<nowiki/>'s
+'''<nowiki/>'foo''''
+'''<nowiki>''foo''</nowiki>'''
+'''<nowiki>'''foo'''</nowiki>'''
+'''foo'<nowiki/>''bar'<nowiki/>''baz'''
+'''foo'''<nowiki/>'s
+'''foo''
+''foo''<nowiki/>'
+''foo'''<nowiki/>'
+'''foo''<nowiki/>'
+''''foo'''
+'''foo'''<nowiki/>'
+''''foo'''<nowiki/>'
+''fools'<span> errand</span>''
+''<span>fool</span>'s errand''
+'<nowiki/>''foo'' bar '''baz''
+a|!*#-:;+-~[]{}b'''x''
+!! end
+
+!! test
+1b. Quotes inside <b> and <i> with other tags on same line
+!! options
+parsoid=html2wt
+!! html/parsoid
+'<i>a</i> foo <i><a rel="mw:WikiLink" href="Bar" title="Bar">bar</a></i>
+<i>a'</i> foo <i><a rel="mw:WikiLink" href="Bar" title="Bar">bar</a></i>
+<i>a'</i> foo <b><a rel="mw:WikiLink" href="Bar" title="Bar" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"[[bar]]"}},"i":0}}]}'>bar</a></b>
+<a rel="mw:WikiLink" href="Foo" title="Foo">foo</a> x'<i><a href="Bar" rel="mw:WikiLink" title="Bar">bar</a></i>
+'<i>foo</i> <span class="mw-ref reference" id="cite_ref-1-0" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span>
+'<i>foo</i> <div title="name">test</div>
+'<i>foo</i> and <br data-parsoid='{"stx":"html","noClose":true}'/> bar
+<div class="mw-references-wrap" typeof="mw:Extension/references" about="#mwt5" data-mw='{"name":"references","attrs":{}}'><ol class="mw-references references">
+<li about="#cite_note-1" id="cite_note-1"><span rel="mw:referencedBy"><a href="./Main_Page#cite_ref-1">↑</a></span> <span id="mw-reference-text-cite_note-1" class="mw-reference-text" data-parsoid="{}">test</span></li>
+</ol></div>
+!! wikitext
+'''a'' foo ''[[bar]]''
+''a''' foo ''[[bar]]''
+''a''' foo '''{{1x|[[bar]]}}'''
+[[foo]] x'''[[bar]]''
+'''foo'' <ref>test</ref>
+'''foo'' <div title="name">test</div>
+'''foo'' and <br> bar
+<references />
+!! end
+
+!! test
+2. Link fragments separated by <i> and <b> tags
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>[[<i>foo</i>hello]]</p>
+<p>[[<b>foo</b>hello]]</p>
+!! wikitext
+[[''foo''<nowiki>hello]]</nowiki>
+
+[['''foo'''<nowiki>hello]]</nowiki>
+!! end
+
+# FIXME: Escaping one or both of [[ and ]] is also acceptable --
+#        this is one of the shortcomings of this format
+!! test
+3. Link fragments inside <i> and <b>
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p><i>[[foo</i>]]</p>
+<p><b>[[foo</b>]]</p>
+!! wikitext
+''[[foo''<nowiki>]]</nowiki>
+
+'''[[foo'''<nowiki>]]</nowiki>
+!! end
+
+!! test
+4. No escaping needed
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>'<span><i>bar</i></span>'
+'<span><b>bar</b></span>'
+'a:b'foo
+</p>
+!! wikitext
+'<span>''bar''</span>'
+'<span>'''bar'''</span>'
+'a:b'foo
+!! end
+
+#### ----------- Paragraphs ---------------
+#### 1. No unnecessary escapes
+#### --------------------------------------
+
+!! test
+1. No unnecessary escapes
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>bar <span>[[foo]]</span>
+</p><p>=bar <span>[[foo]]</span>
+</p><p>[[bar <span>[[foo]]</span>
+</p><p>]]bar <span>[[foo]]</span>
+</p><p>=bar <span>foo]]</span>=
+</p>
+!! wikitext
+bar <span><nowiki>[[foo]]</nowiki></span>
+
+=bar <span><nowiki>[[foo]]</nowiki></span>
+
+[[bar <span><nowiki>[[foo]]</nowiki></span>
+
+]]bar <span><nowiki>[[foo]]</nowiki></span>
+
+=bar <span>foo]]</span><nowiki>=</nowiki>
+!!end
+
+#### ----------------------- PRE --------------------------
+
+!! test
+1. Leading whitespace in SOL context should be stripped
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p> a</p>
+
+<p>  a</p>
+
+<p>	a(tab)</p>
+
+<p> 	a
+<!--cmt-->
+  a</p>
+
+<p>a
+ b</p>
+
+<p>a
+	b</p>
+
+<p>a
+	 b</p>
+!! wikitext
+a
+
+a
+
+	a(tab)
+
+a
+<!--cmt-->
+a
+
+a
+b
+
+a
+	b
+
+a
+	 b
+!! html/php
+<p>a
+</p><p>a
+</p><p>	a(tab)
+</p><p>a
+a
+</p><p>a
+b
+</p><p>a
+	b
+</p><p>a
+	 b
+</p>
+!! end
+
+!! test
+2. Leading whitespace in non-indent-pre contexts should not be escaped
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>foo <span about="#mwt2" class="mw-ref reference" id="cite_ref-1" rel="dc:references" typeof="mw:Extension/ref" data-mw='{"name":"ref","body":{"id":"mw-reference-text-cite_note-1"},"attrs":{}}'><a href="./Main_Page#cite_note-1"><span class="mw-reflink-text">[1]</span></a></span></p>
+<div class="mw-references-wrap" typeof="mw:Extension/references" about="#mwt4" data-mw='{"name":"references","attrs":{}}'><ol class="mw-references references">
+<li about="#cite_note-1" id="cite_note-1"><a href="./Main_Page#cite_ref-1" rel="mw:referencedBy"><span class="mw-linkback-text">↑ </span></a> <span id="mw-reference-text-cite_note-1" class="mw-reference-text"><i>a</i>
+ b</span></li>
+</ol></div>
+!! wikitext
+foo <ref>''a''
+ b</ref>
+<references />
+!! end
+
+!! test
+3. Leading whitespace in indent-pre suppressing contexts should not be escaped
+!! options
+parsoid=html2wt
+!! html/parsoid
+<blockquote>
+<p>
+ a
+ <span>b</span>
+ c</p>
+</blockquote>
+!! wikitext
+<blockquote>
+ a
+ <span>b</span>
+ c
+</blockquote>
+!! end
+
+!! test
+4. Leading whitespace in indent-pre suppressing contexts should not be escaped
+!! options
+parsoid=html2wt
+!! html/parsoid
+ <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220"/></a><figcaption>caption</figcaption></figure>
+!! wikitext
+ [[File:Foobar.jpg|thumb|caption]]
+!! end
+
+!! test
+5. Nowiki escaping should account for indent-pres
+!! options
+parsoid=html2wt
+!! html/parsoid
+<pre>==foo==</pre>
+!! wikitext
+ ==foo==
+!! end
+
+!! test
+T95794: nowiki escaping should account for leading space at start-of-line in an indent-pre block
+!! options
+parsoid=html2wt
+!! html/parsoid
+<pre>
+* foo
+* bar
+</pre>
+!! wikitext
+ * foo
+ * bar
+!! end
+
+!! test
+Whitespace scrubbing in SOL position should account for SOL-sensitive wikitext markup
+!! options
+parsoid = {
+  "modes": ["html2wt"]
+}
+!! html/parsoid
+<p> foo</p>
+<p> %foo</p>
+<p> *foo</p>
+<p> #foo</p>
+<p> =foo=</p>
+<p><link rel="mw:PageProp/Category" href="./Category:Foo" data-parsoid="{}"> *foo</p>
+<p> <link rel="mw:PageProp/Category" href="./Category:Foo" data-parsoid="{}">*foo</p>
+<p> <!--boo-->*foo</p>
+<p><!--boo--> *foo</p>
+<p><!--a--> <!--b--> <!--c--> <!--d--> <!--e--> foo</p>
+<p><!--a--> <!--b--> <!--c--> <!--d--> <!--e--> *foo</p>
+!! wikitext
+foo
+
+%foo
+
+<nowiki/>*foo
+
+<nowiki/>#foo
+
+<nowiki/>=foo=
+
+[[Category:Foo]]
+<nowiki/>*foo
+
+ [[Category:Foo]]
+<nowiki>*</nowiki>foo
+
+<nowiki/><!--boo-->*foo
+
+<!--boo--><nowiki/>*foo
+
+<!--a--><!--b--><!--c--><!--d--><!--e-->foo
+
+<!--a--><nowiki/><!--b--><!--c--><!--d--><!--e-->*foo
+!! end
+
+#### --------------- Behavior Switches --------------------
+
+!! test
+1. Valid behavior switches should be escaped
+!! options
+parsoid=html2wt
+!! html/parsoid
+__TOC__
+<i>__TOC__</i>
+!! wikitext
+<nowiki>__TOC__</nowiki>
+''<nowiki>__TOC__</nowiki>''
+!! end
+
+!! test
+2. Invalid behavior switches should not be escaped
+!! options
+parsoid=html2wt
+!! html/parsoid
+__TOO__
+__|__
+!! wikitext
+__TOO__
+__|__
+!! end
+
+# We use indent-pre as an indirect way to test for sol-transparent behavior.
+!! test
+Behavior switches should be SOL-transparent
+!! options
+parsoid=html2wt
+!! html/parsoid
+ <meta property="mw:PageProp/toc" />
+
+ <!-- this one's bogus -->
+<pre>__TOO__</pre>
+
+<pre data-parsoid='{}'><meta property="mw:PageProp/toc" data-parsoid='{"src":"__TOC__","magicSrc":"__TOC__"}'/> foo</pre>
+
+<meta property="mw:PageProp/toc" data-parsoid='{"src":"__TOC__","magicSrc":"__TOC__"}'/><pre data-parsoid='{}'>bar</pre>
+!! wikitext
+ __TOC__
+
+ <!-- this one's bogus -->
+ __TOO__
+
+ __TOC__ foo
+
+__TOC__
+ bar
+!! end
+
+# last two <meta> tags test case-insensitivity
+!! test
+During serialization, normalize output when given a SOL-transparent prefix
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p> x</p>
+<p><meta property="mw:PageProp/notoc" data-parsoid='{"src":"__NOTOC__","magicSrc":"__NOTOC__"}'/> y</p>
+<p><meta property="mw:PageProp/notoc" data-parsoid='{"src":"__NotoC__","magicSrc":"__NotoC__"}'/> z</p>
+<p><meta property="mw:PageProp/notoc" data-parsoid='{"src":"__notoc__","magicSrc":"__notoc__"}'/> p</p>
+!! wikitext
+x
+
+__NOTOC__y
+
+__NOTOC__z
+
+__notoc__p
+!! end
+
+#### --------------- HTML tags ---------------
+#### 1. a tags
+#### 2. other tags
+#### 3. multi-line html tag
+#### 4. extension tags
+#### -----------------------------------------
+!! test
+1. a tags
+!! options
+parsoid=html2wt
+!! html/parsoid
+&lt;a href=&quot;http://google.com&quot;&gt;google&lt;/a&gt;
+!! wikitext
+<a href="http://google.com">google</a>
+!! end
+
+!! test
+2. other tags
+!! options
+parsoid=html2wt
+!! html/parsoid
+<ul><li> &lt;div&gt;foo&lt;/div&gt;</li>
+<li> &lt;div style=&quot;color:red&quot;&gt;foo&lt;/div&gt;</li>
+<li> &lt;td&gt;</li></ul>
+
+!! wikitext
+* <nowiki><div>foo</div></nowiki>
+* <nowiki><div style="color:red">foo</div></nowiki>
+* <nowiki><td></nowiki>
+!! end
+
+!! test
+3. multi-line html tag
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>&lt;div
+&gt;foo&lt;/div
+&gt;
+</p>
+!! wikitext
+<nowiki><div
+>foo</div
+></nowiki>
+!! end
+
+!! test
+4. extension tags
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>&lt;ref&gt;foo&lt;/ref&gt;
+</p><p>&lt;ref&gt;bar
+</p><p>baz&lt;/ref&gt;
+</p>
+!! wikitext
+<nowiki><ref>foo</ref></nowiki>
+
+<nowiki><ref>bar</nowiki>
+
+baz<nowiki></ref></nowiki>
+!! end
+
+## FIXME: This test is less useful now that the leading space is normalized away
+!! test
+Parsoid: newline inducing block nodes don't suppress <nowiki>
+!! options
+parsoid=html2wt
+!! html/parsoid
+ a<h1>foo</h1>
+!! wikitext
+a
+
+= foo =
+!! end
+
+#### --------------- Others ---------------
+
+!! test
+Escaping nowikis
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>&lt;nowiki&gt;foo&lt;/nowiki&gt;
+</p>
+!! wikitext
+&lt;nowiki&gt;foo&lt;/nowiki&gt;
+!! end
+
+## The quote-char in the input is necessary for triggering the bug
+!! test
+(T54035) Nowiki-escaping should not get tripped by " :" in text
+!! options
+parsoid=html2wt
+!! html/parsoid
+<p>foo's bar :</p>
+!! wikitext
+foo's bar :
+!! end
+
+!! test
+Ensure that when a leading-whitespace-containing string is emitted on a newline, it is correctly escaped
+!! options
+parsoid={
+  "modes": ["selser"],
+  "selser": "noauto",
+  "changes": [
+     [ "div > p", "html", "DEF" ]
+  ]
+}
+!! wikitext
+<div>
+ABC
+{{1x|
+{{{!}}
+{{!}} a
+{{!}}}}} b
+!! wikitext/edited
+<div>
+DEF
+{{1x|
+{{{!}}
+{{!}} a
+{{!}}}}} b
+!! end

@@ -1,0 +1,306 @@
+# The parsoid-compatible option below is only relevant when we are running
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html,wt2wt
+version=2
+!! end
+
+# This is the standard article assumed to exist.
+!! article
+Main Page
+!! text
+blah blah
+!! endarticle
+
+!!article
+Foo
+!!text
+FOO
+!!endarticle
+
+!!article
+Template:Foo
+!!text
+FOO
+!!endarticle
+
+### Interwiki links (see maintenance/interwiki.sql)
+
+!! test
+Inline interwiki link
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+[[MeatBall:SoftSecurity]]
+!! html/php
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity" class="extiw" title="meatball:SoftSecurity">MeatBall:SoftSecurity</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity" title="meatball:SoftSecurity" class="extiw">MeatBall:SoftSecurity</a></p>
+!! end
+
+!! test
+Inline interwiki link with empty title (T4372)
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+[[MeatBall:]]
+!! html/php
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl" class="extiw" title="meatball:">MeatBall:</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?" title="meatball:" class="extiw">MeatBall:</a></p>
+!! end
+
+## html2wt and html2html will fail because we will prefer the :en: interwiki prefix over wikipedia:
+!! test
+Interwiki link encoding conversion (T3636)
+!! options
+parsoid=wt2html,wt2wt
+!! wikitext
+*[[Wikipedia:ro:Olteni&#0355;a]]
+*[[Wikipedia:ro:Olteni&#355;a]]
+!! html/php
+<ul><li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a></li>
+<li><a href="http://en.wikipedia.org/wiki/ro:Olteni%C5%A3a" class="extiw" title="wikipedia:ro:Olteniţa">Wikipedia:ro:Olteni&#355;a</a></li></ul>
+!! html/parsoid
+<ul>
+<li><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/ro:Olteniţa" title="wikipedia:ro:Olteniţa" class="extiw">Wikipedia:ro:Olteniţa</a></li>
+<li><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/ro:Olteniţa" title="wikipedia:ro:Olteniţa" class="extiw">Wikipedia:ro:Olteniţa</a></li>
+</ul>
+!! end
+
+!! test
+Interwiki link with fragment (T4130)
+!! wikitext
+[[MeatBall:SoftSecurity#foo]]
+!! html
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?SoftSecurity#foo" class="extiw" title="meatball:SoftSecurity">MeatBall:SoftSecurity#foo</a>
+</p>
+!! end
+
+## The interwiki case here continued to be legacy escaped because of the
+## default setting of $wgExternalInterwikiFragmentMode
+!! test
+Link scenarios with escaped fragments
+!! options
+title=[[Main Page]]
+!! config
+wgFragmentMode=[ "html5", "legacy" ]
+!! wikitext
+[[#Is this great?]]
+[[Foo#Is this great?]]
+[[meatball:Foo#Is this great?]]
+!! html/php
+<p><a href="#Is_this_great?">#Is this great?</a>
+<a href="/wiki/Foo#Is_this_great?" title="Foo">Foo#Is this great?</a>
+<a href="http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F" class="extiw" title="meatball:Foo">meatball:Foo#Is this great?</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Main_Page#Is_this_great?" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page#Is_this_great?"},"sa":{"href":"#Is this great?"}}'>#Is this great?</a>
+<a rel="mw:WikiLink" href="./Foo#Is_this_great?" title="Foo" data-parsoid='{"stx":"simple","a":{"href":"./Foo#Is_this_great?"},"sa":{"href":"Foo#Is this great?"}}'>Foo#Is this great?</a>
+<a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F" title="meatball:Foo" class="extiw" data-parsoid='{"stx":"simple","a":{"href":"http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F"},"sa":{"href":"meatball:Foo#Is this great?"},"isIW":true}'>meatball:Foo#Is this great?</a></p>
+!! end
+
+!! test
+Link scenarios with escaped fragments (legacy)
+!! config
+wgFragmentMode=[ "legacy" ]
+!! wikitext
+[[#Is this great?]]
+[[Foo#Is this great?]]
+[[meatball:Foo#Is this great?]]
+!! html/php
+<p><a href="#Is_this_great.3F">#Is this great?</a>
+<a href="/wiki/Foo#Is_this_great.3F" title="Foo">Foo#Is this great?</a>
+<a href="http://www.usemod.com/cgi-bin/mb.pl?Foo#Is_this_great.3F" class="extiw" title="meatball:Foo">meatball:Foo#Is this great?</a>
+</p>
+!! end
+
+# Ideally the wikipedia: prefix here should be proto-relative too
+# [CSA]: this is kind of a bogus test, as the PHP parser test doesn't
+# define the 'en' prefix, and originally the test used 'wikipedia',
+# which isn't a localinterwiki prefix hence the links to the 'en:Foo'
+# article.
+!! test
+Different interwiki prefixes mapping to the same URL
+!! wikitext
+[[:en:Foo]]
+
+[[:en:Foo|Foo]]
+
+[[wikipedia:Foo]]
+
+[[:wikipedia:Foo|Foo]]
+
+[[wikipedia:en:Foo]]
+
+[[:wikipedia:en:Foo]]
+
+[[  wikiPEdia :Foo]]
+!! html/parsoid
+<p><a rel="mw:WikiLink/Interwiki" href="//en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"simple","a":{"href":"//en.wikipedia.org/wiki/Foo"},"sa":{"href":":en:Foo"},"isIW":true}' title="en:Foo" class="extiw">en:Foo</a></p>
+
+<p><a rel="mw:WikiLink/Interwiki" href="//en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"piped","a":{"href":"//en.wikipedia.org/wiki/Foo"},"sa":{"href":":en:Foo"},"isIW":true}' title="en:Foo" class="extiw">Foo</a></p>
+
+<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"simple","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":"wikipedia:Foo"},"isIW":true}' title="wikipedia:Foo" class="extiw">wikipedia:Foo</a></p>
+
+<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"piped","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":":wikipedia:Foo"},"isIW":true}' title="wikipedia:Foo" class="extiw">Foo</a></p>
+
+<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/en:Foo" data-parsoid='{"stx":"simple","a":{"href":"http://en.wikipedia.org/wiki/en:Foo"},"sa":{"href":"wikipedia:en:Foo"},"isIW":true}' title="wikipedia:en:Foo" class="extiw">wikipedia:en:Foo</a></p>
+
+<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/en:Foo" data-parsoid='{"stx":"simple","a":{"href":"http://en.wikipedia.org/wiki/en:Foo"},"sa":{"href":":wikipedia:en:Foo"},"isIW":true}' title="wikipedia:en:Foo" class="extiw">wikipedia:en:Foo</a></p>
+
+<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"simple","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":"  wikiPEdia :Foo"},"isIW":true}' title="wikipedia:Foo" class="extiw">  wikiPEdia :Foo</a></p>
+!! end
+
+!! test
+Interwiki links that cannot be represented in wiki syntax
+!! wikitext
+[[meatball:ok]]
+[[meatball:ok#foo|ok with fragment]]
+[[meatball:ok_as_well?|ok ending with ? mark]]
+[http://de.wikipedia.org/wiki/Foo?action=history has query]
+[http://de.wikipedia.org/wiki/#foo is just fragment]
+
+!! html/php
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?ok" class="extiw" title="meatball:ok">meatball:ok</a>
+<a href="http://www.usemod.com/cgi-bin/mb.pl?ok#foo" class="extiw" title="meatball:ok">ok with fragment</a>
+<a href="http://www.usemod.com/cgi-bin/mb.pl?ok_as_well%3F" class="extiw" title="meatball:ok as well?">ok ending with&#160;? mark</a>
+<a rel="nofollow" class="external text" href="http://de.wikipedia.org/wiki/Foo?action=history">has query</a>
+<a rel="nofollow" class="external text" href="http://de.wikipedia.org/wiki/#foo">is just fragment</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?ok" title="meatball:ok" class="extiw">meatball:ok</a>
+<a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?ok#foo" title="meatball:ok" class="extiw">ok with fragment</a>
+<a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?ok_as_well%3F" title="meatball:ok as well?" class="extiw">ok ending with<span typeof="mw:DisplaySpace"> </span>? mark</a>
+<a rel="mw:ExtLink" href="http://de.wikipedia.org/wiki/Foo?action=history" class="external text">has query</a>
+<a rel="mw:ExtLink" href="http://de.wikipedia.org/wiki/#foo" class="external text">is just fragment</a></p>
+!! end
+
+!! test
+Interwiki links: trail
+!! wikitext
+[[wikipedia:Foo|Ba]]r
+!! html/php
+<p><a href="http://en.wikipedia.org/wiki/Foo" class="extiw" title="wikipedia:Foo">Bar</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/Foo" data-parsoid='{"stx":"piped","a":{"href":"http://en.wikipedia.org/wiki/Foo"},"sa":{"href":"wikipedia:Foo"},"isIW":true,"tail":"r"}' title="wikipedia:Foo" class="extiw">Bar</a></p>
+!! end
+
+!! test
+Local interwiki link
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+[[local:Template:Foo]]
+!! html/php
+<p><a href="/wiki/Template:Foo" title="Template:Foo">local:Template:Foo</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Template:Foo" title="Template:Foo">local:Template:Foo</a></p>
+!! end
+
+# Parsoid does not mark self-links, by design.
+!! test
+Local interwiki link: self-link to current page
+!! options
+title=[[Main Page]]
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+[[local:Main Page]]
+!! html/php
+<p><a class="mw-selflink selflink">local:Main Page</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Main_Page" title="Main Page">local:Main Page</a></p>
+!! end
+
+!! test
+Local interwiki link: prefix only (T66167)
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+[[local:]]
+!! html/php
+<p><a href="/wiki/Main_Page" title="Main Page">local:</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Main_Page" title="Main Page">local:</a></p>
+!! end
+
+!! test
+Local interwiki link: with additional interwiki prefix (T63357)
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+[[local:meatball:Hello]]
+!! html/php
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?Hello" class="extiw" title="meatball:Hello">local:meatball:Hello</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Hello" title="meatball:Hello" class="extiw">local:meatball:Hello</a></p>
+!! end
+
+!! test
+Multiple local interwiki link prefixes
+!! wikitext
+[[local:local:local:local:mi:local:Foo]]
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! html/php
+<p><a href="/wiki/Foo" title="Foo">local:local:local:local:mi:local:Foo</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo">local:local:local:local:mi:local:Foo</a></p>
+!! end
+
+!! test
+Interwiki link that could be a language link, if not for a local interwiki prefix (T292022)
+!! options
+parsoid=html2wt
+!! html/php
+<p><a href="http://es.wikipedia.org/wiki/Hello" class="extiw" title="es:Hello">local:es:Hello</a>
+</p>
+!! html/parsoid
+<p><a href="./Local:es:Hello" rel="mw:WikiLink">local:es:Hello</a></p>
+!! wikitext
+[[:es:Hello|local:es:Hello]]
+!! end
+
+!! test
+Internal link with a namespace matching a local interwiki prefix (T228616)
+!! options
+parsoid=html2wt
+!! html/php
+<p><a href="/index.php?title=TestWiki:Hello&amp;action=edit&amp;redlink=1" class="new" title="TestWiki:Hello (page does not exist)">Project:Hello</a>
+</p>
+!! html/parsoid
+<p><a href="./Project:Hello" rel="mw:WikiLink">Project:Hello</a></p>
+!! wikitext
+[[Project:Hello]]
+!! end
+
+!! test
+Interwiki link with percent encoded target
+!! wikitext
+[[:es:Nueva Guip%C3%BAzcoa|Nueva Guipúzcoa]]
+!! html/php
+<p><a href="http://es.wikipedia.org/wiki/Nueva_Guip%C3%BAzcoa" class="extiw" title="es:Nueva Guipúzcoa">Nueva Guipúzcoa</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink/Interwiki" href="http://es.wikipedia.org/wiki/Nueva%20Guipúzcoa" title="es:Nueva Guipúzcoa" class="extiw" data-parsoid='{"stx":"piped","a":{"href":"http://es.wikipedia.org/wiki/Nueva%20Guipúzcoa"},"sa":{"href":":es:Nueva Guip%C3%BAzcoa"},"isIW":true}'>Nueva Guipúzcoa</a></p>
+!! end
+
+!! test
+Interwiki link with colon escape after prefix
+!! wikitext
+[[meatball::Category:Hello]]
+!! html/php
+<p><a href="http://www.usemod.com/cgi-bin/mb.pl?Category:Hello" class="extiw" title="meatball:Category:Hello">meatball::Category:Hello</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink/Interwiki" href="http://www.usemod.com/cgi-bin/mb.pl?Category:Hello" title="meatball:Category:Hello" class="extiw" data-parsoid='{"stx":"simple","a":{"href":"http://www.usemod.com/cgi-bin/mb.pl?Category:Hello"},"sa":{"href":"meatball::Category:Hello"},"isIW":true}'>meatball:Category:Hello</a></p>
+!! end

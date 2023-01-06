@@ -14,6 +14,18 @@ Template:1x
 {{{1}}}
 !! endarticle
 
+!! article
+Wikilink
+!! text
+Dummy article to suppress redlinks in tests
+!! end
+
+!! article
+Museo Picasso (París)
+!! text
+Dummy article to suppress redlinks in tests
+!! end
+
 !! test
 External links: non-bracketed
 !! wikitext
@@ -736,12 +748,13 @@ parsoid=wt2html
 
 [http://example.com test [[wikilink]] embedded in ext link]
 !! html/php
-<p><a rel="nofollow" class="external text" href="http://example.com"></a><a href="/index.php?title=Wikilink&amp;action=edit&amp;redlink=1" class="new" title="Wikilink (page does not exist)">wikilink</a> embedded in ext link
-</p><p><a rel="nofollow" class="external text" href="http://example.com">test </a><a href="/index.php?title=Wikilink&amp;action=edit&amp;redlink=1" class="new" title="Wikilink (page does not exist)">wikilink</a> embedded in ext link
+<p><a rel="nofollow" class="external text" href="http://example.com"></a><a href="/wiki/Wikilink" title="Wikilink">wikilink</a> embedded in ext link
+</p><p><a rel="nofollow" class="external text" href="http://example.com">test </a><a href="/wiki/Wikilink" title="Wikilink">wikilink</a> embedded in ext link
 </p>
 !! html/parsoid
-<p><a rel="mw:ExtLink" href="http://example.com" class="external autonumber"></a><a rel="mw:WikiLink" href="./Wikilink" title="Wikilink" class="new">wikilink</a><span> embedded in ext link</span></p>
-<p><a rel="mw:ExtLink" href="http://example.com" class="external text">test </a><a rel="mw:WikiLink" href="./Wikilink" title="Wikilink" class="new">wikilink</a><span> embedded in ext link</span></p>
+<p><a rel="mw:ExtLink nofollow" href="http://example.com" class="external autonumber"></a><a rel="mw:WikiLink" href="./Wikilink" title="Wikilink" data-parsoid='{"stx":"simple","a":{"href":"./Wikilink"},"sa":{"href":"wikilink"},"misnested":true}'>wikilink</a><span data-parsoid='{"misnested":true}'> embedded in ext link</span></p>
+
+<p><a rel="mw:ExtLink nofollow" href="http://example.com" class="external text">test </a><a rel="mw:WikiLink" href="./Wikilink" title="Wikilink" data-parsoid='{"stx":"simple","a":{"href":"./Wikilink"},"sa":{"href":"wikilink"},"misnested":true}'>wikilink</a><span data-parsoid='{"misnested":true}'> embedded in ext link</span></p>
 !! end
 
 !! test
@@ -923,10 +936,10 @@ External link containing double-single-quotes with no space separating the url f
 !! wikitext
 [http://www.musee-picasso.fr/pages/page_id18528_u1l2.htm''La muerte de Casagemas'' (1901) en el sitio de [[Museo Picasso (París)|Museo Picasso]].]
 !! html/php
-<p><a rel="nofollow" class="external text" href="http://www.musee-picasso.fr/pages/page_id18528_u1l2.htm"><i>La muerte de Casagemas</i> (1901) en el sitio de </a><a href="/index.php?title=Museo_Picasso_(Par%C3%ADs)&amp;action=edit&amp;redlink=1" class="new" title="Museo Picasso (París) (page does not exist)">Museo Picasso</a>.
+<p><a rel="nofollow" class="external text" href="http://www.musee-picasso.fr/pages/page_id18528_u1l2.htm"><i>La muerte de Casagemas</i> (1901) en el sitio de </a><a href="/wiki/Museo_Picasso_(Par%C3%ADs)" title="Museo Picasso (París)">Museo Picasso</a>.
 </p>
 !! html/parsoid
-<p><a rel="mw:ExtLink" href="http://www.musee-picasso.fr/pages/page_id18528_u1l2.htm" class="external text"><i>La muerte de Casagemas</i> (1901) en el sitio de </a><a rel="mw:WikiLink" href="./Museo_Picasso_(París)" title="Museo Picasso (París)" class="new">Museo Picasso</a><span>.</span></p>
+<p><a rel="mw:ExtLink nofollow" href="http://www.musee-picasso.fr/pages/page_id18528_u1l2.htm" class="external text"><i>La muerte de Casagemas</i> (1901) en el sitio de </a><a rel="mw:WikiLink" href="./Museo_Picasso_(París)" title="Museo Picasso (París)" data-parsoid='{"stx":"piped","a":{"href":"./Museo_Picasso_(París)"},"sa":{"href":"Museo Picasso (París)"},"misnested":true}' >Museo Picasso</a><span data-parsoid='{"misnested":true}'>.</span></p>
 !! end
 
 !! test

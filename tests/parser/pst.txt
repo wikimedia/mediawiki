@@ -1,0 +1,718 @@
+# The parsoid-compatible option below is only relevant when we are running
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html,wt2wt
+version=2
+!! end
+
+!! article
+Template:test
+!! text
+This is a test template
+!! endarticle
+
+!! article
+Template:paramtest
+!! text
+This is a test template with parameter {{{param}}}
+!! endarticle
+
+!! article
+Template:Includes
+!! text
+Foo<noinclude>zar</noinclude><includeonly>bar</includeonly>
+!! endarticle
+
+!! article
+Template:Includes2
+!! text
+<onlyinclude>Foo</onlyinclude>bar
+!! endarticle
+
+!! test
+pre-save transform: subst:
+!! options
+pst
+!! wikitext
+{{subst:test}}
+!! html/php
+This is a test template
+!! end
+
+!! test
+pre-save transform: normal template
+!! options
+pst
+!! wikitext
+{{test}}
+!! html/php
+{{test}}
+!! end
+
+!! test
+pre-save transform: nonexistent template
+!! options
+pst
+!! wikitext
+{{thistemplatedoesnotexist}}
+!! html/php
+{{thistemplatedoesnotexist}}
+!! end
+
+!! test
+pre-save transform: subst magic variables
+!! options
+pst
+!! wikitext
+{{subst:SITENAME}}
+!! html/php
+MediaWiki
+!! end
+
+# This is T2089, which I fixed. -- wtm
+!! test
+pre-save transform: subst: templates with parameters
+!! options
+pst
+!! wikitext
+{{subst:paramtest|param="something else"}}
+!! html/php
+This is a test template with parameter "something else"
+!! end
+
+!! article
+Template:nowikitest
+!! text
+<nowiki>'''not wiki'''</nowiki>
+!! endarticle
+
+!! test
+pre-save transform: nowiki in subst (T3188)
+!! options
+pst
+!! wikitext
+{{subst:nowikitest}}
+!! html/php
+<nowiki>'''not wiki'''</nowiki>
+!! end
+
+!! article
+Template:commenttest
+!! text
+This template has <!-- a comment --> in it.
+!! endarticle
+
+!! test
+pre-save transform: comment in subst (T3936)
+!! options
+pst
+!! wikitext
+{{subst:commenttest}}
+!! html/php
+This template has <!-- a comment --> in it.
+!! end
+
+!! test
+pre-save transform: unclosed tag
+!! options
+pst
+!! wikitext
+<nowiki>'''not wiki'''
+!! html/php
+<nowiki>'''not wiki'''
+!! end
+
+!! test
+pre-save transform: mixed tag case
+!! options
+pst
+!! wikitext
+<NOwiki>'''not wiki'''</noWIKI>
+!! html/php
+<NOwiki>'''not wiki'''</noWIKI>
+!! end
+
+!! test
+pre-save transform: unclosed comment in <nowiki>
+!! options
+pst
+!! wikitext
+wiki<nowiki>nowiki<!--nowiki</nowiki>wiki
+!! html/php
+wiki<nowiki>nowiki<!--nowiki</nowiki>wiki
+!!end
+
+# Leading @ in this template definition works around a limitation
+# in parsoid's parserTests which otherwise strips the <span> from the
+# result (confusing it for a template wrapper)
+!! article
+Template:dangerous
+!!text
+@<span onmouseover="alert('crap')">Oh no</span>
+!!endarticle
+
+!!test
+(confirming safety of fix for subst T3936)
+!! wikitext
+{{Template:dangerous}}
+!! html
+<p>@<span>Oh no</span>
+</p>
+!! end
+
+!! test
+pre-save transform: comment containing gallery (T7024)
+!! options
+pst
+!! wikitext
+<!-- <gallery>data</gallery> -->
+!! html/php
+<!-- <gallery>data</gallery> -->
+!!end
+
+!! test
+pre-save transform: comment containing extension
+!! options
+pst
+!! wikitext
+<!-- <tag>data</tag> -->
+!! html/php
+<!-- <tag>data</tag> -->
+!!end
+
+!! test
+pre-save transform: comment containing nowiki
+!! options
+pst
+!! wikitext
+<!-- <nowiki>data</nowiki> -->
+!! html/php
+<!-- <nowiki>data</nowiki> -->
+!!end
+
+!! test
+pre-save transform: <noinclude> in subst (T5298)
+!! options
+pst
+!! wikitext
+{{subst:Includes}}
+!! html/php
+Foobar
+!! end
+
+!! test
+pre-save transform: <onlyinclude> in subst (T5298)
+!! options
+pst
+!! wikitext
+{{subst:Includes2}}
+!! html/php
+Foo
+!! end
+
+!! article
+Template:SubstTest
+!!text
+{{<includeonly>subst:</includeonly>Includes}}
+!! endarticle
+
+!! article
+Template:SafeSubstTest
+!! text
+{{<includeonly>safesubst:</includeonly>Includes}}
+!! endarticle
+
+!! article
+Template:SafeSubstSelfTest
+!! text
+{{safesubst:SafeSubstSelfTest}}
+!! endarticle
+
+!! article
+Template:safesubst
+!! text
+{{{1}}}
+!! endarticle
+
+!! test
+T24297: safesubst: works during PST
+!! options
+pst
+!! wikitext
+{{subst:SafeSubstTest}}{{safesubst:SubstTest}}
+!! html/php
+FoobarFoobar
+!! end
+
+!! test
+T24297: safesubst: works during normal parse
+!! wikitext
+{{SafeSubstTest}}
+!! html
+<p>Foobar
+</p>
+!! end
+
+!! test
+subst: does not work during normal parse
+!! wikitext
+{{SubstTest}}
+!! html
+<p>{{subst:Includes}}
+</p>
+!! html/parsoid+integrated
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"SubstTest","href":"./Template:SubstTest"},"params":{},"i":0}}]}'>{{subst:Includes}}</span></p>
+!! end
+
+!! test
+safesubst self: does not work during normal parse - T276476
+!! options
+pst title=[[Template:SafeSubstSelfTest]]
+!! wikitext
+{{SafeSubstSelfTest}}
+!! html/php
+{{SafeSubstSelfTest}}
+!! end
+
+## Non-PST test
+!! test
+Template named safesubst - T309405
+!! wikitext
+{{safesubst|123}}
+!! html/php
+<p>123
+</p>
+!! html/parsoid
+<p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"safesubst","href":"./Template:Safesubst"},"params":{"1":{"wt":"123"}},"i":0}}]}'>123</span></p>
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick")
+!! options
+pst
+!! wikitext
+[[Article (context)|]]
+[[Bar:Article|]]
+[[:Bar:Article|]]
+[[Bar:Article (context)|]]
+[[:Bar:Article (context)|]]
+[[|Article]]
+[[|Article (context)]]
+[[Bar:X (Y) Z|]]
+[[:Bar:X (Y) Z|]]
+!! html/php
+[[Article (context)|Article]]
+[[Bar:Article|Article]]
+[[:Bar:Article|Article]]
+[[Bar:Article (context)|Article]]
+[[:Bar:Article (context)|Article]]
+[[Article]]
+[[Article (context)]]
+[[Bar:X (Y) Z|X (Y) Z]]
+[[:Bar:X (Y) Z|X (Y) Z]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with interwiki prefix
+!! options
+pst
+!! wikitext
+[[interwiki:Article|]]
+[[:interwiki:Article|]]
+[[interwiki:Bar:Article|]]
+[[:interwiki:Bar:Article|]]
+!! html/php
+[[interwiki:Article|Article]]
+[[:interwiki:Article|Article]]
+[[interwiki:Bar:Article|Bar:Article]]
+[[:interwiki:Bar:Article|Bar:Article]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with parens in title
+!! options
+pst title=[[Somearticle (context)]]
+!! wikitext
+[[|Article]]
+!! html/php
+[[Article (context)|Article]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with single, double-width and Arabic comma in title
+!! options
+pst title=[[Someplace, Somewhere]]
+!! wikitext
+[[|Otherplace]]
+[[Otherplace, Elsewhere|]]
+[[Otherplace, Elsewhere, Anywhere|]]
+[[Otherplace，Elsewhere|]]
+[[Otherplace، Elsewhere|]]
+!! html/php
+[[Otherplace, Somewhere|Otherplace]]
+[[Otherplace, Elsewhere|Otherplace]]
+[[Otherplace, Elsewhere, Anywhere|Otherplace]]
+[[Otherplace，Elsewhere|Otherplace]]
+[[Otherplace، Elsewhere|Otherplace]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with parens and comma
+!! options
+pst title=[[Someplace (IGNORED), Somewhere]]
+!! wikitext
+[[|Otherplace]]
+[[Otherplace (place), Elsewhere|]]
+!! html/php
+[[Otherplace, Somewhere|Otherplace]]
+[[Otherplace (place), Elsewhere|Otherplace]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with comma and parens
+!! options
+pst title=[[Who, me? (context)]]
+!! wikitext
+[[|Yes, you.]]
+[[Me, Myself, and I (1937 song)|]]
+!! html/php
+[[Yes, you. (context)|Yes, you.]]
+[[Me, Myself, and I (1937 song)|Me, Myself, and I]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with namespace
+!! options
+pst title=[[Ns:Somearticle]]
+!! wikitext
+[[|Article]]
+!! html/php
+[[Ns:Article|Article]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with namespace and parens
+!! options
+pst title=[[Ns:Somearticle (context)]]
+!! wikitext
+[[|Article]]
+!! html/php
+[[Ns:Article (context)|Article]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with namespace and comma
+!! options
+pst title=[[Ns:Somearticle, Context, Whatever]]
+!! wikitext
+[[|Article]]
+!! html/php
+[[Ns:Article, Context, Whatever|Article]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with namespace, comma and parens
+!! options
+pst title=[[Ns:Somearticle, Context (context)]]
+!! wikitext
+[[|Article]]
+!! html/php
+[[Ns:Article (context)|Article]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with namespace, parens and comma
+!! options
+pst title=[[Ns:Somearticle (IGNORED), Context]]
+!! wikitext
+[[|Article]]
+!! html/php
+[[Ns:Article, Context|Article]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with full-width parens and no space (Japanese and Chinese style, T32149)
+!! options
+pst
+!! wikitext
+[[Article（context）|]]
+[[Bar:Article（context）|]]
+[[:Bar:Article（context）|]]
+[[|Article（context）]]
+[[Bar:X（Y）Z|]]
+[[:Bar:X（Y）Z|]]
+!! html/php
+[[Article（context）|Article]]
+[[Bar:Article（context）|Article]]
+[[:Bar:Article（context）|Article]]
+[[Article（context）]]
+[[Bar:X（Y）Z|X（Y）Z]]
+[[:Bar:X（Y）Z|X（Y）Z]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with full-width parens and space (Japanese and Chinese style, T32149)
+!! options
+pst
+!! wikitext
+[[Article （context）|]]
+[[Bar:Article （context）|]]
+[[:Bar:Article （context）|]]
+[[|Article （context）]]
+[[Bar:X （Y） Z|]]
+[[:Bar:X （Y） Z|]]
+!! html/php
+[[Article （context）|Article]]
+[[Bar:Article （context）|Article]]
+[[:Bar:Article （context）|Article]]
+[[Article （context）]]
+[[Bar:X （Y） Z|X （Y） Z]]
+[[:Bar:X （Y） Z|X （Y） Z]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with parens and no space (Korean style, T32149)
+!! options
+pst
+!! wikitext
+[[Article(context)|]]
+[[Bar:Article(context)|]]
+[[:Bar:Article(context)|]]
+[[|Article(context)]]
+[[Bar:X(Y)Z|]]
+[[:Bar:X(Y)Z|]]
+!! html/php
+[[Article(context)|Article]]
+[[Bar:Article(context)|Article]]
+[[:Bar:Article(context)|Article]]
+[[Article(context)]]
+[[Bar:X(Y)Z|X(Y)Z]]
+[[:Bar:X(Y)Z|X(Y)Z]]
+!! end
+
+!! test
+pre-save transform: context links ("pipe trick") with commas (T23660)
+!! options
+pst
+!! wikitext
+[[Article (context), context|]]
+[[Article (context)，context|]]
+[[Bar:Article (context), context|]]
+[[Bar:Article (context)，context|]]
+[[:Bar:Article (context), context|]]
+[[:Bar:Article (context)，context|]]
+!! html/php
+[[Article (context), context|Article]]
+[[Article (context)，context|Article]]
+[[Bar:Article (context), context|Article]]
+[[Bar:Article (context)，context|Article]]
+[[:Bar:Article (context), context|Article]]
+[[:Bar:Article (context)，context|Article]]
+!! end
+
+!! test
+Parsoid: backwards pipe trick
+!! wikitext
+[[|'''bar''']]
+!! html/php
+<p>[[|<b>bar</b>]]
+</p>
+!! html/parsoid
+<p>[[|<b>bar</b>]]</p>
+!! end
+
+!! test
+pre-save transform: trim trailing empty lines
+!! options
+pst
+!! wikitext
+Empty lines are trimmed
+
+
+
+
+!! html/php
+Empty lines are trimmed
+!! end
+
+!! test
+pre-save transform: Signature expansion
+!! options
+pst
+!! wikitext
+* ~~~
+* ~~~~
+* ~~~~~
+* <noinclude>~~~</noinclude>
+* <includeonly>~~~</includeonly>
+* <onlyinclude>~~~</onlyinclude>
+!! html/php
+* [[Special:Contributions/127.0.0.1|127.0.0.1]]
+* [[Special:Contributions/127.0.0.1|127.0.0.1]] 00:02, 1 January 1970 (UTC)
+* 00:02, 1 January 1970 (UTC)
+* <noinclude>[[Special:Contributions/127.0.0.1|127.0.0.1]]</noinclude>
+* <includeonly>[[Special:Contributions/127.0.0.1|127.0.0.1]]</includeonly>
+* <onlyinclude>[[Special:Contributions/127.0.0.1|127.0.0.1]]</onlyinclude>
+!! end
+
+
+!! test
+ParserOutput flags from signature expansion (T84843)
+!! options
+pst
+showflags
+!! wikitext
+~~~~
+!! html/php
+[[Special:Contributions/127.0.0.1|127.0.0.1]] 00:02, 1 January 1970 (UTC)
+flags=user-signature
+!! end
+
+!! test
+pre-save transform: Signature expansion in nowiki tags (T2093)
+!! options
+pst disabled
+!! wikitext
+Shall not expand:
+
+<nowiki>~~~~</nowiki>
+
+<includeonly><nowiki>~~~~</nowiki></includeonly>
+
+<noinclude><nowiki>~~~~</nowiki></noinclude>
+
+<onlyinclude><nowiki>~~~~</nowiki></onlyinclude>
+
+{{subst:Foo}} shall be converted to FOO
+
+As well as inside noinclude/onlyinclude
+<noinclude>{{subst:Foo}}</noinclude>
+<onlyinclude>{{subst:Foo}}</onlyinclude>
+
+But not inside includeonly
+<includeonly>{{subst:Foo}}</includeonly>
+!! html/php
+Shall not expand:
+
+<nowiki>~~~~</nowiki>
+
+<includeonly><nowiki>~~~~</nowiki></includeonly>
+
+<noinclude><nowiki>~~~~</nowiki></noinclude>
+
+<onlyinclude><nowiki>~~~~</nowiki></onlyinclude>
+
+FOO shall be converted to FOO
+
+As well as inside noinclude/onlyinclude
+<noinclude>FOO</noinclude>
+<onlyinclude>FOO</onlyinclude>
+
+But not inside includeonly
+<includeonly>{{subst:Foo}}</includeonly>
+!! end
+
+!! test
+Parsoid: Recognize nowiki with trailing space in tags
+!! options
+parsoid=wt2html
+!! wikitext
+<nowiki ><div>[[foo]]</nowiki >
+
+a<nowiki / >b
+
+c<nowiki />d
+
+e<nowiki/ >f
+!! html/php
+<p>&lt;div&gt;[[foo]]
+</p><p>a&lt;nowiki / &gt;b
+</p><p>cd
+</p><p>e&lt;nowiki/ &gt;f
+</p>
+!! html/parsoid
+<p><span typeof="mw:Nowiki">&lt;div>[[foo]]</span></p>
+
+<p>a&lt;nowiki / >b</p>
+
+<p>c<span typeof="mw:Nowiki"></span>d</p>
+
+<p>e&lt;nowiki/ >f</p>
+!! end
+
+!! test
+Category with empty sort key
+!! options
+cat
+pst
+!! wikitext
+[[Category:MediaWiki User's Guide|]]
+!! html/php
+[[Category:MediaWiki User's Guide|MediaWiki User's Guide]]
+!! end
+
+!! test
+Category with empty sort key and parentheses
+!! options
+cat
+pst
+!! wikitext
+[[Category:Foo (bar)|]]
+!! html/php
+[[Category:Foo (bar)|Foo]]
+!! end
+
+!! test
+Category with link tail
+!! options
+cat
+pst
+!! wikitext
+123[[Category:Foo]]456
+!! html/php
+123[[Category:Foo]]456
+!! end
+
+!! test
+Category with template
+!! options
+cat
+pst
+!! wikitext
+[[Category:{{1x|Foo}}]]
+!! html/php
+[[Category:{{1x|Foo}}]]
+!! end
+
+!! test
+Category with template in sort key
+!! options
+cat
+pst
+!! wikitext
+[[Category:Foo|{{1x|Bar}}]]
+!! html/php
+[[Category:Foo|{{1x|Bar}}]]
+!! end
+
+!! test
+Category with template in sort key and title
+!! options
+cat
+pst
+!! wikitext
+[[Category:{{1x|Foo}}|{{1x|Bar}}]]
+!! html/php
+[[Category:{{1x|Foo}}|{{1x|Bar}}]]
+!! end
+
+!! test
+Tildes in comments
+!! options
+pst
+!! wikitext
+<!-- ~~~~ -->
+!! html/php
+<!-- ~~~~ -->
+!! end

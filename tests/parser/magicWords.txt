@@ -1013,12 +1013,17 @@ Case-sensitive magic words, when cased differently, should just be template tran
 {{currentday}}
 {{cURreNTweEK}}
 {{currentHour}}
-!! html
+!! html/php
 <p><a href="/index.php?title=Template:CurrentMonth&amp;action=edit&amp;redlink=1" class="new" title="Template:CurrentMonth (page does not exist)">Template:CurrentMonth</a>
 <a href="/index.php?title=Template:Currentday&amp;action=edit&amp;redlink=1" class="new" title="Template:Currentday (page does not exist)">Template:Currentday</a>
 <a href="/index.php?title=Template:CURreNTweEK&amp;action=edit&amp;redlink=1" class="new" title="Template:CURreNTweEK (page does not exist)">Template:CURreNTweEK</a>
 <a href="/index.php?title=Template:CurrentHour&amp;action=edit&amp;redlink=1" class="new" title="Template:CurrentHour (page does not exist)">Template:CurrentHour</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Template:CurrentMonth?action=edit&amp;redlink=1" title="Template:CurrentMonth" about="#mwt1" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"stx":"simple","a":{"href":"./Template:CurrentMonth"},"sa":{"href":"Template:CurrentMonth"},"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"CurrentMonth","href":"./Template:CurrentMonth"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:CurrentMonth"]}}'>Template:CurrentMonth</a>
+<a rel="mw:WikiLink" href="./Template:Currentday?action=edit&amp;redlink=1" title="Template:Currentday" about="#mwt2" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"stx":"simple","a":{"href":"./Template:Currentday"},"sa":{"href":"Template:Currentday"},"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"currentday","href":"./Template:Currentday"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:Currentday"]}}'>Template:Currentday</a>
+<a rel="mw:WikiLink" href="./Template:CURreNTweEK?action=edit&amp;redlink=1" title="Template:CURreNTweEK" about="#mwt3" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"stx":"simple","a":{"href":"./Template:CURreNTweEK"},"sa":{"href":"Template:CURreNTweEK"},"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"cURreNTweEK","href":"./Template:CURreNTweEK"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:CURreNTweEK"]}}'>Template:CURreNTweEK</a>
+<a rel="mw:WikiLink" href="./Template:CurrentHour?action=edit&amp;redlink=1" title="Template:CurrentHour" about="#mwt4" typeof="mw:Transclusion mw:LocalizedAttrs" class="new" data-parsoid='{"stx":"simple","a":{"href":"./Template:CurrentHour"},"sa":{"href":"Template:CurrentHour"},"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"currentHour","href":"./Template:CurrentHour"},"params":{},"i":0}}]}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Template:CurrentHour"]}}'>Template:CurrentHour</a></p>
 !! end
 
 !! test

@@ -252,6 +252,18 @@ File:Bad.jpg
 </ul>
 !! end
 
+!! article
+Link1
+!! text
+Dummy article to suppress redlinks in tests
+!! end
+
+!! article
+Link2
+!! text
+Dummy article to suppress redlinks in tests
+!! end
+
 !! test
 Allow empty links in image captions (T62753)
 !! options
@@ -264,11 +276,11 @@ wgParserEnableLegacyMediaDOM=false
 [[Link2]]
 ]]
 !! html/php
-<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" width="220" height="25" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a><figcaption>Caption <a href="/index.php?title=Link1&amp;action=edit&amp;redlink=1" class="new" title="Link1 (page does not exist)">Link1</a> [[]] <a href="/index.php?title=Link2&amp;action=edit&amp;redlink=1" class="new" title="Link2 (page does not exist)">Link2</a></figcaption></figure>
+<figure class="mw-default-size" typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" width="220" height="25" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" /></a><figcaption>Caption <a href="/wiki/Link1" title="Link1">Link1</a> [[]] <a href="/wiki/Link2" title="Link2">Link2</a></figcaption></figure>
 !! html/parsoid
-<figure class="mw-default-size" typeof="mw:File/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"Caption [[Link1]]\n[[]]\n[[Link2]]\n"}]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>Caption <a rel="mw:WikiLink" href="./Link1" title="Link1" data-parsoid='{"stx":"simple","a":{"href":"./Link1"},"sa":{"href":"Link1"}}' class="new">Link1</a>
+<figure class="mw-default-size" typeof="mw:File/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"Caption [[Link1]]\n[[]]\n[[Link2]]\n"}]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"25","width":"220"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>Caption <a rel="mw:WikiLink" href="./Link1" title="Link1" data-parsoid='{"stx":"simple","a":{"href":"./Link1"},"sa":{"href":"Link1"}}'>Link1</a>
 [[]]
-<a rel="mw:WikiLink" href="./Link2" title="Link2" data-parsoid='{"stx":"simple","a":{"href":"./Link2"},"sa":{"href":"Link2"}}' class="new">Link2</a>
+<a rel="mw:WikiLink" href="./Link2" title="Link2" data-parsoid='{"stx":"simple","a":{"href":"./Link2"},"sa":{"href":"Link2"}}'>Link2</a>
 </figcaption></figure>
 !! end
 
@@ -1303,8 +1315,8 @@ Image with table with rows from templates in caption
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:File/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"\n{|\n{{1x|{{!}} hi}}\n|}\n"}]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x"/></a><figcaption>
 <table>
-<tbody about="#mwt4" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"{{!}} hi"}},"i":0}},"\n"]}'><tr><td> hi</td></tr>
-</tbody></table>
+<tbody about="#mwt4" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"1x","href":"./Template:1x"},"params":{"1":{"wt":"{{!}} hi"}},"i":0}}]}'><tr><td> hi</td></tr></tbody>
+</table>
 </figcaption></figure>
 !! end
 
@@ -1647,18 +1659,22 @@ Add test with existing image page
 #<p><a href="/wiki/File:Test" title="Image:Test">Image:test</a>
 !! wikitext
 [[:Image:test]]
-!! html
+!! html/php
 <p><a href="/index.php?title=File:Test&amp;action=edit&amp;redlink=1" class="new" title="File:Test (page does not exist)">Image:test</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./File:Test?action=edit&amp;redlink=1" title="File:Test" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./File:Test"},"sa":{"href":":Image:test"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["File:Test"]}}'>Image:test</a></p>
 !! end
 
 !! test
 T20784  Link to non-existent image page with caption should use caption as link text
 !! wikitext
 [[:Image:test|caption]]
-!! html
+!! html/php
 <p><a href="/index.php?title=File:Test&amp;action=edit&amp;redlink=1" class="new" title="File:Test (page does not exist)">caption</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./File:Test?action=edit&amp;redlink=1" title="File:Test" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"piped","a":{"href":"./File:Test"},"sa":{"href":":Image:test"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["File:Test"]}}'>caption</a></p>
 !! end
 
 !! test
@@ -2424,6 +2440,12 @@ wgParserEnableLegacyMediaDOM=false
 <p>[[Test|<span class="mw-default-size" typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span>]]</p>
 !! end
 
+!! article
+No link
+!! text
+Dummy article to suppress redlinks in tests
+!! end
+
 !! test
 Template with thumb image (with link in description)
 !! config
@@ -2431,9 +2453,9 @@ wgParserEnableLegacyMediaDOM=false
 !! wikitext
 {{paramtest|param=[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]}}
 !! html/php
-<p>This is a test template with parameter </p><figure class="mw-default-size" typeof="mw:Error mw:File/Thumb"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Noimage.png" class="new" title="File:Noimage.png"><span class="mw-broken-media" data-width="180">File:Noimage.png</span></a><figcaption><a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">link</a> <a href="/index.php?title=No_link&amp;action=edit&amp;redlink=1" class="new" title="No link (page does not exist)">caption</a></figcaption></figure>
+<p>This is a test template with parameter </p><figure class="mw-default-size" typeof="mw:Error mw:File/Thumb"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Noimage.png" class="new" title="File:Noimage.png"><span class="mw-broken-media" data-width="180">File:Noimage.png</span></a><figcaption><a href="/wiki/No_link" title="No link">link</a> <a href="/wiki/No_link" title="No link">caption</a></figcaption></figure>
 !! html/parsoid
-<p about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"paramtest","href":"./Template:Paramtest"},"params":{"param":{"wt":"[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]"}},"i":0}}]}'>This is a test template with parameter </p><figure class="mw-default-size" typeof="mw:Error mw:File/Thumb" about="#mwt1" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Noimage.png"><span class="mw-broken-media" resource="./File:Noimage.png" data-width="180">File:Noimage.png</span></a><figcaption><a rel="mw:WikiLink" href="./No_link" title="No link" class="new">link</a> <a rel="mw:WikiLink" href="./No_link" title="No link" class="new">caption</a></figcaption></figure>
+<p about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[{"k":"param","named":true}]]}' data-mw='{"parts":[{"template":{"target":{"wt":"paramtest","href":"./Template:Paramtest"},"params":{"param":{"wt":"[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]"}},"i":0}}]}'>This is a test template with parameter </p><figure class="mw-default-size" typeof="mw:Error mw:File/Thumb" about="#mwt1" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Noimage.png"><span class="mw-broken-media" resource="./File:Noimage.png" data-width="180">File:Noimage.png</span></a><figcaption><a rel="mw:WikiLink" href="./No_link" title="No link">link</a> <a rel="mw:WikiLink" href="./No_link" title="No link">caption</a></figcaption></figure>
 !! end
 
 !! test
@@ -2483,7 +2505,7 @@ wgParserEnableLegacyMediaDOM=false
 <p><a href="/index.php?title=File:No_such.jpg&amp;action=edit&amp;redlink=1" class="new" title="File:No such.jpg (page does not exist)">Image:No such.jpg</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./File:No_such.jpg" title="File:No such.jpg" class="new">Image:No such.jpg</a></p>
+<p><a rel="mw:WikiLink" href="./File:No_such.jpg?action=edit&amp;redlink=1" title="File:No such.jpg" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./File:No_such.jpg"},"sa":{"href":":Image:No such.jpg"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["File:No such.jpg"]}}'>Image:No such.jpg</a></p>
 !! end
 
 !! test
@@ -2842,6 +2864,12 @@ File:Foobar.jpg|{{1x|ho}}
 </ul>
 !! end
 
+!! article
+Link
+!! text
+Dummy article to suppress redlinks in tests
+!! end
+
 # Ugh! The +standalone/+integrated repetition is because of the {{ns:-1}} wikitext that
 # renders as "-1" in standalone mode and "Special" in integrated mode.
 !! test
@@ -2862,7 +2890,7 @@ File:Foobar.jpg|Image caption
 </gallery>
 !! html/php
 <ul class="gallery mw-gallery-traditional">
-	<li class="gallerycaption"># This should not be a list item Text <b>bold</b> <a href="/index.php?title=Link&amp;action=edit&amp;redlink=1" class="new" title="Link (page does not exist)">link</a> Special <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a><figcaption>File in gallery caption</figcaption></figure></li>
+	<li class="gallerycaption"># This should not be a list item Text <b>bold</b> <a href="/wiki/Link" title="Link">link</a> Special <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a><figcaption>File in gallery caption</figcaption></figure></li>
 		<li class="gallerybox" style="width: 155px">
 			<div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description" title="Image caption"><img alt="Image caption" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></span></div>
 			<div class="gallerytext">
@@ -2872,13 +2900,13 @@ File:Foobar.jpg|Image caption
 		</li>
 </ul>
 !! html/parsoid+standalone
-<ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
-<li class="gallerycaption"># This should not be a list item  Text <b>bold</b> <a rel="mw:WikiLink" href="./Link" title="Link" class="new">link</a> <span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"ns:-1","function":"ns"},"params":{},"i":0}}]}'>-1</span>  <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x"/></a><figcaption>File in gallery caption</figcaption></figure></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description" title="Image caption"><img alt="Image caption" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x"/></a></span></div><div class="gallerytext">Image caption</div></li>
+<ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt4" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
+<li class="gallerycaption"># This should not be a list item  Text <b>bold</b> <a rel="mw:WikiLink" href="./Link" title="Link" data-parsoid='{"stx":"simple","a":{"href":"./Link"},"sa":{"href":"link"}}'>link</a> <span about="#mwt3" typeof="mw:Transclusion" data-parsoid='{"pi":[[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"ns:-1","function":"ns"},"params":{},"i":0}}]}'>-1</span>  <figure class="mw-default-size" typeof="mw:File/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"caption","ak":"File in gallery caption"}]}'><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"20","width":"180"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption>File in gallery caption</figcaption></figure></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File" data-parsoid='{"optList":[{"ck":"width","ak":"120x120px"},{"ck":"caption","ak":"Image caption"}]}'><a href="./File:Foobar.jpg" class="mw-file-description" title="Image caption"><img alt="Image caption" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"14","width":"120"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></div><div class="gallerytext">Image caption</div></li>
 </ul>
 !! html/parsoid+integrated
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
-<li class="gallerycaption"># This should not be a list item  Text <b>bold</b> <a rel="mw:WikiLink" href="./Link" title="Link" class="new">link</a> <span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"ns:-1","function":"ns"},"params":{},"i":0}}]}'>Special</span>  <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x"/></a><figcaption>File in gallery caption</figcaption></figure></li>
+<li class="gallerycaption"># This should not be a list item  Text <b>bold</b> <a rel="mw:WikiLink" href="./Link" title="Link">link</a> <span about="#mwt2" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"ns:-1","function":"ns"},"params":{},"i":0}}]}'>Special</span>  <figure class="mw-default-size" typeof="mw:File/Thumb"><a href="./File:Foobar.jpg" class="mw-file-description"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x"/></a><figcaption>File in gallery caption</figcaption></figure></li>
 <li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File"><a href="./File:Foobar.jpg" class="mw-file-description" title="Image caption"><img alt="Image caption" resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x"/></a></span></div><div class="gallerytext">Image caption</div></li>
 </ul>
 !! end
@@ -4005,6 +4033,12 @@ wgParserEnableLegacyMediaDOM=false
 <p><span class="mw-default-size" typeof="mw:File" data-parsoid='{"optList":[{"ck":"link","ak":"link=&lt;"},{"ck":"page","ak":"page=2"}]}' data-mw='{"attribs":[["link",{"txt":"&lt;"}],["page",{"txt":"2"}]]}'><a href="./File:LoremIpsum.djvu?page=2" class="mw-file-description"><img resource="./File:LoremIpsum.djvu" src="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-2480px-LoremIpsum.djvu.jpg" decoding="async" data-file-width="2480" data-file-height="3508" data-file-type="office" height="3508" width="2480" srcset="http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-3720px-LoremIpsum.djvu.jpg 1.5x, http://example.com/images/thumb/5/5f/LoremIpsum.djvu/page2-4960px-LoremIpsum.djvu.jpg 2x"/></a></span></p>
 !! end
 
+!! article
+Test"123
+!! text
+Dummy article to suppress redlinks in tests
+!! end
+
 ## Roundtripping the gallery here without normalization needs T252246 / T252246
 !! test
 Percent decode titles in the link option (T216003#7836261)
@@ -4022,7 +4056,7 @@ File:Foobar.jpg|link=Test%22123
 File:Foobar.jpg|link=[[Test%22123]]
 </gallery>
 !! html/php
-<p><a href="/index.php?title=Test%22123&amp;action=edit&amp;redlink=1" class="new" title="Test&quot;123 (page does not exist)">Test"123</a>
+<p><a href="/wiki/Test%22123" title="Test&quot;123">Test"123</a>
 <span class="mw-default-size" typeof="mw:File"><a href="/wiki/Test%22123" title="Test&quot;123"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></span>
 <span class="mw-default-size" typeof="mw:File"><a href="/wiki/Test%22123" title="Test&quot;123"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a></span>
 </p>
@@ -4039,13 +4073,13 @@ File:Foobar.jpg|link=[[Test%22123]]
 		</li>
 </ul>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href='./Test"123' title='Test"123' class="new" data-parsoid='{"stx":"simple","a":{"href":"./Test\"123"},"sa":{"href":"Test%22123"}}'>Test"123</a>
-<span class="mw-default-size" typeof="mw:File" data-parsoid='{"optList":[{"ck":"link","ak":"link=Test%22123"}]}'><a href='./Test"123' title='Test"123' data-parsoid="{}"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></span>
-<span class="mw-default-size" typeof="mw:File" data-parsoid='{"optList":[{"ck":"link","ak":"link=[[Test%22123]]"}]}'><a href='./Test"123' title='Test"123' data-parsoid="{}"><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941"/></a></span></p>
+<p><a rel="mw:WikiLink" href='./Test"123' title='Test"123' data-parsoid='{"stx":"simple","a":{"href":"./Test\"123"},"sa":{"href":"Test%22123"}}'>Test"123</a>
+<span class="mw-default-size" typeof="mw:File" data-parsoid='{"optList":[{"ck":"link","ak":"link=Test%22123"}]}'><a href='./Test"123' title='Test"123'><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span>
+<span class="mw-default-size" typeof="mw:File" data-parsoid='{"optList":[{"ck":"link","ak":"link=[[Test%22123]]"}]}'><a href='./Test"123' title='Test"123'><img resource="./File:Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="220" width="1941" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"220","width":"1941"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></p>
 
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt3" data-mw='{"name":"gallery","attrs":{},"body":{}}'>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File" data-parsoid='{"optList":[{"ck":"width","ak":"120x120px"},{"ck":"link","ak":"link=Test%22123"}]}'><a href='./Test"123' title='Test"123'><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x"/></a></span></div><div class="gallerytext"></div></li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File" data-parsoid='{"optList":[{"ck":"width","ak":"120x120px"},{"ck":"link","ak":"link=[[Test%22123]]"}]}'><a href='./Test"123' title='Test"123'><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x"/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File" data-parsoid='{"optList":[{"ck":"width","ak":"120x120px"},{"ck":"link","ak":"link=Test%22123"}]}'><a href='./Test"123' title='Test"123'><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"14","width":"120"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:File" data-parsoid='{"optList":[{"ck":"width","ak":"120x120px"},{"ck":"link","ak":"link=[[Test%22123]]"}]}'><a href='./Test"123' title='Test"123'><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="14" width="120" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" data-parsoid='{"a":{"resource":"./File:Foobar.jpg","height":"14","width":"120"},"sa":{"resource":"File:Foobar.jpg"}}'/></a></span></div><div class="gallerytext"></div></li>
 </ul>
 !! end
 
@@ -4124,7 +4158,7 @@ wgParserEnableLegacyMediaDOM=false
 !! html/php
 <figure class="mw-default-size mw-halign-right" typeof="mw:File/Thumb"><a href="/wiki/Datei:Foobar.jpg" class="mw-file-description"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a><figcaption><a href="http://en.wikipedia.org/wiki/Foo" class="extiw" title="wikipedia:Foo">Wikipedia:Foo</a> bar</figcaption></figure>
 !! html/parsoid+standalone
-<figure class="mw-default-size mw-halign-right" typeof="mw:File/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"right","ak":"right"},{"ck":"caption","ak":"[[:Wikipedia:Foo]] bar"}]}'><a href="./Datei:Foobar.jpg" class="mw-file-description"><img resource="./Datei:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" data-parsoid='{"a":{"resource":"./Datei:Foobar.jpg","height":"20","width":"180"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption><a rel="mw:WikiLink" href="./Wikipedia:Foo" title="Wikipedia:Foo" class="new" data-parsoid='{"stx":"simple","a":{"href":"./Wikipedia:Foo"},"sa":{"href":":Wikipedia:Foo"}}'>Wikipedia:Foo</a> bar</figcaption></figure>
+<figure class="mw-default-size mw-halign-right" typeof="mw:File/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"right","ak":"right"},{"ck":"caption","ak":"[[:Wikipedia:Foo]] bar"}]}'><a href="./Datei:Foobar.jpg" class="mw-file-description"><img resource="./Datei:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" data-parsoid='{"a":{"resource":"./Datei:Foobar.jpg","height":"20","width":"180"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption><a rel="mw:WikiLink" href="./Wikipedia:Foo?action=edit&amp;redlink=1" title="Wikipedia:Foo" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./Wikipedia:Foo"},"sa":{"href":":Wikipedia:Foo"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["Wikipedia:Foo"]}}'>Wikipedia:Foo</a> bar</figcaption></figure>
 !! html/parsoid+integrated
 <figure class="mw-default-size mw-halign-right" typeof="mw:File/Thumb" data-parsoid='{"optList":[{"ck":"thumbnail","ak":"thumb"},{"ck":"right","ak":"right"},{"ck":"caption","ak":"[[:Wikipedia:Foo]] bar"}]}'><a href="./Datei:Foobar.jpg" class="mw-file-description"><img resource="./Datei:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="20" width="180" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" data-parsoid='{"a":{"resource":"./Datei:Foobar.jpg","height":"20","width":"180"},"sa":{"resource":"File:Foobar.jpg"}}'/></a><figcaption><a rel="mw:WikiLink/Interwiki" href="http://en.wikipedia.org/wiki/Foo" title="wikipedia:Foo" class="extiw">Wikipedia:Foo</a> bar</figure>
 !! end
