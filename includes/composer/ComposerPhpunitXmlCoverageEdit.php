@@ -1,6 +1,4 @@
 <?php
-use PHPUnit\Util\Xml\Loader as XmlLoader;
-
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +36,8 @@ class ComposerPhpunitXmlCoverageEdit {
 				'e.g. "composer phpunit:coverage-edit -- extensions/BoilerPlate"' );
 		}
 		$project = current( $args );
-		$phpunitXml = ( new XmlLoader )->loadFile( $IP . '/phpunit.xml.dist' );
+		$phpunitXml = new DomDocument();
+		$phpunitXml->load( $IP . '/phpunit.xml.dist' );
 		$include = iterator_to_array( $phpunitXml->getElementsByTagName( 'include' ) );
 		/** @var DOMNode $childNode */
 		foreach ( $include as $childNode ) {
