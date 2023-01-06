@@ -28,6 +28,7 @@ $cfg['minimum_target_php_version'] = '7.4.3';
 $cfg['file_list'] = array_merge(
 	$cfg['file_list'],
 	class_exists( Socket::class ) ? [] : [ '.phan/stubs/Socket.php' ],
+	class_exists( ReturnTypeWillChange::class ) ? [] : [ '.phan/stubs/ReturnTypeWillChange.php' ],
 	class_exists( AllowDynamicProperties::class ) ? [] : [ '.phan/stubs/AllowDynamicProperties.php' ],
 	[
 		// This makes constants and globals known to Phan before processing all other files.
