@@ -431,15 +431,18 @@ class UserOptionsManager extends UserOptionsLookup {
 			$defaultValue = $this->defaultOptionsLookup->getDefaultOption( $key );
 			$oldValue = $this->optionsFromDb[$userKey][$key] ?? null;
 			if ( $value === null || $this->isValueEqual( $value, $defaultValue ) ) {
-				$keysToDelete[] = $key;
+				if ( array_key_exists( $key, $this->optionsFromDb[$userKey] ) ) {
+					// Delete the default value from the database
+					$keysToDelete[] = $key;
+				}
 			} elseif ( !$this->isValueEqual( $value, $oldValue ) ) {
-				// Update by deleting and reinserting
+				// Update by deleting (if old value exists) and reinserting
 				$rowsToInsert[] = [
 					'up_user' => $user->getId(),
 					'up_property' => $key,
 					'up_value' => $value,
 				];
-				if ( $oldValue !== null ) {
+				if ( array_key_exists( $key, $this->optionsFromDb[$userKey] ) ) {
 					$keysToDelete[] = $key;
 				}
 			}
