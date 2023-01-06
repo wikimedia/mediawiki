@@ -2731,8 +2731,8 @@ class Parser {
 			# Self-link checking. For some languages, variants of the title are checked in
 			# LinkHolderArray::doVariants() to allow batching the existence checks necessary
 			# for linking to a different variant.
-			if ( $ns !== NS_SPECIAL && $nt->equals( $this->getTitle() ) && !$nt->hasFragment() ) {
-				$s .= $prefix . Linker::makeSelfLinkObj( $nt, $text, '', $trail );
+			if ( $ns !== NS_SPECIAL && $nt->equals( $this->getTitle() ) ) {
+				$s .= $prefix . Linker::makeSelfLinkObj( $nt, $text, '', $trail, '', $nt->getFragment() );
 				continue;
 			}
 
