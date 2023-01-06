@@ -155,8 +155,8 @@ class Preprocessor_Hash extends Preprocessor {
 			$ignoredTags = [ 'includeonly', '/includeonly' ];
 			$ignoredElements = [ 'noinclude' ];
 			$xmlishElements[] = 'noinclude';
-			if ( strpos( $text, '<onlyinclude>' ) !== false
-				&& strpos( $text, '</onlyinclude>' ) !== false
+			if ( str_contains( $text, '<onlyinclude>' )
+				&& str_contains( $text, '</onlyinclude>' )
 			) {
 				$enableOnlyinclude = true;
 			}
@@ -210,7 +210,7 @@ class Preprocessor_Hash extends Preprocessor {
 					$accum[] = [ 'ignore', [ substr( $text, $i ) ] ];
 					break;
 				}
-				$tagEndPos = $startPos + strlen( '<onlyinclude>' ); // past-the-end
+				$tagEndPos = $startPos + 13; // past-the-end of <onlyinclude>
 				$accum[] = [ 'ignore', [ substr( $text, $i, $tagEndPos - $i ) ] ];
 				$i = $tagEndPos;
 				$findOnlyinclude = false;
@@ -243,7 +243,7 @@ class Preprocessor_Hash extends Preprocessor {
 					$i += $literalLength;
 				}
 				if ( $i >= $lengthText ) {
-					if ( $currentClosing == "\n" ) {
+					if ( $currentClosing === "\n" ) {
 						// Do a past-the-end run to finish off the heading
 						$curChar = '';
 						$found = 'line-end';
@@ -253,25 +253,25 @@ class Preprocessor_Hash extends Preprocessor {
 					}
 				} else {
 					$curChar = $curTwoChar = $text[$i];
-					if ( ( $i + 1 ) < $lengthText ) {
+					if ( $i + 1 < $lengthText ) {
 						$curTwoChar .= $text[$i + 1];
 					}
-					if ( $curChar == '|' ) {
+					if ( $curChar === '|' ) {
 						$found = 'pipe';
-					} elseif ( $curChar == '=' ) {
+					} elseif ( $curChar === '=' ) {
 						$found = 'equals';
-					} elseif ( $curChar == '<' ) {
+					} elseif ( $curChar === '<' ) {
 						$found = 'angle';
-					} elseif ( $curChar == "\n" ) {
+					} elseif ( $curChar === "\n" ) {
 						if ( $inHeading ) {
 							$found = 'line-end';
 						} else {
 							$found = 'line-start';
 						}
-					} elseif ( $curTwoChar == $currentClosing ) {
+					} elseif ( $curTwoChar === $currentClosing ) {
 						$found = 'close';
 						$curChar = $curTwoChar;
-					} elseif ( $curChar == $currentClosing ) {
+					} elseif ( $curChar === $currentClosing ) {
 						$found = 'close';
 					} elseif ( isset( $this->rules[$curTwoChar] ) ) {
 						$curChar = $curTwoChar;
@@ -286,7 +286,7 @@ class Preprocessor_Hash extends Preprocessor {
 						# We also may get '-' and '}' characters here which
 						# don't match -{ or $currentClosing.  Add these to
 						# output and continue.
-						if ( $curChar == '-' || $curChar == '}' ) {
+						if ( $curChar === '-' || $curChar === '}' ) {
 							self::addLiteral( $accum, $curChar );
 						}
 						++$i;
@@ -295,7 +295,7 @@ class Preprocessor_Hash extends Preprocessor {
 				}
 			}
 
-			if ( $found == 'angle' ) {
+			if ( $found === 'angle' ) {
 				$matches = false;
 				// Handle </onlyinclude>
 				if ( $enableOnlyinclude
@@ -313,7 +313,7 @@ class Preprocessor_Hash extends Preprocessor {
 					continue;
 				}
 				// Handle comments
-				if ( isset( $matches[2] ) && $matches[2] == '!--' ) {
+				if ( isset( $matches[2] ) && $matches[2] === '!--' ) {
 					// To avoid leaving blank lines, when a sequence of
 					// space-separated comments is both preceded and followed by
 					// a newline (ignoring spaces), then
@@ -337,22 +337,22 @@ class Preprocessor_Hash extends Preprocessor {
 						// Keep looking forward as long as we're finding more
 						// comments.
 						$comments = [ [ $wsStart, $wsEnd ] ];
-						while ( substr( $text, $wsEnd + 1, 4 ) == '<!--' ) {
+						while ( substr( $text, $wsEnd + 1, 4 ) === '<!--' ) {
 							$c = strpos( $text, '-->', $wsEnd + 5 );
 							if ( $c === false ) {
 								break;
 							}
-							$c = $c + 2 + strspn( $text, " \t", $c + 3 );
+							$c += 2 + strspn( $text, " \t", $c + 3 );
 							$comments[] = [ $wsEnd + 1, $c ];
 							$wsEnd = $c;
 						}
 
 						// Eat the line if possible
-						// TODO: This could theoretically be done if $wsStart == 0, i.e. for comments at
+						// TODO: This could theoretically be done if $wsStart === 0, i.e. for comments at
 						// the overall start. That's not how Sanitizer::removeHTMLcomments() did it, but
 						// it's a possible beneficial b/c break.
-						if ( $wsStart > 0 && substr( $text, $wsStart - 1, 1 ) == "\n"
-							&& substr( $text, $wsEnd + 1, 1 ) == "\n"
+						if ( $wsStart > 0 && substr( $text, $wsStart - 1, 1 ) === "\n"
+							&& substr( $text, $wsEnd + 1, 1 ) === "\n"
 						) {
 							// Remove leading whitespace from the end of the accumulator
 							$wsLength = $i - $wsStart;
@@ -370,7 +370,7 @@ class Preprocessor_Hash extends Preprocessor {
 							foreach ( $comments as $j => $com ) {
 								$startPos = $com[0];
 								$endPos = $com[1] + 1;
-								if ( $j == ( count( $comments ) - 1 ) ) {
+								if ( $j === count( $comments ) - 1 ) {
 									break;
 								}
 								$inner = substr( $text, $startPos, $endPos - $startPos );
@@ -387,7 +387,7 @@ class Preprocessor_Hash extends Preprocessor {
 
 						if ( $stack->top ) {
 							$part = $stack->top->getCurrentPart();
-							if ( !( isset( $part->commentEnd ) && $part->commentEnd == $wsStart - 1 ) ) {
+							if ( !( isset( $part->commentEnd ) && $part->commentEnd === $wsStart - 1 ) ) {
 								$part->visualEnd = $wsStart;
 							}
 							// Else comments abutting, no change in visual end
@@ -400,7 +400,6 @@ class Preprocessor_Hash extends Preprocessor {
 					continue;
 				}
 				$name = $matches[1];
-				$lowerName = strtolower( $name );
 				$attrStart = $i + strlen( $name ) + 1;
 
 				// Find end of tag
@@ -414,6 +413,7 @@ class Preprocessor_Hash extends Preprocessor {
 					continue;
 				}
 
+				$lowerName = strtolower( $name );
 				// Handle ignored tags
 				if ( in_array( $lowerName, $ignoredTags ) ) {
 					$accum[] = [ 'ignore', [ substr( $text, $i, $tagEndPos - $i + 1 ) ] ];
@@ -422,7 +422,7 @@ class Preprocessor_Hash extends Preprocessor {
 				}
 
 				$tagStartPos = $i;
-				if ( $text[$tagEndPos - 1] == '/' ) {
+				if ( $text[$tagEndPos - 1] === '/' ) {
 					// Short end tag
 					$attrEnd = $tagEndPos - 1;
 					$inner = null;
@@ -436,9 +436,9 @@ class Preprocessor_Hash extends Preprocessor {
 						preg_match( "/<\/" . preg_quote( $name, '/' ) . "\s*>/i",
 							$text, $matches, PREG_OFFSET_CAPTURE, $tagEndPos + 1 )
 					) {
-						$inner = substr( $text, $tagEndPos + 1, $matches[0][1] - $tagEndPos - 1 );
-						$i = $matches[0][1] + strlen( $matches[0][0] );
-						$close = $matches[0][0];
+						[ $close, $closeTagStartPos ] = $matches[0];
+						$inner = substr( $text, $tagEndPos + 1, $closeTagStartPos - $tagEndPos - 1 );
+						$i = $closeTagStartPos + strlen( $close );
 					} else {
 						// No end tag
 						if ( in_array( $name, $xmlishAllowMissingEndTag ) ) {
@@ -449,8 +449,7 @@ class Preprocessor_Hash extends Preprocessor {
 						} else {
 							// Don't match the tag, treat opening tag as literal and resume parsing.
 							$i = $tagEndPos + 1;
-							self::addLiteral( $accum,
-								substr( $text, $tagStartPos, $tagEndPos + 1 - $tagStartPos ) );
+							self::addLiteral( $accum, substr( $text, $tagStartPos, $tagEndPos + 1 - $tagStartPos ) );
 							// Cache results, otherwise we have O(N^2) performance for input like <foo><foo><foo>...
 							$noMoreClosingTag[$lowerName] = true;
 							continue;
@@ -473,7 +472,8 @@ class Preprocessor_Hash extends Preprocessor {
 
 				$children = [
 					[ 'name', [ $name ] ],
-					[ 'attr', [ $attr ] ] ];
+					[ 'attr', [ $attr ] ],
+				];
 				if ( $inner !== null ) {
 					$children[] = [ 'inner', [ $inner ] ];
 				}
@@ -481,7 +481,7 @@ class Preprocessor_Hash extends Preprocessor {
 					$children[] = [ 'close', [ $close ] ];
 				}
 				$accum[] = [ 'ext', $children ];
-			} elseif ( $found == 'line-start' ) {
+			} elseif ( $found === 'line-start' ) {
 				// Is this the start of a heading?
 				// Line break belongs before the heading element in any case
 				if ( $fakeLineStart ) {
@@ -492,8 +492,8 @@ class Preprocessor_Hash extends Preprocessor {
 				}
 
 				// Examine upto 6 characters
-				$count = strspn( $text, '=', $i, min( strlen( $text ), 6 ) );
-				if ( $count == 1 && $findEquals ) {
+				$count = strspn( $text, '=', $i, min( $lengthText, 6 ) );
+				if ( $count === 1 && $findEquals ) {
 					// DWIM: This looks kind of like a name/value separator.
 					// Let's let the equals handler have it and break the potential
 					// heading. This is heuristic, but AFAICT the methods for
@@ -504,7 +504,8 @@ class Preprocessor_Hash extends Preprocessor {
 						'close' => "\n",
 						'parts' => [ new PPDPart_Hash( str_repeat( '=', $count ) ) ],
 						'startPos' => $i,
-						'count' => $count ];
+						'count' => $count,
+					];
 					$stack->push( $piece );
 					$accum =& $stack->getAccum();
 					$stackFlags = $stack->getFlags();
@@ -519,7 +520,7 @@ class Preprocessor_Hash extends Preprocessor {
 					}
 					$i += $count;
 				}
-			} elseif ( $found == 'line-end' ) {
+			} elseif ( $found === 'line-end' ) {
 				$piece = $stack->top;
 				// A heading must be open, otherwise \n wouldn't have been in the search list
 				// FIXME: Don't use assert()
@@ -531,27 +532,25 @@ class Preprocessor_Hash extends Preprocessor {
 				// (end anchor, etc.) are inefficient.
 				$wsLength = strspn( $revText, " \t", $lengthText - $i );
 				$searchStart = $i - $wsLength;
-				if ( isset( $part->commentEnd ) && $searchStart - 1 == $part->commentEnd ) {
+				if ( isset( $part->commentEnd ) && $searchStart - 1 === $part->commentEnd ) {
 					// Comment found at line end
 					// Search for equals signs before the comment
 					$searchStart = $part->visualEnd;
 					$searchStart -= strspn( $revText, " \t", $lengthText - $searchStart );
 				}
-				$count = $piece->count;
 				$equalsLength = strspn( $revText, '=', $lengthText - $searchStart );
 				if ( $equalsLength > 0 ) {
-					if ( $searchStart - $equalsLength == $piece->startPos ) {
+					if ( $searchStart - $equalsLength === $piece->startPos ) {
 						// This is just a single string of equals signs on its own line
 						// Replicate the doHeadings behavior /={count}(.+)={count}/
 						// First find out how many equals signs there really are (don't stop at 6)
-						$count = $equalsLength;
-						if ( $count < 3 ) {
+						if ( $equalsLength < 3 ) {
 							$count = 0;
 						} else {
-							$count = min( 6, intval( ( $count - 1 ) / 2 ) );
+							$count = min( 6, intval( ( $equalsLength - 1 ) / 2 ) );
 						}
 					} else {
-						$count = min( $equalsLength, $count );
+						$count = min( $equalsLength, $piece->count );
 					}
 					if ( $count > 0 ) {
 						// Normal match, output <h>
@@ -594,16 +593,16 @@ class Preprocessor_Hash extends Preprocessor {
 				// another heading. Infinite loops are avoided because the next iteration MUST
 				// hit the heading open case above, which unconditionally increments the
 				// input pointer.
-			} elseif ( $found == 'open' ) {
+			} elseif ( $found === 'open' ) {
 				# count opening brace characters
 				$curLen = strlen( $curChar );
-				$count = ( $curLen > 1 ) ?
+				$count = $curLen > 1
 					# allow the final character to repeat
-					strspn( $text, $curChar[$curLen - 1], $i + 1 ) + 1 :
-					strspn( $text, $curChar, $i );
+					? strspn( $text, $curChar[$curLen - 1], $i + 1 ) + 1
+					: strspn( $text, $curChar, $i );
 
 				$savedPrefix = '';
-				$lineStart = ( $i > 0 && $text[$i - 1] == "\n" );
+				$lineStart = $i > 0 && $text[$i - 1] === "\n";
 
 				if ( $curChar === "-{" && $count > $curLen ) {
 					// -{ => {{ transition because rightmost wins
@@ -642,7 +641,7 @@ class Preprocessor_Hash extends Preprocessor {
 					self::addLiteral( $accum, $savedPrefix . str_repeat( $curChar, $count ) );
 				}
 				$i += $count;
-			} elseif ( $found == 'close' ) {
+			} elseif ( $found === 'close' ) {
 				/** @var PPDStackElement_Hash $piece */
 				$piece = $stack->top;
 				'@phan-var PPDStackElement_Hash $piece';
@@ -652,8 +651,9 @@ class Preprocessor_Hash extends Preprocessor {
 					$maxCount--; # don't try to match closing '-' as a '}'
 				}
 				$curLen = strlen( $curChar );
-				$count = ( $curLen > 1 ) ? $curLen :
-					strspn( $text, $curChar, $i, $maxCount );
+				$count = $curLen > 1
+					? $curLen
+					: strspn( $text, $curChar, $i, $maxCount );
 
 				# check for maximum matching characters (if there are 5 closing
 				# characters, we will probably need only 3 - depending on the rules)
@@ -697,9 +697,10 @@ class Preprocessor_Hash extends Preprocessor {
 
 					# The invocation is at the start of the line if lineStart is set in
 					# the stack, and all opening brackets are used up.
-					if ( $maxCount == $matchingCount &&
-							!empty( $piece->lineStart ) &&
-							strlen( $piece->savedPrefix ) == 0 ) {
+					if ( $maxCount === $matchingCount &&
+						!empty( $piece->lineStart ) &&
+						$piece->savedPrefix === ''
+					) {
 						$children[] = [ '@lineStart', [ 1 ] ];
 					}
 					$titleNode = [ 'title', $titleAccum ];
@@ -738,7 +739,7 @@ class Preprocessor_Hash extends Preprocessor {
 					if ( $piece->count >= $min ) {
 						$stack->push( $piece );
 						$accum =& $stack->getAccum();
-					} elseif ( $piece->count == 1 && $piece->open === '{' && $piece->savedPrefix === '-' ) {
+					} elseif ( $piece->count === 1 && $piece->open === '{' && $piece->savedPrefix === '-' ) {
 						$piece->savedPrefix = '';
 						$piece->open = '-{';
 						$piece->count = 2;
@@ -770,12 +771,12 @@ class Preprocessor_Hash extends Preprocessor {
 
 				# Add XML element to the enclosing accumulator
 				array_splice( $accum, count( $accum ), 0, $element );
-			} elseif ( $found == 'pipe' ) {
+			} elseif ( $found === 'pipe' ) {
 				$findEquals = true; // shortcut for getFlags()
 				$stack->addPart();
 				$accum =& $stack->getAccum();
 				++$i;
-			} elseif ( $found == 'equals' ) {
+			} elseif ( $found === 'equals' ) {
 				$findEquals = false; // shortcut for getFlags()
 				$accum[] = [ 'equals', [ '=' ] ];
 				$stack->getCurrentPart()->eqpos = count( $accum ) - 1;
