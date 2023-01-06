@@ -2460,7 +2460,7 @@
 	"addedwatchexpiry-options-label": "Период времени в списке наблюдения:",
 	"addedwatchexpiryhours": "Страница «[[:$1]]» и её обсуждение были добавлены в ваш [[Special:Watchlist|список наблюдения]] на несколько часов.",
 	"addedwatchexpiryhours-talk": "Обсуждение «[[:$1]]» и связанная с ним страница были добавлены в ваш [[Special:Watchlist|список наблюдения]] на несколько часов.",
-	"addedwatchexpirytext": "Страница «[[:$1]]» и её обсуждение были добавлены в ваш [[Special:Watchlist|список наблюдения]] на {{GRAMMAR:accusative|$2}}.",
+	"addedwatchexpirytext": "Страница «[[:$1]]» вместе с её обсуждением были добавлены в ваш [[Special:Watchlist|список наблюдения]] на время (срок: $2).",
 	"addedwatchexpirytext-talk": "Обсуждение «[[:$1]]» и связанная с ним страница были добавлены в ваш [[Special:Watchlist|список наблюдения]] на {{GRAMMAR:accusative|$2}}.",
 	"addedwatchindefinitelytext": "Страница «[[:$1]]» и её обсуждение были добавлены в ваш [[Special:Watchlist|список наблюдения]] навсегда.",
 	"addedwatchindefinitelytext-talk": "Обсуждение «[[:$1]]» и связанная с ним страница были добавлены в ваш [[Special:Watchlist|список наблюдения]] навсегда.",

@@ -3369,6 +3369,7 @@
 	"tag-filter": "Filtru pentru [[Special:Tags|etichete]]:",
 	"tag-filter-submit": "Filtru",
 	"tag-hidden": "$1 (etichetă ascunsă)",
+	"tag-link-other-edits": "alte editări",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etichetă|Etichete}}]]: $2",
 	"tag-mw-contentmodelchange": "schimbare a modelului de conținut",
 	"tag-mw-contentmodelchange-description": "Editări ce  [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel schimbă modelul de conținut] al unei pagini",

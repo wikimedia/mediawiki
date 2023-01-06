@@ -228,6 +228,8 @@
 	"right-reupload-own": "覆蓋自己上載的現有檔案",
 	"right-viewmyprivateinfo": "編輯自己的私隱數據（如：電子郵件位址及真實姓名）",
 	"right-editmyprivateinfo": "編輯自己的私隱數據（如：電子郵件位址及真實姓名）",
+	"newuserlogpage": "用戶建立日誌",
+	"rightslog": "用戶權限日誌",
 	"action-block": "封鎖此用戶的編輯權限",
 	"recentchanges": "最近修改",
 	"recentchanges-label-newpage": "此編輯建立了新頁面",

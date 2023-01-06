@@ -2585,6 +2585,7 @@
 	"tags": "Mümkün dəyişiklik etiketləri",
 	"tag-filter": "[[Special:Tags|Etiket]] süzgəci:",
 	"tag-filter-submit": "Filtrlər",
+	"tag-link-other-edits": "digər redaktələr",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Teq|Teqlər}}]]: $2",
 	"tag-mw-contentmodelchange": "məzmunun maketinin dəyişilməsi",
 	"tag-mw-new-redirect": "Yeni yönləndirmə",

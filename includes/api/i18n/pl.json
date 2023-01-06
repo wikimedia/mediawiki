@@ -829,6 +829,7 @@
 	"api-help-param-deprecated": "Przestarzałe.",
 	"api-help-param-internal": "Wewnętrzny.",
 	"api-help-datatypes-header": "Typy danych",
+	"api-help-param-type-presenceboolean": "Typ: wartość boolowska ([[Special:ApiHelp/main#main/datatype/boolean|szczegóły]])",
 	"api-help-param-type-timestamp": "Typ: {{PLURAL:$1|1=znacznik czasu|2=lista znaczników czasu}} ([[Special:ApiHelp/main#main/datatype/timestamp|dozwolone formaty]])",
 	"api-help-param-type-enum": "{{PLURAL:$1|1=Jedna z następujących wartości|2=Wartości (oddziel za pomocą <kbd>{{!}}</kbd> lub [[Special:ApiHelp/main#main/datatypes|alternatywy]])}}: $2",
 	"api-help-param-multi-separate": "Oddziel wartości za pomocą <kbd>|</kbd> lub [[Special:ApiHelp/main#main/datatypes|alternatywy]].",

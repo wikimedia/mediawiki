@@ -2731,6 +2731,7 @@
 	"tag-filter": "Filtra pi [[Special:Tags|etichetta]]",
 	"tag-filter-submit": "Filtra",
 	"tag-hidden": "$1 (etichetta ammucciata)",
+	"tag-link-other-edits": "àutri canciamenti",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etichetta|Etichetti}}]]: $2",
 	"tag-mw-new-redirect": "Novu rimannu",
 	"tag-mw-removed-redirect": "Rimannu livatu",
