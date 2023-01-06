@@ -28,6 +28,16 @@ class SlideshowImageGallery extends TraditionalImageGallery {
 	}
 
 	/**
+	 * @inheritDoc
+	 */
+	protected function getHtmlItemAttributes( $thumb, $width, $alt = '' ) {
+		return parent::getHtmlItemAttributes( $thumb, $width, $alt ) + [
+			'data-alt' => $alt,
+			'data-src' => $thumb->getUrl(),
+		];
+	}
+
+	/**
 	 * Add javascript adds interface elements
 	 * @return array
 	 */
