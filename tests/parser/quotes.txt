@@ -13,6 +13,18 @@ Main Page
 blah blah
 !! endarticle
 
+!! article
+Lunar Prospector
+!! text
+was flying around the moon
+!! end
+
+!! article
+Accademia della Crusca
+!! text
+foo
+!! end
+
 !! test
 Quotes
 !! wikitext
@@ -129,9 +141,11 @@ Italics and bold
 Italics and possessives (1)
 !! wikitext
 obtained by ''[[Lunar Prospector]]'''s gamma-ray spectrometer
-!! html
-<p>obtained by <i><a href="/index.php?title=Lunar_Prospector&amp;action=edit&amp;redlink=1" class="new" title="Lunar Prospector (page does not exist)">Lunar Prospector</a>'</i>s gamma-ray spectrometer
+!! html/php
+<p>obtained by <i><a href="/wiki/Lunar_Prospector" title="Lunar Prospector">Lunar Prospector</a>'</i>s gamma-ray spectrometer
 </p>
+!! html/parsoid
+<p>obtained by <i><a rel="mw:WikiLink" href="./Lunar_Prospector" title="Lunar Prospector" data-parsoid='{"stx":"simple","a":{"href":"./Lunar_Prospector"},"sa":{"href":"Lunar Prospector"}}'>Lunar Prospector</a>'</i>s gamma-ray spectrometer</p>
 !! end
 
 # this example taken from [[en:Flaming Pie]] (T51926)
@@ -149,9 +163,11 @@ Italics and possessives (2)
 Italics and possessives (3)
 !! wikitext
 The first monolingual dictionary written in a Romance language was ''Sebastián Covarrubias''' ''Tesoro de la lengua castellana o española'', published in 1611 in Madrid. In 1612 the first edition of the ''Vocabolario dell'[[Accademia della Crusca]]'', for Italian, was published. In 1690 in Rotterdam was published, posthumously, the ''Dictionnaire Universel''.
-!! html
-<p>The first monolingual dictionary written in a Romance language was <i>Sebastián Covarrubias'</i> <i>Tesoro de la lengua castellana o española</i>, published in 1611 in Madrid. In 1612 the first edition of the <i>Vocabolario dell'<a href="/index.php?title=Accademia_della_Crusca&amp;action=edit&amp;redlink=1" class="new" title="Accademia della Crusca (page does not exist)">Accademia della Crusca</a></i>, for Italian, was published. In 1690 in Rotterdam was published, posthumously, the <i>Dictionnaire Universel</i>.
+!! html/php
+<p>The first monolingual dictionary written in a Romance language was <i>Sebastián Covarrubias'</i> <i>Tesoro de la lengua castellana o española</i>, published in 1611 in Madrid. In 1612 the first edition of the <i>Vocabolario dell'<a href="/wiki/Accademia_della_Crusca" title="Accademia della Crusca">Accademia della Crusca</a></i>, for Italian, was published. In 1690 in Rotterdam was published, posthumously, the <i>Dictionnaire Universel</i>.
 </p>
+!! html/parsoid
+<p>The first monolingual dictionary written in a Romance language was <i>Sebastián Covarrubias'</i> <i>Tesoro de la lengua castellana o española</i>, published in 1611 in Madrid. In 1612 the first edition of the <i>Vocabolario dell'<a rel="mw:WikiLink" href="./Accademia_della_Crusca" title="Accademia della Crusca" data-parsoid='{"stx":"simple","a":{"href":"./Accademia_della_Crusca"},"sa":{"href":"Accademia della Crusca"}}'>Accademia della Crusca</a></i>, for Italian, was published. In 1690 in Rotterdam was published, posthumously, the <i>Dictionnaire Universel</i>.</p>
 !! end
 
 ###

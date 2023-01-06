@@ -1,0 +1,305 @@
+# The parsoid-compatible option below is only relevant when we are running
+# parser tests in integrated mode with Parsoid. This option is ignored
+# when this test file is run with Parsoid in standalone mode.
+!! options
+parsoid-compatible=wt2html,wt2wt
+version=2
+!! end
+
+# This is the standard article assumed to exist.
+!! article
+Main Page
+!! text
+blah blah
+!! endarticle
+
+!!article
+Foo
+!!text
+FOO
+!!endarticle
+
+!!article
+Template:Foo
+!!text
+FOO
+!!endarticle
+
+!! article
+ko:
+!! text
+Test.
+!! endarticle
+
+!! test
+Interlanguage link
+!! wikitext
+Blah blah blah
+[[zh:Chinese]]
+!! html/php
+<p>Blah blah blah
+</p>
+!! html/parsoid
+<p>Blah blah blah</p>
+<link rel="mw:PageProp/Language" href="http://zh.wikipedia.org/wiki/Chinese"/>
+!! end
+
+## parsoid html2wt will lose the space variations
+!! test
+Interlanguage link with spacing
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+Blah blah blah
+[[   zh  :    Chinese     ]]
+!! html/php
+<p>Blah blah blah
+</p>
+!! html/parsoid
+<p>Blah blah blah</p>
+<link rel="mw:PageProp/Language" href="http://zh.wikipedia.org/wiki/Chinese"/>
+!! end
+
+!! test
+Double interlanguage link
+!! wikitext
+Blah blah blah
+[[es:Spanish]]
+[[zh:Chinese]]
+!! html/php
+<p>Blah blah blah
+</p>
+!! html/parsoid
+<p>Blah blah blah</p>
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Spanish"/>
+<link rel="mw:PageProp/Language" href="http://zh.wikipedia.org/wiki/Chinese"/>
+!! end
+
+## parsoid html2wt will lose the space variations
+!! test
+Interlanguage link variations
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+Blah blah blah
+[[   es :Spanish]]
+[[ ZH :Chinese]]
+[[es:Foo_bar]]
+!! html/php
+<p>Blah blah blah
+</p>
+!! html/parsoid
+<p>Blah blah blah</p>
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Spanish" />
+<link rel="mw:PageProp/Language" href="http://zh.wikipedia.org/wiki/Chinese" />
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo_bar" />
+!! end
+
+!! test
+Escaping of interlanguage links (T129218, T156308)
+!! wikitext
+Blah blah blah
+[[:es:Spanish]]
+[[ : zh : Chinese ]]
+!! html/php
+<p>Blah blah blah
+<a href="http://es.wikipedia.org/wiki/Spanish" class="extiw" title="es:Spanish">es:Spanish</a>
+<a href="http://zh.wikipedia.org/wiki/Chinese" class="extiw" title="zh:Chinese"> zh&#160;: Chinese </a>
+</p>
+!! html/parsoid
+<p>Blah blah blah
+<a rel="mw:WikiLink/Interwiki" href="http://es.wikipedia.org/wiki/Spanish" title="es:Spanish" class="extiw">es:Spanish</a>
+<a rel="mw:WikiLink/Interwiki" href="http://zh.wikipedia.org/wiki/Chinese" title="zh:Chinese" class="extiw"> zh<span typeof="mw:DisplaySpace"> </span>: Chinese </a></p>
+!! end
+
+!! test
+Multiple colons escaping interlanguage links
+!! options
+parsoid=wt2html
+!! wikitext
+[[:es:Spanish]]
+[[::es:Spanish]]
+[[:::es:Spanish]]
+!! html/php
+<p><a href="http://es.wikipedia.org/wiki/Spanish" class="extiw" title="es:Spanish">es:Spanish</a>
+[[::es:Spanish]]
+[[:::es:Spanish]]
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink/Interwiki" href="http://es.wikipedia.org/wiki/Spanish" title="es:Spanish" class="extiw">es:Spanish</a>
+[[::es:Spanish]]
+[[:::es:Spanish]]</p>
+!! end
+
+## parsoid html2wt will normalize the space to _
+!! test
+Space and question mark encoding in interlanguage links (T95473)
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+Blah blah blah
+[[es:Foo bar?]]
+!! html/php
+<p>Blah blah blah
+</p>
+!! html/parsoid
+<p>Blah blah blah</p>
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Foo_bar%3F" />
+!! end
+
+!! test
+Interlanguage link, with prefix links
+!! options
+language=ln
+!! wikitext
+Blah blah blah
+[[zh:Chinese]]
+!! html/php
+<p>Blah blah blah
+</p>
+!! html/parsoid
+<p>Blah blah blah</p>
+<link rel="mw:PageProp/Language" href="http://zh.wikipedia.org/wiki/Chinese"/>
+!! end
+
+!! test
+Double interlanguage link, with prefix links (T10897)
+!! options
+language=ln
+!! wikitext
+Blah blah blah
+[[es:Spanish]]
+[[zh:Chinese]]
+!! html/php
+<p>Blah blah blah
+</p>
+!! html/parsoid
+<p>Blah blah blah</p>
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/Spanish"/>
+<link rel="mw:PageProp/Language" href="http://zh.wikipedia.org/wiki/Chinese"/>
+!! end
+
+## FIXME: We would need to set up site messages in the TestRunner for the
+## title property to be set on the interlanguage link in integrated mode.
+!! test
+"Extra" interlanguage links (T34189 / gerrit 111390)
+!! wikitext
+Blah blah blah
+[[mul:Article]]
+!! html/php
+<p>Blah blah blah
+</p>
+!! html/parsoid+standalone
+<p>Blah blah blah</p>
+<link rel="mw:PageProp/Language" title="Multilingual" href="http://wikisource.org/wiki/Article"/>
+!! html/parsoid+integrated
+<p>Blah blah blah</p>
+<link rel="mw:PageProp/Language" title="Multilingual" href="http://wikisource.org/wiki/Article"/>
+!! end
+
+## PHP parser tests script needs an update
+## Parsoid html2wt will normalize output to [[:zh:Chinese]]
+!! test
+Language links render as inline links if $wgInterwikiMagic=false
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! config
+wgInterwikiMagic=false
+!! wikitext
+Blah blah blah
+[[zh:Chinese]]
+!! html/parsoid
+<p>Blah blah blah <a rel="mw:WikiLink/Interwiki" href="http://zh.wikipedia.org/wiki/Chinese" title="zh:Chinese" class="extiw">zh:Chinese</a></p>
+!! end
+
+## PHP parser tests script needs an update
+## Parsoid html2wt will normalize output to [[:zh:Chinese]]
+!! test
+Language links render as inline links in the Talk namespace
+!! options
+title=Talk:Foo
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+Blah blah blah
+[[zh:Chinese]]
+!! html/parsoid
+<p>Blah blah blah <a rel="mw:WikiLink/Interwiki" href="http://zh.wikipedia.org/wiki/Chinese" title="zh:Chinese" class="extiw">zh:Chinese</a></p>
+!! end
+
+# Note that `ko` isn't a known interlanguage prefix
+!! test
+Parsoid: recognize interlanguage links without a target page
+!! options
+ill
+!! wikitext
+[[es:]]
+
+[[ko:]]
+!! html/php
+es:
+!! html/parsoid
+<link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/"/>
+
+<p><a rel="mw:WikiLink" href="./Ko:" title="Ko:">ko:</a></p>
+!! end
+
+# Note that `ko` isn't a known interwiki prefix
+!! test
+Parsoid: recognize interwiki links without a target page
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+[[:es:]]
+
+[[:ko:]]
+!! html/php
+<p><a href="http://es.wikipedia.org/wiki/" class="extiw" title="es:">es:</a>
+</p><p><a href="/wiki/Ko:" title="Ko:">ko:</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink/Interwiki" href="http://es.wikipedia.org/wiki/" title="es:" class="extiw">es:</a></p>
+<p><a rel="mw:WikiLink" href="./Ko:" title="Ko:">ko:</a></p>
+!! end
+
+!! test
+Handle interwiki links pointing to the current wiki as plain wiki links (T47209)
+!! wikitext
+[[mi:Foo]]
+!! html/php
+<p><a href="/wiki/Foo" title="Foo">mi:Foo</a>
+</p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Foo" title="Foo" data-parsoid='{"stx":"simple","a":{"href":"./Foo"},"sa":{"href":"mi:Foo"}}'>mi:Foo</a></p>
+!! end
+
+!! test
+Interlanguage link with preceding local interwiki link (T70085)
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+Blah blah blah
+[[local:es:Spanish]]
+!! html/php
+<p>Blah blah blah
+<a href="http://es.wikipedia.org/wiki/Spanish" class="extiw" title="es:Spanish">local:es:Spanish</a>
+</p>
+!! html/parsoid
+<p>Blah blah blah
+<a rel="mw:WikiLink/Interwiki" href="http://es.wikipedia.org/wiki/Spanish" title="es:Spanish" class="extiw">local:es:Spanish</a></p>
+!! end
+
+!! test
+Looks like an interlanguage link, but is actually a local interwiki
+!! options
+parsoid=wt2html,wt2wt,html2html
+!! wikitext
+Blah blah blah
+[[mi:Template:Foo]]
+!! html/php
+<p>Blah blah blah
+<a href="/wiki/Template:Foo" title="Template:Foo">mi:Template:Foo</a>
+</p>
+!! html/parsoid
+<p>Blah blah blah
+<a rel="mw:WikiLink" href="./Template:Foo" title="Template:Foo">mi:Template:Foo</a></p>
+!! end

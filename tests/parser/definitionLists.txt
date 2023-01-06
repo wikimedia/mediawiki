@@ -19,6 +19,12 @@ one
 ::two
 !! endarticle
 
+!! article
+Help:FAQ
+!! text
+help!
+!! end
+
 !! test
 Simple definition
 !! options
@@ -73,9 +79,11 @@ Definition list with bracketed URL link
 Definition list with wikilink containing colon
 !! wikitext
 ;[[Help:FAQ]]:The least-read page on Wikipedia
-!! html
-<dl><dt><a href="/index.php?title=Help:FAQ&amp;action=edit&amp;redlink=1" class="new" title="Help:FAQ (page does not exist)">Help:FAQ</a></dt>
+!! html/php
+<dl><dt><a href="/wiki/Help:FAQ" title="Help:FAQ">Help:FAQ</a></dt>
 <dd>The least-read page on Wikipedia</dd></dl>
+!! html/parsoid
+<dl><dt><a rel="mw:WikiLink" href="./Help:FAQ" title="Help:FAQ" data-parsoid='{"stx":"simple","a":{"href":"./Help:FAQ"},"sa":{"href":"Help:FAQ"}}'>Help:FAQ</a></dt><dd data-parsoid='{"stx":"row"}'>The least-read page on Wikipedia</dd></dl>
 !! end
 
 # At Brion's and JeLuF's insistence... :)

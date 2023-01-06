@@ -14,7 +14,7 @@ Magic links: internal link to RFC (T2479)
 <p><a href="/index.php?title=RFC_123&amp;action=edit&amp;redlink=1" class="new" title="RFC 123 (page does not exist)">RFC 123</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./RFC_123" title="RFC 123" class="new">RFC 123</a></p>
+<p><a rel="mw:WikiLink" href="./RFC_123?action=edit&amp;redlink=1" title="RFC 123" class="new" typeof="mw:LocalizedAttrs" data-parsoid='{"stx":"simple","a":{"href":"./RFC_123"},"sa":{"href":"RFC 123"}}' data-mw-i18n='{"title":{"lang":"x-page","key":"red-link-title","params":["RFC 123"]}}'>RFC 123</a></p>
 !! end
 
 !! test
