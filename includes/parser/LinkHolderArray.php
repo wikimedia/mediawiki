@@ -255,7 +255,7 @@ class LinkHolderArray {
 				$pdbk = $entry['pdbk'];
 				$title = $entry['title'];
 				$query = $entry['query'] ?? [];
-				$searchkey = "<!--LINK'\" $ns:$index-->";
+				$searchkey = "$ns:$index";
 				$displayTextHtml = $entry['text'];
 				if ( isset( $entry['selflink'] ) ) {
 					$replacePairs[$searchkey] = Linker::makeSelfLinkObj( $title, $displayTextHtml, $query );
@@ -287,7 +287,7 @@ class LinkHolderArray {
 
 		# Do the thing
 		$text = preg_replace_callback(
-			'/(<!--LINK\'" .*?-->)/',
+			'/<!--LINK\'" (-?[\d+:]+)-->/',
 			static function ( array $matches ) use ( $replacePairs ) {
 				return $replacePairs[$matches[1]];
 			},
@@ -317,7 +317,7 @@ class LinkHolderArray {
 		}
 
 		$text = preg_replace_callback(
-			'/<!--IWLINK\'" (.*?)-->/',
+			'/<!--IWLINK\'" (\d+)-->/',
 			static function ( array $matches ) use ( $replacePairs ) {
 				return $replacePairs[$matches[1]];
 			},
@@ -488,7 +488,7 @@ class LinkHolderArray {
 	 */
 	public function replaceText( $text ) {
 		return preg_replace_callback(
-			'/<!--(IW)?LINK\'" (.*?)-->/',
+			'/<!--(IW)?LINK\'" (-?[\d:]+)-->/',
 			function ( $matches ) {
 				[ $unchanged, $isInterwiki, $key ] = $matches;
 
