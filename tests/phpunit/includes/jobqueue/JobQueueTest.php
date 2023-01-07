@@ -9,7 +9,7 @@ use MediaWiki\MediaWikiServices;
  */
 class JobQueueTest extends MediaWikiIntegrationTestCase {
 	protected $key;
-	protected $queueRand, $queueRandTTL, $queueFifo, $queueFifoTTL;
+	protected $queueRand, $queueRandTTL, $queueTimestamp, $queueTimestampTTL, $queueFifo, $queueFifoTTL;
 
 	protected function setUp(): void {
 		global $wgJobTypeConf;

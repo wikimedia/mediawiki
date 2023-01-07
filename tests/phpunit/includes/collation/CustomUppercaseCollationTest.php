@@ -7,6 +7,9 @@
  */
 class CustomUppercaseCollationTest extends MediaWikiIntegrationTestCase {
 
+	/** @var CustomUppercaseCollation */
+	private $collation;
+
 	protected function setUp(): void {
 		parent::setUp();
 		$this->collation = new CustomUppercaseCollation(

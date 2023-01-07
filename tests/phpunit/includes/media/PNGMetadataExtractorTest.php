@@ -6,6 +6,9 @@
  */
 class PNGMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 
+	/** @var string */
+	private $filePath;
+
 	protected function setUp(): void {
 		parent::setUp();
 		$this->filePath = __DIR__ . '/../../data/media/';
