@@ -32,6 +32,9 @@ class UploadSourceAdapter {
 	/** @var ImportSource[] */
 	public static $sourceRegistrations = [];
 
+	/** @var resource|null Must exists on stream wrapper class */
+	public $context;
+
 	/** @var ImportSource */
 	private $mSource;
 

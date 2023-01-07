@@ -8,6 +8,7 @@ namespace Wikimedia\Reflection;
  * these ghost fields and the values can be accessed with GhostFieldAccessTrait.
  * @package Wikimedia\Reflection
  */
+#[\AllowDynamicProperties]
 class GhostFieldTestClass {
 	use GhostFieldAccessTrait;
 
