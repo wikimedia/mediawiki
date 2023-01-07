@@ -113,7 +113,7 @@ class ApiRevisionDelete extends ApiBase {
 		$data['target'] = $targetObj->getFullText();
 		$data['items'] = [];
 
-		foreach ( $status->itemStatuses as $id => $s ) {
+		foreach ( $status->getValue()['itemStatuses'] as $id => $s ) {
 			$data['items'][$id] = $this->extractStatusInfo( $s );
 			$data['items'][$id]['id'] = $id;
 		}
