@@ -395,9 +395,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 		// Workaround for T298225: MySQL's lack of awareness of LIMIT when
 		// choosing the join order.
-		$ctTableName = ChangeTags::getDisplayTableName();
+		$ctTableName = ChangeTags::DISPLAY_TABLE_ALIAS;
 		if ( isset( $join_conds[$ctTableName] )
-			&& $this->isDenseTagFilter( $conds['ct_tag_id'] ?? [], $opts['limit'] )
+			&& $this->isDenseTagFilter( $conds["$ctTableName.ct_tag_id"] ?? [], $opts['limit'] )
 		) {
 			$join_conds[$ctTableName][0] = 'STRAIGHT_JOIN';
 		}
