@@ -143,7 +143,7 @@ abstract class RevDelList extends RevisionListBase {
 		$authorActors = [];
 
 		if ( $perItemStatus ) {
-			$status->itemStatuses = [];
+			$status->value['itemStatuses'] = [];
 		}
 
 		// For multi-item deletions, set the old/new bitfields in log_params such that "hid X"
@@ -163,7 +163,7 @@ abstract class RevDelList extends RevisionListBase {
 
 			if ( $perItemStatus ) {
 				$itemStatus = Status::newGood();
-				$status->itemStatuses[$item->getId()] = $itemStatus;
+				$status->value['itemStatuses'][$item->getId()] = $itemStatus;
 			} else {
 				$itemStatus = $status;
 			}
@@ -240,7 +240,7 @@ abstract class RevDelList extends RevisionListBase {
 		// Handle missing revisions
 		foreach ( $missing as $id => $unused ) {
 			if ( $perItemStatus ) {
-				$status->itemStatuses[$id] = Status::newFatal( 'revdelete-modify-missing', $id );
+				$status->value['itemStatuses'][$id] = Status::newFatal( 'revdelete-modify-missing', $id );
 			} else {
 				$status->error( 'revdelete-modify-missing', $id );
 			}
