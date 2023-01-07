@@ -60,9 +60,10 @@
 
 	/**
 	 * @param {HTMLElement} node
+	 * @param {boolean} isNestedCall Set to true in nested calls.
 	 * @return {string}
 	 */
-	function getElementSortKey( node ) {
+	function getElementSortKey( node, isNestedCall ) {
 		// Get data-sort-value attribute. Uses jQuery to allow live value
 		// changes from other code paths via data(), which reside only in jQuery.
 		// Must use $().data() instead of $.data(), as the latter *only*
@@ -74,13 +75,19 @@
 			// like charAt, toLowerCase and split are expected.
 			return String( data );
 		}
-		if ( node.tagName.toLowerCase() === 'img' ) {
+
+		var nodeName = node.nodeName.toLowerCase();
+		if ( nodeName === 'img' ) {
 			return node.alt;
 		}
+		if ( nodeName === 'br' ) {
+			return ' ';
+		}
+
 		// Iterate the NodeList (not an array).
 		// Also uses null-return as filter in the same pass.
 		// eslint-disable-next-line no-jquery/no-map-util
-		return $.map( node.childNodes, function ( elem ) {
+		var sortKey = $.map( node.childNodes, function ( elem ) {
 			if ( elem.nodeType === Node.ELEMENT_NODE ) {
 				if ( elem.nodeName.toLowerCase() === 'style' ) {
 					return null;
@@ -88,7 +95,7 @@
 				if ( elem.classList.contains( 'reference' ) ) {
 					return null;
 				}
-				return getElementSortKey( elem );
+				return getElementSortKey( elem, true );
 			}
 			if ( elem.nodeType === Node.TEXT_NODE ) {
 				return elem.textContent;
@@ -96,6 +103,12 @@
 			// Ignore other node types, such as HTML comments.
 			return null;
 		} ).join( '' );
+
+		if ( !isNestedCall ) {
+			sortKey = sortKey.replace( /\s+/g, ' ' );
+		}
+
+		return sortKey;
 	}
 
 	function detectParserForColumn( table, rows, column ) {
