@@ -12,7 +12,13 @@ class HTMLTitleTextFieldTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testInterwiki( array $config, string $value, $expected ) {
 		$this->setupInterwikiTable();
-		$field = new HTMLTitleTextField( $config + [ 'fieldname' => 'foo' ] );
+		$htmlForm = $this->createMock( HTMLForm::class );
+		$htmlForm->method( 'msg' )
+			->willReturnCallback( static function ( ...$args ) {
+				return call_user_func_array( 'wfMessage', $args );
+			} );
+
+		$field = new HTMLTitleTextField( $config + [ 'fieldname' => 'foo', 'parent' => $htmlForm ] );
 		$result = $field->validate( $value, [ 'foo' => $value ] );
 		if ( $result instanceof Message ) {
 			$this->assertSame( $expected, $result->getKey() );
@@ -46,7 +52,12 @@ class HTMLTitleTextFieldTest extends MediaWikiIntegrationTestCase {
 
 	public function testInterwiki_relative() {
 		$this->expectException( InvalidArgumentException::class );
-		$field = new HTMLTitleTextField( [ 'fieldname' => 'foo', 'interwiki' => true, 'relative' => true ] );
+		$field = new HTMLTitleTextField( [
+			'fieldname' => 'foo',
+			'interwiki' => true,
+			'relative' => true,
+			'parent' => $this->createMock( HTMLForm::class )
+		] );
 		$field->validate( 'SomeTitle', [ 'foo' => 'SomeTitle' ] );
 	}
 

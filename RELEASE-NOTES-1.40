@@ -337,6 +337,8 @@ because of Phabricator reports.
 * Title.js's confusingly-named getName() and getNameText() methods, for using
   media files' pages, have been renamed to getFileNameWithoutExtension() and
   getFileNameTextWithoutExtension() respectively. The old names are deprecated.
+* When manually creating an HTMLFormField (i.e. not via HTMLForm::factory),
+  it is deprecated to not include the "parent" field as one of the parameters.
 * …
 
 === Other changes in 1.40 ===
