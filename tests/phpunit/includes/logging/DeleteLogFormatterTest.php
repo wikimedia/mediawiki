@@ -601,7 +601,6 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 	 * @dataProvider provideSuppressRevisionLogDatabaseRowsNonPrivileged
 	 */
 	public function testSuppressRevisionLogDatabaseRowsNonPrivileged( $row, $extra ) {
-		$this->user = $this->getTestUser()->getUser();
 		$this->doTestLogFormatter( $row, $extra );
 	}
 
@@ -839,7 +838,6 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 	 * @dataProvider provideSuppressEventLogDatabaseRowsNonPrivileged
 	 */
 	public function testSuppressEventLogDatabaseRowsNonPrivileged( $row, $extra ) {
-		$this->user = $this->getTestUser()->getUser();
 		$this->doTestLogFormatter( $row, $extra );
 	}
 
@@ -946,7 +944,6 @@ class DeleteLogFormatterTest extends LogFormatterTestCase {
 	 * @dataProvider provideSuppressDeleteLogDatabaseRowsNonPrivileged
 	 */
 	public function testSuppressDeleteLogDatabaseRowsNonPrivileged( $row, $extra ) {
-		$this->user = $this->getTestUser()->getUser();
 		$this->doTestLogFormatter( $row, $extra );
 	}
 }

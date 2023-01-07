@@ -52,6 +52,9 @@ class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 		$obj = $services->getFileBackendGroup();
 
 		foreach ( $serviceMembers as $key => $name ) {
+			if ( $key === 'configuredROMode' || $key === 'mimeAnalyzer' ) {
+				continue;
+			}
 			$this->$key = $services->getService( $name );
 			if ( $key === 'srvCache' && $this->$key instanceof EmptyBagOStuff ) {
 				// ServiceWiring will have created its own HashBagOStuff that we don't have a

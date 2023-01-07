@@ -7,6 +7,15 @@ use MediaWiki\MainConfigNames;
  */
 class WebRequestTest extends MediaWikiIntegrationTestCase {
 
+	/** @var string */
+	private $oldServer;
+
+	/** @var string */
+	private $oldWgRequest;
+
+	/** @var string */
+	private $oldWgServer;
+
 	protected function setUp(): void {
 		parent::setUp();
 

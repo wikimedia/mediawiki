@@ -542,6 +542,8 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 class SpecialSearchTestMockResultSet extends SearchResultSet {
 	protected $results;
 	protected $suggestion;
+	protected $rewrittenQuery;
+	protected $containedSyntax;
 
 	public function __construct(
 		$suggestion = null,

@@ -175,6 +175,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	public function testGetModuleFactory() {
 		$factory = function ( array $info ) {
 			$this->assertArrayHasKey( 'kitten', $info );
+			unset( $info['kitten'] );
 			return new ResourceLoaderTestModule( $info );
 		};
 

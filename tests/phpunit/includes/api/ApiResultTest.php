@@ -1392,6 +1392,7 @@ class ApiResultTestStringifiableObject {
 	}
 }
 
+#[\AllowDynamicProperties]
 class ApiResultTestSerializableObject {
 	private $ret;
 
