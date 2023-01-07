@@ -1,5 +1,11 @@
 {
 	"rules": {
-		"no-implicit-globals": "off"
+		"no-implicit-globals": "off",
+		"space-in-parens": "off",
+		"keyword-spacing": "off",
+		"no-use-before-define": "off",
+		"no-undef": "off",
+		"no-multi-spaces": "off",
+		"computed-property-spacing": "off"
 	}
 }

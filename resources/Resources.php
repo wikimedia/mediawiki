@@ -187,7 +187,8 @@ return [
 		'dependencies' => 'mediawiki.jqueryMsg',
 	],
 	'jquery.cookie' => [
-		'scripts' => 'resources/lib/jquery.cookie/jquery.cookie.js',
+		'deprecated' => 'Merged into "mediawiki.cookie", use that module instead (T271995)',
+		'dependencies' => 'mediawiki.cookie',
 	],
 	'jquery.form' => [
 		'scripts' => 'resources/lib/jquery.form/jquery.form.js',
@@ -1201,6 +1202,7 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.cookie",
 		'packageFiles' => [
 			'index.js',
+			'jquery.cookie.js',
 			[ 'name' => 'config.json', 'config' => [
 				'prefix' => MainConfigNames::CookiePrefix,
 				'domain' => MainConfigNames::CookieDomain,
@@ -1209,7 +1211,6 @@ return [
 				'sameSiteLegacy' => MainConfigNames::UseSameSiteLegacyCookies,
 			] ],
 		],
-		'dependencies' => 'jquery.cookie',
 	],
 	'mediawiki.experiments' => [
 		'scripts' => 'resources/src/mediawiki.experiments.js',
