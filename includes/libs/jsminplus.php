@@ -1057,7 +1057,6 @@ class JSParser
 			case TOKEN_NEWLINE:
 			case OP_SEMICOLON:
 				$n = new JSNode($this->t, OP_SEMICOLON);
-				$n->expression = null;
 			return $n;
 
 			default:
@@ -1699,6 +1698,7 @@ class JSNode
 	public $treeNodes = array();
 	public $funDecls = array();
 	public $varDecls = array();
+	public $expression = null;
 
 	public function __construct($t, $type=0, ...$nodes)
 	{
