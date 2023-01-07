@@ -175,6 +175,7 @@ abstract class Skin extends ContextSource {
 			'is-article' => $out->isArticle(),
 			'is-mainpage' => $isMainPage,
 			'is-specialpage' => $title->isSpecialPage(),
+			'canonical-url' => $this->getCanonicalUrl(),
 		];
 
 		$components = $this->componentRegistry->getComponents();
@@ -734,6 +735,22 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Get the canonical URL (permalink) for the page including oldid if present.
+	 *
+	 * @return string
+	 */
+	private function getCanonicalUrl() {
+		$title = $this->getTitle();
+		$oldid = $this->getOutput()->getRevisionId();
+		if ( $oldid ) {
+			return $title->getCanonicalURL( 'oldid=' . $oldid );
+		} else {
+			// oldid not available for non existing pages
+			return $title->getCanonicalURL();
+		}
+	}
+
+	/**
 	 * Text with the permalink to the source page,
 	 * usually shown on the footer of a printed page
 	 *
@@ -741,15 +758,7 @@ abstract class Skin extends ContextSource {
 	 * @return string HTML text with an URL
 	 */
 	public function printSource() {
-		$title = $this->getTitle();
-		$oldid = $this->getOutput()->getRevisionId();
-		if ( $oldid ) {
-			$canonicalUrl = $title->getCanonicalURL( 'oldid=' . $oldid );
-			$url = htmlspecialchars( wfExpandIRI( $canonicalUrl ) );
-		} else {
-			// oldid not available for non existing pages
-			$url = htmlspecialchars( wfExpandIRI( $title->getCanonicalURL() ) );
-		}
+		$url = htmlspecialchars( wfExpandIRI( $this->getCanonicalUrl() ) );
 
 		return $this->msg( 'retrievedfrom' )
 			->rawParams( '<a dir="ltr" href="' . $url . '">' . $url . '</a>' )
