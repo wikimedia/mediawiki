@@ -257,6 +257,7 @@ because of Phabricator reports.
 * ::getChronologyProtectorClientId in ILBFactory and LBFactory
   have been removed without deprecation as they are unused.
 * LBFactory::getTransactionRoundStage, unused, is removed without deprecation.
+* IDatabase::setBigSelects(), unused, is removed without deprecation.
 * …
 
 === Deprecations in 1.40 ===

@@ -778,10 +778,6 @@ class DBConnRef implements IMaintainableDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function setBigSelects( $value = true ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
-	}
-
 	public function isReadOnly() {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}

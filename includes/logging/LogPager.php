@@ -510,13 +510,6 @@ class LogPager extends ReverseChronologicalPager {
 		return $this->action;
 	}
 
-	public function doQuery() {
-		// Workaround MySQL optimizer bug
-		$this->mDb->setBigSelects();
-		parent::doQuery();
-		$this->mDb->setBigSelects( 'default' );
-	}
-
 	/**
 	 * Paranoia: avoid brute force searches (T19342)
 	 */
