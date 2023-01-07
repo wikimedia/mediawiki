@@ -219,7 +219,7 @@ class ChangeTags {
 				continue;
 			}
 
-			$otherEditsLink = $localizer->msg( 'parentheses' )->rawParams(
+			$otherEditsLink = ' ' . $localizer->msg( 'parentheses' )->rawParams(
 				Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Recentchanges' ),
 					$localizer->msg( 'tag-link-other-edits' )->escaped(),
@@ -233,7 +233,7 @@ class ChangeTags {
 				'span',
 				[ 'class' => 'mw-tag-marker ' .
 					Sanitizer::escapeClass( "mw-tag-marker-$tag" ) ],
-				$description . ' ' . $moreEditsLink
+				$description . $moreEditsLink
 			);
 		}
 
