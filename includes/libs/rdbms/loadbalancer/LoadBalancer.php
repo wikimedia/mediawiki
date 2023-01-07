@@ -733,6 +733,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	public function getAnyOpenConnection( $i, $flags = 0 ) {
 		$i = ( $i === self::DB_PRIMARY ) ? $this->getWriterIndex() : $i;
+
 		// Connection handles required to be in auto-commit mode use a separate connection
 		// pool since the main pool is effected by implicit and explicit transaction rounds
 		$autoCommitOnly = self::fieldHasBit( $flags, self::CONN_TRX_AUTOCOMMIT );
