@@ -74,9 +74,15 @@
 			// like charAt, toLowerCase and split are expected.
 			return String( data );
 		}
-		if ( node.tagName.toLowerCase() === 'img' ) {
+
+		var nodeName = node.nodeName.toLowerCase();
+		if ( nodeName === 'img' ) {
 			return node.alt;
 		}
+		if ( nodeName === 'br' ) {
+			return ' ';
+		}
+
 		// Iterate the NodeList (not an array).
 		// Also uses null-return as filter in the same pass.
 		// eslint-disable-next-line no-jquery/no-map-util
