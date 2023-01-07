@@ -728,8 +728,8 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 			'tag1',
 			[
 				'<span class="mw-tag-markers">(tag-list-wrapper: 1, '
-				. '<span class="mw-tag-marker mw-tag-marker-tag1">(tag-tag1) '
-				. '<span class="mw-tag-other-edits">(parentheses: '
+				. '<span class="mw-tag-marker mw-tag-marker-tag1">(tag-tag1)'
+				. '<span class="mw-tag-other-edits"> (parentheses: '
 				. '<a href="/w/index.php?title=Special:RecentChanges&amp;tagfilter=tag1" '
 				. 'title="Special:RecentChanges">(tag-link-other-edits)</a>)</span></span>'
 				. ')</span>',
@@ -740,8 +740,8 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 			'0',
 			[
 				'<span class="mw-tag-markers">(tag-list-wrapper: 1, '
-				. '<span class="mw-tag-marker mw-tag-marker-0">(tag-0) '
-				. '<span class="mw-tag-other-edits">(parentheses: '
+				. '<span class="mw-tag-marker mw-tag-marker-0">(tag-0)'
+				. '<span class="mw-tag-other-edits"> (parentheses: '
 				. '<a href="/w/index.php?title=Special:RecentChanges&amp;tagfilter=0" '
 				. 'title="Special:RecentChanges">(tag-link-other-edits)</a>)</span></span>'
 				. ')</span>',
@@ -760,11 +760,11 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 			[
 				'<span class="mw-tag-markers">(tag-list-wrapper: 2,'
 				. ' <span class="mw-tag-marker mw-tag-marker-tag1">(tag-tag1)'
-				. ' <span class="mw-tag-other-edits">(parentheses:'
+				. '<span class="mw-tag-other-edits"> (parentheses:'
 				. ' <a href="/w/index.php?title=Special:RecentChanges&amp;tagfilter=tag1"'
 				. ' title="Special:RecentChanges">(tag-link-other-edits)</a>)</span></span>'
 				. ' <span class="mw-tag-marker mw-tag-marker-0">(tag-0)'
-				. ' <span class="mw-tag-other-edits">(parentheses:'
+				. '<span class="mw-tag-other-edits"> (parentheses:'
 				. ' <a href="/w/index.php?title=Special:RecentChanges&amp;tagfilter=0"'
 				. ' title="Special:RecentChanges">(tag-link-other-edits)</a>)</span></span>'
 				. ')</span>',
