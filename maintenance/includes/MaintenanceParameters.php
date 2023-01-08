@@ -20,6 +20,8 @@
 
 namespace MediaWiki\Maintenance;
 
+use UnexpectedValueException;
+
 /**
  * Command line parameter handling for maintenance scripts.
  *
@@ -178,13 +180,35 @@ class MaintenanceParameters {
 	 * @param string $arg Name of the arg, like 'start'
 	 * @param string $description Short description of the arg
 	 * @param bool $required Is this required?
+	 * @param bool $multi Does it allow multiple values? (Last arg only)
 	 * @return int the offset of the argument
 	 */
-	public function addArg( string $arg, string $description, bool $required = true ): int {
+	public function addArg( string $arg, string $description, bool $required = true, bool $multi = false ): int {
+		if ( isset( $this->mArgOffsets[$arg] ) ) {
+			throw new UnexpectedValueException( "Argument already defined: $arg" );
+		}
+
+		$argCount = count( $this->mArgDefs );
+		if ( $argCount ) {
+			$prevArg = $this->mArgDefs[ $argCount - 1 ];
+			if ( !$prevArg['require'] && $required ) {
+				throw new UnexpectedValueException(
+					"Required argument {$arg} cannot follow an optional argument {$prevArg['name']}"
+				);
+			}
+
+			if ( $prevArg['multi'] ) {
+				throw new UnexpectedValueException(
+					"Argument {$arg} cannot follow multi-value argument {$prevArg['name']}"
+				);
+			}
+		}
+
 		$this->mArgDefs[] = [
 			'name' => $arg,
 			'desc' => $description,
-			'require' => $required
+			'require' => $required,
+			'multi' => $multi,
 		];
 
 		$ofs = count( $this->mArgDefs ) - 1;
@@ -255,6 +279,20 @@ class MaintenanceParameters {
 		}
 
 		return $this->mArgs[$argId] ?? $default;
+	}
+
+	/**
+	 * Get arguments.
+	 * @param int|string $offset The index (from zero) of the first argument, or
+	 *                   the name declared for the argument by addArg().
+	 * @return string[]
+	 */
+	public function getArgs( $offset = 0 ): array {
+		if ( is_string( $offset ) && isset( $this->mArgOffsets[$offset] ) ) {
+			$offset = $this->mArgOffsets[$offset];
+		}
+
+		return array_slice( $this->mArgs, $offset );
 	}
 
 	/**
@@ -559,16 +597,12 @@ class MaintenanceParameters {
 
 		// ... and append arguments.
 		if ( $this->mArgDefs ) {
-			$args = ' ';
-			foreach ( $this->mArgDefs as $k => $arg ) {
-				if ( $arg['require'] ) {
-					$args .= '<' . $arg['name'] . '>';
-				} else {
-					$args .= '[' . $arg['name'] . ']';
-				}
-				if ( $k < count( $this->mArgDefs ) - 1 ) {
-					$args .= ' ';
-				}
+			$args = '';
+			foreach ( $this->mArgDefs as $arg ) {
+				$argRepr = $this->getArgRepresentation( $arg );
+
+				$args .= ' ';
+				$args .= $argRepr;
 			}
 			$output[] = $args;
 		}
@@ -597,11 +631,10 @@ class MaintenanceParameters {
 			$output[] = "Arguments:\n";
 			// Arguments description
 			foreach ( $this->mArgDefs as $info ) {
-				$openChar = $info['require'] ? '<' : '[';
-				$closeChar = $info['require'] ? '>' : ']';
+				$argRepr = $this->getArgRepresentation( $info );
 				$output[] =
 					wordwrap(
-						"$tab$openChar" . $info['name'] . "$closeChar: " . $info['desc'],
+						"$tab$argRepr: " . $info['desc'],
 						$descWidth,
 						"\n$tab$tab"
 					) . "\n";
@@ -669,18 +702,29 @@ class MaintenanceParameters {
 	}
 
 	/**
-	 * Returns argument values
-	 * @return array
-	 */
-	public function getArgs(): array {
-		return $this->mArgs;
-	}
-
-	/**
 	 * @param string $usagePrefix
 	 */
 	public function setUsagePrefix( string $usagePrefix ) {
 		$this->usagePrefix = $usagePrefix;
+	}
+
+	/**
+	 * @param array $argInfo
+	 *
+	 * @return string
+	 */
+	private function getArgRepresentation( array $argInfo ): string {
+		if ( $argInfo['require'] ) {
+			$rep = '<' . $argInfo['name'] . '>';
+		} else {
+			$rep = '[' . $argInfo['name'] . ']';
+		}
+
+		if ( $argInfo['multi'] ) {
+			$rep .= '...';
+		}
+
+		return $rep;
 	}
 
 }

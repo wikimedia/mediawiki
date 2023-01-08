@@ -80,7 +80,7 @@ class MaintenanceParametersTest extends TestCase {
 	public function testArg() {
 		$params = new MaintenanceParameters();
 
-		$this->assertSame( 0, $params->addArg( 'test', 'Test arg' ) );
+		$this->assertSame( 0, $params->addArg( 'test', 'Test arg', true ) );
 		$this->assertSame( 1, $params->addArg( 'best', 'Best arg' ) );
 
 		$this->assertSame( 'test', $params->getArgName( 0 ) );
@@ -220,6 +220,55 @@ class MaintenanceParametersTest extends TestCase {
 		$this->assertSame( $expectedArgs, $params->getArgs() );
 	}
 
+	public function testMultiArg() {
+		$params = new MaintenanceParameters();
+		$params->setAllowUnregisteredOptions( true );
+
+		$params->addArg( 'foo', 'Foozels', true );
+		$params->addArg( 'bar', 'Bazels', false, true );
+
+		$params->loadWithArgv( [ 'a', 'b', 'c', 'd' ] );
+
+		$this->assertSame( 'a', $params->getArg( 0 ) );
+		$this->assertSame( 'a', $params->getArg( 'foo' ) );
+
+		$this->assertSame( 'b', $params->getArg( 1 ) );
+		$this->assertSame( 'b', $params->getArg( 'bar' ) );
+
+		$this->assertSame( [ 'a', 'b', 'c', 'd' ], $params->getArgs() );
+		$this->assertSame( [ 'c', 'd' ], $params->getArgs( 2 ) );
+		$this->assertSame( [ 'a', 'b', 'c', 'd' ], $params->getArgs( 'foo' ) );
+		$this->assertSame( [ 'b', 'c', 'd' ], $params->getArgs( 'bar' ) );
+	}
+
+	public function provideAddArgFailure() {
+		yield 'Already defined' => [
+			[ 'foo', 'testin 1' ],
+			[ 'foo', 'testin 2' ],
+		];
+
+		yield 'Required after optional' => [
+			[ 'foo', 'Foo test', false ],
+			[ 'bar', 'Bar test', true ],
+		];
+
+		yield 'after multi' => [
+			[ 'foo', 'Foo test', false, true ],
+			[ 'bar', 'Bar test' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideAddArgFailure
+	 */
+	public function testAddArgFailure( $arg1, $arg2 ) {
+		$params = new MaintenanceParameters();
+		$params->addArg( ...$arg1 );
+
+		$this->expectException( UnexpectedValueException::class );
+		$params->addArg( ...$arg2 );
+	}
+
 	public function testLoadSkip() {
 		$params = new MaintenanceParameters();
 		$params->addOption( 'value', 'value option', false, true, 'v' );
@@ -309,9 +358,6 @@ class MaintenanceParametersTest extends TestCase {
 		$params->setName( 'Foo' );
 		$params->setDescription( 'Frobs the foo' );
 
-		$params->addArg( 'one', 'First arg', true );
-		$params->addArg( 'two', 'Second arg', false );
-
 		$params->addOption( 'flag', 'First flag', false, false, 'f' );
 		$params->addOption( 'value', 'Some value', true, true );
 
@@ -326,13 +372,10 @@ class MaintenanceParametersTest extends TestCase {
 		$synopsis = $lines[$synopsisIndex];
 
 		$this->assertStringContainsString( '[OPTION]... --value <VALUE>', $synopsis );
-		$this->assertStringContainsString( '<one> [two]', $synopsis );
 
 		$this->assertNotFalse( $this->findInLines( $lines, 'Frobs the foo' ) );
 		$this->assertNotFalse( $this->findInLines( $lines, '--flag (-f): First flag' ) );
 		$this->assertNotFalse( $this->findInLines( $lines, '--value <VALUE>: Some value' ) );
-		$this->assertNotFalse( $this->findInLines( $lines, '<one>: First arg' ) );
-		$this->assertNotFalse( $this->findInLines( $lines, '[two]: Second arg' ) );
 		$this->assertNotFalse( $this->findInLines( $lines, 'Test flags' ) );
 		$this->assertNotFalse( $this->findInLines( $lines, 'Script specific options' ) );
 
@@ -347,6 +390,52 @@ class MaintenanceParametersTest extends TestCase {
 			$sectionOffset,
 			$this->findInLines( $lines, '--flag', $sectionOffset + 1 )
 		);
+	}
+
+	public function provideArgHelp() {
+		yield [
+			[ 'foo', 'Foo arg' ],
+			'<foo>',
+			'<foo>: Foo arg'
+		];
+		yield [
+			[ 'foo', 'Foo arg', false ],
+			'[foo]',
+			'[foo]: Foo arg'
+		];
+		yield [
+			[ 'foo', 'Foo arg', true, true ],
+			'<foo>...',
+			'<foo>...: Foo arg'
+		];
+		yield [
+			[ 'foo', 'Foo arg', false, true ],
+			'[foo]...',
+			'[foo]...: Foo arg'
+		];
+	}
+
+	/**
+	 * @dataProvider provideArgHelp
+	 */
+	public function testArgHelp( $arg, $expectedSynopsis, $expectedLine ) {
+		$params = new MaintenanceParameters();
+
+		$params->setName( 'Foo' );
+
+		$params->addArg( ...$arg );
+		$help = $params->getHelp();
+
+		$lines = preg_split( '/\s*[\r\n]\s*/', $help );
+		$lines = array_values( array_filter( $lines ) );
+
+		$synopsisIndex = $this->findInLines( $lines, 'Usage: php Foo' );
+		$this->assertNotFalse( $synopsisIndex );
+		$synopsis = $lines[$synopsisIndex];
+
+		$this->assertStringContainsString( $expectedSynopsis, $synopsis );
+
+		$this->assertNotFalse( $this->findInLines( $lines, $expectedLine ) );
 	}
 
 	public function testMergeOptions() {

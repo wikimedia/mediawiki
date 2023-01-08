@@ -47,9 +47,9 @@ class CommandLineInstaller extends Maintenance {
 		$this->addDescription( "CLI-based MediaWiki installation and configuration.\n" .
 			"Default options are indicated in parentheses." );
 
-		$this->addArg( 'name', 'The name of the wiki (MediaWiki)', false );
+		$this->addArg( 'name', 'The name of the wiki (MediaWiki)', true );
+		$this->addArg( 'admin', 'The username of the wiki administrator.', true );
 
-		$this->addArg( 'admin', 'The username of the wiki administrator.' );
 		$this->addOption( 'pass', 'The password for the wiki administrator.', false, true );
 		$this->addOption(
 			'passfile',
