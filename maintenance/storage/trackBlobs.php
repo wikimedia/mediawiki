@@ -25,20 +25,9 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\DBConnectionError;
 
-require __DIR__ . '/../CommandLineInc.php';
+require_once __DIR__ . '/../Maintenance.php';
 
-if ( count( $args ) < 1 ) {
-	echo "Usage: php trackBlobs.php <cluster> [... <cluster>]\n";
-	echo "Adds blobs from a given ES cluster to the blob_tracking table\n";
-	echo "Automatically deletes the tracking table and starts from the start again when restarted.\n";
-
-	exit( 1 );
-}
-$tracker = new TrackBlobs( $args );
-$tracker->run();
-echo "All done.\n";
-
-class TrackBlobs {
+class TrackBlobs extends Maintenance {
 	public $clusters, $textClause;
 	public $doBlobOrphans;
 	public $trackedBlobs = [];
@@ -46,19 +35,28 @@ class TrackBlobs {
 	public $batchSize = 1000;
 	public $reportingInterval = 10;
 
-	public function __construct( $clusters ) {
-		$this->clusters = $clusters;
+	public function __construct() {
+		parent::__construct();
+
+		$this->addArg( 'cluster', 'cluster(s) to scan', true, true );
+
+		$this->addDescription(
+			'Adds blobs from a given ES cluster to the blob_tracking table. ' .
+			'Automatically deletes the tracking table and starts from the start again when restarted.'
+		);
+	}
+
+	public function execute() {
+		$this->clusters = $this->parameters->getArgs();
 		if ( extension_loaded( 'gmp' ) ) {
 			$this->doBlobOrphans = true;
-			foreach ( $clusters as $cluster ) {
+			foreach ( $this->clusters as $cluster ) {
 				$this->trackedBlobs[$cluster] = gmp_init( 0 );
 			}
 		} else {
 			echo "Warning: the gmp extension is needed to find orphan blobs\n";
 		}
-	}
 
-	public function run() {
 		$this->checkIntegrity();
 		$this->initTrackingTable();
 		$this->trackRevisions();
@@ -66,6 +64,7 @@ class TrackBlobs {
 		if ( $this->doBlobOrphans ) {
 			$this->findOrphanBlobs();
 		}
+		$this->output( "All done.\n" );
 	}
 
 	private function checkIntegrity() {
@@ -389,3 +388,6 @@ class TrackBlobs {
 		}
 	}
 }
+
+$maintClass = TrackBlobs::class;
+require_once RUN_MAINTENANCE_IF_MAIN;

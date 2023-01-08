@@ -24,15 +24,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	$optionsWithoutArgs = [ 'fix' ];
-	require_once __DIR__ . '/../CommandLineInc.php';
-
-	$cs = new CheckStorage;
-	$fix = isset( $options['fix'] );
-	$xml = $args[0] ?? false;
-	$cs->check( $fix, $xml );
-}
+require_once __DIR__ . '/../Maintenance.php';
 
 // ----------------------------------------------------------------------------------
 
@@ -42,11 +34,26 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  * @fixme this should extend the base Maintenance class
  * @ingroup Maintenance ExternalStorage
  */
-class CheckStorage {
+class CheckStorage extends Maintenance {
 	private const CONCAT_HEADER = 'O:27:"concatenatedgziphistoryblob"';
+
 	public $oldIdMap, $errors;
+
 	/** @var ExternalStoreDB */
 	public $dbStore = null;
+
+	public function __construct() {
+		parent::__construct();
+
+		$this->addOption( 'fix', 'Fix errors if possible' );
+		$this->addArg( 'xml', 'Path to an XML dump', false );
+	}
+
+	public function execute() {
+		$fix = $this->hasOption( 'fix' );
+		$xml = $this->getArg( 'xml', false );
+		$this->check( $fix, $xml );
+	}
 
 	public $errorDescriptions = [
 		'restore text' => 'Damaged text, need to be restored from a backup',
@@ -578,4 +585,8 @@ class CheckStorage {
 		unset( $this->errors['restore text'][$id] );
 		$this->errors['fixed'][$id] = true;
 	}
+
 }
+
+$maintClass = CheckStorage::class;
+require_once RUN_MAINTENANCE_IF_MAIN;
