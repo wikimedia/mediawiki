@@ -105,7 +105,7 @@
 		} ).join( '' );
 
 		if ( !isNestedCall ) {
-			sortKey = sortKey.replace( /\s+/g, ' ' );
+			sortKey = sortKey.replace( /\s+/g, ' ' ).trim();
 		}
 
 		return sortKey;
@@ -132,7 +132,7 @@
 				if ( rowIndex !== lastRowIndex ) {
 					lastRowIndex = rowIndex;
 					cellIndex = $( rows[ rowIndex ] ).data( 'columnToCell' )[ column ];
-					nodeValue = getElementSortKey( rows[ rowIndex ].cells[ cellIndex ] ).trim();
+					nodeValue = getElementSortKey( rows[ rowIndex ].cells[ cellIndex ] );
 				}
 			} else {
 				nodeValue = '';
@@ -1142,7 +1142,6 @@
 			return true;
 		},
 		format: function ( s ) {
-			s = s.trim();
 			if ( ts.collationRegex ) {
 				var tsc = ts.collationTable;
 				s = s.replace( ts.collationRegex, function ( match ) {
@@ -1214,7 +1213,7 @@
 			return ( ts.dateRegex[ 0 ].test( s ) || ts.dateRegex[ 1 ].test( s ) || ts.dateRegex[ 2 ].test( s ) );
 		},
 		format: function ( s ) {
-			s = s.toLowerCase().trim();
+			s = s.toLowerCase();
 
 			var match;
 			if ( ( match = s.match( ts.dateRegex[ 0 ] ) ) !== null ) {
@@ -1275,7 +1274,7 @@
 	ts.addParser( {
 		id: 'number',
 		is: function ( s ) {
-			return $.tablesorter.numberRegex.test( s.trim() );
+			return $.tablesorter.numberRegex.test( s );
 		},
 		format: function ( s ) {
 			return $.tablesorter.formatDigit( s );
