@@ -175,7 +175,11 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		} else {
 			$mysqli->options( MYSQLI_SET_CHARSET_NAME, 'binary' );
 		}
-		$mysqli->options( MYSQLI_OPT_CONNECT_TIMEOUT, 3 );
+
+		$mysqli->options( MYSQLI_OPT_CONNECT_TIMEOUT, $this->connectTimeout ?: 3 );
+		if ( $this->receiveTimeout ) {
+			$mysqli->options( MYSQLI_OPT_READ_TIMEOUT, $this->receiveTimeout );
+		}
 
 		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal socket seems set when used
 		$ok = $mysqli->real_connect( $realServer, $user, $password, $db, $port, $socket, $flags );

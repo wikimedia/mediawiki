@@ -132,14 +132,16 @@ interface ILoadBalancer {
 	/** The generic query group */
 	public const GROUP_GENERIC = '';
 
-	/** DB handle should have DBO_TRX disabled and the caller will leave it as such */
-	public const CONN_TRX_AUTOCOMMIT = 1;
-	/** Return null on connection failure instead of throwing an exception */
-	public const CONN_SILENCE_ERRORS = 2;
+	/** Yield an untracked, low-timeout, autocommit-mode handle (to gauge server health) */
+	public const CONN_UNTRACKED_GAUGE = 1;
+	/** Yield a tracked autocommit-mode handle (reuse existing ones) */
+	public const CONN_TRX_AUTOCOMMIT = 2;
+	/** Yield null on connection failure instead of throwing an exception */
+	public const CONN_SILENCE_ERRORS = 4;
 	/** Caller is requesting the primary DB server for possibly writes */
-	public const CONN_INTENT_WRITABLE = 4;
+	public const CONN_INTENT_WRITABLE = 8;
 	/** Bypass and update any server-side read-only mode state cache */
-	public const CONN_REFRESH_READ_ONLY = 8;
+	public const CONN_REFRESH_READ_ONLY = 16;
 
 	/**
 	 * Get the name of the overall cluster of database servers managing the dataset
@@ -188,7 +190,7 @@ interface ILoadBalancer {
 	/**
 	 * Indicate whether the tables on this domain are only temporary tables for testing
 	 *
-	 * In "temporary tables mode", the ILoadBalancer::CONN_TRX_AUTOCOMMIT flag is ignored
+	 * In "temporary tables mode", the CONN_TRX_AUTOCOMMIT flag is ignored
 	 *
 	 * @param bool $value
 	 * @param string $domain
@@ -274,27 +276,22 @@ interface ILoadBalancer {
 	 *      server selection method is usually only useful for internal load balancing logic.
 	 *      The value of $groups should be [] when using a specific server index.
 	 *
-	 * Callers that get a *local* DB domain handle for the same server will share one handle for all of those
-	 * callers using CONN_TRX_AUTOCOMMIT (via $flags) and one handle for all of those callers not
-	 * using CONN_TRX_AUTOCOMMIT. Callers that get a *foreign* DB domain handle (via $domain) will
-	 * share any handle that has the right CONN_TRX_AUTOCOMMIT mode and is already on the right
-	 * DB domain. Otherwise, one of the "free for reuse" handles will be claimed or a new handle
-	 * will be made if there are none.
+	 * Handle sharing is very useful when callers get DB_PRIMARY handles that are transaction
+	 * round aware (the default). All such callers will operate within a single transaction as
+	 * a consequence. The same applies to DB_REPLICA that are samely query grouped (the default)
+	 * and  transaction round aware (the default).
 	 *
-	 * Handle sharing is particularly useful when callers get local DB domain (the default),
-	 * transaction round aware (the default), DB_PRIMARY handles. All such callers will operate
-	 * within a single database transaction as a consequence. Handle sharing is also useful when
-	 * callers get local DB domain (the default), transaction round aware (the default), samely
-	 * query grouped (the default), DB_REPLICA handles. All such callers will operate within a
-	 * single database transaction as a consequence.
+	 * Use CONN_TRX_AUTOCOMMIT to use a separate pool of only autocommit handles. This flag is
+	 * ignored for databases with ATTR_DB_LEVEL_LOCKING (e.g. sqlite) in order to avoid deadlocks.
+	 * getServerAttributes() can be used to check this attribute beforehand. Avoid using begin()
+	 * and commit() on such handles. If handle methods like startAtomic() and endAtomic() must be
+	 * used on the handles, callers should at least make sure that the atomic sections are closed
+	 * on failure via try/catch and cancelAtomic().
 	 *
-	 * Use CONN_TRX_AUTOCOMMIT to use a separate pool of only auto-commit handles. This flag
-	 * is ignored for databases with ATTR_DB_LEVEL_LOCKING (e.g. sqlite) in order to avoid
-	 * deadlocks. getServerAttributes() can be used to check such attributes beforehand. Avoid
-	 * using IDatabase::begin() and IDatabase::commit() on such handles. If it is not possible
-	 * to avoid using methods like IDatabase::startAtomic() and IDatabase::endAtomic(), callers
-	 * should at least make sure that the atomic sections are closed on failure via try/catch
-	 * and IDatabase::cancelAtomic().
+	 * Use CONN_UNTRACKED_GAUGE to get a new, untracked, handle, that uses a low connection timeout, a low
+	 * read timeout, and autocommit mode. This flag is intended for use only be internal callers.
+	 *
+	 * CONN_UNTRACKED_GAUGE and CONN_TRX_AUTOCOMMIT are incompatible.
 	 *
 	 * @see ILoadBalancer::reuseConnection()
 	 * @see ILoadBalancer::getServerAttributes()

@@ -226,17 +226,11 @@ class LoadMonitor implements ILoadMonitor {
 			}
 
 			$host = $this->lb->getServerName( $i );
-			# Handles with open transactions are avoided since they might be subject
-			# to REPEATABLE-READ snapshots, which could affect the lag estimate query.
-			$flags = ILoadBalancer::CONN_TRX_AUTOCOMMIT | ILoadBalancer::CONN_SILENCE_ERRORS;
-			$conn = $this->lb->getAnyOpenConnection( $i, $flags );
-			if ( $conn ) {
-				$close = false; // already open
-			} else {
-				// Get a connection to this server without triggering other server connections
-				$conn = $this->lb->getServerConnection( $i, ILoadBalancer::DOMAIN_ANY, $flags );
-				$close = true; // new connection
-			}
+
+			// Get a new, untracked, connection in order to gauge server health
+			$flags = $this->lb::CONN_UNTRACKED_GAUGE | $this->lb::CONN_SILENCE_ERRORS;
+			// Get a connection to this server without triggering other server connections
+			$conn = $this->lb->getServerConnection( $i, $this->lb::DOMAIN_ANY, $flags );
 
 			// Get new weight scale using a moving average of the naïve and prior values
 			$lastScale = $priorScales[$i] ?? 1.0;
@@ -291,13 +285,8 @@ class LoadMonitor implements ILoadMonitor {
 				}
 			}
 
-			if ( $close ) {
-				# Close the connection to avoid sleeper connections piling up.
-				# Note that the caller will pick one of these DBs and reconnect,
-				# which is slightly inefficient, but this only matters for the lag
-				# time cache miss cache, which is far less common that cache hits.
-				$this->lb->closeConnection( $conn );
-			}
+			// Only keep one connection open at a time
+			$conn->close( __METHOD__ );
 		}
 
 		return [
