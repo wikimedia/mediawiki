@@ -71,7 +71,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	/** @var DatabaseDomain Local DB domain ID and default for new connections */
 	private $localDomain;
 
-	/** @var Database[][][] Map of (pool category => server index => Database[]) */
+	/** @var Database[][][] Map of (connection pool => server index => Database[]) */
 	private $conns;
 
 	/** @var string|null The name of the DB cluster */
@@ -136,10 +136,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 */
 	private $modcount = 0;
 
-	/** IDatabase handle LB info key; the "server index" of the handle */
+	/** The "server index" LB info key; see {@link IDatabase::getLBInfo()} */
 	private const INFO_SERVER_INDEX = 'serverIndex';
-	/** IDatabase handle LB info key; whether the handle belongs to the auto-commit pool */
-	private const INFO_AUTOCOMMIT_ONLY = 'autoCommitOnly';
+	/** The "connection category" LB info key; see {@link IDatabase::getLBInfo()} */
+	private const INFO_CONN_CATEGORY = 'connCategory';
 
 	/**
 	 * Default 'maxLag' when unspecified
@@ -155,10 +155,12 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	/** Seconds to cache primary DB server read-only status */
 	private const TTL_CACHE_READONLY = 5;
 
-	/** @var string Key to the pool of transaction round connections */
-	private const POOL_ROUND = 'round';
-	/** @var string Key to the pool of auto-commit connections */
-	private const POOL_AUTOCOMMIT = 'auto-commit';
+	/** A category of connections that are tracked and transaction round aware */
+	private const CATEGORY_ROUND = 'round';
+	/** A category of connections that are tracked and in autocommit-mode */
+	private const CATEGORY_AUTOCOMMIT = 'auto-commit';
+	/** A category of connections that are untracked and in gauge-mode */
+	private const CATEGORY_GAUGE = 'gauge';
 
 	/** Transaction round, explicit or implicit, has not finished writing */
 	private const ROUND_CURSORY = 'cursory';
@@ -260,11 +262,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	private static function newTrackedConnectionsArray() {
+		// Note that CATEGORY_GAUGE connections are untracked
 		return [
-			// Connection handles that participate in transaction rounds
-			self::POOL_ROUND => [],
-			// Auto-committing connection handles that ignore transaction rounds
-			self::POOL_AUTOCOMMIT => []
+			self::CATEGORY_ROUND => [],
+			self::CATEGORY_AUTOCOMMIT => []
 		];
 	}
 
@@ -337,6 +338,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	/**
+	 * Sanitize connection flags provided by a call to getConnection()
+	 *
 	 * @param int $flags Bitfield of class CONN_* constants
 	 * @param int $i Specific server index or DB_PRIMARY/DB_REPLICA
 	 * @param string $domain Database domain
@@ -383,11 +386,16 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @throws DBUnexpectedError
 	 */
 	private function enforceConnectionFlags( IDatabase $conn, $flags ) {
-		if ( self::fieldHasBit( $flags, self::CONN_TRX_AUTOCOMMIT ) ) {
+		if (
+			self::fieldHasBit( $flags, self::CONN_TRX_AUTOCOMMIT ) ||
+			// Handles with open transactions are avoided since they might be subject
+			// to REPEATABLE-READ snapshots, which could affect the lag estimate query.
+			self::fieldHasBit( $flags, self::CONN_UNTRACKED_GAUGE )
+		) {
 			if ( $conn->trxLevel() ) {
 				throw new DBUnexpectedError(
 					$conn,
-					'Handle requested with CONN_TRX_AUTOCOMMIT yet it has a transaction'
+					'Handle requested with autocommit-mode yet it has a transaction'
 				);
 			}
 
@@ -783,8 +791,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				}
 
 				if ( $autoCommitOnly ) {
-					// Only accept CONN_TRX_AUTOCOMMIT connections
-					if ( !$conn->getLBInfo( self::INFO_AUTOCOMMIT_ONLY ) ) {
+					if (
+						$conn->getLBInfo( self::INFO_CONN_CATEGORY ) !== self::CATEGORY_AUTOCOMMIT
+					) {
 						// Connection is aware of transaction rounds
 						continue;
 					}
@@ -962,8 +971,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			return false;
 		}
 
-		// Make sure that flags like CONN_TRX_AUTOCOMMIT are respected by this handle
-		$this->enforceConnectionFlags( $conn, $flags );
 		// Set primary DB handles as read-only if the load balancer is configured as read-only
 		// or the primary database server is running in server-side read-only mode. Note that
 		// replica DB handles are always read-only via Database::assertIsWritablePrimary().
@@ -1039,8 +1046,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * involves switching the DB domain of an existing handle in order to reuse it. If no
 	 * existing handles can be reused, then a new connection will be made.
 	 *
-	 * On error, the offending DB handle will be available via $this->errorConnection.
-	 *
 	 * @param int $i Specific server index
 	 * @param DatabaseDomain $domain Database domain ID required by the reference
 	 * @param int $flags Bit field of class CONN_* constants
@@ -1051,11 +1056,17 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @throws DBAccessError If disable() was called
 	 */
 	private function reuseOrOpenConnectionForNewRef( $i, DatabaseDomain $domain, $flags = 0 ) {
-		// Connection handles required to be in auto-commit mode use a separate connection
-		// pool since the main pool is effected by implicit and explicit transaction rounds
-		$autoCommit = self::fieldHasBit( $flags, self::CONN_TRX_AUTOCOMMIT );
-		// Decide which pool of connection handles to use (segregated by CONN_TRX_AUTOCOMMIT)
-		$poolKey = $autoCommit ? self::POOL_AUTOCOMMIT : self::POOL_ROUND;
+		// Figure out which connection pool to use based on the flags
+		if ( $this->fieldHasBit( $flags, self::CONN_UNTRACKED_GAUGE ) ) {
+			// Use low timeouts, use autocommit mode, ignore transaction rounds
+			$category = self::CATEGORY_GAUGE;
+		} elseif ( self::fieldHasBit( $flags, self::CONN_TRX_AUTOCOMMIT ) ) {
+			// Use autocommit mode, ignore transaction rounds
+			$category = self::CATEGORY_AUTOCOMMIT;
+		} else {
+			// Respect DBO_DEFAULT, respect transaction rounds
+			$category = self::CATEGORY_ROUND;
+		}
 
 		$conn = null;
 		// Reuse a free connection in the pool from any domain if possible. There should only
@@ -1064,7 +1075,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		//       or more database domains have been used during the load balancer's lifetime
 		//  - b) Two or more nested function calls used getConnection() on different domains.
 		//       Normally, callers should use getConnectionRef() instead of getConnection().
-		foreach ( ( $this->conns[$poolKey][$i] ?? [] ) as $poolConn ) {
+		foreach ( ( $this->conns[$category][$i] ?? [] ) as $poolConn ) {
 			// Check if any required DB domain changes for the new reference are possible
 			// Calling selectDomain() would trigger a reconnect, which will break if a
 			// transaction is active or if there is any other meaningful session state.
@@ -1089,10 +1100,14 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$conn = $this->reallyOpenConnection(
 				$i,
 				$domain,
-				[ self::INFO_AUTOCOMMIT_ONLY => $autoCommit ]
+				[ self::INFO_CONN_CATEGORY => $category ]
 			);
 			if ( $conn->isOpen() ) {
-				$this->conns[$poolKey][$i][] = $conn;
+				// Connection obtained; check if it belongs to a tracked connection category
+				if ( isset( $this->conns[$category] ) ) {
+					// Track this connection for future reuse
+					$this->conns[$category][$i][] = $conn;
+				}
 			} else {
 				$this->logger->warning( __METHOD__ . ": connection error for $i/$domain" );
 				$this->lastErrorConn = $conn;
@@ -1100,9 +1115,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			}
 		}
 
-		// Check to make sure that the right domain is selected
 		if ( $conn instanceof IDatabase ) {
+			// Check to make sure that the right domain is selected
 			$this->assertConnectionDomain( $conn, $domain );
+			// Check to make sure that the CONN_* flags are respected
+			$this->enforceConnectionFlags( $conn, $flags );
 		}
 
 		return $conn;
@@ -1158,6 +1175,13 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		$server = $this->getServerInfoStrict( $i );
+		// Use low connection/read timeouts for connection used for gauging server health.
+		// Gauge information should be cached and used to avoid outages. Indefinite hanging
+		// while gauging servers would do the opposite.
+		if ( $lbInfo[self::INFO_CONN_CATEGORY] === self::CATEGORY_GAUGE ) {
+			$server['connectTimeout'] = min( 1, $server['connectTimeout'] ?? INF );
+			$server['receiveTimeout'] = min( 1, $server['receiveTimeout'] ?? INF );
+		}
 
 		$conn = $this->databaseFactory->create(
 			$server['type'],
@@ -1843,7 +1867,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @param Database $conn
 	 */
 	private function applyTransactionRoundFlags( Database $conn ) {
-		if ( $conn->getLBInfo( self::INFO_AUTOCOMMIT_ONLY ) ) {
+		if ( $conn->getLBInfo( self::INFO_CONN_CATEGORY ) !== self::CATEGORY_ROUND ) {
 			return; // transaction rounds do not apply to these connections
 		}
 
@@ -1862,7 +1886,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @param Database $conn
 	 */
 	private function undoTransactionRoundFlags( Database $conn ) {
-		if ( $conn->getLBInfo( self::INFO_AUTOCOMMIT_ONLY ) ) {
+		if ( $conn->getLBInfo( self::INFO_CONN_CATEGORY ) !== self::CATEGORY_ROUND ) {
 			return; // transaction rounds do not apply to these connections
 		}
 
