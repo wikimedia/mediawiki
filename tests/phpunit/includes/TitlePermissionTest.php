@@ -957,7 +957,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 			'reason' => 'no reason given',
 			'timestamp' => $prev,
 			'auto' => true,
-			'expiry' => 0
+			'expiry' => ''
 		] );
 		$this->assertEquals( [ [ 'autoblockedtext',
 				"[[User:Useruser|\u{202A}Useruser\u{202C}]]", 'no reason given', '127.0.0.1',
