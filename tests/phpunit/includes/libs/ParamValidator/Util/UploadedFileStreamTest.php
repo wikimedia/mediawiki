@@ -43,11 +43,14 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$fp = TestingAccessWrapper::newFromObject( $stream )->fp;
 		$this->assertSame( 'f', fread( $fp, 1 ), 'sanity check' );
 		unset( $stream );
+		AtEase::suppressWarnings();
 		try {
 			// PHP 7 raises warnings
-			$this->assertFalse( AtEase::quietCall( 'fread', $fp, 1 ) );
+			$this->assertFalse( fread( $fp, 1 ) );
 		} catch ( TypeError $ex ) {
 			// PHP 8 throws
+		} finally {
+			AtEase::restoreWarnings();
 		}
 	}
 
