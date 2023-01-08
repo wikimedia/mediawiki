@@ -25,6 +25,7 @@ use MediaWiki\MediaWikiServices;
 use PharData;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
+use SplFileInfo;
 use Symfony\Component\Yaml\Yaml;
 
 /**
