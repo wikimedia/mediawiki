@@ -54,6 +54,13 @@ class CreateAndPromote extends Maintenance {
 			true
 		);
 
+		$this->addOption(
+			'reason',
+			'Reason for account creation and user rights assignment to log to wiki',
+			false,
+			true
+		);
+
 		$this->addArg( 'username', 'Username of new user' );
 		$this->addArg( 'password', 'Password to set', false );
 	}
@@ -166,6 +173,12 @@ class CreateAndPromote extends Maintenance {
 			}
 		}
 
+		// Handle promotion and logging of promotions
+		$userGroupManager = $services->getUserGroupManager();
+		$oldGroups = $userGroupManager->getUserGroups( $user );
+		$userGroupManager->addUserToMultipleGroups( $user, $promotions );
+		$this->addLogEntry( $user, $oldGroups, array_merge( $oldGroups, $promotions ), $this->getOption( 'reason' ) );
+
 		if ( !$exists ) {
 			# Increment site_stats.ss_users
 			$ssu = SiteStatsUpdate::factory( [ 'users' => 1 ] );
@@ -173,6 +186,29 @@ class CreateAndPromote extends Maintenance {
 		}
 
 		$this->output( "done.\n" );
+	}
+
+	/**
+	 * Add a rights log entry for an action.
+	 *
+	 * @param User|UserRightsProxy $user
+	 * @param array $oldGroups
+	 * @param array $newGroups
+	 * @param string $reason
+	 *
+	 * @throws MWException
+	 */
+	private function addLogEntry( $user, array $oldGroups, array $newGroups, string $reason ) {
+		$logEntry = new ManualLogEntry( 'rights', 'rights' );
+		$logEntry->setPerformer( User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] ) );
+		$logEntry->setTarget( $user->getUserPage() );
+		$logEntry->setComment( $reason );
+		$logEntry->setParameters( [
+			'4::oldgroups' => $oldGroups,
+			'5::newgroups' => $newGroups
+		] );
+		$logid = $logEntry->insert();
+		$logEntry->publish( $logid );
 	}
 }
 
