@@ -2843,6 +2843,7 @@
 	"movesubpagetalktext": "Sivuun liittyvällä keskustelusivulla on $1 {{PLURAL:$1|alasivu|alasivua}}, jotka näytetään alla.",
 	"movenosubpage": "Tällä sivulla ei ole alasivuja.",
 	"movereason": "Syy:",
+	"movereasonotherlist": "Muu syy",
 	"revertmove": "kumoa siirto",
 	"delete_and_move_text": "Kohdesivu [[:$1]] on jo olemassa. \nHaluatko poistaa sen, jotta nykyinen sivu voitaisiin siirtää sen tilalle?",
 	"delete_redirect_and_move_text": "Kohdesivu [[:$1]] on jo olemassa ohjaussivuna. \nHaluatko poistaa sen, jotta nykyinen sivu voitaisiin siirtää sen tilalle?",

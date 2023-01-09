@@ -38,7 +38,7 @@
 			"아라"
 		]
 	},
-	"tog-underline": "Bınê gırey de xete bance:",
+	"tog-underline": "Bınê gıreyi de xete bance:",
 	"tog-hideminor": "Vurnayışanê peyênan ra vurnayışanê werdiyan bınımne",
 	"tog-hidepatrolled": "Vurnayışanê qontrolkerdeyan pela vurnayışê peyêni de bınımne",
 	"tog-newpageshidepatrolled": "Pelanê qontrolkerdeyan lista pelanê neweyan de bınımne",
@@ -681,7 +681,7 @@
 	"missing-revision": "Rewizyonê name dê pela da #$1 \"{{FULLPAGENAME}}\" dı çıniyo.\n\nNo normal de tarix dê pelanê besterneyan dı ena xırabin asena.\nDetayê besternayışi [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} tiya dı] aseno.",
 	"missing-revision-content": "Pela \"$2\" de zerrey revizyonê #$1 bar nebı",
 	"userpage-userdoesnotexist": "Hesabê karberi \"<nowiki>$1</nowiki>\" qeyd nêbiyo.\nKerem ke, tı ke wazenay na pele bafernê/bıvurnê, qontrol ke.",
-	"userpage-userdoesnotexist-view": "Hesabê karberi \"$1\" qeyd nêbiyo.",
+	"userpage-userdoesnotexist-view": "Hesabê karberi \"$1\" qeyd nê wikiyi de nêbiyo.",
 	"blocked-notice-logextract": "No {{GENDER:$1|karber}} enewke kerdo bloqe \nCıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:",
 	"clearyourcache": "<strong>Note:</strong> Qeydi ra dıme, gani viriya cıgeyrayoği pak bo ke vurnayışi bıvêniyê.\n* Gışta şıma ke niya ro gocega <strong>Firefox / Safari:</strong> <em>Shift</em> ser, bıtıknê ra <em>newe ra bar kerên</em> ya zi <em>Ctrl-F5</em> ya zi <em>Ctrl-R</em> bıtıknê (seba Mac ra <em>⌘-R</em>).\n* <strong>Google Chrome:</strong> <em>Ctrl-Shift-R</em> ro nê. (seba Mac ra <em>⌘-Shift-R</em>)\n* <strong>Internet Explorer / Edge:</strong> <em>Ctrl</em> ke niyo ro cı, <em>Newe ke</em> bıtıknê ya zi <em>Ctrl-F5</em> bıkerê.\n* <strong>Opera:</strong> <em>Ctrl-F5</em> bıtıknê.",
 	"usercssyoucanpreview": "'''Yardim:''' Ser \"{{int:showpreview}}\" sima eskeni CSSe newe test bikeri.",
@@ -2083,7 +2083,7 @@
 	"unusedcategoriestext": "Kategoriyê ke cêr derê, nê bıbê zi, terefê qet madeyan ya zi kategoriyan ra nêgureniyenê.",
 	"notargettitle": "Hedef çini yo",
 	"notargettext": "qey xebıtnayişê ney fonksiyoni şıma yew hedef nişane nêkerd.",
-	"nopagetitle": "wina yew pelê hedefi çin o.",
+	"nopagetitle": "Pela hedefiya niyanêne çıniya",
 	"nopagetext": "pelê hedefi ke şıma nişane kerdo çin o.",
 	"pager-newer-n": "{{PLURAL:$1|newiyer 1|newiyer $1}}",
 	"pager-older-n": "{{PLURAL:$1|deha kehan 1|deha kehan $1}}",

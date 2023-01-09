@@ -930,6 +930,8 @@
 	"recentchanges-label-plusminus": "Bet kólemi bul bayt sanına qaray ózgerdi",
 	"recentchanges-legend-heading": "<strong>Shártli belgiler:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (q: [[Special:NewPages|jańa betler dizimi]])",
+	"recentchanges-legend-watchlistexpiry": "Waqtınsha baqlanatuǵın bet",
+	"rcfilters-legend-heading": "<strong>Qısqartpalar dizimi:</strong>",
 	"rcfilters-activefilters": "Berilgen filtrler",
 	"rcfilters-quickfilters": "Eslep qalınǵan filtrler",
 	"rcfilters-savedqueries-defaultlabel": "Eslep qalınǵan filtrler",
