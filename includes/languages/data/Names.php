@@ -213,7 +213,10 @@ class Names {
 		'guw' => 'gungbe', # Gun
 		'gv' => 'Gaelg', # Manx
 		'ha' => 'Hausa', # Hausa
-		'hak' => '客家語/Hak-kâ-ngî', # Hakka
+		'hak' => '客家語 / Hak-kâ-ngî', # Hakka (multiple scripts)
+		'hak-hans' => '客家语（简体）', # Hakka (Simplified Han script)
+		'hak-hant' => '客家語（繁體）', # Hakka (Traditional Han script)
+		'hak-latn' => 'Hak-kâ-ngî (Pha̍k-fa-sṳ)', # Hakka (Latin script)
 		'haw' => 'Hawaiʻi', # Hawaiian
 		'he' => 'עברית', # Hebrew
 		'hi' => 'हिन्दी', # Hindi
