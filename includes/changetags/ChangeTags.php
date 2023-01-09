@@ -137,6 +137,8 @@ class ChangeTags {
 	 */
 	private const CHANGE_TAG_DEF = 'change_tag_def';
 
+	public const DISPLAY_TABLE_ALIAS = 'changetagdisplay';
+
 	/**
 	 * If true, this class attempts to avoid reopening database tables within the same query,
 	 * to avoid the "Can't reopen table" error when operating on temporary tables while running
@@ -927,16 +929,19 @@ class ChangeTags {
 		$options = (array)$options;
 
 		$fields['ts_tags'] = self::makeTagSummarySubquery( $tables );
+		// We use an alias and qualify the conditions in case there are
+		// multiple joins to this table.
+		// In particular for compatibility with the RC filters that extension Translate does.
 
 		// Figure out which ID field to use
 		if ( in_array( 'recentchanges', $tables ) ) {
-			$join_cond = 'ct_rc_id=rc_id';
+			$join_cond = self::DISPLAY_TABLE_ALIAS . '.ct_rc_id=rc_id';
 		} elseif ( in_array( 'logging', $tables ) ) {
-			$join_cond = 'ct_log_id=log_id';
+			$join_cond = self::DISPLAY_TABLE_ALIAS . '.ct_log_id=log_id';
 		} elseif ( in_array( 'revision', $tables ) ) {
-			$join_cond = 'ct_rev_id=rev_id';
+			$join_cond = self::DISPLAY_TABLE_ALIAS . '.ct_rev_id=rev_id';
 		} elseif ( in_array( 'archive', $tables ) ) {
-			$join_cond = 'ct_rev_id=ar_rev_id';
+			$join_cond = self::DISPLAY_TABLE_ALIAS . '.ct_rev_id=ar_rev_id';
 		} else {
 			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
@@ -965,18 +970,18 @@ class ChangeTags {
 
 			if ( $exclude ) {
 				if ( $filterTagIds !== [] ) {
-					$tables[] = $tagTable;
-					$join_conds[$tagTable] = [
+					$tables[self::DISPLAY_TABLE_ALIAS] = $tagTable;
+					$join_conds[self::DISPLAY_TABLE_ALIAS] = [
 						'LEFT JOIN',
-						[ $join_cond, 'ct_tag_id' => $filterTagIds ]
+						[ $join_cond, self::DISPLAY_TABLE_ALIAS . '.ct_tag_id' => $filterTagIds ]
 					];
-					$conds[] = "ct_tag_id IS NULL";
+					$conds[] = self::DISPLAY_TABLE_ALIAS . ".ct_tag_id IS NULL";
 				}
 			} else {
-				$tables[] = $tagTable;
-				$join_conds[$tagTable] = [ 'JOIN', $join_cond ];
+				$tables[self::DISPLAY_TABLE_ALIAS] = $tagTable;
+				$join_conds[self::DISPLAY_TABLE_ALIAS] = [ 'JOIN', $join_cond ];
 				if ( $filterTagIds !== [] ) {
-					$conds['ct_tag_id'] = $filterTagIds;
+					$conds[self::DISPLAY_TABLE_ALIAS . '.ct_tag_id'] = $filterTagIds;
 				} else {
 					// all tags were invalid, return nothing
 					$conds[] = '0=1';
