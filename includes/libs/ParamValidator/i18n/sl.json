@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Eleassar"
+			"Eleassar",
+			"Mainframe98"
 		]
 	},
 	"paramvalidator-badbool": "Neveljavna vrednost »$2« za booleanov parameter »$1«. Določite $3 za »res« ali »$5« za »ni res«.",

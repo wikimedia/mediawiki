@@ -1435,7 +1435,7 @@
 	"rcfilters-filter-previousrevision-label": "Net déi lescht Versioun",
 	"rcfilters-filter-previousrevision-description": "All Ännerungen, déi net déi 'rezentst Versioun' vun enger Säit sinn.",
 	"rcfilters-filter-excluded": "Ausgeschloss",
-	"rcfilters-tag-prefix-namespace-inverted": "<strong>:net</strong> $1",
+	"rcfilters-tag-prefix-namespace-inverted": "<strong>net</strong> :$1",
 	"rcfilters-exclude-button-off": "Déi Ausgewielt ausschléissen",
 	"rcfilters-exclude-button-on": "Déi Ausgewielt ausschléissen",
 	"rcfilters-view-tags": "Markéiert Ännerungen",
