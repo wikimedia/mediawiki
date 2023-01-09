@@ -213,7 +213,11 @@
 			.removeAttr( 'height' );
 
 		// Stretch image to take up the required size
-		this.$img.attr( 'height', ( this.imageHeight - this.$imgCaption.outerHeight() ) + 'px' );
+		var imageHeight = this.imageHeight - this.$imgCaption.outerHeight();
+		this.$img.attr( 'height', imageHeight );
+		// also add to the image above in case the image exhibits responsive behaviours
+		// e.g. skin sets height to 100%.
+		this.$img.parent( 'a.image' ).height( imageHeight );
 
 		// Make the image smaller in case the current image
 		// size is larger than the original file size.
@@ -224,10 +228,14 @@
 				info.thumbwidth < this.$img.width() ||
 				info.thumbheight < this.$img.height()
 			) {
-				this.$img.attr( {
-					width: info.thumbwidth + 'px',
-					height: info.thumbheight + 'px'
-				} );
+				var attrs = {
+					width: info.thumbwidth,
+					height: info.thumbheight
+				};
+				this.$img.attr( attrs );
+				// also add to the image above in case the image exhibits responsive behaviours
+				// e.g. skin sets height to 100%.
+				this.$img.parent( 'a.image' ).css( attrs );
 			}
 		}.bind( this ) );
 	};
