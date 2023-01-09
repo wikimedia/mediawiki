@@ -1249,6 +1249,12 @@ class MainConfigNames {
 	public const ExternalLinksSchemaMigrationStage = 'ExternalLinksSchemaMigrationStage';
 
 	/**
+	 * Name constant for the CommentTempTableSchemaMigrationStage setting, for use with Config::get()
+	 * @see MainConfigSchema::CommentTempTableSchemaMigrationStage
+	 */
+	public const CommentTempTableSchemaMigrationStage = 'CommentTempTableSchemaMigrationStage';
+
+	/**
 	 * Name constant for the ContentHandlers setting, for use with Config::get()
 	 * @see MainConfigSchema::ContentHandlers
 	 */

@@ -69,9 +69,14 @@ class CommentStore extends CommentStoreBase {
 	 * @param int $stage One of the MIGRATION_* constants, or an appropriate
 	 *  combination of SCHEMA_COMPAT_* constants. Always MIGRATION_NEW for
 	 *  MediaWiki core since 1.33.
+	 * @param array $tempTableStageOverrides
 	 */
-	public function __construct( Language $lang, $stage ) {
+	public function __construct( Language $lang, $stage, $tempTableStageOverrides ) {
 		parent::__construct( self::TEMP_TABLES, $lang, $stage );
+
+		foreach ( $tempTableStageOverrides as $key => $stageOverride ) {
+			$this->tempTables[$key]['stage'] = $stageOverride;
+		}
 	}
 
 	/**

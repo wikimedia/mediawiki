@@ -78,7 +78,8 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 		try {
 			$m = new CommentStore(
 				$this->createMock( Language::class ),
-				$stage
+				$stage,
+				[]
 			);
 			if ( $exceptionMsg !== null ) {
 				$this->fail( 'Expected exception not thrown' );

@@ -1233,6 +1233,12 @@ $wgTemplateLinksSchemaMigrationStage = null;
 $wgExternalLinksSchemaMigrationStage = null;
 
 /**
+ * Config variable stub for the CommentTempTableSchemaMigrationStage setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::CommentTempTableSchemaMigrationStage
+ */
+$wgCommentTempTableSchemaMigrationStage = null;
+
+/**
  * Config variable stub for the ContentHandlers setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::ContentHandlers
  */
