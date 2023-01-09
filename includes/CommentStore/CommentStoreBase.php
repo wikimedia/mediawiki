@@ -23,7 +23,6 @@ namespace MediaWiki\CommentStore;
 use FormatJson;
 use InvalidArgumentException;
 use Language;
-use LogicException;
 use MediaWiki\Language\RawMessage;
 use Message;
 use OverflowException;
@@ -61,7 +60,7 @@ class CommentStoreBase {
 	 *  - stage: Migration stage
 	 *  - deprecatedIn: Version when using insertWithTempTable() was deprecated
 	 */
-	private $tempTables;
+	protected $tempTables;
 
 	/**
 	 * @var int One of the MIGRATION_* constants, or an appropriate combination
@@ -174,14 +173,8 @@ class CommentStoreBase {
 					if ( ( $tempTableStage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_OLD ) {
 						$joinField = "{$alias}.{$t['field']}";
 					} else {
-						// Nothing hits this code path for now, but will in the future when we set
-						// $this->tempTables['rev_comment']['stage'] to MIGRATION_WRITE_NEW while
-						// merging revision_comment_temp into revision.
-						// @codeCoverageIgnoreStart
 						$joins[$alias][0] = 'LEFT JOIN';
 						$joinField = "(CASE WHEN {$key}_id != 0 THEN {$key}_id ELSE {$alias}.{$t['field']} END)";
-						throw new LogicException( 'Nothing should reach this code path at this time' );
-						// @codeCoverageIgnoreEnd
 					}
 				} else {
 					$joinField = "{$key}_id";
