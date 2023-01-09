@@ -126,7 +126,9 @@ class Names {
 		'ca' => 'català', # Catalan
 		'cbk-zam' => 'Chavacano de Zamboanga', # Zamboanga Chavacano, T124657
 		'ccp' => '𑄌𑄋𑄴𑄟𑄳𑄦', # Chakma
-		'cdo' => '閩東語 / Mìng-dĕ̤ng-ngṳ̄', # Min-dong (multiple scripts - defaults to Latin)
+		'cdo' => '閩東語 / Mìng-dĕ̤ng-ngṳ̄', # Mindong (multiple scripts - defaults to Latin)
+		'cdo-hant' => '閩東語（傳統漢字）', # Mindong (Traditional Han script)
+		'cdo-latn' => 'Mìng-dĕ̤ng-ngṳ̄ (Bàng-uâ-cê)', # Mindong (Latin script)
 		'ce' => 'нохчийн', # Chechen
 		'ceb' => 'Cebuano', # Cebuano
 		'ch' => 'Chamoru', # Chamorro

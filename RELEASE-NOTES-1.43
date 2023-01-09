@@ -302,6 +302,9 @@ because of Phabricator reports.
   This is done experimentally, with only a Names.php entry and
   namespace translations, before we have actual localized strings.
   For details, see https://www.mediawiki.org/wiki/Future_of_Language_Incubation.
+* (T379137) Added language support for Mindong (Traditional Han script)
+  (cdo-hant).
+* (T379137) Added language support for Mindong (Latin script) (cdo-latn).
 * (T356144) Deprecated the Kanuri language (kr) and replaced it
   with Central Kanuri (knc). The language code kr is kept for
   backwards compatibility and falls back to knc.
