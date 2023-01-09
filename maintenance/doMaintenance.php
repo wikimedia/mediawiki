@@ -85,13 +85,15 @@ require_once "$IP/includes/Setup.php";
 // If it was loaded by MaintenanceRunner, MaintenanceRunner::shouldExecute() would have returned false,
 // and we would have returned from this file early.
 
-echo "\n";
-echo "*******************************************************************************\n";
-echo "NOTE: Do not run maintenance scripts directly, use maintenance/run.php instead!\n";
-echo "      Running scripts directly has been deprecated in MediaWiki 1.40.\n";
-echo "      It may not work for some (or any) scripts in the future.\n";
-echo "*******************************************************************************\n";
-echo "\n";
+if ( stream_isatty( STDOUT ) ) {
+	echo "\n";
+	echo "*******************************************************************************\n";
+	echo "NOTE: Do not run maintenance scripts directly, use maintenance/run.php instead!\n";
+	echo "      Running scripts directly has been deprecated in MediaWiki 1.40.\n";
+	echo "      It may not work for some (or any) scripts in the future.\n";
+	echo "*******************************************************************************\n";
+	echo "\n";
+}
 
 // Do it!
 $success = $runner->run();
