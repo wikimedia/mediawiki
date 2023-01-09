@@ -217,6 +217,7 @@ class Names {
 		'id' => 'Bahasa Indonesia', # Indonesian
 		'ie' => 'Interlingue', # Interlingue (Occidental)
 		'ig' => 'Igbo', # Igbo
+		'igl' => 'Igala', # Igala
 		'ii' => 'ꆇꉙ', # Sichuan Yi
 		'ik' => 'Iñupiatun', # Inupiaq
 		'ike-cans' => 'ᐃᓄᒃᑎᑐᑦ', # Inuktitut, Eastern Canadian (Unified Canadian Aboriginal Syllabics)
