@@ -61,7 +61,7 @@
 		"wikimedia/less.php": "3.2.0",
 		"wikimedia/minify": "2.3.0",
 		"wikimedia/normalized-exception": "1.0.1",
-		"wikimedia/object-factory": "4.0.0",
+		"wikimedia/object-factory": "5.0.1",
 		"wikimedia/parsoid": "^0.17.0-a1@alpha",
 		"wikimedia/php-session-serializer": "2.0.1",
 		"wikimedia/purtle": "1.0.8",
