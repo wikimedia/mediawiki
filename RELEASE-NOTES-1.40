@@ -304,6 +304,7 @@ because of Phabricator reports.
   Parser::getTargetLanguage() instead.
 * MagicWordArray::getVariableRegex(), deprecated in 1.36, now emits deprecation
   warnings.
+* CommentStore::getStore, deprecated in 1.31, now emits deprecation warnings.
 * BacklinkCache::get(), ::getLinks() and ::getCascadeProtectedLinks(),
   deprecated in 1.37, now emit deprecation warnings.
 * LanguageConverterFactory::isTitleConversionDisabled(), deprecated in 1.36,

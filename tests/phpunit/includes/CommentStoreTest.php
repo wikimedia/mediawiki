@@ -858,7 +858,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	}
 
 	public function testGetStore() {
-		$this->hideDeprecated( 'MediaWiki\\CommentStore\\CommentStoreBase::getStore' );
+		$this->hideDeprecated( 'MediaWiki\\CommentStore\\CommentStore::getStore' );
 		$this->assertInstanceOf( CommentStore::class, CommentStore::getStore() );
 	}
 
