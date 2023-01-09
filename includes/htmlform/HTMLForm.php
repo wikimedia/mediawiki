@@ -546,6 +546,7 @@ class HTMLForm extends ContextSource {
 	 * 	in the class documentation
 	 * @param HTMLForm|null $parent Parent instance of HTMLForm
 	 *
+	 * @warning Not passing (or passing null) for $parent is deprecated as of 1.40
 	 * @throws MWException
 	 * @return HTMLFormField Instance of a subclass of HTMLFormField
 	 */

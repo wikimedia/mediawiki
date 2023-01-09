@@ -18,7 +18,9 @@ class HTMLAutoCompleteSelectFieldTest extends MediaWikiIntegrationTestCase {
 	public function testMissingAutocompletions() {
 		$this->expectException( MWException::class );
 		$this->expectExceptionMessage( "called without any autocompletions" );
-		new HTMLAutoCompleteSelectField( [ 'fieldname' => 'Test' ] );
+
+		$htmlForm = $this->createMock( HTMLForm::class );
+		new HTMLAutoCompleteSelectField( [ 'fieldname' => 'Test', 'parent' => $htmlForm ] );
 	}
 
 	/**
@@ -26,10 +28,17 @@ class HTMLAutoCompleteSelectFieldTest extends MediaWikiIntegrationTestCase {
 	 * the presence or absence of the 'options' parameter.
 	 */
 	public function testOptionalSelectElement() {
+		$htmlForm = $this->createMock( HTMLForm::class );
+		$htmlForm->method( 'msg' )
+			->willReturnCallback( static function ( ...$args ) {
+				return call_user_func_array( 'wfMessage', $args );
+			} );
+
 		$params = [
 			'fieldname'         => 'Test',
 			'autocomplete-data' => $this->options,
 			'options'           => $this->options,
+			'parent'            => $htmlForm
 		];
 
 		$field = new HTMLAutoCompleteSelectField( $params );

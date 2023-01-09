@@ -10,7 +10,13 @@ class HTMLRestrictionsFieldTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 
 	public function testConstruct() {
-		$field = new HTMLRestrictionsField( [ 'fieldname' => 'restrictions' ] );
+		$htmlForm = $this->createMock( HTMLForm::class );
+		$htmlForm->method( 'msg' )
+			->willReturnCallback( static function ( ...$args ) {
+				return call_user_func_array( 'wfMessage', $args );
+			} );
+
+		$field = new HTMLRestrictionsField( [ 'fieldname' => 'restrictions', 'parent' => $htmlForm ] );
 		$this->assertNotEmpty( $field->getLabel(), 'has a default label' );
 		$this->assertNotEmpty( $field->getHelpText(), 'has a default help text' );
 		$this->assertEquals( MWRestrictions::newDefault(), $field->getDefault(),
@@ -21,6 +27,7 @@ class HTMLRestrictionsFieldTest extends PHPUnit\Framework\TestCase {
 			'label' => 'foo',
 			'help' => 'bar',
 			'default' => 'baz',
+			'parent' => $htmlForm,
 		] );
 		$this->assertEquals( 'foo', $field->getLabel(), 'label can be customized' );
 		$this->assertEquals( 'bar', $field->getHelpText(), 'help text can be customized' );
