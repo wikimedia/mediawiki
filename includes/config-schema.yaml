@@ -4151,7 +4151,7 @@ config-schema:
 
             @see $wgMaxTemplateDepth
     UrlProtocols:
-        default: ['bitcoin:', 'ftp://', 'ftps://', 'geo:', 'git://', 'gopher://', 'http://', 'https://', 'irc://', 'ircs://', 'magnet:', 'mailto:', 'mms://', 'news:', 'nntp://', 'redis://', 'sftp://', 'sip:', 'sips:', 'sms:', 'ssh://', 'svn://', 'tel:', 'telnet://', 'urn:', 'worldwind://', 'xmpp:', '//']
+        default: ['bitcoin:', 'ftp://', 'ftps://', 'geo:', 'git://', 'gopher://', 'http://', 'https://', 'irc://', 'ircs://', 'magnet:', 'mailto:', 'matrix:', 'mms://', 'news:', 'nntp://', 'redis://', 'sftp://', 'sip:', 'sips:', 'sms:', 'ssh://', 'svn://', 'tel:', 'telnet://', 'urn:', 'worldwind://', 'xmpp:', '//']
         type: array
         description: |-
             URL schemes that should be recognized as valid by wfParseUrl().

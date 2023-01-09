@@ -4951,9 +4951,10 @@ $wgMaxPPExpandDepth = 100;
  */
 $wgUrlProtocols = [
 	'bitcoin:', 'ftp://', 'ftps://', 'geo:', 'git://', 'gopher://', 'http://',
-	'https://', 'irc://', 'ircs://', 'magnet:', 'mailto:', 'mms://', 'news:',
-	'nntp://', 'redis://', 'sftp://', 'sip:', 'sips:', 'sms:', 'ssh://',
-	'svn://', 'tel:', 'telnet://', 'urn:', 'worldwind://', 'xmpp:', '//'
+	'https://', 'irc://', 'ircs://', 'magnet:', 'mailto:', 'matrix:', 'mms://',
+	'news:', 'nntp://', 'redis://', 'sftp://', 'sip:', 'sips:', 'sms:',
+	'ssh://', 'svn://', 'tel:', 'telnet://', 'urn:', 'worldwind://', 'xmpp:',
+	'//',
 ];
 
 /**
