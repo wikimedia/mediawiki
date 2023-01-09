@@ -504,6 +504,14 @@ abstract class HTMLFormField {
 
 		if ( isset( $params['parent'] ) && $params['parent'] instanceof HTMLForm ) {
 			$this->mParent = $params['parent'];
+		} else {
+			// Normally parent is added automatically by HTMLForm::factory.
+			// Several field types already assume unconditionally this is always set,
+			// so deprecate manually creating an HTMLFormField without a parent form set.
+			wfDeprecatedMsg(
+				__METHOD__ . ": Constructing an HTMLFormField without a 'parent' parameter",
+				"1.40"
+			);
 		}
 
 		# Generate the label from a message, if possible
