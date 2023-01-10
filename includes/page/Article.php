@@ -26,6 +26,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\BadRevisionException;
@@ -122,6 +123,9 @@ class Article implements Page {
 	/** @var CommentFormatter */
 	private $commentFormatter;
 
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/**
 	 * @var RevisionRecord|null Revision to be shown
 	 *
@@ -145,6 +149,7 @@ class Article implements Page {
 		$this->userNameUtils = $services->getUserNameUtils();
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
 		$this->commentFormatter = $services->getCommentFormatter();
+		$this->wikiPageFactory = $services->getWikiPageFactory();
 	}
 
 	/**
@@ -300,8 +305,7 @@ class Article implements Page {
 					$revPageId = $this->mRevisionRecord->getPageId();
 					// Revision title doesn't match the page title given?
 					if ( $this->mPage->getId() != $revPageId ) {
-						$function = get_class( $this->mPage ) . '::newFromID';
-						$this->mPage = $function( $revPageId );
+						$this->mPage = $this->wikiPageFactory->newFromID( $revPageId );
 					}
 				}
 			}
