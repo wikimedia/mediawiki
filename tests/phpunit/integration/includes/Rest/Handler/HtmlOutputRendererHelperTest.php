@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Rest\Helper;
 
 use BagOStuff;
+use CssContent;
 use DeferredUpdates;
 use EmptyBagOStuff;
 use Exception;
@@ -984,6 +985,29 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		}
 
 		return $responseInterface;
+	}
+
+	public function provideFlavorsForBadModelOutput() {
+		yield 'view' => [ 'view' ];
+		yield 'edit' => [ 'edit' ];
+		yield 'fragment' => [ 'fragment' ];
+	}
+
+	/**
+	 * @dataProvider provideFlavorsForBadModelOutput
+	 */
+	public function testDummyContentForBadModel( string $flavor ) {
+		$helper = $this->newHelper( new HashBagOStuff(), $this->newRealParsoidOutputAccess() );
+
+		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$this->editPage( $page, new CssContent( '"not wikitext"' ) );
+
+		$helper->init( $page, self::PARAM_DEFAULTS, $this->newUser() );
+		$helper->setFlavor( $flavor );
+
+		$output = $helper->getHtml();
+		$this->assertStringContainsString( 'Dummy output', $output->getText() );
+		$this->assertSame( '0/dummy-output', $output->getExtensionData( 'parsoid-render-id' ) );
 	}
 
 }

@@ -2,7 +2,8 @@
 
 namespace MediaWiki\Tests\Rest\Helper;
 
-use HashConfig;
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler\PageContentHelper;
@@ -47,10 +48,13 @@ class PageContentHelperTest extends MediaWikiIntegrationTestCase {
 		Authority $authority = null
 	): PageContentHelper {
 		$helper = new PageContentHelper(
-			new HashConfig( [
-				'RightsUrl' => 'https://example.com/rights',
-				'RightsText' => 'some rights',
-			] ),
+			new ServiceOptions(
+				PageContentHelper::CONSTRUCTOR_OPTIONS,
+				[
+					MainConfigNames::RightsUrl => 'https://example.com/rights',
+					MainConfigNames::RightsText => 'some rights',
+				]
+			),
 			$this->getServiceContainer()->getRevisionLookup(),
 			$this->getServiceContainer()->getTitleFormatter(),
 			$this->getServiceContainer()->getPageStore()

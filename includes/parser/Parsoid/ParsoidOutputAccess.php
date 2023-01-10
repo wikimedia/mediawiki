@@ -401,6 +401,15 @@ class ParsoidOutputAccess {
 		}
 	}
 
+	private function makeDummyParserOutput( string $contentModel ): Status {
+		$msg = "Dummy output. Parsoid does not support content model $contentModel. See T324711.";
+		$output = new ParserOutput( $msg );
+		// The render ID is required for rendering of dummy output: T311728.
+		$output->setExtensionData( self::RENDER_ID_KEY, '0/dummy-output' );
+
+		return Status::newGood( $output );
+	}
+
 	/**
 	 * @param PageIdentity $page
 	 * @param ParserOptions $parserOpts
@@ -424,12 +433,9 @@ class ParsoidOutputAccess {
 		$mainSlot = $revision->getSlot( SlotRecord::MAIN );
 		$contentModel = $mainSlot->getModel();
 		if ( !$this->supportsContentModel( $contentModel ) ) {
-			// This is a messy fix for T324711. The real solution is T311648. For now, just return fake output.
-
-			$msg = "Dummy output. Parsoid does not support content model $contentModel. See T324711.";
-			$output = new ParserOutput( $msg );
-			$status = Status::newGood( $output );
-			return $status;
+			// This is a messy fix for T324711. The real solution is T311648.
+			// For now, just return dummy parser output.
+			return $this->makeDummyParserOutput( $contentModel );
 
 			// TODO: go back to throwing, once RESTbase no longer expects to get a parsoid rendering for
 			//any kind of content (T324711).
