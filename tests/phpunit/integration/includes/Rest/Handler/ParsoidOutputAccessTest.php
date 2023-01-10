@@ -351,6 +351,9 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$parserOutput = $status->getValue();
 		$this->assertSame( '0/dummy-output', $parserOutput->getExtensionData( 'parsoid-render-id' ) );
 
+		$expTime = $parserOutput->getCacheExpiry();
+		$this->assertSame( 0, $expTime );
+
 		// Get the ParserOutput again, this should trigger a new parse
 		// since we suppressed caching for non-wikitext content.
 		$status = $access->getParserOutput( $page, $parserOptions );
