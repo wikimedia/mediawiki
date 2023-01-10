@@ -51,8 +51,10 @@ abstract class Benchmarker extends Maintenance {
 		$count = $this->getOption( 'count', $this->defaultCount );
 		$verbose = $this->hasOption( 'verbose' );
 
-		// Normalise
 		$normBenchs = [];
+		$shortNames = [];
+
+		// Normalise
 		foreach ( $benchs as $key => $bench ) {
 			// Shortcut for simple functions
 			if ( is_callable( $bench ) ) {
@@ -79,19 +81,24 @@ abstract class Benchmarker extends Maintenance {
 					// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
 					$name = strval( $bench['function'] );
 				}
-				$name = sprintf( "%s(%s)",
-					$name,
-					implode(
-						', ',
-						array_map(
-							static function ( $a ) {
-								return var_export( $a, true );
-							},
-							// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
-							$bench['args']
-						)
+				$argsText = implode(
+					', ',
+					array_map(
+						static function ( $a ) {
+							return var_export( $a, true );
+						},
+						// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
+						$bench['args']
 					)
 				);
+				$index = $shortNames[$name] = ( $shortNames[$name] ?? 0 ) + 1;
+				$shorten = strlen( $argsText ) > 80 || str_contains( $argsText, "\n" );
+				if ( !$shorten ) {
+					$name = "$name($argsText)";
+				}
+				if ( $shorten || $index > 1 ) {
+					$name = "$name@$index";
+				}
 			}
 
 			$normBenchs[$name] = $bench;
