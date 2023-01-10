@@ -242,6 +242,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$servers = [
 			// Primary DB
 			0 => $srvExtra + [
+					'serverName' => 'db0',
 					'host' => $wgDBserver,
 					'dbname' => $wgDBname,
 					'tablePrefix' => $this->dbPrefix(),
@@ -253,6 +254,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 				],
 			// Main replica DBs
 			1 => $srvExtra + [
+					'serverName' => 'db1',
 					'host' => $wgDBserver,
 					'dbname' => $wgDBname,
 					'tablePrefix' => $this->dbPrefix(),
@@ -263,6 +265,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					'load' => $masterOnly ? 0 : 100,
 				],
 			2 => $srvExtra + [
+					'serverName' => 'db2',
 					'host' => $wgDBserver,
 					'dbname' => $wgDBname,
 					'tablePrefix' => $this->dbPrefix(),
@@ -274,6 +277,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 				],
 			// RC replica DBs
 			3 => $srvExtra + [
+					'serverName' => 'db3',
 					'host' => $wgDBserver,
 					'dbname' => $wgDBname,
 					'tablePrefix' => $this->dbPrefix(),
@@ -289,6 +293,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 				],
 			// Logging replica DBs
 			4 => $srvExtra + [
+					'serverName' => 'db4',
 					'host' => $wgDBserver,
 					'dbname' => $wgDBname,
 					'tablePrefix' => $this->dbPrefix(),
@@ -302,6 +307,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 					],
 				],
 			5 => $srvExtra + [
+					'serverName' => 'db5',
 					'host' => $wgDBserver,
 					'dbname' => $wgDBname,
 					'tablePrefix' => $this->dbPrefix(),
@@ -316,6 +322,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 				],
 			// Maintenance query replica DBs
 			6 => $srvExtra + [
+					'serverName' => 'db6',
 					'host' => $wgDBserver,
 					'dbname' => $wgDBname,
 					'tablePrefix' => $this->dbPrefix(),
@@ -330,6 +337,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 				],
 			// Replica DB that only has a copy of some static tables
 			7 => $srvExtra + [
+					'serverName' => 'db7',
 					'host' => $wgDBserver,
 					'dbname' => $wgDBname,
 					'tablePrefix' => $this->dbPrefix(),

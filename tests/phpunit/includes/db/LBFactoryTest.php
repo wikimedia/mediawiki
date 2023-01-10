@@ -47,6 +47,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	private function getPrimaryServerConfig() {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
 		return [
+			'serverName'  => 'db1',
 			'host'        => $wgDBserver,
 			'dbname'      => $wgDBname,
 			'user'        => $wgDBuser,
@@ -83,7 +84,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
 	public function testLBFactorySimpleServers() {
 		$primaryConfig = $this->getPrimaryServerConfig();
-		$fakeReplica = [ 'load' => 100, ] + $primaryConfig;
+		$fakeReplica = [ 'serverName' => 'db2', 'load' => 100 ] + $primaryConfig;
 
 		$servers = [
 			$primaryConfig,
