@@ -105,6 +105,8 @@ For notes on 1.39.x and older releases, see HISTORY.
 * Updated pear/mail from 1.4.1 to 1.5.0.
 * Updated pear/net_smtp from 0.10.0 to 0.10.1.
 * Updated guzzlehttp/guzzle 7.4.5 to 7.5.0.
+* Updated wikimedia/less.php from 3.1.0 to 3.2.0.
+* Updated wikimedia/object-factory from 4.0.0 to 5.0.1.
 * Updated wikimedia/shellbox from 3.0.0 to 4.0.0.
 * Updated wikimedia/xmp-reader from 0.8.4 to 0.9.1.
 * Updated wikimedia/remex-html from 3.0.2 to 3.0.3.
