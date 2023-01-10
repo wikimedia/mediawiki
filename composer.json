@@ -22,7 +22,7 @@
 	"prefer-stable": true,
 	"require": {
 		"composer/semver": "3.3.2",
-		"cssjanus/cssjanus": "2.1.0",
+		"cssjanus/cssjanus": "2.1.1",
 		"ext-calendar": "*",
 		"ext-ctype": "*",
 		"ext-dom": "*",
