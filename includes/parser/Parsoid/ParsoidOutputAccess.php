@@ -404,6 +404,9 @@ class ParsoidOutputAccess {
 	private function makeDummyParserOutput( string $contentModel ): Status {
 		$msg = "Dummy output. Parsoid does not support content model $contentModel. See T324711.";
 		$output = new ParserOutput( $msg );
+
+		// This is fast to generate so it's fine not to write this to parser cache.
+		$output->updateCacheExpiry( 0 );
 		// The render ID is required for rendering of dummy output: T311728.
 		$output->setExtensionData( self::RENDER_ID_KEY, '0/dummy-output' );
 
