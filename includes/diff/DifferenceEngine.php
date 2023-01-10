@@ -1191,7 +1191,7 @@ class DifferenceEngine extends ContextSource {
 	 * @param string|false $ntitle Header for new text or false
 	 * @param string $notice HTML between diff header and body
 	 *
-	 * @return mixed
+	 * @return string|false
 	 */
 	public function getDiff( $otitle, $ntitle, $notice = '' ) {
 		$body = $this->getDiffBody();
