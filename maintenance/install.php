@@ -128,7 +128,7 @@ class CommandLineInstaller extends Maintenance {
 		try {
 			$installer = InstallerOverrides::getCliInstaller( $siteName, $adminName, $this->parameters->getOptions() );
 		} catch ( \MediaWiki\Installer\InstallException $e ) {
-			$this->output( $e->getStatus()->getMessage( false, false, 'en' )->text() . "\n" );
+			$this->error( $e->getStatus()->getMessage( false, false, 'en' )->text() . "\n" );
 			return false;
 		}
 
@@ -136,15 +136,11 @@ class CommandLineInstaller extends Maintenance {
 		if ( $status->isGood() ) {
 			$installer->showMessage( 'config-env-good' );
 		} else {
-			$installer->showStatusMessage( $status );
-
 			return false;
 		}
 		if ( !$envChecksOnly ) {
 			$status = $installer->execute();
 			if ( !$status->isGood() ) {
-				$installer->showStatusMessage( $status );
-
 				return false;
 			}
 			$installer->writeConfigurationFile( $this->getOption( 'confpath', $IP ) );
