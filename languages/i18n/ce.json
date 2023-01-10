@@ -848,6 +848,7 @@
 	"search-interwiki-more": "(кхин а)",
 	"search-interwiki-more-results": "Кхин каринарш",
 	"search-relatedarticle": "ХӀоттаделларг",
+	"search-thumbnail-alt": "$1 миниатюра",
 	"searchrelated": "хlоттаделларг",
 	"searchall": "массо",
 	"showingresults": "Лахахьа {{PLURAL:$1|гойту}} <strong>$1</strong> {{PLURAL:$1|хилам}}, дӀаболало кху № <strong>$2</strong>.",
