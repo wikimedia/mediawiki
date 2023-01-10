@@ -1,7 +1,8 @@
 
 // Do not edit directly
-// Generated on Tue, 13 Dec 2022 23:47:30 GMT
+// Generated on Tue, 10 Jan 2023 22:59:22 GMT
 
+@accent-color-base: #36c;
 @background-color-base: #fff;
 @background-color-interactive: #eaecf0;
 @background-color-interactive-subtle: #f8f9fa;
@@ -24,8 +25,8 @@
 @background-color-backdrop-light: rgba( 255, 255, 255, 0.65 ); // Backdrop is the term used by CSS Fullscreen API and is used to dim the background when a modal Dialog is open. Also known as overlay mask.
 @background-color-backdrop-dark: rgba( 0, 0, 0, 0.65 );
 @background-color-transparent: rgba( 255, 255, 255, 0 );
-@background-color-button-quiet--hover: rgba( 0, 24, 73, calc( 7 / 255 ) );
-@background-color-button-quiet--active: rgba( 0, 24, 73, calc( 21 / 255 ) );
+@background-color-button-quiet--hover: rgba( 0, 24, 73, 0.027 );
+@background-color-button-quiet--active: rgba( 0, 24, 73, 0.082 );
 @background-color-input-binary--checked: #36c;
 @color-base: #202122;
 @color-base--hover: #404244; // Aimed to be replaced by `color.gray600` in future.
@@ -61,6 +62,8 @@
 @box-sizing-base: border-box;
 @min-size-base: 32px; // TODO: Deprecate key and change to `min-size-component`?
 @min-size-icon: 20px;
+@min-size-icon-small: 16px;
+@min-size-indicator: 12px;
 @size-0: 0;
 @size-6: 1px;
 @size-12: 2px;
@@ -90,7 +93,9 @@
 @size-viewport-width-full: 100vw;
 @size-viewport-height-full: 100vh;
 @size-icon: 20px; // TODO: This has to be a relative value, for accessibility reasons.
+@size-icon-small: 16px; // TODO: This has to be a relative value, for accessibility reasons.
 @size-indicator: 12px; // TODO: This has to be a relative value, for accessibility reasons.
+@min-width-medium: 256px;
 @min-width-breakpoint-mobile: 320px; // A mobile device's minimum available screen width. Many older feature phones have screens smaller than this value.
 @min-width-breakpoint-tablet: 640px; // A tablet device's minimum available screen width. Note: the size chosen is eager to be re-evaluated with Web team and Product Analytics.
 @min-width-breakpoint-desktop: 1120px; // A desktop device's minimum available screen width.
@@ -153,7 +158,7 @@
 @border-radius-circle: 100%;
 @box-shadow-drop-small: 0 1px 1px rgba( 0, 0, 0, 0.2 ); // This features color as part of the theme token value.
 @box-shadow-drop-medium: 0 2px 2px 0 rgba( 0, 0, 0, 0.2 ); // This features color as part of the theme token value.
-@box-shadow-drop-extra-extra-large: 0 20px 48px 0 rgba( 0, 0, 0, 0.2 ); // This features color as part of the theme token value.
+@box-shadow-drop-xx-large: 0 20px 48px 0 rgba( 0, 0, 0, 0.2 ); // This features color as part of the theme token value.
 @box-shadow-inset-small: inset 0 0 0 1px;
 @box-shadow-inset-medium: inset 0 0 0 2px;
 @box-shadow-inset-medium-vertical: inset 0 -2px 0 0;
@@ -255,9 +260,9 @@
 // Warning: the following token name is deprecated, use background-color-transparent instead. (Use `background-color-transparent` instead.)
 @background-color-quiet: rgba( 255, 255, 255, 0 );
 // Warning: the following token name is deprecated (Use `background-color-button-quiet--hover` instead.)
-@background-color-quiet--hover: rgba( 0, 24, 73, calc( 7 / 255 ) );
+@background-color-quiet--hover: rgba( 0, 24, 73, 0.027 );
 // Warning: the following token name is deprecated (Use `background-color-button-quiet--active` instead.)
-@background-color-quiet--active: rgba( 0, 24, 73, calc( 21 / 255 ) );
+@background-color-quiet--active: rgba( 0, 24, 73, 0.082 );
 // Warning: the following token name is deprecated (Use `background-color-notice-subtle` instead.)
 @background-color-message-notice: #eaecf0;
 // Warning: the following token name is deprecated (Use `background-color-error-subtle` instead.)
