@@ -1795,11 +1795,6 @@ config-schema:
         description: 'To override default SQLite data directory ($docroot/../data)'
     SharedDB:
         default: null
-        deprecated: |-
-            since 1.21 In new code, use the $wiki parameter to LBFactory::getMainLB()
-            to access remote databases. Using LBFactory::getMainLB() allows the shared
-            database to reside on separate servers to the wiki's own database, with
-            suitable configuration of $wgLBFactoryConf
         description: |-
             Shared database for multiple wikis. Commonly used for storing a user table
             for single sign-on. The server for this database must be the same as for the
@@ -1815,10 +1810,6 @@ config-schema:
             $wgDBprefix.
             $wgSharedSchema is the table schema for the shared database. It defaults to
             $wgDBmwschema.
-            @deprecated since 1.21 In new code, use the $wiki parameter to LBFactory::getMainLB() to
-            access remote databases. Using LBFactory::getMainLB() allows the shared database to
-            reside on separate servers to the wiki's own database, with suitable
-            configuration of $wgLBFactoryConf.
     SharedPrefix:
         default: false
         dynamicDefault:
