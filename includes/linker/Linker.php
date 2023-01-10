@@ -1389,9 +1389,19 @@ class Linker {
 			$userText = $revUser ? $revUser->getName() : '';
 
 			if ( $userId || $userText !== '' ) {
-				$link = self::userLink( $userId, $userText )
-					. self::userToolLinks( $userId, $userText, false, 0, null,
-						$useParentheses );
+				$link = self::userLink(
+					$userId,
+					$userText,
+					false,
+					[ 'data-mw-revid' => $revRecord->getId() ]
+				) . self::userToolLinks(
+					$userId,
+					$userText,
+					false,
+					0,
+					null,
+					$useParentheses
+				);
 			}
 		}
 
