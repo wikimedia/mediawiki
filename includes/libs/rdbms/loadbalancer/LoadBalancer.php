@@ -469,10 +469,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 *
 	 * @param int $i Specific server index or DB_PRIMARY/DB_REPLICA
 	 * @param string[] $groups Non-empty query group list in preference order
-	 * @param string|false $domain
 	 * @return int A specific server index (replica DBs are checked for connectivity)
 	 */
-	private function getConnectionIndex( $i, array $groups, $domain ) {
+	private function getConnectionIndex( $i, array $groups ) {
 		if ( $i === self::DB_PRIMARY ) {
 			$i = $this->getWriterIndex();
 		} elseif ( $i === self::DB_REPLICA ) {
@@ -907,7 +906,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		// DB_REPLICA might trigger getServerConnection() calls due to the getReaderIndex()
 		// connectivity checks or LoadMonitor::scaleLoads() server state cache regeneration.
 		// The use of getServerConnection() instead of getConnection() avoids infinite loops.
-		$serverIndex = $this->getConnectionIndex( $i, $groups, $domain );
+		$serverIndex = $this->getConnectionIndex( $i, $groups );
 		// Get an open connection to that server (might trigger a new connection)
 		$conn = $this->getServerConnection( $serverIndex, $domain, $flags );
 		// Set primary DB handles as read-only if there is high replication lag
