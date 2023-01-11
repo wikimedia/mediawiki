@@ -230,7 +230,8 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		return new LoadBalancer( [
 			'servers' => [ $this->makeServerConfig() ],
-			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() )
+			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
+			'cliMode' => false
 		] );
 	}
 
@@ -471,26 +472,47 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testOpenConnection() {
 		$lb = $this->newSingleServerLocalLoadBalancer();
-
 		$i = $lb->getWriterIndex();
+
 		$this->assertFalse( $lb->getAnyOpenConnection( $i ) );
+		$this->assertFalse( $lb->getAnyOpenConnection( $i, $lb::CONN_TRX_AUTOCOMMIT ) );
 
-		$conn1 = $lb->getConnectionInternal( $i );
-		$conn1->getServerName();
-		$this->assertNotEquals( null, $conn1 );
-		$this->assertFalse( $conn1->getFlag( DBO_TRX ) );
+		// Get two live round-aware handles
+		$raConnRef1 = $lb->getConnection( $i );
+		$raConnRef1->ensureConnection();
+		$raConnRef1Wrapper = TestingAccessWrapper::newFromObject( $raConnRef1 );
+		$raConnRef2 = $lb->getConnection( $i );
+		$raConnRef2->ensureConnection();
+		$raConnRef2Wrapper = TestingAccessWrapper::newFromObject( $raConnRef2 );
 
-		$conn2 = $lb->getConnectionInternal( $i, [], false, $lb::CONN_TRX_AUTOCOMMIT );
-		$this->assertNotEquals( null, $conn2 );
-		$this->assertFalse( $conn2->getFlag( DBO_TRX ) );
+		$this->assertNotNull( $raConnRef1Wrapper->conn );
+		$this->assertSame( $raConnRef1Wrapper->conn, $raConnRef2Wrapper->conn );
+		$this->assertTrue( $raConnRef1Wrapper->conn->getFlag( DBO_TRX ) );
 
+		// Get two live autocommit handles
+		$acConnRef1 = $lb->getConnection( $i, [], false, $lb::CONN_TRX_AUTOCOMMIT );
+		$acConnRef1->ensureConnection();
+		$acConnRef1Wrapper = TestingAccessWrapper::newFromObject( $acConnRef1 );
+		$acConnRef2 = $lb->getConnection( $i, [], false, $lb::CONN_TRX_AUTOCOMMIT );
+		$acConnRef2->ensureConnection();
+		$acConnRef2Wrapper = TestingAccessWrapper::newFromObject( $acConnRef2 );
+
+		$this->assertNotNull( $acConnRef1Wrapper->conn );
+		$this->assertSame( $acConnRef1Wrapper->conn, $acConnRef2Wrapper->conn );
+
+		// Vary expected behaviour by dbtype, SQLite uses ATTR_DB_LEVEL_LOCKING.
+		// getConnection() ignores CONN_TRX_AUTOCOMMIT if ATTR_DB_LEVEL_LOCKING if set,
+		// meaning that external callers don't have to check. This is not the case for
+		// the internal getServerConnection()/getAnyOpenConnection() methods.
 		if ( $lb->getServerAttributes( $i )[Database::ATTR_DB_LEVEL_LOCKING] ) {
-			$this->assertFalse(
-				$lb->getAnyOpenConnection( $i, $lb::CONN_TRX_AUTOCOMMIT ) );
-			$this->assertSame( $conn1,
-				$lb->getConnectionInternal(
-					$i, [], false, $lb::CONN_TRX_AUTOCOMMIT ), $lb::CONN_TRX_AUTOCOMMIT );
+			$this->assertSame( $raConnRef1Wrapper->conn, $acConnRef1Wrapper->conn );
+			$this->assertFalse( $lb->getAnyOpenConnection( $i, $lb::CONN_TRX_AUTOCOMMIT ) );
+		} else {
+			$this->assertFalse( $acConnRef1Wrapper->conn->getFlag( DBO_TRX ) );
+			$this->assertNotFalse( $lb->getAnyOpenConnection( $i, $lb::CONN_TRX_AUTOCOMMIT ) );
 		}
+
+		$this->assertNotFalse( $lb->getAnyOpenConnection( $i ) );
 
 		$lb->closeAll( __METHOD__ );
 	}
