@@ -996,11 +996,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return new DBConnRef( $this, [ $i, $groups, $domain, $flags ], $role, $this->modcount );
 	}
 
-	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase {
-		wfDeprecated( __METHOD__, '1.38 Use ::getConnectionRef' );
-		return $this->getConnectionRef( $i, $groups, $domain, $flags );
-	}
-
 	public function getMaintenanceConnectionRef(
 		$i,
 		$groups = [],

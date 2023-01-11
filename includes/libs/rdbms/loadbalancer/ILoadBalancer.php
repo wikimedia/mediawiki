@@ -353,24 +353,6 @@ interface ILoadBalancer {
 	public function getConnectionInternal( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase;
 
 	/**
-	 * Get a lazy-connecting database handle for a server index
-	 *
-	 * The CONN_TRX_AUTOCOMMIT flag is ignored for databases with ATTR_DB_LEVEL_LOCKING
-	 * (e.g. sqlite) in order to avoid deadlocks. getServerAttributes()
-	 * can be used to check such flags beforehand. Avoid the use of begin() or startAtomic()
-	 * on any CONN_TRX_AUTOCOMMIT connections.
-	 *
-	 * @deprecated since 1.38, use ILoadBalancer::getConnectionRef() instead.
-	 * @see ILoadBalancer::getConnection() for parameter information
-	 * @param int $i Specific or virtual (DB_PRIMARY/DB_REPLICA) server index
-	 * @param string[]|string $groups Query group(s) in preference order; [] for the default group
-	 * @param string|false $domain DB domain ID or false for the local domain
-	 * @param int $flags Bitfield of CONN_* class constants
-	 * @return IDatabase
-	 */
-	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase;
-
-	/**
 	 * Get a DB handle, suitable for migrations and schema changes, for a server index
 	 *
 	 * The DBConnRef methods simply proxy an underlying IDatabase object which
