@@ -1307,9 +1307,9 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 	 */
 	public function testLockTSESlow( array $params ) {
 		list( $cache, $bag ) = $this->newWanCache( $params );
-		$key = wfRandomString();
-		$key2 = wfRandomString();
-		$value = wfRandomString();
+		$key = 'myfirstkey';
+		$key2 = 'mysecondkey';
+		$value = 'some_slow_value';
 
 		$mockWallClock = 1549343530.0;
 		$cache->setMockTime( $mockWallClock );
@@ -1348,7 +1348,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 2, $calls, 'Callback not used (extremely new value reused)' );
 
 		// Just a few seconds after the (reduced) logical TTL expires
-		$mockWallClock += 2;
+		$mockWallClock += 32;
 		// Acquire a lock to verify that getWithSetCallback uses lockTSE properly
 		$this->setMutexKey( $bag, $key );
 
