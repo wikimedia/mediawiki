@@ -23,7 +23,6 @@
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Language\RawMessage;
-use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
@@ -220,22 +219,11 @@ class ChangeTags {
 			if ( $description === false ) {
 				continue;
 			}
-
-			$otherEditsLink = ' ' . $localizer->msg( 'parentheses' )->rawParams(
-				Linker::linkKnown(
-					SpecialPage::getTitleFor( 'Recentchanges' ),
-					$localizer->msg( 'tag-link-other-edits' )->escaped(),
-					[],
-					[ 'tagfilter' => $tag ]
-				)
-			);
-			$moreEditsLink = Xml::tags( 'span', [ 'class' => 'mw-tag-other-edits' ], $otherEditsLink );
-
 			$displayTags[] = Xml::tags(
 				'span',
 				[ 'class' => 'mw-tag-marker ' .
 					Sanitizer::escapeClass( "mw-tag-marker-$tag" ) ],
-				$description . $moreEditsLink
+				$description
 			);
 		}
 
@@ -243,7 +231,6 @@ class ChangeTags {
 			return [ '', $classes ];
 		}
 
-		// @phan-suppress-next-line SecurityCheck-XSS Phan assumes rawParams() is unsafe.
 		$markers = $localizer->msg( 'tag-list-wrapper' )
 			->numParams( count( $displayTags ) )
 			->rawParams( implode( ' ', $displayTags ) )
