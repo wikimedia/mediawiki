@@ -2582,7 +2582,7 @@ title=[[Main Page]]
 !! wikitext
 [[Main Page#section]]
 !! html
-<p><a href="/wiki/Main_Page#section" title="Main Page">Main Page#section</a>
+<p><a class="mw-selflink-fragment" href="#section">Main Page#section</a>
 </p>
 !! end
 

@@ -181,12 +181,23 @@ class Linker {
 	 * @param string $query
 	 * @param string $trail
 	 * @param string $prefix
+	 * @param string $hash hash fragment since 1.40.
 	 *
 	 * @return string
 	 */
-	public static function makeSelfLinkObj( $nt, $html = '', $query = '', $trail = '', $prefix = '' ) {
+	public static function makeSelfLinkObj( $nt, $html = '', $query = '', $trail = '', $prefix = '', $hash = '' ) {
 		$nt = Title::newFromLinkTarget( $nt );
-		$ret = "<a class=\"mw-selflink selflink\">{$prefix}{$html}</a>{$trail}";
+		$attrs = [
+			'class' => 'mw-selflink',
+		];
+		if ( $hash ) {
+			$attrs['href'] = '#' . $hash;
+			$attrs['class'] = 'mw-selflink-fragment';
+		} else {
+			// For backwards compatibility with gadgets we add selflink as well.
+			$attrs['class'] = 'mw-selflink selflink';
+		}
+		$ret = Html::rawElement( 'a', $attrs, $prefix . $html ) . $trail;
 		if ( !Hooks::runner()->onSelfLinkBegin( $nt, $html, $trail, $prefix, $ret ) ) {
 			return $ret;
 		}
@@ -195,7 +206,7 @@ class Linker {
 			$html = htmlspecialchars( $nt->getPrefixedText() );
 		}
 		[ $inside, $trail ] = self::splitTrail( $trail );
-		return "<a class=\"mw-selflink selflink\">{$prefix}{$html}{$inside}</a>{$trail}";
+		return Html::rawElement( 'a', $attrs, $prefix . $html . $inside ) . $trail;
 	}
 
 	/**
