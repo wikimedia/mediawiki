@@ -216,7 +216,7 @@
 	"tog-oldsig": "您当前的签名：",
 	"tog-fancysig": "将签名视为wikitext（不自动将其链接至您的用户页）",
 	"tog-uselivepreview": "在不重新加载页面的情况下显示预览",
-	"tog-forceeditsummary": "输入空白编辑摘要（或默认的撤消摘要）时提示我",
+	"tog-forceeditsummary": "输入空白编辑摘要（或默认的撤销摘要）时提示我",
 	"tog-watchlisthideown": "在监视列表中隐藏我的编辑",
 	"tog-watchlisthidebots": "在监视列表中隐藏机器人编辑",
 	"tog-watchlisthideminor": "在监视列表中隐藏小编辑",
