@@ -12,6 +12,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Settings\SettingsBuilder;
 use Profiler;
 use ReflectionClass;
+use Throwable;
 
 /**
  * A runner for maintenance scripts.
@@ -268,8 +269,16 @@ class MaintenanceRunner {
 		}
 
 		// Initialize the actual Maintenance object
-		$this->scriptObject = new $scriptClass;
-		$this->scriptObject->setName( $this->getName() );
+		try {
+			$this->scriptObject = new $scriptClass;
+			$this->scriptObject->setName( $this->getName() );
+		} catch ( Throwable $ex ) {
+			$this->fatalError(
+				"Failed to initialize Maintenance object.\n" .
+				"(Did you forget to call parent::__construct() in your maintenance script?)\n" .
+				"$ex\n"
+			);
+		}
 
 		if ( !$this->scriptObject instanceof Maintenance ) {
 			// This should never happen, we already checked if the class is a subclass of Maintenance!
