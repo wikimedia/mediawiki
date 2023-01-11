@@ -138,16 +138,6 @@ class LBFactorySimple extends LBFactory {
 		return $lb;
 	}
 
-	public function forEachLB( $callback, array $params = [] ) {
-		wfDeprecated( __METHOD__, '1.39' );
-		if ( $this->mainLB !== null ) {
-			$callback( $this->mainLB, ...$params );
-		}
-		foreach ( $this->externalLBs as $lb ) {
-			$callback( $lb, ...$params );
-		}
-	}
-
 	protected function getLBsForOwner() {
 		if ( $this->mainLB !== null ) {
 			yield $this->mainLB;

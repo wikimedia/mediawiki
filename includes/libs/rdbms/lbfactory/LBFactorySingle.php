@@ -94,13 +94,6 @@ class LBFactorySingle extends LBFactory {
 		return [];
 	}
 
-	public function forEachLB( $callback, array $params = [] ) {
-		wfDeprecated( __METHOD__, '1.39' );
-		if ( isset( $this->lb ) ) { // may not be set during _destruct()
-			$callback( $this->lb, ...$params );
-		}
-	}
-
 	protected function getLBsForOwner() {
 		if ( isset( $this->lb ) ) { // may not be set during _destruct()
 			yield $this->lb;
