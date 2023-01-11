@@ -190,10 +190,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @return void
 	 */
 	protected function configure( array $params ): void {
-		$localDomain = isset( $params['localDomain'] )
+		$this->localDomain = isset( $params['localDomain'] )
 			? DatabaseDomain::newFromId( $params['localDomain'] )
 			: DatabaseDomain::newUnspecified();
-		$this->setLocalDomain( $localDomain );
 
 		$this->maxLag = $params['maxLag'] ?? self::MAX_LAG_DEFAULT;
 
@@ -2284,12 +2283,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	public function setLocalDomainPrefix( $prefix ) {
 		$oldLocalDomain = $this->localDomain;
-
-		$this->setLocalDomain( new DatabaseDomain(
+		$this->localDomain = new DatabaseDomain(
 			$this->localDomain->getDatabase(),
 			$this->localDomain->getSchema(),
 			$prefix
-		) );
+		);
 
 		// Update the prefix for existing connections.
 		// Existing DBConnRef handles will not be affected.
@@ -2302,8 +2300,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	public function redefineLocalDomain( $domain ) {
 		$this->closeAll( __METHOD__ );
-
-		$this->setLocalDomain( DatabaseDomain::newFromId( $domain ) );
+		$this->localDomain = DatabaseDomain::newFromId( $domain );
 	}
 
 	public function setTempTablesOnlyMode( $value, $domain ) {
@@ -2315,13 +2312,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		return $old;
-	}
-
-	/**
-	 * @param DatabaseDomain $domain
-	 */
-	private function setLocalDomain( DatabaseDomain $domain ) {
-		$this->localDomain = $domain;
 	}
 
 	/**
