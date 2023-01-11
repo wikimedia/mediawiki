@@ -6889,6 +6889,7 @@ config-schema:
             revertedTagUpdate: RevertedTagUpdateJob
             'null': NullJob
             userEditCountInit: UserEditCountInitJob
+            parsoidCachePrewarm: ParsoidCachePrewarmJob
         type: object
         description: |-
             Maps jobs to their handlers; extensions

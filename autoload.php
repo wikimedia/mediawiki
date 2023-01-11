@@ -2128,6 +2128,7 @@ $wgAutoloadLocalClasses = [
 	'ParserFactory' => __DIR__ . '/includes/parser/ParserFactory.php',
 	'ParserOptions' => __DIR__ . '/includes/parser/ParserOptions.php',
 	'ParserOutput' => __DIR__ . '/includes/parser/ParserOutput.php',
+	'ParsoidCachePrewarmJob' => __DIR__ . '/includes/jobqueue/jobs/ParsoidCachePrewarmJob.php',
 	'ParsoidVirtualRESTService' => __DIR__ . '/includes/libs/virtualrest/ParsoidVirtualRESTService.php',
 	'Password' => __DIR__ . '/includes/password/Password.php',
 	'PasswordError' => __DIR__ . '/includes/password/PasswordError.php',
