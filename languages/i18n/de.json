@@ -2679,6 +2679,7 @@
 	"whatlinkshere-page": "Seite:",
 	"linkshere": "Die folgenden Seiten verlinken auf <strong>$2</strong>:",
 	"nolinkshere": "Keine Seite verlinkt auf <strong>$2</strong>.",
+	"nolinkshere-filter": "Bei den derzeitigen Sucheinstellungen verweisen keine Seiten auf <strong>$2</strong>.",
 	"nolinkshere-ns": "Keine Seite in dem ausgewählten Namensraum verlinkt auf <strong>$2</strong>.",
 	"isredirect": "Weiterleitungsseite",
 	"istemplate": "Vorlageneinbindung",

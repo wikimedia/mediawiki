@@ -2570,6 +2570,7 @@
 	"whatlinkshere-page": "Pagina:",
 	"linkshere": "Le sequente paginas contine ligamines a <strong>$2</strong>:",
 	"nolinkshere": "Nulle pagina contine un ligamine a <strong>$2</strong>.",
+	"nolinkshere-filter": "Nulle paginas liga a <strong>$2</strong> con le parametros actual de recerca.",
 	"nolinkshere-ns": "Nulle pagina liga a <strong>$2</strong> in le spatio de nomines seligite.",
 	"isredirect": "pagina de redirection",
 	"istemplate": "transclusion",
