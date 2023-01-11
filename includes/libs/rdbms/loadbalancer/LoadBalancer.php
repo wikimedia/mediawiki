@@ -2204,37 +2204,32 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return $this->getLoadMonitor()->getLagTimes( $indexesWithLag ) + $knownLagTimes;
 	}
 
-	public function waitForPrimaryPos( IDatabase $conn, $pos = false, $timeout = null ) {
-		$timeout = max( 1, $timeout ?: $this->waitTimeout );
-
+	public function waitForPrimaryPos( IDatabase $conn ) {
 		if ( $conn->getLBInfo( self::INFO_SERVER_INDEX ) === $this->getWriterIndex() ) {
 			return true; // not a replica DB server
 		}
 
-		if ( !$pos ) {
-			// Get the current primary DB position, opening a connection only if needed
-			$this->logger->debug( __METHOD__ . ': no position passed; using current' );
-			$index = $this->getWriterIndex();
-			$flags = self::CONN_SILENCE_ERRORS;
-			$primaryConn = $this->getAnyOpenConnection( $index, $flags );
-			if ( $primaryConn ) {
-				$pos = $primaryConn->getPrimaryPos();
-			} else {
-				$primaryConn = $this->getServerConnection( $index, self::DOMAIN_ANY, $flags );
-				if ( !$primaryConn ) {
-					throw new DBReplicationWaitError(
-						null,
-						"Could not obtain a primary database connection to get the position"
-					);
-				}
-				$pos = $primaryConn->getPrimaryPos();
-				$this->closeConnection( $primaryConn );
+		// Get the current primary DB position, opening a connection only if needed
+		$index = $this->getWriterIndex();
+		$flags = self::CONN_SILENCE_ERRORS;
+		$primaryConn = $this->getAnyOpenConnection( $index, $flags );
+		if ( $primaryConn ) {
+			$pos = $primaryConn->getPrimaryPos();
+		} else {
+			$primaryConn = $this->getServerConnection( $index, self::DOMAIN_ANY, $flags );
+			if ( !$primaryConn ) {
+				throw new DBReplicationWaitError(
+					null,
+					"Could not obtain a primary database connection to get the position"
+				);
 			}
+			$pos = $primaryConn->getPrimaryPos();
+			$this->closeConnection( $primaryConn );
 		}
 
 		if ( $pos instanceof DBPrimaryPos ) {
 			$this->logger->debug( __METHOD__ . ': waiting' );
-			$result = $conn->primaryPosWait( $pos, $timeout );
+			$result = $conn->primaryPosWait( $pos, $this->waitTimeout );
 			$ok = ( $result !== null && $result != -1 );
 			if ( $ok ) {
 				$this->logger->debug( __METHOD__ . ': done waiting (success)' );
