@@ -728,10 +728,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 			'tag1',
 			[
 				'<span class="mw-tag-markers">(tag-list-wrapper: 1, '
-				. '<span class="mw-tag-marker mw-tag-marker-tag1">(tag-tag1)'
-				. '<span class="mw-tag-other-edits"> (parentheses: '
-				. '<a href="/w/index.php?title=Special:RecentChanges&amp;tagfilter=tag1" '
-				. 'title="Special:RecentChanges">(tag-link-other-edits)</a>)</span></span>'
+				. '<span class="mw-tag-marker mw-tag-marker-tag1">(tag-tag1)</span>'
 				. ')</span>',
 				[ 'mw-tag-tag1' ]
 			]
@@ -740,10 +737,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 			'0',
 			[
 				'<span class="mw-tag-markers">(tag-list-wrapper: 1, '
-				. '<span class="mw-tag-marker mw-tag-marker-0">(tag-0)'
-				. '<span class="mw-tag-other-edits"> (parentheses: '
-				. '<a href="/w/index.php?title=Special:RecentChanges&amp;tagfilter=0" '
-				. 'title="Special:RecentChanges">(tag-link-other-edits)</a>)</span></span>'
+				. '<span class="mw-tag-marker mw-tag-marker-0">(tag-0)</span>'
 				. ')</span>',
 				[ 'mw-tag-0' ]
 			]
@@ -758,15 +752,9 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		yield 'mutliple tags' => [
 			'tag1,0,,hidden-tag',
 			[
-				'<span class="mw-tag-markers">(tag-list-wrapper: 2,'
-				. ' <span class="mw-tag-marker mw-tag-marker-tag1">(tag-tag1)'
-				. '<span class="mw-tag-other-edits"> (parentheses:'
-				. ' <a href="/w/index.php?title=Special:RecentChanges&amp;tagfilter=tag1"'
-				. ' title="Special:RecentChanges">(tag-link-other-edits)</a>)</span></span>'
-				. ' <span class="mw-tag-marker mw-tag-marker-0">(tag-0)'
-				. '<span class="mw-tag-other-edits"> (parentheses:'
-				. ' <a href="/w/index.php?title=Special:RecentChanges&amp;tagfilter=0"'
-				. ' title="Special:RecentChanges">(tag-link-other-edits)</a>)</span></span>'
+				'<span class="mw-tag-markers">(tag-list-wrapper: 2, '
+				. '<span class="mw-tag-marker mw-tag-marker-tag1">(tag-tag1)</span>'
+				. ' <span class="mw-tag-marker mw-tag-marker-0">(tag-0)</span>'
 				. ')</span>',
 				[ 'mw-tag-tag1', 'mw-tag-0', 'mw-tag-hidden-tag' ]
 			]
@@ -777,11 +765,6 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideFormatSummaryRow
 	 */
 	public function testFormatSummaryRow( $tags, $expected ) {
-		$this->overrideConfigValues( [
-			MainConfigNames::LanguageCode => 'qqx',
-			MainConfigNames::Script => '/w/index.php',
-		] );
-
 		$qqx = new MockMessageLocalizer();
 		$localizer = $this->createMock( MessageLocalizer::class );
 		$localizer->method( 'msg' )
