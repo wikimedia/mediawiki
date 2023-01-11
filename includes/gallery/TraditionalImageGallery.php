@@ -30,7 +30,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 	/**
 	 * Obtain the HTML element attributes for the list item.
 	 *
-	 * @param ThumbnailImage $thumb
+	 * @param MediaTransformOutput|false $thumb
 	 * @param string $width
 	 * @param string $alt
 	 * @return array
