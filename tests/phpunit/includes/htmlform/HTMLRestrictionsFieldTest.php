@@ -11,10 +11,7 @@ class HTMLRestrictionsFieldTest extends PHPUnit\Framework\TestCase {
 
 	public function testConstruct() {
 		$htmlForm = $this->createMock( HTMLForm::class );
-		$htmlForm->method( 'msg' )
-			->willReturnCallback( static function ( ...$args ) {
-				return call_user_func_array( 'wfMessage', $args );
-			} );
+		$htmlForm->method( 'msg' )->willReturnCallback( 'wfMessage' );
 
 		$field = new HTMLRestrictionsField( [ 'fieldname' => 'restrictions', 'parent' => $htmlForm ] );
 		$this->assertNotEmpty( $field->getLabel(), 'has a default label' );
