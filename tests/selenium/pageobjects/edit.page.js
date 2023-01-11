@@ -11,7 +11,7 @@ class EditPage extends Page {
 	get previewButton() { return $( '#wpPreview' ); }
 
 	async openForEditing( title ) {
-		super.openTitle( title, { action: 'submit', vehidebetadialog: 1, hidewelcomedialog: 1 } );
+		await super.openTitle( title, { action: 'submit', vehidebetadialog: 1, hidewelcomedialog: 1 } );
 		// Compatibility with CodeMirror extension (T324879)
 		const cmButton = $( '.mw-editbutton-codemirror-active' );
 		if ( await cmButton.isExisting() ) {
