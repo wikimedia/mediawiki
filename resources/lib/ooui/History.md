@@ -1,4 +1,10 @@
 # OOUI Release History
+
+## v0.46.1 / 2023-01-07
+### Code
+* php: Declare all class properties (Umherirrender)
+* php: Fix undeclared method issues from phan (Umherirrender)
+
 ## v0.46.0 / 2022-12-07
 ### Breaking changes
 * [BREAKING CHANGE] Raise claimed PHP need from 7.2+ to 7.4+ (James D. Forrester)
@@ -48,6 +54,16 @@
 * demos: Make icons page more robust (Thiemo Kreuz)
 * README: Update some of the release steps to avoid typo mistakes (James D. Forrester)
 * AUTHORS: Update for the first time since 2017(!) and composer.json listing too (James D. Forrester)
+
+
+## 0.44.4 / 2022-12-12
+### Code
+* build: .gitreview: Swap defaultbranch for track (Sam Reed)
+* docs: Fix and add all missing PHPDoc tags (Thiemo Kreuz)
+* php: Declare all class properties (Umherirrender)
+* php: Fix undeclared method issues from phan (Umherirrender)
+* PHP: Optimize code initializing default configuration (Thiemo Kreuz)
+
 
 ## v0.44.3 / 2022-08-16
 ### Features

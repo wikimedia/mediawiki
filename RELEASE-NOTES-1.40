@@ -96,7 +96,7 @@ For notes on 1.39.x and older releases, see HISTORY.
 * …
 
 ==== Changed external libraries ====
-* Updated OOUI from v0.44.3 to v0.46.0.
+* Updated OOUI from v0.44.3 to v0.46.1.
 * Updated codex, codex-search, and codex-icons from v0.2.2 to v0.4.3.
 * Updated cssjanus/cssjanus from 2.1.0 to 2.1.1.
 * Updated justinrainbow/json-schema from 5.2.11 to 5.2.12.

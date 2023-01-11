@@ -14,6 +14,11 @@
 	"ooui-dialog-process-retry": "နောက်တစ်ဖန် ကြိုးစားပါ",
 	"ooui-dialog-process-continue": "ဆက်လက်",
 	"ooui-selectfile-button-select": "ဖိုင်တစ်ခု ရွေးချယ်ရန်",
+	"ooui-selectfile-button-select-multiple": "ဖိုင်များကို ရွေးပါ",
+	"ooui-selectfile-not-supported": "ဖိုင်ရွေးချယ်မှုကို မပံ့ပိုးပါ",
 	"ooui-selectfile-placeholder": "ဖိုင် ရွေးချယ်မထားပါ",
+	"ooui-selectfile-dragdrop-placeholder": "ဤနေရာတွင် ဖိုင်ပစ်ချပါ",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "ဤနေရာတွင် ဖိုင်ပစ်ချပါ",
+	"ooui-popup-widget-close-button-aria-label": "ပိတ်ရန်",
 	"ooui-field-help": "အကူအညီ"
 }
