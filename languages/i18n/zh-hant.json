@@ -3283,7 +3283,7 @@
 	"invalidateemail": "取消電子郵件確認",
 	"notificationemail_subject_changed": "已變更{{SITENAME}}註冊的電子郵件地址",
 	"notificationemail_subject_removed": "已移除{{SITENAME}}註冊的電子郵件地址",
-	"notificationemail_body_changed": "來自 IP 位址 $1 的某個人 (可能是您) ，在{{SITENAME}}上將帳號\"$2\"的電子郵件地址改成\"$3\"。\n\n如果非您本人所為，請立即跟網站管理員聯繫。",
+	"notificationemail_body_changed": "來自IP位址 $1 的某個人（可能是您），在{{SITENAME}}上將帳號「$2」的電子郵件地址改成「$3」。\n\n如果非您本人所為，請立即跟網站管理員聯繫。",
 	"notificationemail_body_removed": "來自 IP 位址 $1 的某人 (可能是您) ，在{{SITENAME}}上移除了帳號 $2 的電子郵件地址。\n\n如果非您本人所為，請立即跟網站管理員聯繫。",
 	"scarytranscludedisabled": "[Interwiki 轉換代碼不可用]",
 	"scarytranscludefailed": "[模板 $1 讀取失敗]",

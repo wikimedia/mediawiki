@@ -173,7 +173,8 @@
 			"Le Loi",
 			"MirandaBlack",
 			"UniCollab",
-			"Артём 13327"
+			"Артём 13327",
+			"Max34"
 		]
 	},
 	"tog-underline": "Подчёркивание ссылок:",
@@ -307,7 +308,7 @@
 	"anontalk": "Обсуждение",
 	"navigation": "Навигация",
 	"and": "&#32;и",
-	"faq": "ЧЗВ",
+	"faq": "ЧаВо",
 	"actions": "Действия",
 	"namespaces": "Пространства имён",
 	"variants": "Варианты",
@@ -1156,7 +1157,7 @@
 	"showingresultsinrange": "Ниже показано до {{PLURAL:$1|<strong>1</strong> результата|<strong>$1</strong> результата|<strong>$1</strong> результатов}} в диапазоне от <strong>$2</strong> до <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|1=Результат <strong>$1</strong> из <strong>$3</strong>|Результаты <strong>$1—$2</strong> из <strong>$3</strong>}}",
 	"search-nonefound": "Соответствий запросу не найдено.",
-	"search-nonefound-thiswiki": "Нет результатов, соответствующих запросу на этом сайте.",
+	"search-nonefound-thiswiki": "На этом сайте нет результатов, соответствующих запросу.",
 	"powersearch-legend": "Расширенный поиск",
 	"powersearch-ns": "Поиск в пространствах имён:",
 	"powersearch-togglelabel": "Отметить:",
@@ -2437,7 +2438,7 @@
 	"addedwatchexpiry-options-label": "Период времени в списке наблюдения:",
 	"addedwatchexpiryhours": "Страница «[[:$1]]» и её обсуждение были добавлены в ваш [[Special:Watchlist|список наблюдения]] на несколько часов.",
 	"addedwatchexpiryhours-talk": "Обсуждение «[[:$1]]» и связанная с ним страница были добавлены в ваш [[Special:Watchlist|список наблюдения]] на несколько часов.",
-	"addedwatchexpirytext": "Страница «[[:$1]]» и её обсуждение были добавлены в ваш [[Special:Watchlist|список наблюдения]] на {{GRAMMAR:accusative|$2}}.",
+	"addedwatchexpirytext": "Страница «[[:$1]]» вместе с её обсуждением были добавлены в ваш [[Special:Watchlist|список наблюдения]] на время (срок: $2).",
 	"addedwatchexpirytext-talk": "Обсуждение «[[:$1]]» и связанная с ним страница были добавлены в ваш [[Special:Watchlist|список наблюдения]] на {{GRAMMAR:accusative|$2}}.",
 	"addedwatchindefinitelytext": "Страница «[[:$1]]» и её обсуждение были добавлены в ваш [[Special:Watchlist|список наблюдения]] навсегда.",
 	"addedwatchindefinitelytext-talk": "Обсуждение «[[:$1]]» и связанная с ним страница были добавлены в ваш [[Special:Watchlist|список наблюдения]] навсегда.",

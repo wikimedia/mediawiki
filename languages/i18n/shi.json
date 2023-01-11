@@ -10,7 +10,8 @@
 			"Ebe123",
 			"Lhoussine AIT TAYFST",
 			"Zanatos",
-			"아라"
+			"아라",
+			"Mhab Zdan1"
 		]
 	},
 	"tog-underline": "krrj du izdayn:",
@@ -104,6 +105,8 @@
 	"oct": "Uktubr",
 	"nov": "Nuwanbir",
 	"dec": "Dujanbir",
+	"period-am": "AM",
+	"period-pm": "PM",
 	"pagecategories": "{{PLURAL:$1|Taggayt|Taggayin}}",
 	"category_header": "Tasniwin n taggayt \"$1\"",
 	"subcategories": "Tiduggayin",

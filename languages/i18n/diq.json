@@ -38,7 +38,7 @@
 			"아라"
 		]
 	},
-	"tog-underline": "Bınê gırey de xete bance:",
+	"tog-underline": "Bınê gıreyi de xete bance:",
 	"tog-hideminor": "Vurnayışanê peyênan ra vurnayışanê werdiyan bınımne",
 	"tog-hidepatrolled": "Vurnayışanê qontrolkerdeyan pela vurnayışê peyêni de bınımne",
 	"tog-newpageshidepatrolled": "Pelanê qontrolkerdeyan lista pelanê neweyan de bınımne",
@@ -2084,7 +2084,7 @@
 	"unusedcategoriestext": "Kategoriyê ke cêr derê, nê bıbê zi, terefê qet madeyan ya zi kategoriyan ra nêgureniyenê.",
 	"notargettitle": "Hedef çini yo",
 	"notargettext": "qey xebıtnayişê ney fonksiyoni şıma yew hedef nişane nêkerd.",
-	"nopagetitle": "wina yew pelê hedefi çin o.",
+	"nopagetitle": "Pela hedefiya niyanêne çıniya",
 	"nopagetext": "pelê hedefi ke şıma nişane kerdo çin o.",
 	"pager-newer-n": "{{PLURAL:$1|newiyer 1|newiyer $1}}",
 	"pager-older-n": "{{PLURAL:$1|deha kehan 1|deha kehan $1}}",
@@ -3257,7 +3257,7 @@
 	"autosumm-removed-redirect": "[[$1]] ra serşıkıtış dariya we",
 	"autosumm-changed-redirect-target": "Hedefê serşıkıtışi heruna [[$1]] ra vurniya era [[$2]]",
 	"autosumm-new": "Ebe zerrekê '$1' ra pela newiye vıraziye",
-	"autosumm-newblank": "Pera veng vıraziyê",
+	"autosumm-newblank": "Pela venge vıraziye",
 	"size-bytes": "$1 {{PLURAL:$1|bayt|bayti}}",
 	"size-kilobytes": "$1 KB",
 	"size-megabytes": "$1 MB",

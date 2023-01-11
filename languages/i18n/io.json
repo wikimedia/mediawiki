@@ -2050,7 +2050,7 @@
 	"listgrouprights-removegroup-self": "Removez {{PLURAL:$2|grupo|grupi}} de propra konto: $1",
 	"listgrouprights-addgroup-self-all": "Adjuntez omna grupi a la propra konto",
 	"listgrouprights-removegroup-self-all": "Removar omna grupi de la propra konto",
-	"listgrouprights-namespaceprotection-header": "Restrikti pri nomo (''namespace'')",
+	"listgrouprights-namespaceprotection-header": "Restrikti pri nomo (\"namespace\")",
 	"listgrouprights-namespaceprotection-namespace": "Nomaro",
 	"listgrouprights-namespaceprotection-restrictedto": "Yuri qui permisas uzero redaktar",
 	"listgrants": "Permisi donata",
