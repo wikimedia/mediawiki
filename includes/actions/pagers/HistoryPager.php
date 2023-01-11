@@ -563,7 +563,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			],
 			[
 				'diff' => $prevRev->getId(),
-				'oldid' => $nextRev ? $nextRev->getId() : 'prev'
+				'oldid' => 'prev' // T243569
 			]
 		);
 	}
