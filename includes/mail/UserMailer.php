@@ -27,7 +27,6 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * Collection of static functions for sending mail
@@ -329,13 +328,10 @@ class UserMailer {
 		if ( is_array( $smtp ) ) {
 			$recips = array_map( 'strval', $to );
 
-			AtEase::suppressWarnings();
-
 			// Create the mail object using the Mail::factory method
 			$mail_object = Mail::factory( 'smtp', $smtp );
 			if ( PEAR::isError( $mail_object ) ) {
 				wfDebug( "PEAR::Mail factory failed: " . $mail_object->getMessage() );
-				AtEase::restoreWarnings();
 				return Status::newFatal( 'pear-mail-error', $mail_object->getMessage() );
 			}
 			'@phan-var Mail_smtp $mail_object';
@@ -356,11 +352,9 @@ class UserMailer {
 				$status = self::sendWithPear( $mail_object, $chunk, $headers, $body );
 				// FIXME : some chunks might be sent while others are not!
 				if ( !$status->isOK() ) {
-					AtEase::restoreWarnings();
 					return $status;
 				}
 			}
-			AtEase::restoreWarnings();
 			return Status::newGood();
 		} else {
 			// PHP mail()
