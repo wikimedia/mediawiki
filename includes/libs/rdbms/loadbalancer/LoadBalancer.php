@@ -190,10 +190,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @return void
 	 */
 	protected function configure( array $params ): void {
-		$localDomain = isset( $params['localDomain'] )
+		$this->localDomain = isset( $params['localDomain'] )
 			? DatabaseDomain::newFromId( $params['localDomain'] )
 			: DatabaseDomain::newUnspecified();
-		$this->setLocalDomain( $localDomain );
 
 		$this->maxLag = $params['maxLag'] ?? self::MAX_LAG_DEFAULT;
 
@@ -470,10 +469,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 *
 	 * @param int $i Specific server index or DB_PRIMARY/DB_REPLICA
 	 * @param string[] $groups Non-empty query group list in preference order
-	 * @param string|false $domain
 	 * @return int A specific server index (replica DBs are checked for connectivity)
 	 */
-	private function getConnectionIndex( $i, array $groups, $domain ) {
+	private function getConnectionIndex( $i, array $groups ) {
 		if ( $i === self::DB_PRIMARY ) {
 			$i = $this->getWriterIndex();
 		} elseif ( $i === self::DB_REPLICA ) {
@@ -908,7 +906,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		// DB_REPLICA might trigger getServerConnection() calls due to the getReaderIndex()
 		// connectivity checks or LoadMonitor::scaleLoads() server state cache regeneration.
 		// The use of getServerConnection() instead of getConnection() avoids infinite loops.
-		$serverIndex = $this->getConnectionIndex( $i, $groups, $domain );
+		$serverIndex = $this->getConnectionIndex( $i, $groups );
 		// Get an open connection to that server (might trigger a new connection)
 		$conn = $this->getServerConnection( $serverIndex, $domain, $flags );
 		// Set primary DB handles as read-only if there is high replication lag
@@ -996,11 +994,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$role = $this->getRoleFromIndex( $i );
 
 		return new DBConnRef( $this, [ $i, $groups, $domain, $flags ], $role, $this->modcount );
-	}
-
-	public function getLazyConnectionRef( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase {
-		wfDeprecated( __METHOD__, '1.38 Use ::getConnectionRef' );
-		return $this->getConnectionRef( $i, $groups, $domain, $flags );
 	}
 
 	public function getMaintenanceConnectionRef(
@@ -2284,12 +2277,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	public function setLocalDomainPrefix( $prefix ) {
 		$oldLocalDomain = $this->localDomain;
-
-		$this->setLocalDomain( new DatabaseDomain(
+		$this->localDomain = new DatabaseDomain(
 			$this->localDomain->getDatabase(),
 			$this->localDomain->getSchema(),
 			$prefix
-		) );
+		);
 
 		// Update the prefix for existing connections.
 		// Existing DBConnRef handles will not be affected.
@@ -2302,8 +2294,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	public function redefineLocalDomain( $domain ) {
 		$this->closeAll( __METHOD__ );
-
-		$this->setLocalDomain( DatabaseDomain::newFromId( $domain ) );
+		$this->localDomain = DatabaseDomain::newFromId( $domain );
 	}
 
 	public function setTempTablesOnlyMode( $value, $domain ) {
@@ -2315,13 +2306,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		return $old;
-	}
-
-	/**
-	 * @param DatabaseDomain $domain
-	 */
-	private function setLocalDomain( DatabaseDomain $domain ) {
-		$this->localDomain = $domain;
 	}
 
 	/**
