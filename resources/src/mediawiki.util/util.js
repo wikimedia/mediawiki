@@ -476,6 +476,20 @@ util = {
 	},
 
 	/**
+	 * The added element and associated HTML ID.
+	 *
+	 * This allows skins to make transformations to menu items (for example adding icons).
+	 *
+	 * This event is fired by #addPortletLink after it adds a link to the DOM. If the
+	 * link parameters was invalid, or the menu not found, then this hook is not fired.
+	 *
+	 * @event util_addPortletLink
+	 * @param {HTMLElement} item
+	 * @param {Object} options
+	 * @param {string|undefined} options.id
+	 */
+
+	/**
 	 * Add a link to a portlet menu on the page, such as:
 	 *
 	 * - p-cactions (Content actions),
@@ -485,10 +499,10 @@ util = {
 	 * - p-associated-pages (For namespaces and special page tabs on supported skins)
 	 * - p-namespaces (For namespaces on legacy skins)
 	 *
-	 * Note: Menus available vary based on skin, site and page.
+	 * Additional menus can be discovered through the following code:
+	 * ```$('.mw-portlet').toArray().map((el) => el.id);```
 	 *
-	 * Additional menus can be discovered by calling
-	 * ```$('.mw-portlet').map((i, a) => a.getAttribute('id'))```
+	 * Menu availability varies by skin, wiki, and current page.
 	 *
 	 * The first three parameters are required, the others are optional and
 	 * may be null. Though providing an id and tooltip is recommended.
@@ -531,26 +545,23 @@ util = {
 	 * @param {HTMLElement|jQuery|string} [nextnode] Element that the new item should be added before.
 	 *  Must be another item in the same list, it will be ignored otherwise.
 	 *  Can be specified as DOM reference, as jQuery object, or as CSS selector string.
-	 * @fires util.addPortletLink with added element and associated ID. This allows
-	 *   skins to make transformations to menu items (for example adding icons).
+	 * @fires util_addPortletLink
 	 * @return {HTMLElement|null} The added list item, or null if no element was added.
 	 */
 	addPortletLink: function ( portletId, href, text, id, tooltip, accesskey, nextnode ) {
-		var item, link, portlet, portletDiv, ul, next;
-
 		if ( !portletId ) {
 			// Avoid confusing id="undefined" lookup
 			return null;
 		}
 
-		portlet = document.getElementById( portletId );
+		var portlet = document.getElementById( portletId );
 		if ( !portlet ) {
 			// Invalid portlet ID
 			return null;
 		}
 
 		// Setup the anchor tag and set any the properties
-		link = document.createElement( 'a' );
+		var link = document.createElement( 'a' );
 		link.href = href;
 
 		var linkChild = document.createTextNode( text );
@@ -579,7 +590,7 @@ util = {
 		// Unhide portlet if it was hidden before
 		util.showPortlet( portletId );
 
-		item = $( '<li>' ).append( link )[ 0 ];
+		var item = $( '<li>' ).append( link )[ 0 ];
 		// mw-list-item-js distinguishes portlet links added via javascript and the server
 		item.className = 'mw-list-item mw-list-item-js';
 		if ( id ) {
@@ -587,11 +598,11 @@ util = {
 		}
 
 		// Select the first (most likely only) unordered list inside the portlet
-		ul = portlet.tagName.toLowerCase() === 'ul' ? portlet : portlet.querySelector( 'ul' );
+		var ul = portlet.tagName.toLowerCase() === 'ul' ? portlet : portlet.querySelector( 'ul' );
 		if ( !ul ) {
 			// If it didn't have an unordered list yet, create one
 			ul = document.createElement( 'ul' );
-			portletDiv = portlet.querySelector( 'div' );
+			var portletDiv = portlet.querySelector( 'div' );
 			if ( portletDiv ) {
 				// Support: Legacy skins have a div (such as div.body or div.pBody).
 				// Append the <ul> to that.
@@ -602,6 +613,7 @@ util = {
 			}
 		}
 
+		var next;
 		if ( nextnode && ( typeof nextnode === 'string' || nextnode.nodeType || nextnode.jquery ) ) {
 			// eslint-disable-next-line no-jquery/variable-pattern
 			nextnode = $( ul ).find( nextnode );
