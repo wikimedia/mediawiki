@@ -591,12 +591,10 @@ interface ILoadBalancer {
 	 * to get an accurate position.
 	 *
 	 * @param IDatabase $conn Replica DB
-	 * @param DBPrimaryPos|false $pos Primary position; default: current position
-	 * @param int $timeout Timeout in seconds [optional]
 	 * @return bool Success
 	 * @since 1.37
 	 */
-	public function waitForPrimaryPos( IDatabase $conn, $pos = false, $timeout = 10 );
+	public function waitForPrimaryPos( IDatabase $conn );
 
 	/**
 	 * Set a callback via IDatabase::setTransactionListener() on
