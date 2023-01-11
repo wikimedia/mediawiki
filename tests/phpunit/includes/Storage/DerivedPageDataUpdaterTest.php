@@ -1251,7 +1251,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
-	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParsoidCacheUpdate()
+	 * @covers ParsoidCachePrewarmJob::doParsoidCacheUpdate()
 	 */
 	public function testDoParserCacheUpdate() {
 		$this->overrideConfigValue(
@@ -1304,6 +1304,9 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		TestingAccessWrapper::newFromObject( $page )->setLastEdit( $rev );
 		$updater->doParserCacheUpdate();
 
+		// FIXME: We need to fake the revision store we render the $rev.
+		$this->runJobs( [ 'minJobs' => 2 ], [ 'type' => 'parsoidCachePrewarm' ] );
+
 		// Parsoid cache should have an entry
 		$parsoidCached = $parsoidCache->get( $page, $updater->getCanonicalParserOptions(), true );
 		$this->assertIsObject( $parsoidCached );
@@ -1342,7 +1345,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
-	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParsoidCacheUpdate()
+	 * @covers ParsoidCachePrewarmJob::doParsoidCacheUpdate()
 	 */
 	public function testDoParserCacheUpdateForJavaScriptContent() {
 		$this->overrideConfigValue(

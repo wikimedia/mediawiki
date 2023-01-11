@@ -59,6 +59,7 @@ use MWUnknownContentModelException;
 use ParserCache;
 use ParserOptions;
 use ParserOutput;
+use ParsoidCachePrewarmJob;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -1862,49 +1863,12 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		// If we enable cache warming with parsoid outputs, let's do it at the same
 		// time we're populating the parser cache with pre-generated HTML.
 		if ( $this->warmParsoidParserCache ) {
-			$this->doParsoidCacheUpdate();
-		}
-	}
-
-	public function doParsoidCacheUpdate() {
-		$this->assertHasRevision( __METHOD__ );
-
-		$wikiPage = $this->getWikiPage(); // TODO: ParserCache should accept a RevisionRecord instead
-		$rev = $this->getRevision();
-		$parserOpts = $this->getCanonicalParserOptions();
-
-		[ $causeAction, ] = $this->getCause();
-		$parserOpts->setRenderReason( $causeAction );
-
-		$mainSlot = $rev->getSlot( SlotRecord::MAIN );
-		if ( !$this->parsoidOutputAccess->supportsContentModel( $mainSlot->getModel() ) ) {
-			$this->logger->debug( __METHOD__ . ': Parsoid does not support content model ' . $mainSlot->getModel() );
-			return;
-		}
-
-		// Make sure that ParsoidOutputAccess recognizes the revision as the current one.
-		Assert::precondition(
-			$wikiPage->getLatest() === $rev->getId(),
-			'The ID of the new revision must match the page\'s current revision ID'
-		);
-
-		$this->logger->debug( __METHOD__ . ': generating Parsoid output' );
-
-		// getParserOutput() will write to ParserCache
-		$status = $this->parsoidOutputAccess->getParserOutput(
-			$wikiPage,
-			$parserOpts,
-			$rev,
-			ParsoidOutputAccess::OPT_FORCE_PARSE
-			| ParsoidOutputAccess::OPT_LOG_LINT_DATA
-		);
-
-		if ( !$status->isOK() ) {
-			$this->logger->error( __METHOD__ . ': Parsoid error', [
-				'errors' => $status->getErrors(),
-				'page' => $wikiPage->getTitle()->getPrefixedText(),
-				'rev' => $rev->getId(),
-			] );
+			$this->jobQueueGroup->lazyPush(
+				ParsoidCachePrewarmJob::newSpec(
+					$this->revision->getId(),
+					$wikiPage->getId()
+				)
+			);
 		}
 	}
 
