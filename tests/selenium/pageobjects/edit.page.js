@@ -10,8 +10,13 @@ class EditPage extends Page {
 	get save() { return $( '#wpSave' ); }
 	get previewButton() { return $( '#wpPreview' ); }
 
-	openForEditing( title ) {
+	async openForEditing( title ) {
 		super.openTitle( title, { action: 'submit', vehidebetadialog: 1, hidewelcomedialog: 1 } );
+		// Compatibility with CodeMirror extension (T324879)
+		const cmButton = $( '.mw-editbutton-codemirror-active' );
+		if ( await cmButton.isExisting() ) {
+			await cmButton.click();
+		}
 	}
 
 	async preview( name, content ) {
