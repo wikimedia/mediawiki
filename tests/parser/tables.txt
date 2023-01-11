@@ -1756,3 +1756,121 @@ parsoid={
 |}
 !! end
 
+!! test
+T319143 - copy-pasting of cells, before multiple cells
+!! options
+parsoid={
+  "modes": [ "selser" ],
+  "changes": [
+    ["td:first-child", "before", "<td data-parsoid='{\"stx\":\"row\"}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"stx\":\"simple\",\"a\":{\"href\":\"./Eau\"},\"sa\":{\"href\":\"Eau\"},\"dsr\":[4,11,2,2]}'>Eau</a></td>"]
+  ]
+}
+!! wikitext
+{|
+|[[Eau]]||[[Abc]]
+|}
+!! wikitext/edited
+{|
+|[[Eau]]
+|[[Eau]]||[[Abc]]
+|}
+!! end
+
+!! test
+T319143 - copy-pasting of cells, before multiple cells, without "row"
+!! options
+parsoid={
+  "modes": [ "selser" ],
+  "changes": [
+    ["td:first-child", "before", "<td data-parsoid='{}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"stx\":\"simple\",\"a\":{\"href\":\"./Eau\"},\"sa\":{\"href\":\"Eau\"},\"dsr\":[4,11,2,2]}'>Eau</a></td>"]
+  ]
+}
+!! wikitext
+{|
+|[[Eau]]||[[Abc]]
+|}
+!! wikitext/edited
+{|
+|[[Eau]]
+|[[Eau]]||[[Abc]]
+|}
+!! end
+
+!! test
+T319143 - copy-pasting of cells, between multiple cells
+!! options
+parsoid={
+  "modes": [ "selser" ],
+  "changes": [
+    ["td:first-child", "after", "<td data-parsoid='{\"stx\":\"row\"}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"stx\":\"simple\",\"a\":{\"href\":\"./Eau\"},\"sa\":{\"href\":\"Eau\"},\"dsr\":[4,11,2,2]}'>Eau</a></td>"]
+  ]
+}
+!! wikitext
+{|
+|[[Eau]]||[[Abc]]
+|}
+!! wikitext/edited
+{|
+|[[Eau]]||[[Eau]]||[[Abc]]
+|}
+!! end
+
+!! test
+T319143 - copy-pasting of cells, between multiple cells, without "row"
+!! options
+parsoid={
+  "modes": [ "selser" ],
+  "changes": [
+    ["td:first-child", "after", "<td data-parsoid='{}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"stx\":\"simple\",\"a\":{\"href\":\"./Eau\"},\"sa\":{\"href\":\"Eau\"},\"dsr\":[4,11,2,2]}'>Eau</a></td>"]
+  ]
+}
+!! wikitext
+{|
+|[[Eau]]||[[Abc]]
+|}
+!! wikitext/edited
+{|
+|[[Eau]]
+|[[Eau]]||[[Abc]]
+|}
+!! end
+
+!! test
+T319143 - copy-pasting of cells, after multiple cells
+!! options
+parsoid={
+  "modes": [ "selser" ],
+  "changes": [
+    ["td:last-child", "after", "<td data-parsoid='{\"stx\":\"row\"}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"stx\":\"simple\",\"a\":{\"href\":\"./Eau\"},\"sa\":{\"href\":\"Eau\"},\"dsr\":[4,11,2,2]}'>Eau</a></td>"]
+  ]
+}
+!! wikitext
+{|
+|[[Eau]]||[[Abc]]
+|}
+!! wikitext/edited
+{|
+|[[Eau]]||[[Abc]]||[[Eau]]
+|}
+!! end
+
+!! test
+T319143 - copy-pasting of cells, after multiple cells, without "row"
+!! options
+parsoid={
+  "modes": [ "selser" ],
+  "changes": [
+    ["td:last-child", "after", "<td data-parsoid='{}'><a href=\"./Eau\" rel=\"mw:WikiLink\" title=\"Eau\" data-parsoid='{\"stx\":\"simple\",\"a\":{\"href\":\"./Eau\"},\"sa\":{\"href\":\"Eau\"},\"dsr\":[4,11,2,2]}'>Eau</a></td>"]
+  ]
+}
+!! wikitext
+{|
+|[[Eau]]||[[Abc]]
+|}
+!! wikitext/edited
+{|
+|[[Eau]]||[[Abc]]
+|[[Eau]]
+|}
+!! end
+
