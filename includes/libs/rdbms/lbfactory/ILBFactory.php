@@ -202,19 +202,6 @@ interface ILBFactory {
 	public function getAllExternalLBs(): array;
 
 	/**
-	 * Execute a function for each instantiated tracked load balancer instance
-	 *
-	 * The callback is called with the load balancer as the first parameter,
-	 * and $params passed as the subsequent parameters.
-	 *
-	 * @deprecated since 1.39 use getAllLBs()
-	 *
-	 * @param callable $callback
-	 * @param array $params
-	 */
-	public function forEachLB( $callback, array $params = [] );
-
-	/**
 	 * Get all tracked load balancer instances (generator)
 	 *
 	 * @return Generator|ILoadBalancer[]
