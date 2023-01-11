@@ -92,14 +92,14 @@ For notes on 1.39.x and older releases, see HISTORY.
 === External library changes in 1.40 ===
 
 ==== New external libraries ====
-* Added codex-design-tokens at v0.4.2
+* Added codex-design-tokens at v0.4.3
 
 ===== New development-only external libraries =====
 * …
 
 ==== Changed external libraries ====
 * Updated OOUI from v0.44.3 to v0.46.0.
-* Updated codex, codex-search, and codex-icons from v0.2.2 to v0.4.2.
+* Updated codex, codex-search, and codex-icons from v0.2.2 to v0.4.3.
 * Updated cssjanus/cssjanus from 2.1.0 to 2.1.1.
 * Updated justinrainbow/json-schema from 5.2.11 to 5.2.12.
 * Updated symfony/yaml from 5.4.10 to 5.4.12.
