@@ -336,8 +336,8 @@ abstract class LBFactory implements ILBFactory {
 		}
 	}
 
-	final public function commitAll( $fname = __METHOD__, array $options = [] ) {
-		$this->commitPrimaryChanges( $fname, $options );
+	final public function commitAll( $fname = __METHOD__ ) {
+		$this->commitPrimaryChanges( $fname );
 		foreach ( $this->getLBsForOwner() as $lb ) {
 			$lb->flushPrimarySessions( $fname );
 		}

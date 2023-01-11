@@ -245,10 +245,8 @@ interface ILBFactory {
 	 *   - b) Releasing the snapshot on all connections to database servers
 	 *
 	 * @param string $fname Caller name
-	 * @param array $options Options map:
-	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
 	 */
-	public function commitAll( $fname = __METHOD__, array $options = [] );
+	public function commitAll( $fname = __METHOD__ );
 
 	/**
 	 * Flush any primary transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)

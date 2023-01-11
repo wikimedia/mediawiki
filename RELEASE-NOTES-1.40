@@ -247,6 +247,8 @@ because of Phabricator reports.
   deprecation.
 * Optional parameters of ILoadBalancer::waitForPrimaryPos(), $pos and $timeout
   have been removed without deprecation as they are unused.
+* Optional parameter of ILBFactory::commitAll(), $options has been removed
+  without deprecation as they are unused.
 * LoadMonitorMysql was removed without deprecation. Use LoadMonitor instead.
 * The following deprecated hooks have been removed:
   - BaseTemplateAfterPortlet, deprecated in 1.35
