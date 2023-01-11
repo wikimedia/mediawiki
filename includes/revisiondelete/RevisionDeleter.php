@@ -44,7 +44,6 @@ class RevisionDeleter {
 				'HookContainer',
 				'HtmlCacheUpdater',
 				'RevisionStore',
-				'MainWANObjectCache',
 			],
 		],
 		'archive' => [
@@ -54,7 +53,6 @@ class RevisionDeleter {
 				'HookContainer',
 				'HtmlCacheUpdater',
 				'RevisionStore',
-				'MainWANObjectCache',
 			],
 		],
 		'oldimage' => [
