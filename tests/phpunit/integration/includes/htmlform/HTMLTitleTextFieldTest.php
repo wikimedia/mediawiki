@@ -13,10 +13,7 @@ class HTMLTitleTextFieldTest extends MediaWikiIntegrationTestCase {
 	public function testInterwiki( array $config, string $value, $expected ) {
 		$this->setupInterwikiTable();
 		$htmlForm = $this->createMock( HTMLForm::class );
-		$htmlForm->method( 'msg' )
-			->willReturnCallback( static function ( ...$args ) {
-				return call_user_func_array( 'wfMessage', $args );
-			} );
+		$htmlForm->method( 'msg' )->willReturnCallback( 'wfMessage' );
 
 		$field = new HTMLTitleTextField( $config + [ 'fieldname' => 'foo', 'parent' => $htmlForm ] );
 		$result = $field->validate( $value, [ 'foo' => $value ] );

@@ -10,10 +10,7 @@ class HTMLUserTextFieldTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testInputs( array $config, string $value, $expected ) {
 		$htmlForm = $this->createMock( HTMLForm::class );
-		$htmlForm->method( 'msg' )
-			->willReturnCallback( static function ( ...$args ) {
-				return call_user_func_array( 'wfMessage', $args );
-			} );
+		$htmlForm->method( 'msg' )->willReturnCallback( 'wfMessage' );
 
 		$field = new HTMLUserTextField( $config + [ 'fieldname' => 'foo', 'parent' => $htmlForm ] );
 		$result = $field->validate( $value, [ 'foo' => $value ] );
