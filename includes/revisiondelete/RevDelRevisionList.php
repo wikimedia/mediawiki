@@ -52,9 +52,6 @@ class RevDelRevisionList extends RevDelList {
 	/** @var RevisionStore */
 	private $revisionStore;
 
-	/** @var WANObjectCache */
-	private $wanObjectCache;
-
 	/** @var int */
 	public $currentRevId;
 
@@ -66,7 +63,6 @@ class RevDelRevisionList extends RevDelList {
 	 * @param HookContainer $hookContainer
 	 * @param HtmlCacheUpdater $htmlCacheUpdater
 	 * @param RevisionStore $revisionStore
-	 * @param WANObjectCache $wanObjectCache
 	 */
 	public function __construct(
 		IContextSource $context,
@@ -75,15 +71,13 @@ class RevDelRevisionList extends RevDelList {
 		LBFactory $lbFactory,
 		HookContainer $hookContainer,
 		HtmlCacheUpdater $htmlCacheUpdater,
-		RevisionStore $revisionStore,
-		WANObjectCache $wanObjectCache
+		RevisionStore $revisionStore
 	) {
 		parent::__construct( $context, $page, $ids, $lbFactory );
 		$this->lbFactory = $lbFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->htmlCacheUpdater = $htmlCacheUpdater;
 		$this->revisionStore = $revisionStore;
-		$this->wanObjectCache = $wanObjectCache;
 	}
 
 	public function getType() {
@@ -247,9 +241,6 @@ class RevDelRevisionList extends RevDelList {
 			Title::castFromPageIdentity( $this->page ),
 			$this->ids,
 			$visibilityChangeMap
-		);
-		$this->wanObjectCache->touchCheckKey(
-			"RevDelRevisionList:page:{$this->page->getID()}}"
 		);
 
 		return Status::newGood();

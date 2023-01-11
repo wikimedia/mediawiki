@@ -41,7 +41,6 @@ class RevDelArchiveList extends RevDelRevisionList {
 	 * @param HookContainer $hookContainer
 	 * @param HtmlCacheUpdater $htmlCacheUpdater
 	 * @param RevisionStore $revisionStore
-	 * @param WANObjectCache $wanObjectCache
 	 */
 	public function __construct(
 		IContextSource $context,
@@ -50,8 +49,7 @@ class RevDelArchiveList extends RevDelRevisionList {
 		LBFactory $lbFactory,
 		HookContainer $hookContainer,
 		HtmlCacheUpdater $htmlCacheUpdater,
-		RevisionStore $revisionStore,
-		WANObjectCache $wanObjectCache
+		RevisionStore $revisionStore
 	) {
 		parent::__construct(
 			$context,
@@ -60,8 +58,7 @@ class RevDelArchiveList extends RevDelRevisionList {
 			$lbFactory,
 			$hookContainer,
 			$htmlCacheUpdater,
-			$revisionStore,
-			$wanObjectCache
+			$revisionStore
 		);
 		$this->revisionStore = $revisionStore;
 	}
