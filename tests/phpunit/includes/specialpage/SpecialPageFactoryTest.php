@@ -337,4 +337,34 @@ class SpecialPageFactoryTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals( SpecialPageFactory::class, $type );
 	}
+
+	/**
+	 * @covers \MediaWiki\SpecialPage\SpecialPageFactory::capturePath
+	 */
+	public function testSpecialPageCapturePathExceptions() {
+		$this->overrideConfigValue( MainConfigNames::SpecialPages, [
+			'ExceptionPage' => [
+				'factory' => static function () {
+					return new class() extends SpecialPage {
+						public function execute( $par ) {
+							throw new MWException( 'for testing' );
+						}
+
+						public function isIncludable() {
+							return true;
+						}
+					};
+				},
+			]
+		] );
+
+		$factory = $this->getFactory();
+		$factory->getPage( 'ExceptionPage' );
+
+		$this->expectException( MWException::class );
+		$factory->capturePath(
+			Title::makeTitle( NS_SPECIAL, 'ExceptionPage' ),
+			RequestContext::getMain()
+		);
+	}
 }

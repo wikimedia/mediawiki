@@ -1520,26 +1520,26 @@ class SpecialPageFactory {
 		$main->setUser( $context->getUser() );
 		$main->setLanguage( $context->getLanguage() );
 
-		// The useful part
-		$ret = $this->executePath( $page, $context, true, $linkRenderer );
-
-		// Restore old globals and context
-		$wgTitle = $glob['title'];
-		$wgOut = $glob['output'];
-		$wgRequest = $glob['request'];
-		$wgUser = $glob['user'];
-		$wgLang = $glob['language'];
-		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
-		@$main->setTitle( $ctx['title'] );
-		$main->setOutput( $ctx['output'] );
-		$main->setRequest( $ctx['request'] );
-		$main->setUser( $ctx['user'] );
-		$main->setLanguage( $ctx['language'] );
-		if ( isset( $ctx['wikipage'] ) ) {
-			$main->setWikiPage( $ctx['wikipage'] );
+		try {
+			// The useful part
+			return $this->executePath( $page, $context, true, $linkRenderer );
+		} finally {
+			// Restore old globals and context
+			$wgTitle = $glob['title'];
+			$wgOut = $glob['output'];
+			$wgRequest = $glob['request'];
+			$wgUser = $glob['user'];
+			$wgLang = $glob['language'];
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@$main->setTitle( $ctx['title'] );
+			$main->setOutput( $ctx['output'] );
+			$main->setRequest( $ctx['request'] );
+			$main->setUser( $ctx['user'] );
+			$main->setLanguage( $ctx['language'] );
+			if ( isset( $ctx['wikipage'] ) ) {
+				$main->setWikiPage( $ctx['wikipage'] );
+			}
 		}
-
-		return $ret;
 	}
 
 	/**
