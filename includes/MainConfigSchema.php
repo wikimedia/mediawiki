@@ -2977,18 +2977,9 @@ class MainConfigSchema {
 	 *
 	 * $wgSharedSchema is the table schema for the shared database. It defaults to
 	 * $wgDBmwschema.
-	 *
-	 * @deprecated since 1.21 In new code, use the $wiki parameter to LBFactory::getMainLB() to
-	 * access remote databases. Using LBFactory::getMainLB() allows the shared database to
-	 * reside on separate servers to the wiki's own database, with suitable
-	 * configuration of $wgLBFactoryConf.
 	 */
 	public const SharedDB = [
 		'default' => null,
-		'deprecated' => 'since 1.21 In new code, use the $wiki parameter to ' .
-			'LBFactory::getMainLB() to access remote databases. Using LBFactory::getMainLB() ' .
-			'allows the shared database to reside on separate servers to the wiki\'s own ' .
-			'database, with suitable configuration of $wgLBFactoryConf',
 	];
 
 	/**
