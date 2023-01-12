@@ -73,6 +73,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\JobQueue\JobFactory;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -1086,6 +1087,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getInterwikiLookup(): InterwikiLookup {
 		return $this->getService( 'InterwikiLookup' );
+	}
+
+	/**
+	 * @since 1.40
+	 * @return JobFactory
+	 */
+	public function getJobFactory(): JobFactory {
+		return $this->getService( 'JobFactory' );
 	}
 
 	/**

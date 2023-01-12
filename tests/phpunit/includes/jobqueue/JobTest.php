@@ -105,34 +105,48 @@ class JobTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @covers Job::factory
 	 */
-	public function testJobFactory( $handler ) {
-		$this->mergeMwGlobalArrayValue( 'wgJobClasses', [ 'testdummy' => $handler ] );
+	public function testJobFactory( $handler, $expectedClass ) {
+		$this->overrideConfigValue( 'JobClasses', [ 'testdummy' => $handler ] );
 
 		$job = Job::factory( 'testdummy', Title::newMainPage(), [] );
-		$this->assertInstanceOf( NullJob::class, $job );
+		$this->assertInstanceOf( $expectedClass, $job );
 
-		$job2 = Job::factory( 'testdummy', Title::newMainPage(), [] );
-		$this->assertInstanceOf( NullJob::class, $job2 );
+		$job2 = Job::factory( 'testdummy', [] );
+		$this->assertInstanceOf( $expectedClass, $job2 );
 		$this->assertNotSame( $job, $job2, 'should not reuse instance' );
+
+		$job3 = Job::factory( 'testdummy', [ 'namespace' => NS_MAIN, 'title' => 'JobTestTitle' ] );
+		$this->assertInstanceOf( $expectedClass, $job3 );
+		$this->assertNotSame( $job, $job3, 'should not reuse instance' );
 	}
 
 	public function provideTestJobFactory() {
 		return [
-			'class name' => [ 'NullJob' ],
+			'class name, no title' => [ 'NullJob', NullJob::class ],
+			'class name with title' => [ DeleteLinksJob::class, DeleteLinksJob::class ],
 			'closure' => [ static function ( Title $title, array $params ) {
-				return Job::factory( 'null', $title, $params );
-			} ],
-			'function' => [ [ $this, 'newNullJob' ] ],
-			'static function' => [ self::class . '::staticNullJob' ]
+				return new NullJob( $params );
+			}, NullJob::class ],
+			'function' => [ [ $this, 'newNullJob' ], NullJob::class ],
+			'object spec, no title' => [ [ 'class' => 'NullJob' ], NullJob::class ],
+			'object spec with title' => [ [ 'class' => DeleteLinksJob::class ], DeleteLinksJob::class ],
+			'object spec with no title and not subclass of GenericParameterJob' => [
+				[
+					'class' => ParsoidCachePrewarmJob::class,
+					'services' => [
+						'ParsoidOutputAccess',
+						'PageStore',
+						'RevisionLookup'
+					],
+					'needsPage' => false
+				],
+				ParsoidCachePrewarmJob::class
+			]
 		];
 	}
 
 	public function newNullJob( Title $title, array $params ) {
-		return Job::factory( 'null', $title, $params );
-	}
-
-	public static function staticNullJob( Title $title, array $params ) {
-		return Job::factory( 'null', $title, $params );
+		return new NullJob( $params );
 	}
 
 	/**

@@ -349,6 +349,7 @@ because of Phabricator reports.
   notices. Please use LanguageCode::isWellFormedLanguageTag() instead.
 * Executing maintenance scripts directly is deprecated. The maintenance/run.php
   entry point should be used instead.
+* Job::factory is deprecated, use JobFactory::newJob instead.
 * Title.js's confusingly-named getName() and getNameText() methods, for using
   media files' pages, have been renamed to getFileNameWithoutExtension() and
   getFileNameTextWithoutExtension() respectively. The old names are deprecated.

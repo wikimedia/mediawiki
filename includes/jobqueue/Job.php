@@ -21,7 +21,6 @@
  * @defgroup JobQueue JobQueue
  */
 
-use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 
@@ -64,59 +63,19 @@ abstract class Job implements RunnableJob {
 	/**
 	 * Create the appropriate object to handle a specific job
 	 *
+	 * @deprecated since 1.40, use JobFactory instead.
+	 *
 	 * @param string $command Job command
 	 * @param array|PageReference $params Job parameters
 	 * @throws InvalidArgumentException
 	 * @return Job
 	 */
 	public static function factory( $command, $params = [] ) {
-		$jobClasses = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::JobClasses );
+		$factory = MediaWikiServices::getInstance()->getJobFactory();
 
-		if ( $params instanceof PageReference ) {
-			// Backwards compatibility for old signature ($command, $title, $params)
-			$title = Title::castFromPageReference( $params );
-			$params = func_num_args() >= 3 ? func_get_arg( 2 ) : [];
-		} elseif ( isset( $params['namespace'] ) && isset( $params['title'] ) ) {
-			// Handle job classes that take title as constructor parameter.
-			// If a newer classes like GenericParameterJob uses these parameters,
-			// then this happens in Job::__construct instead.
-			$title = Title::makeTitle( $params['namespace'], $params['title'] );
-		} else {
-			// Default title for job classes not implementing GenericParameterJob.
-			// This must be a valid title because it not directly passed to
-			// our Job constructor, but rather it's subclasses which may expect
-			// to be able to use it.
-			$title = Title::makeTitle( NS_SPECIAL, 'Blankpage' );
-		}
-
-		if ( isset( $jobClasses[$command] ) ) {
-			$handler = $jobClasses[$command];
-
-			if ( is_callable( $handler ) ) {
-				$job = call_user_func( $handler, $title, $params );
-			} elseif ( class_exists( $handler ) ) {
-				if ( is_subclass_of( $handler, GenericParameterJob::class ) ) {
-					$job = new $handler( $params );
-				} else {
-					$job = new $handler( $title, $params );
-				}
-			} else {
-				$job = null;
-			}
-
-			if ( $job instanceof Job ) {
-				$job->command = $command;
-
-				return $job;
-			} else {
-				throw new InvalidArgumentException(
-					"Could not instantiate job '$command': bad spec!"
-				);
-			}
-		}
-
-		throw new InvalidArgumentException( "Invalid job command '{$command}'" );
+		// FIXME: fix handling for legacy signature!
+		// @phan-suppress-next-line PhanParamTooFewUnpack one argument is known to be present.
+		return $factory->newJob( ...func_get_args() );
 	}
 
 	/**

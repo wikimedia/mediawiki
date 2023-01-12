@@ -85,6 +85,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\JobQueue\JobFactory;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -785,6 +786,13 @@ return [
 			$config->get( MainConfigNames::InterwikiCache ),
 			$config->get( MainConfigNames::InterwikiScopes ),
 			$config->get( MainConfigNames::InterwikiFallbackSite )
+		);
+	},
+
+	'JobFactory' => static function ( MediaWikiServices $services ): JobFactory {
+		return new JobFactory(
+			$services->getObjectFactory(),
+			$services->getMainConfig()->get( MainConfigNames::JobClasses )
 		);
 	},
 
