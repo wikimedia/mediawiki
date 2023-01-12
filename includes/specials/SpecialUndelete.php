@@ -523,6 +523,7 @@ class SpecialUndelete extends SpecialPage {
 			return;
 		}
 		$out = $this->getOutput();
+		$out->addModuleStyles( 'mediawiki.interface.helpers.styles' );
 
 		// When viewing a specific revision, add a subtitle link back to the overall
 		// history, see T284114
@@ -902,6 +903,7 @@ class SpecialUndelete extends SpecialPage {
 		if ( $this->mAllowed ) {
 			$out->addModules( 'mediawiki.misc-authed-ooui' );
 		}
+		$out->addModuleStyles( 'mediawiki.interface.helpers.styles' );
 		$out->wrapWikiMsg(
 			"<div class='mw-undelete-pagetitle'>\n$1\n</div>\n",
 			[ 'undeletepagetitle', wfEscapeWikiText( $this->mTargetObj->getPrefixedText() ) ]
