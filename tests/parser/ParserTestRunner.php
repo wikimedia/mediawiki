@@ -389,6 +389,8 @@ class ParserTestRunner {
 			// Reset to follow changes to $wgDisable*Conversion
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'LanguageConverterFactory' );
 		};
+		$setup[] = $reset;
+		$teardown[] = $reset;
 
 		// "extra language links"
 		// see https://gerrit.wikimedia.org/r/111390
