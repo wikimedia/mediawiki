@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Afalau",
 			"DChan (WMF)",
 			"Ed g2s",
 			"Jdforrester",
@@ -22,11 +23,13 @@
 	"ooui-dialog-process-dismiss": "Gadael",
 	"ooui-dialog-process-retry": "Ailgeisio",
 	"ooui-dialog-process-continue": "Parhau",
+	"ooui-combobox-button-label": "Opsiynau toglo",
 	"ooui-selectfile-button-select": "Dewis ffeil",
 	"ooui-selectfile-button-select-multiple": "Dewisiwch ffeiliau",
 	"ooui-selectfile-not-supported": "Nid oes modd dewis ffeil",
 	"ooui-selectfile-placeholder": "Dim ffeil wedi'i dewis",
 	"ooui-selectfile-dragdrop-placeholder": "Gollwng ffeil yma",
 	"ooui-selectfile-dragdrop-placeholder-multiple": "Gollyngwch y ffeiliau yma",
+	"ooui-popup-widget-close-button-aria-label": "Cau",
 	"ooui-field-help": "Cymorth"
 }
