@@ -148,7 +148,8 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 		$uiLang = $this->getLanguage();
 		$baseLang = $base->getPageLanguage();
 
-		if ( $uiLang->equals( $baseLang ) && !$forTransclusion ) {
+		// $baseLang can be StubUserLang, this order would pass the typehint on Language::equals - T326400
+		if ( !$forTransclusion && $baseLang->equals( $uiLang ) ) {
 			// Short circuit when the current UI language is the
 			// page's content language to avoid unnecessary page lookups.
 			return $base;
