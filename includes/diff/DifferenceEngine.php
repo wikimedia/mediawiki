@@ -36,6 +36,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\NameTableAccessException;
+use MediaWiki\StubObject\StubUserLang;
 use MediaWiki\User\UserOptionsLookup;
 
 /**
@@ -150,7 +151,7 @@ class DifferenceEngine extends ContextSource {
 	 */
 	private $mNewContent;
 
-	/** @var Language */
+	/** @var Language|StubUserLang */
 	protected $mDiffLang;
 
 	/** @var bool Have the revisions IDs been loaded */
@@ -442,7 +443,7 @@ class DifferenceEngine extends ContextSource {
 	/**
 	 * Get the language of the difference engine, defaults to page content language
 	 *
-	 * @return Language
+	 * @return Language|StubUserLang
 	 */
 	public function getDiffLang() {
 		# Default language in which the diff text is written.

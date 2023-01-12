@@ -181,7 +181,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 	/**
 	 * Shorthand for getting a Language Converter for specific language
-	 * @param Language $language Language of converter
+	 * @param Language|StubUserLang $language Language of converter
 	 * @return ILanguageConverter
 	 */
 	private function getLanguageConverter( $language ): ILanguageConverter {
