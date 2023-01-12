@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Title\Title;
@@ -83,7 +84,7 @@ class RefreshLinks extends Maintenance {
 			}
 			$this->refreshCategory( $title );
 		} elseif ( $this->hasOption( 'tracking-category' ) ) {
-			$this->refreshTrackingCategory( $this->getOption( 'trackingcategory' ) );
+			$this->refreshTrackingCategory( $this->getOption( 'tracking-category' ) );
 		} elseif ( !$this->hasOption( 'dfn-only' ) ) {
 			$new = $this->hasOption( 'new-only' );
 			$redir = $this->hasOption( 'redirects-only' );
@@ -439,7 +440,7 @@ class RefreshLinks extends Maintenance {
 		}
 
 		foreach ( $cats as $cat ) {
-			$this->refreshCategory( $cat );
+			$this->refreshCategory( Title::newFromLinkTarget( $cat ) );
 		}
 	}
 
@@ -493,7 +494,7 @@ class RefreshLinks extends Maintenance {
 	 * Returns a list of possible categories for a given tracking category key
 	 *
 	 * @param string $categoryKey
-	 * @return Title[]
+	 * @return LinkTarget[]
 	 */
 	private function getPossibleCategories( $categoryKey ) {
 		$cats = MediaWikiServices::getInstance()->getTrackingCategories()->getTrackingCategories();

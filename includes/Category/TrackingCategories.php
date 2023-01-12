@@ -118,8 +118,8 @@ class TrackingCategories {
 	 * MediaWikiServices, resulting in calls like:
 	 * MediaWikiServices::getInstance()->getTrackingCategories()->getTrackingCategories()
 	 *
-	 * @return array[] [ 'msg' => Title, 'cats' => Title[] ]
-	 * @phan-return array<string,array{msg:Title,cats:Title[]}>
+	 * @return array[] [ 'msg' => LinkTarget, 'cats' => LinkTarget[] ]
+	 * @phan-return array<string,array{msg:LinkTarget,cats:LinkTarget[]}>
 	 */
 	public function getTrackingCategories() {
 		$categories = array_merge(
