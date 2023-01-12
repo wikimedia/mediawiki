@@ -271,6 +271,7 @@ $wgAutoloadLocalClasses = [
 	'CollationCkb' => __DIR__ . '/includes/collation/CollationCkb.php',
 	'CommentStore' => __DIR__ . '/includes/CommentStore/CommentStore.php',
 	'CommentStoreComment' => __DIR__ . '/includes/CommentStore/CommentStoreComment.php',
+	'CompareLanguageConverterOutput' => __DIR__ . '/maintenance/compareLanguageConverterOutput.php',
 	'CompareParserCache' => __DIR__ . '/maintenance/compareParserCache.php',
 	'CompareParsers' => __DIR__ . '/maintenance/compareParsers.php',
 	'ComposerHookHandler' => __DIR__ . '/includes/composer/ComposerHookHandler.php',

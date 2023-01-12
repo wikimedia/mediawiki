@@ -137,6 +137,10 @@ class LanguageVariantConverter {
 
 			$convertedHtml = $languageConverter->convertTo( $pageBundle->html, $targetVariantCode );
 
+			// Add a note so that we can identify what was used to perform the variant conversion
+			$msg = "<!-- Variant conversion performed using the core LanguageConverter -->\n";
+			$convertedHtml = $msg . $convertedHtml;
+
 			// Hack: Pass the HTML to parsoid for variant conversion in order to add metadata that is
 			// missing when we use the core LanguageConverter directly.
 
