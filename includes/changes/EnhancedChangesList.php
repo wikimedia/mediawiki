@@ -773,8 +773,8 @@ class EnhancedChangesList extends ChangesList {
 			new HtmlArmor( $this->message['hist'] ),
 			[ 'class' => 'mw-changeslist-history' ],
 			[
-				'action' => 'history',
-				'curid' => $rc->getAttribute( 'rc_cur_id' )
+				'curid' => $rc->getAttribute( 'rc_cur_id' ),
+				'action' => 'history'
 			]
 		);
 		if ( $useParentheses !== false ) {
