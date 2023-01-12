@@ -96,11 +96,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 		];
 	}
 
-	public function requiresWrite() {
-		return false;
-	}
-
-	public function requiresUnblock() {
+	public function requiresPost() {
 		return false;
 	}
 
@@ -112,9 +108,8 @@ class SpecialRandomInCategory extends FormSpecialPage {
 		$form->setSubmitTextMsg( 'randomincategory-submit' );
 	}
 
-	protected function setParameter( $par ) {
-		// if subpage present, fake form submission
-		$this->onSubmit( [ 'category' => $par ] );
+	protected function getSubpageField() {
+		return 'category';
 	}
 
 	public function onSubmit( array $data ) {
