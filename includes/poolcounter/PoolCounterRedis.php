@@ -72,7 +72,7 @@ class PoolCounterRedis extends PoolCounter {
 	protected $onRelease;
 	/** @var string Unique string to identify this process */
 	protected $session;
-	/** @var int|null UNIX timestamp */
+	/** @var float|null UNIX timestamp */
 	protected $slotTime;
 
 	private const AWAKE_ONE = 1; // wake-up if when a slot can be taken from an existing process
@@ -282,7 +282,7 @@ LUA;
 
 		if ( $slot !== 'w' ) {
 			$this->slot = $slot;
-			$this->slotTime = (int)$slotTime;
+			$this->slotTime = $slotTime;
 			$this->onRelease = $doWakeup;
 			self::$active[$this->session] = $this;
 		}
