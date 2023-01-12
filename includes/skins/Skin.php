@@ -108,8 +108,11 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Subclasses may extend this method to add additional
+	 * @stable to extend. Subclasses may extend this method to add additional
 	 * template data.
+	 * @internal this method should never be called outside Skin and its subclasses
+	 * as it can be computationally expensive and typically has side effects on the Skin
+	 * instance, through execution of hooks.
 	 *
 	 * The data keys should be valid English words. Compound words should
 	 * be hyphenated except if they are normally written as one word. Each
