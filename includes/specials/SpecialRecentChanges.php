@@ -795,7 +795,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 */
 	public function getExtraOptions( $opts ) {
 		$opts->consumeValues( [
-			'namespace', 'invert', 'associated', 'tagfilter'
+			'namespace', 'invert', 'associated', 'tagfilter', 'inverttags'
 		] );
 
 		$extraOpts = [];
@@ -805,6 +805,10 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 			$opts['tagfilter'], false, $this->getContext()
 		);
 		if ( count( $tagFilter ) ) {
+			$tagFilter[1] .= ' ' . Html::rawElement( 'span', [ 'class' => [ 'mw-input-with-label' ] ],
+				Xml::checkLabel(
+					$this->msg( 'invert' )->text(), 'inverttags', 'inverttags', $opts['inverttags'] )
+			);
 			$extraOpts['tagfilter'] = $tagFilter;
 		}
 
