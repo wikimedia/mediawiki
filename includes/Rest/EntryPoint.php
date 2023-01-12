@@ -63,6 +63,8 @@ class EntryPoint {
 			$authority
 		);
 
+		$stats = $services->getStatsdDataFactory();
+
 		return ( new Router(
 			self::getRouteFiles( $conf ),
 			ExtensionRegistry::getInstance()->getAttribute( 'RestRoutes' ),
@@ -76,7 +78,9 @@ class EntryPoint {
 			new MWErrorReporter(),
 			$services->getHookContainer(),
 			$context->getRequest()->getSession()
-		) )->setCors( $cors );
+		) )
+			->setCors( $cors )
+			->setStats( $stats );
 	}
 
 	/**
