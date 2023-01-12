@@ -39,11 +39,21 @@ class MysqlMaintenance extends Maintenance {
 			"Non-option arguments will be passed through to mysql." );
 		$this->addOption( 'write', 'Connect to the primary database', false, false );
 		$this->addOption( 'group', 'Specify query group', false, true );
-		$this->addOption( 'host', 'Connect to a specific MySQL server', false, true );
+		$this->addOption( 'host', 'Connect to a known MySQL server', false, true );
+		$this->addOption( 'raw-host',
+			'Connect directly to a specific MySQL server, even if not known to MediaWiki '
+				. 'via wgLBFactoryConf (e.g. parser cache or depooled host). '
+				. 'Credentails will be chosen based on --cluster and --wikidb.',
+			false,
+			true
+		);
 		$this->addOption( 'list-hosts', 'List the available DB hosts', false, false );
 		$this->addOption( 'cluster', 'Use an external cluster by name', false, true );
 		$this->addOption( 'wikidb',
-			'The database wiki ID to use if not the current one', false, true );
+			'The database wiki ID to use if not the current one',
+			false,
+			true
+		);
 
 		// Fake argument for help message
 		$this->addArg( '-- mysql_option ...', 'Options to pass to mysql', false );
@@ -52,6 +62,8 @@ class MysqlMaintenance extends Maintenance {
 	public function execute() {
 		$dbName = $this->getOption( 'wikidb', false );
 		$lbf = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+
+		// Pick LB
 		if ( $this->hasOption( 'cluster' ) ) {
 			try {
 				$lb = $lbf->getExternalLB( $this->getOption( 'cluster' ) );
@@ -61,6 +73,8 @@ class MysqlMaintenance extends Maintenance {
 		} else {
 			$lb = $lbf->getMainLB( $dbName );
 		}
+
+		// List hosts, or pick host
 		if ( $this->hasOption( 'list-hosts' ) ) {
 			$serverCount = $lb->getServerCount();
 			for ( $index = 0; $index < $serverCount; ++$index ) {
@@ -92,9 +106,16 @@ class MysqlMaintenance extends Maintenance {
 				$this->fatalError( 'Error: unable to get reader index' );
 			}
 		}
-
 		if ( $lb->getServerType( $index ) !== 'mysql' ) {
 			$this->fatalError( 'Error: this script only works with MySQL/MariaDB' );
+		}
+
+		$serverInfo = $lb->getServerInfo( $index );
+		// Override host. This uses the server info of the host determined
+		// by the other options for the purposes of user/password.
+		if ( $this->hasOption( 'raw-host' ) ) {
+			$host = $this->getOption( 'raw-host' );
+			$serverInfo = [ 'host' => $host ] + $serverInfo;
 		}
 
 		$this->runMysql( $lb->getServerInfo( $index ), $dbName );
