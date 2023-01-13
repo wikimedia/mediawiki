@@ -23,6 +23,9 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	/** @var User */
 	protected $sysopUser;
 
+	/** @var array */
+	private $blockManagerConfig;
+
 	protected function setUp(): void {
 		parent::setUp();
 

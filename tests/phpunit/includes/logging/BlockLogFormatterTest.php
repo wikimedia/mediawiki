@@ -430,7 +430,6 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 	 * @dataProvider provideSuppressBlockLogDatabaseRowsNonPrivileged
 	 */
 	public function testSuppressBlockLogDatabaseRowsNonPrivileged( $row, $extra ) {
-		$this->user = $this->getTestUser()->getUser();
 		$this->doTestLogFormatter( $row, $extra );
 	}
 
@@ -571,7 +570,6 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 	 * @dataProvider provideSuppressReblockLogDatabaseRowsNonPrivileged
 	 */
 	public function testSuppressReblockLogDatabaseRowsNonPrivileged( $row, $extra ) {
-		$this->user = $this->getTestUser()->getUser();
 		$this->doTestLogFormatter( $row, $extra );
 	}
 
