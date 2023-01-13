@@ -2506,7 +2506,6 @@
 	"tags": "အသုံးပြုနေသော အပြောင်းအလဲစာတွဲများ",
 	"tag-filter": "[[Special:Tags|Tag]] သီးသန့်စစ်ထုတ်ရန် -",
 	"tag-filter-submit": "စိစစ်မှု",
-	"tag-link-other-edits": "အခြား တည်းဖြတ်မှုများ",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|စာတွဲ|စာတွဲများ}}]]: $2",
 	"tag-mw-contentmodelchange": "မာတိကာမော်ဒယ် ပြောင်းလဲမှု",
 	"tag-mw-new-redirect": "ပြန်ညွှန်းအသစ်",

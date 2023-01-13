@@ -3383,7 +3383,6 @@
 	"tag-filter": "Фільтр [[Special:Tags|бірак]]:",
 	"tag-filter-submit": "Фільтр",
 	"tag-hidden": "$1 (схаваная бірка)",
-	"tag-link-other-edits": "іншыя праўкі",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Тэг|Тэгі}}]]: $2",
 	"tag-mw-contentmodelchange": "змена мадэлі змесціва",
 	"tag-mw-contentmodelchange-description": "Праўкі, якія [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel мяняюць мадэль змесціва] старонкі",

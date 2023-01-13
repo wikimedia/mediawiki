@@ -3608,7 +3608,6 @@
 	"tag-filter": "Фільтр [[Special:Tags|міток]]:",
 	"tag-filter-submit": "Відфільтрувати",
 	"tag-hidden": "$1 (прихований тег)",
-	"tag-link-other-edits": "інші редагування",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Мітка|Мітки}}]]: $2",
 	"tag-mw-contentmodelchange": "зміна моделі вмісту",
 	"tag-mw-contentmodelchange-description": "Редагування, які змінюють [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel модель вмісту] сторінки",

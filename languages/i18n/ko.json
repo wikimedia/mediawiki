@@ -3447,7 +3447,6 @@
 	"tag-filter": "[[Special:Tags|태그]] 필터:",
 	"tag-filter-submit": "필터",
 	"tag-hidden": "$1 (숨긴 태그)",
-	"tag-link-other-edits": "기타 편집",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|태그}}]]: $2",
 	"tag-mw-contentmodelchange": "콘텐츠 모델 변경",
 	"tag-mw-contentmodelchange-description": "페이지의 [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel 콘텐츠 모델을 변경하는] 편집",

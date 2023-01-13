@@ -3169,7 +3169,6 @@
 	"tags": "Tags til sideversioner",
 	"tag-filter": "[[Special:Tags|Tag]]-filter:",
 	"tag-filter-submit": "Filtrér",
-	"tag-link-other-edits": "andre",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
 	"tag-mw-new-redirect": "Ny omdirigering",
 	"tag-mw-removed-redirect": "Fjernede omdirigering",

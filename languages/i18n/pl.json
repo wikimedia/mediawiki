@@ -3508,7 +3508,6 @@
 	"tag-filter": "Filtr [[Special:Tags|znaczników]]:",
 	"tag-filter-submit": "Filtr",
 	"tag-hidden": "$1 (ukryty znacznik)",
-	"tag-link-other-edits": "inne edycje",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Znacznik|Znaczniki}}]]: $2",
 	"tag-mw-contentmodelchange": "zmiana modelu zawartości",
 	"tag-mw-contentmodelchange-description": "Edycje, które [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel zmieniają model zawartości] strony",

@@ -3450,7 +3450,6 @@
 	"tag-filter": "Filter for [[Special:Tags|tagger]]:",
 	"tag-filter-submit": "Filtrer",
 	"tag-hidden": "$1 (skjult tagg)",
-	"tag-link-other-edits": "andre redigeringer",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tagg|Tagger}}]]: $2",
 	"tag-mw-contentmodelchange": "innholdsmodellendring",
 	"tag-mw-contentmodelchange-description": "Redigeringer som [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel endrer innholdsmodellen] til en side",

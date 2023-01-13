@@ -2975,7 +2975,6 @@
 	"tag-filter": "[[Special:Tags|चिनो]] छनाेट:",
 	"tag-filter-submit": "छनाेट",
 	"tag-hidden": "$1 (लुकेको चिनो)",
-	"tag-link-other-edits": "अन्य सम्पादनहरू",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|चिनो|चिनोहरू}}]]: $2",
 	"tag-mw-new-redirect": "नयाँ अनुप्रेषण",
 	"tag-mw-removed-redirect": "अनुप्रेषण हटाइयो",

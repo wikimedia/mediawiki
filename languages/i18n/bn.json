@@ -3483,7 +3483,6 @@
 	"tag-filter": "[[Special:Tags|ট্যাগ]] ছাঁকনি:",
 	"tag-filter-submit": "ছাঁকনি",
 	"tag-hidden": "$1 (লুকানো ট্যাগ)",
-	"tag-link-other-edits": "অন্য সম্পাদনা",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ট্যাগ}}]]: $2",
 	"tag-mw-contentmodelchange": "বিষয়বস্তুর রূপ পরিবর্তন",
 	"tag-mw-contentmodelchange-description": "সম্পাদনা যা একটি পাতার [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel বিষয়বস্তুর রূপ পরিবর্তন] করে",

@@ -3525,7 +3525,6 @@
 	"tag-filter": "Filter [[Special:Tags|tag]]:",
 	"tag-filter-submit": "Penyaring",
 	"tag-hidden": "$1 (tag tersembunyi)",
-	"tag-link-other-edits": "editan lainnya",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag}}]]: $2",
 	"tag-mw-contentmodelchange": "Perubahan model konten",
 	"tag-mw-contentmodelchange-description": "Perubahan yang [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel mengubah model konten] suatu halaman",

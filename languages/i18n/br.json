@@ -3217,7 +3217,6 @@
 	"tag-filter": "Silañ an [[Special:Tags|tikedennoù]] :",
 	"tag-filter-submit": "Silañ",
 	"tag-hidden": "$1 (tikedenn guzh)",
-	"tag-link-other-edits": "kemmoù all",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tikedenn|Tikedennoù}}]] : $2",
 	"tag-mw-contentmodelchange": "cheñch ar patrom danvez",
 	"tag-mw-contentmodelchange-description": "Kemmoù a [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel cheñch patrom danvez] ur bajenn",

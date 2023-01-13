@@ -3563,7 +3563,6 @@
 	"tag-filter": "مرشح [[Special:Tags|الوسوم]]:",
 	"tag-filter-submit": "مرشح",
 	"tag-hidden": "$1 (علامة مخفية)",
-	"tag-link-other-edits": "تعديلات أخرى",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1||وسم|وسمان|وسوم}}]]: $2",
 	"tag-mw-contentmodelchange": "تغيير موديل المحتوى",
 	"tag-mw-contentmodelchange-description": "التعديلات التي [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel تغير موديل المحتوى] لصفحة",

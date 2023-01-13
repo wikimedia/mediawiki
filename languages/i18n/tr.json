@@ -3538,7 +3538,6 @@
 	"tag-filter": "[[Special:Tags|Etiket]] süzgeci:",
 	"tag-filter-submit": "Filtre",
 	"tag-hidden": "$1 (gizli etiket)",
-	"tag-link-other-edits": "diğer değişiklikler",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etiket|Etiketler}}]]: $2",
 	"tag-mw-contentmodelchange": "içerik modeli değişikliği",
 	"tag-mw-contentmodelchange-description": "Bir sayfanın [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel öğesinin içerik modelini değiştirdiğini] düzenler",
