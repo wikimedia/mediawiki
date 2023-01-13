@@ -1343,13 +1343,22 @@ class ParserTestRunner {
 			$out = $parser->getPreloadText( $wikitext, $title, $options );
 		} else {
 			$output = $parser->parse( $wikitext, $title, $options, true, true, $revId );
-			$out = $output->getText( [
-				'allowTOC' => !isset( $opts['notoc'] ),
-				'unwrap' => !isset( $opts['wrap'] ),
-			] );
-			$out = preg_replace( '/\s+$/', '', $out );
+			if ( isset( $opts['showtocdata'] ) ) {
+				$sections = $output->getSections();
+				$out = [];
+				foreach ( $sections as $s ) {
+					$out[] = json_encode( $s );
+				}
+				$out = implode( "\n", $out );
+			} else {
+				$out = $output->getText( [
+					'allowTOC' => !isset( $opts['notoc'] ),
+					'unwrap' => !isset( $opts['wrap'] ),
+				] );
+				$out = preg_replace( '/\s+$/', '', $out );
 
-			$this->addParserOutputInfo( $out, $output, $opts, $title );
+				$this->addParserOutputInfo( $out, $output, $opts, $title );
+			}
 		}
 
 		if ( isset( $output ) && isset( $opts['showflags'] ) ) {

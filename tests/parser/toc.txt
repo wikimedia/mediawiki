@@ -1,0 +1,142 @@
+# This file has tests to verify TOC section metadata output for wikitext snippets
+
+!! options
+parsoid-compatible=wt2html
+version=2
+!! end
+
+!! article
+Template:1x
+!! text
+{{{1}}}
+!! endarticle
+
+!! article
+Template:Test
+!! text
+==th2==
+===th2.1===
+!! endarticle
+
+!! test
+Basic test
+!! options
+showtocdata
+parsoid={
+	"wrapSections": true
+}
+!! wikitext
+==h1==
+===h1.1===
+==h2==
+===h2.1===
+====h2.1.1====
+===h2.2===
+====h2.2.1====
+====h2.2.2====
+==h3==
+!! html
+{"toclevel":1,"level":"2","line":"h1","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"h1","linkAnchor":"h1"}
+{"toclevel":2,"level":"3","line":"h1.1","number":"1.1","index":"2","fromtitle":"Parser_test","byteoffset":7,"anchor":"h1.1","linkAnchor":"h1.1"}
+{"toclevel":1,"level":"2","line":"h2","number":"2","index":"3","fromtitle":"Parser_test","byteoffset":18,"anchor":"h2","linkAnchor":"h2"}
+{"toclevel":2,"level":"3","line":"h2.1","number":"2.1","index":"4","fromtitle":"Parser_test","byteoffset":25,"anchor":"h2.1","linkAnchor":"h2.1"}
+{"toclevel":3,"level":"4","line":"h2.1.1","number":"2.1.1","index":"5","fromtitle":"Parser_test","byteoffset":36,"anchor":"h2.1.1","linkAnchor":"h2.1.1"}
+{"toclevel":2,"level":"3","line":"h2.2","number":"2.2","index":"6","fromtitle":"Parser_test","byteoffset":51,"anchor":"h2.2","linkAnchor":"h2.2"}
+{"toclevel":3,"level":"4","line":"h2.2.1","number":"2.2.1","index":"7","fromtitle":"Parser_test","byteoffset":62,"anchor":"h2.2.1","linkAnchor":"h2.2.1"}
+{"toclevel":3,"level":"4","line":"h2.2.2","number":"2.2.2","index":"8","fromtitle":"Parser_test","byteoffset":77,"anchor":"h2.2.2","linkAnchor":"h2.2.2"}
+{"toclevel":1,"level":"2","line":"h3","number":"3","index":"9","fromtitle":"Parser_test","byteoffset":92,"anchor":"h3","linkAnchor":"h3"}
+!! end
+
+!! test
+Duplicate headings should get unique anchors
+!! options
+showtocdata
+parsoid={
+	"wrapSections": true
+}
+!! wikitext
+==a==
+==a==
+==b==
+!! html
+{"toclevel":1,"level":"2","line":"a","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"a","linkAnchor":"a"}
+{"toclevel":1,"level":"2","line":"a","number":"2","index":"2","fromtitle":"Parser_test","byteoffset":6,"anchor":"a_2","linkAnchor":"a_2"}
+{"toclevel":1,"level":"2","line":"b","number":"3","index":"3","fromtitle":"Parser_test","byteoffset":12,"anchor":"b","linkAnchor":"b"}
+!! end
+
+# For templated sections, Parsoid and core differ in some of the metadata.
+# Parsoid doesn't distinguish between sections that come from template args
+# and from templated content - it treats them all as template-generated headings.
+# But core does not consider headings from template-args as "inTemplate", but
+# 'fromtitle' is set to false.
+!! test
+Templated sections (heading from template arg)
+!! options
+showtocdata
+parsoid={
+	"wrapSections": true
+}
+!! wikitext
+==a==
+{{1x|1=
+==b==
+}}
+!! html/php
+{"toclevel":1,"level":"2","line":"a","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"a","linkAnchor":"a"}
+{"toclevel":1,"level":"2","line":"b","number":"2","index":"","fromtitle":false,"byteoffset":null,"anchor":"b","linkAnchor":"b"}
+!! end
+# !! html/parsoid
+# {"toclevel":1,"level":"2","line":"a","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"a","linkAnchor":"a"}
+# {"toclevel":1,"level":"2","line":"b","number":"2","index":"T-2","fromtitle":"Template:1x","byteoffset":null,"anchor":"b","linkAnchor":"b"}
+
+!! test
+Templated sections (heading from template content)
+!! options
+showtocdata
+parsoid={
+	"wrapSections": true
+}
+!! wikitext
+==a==
+{{Test}}
+!! html
+{"toclevel":1,"level":"2","line":"a","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"a","linkAnchor":"a"}
+{"toclevel":1,"level":"2","line":"th2","number":"2","index":"T-1","fromtitle":"Template:Test","byteoffset":null,"anchor":"th2","linkAnchor":"th2"}
+{"toclevel":2,"level":"3","line":"th2.1","number":"2.1","index":"T-2","fromtitle":"Template:Test","byteoffset":null,"anchor":"th2.1","linkAnchor":"th2.1"}
+!! end
+
+# FIXME: Parsoid uses HTML5 semantics for anchors
+!! test
+Ensure headings with special chars get the right anchors
+!! options
+showtocdata
+parsoid={
+	"wrapSections": true
+}
+!! wikitext
+===a=
+=''x''=
+!! html/php
+{"toclevel":1,"level":"1","line":"==a","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":".3D.3Da","linkAnchor":".3D.3Da"}
+{"toclevel":1,"level":"1","line":"<i>x<\/i>","number":"2","index":"2","fromtitle":"Parser_test","byteoffset":6,"anchor":"x","linkAnchor":"x"}
+!! end
+# !! html/parsoid
+# {"toclevel":1,"level":"1","line":"==a","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"==a","linkAnchor":"==a"}
+# {"toclevel":1,"level":"1","line":"<i>x<\/i>","number":"2","index":"2","fromtitle":"Parser_test","byteoffset":6,"anchor":"x","linkAnchor":"x"}
+
+!! test
+Ensure headings with html tags get the right anchors
+!! options
+showtocdata
+parsoid={
+	"wrapSections": true
+}
+!! wikitext
+==<span>x</span>==
+==<div>x</div>==
+==<strike>x</strike>==
+!! html
+{"toclevel":1,"level":"2","line":"<span>x<\/span>","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"x","linkAnchor":"x"}
+{"toclevel":1,"level":"2","line":"x","number":"2","index":"2","fromtitle":"Parser_test","byteoffset":19,"anchor":"x_2","linkAnchor":"x_2"}
+{"toclevel":1,"level":"2","line":"<strike>x<\/strike>","number":"3","index":"3","fromtitle":"Parser_test","byteoffset":36,"anchor":"x_3","linkAnchor":"x_3"}
+!! end
