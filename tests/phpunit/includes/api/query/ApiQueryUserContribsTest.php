@@ -43,7 +43,15 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 	 */
 	public function testSorting( $params, $reverse, $revs ) {
 		if ( isset( $params['ucuserids'] ) ) {
-			$params['ucuserids'] = implode( '|', array_map( [ User::class, 'idFromName' ], $params['ucuserids'] ) );
+			$userIdentities = $this->getServiceContainer()->getUserIdentityLookup()
+				->newSelectQueryBuilder()
+				->whereUserNames( $params['ucuserids'] )
+				->fetchUserIdentities();
+			$userIds = [];
+			foreach ( $userIdentities as $userIdentity ) {
+				$userIds[] = $userIdentity->getId();
+			}
+			$params['ucuserids'] = implode( '|', $userIds );
 		}
 		if ( isset( $params['ucuser'] ) ) {
 			$params['ucuser'] = implode( '|', $params['ucuser'] );
