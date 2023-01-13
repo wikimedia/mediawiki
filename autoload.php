@@ -801,6 +801,7 @@ $wgAutoloadLocalClasses = [
 	'MWDebug' => __DIR__ . '/includes/debug/MWDebug.php',
 	'MWDocGen' => __DIR__ . '/maintenance/mwdocgen.php',
 	'MWDoxygenFilter' => __DIR__ . '/maintenance/includes/MWDoxygenFilter.php',
+	'MWEval' => __DIR__ . '/maintenance/eval.php',
 	'MWException' => __DIR__ . '/includes/exception/MWException.php',
 	'MWExceptionHandler' => __DIR__ . '/includes/exception/MWExceptionHandler.php',
 	'MWExceptionRenderer' => __DIR__ . '/includes/exception/MWExceptionRenderer.php',
