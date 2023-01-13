@@ -444,7 +444,7 @@ abstract class Maintenance {
 	 */
 	protected function output( $out, $channel = null ) {
 		// This is sometimes called very early, before Setup.php is included.
-		if ( class_exists( MediaWikiServices::class ) ) {
+		if ( defined( 'MW_SERVICE_BOOTSTRAP_COMPLETE' ) ) {
 			// Flush stats periodically in long-running CLI scripts to avoid OOM (T181385)
 			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 			if ( $stats->getDataCount() > 1000 ) {
