@@ -17,7 +17,7 @@
  *
  * @file
  */
-namespace MediaWiki\Rest\Handler;
+namespace MediaWiki\Rest\Handler\Helper;
 
 use Content;
 use InvalidArgumentException;
@@ -686,3 +686,6 @@ class HtmlInputTransformHelper {
 	}
 
 }
+
+/** @deprecated since 1.40, remove in 1.41 */
+class_alias( HtmlInputTransformHelper::class, "MediaWiki\\Rest\\Handler\\HtmlInputTransformHelper" );

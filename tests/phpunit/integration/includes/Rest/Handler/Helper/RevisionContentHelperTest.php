@@ -1,13 +1,13 @@
 <?php
 
-namespace MediaWiki\Tests\Rest\Helper;
+namespace MediaWiki\Tests\Rest\Handler\Helper;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Rest\Handler\PageContentHelper;
-use MediaWiki\Rest\Handler\RevisionContentHelper;
+use MediaWiki\Rest\Handler\Helper\PageContentHelper;
+use MediaWiki\Rest\Handler\Helper\RevisionContentHelper;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Revision\RevisionRecord;
@@ -16,7 +16,7 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \MediaWiki\Rest\Handler\RevisionContentHelper
+ * @covers \MediaWiki\Rest\Handler\Helper\RevisionContentHelper
  * @group Database
  */
 class RevisionContentHelperTest extends MediaWikiIntegrationTestCase {

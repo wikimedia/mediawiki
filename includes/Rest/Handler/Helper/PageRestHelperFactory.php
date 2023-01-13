@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Rest\Handler;
+namespace MediaWiki\Rest\Handler\Helper;
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
@@ -114,3 +114,6 @@ class PageRestHelperFactory {
 	}
 
 }
+
+/** @deprecated since 1.40, remove in 1.41 */
+class_alias( PageRestHelperFactory::class, "MediaWiki\\Rest\\Handler\\PageRestHelperFactory" );

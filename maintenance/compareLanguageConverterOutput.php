@@ -22,7 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Rest\Handler\HtmlOutputRendererHelper;
+use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Revision\SlotRecord;
 
 require_once __DIR__ . '/Maintenance.php';
