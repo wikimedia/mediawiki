@@ -132,6 +132,7 @@ class ActionFactory {
 		'mcrundo' => [
 			'class' => McrUndoAction::class,
 			'services' => [
+				// Same as for McrRestoreAction
 				'ReadOnlyMode',
 				'RevisionLookup',
 				'RevisionRenderer',
@@ -142,6 +143,7 @@ class ActionFactory {
 		'mcrrestore' => [
 			'class' => McrRestoreAction::class,
 			'services' => [
+				// Same as for McrUndoAction
 				'ReadOnlyMode',
 				'RevisionLookup',
 				'RevisionRenderer',
