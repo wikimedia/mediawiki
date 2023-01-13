@@ -32,6 +32,7 @@ use MediaWiki\Page\UndeletePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\ArchivedRevisionLookup;
+use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
@@ -779,16 +780,15 @@ class SpecialUndelete extends SpecialPage {
 	 * @return string
 	 */
 	private function diffHeader( RevisionRecord $revRecord, $prefix ) {
-		$isDeleted = !( $revRecord->getId() && $revRecord->getPageAsLinkTarget() );
-		if ( $isDeleted ) {
-			// @todo FIXME: $rev->getTitle() is null for deleted revs...?
+		if ( $revRecord instanceof RevisionArchiveRecord ) {
+			// Revision in the archive table, only viewable via this special page
 			$targetPage = $this->getPageTitle();
 			$targetQuery = [
 				'target' => $this->mTargetObj->getPrefixedText(),
 				'timestamp' => wfTimestamp( TS_MW, $revRecord->getTimestamp() )
 			];
 		} else {
-			// @todo FIXME: getId() may return non-zero for deleted revs...
+			// Revision in the revision table, viewable by oldid
 			$targetPage = $revRecord->getPageAsLinkTarget();
 			$targetQuery = [ 'oldid' => $revRecord->getId() ];
 		}
