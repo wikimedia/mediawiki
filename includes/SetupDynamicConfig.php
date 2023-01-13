@@ -45,6 +45,26 @@ if ( isset( $wgShortPagesNamespaceBlacklist ) ) {
 	$wgShortPagesNamespaceBlacklist = $wgShortPagesNamespaceExclusions;
 }
 
+// Rate limits should have the same name as the corresponding permission
+if ( isset( $wgRateLimits['emailuser'] ) ) {
+	// If the deprecated field is set, use it.
+	// Note that we can't know whether the new field has been set explicitly, since it has a default value.
+	$wgSettings->warning(
+		'RateLimit: The "emailuser" limit is deprecated, use "sendemail" instead.'
+	);
+	$wgRateLimits['sendemail'] = $wgRateLimits['emailuser'];
+}
+
+// Rate limits should have the same name as the corresponding permission
+if ( isset( $wgRateLimits['changetag'] ) ) {
+	// If the deprecated field is set, use it.
+	// Note that we can't know whether the new field has been set explicitly, since it has a default value.
+	$wgSettings->warning(
+		'RateLimit: The "changetag" limit is deprecated, use "changetags" instead.'
+	);
+	$wgRateLimits['changetags'] = $wgRateLimits['changetag'];
+}
+
 // Prohibited file extensions shouldn't appear on the "allowed" list
 // @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal False positive
 $wgFileExtensions = array_values( array_diff( $wgFileExtensions, $wgProhibitedFileExtensions ) );

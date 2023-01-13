@@ -1403,7 +1403,7 @@ return [
 						1 => 3600,
 					],
 				],
-				'emailuser' => [
+				'sendemail' => [
 					'ip' => [
 						0 => 5,
 						1 => 86400,
@@ -1497,7 +1497,7 @@ return [
 						1 => 60,
 					],
 				],
-				'changetag' => [
+				'changetags' => [
 					'ip' => [
 						0 => 8,
 						1 => 60,

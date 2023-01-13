@@ -8450,7 +8450,7 @@ class MainConfigSchema {
 				'ip' => [ 5, 3600 ],
 			],
 			// Emailing other users using MediaWiki
-			'emailuser' => [
+			'sendemail' => [
 				'ip' => [ 5, 86400 ],
 				'newbie' => [ 5, 86400 ],
 				'user' => [ 20, 86400 ],
@@ -8495,7 +8495,7 @@ class MainConfigSchema {
 				'newbie' => [ 5, 60 ],
 			],
 			// Adding or removing change tags
-			'changetag' => [
+			'changetags' => [
 				'ip' => [ 8, 60 ],
 				'newbie' => [ 8, 60 ],
 			],
