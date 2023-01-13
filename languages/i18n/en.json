@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"EpicPupper"
+		]
 	},
 	"sidebar": "\n* navigation\n** mainpage|mainpage-description\n** recentchanges-url|recentchanges\n** randompage-url|randompage\n** helppage|help-mediawiki\n* SEARCH\n* TOOLBOX\n* LANGUAGES",
 	"tog-underline": "Link underlining:",
@@ -1395,7 +1397,7 @@
 	"grant-editsiteconfig": "Edit sitewide and user CSS/JS",
 	"grant-editpage": "Edit existing pages",
 	"grant-editprotected": "Edit protected pages",
-	"grant-highvolume": "High-volume editing",
+	"grant-highvolume": "High-volume (bot) access",
 	"grant-import": "Import revisions",
 	"grant-mergehistory": "Merge page histories",
 	"grant-oversight": "Hide users and suppress revisions",
