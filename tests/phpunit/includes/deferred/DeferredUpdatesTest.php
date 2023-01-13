@@ -179,11 +179,11 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( $x, "Update not run yet" );
 		$this->assertNull( $y, "Update not run yet" );
 
-		DeferredUpdates::doUpdates( 'run', DeferredUpdates::PRESEND );
+		DeferredUpdates::doUpdates( DeferredUpdates::PRESEND );
 		$this->assertEquals( "Sherity", $x, "PRESEND update ran" );
 		$this->assertNull( $y, "POSTSEND update not run yet" );
 
-		DeferredUpdates::doUpdates( 'run', DeferredUpdates::POSTSEND );
+		DeferredUpdates::doUpdates( DeferredUpdates::POSTSEND );
 		$this->assertEquals( "Marychu", $y, "POSTSEND update ran" );
 	}
 

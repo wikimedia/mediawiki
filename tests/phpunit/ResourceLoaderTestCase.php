@@ -122,6 +122,9 @@ class ResourceLoaderTestModule extends Module {
 
 	public function __construct( $options = [] ) {
 		foreach ( $options as $key => $value ) {
+			if ( $key === 'class' || $key === 'factory' ) {
+				continue;
+			}
 			$this->$key = $value;
 		}
 	}
