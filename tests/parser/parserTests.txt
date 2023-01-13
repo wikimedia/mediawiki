@@ -2581,9 +2581,11 @@ Self-link to section should not be bold
 title=[[Main Page]]
 !! wikitext
 [[Main Page#section]]
-!! html
+!! html/php
 <p><a class="mw-selflink-fragment" href="#section">Main Page#section</a>
 </p>
+!! html/parsoid
+<p><a rel="mw:WikiLink" href="./Main_Page#section" title="Main Page" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page#section"},"sa":{"href":"Main Page#section"}}'>Main Page#section</a></p>
 !! end
 
 !! article
