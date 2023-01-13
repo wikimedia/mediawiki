@@ -3489,7 +3489,6 @@
 	"tag-filter": "מסנן [[Special:Tags|תגיות]]:",
 	"tag-filter-submit": "סינון",
 	"tag-hidden": "$1 (תג מוסתר)",
-	"tag-link-other-edits": "עריכות אחרות",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|תגית|תגיות}}]]: $2",
 	"tag-mw-contentmodelchange": "שינוי מודל התוכן",
 	"tag-mw-contentmodelchange-description": "עריכות ש[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel משנות את מודל התוכן] של דף",

@@ -3391,7 +3391,6 @@
 	"tag-filter": "[[Special:Tags|Címkeszűrő]]:",
 	"tag-filter-submit": "Szűrő",
 	"tag-hidden": "$1 (rejtett címke)",
-	"tag-link-other-edits": "más szerkesztések",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Címke|Címkék}}]]: $2",
 	"tag-mw-contentmodelchange": "tartalommodell-változtatás",
 	"tag-mw-contentmodelchange-description": "Szerkesztések, amelyek [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel megváltoztatják egy lap tartalommodelljét].",

@@ -3545,7 +3545,6 @@
 	"tag-filter": "Bộ lọc [[Special:Tags|thẻ]]:",
 	"tag-filter-submit": "Bộ lọc",
 	"tag-hidden": "$1 (thẻ ẩn)",
-	"tag-link-other-edits": "chỉnh sửa khác",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1}}Thẻ]]: $2",
 	"tag-mw-contentmodelchange": "thay đổi kiểu nội dung",
 	"tag-mw-contentmodelchange-description": "Sửa đổi [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel thay đổi kiểu nội dung] của trang",

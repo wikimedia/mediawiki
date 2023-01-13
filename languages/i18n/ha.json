@@ -588,6 +588,7 @@
 	"watching": "Bin sawun...",
 	"unwatching": "Daina bin sawu...",
 	"deletepage-submit": "Soke shafin",
+	"delete-confirm": "Goge \"$1\"",
 	"delete-legend": "Soke",
 	"confirmdeletetext": "Kuna kan hanyar soke wani shafi tare da duk tarihinsa. Ku tabbatar lalle kuna son yin hakan, tare da cewa kun fahimci sakamakon yin haka, kuma kuna yi ne da la'akari da [[{{MediaWiki:Policy-url}}|manufofi]].",
 	"actioncomplete": "Aiki cikakke",

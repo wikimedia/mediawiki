@@ -3148,7 +3148,6 @@
 	"tags": "Valjane oznake izmjena",
 	"tag-filter": "Filtar [[Special:Tags|oznaka]]:",
 	"tag-filter-submit": "Filtar",
-	"tag-link-other-edits": "ostala uređivanja",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Oznaka|Oznake|Oznaka}}]]: $2",
 	"tag-mw-contentmodelchange": "promjena modela sadržaja",
 	"tag-mw-contentmodelchange-description": "Uređivanja koja [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel mijenjanju model sadržaja] stranice",

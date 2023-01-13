@@ -3531,7 +3531,6 @@
 	"tag-filter": "Panyaring [[Special:Tags|cihna]]:",
 	"tag-filter-submit": "Saring",
 	"tag-hidden": "$1 (tag kaengkebang)",
-	"tag-link-other-edits": "uahan liyanan",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Cihna}}]]: $2",
 	"tag-mw-contentmodelchange": "Gentosan modél kontén",
 	"tag-mw-contentmodelchange-description": "Pauahan sané [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel nguahin model dagingan] situnggil kaca",

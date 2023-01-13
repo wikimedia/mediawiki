@@ -3505,7 +3505,6 @@
 	"tag-filter": "[[Special:Tags|標籤]]搜尋：",
 	"tag-filter-submit": "篩選器",
 	"tag-hidden": "$1（隱藏的標籤）",
-	"tag-link-other-edits": "其它編輯",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|標籤}}]]：$2",
 	"tag-mw-contentmodelchange": "內容模型變更",
 	"tag-mw-contentmodelchange-description": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel 更改頁面的內容模型]的編輯。",

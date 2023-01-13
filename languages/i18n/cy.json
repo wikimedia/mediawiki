@@ -3005,7 +3005,6 @@
 	"tag-filter": "Hidlydd [[Special:Tags|tagiau]]:",
 	"tag-filter-submit": "Hidlo",
 	"tag-hidden": "$1 (tag cudd)",
-	"tag-link-other-edits": "golygiadau eraill",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tagiau}}]]: $2",
 	"tag-mw-new-redirect": "Ailgyfeiriad newydd",
 	"tag-mw-blank": "Clirio",

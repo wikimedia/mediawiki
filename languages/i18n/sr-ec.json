@@ -3489,7 +3489,6 @@
 	"tag-filter": "Филтер [[Special:Tags|ознака]]:",
 	"tag-filter-submit": "Филтрирај",
 	"tag-hidden": "$1 (сакривена ознака)",
-	"tag-link-other-edits": "друге измене",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|ознака|ознаке}}]]: $2",
 	"tag-mw-contentmodelchange": "промена садржинског модела",
 	"tag-mw-contentmodelchange-description": "Измене којима се [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel мења садржински модел] странице",

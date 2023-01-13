@@ -3361,7 +3361,6 @@
 	"tag-filter": "Filtro de [[Special:Tags|etiquettas]]:",
 	"tag-filter-submit": "Filtrar",
 	"tag-hidden": "$1 (etiquetta celate)",
-	"tag-link-other-edits": "altere modificationes",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Etiquetta|Etiquettas}}]]: $2",
 	"tag-mw-contentmodelchange": "cambiamento de modello de contento",
 	"tag-mw-contentmodelchange-description": "Modificationes que [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:ChangeContentModel cambia le modello de contento] de un pagina",
