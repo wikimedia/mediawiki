@@ -562,8 +562,8 @@ class HistoryPager extends ReverseChronologicalPager {
 				'title' => $this->historyPage->message['tooltip-last']
 			],
 			[
-				'diff' => $prevRev->getId(),
-				'oldid' => 'prev' // T243569
+				'diff' => 'prev', // T243569
+				'oldid' => $prevRev->getId()
 			]
 		);
 	}
