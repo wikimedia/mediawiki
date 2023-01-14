@@ -921,12 +921,13 @@ class User implements Authority, UserIdentity, UserEmailContact {
 
 	/**
 	 * Get database id given a user name
-	 * @deprecated since 1.37. Use UserIdentityLookup::getUserIdentityByName instead.
+	 * @deprecated since 1.37. Use UserIdentityLookup::getUserIdentityByName instead. Hard-deprecated since 1.40.
 	 * @param string $name Username
 	 * @param int $flags User::READ_* constant bitfield
 	 * @return int|null The corresponding user's ID, or null if user is nonexistent
 	 */
 	public static function idFromName( $name, $flags = self::READ_NORMAL ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$actor = MediaWikiServices::getInstance()
 			->getUserIdentityLookup()
 			->getUserIdentityByName( (string)$name, $flags );
