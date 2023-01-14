@@ -831,6 +831,7 @@ $wgAutoloadLocalClasses = [
 	'MappedIterator' => __DIR__ . '/includes/libs/MappedIterator.php',
 	'MarkpatrolledAction' => __DIR__ . '/includes/actions/MarkpatrolledAction.php',
 	'McTest' => __DIR__ . '/maintenance/mctest.php',
+	'Mcc' => __DIR__ . '/maintenance/mcc.php',
 	'McrRestoreAction' => __DIR__ . '/includes/actions/McrRestoreAction.php',
 	'McrUndoAction' => __DIR__ . '/includes/actions/McrUndoAction.php',
 	'MediaFileTrait' => __DIR__ . '/includes/filerepo/file/MediaFileTrait.php',

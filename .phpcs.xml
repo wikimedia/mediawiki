@@ -21,16 +21,6 @@
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
 		<exclude name="PSR2.Classes.PropertyDeclaration.Multiple" />
 	</rule>
-	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
-		<properties>
-			<!--
-			maintenance/mcc.php
-			* mccGetHelp
-			* mccShowUsage
-			-->
-			<property name="ignoreList" type="array" value="mccGetHelp,mccShowUsage" />
-		</properties>
-	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName">
 		<properties>
 			<property name="ignoreList" type="array" value="$IP" />
