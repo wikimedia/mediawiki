@@ -824,21 +824,29 @@ class SpecialUndelete extends SpecialPage {
 		}
 		$tags = implode( ',', $tags );
 		$tagSummary = ChangeTags::formatSummaryRow( $tags, 'deleteddiff', $this->getContext() );
+		$asof = $this->getLinkRenderer()->makeLink(
+			$targetPage,
+			$this->msg(
+				'revisionasof',
+				$lang->userTimeAndDate( $revRecord->getTimestamp(), $user ),
+				$lang->userDate( $revRecord->getTimestamp(), $user ),
+				$lang->userTime( $revRecord->getTimestamp(), $user )
+			)->text(),
+			[],
+			$targetQuery
+		);
+		if ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
+			$asof = Html::rawElement(
+				'span',
+				[ 'class' => Linker::getRevisionDeletedClass( $revRecord ) ],
+				$asof
+			);
+		}
 
 		// FIXME This is reimplementing DifferenceEngine#getRevisionHeader
 		// and partially #showDiffPage, but worse
 		return '<div id="mw-diff-' . $prefix . 'title1"><strong>' .
-			$this->getLinkRenderer()->makeLink(
-				$targetPage,
-				$this->msg(
-					'revisionasof',
-					$lang->userTimeAndDate( $revRecord->getTimestamp(), $user ),
-					$lang->userDate( $revRecord->getTimestamp(), $user ),
-					$lang->userTime( $revRecord->getTimestamp(), $user )
-				)->text(),
-				[],
-				$targetQuery
-			) .
+			$asof .
 			'</strong></div>' .
 			'<div id="mw-diff-' . $prefix . 'title2">' .
 			Linker::revUserTools( $revRecord ) . '<br />' .
