@@ -1345,6 +1345,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::idFromName
 	 */
 	public function testExistingIdFromName() {
+		$this->hideDeprecated( 'User::idFromName' );
 		$this->assertSame(
 			$this->user->getId(), User::idFromName( $this->user->getName() ),
 			'Id is correctly retrieved from the cache.'
@@ -1359,6 +1360,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::idFromName
 	 */
 	public function testNonExistingIdFromName() {
+		$this->hideDeprecated( 'User::idFromName' );
 		$this->assertNull( User::idFromName( 'NotExisitngUser' ) );
 	}
 
