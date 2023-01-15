@@ -1077,7 +1077,8 @@ class RecentChange implements Taggable {
 			'rc_source' => self::SRC_CATEGORIZE,
 			'rc_minor' => 0,
 			// XXX: rc_cur_id does not correspond to rc_namespace/rc_title.
-			//      They refer to different pages. Is that intentional?
+			// It's because when the page (rc_cur_id) is deleted, we want
+			// to delete the categorization entries, too (see LinksDeletionUpdate).
 			'rc_cur_id' => $pageTitle->getId(),
 			'rc_user' => $user->getId(),
 			'rc_user_text' => $user->getName(),
