@@ -216,7 +216,8 @@ because of Phabricator reports.
   since 1.38, now throws an exception.
 * FormatMetadata::flattenArrayContentLang(), deprecated since 1.36, has been
   removed.
-* WikiRevision::downloadSource(), deprecated since 1.31, has been removed.
+* WikiRevision::downloadSource() and ::importUpload(), deprecated since 1.31,
+  have been removed.
 * DataUpdate::runUpdates(), deprecated since 1.28, has been removed.
 * CdnCacheUpdate::newFromTitles(), deprecated since 1.35, has been removed.
 * HtmlFileCacheUpdate::newFromTitles(), deprecated since 1.37, has been
