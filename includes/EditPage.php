@@ -3255,7 +3255,10 @@ class EditPage implements IEditObject {
 			$out->addHTML( Html::rawElement(
 				'div',
 				[ 'class' => 'mw-confirm-recreate' ],
-				$this->context->msg( $key, $username, "<nowiki>$comment</nowiki>" )->parse() .
+				$this->context->msg( $key )
+					->params( $username )
+					->plaintextParams( $comment )
+					->parse() .
 					Xml::checkLabel(
 						$this->context->msg( 'recreate' )->text(),
 						'wpRecreate',
