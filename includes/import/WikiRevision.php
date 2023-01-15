@@ -701,17 +701,4 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 		return true;
 	}
 
-	/**
-	 * @since 1.12.2
-	 * @deprecated in 1.31. Use UploadRevisionImporter::import
-	 * @return bool
-	 */
-	public function importUpload() {
-		wfDeprecated( __METHOD__, '1.31' );
-
-		$importer = MediaWikiServices::getInstance()->getWikiRevisionUploadImporter();
-		$statusValue = $importer->import( $this );
-		return $statusValue->isGood();
-	}
-
 }
