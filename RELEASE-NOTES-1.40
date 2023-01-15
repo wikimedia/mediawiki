@@ -104,6 +104,7 @@ For notes on 1.39.x and older releases, see HISTORY.
 * Updated symfony/polyfill-php80 from 1.26.0 to 1.27.0.
 * Updated pear/mail from 1.4.1 to 1.5.0.
 * Updated pear/net_smtp from 0.10.0 to 0.10.1.
+* Updated psr/container from 1.1.1 to 1.1.2.
 * Updated guzzlehttp/guzzle 7.4.5 to 7.5.0.
 * Updated wikimedia/less.php from 3.1.0 to 3.2.0.
 * Updated wikimedia/object-factory from 4.0.0 to 5.0.1.
