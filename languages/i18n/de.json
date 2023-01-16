@@ -947,7 +947,7 @@
 	"rev-deleted-user-contribs": "[Benutzername oder IP-Adresse entfernt – Bearbeitung aus Beiträgen versteckt]",
 	"rev-deleted-text-permission": "Diese Version wurde <strong>gelöscht</strong>.\nNähere Angaben zum Löschvorgang sowie eine Begründung stehen im [{{fullurl:{{#special:Log}}/delete|page=$1}} Lösch-Logbuch].",
 	"rev-suppressed-text": "Diese Seitenversion wurde <strong>unterdrückt</strong>.",
-	"rev-suppressed-text-permission": "Diese Seitenversion wurde <strong>unterdrückt</strong>.\nEinzelheiten können im [{{fullurl:{{#Special:Log}}/suppress|page=$1}} Oversight-Logbuch] gefunden werden.",
+	"rev-suppressed-text-permission": "Diese Seitenversion wurde <strong>unterdrückt</strong>.\nEinzelheiten können im [{{fullurl:{{#Special:Log}}/suppress|page=$1}} Unterdrückungs-Logbuch] gefunden werden.",
 	"rev-deleted-text-unhide": "Diese Version wurde '''gelöscht'''.\nNähere Angaben stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].\nDu kannst [$1 diese Version einsehen], sofern du möchtest.",
 	"rev-suppressed-text-unhide": "Diese Version wurde '''unterdrückt'''.\nNähere Angaben stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdrückungs-Logbuch].\nDu kannst [$1 diese Version einsehen], sofern du möchtest.",
 	"rev-deleted-text-view": "Diese Version wurde <strong>gelöscht</strong>.\nDu kannst sie einsehen, sofern du möchtest. Nähere Angaben stehen im [{{fullurl:{{#special:Log}}/delete|page=$1}} Lösch-Logbuch].",

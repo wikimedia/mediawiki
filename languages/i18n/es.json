@@ -3885,7 +3885,7 @@
 	"feedback-useragent": "Agente de usuario:",
 	"searchsuggest-search": "Buscar en {{SITENAME}}",
 	"searchsuggest-containing": "Buscar en las páginas que contengan",
-	"search-match-redirect-label": "Redirigir a coincidencias exactas al buscar",
+	"search-match-redirect-label": "Ir a la coincidencia exacta al buscar",
 	"search-match-redirect-help": "Selecciona esta opción para que se te redirija a una página cuando el título de la página coincida con lo que buscaste",
 	"search-thumbnail-extra-namespaces-label": "Mostrar miniaturas en Especial:Buscar",
 	"searchlimit-label": "Número de resultados de búsqueda a mostrar en cada página:",

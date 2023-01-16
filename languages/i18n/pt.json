@@ -1413,7 +1413,7 @@
 	"grant-editsiteconfig": "Editar o CSS e JS dos utilizadores ou global do ''site''",
 	"grant-editpage": "Editar páginas existentes",
 	"grant-editprotected": "Editar páginas protegidas",
-	"grant-highvolume": "Alta quantidade de edições",
+	"grant-highvolume": "Alta quantidade de acessos (robô)",
 	"grant-import": "Importar revisões",
 	"grant-mergehistory": "Fundir o historial de páginas",
 	"grant-oversight": "Ocultar utilizadores e edições suprimidas",

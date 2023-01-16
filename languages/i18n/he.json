@@ -1368,7 +1368,7 @@
 	"grant-editsiteconfig": "עריכת קובצי CSS/JS של האתר כולו ושל משתמשים",
 	"grant-editpage": "עריכת דפים קיימים",
 	"grant-editprotected": "עריכת דפים מוגנים",
-	"grant-highvolume": "ביצוע עריכות מרובות",
+	"grant-highvolume": "גישה בנפח גבוה (בוט)",
 	"grant-import": "יבוא גרסאות",
 	"grant-mergehistory": "מיזוג גרסאות של דפים",
 	"grant-oversight": "הסתרת משתמשים והעלמת גרסאות",
