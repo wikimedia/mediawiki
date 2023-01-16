@@ -1516,7 +1516,7 @@
 	"grant-editsiteconfig": "编辑全站和用户的CSS/JS",
 	"grant-editpage": "编辑存在的页面",
 	"grant-editprotected": "编辑受保护的页面",
-	"grant-highvolume": "大量编辑",
+	"grant-highvolume": "大量操作（机器人）访问权限",
 	"grant-import": "导入修订版本",
 	"grant-mergehistory": "合并页面历史",
 	"grant-oversight": "隐藏用户和阻止修订",

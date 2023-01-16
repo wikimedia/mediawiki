@@ -1428,7 +1428,7 @@
 	"grant-editsiteconfig": "CSS/JS van de wiki en gebruikers bewerken",
 	"grant-editpage": "Bestaande pagina's bewerken",
 	"grant-editprotected": "Beveiligde pagina's bewerken",
-	"grant-highvolume": "Veel bewerkingen in korte tijd maken",
+	"grant-highvolume": "Toegang voor veel bewerkingen in korte tijd (bot).",
 	"grant-import": "Versies importeren",
 	"grant-mergehistory": "Geschiedenis van pagina's samenvoegen",
 	"grant-oversight": "Gebruikers en versies verbergen",

@@ -1464,7 +1464,7 @@
 	"grant-editsiteconfig": "Modifica i CSS/JS di utenti e sito",
 	"grant-editpage": "Modifica pagine esistenti",
 	"grant-editprotected": "Modifica pagine protette",
-	"grant-highvolume": "Modifiche massive",
+	"grant-highvolume": "Accesso per modifiche massive (bot)",
 	"grant-import": "Importa versioni",
 	"grant-mergehistory": "Unisce cronologie",
 	"grant-oversight": "Nasconde utenti e sopprime le versioni",

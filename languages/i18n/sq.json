@@ -2045,7 +2045,7 @@
 	"revertpage-nouser": "U rikthyen redaktimet nga një përdorues i fshehur në versionin e fundit nga {{GENDER:$1|[[User:$1|$1]]}}",
 	"rollback-success": "U kthyen mbrapsht redaktimet e {{GENDER:$3|$1}}; \nu kthye te versioni i fundit nga {{GENDER:$4|$2}}.",
 	"sessionfailure-title": "Dështim sesioni",
-	"sessionfailure": "Duket se ka një problem me sesionin tuaj të hyrjes; ky veprim është anuluar, si masë paraprake ndaj rrëmbimi sesioni.\nJu lutemi, riparashtroni formularin.",
+	"sessionfailure": "Ka ndodhur një problem me sesionin tuaj të hyrjes; Për pasojë ky veprim është anuluar, si masë paraprake mbrojtëse ndaj sulmeve të rrëmbimit të sesionit.\nJu lutemi, riparashtroni formularin.",
 	"changecontentmodel": "Ndrysho modelin e përmbajtjes së një faqeje",
 	"changecontentmodel-legend": "Ndrysho modelin e përmbajtjes",
 	"changecontentmodel-title-label": "Titulli i faqes:",
