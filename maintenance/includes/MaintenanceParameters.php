@@ -35,7 +35,7 @@ class MaintenanceParameters {
 	 */
 	private $mOptDefs = [];
 
-	/** @var array<string,string> Mapping short parameters to long ones */
+	/** @var array<string,string> Mapping short options to long ones */
 	private $mShortOptionMap = [];
 
 	/** @var array<int,array> Desired/allowed args */
@@ -59,13 +59,13 @@ class MaintenanceParameters {
 	/** @var array<int,string> This is the list of arguments that were actually passed */
 	private $mArgs = [];
 
-	/** @var array<string,array> maps group names to lists of parameter names */
+	/** @var array<string,array> maps group names to lists of option names */
 	private $mOptionGroups = [];
 
 	/**
 	 * Used to read the options in the order they were passed.
 	 * This is an array of arrays where
-	 * 0 => the option and 1 => parameter value.
+	 * 0 => the option name and 1 => option value.
 	 *
 	 * @var array
 	 */
@@ -91,8 +91,8 @@ class MaintenanceParameters {
 	}
 
 	/**
-	 * Assigns a list of parameters to the given group.
-	 * The given parameters will be shown as part of the given group
+	 * Assigns a list of options to the given group.
+	 * The given options will be shown as part of the given group
 	 * in the help message.
 	 *
 	 * @param string $groupName
@@ -116,7 +116,7 @@ class MaintenanceParameters {
 	}
 
 	/**
-	 * Add a parameter to the script. Will be displayed on --help
+	 * Add a option to the script. Will be displayed on --help
 	 * with the associated description
 	 *
 	 * @param string $name The name of the param (help, version, etc)
@@ -295,7 +295,7 @@ class MaintenanceParameters {
 	}
 
 	/**
-	 * Clear all parameter and argument values.
+	 * Clear all parameter values.
 	 * Note that all parameter definitions remain intact.
 	 */
 	public function clear() {
@@ -541,9 +541,20 @@ class MaintenanceParameters {
 		}
 		$output[] = "\nUsage: {$this->usagePrefix} " . basename( $this->mName );
 
-		// ... append parameters ...
+		// ... append options ...
 		if ( $this->mOptDefs ) {
-			$output[] = " [--" . implode( "|--", array_keys( $this->mOptDefs ) ) . "]";
+			$output[] = ' [OPTION]...';
+
+			foreach ( $this->mOptDefs as $name => $opt ) {
+				if ( $opt['require'] ) {
+					$output[] = " --$name";
+
+					if ( $opt['withArg'] ) {
+						$vname = strtoupper( $name );
+						$output[] = " <$vname>";
+					}
+				}
+			}
 		}
 
 		// ... and append arguments.
@@ -563,8 +574,8 @@ class MaintenanceParameters {
 		}
 		$output[] = "\n\n";
 
-		// Go through the declared groups and output the parameters for each group separately.
-		// Maintain the remaining parameters in $params.
+		// Go through the declared groups and output the options for each group separately.
+		// Maintain the remaining options in $params.
 		$params = $this->mOptDefs;
 		foreach ( $this->mOptionGroups as $groupName => $groupOptions ) {
 			$output[] = $this->formatHelpItems(
@@ -577,7 +588,7 @@ class MaintenanceParameters {
 
 		$output[] = $this->formatHelpItems(
 			$params,
-			'Script specific parameters',
+			'Script specific options',
 			$descWidth, $tab
 		);
 
@@ -614,6 +625,11 @@ class MaintenanceParameters {
 			if ( $info['shortName'] !== false ) {
 				$name .= ' (-' . $info['shortName'] . ')';
 			}
+			if ( $info['withArg'] ) {
+				$vname = strtoupper( $name );
+				$name .= " <$vname>";
+			}
+
 			$output[] =
 				wordwrap(
 					"$tab--$name: " . strtr( $info['desc'], [ "\n" => "\n$tab$tab" ] ),

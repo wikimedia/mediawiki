@@ -321,14 +321,20 @@ class MaintenanceParametersTest extends TestCase {
 		$lines = preg_split( '/\s*[\r\n]\s*/', $help );
 		$lines = array_values( array_filter( $lines ) );
 
+		$synopsisIndex = $this->findInLines( $lines, 'Usage: php Foo' );
+		$this->assertNotFalse( $synopsisIndex );
+		$synopsis = $lines[$synopsisIndex];
+
+		$this->assertStringContainsString( '[OPTION]... --value <VALUE>', $synopsis );
+		$this->assertStringContainsString( '<one> [two]', $synopsis );
+
 		$this->assertNotFalse( $this->findInLines( $lines, 'Frobs the foo' ) );
-		$this->assertNotFalse( $this->findInLines( $lines, 'Usage: php Foo [--flag|--value] <one> [two]' ) );
 		$this->assertNotFalse( $this->findInLines( $lines, '--flag (-f): First flag' ) );
-		$this->assertNotFalse( $this->findInLines( $lines, '--value: Some value' ) );
+		$this->assertNotFalse( $this->findInLines( $lines, '--value <VALUE>: Some value' ) );
 		$this->assertNotFalse( $this->findInLines( $lines, '<one>: First arg' ) );
 		$this->assertNotFalse( $this->findInLines( $lines, '[two]: Second arg' ) );
 		$this->assertNotFalse( $this->findInLines( $lines, 'Test flags' ) );
-		$this->assertNotFalse( $this->findInLines( $lines, 'Script specific parameters' ) );
+		$this->assertNotFalse( $this->findInLines( $lines, 'Script specific options' ) );
 
 		$sectionOffset = $this->findInLines( $lines, 'Script specific parameters' );
 		$this->assertGreaterThan(

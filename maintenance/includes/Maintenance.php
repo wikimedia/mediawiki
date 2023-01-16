@@ -76,8 +76,8 @@ abstract class Maintenance {
 	public const STDIN_ALL = -1;
 
 	// Help group names
-	public const SCRIPT_DEPENDENT_PARAMETERS = 'Script dependent parameters';
-	public const GENERIC_MAINTENANCE_PARAMETERS = 'Generic maintenance parameters';
+	public const SCRIPT_DEPENDENT_PARAMETERS = 'Common options';
+	public const GENERIC_MAINTENANCE_PARAMETERS = 'Script runner options';
 
 	/**
 	 * @var MaintenanceParameters
