@@ -113,12 +113,12 @@ class MaintenanceRunner {
 		$this->parameters->addArg(
 			'script',
 			'The name of the maintenance script to run. ' .
-				'Can be given as a class name or file name. ' .
-				'Dots (.) are supported as namespace separator. ' .
-				'"MyExt:SomeScript" expands to "MediaWiki\Extension\MyExt\Maintenance\SomeScript". ' .
-				'If a plain name is given, this is assumed to refer to a file in ' .
-				'the maintenance directory',
-			true
+				'Can be given as a class name or file path. The `.php` suffix is optional.' .
+				'Paths starting with `./` or `../` are interpreted to be relative to the current working directory.' .
+				'Other relative paths are interpreted relative to the maintenance script directory.' .
+				'Dots (.) are supported as namespace separators in class names. ' .
+				'An extension name may be provided as a prefix, followed by a colon, e.g. "MyExtension:...",' .
+				'to indicate that the path or class name should be interpreted relative to the extension.'
 		);
 
 		$this->runFromWrapper = true;
@@ -220,49 +220,115 @@ class MaintenanceRunner {
 		}
 	}
 
-	private function findScriptClass( string $script ): string {
-		// Check whether $script is an existing class.
-		if ( class_exists( $script ) ) {
-			return $script;
+	private static function isAbsolutePath( $path ) {
+		if ( str_starts_with( $path, '/' ) ) {
+			return true;
 		}
 
-		// A plain name refers to a file in the maintenance directory
-		if ( preg_match( '/^\w+$/', $script ) ) {
-			// XXX: Look up name in an extension attribute (use an extension prefix)?
-			// XXX: Try if the name matches a file in the maintenance directory?
-			$script = MW_INSTALL_PATH . "/maintenance/{$script}.php";
+		if ( wfIsWindows() ) {
+			if ( str_starts_with( $path, '\\' ) ) {
+				return true;
+			}
+			if ( preg_match( '!^[a-zA-Z]:[/\\\\]!', $path ) ) {
+				return true;
+			}
 		}
 
-		// If $script ends with .php, load it as a file.
-		if ( str_ends_with( $script, '.php' ) ) {
-			if ( !file_exists( $script ) ) {
-				$this->fatalError( "Script file {$script} not found.\n" );
-			}
+		return false;
+	}
 
-			$maintClass = null;
+	protected function getExtensionInfo( string $extName ): ?array {
+		// NOTE: Don't go by the extension registry, since some extensions
+		//       register under a name different from what is used in wfLoadExtension.
+		//       E.g. AbuseFilter is registered as "Abuse Filter" with a space.
 
-			// It's a file, include it
-			// IF it returns something, it should be the name of the maintenance class.
-			$scriptClass = include $script;
+		$config = SettingsBuilder::getInstance()->getConfig();
+		$extDir = $config->get( MainConfigNames::ExtensionDirectory );
+		$skinDir = $config->get( MainConfigNames::StyleDirectory );
 
-			// Traditional script files set the $maintClass variable
-			// at the end of the file.
-			// @phan-suppress-next-line PhanImpossibleCondition Phan doesn't understand includes.
-			if ( $maintClass ) {
-				$scriptClass = $maintClass;
-			}
+		$extension = [];
+		if ( file_exists( "$extDir/$extName/extension.json" ) ) {
+			$extension['path'] = "$extDir/$extName/extension.json";
+			$extension['namespace'] = "MediaWiki\\Extension\\$extName";
+		} elseif ( file_exists( "$skinDir/$extName/skin.json" ) ) {
+			$extension['path'] = "$skinDir/$extName/skin.json";
+			$extension['namespace'] = "MediaWiki\\Skins\\$extName";
+		} else {
+			return null;
+		}
 
-			if ( !is_string( $scriptClass ) ) {
-				$this->error( "ERROR: The script file {$script} cannot be executed using MaintenanceRunner.\n" );
-				$this->error( "It does not set \$maintClass and does not return a class name.\n" );
-				$this->fatalError( "Try running it directly as a php script: php $script\n" );
+		return $extension;
+	}
+
+	private function loadScriptFile( string $scriptFile ): string {
+		$maintClass = null;
+
+		// It's a file, include it
+		// If it returns something, it should be the name of the maintenance class.
+		$scriptClass = include $scriptFile;
+
+		// Traditional script files set the $maintClass variable
+		// at the end of the file.
+		// @phan-suppress-next-line PhanImpossibleCondition Phan doesn't understand includes.
+		if ( $maintClass ) {
+			$scriptClass = $maintClass;
+		}
+
+		if ( !is_string( $scriptClass ) ) {
+			$this->error( "ERROR: The script file '{$scriptFile}' cannot be executed using MaintenanceRunner.\n" );
+			$this->error( "It does not set \$maintClass and does not return a class name.\n" );
+			$this->fatalError( "Try running it directly as a php script: php $scriptFile\n" );
+		}
+
+		return $scriptClass;
+	}
+
+	protected function findScriptClass( string $script ): string {
+		$scriptName = $script;
+
+		// Support "$ext:$script" format for extensions
+		if ( preg_match( '!^(\w+):(.*)$!', $scriptName, $m ) ) {
+			$extName = $m[1];
+			$scriptName = $m[2];
+
+			$extension = $this->getExtensionInfo( $extName );
+
+			if ( !$extension ) {
+				$this->fatalError( "Extension '{$extName}' not found.\n" );
 			}
 		} else {
-			$scriptClass = $script;
+			$extension = null;
+		}
+
+		// Append ".php" if not present
+		$scriptFile = $scriptName;
+		if ( !str_ends_with( $scriptFile, '.php' ) ) {
+			$scriptFile .= '.php';
+		}
+
+		// If the path is not explicitly relative (starting with "./" or "../") and not absolute,
+		// then look in the maintenance dir.
+		if ( !preg_match( '!^\.\.?[/\\\\]!', $scriptFile ) && !self::isAbsolutePath( $scriptFile ) ) {
+			if ( $extension !== null ) {
+				// Look in the extension's maintenance dir
+				$scriptFile = dirname( $extension['path'] ) . "/maintenance/{$scriptFile}";
+			} else {
+				// It's a core script.
+				$scriptFile = MW_INSTALL_PATH . "/maintenance/{$scriptFile}";
+			}
+		}
+
+		$scriptClass = null;
+		if ( file_exists( $scriptFile ) ) {
+			$scriptClass = $this->loadScriptFile( $scriptFile );
+		}
+
+		if ( !$scriptClass ) {
+			$scriptClass = $scriptName;
 
 			// Support "$ext:$script" format
-			if ( preg_match( '/^([\w.\\\\]+):([\w.\\\\]+)$/', $scriptClass, $m ) ) {
-				$scriptClass = "MediaWiki\\Extension\\{$m[1]}\\Maintenance\\{$m[2]}";
+			if ( $extension ) {
+				$scriptClass = "{$extension['namespace']}\\Maintenance\\$scriptClass";
 			}
 
 			// Accept dot (.) as namespace separators as well.
@@ -271,7 +337,7 @@ class MaintenanceRunner {
 		}
 
 		if ( !class_exists( $scriptClass ) ) {
-			$this->fatalError( "Script {$script} not found (tried class $scriptClass).\n" );
+			$this->fatalError( "Script '{$script}' not found (tried path '$scriptFile' and class '$scriptClass').\n" );
 		}
 
 		return $scriptClass;
@@ -284,7 +350,14 @@ class MaintenanceRunner {
 	 */
 	public function setup( SettingsBuilder $settings ) {
 		// NOTE: this has to happen after the autoloader has been initialized.
-		$scriptClass = $this->findScriptClass( $this->script );
+		if ( $this->runFromWrapper ) {
+			$scriptClass = $this->findScriptClass( $this->script );
+		} else {
+			$scriptClass = $this->script;
+			if ( !class_exists( $scriptClass ) ) {
+				$this->fatalError( "Class {$this->script} does not exist.\n" );
+			}
+		}
 
 		$cls = new ReflectionClass( $scriptClass );
 		if ( !$cls->isSubclassOf( Maintenance::class ) ) {
@@ -526,7 +599,7 @@ class MaintenanceRunner {
 	 * @param int $exitCode PHP exit status. Should be in range 1-254.
 	 * @return never
 	 */
-	private function fatalError( $msg, $exitCode = 1 ) {
+	protected function fatalError( $msg, $exitCode = 1 ) {
 		$this->error( $msg );
 		exit( $exitCode );
 	}
@@ -534,7 +607,7 @@ class MaintenanceRunner {
 	/**
 	 * @param string $msg
 	 */
-	private function error( string $msg ) {
+	protected function error( string $msg ) {
 		// Print to stderr if possible, don't mix it in with stdout output.
 		if ( defined( 'STDERR' ) ) {
 			fwrite( STDERR, $msg );
