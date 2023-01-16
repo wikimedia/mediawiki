@@ -2124,7 +2124,8 @@ return [
 			$services->getDBLoadBalancer(),
 			LoggerFactory::getInstance( 'UserOptionsManager' ),
 			$services->getHookContainer(),
-			$services->getUserFactory()
+			$services->getUserFactory(),
+			$services->getContentLanguage()
 		);
 	},
 
