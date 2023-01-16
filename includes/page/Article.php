@@ -1218,7 +1218,11 @@ class Article implements Page {
 			// 6h tolerance because the RC might not be cleaned out regularly
 			$recentPageCreation = true;
 			$rc = RecentChange::newFromConds(
-				[ 'rc_this_oldid' => intval( $oldestRevisionRow->rev_id ) ],
+				[
+					'rc_this_oldid' => intval( $oldestRevisionRow->rev_id ),
+					// Avoid selecting a categorization entry
+					'rc_type' => RC_NEW,
+				],
 				__METHOD__
 			);
 			if ( $rc ) {
