@@ -10,7 +10,8 @@
 			"아라",
 			"Amire80",
 			"Ayour2002",
-			"Lhoussine AIT TAYFST"
+			"Lhoussine AIT TAYFST",
+			"Mhab Zdan1"
 		]
 	},
 	"tog-underline": "krrj du izdayn:",
@@ -114,6 +115,8 @@
 	"october-date": "$1 Uktubr",
 	"november-date": "$1 Nuwanbir",
 	"december-date": "$1 Dujambir",
+	"period-am": "AM",
+	"period-pm": "PM",
 	"pagecategories": "{{PLURAL:$1|Taggayt|Taggayin}}",
 	"category_header": "Tasniwin n taggayt \"$1\"",
 	"subcategories": "Tiduggayin",

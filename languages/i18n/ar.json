@@ -98,7 +98,9 @@
 			"أَحمد",
 			"Cigaryno",
 			"Dr-Taher",
-			"FShbib"
+			"FShbib",
+			"Helmoony",
+			"Mhab Zdan1"
 		]
 	},
 	"tog-underline": "سطر تحت الوصلات:",
@@ -1082,7 +1084,7 @@
 	"showingresultsinrange": "بالأسفل {{PLURAL:$1|نتيجة واحدة|<strong>$1</strong> نتائج|<strong>$1</strong> نتيجة}} في النطاق من <strong>$2</strong> إلى <strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|النتائج <strong>$1</strong> من <strong>$3</strong>|النتائج <strong>$1 - $2</strong> من أصل <strong>$3</strong>}}",
 	"search-nonefound": "لا توجد نتائج تطابق الاستعلام.",
-	"search-nonefound-thiswiki": "لا توجد نتائج تطابق الاستعلام في $3.",
+	"search-nonefound-thiswiki": "لا توجد نتائج تطابق الاستعلام في هذا الموقع.",
 	"powersearch-legend": "بحث متقدم",
 	"powersearch-ns": "بحث في النطاقات:",
 	"powersearch-togglelabel": "اختر:",
@@ -2670,7 +2672,7 @@
 	"ipb-pages-label": "الصفحات",
 	"ipb-namespaces-label": "نطاقات",
 	"badipaddress": "عنوان أيبي غير صحيح",
-	"blockipsuccesssub": "تم المنع بنجاح",
+	"blockipsuccesssub": "نجحت عملية المنع",
 	"blockipsuccesstext": "[[Special:Contributions/$1|$1]] تم منعه.<br />\nانظر [[Special:BlockList|قائمة منع الأيبي]] لمراجعة حالات المنع.",
 	"ipb-empty-block": "رفع المنع ليس لديه أي قيود ممكنة.",
 	"ipb-block-not-found": "لم يمكن فرض المنع، إلا أننا لم نجد منع قائم مفروض على \"$1\". لو استمرت هذه المشكلة، يرجى [https://www.mediawiki.org/wiki/Special:MyLanguage/Help_talk:Blocking_users الإبلاغ عنها].",

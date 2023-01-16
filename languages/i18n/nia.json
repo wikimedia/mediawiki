@@ -743,5 +743,5 @@
 	"logentry-upload-overwrite": "{{GENDER:$2|ifairö}} $1 versi si bohou $3",
 	"searchsuggest-search": "Alui {{SITENAME}}",
 	"duration-days": "$1 {{PLURAL:$1|ngaluo}}",
-	"randomrootpage": "Gonfu nga'örö oroita"
+	"randomrootpage": "Gofu mböröta nga'örö"
 }

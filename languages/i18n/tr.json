@@ -2035,7 +2035,7 @@
 	"filedelete-success-old": "<strong>[[Media:$1|$1]]</strong> dosyasının $3, $2 tarihli sürümü silindi.",
 	"filedelete-nofile": "<strong>$1</strong> dosyası mevcut değildir.",
 	"filedelete-nofile-old": "<strong>$1</strong> dosyası için belirtilen niteliklerde arşivlenmiş bir sürüm yok.",
-	"filedelete-otherreason": "Diğer/ilave gerekçe:",
+	"filedelete-otherreason": "Diğer/ilave neden:",
 	"filedelete-reason-otherlist": "Diğer sebep",
 	"filedelete-reason-dropdown": "*Genel silme gerekçeleri\n** Telif hakları ihlali\n** Çift/kopya dosya",
 	"filedelete-edit-reasonlist": "Silme nedenlerini değiştir",

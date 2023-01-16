@@ -6,7 +6,8 @@
 			"Oop",
 			"Pikne",
 			"Silvar",
-			"WikedKentaur"
+			"WikedKentaur",
+			"Kareyac"
 		]
 	},
 	"exif-imagewidth": "Laius",
@@ -269,6 +270,12 @@
 	"exif-scenetype-1": "Pildistatud otse",
 	"exif-customrendered-0": "Tavatöötlus",
 	"exif-customrendered-1": "Kohandatud töötlus",
+	"exif-customrendered-2": "HDR (originaal salvestamata)",
+	"exif-customrendered-3": "HDR (originaal salvestatud)",
+	"exif-customrendered-4": "Originaal (HDR-i tarbeks)",
+	"exif-customrendered-6": "Panoraam",
+	"exif-customrendered-7": "HDR-portree",
+	"exif-customrendered-8": "Portree",
 	"exif-exposuremode-0": "Automaatne säritus",
 	"exif-exposuremode-1": "Manuaalne säritus",
 	"exif-exposuremode-2": "Automaatne särikahvel",
