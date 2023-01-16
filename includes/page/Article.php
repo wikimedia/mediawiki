@@ -779,10 +779,6 @@ class Article implements Page {
 		$oldid = $pOutput->getCacheRevisionId() ?? $this->getRevIdFetched();
 		$outputPage->setRevisionId( $oldid );
 		$outputPage->setRevisionIsCurrent( $oldid === $this->mPage->getLatest() );
-		# Ensure that the skin has the necessary ToC information
-		# (and do this before OutputPage::addParserOutput() calls the
-		# OutputPageParserOutput hook)
-		$outputPage->setSections( $pOutput->getSections() );
 		$outputPage->addParserOutput( $pOutput, $textOptions );
 		# Preload timestamp to avoid a DB hit
 		$cachedTimestamp = $pOutput->getTimestamp();
@@ -830,7 +826,6 @@ class Article implements Page {
 
 		if ( $pOutput ) {
 			$outputPage->addParserOutput( $pOutput, $textOptions );
-			$outputPage->setSections( $pOutput->getSections() );
 		}
 
 		if ( $this->getRevisionRedirectTarget( $rev ) ) {
