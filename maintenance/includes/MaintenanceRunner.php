@@ -221,46 +221,58 @@ class MaintenanceRunner {
 	}
 
 	private function findScriptClass( string $script ): string {
-		// Plain name given, refers to a file in the maintenance directory
+		// Check whether $script is an existing class.
 		if ( class_exists( $script ) ) {
 			return $script;
 		}
 
+		// A plain name refers to a file in the maintenance directory
 		if ( preg_match( '/^\w+$/', $script ) ) {
 			// XXX: Look up name in an extension attribute (use an extension prefix)?
 			// XXX: Try if the name matches a file in the maintenance directory?
 			$script = MW_INSTALL_PATH . "/maintenance/{$script}.php";
 		}
 
-		if ( str_ends_with( $script, '.php' ) && file_exists( $script ) ) {
+		// If $script ends with .php, load it as a file.
+		if ( str_ends_with( $script, '.php' ) ) {
+			if ( !file_exists( $script ) ) {
+				$this->fatalError( "Script file {$script} not found.\n" );
+			}
+
 			$maintClass = null;
 
 			// It's a file, include it
+			// IF it returns something, it should be the name of the maintenance class.
 			$scriptClass = include $script;
 
 			// Traditional script files set the $maintClass variable
 			// at the end of the file.
 			// @phan-suppress-next-line PhanImpossibleCondition Phan doesn't understand includes.
 			if ( $maintClass ) {
-				return $maintClass;
+				$scriptClass = $maintClass;
 			}
 
-			// We also support returning a class name, that's nicer.
-			if ( is_string( $scriptClass ) ) {
-				return $scriptClass;
+			if ( !is_string( $scriptClass ) ) {
+				$this->error( "ERROR: The script file {$script} cannot be executed using MaintenanceRunner.\n" );
+				$this->error( "It does not set \$maintClass and does not return a class name.\n" );
+				$this->fatalError( "Try running it directly as a php script: php $script\n" );
 			}
+		} else {
+			$scriptClass = $script;
+
+			// Support "$ext:$script" format
+			if ( preg_match( '/^([\w.\\\\]+):([\w.\\\\]+)$/', $scriptClass, $m ) ) {
+				$scriptClass = "MediaWiki\\Extension\\{$m[1]}\\Maintenance\\{$m[2]}";
+			}
+
+			// Accept dot (.) as namespace separators as well.
+			// Backslashes are just annoying on the command line.
+			$scriptClass = strtr( $scriptClass, '.', '\\' );
 		}
 
-		$scriptClass = $script;
-
-		// Support "$ext:$script" format
-		if ( preg_match( '/^([\w.\\\\]+):([\w.\\\\]+)$/', $scriptClass, $m ) ) {
-			$scriptClass = "MediaWiki\\Extension\\{$m[1]}\\Maintenance\\{$m[2]}";
+		if ( !class_exists( $scriptClass ) ) {
+			$this->fatalError( "Script {$script} not found (tried class $scriptClass).\n" );
 		}
-
-		// Accept dot (.) as namespace separators as well.
-		// Backslashes are just annoying on the command line.
-		$scriptClass = strtr( $scriptClass, '.', '\\' );
 
 		return $scriptClass;
 	}
@@ -273,10 +285,6 @@ class MaintenanceRunner {
 	public function setup( SettingsBuilder $settings ) {
 		// NOTE: this has to happen after the autoloader has been initialized.
 		$scriptClass = $this->findScriptClass( $this->script );
-
-		if ( !class_exists( $scriptClass ) ) {
-			$this->fatalError( "Script {$this->script} not found (class $scriptClass).\n" );
-		}
 
 		$cls = new ReflectionClass( $scriptClass );
 		if ( !$cls->isSubclassOf( Maintenance::class ) ) {
