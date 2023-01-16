@@ -20,7 +20,8 @@
 			"WhatamIdoing",
 			"Wōdenhelm",
 			"아라",
-			"Heahwrita"
+			"Heahwrita",
+			"Rocioun"
 		]
 	},
 	"tog-underline": "Mearc under hlencan:",
@@ -483,8 +484,10 @@
 	"botpasswords-label-update": "Edniwa",
 	"resetpass-submit-loggedin": "Andwend leafnessword",
 	"resetpass-submit-cancel": "Undo",
+	"resetpass-temp-password": "Hƿilƿende leafnesƿord:",
 	"passwordreset": "Sete leafnessword eft",
 	"passwordreset-username": "Brucendnama:",
+	"changeemail-none": "(nænig)",
 	"summary": "Scortness:",
 	"subject": "Andweorc:",
 	"minoredit": "Þeos is lytel adihtung",

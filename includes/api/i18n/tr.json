@@ -1791,7 +1791,7 @@
 	"apierror-unsupportedrepo": "Yerel dosya deposu tüm görüntülerin sorgulanmasını desteklemez.",
 	"apierror-upload-filekeyneeded": "<var>offset</var> sıfır olmadığında bir <var>filekey</var> sağlamalıdır.",
 	"apierror-upload-filekeynotallowed": "<var>offset</var> 0 olduğunda bir <var>filekey</var> sağlanamaz.",
-	"apierror-upload-inprogress": "Halihazırda devam etmekte olan depodan yükle.",
+	"apierror-upload-inprogress": "Depodan yükleme zaten devam ediyor.",
 	"apierror-upload-missingresult": "Durum verilerinde sonuç yok.",
 	"apierror-urlparamnormal": "$1 için görüntü parametreleri normalleştirilemedi.",
 	"apierror-writeapidenied": "Bu vikiyi API aracılığıyla düzenlemenize izin verilmiyor.",

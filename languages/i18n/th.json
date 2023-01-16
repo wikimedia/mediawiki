@@ -464,7 +464,7 @@
 	"userlogin-resetpassword-link": "ลืมรหัสผ่านหรือ",
 	"userlogin-helplink2": "คำอธิบายเรื่องการเข้าสู่ระบบ",
 	"userlogin-loggedin": "คุณเข้าสู่ระบบในชื่อ {{GENDER:$1|$1}} แล้ว\nใช้แบบด้านล่างเพื่อเข้าสู่ระบบเป็นอีกผู้ใช้หนึ่ง",
-	"userlogin-reauth": "คุณต้องเข้าสู่ระบบอีกครั้งเพื่อยืนยันว่าคุณคือ{{GENDER:$1|$1}}",
+	"userlogin-reauth": "คุณต้องเข้าสู่ระบบอีกครั้งเพื่อยืนยันว่าคุณคือ {{GENDER:$1|$1}}",
 	"userlogin-createanother": "สร้างอีกบัญชี",
 	"createacct-emailrequired": "ที่อยู่อีเมล",
 	"createacct-emailoptional": "ที่อยู่อีเมล (เลือกไม่ใส่ก็ได้)",

@@ -60,7 +60,8 @@
 			"NguyenHung",
 			"RiceCracker12",
 			"CactiStaccingCrane",
-			"P.T.Đ"
+			"P.T.Đ",
+			"Nguyenphutrong2"
 		]
 	},
 	"tog-underline": "Gạch chân liên kết:",
@@ -1044,7 +1045,7 @@
 	"showingresultsinrange": "Dưới đây là cho tới <strong>$1</strong> kết quả từ #<strong>$2</strong> đến #<strong>$3</strong>.",
 	"search-showingresults": "{{PLURAL:$4|Kết quả thứ <strong>$1</strong> trong tổng số <strong>$3</strong>|Các kết quả <strong>$1 – $2</strong> trong tổng số <strong>$3</strong>}}",
 	"search-nonefound": "Không có kết quả nào khớp với truy vấn.",
-	"search-nonefound-thiswiki": "Không có kết quả nào khớp với truy câu truy vấn trong $3.",
+	"search-nonefound-thiswiki": "Không có kết quả phù hợp với truy vấn trong trang web này.",
 	"powersearch-legend": "Tìm kiếm nâng cao",
 	"powersearch-ns": "Tìm trong không gian tên:",
 	"powersearch-togglelabel": "Chọn:",
