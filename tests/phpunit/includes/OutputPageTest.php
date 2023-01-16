@@ -1575,6 +1575,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'getHeadItems',
 			'getImages',
 			'getIndicators',
+			'getSections',
 			'getLanguageLinks',
 			'getOutputHooks',
 			'getTemplateIds',
