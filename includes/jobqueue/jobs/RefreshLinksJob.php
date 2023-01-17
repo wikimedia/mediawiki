@@ -243,6 +243,12 @@ class RefreshLinksJob extends Job {
 		$page->doSecondaryDataUpdates( $options );
 		InfoAction::invalidateCache( $page );
 
+		// NOTE: Since 2019 (f588586e) this no longer saves the new ParserOutput to the ParserCache!
+		//       This means the page will have to be rendered on-the-fly when it is next viewed.
+		//       This is to avoid spending limited ParserCache capacity on rarely visited pages.
+		// TODO: Save the ParserOutput to ParserCache by calling WikiPage::updateParserCache()
+		//       for pages that are likely to benefit (T327162).
+
 		// Commit any writes here in case this method is called in a loop.
 		// In that case, the scoped lock will fail to be acquired.
 		$lbFactory->commitAndWaitForReplication( __METHOD__, $ticket );

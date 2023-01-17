@@ -1793,7 +1793,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 	/**
 	 * Do secondary data updates (e.g. updating link tables) or schedule them as deferred updates
 	 *
-	 * MCR note: this method is temporarily exposed via WikiPage::doSecondaryDataUpdates.
+	 * @note This does not update the parser cache. Use doParserCacheUpdate() for that.
+	 * @note Application logic should use Wikipage::doSecondaryDataUpdates instead.
 	 *
 	 * @param array $options
 	 *   - recursive: make the update recursive, i.e. also update pages which transclude the
@@ -1838,6 +1839,12 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 		}
 	}
 
+	/**
+	 * Causes parser cache entries to be updated.
+	 *
+	 * @note This does not update links tables. Use doSecondaryDataUpdates() for that.
+	 * @note Application logic should use Wikipage::updateParserCache instead.
+	 */
 	public function doParserCacheUpdate() {
 		$this->assertHasRevision( __METHOD__ );
 
