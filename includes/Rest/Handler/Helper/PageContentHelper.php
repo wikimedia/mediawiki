@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Rest\Handler;
+namespace MediaWiki\Rest\Handler\Helper;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
@@ -358,3 +358,6 @@ class PageContentHelper {
 	}
 
 }
+
+/** @deprecated since 1.40, remove in 1.41 */
+class_alias( PageContentHelper::class, "MediaWiki\\Rest\\Handler\\PageContentHelper" );

@@ -5,6 +5,8 @@ namespace MediaWiki\Rest\Handler;
 use LogicException;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\RedirectStore;
+use MediaWiki\Rest\Handler\Helper\PageContentHelper;
+use MediaWiki\Rest\Handler\Helper\PageRestHelperFactory;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;

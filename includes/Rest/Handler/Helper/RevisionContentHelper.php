@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Rest\Handler;
+namespace MediaWiki\Rest\Handler\Helper;
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ExistingPageRecord;
@@ -185,3 +185,6 @@ class RevisionContentHelper extends PageContentHelper {
 	}
 
 }
+
+/** @deprecated since 1.40, remove in 1.41 */
+class_alias( RevisionContentHelper::class, "MediaWiki\\Rest\\Handler\\RevisionContentHelper" );

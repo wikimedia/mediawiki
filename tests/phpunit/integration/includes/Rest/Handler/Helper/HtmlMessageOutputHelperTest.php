@@ -1,12 +1,12 @@
 <?php
 
-namespace MediaWiki\Tests\Rest\Helper;
+namespace MediaWiki\Tests\Rest\Handler\Helper;
 
-use MediaWiki\Rest\Handler\HtmlMessageOutputHelper;
+use MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \MediaWiki\Rest\Handler\HtmlMessageOutputHelper
+ * @covers \MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper
  * @group Database
  */
 class HtmlMessageOutputHelperTest extends MediaWikiIntegrationTestCase {
@@ -15,8 +15,8 @@ class HtmlMessageOutputHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Rest\Handler\HtmlMessageOutputHelper::init
-	 * @covers \MediaWiki\Rest\Handler\HtmlMessageOutputHelper::getHtml
+	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper::init
+	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper::getHtml
 	 */
 	public function testGetHtml() {
 		$page = $this->getNonexistingTestPage( 'MediaWiki:Logouttext' );
@@ -35,8 +35,8 @@ class HtmlMessageOutputHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Rest\Handler\HtmlMessageOutputHelper::init
-	 * @covers \MediaWiki\Rest\Handler\HtmlMessageOutputHelper::getETag
+	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper::init
+	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper::getETag
 	 */
 	public function testGetETag() {
 		$page = $this->getNonexistingTestPage( 'MediaWiki:Logouttext' );
@@ -50,8 +50,8 @@ class HtmlMessageOutputHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Rest\Handler\HtmlMessageOutputHelper::init
-	 * @covers \MediaWiki\Rest\Handler\HtmlMessageOutputHelper::getHtml
+	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper::init
+	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper::getHtml
 	 */
 	public function testGetHtmlWithLanguageCode() {
 		$page = $this->getNonexistingTestPage( 'MediaWiki:Logouttext/de' );

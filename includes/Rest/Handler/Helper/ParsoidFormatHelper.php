@@ -17,7 +17,7 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-namespace MediaWiki\Rest\Handler;
+namespace MediaWiki\Rest\Handler\Helper;
 
 use InvalidArgumentException;
 use MediaWiki\Rest\ResponseInterface;
@@ -130,3 +130,6 @@ class ParsoidFormatHelper {
 	}
 
 }
+
+/** @deprecated since 1.40, remove in 1.41 */
+class_alias( ParsoidFormatHelper::class, "MediaWiki\\Rest\\Handler\\ParsoidFormatHelper" );
