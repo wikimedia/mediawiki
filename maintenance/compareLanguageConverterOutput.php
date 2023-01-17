@@ -21,6 +21,7 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Diff\ComplexityException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Revision\SlotRecord;
@@ -28,7 +29,8 @@ use MediaWiki\Revision\SlotRecord;
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script that compares HTML output between Parser and HtmlOutputRendererHelper
+ * Maintenance script that compares variant conversion output between Parser and
+ * HtmlOutputRendererHelper.
  *
  * @ingroup Maintenance
  */
@@ -45,10 +47,6 @@ class CompareLanguageConverterOutput extends Maintenance {
 			'target-variant',
 			'Target variant language code to transform the content to',
 			true
-		);
-		$this->addOption(
-			'show-all',
-			'Show all words, even without differences'
 		);
 	}
 
@@ -108,6 +106,8 @@ class CompareLanguageConverterOutput extends Maintenance {
 		Language $baseLanguage,
 		string $targetVariantCode
 	): ParserOutput {
+		// We update the default language variant because we want Parser to
+		// perform variant conversion to it.
 		global $wgDefaultLanguageVariant;
 		$wgDefaultLanguageVariant = $targetVariantCode;
 
@@ -144,7 +144,7 @@ class CompareLanguageConverterOutput extends Maintenance {
 
 	private function getWords( string $output ): array {
 		$tagsRemoved = strip_tags( $output );
-		$words = preg_split( '/\s+/', trim( $tagsRemoved ) );
+		$words = preg_split( '/\s+/', trim( $tagsRemoved ), -1, PREG_SPLIT_NO_EMPTY );
 		return $words;
 	}
 
@@ -166,47 +166,19 @@ class CompareLanguageConverterOutput extends Maintenance {
 		ParserOutput $parsoidOutput,
 		string $converterUsed
 	): void {
-		$parserWords = $this->getWords( $parserOutput->getText( [ 'deduplicateStyles' => false ] ) );
-		$parsoidWords = $this->getWords(
-			$this->getBody( $parsoidOutput->getText( [ 'deduplicateStyles' => false ] ) )
-		);
+		$parsoidText = $parsoidOutput->getText( [ 'deduplicateStyles' => false ] );
+		$parserText = $parserOutput->getText( [ 'deduplicateStyles' => false ] );
+
+		$parsoidWords = $this->getWords( $this->getBody( $parsoidText ) );
+		$parserWords = $this->getWords( $parserText );
 
 		$parserWordCount = count( $parserWords );
 		$parsoidWordCount = count( $parsoidWords );
 		$this->output( "Word count: Parsoid: $parsoidWordCount; Parser: $parserWordCount\n" );
 
 		$this->outputSimilarity( $parsoidWords, $parserWords );
-
-		$highestWordCount = $parserWordCount > $parsoidWordCount ? $parserWordCount : $parsoidWordCount;
-
-		$out = str_repeat( '-', 100 ) . "\n";
-		$out .= sprintf( "| %5s | %-35s | %-35s | %-12s |\n", 'Line', 'Parsoid', 'Parser', 'Difference' );
-		$out .= sprintf( "| %5s | %-35s | %-35s | %-12s |\n", '', "($converterUsed)", '', '' );
-		$out .= str_repeat( '-', 100 ) . "\n";
-
-		for ( $i = 0; $i !== $highestWordCount; ++$i ) {
-			$shouldPrintRow = true;
-			$parserWord = $parserWords[ $i ] ?? '= N/A =';
-			$parsoidWord = $parsoidWords[ $i ] ?? '= N/A =';
-			if ( $parsoidWord === $parserWord ) {
-				if ( !$this->hasOption( 'show-all' ) ) {
-					$shouldPrintRow = false;
-				}
-			}
-
-			if ( $shouldPrintRow ) {
-				$out .= $this->mb_sprintf(
-					"| %5s | %-35s | %-35s | %-12s |\n",
-					str_pad( (string)( $i + 1 ), 5, ' ', STR_PAD_LEFT ),
-					mb_strimwidth( $parsoidWord, 0, 35, '…' ),
-					mb_strimwidth( $parserWord, 0, 35, '…' ),
-					$parsoidWord === $parserWord ? 'OK' : 'Different'
-				);
-			}
-		}
-
-		$out .= str_repeat( '-', 100 ) . "\n";
-		$this->output( "\n" . $out );
+		$this->output( "\n" );
+		$this->outputDiff( $parsoidWords, $parserWords, $converterUsed );
 	}
 
 	private function getConverterUsed( ParserOutput $parsoidOutput ): string {
@@ -255,6 +227,40 @@ class CompareLanguageConverterOutput extends Maintenance {
 		$this->output(
 			"Similarity via similar_text(): $similarityPercent%; Similar characters: $similarCharacters"
 		);
+	}
+
+	private function outputDiff( array $parsoidWords, array $parserWords, string $converterUsed ): void {
+		$out = str_repeat( '-', 96 ) . "\n";
+		$out .= sprintf( "| %5s | %-35s | %-35s | %-8s |\n", 'Line', 'Parsoid', 'Parser', 'Diff' );
+		$out .= sprintf( "| %5s | %-35s | %-35s | %-8s |\n", '', "($converterUsed)", '', '' );
+		$out .= str_repeat( '-', 96 ) . "\n";
+
+		try {
+			$diff = new Diff( $parsoidWords, $parserWords );
+		} catch ( ComplexityException $e ) {
+			$this->output( $e->getMessage() );
+			$this->error( 'Encountered ComplexityException while computing diff' );
+		}
+
+		// Print the difference between the words
+		$wordDiffFormat = ( new ArrayDiffFormatter() )->format( $diff );
+		foreach ( $wordDiffFormat as $index => $wordDiff ) {
+			$action = $wordDiff['action'];
+			$old = $wordDiff['old'] ?? null;
+			$new = $wordDiff['new'] ?? null;
+
+			$out .= $this->mb_sprintf(
+				"| %5s | %-35s | %-35s | %-8s |\n",
+				str_pad( (string)( $index + 1 ), 5, ' ', STR_PAD_LEFT ),
+				mb_strimwidth( $old ?? '- N/A -', 0, 35, '…' ),
+				mb_strimwidth( $new ?? '- N/A -', 0, 35, '…' ),
+				$action
+			);
+		}
+
+		// Print the footer.
+		$out .= str_repeat( '-', 96 ) . "\n";
+		$this->output( "\n" . $out );
 	}
 }
 
