@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.46.1
+ * OOUI v0.46.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-01-11T22:36:11Z
+ * Date: 2023-01-17T18:29:02Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -140,7 +140,7 @@
   color: #202122;
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover {
-  background-color: rgba(0, 24, 73, 7/255);
+  background-color: rgba(0, 24, 73, 0.02745098);
   color: #000;
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled > .oo-ui-buttonElement-button:focus {
@@ -149,7 +149,7 @@
 }
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > input.oo-ui-buttonElement-button,
 .oo-ui-buttonElement-frameless.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active {
-  background-color: rgba(0, 36, 73, 21/255);
+  background-color: rgba(0, 24, 73, 0.08235294);
   color: #000;
   border-color: #72777d;
   box-shadow: none;
@@ -269,7 +269,7 @@
 }
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active,
 .oo-ui-buttonElement-framed.oo-ui-widget-enabled.oo-ui-buttonElement-pressed > .oo-ui-buttonElement-button {
-  background-color: #c8ccd1;
+  background-color: #eaecf0;
   color: #000;
   border-color: #72777d;
   box-shadow: none;
@@ -891,7 +891,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
 }
 .oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-flaggedElement-warning {
   background-color: #fef6e7;
-  border-color: #fc3;
+  border-color: #edab00;
 }
 .oo-ui-messageWidget.oo-ui-messageWidget-block.oo-ui-flaggedElement-success {
   background-color: #d5fdf4;

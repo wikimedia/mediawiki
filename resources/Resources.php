@@ -3052,7 +3052,7 @@ return [
 	'oojs-ui-core.icons' => [
 		'class' => OOUIIconPackModule::class,
 		'icons' => [
-			'add', 'alert', 'infoFilled', 'error', 'check', 'close', 'info', 'search', 'subtract'
+			'add', 'alert', 'infoFilled', 'error', 'check', 'close', 'info', 'search', 'subtract', 'success'
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
