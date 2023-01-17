@@ -1,8 +1,20 @@
 <?php
 
+namespace MediaWiki\Tests\Integration\Context;
+
+use DerivativeContext;
+use HashConfig;
+use IContextSource;
+use Language;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
+use MediaWikiIntegrationTestCase;
+use OutputPage;
+use RequestContext;
+use Title;
+use User;
+use WikiPage;
 
 /**
  * @covers DerivativeContext
