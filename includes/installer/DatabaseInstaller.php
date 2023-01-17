@@ -23,6 +23,7 @@
 
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBExpectedError;
 use Wikimedia\Rdbms\IDatabase;
@@ -217,7 +218,7 @@ abstract class DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-		$this->db->selectDB( $this->getVar( 'wgDBname' ) );
+		$this->selectDatabase( $this->db, $this->getVar( 'wgDBname' ) );
 
 		if ( $tableThatMustNotExist && $this->db->tableExists( $tableThatMustNotExist, __METHOD__ ) ) {
 			$status->warning( "config-$stepName-tables-exist" );
@@ -671,7 +672,7 @@ abstract class DatabaseInstaller {
 		}
 
 		try {
-			$this->db->selectDB( $this->getVar( 'wgDBname' ) );
+			$this->selectDatabase( $this->db, $this->getVar( 'wgDBname' ) );
 		} catch ( DBConnectionError $e ) {
 			// Don't catch DBConnectionError
 			throw $e;
@@ -780,7 +781,7 @@ abstract class DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
-		$this->db->selectDB( $this->getVar( 'wgDBname' ) );
+		$this->selectDatabase( $this->db, $this->getVar( 'wgDBname' ) );
 
 		if ( $this->db->selectRow( 'interwiki', '1', [], __METHOD__ ) ) {
 			$status->warning( 'config-install-interwiki-exists' );
@@ -814,5 +815,25 @@ abstract class DatabaseInstaller {
 
 	public function outputHandler( $string ) {
 		return htmlspecialchars( $string );
+	}
+
+	/**
+	 * @param Database $conn
+	 * @param string $database
+	 * @return bool
+	 * @since 1.39
+	 */
+	protected function selectDatabase( Database $conn, string $database ) {
+		$schema = $conn->dbSchema();
+		$prefix = $conn->tablePrefix();
+
+		$conn->selectDomain( new DatabaseDomain(
+			$database,
+			// DatabaseDomain uses null for unspecified schemas
+			( $schema !== '' ) ? $schema : null,
+			$prefix
+		) );
+
+		return true;
 	}
 }
