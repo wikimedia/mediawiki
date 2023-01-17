@@ -4444,12 +4444,13 @@ class Language {
 	/**
 	 * Get the first fallback for a given language.
 	 *
-	 * @deprecated since 1.35, use LanguageFallback::getFirst
+	 * @deprecated since 1.35, use LanguageFallback::getFirst. Hard-deprecated since 1.40.
 	 *
 	 * @param string $code
 	 * @return string|false False if no fallbacks
 	 */
 	public static function getFallbackFor( $code ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()->getLanguageFallback()->getFirst( $code )
 			?? false;
 	}
@@ -4457,7 +4458,7 @@ class Language {
 	/**
 	 * Get the ordered list of fallback languages.
 	 *
-	 * @deprecated since 1.35, use LanguageFallback::getAll
+	 * @deprecated since 1.35, use LanguageFallback::getAll. Hard-deprecated since 1.40.
 	 *
 	 * @since 1.19
 	 * @param string $code Language code
@@ -4467,6 +4468,7 @@ class Language {
 	 * @return string[] List of language codes
 	 */
 	public static function getFallbacksFor( $code, $mode = LanguageFallback::MESSAGES ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()->getLanguageFallback()->getAll( $code, $mode );
 	}
 
@@ -4474,13 +4476,14 @@ class Language {
 	 * Get the ordered list of fallback languages, ending with the fallback
 	 * language chain for the site language.
 	 *
-	 * @deprecated since 1.35, use LanguageFallback::getAllIncludingSiteLanguage
+	 * @deprecated since 1.35, use LanguageFallback::getAllIncludingSiteLanguage. Hard-deprecated since 1.40.
 	 *
 	 * @since 1.22
 	 * @param string $code Language code
 	 * @return string[][] [ fallbacks, site fallbacks ]
 	 */
 	public static function getFallbacksIncludingSiteLanguage( $code ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()->getLanguageFallback()
 			->getAllIncludingSiteLanguage( $code );
 	}

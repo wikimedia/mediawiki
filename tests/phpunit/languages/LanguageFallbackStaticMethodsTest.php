@@ -31,6 +31,7 @@ class LanguageFallbackStaticMethodsTest extends MediaWikiIntegrationTestCase {
 		} elseif ( $method === 'getAllIncludingSiteLanguage' ) {
 			$method = 'getFallbacksIncludingSiteLanguage';
 		}
+		$this->hideDeprecated( 'Language::' . $method );
 		return $this->traitCallMethod( $callee, $method, ...$args );
 	}
 

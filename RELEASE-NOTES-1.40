@@ -347,6 +347,8 @@ because of Phabricator reports.
   GlobalBlocks are now added into CompositeBlocks via the GetUserBlock hook.
 * Language::isWellFormedLanguageTag(), deprecated in 1.39, now emits deprecation
   notices. Please use LanguageCode::isWellFormedLanguageTag() instead.
+* Language::getFallbackFor(), ::getFallbacksIncludingSiteLanguage() and
+  ::getFallbacksFor(), deprecated in 1.35, now emit deprecation warnings.
 * Executing maintenance scripts directly is deprecated. The maintenance/run.php
   entry point should be used instead.
 * Title.js's confusingly-named getName() and getNameText() methods, for using
