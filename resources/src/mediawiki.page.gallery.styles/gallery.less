@@ -2,9 +2,6 @@
 
 /* Galleries */
 /* Don't forget to update gallery.print.css */
-@height-slideshow-controls: 80px;
-/* This value should be synced with SlideshowImageGallery.php */
-@height-slideshow: 500px;
 
 ul.gallery {
 	margin: 2px;
@@ -127,60 +124,8 @@ ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapp
 
 /* Slideshow */
 ul.gallery.mw-gallery-slideshow {
-	display: flex;
-	margin: auto;
-	width: 100%;
-	height: @height-slideshow;
-	text-align: center;
-	overflow: hidden;
-	overflow-x: auto;
-	scroll-snap-type: x mandatory;
-	scroll-behavior: smooth;
-	padding: 0;
-
-	li {
-		scroll-snap-align: start;
-		flex-shrink: 0;
-		height: 100%;
-		text-align: center;
-		display: flex;
-		flex-flow: column;
-		// override inline style
-		// stylelint-disable-next-line declaration-no-important
-		width: 100% !important;
-
-		> div {
-			max-width: none;
-			margin: auto;
-		}
-	}
-
-	&:not( .mw-gallery-slideshow-ooui ) {
-		// Reserve space at top of gallery while OOUI loads.
-		li:before {
-			.client-js & {
-				content: '';
-				width: 100%;
-				display: block;
-				padding: 1.3em 0;
-				// equivalent to the OOUI icon button height:
-				height: 32px;
-			}
-		}
-
-		.thumb {
-			max-height: @height-slideshow;
-			// override inline style
-			// stylelint-disable-next-line declaration-no-important
-			width: 100% !important;
-		}
-
-		img {
-			height: 100%;
-			width: auto;
-			max-height: @height-slideshow;
-		}
-	}
+	display: block;
+	margin: 4em 0;
 
 	.gallerycaption {
 		font-size: 1.3em;
@@ -188,28 +133,9 @@ ul.gallery.mw-gallery-slideshow {
 	}
 
 	/* `li` item */
-
 	.gallerycarousel {
 		display: block;
 		text-align: center;
-		height: @height-slideshow;
-		max-width: 100%;
-
-		.oo-ui-stackLayout-continuous,
-		.mw-gallery-slideshow-buttons ~ .oo-ui-panelLayout,
-		.mw-gallery-slideshow-img-container,
-		.mw-gallery-slideshow-img-container a {
-			height: 100%;
-		}
-
-		img {
-			max-height: @height-slideshow - @height-slideshow-controls;
-			max-width: 100%;
-		}
-
-		.oo-ui-panelLayout-scrollable {
-			overflow: hidden;
-		}
 
 		&.mw-gallery-slideshow-thumbnails-toggled {
 			margin-bottom: 1.3em;
@@ -220,8 +146,6 @@ ul.gallery.mw-gallery-slideshow {
 		opacity: 0.5;
 		padding: 1.3em 0;
 		white-space: nowrap;
-		height: @height-slideshow-controls;
-		box-sizing: border-box;
 
 		.oo-ui-buttonElement {
 			margin: 0 2em;
@@ -239,6 +163,10 @@ ul.gallery.mw-gallery-slideshow {
 	.gallerybox {
 		&.slideshow-current {
 			background: #efefef;
+		}
+
+		> div {
+			max-width: 120px;
 		}
 
 		div.thumb {

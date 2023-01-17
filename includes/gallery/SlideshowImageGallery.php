@@ -28,50 +28,6 @@ class SlideshowImageGallery extends TraditionalImageGallery {
 	}
 
 	/**
-	 * @inheritDoc
-	 */
-	protected function getHtmlItemAttributes( $thumb, $width, $alt = '' ) {
-		if ( !$thumb ) {
-			return parent::getHtmlItemAttributes( $thumb, $width, $alt );
-		}
-
-		return parent::getHtmlItemAttributes( $thumb, $width, $alt ) + [
-			'data-alt' => $alt,
-			'data-src' => $thumb->getUrl(),
-		];
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	protected function getGBWidthOverwrite( $thumb ) {
-		return '100%';
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	protected function getVPad( $boxHeight, $thumbHeight ) {
-		return 0;
-	}
-
-	/**
-	 * Get the transform parameters for a thumbnail.
-	 *
-	 * @param File|false $img The file in question. May be false for invalid image
-	 * @return array
-	 */
-	protected function getThumbParams( $img ) {
-		$params = parent::getThumbParams( $img );
-		return [
-			// This value should be >= than the width defined for `.gallerycarousel`
-			// otherwise the image will appear pixelated. It should correspond with one
-			// of the pregenerated thumbnail sizes on T211661#8377883.
-			'width' => 640,
-		];
-	}
-
-	/**
 	 * Add javascript adds interface elements
 	 * @return array
 	 */

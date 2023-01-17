@@ -3280,8 +3280,8 @@ File:Foobar.jpg
 </gallery>
 !! html/php
 <ul class="gallery mw-gallery-slideshow" data-showthumbnails="1">
-		<li class="gallerybox" style="width: 100%" data-alt="Foobar.jpg" data-src="http://example.com/images/thumb/3/3a/Foobar.jpg/640px-Foobar.jpg">
-			<div class="thumb" style="width: 150px;"><span typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/640px-Foobar.jpg" decoding="async" width="640" height="73" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/960px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/1280px-Foobar.jpg 2x" /></a></span></div>
+		<li class="gallerybox" style="width: 155px">
+			<div class="thumb" style="width: 150px;"><span typeof="mw:File"><a href="/wiki/File:Foobar.jpg" class="mw-file-description"><img alt="Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/120px-Foobar.jpg" decoding="async" width="120" height="14" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/240px-Foobar.jpg 2x" /></a></span></div>
 			<div class="gallerytext">
 			</div>
 		</li>
