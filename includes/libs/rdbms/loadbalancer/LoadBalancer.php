@@ -1483,7 +1483,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		if ( count( $params['servers'] ) == count( $this->servers ) ) {
 			return;
 		}
-		$this->logger->notice( 'Reconfiguring dbs!' );
+		$this->logger->info( 'Reconfiguring dbs!' );
 		$newServers = [];
 		foreach ( $params['servers'] as $i => $server ) {
 			$newServers[] = $this->getServerNameFromConfig( $server );

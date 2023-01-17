@@ -183,7 +183,7 @@ class RefreshLinksJob extends Job {
 		if ( !$page->exists() ) {
 			// Probably due to concurrent deletion or renaming of the page
 			$logger = LoggerFactory::getInstance( 'RefreshLinksJob' );
-			$logger->notice(
+			$logger->warning(
 				'The page does not exist. Perhaps it was deleted?',
 				[
 					'page_title' => $this->title->getPrefixedDBkey(),
