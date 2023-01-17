@@ -21,10 +21,13 @@
 	"ooui-dialog-process-dismiss": "Opusti",
 	"ooui-dialog-process-retry": "Poskusite znova",
 	"ooui-dialog-process-continue": "Nadaljuj",
+	"ooui-combobox-button-label": "Preklop možnosti",
 	"ooui-selectfile-button-select": "Izberite datoteko",
+	"ooui-selectfile-button-select-multiple": "Izberi datoteke",
 	"ooui-selectfile-not-supported": "Izbira datoteke ni podprta",
 	"ooui-selectfile-placeholder": "Nobena datoteka ni izbrana",
 	"ooui-selectfile-dragdrop-placeholder": "Izpustite datoteko tukaj",
 	"ooui-selectfile-dragdrop-placeholder-multiple": "Izpustite datoteke tukaj",
+	"ooui-popup-widget-close-button-aria-label": "Zapri",
 	"ooui-field-help": "Pomoč"
 }

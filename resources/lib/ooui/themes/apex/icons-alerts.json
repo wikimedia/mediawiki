@@ -38,6 +38,9 @@
 				"rtl": "../wikimediaui/images/icons/speechBubbles-rtl.svg"
 			}
 		},
+		"success": {
+			"file": "../wikimediaui/images/icons/success.svg"
+		},
 		"tray": {
 			"file": "../wikimediaui/images/icons/tray.svg"
 		}

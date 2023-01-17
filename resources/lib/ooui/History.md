@@ -1,5 +1,22 @@
 # OOUI Release History
 
+## v0.46.2 / 2023-01-17
+
+### Features
+* DraggableElement: Enable Drag'n'Drop on Chrome on Android (Michael Große)
+* MultilineTextInputWidget: Work around recent Firefox bug calculating wrong .scrollheight (Thiemo Kreuz)
+
+### Styles
+* MessageWidget: Replace 'check' with 'success' icon (Volker E.)
+* icons: Add 'success' to the 'alerts' icon pack (Volker E.)
+* icons: Add Wikimedia logos to 'wikimedia' icon pack (Volker E.)
+
+### Code
+* Fix `.addItems()` methods silently ignoring non-array input (Thiemo Kreuz)
+* Remove uses of `void` (Bartosz Dziewoński)
+* Replace `remove`/`addClass` with `toggleClass` where possible (Thiemo Kreuz)
+
+
 ## v0.46.1 / 2023-01-07
 ### Code
 * php: Declare all class properties (Umherirrender)

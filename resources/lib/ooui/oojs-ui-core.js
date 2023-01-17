@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.46.1
+ * OOUI v0.46.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-01-11T22:35:58Z
+ * Date: 2023-01-17T18:28:50Z
  */
 ( function ( OO ) {
 
@@ -1439,8 +1439,8 @@ OO.ui.Element.static.reconsiderScrollbars = function ( el ) {
 		el.removeChild( el.firstChild );
 	}
 	// Force reflow
-	// eslint-disable-next-line no-void
-	void el.offsetHeight;
+	// eslint-disable-next-line no-unused-expressions
+	el.offsetHeight;
 	// Reattach all children
 	for ( var i = 0, len = nodes.length; i < len; i++ ) {
 		el.appendChild( nodes[ i ] );
@@ -2583,13 +2583,13 @@ OO.ui.mixin.GroupElement.prototype.findItemsFromData = function ( data ) {
  * specifies a different insertion point. Adding an existing item will move it to the end of the
  * array or the point specified by the `index`.
  *
- * @param {OO.ui.Element[]} [items] Elements to add to the group
+ * @param {OO.ui.Element|OO.ui.Element[]} [items] Elements to add to the group
  * @param {number} [index] Index of the insertion point
  * @chainable
  * @return {OO.ui.Element} The element, for chaining
  */
 OO.ui.mixin.GroupElement.prototype.addItems = function ( items, index ) {
-	if ( !items || !items.length ) {
+	if ( !items || items.length === 0 ) {
 		return this;
 	}
 
@@ -4594,7 +4594,7 @@ OO.ui.MessageWidget.static.iconMap = {
 	notice: 'infoFilled',
 	error: 'error',
 	warning: 'alert',
-	success: 'check'
+	success: 'success'
 };
 
 /* Methods */
@@ -5080,11 +5080,9 @@ OO.ui.mixin.FloatableElement.prototype.position = function () {
 
 	this.floatableOutOfView = this.hideWhenOutOfView &&
 		!this.isElementInViewport( this.$floatableContainer, this.$floatableClosestScrollable );
+	this.$floatable.toggleClass( 'oo-ui-element-hidden', this.floatableOutOfView );
 	if ( this.floatableOutOfView ) {
-		this.$floatable.addClass( 'oo-ui-element-hidden' );
 		return this;
-	} else {
-		this.$floatable.removeClass( 'oo-ui-element-hidden' );
 	}
 
 	this.$floatable.css( this.computePosition() );
@@ -5571,13 +5569,13 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		// Forcing a reflow is a smaller workaround than calling reconsiderScrollbars() for
 		// this case.
 		this.$clippable.css( 'overflowX', 'scroll' );
-		// eslint-disable-next-line no-void
-		void this.$clippable[ 0 ].offsetHeight; // Force reflow
+		// eslint-disable-next-line no-unused-expressions
+		this.$clippable[ 0 ].offsetHeight; // Force reflow
 		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars.
 		// See T157672.
 		this.$clippable.css( 'overflowX', 'auto' );
-		// eslint-disable-next-line no-void
-		void this.$clippable[ 0 ].offsetHeight; // Force reflow
+		// eslint-disable-next-line no-unused-expressions
+		this.$clippable[ 0 ].offsetHeight; // Force reflow
 		this.$clippable.css( {
 			width: Math.max( 0, allotedWidth ),
 			maxWidth: ''
@@ -5595,13 +5593,13 @@ OO.ui.mixin.ClippableElement.prototype.clip = function () {
 		// Forcing a reflow is a smaller workaround than calling reconsiderScrollbars() for
 		// this case.
 		this.$clippable.css( 'overflowY', 'scroll' );
-		// eslint-disable-next-line no-void
-		void this.$clippable[ 0 ].offsetHeight; // Force reflow
+		// eslint-disable-next-line no-unused-expressions
+		this.$clippable[ 0 ].offsetHeight; // Force reflow
 		// The order matters here. If overflow is not set first, Chrome displays bogus scrollbars.
 		// See T157672.
 		this.$clippable.css( 'overflowY', 'auto' );
-		// eslint-disable-next-line no-void
-		void this.$clippable[ 0 ].offsetHeight; // Force reflow
+		// eslint-disable-next-line no-unused-expressions
+		this.$clippable[ 0 ].offsetHeight; // Force reflow
 		this.$clippable.css( {
 			height: Math.max( 0, allotedHeight ),
 			maxHeight: ''
@@ -5936,13 +5934,7 @@ OO.ui.PopupWidget.prototype.toggleAnchor = function ( show ) {
 	show = show === undefined ? !this.anchored : !!show;
 
 	if ( this.anchored !== show ) {
-		if ( show ) {
-			this.$element.addClass( 'oo-ui-popupWidget-anchored' );
-			this.$element.addClass( 'oo-ui-popupWidget-anchored-' + this.anchorEdge );
-		} else {
-			this.$element.removeClass( 'oo-ui-popupWidget-anchored' );
-			this.$element.removeClass( 'oo-ui-popupWidget-anchored-' + this.anchorEdge );
-		}
+		this.$element.toggleClass( 'oo-ui-popupWidget-anchored oo-ui-popupWidget-anchored-' + this.anchorEdge, show );
 		this.anchored = show;
 	}
 };
@@ -7918,7 +7910,7 @@ OO.ui.SelectWidget.prototype.findFirstSelectableItem = function () {
  * @return {OO.ui.Widget} The widget, for chaining
  */
 OO.ui.SelectWidget.prototype.addItems = function ( items, index ) {
-	if ( !items || !items.length ) {
+	if ( !items || items.length === 0 ) {
 		return this;
 	}
 
@@ -8521,7 +8513,7 @@ OO.ui.MenuSelectWidget.prototype.chooseItem = function ( item ) {
  * @inheritdoc
  */
 OO.ui.MenuSelectWidget.prototype.addItems = function ( items, index ) {
-	if ( !items || !items.length ) {
+	if ( !items || items.length === 0 ) {
 		return this;
 	}
 
@@ -12177,12 +12169,14 @@ OO.ui.MultilineTextInputWidget.prototype.adjustSize = function ( force ) {
 				.val( this.$input.val() )
 				.attr( 'rows', this.minRows )
 				// Set inline height property to 0 to measure scroll height
-				.css( 'height', 0 );
-
-			this.$clone.removeClass( 'oo-ui-element-hidden' );
+				.css( 'height', 0 )
+				.removeClass( 'oo-ui-element-hidden' );
 
 			this.valCache = this.$input.val();
 
+			// https://bugzilla.mozilla.org/show_bug.cgi?id=1799404
+			// eslint-disable-next-line no-unused-expressions
+			this.$clone[ 0 ].scrollHeight;
 			var scrollHeight = this.$clone[ 0 ].scrollHeight;
 
 			// Remove inline height property to measure natural heights
