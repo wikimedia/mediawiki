@@ -525,7 +525,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$this->getLoadMonitor()->scaleLoads( $loads );
 
 		// Pick a server, accounting for weight, load, lag, and session consistency
-		[ $i, $laggedReplicaMode ] = $this->pickReaderIndex( $loads );
+		$i = $this->pickReaderIndex( $loads );
 		if ( $i === false ) {
 			// Connection attempts failed
 			return false;
@@ -537,6 +537,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		if ( !$this->awaitSessionPrimaryPos( $i ) ) {
 			// Data will be outdated compared to what was expected
 			$laggedReplicaMode = true;
+		} else {
+			$laggedReplicaMode = false;
 		}
 
 		// Keep using this server for DB_REPLICA handles for this group
@@ -583,53 +585,41 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * This will leave the server connection open within the pool for reuse
 	 *
 	 * @param array $loads List of server weights
-	 * @return array (reader index, lagged replica mode) or (false, false) on failure
+	 * @return int|false reader index or false
 	 */
 	private function pickReaderIndex( array $loads ) {
 		if ( $loads === [] ) {
 			throw new InvalidArgumentException( "Server configuration array is empty" );
 		}
 
-		/** @var int|false $i Index of selected server */
-		$i = false;
-
-		$laggedReplicaMode = false;
-
 		// Quickly look through the available servers for a server that meets criteria...
 		$currentLoads = $loads;
+		$i = false;
 		while ( count( $currentLoads ) ) {
-			if ( $laggedReplicaMode ) {
-				$i = ArrayUtils::pickRandom( $currentLoads );
+			if ( $this->waitForPos && $this->waitForPos->asOfTime() ) {
+				$this->logger->debug( __METHOD__ . ": session has replication position" );
+				// "chronologyCallback" sets "waitForPos" for session consistency.
+				// This triggers doWait() after connect, so it's especially good to
+				// avoid lagged servers so as to avoid excessive delay in that method.
+				$ago = microtime( true ) - $this->waitForPos->asOfTime();
+				// Aim for <= 1 second of waiting (being too picky can backfire)
+				$i = $this->getRandomNonLagged( $currentLoads, $ago + 1 );
 			} else {
-				$i = false;
-				if ( $this->waitForPos && $this->waitForPos->asOfTime() ) {
-					$this->logger->debug( __METHOD__ . ": session has replication position" );
-					// "chronologyCallback" sets "waitForPos" for session consistency.
-					// This triggers doWait() after connect, so it's especially good to
-					// avoid lagged servers so as to avoid excessive delay in that method.
-					$ago = microtime( true ) - $this->waitForPos->asOfTime();
-					// Aim for <= 1 second of waiting (being too picky can backfire)
-					$i = $this->getRandomNonLagged( $currentLoads, $ago + 1 );
-				}
-				if ( $i === false ) {
-					// Any server with less lag than it's 'max lag' param is preferable
-					$i = $this->getRandomNonLagged( $currentLoads );
-				}
-				if ( $i === false && count( $currentLoads ) ) {
-					// All replica DBs lagged. Switch to read-only mode
-					$this->logger->error( __METHOD__ . ": excessive replication lag" );
-					$i = ArrayUtils::pickRandom( $currentLoads );
-					$laggedReplicaMode = true;
-				}
+				// Any server with less lag than it's 'max lag' param is preferable
+				$i = $this->getRandomNonLagged( $currentLoads );
+			}
+
+			if ( $i === false && count( $currentLoads ) ) {
+				// All replica DBs lagged, just pick anything.
+				$i = ArrayUtils::pickRandom( $currentLoads );
 			}
 
 			if ( $i === false ) {
 				// pickRandom() returned false.
-				// This is permanent and means the configuration or the load monitor
+				// This is permanent and means the configuration or LoadMonitor
 				// wants us to return false.
 				$this->logger->debug( __METHOD__ . ": no suitable server found" );
-
-				return [ false, false ];
+				return false;
 			}
 
 			$serverName = $this->getServerName( $i );
@@ -642,7 +632,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			if ( !$conn ) {
 				$this->logger->warning( __METHOD__ . ": failed connecting to $serverName" );
 				unset( $currentLoads[$i] ); // avoid this server next iteration
-				$i = false;
 				continue;
 			}
 
@@ -655,7 +644,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$this->logger->error( __METHOD__ . ": all servers down" );
 		}
 
-		return [ $i, $laggedReplicaMode ];
+		return $i;
 	}
 
 	public function waitFor( $pos ) {
