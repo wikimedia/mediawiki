@@ -133,6 +133,26 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * Test the generation of hreflang Tags when site language has variants
+	 *
+	 * @covers OutputPage::getHeadLinksArray
+	 */
+	public function testGetLanguageVariantUrl() {
+		$this->setMwGlobals( [
+			'wgServer' => 'http://example.org',
+			'wgLanguageCode' => 'zh',
+		] );
+
+		$op = $this->newInstance();
+
+		$this->assertSame(
+			Html::element( 'link', [ 'rel' => 'alternate', 'hreflang' => 'zh',
+				'href' => 'http://example.org/index.php?title=My_test_page&variant=zh' ] ),
+			$op->getHeadLinksArray()['variant-zh']
+		);
+	}
+
+	/**
 	 * @covers OutputPage::setCopyrightUrl
 	 * @covers OutputPage::getHeadLinksArray
 	 */

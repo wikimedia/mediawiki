@@ -3911,6 +3911,8 @@ class OutputPage extends ContextSource {
 		] );
 
 		# Language variants
+		# Output fully-qualified URL since Alternate URLs must be fully-qualified
+		# Per https://developers.google.com/search/docs/advanced/crawling/localized-versions
 		$services = MediaWikiServices::getInstance();
 		$languageConverterFactory = $services->getLanguageConverterFactory();
 		$disableLangConversion = $languageConverterFactory->isConversionDisabled();
@@ -3923,8 +3925,8 @@ class OutputPage extends ContextSource {
 					$tags["variant-$variant"] = Html::element( 'link', [
 						'rel' => 'alternate',
 						'hreflang' => LanguageCode::bcp47( $variant ),
-						'href' => $this->getTitle()->getLocalURL(
-							[ 'variant' => $variant ] )
+						'href' => $this->getTitle()->getFullURL(
+							[ 'variant' => $variant ], false, PROTO_CURRENT )
 						]
 					);
 				}
@@ -3932,7 +3934,7 @@ class OutputPage extends ContextSource {
 				$tags["variant-x-default"] = Html::element( 'link', [
 					'rel' => 'alternate',
 					'hreflang' => 'x-default',
-					'href' => $this->getTitle()->getLocalURL() ] );
+					'href' => $this->getTitle()->getFullURL( '', false, PROTO_CURRENT ) ] );
 			}
 		}
 
