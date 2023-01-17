@@ -330,7 +330,7 @@ interface ILBFactory {
 	public function hasPrimaryChanges();
 
 	/**
-	 * Detemine if any lagged replica database server connection was used
+	 * Determine if any lagged replica database server connection was used.
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *

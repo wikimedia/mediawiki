@@ -49,15 +49,15 @@ class SkinComponentLastModified implements SkinComponent {
 			$t = null;
 		}
 
-		$replicaMode = MediaWikiServices::getInstance()->getDBLoadBalancer()->laggedReplicaUsed();
-		if ( $replicaMode ) {
+		$isLagged = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->laggedReplicaUsed();
+		if ( $isLagged ) {
 			$s .= ' <strong>' .
 				$localizer->msg( 'laggedreplicamode' )->parse() .
 				'</strong>';
 		}
 
 		return [
-			'is-replica' => $replicaMode,
+			'is-replica' => $isLagged,
 			'text' => $s,
 			'date' => $d,
 			'time' => $t,
