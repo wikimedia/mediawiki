@@ -3049,7 +3049,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * confirmed status or validity.
 	 *
 	 * @param string $subject Message subject
-	 * @param string $body Message body
+	 * @param string|string[] $body Message body or array containing keys text and html
 	 * @param User|null $from Optional sending user; if unspecified, default
 	 *   $wgPasswordSender will be used.
 	 * @param MailAddress|null $replyto Reply-To address
