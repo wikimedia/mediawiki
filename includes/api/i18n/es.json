@@ -651,7 +651,7 @@
 	"apihelp-query+blocks-paramvalue-prop-timestamp": "Añade la fecha y hora de cuando se aplicó el bloque.",
 	"apihelp-query+blocks-paramvalue-prop-expiry": "Añade la marca de tiempo correspondiente a la expiración del bloqueo.",
 	"apihelp-query+blocks-paramvalue-prop-reason": "Añade la razón dada para el bloqueo.",
-	"apihelp-query+blocks-paramvalue-prop-range": "Agrega el rango de direcciones IP afectadas por el bloqueo.",
+	"apihelp-query+blocks-paramvalue-prop-range": "Agrega el intervalo de direcciones IP afectadas por el bloqueo.",
 	"apihelp-query+blocks-paramvalue-prop-flags": "Etiqueta la prohibición con (autoblock, anononly, etc.).",
 	"apihelp-query+blocks-param-show": "Muestra solamente los elementos que cumplen estos criterios.\nPor ejemplo, para mostrar solamente los bloqueos indefinidos a direcciones IP, introduce <kbd>$1show=ip|!temp</kbd>.",
 	"apihelp-query+blocks-example-simple": "Listar bloques.",
