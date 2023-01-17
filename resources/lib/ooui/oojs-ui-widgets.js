@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.46.1
+ * OOUI v0.46.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-01-11T22:35:58Z
+ * Date: 2023-01-17T18:28:50Z
  */
 ( function ( OO ) {
 
@@ -160,6 +160,17 @@ OO.ui.mixin.DraggableElement.prototype.onDragStart = function ( e ) {
 	} catch ( err ) {
 		// The above is only for Firefox. Move on if it fails.
 	}
+
+	// Support: Chrome on Android
+	if ( !dataTransfer.getData( 'text' ) ) {
+		try {
+			dataTransfer.setData( 'text', ' ' );
+		} catch ( err ) {
+			// This try catch exists only out of an abundance of caution,
+			// and Chesterton's fence with respect to the try-catch above.
+		}
+	}
+
 	// Briefly add a 'clone' class to style the browser's native drag image
 	this.$element.addClass( 'oo-ui-draggableElement-clone' );
 	// Add placeholder class after the browser has rendered the clone
@@ -1414,7 +1425,7 @@ OO.ui.StackLayout.prototype.unsetCurrentItem = function () {
  * @return {OO.ui.StackLayout} The layout, for chaining
  */
 OO.ui.StackLayout.prototype.addItems = function ( items, index ) {
-	if ( !items || !items.length ) {
+	if ( !items || items.length === 0 ) {
 		return this;
 	}
 
@@ -4681,7 +4692,7 @@ OO.ui.TagMultiselectWidget.prototype.onTagFixed = function ( item ) {
 			break;
 		}
 	}
-	this.addItems( item, i );
+	this.addItems( [ item ], i );
 };
 /**
  * Respond to change event, where items were added, removed, or cleared.

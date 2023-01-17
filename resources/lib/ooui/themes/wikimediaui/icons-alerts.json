@@ -67,6 +67,12 @@
 				"rtl": "images/icons/speechBubbles-rtl.svg"
 			}
 		},
+		"success": {
+			"file": "images/icons/success.svg",
+			"variants": [
+				"success"
+			]
+		},
 		"tray": {
 			"file": "images/icons/tray.svg"
 		}

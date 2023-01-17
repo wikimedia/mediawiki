@@ -7,6 +7,7 @@
 			"Chadyka",
 			"Goshaproject",
 			"Mechanizatar",
+			"Plaga med",
 			"Чаховіч Уладзіслаў"
 		]
 	},
@@ -30,6 +31,6 @@
 	"ooui-selectfile-placeholder": "Файл не выбраны",
 	"ooui-selectfile-dragdrop-placeholder": "Перацягніце файл сюды",
 	"ooui-selectfile-dragdrop-placeholder-multiple": "Перацягніце файлы сюды",
-	"ooui-popup-widget-close-button-aria-label": "Зачыніць",
+	"ooui-popup-widget-close-button-aria-label": "Закрыць",
 	"ooui-field-help": "Даведка"
 }
