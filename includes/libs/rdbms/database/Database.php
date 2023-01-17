@@ -1557,7 +1557,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @inheritDoc
+	 * Get a SelectQueryBuilder bound to this connection. This is overridden by
+	 * DBConnRef.
+	 *
+	 * @return SelectQueryBuilder
 	 */
 	public function newSelectQueryBuilder(): SelectQueryBuilder {
 		return new SelectQueryBuilder( $this );
