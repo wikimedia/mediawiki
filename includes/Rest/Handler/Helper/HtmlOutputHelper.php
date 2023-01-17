@@ -17,7 +17,7 @@
  *
  * @file
  */
-namespace MediaWiki\Rest\Handler;
+namespace MediaWiki\Rest\Handler\Helper;
 
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;

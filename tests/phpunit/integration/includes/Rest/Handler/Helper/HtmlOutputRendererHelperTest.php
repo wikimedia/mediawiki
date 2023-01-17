@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Tests\Rest\Helper;
+namespace MediaWiki\Tests\Rest\Handler\Helper;
 
 use BagOStuff;
 use CssContent;
@@ -22,7 +22,7 @@ use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
 use MediaWiki\Parser\RevisionOutputCache;
-use MediaWiki\Rest\Handler\HtmlOutputRendererHelper;
+use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseInterface;
@@ -49,7 +49,7 @@ use Wikimedia\TestingAccessWrapper;
 use WikitextContent;
 
 /**
- * @covers \MediaWiki\Rest\Handler\HtmlOutputRendererHelper
+ * @covers \MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper
  * @group Database
  */
 class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {

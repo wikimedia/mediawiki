@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use MediaWiki\Rest\Handler\Helper\ParsoidFormatHelper;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\Response;
 use Wikimedia\ParamValidator\ParamValidator;

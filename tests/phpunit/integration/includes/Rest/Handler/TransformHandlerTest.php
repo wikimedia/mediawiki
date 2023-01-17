@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Rest\Handler;
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
-use MediaWiki\Rest\Handler\ParsoidFormatHelper;
+use MediaWiki\Rest\Handler\Helper\ParsoidFormatHelper;
 use MediaWiki\Rest\Handler\TransformHandler;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;

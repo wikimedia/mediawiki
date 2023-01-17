@@ -603,7 +603,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Rest\Handler\HtmlOutputRendererHelper::getParserOutput
+	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper::getParserOutput
 	 * @dataProvider provideParserOptionsWithLanguageOverride
 	 */
 	public function testGetParserOutputWithLanguageOverride( $parserOptions, $expectedLangCode ) {

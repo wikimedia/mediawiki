@@ -17,7 +17,7 @@
  *
  * @file
  */
-namespace MediaWiki\Rest\Handler;
+namespace MediaWiki\Rest\Handler\Helper;
 
 use LanguageCode;
 use MediaWiki\Page\PageIdentity;
@@ -121,3 +121,6 @@ class HtmlMessageOutputHelper implements HtmlOutputHelper {
 	}
 
 }
+
+/** @deprecated since 1.40, remove in 1.41 */
+class_alias( HtmlMessageOutputHelper::class, "MediaWiki\\Rest\\Handler\\HtmlOutputHelper" );

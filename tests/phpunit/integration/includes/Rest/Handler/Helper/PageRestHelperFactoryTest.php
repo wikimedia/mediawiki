@@ -1,20 +1,20 @@
 <?php
 
-namespace MediaWiki\Tests\Rest\Handler;
+namespace MediaWiki\Tests\Rest\Handler\Helper;
 
-use MediaWiki\Rest\Handler\HtmlMessageOutputHelper;
-use MediaWiki\Rest\Handler\HtmlOutputHelper;
-use MediaWiki\Rest\Handler\HtmlOutputRendererHelper;
+use MediaWiki\Rest\Handler\Helper\HtmlMessageOutputHelper;
+use MediaWiki\Rest\Handler\Helper\HtmlOutputHelper;
+use MediaWiki\Rest\Handler\Helper\HtmlOutputRendererHelper;
 use MediaWikiIntegrationTestCase;
 
 /**
- * @covers \MediaWiki\Rest\Handler\PageRestHelperFactory
+ * @covers \MediaWiki\Rest\Handler\Helper\PageRestHelperFactory
  */
 class PageRestHelperFactoryTest extends MediaWikiIntegrationTestCase {
 
 	/**
-	 * @covers \MediaWiki\Rest\Handler\PageRestHelperFactory::newHtmlMessageOutputHelper
-	 * @covers \MediaWiki\Rest\Handler\PageRestHelperFactory::newHtmlOutputRendererHelper
+	 * @covers \MediaWiki\Rest\Handler\Helper\PageRestHelperFactory::newHtmlMessageOutputHelper
+	 * @covers \MediaWiki\Rest\Handler\Helper\PageRestHelperFactory::newHtmlOutputRendererHelper
 	 */
 	public function testNewHtmlOutputHelpers() {
 		$helperFactory = $this->getServiceContainer()->getPageRestHelperFactory();

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Tests\Rest\Helper;
+namespace MediaWiki\Tests\Rest\Handler\Helper;
 
 use BufferingStatsdDataFactory;
 use Exception;
@@ -15,8 +15,8 @@ use MediaWiki\Parser\Parsoid\HtmlToContentTransform;
 use MediaWiki\Parser\Parsoid\HtmlTransformFactory;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidRenderID;
-use MediaWiki\Rest\Handler\HtmlInputTransformHelper;
-use MediaWiki\Rest\Handler\ParsoidFormatHelper;
+use MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper;
+use MediaWiki\Rest\Handler\Helper\ParsoidFormatHelper;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseFactory;
@@ -37,7 +37,7 @@ use Wikimedia\Parsoid\Utils\ContentUtils;
 use WikitextContent;
 
 /**
- * @covers \MediaWiki\Rest\Handler\HtmlInputTransformHelper
+ * @covers \MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper
  * @group Database
  */
 class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
@@ -99,7 +99,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function getTextFromFile( string $name ): string {
-		return trim( file_get_contents( __DIR__ . "/data/Transform/$name" ) );
+		return trim( file_get_contents( __DIR__ . "/../data/Transform/$name" ) );
 	}
 
 	private function getJsonFromFile( string $name ): array {
@@ -675,7 +675,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideRequests()
-	 * @covers \MediaWiki\Rest\Handler\HtmlInputTransformHelper
+	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper
 	 * @covers \MediaWiki\Parser\Parsoid\HtmlToContentTransform
 	 */
 	public function testResponse( $body, $params, $expectedText, array $expectedHeaders = [] ) {
@@ -873,7 +873,7 @@ class HtmlInputTransformHelperTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Rest\Handler\HtmlInputTransformHelper
+	 * @covers \MediaWiki\Rest\Handler\Helper\HtmlInputTransformHelper
 	 * @covers \MediaWiki\Parser\Parsoid\HtmlToContentTransform
 	 */
 	public function testResponseForFakeRevision() {

@@ -17,7 +17,7 @@
  *
  * @file
  */
-namespace MediaWiki\Rest\Handler;
+namespace MediaWiki\Rest\Handler\Helper;
 
 use Content;
 use HttpError;
@@ -691,3 +691,6 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	}
 
 }
+
+/** @deprecated since 1.40, remove in 1.41 */
+class_alias( HtmlOutputRendererHelper::class, "MediaWiki\\Rest\\Handler\\HtmlOutputRendererHelper" );
