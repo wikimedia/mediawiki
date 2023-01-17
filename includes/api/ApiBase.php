@@ -189,11 +189,16 @@ abstract class ApiBase extends ContextSource {
 	public const PARAM_VALUE_LINKS = 'api-param-value-links';
 
 	/**
-	 * ((string|array|Message)[]) When PARAM_TYPE is an array, this is an array
-	 * mapping those values to $msg for ApiBase::makeMessage(). Any value not
-	 * having a mapping will use apihelp-{$path}-paramvalue-{$param}-{$value}.
-	 * Specify an empty array to use the default message key for all values.
+	 * ((string|array|Message)[]) When PARAM_TYPE is an array, or 'string'
+	 * with PARAM_ISMULTI, this is an array mapping parameter values to help
+	 * message specifiers (to be passed to ApiBase::makeMessage()) about
+	 * those values.
+	 * When PARAM_TYPE is an array, any value not having a mapping will use
+	 * the apihelp-{$path}-paramvalue-{$param}-{$value} message. (This means
+	 * you can use an empty array to use the default message key for all
+	 * values.)
 	 * @since 1.25
+	 * @note Use with PARAM_TYPE = 'string' is allowed since 1.40.
 	 */
 	public const PARAM_HELP_MSG_PER_VALUE = 'api-param-help-msg-per-value';
 
@@ -1928,16 +1933,23 @@ abstract class ApiBase extends ContextSource {
 					self::dieDebug( __METHOD__,
 						'ApiBase::PARAM_HELP_MSG_PER_VALUE is not valid' );
 				}
-				if ( !is_array( $settings[ParamValidator::PARAM_TYPE] ) ) {
+				$isArrayOfStrings = is_array( $settings[ParamValidator::PARAM_TYPE] )
+					|| $settings[ParamValidator::PARAM_TYPE] === 'string'
+						&& ( $settings[ParamValidator::PARAM_ISMULTI] ?? false );
+				if ( !$isArrayOfStrings ) {
 					self::dieDebug( __METHOD__,
 						'ApiBase::PARAM_HELP_MSG_PER_VALUE may only be used when ' .
-						'ParamValidator::PARAM_TYPE is an array' );
+						'ParamValidator::PARAM_TYPE is an array or it is \'string\' and ' .
+						'ParamValidator::PARAM_ISMULTI is true' );
 				}
 
+				$values = is_array( $settings[ParamValidator::PARAM_TYPE] ) ?
+					$settings[ParamValidator::PARAM_TYPE] :
+					array_keys( $settings[self::PARAM_HELP_MSG_PER_VALUE] );
 				$valueMsgs = $settings[self::PARAM_HELP_MSG_PER_VALUE];
 				$deprecatedValues = $settings[EnumDef::PARAM_DEPRECATED_VALUES] ?? [];
 
-				foreach ( $settings[ParamValidator::PARAM_TYPE] as $value ) {
+				foreach ( $values as $value ) {
 					$msg = $valueMsgs[$value] ?? "apihelp-$path-paramvalue-$param-$value";
 					$m = self::makeMessage( $msg, $this->getContext(),
 						[ $prefix, $param, $name, $path, $value ] );
