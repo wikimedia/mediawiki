@@ -3834,10 +3834,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->replicationReporter->getTopologyBasedServerId( $this );
 	}
 
-	protected function getApproximateLagStatus() {
-		return $this->replicationReporter->getApproximateLagStatus( $this );
-	}
-
 	public function getLag() {
 		return $this->replicationReporter->getLag( $this );
 	}
