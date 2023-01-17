@@ -651,27 +651,44 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertEquals( $ud->getId(), $this->db->getDomainID() );
 
-		$old = $this->db->tablePrefix();
 		$oldDomain = $this->db->getDomainID();
-		$this->assertIsString( $old, 'Prefix is string' );
-		$this->assertSame( $old, $this->db->tablePrefix(), "Prefix unchanged" );
-		$this->assertSame( $old, $this->db->tablePrefix( 'xxx_' ) );
+		$oldDbName = $this->db->getDBname();
+		$oldSchema = $this->db->dbSchema();
+		$oldPrefix = $this->db->tablePrefix();
+		$this->assertIsString( $oldDomain, 'DB domain is string' );
+		$this->assertIsString( $oldSchema, 'DB schema is string' );
+		$this->assertIsString( $oldPrefix, 'Prefix is string' );
+		$this->assertSame( $oldSchema, $this->db->dbSchema(), "Schema unchanged" );
+		$this->assertSame( $oldPrefix, $this->db->tablePrefix(), "Prefix unchanged" );
+
+		$this->assertSame( $oldPrefix, $this->db->tablePrefix( 'xxx_' ), "Prior prefix upon set" );
 		$this->assertSame( 'xxx_', $this->db->tablePrefix(), "Prefix set" );
-		$this->db->tablePrefix( $old );
-		$this->assertNotEquals( 'xxx_', $this->db->tablePrefix() );
-		$this->assertSame( $oldDomain, $this->db->getDomainID() );
+		$this->assertSame( $oldSchema, $this->db->dbSchema(), "Schema unchanged" );
 
-		$old = $this->db->dbSchema();
-		$oldDomain = $this->db->getDomainID();
-		$this->assertIsString( $old, 'Schema is string' );
-		$this->assertSame( $old, $this->db->dbSchema(), "Schema unchanged" );
+		$this->db->tablePrefix( $oldPrefix );
+		$this->assertNotEquals( 'xxx_', $this->db->tablePrefix(), "Prior prefix upon set" );
+		$this->assertSame( $oldPrefix, $this->db->tablePrefix(), "Prefix restored" );
+		$this->assertSame( $oldSchema, $this->db->dbSchema(), "Schema unchanged" );
+		$this->assertSame( $oldDomain, $this->db->getDomainID(), "DB domain restored" );
 
-		$this->db->selectDB( 'y' );
-		$this->assertSame( $old, $this->db->dbSchema( 'xxx' ) );
+		$newDbDomain = new DatabaseDomain(
+			'y',
+			( $oldSchema !== '' ) ? $oldSchema : null,
+			$oldPrefix
+		);
+
+		$this->db->selectDomain( $newDbDomain );
+		$this->assertSame( 'y', $this->db->getDBname(), "DB name set" );
+		$this->assertSame( $oldSchema, $this->db->dbSchema(), "Schema unchanged" );
+		$this->assertSame( $oldPrefix, $this->db->tablePrefix(), "Prefix unchanged" );
+
+		$this->assertSame( $oldSchema, $this->db->dbSchema( 'xxx' ), "Prior schema upon set" );
 		$this->assertSame( 'xxx', $this->db->dbSchema(), "Schema set" );
-		$this->db->dbSchema( $old );
-		$this->assertNotEquals( 'xxx', $this->db->dbSchema() );
-		$this->assertSame( "y", $this->db->getDomainID() );
+		$this->assertSame( 'y', $this->db->getDBname(), "DB name unchanged" );
+		$this->assertSame( $oldPrefix, $this->db->tablePrefix(), "Prefix unchanged" );
+
+		$this->assertSame( 'xxx', $this->db->dbSchema( $oldSchema ), "Prior schema upon set" );
+		$this->assertEquals( $oldSchema, $this->db->dbSchema(), 'Schema restored' );
 	}
 
 	/**

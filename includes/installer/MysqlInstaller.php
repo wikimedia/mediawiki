@@ -173,8 +173,7 @@ class MysqlInstaller extends DatabaseInstaller {
 		 * @var Database $conn
 		 */
 		$conn = $status->value;
-		$conn->selectDB( $this->getVar( 'wgDBname' ) );
-
+		$this->selectDatabase( $conn, $this->getVar( 'wgDBname' ) );
 		# Determine existing default character set
 		if ( $conn->tableExists( "revision", __METHOD__ ) ) {
 			$revision = $this->escapeLikeInternal( $this->getVar( 'wgDBprefix' ) . 'revision', '\\' );
@@ -451,7 +450,7 @@ class MysqlInstaller extends DatabaseInstaller {
 				__METHOD__
 			);
 		}
-		$conn->selectDB( $dbName );
+		$this->selectDatabase( $conn, $dbName );
 		$this->setupSchemaVars();
 
 		return $status;
@@ -486,7 +485,7 @@ class MysqlInstaller extends DatabaseInstaller {
 
 		$this->setupSchemaVars();
 		$dbName = $this->getVar( 'wgDBname' );
-		$this->db->selectDB( $dbName );
+		$this->selectDatabase( $this->db, $dbName );
 		$server = $this->getVar( 'wgDBserver' );
 		$password = $this->getVar( 'wgDBpassword' );
 		$grantableNames = [];
