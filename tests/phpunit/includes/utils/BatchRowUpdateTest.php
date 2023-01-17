@@ -239,7 +239,7 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 		// FIXME: the constructor normally sets mAtomicLevels and mSrvCache, and platform
 		$databaseMysql = $this->getMockBuilder( Wikimedia\Rdbms\DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->onlyMethods( array_merge( [ 'isOpen', 'getApproximateLagStatus' ], $methods ) )
+			->onlyMethods( array_merge( [ 'isOpen' ], $methods ) )
 			->getMock();
 
 		$reflection = new ReflectionClass( $databaseMysql );
@@ -249,8 +249,6 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 
 		$databaseMysql->method( 'isOpen' )
 			->willReturn( true );
-		$databaseMysql->method( 'getApproximateLagStatus' )
-			->willReturn( [ 'lag' => 0, 'since' => 0 ] );
 		return $databaseMysql;
 	}
 }

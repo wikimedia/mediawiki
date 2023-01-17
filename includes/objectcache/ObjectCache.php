@@ -204,7 +204,7 @@ class ObjectCache {
 		}
 
 		// Normalization and DI for MultiWriteBagOStuff
-		if ( is_subclass_of( $class, MultiWriteBagOStuff::class ) ) {
+		if ( is_a( $class, MultiWriteBagOStuff::class, true ) ) {
 			// Phan warns about foreach with non-array because it
 			// thinks any key can be Closure|IBufferingStatsdDataFactory
 			'@phan-var array{caches:array[]} $params';

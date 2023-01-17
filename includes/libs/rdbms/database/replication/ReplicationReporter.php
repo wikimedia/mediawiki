@@ -84,7 +84,7 @@ class ReplicationReporter {
 	 * @return array ('lag': seconds or false on error, 'since': UNIX timestamp of estimate)
 	 * @since 1.27 in Database, moved to ReplicationReporter in 1.40
 	 */
-	public function getApproximateLagStatus( IDatabase $conn ) {
+	protected function getApproximateLagStatus( IDatabase $conn ) {
 		if ( $this->topologyRole === IDatabase::ROLE_STREAMING_REPLICA ) {
 			// Avoid exceptions as this is used internally in critical sections
 			try {

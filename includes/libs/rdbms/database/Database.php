@@ -67,12 +67,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var object|resource|null Database connection */
 	protected $conn;
 
-	/** @var string|null Server that this instance is currently connected to */
-	protected $server;
-	/** @var string|null User that this instance is currently connected under the name of */
-	protected $user;
-	/** @var string|null Password used to establish the current connection */
-	protected $password;
 	/** @var string|null Readable name or host/IP of the database server */
 	protected $serverName;
 	/** @var bool Whether this PHP instance is for a CLI script */
@@ -3832,10 +3826,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	public function getTopologyBasedServerId() {
 		return $this->replicationReporter->getTopologyBasedServerId( $this );
-	}
-
-	protected function getApproximateLagStatus() {
-		return $this->replicationReporter->getApproximateLagStatus( $this );
 	}
 
 	public function getLag() {
