@@ -2079,8 +2079,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	/**
 	 * Update the parser cache.
 	 *
-	 * @note This is a temporary workaround until there is a proper data updater class.
-	 *   It will become deprecated soon.
+	 * @note This does not update links tables. Use doSecondaryDataUpdates() for that.
 	 *
 	 * @param array $options
 	 *   - causeAction: an arbitrary string identifying the reason for the update.
@@ -2110,8 +2109,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * a new revision; normally PageUpdater::doUpdates should be used instead (which includes
 	 * secondary data updates). This method is provided for partial purges.
 	 *
-	 * @note This is a temporary workaround until there is a proper data updater class.
-	 *   It will become deprecated soon.
+	 * @note This does not update the parser cache. Use updateParserCache() for that.
 	 *
 	 * @param array $options
 	 *   - recursive (bool, default true): whether to do a recursive update (update pages that
