@@ -92,7 +92,8 @@
 			"Where next Columbus?",
 			"WikiPhoenix",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Adjoka"
 		]
 	},
 	"tog-underline": "Stryk under länkar:",
@@ -1827,8 +1828,8 @@
 	"upload-form-label-own-work": "Detta är mitt eget verk",
 	"upload-form-label-infoform-categories": "Kategorier",
 	"upload-form-label-infoform-date": "Datum",
-	"upload-form-label-own-work-message-generic-local": "Jag bekräftar att jag laddar upp denna fil enligt {{SITENAME}}s användarvillkor och licenspolicys.",
-	"upload-form-label-not-own-work-message-generic-local": "Stäng denna dialogruta och prova ett annat sätt om du inte kan ladda upp denna fil under {{SITENAME}}s policys.",
+	"upload-form-label-own-work-message-generic-local": "Jag bekräftar att jag laddar upp denna fil enligt {{GRAMMAR:genitive|{{SITENAME}}}} användarvillkor och licenspolicys.",
+	"upload-form-label-not-own-work-message-generic-local": "Stäng denna dialogruta och prova ett annat sätt om du inte kan ladda upp denna fil under {{GRAMMAR:genitive|{{SITENAME}}}} policys.",
 	"upload-form-label-not-own-work-local-generic-local": "Du kanske också skulle vilja prova [[Special:Upload|standarduppladdningssidan]].",
 	"upload-form-label-own-work-message-generic-foreign": "Jag förstår att jag laddar upp denna fil till ett delat centralförvar. Jag bekräftar att jag gör det enligt de användarvillkor och licenspolicys som finns där.",
 	"upload-form-label-not-own-work-message-generic-foreign": "Stäng denna dialogruta och prova en annan metod om du inte kan ladda upp denna fil under de policys som gäller för det delade centralförvaret.",
@@ -2402,7 +2403,7 @@
 	"enotif_lastvisited": "För alla ändringar sedan ditt senaste besök, se $1",
 	"enotif_lastdiff": "För att se denna ändring, se $1",
 	"enotif_anon_editor": "anonym användare $1",
-	"enotif_body": "Hej $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nAngiven sammanfattning av redigeringen: $PAGESUMMARY $PAGEMINOREDIT\n\nKontakta användaren:\ne-post: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nSåvida du inte besöker sidan, kommer du inte att få flera meddelanden om aktivitet på sidan när du är inloggad. Du kan också ta bort flaggan för meddelanden om ändringar på alla sidor i din bevakningslista.\n\nHälsningar från {{SITENAME}}s meddelandesystem\n\n--\nFör att ändra inställningarna för dina uppdateringar via e-post, besök\n{{canonicalurl:{{#special:Preferences}}}}\n\nFör att ändra inställningarna i din bevakningslista, besök\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nFör att radera sidan från din bevakningslista, besök\n$UNWATCHURL\n\nFeedback och ytterligare hjälp:\n$HELPPAGE",
+	"enotif_body": "Hej $WATCHINGUSERNAME,\n\n$PAGEINTRO $NEWPAGE\n\nAngiven sammanfattning av redigeringen: $PAGESUMMARY $PAGEMINOREDIT\n\nKontakta användaren:\ne-post: $PAGEEDITOR_EMAIL\nwiki: $PAGEEDITOR_WIKI\n\nSåvida du inte besöker sidan, kommer du inte att få flera meddelanden om aktivitet på sidan när du är inloggad. Du kan också ta bort flaggan för meddelanden om ändringar på alla sidor i din bevakningslista.\n\nHälsningar från {{GRAMMAR:genitive|{{SITENAME}}}} meddelandesystem\n\n--\nFör att ändra inställningarna för dina uppdateringar via e-post, besök\n{{canonicalurl:{{#special:Preferences}}}}\n\nFör att ändra inställningarna i din bevakningslista, besök\n{{canonicalurl:{{#special:EditWatchlist}}}}\n\nFör att radera sidan från din bevakningslista, besök\n$UNWATCHURL\n\nFeedback och ytterligare hjälp:\n$HELPPAGE",
 	"enotif_minoredit": "Detta är en mindre redigering",
 	"created": "skapad",
 	"changed": "ändrad",

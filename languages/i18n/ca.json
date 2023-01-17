@@ -73,7 +73,9 @@
 			"Xð",
 			"Àlex",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Rbndev",
+			"Salvemm el lombard"
 		]
 	},
 	"tog-underline": "Subratlla els enllaços:",
@@ -2866,7 +2868,7 @@
 	"export-addcattext": "Afegeix pàgines de la categoria:",
 	"export-addcat": "Afegeix",
 	"export-addnstext": "Afegeix pàgines de l’espai de noms:",
-	"export-addns": "Afegir",
+	"export-addns": "Afegeix",
 	"export-download": "Ofereix desar com a fitxer",
 	"export-templates": "Inclou les plantilles",
 	"export-pagelinks": "Inclou pàgines enllaçades fins a una profunditat de:",

@@ -62,7 +62,8 @@
 			"Want",
 			"YjM",
 			"לערי ריינהארט",
-			"JAn Dudík"
+			"JAn Dudík",
+			"Felix220"
 		]
 	},
 	"tog-underline": "Podtrhávat odkazy:",
@@ -3282,7 +3283,7 @@
 	"watchlistedit-normal-legend": "Odstranění položek ze seznamu sledovaných stránek",
 	"watchlistedit-normal-explain": "Položky vašeho seznamu sledovaných stránek jsou zobrazeny níže.\nStránku můžete ze seznamu odstranit tak, že zaškrtnete její políčko a kliknete na tlačítko „{{int:Watchlistedit-normal-submit}}“.\nTaké můžete [[Special:EditWatchlist/raw|editovat seznam v textové podobě]].",
 	"watchlistedit-normal-submit": "Odstranit položky",
-	"watchlistedit-normal-done": "{{PLURAL:$1|Byla odstraněna jedna položka|Byly odstraněny $1 položky|Bylo odstraněno $1 položek}} z Vašeho seznamu sledovaných stránek:",
+	"watchlistedit-normal-done": "Z vašeho seznamu sledovaných stránek {{PLURAL:$1|byla odstraněna jedna položka|byly odstraněny $1 položky|bylo odstraněno $1 položek}}:",
 	"watchlistedit-raw-title": "Textový režim editace seznamu",
 	"watchlistedit-raw-legend": "Editace textového souboru sledovaných stránek",
 	"watchlistedit-raw-explain": "Položky na vašem seznamu sledovaných stránek jsou zobrazeny níže. Můžete je přidávat, odstraňovat či měnit v zobrazeném seznamu – jedna řádka je jedna položka.\nPro uložení změn stiskněte tlačítko „{{int:Watchlistedit-raw-submit}}“.\nSeznam editovaných stránek můžete také [[Special:EditWatchlist|editovat ve standardním editoru]].",

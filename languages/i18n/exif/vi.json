@@ -369,10 +369,15 @@
 	"exif-urgency-other": "Ưu tiên người dùng định nghĩa ($1)",
 	"exif-firstphotodate": "Ngày chụp hình đầu tiên",
 	"exif-lastphotodate": "Ngày chụp hình cuối cùng",
+	"exif-projectiontype": "Phép chiếu",
+	"exif-projectiontype-equirectangular": "Đẳng chữ nhật",
 	"exif-usepanoramaviewer": "Xem toàn cảnh",
 	"exif-usepanoramaviewer-true": "Có",
 	"exif-usepanoramaviewer-false": "Không",
 	"exif-exposurelockused": "Khóa phơi sáng",
 	"exif-exposurelockused-true": "Có",
-	"exif-exposurelockused-false": "Không"
+	"exif-exposurelockused-false": "Không",
+	"exif-poseheadingdegrees": "Hướng tư thế (độ)",
+	"exif-posepitchdegrees": "Độ dốc (độ)",
+	"exif-poserolldegrees": "Độ xoay (độ)"
 }

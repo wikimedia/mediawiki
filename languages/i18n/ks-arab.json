@@ -495,6 +495,7 @@
 	"searchall": "سٲری",
 	"search-nonefound": "تَلاش مُطٲبِق چھُ نہٕ کانٛہہ نَتیٖجہٕ موجوٗد",
 	"powersearch-toggleall": "سٲری",
+	"powersearch-togglenone": "کانٛہہ تہِ نہٕ",
 	"search-external": "بیٖروٗنی تَلاش",
 	"searchdisabled": "{{SITENAME}} تَلاش چھِ بَنٛد.\nتُہی ہیکِو فِل ہال گوٗگُل سٟتؠ تَلاش کٔرِتھ.\nمَگر تِہُنٛد {{SITENAME}} مَواد ہیکہِ پرٛونؠ ٲسِتھ.",
 	"preferences": "ترجِیحات",

@@ -136,6 +136,7 @@
 	"searchbutton": "o alasa",
 	"go": "o tawa",
 	"searcharticle": "o tawa",
+	"skin-view-history": "o lukin e tenpo pini",
 	"history": "o lukin e lipu ni pi tenpo pini",
 	"history_short": "lipu ni pi tenpo pini",
 	"history_small": "lipu pini",
@@ -597,6 +598,7 @@
 	"pagelang-language": "toki",
 	"mw-widgets-mediasearch-input-placeholder": "o alasa e sitelen",
 	"log-action-filter-all": "ale",
+	"nstab-mainpage": "lipu open",
 	"skin-action-delete": "o weka",
 	"skin-action-move": "o tawa"
 }

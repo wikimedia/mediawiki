@@ -38,7 +38,7 @@
 			"아라"
 		]
 	},
-	"tog-underline": "Bınê gırey de xete bance:",
+	"tog-underline": "Bınê gıreyi de xete bance:",
 	"tog-hideminor": "Vurnayışanê peyênan ra vurnayışanê werdiyan bınımne",
 	"tog-hidepatrolled": "Vurnayışanê qontrolkerdeyan pela vurnayışê peyêni de bınımne",
 	"tog-newpageshidepatrolled": "Pelanê qontrolkerdeyan lista pelanê neweyan de bınımne",
@@ -2081,7 +2081,7 @@
 	"unusedcategoriestext": "Kategoriyê ke cêr derê, nê bıbê zi, terefê qet madeyan ya zi kategoriyan ra nêgureniyenê.",
 	"notargettitle": "Hedef çini yo",
 	"notargettext": "qey xebıtnayişê ney fonksiyoni şıma yew hedef nişane nêkerd.",
-	"nopagetitle": "wina yew pelê hedefi çin o.",
+	"nopagetitle": "Pela hedefiya niyanêne çıniya",
 	"nopagetext": "pelê hedefi ke şıma nişane kerdo çin o.",
 	"pager-newer-n": "{{PLURAL:$1|newiyer 1|newiyer $1}}",
 	"pager-older-n": "{{PLURAL:$1|deha kehan 1|deha kehan $1}}",
@@ -2477,7 +2477,7 @@
 	"undeleterevision-missing": "revizyonê nemeqbul u vindbiyayeyi.\nRevizyoni ya hewn a biyê ya arşiw ra veciyayê ya zi cıresayişê şımayi şaş o.",
 	"undeleterevision-duplicate-revid": "{{PLURAL:$1|yew revizyon|$1 revizyoni}} peyser bar nêbiyê, çıkı {{PLURAL:$1|o|ê}} <code>rev_id</code> xora karneyêno.",
 	"undelete-nodiff": "revizyonê verıni nidiya",
-	"undeletebtn": "Peyser biya",
+	"undeletebtn": "Meestere",
 	"undeletelink": "bıvêne/peyser biya",
 	"undeleteviewlink": "bıvêne",
 	"undeleteinvert": "Weçinayışi dimlaşt ke",

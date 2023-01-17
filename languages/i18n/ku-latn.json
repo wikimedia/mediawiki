@@ -367,7 +367,7 @@
 	"logouttext": "<strong>Tu niha derketî.</strong>\n\nBer bîra te de be ku hin rûpel karin te wêk têketî nîsan bidin, heta ku tu \"cache\"ya geroka xwe jê bibî.",
 	"cannotlogoutnow-text": "Derketen ne mimkin e wextê ku $1 tê bikaranîn.",
 	"welcomeuser": "Xêr hatî, $1!",
-	"welcomecreation-msg": "Hesabê te hatiye çêkirin.\nTu dikarî [[Special:Preferences|eyarên]] xwe yî {{SITENAME}}(y)ê/î biguhêrî heke tu bixwazî.",
+	"welcomecreation-msg": "Hesabê te hatiye çêkirin.\nTu dikarî [[Special:Preferences|tercihên]] xwe yên {{SITENAME}}(y)ê biguhêrî heke tu bixwazî.",
 	"yourname": "Navê bikarhêner:",
 	"userlogin-yourname": "Navê bikarhêner",
 	"userlogin-yourname-ph": "Navê xwe yê bikarhêneriyê binivîse",

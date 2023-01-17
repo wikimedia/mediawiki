@@ -355,7 +355,7 @@
 	"shown-title": "Pengelün $1 {{PLURAL:$1|tripalu}} tapülh mew",
 	"viewprevnext": "Pen ($1 {{int:pipe-separator}} $2) ($3).",
 	"searchmenu-exists": "<strong>Müley kiñe tapülh «[[:$1]]» pingelu fachi wiki mew</strong> {{PLURAL:$2|0=|Pengepe kake tripachi zugu kintun mew.}}",
-	"searchmenu-new": "<strong>Zewman chi tapülh «[[:$1]]» fachi wiki mew.</strong> {{PLURAL:$2|0=|Leliniengepe ka pengechi tapülh.|Leliniengepe kake pengechi tapülh.}}",
+	"searchmenu-new": "<strong>Zewmayam chi tapülh «[[:$1]]» fachi wiki mew.</strong> {{PLURAL:$2|0=|Leliniengepe ka pengechi tapülh.|Leliniengepe kake pengechi tapülh.}}",
 	"searchprofile-articles": "Trokiñ zungu tapülh",
 	"searchprofile-images": "Fill nentun",
 	"searchprofile-everything": "Fill zungu",

@@ -4,7 +4,8 @@
 			"Lloffiwr",
 			"Robin Owain",
 			"Thaf",
-			"Xxglennxx"
+			"Xxglennxx",
+			"Afalau"
 		]
 	},
 	"exif-imagewidth": "Lled",
@@ -189,7 +190,10 @@
 	"exif-compression-4": "Amgodio ffacs Grŵp 4 CCITT",
 	"exif-copyrighted-true": "Hawlfraint",
 	"exif-copyrighted-false": "Statws yr hawlfraint heb ei osod",
+	"exif-photometricinterpretation-0": "Du a gwyn (0 yw Gwyn)",
 	"exif-photometricinterpretation-1": "Du a gwyn (du yw 0)",
+	"exif-photometricinterpretation-3": "Palet",
+	"exif-photometricinterpretation-4": "Masg tryloywder",
 	"exif-unknowndate": "Dyddiad anhysbys",
 	"exif-orientation-1": "Normal",
 	"exif-orientation-2": "Wedi troi tu chwith ar lorwedd",
@@ -260,6 +264,9 @@
 	"exif-scenetype-1": "Delwedd wedi ei dynnu'n uniongyrchol",
 	"exif-customrendered-0": "Proses normal",
 	"exif-customrendered-1": "Proses wedi'i addasu",
+	"exif-customrendered-6": "Panorama",
+	"exif-customrendered-7": "Portread HDR",
+	"exif-customrendered-8": "Portread",
 	"exif-exposuremode-0": "Dinoethi awtomatig",
 	"exif-exposuremode-1": "Hunan-ddewis hyd y dinoethiad",
 	"exif-exposuremode-2": "Cyfres dinoethi awtomatig",
@@ -345,5 +352,9 @@
 	"exif-urgency-normal": "Cyffredin ($1)",
 	"exif-urgency-low": "Isel ($1)",
 	"exif-urgency-high": "Uchel ($1)",
-	"exif-urgency-other": "Blaenoriaeth yn ôl y defnyddiwr ($1)"
+	"exif-urgency-other": "Blaenoriaeth yn ôl y defnyddiwr ($1)",
+	"exif-usepanoramaviewer-true": "Ie",
+	"exif-usepanoramaviewer-false": "Na",
+	"exif-exposurelockused-true": "Ie",
+	"exif-exposurelockused-false": "Na"
 }
