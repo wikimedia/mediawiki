@@ -5260,6 +5260,7 @@ some</noinclude>* stuff
 
 <includeonly>can have stuff</includeonly>===here===
 
+__INDEX__== hi ==
 !! html/php
 <h2><span class="mw-headline" id="hu">hu</span></h2>
 <p>some
@@ -5271,6 +5272,7 @@ some* stuff
 </p>
 <ul><li>here</li></ul>
 <h3><span class="mw-headline" id="here">here</span></h3>
+<h2><span class="mw-headline" id="hi">hi</span></h2>
 !! html/parsoid
 <!-- comment --><meta typeof="mw:Includes/NoInclude" data-parsoid='{"src":"&lt;noinclude>"}'/><!-- comment --><meta typeof="mw:Includes/NoInclude/End" data-parsoid='{"src":"&lt;/noinclude>"}'/><!-- comment --><h2 id="hu">hu</h2>
 
@@ -5284,6 +5286,8 @@ some* stuff
 <ul><li>here</li></ul>
 
 <meta typeof="mw:Includes/IncludeOnly" data-parsoid='{"src":"&lt;includeonly>can have stuff&lt;/includeonly>"}' data-mw='{"src":"&lt;includeonly>can have stuff&lt;/includeonly>"}'/><meta typeof="mw:Includes/IncludeOnly/End" data-parsoid='{"src":""}'/><h3 id="here">here</h3>
+
+<meta property="mw:PageProp/index"/><h2 id="hi">hi</h2>
 !! end
 
 # TODO: test with DOM fragment reuse!

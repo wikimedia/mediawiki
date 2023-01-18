@@ -714,7 +714,7 @@ abstract class FileBackendStore extends FileBackend {
 
 		if ( is_array( $stat ) ) {
 			if (
-				( !$latest || $stat['latest'] ) &&
+				( !$latest || !empty( $stat['latest'] ) ) &&
 				( !$requireSHA1 || isset( $stat['sha1'] ) )
 			) {
 				return $stat;
