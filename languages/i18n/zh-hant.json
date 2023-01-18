@@ -3412,7 +3412,7 @@
 	"version-credits-title": "$1 的製作群",
 	"version-credits-not-found": "此擴充套件沒有相關的詳細製作群資訊。",
 	"version-poweredby-credits": "此 wiki 由 <strong>[https://www.mediawiki.org/ MediaWiki]</strong> 驅動，版權所有 © 2001-$1 $2。",
-	"version-poweredby-others": "其他",
+	"version-poweredby-others": "其他開發人員",
 	"version-poweredby-translators": " translatewiki.net 翻譯人員",
 	"version-poweredby-various": "各作者",
 	"version-credits-summary": "我們感謝以下人士為 [[Special:Version|MediaWiki]] 作出的貢獻。",

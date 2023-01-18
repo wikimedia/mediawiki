@@ -331,7 +331,7 @@
 	"missingarticle-rev": "(версия № $1)",
 	"missingarticle-diff": "(айырма: $1, $2)",
 	"readonly_lag": "Өҫтәмә сервер төп сервер менән синхронлашҡанға тиклем мәғлүмәттәр базаһы автоматик рәүештә үҙгәрештәргә ҡаршы ябылған.",
-	"nonwrite-api-promise-error": " 'Promise-Non-Write-API-Action' HTTP исеменә ғариза ебәрелде, тик API модюленә китте.",
+	"nonwrite-api-promise-error": " 'Promise-Non-Write-API-Action' HTTP исеменә ғариза ебәрелде, әммә API ғаризаһы булараҡ ҡабул ителмәне.",
 	"timeouterror": "Сервер оҙаҡ ваҡыт буйында яуап ҡайтармай.",
 	"timeouterror-text": "Мөрәжәғәттең максималь ваҡыты ($1 секунда) арттырылды.",
 	"internalerror": "Эске хата",
