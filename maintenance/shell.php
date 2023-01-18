@@ -34,9 +34,17 @@
  * @author Gergő Tisza <tgr.huwiki@gmail.com>
  */
 
+// NO_AUTOLOAD -- file-scope code
+
 use MediaWiki\Logger\ConsoleSpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+
+// Horrible hack to support the --no-session parameter, which needs to be handled
+// way before parameters are parsed.
+if ( in_array( '--no-session', $_SERVER['argv'], true ) ) {
+	define( 'MW_NO_SESSION', 1 );
+}
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -53,6 +61,9 @@ class MediaWikiShell extends Maintenance {
 			'1 send debug to stderr. ' .
 			'With 2 additionally initialize database with debugging ',
 			false, true
+		);
+		$this->addOption( 'no-session',
+			'Disable session support (like MW_NO_SESSION)'
 		);
 	}
 
