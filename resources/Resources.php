@@ -1647,7 +1647,7 @@ return [
 			'mediawiki.page.gallery.styles',
 			'mediawiki.util'
 		],
-		'targets' => [ 'desktop', 'mobile' ],
+		'targets' => [ 'desktop' ],
 	],
 	'mediawiki.page.gallery.styles' => [
 		'styles' => [
@@ -1670,8 +1670,7 @@ return [
 		],
 		'messages' => [
 			'gallery-slideshow-toggle'
-		],
-		'targets' => [ 'desktop', 'mobile' ],
+		]
 	],
 	'mediawiki.page.ready' => [
 		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.page.ready",
