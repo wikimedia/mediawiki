@@ -118,7 +118,7 @@ class MysqlMaintenance extends Maintenance {
 			$serverInfo = [ 'host' => $host ] + $serverInfo;
 		}
 
-		$this->runMysql( $lb->getServerInfo( $index ), $dbName );
+		$this->runMysql( $serverInfo, $dbName );
 	}
 
 	/**
