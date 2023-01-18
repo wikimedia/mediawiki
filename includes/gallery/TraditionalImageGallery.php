@@ -28,21 +28,6 @@ use MediaWiki\MediaWikiServices;
 
 class TraditionalImageGallery extends ImageGalleryBase {
 	/**
-	 * Obtain the HTML element attributes for the list item.
-	 *
-	 * @param MediaTransformOutput|false $thumb
-	 * @param string $width
-	 * @param string $alt
-	 * @return array
-	 */
-	protected function getHtmlItemAttributes( $thumb, $width, $alt = '' ) {
-		return [
-			'class' => 'gallerybox',
-			'style' => 'width: ' . $width,
-		];
-	}
-
-	/**
 	 * Return a HTML representation of the image gallery
 	 *
 	 * For each image in the gallery, display
@@ -247,7 +232,8 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			$gbWidth = $this->getGBWidthOverwrite( $thumb ) ?: $this->getGBWidth( $thumb ) . 'px';
 			# Weird double wrapping (the extra div inside the li) needed due to FF2 bug
 			# Can be safely removed if FF2 falls completely out of existence
-			$output .= "\n\t\t" . Html::openElement( 'li', $this->getHtmlItemAttributes( $thumb, $gbWidth, $alt ) )
+			$output .= "\n\t\t" . '<li class="gallerybox" style="width: '
+				. $gbWidth . '">'
 				. ( $enableLegacyMediaDOM ? '<div style="width: ' . $gbWidth . '">' : '' )
 				. $thumbhtml
 				. $galleryText
@@ -294,9 +280,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 		# its absence, see: https://phabricator.wikimedia.org/T3765
 		# -Ævar
 
-		return "\n\t\t\t" . Html::openElement( 'div', [
-			'class' => 'gallerytext',
-		] ) . "\n"
+		return "\n\t\t\t" . '<div class="gallerytext">' . "\n"
 			. $galleryText
 			. "\n\t\t\t</div>";
 	}
