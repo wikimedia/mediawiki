@@ -3733,7 +3733,7 @@
 	"searchsuggest-search": "{{SITENAME}} 검색",
 	"searchsuggest-containing": "다음 어구를 포함하는 문서 검색:",
 	"search-match-redirect-label": "검색 시 완전 일치하는 문서로 바로 이동하기",
-	"search-match-redirect-help": "선택하면 문서 제목과 검색한 구문이 일치할 때 해당 문서로 이동합니다",
+	"search-match-redirect-help": "문서 제목과 검색한 구문이 일치할 때 해당 문서로 이동하려면 여기를 선택하세요.",
 	"search-thumbnail-extra-namespaces-label": "특수:검색에서 섬네일 표시",
 	"search-thumbnail-extra-namespaces-message": "$1 {{PLURAL:$2|이름공간}}의 섬네일도 표시합니다. $3의 섬네일은 무조건 표시됩니다.",
 	"searchlimit-label": "페이지마다 표시할 검색 결과 수:",
