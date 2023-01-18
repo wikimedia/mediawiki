@@ -14,7 +14,7 @@
 		var blockTargetWidget, anonOnlyWidget, enableAutoblockWidget, hideUserWidget, watchUserWidget,
 			expiryWidget, editingRestrictionWidget, partialActionsRestrictionsWidget, preventTalkPageEditWidget,
 			pageRestrictionsWidget, namespaceRestrictionsWidget, createAccountWidget,
-			data, blockAllowsUTEdit, userChangedCreateAccount, updatingBlockOptions;
+			userChangedCreateAccount, updatingBlockOptions;
 
 		function preserveSelectedStateOnDisable( widget ) {
 			var widgetWasSelected;
@@ -68,7 +68,7 @@
 
 			pageRestrictionsWidget.setDisabled( isSitewide );
 			namespaceRestrictionsWidget.setDisabled( isSitewide );
-			if ( blockAllowsUTEdit ) {
+			if ( preventTalkPageEditWidget ) {
 				// Disable for partial blocks, unless the block is against the User_talk namespace
 				preventTalkPageEditWidget.setDisabled(
 					// Partial block that blocks editing and doesn't block the User_talk namespace
@@ -87,7 +87,7 @@
 				updatingBlockOptions = false;
 			}
 
-			if ( mw.config.get( 'wgEnablePartialActionBlocks' ) ) {
+			if ( partialActionsRestrictionsWidget ) {
 				partialActionsRestrictionsWidget.setDisabled( isSitewide );
 			}
 		}
@@ -97,8 +97,6 @@
 		blockTargetWidget = infuseIfExists( $( '#mw-bi-target' ) );
 
 		if ( blockTargetWidget ) {
-			data = require( './config.json' );
-			blockAllowsUTEdit = data.BlockAllowsUTEdit;
 			userChangedCreateAccount = mw.config.get( 'wgCreateAccountDirty' );
 			updatingBlockOptions = false;
 
@@ -117,10 +115,6 @@
 			editingRestrictionWidget = OO.ui.infuse( $( '#mw-input-wpEditingRestriction' ) );
 			pageRestrictionsWidget = OO.ui.infuse( $( '#mw-input-wpPageRestrictions' ) );
 			namespaceRestrictionsWidget = OO.ui.infuse( $( '#mw-input-wpNamespaceRestrictions' ) );
-			if ( mw.config.get( 'wgEnablePartialActionBlocks' ) ) {
-				// TODO: Use an ID after T280837 is fixed
-				partialActionsRestrictionsWidget = OO.ui.infuse( '.mw-block-action-restriction.oo-ui-checkboxMultiselectInputWidget' );
-			}
 			editingRestrictionWidget.on( 'change', updateBlockOptions );
 			namespaceRestrictionsWidget.on( 'change', updateBlockOptions );
 
@@ -129,9 +123,9 @@
 			hideUserWidget = infuseIfExists( $( '#mw-input-wpHideUser' ) );
 
 			// Present for certain global configs
-			if ( blockAllowsUTEdit ) {
-				preventTalkPageEditWidget = infuseIfExists( $( '#mw-input-wpDisableUTEdit' ) );
-			}
+			preventTalkPageEditWidget = infuseIfExists( $( '#mw-input-wpDisableUTEdit' ) );
+			// Move up and always infuse when wgEnablePartialActionBlocks gets removed
+			partialActionsRestrictionsWidget = infuseIfExists( $( '.mw-block-action-restriction.oo-ui-checkboxMultiselectInputWidget' ) );
 
 			// When disabling checkboxes, preserve their selected state in case they are re-enabled
 			preserveSelectedStateOnDisable( enableAutoblockWidget );

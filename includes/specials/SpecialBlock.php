@@ -221,10 +221,6 @@ class SpecialBlock extends FormSpecialPage {
 	protected function getFormFields() {
 		$conf = $this->getConfig();
 		$blockAllowsUTEdit = $conf->get( MainConfigNames::BlockAllowsUTEdit );
-		$this->getOutput()->addJsConfigVars(
-			'wgEnablePartialActionBlocks',
-			$conf->get( MainConfigNames::EnablePartialActionBlocks )
-		);
 
 		$this->getOutput()->enableOOUI();
 
