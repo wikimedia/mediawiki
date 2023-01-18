@@ -73,7 +73,7 @@ class ResetAuthenticationThrottle extends Maintenance {
 			$this->clearSignupThrottle( $ip );
 		}
 
-		LoggerFactory::getInstance( 'throttler' )->notice( 'Manually cleared {type} throttle', [
+		LoggerFactory::getInstance( 'throttler' )->info( 'Manually cleared {type} throttle', [
 			'type' => implode( ' and ', array_filter( [
 				$forLogin ? 'login' : null,
 				$forSignup ? 'signup' : null,

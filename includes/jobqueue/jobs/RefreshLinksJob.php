@@ -183,7 +183,7 @@ class RefreshLinksJob extends Job {
 		if ( !$page->exists() ) {
 			// Probably due to concurrent deletion or renaming of the page
 			$logger = LoggerFactory::getInstance( 'RefreshLinksJob' );
-			$logger->notice(
+			$logger->warning(
 				'The page does not exist. Perhaps it was deleted?',
 				[
 					'page_title' => $this->title->getPrefixedDBkey(),
@@ -242,6 +242,12 @@ class RefreshLinksJob extends Job {
 		// Execute corresponding DataUpdates immediately
 		$page->doSecondaryDataUpdates( $options );
 		InfoAction::invalidateCache( $page );
+
+		// NOTE: Since 2019 (f588586e) this no longer saves the new ParserOutput to the ParserCache!
+		//       This means the page will have to be rendered on-the-fly when it is next viewed.
+		//       This is to avoid spending limited ParserCache capacity on rarely visited pages.
+		// TODO: Save the ParserOutput to ParserCache by calling WikiPage::updateParserCache()
+		//       for pages that are likely to benefit (T327162).
 
 		// Commit any writes here in case this method is called in a loop.
 		// In that case, the scoped lock will fail to be acquired.
