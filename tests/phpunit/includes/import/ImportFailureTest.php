@@ -88,7 +88,7 @@ class ImportFailureTest extends MediaWikiLangTestCase {
 	}
 
 	public function provideImportFailure() {
-		yield [ 'BadXML', 'warning', '/^XMLReader::read\(\): .*$/' ];
+		yield [ 'BadXML', MWException::class, '/^XML error at line 3: Opening and ending tag mismatch:.*$/' ];
 		yield [ 'MissingMediaWikiTag', MWException::class, '/^Expected <mediawiki> tag, got .*$/' ];
 		yield [ 'MissingMainTextField', MWException::class, '/^Missing text field in import.$/' ];
 		yield [ 'MissingSlotTextField', MWException::class, '/^Missing text field in import.$/' ];
@@ -111,13 +111,8 @@ class ImportFailureTest extends MediaWikiLangTestCase {
 
 		$source = new ImportStringSource( $xmlData );
 		$importer = $this->getImporter( $source );
-		if ( $exceptionName === 'warning' ) {
-			$this->expectWarning();
-			$this->expectWarningMessageMatches( $exceptionMessage );
-		} else {
-			$this->expectException( $exceptionName );
-			$this->expectExceptionMessageMatches( $exceptionMessage );
-		}
+		$this->expectException( $exceptionName );
+		$this->expectExceptionMessageMatches( $exceptionMessage );
 		$importer->doImport();
 	}
 }

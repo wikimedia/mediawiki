@@ -48,4 +48,12 @@ interface ImportSource {
 	 * @return bool|string
 	 */
 	public function readChunk();
+
+	/**
+	 * Seek the input to the given offset.
+	 *
+	 * @param int $offset
+	 * @return int
+	 */
+	public function seek( int $offset );
 }

@@ -58,6 +58,14 @@ class ImportStreamSource implements ImportSource {
 	}
 
 	/**
+	 * @param int $offset
+	 * @return int
+	 */
+	public function seek( int $offset ) {
+		return fseek( $this->mHandle, $offset );
+	}
+
+	/**
 	 * @param string $filename
 	 * @return Status
 	 */

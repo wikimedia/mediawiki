@@ -62,4 +62,13 @@ class ImportStringSource implements ImportSource {
 		$this->mRead = true;
 		return $this->mString;
 	}
+
+	/**
+	 * @param int $offset
+	 * @return int
+	 */
+	public function seek( int $offset ) {
+		$this->mRead = false;
+		return 0;
+	}
 }
