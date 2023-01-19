@@ -269,6 +269,7 @@ $wgAutoloadLocalClasses = [
 	'CollapsibleFieldsetLayout' => __DIR__ . '/includes/htmlform/CollapsibleFieldsetLayout.php',
 	'Collation' => __DIR__ . '/includes/collation/Collation.php',
 	'CollationCkb' => __DIR__ . '/includes/collation/CollationCkb.php',
+	'CommandLineInstaller' => __DIR__ . '/maintenance/install.php',
 	'CommentStore' => __DIR__ . '/includes/CommentStore/CommentStore.php',
 	'CommentStoreComment' => __DIR__ . '/includes/CommentStore/CommentStoreComment.php',
 	'CompareLanguageConverterOutput' => __DIR__ . '/maintenance/compareLanguageConverterOutput.php',
