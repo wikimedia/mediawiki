@@ -14,12 +14,12 @@ class JsonUnserializableSubClass extends JsonUnserializableSuperClass {
 
 	private $subClassField;
 
-	public function __construct( string $superClassFieldValue, string $subClassFieldValue ) {
+	public function __construct( $superClassFieldValue, $subClassFieldValue ) {
 		parent::__construct( $superClassFieldValue );
 		$this->subClassField = $subClassFieldValue;
 	}
 
-	public function getSubClassField(): string {
+	public function getSubClassField() {
 		return $this->subClassField;
 	}
 

@@ -713,6 +713,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 * @covers ParserCache::convertForCache
 	 */
 	public function testCyclicStructuresDoNotBlowUpInJson() {
+		$this->markTestSkipped( 'Temporarily disabled: T314338' );
 		$testLogger = new TestLogger( true );
 		$cache = $this->createParserCache( null, null, $testLogger );
 

@@ -2528,7 +2528,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		$this->mTimestamp = $jsonData['Timestamp'];
 		$this->mEnableOOUI = $jsonData['EnableOOUI'];
 		$this->setIndexPolicy( $jsonData['IndexPolicy'] );
-		$this->mExtensionData = $unserializer->unserializeArray( $jsonData['ExtensionData'] ?? [] );
+		$this->mExtensionData = $jsonData['ExtensionData'] ?? [];
 		$this->mLimitReportData = $jsonData['LimitReportData'];
 		$this->mLimitReportJSData = $jsonData['LimitReportJSData'];
 		$this->mCacheMessage = $jsonData['CacheMessage'] ?? '';
@@ -2560,6 +2560,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			if ( is_string( $value ) ) {
 				if ( !mb_detect_encoding( $value, 'UTF-8', true ) ) {
 					$properties[$key] = [
+						// T313818: This key name conflicts with JsonCodec
 						'_type_' => 'string',
 						'_encoding_' => 'base64',
 						'_data_' => base64_encode( $value ),
