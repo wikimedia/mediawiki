@@ -283,23 +283,16 @@ class MaintenanceRunner {
 		return $scriptClass;
 	}
 
-	protected function findScriptClass( string $script ): string {
-		$scriptName = $script;
-
+	private function splitScript( string $script ): array {
 		// Support "$ext:$script" format for extensions
-		if ( preg_match( '!^(\w+):(.*)$!', $scriptName, $m ) ) {
-			$extName = $m[1];
-			$scriptName = $m[2];
-
-			$extension = $this->getExtensionInfo( $extName );
-
-			if ( !$extension ) {
-				$this->fatalError( "Extension '{$extName}' not found.\n" );
-			}
-		} else {
-			$extension = null;
+		if ( preg_match( '!^(\w+):(.*)$!', $script, $m ) ) {
+			return [ $m[1], $m[2] ];
 		}
 
+		return [ null, $script ];
+	}
+
+	private function expandScriptFile( string $scriptName, ?array $extension ): string {
 		// Append ".php" if not present
 		$scriptFile = $scriptName;
 		if ( !str_ends_with( $scriptFile, '.php' ) ) {
@@ -318,22 +311,46 @@ class MaintenanceRunner {
 			}
 		}
 
+		return $scriptFile;
+	}
+
+	private function expandScriptClass( string $scriptName, ?array $extension ): string {
+		$scriptClass = $scriptName;
+
+		// Support "$ext:$script" format
+		if ( $extension ) {
+			$scriptClass = "{$extension['namespace']}\\Maintenance\\$scriptClass";
+		}
+
+		// Accept dot (.) as namespace separators as well.
+		// Backslashes are just annoying on the command line.
+		$scriptClass = strtr( $scriptClass, '.', '\\' );
+
+		return $scriptClass;
+	}
+
+	protected function findScriptClass( string $script ): string {
+		[ $extName, $scriptName ] = $this->splitScript( $script );
+
+		if ( $extName !== null ) {
+			$extension = $this->getExtensionInfo( $extName );
+
+			if ( !$extension ) {
+				$this->fatalError( "Extension '{$extName}' not found.\n" );
+			}
+		} else {
+			$extension = null;
+		}
+
+		$scriptFile = $this->expandScriptFile( $scriptName, $extension );
+
 		$scriptClass = null;
 		if ( file_exists( $scriptFile ) ) {
 			$scriptClass = $this->loadScriptFile( $scriptFile );
 		}
 
 		if ( !$scriptClass ) {
-			$scriptClass = $scriptName;
-
-			// Support "$ext:$script" format
-			if ( $extension ) {
-				$scriptClass = "{$extension['namespace']}\\Maintenance\\$scriptClass";
-			}
-
-			// Accept dot (.) as namespace separators as well.
-			// Backslashes are just annoying on the command line.
-			$scriptClass = strtr( $scriptClass, '.', '\\' );
+			$scriptClass = $this->expandScriptClass( $scriptName, $extension );
 		}
 
 		if ( !class_exists( $scriptClass ) ) {
