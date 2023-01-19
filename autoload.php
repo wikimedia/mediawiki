@@ -1616,6 +1616,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Permissions\\UserAuthority' => __DIR__ . '/includes/Permissions/UserAuthority.php',
 	'MediaWiki\\PoolCounter\\PoolCounterClient' => __DIR__ . '/includes/poolcounter/PoolCounterClient.php',
 	'MediaWiki\\PoolCounter\\PoolCounterConnectionManager' => __DIR__ . '/includes/poolcounter/PoolCounterConnectionManager.php',
+	'MediaWiki\\PoolCounter\\PoolCounterFactory' => __DIR__ . '/includes/poolcounter/PoolCounterFactory.php',
 	'MediaWiki\\Preferences\\DefaultPreferencesFactory' => __DIR__ . '/includes/preferences/DefaultPreferencesFactory.php',
 	'MediaWiki\\Preferences\\Filter' => __DIR__ . '/includes/preferences/Filter.php',
 	'MediaWiki\\Preferences\\Hook\\GetPreferencesHook' => __DIR__ . '/includes/preferences/Hook/GetPreferencesHook.php',

@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Class for dealing with PoolCounters using class members
  */
@@ -37,7 +39,8 @@ abstract class PoolCounterWork {
 	public function __construct( string $type, string $key, PoolCounter $poolCounter = null ) {
 		$this->type = $type;
 		// MW >= 1.35
-		$this->poolCounter = $poolCounter ?? PoolCounter::factory( $type, $key );
+		$this->poolCounter = $poolCounter ??
+			MediaWikiServices::getInstance()->getPoolCounterFactory()->create( $type, $key );
 	}
 
 	/**

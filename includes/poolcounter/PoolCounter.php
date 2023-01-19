@@ -18,10 +18,6 @@
  * @file
  */
 
-use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
-use Wikimedia\ObjectFactory\ObjectFactory;
-
 /**
  * Semaphore semantics to restrict how many workers may concurrently perform a task.
  *
@@ -97,7 +93,7 @@ abstract class PoolCounter {
 	 * @param string $type The class of actions to limit concurrency for (task type)
 	 * @param string $key
 	 */
-	protected function __construct( array $conf, string $type, string $key ) {
+	public function __construct( array $conf, string $type, string $key ) {
 		$this->workers = $conf['workers'];
 		$this->maxqueue = $conf['maxqueue'];
 		$this->timeout = $conf['timeout'];
@@ -112,42 +108,6 @@ abstract class PoolCounter {
 
 		$this->key = $key;
 		$this->isMightWaitKey = !preg_match( '/^nowait:/', $this->key );
-	}
-
-	/**
-	 * Create a Pool counter. This should only be called from the PoolWorks.
-	 *
-	 * @param string $type The class of actions to limit concurrency for (task type)
-	 * @param string $key
-	 *
-	 * @return PoolCounter
-	 */
-	public static function factory( string $type, string $key ) {
-		$poolCounterConf = MediaWikiServices::getInstance()->getMainConfig()
-			->get( MainConfigNames::PoolCounterConf );
-		if ( !isset( $poolCounterConf[$type] ) ) {
-			return new PoolCounterNull;
-		}
-		$conf = $poolCounterConf[$type];
-
-		if ( ( $conf['class'] ?? null ) === 'PoolCounter_Client' ) {
-			// Since 1.16: Introduced, as an extension.
-			// Since 1.36: Namespaced extension, with alias.
-			// Since 1.40: Moved to core.
-			$conf['class'] = MediaWiki\PoolCounter\PoolCounterClient::class;
-		}
-
-		/** @var PoolCounter $poolCounter */
-		// @phan-suppress-next-line PhanTypeInvalidCallableArraySize https://github.com/phan/phan/issues/1648
-		$poolCounter = ObjectFactory::getObjectFromSpec(
-			$conf,
-			[
-				'extraArgs' => [ $conf, $type, $key ],
-				'assertClass' => self::class
-			]
-		);
-
-		return $poolCounter;
 	}
 
 	/**

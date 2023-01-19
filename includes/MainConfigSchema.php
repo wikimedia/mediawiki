@@ -3608,7 +3608,7 @@ class MainConfigSchema {
 	 * ];
 	 *
 	 * $wgPoolCounterConf = [ 'ArticleView' => [
-	 *   'class' => MediaWiki\PoolCounter\PoolCounterClient::class,
+	 *   'class' => 'PoolCounter_Client',
 	 *   'timeout' => 15, // wait timeout in seconds
 	 *   'workers' => 5, // maximum number of active threads in each pool
 	 *   'maxqueue' => 50, // maximum number of total threads in each pool
