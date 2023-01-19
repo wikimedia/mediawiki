@@ -22,7 +22,6 @@ namespace MediaWiki\PoolCounter;
 
 use MWException;
 use Status;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * Helper for \MediaWiki\PoolCounter\PoolCounterClient.
@@ -79,9 +78,8 @@ class PoolCounterConnectionManager {
 			if ( count( $parts ) < 2 ) {
 				$parts[] = 7531;
 			}
-			AtEase::suppressWarnings();
-			$conn = $this->open( $parts[0], $parts[1], $errno, $errstr );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$conn = @$this->open( $parts[0], $parts[1], $errno, $errstr );
 			if ( $conn ) {
 				break;
 			}
@@ -89,6 +87,7 @@ class PoolCounterConnectionManager {
 		if ( !$conn ) {
 			return Status::newFatal( 'poolcounter-connection-error', $errstr, $hostName );
 		}
+		// TODO: Inject PSR Logger from ServiceWiring
 		wfDebug( "Connected to pool counter server: $hostName\n" );
 		$this->conns[$hostName] = $conn;
 		$this->refCounts[$hostName] = 1;

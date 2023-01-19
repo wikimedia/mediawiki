@@ -4,6 +4,7 @@ use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Parser\RevisionOutputCache;
+use MediaWiki\PoolCounter\PoolCounterFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
@@ -628,10 +629,9 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param Status $status
 	 * @param bool $fastStale
-	 *
-	 * @return PoolCounter
+	 * @return PoolCounterFactory
 	 */
-	private function makePoolCounter( $status, $fastStale = false ) {
+	private function makePoolCounterFactory( $status, $fastStale = false ) {
 		/** @var MockObject|PoolCounter $poolCounter */
 		$poolCounter = $this->getMockBuilder( PoolCounter::class )
 			->disableOriginalConstructor()
@@ -643,7 +643,12 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$poolCounter->method( 'release' )->willReturn( Status::newGood( PoolCounter::RELEASED ) );
 		$poolCounter->method( 'isFastStaleEnabled' )->willReturn( $fastStale );
 
-		return $poolCounter;
+		$pcFactory = $this->getMockBuilder( PoolCounterFactory::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$pcFactory->method( 'create' )->willReturn( $poolCounter );
+
+		return $pcFactory;
 	}
 
 	public function providePoolWorkDirty() {
@@ -674,12 +679,9 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 		// inject mock PoolCounter status
 		$this->overrideConfigValues( [
 			MainConfigNames::ParserCacheExpireTime => 60,
-			MainConfigNames::PoolCounterConf => [
-				'ArticleView' => [ 'factory' => function () use ( $status, $fastStale ) {
-					return $this->makePoolCounter( $status, $fastStale );
-				} ],
-			]
 		] );
+		$this->setService( 'PoolCounterFactory',
+			$this->makePoolCounterFactory( $status, $fastStale ) );
 
 		// expire parser cache
 		MWTimestamp::setFakeTime( '2020-05-05T01:02:03' );
@@ -699,12 +701,9 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	public function testPoolWorkTimeout() {
 		$this->overrideConfigValues( [
 			MainConfigNames::ParserCacheExpireTime => 60,
-			MainConfigNames::PoolCounterConf => [
-				'ArticleView' => [ 'factory' => function () {
-					return $this->makePoolCounter( Status::newGood( PoolCounter::TIMEOUT ) );
-				} ],
-			]
 		] );
+		$this->setService( 'PoolCounterFactory',
+			$this->makePoolCounterFactory( Status::newGood( PoolCounter::TIMEOUT ) ) );
 
 		$access = $this->getParserOutputAccessNoCache();
 
@@ -722,12 +721,9 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 	public function testPoolWorkError() {
 		$this->overrideConfigValues( [
 			MainConfigNames::ParserCacheExpireTime => 60,
-			MainConfigNames::PoolCounterConf => [
-				'ArticleView' => [ 'factory' => function () {
-					return $this->makePoolCounter( Status::newFatal( 'some-error' ) );
-				} ],
-			]
 		] );
+		$this->setService( 'PoolCounterFactory',
+			$this->makePoolCounterFactory( Status::newFatal( 'some-error' ) ) );
 
 		$access = $this->getParserOutputAccessNoCache();
 

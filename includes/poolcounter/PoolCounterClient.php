@@ -20,8 +20,6 @@
 
 namespace MediaWiki\PoolCounter;
 
-use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use PoolCounter;
 use Status;
 
@@ -30,7 +28,7 @@ use Status;
  */
 class PoolCounterClient extends PoolCounter {
 	/**
-	 * @var ?resource the socket connection to the poolcounter.  Closing this
+	 * @var ?resource the socket connection to the poolcounterd.  Closing this
 	 * releases all locks acquired.
 	 */
 	private $conn;
@@ -43,22 +41,13 @@ class PoolCounterClient extends PoolCounter {
 	/**
 	 * @var PoolCounterConnectionManager
 	 */
-	private static $manager;
+	private $manager;
 
 	/**
-	 * @param array $conf
-	 * @param string $type
-	 * @param string $key
+	 * @param PoolCounterConnectionManager $manager
 	 */
-	public function __construct( $conf, $type, $key ) {
-		parent::__construct( $conf, $type, $key );
-		if ( !self::$manager ) {
-			// TODO: Inject from PoolCounter::factory
-			$config = MediaWikiServices::getInstance()->getMainConfig();
-			self::$manager = new PoolCounterConnectionManager(
-				$config->get( MainConfigNames::PoolCountClientConf )
-			);
-		}
+	public function setManager( PoolCounterConnectionManager $manager ): void {
+		$this->manager = $manager;
 	}
 
 	/**
@@ -66,7 +55,7 @@ class PoolCounterClient extends PoolCounter {
 	 */
 	public function getConn() {
 		if ( !isset( $this->conn ) ) {
-			$status = self::$manager->get( $this->key );
+			$status = $this->manager->get( $this->key );
 			if ( !$status->isOK() ) {
 				return $status;
 			}
@@ -79,6 +68,7 @@ class PoolCounterClient extends PoolCounter {
 			// This allows the server to time out gracefully before we give up on it.
 			stream_set_timeout( $this->conn, 0, (int)( $this->timeout * 1e6 * 1.5 ) );
 		}
+		// TODO: Convert from Status to StatusValue
 		return Status::newGood( $this->conn );
 	}
 
@@ -161,7 +151,7 @@ class PoolCounterClient extends PoolCounter {
 		$status = $this->sendCommand( 'RELEASE' );
 
 		if ( $this->conn ) {
-			self::$manager->close( $this->conn );
+			$this->manager->close( $this->conn );
 			$this->conn = null;
 		}
 

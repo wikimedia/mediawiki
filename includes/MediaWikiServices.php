@@ -108,6 +108,7 @@ use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RestrictionStore;
+use MediaWiki\PoolCounter\PoolCounterFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Preferences\SignatureValidatorFactory;
 use MediaWiki\ResourceLoader\ResourceLoader;
@@ -1529,6 +1530,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getPermissionManager(): PermissionManager {
 		return $this->getService( 'PermissionManager' );
+	}
+
+	/**
+	 * @since 1.40
+	 * @return PoolCounterFactory
+	 */
+	public function getPoolCounterFactory(): PoolCounterFactory {
+		return $this->getService( 'PoolCounterFactory' );
 	}
 
 	/**
