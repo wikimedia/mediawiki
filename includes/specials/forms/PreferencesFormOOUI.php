@@ -247,7 +247,11 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 				'expanded' => false,
 				'content' => [],
 				'framed' => false,
-				'classes' => [ 'mw-mobile-prefsection' ]
+				'classes' => [
+					'mw-mobile-prefsection',
+					'mw-prefs-section-fieldset',
+				],
+				'tagName' => 'fieldset',
 			] );
 
 			$iconHeaderDiv = ( new OOUI\Tag( 'div' ) )

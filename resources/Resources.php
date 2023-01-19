@@ -2295,17 +2295,17 @@ return [
 			'confirmClose.js',
 			'convertmessagebox.js',
 			'editfont.js',
-			'mobile.js',
+			'nav.js',
 			'skinPrefs.js',
 			'signature.js',
-			'tabs.js',
 			'timezone.js',
 			[
-				'name' => 'config.json',
+				'name' => 'layout.js',
 				'callback' => static function ( Context $context ) {
 					$skinName = $context->getSkin();
 					Hooks::runner()->onPreferencesGetLayout( $useMobileLayout, $skinName );
-					return [ 'useMobileLayout' => $useMobileLayout ];
+					$file = $useMobileLayout ? 'mobile.js' : 'tabs.js';
+					return new FilePath( $file );
 				},
 			],
 		],
