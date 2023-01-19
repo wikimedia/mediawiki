@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"1233qwer1234qwer4",
+			"Adumbrativus",
 			"Amahoney",
 			"Amire80",
 			"Andrew Dalby",
@@ -307,6 +308,7 @@
 	"badtitle": "Titulus malus",
 	"badtitletext": "Nomen paginae quaestae fuit invalidum, vacuum, aut praeverbium interlingualem vel intervicialem habuit. Fortasse insunt una aut plus litterarum quae in titulis non possunt inscribier.",
 	"viewsource": "Fontem inspicere",
+	"skin-action-viewsource": "Fontem inspicere",
 	"viewsource-title": "Fontem paginae $1 inspicere",
 	"actionthrottled": "Actio strangulata",
 	"protectedpagetext": "Huic paginae protectio data est, ne redigatur neu aliter tractetur.",
