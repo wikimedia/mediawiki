@@ -4,6 +4,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Tests\Parser\ParserCacheSerializationTestCases;
 use Wikimedia\Parsoid\Core\SectionMetadata;
+use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Tests\SerializationTestTrait;
 
@@ -256,32 +257,55 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 		] );
 
 		$po = new ParserOutput( $text );
-		$po->setTOCHTML( self::provideGetTextToC() );
+		self::initSections( $po );
 		$actual = $po->getText( $options );
 		$this->assertSame( $expect, $actual );
 	}
 
-	public static function provideGetTextToC() {
-		$toc = <<<EOF
-<div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
-<ul>
-<li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
-<li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
-<ul>
-<li class="toclevel-2 tocsection-3"><a href="#Section_2.1"><span class="tocnumber">2.1</span> <span class="toctext">Section 2.1</span></a></li>
-</ul>
-</li>
-<li class="toclevel-1 tocsection-4"><a href="#Section_3"><span class="tocnumber">3</span> <span class="toctext">Section 3</span></a></li>
-</ul>
-</div>
-
-EOF;
-		return $toc;
+	private static function initSections( ParserOutput $po ): void {
+		$po->setTOCData( new TOCData(
+			SectionMetadata::fromLegacy( [
+				'index' => "1",
+				'level' => 1,
+				'toclevel' => 1,
+				'number' => "1",
+				'line' => "Section 1",
+				'anchor' => "Section_1"
+			] ),
+			SectionMetadata::fromLegacy( [
+				'index' => "2",
+				'level' => 1,
+				'toclevel' => 1,
+				'number' => "2",
+				'line' => "Section 2",
+				'anchor' => "Section_2"
+			] ),
+			SectionMetadata::fromLegacy( [
+				'index' => "3",
+				'level' => 2,
+				'toclevel' => 2,
+				'number' => "2.1",
+				'line' => "Section 2.1",
+				'anchor' => "Section_2.1"
+			] ),
+			SectionMetadata::fromLegacy( [
+				'index' => "4",
+				'level' => 1,
+				'toclevel' => 1,
+				'number' => "3",
+				'line' => "Section 3",
+				'anchor' => "Section_3"
+			] ),
+		) );
 	}
 
 	// REMOVE THIS ONCE Parser::TOC_START IS REMOVED
 	public static function provideGetTextBackCompat() {
-		$toc = self::provideGetTextToC();
+		$dummyPO = new ParserOutput( '' );
+		self::initSections( $dummyPO );
+		$dummyPO->getText(); // force TOC generation
+		$toc = $dummyPO->getTOCHTML();
+
 		$text = <<<EOF
 <p>Test document.
 </p>
@@ -305,7 +329,7 @@ EOF;
 				[], $text, <<<EOF
 <p>Test document.
 </p>
-<div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
@@ -335,7 +359,7 @@ EOF
 				[ 'enableSectionEditLinks' => false ], $text, <<<EOF
 <p>Test document.
 </p>
-<div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
@@ -387,7 +411,6 @@ EOF
 	// REMOVE THIS ONCE ParserCache is transitioned to <meta> placeholder
 	public static function provideGetTextBackCompat2() {
 		// phpcs:disable Generic.Files.LineLength
-		$toc = self::provideGetTextToC();
 		$text = <<<EOF
 <p>Test document.
 </p>
@@ -411,7 +434,7 @@ EOF;
 				[], $text, <<<EOF
 <p>Test document.
 </p>
-<div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
@@ -441,7 +464,7 @@ EOF
 				[ 'enableSectionEditLinks' => false ], $text, <<<EOF
 <p>Test document.
 </p>
-<div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
@@ -491,7 +514,6 @@ EOF
 	}
 
 	public static function provideGetText() {
-		$toc = self::provideGetTextToC();
 		$text = <<<EOF
 <p>Test document.
 </p>
@@ -528,7 +550,7 @@ EOF;
 				[], $text, <<<EOF
 <p>Test document.
 </p>
-<div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
@@ -558,7 +580,7 @@ EOF
 				[ 'enableSectionEditLinks' => false ], $text, <<<EOF
 <p>Test document.
 </p>
-<div id="toc" class="toc"><div class="toctitle"><h2>Contents</h2></div>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Section_1"><span class="tocnumber">1</span> <span class="toctext">Section 1</span></a></li>
 <li class="toclevel-1 tocsection-2"><a href="#Section_2"><span class="tocnumber">2</span> <span class="toctext">Section 2</span></a>
@@ -817,16 +839,21 @@ EOF
 		] ];
 
 		// TOC ------------
-		$a = new ParserOutput();
-		$a->setTOCHTML( '<p>TOC A</p>' );
+		$a = new ParserOutput( '' );
 		$a->setSections( [ [ 'fromtitle' => 'A1' ], [ 'fromtitle' => 'A2' ] ] );
+		$a->getText(); // force TOC
 
-		$b = new ParserOutput();
-		$b->setTOCHTML( '<p>TOC B</p>' );
+		$b = new ParserOutput( '' );
 		$b->setSections( [ [ 'fromtitle' => 'B1' ], [ 'fromtitle' => 'B2' ] ] );
+		$b->getText(); // force TOC
+
+		$emptyTOC = '<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>' . "\n" .
+		'<li class="toclevel-0"><a href="#"><span class="tocnumber"></span> <span class="toctext"></span></a></li>' . "\n" .
+		'<li class="toclevel-0"><a href="#"><span class="tocnumber"></span> <span class="toctext"></span></a>' . "\n" .
+		"</li></div>\n";
 
 		yield 'concat TOC' => [ $a, $b, [
-			'getTOCHTML' => '<p>TOC A</p><p>TOC B</p>',
+			'getTOCHTML' => $emptyTOC . $emptyTOC,
 			'getSections' => [
 				SectionMetadata::fromLegacy( [ 'fromtitle' => 'A1' ] )->toLegacy(),
 				SectionMetadata::fromLegacy( [ 'fromtitle' => 'A2' ] )->toLegacy(),

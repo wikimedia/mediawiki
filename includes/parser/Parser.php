@@ -4225,11 +4225,10 @@ class Parser {
 
 		# headline counter
 		$headlineCount = 0;
-		$numVisible = 0;
+		$haveTocEntries = false;
 
 		# Ugh .. the TOC should have neat indentation levels which can be
 		# passed to the skin functions. These are determined here
-		$toc = '';
 		$full = '';
 		$head = [];
 		$sublevelCount = [];
@@ -4237,7 +4236,6 @@ class Parser {
 		$level = 0;
 		$prevlevel = 0;
 		$toclevel = 0;
-		$prevtoclevel = 0;
 		$markerRegex = self::MARKER_PREFIX . "-h-(\d+)-" . self::MARKER_SUFFIX;
 		$baseTitleText = $this->getTitle()->getPrefixedDBkey();
 		$oldType = $this->mOutputType;
@@ -4275,9 +4273,7 @@ class Parser {
 				$toclevel++;
 				$sublevelCount[$toclevel] = 0;
 				if ( $toclevel < $maxTocLevel ) {
-					$prevtoclevel = $toclevel;
-					$toc .= Linker::tocIndent();
-					$numVisible++;
+					$haveTocEntries = true;
 				}
 			} elseif ( $level < $prevlevel && $toclevel > 1 ) {
 				# Decrease TOC level, find level to jump to
@@ -4297,20 +4293,6 @@ class Parser {
 				}
 				if ( $i == 0 ) {
 					$toclevel = 1;
-				}
-				if ( $toclevel < $maxTocLevel ) {
-					if ( $prevtoclevel < $maxTocLevel ) {
-						# Unindent only if the previous toc level was shown :p
-						$toc .= Linker::tocUnindent( $prevtoclevel - $toclevel );
-						$prevtoclevel = $toclevel;
-					} else {
-						$toc .= Linker::tocLineEnd();
-					}
-				}
-			} else {
-				# No change in level, end TOC line
-				if ( $toclevel < $maxTocLevel ) {
-					$toc .= Linker::tocLineEnd();
 				}
 			}
 
@@ -4422,16 +4404,6 @@ class Parser {
 				$refers[$fallbackArrayKey] = true;
 			}
 
-			if ( $enoughToc && ( !isset( $maxTocLevel ) || $toclevel < $maxTocLevel ) ) {
-				$toc .= Linker::tocLine(
-					$linkAnchor,
-					$tocline,
-					$numbering,
-					$toclevel,
-					( $isTemplate ? false : $sectionIndex )
-				);
-			}
-
 			# Add the section to the section tree
 			# Find the DOM node for this header
 			$noOffset = ( $isTemplate || $sectionIndex === false );
@@ -4454,7 +4426,7 @@ class Parser {
 				$level,
 				$tocline,
 				$numbering,
-				( $isTemplate ? 'T-' : '' ) . $sectionIndex,
+				$sectionIndex === false ? '' : ( ( $isTemplate ? 'T-' : '' ) . $sectionIndex ),
 				$titleText ?: null,
 				( $noOffset ? null : $byteOffset ),
 				$anchor,
@@ -4508,16 +4480,11 @@ class Parser {
 
 		# Never ever show TOC if no headers (or suppressed)
 		$suppressToc = $this->mOptions->getSuppressTOC();
-		if ( $numVisible < 1 || $suppressToc ) {
+		if ( !$haveTocEntries || $suppressToc ) {
 			$enoughToc = false;
 		}
 
 		if ( $enoughToc ) {
-			if ( $prevtoclevel > 0 && $prevtoclevel < $maxTocLevel ) {
-				$toc .= Linker::tocUnindent( $prevtoclevel - 1 );
-			}
-			$toc = Linker::tocList( $toc, $this->mOptions->getUserLangObj() );
-			$this->mOutput->setTOCHTML( $toc );
 			// Record the fact that the TOC should be shown. T294950
 			// (We shouldn't be looking at ::getTOCHTML() for this because
 			// eventually that will be replaced (T293513) and
