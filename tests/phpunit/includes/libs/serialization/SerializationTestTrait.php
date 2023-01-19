@@ -149,6 +149,39 @@ trait SerializationTestTrait {
 	}
 
 	/**
+	 * @param mixed $expected
+	 * @param mixed $actual
+	 * @param string|null $propName
+	 */
+	private function validateArrayEquality( $expected, $actual, ?string $propName = null ) {
+		$eKeys = array_keys( $expected );
+		$aKeys = array_keys( $actual );
+		$this->assertSame( count( $eKeys ), count( $aKeys ), "$propName: Expected equal-sized arrays." );
+		$i = 0;
+		foreach ( $expected as $k => $v ) {
+			$this->validateEquality( $k, $aKeys[$i], "$propName:$i" );
+			$this->validateEquality( $v, $actual[$k], $k );
+			$i++;
+		}
+	}
+
+	/**
+	 * @param mixed $expected
+	 * @param mixed $actual
+	 * @param string|null $propName
+	 */
+	private function validateEquality( $expected, $actual, ?string $propName = null ) {
+		if ( is_array( $expected ) ) {
+			$this->validateArrayEquality( $expected, $actual, $propName );
+		} elseif ( is_object( $expected ) ) {
+			$this->assertIsObject( $actual, "Expected an object, but found: " . gettype( $actual ) );
+			$this->validateObjectEquality( $expected, $actual );
+		} else {
+			$this->assertSame( $expected, $actual, $propName );
+		}
+	}
+
+	/**
 	 * Asserts that all the fields across class hierarchy for
 	 * provided objects are equal.
 	 * @param object $expected
@@ -166,9 +199,11 @@ trait SerializationTestTrait {
 
 		foreach ( $class->getProperties() as $prop ) {
 			$prop->setAccessible( true );
-			$expectedValue = $prop->getValue( $expected );
-			$actualValue = $prop->getValue( $actual );
-			$this->assertSame( $expectedValue, $actualValue, $prop->getName() );
+			$this->validateEquality(
+				$prop->getValue( $expected ),
+				$prop->getValue( $actual ),
+				$prop->getName()
+			);
 		}
 
 		$parent = $class->getParentClass();

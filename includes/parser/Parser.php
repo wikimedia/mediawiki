@@ -56,6 +56,8 @@ use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Utils\UrlUtils;
 use Psr\Log\LoggerInterface;
 use Wikimedia\IPUtils;
+use Wikimedia\Parsoid\Core\SectionMetadata;
+use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -4224,7 +4226,7 @@ class Parser {
 		$root = $this->preprocessToDom( $origText );
 		$node = $root->getFirstChild();
 		$byteOffset = 0;
-		$tocraw = [];
+		$tocraw = new TOCData();
 		$refers = [];
 
 		$headlines = $numMatches !== false ? $matches[3] : [];
@@ -4427,18 +4429,17 @@ class Parser {
 				);
 				$node = $node->getNextSibling();
 			}
-			$tocraw[] = [
-				'toclevel' => $toclevel,
-				// cast $level to string in order to keep b/c for the parse api
-				'level' => (string)$level,
-				'line' => $tocline,
-				'number' => $numbering,
-				'index' => ( $isTemplate ? 'T-' : '' ) . $sectionIndex,
-				'fromtitle' => $titleText,
-				'byteoffset' => ( $noOffset ? null : $byteOffset ),
-				'anchor' => $anchor,
-				'linkAnchor' => $linkAnchor,
-			];
+			$tocraw->addSection( new SectionMetadata(
+				$toclevel,
+				$level,
+				$tocline,
+				$numbering,
+				( $isTemplate ? 'T-' : '' ) . $sectionIndex,
+				$titleText ?: null,
+				( $noOffset ? null : $byteOffset ),
+				$anchor,
+				$linkAnchor,
+			) );
 
 			# give headline the correct <h#> tag
 			if ( $maybeShowEditLink && $sectionIndex !== false ) {
@@ -4500,7 +4501,7 @@ class Parser {
 			// Record the fact that the TOC should be shown. T294950
 			// (We shouldn't be looking at ::getTOCHTML() for this because
 			// eventually that will be replaced (T293513) and
-			// ::getSections() will contain sections even if there aren't
+			// $tocraw will contain sections even if there aren't
 			// $enoughToc to show.)
 			$this->mOutput->setOutputFlag( ParserOutputFlags::SHOW_TOC );
 		}
@@ -4513,7 +4514,7 @@ class Parser {
 			// (ie, JavaScript content that might have spurious === or
 			// <h2>: T307691) so we will *not* set section information
 			// in that case.
-			$this->mOutput->setSections( $tocraw );
+			$this->mOutput->setTOCData( $tocraw );
 		}
 
 		# split up and insert constructed headlines

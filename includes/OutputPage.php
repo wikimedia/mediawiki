@@ -33,6 +33,7 @@ use MediaWiki\ResourceLoader as RL;
 use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\RelPath;
 use Wikimedia\WrappedString;
@@ -118,9 +119,10 @@ class OutputPage extends ContextSource {
 	private $mPrintable = false;
 
 	/**
-	 * @var array sections from ParserOutput
+	 * @var ?TOCData Table of Contents information from ParserOutput, or
+	 *   null if no TOCData was ever set.
 	 */
-	private $mSections = [];
+	private $tocData;
 
 	/**
 	 * @var array Contains the page subtitle. Special pages usually have some
@@ -2049,21 +2051,21 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Adds sections to OutputPage from ParserOutput
-	 * @param array $sections
+	 * Adds Table of Contents data to OutputPage from ParserOutput
+	 * @param TOCData $tocData
 	 * @internal For use by Article.php
 	 */
-	public function setSections( array $sections ) {
-		$this->mSections = $sections;
+	public function setTOCData( TOCData $tocData ) {
+		$this->tocData = $tocData;
 	}
 
 	/**
-	 * @internal For usage in Skin::getSectionsData() only.
-	 * @return array Array of sections.
-	 *   Empty if OutputPage::setSections() has not been called.
+	 * @internal For usage in Skin::getTOCData() only.
+	 * @return ?TOCData Table of Contents data, or
+	 *   null if OutputPage::setTOCData() has not been called.
 	 */
-	public function getSections(): array {
-		return $this->mSections;
+	public function getTOCData(): ?TOCData {
+		return $this->tocData;
 	}
 
 	/**
@@ -2092,7 +2094,10 @@ class OutputPage extends ContextSource {
 		}
 		$this->setIndicators( $result );
 
-		$this->setSections( $parserOutput->getSections() );
+		$tocData = $parserOutput->getTOCData();
+		if ( $tocData !== null ) {
+			$this->setTOCData( $tocData );
+		}
 
 		// FIXME: Best practice is for OutputPage to be an accumulator, as
 		// addParserOutputMetadata() may be called multiple times, but the
@@ -2180,7 +2185,7 @@ class OutputPage extends ContextSource {
 		// Include parser limit report
 		// FIXME: This should append, rather than overwrite, or else this
 		// data should be injected into the OutputPage like is done for the
-		// other page-level things (like OutputPage::setSections()).
+		// other page-level things (like OutputPage::setTOCData()).
 		if ( !$this->limitReportJSData ) {
 			$this->limitReportJSData = $parserOutput->getLimitReportJSData();
 		}
@@ -2198,7 +2203,7 @@ class OutputPage extends ContextSource {
 		// called by EditPage for Preview.
 
 		// T294950/T293513: ParserOutput::getTOCHTML() will be
-		// replaced by ParserOutput::getSections(), and
+		// replaced by ParserOutput::getTOCData(), and
 		// ParserOutputFlags::SHOW_TOC is used to indicate whether the TOC
 		// should be shown (or hidden) in the output.
 		$this->mEnableTOC = $this->mEnableTOC ||
