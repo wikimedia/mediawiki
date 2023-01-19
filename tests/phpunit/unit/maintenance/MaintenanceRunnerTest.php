@@ -76,6 +76,10 @@ class MaintenanceRunnerTest extends TestCase {
 				return parent::findScriptClass( $script );
 			}
 
+			public function preloadScriptFile( string $script ): string {
+				return parent::preloadScriptFile( $script );
+			}
+
 			protected function fatalError( $msg, $exitCode = 1 ) {
 				$this->error( $msg );
 				throw new UnexpectedValueException( $msg );
@@ -101,6 +105,34 @@ class MaintenanceRunnerTest extends TestCase {
 		$runner = $this->newRunner();
 
 		$class = $runner->findScriptClass( $script );
+
+		if ( str_starts_with( $class, '\\' ) ) {
+			$class = substr( $class, 1 );
+		}
+		$this->assertSame( $expected, $class );
+	}
+
+	public function providePreloadScriptFile() {
+		// NOTE: We must use a different class for each test case,
+		//       otherwise we may trigger a "cannot re-declare class" error.
+
+		yield 'plain name'
+			=> [ 'findOrphanedFiles', FindOrphanedFiles::class ];
+
+		yield 'name with suffix'
+			=> [ 'getText.php', GetTextMaint::class ];
+
+		yield 'class name'
+			=> [ 'FindOrphanedFiles', FindOrphanedFiles::class ];
+	}
+
+	/**
+	 * @dataProvider providePreloadScriptFile
+	 */
+	public function testPreloadScriptFile( $script, $expected ) {
+		$runner = $this->newRunner();
+
+		$class = $runner->preloadScriptFile( $script );
 
 		if ( str_starts_with( $class, '\\' ) ) {
 			$class = substr( $class, 1 );
