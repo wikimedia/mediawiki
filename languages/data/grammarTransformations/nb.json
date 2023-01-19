@@ -6,7 +6,7 @@
 		"comment": "Rule for genitive in Norwegian"
 	},
 	"genitive": [
-		[ "([SsXxZz])$", "$1’" ],
+		[ "([SsXxZz])(\\]\\])?$", "$1$2’" ],
 		[ "$", "s" ]
 	]
 }
