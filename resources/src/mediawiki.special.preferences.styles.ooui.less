@@ -101,23 +101,38 @@
 			margin-bottom: 1em;
 		}
 	}
-}
-
-/* JavaScript enabled */
-.client-js .mw-prefs-tabs {
-	.oo-ui-tabPanelLayout {
-		// Panels don't need borders as the IndexLayout is inside a framed wrapper.
-		border: 0;
-
-		// Hide section legend, only used in nojs mode
-		> fieldset > legend {
+	// Show preference section content on mobile
+	#mw-prefs-container.mw-mobile-preferences-container {
+		.mw-prefs-content-head {
 			display: none;
 		}
 	}
+}
 
-	// Hide all but the first panel before infusion
-	&:not( .mw-prefs-tabs-infused ) {
-		.oo-ui-tabPanelLayout:not( :first-child ) {
+/* JavaScript enabled */
+.client-js {
+	.mw-prefs-tabs {
+		.oo-ui-tabPanelLayout {
+			// Panels don't need borders as the IndexLayout is inside a framed wrapper.
+			border: 0;
+
+			// Hide section legend, only used in nojs mode
+			> fieldset > legend {
+				display: none;
+			}
+		}
+
+		// Hide all but the first panel before infusion
+		&:not( .mw-prefs-tabs-infused ) {
+			.oo-ui-tabPanelLayout:not( :first-child ) {
+				display: none;
+			}
+		}
+	}
+
+	// Hide mobile sections since they will be displayed in windows
+	#mw-prefs-container.mw-mobile-preferences-container {
+		.mw-prefs-content-page {
 			display: none;
 		}
 	}
@@ -177,6 +192,11 @@
 These are used when users navigate to Special:Preferences
 with params ?useskin=vector&useformat=mobile
 */
+
+#mw-prefs-container.mw-mobile-preferences-container {
+	position: relative;
+}
+
 .mw-mobile-prefsection {
 	cursor: pointer;
 	padding-top: 0.3125em;
