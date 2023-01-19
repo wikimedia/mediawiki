@@ -3,6 +3,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Tests\Parser\ParserCacheSerializationTestCases;
+use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Tests\SerializationTestTrait;
 
@@ -827,10 +828,10 @@ EOF
 		yield 'concat TOC' => [ $a, $b, [
 			'getTOCHTML' => '<p>TOC A</p><p>TOC B</p>',
 			'getSections' => [
-				[ 'fromtitle' => 'A1' ],
-				[ 'fromtitle' => 'A2' ],
-				[ 'fromtitle' => 'B1' ],
-				[ 'fromtitle' => 'B2' ]
+				SectionMetadata::fromLegacy( [ 'fromtitle' => 'A1' ] )->toLegacy(),
+				SectionMetadata::fromLegacy( [ 'fromtitle' => 'A2' ] )->toLegacy(),
+				SectionMetadata::fromLegacy( [ 'fromtitle' => 'B1' ] )->toLegacy(),
+				SectionMetadata::fromLegacy( [ 'fromtitle' => 'B2' ] )->toLegacy()
 			],
 		] ];
 

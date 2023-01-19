@@ -1344,10 +1344,12 @@ class ParserTestRunner {
 		} else {
 			$output = $parser->parse( $wikitext, $title, $options, true, true, $revId );
 			if ( isset( $opts['showtocdata'] ) ) {
-				$sections = $output->getSections();
+				// FIXME: We probably want to update this to a different format
+				$sections = $output->getTOCData() !== null ?
+						  $output->getTOCData()->getSections() : [];
 				$out = [];
 				foreach ( $sections as $s ) {
-					$out[] = json_encode( $s );
+					$out[] = json_encode( $s->toLegacy() );
 				}
 				$out = implode( "\n", $out );
 			} else {
