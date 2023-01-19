@@ -1949,7 +1949,7 @@ class HTMLForm extends ContextSource {
 					? $this->mFieldData[$key]
 					: $value->getDefault();
 
-				$retval = $value->$getFieldHtmlMethod( $v );
+				$retval = $value->$getFieldHtmlMethod( $v ?? '' );
 
 				// check, if the form field should be added to
 				// the output.

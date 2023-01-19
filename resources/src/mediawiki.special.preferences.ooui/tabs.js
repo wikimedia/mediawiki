@@ -2,16 +2,9 @@
  * JavaScript for Special:Preferences: Tab navigation.
  */
 ( function () {
+	var nav = require( './nav.js' );
 	$( function () {
-		// Make sure the accessibility tip is focussable so that keyboard users take notice,
-		// but hide it by default to reduce visual clutter.
-		// Make sure it becomes visible when focused.
-		$( '<div>' ).addClass( 'mw-navigation-hint' )
-			.text( mw.msg( 'prefs-tabs-navigation-hint' ) )
-			.attr( {
-				tabIndex: 0
-			} )
-			.insertBefore( '.mw-htmlform-ooui-wrapper' );
+		nav.insertHints();
 
 		var tabs = OO.ui.infuse( $( '.mw-prefs-tabs' ) );
 
@@ -37,10 +30,8 @@
 			}
 		}
 
-		var switchingNoHash;
-
 		function onTabPanelSet( panel ) {
-			if ( switchingNoHash ) {
+			if ( nav.switchingNoHash ) {
 				return;
 			}
 			// Handle hash manually to prevent jumping,
@@ -58,65 +49,23 @@
 
 		tabs.on( 'set', onTabPanelSet );
 
-		/**
-		 * @ignore
-		 * @param {string} name The name of a tab
-		 * @param {boolean} [noHash] A hash will be set according to the current
-		 *  open section. Use this flag to suppress this.
-		 */
-		function switchPrefTab( name, noHash ) {
-			if ( noHash ) {
-				switchingNoHash = true;
-			}
-			tabs.setTabPanel( name );
+		// Hash navigation callback
+		var setSection = function ( sectionName, fieldset ) {
+			tabs.setTabPanel( sectionName );
 			enhancePanel( tabs.getCurrentTabPanel() );
-			if ( noHash ) {
-				switchingNoHash = false;
+			if ( fieldset instanceof HTMLElement ) {
+				fieldset.scrollIntoView();
 			}
-		}
+		};
 
-		// Jump to correct section as indicated by the hash.
-		// This function is called onload and onhashchange.
-		function detectHash() {
-			var hash = location.hash;
-			if ( /^#mw-prefsection-[\w]+$/.test( hash ) ) {
-				mw.storage.session.remove( 'mwpreferences-prevTab' );
-				switchPrefTab( hash.slice( 1 ) );
-			} else if ( /^#mw-[\w-]+$/.test( hash ) ) {
-				var matchedElement = document.getElementById( hash.slice( 1 ) );
-				var $parentSection = $( matchedElement ).closest( '.mw-prefs-section-fieldset' );
-				if ( $parentSection.length ) {
-					mw.storage.session.remove( 'mwpreferences-prevTab' );
-					// Switch to proper tab and scroll to selected item.
-					switchPrefTab( $parentSection.attr( 'id' ), true );
-					matchedElement.scrollIntoView();
-				}
-			}
-		}
-
-		$( window ).on( 'hashchange', function () {
-			var hash = location.hash;
-			if ( /^#mw-[\w-]+/.test( hash ) ) {
-				detectHash();
-			} else if ( hash === '' ) {
-				switchPrefTab( 'mw-prefsection-personal', true );
-			}
-		} )
-			// Run the function immediately to select the proper tab on startup.
-			.trigger( 'hashchange' );
-
-		// Restore the active tab after saving the preferences
-		var previousTab = mw.storage.session.get( 'mwpreferences-prevTab' );
-		if ( previousTab ) {
-			switchPrefTab( previousTab, true );
-			// Deleting the key, the tab states should be reset until we press Save
-			mw.storage.session.remove( 'mwpreferences-prevTab' );
-		}
-
-		$( '#mw-prefs-form' ).on( 'submit', function () {
+		// onSubmit callback
+		var onSubmit = function () {
 			var value = tabs.getCurrentTabPanelName();
 			mw.storage.session.set( 'mwpreferences-prevTab', value );
-		} );
+		};
 
+		nav.onLoad( setSection, 'mw-prefsection-personal' );
+
+		nav.restorePrevSection( setSection, onSubmit );
 	} );
 }() );

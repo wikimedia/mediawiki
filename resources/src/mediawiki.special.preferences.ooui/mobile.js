@@ -2,9 +2,26 @@
  * JavaScript for Special:Preferences: mobileLayout.
  */
 ( function () {
+	var nav = require( './nav.js' );
 	// Define a window manager to control the dialogs
 	var dialogFactory = new OO.Factory();
 	var windowManager = new OO.ui.WindowManager( { factory: dialogFactory } );
+	// Navigation callback
+	var setSection = function ( sectionName, fieldset ) {
+		// strip possible prefixes from the section to normalize it
+		var section = sectionName.replace( 'mw-prefsection-', '' ).replace( 'mw-mobile-prefs-', '' );
+		// Work in the window isn't necessarily done when 'then` fires
+		windowManager.openWindow( 'mw-mobile-prefs-' + section ).opening.then( function () {
+			// setTimout is ie11-compatible and queues up tasks for async exec
+			setTimeout( function () {
+				fieldset.scrollIntoView( { behavior: 'smooth' } );
+			} );
+		}, 0 ); /* 0 milliseconds is ASAP */
+		if ( nav.switchingNoHash ) {
+			return;
+		}
+		location.hash = '#mw-prefsection-' + section;
+	};
 	/*
 	 * Add a ToggleSwitchWidget to control each checkboxWidget
 	 * Hide each checkboxWidget
@@ -49,42 +66,47 @@
 
 		dialogFactory.register( PrefDialog );
 	}
+
+	/*
+	 * Initialize Dialogs for all pref sections
+	 */
+	function initDialogs() {
+		// Query the document once, then query that returned element afterwards.
+		var preferencesForm = document.getElementById( 'mw-prefs-form' );
+		var prefButtons = preferencesForm.querySelector( 'div.mw-prefs-buttons' );
+		var sections = preferencesForm.querySelectorAll( '.mw-mobile-prefsection' );
+		// Move the form buttons (such as save) into the dialog after opening.
+		windowManager.on( 'opening', function ( win, opened ) {
+			if ( opened ) {
+				win.$foot[ 0 ].appendChild( prefButtons );
+			}
+		} );
+		// Move the form buttons (such as save) back to the main form while closing.
+		windowManager.on( 'closing', function ( _win, closed ) {
+			document.getElementById( 'preferences' ).appendChild( prefButtons );
+			if ( closed ) {
+				location.hash = '';
+			}
+		} );
+		// Add the window manager to the form
+		$( preferencesForm ).append( windowManager.$element );
+		// Add event listeners and register a dialog for each section
+		Array.prototype.forEach.call( sections, function ( section ) {
+			var sectionContent = document.getElementById( section.id + '-content' );
+			var sectionBody = sectionContent.querySelector( 'div > div.oo-ui-widget' );
+			var sectionHead = document.getElementById( section.id + '-head' );
+			document.getElementById( section.id + '-back-button' ).addEventListener( 'click', function () {
+				windowManager.closeWindow( section.id );
+			} );
+			document.getElementById( section.id ).addEventListener( 'click', function () {
+				setSection( section.id );
+			} );
+			sectionDialog( section.id, sectionHead, sectionBody );
+		} );
+	}
 	// DOM-dependant code
 	$( function () {
-		/*
-		 * Initialize Dialogs for all pref sections
-		 */
-		function initDialogs() {
-			// Query the document once, then query that returned element afterwards.
-			var preferencesForm = document.querySelector( '#mw-prefs-form' );
-			var prefButtons = preferencesForm.querySelector( 'div.mw-prefs-buttons' );
-			var sections = preferencesForm.querySelectorAll( '.mw-mobile-prefsection' );
-			// Move the form buttons (such as save) into the dialog after opening.
-			windowManager.on( 'opening', function ( win, opened ) {
-				if ( opened ) {
-					win.$foot[ 0 ].appendChild( prefButtons );
-				}
-			} );
-			// Move the form buttons (such as save) back to the main form while closing.
-			windowManager.on( 'closing', function () {
-				preferencesForm.querySelector( '#preferences' ).appendChild( prefButtons );
-			} );
-			// Add the window manager to the form
-			$( preferencesForm ).append( windowManager.$element );
-			// add event listeners and register a dialog for each section
-			Array.prototype.forEach.call( sections, function ( section ) {
-				var sectionContent = preferencesForm.querySelector( '#' + section.id + '-content' );
-				var sectionBody = sectionContent.querySelector( 'div > div.oo-ui-widget' );
-				var sectionHead = sectionContent.querySelector( '#' + section.id + '-head' );
-				sectionHead.querySelector( '#' + section.id + '-back-button' ).addEventListener( 'click', function () {
-					windowManager.closeWindow( section.id );
-				} );
-				preferencesForm.querySelector( '#' + section.id ).addEventListener( 'click', function () {
-					windowManager.openWindow( section.id );
-				} );
-				sectionDialog( section.id, sectionHead, sectionBody );
-			} );
-		}
 		initDialogs();
+		nav.onLoad( setSection );
 	} );
 }() );
