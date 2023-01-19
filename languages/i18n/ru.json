@@ -1494,7 +1494,7 @@
 	"grant-editsiteconfig": "Правка CSS/JavaScript сайта и пользователя",
 	"grant-editpage": "Редактирование существующих страниц",
 	"grant-editprotected": "Редактирование защищённых страниц",
-	"grant-highvolume": "Редактирование с высокой интенсивностью",
+	"grant-highvolume": "Доступ (ботам) с высокой интенсивностью",
 	"grant-import": "Импорт версий",
 	"grant-mergehistory": "Объединить истории правок",
 	"grant-oversight": "Сокрытие правок участников и версий страниц",
