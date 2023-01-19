@@ -2055,7 +2055,15 @@ return [
 				'revertedTagUpdate' => 'RevertedTagUpdateJob',
 				'null' => 'NullJob',
 				'userEditCountInit' => 'UserEditCountInitJob',
-				'parsoidCachePrewarm' => 'ParsoidCachePrewarmJob',
+				'parsoidCachePrewarm' => [
+					'class' => 'ParsoidCachePrewarmJob',
+					'services' => [
+						0 => 'ParsoidOutputAccess',
+						1 => 'PageStore',
+						2 => 'RevisionLookup',
+					],
+					'needsPage' => false,
+				],
 			],
 			'JobTypesExcludedFromDefaultQueue' => [
 				0 => 'AssembleUploadChunks',

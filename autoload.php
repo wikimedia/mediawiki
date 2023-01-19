@@ -1428,6 +1428,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Interwiki\\InterwikiLookup' => __DIR__ . '/includes/interwiki/InterwikiLookup.php',
 	'MediaWiki\\Interwiki\\InterwikiLookupAdapter' => __DIR__ . '/includes/interwiki/InterwikiLookupAdapter.php',
 	'MediaWiki\\Interwiki\\NullInterwikiLookup' => __DIR__ . '/includes/interwiki/NullInterwikiLookup.php',
+	'MediaWiki\\JobQueue\\JobFactory' => __DIR__ . '/includes/jobqueue/JobFactory.php',
 	'MediaWiki\\JobQueue\\JobQueueGroupFactory' => __DIR__ . '/includes/jobqueue/JobQueueGroupFactory.php',
 	'MediaWiki\\Json\\JsonCodec' => __DIR__ . '/includes/json/JsonCodec.php',
 	'MediaWiki\\Json\\JsonConstants' => __DIR__ . '/includes/json/JsonConstants.php',

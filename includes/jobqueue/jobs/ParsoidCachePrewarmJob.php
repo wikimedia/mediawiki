@@ -19,23 +19,40 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageLookup;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use Psr\Log\LoggerInterface;
 
 /**
  * @ingroup JobQueue
  */
-class ParsoidCachePrewarmJob extends Job implements GenericParameterJob {
+class ParsoidCachePrewarmJob extends Job {
 	private LoggerInterface $logger;
 	private ParsoidOutputAccess $parsoidOutputAccess;
+	private PageLookup $pageLookup;
+	private RevisionLookup $revisionLookup;
 
-	public function __construct( array $params ) {
+	/**
+	 * @param array $params
+	 * @param ParsoidOutputAccess $parsoidOutputAccess
+	 * @param PageLookup $pageLookup
+	 * @param RevisionLookup $revisionLookup
+	 */
+	public function __construct(
+		array $params,
+		ParsoidOutputAccess $parsoidOutputAccess,
+		PageLookup $pageLookup,
+		RevisionLookup $revisionLookup
+	) {
 		parent::__construct( 'parsoidCachePrewarm', $params );
 
-		$this->parsoidOutputAccess = MediaWikiServices::getInstance()->getParsoidOutputAccess();
+		// TODO: find a way to inject the logger
 		$this->logger = LoggerFactory::getInstance( 'ParsoidCachePrewarmJob' );
+		$this->parsoidOutputAccess = $parsoidOutputAccess;
+		$this->pageLookup = $pageLookup;
+		$this->revisionLookup = $revisionLookup;
 	}
 
 	public static function newSpec(
@@ -52,8 +69,7 @@ class ParsoidCachePrewarmJob extends Job implements GenericParameterJob {
 	}
 
 	private function doParsoidCacheUpdate() {
-		$services = MediaWikiServices::getInstance();
-		$page = $services->getPageStore()->getPageById( $this->params['pageId'] );
+		$page = $this->pageLookup->getPageById( $this->params['pageId'] );
 		$revId = $this->params['revId'];
 
 		if ( $page === null ) {
@@ -69,7 +85,7 @@ class ParsoidCachePrewarmJob extends Job implements GenericParameterJob {
 			return;
 		}
 
-		$rev = $services->getRevisionLookup()->getRevisionById( $revId );
+		$rev = $this->revisionLookup->getRevisionById( $revId );
 		if ( !$rev ) {
 			return;
 		}

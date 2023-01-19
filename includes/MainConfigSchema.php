@@ -11033,9 +11033,19 @@ class MainConfigSchema {
 	 * Maps jobs to their handlers; extensions
 	 * can add to this to provide custom jobs.
 	 *
-	 * A job handler should either be a class name to be instantiated,
-	 * or (since 1.30) a callback to use for creating the job object.
-	 * The callback takes (Title, array map of parameters) as arguments.
+	 * Since 1.40, job handlers can be specified as object specs
+	 * for use with ObjectFactory, using an array, a plain class name,
+	 * or a callback.
+	 *
+	 * @note The constructor signature of job classes has to follow one of two patterns:
+	 * Either it takes a parameter array as the first argument, followed by any services it
+	 * needs to have injected: ( array $params, ... ).
+	 * Or it takes a PageReference as the first parameter, followed by the parameter array,
+	 * followed by any services: ( PageReference $page, array $params, ... ).
+	 * In order to signal to the JobFactory that the $page parameter should be omitted from
+	 * the constructor arguments, the job class has to be a subclass of GenericParameterJob,
+	 * or the object specification for the job has to set the 'needsPage' key to false.
+	 * If a callback is used, its signature follows the same rules.
 	 */
 	public const JobClasses = [
 		'default' => [
@@ -11063,7 +11073,16 @@ class MainConfigSchema {
 			'revertedTagUpdate' => RevertedTagUpdateJob::class,
 			'null' => NullJob::class,
 			'userEditCountInit' => UserEditCountInitJob::class,
-			'parsoidCachePrewarm' => ParsoidCachePrewarmJob::class,
+			'parsoidCachePrewarm' => [
+				'class' => ParsoidCachePrewarmJob::class,
+				'services' => [
+					'ParsoidOutputAccess',
+					'PageStore',
+					'RevisionLookup'
+				],
+				// tell the JobFactory not to include the $page parameter in the constructor call
+				'needsPage' => false
+			],
 		],
 		'type' => 'map',
 	];
