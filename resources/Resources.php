@@ -2123,9 +2123,6 @@ return [
 		'remoteBasePath' => "$wgResourceBasePath/resources/src",
 		'packageFiles' => [
 			'mediawiki.special.block.js',
-			[ 'name' => 'config.json', 'config' => [
-				MainConfigNames::BlockAllowsUTEdit,
-			] ],
 		],
 		'dependencies' => [
 			'oojs-ui-core',
