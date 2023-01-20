@@ -1357,14 +1357,14 @@
 				break;
 
 			case 'limit':
-				helpLabel.addInfo(
-					Util.parseMsg(
+				tmp = [
+					mw.message(
 						'paramvalidator-help-type-number-minmax', 1,
 						widget.paramInfo.min, widget.paramInfo.apiSandboxMax
-					),
-					' ',
-					Util.parseMsg( 'apisandbox-param-limit' )
-				);
+					).parse(),
+					mw.message( 'apisandbox-param-limit' ).parse()
+				];
+				helpLabel.addInfo( Util.parseHTML( tmp.join( mw.msg( 'word-separator' ) ) ) );
 				break;
 
 			case 'integer':
