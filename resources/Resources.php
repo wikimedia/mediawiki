@@ -1465,7 +1465,7 @@ return [
 		'styles' => [
 			'resources/src/mediawiki.action/mediawiki.action.view.filepage.print.less' =>
 				[ 'media' => 'print' ],
-			'resources/src/mediawiki.action/mediawiki.action.view.filepage.css',
+			'resources/src/mediawiki.action/mediawiki.action.view.filepage.less',
 		],
 	],
 
