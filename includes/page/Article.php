@@ -756,7 +756,8 @@ class Article implements Page {
 			if ( $parsoidCacheWarmingEnabled ) {
 				$parsoidJobSpec = ParsoidCachePrewarmJob::newSpec(
 					$rev->getId(),
-					$rev->getPageId()
+					$rev->getPageId(),
+					[ 'causeAction' => 'view' ]
 				);
 				$this->jobQueueGroup->lazyPush( $parsoidJobSpec );
 			}

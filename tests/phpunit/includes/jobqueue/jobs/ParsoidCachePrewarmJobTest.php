@@ -56,7 +56,7 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 
 		$rev2 = $this->editPage( $page, self::JOB_QUEUE_EDIT )->getNewRevision();
 		$parsoidPrewarmJob = new ParsoidCachePrewarmJob(
-			[ 'revId' => $rev2->getId(), 'pageId' => $page->getId() ],
+			[ 'revId' => $rev2->getId(), 'pageId' => $page->getId(), 'causeAction' => 'just for testing' ],
 			$this->getServiceContainer()->getParsoidOutputAccess(),
 			$this->getServiceContainer()->getPageStore(),
 			$this->getServiceContainer()->getRevisionLookup()
@@ -83,6 +83,12 @@ class ParsoidCachePrewarmJobTest extends MediaWikiIntegrationTestCase {
 		// Ensure we have the parsoid output in parser cache as an HTML document
 		$this->assertStringContainsString( '<html', $parsoidOutput->getText() );
 		$this->assertStringContainsString( self::JOB_QUEUE_EDIT, $parsoidOutput->getText() );
+
+		// Check that the causeAction was looped through as the render reason
+		$this->assertStringContainsString(
+			'triggered because: just for testing',
+			$parsoidOutput->getText( [ 'includeDebugInfo' => true ] )
+		);
 	}
 
 }

@@ -457,6 +457,10 @@ class ParserCache {
 		$msg = "Saved in parser cache with key $parserOutputKey" .
 			" and timestamp $cacheTime" .
 			" and revision id $revId.";
+
+		$reason = $popts->getRenderReason();
+		$msg .= " Rendering was triggered because: $reason";
+
 		$parserOutput->addCacheMessage( $msg );
 
 		$pageKey = $this->makeMetadataKey( $page );
