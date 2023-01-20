@@ -2,7 +2,10 @@
 
 namespace MediaWiki\Rest;
 
+use LoggedOutEditToken;
 use LogicException;
+use MediaWiki\Session\Session;
+use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -15,6 +18,10 @@ use Wikimedia\ParamValidator\ParamValidator;
  * @package MediaWiki\Rest
  */
 trait TokenAwareHandlerTrait {
+	abstract public function getValidatedBody();
+
+	abstract public function getSession(): Session;
+
 	/**
 	 * Returns the definition for the token parameter, to be used in getBodyValidator().
 	 *
@@ -61,6 +68,52 @@ trait TokenAwareHandlerTrait {
 	 * @return MessageValue
 	 */
 	protected function getBadTokenMessage(): MessageValue {
-		return MessageValue::new( 'rest-badtoken' );
+		return DataMessageValue::new( 'rest-badtoken' );
+	}
+
+	/**
+	 * Checks that the given CSRF token is valid (or the used authentication method does
+	 * not require CSRF).
+	 * Note that this method only supports the 'csrf' token type. The body validator must
+	 * return an array and include the 'token' field (see getTokenParamDefinition()).
+	 * @param bool $allowAnonymousToken Allow anonymous users to pass the check by submitting
+	 *   an empty token. (This matches how e.g. anonymous editing works on the action API and web.)
+	 * @return void
+	 * @throws LocalizedHttpException
+	 */
+	protected function validateToken( bool $allowAnonymousToken = false ): void {
+		if ( $this->getSession()->getProvider()->safeAgainstCsrf() ) {
+			return;
+		}
+
+		$submittedToken = $this->getToken();
+		$sessionToken = null;
+		$isAnon = $this->getSession()->getUser()->isAnon();
+		if ( $allowAnonymousToken && $isAnon ) {
+			$sessionToken = new LoggedOutEditToken();
+		} elseif ( $this->getSession()->hasToken() ) {
+			$sessionToken = $this->getSession()->getToken();
+		}
+
+		if ( $sessionToken && $sessionToken->match( $submittedToken ) ) {
+			return;
+		} elseif ( !$submittedToken ) {
+			throw $this->getBadTokenException( 'rest-badtoken-missing' );
+		} elseif ( $isAnon && !$this->getSession()->isPersistent() ) {
+			// The client probably forgot to authenticate.
+			throw $this->getBadTokenException( 'rest-badtoken-nosession' );
+		} else {
+			// The user submitted a token, the session had a token, but they didn't match.
+			throw new LocalizedHttpException( $this->getBadTokenMessage(), 403 );
+		}
+	}
+
+	/**
+	 * @param string $messageKey
+	 * @return LocalizedHttpException
+	 * @internal For use by the trait only
+	 */
+	private function getBadTokenException( string $messageKey ): LocalizedHttpException {
+		return new LocalizedHttpException( DataMessageValue::new( $messageKey, [], 'rest-badtoken' ), 403 );
 	}
 }

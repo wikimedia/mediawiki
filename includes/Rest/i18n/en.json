@@ -44,5 +44,7 @@
 	"rest-cannot-load-file": "The file for title \"$1\" cannot be loaded.",
 	"rest-cross-origin-anon-write": "Anonymous cross-origin write requests are not allowed",
 	"rest-requires-safe-against-csrf": "This endpoint requires a CSRF-safe session provider.",
-	"rest-badtoken": "The CSRF token provided is invalid."
+	"rest-badtoken": "The CSRF token provided is invalid.",
+	"rest-badtoken-missing": "The <var>token</var> parameter is required unless using a CSRF-safe authentication method.",
+	"rest-badtoken-nosession": "CSRF error - no session."
 }
