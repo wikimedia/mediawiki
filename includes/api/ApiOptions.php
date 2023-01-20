@@ -169,6 +169,14 @@ class ApiOptions extends ApiBase {
 					$validation = $this->msg( 'apiwarn-validationfailed-badpref' );
 					break;
 			}
+			if ( $validation === true && is_string( $value ) &&
+				strlen( $value ) > UserOptionsManager::MAX_BYTES_OPTION_VALUE
+			) {
+				$validation = $this->msg(
+					'apiwarn-validationfailed-valuetoolong',
+					Message::numParam( UserOptionsManager::MAX_BYTES_OPTION_VALUE )
+				);
+			}
 			if ( $validation === true ) {
 				$this->setPreference( $key, $value );
 				$changed = true;
