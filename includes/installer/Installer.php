@@ -680,7 +680,7 @@ abstract class Installer {
 		if ( !str_ends_with( $lsFile, '.php' ) ) {
 			throw new Exception(
 				'The installer cannot yet handle non-php settings files: ' . $lsFile . '. ' .
-				'Use maintenance/update.php to update an existing installation.'
+				'Use `php maintenance/run.php update` to update an existing installation.'
 			);
 		}
 		unset( $lsExists );
