@@ -21,6 +21,7 @@
 namespace MediaWiki\ResourceLoader;
 
 use Html;
+use MediaWiki\MainConfigNames;
 use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
@@ -289,6 +290,15 @@ RLPAGEMODULES = {$pageModulesJson};
 ";
 		}
 
+		$config = $this->resourceLoader->getConfig();
+		$user = $this->context->getUserIdentity();
+		$isAnon = !$user || !$user->isRegistered();
+		// This code is only loaded for anonymous users. Logged in users should use preferences.
+		if ( $config->get( MainConfigNames::ResourceLoaderClientPreferences ) && $isAnon ) {
+			$script .= $this->getClientSidePreferencesScript(
+				$config->get( MainConfigNames::CookiePrefix )
+			);
+		}
 		if ( !$this->context->getDebug() ) {
 			$script = ResourceLoader::filter( 'minify-js', $script, [ 'cache' => false ] );
 		}
@@ -381,6 +391,32 @@ RLPAGEMODULES = {$pageModulesJson};
 			$ret->setRaw( true );
 		}
 		return $ret;
+	}
+
+	/**
+	 * Adds ability for anonymous users to change classes on document.documentElement
+	 *
+	 * @param string $cookiePrefix
+	 * @return string
+	 */
+	private function getClientSidePreferencesScript( string $cookiePrefix ) {
+		return <<<END
+(function () {
+// Client side preferences
+	var doc = document.documentElement;
+	var clientPrefCookie = document.cookie.match(/(?:^|; )${cookiePrefix}mwclientprefs=([^;]+)/);
+	// For now, only support disabling a feature
+	// Only supports a single feature (modifying a single class) at this stage.
+	// In future this may be expanded to multiple once this has been proven as viable.
+	if ( clientPrefCookie ) {
+		var featureName = clientPrefCookie[1];
+		doc.className = doc.className.replace(
+			featureName + '-enabled',
+			featureName + '-disabled'
+		);
+	}
+} () );
+END;
 	}
 
 	/**

@@ -5153,6 +5153,15 @@ class MainConfigSchema {
 	];
 
 	/**
+	 * Whether skins support client side (anonymous) preferences.
+	 *
+	 * @see RL/ClientHtml
+	 */
+	public const ResourceLoaderClientPreferences = [
+		'default' => false,
+	];
+
+	/**
 	 * Disable output compression (enabled by default if zlib is available)
 	 */
 	public const DisableOutputCompression = [
