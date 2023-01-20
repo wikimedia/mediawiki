@@ -1756,6 +1756,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Rest\\Validator\\JsonBodyValidator' => __DIR__ . '/includes/Rest/Validator/JsonBodyValidator.php',
 	'MediaWiki\\Rest\\Validator\\NullBodyValidator' => __DIR__ . '/includes/Rest/Validator/NullBodyValidator.php',
 	'MediaWiki\\Rest\\Validator\\ParamValidatorCallbacks' => __DIR__ . '/includes/Rest/Validator/ParamValidatorCallbacks.php',
+	'MediaWiki\\Rest\\Validator\\UnsupportedContentTypeBodyValidator' => __DIR__ . '/includes/Rest/Validator/UnsupportedContentTypeBodyValidator.php',
 	'MediaWiki\\Rest\\Validator\\Validator' => __DIR__ . '/includes/Rest/Validator/Validator.php',
 	'MediaWiki\\Revision\\ArchivedRevisionLookup' => __DIR__ . '/includes/Revision/ArchivedRevisionLookup.php',
 	'MediaWiki\\Revision\\BadRevisionException' => __DIR__ . '/includes/Revision/BadRevisionException.php',
