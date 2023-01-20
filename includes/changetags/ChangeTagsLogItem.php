@@ -92,10 +92,6 @@ class ChangeTagsLogItem extends RevisionItemBase {
 		$comment = $this->list->getLanguage()->getDirMark() .
 			$formatter->getComment();
 
-		if ( LogEventsList::isDeleted( $this->row, LogPage::DELETED_COMMENT ) ) {
-			$comment = '<span class="history-deleted">' . $comment . '</span>';
-		}
-
 		$content = "$loglink $date $action $comment";
 		$attribs = [];
 		$tags = $this->getTags();
