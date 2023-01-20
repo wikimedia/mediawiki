@@ -140,6 +140,22 @@ class HTMLTimezoneField extends HTMLSelectOrOtherField {
 	/**
 	 * @inheritDoc
 	 */
+	public function validate( $value, $alldata ) {
+		$p = parent::validate( $value, $alldata );
+		if ( $p !== true ) {
+			return $p;
+		}
+
+		if ( !( new UserTimeCorrection( $value ) )->isValid() ) {
+			return $this->mParent->msg( 'timezone-invalid' )->escaped();
+		}
+
+		return true;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
 	protected function getFieldClasses(): array {
 		$classes = parent::getFieldClasses();
 		$classes[] = self::FIELD_CLASS;
