@@ -68,6 +68,7 @@ class MigrateRevisionCommentTemp extends LoggedUpdateMaintenance {
 				->from( 'revision' )
 				->join( 'revision_comment_temp', null, 'rev_id=revcomment_rev' )
 				->where( [ 'rev_comment_id' => 0 ] )
+				->andWhere( $conds )
 				->limit( $batchSize )
 				->orderBy( 'rev_id' )
 				->caller( __METHOD__ )
@@ -94,6 +95,7 @@ class MigrateRevisionCommentTemp extends LoggedUpdateMaintenance {
 
 			// @phan-suppress-next-line PhanTypeSuspiciousStringExpression last is not-null when used
 			$this->output( "... rev_id=$last, updated $updated\n" );
+			$conds = [ $dbw->buildComparison( '>', [ 'rev_id' => $last ] ) ];
 
 			// Sleep between batches for replication to catch up
 			$this->waitForReplication();
