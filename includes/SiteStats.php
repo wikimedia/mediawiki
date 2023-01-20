@@ -30,8 +30,36 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * Static accessor class for site_stats and related things
  */
 class SiteStats {
-	/** @var stdClass|null */
+	/** @var SiteStats|null */
 	private static $row;
+	/** @var int */
+	private $totalEdits;
+	/** @var int */
+	private $goodArticles;
+	/** @var int */
+	private $totalPages;
+	/** @var int */
+	private $users;
+	/** @var int */
+	private $activeUsers;
+	/** @var int */
+	private $images;
+
+	public function __construct(
+		int $totalEdits,
+		int $goodArticles,
+		int $totalPages,
+		int $users,
+		int $activeUsers,
+		int $images
+	) {
+		$this->totalEdits = $totalEdits;
+		$this->goodArticles = $goodArticles;
+		$this->totalPages = $totalPages;
+		$this->users = $users;
+		$this->activeUsers = $activeUsers;
+		$this->images = $images;
+	}
 
 	/**
 	 * Trigger a reload next time a field is accessed
@@ -47,7 +75,7 @@ class SiteStats {
 	}
 
 	/**
-	 * @return stdClass
+	 * @return SiteStats
 	 */
 	protected static function loadAndLazyInit() {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
@@ -57,13 +85,13 @@ class SiteStats {
 		wfDebug( __METHOD__ . ": reading site_stats from replica DB" );
 		$row = self::doLoadFromDB( $dbr );
 
-		if ( !self::isRowSensible( $row ) && $lb->hasOrMadeRecentPrimaryChanges() ) {
+		if ( !$row->isRowSensible() && $lb->hasOrMadeRecentPrimaryChanges() ) {
 			// Might have just been initialized during this request? Underflow?
 			wfDebug( __METHOD__ . ": site_stats damaged or missing on replica DB" );
 			$row = self::doLoadFromDB( $lb->getConnectionRef( DB_PRIMARY ) );
 		}
 
-		if ( !self::isRowSensible( $row ) ) {
+		if ( !$row->isRowSensible() ) {
 			if ( $config->get( MainConfigNames::MiserMode ) ) {
 				// Start off with all zeroes, assuming that this is a new wiki or any
 				// repopulations where done manually via script.
@@ -80,10 +108,10 @@ class SiteStats {
 			$row = self::doLoadFromDB( $lb->getConnectionRef( DB_PRIMARY ) );
 		}
 
-		if ( !self::isRowSensible( $row ) ) {
+		if ( !$row->isRowSensible() ) {
 			wfDebug( __METHOD__ . ": site_stats persistently nonsensical o_O" );
 			// Always return a row-like object
-			$row = self::salvageIncorrectRow( $row );
+			$row->salvageIncorrectRow();
 		}
 
 		return $row;
@@ -95,7 +123,7 @@ class SiteStats {
 	public static function edits() {
 		self::load();
 
-		return (int)self::$row->ss_total_edits;
+		return self::$row->totalEdits;
 	}
 
 	/**
@@ -104,7 +132,7 @@ class SiteStats {
 	public static function articles() {
 		self::load();
 
-		return (int)self::$row->ss_good_articles;
+		return self::$row->goodArticles;
 	}
 
 	/**
@@ -113,7 +141,7 @@ class SiteStats {
 	public static function pages() {
 		self::load();
 
-		return (int)self::$row->ss_total_pages;
+		return self::$row->totalPages;
 	}
 
 	/**
@@ -122,7 +150,7 @@ class SiteStats {
 	public static function users() {
 		self::load();
 
-		return (int)self::$row->ss_users;
+		return self::$row->users;
 	}
 
 	/**
@@ -131,7 +159,7 @@ class SiteStats {
 	public static function activeUsers() {
 		self::load();
 
-		return (int)self::$row->ss_active_users;
+		return self::$row->activeUsers;
 	}
 
 	/**
@@ -140,7 +168,7 @@ class SiteStats {
 	public static function images() {
 		self::load();
 
-		return (int)self::$row->ss_images;
+		return self::$row->images;
 	}
 
 	/**
@@ -238,7 +266,7 @@ class SiteStats {
 
 	/**
 	 * @param IDatabase $db
-	 * @return stdClass
+	 * @return SiteStats
 	 */
 	private static function doLoadFromDB( IDatabase $db ) {
 		$fields = self::selectFields();
@@ -255,56 +283,17 @@ class SiteStats {
 					$finalRow->$field += $row->$field;
 				}
 			}
-
 		}
-		return $finalRow;
-	}
-
-	/**
-	 * Is the provided row of site stats sensible, or should it be regenerated?
-	 *
-	 * Checks only fields which are filled by SiteStatsInit::refresh.
-	 *
-	 * @param bool|stdClass $row
-	 * @return bool
-	 */
-	private static function isRowSensible( $row ) {
-		if ( $row === false
-			|| $row->ss_total_pages < $row->ss_good_articles
-			|| $row->ss_total_edits < $row->ss_total_pages
-		) {
-			return false;
-		}
-		// Now check for underflow/overflow
-		foreach ( [
-			'ss_total_edits',
-			'ss_good_articles',
-			'ss_total_pages',
-			'ss_users',
-			'ss_images',
-		] as $member ) {
-			if ( $row->$member < 0 ) {
-				return false;
-			}
-		}
-
-		return true;
-	}
-
-	/**
-	 * @param stdClass|bool $row
-	 * @return stdClass
-	 */
-	private static function salvageIncorrectRow( $row ) {
-		$map = $row ? (array)$row : [];
-		// Fill in any missing values with zero
-		$map += array_fill_keys( self::selectFields(), 0 );
-		// Convert negative values to zero
-		foreach ( $map as $field => $value ) {
-			$map[$field] = max( 0, $value );
-		}
-
-		return (object)$row;
+		// if a field is not present that means the row is invalid
+		// all fields will be set to 0 in salvageIncorrectRow
+		return new SiteStats(
+			$finalRow->ss_total_edits ?? -1,
+			$finalRow->ss_good_articles ?? -1,
+			$finalRow->ss_total_pages ?? -1,
+			$finalRow->ss_users ?? -1,
+			$finalRow->ss_active_users ?? -1,
+			$finalRow->ss_images ?? -1
+		);
 	}
 
 	/**
@@ -312,5 +301,43 @@ class SiteStats {
 	 */
 	private static function getLB() {
 		return MediaWikiServices::getInstance()->getDBLoadBalancer();
+	}
+
+	/**
+	 * Is the provided row of site stats sensible, or should it be regenerated?
+	 *
+	 * Checks only fields which are filled by SiteStatsInit::refresh.
+	 *
+	 * @return bool
+	 */
+	private function isRowSensible() {
+		if ( $this->totalPages < $this->goodArticles
+			 || $this->totalEdits < $this->totalPages
+		) {
+			return false;
+		}
+		// Now check for underflow/overflow
+		if (
+			$this->totalEdits < 0 ||
+			$this->goodArticles < 0 ||
+			$this->totalPages < 0 ||
+			$this->users < 0 ||
+			$this->activeUsers < 0 ||
+			$this->images < 0
+		) {
+			return false;
+		}
+
+		return true;
+	}
+
+	private function salvageIncorrectRow() {
+		// Convert negative values to zero
+		$this->totalEdits = max( $this->totalEdits, 0);
+		$this->goodArticles = max( $this->goodArticles, 0);
+		$this->totalPages = max( $this->totalPages, 0);
+		$this->users = max( $this->users, 0);
+		$this->activeUsers = max( $this->activeUsers, 0);
+		$this->images = max( $this->images, 0);
 	}
 }
