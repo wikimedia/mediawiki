@@ -1341,10 +1341,7 @@
 
 		if ( ppi.info && ppi.info.length ) {
 			for ( var i = 0; i < ppi.info.length; i++ ) {
-				helpLabel.$element.append( $( '<div>' )
-					.addClass( 'info' )
-					.append( Util.parseHTML( ppi.info[ i ] ) )
-				);
+				helpLabel.addInfo( Util.parseHTML( ppi.info[ i ] ) );
 			}
 		}
 		var flag = true;
@@ -1409,7 +1406,7 @@
 				);
 			}
 			if ( tmp.length ) {
-				helpLabel.addInfo( Util.parseHTML( tmp.join( ' ' ) ) );
+				helpLabel.addInfo( Util.parseHTML( tmp.join( mw.msg( 'word-separator' ) ) ) );
 			}
 		}
 		if ( 'maxbytes' in ppi ) {
