@@ -1003,7 +1003,7 @@
 	"apihelp-query+langlinks-example-simple": "Get interlanguage links from the page <kbd>Main Page</kbd>.",
 
 	"apihelp-query+languageinfo-summary": "Return information about available languages.",
-	"apihelp-query+languageinfo-extended-description": "[[mw:API:Query#Continuing queries|Continuation]] may be applied if retrieving the information takes too long for one request.",
+	"apihelp-query+languageinfo-extended-description": "[[mw:Special:MyLanguage/API:Continue|Continuation]] may be applied if retrieving the information takes too long for one request.",
 	"apihelp-query+languageinfo-param-prop": "Which information to get for each language.",
 	"apihelp-query+languageinfo-paramvalue-prop-code": "The language code. (This code is MediaWiki-specific, though there are overlaps with other standards.)",
 	"apihelp-query+languageinfo-paramvalue-prop-bcp47": "The BCP-47 language code.",
@@ -1690,7 +1690,7 @@
 	"api-help-param-disabled-in-miser-mode": "Disabled due to [[mw:Special:MyLanguage/Manual:$wgMiserMode|miser mode]].",
 	"api-help-param-limited-in-miser-mode": "<strong>Note:</strong> Due to [[mw:Special:MyLanguage/Manual:$wgMiserMode|miser mode]], using this may result in fewer than <var>$1limit</var> results returned before continuing; in extreme cases, zero results may be returned.",
 	"api-help-param-direction": "In which direction to enumerate:\n;newer:List oldest first. Note: $1start has to be before $1end.\n;older:List newest first (default). Note: $1start has to be later than $1end.",
-	"api-help-param-continue": "When more results are available, use this to continue.",
+	"api-help-param-continue": "When more results are available, use this to continue. More detailed information on how to continue queries [[mw:Special:MyLanguage/API:Continue|can be found on mediawiki.org]].",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(no description)</span>",
 	"api-help-examples": "{{PLURAL:$1|Example|Examples}}:",
 	"api-help-permissions": "{{PLURAL:$1|Permission|Permissions}}:",
