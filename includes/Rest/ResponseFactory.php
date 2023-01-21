@@ -223,7 +223,9 @@ class ResponseFactory {
 			$response = $this->createLocalizedHttpError(
 				$exception->getCode(),
 				$exception->getMessageValue(),
-				(array)$exception->getErrorData()
+				$exception->getErrorData() + [
+					'errorKey' => $exception->getErrorKey(),
+				]
 			);
 		} elseif ( $exception instanceof ResponseException ) {
 			return $exception->getResponse();
@@ -239,7 +241,7 @@ class ResponseFactory {
 					$exception->getCode(),
 					array_merge(
 						[ 'message' => $exception->getMessage() ],
-						(array)$exception->getErrorData()
+						$exception->getErrorData()
 					)
 				);
 			}
