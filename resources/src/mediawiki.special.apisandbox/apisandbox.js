@@ -1341,7 +1341,7 @@
 
 		if ( ppi.info && ppi.info.length ) {
 			for ( var i = 0; i < ppi.info.length; i++ ) {
-				helpLabel.addInfo( Util.parseHTML( ppi.info[ i ] ) );
+				helpLabel.addInfo( Util.parseHTML( ppi.info[ i ].text ) );
 			}
 		}
 		var flag = true;
