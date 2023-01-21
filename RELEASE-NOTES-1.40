@@ -355,6 +355,8 @@ because of Phabricator reports.
   getFileNameTextWithoutExtension() respectively. The old names are deprecated.
 * When manually creating an HTMLFormField (i.e. not via HTMLForm::factory),
   it is deprecated to not include the "parent" field as one of the parameters.
+* The MWException class is deprecated. Use native exceptions, either directly
+  or as base classes.
 * …
 
 === Other changes in 1.40 ===
