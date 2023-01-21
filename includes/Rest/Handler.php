@@ -312,7 +312,7 @@ abstract class Handler {
 	public function applyCacheControl( ResponseInterface $response ) {
 		// NOTE: keep this consistent with the logic in OutputPage::sendCacheControl
 
-		if ( $response->getHeaderLine( 'Cookie' ) ) {
+		if ( $response->getHeaderLine( 'Set-Cookie' ) ) {
 			// If the response sets cookies, it must not be cached in proxies!
 			$response->setHeader( 'Cache-Control', 'private,no-cache,s-maxage=0' );
 		}

@@ -407,7 +407,7 @@ class HandlerTest extends \MediaWikiUnitTestCase {
 		yield 'cookie' => [
 			'GET',
 			[
-				'Cookie' => 'foo=bar',
+				'Set-Cookie' => 'foo=bar',
 				'Cache-Control' => 'max-age=123'
 			],
 			'private,no-cache,s-maxage=0'
