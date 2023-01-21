@@ -949,6 +949,9 @@ class SpecialPageFactory {
 				'RedirectLookup'
 			]
 		],
+		'Mylog' => [
+			'class' => \SpecialMylog::class,
+		],
 		'Mypage' => [
 			'class' => \SpecialMypage::class,
 		],
