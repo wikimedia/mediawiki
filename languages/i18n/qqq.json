@@ -1245,6 +1245,7 @@
 	"lineno": "Message used when comparing different versions of a page (diff). $1 is a line number.",
 	"compareselectedversions": "Used as button in history pages.\n\nSee also:\n* {{msg-mw|Compareselectedversions}}\n* {{msg-mw|Accesskey-compareselectedversions}}\n* {{msg-mw|Tooltip-compareselectedversions}}",
 	"showhideselectedversions": "Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu on history pages.",
+	"showhideselectedfileversions": "Text of the button which brings up the [[mw:RevisionDelete|RevisionDelete]] menu on for files.",
 	"editundo": "Undo link when viewing diffs\n\nThis message has sometimes a tooltip {{msg-mw|tooltip-undo}}\n{{Identical|Undo}}",
 	"diff-empty": "This message appears instead of a \"diff\" when comparing two revisions that are identical.",
 	"diff-multi-sameuser": "This message appears in the revision history of a page when comparing two versions which aren't consecutive, and the intermediate revisions were all created by the same user as the new revision.\n\nParameters:\n* $1 - the number of revisions\n{{Related|Diff-multi}}",

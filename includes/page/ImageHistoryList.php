@@ -83,10 +83,9 @@ class ImageHistoryList extends ContextSource {
 	}
 
 	/**
-	 * @param string $navLinks
 	 * @return string
 	 */
-	public function beginImageHistoryList( $navLinks = '' ) {
+	public function beginImageHistoryList() {
 		// Styles for class=history-deleted
 		$this->getOutput()->addModuleStyles( 'mediawiki.interface.helpers.styles' );
 
@@ -108,23 +107,15 @@ class ImageHistoryList extends ContextSource {
 			}
 		}
 
-		return Html::element( 'h2', [ 'id' => 'filehistory' ], $this->msg( 'filehist' )->text() )
-			. "\n"
-			. Html::openElement( 'div', [ 'id' => 'mw-imagepage-section-filehistory' ] ) . "\n"
-			. $this->msg( 'filehist-help' )->parseAsBlock()
-			. $navLinks . "\n"
-			. Html::openElement( 'table', [ 'class' => 'wikitable filehistory' ] ) . "\n"
+		return Html::openElement( 'table', [ 'class' => 'wikitable filehistory' ] ) . "\n"
 			. Html::rawElement( 'tr', [], $html ) . "\n";
 	}
 
 	/**
-	 * @param string $navLinks
 	 * @return string
 	 */
-	public function endImageHistoryList( $navLinks = '' ) {
-		return Html::closeElement( 'table' ) . "\n" .
-			$navLinks . "\n" .
-			Html::closeElement( 'div' ) . "\n";
+	public function endImageHistoryList() {
+		return Html::closeElement( 'table' ) . "\n";
 	}
 
 	/**
@@ -149,6 +140,18 @@ class ImageHistoryList extends ContextSource {
 		// Deletion link
 		if ( $local && ( $this->getAuthority()->isAllowedAny( 'delete', 'deletedhistory' ) ) ) {
 			$row .= Html::openElement( 'td' );
+			# Link to hide content. Don't show useless link to people who cannot hide revisions.
+			if ( !$iscur && $this->getAuthority()->isAllowed( 'deleterevision' ) ) {
+				// If file is top revision or locked from this user, don't link
+				if ( !$file->userCan( File::DELETED_RESTRICTED, $user ) ) {
+					$row .= Html::check( 'deleterevisions', false, [ 'disabled' => 'disabled' ] );
+				} else {
+					$row .= Html::check( 'ids[' . explode( '!', $img, 2 )[0] . ']', false );
+				}
+				if ( $this->getAuthority()->isAllowed( 'delete' ) ) {
+					$row .= ' ';
+				}
+			}
 			# Link to remove from history
 			if ( $this->getAuthority()->isAllowed( 'delete' ) ) {
 				$row .= $linkRenderer->makeKnownLink(
@@ -157,28 +160,6 @@ class ImageHistoryList extends ContextSource {
 					[],
 					[ 'action' => 'delete', 'oldimage' => $iscur ? null : $img ]
 				);
-			}
-			# Link to hide content. Don't show useless link to people who cannot hide revisions.
-			$canHide = $this->getAuthority()->isAllowed( 'deleterevision' );
-			if ( $canHide || ( $this->getAuthority()->isAllowed( 'deletedhistory' )
-					&& $file->getVisibility() ) ) {
-				if ( $this->getAuthority()->isAllowed( 'delete' ) ) {
-					$row .= Html::element( 'br' );
-				}
-				// If file is top revision or locked from this user, don't link
-				if ( $iscur || !$file->userCan( File::DELETED_RESTRICTED, $user ) ) {
-					$row .= Linker::revDeleteLinkDisabled( $canHide );
-				} else {
-					$row .= Linker::revDeleteLink(
-						[
-							'type' => 'oldimage',
-							'target' => $this->title->getPrefixedText(),
-							'ids' => explode( '!', $img, 2 )[0],
-						],
-						$file->isDeleted( File::DELETED_RESTRICTED ),
-						$canHide
-					);
-				}
 			}
 			$row .= Html::closeElement( 'td' );
 		}
