@@ -917,19 +917,29 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 */
 	protected function skinPreferences( User $user, IContextSource $context, &$defaultPreferences ) {
 		// Skin selector, if there is at least one valid skin
-		$skinOptions = $this->generateSkinOptions( $user, $context );
-		if ( $skinOptions ) {
+		$validSkinNames = $this->getValidSkinNames( $user, $context );
+		if ( $validSkinNames ) {
 			$defaultPreferences['skin'] = [
-				// @phan-suppress-next-line SecurityCheck-XSS False positive, key is escaped
 				'type' => 'radio',
-				'options' => $skinOptions,
+				'options' => $this->generateSkinOptions( $user, $context, $validSkinNames ),
 				'section' => 'rendering/skin',
 			];
+			$hideCond = [ 'AND' ];
+			foreach ( $validSkinNames as $skinName => $_ ) {
+				$options = $this->skinFactory->getSkinOptions( $skinName );
+				if ( $options['responsive'] ?? false ) {
+					$hideCond[] = [ '!==', 'skin', $skinName ];
+				}
+			}
+			if ( $hideCond === [ 'AND' ] ) {
+				$hideCond = [];
+			}
 			$defaultPreferences['skin-responsive'] = [
 				'type' => 'check',
 				'label-message' => 'prefs-skin-responsive',
 				'section' => 'rendering/skin/skin-prefs',
 				'help-message' => 'prefs-help-skin-responsive',
+				'hide-if' => $hideCond,
 			];
 		}
 
@@ -1558,16 +1568,14 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	}
 
 	/**
+	 * Gat valid skin names for the given user, which the 'useskin' query string and user
+	 * options should be taken into account.
+	 *
 	 * @param User $user
 	 * @param IContextSource $context
-	 * @return array Text/links to display as key; $skinkey as value
+	 * @return array Associative array in the format of [ 'skin name' => 'display name' ].
 	 */
-	protected function generateSkinOptions( User $user, IContextSource $context ) {
-		$ret = [];
-
-		$mptitle = Title::newMainPage();
-		$previewtext = $context->msg( 'skin-preview' )->escaped();
-
+	private function getValidSkinNames( User $user, IContextSource $context ) {
 		// Only show skins that aren't disabled
 		$validSkinNames = $this->skinFactory->getAllowedSkins();
 		$allInstalledSkins = $this->skinFactory->getInstalledSkins();
@@ -1602,6 +1610,20 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			return $this->sortSkinNames( $a, $b, $currentUserSkin, $preferredSkins );
 		} );
 
+		return $validSkinNames;
+	}
+
+	/**
+	 * @param User $user
+	 * @param IContextSource $context
+	 * @param array $validSkinNames
+	 * @return array Text/links to display as key; $skinkey as value
+	 */
+	protected function generateSkinOptions( User $user, IContextSource $context, array $validSkinNames ) {
+		$ret = [];
+
+		$mptitle = Title::newMainPage();
+		$previewtext = $context->msg( 'skin-preview' )->escaped();
 		$defaultSkin = $this->options->get( MainConfigNames::DefaultSkin );
 		$allowUserCss = $this->options->get( MainConfigNames::AllowUserCss );
 		$allowUserJs = $this->options->get( MainConfigNames::AllowUserJs );
