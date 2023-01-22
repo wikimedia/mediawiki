@@ -261,6 +261,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 		// Establish the connection
 		$this->doInitConnection();
+		$this->lastPing = microtime( true );
 	}
 
 	/**
