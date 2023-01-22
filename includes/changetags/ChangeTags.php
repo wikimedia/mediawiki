@@ -325,7 +325,6 @@ class ChangeTags {
 	 * @param RecentChange|null $rc Recent change, in case the tagging accompanies the action
 	 * (this should normally be the case)
 	 *
-	 * @throws MWException
 	 * @return bool False if no changes are made, otherwise true
 	 */
 	public static function addTags( $tags, $rc_id = null, $rev_id = null,
@@ -358,7 +357,6 @@ class ChangeTags {
 	 * the action
 	 * @param UserIdentity|null $user Tagging user, in case the tagging is subsequent to the tagged action
 	 *
-	 * @throws MWException When $rc_id, $rev_id and $log_id are all null
 	 * @return array Index 0 is an array of tags actually added, index 1 is an
 	 * array of tags actually removed, index 2 is an array of tags present on the
 	 * revision or log entry before any changes were made
@@ -383,7 +381,7 @@ class ChangeTags {
 		);
 
 		if ( !$rc_id && !$rev_id && !$log_id ) {
-			throw new MWException( 'At least one of: RCID, revision ID, and log ID MUST be ' .
+			throw new BadMethodCallException( 'At least one of: RCID, revision ID, and log ID MUST be ' .
 				'specified when adding or removing a tag from a change!' );
 		}
 
@@ -551,7 +549,6 @@ class ChangeTags {
 	 * @param int|null $rc_id
 	 * @param int|null $rev_id
 	 * @param int|null $log_id
-	 * @throws MWException When $rc_id, $rev_id and $log_id are all null
 	 * @return string[] Tag name => data. Data format is tag-specific.
 	 * @since 1.36
 	 */
@@ -559,7 +556,7 @@ class ChangeTags {
 		IDatabase $db, $rc_id = null, $rev_id = null, $log_id = null
 	) {
 		if ( !$rc_id && !$rev_id && !$log_id ) {
-			throw new MWException( 'At least one of: RCID, revision ID, and log ID MUST be ' .
+			throw new BadMethodCallException( 'At least one of: RCID, revision ID, and log ID MUST be ' .
 				'specified when loading tags from a change!' );
 		}
 
@@ -901,7 +898,6 @@ class ChangeTags {
 	 * @param string|array|false|null $filter_tag Tag(s) to select on (OR)
 	 * @param bool $exclude If true, exclude tag(s) from $filter_tag (NOR)
 	 *
-	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
 	 */
 	public static function modifyDisplayQuery( &$tables, &$fields, &$conds,
 		&$join_conds, &$options, $filter_tag = '', bool $exclude = false
@@ -930,7 +926,7 @@ class ChangeTags {
 		} elseif ( in_array( 'archive', $tables ) ) {
 			$join_cond = self::DISPLAY_TABLE_ALIAS . '.ct_rev_id=ar_rev_id';
 		} else {
-			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
+			throw new InvalidArgumentException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
 		if ( !$useTagFilter ) {
@@ -1028,7 +1024,6 @@ class ChangeTags {
 	 * @param string|array $tables Table names, see Database::select
 	 *
 	 * @return string tag summary subqeury
-	 * @throws MWException When unable to determine appropriate JOIN condition for tagging
 	 */
 	public static function makeTagSummarySubquery( $tables ) {
 		// Normalize to arrays
@@ -1044,7 +1039,7 @@ class ChangeTags {
 		} elseif ( in_array( 'archive', $tables ) ) {
 			$join_cond = 'ct_rev_id=ar_rev_id';
 		} else {
-			throw new MWException( 'Unable to determine appropriate JOIN condition for tagging.' );
+			throw new InvalidArgumentException( 'Unable to determine appropriate JOIN condition for tagging.' );
 		}
 
 		$tagTables = [ self::CHANGE_TAG, self::CHANGE_TAG_DEF ];

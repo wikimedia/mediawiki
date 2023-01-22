@@ -297,7 +297,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 				'',
 				true, // tag filtering enabled
 				false, // not avoiding reopening tables
-				[ 'exception' => MWException::class ]
+				[ 'exception' => InvalidArgumentException::class ]
 			],
 			'tag filter ignored when tag filtering is disabled' => [
 				[
