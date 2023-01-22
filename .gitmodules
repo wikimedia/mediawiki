@@ -1598,3 +1598,8 @@
 	url = https://github.com/wikimedia/mediawiki-skins-Pivot
 	branch = REL1_39
 	ignore = dirty
+[submodule "extensions/RemoveRedlinks"]
+	path = extensions/RemoveRedlinks
+	url = https://github.com/marohh/mediawikiRemoveRedlinks
+	branch = master
+	ignore = dirty
