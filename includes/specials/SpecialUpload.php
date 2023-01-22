@@ -179,13 +179,6 @@ class SpecialUpload extends SpecialPage {
 
 	/**
 	 * @param string|null $par
-	 * @throws ErrorPageError
-	 * @throws Exception
-	 * @throws FatalError
-	 * @throws MWException
-	 * @throws PermissionsError
-	 * @throws ReadOnlyError
-	 * @throws UserBlockedError
 	 */
 	public function execute( $par ) {
 		$this->useTransactionalTimeLimit();
@@ -692,7 +685,6 @@ class SpecialUpload extends SpecialPage {
 	 * Provides output to the user for a result of UploadBase::verifyUpload
 	 *
 	 * @param array $details Result of UploadBase::verifyUpload
-	 * @throws MWException
 	 */
 	protected function processVerificationError( $details ) {
 		switch ( $details['status'] ) {
@@ -761,7 +753,7 @@ class SpecialUpload extends SpecialPage {
 				$this->showUploadError( $this->msg( $error, $args )->parse() );
 				break;
 			default:
-				throw new MWException( __METHOD__ . ": Unknown value `{$details['status']}`" );
+				throw new UnexpectedValueException( __METHOD__ . ": Unknown value `{$details['status']}`" );
 		}
 	}
 

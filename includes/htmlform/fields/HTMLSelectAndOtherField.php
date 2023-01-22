@@ -33,8 +33,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		parent::__construct( $params );
 
 		if ( $this->getOptions() === null ) {
-			// Sulk
-			throw new MWException( 'HTMLSelectAndOtherField called without any options' );
+			throw new InvalidArgumentException( 'HTMLSelectAndOtherField called without any options' );
 		}
 		if ( !in_array( 'other', $this->mOptions, true ) ) {
 			// Have 'other' always as first element

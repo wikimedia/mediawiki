@@ -16,7 +16,7 @@ class HTMLAutoCompleteSelectFieldTest extends MediaWikiIntegrationTestCase {
 	 * thrown.
 	 */
 	public function testMissingAutocompletions() {
-		$this->expectException( MWException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( "called without any autocompletions" );
 
 		$htmlForm = $this->createMock( HTMLForm::class );

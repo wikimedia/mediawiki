@@ -380,11 +380,10 @@ class SpecialMediaStatistics extends QueryPage {
 	 * @param Skin $skin
 	 * @param stdClass $result Result row
 	 * @return bool|string|void
-	 * @throws MWException
 	 * @suppress PhanPluginNeverReturnMethod
 	 */
 	public function formatResult( $skin, $result ) {
-		throw new MWException( "unimplemented" );
+		throw new LogicException( "unimplemented" );
 	}
 
 	/**
