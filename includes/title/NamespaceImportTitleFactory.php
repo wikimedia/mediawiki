@@ -43,7 +43,7 @@ class NamespaceImportTitleFactory implements ImportTitleFactory {
 		int $ns
 	) {
 		if ( !$namespaceInfo->exists( $ns ) ) {
-			throw new MWException( "Namespace $ns doesn't exist on this wiki" );
+			throw new InvalidArgumentException( "Namespace $ns doesn't exist on this wiki" );
 		}
 		$this->titleFactory = $titleFactory;
 		$this->ns = $ns;

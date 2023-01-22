@@ -43,7 +43,7 @@ class SubpageImportTitleFactory implements ImportTitleFactory {
 		Title $rootPage
 	) {
 		if ( !$namespaceInfo->hasSubpages( $rootPage->getNamespace() ) ) {
-			throw new MWException( "The root page you specified, $rootPage, is in a " .
+			throw new InvalidArgumentException( "The root page you specified, $rootPage, is in a " .
 				"namespace where subpages are not allowed" );
 		}
 		$this->titleFactory = $titleFactory;

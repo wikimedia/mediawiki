@@ -21,9 +21,9 @@
 namespace MediaWiki\Maintenance;
 
 use MediaWiki\MediaWikiServices;
-use MWException;
 use ObjectCache;
 use RedisConnectionPool;
+use RuntimeException;
 
 /**
  * Manage forking inside CLI maintenance scripts.
@@ -65,11 +65,15 @@ class ForkController {
 	 */
 	public function __construct( $numProcs, $flags = 0 ) {
 		if ( !wfIsCLI() ) {
-			throw new MWException( "MediaWiki\Maintenance\ForkController cannot be used from the web." );
+			throw new RuntimeException( "MediaWiki\Maintenance\ForkController cannot be used from the web." );
 		} elseif ( !extension_loaded( 'pcntl' ) ) {
-			throw new MWException( 'MediaWiki\Maintenance\ForkController requires pcntl extension to be installed.' );
+			throw new RuntimeException(
+				'MediaWiki\Maintenance\ForkController requires pcntl extension to be installed.'
+			);
 		} elseif ( !extension_loaded( 'posix' ) ) {
-			throw new MWException( 'MediaWiki\Maintenance\ForkController requires posix extension to be installed.' );
+			throw new RuntimeException(
+				'MediaWiki\Maintenance\ForkController requires posix extension to be installed.'
+			);
 		}
 		$this->procsToStart = $numProcs;
 		$this->flags = $flags;

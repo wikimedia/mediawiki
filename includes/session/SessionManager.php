@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Session;
 
+use BadMethodCallException;
 use BagOStuff;
 use CachedBagOStuff;
 use Config;
@@ -1009,7 +1010,7 @@ class SessionManager implements SessionManagerInterface {
 	public static function resetCache() {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
 			// @codeCoverageIgnoreStart
-			throw new MWException( __METHOD__ . ' may only be called from unit tests!' );
+			throw new BadMethodCallException( __METHOD__ . ' may only be called from unit tests!' );
 			// @codeCoverageIgnoreEnd
 		}
 
@@ -1059,7 +1060,7 @@ class SessionManager implements SessionManagerInterface {
 		}
 		try {
 			$ip = $session->getRequest()->getIP();
-		} catch ( \MWException $e ) {
+		} catch ( MWException $e ) {
 			return;
 		}
 		if ( $ip === '127.0.0.1' || $proxyLookup->isConfiguredProxy( $ip ) ) {

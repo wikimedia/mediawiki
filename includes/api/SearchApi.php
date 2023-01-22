@@ -41,7 +41,7 @@ trait SearchApi {
 		// are responsible for setting them (since api modules *can* have services
 		// injected). Double check that the api module did indeed set them
 		if ( !$this->searchEngineConfig || !$this->searchEngineFactory ) {
-			throw new MWException(
+			throw new LogicException(
 				'SearchApi requires both a SearchEngineConfig and SearchEngineFactory to be set'
 			);
 		}
