@@ -294,13 +294,13 @@ class ImagePage extends Article {
 	 */
 	protected function makeMetadataTable( $metadata ) {
 		$r = $this->getContext()->msg( 'metadata-help' )->plain();
-		// Initial state is collapsed
-		// see filepage.css and mediawiki.action.view.metadata module.
+		// Initial state of collapsible rows is collapsed
+		// see mediawiki.action.view.filepage.less and mediawiki.action.view.metadata module.
 		$r .= "<table id=\"mw_metadata\" class=\"mw_metadata collapsed\">\n";
 		foreach ( $metadata as $type => $stuff ) {
 			foreach ( $stuff as $v ) {
 				$class = str_replace( ' ', '_', $v['id'] );
-				if ( $type == 'collapsed' ) {
+				if ( $type === 'collapsed' ) {
 					$class .= ' mw-metadata-collapsible';
 				}
 				$r .= Html::rawElement( 'tr',
@@ -461,7 +461,8 @@ class ImagePage extends Article {
 				$isMulti = $this->displayImg->isMultipage() && $this->displayImg->pageCount() > 1;
 				if ( $isMulti ) {
 					$out->addModules( 'mediawiki.page.image.pagination' );
-					$out->addHTML( '<table class="multipageimage"><tr><td>' );
+					/* TODO: multipageimage class is deprecated since Jan 2023 */
+					$out->addHTML( '<div class="mw-filepage-multipage multipageimage">' );
 				}
 
 				if ( $thumbnail ) {
@@ -479,6 +480,7 @@ class ImagePage extends Article {
 				}
 
 				if ( $isMulti ) {
+					$linkPrev = $linkNext = '';
 					$count = $this->displayImg->pageCount();
 					$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
@@ -486,42 +488,42 @@ class ImagePage extends Article {
 						$label = $context->msg( 'imgmultipageprev' )->text();
 						// on the client side, this link is generated in ajaxifyPageNavigation()
 						// in the mediawiki.page.image.pagination module
-						$link = $linkRenderer->makeKnownLink(
+						$linkPrev = $linkRenderer->makeKnownLink(
 							$this->getTitle(),
 							$label,
 							[],
 							[ 'page' => $page - 1 ]
 						);
-						$thumb1 = Linker::makeThumbLinkObj(
+						$thumbPrevPage = Linker::makeThumbLinkObj(
 							$this->getTitle(),
 							$this->displayImg,
-							$link,
+							$linkPrev,
 							$label,
 							'none',
 							[ 'page' => $page - 1, 'isFilePageThumb' => true ]
 						);
 					} else {
-						$thumb1 = '';
+						$thumbPrevPage = '';
 					}
 
 					if ( $page < $count ) {
 						$label = $context->msg( 'imgmultipagenext' )->text();
-						$link = $linkRenderer->makeKnownLink(
+						$linkNext = $linkRenderer->makeKnownLink(
 							$this->getTitle(),
 							$label,
 							[],
 							[ 'page' => $page + 1 ]
 						);
-						$thumb2 = Linker::makeThumbLinkObj(
+						$thumbNextPage = Linker::makeThumbLinkObj(
 							$this->getTitle(),
 							$this->displayImg,
-							$link,
+							$linkNext,
 							$label,
 							'none',
 							[ 'page' => $page + 1, 'isFilePageThumb' => true ]
 						);
 					} else {
-						$thumb2 = '';
+						$thumbNextPage = '';
 					}
 
 					$script = $mainConfig->get( MainConfigNames::Script );
@@ -538,15 +540,17 @@ class ImagePage extends Article {
 						[ 'id' => 'pageselector', 'name' => 'page' ],
 						implode( "\n", $options ) );
 
+					/* TODO: multipageimagenavbox class is deprecated since Jan 2023 */
 					$out->addHTML(
-						'</td><td><div class="multipageimagenavbox">' .
+						'<div class="mw-filepage-multipage-navigation multipageimagenavbox">' .
+						$linkPrev .
 						Xml::openElement( 'form', $formParams ) .
 						Html::hidden( 'title', $this->getTitle()->getPrefixedDBkey() ) .
 						$context->msg( 'imgmultigoto' )->rawParams( $select )->parse() .
 						$context->msg( 'word-separator' )->escaped() .
 						Xml::submitButton( $context->msg( 'imgmultigo' )->text() ) .
 						Xml::closeElement( 'form' ) .
-						"<hr />$thumb1\n$thumb2<br style=\"clear: both\" /></div></td></tr></table>"
+						"$thumbPrevPage\n$thumbNextPage\n$linkNext</div></div>"
 					);
 				}
 			} elseif ( $this->displayImg->isSafeFile() ) {

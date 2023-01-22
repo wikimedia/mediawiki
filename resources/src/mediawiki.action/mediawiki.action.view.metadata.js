@@ -9,7 +9,7 @@
 ( function () {
 	$( function () {
 		var $tables = $( '.mw_metadata' );
-		if ( !$tables.find( '.mw-metadata-collapsible, .collapsable' ).length ) {
+		if ( !$tables.find( '.mw-metadata-collapsible' ).length ) {
 			// No collapsible rows present on this page
 			return;
 		}

@@ -29,7 +29,7 @@
 		// TODO Don't fetch the entire page. Ideally we'd only fetch the content portion or the data
 		// (thumbnail urls) and update the interface manually.
 		jqXhr = $.ajax( url ).then( function ( data ) {
-			return $( data ).find( 'table.multipageimage' ).contents();
+			return $( data ).find( '.mw-filepage-multipage' ).contents();
 		} );
 
 		// Handle cache updates
@@ -56,14 +56,11 @@
 	 *   true, this function won't push a new history state, for the browser did so already).
 	 */
 	function switchPage( url, hist ) {
-		var $tr, promise;
-
 		// Start fetching data (might be cached)
-		promise = fetchPageData( url );
+		var promise = fetchPageData( url );
 
 		// Add a new spinner if one doesn't already exist and the data is not already ready
 		if ( !$spinner && promise.state() !== 'resolved' ) {
-			$tr = $multipageimage.find( 'tr' );
 			$spinner = $.createSpinner( {
 				size: 'large',
 				type: 'block'
@@ -71,8 +68,8 @@
 				// Copy the old content dimensions equal so that the current scroll position is not
 				// lost between emptying the table is and receiving the new contents.
 				.css( {
-					height: $tr.outerHeight(),
-					width: $tr.outerWidth()
+					height: $multipageimage.outerHeight(),
+					width: $multipageimage.outerWidth()
 				} );
 
 			$multipageimage.empty().append( $spinner );
@@ -98,7 +95,7 @@
 	}
 
 	function bindPageNavigation( $container ) {
-		$container.find( '.multipageimagenavbox' ).one( 'click', 'a', function ( e ) {
+		$container.find( '.mw-filepage-multipage-navigation' ).one( 'click', 'a', function ( e ) {
 			var page, url;
 
 			// Generate the same URL on client side as the one generated in ImagePage::openShowImage.
@@ -120,7 +117,7 @@
 		if ( mw.config.get( 'wgCanonicalNamespace' ) !== 'File' ) {
 			return;
 		}
-		$multipageimage = $( 'table.multipageimage' );
+		$multipageimage = $( '.mw-filepage-multipage' );
 		if ( !$multipageimage.length ) {
 			return;
 		}

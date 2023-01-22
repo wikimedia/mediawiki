@@ -1,0 +1,188 @@
+/*!
+ * File description page
+ */
+@import 'mediawiki.skin.variables.less';
+
+/* stylelint-disable selector-class-pattern */
+
+.mw-filepage-resolutioninfo {
+	font-size: smaller;
+}
+
+/*
+ * Multipage navigation
+ */
+.mw-filepage-multipage {
+	display: flex;
+	flex-direction: column;
+}
+
+.mw-filepage-multipage-navigation {
+	align-items: center;
+	display: flex;
+
+	& > * {
+		margin: 0.5em 0;
+	}
+}
+
+.client-js .mw-filepage-multipage-navigation [ type='submit' ] {
+	display: none;
+}
+
+@media ( max-width: @max-width-breakpoint-tablet ) {
+	.mw-filepage-multipage-navigation {
+		flex-wrap: wrap;
+		justify-content: space-between;
+
+		/* We need high specificity here */
+		&.mw-filepage-multipage-navigation figure,
+		&.mw-filepage-multipage-navigation .thumb {
+			display: none;
+		}
+
+		& > * {
+			flex: 1 1 auto;
+		}
+
+		& > form {
+			text-align: center;
+		}
+
+		& > :last-child {
+			text-align: end;
+		}
+	}
+}
+
+@media ( min-width: @width-breakpoint-tablet ) {
+	.mw-filepage-multipage {
+		flex-direction: row;
+	}
+
+	.mw-filepage-multipage-navigation {
+		align-items: flex-start;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin-left: 1em;
+
+		& > a {
+			display: none;
+		}
+	}
+}
+
+/*
+ * File histories
+ */
+#filehistory {
+	clear: both;
+}
+
+.filehistory {
+	th,
+	td {
+		vertical-align: top;
+	}
+
+	th {
+		text-align: left;
+	}
+
+	.mw-imagepage-filesize {
+		white-space: nowrap;
+	}
+
+	.filehistory-selected {
+		font-weight: bold;
+	}
+}
+
+/*
+ * Add a checkered background image on hover for file
+ * description pages. (T28470)
+ */
+.filehistory a img,
+#file img:hover {
+	background: url( images/checker.svg ) repeat;
+}
+
+/*
+ * filetoc
+ */
+#filetoc {
+	text-align: center;
+	border: 1px solid #a2a9b1;
+	background-color: #f8f9fa;
+	padding: 5px;
+	font-size: 95%;
+	margin: 0 0 0.5em 0;
+
+	li {
+		display: inline;
+		list-style-type: none;
+		padding-right: 2em;
+	}
+}
+
+/*
+ * Shared images hint
+ */
+#shared-image-dup,
+#shared-image-conflict {
+	font-style: italic;
+}
+
+/*
+ * Classes for Exif data display
+ */
+.mw_metadata {
+	font-size: 0.8em;
+	margin-bottom: 0.5em;
+	border: 0;
+	border-collapse: collapse;
+	width: 400px;
+
+	caption {
+		font-weight: bold;
+	}
+
+	td,
+	th {
+		border: 1px solid #a2a9b1;
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+
+	th {
+		background-color: #f8f9fa;
+		font-weight: normal;
+		text-align: center;
+	}
+
+	td {
+		background-color: #fcfcfc;
+		padding-top: 0.1em;
+		padding-bottom: 0.1em;
+	}
+
+	.metadata-langlist {
+		list-style: none;
+		padding-right: 5px;
+		padding-left: 5px;
+		margin: 0;
+	}
+}
+
+.client-js .mw_metadata.collapsed .mw-metadata-collapsible {
+	display: none;
+}
+
+/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+@supports (aspect-ratio: 16 / 9) {
+	#file img {
+		max-width: 100%;
+		height: auto;
+	}
+}
