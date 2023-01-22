@@ -1478,23 +1478,21 @@ class WANObjectCache implements
 	 *      is useful if thousands or millions of keys depend on the same entity. The entity can
 	 *      simply have its "check" key updated whenever the entity is modified.
 	 *      Default: [].
-	 *   - graceTTL: If the key is purged (by "checkKeys" or "touchedCallback") less than
-	 *      this many seconds ago, consider reusing the stale value. The odds of a refresh become
-	 *      more likely over time, becoming certain once the grace period is reached. This can
-	 *      reduce traffic spikes when millions of keys are compared to the same "check" key and
-	 *      touchCheckKey() or resetCheckKey() is called on that "check" key. This option is not
-	 *      useful for avoiding traffic spikes in the case of the key simply expiring on account
-	 *      of its TTL (use "lowTTL" instead).
+	 *   - graceTTL: If the key is stale due to a purge (by "checkKeys" or "touchedCallback")
+	 *      less than this many seconds ago, consider reusing the stale value. The odds of a
+	 *      refresh become more likely over time, becoming certain once the grace period is
+	 *      reached. This can reduce traffic spikes when millions of keys are compared to the
+	 *      same  "check" key and touchCheckKey() or resetCheckKey() is called on that "check" key.
+	 *      This option is not  useful for avoiding traffic spikes in the case of the key simply
+	 *      expiring on account of its TTL (use "lowTTL" instead).
 	 *      Default: WANObjectCache::GRACE_TTL_NONE.
-	 *   - lockTSE: Prefer the use of a mutex during value regeneration of the key if its TSE
-	 *      ("time since expiry") is less than the given number of seconds ago. The TSE of the
-	 *      key is influenced by purges (e.g. via delete(), "checkKeys", and "touchedCallback"),
-	 *      and various other options (e.g. "staleTTL"). A low enough TSE is assumed to indicate
-	 *      a high enough key access rate to justify stampede avoidance. A thread that tries and
-	 *      fails to acquire the mutex will use a stale value for the key, if there is one, and,
-	 *      if not, it will execute the callback. Note that no cache value exists after deletion
-	 *      or storage-layer expiration/eviction; to prevent stampedes during these cases, avoid
-	 *      using delete(), keep "lowTTL" enabled, and consider using "busyValue".
+	 *   - lockTSE: If the value is stale and the "time since expiry" (TSE) is less than the given
+	 *      number of seconds ago, then reuse the stale value if another such thread is already
+	 *      regenerating the value. The TSE of the key is influenced by purges (e.g. via delete(),
+	 *      "checkKeys", "touchedCallback"), and various other options (e.g. "staleTTL"). A low
+	 *      enough TSE is assumed to indicate a high enough key access rate to justify stampede
+	 *      avoidance. Note that no cache value exists after deletion, expiration, or eviction
+	 *      at the storage-layer; to prevent stampedes during these cases, use "busyValue".
 	 *      Default: WANObjectCache::TSE_NONE.
 	 *   - busyValue: Specify a placeholder value to use when no value exists and another thread
 	 *      is currently regenerating it. This assures that cache stampedes cannot happen if the
