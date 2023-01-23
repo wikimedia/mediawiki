@@ -3824,7 +3824,7 @@
 	"searchsuggest-search": "{{SITENAME}} üzerinde ara",
 	"searchsuggest-containing": "İçeren sayfaları ara",
 	"search-match-redirect-label": "Arama yaparken tam eşleşmelere doğrudan git",
-	"search-match-redirect-help": "Bu sayfa başlığı aradıklarınızla eşleştiğinde bir sayfaya yönlendirilmek için seçin",
+	"search-match-redirect-help": "Bir sayfa başlığı aradığınızla eşleştiğinde, o sayfaya yönlendirilmek için seçin",
 	"search-thumbnail-extra-namespaces-label": "Masaüstünde küçük resimleri Special:Search sayfasında göster",
 	"search-thumbnail-extra-namespaces-message": "Special:Search sayfasındaki $1 {{PLURAL:$2|ad alanı|ad alanları}} sonuçlarının küçük resimlerini görüntüler",
 	"searchlimit-label": "Her sayfada gösterilecek arama sonuçlarının sayısı:",

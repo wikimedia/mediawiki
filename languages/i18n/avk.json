@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"1233qwer1234qwer4",
 			"Axel xadolik",
 			"DannyS712",
 			"Kaganer",
@@ -1188,7 +1189,7 @@
 	"deletepage-submit": "Busulara",
 	"confirm": "Gruyé",
 	"excontent": "ruldas va « $1 »",
-	"excontentauthor": "cek tiyir : '$1' (is tanaf webesik tiyir '$2')",
+	"excontentauthor": "cek tiyir : '$1' (is tanaf webesik tiyir '[[Special:Contributions/$2|$2]]')",
 	"exbeforeblank": "Abdi tuvlardara, batu bu ruldayar va : $1",
 	"delete-confirm": "Sulara va \"$1\"",
 	"delete-legend": "Sulara",
