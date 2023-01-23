@@ -4,16 +4,16 @@ namespace MediaWiki\Tests\ResourceLoader;
 
 use ExtensionRegistry;
 use MediaWiki\ResourceLoader\OOUIImageModule;
-use Psr\Container\ContainerInterface;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use ResourceLoaderTestCase;
 use SkinFactory;
-use Wikimedia\ObjectFactory\ObjectFactory;
 
 /**
  * @group ResourceLoader
  * @covers \MediaWiki\ResourceLoader\OOUIImageModule
  */
 class OOUIImageModuleTest extends ResourceLoaderTestCase {
+	use DummyServicesTrait;
 
 	public function testNonDefaultSkin() {
 		$module = new OOUIImageModule( [
@@ -23,9 +23,7 @@ class OOUIImageModuleTest extends ResourceLoaderTestCase {
 		] );
 
 		// Pretend that 'fakemonobook' is a real skin using the Apex theme
-		$skinFactory = new SkinFactory(
-			new ObjectFactory( $this->createMock( ContainerInterface::class ) ), []
-		);
+		$skinFactory = new SkinFactory( $this->getDummyObjectFactory(), [] );
 		$skinFactory->register(
 			'fakemonobook',
 			'FakeMonoBook',

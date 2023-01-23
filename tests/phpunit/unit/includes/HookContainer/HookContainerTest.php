@@ -2,16 +2,16 @@
 
 namespace MediaWiki\HookContainer {
 
+	use MediaWiki\Tests\Unit\DummyServicesTrait;
 	use MediaWikiUnitTestCase;
-	use Psr\Container\ContainerInterface;
 	use UnexpectedValueException;
-	use Wikimedia\ObjectFactory\ObjectFactory;
 	use Wikimedia\ScopedCallback;
 
 	class HookContainerTest extends MediaWikiUnitTestCase {
+		use DummyServicesTrait;
 
 		/*
-		 * Creates a new hook container with StaticHookRegistry and mocked ObjectFactory
+		 * Creates a new hook container with StaticHookRegistry and empty ObjectFactory
 		 */
 		private function newHookContainer(
 			$oldHooks = null, $newHooks = null, $deprecatedHooksArray = []
@@ -29,19 +29,11 @@ namespace MediaWiki\HookContainer {
 				];
 				$newHooks = [ 'FooActionComplete' => [ $handler ] ];
 			}
-			$mockObjectFactory = $this->getObjectFactory();
+			// object factory with no services
+			$objectFactory = $this->getDummyObjectFactory();
 			$registry = new StaticHookRegistry( $oldHooks, $newHooks, $deprecatedHooksArray );
-			$hookContainer = new HookContainer( $registry, $mockObjectFactory );
+			$hookContainer = new HookContainer( $registry, $objectFactory );
 			return $hookContainer;
-		}
-
-		private function getObjectFactory() {
-			$mockServiceContainer = $this->createMock( ContainerInterface::class );
-			$mockServiceContainer->method( 'get' )
-				->willThrowException( new \RuntimeException );
-
-			$objectFactory = new ObjectFactory( $mockServiceContainer );
-			return $objectFactory;
 		}
 
 		/**
@@ -272,10 +264,9 @@ namespace MediaWiki\HookContainer {
 				'Y' => [ 'handler' => 'Bar' ]
 			];
 
-			$mockObjectFactory = $this->getObjectFactory();
 			$hookContainer = new HookContainer(
 				new StaticHookRegistry( $configuredHooks, $extensionHooks ),
-				$mockObjectFactory
+				$this->getDummyObjectFactory()
 			);
 
 			$hookContainer->register( 'A', 'strtoupper' );

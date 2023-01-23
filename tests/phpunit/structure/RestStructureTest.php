@@ -13,8 +13,8 @@ use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Session\Session;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentityValue;
-use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\TestingAccessWrapper;
 
@@ -27,6 +27,7 @@ use Wikimedia\TestingAccessWrapper;
  * @coversNothing
  */
 class RestStructureTest extends MediaWikiIntegrationTestCase {
+	use DummyServicesTrait;
 
 	/** @var ?Router */
 	private $router = null;
@@ -39,7 +40,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 	private function getFakeServiceContainer(): MediaWikiServices {
 		$config = new HashConfig( iterator_to_array( MainConfigSchema::listDefaultValues() ) );
 
-		$objectFactory = $this->createNoOpMock( ObjectFactory::class );
+		$objectFactory = $this->getDummyObjectFactory();
 		$hookContainer = new HookContainer(
 			new StaticHookRegistry(),
 			$objectFactory
