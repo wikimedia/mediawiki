@@ -38,15 +38,24 @@ class ParsoidCachePrewarmJob extends Job implements GenericParameterJob {
 		$this->logger = LoggerFactory::getInstance( 'ParsoidCachePrewarmJob' );
 	}
 
+	/**
+	 * @param int $revisionId
+	 * @param int $pageId
+	 * @param int $options Flags to be passed to ParsoidOutputAccess::getParserOutput
+	 *
+	 * @return JobSpecification
+	 */
 	public static function newSpec(
 		int $revisionId,
-		int $pageId
+		int $pageId,
+		int $options = 0
 	): JobSpecification {
 		return new JobSpecification(
 			'parsoidCachePrewarm',
 			[
 				'revId' => $revisionId,
-				'pageId' => $pageId
+				'pageId' => $pageId,
+				'options' => $options
 			]
 		);
 	}
@@ -84,13 +93,15 @@ class ParsoidCachePrewarmJob extends Job implements GenericParameterJob {
 
 		$this->logger->debug( __METHOD__ . ': generating Parsoid output' );
 
-		// getParserOutput() will write to ParserCache
+		// We may get the OPT_FORCE_PARSE flag this way
+		$options = $this->params['options'] ?? 0;
+
+		// getParserOutput() will write to ParserCache.
 		$status = $this->parsoidOutputAccess->getParserOutput(
 			$page,
 			$parserOpts,
 			$rev,
-			ParsoidOutputAccess::OPT_FORCE_PARSE
-			| ParsoidOutputAccess::OPT_LOG_LINT_DATA
+			$options | ParsoidOutputAccess::OPT_LOG_LINT_DATA
 		);
 
 		if ( !$status->isOK() ) {
