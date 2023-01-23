@@ -103,9 +103,6 @@ abstract class LBFactory implements ILBFactory {
 	/** @var string|null */
 	private $defaultGroup = null;
 
-	/** @var int|null */
-	protected $maxLag;
-
 	/** @var DatabaseDomain[] Map of (domain ID => domain instance) */
 	private $nonLocalDomainCache = [];
 
@@ -153,7 +150,6 @@ abstract class LBFactory implements ILBFactory {
 			? DatabaseDomain::newFromId( $conf['localDomain'] )
 			: DatabaseDomain::newUnspecified();
 
-		$this->maxLag = $conf['maxLag'] ?? null;
 		if ( isset( $conf['readOnlyReason'] ) && is_string( $conf['readOnlyReason'] ) ) {
 			$this->readOnlyReason = $conf['readOnlyReason'];
 		}
@@ -727,7 +723,6 @@ abstract class LBFactory implements ILBFactory {
 			'statsdDataFactory' => $this->statsd,
 			'cliMode' => $this->cliMode,
 			'agent' => $this->agent,
-			'maxLag' => $this->maxLag,
 			'defaultGroup' => $this->defaultGroup,
 			'chronologyCallback' => function ( ILoadBalancer $lb ) {
 				// Defer ChronologyProtector construction in case setRequestInfo() ends up
