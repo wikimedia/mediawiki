@@ -508,7 +508,8 @@ class SpecialUndelete extends SpecialPage {
 				Html::rawElement(
 					'li',
 					[ 'class' => 'undeleteResult' ],
-					"{$item} ({$revs})"
+					$item . $this->msg( 'word-separator' )->escaped() .
+						$this->msg( 'parentheses' )->rawParams( $revs )->escaped()
 				)
 			);
 		}
@@ -1286,11 +1287,10 @@ class SpecialUndelete extends SpecialPage {
 
 		if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
 			// TODO The condition cannot be true when the function is called
-			// TODO use Html::element and let it handle escaping
-			return Html::rawElement(
+			return Html::element(
 				'span',
 				[ 'class' => 'history-deleted' ],
-				htmlspecialchars( $time )
+				$time
 			);
 		}
 
@@ -1327,11 +1327,10 @@ class SpecialUndelete extends SpecialPage {
 		$time = $this->getLanguage()->userTimeAndDate( $ts, $user );
 
 		if ( !$file->userCan( File::DELETED_FILE, $user ) ) {
-			// TODO use Html::element and let it handle escaping
-			return Html::rawElement(
+			return Html::element(
 				'span',
 				[ 'class' => 'history-deleted' ],
-				htmlspecialchars( $time )
+				$time
 			);
 		}
 
