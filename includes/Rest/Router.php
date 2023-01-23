@@ -405,18 +405,19 @@ class Router {
 			}
 		}
 
-		// Use rawurldecode so a "+" in path params is not interpreted as a space character.
-		$request->setPathParams( array_map( 'rawurldecode', $match['params'] ) );
-		$handler = $this->createHandler( $request, $match['userData'] );
-
-		// Replace any characters that may have a special meaning in the metrics DB.
-		$pathForMetrics = $handler->getPath();
-		$pathForMetrics = strtr( $pathForMetrics, '{}:', '-' );
-		$pathForMetrics = strtr( $pathForMetrics, '/.', '_' );
-
-		$statTime = microtime( true );
-
+		$handler = null;
 		try {
+			// Use rawurldecode so a "+" in path params is not interpreted as a space character.
+			$request->setPathParams( array_map( 'rawurldecode', $match['params'] ) );
+			$handler = $this->createHandler( $request, $match['userData'] );
+
+			// Replace any characters that may have a special meaning in the metrics DB.
+			$pathForMetrics = $handler->getPath();
+			$pathForMetrics = strtr( $pathForMetrics, '{}:', '-' );
+			$pathForMetrics = strtr( $pathForMetrics, '/.', '_' );
+
+			$statTime = microtime( true );
+
 			$response = $this->executeHandler( $handler );
 		} catch ( HttpException $e ) {
 			$response = $this->responseFactory->createFromException( $e );

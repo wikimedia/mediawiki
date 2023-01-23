@@ -24,10 +24,10 @@ class PHPErrorReporter implements ErrorReporter {
 
 	/**
 	 * @param Throwable $error
-	 * @param Handler $handler
+	 * @param Handler|null $handler
 	 * @param RequestInterface $request
 	 */
-	public function reportError( Throwable $error, Handler $handler, RequestInterface $request ) {
+	public function reportError( Throwable $error, ?Handler $handler, RequestInterface $request ) {
 		$firstLine = preg_split( '#$#m', (string)$error, 0 )[0];
 		trigger_error( $firstLine, $this->level );
 	}

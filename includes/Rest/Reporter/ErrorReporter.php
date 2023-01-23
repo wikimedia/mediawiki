@@ -16,9 +16,9 @@ interface ErrorReporter {
 
 	/**
 	 * @param Throwable $error
-	 * @param Handler $handler
+	 * @param Handler|null $handler
 	 * @param RequestInterface $request
 	 */
-	public function reportError( Throwable $error, Handler $handler, RequestInterface $request );
+	public function reportError( Throwable $error, ?Handler $handler, RequestInterface $request );
 
 }
