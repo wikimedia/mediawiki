@@ -3650,6 +3650,8 @@ class OutputPage extends ContextSource {
 		];
 		if ( $user->isRegistered() ) {
 			$vars['wgUserId'] = $user->getId();
+			$vars['wgUserIsNamed'] = $user->isNamed();
+			$vars['wgUserIsTemp'] = $user->isTemp();
 			$vars['wgUserEditCount'] = $user->getEditCount();
 			$userReg = $user->getRegistration();
 			$vars['wgUserRegistration'] = $userReg ? (int)wfTimestamp( TS_UNIX, $userReg ) * 1000 : null;
