@@ -734,6 +734,7 @@
 	"noarticletext": "Der er i øjeblikket ingen tekst på denne side.\nDu kan [[Special:Search/{{PAGENAME}}|søge efter sidenavnet]] på andre sider,\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søge i relaterede logger]\neller [{{fullurl:{{FULLPAGENAME}}|action=edit}} oprette denne side]</span>.",
 	"noarticletext-nopermission": "Der er i øjeblikket ingen tekst på denne side.\nDu kan [[Special:Search/{{PAGENAME}}|søge efter dette sidenavn]] på andre sider, eller <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} søge i beslægtede logger]</span>, men du har ikke tilladelse til at oprette denne side.",
 	"missing-revision": "Revision #$1 af siden med navnet \"{{FULLPAGENAME}}\" eksisterer ikke.\n\nDette skyldes normalt at et forældet historik-link er fulgt til en side der er slettet.\nDetaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].",
+	"missing-revision-content": "Indholdet af revision # $1 på siden med navnet \" $2 \" kunne ikke indlæses.",
 	"userpage-userdoesnotexist": "Brugerkontoen \"$1\" findes ikke. Overvej om du ønsker at oprette eller redigere denne side.",
 	"userpage-userdoesnotexist-view": "Brugerkontoen \"$1\" er ikke oprettet.",
 	"blocked-notice-logextract": "Denne bruger er i øjeblikket blokeret.\nLoggen over den seneste blokering ses nedenfor:",

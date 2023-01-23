@@ -806,6 +806,7 @@
 	"movethispage": "Aweg þisne tramet",
 	"pager-newer-n": "{{PLURAL:$1|niwre 1|niwran $1}}",
 	"pager-older-n": "{{PLURAL:$1|yldre 1|yldran $1}}",
+	"apisandbox": "API feldes afandunga",
 	"booksources": "Bocfruman",
 	"booksources-search-legend": "Sec bocfruman",
 	"booksources-search": "Sec",

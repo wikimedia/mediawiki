@@ -61,7 +61,8 @@
 			"Blua lago",
 			"1233qwer1234qwer4",
 			"Mmarci72",
-			"NB"
+			"NB",
+			"Eukarióta"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -3569,7 +3570,7 @@
 	"logentry-newusers-newusers": "$1 felhasználói fiók {{GENDER:$2|létrehozva}}",
 	"logentry-newusers-create": "$1 felhasználói fiók létrehozva",
 	"logentry-newusers-create2": "$1 létrehozta $3 felhasználói fiókját",
-	"logentry-newusers-byemail": "Szerkesztői lap $3 néven létrehozva $1 által, jelszó kiküldve emailben.",
+	"logentry-newusers-byemail": "Szerkesztői fiók $3 néven létrehozva $1 által, jelszó kiküldve emailben.",
 	"logentry-newusers-autocreate": "$1 felhasználói fiók automatikusan létrehozva",
 	"logentry-protect-move_prot": "$1 {{GENDER:$2|áthelyezte}} a védelmi beállításokat a(z) $4 címről a(z) $3 címre",
 	"logentry-protect-unprotect": "$1 {{GENDER:$2|eltávolította}} a védelmet a(z) $3 lapról",
