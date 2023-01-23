@@ -448,7 +448,7 @@ class UserrightsPage extends SpecialPage {
 		if ( $add ) {
 			foreach ( $add as $index => $group ) {
 				$expiry = $groupExpiries[$group] ?? null;
-				if ( !$userGroupManager->addUserToGroup( $user, $group, $expiry ) ) {
+				if ( !$userGroupManager->addUserToGroup( $user, $group, $expiry, true ) ) {
 					unset( $add[$index] );
 				}
 			}
