@@ -1052,6 +1052,7 @@
 	"lineno": "Zeile $1:",
 	"compareselectedversions": "Gewählte Versionen vergleichen",
 	"showhideselectedversions": "Sichtbarkeit gewählter Versionen ändern",
+	"showhideselectedfileversions": "Sichtbarkeit gewählter Dateiversionen ändern",
 	"editundo": "rückgängig machen",
 	"diff-empty": "(kein Unterschied)",
 	"diff-multi-sameuser": "({{PLURAL:$1|Eine dazwischenliegende Version desselben Benutzers wird|$1 dazwischenliegende Versionen desselben Benutzers werden}} nicht angezeigt)",

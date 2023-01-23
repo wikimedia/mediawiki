@@ -1136,6 +1136,7 @@
 	"lineno": "Ligne $1 :",
 	"compareselectedversions": "Comparer les versions sélectionnées",
 	"showhideselectedversions": "Changer la visibilité des versions sélectionnées",
+	"showhideselectedfileversions": "Changer la visibilité des versions sélectionnées",
 	"editundo": "annuler",
 	"diff-empty": "(Aucune différence)",
 	"diff-multi-sameuser": "({{PLURAL:$1|Une|$1}} version{{PLURAL:$1||s}} intermédiaire{{PLURAL:$1||s}} par le même utilisateur non affichée{{PLURAL:$1||s}})",

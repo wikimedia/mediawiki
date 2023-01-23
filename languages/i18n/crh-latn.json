@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"1233qwer1234qwer4",
 			"AlefZet",
 			"Amire80",
 			"DannyS712",
@@ -1178,7 +1179,7 @@
 	"deletepage-submit": "Saifeni yoq et",
 	"confirm": "Tasdıqla",
 	"excontent": "eski metin: '$1'",
-	"excontentauthor": "eski metin: '$1' ('$2' isse qoşqan tek bir qullanıcı)",
+	"excontentauthor": "eski metin: '$1' ('[[Special:Contributions/$2|$2]]' isse qoşqan tek bir qullanıcı)",
 	"exbeforeblank": "Yoq etilmegen evelki metin: '$1'",
 	"delete-confirm": "\"$1\" saifesini yoq etmektesiñiz",
 	"delete-legend": "Yoq etüv",

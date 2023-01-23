@@ -814,6 +814,7 @@
 	"diff-paragraph-moved-toold": "Параграф кхечухьа йаьккхина. Цуьнга хьажа тӀетаӀае.",
 	"difference-missing-revision": "{{PLURAL:$2|Цакарий}} {{PLURAL:$2|$2 верси}} ($1) дустарна.\n\nИштта хуьлу хьажорг шира хилча, дӀайаьккхина йолу.\nМадарра хила мега [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} дӀадаьхнарш долу тéптар] чохь.",
 	"searchresults": "Карийнарш",
+	"search-filter-title-prefix": "«$1» йолалуш йолу агӀонашкахь лаха",
 	"search-filter-title-prefix-reset": "Лаха йерриге агӀонаш",
 	"searchresults-title": "Лахар «$1»",
 	"titlematches": "АгӀонийн цӀерш цхьаьнанисялар",

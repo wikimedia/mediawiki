@@ -1025,6 +1025,7 @@
 	"lineno": "Linha $1:",
 	"compareselectedversions": "Comparar as versões selecionadas",
 	"showhideselectedversions": "Mostrar/ocultar versões selecionadas",
+	"showhideselectedfileversions": "Alterar a visibilidade das versões do ficheiro selecionadas",
 	"editundo": "desfazer",
 	"diff-empty": "(Sem diferenças)",
 	"diff-multi-sameuser": "(Há {{PLURAL:$1|uma edição intermédia do mesmo utilizador que não está a ser apresentada|$1 edições intermédias do mesmo utilizador que não estão a ser apresentadas}})",

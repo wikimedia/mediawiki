@@ -979,6 +979,7 @@
 	"apihelp-query+languageinfo-paramvalue-prop-dir": "语言的书写方向（<code>ltr</code>或<code>rtl</code>）。",
 	"apihelp-query+languageinfo-paramvalue-prop-autonym": "语言的自称，即在该语言中的名称。",
 	"apihelp-query+languageinfo-paramvalue-prop-name": "<var>uselang</var>参数指定语言中的语言名称，必要时应用语言回退。",
+	"apihelp-query+languageinfo-paramvalue-prop-variantnames": "用于语言转换链接的语言变体的简短名称。",
 	"apihelp-query+languageinfo-paramvalue-prop-fallbacks": "为此语言配置的后备语言的语言代码。 不包括对 'en' 的隐式最终回退（但某些语言可能会明确回退到 'en'）。",
 	"apihelp-query+languageinfo-paramvalue-prop-variants": "此语言所支持的变体的语言代码。",
 	"apihelp-query+languageinfo-param-code": "应返回的语言的语言代码，或所有语言<code>*</code>。",

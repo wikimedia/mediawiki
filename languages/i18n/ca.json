@@ -2854,6 +2854,8 @@
 	"movesubpagetalktext": "La pàgina de discussió corresponent té $1 {{PLURAL:$1|subpàgina mostrada|subpàgines mostrades}} a continuació.",
 	"movenosubpage": "Aquesta pàgina no té subpàgines.",
 	"movereason": "Motiu:",
+	"moveotherreason": "Altra raó/raó addicional:",
+	"movereasonotherlist": "Una altra raó",
 	"revertmove": "reverteix",
 	"delete_and_move_text": "La pàgina de destinació, «[[:$1]]», ja existeix.\nVoleu eliminar-la per a fer lloc al trasllat?",
 	"delete_redirect_and_move_text": "La pàgina de destinació «[[:$1]]» ja existeix com a redirecció.\nVoleu suprimir-la i deixar lloc per al reanomenament?",

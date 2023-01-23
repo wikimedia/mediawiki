@@ -1069,6 +1069,7 @@
 	"search-relatedarticle": "관련",
 	"search-invalid-sort-order": "$1의 정렬 순서를 인식하지 못했습니다. 기본 정렬이 적용됩니다. 유효한 정렬 순서는 다음과 같습니다: $2",
 	"search-unknown-profile": "$1의 검색 프로파일을 인식하지 못했습니다. 기본 검색 프로파일이 적용됩니다.",
+	"search-thumbnail-alt": "$1의 섬네일",
 	"searchrelated": "관련",
 	"searchall": "모두",
 	"showingresults": "'''$2'''번 부터의 {{PLURAL:$1|결과 '''1'''개|결과 '''$1'''개}}입니다.",
