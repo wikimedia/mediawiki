@@ -8,6 +8,7 @@
     "extensions/AJAXPoll",
     "extensions/BlogPage",
     "extensions/CreateWiki",
+    "extensions/MirahezeMagic",
     "extensions/HighlightLinksInCategory",
     "extensions/SimpleTooltip",
     "extensions/Comments",
@@ -85,7 +86,8 @@
     "extensions/Share",
     "extensions/WikibaseEdtf",
     "extensions/FlexDiagrams",
-    "extensions/SemanticFormsSelect"
+    "extensions/SemanticFormsSelect",
+    "skins/Pivot"
   ],
   "stable": [
     "extensions/SnapProjectEmbed",
