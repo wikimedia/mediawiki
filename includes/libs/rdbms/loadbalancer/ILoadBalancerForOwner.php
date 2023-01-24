@@ -44,13 +44,11 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	 *     argument, with the following additional optional fields:
 	 *      - type: the DB type (sqlite, mysql, postgres,...)
 	 *      - groupLoads: map of (group => weight for this server) [optional]
-	 *      - max lag: per-server override of the "maxLag" option below [optional]
+	 *      - max lag: per-server override of the "max lag" [optional]
 	 *      - is static: whether the dataset is static *and* this server has a copy [optional]
 	 *  - localDomain: A DatabaseDomain or domain ID string
 	 *  - loadMonitor : LoadMonitor::__construct() parameters with "class" field [optional]
 	 *  - readOnlyReason : Reason the primary server is read-only if so [optional]
-	 *  - waitTimeout : Maximum time to wait for replicas for consistency [optional]
-	 *  - maxLag: Try to avoid replica servers with lag above this many seconds [optional]
 	 *  - srvCache : BagOStuff object for server cache [optional]
 	 *  - wanCache : WANObjectCache object [optional]
 	 *  - databaseFactory: DatabaseFactory object [optional]
