@@ -3661,6 +3661,7 @@
 	"pagedata-not-acceptable": "შესაბამისი ფორმატი ვერ მოიძებნა. მხარდაჭერილი MIME ტიპები: $1",
 	"pagedata-bad-title": "არასწორი სათაური: \"$1\".",
 	"passwordpolicies": "პაროლების პოლიტიკა",
+	"userlogout-continue": "გინდა გახვიდე?",
 	"paramvalidator-help-type-user-subtype-name": "მომხმარებლის სახელი",
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"skin-view-create-local": "ლოკალური აღწერის დამატება",
