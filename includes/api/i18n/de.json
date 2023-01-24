@@ -1190,6 +1190,7 @@
 	"api-help-param-templated-var-first": "<var>&#x7B;$1&#x7D;</var> im Parameternamen sollte mit Werten von <var>$2</var> ersetzt werden",
 	"api-help-param-templated-var": "<var>&#x7B;$1&#x7D;</var> mit Werten von <var>$2</var>",
 	"api-help-datatypes-header": "Datentypen",
+	"api-help-datatype-expiry": "Ablaufwerte können relativ (z. B. <kbd>5 months</kbd> oder <kbd>2 weeks</kbd>) oder absolut (z. B. <kbd>2014-09-18T12:34:56Z</kbd>) sein. Verwende für kein Ablaufdatum <kbd>infinite</kbd>, <kbd>indefinity</kbd>, <kbd>infinity</kbd> oder <kbd>never</kbd>.",
 	"api-help-templatedparams-header": "Vorlagenparameter",
 	"api-help-param-type-limit": "Typ: Ganzzahl oder <kbd>max</kbd>",
 	"api-help-param-type-timestamp": "Typ: {{PLURAL:$1|1=Zeitstempel|2=Liste von Zeitstempeln}} ([[Special:ApiHelp/main#main/datatype/timestamp|erlaubte Formate]])",

@@ -876,7 +876,7 @@
 	"revdelete-failure": "'''Vidljivost inačice nije mogla biti ažurirana:'''\n$1",
 	"logdelete-success": "Vidljivost uređivanja postavljena.",
 	"logdelete-failure": "'''Vidljivost evidencije ne može biti postavljena:'''\n$1",
-	"revdel-restore": "promijeni dostupnost",
+	"revdel-restore": "promijeni vidljivost",
 	"pagehist": "stare izmjene",
 	"deletedhist": "Obrisana povijest",
 	"revdelete-hide-current": "Pogreška u skrivanju stavke datirane $2, $1: ovo je najnovija inačica i ne može biti skrivena.",

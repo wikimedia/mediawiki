@@ -327,7 +327,7 @@
 	"nstab-help": "דף עזרה",
 	"nstab-category": "קטגוריה",
 	"mainpage-nstab": "עמוד ראשי",
-	"nosuchaction": "אין פעולה כזו",
+	"nosuchaction": "אין פעולה כזאת",
 	"nosuchactiontext": "הפעולה שצוינה בכתובת ה־URL אינה תקינה.\nייתכן שטעית בהקלדת הכתובת, או שהשתמשת בקישור לא נכון.\nייתכן גם שהבעיה נוצרה כתוצאה מבאג בתוכנה המשמשת את {{SITENAME}}.",
 	"nosuchspecialpage": "אין דף מיוחד בשם זה",
 	"nospecialpagetext": "<strong>ביקשת דף מיוחד שאינו קיים.</strong>\n\nרשימה של הדפים המיוחדים הקיימים ניתן למצוא בדף [[Special:SpecialPages|{{int:specialpages}}]].",

@@ -5,7 +5,8 @@
 			"Desiphral",
 			"לערי ריינהארט",
 			"ⓝⓘⓙⓦⓜ",
-			"아라"
+			"아라",
+			"1233qwer1234qwer4"
 		]
 	},
 	"underline-always": "Savaxt",
@@ -260,7 +261,7 @@
 	"deletepage-submit": "Khos i patrin",
 	"confirm": "Ja",
 	"excontent": "o ander sas: '$1'",
-	"excontentauthor": "o ander sas: '$1' (thai o korkoro butyarno sas '$2')",
+	"excontentauthor": "o ander sas: '$1' (thai o korkoro butyarno sas '[[Special:Contributions/$2|$2]]')",
 	"historywarning": "Dikh! La patrya so kames to khoses la si la puranipen:",
 	"actioncomplete": "Agorisardi buti",
 	"deletedtext": "\"$1\" sas khosli.\nDikh ando $2 ek patrinipen le palutne butyange khosle.",

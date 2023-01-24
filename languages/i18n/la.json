@@ -35,7 +35,8 @@
 			"Xð",
 			"Žekřil71pl",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Adumbrativus"
 		]
 	},
 	"tog-underline": "Versores linea denotandi:",
@@ -307,6 +308,7 @@
 	"badtitle": "Titulus malus",
 	"badtitletext": "Nomen paginae quaestae fuit invalidum, vacuum, aut praeverbium interlingualem vel intervicialem habuit. Fortasse insunt una aut plus litterarum quae in titulis non possunt inscribier.",
 	"viewsource": "Fontem inspicere",
+	"skin-action-viewsource": "Fontem inspicere",
 	"viewsource-title": "Fontem paginae $1 inspicere",
 	"actionthrottled": "Actio strangulata",
 	"protectedpagetext": "Huic paginae protectio data est, ne redigatur neu aliter tractetur.",
