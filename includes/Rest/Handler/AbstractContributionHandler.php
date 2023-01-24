@@ -49,7 +49,7 @@ abstract class AbstractContributionHandler extends Handler {
 	}
 
 	/**
-	 * Returns the user who's contributions we are requesting.
+	 * Returns the user whose contributions we are requesting.
 	 * Either me (requesting user) or another user.
 	 *
 	 * @return UserIdentity

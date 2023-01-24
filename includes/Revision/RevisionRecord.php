@@ -189,7 +189,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @param string $role The role name of the desired slot
 	 * @param int $audience
-	 * @param Authority|null $performer user on who's behalf to check
+	 * @param Authority|null $performer user on whose behalf to check
 	 *
 	 * @throws RevisionAccessException if the slot does not exist or slot data
 	 *        could not be lazy-loaded.
@@ -403,7 +403,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
 	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *   RevisionRecord::RAW              get the ID regardless of permissions
-	 * @param Authority|null $performer user on who's behalf to check
+	 * @param Authority|null $performer user on whose behalf to check
 	 * @return UserIdentity|null
 	 */
 	public function getUser( $audience = self::FOR_PUBLIC, Authority $performer = null ) {
@@ -426,7 +426,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
 	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *   RevisionRecord::RAW              get the text regardless of permissions
-	 * @param Authority|null $performer user on who's behalf to check
+	 * @param Authority|null $performer user on whose behalf to check
 	 *
 	 * @return CommentStoreComment|null
 	 */
@@ -492,7 +492,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *        RevisionRecord::FOR_PUBLIC       to be displayed to all users
 	 *        RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *        RevisionRecord::RAW              get the text regardless of permissions
-	 * @param Authority|null $performer user on who's behalf to check
+	 * @param Authority|null $performer user on whose behalf to check
 	 *
 	 * @return bool
 	 */
@@ -523,7 +523,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @param int $field One of self::DELETED_TEXT,
 	 *                              self::DELETED_COMMENT,
 	 *                              self::DELETED_USER
-	 * @param Authority $performer user on who's behalf to check
+	 * @param Authority $performer user on whose behalf to check
 	 * @return bool
 	 */
 	public function userCan( $field, Authority $performer ) {
@@ -541,7 +541,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @param int $field One of self::DELETED_TEXT = File::DELETED_FILE,
 	 *                               self::DELETED_COMMENT = File::DELETED_COMMENT,
 	 *                               self::DELETED_USER = File::DELETED_USER
-	 * @param Authority $performer user on who's behalf to check
+	 * @param Authority $performer user on whose behalf to check
 	 * @param PageIdentity|null $page A PageIdentity object to check for per-page restrictions on,
 	 *                          instead of just plain user rights
 	 * @return bool
