@@ -81,14 +81,19 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 			'format' => $format,
 			'path' => $path,
 		] );
+		$headerLocation = $response->getHeaderLine( 'location' );
 
 		$this->assertEquals( $expectedStatus, $response->getStatusCode() );
 		if ( $hasBodyRedirectTarget && $expectedStatus === 200 ) {
 			$body = json_decode( $response->getBody()->getContents() );
 			$this->assertStringContainsString( $targetPageTitle, $body->redirect_target );
+			$this->assertUrlQueryParameters( $body->redirect_target, $queryParams );
 		}
 		if ( $expectedStatus !== 200 ) {
-			$this->assertStringContainsString( $targetPageTitle, $response->getHeaderLine( 'location' ) );
+			$this->assertStringContainsString( $targetPageTitle, $headerLocation );
+			if ( $headerLocation ) {
+				$this->assertUrlQueryParameters( $headerLocation, $queryParams );
+			}
 		}
 	}
 
@@ -118,6 +123,14 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 		yield [
 			'html',
 			'/page/{title}/html',
+			[ 'flavor' => 'edit', 'dummy' => 'test' ],
+			307,
+			false
+		];
+
+		yield [
+			'html',
+			'/page/{title}/html',
 			[ 'redirect' => 'no' ],
 			200,
 			false
@@ -133,7 +146,7 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 		yield [
 			'with_html',
 			'/page/{title}/with_html',
-			[ 'redirect' => 'no' ],
+			[ 'flavor' => 'edit', 'dummy' => 'test', 'redirect' => 'no' ],
 			200
 		];
 	}
@@ -141,7 +154,7 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider permanentRedirectProvider
 	 */
-	public function testPermanentRedirect( $format, $path, $extraPathParams = [] ) {
+	public function testPermanentRedirect( $format, $path, $extraPathParams = [], $queryParams = [] ) {
 		$this->markTestSkippedIfExtensionNotLoaded( 'Parsoid' );
 		$page = $this->getExistingTestPage( 'SourceEndpointTestPage with spaces' );
 		$this->assertTrue(
@@ -151,7 +164,10 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$pathParams = [ 'title' => $page->getTitle()->getPrefixedText() ] + $extraPathParams;
 		$request = new RequestData(
-			[ 'pathParams' => $pathParams ]
+			[
+				'pathParams' => $pathParams,
+				'queryParams' => $queryParams
+			]
 		);
 
 		$handler = $this->handlers[$format];
@@ -159,18 +175,38 @@ class PageRedirectHandlerTest extends MediaWikiIntegrationTestCase {
 			'format' => $format,
 			'path' => $path
 		] );
-
+		$headerLocation = $response->getHeaderLine( 'location' );
 		$this->assertEquals( 301, $response->getStatusCode() );
-		$this->assertStringContainsString( $page->getTitle()->getPrefixedDBkey(), $response->getHeaderLine( 'location' ) );
+		$this->assertStringContainsString( $page->getTitle()->getPrefixedDBkey(), $headerLocation );
+		$this->assertUrlQueryParameters( $headerLocation, $queryParams );
 	}
 
 	public function permanentRedirectProvider() {
-		yield [ 'source', '/page/{title}' ];
+		yield [ 'source', '/page/{title}', [], [ 'flavor' => 'edit', 'dummy' => 'test' ] ];
 		yield [ 'bare', '/page/{title}/bare' ];
 		yield [ 'html', '/page/{title}/html' ];
 		yield [ 'with_html', '/page/{title}/with_html' ];
 		yield [ 'history', '/page/{title}/history' ];
 		yield [ 'history_count', '/page/{title}/history/counts/{type}', [ 'type' => 'edits' ] ];
 		yield [ 'links_language', '/page/{title}/links/language' ];
+	}
+
+	/**
+	 * @param string $url
+	 * @param array $queryParams
+	 * @return void
+	 */
+	private function assertUrlQueryParameters( string $url, array $queryParams ): void {
+		$parsedUrl = $this->getServiceContainer()->getUrlUtils()->parse( $url );
+		$urlParameters = [];
+
+		if ( is_array( $parsedUrl ) ) {
+			if ( array_key_exists( 'query', $parsedUrl ) ) {
+				$urlParameters = wfCgiToArray(
+					$parsedUrl['query']
+				);
+			}
+		}
+		$this->assertArrayEquals( $queryParams, $urlParameters );
 	}
 }
