@@ -7,8 +7,6 @@ use Article;
 use Config;
 use CreditsAction;
 use Html;
-use HtmlArmor;
-use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Title;
@@ -131,45 +129,8 @@ class SkinComponentFooter implements SkinComponent {
 	 * @return string
 	 */
 	private function getCopyright() {
-		$skinContext = $this->skinContext;
-		$out = $skinContext->getOutput();
-		$title = $out->getTitle();
-		$config = $skinContext->getConfig();
-		$localizer = $skinContext->getMessageLocalizer();
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		if ( !$out->isRevisionCurrent()
-			&& !$localizer->msg( 'history_copyright' )->inContentLanguage()->isDisabled()
-		) {
-			$type = 'history';
-		} else {
-				$type = 'normal';
-		}
-
-		if ( $type == 'history' ) {
-			$msg = 'history_copyright';
-		} else {
-			$msg = 'copyright';
-		}
-
-		if ( $config->get( MainConfigNames::RightsPage ) ) {
-			$title = Title::newFromText( $config->get( MainConfigNames::RightsPage ) );
-			$link = $linkRenderer->makeKnownLink( $title,
-					new HtmlArmor( $config->get( MainConfigNames::RightsText ) ?: $title->getText() )
-				);
-		} elseif ( $config->get( MainConfigNames::RightsUrl ) ) {
-			$link = Linker::makeExternalLink( $config->get( MainConfigNames::RightsUrl ),
-					$config->get( MainConfigNames::RightsText ) );
-		} elseif ( $config->get( MainConfigNames::RightsText ) ) {
-			$link = $config->get( MainConfigNames::RightsText );
-		} else {
-			# Give up now
-			return '';
-		}
-
-		// Allow for site and per-namespace customization of copyright notice.
-		$skinContext->runHook( 'onSkinCopyrightFooter', [ $title, $type, &$msg, &$link ] );
-
-		return $localizer->msg( $msg )->rawParams( $link )->text();
+		$copyright = new SkinComponentCopyright( $this->skinContext );
+		return $copyright->getTemplateData()[ 'html' ];
 	}
 
 	/**
@@ -394,14 +355,12 @@ class SkinComponentFooter implements SkinComponent {
 	 */
 	private function lastModified() {
 		$skinContext = $this->skinContext;
-		$localizer = $skinContext->getMessageLocalizer();
-		$user = $skinContext->getUser();
 		$out = $skinContext->getOutput();
-		$language = $skinContext->getLanguage();
 		$timestamp = $out->getRevisionTimestamp();
 
 		// No cached timestamp, load it from the database
 		// TODO: This code shouldn't be necessary, revision ID should always be available
+		// Move this logic to OutputPage::getRevisionTimestamp if needed.
 		if ( $timestamp === null ) {
 			$revId = $out->getRevisionId();
 			if ( $revId !== null ) {
@@ -409,20 +368,11 @@ class SkinComponentFooter implements SkinComponent {
 			}
 		}
 
-		if ( $timestamp ) {
-			$d = $language->userDate( $timestamp, $user );
-			$t = $language->userTime( $timestamp, $user );
-			$s = ' ' . $localizer->msg( 'lastmodifiedat', $d, $t )->parse();
-		} else {
-			$s = '';
-		}
+		$lastModified = new SkinComponentLastModified(
+			$skinContext,
+			$timestamp
+		);
 
-		if ( MediaWikiServices::getInstance()->getDBLoadBalancer()->getLaggedReplicaMode() ) {
-			$s .= ' <strong>' .
-				$localizer->msg( 'laggedreplicamode' )->parse() .
-				'</strong>';
-		}
-
-		return $s;
+		return $lastModified->getTemplateData()['text'];
 	}
 }
