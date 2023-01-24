@@ -2734,7 +2734,8 @@ class Parser {
 			# LinkHolderArray::doVariants() to allow batching the existence checks necessary
 			# for linking to a different variant.
 			if ( $ns !== NS_SPECIAL && $nt->equals( $this->getTitle() ) ) {
-				$s .= $prefix . Linker::makeSelfLinkObj( $nt, $text, '', $trail, '', $nt->getFragment() );
+				$s .= $prefix . Linker::makeSelfLinkObj( $nt, $text, '', $trail, '',
+					Sanitizer::escapeIdForLink( $nt->getFragment() ) );
 				continue;
 			}
 

@@ -181,7 +181,8 @@ class Linker {
 	 * @param string $query
 	 * @param string $trail
 	 * @param string $prefix
-	 * @param string $hash hash fragment since 1.40.
+	 * @param string $hash hash fragment since 1.40. Should be properly escaped using
+	 *   Sanitizer::escapeIdForLink before being passed to this function.
 	 *
 	 * @return string
 	 */
