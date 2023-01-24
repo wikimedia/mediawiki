@@ -192,46 +192,47 @@ class UserTimeCorrection {
 				$this->offset = (int)( $data[1] ?? 0 );
 				// If this is ZoneInfo, then we didn't recognize the TimeZone
 				$this->valid = isset( $data[1] ) && $data[0] === self::OFFSET;
-				return;
+				break;
 			case self::SYSTEM:
 				$this->correctionType = self::SYSTEM;
 				$this->offset = $systemOffset;
 				$this->valid = true;
-				return;
-		}
-
-		// $timeCorrection actually isn't a pipe separated value, but instead
-		// a colon separated value. This is only used by the HTMLTimezoneField userinput
-		// but can also still be present in the Db. (but shouldn't be)
-		$data = explode( ':', $timeCorrection, 2 );
-		if ( count( $data ) >= 2 ) {
-			// Combination hours and minutes.
-			$diff = abs( (int)$data[0] ) * 60 + (int)$data[1];
-			if ( (int)$data[0] < 0 ) {
-				$diff *= -1;
-			}
-		} elseif ( ctype_digit( $data[0] ) ) {
-			// Just hours.
-			$diff = (int)$data[0] * 60;
-		} else {
-			// We really don't know this. Fallback to System
-			$this->correctionType = self::SYSTEM;
-			$this->offset = $systemOffset;
-			return;
+				break;
+			default:
+				// $timeCorrection actually isn't a pipe separated value, but instead
+				// a colon separated value. This is only used by the HTMLTimezoneField userinput
+				// but can also still be present in the Db. (but shouldn't be)
+				$this->correctionType = self::OFFSET;
+				$data = explode( ':', $timeCorrection, 2 );
+				if ( count( $data ) >= 2 ) {
+					// Combination hours and minutes.
+					$this->offset = abs( (int)$data[0] ) * 60 + (int)$data[1];
+					if ( (int)$data[0] < 0 ) {
+						$this->offset *= -1;
+					}
+					$this->valid = true;
+				} elseif ( ctype_digit( $data[0] ) ) {
+					// Just hours.
+					$this->offset = (int)$data[0] * 60;
+					$this->valid = true;
+				} else {
+					// We really don't know this. Fallback to System
+					$this->correctionType = self::SYSTEM;
+					$this->offset = $systemOffset;
+					return;
+				}
+				break;
 		}
 
 		// Max is +14:00 and min is -12:00, see:
 		// https://en.wikipedia.org/wiki/Timezone
-		if ( $diff >= -12 * 60 && $diff <= 14 * 60 ) {
-			$this->valid = true;
+		if ( $this->offset < -12 * 60 || $this->offset > 14 * 60 ) {
+			$this->valid = false;
 		}
 		// 14:00
-		$diff = min( $diff, 14 * 60 );
+		$this->offset = min( $this->offset, 14 * 60 );
 		// -12:00
-		$diff = max( $diff, -12 * 60 );
-
-		$this->correctionType = self::OFFSET;
-		$this->offset = $diff;
+		$this->offset = max( $this->offset, -12 * 60 );
 	}
 
 	/**
