@@ -80,12 +80,8 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private $servers;
 	/** @var array[] Map of (group => server index => weight) */
 	private $groupLoads;
-	/** @var int Seconds to spend waiting on replica DB lag to resolve */
-	private $waitTimeout;
 	/** @var array The LoadMonitor configuration */
 	private $loadMonitorConfig;
-	/** @var int */
-	private $maxLag;
 	/** @var string|null Default query group to use with getConnection() */
 	private $defaultGroup;
 
@@ -194,8 +190,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			? DatabaseDomain::newFromId( $params['localDomain'] )
 			: DatabaseDomain::newUnspecified();
 
-		$this->maxLag = $params['maxLag'] ?? self::MAX_LAG_DEFAULT;
-
 		$this->servers = [];
 		$this->groupLoads = [ self::GROUP_GENERIC => [] ];
 		foreach ( $this->normalizeServerMaps( $params['servers'] ?? [] ) as $i => $server ) {
@@ -206,14 +200,12 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			$this->groupLoads[self::GROUP_GENERIC][$i] = $server['load'];
 		}
 
-		$this->waitTimeout = $params['waitTimeout'] ?? self::MAX_WAIT_DEFAULT;
-
 		if ( isset( $params['readOnlyReason'] ) && is_string( $params['readOnlyReason'] ) ) {
 			$this->readOnlyReason = $params['readOnlyReason'];
 		}
 
 		$this->loadMonitorConfig = $params['loadMonitor'] ?? [ 'class' => 'LoadMonitorNull' ];
-		$this->loadMonitorConfig += [ 'lagWarnThreshold' => $this->maxLag ];
+		$this->loadMonitorConfig += [ 'lagWarnThreshold' => self::MAX_LAG_DEFAULT ];
 
 		$this->srvCache = $params['srvCache'] ?? new EmptyBagOStuff();
 		$this->wanCache = $params['wanCache'] ?? WANObjectCache::newEmpty();
@@ -432,7 +424,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		foreach ( $lags as $i => $lag ) {
 			if ( $i !== $this->getWriterIndex() ) {
 				# How much lag this server nominally is allowed to have
-				$maxServerLag = $this->servers[$i]['max lag'] ?? $this->maxLag; // default
+				$maxServerLag = $this->servers[$i]['max lag'] ?? self::MAX_LAG_DEFAULT; // default
 				# Constrain that further by $maxLag argument
 				$maxServerLag = min( $maxServerLag, $maxLag );
 
@@ -668,7 +660,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	public function waitForAll( $pos, $timeout = null ) {
-		$timeout = $timeout ?: $this->waitTimeout;
+		$timeout = $timeout ?: self::MAX_WAIT_DEFAULT;
 
 		$oldPos = $this->waitForPos;
 		try {
@@ -806,7 +798,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @return bool Success
 	 */
 	private function awaitSessionPrimaryPos( $index, $timeout = null ) {
-		$timeout = max( 1, intval( $timeout ?: $this->waitTimeout ) );
+		$timeout = max( 1, intval( $timeout ?: self::MAX_WAIT_DEFAULT ) );
 
 		if ( !$this->waitForPos || $index === $this->getWriterIndex() ) {
 			return true;
@@ -1935,7 +1927,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	public function hasOrMadeRecentPrimaryChanges( $age = null ) {
-		$age ??= $this->waitTimeout;
+		$age ??= self::MAX_WAIT_DEFAULT;
 
 		return ( $this->hasPrimaryChanges()
 			|| $this->lastPrimaryChangeTimestamp() > microtime( true ) - $age );
@@ -2219,7 +2211,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 		if ( $pos instanceof DBPrimaryPos ) {
 			$this->logger->debug( __METHOD__ . ': waiting' );
-			$result = $conn->primaryPosWait( $pos, $this->waitTimeout );
+			$result = $conn->primaryPosWait( $pos, self::MAX_WAIT_DEFAULT );
 			$ok = ( $result !== null && $result != -1 );
 			if ( $ok ) {
 				$this->logger->debug( __METHOD__ . ': done waiting (success)' );
