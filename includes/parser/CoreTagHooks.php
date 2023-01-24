@@ -118,7 +118,7 @@ class CoreTagHooks {
 					[ 'class' => 'error' ],
 					// Using ->text() not ->parse() as
 					// a paranoia measure against a loop.
-					wfMessage( 'rawhtml-notallowed' )->escaped()
+					$parser->msg( 'rawhtml-notallowed' )->escaped()
 				);
 			}
 		} else {
@@ -192,7 +192,7 @@ class CoreTagHooks {
 	public static function indicator( ?string $content, array $attributes, Parser $parser, PPFrame $frame ): string {
 		if ( !isset( $attributes['name'] ) || trim( $attributes['name'] ) === '' ) {
 			return '<span class="error">' .
-				wfMessage( 'invalid-indicator-name' )->inContentLanguage()->parse() .
+				$parser->msg( 'invalid-indicator-name' )->parse() .
 				'</span>';
 		}
 
@@ -247,7 +247,7 @@ class CoreTagHooks {
 		return Html::rawElement(
 			'span',
 			[ 'class' => 'error' ],
-			wfMessage( 'invalid-langconvert-attrs' )->inContentLanguage()->parse()
+			$parser->msg( 'invalid-langconvert-attrs' )->parse()
 		);
 	}
 
