@@ -1044,6 +1044,7 @@
 	"lineno": "Regel $1:",
 	"compareselectedversions": "Geselecteerde versies vergelijken",
 	"showhideselectedversions": "Geselecteerde versies weergeven/verbergen",
+	"showhideselectedfileversions": "Zichtbaarheid van geselecteerde bestanden veranderen",
 	"editundo": "ongedaan maken",
 	"diff-empty": "(geen verschil)",
 	"diff-multi-sameuser": "({{PLURAL:$1|Een tussenliggende versie|$1 tussenliggende versies}} door dezelfde gebruiker niet weergegeven)",

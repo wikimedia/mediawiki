@@ -1064,6 +1064,7 @@
 	"lineno": "行 $1：",
 	"compareselectedversions": "比較已選擇的修訂",
 	"showhideselectedversions": "變更已選擇修訂的顯示設定",
+	"showhideselectedfileversions": "變更已選擇檔案版本的可見性",
 	"editundo": "復原",
 	"diff-empty": "（無差異）",
 	"diff-multi-sameuser": "（未顯示同一使用者於中間所作的 $1 次修訂）",
