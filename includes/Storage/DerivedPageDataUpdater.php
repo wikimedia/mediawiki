@@ -1869,11 +1869,13 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, P
 
 		// If we enable cache warming with parsoid outputs, let's do it at the same
 		// time we're populating the parser cache with pre-generated HTML.
+		// Use OPT_FORCE_PARSE to avoid a useless cache lookup.
 		if ( $this->warmParsoidParserCache ) {
 			$this->jobQueueGroup->lazyPush(
 				ParsoidCachePrewarmJob::newSpec(
 					$this->revision->getId(),
-					$wikiPage->getId()
+					$wikiPage->getId(),
+					ParsoidOutputAccess::OPT_FORCE_PARSE
 				)
 			);
 		}

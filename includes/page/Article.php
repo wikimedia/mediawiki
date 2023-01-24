@@ -126,6 +126,9 @@ class Article implements Page {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
+	/** @var JobQueueGroup */
+	private $jobQueueGroup;
+
 	/**
 	 * @var RevisionRecord|null Revision to be shown
 	 *
@@ -150,6 +153,7 @@ class Article implements Page {
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
 		$this->commentFormatter = $services->getCommentFormatter();
 		$this->wikiPageFactory = $services->getWikiPageFactory();
+		$this->jobQueueGroup = $services->getJobQueueGroup();
 	}
 
 	/**
@@ -729,6 +733,34 @@ class Article implements Page {
 			$rev,
 			$opt
 		);
+
+		// T327164: If parsoid cache warming is enabled, we want to ensure that the page
+		// the user is currently looking at has a cached parsoid rendering, in case they
+		// open visual editor. The cache entry would typically be missing if it has expired
+		// from the cache or it was invalidated by RefreshLinksJob. When "traditional"
+		// parser output has been invalidated by RefreshLinksJob, we will render it on
+		// the fly when a user requests the page, and thereby populate the cache again,
+		// per the code above.
+		// The code below is intended to do the same for parsoid output, but asynchronously
+		// in a job, so the user does not have to wait.
+		// Note that we get here if the traditional parser output was missing from the cache.
+		// We do not check if the parsoid output is present in the cache, because that check
+		// takes time. The assumption is that if we have traditional parser output
+		// cached, we probably also have parsoid output cached.
+		// So we leave it to ParsoidCachePrewarmJob to determine whether or not parsing is
+		// needed.
+		if ( $oldid === 0 || $oldid === $this->getPage()->getLatest() ) {
+			$parsoidCacheWarmingEnabled = $this->getContext()->getConfig()
+				->get( MainConfigNames::ParsoidCacheConfig )['WarmParsoidParserCache'];
+
+			if ( $parsoidCacheWarmingEnabled ) {
+				$parsoidJobSpec = ParsoidCachePrewarmJob::newSpec(
+					$rev->getId(),
+					$rev->getPageId()
+				);
+				$this->jobQueueGroup->lazyPush( $parsoidJobSpec );
+			}
+		}
 
 		$this->doOutputFromRenderStatus(
 			$rev,
