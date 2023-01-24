@@ -49,56 +49,34 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			MainConfigNames::DeleteRevisionsLimit => false,
 		];
 		$config = $overrideConfig + $baseConfig;
-		$specialPageFactory = $options['specialPageFactory'] ??
-			$this->createMock( SpecialPageFactory::class );
 
-		// DummyServicesTrait::getDummyNamespaceInfo
-		$namespaceInfo = $this->getDummyNamespaceInfo();
-
-		$groupPermissionsLookup = $options['groupPermissionsLookup'] ??
-			new GroupPermissionsLookup(
-				new ServiceOptions( GroupPermissionsLookup::CONSTRUCTOR_OPTIONS, $config )
-			);
-		$userGroupManager = $options['userGroupManager'] ??
-			$this->createMock( UserGroupManager::class );
-		$blockErrorFormatter = $options['blockErrorFormatter'] ??
-			$this->createMock( BlockErrorFormatter::class );
 		$hookContainer = $options['hookContainer'] ??
 			$this->createMock( HookContainer::class );
-		$userCache = $options['userCache'] ??
-			$this->createMock( UserCache::class );
 		$redirectLookup = $options['redirectLookup'] ??
 			$this->createMock( RedirectLookup::class );
 		$restrictionStore = $options['restrictionStore'] ??
 			$this->createMock( RestrictionStore::class );
-		$titleFormatter = $options['titleFormatter'] ??
-			$this->createMock( TitleFormatter::class );
-		$tempUserConfig = $options['tempUserConfig'] ??
-			new RealTempUserConfig( [] );
-		$userFactory = $options['userFactory'] ??
-			$this->createMock( UserFactory::class );
-		$actionFactory = $options['actionFactory'] ??
-			$this->createMock( ActionFactory::class );
 
 		$permissionManager = new PermissionManager(
 			new ServiceOptions( PermissionManager::CONSTRUCTOR_OPTIONS, $config ),
-			$specialPageFactory,
-			$namespaceInfo,
-			$groupPermissionsLookup,
-			$userGroupManager,
-			$blockErrorFormatter,
+			$this->createMock( SpecialPageFactory::class ),
+			$this->getDummyNamespaceInfo(),
+			new GroupPermissionsLookup(
+				new ServiceOptions( GroupPermissionsLookup::CONSTRUCTOR_OPTIONS, $config )
+			),
+			$this->createMock( UserGroupManager::class ),
+			$this->createMock( BlockErrorFormatter::class ),
 			$hookContainer,
-			$userCache,
+			$this->createMock( UserCache::class ),
 			$redirectLookup,
 			$restrictionStore,
-			$titleFormatter,
-			$tempUserConfig,
-			$userFactory,
-			$actionFactory
+			$this->createMock( TitleFormatter::class ),
+			new RealTempUserConfig( [] ),
+			$this->createMock( UserFactory::class ),
+			$this->createMock( ActionFactory::class )
 		);
 
-		$accessPermissionManager = TestingAccessWrapper::newFromObject( $permissionManager );
-		return $accessPermissionManager;
+		return TestingAccessWrapper::newFromObject( $permissionManager );
 	}
 
 	/**
