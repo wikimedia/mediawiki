@@ -50,7 +50,7 @@ class LoadMonitor implements ILoadMonitor {
 	/** @var StatsdDataFactoryInterface */
 	protected $statsd;
 
-	/** @var float Moving average ratio (e.g. 0.1 for 10% weight to new weight) */
+	/** @var float Maximum new gauge coefficient for moving averages */
 	private $movingAveRatio;
 	/** @var int Amount of replication lag in seconds before warnings are logged */
 	private $lagWarnThreshold;
@@ -74,9 +74,10 @@ class LoadMonitor implements ILoadMonitor {
 	 * @param ILoadBalancer $lb
 	 * @param BagOStuff $srvCache
 	 * @param WANObjectCache $wCache
-	 * @param array $options
-	 *   - movingAveRatio: moving average constant for server weight updates based on lag
-	 *   - lagWarnThreshold: how many seconds of lag trigger warnings
+	 * @param array $options Additional parameters include:
+	 *   - movingAveRatio: maximum new gauge coefficient for moving averages
+	 *      when the new gauge is 1 second newer than the prior one [default: .54]
+	 *   - lagWarnThreshold: how many seconds of lag trigger warnings [default: 10]
 	 */
 	public function __construct(
 		ILoadBalancer $lb, BagOStuff $srvCache, WANObjectCache $wCache, array $options = []
@@ -87,7 +88,7 @@ class LoadMonitor implements ILoadMonitor {
 		$this->logger = new NullLogger();
 		$this->statsd = new NullStatsdDataFactory();
 
-		$this->movingAveRatio = $options['movingAveRatio'] ?? 0.1;
+		$this->movingAveRatio = (float)( $options['movingAveRatio'] ?? 0.54 );
 		$this->lagWarnThreshold = $options['lagWarnThreshold'] ?? LoadBalancer::MAX_LAG_DEFAULT;
 	}
 
@@ -208,6 +209,7 @@ class LoadMonitor implements ILoadMonitor {
 			return $this->getPlaceholderServerStates( $serverIndexes );
 		}
 
+		$priorAsOf = $priorStates['timestamp'] ?? 0;
 		$priorScales = $priorStates ? $priorStates['weightScales'] : [];
 		$cluster = $this->lb->getClusterName();
 
@@ -235,9 +237,10 @@ class LoadMonitor implements ILoadMonitor {
 			// Get new weight scale using a moving average of the naïve and prior values
 			$lastScale = $priorScales[$i] ?? 1.0;
 			$naiveScale = $this->getWeightScale( $i, $conn ?: null );
-			$newScale = $this->getNewScaleViaMovingAve(
+			$newScale = $this->movingAverage(
 				$lastScale,
 				$naiveScale,
+				max( $this->getCurrentTime() - $priorAsOf, 0.0 ),
 				$this->movingAveRatio
 			);
 			// Scale from 0% to 100% of nominal weight
@@ -319,40 +322,33 @@ class LoadMonitor implements ILoadMonitor {
 	}
 
 	/**
-	 * Get the moving average weight scale given a naive and the last iteration value
+	 * Update a moving average for a gauge, accounting for the time delay since the last gauge
 	 *
-	 * One case of particular note is if a server totally cannot have its state queried.
-	 * Ideally, the scale should be able to drop from 1.0 to a miniscule amount (say 0.001)
-	 * fairly quickly. To get the time to reach 0.001, some calculations can be done:
-	 *
-	 * SCALE = $naiveScale * $movAveRatio + $lastScale * (1 - $movAveRatio)
-	 * SCALE = 0 * $movAveRatio + $lastScale * (1 - $movAveRatio)
-	 * SCALE = $lastScale * (1 - $movAveRatio)
-	 *
-	 * Given a starting weight scale of 1.0:
-	 * 1.0 * (1 - $movAveRatio)^(# iterations) = 0.001
-	 * ceil( log<1 - $movAveRatio>(0.001) ) = (# iterations)
-	 * t = (# iterations) * (POLL_PERIOD + SHARED_CACHE_TTL)
-	 * t = (# iterations) * (1e3 * POLL_PERIOD_MS + SHARED_CACHE_TTL)
-	 *
-	 * If $movAveRatio is 0.5, then:
-	 * t = ceil( log<0.5>(0.01) ) * 1.5 = 7 * 1.5 = 10.5 seconds [for 1% scale]
-	 * t = ceil( log<0.5>(0.001) ) * 1.5 = 10 * 1.5 = 15 seconds [for 0.1% scale]
-	 *
-	 * If $movAveRatio is 0.8, then:
-	 * t = ceil( log<0.2>(0.01) ) * 1.5 = 3 * 1.5 = 4.5 seconds [for 1% scale]
-	 * t = ceil( log<0.2>(0.001) ) * 1.5 = 5 * 1.5 = 7.5 seconds [for 0.1% scale]
-	 *
-	 * Use of connection failure rate can greatly speed this process up
-	 *
-	 * @param float $lastScale Current moving average of scaling factors
-	 * @param float $naiveScale New scaling factor
-	 * @param float $movAveRatio Weight given to the new value
-	 * @return float
-	 * @since 1.35
+	 * @param float|int|null $priorValue Prior moving average of value or null
+	 * @param float|int|null $gaugeValue Newly gauged value or null
+	 * @param float $delay Seconds between the new gauge and the prior one
+	 * @param float $movAveRatio New gauge weight when it is 1 second newer than the prior one
+	 * @return float|false New moving average of value
 	 */
-	protected function getNewScaleViaMovingAve( $lastScale, $naiveScale, $movAveRatio ) {
-		return $movAveRatio * $naiveScale + ( 1 - $movAveRatio ) * $lastScale;
+	public function movingAverage(
+		$priorValue,
+		$gaugeValue,
+		float $delay,
+		float $movAveRatio
+	) {
+		if ( $gaugeValue === null ) {
+			return $priorValue;
+		} elseif ( $priorValue === null ) {
+			return $gaugeValue;
+		}
+
+		// Apply more weight to the newer gauge the more outdated the prior gauge is.
+		// The rate of state updates generally depends on the amount of site traffic.
+		// Smaller will get less frequent updates, but the gauges still still converge
+		// within reasonable time bounds so that unreachable DB servers are avoided.
+		$delayAwareRatio = 1 - pow( 1 - $movAveRatio, $delay );
+
+		return max( $delayAwareRatio * $gaugeValue + ( 1 - $delayAwareRatio ) * $priorValue, 0.0 );
 	}
 
 	/**
