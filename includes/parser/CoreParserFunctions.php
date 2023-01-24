@@ -527,11 +527,11 @@ class CoreParserFunctions {
 
 				$converter = $parser->getTargetLanguageConverter();
 				return '<span class="error">' .
-					wfMessage( 'duplicate-displaytitle',
+					$parser->msg( 'duplicate-displaytitle',
 						// Message should be parsed, but these params should only be escaped.
 						$converter->markNoConversion( wfEscapeWikiText( $old ) ),
 						$converter->markNoConversion( wfEscapeWikiText( $filteredText ) )
-					)->inContentLanguage()->text() .
+					)->text() .
 					'</span>';
 			} else {
 				return '';
@@ -1118,11 +1118,11 @@ class CoreParserFunctions {
 		} else {
 			$converter = $parser->getTargetLanguageConverter();
 			return '<span class="error">' .
-				wfMessage( 'duplicate-defaultsort',
+				$parser->msg( 'duplicate-defaultsort',
 					// Message should be parsed, but these params should only be escaped.
 					$converter->markNoConversion( wfEscapeWikiText( $old ) ),
 					$converter->markNoConversion( wfEscapeWikiText( $text ) )
-				)->inContentLanguage()->text() .
+				)->text() .
 				'</span>';
 		}
 	}

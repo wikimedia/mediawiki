@@ -3190,7 +3190,7 @@ class RevisionStore
 	 *  If null is provided, count starting from the first revision (inclusive).
 	 * @param RevisionRecord|null $new New revision.
 	 *  If null is provided, count until the last revision (inclusive).
-	 * @param Authority|null $performer the user who's access rights to apply
+	 * @param Authority|null $performer the user whose access rights to apply
 	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations.
 	 * @param string|array $options Single option, or an array of options:
 	 *     RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
@@ -3267,7 +3267,7 @@ class RevisionStore
 	 *  If null is provided, count starting from the first revision (inclusive).
 	 * @param RevisionRecord|null $new New revision.
 	 *  If null is provided, count until the last revision (inclusive).
-	 * @param Authority|null $performer the user who's access rights to apply
+	 * @param Authority|null $performer the user whose access rights to apply
 	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations.
 	 * @param string|array $options Single option, or an array of options:
 	 *     RevisionStore::INCLUDE_OLD Include $old in the range; $new is excluded.
