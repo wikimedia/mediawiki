@@ -185,7 +185,7 @@ $magicWords = [
 	'img_thumbnail'             => [ '1', 'miniatura', 'min', 'thumb', 'thumbnail' ],
 	'img_top'                   => [ '1', 'sopra', 'top' ],
 	'img_upright'               => [ '1', 'verticale', 'verticale=$1', 'verticale_$1', 'upright', 'upright=$1', 'upright $1' ],
-	'index'                     => [ '1', '__INDICE__', '__INDEX__' ],
+	'index'                     => [ '1', '__INDICIZZARE__', '__INDICE__', '__INDEX__' ], // T314165
 	'language'                  => [ '0', '#LINGUA', '#LANGUAGE:' ],
 	'localday'                  => [ '1', 'GIORNOLOCALE', 'LOCALDAY' ],
 	'localday2'                 => [ '1', 'GIORNOLOCALE2', 'LOCALDAY2' ],
@@ -199,7 +199,7 @@ $magicWords = [
 	'localtime'                 => [ '1', 'ORARIOLOCALE', 'LOCALTIME' ],
 	'localweek'                 => [ '1', 'SETTIMANALOCALE', 'LOCALWEEK' ],
 	'localyear'                 => [ '1', 'ANNOLOCALE', 'LOCALYEAR' ],
-	'noindex'                   => [ '1', '__NOINDICE__', '__NOINDEX__' ],
+	'noindex'                   => [ '1', '__NONINDICIZZARE__', '__NOINDICE__', '__NOINDEX__' ], // T314165
 	'numberofactiveusers'       => [ '1', 'NUMEROUTENTIATTIVI', 'NUMBEROFACTIVEUSERS' ],
 	'numberofadmins'            => [ '1', 'NUMEROADMIN', 'NUMBEROFADMINS' ],
 	'numberofarticles'          => [ '1', 'NUMEROVOCI', 'NUMEROARTICOLI', 'NUMBEROFARTICLES' ],
