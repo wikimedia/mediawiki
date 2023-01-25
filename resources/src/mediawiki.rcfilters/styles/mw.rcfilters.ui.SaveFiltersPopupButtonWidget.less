@@ -8,32 +8,10 @@
 		}
 
 		> .oo-ui-popupWidget-popup > .oo-ui-popupWidget-head {
-			position: relative;
-			height: auto;
-			padding: 1em;
-			// Icon width + icon left position (rounded to 0.5 to give a little extra margin)
-			padding-right: 1.875em + 0.5em;
-
-			> .oo-ui-buttonWidget {
-				top: 0.5em;
-			}
-
-			> .oo-ui-iconWidget {
-				vertical-align: top;
-			}
-
 			> .oo-ui-labelElement-label {
-				float: none;
-				display: inline-block;
-				// Label doesn't wrap without `max-width`. First setting a pretty arbitrary percentage value.
-				max-width: 80%;
-				// Overwrite it with `calc` reduced by icon width and left margin combined.
-				max-width: calc( ~'100% - 1.42857143em - 0.25em' );
-				margin: 0 0 0 0.25em;
 				font-size: 1.2em;
 				font-weight: bold;
 				line-height: 1.25;
-				vertical-align: top;
 			}
 		}
 	}
