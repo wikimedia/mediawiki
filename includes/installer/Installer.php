@@ -1121,7 +1121,6 @@ abstract class Installer {
 
 		$intl = normalizer_normalize( $not_normal_c, Normalizer::FORM_C );
 
-		$this->showMessage( 'config-unicode-using-intl' );
 		if ( $intl !== $normal_c ) {
 			$this->showMessage( 'config-unicode-update-warning' );
 		}
