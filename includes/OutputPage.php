@@ -3319,6 +3319,13 @@ class OutputPage extends ContextSource {
 			);
 			$this->rlExemptStyleModules = $exemptGroups;
 
+			$config = $this->getConfig();
+			$clientPrefEnabled = (
+				$config->get( MainConfigNames::ResourceLoaderClientPreferences ) &&
+				!$this->getUser()->isRegistered()
+			);
+			$clientPrefCookiePrefix = $config->get( MainConfigNames::CookiePrefix );
+
 			$rlClient = new RL\ClientHtml( $context, [
 				'target' => $this->getTarget(),
 				'nonce' => $this->CSP->getNonce(),
@@ -3332,6 +3339,8 @@ class OutputPage extends ContextSource {
 				'safemode' => ( $this->getAllowedModules( RL\Module::TYPE_COMBINED )
 					<= RL\Module::ORIGIN_CORE_INDIVIDUAL
 				) ? '1' : null,
+				'clientPrefEnabled' => $clientPrefEnabled,
+				'clientPrefCookiePrefix' => $clientPrefCookiePrefix,
 			] );
 			$rlClient->setConfig( $this->getJSVars( self::JS_VAR_EARLY ) );
 			$rlClient->setModules( $this->getModules( /*filter*/ true ) );
