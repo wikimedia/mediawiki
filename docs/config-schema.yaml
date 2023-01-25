@@ -3202,6 +3202,11 @@ config-schema:
             via the `useskin` query parameter. To uninstall a skin, remove its inclusion
             from LocalSettings.php.
             @see \SkinFactory::getAllowedSkins
+    ResourceLoaderClientPreferences:
+        default: false
+        description: |-
+            Whether skins support client side (anonymous) preferences.
+            @see RL/ClientHtml
     DisableOutputCompression:
         default: false
         description: 'Disable output compression (enabled by default if zlib is available)'

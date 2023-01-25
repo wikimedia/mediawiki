@@ -645,6 +645,7 @@ return [
 			'FallbackSkin' => 'fallback',
 			'SkipSkins' => [
 			],
+			'ResourceLoaderClientPreferences' => false,
 			'DisableOutputCompression' => false,
 			'FragmentMode' => [
 				0 => 'html5',
