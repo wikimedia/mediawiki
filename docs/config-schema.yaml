@@ -3205,8 +3205,13 @@ config-schema:
     ResourceLoaderClientPreferences:
         default: false
         description: |-
-            Whether skins support client side (anonymous) preferences.
-            @see RL/ClientHtml
+            Enable client-side preferences for unregistered users.
+            This is only supported for unregistered users. For registered users, skins
+            and extensions must use user preferences (e.g. hidden or API-only options)
+            and swap class names server-side through the Skin interface.
+            @warning EXPERIMENTAL!
+            @since 1.40
+            @see \MediaWiki\ResourceLoader\ClientHtml
     DisableOutputCompression:
         default: false
         description: 'Disable output compression (enabled by default if zlib is available)'
