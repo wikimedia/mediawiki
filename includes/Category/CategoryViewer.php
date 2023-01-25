@@ -322,10 +322,10 @@ class CategoryViewer extends ContextSource {
 			$flip = $this->flip['file'];
 			if ( $flip ) {
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
-				$this->gallery->insert( $title );
+				$this->gallery->insert( $title, '', '', '', [], ImageGalleryBase::LOADING_LAZY );
 			} else {
 				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable castFrom does not return null here
-				$this->gallery->add( $title );
+				$this->gallery->add( $title, '', '', '', [], ImageGalleryBase::LOADING_LAZY );
 			}
 		} else {
 			$this->imgsNoGallery[] = $this->generateLink( 'image', $page, $isRedirect );
