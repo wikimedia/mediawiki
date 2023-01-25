@@ -31,12 +31,11 @@ var SaveFiltersPopupButtonWidget = function MwRcfiltersUiSaveFiltersPopupButtonW
 			classes: [ 'mw-rcfilters-ui-saveFiltersPopupButtonWidget-popup' ],
 			padded: true,
 			head: true,
+			icon: 'bookmark',
 			label: mw.msg( 'rcfilters-savedqueries-add-new-title' ),
 			$content: $popupContent
 		}
 	}, config ) );
-	// // HACK: Add an icon to the popup head label
-	this.popup.$head.prepend( ( new OO.ui.IconWidget( { icon: 'bookmark' } ) ).$element );
 
 	this.input = new OO.ui.TextInputWidget( {
 		placeholder: mw.msg( 'rcfilters-savedqueries-new-name-placeholder' )
