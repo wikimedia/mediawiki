@@ -4,27 +4,24 @@
 
 .mw-rcfilters-ui-filterMenuSectionOptionWidget {
 	background-color: @colorGray14;
-	padding-bottom: 8 / @font-size-system-ui / @font-size-vector;
-	padding-left: 12 / @font-size-system-ui / @font-size-vector;
-	padding-right: 12 / @font-size-system-ui / @font-size-vector;
+	padding-top: 0;
+	padding-bottom: 0;
+
+	&-header {
+		height: 2.5em;
+		display: flex;
+		align-items: center;
+	}
 
 	&-header-title.oo-ui-labelElement-label {
 		color: @colorGray5;
-		display: inline-block;
 	}
 
 	&-whatsThisButton {
 		margin-left: 1.5em;
 
 		&.oo-ui-buttonElement > .oo-ui-buttonElement-button {
-			border: 0; // Override OOUI `border` needed for frameless keyboard focus
-			padding: 0;
 			font-weight: normal;
-
-			&:focus {
-				box-shadow: none;
-				outline: 0;
-			}
 		}
 
 		&-popup-content {
