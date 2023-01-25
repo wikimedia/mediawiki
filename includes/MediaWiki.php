@@ -676,7 +676,7 @@ class MediaWiki {
 		$lbFactory->commitPrimaryChanges(
 			__METHOD__,
 			// Abort if any transaction was too big
-			[ 'maxWriteDuration' => $config->get( MainConfigNames::MaxUserDBWriteDuration ) ]
+			$config->get( MainConfigNames::MaxUserDBWriteDuration )
 		);
 		wfDebug( __METHOD__ . ': primary transaction round committed' );
 

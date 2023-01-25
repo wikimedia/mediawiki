@@ -1592,12 +1592,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return $total;
 	}
 
-	public function approvePrimaryChanges( array $options, $fname = __METHOD__ ) {
+	public function approvePrimaryChanges( int $maxWriteDuration, $fname = __METHOD__ ) {
 		$this->assertTransactionRoundStage( self::ROUND_FINALIZED );
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
-
-		$limit = $options['maxWriteDuration'] ?? 0;
 
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
 		foreach ( $this->getOpenPrimaryConnections() as $conn ) {
@@ -1613,14 +1611,14 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			// Assert that the time to replicate the transaction will be reasonable.
 			// If this fails, then all DB transactions will be rollback back together.
 			$time = $conn->pendingWriteQueryDuration( $conn::ESTIMATE_DB_APPLY );
-			if ( $limit > 0 ) {
-				if ( $time > $limit ) {
+			if ( $maxWriteDuration > 0 ) {
+				if ( $time > $maxWriteDuration ) {
 					$humanTimeSec = round( $time, 3 );
 					throw new DBTransactionSizeError(
 						$conn,
-						"Transaction spent {time}s in writes, exceeding the {$limit}s limit",
+						"Transaction spent {time}s in writes, exceeding the {$maxWriteDuration}s limit",
 						// Message parameters for: transaction-duration-limit-exceeded
-						[ $time, $limit ],
+						[ $time, $maxWriteDuration ],
 						null,
 						[ 'time' => $humanTimeSec ]
 					);
@@ -1628,7 +1626,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 					$timeMs = $time * 1000;
 					$humanTimeMs = $timeMs > 1 ? round( $timeMs ) : round( $timeMs, 3 );
 					$this->logger->debug(
-						"Transaction spent {time_ms}ms in writes, under the {$limit}s limit",
+						"Transaction spent {time_ms}ms in writes, under the {$maxWriteDuration}s limit",
 						[ 'time_ms' => $humanTimeMs ]
 					);
 				}

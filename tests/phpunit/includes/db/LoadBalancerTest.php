@@ -629,7 +629,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			} );
 		} );
 		$lb->finalizePrimaryChanges();
-		$lb->approvePrimaryChanges( [] );
+		$lb->approvePrimaryChanges( 0 );
 		$lb->commitPrimaryChanges( __METHOD__ );
 		$lb->runPrimaryTransactionIdleCallbacks();
 		$lb->runPrimaryTransactionListenerCallbacks();
@@ -653,7 +653,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			} );
 		} );
 		$lb->finalizePrimaryChanges();
-		$lb->approvePrimaryChanges( [] );
+		$lb->approvePrimaryChanges( 0 );
 		$lb->commitPrimaryChanges( __METHOD__ );
 		$lb->runPrimaryTransactionIdleCallbacks();
 		$lb->runPrimaryTransactionListenerCallbacks();
