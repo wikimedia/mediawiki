@@ -2667,7 +2667,7 @@
 	"removedwatchtext": "Message shown after clicking on the {{msg-mw|Unwatch}} tab in a content namespace page. Parameters:\n* $1 - page title\nSee also:\n* {{msg-mw|Addedwatchtext}}\n* {{msg-mw|Removedwatchtext-talk}}",
 	"removedwatchtext-talk": "Message shown after clicking on the {{msg-mw|Unwatch}} tab in a talk namespace page. Parameters:\n* $1 - page title\nSee also:\n* {{msg-mw|Addedwatchtext-talk}}\n* {{msg-mw|Removedwatchtext}}",
 	"removedwatchtext-short": "Explanation shown when unwatching item from [[Special:UnwatchedPages]].\n\nSee also:\n* {{msg-mw|Addedwatchtext-short}}.\n* {{msg-mw|Removedwatchtext}}.",
-	"watch": "{{doc-actionlink}}\nName of the Watch tab. Should be in the imperative mood.\n\nSee also:\n* {{msg-mw|Watch}}\n* {{msg-mw|Accesskey-ca-watch}}\n* {{msg-mw|Tooltip-ca-watch}}\n{{Identical|Watch}}",
+	"watch": "{{doc-actionlink}}\nName of the Watch tab. Should be in the imperative mood. (Note: This is defined in core MediaWiki, but is primarily used in the Monobook skin.)\n\nSee also:\n* {{msg-mw|Accesskey-ca-watch}}\n* {{msg-mw|Tooltip-ca-watch}}\n{{Identical|Watch}}",
 	"watchthispage": "Used as link text.\n\nSee also:\n* {{msg-mw|Unwatchthispage|link text}}\n* {{msg-mw|Notanarticle|error message}}\n{{Identical|Watch this page}}",
 	"unwatch": "{{doc-actionlink}}\nLabel of \"Unwatch\" tab.\n\nSee also:\n* {{msg-mw|Unwatch}}\n* {{msg-mw|Accesskey-ca-unwatch}}\n* {{msg-mw|Tooltip-ca-unwatch}}",
 	"unwatchthispage": "Used as link text.\n\nSee also:\n* {{msg-mw|Watchthispage|link text}}\n* {{msg-mw|Notanarticle|error message}}",

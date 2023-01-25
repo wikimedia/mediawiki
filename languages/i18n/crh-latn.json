@@ -10,7 +10,8 @@
 			"Urhixidur",
 			"아라",
 			"TayfunEt.",
-			"Amire80"
+			"Amire80",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Bağlantılarnıñ tübüni sızuv:",
@@ -1180,7 +1181,7 @@
 	"deletepage-submit": "Saifeni yoq et",
 	"confirm": "Tasdıqla",
 	"excontent": "eski metin: '$1'",
-	"excontentauthor": "eski metin: '$1' ('$2' isse qoşqan tek bir qullanıcı)",
+	"excontentauthor": "eski metin: '$1' ('[[Special:Contributions/$2|$2]]' isse qoşqan tek bir qullanıcı)",
 	"exbeforeblank": "Yoq etilmegen evelki metin: '$1'",
 	"delete-confirm": "\"$1\" saifesini yoq etmektesiñiz",
 	"delete-legend": "Yoq etüv",

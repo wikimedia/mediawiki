@@ -203,7 +203,7 @@
 	"apihelp-move-param-noredirect": "Geen doorverwijzing achterlaten.",
 	"apihelp-move-param-watch": "Voeg de pagina en de doorverwijzing toe aan de volglijst van de huidige gebruiker.",
 	"apihelp-move-param-unwatch": "Verwijder de pagina en de doorverwijzing van de volglijst van de huidige gebruiker.",
-	"apihelp-move-param-watchlist": "Voeg de pagina onvoorwaardelijk toe aan of verwijder deze uit de volglijst van de huidige gebruiker, gebruik voorkeuren (genegeerd voor botgebruikers) of verander de weergave niet.",
+	"apihelp-move-param-watchlist": "Of de pagina onvoorwaardelijk toevoegen aan of verwijderen uit de volglijst van de huidige gebruiker, of diens voorkeuren gebruiken (genegeerd voor robotgebruikers), of de volgstatus niet wijzigen.",
 	"apihelp-move-param-ignorewarnings": "Eventuele waarschuwingen negeren.",
 	"apihelp-move-example-move": "Hernoem <kbd>Badtitle</kbd> naar <kbd>Goodtitle</kbd> zonder een doorverwijzing achter te laten.",
 	"apihelp-opensearch-summary": "In de wiki zoeken met behulp het OpenSearchprotocol.",
