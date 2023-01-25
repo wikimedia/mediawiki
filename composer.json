@@ -108,6 +108,7 @@
 	"suggest": {
 		"ext-apcu": "Faster web responses overall.",
 		"ext-curl": "Faster HTTP services, e.g. when using InstantCommons, Swift, or Etcd.",
+		"ext-exif": "Enable processing of EXIF information in file uploads.",
 		"ext-gd": "Enable thumbnails for file uploads.",
 		"ext-mysqli": "Enable the MySQL and MariaDB database type for MediaWiki.",
 		"ext-openssl": "Encrypt session data (or opt-out via $wgSessionInsecureSecrets).",
