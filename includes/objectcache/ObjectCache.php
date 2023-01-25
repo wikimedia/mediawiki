@@ -246,9 +246,14 @@ class ObjectCache {
 			}
 		}
 
-		if ( MediaWikiServices::getInstance()->isServiceDisabled( 'DBLoadBalancer' ) ) {
-			// The LoadBalancer is disabled, probably because
-			// MediaWikiServices::disableStorageBackend was called.
+		$services = MediaWikiServices::getInstance();
+
+		if ( $services->isServiceDisabled( 'DBLoadBalancer' ) ) {
+			// The DBLoadBalancer service is disabled, so we can't use the database!
+			$candidate = CACHE_NONE;
+		} elseif ( $services->isStorageDisabled() ) {
+			// Storage services are disabled because MediaWikiServices::disableStorage()
+			// was called. This is typically the case during installation.
 			$candidate = CACHE_NONE;
 		} else {
 			$candidate = CACHE_DB;

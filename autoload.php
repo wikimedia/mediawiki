@@ -2827,6 +2827,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\LBFactorySingle' => __DIR__ . '/includes/libs/rdbms/lbfactory/LBFactorySingle.php',
 	'Wikimedia\\Rdbms\\LikeMatch' => __DIR__ . '/includes/libs/rdbms/encasing/LikeMatch.php',
 	'Wikimedia\\Rdbms\\LoadBalancer' => __DIR__ . '/includes/libs/rdbms/loadbalancer/LoadBalancer.php',
+	'Wikimedia\\Rdbms\\LoadBalancerDisabled' => __DIR__ . '/includes/libs/rdbms/loadbalancer/LoadBalancerDisabled.php',
 	'Wikimedia\\Rdbms\\LoadBalancerSingle' => __DIR__ . '/includes/libs/rdbms/loadbalancer/LoadBalancerSingle.php',
 	'Wikimedia\\Rdbms\\LoadMonitor' => __DIR__ . '/includes/libs/rdbms/loadmonitor/LoadMonitor.php',
 	'Wikimedia\\Rdbms\\LoadMonitorNull' => __DIR__ . '/includes/libs/rdbms/loadmonitor/LoadMonitorNull.php',

@@ -34,20 +34,26 @@ class LBFactorySingle extends LBFactory {
 	/**
 	 * You probably want to use {@link newFromConnection} instead.
 	 *
-	 * @param array $conf An associative array with one member:
-	 *  - connection: The IDatabase connection object
+	 * @param array $conf An associative array containing one of the following:
+	 *  - connection: The IDatabase connection object to use
+	 *  - lb: The ILoadBalancer object to use
 	 */
 	public function __construct( array $conf ) {
 		parent::__construct( $conf );
 
-		if ( !isset( $conf['connection'] ) ) {
-			throw new InvalidArgumentException( "Missing 'connection' argument." );
+		if ( isset( $conf['lb'] ) ) {
+			$lb = $conf['lb'];
+		} else {
+			if ( !isset( $conf['connection'] ) ) {
+				throw new InvalidArgumentException( "Missing 'connection' argument." );
+			}
+
+			$lb = new LoadBalancerSingle( array_merge(
+				$this->baseLoadBalancerParams(),
+				$conf
+			) );
 		}
 
-		$lb = new LoadBalancerSingle( array_merge(
-			$this->baseLoadBalancerParams(),
-			$conf
-		) );
 		$this->initLoadBalancer( $lb );
 
 		$this->lb = $lb;
@@ -64,6 +70,19 @@ class LBFactorySingle extends LBFactory {
 			[ 'localDomain' => $db->getDomainID() ],
 			$params,
 			[ 'connection' => $db ]
+		) );
+	}
+
+	/**
+	 * @param array $params Parameter map to LBFactorySingle::__construct()
+	 *        and LoadBalancerDisabled::__construct()
+	 * @return LBFactorySingle
+	 * @since 1.40
+	 */
+	public static function newDisabled( array $params = [] ) {
+		return new static( array_merge(
+			[ 'lb' => new LoadBalancerDisabled( $params ) ],
+			$params
 		) );
 	}
 
