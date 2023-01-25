@@ -194,7 +194,8 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 				$casToken = $rbody;
 			}
 		} elseif ( $rcode === 0 || ( $rcode >= 400 && $rcode != 404 ) ) {
-			$this->handleError( "Failed to fetch $key", $rcode, $rerr, $rhdrs, $rbody );
+			$this->handleError( 'Failed to fetch {cacheKey}', $rcode, $rerr, $rhdrs, $rbody,
+				[ 'cacheKey' => $key ] );
 		}
 
 		$this->updateOpStats( self::METRIC_OP_GET, [ $key => [ 0, $valueSize ] ] );
@@ -213,7 +214,8 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 		[ $rcode, , $rhdrs, $rbody, $rerr ] = $this->client->run( $req );
 		$res = ( $rcode === 200 || $rcode === 201 || $rcode === 204 );
 		if ( !$res ) {
-			$this->handleError( "Failed to store $key", $rcode, $rerr, $rhdrs, $rbody );
+			$this->handleError( 'Failed to store {cacheKey}', $rcode, $rerr, $rhdrs, $rbody,
+				[ 'cacheKey' => $key ] );
 		}
 
 		$this->updateOpStats( self::METRIC_OP_SET, [ $key => [ strlen( $rbody ), 0 ] ] );
@@ -241,7 +243,8 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 		[ $rcode, , $rhdrs, $rbody, $rerr ] = $this->client->run( $req );
 		$res = in_array( $rcode, [ 200, 204, 205, 404, 410 ] );
 		if ( !$res ) {
-			$this->handleError( "Failed to delete $key", $rcode, $rerr, $rhdrs, $rbody );
+			$this->handleError( 'Failed to delete {cacheKey}', $rcode, $rerr, $rhdrs, $rbody,
+				[ 'cacheKey' => $key ] );
 		}
 
 		$this->updateOpStats( self::METRIC_OP_DELETE, [ $key ] );
@@ -371,13 +374,14 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 	 * @param string $rerr Error message from client
 	 * @param array $rhdrs Response headers
 	 * @param string $rbody Error body from client (if any)
+	 * @param array $context Error context for PSR-3 logging
 	 */
-	protected function handleError( $msg, $rcode, $rerr, $rhdrs, $rbody ) {
+	protected function handleError( $msg, $rcode, $rerr, $rhdrs, $rbody, $context = [] ) {
 		$message = "$msg : ({code}) {error}";
 		$context = [
 			'code' => $rcode,
 			'error' => $rerr
-		];
+		] + $context;
 
 		if ( $this->extendedErrorBodyFields !== [] ) {
 			$body = $this->decodeBody( $rbody );
