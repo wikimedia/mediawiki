@@ -110,6 +110,24 @@
 		},
 
 		/**
+		 * Is the user a normal non-temporary registered user?
+		 *
+		 * @return {boolean}
+		 */
+		isNamed: function () {
+			return mw.config.get( 'wgUserIsNamed' ) || false;
+		},
+
+		/**
+		 * Is the user an autocreated temporary user?
+		 *
+		 * @return {boolean}
+		 */
+		isTemp: function () {
+			return mw.config.get( 'wgUserIsTemp' ) || false;
+		},
+
+		/**
 		 * Get the current user's name
 		 *
 		 * @return {string|null} User name string or null if user is anonymous

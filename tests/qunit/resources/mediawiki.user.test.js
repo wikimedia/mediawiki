@@ -36,11 +36,15 @@
 
 	QUnit.test( 'getters (logged-in)', function ( assert ) {
 		mw.config.set( 'wgUserName', 'John' );
+		mw.config.set( 'wgUserIsNamed', true );
+		mw.config.set( 'wgUserIsTemp', false );
 		mw.config.set( 'wgUserId', 123 );
 
 		assert.strictEqual( mw.user.getName(), 'John', 'getName()' );
 		assert.strictEqual( mw.user.isAnon(), false, 'isAnon()' );
 		assert.strictEqual( mw.user.getId(), 123, 'getId()' );
+		assert.strictEqual( mw.user.isNamed(), true, 'isNamed()' );
+		assert.strictEqual( mw.user.isTemp(), false, 'isTemp()' );
 
 		assert.strictEqual( mw.user.id(), 'John', 'user.id()' );
 	} );
