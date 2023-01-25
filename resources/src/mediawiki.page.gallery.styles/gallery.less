@@ -3,7 +3,9 @@
 /* Galleries */
 /* Don't forget to update gallery.print.css */
 
-ul.gallery {
+// Increase specificity to override `.mw-content-rtl .mw-content-ltr ul` (T326017)
+// TODO: Galleries should not use `<ul>` (T38755)
+ul.gallery.gallery.gallery {
 	margin: 2px;
 	padding: 2px;
 	display: block;
@@ -123,10 +125,14 @@ ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapp
 }
 
 /* Slideshow */
-ul.gallery.mw-gallery-slideshow {
+// Increase specificity to override `.mw-content-rtl .mw-content-ltr ul` (T326017)
+// TODO: Galleries should not use `<ul>` (T38755)
+ul.gallery.gallery.gallery.mw-gallery-slideshow {
 	display: block;
 	margin: 4em 0;
+}
 
+.mw-gallery-slideshow {
 	.gallerycaption {
 		font-size: 1.3em;
 		margin: 0;
