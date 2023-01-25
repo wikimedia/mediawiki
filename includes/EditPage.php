@@ -4532,6 +4532,7 @@ class EditPage implements IEditObject {
 		return [
 			'parserOutput' => $parserOutput,
 			'html' => $parserOutput->getText( [
+				'userLang' => $skin->getLanguage(),
 				'injectTOC' => $skinOptions['toc'],
 				'enableSectionEditLinks' => false,
 				'includeDebugInfo' => true,
