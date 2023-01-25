@@ -1991,6 +1991,12 @@ class MainConfigNames {
 	public const SkipSkins = 'SkipSkins';
 
 	/**
+	 * Name constant for the ResourceLoaderClientPreferences setting, for use with Config::get()
+	 * @see MainConfigSchema::ResourceLoaderClientPreferences
+	 */
+	public const ResourceLoaderClientPreferences = 'ResourceLoaderClientPreferences';
+
+	/**
 	 * Name constant for the DisableOutputCompression setting, for use with Config::get()
 	 * @see MainConfigSchema::DisableOutputCompression
 	 */

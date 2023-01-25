@@ -348,7 +348,9 @@ class ClientHtmlTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	private static function makeContext( $extraQuery = [] ) {
-		$conf = new HashConfig( [] );
+		$conf = new HashConfig( [
+			'ResourceLoaderClientPreferences' => false
+		] );
 		return new Context(
 			new ResourceLoader( $conf, null, null, [
 				'loadScript' => '/w/load.php',

@@ -1975,6 +1975,12 @@ $wgFallbackSkin = null;
 $wgSkipSkins = null;
 
 /**
+ * Config variable stub for the ResourceLoaderClientPreferences setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::ResourceLoaderClientPreferences
+ */
+$wgResourceLoaderClientPreferences = null;
+
+/**
  * Config variable stub for the DisableOutputCompression setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::DisableOutputCompression
  */
