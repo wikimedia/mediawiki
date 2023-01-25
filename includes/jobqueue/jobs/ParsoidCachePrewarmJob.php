@@ -58,22 +58,26 @@ class ParsoidCachePrewarmJob extends Job {
 	/**
 	 * @param int $revisionId
 	 * @param int $pageId
-	 * @param int $options Flags to be passed to ParsoidOutputAccess::getParserOutput
+	 * @param array $params Additional options for the job. Known keys:
+	 * - causeAction: Indicate what action caused the job to be scheduled. Used for monitoring.
+	 * - options: Flags to be passed to ParsoidOutputAccess:getParserOutput.
+	 *   May be set to ParsoidOutputAccess::OPT_FORCE_PARSE to force a parsing even if there
+	 *   already is cached output.
 	 *
 	 * @return JobSpecification
 	 */
 	public static function newSpec(
 		int $revisionId,
 		int $pageId,
-		int $options = 0
+		array $params = []
 	): JobSpecification {
+		$params += [ 'options' => 0 ];
 		return new JobSpecification(
 			'parsoidCachePrewarm',
 			[
 				'revId' => $revisionId,
-				'pageId' => $pageId,
-				'options' => $options
-			]
+				'pageId' => $pageId
+			] + $params
 		);
 	}
 
@@ -100,6 +104,9 @@ class ParsoidCachePrewarmJob extends Job {
 		}
 
 		$parserOpts = ParserOptions::newFromAnon();
+
+		$renderReason = $this->params['causeAction'] ?? $this->command;
+		$parserOpts->setRenderReason( $renderReason );
 
 		$mainSlot = $rev->getSlot( SlotRecord::MAIN );
 		if ( !$this->parsoidOutputAccess->supportsContentModel( $mainSlot->getModel() ) ) {
