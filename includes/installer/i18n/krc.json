@@ -50,7 +50,6 @@
 	"config-env-good": "Орталыкъ сынаудан ётдю.\nMediaWiki-ни салыргъа боллукъсуз.",
 	"config-env-bad": "Орталыкъ сынаудан ётдю.\nMediaWiki-ни салыргъа боллукъ тюлсюз.",
 	"config-env-php": "PHP $1 салыннганды.",
-	"config-unicode-using-intl": "Unicode нормалашдырыр ючюн [https://php.net/manual/tr/book.intl.php PHP inlt кенгертиу] хайырланныкъды.",
 	"config-unicode-update-warning": "<strong>Эсгертиу:</strong> Unicode нормалашдырыу къабугъуну салыннган версиясы, [http://site.icu-project.org/ ICU проектини] китаблыгъыны эски версиясыны хайырландырады.\nUnicode хайырланыуда ишеклеригиз бар эсе, [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations джангыртыргъа] керексиз.",
 	"config-no-db": "Билги базагъа келишген драйвер табылмады! PHP ючюн билги базаны драйверин салыргъа керексиз. Бу билги базаны {{PLURAL:$2|типи}} дагъан болады: $1\n\nPHP-ни кесигиз джыйдыгъыз эсе, бу болумда<code>./configure --with-mysqli</code> хайырланыб, билги базаны клиентин джандырыб, джангыдан джарашдырыгъыз.\nPHP-ни Debian неда Ubuntu пакетинден джюклеген эсегиз, бу болумда <code>php-mysql</code> пакетни да салыргъа керексиз.",
 	"config-outdated-sqlite": "<strong>Эсгертиу:</strong> сизде SQLite $2 барды. Керекли минимиум версия: $1. SQLite хайырланаллыкъ тюлсюз.",

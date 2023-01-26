@@ -1681,6 +1681,7 @@
 	"movesubpagetalktext": "Tegishli munozara sahifasining $1 {{PLURAL:$1|ta ostsahifasi}} bor.",
 	"movenosubpage": "Bu sahifa ostsahifalarga ega emas.",
 	"movereason": "Sabab:",
+	"movereasonotherlist": "Boshqa sabab",
 	"revertmove": "qaytarish",
 	"delete_and_move_confirm": "Ha, ushbu sahifa o‘chirilsin",
 	"fix-double-redirects": "Oldingi nomga yoʻnaltirishlarni toʻgʻrilash",

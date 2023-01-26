@@ -304,7 +304,7 @@
 	"publishpage-start": "o pana e lipu…",
 	"publishchanges-start": "o pana e ante…",
 	"preview": "lukin taso",
-	"showpreview": "o pana lukin e lipu sin",
+	"showpreview": "o lukin e lipu sin",
 	"showdiff": "o pana lukin e ante",
 	"newarticletext": "sina tawa lon linja li kama lukin e lipu pi lon ala.\nsina wile pali e lipu la o pana e toki lon poki ni. sina sona ala e nasin la o lukin e [$1 lipu ni].\nsina wile ala pali e lipu sin la o kepeken nena ni lon ilo linluwi: o tawa pini.",
 	"noarticletext": "lipu ni li ala. sina ken [[Special:Search/{{PAGENAME}}|alasa e nimi lipu]] lon lipu ante, li ken\n<span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} alasa e lipu lon lipu pi tawa lipu],\nli ken [{{fullurl:{{FULLPAGENAME}}|action=edit}} pali e lipu sin]</span>.",

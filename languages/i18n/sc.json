@@ -500,7 +500,7 @@
 	"missingcommenttext": "Inserta unu cummentu.",
 	"summary-preview": "Antiprima ogetu:",
 	"blockedtitle": "S'impitadore est istadu bloccadu",
-	"blockedtext": "<strong>Custu nùmene impitadore o indiritzu IP est istadu blocadu.</strong>\n\nSu blocu est istadu postu dae $1.\nSu motivu de su blocu est: <em>$2</em>.\n\n* Incumintzu de su blocu: $8\n* Iscadèntzia de su blocu: $6\n* Destinatàriu de su blocu: $7\n\nSi boles, podes tzerriare $1 o un'àteru [[{{MediaWiki:Grouppage-sysop}}|amministradore]] pro faeddare de su blocu.\nNota ca sa funtzione 'Ispedi un'email a custu impitadore' no est ativa si no est istadu registradu un'indiritzu de posta eletrònica vàlidu in is [[Special:Preferences|preferèntzias]] tuas o si s'impreu de custa funtzione est istadu arreadu.\nS'indiritzu IP atuale est $3, su nùmeru ID de su blocu est #$5.\nPro praghere ispetzìfica totu is particulares in antis de fàghere cale siat pregonta de acrarimentu.",
+	"blockedtext": "<strong>Su nùmene impitadore o indiritzu IP tuo est istadu blocadu.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nPodes impreare sa funtzionalidade \"{{int:emailuser}}\" si b'at un'indiritzu de posta eletrònica vàlidu in sas [[Special:Preferences|preferèntzias]] tuas e non t'ant blocadu s'impreu suo.\n{{int:blockedtext-block-ip|$3}}, e s'identificadore de blocu est #$5.\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "perunu motivu inditadu",
 	"whitelistedittext": "Pro cambiare is pàginas $1.",
 	"nosuchsectiontitle": "Impossìbile agatare sa setzione",

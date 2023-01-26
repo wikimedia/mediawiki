@@ -52,7 +52,6 @@
 	"config-env-good": "L'anbiénte o l'é stæto controlòu.\nO l'é poscìbile instalâ MediaWiki.",
 	"config-env-bad": "L'anbiénte o l'é stæto controlòu.\nO no l'é poscìbile instalâ MediaWiki.",
 	"config-env-php": "PHP $1 o l'é instalòu.",
-	"config-unicode-using-intl": "Adêuvia [https://php.net/manual/en/book.intl.php l'estensción PHP intl] pî-a normalizaçión Unicode.",
 	"config-unicode-update-warning": "'''Atençión:''' a versción instalâ do gestô pî-a normalizaçión Unicode a l'adêuvia 'na vêgia versción da libràia [http://site.icu-project.org/ do progètto ICU].\nTi ti doviêsci [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations agiornâ] se ti ti vêu dêuviâ l'Unicode.",
 	"config-no-db": "Inposcìbile trovâ 'n driver adàtto pî-a bànca dæti! O l'é necesâio instalâ 'n driver pe PHP.\n{{PLURAL:$2|O formâto de bànca dæti chi de sótta o l'é suportòu|I formâti de bànca dæti chi de sótta són suportæ}}: $1.\n\nSe ti ti conpîli PHP aotonomaménte, riconfigurilo ativàndo 'n client database, prezénpio dêuviàndo <code>./configure --with-mysqli</code>.\nCâxo mâi ti t'aviêsci instalòu PHP pe mêzo de 'n pachétto Debian ò Ubuntu, alôa ti ti dêvi instalâ o pachétto <code>php-mysql</code> ascì.",
 	"config-outdated-sqlite": "<strong>Atençión:</strong> ti t'æ SQLite $2, ma a l'é necesâia cómme mìnimo a versción $1. SQLite o no saiâ disponìbile.",

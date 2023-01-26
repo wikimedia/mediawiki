@@ -48,7 +48,6 @@
 	"config-env-good": "పర్యావరణాన్ని పరీక్షించాం.\nఇక మీరు MediaWiki ని స్థాపించుకోవచ్చు.",
 	"config-env-bad": "పర్యావరణాన్ని పరీక్షించాం.\nమీరు MediaWiki ని స్థాపించలేరు.",
 	"config-env-php": "PHP $1 స్థాపించబడింది.",
-	"config-unicode-using-intl": "యూనికోడు నార్మలైజేషన్ కోసం [https://pecl.php.net/intl intl PECL పొడిగింత] ను వాడుతున్నాం.",
 	"config-outdated-sqlite": "<strong>హెచ్చరిక:</strong> మీ వద్ద SQLite $1 ఉంది. అదికావలసిన వెర్షను $2 కంటే దిగువది. SQLite అందుబాటులో ఉండదు.",
 	"config-memory-raised": "PHP యొక్క <code>memory_limit</code> $1, దాన్ని $2 కి పెంచాం.",
 	"config-memory-bad": "<strong>హెచ్చరిక:</strong> PHP యొక్క <code>memory_limit</code> $1.\nబహుశా ఇది మరీ తక్కువ.\nస్థాపన విఫలం కావచ్చు!",

@@ -48,7 +48,6 @@
 	"config-env-good": "Okruženje je provereno.\nMožete da instalirate MediaWiki.",
 	"config-env-bad": "Okruženje je provereno.\nNe možete da instalirate MediaWiki.",
 	"config-env-php": "PHP $1 je instaliran.",
-	"config-unicode-using-intl": "Koristi se [https://php.net/manual/en/book.intl.php dodatak PHP intl] za normalizaciju Unikoda.",
 	"config-outdated-sqlite": "<strong>Upozorenje:</strong> imate SQLite $2, koji je niži od najmanje tražene verzije $1. SQLite će biti nedostupan.",
 	"config-no-fts3": "<strong>Upozorenje:</strong> SQLite je kompajliran bez [//sqlite.org/fts3.html FTS3 modula], funkcije pretrage biće nedostupne na ovoj bazi podataka.",
 	"config-pcre-old": "<strong>Neotklonjiva greška:</strong> Neophodan je PCRE $1 ili noviji.\nVaš binarni PHP je povezan sa PCRE $2.\n[https://www.mediawiki.org/wiki/Manual:Errors_and_symptoms/PCRE Više informacija].",
