@@ -202,7 +202,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *
 	 * @param PageIdentity $pageIdentity
 	 *
-	 * @throws MWException
 	 * @return WikiPage|WikiCategoryPage|WikiFilePage
 	 * @deprecated since 1.36, hard deprecated 1.40, use WikiPageFactory::newFromTitle instead
 	 */
@@ -2644,8 +2643,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @return Status Status object; if successful, $status->value is the log_id of the
 	 *   deletion log entry. If the page couldn't be deleted because it wasn't
 	 *   found, $status is a non-fatal 'cannotdelete' error
-	 * @throws FatalError
-	 * @throws MWException
 	 */
 	public function doDeleteArticleReal(
 		$reason, UserIdentity $deleter, $suppress = false, $u1 = null, &$error = '', $u2 = null,

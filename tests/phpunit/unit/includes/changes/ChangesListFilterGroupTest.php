@@ -5,7 +5,7 @@
  */
 class ChangesListFilterGroupTest extends \MediaWikiUnitTestCase {
 	public function testReservedCharacter() {
-		$this->expectException( MWException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage(
 			"Group names may not contain '_'.  Use the naming convention: 'camelCase'" );
 		new MockChangesListFilterGroup(

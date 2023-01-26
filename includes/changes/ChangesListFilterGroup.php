@@ -155,7 +155,7 @@ abstract class ChangesListFilterGroup {
 	 */
 	public function __construct( array $groupDefinition ) {
 		if ( strpos( $groupDefinition['name'], self::RESERVED_NAME_CHAR ) !== false ) {
-			throw new MWException( 'Group names may not contain \'' .
+			throw new InvalidArgumentException( 'Group names may not contain \'' .
 				self::RESERVED_NAME_CHAR .
 				'\'.  Use the naming convention: \'camelCase\''
 			);
@@ -226,11 +226,7 @@ abstract class ChangesListFilterGroup {
 	 * @param string $backwardKey i18n key for conflict message in reverse
 	 *  direction (when in UI context of $other object)
 	 */
-	public function conflictsWith( $other, $globalKey, $forwardKey, $backwardKey ) {
-		if ( $globalKey === null || $forwardKey === null || $backwardKey === null ) {
-			throw new MWException( 'All messages must be specified' );
-		}
-
+	public function conflictsWith( $other, string $globalKey, string $forwardKey, string $backwardKey ) {
 		$this->setUnidirectionalConflict(
 			$other,
 			$globalKey,
@@ -272,7 +268,9 @@ abstract class ChangesListFilterGroup {
 				'contextDescription' => $contextDescription,
 			];
 		} else {
-			throw new MWException( 'You can only pass in a ChangesListFilterGroup or a ChangesListFilter' );
+			throw new InvalidArgumentException(
+				'You can only pass in a ChangesListFilterGroup or a ChangesListFilter'
+			);
 		}
 	}
 

@@ -144,19 +144,19 @@ abstract class ChangesListFilter {
 		if ( isset( $filterDefinition['group'] ) ) {
 			$this->group = $filterDefinition['group'];
 		} else {
-			throw new MWException( 'You must use \'group\' to specify the ' .
+			throw new InvalidArgumentException( 'You must use \'group\' to specify the ' .
 				'ChangesListFilterGroup this filter belongs to' );
 		}
 
 		if ( strpos( $filterDefinition['name'], self::RESERVED_NAME_CHAR ) !== false ) {
-			throw new MWException( 'Filter names may not contain \'' .
+			throw new InvalidArgumentException( 'Filter names may not contain \'' .
 				self::RESERVED_NAME_CHAR .
 				'\'.  Use the naming convention: \'lowercase\''
 			);
 		}
 
 		if ( $this->group->getFilter( $filterDefinition['name'] ) ) {
-			throw new MWException( 'Two filters in a group cannot have the ' .
+			throw new InvalidArgumentException( 'Two filters in a group cannot have the ' .
 				"same name: '{$filterDefinition['name']}'" );
 		}
 
@@ -192,11 +192,7 @@ abstract class ChangesListFilter {
 	 * @param string $backwardKey i18n key for conflict message in reverse
 	 *  direction (when in UI context of $other object)
 	 */
-	public function conflictsWith( $other, $globalKey, $forwardKey, $backwardKey ) {
-		if ( $globalKey === null || $forwardKey === null || $backwardKey === null ) {
-			throw new MWException( 'All messages must be specified' );
-		}
-
+	public function conflictsWith( $other, string $globalKey, string $forwardKey, string $backwardKey ) {
 		$this->setUnidirectionalConflict(
 			$other,
 			$globalKey,
@@ -238,7 +234,9 @@ abstract class ChangesListFilter {
 				'contextDescription' => $contextDescription,
 			];
 		} else {
-			throw new MWException( 'You can only pass in a ChangesListFilterGroup or a ChangesListFilter' );
+			throw new InvalidArgumentException(
+				'You can only pass in a ChangesListFilterGroup or a ChangesListFilter'
+			);
 		}
 	}
 
@@ -253,7 +251,7 @@ abstract class ChangesListFilter {
 	 */
 	public function setAsSupersetOf( ChangesListFilter $other ) {
 		if ( $other->getGroup() !== $this->getGroup() ) {
-			throw new MWException( 'Supersets can only be defined for filters in the same group' );
+			throw new InvalidArgumentException( 'Supersets can only be defined for filters in the same group' );
 		}
 
 		$this->subsetFilters[] = [

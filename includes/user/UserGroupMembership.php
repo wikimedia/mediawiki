@@ -103,7 +103,7 @@ class UserGroupMembership {
 	 */
 	public static function getLink( $ugm, IContextSource $context, $format, $userName = null ) {
 		if ( $format !== 'wiki' && $format !== 'html' ) {
-			throw new MWException( 'UserGroupMembership::getLink() $format parameter should be ' .
+			throw new InvalidArgumentException( 'UserGroupMembership::getLink() $format parameter should be ' .
 				"'wiki' or 'html'" );
 		}
 

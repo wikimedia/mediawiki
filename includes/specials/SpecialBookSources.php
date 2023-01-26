@@ -158,7 +158,6 @@ class SpecialBookSources extends SpecialPage {
 	 * format and output them
 	 *
 	 * @param string $isbn
-	 * @throws MWException
 	 * @return bool
 	 */
 	private function showList( $isbn ) {
@@ -184,7 +183,9 @@ class SpecialBookSources extends SpecialPage {
 
 				return true;
 			} else {
-				throw new MWException( "Unexpected content type for book sources: " . $content->getModel() );
+				throw new UnexpectedValueException(
+					"Unexpected content type for book sources: " . $content->getModel()
+				);
 			}
 		}
 

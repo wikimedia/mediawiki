@@ -467,7 +467,6 @@ abstract class Installer {
 	 *        'InterwikiLookup' and 'UserOptionsLookup'.
 	 *
 	 * @return MediaWikiServices
-	 * @throws MWException
 	 */
 	public function resetMediaWikiServices( Config $installerConfig = null, $serviceOverrides = [] ) {
 		global $wgObjectCaches, $wgLang;
