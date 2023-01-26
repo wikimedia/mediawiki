@@ -1891,7 +1891,7 @@ class ParserTestRunner {
 					$revRecord = $runner->createRevRecord( $title, $user, $revProps );
 				}
 				$pageConfig = $pageConfigFactory->create(
-					$title, $user, $revRecord, null, $context->getLanguage()->getCode()
+					$title, $user, $revRecord, null, null
 				);
 				return $pageConfig->getParserOptions();
 			} );
@@ -2143,25 +2143,25 @@ class ParserTestRunner {
 		$userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
 		// Make a user object with the same language
 		$user = new User;
-		$userOptionsManager->setOption( $user, 'language', $langCode );
+		$userOptionsManager->setOption( $user, 'language', $variant ?: $langCode );
 		$setup['wgLang'] = $lang;
 		$setup['wgUser'] = $user;
 
-		// And put both user and language into the context
+		// And put both user (and, implicitly, the user language) into the
+		// context
 		$context = RequestContext::getMain();
 		$context->setUser( $user );
-		$context->setLanguage( $lang );
 		// And the skin!
 		$oldSkin = $context->getSkin();
 		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
 		$context->setSkin( $skinFactory->makeSkin( $skin ) );
 		$context->setOutput( new OutputPage( $context ) );
 		$setup['wgOut'] = $context->getOutput();
-		$teardown[] = static function () use ( $context, $oldSkin ) {
+		$teardown[] = static function () use ( $context, $lang, $oldSkin ) {
 			// Clear language conversion tables
 			$wrapper = TestingAccessWrapper::newFromObject(
 				MediaWikiServices::getInstance()->getLanguageConverterFactory()
-					->getLanguageConverter( $context->getLanguage() )
+					->getLanguageConverter( $lang )
 			);
 			@$wrapper->reloadTables();
 
