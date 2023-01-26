@@ -382,6 +382,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 *  - enableSectionEditLinks: (bool) Include section edit links, assuming
 	 *     section edit link tokens are present in the HTML. Default is true,
 	 *     but might be statefully overridden.
+	 *  - userLang: (Language) Language object used for localizing UX messages,
+	 *    for example the heading of the table of contents. If omitted, will
+	 *    use the language of the main request context.
 	 *  - skin: (Skin) Skin object used for transforming section edit links.
 	 *  - unwrap: (bool) Return text without a wrapper div. Default is false,
 	 *    meaning a wrapper div will be added if getWrapperDivClass() returns
@@ -406,6 +409,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			'injectTOC' => true,
 			'enableSectionEditLinks' => true,
 			'skin' => null,
+			'userLang' => null,
 			'unwrap' => false,
 			'deduplicateStyles' => true,
 			'wrapperDivClass' => $this->getWrapperDivClass(),
@@ -466,37 +470,46 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 
 		if ( $options['allowTOC'] ) {
 			if ( $options['injectTOC'] ) {
-				$toc = $this->getTOCHTML();
-				// language conversion needs to be done on the TOC fetched
-				// from parser cache
-				if ( !$this->getOutputFlag( ParserOutputFlags::NO_TOC_CONVERSION ) ) {
-					// XXX Use DI to inject this once ::getText() is moved out
-					// of ParserOutput
+				if ( count( $this->getSections() ) === 0 ) {
+					$toc = '';
+				} else {
 					$services = MediaWikiServices::getInstance();
-					$languageFactory =
-						$services->getLanguageFactory();
-					$languageConverterFactory =
-						$services->getLanguageConverterFactory();
-					// T303329: this should migrate out of extension data
-					$langCode = $this->getExtensionData( 'core:target-lang' )
-						// This is a temporary fallback while the ParserCache fills
-						?? $services->getContentLanguage()->getCode();
-					$langConv = $languageConverterFactory->getLanguageConverter(
-						$languageFactory->getLanguage( $langCode )
-					);
-					$variant = $this->getExtensionData( 'core:target-lang-variant' )
-						// This is a temporary fallback while the ParserCache fills
-						?? $langConv->getPreferredVariant();
-					$toc = $langConv->convertTo( $toc, $variant );
-				}
+					$userLang = $options['userLang'];
+					$skin = $options['skin'];
+					if ( ( !$userLang ) && $skin ) {
+						// TODO: See above comment about replacing the use
+						// of 'skin' here.
+						$userLang = $skin->getLanguage();
+					}
+					if ( !$userLang ) {
+						$userLang = RequestContext::getMain()->getLanguage();
+					}
+					$config = $services->getMainConfig();
+					$maxTocLevel = $config->get( MainConfigNames::MaxTocLevel );
+					$toc = Linker::generateTOC(
+						$this->getSections(), $userLang, [ "maxtoclevel" => $maxTocLevel ] );
+					// language conversion needs to be done on the TOC fetched
+					// from parser cache
+					if ( !$this->getOutputFlag( ParserOutputFlags::NO_TOC_CONVERSION ) ) {
+						$languageFactory = $services->getLanguageFactory();
+						$languageConverterFactory = $services->getLanguageConverterFactory();
+						// T303329: this should migrate out of extension data
+						$langCode = $this->getExtensionData( 'core:target-lang' )
+							// This is a temporary fallback while the ParserCache fills
+							?? $services->getContentLanguage()->getCode();
+						$langConv = $languageConverterFactory->getLanguageConverter(
+							$languageFactory->getLanguage( $langCode )
+						);
+						$variant = $this->getExtensionData( 'core:target-lang-variant' )
+							// This is a temporary fallback while the ParserCache fills
+							?? $langConv->getPreferredVariant();
+						$toc = $langConv->convertTo( $toc, $variant );
+					}
 
-				// XXX Use DI to inject this once ::getText() is moved out
-				// of ParserOutput.
-				$tidy = MediaWikiServices::getInstance()->getTidy();
-				$toc = $tidy->tidy(
-					$toc,
-					[ Sanitizer::class, 'armorFrenchSpaces' ]
-				);
+					// XXX Use DI to inject this once ::getText() is moved out of ParserOutput.
+					$toc = $services->getTidy()->tidy( $toc, [ Sanitizer::class, 'armorFrenchSpaces' ] );
+				}
+				$this->mTOCHTML = $toc;
 				$text = Parser::replaceTableOfContentsMarker( $text, $toc );
 				// The line below can be removed once old content has expired
 				// from the parser cache
@@ -946,6 +959,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return $old;
 	}
 
+	/**
+	 * @internal
+	 * @deprecated since 1.40
+	 * T293513: We can remove this once we get rid of MW 1.38 and older
+	 * parsercache serialization tests since those serialized
+	 * files have artificial TOC data (which we cannot replicate
+	 * via on-demand TOC generation).
+	 */
 	public function setTOCHTML( $tochtml ) {
 		return wfSetVar( $this->mTOCHTML, $tochtml );
 	}
