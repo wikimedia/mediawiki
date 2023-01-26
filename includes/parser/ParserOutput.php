@@ -494,23 +494,6 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 						$this->getTOCData(), $userLang, [
 							"maxtoclevel" => $maxTocLevel,
 						] );
-					// language conversion needs to be done on the TOC fetched
-					// from parser cache
-					if ( !$this->getOutputFlag( ParserOutputFlags::NO_TOC_CONVERSION ) ) {
-						$languageFactory = $services->getLanguageFactory();
-						$languageConverterFactory = $services->getLanguageConverterFactory();
-						// T303329: this should migrate out of extension data
-						$langCode = $this->getExtensionData( 'core:target-lang' )
-							// This is a temporary fallback while the ParserCache fills
-							?? $services->getContentLanguage()->getCode();
-						$langConv = $languageConverterFactory->getLanguageConverter(
-							$languageFactory->getLanguage( $langCode )
-						);
-						$variant = $this->getExtensionData( 'core:target-lang-variant' )
-							// This is a temporary fallback while the ParserCache fills
-							?? $langConv->getPreferredVariant();
-						$toc = $langConv->convertTo( $toc, $variant );
-					}
 
 					// XXX Use DI to inject this once ::getText() is moved out of ParserOutput.
 					$toc = $services->getTidy()->tidy( $toc, [ Sanitizer::class, 'armorFrenchSpaces' ] );
