@@ -26,7 +26,8 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			$services->getUserOptionsManager(),
 			$services->getLanguageConverterFactory(),
 			$services->getRepoGroup(),
-			$services->getSearchResultThumbnailProvider()
+			$services->getSearchResultThumbnailProvider(),
+			$services->getTitleMatcher()
 		);
 	}
 
@@ -287,7 +288,8 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 				$services->getUserOptionsManager(),
 				$services->getLanguageConverterFactory(),
 				$services->getRepoGroup(),
-				$services->getSearchResultThumbnailProvider()
+				$services->getSearchResultThumbnailProvider(),
+				$services->getTitleMatcher()
 			] )
 			->onlyMethods( [ 'getSearchEngine' ] )
 			->getMock();
@@ -347,7 +349,8 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 				$userOptionsManager,
 				$services->getLanguageConverterFactory(),
 				$services->getRepoGroup(),
-				$services->getSearchResultThumbnailProvider()
+				$services->getSearchResultThumbnailProvider(),
+				$services->getTitleMatcher()
 			] )
 			->onlyMethods( [ 'getSearchEngine' ] )
 			->getMock();
@@ -370,22 +373,11 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
 	protected function mockSearchEngine( SpecialSearchTestMockResultSet $results ) {
 		$mock = $this->getMockBuilder( SearchEngine::class )
-			->onlyMethods( [ 'searchText', 'searchTitle', 'getNearMatcher' ] )
+			->onlyMethods( [ 'searchText' ] )
 			->getMock();
 
 		$mock->method( 'searchText' )
 			->willReturn( $results );
-
-		$nearMatcherMock = $this->getMockBuilder( SearchNearMatcher::class )
-			->disableOriginalConstructor()
-			->onlyMethods( [ 'getNearMatch' ] )
-			->getMock();
-
-		$nearMatcherMock->method( 'getNearMatch' )
-			->willReturn( $results->getFirstResult() );
-
-		$mock->method( 'getNearMatcher' )
-			->willReturn( $nearMatcherMock );
 
 		$mock->setHookContainer( $this->getServiceContainer()->getHookContainer() );
 
@@ -444,6 +436,15 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			'',
 			[ SearchResult::newFromTitle( Title::newMainPage() ) ]
 		);
+
+		$nearMatcherMock = $this->getMockBuilder( TitleMatcher::class )
+			->disableOriginalConstructor()
+			->onlyMethods( [ 'getNearMatch' ] )
+			->getMock();
+
+		$nearMatcherMock->method( 'getNearMatch' )
+			->willReturn( $searchResults->getFirstResult() );
+
 		$mockSearchEngine = $this->mockSearchEngine( $searchResults );
 		$services = $this->getServiceContainer();
 		$search = $this->getMockBuilder( SpecialSearch::class )
@@ -457,7 +458,8 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 				$services->getUserOptionsManager(),
 				$services->getLanguageConverterFactory(),
 				$services->getRepoGroup(),
-				$services->getSearchResultThumbnailProvider()
+				$services->getSearchResultThumbnailProvider(),
+				$nearMatcherMock
 			] )
 			->onlyMethods( [ 'getSearchEngine' ] )
 			->getMock();
@@ -526,7 +528,8 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 				$services->getUserOptionsManager(),
 				$languageConverterFactory,
 				$services->getRepoGroup(),
-				$services->getSearchResultThumbnailProvider()
+				$services->getSearchResultThumbnailProvider(),
+				$services->getTitleMatcher()
 			);
 			$context = new RequestContext();
 			$context->setRequest( new FauxRequest() );
@@ -547,63 +550,5 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		$html = $specialSearch->getContext()->getOutput()->getHTML();
 		$this->assertStringContainsString( 'class="mw-search-createlink"', $html );
 		$this->assertStringNotContainsString( 'class="mw-search-exists"', $html );
-	}
-}
-
-class SpecialSearchTestMockResultSet extends SearchResultSet {
-	protected $results;
-	protected $suggestion;
-	protected $rewrittenQuery;
-	protected $containedSyntax;
-
-	public function __construct(
-		$suggestion = null,
-		$rewrittenQuery = null,
-		array $results = [],
-		$containedSyntax = false
-	) {
-		$this->suggestion = $suggestion;
-		$this->rewrittenQuery = $rewrittenQuery;
-		$this->results = $results;
-		$this->containedSyntax = $containedSyntax;
-	}
-
-	public function expandResults() {
-		return $this->results;
-	}
-
-	public function getTotalHits() {
-		return $this->numRows();
-	}
-
-	public function hasSuggestion() {
-		return $this->suggestion !== null;
-	}
-
-	public function getSuggestionQuery() {
-		return $this->suggestion;
-	}
-
-	public function getSuggestionSnippet() {
-		return $this->suggestion;
-	}
-
-	public function hasRewrittenQuery() {
-		return $this->rewrittenQuery !== null;
-	}
-
-	public function getQueryAfterRewrite() {
-		return $this->rewrittenQuery;
-	}
-
-	public function getQueryAfterRewriteSnippet() {
-		return htmlspecialchars( $this->rewrittenQuery );
-	}
-
-	public function getFirstResult() {
-		if ( count( $this->results ) === 0 ) {
-			return null;
-		}
-		return $this->results[0]->getTitle();
 	}
 }

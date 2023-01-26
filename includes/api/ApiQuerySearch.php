@@ -40,22 +40,27 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	/** @var SearchEngineFactory */
 	private $searchEngineFactory;
 
+	private TitleMatcher $titleMatcher;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param SearchEngineConfig $searchEngineConfig
 	 * @param SearchEngineFactory $searchEngineFactory
+	 * @param TitleMatcher $titleMatcher
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		SearchEngineConfig $searchEngineConfig,
-		SearchEngineFactory $searchEngineFactory
+		SearchEngineFactory $searchEngineFactory,
+		TitleMatcher $titleMatcher
 	) {
 		parent::__construct( $query, $moduleName, 'sr' );
 		// Services also needed in SearchApi trait
 		$this->searchEngineConfig = $searchEngineConfig;
 		$this->searchEngineFactory = $searchEngineFactory;
+		$this->titleMatcher = $titleMatcher;
 	}
 
 	public function execute() {
@@ -105,8 +110,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		} elseif ( $what == 'nearmatch' ) {
 			// near matches must receive the user input as provided, otherwise
 			// the near matches within namespaces are lost.
-			$matches = $search->getNearMatcher( $this->getConfig() )
-				->getNearMatchResultSet( $params['search'] );
+			$matches = $this->titleMatcher->getNearMatchResultSet( $params['search'] );
 		} else {
 			// We default to title searches; this is a terrible legacy
 			// of the way we initially set up the MySQL fulltext-based

@@ -124,6 +124,8 @@ class SpecialSearch extends SpecialPage {
 	/** @var SearchResultThumbnailProvider */
 	private $thumbnailProvider;
 
+	private TitleMatcher $titleMatcher;
+
 	/**
 	 * @var Status Holds any parameter validation errors that should
 	 *  be displayed back to the user.
@@ -143,6 +145,7 @@ class SpecialSearch extends SpecialPage {
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 * @param RepoGroup $repoGroup
 	 * @param SearchResultThumbnailProvider $thumbnailProvider
+	 * @param TitleMatcher $titleMatcher
 	 */
 	public function __construct(
 		SearchEngineConfig $searchConfig,
@@ -154,7 +157,8 @@ class SpecialSearch extends SpecialPage {
 		UserOptionsManager $userOptionsManager,
 		LanguageConverterFactory $languageConverterFactory,
 		RepoGroup $repoGroup,
-		SearchResultThumbnailProvider $thumbnailProvider
+		SearchResultThumbnailProvider $thumbnailProvider,
+		TitleMatcher $titleMatcher
 	) {
 		parent::__construct( 'Search' );
 		$this->searchConfig = $searchConfig;
@@ -167,6 +171,7 @@ class SpecialSearch extends SpecialPage {
 		$this->languageConverterFactory = $languageConverterFactory;
 		$this->repoGroup = $repoGroup;
 		$this->thumbnailProvider = $thumbnailProvider;
+		$this->titleMatcher = $titleMatcher;
 	}
 
 	/**
@@ -351,8 +356,7 @@ class SpecialSearch extends SpecialPage {
 			return null;
 		}
 		# If there's an exact or very near match, jump right there.
-		$title = $this->getSearchEngine()
-			->getNearMatcher( $this->getConfig() )->getNearMatch( $term );
+		$title = $this->titleMatcher->getNearMatch( $term );
 		if ( $title === null ) {
 			return null;
 		}

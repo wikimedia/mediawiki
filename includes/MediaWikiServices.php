@@ -178,6 +178,7 @@ use SiteLookup;
 use SiteStore;
 use SkinFactory;
 use TitleFormatter;
+use TitleMatcher;
 use TitleParser;
 use TrackingCategories;
 use UploadRevisionImporter;
@@ -1850,6 +1851,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getTitleFormatter(): TitleFormatter {
 		return $this->getService( 'TitleFormatter' );
+	}
+
+	/**
+	 * @return TitleMatcher
+	 * @since 1.40
+	 */
+	public function getTitleMatcher(): TitleMatcher {
+		return $this->getService( 'TitleMatcher' );
 	}
 
 	/**

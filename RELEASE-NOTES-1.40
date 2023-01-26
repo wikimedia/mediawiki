@@ -347,6 +347,9 @@ because of Phabricator reports.
   Use Language::getGroupMemberName or ::getGroupName instead.
 * AbstractBlock::getPermissionsError(), deprecated in 1.35, now emits
   deprecation warnings.
+* SearchEngine::getNearMatcher() and ::getDefaultMatcher() have been deprecated
+  in favor of MediaWikiServices::getInstance()->getTitleMatcher().
+* SearchNearMatcher class has been deprecated in 1.40 in favor of TitleMatcher.
 * The following functions are deprecated: User::isBlockedGlobally and
   User::getGlobalBlock. Use User::getBlock instead.
 * The UserIsBlockedGlobally hook is deprecated.
