@@ -49,7 +49,6 @@
 	"config-env-good": "L'ambiente è stato cuntrullato.\nÈ pussibbele installare MediaWiki.",
 	"config-env-bad": "L'ambiente è stato cuntrullato.\nNun se può installà MediaWiki.",
 	"config-env-php": "PHP $1 è installato.",
-	"config-unicode-using-intl": "Aúsa [https://pecl.php.net/intl l'estensione PECL intl] pe' ne fà 'a normalizzazione Unicode.",
 	"config-unicode-update-warning": "<strong>Attenziò:</strong> 'A verziona installata 'e normalizzazione Unicode aùsa 'a verziona viecchia d' 'o [http://site.icu-project.org/ pruggetto ICU].\nV'avite 'a [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations agghiurnà] si state a penzà ncopp' 'o fatto d'ausà Unicode.",
 	"config-no-db": "Nun se può truvà nu driver adatto p' 'o database! È necessario installare nu driver p' 'o PHP.\n{{PLURAL:$2|'O furmato suppurtato|'E furmate suppurtate}} 'e database ccà annanze: $1.\n\nSi cumpilate PHP autonomamente, riaccunciatevello attivando nu client database, p'esempio ausannoo <code>./configure --with-mysqli</code>.\nQuanno fosse installato PHP pe' bbìa 'e nu pacchetto Debian o Ubuntu, allora avite 'a installà pure 'o pacchetto <code>php-mysql</code>.",
 	"config-outdated-sqlite": "'''Attenziò''': tenite 'o SQLite $1 pe' tramente ca ce vulesse 'a verziona $2, SQLite nun sarrà a disposizione.",

@@ -4755,5 +4755,4 @@
 	"blockedtext-block-ip": "Used as component for a block error message. $1 - the IP address",
 	"blockedtext-block-id": "Used as component for a block error message. $1 - the block ID",
 	"blockedtext-include-details-queries": "Used as component for a block error message"
-
 }

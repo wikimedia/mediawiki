@@ -51,7 +51,6 @@
 	"config-env-good": "Omno verifikesis.\nVu povas intalar MediaWiki.",
 	"config-env-bad": "Omno verifikesis.\nVu NE POVAS intalar MediaWiki.",
 	"config-env-php": "PHP $1 instalesis.",
-	"config-unicode-using-intl": "Uzanta [https://php.net/manual/en/book.intl.php PHP intl extension] por normaligo Unicode.",
 	"config-unicode-update-warning": "<strong>Atencez:</strong> La versiono di ''Unicode normalization wrapper'' instalata en vua komputero uzas obsoleta versiono di la biblioteko del [http://site.icu-project.org/ projeto ICU].\nVu mustas instalar [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations la nova versiono] se vu deziras uzar Unicode.",
 	"config-no-db": "Ne povis trovar konvenanta ''driver'' por la datumaro! Vu mustas instalar ''driver'' por datumaro en PHP.\nLa sequanta {{PLURAL:$2|tipo|tipi}} di datumaro esas suportebla: $1.\n\nIf you compiled PHP yourself, reconfigure it with a database client enabled, for example, using <code>./configure --with-mysqli</code>.\nIf you installed PHP from a Debian or Ubuntu package, then you also need to install, for example, the <code>php-mysql</code> package.",
 	"config-outdated-sqlite": "<strong>Atencez:</strong> vu havas SQLite $2, quo esas inferiora a la minima versiono bezonata, $1. SQLite ne esos disponebla.",

@@ -52,7 +52,6 @@
 	"config-env-good": "Mjedisi u kontrollua.\nMund të instaloni MediaWiki-n.",
 	"config-env-bad": "Mjedisi u kontrollua.\nS’mund të instaloni MediaWiki-n",
 	"config-env-php": "Është e instaluar PHP $1.",
-	"config-unicode-using-intl": "Përdorim i [https://php.net/manual/en/book.intl.php PHP intl extension] për normalizim Unikod.",
 	"config-no-db": "S’u gjet dot një përudhës i përshtatshëm baze të dhënash! Lypset të instaloni një përudhës baze të dhënash për PHP-në.\n{{PLURAL:$2|Mbulohet lloji vijues|Mbulohen llojet vijuese}} baze të dhënash: $1.\n\nNëse e përpiluat ju vetë PHP-në, riformësojeni me një klient baze të dhënash të aktivizuar, për shembull, duke përdorur <code>./configure --with-mysqli</code>.\nNëse e instaluat PHP-në prej një pakete Debian ose Ubuntu, atëherë ju duhet të instaloni, për shembull, paketën <code>php-mysql</code>.",
 	"config-apc": "[https://www.php.net/apc APC] u instalua",
 	"config-apcu": "[https://www.php.net/apcu APCu] është i instaluar",

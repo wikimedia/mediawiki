@@ -38,7 +38,6 @@
 	"config-env-good": "L’environament es estat verificat.\nPodètz installar MediaWiki.",
 	"config-env-bad": "L’environament es estat verificat.\nPodètz pas installar MediaWiki.",
 	"config-env-php": "PHP $1 es installat.",
-	"config-unicode-using-intl": "Utilizacion de [https://pecl.php.net/intl l'extension PECL intl] per la normalizacion Unicode.",
 	"config-memory-raised": "Lo paramètre <code>memory_limit</code> de PHP èra a $1, portat a $2.",
 	"config-apc": "[https://www.php.net/apc APC] es installat",
 	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] es installat",

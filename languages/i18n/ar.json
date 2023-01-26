@@ -39,6 +39,7 @@
 			"FiberAhmed",
 			"Gharbeia",
 			"Haajer",
+			"Hamdisaif",
 			"Haytham morsy",
 			"Helmoony",
 			"Hhaboh162002",
@@ -4218,5 +4219,6 @@
 	"newpages-showhide-bots": "$1 البوتات",
 	"newpages-showhide-patrolled": "$1 التعديلات المراجعة",
 	"newpages-showhide-redirect": "$1 التحويلات",
-	"newpages-showhide-registered": "$1 المستخدمين المسجلين"
+	"newpages-showhide-registered": "$1 المستخدمين المسجلين",
+	"blockedtext-contact-blocker-admin": "يمكنك الاتصال ب $1 أو آخر       جوجل\n[[{{MediaWiki: Grouppage-sysop}} | المسؤول]] لمناقشة الحظر."
 }
