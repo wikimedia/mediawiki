@@ -20,6 +20,7 @@
 
 namespace MediaWiki;
 
+use BadMethodCallException;
 use BagOStuff;
 use CentralIdLookup;
 use Config;
@@ -158,7 +159,6 @@ use MediaWiki\Utils\UrlUtils;
 use MediaWiki\Watchlist\WatchlistManager;
 use MessageCache;
 use MimeAnalyzer;
-use MWException;
 use MWLBFactory;
 use NamespaceInfo;
 use ObjectCache;
@@ -312,15 +312,13 @@ class MediaWikiServices extends ServiceContainer {
 	 *
 	 * @note This is for use in PHPUnit tests only!
 	 *
-	 * @throws MWException if called outside of PHPUnit tests.
-	 *
 	 * @param MediaWikiServices $services The new MediaWikiServices object.
 	 *
 	 * @return MediaWikiServices The old MediaWikiServices object, so it can be restored later.
 	 */
 	public static function forceGlobalInstance( MediaWikiServices $services ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
-			throw new MWException( __METHOD__ . ' must not be used outside unit tests.' );
+			throw new BadMethodCallException( __METHOD__ . ' must not be used outside unit tests.' );
 		}
 
 		$old = self::getInstance();
@@ -338,7 +336,9 @@ class MediaWikiServices extends ServiceContainer {
 	 *
 	 * @warning This should not be used during normal operation. It is intended for use
 	 * when the configuration has changed significantly since bootstrap time, e.g.
-	 * during the installation process or during testing.
+	 * during the installation process or during testing. The method must not be called after
+	 * MW_SERVICE_BOOTSTRAP_COMPLETE has been defined in Setup.php, unless MW_PHPUNIT_TEST or
+	 * MEDIAWIKI_INSTALL or RUN_MAINTENANCE_IF_MAIN is defined).
 	 *
 	 * @warning Calling resetGlobalInstance() may leave the application in an inconsistent
 	 * state. Calling this is only safe under the ASSUMPTION that NO REFERENCE to
@@ -363,10 +363,6 @@ class MediaWikiServices extends ServiceContainer {
 	 *
 	 * @param string $quick Set this to "quick" to allow expensive resources to be re-used.
 	 * See SalvageableService for details.
-	 *
-	 * @throws MWException If called after MW_SERVICE_BOOTSTRAP_COMPLETE has been defined in
-	 *         Setup.php (unless MW_PHPUNIT_TEST or MEDIAWIKI_INSTALL or RUN_MAINTENANCE_IF_MAIN
-	 *          is defined).
 	 */
 	public static function resetGlobalInstance( Config $bootstrapConfig = null, $quick = '' ) {
 		if ( self::$instance === null ) {
@@ -437,8 +433,6 @@ class MediaWikiServices extends ServiceContainer {
 	 *        in the 'ServiceWiringFiles' setting in $bootstrapConfig.
 	 *
 	 * @return MediaWikiServices
-	 * @throws MWException
-	 * @throws \FatalError
 	 */
 	private static function newInstance( Config $bootstrapConfig, $loadWiring = '' ) {
 		$instance = new self( $bootstrapConfig );
@@ -519,12 +513,10 @@ class MediaWikiServices extends ServiceContainer {
 	 * @param bool $destroy Whether the service instance should be destroyed if it exists.
 	 *        When set to false, any existing service instance will effectively be detached
 	 *        from the container.
-	 *
-	 * @throws MWException if called outside of PHPUnit tests.
 	 */
 	public function resetServiceForTesting( $name, $destroy = true ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
-			throw new MWException( 'resetServiceForTesting() must not be used outside unit tests.' );
+			throw new BadMethodCallException( 'resetServiceForTesting() must not be used outside unit tests.' );
 		}
 
 		$this->resetService( $name, $destroy );
@@ -551,8 +543,6 @@ class MediaWikiServices extends ServiceContainer {
 	 *
 	 * @param string $method the name of the caller method, as given by __METHOD__.
 	 *
-	 * @throws MWException if called outside bootstrap mode.
-	 *
 	 * @see resetGlobalInstance()
 	 * @see forceGlobalInstance()
 	 * @see disableStorageBackend()
@@ -564,7 +554,7 @@ class MediaWikiServices extends ServiceContainer {
 			&& !defined( 'RUN_MAINTENANCE_IF_MAIN' )
 			&& defined( 'MW_SERVICE_BOOTSTRAP_COMPLETE' )
 		) {
-			throw new MWException( $method . ' may only be called during bootstrapping and unit tests!' );
+			throw new BadMethodCallException( $method . ' may only be called during bootstrapping and unit tests!' );
 		}
 	}
 

@@ -114,6 +114,6 @@ abstract class RedirectSpecialPage extends UnlistedSpecialPage {
 	 */
 	protected function showNoRedirectPage() {
 		$class = static::class;
-		throw new MWException( "RedirectSpecialPage $class doesn't redirect!" );
+		throw new LogicException( "RedirectSpecialPage $class doesn't redirect!" );
 	}
 }

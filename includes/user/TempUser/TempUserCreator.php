@@ -8,7 +8,7 @@ use MediaWiki\Auth\Throttler;
 use MediaWiki\Session\Session;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserRigorOptions;
-use MWException;
+use UnexpectedValueException;
 use WebRequest;
 use Wikimedia\ObjectFactory\ObjectFactory;
 
@@ -195,7 +195,7 @@ class TempUserCreator implements TempUserConfig {
 			if ( isset( $extensionProviders[$type] ) ) {
 				$spec = $extensionProviders[$type];
 			} else {
-				throw new MWException( __CLASS__ . ": unknown serial provider \"$type\"" );
+				throw new UnexpectedValueException( __CLASS__ . ": unknown serial provider \"$type\"" );
 			}
 		}
 
@@ -235,7 +235,7 @@ class TempUserCreator implements TempUserConfig {
 			if ( isset( $extensionMappings[$type] ) ) {
 				$spec = $extensionMappings[$type];
 			} else {
-				throw new MWException( __CLASS__ . ": unknown serial mapping \"$type\"" );
+				throw new UnexpectedValueException( __CLASS__ . ": unknown serial mapping \"$type\"" );
 			}
 		}
 		/** @noinspection PhpIncompatibleReturnTypeInspection */

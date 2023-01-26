@@ -26,7 +26,7 @@ class ChangesListFilterTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testReservedCharacter() {
-		$this->expectException( MWException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage(
 			"Filter names may not contain '_'.  Use the naming convention: 'lowercase'"
 		);
@@ -48,7 +48,7 @@ class ChangesListFilterTest extends MediaWikiUnitTestCase {
 			]
 		);
 
-		$this->expectException( MWException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( "Two filters in a group cannot have the same name: 'somename'" );
 		new MockChangesListFilter(
 			[
@@ -103,7 +103,7 @@ class ChangesListFilterTest extends MediaWikiUnitTestCase {
 			/** named= */ true
 		);
 
-		$this->expectException( MWException::class );
+		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( "Supersets can only be defined for filters in the same group" );
 		$foo->setAsSupersetOf( $baz );
 	}

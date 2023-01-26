@@ -2,7 +2,7 @@
 
 namespace MediaWiki\User\TempUser;
 
-use MWException;
+use BadMethodCallException;
 
 /**
  * The real TempUserConfig including internal methods used by TempUserCreator.
@@ -73,7 +73,7 @@ class RealTempUserConfig implements TempUserConfig {
 		if ( $this->enabled ) {
 			return $this->genPattern->generate( '*' );
 		} else {
-			throw new MWException( __METHOD__ . ' is disabled' );
+			throw new BadMethodCallException( __METHOD__ . ' is disabled' );
 		}
 	}
 
@@ -85,7 +85,7 @@ class RealTempUserConfig implements TempUserConfig {
 		if ( $this->enabled ) {
 			return $this->genPattern;
 		} else {
-			throw new MWException( __METHOD__ . ' is disabled' );
+			throw new BadMethodCallException( __METHOD__ . ' is disabled' );
 		}
 	}
 
