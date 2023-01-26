@@ -141,7 +141,7 @@ class BitmapHandler extends TransformationalImageHandler {
 			case 'yuv420':
 				return [ '2x2', '1x1', '1x1' ];
 			default:
-				throw new MWException( 'Invalid pixel format for JPEG output' );
+				throw new UnexpectedValueException( 'Invalid pixel format for JPEG output' );
 		}
 	}
 

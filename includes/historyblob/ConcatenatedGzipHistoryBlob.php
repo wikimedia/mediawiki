@@ -45,7 +45,7 @@ class ConcatenatedGzipHistoryBlob implements HistoryBlob {
 
 	public function __construct() {
 		if ( !function_exists( 'gzdeflate' ) ) {
-			throw new MWException( "Need zlib support to read or write this "
+			throw new RuntimeException( "Need zlib support to read or write this "
 				. "kind of history object (ConcatenatedGzipHistoryBlob)\n" );
 		}
 	}

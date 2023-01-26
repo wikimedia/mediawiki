@@ -150,11 +150,7 @@ class Site {
 	 * @since 1.21
 	 * @param string|null $globalId
 	 */
-	public function setGlobalId( $globalId ) {
-		if ( $globalId !== null && !is_string( $globalId ) ) {
-			throw new MWException( '$globalId needs to be string or null' );
-		}
-
+	public function setGlobalId( ?string $globalId ) {
 		$this->globalId = $globalId;
 	}
 
@@ -186,11 +182,7 @@ class Site {
 	 * @since 1.21
 	 * @param string $group
 	 */
-	public function setGroup( $group ) {
-		if ( !is_string( $group ) ) {
-			throw new MWException( '$group needs to be a string' );
-		}
-
+	public function setGroup( string $group ) {
 		$this->group = $group;
 	}
 
@@ -211,11 +203,7 @@ class Site {
 	 * @since 1.21
 	 * @param string $source
 	 */
-	public function setSource( $source ) {
-		if ( !is_string( $source ) ) {
-			throw new MWException( '$source needs to be a string' );
-		}
-
+	public function setSource( string $source ) {
 		$this->source = $source;
 	}
 
@@ -238,11 +226,7 @@ class Site {
 	 * @since 1.21
 	 * @param bool $shouldForward
 	 */
-	public function setForward( $shouldForward ) {
-		if ( !is_bool( $shouldForward ) ) {
-			throw new MWException( '$shouldForward needs to be a boolean' );
-		}
-
+	public function setForward( bool $shouldForward ) {
 		$this->forward = $shouldForward;
 	}
 
@@ -287,7 +271,7 @@ class Site {
 
 		// Malformed URL
 		if ( $protocol === false ) {
-			throw new MWException( "failed to parse URL '$path'" );
+			throw new UnexpectedValueException( "failed to parse URL '$path'" );
 		}
 
 		// No schema
@@ -311,7 +295,7 @@ class Site {
 		$type = $this->getLinkPathType();
 
 		if ( $type === null ) {
-			throw new MWException( "This Site does not support link paths." );
+			throw new RuntimeException( "This Site does not support link paths." );
 		}
 
 		$this->setPath( $type, $fullUrl );
@@ -582,11 +566,7 @@ class Site {
 	 * @param string $pathType
 	 * @param string $fullUrl
 	 */
-	public function setPath( $pathType, $fullUrl ) {
-		if ( !is_string( $fullUrl ) ) {
-			throw new MWException( '$fullUrl needs to be a string' );
-		}
-
+	public function setPath( $pathType, string $fullUrl ) {
 		if ( !array_key_exists( 'paths', $this->extraData ) ) {
 			$this->extraData['paths'] = [];
 		}
