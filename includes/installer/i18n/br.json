@@ -51,7 +51,6 @@
 	"config-env-good": "Gwiriet eo bet an endro.\nGallout a rit staliañ MediaWiki.",
 	"config-env-bad": "Gwiriet eo bet an endro.\nNe c'hallit ket staliañ MediaWiki.",
 	"config-env-php": "Staliet eo PHP $1.",
-	"config-unicode-using-intl": "Oc'h implijout [https://pecl.php.net/intl an astenn PECL intl] evit ar reolata Unicode.",
 	"config-unicode-update-warning": "'''Diwallit''': ober a ra stumm staliet endalc'her skoueriekaat Unicode gant ur stumm kozh eus [http://site.icu-project.org/ levraoueg meziantoù ar raktres ICU].\nDleout a rafec'h [https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations hizivaat] ma seblant deoc'h bezañ pouezus ober gant Unicode.",
 	"config-no-db": "N'eus ket bet gallet kavout ur sturier diazoù roadennoù a zere ! Ret eo deoc'h staliañ ur sturier diazoù roadennoù evit PHP.\nSkoret eo {{PLURAL:$2|ar seurt|ar seurtoù}} diazoù roadennoù da-heul : $1.\n\nMard eo bet kempunet PHP ganeoc'h-c'hwi hoc'h-unan, adkeflugnit-eñ en ur weredekaat un arval diaz roadennoù, da skouer en ur ober gant <code>/configure --with-mysqli</code>.\nM'hoc'h eus staliet PHP adalek ur pakad Debian pe Ubuntu, eo ret deoc'h staliañ, da skouer, ar pakad <code>php-mysql</code> ivez.",
 	"config-outdated-sqlite": "<strong>Taolit pled :</strong> ober a rit gant SQLite $2, hag a zo izeloc'h eget ar stumm $1 ret bihanañ. Ne vo ket posupl ober gant SQLite.",

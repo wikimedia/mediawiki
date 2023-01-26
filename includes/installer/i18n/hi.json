@@ -57,7 +57,6 @@
 	"config-env-good": "प्रकृति की जाँच समाप्त हुई।\nआप मीडियाविकि को स्थापित कर सकते हैं।",
 	"config-env-bad": "प्रकृति की जाँच समाप्त हुई।\nआप मीडियाविकि को स्थापित नहीं कर सकते।",
 	"config-env-php": "PHP $1 स्थापित है।",
-	"config-unicode-using-intl": "यूनिकोड साधारणीकरण के लिए [https://php.net/manual/en/book.intl.php PHP intl एक्सटेंशन] का इस्तेमाल किया जा रहा है।",
 	"config-unicode-update-warning": "<strong>चेतावनी:</strong> यूनिकोड साधारणीकरण रैपर का स्थापित संस्करण [http://site.icu-project.org/ ICU परियोजनी] की लाइब्रेरी के एक पुराने संस्करण का उपयोग करता है।\nअगर आपको यूनिकोड के बारे में थोड़ी-सी भी चिंता है तो आपको [https://www.mediawiki.org/ wiki/Special:MyLanguage/Unicode_normalization_considerations अपग्रेड करना] चाहिए।",
 	"config-no-db": "अनुकूल डेटाबेस ड्राइवर नहीं मिला! आपको PHP के लिए एक डेटाबेस ड्राइवर स्थापित करना होगा।\nडेटाबेस {{PLURAL:$2|का यह|के ये}} प्रकार समर्थित {{PLURAL:$2|है|हैं}}: $1।\n\nअगर आपने PHP को खुद कंपाइल किया है, इसे <code>./configure --with-mysqli</code> की मदद से एक डेटाबेस क्लाइंट सक्षम करके दोबारा कॉन्फ़िगर करें।\nअगर आपने किसी Debian या Ubuntu पैकेज से PHP को स्थापित किया है, आपको <code>php-mysql</code> जैसे किसी पैकेज को भी सक्षम करना होगा।",
 	"config-outdated-sqlite": "<strong>चेतावनी:</strong> आपके पास SQLite $2 है, जो न्यूनतम आवश्यक संस्करण $1 से कम है। SQLite अनुपलब्ध होगा।",
