@@ -61,14 +61,9 @@ class GenerateCollationData extends Maintenance {
 		$allkeysPresent = file_exists( "{$this->dataDir}/allkeys.txt" );
 		$ucdallPresent = file_exists( "{$this->dataDir}/ucd.all.grouped.xml" );
 
-		// As of January 2013, these links work for all versions of Unicode
-		// between 5.1 and 6.2, inclusive.
-		$allkeysURL = "https://www.unicode.org/Public/UCA/<Unicode version>/allkeys.txt";
-		$ucdallURL = "https://www.unicode.org/Public/<Unicode version>/ucdxml/ucd.all.grouped.zip";
-
 		if ( !$allkeysPresent || !$ucdallPresent ) {
 			$icuVersion = INTL_ICU_VERSION;
-			$unicodeVersion = IcuCollation::getUnicodeVersionForICU();
+			$unicodeVersion = implode( '.', array_slice( IntlChar::getUnicodeVersion(), 0, 3 ) );
 
 			$error = "";
 
@@ -83,33 +78,11 @@ class GenerateCollationData extends Maintenance {
 					. "\n\n";
 			}
 
-			$versionKnown = false;
-			if ( version_compare( $icuVersion, "4.0", "<" ) ) {
-				// Extra old version
-				$error .= "You are using outdated version of ICU ($icuVersion), intended for "
-					. ( $unicodeVersion ? "Unicode $unicodeVersion" : "an unknown version of Unicode" )
-					. "; this file might not be available for it, and it's not supported by MediaWiki. "
-					. " You are on your own; consider upgrading PHP's intl extension or try "
-					. "one of the files available at:";
-			} elseif ( version_compare( $icuVersion, "51.0", ">=" ) ) {
-				// Extra recent version
-				$error .= "You are using ICU $icuVersion, released after this script was last updated. "
-					. "Check what is the Unicode version it is using at http://site.icu-project.org/download . "
-					. "It can't be guaranteed everything will work, but appropriate file(s) should "
-					. "be available at:";
-			} else {
-				// ICU 4.0 to 50.x
-				$versionKnown = true;
-				$error .= "You are using ICU $icuVersion, intended for "
-					. ( $unicodeVersion ? "Unicode $unicodeVersion" : "an unknown version of Unicode" )
-					. ". Appropriate file(s) should be available at:";
-			}
-			$error .= "\n";
+			$error .= "You are using ICU $icuVersion, intended for Unicode $unicodeVersion. "
+				. "Appropriate file(s) should be available at:\n";
 
-			if ( $versionKnown && $unicodeVersion ) {
-				$allkeysURL = str_replace( "<Unicode version>", "$unicodeVersion.0", $allkeysURL );
-				$ucdallURL = str_replace( "<Unicode version>", "$unicodeVersion.0", $ucdallURL );
-			}
+			$allkeysURL = "https://www.unicode.org/Public/UCA/$unicodeVersion/allkeys.txt";
+			$ucdallURL = "https://www.unicode.org/Public/$unicodeVersion/ucdxml/ucd.all.grouped.zip";
 
 			if ( !$allkeysPresent ) {
 				$error .= "* $allkeysURL\n";

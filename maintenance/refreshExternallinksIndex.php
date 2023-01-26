@@ -39,9 +39,7 @@ class RefreshExternallinksIndex extends LoggedUpdateMaintenance {
 	}
 
 	protected function getUpdateKey() {
-		return static::class
-			. ' v' . LinkFilter::VERSION
-			. ( LinkFilter::supportsIDN() ? '+' : '-' ) . 'IDN';
+		return static::class . ' v' . LinkFilter::VERSION . '+IDN';
 	}
 
 	protected function updateSkippedMessage() {

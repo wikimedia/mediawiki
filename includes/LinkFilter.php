@@ -83,15 +83,6 @@ class LinkFilter {
 	}
 
 	/**
-	 * Indicate whether LinkFilter IDN support is available
-	 * @since 1.33
-	 * @return bool
-	 */
-	public static function supportsIDN() {
-		return is_callable( 'idn_to_utf8' ) && defined( 'INTL_IDNA_VARIANT_UTS46' );
-	}
-
-	/**
 	 * Canonicalize a hostname for el_index
 	 * @param string $host
 	 * @return string
@@ -101,9 +92,8 @@ class LinkFilter {
 
 		// Canonicalize.
 		$host = rawurldecode( $host );
-		if ( $host !== '' && self::supportsIDN() ) {
-			// @todo Add a PHP fallback
-			$tmp = idn_to_utf8( $host, IDNA_DEFAULT, INTL_IDNA_VARIANT_UTS46 );
+		if ( $host !== '' ) {
+			$tmp = idn_to_utf8( $host );
 			if ( $tmp !== false ) {
 				$host = $tmp;
 			}
