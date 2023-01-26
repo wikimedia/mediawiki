@@ -1190,6 +1190,7 @@ return [
 				MainConfigNames::FragmentMode,
 				MainConfigNames::GenerateThumbnailOnParse,
 				MainConfigNames::LoadScript,
+				MainConfigNames::AutoCreateTempUser,
 			] ],
 			[ 'name' => 'portletLinkOptions.json', 'callback' => [ Skin::class, 'getPortletLinkOptions' ] ],
 		],
