@@ -49,6 +49,7 @@ use TitleValue;
 use User;
 use WatchedItem;
 use Wikimedia\IPUtils;
+use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Xml;
 
@@ -1685,12 +1686,16 @@ class Linker {
 	 * @param string $tocline
 	 * @param string $tocnumber
 	 * @param int $level
-	 * @param int|false $sectionIndex
+	 * @param string|false $sectionIndex
 	 * @return string
 	 */
 	public static function tocLine( $linkAnchor, $tocline, $tocnumber, $level, $sectionIndex = false ) {
 		$classes = "toclevel-$level";
-		if ( $sectionIndex !== false ) {
+
+		// Parser.php used to suppress tocLine by setting $sectionindex to false.
+		// In those circumstances, we can now encounter '' or a "T-" prefixed index
+		// for when the section comes from templates.
+		if ( $sectionIndex !== false && $sectionIndex !== '' && !str_starts_with( $sectionIndex, "T-" ) ) {
 			$classes .= " tocsection-$sectionIndex";
 		}
 
@@ -1758,29 +1763,43 @@ class Linker {
 	 * Generate a table of contents from a section tree.
 	 *
 	 * @since 1.16.3. $lang added in 1.17
-	 * @param array[] $tree Return value of ParserOutput::getSections()
+	 * @param array[]|SectionMetadata[] $tree Return value of ParserOutput::getSections()
 	 * @param Language|null $lang Language for the toc title, defaults to user language
+	 * @param array $options FIXME: Document
 	 * @return string HTML fragment
 	 */
-	public static function generateTOC( $tree, Language $lang = null ) {
+	public static function generateTOC( $tree, Language $lang = null, array $options = [] ): string {
 		$toc = '';
 		$lastLevel = 0;
+		$maxTocLevel = $options['maxtoclevel'] ?? null;
 		foreach ( $tree as $section ) {
-			if ( $section['toclevel'] > $lastLevel ) {
-				$toc .= self::tocIndent();
-			} elseif ( $section['toclevel'] < $lastLevel ) {
-				$toc .= self::tocUnindent(
-					$lastLevel - $section['toclevel'] );
-			} else {
-				$toc .= self::tocLineEnd();
+			if ( $section instanceof SectionMetadata ) {
+				$section = $section->toLegacy();
 			}
+			$tocLevel = $section['toclevel'];
+			if ( $maxTocLevel !== null && $tocLevel < $maxTocLevel ) {
+				if ( $tocLevel > $lastLevel ) {
+					$toc .= self::tocIndent();
+				} elseif ( $tocLevel < $lastLevel ) {
+					if ( $lastLevel < $maxTocLevel ) {
+						$toc .= self::tocUnindent(
+							$lastLevel - $tocLevel );
+					} else {
+						$toc .= self::tocLineEnd();
+					}
+				} else {
+					$toc .= self::tocLineEnd();
+				}
 
-			$toc .= self::tocLine( $section['linkAnchor'],
-				$section['line'], $section['number'],
-				$section['toclevel'], $section['index'] );
-			$lastLevel = $section['toclevel'];
+				$toc .= self::tocLine( $section['linkAnchor'],
+					$section['line'], $section['number'],
+					$tocLevel, $section['index'] );
+				$lastLevel = $tocLevel;
+			}
 		}
-		$toc .= self::tocLineEnd();
+		if ( $lastLevel < $maxTocLevel && $lastLevel > 0 ) {
+			$toc .= self::tocUnindent( $lastLevel - 1 );
+		}
 		return self::tocList( $toc, $lang );
 	}
 
