@@ -21,6 +21,8 @@
  * @defgroup JobQueue JobQueue
  */
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\JobQueue\JobFactory;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\RequestTimeout\TimeoutException;
 use Wikimedia\UUID\GlobalIdGenerator;
 
@@ -56,6 +58,8 @@ abstract class JobQueue {
 
 	/** @var bool */
 	protected $typeAgnostic;
+
+	private JobFactory $jobFactory;
 
 	protected const QOS_ATOMIC = 1; // integer; "all-or-nothing" job insertions
 
@@ -102,6 +106,8 @@ abstract class JobQueue {
 		if ( $this->typeAgnostic ) {
 			$this->type = 'default';
 		}
+
+		$this->jobFactory = MediaWikiServices::getInstance()->getJobFactory();
 	}
 
 	/**
@@ -736,8 +742,7 @@ abstract class JobQueue {
 	 * @return Job
 	 */
 	protected function factoryJob( $command, $params ) {
-		// @TODO: dependency inject this as a callback
-		return Job::factory( $command, $params );
+		return $this->jobFactory->newJob( $command, $params );
 	}
 
 	/**

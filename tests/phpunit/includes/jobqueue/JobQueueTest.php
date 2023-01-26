@@ -380,13 +380,29 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function newJob( $i = 0, $rootJob = [] ) {
-		return Job::factory( 'null', Title::newMainPage(),
-			[ 'lives' => 0, 'usleep' => 0, 'removeDuplicates' => 0, 'i' => $i ] + $rootJob );
+		$params = [
+			'namespace' => NS_MAIN,
+			'title' => 'Main_Page',
+			'lives' => 0,
+			'usleep' => 0,
+			'removeDuplicates' => 0,
+			'i' => $i
+		] + $rootJob;
+
+		return $this->getServiceContainer()->getJobFactory()->newJob( 'null', $params );
 	}
 
 	protected function newDedupedJob( $i = 0, $rootJob = [] ) {
-		return Job::factory( 'null', Title::newMainPage(),
-			[ 'lives' => 0, 'usleep' => 0, 'removeDuplicates' => 1, 'i' => $i ] + $rootJob );
+		$params = [
+				'namespace' => NS_MAIN,
+				'title' => 'Main_Page',
+				'lives' => 0,
+				'usleep' => 0,
+				'removeDuplicates' => 1,
+				'i' => $i
+			] + $rootJob;
+
+		return $this->getServiceContainer()->getJobFactory()->newJob( 'null', $params );
 	}
 }
 
