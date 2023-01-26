@@ -1694,6 +1694,7 @@ class Parser {
 		 * c) It's a conversion table
 		 * d) it is an interface message (which is in the user language)
 		 */
+		$converter = null;
 		if ( !( $this->mOptions->getDisableContentConversion()
 			|| isset( $this->mDoubleUnderscores['nocontentconvert'] ) )
 			&& !$this->mOptions->getInterfaceMessage()
@@ -1701,7 +1702,8 @@ class Parser {
 			# The position of the convert() call should not be changed. it
 			# assumes that the links are all replaced and the only thing left
 			# is the <nowiki> mark.
-			$text = $this->getTargetLanguageConverter()->convert( $text );
+			$converter = $this->getTargetLanguageConverter();
+			$text = $converter->convert( $text );
 			// Record information necessary for language conversion of TOC.
 			$this->mOutput->setExtensionData(
 				// T303329: this should migrate out of extension data
@@ -1713,9 +1715,20 @@ class Parser {
 				'core:target-lang-variant',
 				$this->getTargetLanguageConverter()->getPreferredVariant()
 			);
-		} else {
-			$this->mOutput->setOutputFlag( ParserOutputFlags::NO_TOC_CONVERSION );
+			// TOC will be converted below.
 		}
+		// Indicate that the ToC doesn't need additional language conversion
+		// (backward-compatibility; previous versions did conversion in
+		// ParserOutput::getText())
+		$this->mOutput->setOutputFlag( ParserOutputFlags::NO_TOC_CONVERSION );
+		// Convert the TOC.   This is done *after* the main text
+		// so that all the editor-defined conversion rules (by convention
+		// defined at the start of the article) are applied to the TOC
+		self::localizeTOC(
+			$this->mOutput->getTOCData(),
+			$this->getTargetLanguage(),
+			$converter // null if conversion is to be suppressed.
+		);
 
 		$text = $this->mStripState->unstripNoWiki( $text );
 
@@ -4250,21 +4263,6 @@ class Parser {
 				$haveTocEntries = true;
 			}
 
-			// FIXME: Maybe move to Linker::tocLine?
-			// This requires us to record target language there.
-			//
-			// Localize numbering
-			$dot = '.';
-			$pieces = explode( $dot, $sectionMetadata->number );
-			$numbering = '';
-			foreach ( $pieces as $i => $p ) {
-				if ( $i > 0 ) {
-					$numbering .= $dot;
-				}
-				$numbering .= $this->getTargetLanguage()->formatNum( $p );
-			}
-			$sectionMetadata->number = $numbering;
-
 			# The safe header is a version of the header text safe to use for links
 
 			# Remove link placeholders by the link text.
@@ -4481,6 +4479,40 @@ class Parser {
 		$full .= implode( '', $sections );
 
 		return $full;
+	}
+
+	/**
+	 * Localize the TOC into the given target language; this includes
+	 * invoking the language converter on the headings.
+	 * @param ?TOCData $tocData The Table of Contents
+	 * @param Language $lang The target language
+	 * @param ?ILanguageConverter $converter The target language converter, or
+	 *   null if language conversion is to be suppressed.
+	 * @internal
+	 */
+	private static function localizeTOC(
+		?TOCData $tocData, Language $lang, ?ILanguageConverter $converter
+	) {
+		if ( $tocData === null ) {
+			return; // Nothing to do
+		}
+		foreach ( $tocData->getSections() as $s ) {
+			// Localize heading
+			if ( $converter ) {
+				$s->line = $converter->convert( $s->line );
+			}
+			// Localize numbering
+			$dot = '.';
+			$pieces = explode( $dot, $s->number );
+			$numbering = '';
+			foreach ( $pieces as $i => $p ) {
+				if ( $i > 0 ) {
+					$numbering .= $dot;
+				}
+				$numbering .= $lang->formatNum( $p );
+			}
+			$s->number = $numbering;
+		}
 	}
 
 	/**

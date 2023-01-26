@@ -566,7 +566,7 @@ showflags
 ~~~~
 !! html/php
 [[Special:Contributions/127.0.0.1|127.0.0.1]] 00:02, 1 January 1970 (UTC)
-flags=user-signature
+flags=!no-toc-conversion, user-signature
 !! end
 
 !! test

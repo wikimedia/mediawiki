@@ -7550,11 +7550,8 @@ Some text
 <h3><span class="mw-headline" id="Another_headline">Another headline</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=6" title="Edit section: Another headline">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 !! end
 
-# FIXME: this output is actually buggy: the TOC title has *already*
-# been converted to the user's preferred variant, and we're "double
-# converting" it to "Ontentscayway".
 !! test
-Section headings with TOC and language conversion (T295187)
+Section headings with TOC and language conversion (T295187, T306862)
 !! config
 wgUsePigLatinVariant=true
 !! options
@@ -7566,7 +7563,7 @@ language=en variant=en-x-piglatin
 Some text
 ===Another headline===
 !! html
-<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en-x-piglatin" dir="ltr"><h2 id="mw-toc-heading">Ontentscayway</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en-x-piglatin" dir="ltr"><h2 id="mw-toc-heading">Ontentscay</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Headline_1"><span class="tocnumber">1</span> <span class="toctext">Eadlinehay 1</span></a>
 <ul>
