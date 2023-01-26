@@ -487,7 +487,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 					$config = $services->getMainConfig();
 					$maxTocLevel = $config->get( MainConfigNames::MaxTocLevel );
 					$toc = Linker::generateTOC(
-						$this->getSections(), $userLang, [ "maxtoclevel" => $maxTocLevel ] );
+						$this->getTOCData(), $userLang, [
+							"maxtoclevel" => $maxTocLevel,
+						] );
 					// language conversion needs to be done on the TOC fetched
 					// from parser cache
 					if ( !$this->getOutputFlag( ParserOutputFlags::NO_TOC_CONVERSION ) ) {

@@ -48,7 +48,7 @@ use TitleValue;
 use User;
 use WatchedItem;
 use Wikimedia\IPUtils;
-use Wikimedia\Parsoid\Core\SectionMetadata;
+use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
 use Xml;
@@ -1763,21 +1763,18 @@ class Linker {
 	 * @internal For use by ParserOutput and API modules
 	 * Generate a table of contents from a section tree.
 	 *
-	 * @since 1.16.3. $lang added in 1.17
-	 * @param array[]|SectionMetadata[] $tree Return value of ParserOutput::getSections()
+	 * @since 1.16.3. $lang added in 1.17. Parameters changed in 1.40.
+	 * @param ?TOCData $tocData Return value of ParserOutput::getSections()
 	 * @param Language|null $lang Language for the toc title, defaults to user language
 	 * @param array $options FIXME: Document
 	 * @return string HTML fragment
 	 */
-	public static function generateTOC( $tree, Language $lang = null, array $options = [] ): string {
+	public static function generateTOC( ?TOCData $tocData, Language $lang = null, array $options = [] ): string {
 		$toc = '';
 		$lastLevel = 0;
 		$maxTocLevel = $options['maxtoclevel'] ?? null;
-		foreach ( $tree as $section ) {
-			if ( $section instanceof SectionMetadata ) {
-				$section = $section->toLegacy();
-			}
-			$tocLevel = $section['toclevel'];
+		foreach ( ( $tocData ? $tocData->getSections() : [] ) as $section ) {
+			$tocLevel = $section->tocLevel;
 			if ( $maxTocLevel !== null && $tocLevel < $maxTocLevel ) {
 				if ( $tocLevel > $lastLevel ) {
 					$toc .= self::tocIndent();
@@ -1792,9 +1789,9 @@ class Linker {
 					$toc .= self::tocLineEnd();
 				}
 
-				$toc .= self::tocLine( $section['linkAnchor'],
-					$section['line'], $section['number'],
-					$tocLevel, $section['index'] );
+				$toc .= self::tocLine( $section->linkAnchor,
+					$section->line, $section->number,
+					$tocLevel, $section->index );
 				$lastLevel = $tocLevel;
 			}
 		}
