@@ -294,7 +294,10 @@ class RCCacheEntryFactory {
 			$userLink = Linker::userLink(
 				$cacheEntry->mAttribs['rc_user'],
 				$cacheEntry->mAttribs['rc_user_text'],
-				ExternalUserNames::getLocal( $cacheEntry->mAttribs['rc_user_text'] )
+				ExternalUserNames::getLocal( $cacheEntry->mAttribs['rc_user_text'] ),
+				[
+					'data-mw-revid' => $cacheEntry->mAttribs['rc_this_oldid']
+				]
 			);
 		}
 
