@@ -702,7 +702,7 @@
 	"apierror-permissiondenied": "Non si dispone dei permessi necessari per $1.",
 	"apierror-toomanyvalues": "Troppi valori forniti per il parametro <var>$1</ var>. Il limite è $2.",
 	"apiwarn-notfile": "\"$1\" non è un file.",
-	"apiwarn-validationfailed-valuetoolong": "valore troppo lungo (non sono consentiti più di $1 byte).",
+	"apiwarn-validationfailed-valuetoolong": "valore troppo lungo (non {{PLURAL:$1|è consentito|sono consentiti}} più di $1 byte).",
 	"api-feed-error-title": "Errore ($1)",
 	"api-exception-trace": "$1 a $2($3)\n$4",
 	"api-credits-header": "Crediti"

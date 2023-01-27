@@ -550,7 +550,7 @@
 	"file-nohires": "Dza ɔso sen dɛm nnyi hɔ.",
 	"show-big-image": "Fael nankasa",
 	"show-big-image-preview": "Dza erohwɛ yi ne kɛse: $1.",
-	"show-big-image-other": "{{PLURAL:$2|resolution|resolutions}}fofor: $1.",
+	"show-big-image-other": "{{PLURAL:$2|resolution|resolutions}} fofor: $1.",
 	"show-big-image-size": "$1 × $2 pixels",
 	"ilsubmit": "Hwehwɛ",
 	"metadata": "Metadata",

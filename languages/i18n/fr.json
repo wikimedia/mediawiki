@@ -1191,7 +1191,7 @@
 	"searchall": "tout",
 	"showingresults": "Affichage de <strong>$1</strong> résultat{{PLURAL:$1||s}} à partir du nº <strong>$2</strong>.",
 	"showingresultsinrange": "Afficher d’au maximum <strong>$1</strong> résultat{{PLURAL:$1||s}} du nº <strong>$2</strong> au nº <strong>$3</strong>.",
-	"search-showingresults": "Résultat{{PLURAL:$4||s}} nº $1 {{PLURAL:$4||à <strong>$2</strong>}} sur <strong>$3</strong>",
+	"search-showingresults": "Résultat{{PLURAL:$4||s}} n<sup>o{{PLURAL:$4||s}}</sup> $1 {{PLURAL:$4||à <strong>$2</strong>}} sur <strong>$3</strong>",
 	"search-nonefound": "Aucun résultat ne correspond à la requête.",
 	"search-nonefound-thiswiki": "Aucun résultat ne correspond à la requête sur ce site.",
 	"powersearch-legend": "Recherche avancée",
