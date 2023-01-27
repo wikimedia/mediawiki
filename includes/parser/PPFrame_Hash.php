@@ -97,7 +97,7 @@ class PPFrame_Hash implements PPFrame {
 	 * Create a new child frame
 	 * $args is optionally a multi-root PPNode or array containing the template arguments
 	 *
-	 * @param array|false|PPNode_Hash_Array $args
+	 * @param PPNode[]|false|PPNode_Hash_Array $args
 	 * @param Title|false $title
 	 * @param int $indexOffset
 	 * @throws MWException

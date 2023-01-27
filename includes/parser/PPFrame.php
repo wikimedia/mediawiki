@@ -40,7 +40,7 @@ interface PPFrame {
 	/**
 	 * Create a child frame
 	 *
-	 * @param array|false $args
+	 * @param PPNode[]|false $args
 	 * @param Title|false $title
 	 * @param int $indexOffset A number subtracted from the index attributes of the arguments
 	 *
