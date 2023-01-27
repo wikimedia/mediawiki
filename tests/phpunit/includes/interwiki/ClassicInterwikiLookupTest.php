@@ -1,5 +1,9 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
+use MediaWiki\MainConfigNames;
+
 /**
  * @covers MediaWiki\Interwiki\ClassicInterwikiLookup
  * @group Database
@@ -11,6 +15,33 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 		$dbw->delete( 'interwiki', '*', __METHOD__ );
 		$dbw->insert( 'interwiki', array_values( $iwrows ), __METHOD__ );
 		$this->tablesUsed[] = 'interwiki';
+	}
+
+	/**
+	 * @param string[]|false $interwikiData
+	 * @return ClassicInterwikiLookup
+	 */
+	private function getClassicInterwikiLookup( $interwikiData ): ClassicInterwikiLookup {
+		$services = $this->getServiceContainer();
+		$lang = $services->getLanguageFactory()->getLanguage( 'en' );
+		$config = [
+				MainConfigNames::InterwikiExpiry => 60 * 60,
+				MainConfigNames::InterwikiCache => $interwikiData,
+				MainConfigNames::InterwikiFallbackSite => 'en',
+				MainConfigNames::InterwikiScopes => 3,
+				'wikiId' => WikiMap::getCurrentWikiId(),
+			];
+
+		return new ClassicInterwikiLookup(
+			new ServiceOptions(
+				ClassicInterwikiLookup::CONSTRUCTOR_OPTIONS,
+				$config
+			),
+			$lang,
+			WANObjectCache::newEmpty(),
+			$services->getHookContainer(),
+			$services->getDBLoadBalancer()
+		);
 	}
 
 	public function testDatabaseStorage() {
@@ -35,16 +66,7 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$this->populateDB( [ $dewiki, $zzwiki ] );
-		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
-			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ),
-			WANObjectCache::newEmpty(),
-			$this->getServiceContainer()->getHookContainer(),
-			$this->getServiceContainer()->getDBLoadBalancer(),
-			60 * 60,
-			false,
-			3,
-			'en'
-		);
+		$lookup = $this->getClassicInterwikiLookup( false );
 
 		$this->assertEquals(
 			[ $dewiki, $zzwiki ],
@@ -133,16 +155,7 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 			[ $dewiki ],
 			[ $zzwiki ]
 		);
-		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
-			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ),
-			WANObjectCache::newEmpty(),
-			$this->getServiceContainer()->getHookContainer(),
-			$this->getServiceContainer()->getDBLoadBalancer(),
-			60 * 60,
-			$hash,
-			3,
-			'en'
-		);
+		$lookup = $this->getClassicInterwikiLookup( $hash );
 
 		$this->assertEquals(
 			[ $zzwiki, $dewiki ],
@@ -188,16 +201,7 @@ class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 			[],
 			[ $zz, $de, $azz ]
 		);
-		$lookup = new \MediaWiki\Interwiki\ClassicInterwikiLookup(
-			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ),
-			WANObjectCache::newEmpty(),
-			$this->getServiceContainer()->getHookContainer(),
-			$this->getServiceContainer()->getDBLoadBalancer(),
-			60 * 60,
-			$hash,
-			3,
-			'en'
-		);
+		$lookup = $this->getClassicInterwikiLookup( $hash );
 
 		$this->assertEquals(
 			[ $zz, $de, $azz ],
