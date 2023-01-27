@@ -283,12 +283,9 @@ class SpecialVersion extends SpecialPage {
 		$software = [
 			'[https://www.mediawiki.org/ MediaWiki]' => self::getVersionLinked(),
 			'[https://php.net/ PHP]' => PHP_VERSION . " (" . PHP_SAPI . ")",
+			'[https://icu.unicode.org/ ICU]' => INTL_ICU_VERSION,
 			$dbr->getSoftwareLink() => $dbr->getServerInfo(),
 		];
-
-		if ( defined( 'INTL_ICU_VERSION' ) ) {
-			$software['[https://icu.unicode.org/ ICU]'] = INTL_ICU_VERSION;
-		}
 
 		// Allow a hook to add/remove items.
 		Hooks::runner()->onSoftwareInfo( $software );
