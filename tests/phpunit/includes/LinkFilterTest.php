@@ -139,10 +139,10 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			[ 'http://', '[2001:db8:0:0:*]', 'http://[2001:0DB8::]' ],
 			[ 'http://', '[2001:db8:0:0:*]', 'http://[2001:0DB8::123]' ],
 			[ 'http://', '[2001:db8:0:0:*]', 'http://[2001:0DB8::123:456]' ],
-			[ 'http://', 'xn--f-vgaa.example.com', 'http://fóó.example.com', [ 'idn' => true ] ],
-			[ 'http://', 'xn--f-vgaa.example.com', 'http://f%c3%b3%C3%B3.example.com', [ 'idn' => true ] ],
-			[ 'http://', 'fóó.example.com', 'http://xn--f-vgaa.example.com', [ 'idn' => true ] ],
-			[ 'http://', 'f%c3%b3%C3%B3.example.com', 'http://xn--f-vgaa.example.com', [ 'idn' => true ] ],
+			[ 'http://', 'xn--f-vgaa.example.com', 'http://fóó.example.com' ],
+			[ 'http://', 'xn--f-vgaa.example.com', 'http://f%c3%b3%C3%B3.example.com' ],
+			[ 'http://', 'fóó.example.com', 'http://xn--f-vgaa.example.com' ],
+			[ 'http://', 'f%c3%b3%C3%B3.example.com', 'http://xn--f-vgaa.example.com' ],
 			[ 'http://', 'f%c3%b3%C3%B3.example.com', 'http://fóó.example.com' ],
 			[ 'http://', 'fóó.example.com', 'http://f%c3%b3%C3%B3.example.com' ],
 
@@ -207,13 +207,9 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 	 * @param string $url URL to feed to LinkFilter::makeIndexes
 	 * @param array $options
 	 *  - found: (bool) Should the URL be found? (defaults true)
-	 *  - idn: (bool) Does this test require the idn conversion (default false)
 	 */
 	public function testMakeLikeArrayWithValidPatterns( $protocol, $pattern, $url, $options = [] ) {
-		$options += [ 'found' => true, 'idn' => false ];
-		if ( !empty( $options['idn'] ) && !LinkFilter::supportsIDN() ) {
-			$this->markTestSkipped( 'LinkFilter IDN support is not available' );
-		}
+		$options += [ 'found' => true ];
 
 		$indexes = LinkFilter::makeIndexes( $url );
 		$likeArray = LinkFilter::makeLikeArray( $pattern, $protocol );
@@ -234,7 +230,7 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			$debugmsg .= "\t'$indexString'\n";
 		}
 
-		if ( !empty( $options['found'] ) ) {
+		if ( $options['found'] ) {
 			$this->assertTrue(
 				$matches > 0,
 				"Search pattern '$protocol$pattern' does not find url '$url' \n$debugmsg"
