@@ -272,6 +272,7 @@ class SpecialPageFactory {
 			'services' => [
 				'DBLoadBalancer',
 				'SearchEngineFactory',
+				'PageStore',
 			]
 		],
 		'Prefixindex' => [
