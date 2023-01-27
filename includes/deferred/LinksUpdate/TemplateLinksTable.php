@@ -3,6 +3,7 @@
 namespace MediaWiki\Deferred\LinksUpdate;
 
 use Config;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use ParserOutput;
 
@@ -12,11 +13,18 @@ use ParserOutput;
  * @since 1.38
  */
 class TemplateLinksTable extends GenericPageLinksTable {
+	private const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::TemplateLinksSchemaMigrationStage,
+	];
+
 	/** @var int */
 	private $migrationStage;
 
 	public function __construct( Config $config ) {
-		$this->migrationStage = $config->get( MainConfigNames::TemplateLinksSchemaMigrationStage );
+		$options = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $config );
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+
+		$this->migrationStage = $options->get( MainConfigNames::TemplateLinksSchemaMigrationStage );
 	}
 
 	public function setParserOutput( ParserOutput $parserOutput ) {

@@ -4,6 +4,7 @@ namespace MediaWiki\Deferred\LinksUpdate;
 
 use Config;
 use LinkFilter;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use ParserOutput;
 
@@ -15,13 +16,20 @@ use ParserOutput;
  * @since 1.38
  */
 class ExternalLinksTable extends LinksTable {
+	private const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::ExternalLinksSchemaMigrationStage,
+	];
+
 	private $newLinks = [];
 	private $existingLinks;
 	/** @var int */
 	private $migrationStage;
 
 	public function __construct( Config $config ) {
-		$this->migrationStage = $config->get( MainConfigNames::ExternalLinksSchemaMigrationStage );
+		$options = new ServiceOptions( self::CONSTRUCTOR_OPTIONS, $config );
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+
+		$this->migrationStage = $options->get( MainConfigNames::ExternalLinksSchemaMigrationStage );
 	}
 
 	public function setParserOutput( ParserOutput $parserOutput ) {
