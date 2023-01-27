@@ -28,6 +28,37 @@ class LanguageTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
+	 * @covers ::getCode
+	 * @dataProvider provideCodes
+	 */
+	public function testGetCode( $code, $bcp47code ) {
+		$lang = $this->getObj( [ 'code' => $code ] );
+		$this->assertSame( $code, $lang->getCode() );
+	}
+
+	/**
+	 * @covers ::getHtmlCode
+	 * @dataProvider provideCodes
+	 */
+	public function testGetHtmlCode( $code, $bcp47code ) {
+		$lang = $this->getObj( [ 'code' => $code ] );
+		$this->assertSame( $bcp47code, $lang->getHtmlCode() );
+	}
+
+	/**
+	 * @covers ::toBcp47Code
+	 * @dataProvider provideCodes
+	 */
+	public function testToBcp47Code( $code, $bcp47code ) {
+		$lang = $this->getObj( [ 'code' => $code ] );
+		$this->assertSame( $bcp47code, $lang->toBcp47Code() );
+	}
+
+	public function provideCodes() {
+		return LanguageCodeTest::provideLanguageCodes();
+	}
+
+	/**
 	 * @covers ::getGrammarTransformations
 	 * @todo Test the exception case
 	 */
