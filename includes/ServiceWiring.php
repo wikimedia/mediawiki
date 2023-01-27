@@ -776,16 +776,16 @@ return [
 	},
 
 	'InterwikiLookup' => static function ( MediaWikiServices $services ): InterwikiLookup {
-		$config = $services->getMainConfig();
 		return new ClassicInterwikiLookup(
+			new ServiceOptions(
+				ClassicInterwikiLookup::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig(),
+				[ 'wikiId' => WikiMap::getCurrentWikiId() ]
+			),
 			$services->getContentLanguage(),
 			$services->getMainWANObjectCache(),
 			$services->getHookContainer(),
-			$services->getDBLoadBalancer(),
-			$config->get( MainConfigNames::InterwikiExpiry ),
-			$config->get( MainConfigNames::InterwikiCache ),
-			$config->get( MainConfigNames::InterwikiScopes ),
-			$config->get( MainConfigNames::InterwikiFallbackSite )
+			$services->getDBLoadBalancer()
 		);
 	},
 

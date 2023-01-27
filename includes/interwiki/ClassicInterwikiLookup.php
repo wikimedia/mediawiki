@@ -23,8 +23,10 @@ namespace MediaWiki\Interwiki;
 use Interwiki;
 use Language;
 use MapCacheLRU;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MainConfigNames;
 use WANObjectCache;
 use WikiMap;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -43,6 +45,19 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * @since 1.28
  */
 class ClassicInterwikiLookup implements InterwikiLookup {
+	/**
+	 * @internal For use by ServiceWiring
+	 * @var string[]
+	 */
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::InterwikiExpiry,
+		MainConfigNames::InterwikiCache,
+		MainConfigNames::InterwikiScopes,
+		MainConfigNames::InterwikiFallbackSite,
+		'wikiId',
+	];
+
+	private ServiceOptions $options;
 	/** @var Language */
 	private $contLang;
 	/** @var WANObjectCache */
@@ -54,12 +69,14 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 
 	/** @var MapCacheLRU<Interwiki|false> */
 	private $instances;
-	/** @var int */
-	private $wanCacheExpiry;
-	/** @var int */
+	/**
+	 * Specify number of domains to check for messages:
+	 *    - 1: Just local wiki level
+	 *    - 2: wiki and global levels
+	 *    - 3: site level as well as wiki and global levels
+	 * @var int
+	 */
 	private $interwikiScopes;
-	/** @var string */
-	private $fallbackSite;
 	/** @var array|null Complete pregenerated data if available */
 	private $data;
 	/** @var string */
@@ -68,42 +85,33 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	private $thisSite = null;
 
 	/**
+	 * @param ServiceOptions $options
 	 * @param Language $contLang Language object used to convert prefixes to lower case
 	 * @param WANObjectCache $wanCache Cache for interwiki info retrieved from the database
 	 * @param HookContainer $hookContainer
 	 * @param ILoadBalancer $loadBalancer
-	 * @param int $wanCacheExpiry Expiry time for $wanCache, in seconds
-	 * @param bool|array $interwikiData Pregenerated interwiki data, or
-	 *   false to use the database.
-	 * @param int $interwikiScopes Specify number of domains to check for messages:
-	 *    - 1: Just local wiki level
-	 *    - 2: wiki and global levels
-	 *    - 3: site level as well as wiki and global levels
-	 * @param string $fallbackSite The wiki ID to assume for the local site
 	 */
 	public function __construct(
+		ServiceOptions $options,
 		Language $contLang,
 		WANObjectCache $wanCache,
 		HookContainer $hookContainer,
-		ILoadBalancer $loadBalancer,
-		$wanCacheExpiry,
-		$interwikiData,
-		$interwikiScopes,
-		$fallbackSite
+		ILoadBalancer $loadBalancer
 	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->options = $options;
+
 		$this->contLang = $contLang;
 		$this->wanCache = $wanCache;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->loadBalancer = $loadBalancer;
 
 		$this->instances = new MapCacheLRU( 1000 );
-		$this->wanCacheExpiry = $wanCacheExpiry;
-		$this->interwikiScopes = $interwikiScopes;
-		$this->fallbackSite = $fallbackSite;
-		$this->data = is_array( $interwikiData ) ? $interwikiData : null;
+		$this->interwikiScopes = $options->get( MainConfigNames::InterwikiScopes );
 
-		// TODO: Inject into the service class
-		$this->wikiId = WikiMap::getCurrentWikiId();
+		$interwikiData = $options->get( MainConfigNames::InterwikiCache );
+		$this->data = is_array( $interwikiData ) ? $interwikiData : null;
+		$this->wikiId = $options->get( 'wikiId' );
 	}
 
 	/**
@@ -161,7 +169,8 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	private function getPregenValue( string $prefix ) {
 		// Lazily resolve site name
 		if ( $this->interwikiScopes >= 3 && !$this->thisSite ) {
-			$this->thisSite = $this->data['__sites:' . $this->wikiId] ?? $this->fallbackSite;
+			$this->thisSite = $this->data['__sites:' . $this->wikiId]
+				?? $this->options->get( MainConfigNames::InterwikiFallbackSite );
 		}
 
 		$value = $this->data[$this->wikiId . ':' . $prefix] ?? false;
@@ -206,7 +215,7 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 		$fname = __METHOD__;
 		$iwData = $this->wanCache->getWithSetCallback(
 			$this->wanCache->makeKey( 'interwiki', $prefix ),
-			$this->wanCacheExpiry,
+			$this->options->get( MainConfigNames::InterwikiExpiry ),
 			function ( $oldValue, &$ttl, array &$setOpts ) use ( $prefix, $fname ) {
 				$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 				$row = $dbr->selectRow(
@@ -258,7 +267,8 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 	private function getAllPrefixesPregenerated( $local ) {
 		// Lazily resolve site name
 		if ( $this->interwikiScopes >= 3 && !$this->thisSite ) {
-			$this->thisSite = $this->data['__sites:' . $this->wikiId] ?? $this->fallbackSite;
+			$this->thisSite = $this->data['__sites:' . $this->wikiId]
+				?? $this->options->get( MainConfigNames::InterwikiFallbackSite );
 		}
 
 		// List of interwiki sources
