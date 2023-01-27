@@ -142,8 +142,8 @@ class ImageHistoryList extends ContextSource {
 			$row .= Html::openElement( 'td' );
 			# Link to hide content. Don't show useless link to people who cannot hide revisions.
 			if ( !$iscur && $this->getAuthority()->isAllowed( 'deleterevision' ) ) {
-				// If file is top revision or locked from this user, don't link
-				if ( !$file->userCan( File::DELETED_RESTRICTED, $user ) ) {
+				// If file is top revision, is missing or locked from this user, don't link
+				if ( !$file->userCan( File::DELETED_RESTRICTED, $user ) || !$file->exists() ) {
 					$row .= Html::check( 'deleterevisions', false, [ 'disabled' => 'disabled' ] );
 				} else {
 					$row .= Html::check( 'ids[' . explode( '!', $img, 2 )[0] . ']', false );
@@ -154,12 +154,18 @@ class ImageHistoryList extends ContextSource {
 			}
 			# Link to remove from history
 			if ( $this->getAuthority()->isAllowed( 'delete' ) ) {
-				$row .= $linkRenderer->makeKnownLink(
-					$this->title,
-					$this->msg( $iscur ? 'filehist-deleteall' : 'filehist-deleteone' )->text(),
-					[],
-					[ 'action' => 'delete', 'oldimage' => $iscur ? null : $img ]
-				);
+				if ( $file->exists() ) {
+					$row .= $linkRenderer->makeKnownLink(
+						$this->title,
+						$this->msg( $iscur ? 'filehist-deleteall' : 'filehist-deleteone' )->text(),
+						[],
+						[ 'action' => 'delete', 'oldimage' => $iscur ? null : $img ]
+					);
+				} else {
+					// T244567: Non-existing file can not be deleted.
+					$row .= $this->msg( 'filehist-missing' )->escaped();
+				}
+
 			}
 			$row .= Html::closeElement( 'td' );
 		}
@@ -173,6 +179,9 @@ class ImageHistoryList extends ContextSource {
 		) {
 			if ( $file->isDeleted( File::DELETED_FILE ) ) {
 				$row .= $this->msg( 'filehist-revert' )->escaped();
+			} elseif ( !$file->exists() ) {
+				// T328112: Lost file, in this case there's no version to revert back to.
+				$row .= $this->msg( 'filehist-missing' )->escaped();
 			} else {
 				$row .= $linkRenderer->makeKnownLink(
 					$this->title,
