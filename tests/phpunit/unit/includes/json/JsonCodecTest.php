@@ -7,6 +7,7 @@ use InvalidArgumentException;
 use JsonSerializable;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Json\JsonConstants;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use Title;
 use Wikimedia\Assert\PreconditionException;
@@ -49,6 +50,18 @@ class JsonCodecTest extends MediaWikiUnitTestCase {
 	 */
 	public function testSimpleTypesUnserialize( $value, string $serialization ) {
 		$this->assertSame( $value, $this->getCodec()->unserialize( $serialization ) );
+	}
+
+	public function testActualClassInstanceIsNotJsonObject() {
+		// Can be any trivial value class that's suitable to be used in pure unit tests
+		$object = UserIdentityValue::newAnonymous( '' );
+
+		// TODO: We probably want this to throw an exception as well
+		$array = [ $object ];
+		$this->assertSame( $array, $this->getCodec()->unserialize( $array ) );
+
+		$this->expectException( InvalidArgumentException::class );
+		$this->getCodec()->unserialize( $object );
 	}
 
 	/**
