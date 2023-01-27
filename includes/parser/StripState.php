@@ -66,7 +66,7 @@ class StripState {
 	/**
 	 * Add a nowiki strip item
 	 * @param string $marker
-	 * @param string $value
+	 * @param string|Closure $value
 	 */
 	public function addNoWiki( $marker, $value ) {
 		$this->addItem( 'nowiki', $marker, $value );
@@ -74,7 +74,7 @@ class StripState {
 
 	/**
 	 * @param string $marker
-	 * @param string $value
+	 * @param string|Closure $value
 	 */
 	public function addGeneral( $marker, $value ) {
 		$this->addItem( 'general', $marker, $value );
@@ -84,7 +84,7 @@ class StripState {
 	 * @throws MWException
 	 * @param string $type
 	 * @param string $marker
-	 * @param string $value
+	 * @param string|Closure $value
 	 */
 	protected function addItem( $type, $marker, $value ) {
 		if ( !preg_match( $this->regex, $marker, $m ) ) {
