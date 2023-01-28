@@ -202,11 +202,13 @@ class Command extends UnboxedCommand {
 	 *
 	 * limit.sh will always be whitelisted
 	 *
-	 * @deprecated since 1.36 Use allowPath/disallowPath
+	 * @deprecated since 1.36 Use allowPath/disallowPath. Hard
+	 *   deprecated in 1.40 and to be removed in 1.41
 	 * @param string[] $paths
 	 * @return $this
 	 */
 	public function whitelistPaths( array $paths ): Command {
+		wfDeprecated( __METHOD__, '1.36' );
 		$this->allowedPaths( array_merge( $this->getAllowedPaths(), $paths ) );
 		return $this;
 	}

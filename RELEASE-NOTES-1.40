@@ -367,6 +367,8 @@ because of Phabricator reports.
 * Title.js's confusingly-named getName() and getNameText() methods, for using
   media files' pages, have been renamed to getFileNameWithoutExtension() and
   getFileNameTextWithoutExtension() respectively. The old names are deprecated.
+* Command::whitelistPaths() should now emit deprecation warnings. Make use of
+  Command::allowPaths/disallowPaths() instead.
 * When manually creating an HTMLFormField (i.e. not via HTMLForm::factory),
   it is deprecated to not include the "parent" field as one of the parameters.
 * The MWException class is deprecated. Use native exceptions, either directly
