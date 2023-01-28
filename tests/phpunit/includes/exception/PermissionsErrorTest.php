@@ -20,7 +20,7 @@ class PermissionsErrorTest extends MediaWikiIntegrationTestCase {
 		yield [ null, $status, $expected ];
 		yield [ 'testpermission', $status, $expected ];
 
-		yield [ 'testpermission', [], [ [ 'badaccess-groups', '*', 1 ] ] ];
+		yield [ 'testpermission', [], [ [ 'badaccess-groups', Message::listParam( [ '*' ], 'comma' ), 1 ] ] ];
 	}
 
 	/**

@@ -237,8 +237,6 @@ class SpecialVersion extends SpecialPage {
 	 * @return string
 	 */
 	public static function getCopyrightAndAuthorList() {
-		global $wgLang;
-
 		if ( defined( 'MEDIAWIKI_INSTALL' ) ) {
 			$othersLink = '[https://www.mediawiki.org/wiki/Special:Version/Credits ' .
 				wfMessage( 'version-poweredby-others' )->text() . ']';
@@ -266,7 +264,7 @@ class SpecialVersion extends SpecialPage {
 		];
 
 		return wfMessage( 'version-poweredby-credits', MWTimestamp::getLocalInstance()->format( 'Y' ),
-			$wgLang->listToText( $authorList ) )->text();
+			Message::listParam( $authorList ) )->text();
 	}
 
 	/**
