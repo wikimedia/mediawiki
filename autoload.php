@@ -957,6 +957,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Cache\\Hook\\HTMLFileCache__useFileCacheHook' => __DIR__ . '/includes/cache/Hook/HTMLFileCache__useFileCacheHook.php',
 	'MediaWiki\\Cache\\Hook\\HtmlCacheUpdaterAppendUrlsHook' => __DIR__ . '/includes/cache/Hook/HtmlCacheUpdaterAppendUrlsHook.php',
 	'MediaWiki\\Cache\\Hook\\HtmlCacheUpdaterVaryUrlsHook' => __DIR__ . '/includes/cache/Hook/HtmlCacheUpdaterVaryUrlsHook.php',
+	'MediaWiki\\Cache\\Hook\\MessageCacheFetchOverridesHook' => __DIR__ . '/includes/language/Hook/MessageCacheFetchOverridesHook.php',
 	'MediaWiki\\Cache\\Hook\\MessageCacheReplaceHook' => __DIR__ . '/includes/language/Hook/MessageCacheReplaceHook.php',
 	'MediaWiki\\Cache\\Hook\\MessageCache__getHook' => __DIR__ . '/includes/language/Hook/MessageCache__getHook.php',
 	'MediaWiki\\Cache\\Hook\\MessagesPreLoadHook' => __DIR__ . '/includes/language/Hook/MessagesPreLoadHook.php',

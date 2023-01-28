@@ -73,6 +73,8 @@ because of Phabricator reports.
 * …
 
 === Deprecations in 1.41 ===
+* The MessageCache::get hook is deprecated for performance reasons. Use
+  MessageCacheFetchOverrides instead.
 * …
 
 === Other changes in 1.41 ===
