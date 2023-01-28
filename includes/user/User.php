@@ -3404,8 +3404,6 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return Status
 	 */
 	public static function newFatalPermissionDeniedStatus( $permission ) {
-		global $wgLang;
-
 		$groups = [];
 		foreach ( MediaWikiServices::getInstance()
 				->getGroupPermissionsLookup()
@@ -3414,7 +3412,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		}
 
 		if ( $groups ) {
-			return Status::newFatal( 'badaccess-groups', $wgLang->commaList( $groups ), count( $groups ) );
+			return Status::newFatal( 'badaccess-groups', Message::listParam( $groups, 'comma' ), count( $groups ) );
 		}
 
 		return Status::newFatal( 'badaccess-group0' );
