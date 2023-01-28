@@ -266,7 +266,7 @@ document.documentElement.className = {$jsClassJson};
 			$cookiePrefix = $this->options['clientPrefCookiePrefix'];
 			$script .= <<<JS
 ( function () {
-	var cookie = document.cookie.match( /(?:^|; )${cookiePrefix}mwclientprefs=([^;]+)/ );
+	var cookie = document.cookie.match( /(?:^|; ){$cookiePrefix}mwclientprefs=([^;]+)/ );
 	// For now, only support disabling a feature
 	// Only supports a single feature (modifying a single class) at this stage.
 	// In future this may be expanded to multiple once this has been proven as viable.
