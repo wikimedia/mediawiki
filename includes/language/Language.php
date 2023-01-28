@@ -42,6 +42,7 @@ use MediaWiki\Parser\MagicWord;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\DebugInfo\DebugInfoTrait;
 use Wikimedia\RequestTimeout\TimeoutException;
 
@@ -52,7 +53,7 @@ use Wikimedia\RequestTimeout\TimeoutException;
  *
  * @ingroup Language
  */
-class Language {
+class Language implements Bcp47Code {
 	use DebugInfoTrait;
 
 	/**
@@ -4385,6 +4386,16 @@ class Language {
 	public function getHtmlCode() {
 		$this->mHtmlCode ??= LanguageCode::bcp47( $this->getCode() );
 		return $this->mHtmlCode;
+	}
+
+	/**
+	 * Implement the Bcp47Code interface.  This is an alias for
+	 * ::getHtmlCode().
+	 * @since 1.40
+	 * @return string
+	 */
+	public function toBcp47Code(): string {
+		return $this->getHtmlCode();
 	}
 
 	/**
