@@ -326,6 +326,9 @@ because of Phabricator reports.
   deprecated in 1.37, now emit deprecation warnings.
 * LanguageConverterFactory::isTitleConversionDisabled(), deprecated in 1.36,
   now emits deprecation warnings.
+* Language::getFileName(), ::getMessagesFileName() and
+  ::getJsonMessagesFileName(), deprecated in 1.34,
+  now emit deprecation warnings.
 * User::incEditCount(), deprecated in 1.37, now emits deprecation warnings.
 * User::idFromName(), deprecated in 1.37, now emits deprecation warnings.
 * The ability to override and use User::$mRights, deprecated in 1.34, now emits
@@ -350,6 +353,8 @@ because of Phabricator reports.
   GlobalBlocks are now added into CompositeBlocks via the GetUserBlock hook.
 * Language::isWellFormedLanguageTag(), deprecated in 1.39, now emits deprecation
   notices. Please use LanguageCode::isWellFormedLanguageTag() instead.
+* Language::getFallbackFor(), ::getFallbacksIncludingSiteLanguage() and
+  ::getFallbacksFor(), deprecated in 1.35, now emit deprecation warnings.
 * Executing maintenance scripts directly is deprecated. The maintenance/run.php
   entry point should be used instead.
 * Job::factory is deprecated, use JobFactory::newJob instead.

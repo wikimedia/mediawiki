@@ -1952,14 +1952,17 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	}
 
 	private function getFileName( ...$args ) {
+		$this->hideDeprecated( 'Language::getFileName' );
 		return Language::getFileName( ...$args );
 	}
 
 	private function getMessagesFileName( $code ) {
+		$this->hideDeprecated( 'Language::getMessagesFileName' );
 		return Language::getMessagesFileName( $code );
 	}
 
 	private function getJsonMessagesFileName( $code ) {
+		$this->hideDeprecated( 'Language::getJsonMessagesFileName' );
 		return Language::getJsonMessagesFileName( $code );
 	}
 
