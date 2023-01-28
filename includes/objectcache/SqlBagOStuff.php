@@ -1590,7 +1590,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $released;
 	}
 
-	public function makeKeyInternal( $keyspace, $components ) {
+	protected function makeKeyInternal( $keyspace, $components ) {
 		// SQL schema for 'objectcache' specifies keys as varchar(255). From that,
 		// subtract the number of characters we need for the keyspace and for
 		// the separator character needed for each argument. To handle some

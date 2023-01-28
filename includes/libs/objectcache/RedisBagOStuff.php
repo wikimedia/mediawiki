@@ -621,7 +621,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		$this->debug( "$op($keys) on $server: " . ( $e ? "failure" : "success" ) );
 	}
 
-	public function makeKeyInternal( $keyspace, $components ) {
+	protected function makeKeyInternal( $keyspace, $components ) {
 		return $this->genericKeyFromComponents( $keyspace, ...$components );
 	}
 

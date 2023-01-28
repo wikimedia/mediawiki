@@ -287,7 +287,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 		return $newValue;
 	}
 
-	public function makeKeyInternal( $keyspace, $components ) {
+	protected function makeKeyInternal( $keyspace, $components ) {
 		return $this->genericKeyFromComponents( $keyspace, ...$components );
 	}
 

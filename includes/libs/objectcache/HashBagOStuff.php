@@ -186,7 +186,7 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		return isset( $this->bag[$key] );
 	}
 
-	public function makeKeyInternal( $keyspace, $components ) {
+	protected function makeKeyInternal( $keyspace, $components ) {
 		return $this->genericKeyFromComponents( $keyspace, ...$components );
 	}
 

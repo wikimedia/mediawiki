@@ -57,7 +57,7 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 	 * @param array $components
 	 * @return string
 	 */
-	public function makeKeyInternal( $keyspace, $components ) {
+	protected function makeKeyInternal( $keyspace, $components ) {
 		// Memcached keys have a maximum length of 255 characters. From that,
 		// subtract the number of characters we need for the keyspace and for
 		// the separator character needed for each argument. To handle some
