@@ -290,9 +290,10 @@ abstract class Maintenance {
 	 * @param string $arg Name of the arg, like 'start'
 	 * @param string $description Short description of the arg
 	 * @param bool $required Is this required?
+	 * @param bool $multi Does it allow multiple values? (Last arg only)
 	 */
-	protected function addArg( $arg, $description, $required = true ) {
-		$this->parameters->addArg( $arg, $description, $required );
+	protected function addArg( $arg, $description, $required = true, $multi = false ) {
+		$this->parameters->addArg( $arg, $description, $required, $multi );
 	}
 
 	/**
@@ -821,11 +822,6 @@ abstract class Maintenance {
 	public function validateParamsAndArgs() {
 		$valid = $this->parameters->validate();
 
-		if ( $this->parameters->hasErrors() ) {
-			$errors = "\nERROR: " . implode( "\nERROR: ", $this->parameters->getErrors() ) . "\n";
-			$this->error( $errors );
-		}
-
 		$this->maybeHelp( !$valid );
 	}
 
@@ -857,6 +853,12 @@ abstract class Maintenance {
 		if ( !$force && !$this->hasOption( 'help' ) ) {
 			return;
 		}
+
+		if ( $this->parameters->hasErrors() && !$this->hasOption( 'help' ) ) {
+			$errors = "\nERROR: " . implode( "\nERROR: ", $this->parameters->getErrors() ) . "\n";
+			$this->error( $errors );
+		}
+
 		$this->showHelp();
 		die( 1 );
 	}
