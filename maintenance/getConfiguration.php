@@ -23,8 +23,6 @@
  * @author Antoine Musso <hashar@free.fr>
  */
 
-use MediaWiki\Settings\SettingsBuilder;
-
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -80,23 +78,6 @@ class GetConfiguration extends Maintenance {
 			$this->error( "Can only use either --regex or --iregex" );
 			$error_out = true;
 		}
-
-		parent::validateParamsAndArgs();
-
-		if ( $error_out ) {
-			# Force help and quit
-			$this->maybeHelp( true );
-		}
-	}
-
-	/**
-	 * finalSetup() since we need MWException
-	 *
-	 * @param SettingsBuilder|null $settingsBuilder
-	 */
-	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
-		parent::finalSetup( $settingsBuilder );
-
 		$this->regex = $this->getOption( 'regex' ) ?: $this->getOption( 'iregex' );
 		if ( $this->regex ) {
 			$this->regex = '/' . $this->regex . '/';
@@ -111,13 +92,23 @@ class GetConfiguration extends Maintenance {
 			# Values validation
 			foreach ( $this->settings_list as $name ) {
 				if ( !preg_match( '/^wg[A-Z]/', $name ) ) {
-					throw new MWException( "Variable '$name' does start with 'wg'." );
+					$this->error( "Variable '$name' does start with 'wg'." );
+					$error_out = true;
 				} elseif ( !array_key_exists( $name, $GLOBALS ) ) {
-					throw new MWException( "Variable '$name' is not set." );
+					$this->error( "Variable '$name' is not set." );
+					$error_out = true;
 				} elseif ( !$this->isAllowedVariable( $GLOBALS[$name] ) ) {
-					throw new MWException( "Variable '$name' includes non-array, non-scalar, items." );
+					$this->error( "Variable '$name' includes non-array, non-scalar, items." );
+					$error_out = true;
 				}
 			}
+		}
+
+		parent::validateParamsAndArgs();
+
+		if ( $error_out ) {
+			# Force help and quit
+			$this->maybeHelp( true );
 		}
 	}
 
@@ -164,10 +155,10 @@ class GetConfiguration extends Maintenance {
 				}
 				break;
 			default:
-				throw new MWException( "Invalid serialization format given." );
+				$this->fatalError( "Invalid serialization format given." );
 		}
 		if ( !is_string( $out ) ) {
-			throw new MWException( "Failed to serialize the requested settings." );
+			$this->fatalError( "Failed to serialize the requested settings." );
 		}
 
 		if ( $out ) {

@@ -360,7 +360,7 @@ TEXT
 		$rowsToInsert = [];
 		foreach ( $res as $i => $row ) {
 			if ( !isset( $sortKeys[$i] ) ) {
-				throw new MWException( 'Unable to get sort key' );
+				throw new RuntimeException( 'Unable to get sort key' );
 			}
 			$newSortKey = $sortKeys[$i];
 			$this->updateSortKeySizeHistogram( $newSortKey );

@@ -83,7 +83,7 @@ class PPDStack_Hash {
 
 	public function pop() {
 		if ( $this->stack === [] ) {
-			throw new MWException( __METHOD__ . ': no elements remaining' );
+			throw new RuntimeException( __METHOD__ . ': no elements remaining' );
 		}
 		$temp = array_pop( $this->stack );
 
