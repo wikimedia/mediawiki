@@ -895,7 +895,7 @@ __INDEXATTR__;
 	 *
 	 * @since 1.19
 	 *
-	 * @param string $desiredSchema
+	 * @param string|null $desiredSchema
 	 */
 	public function determineCoreSchema( $desiredSchema ) {
 		if ( $this->trxLevel() ) {
@@ -1096,11 +1096,11 @@ SQL;
 
 	/**
 	 * Query whether a given schema exists. Returns true if it does, false if it doesn't.
-	 * @param string $schema
+	 * @param string|null $schema
 	 * @return bool
 	 */
 	public function schemaExists( $schema ) {
-		if ( !strlen( $schema ) ) {
+		if ( !strlen( $schema ?? '' ) ) {
 			return false; // short-circuit
 		}
 
