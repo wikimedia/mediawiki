@@ -46,7 +46,7 @@ class UserrightsPage extends SpecialPage {
 	 */
 	protected $mTarget;
 	/**
-	 * @var null|User The user object of the target username or null.
+	 * @var null|UserIdentity The user object of the target username or null.
 	 */
 	protected $mFetchedUser = null;
 	protected $isself = false;
@@ -493,7 +493,7 @@ class UserrightsPage extends SpecialPage {
 
 	/**
 	 * Add a rights log entry for an action.
-	 * @param User|UserRightsProxy $user
+	 * @param UserIdentity $user
 	 * @param array $oldGroups
 	 * @param array $newGroups
 	 * @param string $reason
@@ -519,7 +519,7 @@ class UserrightsPage extends SpecialPage {
 
 		$logEntry = new ManualLogEntry( 'rights', 'rights' );
 		$logEntry->setPerformer( $this->getUser() );
-		$logEntry->setTarget( $user->getUserPage() );
+		$logEntry->setTarget( Title::makeTitle( NS_USER, $user->getName() ) );
 		$logEntry->setComment( is_string( $reason ) ? $reason : "" );
 		$logEntry->setParameters( [
 			'4::oldgroups' => $oldGroups,
@@ -548,9 +548,9 @@ class UserrightsPage extends SpecialPage {
 			return;
 		}
 
-		/** @var User $user */
+		/** @var UserIdentity $user */
 		$user = $status->value;
-		'@phan-var User $user';
+		'@phan-var UserIdentity $user';
 
 		$groups = $this->userGroupManager->getUserGroups( $user );
 		$groupMemberships = $this->userGroupManager->getUserGroupMemberships( $user );
@@ -697,7 +697,7 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Show the form to edit group memberships.
 	 *
-	 * @param User|UserRightsProxy $user User or UserRightsProxy you're editing
+	 * @param UserIdentity $user
 	 * @param string[] $groups Array of groups the user is in. Not used by this implementation
 	 *   anymore, but kept for backward compatibility with subclasses
 	 * @param UserGroupMembership[] $groupMemberships Associative array of (group name => UserGroupMembership
@@ -722,9 +722,7 @@ class UserrightsPage extends SpecialPage {
 		$autoList = [];
 		$autoMembersList = [];
 
-		$isUserInstance = $user instanceof User;
-
-		if ( $isUserInstance ) {
+		if ( $user instanceof User ) {
 			foreach ( $this->userGroupManager->getUserAutopromoteGroups( $user ) as $group ) {
 				$autoList[] = UserGroupMembership::getLink( $group, $this->getContext(), 'html' );
 				$autoMembersList[] = UserGroupMembership::getLink( $group, $this->getContext(),
@@ -763,7 +761,7 @@ class UserrightsPage extends SpecialPage {
 			$grouplist .= '<p>' . $autogrouplistintro . ' ' . $displayedAutolist . "</p>\n";
 		}
 
-		$systemUser = $isUserInstance && $user->isSystemUser();
+		$systemUser = $user instanceof User && $user->isSystemUser();
 		if ( $systemUser ) {
 			$systemusernote = $this->msg( 'userrights-systemuser' )
 				->params( $user->getName() )
@@ -857,7 +855,7 @@ class UserrightsPage extends SpecialPage {
 	 *
 	 * @param UserGroupMembership[] $usergroups Associative array of (group name as string =>
 	 *   UserGroupMembership object) for groups the user belongs to
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @return array Array with 2 elements: the XHTML table element with checkxboes, and
 	 * whether any groups are changeable
 	 */
@@ -1091,13 +1089,13 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Show a rights log fragment for the specified user
 	 *
-	 * @param User $user User to show log for
+	 * @param UserIdentity $user User to show log for
 	 * @param OutputPage $output OutputPage to use
 	 */
 	protected function showLogFragment( $user, $output ) {
 		$rightsLogPage = new LogPage( 'rights' );
 		$output->addHTML( Xml::element( 'h2', null, $rightsLogPage->getName()->text() ) );
-		LogEventsList::showLogExtract( $output, 'rights', $user->getUserPage() );
+		LogEventsList::showLogExtract( $output, 'rights', Title::makeTitle( NS_USER, $user->getName() ) );
 	}
 
 	/**
