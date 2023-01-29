@@ -158,9 +158,9 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 				$onlyCurrentFile = !$file->isOld();
 			}
 			$sList .= $list->endImageHistoryList();
-			if ( $onlyCurrentFile ) {
-				// It is not possible to revision-delete the current file,
-				// if there is only the current file, show no buttons
+			if ( $onlyCurrentFile || !$this->mImg->isLocal() ) {
+				// It is not possible to revision-delete the current file or foreign files,
+				// if there is only the current file or the file is not local, show no buttons
 				$s .= $sList;
 			} else {
 				$s .= $this->wrapWithActionButtons( $sList );
