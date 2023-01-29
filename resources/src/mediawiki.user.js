@@ -115,7 +115,7 @@
 		 * @return {boolean}
 		 */
 		isNamed: function () {
-			return mw.config.get( 'wgUserIsNamed' ) || false;
+			return !mw.user.isAnon() && !mw.user.isTemp();
 		},
 
 		/**

@@ -36,7 +36,6 @@
 
 	QUnit.test( 'getters (logged-in)', function ( assert ) {
 		mw.config.set( 'wgUserName', 'John' );
-		mw.config.set( 'wgUserIsNamed', true );
 		mw.config.set( 'wgUserIsTemp', false );
 		mw.config.set( 'wgUserId', 123 );
 
