@@ -53,7 +53,8 @@
 		var setSection = function ( sectionName, fieldset ) {
 			tabs.setTabPanel( sectionName );
 			enhancePanel( tabs.getCurrentTabPanel() );
-			if ( fieldset instanceof HTMLElement ) {
+			// Scroll to a fieldset if provided.
+			if ( fieldset ) {
 				fieldset.scrollIntoView();
 			}
 		};
