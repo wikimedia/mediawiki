@@ -1935,10 +1935,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return false;
 	}
 
-	public function getLaggedReplicaMode() {
-		return $this->laggedReplicaMode;
-	}
-
 	public function laggedReplicaUsed() {
 		return $this->laggedReplicaMode;
 	}

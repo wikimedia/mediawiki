@@ -247,6 +247,8 @@ because of Phabricator reports.
 * ILBFactory::forEachLB(), deprecated in 1.39, has been removed.
 * LoadBalancer::getTransactionRoundStage, unused, was removed without
   deprecation.
+* ILoadBalancer::getLaggedReplicaMode, unused, was removed  without
+  deprecation. Use ILBFactory::laggedReplicaUsed() instead.
 * Optional parameters of ILoadBalancer::waitForPrimaryPos(), $pos and $timeout
   have been removed without deprecation as they are unused.
 * Optional parameter of ILBFactory::commitAll(), $options has been removed

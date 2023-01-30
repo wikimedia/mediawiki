@@ -221,7 +221,7 @@ interface ILoadBalancer {
 	 * for that DB to catch up to the specified replication position. Otherwise, it will
 	 * do so once such a connection is opened.
 	 *
-	 * If a timeout happens when waiting, then getLaggedReplicaMode()/laggedReplicaUsed()
+	 * If a timeout happens when waiting, then laggedReplicaUsed()
 	 * will return true. This is useful for discouraging clients from taking further actions
 	 * if session consistency could not be maintained with respect to their last actions.
 	 *
@@ -233,7 +233,7 @@ interface ILoadBalancer {
 	 * Set the primary wait position and wait for ALL replica DBs to catch up to it
 	 *
 	 * This method is only intended for use a throttling mechanism for high-volume updates.
-	 * Unlike waitFor(), failure does not effect getLaggedReplicaMode()/laggedReplicaUsed().
+	 * Unlike waitFor(), failure does not effect laggedReplicaUsed().
 	 *
 	 * @param DBPrimaryPos|false $pos Primary position or false
 	 * @param int|null $timeout Max seconds to wait; default is mWaitTimeout
@@ -534,15 +534,7 @@ interface ILoadBalancer {
 	public function hasOrMadeRecentPrimaryChanges( $age = null );
 
 	/**
-	 * @note This method will trigger a DB connection if not yet done
-	 * @return bool Whether the database for generic connections this request is highly "lagged"
-	 */
-	public function getLaggedReplicaMode();
-
-	/**
-	 * Checks whether the database for generic connections this request was both:
-	 *   - a) Already chosen due to a prior connection attempt
-	 *   - b) Considered highly "lagged"
+	 * Whether a highly "lagged" replica database connection was queried.
 	 *
 	 * @note This method will never cause a new DB connection
 	 * @return bool
