@@ -12,10 +12,13 @@
 		var section = sectionName.replace( 'mw-prefsection-', '' ).replace( 'mw-mobile-prefs-', '' );
 		// Work in the window isn't necessarily done when 'then` fires
 		windowManager.openWindow( 'mw-mobile-prefs-' + section ).opening.then( function () {
-			// setTimout is ie11-compatible and queues up tasks for async exec
-			setTimeout( function () {
-				fieldset.scrollIntoView( { behavior: 'smooth' } );
-			} );
+			// Scroll to a fieldset if provided.
+			if ( fieldset ) {
+				// setTimout is ie11-compatible and queues up tasks for async exec
+				setTimeout( function () {
+					fieldset.scrollIntoView( { behavior: 'smooth' } );
+				} );
+			}
 		}, 0 ); /* 0 milliseconds is ASAP */
 		if ( nav.switchingNoHash ) {
 			return;
