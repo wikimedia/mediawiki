@@ -32,7 +32,11 @@ describe( 'Page Source', () => {
 
 	describe( 'GET /page/{title}', () => {
 		it( 'Title normalization should return permanent redirect (301)', async () => {
-			const { status, text } = await client.get( `/page/${redirectPage}` );
+			const { status, text, headers } = await client.get( `/page/${redirectPage}`, { flavor: 'edit' } );
+			/* eslint-disable-next-line node/no-unsupported-features/node-builtins */
+			const { searchParams } = new URL( headers.location );
+			assert.deepEqual( searchParams.has( 'flavor' ), true );
+			assert.deepEqual( searchParams.get( 'flavor' ), 'edit' );
 			assert.deepEqual( status, 301, text );
 		} );
 
@@ -81,7 +85,11 @@ describe( 'Page Source', () => {
 
 	describe( 'GET /page/{title}/bare', () => {
 		it( 'Title normalization should return permanent redirect (301)', async () => {
-			const { status, text } = await client.get( `/page/${redirectPage}/bare` );
+			const { status, text, headers } = await client.get( `/page/${redirectPage}/bare`, { flavor: 'edit' } );
+			/* eslint-disable-next-line node/no-unsupported-features/node-builtins */
+			const { searchParams } = new URL( headers.location );
+			assert.deepEqual( searchParams.has( 'flavor' ), true );
+			assert.deepEqual( searchParams.get( 'flavor' ), 'edit' );
 			assert.deepEqual( status, 301, text );
 		} );
 
@@ -130,13 +138,21 @@ describe( 'Page Source', () => {
 
 	describe( 'GET /page/{title}/html', () => {
 		it( 'Title normalization should return permanent redirect (301)', async () => {
-			const { status, text } = await client.get( `/page/${redirectPage}/html` );
+			const { status, text, headers } = await client.get( `/page/${redirectPage}/html`, { flavor: 'edit' } );
+			/* eslint-disable-next-line node/no-unsupported-features/node-builtins */
+			const { searchParams } = new URL( headers.location );
+			assert.deepEqual( searchParams.has( 'flavor' ), true );
+			assert.deepEqual( searchParams.get( 'flavor' ), 'edit' );
 			assert.deepEqual( status, 301, text );
 		} );
 
 		it( 'Wiki redirects should return temporary redirect (307)', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
-			const { status, text } = await client.get( `/page/${redirectPageDbkey}/html` );
+			const { status, text, headers } = await client.get( `/page/${redirectPageDbkey}/html`, { flavor: 'edit' } );
+			/* eslint-disable-next-line node/no-unsupported-features/node-builtins */
+			const { searchParams } = new URL( headers.location );
+			assert.deepEqual( searchParams.has( 'flavor' ), true );
+			assert.deepEqual( searchParams.get( 'flavor' ), 'edit' );
 			assert.deepEqual( status, 307, text );
 		} );
 
@@ -211,13 +227,21 @@ describe( 'Page Source', () => {
 
 	describe( 'GET /page/{title}/with_html', () => {
 		it( 'Title normalization should return permanent redirect (301)', async () => {
-			const { status, text } = await client.get( `/page/${redirectPage}/with_html` );
+			const { status, text, headers } = await client.get( `/page/${redirectPage}/with_html`, { flavor: 'edit' } );
+			/* eslint-disable-next-line node/no-unsupported-features/node-builtins */
+			const { searchParams } = new URL( headers.location );
+			assert.deepEqual( searchParams.has( 'flavor' ), true );
+			assert.deepEqual( searchParams.get( 'flavor' ), 'edit' );
 			assert.deepEqual( status, 301, text );
 		} );
 
 		it( 'Wiki redirects should return temporary redirect (307)', async () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
-			const { status, text } = await client.get( `/page/${redirectPageDbkey}/with_html` );
+			const { status, text, headers } = await client.get( `/page/${redirectPageDbkey}/with_html`, { flavor: 'edit' } );
+			/* eslint-disable-next-line node/no-unsupported-features/node-builtins */
+			const { searchParams } = new URL( headers.location );
+			assert.deepEqual( searchParams.has( 'flavor' ), true );
+			assert.deepEqual( searchParams.get( 'flavor' ), 'edit' );
 			assert.deepEqual( status, 307, text );
 		} );
 
@@ -225,7 +249,7 @@ describe( 'Page Source', () => {
 			const redirectPageDbkey = utils.dbkey( redirectPage );
 			const redirectedPageDbKey = utils.dbkey( redirectedPage );
 			const { status, body: { redirect_target }, text } = await client.get( `/page/${redirectPageDbkey}/with_html`, { redirect: 'no' } );
-			assert.match( redirect_target, new RegExp( `/page/${encodeURIComponent( redirectedPageDbKey )}/with_html$` ) );
+			assert.match( redirect_target, new RegExp( `/page/${encodeURIComponent( redirectedPageDbKey )}/with_html` ) );
 			assert.deepEqual( status, 200, text );
 		} );
 
