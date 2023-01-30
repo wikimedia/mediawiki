@@ -23,6 +23,7 @@ namespace MediaWiki\Languages;
 use Config;
 use InvalidArgumentException;
 use Language;
+use LanguageCode;
 use LanguageConverter;
 use LocalisationCache;
 use LogicException;
@@ -31,6 +32,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use NamespaceInfo;
+use Wikimedia\Bcp47Code\Bcp47Code;
 
 /**
  * Internationalisation code
@@ -120,14 +122,33 @@ class LanguageFactory {
 	 * Get a cached or new language object for a given language code
 	 * with normalization of the language code.
 	 *
-	 * If the language code comes from user input, check LanguageNameUtils::isValidCode()
-	 * before calling this method.
+	 * If the language code comes from user input, check
+	 * LanguageNameUtils::isValidCode() before calling this method.
 	 *
-	 * @param string $code
+	 * The language code is presumed to be a MediaWiki-internal code,
+	 * unless you pass a Bcp47Code opaque object, in which case it is
+	 * presumed to be a standard BCP-47 code.  (There are, regrettably,
+	 * some ambiguous codes where this makes a difference.)
+	 *
+	 * As Language itself implements Bcp47Code, this method is an efficient
+	 * and safe downcast if you pass in a Language object.
+	 *
+	 * @param string|Bcp47Code $code
 	 * @return Language
 	 */
 	public function getLanguage( $code ): Language {
-		$code = $this->options->get( MainConfigNames::DummyLanguageCodes )[$code] ?? $code;
+		if ( $code instanceof Language ) {
+			return $code;
+		}
+		if ( $code instanceof Bcp47Code ) {
+			// Any compatibility remapping of valid BCP-47 codes would be done
+			// inside ::bcp47ToInternal, not here.
+			$code = LanguageCode::bcp47ToInternal( $code->toBcp47Code() );
+		} else {
+			// Perform various deprecated and compatibility mappings of
+			// internal codes.
+			$code = $this->options->get( MainConfigNames::DummyLanguageCodes )[$code] ?? $code;
+		}
 		return $this->getRawLanguage( $code );
 	}
 
