@@ -479,42 +479,8 @@ class UndeletePage {
 			return $status;
 		}
 
-		// We use ar_id because there can be duplicate ar_rev_id even for the same
-		// page.  In this case, we may be able to restore the first one.
-		$restoreFailedArIds = [];
-
-		// Map rev_id to the ar_id that is allowed to use it.  When checking later,
-		// if it doesn't match, the current ar_id can not be restored.
-
-		// Value can be an ar_id or -1 (-1 means no ar_id can use it, since the
-		// rev_id is taken before we even start the restore).
-		$allowedRevIdToArIdMap = [];
-
-		$latestRestorableRow = null;
-
-		foreach ( $result as $row ) {
-			if ( $row->ar_rev_id ) {
-				// rev_id is taken even before we start restoring.
-				if ( $row->ar_rev_id === $row->rev_id ) {
-					$restoreFailedArIds[] = $row->ar_id;
-					$allowedRevIdToArIdMap[$row->ar_rev_id] = -1;
-				} else {
-					// rev_id is not taken yet in the DB, but it might be taken
-					// by a prior revision in the same restore operation. If
-					// not, we need to reserve it.
-					if ( isset( $allowedRevIdToArIdMap[$row->ar_rev_id] ) ) {
-						$restoreFailedArIds[] = $row->ar_id;
-					} else {
-						$allowedRevIdToArIdMap[$row->ar_rev_id] = $row->ar_id;
-						$latestRestorableRow = $row;
-					}
-				}
-			} else {
-				// If ar_rev_id is null, there can't be a collision, and a
-				// rev_id will be chosen automatically.
-				$latestRestorableRow = $row;
-			}
-		}
+		$result->seek( $rev_count - 1 );
+		$latestRestorableRow = $result->current();
 
 		// move back
 		$result->seek( 0 );
@@ -530,132 +496,112 @@ class UndeletePage {
 		$restoredRevCount = 0;
 		$restoredPages = [];
 
-		// If there are no restorable revisions, we can skip most of the steps.
-		if ( $latestRestorableRow === null ) {
-			$failedRevisionCount = $rev_count;
-		} else {
-			// pass this to ArticleUndelete hook
-			$oldPageId = (int)$latestRestorableRow->ar_page_id;
+		// pass this to ArticleUndelete hook
+		$oldPageId = (int)$latestRestorableRow->ar_page_id;
 
-			// Grab the content to check consistency with global state before restoring the page.
-			// XXX: The only current use case is Wikibase, which tries to enforce uniqueness of
-			// certain things across all pages. There may be a better way to do that.
+		// Grab the content to check consistency with global state before restoring the page.
+		// XXX: The only current use case is Wikibase, which tries to enforce uniqueness of
+		// certain things across all pages. There may be a better way to do that.
+		$revision = $revisionStore->newRevisionFromArchiveRow(
+			$latestRestorableRow,
+			0,
+			$page
+		);
+
+		foreach ( $revision->getSlotRoles() as $role ) {
+			$content = $revision->getContent( $role, RevisionRecord::RAW );
+			// NOTE: article ID may not be known yet. validateSave() should not modify the database.
+			$contentHandler = $this->contentHandlerFactory->getContentHandler( $content->getModel() );
+			$validationParams = new ValidationParams( $wikiPage, 0 );
+			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable RAW never returns null
+			$status = $contentHandler->validateSave( $content, $validationParams );
+			if ( !$status->isOK() ) {
+				$dbw->endAtomic( __METHOD__ );
+
+				return $status;
+			}
+		}
+
+		$pageId = $wikiPage->insertOn( $dbw, $latestRestorableRow->ar_page_id );
+		if ( $pageId === false ) {
+			// The page ID is reserved; let's pick another
+			$pageId = $wikiPage->insertOn( $dbw );
+			if ( $pageId === false ) {
+				// The page title must be already taken (race condition)
+				$created = false;
+			}
+		}
+
+		# Does this page already exist? We'll have to update it...
+		if ( !$created ) {
+			# Load latest data for the current page (T33179)
+			$wikiPage->loadPageData( WikiPage::READ_EXCLUSIVE );
+			$pageId = $wikiPage->getId();
+			$oldcountable = $wikiPage->isCountable();
+
+			$previousTimestamp = false;
+			$latestRevId = $wikiPage->getLatest();
+			if ( $latestRevId ) {
+				$previousTimestamp = $revisionStore->getTimestampFromId(
+					$latestRevId,
+					RevisionStore::READ_LATEST
+				);
+			}
+			if ( $previousTimestamp === false ) {
+				$this->logger->debug( __METHOD__ . ": existing page refers to a page_latest that does not exist" );
+
+				$status = Status::newGood( 0 );
+				$status->error( 'undeleterevision-missing' );
+				$dbw->cancelAtomic( __METHOD__ );
+
+				return $status;
+			}
+		} else {
+			$previousTimestamp = 0;
+		}
+
+		// Check if a deleted revision will become the current revision...
+		if ( $latestRestorableRow->ar_timestamp > $previousTimestamp ) {
+			// Check the state of the newest to-be version...
+			if ( !$this->unsuppress
+				&& ( $latestRestorableRow->ar_deleted & RevisionRecord::DELETED_TEXT )
+			) {
+				$dbw->cancelAtomic( __METHOD__ );
+
+				return Status::newFatal( "undeleterevdel" );
+			}
+			$updatedCurrentRevision = true;
+		}
+
+		foreach ( $result as $row ) {
+			// Insert one revision at a time...maintaining deletion status
+			// unless we are specifically removing all restrictions...
 			$revision = $revisionStore->newRevisionFromArchiveRow(
-				$latestRestorableRow,
+				$row,
 				0,
-				$page
+				$page,
+				[
+					'page_id' => $pageId,
+					'deleted' => $this->unsuppress ? 0 : $row->ar_deleted
+				]
 			);
 
-			foreach ( $revision->getSlotRoles() as $role ) {
-				$content = $revision->getContent( $role, RevisionRecord::RAW );
-				// NOTE: article ID may not be known yet. validateSave() should not modify the database.
-				$contentHandler = $this->contentHandlerFactory->getContentHandler( $content->getModel() );
-				$validationParams = new ValidationParams( $wikiPage, 0 );
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable RAW never returns null
-				$status = $contentHandler->validateSave( $content, $validationParams );
-				if ( !$status->isOK() ) {
-					$dbw->endAtomic( __METHOD__ );
+			// This will also copy the revision to ip_changes if it was an IP edit.
+			$revisionStore->insertRevisionOn( $revision, $dbw );
 
-					return $status;
-				}
-			}
+			$restoredRevCount++;
 
-			$pageId = $wikiPage->insertOn( $dbw, $latestRestorableRow->ar_page_id );
-			if ( $pageId === false ) {
-				// The page ID is reserved; let's pick another
-				$pageId = $wikiPage->insertOn( $dbw );
-				if ( $pageId === false ) {
-					// The page title must be already taken (race condition)
-					$created = false;
-				}
-			}
+			$this->hookRunner->onRevisionUndeleted( $revision, $row->ar_page_id );
 
-			# Does this page already exist? We'll have to update it...
-			if ( !$created ) {
-				# Load latest data for the current page (T33179)
-				$wikiPage->loadPageData( WikiPage::READ_EXCLUSIVE );
-				$pageId = $wikiPage->getId();
-				$oldcountable = $wikiPage->isCountable();
-
-				$previousTimestamp = false;
-				$latestRevId = $wikiPage->getLatest();
-				if ( $latestRevId ) {
-					$previousTimestamp = $revisionStore->getTimestampFromId(
-						$latestRevId,
-						RevisionStore::READ_LATEST
-					);
-				}
-				if ( $previousTimestamp === false ) {
-					$this->logger->debug( __METHOD__ . ": existing page refers to a page_latest that does not exist" );
-
-					$status = Status::newGood( 0 );
-					$status->error( 'undeleterevision-missing' );
-					$dbw->cancelAtomic( __METHOD__ );
-
-					return $status;
-				}
-			} else {
-				$previousTimestamp = 0;
-			}
-
-			// Check if a deleted revision will become the current revision...
-			if ( $latestRestorableRow->ar_timestamp > $previousTimestamp ) {
-				// Check the state of the newest to-be version...
-				if ( !$this->unsuppress
-					&& ( $latestRestorableRow->ar_deleted & RevisionRecord::DELETED_TEXT )
-				) {
-					$dbw->cancelAtomic( __METHOD__ );
-
-					return Status::newFatal( "undeleterevdel" );
-				}
-				$updatedCurrentRevision = true;
-			}
-
-			foreach ( $result as $row ) {
-				// Check for key dupes due to needed archive integrity.
-				if ( $row->ar_rev_id && $allowedRevIdToArIdMap[$row->ar_rev_id] !== $row->ar_id ) {
-					continue;
-				}
-				// Insert one revision at a time...maintaining deletion status
-				// unless we are specifically removing all restrictions...
-				$revision = $revisionStore->newRevisionFromArchiveRow(
-					$row,
-					0,
-					$page,
-					[
-						'page_id' => $pageId,
-						'deleted' => $this->unsuppress ? 0 : $row->ar_deleted
-					]
-				);
-
-				// This will also copy the revision to ip_changes if it was an IP edit.
-				$revisionStore->insertRevisionOn( $revision, $dbw );
-
-				$restoredRevCount++;
-
-				$this->hookRunner->onRevisionUndeleted( $revision, $row->ar_page_id );
-
-				$restoredPages[$row->ar_page_id] = true;
-			}
-
-			// Now that it's safely stored, take it out of the archive
-			// Don't delete rows that we failed to restore
-			$toDeleteConds = $oldWhere;
-			$failedRevisionCount = count( $restoreFailedArIds );
-			if ( $failedRevisionCount > 0 ) {
-				$toDeleteConds[] = 'ar_id NOT IN ( ' . $dbw->makeList( $restoreFailedArIds ) . ' )';
-			}
-
-			$dbw->delete( 'archive',
-				$toDeleteConds,
-				__METHOD__ );
+			$restoredPages[$row->ar_page_id] = true;
 		}
+
+		// Now that it's safely stored, take it out of the archive
+		$dbw->delete( 'archive',
+			$oldWhere,
+			__METHOD__ );
 
 		$status = Status::newGood( $restoredRevCount );
-
-		if ( $failedRevisionCount > 0 ) {
-			$status->warning( 'undeleterevision-duplicate-revid', $failedRevisionCount );
-		}
 
 		// Was anything restored at all?
 		if ( $restoredRevCount ) {
@@ -665,7 +611,6 @@ class UndeletePage {
 				// XXX: updateRevisionOn should probably move into a PageStore service.
 				$wasnew = $wikiPage->updateRevisionOn(
 					$dbw,
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revision set when used
 					$revision,
 					$created ? 0 : $wikiPage->getLatest()
 				);
@@ -685,7 +630,6 @@ class UndeletePage {
 				];
 
 				$updater = $this->pageUpdaterFactory->newDerivedPageDataUpdater( $wikiPage );
-				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revision set when used
 				$updater->prepareUpdate( $revision, $options );
 				$updater->doUpdates();
 			}
