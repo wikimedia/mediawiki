@@ -109,7 +109,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private $readIndexByGroup = [];
 	/** @var DBPrimaryPos|false Replication sync position or false if not set */
 	private $waitForPos;
-	/** @var bool Whether the generic reader fell back to a lagged replica DB */
+	/** @var bool Whether a lagged replica DB was used */
 	private $laggedReplicaMode = false;
 	/** @var string|false Reason this instance is read-only or false if not */
 	private $readOnlyReason = false;
@@ -528,19 +528,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		// session consistency.
 		if ( !$this->awaitSessionPrimaryPos( $i ) ) {
 			// Data will be outdated compared to what was expected
-			$laggedReplicaMode = true;
-		} else {
-			$laggedReplicaMode = false;
+			$this->setLaggedReplicaMode();
 		}
 
 		// Keep using this server for DB_REPLICA handles for this group
 		$this->setExistingReaderIndex( $group, $i );
-
-		// Record whether the generic reader index is in "lagged replica DB" mode
-		if ( $group === self::GROUP_GENERIC && $laggedReplicaMode ) {
-			$this->laggedReplicaMode = true;
-			$this->logger->debug( __METHOD__ . ": setting lagged replica mode" );
-		}
 
 		$serverName = $this->getServerName( $i );
 		$this->logger->debug( __METHOD__ . ": using server $serverName for group '$group'" );
@@ -602,6 +594,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			}
 
 			if ( $i === false && count( $currentLoads ) ) {
+				$this->setLaggedReplicaMode();
 				// All replica DBs lagged, just pick anything.
 				$i = ArrayUtils::pickRandom( $currentLoads );
 			}
@@ -649,8 +642,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			// Otherwise, wait until a connection is established in getReaderIndex().
 			if ( $genericIndex !== self::READER_INDEX_NONE ) {
 				if ( !$this->awaitSessionPrimaryPos( $genericIndex ) ) {
-					$this->laggedReplicaMode = true;
-					$this->logger->debug( __METHOD__ . ": setting lagged replica mode" );
+					$this->setLaggedReplicaMode();
 				}
 			}
 		} finally {
@@ -890,22 +882,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		// The use of getServerConnection() instead of getConnection() avoids infinite loops.
 		$serverIndex = $this->getConnectionIndex( $i, $groups );
 		// Get an open connection to that server (might trigger a new connection)
-		$conn = $this->getServerConnection( $serverIndex, $domain, $flags );
-		// Set primary DB handles as read-only if there is high replication lag
-		if (
-			$conn &&
-			$serverIndex === $this->getWriterIndex() &&
-			$this->getLaggedReplicaMode() &&
-			!is_string( $conn->getLBInfo( $conn::LB_READ_ONLY_REASON ) )
-		) {
-			$genericIndex = $this->getExistingReaderIndex( self::GROUP_GENERIC );
-			$reason = ( $genericIndex !== self::READER_INDEX_NONE )
-				? 'The database is read-only until replication lag decreases.'
-				: 'The database is read-only until replica database servers becomes reachable.';
-			$conn->setLBInfo( $conn::LB_READ_ONLY_REASON, $reason );
-		}
-
-		return $conn;
+		return $this->getServerConnection( $serverIndex, $domain, $flags );
 	}
 
 	public function getServerConnection( $i, $domain, $flags = 0 ) {
@@ -1949,18 +1926,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return false;
 	}
 
-	public function getLaggedReplicaMode() {
-		if ( $this->laggedReplicaMode ) {
-			// Stay in lagged replica mode once it is observed on any domain
-			return true;
-		}
-
-		if ( $this->hasStreamingReplicaServers() ) {
-			// This will set "laggedReplicaMode" as needed
-			$this->getReaderIndex( self::GROUP_GENERIC );
-		}
-
-		return $this->laggedReplicaMode;
+	private function setLaggedReplicaMode(): void {
+		$this->laggedReplicaMode = true;
+		$this->logger->warning( __METHOD__ . ": setting lagged replica mode" );
 	}
 
 	public function laggedReplicaUsed() {
@@ -1972,12 +1940,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			return $this->readOnlyReason;
 		} elseif ( $this->isPrimaryRunningReadOnly() ) {
 			return 'The primary database server is running in read-only mode.';
-		} elseif ( $this->getLaggedReplicaMode() ) {
-			$genericIndex = $this->getExistingReaderIndex( self::GROUP_GENERIC );
-
-			return ( $genericIndex !== self::READER_INDEX_NONE )
-				? 'The database is read-only until replication lag decreases.'
-				: 'The database is read-only until a replica database server becomes reachable.';
 		}
 
 		return false;
