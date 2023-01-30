@@ -1319,6 +1319,7 @@
 	"rollback-confirmation-no": "Jooskâ",
 	"rollbacklink": "maaccât",
 	"rollbacklinkcount": "maaccât $1 {{PLURAL:$1|nubástus|nubástussâd}}",
+	"rollbackfailed": "Macâttâm ij luhostum",
 	"changecontentmodel-title-label": "Siijđo paječaalâ:",
 	"changecontentmodel-reason-label": "Suijâ:",
 	"changecontentmodel-submit": "Mute",

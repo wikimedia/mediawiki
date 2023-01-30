@@ -4196,8 +4196,8 @@
 	"newpages-showhide-patrolled": "$1 sửa đổi đã tuần tra",
 	"newpages-showhide-redirect": "$1 đổi hướng",
 	"newpages-showhide-registered": "$1 thành viên có tài khoản",
-	"blockedtext-made-by": "Người thực hiện lệnh cấm là $1.",
-	"blockedtext-reason-comment": "Lý do cấm là <em>$1</em>",
+	"blockedtext-made-by": "Lệnh cấm được thực hiện bởi $1.",
+	"blockedtext-reason-comment": "Lý do được đưa ra là <em>$1</em>",
 	"blockedtext-start-time": "Ngày bắt đầu cấm: $1",
 	"blockedtext-expiration-time": "Lệnh cấm hết hạn vào: $1"
 }

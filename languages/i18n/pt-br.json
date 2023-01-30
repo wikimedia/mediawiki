@@ -109,6 +109,7 @@
 			"Re demz",
 			"Rffontenelle",
 			"Rhcastilhos",
+			"Robertpontes",
 			"Rodrigo Calanca Nishino",
 			"Rodrigo Padula",
 			"Rodrigo codignoli",
@@ -4207,5 +4208,6 @@
 	"newpages-showhide-bots": "$1 robôs",
 	"newpages-showhide-patrolled": "$1 edições patrulhadas",
 	"newpages-showhide-redirect": "$1 redirecionamentos",
-	"newpages-showhide-registered": "$1 usuários registrados"
+	"newpages-showhide-registered": "$1 usuários registrados",
+	"blockedtext-block-ip": "O seu endereço IP atual é $1"
 }

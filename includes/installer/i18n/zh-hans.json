@@ -33,6 +33,7 @@
 			"Whatsok",
 			"Xiaomingyan",
 			"Xiplus",
+			"Xzonn",
 			"Yfdyh000",
 			"Zazzzz",
 			"Zjzengdongyang",
@@ -88,7 +89,7 @@
 	"config-env-good": "环境检查已经完成。\n您可以安装MediaWiki。",
 	"config-env-bad": "环境检查已经完成。\n您不能安装MediaWiki。",
 	"config-env-php": "PHP $1已安装。",
-	"config-unicode-update-warning": "<strong>警告：</strong>Unicode正常化封装器的已安装版本使用了旧版本的[http://site.icu-project.org/ ICU项目]库。\n如果您需要使用Unicode，您应该先[https://www.mediawiki.org/wiki/Special:MyLanguage/Unicode_normalization_considerations 升级]。",
+	"config-env-icu": "ICU $1已安装（支持Unicode $2）。",
 	"config-no-db": "无法找到合适的数据库驱动！您需要为PHP安装数据库驱动。目前支持以下数据库{{PLURAL:$2|类型}}：$1。\n\n如果您自己编译了PHP，请重新配置它，并启用数据库客户端，例如使用<code>./configure --with-mysqli</code>。\n如果您从Debian或Ubuntu安装包安装了PHP，那么您也需要安装一些组件包，例如<code>php-mysql</code>。",
 	"config-outdated-sqlite": "<strong>警告：</strong>您已安装SQLite $2，但是它的版本低于最低要求版本$1。因此您无法选择SQLite。",
 	"config-no-fts3": "<strong>警告：</strong>已编译的SQLite不包含[//sqlite.org/fts3.html FTS3模块]，后台搜索功能将不可用。",
@@ -346,6 +347,7 @@
 	"config-screenshot": "截图",
 	"config-extension-not-found": "找不到名为“$1”的扩展的注册文件",
 	"config-extension-dependency": "安装扩展“$1”时遇到了一个依赖错误：$2",
+	"config-ext-skins-more-info": "更多信息",
 	"mainpagetext": "<strong>已安装MediaWiki。</strong>",
 	"mainpagedocfooter": "请查阅[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents 用户指导]以获取使用本wiki软件的信息。\n\n== 入门 ==\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings MediaWiki配置设置列表]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ/zh-hans MediaWiki常见问题]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki发布邮件列表]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources 本地化MediaWiki到您的语言]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam 了解如何在您的wiki上打击破坏]"
 }

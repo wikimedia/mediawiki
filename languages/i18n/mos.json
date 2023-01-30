@@ -327,7 +327,6 @@
 	"recentchanges-summary": "Bolge maasa tekre ni wiki neng kada zugu.",
 	"recentchanges-noresult": "Tekre pa be ni wakat n kõ zemse ni criteria kada",
 	"recentchanges-label-plusminus": "Nenga yalem teka ni bytes kada sõore",
-	"recentchanges-legend-heading": "<strong>Legend:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (leb-nges-y tigese [[Special:NewPages|sebre paalle pagres]])",
 	"recentchanges-submit": "Gesre",
 	"rcfilters-activefilters-hide": "Lilli",
