@@ -639,8 +639,7 @@ class JobRunner {
 			$this->lbFactory->commitPrimaryChanges(
 				$fnameTrxOwner,
 				// Abort if any transaction was too big
-				[ 'maxWriteDuration' =>
-					$this->options->get( MainConfigNames::MaxJobDBWriteDuration ) ]
+				$this->options->get( MainConfigNames::MaxJobDBWriteDuration )
 			);
 
 			return;
@@ -676,7 +675,7 @@ class JobRunner {
 		$this->lbFactory->commitPrimaryChanges(
 			$fnameTrxOwner,
 			// Abort if any transaction was too big
-			[ 'maxWriteDuration' => $this->options->get( MainConfigNames::MaxJobDBWriteDuration ) ]
+			$this->options->get( MainConfigNames::MaxJobDBWriteDuration )
 		);
 		ScopedCallback::consume( $unlocker );
 	}

@@ -111,13 +111,12 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	 *
 	 * Use this only for multi-database commits
 	 *
-	 * @param array $options Includes:
-	 *   - maxWriteDuration : max write query duration time in seconds
+	 * @param int $maxWriteDuration : max write query duration time in seconds
 	 * @param string $fname Caller name
 	 * @throws DBTransactionError
 	 * @since 1.37
 	 */
-	public function approvePrimaryChanges( array $options, $fname = __METHOD__ );
+	public function approvePrimaryChanges( int $maxWriteDuration, $fname = __METHOD__ );
 
 	/**
 	 * Flush any primary transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)

@@ -271,12 +271,11 @@ interface ILBFactory {
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *
 	 * @param string $fname Caller name
-	 * @param array $options Options map:
-	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
+	 * @param int $maxWriteDuration abort if more than this much time was spent in write queries
 	 * @throws DBTransactionError
 	 * @since 1.37
 	 */
-	public function commitPrimaryChanges( $fname = __METHOD__, array $options = [] );
+	public function commitPrimaryChanges( $fname = __METHOD__, int $maxWriteDuration = 0 );
 
 	/**
 	 * Rollback changes on all primary connections
