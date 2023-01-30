@@ -3523,6 +3523,7 @@ class Language implements Bcp47Code {
 	/**
 	 * Truncate a string to a specified length in bytes, appending an optional
 	 * string (e.g. for ellipsis)
+	 * When an ellipsis isn't needed, using mb_strcut() is recommended.
 	 *
 	 * If $length is negative, the string will be truncated from the beginning
 	 *
