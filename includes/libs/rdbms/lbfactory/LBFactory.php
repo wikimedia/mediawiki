@@ -362,7 +362,7 @@ abstract class LBFactory implements ILBFactory {
 		$this->trxRoundStage = self::ROUND_CURSORY;
 	}
 
-	final public function commitPrimaryChanges( $fname = __METHOD__, array $options = [] ) {
+	final public function commitPrimaryChanges( $fname = __METHOD__, int $maxWriteDuration = 0 ) {
 		$this->assertTransactionRoundStage( self::ROUND_CURSORY );
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
@@ -384,7 +384,7 @@ abstract class LBFactory implements ILBFactory {
 		$this->trxRoundId = false;
 		// Perform pre-commit checks, aborting on failure
 		foreach ( $this->getLBsForOwner() as $lb ) {
-			$lb->approvePrimaryChanges( $options, $fname );
+			$lb->approvePrimaryChanges( $maxWriteDuration, $fname );
 		}
 		// Log the DBs and methods involved in multi-DB transactions
 		$this->logIfMultiDbTransaction();
