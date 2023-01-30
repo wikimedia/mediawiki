@@ -7,6 +7,7 @@ use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
 
@@ -14,6 +15,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Language
  */
 class LanguageIntegrationTest extends LanguageClassesTestCase {
+	use DummyServicesTrait;
 	use LanguageNameUtilsTestTrait;
 
 	/** @var array Copy of $wgHooks from before we unset LanguageGetTranslatedLanguageNames */
@@ -1808,21 +1810,13 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @covers Language::getNamespaceAliases
 	 */
 	public function testGetNamespaceAliasesFullLogic() {
-		$langNameUtils = $this->getMockBuilder( LanguageNameUtils::class )
-			->setConstructorArgs( [
-				new ServiceOptions( LanguageNameUtils::CONSTRUCTOR_OPTIONS, [
-					MainConfigNames::ExtraLanguageNames => [],
-					MainConfigNames::UsePigLatinVariant => false,
-				] ),
-				$this->createHookContainer()
-			] )
-			->onlyMethods( [ 'getMessagesFileName' ] )
-			->getMock();
-		$langNameUtils->method( 'getMessagesFileName' )->will(
-			$this->returnCallback( static function ( $code ) {
-				return __DIR__ . '/../../data/messages/Messages_' . $code . '.php';
-			} )
-		);
+		$hooks = $this->createHookContainer( [
+			'Language::getMessagesFileName' => static function ( $code, &$file ) {
+				$file = __DIR__ . '/../../data/messages/Messages_' . $code . '.php';
+			}
+		] );
+		$langNameUtils = $this->getDummyLanguageNameUtils( [ 'hookContainer' => $hooks ] );
+
 		$this->overrideConfigValue( MainConfigNames::NamespaceAliases, [
 			'Mouse' => NS_SPECIAL,
 		] );
