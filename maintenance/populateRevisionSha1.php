@@ -66,8 +66,6 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		$ac = $this->doSha1Updates( $revStore, 'archive', 'ar_rev_id',
 			$revStore->getArchiveQueryInfo(), 'ar'
 		);
-		$this->output( "Populating ar_sha1 column legacy rows\n" );
-		$ac += $this->doSha1LegacyUpdates( $revStore );
 
 		$this->output( "rev_sha1 and ar_sha1 population complete "
 			. "[$rc revision rows, $ac archive rows].\n" );
@@ -125,35 +123,6 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 
 	/**
 	 * @param MediaWiki\Revision\RevisionStore $revStore
-	 * @return int
-	 */
-	protected function doSha1LegacyUpdates( $revStore ) {
-		$count = 0;
-		$db = $this->getDB( DB_PRIMARY );
-		$arQuery = $revStore->getArchiveQueryInfo();
-		$res = $db->select( $arQuery['tables'], $arQuery['fields'],
-			[ 'ar_rev_id IS NULL', 'ar_sha1' => '' ], __METHOD__, [], $arQuery['joins'] );
-
-		$updateSize = 0;
-		$this->beginTransaction( $db, __METHOD__ );
-		foreach ( $res as $row ) {
-			if ( $this->upgradeLegacyArchiveRow( $revStore, $row ) ) {
-				++$count;
-			}
-			if ( ++$updateSize >= 100 ) {
-				$updateSize = 0;
-				$this->commitTransaction( $db, __METHOD__ );
-				$this->output( "Commited row with ar_timestamp={$row->ar_timestamp}\n" );
-				$this->beginTransaction( $db, __METHOD__ );
-			}
-		}
-		$this->commitTransaction( $db, __METHOD__ );
-
-		return $count;
-	}
-
-	/**
-	 * @param MediaWiki\Revision\RevisionStore $revStore
 	 * @param stdClass $row
 	 * @param string $table
 	 * @param string $idCol
@@ -177,39 +146,6 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 		$db->update( $table,
 			[ "{$prefix}_sha1" => $sha1 ],
 			[ $idCol => $row->$idCol ],
-			__METHOD__
-		);
-
-		return true;
-	}
-
-	/**
-	 * @param MediaWiki\Revision\RevisionStore $revStore
-	 * @param stdClass $row
-	 * @return bool
-	 */
-	protected function upgradeLegacyArchiveRow( $revStore, $row ) {
-		$db = $this->getDB( DB_PRIMARY );
-
-		// Create a revision and use it to get the sha1 from the content table, if possible.
-		try {
-			$rev = $revStore->newRevisionFromArchiveRow( $row );
-			$sha1 = $rev->getSha1();
-		} catch ( Exception $e ) {
-			$this->output( "Text of revision with timestamp {$row->ar_timestamp} unavailable!\n" );
-			return false; // T24624? T22757?
-		}
-
-		# Archive table has no PK, but (NS,title,time) should be near unique.
-		# Any duplicates on those should also have duplicated text anyway.
-		$db->update( 'archive',
-			[ 'ar_sha1' => $sha1 ],
-			[
-				'ar_namespace' => $row->ar_namespace,
-				'ar_title' => $row->ar_title,
-				'ar_timestamp' => $row->ar_timestamp,
-				'ar_len' => $row->ar_len,
-			],
 			__METHOD__
 		);
 

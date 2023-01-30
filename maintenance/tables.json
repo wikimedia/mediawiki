@@ -3205,7 +3205,7 @@
 			},
 			{
 				"name": "ar_rev_id",
-				"comment": "Copied from rev_id. @since 1.5 Entries from 1.4 will be NULL here. When restoring archive rows from before 1.5, a new rev_id is created.",
+				"comment": "Copied from rev_id.",
 				"type": "integer",
 				"options": {
 					"unsigned": true,
