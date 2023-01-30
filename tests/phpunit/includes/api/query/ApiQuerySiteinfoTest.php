@@ -66,8 +66,9 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 
 	public function testVariants() {
 		$contLang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'zh' );
+		$converter = $this->getServiceContainer()->getLanguageConverterFactory()->getLanguageConverter( $contLang );
 		$this->setContentLang( $contLang );
-		$this->assertTrue( $contLang->hasVariants() );
+		$this->assertTrue( $converter->hasVariants() );
 
 		$data = $this->doQuery();
 
@@ -75,7 +76,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			static function ( $code ) use ( $contLang ) {
 				return [ 'code' => $code, 'name' => $contLang->getVariantname( $code ) ];
 			},
-			$contLang->getVariants()
+			$converter->getVariants()
 		);
 
 		$this->assertSame( $expected, $data['variants'] );
