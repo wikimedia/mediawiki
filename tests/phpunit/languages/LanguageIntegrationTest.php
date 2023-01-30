@@ -1907,18 +1907,22 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	// The following methods are for LanguageNameUtilsTestTrait
 
 	private function isSupportedLanguage( $code ) {
+		$this->hideDeprecated( 'Language::isSupportedLanguage' );
 		return Language::isSupportedLanguage( $code );
 	}
 
 	private function isValidCode( $code ) {
+		$this->hideDeprecated( 'Language::isValidCode' );
 		return Language::isValidCode( $code );
 	}
 
 	private function isValidBuiltInCode( $code ) {
+		$this->hideDeprecated( 'Language::isValidBuiltInCode' );
 		return Language::isValidBuiltInCode( $code );
 	}
 
 	private function isKnownLanguageTag( $code ) {
+		$this->hideDeprecated( 'Language::isKnownLanguageTag' );
 		return Language::isKnownLanguageTag( $code );
 	}
 
@@ -1938,16 +1942,20 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		if ( $options ) {
 			$this->overrideConfigValues( $options );
 		}
+		$this->hideDeprecated( 'Language::fetchLanguageName' );
+		$this->hideDeprecated( 'Language::fetchLanguageNames' );
 		$this->assertSame( $expected,
 			Language::fetchLanguageNames( ...$otherArgs )[strtolower( $code )] ?? '' );
 		$this->assertSame( $expected, Language::fetchLanguageName( $code, ...$otherArgs ) );
 	}
 
 	private function getLanguageNames( ...$args ) {
+		$this->hideDeprecated( 'Language::fetchLanguageNames' );
 		return Language::fetchLanguageNames( ...$args );
 	}
 
 	private function getLanguageName( ...$args ) {
+		$this->hideDeprecated( 'Language::fetchLanguageName' );
 		return Language::fetchLanguageName( ...$args );
 	}
 
@@ -1980,6 +1988,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 
 		// We need to restore the extension's hook that we removed.
 		$this->overrideConfigValue( MainConfigNames::Hooks, $this->origHooks );
+
+		$this->hideDeprecated( 'Language::isKnownLanguageTag' );
 
 		// "pal" is an ancient language, which probably will not appear in Names.php, but appears in
 		// CLDR in English

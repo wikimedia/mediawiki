@@ -338,12 +338,13 @@ class Language implements Bcp47Code {
 	 * Checks whether any localisation is available for that language tag
 	 * in MediaWiki (MessagesXx.php exists).
 	 *
-	 * @deprecated since 1.34, use LanguageNameUtils
+	 * @deprecated since 1.34, use LanguageNameUtils. Hard-deprecated since 1.40.
 	 * @param string $code Language tag (in lower case)
 	 * @return bool Whether language is supported
 	 * @since 1.21
 	 */
 	public static function isSupportedLanguage( $code ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()
 			->isSupportedLanguage( $code );
 	}
@@ -374,7 +375,7 @@ class Language implements Bcp47Code {
 	 * not it exists. This includes codes which are used solely for
 	 * customisation via the MediaWiki namespace.
 	 *
-	 * @deprecated since 1.34, use LanguageNameUtils
+	 * @deprecated since 1.34, use LanguageNameUtils. Hard-deprecated since 1.40.
 	 *
 	 * @param string $code
 	 *
@@ -382,6 +383,7 @@ class Language implements Bcp47Code {
 	 *  characters or characters illegal in MediaWiki titles.
 	 */
 	public static function isValidCode( $code ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()->isValidCode( $code );
 	}
 
@@ -389,7 +391,7 @@ class Language implements Bcp47Code {
 	 * Returns true if a language code is of a valid form for the purposes of
 	 * internal customisation of MediaWiki, via Messages*.php or *.json.
 	 *
-	 * @deprecated since 1.34, use LanguageNameUtils
+	 * @deprecated since 1.34, use LanguageNameUtils. Hard-deprecated since 1.40.
 	 *
 	 * @param string $code
 	 *
@@ -397,6 +399,7 @@ class Language implements Bcp47Code {
 	 * @return bool
 	 */
 	public static function isValidBuiltInCode( $code ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()
 			->isValidBuiltInCode( $code );
 	}
@@ -404,7 +407,7 @@ class Language implements Bcp47Code {
 	/**
 	 * Returns true if a language code is an IETF tag known to MediaWiki.
 	 *
-	 * @deprecated since 1.34, use LanguageNameUtils
+	 * @deprecated since 1.34, use LanguageNameUtils. Hard-deprecated since 1.40.
 	 *
 	 * @param string $tag
 	 *
@@ -412,6 +415,7 @@ class Language implements Bcp47Code {
 	 * @return bool
 	 */
 	public static function isKnownLanguageTag( $tag ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()
 			->isKnownLanguageTag( $tag );
 	}
@@ -830,7 +834,7 @@ class Language implements Bcp47Code {
 	/**
 	 * Get an array of language names, indexed by code.
 	 *
-	 * @deprecated since 1.34, use LanguageNameUtils::getLanguageNames
+	 * @deprecated since 1.34, use LanguageNameUtils::getLanguageNames. Hard-deprecated since 1.40.
 	 * @param null|string $inLanguage Code of language in which to return the names
 	 * 		Use LanguageNameUtils::AUTONYMS for autonyms (native names)
 	 * @param string $include One of:
@@ -846,12 +850,13 @@ class Language implements Bcp47Code {
 		$inLanguage = LanguageNameUtils::AUTONYMS,
 		$include = LanguageNameUtils::DEFINED
 	) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()
 			->getLanguageNames( $inLanguage, $include );
 	}
 
 	/**
-	 * @deprecated since 1.34, use LanguageNameUtils::getLanguageName
+	 * @deprecated since 1.34, use LanguageNameUtils::getLanguageName. Hard-deprecated since 1.40.
 	 * @param string $code The code of the language for which to get the name
 	 * @param null|string $inLanguage Code of language in which to return the name
 	 *   (LanguageNameUtils::AUTONYMS for autonyms)
@@ -864,6 +869,7 @@ class Language implements Bcp47Code {
 		$inLanguage = LanguageNameUtils::AUTONYMS,
 		$include = LanguageNameUtils::ALL
 	) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()
 			->getLanguageName( $code, $inLanguage, $include );
 	}
