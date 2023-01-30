@@ -49,7 +49,7 @@ class SkinComponentLastModified implements SkinComponent {
 			$t = null;
 		}
 
-		$replicaMode = MediaWikiServices::getInstance()->getDBLoadBalancer()->getLaggedReplicaMode();
+		$replicaMode = MediaWikiServices::getInstance()->getDBLoadBalancer()->laggedReplicaUsed();
 		if ( $replicaMode ) {
 			$s .= ' <strong>' .
 				$localizer->msg( 'laggedreplicamode' )->parse() .
