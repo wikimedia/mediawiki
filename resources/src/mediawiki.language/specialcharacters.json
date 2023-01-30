@@ -51,6 +51,16 @@
 			}
 		},
 		{
+			"label": "»«",
+			"action": {
+				"type": "encapsulate",
+				"options": {
+					"pre": "»",
+					"post": "«"
+				}
+			}
+		},
+		{
 			"label": "‹›",
 			"action": {
 				"type": "encapsulate",
