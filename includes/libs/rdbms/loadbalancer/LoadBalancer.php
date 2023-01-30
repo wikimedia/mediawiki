@@ -109,7 +109,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private $readIndexByGroup = [];
 	/** @var DBPrimaryPos|false Replication sync position or false if not set */
 	private $waitForPos;
-	/** @var bool Whether the generic reader fell back to a lagged replica DB */
+	/** @var bool Whether a lagged replica DB was used */
 	private $laggedReplicaMode = false;
 	/** @var string|false Reason this instance is read-only or false if not */
 	private $readOnlyReason = false;
@@ -528,19 +528,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		// session consistency.
 		if ( !$this->awaitSessionPrimaryPos( $i ) ) {
 			// Data will be outdated compared to what was expected
-			$laggedReplicaMode = true;
-		} else {
-			$laggedReplicaMode = false;
+			$this->setLaggedReplicaMode();
 		}
 
 		// Keep using this server for DB_REPLICA handles for this group
 		$this->setExistingReaderIndex( $group, $i );
-
-		// Record whether the generic reader index is in "lagged replica DB" mode
-		if ( $group === self::GROUP_GENERIC && $laggedReplicaMode ) {
-			$this->laggedReplicaMode = true;
-			$this->logger->debug( __METHOD__ . ": setting lagged replica mode" );
-		}
 
 		$serverName = $this->getServerName( $i );
 		$this->logger->debug( __METHOD__ . ": using server $serverName for group '$group'" );
@@ -602,7 +594,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			}
 
 			if ( $i === false && count( $currentLoads ) ) {
-				$this->laggedReplicaMode = true;
+				$this->setLaggedReplicaMode();
 				// All replica DBs lagged, just pick anything.
 				$i = ArrayUtils::pickRandom( $currentLoads );
 			}
@@ -650,8 +642,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			// Otherwise, wait until a connection is established in getReaderIndex().
 			if ( $genericIndex !== self::READER_INDEX_NONE ) {
 				if ( !$this->awaitSessionPrimaryPos( $genericIndex ) ) {
-					$this->laggedReplicaMode = true;
-					$this->logger->debug( __METHOD__ . ": setting lagged replica mode" );
+					$this->setLaggedReplicaMode();
 				}
 			}
 		} finally {
@@ -1933,6 +1924,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			}
 		}
 		return false;
+	}
+
+	private function setLaggedReplicaMode(): void {
+		$this->laggedReplicaMode = true;
+		$this->logger->warning( __METHOD__ . ": setting lagged replica mode" );
 	}
 
 	public function laggedReplicaUsed() {
