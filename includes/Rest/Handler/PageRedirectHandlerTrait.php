@@ -4,6 +4,7 @@ namespace MediaWiki\Rest\Handler;
 
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\RedirectStore;
+use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\ResponseFactory;
 use TitleFormatter;
@@ -27,6 +28,12 @@ trait PageRedirectHandlerTrait {
 	 * @inheritDoc
 	 */
 	abstract protected function getRouteUrl( $pathParams = [], $queryParams = [] ): string;
+
+	/**
+	 * @see Handler::getRequest()
+	 * @inheritDoc
+	 */
+	abstract protected function getRequest(): RequestInterface;
 
 	/**
 	 * Check for Page Normalization Redirects and create a Permanent Redirect Response
@@ -99,8 +106,8 @@ trait PageRedirectHandlerTrait {
 		}
 
 		return $this->getRouteUrl( [
-			"title" => $titleFormatter->getPrefixedDBkey( $redirectTarget )
-		] );
+			"title" => $titleFormatter->getPrefixedDBkey( $redirectTarget ),
+		], $this->getRequest()->getQueryParams() );
 	}
 
 	/**
@@ -110,7 +117,7 @@ trait PageRedirectHandlerTrait {
 	private function getNormalizationRedirectTargetUrl( string $normalizedTitle ): string {
 		return $this->getRouteUrl( [
 			"title" => $normalizedTitle
-		] );
+		], $this->getRequest()->getQueryParams() );
 	}
 
 	/**
