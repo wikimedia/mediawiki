@@ -2397,6 +2397,7 @@
 	"tags-active-yes": "Эйе",
 	"tags-active-no": "Јок",
 	"tags-hitcount": "$1 {{PLURAL:$1|солынты}}",
+	"htmlform-submit": "Аткарар",
 	"htmlform-no": "Јок",
 	"logentry-delete-delete": "$3 бӱкти $1 {{GENDER:$2|кырды}}",
 	"logentry-delete-restore": "$3 ($4) бӱкти $1 {{GENDER:$2|орныктырган}}",

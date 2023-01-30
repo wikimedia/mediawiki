@@ -46,7 +46,7 @@
 	"paramvalidator-help-required": "הפרמטר הזה נדרש.",
 	"paramvalidator-help-type-boolean": "סוג: {{PLURAL:$1|1=בוליאני|2=רשימת בוליאנים}}",
 	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=חייב להיות ריק|יכול להיות ריק, או $1}}",
-	"paramvalidator-help-type-enum": "{{PLURAL:$1|1=אחד מהערכים הבאים|2=ערכים (מופרדים ב־U+007C (קו אנכי), או להתחיל את הרשימה ב־U+001F ולהפריד ב־U+001F)}}: $2",
+	"paramvalidator-help-type-enum": "{{PLURAL:$1|1=אחד מהערכים הבאים|2=ערכים (מופרדים ב־U+007C (קו ניצב), או להתחיל את הרשימה ב־U+001F ולהפריד ב־U+001F)}}: $2",
 	"paramvalidator-help-type-expiry": "סוג: {{PLURAL:$1|1=תפוגה|2=רשימת תפוגות}}.\n\nיכול להיות יחסי (למשל <kbd>5 months</kbd> או <kbd>2 weeks</kbd>) או מוחלט (למשל <kbd>2014-09-18T12:34:56Z</kbd>). לביטול התפוגה יש להשתמש בערך $2.",
 	"paramvalidator-help-type-float": "סוג: {{PLURAL:$1|1=מספר עם נקודה צפה|2=רשימת מספרים עם נקודה צפה}}",
 	"paramvalidator-help-type-integer": "סוג: {{PLURAL:$1|1=מספר שלם|2=רשימת מספרים שלמים}}",
