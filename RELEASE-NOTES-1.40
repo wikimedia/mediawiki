@@ -353,6 +353,8 @@ because of Phabricator reports.
   GlobalBlocks are now added into CompositeBlocks via the GetUserBlock hook.
 * Language::isWellFormedLanguageTag(), deprecated in 1.39, now emits deprecation
   notices. Please use LanguageCode::isWellFormedLanguageTag() instead.
+* Language::fetchLanguageNames() and ::fetchLanguageName(), deprecated in 1.34,
+  now emit deprecation warnings.
 * Language::getFallbackFor(), ::getFallbacksIncludingSiteLanguage() and
   ::getFallbacksFor(), deprecated in 1.35, now emit deprecation warnings.
 * Language::isSupportedLanguage(), ::isValidCode(), ::isValidBuiltInCode() and

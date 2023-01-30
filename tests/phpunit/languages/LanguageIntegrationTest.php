@@ -1942,16 +1942,20 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		if ( $options ) {
 			$this->overrideConfigValues( $options );
 		}
+		$this->hideDeprecated( 'Language::fetchLanguageName' );
+		$this->hideDeprecated( 'Language::fetchLanguageNames' );
 		$this->assertSame( $expected,
 			Language::fetchLanguageNames( ...$otherArgs )[strtolower( $code )] ?? '' );
 		$this->assertSame( $expected, Language::fetchLanguageName( $code, ...$otherArgs ) );
 	}
 
 	private function getLanguageNames( ...$args ) {
+		$this->hideDeprecated( 'Language::fetchLanguageNames' );
 		return Language::fetchLanguageNames( ...$args );
 	}
 
 	private function getLanguageName( ...$args ) {
+		$this->hideDeprecated( 'Language::fetchLanguageName' );
 		return Language::fetchLanguageName( ...$args );
 	}
 

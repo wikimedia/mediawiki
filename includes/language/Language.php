@@ -834,7 +834,7 @@ class Language implements Bcp47Code {
 	/**
 	 * Get an array of language names, indexed by code.
 	 *
-	 * @deprecated since 1.34, use LanguageNameUtils::getLanguageNames
+	 * @deprecated since 1.34, use LanguageNameUtils::getLanguageNames. Hard-deprecated since 1.40.
 	 * @param null|string $inLanguage Code of language in which to return the names
 	 * 		Use LanguageNameUtils::AUTONYMS for autonyms (native names)
 	 * @param string $include One of:
@@ -850,12 +850,13 @@ class Language implements Bcp47Code {
 		$inLanguage = LanguageNameUtils::AUTONYMS,
 		$include = LanguageNameUtils::DEFINED
 	) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()
 			->getLanguageNames( $inLanguage, $include );
 	}
 
 	/**
-	 * @deprecated since 1.34, use LanguageNameUtils::getLanguageName
+	 * @deprecated since 1.34, use LanguageNameUtils::getLanguageName. Hard-deprecated since 1.40.
 	 * @param string $code The code of the language for which to get the name
 	 * @param null|string $inLanguage Code of language in which to return the name
 	 *   (LanguageNameUtils::AUTONYMS for autonyms)
@@ -868,6 +869,7 @@ class Language implements Bcp47Code {
 		$inLanguage = LanguageNameUtils::AUTONYMS,
 		$include = LanguageNameUtils::ALL
 	) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()
 			->getLanguageName( $code, $inLanguage, $include );
 	}
