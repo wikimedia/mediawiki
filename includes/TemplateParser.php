@@ -82,7 +82,7 @@ class TemplateParser {
 	 * @throws UnexpectedValueException If $templateName attempts upwards directory traversal
 	 */
 	protected function getTemplateFilename( $templateName ) {
-		// Prevent path traversal. Based on Language::isValidCode().
+		// Prevent path traversal. Based on LanguageNameUtils::isValidCode().
 		// This is for paranoia. The $templateName should never come from
 		// untrusted input.
 		if (
