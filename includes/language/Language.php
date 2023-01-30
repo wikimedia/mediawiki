@@ -3523,7 +3523,7 @@ class Language implements Bcp47Code {
 	/**
 	 * Truncate a string to a specified length in bytes, appending an optional
 	 * string (e.g. for ellipsis)
-	 * When an ellipsis isn't needed, using mb_strcut() is recommended.
+	 * When an ellipsis isn't needed, using mb_strcut() directly is recommended.
 	 *
 	 * If $length is negative, the string will be truncated from the beginning
 	 *
@@ -3538,7 +3538,7 @@ class Language implements Bcp47Code {
 	 */
 	public function truncateForDatabase( $string, $length, $ellipsis = '...', $adjustLength = true ) {
 		return $this->truncateInternal(
-			$string, $length, $ellipsis, $adjustLength, 'strlen', 'substr'
+			$string, $length, $ellipsis, $adjustLength, 'strlen', 'mb_strcut'
 		);
 	}
 
@@ -3619,12 +3619,10 @@ class Language implements Bcp47Code {
 			if ( $length > 0 ) {
 				$length -= $ellipsisLength;
 				$string = $getSubstring( $string, 0, $length ); // xyz...
-				$string = $this->removeBadCharLast( $string );
 				$string = rtrim( $string ) . $ellipsis;
 			} else {
 				$length += $ellipsisLength;
 				$string = $getSubstring( $string, $length ); // ...xyz
-				$string = $this->removeBadCharFirst( $string );
 				$string = $ellipsis . ltrim( $string );
 			}
 		}
@@ -3660,24 +3658,6 @@ class Language implements Bcp47Code {
 			) {
 				# We chopped in the middle of a character; remove it
 				$string = $m[1];
-			}
-		}
-		return $string;
-	}
-
-	/**
-	 * Remove bytes that represent an incomplete Unicode character
-	 * at the start of string (e.g. bytes of the char are missing)
-	 *
-	 * @param string $string
-	 * @return string
-	 */
-	protected function removeBadCharFirst( $string ) {
-		if ( $string != '' ) {
-			$char = ord( $string[0] );
-			if ( $char >= 0x80 && $char < 0xc0 ) {
-				# We chopped in the middle of a character; remove the whole thing
-				$string = preg_replace( '/^[\x80-\xbf]+/', '', $string );
 			}
 		}
 		return $string;
