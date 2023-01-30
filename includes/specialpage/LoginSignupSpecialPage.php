@@ -603,12 +603,33 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			);
 		}
 
+		$formBlock = Html::rawElement( 'div', [ 'id' => 'userloginForm' ], $formHtml );
+		$formAndBenefits = $formBlock;
+		if ( $this->isSignup() && $this->showExtraInformation() ) {
+			$benefitsContainerHtml = null;
+			$info = [
+				'context' => $this->getContext(),
+				'form' => $this->authForm,
+			];
+			$options = [
+				'beforeForm' => false,
+			];
+			$this->getHookRunner()->onSpecialCreateAccountBenefits(
+				$benefitsContainerHtml, $info, $options
+			);
+			if ( $benefitsContainerHtml === null ) {
+				$benefitsContainerHtml = $this->getBenefitsContainerHtml();
+			}
+			$formAndBenefits = $options['beforeForm']
+				? ( $benefitsContainerHtml . $formBlock )
+				: ( $formBlock . $benefitsContainerHtml );
+		}
+
 		return Html::rawElement( 'div', [ 'class' => 'mw-ui-container' ],
 			$loginPrompt
 			. $languageLinks
 			. $signupStart
-			. Html::rawElement( 'div', [ 'id' => 'userloginForm' ], $formHtml )
-			. $this->getBenefitsContainerHtml()
+			. $formAndBenefits
 		);
 	}
 

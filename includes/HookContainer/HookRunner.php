@@ -337,6 +337,7 @@ class HookRunner implements
 	\MediaWiki\Hook\SpecialBlockModifyFormFieldsHook,
 	\MediaWiki\Hook\SpecialContributionsBeforeMainOutputHook,
 	\MediaWiki\Hook\SpecialContributions__formatRow__flagsHook,
+	\MediaWiki\Hook\SpecialCreateAccountBenefitsHook,
 	\MediaWiki\Hook\SpecialExportGetExtraPagesHook,
 	\MediaWiki\Hook\SpecialContributions__getForm__filtersHook,
 	\MediaWiki\Hook\SpecialListusersDefaultQueryHook,
@@ -3557,6 +3558,13 @@ class HookRunner implements
 		return $this->container->run(
 			'SpecialContributions::getForm::filters',
 			[ $sp, &$filters ]
+		);
+	}
+
+	public function onSpecialCreateAccountBenefits( ?string &$html, array $info, array &$options ) {
+		return $this->container->run(
+			'SpecialCreateAccountBenefits',
+			[ &$html, $info, &$options ]
 		);
 	}
 
