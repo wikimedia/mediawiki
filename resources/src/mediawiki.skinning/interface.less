@@ -14,6 +14,8 @@
  * I2ba68122fd82a254a5ad0e45157f095508f6fa39 was moved into core to formalize
  * the behaviour of hidden portlets.
  */
+@import 'resources/lib/codex-design-tokens/theme-wikimedia-ui-legacy.less';
+
 .emptyPortlet {
 	display: none;
 }
@@ -22,4 +24,10 @@
 /* Hide links which require JavaScript to work */
 .client-nojs #t-print {
 	display: none; /* T167956 */
+}
+
+.mw-tempuserlink {
+	background-color: @background-color-interactive;
+	padding: 2px 8px 2px 8px;
+	border-radius: 2px;
 }
