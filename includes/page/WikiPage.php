@@ -1119,8 +1119,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$dbw->startAtomic( __METHOD__ );
 
 		if ( !$oldLatest || $oldLatest == $this->lockAndGetLatest() ) {
-			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-			$truncatedFragment = $contLang->truncateForDatabase( $rt->getFragment(), 255 );
+			$truncatedFragment = mb_strcut( $rt->getFragment(), 0, 255 );
 			$dbw->upsert(
 				'redirect',
 				[

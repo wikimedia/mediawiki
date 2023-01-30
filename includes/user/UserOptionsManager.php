@@ -26,7 +26,6 @@ use HTMLFormField;
 use HTMLMultiSelectField;
 use IContextSource;
 use InvalidArgumentException;
-use Language;
 use LanguageCode;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
@@ -69,9 +68,6 @@ class UserOptionsManager extends UserOptionsLookup {
 	/** @var UserFactory */
 	private $userFactory;
 
-	/** @var Language */
-	private $contentLanguage;
-
 	/** @var LoggerInterface */
 	private $logger;
 
@@ -105,7 +101,6 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @param LoggerInterface $logger
 	 * @param HookContainer $hookContainer
 	 * @param UserFactory $userFactory
-	 * @param Language $contentLanguage
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -114,8 +109,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		ILoadBalancer $loadBalancer,
 		LoggerInterface $logger,
 		HookContainer $hookContainer,
-		UserFactory $userFactory,
-		Language $contentLanguage
+		UserFactory $userFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $options;
@@ -125,7 +119,6 @@ class UserOptionsManager extends UserOptionsLookup {
 		$this->logger = $logger;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userFactory = $userFactory;
-		$this->contentLanguage = $contentLanguage;
 	}
 
 	/**
@@ -449,7 +442,7 @@ class UserOptionsManager extends UserOptionsLookup {
 				$rowsToInsert[] = [
 					'up_user' => $user->getId(),
 					'up_property' => $key,
-					'up_value' => $this->contentLanguage->truncateForDatabase( $value, self::MAX_BYTES_OPTION_VALUE ),
+					'up_value' => mb_strcut( $value, 0, self::MAX_BYTES_OPTION_VALUE ),
 				];
 				if ( array_key_exists( $key, $this->optionsFromDb[$userKey] ) ) {
 					$keysToDelete[] = $key;
