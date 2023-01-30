@@ -613,7 +613,6 @@
 	"recentchanges-label-bot": "Niŋdi ntoli n niŋ mali niŋ ŋɔ",
 	"recentchanges-label-unpatrolled": "Mali niŋ ŋɔ nyɛla binshɛli bini na bi gɔŋgili",
 	"recentchanges-label-plusminus": "Baatinima ŋɔ kalinli ŋɔ taɣila yaɣili ŋɔ barilim",
-	"recentchanges-legend-heading": "<strong>Legend:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (lahi nyama [[Special:NewPages|yaɣa zaɣ'pala kalinli]])",
 	"recentchanges-submit": "Wuhima",
 	"rcfilters-activefilters-hide": "Sɔɣabu",

@@ -1017,6 +1017,7 @@
 	"lineno": "Rivi $1:",
 	"compareselectedversions": "Vertaile valittuja versioita",
 	"showhideselectedversions": "Näytä tai piilota valitut versiot",
+	"showhideselectedfileversions": "Muuta valittujen tiedostoversioiden näkyvyyttä",
 	"editundo": "kumoa",
 	"diff-empty": "(ei mitään eroa)",
 	"diff-multi-sameuser": "({{PLURAL:$1|Yhtä välissä olevaa versiota|$1 välissä olevaa versiota}} samalta käyttäjältä ei näytetä)",

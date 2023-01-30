@@ -761,7 +761,7 @@
 	"unsupported-content-diff": "E diffs no son suportæ pe sto modello de contegnuo $1 chie.",
 	"unsupported-content-diff2": "E diffs fra i modelli de contegnuo $1 e $2 no son suportæ insce sto wiki.",
 	"duplicate-args-warning": "<strong>Avvertensa:</strong> [[:$1]] o ciamma [[:$2]] con ciù de un valô pe-o parammetro \"$3\".  Solo l'urtimo valô fornio o saiâ deuviou.",
-	"duplicate-args-category": "Paggine che ciamman i template deuviando di parammetri duplicæ",
+	"duplicate-args-category": "Pàgine che ciàman i template dêuviando ciù vòtte o mæximo paràmetro",
 	"duplicate-args-category-desc": "A paggina a conten de ciamæ a di template ch'adeuvian di argomenti duplicæ, comme presempio <code><nowiki>{{foo|bar=1|bar=2}}</nowiki></code> ò <code><nowiki>{{foo|bar|1=baz}}</nowiki></code>.",
 	"expensive-parserfunction-warning": "'''Attençion:''' Questa paggina a conten troppe ciamæ a-e fonçioin de parser .\n\nA doviæ aveighene meno de $2, a-o momento ghe {{PLURAL:$1|n'è $1}}.",
 	"expensive-parserfunction-category": "Paggine con troppe ciamæ a-e fonçioin de parser .",

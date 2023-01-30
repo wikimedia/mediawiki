@@ -2705,6 +2705,7 @@
 	"whatlinkshere-page": "Pagina:",
 	"linkshere": "Le seguenti pagine contengono dei collegamenti a <strong>$2</strong>:",
 	"nolinkshere": "Nessuna pagina contiene collegamenti che puntano a <strong>$2</strong>.",
+	"nolinkshere-filter": "Nessuna pagina contiene collegamenti che puntano a $2 che soddisfino i criteri di ricerca.",
 	"nolinkshere-ns": "Non vi sono pagine che puntano a <strong>$2</strong> nel namespace selezionato.",
 	"isredirect": "reindirizzamento",
 	"istemplate": "inclusione",

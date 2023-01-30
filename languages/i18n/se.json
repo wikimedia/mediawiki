@@ -1060,7 +1060,7 @@
 	"rollback-confirmation-confirm": "Nanne:",
 	"rollback-confirmation-no": "Šluhtte",
 	"rollbacklink": "máhcat",
-	"rollbackfailed": "Máhccan ii lihkosmuvvan",
+	"rollbackfailed": "Máhcaheapmi ii lihkostuvvan",
 	"cantrollback": "Máhcaheapmi ovddit veršuvdnii ii leat vejolaš, daningo maŋimuš čálli lea siiddu aidna dahkki.",
 	"alreadyrolled": "Rievdadusat, maid geavaheaddji [[User:$2|$2]] ([[User talk:$2|ságastallan]]) lea dahkan, siidui $1 ii sáhte sihkkut, daningo geavaheaddji [[User:$3|$3]] ([[User talk:$3|ságastallan]]) lea dahkan ođđa rievdadusaid.",
 	"editcomment": "Rievdadusa čoahkkáigeassu lei: <em>$1</em>.",

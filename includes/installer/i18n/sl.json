@@ -53,7 +53,7 @@
 	"config-env-good": "Okolje je pregledano.\nLahko namestite MediaWiki.",
 	"config-env-bad": "Okolje je pregledano.\nNe morete namestiti MediaWiki.",
 	"config-env-php": "Nameščen je PHP $1.",
-	"config-unicode-update-warning": "<strong>Opozorilo:</strong> Nameščena različica razširitve [https://php.net/manual/en/book.intl.php PHP intl extension] Unicode normalizacijskega ovoja uporablja starejšo različico knjižnice [http://site.icu-project.org/ projekta ICU].\nČe vas Unicode kakor koli zadeva, bi morali [https://www.mediawiki.org/ wiki/Special:MyLanguage/Unicode_normalization_considerations opraviti nadgradnjo].",
+	"config-env-icu": "ICU $1 je nameščen (podpira Unicode $2).",
 	"config-no-db": "Ni bilo mogoče najti ustreznega gonilnika podatkovne zbirke! Namestiti morate gonilnik podatkovne zbirke za PHP.\n{{PLURAL:$2|one=Podprta je naslednja vrsta|two=Podprti sta naslednji vrsti|few=Podprte so naslednje vrste|Podprte so naslednje vrste}} podatkovnih zbirk: $1.\n\nČe ste PHP prevedli sami, ga znova konfigurirajte z omogočenim odjemalcem podatkovne zbirke, na primer z uporabo <code>./configure --with-mysqli</code>.\nČe ste PHP namestili iz paketa Debian ali Ubuntu, morate namestiti tudi na primer paket <code>php-mysql</code>.",
 	"config-outdated-sqlite": "<strong>Opozorilo:</strong> Imate SQLite $2, ki je nižji od minimalne zahtevane različice $1. SQLite ne bo na voljo.",
 	"config-no-fts3": "<strong>Opozorilo:</strong> SQLite je preveden brez [//sqlite.org/fts3.html modula FTS3], možnosti iskanja v tem ozadju ne bodo na voljo.",
