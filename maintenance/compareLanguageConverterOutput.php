@@ -116,7 +116,7 @@ class CompareLanguageConverterOutput extends Maintenance {
 		$languageFactory = $mwInstance->getLanguageFactory();
 		$parser = $mwInstance->getParser();
 		$parserOptions = $this->getParserOptions(
-			$languageFactory->getParentLanguage( $baseLanguage->getCode() )
+			$languageFactory->getParentLanguage( $baseLanguage )
 		);
 
 		$content = $mwInstance->getRevisionLookup()
