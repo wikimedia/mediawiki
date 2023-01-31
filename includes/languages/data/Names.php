@@ -45,7 +45,7 @@ class Names {
 		'ace' => 'Acèh', # Aceh
 		'ady' => 'адыгабзэ', # Adyghe
 		'ady-cyrl' => 'адыгабзэ', # Adyghe
-		'aeb' => 'تونسي/Tûnsî', # Tunisian Arabic (multiple scripts - defaults to Arabic)
+		'aeb' => 'تونسي / Tûnsî', # Tunisian Arabic (multiple scripts - defaults to Arabic)
 		'aeb-arab' => 'تونسي', # Tunisian Arabic (Arabic Script)
 		'aeb-latn' => 'Tûnsî', # Tunisian Arabic (Latin Script)
 		'af' => 'Afrikaans', # Afrikaans
@@ -107,7 +107,7 @@ class Names {
 		'bug' => 'ᨅᨔ ᨕᨘᨁᨗ', # Buginese
 		'bxr' => 'буряад', # Buryat (Russia)
 		'ca' => 'català', # Catalan
-		'cbk-zam' => 'Chavacano de Zamboanga', # Zamboanga Chavacano
+		'cbk-zam' => 'Chavacano de Zamboanga', # Zamboanga Chavacano, T124657
 		'cdo' => '閩東語 / Mìng-dĕ̤ng-ngṳ̄', # Min-dong (multiple scripts - defaults to Latin)
 		'ce' => 'нохчийн', # Chechen
 		'ceb' => 'Cebuano', # Cebuano
@@ -172,7 +172,7 @@ class Names {
 		'ga' => 'Gaeilge', # Irish
 		'gaa' => 'Ga', # Ga
 		'gag' => 'Gagauz', # Gagauz
-		'gan' => '贛語', # Gan (multiple scripts - defaults to Traditional)
+		'gan' => '贛語', # Gan (multiple scripts - defaults to Traditional Han)
 		'gan-hans' => '赣语（简体）', # Gan (Simplified Han)
 		'gan-hant' => '贛語（繁體）', # Gan (Traditional Han)
 		'gcr' => 'kriyòl gwiyannen', # Guianan Creole
@@ -227,7 +227,7 @@ class Names {
 		'io' => 'Ido', # Ido
 		'is' => 'íslenska', # Icelandic
 		'it' => 'italiano', # Italian
-		'iu' => 'ᐃᓄᒃᑎᑐᑦ/inuktitut', # Inuktitut (macro language, see ike/ikt, falls back to ike-cans)
+		'iu' => 'ᐃᓄᒃᑎᑐᑦ / inuktitut', # Inuktitut (macro language, see ike/ikt, falls back to ike-cans)
 		'ja' => '日本語', # Japanese
 		'jam' => 'Patois', # Jamaican Creole English
 		'jbo' => 'la .lojban.', # Lojban
@@ -484,7 +484,7 @@ class Names {
 		'tru' => 'Ṫuroyo', # Turoyo
 		'trv' => 'Seediq', # Taroko
 		'ts' => 'Xitsonga', # Tsonga
-		'tt' => 'татарча/tatarça', # Tatar (multiple scripts - defaults to Cyrillic)
+		'tt' => 'татарча / tatarça', # Tatar (multiple scripts - defaults to Cyrillic)
 		'tt-cyrl' => 'татарча', # Tatar (Cyrillic script) (default)
 		'tt-latn' => 'tatarça', # Tatar (Latin script)
 		'tum' => 'chiTumbuka', # Tumbuka
@@ -498,7 +498,7 @@ class Names {
 		'ug-latn' => 'Uyghurche', # Uyghur (Latin script)
 		'uk' => 'українська', # Ukrainian
 		'ur' => 'اردو', # Urdu
-		'uz' => 'oʻzbekcha/ўзбекча', # Uzbek (multiple scripts - defaults to Latin)
+		'uz' => 'oʻzbekcha / ўзбекча', # Uzbek (multiple scripts - defaults to Latin)
 		'uz-cyrl' => 'ўзбекча', # Uzbek Cyrillic
 		'uz-latn' => 'oʻzbekcha', # Uzbek Latin (default)
 		've' => 'Tshivenda', # Venda
@@ -523,9 +523,9 @@ class Names {
 		'yi' => 'ייִדיש', # Yiddish
 		'yo' => 'Yorùbá', # Yoruba
 		'yrl' => 'Nhẽẽgatú', # Nheengatu
-		'yue' => '粵語', # Cantonese
+		'yue' => '粵語', # Cantonese (multiple scripts - defaults to Traditional Han)
 		'za' => 'Vahcuengh', # Zhuang
-		'zea' => 'Zeêuws', # Zeeuws/Zeaws
+		'zea' => 'Zeêuws', # Zeeuws / Zeaws
 		'zgh' => 'ⵜⴰⵎⴰⵣⵉⵖⵜ ⵜⴰⵏⴰⵡⴰⵢⵜ', # Moroccan Amazigh (multiple scripts - defaults to Neo-Tifinagh)
 		'zh' => '中文', # (Zhōng Wén) - Chinese
 		'zh-classical' => '文言', # Classical Chinese/Literary Chinese -- (see T10217)
