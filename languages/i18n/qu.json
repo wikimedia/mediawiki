@@ -14,7 +14,8 @@
 			"Vlad5250",
 			"לערי ריינהארט",
 			"아라",
-			"McDutchie"
+			"McDutchie",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "T'inkikunata uranpi sikwiy",
@@ -1632,7 +1633,7 @@
 	"deletepage": "Kay p'anqata qulluy",
 	"confirm": "Takyachiy",
 	"excontent": "Samiqnin karqan kay hinam: '$1'",
-	"excontentauthor": "Samiqnin karqan kay hinam: '$1' (huklla ruraqnin: '$2')",
+	"excontentauthor": "Samiqnin karqan kay hinam: '$1' (huklla ruraqnin: '[[Special:Contributions/$2|$2]]')",
 	"exbeforeblank": "manaraq qullusqa kaptin, samiqnin kay hinam karqan: '$1'",
 	"delete-confirm": "\"$1\"-ta qulluy",
 	"delete-legend": "Qulluy",

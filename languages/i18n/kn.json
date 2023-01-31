@@ -40,7 +40,8 @@
 			"AVSmalnad77",
 			"Rmurthy",
 			"~aanzx",
-			"ಮಲ್ನಾಡಾಚ್ ಕೊಂಕ್ಣೊ"
+			"ಮಲ್ನಾಡಾಚ್ ಕೊಂಕ್ಣೊ",
+			"Amire80"
 		]
 	},
 	"tog-underline": "ಕೊಂಡಿಗಳ ಕೆಳಗೆ ಗೆರೆ ತೋರಿಸಿ",
@@ -965,8 +966,8 @@
 	"rightslogtext": "ಇದು ಬಳಕೆದಾರ ಹಕ್ಕುಗಳ ಬದಲಾವಣೆಗಳ ದಾಖಲೆ.",
 	"action-read": "ಈ ಪುಟವನ್ನು ಓದಿ",
 	"action-edit": "ಪುಟದ ಸಂಪಾದನೆ",
-	"action-createpage": "ಪುಟಗಳನ್ನು ಸೃಷ್ಟಿಸು",
-	"action-createtalk": "ಚರ್ಚಾ ಪುಟಗಳನ್ನು ಸೃಷ್ಟಿಸು",
+	"action-createpage": "ಈ ಪುಟವನ್ನು ರಚಿಸಿ",
+	"action-createtalk": "ಈ ಚರ್ಚಾ ಪುಟವನ್ನು ರಚಿಸಿ",
 	"action-createaccount": "ಈ ಬಳಕೆದಾರ ಖಾತೆಯನ್ನು ರಚಿಸಿ",
 	"action-history": "ಈ ಪುಟದ ಇತಿಹಾಸವನ್ನು ವೀಕ್ಷಿಸಿ",
 	"action-minoredit": "ಈ ತಿದ್ದುಪಡಿಯನ್ನು ಚಿಕ್ಕದೆಂದು ಗುರುತಿಸಿ",
@@ -975,7 +976,7 @@
 	"action-movefile": "ಈ ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ",
 	"action-upload": "ಈ ಕಡತವನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ",
 	"action-delete": "ಈ ಪುಟವನ್ನು ಅಳಿಸು",
-	"action-deleterevision": "ಈ ಆವೃತ್ತಿಯನ್ನು ಅಳಿಸು",
+	"action-deleterevision": "ಪರಿಷ್ಕರಣೆಗಳನ್ನು ಅಳಿಸಿ",
 	"action-browsearchive": "ಅಳಿಸಲಾಗಿರುವ ಪುಟಗಳನ್ನು ಹುಡುಕು",
 	"action-undelete": "ಈ ಪುಟವನ್ನು ಅಳಿಸಬೇಡ",
 	"action-suppressionlog": "ಖಾಸಗಿ ದಾಖಲೆಗಳನ್ನು ವೀಕ್ಷಿಸಿ",
@@ -1447,7 +1448,7 @@
 	"changecontentmodel": "ಪುಟದ ವಿಷಯ ಮಾದರಿಯನ್ನು ಬದಲಾಯಿಸಿ",
 	"changecontentmodel-legend": "ವಿಷಯ ಮಾದರಿಯನ್ನು ಬದಲಾಯಿಸಿ",
 	"changecontentmodel-title-label": "ಪುಟ ಶೀರ್ಷಿಕೆ:",
-	"changecontentmodel-model-label": "ಹೊಸ ವಿಷಯ ಮಾದರಿ",
+	"changecontentmodel-model-label": "ಹೊಸ ವಿಷಯ ಮಾದರಿ:",
 	"changecontentmodel-reason-label": "ಕಾರಣ:",
 	"changecontentmodel-submit": "ಬದಲಾಯಿಸಿ",
 	"changecontentmodel-success-title": "ವಿಷಯ ಮಾದರಿಯನ್ನು ಬದಲಾಯಿಸಲಾಗಿದೆ",
