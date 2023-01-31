@@ -222,7 +222,7 @@ class LanguageCode {
 	 *    Language::getCode()
 	 * @since 1.40
 	 */
-	public static function bcp47ToInternal( $code ) {
+	public static function bcp47ToInternal( string $code ): string {
 		static $invertedLookup = [];
 		if ( !$invertedLookup ) {
 			// There should never be two different entries in
