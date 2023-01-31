@@ -1820,7 +1820,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			->getMock();
 		$langNameUtils->method( 'getMessagesFileName' )->will(
 			$this->returnCallback( static function ( $code ) {
-				return __DIR__ . '/../data/messages/Messages_' . $code . '.php';
+				return __DIR__ . '/../../data/messages/Messages_' . $code . '.php';
 			} )
 		);
 		$this->overrideConfigValue( MainConfigNames::NamespaceAliases, [

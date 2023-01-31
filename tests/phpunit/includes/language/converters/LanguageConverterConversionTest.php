@@ -9,7 +9,7 @@ use MediaWikiIntegrationTestCase;
  * @group Language
  *
  */
-class LanguageConverterIntegrationTest extends MediaWikiIntegrationTestCase {
+class LanguageConverterConversionTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideConversionData
@@ -29,7 +29,7 @@ class LanguageConverterIntegrationTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideConversionData() {
-		$jsonFile = file_get_contents( dirname( __DIR__ ) . '/data/languageConverterIntegrationData.json' );
+		$jsonFile = file_get_contents( __DIR__ . '/../../../data/languageConverter/conversionData.json' );
 		$converterDataArr = json_decode( $jsonFile, true );
 
 		return $converterDataArr;
