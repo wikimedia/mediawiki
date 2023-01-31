@@ -221,7 +221,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$pageIsSuppressed = $list->areAnySuppressed();
 		$this->mIsAllowed = $this->mIsAllowed && !( $canViewSuppressedOnly && $pageIsSuppressed );
 
-		$this->otherReason = $request->getVal( 'wpReason' );
+		$this->otherReason = $request->getVal( 'wpReason', '' );
 		# Give a link to the logs/hist for this page
 		$this->showConvenienceLinks();
 
