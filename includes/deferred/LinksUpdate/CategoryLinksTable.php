@@ -113,8 +113,10 @@ class CategoryLinksTable extends TitleLinksTable {
 			// categories, causing T27254.
 			$sortKeyPrefix = mb_strcut( $sortKeyPrefix, 0, 255 );
 
-			$targetTitle = Title::makeTitleSafe( NS_CATEGORY, $name );
+			$targetTitle = Title::makeTitle( NS_CATEGORY, $name );
 			$this->languageConverter->findVariantLink( $name, $targetTitle, true );
+			// Ignore the returned text, DB key should be used for links (T328477).
+			$name = $targetTitle->getDBKey();
 
 			// Treat custom sort keys as a prefix, so that if multiple
 			// things are forced to sort as '*' or something, they'll
