@@ -3764,8 +3764,27 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * The cache type for storing article HTML. This is used to store data which
-	 * is expensive to regenerate, and benefits from having plenty of storage space.
+	 * The cache type for storing page content HTML (e.g. parsed from wikitext).
+	 *
+	 * Parsing wikitext is considered an expensive operation. It is recommended
+	 * to give your parser cache plenty of storage space, such that long tail cache
+	 * hits are possible.
+	 *
+	 * The default parser cache backend (when MainCacheType is left to CACHE_NONE)
+	 * is effectively CACHE_DB (SqlBagOStuff). If you set up a main cache type
+	 * such as memcached, it is recommended to set this explicitly to CACHE_DB.
+	 *
+	 * Advice for large wiki farms:
+	 * - Consider allocating a dedicated database to ParserCache.
+	 *   Register it in $wgObjectCaches and point $wgParserCacheType to it.
+	 * - Consider using MultiWriteBagOStuff to add a higher tier with Memcached
+	 *   in front of the lower database tier.
+	 * - Consider setting `'purgePeriod' => 0` in the dedicated SqlBagOStuff
+	 *   entry in $wgObjectCaches. This disables the automatic purging of
+	 *   expired rows (which would normally happen in the background of
+	 *   write requests). You can then schedule the purgeParserCache.php script
+	 *   to e.g. once a day prune expired rows from the a dedicated maintenance
+	 *   server.
 	 *
 	 * For available types see $wgMainCacheType.
 	 */
