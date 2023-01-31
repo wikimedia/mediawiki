@@ -449,7 +449,7 @@
 	"file-nohires": "Resolution sami ye ba.",
 	"show-big-image": "File usuli be",
 	"show-big-image-preview": "Num kura awobe: $1.",
-	"show-big-image-other": "Gade\n{{PLURAL:$2|resolution|resolutions}}: $1.",
+	"show-big-image-other": "Gade {{PLURAL:$2|resolution|resolutions}}: $1.",
 	"ilsubmit": "Matǝ",
 	"metadata": "Metadata",
 	"metadata-help": "File də aü gadə suroden sassarana suro digital camera aü be scanner shilan faidatana,",

@@ -2974,7 +2974,7 @@
 	"show-big-image": "मूल फ़ाइल",
 	"show-big-image-preview": "इ पूर्वावलोकन कय आकार:  $1 ।",
 	"show-big-image-preview-differ": "पूर्वावलोकन $3 का आकार $2 फ़ाइल: $1",
-	"show-big-image-other": "अउर  {{PLURAL:$2| resolution|resolutions}}:  $1 ।",
+	"show-big-image-other": "अउर {{PLURAL:$2|resolution|resolutions}}:  $1।",
 	"show-big-image-size": "$1 × $2  पिक्सेल",
 	"file-info-gif-looped": "चक्रित",
 	"file-info-gif-frames": "$1 {{PLURAL:$1|फ्रेम}}",

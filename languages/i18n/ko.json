@@ -90,7 +90,8 @@
 			"밝은소년",
 			"아라",
 			"양념파닭",
-			"콩가루"
+			"콩가루",
+			"Cerulean"
 		]
 	},
 	"tog-underline": "링크에 밑줄 긋기:",
@@ -2420,6 +2421,7 @@
 	"actioncomplete": "동작 완료",
 	"actionfailed": "명령 실패",
 	"deletedtext": "\"$1\" 문서를 삭제했습니다.\n최근 삭제 기록은 $2에 있습니다.",
+	"deleted-page-and-talkpage": "\"$1\"와(과) $2이(가) 삭제되었습니다.\n최근 삭제 기록은 $3을 참고하세요.",
 	"dellogpage": "삭제 기록",
 	"dellogpagetext": "아래의 목록은 최근에 삭제된 문서입니다.",
 	"deletionlog": "삭제 기록",
@@ -4065,6 +4067,7 @@
 	"skin-action-undelete": "삭제 취소",
 	"skin-action-delete": "삭제",
 	"skin-action-move": "이동",
+	"parsoid-resource-limit-exceeded": "Parsoid의 리소스 제한을 초과했습니다: $1",
 	"newpages-showhide-bots": "봇을 $1",
 	"newpages-showhide-patrolled": "점검한 편집을 $1",
 	"newpages-showhide-redirect": "넘겨주기를 $1",

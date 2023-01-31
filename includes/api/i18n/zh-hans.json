@@ -1587,7 +1587,7 @@
 	"api-help-datatypes-header": "数据类型",
 	"api-help-datatypes-top": "MediaWiki的输入应该是NFC规范化的UTF-8。MediaWiki可能会尝试转换其他输入，但这可能会导致某些操作（例如 [[Special:ApiHelp/edit|编辑]]带有MD5检查）失败。\n\n采用多个值的参数通常与使用管道字符分隔的值一起提交，例如<kbd>param=value1|value2</kbd>或<kbd>param=value1%7Cvalue2</kbd>。如果值必须包含竖线字符，请使用U+001F（单位分隔符）作为分隔符 ''并且'' 用U+001F作为该值的前缀，例如<kbd>param=%1Fvalue1%1Fvalue2</kbd>。\n\nAPI请求中的一些参数类型需要进一步说明：",
 	"api-help-datatype-boolean": "布尔参数的工作方式类似于HTML复选框：如果指定了参数，无论值如何，它都被认为是true。对于假值，完全省略参数。",
-	"api-help-datatype-expiry": "到期值是相对的（例如<kbd>5个月</kbd>或<kbd>2周</kbd>）或绝对值（例如<kbd>2014-09-18T12:34:56Z</kbd>）。如果没有截止如期，请使用<kbd>infinite</kbd>、<kbd>infinite</kbd>、<kbd>infinity</kbd>或<kbd>never</kbd>。",
+	"api-help-datatype-expiry": "到期值可能是相对的（例如<kbd>5个月</kbd>或<kbd>2周</kbd>）或绝对值（例如<kbd>2014-09-18T12:34:56Z</kbd>）。如果没有截止如期，请使用<kbd>infinite</kbd>、<kbd>infinite</kbd>、<kbd>infinity</kbd>或<kbd>never</kbd>。",
 	"api-help-datatype-timestamp": "时间戳可以用多种格式指定，详情参见[[mw:Special:MyLanguage/Timestamp|mediawiki.org上记录的时间戳库输入格式]]。建议使用ISO 8601日期和时间：<kbd><var>2001</var>-<var>01</var>-<var>15</var>T<var>14</var>:<var> 56</var>:<var>00</var>Z</kbd>。此外，字符串<kbd>now</kbd>可用于指定当前时间戳。",
 	"api-help-templatedparams-header": "模板参数",
 	"api-help-templatedparams": "模板参数支持API模块需要为每个其他参数赋值的情况。例如如果有API模块请求水果，它会有参数<var>水果</var>指定请求的水果，以及模板参数<var>{水果}-数量</var>以指定每种水果请求多少。需要1个苹果、5个香蕉和20个草莓的API客户端可以做出类似<kbd>水果=苹果|香蕉|草莓&苹果-数量=1&香蕉-数量=5&草莓-数量=20</kbd>的请求。",

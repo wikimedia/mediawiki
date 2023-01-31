@@ -8,7 +8,7 @@
 	"apihelp-block-param-reason": "ನಿರ್ಬಂಧನೆಯ ಕಾರಣ.",
 	"apihelp-block-param-anononly": "ಅನಾಮಧೇಯ ಬಳಕೆದಾರರನ್ನು ಮಾತ್ರ ನಿರ್ಬಂಧಿಸು (ಅಂದರೆ ಈ ಐಪಿ ವಿಳಾಸದ ಅನಾಮಧೇಯ ಸಂಪಾದನೆಗಳನ್ನು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಿ).",
 	"apihelp-block-param-nocreate": "ಖಾತೆ ರಚನೆ ತಡೆಹಿಡಿಯಿರಿ.",
-	"apihelp-edit-param-sectiontitle": "ಹೊಸ ವಿಭಾಗದ ತಲೆಬರಹ.",
+	"apihelp-edit-param-sectiontitle": "<var>$1section=new</var> ಬಳಸುವಾಗ ಹೊಸ ವಿಭಾಗದ ತಲೆಬರಹ.",
 	"apihelp-edit-param-minor": "ಇದನ್ನು ಚುಟುಕಾದ ಸಂಪಾದನೆಯೆಂದು ಗುರುತಿಸು",
 	"apihelp-feedcontributions-param-hideminor": "ಚುಟುಕು ಸಂಪಾದನೆಗಳನ್ನು ಅಡಗಿಸು.",
 	"apihelp-feedcontributions-param-showsizediff": "ಆವೃತ್ತಿಗಳ ನಡುವಿನ ಗಾತ್ರದ ಅಂತರವನ್ನು ತೋರಿಸು.",

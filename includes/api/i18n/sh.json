@@ -30,6 +30,7 @@
 	"api-help-flag-generator": "Ovaj se modul može koristiti kao generator.",
 	"api-help-parameters": "{{PLURAL:$1|Parametar|Parametri}}:",
 	"api-help-param-deprecated": "Zastaren.",
+	"api-help-datatype-expiry": "Vrijednosti isteka mogu biti relativne (npr. <kbd>5 months</kbd> ili <kbd>2 weeks</kbd>) ili apsolutne (npr. <kbd>2014-09-18T12:34:56Z</kbd>). Ako nema isteka, koristite <kbd>infinite</kbd>, <kbd>indefinite</kbd>, <kbd>infinity</kbd> ili <kbd>never</kbd>.",
 	"api-help-right-apihighlimits": "Korištenje viših ograničenja u aplikacijskim zahtjevima (spori zahtjevi: $1; promptni zahtjevi: $2). Ograničenja sporih zahtjeva primjenjuju se na parametre s više vrijednosti.",
 	"api-credits": "Razvijači Izvršnika:\n* Yuri Astrakhan (tvorac, glavni razvijač od rujna 2006. do rujna 2007.)\n* Roan Kattouw (glavni razvijač od rujna 2007. do 2009.)\n* Victor Vasiliev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (glavni razvijač od 2013. do danas)\n\nPošaljite svoje komentare, prijedloge i pitanja na mediawiki-api@lists.wikimedia.org\ni prijavite pogreške na https://bugzilla.wikimedia.org/."
 }

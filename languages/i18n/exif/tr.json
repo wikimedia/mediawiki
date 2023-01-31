@@ -26,7 +26,8 @@
 			"Tarikozket",
 			"Uğur Başak",
 			"Vito Genovese",
-			"Vugar 1981"
+			"Vugar 1981",
+			"Sadrettin"
 		]
 	},
 	"exif-imagewidth": "Genişlik",
@@ -248,7 +249,7 @@
 	"exif-exposureprogram-0": "Tanımlanmadı",
 	"exif-exposureprogram-1": "Kılavuz",
 	"exif-exposureprogram-2": "Normal program",
-	"exif-exposureprogram-3": "Açıklık önceliği",
+	"exif-exposureprogram-3": "Diyafram önceliği",
 	"exif-exposureprogram-4": "Denklanşör önceliği",
 	"exif-exposureprogram-5": "Yaratıcı program (alan derinliğine doğru eğimli)",
 	"exif-exposureprogram-6": "Eylem programı (yüksek enstantane hızına doğru eğimli)",
@@ -316,7 +317,7 @@
 	"exif-exposuremode-1": "Manüel pozlama",
 	"exif-exposuremode-2": "Otomatik parantez",
 	"exif-whitebalance-0": "Otomatik beyaz denge",
-	"exif-whitebalance-1": "Manüel beyaz denge",
+	"exif-whitebalance-1": "Manuel beyaz denge",
 	"exif-scenecapturetype-0": "Standart",
 	"exif-scenecapturetype-1": "Manzara",
 	"exif-scenecapturetype-2": "Portre",

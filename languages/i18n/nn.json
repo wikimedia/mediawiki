@@ -978,7 +978,7 @@
 	"badsig": "Ugyldig råsignatur, sjekk HTML-kodinga.",
 	"badsiglength": "Signaturen din er for lang. Han må vere under {{PLURAL:$1|eitt teikn|$1 teikn}}.",
 	"linterror-bogus-image-options": "Uekte filalternativ",
-	"linterror-deletable-table-tag": "Tabelltagg som bør slettes",
+	"linterror-deletable-table-tag": "Tabellmerke som bør slettast",
 	"linterror-misnested-tag": "Feilplasserte taggar som bør plasserast korrekt",
 	"linterror-missing-end-tag": "Manglande slutt-tagg",
 	"linterror-obsolete-tag": "Avleggs HTML-tagg",
