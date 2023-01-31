@@ -901,6 +901,7 @@ class ExtensionProcessorTest extends MediaWikiUnitTestCase {
 							'localBasePath' => $dir,
 							'remoteExtPath' => 'Foo',
 							'scripts' => 'bar.js',
+							'targets' => [ 'test' ],
 						],
 					],
 				],

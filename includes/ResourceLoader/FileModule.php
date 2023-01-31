@@ -133,7 +133,7 @@ class FileModule extends Module {
 	protected $debugRaw = true;
 
 	/** @var string[] */
-	protected $targets = [ 'desktop' ];
+	protected $targets = [ 'desktop', 'mobile' ];
 
 	/** @var bool Whether CSSJanus flipping should be skipped for this module */
 	protected $noflip = false;

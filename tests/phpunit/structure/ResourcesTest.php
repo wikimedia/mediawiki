@@ -110,6 +110,8 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 		$data = self::getAllModules();
 
 		/** @var RL\Module $module */
+		$incompatibleTargetNames = [];
+		$targetsErrMsg = '';
 		foreach ( $data['modules'] as $moduleName => $module ) {
 			$depNames = $module->getDependencies( $data['context'] );
 			$moduleTargets = $module->getTargets();
@@ -124,14 +126,18 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 					// Missing dependencies reported by testMissingDependencies
 					continue;
 				}
+				if ( $moduleTargets === [ 'test' ] ) {
+					// Target filter does not apply under tests, which may include
+					// both module-only and desktop-only dependencies.
+					continue;
+				}
 				$targets = $dep->getTargets();
 				foreach ( $moduleTargets as $moduleTarget ) {
-					$this->assertContains(
-						$moduleTarget,
-						$targets,
-						"The module '$moduleName' must not have target '$moduleTarget' "
-							. "because its dependency '$depName' does not have it"
-					);
+					if ( !in_array( $moduleTarget, $targets ) ) {
+						$incompatibleTargetNames[] = $moduleName;
+						$targetsErrMsg .= "* The module '$moduleName' must not have target '$moduleTarget' "
+								. "because its dependency '$depName' does not have it\n";
+					}
 				}
 				if ( !$requiresES6 && $dep->requiresES6() ) {
 					$incompatibleDepNames[] = $depName;
@@ -141,6 +147,7 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 				"The module '$moduleName' must not depend on modules with requiresES6=true"
 			);
 		}
+		$this->assertEquals( [], $incompatibleTargetNames, $targetsErrMsg );
 	}
 
 	/**
