@@ -172,6 +172,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# Collate list of users
+		$usercounts = [];
 		$userlinks = [];
 		# Other properties
 		$curId = 0;
@@ -201,9 +202,11 @@ class EnhancedChangesList extends ChangesList {
 			if ( !static::isDeleted( $rcObj, LogPage::DELETED_ACTION ) ) {
 				$namehidden = false;
 			}
-			$u = $rcObj->userlink;
-			if ( !isset( $userlinks[$u] ) ) {
-				$userlinks[$u] = 0;
+			$username = $rcObj->getPerformerIdentity()->getName();
+			$userlink = $rcObj->userlink;
+			if ( !isset( $usercounts[$username] ) ) {
+				$usercounts[$username] = 0;
+				$userlinks[$username] = $userlink;
 			}
 			if ( $rcObj->mAttribs['rc_type'] != RC_LOG ) {
 				$allLogs = false;
@@ -214,15 +217,15 @@ class EnhancedChangesList extends ChangesList {
 				$curId = $rcObj->mAttribs['rc_cur_id'];
 			}
 
-			$userlinks[$u]++;
+			$usercounts[$username]++;
 		}
 
 		# Sort the list and convert to text
-		krsort( $userlinks );
-		asort( $userlinks );
+		krsort( $usercounts );
+		asort( $usercounts );
 		$users = [];
-		foreach ( $userlinks as $userlink => $count ) {
-			$text = $userlink;
+		foreach ( $usercounts as $username => $count ) {
+			$text = $userlinks[$username];
 			$text .= $this->getLanguage()->getDirMark();
 			if ( $count > 1 ) {
 				$formattedCount = $this->msg( 'ntimes' )->numParams( $count )->escaped();
