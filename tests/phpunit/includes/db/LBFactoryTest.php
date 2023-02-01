@@ -188,7 +188,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$dbw->onTransactionPreCommitOrIdle( static function () use ( &$ran ) {
 			++$ran;
 		} );
-		$factory->commitAll( __METHOD__ );
+		$factory->commitPrimaryChanges( __METHOD__ );
 		$this->assertSame( 1, $ran );
 
 		$factory->shutdown();
