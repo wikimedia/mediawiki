@@ -1728,6 +1728,7 @@
 	"feedback-message": "Пачтямнэсь:",
 	"feedback-subject": "Мезде:",
 	"searchsuggest-search": "Вешнемс вана тестэ: {{SITENAME}}",
+	"searchsuggest-containing": "Вешнемс лопат, конатнесэ",
 	"api-error-unknownerror": "Апак содань ильведевкс: «$1».",
 	"duration-seconds": "$1 {{PLURAL:$1|секунда|секундат}}",
 	"duration-minutes": "$1 {{PLURAL:$1|минут|минутат}}",

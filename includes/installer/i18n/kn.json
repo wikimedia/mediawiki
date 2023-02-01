@@ -2,13 +2,14 @@
 	"@metadata": {
 		"authors": [
 			"Pavanaja",
-			"VASANTH S.N."
+			"VASANTH S.N.",
+			"ಮಲ್ನಾಡಾಚ್ ಕೊಂಕ್ಣೊ"
 		]
 	},
 	"config-title": "ಮೀಡಿಯಾವಿಕಿ ಆವೃತ್ತಿ $1 ರ ಅನುಸ್ಥಾಪನೆ",
 	"config-information": "ಮಾಹಿತಿ",
 	"config-localsettings-key": "ಉನ್ನತೀಕರಣ ಕೀಲಿ",
-	"config-localsettings-badkey": "ನೀವು ನೀಡಿದ ಕೀಲಿ ಸರಿಯಾಗಿಲ್ಲ",
+	"config-localsettings-badkey": "ನೀವು ನೀಡಿದ ಅಪ್‌ಗ್ರೇಡ್ ಕೀ ತಪ್ಪಾಗಿದೆ.",
 	"config-session-error": "ಅವಧಿ ಪ್ರಾರಂಭ ದೋಷ: $1",
 	"config-your-language": "ನಿಮ್ಮ ಭಾಷೆ:",
 	"config-wiki-language": "ವಿಕಿ ಭಾಷೆ:",
@@ -27,7 +28,7 @@
 	"config-restart": "ಸರಿ,ಪುನಃ ಪ್ರಾರಂಭಿಸಿ",
 	"config-db-type": "ದತ್ತಾಂಶಸಂಚಯ ಮಾದರಿ:",
 	"config-db-wiki-settings": "ಈ ವಿಕಿಯನ್ನು ಗುರುತಿಸಿ",
-	"config-db-name": "ದತ್ತಾಂಶಸಂಚಯ ಹೆಸರು:",
+	"config-db-name": "ಡೇಟಾಬೇಸ್ ಹೆಸರು (ಯಾವುದೇ ಹೈಫನ್‌ಗಳಿಲ್ಲದೇ):",
 	"config-db-username": "ದತ್ತಾಂಶಸಂಚಯ ಬಳಕೆದಾರಹೆಸರು:",
 	"config-db-password": "ದತ್ತಾಂಶಸಂಚಯ ಪ್ರವೇಶಪದ:",
 	"config-ns-generic": "ಯೋಜನೆ",
@@ -41,6 +42,6 @@
 	"config-extensions": "ವಿಸ್ತರಣೆಗಳು",
 	"config-install-step-failed": "ವಿಫಲವಾಗಿದೆ",
 	"config-help": "ಸಹಾಯ",
-	"mainpagetext": "'''ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಅನುಸ್ಥಾಪಿಸಲಾಯಿತು.'''",
-	"mainpagedocfooter": "ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಬಳಸುವ ಬಗ್ಗೆ ಮಾಹಿತಿಗೆ [https://meta.wikimedia.org/wiki/Help:Contents ಬಳಕೆದಾರರಿಗೆ ನಿರ್ದೇಶನ ಪುಟ] ನೋಡಿ.\n\n== ಪ್ರಾರಂಭಿಸುವುದು ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ಮೀಡಿಯವಿಕಿ FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailing list]"
+	"mainpagetext": "<strong>ಮೀಡಿಯಾವಿಕಿಯನ್ನು ಅಳವಡಿಸಲಾಗಿದೆ.</strong>",
+	"mainpagedocfooter": "ವಿಕಿ ತಂತ್ರಾಂಶವನ್ನು ಬಳಸುವ ಬಗ್ಗೆಯ ಮಾಹಿತಿಗೆ [https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents ಬಳಕೆದಾರರ ನಿರ್ದೇಶನ ಪುಟವನ್ನು] ನೋಡಿ.\n\n== ಪ್ರಾರಂಭಿಸುವುದು ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings ಕನ್ಫಿಗರೇಷನ್ ಸೆಟ್ಟಿಂಗ್ಸ್ ಪಟ್ಟಿ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ MediaWiki ಮೀಡಿಯಾವಿಕಿ ಕೈಪಿಡಿ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ ಮೀಡಿಯಾವಿಕಿ ಬಿಡಿಗಡೆ ಮಿಂಚಂಚೆ ಪಟ್ಟಿ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources ನಿಮ್ಮ ಭಾಷೆಗೆ ಮೀಡಿಯಾವಿಕಿಯನ್ನು ಸ್ಥಳೀಕರಿಸಿ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam ನಿಮ್ಮ ವಿಕಿಯಲ್ಲಿ ಸ್ಪ್ಯಾಮ್ ಅನ್ನು ಹೇಗೆ ತಡೆಗಟ್ಟುವುದು ಎಂದು ತಿಳಿಯಿರಿ]"
 }

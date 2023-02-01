@@ -1265,6 +1265,7 @@
 	"right-apihighlimits": "ใช้ข้อจำกัดที่สูงขึ้นในคำสั่งเอพีไอ",
 	"right-writeapi": "ใช้การเขียนเอพีไอ",
 	"right-delete": "ลบหน้า",
+	"right-delete-redirect": "ลบการเปลี่ยนเส้นทางรุ่นแก้ไขรุ่นเดียว",
 	"right-bigdelete": "ลบหน้าที่มีประวัติใหญ่",
 	"right-deletelogentry": "ลบและกู้คืนหน่วยปูมจำเพาะ",
 	"right-deleterevision": "ลบและกู้คืนรุ่นจำเพาะของหน้า",
