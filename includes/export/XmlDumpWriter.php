@@ -562,8 +562,6 @@ class XmlDumpWriter {
 	 * @return string
 	 */
 	private function writeText( Content $content, $textAttributes, $indent ) {
-		$out = '';
-
 		$contentHandler = $content->getContentHandler();
 		$contentFormat = $contentHandler->getDefaultFormat();
 
@@ -576,11 +574,10 @@ class XmlDumpWriter {
 		}
 
 		$data = $contentHandler->exportTransform( $data, $contentFormat );
-		$textAttributes['bytes'] = strlen( $data ); // make sure to use the actual size
+		// make sure to use the actual size
+		$textAttributes['bytes'] = strlen( $data );
 		$textAttributes['xml:space'] = 'preserve';
-		$out .= $indent . Xml::elementClean( 'text', $textAttributes, strval( $data ) ) . "\n";
-
-		return $out;
+		return $indent . Xml::elementClean( 'text', $textAttributes, strval( $data ) ) . "\n";
 	}
 
 	/**
