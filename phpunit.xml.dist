@@ -33,9 +33,6 @@
 		<testsuite name="includes">
 			<directory>tests/phpunit/includes</directory>
 		</testsuite>
-		<testsuite name="languages">
-			<directory>tests/phpunit/languages</directory>
-		</testsuite>
 		<testsuite name="parsertests">
 			<file>tests/phpunit/suites/CoreParserTestSuite.php</file>
 			<file>tests/phpunit/suites/ExtensionsParserTestSuite.php</file>

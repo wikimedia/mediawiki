@@ -3,6 +3,7 @@
 /**
  * @group Language
  * @covers CrhConverter
+ * @covers MediaWiki\Languages\Data\CrhExceptions
  */
 class CrhConverterTest extends MediaWikiIntegrationTestCase {
 

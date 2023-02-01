@@ -171,10 +171,10 @@ $wgAutoloadClasses += [
 	# test/phpunit/includes/user
 	'UserOptionsLookupTest' => "$testDir/phpunit/includes/user/UserOptionsLookupTest.php",
 
-	# tests/phpunit/languages
+	# tests/phpunit/includes/language
 	'DummyConverter' => "$testDir/phpunit/mocks/languages/DummyConverter.php",
-	'LanguageClassesTestCase' => "$testDir/phpunit/languages/LanguageClassesTestCase.php",
-	'LanguageConverterTestTrait' => "$testDir/phpunit/languages/LanguageConverterTestTrait.php",
+	'LanguageClassesTestCase' => "$testDir/phpunit/includes/language/LanguageClassesTestCase.php",
+	'LanguageConverterTestTrait' => "$testDir/phpunit/includes/language/LanguageConverterTestTrait.php",
 
 	# tests/phpunit/includes/libs
 	'BagOStuffTestBase' => "$testDir/phpunit/includes/libs/objectcache/BagOStuffTestBase.php",

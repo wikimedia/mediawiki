@@ -6,7 +6,7 @@ use MediaWiki\MediaWikiServices;
  * Helping class to run tests using a clean language instance.
  *
  * This is intended for the MediaWiki language class tests under
- * tests/phpunit/languages.
+ * tests/phpunit/includes/languages.
  *
  * Before each tests, a new language object is build which you
  * can retrieve in your test using the $this->getLang() method:
