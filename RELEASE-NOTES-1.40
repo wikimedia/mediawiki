@@ -381,6 +381,11 @@ because of Phabricator reports.
   ::getFallbacksFor(), deprecated in 1.35, now emit deprecation warnings.
 * Language::isSupportedLanguage(), ::isValidCode(), ::isValidBuiltInCode() and
   ::isKnownLanguageTag(), deprecated in 1.34, now emit deprecation warnings.
+* Language::getConverter(), ::autoConvert(), ::autoConvertToAllVariants(),
+  ::convert(), ::convertNamespace(), ::convertHtml(), ::convertCategoryKey(),
+  ::getVariants(), ::hasVariants(), ::hasVariant(), ::getDefaultVariant(),
+  ::getURLVariant(), ::getExtraHashOptions(), ::getConvRuleTitle(),
+  deprecated in 1.35, now emit deprecation warnings.
 * Executing maintenance scripts directly is deprecated. The maintenance/run.php
   entry point should be used instead.
 * MWHttpRequest::factory, deprecated in 1.34, now emits deprecation warnings.
