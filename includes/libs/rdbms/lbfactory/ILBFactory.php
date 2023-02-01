@@ -235,25 +235,11 @@ interface ILBFactory {
 	public function flushReplicaSnapshots( $fname = __METHOD__ );
 
 	/**
-	 * Commit open transactions on all connections
-	 *
-	 * This only applies to the instantiated tracked load balancer instances.
-	 *
-	 * This is useful for two main cases:
-	 *   - a) Committing changes to the masters
-	 *   - b) Releasing the snapshot on all connections to database servers
-	 *
-	 * @param string $fname Caller name
-	 */
-	public function commitAll( $fname = __METHOD__ );
-
-	/**
 	 * Flush any primary transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)
 	 *
 	 * The DBO_TRX setting will be reverted to the default in each of these methods:
 	 *   - commitPrimaryChanges()
 	 *   - rollbackPrimaryChanges()
-	 *   - commitAll()
 	 *
 	 * This only applies to the tracked load balancer instances.
 	 *

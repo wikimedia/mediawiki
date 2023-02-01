@@ -1537,12 +1537,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$conn->close( __METHOD__ );
 	}
 
-	public function commitAll( $fname = __METHOD__ ) {
-		$this->commitPrimaryChanges( $fname );
-		$this->flushPrimarySnapshots( $fname );
-		$this->flushReplicaSnapshots( $fname );
-	}
-
 	public function finalizePrimaryChanges( $fname = __METHOD__ ) {
 		$this->assertTransactionRoundStage( [ self::ROUND_CURSORY, self::ROUND_FINALIZED ] );
 		/** @noinspection PhpUnusedLocalVariableInspection */

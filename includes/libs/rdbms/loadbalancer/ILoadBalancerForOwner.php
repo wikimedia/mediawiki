@@ -88,14 +88,6 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	public function closeAll( $fname = __METHOD__ );
 
 	/**
-	 * Commit transactions on all open connections
-	 *
-	 * @param string $fname Caller name
-	 * @throws DBExpectedError
-	 */
-	public function commitAll( $fname = __METHOD__ );
-
-	/**
 	 * Run pre-commit callbacks and defer execution of post-commit callbacks
 	 *
 	 * Use this only for multi-database commits
@@ -124,7 +116,6 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	 * The DBO_TRX setting will be reverted to the default in each of these methods:
 	 *   - commitPrimaryChanges()
 	 *   - rollbackPrimaryChanges()
-	 *   - commitAll()
 	 * This allows for custom transaction rounds from any outer transaction scope.
 	 *
 	 * @param string $fname Caller name
