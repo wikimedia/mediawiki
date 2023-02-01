@@ -560,7 +560,7 @@ class XmlDumpWriter {
 		if ( $content instanceof TextContent ) {
 			// HACK: For text based models, bypass the serialization step. This allows extensions (like Flow)
 			// that use incompatible combinations of serialization format and content model.
-			$data = $content->getNativeData();
+			$data = $content->getText();
 		} else {
 			$data = $content->serialize( $contentFormat );
 		}
