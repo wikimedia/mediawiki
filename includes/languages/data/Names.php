@@ -147,7 +147,6 @@ class Names {
 		'en' => 'English', # English
 		'en-ca' => 'Canadian English', # Canadian English
 		'en-gb' => 'British English', # British English
-		'en-x-piglatin' => 'Igpay Atinlay', # Pig Latin, for variant development
 		'eo' => 'Esperanto', # Esperanto
 		'es' => 'español', # Spanish
 		'es-419' => 'español de América Latina', # Spanish for the Latin America and Caribbean region
