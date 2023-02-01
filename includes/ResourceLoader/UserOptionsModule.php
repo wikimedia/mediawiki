@@ -39,8 +39,6 @@ class UserOptionsModule extends Module {
 
 	protected $origin = self::ORIGIN_CORE_INDIVIDUAL;
 
-	protected $targets = [ 'desktop', 'mobile' ];
-
 	/**
 	 * @param Context $context
 	 * @return string JavaScript code

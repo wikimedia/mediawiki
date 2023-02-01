@@ -33,10 +33,6 @@ use Wikimedia\Minify\CSSMin;
  * @internal
  */
 class SkinModule extends LessVarFileModule {
-	/**
-	 * All skins are assumed to be compatible with mobile
-	 */
-	public $targets = [ 'desktop', 'mobile' ];
 
 	/**
 	 * Every skin should define which features it would like to reuse for core inside a

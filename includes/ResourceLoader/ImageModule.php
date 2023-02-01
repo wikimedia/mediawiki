@@ -56,7 +56,6 @@ class ImageModule extends Module {
 	protected $prefix = null;
 	protected $selectorWithoutVariant = '.{prefix}-{name}';
 	protected $selectorWithVariant = '.{prefix}-{name}-{variant}';
-	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
 	 * Constructs a new module from an options array.
