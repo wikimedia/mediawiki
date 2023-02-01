@@ -63,7 +63,7 @@ abstract class Module implements LoggerAwareInterface {
 	/** @var string|null Module name */
 	protected $name = null;
 	/** @var string[] What client platforms the module targets (e.g. desktop, mobile) */
-	protected $targets = [ 'desktop' ];
+	protected $targets = [ 'desktop', 'mobile' ];
 	/** @var string[]|null Skin names */
 	protected $skins = null;
 

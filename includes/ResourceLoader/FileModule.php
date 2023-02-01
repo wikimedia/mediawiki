@@ -132,9 +132,6 @@ class FileModule extends Module {
 	/** @var bool Link to raw files in debug mode */
 	protected $debugRaw = true;
 
-	/** @var string[] */
-	protected $targets = [ 'desktop', 'mobile' ];
-
 	/** @var bool Whether CSSJanus flipping should be skipped for this module */
 	protected $noflip = false;
 
