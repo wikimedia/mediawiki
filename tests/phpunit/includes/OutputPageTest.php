@@ -1279,11 +1279,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 
 		if ( $variantLinkCallback ) {
-			$mockContLang = $this->createMock( Language::class );
-			$mockContLang
-				->method( 'convertHtml' )
-				->willReturnArgument( 0 );
-
 			$mockLanguageConverter = $this
 				->createMock( ILanguageConverter::class );
 			$mockLanguageConverter
