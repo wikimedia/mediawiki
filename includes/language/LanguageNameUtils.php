@@ -110,13 +110,6 @@ class LanguageNameUtils {
 			// Special code for internal use, not supported even though there is a qqq.json
 			return false;
 		}
-		if (
-			$code === 'en-x-piglatin' &&
-			!$this->options->get( MainConfigNames::UsePigLatinVariant )
-		) {
-			// Suppress Pig Latin unless explicitly enabled.
-			return false;
-		}
 
 		return is_readable( $this->getMessagesFileName( $code ) ) ||
 			is_readable( $this->getJsonMessagesFileName( $code ) );
@@ -226,9 +219,9 @@ class LanguageNameUtils {
 		}
 
 		$mwNames = $this->options->get( MainConfigNames::ExtraLanguageNames ) + Data\Names::$names;
-		if ( !$this->options->get( MainConfigNames::UsePigLatinVariant ) ) {
-			// Suppress Pig Latin unless explicitly enabled.
-			unset( $mwNames['en-x-piglatin'] );
+		if ( $this->options->get( MainConfigNames::UsePigLatinVariant ) ) {
+			// Pig Latin (for variant development)
+			$mwNames['en-x-piglatin'] = 'Igpay Atinlay';
 		}
 
 		foreach ( $mwNames as $mwCode => $mwName ) {
