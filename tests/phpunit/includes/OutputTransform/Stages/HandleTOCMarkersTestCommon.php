@@ -15,7 +15,12 @@ abstract class HandleTOCMarkersTestCommon extends OutputTransformStageTestBase {
 	public function setUp(): void {
 		$mock = $this->createMock( MessageCache::class );
 		// This tests the fact that & is correctly and not doubly-escaped in the output
-		$mock->method( 'get' )->willReturn( 'Content & more content' );
+		$mock->method( 'get' )->willReturnCallback( static function ( $key ) {
+			if ( $key === 'toc' ) {
+				return "Content & more content";
+			}
+			return "($key)";
+		} );
 		$this->setService( 'MessageCache', $mock );
 	}
 
@@ -57,7 +62,9 @@ abstract class HandleTOCMarkersTestCommon extends OutputTransformStageTestBase {
 		parent::testTransform( $parserOutput, $parserOptions, $options, $expected, $message = '' );
 	}
 
-	public static function yieldTransformTestCases( string $withToc, string $withoutToc ): iterable {
+	public static function yieldTransformTestCases(
+		string $withToc, string $withoutToc, string $withCustomToc
+	): iterable {
 		$poTest1 = new ParserOutput( TestUtils::TEST_DOC );
 		TestUtils::initSections( $poTest1 );
 		$expectedWith = new ParserOutput( $withToc );
@@ -85,6 +92,26 @@ abstract class HandleTOCMarkersTestCommon extends OutputTransformStageTestBase {
 			'allowTOC' => true,
 			'injectTOC' => true
 		], $expectedWith, 'should insert TOC only once' ];
+
+		$extData = [
+			'mw:title' => 'my-title-msg',
+			'mw:id' => 'my-id-test',
+			'mw:class' => 'my-class-test',
+		];
+		$poTest4 = new ParserOutput( TestUtils::TEST_DOC );
+		TestUtils::initSections( $poTest4 );
+		$expected = new ParserOutput( $withCustomToc );
+		TestUtils::initSections( $expected );
+		foreach ( $extData as $key => $value ) {
+			$poTest4->getTOCData()->setExtensionData( $key, $value );
+			$expected->getTOCData()->setExtensionData( $key, $value );
+		}
+		yield "with custom TOC" => [ $poTest4, null, [
+			'userLang' => null,
+			'skin' => null,
+			'allowTOC' => true,
+			'injectTOC' => true
+		], $expected, 'should insert custom TOC' ];
 	}
 
 }

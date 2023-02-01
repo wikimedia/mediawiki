@@ -71,7 +71,10 @@ class HandleTOCMarkersDOM extends ContentDOMTransformStage {
 		if ( !$tocData ) {
 			return null;
 		}
-		$title = wfMessage( 'toc' )->inLanguage( $lang )->text();
+		$customTitleKey = $tocData->getExtensionData( 'mw:title' );
+		$customId = $tocData->getExtensionData( 'mw:id' );
+		$customClass = $tocData->getExtensionData( 'mw:class' );
+		$title = wfMessage( $customTitleKey ?? 'toc' )->inLanguage( $lang )->text();
 
 		$toggle = $this->createElement( $doc, 'input', [
 			'type' => 'checkbox',
@@ -111,8 +114,8 @@ class HandleTOCMarkersDOM extends ContentDOMTransformStage {
 		$tocContent = $this->generateTocContent( $tocData, $maxTocLevel, $doc );
 
 		$toc = $this->createElement( $doc, 'div', [
-			'id' => 'toc',
-			'class' => 'toc',
+			'id' => $customId ?? 'toc',
+			'class' => $customClass ?? 'toc',
 			'role' => 'navigation',
 			'aria-labelledby' => 'mw-toc-heading'
 		], $toggle, $tocTitle, $tocContent );

@@ -147,14 +147,20 @@ class HandleTOCMarkersText extends ContentTextTransformStage {
 	 *
 	 * @param string $toc Html of the Table Of Contents
 	 * @param Language|null $lang Language for the toc title, defaults to user language
+	 * @param array $options Title, class, and ID options for the TOC
 	 * @return string Full html of the TOC
 	 */
-	private static function tocList( $toc, ?Language $lang = null ) {
+	private static function tocList( string $toc, ?Language $lang = null, array $options = [] ) {
 		$lang ??= RequestContext::getMain()->getLanguage();
 
-		$title = wfMessage( 'toc' )->inLanguage( $lang )->escaped();
+		$title = wfMessage( $options['title'] ?? 'toc' )->inLanguage( $lang )->escaped();
 
-		return '<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading">'
+		return Html::openElement( 'div', [
+				'id' => $options['id'] ?? 'toc',
+				'class' => $options['class'] ?? 'toc',
+				'role' => 'navigation',
+				'aria-labelledby' => 'mw-toc-heading'
+			] )
 			. Html::element( 'input', [
 				'type' => 'checkbox',
 				'role' => 'button',
@@ -185,6 +191,10 @@ class HandleTOCMarkersText extends ContentTextTransformStage {
 	 * @param Language|null $lang Language for the toc title, defaults to user language
 	 * @param array $options
 	 *   - 'maxtoclevel' Max TOC level to generate
+	 *   - 'title': The message key to use as heading for the TOC,
+	 *      defaults to 'toc'
+	 *   - 'class': The class to use on the TOC, defaults to 'toc'
+	 *   - 'id': The ID to use on the TOC, defaults to 'toc'
 	 * @return string HTML fragment
 	 */
 	private static function generateTOC( ?TOCData $tocData, ?Language $lang = null, array $options = [] ): string {
@@ -222,6 +232,10 @@ class HandleTOCMarkersText extends ContentTextTransformStage {
 		if ( $lastLevel < $maxTocLevel && $lastLevel > 0 ) {
 			$toc .= self::tocUnindent( $lastLevel - 1 );
 		}
-		return self::tocList( $toc, $lang );
+		return self::tocList( $toc, $lang, $options + ( $tocData ? [
+			'title' => $tocData->getExtensionData( 'mw:title' ),
+			'id' => $tocData->getExtensionData( 'mw:id' ),
+			'class' => $tocData->getExtensionData( 'mw:class' ),
+		] : [] ) );
 	}
 }
