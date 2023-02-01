@@ -2518,7 +2518,6 @@
 	"undeletehistorynoadmin": "Kaca puniki sampun kausap.\nHawanan pangusapan kaicain ring ringkesan ring metén, kasarengin rerincian anganggé sané sampun ngamargiang panguahan ring kaca puniki sadurung kausap.\nDaging ungkur saking révisi sané sampun kausap puniki wantah kasedia antuk prajuru.",
 	"undelete-revision": "Révisi sané sampun kausap $1 (rikala $5, ring $4) olih $3:",
 	"undeleterevision-missing": "Révisi tan patut utawi tak katemuin. Ragané minab nyarengin pranala sané iwang, utawi révisi punika sampun kaulihang utawi kakutang saking arsip.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Arévisi|$1 révisi}} nénten prasida kaulihang, krana <code>rev_id</code> {{PLURAL:$1|dané}} kantun kaanggén.",
 	"undelete-nodiff": "Nénten wénten révisi sadurungné sané katemuin.",
 	"undeletebtn": "Ulihang",
 	"undeletelink": "cingak/ulihang",

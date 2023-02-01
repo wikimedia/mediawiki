@@ -2529,7 +2529,6 @@
 	"undeletehistorynoadmin": "Ĉi tiu paĝo estis forigita.\nLa kaŭzo de la forigo estas montrata en la resumo sube, kune kun detaloj pri la uzantoj, kiuj redaktis ĉi tiun paĝon antaŭ la forigo.\nLa teksto de ĉi tiuj forigitaj versioj disponeblas nur por administrantoj.",
 	"undelete-revision": "Forigita versio de $1 (ekde $4, $5) fare de $3:",
 	"undeleterevision-missing": "Nevalida aŭ malaperita revizio.\nVi verŝajne havas malbonan ligilon, aŭ la revizio eble estis restarigita aŭ forigita de la arkivo.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Unu versio|$1 versioj}} estas nerestarigeblaj, ĉar {{PLURAL:$1|ĝ|il}}ia <code>rev_id</code> jam estas uzata.",
 	"undelete-nodiff": "Neniu antaŭa versio troviĝis.",
 	"undeletebtn": "Restarigi",
 	"undeletelink": "vidi/restarigi",

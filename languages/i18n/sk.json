@@ -2446,7 +2446,6 @@
 	"undeletehistorynoadmin": "Táto stránka bola zmazaná. Dôvod zmazania je zobrazený dolu v zhrnutí spolu s podrobnosťami o používateľoch, ktorí túto stránku upravovali pred zmazaním. Samotný text týchto zmazaných revízií je prístupný iba správcom.",
 	"undelete-revision": "Zmazaná revízia $1 ($4, $5) od $3:",
 	"undeleterevision-missing": "Neplatná alebo chýbajúca revízia. Zrejme ste použili zlý odkaz alebo revízia bola obnovená alebo odstránená z histórie.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Jednu revíziu|$1 revízií}} nebolo možné obnoviť, pretože {{PLURAL:$1|jej|ich}} <code>rev_id</code> sa už požíval.",
 	"undelete-nodiff": "Nebola nájdená žiadna predošlá revízia.",
 	"undeletebtn": "Obnoviť!",
 	"undeletelink": "zobraziť/obnoviť",

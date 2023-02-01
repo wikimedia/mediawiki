@@ -2389,7 +2389,6 @@
 	"undeletehistorynoadmin": "Questa pagina a l'è stæta scassâ.\nO motivo da scassatua o l'è mostrou chì sotta, insemme a-i detaggi de l'utente ch'o l'ha modificou questa pagina primma da scassatua.\nO testo contegnuo inte verscioin scassæ o l'è disponibile solo a-i amministratoî.",
 	"undelete-revision": "Verscion scassâ da pagina $1, inseia o $4 a $5 da $3:",
 	"undeleterevision-missing": "Verscion errâ o mancante. L'ingancio o l'è errou o dunque a verscion a l'è stæta zà ripristinâ ò eliminâ da l'archivvio.",
-	"undeleterevision-duplicate-revid": "No s'è posciuo ripristinâ {{PLURAL:$1|una verscion|$1 verscioin}}, percose {{PLURAL:$1|o so}} <code>rev_id</code> o l'ea za in doeuvia.",
 	"undelete-nodiff": "No l'è stæto trovou nisciun-a verscion precedente.",
 	"undeletebtn": "Ristorâ",
 	"undeletelink": "fanni védde/repìggia",

@@ -2718,7 +2718,6 @@
 	"undeletehistorynoadmin": "El artículo ha sido borrado.\nLa razón de su eliminación se indica abajo en el resumen, así como los detalles de las ediciones realizadas antes del borrado.\nEl texto completo de dichas revisiones borradas está disponible sólo para usuarios con permisos de administrador.",
 	"undelete-revision": "Edición borrada de $1 (fechada el $4, a las $5) por $3:",
 	"undeleterevision-missing": "Revisión no válida o perdida.\nPuede deberse a un enlace incorrecto o a que la revisión haya sido restaurada o eliminada del archivo.",
-	"undeleterevision-duplicate-revid": "No se {{PLURAL:$1|pudo restaurar una modificación|pudieron restaurar $1 modificaciones}} porque {{PLURAL:$1|su <code>rev_id</code> ya se estaba|sus <code>rev_id</code> ya se estaban}} utilizando.",
 	"undelete-nodiff": "No existe una revisión previa.",
 	"undeletebtn": "Restaurar",
 	"undeletelink": "ver/restaurar",

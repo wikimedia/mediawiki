@@ -2395,7 +2395,6 @@
 	"undeletehistorynoadmin": "Artikulua ezabatu egin da. Ezabatzeko azalpena beheko laburpenean erakusten da, ezabatu aurretik parte hartu zuten erabiltzaileen xehetasunekin batera. Ezabatutako berrikuspenen oraingo testua administratzaileek bakarrik ikus dezakete.",
 	"undelete-revision": "$1(e)n berrikuspen $3(e)k ezabatu du ($4(e)ko $5(e)tan):",
 	"undeleterevision-missing": "Baliogabeko berrikuspena. Baliteke lotura ezegokia izatea, edo berriskupena leheneratu edo kendu izana.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Berrikusketa bat ezin izan da|$1 berrikusketa ezin izan dira}} berregin, {{PLURAL:$1|bere|beraien}} <code>rev_id</code> erabiltzen zegoelako jada.",
 	"undelete-nodiff": "Ez da aurkitu aurreko berrikuspenik.",
 	"undeletebtn": "Leheneratu",
 	"undeletelink": "ikusi/leheneratu",

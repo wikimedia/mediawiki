@@ -1074,6 +1074,7 @@
 	"lineno": "Linha $1:",
 	"compareselectedversions": "Comparar as versões selecionadas",
 	"showhideselectedversions": "Exibir/ocultar edições selecionadas",
+	"showhideselectedfileversions": "Alterar a visibilidade das versões do arquivo selecionadas",
 	"editundo": "desfazer",
 	"diff-empty": "(Sem diferença)",
 	"diff-multi-sameuser": "({{PLURAL:$1|Uma revisão intermediária|$1 revisões intermediárias}} pelo mesmo usuário não {{PLURAL:$1|está sendo mostrada|estão sendo mostradas}})",
@@ -2634,7 +2635,6 @@
 	"undeletehistorynoadmin": "Esta página foi eliminada.\nO motivo da exclusão é mostrado no resumo abaixo, junto com os detalhes dos usuários que editaram esta página antes da exclusão.\nO texto dessas revisões excluídas está disponível apenas para administradores.",
 	"undelete-revision": "Edição eliminada da página $1 (das $5 de $4), por $3:",
 	"undeleterevision-missing": "Revisão inválida ou não encontrada.\nPode ter usado uma hiperligação incorreta ou talvez a revisão tenha sido restaurada ou removida do arquivo.",
-	"undeleterevision-duplicate-revid": "Não foi possível restaurar {{PLURAL:$1|uma revisão|$1 revisões}}, porque {{PLURAL:$1|a sua <code>rev_id</code> já estava a ser usada|as respetivas <code>rev_id</code> já estavam a ser usadas}}.",
 	"undelete-nodiff": "Não foram encontradas edições anteriores.",
 	"undeletebtn": "Restaurar",
 	"undeletelink": "ver/restaurar",
@@ -4209,5 +4209,14 @@
 	"newpages-showhide-patrolled": "$1 edições patrulhadas",
 	"newpages-showhide-redirect": "$1 redirecionamentos",
 	"newpages-showhide-registered": "$1 usuários registrados",
-	"blockedtext-block-ip": "O seu endereço IP atual é $1"
+	"blockedtext-made-by": "O bloqueio foi feito por $1.",
+	"blockedtext-reason-comment": "O motivo apresentado é <em>$1</em>.",
+	"blockedtext-start-time": "Início do bloqueio: $1",
+	"blockedtext-expiration-time": "Expiração do bloqueio: $1",
+	"blockedtext-expiration-longest-block": "Expiração do bloqueio mais prolongado: $1",
+	"blockedtext-intended-blockee": "Alvo pretendido: $1",
+	"blockedtext-contact-blocker-admin": "Pode contatar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir o bloqueio.",
+	"blockedtext-block-ip": "O seu endereço IP atual é $1",
+	"blockedtext-block-id": "ID do bloqueio nº $1.",
+	"blockedtext-include-details-queries": "Inclua todos os detalhes acima em quaisquer contatos relacionados com este bloqueio, por favor."
 }

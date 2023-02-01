@@ -2528,7 +2528,6 @@
 	"undeletehistorynoadmin": "Esta páxina foi borrada.\nO motivo do borrado consta no resumo que aparece a continuación, xunto cos detalles dos usuarios que editaron esta páxina antes da súa eliminación.\nO texto destas revisións eliminadas só está á disposición dos administradores.",
 	"undelete-revision": "Revisión eliminada de \"$1\" (o $4 ás $5) feita por $3:",
 	"undeleterevision-missing": "Revisión non válida ou inexistente.\nPode que a ligazón conteña un erro ou que a revisión se restaurase ou eliminase do arquivo.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Unha revisión non se puido|$1 revisións non se puideron}} restaurar porque {{PLURAL:$1|o seu|os seus}} <code>rev_id</code> xa {{PLURAL:$1|está|están}} en uso.",
 	"undelete-nodiff": "Non se atopou ningunha revisión anterior.",
 	"undeletebtn": "Restaurar",
 	"undeletelink": "ver/restaurar",

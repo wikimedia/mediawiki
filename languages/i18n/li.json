@@ -2245,7 +2245,6 @@
 	"undeletehistorynoadmin": "Deze pazjena is gewis. De reje hiej veur stuit hiej onger, same mit de details van de gebroekers die deze pazjena höbbe bewerk véur de verwiedering. De verwiederde inhoud van de pazjena is allein zichbaar veur beheerders.",
 	"undelete-revision": "Verwiederde versie van $1 (per $4 óm $5) door $3:",
 	"undeleterevision-missing": "Ongeldige of missende versie. Meugelik höbse 'n verkeerde verwiezing of is de versie hersteld of verwiederd oet 't archief.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Ein versie kós|$1 versies kóste}} neet waere herstèldj, ómdet {{PLURAL:$1|de}} <code>rev_id</code> al in gebroek waas.",
 	"undelete-nodiff": "Gein eerdere versie gevonje.",
 	"undeletebtn": "Trökzètte",
 	"undeletelink": "bekieke/trökzètte",

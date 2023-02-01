@@ -2265,7 +2265,6 @@
 	"undeletehistorynoadmin": "Dës Säit gouf geläscht.\nDe Grond fir d'Läsche gesitt der ënnen am Resumé, zesumme mat den Detailer vun den Benotzer déi dës \nSäit virum Läsche geännert hunn.\nDéi verschidden Textversioune sinn awer just fir Administrateuren disponibel.",
 	"undelete-revision": "Geläscht Versioun vu(n) $1 (Versioun vum $4 um $5 Auer) vum $3:",
 	"undeleterevision-missing": "Ongëlteg oder Versioun déi feelt.\nEntweder ass de Link falsch oder d'Versioun gouf aus dem Archiv restauréiert oder aus dem Archiv erausgeholl.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Eng Versioun konnt|$1 Versioune konnten}} net restauréiert ginn, well hir <code>rev_id</code> scho benotzt {{PLURAL:$1|gëtt|ginn}}.",
 	"undelete-nodiff": "Et si keng méi al Versiounen do.",
 	"undeletebtn": "Restauréieren",
 	"undeletelink": "weisen/restauréieren",

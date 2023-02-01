@@ -2395,7 +2395,6 @@
 	"undeletehistorynoadmin": "Esta páxina desanicióse.\nEl motivu del desaniciu amuésase\nnel resume de más abaxo, xunto colos detalles de los usuarios qu'editaron esta páxina enantes de desaniciase.\nEl testu d'estes revisiones desaniciaes ta disponible namái pa los alministradores.",
 	"undelete-revision": "Revisión desaniciada de $1 (del $4, a les $5) fecha por $3:",
 	"undeleterevision-missing": "Falta la revisión o nun ye válida. Seique l'enllaz nun seya correutu, o que la revisión restauróse o desanicióse del archivu.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Una revisión nun pudo|$1 revisiones nun pudieron}} restaurase porque {{PLURAL:$1|taba usándose la so|taben usándose les sos}} <code>rev_id</code>.",
 	"undelete-nodiff": "Nun s'alcontró nenguna revisión anterior.",
 	"undeletebtn": "Restaurar",
 	"undeletelink": "ver/restaurar",

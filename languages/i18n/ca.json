@@ -2558,7 +2558,6 @@
 	"undeletehistorynoadmin": "Aquesta pàgina ha estat eliminada. <br>El motiu de la supressió es mostra en el resum següent, juntament amb els detalls dels usuaris que han editat aquesta pàgina abans de la supressió. <br>El text d'aquestes revisions suprimides només està disponible per als administradors.",
 	"undelete-revision": "S'ha eliminat la revisió de $1 (des del dia $4 a les $5), revisat per $3:",
 	"undeleterevision-missing": "La revisió no és vàlida o no hi és. \nPodeu tenir-hi un enllaç incorrecte, o bé s'ha desfet la supressió de la revisió o s'ha eliminat de l'arxiu.",
-	"undeleterevision-duplicate-revid": "No s'ha pogut desfer la supressió {{PLURAL:$1|d'una revisió|de $1 revisions}}, perquè {{PLURAL:$1|el seu|els seus}} <code>rev_id</code> ja s'estaven fent servir.",
 	"undelete-nodiff": "No s'ha trobat cap revisió anterior.",
 	"undeletebtn": "Restaura",
 	"undeletelink": "mira/restaura",

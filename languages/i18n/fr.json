@@ -2698,7 +2698,6 @@
 	"undeletehistorynoadmin": "Cette page a été supprimée.\nLe motif de la suppression est indiqué dans le résumé ci-dessous, avec les détails des utilisateurs qui ont modifié la page avant sa suppression.\nLe contenu de ces versions supprimées n’est accessible qu’aux administrateurs.",
 	"undelete-revision": "Version supprimée de $1 (version du $4 à $5) par $3 :",
 	"undeleterevision-missing": "Version incorrecte ou manquante.\nVous avez peut-être un mauvais lien, ou bien la version a pu être restaurée ou supprimée de l’archive.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Une|$1}} version{{PLURAL:$1||s}} n’{{PLURAL:$1|a|ont}} pas pu être restaurée{{PLURAL:$1||s}} car {{PLURAL:$1|son|leur}} <code>rev_id</code> était déjà en cours d’utilisation.",
 	"undelete-nodiff": "Aucune version précédente trouvée.",
 	"undeletebtn": "Restaurer",
 	"undeletelink": "voir / restaurer",

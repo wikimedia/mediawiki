@@ -2443,7 +2443,6 @@
 	"undeletehistorynoadmin": "Sta pàgina-sì a l'é stàita scancelà.\nËl motiv che a l'é scancelasse as peul savejsse ën vardand ël resumé ambelessì-sota, andoa che a së s-ciàira ëdcò chi che a\nl'avìa travajaje ansima anans che a la scancelèisso.\nËl test atual che a-i era ant le vàire version a peulo s-ciairelo mach j'aministrator.",
 	"undelete-revision": "Revision ëscancelà ëd $1 (dël $4, a $5) da $3:",
 	"undeleterevision-missing": "Revision nen bon-a ò ch'a-i é nen d'autut. A peul esse ch'a l'abia n'anliura cioca, ma a peul ëdcò esse che la revision a la sia stàita torna butà ò gavà via da 'nt la base dij dat.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Na revision|$1 revision}} a peulo pa esse ripristinà, përchè {{PLURAL:$1|sò}} <code>rev_id</code> a l'é già dovrà.",
 	"undelete-nodiff": "Pa gnun-a revision anans ëd costa.",
 	"undeletebtn": "Ripristiné",
 	"undeletelink": "vëdde/ripristiné",

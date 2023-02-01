@@ -2580,7 +2580,6 @@
 	"undeletehistorynoadmin": "Halaman ini telah dihapus.\nAlasan penghapusan diberikan pada ringkasan di bawah ini, beserta rincian pengguna yang telah melakukan penyuntingan di halaman ini sebelum dihapus.\nIsi terakhir dari revisi yang telah dihapus ini hanya tersedia untuk pengurus.",
 	"undelete-revision": "Revisi yang telah dihapus dari $1 (pada $5, $4) oleh $3:",
 	"undeleterevision-missing": "Revisi salah atau tak ditemukan. Anda mungkin mengikuti pranala yang salah, atau revisi tersebut telah dipulihkan atau dibuang dari arsip.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Sebuah revisi|$1 revisi}} tidak dapat dipulihkan, karena  <code>rev_id</code>-nya telah digunakan.",
 	"undelete-nodiff": "Tidak ada revisi yang lebih lama.",
 	"undeletebtn": "Pulihkan",
 	"undeletelink": "lihat/pulihkan",

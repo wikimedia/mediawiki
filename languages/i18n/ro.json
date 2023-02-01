@@ -2507,7 +2507,6 @@
 	"undeletehistorynoadmin": "Această pagină a fost ștearsă. \nMotivul ștergerii apare în rezumatul de mai jos, alături de detaliile utilizatorilor care au editat această pagină înainte de ștergere. Textul acestor revizii șterse este disponibil doar administratorilor.",
 	"undelete-revision": "Ștergere versiunea $1 (din $4 $5) de către $3:",
 	"undeleterevision-missing": "Versiune lipsă sau invalidă.\nS-ar putea ca legătura să fie greșită, ori versiunea să fi fost restaurată sau ștearsă din arhivă.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|O versiune|$1 versiuni}} nu au putut fi restaurate, deoarece {{PLURAL:$1|codul|codurile}} <code>rev_id</code> sunt deja folosite.",
 	"undelete-nodiff": "Nu s-a găsit vreo versiune anterioară.",
 	"undeletebtn": "Recuperează",
 	"undeletelink": "vizualizare/recuperare",

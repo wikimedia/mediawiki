@@ -2590,7 +2590,6 @@
 	"undeletehistorynoadmin": "Deze pagina is verwijderd.\nDe reden hiervoor staat hieronder, samen met de details van de gebruikers die deze pagina hebben bewerkt vóór de verwijdering.\nDe verwijderde inhoud van de pagina is alleen zichtbaar voor beheerders.",
 	"undelete-revision": "Dit is de verwijderde versie van $1 van $4 om $5 gemaakt door $3:",
 	"undeleterevision-missing": "Ongeldige of ontbrekende versie.\nMogelijk is uw koppeling verkeerd, of is de versie al teruggeplaatst of al verwijderd uit het archief.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Eén versie kon|$1 versies konden}} niet worden teruggeplaatst omdat {{PLURAL:$1|haar|hun}} <code>rev_id</code> al in gebruik was.",
 	"undelete-nodiff": "Geen eerdere versie gevonden.",
 	"undeletebtn": "Terugplaatsen",
 	"undeletelink": "bekijken/terugplaatsen",

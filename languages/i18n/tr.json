@@ -2618,7 +2618,6 @@
 	"undeletehistorynoadmin": "Bu sayfa silinmiştir.\nSilinme nedeni, silme işleminden önce bu sayfayı düzenleyen kullanıcıların bilgileriyle birlikte aşağıdaki özette gösterilmiştir.\nSilinen bu revizyonların metni yalnızca hizmetliler tarafından görülebilir.",
 	"undelete-revision": "$3 tarafından $1 sayfasının silinmiş revizyonu ($4 tarihinden beri, $5 saatinde):",
 	"undeleterevision-missing": "Geçersiz veya eksik revizyon.\nBağlantınız bozuk olabilir veya revizyon geri getirilmiş veya arşivden kaldırılmış olabilir.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Bir revizyon|$1 revizyon}} geri getirilmedi, çünkü  <code>rev_id</code> zaten kullanılıyor.",
 	"undelete-nodiff": "Önceki bir revizyon bulunamadı.",
 	"undeletebtn": "Geri getir",
 	"undeletelink": "görüntüle/geri getir",

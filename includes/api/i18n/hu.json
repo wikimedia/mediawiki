@@ -4,6 +4,7 @@
 			"Csega",
 			"Dj",
 			"Dorgan",
+			"Eukarióta",
 			"Macofe",
 			"Tacsipacsi",
 			"ViDam",
@@ -1206,6 +1207,8 @@
 	"apierror-compare-nofromrevision": "Nincs „from” változat. Add meg a <var>fromrev</var>, <var>fromtitle</var> vagy <var>fromid</var> paramétert.",
 	"apierror-compare-notext": "A(z) <var>$1</var> paraméter nem használható a(z) <var>$2</var> nélkül.",
 	"apierror-compare-notorevision": "Nincs „to” változat. Add meg a <var>torev</var>, <var>totitle</var> vagy <var>toid</var> paramétert.",
+	"apiwarn-validationfailed-keytoolong": "a kulcs túl hosszú (legfeljebb $1 byte engedélyezett).",
+	"apiwarn-validationfailed-valuetoolong": "az érték túl hosszú (legfeljebb $1 byte engedélyezett).",
 	"api-credits-header": "Készítők",
 	"api-credits": "API-fejlesztők:\n* Jurij Asztrahan (készítő, vezető fejlesztő 2006 szeptemberétől 2007 szeptemberéig)\n* Roan Kattouw (vezető fejlesztő 2007 szeptemberétől 2009-ig)\n* Viktor Vasziljev\n* Bryan Tong Minh\n* Sam Reed\n* Brad Jorsch (vezető fejlesztő 2013-tól)\n\nA megjegyzéseidet, javaslataidat és kérdéseidet a mediawiki-api@lists.wikimedia.org címre küldheted, vagy készíthetsz egy hibajelentést a https://phabricator.wikimedia.org/ oldalon."
 }

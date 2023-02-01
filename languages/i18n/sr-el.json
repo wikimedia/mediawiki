@@ -2430,7 +2430,6 @@
 	"undeletehistorynoadmin": "Ova stranica je izbrisana.\nRazlog za brisanje se nalazi ispod, zajedno sa detaljima o korisniku koji je uredio ovu stranicu pre brisanja.\nTekst izbrisanih izmena je dostupan samo administratorima.",
 	"undelete-revision": "Izbrisana izmena stranice $1 (dana $4 u $5 č.) {{GENDER:$3|korisnika|korisnice}} $3:",
 	"undeleterevision-missing": "Nevažeća ili nedostajuća izmena.\nMožda ste uneli lošu vezu ili je izmena vraćena ili uklonjena iz arhive.",
-	"undeleterevision-duplicate-revid": "Ne mogu vratiti {{PLURAL:$1|izmenu|$1 izmene|$1 izmena}} jer se {{PLURAL:$1|njen|njihov}} <code>rev_id</code> već koristi.",
 	"undelete-nodiff": "Prethodne izmene nisu pronađene.",
 	"undeletebtn": "Vrati",
 	"undeletelink": "prikaži/vrati",
