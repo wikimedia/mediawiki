@@ -386,11 +386,9 @@ trait LanguageNameUtilsTestTrait {
 	}
 
 	public function provideGetLanguageNames_pigLatin() {
-		# Pig Latin is supported only if UsePigLatinVariant is true
-		# (which it is, for these tests)
 		return [
 			'Simple test' => [ 'Igpay Atinlay' ],
-			'Supported' => [ 'Igpay Atinlay', AUTONYMS, SUPPORTED ],
+			'Not supported' => [ '', AUTONYMS, SUPPORTED ],
 			'Foreign language' => [ 'latin de cochons', 'fr' ],
 			'Hook doesn\'t override explicit autonym' =>
 				[ 'Igpay Atinlay', 'en-x-piglatin', 'en-x-piglatin' ],
@@ -398,25 +396,9 @@ trait LanguageNameUtilsTestTrait {
 	}
 
 	/**
-	 * @covers MediaWiki\Languages\LanguageNameUtils::getLanguageNames
-	 * @covers MediaWiki\Languages\LanguageNameUtils::getLanguageNamesUncached
-	 * @covers MediaWiki\Languages\LanguageNameUtils::getLanguageName
-	 * @covers Language::fetchLanguageNames
-	 * @covers Language::fetchLanguageName
-	 */
-	public function testGetLanguageNames_pigLatinNotSupported() {
-		// Pig Latin is "not supported" when UsePigLatinVariant is false
-		$this->assertGetLanguageNames(
-			[ MainConfigNames::UsePigLatinVariant => false ],
-			'', 'en-x-piglatin', AUTONYMS, SUPPORTED
-		);
-	}
-
-	/**
-	 * Just for the sake of completeness, test that ExtraLanguageNames
-	 * can override the name for Pig Latin. Nobody actually cares
-	 * about this, but once we're testing the whole file we may as
-	 * well be comprehensive.
+	 * Just for the sake of completeness, test that ExtraLanguageNames will not override the name
+	 * for pig Latin. Nobody actually cares about this and if anything current behavior is probably
+	 * wrong, but once we're testing the whole file we may as well be comprehensive.
 	 *
 	 * @covers MediaWiki\Languages\LanguageNameUtils::getLanguageNames
 	 * @covers MediaWiki\Languages\LanguageNameUtils::getLanguageNamesUncached
@@ -430,7 +412,7 @@ trait LanguageNameUtilsTestTrait {
 				MainConfigNames::UsePigLatinVariant => true,
 				MainConfigNames::ExtraLanguageNames => [ 'en-x-piglatin' => 'igpay atinlay' ]
 			],
-			'igpay atinlay',
+			'Igpay Atinlay',
 			'en-x-piglatin'
 		);
 	}

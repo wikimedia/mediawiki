@@ -389,6 +389,8 @@ class ParserTestRunner {
 			// Reset to follow changes to $wgDisable*Conversion
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'LanguageConverterFactory' );
 		};
+		$setup[] = $reset;
+		$teardown[] = $reset;
 
 		// "extra language links"
 		// see https://gerrit.wikimedia.org/r/111390
@@ -2141,14 +2143,14 @@ class ParserTestRunner {
 		$userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
 		// Make a user object with the same language
 		$user = new User;
-		$userOptionsManager->setOption( $user, 'language', $variant ?: $langCode );
+		$userOptionsManager->setOption( $user, 'language', $langCode );
 		$setup['wgLang'] = $lang;
 		$setup['wgUser'] = $user;
 
-		// And put both user (and, implicitly, the user language) into the
-		// context
+		// And put both user and language into the context
 		$context = RequestContext::getMain();
 		$context->setUser( $user );
+		$context->setLanguage( $lang );
 		// And the skin!
 		$oldSkin = $context->getSkin();
 		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
