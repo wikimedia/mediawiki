@@ -2498,7 +2498,6 @@
 	"undeletehistorynoadmin": "Questa pagina l'è stada scancelada.\nLa reson del scancelament l'è mostrada chì de sota, insema ai detali de l'utent che l'ha modifegad questa pagina inanz del scancelament.\nEl test che gh'era dent in di version scancelade l'è disponibil doma per i minestrador.",
 	"undelete-revision": "Version scancelada de $1, scrivuda el $4 ai $5 de $3:",
 	"undeleterevision-missing": "Version sbagliata o mancanta. El conligament l'è sbagliad opur la version l'è stata sgiamò rimissa 'me che l'era prima o tolta via de l'archivi.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Una version la po minga versse rifada come prima|$1 version i poden minga vesser rifade come prima}}, desgià che {{PLURAL:$1|el so|i lor}} <code>rev_id</code> {{PLURAL:$1|l'è sgiamò stad doprad|a inn sgaimo stade doprade}}.",
 	"undelete-nodiff": "Per questa pagina gh'è nanca una version precedenta.",
 	"undeletebtn": "Anulla la scancellazzion",
 	"undeletelink": "Varda/anulla la scancellazion",

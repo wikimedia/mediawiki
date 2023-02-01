@@ -691,7 +691,7 @@
 	"autoblockedtext": "Az IP-címed automatikusan blokkolva lett, mert korábban egy olyan felhasználó használta, akit $1 blokkolt, az alábbi indoklással:\n\n:''$2''\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n\nAz „{{int:emailuser}}” funkciót csak akkor használhatod, ha meg van adva egy érvényes e-mail-cím a [[Special:Preferences|fiókbeállításaidban]], és nem blokkolták a használatát.\n\n{{int:blockedtext-block-ip|$3}}: $3, a blokkolás azonosítószáma: #$5.\n{{int:blockedtext-include-details-queries}}",
 	"systemblockedtext": "A felhasználónevedet vagy IP-címedet automatikusan blokkolta a MediaWiki.\nA blokkolás indoka:\n\n:<em>$2</em>\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-block-ip|$3}}.\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "nem adott meg okot",
-	"blockedtext-composite": "<strong>A felhasználónevedet vagy IP-címedet blokkolták.</strong>\nA blokkolás indoka:\n\n:<em>$2</em>\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-longest-block|$6}}\n\n* $5\n\n{{int:blockedtext-block-ip|$3}}.\n{{int:blockedtext-include-details-queries}}",
+	"blockedtext-composite": "<strong>A felhasználóneved vagy IP-címed blokkolták.</strong>\nA blokkolás indoka:\n\n:<em>$2</em>\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-longest-block|$6}}\n\n* $5\n\n{{int:blockedtext-block-ip|$3}}.\n{{int:blockedtext-include-details-queries}}",
 	"blockedtext-composite-ids": "Releváns blokkolási azonosító: $1 (IP-címed feketelistázva is lehet)",
 	"blockedtext-composite-no-ids": "IP-címed több feketelistán is szerepel.",
 	"blockedtext-composite-reason": "Fiókoddal és/vagy IP-címeddel szemben több blokk is érvényben van",
@@ -2524,7 +2524,6 @@
 	"undeletehistorynoadmin": "Ezt a szócikket törölték. A törlés okát alább az összegzésben\nláthatod, az oldalt a törlés előtt szerkesztő felhasználók részleteivel együtt. Ezeknek\na törölt változatoknak a szövege csak az adminisztrátorok számára hozzáférhető.",
 	"undelete-revision": "$1 $4, $5-kori törölt változata (szerző: $3).",
 	"undeleterevision-missing": "Érvénytelen vagy hiányzó változat. Lehet, hogy rossz hivatkozásod van, ill. a\nváltozatot visszaállították vagy eltávolították az archívumból.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Egy|$1}} változat nem állítható vissza, mert a <code>rev_id</code>-{{PLURAL:$1|je|jük}} már használatban van.",
 	"undelete-nodiff": "Nem található korábbi változat.",
 	"undeletebtn": "Helyreállítás",
 	"undeletelink": "megtekintés/helyreállítás",
@@ -4050,5 +4049,5 @@
 	"blockedtext-contact-blocker-admin": "Kapcsolatba léphetsz a blokkolás végrehajtójával ($1) vagy egy másik [[{{MediaWiki:Grouppage-sysop}}|adminisztrátorral]], és megbeszélheted vele a blokkot.",
 	"blockedtext-block-ip": "Jelenlegi IP-címed: $1",
 	"blockedtext-block-id": "A blokkolás azonosítószáma: $1",
-	"blockedtext-include-details-queries": "Kérjük, hogy érdeklődés esetén minden fenti részletet adj meg."
+	"blockedtext-include-details-queries": "Kérünk, hogy érdeklődés esetén minden fenti részletet adj meg."
 }

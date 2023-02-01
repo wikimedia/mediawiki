@@ -2478,7 +2478,6 @@
 	"undeletehistorynoadmin": "Na per esteriyaya.\nSebebê esterıtışi, karê esterıtışi ra veror, karberê ke na per vurnayê pê melumatê inana piya xulasa dı deyayo. \nEsteriyaye metinê nê revizyona teyna terefê xızmetkaran ra mocniyeno",
 	"undelete-revision": "hetê ıney $3 ra revizyonê pelê ıney $1 hewn a biyo, nêy revizyoni ($4 tarixi ra nat, $5 seeti de):",
 	"undeleterevision-missing": "revizyonê nemeqbul u vindbiyayeyi.\nRevizyoni ya hewn a biyê ya arşiw ra veciyayê ya zi cıresayişê şımayi şaş o.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|yew revizyon|$1 revizyoni}} peyser bar nêbiyê, çıkı {{PLURAL:$1|o|ê}} <code>rev_id</code> xora karneyêno.",
 	"undelete-nodiff": "revizyonê verıni nidiya",
 	"undeletebtn": "Meestere",
 	"undeletelink": "bıvêne/peyser biya",

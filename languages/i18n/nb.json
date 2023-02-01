@@ -2540,7 +2540,6 @@
 	"undeletehistorynoadmin": "Denne artikkelen har blitt slettet. Grunnen for slettingen vises i oppsummeringen nedenfor, sammen med detaljer om brukerne som redigerte siden før den ble slettet. Teksten i disse slettede revisjonene er kun tilgjengelig for administratorer.",
 	"undelete-revision": "Slettet revisjon av $1 (per $4 $5) av $3:",
 	"undeleterevision-missing": "Ugyldig eller manglende revisjon. Du kan ha en ødelagt lenke, eller revisjonen har blitt fjernet fra arkivet.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Én revisjon|$1 revisjoner}} kunne ikke gjenopprettes, fordi {{PLURAL:$1|dens|deres}} <code>rev_id</code> allerede er i bruk.",
 	"undelete-nodiff": "Ingen tidligere revisjoner funnet.",
 	"undeletebtn": "Gjenopprett",
 	"undeletelink": "vis/gjenopprett",

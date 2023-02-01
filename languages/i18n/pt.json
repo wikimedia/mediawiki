@@ -2575,7 +2575,6 @@
 	"undeletehistorynoadmin": "Esta página foi eliminada.\nO motivo de eliminação é apresentado no resumo abaixo, em conjunto com detalhes dos utilizadores que tinham editado esta página antes da sua eliminação.\nO texto destas edições eliminadas está agora apenas disponível para administradores.",
 	"undelete-revision": "Edição eliminada da página $1 (das $5 de $4), por $3:",
 	"undeleterevision-missing": "Revisão inválida ou não encontrada.\nPode ter usado uma hiperligação incorreta ou talvez a revisão tenha sido restaurada ou removida do arquivo.",
-	"undeleterevision-duplicate-revid": "Não foi possível restaurar {{PLURAL:$1|uma revisão|$1 revisões}}, porque {{PLURAL:$1|a sua <code>rev_id</code> já estava a ser usada|as respetivas <code>rev_id</code> já estavam a ser usadas}}.",
 	"undelete-nodiff": "Não foram encontradas edições anteriores.",
 	"undeletebtn": "Restaurar",
 	"undeletelink": "ver/restaurar",

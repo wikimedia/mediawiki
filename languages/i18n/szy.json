@@ -2060,7 +2060,6 @@
 	"undeletehistorynoadmin": "kina kasabelih masipu tu.\nisasa’ay pecu’ nu lacul paazih masipu mahicaay atu masipu ayaw sacahamin  mikawaway-kalumyiti tina kasabelih a misaungayay pulita kalunasulitan.\nuyniyay masipuay tu tatenga’ay a cudad  masumad nu ayaway taneng dada’ tu mikuwanay.",
 	"undelete-revision": "masipu nu $3 a $1 (i $4 $5) masumad nu ayaway",
 	"undeleterevision-missing": "la’cus saca mahedaw a nisumadan.\nhakay kisu pisaungay tu mungangaway misiket, saca kya amasumad nu ayaway namaemicen patiku saca masipu.",
-	"undeleterevision-duplicate-revid": "la’cus patiku {{PLURAL:$1|1 masumad nu ayaway|$1 masumad nu ayaway}}, zayhan {{PLURAL:$1|masumad nu ayaway a}} <code>rev_id</code> mapasaungay tuway.",
 	"undelete-nodiff": "inayi’ nasawniay a sumad.",
 	"undeletebtn": "patiku",
 	"undeletelink": "ciwsace/patiku",

@@ -2299,7 +2299,6 @@
 	"undeletehistorynoadmin": "Ovaj je stranica izbrisana.\nRazlog za brisanje prikazan je u donjem sažetku, zajedno s\npojedinostima o suradnicima koji su uređivali ovu stranicu prije brisanja.\nTekst izbrisanih inačica dostupan je samo administratorima.",
 	"undelete-revision": "Izbrisana inačica članka $1 (od $4, $5) izbrisao $3:",
 	"undeleterevision-missing": "Nevaljana ili nepostojeća promjena. Poveznica je nevaljana,\nili je promjena vraćena ili uklonjena iz arhive.",
-	"undeleterevision-duplicate-revid": "Nije moguće vratiti {{PLURAL:$1|1=jednu izmjenu|$1 izmjenu|$1 izmjene|$1 izmjena}} jer se {{PLURAL:$1|njen|njihov}} <code>rev_id</code> već rabi.",
 	"undelete-nodiff": "Prethodne promjene nisu nađene.",
 	"undeletebtn": "Vrati",
 	"undeletelink": "vidi/vrati",

@@ -2363,7 +2363,6 @@
 	"undeletehistorynoadmin": "Tämä sivu on poistettu. \nSyy sivun poistamisheen näkkyy alla olevassa yhtheenveossa, jossa on myös tiot, kukka olivat mookanheet tätä sivua ennen poistamista. \nNäitten poistettuitten versuunitten varsinainen tekstisisältö on vain atministraattoritten luettavissa.",
 	"undelete-revision": "Poistettu versuuni sivusta $1 (aikaleima $4 kello $5). versuunin tekijä: $3.",
 	"undeleterevision-missing": "Virheelinen tai puuttuva versuuni . \nSinula on kenties käytössä väärä länkki, tai sitten versuuni on saatettu palauttaa takaisin tai poistaa arkistosta.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Yhtä versuunia|$1 versuunia}} ei voitu palauttaa, koska {{PLURAL:$1|sen|niitten}} <code>rev_id</code> oli jo käytössä.",
 	"undelete-nodiff": "Aikaisempaa versuunia ei löyvetty.",
 	"undeletebtn": "Palauta",
 	"undeletelink": "näytä/ota takashiin",

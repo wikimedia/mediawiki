@@ -2610,7 +2610,6 @@
 	"undeletehistorynoadmin": "已刪除此頁面。\n以下摘要顯示刪除原因與刪除前所有編輯過此頁面的使用者詳細資料。\n這些已刪除的文字修訂僅對管理員可用。",
 	"undelete-revision": "$1由$3（於$4 $5）所編輯的已刪除修訂版本",
 	"undeleterevision-missing": "無效或遺失的修訂。\n您可能使用了錯誤的連結，或該修訂已從封存中還原或刪除。",
-	"undeleterevision-duplicate-revid": "無法還原 {{PLURAL:$1|$1 個修訂}}，因為{{PLURAL:$1|修訂的}} <code>rev_id</code> 已在使用中。",
 	"undelete-nodiff": "查無先前的修訂。",
 	"undeletebtn": "還原",
 	"undeletelink": "檢視/還原",

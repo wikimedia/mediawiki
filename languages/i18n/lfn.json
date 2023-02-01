@@ -2222,7 +2222,6 @@
 	"undeletehistorynoadmin": "Esta paje es sutraeda.\nLa razona de sutrae es mostrada en la resoma a su, con ance detalias de la usores ci ia edita esta paje ante la sutrae.\nLa testo mesma de esta revisas sutraeda es sola disponable a dirijores.",
 	"undelete-revision": "Revisa sutraeda de $1 (a $4, a $5) par $3:",
 	"undeleterevision-missing": "Revisa nonvalida o mancante.\nTu ave cisa un mal lia, o cisa la revisa ia es restorada o sutraeda de la arcivo.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|One revisa|$1 revisas}} no ia pote es restorada, car sua <code>rev_id</code> ia es ja usada.",
 	"undelete-nodiff": "No revisa presedente ia es trovada.",
 	"undeletebtn": "Restora",
 	"undeletelink": "regarda/restora",

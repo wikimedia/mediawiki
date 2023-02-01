@@ -2466,7 +2466,6 @@
 	"undeletehistorynoadmin": "Šis puslapis buvo ištrintas. \nŽemiau rodoma pašalinimo priežastis bei kas redagavo puslapį iki ištrynimo. \nIštrintų pakeitimų tekstas pasiekiamas tik administratoriams.",
 	"undelete-revision": "Ištrinta $1 versija, kurią $4 d. $5 sukūrė $3:",
 	"undeleterevision-missing": "Neteisinga arba dingusi versija. Jūs turbūt turite blogą nuorodą, arba versija buvo atkurta arba pašalinta iš archyvo.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Viena versija|$1 versijos}} negalėjo būti atkurtos, nes {{PLURAL:$1|jos|jų}} <code>rev_id</code> jau buvo naudojamas.",
 	"undelete-nodiff": "Nerasta jokių ankstesnių versijų.",
 	"undeletebtn": "Atkurti",
 	"undeletelink": "žiūrėti/atkurti",

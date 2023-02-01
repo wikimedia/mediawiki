@@ -29,6 +29,7 @@
 			"Yanajin66",
 			"Yusuke1109",
 			"ネイ",
+			"背番号4のエース",
 			"青子守歌",
 			"아라"
 		]
@@ -77,6 +78,7 @@
 	"config-env-good": "環境を確認しました。\nMediaWiki をインストールできます。",
 	"config-env-bad": "環境を確認しました。\nMediaWiki のインストールはできません。",
 	"config-env-php": "PHP $1がインストールされています。",
+	"config-env-icu": "ICU $1がインストールされています (Unicode $2をサポートしています)。",
 	"config-no-db": "適切なデータベース ドライバーが見つかりませんでした! PHP にデータベース ドライバーをインストールする必要があります。\n以下の種類のデータベース{{PLURAL:$2|のタイプ}}に対応しています: $1\n\nPHP を自分でコンパイルした場合は、例えば <code>./configure --with-mysqli</code> を実行して、データベース クライアントを使用できるように再設定してください。\nDebian または Ubuntu のパッケージから PHP をインストールした場合は、モジュール (例: <code>php-mysql</code>) もインストールする必要があります。",
 	"config-outdated-sqlite": "<strong>警告：</strong> ご利用の SQLite $2 は容認されている最古の版 $1 よりも古い版です。SQLite が対応しません。",
 	"config-no-fts3": "<strong>警告:</strong> SQLite は [//sqlite.org/fts3.html FTS3] モジュールなしでコンパイルされており、このバックエンドでは検索機能は利用できなくなります。",

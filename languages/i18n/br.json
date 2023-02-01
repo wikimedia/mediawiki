@@ -2368,7 +2368,6 @@
 	"undeletehistorynoadmin": "Diverket eo bet ar pennad-mañ.\nDispleget eo perak en diverradenn a-is, war un dro gant munudoù an implijerien o deus kemmet ar bajenn a-raok na vije diverket.\nN'eus nemet ar verourien a c'hall tapout krog en destenn bet diverket.",
 	"undelete-revision": "Stumm diverket eus $1, (gwiriadenn eus $4 da $5) gant $3 :",
 	"undeleterevision-missing": "Stumm fall pe diank.\nPe hoc'h eus heuliet ul liamm fall, pe eo bet diziverket ar stumm pe c'hoazh eo bet lamet diouzh an dielloù.",
-	"undeleterevision-duplicate-revid": "N'eus ket bet gallet diziverkañ {{PLURAL:$1|ur stumm|$1 stumm}} peogwir e oa en implij {{PLURAL:$1|e|o}} <code>rev_id</code> c'hoazh.",
 	"undelete-nodiff": "N'eus bet kavet stumm kent ebet.",
 	"undeletebtn": "Diziverkañ",
 	"undeletelink": "gwelet/diziverkañ",

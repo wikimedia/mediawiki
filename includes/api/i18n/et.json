@@ -275,6 +275,6 @@
 	"apihelp-query+watchlistraw-param-totitle": "Pealkiri (nimeruumi eesliitega), milleni loetleda.",
 	"api-help-main-header": "Põhimoodul.",
 	"api-help-param-direction": "Loetlemise suund:\n;newer:Vanemad enne. Märkus: element $1start peab olema enne elementi $1end.\n;older:Uuemad enne (vaikimisi). Märkus: element $1start peab olema pärast elementi $1end.",
-	"api-help-param-continue": "Kui saadaval on rohkem tulemusi, kasuta seda jätkamiseks.",
+	"api-help-param-continue": "Kui saadaval on rohkem tulemusi, kasuta seda jätkamiseks. Täpsema teabe päringute jätkamise kohta leiad [[mw:Special:MyLanguage/API:Continue|mediawiki.org-ist]]",
 	"apierror-mustbeloggedin": "Pead olema sisse logitud, et $1."
 }

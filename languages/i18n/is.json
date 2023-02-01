@@ -2274,7 +2274,6 @@
 	"undeletehistorynoadmin": "Þessari síðu hefur verið eytt.\nÁstæðan sést í ágripinu fyrir neðan, ásamt upplýsingum um hvaða notendur breyttu síðunni fyrir eyðingu.\nInnihald greinarinnar er einungis aðgengilegt möppudýrum.",
 	"undelete-revision": "Eydd breyting $1 (frá $4, kl. $5) eftir $3:",
 	"undeleterevision-missing": "Ógild eða týnd útgáfa.\nÞú gætir verið með rangan tengil, eða útgáfan gæti hafa verið tekin til baka eða fjarlægð úr safninu.",
-	"undeleterevision-duplicate-revid": "Ekki var hægt að endurvekja {{PLURAL:$1|$1 útgáfu|$1 útgáfur}}, því <code>rev_id</code> {{PLURAL:$1|hennar|þeirra}} var þegar í notkun.",
 	"undelete-nodiff": "Engin fyrri útgáfa fannst.",
 	"undeletebtn": "Endurvekja",
 	"undeletelink": "skoða/endurvekja",

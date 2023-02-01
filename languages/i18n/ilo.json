@@ -2270,7 +2270,6 @@
 	"undeletehistorynoadmin": "Daytoy a panid ket naikkaten.\nTi rason ti panagikkat ket naipakita iti pakabuklan dita baba, ken dagita a salaysay ti agar-aramat a nagurnos iti daytoy a panid sakbay a naikkat.\nTi teksto dagitoy a naikat a rebision ket magun-od laeng dagiti administrador.",
 	"undelete-revision": "Naikkat ti rebision ti $1 (manipud idi $4, $5) babaen ni $3:",
 	"undeleterevision-missing": "Imbalido wenno napukaw a rebision.\nAddaanka ngata ti madi a silpo, wenno ti rebision ket mabalin a naipasubli wenno naikkat manipud ti arkibo.",
-	"undeleterevision-duplicate-revid": "Saan a maisubli {{PLURAL:$1|ti maysa a rebision|dagiti $1 a rebision}}, gapu ta {{PLURAL:$1|ti bukona|dagiti bukodda}} nga <code>rev_id</code> ket naus-usaren.",
 	"undelete-nodiff": "Awan ti nasarakan kadagiti dati a rebision.",
 	"undeletebtn": "Isubli",
 	"undeletelink": "kitaen/isubli",

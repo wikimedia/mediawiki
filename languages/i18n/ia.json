@@ -2494,7 +2494,6 @@
 	"undeletehistorynoadmin": "Iste pagina ha essite delite.\nLe motivo del deletion se monstra in le summario infra, con le detalios del usatores que habeva modificate iste pagina ante le deletion.\nLe texto de iste versiones delite es solmente disponibile al administratores.",
 	"undelete-revision": "Version delite de $1 (facite le $4 a $5) per $3:",
 	"undeleterevision-missing": "Version invalide o mancante.\nEs possibile que le adresse URL es invalide, o que le version ha essite restaurate o eliminate del archivo.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Un version|$1 versiones}} non poteva esser restaurate, perque {{PLURAL:$1|su|lor}} <code>rev_id</code> esseva jam in uso.",
 	"undelete-nodiff": "Nulle version precedente trovate.",
 	"undeletebtn": "Restaurar",
 	"undeletelink": "vider/restaurar",

@@ -2497,7 +2497,6 @@
 	"undeletehistorynoadmin": "Laman ini telah dihapuskan.\nSebab penghapusan ditunjukkan dalam ringkasan di bawah, berserta butiran pengguna-pengguna yang telah menyunting laman ini sebelum penghapusan.\nTeks bagi semakan yang dihapuskan berikut hanya boleh dilihat oleh para penyelia.",
 	"undelete-revision": "Menghapuskan semakan bagi $1 (pada $4, $5) oleh $3:",
 	"undeleterevision-missing": "Semakan tersebut tidak sah atau tidak dijumpai. Mungkin anda telah mengikuti pautan yang rosak\natau semakan tersebut telah dipulihkan atau dibuang daripada arkib.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|Satu semakan|$1 semakan}} tidak dapat dipulihkan kerana <code>rev_id</code> {{PLURAL:$1|nya}} sedang digunakan.",
 	"undelete-nodiff": "Tiada semakan sebelumnya.",
 	"undeletebtn": "Pulihkan",
 	"undeletelink": "lihat/pulihkan",
@@ -3804,5 +3803,7 @@
 	"skin-action-protect": "Lindung",
 	"skin-action-undelete": "Nyahhapus",
 	"skin-action-delete": "Hapus",
-	"skin-action-move": "Pindah"
+	"skin-action-move": "Pindah",
+	"blockedtext-start-time": "Mula sekat: $1",
+	"blockedtext-block-id": "ID sekat #$1."
 }

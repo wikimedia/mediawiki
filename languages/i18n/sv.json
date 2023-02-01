@@ -2572,7 +2572,6 @@
 	"undeletehistorynoadmin": "Den här sidan har raderats.\nAnledningen till att den raderades visas i sammanfattningen nedan, tillsammans med uppgifter om användarna som redigerade sidan innan den raderades.\nEnbart administratörer har tillgång till texten i de raderade versionerna.",
 	"undelete-revision": "Raderad version av $1 (från den $4 kl. $5) av $3.",
 	"undeleterevision-missing": "Versionen finns inte eller är felaktig.\nDu kanske har följt en felaktig länk eller versionen kan ha återställts eller tagits bort från arkivet.",
-	"undeleterevision-duplicate-revid": "{{PLURAL:$1|En version|$1 versioner}} kunde inte återställas, eftersom {{PLURAL:$1|dess}} <code>rev_id</code> redan användes.",
 	"undelete-nodiff": "Ingen tidigare version hittades.",
 	"undeletebtn": "Återställ",
 	"undeletelink": "visa/återställ",
