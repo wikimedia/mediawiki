@@ -2546,6 +2546,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$data['MaxAdaptiveExpiry'] = $this->mMaxAdaptiveExpiry;
 		}
 
+		if ( $this->mTOCData ) {
+			// Temporarily add information from TOCData extension data
+			// T327439: We should eventually make the entire mTOCData
+			// serializable
+			$toc = $this->mTOCData->jsonSerialize();
+			$data['TOCExtensionData'] = $toc['extensionData'];
+		}
+
 		return $data;
 	}
 
@@ -2597,6 +2605,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		) {
 			$this->setSections( $jsonData['Sections'] );
 			unset( $this->mFlags['mw:toc-set'] );
+			if ( isset( $jsonData['TOCExtensionData'] ) ) {
+				$tocData = $this->getTOCData(); // created by setSections() above
+				foreach ( $jsonData['TOCExtensionData'] as $key => $value ) {
+					$tocData->setExtensionData( $key, $value );
+				}
+			}
 		}
 		$this->mProperties = self::detectAndDecodeBinary( $jsonData['Properties'] );
 		$this->mTOCHTML = $jsonData['TOCHTML'];
