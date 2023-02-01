@@ -427,7 +427,7 @@ class HTMLForm extends ContextSource {
 			$this->mFlatFields[$fieldname] = $field;
 		}
 
-		$this->mFieldTree = array_merge( $this->mFieldTree, $loadedDescriptor );
+		$this->mFieldTree = array_merge_recursive( $this->mFieldTree, $loadedDescriptor );
 
 		return $this;
 	}
