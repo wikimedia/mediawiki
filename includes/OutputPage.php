@@ -2290,8 +2290,10 @@ class OutputPage extends ContextSource {
 		return $this->parseInternal(
 			$text, $this->getTitle(), $linestart, /*interface*/false
 		)->getText( [
+			'allowTOC' => false,
 			'enableSectionEditLinks' => false,
-			'wrapperDivClass' => ''
+			'wrapperDivClass' => '',
+			'userLang' => $this->getContext()->getLanguage(),
 		] );
 	}
 
@@ -2311,8 +2313,10 @@ class OutputPage extends ContextSource {
 		return $this->parseInternal(
 			$text, $this->getTitle(), $linestart, /*interface*/true
 		)->getText( [
+			'allowTOC' => false,
 			'enableSectionEditLinks' => false,
-			'wrapperDivClass' => ''
+			'wrapperDivClass' => '',
+			'userLang' => $this->getContext()->getLanguage(),
 		] );
 	}
 
