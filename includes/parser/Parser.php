@@ -4231,11 +4231,8 @@ class Parser {
 		# passed to the skin functions. These are determined here
 		$full = '';
 		$head = [];
-		$sublevelCount = [];
-		$levelCount = [];
 		$level = 0;
-		$prevlevel = 0;
-		$toclevel = 0;
+		$tocData = new TOCData();
 		$markerRegex = self::MARKER_PREFIX . "-h-(\d+)-" . self::MARKER_SUFFIX;
 		$baseTitleText = $this->getTitle()->getPrefixedDBkey();
 		$oldType = $this->mOutputType;
@@ -4244,7 +4241,6 @@ class Parser {
 		$root = $this->preprocessToDom( $origText );
 		$node = $root->getFirstChild();
 		$byteOffset = 0;
-		$tocraw = new TOCData();
 		$refers = [];
 
 		$headlines = $numMatches !== false ? $matches[3] : [];
@@ -4254,7 +4250,6 @@ class Parser {
 			$isTemplate = false;
 			$titleText = false;
 			$sectionIndex = false;
-			$numbering = '';
 			$markerMatches = [];
 			if ( preg_match( "/^$markerRegex/", $headline, $markerMatches ) ) {
 				$serial = (int)$markerMatches[1];
@@ -4263,53 +4258,35 @@ class Parser {
 				$headline = preg_replace( "/^$markerRegex\\s*/", "", $headline );
 			}
 
-			if ( $toclevel ) {
-				$prevlevel = $level;
-			}
+			$sectionMetadata = SectionMetadata::fromLegacy( [
+				"fromtitle" => $titleText ?: null,
+				"index" => $sectionIndex === false
+					? '' : ( ( $isTemplate ? 'T-' : '' ) . $sectionIndex )
+			] );
+			$tocData->addSection( $sectionMetadata );
+
+			$oldLevel = $level;
 			$level = (int)$matches[1][$headlineCount];
+			$tocData->processHeading( $oldLevel, $level, $sectionMetadata );
 
-			if ( $level > $prevlevel ) {
-				# Increase TOC level
-				$toclevel++;
-				$sublevelCount[$toclevel] = 0;
-				if ( $toclevel < $maxTocLevel ) {
-					$haveTocEntries = true;
-				}
-			} elseif ( $level < $prevlevel && $toclevel > 1 ) {
-				# Decrease TOC level, find level to jump to
-
-				for ( $i = $toclevel; $i > 0; $i-- ) {
-					// @phan-suppress-next-line PhanTypeInvalidDimOffset
-					if ( $levelCount[$i] == $level ) {
-						# Found last matching level
-						$toclevel = $i;
-						break;
-					} elseif ( $levelCount[$i] < $level ) {
-						// @phan-suppress-previous-line PhanTypeInvalidDimOffset
-						# Found first matching level below current level
-						$toclevel = $i + 1;
-						break;
-					}
-				}
-				if ( $i == 0 ) {
-					$toclevel = 1;
-				}
+			if ( $tocData->getCurrentTOCLevel() < $maxTocLevel ) {
+				$haveTocEntries = true;
 			}
 
-			$levelCount[$toclevel] = $level;
-
-			# count number of headlines for each level
-			$sublevelCount[$toclevel]++;
-			$dot = 0;
-			for ( $i = 1; $i <= $toclevel; $i++ ) {
-				if ( !empty( $sublevelCount[$i] ) ) {
-					if ( $dot ) {
-						$numbering .= '.';
-					}
-					$numbering .= $this->getTargetLanguage()->formatNum( $sublevelCount[$i] );
-					$dot = 1;
+			// FIXME: Maybe move to Linker::tocLine?
+			// This requires us to record target language there.
+			//
+			// Localize numbering
+			$dot = '.';
+			$pieces = explode( $dot, $sectionMetadata->number );
+			$numbering = '';
+			foreach ( $pieces as $i => $p ) {
+				if ( $i > 0 ) {
+					$numbering .= $dot;
 				}
+				$numbering .= $this->getTargetLanguage()->formatNum( $p );
 			}
+			$sectionMetadata->number = $numbering;
 
 			# The safe header is a version of the header text safe to use for links
 
@@ -4421,17 +4398,10 @@ class Parser {
 				);
 				$node = $node->getNextSibling();
 			}
-			$tocraw->addSection( new SectionMetadata(
-				$toclevel,
-				$level,
-				$tocline,
-				$numbering,
-				$sectionIndex === false ? '' : ( ( $isTemplate ? 'T-' : '' ) . $sectionIndex ),
-				$titleText ?: null,
-				( $noOffset ? null : $byteOffset ),
-				$anchor,
-				$linkAnchor,
-			) );
+			$sectionMetadata->line = $tocline;
+			$sectionMetadata->byteOffset = ( $noOffset ? null : $byteOffset );
+			$sectionMetadata->anchor = $anchor;
+			$sectionMetadata->linkAnchor = $linkAnchor;
 
 			# give headline the correct <h#> tag
 			if ( $maybeShowEditLink && $sectionIndex !== false ) {
@@ -4488,7 +4458,7 @@ class Parser {
 			// Record the fact that the TOC should be shown. T294950
 			// (We shouldn't be looking at ::getTOCHTML() for this because
 			// eventually that will be replaced (T293513) and
-			// $tocraw will contain sections even if there aren't
+			// $tocData will contain sections even if there aren't
 			// $enoughToc to show.)
 			$this->mOutput->setOutputFlag( ParserOutputFlags::SHOW_TOC );
 		}
@@ -4501,7 +4471,7 @@ class Parser {
 			// (ie, JavaScript content that might have spurious === or
 			// <h2>: T307691) so we will *not* set section information
 			// in that case.
-			$this->mOutput->setTOCData( $tocraw );
+			$this->mOutput->setTOCData( $tocData );
 		}
 
 		# split up and insert constructed headlines
