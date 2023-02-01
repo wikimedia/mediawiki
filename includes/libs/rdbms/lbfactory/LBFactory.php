@@ -332,16 +332,6 @@ abstract class LBFactory implements ILBFactory {
 		}
 	}
 
-	final public function commitAll( $fname = __METHOD__ ) {
-		$this->commitPrimaryChanges( $fname );
-		foreach ( $this->getLBsForOwner() as $lb ) {
-			$lb->flushPrimarySessions( $fname );
-		}
-		foreach ( $this->getLBsForOwner() as $lb ) {
-			$lb->flushReplicaSnapshots( $fname );
-		}
-	}
-
 	final public function beginPrimaryChanges( $fname = __METHOD__ ) {
 		$this->assertTransactionRoundStage( self::ROUND_CURSORY );
 		/** @noinspection PhpUnusedLocalVariableInspection */
