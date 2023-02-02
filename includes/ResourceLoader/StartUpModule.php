@@ -46,7 +46,6 @@ use Wikimedia\RequestTimeout\TimeoutException;
  * @internal
  */
 class StartUpModule extends Module {
-	protected $targets = [ 'desktop', 'mobile' ];
 
 	private $groupIds = [
 		// These reserved numbers MUST start at 0 and not skip any. These are preset

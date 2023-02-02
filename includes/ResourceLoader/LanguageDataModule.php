@@ -31,7 +31,6 @@ use MediaWiki\MediaWikiServices;
  * @internal
  */
 class LanguageDataModule extends FileModule {
-	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
 	 * Get all the dynamic data for the content language to an array.

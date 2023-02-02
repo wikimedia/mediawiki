@@ -499,10 +499,7 @@ class RecentChange implements Taggable {
 		}
 
 		# E-mail notifications
-		if ( $mainConfig->get( MainConfigNames::EnotifUserTalk ) ||
-			$mainConfig->get( MainConfigNames::EnotifWatchlist ) ||
-			$mainConfig->get( MainConfigNames::ShowUpdatedMarker )
-		) {
+		if ( self::isEnotifEnabled( $mainConfig ) ) {
 			$userFactory = $services->getUserFactory();
 			$editor = $userFactory->newFromUserIdentity( $this->getPerformerIdentity() );
 			$page = $this->getPage();
@@ -1277,10 +1274,41 @@ class RecentChange implements Taggable {
 	}
 
 	/**
+	 * Whether e-mail notifications are generally enabled on this wiki.
+	 *
+	 * This is used for:
+	 *
+	 * - performance optimization in RecentChange::save().
+	 *   After an edit, whether or not we need to use the EmailNotification
+	 *   service to determine which EnotifNotifyJob to dispatch.
+	 *
+	 * - performance optmization in WatchlistManager.
+	 *   After using reset ("Mark all pages as seen") on Special:Watchlist,
+	 *   whether to only look for user talk data to reset, or whether to look
+	 *   at all possible pages for timestamps to reset.
+	 *
+	 * TODO: Determine whether these optimizations still make sense.
+	 *
+	 * FIXME: The $wgShowUpdatedMarker variable was added to this condtion
+	 * in 2008 (2cf12c973d, SVN r35001) because at the time the per-user
+	 * "last seen" marker for watchlist and page history, was managed by
+	 * the EmailNotification/UserMailed classes. As of August 2022, this
+	 * appears to no longer be the case.
+	 *
+	 * @since 1.40
+	 * @param Config $conf
+	 * @return bool
+	 */
+	public static function isEnotifEnabled( Config $conf ): bool {
+		return $conf->get( MainConfigNames::EnotifUserTalk ) ||
+			$conf->get( MainConfigNames::EnotifWatchlist ) ||
+			$conf->get( MainConfigNames::ShowUpdatedMarker );
+	}
+
+	/**
 	 * Parses and returns the rc_params attribute
 	 *
 	 * @since 1.26
-	 *
 	 * @return mixed|bool false on failed unserialization
 	 */
 	public function parseParams() {

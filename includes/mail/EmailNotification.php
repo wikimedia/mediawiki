@@ -32,7 +32,7 @@ use MediaWiki\User\UserIdentity;
 
 /**
  * This module processes the email notifications when the current page is
- * changed. It looks up the table watchlist to find out which users are watching
+ * changed. It queries the `watchlist` table to find which users are watching
  * that page.
  *
  * The current implementation sends independent emails to each watching user for
@@ -42,7 +42,7 @@ use MediaWiki\User\UserIdentity;
  * his/her local time (UTC is shown additionally). To achieve this, we need to
  * find the individual timeoffset of each watching user from the preferences.
  *
- * Suggested improvement to slack down the number of sent emails: We could think
+ * Suggested improvement to reduce the number of sent emails: We could think
  * of sending out bulk mails (bcc:user1,user2...) for all these users having the
  * same timeoffset in their preferences.
  *

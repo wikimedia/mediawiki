@@ -34,7 +34,6 @@ use TitleValue;
  */
 class UserModule extends WikiModule {
 	protected $origin = self::ORIGIN_USER_INDIVIDUAL;
-	protected $targets = [ 'desktop', 'mobile' ];
 
 	/**
 	 * @param Context $context
