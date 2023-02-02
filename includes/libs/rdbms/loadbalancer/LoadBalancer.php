@@ -456,34 +456,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return ArrayUtils::pickRandom( $loads );
 	}
 
-	/**
-	 * Get the server index to use for a specified server index and query group list
-	 *
-	 * @param int $i Specific server index or DB_PRIMARY/DB_REPLICA
-	 * @param string[] $groups Non-empty query group list in preference order
-	 * @return int A specific server index (replica DBs are checked for connectivity)
-	 */
-	private function getConnectionIndex( $i, array $groups ) {
-		if ( $i === self::DB_PRIMARY ) {
-			$i = $this->getWriterIndex();
-		} elseif ( $i === self::DB_REPLICA ) {
-			foreach ( $groups as $group ) {
-				$groupIndex = $this->getReaderIndex( $group );
-				if ( $groupIndex !== false ) {
-					$i = $groupIndex; // group connection succeeded
-					break;
-				}
-			}
-			if ( $i < 0 ) {
-				$this->reportConnectionError( 'could not connect to any replica DB server' );
-			}
-		} elseif ( !isset( $this->servers[$i] ) ) {
-			throw new UnexpectedValueException( "Invalid server index index #$i" );
-		}
-
-		return $i;
-	}
-
 	public function getReaderIndex( $group = false ) {
 		$group = is_string( $group ) ? $group : self::GROUP_GENERIC;
 
@@ -532,7 +504,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		// Keep using this server for DB_REPLICA handles for this group
-		$this->setExistingReaderIndex( $group, $i );
+		if ( $i < 0 ) {
+			throw new UnexpectedValueException( "Cannot set a negative read server index" );
+		}
+		$this->readIndexByGroup[$group] = $i;
 
 		$serverName = $this->getServerName( $i );
 		$this->logger->debug( __METHOD__ . ": using server $serverName for group '$group'" );
@@ -548,19 +523,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 */
 	protected function getExistingReaderIndex( $group ) {
 		return $this->readIndexByGroup[$group] ?? self::READER_INDEX_NONE;
-	}
-
-	/**
-	 * Set the server index chosen for DB_REPLICA connections for the given query group
-	 *
-	 * @param string $group Query group; use false for the generic group
-	 * @param int $index Specific server index
-	 */
-	private function setExistingReaderIndex( $group, $index ) {
-		if ( $index < 0 ) {
-			throw new UnexpectedValueException( "Cannot set a negative read server index" );
-		}
-		$this->readIndexByGroup[$group] = $index;
 	}
 
 	/**
@@ -647,7 +609,12 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			}
 		} finally {
 			// Restore the older position if it was higher since this is used for lag-protection
-			$this->setWaitForPositionIfHigher( $oldPos );
+			if ( !$pos ) {
+				return;
+			}
+			if ( !$this->waitForPos || $pos->hasReached( $this->waitForPos ) ) {
+				$this->waitForPos = $pos;
+			}
 		}
 	}
 
@@ -689,19 +656,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		return false;
-	}
-
-	/**
-	 * @param DBPrimaryPos|false $pos
-	 */
-	private function setWaitForPositionIfHigher( $pos ) {
-		if ( !$pos ) {
-			return;
-		}
-
-		if ( !$this->waitForPos || $pos->hasReached( $this->waitForPos ) ) {
-			$this->waitForPos = $pos;
-		}
 	}
 
 	public function getAnyOpenConnection( $i, $flags = 0 ) {
@@ -802,7 +756,13 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		$key = $this->srvCache->makeGlobalKey( __CLASS__, 'last-known-pos', $srvName, 'v2' );
 
 		/** @var DBPrimaryPos $knownReachedPos */
-		$knownReachedPos = $this->unmarshalPosition( $this->srvCache->get( $key ) );
+		$position = $this->srvCache->get( $key );
+		if ( !is_array( $position ) ) {
+			$knownReachedPos = null;
+		} else {
+			$class = $position['_type_'];
+			$knownReachedPos = $class::newFromArray( $position );
+		}
 		if (
 			$knownReachedPos instanceof DBPrimaryPos &&
 			$knownReachedPos->hasReached( $this->waitForPos )
@@ -859,15 +819,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return $ok;
 	}
 
-	private function unmarshalPosition( $position ) {
-		if ( !is_array( $position ) ) {
-			return null;
-		}
-
-		$class = $position['_type_'];
-		return $class::newFromArray( $position );
-	}
-
 	public function getConnection( $i, $groups = [], $domain = false, $flags = 0 ) {
 		return $this->getConnectionRef( $i, $groups, $domain, $flags );
 	}
@@ -880,7 +831,23 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		// DB_REPLICA might trigger getServerConnection() calls due to the getReaderIndex()
 		// connectivity checks or LoadMonitor::scaleLoads() server state cache regeneration.
 		// The use of getServerConnection() instead of getConnection() avoids infinite loops.
-		$serverIndex = $this->getConnectionIndex( $i, $groups );
+		$serverIndex = $i;
+		if ( $i === self::DB_PRIMARY ) {
+			$serverIndex = $this->getWriterIndex();
+		} elseif ( $i === self::DB_REPLICA ) {
+			foreach ( $groups as $group ) {
+				$groupIndex = $this->getReaderIndex( $group );
+				if ( $groupIndex !== false ) {
+					$serverIndex = $groupIndex; // group connection succeeded
+					break;
+				}
+			}
+			if ( $serverIndex < 0 ) {
+				$this->reportConnectionError( 'could not connect to any replica DB server' );
+			}
+		} elseif ( !isset( $this->servers[$i] ) ) {
+			throw new UnexpectedValueException( "Invalid server index index #$i" );
+		}
 		// Get an open connection to that server (might trigger a new connection)
 		return $this->getServerConnection( $serverIndex, $domain, $flags );
 	}
@@ -1092,16 +1059,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	/**
-	 * Test if the specified index represents an open connection
-	 *
-	 * @param int $index Server index
-	 * @return bool
-	 */
-	private function isOpen( $index ) {
-		return (bool)$this->getAnyOpenConnection( $index );
-	}
-
-	/**
 	 * Open a new network connection to a server (uncached)
 	 *
 	 * Returns a Database object whether or not the connection was successful.
@@ -1191,7 +1148,12 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		// Log when many connection are made during a single request/script
-		$count = $this->getCurrentConnectionCount();
+		$count = 0;
+		foreach ( $this->conns as $poolConnsByServer ) {
+			foreach ( $poolConnsByServer as $serverConns ) {
+				$count += count( $serverConns );
+			}
+		}
 		if ( $count >= self::CONN_HELD_WARN_THRESHOLD ) {
 			$this->logger->warning(
 				__METHOD__ . ": {connections}+ connections made (primary={primarydb})",
@@ -1873,7 +1835,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	public function hasPrimaryConnection() {
-		return $this->isOpen( $this->getWriterIndex() );
+		return (bool)$this->getAnyOpenConnection( $this->getWriterIndex() );
 	}
 
 	public function hasPrimaryChanges() {
@@ -2087,20 +2049,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 				}
 			}
 		}
-	}
-
-	/**
-	 * @return int
-	 */
-	private function getCurrentConnectionCount() {
-		$count = 0;
-		foreach ( $this->conns as $poolConnsByServer ) {
-			foreach ( $poolConnsByServer as $serverConns ) {
-				$count += count( $serverConns );
-			}
-		}
-
-		return $count;
 	}
 
 	public function getMaxLag() {
