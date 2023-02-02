@@ -514,6 +514,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$getPrefixes = $this->interwikiLookup->getAllPrefixes( $local );
 		$extraLangPrefixes = $this->getConfig()->get( MainConfigNames::ExtraInterlanguageLinkPrefixes );
+		$extraLangCodeMap = $this->getConfig()->get( MainConfigNames::InterlanguageLinkCodeMap );
 		$localInterwikis = $this->getConfig()->get( MainConfigNames::LocalInterwikis );
 		$data = [];
 
@@ -530,12 +531,21 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 			if ( $interwikiMagic && isset( $langNames[$prefix] ) ) {
 				$val['language'] = $langNames[$prefix];
+				$standard = LanguageCode::replaceDeprecatedCodes( $prefix );
+				if ( $standard !== $prefix ) {
+					# Note that even if this code is deprecated, it should
+					# only be remapped if extralanglink (set below) is false.
+					$val['deprecated'] = $standard;
+				}
+				$val['bcp47'] = LanguageCode::bcp47( $standard );
 			}
 			if ( in_array( $prefix, $localInterwikis ) ) {
 				$val['localinterwiki'] = true;
 			}
 			if ( $interwikiMagic && in_array( $prefix, $extraLangPrefixes ) ) {
 				$val['extralanglink'] = true;
+				$val['code'] = $extraLangCodeMap[$prefix] ?? $prefix;
+				$val['bcp47'] = LanguageCode::bcp47( $val['code'] );
 
 				$linktext = $this->msg( "interlanguage-link-$prefix" );
 				if ( !$linktext->isDisabled() ) {

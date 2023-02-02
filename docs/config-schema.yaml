@@ -2913,8 +2913,8 @@ config-schema:
         default: false
         description: 'Hide interlanguage links from the sidebar'
     ExtraInterlanguageLinkPrefixes:
-        default: {  }
-        type: object
+        default: []
+        type: array
         description: |-
             List of additional interwiki prefixes that should be treated as
             interlanguage links (i.e. placed in the sidebar).
@@ -2927,6 +2927,12 @@ config-schema:
             - A friendly name for each site, used for tooltip text, may optionally be
               placed in the system message "interlanguage-link-sitename-xyz" where xyz is
               the prefix in this array.
+            - This should be a list of "interwiki prefixes" (ie, what appears in
+              wikitext), and you probably want to add an entry to
+              InterlanguageLinkCodeMap as well to specify which mediawiki internal
+              (or custom) language code this prefix corresponds to, and perhaps
+              then map that custom language code to a language name in
+              ExtraLanguageNames.
     InterlanguageLinkCodeMap:
         default: {  }
         type: object

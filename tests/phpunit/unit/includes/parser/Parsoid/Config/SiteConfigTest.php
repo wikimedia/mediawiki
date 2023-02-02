@@ -42,6 +42,7 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 		MainConfigNames::ArticlePath => false,
 		MainConfigNames::InterwikiMagic => true,
 		MainConfigNames::ExtraInterlanguageLinkPrefixes => [],
+		MainConfigNames::InterlanguageLinkCodeMap => [],
 		MainConfigNames::LocalInterwikis => [],
 		MainConfigNames::LanguageCode => 'qqq',
 		MainConfigNames::DisableLangConversion => false,
@@ -524,8 +525,10 @@ class SiteConfigTest extends MediaWikiUnitTestCase {
 				'protorel' => true,
 				'local' => true,
 				'language' => true,
+				'bcp47' => 'ru',
 				'localinterwiki' => true,
 				'extralanglink' => true,
+				'code' => 'ru',
 			]
 		], $config->interwikiMap() );
 	}

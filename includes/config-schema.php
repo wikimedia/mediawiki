@@ -2644,7 +2644,7 @@ return [
 			'CdnServersNoPurge' => 'object',
 			'HTCPRouting' => 'object',
 			'GrammarForms' => 'object',
-			'ExtraInterlanguageLinkPrefixes' => 'object',
+			'ExtraInterlanguageLinkPrefixes' => 'array',
 			'InterlanguageLinkCodeMap' => 'object',
 			'ExtraLanguageNames' => 'object',
 			'ExtraLanguageCodes' => 'object',
