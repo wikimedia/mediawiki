@@ -175,7 +175,7 @@
 	"redirectedfrom": "(tan $1)",
 	"redirectpagesub": "lipu li tawa lipu ante",
 	"redirectto": "tawa",
-	"lastmodifiedat": "tenpo $1 la tenpo $2 la lipu ni li ante. pini pi ante ni la lipu ni li ante ala.",
+	"lastmodifiedat": "lipu ni li ante lon tenpo $2 lon tenpo $1 li ante sin ala.",
 	"viewcount": "jan li lukin e lipu ni lon tenpo $1",
 	"protectedpage": "lipu awen",
 	"jumpto": "o tawa:",

@@ -625,8 +625,8 @@
 	"summary-preview": "Resumé vun der Ännerung kucken ouni ze späicheren:",
 	"previewerrortext": "Beim Versuch fir Är Ännerungen ze weisen, ass e Feeler geschitt.",
 	"blockedtitle": "Benotzer ass gespaart",
-	"blockedtext": "<strong>Äre Benotzernumm oder Är IP-Adress gouf gespaart.</strong>\n\nD'Spär gouf vum $1 gemaach.\nAls Grond gouf <em>$2</em> uginn.\n\n* Ufank vun der Spär: $8\n* Enn vun der Spär: $6\n* Spär betrëfft: $7\n\nDir kënnt den/d' $1 kontaktéieren oder ee vun den aneren [[{{MediaWiki:Grouppage-sysop}}|Administrateure]] fir iwwer d'Spär ze schwätzen.\n\nDir kënnt d'Funktioun \"{{int:emailuser}}\" nëmme benotzen, wann Dir eng gëlteg E-Mail Adress bei Ären [[Special:Preferences|Astellungen]] aginn hutt.\nÄr aktuell IP-Adress ass $3 an d'Nummer vun der Spär ass #$5.\nSchreift all dës Informatioune wgl. bei all Ufro derbäi.",
-	"autoblockedtext": "Är IP-Adress gouf automatesch gespaart, well se vun engem anere Benotzer gebraucht gouf, an dee vum $1 gespaart gouf.\nDe Grond dofir war:\n\n:<em>$2</em>\n\n* Ufank vun der Spär: $8\n* Dauer vun der Spär: $6\n* D'Spär leeft of: $7\n\nDir kënnt de(n) $1 oder soss een [[{{MediaWiki:Grouppage-sysop}}|Administrateur]] kontaktéieren, fir iwwer déi Spär ze diskutéieren.\n\nDir kënnt d'Funktioun \"{{int:emailuser}}\" benotze wann Dir eng gëlteg E-Mail-Adress an Ären [[Special:Preferences|Astellungen]] uginn hutt a wann dat net fir Iech gespaart gouf.\n\nÄr aktuell IP-Adress ass $3 an d'Nummer vun Ärer Spär ass $5.\nGitt dës Donnéeë wgl. bei allen Ufroen zu dëser Spär un.",
+	"blockedtext": "<strong>Äre Benotzernumm oder Är IP-Adress gouf gespaart.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nDir kënnt d'Funktioun \"{{int:emailuser}}\" nëmme benotzen, wann Dir eng gëlteg E-Mail Adress bei Ären [[Special:Preferences|Astellungen]] aginn hutt a wann Dir net gespaart gouft fir dës ze benotzen.\n\n{{int:blockedtext-block-ip|$3}}, and the block ID is #$5.\n{{int:blockedtext-include-details-queries}}",
+	"autoblockedtext": "Är IP-Adress gouf automatesch gespaart, well se vun engem anere Benotzer gebraucht gouf, an dee vum $1 gespaart gouf.\nDe Grond dofir war:\n\n:<em>$2</em>\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\n\nDir kënnt d'Funktioun \"{{int:emailuser}}\" benotze wann Dir eng gëlteg E-Mail-Adress an Ären [[Special:Preferences|Astellungen]] uginn hutt a wann dat net fir Iech gespaart gouf.\n\n{{int:blockedtext-block-ip|$3}}, and the block ID is #$5.\n{{int:blockedtext-include-details-queries}}",
 	"blockednoreason": "Kee Grond uginn",
 	"blockedtext-composite-ids": "Relevant IDen vun der Spär: $1 (Är IP-Adress kann och an enger Spärlëscht agedroe sinn)",
 	"blockedtext-composite-no-ids": "Är IP-Adress steet a verschiddene Spär-Lëschten",
@@ -3517,5 +3517,10 @@
 	"skin-action-delete": "Läschen",
 	"skin-action-move": "Réckelen",
 	"newpages-showhide-bots": "Botte $1",
-	"newpages-showhide-redirect": "Viruleedungen $1"
+	"newpages-showhide-redirect": "Viruleedungen $1",
+	"blockedtext-made-by": "D'Spär gouf vum $1 gemaach.",
+	"blockedtext-start-time": "Ufank vun der Spär: $1",
+	"blockedtext-expiration-time": "Enn vun der Spär: $1",
+	"blockedtext-expiration-longest-block": "Enn vun der längster Spär: $1",
+	"blockedtext-block-ip": "Är aktuell IP Adress ass $1"
 }

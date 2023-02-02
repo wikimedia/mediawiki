@@ -689,7 +689,7 @@
 	"previewerrortext": "Có lỗi xảy ra khi xem trước những thay đổi của bạn.",
 	"blockedtitle": "Thành viên bị cấm",
 	"blockedtext-partial": "<strong>Tên người dùng hoặc địa chỉ IP của bạn bị cấm thực hiện việc này. Bạn vẫn có thể làm những việc khác trên trang web này, chẳng hạn như sửa đổi một số trang nhất định.</strong> \n\nBạn có thể xem toàn bộ chi tiết vụ cấm tại [[Special:MyContributions|đóng góp của tài khoản]].\n\n{{int:blockedtext-made-by|$1}}\n\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n*{{int:blockedtext-block-id|$5}}",
-	"blockedtext": "<strong>Tài khoản hoặc địa chỉ IP của bạn đã bị cấm.</strong>\n\nNgười thực hiện cấm là $1.\nLý do được cung cấp là <em>$2</em>.\n\n* Bắt đầu cấm: $8\n* Kết thúc cấm: $6\n* Mục tiêu cấm: $7\n\nBạn có thể liên hệ với $1 hoặc [[{{MediaWiki:Grouppage-sysop}}|bảo quản viên]] khác để thảo luận về vụ cấm.\nBạn có thể sử dụng chức năng “{{int:emailuser}}” nếu bạn đã nhập địa chỉ thư điện tử hợp lệ trong [[Special:Preferences|tùy chọn của bạn]] và chức năng đó không bị khóa.\nĐịa chỉ IP hiện tại của bạn là $3, và mã số cấm là #$5.\nXin hãy cung cấp tất cả các thông tin trên vào thư yêu cầu của bạn.",
+	"blockedtext": "<strong>Tài khoản hoặc địa chỉ IP của bạn đã bị cấm.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nBạn có thể sử dụng chức năng “{{int:emailuser}}” nếu bạn đã nhập địa chỉ thư điện tử hợp lệ trong [[Special:Preferences|tùy chọn của bạn]] và chức năng đó không bị khóa.\n{{int:blockedtext-block-ip|$3}}, và mã số cấm là #$5.\n{{int:blockedtext-include-details-queries}}",
 	"autoblockedtext": "Địa chỉ IP của bạn đã bị tự động cấm vì một người nào đó đã sử dụng nó, $1 là thành viên đã thực hiện cấm.\nLý do được cung cấp là:\n\n:<em>$2</em>\n\n* Bắt đầu cấm: $8\n* Kết thúc cấm: $6\n* Mục tiêu cấm: $7\n\nBạn có thể liên hệ với $1 hoặc một trong số các\n[[{{MediaWiki:Grouppage-sysop}}|bảo quản viên]] khác để thảo luận về việc cấm.\n\nBạn có thể sử dụng chức năng “{{int:emailuser}}” nếu một địa chỉ thư điện tử hợp lệ được chỉ định trong [[Special:Preferences|tùy chọn]] và bạn không bị cấm dùng chức năng đó.\n\nĐịa chỉ IP hiện tại của bạn là $3, mã số cấm là $5.\nXin hãy ghi kèm tất cả các chi tiết trên vào thư yêu cầu của bạn.",
 	"systemblockedtext": "Tên người dùng hoặc địa chỉ IP của bạn bị MediaWiki cấm tự động.\nLý do được cung cấp là:\n\n:<em>$2</em>\n\n* Bắt đầu cấm: $8\n* Kết thúc cấm: $6\n* Mục tiêu cấm: $7\n\nĐịa chỉ IP hiện tại của bạn là $3.\nXin vui lòng bao gồm tất cả các chi tiết bên trên khi nào hỏi về tác vụ này.",
 	"blockednoreason": "không đưa ra lý do",
@@ -4197,6 +4197,10 @@
 	"newpages-showhide-registered": "$1 thành viên có tài khoản",
 	"blockedtext-made-by": "Lệnh cấm được thực hiện bởi $1.",
 	"blockedtext-reason-comment": "Lý do được đưa ra là <em>$1</em>",
-	"blockedtext-start-time": "Ngày bắt đầu cấm: $1",
-	"blockedtext-expiration-time": "Lệnh cấm hết hạn vào: $1"
+	"blockedtext-start-time": "Lệnh cấm có hiệu lực từ: $1",
+	"blockedtext-expiration-time": "Lệnh cấm hết hạn vào: $1",
+	"blockedtext-intended-blockee": "Mục tiêu cấm: $1",
+	"blockedtext-contact-blocker-admin": "Bạn có thể liên hệ với $1 hoặc [[{{MediaWiki:Grouppage-sysop}}|bảo quản viên]] khác để thảo luận về lệnh cấm.",
+	"blockedtext-block-ip": "Địa chỉ IP hiện tại của bạn là $1",
+	"blockedtext-include-details-queries": "Xin hãy cung cấp tất cả các thông tin trên vào thư yêu cầu của bạn."
 }
