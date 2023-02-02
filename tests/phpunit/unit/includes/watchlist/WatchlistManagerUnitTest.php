@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\Config\ServiceOptions;
-use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
@@ -47,15 +45,9 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	private function getManager( array $params = [] ) {
-		$config = $params['config'] ?? [
-			MainConfigNames::EnotifUserTalk => false,
-			MainConfigNames::EnotifWatchlist => false,
-			MainConfigNames::ShowUpdatedMarker => false,
+		$options = $params['options'] ?? [
+			WatchlistManager::OPTION_ENOTIF => false,
 		];
-		$options = new ServiceOptions(
-			WatchlistManager::CONSTRUCTOR_OPTIONS,
-			$config
-		);
 
 		$talkPageNotificationManager = $params['talkPageNotificationManager'] ??
 			$this->createNoOpMock( TalkPageNotificationManager::class );
@@ -150,7 +142,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 	public function testClearAllUserNotifications_configDisabled() {
 		// ********** Code path #3 **********
-		// Early return: config with `EnotifUserTalk`, `EnotifWatchlist` and `ShowUpdatedMarker` are false
+		// Early return: config with OPTION_ENOTIF false
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 		[ $authority, $userFactory ] = $this->getAuthorityAndUserFactory(
@@ -180,10 +172,8 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		// ********** Code path #4 **********
 		// Early return: user's id is falsey
 
-		$config = [
-			MainConfigNames::EnotifUserTalk => true,
-			MainConfigNames::EnotifWatchlist => true,
-			MainConfigNames::ShowUpdatedMarker => true
+		$options = [
+			WatchlistManager::OPTION_ENOTIF => true
 		];
 
 		$userIdentity = new UserIdentityValue( 0, 'User Name' );
@@ -197,7 +187,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			->method( 'resetAllNotificationTimestampsForUser' );
 
 		$manager = $this->getManager( [
-			'config' => $config,
+			'options' => $options,
 			'watchedItemStore' => $watchedItemStore,
 			'userFactory' => $userFactory
 		] );
@@ -210,10 +200,8 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		// ********** Code path #5 **********
 		// No early returns
 
-		$config = [
-			MainConfigNames::EnotifUserTalk => true,
-			MainConfigNames::EnotifWatchlist => true,
-			MainConfigNames::ShowUpdatedMarker => true
+		$options = [
+			WatchlistManager::OPTION_ENOTIF => true
 		];
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
@@ -227,7 +215,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			->method( 'resetAllNotificationTimestampsForUser' );
 
 		$manager = $this->getManager( [
-			'config' => $config,
+			'options' => $options,
 			'watchedItemStore' => $watchedItemStore,
 			'userFactory' => $userFactory
 		] );
@@ -306,7 +294,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	 */
 	public function testClearTitleUserNotifications_configDisabled( $testPageFactory ) {
 		// ********** Code path #3 **********
-		// Early return: config with `EnotifUserTalk` and `ShowUpdatedMarker` both false
+		// Early return: config with OPTION_ENOTIF false
 
 		$title = $testPageFactory( 100, NS_USER_TALK, 'PageTitleGoesHere' );
 
@@ -338,10 +326,8 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$title = $testPageFactory( 100, NS_USER_TALK, 'PageTitleGoesHere' );
 
-		$config = [
-			MainConfigNames::EnotifUserTalk => true,
-			MainConfigNames::EnotifWatchlist => true,
-			MainConfigNames::ShowUpdatedMarker => true
+		$options = [
+			WatchlistManager::OPTION_ENOTIF => true,
 		];
 
 		$userIdentity = new UserIdentityValue( 0, 'User Name' );
@@ -355,7 +341,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			->method( 'resetNotificationTimestamp' );
 
 		$manager = $this->getManager( [
-			'config' => $config,
+			'options' => $options,
 			'userFactory' => $userFactory,
 			'watchedItemStore' => $watchedItemStore
 		] );
@@ -373,10 +359,8 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$title = $testPageFactory( 100, NS_USER_TALK, 'PageTitleGoesHere' );
 
-		$config = [
-			MainConfigNames::EnotifUserTalk => true,
-			MainConfigNames::EnotifWatchlist => true,
-			MainConfigNames::ShowUpdatedMarker => true
+		$options = [
+			WatchlistManager::OPTION_ENOTIF => true,
 		];
 
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
@@ -390,7 +374,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			->method( 'resetNotificationTimestamp' );
 
 		$manager = $this->getManager( [
-			'config' => $config,
+			'options' => $options,
 			'userFactory' => $userFactory,
 			'watchedItemStore' => $watchedItemStore
 		] );

@@ -2201,10 +2201,10 @@ return [
 
 	'WatchlistManager' => static function ( MediaWikiServices $services ): WatchlistManager {
 		return new WatchlistManager(
-			new ServiceOptions(
-				WatchlistManager::CONSTRUCTOR_OPTIONS,
-				$services->getMainConfig()
-			),
+			[
+				WatchlistManager::OPTION_ENOTIF =>
+					RecentChange::isEnotifEnabled( $services->getMainConfig() ),
+			],
 			$services->getHookContainer(),
 			$services->getReadOnlyMode(),
 			$services->getRevisionLookup(),
