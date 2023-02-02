@@ -2854,6 +2854,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\SchemaBuilder' => __DIR__ . '/includes/libs/rdbms/dbal/SchemaBuilder.php',
 	'Wikimedia\\Rdbms\\SchemaChangeBuilder' => __DIR__ . '/includes/libs/rdbms/dbal/SchemaChangeBuilder.php',
 	'Wikimedia\\Rdbms\\SelectQueryBuilder' => __DIR__ . '/includes/libs/rdbms/querybuilder/SelectQueryBuilder.php',
+	'Wikimedia\\Rdbms\\ServerInfoHolder' => __DIR__ . '/includes/libs/rdbms/loadbalancer/ServerInfoHolder.php',
 	'Wikimedia\\Rdbms\\SessionConsistentConnectionManager' => __DIR__ . '/includes/libs/rdbms/connectionmanager/SessionConsistentConnectionManager.php',
 	'Wikimedia\\Rdbms\\SqliteResultWrapper' => __DIR__ . '/includes/libs/rdbms/database/resultwrapper/SqliteResultWrapper.php',
 	'Wikimedia\\Rdbms\\Subquery' => __DIR__ . '/includes/libs/rdbms/encasing/Subquery.php',

@@ -383,9 +383,7 @@ abstract class LBFactory implements ILBFactory {
 			$lb->commitPrimaryChanges( $fname );
 		}
 		// Run all post-commit callbacks in a separate step
-		$this->trxRoundStage = self::ROUND_COMMIT_CALLBACKS;
 		$e = $this->executePostTransactionCallbacks();
-		$this->trxRoundStage = self::ROUND_CURSORY;
 		// Throw any last post-commit callback error
 		if ( $e instanceof Exception ) {
 			throw $e;
@@ -403,9 +401,7 @@ abstract class LBFactory implements ILBFactory {
 			$lb->rollbackPrimaryChanges( $fname );
 		}
 		// Run all post-commit callbacks in a separate step
-		$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;
 		$this->executePostTransactionCallbacks();
-		$this->trxRoundStage = self::ROUND_CURSORY;
 	}
 
 	final public function flushPrimarySessions( $fname = __METHOD__ ) {
@@ -424,6 +420,7 @@ abstract class LBFactory implements ILBFactory {
 	 * @return Exception|null
 	 */
 	private function executePostTransactionCallbacks() {
+		$this->trxRoundStage = self::ROUND_COMMIT_CALLBACKS;
 		$fname = __METHOD__;
 		// Run all post-commit callbacks until new ones stop getting added
 		$e = null; // first callback exception
@@ -438,6 +435,7 @@ abstract class LBFactory implements ILBFactory {
 			$ex = $lb->runPrimaryTransactionListenerCallbacks( $fname );
 			$e = $e ?: $ex;
 		}
+		$this->trxRoundStage = self::ROUND_CURSORY;
 
 		return $e;
 	}
