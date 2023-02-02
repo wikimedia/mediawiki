@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\Language\RawMessage;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Widget\UsersMultiselectWidget;
@@ -57,6 +56,10 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 	}
 
 	public function validate( $value, $alldata ) {
+		if ( !$this->mParams['exists'] ) {
+			return true;
+		}
+
 		if ( $value === null ) {
 			return false;
 		}
@@ -64,28 +67,15 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 		// $value is a string, because HTMLForm fields store their values as strings
 		$usersArray = explode( "\n", $value );
 
-		if ( isset( $this->mParams['max'] ) && count( $usersArray ) > $this->mParams['max'] ) {
-			return $this->msg( 'htmlform-multiselect-toomany' )->numParams( $this->mParams['max'] );
+		if ( isset( $this->mParams['max'] ) && ( count( $usersArray ) > $this->mParams['max'] ) ) {
+			return $this->msg( 'htmlform-multiselect-toomany', $this->mParams['max'] );
 		}
 
-		$resultArray = [];
 		foreach ( $usersArray as $username ) {
 			$result = parent::validate( $username, $alldata );
 			if ( $result !== true ) {
-				if ( $result === false ) {
-					// Nothing to display, no further validation needed
-					return $result;
-				}
-				$resultArray[] = $result;
+				return $result;
 			}
-		}
-		if ( $resultArray !== [] ) {
-			if ( count( $resultArray ) === 1 ) {
-				return reset( $resultArray );
-			}
-			// Show error as bullet point list
-			$key = '* $' . implode( "\n* $", range( 1, count( $resultArray ) ) );
-			return ( new RawMessage( $key ) )->params( $resultArray );
 		}
 
 		return true;
