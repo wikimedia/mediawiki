@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\Language\RawMessage;
 use MediaWiki\Widget\TagMultiselectWidget;
 
 /**
@@ -40,35 +39,22 @@ class HTMLTagMultiselectField extends HTMLTextField {
 		// $value is a string, because HTMLForm fields store their values as strings
 		$tagsArray = explode( "\n", $value );
 
-		if ( isset( $this->mParams['max'] ) && count( $tagsArray ) > $this->mParams['max'] ) {
-			return $this->msg( 'htmlform-multiselect-toomany' )->numParams( $this->mParams['max'] );
+		if ( isset( $this->mParams['max'] ) && ( count( $tagsArray ) > $this->mParams['max'] ) ) {
+			return $this->msg( 'htmlform-multiselect-toomany', $this->mParams['max'] );
 		}
 
-		$resultArray = [];
 		foreach ( $tagsArray as $tag ) {
 			$result = parent::validate( $tag, $alldata );
 			if ( $result !== true ) {
-				if ( $result === false ) {
-					// Nothing to display, no further validation needed
-					return $result;
-				}
-				$resultArray[] = $result;
+				return $result;
 			}
 
 			if ( empty( $this->mParams['allowArbitrary'] ) && $tag ) {
 				$allowedValues = $this->mParams['allowedValues'] ?? [];
 				if ( !in_array( $tag, $allowedValues ) ) {
-					$resultArray[] = $this->msg( 'htmlform-tag-not-allowed', $tag );
+					return $this->msg( 'htmlform-tag-not-allowed', $tag )->escaped();
 				}
 			}
-		}
-		if ( $resultArray !== [] ) {
-			if ( count( $resultArray ) === 1 ) {
-				return reset( $resultArray );
-			}
-			// Show error as bullet point list
-			$key = '* $' . implode( "\n* $", range( 1, count( $resultArray ) ) );
-			return ( new RawMessage( $key ) )->params( $resultArray );
 		}
 
 		return true;
