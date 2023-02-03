@@ -1,12 +1,7 @@
 <?php
 
-use MediaWiki\Config\ServiceOptions;
-use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageNameUtils;
-use MediaWiki\MainConfigNames;
-use Psr\Container\ContainerInterface;
-use Wikimedia\ObjectFactory\ObjectFactory;
-use Wikimedia\Services\NoSuchServiceException;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 
 /**
  * @covers LanguageCode
@@ -15,6 +10,7 @@ use Wikimedia\Services\NoSuchServiceException;
  * @author Thiemo Kreuz
  */
 class LanguageCodeTest extends MediaWikiUnitTestCase {
+	use DummyServicesTrait;
 
 	public function testConstructor() {
 		$instance = new LanguageCode();
@@ -226,29 +222,8 @@ class LanguageCodeTest extends MediaWikiUnitTestCase {
 		$this->assertEquals( $internalCode, $result );
 	}
 
-	public static function provideSupportedLanguageCodes() {
-		$lnu = new LanguageNameUtils(
-			new ServiceOptions(
-				LanguageNameUtils::CONSTRUCTOR_OPTIONS,
-				[
-					MainConfigNames::ExtraLanguageNames => [],
-					MainConfigNames::LanguageCode => 'en',
-					MainConfigNames::UsePigLatinVariant => true,
-				]
-			),
-			new HookContainer(
-				new \MediaWiki\HookContainer\StaticHookRegistry(),
-				new ObjectFactory( new class implements ContainerInterface {
-					public function has( string $id ): bool {
-						return false;
-					}
-
-					public function get( string $id ) {
-						throw new NoSuchServiceException( $id );
-					}
-				} )
-			)
-		);
+	public function provideSupportedLanguageCodes() {
+		$lnu = $this->getDummyLanguageNameUtils();
 		$languages = $lnu->getLanguageNames(
 			LanguageNameUtils::AUTONYMS, LanguageNameUtils::SUPPORTED
 		);
