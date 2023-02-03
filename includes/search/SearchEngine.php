@@ -257,24 +257,23 @@ abstract class SearchEngine {
 
 	/**
 	 * Get service class to finding near matches.
-	 * @param Config $config Configuration to use for the matcher.
-	 * @return SearchNearMatcher
+	 *
+	 * @return TitleMatcher
+	 * @deprecated since 1.40, use MediaWikiServices::getInstance()->getTitleMatcher()
 	 */
 	public function getNearMatcher( Config $config ) {
-		return new SearchNearMatcher( $config,
-			MediaWikiServices::getInstance()->getContentLanguage(),
-			$this->getHookContainer()
-		);
+		return MediaWikiServices::getInstance()->getTitleMatcher();
 	}
 
 	/**
 	 * Get near matcher for default SearchEngine.
-	 * @return SearchNearMatcher
+	 *
+	 * @return TitleMatcher
+	 * @deprecated since 1.40, MediaWikiServices::getInstance()->getTitleMatcher()
 	 */
 	protected static function defaultNearMatcher() {
-		$services = MediaWikiServices::getInstance();
-		$config = $services->getMainConfig();
-		return $services->newSearchEngine()->getNearMatcher( $config );
+		wfDeprecated( __METHOD__, '1.40' );
+		return MediaWikiServices::getInstance()->getTitleMatcher();
 	}
 
 	/**
