@@ -519,7 +519,7 @@ class SkinTemplate extends Skin {
 				$personal_urls['createaccount'] = $createaccount_url;
 			}
 
-			if ( $authManager->canAuthenticateNow() ) {
+			if ( $authManager->canAuthenticateNow() && !$this->isTempUser ) {
 				// TODO: easy way to get anon authority
 				$key = $groupPermissionsLookup->groupHasPermission( '*', 'read' )
 					? 'login'
@@ -750,21 +750,13 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * Add the userpage/tmpuserpage link to the array
+	 * Add the userpage link to the array
 	 *
 	 * @param array &$links Links array to append to
 	 * @param string $idSuffix Something to add to the IDs to make them unique
 	 */
 	private function addPersonalPageItem( &$links, $idSuffix ) {
-		if ( $this->isTempUser ) {
-			$links['tmpuserpage'] = [
-				'text' => $this->username,
-				'single-id' => 'pt-tmpuserpage',
-				'id' => 'pt-tmpuserpage' . $idSuffix,
-				'icon' => 'userAnonymous',
-				'dir' => 'auto'
-			];
-		} elseif ( $this->loggedin ) {
+		if ( $this->loggedin ) {
 			$links['userpage'] = $this->buildPersonalPageItem( 'pt-userpage' . $idSuffix );
 		}
 	}
@@ -776,15 +768,24 @@ class SkinTemplate extends Skin {
 	 * @return array
 	 */
 	protected function buildPersonalPageItem( $id = 'pt-userpage' ): array {
+		$linkClasses = $this->userpageUrlDetails['exists'] ? [] : [ 'new' ];
+		$icon = 'userAvatar';
+		$href = &$this->userpageUrlDetails['href'];
+		if ( $this->isTempUser ) {
+			$linkClasses[] = 'mw-userpage-tmp';
+			$linkClasses[] = 'mw-selflink';
+			$icon = 'userAnonymous';
+			$href = '#';
+		}
 		return [
 			'id' => $id,
 			'single-id' => 'pt-userpage',
 			'text' => $this->username,
-			'href' => &$this->userpageUrlDetails['href'],
-			'link-class' => $this->userpageUrlDetails['exists'] ? [] : [ 'new' ],
+			'href' => $href,
+			'link-class' => $linkClasses,
 			'exists' => $this->userpageUrlDetails['exists'],
 			'active' => ( $this->userpageUrlDetails['href'] == $this->getTitle()->getLocalURL() ),
-			'icon' => 'userAvatar',
+			'icon' => $icon,
 		];
 	}
 

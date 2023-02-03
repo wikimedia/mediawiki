@@ -30,8 +30,8 @@
 	var config = require( './config.json' );
 
 	function showTempUserPopup() {
-		var $portlet = $( '#pt-tmpuserpage' );
-		if ( !$portlet ) {
+		var $usernameLink = $( '.mw-userpage-tmp' );
+		if ( !$usernameLink.length ) {
 			return;
 		}
 		var popup = new OO.ui.PopupWidget( {
@@ -44,7 +44,7 @@
 					mw.util.getUrl( 'Special:CreateAccount' )
 				).parse()
 			),
-			$floatableContainer: $portlet,
+			$floatableContainer: $usernameLink,
 			// Work around T307062
 			position: 'below',
 			autoFlip: false
