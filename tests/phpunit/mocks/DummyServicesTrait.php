@@ -32,6 +32,7 @@ use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\PageReference;
@@ -220,6 +221,27 @@ trait DummyServicesTrait {
 				// Nothing to do
 			}
 		};
+	}
+
+	/**
+	 * @param array $options keys are
+	 *   - anything in LanguageNameUtils::CONSTRUCTOR_OPTIONS, any missing options will default
+	 *     to the MainConfigSchema defaults
+	 *   - 'hookContainer' if specific hooks need to be registered, otherwise an empty
+	 *     container will be used
+	 * @return LanguageNameUtils
+	 */
+	private function getDummyLanguageNameUtils( array $options = [] ): LanguageNameUtils {
+		// configuration is based on the defaults in MainConfigSchema
+		$serviceOptions = new ServiceOptions(
+			LanguageNameUtils::CONSTRUCTOR_OPTIONS,
+			$options, // caller can override the default config by specifying it here
+			self::getDefaultSettings()
+		);
+		return new LanguageNameUtils(
+			$serviceOptions,
+			$options['hookContainer'] ?? $this->createHookContainer()
+		);
 	}
 
 	/**

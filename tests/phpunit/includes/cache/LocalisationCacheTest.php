@@ -1,7 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use Psr\Log\NullLogger;
 
 /**
@@ -11,6 +11,7 @@ use Psr\Log\NullLogger;
  * @author Niklas Laxström
  */
 class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
+	use DummyServicesTrait;
 
 	/**
 	 * @param array $hooks Hook overrides
@@ -19,36 +20,12 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 	protected function getMockLocalisationCache( $hooks = [] ) {
 		global $IP;
 
-		$mockLangNameUtils = $this->createNoOpMock( LanguageNameUtils::class,
-			[ 'isValidBuiltInCode', 'isSupportedLanguage', 'getMessagesFileName' ] );
-		$mockLangNameUtils->method( 'isValidBuiltInCode' )->willReturnCallback(
-			static function ( $code ) {
-				// Copy-paste, but it's only one line
-				return (bool)preg_match( '/^[a-z0-9-]{2,}$/', $code );
-			}
-		);
-		$mockLangNameUtils->method( 'isSupportedLanguage' )->willReturnCallback(
-			static function ( $code ) {
-				return in_array( $code, [
-					'ar',
-					'arz',
-					'ba',
-					'de',
-					'en',
-					'ksh',
-					'ru',
-				] );
-			}
-		);
-		$mockLangNameUtils->method( 'getMessagesFileName' )->willReturnCallback(
-			static function ( $code ) {
-				global $IP;
-				$code = str_replace( '-', '_', ucfirst( $code ) );
-				return "$IP/languages/messages/Messages$code.php";
-			}
-		);
-
 		$hookContainer = $this->createHookContainer( $hooks );
+
+		// in case any of the LanguageNameUtils hooks are being used
+		$langNameUtils = $this->getDummyLanguageNameUtils(
+			[ 'hookContainer' => $hookContainer ]
+		);
 
 		$lc = $this->getMockBuilder( LocalisationCache::class )
 			->setConstructorArgs( [
@@ -61,7 +38,7 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 				new LCStoreDB( [] ),
 				new NullLogger,
 				[],
-				$mockLangNameUtils,
+				$langNameUtils,
 				$hookContainer
 			] )
 			->onlyMethods( [ 'getMessagesDirs' ] )
