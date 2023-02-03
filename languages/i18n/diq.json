@@ -3646,7 +3646,7 @@
 	"revdelete-restricted": "vergırewtışê ke xızmekaran rê biye",
 	"revdelete-unrestricted": "vergırewtışê ke xızmekaran rê dariyê we",
 	"logentry-block-block": "$1, karber {{GENDER:$4|$3}} $5 demi rê {{GENDER:$2|kerd men}} $6",
-	"logentry-block-unblock": "$1, {{GENDER:$4|$3}} {{GENDER:$2|men kerdış wedarna}}",
+	"logentry-block-unblock": "$1, {{GENDER:$4|$3}} {{GENDER:$2|kılitkerdış dard we}}",
 	"logentry-block-reblock": "$1, bloqey karberê {{GENDER:$4|$3}} qandê $5 roca {{GENDER:$2|vurna}} $6",
 	"logentry-partialblock-block-page": "{{PLURAL:$1|pele|peli}} $2",
 	"logentry-partialblock-block-ns": "{{PLURAL:$1|cayê nameyi|cayê nameyan}} $2",
