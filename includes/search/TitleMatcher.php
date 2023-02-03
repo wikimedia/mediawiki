@@ -1,21 +1,29 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\User\UserNameUtils;
 
 /**
- * Implementation of near match title search.
- * TODO: split into service/implementation.
+ * Service implementation of near match title search.
  */
-class SearchNearMatcher {
+class TitleMatcher {
 	/**
-	 * @var Config
+	 * @internal For use by ServiceWiring.
+	 * @var string[]
 	 */
-	protected $config;
+	public const CONSTRUCTOR_OPTIONS = [
+		MainConfigNames::EnableSearchContributorsByIP,
+	];
+
+	/**
+	 * @var ServiceOptions
+	 */
+	private $options;
 
 	/**
 	 * Current language
@@ -45,19 +53,37 @@ class SearchNearMatcher {
 	private $userNameUtils;
 
 	/**
-	 * @param Config $config
-	 * @param Language $lang
-	 * @param HookContainer $hookContainer
+	 * @var RepoGroup
 	 */
-	public function __construct( Config $config, Language $lang, HookContainer $hookContainer ) {
-		$this->config = $config;
-		$this->language = $lang;
-		$services = MediaWikiServices::getInstance();
-		$this->languageConverter = $services->getLanguageConverterFactory()
-			->getLanguageConverter( $lang );
-		$this->wikiPageFactory = $services->getWikiPageFactory();
+	private $repoGroup;
+
+	/**
+	 * @param ServiceOptions $options
+	 * @param Language $contentLanguage
+	 * @param LanguageConverterFactory $languageConverterFactory
+	 * @param HookContainer $hookContainer
+	 * @param WikiPageFactory $wikiPageFactory
+	 * @param UserNameUtils $userNameUtils
+	 * @param RepoGroup $repoGroup
+	 */
+	public function __construct(
+		ServiceOptions $options,
+		Language $contentLanguage,
+		LanguageConverterFactory $languageConverterFactory,
+		HookContainer $hookContainer,
+		WikiPageFactory $wikiPageFactory,
+		UserNameUtils $userNameUtils,
+		RepoGroup $repoGroup
+	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->options = $options;
+
+		$this->language = $contentLanguage;
+		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $contentLanguage );
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->userNameUtils = $services->getUserNameUtils();
+		$this->wikiPageFactory = $wikiPageFactory;
+		$this->userNameUtils = $userNameUtils;
+		$this->repoGroup = $repoGroup;
 	}
 
 	/**
@@ -175,7 +201,7 @@ class SearchNearMatcher {
 		$title = Title::newFromText( $searchterm );
 
 		# Entering an IP address goes to the contributions page
-		if ( $this->config->get( MainConfigNames::EnableSearchContributorsByIP ) ) {
+		if ( $this->options->get( MainConfigNames::EnableSearchContributorsByIP ) ) {
 			if ( ( $title->getNamespace() === NS_USER && $this->userNameUtils->isIP( $title->getText() ) )
 				|| $this->userNameUtils->isIP( trim( $searchterm ) ) ) {
 				return SpecialPage::getTitleFor( 'Contributions', $title->getDBkey() );
@@ -191,7 +217,7 @@ class SearchNearMatcher {
 		# There may have been a funny upload, or it may be on a shared
 		# file repository such as Wikimedia Commons.
 		if ( $title->getNamespace() === NS_FILE ) {
-			$image = MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title );
+			$image = $this->repoGroup->findFile( $title );
 			if ( $image ) {
 				return $title;
 			}
@@ -212,3 +238,8 @@ class SearchNearMatcher {
 		return null;
 	}
 }
+
+/**
+ * @deprecated since 1.40, remove in 1.41.
+ */
+class_alias( TitleMatcher::class, 'SearchNearMatcher' );

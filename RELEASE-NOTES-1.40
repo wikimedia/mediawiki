@@ -347,6 +347,9 @@ because of Phabricator reports.
   Use Language::getGroupMemberName or ::getGroupName instead.
 * AbstractBlock::getPermissionsError(), deprecated in 1.35, now emits
   deprecation warnings.
+* SearchEngine::getNearMatcher() and ::getDefaultMatcher() have been deprecated
+  in favor of MediaWikiServices::getInstance()->getTitleMatcher().
+* SearchNearMatcher class has been deprecated in 1.40 in favor of TitleMatcher.
 * The following functions are deprecated: User::isBlockedGlobally and
   User::getGlobalBlock. Use User::getBlock instead.
 * The UserIsBlockedGlobally hook is deprecated.
@@ -367,6 +370,8 @@ because of Phabricator reports.
 * Title.js's confusingly-named getName() and getNameText() methods, for using
   media files' pages, have been renamed to getFileNameWithoutExtension() and
   getFileNameTextWithoutExtension() respectively. The old names are deprecated.
+* Command::whitelistPaths() should now emit deprecation warnings. Make use of
+  Command::allowPaths/disallowPaths() instead.
 * When manually creating an HTMLFormField (i.e. not via HTMLForm::factory),
   it is deprecated to not include the "parent" field as one of the parameters.
 * The MWException class is deprecated. Use native exceptions, either directly

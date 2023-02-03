@@ -285,7 +285,7 @@ class GitInfo {
 				$result = Shell::command( $cmd )
 					->environment( [ 'GIT_DIR' => $gitDir ] )
 					->restrict( Shell::RESTRICT_DEFAULT | Shell::NO_NETWORK )
-					->whitelistPaths( [ $gitDir, $this->repoDir ] )
+					->allowPath( $gitDir, $this->repoDir )
 					->execute();
 
 				if ( $result->getExitCode() === 0 ) {

@@ -1129,6 +1129,7 @@ class SpecialPageFactory {
 						'LanguageConverterFactory',
 						'RepoGroup',
 						'SearchResultThumbnailProvider',
+						'TitleMatcher',
 					]
 				];
 			}

@@ -401,6 +401,7 @@ class ApiQuery extends ApiBase {
 			'services' => [
 				'SearchEngineConfig',
 				'SearchEngineFactory',
+				'TitleMatcher',
 			],
 		],
 		'tags' => [
