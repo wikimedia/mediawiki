@@ -565,6 +565,19 @@ class CommentStoreBase {
 	}
 
 	/**
+	 * @since 1.40
+	 *
+	 * @param string $key
+	 * @return int|null
+	 */
+	public function getTempTableMigrationStage( string $key ) {
+		if ( !isset( $this->tempTables[$key] ) ) {
+			throw new InvalidArgumentException( "There is no temp table for $key" );
+		}
+		return $this->tempTables[$key]['stage'];
+	}
+
+	/**
 	 * Encode a Message as a PHP data structure
 	 * @param Message $msg
 	 * @return array
