@@ -2309,6 +2309,7 @@ return [
 		'messages' => [
 			'prefs-tabs-navigation-hint',
 			'prefs-signature-highlight-error',
+			'prefs-back-title',
 		],
 		'dependencies' => [
 			'mediawiki.language',

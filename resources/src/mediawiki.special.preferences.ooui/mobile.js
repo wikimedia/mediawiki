@@ -47,24 +47,36 @@
 	/*
 	 * Configure and register a dialog for a pref section
 	 */
-	function sectionDialog( sectionId, sectionHead, sectionBody ) {
+	function createSectionDialog( sectionId, sectionTitle, sectionBody ) {
 		function PrefDialog() {
 			var conf = { classes: [ 'overlay-content', 'mw-mobile-pref-window' ] };
 			PrefDialog.super.call( this, conf );
 		}
-		OO.inheritClass( PrefDialog, OO.ui.Dialog );
+
+		OO.inheritClass( PrefDialog, OO.ui.ProcessDialog );
 		PrefDialog.static.name = sectionId;
 		PrefDialog.static.escapable = true;
 		PrefDialog.static.size = 'larger';
+		PrefDialog.static.title = sectionTitle;
+		PrefDialog.static.actions = [
+			{ action: 'cancel', label: mw.msg( 'prefs-back-title' ), flags: [ 'safe', 'close' ] }
+		];
 		PrefDialog.prototype.initialize = function () {
 			insertToggles( sectionBody.querySelectorAll( 'span.oo-ui-checkboxInputWidget' ) );
 			this.name = sectionId;
 			PrefDialog.super.prototype.initialize.call( this );
-			this.$head.append( sectionHead );
-			this.$head[ 0 ].classList.add( 'mw-mobile-pref-dialog-head' );
 			this.$body.append( sectionBody );
 			this.content = new OO.ui.PanelLayout( { padded: true, expanded: true } );
-			this.$body[ 0 ].classList.add( 'mw-mobile-pref-dialog-body' );
+			this.$body.addClass( 'mw-mobile-pref-dialog-body' );
+		};
+		PrefDialog.prototype.getActionProcess = function ( action ) {
+			var dialog = this;
+			if ( action ) {
+				return new OO.ui.Process( function () {
+					dialog.close( { action: action } );
+				} );
+			}
+			return PrefDialog.super.prototype.getActionProcess.call( this, action );
 		};
 
 		dialogFactory.register( PrefDialog );
@@ -97,14 +109,11 @@
 		Array.prototype.forEach.call( sections, function ( section ) {
 			var sectionContent = document.getElementById( section.id + '-content' );
 			var sectionBody = sectionContent.querySelector( 'div > div.oo-ui-widget' );
-			var sectionHead = document.getElementById( section.id + '-head' );
-			document.getElementById( section.id + '-back-button' ).addEventListener( 'click', function () {
-				windowManager.closeWindow( section.id );
-			} );
+			var sectionTitle = document.getElementById( section.id + '-title' ).textContent;
 			document.getElementById( section.id ).addEventListener( 'click', function () {
 				setSection( section.id );
 			} );
-			sectionDialog( section.id, sectionHead, sectionBody );
+			createSectionDialog( section.id, sectionTitle, sectionBody );
 		} );
 	}
 	// DOM-dependant code
