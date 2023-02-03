@@ -1347,7 +1347,7 @@
 	"grouppage-bureaucrat": "{{ns:project}}:Bürokratlar",
 	"grouppage-suppress": "{{ns:project}}:Gözetmen",
 	"right-read": "Sayfaları oku",
-	"right-edit": "Sayfaları düzenle",
+	"right-edit": "Sayfaları değiştir",
 	"right-createpage": "Sayfa oluştur (tartışma sayfası olmayan)",
 	"right-createtalk": "Tartışma sayfaları oluştur",
 	"right-createaccount": "Yeni kullanıcı hesapları oluştur",
