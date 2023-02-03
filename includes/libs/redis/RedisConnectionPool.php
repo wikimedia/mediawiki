@@ -193,7 +193,7 @@ class RedisConnectionPool implements LoggerAwareInterface {
 				// Server is dead
 				$logger->debug(
 					'Server "{redis_server}" is marked down for another ' .
-					( $this->downServers[$server] - $now ) . 'seconds',
+					( $this->downServers[$server] - $now ) . ' seconds',
 					[ 'redis_server' => $server ]
 				);
 
