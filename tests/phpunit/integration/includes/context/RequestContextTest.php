@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Integration\Context;
 
+use LogicException;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\UltimateAuthority;
@@ -318,5 +319,12 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 		] );
 		$context = new RequestContext();
 		$this->assertInstanceOf( SkinFallback::class, $context->getSkin() );
+	}
+
+	public function testCloningNotAllowed() {
+		$context = RequestContext::getMain();
+		$this->expectException( LogicException::class );
+
+		clone $context;
 	}
 }
