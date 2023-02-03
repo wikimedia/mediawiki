@@ -1992,20 +1992,6 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return $success;
 	}
 
-	public function forEachOpenConnection( $callback, array $params = [] ) {
-		wfDeprecated( __METHOD__, '1.39' );
-		foreach ( $this->getOpenConnections() as $conn ) {
-			$callback( $conn, ...$params );
-		}
-	}
-
-	public function forEachOpenPrimaryConnection( $callback, array $params = [] ) {
-		wfDeprecated( __METHOD__, '1.39' );
-		foreach ( $this->getOpenPrimaryConnections() as $conn ) {
-			$callback( $conn, ...$params );
-		}
-	}
-
 	/**
 	 * Get all open connections
 	 * @return \Generator|Database[]

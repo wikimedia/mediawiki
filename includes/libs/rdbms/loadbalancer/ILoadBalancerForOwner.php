@@ -196,23 +196,6 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	public function pendingPrimaryChangeCallers();
 
 	/**
-	 * Call a function with each open connection object
-	 * @deprecated since 1.39
-	 * @param callable $callback
-	 * @param array $params
-	 */
-	public function forEachOpenConnection( $callback, array $params = [] );
-
-	/**
-	 * Call a function with each open connection object to a primary
-	 * @deprecated since 1.39
-	 * @param callable $callback
-	 * @param array $params
-	 * @since 1.37
-	 */
-	public function forEachOpenPrimaryConnection( $callback, array $params = [] );
-
-	/**
 	 * Set a new table prefix for the existing local domain ID for testing
 	 *
 	 * @param string $prefix
