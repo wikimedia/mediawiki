@@ -1440,7 +1440,7 @@ class SwiftFileBackend extends FileBackendStore {
 			return $status;
 		}
 
-		[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->http->run( [
+		[ $rcode, , , , ] = $this->http->run( [
 			'method' => 'POST',
 			'url' => $this->storageUrl( $auth, $container ),
 			'headers' => $this->authTokenHeaders( $auth ) + [

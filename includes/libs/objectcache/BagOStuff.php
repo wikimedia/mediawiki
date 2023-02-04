@@ -361,7 +361,7 @@ abstract class BagOStuff implements
 			return null;
 		}
 
-		return new ScopedCallback( function () use ( $key, $exptime ) {
+		return new ScopedCallback( function () use ( $key ) {
 			$this->unlock( $key );
 		} );
 	}

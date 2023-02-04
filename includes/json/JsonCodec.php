@@ -121,7 +121,7 @@ class JsonCodec implements JsonUnserializer, JsonSerializer {
 		if ( is_array( $value ) ) {
 			$is_complex = false;
 			// Recursively convert array values to serializable form
-			foreach ( $value as $key => &$v ) {
+			foreach ( $value as &$v ) {
 				if ( is_object( $v ) || is_array( $v ) ) {
 					$v = $this->serializeOne( $v );
 					if ( isset( $v[JsonConstants::COMPLEX_ANNOTATION] ) ) {

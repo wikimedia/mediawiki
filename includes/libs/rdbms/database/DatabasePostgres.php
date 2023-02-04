@@ -1156,7 +1156,7 @@ SQL;
 
 		$acquired = null;
 		$loop = new WaitConditionLoop(
-			function () use ( $lockName, $sql, $timeout, $method, &$acquired ) {
+			function () use ( $sql, $method, &$acquired ) {
 				$res = $this->query(
 					$sql,
 					$method,

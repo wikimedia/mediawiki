@@ -1416,7 +1416,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 		$this->logger->info( 'Reconfiguring dbs!' );
 		$newServers = [];
-		foreach ( $params['servers'] as $i => $server ) {
+		foreach ( $params['servers'] as $server ) {
 			$newServers[] = $this->getServerNameFromConfig( $server );
 		}
 

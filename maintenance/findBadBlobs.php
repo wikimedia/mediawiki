@@ -442,8 +442,6 @@ class FindBadBlobs extends Maintenance {
 	 */
 	private function checkSlot( RevisionRecord $rev, SlotRecord $slot ) {
 		$address = $slot->getAddress();
-		$error = null;
-		$type = null;
 
 		try {
 			$this->blobStore->getBlob( $address );

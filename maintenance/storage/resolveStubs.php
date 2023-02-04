@@ -100,7 +100,6 @@ class ResolveStubs extends Maintenance {
 		$flags = SqlBlobStore::explodeFlags( $row->old_flags );
 
 		$dbr = $this->getDB( DB_REPLICA );
-		$dbw = $this->getDB( DB_PRIMARY );
 
 		if ( !( $stub instanceof HistoryBlobStub ) ) {
 			print "Error at old_id $id: found object of class " . get_class( $stub ) .

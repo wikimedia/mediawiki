@@ -4659,7 +4659,6 @@ class Language implements Bcp47Code {
 			if ( $format['avoid'] === 'avoidhours' ) {
 				$hours = round( ( $seconds - $days * 86400 ) / 3600 );
 				if ( $hours == 24 ) {
-					$hours = 0;
 					$days++;
 				}
 				$s = $daysMsg->params( $this->formatNum( $days ) )->text();

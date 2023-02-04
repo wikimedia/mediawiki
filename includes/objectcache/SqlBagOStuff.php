@@ -1551,7 +1551,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
 		foreach ( $this->getShardServerIndexes() as $shardIndex ) {
-			$db = null; // in case of connection failure
 			try {
 				$db = $this->getConnection( $shardIndex );
 				for ( $i = 0; $i < $this->numTableShards; $i++ ) {
