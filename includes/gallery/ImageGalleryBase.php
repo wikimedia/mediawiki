@@ -22,6 +22,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\StubObject\StubUserLang;
 
 /**
  * Image gallery
@@ -421,7 +422,7 @@ abstract class ImageGalleryBase extends ContextSource {
 
 	/**
 	 * Determines the correct language to be used for this image gallery
-	 * @return Language
+	 * @return Language|StubUserLang
 	 */
 	protected function getRenderLang() {
 		return $this->mParser

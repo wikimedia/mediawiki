@@ -33,6 +33,7 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\StubObject\StubObject;
+use MediaWiki\StubObject\StubUserLang;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\Database;
@@ -1329,7 +1330,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param PageReference|null $page
 	 * @param bool $linestart Whether or not this is at the start of a line
 	 * @param bool $interface Whether this is an interface message
-	 * @param Language|string|null $language Language code
+	 * @param Language|StubUserLang|string|null $language Language code
 	 * @return ParserOutput|string
 	 */
 	public function parse( $text, PageReference $page = null, $linestart = true,
