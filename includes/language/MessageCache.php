@@ -339,6 +339,7 @@ class MessageCache implements LoggerAwareInterface {
 		// to invalid the local cache on every server whenever a message page changes.
 		list( $hash, $hashVolatile ) = $this->getValidationHash( $code );
 		$this->cacheVolatile[$code] = $hashVolatile;
+		$volatilityOnlyStaleness = false;
 
 		// Try the local cache and check against the cluster hash key...
 		$cache = $this->getLocalCache( $code );
@@ -354,6 +355,7 @@ class MessageCache implements LoggerAwareInterface {
 			// Some recent message page changes might not show due to DB lag
 			$where[] = 'local cache validation key is expired/volatile';
 			$staleCache = $cache;
+			$volatilityOnlyStaleness = true;
 		} else {
 			$where[] = 'got from local cache';
 			$this->cache->set( $code, $cache );
@@ -364,7 +366,7 @@ class MessageCache implements LoggerAwareInterface {
 			// Try the cluster cache, using a lock for regeneration...
 			$cacheKey = $this->clusterCache->makeKey( 'messages', $code );
 			for ( $failedAttempts = 0; $failedAttempts <= 1; $failedAttempts++ ) {
-				if ( $hashVolatile && $staleCache ) {
+				if ( $volatilityOnlyStaleness && $staleCache ) {
 					// While the cluster cache *might* be more up-to-date, we do not want
 					// the I/O strain of every application server fetching the key here during
 					// the volatility period. Either this thread wins the lock and regenerates

@@ -11,6 +11,8 @@ THIS IS NOT A RELEASE YET
 === Changes since MediaWiki 1.39.3 ===
 * Localisation updates.
 * (T333776) {{ACTIVEUSERS}} wasn't being updated without updateSpecialPages.php
+* (T258860) Prevent LogicCache exception from message cache during IO errors
+  from memcache.
 
 == MediaWiki 1.39.3 ==
 
