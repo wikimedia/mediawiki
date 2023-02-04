@@ -7,27 +7,46 @@
 version: '3.7'
 services:
   mediawiki:
-    image: docker-registry.wikimedia.org/dev/stretch-php72-fpm-apache2-xdebug:0.4.0
+    image: docker-registry.wikimedia.org/dev/buster-php74-fpm:1.0.0-s3
+    user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
+    volumes:
+      - ./:/var/www/html/w:cached
+    env_file:
+      - '.env'
+    environment:
+      COMPOSER_CACHE_DIR: '/var/www/html/w/cache/composer'
+      MW_SERVER: 'http://localhost:${MW_DOCKER_PORT:-8080}'
+      MW_SCRIPT_PATH: '/w'
+      MW_DBPATH: '/var/www/html/w/cache/sqlite'
+      MW_DBTYPE: 'sqlite'
+      MW_LANG: 'en'
+      MW_USER: '${MEDIAWIKI_USER:-Admin}'
+      MW_PASS: '${MEDIAWIKI_PASSWORD:-dockerpass}'
+      MW_SITENAME: 'MediaWiki'
+      MW_LOG_DIR: /var/www/html/w/cache
+      XDEBUG_CONFIG: '${XDEBUG_CONFIG}'
+      XDEBUG_ENABLE: '${XDEBUG_ENABLE:-true}'
+      XHPROF_ENABLE: '${XHPROF_ENABLE:-true}'
+
+  mediawiki-web:
+    image: docker-registry.wikimedia.org/dev/buster-apache2:2.0.0-s1
+    user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
     ports:
       - "${MW_DOCKER_PORT:-8080}:8080"
     volumes:
-      - ./:/var/www/html:cached
+      - ./:/var/www/html/w:cached
+    env_file:
+      - '.env'
     environment:
-      COMPOSER_CACHE_DIR: '/var/www/html/cache/composer'
-      MW_SERVER: 'http://localhost:${MW_DOCKER_PORT:-8080}'
-      MW_SCRIPT_PATH: ''
-      MW_DBPATH: '/var/www/html/cache/sqlite'
-      MW_DBTYPE: 'sqlite'
-      MW_LANG: 'en'
-      MW_USER: 'admin'
-      MW_PASS: 'dockerpass'
-      MW_SITENAME: 'MediaWiki'
-      MW_LOG_DIR: /var/www/html/cache
-      XDEBUG_CONFIG: ${XDEBUG_CONFIG}
+      MW_LOG_DIR: /var/www/html/w/cache
+
   mediawiki-jobrunner:
-    image: docker-registry.wikimedia.org/dev/stretch-php72-jobrunner:0.0.1
+    image: docker-registry.wikimedia.org/dev/buster-php74-jobrunner:1.0.0-s2
+    user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
     volumes:
-      - ./:/var/www/html:cached
+      - ./:/var/www/html/w:cached
+    env_file:
+      - '.env'
     environment:
-      MW_LOG_DIR: /var/www/html/cache
-      MW_INSTALL_PATH: /var/www/html
+      MW_LOG_DIR: /var/www/html/w/cache
+      MW_INSTALL_PATH: /var/www/html/w
