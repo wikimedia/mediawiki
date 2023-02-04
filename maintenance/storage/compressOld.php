@@ -305,8 +305,6 @@ class CompressOld extends Maintenance {
 		# $tables[] = 'page';
 		# $conds[] = 'page_id=rev_page AND rev_id != page_latest';
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-
 		for ( $pageId = $startId; $pageId <= $maxPageId; $pageId++ ) {
 			$this->waitForReplication();
 

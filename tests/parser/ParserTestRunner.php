@@ -925,7 +925,6 @@ class ParserTestRunner {
 
 		// Run tests
 		$ok = true;
-		$runner = $this;
 		foreach ( $testFileInfo->testCases as $test ) {
 			$result = $this->runTest( $test, $mode );
 			$ok = $ok && $result->isSuccess();
@@ -1067,7 +1066,6 @@ class ParserTestRunner {
 		// Run tests
 		$ok = true;
 		$runner = $this;
-		$testFilter = [ 'regex' => $this->regex ];
 		foreach ( $testFileInfo->testCases as $t ) {
 			$t->testAllModes( $t->computeTestModes( $testModes ), $this->options,
 				function ( ParserTest $test, string $modeStr, array $options ) use ( $runner, $t, &$ok ) {
@@ -1720,14 +1718,12 @@ class ParserTestRunner {
 		if ( $test->changetree === [ 'manual' ] ) {
 			$test->applyManualChanges( $doc );
 			$expectedWT = $test->sections['wikitext/edited'];
-			$expectedFailure = $test->knownFailures["$mode"] ?? null;
 		} else {
 			// $test->changetree === [ 5 ]
 			$changetree = $test->changetree;
 			'@phan-var array $changetree'; // assert that this is not null
 			$test->applyChanges( [], $doc, $changetree );
 			$expectedWT = $test->wikitext;
-			$expectedFailure = $test->knownFailures["$mode"] ?? null;
 		}
 		$editedHTML = ContentUtils::toXML( DOMCompat::getBody( $doc ) );
 
@@ -1841,7 +1837,6 @@ class ParserTestRunner {
 			// this mode is a composite of multiple selser tests
 			$mode = new ParserTestMode( "selserAutoEdits" );
 			$numChanges = $runnerOpts['numchanges'] ?? 20; // default in Parsoid
-			$results = [];
 			$bufOut = "";
 			$bufExpected = "";
 			for ( $i = 0; $i < $numChanges; $i++ ) {
@@ -1879,7 +1874,7 @@ class ParserTestRunner {
 		$pageConfigFactory = $services->get( 'ParsoidPageConfigFactory' );
 		$pageConfig = null;
 		$runner = $this;
-		[ $title, $options, $revId ] = $this->setupParserOptions(
+		$this->setupParserOptions(
 			$test,
 			static function ( $context, $title, $revProps ) use ( $runner, $pageConfigFactory, &$pageConfig ) {
 				$user = $context->getUser();

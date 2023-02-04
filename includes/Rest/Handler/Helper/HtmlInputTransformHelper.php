@@ -402,11 +402,8 @@ class HtmlInputTransformHelper {
 	 * @param ParsoidRenderID|PageBundle|ParserOutput|null $originalRendering
 	 */
 	public function setOriginal( $rev, $originalRendering ) {
-		$content = null;
-
 		if ( $originalRendering instanceof ParsoidRenderID ) {
 			$renderId = $originalRendering;
-			$selserContext = null;
 
 			// If the client asked for a render ID, load original data from stash
 			try {

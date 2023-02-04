@@ -286,7 +286,7 @@ class SkinComponentFooter implements SkinComponent {
 			$icons = [];
 			foreach ( $footerIcons as $blockName => $blockIcons ) {
 				$html = '';
-				foreach ( $blockIcons as $key => $icon ) {
+				foreach ( $blockIcons as $icon ) {
 					$html .= $skinContext->makeFooterIcon( $icon );
 				}
 				// For historic reasons this mimics the `icononly` option

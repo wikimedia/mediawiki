@@ -185,7 +185,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 
 		$value = false;
 		$valueSize = false;
-		[ $rcode, $rdesc, $rhdrs, $rbody, $rerr ] = $this->client->run( $req );
+		[ $rcode, , $rhdrs, $rbody, $rerr ] = $this->client->run( $req );
 		if ( $rcode === 200 && is_string( $rbody ) ) {
 			$value = $this->decodeBody( $rbody );
 			$valueSize = strlen( $rbody );

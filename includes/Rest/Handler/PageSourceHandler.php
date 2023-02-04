@@ -62,7 +62,6 @@ class PageSourceHandler extends SimpleHandler {
 	public function run(): Response {
 		$this->contentHelper->checkAccess();
 		$page = $this->contentHelper->getPage();
-		$params = $this->getRequest()->getQueryParams();
 
 		// The call to $this->contentHelper->getPage() should not return null if
 		// $this->contentHelper->checkAccess() did not throw.

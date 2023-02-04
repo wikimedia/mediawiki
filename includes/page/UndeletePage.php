@@ -487,9 +487,6 @@ class UndeletePage {
 
 		$wikiPage = $this->wikiPageFactory->newFromTitle( $page );
 
-		$oldPageId = 0;
-		/** @var RevisionRecord|null $revision */
-		$revision = null;
 		$created = true;
 		$oldcountable = false;
 		$updatedCurrentRevision = false;

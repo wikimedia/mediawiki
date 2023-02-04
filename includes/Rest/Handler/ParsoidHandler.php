@@ -755,7 +755,6 @@ abstract class ParsoidHandler extends Handler {
 
 	public function wtLint( PageConfig $pageConfig, array $attribs, ?string $wikitext = null ) {
 		$envOptions = $attribs['envOptions'];
-		$oldid = $attribs['oldid'];
 
 		try {
 			$parsoid = $this->newParsoid();

@@ -185,7 +185,7 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		// Make sure the date (probably from user input) is valid; if not, drop it.
 		if ( $this->mOffset !== null ) {
 			try {
-				$sadlyWeCannotPassThisTimestampDownTheStack = $this->mDb->timestamp( $this->mOffset );
+				$this->mDb->timestamp( $this->mOffset );
 			} catch ( TimestampException $e ) {
 				$this->mOffset = null;
 			}
