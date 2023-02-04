@@ -910,9 +910,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 			$m = trim( $m );
 			$m = strtolower( $m );
 
-			if ( strpos( $m, 'unknown' ) !== false ) {
-				$m = null;
-			} else {
+			if ( !str_contains( $m, 'unknown' ) ) {
 				$this->logger->info( __METHOD__ . ": magic mime type of $file: $m" );
 				return $m;
 			}
