@@ -384,6 +384,8 @@ because of Phabricator reports.
   but would not log it as such in patrol log and would still require
   'autopatrol' right (not 'patrol'). Generally, whether a change should become
   autopatrolled, is usually determined before it's inserted in the database.
+* Skins can now choose which Codex theme should be loaded by setting the
+  SkinCodexThemes attribute in their skin.json file.
 * …
 
 == Compatibility ==

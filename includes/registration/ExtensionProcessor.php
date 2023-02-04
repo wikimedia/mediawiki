@@ -74,6 +74,7 @@ class ExtensionProcessor implements Processor {
 		'ParsoidModules',
 		'RestRoutes',
 		'SkinOOUIThemes',
+		'SkinCodexThemes',
 		'SearchMappings',
 		'TrackingCategories',
 		'LateJSConfigVarNames',
