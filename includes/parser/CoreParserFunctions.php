@@ -1394,7 +1394,6 @@ class CoreParserFunctions {
 		Title $title,
 		int $start,
 		int $len,
-		bool $isNoArgForm,
 		int $mtts
 	): string {
 		// Note that {{REVISIONTIMESTAMP}} works differently from
@@ -1447,7 +1446,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		return strval( (int)self::getRevisionTimestampSubstring(
-			$parser, $t, 6, 2, ( $title === null ), self::MAX_TTS
+			$parser, $t, 6, 2, self::MAX_TTS
 		) );
 	}
 
@@ -1464,7 +1463,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		return self::getRevisionTimestampSubstring(
-			$parser, $t, 6, 2, ( $title === null ), self::MAX_TTS
+			$parser, $t, 6, 2, self::MAX_TTS
 		);
 	}
 
@@ -1481,7 +1480,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		return self::getRevisionTimestampSubstring(
-			$parser, $t, 4, 2, ( $title === null ), self::MAX_TTS
+			$parser, $t, 4, 2, self::MAX_TTS
 		);
 	}
 
@@ -1498,7 +1497,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		return strval( (int)self::getRevisionTimestampSubstring(
-			$parser, $t, 4, 2, ( $title === null ), self::MAX_TTS
+			$parser, $t, 4, 2, self::MAX_TTS
 		) );
 	}
 
@@ -1515,7 +1514,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		return self::getRevisionTimestampSubstring(
-			$parser, $t, 0, 4, ( $title === null ), self::MAX_TTS
+			$parser, $t, 0, 4, self::MAX_TTS
 		);
 	}
 
@@ -1532,7 +1531,7 @@ class CoreParserFunctions {
 			return '';
 		}
 		return self::getRevisionTimestampSubstring(
-			$parser, $t, 0, 14, ( $title === null ), self::MAX_TTS
+			$parser, $t, 0, 14, self::MAX_TTS
 		);
 	}
 

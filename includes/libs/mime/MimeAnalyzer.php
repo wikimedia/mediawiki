@@ -520,7 +520,7 @@ class MimeAnalyzer implements LoggerAwareInterface {
 				"Use improveTypeFromExtension(\$mime, \$ext) instead." );
 		}
 
-		$mime = $this->doGuessMimeType( $file, $ext );
+		$mime = $this->doGuessMimeType( $file );
 
 		if ( !$mime ) {
 			$this->logger->info( __METHOD__ .
@@ -539,14 +539,11 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	/**
 	 * Guess the MIME type from the file contents.
 	 *
-	 * @todo Remove $ext param
-	 *
 	 * @param string $file
-	 * @param string|bool $ext
 	 * @return bool|string
 	 * @throws UnexpectedValueException
 	 */
-	private function doGuessMimeType( string $file, $ext ) {
+	private function doGuessMimeType( string $file ) {
 		// Read a chunk of the file
 		AtEase::suppressWarnings();
 		$f = fopen( $file, 'rb' );

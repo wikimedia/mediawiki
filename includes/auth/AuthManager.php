@@ -1087,12 +1087,10 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * @param callable $authorizer ( string $action, PageIdentity $target, PermissionStatus $status )
-	 * @param Authority $creator
 	 * @return StatusValue
 	 */
 	private function authorizeInternal(
-		callable $authorizer,
-		Authority $creator
+		callable $authorizer
 	): StatusValue {
 		// Wiki is read-only?
 		if ( $this->readOnlyMode->isReadOnly() ) {
@@ -1135,8 +1133,7 @@ class AuthManager implements LoggerAwareInterface {
 				PermissionStatus $status
 			) use ( $creator ) {
 				return $creator->probablyCan( $action, $target, $status );
-			},
-			$creator
+			}
 		);
 	}
 
@@ -1159,8 +1156,7 @@ class AuthManager implements LoggerAwareInterface {
 				PermissionStatus $status
 			) use ( $creator ) {
 				return $creator->authorizeWrite( $action, $target, $status );
-			},
-			$creator
+			}
 		);
 	}
 

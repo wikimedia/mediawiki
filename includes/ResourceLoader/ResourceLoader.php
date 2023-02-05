@@ -1125,7 +1125,6 @@ MESSAGE;
 						} elseif ( is_array( $scripts ) ) {
 							// ...except when $scripts is an array of URLs or an associative array
 							$strContent = self::makeLoaderImplementScript(
-								$context,
 								$implementKey,
 								$scripts,
 								[],
@@ -1157,7 +1156,6 @@ MESSAGE;
 							}
 						}
 						$strContent = self::makeLoaderImplementScript(
-							$context,
 							$implementKey,
 							$scripts,
 							$content['styles'] ?? [],
@@ -1258,7 +1256,6 @@ MESSAGE;
 	/**
 	 * Return JS code that calls mw.loader.implement with given module properties.
 	 *
-	 * @param Context $context
 	 * @param string $name Module name or implement key (format "`[name]@[version]`")
 	 * @param XmlJsCode|array|string $scripts Code as XmlJsCode (to be wrapped in a closure),
 	 *  list of URLs to JavaScript files, string of JavaScript for eval, or array with
@@ -1273,7 +1270,7 @@ MESSAGE;
 	 * @return string JavaScript code
 	 */
 	private static function makeLoaderImplementScript(
-		Context $context, $name, $scripts, $styles, $messages, $templates
+		$name, $scripts, $styles, $messages, $templates
 	) {
 		if ( $scripts instanceof XmlJsCode ) {
 			if ( $scripts->value === '' ) {

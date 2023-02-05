@@ -165,14 +165,14 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	public function incr( $key, $value = 1, $flags = 0 ) {
-		return $this->doIncr( $key, $value, $flags );
+		return $this->doIncr( $key, $value );
 	}
 
 	public function decr( $key, $value = 1, $flags = 0 ) {
-		return $this->doIncr( $key, -$value, $flags );
+		return $this->doIncr( $key, -$value );
 	}
 
-	private function doIncr( $key, $value = 1, $flags = 0 ) {
+	private function doIncr( $key, $value = 1 ) {
 		// optimize with FIFO lock
 		if ( !wincache_lock( $key ) ) {
 			return false;

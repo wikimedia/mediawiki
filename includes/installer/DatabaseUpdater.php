@@ -467,9 +467,8 @@ abstract class DatabaseUpdater {
 	 * @since 1.21
 	 *
 	 * Writes the schema updates desired to a file for the DB Admin to run.
-	 * @param array $schemaUpdate
 	 */
-	private function writeSchemaUpdateFile( array $schemaUpdate = [] ) {
+	private function writeSchemaUpdateFile() {
 		$updates = $this->updatesSkipped;
 		$this->updatesSkipped = [];
 

@@ -110,7 +110,7 @@ class ParserTestPrinter extends TestRecorder {
 		$this->success += ( $result->isSuccess() ? 1 : 0 );
 
 		if ( $result->isSuccess() ) {
-			$this->showSuccess( $result );
+			$this->showSuccess();
 		} else {
 			$this->showFailure( $result );
 		}
@@ -118,10 +118,8 @@ class ParserTestPrinter extends TestRecorder {
 
 	/**
 	 * Print a happy success message.
-	 *
-	 * @param ParserTestResult $testResult
 	 */
-	private function showSuccess( ParserTestResult $testResult ): void {
+	private function showSuccess(): void {
 		if ( $this->showProgress ) {
 			print $this->term->color( '1;32' ) . 'PASSED' . $this->term->reset() . "\n";
 		}
