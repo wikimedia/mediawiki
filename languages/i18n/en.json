@@ -1988,6 +1988,7 @@
 	"filehist-dimensions": "Dimensions",
 	"filehist-filesize": "File size",
 	"filehist-comment": "Comment",
+	"filehist-missing": "no file",
 	"imagelinks": "File usage",
 	"linkstoimage": "The following {{PLURAL:$1|page uses|$1 pages use}} this file:",
 	"linkstoimage-more": "More than $1 {{PLURAL:$1|page uses|pages use}} this file.\nThe following list shows the {{PLURAL:$1|first page|first $1 pages}} that use this file only.\nA [[Special:WhatLinksHere/$2|full list]] is available.",
