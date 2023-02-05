@@ -215,7 +215,7 @@ $( function () {
  */
 function isSearchInput( element ) {
 	return element.id === 'searchInput' ||
-		/(^|\s)mw-searchInput($|\s)/.test( element.className );
+		element.classList.contains( 'mw-searchInput' );
 }
 
 /**
