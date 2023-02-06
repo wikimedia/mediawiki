@@ -1376,6 +1376,7 @@
 	"filehist-dimensions": "Àwọn ìwọ̀n",
 	"filehist-filesize": "Ìtóbi fáìlì",
 	"filehist-comment": "Àríwí",
+	"filehist-missing": "Fáìlì kò sí",
 	"imagelinks": "Ìlò fáìlì",
 	"linkstoimage": "{{PLURAL:$1|Ojúewé kan yìí|Àwọn ojúewé $1 wọ̀nyí}} únlo fáìlì yí:",
 	"linkstoimage-more": "{{PLURAL:$1|Ojúewé|Àwọn ojúewé}} tó pọ̀ju $1 lọ ló únlo fáìlì yìí.\nÀtòjọ ìṣàlẹ̀ yìí ṣàfihàn {{PLURAL:$1|ojúewé àkọ́kọ́|ojúewé $1 àkọ́kọ́}} tó únlo fáìlì yìí nìkan.\n[[Special:WhatLinksHere/$2|Àtòjọ kíkúnrẹ́rẹ́]] wà nígbèéwọ́.",

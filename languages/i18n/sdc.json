@@ -1589,7 +1589,7 @@
 	"metadata-help": "Chisthu file cunteni infuimmazzioni aggiuntibe, pó assé da la fotocamera o da lu scanner. Si lu file é isthaddu mudìfiggaddu, zerthuni dettàgli pudiani nò curripundì a li mudìfigghi arriggaddi.",
 	"metadata-expand": "Musthra dettàgli",
 	"metadata-collapse": "Cua dettàgli",
-	"metadata-fields": "Li campi reratibi a li metadati EXIF erencaddi in chist'imbasciadda sarani musthraddi i' la pàgina di l'immàgina candu la tabella di li metadati è prisenti i' lu fuimmaddu brebi. Pà impusthazioni pridifinidda, l'althri campi sarani cuaddi.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Li campi reratibi a li metadati EXIF erencaddi in chist'imbasciadda sarani musthraddi i' la pàgina di l'immàgina candu la tabella di li metadati è prisenti i' lu fuimmaddu brebi. Pà impusthazioni pridifinidda, l'althri campi sarani cuaddi.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "tutti",
 	"monthsall": "tutti",
 	"confirmemail": "Cunfèimma indirizzu di postha erettrònica",

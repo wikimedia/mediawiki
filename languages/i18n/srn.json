@@ -723,7 +723,7 @@
 	"metadata-help": "A file disi abi moro informatie, kande fu wan fotocamera noso wan scanner di ben kebroiki fu meki en.\nEfu a file ben kenki, a kan taki son fin'fini no sa de srefi leki a fosi file.",
 	"metadata-expand": "Sori moro fin'fini",
 	"metadata-collapse": "Kibri a fin'fini",
-	"metadata-fields": "Den EXIF-metadata boksu ini a boskopu disi o sori owktu tapu wan prenki papira, efu a metadata tabel tapu.\nTrawan o kibri.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Den EXIF-metadata boksu ini a boskopu disi o sori owktu tapu wan prenki papira, efu a metadata tabel tapu.\nTrawan o kibri.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "ala",
 	"monthsall": "ala",
 	"confirm_purge_button": "oki",

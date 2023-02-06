@@ -590,7 +590,7 @@
 	"metadata-help": "Chay rikchaka yapa willaykunata charin, icha camara antamanta shinalla shuk suyuchik antamanta. Rikchata shukchishkami kakpika, icha kay willaykunaka mana alli kan.",
 	"metadata-expand": "Uchilla willaykunata rikuchiy",
 	"metadata-collapse": "Uchilla willaykunata pakay",
-	"metadata-fields": "Kaypi killkashka rikchamanta willaykunaka wiñay paypa rikchawan rikuchishkami kanka. Shuk willaykunata pakashkami kanka. Shinapash shuk rurakka munakpika paykunaya rikunata ushanka.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Kaypi killkashka rikchamanta willaykunaka wiñay paypa rikchawan rikuchishkami kanka. Shuk willaykunata pakashkami kanka. Shinapash shuk rurakka munakpika paykunaya rikunata ushanka.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "tukuy",
 	"monthsall": "tukuy",
 	"watchlisttools-view": "Mushuk killkaykunata rikuna",

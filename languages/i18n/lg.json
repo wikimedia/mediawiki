@@ -823,7 +823,7 @@
 	"metadata-help": "Ekyakozesebwa okutegeka fayiro eno esobole okugenda ku kompyuta, okugeza kamera oba sikaana, kyagiwandikamu ebigikwatako. Ebyawandikibwa ebyo biyinz'okuba nga tebikyamalayo fayiro ebigikwatako bw'ebanga okuva lweyasooka kutegebwa yakolebwako n'ate.",
 	"metadata-expand": "Laba ebisingawo",
 	"metadata-collapse": "Kisako ebimu, wasigalewo ebisinga obukulu",
-	"metadata-fields": "Ebiddako bye ebikwata ku fayiro eno ebyagiwandikibwamu ekyagitegekera kompyuta ebijakusigala nga biragibwa.<br />\nEbirala biyinza butalabika okujjako ng'okiragidde.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Ebiddako bye ebikwata ku fayiro eno ebyagiwandikibwamu ekyagitegekera kompyuta ebijakusigala nga biragibwa.<br />\nEbirala biyinza butalabika okujjako ng'okiragidde.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "Gonna",
 	"monthsall": "gyonna",
 	"confirm_purge_button": "Kale",

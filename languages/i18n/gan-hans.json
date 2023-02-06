@@ -1295,7 +1295,7 @@
 	"metadata-help": "个只档案含到额外𠮶信息。咁可能系数码相机或扫描仪扤得。 要系改吥个只档𠮶源档案，佢𠮶资料伓见得会同改过后一样。",
 	"metadata-expand": "显到详细资料",
 	"metadata-collapse": "弆到详细资料",
-	"metadata-fields": "个只信息列到𠮶 EXIF 元数据表会含到图片显示页面里头，要系元数据表扤坏哩就光会显下底𠮶资料，别𠮶元数据会自动弆到。\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "个只信息列到𠮶 EXIF 元数据表会含到图片显示页面里头，要系元数据表扤坏哩就光会显下底𠮶资料，别𠮶元数据会自动弆到。\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "全部",
 	"monthsall": "全部",
 	"confirmemail": "确认email地址",

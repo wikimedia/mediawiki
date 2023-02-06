@@ -1257,7 +1257,7 @@
 	"show-big-image-size": "$1 x $2 piksel",
 	"metadata": "Metadata",
 	"metadata-help": "Berkas botiya otuwa habari duhengiyo u kira lonto kamera digital meyalo pemindai u pilokalaja meyalo mendigitalisasi berkas.\nWonu berkas botiye ma yiloboli'a, katarangani u woluwo kira ja mopopatato dudutu lo habari lo teekeni u ma yiloboli'a botiye.",
-	"metadata-fields": "Tanggalo metadata lo gambari to tahuli ma popotuwotolo to bibilohu halaman gambari to'u tabel metadata po'okiki'olo.\nData uweewo ma wanto'olo odelo dudelo.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Tanggalo metadata lo gambari to tahuli ma popotuwotolo to bibilohu halaman gambari to'u tabel metadata po'okiki'olo.\nData uweewo ma wanto'olo odelo dudelo.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "nga'amila",
 	"monthsall": "nga'amila",
 	"imgmultipageprev": "Halaman yilalu ma'o",

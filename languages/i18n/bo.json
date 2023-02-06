@@ -603,6 +603,7 @@
 	"filehist-dimensions": "ཚད།",
 	"filehist-filesize": "ཡིག་ཆའི་ཆེ་ཆུང་།",
 	"filehist-comment": "བསམ་ཚུལ།",
+	"filehist-missing": "ཡིག་ཆ་ཆད་པ།",
 	"imagelinks": "ཡིག་ཆ་བེད་སྤྱོད་ཁུལ།",
 	"linkstoimage": "{{PLURAL:$1|pagelinks|$1pagelink}} འདི་ལ་སྦྲེལ་ཡོད།",
 	"sharedupload-desc-here": "ཡིག་ཆ་འདི་ནས་$1 རེད་འདུག། ལས་འཆར་གཞན་ཁག་ནང་བེད་སྤྱོད་ཡོད་ངེས།\n[$2 འགྲེལ་བརྗོད་ཤོག་ངོས་]འདིའི་འགྲེལ་བརྗོད་གཤམ་དུ་འཁོད་ཡོད།",

@@ -48,6 +48,7 @@
 			"Rodney Araujo",
 			"Rubentl134",
 			"Ryo567",
+			"Superzerocool",
 			"Tiberius1701",
 			"Whovian Biologist",
 			"YoViajo"
@@ -1679,7 +1680,7 @@
 	"apiwarn-validationfailed-badpref": "no es una preferencia válida.",
 	"apiwarn-validationfailed-cannotset": "no puede ser establecido por este módulo.",
 	"apiwarn-validationfailed-keytoolong": "clave demasiado larga (no puede tener más de $1 bytes).",
-	"apiwarn-validationfailed-valuetoolong": "valor demasiado largo (no se permiten más de $1 bytes).",
+	"apiwarn-validationfailed-valuetoolong": "valor demasiado largo (no se permiten más de $1 {{PLURAL:$1|byte|bytes}}).",
 	"apiwarn-validationfailed": "Error de validación de <kbd>$1</kbd>: $2",
 	"apiwarn-wgdebugapi": "<strong>Alerta de seguridad:</strong> <var>$wgDebugAPI</var> está activado.",
 	"api-feed-error-title": "Error ($1)",

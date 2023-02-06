@@ -879,6 +879,7 @@
 	"filehist-dimensions": "Zurlıq",
 	"filehist-filesize": "Faylnıñ zurlığı",
 	"filehist-comment": "İskärmä",
+	"filehist-missing": "Fayl tabılmadı",
 	"imagelinks": "Fayl qullanışı",
 	"linkstoimage": "Bu faylğa älege {{PLURAL:$1|bit|$1 bit}} sıltıy:",
 	"nolinkstoimage": "Bu faylğa sıltağan bitlär yuq.",

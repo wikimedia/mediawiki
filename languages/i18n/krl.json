@@ -589,7 +589,7 @@
 	"ilsubmit": "Ečintä",
 	"metadata": "Metatiijoštot",
 	"metadata-help": "Failih kuulutah lisätiijot, kumpasie tavan mukah lisätäh digikameralla tahi skannerilla. Još kuvua on muokattu šen alkuperäsen luonnan jälkeh, niin eryähät parametrit voijah erota nykyseštä kuvašta.",
-	"metadata-fields": "Šeuruavat metatietojen kentät ruvetah näkymäh kuvašivulla, konša metatietojen taulukko ei ole näkyvissä.\nMuut kentät ollah automattisešti piilotettuja.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Šeuruavat metatietojen kentät ruvetah näkymäh kuvašivulla, konša metatietojen taulukko ei ole näkyvissä.\nMuut kentät ollah automattisešti piilotettuja.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "kaikki",
 	"monthsall": "kaikki",
 	"imgmultipageprev": "Iellini sivu",

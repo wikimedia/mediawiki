@@ -1298,6 +1298,7 @@
 	"filehist-dimensions": "Зурлык",
 	"filehist-filesize": "Файл зурлыгы",
 	"filehist-comment": "Искәрмә",
+	"filehist-missing": "Файл табылмады",
 	"imagelinks": "Файлны куллану",
 	"linkstoimage": "{{PLURAL:$1|Киләсе бит|Киләсе $1 бит}} әлеге файлны куллана:",
 	"linkstoimage-more": "Бу файлны кимендә $1 {{PLURAL:$1|бит}} куллана.\nӘлеге исемлектә бу файлны кулланган {{PLURAL:$1| $1 бит}} күрсәтелгән.\nШулай ук [[Special:WhatLinksHere/$2|тулы исемлекне]] дә карарга мөмкин.",

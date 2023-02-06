@@ -957,6 +957,7 @@
 	"filehist-dimensions": "Grandeur",
 	"filehist-filesize": "Grandeur do fitchî",
 	"filehist-comment": "Comintaire",
+	"filehist-missing": "Fitchî mancant",
 	"imagelinks": "Eployaedjes do fitchî",
 	"linkstoimage": "{{PLURAL:$1|Li pådje shuvante eploye|Les $1 pådjes shuvantes eployèt}} ci fitchî ci :",
 	"linkstoimage-more": "Pus d’&nbsp;{{PLURAL:$1|ene pådje eploye|$1 pådjes eployèt}} ci fitchî ci.\nEl shuvante lisse ni mostere k’&nbsp;el{{PLURAL:$1|prumire pådje|zès $1 prumirès pådjes}} k’&nbsp;eploye ci fitchî ci.\nEne [[Special:WhatLinksHere/$2|pleine lisse]] est veyåve.",

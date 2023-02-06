@@ -530,7 +530,7 @@
 	"metadata-help": "Se fail sizzõl um mūdõ tieutõkst, mis um kilāb jūrõ-pand digikāmera agā skannõr pūolst. Až failõ um eņtšvīţiz programmatūraks kȭlbatõd, võib setmin tieutidi vȱlda mõitiņtõd agā tikkiž jarā kištāntõd",
 	"metadata-expand": "Nägţ mūḑi jo akurātidi ažḑi",
 	"metadata-collapse": "Vaŗ jarā juo akurāt ažād",
-	"metadata-fields": "Täs lugdõd fail meta-tīetõkst vellidi nägţõbõd bīlda seļţimiz līeds meta-tīetõkst vaņtlimiz āigal. Munt tīetõkst ātõ bäz kītõmõt jarā vaŗtõd. \n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Täs lugdõd fail meta-tīetõkst vellidi nägţõbõd bīlda seļţimiz līeds meta-tīetõkst vaņtlimiz āigal. Munt tīetõkst ātõ bäz kītõmõt jarā vaŗtõd. \n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "tikkiž",
 	"monthsall": "tikkiž",
 	"watchlisttools-view": "Nägţ sīe mõitõkši",

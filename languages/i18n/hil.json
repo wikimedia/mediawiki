@@ -1361,7 +1361,7 @@
 	"metadata-help": "Ang ini nga tangkas may ara dugang nga hinun-anon, damlag nga gindugang halin sa kamera nga digital ukon skaner agud mahimo ukon mangin digital ini.\nKon ang ini nga tangkas ginliwat humalin sa iya orihinal kahimtangan, ti basi ang iban nga detalye wala nagapakita sang bilog nga ginliwat nga tangkas.",
 	"metadata-expand": "Ipakita ang mga dugang nga detalye",
 	"metadata-collapse": "Tagu-on ang mga dugang nga detalye",
-	"metadata-fields": "Ang mga metadata field sang mga dagway nga nalista sa ining mensahe igalakip sa dagay-panid sang dagway kon ang latok sang metadata maghabuyo.\nAng iban pagataguon dayon.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Ang mga metadata field sang mga dagway nga nalista sa ining mensahe igalakip sa dagay-panid sang dagway kon ang latok sang metadata maghabuyo.\nAng iban pagataguon dayon.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "tanan",
 	"monthsall": "tanan",
 	"imgmultipageprev": "← antis nga panid",

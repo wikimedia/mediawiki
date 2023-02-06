@@ -770,7 +770,7 @@
 	"metadata-help": "Dis fail kantien adishanal infamieshan, prabli wa ad frahn di dijital kiamara ar skiana yuuz fi kriet ar dijitaizi.\nEf di fail madifai frahn iarijinal stiet, som ditiel maita no fuli riflek di madifai fail.",
 	"metadata-expand": "Shuo extendid ditiel",
 	"metadata-collapse": "Aid extendid ditiel",
-	"metadata-fields": "Di metadata field dem fi di image inna dis ya message a guh show pon di image page display when di metadata table draw een.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Di metadata field dem fi di image inna dis ya message a guh show pon di image page display when di metadata table draw een.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "all a dem",
 	"monthsall": "aal",
 	"watchlisttools-view": "Vyuu rilivant chienjdem",

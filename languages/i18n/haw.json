@@ -779,6 +779,7 @@
 	"filehist-dimensions": "Nā Nui",
 	"filehist-filesize": "Nui o ka waihona",
 	"filehist-comment": "Kaumanaʻo",
+	"filehist-missing": "Nele ka waihona",
 	"imagelinks": "Nā Hana waihona",
 	"linkstoimage": "Loulou {{PLURAL:$1|kekahi ‘ao‘ao|kēia mau ‘ao‘ao $1}} i kēia waihona:",
 	"nolinkstoimage": "ʻAʻohe ʻaoʻao e loulou i kēia waihona.",

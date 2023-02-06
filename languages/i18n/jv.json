@@ -1589,6 +1589,7 @@
 	"filehist-dimensions": "Alang ujur",
 	"filehist-filesize": "Gedhené barkas",
 	"filehist-comment": "Tanggepan",
+	"filehist-missing": "Berkas ilang",
 	"imagelinks": "Panggunaning berkas",
 	"linkstoimage": "{{PLURAL:$1|Kaca|$1 kaca}} ing ngisor iki nganggo barkas iki:",
 	"linkstoimage-more": "Luwih saka $1 {{PLURAL:$1|kaca|kaca-kaca}} nduwèni pranala menyang berkas iki.\nPratélan ing ngisor nuduhaké {{PLURAL:$1|kaca pisanan kanthi pranala langsung|$1 kaca kanthi pranala langsung}} menyang berkas iki.\n[[Special:WhatLinksHere/$2|pratélan pepak]] uga ana.",

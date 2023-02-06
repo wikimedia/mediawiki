@@ -961,7 +961,7 @@
 	"metadata-help": "Файлым нэгъуэщӀ гурыӀуэныгъэхэр хэлъщ, диджитал камерэхэм е сканерхэм халъхьэхэм хуэдэ. Файлыр къызэрагъэпэща иужь зэрагъэзэхуэжамэ, и пкъыгъуэ гуэрхэр иджырей и щытыкӀэм темыхуэнкӀэ хъунущ.",
 	"metadata-expand": "Дээпыкъуэгъу кэӀуэтэгъуэхэр гъэлъэгъуэн",
 	"metadata-collapse": "Дээпыкъуэгъу кэӀуэтэгъуэхэр гъэпшкӀун",
-	"metadata-fields": "Метаданнэхэр, мыбы кърибжэкІхэр къызэрыгуэкІыу сурэтым и напэкІуэцІым къщридзэнущ, адрейхэр гъэпщкІуау щытынущ.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Метаданнэхэр, мыбы кърибжэкІхэр къызэрыгуэкІыу сурэтым и напэкІуэцІым къщридзэнущ, адрейхэр гъэпщкІуау щытынущ.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "псори",
 	"monthsall": "псори",
 	"imgmultipageprev": "← япэ ит напэкӀуэцӀыр",

@@ -844,7 +844,7 @@
 	"metadata-help": "Ang kining payl adunay dugang nga impormasyon, mahimong nadugang gikan sa digital camera o scanner nga gigamit sa paghimo o pag-digitize niini.\nKon ang payl namodipikar gikan sa orihinal nga estado, ang ubang detalye mamahimong dili moreplek sa namodipikar nga payl.",
 	"metadata-expand": "Ipakita ang mas daghang detalye",
 	"metadata-collapse": "Tagoa ang mga ekstended nga detalye",
-	"metadata-fields": "Ang <i>XIF metadata fields</i> nga nakatala niining mensahe iapil sa panid sa hulagway kon gi-<i>collapse</i> ang han-ay sa <i>metadata</i>.\n\nAng uban nakatago gawas kon ipakita.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Ang <i>XIF metadata fields</i> nga nakatala niining mensahe iapil sa panid sa hulagway kon gi-<i>collapse</i> ang han-ay sa <i>metadata</i>.\n\nAng uban nakatago gawas kon ipakita.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "tanan",
 	"monthsall": "tanan",
 	"watchlisttools-view": "Tan-awa ang may kalabotan nga mga pag-usab",

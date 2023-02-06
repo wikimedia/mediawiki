@@ -377,6 +377,7 @@
 	"filehist-user": "Yusa",
 	"filehist-dimensions": "Ol sais",
 	"filehist-comment": "Tingting",
+	"filehist-missing": "Fail i no kamap",
 	"imagelinks": "Ol fail link",
 	"linkstoimage": "Dispela {{PLURAL:$1|pes i link|$1 pes i link}} long dispela fail:",
 	"shared-repo-from": "long $1",

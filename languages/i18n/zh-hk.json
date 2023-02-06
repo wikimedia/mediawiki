@@ -184,6 +184,7 @@
 	"publishchanges": "發佈變更",
 	"publishpage-start": "發佈頁面…",
 	"publishchanges-start": "發佈變更…",
+	"missingsummary": "<strong>提醒：</strong>您未填寫編輯摘要。\n若您再點選「$1」一次，將略過摘要直接發布您的編輯。",
 	"userpage-userdoesnotexist": "用戶賬號「$1」沒有在此wiki上註冊。請在建立或編輯本頁前檢查。",
 	"userpage-userdoesnotexist-view": "用戶賬號「$1」尚未在此wiki上註冊。",
 	"blocked-notice-logextract": "此用戶目前已封鎖，以下是最近的封鎖紀錄：",

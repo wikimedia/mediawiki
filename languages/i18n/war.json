@@ -1249,6 +1249,7 @@
 	"filehist-dimensions": "Mga dimensyon",
 	"filehist-filesize": "Kadako han fayl",
 	"filehist-comment": "Komento",
+	"filehist-missing": "Nawawara an fayl",
 	"imagelinks": "Mga gamit hin paypay",
 	"linkstoimage": "An masunod nga {{PLURAL:$1|ka pakli nagamit|$1 ka mga pakli nagamit}} hini nga file:",
 	"linkstoimage-more": "Labaw hin $1 {{PLURAL:$1|ka pakli nagamit|ka mga pakli nagamit}} hinin nga file.\nAn masunód nga taramdan nagpapakita han {{PLURAL:$1|syahan nga pakli|nauuna nga $1 ka mga pakli}} nga nagamit la hinin nga file.\nMayda inin [[Special:WhatLinksHere/$2|bug-os nga listahan]].",

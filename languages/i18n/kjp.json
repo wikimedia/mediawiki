@@ -736,7 +736,7 @@
 	"ilsubmit": "မ်ုအင်းၰူ့",
 	"metadata": "မီတာဒေတာႋ",
 	"metadata-help": "ဖိုင်ႋယိုဝ်ဝယ် ဆ်ုပြိုင့်အ်ုၯာင်းအ်ုကျံင် ၰိုဲပ်ုလိတ်ၮ်ှ မွာဲသှ်ေဆေဝ်ႋ။ ဒီဂျစ်တယ် က်ုမ်ုရာ လ်ု စ်ုကင်နာလ်ုဖး ဆူ့ဍုဂ်ၰိုဲဖှ်ေၮှ် မွာသှ်ေဆေဝ်ႋ။\nအ်ုမွာဲၜိုဝ် ဖိုင်ႋအိုဝ် လါင်းလီသိုဝ် မ်ုအင်းလယ်စှ်ၜိုဝ် အ်ုခံင့်ထိုက်ၮှ် အင်းတင်ထဖိင်ႋသယ်ၮှ် ဍုဂ်ဍုဂ်ပါင်ပါင် မ်ုၯယ့်ထါင်လ်ုမွာဲ။",
-	"metadata-fields": "metadata table ၮ်ှ ပုဂ်ၯာင် လိက်ဝယ်ယိုဝ် မာထာ့ Image metadata fields သည် ပုံခေါဟ်တင် ၯင်မေံသးဍုဂ်ၮဲဖှ်ေခါ့ မ်ုအ်ှဝေ့ဆေဝ်ႋလ်ှ၁။\nအ်ုၰာၰံင်သယ်ၮ်ှ မ်ုအ်ှကှ်ေသူးဝေ့ ဆေဝ်ႋလ်ှ။\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "metadata table ၮ်ှ ပုဂ်ၯာင် လိက်ဝယ်ယိုဝ် မာထာ့ Image metadata fields သည် ပုံခေါဟ်တင် ၯင်မေံသးဍုဂ်ၮဲဖှ်ေခါ့ မ်ုအ်ှဝေ့ဆေဝ်ႋလ်ှ၁။\nအ်ုၰာၰံင်သယ်ၮ်ှ မ်ုအ်ှကှ်ေသူးဝေ့ ဆေဝ်ႋလ်ှ။\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "လုက်ဆိင့်",
 	"monthsall": "လုက်ဆိင့်",
 	"imgmultipageprev": "\n← ၯံင်ခွိက် လိက်မေံၜၠါ်",

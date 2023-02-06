@@ -2806,7 +2806,7 @@
 	"metadata-help": "Stu file cuntene nfurmaziune agghiunte, probabilmente 'a na fotocamera o nu scanner ausate pe' crià o digitalizà.\nSi 'o file è stato cagnato 'a 'o stato origginale suojo, certi dettaglie può darse ca nun se vedeno ncopp' 'o file già cagnato.",
 	"metadata-expand": "Fa vedè 'e dettaglie spannute",
 	"metadata-collapse": "Annascunne 'e dettaglie spannute",
-	"metadata-fields": "'E metadata 'e l'immaggene ccà mmustate sarranno azzeccate dint' 'a mmosta d' 'a paggena quanno 'a tabbella 'e metadata è collassata.\nL'ati sarranno normalmente annascunnute.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "'E metadata 'e l'immaggene ccà mmustate sarranno azzeccate dint' 'a mmosta d' 'a paggena quanno 'a tabbella 'e metadata è collassata.\nL'ati sarranno normalmente annascunnute.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "tutte",
 	"monthsall": "tutte",
 	"confirmemail": "Cunfermate 'o nderizzo mail",

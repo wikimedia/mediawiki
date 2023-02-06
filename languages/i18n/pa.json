@@ -1217,6 +1217,7 @@
 	"filehist-dimensions": "ਨਾਪ",
 	"filehist-filesize": "ਫਾਇਲ ਆਕਾਰ",
 	"filehist-comment": "ਟਿੱਪਣੀ",
+	"filehist-missing": "ਫਾਈਲ ਗੁੰਮ",
 	"imagelinks": "ਫ਼ਾਈਲ ਦੀ ਵਰਤੋਂ",
 	"linkstoimage": "ਇਹ {{PLURAL:$1|ਸਫ਼ਾ|$1 ਸਫ਼ੇ}} ਇਸ ਫ਼ਾਈਲ ਨਾਲ ਜੋੜਦੇ ਹਨ:",
 	"nolinkstoimage": "ਕੋਈ ਵੀ ਸਫ਼ਾ ਇਸ ਫ਼ਾਈਲ ਨਾਲ ਨਹੀਂ ਜੋੜਦਾ।",

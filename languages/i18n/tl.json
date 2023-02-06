@@ -1388,6 +1388,7 @@
 	"filehist-dimensions": "Sukat",
 	"filehist-filesize": "Sukat ng talaksan",
 	"filehist-comment": "Komento",
+	"filehist-missing": "Nawawala ang talaksan",
 	"imagelinks": "Paggamit sa file",
 	"linkstoimage": "Ginagamit ng sumusunod na {{PLURAL:$1|pahina|$1 (na) pahina}} ang file na ito:",
 	"linkstoimage-more": "Lagpas sa $1 {{PLURAL:$1|pahina|(na) pahina}} ang gumagamit sa file na ito.\nIpinapakita lang ng talaan sa baba ang  {{PLURAL:$1|unang pahina|unang $1 (na) pahina}} na gumagamit sa file na ito.\nMay [[Special:WhatLinksHere/$2|buong talaan]] ding magagamit.",

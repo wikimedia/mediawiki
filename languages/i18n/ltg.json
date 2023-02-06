@@ -564,7 +564,7 @@
 	"metadata-help": "Itais fails satur vaira informacejis, kuru vysa dreižuok ir davīnovs digitalais fotoaparats voi cyts aparats, kas itū failu radeja. Ka itais fails piec tam ir maineits, itī dati var byut nūvacovuši.",
 	"metadata-expand": "Paruodeit papyldu detalis",
 	"metadata-collapse": "Nūglobuot papyldu detalis",
-	"metadata-fields": "Itymā paziņuojumā asūši metadatu lauki byus radzami attāla lopā ari tod, kod metadatu tabula byus sateita.\nPuorejī lauki, piec nūklusiejuma, byus nūglobuoti.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Itymā paziņuojumā asūši metadatu lauki byus radzami attāla lopā ari tod, kod metadatu tabula byus sateita.\nPuorejī lauki, piec nūklusiejuma, byus nūglobuoti.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "vysys",
 	"monthsall": "vysi",
 	"watchlisttools-view": "Apsavērt atbylstūšuos izmainis",

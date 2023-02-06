@@ -769,7 +769,7 @@
 	"metadata-help": "Тиде файлыште фотоаппаратын але сканерын данныже-влак улыт.\nЫшталтме деч вара файлым тӧрлатеныт гын, южо данныйже тиде файллан келшыдыме лийын кертеш.",
 	"metadata-expand": "Ешартыш рашлык-влакым ончыкташ",
 	"metadata-collapse": "Ешартыш рашлык-влакым шылташ",
-	"metadata-fields": "Поля метаданных изображения, перечисленные в этом списке, будут показаны на странице изображения при свёрнутой таблице метаданных. Остальные поля будут по умолчанию скрыты.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Поля метаданных изображения, перечисленные в этом списке, будут показаны на странице изображения при свёрнутой таблице метаданных. Остальные поля будут по умолчанию скрыты.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "чыла",
 	"monthsall": "чыла",
 	"confirm_purge_button": "Йӧра",
