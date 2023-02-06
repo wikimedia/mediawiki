@@ -18,7 +18,7 @@ THIS IS NOT A RELEASE YET
 * (T215466, T326071) MigrateActors: Write to revsion table (Follow-up 24115a8).
 * (T223027) ReservedUsernames config: Add reserved names from maintenance
   scripts.
-* (T325000, T324896) Updated OOUI from v0.44.3 to v0.44.4.
+* (T325000, T324896, T307631) Updated OOUI from v0.44.3 to v0.44.5.
 * Remove /images .htaccess rules that are no longer relevent.
 * Disable php in .htaccess of images directory as a hardening measure.
 * (T322583) Include missing message parameter in message.
