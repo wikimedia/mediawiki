@@ -281,6 +281,8 @@ because of Phabricator reports.
 * LinkFilter::supportsIDN() was removed without deprecation.
 * The ability to pass null for the errorData parameter of HttpException and
   LocalizedHttpException was removed without deprecation.
+* .box-sizing() Less mixin, deprecated since 1.37, has been removed.
+  Use CSS box-sizing now.
 * …
 
 === Deprecations in 1.40 ===
