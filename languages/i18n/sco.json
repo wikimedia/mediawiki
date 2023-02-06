@@ -1622,6 +1622,7 @@
 	"filehist-dimensions": "Dimensions",
 	"filehist-filesize": "The File size",
 	"filehist-comment": "Comment",
+	"filehist-missing": "File missin",
 	"imagelinks": "File uisage",
 	"linkstoimage": "The follaein {{PLURAL:$1|page airts|$1 pages airt}} tae this file:",
 	"linkstoimage-more": "Mair than $1 {{PLURAL:$1|page airts|pages airt}} til this file.\nThe follaein leet shaws the {{PLURAL:$1|first page airtin|first $1 page airtins}} til this file yinlie.\nAe [[Special:WhatLinksHere/$2|ful leet]] is available.",

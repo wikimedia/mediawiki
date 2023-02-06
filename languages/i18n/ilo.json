@@ -1716,6 +1716,7 @@
 	"filehist-dimensions": "Dagiti rukod",
 	"filehist-filesize": "Kadakkel ti papeles",
 	"filehist-comment": "Komentario",
+	"filehist-missing": "Napukaw ti papeles",
 	"imagelinks": "Panagusar iti papeles",
 	"linkstoimage": "Ti sumaganad a {{PLURAL:$1|panid ket agus-usar|$1 a pampanid ket agus-usar}} iti daytoy a papeles:",
 	"linkstoimage-more": "Ad-adu ngem $1 ti {{PLURAL:$1|agus-usar a panid|agus-usar a pampanid}} iti daytoy a papeles.\nMangipakita ti sumaganad a listaan ti {{PLURAL:$1|umona a panid|umuna a $1 a pampanid}} nga agusar laeng iti daytaoy a panid.\nMagun-od ti maysa a [[Special:WhatLinksHere/$2|napno a listaan]].",

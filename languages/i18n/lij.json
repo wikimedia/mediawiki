@@ -3016,7 +3016,7 @@
 	"metadata-help": "Quéto file o contêgne de informaçioìn in ciù, mìsse fòscia da-a fòtocàmera ò da-o scàner dêuviòu pi-â sò creaçión ò digitalizaçión. Se o file o l'é stæto cangiòu, çèrti detàggi poriéivan no corispónde a-i cangiaménti fæti.",
 	"metadata-expand": "Fâ vedde dettaggi",
 	"metadata-collapse": "Asconde dettaggi",
-	"metadata-fields": "I cànpi relativi a-i metadæti EXIF elencæ inte 'sto messaggio saiàn in sciâ pàgina de l'inmàgine quande a tabella di metadæti a saiâ inta forma cùrta. Cómme predefinîo, i âtri cànpi saiàn ascoxi.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "I cànpi relativi a-i metadæti EXIF elencæ inte 'sto messaggio saiàn in sciâ pàgina de l'inmàgine quande a tabella di metadæti a saiâ inta forma cùrta. Cómme predefinîo, i âtri cànpi saiàn ascoxi.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "tùtti",
 	"monthsall": "tùtti",
 	"confirmemail": "Conferma l'adreçço e-mail",

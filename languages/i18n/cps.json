@@ -640,7 +640,7 @@
 	"metadata-help": "Ang mini nga file naga-unod sang dugang nga impormasyon, posible nga gindugan halin sa digital camera ukon skaner nga gingamit ukon gin-digitize mini.\nKung ang file ginliwat halin sa orihinal nga porma, indi mapakita sang iban nga detalye ang mga ginbag-o nga file.",
 	"metadata-expand": "Ipakita ang mga dugang nga detalye",
 	"metadata-collapse": "Itago ang mga dugang nga detalye",
-	"metadata-fields": "Ang mga lugar sang EXIF metadata nga nalista sa mini nga mensahe pagadal-on sa mga laragway nga ginapakita sa pahina kung maguba ang tabla sang metadata.\nAng iban ay pagataguon sang default.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Ang mga lugar sang EXIF metadata nga nalista sa mini nga mensahe pagadal-on sa mga laragway nga ginapakita sa pahina kung maguba ang tabla sang metadata.\nAng iban ay pagataguon sang default.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "tanan",
 	"monthsall": "tanan",
 	"watchlisttools-view": "Tan-awon ang mga kapareho nga ginbag-o",

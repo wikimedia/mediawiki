@@ -1961,6 +1961,7 @@
 	"filehist-dimensions": "Kích cỡ",
 	"filehist-filesize": "Kích thước tập tin",
 	"filehist-comment": "Miêu tả",
+	"filehist-missing": "Không thấy tập tin",
 	"imagelinks": "Trang sử dụng tập tin",
 	"linkstoimage": "{{PLURAL:$1|Trang|$1 trang}} sau sử dụng tập tin này:",
 	"linkstoimage-more": "Có hơn $1 trang liên kết đến tập tin này.\nDanh sách dưới đây chỉ hiển thị {{PLURAL:$1|liên kết|$1 liên kết}} đầu tiên đến tập tin này.\nMột danh sách đầy đủ có sẵn [[Special:WhatLinksHere/$2|tại đây]].",

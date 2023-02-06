@@ -1588,6 +1588,7 @@
 	"filehist-dimensions": "Sukol",
 	"filehist-filesize": "Sokol nin file",
 	"filehist-comment": "Komento",
+	"filehist-missing": "Nawawarang sagunson",
 	"imagelinks": "Paggamit sa file",
 	"linkstoimage": "Ginagamit kan minasunod na {{PLURAL:$1|pahina|$1 (na) pahina}} an file na ini:",
 	"linkstoimage-more": "Subrado sa $1 {{PLURAL:$1|pahina|(na) pahina}} an naggagamit sa file na ini.\nIpinapahiling lang kan talaan sa ibaba an  {{PLURAL:$1|inot na pahina|inot na $1 (na) pahina}} na naggagamit sa file na ini.\nIgwang [[Special:WhatLinksHere/$2|bilog na talaan]] man na magagamit.",

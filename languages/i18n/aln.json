@@ -992,7 +992,7 @@
 	"metadata-help": "Kjo skedë përmban hollësira tjera të cilat munen qi jan shtue nga kamera ose skaneri dixhital që është përdorur për ta krijuar. Nëse se skeda asht ndryshue nga gjendja origjinale, disa hollësira munen mos me pasqyru skedën e tashme.",
 	"metadata-expand": "Tregoji detajet",
 	"metadata-collapse": "Mshefi detajet",
-	"metadata-fields": "Fushat EXIF metadata që listohen në këtë mesazh do të përfshihen në faqen e figurës kur palohet tabela e metadatave.\nTjerat kanë me mbetë të mshefuna.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Fushat EXIF metadata që listohen në këtë mesazh do të përfshihen në faqen e figurës kur palohet tabela e metadatave.\nTjerat kanë me mbetë të mshefuna.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "krejt",
 	"monthsall": "krejt",
 	"watchlisttools-view": "Shihi ndryshimet përkatëse",

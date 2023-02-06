@@ -1045,6 +1045,7 @@
 	"filehist-dimensions": "Objektan suruz",
 	"filehist-filesize": "Failan suruz",
 	"filehist-comment": "Homaičend",
+	"filehist-missing": "Ei ole failad",
 	"imagelinks": "Failan kävutamine",
 	"linkstoimage": "{{PLURAL:$1|Nece lehtpol' kosketab|$1 Nened lehtpoled kosketadas}} necidä failad:",
 	"nolinkstoimage": "Ei ole necidä failad kosketajid lehtpolid.",

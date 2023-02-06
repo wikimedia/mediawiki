@@ -764,7 +764,7 @@
 	"metadata-help": "Wannan fayil ya ƙumshi ƙarin bayani daga kyamarar dijita ko sikanan da aka yi amfani da su.\nIdan an sauya fayil kin, to wasu bayannan na ainahi ba za su fito ba sosai a cikin sabon fayil kin.",
 	"metadata-expand": "Nuna ƙananan bayannai",
 	"metadata-collapse": "Ɓoye ƙananan bayannai",
-	"metadata-fields": "Gurabun bayannan meta na EXIF da ke jere cikin wannan saƙo, za a saka su ne cikin shafin zayyana majigin, idan aka taƙaita jadawalin bayannan metan.\n Wasu gurabun za a ɓoye su bisa manufa.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Gurabun bayannan meta na EXIF da ke jere cikin wannan saƙo, za a saka su ne cikin shafin zayyana majigin, idan aka taƙaita jadawalin bayannan metan.\n Wasu gurabun za a ɓoye su bisa manufa.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "duka",
 	"monthsall": "duka",
 	"imgmultipagenext": "Shafi na gaba",

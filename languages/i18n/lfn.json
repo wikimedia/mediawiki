@@ -2820,7 +2820,7 @@
 	"metadata-help": "Esta fix conteni plu informa, posable ajuntada de la camera o scanador usada per crea o dijitali lo.\nSi la fix ia cambia de sua state orijinal, cisa alga detalias no pertine bon a la fix cambiada.",
 	"metadata-expand": "Mostra detalias estendente",
 	"metadata-collapse": "Asconde detalias estendeda",
-	"metadata-fields": "Metadatos de imaje listada en esta mesaje va es incluida cuando la table de metadatos es minimida.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Metadatos de imaje listada en esta mesaje va es incluida cuando la table de metadatos es minimida.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "tota",
 	"monthsall": "tota",
 	"confirmemail": "Confirma adirije eposta",

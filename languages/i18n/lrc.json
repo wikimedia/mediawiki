@@ -1365,6 +1365,7 @@
 	"filehist-dimensions": "اۊیٱکؽا",
 	"filehist-filesize": "انازه فایل",
 	"filehist-comment": "ڤیر ۉ باڤٱر",
+	"filehist-missing": "گم بیئن جانیا",
 	"imagelinks": "ڤ کار گرتن جانؽا",
 	"linkstoimage": "دۏنبال بيٱ {{PLURAL:$1|ديس ڤنؽا بٱلگٱ|$1 ديس ڤنؽا بٱلگٱيا}} د اؽ فایلٛ:",
 	"linkstoimage-more": "بؽشتر د $1 بٱلگٱ د اؽ جانؽا هوم پاٛڤٱن {{PLURAL:$1|بٱ|بینٱ}}.\nنومگٱ هاری تٱنڳؽا{{PLURAL:$1|ٱڤلی هوم پاٛڤٱن|ٱڤلی $1 هوم پاٛڤٱن}} د ؽ بٱلگٱ ناْ نشوݩ ماٛیٱ.\n[[Special:WhatLinksHere/$2|نومگٱ کامل]] ٱم هؽسش.",

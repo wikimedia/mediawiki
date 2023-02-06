@@ -1156,6 +1156,7 @@
 	"filehist-dimensions": "Oʻlchamlari",
 	"filehist-filesize": "Fayl hajmi",
 	"filehist-comment": "Izoh",
+	"filehist-missing": "Fayl mavjud emas",
 	"imagelinks": "Fayllarga ishoratlar",
 	"linkstoimage": "Bu faylga quyidagi {{PLURAL:$1|sahifa|$1 sahifalar}} bogʻlangan:",
 	"nolinkstoimage": "Bu faylga bogʻlangan sahifalar yoʻq.",

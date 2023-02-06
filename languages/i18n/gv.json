@@ -917,7 +917,7 @@
 	"metadata-help": "Ta'n coadan shoh goaill tooilley fysseree stiagh, currit veih'n çhamraig vun-earrooagh ny yn scanreyder, as eh ymmydit dys y coadan y chroo ny y yannoo bun-earrooagh, s'liklee.<br />\nMy vel y coadan ceaghlit veih'n chummey bunneydagh, foddee nagh beagh mynphoyntyn ennagh cohoilshaghey yn coadan ceaghlit.",
 	"metadata-expand": "Taishbyn ny sonreeaghtyn sheeynt",
 	"metadata-collapse": "Follee ny sonreeaghtyn sheeynt",
-	"metadata-fields": "Ny magheryn metafysseree jalloo heese, hed ad er goaill stiagh er duillag taishbyney jalloo tra ta taabyl ny metafysseree fillit.<br />\nBee adsyn elley follit dy seyr-obbragh.<br />\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Ny magheryn metafysseree jalloo heese, hed ad er goaill stiagh er duillag taishbyney jalloo tra ta taabyl ny metafysseree fillit.<br />\nBee adsyn elley follit dy seyr-obbragh.<br />\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "yn clane",
 	"monthsall": "yn clane",
 	"recreate": "Aachroo",

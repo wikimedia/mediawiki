@@ -414,7 +414,7 @@
 	"show-big-image-preview": "Kubr il-apērsü: $1.",
 	"bad_image_list": "Elformat kima hakka:\nLes élements mtaε lista (lostra elli yabdew b' *) yetħesbou.\nEllien lowel fi star yelzmou ykoun lien el fichier khayeb.\nAy lien ekher fi nafs estar yetħseb exception, maħneha des pages win elfichier ynajem ykoun fi star.",
 	"metadata": "Mitteģţāyēt il-mēta",
-	"metadata-fields": "Is-swēni mtēģ mittaģţāyēt il-mēta mtēģ it-tşāwir il-mewjūde f'hel-mēssāj bēc titwarrā fil-pāj mtēģ it-tşāwir weqtilli it-tablo mtēģ mittaģţāyēt il-mēta yittiţwē.\nIs-swēni il-uxrā bēc titxebbē weḩedhē.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Is-swēni mtēģ mittaģţāyēt il-mēta mtēģ it-tşāwir il-mewjūde f'hel-mēssāj bēc titwarrā fil-pāj mtēģ it-tşāwir weqtilli it-tablo mtēģ mittaģţāyēt il-mēta yittiţwē.\nIs-swēni il-uxrā bēc titxebbē weḩedhē.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "il-kul",
 	"monthsall": "il-kul",
 	"watchlistedit-clear-explain": "Elɛanawin lkol bech yetnaħaw mel'lista mteɛek",

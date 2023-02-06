@@ -479,7 +479,7 @@
 	"metadata-help": "Ste file l'à d'l'infurmaziòn in piò. Forsi parchè al figur j è stedi cjapèdi con la machina digitèla o cun e' scàner.\nSe parò un qvelcadon à lavurè sora sta figura, zerti infurmaziòn j n' curespòn piò cun l'uriginel.",
 	"metadata-expand": "Fam avdé i particulèr",
 	"metadata-collapse": "Nascond i particulèr",
-	"metadata-fields": "I chêmp d'j metadata EXIF elenché in ste mesàg, j t' ven presenté int'la pàgina d'la figura, quènd la tabèla d'j metadata l'è ardòta znina. J ètar chèmp j srà nascost.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "I chêmp d'j metadata EXIF elenché in ste mesàg, j t' ven presenté int'la pàgina d'la figura, quènd la tabèla d'j metadata l'è ardòta znina. J ètar chèmp j srà nascost.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "töt",
 	"monthsall": "tòt",
 	"watchlisttools-view": "Fam avdè al mudèfich impurtènti",

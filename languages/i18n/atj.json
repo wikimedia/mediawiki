@@ -585,7 +585,7 @@
 	"sunday-at": "manactakaniwon $1",
 	"metadata": "E ici tipatcitcikatek",
 	"metadata-help": "Nohwe mawtockwemikan ekota acteki awacimec tipatcimowina,nohwe masinapiskipitcikan ka ki actakwen kekotc otitapiskipitcikan ka ki ocitarikwen. Kecpin ka meckotisinihikatekwen nictam ka icinakok, nama kaskina kata nokona ka wi icinakotakaniwok nohwe masinasowin.",
-	"metadata-fields": "Nohwe e aitotwakaniwitc masinasowin nta kata ici actew paskickwemakanik ka ici tipatcimonaniwok ickwa atciwonikateke nta kitci tipatcimoniwocik. Minawatc kotakahi kata katcictakaniwona.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Nohwe e aitotwakaniwitc masinasowin nta kata ici actew paskickwemakanik ka ici tipatcimonaniwok ickwa atciwonikateke nta kitci tipatcimoniwocik. Minawatc kotakahi kata katcictakaniwona.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "kaskina",
 	"monthsall": "kaskina",
 	"confirm_purge_button": "OK",

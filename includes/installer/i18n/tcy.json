@@ -19,7 +19,7 @@
 	"config-back": "← ಪಿರ",
 	"config-continue": "ಮುಂದುವರೆಸಾಲೆ →",
 	"config-page-language": "ಬಾಸೆ",
-	"config-page-welcome": "ಮಾಧ್ಯಮವಿಕಿಗ್ ಸ್ವಾಗತ",
+	"config-page-welcome": "ಮೀಡಿಯಾವಿಕಿಗ್ ಸ್ವಾಗತ",
 	"config-page-dbconnect": "ದತ್ತಾಂಸೊ ಸಂಚಯೊಗ್ ಕೊಲಿಕೆಕೊರ್ಲೆ",
 	"config-page-name": "ಪುದರ್",
 	"config-page-options": "ಆಯ್ಕೆಲು",
@@ -51,6 +51,6 @@
 	"config-install-step-failed": "ವಿಫಲವಾತ್‍ಂಡ್",
 	"config-install-extensions": "ವಿಸ್ತರಣೆಲೆನ್ ಸೇರಾದ್",
 	"config-help": "ಸಹಾಯೊ",
-	"mainpagetext": "'''ಮೀಡಿಯವಿಕಿ ಯಶಸ್ವಿಯಾದ್ ಸ್ಥಾಪನೆ ಆಂಡ್.'''",
+	"mainpagetext": "'''ಮೀಡಿಯಾವಿಕಿ ಯಶಸ್ವಿಯಾದ್ ಸ್ಥಾಪನೆ ಆಂಡ್.'''",
 	"mainpagedocfooter": "ವಿಕಿ ತಂತ್ರಾಂಶನ್ ಉಪಗೋಗ ಮನ್ಪುನ ಬಗ್ಗೆ ಮಾಹಿತಿಗ್ [https://meta.wikimedia.org/wiki/Help:Contents ಸದಸ್ಯೆರ್ನ ನಿರ್ದೇಶನ ಪುಟ] ತೂಲೆ.\n\n== ಎಂಚ ಶುರು ಮಲ್ಪುನಿ ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Configuration settings list]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ ಮೀಡಿಯವಿಕಿ FAQ]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ MediaWiki release mailing list]"
 }

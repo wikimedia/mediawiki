@@ -2020,6 +2020,7 @@
 	"filehist-dimensions": "尺寸",
 	"filehist-filesize": "檔案大小",
 	"filehist-comment": "備⁠註",
+	"filehist-missing": "檔案遺失",
 	"imagelinks": "檔案用途",
 	"linkstoimage": "下列{{PLURAL:$1|頁面|$1個頁面}}有用到此檔案：",
 	"linkstoimage-more": "超過 $1 個{{PLURAL:$1|頁面|頁面}}有用到此檔案。\n下列清單只列出{{PLURAL:$1|首個|前 $1 筆}}有用到此檔案的頁面。\n您也可以檢視[[Special:WhatLinksHere/$2|完整清單]]。",

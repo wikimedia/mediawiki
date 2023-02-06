@@ -586,7 +586,7 @@
 	"bad_image_list": "Mbayka kaa ko nih yahri:\n\nReggin teme tan (kelle puɗɗoriiɗe *) ena kiisaa.\nJokkol gadanol e gorol foti wonde ko jokkol fiilde nde moƴƴaani.\nKala jokkol dewngol e ngool gorol nanngiraa ko paltooje, wano kelle ɗo fiilde ndee waawi yaltude.",
 	"metadata": "Metaakeɓe",
 	"metadata-help": "Ngoo hello ena waɗi humpito woɗngo, tawata ko ummii ko e kameraa numerik walla niiwtorde huutoraande ngam sosde walla ngaanndinde nde.",
-	"metadata-fields": "Galli metaakeɓe natal gongal nde nduu ɓaakuru maa naatine e jaytinol hello natal tuma nde haatumeere metaakeɓe ndee taggitaa.\nGoɗɗe maa cuuɗe e sahaa kala.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Galli metaakeɓe natal gongal nde nduu ɓaakuru maa naatine e jaytinol hello natal tuma nde haatumeere metaakeɓe ndee taggitaa.\nGoɗɗe maa cuuɗe e sahaa kala.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "fof",
 	"monthsall": "fof",
 	"imgmultipagenext": "Hello faango →",

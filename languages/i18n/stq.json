@@ -1064,6 +1064,7 @@
 	"filehist-dimensions": "Höchte un Bratte",
 	"filehist-filesize": "Doatäigrööte",
 	"filehist-comment": "Kommentoar",
+	"filehist-missing": "Doatäi failt",
 	"imagelinks": "Doatäiferweendenge",
 	"linkstoimage": "{{PLURAL:$1|Ju foulgjende Siede ferwoant|Do foulgjende $1 Sieden ferweende}} disse Doatäi:",
 	"linkstoimage-more": "Moor as {{PLURAL:$1|een Siede ferlinket|$1 Sieden ferlinkje}} ap disse Doatäi.\nJu foulgjende Lieste wiest bloot {{PLURAL:$1|dän eerste Link|do eerste $1 Linke}} ap disse Doatäi.\nNe [[Special:WhatLinksHere/$2|fulständige Lieste]] is ferföigboar.",

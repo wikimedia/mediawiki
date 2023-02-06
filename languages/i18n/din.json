@@ -469,7 +469,7 @@
 	"ilsubmit": "Yiɔ̈ɔ̈p",
 	"metadata": "Leekmeta",
 	"metadata-help": "Yär thiöögë anɔŋic lëk juëc kɔ̈k, tɛkdɛ̈ eke mɛtëke thïn në ajötatïïp ë yit ka ye atɔuatïïp ye luööi bëye cak ka bëye yiɛt.\nTë cïnë yär war tëden thɛric, ka kajuëëckɔ̈k tɔ̈thïn tɛkdɛ̈ aacë bë tïc në yär ciiwar yic.",
-	"metadata-fields": "Tuɔc ke lëëkmeta ë këcïkäär cï ke rɛcpiny ee thong kënë yic aa bï ke mat yär ë nyuuth ë kacïkäär yic.\nTë ler kör ë lëëkmeta ŋɛɛrpiny.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Tuɔc ke lëëkmeta ë këcïkäär cï ke rɛcpiny ee thong kënë yic aa bï ke mat yär ë nyuuth ë kacïkäär yic.\nTë ler kör ë lëëkmeta ŋɛɛrpiny.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "ëbɛ̈n",
 	"monthsall": "ëbɛ̈n",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|jam]])",

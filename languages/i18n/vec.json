@@ -1479,6 +1479,7 @@
 	"filehist-dimensions": "Dimension",
 	"filehist-filesize": "Dimension del file",
 	"filehist-comment": "Comento",
+	"filehist-missing": "File mancante",
 	"imagelinks": "Doparasion del file",
 	"linkstoimage": "{{PLURAL:$1|Ła pajina che vien ła dopara|Łe che vien $1 pajine, łe dopara}} sto file:",
 	"linkstoimage-more": "De pì de $1 {{PLURAL:$1|pajina ƚa ponta|pajine łe ponta}} a sto file.\nIn te ła lista che vien, łe xé scriveste soło {{PLURAL:$1|ła prima pajina che ponta|łe prime $1 pajine che ponta}} a sto file.\nSe połe védare na [[Special:WhatLinksHere/$2|lista par intiero]].",

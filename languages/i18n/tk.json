@@ -1607,6 +1607,7 @@
 	"filehist-dimensions": "Ölçegler",
 	"filehist-filesize": "Faýl ölçegi",
 	"filehist-comment": "Teswir",
+	"filehist-missing": "Faýl ýok",
 	"imagelinks": "Faýlyň ulanylyşy",
 	"linkstoimage": "Bu faýla çykgydy bar bolan {{PLURAL:$1|sahypa}}:",
 	"linkstoimage-more": "$1 gowrak {{PLURAL:$1|sahypa}} bu faýla çykgyt berýär.\nAşakdaky sanaw diňe şu faýla çykgyt berýän {{PLURAL:$1|ilkinji faýly |ilkinji $1 faýly}} görkezýär.\n[[Special:WhatLinksHere/$2|Doly sanaw]] bardyr.",

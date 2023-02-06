@@ -672,7 +672,7 @@
 	"show-big-image-preview": "اي پيشأدئنˇ واويراز: $1.",
 	"show-big-image-size": "<span dir=\"ltr\">$1 × $2</span> پيکسل",
 	"metadata": "گتˇ دىتا",
-	"metadata-fields": "اي پىغؤمˇ مئنˇ نۊشؤن بدأ تاتاىي گتˇ دىتا'ن، وختي کي تاتاىي گتˇ دىتا'نˇ جدول جمأبؤبي، هندئه نۊشؤن بدأ بنه. باخيˇ مؤردؤن خالي اۊ زمت نۊشؤن بدأ بنه کي اۊ جدول وابۊبۊن.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "اي پىغؤمˇ مئنˇ نۊشؤن بدأ تاتاىي گتˇ دىتا'ن، وختي کي تاتاىي گتˇ دىتا'نˇ جدول جمأبؤبي، هندئه نۊشؤن بدأ بنه. باخيˇ مؤردؤن خالي اۊ زمت نۊشؤن بدأ بنه کي اۊ جدول وابۊبۊن.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "همه",
 	"monthsall": "همه",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|گب]])",

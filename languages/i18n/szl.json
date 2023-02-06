@@ -1810,7 +1810,7 @@
 	"metadata-help": "We tym zbiorze sōm ekstra informacyje pewnikym przidane ôd fotoaparatu abo skanera użytego do zrobiyniŏ abo zdigitalizowaniŏ go.\nJeźli zbiōr bōł modyfikowany, niykere informacyje mogōm niy cołkym ôdpowiadać zmodyfikowanymu zbiorowi.",
 	"metadata-expand": "Pokŏż rozszyrzōne informacyje",
 	"metadata-collapse": "Skryj rozszyrzōne informacyje",
-	"metadata-fields": "Metadane ôbrazōw wymianowane we tyj wiadōmości bydōm pokazowane na strōnie grafiki po zwiniyńciu tabule metadanych.\nInksze pola bydōm wychodnie skryte.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "Metadane ôbrazōw wymianowane we tyj wiadōmości bydōm pokazowane na strōnie grafiki po zwiniyńciu tabule metadanych.\nInksze pola bydōm wychodnie skryte.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "wszyjske",
 	"monthsall": "wszyjske",
 	"confirmemail": "Potwjerdź adres e-brif",

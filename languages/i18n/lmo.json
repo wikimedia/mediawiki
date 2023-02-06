@@ -3153,7 +3153,7 @@
 	"metadata-help": "Quell fail chì el gh'ha dent di informazzion adizionai, che l'è probabil che sien stad agiontad con la fotocamera o 'l scanner doprad per creà o digitalizzà el fail medesim. Se el fail a l'è stad mudifegad, un quaivun di detali el pudariss corespond pu ai modifeghe fade",
 	"metadata-expand": "Fà vedè i detali",
 	"metadata-collapse": "Scond i detali",
-	"metadata-fields": "I camp di metadat listad in queld messagg chì i sarand mustrad in la pagina de la figura quand che la tabela di metadat la sarà presentada forma curta. Per impostazzion i alter camp i sarann scundud.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",
+	"metadata-fields": "I camp di metadat listad in queld messagg chì i sarand mustrad in la pagina de la figura quand che la tabela di metadat la sarà presentada forma curta. Per impostazzion i alter camp i sarann scundud.\n* make \n* model \n* datetimeoriginal \n* exposuretime \n* fnumber \n* isospeedratings \n* focallength \n* artist \n* copyright \n* imagedescription \n* gpslatitude \n* gpslongitude \n* gpsaltitude \n* dc-rights \n* copyrightowner \n* usageterms \n* webstatement \n* licenseurl \n* attributionurl \n* preferredattributionname \n* credit \n* jpegfilecomment \n* pngfilecomment \n* giffilecomment \n* usercomment \n* citydest \n* citycreated \n* headline \n* source \n* locationdest \n* dc-contributor \n* dc-coverage \n* dc-publisher \n* dc-relation \n* label \n* nickname \n* personinimage \n* disclaimer \n* event \n* objectname",
 	"namespacesall": "tucc",
 	"monthsall": "tucc",
 	"confirmemail": "Conferma l<nowiki>'</nowiki>''e-mail''",
