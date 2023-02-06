@@ -750,10 +750,7 @@ class LogFormatter {
 			return $this->msg( $message )->text();
 		}
 
-		$content = $this->msg( $message )->escaped();
-		$attribs = [ 'class' => 'history-deleted' ];
-
-		return Html::rawElement( 'span', $attribs, $content );
+		return $this->styleRestrictedElement( $this->msg( $message )->escaped() );
 	}
 
 	/**
@@ -765,7 +762,10 @@ class LogFormatter {
 		if ( $this->plaintext ) {
 			return $content;
 		}
-		$attribs = [ 'class' => 'history-deleted' ];
+		$attribs = [ 'class' => [ 'history-deleted' ] ];
+		if ( $this->entry->isDeleted( LogPage::DELETED_RESTRICTED ) ) {
+			$attribs['class'][] = 'mw-history-suppressed';
+		}
 
 		return Html::rawElement( 'span', $attribs, $content );
 	}

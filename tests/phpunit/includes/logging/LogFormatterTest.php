@@ -309,6 +309,11 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 		} else {
 			$this->assertStringContainsString( 'history-deleted', $element );
 		}
+		if ( $deletedFlag === 'suppressed' ) {
+			$this->assertStringContainsString( 'mw-history-suppressed', $element );
+		} else {
+			$this->assertStringNotContainsString( 'mw-history-suppressed', $element );
+		}
 	}
 
 	/**
@@ -353,6 +358,11 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 			$this->assertStringNotContainsString( 'history-deleted', $comment );
 		} else {
 			$this->assertStringContainsString( 'history-deleted', $comment );
+		}
+		if ( $deletedFlag === 'suppressed' ) {
+			$this->assertStringContainsString( 'mw-history-suppressed', $comment );
+		} else {
+			$this->assertStringNotContainsString( 'mw-history-suppressed', $comment );
 		}
 	}
 
