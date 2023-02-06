@@ -279,6 +279,8 @@ because of Phabricator reports.
   or JSON-encoded data may change.
 * IcuCollation::getUnicodeVersionForICU() was removed without deprecation.
 * LinkFilter::supportsIDN() was removed without deprecation.
+* The ability to pass null for the errorData parameter of HttpException and
+  LocalizedHttpException was removed without deprecation.
 * …
 
 === Deprecations in 1.40 ===
