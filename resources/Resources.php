@@ -844,6 +844,12 @@ return [
 	'mediawiki.feedlink' => [
 		'styles' => 'resources/src/mediawiki.feedlink/feedlink.css',
 		'targets' => [ 'desktop', 'mobile' ],
+		'skinStyles' => [
+			'default' => [
+				'resources/src/mediawiki.feedlink/feedlink.css',
+			],
+			'vector-2022' => [],
+		],
 	],
 	'mediawiki.filewarning' => [
 		'targets' => [ 'desktop', 'mobile' ],
