@@ -18,16 +18,15 @@ use PHPUnit\Framework\MockObject\MockObject;
 trait SessionHelperTestTrait {
 	/**
 	 * @param bool $csrfSafe
-	 * @return Session
+	 * @return Session&MockObject
 	 */
-	public function getSession( bool $csrfSafe = false ) {
-		/** @var SessionProviderInterface|MockObject $session */
-		$sessionProvider =
-			$this->createNoOpMock( SessionProviderInterface::class, [ 'safeAgainstCsrf' ] );
+	public function getSession( bool $csrfSafe ) {
+		/** @var SessionProviderInterface&MockObject $session */
+		$sessionProvider = $this->createMock( SessionProviderInterface::class );
 		$sessionProvider->method( 'safeAgainstCsrf' )->willReturn( $csrfSafe );
 
-		/** @var Session|MockObject $session */
-		$session = $this->createNoOpMock( Session::class, [ 'getSessionId', 'getProvider' ] );
+		/** @var Session&MockObject $session */
+		$session = $this->createMock( Session::class );
 		$session->method( 'getSessionId' )->willReturn( new SessionId( 'test' ) );
 		$session->method( 'getProvider' )->willReturn( $sessionProvider );
 

@@ -300,7 +300,7 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$handler = $this->newHandler( $actionResult, null, $csrfSafe );
 
-		$response = $this->executeHandler( $handler, $request, [], [], [], [], null, $csrfSafe );
+		$response = $this->executeHandler( $handler, $request, [], [], [], [], null, $this->getSession( $csrfSafe ) );
 
 		$this->assertSame( 201, $response->getStatusCode() );
 		$this->assertSame(

@@ -325,7 +325,7 @@ class HandlerTest extends \MediaWikiUnitTestCase {
 		$request = new RequestData( $requestData );
 
 		$handler = $this->newHandler();
-		$this->initHandler( $handler, $request, [], [], null, true );
+		$this->initHandler( $handler, $request, [], [], null, $this->getSession( true ) );
 
 		$validator = $this->getMockValidator( [], [ 'token' => 'TOKEN' ] );
 		$handler->validate( $validator );
@@ -348,7 +348,7 @@ class HandlerTest extends \MediaWikiUnitTestCase {
 	public function testCsrfUnsafeSessionProviderRejection() {
 		$handler = $this->newHandler( [ 'requireSafeAgainstCsrf' ] );
 		$handler->method( 'requireSafeAgainstCsrf' )->willReturn( true );
-		$this->initHandler( $handler, new RequestData() );
+		$this->initHandler( $handler, new RequestData(), [], [], null, $this->getSession( false ) );
 
 		try {
 			$handler->checkSession();
