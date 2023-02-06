@@ -795,7 +795,7 @@
 	"editpage-notsupportedcontentformat-text": "Формат садржине $1 није подржан за садржински модел $2.",
 	"slot-name-main": "Главни",
 	"content-model-wikitext": "викитекст",
-	"content-model-text": "обични текст",
+	"content-model-text": "обичан текст",
 	"content-model-javascript": "јаваскрипта",
 	"content-model-css": "CSS",
 	"content-model-json": "JSON",

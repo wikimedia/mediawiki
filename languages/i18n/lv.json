@@ -2184,6 +2184,7 @@
 	"ipblocklist-legend": "Meklēt bloķētu lietotāju",
 	"blocklist-userblocks": "Paslēpt kontu bloķējumus",
 	"blocklist-tempblocks": "Paslēpt pagaidu bloķējumus",
+	"blocklist-indefblocks": "Paslēpt bezgalīgos blokus",
 	"blocklist-addressblocks": "Paslēpt vienas IP adreses bloķējumus",
 	"blocklist-type": "Veids:",
 	"blocklist-type-opt-all": "Visi",

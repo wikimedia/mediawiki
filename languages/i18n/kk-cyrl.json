@@ -27,7 +27,8 @@
 			"Winston Sung",
 			"Amire80",
 			"СеніңШешең",
-			"Darzz"
+			"Darzz",
+			"Ajiniyaz Nurniyazov"
 		]
 	},
 	"tog-underline": "Сілтеме астын сызу:",
@@ -749,7 +750,7 @@
 	"edit-slots-missing": "Келесі {{PLURAL:$1|слот|слоттар}} жоқ: $2.",
 	"postedit-confirmation-created": "Бет басталды.",
 	"postedit-confirmation-restored": "Бет қалпына келтірілді.",
-	"postedit-confirmation-saved": "Өңдемеңіз сақталды.",
+	"postedit-confirmation-saved": "Ózgeris saqlandı.",
 	"postedit-confirmation-published": "Өңдемеңіз жарияланды.",
 	"edit-already-exists": "Жаңа бет басталмады.\nБұл бет бар.",
 	"defaultmessagetext": "Әдепкі хабар мәтіні",

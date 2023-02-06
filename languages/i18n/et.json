@@ -2543,7 +2543,7 @@
 	"whatlinkshere-title": "Leheküljed, mis viitavad lehele \"$1\"",
 	"whatlinkshere-page": "Lehekülg:",
 	"linkshere": "Lehele '''$2''' viitavad järgmised leheküljed:",
-	"nolinkshere": "Lehele '''$2''' ei viita ükski lehekülg.",
+	"nolinkshere": "Leheküljele <strong>$2</strong> ei viita ükski lehekülg.",
 	"nolinkshere-ns": "Leheküljele <strong>$2</strong> ei ole valitud nimeruumis linke.",
 	"isredirect": "ümbersuunamislehekülg",
 	"istemplate": "kasutamine mallina",

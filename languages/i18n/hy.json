@@ -989,6 +989,7 @@
 	"action-browsearchive": "որոնել ջնջված էջեր",
 	"action-undelete": "վերականգնել էջեր",
 	"action-rollback": "արագ հետ գլորել էջը վերջին անգամ խմբագրած մասնակցի կատարած փոփոխությունները",
+	"action-import": "ներմուծել էջեր մեկ այլ վիքիից",
 	"action-sendemail": "ուղարկել էլ. նամակ",
 	"action-editmyoptions": "խմբագրել ձեր նախասիրությունները",
 	"action-editmywatchlist": "խմբագրել Ձեր հսկացանկը",
