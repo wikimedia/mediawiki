@@ -13,6 +13,7 @@
 	"rest-nonexistent-revision": "The specified revision ($1) does not exist",
 	"rest-nonexistent-user": "The specified user ($1) does not exist",
 	"rest-invalid-user": "The specified username ($1) is invalid",
+	"rest-unsupported-content-type": "Unsupported Content-Type: $1",
 	"rest-permission-denied-anon": "Not accessible by anonymous user",
 	"rest-permission-denied-title": "The user does not have rights to read title ($1)",
 	"rest-permission-denied-revision": "User doesn't have access to the requested revision ($1).",
@@ -43,5 +44,7 @@
 	"rest-cannot-load-file": "The file for title \"$1\" cannot be loaded.",
 	"rest-cross-origin-anon-write": "Anonymous cross-origin write requests are not allowed",
 	"rest-requires-safe-against-csrf": "This endpoint requires a CSRF-safe session provider.",
-	"rest-badtoken": "The CSRF token provided is invalid."
+	"rest-badtoken": "The CSRF token provided is invalid.",
+	"rest-badtoken-missing": "The <var>token</var> parameter is required unless using a CSRF-safe authentication method.",
+	"rest-badtoken-nosession": "CSRF error - no session."
 }

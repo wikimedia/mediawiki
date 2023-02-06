@@ -17,6 +17,7 @@
 	"rest-nonexistent-revision": "Error message for REST API debugging, shown when the specified revision does not exist. Parameters:\n* $1 The revision id.",
 	"rest-nonexistent-user": "Error message for REST API debugging, shown when the specified user does not exist. Parameters:\n* $1 The username.",
 	"rest-invalid-user": "Error message for REST API debugging, shown when the specified username is invalid. Parameters:\n* $1 The username.",
+	"rest-unsupported-content-type": "Error message for REST API debugging, shown when the specified content type is invalid. Parameters:\n* $1 The content type.",
 	"rest-permission-denied-anon": "Error message for REST API debugging, shown when the user is anonymous and therefore is denied permission to a resource",
 	"rest-permission-denied-title": "Error message for REST API debugging, shown if the user doesn't have read access to the specified title. Parameters:\n* $1 The page title",
 	"rest-permission-denied-revision": "Error message for REST API debugging, shown when the user doesn't have access to the specified revision. Parameters:\n* $1: the specified revision.",
@@ -47,5 +48,7 @@
 	"rest-cannot-load-file": "Error message for REST API debugging, shown when a media file could not be loaded. Parameters:\n* $1: The title of the page",
 	"rest-cross-origin-anon-write": "Error message for REST API debugging, shown when a client attempts to make a cross-origin anon write.",
 	"rest-requires-safe-against-csrf": "Error message for REST API debugging, shown when a handler requires a [[:w:Cross-site request forgery|CSRF]]-safe session provider, but a non-CSRF-safe session provider was used.",
-	"rest-badtoken": "Error message for REST API debugging, shown when an invalid CSRF token was provided."
+	"rest-badtoken": "Error message for REST API debugging, shown when an invalid CSRF token was provided.",
+	"rest-badtoken-missing": "Error message for REST API debugging, shown when no CSRF token was provided.",
+	"rest-badtoken-nosession": "Error message for REST API debugging, shown when an invalid CSRF token was provided and it seems like the client failed to include authentication information."
 }
