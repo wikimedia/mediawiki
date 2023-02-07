@@ -216,6 +216,31 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$this->assertStringEqualsFile( "$basePath/module/styles.css", $css );
 	}
 
+	public static function provideLessImportRemappingCases() {
+		$basePath = dirname( dirname( __DIR__ ) ) . '/data/less';
+		return [
+			[
+				'input' => "$basePath/import-codex-icons.less",
+				'expected' => "$basePath/import-codex-icons.css"
+			],
+			[
+				'input' => "$basePath/import-codex-tokens.less",
+				'expected' => "$basePath/import-codex-tokens.css"
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideLessImportRemappingCases
+	 */
+	public function testLessImportRemapping( $input, $expected ) {
+		$rl = new EmptyResourceLoader();
+		$lc = $rl->getLessCompiler();
+
+		$css = $lc->parseFile( $input )->getCss();
+		$this->assertStringEqualsFile( $expected, $css );
+	}
+
 	public static function provideMediaWikiVariablesCases() {
 		$basePath = __DIR__ . '/../../data/less';
 		return [
