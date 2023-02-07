@@ -295,6 +295,24 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @covers Status::hasMessagesExcept
+	 */
+	public function testHasMessagesExcept() {
+		$status = new Status();
+		$status->fatal( 'bad' );
+		$status->fatal( wfMessage( 'bad-msg' ) );
+		$status->fatal( new MessageValue( 'bad-msg-value' ) );
+		$this->assertTrue( $status->hasMessagesExcept( 'good' ) );
+		$this->assertTrue( $status->hasMessagesExcept( 'bad' ) );
+		$this->assertFalse( $status->hasMessagesExcept(
+			'bad', 'bad-msg', 'bad-msg-value' ) );
+		$this->assertFalse( $status->hasMessagesExcept(
+			'good', 'bad', 'bad-msg', 'bad-msg-value' ) );
+		$this->assertFalse( $status->hasMessagesExcept(
+			wfMessage( 'bad' ), new MessageValue( 'bad-msg' ), 'bad-msg-value' ) );
+	}
+
+	/**
 	 * @dataProvider provideCleanParams
 	 * @covers Status::cleanParams
 	 */

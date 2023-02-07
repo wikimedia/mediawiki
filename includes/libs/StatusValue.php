@@ -347,6 +347,38 @@ class StatusValue {
 	}
 
 	/**
+	 * Returns true if any other message than the specified ones  is present as a warning or error.
+	 *
+	 * @param string|MessageSpecifier|MessageValue ...$messages Messages to search for.
+	 *
+	 * @return bool
+	 */
+	public function hasMessagesExcept( ...$messages ) {
+		$exceptedKeys = [];
+		foreach ( $messages as $message ) {
+			if ( $message instanceof MessageSpecifier ) {
+				$message = $message->getKey();
+			} elseif ( $message instanceof MessageValue ) {
+				$message = $message->getKey();
+			}
+			$exceptedKeys[] = $message;
+		}
+
+		foreach ( $this->errors as $error ) {
+			if ( $error['message'] instanceof MessageSpecifier ) {
+				$actualKey = $error['message']->getKey();
+			} else {
+				$actualKey = $error['message'];
+			}
+			if ( !in_array( $actualKey, $exceptedKeys, true ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * If the specified source message exists, replace it with the specified
 	 * destination message, but keep the same parameters as in the original error.
 	 *
