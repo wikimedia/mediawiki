@@ -684,10 +684,16 @@ return [
 			'resources/src/codex/codex.js',
 			'resources/lib/codex/codex.umd.js',
 		],
-		'dirSpecificStyles' => [
+		'themeStyles' => [
 			// Special syntax supported by CodexModule
-			'ltr' => 'resources/lib/codex/codex.style-legacy.css',
-			'rtl' => 'resources/lib/codex/codex.style-legacy-rtl.css'
+			'wikimedia-ui' => [
+				'ltr' => 'resources/lib/codex/codex.style.css',
+				'rtl' => 'resources/lib/codex/codex.style-rtl.css'
+			],
+			'wikimedia-ui-legacy' => [
+				'ltr' => 'resources/lib/codex/codex.style-legacy.css',
+				'rtl' => 'resources/lib/codex/codex.style-legacy-rtl.css'
+			]
 		],
 		// Do not flip styles in RTL contexts, because we're already providing RTL-specific styles
 		'noflip' => true,
@@ -704,10 +710,16 @@ return [
 			'resources/src/codex-search/codex-search.js',
 			'resources/lib/codex-search/codex-search.umd.js',
 		],
-		'dirSpecificStyles' => [
+		'themeStyles' => [
 			// Special syntax supported by CodexModule
-			'ltr' => 'resources/lib/codex-search/codex-search.style-legacy.css',
-			'rtl' => 'resources/lib/codex-search/codex-search.style-legacy-rtl.css'
+			'wikimedia-ui' => [
+				'ltr' => 'resources/lib/codex-search/codex-search.style.css',
+				'rtl' => 'resources/lib/codex-search/codex-search.style-rtl.css'
+			],
+			'wikimedia-ui-legacy' => [
+				'ltr' => 'resources/lib/codex-search/codex-search.style-legacy.css',
+				'rtl' => 'resources/lib/codex-search/codex-search.style-legacy-rtl.css'
+			]
 		],
 		// Do not flip styles in RTL contexts, because we're already providing RTL-specific styles
 		'noflip' => true,

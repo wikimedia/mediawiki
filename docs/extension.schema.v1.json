@@ -1027,6 +1027,10 @@
 				}
 			}
 		},
+		"SkinCodexThemes": {
+			"type": "object",
+			"description": "Name of the Codex theme to use for each skin, keyed by skin name. Skins not specified here default to the wikimedia-ui theme."
+		},
 		"PasswordPolicy": {
 			"type": "object",
 			"description": "Password policies"
