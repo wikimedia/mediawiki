@@ -1310,6 +1310,7 @@
 	"filehist-dimensions": "پاسے",
 	"filehist-filesize": "تصویر دا سائز",
 	"filehist-comment": "رائے",
+	"filehist-missing": "کوئی فائل کائنی",
 	"imagelinks": "فائل ورتݨ",
 	"linkstoimage": "اِیں فائل نال ہیٹھاں درج  {{PLURAL:$1|ورقہ مربوط ہے|$1 صفحات مربوط ہن}}:",
 	"linkstoimage-more": " $1 کنوں ودھ {{PLURAL:$1|ورقہ ورتݨ|ورقے ورتݨ}} ایہ فائل ورتیندن.\nایہ فائل {{PLURAL:$1|پہلا ورقہ|پہلے $1 ورقے}} جہڑے ایہ فائل ورتندن.\n [[Special:WhatLinksHere/$2|پوری تندیر]] دستیاب ہے.",

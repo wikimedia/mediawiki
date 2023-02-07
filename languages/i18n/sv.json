@@ -1983,7 +1983,7 @@
 	"filehist-dimensions": "Dimensioner",
 	"filehist-filesize": "Filstorlek",
 	"filehist-comment": "Kommentar",
-	"filehist-missing": "Fil saknas",
+	"filehist-missing": "ingen fil",
 	"imagelinks": "Filanvändning",
 	"linkstoimage": "Följande {{PLURAL:$1|sida|$1 sidor}} använder den här filen:",
 	"linkstoimage-more": "Mer än {{PLURAL:$1|en sida|$1 sidor}} använder den här filen.\nFöljande lista visar bara {{PLURAL:$1|den första sidan|de $1 första sidorna}} som använder filen.\nDet finns en [[Special:WhatLinksHere/$2|fullständig lista]].",

@@ -16,6 +16,7 @@
 	"rest-nonexistent-revision": "Żądana wersja ($1) nie istnieje.",
 	"rest-nonexistent-user": "Podany użytkownik ($1) nie istnieje",
 	"rest-invalid-user": "Podana nazwa użytkownika ($1) jest nieprawidłowa",
+	"rest-unsupported-content-type": "Nieobsługiwany typ treści: $1",
 	"rest-permission-denied-anon": "Niedostępne dla anonimowego użytkownika",
 	"rest-permission-denied-title": "Użytkownik nie posiada uprawnień do czytania tytułu ($1)",
 	"rest-permission-denied-revision": "Użytkownik nie ma dostępu do żądanej wersji ($1).",
@@ -46,5 +47,7 @@
 	"rest-cannot-load-file": "Plik o tytule „$1” nie mógł zostać wczytany.",
 	"rest-cross-origin-anon-write": "Anonimowe żądania zapisu w innych domen nie są dozwolone",
 	"rest-requires-safe-against-csrf": "Ten endpoint wymaga sesji odpornej na CSRF.",
-	"rest-badtoken": "Podany token CSRF jest nieprawidłowy."
+	"rest-badtoken": "Podany token CSRF jest nieprawidłowy.",
+	"rest-badtoken-missing": "Parametr <var>token</var> jest wymagany, chyba że używana jest bezpieczna dla CSRF metoda uwierzytelniania.",
+	"rest-badtoken-nosession": "Błąd CSRF – brak sesji."
 }

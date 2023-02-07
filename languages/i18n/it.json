@@ -2039,7 +2039,7 @@
 	"filehist-dimensions": "Dimensioni",
 	"filehist-filesize": "Dimensione del file",
 	"filehist-comment": "Commento",
-	"filehist-missing": "File mancante",
+	"filehist-missing": "nessun file",
 	"imagelinks": "Utilizzo del file",
 	"linkstoimage": "{{PLURAL:$1|La seguente pagina usa|Le seguenti $1 pagine usano}} questo file:",
 	"linkstoimage-more": "Più di $1 {{PLURAL:$1|pagina usa|pagine usano}} questo file.\nDi seguito sono elencate solo {{PLURAL:$1|la prima pagina che usa|le prime $1 pagine che usano}} questo file.\nÈ disponibile un [[Special:WhatLinksHere/$2|elenco completo]].",

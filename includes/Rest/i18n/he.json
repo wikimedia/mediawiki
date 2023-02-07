@@ -14,6 +14,7 @@
 	"rest-nonexistent-revision": "הגרסה שצוינה ($1) אינה קיימת",
 	"rest-nonexistent-user": "המשתמש שצוין ($1) אינו קיים.",
 	"rest-invalid-user": "שם המשתמש שצוין ($1) אינו תקין",
+	"rest-unsupported-content-type": "סוג תוכן (Content-Type) שלא נתמך: $1",
 	"rest-permission-denied-anon": "לא נגיש למשתמש אלמוני",
 	"rest-permission-denied-title": "למשתמש אין הרשאה לקרוא כותרת ($1)",
 	"rest-permission-denied-revision": "למשתמש אין גישה לגרסה המבוקשת ($1).",
@@ -44,5 +45,7 @@
 	"rest-cannot-load-file": "לא ניתן לטעון את הקובץ עבור הכותרת \"$1\".",
 	"rest-cross-origin-anon-write": "בקשות כתיבה חוצות־מקור (cross-origin) אלמוניות אינן מורשות",
 	"rest-requires-safe-against-csrf": "נקודת הקצה הזאת דורשת ספק התחברויות מאובטח־CSRF.",
-	"rest-badtoken": "אסימון ה־CSRF שסופק אינו תקין."
+	"rest-badtoken": "אסימון ה־CSRF שסופק אינו תקין.",
+	"rest-badtoken-missing": "פרמטר <var>token</var> נדרש אלא אם נעשה שימוש בשיטת אימות שבטוחה עם CSRF.",
+	"rest-badtoken-nosession": "שגיאת CSRF – אין התחברות."
 }

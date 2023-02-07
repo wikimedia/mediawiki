@@ -3,7 +3,8 @@
 		"authors": [
 			"Eduardo Addad de Oliveira",
 			"Eduardoaddad",
-			"Jhonnatanricardo"
+			"Jhonnatanricardo",
+			"Re demz"
 		]
 	},
 	"rest-prefix-mismatch": "O caminho pedido ($1) não estava no interior do caminho raiz da API REST ($2)",
@@ -14,6 +15,7 @@
 	"rest-nonexistent-revision": "A revisão especificada ($1) não existe",
 	"rest-nonexistent-user": "O usuário especificado ($1) não existe",
 	"rest-invalid-user": "O nome de usuário especificado ($1) é inválido",
+	"rest-unsupported-content-type": "Tipo de conteúdo não supportado: $1",
 	"rest-permission-denied-anon": "Não acessível por usuário anônimo",
 	"rest-permission-denied-title": "O usuário não tem o direitos de ler o título ($1)",
 	"rest-permission-denied-revision": "O usuário não tem acesso à revisão solicitada ($1).",
@@ -42,5 +44,7 @@
 	"rest-update-cannot-create-page": "A página \"$1\" não pode ser criada, pois ela já existe. Para atualizar a página existente, forneça o ID da revisão base na estrutura sob a chave \"latest\" no corpo da solicitação.",
 	"rest-extraneous-csrf-token": "Token CSRF estranho encontrado. Os tokens de CSRF não devem ser usados ao usar mecanismos de autenticação como o OAuth que são seguros contra ataques de CSRF.",
 	"rest-cannot-load-file": "O arquivo para o título \"$1\" não pode ser carregado.",
-	"rest-cross-origin-anon-write": "Solicitações de gravação de origem cruzada anônimas não são permitidas"
+	"rest-cross-origin-anon-write": "Solicitações de gravação de origem cruzada anônimas não são permitidas",
+	"rest-badtoken-missing": "O parâmetro <var>token</var> é obrigatório, a não ser que um método de autentificação seguro contra ataques CSRF seja usado.",
+	"rest-badtoken-nosession": "Erro CSRF - nenhuma sessão."
 }

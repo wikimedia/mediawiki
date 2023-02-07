@@ -1986,7 +1986,7 @@
 	"filehist-dimensions": "Dimensões",
 	"filehist-filesize": "Tamanho do ficheiro",
 	"filehist-comment": "Comentário",
-	"filehist-missing": "Ficheiro em falta",
+	"filehist-missing": "ficheiro em falta",
 	"imagelinks": "Utilização local do ficheiro",
 	"linkstoimage": "{{PLURAL:$1|A seguinte página usa|As seguintes $1 páginas usam}} este ficheiro:",
 	"linkstoimage-more": "Mais de {{PLURAL:$1|uma página usa|$1 páginas usam}} este ficheiro.\nA lista abaixo apresenta apenas {{PLURAL:$1|a primeira página|as primeiras $1 páginas}}.\nEncontra-se disponível uma [[Special:WhatLinksHere/$2|lista completa]].",

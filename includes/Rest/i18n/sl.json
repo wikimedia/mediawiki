@@ -13,6 +13,7 @@
 	"rest-nonexistent-revision": "Navedena redakcija ($1) ne obstaja",
 	"rest-nonexistent-user": "Navedeni uporabnik ($1) ne obstaja",
 	"rest-invalid-user": "Navedeno uporabniško ime ($1) je neveljavno",
+	"rest-unsupported-content-type": "Nepodprta vrsta vsebine: $1",
 	"rest-permission-denied-anon": "Ni dostopno za anonimne uporabnike",
 	"rest-permission-denied-title": "Uporabnik nima pravice do branja naslova ($1)",
 	"rest-permission-denied-revision": "Uporabnik nima dostopa do zahtevane redakcije ($1).",
@@ -43,5 +44,7 @@
 	"rest-cannot-load-file": "Datoteke za naslov »$1« ni mogoče naložiti.",
 	"rest-cross-origin-anon-write": "Anonimni zahtevki za zapisovanje iz drugega izvora niso dovoljeni.",
 	"rest-requires-safe-against-csrf": "Ta končna točka zahteva ponudnika, ki zagotavlja zaščito pred ugrabitvijo sej (CSRF).",
-	"rest-badtoken": "Predloženi žeton CSRF je neveljaven."
+	"rest-badtoken": "Predloženi žeton CSRF je neveljaven.",
+	"rest-badtoken-missing": "Potreben je parameter <var>token</var>, razen če uporabljate CSRF-varen način avtentikacije.",
+	"rest-badtoken-nosession": "Napaka CSRF – ni seje."
 }
