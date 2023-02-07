@@ -5,6 +5,7 @@ use MediaWiki\MainConfigNames;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -29,8 +30,8 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		bool $enablePingback = true,
 		$cache = null
 	) {
-		$loadBalancer = $this->createNoOpMock( ILoadBalancer::class, [ 'getConnectionRef' ] );
-		$loadBalancer->method( 'getConnectionRef' )->willReturn( $database );
+		$loadBalancer = $this->createNoOpMock( ILoadBalancer::class, [ 'getConnection' ] );
+		$loadBalancer->method( 'getConnection' )->willReturn( $database );
 
 		$pingback = new MockPingback(
 			new HashConfig( [ MainConfigNames::Pingback => $enablePingback ] ),
@@ -64,8 +65,10 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		// - no db lock
 		// - no HTTP request
 		// - no db upsert for timestamp
-		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField' ] );
+		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField', 'newSelectQueryBuilder' ] );
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn( false );
+		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $database ) );
+
 		$cache = $this->createMock( BagOStuff::class );
 		$cache->method( 'add' )->willReturn( false );
 
@@ -86,9 +89,10 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		// Expect:
 		// - no HTTP request
 		// - no db upsert for timestamp
-		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField', 'lock' ] );
+		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField', 'lock', 'newSelectQueryBuilder' ] );
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn( false );
 		$database->expects( $this->once() )->method( 'lock' )->willReturn( false );
+		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $database ) );
 
 		$this->testRun(
 			$database,
@@ -110,7 +114,7 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		// - db lock acquired
 		// - HTTP POST request
 		// - db upsert for timestamp
-		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField', 'lock', 'upsert' ] );
+		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField', 'lock', 'upsert', 'newSelectQueryBuilder' ] );
 		$httpRequestFactory = $this->createNoOpMock( HttpRequestFactory::class, [ 'post' ] );
 
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn( $priorPing );
@@ -120,6 +124,7 @@ class PingbackTest extends MediaWikiUnitTestCase {
 			->with( 'https://www.mediawiki.org/beacon/event?%7B%22some%22%3A%22stuff%22%7D;' )
 			->willReturn( true );
 		$database->expects( $this->once() )->method( 'upsert' );
+		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $database ) );
 
 		$this->testRun(
 			$database,
@@ -143,10 +148,11 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		// - no db lock
 		// - no HTTP request
 		// - no db upsert for timestamp
-		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField' ] );
+		$database = $this->createNoOpMock( DBConnRef::class, [ 'selectField', 'newSelectQueryBuilder' ] );
 		$database->expects( $this->once() )->method( 'selectField' )->willReturn(
 			ConvertibleTimestamp::convert( TS_UNIX, '20110401080000' )
 		);
+		$database->method( 'newSelectQueryBuilder' )->willReturnCallback( fn() => new SelectQueryBuilder( $database ) );
 
 		$this->testRun(
 			$database,
