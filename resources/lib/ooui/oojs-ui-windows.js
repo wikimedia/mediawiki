@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.46.2
+ * OOUI v0.46.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-01-17T18:28:50Z
+ * Date: 2023-02-07T00:43:59Z
  */
 ( function ( OO ) {
 
@@ -2164,22 +2164,24 @@ OO.ui.Window.prototype.withoutSizeTransitions = function ( callback ) {
  * @return {number} The height of the window contents (the dialog head, body and foot) in pixels
  */
 OO.ui.Window.prototype.getContentHeight = function () {
-	var win = this,
-		bodyStyleObj = this.$body[ 0 ].style,
-		frameStyleObj = this.$frame[ 0 ].style;
+	var win = this;
+	var body = this.$body[ 0 ];
+	var frame = this.$frame[ 0 ];
 
 	var bodyHeight;
 	// Temporarily resize the frame so getBodyHeight() can use scrollHeight measurements.
 	// Disable transitions first, otherwise we'll get values from when the window was animating.
 	this.withoutSizeTransitions( function () {
-		var oldHeight = frameStyleObj.height,
-			oldPosition = bodyStyleObj.position;
-		frameStyleObj.height = '1px';
+		var oldHeight = frame.style.height;
+		var oldPosition = body.style.position;
+		var scrollTop = body.scrollTop;
+		frame.style.height = '1px';
 		// Force body to resize to new width
-		bodyStyleObj.position = 'relative';
+		body.style.position = 'relative';
 		bodyHeight = win.getBodyHeight();
-		frameStyleObj.height = oldHeight;
-		bodyStyleObj.position = oldPosition;
+		frame.style.height = oldHeight;
+		body.style.position = oldPosition;
+		body.scrollTop = scrollTop;
 	} );
 
 	return (

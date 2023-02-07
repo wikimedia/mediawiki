@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.46.2
+ * OOUI v0.46.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2023 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2023-01-17T18:29:02Z
+ * Date: 2023-02-07T00:44:09Z
  */
 .oo-ui-element-hidden {
   display: none !important;
@@ -860,6 +860,7 @@ body:not( :-moz-handler-blocked ) .oo-ui-fieldsetLayout {
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
 }
+.oo-ui-buttonGroupWidget.oo-ui-widget-enabled .oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button:hover,
 .oo-ui-buttonGroupWidget.oo-ui-widget-enabled .oo-ui-buttonElement.oo-ui-widget-enabled > .oo-ui-buttonElement-button:active {
   z-index: 1;
 }
