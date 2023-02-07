@@ -56,6 +56,7 @@
 			try {
 				// Initialize a typed array containing 5 0-initialized 16-bit integers.
 				// Note that Uint16Array is array-like but does not implement Array.
+				// eslint-disable-next-line es-x/no-typed-arrays
 				rnds = new Uint16Array( 5 );
 				// Overwrite the array elements with cryptographically strong random values.
 				// https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues

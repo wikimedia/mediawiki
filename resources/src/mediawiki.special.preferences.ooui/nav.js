@@ -42,6 +42,7 @@
 		/**
 		 * Determine the correct section indicated by the hash.
 		 * This function is called onload and onhashchange.
+		 *
 		 * @param {Function} setSection callback for opening the section
 		 */
 		detectHash: function ( setSection ) {
@@ -80,7 +81,7 @@
 		 * Trigger onHashChange onload to select the proper tab on startup.
 		 *
 		 * @param {Function} setSection callback for opening the section
-		 * @param {string} defaultSectionName The name of a section to load by default
+		 * @param {string} defaultSection The name of a section to load by default
 		 */
 		onLoad: function ( setSection, defaultSection ) {
 			$( window ).on( 'hashchange', this.onHashChange( setSection, defaultSection )

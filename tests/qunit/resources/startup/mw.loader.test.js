@@ -1,3 +1,5 @@
+/* eslint-disable es-x/no-set */
+
 ( function () {
 	QUnit.module( 'mw.loader', QUnit.newMwEnvironment( {
 		beforeEach: function ( assert ) {

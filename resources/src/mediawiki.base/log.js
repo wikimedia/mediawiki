@@ -1,7 +1,7 @@
 // This file extends the mw.log skeleton defined in startup/mediawiki.js.
 // Code that is not needed by mw.loader is placed here.
 
-/* eslint-disable no-console */
+/* eslint-disable no-console, es-x/no-set */
 
 /**
  * @class mw
