@@ -408,7 +408,7 @@
 	"databaseerror-error": "Fehler: $1",
 	"transaction-duration-limit-exceeded": "Um eine große Verzögerung in der Datenreplikation zu vermeiden, wurde diese Transaktion abgebrochen. Die Schreibdauer ($1) hat die Grenze von $2 Sekunden überschritten. Falls du viele Objekte auf einmal änderst, versuche stattdessen, die Änderungen auf mehrere Operationen aufzuteilen.",
 	"transaction-max-statement-time-exceeded": "Um eine hohe Datenbankbelastung zu vermeiden, wurde diese Abfrage abgebrochen, da die Dauer das Limit überschritten hat.\nWenn du viele Elemente auf einmal liest, versuche stattdessen, mehrere kleinere Operationen durchzuführen.",
-	"laggedreplicamode": "<strong>Achtung:</strong> Die angezeigte Seite könnte unter Umständen nicht die letzten Bearbeitungen enthalten.",
+	"laggedreplicamode": "<strong>Achtung:</strong> Die angezeigte Seite könnte unter Umständen die letzten Bearbeitungen nicht enthalten.",
 	"readonly": "Datenbank gesperrt",
 	"enterlockreason": "Bitte gib einen Grund ein, warum die Datenbank gesperrt werden soll, und eine Abschätzung über die Dauer der Sperrung",
 	"readonlytext": "Die Datenbank ist vorübergehend für Neueinträge und Änderungen gesperrt. Bitte versuche es später noch einmal.\n\nGrund der Sperrung: $1",

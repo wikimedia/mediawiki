@@ -1357,7 +1357,7 @@
 	"userrights-groupsmember-auto": "自动用户组：",
 	"userrights-groupsmember-type": "$1",
 	"userrights-systemuser": "{{GENDER:$1|此用户}}是系统用户",
-	"userrights-groups-help": "您可以更改{{GENDER:$1|该用户}}的用户组：\n* 选中的选项框表示该用户属于该用户组。\n* 未选中的选项框表示该用户不属于该用户组。\n* 星号（*）表示一旦您被添加至该用户组后，您不能亲自移除其权限，反之亦然。\n* 井号（#）表示您只可以推迟该用户组成员的过期时间；您不能将其提前。",
+	"userrights-groups-help": "您可以更改{{GENDER:$1|该用户}}的用户组：\n* 选中的选项框表示该用户属于该用户组。\n* 未选中的选项框表示该用户不属于该用户组。\n* 星号（*）表示一旦添加至该用户组后，您不能移除它，反之亦然。\n* 井号（#）表示您只可以推迟该用户组成员的过期时间，您不能将其提前。",
 	"userrights-reason": "原因：",
 	"userrights-no-interwiki": "您没有权限编辑其他wiki上的用户权限。",
 	"userrights-nodatabase": "数据库$1不存在或并非为本地的。",
