@@ -1,7 +1,15 @@
 # OOUI Release History
 
-## v0.46.2 / 2023-01-17
+## v0.46.3 / 2023-02-06
+### Features
+* Respect prefers-reduce-motion preference when scrolling to an element (David Lynch)
+* Window: Preserve scroll position when resizing windows (Bartosz Dziewoński)
 
+### Styles
+* Restore z-index border fix for hovering buttons in group (Ed Sanders)
+
+
+## v0.46.2 / 2023-01-17
 ### Features
 * DraggableElement: Enable Drag'n'Drop on Chrome on Android (Michael Große)
 * MultilineTextInputWidget: Work around recent Firefox bug calculating wrong .scrollheight (Thiemo Kreuz)
@@ -22,6 +30,7 @@
 * php: Declare all class properties (Umherirrender)
 * php: Fix undeclared method issues from phan (Umherirrender)
 
+
 ## v0.46.0 / 2022-12-07
 ### Breaking changes
 * [BREAKING CHANGE] Raise claimed PHP need from 7.2+ to 7.4+ (James D. Forrester)
@@ -34,6 +43,7 @@
 * WikimediaUI theme: Use design-first backdrop color (Volker E.)
 * icons: Minor file size optimization for the new 'palette' icons (Thiemo Kreuz)
 * icons: Update warning color to new design-first `#edab00` (Volker E.)
+
 ### Code
 * Add some small pieces of missing documentation (Thiemo Kreuz)
 * Avoid PHP notice in IndexLayout::getTabPanel() (Daimona Eaytoy)
@@ -71,6 +81,11 @@
 * demos: Make icons page more robust (Thiemo Kreuz)
 * README: Update some of the release steps to avoid typo mistakes (James D. Forrester)
 * AUTHORS: Update for the first time since 2017(!) and composer.json listing too (James D. Forrester)
+
+
+## 0.44.5 / 2023-02-06
+### Styles
+* build: Update 'wikimedia-ui-base' to v0.20.0 (Volker E.)
 
 
 ## 0.44.4 / 2022-12-12
