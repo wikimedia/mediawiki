@@ -385,23 +385,17 @@ class ImageModule extends Module {
 	}
 
 	/**
-	 * SVG support using a transparent gradient to guarantee cross-browser
-	 * compatibility (browsers able to understand gradient syntax support also SVG).
-	 * http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique
-	 *
-	 * Keep synchronized with the .background-image-svg LESS mixin in
-	 * /resources/src/mediawiki.less/mediawiki.mixins.less.
+	 * This method formerly provided fallback rasterized images for browsers that do not support SVG.
+	 * Now kept for backwards-compatibility.
 	 *
 	 * @param string $primary Primary URI
-	 * @param string $fallback Fallback URI
+	 * @param string $fallback Fallback URI (unused)
 	 * @return string[] CSS declarations to use given URIs as background-image
 	 */
 	protected function getCssDeclarations( $primary, $fallback ): array {
 		$primaryUrl = CSSMin::buildUrlValue( $primary );
-		$fallbackUrl = CSSMin::buildUrlValue( $fallback );
 		return [
-			"background-image: $fallbackUrl;",
-			"background-image: linear-gradient(transparent, transparent), $primaryUrl;",
+			"background-image: $primaryUrl;",
 		];
 	}
 
