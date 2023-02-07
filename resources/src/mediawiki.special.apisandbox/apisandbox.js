@@ -966,6 +966,7 @@
 							// If only the tokens are invalid, offer to fix them
 							var tokenErrorCount = countValues( false, arguments );
 							if ( tokenErrorCount === errorCount ) {
+								// eslint-disable-next-line es-x/no-regexp-prototype-flags
 								delete actions[ 0 ].flags;
 								actions.push( {
 									action: 'fix',

@@ -6,6 +6,8 @@
  */
 /* global $VARS, $CODE, mw */
 
+/* eslint-disable es-x/no-set, es-x/no-promise-prototype-finally, es-x/no-regexp-prototype-flags */
+
 ( function () {
 	'use strict';
 

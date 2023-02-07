@@ -76,7 +76,6 @@
 	 * @param {Object} [localEnv.messages]
 	 */
 	QUnit.newMwEnvironment = ( function () {
-		// eslint-disable-next-line no-undef
 		var deepClone = typeof structuredClone === 'function' ? structuredClone : function ( obj ) {
 			return $.extend( /* deep */ true, {}, obj );
 		};
