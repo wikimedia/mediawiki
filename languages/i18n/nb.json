@@ -1952,7 +1952,7 @@
 	"filehist-dimensions": "Dimensjoner",
 	"filehist-filesize": "Filstørrelse",
 	"filehist-comment": "Kommentar",
-	"filehist-missing": "Fil mangler",
+	"filehist-missing": "ingen fil",
 	"imagelinks": "Filbruk",
 	"linkstoimage": "{{PLURAL:$1|Den følgende siden|De følgende $1 sidene}} bruker denne filen:",
 	"linkstoimage-more": "Mer enn $1 {{PLURAL:$1|side|sider}} bruker denne filen.\nFølgende liste viser {{PLURAL:$1|den første siden|de $1 første sidene}} som kun bruker denne filen.\nEn [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengelig.",
