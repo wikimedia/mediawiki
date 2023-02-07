@@ -2362,6 +2362,34 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		foreach ( $this->mLimitReportData as $key => $value ) {
 			$metadata->setLimitReportData( $key, $value );
 		}
+
+		// ParserOutput-only fields; maintained "behind the curtain"
+		// since Parsoid doesn't have to know about them.
+		//
+		// In production use, the $metadata supplied to this method
+		// will almost always be an instance of ParserOutput, passed to
+		// Parsoid by core when parsing begins and returned to core by
+		// Parsoid as a ContentMetadataCollector (Parsoid's name for
+		// ParserOutput) when DataAccess::parseWikitext() is called.
+		//
+		// We may use still Parsoid's StubMetadataCollector for testing or
+		// when running Parsoid in standalone mode, so forcing a downcast
+		// here would lose some flexibility.
+
+		if ( $metadata instanceof ParserOutput ) {
+			foreach ( $this->getUsedOptions() as $opt ) {
+				$metadata->recordOption( $opt );
+			}
+			if ( $this->mCacheExpiry !== null ) {
+				$metadata->updateCacheExpiry( $this->mCacheExpiry );
+			}
+			if ( $this->mCacheTime !== '' ) {
+				$metadata->setCacheTime( $this->mCacheTime );
+			}
+			if ( $this->mCacheRevisionId !== null ) {
+				$metadata->setCacheRevisionId( $this->mCacheRevisionId );
+			}
+		}
 	}
 
 	private static function mergeMixedList( array $a, array $b ): array {
