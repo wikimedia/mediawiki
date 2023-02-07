@@ -458,7 +458,7 @@ class SkinModule extends LessVarFileModule {
 
 		$isLogoFeatureEnabled = in_array( 'logo', $this->features );
 		if ( $isLogoFeatureEnabled ) {
-			$default = !is_array( $logo ) ? $logo : ( $logo['1x'] ?? null );
+			$default = !is_array( $logo ) ? $logo : ( $logo['svg'] ?? $logo['1x'] ?? null );
 			// Can't add logo CSS if no logo defined.
 			if ( !$default ) {
 				return $styles;
@@ -470,8 +470,6 @@ class SkinModule extends LessVarFileModule {
 			if ( is_array( $logo ) ) {
 				if ( isset( $logo['svg'] ) ) {
 					$styles['all'][] = '.mw-wiki-logo { ' .
-						'background-image: linear-gradient(transparent, transparent), ' .
-							CSSMin::buildUrlValue( $logo['svg'] ) . ';' .
 						'background-size: 135px auto; }';
 				} else {
 					if ( isset( $logo['1.5x'] ) ) {
