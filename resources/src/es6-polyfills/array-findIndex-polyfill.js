@@ -1,4 +1,4 @@
-/* eslint-disable no-restricted-properties, no-extend-native, eqeqeq, no-bitwise */
+/* eslint-disable es-x/no-array-prototype-findindex, no-extend-native, eqeqeq, no-bitwise */
 
 /**
  * Array.prototype.findIndex polyfill

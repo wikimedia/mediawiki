@@ -1,4 +1,4 @@
-/* eslint-disable es/no-array-from, no-undef, no-unmodified-loop-condition, eqeqeq */
+/* eslint-disable es-x/no-array-from, no-undef, no-unmodified-loop-condition, eqeqeq */
 
 /**
  * Array.from polyfill
