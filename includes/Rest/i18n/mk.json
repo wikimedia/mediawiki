@@ -12,6 +12,7 @@
 	"rest-nonexistent-revision": "Укажаната преработка ($1) не постои",
 	"rest-nonexistent-user": "Укажаниот корисник ($1) не постои",
 	"rest-invalid-user": "Укажаното корисничко име ($1) е неважечко",
+	"rest-unsupported-content-type": "Неподдржан содржински тип: $1",
 	"rest-permission-denied-anon": "Недостапно за анонимен корисник",
 	"rest-permission-denied-title": "Корисникот нема право да го чита насловот ($1)",
 	"rest-permission-denied-revision": "Корисникот нема пристап до побараната преработка ($1).",
@@ -42,5 +43,7 @@
 	"rest-cannot-load-file": "Не можам да ја вчитам податотекта за насловот „$1“.",
 	"rest-cross-origin-anon-write": "Не се допуштени анонимни прекуизворни барања за запишување",
 	"rest-requires-safe-against-csrf": "Оваа завршница бара услужник на седници безбеден за CSRF.",
-	"rest-badtoken": "Укажаната CSRF-шифра е неважечка."
+	"rest-badtoken": "Укажаната CSRF-шифра е неважечка.",
+	"rest-badtoken-missing": "Се бара параметарот <var>token</var> освен ако не се користи заверување безбедно за CSRF.",
+	"rest-badtoken-nosession": "CSRF-грешка — нема седница."
 }
