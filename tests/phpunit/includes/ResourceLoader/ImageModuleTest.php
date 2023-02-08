@@ -258,19 +258,12 @@ class ImageModuleTest extends ResourceLoaderTestCase {
 		return [
 			[
 				false,
-<<<TEXT
-background-image: url(rasterized.png);
-	background-image: linear-gradient(transparent, transparent), url(original.svg);
-TEXT
+				'background-image: url(original.svg);',
 			],
 			[
 				'data:image/svg+xml',
-<<<TEXT
-background-image: url(rasterized.png);
-	background-image: linear-gradient(transparent, transparent), url(data:image/svg+xml);
-TEXT
+				'background-image: url(data:image/svg+xml);',
 			],
-
 		];
 	}
 
