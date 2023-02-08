@@ -35,6 +35,7 @@ use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Title\TitleArray;
 use MediaWiki\Title\TitleArrayFromResult;
+use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -84,15 +85,6 @@ class BacklinkCache {
 
 	/** @var HookRunner */
 	private $hookRunner;
-
-	/**
-	 * Local copy of a database object.
-	 *
-	 * Accessor: BacklinkCache::getDB()
-	 * Mutator : BacklinkCache::setDB()
-	 * Cleared with BacklinkCache::clear()
-	 */
-	protected $db;
 
 	/**
 	 * Local copy of a PageReference object
@@ -145,33 +137,42 @@ class BacklinkCache {
 	}
 
 	/**
-	 * Clear locally stored data and database object. Invalidate data in memcache.
+	 * Clear process cache and persistent cache
+	 * @internal For use with tests only
 	 */
 	public function clear() {
+		$keys = [];
+		foreach ( $this->partitionCache as $table => $unused ) {
+			$keys[] = $this->wanCache->makeKey(
+				'numbacklinks',
+				CacheKeyHelper::getKeyForPage( $this->page ),
+				$table
+			);
+		}
+		foreach ( $this->fullResultCache as $table => $partitionsByBatchSize ) {
+			foreach ( $partitionsByBatchSize as $batchSize => $unused ) {
+				$keys[] = $this->wanCache->makeKey(
+					'backlinks',
+					CacheKeyHelper::getKeyForPage( $this->page ),
+					$table,
+					$batchSize
+				);
+			}
+		}
+		foreach ( $keys as $key ) {
+			$this->wanCache->delete( $key, 0 );
+		}
 		$this->partitionCache = [];
 		$this->fullResultCache = [];
-		$this->wanCache->touchCheckKey( $this->makeCheckKey() );
-		$this->db = null;
-	}
-
-	/**
-	 * Set the Database object to use
-	 *
-	 * @param IDatabase $db
-	 */
-	public function setDB( $db ) {
-		$this->db = $db;
 	}
 
 	/**
 	 * Get the replica DB connection to the database
-	 * When non existing, will initialize the connection.
+	 *
 	 * @return IDatabase
 	 */
 	protected function getDB() {
-		$this->db ??= wfGetDB( DB_REPLICA );
-
-		return $this->db;
+		return wfGetDB( DB_REPLICA );
 	}
 
 	/**
@@ -394,52 +395,46 @@ class BacklinkCache {
 	 * @return int
 	 */
 	public function getNumLinks( $table, $max = INF ) {
-		$updateRowsPerJob = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UpdateRowsPerJob );
-
-		// 1) try partition cache ...
 		if ( isset( $this->partitionCache[$table] ) ) {
 			$entry = reset( $this->partitionCache[$table] );
 
 			return min( $max, $entry['numRows'] );
 		}
 
-		// 2) ... then try full result cache ...
 		if ( isset( $this->fullResultCache[$table] ) ) {
 			return min( $max, $this->fullResultCache[$table]->numRows() );
 		}
 
-		$memcKey = $this->wanCache->makeKey(
-			'numbacklinks',
-			CacheKeyHelper::getKeyForPage( $this->page ),
-			$table
-		);
+		$count = $this->wanCache->getWithSetCallback(
+			$this->wanCache->makeKey(
+				'numbacklinks',
+				CacheKeyHelper::getKeyForPage( $this->page ),
+				$table
+			),
+			self::CACHE_EXPIRY,
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $table, $max ) {
+				$config = MediaWikiServices::getInstance()->getMainConfig();
 
-		// 3) ... fallback to memcached ...
-		$curTTL = INF;
-		$count = $this->wanCache->get(
-			$memcKey,
-			$curTTL,
-			[
-				$this->makeCheckKey()
-			]
-		);
-		if ( $count && ( $curTTL > 0 ) ) {
-			return min( $max, $count );
-		}
+				$setOpts += Database::getCacheSetOptions( $this->getDB() );
 
-		// 4) fetch from the database ...
-		if ( is_infinite( $max ) ) { // no limit at all
-			// Use partition() since it will batch the query and skip the JOIN.
-			// Use $wgUpdateRowsPerJob just to encourage cache reuse for jobs.
-			$this->partition( $table, $updateRowsPerJob ); // updates $this->partitionCache
-			return $this->partitionCache[$table][$updateRowsPerJob]['numRows'];
-		} else {
-			// Fetch the full title info, since the caller will likely need it next
-			$count = iterator_count( $this->getLinkPages( $table, false, false, $max ) );
-			if ( $count < $max ) { // full count
-				$this->wanCache->set( $memcKey, $count, self::CACHE_EXPIRY );
+				if ( is_infinite( $max ) ) {
+					// Use partition() since it will batch the query and skip the JOIN.
+					// Use $wgUpdateRowsPerJob just to encourage cache reuse for jobs.
+					$batchSize = $config->get( MainConfigNames::UpdateRowsPerJob );
+					$this->partition( $table, $batchSize );
+					$value = $this->partitionCache[$table][$batchSize]['numRows'];
+				} else {
+					// Fetch the full title info, since the caller will likely need it.
+					// Cache the row count if the result set limit made no difference.
+					$value = iterator_count( $this->getLinkPages( $table, false, false, $max ) );
+					if ( $value >= $max ) {
+						$ttl = WANObjectCache::TTL_UNCACHEABLE;
+					}
+				}
+
+				return $value;
 			}
-		}
+		);
 
 		return min( $max, $count );
 	}
@@ -454,7 +449,6 @@ class BacklinkCache {
 	 * @return array
 	 */
 	public function partition( $table, $batchSize ) {
-		// 1) try partition cache ...
 		if ( isset( $this->partitionCache[$table][$batchSize] ) ) {
 			wfDebug( __METHOD__ . ": got from partition cache" );
 
@@ -464,7 +458,6 @@ class BacklinkCache {
 		$this->partitionCache[$table][$batchSize] = false;
 		$cacheEntry =& $this->partitionCache[$table][$batchSize];
 
-		// 2) ... then try full result cache ...
 		if ( isset( $this->fullResultCache[$table] ) ) {
 			$cacheEntry = $this->partitionResult( $this->fullResultCache[$table], $batchSize );
 			wfDebug( __METHOD__ . ": got from full result cache" );
@@ -472,64 +465,43 @@ class BacklinkCache {
 			return $cacheEntry['batches'];
 		}
 
-		$memcKey = $this->wanCache->makeKey(
-			'backlinks',
-			CacheKeyHelper::getKeyForPage( $this->page ),
-			$table,
-			$batchSize
-		);
+		$cacheEntry = $this->wanCache->getWithSetCallback(
+			$this->wanCache->makeKey(
+				'backlinks',
+				CacheKeyHelper::getKeyForPage( $this->page ),
+				$table,
+				$batchSize
+			),
+			self::CACHE_EXPIRY,
+			function ( $oldValue, &$ttl, array &$setOpts ) use ( $table, $batchSize ) {
+				$setOpts += Database::getCacheSetOptions( $this->getDB() );
 
-		// 3) ... fallback to memcached ...
-		$curTTL = 0;
-		$memcValue = $this->wanCache->get(
-			$memcKey,
-			$curTTL,
-			[
-				$this->makeCheckKey()
-			]
-		);
-		if ( is_array( $memcValue ) && ( $curTTL > 0 ) ) {
-			$cacheEntry = $memcValue;
-			wfDebug( __METHOD__ . ": got from memcached $memcKey" );
+				$value = [ 'numRows' => 0, 'batches' => [] ];
 
-			return $cacheEntry['batches'];
-		}
+				// Do the selects in batches to avoid client-side OOMs (T45452).
+				// Use a LIMIT that plays well with $batchSize to keep equal sized partitions.
+				$selectSize = max( $batchSize, 200000 - ( 200000 % $batchSize ) );
+				$start = false;
+				do {
+					$res = $this->queryLinks( $table, $start, false, $selectSize, 'ids' );
+					$partitions = $this->partitionResult( $res, $batchSize, false );
+					// Merge the link count and range partitions for this chunk
+					$value['numRows'] += $partitions['numRows'];
+					$value['batches'] = array_merge( $value['batches'], $partitions['batches'] );
+					if ( count( $partitions['batches'] ) ) {
+						[ , $lEnd ] = end( $partitions['batches'] );
+						$start = $lEnd + 1; // pick up after this inclusive range
+					}
+				} while ( $partitions['numRows'] >= $selectSize );
+				// Make sure the first range has start=false and the last one has end=false
+				if ( count( $value['batches'] ) ) {
+					$value['batches'][0][0] = false;
+					$value['batches'][count( $value['batches'] ) - 1][1] = false;
+				}
 
-		// 4) ... finally fetch from the slow database :(
-		$cacheEntry = [ 'numRows' => 0, 'batches' => [] ]; // final result
-		// Do the selects in batches to avoid client-side OOMs (T45452).
-		// Use a LIMIT that plays well with $batchSize to keep equal sized partitions.
-		$selectSize = max( $batchSize, 200000 - ( 200000 % $batchSize ) );
-		$start = false;
-		do {
-			$res = $this->queryLinks( $table, $start, false, $selectSize, 'ids' );
-			$partitions = $this->partitionResult( $res, $batchSize, false );
-			// Merge the link count and range partitions for this chunk
-			$cacheEntry['numRows'] += $partitions['numRows'];
-			$cacheEntry['batches'] = array_merge( $cacheEntry['batches'], $partitions['batches'] );
-			if ( count( $partitions['batches'] ) ) {
-				[ , $lEnd ] = end( $partitions['batches'] );
-				$start = $lEnd + 1; // pick up after this inclusive range
+				return $value;
 			}
-		} while ( $partitions['numRows'] >= $selectSize );
-		// Make sure the first range has start=false and the last one has end=false
-		if ( count( $cacheEntry['batches'] ) ) {
-			$cacheEntry['batches'][0][0] = false;
-			$cacheEntry['batches'][count( $cacheEntry['batches'] ) - 1][1] = false;
-		}
-
-		// Save partitions to memcached
-		$this->wanCache->set( $memcKey, $cacheEntry, self::CACHE_EXPIRY );
-
-		// Save backlink count to memcached
-		$memcKey = $this->wanCache->makeKey(
-			'numbacklinks',
-			CacheKeyHelper::getKeyForPage( $this->page ),
-			$table
 		);
-		$this->wanCache->set( $memcKey, $cacheEntry['numRows'], self::CACHE_EXPIRY );
-
-		wfDebug( __METHOD__ . ": got from database" );
 
 		return $cacheEntry['batches'];
 	}
@@ -649,17 +621,5 @@ class BacklinkCache {
 
 		// Now that we've de-duplicated, throw away the keys
 		return array_values( $mergedRes );
-	}
-
-	/**
-	 * Returns check key for the backlinks cache for a particular title
-	 *
-	 * @return string
-	 */
-	private function makeCheckKey() {
-		return $this->wanCache->makeKey(
-			'backlinks',
-			CacheKeyHelper::getKeyForPage( $this->page )
-		);
 	}
 }
