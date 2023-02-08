@@ -20,9 +20,11 @@
 
 use GuzzleHttp\Client;
 use GuzzleHttp\HandlerStack;
+use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
+use Psr\Log\NullLogger;
 
 /**
  * MWHttpRequest implemented using the Guzzle library
@@ -156,15 +158,14 @@ class GuzzleHttpRequest extends MWHttpRequest {
 			$this->guzzleOptions['expect'] = false;
 		}
 
+		$stack = HandlerStack::create( $this->handler );
+
 		// Create Middleware to use cookies from $this->getCookieJar(),
 		// which is in MediaWiki CookieJar format, not in Guzzle-specific CookieJar format.
 		// Note: received cookies (from HTTP response) don't need to be handled here,
 		// they will be added back into the CookieJar by MWHttpRequest::parseCookies().
-		$stack = HandlerStack::create( $this->handler );
-
 		// @phan-suppress-next-line PhanUndeclaredFunctionInCallable
 		$stack->remove( 'cookies' );
-
 		$mwCookieJar = $this->getCookieJar();
 		$stack->push( Middleware::mapRequest(
 			static function ( RequestInterface $request ) use ( $mwCookieJar ) {
@@ -180,6 +181,15 @@ class GuzzleHttpRequest extends MWHttpRequest {
 				return $request->withHeader( 'Cookie', $cookieHeader );
 			}
 		), 'cookies' );
+
+		if ( !$this->logger instanceof NullLogger ) {
+			$stack->push( Middleware::log( $this->logger, new MessageFormatter(
+				// TODO {error} will be 'NULL' on success which is unfortunate, but
+				//   doesn't seem fixable without a custom formatter. Same for using
+				//   PSR-3 variable replacement instead of raw strings.
+				'[{ts}] {method} {uri} HTTP/{version} - {code} {error}'
+			) ), 'logger' );
+		}
 
 		$this->guzzleOptions['handler'] = $stack;
 
