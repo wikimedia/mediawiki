@@ -3809,8 +3809,6 @@ class OutputPage extends ContextSource {
 		$tags = [];
 		$config = $this->getConfig();
 
-		$canonicalUrl = $this->mCanonicalUrl;
-
 		$tags['meta-generator'] = Html::element( 'meta', [
 			'name' => 'generator',
 			'content' => 'MediaWiki ' . MW_VERSION,
@@ -3926,35 +3924,138 @@ class OutputPage extends ContextSource {
 			),
 		] );
 
-		# Language variants
-		# Output fully-qualified URL since Alternate URLs must be fully-qualified
-		# Per https://developers.google.com/search/docs/advanced/crawling/localized-versions
-		$services = MediaWikiServices::getInstance();
-		$languageConverterFactory = $services->getLanguageConverterFactory();
-		$disableLangConversion = $languageConverterFactory->isConversionDisabled();
-		if ( !$disableLangConversion ) {
-			$lang = $this->getTitle()->getPageLanguage();
-			$languageConverter = $languageConverterFactory->getLanguageConverter( $lang );
-			if ( $languageConverter->hasVariants() ) {
-				$variants = $languageConverter->getVariants();
-				foreach ( $variants as $variant ) {
-					$tags["variant-$variant"] = Html::element( 'link', [
-						'rel' => 'alternate',
-						'hreflang' => LanguageCode::bcp47( $variant ),
-						'href' => $this->getTitle()->getFullURL(
-							[ 'variant' => $variant ], false, PROTO_CURRENT )
-						]
-					);
+		$tags = array_merge(
+			$tags,
+			$this->getHeadLinksCanonicalURLArray( $config ),
+			$this->getHeadLinksAlternateURLsArray(),
+			$this->getHeadLinksCopyrightArray( $config ),
+			$this->getHeadLinksSyndicationArray( $config ),
+		);
+
+		// Allow extensions to add, remove and/or otherwise manipulate these links
+		// If you want only to *add* <head> links, please use the addHeadItem()
+		// (or addHeadItems() for multiple items) method instead.
+		// This hook is provided as a last resort for extensions to modify these
+		// links before the output is sent to client.
+		$this->getHookRunner()->onOutputPageAfterGetHeadLinksArray( $tags, $this );
+
+		return $tags;
+	}
+
+	/** Canonical URL and alternate URLs */
+
+	/**
+	 * Get head links relating to the canonical URL
+	 * Note: There should only be one canonical URL.
+	 *
+	 * isCanonicalUrlAction affects all requests where "setArticleRelated" is true.
+	 * This is typically all requests that show content (query title, curid, oldid, diff),
+	 *  and all wikipage actions (edit, delete, purge, info, history etc.).
+	 * It does not apply to file pages and special pages.
+	 * 'history' and 'info' actions address page metadata rather than the page
+	 *  content itself, so they may not be canonicalized to the view page url.
+	 * TODO: this logic should be owned by Action subclasses.
+	 * See T67402
+	 *
+	 * @param Config $config
+	 * @return array
+	 */
+	private function getHeadLinksCanonicalURLArray( Config $config ) {
+		$tags = [];
+		$canonicalUrl = $this->mCanonicalUrl;
+
+		if ( $config->get( MainConfigNames::EnableCanonicalServerLink ) ) {
+			$query = [];
+			$action = $this->getContext()->getActionName();
+			$isCanonicalUrlAction = in_array( $action, [ 'history', 'info' ] );
+
+			if ( $canonicalUrl !== false ) {
+				$canonicalUrl = wfExpandUrl( $canonicalUrl, PROTO_CANONICAL );
+			} elseif ( $this->isArticleRelated() ) {
+				if ( $isCanonicalUrlAction ) {
+					$query['action'] = $action;
 				}
-				# x-default link per https://support.google.com/webmasters/answer/189077?hl=en
-				$tags["variant-x-default"] = Html::element( 'link', [
-					'rel' => 'alternate',
-					'hreflang' => 'x-default',
-					'href' => $this->getTitle()->getFullURL( '', false, PROTO_CURRENT ) ] );
+				$canonicalUrl = $this->getTitle()->getCanonicalURL( $query );
+			} else {
+				$reqUrl = $this->getRequest()->getRequestURL();
+				$canonicalUrl = wfExpandUrl( $reqUrl, PROTO_CANONICAL );
 			}
 		}
 
-		# Copyright
+		if ( $canonicalUrl !== false ) {
+			$tags['link-canonical'] = Html::element( 'link', [
+				'rel' => 'canonical',
+				'href' => $canonicalUrl
+			] );
+		}
+
+		return $tags;
+	}
+
+	/**
+	 * Get head links relating to alternate URL(s) in languages including language variants
+	 * Output fully-qualified URL since meta alternate URLs must be fully-qualified
+	 * Per https://developers.google.com/search/docs/advanced/crawling/localized-versions
+	 * See T294716
+	 *
+	 * @return array
+	 */
+	private function getHeadLinksAlternateURLsArray() {
+		$tags = [];
+		$languageUrls = [];
+		$services = MediaWikiServices::getInstance();
+		$languageConverterFactory = $services->getLanguageConverterFactory();
+		$isLangConversionDisabled = $languageConverterFactory->isConversionDisabled();
+		$pageLang = $this->getTitle()->getPageLanguage();
+		$pageLanguageConverter = $languageConverterFactory->getLanguageConverter( $pageLang );
+
+		# Language variants
+		if ( !$isLangConversionDisabled || $pageLanguageConverter->hasVariants() ) {
+			$variants = $pageLanguageConverter->getVariants();
+			foreach ( $variants as $variant ) {
+				$bcp47 = LanguageCode::bcp47( $variant );
+				$languageUrls[$bcp47] = $this->getTitle()
+					->getFullURL( [ 'variant' => $variant ], false, PROTO_CURRENT );
+			}
+		}
+
+		# TODO: Interlanguage links
+
+		if ( $languageUrls ) {
+			# Force the alternate URL of page language code to be self.
+			# T123901, T305540, T108443: Override mixed-variant variant link in language variant links.
+			$currentUrl = $this->getTitle()->getFullURL( [], false, PROTO_CURRENT );
+			$pageLangCodeBcp47 = LanguageCode::bcp47( $pageLang->getCode() );
+			$languageUrls[$pageLangCodeBcp47] = $currentUrl;
+
+			ksort( $languageUrls );
+
+			# Also add x-default link per https://support.google.com/webmasters/answer/189077?hl=en
+			$languageUrls['x-default'] = $currentUrl;
+
+			# Process all of language variants and interlanguage links
+			foreach ( $languageUrls as $bcp47 => $languageUrl ) {
+				$bcp47lowercase = strtolower( $bcp47 );
+				$tags['link-alternate-language-' . $bcp47lowercase] = Html::element( 'link', [
+					'rel' => 'alternate',
+					'hreflang' => $bcp47,
+					'href' => $languageUrl,
+				] );
+			}
+		}
+
+		return $tags;
+	}
+
+	/**
+	 * Get head links relating to copyright
+	 *
+	 * @param Config $config
+	 * @return array
+	 */
+	private function getHeadLinksCopyrightArray( Config $config ) {
+		$tags = [];
+
 		if ( $this->copyrightUrl !== null ) {
 			$copyright = $this->copyrightUrl;
 		} else {
@@ -3975,107 +4076,79 @@ class OutputPage extends ContextSource {
 		if ( $copyright ) {
 			$tags['copyright'] = Html::element( 'link', [
 				'rel' => 'license',
-				'href' => $copyright ]
-			);
-		}
-
-		# Feeds
-		if ( $config->get( MainConfigNames::Feed ) ) {
-			$feedLinks = [];
-
-			foreach ( $this->getSyndicationLinks() as $format => $link ) {
-				# Use the page name for the title.  In principle, this could
-				# lead to issues with having the same name for different feeds
-				# corresponding to the same page, but we can't avoid that at
-				# this low a level.
-
-				$feedLinks[] = $this->feedLink(
-					$format,
-					$link,
-					# Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
-					$this->msg(
-						"page-{$format}-feed", $this->getTitle()->getPrefixedText()
-					)->text()
-				);
-			}
-
-			# Recent changes feed should appear on every page (except recentchanges,
-			# that would be redundant). Put it after the per-page feed to avoid
-			# changing existing behavior. It's still available, probably via a
-			# menu in your browser. Some sites might have a different feed they'd
-			# like to promote instead of the RC feed (maybe like a "Recent New Articles"
-			# or "Breaking news" one). For this, we see if $wgOverrideSiteFeed is defined.
-			# If so, use it instead.
-			$sitename = $config->get( MainConfigNames::Sitename );
-			$overrideSiteFeed = $config->get( MainConfigNames::OverrideSiteFeed );
-			if ( $overrideSiteFeed ) {
-				foreach ( $overrideSiteFeed as $type => $feedUrl ) {
-					// Note, this->feedLink escapes the url.
-					$feedLinks[] = $this->feedLink(
-						$type,
-						$feedUrl,
-						$this->msg( "site-{$type}-feed", $sitename )->text()
-					);
-				}
-			} elseif ( !$this->getTitle()->isSpecial( 'Recentchanges' ) ) {
-				$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
-				foreach ( $this->getAdvertisedFeedTypes() as $format ) {
-					$feedLinks[] = $this->feedLink(
-						$format,
-						$rctitle->getLocalURL( [ 'feed' => $format ] ),
-						# For grep: 'site-rss-feed', 'site-atom-feed'
-						$this->msg( "site-{$format}-feed", $sitename )->text()
-					);
-				}
-			}
-
-			# Allow extensions to change the list pf feeds. This hook is primarily for changing,
-			# manipulating or removing existing feed tags. If you want to add new feeds, you should
-			# use OutputPage::addFeedLink() instead.
-			$this->getHookRunner()->onAfterBuildFeedLinks( $feedLinks );
-
-			$tags += $feedLinks;
-		}
-
-		# Canonical URL
-		if ( $config->get( MainConfigNames::EnableCanonicalServerLink ) ) {
-			if ( $canonicalUrl !== false ) {
-				$canonicalUrl = wfExpandUrl( $canonicalUrl, PROTO_CANONICAL );
-			} elseif ( $this->isArticleRelated() ) {
-				// This affects all requests where "setArticleRelated" is true. This is
-				// typically all requests that show content (query title, curid, oldid, diff),
-				// and all wikipage actions (edit, delete, purge, info, history etc.).
-				// It does not apply to File pages and Special pages.
-				//
-				// 'history' and 'info' actions address page metadata rather than the page
-				// content itself, so they may not be canonicalized to the view page url.
-				//
-				// TODO: this logic should be owned by Action subclasses.
-				$action = $this->getContext()->getActionName();
-				if ( in_array( $action, [ 'history', 'info' ] ) ) {
-					$query = "action={$action}";
-				} else {
-					$query = '';
-				}
-				$canonicalUrl = $this->getTitle()->getCanonicalURL( $query );
-			} else {
-				$reqUrl = $this->getRequest()->getRequestURL();
-				$canonicalUrl = wfExpandUrl( $reqUrl, PROTO_CANONICAL );
-			}
-		}
-		if ( $canonicalUrl !== false ) {
-			$tags[] = Html::element( 'link', [
-				'rel' => 'canonical',
-				'href' => $canonicalUrl
+				'href' => $copyright
 			] );
 		}
 
-		// Allow extensions to add, remove and/or otherwise manipulate these links
-		// If you want only to *add* <head> links, please use the addHeadItem()
-		// (or addHeadItems() for multiple items) method instead.
-		// This hook is provided as a last resort for extensions to modify these
-		// links before the output is sent to client.
-		$this->getHookRunner()->onOutputPageAfterGetHeadLinksArray( $tags, $this );
+		return $tags;
+	}
+
+	/**
+	 * Get head links relating to syndication feeds.
+	 *
+	 * @param Config $config
+	 * @return array
+	 */
+	private function getHeadLinksSyndicationArray( Config $config ) {
+		if ( !$config->get( MainConfigNames::Feed ) ) {
+			return [];
+		}
+
+		$tags = [];
+		$feedLinks = [];
+
+		foreach ( $this->getSyndicationLinks() as $format => $link ) {
+			# Use the page name for the title.  In principle, this could
+			# lead to issues with having the same name for different feeds
+			# corresponding to the same page, but we can't avoid that at
+			# this low a level.
+
+			$feedLinks[] = $this->feedLink(
+				$format,
+				$link,
+				# Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
+				$this->msg(
+					"page-{$format}-feed", $this->getTitle()->getPrefixedText()
+				)->text()
+			);
+		}
+
+		# Recent changes feed should appear on every page (except recentchanges,
+		# that would be redundant). Put it after the per-page feed to avoid
+		# changing existing behavior. It's still available, probably via a
+		# menu in your browser. Some sites might have a different feed they'd
+		# like to promote instead of the RC feed (maybe like a "Recent New Articles"
+		# or "Breaking news" one). For this, we see if $wgOverrideSiteFeed is defined.
+		# If so, use it instead.
+		$sitename = $config->get( MainConfigNames::Sitename );
+		$overrideSiteFeed = $config->get( MainConfigNames::OverrideSiteFeed );
+		if ( $overrideSiteFeed ) {
+			foreach ( $overrideSiteFeed as $type => $feedUrl ) {
+				// Note, this->feedLink escapes the url.
+				$feedLinks[] = $this->feedLink(
+					$type,
+					$feedUrl,
+					$this->msg( "site-{$type}-feed", $sitename )->text()
+				);
+			}
+		} elseif ( !$this->getTitle()->isSpecial( 'Recentchanges' ) ) {
+			$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
+			foreach ( $this->getAdvertisedFeedTypes() as $format ) {
+				$feedLinks[] = $this->feedLink(
+					$format,
+					$rctitle->getLocalURL( [ 'feed' => $format ] ),
+					# For grep: 'site-rss-feed', 'site-atom-feed'
+					$this->msg( "site-{$format}-feed", $sitename )->text()
+				);
+			}
+		}
+
+		# Allow extensions to change the list pf feeds. This hook is primarily for changing,
+		# manipulating or removing existing feed tags. If you want to add new feeds, you should
+		# use OutputPage::addFeedLink() instead.
+		$this->getHookRunner()->onAfterBuildFeedLinks( $feedLinks );
+
+		$tags += $feedLinks;
 
 		return $tags;
 	}
