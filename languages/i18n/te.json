@@ -3645,6 +3645,7 @@
 	"diff-form-revid": "తేడా యొక్క కూర్పు ఐడి",
 	"diff-form-submit": "తేడాలను చూపించు",
 	"diff-form-other-revid": "కూర్పు ID",
+	"diff-form-error-revid": "కూర్పు ఐడీగా సంఖ్య ఇవ్వండి",
 	"permanentlink": "స్థిర లంకె",
 	"permanentlink-revid": "కూర్పు ID",
 	"permanentlink-submit": "కూర్పుకు వెళ్ళు",
