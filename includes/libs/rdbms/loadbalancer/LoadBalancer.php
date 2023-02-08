@@ -609,11 +609,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			}
 		} finally {
 			// Restore the older position if it was higher since this is used for lag-protection
-			if ( !$pos ) {
+			if ( !$oldPos ) {
 				return;
 			}
-			if ( !$this->waitForPos || $pos->hasReached( $this->waitForPos ) ) {
-				$this->waitForPos = $pos;
+			if ( !$this->waitForPos || $oldPos->hasReached( $this->waitForPos ) ) {
+				$this->waitForPos = $oldPos;
 			}
 		}
 	}
