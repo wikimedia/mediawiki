@@ -62,6 +62,8 @@ File:Redirect to foobar.jpg
 Simple image
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Image:foobar.jpg]]
 !! html/php
@@ -75,6 +77,8 @@ parsoid=wt2html,wt2wt,html2html
 Simple image redirect
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Image:Redirect to foobar.jpg]]
 !! html/php
@@ -96,6 +100,8 @@ parsoid=html2wt
 
 !! test
 Simple image (using File: namespace, now canonical)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg]]
 !! html/php
@@ -107,6 +113,8 @@ Simple image (using File: namespace, now canonical)
 
 !! test
 Right-aligned image
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|right]]
 !! html/php
@@ -117,6 +125,8 @@ Right-aligned image
 
 !! test
 Image with caption
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|right|Caption text]]
 !! html/php
@@ -127,6 +137,8 @@ Image with caption
 
 !! test
 Image with caption, T55312 #1
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|right|Caption page stuff]]
 !! html/php
@@ -137,6 +149,8 @@ Image with caption, T55312 #1
 
 !! test
 Image with caption, T55312 #2
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|right|Caption page=]]
 !! html/php
@@ -147,6 +161,8 @@ Image with caption, T55312 #2
 
 !! test
 Image with caption, T55312 #3
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|right|Caption page=stuff]]
 !! html/php
@@ -157,6 +173,8 @@ Image with caption, T55312 #3
 
 !! test
 Image caption with pipe entity
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|one &#x7C; two]]
 [[File:Foobar.jpg|thumb|one ''two'' &#x7C; three]]
@@ -170,6 +188,8 @@ Image caption with pipe entity
 
 !! test
 Bad images - basic functionality
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Bad.jpg]]
 !! html/php
@@ -181,6 +201,8 @@ Bad images - basic functionality
 
 !! test
 Bad images - T18039: text after bad image disappears
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 Foo bar
 [[File:Bad.jpg]]
@@ -198,6 +220,8 @@ Bar foo</p>
 
 !! test
 Bad images - in gallery
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery>
 File:Bad.jpg
@@ -232,6 +256,8 @@ Dummy article to suppress redlinks in tests
 Allow empty links in image captions (T62753)
 !! options
 thumbsize=220
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|Caption [[Link1]]
 [[]]
@@ -248,6 +274,8 @@ thumbsize=220
 
 !! test
 Titles in unlinked images (T23454)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|link=|stuff]]
 !! html/php
@@ -268,6 +296,8 @@ Link with empty target
 
 !! test
 Image with link trail
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 Linktrails should not work for images: [[File:Foobar.jpg]]s
 !! html/php
@@ -281,6 +311,8 @@ Linktrails should not work for images: [[File:Foobar.jpg]]s
 Image with empty attribute
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|right||Caption text]]
 !! html/php
@@ -291,6 +323,8 @@ parsoid=wt2html,wt2wt,html2html
 
 !! test
 1. Block image with individual attributes from templates
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|{{1x|137px}}|This is a caption]]
 !! html/php
@@ -301,6 +335,8 @@ parsoid=wt2html,wt2wt,html2html
 
 !! test
 2. Block Image with individual attributes from templates
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|{{1x|thumb}}|{{1x|137px}}|This is a caption]]
 !! html/php
@@ -311,6 +347,8 @@ parsoid=wt2html,wt2wt,html2html
 
 !! test
 3. Inline image with individual attributes from templates
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|{{1x|50px}}]]
 !! html/php
@@ -324,6 +362,8 @@ parsoid=wt2html,wt2wt,html2html
 ## To signal this, we add a 'mw:Placeholder' type to such images. This could change in the future.
 !! test
 Image with multiple attributes from the same template
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|{{image_attribs}}]]
 !! html/php
@@ -336,6 +376,8 @@ Image with multiple attributes from the same template
 Image with link tails
 !! options
 thumbsize=220
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 123[[File:Foobar.jpg]]456
 123[[File:Foobar.jpg|right]]456
@@ -354,6 +396,8 @@ thumbsize=220
 
 !! test
 Image with multiple captions -- only last one is accepted
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|right|Caption1 - ignored|[[Caption2]] - ignored|Caption3 - accepted]]
 !! html/php
@@ -364,6 +408,8 @@ Image with multiple captions -- only last one is accepted
 
 !! test
 Image with multiple widths -- use last
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|200px|300px|caption]]
 !! html/php
@@ -377,6 +423,8 @@ Image with multiple widths -- use last
 Image with multiple alignments -- use first (T50664)
 !! options
 thumbsize=220
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|left|right|center|caption]]
 
@@ -392,6 +440,8 @@ thumbsize=220
 
 !! test
 Image with width attribute at different positions
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|200px|right|Caption]]
 [[File:Foobar.jpg|right|200px|Caption]]
@@ -411,6 +461,8 @@ Image with width attribute at different positions
 Image with size specified with pxpx (T15500, T53628)
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|20pxpx]]
 [[File:Foobar.jpg|200x20pxpx]]
@@ -424,6 +476,8 @@ parsoid=wt2html,wt2wt,html2html
 
 !! test
 Image with link parameter, wiki target
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|link=Main Page]]
 !! html/php
@@ -436,6 +490,8 @@ Image with link parameter, wiki target
 # parsoid T51293 (part 1)
 !! test
 Image with link parameter, URL target
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|link=http://example.com/]]
 !! html/php
@@ -448,6 +504,8 @@ Image with link parameter, URL target
 # parsoid T51293 (part 2)
 !! test
 Image with link parameter, protocol-less URL target
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|link=//example.com/]]
 !! html/php
@@ -479,6 +537,7 @@ Image with link parameter, wgExternalLinkTarget
 [[Image:foobar.jpg|link=http://example.com/]]
 !! config
 wgExternalLinkTarget="foobar"
+wgParserEnableLegacyMediaDOM=true
 !! html/php
 <p><a href="http://example.com/" target="foobar" rel="nofollow noreferrer noopener"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a>
 </p>
@@ -490,6 +549,7 @@ Image with link parameter, wgNoFollowLinks set to false
 [[Image:foobar.jpg|link=http://example.com/]]
 !! config
 wgNoFollowLinks=false
+wgParserEnableLegacyMediaDOM=true
 !! html/php
 <p><a href="http://example.com/"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a>
 </p>
@@ -501,6 +561,7 @@ Image with link parameter, wgNoFollowDomainExceptions
 [[Image:foobar.jpg|link=http://example.com/]]
 !! config
 wgNoFollowDomainExceptions="example.com"
+wgParserEnableLegacyMediaDOM=true
 !! html/php
 <p><a href="http://example.com/"><img alt="Foobar.jpg" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a>
 </p>
@@ -513,6 +574,7 @@ Image with link parameter, wgExternalLinkTarget, unnamed parameter
 [[Image:foobar.jpg|link=http://example.com/|Title]]
 !! config
 wgExternalLinkTarget="foobar"
+wgParserEnableLegacyMediaDOM=true
 !! html/php
 <p><a href="http://example.com/" title="Title" target="foobar" rel="nofollow noreferrer noopener"><img alt="Title" src="http://example.com/images/3/3a/Foobar.jpg" decoding="async" width="1941" height="220" /></a>
 </p>
@@ -520,6 +582,8 @@ wgExternalLinkTarget="foobar"
 
 !! test
 Image with empty link parameter
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|link=]]
 !! html/php
@@ -531,6 +595,8 @@ Image with empty link parameter
 
 !! test
 Image with link parameter (wiki target) and unnamed parameter
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|link=Main_Page|Title]]
 !! html/php
@@ -542,6 +608,8 @@ Image with link parameter (wiki target) and unnamed parameter
 
 !! test
 Image with link parameter (URL target) and unnamed parameter
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|link=http://example.com/|Title]]
 !! html/php
@@ -556,6 +624,8 @@ Thumbnail image with link parameter
 !! options
 thumbsize=220
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|link=http://example.com/|Title]]
 !! html/php
@@ -568,6 +638,8 @@ parsoid=wt2html,wt2wt,html2html
 Manually-specified thumbnail image
 !! options
 thumbsize=220
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumbnail=Thumb.png|Title]]
 !! html/php
@@ -581,6 +653,8 @@ Manually-specified thumbnail image (backwards compat)
 !! options
 thumbsize=220
 parsoid=html2wt
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumbnail=Thumb.png|Title]]
 !! html/php
@@ -594,6 +668,8 @@ Manually-specified thumbnail image with explicit link to wiki page
 !! options
 thumbsize=220
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb=Thumb.png|link=Main_Page|Title]]
 !! html/php
@@ -607,6 +683,8 @@ Manually-specified thumbnail image with explicit link to url
 !! options
 thumbsize=220
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb=Thumb.png|link=http://example.com|Title]]
 !! html/php
@@ -620,6 +698,8 @@ Manually-specified thumbnail image with explicit no link
 !! options
 thumbsize=220
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb=Thumb.png|link=|Title]]
 !! html/php
@@ -633,6 +713,8 @@ Manually-specified thumbnail image with explicit link and alt text
 !! options
 thumbsize=220
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb=Thumb.png|link=Main_Page|alt=alttext|Title]]
 !! html/php
@@ -645,6 +727,8 @@ parsoid=wt2html,wt2wt,html2html
 Image with frame and link
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|frame|left|This is a test image [[Main Page]]]]
 !! html/php
@@ -657,6 +741,8 @@ parsoid=wt2html,wt2wt,html2html
 Image with frame and link and explicit alt
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Image:Foobar.jpg|frame|left|This is a test image [[Main Page]]|alt=Altitude]]
 !! html/php
@@ -667,6 +753,8 @@ parsoid=wt2html,wt2wt,html2html
 
 !! test
 Image with wiki markup in implicit alt
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Image:Foobar.jpg|testing '''bold''' in alt]]
 
@@ -683,6 +771,8 @@ Image with wiki markup in implicit alt
 
 !! test
 Alt image option should handle most kinds of wikitext without barfing
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Image:Foobar.jpg|thumb|This is the image caption|alt=This is a [[link]] and a {{1x|''bold template''}}.]]
 !! html/php
@@ -693,6 +783,8 @@ Alt image option should handle most kinds of wikitext without barfing
 
 !! test
 Ampersand in alt attribute (T206940)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|alt=&amp;amp;]]
 
@@ -729,6 +821,8 @@ File:Foobar.jpg|alt=&amp;amp;
 Link with encoded pipe in alt option
 !! options
 parsoid=wt2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|alt=http://testing.123?4=5&#x7C;6|caption]]
 
@@ -772,6 +866,8 @@ File:Foobar.jpg|alt=http://testing.123?4=5&vert;6|caption
 Italics markup in alt attribute (T206940)
 !! options
 parsoid=wt2html,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|alt=''x''|caption]]
 
@@ -808,6 +904,8 @@ File:Foobar.jpg|alt=''x''|caption
 Nowiki markup in alt attribute (T206940)
 !! options
 parsoid=html2wt
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|alt=<nowiki>''</nowiki>x<nowiki>''</nowiki>|caption]]
 
@@ -841,6 +939,8 @@ File:Foobar.jpg|alt=<nowiki>''</nowiki>x<nowiki>''</nowiki>|caption
 
 !! test
 Nowiki markup in alt attribute (edited html, no data-parsoid) (T206940)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|alt=<nowiki>''x''</nowiki>|caption]]
 
@@ -877,6 +977,8 @@ File:Foobar.jpg|alt=<nowiki>''x''</nowiki>|caption
 Ampersand in link attribute (T206940)
 !! options
 parsoid=html2wt
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|link=Foo &amp; bar]]
 
@@ -908,6 +1010,8 @@ File:Foobar.jpg|link=Foo &amp; bar
 
 !! test
 Ampersand in link attribute (edited html, no data-parsoid) (T206940)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|link=Foo_&_bar]]
 
@@ -941,6 +1045,8 @@ File:Foobar.jpg|link=Foo_&_bar
 Italics markup in link attribute (T206940)
 !! options
 parsoid=wt2html,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Foo''s bar''s]]
 
@@ -1002,6 +1108,8 @@ File:Foobar.jpg|link=''Main Page''|caption2
 Nowiki markup in link attribute (T206940)
 !! options
 parsoid=html2wt
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|link=Foo<nowiki>''</nowiki>s_bar<nowiki>''</nowiki>s|caption]]
 
@@ -1035,6 +1143,8 @@ File:Foobar.jpg|link=Foo<nowiki>''</nowiki>s_bar<nowiki>''</nowiki>s|caption
 
 !! test
 Nowiki markup in link attribute (edited html, no data-parsoid) (T206940)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|link=Foo<nowiki>''s_bar''</nowiki>s|caption]]
 
@@ -1068,6 +1178,8 @@ File:Foobar.jpg|link=Foo<nowiki>''s_bar''</nowiki>s|caption
 
 !! test
 HTML entity prefix in link markup (T209236)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|link=https://example.com?foo&params=bar]]
 
@@ -1168,6 +1280,8 @@ Image with nested tables in caption
 
 !! test
 Image with heading and horizontal rule in caption
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|
 ===Testing===
@@ -1193,6 +1307,8 @@ Image with heading and horizontal rule in caption
 Image with 'frameless' first.
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|frameless|caption]]
 
@@ -1221,6 +1337,8 @@ parsoid=wt2html,wt2wt,html2html
 Image with 'frame' first.
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|frame|caption]]
 [[File:Foobar.jpg|frame|frameless|caption]]
@@ -1242,6 +1360,8 @@ parsoid=wt2html,wt2wt,html2html
 Image with 'thumb' first.
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|caption]]
 [[File:Foobar.jpg|thumb|frameless|caption]]
@@ -1263,6 +1383,8 @@ parsoid=wt2html,wt2wt,html2html
 Image with 'thumbnail=' first.
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumbnail=Thumb.png|caption]]
 [[File:Foobar.jpg|thumbnail=Thumb.png|frameless|caption]]
@@ -1297,6 +1419,8 @@ parsoid=wt2html,wt2wt,html2html
 Image: unspecified format and border enlarge
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|2000px]]
 
@@ -1314,6 +1438,8 @@ parsoid=wt2html,wt2wt,html2html
 Image: "unspecified format" and border reduce
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|1000px]]
 
@@ -1331,6 +1457,8 @@ parsoid=wt2html,wt2wt,html2html
 Image: thumbs reduce
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|50px]]
 !! html/php
@@ -1343,6 +1471,8 @@ parsoid=wt2html,wt2wt,html2html
 Image: bitmap thumbs can't be enlarged past original size, but vector can.
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|2000px]]
 
@@ -1359,6 +1489,8 @@ parsoid=wt2html,wt2wt,html2html
 Image: frameless can reduce in size
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|frameless|50px]]
 !! html/php
@@ -1372,6 +1504,8 @@ parsoid=wt2html,wt2wt,html2html
 Image: bitmap frameless can't be enlarged past original size, but vector can
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|frameless|2000px]]
 
@@ -1387,6 +1521,8 @@ parsoid=wt2html,wt2wt,html2html
 
 !! test
 Image: framed images are always unscaled.
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! options
 parsoid=wt2html,html2html
 !! wikitext
@@ -1413,6 +1549,8 @@ parsoid=wt2html,html2html
 Image: manualthumb images are always unscaled.
 !! options
 parsoid=wt2html,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumbnail=Thumb.png]]
 
@@ -1455,6 +1593,8 @@ parsoid=html2wt
 Link to image page- image page normally doesn't exist, hence edit link
 Add test with existing image page
 #<p><a href="/wiki/File:Test" title="Image:Test">Image:test</a>
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[:Image:test]]
 !! html/php
@@ -1466,6 +1606,8 @@ Add test with existing image page
 
 !! test
 T20784  Link to non-existent image page with caption should use caption as link text
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[:Image:test|caption]]
 !! html/php
@@ -1477,6 +1619,8 @@ T20784  Link to non-existent image page with caption should use caption as link 
 
 !! test
 Frameless image caption with a free URL
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|http://example.com]]
 !! html/php
@@ -1490,6 +1634,8 @@ Frameless image caption with a free URL
 Thumbnail image caption with a free URL
 !! options
 thumbsize=220
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|http://example.com]]
 !! html/php
@@ -1503,6 +1649,8 @@ Thumbnail image caption with a free URL and explicit alt
 !! options
 thumbsize=220
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|http://example.com|alt=Alteration]]
 !! html/php
@@ -1513,6 +1661,8 @@ parsoid=wt2html,wt2wt,html2html
 
 !! test
 SVG thumbnails with no language set
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.svg|thumb|caption]]
 !! html/php
@@ -1523,6 +1673,8 @@ SVG thumbnails with no language set
 
 !! test
 SVG thumbnails with language de
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.svg|lang=de|thumb|caption]]
 !! html/php
@@ -1533,6 +1685,8 @@ SVG thumbnails with language de
 
 !! test
 SVG thumbnails with invalid language code
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.svg|thumb|caption|lang=invalid:language:code]]
 !! html/php
@@ -1546,6 +1700,8 @@ SVG thumbnails in page language
 !! options
 title=Rupage
 language=ru
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Файл:Foobar.svg]] [[Файл:Foobar.svg|lang=en]]
 !! html/php
@@ -1560,6 +1716,8 @@ SVG thumbnails in page language not present in the file
 !! options
 title=Depage
 language=de
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Datei:Foobar.svg]] [[Datei:Foobar.svg|sprache=ru]]
 !! html/php
@@ -1571,6 +1729,8 @@ language=de
 
 !! test
 T3887: A ISBN with a thumbnail
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|ISBN 1235467890]]
 !! html/php
@@ -1581,6 +1741,8 @@ T3887: A ISBN with a thumbnail
 
 !! test
 T3887: A RFC with a thumbnail
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|This is RFC 12354]]
 !! html/php
@@ -1591,6 +1753,8 @@ T3887: A RFC with a thumbnail
 
 !! test
 T3887: A mailto link with a thumbnail
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|Please mailto:nobody@example.com]]
 !! html/php
@@ -1602,6 +1766,8 @@ T3887: A mailto link with a thumbnail
 # Pending resolution to T2368
 !! test
 T2648: Frameless image caption with a link
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|text with a [[link]] in it]]
 !! html/php
@@ -1613,6 +1779,8 @@ T2648: Frameless image caption with a link
 
 !! test
 T2648: Frameless image caption with a link (suffix)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|text with a [[link]]foo in it]]
 !! html/php
@@ -1624,6 +1792,8 @@ T2648: Frameless image caption with a link (suffix)
 
 !! test
 T2648: Frameless image caption with an interwiki link
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|text with a [[MeatBall:Link]] in it]]
 !! html/php
@@ -1635,6 +1805,8 @@ T2648: Frameless image caption with an interwiki link
 
 !! test
 T2648: Frameless image caption with a piped interwiki link
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|text with a [[MeatBall:Link|link]] in it]]
 !! html/php
@@ -1654,6 +1826,8 @@ T107474: Frameless image caption with <nowiki>
 
 !! test
 Escape HTML special chars in image alt text
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|& < > "]]
 !! html/php
@@ -1667,6 +1841,8 @@ Escape HTML special chars in image alt text
 Escape HTML special chars in image alt text with LanguageConverter
 !! options
 language=zh
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|& < > "]]
 !! html/php
@@ -1678,6 +1854,8 @@ language=zh
 
 !! test
 Entities in file name and attributes
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:7%25 solution.gif|manualthumb=7%25 solution.gif|link=7%25 solution|[[7%25 solution]]]]
 !! html/php
@@ -1689,6 +1867,8 @@ Entities in file name and attributes
 
 !! test
 T2499: Alt text should have &#1234;, not &amp;1234;
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|&#9792;]]
 !! html/php
@@ -1702,6 +1882,8 @@ T2499: Alt text should have &#1234;, not &amp;1234;
 Broken image caption with link
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Image:Foobar.jpg|thumb|This is a broken caption. But [[Main Page|this]] is just an ordinary link.
 !! html/php
@@ -1713,6 +1895,8 @@ parsoid=wt2html,wt2wt,html2html
 
 !! test
 Image caption containing another image
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|This is a caption with another [[File:Thumb.png|image]] inside it!]]
 !! html/php
@@ -1723,6 +1907,8 @@ Image caption containing another image
 
 !! test
 Image: caption containing a newline
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|This
 *is some text]]
@@ -1738,6 +1924,8 @@ Image: caption containing a newline
 !!test
 Image: caption containing leading space
 (The leading space should not trigger nowiki escaping in wt2wt mode)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb| bar]]
 !! html/php
@@ -1754,6 +1942,8 @@ Image: caption containing leading space
 Image: caption containing a table
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Image:Foobar.jpg|thumb|200px|This is an example image thumbnail caption with a table
 {|
@@ -1776,6 +1966,8 @@ and some more text.]]
 
 !! test
 T5090: External links other than http: in image captions
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|200x200px|This caption has [irc://example.net irc] and [https://example.com Secure] ext links in it.]]
 !! html/php
@@ -1788,6 +1980,8 @@ T5090: External links other than http: in image captions
 Custom class
 !! options
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Image:foobar.jpg|a|class=b]]
 !! html/php
@@ -1802,6 +1996,8 @@ Localized image handling (1).
 !! options
 parsoid=wt2html,wt2wt,html2html
 language=es
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Archivo:Foobar.jpg|izquierda|enlace=foo|caption]]
 !! html/php
@@ -1816,6 +2012,8 @@ Localized image handling (2).
 thumbsize=220
 parsoid=wt2html,wt2wt,html2html
 language=es
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Archivo:Foobar.jpg|miniatura|izquierda|enlace=foo|caption]]
 !! html/php
@@ -1840,6 +2038,8 @@ parsoid=html2wt
 !! options
 thumbsize=220
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|frameless|border|class=extra|caption]]
 !! html/php
@@ -1855,6 +2055,8 @@ Invalid image attributes (T64500)
 !! options
 thumbsize=220
 parsoid=wt2html,wt2wt,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|float|left|caption]]
 
@@ -1881,6 +2083,8 @@ File:Barfoo.jpg
 # mockAPI about the redirected Barfoo.jpg image.
 !! test
 Redirected image
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Image:Barfoo.jpg]]
 !! html/php
@@ -1893,6 +2097,8 @@ Redirected image
 Missing image with uploads disabled
 !! options
 wgEnableUploads=0
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobaz.jpg]]
 !! html/php
@@ -2110,6 +2316,8 @@ bar</p>
 
 !! test
 File containing double quotes and spaces
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Cool "Gator".png]]
 !! html/php
@@ -2121,6 +2329,8 @@ File containing double quotes and spaces
 
 !! test
 File containing single quotes
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foo's ''italic'' bar.jpg]]
 [[File:Foo's ''italic'' bar.jpg|Foo's ''italic'' bar]]
@@ -2132,6 +2342,8 @@ File containing single quotes
 
 !! test
 Broken image links with HTML captions (T41700)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Nonexistent|<script></script>]]
 [[File:Nonexistent|100x100px|<script></script>]]
@@ -2152,6 +2364,8 @@ Broken image links with HTML captions (T41700)
 
 !! test
 Media in wikilink
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Test|[[File:Foobar.jpg]]]]
 !! html/php
@@ -2169,6 +2383,8 @@ Dummy article to suppress redlinks in tests
 
 !! test
 Template with thumb image (with link in description)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 {{paramtest|param=[[Image:noimage.png|thumb|[[no link|link]] [[no link|caption]]]]}}
 !! html/php
@@ -2179,6 +2395,8 @@ Template with thumb image (with link in description)
 
 !! test
 T3219 URL next to image (good)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 http://example.com [[File:Foobar.jpg]]
 !! html/php
@@ -2190,6 +2408,8 @@ http://example.com [[File:Foobar.jpg]]
 
 !! test
 T3219 URL next to image (broken)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 http://example.com[[File:Foobar.jpg]]
 !! html/php
@@ -2201,6 +2421,8 @@ http://example.com[[File:Foobar.jpg]]
 
 !! test
 Image link to nonexistent file (T3850 - good)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:No_such.jpg]]
 !! html/php
@@ -2212,6 +2434,8 @@ Image link to nonexistent file (T3850 - good)
 
 !! test
 :Image link to nonexistent file (T3850 - bad)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[:Image:No such.jpg]]
 !! html/php
@@ -2223,6 +2447,8 @@ Image link to nonexistent file (T3850 - good)
 
 !! test
 Fuzz testing: image with bogus manual thumbnail
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Image:foobar.jpg|thumbnail= ]]
 !! html/php
@@ -2233,6 +2459,8 @@ Fuzz testing: image with bogus manual thumbnail
 
 !! test
 Gallery with valid attributes
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery type="123" summary="345">
 File:File:Foobar.jpg
@@ -2258,6 +2486,8 @@ Gallery
 parsoid={
   "modes": ["wt2html"]
 }
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery>
 image1.png |
@@ -2323,6 +2553,8 @@ Gallery (with options, html)
 parsoid={
   "modes": ["wt2html", "html2html"]
 }
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery widths="70px" heights="40px" perrow="2" caption="Foo [[Main Page]]">
 File:Nonexistent.jpg|caption
@@ -2383,6 +2615,8 @@ image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 Gallery (with options, extsrc)
 !! options
 parsoid=html2wt
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery widths="70px" heights="40px" perrow="2" caption="Foo [[Main Page]]">
 File:Nonexistent.jpg|caption
@@ -2439,6 +2673,8 @@ image:foobar.jpg|Blabla|alt=This is a foo-bar.|blabla.
 
 !! test
 Gallery (without px units)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery widths="70" heights="40">
 File:Foobar.jpg
@@ -2459,6 +2695,8 @@ File:Foobar.jpg
 
 !! test
 Gallery (with invalid units)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery widths="70em" heights="40em">
 File:Foobar.jpg
@@ -2483,6 +2721,8 @@ Gallery with link that has fragment
 parsoid={
   "modes": ["wt2html", "html2html"]
 }
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery>
 image:foobar.jpg|link=Main_Page
@@ -2519,6 +2759,8 @@ image:foobar.jpg|link=Main Page#section|caption
 
 !! test
 Gallery with template inside caption
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery caption="{{1x|hi}}">
 File:Foobar.jpg|{{1x|ho}}
@@ -2555,6 +2797,8 @@ Gallery with wikitext inside gallery caption
 parsoid={
   "modes": ["wt2html", "html2html"]
 }
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery caption="# This should not be a list item
 
@@ -2588,6 +2832,8 @@ File:Foobar.jpg|Image caption
 
 !! test
 Gallery with wikitext inside caption
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery>
 File:Foobar.jpg|alt=galleryalt|[[File:Foobar.jpg|alt=inneralt|20x20px|desc]]
@@ -2621,6 +2867,8 @@ File:Foobar.jpg|alt=galleryalt|{{Test|unamedParam|alt=param}}
 Gallery with wikitext incl bogus HTML tag (T237318)
 !! options
 parsoid=wt2html,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery>
 File:Foobar.jpg|</ref>
@@ -2643,6 +2891,8 @@ File:Foobar.jpg|</ref>
 
 !! test
 Gallery (with showfilename option)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery showfilename="">
 File:Nonexistent.jpg|caption
@@ -2708,6 +2958,8 @@ Gallery (with namespace-less filenames)
 parsoid={
   "modes": ["wt2html", "html2html"]
 }
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery>
 File:Nonexistent.jpg
@@ -2749,6 +3001,8 @@ foobar.jpg
 
 !! test
 Gallery override link with wikilink (T36852)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery>
 File:Foobar.jpg|alt=galleryalt|link=Wikilink
@@ -2769,6 +3023,8 @@ File:Foobar.jpg|alt=galleryalt|link=Wikilink
 
 !! test
 Gallery override link with absolute external link (T36852)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery>
 File:Foobar.jpg|alt=galleryalt|link=http://www.example.org
@@ -2794,6 +3050,8 @@ Gallery override link with absolute external link with LanguageConverter
 !! options
 language=zh
 parsoid=wt2html,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery>
 File:foobar.jpg|caption|alt=galleryalt|link=http://www.example.org
@@ -2820,6 +3078,8 @@ Gallery override link with malicious javascript (T36852)
 parsoid={
   "modes": ["wt2html", "html2html"]
 }
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery>
 File:Foobar.jpg|alt=galleryalt|link=" onclick="alert('malicious javascript code!');
@@ -2844,6 +3104,8 @@ Gallery with invalid title as link (T45964)
 parsoid={
   "modes": ["wt2html", "html2html"]
 }
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery>
 File:Foobar.jpg|link=<
@@ -2881,6 +3143,8 @@ File:Test.png
 
 !! test
 Gallery with class and style attributes
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery class="center" style="text-align: center;">
 File:Foobar.jpg
@@ -2901,6 +3165,8 @@ File:Foobar.jpg
 
 !! test
 Gallery in nolines mode
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery mode="nolines" showfilenames="yes" caption="No Lines!">
 File:Foobar.jpg|foo
@@ -2925,6 +3191,8 @@ File:Foobar.jpg|foo
 
 !! test
 Gallery in slideshow mode
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery mode="slideshow" showthumbnails="">
 File:Foobar.jpg
@@ -2945,6 +3213,8 @@ File:Foobar.jpg
 
 !! test
 Gallery in packed mode
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery mode="packed">
 File:Foobar.jpg
@@ -2965,6 +3235,8 @@ File:Foobar.jpg
 
 !! test
 Gallery in packed-overlay mode
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery mode="packed-overlay" showfilenames="yes" caption="Packed Overlay!">
 File:Foobar.jpg|foo
@@ -2989,6 +3261,8 @@ File:Foobar.jpg|foo
 
 !! test
 Gallery in packed-hover mode
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery mode="packed-hover" showfilenames="yes" caption="Packed Hover!">
 File:Foobar.jpg|foo
@@ -3031,6 +3305,8 @@ File:Foobar.jpg|hi<br />ho
 
 !! test
 Centre-aligned image
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Image:foobar.jpg|centre]]
 !! html/php
@@ -3041,6 +3317,8 @@ Centre-aligned image
 
 !! test
 None-aligned image
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Image:foobar.jpg|none]]
 !! html/php
@@ -3051,6 +3329,8 @@ None-aligned image
 
 !! test
 Width + Height sized image (using px) (height is ignored)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Image:foobar.jpg|640x480px]]
 !! html/php
@@ -3062,6 +3342,8 @@ Width + Height sized image (using px) (height is ignored)
 
 !! test
 Width-sized image (using px, no following whitespace)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Image:foobar.jpg|640px]]
 !! html/php
@@ -3073,6 +3355,8 @@ Width-sized image (using px, no following whitespace)
 
 !! test
 Width-sized image (using px, with following whitespace - test regression from r39467)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Image:foobar.jpg|640px ]]
 !! html/php
@@ -3084,6 +3368,8 @@ Width-sized image (using px, with following whitespace - test regression from r3
 
 !! test
 Width-sized image (using px, with preceding whitespace - test regression from r39467)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Image:foobar.jpg| 640px]]
 !! html/php
@@ -3097,6 +3383,8 @@ Width-sized image (using px, with preceding whitespace - test regression from r3
 Image with page parameter
 !! options
 djvu
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:LoremIpsum.djvu]]
 
@@ -3114,6 +3402,8 @@ djvu
 Image with page parameter generated by a template
 !! options
 djvu
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:LoremIpsum.djvu|page={{1x|2}}]]
 !! html/php
@@ -3166,6 +3456,8 @@ parsoid={
 # Images with the "|" character in external URLs in comment tags; Eats half the comment, leaves unmatched "</a>" tag.
 !! test
 Images with the "|" character in the comment
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|An [http://test/?param1=|left|&param2=|x external] URL]]
 !! html/php
@@ -3178,6 +3470,8 @@ Images with the "|" character in the comment
 T146305: Don't break image parsing if language converter markup is in the caption.
 !! options
 language=sr
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Датотека:Foobar.jpg|thumb|-{R|caption:}-]]
 !! html/php
@@ -3190,6 +3484,8 @@ language=sr
 T146305: Don't break image parsing if nested language converter markup is in the caption.
 !! options
 language=zh variant=zh-cn
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|-{|zh-cn:blog (hk: -{zh-hans|WEBJOURNAL}-, tw: -{zh-hans|WEBLOG}-)}-]]
 !! html/php
@@ -3204,6 +3500,8 @@ Don't break gallery if language converter markup is inside.
 !! options
 language=zh
 parsoid=wt2html,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <gallery>
 File:Foobar.jpg|alt=-{R|bat}-|[[File:foobar.jpg|20px|desc|alt=-{R|foo}-|-{R|bar}-]]
@@ -3235,6 +3533,8 @@ File:Foobar.jpg|alt=galleryalt|{{Test|unamedParam|alt=-{R|param}-}}
 
 !! test
 Free external link invading image caption
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|http://x|hello]]
 !! html/php
@@ -3245,6 +3545,8 @@ Free external link invading image caption
 
 !! test
 Special characters in embedded file links (T29679)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Contains & ampersand.jpg]]
 [[File:Does not exist.jpg|Title with & ampersand]]
@@ -3266,6 +3568,8 @@ Special characters in embedded file links (T29679)
 1. Treebuilder fixup of formatting elt
 !! options
 parsoid=wt2html,wt2wt
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 {|
 |
@@ -3296,6 +3600,8 @@ parsoid=wt2html,wt2wt
 2. Treebuilder fixup of formatting elt
 !! options
 parsoid=wt2html,wt2wt
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 '''foo[[File:Foobar.jpg|thumb|caption]]bar'''
 
@@ -3313,6 +3619,8 @@ parsoid=wt2html,wt2wt
 3. Treebuilder fixup of formatting elt
 !! options
 parsoid=wt2html,wt2wt
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 <small>'''foo[[File:Foobar.jpg|thumb|caption]]bar'''</small>
 !! html/php
@@ -3325,6 +3633,8 @@ parsoid=wt2html,wt2wt
 4. Treebuilder fixup of formatting elt: formatting tags around captionless images
 !! options
 parsoid=wt2html,wt2wt
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 '''<small>[[Image:Foobar.jpg|right|300px]]</small>'''
 !! html/php
@@ -3463,6 +3773,8 @@ parsoid={
 
 !! test
 Image: empty alt attribute (T50924)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|alt=|thumb|bar]]
 !! html/php
@@ -3579,6 +3891,8 @@ parsoid=html2wt
 
 !! test
 Image: Invalid title as link
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|link=<]]
 !! html/php
@@ -3599,6 +3913,8 @@ Dummy article to suppress redlinks in tests
 Percent decode titles in the link option (T216003#7836261)
 !! options
 parsoid=wt2html,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[Test%22123]]
 [[File:Foobar.jpg|link=Test%22123]]
@@ -3638,6 +3954,8 @@ File:Foobar.jpg|link=[[Test%22123]]
 
 !! test
 Various link types in alt and link options
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|link=[[Main Page]]|alt=[[Main Page]]|caption]]
 
@@ -3659,6 +3977,8 @@ Various link types in alt and link options
 
 !! test
 Magic links inside image captions (autolinked)
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|http://example.com]]
 [[File:Foobar.jpg|thumb|RFC 1234]]
@@ -3681,6 +4001,8 @@ Magic links inside image captions (autolinked)
 Interwiki links inside image captions
 !! options
 language=de
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|right|[[:Wikipedia:Foo]] bar]]
 !! html/php
@@ -3699,6 +4021,8 @@ parsoid={
   "modes": ["wt2html","html2wt"],
   "suppressErrors": true
 }
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [http://www.google.com [[File:Foobar.jpg|123]]]
 
@@ -3715,6 +4039,8 @@ parsoid={
 
 !! test
 Thumbnail output
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Thumb.png|thumb]]
 !! html/php
@@ -3728,6 +4054,8 @@ Thumbnail output
 File with caption with pipe in extension tag attribute
 !! options
 parsoid=wt2html,html2html
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|Test <nowiki bogus="attri|bute"/> 123]]
 !! html/php
@@ -3738,6 +4066,8 @@ parsoid=wt2html,html2html
 
 !! test
 File with table in caption with extra table attribute spaces
+!! config
+wgParserEnableLegacyMediaDOM=true
 !! wikitext
 [[File:Foobar.jpg|thumb|
 {|
