@@ -460,7 +460,7 @@ class FindBadBlobs extends Maintenance {
 			. "error='$error', type='$type'. ID:\t{$rev->getId()}\n" );
 
 		if ( $this->hasOption( 'mark' ) ) {
-			$newAddress = $this->markBlob( $rev, $slot, $error );
+			$newAddress = $this->markBlob( $slot, $error );
 			$this->output( "\tChanged address to <$newAddress>\n" );
 		}
 
@@ -468,13 +468,12 @@ class FindBadBlobs extends Maintenance {
 	}
 
 	/**
-	 * @param RevisionRecord $rev
 	 * @param SlotRecord $slot
 	 * @param string|null $error
 	 *
 	 * @return false|string
 	 */
-	private function markBlob( RevisionRecord $rev, SlotRecord $slot, string $error = null ) {
+	private function markBlob( SlotRecord $slot, string $error = null ) {
 		$args = [];
 
 		if ( $this->hasOption( 'mark' ) ) {

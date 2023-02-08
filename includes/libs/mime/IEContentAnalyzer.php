@@ -415,8 +415,8 @@ class IEContentAnalyzer {
 		$result = $this->sampleData( $version, $chunk );
 		$sampleFound = $result['found'];
 		$counters = $result['counters'];
-		$binaryType = $this->checkBinaryHeaders( $version, $chunk );
-		$textType = $this->checkTextHeaders( $version, $chunk );
+		$binaryType = $this->checkBinaryHeaders( $chunk );
+		$textType = $this->checkTextHeaders( $chunk );
 
 		if ( $proposed == 'text/html' && isset( $sampleFound['html'] ) ) {
 			return 'text/html';
@@ -552,11 +552,10 @@ class IEContentAnalyzer {
 	/**
 	 * Check for text headers at the start of the chunk
 	 * Confirmed same in 5 and 7.
-	 * @param string $version
 	 * @param string $chunk
 	 * @return bool|string
 	 */
-	private function checkTextHeaders( $version, $chunk ) {
+	private function checkTextHeaders( $chunk ) {
 		$chunk2 = substr( $chunk, 0, 2 );
 		$chunk4 = substr( $chunk, 0, 4 );
 		$chunk5 = substr( $chunk, 0, 5 );
@@ -578,11 +577,10 @@ class IEContentAnalyzer {
 	/**
 	 * Check for binary headers at the start of the chunk
 	 * Confirmed same in 5 and 7.
-	 * @param string $version
 	 * @param string $chunk
 	 * @return bool|string
 	 */
-	private function checkBinaryHeaders( $version, $chunk ) {
+	private function checkBinaryHeaders( $chunk ) {
 		$chunk2 = substr( $chunk, 0, 2 );
 		$chunk3 = substr( $chunk, 0, 3 );
 		$chunk4 = substr( $chunk, 0, 4 );

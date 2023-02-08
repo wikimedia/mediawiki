@@ -3096,7 +3096,7 @@ class MainConfigSchema {
 	 * $wgDBserver, etc., so overriding it may cause those globals to be ignored.
 	 *
 	 * The LBFactoryMulti class is provided for this purpose, please see
-	 * includes/db/LBFactoryMulti.php for configuration information.
+	 * includes/libs/rdbms/lbfactory/LBFactoryMulti.php for configuration information.
 	 */
 	public const LBFactoryConf = [
 		'default' => [

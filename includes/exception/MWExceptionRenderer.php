@@ -120,7 +120,7 @@ class MWExceptionRenderer {
 					$message .= 'Original exception: ' .
 						MWExceptionHandler::getPublicLogMessage( $e );
 					$message .= "\n\nException caught inside exception handler.\n\n" .
-						self::getShowBacktraceError( $e );
+						self::getShowBacktraceError();
 				}
 				$message .= "\n";
 			} elseif ( $showExceptionDetails ) {
@@ -229,7 +229,7 @@ class MWExceptionRenderer {
 				) ),
 				'',
 				'mw-content-ltr'
-			) . "<!-- " . wordwrap( self::getShowBacktraceError( $e ), 50 ) . " -->";
+			) . "<!-- " . wordwrap( self::getShowBacktraceError(), 50 ) . " -->";
 		}
 
 		return $html;
@@ -270,15 +270,14 @@ class MWExceptionRenderer {
 				"\nBacktrace:\n" .
 				MWExceptionHandler::getRedactedTraceAsString( $e ) . "\n";
 		} else {
-			return self::getShowBacktraceError( $e ) . "\n";
+			return self::getShowBacktraceError() . "\n";
 		}
 	}
 
 	/**
-	 * @param Throwable $e
 	 * @return string
 	 */
-	private static function getShowBacktraceError( Throwable $e ) {
+	private static function getShowBacktraceError() {
 		$var = '$wgShowExceptionDetails = true;';
 		return "Set $var at the bottom of LocalSettings.php to show detailed debugging information.";
 	}

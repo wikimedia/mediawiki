@@ -41,7 +41,7 @@ class SearchPostgres extends SearchDatabase {
 	 * @return SqlSearchResultSet
 	 */
 	protected function doSearchTitleInDB( $term ) {
-		$q = $this->searchQuery( $term, 'titlevector', 'page_title' );
+		$q = $this->searchQuery( $term, 'titlevector' );
 		$olderror = error_reporting( E_ERROR );
 		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
 		$resultSet = $dbr->query( $q, 'SearchPostgres', IDatabase::QUERY_SILENCE_ERRORS );
@@ -50,7 +50,7 @@ class SearchPostgres extends SearchDatabase {
 	}
 
 	protected function doSearchTextInDB( $term ) {
-		$q = $this->searchQuery( $term, 'textvector', 'old_text' );
+		$q = $this->searchQuery( $term, 'textvector' );
 		$olderror = error_reporting( E_ERROR );
 		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
 		$resultSet = $dbr->query( $q, 'SearchPostgres', IDatabase::QUERY_SILENCE_ERRORS );
@@ -126,10 +126,9 @@ class SearchPostgres extends SearchDatabase {
 	 * Construct the full SQL query to do the search.
 	 * @param string $term
 	 * @param string $fulltext
-	 * @param string $colname
 	 * @return string
 	 */
-	private function searchQuery( $term, $fulltext, $colname ) {
+	private function searchQuery( $term, $fulltext ) {
 		# Get the SQL fragment for the given term
 		$searchstring = $this->parseQuery( $term );
 
