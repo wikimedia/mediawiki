@@ -816,9 +816,7 @@ class SpecialBlock extends FormSpecialPage {
 		/** @var User $target */
 		[ $target, $type ] = $blockUtils->parseBlockTarget( $data['Target'] );
 		if ( $type == DatabaseBlock::TYPE_USER ) {
-			$user = $target;
-			$target = $user->getName();
-			$userId = $user->getId();
+			$target = $target->getName();
 
 			# Give admins a heads-up before they go and block themselves.  Much messier
 			# to do this for IPs, but it's pretty unlikely they'd ever get the 'block'
@@ -836,14 +834,9 @@ class SpecialBlock extends FormSpecialPage {
 			if ( $data['HideUser'] && !$data['Confirm'] ) {
 				return [ 'ipb-confirmhideuser', 'ipb-confirmaction' ];
 			}
-		} elseif ( $type == DatabaseBlock::TYPE_RANGE ) {
-			$user = null;
-			$userId = 0;
 		} elseif ( $type == DatabaseBlock::TYPE_IP ) {
-			$user = null;
 			$target = $target->getName();
-			$userId = 0;
-		} else {
+		} elseif ( $type != DatabaseBlock::TYPE_RANGE ) {
 			# This should have been caught in the form field validation
 			return [ 'badipaddress' ];
 		}
