@@ -3088,15 +3088,14 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Load balancer factory configuration
-	 * To set up a multi-primary wiki farm, set the class here to something that
-	 * can return a LoadBalancer with an appropriate primary on a call to getMainLB().
+	 * Configuration for the ILBFactory service
 	 *
-	 * The class identified here is responsible for reading $wgDBservers,
-	 * $wgDBserver, etc., so overriding it may cause those globals to be ignored.
+	 * The "class" setting must point to a LBFactory subclass, which is also responsible
+	 * for reading $wgDBservers, $wgDBserver, etc.
 	 *
-	 * The LBFactoryMulti class is provided for this purpose, please see
-	 * includes/libs/rdbms/lbfactory/LBFactoryMulti.php for configuration information.
+	 * To set up a wiki farm with multiple database clusters, set the "class" to
+	 * LBFactoryMulti. See {@link Wikimedia::Rdbms::LBFactoryMulti LBFactoryMulti} docs for
+	 * information on how to configure the rest of the $wgLBFactoryConf array.
 	 */
 	public const LBFactoryConf = [
 		'default' => [
