@@ -347,9 +347,6 @@ class Linker {
 		if ( !isset( $frameParams['align'] ) ) {
 			$frameParams['align'] = '';
 		}
-		if ( !isset( $frameParams['alt'] ) ) {
-			$frameParams['alt'] = '';
-		}
 		if ( !isset( $frameParams['title'] ) ) {
 			$frameParams['title'] = '';
 		}
@@ -483,10 +480,14 @@ class Linker {
 			);
 		} else {
 			self::processResponsiveImages( $file, $thumb, $handlerParams );
-			$params = [
-				'alt' => $frameParams['alt'],
-				'title' => $frameParams['title'],
-			];
+			$params = [];
+			// An empty alt indicates an image is not a key part of the content
+			// and that non-visual browsers may omit it from rendering.  Only
+			// set the parameter if it's explicitly requested.
+			if ( isset( $frameParams['alt'] ) ) {
+				$params['alt'] = $frameParams['alt'];
+			}
+			$params['title'] = $frameParams['title'];
 			if ( $enableLegacyMediaDOM ) {
 				$params += [
 					'valign' => $frameParams['valign'] ?? false,
@@ -646,9 +647,6 @@ class Linker {
 				$frameParams['align'] = 'right';
 			}
 		}
-		if ( !isset( $frameParams['alt'] ) ) {
-			$frameParams['alt'] = '';
-		}
 		if ( !isset( $frameParams['caption'] ) ) {
 			$frameParams['caption'] = '';
 		}
@@ -756,9 +754,13 @@ class Linker {
 			if ( !$noscale && !$manualthumb ) {
 				self::processResponsiveImages( $file, $thumb, $handlerParams );
 			}
-			$params = [
-				'alt' => $frameParams['alt'],
-			];
+			$params = [];
+			// An empty alt indicates an image is not a key part of the content
+			// and that non-visual browsers may omit it from rendering.  Only
+			// set the parameter if it's explicitly requested.
+			if ( isset( $frameParams['alt'] ) ) {
+				$params['alt'] = $frameParams['alt'];
+			}
 			if ( $enableLegacyMediaDOM ) {
 				$params += [
 					'img-class' => ( isset( $frameParams['class'] ) && $frameParams['class'] !== ''
