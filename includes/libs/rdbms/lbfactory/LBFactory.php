@@ -590,6 +590,19 @@ abstract class LBFactory implements ILBFactory {
 		return $this->ticket;
 	}
 
+	public function getPrimaryDatabase( $domain = false ): IDatabase {
+		return $this->getMainLB( $domain )->getConnection( DB_PRIMARY, [], $domain );
+	}
+
+	public function getReplicaDatabase( $domain = false, $group = null ): IDatabase {
+		if ( $group === null ) {
+			$groups = [];
+		} else {
+			$groups = [ $group ];
+		}
+		return $this->getMainLB( $domain )->getConnection( DB_REPLICA, $groups, $domain );
+	}
+
 	final public function commitAndWaitForReplication( $fname, $ticket, array $opts = [] ) {
 		if ( $ticket !== $this->ticket ) {
 			$this->logger->error(
