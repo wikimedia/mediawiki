@@ -39,6 +39,7 @@
 use MediaWiki\Logger\ConsoleSpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Psr\Log\LogLevel;
 
 // Horrible hack to support the --no-session parameter, which needs to be handled
 // way before parameters are parsed.
@@ -57,11 +58,15 @@ class MediaWikiShell extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'd',
-			'For back compatibility with eval.php. ' .
+			'Deprecated, for back compatibility with eval.php. ' .
 			'1 send debug to stderr. ' .
 			'With 2 additionally initialize database with debugging ',
 			false, true
 		);
+		$this->addOption( 'log-channels', 'Send the given log channels to STDERR. '
+			. 'Format: channel[:level],...', false, true );
+		$this->addOption( 'log-all', 'Send all log channels to STDERR.' );
+		$this->addOption( 'dbo-debug', 'Set DBO_DEBUG flags (equivalent of $wgDebugDumpSql).' );
 		$this->addOption( 'no-session',
 			'Disable session support (like MW_NO_SESSION)'
 		);
@@ -85,13 +90,46 @@ class MediaWikiShell extends Maintenance {
 		$config->setRuntimeDir( wfTempDir() );
 
 		$shell = new \Psy\Shell( $config );
-		if ( $this->hasOption( 'd' ) ) {
-			$this->setupLegacy();
-		}
+
+		$this->setupLogging();
 
 		Hooks::runner()->onMaintenanceShellStart();
 
 		$shell->run();
+	}
+
+	protected function setupLogging() {
+		if ( $this->hasOption( 'd' ) ) {
+			wfDeprecated( 'shell.php -d', '1.40' );
+			$this->setupLegacy();
+			return;
+		}
+
+		if ( $this->hasOption( 'log-all' ) ) {
+			LoggerFactory::registerProvider( new ConsoleSpi( [
+				'forwardTo' => LoggerFactory::getProvider(),
+			] ) );
+			// Some services hold Logger instances in object properties
+			MediaWikiServices::resetGlobalInstance();
+		} elseif ( $this->hasOption( 'log-channels' ) ) {
+			$channelsArg = $this->getOption( 'log-channels' );
+			$channels = [];
+			foreach ( explode( ',', $channelsArg ) as $channelArg ) {
+				$parts = explode( ':', $channelArg );
+				$channel = $parts[0];
+				$level = $parts[1] ?? LogLevel::DEBUG;
+				$channels[$channel] = $level;
+			}
+			LoggerFactory::registerProvider( new ConsoleSpi( [
+				'channels' => $channels,
+				'forwardTo' => LoggerFactory::getProvider(),
+			] ) );
+			MediaWikiServices::resetGlobalInstance();
+		}
+		if ( $this->hasOption( 'dbo-debug' ) ) {
+			$this->getDB( DB_PRIMARY )->setFlag( DBO_DEBUG );
+			$this->getDB( DB_REPLICA )->setFlag( DBO_DEBUG );
+		}
 	}
 
 	/**
