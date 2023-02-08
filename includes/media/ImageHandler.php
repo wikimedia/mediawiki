@@ -106,8 +106,6 @@ abstract class ImageHandler extends MediaHandler {
 	 * @phan-assert array{width:int,physicalWidth:int,height:int,physicalHeight:int,page:int} $params
 	 */
 	public function normaliseParams( $image, &$params ) {
-		$mimeType = $image->getMimeType();
-
 		if ( !isset( $params['width'] ) ) {
 			return false;
 		}
@@ -164,7 +162,7 @@ abstract class ImageHandler extends MediaHandler {
 		}
 
 		if ( !$this->validateThumbParams( $params['physicalWidth'],
-			$params['physicalHeight'], $srcWidth, $srcHeight, $mimeType )
+			$params['physicalHeight'], $srcWidth, $srcHeight )
 		) {
 			return false;
 		}
@@ -179,10 +177,9 @@ abstract class ImageHandler extends MediaHandler {
 	 * @param int &$height Height (output only)
 	 * @param int $srcWidth Width of the source image
 	 * @param int $srcHeight Height of the source image
-	 * @param string $mimeType Unused
 	 * @return bool False to indicate that an error should be returned to the user.
 	 */
-	private function validateThumbParams( &$width, &$height, $srcWidth, $srcHeight, $mimeType ) {
+	private function validateThumbParams( &$width, &$height, $srcWidth, $srcHeight ) {
 		$width = intval( $width );
 
 		if ( $width <= 0 ) {

@@ -523,13 +523,9 @@ END
 			'packageFiles' => [],
 		];
 		$rl = TestingAccessWrapper::newFromClass( ResourceLoader::class );
-		$context = new Context( new EmptyResourceLoader(), new FauxRequest( [
-			'debug' => 'true',
-		] ) );
 		$this->assertEquals(
 			$case['expected'],
 			$rl->makeLoaderImplementScript(
-				$context,
 				$case['name'],
 				( $case['wrap'] && is_string( $case['scripts'] ) )
 					? new XmlJsCode( $case['scripts'] )
@@ -546,9 +542,7 @@ END
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Script must be a' );
 		$rl = TestingAccessWrapper::newFromClass( ResourceLoader::class );
-		$context = new Context( new EmptyResourceLoader(), new FauxRequest() );
 		$rl->makeLoaderImplementScript(
-			$context,
 			'test', // name
 			123, // scripts
 			null, // styles

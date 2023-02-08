@@ -4995,11 +4995,10 @@ class Parser {
 	 * Placeholders created in Linker::link()
 	 *
 	 * @param string &$text
-	 * @param int $options
 	 * @deprecated since 1.34; should not be used outside parser class.
 	 */
-	public function replaceLinkHolders( &$text, $options = 0 ) {
-		$this->replaceLinkHoldersPrivate( $text, $options );
+	public function replaceLinkHolders( &$text ) {
+		$this->replaceLinkHoldersPrivate( $text );
 	}
 
 	/**
@@ -5007,9 +5006,8 @@ class Parser {
 	 * Placeholders created in Linker::link()
 	 *
 	 * @param string &$text
-	 * @param int $options
 	 */
-	private function replaceLinkHoldersPrivate( &$text, $options = 0 ) {
+	private function replaceLinkHoldersPrivate( &$text ) {
 		$this->mLinkHolders->replace( $text );
 	}
 

@@ -237,7 +237,7 @@ class StatusValue {
 	 * @return $this
 	 */
 	public function warning( $message, ...$parameters ) {
-		$message = $this->normalizeMessage( $message, $parameters );
+		$message = $this->normalizeMessage( $message );
 
 		return $this->addError( [
 			'type' => 'warning',
@@ -255,7 +255,7 @@ class StatusValue {
 	 * @return $this
 	 */
 	public function error( $message, ...$parameters ) {
-		$message = $this->normalizeMessage( $message, $parameters );
+		$message = $this->normalizeMessage( $message );
 
 		return $this->addError( [
 			'type' => 'error',
@@ -525,11 +525,10 @@ class StatusValue {
 
 	/**
 	 * @param MessageSpecifier|MessageValue|string $message
-	 * @param array $parameters
 	 *
 	 * @return MessageSpecifier|string
 	 */
-	private function normalizeMessage( $message, array $parameters = [] ) {
+	private function normalizeMessage( $message ) {
 		if ( $message instanceof MessageValue ) {
 			$converter = new Converter();
 			return $converter->convertMessageValue( $message );

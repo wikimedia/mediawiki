@@ -209,8 +209,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $this->modifyBlobs(
 			[ $this, 'modifyTableSpecificBlobsForSet' ],
 			$mtime,
-			[ $key => [ $value, $exptime ] ],
-			$flags
+			[ $key => [ $value, $exptime ] ]
 		);
 	}
 
@@ -220,8 +219,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $this->modifyBlobs(
 			[ $this, 'modifyTableSpecificBlobsForDelete' ],
 			$mtime,
-			[ $key => [] ],
-			$flags
+			[ $key => [] ]
 		);
 	}
 
@@ -235,8 +233,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $this->modifyBlobs(
 			[ $this, 'modifyTableSpecificBlobsForAdd' ],
 			$mtime,
-			[ $key => [ $value, $exptime ] ],
-			$flags
+			[ $key => [ $value, $exptime ] ]
 		);
 	}
 
@@ -250,8 +247,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $this->modifyBlobs(
 			[ $this, 'modifyTableSpecificBlobsForCas' ],
 			$mtime,
-			[ $key => [ $value, $exptime, $casToken ] ],
-			$flags
+			[ $key => [ $value, $exptime, $casToken ] ]
 		);
 	}
 
@@ -261,8 +257,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $this->modifyBlobs(
 			[ $this, 'modifyTableSpecificBlobsForChangeTTL' ],
 			$mtime,
-			[ $key => [ $exptime ] ],
-			$flags
+			[ $key => [ $exptime ] ]
 		);
 	}
 
@@ -279,7 +274,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$callback,
 			$mtime,
 			[ $key => [ $step, $init, $exptime ] ],
-			$flags,
 			$resByKey
 		) ? $resByKey[$key] : false;
 
@@ -310,8 +304,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					[ $this, 'modifyTableSpecificBlobsForSet' ],
 					$mtime,
 					// Preserve the old expiry timestamp
-					[ $key => [ $newValue, $data[self::BLOB_EXPIRY] ] ],
-					$flags
+					[ $key => [ $newValue, $data[self::BLOB_EXPIRY] ] ]
 				) ? $newValue : false;
 			} else {
 				$result = false;
@@ -363,8 +356,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					return [ $value, $exptime ];
 				},
 				$data
-			),
-			$flags
+			)
 		);
 	}
 
@@ -374,8 +366,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $this->modifyBlobs(
 			[ $this, 'modifyTableSpecificBlobsForDelete' ],
 			$mtime,
-			array_fill_keys( $keys, [] ),
-			$flags
+			array_fill_keys( $keys, [] )
 		);
 	}
 
@@ -385,8 +376,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $this->modifyBlobs(
 			[ $this, 'modifyTableSpecificBlobsForChangeTTL' ],
 			$mtime,
-			array_fill_keys( $keys, [ $exptime ] ),
-			$flags
+			array_fill_keys( $keys, [ $exptime ] )
 		);
 	}
 
@@ -542,7 +532,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *  - Map of (key => result) [returned]
 	 * @param float $mtime UNIX modification timestamp
 	 * @param array<string,array> $argsByKey Map of (key => list of arguments)
-	 * @param int $flags Bitfield of BagOStuff::WRITE_* constants
 	 * @param array<string,mixed> &$resByKey Order-preserved map of (key => result) [returned]
 	 * @return bool Whether all keys were processed
 	 * @param-taint $argsByKey none
@@ -551,7 +540,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		callable $tableWriteCallback,
 		float $mtime,
 		array $argsByKey,
-		int $flags,
 		&$resByKey = []
 	) {
 		// Initialize order-preserved per-key results; callbacks mark successful results

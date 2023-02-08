@@ -100,10 +100,9 @@ class RevisionOutputCache {
 	}
 
 	/**
-	 * @param RevisionRecord $revision
 	 * @param string $metricSuffix
 	 */
-	private function incrementStats( RevisionRecord $revision, string $metricSuffix ) {
+	private function incrementStats( string $metricSuffix ) {
 		$metricSuffix = str_replace( '.', '_', $metricSuffix );
 		$this->stats->increment( "RevisionOutputCache.{$this->name}.{$metricSuffix}" );
 	}
@@ -188,7 +187,7 @@ class RevisionOutputCache {
 		}
 
 		if ( !$parserOptions->isSafeToCache() ) {
-			$this->incrementStats( $revision, 'miss.unsafe' );
+			$this->incrementStats( 'miss.unsafe' );
 			return false;
 		}
 
@@ -196,13 +195,13 @@ class RevisionOutputCache {
 		$json = $this->cache->get( $cacheKey );
 
 		if ( $json === false ) {
-			$this->incrementStats( $revision, 'miss.absent' );
+			$this->incrementStats( 'miss.absent' );
 			return false;
 		}
 
 		$output = $this->restoreFromJson( $json, $cacheKey, ParserOutput::class );
 		if ( $output === null ) {
-			$this->incrementStats( $revision, 'miss.unserialize' );
+			$this->incrementStats( 'miss.unserialize' );
 			return false;
 		}
 
@@ -211,12 +210,12 @@ class RevisionOutputCache {
 		$expiryTime = max( $expiryTime, (int)MWTimestamp::now( TS_UNIX ) - $this->cacheExpiry );
 
 		if ( $cacheTime < $expiryTime ) {
-			$this->incrementStats( $revision, 'miss.expired' );
+			$this->incrementStats( 'miss.expired' );
 			return false;
 		}
 
 		$this->logger->debug( 'old-revision cache hit' );
-		$this->incrementStats( $revision, 'hit' );
+		$this->incrementStats( 'hit' );
 		return $output;
 	}
 
@@ -260,23 +259,23 @@ class RevisionOutputCache {
 
 		$expiry = $output->getCacheExpiry();
 		if ( $expiry <= 0 ) {
-			$this->incrementStats( $revision, 'save.uncacheable' );
+			$this->incrementStats( 'save.uncacheable' );
 			return;
 		}
 
 		if ( !$parserOptions->isSafeToCache() ) {
-			$this->incrementStats( $revision, 'save.unsafe' );
+			$this->incrementStats( 'save.unsafe' );
 			return;
 		}
 
 		$json = $this->encodeAsJson( $output, $cacheKey );
 		if ( $json === null ) {
-			$this->incrementStats( $revision, 'save.nonserializable' );
+			$this->incrementStats( 'save.nonserializable' );
 			return;
 		}
 
 		$this->cache->set( $cacheKey, $json, $expiry );
-		$this->incrementStats( $revision, 'save.success' );
+		$this->incrementStats( 'save.success' );
 	}
 
 	/**

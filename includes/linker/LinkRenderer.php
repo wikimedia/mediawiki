@@ -161,7 +161,7 @@ class LinkRenderer {
 		}
 	}
 
-	private function runBeginHook( $target, &$text, &$extraAttribs, &$query, $isKnown ) {
+	private function runBeginHook( $target, &$text, &$extraAttribs, &$query ) {
 		$ret = null;
 		if ( !$this->hookRunner->onHtmlPageLinkRendererBegin(
 			// @phan-suppress-next-line PhanTypeMismatchArgument Type mismatch on pass-by-ref args
@@ -188,7 +188,7 @@ class LinkRenderer {
 		Assert::parameterType( [ LinkTarget::class, PageReference::class ], $target, '$target' );
 
 		// Run begin hook
-		$ret = $this->runBeginHook( $target, $text, $extraAttribs, $query, true );
+		$ret = $this->runBeginHook( $target, $text, $extraAttribs, $query );
 		if ( $ret !== null ) {
 			return $ret;
 		}
@@ -258,7 +258,7 @@ class LinkRenderer {
 	) {
 		Assert::parameterType( [ LinkTarget::class, PageReference::class ], $target, '$target' );
 		// Run legacy hook
-		$ret = $this->runBeginHook( $target, $text, $extraAttribs, $query, false );
+		$ret = $this->runBeginHook( $target, $text, $extraAttribs, $query );
 		if ( $ret !== null ) {
 			return $ret;
 		}
