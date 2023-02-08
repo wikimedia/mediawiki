@@ -111,6 +111,7 @@ class MediaWikiShell extends Maintenance {
 			] ) );
 			// Some services hold Logger instances in object properties
 			MediaWikiServices::resetGlobalInstance();
+			ObjectCache::clear();
 		} elseif ( $this->hasOption( 'log-channels' ) ) {
 			$channelsArg = $this->getOption( 'log-channels' );
 			$channels = [];
@@ -125,6 +126,7 @@ class MediaWikiShell extends Maintenance {
 				'forwardTo' => LoggerFactory::getProvider(),
 			] ) );
 			MediaWikiServices::resetGlobalInstance();
+			ObjectCache::clear();
 		}
 		if ( $this->hasOption( 'dbo-debug' ) ) {
 			$this->getDB( DB_PRIMARY )->setFlag( DBO_DEBUG );
@@ -141,6 +143,7 @@ class MediaWikiShell extends Maintenance {
 			LoggerFactory::registerProvider( new ConsoleSpi );
 			// Some services hold Logger instances in object properties
 			MediaWikiServices::resetGlobalInstance();
+			ObjectCache::clear();
 		}
 		if ( $d > 1 ) {
 			# Set DBO_DEBUG (equivalent of $wgDebugDumpSql)
