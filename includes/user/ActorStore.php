@@ -673,7 +673,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 
 	/**
 	 * Throws an exception if the given database connection does not belong to the wiki this
-	 * RevisionStore is bound to.
+	 * ActorStore is bound to.
 	 *
 	 * @param IDatabase $db
 	 */
