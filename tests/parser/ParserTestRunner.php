@@ -1926,9 +1926,9 @@ class ParserTestRunner {
 	 */
 	public function runParsoidTest( ParserTest $test, ParserTestMode $mode ) {
 		wfDebug( __METHOD__ . ": running {$test->testName} [$mode]" );
+		$opts = $test->options;
 
 		// Skip deprecated preprocessor tests
-		// @phan-suppress-next-line PhanImpossibleCondition Other preprocessor are deprecated, see runTest
 		if ( isset( $opts['preprocessor'] ) && $opts['preprocessor'] !== 'Preprocessor_Hash' ) {
 			return false;
 		}
