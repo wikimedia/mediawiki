@@ -5127,7 +5127,7 @@ class Parser {
 			$mwArray = $this->magicWordFactory->newArray( array_keys( $paramMap ) );
 
 			$label = '';
-			$alt = '';
+			$alt = null;
 			$handlerOptions = [];
 			$imageOptions = [];
 			$hasAlt = false;

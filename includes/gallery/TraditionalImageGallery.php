@@ -148,14 +148,19 @@ class TraditionalImageGallery extends ImageGalleryBase {
 					$imageParameters = [
 						'desc-link' => true,
 						'desc-query' => $descQuery,
-						'alt' => $alt,
+						'alt' => $alt ?? '',
 						'custom-url-link' => $link
 					];
 				} else {
-					$params = [
-						'alt' => $alt,
-						'title' => $imageOptions['title'],
-					];
+					$params = [];
+					// An empty alt indicates an image is not a key part of the
+					// content and that non-visual browsers may omit it from
+					// rendering.  Only set the parameter if it's explicitly
+					// requested.
+					if ( $alt !== null ) {
+						$params['alt'] = $alt;
+					}
+					$params['title'] = $imageOptions['title'];
 					$imageParameters = Linker::getImageLinkMTOParams(
 						$imageOptions, $descQuery, $this->mParser
 					) + $params;
