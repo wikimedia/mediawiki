@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\Category\Category;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**

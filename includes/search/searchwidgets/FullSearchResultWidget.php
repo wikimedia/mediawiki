@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Search\SearchWidgets;
 
-use Category;
 use File;
 use Html;
 use HtmlArmor;
 use MediaTransformOutput;
+use MediaWiki\Category\Category;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;

@@ -21,9 +21,16 @@
  * @author Simetrical
  */
 
+namespace MediaWiki\Category;
+
+use DeferredUpdates;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Title\TitleArray;
+use MWException;
+use ReadOnlyMode;
+use stdClass;
+use Title;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -531,3 +538,5 @@ class Category {
 		return false;
 	}
 }
+
+class_alias( Category::class, 'Category' );

@@ -20,12 +20,27 @@
  * @file
  */
 
+namespace MediaWiki\Category;
+
+use Collation;
+use ContextSource;
+use DeprecationHelper;
+use Html;
+use HtmlArmor;
+use IContextSource;
+use ILanguageConverter;
+use ImageGalleryBase;
+use ImageGalleryClassNotFoundException;
+use LinkCache;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
+use MWException;
+use Title;
+use TitleValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class CategoryViewer extends ContextSource {
@@ -328,7 +343,10 @@ class CategoryViewer extends ContextSource {
 	 * @param bool $isRedirect
 	 */
 	public function addPage(
-		PageReference $page, string $sortkey, int $pageLength, bool $isRedirect = false
+		PageReference $page,
+		string $sortkey,
+		int $pageLength,
+		bool $isRedirect = false
 	): void {
 		$this->articles[] = $this->generateLink( 'page', $page, $isRedirect );
 
@@ -805,3 +823,5 @@ class CategoryViewer extends ContextSource {
 		return $this->msg( "category-$type-count" )->numParams( $rescnt, $totalcnt )->parseAsBlock();
 	}
 }
+
+class_alias( CategoryViewer::class, 'CategoryViewer' );

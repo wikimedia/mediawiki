@@ -19,11 +19,18 @@
  * @ingroup Categories
  */
 
+namespace MediaWiki\Category;
+
+use ExtensionRegistry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
+use NamespaceInfo;
+use ParserOutput;
 use Psr\Log\LoggerInterface;
+use Title;
+use TitleParser;
 
 /**
  * This class performs some operations related to tracking categories, such as creating
@@ -248,3 +255,5 @@ class TrackingCategories {
 		return true;
 	}
 }
+
+class_alias( TrackingCategories::class, 'TrackingCategories' );

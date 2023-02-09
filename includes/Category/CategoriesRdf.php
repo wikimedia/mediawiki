@@ -16,6 +16,10 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  */
+
+namespace MediaWiki\Category;
+
+use Title;
 use Wikimedia\Purtle\RdfWriter;
 
 /**
@@ -132,3 +136,5 @@ class CategoriesRdf {
 	}
 
 }
+
+class_alias( CategoriesRdf::class, 'CategoriesRdf' );

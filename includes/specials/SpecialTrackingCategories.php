@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Category\TrackingCategories;
 
 /**
  * A special page that displays list of tracking categories

@@ -23,6 +23,7 @@
 
 use MediaWiki\BadFileLookup;
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;

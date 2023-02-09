@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\PageReferenceValue;
