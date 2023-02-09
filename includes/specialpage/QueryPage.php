@@ -151,7 +151,7 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
-	 * Get a list of query pages disabled and with it's run mode
+	 * Get a list of disabled query pages and their run mode
 	 * @param Config $config
 	 * @return string[]
 	 */
