@@ -63,7 +63,7 @@ class CommandFactory {
 	/**
 	 * @param ShellboxClientFactory $shellboxClientFactory
 	 * @param array $limits See {@see Command::limits()}
-	 * @param string|bool $cgroup See {@see Command::cgroup()}
+	 * @param string|bool $cgroup
 	 * @param string|bool $restrictionMethod
 	 */
 	public function __construct( ShellboxClientFactory $shellboxClientFactory,
