@@ -287,15 +287,6 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 				'id' => 'mw-mobile-prefs-' . $key . '-head'
 			] );
 			$contentHeader->addClasses( [ 'mw-prefs-content-head' ] );
-			$contentHeaderBackButton = new OOUI\IconWidget( [
-				'icon' => 'close',
-				'label' => $this->msg( "prefs-back-label" ),
-				'title' => $this->msg( "prefs-back-title" ),
-				'classes' => [ 'mw-prefs-header-icon', 'mw-ui-icon' ],
-			] );
-			$contentHeaderBackButton->setAttributes( [
-				'id' => 'mw-mobile-prefs-' . $key . '-back-button',
-			] );
 			$contentHeaderTitle = ( new OOUI\Tag( 'h5' ) )->setAttributes( [
 				'id' => 'mw-mobile-prefs-' . $key . '-title',
 			] );
@@ -304,7 +295,6 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 				'content' => new OOUI\HtmlSnippet( $content )
 			] );
 			$hiddenForm = ( new OOUI\Tag( 'div' ) )->appendContent( $formContent );
-			$contentHeader->appendContent( $contentHeaderBackButton );
 			$contentHeader->appendContent( $contentHeaderTitle );
 			$contentDiv->appendContent( $contentHeader );
 			$contentDiv->appendContent( $hiddenForm );

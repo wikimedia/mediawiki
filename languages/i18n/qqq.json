@@ -1360,7 +1360,6 @@
 	"recentchangesdays": "Used in [[Special:Preferences]], tab \"Recent changes\".",
 	"recentchangesdays-max": "Shown as hint in [[Special:Preferences]], tab \"Recent changes\". Parameters:\n* $1 - number of days\nSee also:\n* {{msg-mw|Prefs-watchlist-days-max}}",
 	"recentchangescount": "Used in [[Special:Preferences]], tab \"Recent changes\".",
-	"prefs-back-label": "Used in [[Special:Preferences]] as a label for a back button",
 	"prefs-back-title": "Used in [[Special:Preferences]] as the title for a back button",
 	"prefs-description-personal": "Used in [[Special:Preferences]] for mobile to describe the User Profile section.",
 	"prefs-description-rendering": "Used in [[Special:Preferences]] for mobile to describe the Appearance section.",
