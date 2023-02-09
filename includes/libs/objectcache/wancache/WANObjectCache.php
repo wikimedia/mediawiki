@@ -2106,7 +2106,7 @@ class WANObjectCache implements
 	 *         // Map of cache keys to entity IDs
 	 *         $cache->makeMultiKeys(
 	 *             $this->fileVersionIds(),
-	 *             function ( $id ) use ( $cache ) {
+	 *             function ( $id, $cache ) {
 	 *                 return $cache->makeKey( 'file-version', $id );
 	 *             }
 	 *         ),
