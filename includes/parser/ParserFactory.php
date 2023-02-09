@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\BadFileLookup;
+use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Http\HttpRequestFactory;

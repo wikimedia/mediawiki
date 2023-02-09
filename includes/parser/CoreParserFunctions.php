@@ -21,6 +21,7 @@
  * @ingroup Parser
  */
 
+use MediaWiki\Category\Category;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

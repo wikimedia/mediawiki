@@ -17,6 +17,7 @@
  *
  */
 
+use MediaWiki\Category\CategoriesRdf;
 use MediaWiki\MainConfigNames;
 use Wikimedia\Purtle\RdfWriter;
 use Wikimedia\Purtle\RdfWriterFactory;
