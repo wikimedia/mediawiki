@@ -1623,6 +1623,7 @@ class SkinTemplate extends Skin {
 	public static function makeSearchButtonInternal( $mode, $searchData, $attrs = [] ) {
 		switch ( $mode ) {
 			case 'go':
+				$attrs['value'] ??= wfMessage( 'searcharticle' )->text();
 				return Html::element(
 					'input',
 					array_merge(
@@ -1630,6 +1631,7 @@ class SkinTemplate extends Skin {
 					)
 				);
 			case 'fulltext':
+				$attrs['value'] ??= wfMessage( 'searchbutton' )->text();
 				return Html::element(
 					'input',
 					array_merge(
