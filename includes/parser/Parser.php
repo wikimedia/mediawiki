@@ -5080,6 +5080,10 @@ class Parser {
 		}
 		$ig->setAdditionalOptions( $params );
 
+		$enableLegacyMediaDOM = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ParserEnableLegacyMediaDOM
+		);
+
 		$lines = StringUtils::explode( "\n", $text );
 		foreach ( $lines as $line ) {
 			# match lines like these:
@@ -5196,7 +5200,9 @@ class Parser {
 				if ( $label !== '' ) {
 					$alt = $this->stripAltText( $label, false );
 				} else {
-					$alt = $title->getText();
+					if ( $enableLegacyMediaDOM ) {
+						$alt = $title->getText();
+					}
 				}
 			}
 			$imageOptions['title'] = $this->stripAltText( $label, false );
@@ -5424,6 +5430,10 @@ class Parser {
 
 		$params['frame']['caption'] = $caption;
 
+		$enableLegacyMediaDOM = MediaWikiServices::getInstance()->getMainConfig()->get(
+			MainConfigNames::ParserEnableLegacyMediaDOM
+		);
+
 		# Will the image be presented in a frame, with the caption below?
 		// @phan-suppress-next-line PhanImpossibleCondition
 		$hasVisibleCaption = isset( $params['frame']['framed'] )
@@ -5447,8 +5457,11 @@ class Parser {
 		# plicit caption= parameter and preserving the old magic unnamed para-
 		# meter for BC; ...
 		if ( $hasVisibleCaption ) {
-			// @phan-suppress-next-line PhanImpossibleCondition
-			if ( $caption === '' && !isset( $params['frame']['alt'] ) ) {
+			if (
+				// @phan-suppress-next-line PhanImpossibleCondition
+				$caption === '' && !isset( $params['frame']['alt'] ) &&
+				$enableLegacyMediaDOM
+			) {
 				# No caption or alt text, add the filename as the alt text so
 				# that screen readers at least get some description of the image
 				$params['frame']['alt'] = $link->getText();
@@ -5461,7 +5474,7 @@ class Parser {
 				# No alt text, use the "caption" for the alt text
 				if ( $caption !== '' ) {
 					$params['frame']['alt'] = $this->stripAltText( $caption, $holders );
-				} else {
+				} elseif ( $enableLegacyMediaDOM ) {
 					# No caption, fall back to using the filename for the
 					# alt text
 					$params['frame']['alt'] = $link->getText();
@@ -5478,6 +5491,7 @@ class Parser {
 
 		# Linker does the rest
 		$time = $options['time'] ?? false;
+		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset
 		$ret = Linker::makeImageLink( $this, $link, $file, $params['frame'], $params['handler'],
 			$time, $descQuery, $this->mOptions->getThumbSize() );
 
