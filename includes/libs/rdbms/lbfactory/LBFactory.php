@@ -679,7 +679,7 @@ abstract class LBFactory implements ILBFactory {
 	) {
 		// Remark all of the relevant DB primary positions
 		foreach ( $this->getLBsForOwner() as $lb ) {
-			$cp->stageSessionReplicationPosition( $lb );
+			$cp->stageSessionPrimaryPos( $lb );
 		}
 		// Write the positions to the persistent stash
 		$cp->persistSessionReplicationPositions( $cpIndex );
@@ -717,7 +717,7 @@ abstract class LBFactory implements ILBFactory {
 			'chronologyCallback' => function ( ILoadBalancer $lb ) {
 				// Defer ChronologyProtector construction in case setRequestInfo() ends up
 				// being called later (but before the first connection attempt) (T192611)
-				$this->getChronologyProtector()->applySessionReplicationPosition( $lb );
+				return $this->getChronologyProtector()->yieldSessionPrimaryPos( $lb );
 			},
 			'roundStage' => $initStage,
 			'criticalSectionProvider' => $this->csProvider

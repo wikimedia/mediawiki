@@ -107,7 +107,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private $trxRoundStage = self::ROUND_CURSORY;
 	/** @var int[] The group replica server indexes keyed by group */
 	private $readIndexByGroup = [];
-	/** @var DBPrimaryPos|false Replication sync position or false if not set */
+	/** @var DBPrimaryPos|null Replication sync position or false if not set */
 	private $waitForPos;
 	/** @var bool Whether a lagged replica DB was used */
 	private $laggedReplicaMode = false;
@@ -594,7 +594,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		return $i;
 	}
 
-	public function waitFor( $pos ) {
+	public function waitFor( DBPrimaryPos $pos ) {
 		$oldPos = $this->waitForPos;
 		try {
 			$this->waitForPos = $pos;
@@ -609,16 +609,13 @@ class LoadBalancer implements ILoadBalancerForOwner {
 			}
 		} finally {
 			// Restore the older position if it was higher since this is used for lag-protection
-			if ( !$oldPos ) {
-				return;
-			}
-			if ( !$this->waitForPos || $oldPos->hasReached( $this->waitForPos ) ) {
-				$this->waitForPos = $oldPos;
+			if ( $oldPos ) {
+				$this->setSessionPrimaryPosIfHigher( $oldPos );
 			}
 		}
 	}
 
-	public function waitForAll( $pos, $timeout = null ) {
+	public function waitForAll( DBPrimaryPos $pos, $timeout = null ) {
 		$timeout = $timeout ?: self::MAX_WAIT_DEFAULT;
 
 		$oldPos = $this->waitForPos;
@@ -656,6 +653,17 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Update the session "waitForPos" if the given position is newer
+	 *
+	 * @param DBPrimaryPos $pos
+	 */
+	private function setSessionPrimaryPosIfHigher( DBPrimaryPos $pos ) {
+		if ( !$this->waitForPos || $pos->hasReached( $this->waitForPos ) ) {
+			$this->waitForPos = $pos;
+		}
 	}
 
 	public function getAnyOpenConnection( $i, $flags = 0 ) {
@@ -1217,8 +1225,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	private function loadSessionPrimaryPos() {
 		if ( !$this->chronologyCallbackTriggered && $this->chronologyCallback ) {
 			$this->chronologyCallbackTriggered = true;
-			( $this->chronologyCallback )( $this ); // generally calls waitFor()
+			$pos = ( $this->chronologyCallback )( $this );
 			$this->logger->debug( __METHOD__ . ': executed chronology callback.' );
+			if ( $pos ) {
+				$this->setSessionPrimaryPosIfHigher( $pos );
+			}
 		}
 	}
 

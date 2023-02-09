@@ -225,9 +225,9 @@ interface ILoadBalancer {
 	 * will return true. This is useful for discouraging clients from taking further actions
 	 * if session consistency could not be maintained with respect to their last actions.
 	 *
-	 * @param DBPrimaryPos|false $pos Primary position or false
+	 * @param DBPrimaryPos $pos Primary position
 	 */
-	public function waitFor( $pos );
+	public function waitFor( DBPrimaryPos $pos );
 
 	/**
 	 * Set the primary wait position and wait for ALL replica DBs to catch up to it
@@ -235,11 +235,11 @@ interface ILoadBalancer {
 	 * This method is only intended for use a throttling mechanism for high-volume updates.
 	 * Unlike waitFor(), failure does not effect laggedReplicaUsed().
 	 *
-	 * @param DBPrimaryPos|false $pos Primary position or false
+	 * @param DBPrimaryPos $pos Primary position
 	 * @param int|null $timeout Max seconds to wait; default is mWaitTimeout
 	 * @return bool Success (able to connect and no timeouts reached)
 	 */
-	public function waitForAll( $pos, $timeout = null );
+	public function waitForAll( DBPrimaryPos $pos, $timeout = null );
 
 	/**
 	 * Get an existing DB handle to the given server index (on any domain)
@@ -480,6 +480,7 @@ interface ILoadBalancer {
 	 * This can be useful for implementing session consistency, where the session
 	 * will be resumed across multiple HTTP requests or CLI script instances.
 	 *
+	 * @internal For use by Rdbms classes only
 	 * @return DBPrimaryPos|false Replication position or false if not applicable
 	 * @since 1.34
 	 */

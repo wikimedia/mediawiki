@@ -306,14 +306,16 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$mockDB2->expects( $this->once() )->method( 'lastDoneWrites' );
 
 		// Nothing to wait for on first HTTP request start
-		$cp->applySessionReplicationPosition( $lb1 );
-		$cp->applySessionReplicationPosition( $lb2 );
+		$sPos1 = $cp->yieldSessionPrimaryPos( $lb1 );
+		$sPos2 = $cp->yieldSessionPrimaryPos( $lb2 );
 		// Record positions in stash on first HTTP request end
-		$cp->stageSessionReplicationPosition( $lb1 );
-		$cp->stageSessionReplicationPosition( $lb2 );
+		$cp->stageSessionPrimaryPos( $lb1 );
+		$cp->stageSessionPrimaryPos( $lb2 );
 		$cpIndex = null;
 		$cp->persistSessionReplicationPositions( $cpIndex );
 
+		$this->assertNull( $sPos1 );
+		$this->assertNull( $sPos2 );
 		$this->assertSame( 1, $cpIndex, "CP write index set" );
 
 		// (b) Second HTTP request
@@ -324,16 +326,12 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb1->method( 'hasReplicaServers' )->willReturn( true );
 		$lb1->method( 'hasStreamingReplicaServers' )->willReturn( true );
 		$lb1->method( 'getServerName' )->with( 0 )->willReturn( 'master1' );
-		$lb1->expects( $this->once() )
-			->method( 'waitFor' )->with( $m1Pos );
 		// Load balancer for primary DB 2
 		$lb2 = $this->createMock( LoadBalancer::class );
 		$lb2->method( 'getServerCount' )->willReturn( 2 );
 		$lb2->method( 'hasReplicaServers' )->willReturn( true );
 		$lb2->method( 'hasStreamingReplicaServers' )->willReturn( true );
 		$lb2->method( 'getServerName' )->with( 0 )->willReturn( 'master2' );
-		$lb2->expects( $this->once() )
-			->method( 'waitFor' )->with( $m2Pos );
 
 		$cp = new ChronologyProtector(
 			$bag,
@@ -344,15 +342,19 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			$cpIndex
 		);
 
-		// Wait for last positions to be reached on second HTTP request start
-		$cp->applySessionReplicationPosition( $lb1 );
-		$cp->applySessionReplicationPosition( $lb2 );
+		// Get last positions to be reached on second HTTP request start
+		$sPos1 = $cp->yieldSessionPrimaryPos( $lb1 );
+		$sPos2 = $cp->yieldSessionPrimaryPos( $lb2 );
 		// Shutdown (nothing to record)
-		$cp->stageSessionReplicationPosition( $lb1 );
-		$cp->stageSessionReplicationPosition( $lb2 );
+		$cp->stageSessionPrimaryPos( $lb1 );
+		$cp->stageSessionPrimaryPos( $lb2 );
 		$cpIndex = null;
 		$cp->persistSessionReplicationPositions( $cpIndex );
 
+		$this->assertNotNull( $sPos1 );
+		$this->assertNotNull( $sPos2 );
+		$this->assertSame( $m1Pos->__toString(), $sPos1->__toString() );
+		$this->assertSame( $m2Pos->__toString(), $sPos2->__toString() );
 		$this->assertNull( $cpIndex, "CP write index retained" );
 
 		$this->assertEquals( '45e93a9c215c031d38b7c42d8e4700ca', $cp->getClientId() );
