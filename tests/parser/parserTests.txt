@@ -7887,7 +7887,6 @@ T307691: show-toc flag: no sections
 showflags
 !! wikitext
 !! html/php
-
 flags=
 !! end
 
@@ -7899,7 +7898,6 @@ showflags
 !! wikitext
 __FORCETOC__
 !! html/php
-
 flags=
 !! end
 
@@ -7911,7 +7909,6 @@ showflags
 !! wikitext
 __TOC__
 !! html/php
-
 flags=
 !! end
 
@@ -7922,7 +7919,6 @@ showflags
 !! wikitext
 __NOTOC__
 !! html/php
-
 flags=
 !! end
 
@@ -14262,6 +14258,8 @@ cat
 !! wikitext
 This uses {{=}} and {{Template:=}}.
 !! html/php
+<p>This uses = and =.
+</p>
 !! end
 
 !!test
