@@ -1592,7 +1592,7 @@
 	"filehist-dimensions": "Izmēri",
 	"filehist-filesize": "Faila izmērs",
 	"filehist-comment": "Komentārs",
-	"filehist-missing": "Fails pazudis",
+	"filehist-missing": "nav faila",
 	"imagelinks": "Faila lietojums",
 	"linkstoimage": "Šo failu izmanto {{PLURAL:$1|šajās $1 lapās|šajā $1 lapā|šajās $1 lapās}}:",
 	"linkstoimage-more": "Šo failu izmanto vairāk nekā $1 {{PLURAL:$1|lapās|lapā|lapās}}.\nŠajā sarakstā ir tikai {{PLURAL:$1|pirmās $1 lapas|pirmā lapa|pirmās $1 lapas}}, kas izmanto šo failu.\nPieejams arī [[Special:WhatLinksHere/$2|pilns saraksts]].",
