@@ -52,7 +52,9 @@ interface ILoadBalancerForOwner extends ILoadBalancer {
 	 *  - srvCache : BagOStuff object for server cache [optional]
 	 *  - wanCache : WANObjectCache object [optional]
 	 *  - databaseFactory: DatabaseFactory object [optional]
-	 *  - chronologyCallback: Callback to run before the first connection attempt [optional]
+	 *  - chronologyCallback: Callback to run before the first connection attempt.
+	 *     It takes this ILoadBalancerForOwner instance and yields the relevant DBPrimaryPos
+	 *     for session (null if not applicable). [optional]
 	 *  - defaultGroup: Default query group; the generic group if not specified [optional]
 	 *  - hostname : The name of the current server [optional]
 	 *  - cliMode: Whether the execution context is a CLI script [optional]

@@ -261,7 +261,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Apply client "session consistency" replication position to a new ILoadBalancer
+	 * Yield client "session consistency" replication position for a new ILoadBalancer
 	 *
 	 * If the stash has a previous primary position recorded, this will try to make
 	 * sure that the next query to a replica server of that primary will see changes up
@@ -271,11 +271,11 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 * @internal This method should only be called from LBFactory.
 	 *
 	 * @param ILoadBalancer $lb
-	 * @return void
+	 * @return DBPrimaryPos|null
 	 */
-	public function applySessionReplicationPosition( ILoadBalancer $lb ) {
+	public function yieldSessionPrimaryPos( ILoadBalancer $lb ) {
 		if ( !$this->enabled || !$this->positionWaitsEnabled ) {
-			return;
+			return null;
 		}
 
 		$cluster = $lb->getClusterName();
@@ -284,10 +284,11 @@ class ChronologyProtector implements LoggerAwareInterface {
 		$pos = $this->getStartupSessionPositions()[$primaryName] ?? null;
 		if ( $pos instanceof DBPrimaryPos ) {
 			$this->logger->debug( __METHOD__ . ": $cluster ($primaryName) position is '$pos'" );
-			$lb->waitFor( $pos );
 		} else {
 			$this->logger->debug( __METHOD__ . ": $cluster ($primaryName) has no position" );
 		}
+
+		return $pos;
 	}
 
 	/**
@@ -301,7 +302,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 * @param ILoadBalancer $lb
 	 * @return void
 	 */
-	public function stageSessionReplicationPosition( ILoadBalancer $lb ) {
+	public function stageSessionPrimaryPos( ILoadBalancer $lb ) {
 		if ( !$this->enabled || !$lb->hasOrMadeRecentPrimaryChanges( INF ) ) {
 			return;
 		}
