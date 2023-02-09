@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Category\Category;
 use MediaWiki\MainConfigNames;
 
 /**

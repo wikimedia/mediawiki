@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Category\CategoryViewer;
+
 /**
  * Special handling for category description pages.
  *

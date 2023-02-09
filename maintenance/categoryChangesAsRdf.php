@@ -16,6 +16,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  */
+
+use MediaWiki\Category\CategoriesRdf;
 use MediaWiki\MainConfigNames;
 use Wikimedia\Purtle\RdfWriter;
 use Wikimedia\Purtle\TurtleRdfWriter;

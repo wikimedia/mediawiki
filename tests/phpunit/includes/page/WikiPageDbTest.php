@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Category\Category;
 use MediaWiki\Content\Renderer\ContentRenderer;
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
 use MediaWiki\Edit\PreparedEdit;

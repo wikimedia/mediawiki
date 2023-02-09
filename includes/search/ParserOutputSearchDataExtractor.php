@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Search;
 
-use Category;
+use MediaWiki\Category\Category;
 use ParserOutput;
 use Title;
 

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\BadFileLookup;
+use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Languages\LanguageConverterFactory;

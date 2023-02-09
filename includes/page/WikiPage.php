@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Category\Category;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Edit\PreparedEdit;
