@@ -137,19 +137,6 @@ class Command extends UnboxedCommand {
 	}
 
 	/**
-	 * Sets cgroup for this command. Has no effect since MW 1.36. This setting
-	 * is injected into the executor from CommandFactory instead.
-	 *
-	 * @deprecated since 1.36
-	 * @param string|false $cgroup Absolute file path to the cgroup, or false to not use a cgroup
-	 * @return $this
-	 */
-	public function cgroup( $cgroup ): Command {
-		wfDeprecated( __METHOD__, '1.36' );
-		return $this;
-	}
-
-	/**
 	 * Set restrictions for this request, overwriting any previously set restrictions.
 	 *
 	 * Add the "no network" restriction:
