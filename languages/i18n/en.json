@@ -1114,7 +1114,6 @@
 	"recentchangesdays": "Days to show in recent changes:",
 	"recentchangesdays-max": "Maximum $1 {{PLURAL:$1|day|days}}",
 	"recentchangescount": "Number of edits to show in recent changes, page histories, and in logs, by default:",
-	"prefs-back-label": "Back",
 	"prefs-back-title": "Back to preferences",
 	"prefs-description-personal": "Control how you appear, connect, and communicate.",
 	"prefs-description-rendering": "Configure skin, size, and reading options.",

@@ -26,26 +26,32 @@
 .mw-email-authenticated .oo-ui-labelWidget { }
 */
 
-/*
- * Use `position: sticky` on supported browsers, degrades gracefully in
- * all others, therefore no `@supports` feature query to reduce code complexity.
- */
+// Mobile footer buttons
 .mw-prefs-buttons {
-	.position-sticky();
-	bottom: 0;
-	margin-top: -1px;
-	background-color: #fff;
-	border-top: 1px solid #c8ccd1;
-	padding: 1em 0;
-	// Add top box shadow on top only to emphasize content is scrollable underneath `sticky`.
-	box-shadow: 0 -4px 4px -4px rgba( 0, 0, 0, 0.25 );
+	padding: 16px 0;
 }
 
-// Support Edge: The `position: sticky` rule above causes the buttons to
-// disappear in RTL languages on Microsoft Edge. This magically fixes the issue. See T220706.
+// Non-dialog styling for mobile footer buttons
 #preferences {
+	// Support Edge: The `position: sticky` rule above causes the buttons to
+	// disappear in RTL languages on Microsoft Edge. This magically fixes the issue. See T220706.
 	/* stylelint-disable-next-line plugin/no-unsupported-browser-features */
 	filter: brightness( 1 );
+
+	/*
+	 * Use `position: sticky` on supported browsers, degrades gracefully in
+	 * all others, therefore no `@supports` feature query to reduce code complexity.
+	 */
+	> .mw-prefs-buttons {
+		.position-sticky();
+		bottom: 0;
+		margin: -1px -16px 0 -16px;
+		padding: 16px;
+		background-color: #fff;
+		border-top: 1px solid #c8ccd1;
+		// Add top box shadow on top only to emphasize content is scrollable underneath `sticky`.
+		box-shadow: 0 -4px 4px -4px rgba( 0, 0, 0, 0.25 );
+	}
 }
 
 /* This is needed because add extra buttons in a weird way */
@@ -264,26 +270,7 @@ with params ?useskin=vector&useformat=mobile
 	max-height: 100% !important; /* stylelint-disable-line declaration-no-important */
 }
 
-.oo-ui-window-head.mw-mobile-pref-dialog-head {
-	width: 100%;
-	height: 3em;
-	display: flex;
-	align-items: center;
-	border-bottom: 1px solid @colorGray12;
-	box-shadow: 0 0.25em 0.125em -0.1875em rgba( 0, 0, 0, 0.25 );
-	position: fixed;
-	background: #fff;
-}
-
-.oo-ui-window-head.mw-mobile-pref-dialog-head > div > h5.mw-prefs-header-title {
-	font-size: 1em;
-	font-weight: bold;
-	line-height: 1.25em;
-}
-
 .oo-ui-window-body.mw-mobile-pref-dialog-body {
-	margin-right: 5px;
-	margin-top: 49px;
 	padding-bottom: 66px;
 }
 

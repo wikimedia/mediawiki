@@ -31,6 +31,29 @@ module.exports = {
 			return mw.message( key, ...parameters );
 		};
 
+		function renderI18nHtml( el, binding ) {
+			/* eslint-disable mediawiki/msg-doc */
+			let message;
+
+			if ( Array.isArray( binding.value ) ) {
+				if ( binding.arg === undefined ) {
+					// v-i18n-html="[ ...params ]" (error)
+					throw new Error( 'v-i18n-html used with parameter array but without message key' );
+				}
+				// v-i18n-html:messageKey="[ ...params ]"
+				message = mw.message( binding.arg ).params( binding.value );
+			} else if ( binding.value instanceof mw.Message ) {
+				// v-i18n-html="mw.message( '...' ).params( [ ... ] )"
+				message = binding.value;
+			} else {
+				// v-i18n-html:foo or v-i18n-html="'foo'"
+				message = mw.message( binding.arg || binding.value );
+			}
+			/* eslint-enable mediawiki/msg-doc */
+
+			el.innerHTML = message.parse();
+		}
+
 		/*
 		 * Add a custom v-i18n-html directive. This is used to inject parsed i18n message contents.
 		 *
@@ -62,27 +85,41 @@ module.exports = {
 		 *     styles (e.g. because the message key is dynamic, or contains unusual characters).
 		 *     Note that you can use mw.message() in computed properties, but in template attributes
 		 *     you have to use $i18n() instead as demonstrated above.
+		 *
+		 * WARNING: Do not use dynamic argument syntax, like <div v-i18n-html:[msgKeyVariable] />
+		 *          If you do this, the message will not update when msgKeyVariable changes, due to
+		 *          limitations in Vue's directives API. Instead, use the $i18n style described
+		 *          above if you need a dynamic message key.
 		 */
-		app.directive( 'i18n-html', function ( el, binding ) {
-			let message;
-			/* eslint-disable mediawiki/msg-doc */
-			if ( Array.isArray( binding.value ) ) {
-				if ( binding.arg === undefined ) {
-					// v-i18n-html="[ ...params ]" (error)
-					throw new Error( 'v-i18n-html used with parameter array but without message key' );
-				}
-				// v-i18n-html:messageKey="[ ...params ]"
-				message = mw.message( binding.arg ).params( binding.value );
-			} else if ( binding.value instanceof mw.Message ) {
-				// v-i18n-html="mw.message( '...' ).params( [ ... ] )"
-				message = binding.value;
-			} else {
-				// v-i18n-html:foo or v-i18n-html="'foo'"
-				message = mw.message( binding.arg || binding.value );
-			}
-			/* eslint-enable mediawiki/msg-doc */
+		app.directive( 'i18n-html', {
+			mounted: renderI18nHtml,
+			updated( el, binding ) {
+				// This function is invoked often, every time anything in the component changes.
+				// We don't want to rerender unnecessarily, because that's wasteful and can cause
+				// strange issues like T327229. For each possible type of binding.value, compare it
+				// to binding.oldValue, and abort if they're equal. This does not account for
+				// changes in binding.arg; we can't detect those, so there's a warning in the
+				// documentation above explaining that using a dynamic argument is not supported.
 
-			el.innerHTML = message.parse();
+				const areArraysEqual = ( arr1, arr2 ) =>
+					Array.isArray( arr1 ) && Array.isArray( arr2 ) &&
+					arr1.length === arr2.length &&
+					arr1.every( ( val, index ) => arr2[ index ] === val );
+				const areMessagesEqual = ( msg1, msg2 ) =>
+					msg1 instanceof mw.Message && msg2 instanceof mw.Message &&
+					msg1.key === msg2.key &&
+					areArraysEqual( msg1.parameters, msg2.parameters );
+
+				if (
+					binding.value === binding.oldValue ||
+					areArraysEqual( binding.value, binding.oldValue ) ||
+					areMessagesEqual( binding.value, binding.oldValue )
+				) {
+					return;
+				}
+
+				renderI18nHtml( el, binding );
+			}
 		} );
 	}
 };
