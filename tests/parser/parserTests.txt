@@ -2599,7 +2599,7 @@ title=[[Main Page]]
 <p><a class="mw-selflink-fragment" href="#section_with_spaces">Main Page#section with spaces</a>
 </p>
 !! html/parsoid
-<p><a rel="mw:WikiLink" href="./Main_Page#section" title="Main Page" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page#section_with_spaces"},"sa":{"href":"Main Page#section"}}'>Main Page#section with spaces</a></p>
+<p><a rel="mw:WikiLink" href="./Main_Page#section_with_spaces" title="Main Page" data-parsoid='{"stx":"simple","a":{"href":"./Main_Page#section_with_spaces"},"sa":{"href":"Main Page#section with spaces"}}'>Main Page#section with spaces</a></p>
 !! end
 
 !! article
