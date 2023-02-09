@@ -4694,10 +4694,16 @@ class MainConfigSchema {
 	 * - A friendly name for each site, used for tooltip text, may optionally be
 	 *   placed in the system message "interlanguage-link-sitename-xyz" where xyz is
 	 *   the prefix in this array.
+	 * - This should be a list of "interwiki prefixes" (ie, what appears in
+	 *   wikitext), and you probably want to add an entry to
+	 *   InterlanguageLinkCodeMap as well to specify which mediawiki internal
+	 *   (or custom) language code this prefix corresponds to, and perhaps
+	 *   then map that custom language code to a language name in
+	 *   ExtraLanguageNames.
 	 */
 	public const ExtraInterlanguageLinkPrefixes = [
 		'default' => [],
-		'type' => 'map',
+		'type' => 'list',
 	];
 
 	/**

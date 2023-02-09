@@ -24,6 +24,7 @@ namespace MediaWiki\Parser\Parsoid\Config;
 use Config;
 use ExtensionRegistry;
 use Language;
+use LanguageCode;
 use LanguageConverter;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Config\ServiceOptions;
@@ -77,6 +78,7 @@ class SiteConfig extends ISiteConfig {
 		MainConfigNames::ArticlePath,
 		MainConfigNames::InterwikiMagic,
 		MainConfigNames::ExtraInterlanguageLinkPrefixes,
+		MainConfigNames::InterlanguageLinkCodeMap,
 		MainConfigNames::LocalInterwikis,
 		MainConfigNames::LanguageCode,
 		MainConfigNames::NamespaceAliases,
@@ -435,6 +437,7 @@ class SiteConfig extends ISiteConfig {
 		$getPrefixes = $this->interwikiLookup->getAllPrefixes();
 		$langNames = $this->languageNameUtils->getLanguageNames();
 		$extraLangPrefixes = $this->config->get( MainConfigNames::ExtraInterlanguageLinkPrefixes );
+		$extraLangCodeMap = $this->config->get( MainConfigNames::InterlanguageLinkCodeMap );
 		$localInterwikis = $this->config->get( MainConfigNames::LocalInterwikis );
 
 		foreach ( $getPrefixes as $row ) {
@@ -462,12 +465,21 @@ class SiteConfig extends ISiteConfig {
 			}
 			if ( isset( $langNames[$prefix] ) ) {
 				$val['language'] = true;
+				$standard = LanguageCode::replaceDeprecatedCodes( $prefix );
+				if ( $standard !== $prefix ) {
+					# Note that even if this code is deprecated, it should
+					# only be remapped if extralanglink (set below) is false.
+					$val['deprecated'] = $standard;
+				}
+				$val['bcp47'] = LanguageCode::bcp47( $standard );
 			}
 			if ( in_array( $prefix, $localInterwikis, true ) ) {
 				$val['localinterwiki'] = true;
 			}
 			if ( in_array( $prefix, $extraLangPrefixes, true ) ) {
 				$val['extralanglink'] = true;
+				$val['code'] = $extraLangCodeMap[$prefix] ?? $prefix;
+				$val['bcp47'] = LanguageCode::bcp47( $val['code'] );
 			}
 
 			$this->interwikiMap[$prefix] = $val;
