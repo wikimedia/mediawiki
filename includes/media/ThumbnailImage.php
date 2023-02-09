@@ -122,11 +122,18 @@ class ThumbnailImage extends MediaTransformOutput {
 			throw new MWException( __METHOD__ . ' called in the old style' );
 		}
 
-		$alt = $options['alt'] ?? '';
 		$query = $options['desc-query'] ?? '';
 
-		$attribs = [
-			'alt' => $alt,
+		$attribs = [];
+
+		// An empty alt indicates an image is not a key part of the content and
+		// that non-visual browsers may omit it from rendering.  Only set the
+		// parameter if it's explicitly requested.
+		if ( isset( $options['alt'] ) ) {
+			$attribs['alt'] = $options['alt'];
+		}
+
+		$attribs += [
 			'src' => $this->url,
 			'decoding' => 'async',
 		];
