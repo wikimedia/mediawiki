@@ -1085,7 +1085,6 @@
 	"recentchangesdays": "Број дана у скорашњим изменама:",
 	"recentchangesdays-max": "Највише $1 {{PLURAL:$1|дан|дана}}",
 	"recentchangescount": "Подразумевани број измена за приказ у скорашњим изменама, историјама страница и дневницима:",
-	"prefs-back-label": "Назад",
 	"prefs-back-title": "Назад на подешавања",
 	"prefs-description-personal": "Управљате како се представљате, повезујете и комуницирате.",
 	"prefs-description-rendering": "Подешавање теме, величине и др.",

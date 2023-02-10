@@ -1009,7 +1009,6 @@
 	"recentchangesdays": "Nombre de jorns d'afichar dins los darrièrs cambiaments :",
 	"recentchangesdays-max": "(maximum $1 {{PLURAL:$1|jorn|jorns}})",
 	"recentchangescount": "Nombre de modificacions d'afichar per defauta dins los cambiaments recents, los istorics e los logs :",
-	"prefs-back-label": "Retorn",
 	"prefs-back-title": "Tornar a las preferéncias",
 	"prefs-help-recentchangescount": "Nombre maximum : 1000",
 	"prefs-help-watchlist-token2": "Aquí la clau secreta del flux Web de vòstra lista de seguiment.\nTota persona que la coneis poirà legir vòstra lista de seguiment, doncas, la comuniquetz pas.\nSe necessari, [[Special:ResetTokens|clicatz aicí per la reïnicializar]].",

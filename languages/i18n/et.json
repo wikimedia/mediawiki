@@ -1075,7 +1075,6 @@
 	"recentchangesdays": "Mitut päeva näidata viimastes muudatustes:",
 	"recentchangesdays-max": "Ülemmäär $1 {{PLURAL:$1|päev|päeva}}",
 	"recentchangescount": "Mitut muudatust viimaste muudatuste loendis, lehekülgede ajalugudes ja logides vaikimisi näidata:",
-	"prefs-back-label": "Tagasi",
 	"prefs-back-title": "Tagasi eelistuste juurde",
 	"prefs-description-personal": "Määra, kuidas välja näed, sisse logid ja ühenduses oled.",
 	"prefs-description-rendering": "Muuda kujunduse, suuruse ja lugemise suvandeid.",

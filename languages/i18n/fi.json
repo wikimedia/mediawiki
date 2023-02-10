@@ -1123,7 +1123,6 @@
 	"recentchangesdays": "Näytettävien päivien määrä tuoreissa muutoksissa:",
 	"recentchangesdays-max": "Enintään $1 {{PLURAL:$1|päivä|päivää}}",
 	"recentchangescount": "Näytettävien muutoksien määrä tuoreissa muutoksissa, sivuhistorioissa ja lokeissa oletusarvoisesti:",
-	"prefs-back-label": "Takaisin",
 	"prefs-back-title": "Takaisin asetuksiin",
 	"prefs-description-rendering": "Muuta ulkoasu-, koko- ja lukuasetuksia.",
 	"prefs-description-rc": "Mukauta tuoreiden muutosten syötettä.",

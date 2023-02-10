@@ -1077,7 +1077,6 @@
 	"recentchangesdays": "Número de días a amosar nos cambios recentes:",
 	"recentchangesdays-max": "Máximo: $1 {{PLURAL:$1|día|días}}",
 	"recentchangescount": "Número de edicións a amosar por defecto nos cambios recentes, nos historiais de páxina e nos rexistrosː",
-	"prefs-back-label": "Volver",
 	"prefs-back-title": "Volver ás preferencias",
 	"prefs-description-personal": "Controle como aparece, se conecta e se comunica.",
 	"prefs-description-rendering": "Configure a aparencia, o tamaño e as opcións de lectura.",

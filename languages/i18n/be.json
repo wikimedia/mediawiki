@@ -1091,7 +1091,6 @@
 	"recentchangesdays": "За колькі дзён паказваць {{lc:{{:{{ns:mediawiki}}:recentchanges/be}}}}:",
 	"recentchangesdays-max": "(найбольш $1 {{PLURAL:$1|дзень|дзён}})",
 	"recentchangescount": "Перадвызначаная колькасць правак для паказу:",
-	"prefs-back-label": "Назад",
 	"prefs-back-title": "Вярнуцца да параметраў",
 	"prefs-description-personal": "Кантралюйце, як вы паказваецеся, падключаецеся і размаўляеце.",
 	"prefs-description-rendering": "Наладзьце вокладку, памер і параметры чытання.",

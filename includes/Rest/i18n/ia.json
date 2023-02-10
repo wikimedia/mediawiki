@@ -12,6 +12,7 @@
 	"rest-nonexistent-revision": "Le version specificate ($1) non existe",
 	"rest-nonexistent-user": "Le usator specificate ($1) non existe",
 	"rest-invalid-user": "Le nomine de usator specificate ($1) non es valide",
+	"rest-unsupported-content-type": "Typo de contento (Content-Type) non supportate: $1",
 	"rest-permission-denied-anon": "Non accessibile pro usatores anonyme",
 	"rest-permission-denied-title": "Le usator non ha le derecto de leger le titulo ($1)",
 	"rest-permission-denied-revision": "Le usator non ha accesso al version requestate ($1).",
@@ -42,5 +43,7 @@
 	"rest-cannot-load-file": "Le file pro le titulo \"$1\" non pote esser cargate.",
 	"rest-cross-origin-anon-write": "Le requestas de scriptura anonyme trans origines non es permittite",
 	"rest-requires-safe-against-csrf": "Iste puncto terminal require un fornitor de sessiones que protege contra usurpationes de sitos (CSRF).",
-	"rest-badtoken": "Le token CSRF fornite non es valide."
+	"rest-badtoken": "Le token CSRF fornite non es valide.",
+	"rest-badtoken-missing": "Le parametro <var>token</var> es obligatori, a minus que se usa un methodo de authentication secur contra attaccos CSRF.",
+	"rest-badtoken-nosession": "Error CSRF: necun session."
 }

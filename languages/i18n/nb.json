@@ -1101,7 +1101,6 @@
 	"recentchangesdays": "Antall dager som skal vises i siste endringer:",
 	"recentchangesdays-max": "Maks $1 {{PLURAL:$1|dag|dager}}",
 	"recentchangescount": "Antall redigeringer som skal vises som standard i siste endringer, sidehistorikker og logger:",
-	"prefs-back-label": "Tilbake",
 	"prefs-back-title": "Tilbake til innstillingene",
 	"prefs-description-personal": "Kontroller hvordan du vises, kobler til og kommuniserer.",
 	"prefs-description-rendering": "Tilpass utseend, størrelse og lesevalg.",

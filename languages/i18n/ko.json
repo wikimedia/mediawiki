@@ -1130,7 +1130,6 @@
 	"recentchangesdays": "최근 바뀜에 보여줄 날짜 수:",
 	"recentchangesdays-max": "최대 $1{{PLURAL:$1|일}}",
 	"recentchangescount": "최근 바뀜, 문서 역사, 기록에서 기본으로 보여줄 편집 수:",
-	"prefs-back-label": "뒤로",
 	"prefs-back-title": "환경설정으로 돌아가기",
 	"prefs-description-personal": "표시, 연결 및 통신 방법을 제어합니다.",
 	"prefs-description-rendering": "스킨, 크기 및 읽기 옵션을 구성합니다.",

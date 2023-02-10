@@ -1152,7 +1152,6 @@
 	"recentchangesdays": "Weer te geven dagen in recente wijzigingen:",
 	"recentchangesdays-max": "Maximaal $1 {{PLURAL:$1|dag|dagen}}",
 	"recentchangescount": "Standaard aantal weer te geven bewerkingen in de recente wijzigingen, paginageschiedenis en de logboeken:",
-	"prefs-back-label": "Terug",
 	"prefs-back-title": "Terug naar voorkeuren",
 	"prefs-description-personal": "Bepaal hoe u eruitziet, verbinding maakt en communiceert.",
 	"prefs-description-rendering": "Configureer de vormgeving, grootte en de opties voor het lezen.",

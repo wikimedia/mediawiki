@@ -1103,7 +1103,6 @@
 	"recentchangesdays": "Počet dní zobrazených v posledních změnách:",
 	"recentchangesdays-max": "Maximálně $1 {{PLURAL:$1|den|dny|dní}}",
 	"recentchangescount": "Počet implicitně zobrazovaných záznamů v posledních změnách, historiích stránek a protokolovacích záznamech:",
-	"prefs-back-label": "Zpět",
 	"prefs-back-title": "Zpět do nastavení",
 	"prefs-description-rendering": "Navolte si možnosti vzhledu, velikosti a čtení.",
 	"prefs-description-editing": "Přizpůsobte si, jak provádíte, sledujete a kontrolujete editace.",

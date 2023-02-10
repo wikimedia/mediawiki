@@ -1279,7 +1279,6 @@
 	"recentchangesdays": "Días que mostrar en los cambios recientes:",
 	"recentchangesdays-max": "Máximo {{PLURAL:$1|un día|$1 días}}",
 	"recentchangescount": "Número de ediciones que mostrar de manera predeterminada en cambios recientes, en los historiales de las páginas y en los registros:",
-	"prefs-back-label": "Volver",
 	"prefs-back-title": "Volver a preferencias",
 	"prefs-description-personal": "Controla cómo usted aparece, conecta y comunica.",
 	"prefs-description-rendering": "Configura tus opciones de apariencia, tamaño y lectura.",

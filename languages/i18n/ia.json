@@ -1058,7 +1058,6 @@
 	"recentchangesdays": "Numero de dies a monstrar in modificationes recente:",
 	"recentchangesdays-max": "(non plus de $1 {{PLURAL:$1|die|dies}})",
 	"recentchangescount": "Numero predefinite de modificationes a monstrar in le lista de modificationes recente, in le historias de paginas e in le registros:",
-	"prefs-back-label": "Retornar",
 	"prefs-back-title": "Retornar al preferentias",
 	"prefs-description-personal": "Determinar como tu te presenta, connecte, e communica.",
 	"prefs-description-rendering": "Configura optiones de apparentia, grandor e lectura.",

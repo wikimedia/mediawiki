@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
+			"McDutchie",
 			"Thibaut120094",
 			"Verdy p",
 			"Wladek92"
@@ -47,6 +48,6 @@
 	"rest-cross-origin-anon-write": "Les requêtes d’écriture anonymes d’origine croisée ne sont pas autorisées",
 	"rest-requires-safe-against-csrf": "Ce point de terminaison exige un fournisseur de session qui protège des usurpations de sites (CSRF).",
 	"rest-badtoken": "Le jeton CSRF fourni n’est pas valide.",
-	"rest-badtoken-missing": "Le paramètre <var>token</var> est obligatoire à moins d’utiliser une méthode d’authentification sécurisée par CSRF.",
+	"rest-badtoken-missing": "Le paramètre <var>token</var> est obligatoire à moins d’utiliser une méthode d’authentification sûre contre les attaques CSRF.",
 	"rest-badtoken-nosession": "Erreur CSRF - pas de session."
 }

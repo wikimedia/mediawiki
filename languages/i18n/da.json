@@ -1092,7 +1092,6 @@
 	"recentchangesdays": "Antal dage som skal vises i seneste ændringer:",
 	"recentchangesdays-max": "(maks. $1 {{PLURAL:$1|dag|dage}})",
 	"recentchangescount": "Antal redigeringer der som standard vises i seneste ændringer, sidehistorikker og logger:",
-	"prefs-back-label": "Tilbage",
 	"prefs-help-recentchangescount": "Maksimalt antal: 1000",
 	"prefs-help-watchlist-token2": "Dette er den hemmelige nøgle til web-feed af din overvågningsliste.\nHvis andre kender den, vil man være i stand til at læse din overvågningsliste, så del den ikke.\n[[Special:ResetTokens|Klik her]] hvis du har brug at nulstille den.",
 	"prefs-help-tokenmanagement": "Du kan se og nulstille den hemmelige nøgle for din konto som kan få tilgang til din overvågningsliste via feeds. Alle som har nøglen vil kunne læse din overvågningsliste, så del den derfor ikke.",

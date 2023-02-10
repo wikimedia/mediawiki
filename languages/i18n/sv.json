@@ -1134,7 +1134,6 @@
 	"recentchangesdays": "Antal dygn som skall visas i \"senaste ändringarna\":",
 	"recentchangesdays-max": "Maximalt $1 {{PLURAL:$1|dygn}}",
 	"recentchangescount": "Antal redigeringar som visas i senaste ändringar, sidhistoriker och loggar som standard:",
-	"prefs-back-label": "Tillbaka",
 	"prefs-back-title": "Tillbaka till inställningarna",
 	"prefs-description-personal": "Styr hur du ser ut, ansluter och kommunicerar.",
 	"prefs-description-rendering": "Konfigurera utseende, storlek och läsalternativ.",
