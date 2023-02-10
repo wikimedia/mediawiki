@@ -511,28 +511,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				}
 				$this->mTOCHTML = $toc;
 				$text = Parser::replaceTableOfContentsMarker( $text, $toc );
-				// The line below can be removed once old content has expired
-				// from the parser cache
-				$text = str_replace( [ Parser::TOC_START, Parser::TOC_END ], '', $text );
-			} else {
-				// The line below can be removed once old content has expired
-				// from the parser cache (and Parser::TOC_PLACEHOLDER should
-				// then be made private)
-				$text = preg_replace(
-					'#' . preg_quote( Parser::TOC_START, '#' ) . '.*?' . preg_quote( Parser::TOC_END, '#' ) . '#s',
-					Parser::TOC_PLACEHOLDER,
-					$text
-				);
 			}
 		} else {
 			$text = Parser::replaceTableOfContentsMarker( $text, '' );
-			// The line below can be removed once old content has expired
-			// from the parser cache
-			$text = preg_replace(
-				'#' . preg_quote( Parser::TOC_START, '#' ) . '.*?' . preg_quote( Parser::TOC_END, '#' ) . '#s',
-				'',
-				$text
-			);
 		}
 
 		if ( $options['deduplicateStyles'] ) {
@@ -2546,6 +2527,14 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			$data['MaxAdaptiveExpiry'] = $this->mMaxAdaptiveExpiry;
 		}
 
+		if ( $this->mTOCData ) {
+			// Temporarily add information from TOCData extension data
+			// T327439: We should eventually make the entire mTOCData
+			// serializable
+			$toc = $this->mTOCData->jsonSerialize();
+			$data['TOCExtensionData'] = $toc['extensionData'];
+		}
+
 		return $data;
 	}
 
@@ -2597,6 +2586,12 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		) {
 			$this->setSections( $jsonData['Sections'] );
 			unset( $this->mFlags['mw:toc-set'] );
+			if ( isset( $jsonData['TOCExtensionData'] ) ) {
+				$tocData = $this->getTOCData(); // created by setSections() above
+				foreach ( $jsonData['TOCExtensionData'] as $key => $value ) {
+					$tocData->setExtensionData( $key, $value );
+				}
+			}
 		}
 		$this->mProperties = self::detectAndDecodeBinary( $jsonData['Properties'] );
 		$this->mTOCHTML = $jsonData['TOCHTML'];

@@ -389,6 +389,14 @@ because of Phabricator reports.
   but would not log it as such in patrol log and would still require
   'autopatrol' right (not 'patrol'). Generally, whether a change should become
   autopatrolled, is usually determined before it's inserted in the database.
+* In versions of MediaWiki before 1.39, the table of contents location
+  was marked internally with <mw:toc>...</mw:toc>; in version 1.39
+  this was changed to an empty tag <mw:tocplace />.  In 1.40 this has
+  been changed a final time to use an empty <meta> tag for future
+  Parsoid compatibility (see Parser::TOC_PLACEHOLDER).  This may
+  affect you if stale content is left in the ParserCache or if your
+  skin did manual ToC replacement without using the recommended
+  Parser::replaceTableOfContentsMarker() function.
 * Skins can now choose which Codex theme should be loaded by setting the
   SkinCodexThemes attribute in their skin.json file.
 * …
