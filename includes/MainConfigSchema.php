@@ -6435,7 +6435,7 @@ class MainConfigSchema {
 	 * @since 1.36
 	 */
 	public const ParserEnableLegacyMediaDOM = [
-		'default' => true,
+		'default' => false,
 	];
 
 	/**

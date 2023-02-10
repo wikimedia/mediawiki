@@ -4112,7 +4112,7 @@ config-schema:
             production.
             @since 1.39
     ParserEnableLegacyMediaDOM:
-        default: true
+        default: false
         description: |-
             Enable legacy media HTML structure in the output from the Parser.  The
             alternative modern HTML structure that replaces it is described at
