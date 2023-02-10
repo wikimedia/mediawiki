@@ -26,6 +26,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\Parsoid\Core\TOCData;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
 
 /**
@@ -183,8 +184,7 @@ class ApiHelp extends ApiBase {
 		$haveModules = [];
 		$html = self::getHelpInternal( $context, $modules, $options, $haveModules );
 		if ( !empty( $options['toc'] ) && $haveModules ) {
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped Triggered by Linker?
-			$out->addHTML( Linker::generateTOC( $haveModules, $context->getLanguage() ) );
+			$out->addHTML( Linker::generateTOC( TOCData::fromLegacy( $haveModules ), $context->getLanguage() ) );
 		}
 		$out->addHTML( $html );
 
