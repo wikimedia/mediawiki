@@ -49,6 +49,6 @@
 	"rest-cross-origin-anon-write": "Error message for REST API debugging, shown when a client attempts to make a cross-origin anon write.",
 	"rest-requires-safe-against-csrf": "Error message for REST API debugging, shown when a handler requires a [[:w:Cross-site request forgery|CSRF]]-safe session provider, but a non-CSRF-safe session provider was used.",
 	"rest-badtoken": "Error message for REST API debugging, shown when an invalid CSRF token was provided.",
-	"rest-badtoken-missing": "Error message for REST API debugging, shown when no CSRF token was provided.",
+	"rest-badtoken-missing": "Error message for REST API debugging, shown when no anti-CSRF security token was provided.\n\n'''Note: CSRF is a type of attack ([[:w:Cross-site request forgery|Cross-Site Request Forgery]]), so \"CSRF-safe\" means \"safe against CSRF attacks\".'''",
 	"rest-badtoken-nosession": "Error message for REST API debugging, shown when an invalid CSRF token was provided and it seems like the client failed to include authentication information."
 }

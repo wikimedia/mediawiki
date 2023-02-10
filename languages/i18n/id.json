@@ -1129,7 +1129,6 @@
 	"recentchangesdays": "Jumlah hari yang ditampilkan di perubahan terbaru:",
 	"recentchangesdays-max": "(maksimum $1 {{PLURAL:$1|hari|hari}})",
 	"recentchangescount": "Jumlah suntingan standar untuk ditampilkan di perubahan terbaru, riwayat halaman, dan di halaman log:",
-	"prefs-back-label": "Kembali",
 	"prefs-back-title": "Kembali ke preferensi",
 	"prefs-description-personal": "Preferensi bagaimana Anda tampil, terhubung, dan berkomunikasi",
 	"prefs-description-rendering": "Konfigurasi opsi-opsi kulit, ukuran, dan pembacaan",

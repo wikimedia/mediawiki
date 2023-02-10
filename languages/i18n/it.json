@@ -1188,7 +1188,6 @@
 	"recentchangesdays": "Numero di giorni da mostrare nelle ultime modifiche:",
 	"recentchangesdays-max": "(massimo $1 {{PLURAL:$1|giorno|giorni}})",
 	"recentchangescount": "Numero di modifiche da mostrare nelle ultime modifiche, cronologie e registri, per impostazione predefinita:",
-	"prefs-back-label": "Indietro",
 	"prefs-back-title": "Torna alle preferenze",
 	"prefs-description-personal": "Controlla come appari, ti connetti e comunichi.",
 	"prefs-description-rendering": "Configura tema, dimensioni e opzioni di lettura.",

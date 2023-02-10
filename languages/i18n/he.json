@@ -1093,7 +1093,6 @@
 	"recentchangesdays": "מספר הימים שמוצגים בדף השינויים האחרונים:",
 	"recentchangesdays-max": "לכל היותר {{PLURAL:$1|יום אחד|יומיים|$1 ימים}}",
 	"recentchangescount": "מספר העריכות שמוצגות כברירת מחדל בדף השינויים האחרונים, בדפי היסטוריית גרסאות ובדפי יומנים:",
-	"prefs-back-label": "חזרה",
 	"prefs-back-title": "חזרה להעדפות",
 	"prefs-description-personal": "שליטה באופן שבו {{GENDER:|אתה מופיע, מתחבר ומתקשר|את מופיעה, מתחברת ומתקשרת}}.",
 	"prefs-description-rendering": "הגדרת אפשרויות עיצוב, גודל, וקריאה.",

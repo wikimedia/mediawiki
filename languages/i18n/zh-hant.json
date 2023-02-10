@@ -1172,7 +1172,6 @@
 	"recentchangesdays": "近期變更顯示的天數：",
 	"recentchangesdays-max": "最多 $1 {{PLURAL:$1|天}}",
 	"recentchangescount": "在最近變更、頁面歷史、以及日誌裡，所預設顯示的編輯數：",
-	"prefs-back-label": "返回",
 	"prefs-back-title": "返回到偏好設定",
 	"prefs-description-personal": "控制站內身分顯示與站內交流相關的設定。",
 	"prefs-description-rendering": "配置外觀、大小和閱讀相關的選項。",

@@ -1033,7 +1033,6 @@
 	"recentchangesdays": "Nifer y diwrnodau i'w dangos yn 'newidiadau diweddar':",
 	"recentchangesdays-max": "(hyd at $1 {{PLURAL:$1||diwrnod|ddiwrnod|diwrnod|diwrnod|diwrnod}})",
 	"recentchangescount": "Nifer y golygiadau i'w dangos yn y 'newidiadau diweddar', 'logiau', 'hanes y dudalen' yn ddiofyn:",
-	"prefs-back-label": "Nôl",
 	"prefs-back-title": "Nôl i'r dewisiadau",
 	"prefs-description-rendering": "Addasu opsiynau gwedd, maint, a darllen.",
 	"prefs-description-editing": "Newid sut rydych chi’n gwneud, tracio, ac adolygu golygiadau.",

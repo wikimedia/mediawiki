@@ -1150,7 +1150,6 @@
 	"recentchangesdays": "Liczba dni prezentowanych w ostatnich zmianach:",
 	"recentchangesdays-max": "(maksymalnie $1 {{PLURAL:$1|dzień|dni}})",
 	"recentchangescount": "Domyślna liczba wyświetlanych edycji w ostatnich zmianach, historii i rejestrach:",
-	"prefs-back-label": "Wstecz",
 	"prefs-back-title": "Powrót do preferencji",
 	"prefs-description-personal": "Kontroluj swój wygląd, łącz się i komunikuj.",
 	"prefs-description-rendering": "Skonfiguruj opcje skórki, rozmiaru i czytania.",

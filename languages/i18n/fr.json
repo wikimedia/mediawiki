@@ -1244,7 +1244,6 @@
 	"recentchangesdays": "Nombre de jours à afficher dans les modifications récentes :",
 	"recentchangesdays-max": "(maximum $1 jour{{PLURAL:$1||s}})",
 	"recentchangescount": "Nombre de modifications à afficher par défaut dans les modifications récentes, les historiques de page et les journaux :",
-	"prefs-back-label": "Retour",
 	"prefs-back-title": "Retour aux préférences",
 	"prefs-description-personal": "Contrôlez la façon dont vous apparaissez, vous connectez et communiquez.",
 	"prefs-description-rendering": "Configurez les options d’habillage, de taille et de lecture.",

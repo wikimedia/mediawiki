@@ -1144,7 +1144,6 @@
 	"recentchangesdays": "عدد الأيام المعروضة في أحدث التغييرات:",
 	"recentchangesdays-max": "الحد الأقصى {{PLURAL:$1|أقل من يوم|يوم واحد|يومان|$1 أيام|$1 يوما|$1 يوم}}",
 	"recentchangescount": "عدد التعديلات للعرض في أحدث التغييرات وتواريخ الصفحات، والسجلات، افتراضيا:",
-	"prefs-back-label": "رجوع",
 	"prefs-back-title": "رجوع إلى التفضيلات",
 	"prefs-description-personal": "تحكم في كيفية الظهور والاتصال والتواصل.",
 	"prefs-description-rendering": "تكوين خيارات السطح والحجم والقراءة.",
