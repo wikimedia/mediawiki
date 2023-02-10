@@ -388,23 +388,20 @@ class BitmapHandler extends TransformationalImageHandler {
 			->get( MainConfigNames::CustomConvertCommand );
 
 		// Variables: %s %d %w %h
-		$matchLookupTable = [
-			'%d' => Shell::escape( $params['dstPath'] ),
-			'%s' => Shell::escape( $params['srcPath'] ),
-			'%w' => Shell::escape( $params['physicalWidth'] ),
-			'%h' => Shell::escape( $params['physicalHeight'] ),
-		];
+		$src = Shell::escape( $params['srcPath'] );
+		$dst = Shell::escape( $params['dstPath'] );
+		$w = Shell::escape( $params['physicalWidth'] );
+		$h = Shell::escape( $params['physicalHeight'] );
 		// Find all variables in the original command at once,
 		// so that replacement values cannot inject variable placeholders
 		$cmd = preg_replace_callback( '/%[dswh]/',
-			static function ( $m ) use ( &$matchLookupTable ) {
-				if ( !isset( $matchLookupTable[$m[0]] ) ) {
-					return $m[0];
-				}
-				// We only want to replace each of the variables once
-				$replacement = $matchLookupTable[$m[0]];
-				unset( $matchLookupTable[$m[0]] );
-				return $replacement;
+			static function ( $m ) use ( $src, $dst, $w, $h ) {
+				return [
+					'%s' => $src,
+					'%d' => $dst,
+					'%w' => $w,
+					'%h' => $h,
+				][$m[0]];
 			},
 			$customConvertCommand
 		);
