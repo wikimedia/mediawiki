@@ -9391,20 +9391,23 @@ Expansion of multi-line templates in attribute values (T8255 check 2)
 <div style="background: &#10;#00FF00">-</div>
 !! end
 
+# BlockLevelPass suppresses P-wrapping for tags whose names begin with
+# `mw:`.  We'll somewhat arbitrarily chose `mw:editsection` to
+# represent this class of tags for testing purposes.
 !! test
 Tags which are hidden from tidiers cannot pass through the Sanitizer
 !! options
 parsoid=wt2html,html2html
 !! wikitext
-<mw:toc><script>alert();</script></mw:toc>
+<mw:editsection><script>alert();</script></mw:editsection>
 
 <meta property="mw:PageProp/toc" />
 !! html/php
-<p>&lt;mw:toc&gt;&lt;script&gt;alert();&lt;/script&gt;&lt;/mw:toc&gt;
+<p>&lt;mw:editsection&gt;&lt;script&gt;alert();&lt;/script&gt;&lt;/mw:editsection&gt;
 </p><p>&lt;meta property="mw:PageProp/toc" /&gt;
 </p>
 !! html/parsoid
-<p>&lt;mw:toc>&lt;script>alert();&lt;/script>&lt;/mw:toc></p>
+<p>&lt;mw:editsection>&lt;script>alert();&lt;/script>&lt;/mw:editsection></p>
 
 <p>&lt;meta property="mw:PageProp/toc" /></p>
 !! end

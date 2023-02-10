@@ -511,28 +511,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 				}
 				$this->mTOCHTML = $toc;
 				$text = Parser::replaceTableOfContentsMarker( $text, $toc );
-				// The line below can be removed once old content has expired
-				// from the parser cache
-				$text = str_replace( [ Parser::TOC_START, Parser::TOC_END ], '', $text );
-			} else {
-				// The line below can be removed once old content has expired
-				// from the parser cache (and Parser::TOC_PLACEHOLDER should
-				// then be made private)
-				$text = preg_replace(
-					'#' . preg_quote( Parser::TOC_START, '#' ) . '.*?' . preg_quote( Parser::TOC_END, '#' ) . '#s',
-					Parser::TOC_PLACEHOLDER,
-					$text
-				);
 			}
 		} else {
 			$text = Parser::replaceTableOfContentsMarker( $text, '' );
-			// The line below can be removed once old content has expired
-			// from the parser cache
-			$text = preg_replace(
-				'#' . preg_quote( Parser::TOC_START, '#' ) . '.*?' . preg_quote( Parser::TOC_END, '#' ) . '#s',
-				'',
-				$text
-			);
 		}
 
 		if ( $options['deduplicateStyles'] ) {

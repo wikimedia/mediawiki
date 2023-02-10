@@ -163,27 +163,6 @@ class Parser {
 	public const MARKER_PREFIX = "\x7f'\"`UNIQ-";
 
 	/**
-	 * Internal Markers used for wrapping the table of contents.
-	 *
-	 * The use of the `mw:` prefix makes sure that the table of contents is
-	 * identified as a block element, and prevents the introduction of `p` tags
-	 * wrapping the table of contents; see BlockLevelPass.
-	 *
-	 * @var string
-	 * @deprecated since 1.38.  These markers are used in old cached
-	 * content but not generated from the current parser (or from Parsoid).
-	 * The constants will be removed in a future MediaWiki release.
-	 */
-	public const TOC_START = '<mw:toc>';
-
-	/**
-	 * See ::TOC_START
-	 * @var string
-	 * @deprecated since 1.38. See ::TOC_START
-	 */
-	public const TOC_END = '</mw:toc>';
-
-	/**
 	 * Internal marker used by parser to track where the table of
 	 * contents should be. Various magic words can change the position
 	 * during the parse.  The table of contents is generated during
@@ -194,11 +173,8 @@ class Parser {
 	 * @var string
 	 * @see Keep this in sync with BlockLevelPass::execute() and
 	 *  RemexCompatMunger::isTableOfContentsMarker()
-	 * @internal This will be made private as soon as old content
-	 *  has expired from the cache (at the moment it is needed in
-	 *  ParserOutput for a compatibility fallback).  Skins should
-	 *  *not* directly reference TOC_PLACEHOLDER but instead use
-	 *  Parser::replaceTableOfContentsMarker().
+	 * @internal Skins should *not* directly reference TOC_PLACEHOLDER
+	 * but instead use Parser::replaceTableOfContentsMarker().
 	 */
 	public const TOC_PLACEHOLDER = '<meta property="mw:PageProp/toc" />';
 
@@ -4791,9 +4767,7 @@ class Parser {
 			static function ( array $matches ) use( $toc ) {
 				return $toc; // Ensure $1 \1 etc are safe to use in $toc
 			},
-			// For backwards compatibility during transition period,
-			// also replace "old" TOC_PLACEHOLDER value
-			str_replace( '<mw:tocplace></mw:tocplace>', $toc, $text )
+			$text
 		);
 	}
 

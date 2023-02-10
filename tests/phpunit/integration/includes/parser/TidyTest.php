@@ -49,7 +49,6 @@ MathML;
 				'<editsection page="foo" section="bar">foo</editsection>',
 				'<editsection> should survive tidy'
 			],
-			[ '<mw:toc>foo</mw:toc>', '<mw:toc>foo</mw:toc>', '<mw:toc> should survive tidy' ],
 			[
 				'<meta property="mw:PageProp/toc" />',
 				'<meta property="mw:PageProp/toc" />',
