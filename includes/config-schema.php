@@ -800,7 +800,7 @@ return [
 			'ParsoidSettings' => [
 				'useSelser' => true,
 			],
-			'ParserEnableLegacyMediaDOM' => true,
+			'ParserEnableLegacyMediaDOM' => false,
 			'UseContentMediaStyles' => false,
 			'RawHtml' => false,
 			'ExternalLinkTarget' => false,
