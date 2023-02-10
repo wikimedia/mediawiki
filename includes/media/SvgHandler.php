@@ -348,13 +348,17 @@ class SvgHandler extends ImageHandler {
 				$retval = (bool)$err;
 			} else {
 				// External command
-				$cmd = str_replace(
-					[ '$path/', '$width', '$height', '$input', '$output' ],
-					[ $svgConverterPath ? Shell::escape( "{$svgConverterPath}/" ) : "",
-						intval( $width ),
-						intval( $height ),
-						Shell::escape( $srcPath ),
-						Shell::escape( $dstPath ) ],
+				$path = $svgConverterPath ? Shell::escape( "{$svgConverterPath}/" ) : '';
+				$cmd = preg_replace_callback( '/\$(path\/|width|height|input|output)/',
+					static function ( $m ) use ( $path, $width, $height, $srcPath, $dstPath ) {
+						return [
+							'$path/' => $path,
+							'$width' => intval( $width ),
+							'$height' => intval( $height ),
+							'$input' => Shell::escape( $srcPath ),
+							'$output' => Shell::escape( $dstPath ),
+						][$m[0]];
+					},
 					$svgConverters[$svgConverter]
 				);
 
