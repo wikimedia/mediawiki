@@ -23,6 +23,8 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\ExistingPageRecord;
+use MediaWiki\Page\PageStore;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -53,19 +55,20 @@ class SpecialAllPages extends IncludableSpecialPage {
 	/** @var SearchEngineFactory */
 	private $searchEngineFactory;
 
-	/**
-	 * @param ILoadBalancer|null $loadBalancer
-	 * @param SearchEngineFactory|null $searchEngineFactory
-	 */
+	/** @var PageStore */
+	private $pageStore;
+
 	public function __construct(
 		ILoadBalancer $loadBalancer = null,
-		SearchEngineFactory $searchEngineFactory = null
+		SearchEngineFactory $searchEngineFactory = null,
+		PageStore $pageStore = null
 	) {
 		parent::__construct( 'Allpages' );
 		// This class is extended and therefore falls back to global state - T265309
 		$services = MediaWikiServices::getInstance();
 		$this->loadBalancer = $loadBalancer ?? $services->getDBLoadBalancer();
 		$this->searchEngineFactory = $searchEngineFactory ?? $services->getSearchEngineFactory();
+		$this->pageStore = $pageStore ?? $services->getPageStore();
 	}
 
 	/**
@@ -213,7 +216,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 			[ $namespace, $fromKey, $from ] = $fromList;
 			[ , $toKey, $to ] = $toList;
 
-			$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
+			$dbr = $this->loadBalancer->getConnection( ILoadBalancer::DB_REPLICA );
 			$filterConds = [ 'page_namespace' => $namespace ];
 			if ( $hideredirects ) {
 				$filterConds['page_is_redirect'] = 0;
@@ -224,33 +227,35 @@ class SpecialAllPages extends IncludableSpecialPage {
 			if ( $toKey !== "" ) {
 				$conds[] = 'page_title <= ' . $dbr->addQuotes( $toKey );
 			}
-			$res = $dbr->select( 'page',
-				[ 'page_namespace', 'page_title', 'page_is_redirect', 'page_id' ],
-				$conds,
-				__METHOD__,
-				[
-					'ORDER BY' => 'page_title',
-					'LIMIT' => $this->maxPerPage + 1,
-					'USE INDEX' => 'page_name_title',
-				]
-			);
+
+			$res = $this->pageStore->newSelectQueryBuilder()
+				->where( $conds )
+				->caller( __METHOD__ )
+				->orderBy( 'page_title' )
+				->limit( $this->maxPerPage + 1 )
+				->useIndex( 'page_name_title' )
+				->fetchPageRecords();
+
+			// Eagerly fetch the set of pages to be displayed and warm up LinkCache (T328174).
+			// Note that we can't use fetchPageRecordArray() here as that returns an array keyed
+			// by page IDs; we need a simple sequence.
+			/** @var ExistingPageRecord[] $pages */
+			$pages = iterator_to_array( $res );
 
 			$linkRenderer = $this->getLinkRenderer();
-			if ( $res->numRows() > 0 ) {
+			if ( count( $pages ) > 0 ) {
 				$out = Html::openElement( 'ul', [ 'class' => 'mw-allpages-chunk' ] );
 
-				while ( ( $n < $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
-					$t = Title::newFromRow( $s );
-					$out .= '<li' .
-						( $t->isRedirect() ? ' class="allpagesredirect"' : '' ) .
-						'>' .
-						$linkRenderer->makeLink( $t ) .
-						"</li>\n";
+				while ( $n < $this->maxPerPage && $n < count( $pages ) ) {
+					$page = $pages[$n];
+					$attributes = $page->isRedirect() ? [ 'class' => 'allpagesredirect' ] : [];
+
+					$out .= Html::rawElement( 'li', $attributes, $linkRenderer->makeKnownLink( $page ) ) . "\n";
 					$n++;
 				}
 				$out .= Html::closeElement( 'ul' );
 
-				if ( $res->numRows() > 2 ) {
+				if ( count( $pages ) > 2 ) {
 					// Only apply CSS column styles if there's more than 2 entries.
 					// Otherwise, rendering is broken as "mw-allpages-body"'s CSS column count is 3.
 					$out = Html::rawElement( 'div', [ 'class' => 'mw-allpages-body' ], $out );
@@ -320,10 +325,9 @@ class SpecialAllPages extends IncludableSpecialPage {
 		}
 
 		// Generate a "next page" link if needed
-		// @phan-suppress-next-line PhanPossiblyUndeclaredVariable $res is declared when have maxPerPage
-		if ( $n == $this->maxPerPage && $s = $res->fetchObject() ) {
-			# $s is the first link of the next chunk
-			$t = Title::makeTitle( $namespace, $s->page_title );
+		if ( $n === $this->maxPerPage && isset( $pages[$n] ) ) {
+			# $t is the first link of the next chunk
+			$t = TitleValue::newFromPage( $pages[$n] );
 			$query = [ 'from' => $t->getText() ];
 
 			if ( $namespace ) {
