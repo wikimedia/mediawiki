@@ -62,7 +62,10 @@ class BaseDump {
 		$this->infiles = explode( ';', $infile );
 		$this->reader = new XMLReader();
 		$infile = array_shift( $this->infiles );
-		$this->reader->open( $infile, null, LIBXML_PARSEHUGE );
+		if ( !$this->reader->open( $infile, null, LIBXML_PARSEHUGE ) ) {
+			$this->debug( __METHOD__ . ' was unable to open xml' );
+			$this->atEnd = true;
+		}
 	}
 
 	/**
@@ -83,7 +86,7 @@ class BaseDump {
 			$this->nextPage();
 		}
 		if ( $this->lastPage > $page || $this->atEnd ) {
-			$this->debug( "BaseDump::prefetch already past page $page "
+			$this->debug( "BaseDump::prefetch already past page $page or failed to open/read input file, "
 				. "looking for rev $rev  [$this->lastPage, $this->lastRev]" );
 
 			return null;
@@ -138,8 +141,12 @@ class BaseDump {
 			$this->close();
 			if ( count( $this->infiles ) ) {
 				$infile = array_shift( $this->infiles );
-				$this->reader->open( $infile, null, LIBXML_PARSEHUGE );
-				$this->atEnd = false;
+				if ( !$this->reader->open( $infile, null, LIBXML_PARSEHUGE ) ) {
+					$this->debug( __METHOD__ . ' was unable to open xml' );
+					$this->atEnd = true;
+				} else {
+					$this->atEnd = false;
+				}
 			}
 		}
 	}
