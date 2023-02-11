@@ -130,7 +130,7 @@ class ImportImages extends Maintenance {
 		$services = MediaWikiServices::getInstance();
 		$permissionManager = $services->getPermissionManager();
 
-		$processed = 0;
+		$found = $processed = 0;
 		$statistics = [
 			'ignored' => 0,
 			'added' => 0,
@@ -159,7 +159,7 @@ class ImportImages extends Maintenance {
 
 		# Search the path provided for candidates for import
 		$files = $this->findFiles( $dir, $extensions, $this->hasOption( 'search-recursively' ) );
-		if ( !$files ) {
+		if ( !$files->valid() ) {
 			$this->output( "No suitable files could be found for import.\n" );
 			return;
 		}
@@ -204,6 +204,7 @@ class ImportImages extends Maintenance {
 		# Batch "upload" operation
 		$restrictionStore = $services->getRestrictionStore();
 		foreach ( $files as $file ) {
+			$found++;
 			if ( $sleep && ( $processed > 0 ) ) {
 				sleep( $sleep );
 			}
@@ -408,7 +409,7 @@ class ImportImages extends Maintenance {
 		$this->output( "\n" );
 		foreach ( array_merge(
 			[
-				'Found' => count( $files ),
+				'Found' => $found,
 				'Limit' => $limit,
 			],
 			$statistics
@@ -425,27 +426,24 @@ class ImportImages extends Maintenance {
 	 * @param string $dir Path to directory to search
 	 * @param array $exts Array of lowercase extensions to search for
 	 * @param bool $recurse Search subdirectories recursively
-	 * @return array|bool Array of filenames on success, or false on failure
+	 * @return Generator<string> Generator that iterating filenames
 	 */
 	private function findFiles( $dir, $exts, $recurse = false ) {
 		$dhl = is_dir( $dir ) ? opendir( $dir ) : false;
 		if ( !$dhl ) {
-			return [];
+			return;
 		}
 
-		$files = [];
 		while ( ( $file = readdir( $dhl ) ) !== false ) {
 			if ( is_file( $dir . '/' . $file ) ) {
 				$ext = pathinfo( $file, PATHINFO_EXTENSION );
 				if ( in_array( strtolower( $ext ), $exts ) ) {
-					$files[] = $dir . '/' . $file;
+					yield $dir . '/' . $file;
 				}
 			} elseif ( $recurse && is_dir( $dir . '/' . $file ) && $file !== '..' && $file !== '.' ) {
-				$files = array_merge( $files, $this->findFiles( $dir . '/' . $file, $exts, true ) );
+				yield from $this->findFiles( $dir . '/' . $file, $exts, true );
 			}
 		}
-
-		return $files;
 	}
 
 	/**
