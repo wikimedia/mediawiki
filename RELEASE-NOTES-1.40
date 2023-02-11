@@ -153,6 +153,7 @@ because of Phabricator reports.
 * (T320912) Added language support for Arakanese (rki).
 * (T323971) Added language support for Khakas (kjh).
 * (T326526) Added language support for Igala (igl).
+* (T329476) Added language support for Kusaal (kus).
 
 === Breaking changes in 1.40 ===
 * OutputPage::enableClientCache no longer accepts a parameter, nor does it
