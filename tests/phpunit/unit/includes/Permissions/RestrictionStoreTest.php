@@ -14,6 +14,7 @@ use MediaWiki\Page\PageStore;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWikiUnitTestCase;
+use MockTitleTrait;
 use ReflectionClass;
 use ReflectionMethod;
 use RuntimeException;
@@ -30,6 +31,7 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  */
 class RestrictionStoreTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;
+	use MockTitleTrait;
 
 	private const DEFAULT_RESTRICTION_TYPES = [ 'create', 'edit', 'move', 'upload' ];
 
@@ -986,6 +988,24 @@ class RestrictionStoreTest extends MediaWikiUnitTestCase {
 		[ $sources, $restrictions ] = $obj->getCascadeProtectionSources( $page );
 		$this->assertCount( 1, $sources );
 		$this->assertArrayHasKey( 'edit', $restrictions );
+	}
+
+	/**
+	 * @covers ::getCascadeProtectionSources
+	 * @covers ::getCascadeProtectionSourcesInternal
+	 */
+	public function testGetCascadeProtectionSourcesSpecialPage() {
+		$obj = $this->newRestrictionStore( [ 'db' => [ DB_REPLICA => [ 'select' => [
+			static function () {
+				return [];
+			},
+			0
+		] ] ] ] );
+
+		$page = $this->makeMockTitle( 'Whatlinkshere', [ 'namespace' => NS_SPECIAL ] );
+		[ $sources, $restrictions ] = $obj->getCascadeProtectionSources( $page );
+		$this->assertCount( 0, $sources );
+		$this->assertCount( 0, $restrictions );
 	}
 
 }

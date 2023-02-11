@@ -567,6 +567,10 @@ class RestrictionStore {
 	private function getCascadeProtectionSourcesInternal(
 		PageIdentity $page, bool $shortCircuit = false
 	) {
+		if ( !$page->canExist() ) {
+			return $shortCircuit ? false : [ [], [] ];
+		}
+
 		$cacheEntry = &$this->cache[CacheKeyHelper::getKeyForPage( $page )];
 
 		if ( !$shortCircuit && isset( $cacheEntry['cascade_sources'] ) ) {
