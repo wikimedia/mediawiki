@@ -941,7 +941,28 @@ class ApiResult implements ApiSerializable {
 				return empty( $transformTypes['AssocAsObject'] ) ? $data : (object)$data;
 
 			case 'array':
-				ksort( $data );
+				// Sort items in ascending order by key. Note that $data may contain a mix of number and string keys,
+				// for which the sorting behavior of krsort() with SORT_REGULAR is inconsistent between PHP versions.
+				// Given a comparison of a string key and a number key, PHP < 8.2 coerces the string key into a number
+				// (which yields zero if the string was non-numeric), and then performs the comparison,
+				// while PHP >= 8.2 makes the behavior consistent with stricter numeric comparisons introduced by
+				// PHP 8.0 in that if the string key is non-numeric, it converts the number key into a string
+				// and compares those two strings instead. We therefore use a custom comparison function
+				// implementing PHP >= 8.2 ordering semantics to ensure consistent ordering of items
+				// irrespective of the PHP version (T326480).
+				uksort( $data, static function ( $a, $b ): int {
+					// In a comparison of a number or numeric string with a non-numeric string,
+					// coerce both values into a string prior to comparing and compare the resulting strings.
+					// Note that PHP prior to 8.0 did not consider numeric strings with trailing whitespace
+					// to be numeric, so trim the inputs prior to the numeric checks to make the behavior
+					// consistent across PHP versions.
+					if ( is_numeric( trim( $a ) ) xor is_numeric( trim( $b ) ) ) {
+						return (string)$a <=> (string)$b;
+					}
+
+					return $a <=> $b;
+				} );
+
 				$data = array_values( $data );
 				$metadata[self::META_TYPE] = 'array';
 				// @phan-suppress-next-line PhanTypeMismatchReturnNullable Type mismatch on pass-by-ref args
