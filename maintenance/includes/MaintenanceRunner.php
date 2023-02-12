@@ -181,26 +181,10 @@ class MaintenanceRunner {
 	 *        not including the script itself.
 	 */
 	private function initInternal( string $script, array $scriptArgv ) {
-		global $IP, $wgCommandLineMode;
+		global $wgCommandLineMode;
 
 		$this->script = $script;
 		$this->scriptArgv = $scriptArgv;
-
-		# Abort if called from a web server
-		# wfIsCLI() is not available yet
-		if ( PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' ) {
-			$this->fatalError( 'This script must be run from the command line' );
-		}
-
-		if ( $IP === null ) {
-			$this->fatalError( "\$IP not set, aborting!\n" .
-				'(Did you forget to call parent::__construct() in your maintenance script?)' );
-		}
-
-		# Make sure we can handle script parameters
-		if ( !ini_get( 'register_argc_argv' ) ) {
-			$this->fatalError( 'Cannot get command line arguments, register_argc_argv is set to false' );
-		}
 
 		// Send PHP warnings and errors to stderr instead of stdout.
 		// This aids in diagnosing problems, while keeping messages
