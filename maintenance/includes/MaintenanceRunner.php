@@ -113,11 +113,11 @@ class MaintenanceRunner {
 		$this->parameters->addArg(
 			'script',
 			'The name of the maintenance script to run. ' .
-				'Can be given as a class name or file path. The `.php` suffix is optional.' .
-				'Paths starting with `./` or `../` are interpreted to be relative to the current working directory.' .
-				'Other relative paths are interpreted relative to the maintenance script directory.' .
+				'Can be given as a class name or file path. The `.php` suffix is optional. ' .
+				'Paths starting with `./` or `../` are interpreted to be relative to the current working directory. ' .
+				'Other relative paths are interpreted relative to the maintenance script directory. ' .
 				'Dots (.) are supported as namespace separators in class names. ' .
-				'An extension name may be provided as a prefix, followed by a colon, e.g. "MyExtension:...",' .
+				'An extension name may be provided as a prefix, followed by a colon, e.g. "MyExtension:...", ' .
 				'to indicate that the path or class name should be interpreted relative to the extension.'
 		);
 
