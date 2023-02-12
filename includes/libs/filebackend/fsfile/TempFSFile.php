@@ -40,6 +40,14 @@ class TempFSFile extends FSFile {
 	protected static $pathsCollect = null;
 
 	/**
+	 * Map objects referencing this temporary file to this instance.
+	 * This is used to delay garbage collecting (and thereby removing) this temporary file
+	 * until all references to it have been destroyed.
+	 * @var WeakMap|null
+	 */
+	private $references;
+
+	/**
 	 * Do not call directly. Use TempFSFileFactory
 	 *
 	 * @param string $path
@@ -52,6 +60,11 @@ class TempFSFile extends FSFile {
 			self::$pathsCollect = [];
 			register_shutdown_function( [ __CLASS__, 'purgeAllOnShutdown' ] );
 			// @codeCoverageIgnoreEnd
+		}
+
+		// Use a WeakMap on PHP >= 8.0 for reference tracking to avoid dynamic property creation (T324894)
+		if ( class_exists( WeakMap::class ) ) {
+			$this->references = new WeakMap();
 		}
 	}
 
@@ -131,11 +144,17 @@ class TempFSFile extends FSFile {
 	 */
 	public function bind( $object ) {
 		if ( is_object( $object ) ) {
-			if ( !isset( $object->tempFSFileReferences ) ) {
-				// Init first since $object might use __get() and return only a copy variable
-				$object->tempFSFileReferences = [];
+			// Use a WeakMap on PHP >= 8.0 to avoid dynamic property creation (T324894)
+			if ( $this->references !== null ) {
+				$this->references[$object] = $this;
+			} else {
+				// PHP 7.4
+				if ( !isset( $object->tempFSFileReferences ) ) {
+					// Init first since $object might use __get() and return only a copy variable
+					$object->tempFSFileReferences = [];
+				}
+				$object->tempFSFileReferences[] = $this;
 			}
-			$object->tempFSFileReferences[] = $this;
 		}
 
 		return $this;
