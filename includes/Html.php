@@ -1085,9 +1085,9 @@ class Html {
 	public static function srcSet( array $urls ) {
 		$candidates = [];
 		foreach ( $urls as $density => $url ) {
-			// Cast density to float to strip 'x', then back to string to serve
-			// as array index.
-			$density = (string)(float)$density;
+			// Strip 'x' from $density if it ends with one
+			$density = filter_var( $density, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION );
+			
 			$candidates[$density] = $url;
 		}
 
