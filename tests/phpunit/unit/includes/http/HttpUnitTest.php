@@ -14,6 +14,7 @@ class HttpUnitTest extends MediaWikiUnitTestCase {
 	 * @covers Http::isValidURI
 	 */
 	public function testIsValidUri( $expect, $URI, $message = '' ) {
+		$this->hideDeprecated( 'Http::isValidURI' );
 		$this->assertEquals(
 			$expect,
 			(bool)Http::isValidURI( $URI ),
