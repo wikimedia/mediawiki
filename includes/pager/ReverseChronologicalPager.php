@@ -89,6 +89,18 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	}
 
 	/**
+	 * Returns the name of the timestamp field. Subclass can override this to provide the
+	 * timestamp field if they are using a aliased field for getIndexField()
+	 *
+	 * @since 1.40
+	 * @return string
+	 */
+	public function getTimestampField() {
+		// This is a chronological pager, so the first column should be some kind of timestamp
+		return is_array( $this->mIndexField ) ? $this->mIndexField[0] : $this->mIndexField;
+	}
+
+	/**
 	 * Get date from the timestamp
 	 *
 	 * @since 1.38
@@ -105,7 +117,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	protected function getRow( $row ): string {
 		$s = '';
 
-		$timestampField = is_array( $this->mIndexField ) ? $this->mIndexField[0] : $this->mIndexField;
+		$timestampField = $this->getTimestampField();
 		$timestamp = $row->$timestampField ?? null;
 		$date = $timestamp ? $this->getDateFromTimestamp( $timestamp ) : null;
 		if ( $date && $this->isHeaderRowNeeded( $date ) ) {
@@ -300,8 +312,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 			$order
 		);
 		if ( $this->endOffset ) {
-			$timestampField = is_array( $this->mIndexField ) ? $this->mIndexField[0] : $this->mIndexField;
-			$conds[] = $this->mDb->buildComparison( '<', [ $timestampField => $this->endOffset ] );
+			$conds[] = $this->mDb->buildComparison( '<', [ $this->getTimestampField() => $this->endOffset ] );
 		}
 
 		return [ $tables, $fields, $conds, $fname, $options, $join_conds ];

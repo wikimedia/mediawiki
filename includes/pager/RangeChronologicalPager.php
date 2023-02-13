@@ -53,13 +53,12 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 		// Construct the conds array for compatibility with callers and derived classes
 		$this->rangeConds = [];
 
-		// This is a chronological pager, so the first column should be some kind of timestamp
-		$timestampField = is_array( $this->mIndexField ) ? $this->mIndexField[0] : $this->mIndexField;
 		try {
 			if ( $startTime !== '' ) {
 				$startTimestamp = MWTimestamp::getInstance( $startTime );
 				$this->startOffset = $this->mDb->timestamp( $startTimestamp->getTimestamp() );
-				$this->rangeConds[] = $this->mDb->buildComparison( '>=', [ $timestampField => $this->startOffset ] );
+				$this->rangeConds[] = $this->mDb->buildComparison( '>=',
+					[ $this->getTimestampField() => $this->startOffset ] );
 			}
 
 			if ( $endTime !== '' ) {
@@ -68,7 +67,8 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 				// add one second for compatibility with existing use cases
 				$endTimestamp->timestamp = $endTimestamp->timestamp->modify( '+1 second' );
 				$this->endOffset = $this->mDb->timestamp( $endTimestamp->getTimestamp() );
-				$this->rangeConds[] = $this->mDb->buildComparison( '<', [ $timestampField => $this->endOffset ] );
+				$this->rangeConds[] = $this->mDb->buildComparison( '<',
+					[ $this->getTimestampField() => $this->endOffset ] );
 
 				// populate existing variables for compatibility with parent
 				$this->mYear = (int)$endTimestamp->format( 'Y' );
@@ -93,8 +93,7 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 		);
 		// End of the range has been added by ReverseChronologicalPager
 		if ( $this->startOffset ) {
-			$timestampField = is_array( $this->mIndexField ) ? $this->mIndexField[0] : $this->mIndexField;
-			$conds[] = $this->mDb->buildComparison( '>=', [ $timestampField => $this->startOffset ] );
+			$conds[] = $this->mDb->buildComparison( '>=', [ $this->getTimestampField() => $this->startOffset ] );
 		} elseif ( $this->rangeConds ) {
 			// Keep compatibility with some derived classes, T325034
 			$conds = array_merge( $conds, $this->rangeConds );
