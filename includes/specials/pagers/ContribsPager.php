@@ -301,6 +301,9 @@ class ContribsPager extends RangeChronologicalPager {
 			$tables, $fields, $conds, $fname, $options, $join_conds
 		) ];
 		if ( !$this->revisionsOnly ) {
+			// TODO: Range offsets are fairly important and all handlers should take care of it.
+			// If this hook will be replaced (e.g. unified with the DeletedContribsPager one),
+			// please consider passing [ $this->endOffset, $this->startOffset ] to it (T167577).
 			$this->hookRunner->onContribsPager__reallyDoQuery(
 				$data, $this, $offset, $limit, $order );
 		}
