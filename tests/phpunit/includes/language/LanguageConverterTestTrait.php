@@ -1,40 +1,57 @@
 <?php
 
 use MediaWiki\Languages\LanguageConverterFactory;
-use MediaWiki\MediaWikiServices;
 
 trait LanguageConverterTestTrait {
 
 	private $codeRegex = '/^(.+)ConverterTest$/';
 
-	protected function code(): string {
+	/** @var LanguageConverterFactory */
+	private $factory;
+
+	protected function getCode(): string {
 		if ( preg_match( $this->codeRegex, get_class( $this ), $m ) ) {
 			# Normalize language code since classes uses underscores
 			return mb_strtolower( str_replace( '_', '-', $m[1] ) );
 		}
-		return 'en';
+		return '';
 	}
 
-	/** Create and return LanguageConveter to be tested.
-	 *
-	 * @return ILanguageConverter
-	 */
-	protected function getLanguageConverter(): ILanguageConverter {
-		$code = $this->code();
+	protected function getConverterFactory() {
+		if ( $this->factory ) {
+			return $this->factory;
+		}
 
-		$language = MediaWikiServices::getInstance()->getLanguageFactory()
-			->getLanguage( $code );
-
-		$factory = new LanguageConverterFactory(
-			MediaWikiServices::getInstance()->getObjectFactory(),
+		$code = $this->getCode();
+		$this->factory = new LanguageConverterFactory(
+			$this->getServiceContainer()->getObjectFactory(),
 			false,
 			false,
 			false,
-			static function () use ( $language ) {
-				return $language;
+			function () use ( $code ) {
+				$services = $this->getServiceContainer();
+				if ( $code ) {
+					return $services->getLanguageFactory()->getLanguage( $code );
+				} else {
+					return $services->getContentLanguage();
+				}
 			}
 		);
 
-		return $factory->getLanguageConverter( $language );
+		return $this->factory;
+	}
+
+	/**
+	 * @param string|null $language Language code or null to use language
+	 * returned by ::getCode(), or the content language if not set either.
+	 * @return ILanguageConverter
+	 */
+	protected function getLanguageConverter( $language = null ): ILanguageConverter {
+		if ( $language ) {
+			$language = $this->getServiceContainer()->getLanguageFactory()
+				->getLanguage( $language );
+		}
+
+		return $this->getConverterFactory()->getLanguageConverter( $language );
 	}
 }
