@@ -14,7 +14,8 @@
 			"janTepo",
 			"שוקו מוקה",
 			"Tbodt",
-			"Spenĉjo"
+			"Spenĉjo",
+			"Keenan Pepper"
 		]
 	},
 	"tog-underline": "linja anpa pi linja tawa:",
@@ -526,6 +527,7 @@
 	"move-page": "o tawa e lipu \"$1\"",
 	"movepagetext-noredirectfixer": "ilo ni li ante e nimi lipu, li tawa e tenpo pini ona.\nnimi pini li kama lipu tawa.\no alasa e [[Special:DoubleRedirects|lipu tawa nasa]], e [[Special:BrokenRedirects|lipu tawa pakala]].\nlinja ale o awen tawa lipu pona.\n\nnimi sin o lipu ala anu lipu tawa pi tenpo pini ala. ante la sina ken ala tawa e lipu ni.\ntan ni la sina ken pona e pakala sina, li ken ala weka e lipu.\n\n<strong>a!</strong>\nlipu li suli la, tawa ni li ken nasa e jan.\no pali sona.",
 	"newtitle": "nimi sin:",
+	"movereason": "tawa li tan seme?",
 	"allmessagesname": "nimi",
 	"allmessages-filter-all": "ale",
 	"allmessages-language": "toki:",
@@ -549,6 +551,7 @@
 	"autosumm-changed-redirect-target": "tenpo pini la lipu ni li tawa [[$1]]. mi ante e ni tawa [[$2]].",
 	"autosumm-new": "mi pali e lipu sin li pana e toki ni: \"$1\"",
 	"autosumm-newblank": "mi pana e lipu sin li pana e toki ala",
+	"watchlisttools-clear": "o ala e lipu lukin sina",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|toki]])",
 	"fileduplicatesearch-submit": "o alasa",
 	"specialpages": "lipu ilo ale",

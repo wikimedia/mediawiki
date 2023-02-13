@@ -264,6 +264,7 @@
 	"site-atom-feed": "$1-Atom-fáálus",
 	"page-rss-feed": "$1 (RSS-fáálus)",
 	"page-atom-feed": "$1 (Atom-fáálus)",
+	"feed-rss": "RSS",
 	"red-link-title": "$1 (sijđo ij kavnuu)",
 	"sort-descending": "Šlajâttâl lyeštee oornigist",
 	"sort-ascending": "Šlajâttâl pajaneijee oornigist",

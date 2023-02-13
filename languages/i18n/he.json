@@ -50,7 +50,8 @@
 			"דגש",
 			"לואיקה",
 			"מגזין יהלום",
-			"Ex-Diktator"
+			"Ex-Diktator",
+			"מיכי י-ם"
 		]
 	},
 	"tog-underline": "סימון קישורים בקו תחתי:",
@@ -1734,7 +1735,7 @@
 	"uploadinvalidxml": "לא ניתן לפרש את ה־XML בקובץ שהועלה.",
 	"uploadvirus": "הקובץ מכיל וירוס!\nפרטים:\n<div dir=\"ltr\">$1</div>",
 	"uploadjava": "הקובץ הזה הוא קובץ ZIP שמכיל קובץ &lrm;.class של Java.\nהעלאת קובצי Java אסורה כי הם יכולים לגרום לעקיפת מגבלות האבטחה.",
-	"upload-source": "קובץ המקור",
+	"upload-source": "הקובץ המקורי",
 	"sourcefilename": "שם קובץ המקור:",
 	"sourceurl": "כתובת URL של המקור:",
 	"destfilename": "שמירת הקובץ בשם:",
@@ -2779,7 +2780,7 @@
 	"movesubpage": "{{PLURAL:$1|דף משנה|דפי משנה}}",
 	"movesubpagetext": "לדף זה יש {{PLURAL:$1|דף משנה אחד המוצג להלן|$1 דפי משנה המוצגים להלן}}.",
 	"movesubpagetalktext": "לדף השיחה של דף זה יש {{PLURAL:$1|דף משנה אחד המוצג להלן|$1 דפי משנה המוצגים להלן}}.",
-	"movenosubpage": "לדף זה אין דפי משנה.",
+	"movenosubpage": "לדף הזה אין דפי־משנה.",
 	"movereason": "סיבה:",
 	"revertmove": "החזרה",
 	"delete_and_move_text": "דף היעד, \"[[:$1]]\", כבר קיים.\nהאם ברצונך למחוק אותו כדי לאפשר את ההעברה?",

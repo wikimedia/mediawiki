@@ -402,7 +402,7 @@
 	"cannotlogoutnow-text": "Ekirar ne esas posibla kande vu uzas $1.",
 	"welcomeuser": "Esez bonvenanta, $1!",
 	"welcomecreation-msg": "Vua konto kreesis.\n\nVu povas modifikar vua [[Special:Preferences|preferaji en la {{SITENAME}}]] se vu deziras.",
-	"yourname": "Vua uzantonomo:",
+	"yourname": "Vua uzero-nomo:",
 	"userlogin-yourname": "Nomo dil uzero",
 	"userlogin-yourname-ph": "Enirez vua uzantonomo",
 	"createacct-another-username-ph": "Enirez la uzantonomo",

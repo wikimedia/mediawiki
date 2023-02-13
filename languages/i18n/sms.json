@@ -984,7 +984,7 @@
 	"movepagebtn": "Seeʹrd seeid",
 	"pagemovedsub": "Serddmõš oʹnnsti",
 	"movepage-page-unmoved": "Seeid $1 serddmõš nõʹmme $2 ij oʹnnstam.",
-	"movesubpage": "{{PLURAL:$1|vueʹllseidd|vueʹllseeid|vueʹllseiddad}}",
+	"movesubpage": "{{PLURAL:$1|1=Vueʹllseidd|Vueʹllseeid|Vueʹllseiddad}}",
 	"movenosubpage": "Tän seeidast ij leäkku vueʹllseeid.",
 	"movereason": "Seʹrddem-mäinn:",
 	"revertmove": "kååʹmet seerd",
