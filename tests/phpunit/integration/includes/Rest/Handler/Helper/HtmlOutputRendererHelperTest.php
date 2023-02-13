@@ -322,6 +322,10 @@ class HtmlOutputRendererHelperTest extends MediaWikiIntegrationTestCase {
 		$htmlResult = $helper->getHtml()->getRawText();
 		$this->assertStringContainsString( self::MOCK_HTML_VARIANT, $htmlResult );
 		$this->assertStringContainsString( 'en-x-piglatin', $helper->getETag() );
+
+		$pbResult = $helper->getPageBundle();
+		$this->assertStringContainsString( self::MOCK_HTML_VARIANT, $pbResult->html );
+		$this->assertStringContainsString( 'en-x-piglatin', $pbResult->headers['content-language'] );
 	}
 
 	public function testGetHtmlWillLint() {
