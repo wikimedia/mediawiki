@@ -616,6 +616,7 @@
 	"postedit-confirmation-saved": "Ózgeris(ler) saqlandı.",
 	"postedit-confirmation-published": "Ózgerisler járiyalandı.",
 	"content-model-wikitext": "wikitekst",
+	"duplicate-args-warning": "<strong>Eskertiw:</strong> [[:$1]] beti [[:$2]] úlgisi «$3» parametri ushın birden kóp máni qoyılıp tur. Bul jaǵdayda «$3» parametri ushın eń sońǵı berilgen máni qollanıladı.",
 	"parser-template-loop-warning": "Úlgilerde qaytalanıw tabıldı: [[$1]]",
 	"undo-failure": "Aralıq dúzetiwler qarama-qarsılıqlı bolǵanı ushın redaktorlawdı biykarlawdıń ilajı bolmadı.",
 	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User_talk:$2|talqılawı]]) islegen $1 sanlı ózgeristi joqqa şhığardı.",

@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"rest-badtoken-missing": "De parameter <var>token</var> is vereist omdat je geen CSRF-veilige authenticatiemethode gebruikt."
+}

@@ -38,7 +38,7 @@
 	"paramvalidator-help-default-empty": "Standard: (leer)",
 	"paramvalidator-help-deprecated": "Dieser Parameter ist veraltet.",
 	"paramvalidator-help-multi-separate": "Trenne die Werte mit „|“, oder stelle der Liste U+001F vor und trenne sie mit U+001F.",
-	"paramvalidator-help-multi-max": "Die maximale Anzahl von Werten beträgt {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} für Clients, die höhere Limits erlauben).",
+	"paramvalidator-help-multi-max": "Die maximale Anzahl von Werten beträgt {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} für Clients, denen höhere Limits erlaubt sind).",
 	"paramvalidator-help-multi-max-simple": "Die maximale Anzahl von Werten beträgt {{PLURAL:$1|$1}}",
 	"paramvalidator-help-multi-all": "Um alle Werte anzugeben, verwende <kbd>$1<kbd>.",
 	"paramvalidator-help-required": "Dieser Parameter ist erforderlich.",
