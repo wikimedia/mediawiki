@@ -610,7 +610,20 @@ class HtmlOutputRendererHelper implements HtmlOutputHelper {
 	public function getPageBundle(): PageBundle {
 		// XXX: converting between PageBundle and ParserOutput is inefficient!
 		$parserOutput = $this->getParserOutput();
-		return PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput );
+		$pb = PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput );
+
+		// Check if variant conversion has to be performed
+		// NOTE: Variant conversion is performed on the fly, and kept outside the stash.
+		if ( $this->targetLanguageCode ) {
+			$languageVariantConverter = $this->htmlTransformFactory->getLanguageVariantConverter( $this->page );
+			$pb = $languageVariantConverter->convertPageBundleVariant(
+				$pb,
+				$this->targetLanguageCode,
+				$this->sourceLanguageCode
+			);
+		}
+
+		return $pb;
 	}
 
 	/**
