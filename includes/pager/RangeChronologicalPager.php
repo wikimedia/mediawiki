@@ -83,6 +83,17 @@ abstract class RangeChronologicalPager extends ReverseChronologicalPager {
 	}
 
 	/**
+	 * Return the range of date offsets, in the format of [ endOffset, startOffset ].
+	 * Extensions can use this to get the range if they are not in the context of subclasses.
+	 *
+	 * @since 1.40
+	 * @return string[]
+	 */
+	public function getRangeOffsets() {
+		return [ $this->endOffset, $this->startOffset ];
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	protected function buildQueryInfo( $offset, $limit, $order ) {

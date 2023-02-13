@@ -291,6 +291,16 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	}
 
 	/**
+	 * Return the end offset, extensions can use this if they are not in the context of subclass.
+	 *
+	 * @since 1.40
+	 * @return string
+	 */
+	public function getEndOffset() {
+		return $this->endOffset;
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	protected function buildQueryInfo( $offset, $limit, $order ) {
