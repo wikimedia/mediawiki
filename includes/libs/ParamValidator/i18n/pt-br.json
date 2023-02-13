@@ -3,7 +3,8 @@
 		"authors": [
 			"Eduardo Addad de Oliveira",
 			"Eduardoaddad",
-			"Iohanen"
+			"Iohanen",
+			"Re demz"
 		]
 	},
 	"paramvalidator-badbool": "Valor inválido \"$2\" para o parâmetro booleano \"$1\". Passe $3 para true ou $5 para false.",
@@ -42,7 +43,7 @@
 	"paramvalidator-help-default-empty": "Padrão: (vazio)",
 	"paramvalidator-help-deprecated": "Este parâmetro está obsoleto.",
 	"paramvalidator-help-multi-separate": "Separe os valores com \"|\" ou prefixe a lista com U+001F e separe-os com U+001F.",
-	"paramvalidator-help-multi-max": "O número máximo de valores é {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} para clientes permitidos limites mais altos).",
+	"paramvalidator-help-multi-max": "O número máximo de valores é {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} para clientes aos quais limites mais altos são permetidos).",
 	"paramvalidator-help-multi-max-simple": "O número máximo de valores é {{PLURAL:$1|$1}}.",
 	"paramvalidator-help-multi-all": "Para especificar todos os valores, use <kbd>$1</kbd>.",
 	"paramvalidator-help-required": "Este parâmetro é obrigatório.",

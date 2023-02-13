@@ -1023,6 +1023,7 @@
 	"lineno": "$1번째 줄:",
 	"compareselectedversions": "선택한 판을 비교하기",
 	"showhideselectedversions": "선택한 판을 보이기/숨기기",
+	"showhideselectedfileversions": "선택한 파일 판을 보이기/숨기기",
 	"editundo": "편집 취소",
 	"diff-empty": "(차이 없음)",
 	"diff-multi-sameuser": "(같은 사용자의 {{PLURAL:$1|중간 판 하나|중간 판 $1개}}는 보이지 않습니다)",
