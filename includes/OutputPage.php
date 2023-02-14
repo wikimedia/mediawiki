@@ -3753,7 +3753,6 @@ class OutputPage extends ContextSource {
 		$timestamp = $services
 			->getTalkPageNotificationManager()
 			->getLatestSeenMessageTimestamp( $user );
-
 		if ( !$timestamp ) {
 			return null;
 		}
@@ -3762,12 +3761,7 @@ class OutputPage extends ContextSource {
 			$user->getTalkPage(),
 			$timestamp
 		);
-
-		if ( !$revRecord ) {
-			return null;
-		}
-
-		return $revRecord->getId();
+		return $revRecord ? $revRecord->getId() : null;
 	}
 
 	/**

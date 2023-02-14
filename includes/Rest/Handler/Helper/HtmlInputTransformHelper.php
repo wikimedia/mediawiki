@@ -602,10 +602,6 @@ class HtmlInputTransformHelper {
 			);
 		}
 
-		if ( !$parserOutput ) {
-			return null;
-		}
-
 		return $parserOutput;
 	}
 
