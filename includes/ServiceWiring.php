@@ -54,7 +54,9 @@ use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockRestrictionStoreFactory;
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\BlockUtils;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\DatabaseBlockStore;
+use MediaWiki\Block\DatabaseBlockStoreFactory;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Block\UserBlockCommandFactory;
 use MediaWiki\Cache\BacklinkCacheFactory;
@@ -528,18 +530,22 @@ return [
 	},
 
 	'DatabaseBlockStore' => static function ( MediaWikiServices $services ): DatabaseBlockStore {
-		return new DatabaseBlockStore(
+		return $services->getDatabaseBlockStoreFactory()->getDatabaseBlockStore( DatabaseBlock::LOCAL );
+	},
+
+	'DatabaseBlockStoreFactory' => static function ( MediaWikiServices $services ): DatabaseBlockStoreFactory {
+		return new DatabaseBlockStoreFactory(
 			new ServiceOptions(
-				DatabaseBlockStore::CONSTRUCTOR_OPTIONS,
+				DatabaseBlockStoreFactory::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
 			),
 			LoggerFactory::getInstance( 'DatabaseBlockStore' ),
 			$services->getActorStoreFactory(),
-			$services->getBlockRestrictionStore(),
+			$services->getBlockRestrictionStoreFactory(),
 			$services->getCommentStore(),
 			$services->getHookContainer(),
-			$services->getDBLoadBalancer(),
-			$services->getReadOnlyMode(),
+			$services->getDBLoadBalancerFactory(),
+			$services->getConfiguredReadOnlyMode(),
 			$services->getUserFactory()
 		);
 	},

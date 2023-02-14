@@ -54,6 +54,7 @@ use MediaWiki\Block\BlockRestrictionStoreFactory;
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlockStore;
+use MediaWiki\Block\DatabaseBlockStoreFactory;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -910,6 +911,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getDatabaseBlockStore(): DatabaseBlockStore {
 		return $this->getService( 'DatabaseBlockStore' );
+	}
+
+	/**
+	 * @since 1.40
+	 * @return DatabaseBlockStoreFactory
+	 */
+	public function getDatabaseBlockStoreFactory(): DatabaseBlockStoreFactory {
+		return $this->getService( 'DatabaseBlockStoreFactory' );
 	}
 
 	/**

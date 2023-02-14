@@ -474,7 +474,8 @@ class DatabaseBlock extends AbstractBlock {
 	 */
 	public function delete() {
 		return MediaWikiServices::getInstance()
-			->getDatabaseBlockStore()
+			->getDatabaseBlockStoreFactory()
+			->getDatabaseBlockStore( $this->getWikiId() )
 			->deleteBlock( $this );
 	}
 
@@ -489,7 +490,8 @@ class DatabaseBlock extends AbstractBlock {
 	 */
 	public function insert( IDatabase $dbw = null ) {
 		return MediaWikiServices::getInstance()
-			->getDatabaseBlockStore()
+			->getDatabaseBlockStoreFactory()
+			->getDatabaseBlockStore( $this->getWikiId() )
 			->insertBlock( $this, $dbw );
 	}
 
@@ -503,7 +505,8 @@ class DatabaseBlock extends AbstractBlock {
 	 */
 	public function update() {
 		return MediaWikiServices::getInstance()
-			->getDatabaseBlockStore()
+			->getDatabaseBlockStoreFactory()
+			->getDatabaseBlockStore( $this->getWikiId() )
 			->updateBlock( $this );
 	}
 
@@ -634,10 +637,10 @@ class DatabaseBlock extends AbstractBlock {
 		}
 
 		# Insert the block...
-		$status = MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock(
-			$autoblock,
-			$this->getDBConnection( DB_PRIMARY )
-		);
+		$status = MediaWikiServices::getInstance()
+			->getDatabaseBlockStoreFactory()
+			->getDatabaseBlockStore( $this->getWikiId() )
+			->insertBlock( $autoblock );
 		return $status
 			? $status['id']
 			: false;
