@@ -283,6 +283,8 @@ because of Phabricator reports.
 * LinkFilter::supportsIDN() was removed without deprecation.
 * The ability to pass null for the errorData parameter of HttpException and
   LocalizedHttpException was removed without deprecation.
+* ApiQueryExtLinksUsage::getProtocolPrefix() and ::prepareProtocols() have
+  been moved to LinkFilter with the same name.
 * .box-sizing() Less mixin, deprecated since 1.37, has been removed.
   Use CSS box-sizing now.
 * …

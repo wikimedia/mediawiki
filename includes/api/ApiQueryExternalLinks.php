@@ -44,7 +44,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 		$db = $this->getDB();
 
 		$query = $params['query'];
-		$protocol = ApiQueryExtLinksUsage::getProtocolPrefix( $params['protocol'] );
+		$protocol = LinkFilter::getProtocolPrefix( $params['protocol'] );
 
 		$this->addFields( [
 			'el_from',
@@ -157,7 +157,7 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
 			],
 			'protocol' => [
-				ParamValidator::PARAM_TYPE => ApiQueryExtLinksUsage::prepareProtocols(),
+				ParamValidator::PARAM_TYPE => LinkFilter::prepareProtocols(),
 				ParamValidator::PARAM_DEFAULT => '',
 			],
 			'query' => null,

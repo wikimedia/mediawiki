@@ -455,10 +455,10 @@ class LinkFilterTest extends MediaWikiLangTestCase {
 			],
 			'Various options' => [
 				'example.com',
-				[ 'protocol' => 'https://', 'prefix' => 'xx' ],
+				[ 'protocol' => 'https://' ],
 				[
-					'xx_index_60 LIKE \'https://com.example./%\' ESCAPE \'`\' ',
-					'xx_index LIKE \'https://com.example./%\' ESCAPE \'`\' ',
+					'el_index_60 LIKE \'https://com.example./%\' ESCAPE \'`\' ',
+					'el_index LIKE \'https://com.example./%\' ESCAPE \'`\' ',
 				],
 			],
 		];

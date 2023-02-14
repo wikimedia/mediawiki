@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\LikeMatch;
 
@@ -233,8 +235,6 @@ class LinkFilter {
 	 * @param array $options Options are:
 	 *   - protocol: (string) Protocol to query (default http://)
 	 *   - oneWildcard: (bool) Stop at the first wildcard (default false)
-	 *   - prefix: (string) Field prefix (default 'el'). The query will test
-	 *     fields '{$prefix}_index' and '{$prefix}_index_60'
 	 *   - db: (IDatabase|null) Database to use.
 	 * @return array|false Conditions to be used for the query (to be ANDed) or
 	 *  false on error. To determine if the query is constant on the
@@ -244,7 +244,6 @@ class LinkFilter {
 		$options += [
 			'protocol' => 'http://',
 			'oneWildcard' => false,
-			'prefix' => 'el',
 			'db' => null,
 		];
 
@@ -263,8 +262,6 @@ class LinkFilter {
 			array_pop( $trimmedLike );
 		}
 		$index = implode( '', $trimmedLike );
-
-		$p = $options['prefix'];
 		$db = $options['db'] ?: wfGetDB( DB_REPLICA );
 
 		// Build the query
@@ -273,17 +270,48 @@ class LinkFilter {
 			// The constant prefix is larger than el_index_60, so we can use a
 			// constant comparison.
 			return [
-				"{$p}_index_60" => substr( $index, 0, 60 ),
-				"{$p}_index" . $db->buildLike( $like ),
+				"el_index_60" => substr( $index, 0, 60 ),
+				"el_index" . $db->buildLike( $like ),
 			];
 		}
 
 		// The constant prefix is smaller than el_index_60, so we use a LIKE
 		// for a prefix search.
 		return [
-			"{$p}_index_60" . $db->buildLike( $index, $db->anyString() ),
-			"{$p}_index" . $db->buildLike( $like ),
+			"el_index_60" . $db->buildLike( $index, $db->anyString() ),
+			"el_index" . $db->buildLike( $like ),
 		];
+	}
+
+	public static function getProtocolPrefix( $protocol ) {
+		// Find the right prefix
+		$urlProtocols = MediaWikiServices::getInstance()->getMainConfig()
+										 ->get( MainConfigNames::UrlProtocols );
+		if ( $protocol && !in_array( $protocol, $urlProtocols ) ) {
+			foreach ( $urlProtocols as $p ) {
+				if ( str_starts_with( $p, $protocol ) ) {
+					$protocol = $p;
+					break;
+				}
+			}
+
+			return $protocol;
+		} else {
+			return null;
+		}
+	}
+
+	public static function prepareProtocols() {
+		$urlProtocols = MediaWikiServices::getInstance()->getMainConfig()
+										 ->get( MainConfigNames::UrlProtocols );
+		$protocols = [ '' ];
+		foreach ( $urlProtocols as $p ) {
+			if ( $p !== '//' ) {
+				$protocols[] = substr( $p, 0, strpos( $p, ':' ) );
+			}
+		}
+
+		return $protocols;
 	}
 
 	/**
