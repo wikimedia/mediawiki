@@ -71,9 +71,15 @@ if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
 }
 
 function wfWebStartSetup( SettingsBuilder $settings ) {
-	// Initialise output buffering
-	// Check for previously set up buffers, to avoid a mix of gzip and non-gzip output.
+	// Initialize the default MediaWiki output buffering if no buffer is already active.
+	// This avoids clashes with existing buffers in order to avoid problems,
+	// like mixing gzip and non-gzip output.
 	if ( ob_get_level() == 0 ) {
+		// During HTTP requests, MediaWiki normally buffers the response body in a string
+		// within OutputPage and prints it when ready. PHP buffers provide protection against
+		// premature sending of HTTP headers due to output from PHP warnings and notices.
+		// They also can be used to implement gzip support in PHP without the webserver knowing
+		// which requests yield HTML and which yield large files that can be streamed.
 		ob_start( 'MediaWiki\\OutputHandler::handle' );
 	}
 }
