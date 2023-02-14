@@ -71,7 +71,7 @@ interface ILanguageConverter {
 	 * which does a strict test.
 	 *
 	 * @param string|null $variant The variant to validate
-	 * @return mixed Returns an equivalent valid variant code if possible,
+	 * @return string|null Returns an equivalent valid variant code if possible,
 	 *   null otherwise
 	 */
 	public function validateVariant( $variant = null );
@@ -79,7 +79,7 @@ interface ILanguageConverter {
 	/**
 	 * Get the variant specified in the URL
 	 *
-	 * @return mixed Variant if one found, null otherwise
+	 * @return string|null Variant if one found, null otherwise
 	 */
 	public function getURLVariant();
 
