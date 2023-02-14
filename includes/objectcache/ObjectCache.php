@@ -133,11 +133,13 @@ class ObjectCache {
 	 *  - class: BagOStuff subclass constructed with $params.
 	 *  - loggroup: Alias to set 'logger' key with LoggerFactory group.
 	 *  - .. Other parameters passed to factory or class.
-	 * @param Config|null $conf (Since 1.35)
+	 * @param MediaWikiServices|null $services [internal]
 	 * @return BagOStuff
 	 */
-	public static function newFromParams( array $params, Config $conf = null ) {
-		$services = MediaWikiServices::getInstance();
+	public static function newFromParams( array $params, MediaWikiServices $services = null ) {
+		$services ??= MediaWikiServices::getInstance();
+		$conf = $services->getMainConfig();
+
 		// Apply default parameters and resolve the logger instance
 		$params += [
 			'logger' => LoggerFactory::getInstance( $params['loggroup'] ?? 'objectcache' ),
@@ -160,7 +162,6 @@ class ObjectCache {
 		}
 
 		$class = $params['class'];
-		$conf ??= $services->getMainConfig();
 
 		// Normalization and DI for SqlBagOStuff
 		if ( is_a( $class, SqlBagOStuff::class, true ) ) {
@@ -211,7 +212,7 @@ class ObjectCache {
 			foreach ( $params['caches'] ?? [] as $i => $cacheInfo ) {
 				// Ensure logger, keyspace, asyncHandler, etc are injected just as if
 				// one of these was configured without MultiWriteBagOStuff.
-				$params['caches'][$i] = self::newFromParams( $cacheInfo, $conf );
+				$params['caches'][$i] = self::newFromParams( $cacheInfo, $services );
 			}
 		}
 
