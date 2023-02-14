@@ -2818,7 +2818,7 @@
 	"moveotherreason": "Más/további ok:",
 	"movereasonotherlist": "Más ok",
 	"movepage-reason-dropdown": "* Gyakori átnevezési okok\n** Elgépelt cím",
-	"movepage-edit-reasonlist": "Gyakori átnevezési okok szerkesztése",
+	"movepage-edit-reasonlist": "Átnevezési okok szerkesztése",
 	"revertmove": "visszaállítás",
 	"delete_and_move_text": "Az átnevezés céljaként megadott „[[:$1]]” szócikk már létezik. Ha az átnevezést végre akarod hajtani, ezt a lapot törölni kell. Valóban ezt szeretnéd?",
 	"delete_redirect_and_move_text": "Az átnevezés céljaként megadott „[[:$1]]” szócikk már létezik átirányításként.\nHa az átnevezést végre akarod hajtani, ezt a lapot törölni kell. Valóban ezt szeretnéd?",
