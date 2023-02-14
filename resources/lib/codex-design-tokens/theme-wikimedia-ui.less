@@ -1,6 +1,6 @@
 
 // Do not edit directly
-// Generated on Tue, 31 Jan 2023 23:26:45 GMT
+// Generated on Tue, 14 Feb 2023 21:15:57 GMT
 
 @font-size-base: 16px;
 @font-size-x-small: 0.75em; // `x` stands for extra. In this case extra small.
@@ -65,6 +65,7 @@
 @opacity-medium: 0.65;
 @opacity-low: 0.30;
 @opacity-transparent: 0;
+@background-position-base: center;
 @z-index-base: 0;
 @z-index-overlay: 101;
 @box-sizing-base: border-box;
@@ -72,6 +73,8 @@
 @min-size-icon-x-small: 12px;
 @min-size-icon-small: 16px;
 @min-size-icon-medium: 20px;
+@min-size-search-figure: 40px; // Alias for use in TypeaheadSearch and Thumbnail components for the same purpose and for better code readability.
+@min-size-toggle-switch-grip: 20px;
 @size-0: 0;
 @size-6: 0.0625em;
 @size-12: 0.125em;
@@ -103,11 +106,13 @@
 @size-icon-x-small: 0.75em;
 @size-icon-small: 1em;
 @size-icon-medium: 1.25em;
+@size-search-figure: 2.5em; // Alias for use in TypeaheadSearch and Thumbnail components for the same purpose and for better code readability.
 @min-width-medium: 256px;
 @min-width-breakpoint-mobile: 320px; // A mobile device's minimum available screen width. Many older feature phones have screens smaller than this value.
 @min-width-breakpoint-tablet: 640px; // A tablet device's minimum available screen width. Note: the size chosen is eager to be re-evaluated with Web team and Product Analytics.
 @min-width-breakpoint-desktop: 1120px; // A desktop device's minimum available screen width.
 @min-width-breakpoint-desktop-wide: 1680px; // A wider desktop's minimum available screen width.
+@min-width-toggle-switch: 48px;
 @max-width-base: none;
 @max-width-breakpoint-mobile: calc( 640px - 1px ); // A mobile device's maximum available screen width. Many older feature phones have screens smaller than this value.
 @max-width-breakpoint-tablet: calc( 1120px - 1px ); // A tablet device's maximum available screen width. Note, the size chosen is eager to be re-evaluated with Web team and Product Analytics.
@@ -211,7 +216,7 @@
 @transition-property-base: background-color, color, border-color, box-shadow;
 @transition-property-fade: opacity;
 @transition-property-icon: color;
-@transition-property-toggle-switch-grip: background-color, border-color, left;
+@transition-property-toggle-switch-grip: background-color, border-color, transform;
 @animation-delay-none: 0ms;
 @animation-delay-medium: -160ms;
 @animation-delay-slow: -330ms;
@@ -235,6 +240,7 @@
 @cursor-zoom-out: zoom-out;
 @unit-absolute: px;
 @unit-relative: em;
+@background-size-search-figure: cover; // Use in TypeaheadSearch and Thumbnail components for the thumb container.
 
 // DEPRECATED TOKENS
 // Warning: the following token name is deprecated (Use `background-color-interactive` instead.)
