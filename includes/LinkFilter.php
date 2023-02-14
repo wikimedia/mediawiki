@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\MainConfigNames;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\LikeMatch;
 
@@ -279,6 +281,37 @@ class LinkFilter {
 			"el_index_60" . $db->buildLike( $index, $db->anyString() ),
 			"el_index" . $db->buildLike( $like ),
 		];
+	}
+
+	public static function getProtocolPrefix( $protocol ) {
+		// Find the right prefix
+		$urlProtocols = MediaWikiServices::getInstance()->getMainConfig()
+										 ->get( MainConfigNames::UrlProtocols );
+		if ( $protocol && !in_array( $protocol, $urlProtocols ) ) {
+			foreach ( $urlProtocols as $p ) {
+				if ( str_starts_with( $p, $protocol ) ) {
+					$protocol = $p;
+					break;
+				}
+			}
+
+			return $protocol;
+		} else {
+			return null;
+		}
+	}
+
+	public static function prepareProtocols() {
+		$urlProtocols = MediaWikiServices::getInstance()->getMainConfig()
+										 ->get( MainConfigNames::UrlProtocols );
+		$protocols = [ '' ];
+		foreach ( $urlProtocols as $p ) {
+			if ( $p !== '//' ) {
+				$protocols[] = substr( $p, 0, strpos( $p, ':' ) );
+			}
+		}
+
+		return $protocols;
 	}
 
 	/**
