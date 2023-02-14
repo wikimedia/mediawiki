@@ -91,7 +91,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * @param ApiPageSet|null $resultPageSet
+	 * @param ApiPageSet|null $resultPageSet Set when used as a generator, null otherwise
 	 */
 	public function run( $resultPageSet = null ) {
 		$params = $this->extractRequestParams();
