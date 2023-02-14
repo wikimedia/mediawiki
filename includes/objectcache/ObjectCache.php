@@ -298,9 +298,7 @@ class ObjectCache {
 	 * @return BagOStuff
 	 */
 	public static function getLocalClusterInstance() {
-		global $wgMainCacheType;
-
-		return self::getInstance( $wgMainCacheType );
+		return MediaWikiServices::getInstance()->get( '_LocalClusterCache' );
 	}
 
 	/**

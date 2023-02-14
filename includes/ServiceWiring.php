@@ -2325,6 +2325,18 @@ return [
 		);
 	},
 
+	'_LocalClusterCache' => static function ( MediaWikiServices $services ): BagOStuff {
+		$mainConfig = $services->getMainConfig();
+		$id = $mainConfig->get( MainConfigNames::MainCacheType );
+		$params = $mainConfig->get( MainConfigNames::ObjectCaches )[$id] ?? null;
+		if ( !$params ) {
+			throw new UnexpectedValueException(
+				"\$wgObjectCaches must have \"$id\" set (via \$wgMainCacheType)"
+			);
+		}
+		return ObjectCache::newFromParams( $params, $services );
+	},
+
 	'_MediaWikiTitleCodec' => static function ( MediaWikiServices $services ): MediaWikiTitleCodec {
 		return new MediaWikiTitleCodec(
 			$services->getContentLanguage(),
