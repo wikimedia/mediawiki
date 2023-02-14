@@ -608,15 +608,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			$validation = $validate;
 		}
 
-		$user = MediaWikiServices::getInstance()
-			->getUserFactory()
-			->newFromName( (string)$name, $validation );
-
-		// UserFactory returns null instead of false
-		if ( $user === null ) {
-			$user = false;
-		}
-		return $user;
+		return MediaWikiServices::getInstance()->getUserFactory()
+			->newFromName( (string)$name, $validation ) ?? false;
 	}
 
 	/**

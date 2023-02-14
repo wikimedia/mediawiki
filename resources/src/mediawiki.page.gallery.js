@@ -70,10 +70,12 @@
 			} );
 
 			// Save all boundaries so we can restore them on window resize
-			$this.data( 'imgWidth', imgWidth );
-			$this.data( 'imgHeight', imgHeight );
-			$this.data( 'width', outerWidth );
-			$this.data( 'captionWidth', captionWidth );
+			$this.data( {
+				imgWidth: imgWidth,
+				imgHeight: imgHeight,
+				width: outerWidth,
+				captionWidth: captionWidth
+			} );
 		} );
 
 		( function () {

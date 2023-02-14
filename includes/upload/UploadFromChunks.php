@@ -364,11 +364,7 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	private function getChunkFileKey( $index = null ) {
-		if ( $index === null ) {
-			$index = $this->getChunkIndex();
-		}
-
-		return $this->mFileKey . '.' . $index;
+		return $this->mFileKey . '.' . ( $index ?? $this->getChunkIndex() );
 	}
 
 	/**

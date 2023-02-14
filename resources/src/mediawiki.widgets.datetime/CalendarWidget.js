@@ -409,10 +409,11 @@
 						.setData( day.date )
 						.setDisabled( day.date < this.min || day.date > this.max );
 					$cell = this.buttons[ k ].$element;
-					$cell.toggleClass( 'mw-widgets-datetime-calendarWidget-focused',
-						this.formatter.datePartIsEqual( focusedDate, day.date ) );
-					$cell.toggleClass( 'mw-widgets-datetime-calendarWidget-selected',
-						selected.some( isSelected, day.date ) );
+					$cell
+						.toggleClass( 'mw-widgets-datetime-calendarWidget-focused',
+							this.formatter.datePartIsEqual( focusedDate, day.date ) )
+						.toggleClass( 'mw-widgets-datetime-calendarWidget-selected',
+							selected.some( isSelected, day.date ) );
 				}
 				this.rows[ r ].append( $cell );
 			}
