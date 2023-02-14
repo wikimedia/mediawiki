@@ -139,6 +139,42 @@ class ResourcesTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * Verify that dependencies of all modules are actually registered in the same client context.
+	 *
+	 * Example:
+	 * - A depends on B. A has targets: mobile, desktop. B has targets: desktop. Therefore the
+	 *   dependency is sometimes unregistered: it's impossible to load module A on mobile.
+	 * - A depends on B. B has requiresES6=true but A does not. In some browsers, B will be
+	 *   unregistered at startup and thus impossible to satisfy as dependency.
+	 */
+	public function testRedundantTargets() {
+		$targetsBad = [];
+		$data = self::getAllModules();
+
+		// This makes sure that new modules are not added in a way that goes against
+		// the current plan to dismantle the targets system.
+		// Modules should only be removed from the list, not added.
+		$knownExceptions = [];
+		foreach ( $data['modules'] as $moduleName => $module ) {
+			$definedTargets = $module->getTargets();
+			if (
+				!in_array( $moduleName, $knownExceptions ) &&
+				!str_starts_with( $moduleName, 'test.' ) &&
+				(
+					!in_array( 'desktop', $definedTargets ) ||
+					!in_array( 'mobile', $definedTargets )
+				)
+			) {
+				$targetsBad[] = $moduleName;
+			}
+		}
+		$this->assertEquals( [], $targetsBad,
+			'All modules should load on both mobile and desktop target. '
+			. 'The following modules have redundant targets definitions:' . implode( ' ', $targetsBad )
+		);
+	}
+
+	/**
 	 * CSSMin::getLocalFileReferences should ignore url(...) expressions
 	 * that have been commented out.
 	 */
