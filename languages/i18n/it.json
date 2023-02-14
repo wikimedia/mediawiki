@@ -2562,7 +2562,7 @@
 	"protect-locked-blocked": "Non è possibile modificare le impostazioni di protezione quando è attivo un blocco. Le impostazioni correnti per la pagina <strong>$1</strong> sono:",
 	"protect-locked-dblock": "Impossibile modificare le impostazioni di protezione durante un blocco del database. Le impostazioni correnti per la pagina <strong>$1</strong> sono:",
 	"protect-locked-access": "Non si dispone dei permessi necessari per modificare le impostazioni di protezione della pagina. Le impostazioni correnti per la pagina <strong>$1</strong> sono:",
-	"protect-cascadeon": "Al momento questa pagina è bloccata perché inclusa {{PLURAL:$1|nella pagina indicata di seguito, per la quale|nelle pagine indicate di seguito, per le quali}} è attiva la protezione ricorsiva.\nLe modifiche alle impostazioni di protezione individuale della pagina, non avranno effetto sulle impostazioni derivanti dalla protezione ricorsiva.",
+	"protect-cascadeon": "Al momento questa pagina è bloccata perché inclusa {{PLURAL:$1|nella pagina indicata di seguito, per la quale|nelle pagine indicate di seguito, per le quali}} è attiva la protezione ricorsiva.\nLe modifiche alle impostazioni di protezione individuale della pagina non avranno effetto sulle impostazioni derivanti dalla protezione ricorsiva.",
 	"protect-default": "Autorizza tutti gli utenti",
 	"protect-fallback": "Consentito solo agli utenti con permesso \"$1\"",
 	"protect-level-autoconfirmed": "Consentito solo agli utenti autoconvalidati",

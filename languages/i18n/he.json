@@ -50,7 +50,8 @@
 			"פוילישער",
 			"שומבלע",
 			"שמזן",
-			"תומר ט"
+			"תומר ט",
+			"מיכי י-ם"
 		]
 	},
 	"tog-underline": "סימון קישורים בקו תחתי:",
@@ -1746,7 +1747,7 @@
 	"uploadscriptednamespace": "קובץ ה‏‏־SVG הזה כולל מרחב שם בלתי־חוקי \"<nowiki>$1</nowiki>\".",
 	"uploadinvalidxml": "לא ניתן לפרש את ה־XML בקובץ שהועלה.",
 	"uploadvirus": "הקובץ מכיל וירוס!\nפרטים:\n<div dir=\"ltr\">$1</div>",
-	"upload-source": "קובץ המקור",
+	"upload-source": "הקובץ המקורי",
 	"sourcefilename": "שם קובץ המקור:",
 	"sourceurl": "כתובת URL של המקור:",
 	"destfilename": "שמירת הקובץ בשם:",
@@ -3483,7 +3484,7 @@
 	"tag-mw-reverted": "שוחזרה",
 	"tag-mw-reverted-description": "עריכות ששוחזרו בעריכה אחרת",
 	"tag-mw-server-side-upload": "העלאה לשרת",
-	"tag-mw-server-side-upload-description": "קבצי מדיה שהועלו באמצעות סקריפט תחזוקה",
+	"tag-mw-server-side-upload-description": "קובצי מדיה שהועלו באמצעות סקריפט תחזוקה",
 	"tags-title": "תגיות",
 	"tags-intro": "הדף הזה מציג רשימה של תגיות שהתוכנה יכולה לסמן איתן עריכה, ושל משמעויותיהן.",
 	"tags-tag": "שם התגית",

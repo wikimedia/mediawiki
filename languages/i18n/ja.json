@@ -1153,7 +1153,7 @@
 	"prefs-editwatchlist": "ウォッチリストの編集",
 	"prefs-editwatchlist-label": "自分のウォッチリストの項目を編集:",
 	"prefs-editwatchlist-edit": "ウォッチリストの表示と除去",
-	"prefs-editwatchlist-raw": "生のウォッチリストの編集",
+	"prefs-editwatchlist-raw": "ウォッチリストをテキストで編集",
 	"prefs-editwatchlist-clear": "ウォッチリストの全消去",
 	"prefs-watchlist-days": "ウォッチリストの表示日数:",
 	"prefs-watchlist-days-max": "最大 $1 {{PLURAL:$1|日間}}",

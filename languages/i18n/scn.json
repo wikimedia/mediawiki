@@ -2946,7 +2946,7 @@
 	"feedback-thanks-title": "Ti ringrazziamu!",
 	"feedback-useragent": "Aggenti di l'utenti:",
 	"searchsuggest-search": "Arricerca nta {{SITENAME}}",
-	"searchsuggest-containing": "chi cunteni...",
+	"searchsuggest-containing": "Arricerca li pàggini ca cuntènnunu",
 	"api-clientside-error-timeout": "Lu server nun arrispunniu ntô tempu privistu",
 	"api-error-badtoken": "Erruri nternu: Token sbagghiatu",
 	"api-error-emptypage": "Criari pàggini novi e vacanti nun è cunzintutu.",
