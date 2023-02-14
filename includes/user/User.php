@@ -216,7 +216,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/** @var bool */
 	private $mHideName;
 
-	/** @var WebRequest */
+	/** @var WebRequest|null */
 	private $mRequest;
 
 	/** @var AbstractBlock|null */
