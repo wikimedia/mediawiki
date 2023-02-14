@@ -230,6 +230,10 @@ class LinkTargetStore implements LinkTargetLookup {
 		$this->byTitleCache = [];
 	}
 
+	/**
+	 * @param LinkTarget $linkTarget
+	 * @return int|false
+	 */
 	private function getLinkTargetIdFromCache( LinkTarget $linkTarget ) {
 		$linkTargetString = (string)$linkTarget;
 		if ( isset( $this->byTitleCache[$linkTargetString] ) ) {

@@ -331,7 +331,7 @@ class LogPage {
 	 * @param string $action One of '', 'block', 'protect', 'rights', 'delete',
 	 *   'upload', 'move', 'move_redir'
 	 * @param Title $target
-	 * @param string $comment Description associated
+	 * @param string|null $comment Description associated
 	 * @param array $params Parameters passed later to wfMessage function
 	 * @param int|UserIdentity $performer The user doing the action, or their user id.
 	 *   Calling with user ID is deprecated since 1.36.
