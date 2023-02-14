@@ -3,5 +3,5 @@
 wfLoadSkin( 'BlueSpiceDiscovery' );
 $GLOBALS['wgDefaultSkin'] = "bluespicediscovery";
 
-$GLOBALS['bsgDiscoveryPageHeaderItems'] = [ "page-sentence" ];
-$GLOBALS['bsgDiscoveryPageFooterItems'] = [ "categories", "rating", "recommendations" ];
+$GLOBALS['bsgDiscoveryMetaItemsHeader'] = [ "page-sentence" ];
+$GLOBALS['bsgDiscoveryMetaItemsFooter'] = [ "categories", "rating", "recommendations" ];
