@@ -129,7 +129,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			[ 'log_namespace', 'log_title' ],
 			$this->fld_title || $this->fld_parsedcomment
 		);
-		$this->addFieldsIf( 'log_params', $this->fld_details );
+		$this->addFieldsIf( 'log_params', $this->fld_details || $this->fld_ids );
 
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
 			$commentQuery = $this->commentStore->getJoin( 'log_comment' );
@@ -337,6 +337,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				if ( $this->fld_ids ) {
 					$vals['pageid'] = (int)$row->page_id;
 					$vals['logpage'] = (int)$row->log_page;
+					$revId = $logEntry->getAssociatedRevId();
+					if ( $revId ) {
+						$vals['revid'] = (int)$revId;
+					}
 				}
 				if ( $this->fld_details ) {
 					$vals['params'] = LogFormatter::newFromEntry( $logEntry )->formatParametersForApi();
