@@ -12,12 +12,8 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Editing
- *
  * @group Database
- *        ^--- tell jenkins this test needs the database
- *
  * @group medium
- *        ^--- tell phpunit that these test cases may take longer than 2 seconds.
  */
 class EditPageTest extends MediaWikiLangTestCase {
 
@@ -34,6 +30,9 @@ class EditPageTest extends MediaWikiLangTestCase {
 				[ 'testing' => 'DummyContentHandlerForTesting' ] +
 				MainConfigSchema::getDefaultValue( MainConfigNames::ContentHandlers ),
 		] );
+
+		// Disable WAN cache to avoid edit conflicts in testUpdateNoMinor
+		$this->setMainCache( CACHE_NONE );
 	}
 
 	/**

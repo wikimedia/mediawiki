@@ -1485,16 +1485,10 @@ class MainConfigNames {
 	public const ObjectCaches = 'ObjectCaches';
 
 	/**
-	 * Name constant for the MainWANCache setting, for use with Config::get()
-	 * @see MainConfigSchema::MainWANCache
+	 * Name constant for the WANObjectCache setting, for use with Config::get()
+	 * @see MainConfigSchema::WANObjectCache
 	 */
-	public const MainWANCache = 'MainWANCache';
-
-	/**
-	 * Name constant for the WANObjectCaches setting, for use with Config::get()
-	 * @see MainConfigSchema::WANObjectCaches
-	 */
-	public const WANObjectCaches = 'WANObjectCaches';
+	public const WANObjectCache = 'WANObjectCache';
 
 	/**
 	 * Name constant for the MainStash setting, for use with Config::get()

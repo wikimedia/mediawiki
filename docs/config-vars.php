@@ -1470,16 +1470,10 @@ $wgStatsCacheType = null;
 $wgObjectCaches = null;
 
 /**
- * Config variable stub for the MainWANCache setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::MainWANCache
+ * Config variable stub for the WANObjectCache setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::WANObjectCache
  */
-$wgMainWANCache = null;
-
-/**
- * Config variable stub for the WANObjectCaches setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::WANObjectCaches
- */
-$wgWANObjectCaches = null;
+$wgWANObjectCache = null;
 
 /**
  * Config variable stub for the MainStash setting, for use by phpdoc and IDEs.

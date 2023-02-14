@@ -1018,45 +1018,24 @@ return [
 	'MainWANObjectCache' => static function ( MediaWikiServices $services ): WANObjectCache {
 		$mainConfig = $services->getMainConfig();
 
-		$wanId = $mainConfig->get( MainConfigNames::MainWANCache );
-		$wanParams = $mainConfig->get( MainConfigNames::WANObjectCaches )[$wanId] ?? null;
-		if ( !$wanParams ) {
-			throw new UnexpectedValueException(
-				"wgWANObjectCaches must have \"$wanId\" set (via wgMainWANCache)"
-			);
-		}
-
-		$cacheId = $wanParams['cacheId'];
-		$wanClass = $wanParams['class'];
-		unset( $wanParams['cacheId'] );
-		unset( $wanParams['class'] );
-
-		$storeParams = $mainConfig->get( MainConfigNames::ObjectCaches )[$cacheId] ?? null;
-		if ( !$storeParams ) {
-			throw new UnexpectedValueException(
-				"wgObjectCaches must have \"$cacheId\" set (via wgWANObjectCaches)"
-			);
-		}
-		$store = ObjectCache::newFromParams( $storeParams, $services );
+		$store = $services->get( '_LocalClusterCache' );
 		$logger = $store->getLogger();
 		$logger->debug( 'MainWANObjectCache using store {class}', [
 			'class' => get_class( $store )
 		] );
 
-		$wanParams['cache'] = $store;
-		$wanParams['logger'] = $logger;
-		$wanParams['secret'] ??= $mainConfig->get( MainConfigNames::SecretKey );
+		$wanParams = $mainConfig->get( MainConfigNames::WANObjectCache ) + [
+			'cache' => $store,
+			'logger' => $logger,
+			'secret' => $mainConfig->get( MainConfigNames::SecretKey ),
+		];
 		if ( !$GLOBALS[ 'wgCommandLineMode' ] ) {
 			// Send the statsd data post-send on HTTP requests; avoid in CLI mode (T181385)
 			$wanParams['stats'] = $services->getStatsdDataFactory();
 			// Let pre-emptive refreshes happen post-send on HTTP requests
 			$wanParams['asyncHandler'] = [ DeferredUpdates::class, 'addCallableUpdate' ];
 		}
-
-		$instance = new $wanClass( $wanParams );
-
-		'@phan-var WANObjectCache $instance';
-		return $instance;
+		return new WANObjectCache( $wanParams );
 	},
 
 	'MediaHandlerFactory' => static function ( MediaWikiServices $services ): MediaHandlerFactory {
