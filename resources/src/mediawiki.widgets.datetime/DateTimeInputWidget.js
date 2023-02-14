@@ -579,8 +579,7 @@
 	 * @private
 	 */
 	mw.widgets.datetime.DateTimeInputWidget.prototype.onClearClick = function () {
-		this.blur();
-		this.setValue( '' );
+		this.blur().setValue( '' );
 	};
 
 	/**
