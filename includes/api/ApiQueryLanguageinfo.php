@@ -41,7 +41,7 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 	 * not yield more than a handful of languages before the time is exceeded
 	 * and continuation is applied, if one of the expensive props is requested.
 	 */
-	private const MAX_EXECUTE_SECONDS = 2;
+	private const MAX_EXECUTE_SECONDS = 3;
 
 	/** @var LanguageFactory */
 	private $languageFactory;
