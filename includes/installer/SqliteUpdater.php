@@ -32,19 +32,8 @@ class SqliteUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return [
-			// 1.35 but must come first
-			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
-
-			// 1.34
-			[ 'dropField', 'archive', 'ar_user', 'patch-archive-drop-ar_user.sql' ],
-			[ 'dropField', 'ipblocks', 'ipb_by', 'patch-ipblocks-drop-ipb_by.sql' ],
-			[ 'dropField', 'image', 'img_user', 'patch-image-drop-img_user.sql' ],
-			[ 'dropField', 'oldimage', 'oi_user', 'patch-oldimage-drop-oi_user.sql' ],
-			[ 'dropField', 'filearchive', 'fa_user', 'patch-filearchive-drop-fa_user.sql' ],
-			[ 'dropField', 'recentchanges', 'rc_user', 'patch-recentchanges-drop-rc_user.sql' ],
-			[ 'dropField', 'logging', 'log_user', 'patch-logging-drop-log_user.sql' ],
-
 			// 1.35
+			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
 			[ 'addTable', 'watchlist_expiry', 'patch-watchlist_expiry.sql' ],
 			[ 'modifyfield', 'filearchive', 'fa_actor', 'patch-filearchive-drop-fa_actor-DEFAULT.sql' ],
 			[ 'modifyfield', 'recentchanges', 'rc_actor', 'patch-recentchanges-drop-rc_actor-DEFAULT.sql' ],
