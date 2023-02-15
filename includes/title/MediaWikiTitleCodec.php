@@ -551,7 +551,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 		// there are numerous ways to present the same IP. Having sp:contribs scan
 		// them all is silly and having some show the edits and others not is
 		// inconsistent. Same for talk/userpages. Keep them normalized instead.
-		if ( $parts['namespace'] === NS_USER || $parts['namespace'] === NS_USER_TALK ) {
+		if ( $dbkey !== '' && ( $parts['namespace'] === NS_USER || $parts['namespace'] === NS_USER_TALK ) ) {
 			$dbkey = IPUtils::sanitizeIP( $dbkey );
 			// IPUtils::sanitizeIP return null only for bad input
 			'@phan-var string $dbkey';
