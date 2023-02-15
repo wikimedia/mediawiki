@@ -65,6 +65,14 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 
 		$this->addTables( [ 'externallinks', 'page' ] );
 		$this->addJoinConds( [ 'page' => [ 'JOIN', 'page_id=el_from' ] ] );
+		$migrationStage = $this->getConfig()->get( MainConfigNames::ExternalLinksSchemaMigrationStage );
+		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$fields = [ 'el_to' ];
+			$continueField = 'el_index_60';
+		} else {
+			$continueField = 'el_to_domain_index';
+			$fields = [ 'el_to_domain_index', 'el_to_path' ];
+		}
 
 		$miser_ns = [];
 		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
@@ -90,20 +98,24 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 				$this->dieWithError( 'apierror-badquery' );
 			}
 			$this->addWhere( $conds );
-			if ( !isset( $conds['el_index_60'] ) ) {
-				$orderBy[] = 'el_index_60';
+			if ( !isset( $conds[$continueField] ) ) {
+				$orderBy[] = $continueField;
 			}
 		} else {
-			$orderBy[] = 'el_index_60';
-
+			$orderBy[] = $continueField;
 			if ( $protocol !== null ) {
-				$this->addWhere( 'el_index_60' . $db->buildLike( "$protocol", $db->anyString() ) );
+				$this->addWhere( $continueField . $db->buildLike( "$protocol", $db->anyString() ) );
 			} else {
-				// We're querying all protocols, filter out duplicate protocol-relative links
-				$this->addWhere( $db->makeList( [
-					'el_to NOT' . $db->buildLike( '//', $db->anyString() ),
-					'el_index_60 ' . $db->buildLike( 'http://', $db->anyString() ),
-				], LIST_OR ) );
+				// It is not possible to do so in the new schema
+				if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+					// We're querying all protocols, filter out duplicate protocol-relative links
+					$this->addWhere(
+						$db->makeList( [
+							'el_to NOT' . $db->buildLike( '//', $db->anyString() ),
+							'el_index_60 ' . $db->buildLike( 'http://', $db->anyString() ),
+						], LIST_OR )
+					);
+				}
 			}
 		}
 
@@ -123,7 +135,9 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 				'page_namespace',
 				'page_title'
 			] );
-			$this->addFieldsIf( 'el_to', $fld_url );
+			foreach ( $fields as $field ) {
+				$this->addFieldsIf( $field, $fld_url );
+			}
 		} else {
 			$this->addFields( $resultPageSet->getPageTableFields() );
 		}
@@ -174,7 +188,11 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 					ApiQueryBase::addTitleInfo( $vals, $title );
 				}
 				if ( $fld_url ) {
-					$to = $row->el_to;
+					if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+						$to = $row->el_to;
+					} else {
+						$to = LinkFilter::reverseIndexe( $row->el_to_domain_index ) . $row->el_to_path;
+					}
 					// expand protocol-relative urls
 					if ( $params['expandurl'] ) {
 						$to = wfExpandUrl( $to, PROTO_CANONICAL );

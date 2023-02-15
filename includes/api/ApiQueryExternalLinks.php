@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\ExternalLinks\LinkFilter;
+use MediaWiki\MainConfigNames;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -46,11 +47,18 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 
 		$query = $params['query'];
 		$protocol = LinkFilter::getProtocolPrefix( $params['protocol'] );
+		$migrationStage = $this->getConfig()->get( MainConfigNames::ExternalLinksSchemaMigrationStage );
 
-		$this->addFields( [
-			'el_from',
-			'el_to'
-		] );
+		$fields = [ 'el_from' ];
+		if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+			$fields[] = 'el_to';
+			$continueField = 'el_index_60';
+		} else {
+			$fields[] = 'el_to_domain_index';
+			$fields[] = 'el_to_path';
+			$continueField = 'el_to_domain_index';
+		}
+		$this->addFields( $fields );
 
 		$this->addTables( 'externallinks' );
 		$this->addWhereFld( 'el_from', array_keys( $pages ) );
@@ -77,20 +85,23 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 				$this->dieWithError( 'apierror-badquery' );
 			}
 			$this->addWhere( $conds );
-			if ( !isset( $conds['el_index_60'] ) ) {
-				$orderBy[] = 'el_index_60';
+			if ( !isset( $conds[$continueField] ) ) {
+				$orderBy[] = $continueField;
 			}
 		} else {
-			$orderBy[] = 'el_index_60';
+			$orderBy[] = $continueField;
 
 			if ( $protocol !== null ) {
-				$this->addWhere( 'el_index_60' . $db->buildLike( "$protocol", $db->anyString() ) );
+				$this->addWhere( $continueField . $db->buildLike( "$protocol", $db->anyString() ) );
 			} else {
-				// We're querying all protocols, filter out duplicate protocol-relative links
-				$this->addWhere( $db->makeList( [
-					'el_to NOT' . $db->buildLike( '//', $db->anyString() ),
-					'el_index_60 ' . $db->buildLike( 'http://', $db->anyString() ),
-				], LIST_OR ) );
+				// It is not possible to do so in the new schema
+				if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+					// We're querying all protocols, filter out duplicate protocol-relative links
+					$this->addWhere( $db->makeList( [
+						'el_to NOT' . $db->buildLike( '//', $db->anyString() ),
+						'el_index_60 ' . $db->buildLike( 'http://', $db->anyString() ),
+					], LIST_OR ) );
+				}
 			}
 		}
 
@@ -119,7 +130,11 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 				break;
 			}
 			$entry = [];
-			$to = $row->el_to;
+			if ( $migrationStage & SCHEMA_COMPAT_READ_OLD ) {
+				$to = $row->el_to;
+			} else {
+				$to = LinkFilter::reverseIndexe( $row->el_to_domain_index ) . $row->el_to_path;
+			}
 			// expand protocol-relative urls
 			if ( $params['expandurl'] ) {
 				$to = wfExpandUrl( $to, PROTO_CANONICAL );
