@@ -4219,5 +4219,9 @@
 	"newpages-showhide-patrolled": "$1 التعديلات المراجعة",
 	"newpages-showhide-redirect": "$1 التحويلات",
 	"newpages-showhide-registered": "$1 المستخدمين المسجلين",
-	"blockedtext-contact-blocker-admin": "يمكنك الاتصال ب $1 أو آخر       جوجل\n[[{{MediaWiki: Grouppage-sysop}} | المسؤول]] لمناقشة الحظر."
+	"blockedtext-made-by": "المنع أجراه $1",
+	"blockedtext-reason-comment": "السبب المعطى هو <em>$1</em>",
+	"blockedtext-start-time": "بد$1اية المنع: $1",
+	"blockedtext-contact-blocker-admin": "يمكنك الاتصال ب $1 أو آخر       جوجل\n[[{{MediaWiki: Grouppage-sysop}} | المسؤول]] لمناقشة الحظر.",
+	"blockedtext-block-ip": "عنوان IP الحالي الخاص بك هو $1"
 }
