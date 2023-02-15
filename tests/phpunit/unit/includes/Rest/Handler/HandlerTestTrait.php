@@ -12,6 +12,7 @@ use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\Session\Session;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -41,7 +42,7 @@ trait HandlerTestTrait {
 	 * @param array $config
 	 * @param HookContainer|array $hooks Hook container or array of hooks
 	 * @param Authority|null $authority
-	 * @param bool $csrfSafe
+	 * @param Session|null $session Defaults to `$this->getSession( true )`
 	 */
 	private function initHandler(
 		Handler $handler,
@@ -49,7 +50,7 @@ trait HandlerTestTrait {
 		$config = [],
 		$hooks = [],
 		Authority $authority = null,
-		bool $csrfSafe = false
+		Session $session = null
 	) {
 		$formatter = new class implements ITextFormatter {
 			public function getLangCode() {
@@ -73,12 +74,11 @@ trait HandlerTestTrait {
 			return wfAppendQuery( 'https://wiki.example.com/rest' . $route, $query );
 		} );
 
-		$authority = $authority ?: $this->mockAnonUltimateAuthority();
+		$authority ??= $this->mockAnonUltimateAuthority();
 		$hookContainer = $hooks instanceof HookContainer ? $hooks : $this->createHookContainer( $hooks );
 
-		$handler->init( $router, $request, $config, $authority, $responseFactory, $hookContainer,
-			$this->getSession( $csrfSafe )
-		);
+		$session ??= $this->getSession( true );
+		$handler->init( $router, $request, $config, $authority, $responseFactory, $hookContainer, $session );
 	}
 
 	/**
@@ -131,7 +131,7 @@ trait HandlerTestTrait {
 	 * @param array $validatedParams Path/query params to return as already valid
 	 * @param array $validatedBody Body params to return as already valid
 	 * @param Authority|null $authority
-	 * @param bool $csrfSafe
+	 * @param Session|null $session Defaults to `$this->getSession( true )`
 	 * @return ResponseInterface
 	 */
 	private function executeHandler(
@@ -142,12 +142,12 @@ trait HandlerTestTrait {
 		$validatedParams = [],
 		$validatedBody = [],
 		Authority $authority = null,
-		bool $csrfSafe = false
+		Session $session = null
 	): ResponseInterface {
 		// supply defaults for required fields in $config
 		$config += [ 'path' => '/test' ];
 
-		$this->initHandler( $handler, $request, $config, $hooks, $authority, $csrfSafe );
+		$this->initHandler( $handler, $request, $config, $hooks, $authority, $session );
 		$validator = null;
 		if ( $validatedParams || $validatedBody ) {
 			/** @var Validator|MockObject $validator */
@@ -183,7 +183,7 @@ trait HandlerTestTrait {
 	 * @param array $validatedParams
 	 * @param array $validatedBody
 	 * @param Authority|null $authority
-	 * @param bool $csrfSafe
+	 * @param Session|null $session Defaults to `$this->getSession( true )`
 	 * @return array
 	 */
 	private function executeHandlerAndGetBodyData(
@@ -194,10 +194,10 @@ trait HandlerTestTrait {
 		$validatedParams = [],
 		$validatedBody = [],
 		Authority $authority = null,
-		bool $csrfSafe = false
+		Session $session = null
 	): array {
 		$response = $this->executeHandler( $handler, $request, $config, $hooks,
-			$validatedParams, $validatedBody, $authority, $csrfSafe );
+			$validatedParams, $validatedBody, $authority, $session );
 
 		$this->assertTrue(
 			$response->getStatusCode() >= 200 && $response->getStatusCode() < 300,

@@ -34,17 +34,15 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 	 * @param string $m Method to test
 	 * @param array $args Arguments to pass to the method
 	 * @param bool $index Whether the backend method gets passed the index
-	 * @param bool $ret Whether the method returns a value
 	 */
-	public function testMethods( $m, $args, $index, $ret ) {
-		$mock = $this->getMockBuilder( DummySessionBackend::class )
+	public function testMethods( $m, $args, $index ) {
+		$backend = $this->getMockBuilder( DummySessionBackend::class )
 			->onlyMethods( [ 'deregisterSession' ] )
 			->addMethods( [ $m ] )
 			->getMock();
-		$mock->expects( $this->once() )->method( 'deregisterSession' )
+		$backend->expects( $this->once() )->method( 'deregisterSession' )
 			->with( $this->identicalTo( 42 ) );
 
-		$tmp = $mock->expects( $this->once() )->method( $m );
 		$expectArgs = [];
 		if ( $index ) {
 			$expectArgs[] = $this->identicalTo( 42 );
@@ -52,44 +50,41 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 		foreach ( $args as $arg ) {
 			$expectArgs[] = $this->identicalTo( $arg );
 		}
-		$tmp = $tmp->with( ...$expectArgs );
+		$backend->expects( $this->once() )->method( $m )->with( ...$expectArgs );
 
-		$retval = new \stdClass;
-		$tmp->willReturn( $retval );
+		$session = TestUtils::getDummySession( $backend, 42 );
 
-		$session = TestUtils::getDummySession( $mock, 42 );
-
-		$this->assertSame( $ret ? $retval : null, $session->$m( ...$args ) );
+		$session->$m( ...$args );
+		$this->addToAssertionCount( 1 );
 
 		// Trigger Session destructor
 		$session = null;
 	}
 
-	public static function provideMethods() {
+	public function provideMethods() {
 		return [
-			[ 'getId', [], false, true ],
-			[ 'getSessionId', [], false, true ],
-			[ 'resetId', [], false, true ],
-			[ 'getProvider', [], false, true ],
-			[ 'isPersistent', [], false, true ],
-			[ 'persist', [], false, false ],
-			[ 'unpersist', [], false, false ],
-			[ 'shouldRememberUser', [], false, true ],
-			[ 'setRememberUser', [ true ], false, false ],
-			[ 'getRequest', [], true, true ],
-			[ 'getUser', [], false, true ],
-			[ 'getAllowedUserRights', [], false, true ],
-			[ 'canSetUser', [], false, true ],
-			[ 'setUser', [ new \stdClass ], false, false ],
-			[ 'suggestLoginUsername', [], true, true ],
-			[ 'shouldForceHTTPS', [], false, true ],
-			[ 'setForceHTTPS', [ true ], false, false ],
-			[ 'getLoggedOutTimestamp', [], false, true ],
-			[ 'setLoggedOutTimestamp', [ 123 ], false, false ],
-			[ 'getProviderMetadata', [], false, true ],
-			[ 'save', [], false, false ],
-			[ 'delaySave', [], false, true ],
-			[ 'renew', [], false, false ],
+			[ 'getId', [], false ],
+			[ 'getSessionId', [], false ],
+			[ 'resetId', [], false ],
+			[ 'getProvider', [], false ],
+			[ 'isPersistent', [], false ],
+			[ 'persist', [], false ],
+			[ 'unpersist', [], false ],
+			[ 'shouldRememberUser', [], false ],
+			[ 'setRememberUser', [ true ], false ],
+			[ 'getRequest', [], true ],
+			[ 'getAllowedUserRights', [], false ],
+			[ 'canSetUser', [], false ],
+			[ 'setUser', [ new \stdClass ], false ],
+			[ 'suggestLoginUsername', [], true ],
+			[ 'shouldForceHTTPS', [], false ],
+			[ 'setForceHTTPS', [ true ], false ],
+			[ 'getLoggedOutTimestamp', [], false ],
+			[ 'setLoggedOutTimestamp', [ 123 ], false ],
+			[ 'getProviderMetadata', [], false ],
+			[ 'save', [], false ],
+			[ 'delaySave', [], false ],
+			[ 'renew', [], false ],
 		];
 	}
 

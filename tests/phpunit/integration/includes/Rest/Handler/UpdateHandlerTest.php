@@ -420,7 +420,7 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 		$handler = $this->newHandler( $actionResult, null, $csrfSafe );
 
 		$responseData = $this->executeHandlerAndGetBodyData(
-			$handler, $request, [], [], [], [], null, $csrfSafe
+			$handler, $request, [], [], [], [], null, $this->getSession( $csrfSafe )
 		);
 
 		// Check parameters passed to ApiEditPage by UpdateHandler based on $requestData

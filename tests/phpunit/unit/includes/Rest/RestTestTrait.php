@@ -62,7 +62,7 @@ trait RestTestTrait {
 			$params['validator'] ?? new Validator( $objectFactory, $request, $authority ),
 			$params['errorReporter'] ?? new PHPErrorReporter(),
 			$params['hookContainer'] ?? $this->createHookContainer(),
-			$params['session'] ?? $this->getSession()
+			$params['session'] ?? $this->getSession( true )
 		);
 	}
 
