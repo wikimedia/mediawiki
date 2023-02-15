@@ -433,6 +433,17 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * @since 1.40
+	 *
+	 * @param string $tableName
+	 * @param string $fieldName
+	 * @return bool
+	 */
+	public function fieldExists( $tableName, $fieldName ) {
+		return ( $this->db->fieldExists( $tableName, $fieldName, __METHOD__ ) );
+	}
+
+	/**
 	 * Add a maintenance script to be run after the database updates are complete.
 	 *
 	 * Script should subclass LoggedUpdateMaintenance

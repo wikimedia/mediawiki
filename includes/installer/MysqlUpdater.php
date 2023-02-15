@@ -32,24 +32,8 @@ use Wikimedia\Rdbms\MySQLField;
 class MysqlUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
 		return [
-			// 1.35 but it must come first
-			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
-
-			// 1.34
-			[ 'dropIndex', 'archive', 'ar_usertext_timestamp',
-				'patch-drop-archive-ar_usertext_timestamp.sql' ],
-			[ 'dropIndex', 'archive', 'usertext_timestamp', 'patch-drop-archive-usertext_timestamp.sql' ],
-			[ 'dropField', 'archive', 'ar_user', 'patch-drop-archive-user-fields.sql' ],
-			[ 'dropField', 'ipblocks', 'ip_by', 'patch-drop-ipblocks-user-fields.sql' ],
-			[ 'dropIndex', 'image', 'img_user_timestamp', 'patch-drop-image-img_user_timestamp.sql' ],
-			[ 'dropField', 'image', 'img_user', 'patch-drop-image-user-fields.sql' ],
-			[ 'dropField', 'oldimage', 'oi_user', 'patch-drop-oldimage-user-fields.sql' ],
-			[ 'dropField', 'filearchive', 'fa_user', 'patch-drop-filearchive-user-fields.sql' ],
-			[ 'dropField', 'recentchanges', 'rc_user', 'patch-drop-recentchanges-user-fields.sql' ],
-			[ 'dropField', 'logging', 'log_user', 'patch-drop-logging-user-fields.sql' ],
-			[ 'addIndex', 'user_newtalk', 'un_user_ip', 'patch-rename-mysql-user_newtalk-indexes.sql' ],
-
 			// 1.35
+			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
 			[ 'addTable', 'watchlist_expiry', 'patch-watchlist_expiry.sql' ],
 			[ 'modifyField', 'page', 'page_restrictions', 'patch-page_restrictions-null.sql' ],
 			[ 'renameIndex', 'ipblocks', 'ipb_address', 'ipb_address_unique', false,
