@@ -102,13 +102,10 @@ class LogPager extends ReverseChronologicalPager {
 		ActorNormalization $actorNormalization = null,
 		$tagInvert = false
 	) {
-		$services = MediaWikiServices::getInstance();
-		// Set database before parent constructor to avoid setting it there with wfGetDB
-		$this->mDb = ( $loadBalancer ?? $services->getDBLoadBalancer() )
-			->getConnectionRef( ILoadBalancer::DB_REPLICA, 'logpager' );
 		parent::__construct( $list->getContext() );
-		$this->mConds = $conds;
 
+		$services = MediaWikiServices::getInstance();
+		$this->mConds = $conds;
 		$this->mLogEventsList = $list;
 
 		// Class is used directly in extensions - T266480

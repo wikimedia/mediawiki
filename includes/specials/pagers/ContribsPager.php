@@ -215,10 +215,7 @@ class ContribsPager extends RangeChronologicalPager {
 		$this->hideMinor = !empty( $options['hideMinor'] );
 		$this->revisionsOnly = !empty( $options['revisionsOnly'] );
 
-		// Most of this code will use the 'contributions' group DB, which can map to replica DBs
-		// with extra user based indexes or partitioning by user.
-		// Set database before parent constructor to avoid setting it there with wfGetDB
-		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA, 'contributions' );
+		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		// Needed by call to getIndexField -> getTargetTable from parent constructor
 		$this->actorMigration = $actorMigration ?? $services->getActorMigration();
 		parent::__construct( $context, $linkRenderer ?? $services->getLinkRenderer() );
@@ -813,7 +810,7 @@ class ContribsPager extends RangeChronologicalPager {
 			# Tags, if any.
 			[ $tagSummary, $newClasses ] = ChangeTags::formatSummaryRow(
 				$row->ts_tags,
-				'contributions',
+				null,
 				$this->getContext()
 			);
 			$classes = array_merge( $classes, $newClasses );

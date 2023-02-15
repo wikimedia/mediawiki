@@ -261,8 +261,7 @@ class RevisionStore
 
 	/**
 	 * @param int $mode DB_PRIMARY or DB_REPLICA
-	 *
-	 * @param array $groups
+	 * @param string|array $groups
 	 * @return DBConnRef
 	 */
 	private function getDBConnectionRef( $mode, $groups = [] ) {
@@ -2677,7 +2676,7 @@ class RevisionStore
 		}
 
 		[ $dbType, ] = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = $this->getDBConnectionRef( $dbType, [ 'contributions' ] );
+		$db = $this->getDBConnectionRef( $dbType );
 
 		$ts = $rev->getTimestamp() ?? $this->getTimestampFromId( $revisionIdValue, $flags );
 		if ( $ts === false ) {
