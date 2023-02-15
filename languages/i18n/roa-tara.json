@@ -1133,7 +1133,7 @@
 	"userrights-groupsmember-auto": "Membre imblicite de:",
 	"userrights-groupsmember-type": "$1",
 	"userrights-systemuser": "{{GENDER:$1|Stu utende}} jè 'n'utende de sisteme",
-	"userrights-groups-help": "Tu puè alterà le gruppe addò {{GENDER:$1|st'utende}} jè iscritte:\n* 'Na spunde de verifiche significhe ca l'utende stè jndr'à stu gruppe.\n* 'A spunda de verificHE luate significhe ca l'utende non ge stè jndr'à stu gruppe.\n* 'Nu * significhe ca tu non ge puè luà 'u gruppe 'na vote ca tu l'è aggiunde, o a smerse.\n* 'Nu # significhe ca tu puè sulamende andicipà 'a date de scadenze de le membre d'u gruppe; non ge puè allungà.",
+	"userrights-groups-help": "Tu puè alterà le gruppe addò {{GENDER:$1|st'utende}} jè iscritte:\n* 'Na spunde de verifiche significhe ca l'utende stè jndr'à stu gruppe.\n* 'A spunda de verifiche luate significhe ca l'utende non ge stè jndr'à stu gruppe.\n* 'Nu * significhe ca tu non ge puè luà 'u gruppe 'na vote ca tu l'è aggiunde, o a smerse.\n* 'Nu # significhe ca tu puè sulamende andicipà 'a date de scadenze de le membre d'u gruppe; non ge puè allungà.",
 	"userrights-reason": "Mutive:",
 	"userrights-no-interwiki": "Tu non ge tìne le permesse pe cangià le deritte utende sus a l'otre uicchi.",
 	"userrights-nodatabase": "'U Database $1 non g'esiste o non g'è lochele.",

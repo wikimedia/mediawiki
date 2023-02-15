@@ -8,7 +8,8 @@
 			"Ninjastrikers",
 			"Ranger-Mon",
 			"SaldırganSincap",
-			"咽頭べさ"
+			"咽頭べさ",
+			"Amire80"
 		]
 	},
 	"tog-underline": "လေန် မတာပၞောန်သၟဝ်",
@@ -1458,7 +1459,7 @@
 	"svg-long-desc": "SVG ဝှာင်, မိက်ကဵုကသပ် $1 × $2 pixels, ဇမၞော် ဝှာင်: $3",
 	"show-big-image": "ဝှာင် တမ်မူလ",
 	"show-big-image-preview": "ဇမၞော် နမူနာ ဏအ် - $1",
-	"show-big-image-other": "တၞဟ် {{PLURAL:$2|resolution|resolutions}}: $1.",
+	"show-big-image-other": "{{PLURAL:$2|အရာမသ္ဂုတ်သွာတ်လဝ်|အရာမသ္ဂုတ်သွာတ်လဝ်ဂမၠိုၚ်}}: $1 တၞဟ်။",
 	"show-big-image-size": "$1 × $2 pixels",
 	"newimages-legend": "ဖဍိုဟ်",
 	"newimages-user": "IP address ဟွံသေင်မ္ဂး ယၟုမညးလွပ်",
