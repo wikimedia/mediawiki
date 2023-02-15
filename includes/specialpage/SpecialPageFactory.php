@@ -570,7 +570,6 @@ class SpecialPageFactory {
 			'services' => [
 				'WatchedItemStore',
 				'WatchlistManager',
-				'DBLoadBalancerFactory',
 				'UserOptionsLookup',
 			]
 		],
@@ -581,7 +580,6 @@ class SpecialPageFactory {
 				'CommentStore',
 				'ContentHandlerFactory',
 				'GroupPermissionsLookup',
-				'DBLoadBalancerFactory',
 				'RevisionLookup',
 				'NamespaceInfo',
 				'UserOptionsLookup',
@@ -593,7 +591,6 @@ class SpecialPageFactory {
 			'services' => [
 				'WatchedItemStore',
 				'MessageCache',
-				'DBLoadBalancerFactory',
 				'UserOptionsLookup',
 			]
 		],
@@ -602,7 +599,6 @@ class SpecialPageFactory {
 			'services' => [
 				'WatchedItemStore',
 				'MessageCache',
-				'DBLoadBalancerFactory',
 				'UserOptionsLookup',
 				'SearchEngineFactory',
 			]

@@ -26,7 +26,6 @@ use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserOptionsLookup;
-use Wikimedia\Rdbms\IConnectionProvider;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -45,14 +44,8 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	/** @var MessageCache */
 	private $messageCache;
 
-	/** @var IConnectionProvider */
-	private $dbProvider;
-
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
-
-	/** @var IDatabase */
-	private $db;
 
 	/** @var int */
 	public $denseRcSizeThreshold = 10000;
@@ -60,13 +53,11 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	/**
 	 * @param WatchedItemStoreInterface|null $watchedItemStore
 	 * @param MessageCache|null $messageCache
-	 * @param IConnectionProvider|null $dbProvider
 	 * @param UserOptionsLookup|null $userOptionsLookup
 	 */
 	public function __construct(
 		WatchedItemStoreInterface $watchedItemStore = null,
 		MessageCache $messageCache = null,
-		IConnectionProvider $dbProvider = null,
 		UserOptionsLookup $userOptionsLookup = null
 	) {
 		parent::__construct( 'Recentchanges', '' );
@@ -74,7 +65,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$services = MediaWikiServices::getInstance();
 		$this->watchedItemStore = $watchedItemStore ?? $services->getWatchedItemStore();
 		$this->messageCache = $messageCache ?? $services->getMessageCache();
-		$this->dbProvider = $dbProvider ?? $services->getDBLoadBalancerFactory();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
 
 		$this->watchlistFilterGroupDefinition = [
@@ -499,13 +489,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		wfDebug( __METHOD__ . ": rcSize = $rcSize, tagCount = $tagCount, limit = $limit => " .
 			( $isDense ? 'dense' : 'sparse' ) );
 		return $isDense;
-	}
-
-	protected function getDB() {
-		if ( !$this->db ) {
-			$this->db = $this->dbProvider->getReplicaDatabase();
-		}
-		return $this->db;
 	}
 
 	public function outputFeedLinks() {
