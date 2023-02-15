@@ -326,7 +326,7 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 			$authority,
 			$responseFactory,
 			$this->createHookContainer(),
-			$this->getSession()
+			$this->getSession( true )
 		);
 
 		return $handler;
