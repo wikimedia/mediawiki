@@ -386,7 +386,7 @@ abstract class AbstractBlock implements Block {
 	 * @param string $timestamp
 	 */
 	public function setTimestamp( $timestamp ) {
-		// Force string so getExpiry() return typehint doesn't break things
+		// Force string so getTimestamp() return typehint doesn't break things
 		$this->mTimestamp = (string)$timestamp;
 	}
 
