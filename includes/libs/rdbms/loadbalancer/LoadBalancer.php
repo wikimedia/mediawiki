@@ -291,11 +291,11 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	}
 
 	/**
-	 * Resolve $groups into a list of query groups defining as having database servers
+	 * Get the first group in $groups with assigned servers, falling back to the default group
 	 *
 	 * @param string[]|string|false $groups Query group(s) in preference order, [], or false
 	 * @param int $i Specific server index or DB_PRIMARY/DB_REPLICA
-	 * @return string[] Non-empty group list in preference order with the default group appended
+	 * @return string Query group
 	 */
 	private function resolveGroups( $groups, $i ) {
 		// If a specific replica server was specified, then $groups makes no sense
@@ -305,19 +305,22 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		}
 
 		if ( $groups === [] || $groups === false || $groups === $this->defaultGroup ) {
-			$resolvedGroups = [ $this->defaultGroup ]; // common case
-		} elseif ( is_string( $groups ) && isset( $this->groupLoads[$groups] ) ) {
-			$resolvedGroups = [ $groups, $this->defaultGroup ];
+			$resolvedGroup = $this->defaultGroup;
+		} elseif ( is_string( $groups ) ) {
+			$resolvedGroup = isset( $this->groupLoads[$groups] ) ? $groups : $this->defaultGroup;
 		} elseif ( is_array( $groups ) ) {
-			$resolvedGroups = $groups;
-			if ( !in_array( $this->defaultGroup, $resolvedGroups ) ) {
-				$resolvedGroups[] = $this->defaultGroup;
+			$resolvedGroup = $this->defaultGroup;
+			foreach ( $groups as $group ) {
+				if ( isset( $this->groupLoads[$group] ) ) {
+					$resolvedGroup = $group;
+					break;
+				}
 			}
 		} else {
-			$resolvedGroups = [ $this->defaultGroup ];
+			$resolvedGroup = $this->defaultGroup;
 		}
 
-		return $resolvedGroups;
+		return $resolvedGroup;
 	}
 
 	/**
@@ -833,7 +836,7 @@ class LoadBalancer implements ILoadBalancerForOwner {
 
 	public function getConnectionInternal( $i, $groups = [], $domain = false, $flags = 0 ): IDatabase {
 		$domain = $this->resolveDomainID( $domain );
-		$groups = $this->resolveGroups( $groups, $i );
+		$group = $this->resolveGroups( $groups, $i );
 		$flags = $this->sanitizeConnectionFlags( $flags, $i, $domain );
 		// If given DB_PRIMARY/DB_REPLICA, resolve it to a specific server index. Resolving
 		// DB_REPLICA might trigger getServerConnection() calls due to the getReaderIndex()
@@ -843,12 +846,10 @@ class LoadBalancer implements ILoadBalancerForOwner {
 		if ( $i === self::DB_PRIMARY ) {
 			$serverIndex = $this->getWriterIndex();
 		} elseif ( $i === self::DB_REPLICA ) {
-			foreach ( $groups as $group ) {
-				$groupIndex = $this->getReaderIndex( $group );
-				if ( $groupIndex !== false ) {
-					$serverIndex = $groupIndex; // group connection succeeded
-					break;
-				}
+			$groupIndex = $this->getReaderIndex( $group );
+			if ( $groupIndex !== false ) {
+				// Group connection succeeded
+				$serverIndex = $groupIndex;
 			}
 			if ( $serverIndex < 0 ) {
 				$this->reportConnectionError( 'could not connect to any replica DB server' );
