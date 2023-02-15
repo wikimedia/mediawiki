@@ -184,7 +184,7 @@ class ChangeTags {
 	 * Creates HTML for the given tags
 	 *
 	 * @param string $tags Comma-separated list of tags
-	 * @param string $page Unused
+	 * @param null|string $unused Unused (formerly: $page)
 	 * @param MessageLocalizer|null $localizer
 	 * @note Even though it takes null as a valid argument, a MessageLocalizer is preferred
 	 *       in a new code, as the null value is subject to change in the future
@@ -193,7 +193,7 @@ class ChangeTags {
 	 *   - classes: Array of strings: CSS classes used in the generated html, one class for each tag
 	 * @return-taint onlysafefor_htmlnoent
 	 */
-	public static function formatSummaryRow( $tags, $page, MessageLocalizer $localizer = null ) {
+	public static function formatSummaryRow( $tags, $unused, MessageLocalizer $localizer = null ) {
 		if ( $tags === '' || $tags === null ) {
 			return [ '', [] ];
 		}

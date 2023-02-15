@@ -456,7 +456,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	protected function getRecacheDB() {
 		return $this->getDBLoadBalancer()
-			->getConnectionRef( ILoadBalancer::DB_REPLICA, [ $this->getName(), 'QueryPage::recache', 'vslow' ] );
+			->getConnectionRef( ILoadBalancer::DB_REPLICA, 'vslow' );
 	}
 
 	/**
