@@ -225,7 +225,7 @@ class ApiParseTest extends ApiTestCase {
 
 	public function testRevDelNoPermission() {
 		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage( "You don't have permission to view deleted revision text." );
+		$this->expectExceptionMessage( "You don't have permission to view deleted text or changes between deleted revisions." );
 
 		$this->doApiRequest( [
 			'action' => 'parse',
