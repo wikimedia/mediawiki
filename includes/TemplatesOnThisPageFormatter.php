@@ -131,6 +131,8 @@ class TemplatesOnThisPageFormatter {
 	/**
 	 * Builds a list item for an individual template
 	 *
+	 * The output of this is repeated for live-preview in resources/src/mediawiki.page.preview.js
+	 *
 	 * @param PageIdentity $target
 	 * @return string
 	 */

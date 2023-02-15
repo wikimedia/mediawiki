@@ -1672,7 +1672,16 @@ return [
 		'messages' => [
 			'summary-preview',
 			'parentheses',
+			'word-separator',
+			'comma-separator',
 			'templatesusedpreview',
+			'templatesusedsection',
+			'editlink',
+			'viewsourcelink',
+			'template-semiprotected',
+			'template-protected',
+			"restriction-level-sysop",
+			"restriction-level-autoconfirmed",
 			'diff-empty',
 		]
 	],
