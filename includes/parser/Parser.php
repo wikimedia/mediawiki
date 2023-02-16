@@ -4440,7 +4440,7 @@ class Parser {
 			$this->mOutput->setOutputFlag( ParserOutputFlags::SHOW_TOC );
 		}
 
-		if ( $isMain && !$suppressToc ) {
+		if ( $isMain && !$suppressToc && $this->mShowToc ) {
 			// We generally output the section information via the API
 			// even if there isn't "enough" of a ToC to merit showing
 			// it -- but the "suppress TOC" parser option is set when
@@ -4448,6 +4448,9 @@ class Parser {
 			// (ie, JavaScript content that might have spurious === or
 			// <h2>: T307691) so we will *not* set section information
 			// in that case.
+			// The TOCData will also be null/unset if __NOTOC__ is
+			// used on the page (and not overridden by __TOC__ or
+			// __FORCETOC__).
 			$this->mOutput->setTOCData( $tocData );
 		}
 
