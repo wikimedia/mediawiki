@@ -229,13 +229,9 @@ class UserrightsPage extends SpecialPage {
 			}
 
 			$targetUser = $this->mFetchedUser;
-			if ( $targetUser instanceof User ) { // UserRightsProxy doesn't have this method (T63252)
-				$targetUser->clearInstanceCache(); // T40989
-			}
-
 			$conflictCheck = $request->getVal( 'conflictcheck-originalgroups' );
 			$conflictCheck = ( $conflictCheck === '' ) ? [] : explode( ',', $conflictCheck );
-			$userGroups = $this->userGroupManager->getUserGroups( $targetUser );
+			$userGroups = $this->userGroupManager->getUserGroups( $targetUser, UserGroupManager::READ_LATEST );
 
 			if ( $userGroups !== $conflictCheck ) {
 				$out->addHTML( Html::errorBox(
