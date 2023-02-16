@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\ContentSecurityPolicy;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**

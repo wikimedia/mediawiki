@@ -25,6 +25,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\ContentSecurityPolicy;
 
 /**
  * This class is a collection of static functions that serve two purposes:

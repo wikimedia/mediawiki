@@ -22,6 +22,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\ContentSecurityPolicy;
 use Psr\Log\LoggerInterface;
 use Wikimedia\ParamValidator\ParamValidator;
 
