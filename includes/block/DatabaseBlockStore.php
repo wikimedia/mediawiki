@@ -188,6 +188,8 @@ class DatabaseBlockStore {
 	 * @param DatabaseBlock $block
 	 * @param IDatabase|null $database Database to use if not the same as the one in the load balancer.
 	 *                       Must connect to the wiki identified by $block->getBlocker->getWikiId().
+	 *                       @deprecated since 1.41, use DatabaseBlockStoreFactory to fetch a correct
+	 *                       DatabaseBlockStore instead.
 	 * @return bool|array False on failure, assoc array on success:
 	 *      ('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 * @throws MWException
@@ -199,6 +201,13 @@ class DatabaseBlockStore {
 		$blocker = $block->getBlocker();
 		if ( !$blocker || $blocker->getName() === '' ) {
 			throw new MWException( 'Cannot insert a block without a blocker set' );
+		}
+
+		if ( $database !== null ) {
+			wfDeprecatedMsg(
+				'Old method signature: Passing a $database is no longer supported',
+				'1.41'
+			);
 		}
 
 		$this->checkDatabaseDomain( $block->getWikiId(), $database );

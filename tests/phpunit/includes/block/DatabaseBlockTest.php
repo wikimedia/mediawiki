@@ -283,6 +283,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 * @covers ::insert
 	 */
 	public function testCrappyCrossWikiBlocks() {
+		$this->filterDeprecated( '/Passing a \$database is no longer supported/' );
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		// Delete the last round's block if it's still there
 		$oldBlock = DatabaseBlock::newFromTarget( 'UserOnForeignWiki' );

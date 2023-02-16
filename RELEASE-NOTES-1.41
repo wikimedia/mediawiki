@@ -233,6 +233,9 @@ because of Phabricator reports.
   'mediawiki.skin.variables.less' Codex design tokens featuring replacements.
 * The jquery.cookie ResourceLoader module has been merged into the existing
   mediawiki.cookie module; jquery.cookie remains but is deprecated.
+* Passing a database to DatabaseBlockStore::insertBlock() is deprecated.
+  DatabaseBlockStoreFactory should be used to fetch a correct
+  DatabaseBlockStore instead.
 * The global function wfGetLangObj is deprecated and emits deprecation
   warnings. Use MediaWiki\Languages\LanguageFactory::getLanguage instead.
 * virtualrest::SwiftVirtualRESTService is deprecated in 1.41 and now emits
