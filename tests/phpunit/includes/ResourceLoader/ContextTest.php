@@ -165,4 +165,31 @@ class ContextTest extends \PHPUnit\Framework\TestCase {
 		$this->assertInstanceOf( Message::class, $msg );
 		$this->assertSame( 'Main Page', $msg->useDatabase( false )->plain() );
 	}
+
+	public function testEncodeJson() {
+		$ctx = new Context( $this->getResourceLoader(), new FauxRequest( [] ) );
+
+		$json = $ctx->encodeJson( [ 'x' => 'A' ] );
+		$this->assertSame( '{"x":"A"}', $json );
+
+		// Regression: https://phabricator.wikimedia.org/T329330
+		$json = @$ctx->encodeJson( [
+			'x' => 'A',
+			'y' => "Foo\x80\xf0Bar",
+			'z' => 'C',
+		] );
+		$this->assertSame( '{"x":"A","y":null,"z":"C"}', $json, 'Ignore invalid UTF-8' );
+	}
+
+	public function testEncodeJsonWarning() {
+		$ctx = new Context( $this->getResourceLoader(), new FauxRequest( [] ) );
+
+		$this->expectWarning();
+		$this->expectWarningMessage( 'encodeJson partially failed: Malformed UTF-8' );
+		$ctx->encodeJson( [
+			'x' => 'A',
+			'y' => "Foo\x80\xf0Bar",
+			'z' => 'C',
+		] );
+	}
 }
