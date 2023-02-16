@@ -1124,7 +1124,8 @@ class ParserTestRunner {
 		// failing mode, which can make diffs harder to verify when
 		// failing modes change.
 		ksort( $testKnownFailures );
-		$contents = FormatJson::encode( $testKnownFailures, "\t", FormatJson::ALL_OK ) . "\n";
+		// Cast to object to ensure that empty list is encoded as `{}` not `[]`
+		$contents = FormatJson::encode( (object)$testKnownFailures, "\t", FormatJson::ALL_OK ) . "\n";
 
 		if ( file_exists( $testFileInfo->knownFailuresPath ) ) {
 			$old = file_get_contents( $testFileInfo->knownFailuresPath );
