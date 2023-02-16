@@ -3054,44 +3054,42 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		foreach ( $res as $row ) {
 			$existingCategories[$row->cat_id] = $row->cat_title;
 		}
+		$existingAdded = array_intersect( $existingCategories, $added );
+		$existingDeleted = array_intersect( $existingCategories, $deleted );
+		$missingAdded = array_diff( $added, $existingAdded );
 
-		if ( count( $added ) ) {
-			$existingAdded = array_intersect( $existingCategories, $added );
-			// For category rows that already exist, do a plain
-			// UPDATE instead of INSERT...ON DUPLICATE KEY UPDATE
-			// to avoid creating gaps in the cat_id sequence.
-			if ( count( $existingAdded ) ) {
-				$dbw->update(
-					'category',
-					$addFields,
-					[ 'cat_id' => array_keys( $existingAdded ) ],
-					__METHOD__
-				);
-			}
-
-			$missingAdded = array_diff( $added, $existingAdded );
-			if ( count( $missingAdded ) ) {
-				$insertRows = [];
-				foreach ( $missingAdded as $cat ) {
-					$insertRows[] = [
-						'cat_title'   => $cat,
-						'cat_pages'   => 1,
-						'cat_subcats' => ( $type === 'subcat' ) ? 1 : 0,
-						'cat_files'   => ( $type === 'file' ) ? 1 : 0,
-					];
-				}
-				$dbw->upsert(
-					'category',
-					$insertRows,
-					'cat_title',
-					$addFields,
-					__METHOD__
-				);
-			}
+		// For category rows that already exist, do a plain
+		// UPDATE instead of INSERT...ON DUPLICATE KEY UPDATE
+		// to avoid creating gaps in the cat_id sequence.
+		if ( $existingAdded ) {
+			$dbw->update(
+				'category',
+				$addFields,
+				[ 'cat_id' => array_keys( $existingAdded ) ],
+				__METHOD__
+			);
 		}
 
-		if ( count( $deleted ) ) {
-			$existingDeleted = array_intersect( $existingCategories, $deleted );
+		if ( $missingAdded ) {
+			$insertRows = [];
+			foreach ( $missingAdded as $cat ) {
+				$insertRows[] = [
+					'cat_title'   => $cat,
+					'cat_pages'   => 1,
+					'cat_subcats' => ( $type === 'subcat' ) ? 1 : 0,
+					'cat_files'   => ( $type === 'file' ) ? 1 : 0,
+				];
+			}
+			$dbw->upsert(
+				'category',
+				$insertRows,
+				'cat_title',
+				$addFields,
+				__METHOD__
+			);
+		}
+
+		if ( $existingDeleted ) {
 			$dbw->update(
 				'category',
 				$removeFields,
