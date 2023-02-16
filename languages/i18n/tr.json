@@ -2021,7 +2021,7 @@
 	"filehist-dimensions": "Boyutlar",
 	"filehist-filesize": "Dosya boyutu",
 	"filehist-comment": "Yorum",
-	"filehist-missing": "Dosya kayıp",
+	"filehist-missing": "dosya yok",
 	"imagelinks": "Dosya kullanımı",
 	"linkstoimage": "Aşağıdaki {{PLURAL:$1|sayfa|$1 sayfa}} bu dosyayı kullanmaktadır:",
 	"linkstoimage-more": "$1 sayfadan fazlası bu dosyayı kullanıyor.\nAşağıdaki listede sadece bu dosyayı kullanan {{PLURAL:$1|ilk sayfa|ilk $1 sayfa}} gösterilmektedir.\n[[Special:WhatLinksHere/$2|Tam listesi]] mevcuttur.",
@@ -4184,5 +4184,13 @@
 	"newpages-showhide-bots": "Botları $1",
 	"newpages-showhide-patrolled": "İncelenmiş Düzenlemelerini $1",
 	"newpages-showhide-redirect": "Yönlendirmelerini $1",
-	"newpages-showhide-registered": "Kayıtlı Kullanıcılarını $1"
+	"newpages-showhide-registered": "Kayıtlı Kullanıcılarını $1",
+	"blockedtext-made-by": "Engellemeyi $1 yaptı.",
+	"blockedtext-reason-comment": "Gösterilen sebep <em>$1</em>",
+	"blockedtext-start-time": "Engelleme başlangıcı: $1",
+	"blockedtext-expiration-time": "Engelleme bitişi: $1",
+	"blockedtext-intended-blockee": "Engellenmek istenen: $1",
+	"blockedtext-contact-blocker-admin": "Engellemeyi tartışmak için $1 ya da başka bir [[{{MediaWiki:Grouppage-sysop}}|hizmetli]] ile iletişime geçebilirsiniz.",
+	"blockedtext-block-ip": "Geçerli IP adresiniz $1",
+	"blockedtext-include-details-queries": "Lütfen yapacağınız sorgulara yukarıdaki bütün ayrıntıları ekleyin."
 }

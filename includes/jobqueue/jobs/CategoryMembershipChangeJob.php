@@ -94,7 +94,7 @@ class CategoryMembershipChangeJob extends Job {
 		}
 
 		// Cut down on the time spent in waitForPrimaryPos() in the critical section
-		$dbr = $lb->getConnectionRef( DB_REPLICA, [ 'recentchanges' ] );
+		$dbr = $lb->getConnectionRef( DB_REPLICA );
 		if ( !$lb->waitForPrimaryPos( $dbr ) ) {
 			$this->setLastError( "Timed out while pre-waiting for replica DB to catch up" );
 			return false;

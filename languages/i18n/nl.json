@@ -2887,7 +2887,7 @@
 	"movesubpagetalktext": "De bijbehorende overlegpagina heeft $1 {{PLURAL:$1|deelpagina|deelpagina's}} hierbeneden getoond.",
 	"movenosubpage": "Deze pagina heeft geen deelpagina's.",
 	"movereason": "Reden:",
-	"moveotherreason": "Andere reden:",
+	"moveotherreason": "Andere/aanvullende reden:",
 	"movereasonotherlist": "Andere reden",
 	"movepage-reason-dropdown": "* Veelvoorkomende redenen om te hernoemen\n** Onjuist gespelde titel",
 	"movepage-edit-reasonlist": "Redenen voor hernoemen bewerken",

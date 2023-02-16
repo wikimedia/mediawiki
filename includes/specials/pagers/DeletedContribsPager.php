@@ -93,9 +93,8 @@ class DeletedContribsPager extends ReverseChronologicalPager {
 		$target,
 		$namespace
 	) {
-		// Set database before parent constructor to avoid setting it there with wfGetDB
-		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA, 'contributions' );
 		parent::__construct( $context, $linkRenderer );
+
 		$msgs = [ 'deletionlog', 'undeleteviewlink', 'diff' ];
 		foreach ( $msgs as $msg ) {
 			$this->messages[$msg] = $this->msg( $msg )->text();

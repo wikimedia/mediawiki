@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -8,6 +9,7 @@ use Wikimedia\TestingAccessWrapper;
 class MWHttpRequestTest extends PHPUnit\Framework\TestCase {
 
 	public function testFactory() {
+		MWDebug::filterDeprecationForTest( '/Use of MWHttpRequest::factory /' );
 		$this->assertInstanceOf( MWHttpRequest::class, MWHttpRequest::factory( 'http://example.test' ) );
 	}
 
@@ -89,7 +91,7 @@ class MWHttpRequestTest extends PHPUnit\Framework\TestCase {
 
 	public function testSetReverseProxy() {
 		$req = TestingAccessWrapper::newFromObject(
-			MWHttpRequest::factory( 'https://example.org/path?query=string' )
+			MediaWikiServices::getInstance()->getHttpRequestFactory()->create( 'https://example.org/path?query=string' )
 		);
 		$req->setReverseProxy( 'http://localhost:1234' );
 		$this->assertSame( 'http://localhost:1234/path?query=string', $req->url );

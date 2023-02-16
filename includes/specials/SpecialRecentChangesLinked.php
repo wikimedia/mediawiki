@@ -111,8 +111,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		 * merging the results, but the code we inherit from our parent class
 		 * expects only one result set so we use UNION instead.
 		 */
-
-		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA, 'recentchangeslinked' );
+		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		$id = $title->getArticleID();
 		$ns = $title->getNamespace();
 		$dbkey = $title->getDBkey();

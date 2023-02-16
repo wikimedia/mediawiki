@@ -835,11 +835,6 @@ class SpecialContributions extends IncludableSpecialPage {
 			->setSubmitTextMsg( 'sp-contributions-submit' )
 			->setWrapperLegendMsg( 'sp-contributions-search' );
 
-		$explain = $this->msg( 'sp-contributions-explain' );
-		if ( !$explain->isBlank() ) {
-			$htmlForm->addFooterHtml( "<p id='mw-sp-contributions-explain'>{$explain->parse()}</p>" );
-		}
-
 		$htmlForm->prepareForm();
 
 		// Submission is handled elsewhere, but do this to check for and display errors

@@ -107,14 +107,14 @@ For example, while a database read is executing, if other queries have performed
 
 MediaWiki currently supports the following query groups:
 
-* api
-    * Only use for queries specific to api.php requests; the method ApiBase::getDB() is provided for this purpose.
-* dump
-    * Only use in MediaWiki dump maintenance scripts. In such scripts, all queries, even fast ones, should use this group.
-* vslow
-    * Only use for queries that are expected to have a long execution time. For example, when calculating per-wiki site statistics.
+* `api`: For queries specific to api.php requests. This is set via ApiBase::getDB(). Note that most queries from api.php are performed via re-used service classes that are not specific to api.php, and thus don't use this query group.
 
-Use the below example syntax to connect to a database when your query falls into one of the above 3 categories:
+* `dump`: For dump-related CLI maintenance scripts (also known as "export" or "snapshot"). These scripts set the query group at the process level, and thus affect all queries, including fast/general ones.
+
+* `vslow`: For queries that are expected to have a long execution time (e.g. more than one second when run against the largest wiki). These tend to be unoptimized queries that are unable to use an index, and thus get slower the more rows a table contains instead of staying relatively constant. These should be limited to jobs and maintenance scripts, or guarded by `$wgMiserMode`.
+
+The below is how you specify a query group when obtaining a connection:
+
 ```php
 $lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 $lb->getConnectionRef( DB_REPLICA, 'vslow' );

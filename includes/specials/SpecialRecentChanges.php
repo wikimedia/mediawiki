@@ -499,8 +499,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	protected function getDB() {
 		if ( !$this->db ) {
-			$this->db = $this->loadBalancer->getConnectionRef(
-				ILoadBalancer::DB_REPLICA, 'recentchanges' );
+			$this->db = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		}
 		return $this->db;
 	}

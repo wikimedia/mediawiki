@@ -223,7 +223,7 @@
 	"showpreview": "Xlɛ lée ná ci é",
 	"showdiff": "Sɔ nu ɖyɔɖyɔ lɛ sɔ xlɛ",
 	"anoneditwarning": "<strong>Ɖo ayi é wu:</strong> Mi sɔ mi ɖé sɔ xlɛ a. É ɖo mɔ ɔ, mi wlan nu ɖébu ɔ, tobi na mɔ IP mitɔn. É nyi ɖɔ <strong>[$1 sɔ miɖé sɔ xlɛ]</strong> alo <strong>[$2 mi do nyikɔ mitɔn wéma mɛ]</strong>, nuwlanwlan mitɔn lɛ na nɔ nyikɔ mitɔn tamɛ, kpoɖo ajɔ ɖévo lɛ kpo.",
-	"blockedtext": "<strong>É ɖo alɔ té nu wikinyikɔ mitɔn alo mɛsɔxlɛ wekwin mitɔn IP tɔn.</strong>\n\n$1 wɛ ɖo alɔ té na.\nNu é wu wɛ ɔ ɖyé <em>$2</em>.\n\n* Bibɛmɛ alɔɖoté ɔ tɔn: $8\n* Fifo alɔɖoté ɔ tɔn: $6\n* Alɔɖoté linlɛn: $7\n\nMi hɛn mi na wlan nu sɛdo $1 alo [[{{MediaWiki:Grouppage-sysop}}|anaɖétɔ lɛ]] bo na do kɛnnu ɖo alɔɖoté énɛ ɔ wu.\nMi hɛn ɔ, mi na zan \"{{int:emailuser}}\" ényi mi ɖo emélu é sɔgbé é bɔ mi sɔ ɖo [[Special:Preferences|nujlomɛ]] mitɔn lɛ mɛ bɔ é ma ɖo mi té ɖo wiki ɖé ji.\nMɛsɔxlɛ wekwin mitɔn IP tɔn ɔ wɛ nyi $3, bɔ ID alɔɖomɛté ɔ tɔn wɛ nyi #$5.\nMi sɔ nunɛ bi wlan ɖo xokambyɔ mɛ mitɔn lɛ bi mɛ.",
+	"blockedtext": "<strong>É ɖo alɔ té nu wikinyikɔ mitɔn alo mɛsɔxlɛ wekwin mitɔn IP tɔn.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nMi hɛn mi na zan \"{{int:emailuser}}\" é nyi mi sɔ ɖo [[Special:Preferences|nujlomɛ]] mitɔn lɛ mɛ bɔ é ma ɖo mi té ɖo wiki ɖé ji.\n{{int:blockedtext-block-ip|$3}}, bɔ ID alɔɖomɛté ɔ tɔn wɛ nyi #$5.\n{{int:blockedtext-include-details-queries}}",
 	"loginreqlink": "sɔ hwiɖé sɔ́ xlɛ",
 	"newarticle": "(Yɔ̀yɔ́)",
 	"newarticletext": "Nuwlanwlan kan mi zan ɔ ko ɖé a. É mi ɖo jlo bo na wlan ɔ, mi vɛ wlan nyinkɔ ɔ do gbavi é ɖo élɔ mɛ (Yi [$1 aloɖo wémapka] bo na do ɖo mɔnjɛmɛ tɔn).\nE yin ɖo ali wɛ mi bu ɔ, mi vɛ kɔ <strong>yi  guɖo</strong>.",
@@ -655,5 +655,9 @@
 	"log-action-filter-block-block": "Ɖoté",
 	"skin-view-create-local": "Gɔ tinmɛ tɔn ɖo gbé towé mɛ",
 	"nstab-mainpage": "Nuwlanwlan tájí ɔ",
-	"skin-action-move": "Ɖyɔ nyikɔ tɔn"
+	"skin-action-move": "Ɖyɔ nyikɔ tɔn",
+	"blockedtext-made-by": "$1 wɛ ɖo mɛ té",
+	"blockedtext-reason-comment": "Nu é wu wɛ ɔ ɖié <em>$1</em>",
+	"blockedtext-start-time": "Bibɛmɛ mɛɖoté ɔ tɔn : $1",
+	"blockedtext-expiration-time": "Fifo mɛɖoté ɔ tɔn: $1"
 }

@@ -11,6 +11,7 @@
 			"Meisam",
 			"Reedy",
 			"Stephanecbisson",
+			"TayfunEt.",
 			"아라"
 		]
 	},
@@ -674,5 +675,6 @@
 	"version": "Versiya",
 	"specialpages": "Maasus sayfalar",
 	"deletepage": "Sayfayı sil",
+	"searchsuggest-search": "{{SITENAME}} içindä ara",
 	"skin-action-protect": "Korunmak altına al"
 }

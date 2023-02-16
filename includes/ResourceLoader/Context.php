@@ -502,12 +502,17 @@ class Context implements MessageLocalizer {
 		// and allows URLs to mostly remain readable.
 		$jsonFlags = JSON_UNESCAPED_SLASHES |
 			JSON_UNESCAPED_UNICODE |
+			JSON_PARTIAL_OUTPUT_ON_ERROR |
 			JSON_HEX_TAG |
 			JSON_HEX_AMP;
 		if ( $this->getDebug() ) {
 			$jsonFlags |= JSON_PRETTY_PRINT;
 		}
-		return json_encode( $data, $jsonFlags );
+		$json = json_encode( $data, $jsonFlags );
+		if ( json_last_error() !== JSON_ERROR_NONE ) {
+			trigger_error( __METHOD__ . ' partially failed: ' . json_last_error_msg(), E_USER_WARNING );
+		}
+		return $json;
 	}
 }
 
