@@ -963,6 +963,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		$changeTypeGroup = $this->getFilterGroup( 'changeType' );
 
+		$categoryFilter = null;
 		if ( $this->getConfig()->get( MainConfigNames::RCWatchCategoryMembership ) ) {
 			$transformedHideCategorizationDef = $this->transformFilterDefinition(
 				$this->hideCategorizationFilterDefinition
@@ -970,7 +971,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 			$transformedHideCategorizationDef['group'] = $changeTypeGroup;
 
-			$hideCategorization = new ChangesListBooleanFilter(
+			$categoryFilter = new ChangesListBooleanFilter(
 				$transformedHideCategorizationDef
 			);
 		}
@@ -985,7 +986,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$registered->setAsSupersetOf( $userExperienceLevel->getFilter( 'learner' ) );
 		$registered->setAsSupersetOf( $userExperienceLevel->getFilter( 'experienced' ) );
 
-		$categoryFilter = $changeTypeGroup->getFilter( 'hidecategorization' );
 		$logactionsFilter = $changeTypeGroup->getFilter( 'hidelog' );
 		$lognewuserFilter = $changeTypeGroup->getFilter( 'hidenewuserlog' );
 		$pagecreationFilter = $changeTypeGroup->getFilter( 'hidenewpages' );
@@ -993,7 +993,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		$significanceTypeGroup = $this->getFilterGroup( 'significance' );
 		$hideMinorFilter = $significanceTypeGroup->getFilter( 'hideminor' );
 
-		// categoryFilter is conditional; see registerFilters
 		if ( $categoryFilter !== null ) {
 			$hideMinorFilter->conflictsWith(
 				$categoryFilter,
