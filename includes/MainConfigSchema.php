@@ -6198,7 +6198,7 @@ class MainConfigSchema {
 	 * other namespaces cannot be invalidated by this variable.
 	 */
 	public const InvalidRedirectTargets = [
-		'default' => [ 'Filepath', 'Mypage', 'Mytalk', 'Redirect' ],
+		'default' => [ 'Filepath', 'Mypage', 'Mytalk', 'Redirect', 'Mylog' ],
 		'type' => 'list',
 	];
 

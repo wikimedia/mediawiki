@@ -460,6 +460,7 @@ $specialPageAliases = [
 	'Mute'                      => [ 'Mute' ],
 	'Mycontributions'           => [ 'MyContributions', 'MyContribs' ],
 	'MyLanguage'                => [ 'MyLanguage' ],
+	'Mylog'                     => [ 'MyLog' ],
 	'Mypage'                    => [ 'MyPage' ],
 	'Mytalk'                    => [ 'MyTalk' ],
 	'Myuploads'                 => [ 'MyUploads', 'MyFiles' ],

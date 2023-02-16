@@ -747,6 +747,7 @@ return [
 				1 => 'Mypage',
 				2 => 'Mytalk',
 				3 => 'Redirect',
+				4 => 'Mylog',
 			],
 			'DisableHardRedirects' => false,
 			'FixDoubleRedirects' => false,

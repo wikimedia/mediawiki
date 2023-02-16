@@ -167,7 +167,7 @@ class JobQueueMemory extends JobQueue {
 	/**
 	 * @see JobQueue::getAllQueuedJobs
 	 *
-	 * @return Iterator of Job objects.
+	 * @return Iterator<RunnableJob> of Job objects.
 	 */
 	public function getAllQueuedJobs() {
 		$unclaimed = $this->getQueueData( 'unclaimed' );
@@ -186,7 +186,7 @@ class JobQueueMemory extends JobQueue {
 	/**
 	 * @see JobQueue::getAllAcquiredJobs
 	 *
-	 * @return Iterator of Job objects.
+	 * @return Iterator<RunnableJob> of Job objects.
 	 */
 	public function getAllAcquiredJobs() {
 		$claimed = $this->getQueueData( 'claimed' );

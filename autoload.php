@@ -2468,6 +2468,7 @@ $wgAutoloadLocalClasses = [
 	'SpecialMute' => __DIR__ . '/includes/specials/SpecialMute.php',
 	'SpecialMyLanguage' => __DIR__ . '/includes/specials/SpecialMyLanguage.php',
 	'SpecialMycontributions' => __DIR__ . '/includes/specials/redirects/SpecialMycontributions.php',
+	'SpecialMylog' => __DIR__ . '/includes/specials/redirects/SpecialMylog.php',
 	'SpecialMypage' => __DIR__ . '/includes/specials/redirects/SpecialMypage.php',
 	'SpecialMytalk' => __DIR__ . '/includes/specials/redirects/SpecialMytalk.php',
 	'SpecialMyuploads' => __DIR__ . '/includes/specials/redirects/SpecialMyuploads.php',

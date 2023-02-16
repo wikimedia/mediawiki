@@ -3947,6 +3947,7 @@ config-schema:
             - Mypage
             - Mytalk
             - Redirect
+            - Mylog
         type: array
         description: |-
             Array of invalid page redirect targets.
