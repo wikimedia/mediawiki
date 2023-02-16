@@ -677,6 +677,7 @@ class LogEventsList extends ContextSource {
 			$services->getDBLoadBalancer(),
 			$services->getActorNormalization()
 		);
+		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( !$useRequestParams ) {
 			# Reset vars that may have been taken from the request
 			$pager->mLimit = 50;
@@ -685,6 +686,7 @@ class LogEventsList extends ContextSource {
 			$pager->mIsBackwards = false;
 		}
 
+		// @phan-suppress-next-line PhanImpossibleCondition
 		if ( $param['useMaster'] ) {
 			$pager->mDb = wfGetDB( DB_PRIMARY );
 		}
@@ -717,6 +719,7 @@ class LogEventsList extends ContextSource {
 				$loglist->endLogEventsList();
 			// add styles for change tags
 			$context->getOutput()->addModuleStyles( 'mediawiki.interface.helpers.styles' );
+		// @phan-suppress-next-line PhanRedundantCondition
 		} elseif ( $showIfEmpty ) {
 			$s = Html::rawElement( 'div', [ 'class' => 'mw-warning-logempty' ],
 				$context->msg( 'logempty' )->parse() );
@@ -783,7 +786,7 @@ class LogEventsList extends ContextSource {
 			);
 		}
 
-		// @phan-suppress-next-line PhanSuspiciousValueComparison
+		// @phan-suppress-next-line PhanSuspiciousValueComparison, PhanRedundantCondition
 		if ( $wrap != '' ) { // Wrap message in html
 			$s = str_replace( '$1', $s, $wrap );
 		}

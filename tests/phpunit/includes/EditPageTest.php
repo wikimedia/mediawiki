@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\EditPage\EditPage;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Request\FauxRequest;
