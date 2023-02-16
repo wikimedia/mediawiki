@@ -1130,7 +1130,10 @@ class ParserTestRunner {
 		if ( file_exists( $testFileInfo->knownFailuresPath ) ) {
 			$old = file_get_contents( $testFileInfo->knownFailuresPath );
 		} else {
-			$old = "";
+			// If file doesn't exist, use the JSON representation of an
+			// empty array, so it compares equal in the case that we
+			// end up with an empty array of known failures below.
+			$old = "{}";
 		}
 
 		if ( $testFileInfo->knownFailuresPath && $old !== $contents ) {
