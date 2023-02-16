@@ -641,7 +641,7 @@
 	"previewerrortext": "Došlo je do greške pri pokušaju pregleda izmjena.",
 	"blockedtitle": "Korisnik je blokiran",
 	"blockedtext-partial": "<strong> Vaš username ili IP adresa su blokirani za ovu radnju. Još uvijek možda možete raditi druge stvari na ovoj stranici, kao što je editovanje određenih članaka. </strong> Možete vidjeti sve detalje blokiranja na [[Special:MyContributions|account contributions]].\n\nOvo blokiranje je urađeno od strane $1.\n\nRazlog koji je dat je <em>$2</em>.\n\n* Početak blokiranja: $8\n* Istek blokiranja: $6\n* Namjeren blokirani: $7\n* Block ID #$5",
-	"blockedtext": "<strong>Vaše korisničko ime ili IP-adresa je blokirana.</strong>\n\n{{GENDER:$1|Blokirao|Blokirala|Blokirao/-la}} Vas je $1.\nRazlog je: <em>$2</em>.\n\n* Početak blokade: $8\n* Istek blokade: $6\n* Blokirani korisnik: $7\n\nMožete se obratiti {{GENDER:$1|korisniku|korisnici|korisniku/-ci}} $1 ili nekom drugom [[{{MediaWiki:Grouppage-sysop}}|administratoru]] da biste razgovarali o blokadi.\nTakođer možete koristiti mogućnost \"{{int:emailuser}}\" ako ste u [[Special:Preferences|postavkama]] naveli adresu e-pošte.\nVaša trenutna IP-adresa je $3, a oznaka blokade je #$5.\nNavedite gornje podatke pri zahtjevu za deblokadu.",
+	"blockedtext": "<strong>Vaše korisničko ime ili IP-adresa je blokirana.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nTakođer možete koristiti mogućnost \"{{int:emailuser}}\" ako ste u [[Special:Preferences|postavkama]] naveli važeću adresu e-pošte.\n{{int:blockedtext-block-ip|$3}}, a oznaka blokade je #$5.\n{{int:blockedtext-include-details-queries}}",
 	"autoblockedtext": "Vaša IP-adresa automatski je blokirana jer ju je koristio drugi korisnik, a blokirao ju je $1.\nNaveden je sljedeći razlog:\n\n:''$2''\n\n* Početak blokade: $8\n* Kraj blokade: $6\n* Blokirani korisnik: $7\n\nMožete kontaktirati sa $1 ili nekim drugim iz grupe [[{{MediaWiki:Grouppage-sysop}}|administratora]] i zahtijevati da Vas deblokira.\n\nZapamtite da ne možete koristiti opciju \"pošalji e-mail ovom korisniku\" sve dok ne unesete validnu e-mail adresu pri registraciji u Vašim [[Special:Preferences|korisničkim postavkama]] i dok niste spriječeni (blokadom) da je koristite.\n\nVaša trenutna IP-adresa je $3, a ID blokade je $5.\nMolimo da navedete sve gore navedene detalje u zahtjevu za deblokadu.",
 	"systemblockedtext": "MediaWiki je automatski blokirao Vaše korisničko ime ili IP-adresu.\nDat je sljedeći razlog:\n\n:<em>$2</em>\n\n* Početak blokade: $8\n* Istek blokade: $6\n* Blokada je namijenjena za: $7\n\nVaša trenutna IP-adresa je $3.\nAko imate pitanja u vezi s blokadom, priložite sve gorenavedene pojedinosti.",
 	"blockednoreason": "razlog nije naveden",
@@ -739,6 +739,7 @@
 	"editpage-invalidcontentmodel-text": "Model sadržaja \"$1\" nije podržan.",
 	"editpage-notsupportedcontentformat-title": "Format sadržaja nije podržan",
 	"editpage-notsupportedcontentformat-text": "Format sadržaja $1 nije podržan za model sadržaja $2.",
+	"slot-name-main": "Glavno",
 	"content-model-wikitext": "wikitekst",
 	"content-model-text": "obični tekst",
 	"content-model-javascript": "JavaScript",
@@ -3716,5 +3717,13 @@
 	"skin-action-protect": "Zaštiti",
 	"skin-action-undelete": "Vrati izbrisano",
 	"skin-action-delete": "Izbriši",
-	"skin-action-move": "Premjesti"
+	"skin-action-move": "Premjesti",
+	"blockedtext-made-by": "Blokiranje je obavio korisnik $1.",
+	"blockedtext-reason-comment": "Navedeni razlog je <em>$1</em>",
+	"blockedtext-start-time": "Početak blokade: $1",
+	"blockedtext-expiration-time": "Kraj blokade: $1",
+	"blockedtext-intended-blockee": "Blokirani korisnik: $1",
+	"blockedtext-contact-blocker-admin": "Možete kontaktirati $1 ili drugog [[{{MediaWiki:Grouppage-sysop}}|administratora]] da razgovarate o blokadi.",
+	"blockedtext-block-ip": "Vaša trenutna IP-adresa je $1",
+	"blockedtext-include-details-queries": "Uključite sve gore navedene detalje u upite ili zahtjeve za deblokadu."
 }
