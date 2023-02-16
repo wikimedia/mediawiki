@@ -25,10 +25,16 @@
  * @file
  */
 
+namespace MediaWiki\Request;
+
+use Config;
+use LogicException;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use UnexpectedValueException;
+use WebResponse;
 
 class ContentSecurityPolicy {
 	public const REPORT_ONLY_MODE = 1;
@@ -60,7 +66,9 @@ class ContentSecurityPolicy {
 	 * @param HookContainer $hookContainer
 	 * @since 1.35 Method signature changed
 	 */
-	public function __construct( WebResponse $response, Config $mwConfig,
+	public function __construct(
+		WebResponse $response,
+		Config $mwConfig,
 		HookContainer $hookContainer
 	) {
 		$this->response = $response;
@@ -366,8 +374,11 @@ class ContentSecurityPolicy {
 	private function getAdditionalSelfUrlsScript() {
 		$additionalUrls = [];
 		// wgExtensionAssetsPath for ?debug=true mode
-		$pathVars = [ MainConfigNames::LoadScript, MainConfigNames::ExtensionAssetsPath,
-			MainConfigNames::ResourceBasePath ];
+		$pathVars = [
+			MainConfigNames::LoadScript,
+			MainConfigNames::ExtensionAssetsPath,
+			MainConfigNames::ResourceBasePath,
+		];
 
 		foreach ( $pathVars as $path ) {
 			$url = $this->mwConfig->get( $path );
@@ -420,8 +431,12 @@ class ContentSecurityPolicy {
 		$repoGroup->forEachForeignRepo( $callback, [ &$pathUrls ] );
 
 		// Globals that might point to a different domain
-		$pathGlobals = [ MainConfigNames::LoadScript, MainConfigNames::ExtensionAssetsPath,
-			MainConfigNames::StylePath, MainConfigNames::ResourceBasePath ];
+		$pathGlobals = [
+			MainConfigNames::LoadScript,
+			MainConfigNames::ExtensionAssetsPath,
+			MainConfigNames::StylePath,
+			MainConfigNames::ResourceBasePath,
+		];
 		foreach ( $pathGlobals as $path ) {
 			$pathUrls[] = $this->mwConfig->get( $path );
 		}
@@ -511,7 +526,7 @@ class ContentSecurityPolicy {
 	public static function isNonceRequired( Config $config ) {
 		$configs = [
 			$config->get( MainConfigNames::CSPHeader ),
-			$config->get( MainConfigNames::CSPReportOnlyHeader )
+			$config->get( MainConfigNames::CSPReportOnlyHeader ),
 		];
 		return self::isNonceRequiredArray( $configs );
 	}
@@ -592,3 +607,5 @@ class ContentSecurityPolicy {
 		$this->extraScriptSrc[] = $this->prepareUrlForCSP( $source );
 	}
 }
+
+class_alias( ContentSecurityPolicy::class, 'ContentSecurityPolicy' );
