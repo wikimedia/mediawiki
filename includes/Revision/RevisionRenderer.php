@@ -22,9 +22,9 @@
 
 namespace MediaWiki\Revision;
 
-use Html;
 use InvalidArgumentException;
 use MediaWiki\Content\Renderer\ContentRenderer;
+use MediaWiki\Html\Html;
 use MediaWiki\Permissions\Authority;
 use ParserOptions;
 use ParserOutput;

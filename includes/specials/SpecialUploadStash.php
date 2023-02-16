@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Html\Html;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Utils\UrlUtils;

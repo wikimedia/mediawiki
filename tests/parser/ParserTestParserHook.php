@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\Html\Html;
+
 /**
  * A basic extension that's used by the parser tests to test whether input and
  * arguments are passed to extensions properly.

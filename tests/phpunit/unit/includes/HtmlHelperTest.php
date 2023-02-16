@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Unit;
 
-use MediaWiki\HtmlHelper;
+use MediaWiki\Html\HtmlHelper;
 use MediaWikiUnitTestCase;
 use Wikimedia\RemexHtml\HTMLData;
 use Wikimedia\RemexHtml\Serializer\SerializerNode;
@@ -11,7 +11,7 @@ use Wikimedia\RemexHtml\Tokenizer\PlainAttributes;
 class HtmlHelperTest extends MediaWikiUnitTestCase {
 
 	/**
-	 * @covers \MediaWiki\HtmlHelper::modifyElements
+	 * @covers \MediaWiki\Html\HtmlHelper::modifyElements
 	 */
 	public function testModifyElements() {
 		$shouldModifyCallback = static function ( SerializerNode $node ) {

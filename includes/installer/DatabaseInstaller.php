@@ -21,6 +21,7 @@
  * @ingroup Installer
  */
 
+use MediaWiki\Html\Html;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;

@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\Content\Renderer\ContentParseParams;
+use MediaWiki\Html\Html;
 
 /**
  * Content handler implementation for unknown content.

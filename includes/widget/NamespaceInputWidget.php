@@ -44,7 +44,7 @@ class NamespaceInputWidget extends \OOUI\DropdownInputWidget {
 			'in-user-lang' => $config['userLang'] ?? false,
 			'exclude' => $config['exclude'] ?? null
 		];
-		$namespaceOptions = \Html::namespaceSelectorOptions( $namespaceOptionsParams );
+		$namespaceOptions = \MediaWiki\Html\Html::namespaceSelectorOptions( $namespaceOptionsParams );
 
 		$options = [];
 		foreach ( $namespaceOptions as $id => $name ) {

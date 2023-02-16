@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Search\SearchWidgets;
 
-use Html;
 use ISearchResultSet;
+use MediaWiki\Html\Html;
 use SpecialSearch;
 
 /**

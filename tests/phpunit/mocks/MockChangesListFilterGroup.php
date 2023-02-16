@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Html\FormOptions;
 use Wikimedia\Rdbms\IDatabase;
 
 class MockChangesListFilterGroup extends ChangesListFilterGroup {

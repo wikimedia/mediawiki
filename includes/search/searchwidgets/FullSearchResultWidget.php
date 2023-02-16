@@ -3,12 +3,12 @@
 namespace MediaWiki\Search\SearchWidgets;
 
 use File;
-use Html;
 use HtmlArmor;
 use MediaTransformOutput;
 use MediaWiki\Category\Category;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
 use MediaWiki\Search\SearchResultThumbnailProvider;

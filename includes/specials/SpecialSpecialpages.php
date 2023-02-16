@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Html\Html;
+
 /**
  * A special page that lists special pages
  *

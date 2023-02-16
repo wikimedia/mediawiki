@@ -18,7 +18,7 @@
 
 namespace MediaWiki\Skin;
 
-use Html;
+use MediaWiki\Html\Html;
 use MessageLocalizer;
 
 class SkinComponentListItem implements SkinComponent {

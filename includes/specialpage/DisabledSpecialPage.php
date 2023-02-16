@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Html\Html;
+
 /**
  * This class is a drop-in replacement for other special pages that need to be manually
  * disabled. To use it, just put something like

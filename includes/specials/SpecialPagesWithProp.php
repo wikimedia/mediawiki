@@ -22,6 +22,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Html\Html;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**

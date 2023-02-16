@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Html\FormOptions;
+
 class MockChangesListFilter extends ChangesListFilter {
 	public function displaysOnUnstructuredUi() {
 		throw new MWException(

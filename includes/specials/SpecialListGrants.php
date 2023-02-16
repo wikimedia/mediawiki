@@ -51,11 +51,11 @@ class SpecialListGrants extends SpecialPage {
 		$out->addModuleStyles( 'mediawiki.special' );
 
 		$out->addHTML(
-			\Html::openElement( 'table',
-				[ 'class' => 'wikitable mw-listgrouprights-table' ] ) .
+			\MediaWiki\Html\Html::openElement( 'table',
+											   [ 'class' => 'wikitable mw-listgrouprights-table' ] ) .
 				'<tr>' .
-				\Html::element( 'th', [], $this->msg( 'listgrants-grant' )->text() ) .
-				\Html::element( 'th', [], $this->msg( 'listgrants-rights' )->text() ) .
+				\MediaWiki\Html\Html::element( 'th', [], $this->msg( 'listgrants-grant' )->text() ) .
+				\MediaWiki\Html\Html::element( 'th', [], $this->msg( 'listgrants-rights' )->text() ) .
 				'</tr>'
 		);
 
@@ -81,8 +81,8 @@ class SpecialListGrants extends SpecialPage {
 			}
 
 			$id = Sanitizer::escapeIdForAttribute( $grant );
-			$out->addHTML( \Html::rawElement( 'tr', [ 'id' => $id ],
-				"<td>" .
+			$out->addHTML( \MediaWiki\Html\Html::rawElement( 'tr', [ 'id' => $id ],
+															 "<td>" .
 				$this->msg(
 					"listgrants-grant-display",
 					$this->grantsLocalization->getGrantDescription( $grant, $lang ),
@@ -93,7 +93,7 @@ class SpecialListGrants extends SpecialPage {
 			) );
 		}
 
-		$out->addHTML( \Html::closeElement( 'table' ) );
+		$out->addHTML( \MediaWiki\Html\Html::closeElement( 'table' ) );
 	}
 
 	protected function getGroupName() {
