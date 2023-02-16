@@ -471,9 +471,9 @@ class Linker {
 			$rdfaType = 'mw:Error ' . $rdfaType;
 			$label = '';
 			if ( $enableLegacyMediaDOM ) {
-				// This is the information for tooltips for inline images which
-				// Parsoid stores in data-mw.  See T273014
 				$label = $frameParams['title'];
+			} else {
+				$label = $frameParams['alt'] ?? '';
 			}
 			$s = self::makeBrokenImageLinkObj(
 				$title, $label, '', '', '', (bool)$time, $handlerParams
@@ -737,6 +737,9 @@ class Linker {
 
 		if ( !$exists ) {
 			$label = '';
+			if ( !$enableLegacyMediaDOM ) {
+				$label = $frameParams['alt'] ?? '';
+			}
 			$s .= self::makeBrokenImageLinkObj(
 				$title, $label, '', '', '', (bool)$time, $handlerParams
 			);
@@ -745,8 +748,9 @@ class Linker {
 			if ( $enableLegacyMediaDOM ) {
 				$s .= wfMessage( 'thumbnail_error', '' )->escaped();
 			} else {
+				$label = $frameParams['alt'] ?? '';
 				$s .= self::makeBrokenImageLinkObj(
-					$title, '', '', '', '', (bool)$time, $handlerParams
+					$title, $label, '', '', '', (bool)$time, $handlerParams
 				);
 			}
 			$zoomIcon = '';

@@ -4085,3 +4085,57 @@ wgParserEnableLegacyMediaDOM=true
 </tbody></table>
 </figcaption></figure>
 !! end
+
+## Parsoid uses the alt as the link text, legacy parser uses the caption
+!! test
+Broken inline media with a caption and an alt
+!! config
+wgParserEnableLegacyMediaDOM=true
+!! wikitext
+[[File:Broken.jpg|alt=An alternative text description.|A caption for the media.]]
+!! html/php
+<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Broken.jpg" class="new" title="File:Broken.jpg">A caption for the media.</a>
+</p>
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:Error mw:File" data-mw='{"attribs":[["alt",{"txt":"An alternative text description."}]],"caption":"A caption for the media.","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Broken.jpg"><span class="mw-broken-media" resource="./File:Broken.jpg">An alternative text description.</span></a></span></p>
+!! end
+
+## Parsoid uses the alt as the link text, legacy parser doesn't use either
+!! test
+Broken block media with a caption and an alt
+!! config
+wgParserEnableLegacyMediaDOM=true
+!! wikitext
+[[File:Broken.jpg|alt=An alternative text description.|thumb|A caption for the media.]]
+!! html/php
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Broken.jpg" class="new" title="File:Broken.jpg">File:Broken.jpg</a>  <div class="thumbcaption">A caption for the media.</div></div></div>
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:Error mw:File/Thumb" data-mw='{"attribs":[["alt",{"txt":"An alternative text description."}]],"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Broken.jpg"><span class="mw-broken-media" resource="./File:Broken.jpg" data-width="180">An alternative text description.</span></a><figcaption>A caption for the media.</figcaption></figure>
+!! end
+
+## Caption set as the link text, similar to alt on images
+!! test
+Broken inline media with a caption
+!! config
+wgParserEnableLegacyMediaDOM=true
+!! wikitext
+[[File:Broken.jpg|A caption for the media.]]
+!! html/php
+<p><a href="/index.php?title=Special:Upload&amp;wpDestFile=Broken.jpg" class="new" title="File:Broken.jpg">A caption for the media.</a>
+</p>
+!! html/parsoid
+<p><span class="mw-default-size" typeof="mw:Error mw:File" data-mw='{"caption":"A caption for the media.","errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Broken.jpg"><span class="mw-broken-media" resource="./File:Broken.jpg">A caption for the media.</span></a></span></p>
+!! end
+
+## Neither implementation uses the caption as link text since it's already visible in the figcaption/thumbcaption, similar to alt on images
+!! test
+Broken block media with a caption
+!! config
+wgParserEnableLegacyMediaDOM=true
+!! wikitext
+[[File:Broken.jpg|thumb|A caption for the media.]]
+!! html/php
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/index.php?title=Special:Upload&amp;wpDestFile=Broken.jpg" class="new" title="File:Broken.jpg">File:Broken.jpg</a>  <div class="thumbcaption">A caption for the media.</div></div></div>
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:Error mw:File/Thumb" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Broken.jpg"><span class="mw-broken-media" resource="./File:Broken.jpg" data-width="180">File:Broken.jpg</span></a><figcaption>A caption for the media.</figcaption></figure>
+!! end
