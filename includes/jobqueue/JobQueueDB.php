@@ -571,7 +571,7 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @see JobQueue::getAllQueuedJobs()
-	 * @return Iterator
+	 * @return Iterator<RunnableJob>
 	 */
 	public function getAllQueuedJobs() {
 		return $this->getJobIterator( [ 'job_cmd' => $this->getType(), 'job_token' => '' ] );
@@ -579,7 +579,7 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @see JobQueue::getAllAcquiredJobs()
-	 * @return Iterator
+	 * @return Iterator<RunnableJob>
 	 */
 	public function getAllAcquiredJobs() {
 		return $this->getJobIterator( [ 'job_cmd' => $this->getType(), "job_token > ''" ] );
@@ -587,7 +587,7 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @see JobQueue::getAllAbandonedJobs()
-	 * @return Iterator
+	 * @return Iterator<RunnableJob>
 	 */
 	public function getAllAbandonedJobs() {
 		return $this->getJobIterator( [
@@ -599,7 +599,7 @@ class JobQueueDB extends JobQueue {
 
 	/**
 	 * @param array $conds Query conditions
-	 * @return Iterator
+	 * @return Iterator<RunnableJob>
 	 */
 	protected function getJobIterator( array $conds ) {
 		$dbr = $this->getReplicaDB();
