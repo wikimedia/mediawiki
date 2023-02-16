@@ -20,6 +20,24 @@
  * @file
  */
 
+namespace MediaWiki\EditPage;
+
+use Article;
+use CategoryPage;
+use Config;
+use Content;
+use ContentHandler;
+use DeferredUpdates;
+use DeprecationHelper;
+use DerivativeContext;
+use ErrorPageError;
+use ExternalUserNames;
+use Hooks;
+use Html;
+use IContextSource;
+use LogEventsList;
+use LogPage;
+use ManualLogEntry;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentStore\CommentStore;
@@ -45,9 +63,6 @@ use MediaWiki\EditPage\Constraint\SpamRegexConstraint;
 use MediaWiki\EditPage\Constraint\UnicodeConstraint;
 use MediaWiki\EditPage\Constraint\UserBlockConstraint;
 use MediaWiki\EditPage\Constraint\UserRateLimitConstraint;
-use MediaWiki\EditPage\IEditObject;
-use MediaWiki\EditPage\TextboxBuilder;
-use MediaWiki\EditPage\TextConflictHelper;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\Linker;
@@ -75,13 +90,40 @@ use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserRigorOptions;
 use MediaWiki\Watchlist\WatchlistManager;
+use Message;
+use MessageLocalizer;
+use MWContentSerializationException;
+use MWException;
+use MWUnknownContentModelException;
+use OOUI;
 use OOUI\ButtonWidget;
 use OOUI\CheckboxInputWidget;
 use OOUI\DropdownInputWidget;
 use OOUI\FieldLayout;
+use ParserOptions;
+use ParserOutput;
+use PermissionsError;
+use ReadOnlyError;
+use RecentChange;
+use RuntimeException;
+use Skin;
+use SpecialMyLanguage;
+use SpecialPage;
+use Status;
+use stdClass;
+use TextContent;
+use ThrottledError;
+use Title;
+use User;
+use UserBlockedError;
+use WatchAction;
+use WatchedItemStoreInterface;
+use WebRequest;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
+use WikiPage;
+use Xml;
 
 /**
  * The edit page/HTML interface (split from Article)
@@ -1848,7 +1890,7 @@ class EditPage implements IEditObject {
 	 * @param PageIdentity|null $page
 	 * @param Authority $performer
 	 * @return bool
-	 * @throws Exception
+	 * @throws \Exception
 	 * @phan-assert-true-condition $page
 	 */
 	private function isPageExistingAndViewable( ?PageIdentity $page, Authority $performer ): bool {
@@ -5066,3 +5108,5 @@ class EditPage implements IEditObject {
 		);
 	}
 }
+
+class_alias( EditPage::class, 'EditPage' );

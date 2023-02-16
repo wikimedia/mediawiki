@@ -18,11 +18,16 @@
  * @file
  */
 
+namespace MediaWiki\EditPage;
+
+use Html;
+use IContextSource;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\RestrictionStore;
+use Title;
 
 /**
  * Handles formatting for the "templates used on this page"
@@ -208,3 +213,5 @@ class TemplatesOnThisPageFormatter {
 	}
 
 }
+
+class_alias( TemplatesOnThisPageFormatter::class, 'TemplatesOnThisPageFormatter' );

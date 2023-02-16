@@ -3,8 +3,8 @@
 namespace MediaWiki\Tests\Storage;
 
 use Article;
-use EditPage;
 use McrUndoAction;
+use MediaWiki\EditPage\EditPage;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;

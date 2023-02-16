@@ -3,7 +3,7 @@
 namespace MediaWiki\Hook;
 
 use Content;
-use EditPage;
+use MediaWiki\EditPage\EditPage;
 use ParserOutput;
 
 /**
