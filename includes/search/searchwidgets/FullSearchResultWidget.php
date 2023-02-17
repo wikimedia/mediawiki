@@ -377,6 +377,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 				// don't use a custom link, just use traditional thumbnail HTML
 				return $thumb->toHtml( [
 					'desc-link' => true,
+					'loading' => 'lazy',
 					'alt' => $this->specialPage->msg( 'search-thumbnail-alt' )->params( $title ),
 				] );
 			}
@@ -385,6 +386,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 			return $thumb->toHtml( [
 				'desc-link' => true,
 				'custom-title-link' => $title,
+				'loading' => 'lazy',
 				'alt' => $this->specialPage->msg( 'search-thumbnail-alt' )->params( $title ),
 			] );
 		}
