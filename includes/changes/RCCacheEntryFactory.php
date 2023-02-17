@@ -119,11 +119,8 @@ class RCCacheEntryFactory {
 	private function buildCLink( RCCacheEntry $cacheEntry ) {
 		$type = $cacheEntry->mAttribs['rc_type'];
 
-		// New unpatrolled pages
-		if ( $cacheEntry->unpatrolled && $type == RC_NEW ) {
-			$clink = $this->linkRenderer->makeKnownLink( $cacheEntry->getTitle() );
 		// Log entries
-		} elseif ( $type == RC_LOG ) {
+		if ( $type == RC_LOG ) {
 			$logType = $cacheEntry->mAttribs['rc_log_type'];
 
 			if ( $logType ) {
@@ -136,7 +133,7 @@ class RCCacheEntryFactory {
 		} elseif ( $cacheEntry->mAttribs['rc_namespace'] == NS_SPECIAL ) {
 			wfDebugLog( 'recentchanges', 'Unexpected special page in recentchanges' );
 			$clink = '';
-		// Edits
+		// Edits and everything else
 		} else {
 			$clink = $this->linkRenderer->makeKnownLink( $cacheEntry->getTitle() );
 		}
