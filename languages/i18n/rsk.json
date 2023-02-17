@@ -1895,5 +1895,13 @@
 	"skin-action-move": "Премесциц",
 	"newpages-showhide-bots": "$1 ботох",
 	"newpages-showhide-patrolled": "$1 преверени пременки",
-	"newpages-showhide-registered": "$1 реґистровани хаснователє"
+	"newpages-showhide-registered": "$1 реґистровани хаснователє",
+	"blockedtext-made-by": "Заблокировал вас $1.",
+	"blockedtext-reason-comment": "Причина блокированя <em>$1</em>",
+	"blockedtext-start-time": "Початок блокади: $1",
+	"blockedtext-expiration-time": "Законченє блокади: $1",
+	"blockedtext-intended-blockee": "Циль блокади: $1",
+	"blockedtext-contact-blocker-admin": "Можеце контактовац $1 або даєдного другого [[{{MediaWiki:Grouppage-sysop}}|администратора]] за пояшнєнє причини блокади.",
+	"blockedtext-block-ip": "Ваша хвилькова IP адреса $1",
+	"blockedtext-include-details-queries": "Наведзце шицки горнї податки при вимоги за деблокаду."
 }

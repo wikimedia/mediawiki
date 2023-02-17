@@ -1687,6 +1687,7 @@
 	"invert": "Зааснаас бусад",
 	"namespace_association": "Заасантай холбоотой",
 	"blanknamespace": "(Ерөнхий)",
+	"contributions": "Хэрэглэгчийн оруулсан хувь нэмэр",
 	"tool-link-contributions": "{{GENDER:$1|Хэрэглэгчийн }} оруулсан хувь нэмэр",
 	"contributions-title": "$1 хэрэглэгчийн хувь нэмэр",
 	"mycontris": "Оруулсан хувь нэмэр",

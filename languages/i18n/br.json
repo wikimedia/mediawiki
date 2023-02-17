@@ -635,7 +635,7 @@
 	"summary-preview": "Rakwelet un diverrañ eus ar c'hemmoù :",
 	"previewerrortext": "C'hoarvezet ez eus ur fazi e-ser klask rakwelet ho kemmoù",
 	"blockedtitle": "Implijer stanket",
-	"blockedtext": "<strong>Stanket eo bet ho kont implijer pe ho chomlec'h IP</strong>\n\nGant $1 eo bet graet.\nSetu an abeg evit se : <em>$2</em>.\n\n* Stanket adalek : $8\n* Stanket betek : $6\n* Kont stanket : $7\n\nGallout a rit mont e darempred gant $1 pe gant unan eus ar [[{{MediaWiki:Grouppage-sysop}}|verourien]] all evit eskemm ganto war se. Gallout a rit implijout an arc'hwel ''{{int:emailuser}} ma'z eus bet spisaet ganeoc'h ur chomlec'h postel reizh en ho [[Special:Preferences|penndibaboù kont]], gant ma ne vo ket bet stanket.\n$3 eo ho chomlec'h IP, ha #$5 eo niverenn an anaouder stanket.\nMerkit anezho en ho koulennoù bep tro.",
+	"blockedtext": "<strong>Stanket eo bet ho kont implijer pe ho chomlec'h IP</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n{{int:blockedtext-contact-blocker-admin|$1}}\n\nGallout a rit implijout an arc'hwel \"{{int:emailuser}}\" ma'z eus bet spisaet ganeoc'h ur chomlec'h postel reizh en ho [[Special:Preferences|penndibaboù kont]] ma n’eo ket bet difennet deoc’h kas postel.\n\n{{int:blockedtext-block-ip|$3}}, ha #$5 eo niverenn an anaouder stanket.\n{{int:blockedtext-include-details-queries}}",
 	"autoblockedtext": "Stanket eo bet ho chomlec'h IP ent emgefreek rak implijet e veze gant un implijer all bet stanket gant $1.\nSetu aze an abeg :\n\n: <em>$2</em>\n\n* Deroù ar stankadenn : $8\n* Termen ar stankadenn : $6\n* Kont stanket : $7\n\nGallout a rit mont e darempred gant $1 pe gant unan eus ar\n[[{{MediaWiki:Grouppage-sysop}}|verourien]] all ma kavit abeg er stankadenn.\n\nNotennit mat ne c'hallot implijout an dibarzh \"kas ur postel d'an implijer\" nemet ma'z eus bet merket ganeoc'h ur chomlec'h postel reizh en ho [[Special:Preferences|penndibaboù implijer]] ha ma n'eo ket bet stanket ivez.\n\n$3 eo ho chomlec'h IP evit poent ha #$5 niverenn ar stankadenn.\nMerkit mat an titouroù-se war kement goulenn savet ganeoc'h.",
 	"systemblockedtext": "Stanket eo bet hoc'h anv implijer pe ho chomlec'h IP ent emgefre gant MediaWiki.\nSetu perak :\n\n:<em>$2</em>\n\n* Deroù ar stankadenn : $8\n* Termen ar stankadenn : $6\n* Hinienn a sell ar stankadenn outi : $7\n\n$3 eo ho chomlec'h IP diouzhtu.\nMerkit mat ar munudoù skrivet a-us er c'hlemmoù a c'halljec'h ober.",
 	"blockednoreason": "n'eus bet roet abeg ebet",
@@ -3792,5 +3792,13 @@
 	"newpages-showhide-bots": "$1 ar botoù",
 	"newpages-showhide-patrolled": "$1 kemm patrouilhet",
 	"newpages-showhide-redirect": "$1 adkasoù",
-	"newpages-showhide-registered": "$1 an implijerien enrollet"
+	"newpages-showhide-registered": "$1 an implijerien enrollet",
+	"blockedtext-made-by": "Kaset eo bet ar stankadenn a-benn gant $1.",
+	"blockedtext-reason-comment": "An abeg roet zo <em>$1</em>",
+	"blockedtext-start-time": "Deroù ar stankadenn: $1",
+	"blockedtext-expiration-time": "Dibenn ar stankadenn: $1",
+	"blockedtext-intended-blockee": "Pal ar stankadenn: $1",
+	"blockedtext-contact-blocker-admin": "Gallout a rit mont e darempred gant $1 pe ur [[{{MediaWiki:Grouppage-sysop}}|merour]] all evit kaozeal diwar-benn ar stankadenn.",
+	"blockedtext-block-ip": "Ho chomlec’h IP a-vremañ zo $1",
+	"blockedtext-include-details-queries": "Menegit an holl ditouroù a-us e pep goulenn savet ganeoc’h mar plij."
 }
