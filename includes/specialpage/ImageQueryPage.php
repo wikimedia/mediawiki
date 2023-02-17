@@ -59,7 +59,7 @@ abstract class ImageQueryPage extends QueryPage {
 				$namespace = $row->namespace ?? NS_FILE;
 				$title = Title::makeTitleSafe( $namespace, $row->title );
 				if ( $title instanceof Title && $title->getNamespace() === NS_FILE ) {
-					$gallery->add( $title, $this->getCellHtml( $row ) );
+					$gallery->add( $title, $this->getCellHtml( $row ), '', '', [], ImageGalleryBase::LOADING_LAZY );
 				}
 				if ( $i === $num ) {
 					break;

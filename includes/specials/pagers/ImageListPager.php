@@ -448,7 +448,7 @@ class ImageListPager extends TablePager {
 				$file = $this->localRepo->findFile( $this->getCurrentRow()->img_name, $opt );
 				// If statement for paranoia
 				if ( $file ) {
-					$thumb = $file->transform( [ 'width' => 180, 'height' => 360 ] );
+					$thumb = $file->transform( [ 'width' => 180, 'height' => 360, 'loading' => 'lazy' ] );
 					if ( $thumb ) {
 						return $thumb->toHtml( [ 'desc-link' => true ] );
 					} else {
