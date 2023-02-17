@@ -2428,7 +2428,7 @@
 	"blanknamespace": "(Nagusia)",
 	"contributions": "Lankidearen ekarpenak",
 	"tool-link-contributions": "{{GENDER:$1|Lankidearen}} ekarpenak",
-	"contributions-title": "$1(r)entzat lankidearen ekarpenak",
+	"contributions-title": "$1 lankidearen ekarpenak",
 	"mycontris": "Ekarpenak",
 	"anoncontribs": "Ekarpenak",
 	"contribsub2": "{{GENDER:$3|$1(r)entzat}} ($2)",

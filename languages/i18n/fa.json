@@ -1029,6 +1029,7 @@
 	"lineno": "خط $1:",
 	"compareselectedversions": "مقایسهٔ نسخه‌های انتخاب‌شده",
 	"showhideselectedversions": "تغییر پدیداری نسخه‌های انتخاب‌شده",
+	"showhideselectedfileversions": "تغییر پدیداری نسخه‌های انتخاب‌شدهٔ پرونده",
 	"editundo": "خنثی‌سازی",
 	"diff-empty": "(بدون تفاوت)",
 	"diff-multi-sameuser": "({{PLURAL:$1|یک نسخهٔ میانی|$1 نسخهٔ میانی}}ِ ایجادشده توسط همین کاربر نشان داده نشد)",

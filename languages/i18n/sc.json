@@ -1604,5 +1604,13 @@
 	"skin-action-protect": "Barda",
 	"skin-action-undelete": "Recùpera",
 	"skin-action-delete": "Burra",
-	"skin-action-move": "Move"
+	"skin-action-move": "Move",
+	"blockedtext-made-by": "Su blocu est istadu fatu dae $1.",
+	"blockedtext-reason-comment": "Sa motivatzione frunida est <em>$1</em>",
+	"blockedtext-start-time": "Incumintzu de su blocu: $1",
+	"blockedtext-expiration-time": "Iscadèntzia de su blocu: $1",
+	"blockedtext-intended-blockee": "Destinatàriu de su blocu: $1",
+	"blockedtext-contact-blocker-admin": "Podes cuntatare a $1 o a un'àteru [[{{MediaWiki:Grouppage-sysop}}|amministradore]] pro discutire de su blocu.",
+	"blockedtext-block-ip": "S'indiritzu IP atuale tuo est $1",
+	"blockedtext-include-details-queries": "Pro praghere include totu sos detàllios inoghe in subra in cale si siat dimanda de acrarimentu chi as a fàghere."
 }
