@@ -467,13 +467,13 @@ class MergeHistory {
 			// It should have no other outgoing links...
 			$this->dbw->delete(
 				'pagelinks',
-				[ 'pl_from' => $this->dest->getId() ],
+				[ 'pl_from' => $this->source->getId() ],
 				__METHOD__
 			);
 			$this->dbw->insert( 'pagelinks',
 				[
-					'pl_from' => $this->dest->getId(),
-					'pl_from_namespace' => $this->dest->getNamespace(),
+					'pl_from' => $this->source->getId(),
+					'pl_from_namespace' => $this->source->getNamespace(),
 					'pl_namespace' => $this->dest->getNamespace(),
 					'pl_title' => $this->dest->getDBkey() ],
 				__METHOD__
