@@ -155,14 +155,17 @@ class UserrightsPage extends SpecialPage {
 		$fetchedStatus = $this->mTarget === null ? Status::newFatal( 'nouserspecified' ) :
 			$this->fetchUser( $this->mTarget, true );
 		if ( $fetchedStatus->isOK() ) {
-			$this->mFetchedUser = $fetchedStatus->value;
-			if ( $this->mFetchedUser instanceof User ) {
+			$this->mFetchedUser = $fetchedUser = $fetchedStatus->value;
+			// Phan false positive on Status object - T323205
+			'@phan-var UserIdentity $fetchedUser';
+			$wikiId = $fetchedUser->getWikiId();
+			if ( $wikiId === UserIdentity::LOCAL ) {
 				// Set the 'relevant user' in the skin, so it displays links like Contributions,
 				// User logs, UserRights, etc.
 				$this->getSkin()->setRelevantUser( $this->mFetchedUser );
 			}
 			$this->userGroupManager = $this->userGroupManagerFactory
-				->getUserGroupManager( $this->mFetchedUser->getWikiId() );
+				->getUserGroupManager( $wikiId );
 		}
 
 		// show a successbox, if the user rights was saved successfully
@@ -625,8 +628,8 @@ class UserrightsPage extends SpecialPage {
 			return Status::newFatal( 'nosuchusershort', $username );
 		}
 
-		if ( $user instanceof User &&
-			$user->isHidden() &&
+		if ( $user->getWikiId() === UserIdentity::LOCAL &&
+			$this->userFactory->newFromUserIdentity( $user )->isHidden() &&
 			!$this->getAuthority()->isAllowed( 'hideuser' )
 		) {
 			// Cannot see hidden users, pretend they don't exist
@@ -718,7 +721,8 @@ class UserrightsPage extends SpecialPage {
 		$autoList = [];
 		$autoMembersList = [];
 
-		if ( $user instanceof User ) {
+		if ( $user->getWikiId() === UserIdentity::LOCAL ) {
+			// Listing autopromote groups works only on the local wiki
 			foreach ( $this->userGroupManager->getUserAutopromoteGroups( $user ) as $group ) {
 				$autoList[] = UserGroupMembership::getLink( $group, $this->getContext(), 'html' );
 				$autoMembersList[] = UserGroupMembership::getLink( $group, $this->getContext(),
@@ -757,7 +761,8 @@ class UserrightsPage extends SpecialPage {
 			$grouplist .= '<p>' . $autogrouplistintro . ' ' . $displayedAutolist . "</p>\n";
 		}
 
-		$systemUser = $user instanceof User && $user->isSystemUser();
+		$systemUser = $user->getWikiId() === UserIdentity::LOCAL
+			&& $this->userFactory->newFromUserIdentity( $user )->isSystemUser();
 		if ( $systemUser ) {
 			$systemusernote = $this->msg( 'userrights-systemuser' )
 				->params( $user->getName() )
