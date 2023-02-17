@@ -78,17 +78,18 @@ class SkinComponentTableOfContents implements SkinComponent {
 	 * @return array
 	 */
 	private function getTOCDataInternal(): array {
+		$tocData = $this->output->getTOCData();
 		// Return data only if TOC present T298796.
-		if ( !$this->output->isTOCEnabled() || $this->output->getTOCData() === null ) {
+		if ( $tocData === null ) {
 			return [];
 		}
 
-		$outputSections = $this->output->getTOCData()->getSections();
+		$outputSections = $tocData->getSections();
 
-		return [
+		return count( $outputSections ) > 0 ? [
 			'number-section-count' => count( $outputSections ),
 			'array-sections' => $this->getSectionsDataInternal( $outputSections, 1 ),
-		];
+		] : [];
 	}
 
 	/**
