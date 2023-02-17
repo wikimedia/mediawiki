@@ -296,7 +296,7 @@
 	 * @ignore
 	 */
 	function init() {
-		var offset, $overlay, skinHasArea,
+		var offset, $overlay,
 			isFloating = false;
 
 		function updateAreaMode() {
@@ -313,8 +313,7 @@
 		// Look for a preset notification area in the skin.
 		// 'data-mw*' attributes are banned from user content in Sanitizer.
 		$area = $( '.mw-notification-area[data-mw="interface"]' ).first();
-		skinHasArea = $area.length > 0;
-		if ( !skinHasArea ) {
+		if ( !$area.length ) {
 			$area = $( '<div>' ).addClass( 'mw-notification-area' );
 			// Create overlay div for the notification area
 			$overlay = $( '<div>' ).addClass( 'mw-notification-area-overlay' );
@@ -351,10 +350,7 @@
 		rAF( function () {
 			var notif;
 
-			// If a skin provides its own notification area, use its offset. Otherwise, use the
-			// offset of the content area in order to maintain approximate backwards compatibility
-			// (because $area used to be prepended to $content).
-			offset = skinHasArea ? $area.offset() : mw.util.$content.offset();
+			offset = $area.offset();
 
 			// Initial mode (reads, and then maybe writes)
 			updateAreaMode();
