@@ -27,12 +27,37 @@
 	.mw-ui-button();
 	.mw-ui-button-states();
 
+	// If a sibling element is a checklist, the state should also apply to the button.
+	input[ type='checkbox' ]:hover + &,
+	&:hover {
+		background-color: @background-color-base;
+		color: @color-base--hover;
+		border-color: @colorGray10;
+	}
+
+	input[ type='checkbox' ]:focus + &,
+	&:focus {
+		// Make sure that `color` isn't inheriting from user-agent styles
+		color: @color-base;
+		border-color: @border-color-base--focus;
+		box-shadow: @box-shadow-primary--focus;
+		outline-width: 0;
+	}
+
+	input[ type='checkbox' ]:active + &,
+	&:active {
+		background-color: @colorGray12;
+		color: @color-base--active;
+		border-color: @colorGray7;
+		box-shadow: none;
+	}
+
 	&.mw-ui-icon-element {
 		&:not( .mw-ui-icon-with-label-desktop ) {
 			// stylelint-disable-next-line declaration-no-important
 			color: transparent !important;
 
-			span {
+			span:not( .mw-ui-icon ) {
 				.mixin-screen-reader-text();
 			}
 		}
@@ -43,7 +68,7 @@
 				color: transparent !important;
 			}
 
-			span {
+			span:not( .mw-ui-icon ) {
 				.mixin-screen-reader-text();
 			}
 		}

@@ -162,25 +162,11 @@
 		color: transparent;
 	}
 
-	// Assume a mobile device - and avoid tap state remaining after click (T233046).
-	&:active {
-		background-color: @background-color-quiet--hover;
-	}
-
 	// In desktop these icons shrink in size as touch area no longer important.
 	@media ( min-width: @width-breakpoint-desktop ) {
 		&.mw-ui-button {
 			padding: @icon-padding-md-button--desktop;
 		}
-	}
-}
-
-// When the user's device primary input is capable of hover, like a mouse,
-// use hover (T233046). Only on enabled elements.
-@media ( hover: hover ) {
-	// stylelint-disable-next-line selector-class-pattern
-	.mw-ui-icon-element:not( .disabled ):hover {
-		background-color: @background-color-quiet--hover;
 	}
 }
 
