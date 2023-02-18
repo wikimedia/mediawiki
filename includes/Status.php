@@ -283,6 +283,55 @@ class Status extends StatusValue {
 	}
 
 	/**
+	 * Try to convert the status to a PSR-3 friendly format. The output will be similar to
+	 * getWikiText( false, false, 'en' ), but message parameters will be extracted into the
+	 * context array with parameter names 'parameter1' etc. when possible.
+	 *
+	 * @return array A pair of (message, context) suitable for passing to a PSR-3 logger.
+	 * @phan-return array{0:string,1:(int|float|string)[]}
+	 */
+	public function getPsr3MessageAndContext(): array {
+		if ( count( $this->errors ) === 1 ) {
+			// identical to getMessage( false, false, 'en' ) when there's just one error
+			$message = $this->getErrorMessage( $this->errors[0], 'en' );
+
+			$text = null;
+			if ( in_array( get_class( $message ), [ Message::class, ApiMessage::class ], true ) ) {
+				// $1,$2... will be left as-is when no parameters are provided.
+				$text = $this->msgInLang( $message->getKey(), 'en' )->plain();
+			} elseif ( in_array( get_class( $message ), [ RawMessage::class, ApiRawMessage::class ], true ) ) {
+				$text = $message->getKey();
+			} else {
+				// Unknown Message subclass, we can't be sure how it marks parameters. Fall back to getWikiText.
+				return [ $this->getWikiText( false, false, 'en' ), [] ];
+			}
+
+			$context = [];
+			$i = 1;
+			foreach ( $message->getParams() as $param ) {
+				if ( is_array( $param ) && count( $param ) === 1 ) {
+					// probably Message::numParam() or similar
+					$param = reset( $param );
+				}
+				if ( is_int( $param ) || is_float( $param ) || is_string( $param ) ) {
+					$context["parameter$i"] = $param;
+				} else {
+					// Parameter is not of a safe type, fall back to getWikiText.
+					return [ $this->getWikiText( false, false, 'en' ), [] ];
+				}
+
+				$text = str_replace( "\$$i", "{parameter$i}", $text );
+
+				$i++;
+			}
+
+			return [ $text, $context ];
+		}
+		// Parameters cannot be easily extracted, fall back to getWikiText,
+		return [ $this->getWikiText( false, false, 'en' ), [] ];
+	}
+
+	/**
 	 * Return the message for a single error
 	 *
 	 * The code string can be used a message key with per-language versions.
