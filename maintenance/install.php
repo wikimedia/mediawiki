@@ -23,11 +23,11 @@
 
 // NO_AUTOLOAD -- file-scope define() used to modify behaviour
 
+use MediaWiki\Settings\SettingsBuilder;
 use Wikimedia\AtEase\AtEase;
 
 require_once __DIR__ . '/Maintenance.php';
 
-define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );
 define( 'MEDIAWIKI_INSTALL', true );
 
 /**
@@ -47,8 +47,8 @@ class CommandLineInstaller extends Maintenance {
 		$this->addDescription( "CLI-based MediaWiki installation and configuration.\n" .
 			"Default options are indicated in parentheses." );
 
-		$this->addArg( 'name', 'The name of the wiki (MediaWiki)', true );
-		$this->addArg( 'admin', 'The username of the wiki administrator.', true );
+		$this->addArg( 'name', 'The name of the wiki' );
+		$this->addArg( 'admin', 'The username of the wiki administrator.' );
 
 		$this->addOption( 'pass', 'The password for the wiki administrator.', false, true );
 		$this->addOption(
@@ -104,6 +104,19 @@ class CommandLineInstaller extends Maintenance {
 			false, true, false, true );
 		$this->addOption( 'skins', 'Comma-separated list of skins to install (default: all)',
 			false, true, false, true );
+	}
+
+	public function canExecuteWithoutLocalSettings(): bool {
+		return true;
+	}
+
+	public function finalSetup( SettingsBuilder $settingsBuilder = null ) {
+		if ( !$settingsBuilder ) {
+			$settingsBuilder = SettingsBuilder::getInstance();
+		}
+
+		parent::finalSetup( $settingsBuilder );
+		Installer::overrideConfig( $settingsBuilder );
 	}
 
 	public function getDbType() {
@@ -174,7 +187,7 @@ class CommandLineInstaller extends Maintenance {
 		$passfile = $this->getOption( 'passfile' );
 		if ( $passfile !== null ) {
 			if ( $this->getOption( 'pass' ) !== null ) {
-				$this->error( 'WARNING: You have provided the options "pass" and "passfile". '
+				$this->error( 'WARNING: You have provided the option --pass or --passfile. '
 					. 'The content of "passfile" overrides "pass".' );
 			}
 			AtEase::suppressWarnings();

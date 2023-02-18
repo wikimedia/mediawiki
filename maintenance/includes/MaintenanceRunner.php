@@ -41,6 +41,9 @@ class MaintenanceRunner {
 	/** @var bool */
 	private $runFromWrapper = false;
 
+	/** @var bool */
+	private bool $withoutLocalSettings = false;
+
 	/**
 	 * Default constructor. Children should call this *first* if implementing
 	 * their own constructors
@@ -459,38 +462,58 @@ class MaintenanceRunner {
 	public function defineSettings() {
 		global $wgCommandLineMode, $IP;
 
-		// NOTE: This doesn't actually load anything, that will be done later
-		//       by Setup.php. But it defines MW_CONFIG_CALLBACK and possibly
-		//       other constants that control initialization.
-		if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
-			if ( $this->parameters->hasOption( 'conf' ) ) {
-				// Define the constant instead of directly setting $settingsFile
-				// to ensure consistency. wfDetectLocalSettingsFile() will return
-				// MW_CONFIG_FILE if it is defined.
-				define( 'MW_CONFIG_FILE', $this->parameters->getOption( 'conf' ) );
-			}
-			$settingsFile = wfDetectLocalSettingsFile( $IP );
+		if ( $this->parameters->hasOption( 'conf' ) ) {
+			// Define the constant instead of directly setting $settingsFile
+			// to ensure consistency. wfDetectLocalSettingsFile() will return
+			// MW_CONFIG_FILE if it is defined.
+			define( 'MW_CONFIG_FILE', $this->parameters->getOption( 'conf' ) );
 
-			if ( $this->parameters->hasOption( 'wiki' ) ) {
-				$wikiName = $this->parameters->getOption( 'wiki' );
-				$bits = explode( '-', $wikiName, 2 );
-				define( 'MW_DB', $bits[0] );
-				define( 'MW_PREFIX', $bits[1] ?? '' );
-				define( 'MW_WIKI_NAME', $wikiName );
-			} elseif ( $this->parameters->hasOption( 'server' ) ) {
-				// Provide the option for site admins to detect and configure
-				// multiple wikis based on server names. This offers --server
-				// as alternative to --wiki.
-				// See https://www.mediawiki.org/wiki/Manual:Wiki_family
-				$_SERVER['SERVER_NAME'] = $this->parameters->getOption( 'server' );
+			if ( !is_readable( MW_CONFIG_FILE ) ) {
+				$this->fatalError( "\nConfig file " . MW_CONFIG_FILE . " was not found or is not readable.\n\n" );
 			}
-
-			if ( !is_readable( $settingsFile ) ) {
-				$this->fatalError( "The file $settingsFile must exist and be readable.\n" .
-					"Use --conf to specify it." );
-			}
-			$wgCommandLineMode = true;
 		}
+		$settingsFile = wfDetectLocalSettingsFile( $IP );
+
+		if ( $this->parameters->hasOption( 'wiki' ) ) {
+			$wikiName = $this->parameters->getOption( 'wiki' );
+			$bits = explode( '-', $wikiName, 2 );
+			define( 'MW_DB', $bits[0] );
+			define( 'MW_PREFIX', $bits[1] ?? '' );
+			define( 'MW_WIKI_NAME', $wikiName );
+		} elseif ( $this->parameters->hasOption( 'server' ) ) {
+			// Provide the option for site admins to detect and configure
+			// multiple wikis based on server names. This offers --server
+			// as alternative to --wiki.
+			// See https://www.mediawiki.org/wiki/Manual:Wiki_family
+			$_SERVER['SERVER_NAME'] = $this->parameters->getOption( 'server' );
+		}
+
+		if ( !is_readable( $settingsFile ) ) {
+			// NOTE: Some maintenance scripts can (and need to) run without LocalSettings.
+			//       But we only know that once we have instantiated the Maintenance object.
+			//       So go into no-settings mode for now, and fail later of the script doesn't support it.
+			if ( !defined( 'MW_CONFIG_CALLBACK' ) ) {
+				define( 'MW_CONFIG_CALLBACK', __CLASS__ . '::emulateConfig' );
+			}
+			$this->withoutLocalSettings = true;
+		}
+		$wgCommandLineMode = true;
+	}
+
+	/**
+	 * @param SettingsBuilder $settings
+	 *
+	 * @internal Handler for MW_CONFIG_CALLBACK, used when no LocalSettings.php was found.
+	 */
+	public static function emulateConfig( SettingsBuilder $settings ) {
+		// NOTE: The config schema is already loaded at this point, so default values are known.
+
+		// Server must be set, but we don't care to what
+		$settings->overrideConfigValue( 'Server', 'https://unknown.invalid' );
+
+		// If InvalidateCacheOnLocalSettingsChange is enabled, filemtime( MW_CONFIG_FILE ),
+		// which will produce a warning if there is no settings file.
+		$settings->overrideConfigValue( 'InvalidateCacheOnLocalSettingsChange', false );
 	}
 
 	/**
@@ -565,10 +588,18 @@ class MaintenanceRunner {
 		// Double check required extensions are installed
 		$this->scriptObject->checkRequiredExtensions();
 
-		if ( $this->scriptObject->getDbType() == Maintenance::DB_NONE ) {
+		if ( $this->withoutLocalSettings && !$this->scriptObject->canExecuteWithoutLocalSettings() ) {
+			$this->fatalError(
+				"\nThe LocalSettings.php file was not found or is not readable.\n" .
+				"Use --conf to specify an alternative config file.\n\n"
+			);
+		}
+
+		if ( $this->scriptObject->getDbType() == Maintenance::DB_NONE || $this->withoutLocalSettings ) {
 			// Be strict with maintenance tasks that claim to not need a database by
 			// disabling the storage backend.
-			MediaWikiServices::disableStorageBackend();
+			MediaWikiServices::resetGlobalInstance( $config );
+			MediaWikiServices::getInstance()->disableStorage();
 		}
 
 		$this->scriptObject->validateParamsAndArgs();

@@ -34,7 +34,7 @@ class FileModuleTest extends ResourceLoaderTestCase {
 		$this->setService( 'SkinFactory', $skinFactory );
 
 		// This test is not expected to query any database
-		\MediaWiki\MediaWikiServices::disableStorageBackend();
+		$this->getServiceContainer()->disableStorage();
 	}
 
 	private static function getModules() {

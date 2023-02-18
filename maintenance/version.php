@@ -34,6 +34,10 @@ class Version extends Maintenance {
 		$this->addDescription( 'Prints the current version of MediaWiki' );
 	}
 
+	public function canExecuteWithoutLocalSettings(): bool {
+		return true;
+	}
+
 	public function execute() {
 		if ( !defined( 'MW_VERSION' ) ) {
 			$this->fatalError( "MediaWiki version not defined or unknown" );

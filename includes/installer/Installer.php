@@ -413,10 +413,8 @@ abstract class Installer {
 		$defaultConfig = new GlobalVarConfig(); // all the defaults from config-schema.yaml.
 		$installerConfig = self::getInstallerConfig( $defaultConfig );
 
-		$this->resetMediaWikiServices( $installerConfig );
-
 		// Disable all storage services, since we don't have any configuration yet!
-		MediaWikiServices::disableStorageBackend();
+		$this->resetMediaWikiServices( $installerConfig, [], true );
 
 		$this->settings = $this->getDefaultSettings();
 
@@ -465,30 +463,47 @@ abstract class Installer {
 	 * @param array $serviceOverrides Service definition overrides. Values can be null to
 	 *        disable specific overrides that would be applied per default, namely
 	 *        'InterwikiLookup' and 'UserOptionsLookup'.
+	 * @param bool $disableStorage Whether MediaWikiServices::disableStorage() should be called.
 	 *
 	 * @return MediaWikiServices
 	 */
-	public function resetMediaWikiServices( Config $installerConfig = null, $serviceOverrides = [] ) {
+	public function resetMediaWikiServices(
+		Config $installerConfig = null,
+		$serviceOverrides = [],
+		bool $disableStorage = false
+	) {
 		global $wgObjectCaches, $wgLang;
 
-		$serviceOverrides += [
-			// Disable interwiki lookup, to avoid database access during parses
-			'InterwikiLookup' => static function () {
-				return new NullInterwikiLookup();
-			},
-
-			// Disable user options database fetching, only rely on default options.
-			'UserOptionsLookup' => static function ( MediaWikiServices $services ) {
-				return $services->get( '_DefaultOptionsLookup' );
-			}
-		];
-
-		$lang = $this->getVar( '_UserLang', 'en' );
-
-		// Reset all services and inject config overrides
+		// Reset all services and inject config overrides.
+		// NOTE: This will reset existing instances, but not previous wiring overrides!
 		MediaWikiServices::resetGlobalInstance( $installerConfig );
 
 		$mwServices = MediaWikiServices::getInstance();
+
+		if ( $disableStorage ) {
+			$mwServices->disableStorage();
+		} else {
+			// Default to partially disabling services.
+
+			$serviceOverrides += [
+				// Disable interwiki lookup, to avoid database access during parses
+				'InterwikiLookup' => static function () {
+					return new NullInterwikiLookup();
+				},
+
+				// Disable user options database fetching, only rely on default options.
+				'UserOptionsLookup' => static function ( MediaWikiServices $services ) {
+					return $services->get( '_DefaultOptionsLookup' );
+				},
+
+				// Restore to default wiring, in case it was overwritten by disableStorage()
+				'DBLoadBalancer' => static function ( MediaWikiServices $services ) {
+					return $services->getDBLoadBalancerFactory()->getMainLB();
+				},
+			];
+		}
+
+		$lang = $this->getVar( '_UserLang', 'en' );
 
 		foreach ( $serviceOverrides as $name => $callback ) {
 			// Skip if the caller set $callback to null

@@ -6,7 +6,6 @@ use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Services\DestructibleService;
 use Wikimedia\Services\SalvageableService;
-use Wikimedia\Services\ServiceDisabledException;
 
 /**
  * @covers MediaWiki\MediaWikiServices
@@ -185,7 +184,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		MediaWikiServices::forceGlobalInstance( $oldServices );
 	}
 
-	public function testDisableStorageBackend() {
+	public function testDisableStorage() {
 		$newServices = $this->newMediaWikiServices();
 		$oldServices = MediaWikiServices::forceGlobalInstance( $newServices );
 
@@ -198,22 +197,23 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 			}
 		);
 
-		// force the service to become active, so we can check that it does get destroyed
-		$newServices->getService( 'DBLoadBalancerFactory' );
+		$this->assertFalse( $newServices->isStorageDisabled() );
 
-		MediaWikiServices::disableStorageBackend(); // should destroy DBLoadBalancerFactory
+		$newServices->disableStorage(); // should destroy DBLoadBalancerFactory
+
+		$this->assertTrue( $newServices->isStorageDisabled() );
 
 		try {
-			MediaWikiServices::getInstance()->getService( 'DBLoadBalancerFactory' );
-			$this->fail( 'DBLoadBalancerFactory should have been disabled' );
-		} catch ( ServiceDisabledException $ex ) {
+			$newServices->getDBLoadBalancer()->getConnection( DB_REPLICA );
+		} catch ( RuntimeException $ex ) {
 			// ok, as expected
-		} catch ( Throwable $ex ) {
-			$this->fail( 'ServiceDisabledException expected, caught ' . get_class( $ex ) );
 		}
 
 		MediaWikiServices::forceGlobalInstance( $oldServices );
 		$newServices->destroy();
+
+		// This should work now.
+		MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 
 		// No exception was thrown, avoid being risky
 		$this->assertTrue( true );

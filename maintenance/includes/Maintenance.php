@@ -227,6 +227,26 @@ abstract class Maintenance {
 	abstract public function execute();
 
 	/**
+	 * Whether this script can run without LocalSettings.php. Scripts that need to be able
+	 * to run when MediaWiki has not been installed should override this to return true.
+	 * Scripts that return true from this method must be able to function without
+	 * a storage backend. When no LocalSettings.php file is present, any attempt to access
+	 * the database will fail with a fatal error.
+	 *
+	 * @note Subclasses that override this method to return true should also override
+	 * getDbType() to return self::DB_NONE, unless they are going to use the database
+	 * connection when it is available.
+	 *
+	 * @see getDbType()
+	 * @since 1.40
+	 * @stable to override
+	 * @return bool
+	 */
+	public function canExecuteWithoutLocalSettings(): bool {
+		return false;
+	}
+
+	/**
 	 * Checks to see if a particular option in supported.  Normally this means it
 	 * has been registered by the script via addOption.
 	 * @param string $name The name of the option
@@ -554,6 +574,12 @@ abstract class Maintenance {
 	 *    Maintenance::DB_NONE  -  For no DB access at all
 	 *    Maintenance::DB_STD   -  For normal DB access, default
 	 *    Maintenance::DB_ADMIN -  For admin DB access
+	 *
+	 * @note Subclasses that override this method to return self::DB_NONE should
+	 * also override canExecuteWithoutLocalSettings() to return true, unless they
+	 * need the wiki to be set up for reasons beyond access to a database connection.
+	 *
+	 * @see canExecuteWithoutLocalSettings()
 	 * @stable to override
 	 * @return int
 	 */

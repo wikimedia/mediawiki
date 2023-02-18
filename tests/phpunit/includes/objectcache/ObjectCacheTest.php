@@ -85,7 +85,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 			CACHE_ACCEL => [ 'class' => EmptyBagOStuff::class ]
 		] );
 
-		MediaWiki\MediaWikiServices::disableStorageBackend();
+		$this->getServiceContainer()->disableStorage();
 
 		$this->assertInstanceOf(
 			EmptyBagOStuff::class,
@@ -96,7 +96,7 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 
 	/** @covers ObjectCache::newAnything */
 	public function testNewAnythingNothingNoDb() {
-		MediaWiki\MediaWikiServices::disableStorageBackend();
+		$this->getServiceContainer()->disableStorage();
 
 		$this->assertInstanceOf(
 			EmptyBagOStuff::class,

@@ -76,6 +76,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\Interwiki\NullInterwikiLookup;
 use MediaWiki\JobQueue\JobFactory;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\Json\JsonCodec;
@@ -198,6 +199,8 @@ use Wikimedia\Parsoid\Config\SiteConfig;
 use Wikimedia\Rdbms\DatabaseFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\LBFactorySingle;
+use Wikimedia\Rdbms\LoadBalancerDisabled;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\Services\NoSuchServiceException;
 use Wikimedia\Services\SalvageableService;
@@ -227,6 +230,12 @@ class MediaWikiServices extends ServiceContainer {
 	 * @var MediaWikiServices|null
 	 */
 	private static $instance = null;
+
+	/**
+	 * @see disableStorage()
+	 * @var bool
+	 */
+	private bool $storageDisabled = false;
 
 	/**
 	 * Allows a global service container instance to exist.
@@ -450,10 +459,27 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * Disables all storage layer services. After calling this, any attempt to access the
+	 * storage layer will result in an error.
+	 *
+	 * @since 1.28
+	 * @deprecated since 1.40, use disableStorage() instead.
+	 *
+	 * @warning This is intended for extreme situations, see the documentation of disableStorage() for details.
+	 *
+	 * @see resetGlobalInstance()
+	 * @see resetChildProcessServices()
+	 */
+	public static function disableStorageBackend() {
+		$services = self::getInstance();
+		$services->disableStorage();
+	}
+
+	/**
+	 * Disables all storage layer services. After calling this, any attempt to access the
 	 * storage layer will result in an error. Use resetGlobalInstance() to restore normal
 	 * operation.
 	 *
-	 * @since 1.28
+	 * @since 1.40
 	 *
 	 * @warning This is intended for extreme situations only and should never be used
 	 * while serving normal web requests. Legitimate use cases for this method include
@@ -463,20 +489,69 @@ class MediaWikiServices extends ServiceContainer {
 	 * @see resetGlobalInstance()
 	 * @see resetChildProcessServices()
 	 */
-	public static function disableStorageBackend() {
-		// TODO: also disable some Caches, JobQueues, etc
-		$destroy = [ 'DBLoadBalancer', 'DBLoadBalancerFactory' ];
-		$services = self::getInstance();
-
-		foreach ( $destroy as $name ) {
-			$services->disableService( $name );
+	public function disableStorage() {
+		if ( $this->storageDisabled ) {
+			return;
 		}
 
+		$this->redefineService(
+			'DBLoadBalancer',
+			static function ( MediaWikiServices $services ) {
+				return new LoadBalancerDisabled();
+			}
+		);
+
+		$this->redefineService(
+			'DBLoadBalancerFactory',
+			static function ( MediaWikiServices $services ) {
+				return LBFactorySingle::newDisabled();
+			}
+		);
+
+		$this->redefineService(
+			'InterwikiLookup',
+			static function ( MediaWikiServices $services ) {
+				return new NullInterwikiLookup();
+			}
+		);
+
+		$this->redefineService(
+			'UserOptionsLookup',
+			static function ( MediaWikiServices $services ) {
+				return $services->get( '_DefaultOptionsLookup' );
+			}
+		);
+
+		$this->addServiceManipulator(
+			'LocalisationCache',
+			static function ( LocalisationCache $cache ) {
+				$cache->disableBackend();
+			}
+		);
+
+		$this->addServiceManipulator(
+			'MessageCache',
+			static function ( MessageCache $cache ) {
+				$cache->disable();
+			}
+		);
+
 		ObjectCache::clear();
+
+		$this->storageDisabled = true;
 	}
 
 	/**
-	 * Resets any services that may have become stale after a child process
+	 * Returns true if disableStorage() has been called on this MediaWikiServices instance.
+	 *
+	 * @return bool
+	 */
+	public function isStorageDisabled(): bool {
+		return $this->storageDisabled;
+	}
+
+	/**
+	 * Resets any services that may have become stale after a child processö
 	 * returns from after pcntl_fork(). It's also safe, but generally unnecessary,
 	 * to call this method from the parent process.
 	 *
@@ -485,7 +560,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @note This is intended for use in the context of process forking only!
 	 *
 	 * @see resetGlobalInstance()
-	 * @see disableStorageBackend()
+	 * @see disableStorage()
 	 */
 	public static function resetChildProcessServices() {
 		// NOTE: for now, just reset everything. Since we don't know the interdependencies
@@ -547,7 +622,7 @@ class MediaWikiServices extends ServiceContainer {
 	 *
 	 * @see resetGlobalInstance()
 	 * @see forceGlobalInstance()
-	 * @see disableStorageBackend()
+	 * @see disableStorage()
 	 */
 	public static function failIfResetNotAllowed( $method ) {
 		if ( !defined( 'MW_PHPUNIT_TEST' )
