@@ -14,6 +14,7 @@ use MediaWiki\ResourceLoader\ResourceLoader;
 use MediaWiki\ResourceLoader\SkinModule;
 use MediaWiki\ResourceLoader\StartUpModule;
 use MediaWiki\User\StaticUserOptionsLookup;
+use MWException;
 use NullStatsdDataFactory;
 use ResourceLoaderTestCase;
 use ResourceLoaderTestModule;
@@ -226,6 +227,15 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 			[
 				'input' => "$basePath/import-codex-tokens.less",
 				'expected' => "$basePath/import-codex-tokens.css"
+			],
+			[
+				'input' => "$basePath/import-codex-tokens-npm.less",
+				'expected' => null,
+				'exception' => [
+					'class' => MWException::class,
+					'message' => 'Importing from @wikimedia/codex-design-tokens is not supported. ' .
+						"To use the Codex tokens, use `@import 'mediawiki.skin.variables.less';` instead."
+				]
 			]
 		];
 	}
@@ -233,12 +243,23 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 	/**
 	 * @dataProvider provideLessImportRemappingCases
 	 */
-	public function testLessImportRemapping( $input, $expected ) {
+	public function testLessImportRemapping( $input, $expected, $exception = null ) {
 		$rl = new EmptyResourceLoader();
 		$lc = $rl->getLessCompiler();
 
+		if ( $exception !== null ) {
+			if ( isset( $exception['class'] ) ) {
+				$this->expectException( $exception['class'] );
+			}
+			if ( isset( $exception['message'] ) ) {
+				$this->expectExceptionMessage( $exception['message'] );
+			}
+		}
+
 		$css = $lc->parseFile( $input )->getCss();
-		$this->assertStringEqualsFile( $expected, $css );
+		if ( $expected !== null ) {
+			$this->assertStringEqualsFile( $expected, $css );
+		}
 	}
 
 	public static function provideMediaWikiVariablesCases() {

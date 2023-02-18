@@ -1847,18 +1847,29 @@ MESSAGE;
 			$importMap = [
 				'@wikimedia/codex-icons/' => "$IP/resources/lib/codex-icons/",
 				'mediawiki.skin.codex-design-tokens/' => "$IP/resources/lib/codex-design-tokens/",
+				'@wikimedia/codex-design-tokens/' => /** @return never */ static function ( $unused_path ) {
+					throw new MWException(
+						'Importing from @wikimedia/codex-design-tokens is not supported. ' .
+						"To use the Codex tokens, use `@import 'mediawiki.skin.variables.less';` instead."
+					);
+				}
 			];
 			foreach ( $importMap as $importPath => $substPath ) {
 				if ( strpos( $path, $importPath ) === 0 ) {
 					$restOfPath = substr( $path, strlen( $importPath ) );
-					$filePath = $substPath . $restOfPath;
+					if ( is_callable( $substPath ) ) {
+						$resolvedPath = call_user_func( $substPath, $restOfPath );
+					} else {
+						$filePath = $substPath . $restOfPath;
 
-					$resolvedPath = null;
-					if ( file_exists( $filePath ) ) {
-						$resolvedPath = $filePath;
-					} elseif ( file_exists( "$filePath.less" ) ) {
-						$resolvedPath = "$filePath.less";
+						$resolvedPath = null;
+						if ( file_exists( $filePath ) ) {
+							$resolvedPath = $filePath;
+						} elseif ( file_exists( "$filePath.less" ) ) {
+							$resolvedPath = "$filePath.less";
+						}
 					}
+
 					if ( $resolvedPath !== null ) {
 						return [
 							Less_Environment::normalizePath( $resolvedPath ),
