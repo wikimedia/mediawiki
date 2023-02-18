@@ -87,6 +87,8 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 	}
 
 	public function getInputOOUI( $value ) {
+		$this->mParent->getOutput()->addModuleStyles( 'mediawiki.widgets.TagMultiselectWidget.styles' );
+
 		$params = [ 'name' => $this->mName ];
 
 		if ( isset( $this->mParams['id'] ) ) {
