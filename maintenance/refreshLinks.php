@@ -438,10 +438,7 @@ class RefreshLinks extends Maintenance {
 		$conds = [
 			'page_id=cl_from',
 			'cl_to' => $category->getDBkey(),
-		];
-		if ( $this->namespace !== false ) {
-			$conds['page_namespace'] = $this->namespace;
-		}
+		] + $this->namespaceCond();
 
 		$i = 0;
 		$timestamp = '';
