@@ -496,7 +496,7 @@ class EnhancedChangesList extends ChangesList {
 			return '';
 		}
 
-		# Changes message
+		// Changes message
 		static $nchanges = [];
 		static $sinceLastVisitMsg = [];
 
@@ -507,6 +507,7 @@ class EnhancedChangesList extends ChangesList {
 
 		$sinceLast = 0;
 		$unvisitedOldid = null;
+		$currentRevision = 0;
 		/** @var RCCacheEntry $rcObj */
 		foreach ( $block as $rcObj ) {
 			// Same logic as below inside main foreach
@@ -514,24 +515,15 @@ class EnhancedChangesList extends ChangesList {
 				$sinceLast++;
 				$unvisitedOldid = $rcObj->mAttribs['rc_last_oldid'];
 			}
-		}
-		if ( !isset( $sinceLastVisitMsg[$sinceLast] ) ) {
-			$sinceLastVisitMsg[$sinceLast] =
-				$this->msg( 'enhancedrc-since-last-visit' )->numParams( $sinceLast )->escaped();
-		}
-
-		$currentRevision = 0;
-		foreach ( $block as $rcObj ) {
 			if ( !$currentRevision ) {
 				$currentRevision = $rcObj->mAttribs['rc_this_oldid'];
 			}
 		}
 
-		# Total change link
+		// Total change link
 		$links = [];
-		/** @var RecentChange $block0 */
-		$block0 = $block[0];
-		$last = $block[count( $block ) - 1];
+		$title = $block[0]->getTitle();
+		$last = end( $block );
 		if ( !$allLogs ) {
 			if (
 				$isnew ||
@@ -542,7 +534,7 @@ class EnhancedChangesList extends ChangesList {
 			} else {
 				$links['total-changes'] = Html::rawElement( 'span', [],
 					$this->linkRenderer->makeKnownLink(
-						$block0->getTitle(),
+						$title,
 						new HtmlArmor( $nchanges[$n] ),
 						[ 'class' => 'mw-changeslist-groupdiff' ],
 						$queryParams + [
@@ -558,9 +550,13 @@ class EnhancedChangesList extends ChangesList {
 				$sinceLast > 0 &&
 				$sinceLast < $n
 			) {
+				if ( !isset( $sinceLastVisitMsg[$sinceLast] ) ) {
+					$sinceLastVisitMsg[$sinceLast] =
+						$this->msg( 'enhancedrc-since-last-visit' )->numParams( $sinceLast )->escaped();
+				}
 				$links['total-changes-since-last'] = Html::rawElement( 'span', [],
 					$this->linkRenderer->makeKnownLink(
-						$block0->getTitle(),
+						$title,
 						new HtmlArmor( $sinceLastVisitMsg[$sinceLast] ),
 						[ 'class' => 'mw-changeslist-groupdiff' ],
 						$queryParams + [
@@ -572,26 +568,23 @@ class EnhancedChangesList extends ChangesList {
 			}
 		}
 
-		# History
+		// History
 		if ( $allLogs || $rcObj->mAttribs['rc_type'] == RC_CATEGORIZE ) {
 			// don't show history link for logs
-		} elseif ( $namehidden || !$block0->getTitle()->exists() ) {
+		} elseif ( $namehidden || !$title->exists() ) {
 			$links['history'] = Html::rawElement( 'span', [], $this->message['enhancedrc-history'] );
 		} else {
-			$params = $queryParams;
-			$params['action'] = 'history';
-
 			$links['history'] = Html::rawElement( 'span', [],
 				$this->linkRenderer->makeKnownLink(
-					$block0->getTitle(),
+					$title,
 					new HtmlArmor( $this->message['enhancedrc-history'] ),
 					[ 'class' => 'mw-changeslist-history' ],
-					$params
+					[ 'action' => 'history' ] + $queryParams
 				)
 			);
 		}
 
-		# Allow others to alter, remove or add to these links
+		// Allow others to alter, remove or add to these links
 		$this->getHookRunner()->onEnhancedChangesList__getLogText( $this, $links, $block );
 
 		if ( !$links ) {
