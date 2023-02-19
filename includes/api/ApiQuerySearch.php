@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Search\TitleMatcher;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 

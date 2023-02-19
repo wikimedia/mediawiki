@@ -2,9 +2,10 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Search\TitleMatcher;
 
 /**
- * @covers TitleMatcher
+ * @covers \MediaWiki\Search\TitleMatcher
  */
 class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 	use LinkCacheTestTrait;
@@ -90,8 +91,8 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider nearMatchProvider
-	 * @covers TitleMatcher::getNearMatchInternal
-	 * @covers TitleMatcher::getNearMatch
+	 * @covers \MediaWiki\Search\TitleMatcher::getNearMatchInternal
+	 * @covers \MediaWiki\Search\TitleMatcher::getNearMatch
 	 */
 	public function testNearMatch(
 		$expected,
@@ -122,8 +123,8 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider hooksProvider
-	 * @covers TitleMatcher::getNearMatchInternal
-	 * @covers TitleMatcher::getNearMatch
+	 * @covers \MediaWiki\Search\TitleMatcher::getNearMatchInternal
+	 * @covers \MediaWiki\Search\TitleMatcher::getNearMatch
 	 */
 	public function testNearMatch_Hooks( $hook ) {
 		$config = new HashConfig( [
@@ -146,7 +147,7 @@ class TitleMatcherTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers TitleMatcher::getNearMatchResultSet
+	 * @covers \MediaWiki\Search\TitleMatcher::getNearMatchResultSet
 	 */
 	public function testGetNearMatchResultSet() {
 		$this->addGoodLinkObject( 42, Title::makeTitle( NS_MAIN, "Test Link" ) );

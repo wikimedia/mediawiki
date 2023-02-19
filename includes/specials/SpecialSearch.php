@@ -34,6 +34,7 @@ use MediaWiki\Search\SearchWidgets\InterwikiSearchResultSetWidget;
 use MediaWiki\Search\SearchWidgets\InterwikiSearchResultWidget;
 use MediaWiki\Search\SearchWidgets\SimpleSearchResultSetWidget;
 use MediaWiki\Search\SearchWidgets\SimpleSearchResultWidget;
+use MediaWiki\Search\TitleMatcher;
 use MediaWiki\User\UserOptionsManager;
 
 /**
