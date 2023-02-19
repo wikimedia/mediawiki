@@ -1737,7 +1737,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Rest\\HeaderParser\\IfNoneMatch' => __DIR__ . '/includes/Rest/HeaderParser/IfNoneMatch.php',
 	'MediaWiki\\Rest\\HeaderParser\\Origin' => __DIR__ . '/includes/Rest/HeaderParser/Origin.php',
 	'MediaWiki\\Rest\\Hook\\SearchResultProvideDescriptionHook' => __DIR__ . '/includes/Rest/Hook/SearchResultProvideDescriptionHook.php',
-	'MediaWiki\\Rest\\Hook\\SearchResultProvideThumbnailHook' => __DIR__ . '/includes/Rest/Hook/SearchResultProvideThumbnailHook.php',
 	'MediaWiki\\Rest\\HttpException' => __DIR__ . '/includes/Rest/HttpException.php',
 	'MediaWiki\\Rest\\JsonEncodingException' => __DIR__ . '/includes/Rest/JsonEncodingException.php',
 	'MediaWiki\\Rest\\LocalizedHttpException' => __DIR__ . '/includes/Rest/LocalizedHttpException.php',
