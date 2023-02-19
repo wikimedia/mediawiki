@@ -715,7 +715,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 	/**
 	 * Get the page_touched field
-	 * @return string Containing GMT timestamp
+	 * @return string Timestamp in TS_MW format
 	 */
 	public function getTouched() {
 		if ( !$this->mDataLoaded ) {
@@ -737,7 +737,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 	/**
 	 * Get the page_links_updated field
-	 * @return string|null Containing GMT timestamp
+	 * @return string|null Timestamp in TS_MW format
 	 */
 	public function getLinksTimestamp() {
 		if ( !$this->mDataLoaded ) {
