@@ -105,7 +105,7 @@
 			} ).join( '' );
 		}
 
-		return buildRawSortKey( node ).replace( /\s+/g, ' ' ).trim();
+		return buildRawSortKey( node ).replace( /  +/g, ' ' ).trim();
 	}
 
 	function detectParserForColumn( table, rows, column ) {
