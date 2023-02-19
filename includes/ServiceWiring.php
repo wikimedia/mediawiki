@@ -153,6 +153,7 @@ use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Search\SearchResultThumbnailProvider;
+use MediaWiki\Search\TitleMatcher;
 use MediaWiki\Settings\Config\ConfigSchema;
 use MediaWiki\Settings\SettingsBuilder;
 use MediaWiki\Shell\CommandFactory;

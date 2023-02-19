@@ -28,6 +28,7 @@
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Search\TitleMatcher;
 
 /**
  * Contain a class for special pages
