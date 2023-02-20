@@ -47,7 +47,7 @@
  * @author לערי ריינהארט
  */
 
-$fallback = 'nn';
+$fallback = 'no, nn';
 
 $bookstoreList = [
 	'Antikvariat.net' => 'http://www.antikvariat.net/',

@@ -53,6 +53,7 @@ THIS IS NOT A RELEASE YET
 * (T329198) ParamValidator: Improve paramvalidator-help-multi-max message.
 * (T329415) Clear the statsd data buffer regardless of StatsdServer config.
 * (T292348) WikiImporter: do not fail if upload entry in dump lacks 'text' tag.
+* (T295637) Add no to fallback chain of nb and nn.
 
 == MediaWiki 1.39.1 ==
 
@@ -301,6 +302,7 @@ because of Phabricator reports.
   ones are retained as aliases for backwards compatibility.
 * (T117845) Started the renaming of the language codes for Serbian from sr-ec
   and sr-el to sr-cyrl and sr-latn.
+* (T295637) Add no to fallback chain of nb and nn.
 
 === Breaking changes in 1.39 ===
 * Basic non-JavaScript (Grade C) support has been dropped for Internet Explorer
