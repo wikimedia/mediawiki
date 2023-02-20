@@ -17,17 +17,16 @@ module.exports = function ( grunt ) {
 	// "MediaWiki" for core, or extension/skin name (e.g. "GrowthExperiments")
 	const qunitComponent = grunt.option( 'qunit-component' );
 	const qunitWatch = grunt.option( 'qunit-watch' ) || false;
-	let qunitWatchSourcePattern = '',
-		qunitWatchTestPattern = '',
-		qunitWatchSourceFiles = {},
-		qunitWatchTestFiles = {};
+	const qunitWatchFiles = [];
 	if ( qunitComponent ) {
+		let qunitWatchSourcePattern;
+		let qunitWatchTestPattern;
 		qunitPattern = qunitPattern + '&component=' + qunitComponent;
 		if ( qunitWatch ) {
 			// Special-case MediaWiki core.
 			if ( qunitComponent === 'MediaWiki' ) {
 				qunitWatchTestPattern = 'tests/qunit/**/*.js';
-				qunitWatchSourceFiles = 'resources/**/*.js';
+				qunitWatchSourcePattern = 'resources/**/*.js';
 			} else {
 				let settingsJson,
 					basePath;
@@ -47,20 +46,20 @@ module.exports = function ( grunt ) {
 					path.resolve( __dirname + '/' + basePath + '/' + qunitComponent + '/' + settingsJson.ResourceFileModulePaths.localBasePath + '/**/*.js' );
 				qunitWatchTestPattern = path.resolve( __dirname + '/' + basePath + '/' + qunitComponent + '/tests/qunit/**/*.js' );
 			}
-			qunitWatchSourceFiles = {
+			qunitWatchFiles.push( {
 				pattern: qunitWatchSourcePattern,
 				type: 'js',
 				watched: true,
 				included: false,
 				served: false
-			};
-			qunitWatchTestFiles = {
+			} );
+			qunitWatchFiles.push( {
 				pattern: qunitWatchTestPattern,
 				type: 'js',
 				watched: true,
 				included: false,
 				served: false
-			};
+			} );
 		}
 	}
 
@@ -121,9 +120,7 @@ module.exports = function ( grunt ) {
 					watched: false,
 					included: true,
 					served: false
-				}, qunitWatchTestFiles, qunitWatchSourceFiles ].filter( function ( item ) {
-					return Object.keys( item ).length !== 0;
-				} ),
+				}, ...qunitWatchFiles ],
 				logLevel: ( process.env.ZUUL_PROJECT ? 'DEBUG' : 'INFO' ),
 				frameworks: [ 'qunit' ],
 				reporters: [ 'mocha' ],
