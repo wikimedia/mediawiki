@@ -210,7 +210,7 @@
 	"exif-photometricinterpretation-8": "L*a*b* CIE",
 	"exif-photometricinterpretation-9": "L*a*b* CIE (kodiranje ICC)",
 	"exif-photometricinterpretation-10": "L*a*b* CIE (kodiranje ITU)",
-	"exif-photometricinterpretation-32803": "Polje barvnega filtra",
+	"exif-photometricinterpretation-32803": "Matrika barvnega filtra",
 	"exif-photometricinterpretation-34892": "Linearna surova",
 	"exif-unknowndate": "neznan datum",
 	"exif-orientation-1": "Normalna",

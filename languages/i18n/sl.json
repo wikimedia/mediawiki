@@ -772,7 +772,7 @@
 	"content-model-css": "CSS",
 	"content-model-json": "JSON",
 	"content-json-empty-object": "Prazen objekt",
-	"content-json-empty-array": "Prazno polje",
+	"content-json-empty-array": "Prazna matrika",
 	"unsupported-content-model": "<strong>Opozorilo:</strong> Model vsebine $1 v tem vikiju ni podprt.",
 	"unsupported-content-diff": "Primerjave niso podprte za model vsebine $1.",
 	"unsupported-content-diff2": "Primerjave med vsebinskima modeloma $1 in $2 v tem vikiju niso podprte.",

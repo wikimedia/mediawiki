@@ -67,6 +67,7 @@
 	"tog-watchlisthideminor": "دەستکارییە بچووکەکان لە لیستی چاودێری بشارەوە",
 	"tog-watchlisthideliu": "دەستکارییەکانی ئەو بەکارهێنەرانەی لە ژوورەوەن لە لیستی چاودێری بشارەوە",
 	"tog-watchlistreloadautomatically": "ھەرکاتێک پاڵێوێک گۆڕدرا خۆگەڕانە پێڕستی چاودێرییەکە بار بکەرەوە (جاڤاسکریپت پێویستە)",
+	"tog-watchlistunwatchlinks": "ھێماکانی چاودێریکردن و نەکردنی ڕاستەوخۆ ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) بۆ پەڕە چاودێریکراوەکان زیاد بکە (بەڵام بۆ گۆڕینەکان جاڤاسکریپت پێویستە).",
 	"tog-watchlisthideanons": "دەستکارییەکانی بەکارهێنەرە نەناسراوەکان لە لیستی چاودێریدا بشارەوە",
 	"tog-watchlisthidepatrolled": "لە پێرستی چاودێرییەکاندا دەستکارییە پاس دراوەکان بشارەوە",
 	"tog-watchlisthidecategorization": "شاردنەوەی پۆلێنکردنی پەڕەکان",

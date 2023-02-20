@@ -19,7 +19,8 @@
 			"Matma Rex",
 			"SaldırganSincap",
 			"FiberAhmed",
-			"أَحمد"
+			"أَحمد",
+			"Dr-Taher"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|التوثيق]]\n* [[mw:Special:MyLanguage/API:FAQ|الأسئلة الأكثر تكرارا]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api القائمة البريدية]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce إعلانات API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R الأخطاء والطلبات]\n</div>\n<strong>الحالة:</strong> API ميدياويكي هي واجهة ناضجة ومستقرة يتم دعمها وتحسينها بشكل نشط، في حين أننا نحاول تجنب ذلك، قد نحتاج في بعض الأحيان إلى إجراء تغييرات في التكسير، اشترك في [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ القائمة البريدية لإعلان API ميدياويكي] لإشعارات التحديثات.\n\n<strong>الطلبات الخاطئة:</strong>عندما يتم إرسال طلبات خاطئة إلى API، سيتم إرسال رأس HTTP مع مفتاح \"خطأ-API-ميدياويكي\"، وبعد ذلك سترجع قيمة الرأس ورمز الخطأ المرتجع إلى يتم تعيينه على نفس القيمة، لمزيد من المعلومات; راجع [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<p class=\"mw-apisandbox-link\"><strong>الاختبار:</strong>لسهولة اختبار طلبات API ; انظر [[Special:ApiSandbox]].</p>",
@@ -1484,6 +1485,7 @@
 	"apihelp-watch-param-expiry": "سيتم تطبيق ختم وقت الانتهاء على جميع الصفحات. احذف هذه المعلمة تمامًا لترك أي انتهاء صلاحية حالي دون تغيير.",
 	"apihelp-watch-param-unwatch": "إذا تم التعيين فستتم إزالة الصفحة من قائمة المراقبة بدلا من مراقبتها.",
 	"apihelp-watch-example-watch": "راقب الصفحة <kbd>Main Page</kbd>.",
+	"apihelp-watch-example-watch-expiry": "شاهد الصفحات <kbd>الصفحة الرئيسة</kbd> و <kbd>Foo</kbd> و <kbd>Bar</kbd> لمدة شهر واحد.",
 	"apihelp-watch-example-unwatch": "ألغِ مراقبة الصفحة <kbd>Main Page</kbd>.",
 	"apihelp-watch-example-generator": "راقب الصفحات القليلة الأولى في النطاق الرئيسي.",
 	"apihelp-format-example-generic": "إرجاع نتيجة الاستعلام بتنسيق $1.",
