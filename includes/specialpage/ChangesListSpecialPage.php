@@ -620,7 +620,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	public function execute( $subpage ) {
 		$this->rcSubpage = $subpage;
 
-		$this->considerActionsForDefaultSavedQuery( $subpage );
+		if ( $this->considerActionsForDefaultSavedQuery( $subpage ) ) {
+			// Don't bother rendering the page if we'll be performing a redirect (T330100).
+			return;
+		}
 
 		// Enable OOUI and module for the clock icon.
 		if ( $this->getConfig()->get( MainConfigNames::WatchlistExpiry ) ) {
@@ -697,10 +700,11 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * redirect properly with all necessary query parameters.
 	 *
 	 * @param string $subpage
+	 * @return bool Whether a redirect will be performed.
 	 */
 	protected function considerActionsForDefaultSavedQuery( $subpage ) {
 		if ( !$this->isStructuredFilterUiEnabled() || $this->including() ) {
-			return;
+			return false;
 		}
 
 		$knownParams = $this->getRequest()->getValues(
@@ -746,6 +750,10 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 					$query = array_merge( $this->getRequest()->getValues(), $query );
 					unset( $query[ 'title' ] );
 					$this->getOutput()->redirect( $this->getPageTitle( $subpage )->getCanonicalURL( $query ) );
+
+					// Signal that we only need to redirect to the full URL
+					// and can skip rendering the actual page (T330100).
+					return true;
 				} else {
 					// There's a default, but the version is not 2, and the server can't
 					// actually recognize the query itself. This happens if it is before
@@ -762,6 +770,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 				}
 			}
 		}
+
+		return false;
 	}
 
 	/**
