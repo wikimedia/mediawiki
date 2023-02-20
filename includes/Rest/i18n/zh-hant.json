@@ -14,6 +14,7 @@
 	"rest-nonexistent-revision": "指定的修訂（$1）不存在",
 	"rest-nonexistent-user": "指定的使用者（$1）不存在。",
 	"rest-invalid-user": "指定的使用者名稱（$1）無效。",
+	"rest-unsupported-content-type": "不支援的 Content-Type：$1",
 	"rest-permission-denied-anon": "不可被匿名使用者存取",
 	"rest-permission-denied-title": "使用者沒有權限來讀取標題（$1）",
 	"rest-permission-denied-revision": "使用者沒有權限來存取請求修訂（$1）",
@@ -44,5 +45,7 @@
 	"rest-cannot-load-file": "標題「$1」的檔案無法載入。",
 	"rest-cross-origin-anon-write": "不允許匿名跨來源寫入請求",
 	"rest-requires-safe-against-csrf": "此端點需要一個 CSRF 安全的 session 提供者。",
-	"rest-badtoken": "提供的 CSRF 權杖無效。"
+	"rest-badtoken": "提供的 CSRF 權杖無效。",
+	"rest-badtoken-missing": "除非是使用 CSRF 安全身份驗證方法，否則 <var>token</var> 參數為必填。",
+	"rest-badtoken-nosession": "CSRF 錯誤 - 沒有 session。"
 }

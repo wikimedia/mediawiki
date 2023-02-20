@@ -126,7 +126,7 @@
 	"hidden-category-category": "Niyoni kateqoriyon",
 	"category-subcat-count": "{{PLURAL:$2|Ым kateqoriya фәғәт жинтонә жинә kateqoriyon һестыше.|Ҹәми $2 kateqoriyonku {{PLURAL:$1|жинә kateqoriya|$1 жинә kateqoriya}} нишо доә быә.}}",
 	"category-subcat-count-limited": "Бы категоријәдә {{PLURAL:$1|$1 жинә категорија|$1 жинә категоријон}}.",
-	"category-article-count": "{{PLURAL:$2|Бы категоријәдә фәғәт иглә сәһифәје.|Ҹәми $2 сәһифонку нишо доә быә {{PLURAL:$1|сәһифә|$1 сәһифә}} бы катугоријәдә.}}",
+	"category-article-count": "{{PLURAL:$2|Bu kateqoriya yalnız aşağıdakı səhifədən ibarətdir.|Bu kateqoriyada $2 səhifə var və onlardan $1 səhifə aşağıda göstərilir.}}",
 	"category-article-count-limited": "Бә ым категоријәдә {{PLURAL:$1|$1 сәһифә|}} һесте.",
 	"category-file-count": "{{PLURAL:$2|Бы категоријәдә фәғәт иглә фајле.|Ҹәми $2 фајлонку нишо доә быә {{PLURAL:$1|фајл|$1 фајл}} бы категоријәдә.}}",
 	"category-file-count-limited": "Ын категоријәдә  {{PLURAL:$1|$1 фајл}} һесте.",

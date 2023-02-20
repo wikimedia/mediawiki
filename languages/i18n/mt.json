@@ -599,7 +599,7 @@
 	"previewerrortext": "Kien hemm żball waqt tentattiv biex tintwera previżżjoni tal-bidliet",
 	"blockedtitle": "L-utent ġie bblokkjat",
 	"blockedtext": "'''L-isem tal-utent jew l-indirizz IP tiegħek ġew imblukkat.'''\n\nIl-blokk twettaq minn $1. Ir-raġuni mogħtiha kienet ''$2''.\n\n* Il-blokk jibda: $8\n* Il-blokk jintemm: $6\n* Il-blokk kien għal: $7\n\nTista' tikkuntattja lil $1 jew xi [[{{MediaWiki:Grouppage-sysop}}|amministratur]] ieħor biex tiddiskuti dan il-blokk.\n\nMa tistax tuża' l-faċilità \"ikteb lil dan l-utent\" sakemm m'għandekx indirizz validu tal-email fil-[[Special:Preferences|preferenzi tal-kont]] tiegħek u ma ġejtx miżmum milli tużah.\n\nL-IP kurrenti tiegħek huwa $3, u l-ID tal-imblukkar huwa #$5.<br />Jekk jogħġbok inkludi mqar wieħed minn dawn it-tnejn f'kwalunkwe rikjesta.",
-	"autoblockedtext": "L-indirizz IP tiegħek ġie awtomatikament imblukkat minħabba li kienet qiegħed jiġi wżat minn utent ieħor, u ġie imblukkat minn $1.\nIr-raġuni li ġiet mogħtiha kienet:\n\n:''$2''\n\n* Bidu tal-blokk: $8\n* Il-blokk jintemm: $6\n* Il-blokk kien għal: $7\n\nInt tista' tagħmel kuntatt ma' $1 jew ma' [[{{MediaWiki:Grouppage-sysop}}|amministratur]] ieħor biex tidiskuti dan il-blokk.\n\nGħandek tkun taf li ma tistax tuża l-faċilità ta' \"ibgħat email lil dan l-utent\" sakemm m'għandekx indirizz validu tal-email fil-[[Special:Preferences|preferenzi tiegħek]] u int ma ġejtx imblukkat milli tużaha.\n\nL-IP kurrenti tiegħek huwa $3, u l-ID ta' l-imblukkar huwa #$5.<br />\nJekk jogħġbok inkludi mqar wieħed minn dawn it-tnejn f'kwalunkwe rikjesta.",
+	"autoblockedtext": "L-indirizz tal-IP tiegħek ġie awtomatikament imblukkat minħabba li kien qiegħed jiġi wżat minn utent ieħor li ġie mblukkat minn $1.\nIr-raġuni li ġiet mogħtiha kienet:\n\n:<em>$2</em>\n\n* Bidu tal-blokk: $8\n* Il-blokk jintemm: $6\n* Il-blokk kien għal: $7\n\nInt tista' tagħmel użu mill-faċilità ta' \"\"{{int:emailuser}}\" jekk għandek indirizz validu tal-email fil-[[Special:Preferences|preferenzi tiegħek]] u int ma ġejtx imblukkat milli tużaha.\n\nL-IP kurrenti tiegħek huwa $3, u l-ID ta' l-imblukkar huwa #$5.<br />\nJekk jogħġbok inkludi mqar wieħed minn dawn it-tnejn f'kwalunkwe rikjesta.",
 	"blockednoreason": "ma ingħatat l-ebda raġuni",
 	"blockedtext-composite-no-ids": "L-indirizz tal-IP tiegħek jidher f'diversi listi tal-ibblokkar",
 	"blockedtext-composite-reason": "Hemm diversi blokki kontra l-kont u/jew l-indirizz tal-IP tiegħek",
@@ -2407,6 +2407,8 @@
 	"movesubpagetext": "Din il-paġna għandha $1 {{PLURAL:$1|sottopaġna murija|sottopaġni murija}} hawn taħt:",
 	"movenosubpage": "Din il-paġna m'għandha l-ebda sottopaġna.",
 	"movereason": "Raġuni:",
+	"moveotherreason": "Raġuni oħra/addizzjonali:",
+	"movepage-reason-dropdown": "* Raġunijiet komuni għaċ-ċaqliq\n** Titlu miktub ħażin",
 	"revertmove": "irkupra",
 	"delete_and_move_text": "==Rikjesta ta' tħassir==\nIl-Paġna tad-destinazzjoni \"[[:$1]]\" ġa teżisti.\nTrid tħassara sabiex tkun tista' tagħmel triq għal ċaqlieqa?",
 	"delete_and_move_confirm": "Iva, ħassar il-paġna",
@@ -3180,5 +3182,6 @@
 	"skin-action-protect": "Ipproteġi",
 	"skin-action-undelete": "Irkupra",
 	"skin-action-delete": "Ħassar",
-	"skin-action-move": "Mexxi"
+	"skin-action-move": "Mexxi",
+	"blockedtext-reason-comment": "Ir-raġuni mogħtija hija <em>$1</em>"
 }

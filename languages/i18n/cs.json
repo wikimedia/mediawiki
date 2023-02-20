@@ -1953,7 +1953,7 @@
 	"filehist-dimensions": "Rozměry",
 	"filehist-filesize": "Velikost souboru",
 	"filehist-comment": "Komentář",
-	"filehist-missing": "Soubor chybí",
+	"filehist-missing": "žádný soubor",
 	"imagelinks": "Využití souboru",
 	"linkstoimage": "Tento soubor {{PLURAL:$1|používá následující stránka|používají následující $1 stránky|používá následujících $1 stránek}}:",
 	"linkstoimage-more": "Tento soubor {{PLURAL:$1|používá více stránek|používají více než $1 stránky|používá více než $1 stránek}}.\nNásledující seznam zobrazuje pouze {{PLURAL:$1|tu první|první $1|prvních $1}}.\nMůžete si prohlédnout [[Special:WhatLinksHere/$2|úplný seznam]].",

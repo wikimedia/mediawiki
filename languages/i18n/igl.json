@@ -610,5 +610,10 @@
 	"skin-view-create-local": "Dí ujuwé érané manwu",
 	"nstab-mainpage": "Ogbá Ogbolo",
 	"skin-action-protect": "Dída",
-	"skin-action-delete": "Dukwó"
+	"skin-action-delete": "Dukwó",
+	"blockedtext-made-by": "Éne kí gbóna nyé chí",
+	"blockedtext-reason-comment": "Oyì ku ma dú chí <em></em>",
+	"blockedtext-start-time": "Ekó kí é gbóna achabé chí: $1",
+	"blockedtext-expiration-time": "Ekó kí é gbóna a gbojì: $1",
+	"blockedtext-intended-blockee": "Éné kú ma téné gbóna ñwu chí:$1"
 }
