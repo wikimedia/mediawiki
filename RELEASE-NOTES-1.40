@@ -155,6 +155,7 @@ because of Phabricator reports.
 * (T323971) Added language support for Khakas (kjh).
 * (T326526) Added language support for Igala (igl).
 * (T329476) Added language support for Kusaal (kus).
+* (T295637) Add no to fallback chain of nb and nn.
 
 === Breaking changes in 1.40 ===
 * OutputPage::enableClientCache no longer accepts a parameter, nor does it
