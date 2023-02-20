@@ -10,6 +10,7 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.38.5 ===
 * Localisation updates.
+* (T295637) Add no to fallback chain of nb and nn.
 
 == MediaWiki 1.38.5 ==
 
@@ -415,6 +416,7 @@ because of Phabricator reports.
 * (T299329) Added language support for Fon (fon).
 * (T300474) Added language support for Nkore (nyn).
 * (T302556) Added language support for Pannonian Rusyn (rsk).
+* (T295637) Add no to fallback chain of nb and nn.
 
 === Breaking changes in 1.38 ===
 * (T291008) The IP class, deprecated since 1.35 in favor of the IPUtils library,
