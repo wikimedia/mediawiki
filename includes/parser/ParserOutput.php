@@ -2562,7 +2562,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			// T327439: We should eventually make the entire mTOCData
 			// serializable
 			$toc = $this->mTOCData->jsonSerialize();
-			$data['TOCExtensionData'] = $toc['extensionData'];
+			if ( isset( $toc['extensionData'] ) ) {
+				$data['TOCExtensionData'] = $toc['extensionData'];
+			}
 		}
 
 		return $data;
