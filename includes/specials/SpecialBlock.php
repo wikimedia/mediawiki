@@ -559,10 +559,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return string
 	 */
 	protected function preHtml() {
-		$this->getOutput()->addModuleStyles( [
-			'mediawiki.widgets.TagMultiselectWidget.styles',
-			'mediawiki.special',
-		] );
+		$this->getOutput()->addModuleStyles( [ 'mediawiki.special' ] );
 		$this->getOutput()->addModules( [ 'mediawiki.special.block' ] );
 
 		$blockCIDRLimit = $this->getConfig()->get( MainConfigNames::BlockCIDRLimit );
