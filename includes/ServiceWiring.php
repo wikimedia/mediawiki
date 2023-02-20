@@ -2101,7 +2101,10 @@ return [
 
 	'UserFactory' => static function ( MediaWikiServices $services ): UserFactory {
 		return new UserFactory(
-			$services->getDBLoadBalancer(),
+			new ServiceOptions(
+				UserFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
+			),
+			$services->getDBLoadBalancerFactory(),
 			$services->getUserNameUtils()
 		);
 	},
