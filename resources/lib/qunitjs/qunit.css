@@ -1,5 +1,5 @@
 /*!
- * QUnit 2.18.2
+ * QUnit 2.19.4
  * https://qunitjs.com/
  *
  * Copyright OpenJS Foundation and other contributors
@@ -225,6 +225,10 @@
 	right: 0;
 	top: 100%;
 	margin-top: 2px;
+
+	/* ensure that when on a narrow viewports and having only one result,
+	   that #qunit-modulefilter-actions fall outside the dropdown rectangle. */
+	min-height: 3em;
 
 	border: 1px solid #AAA;
 	border-top-color: transparent;
