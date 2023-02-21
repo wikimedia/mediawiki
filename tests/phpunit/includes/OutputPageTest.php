@@ -3029,7 +3029,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider providePreloadLinkHeaders
-	 * @covers \MediaWiki\ResourceLoader\SkinModule::getPreloadLinks
+	 * @covers \MediaWiki\ResourceLoader\SkinModule
 	 */
 	public function testPreloadLinkHeaders( $config, $result ) {
 		$ctx = $this->createMock( RL\Context::class );

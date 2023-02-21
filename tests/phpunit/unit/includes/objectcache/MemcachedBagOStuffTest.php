@@ -1,5 +1,6 @@
 <?php
 /**
+ * @covers MemcachedBagOStuff
  * @group BagOStuff
  */
 class MemcachedBagOStuffTest extends \MediaWikiUnitTestCase {
@@ -11,9 +12,6 @@ class MemcachedBagOStuffTest extends \MediaWikiUnitTestCase {
 		$this->cache = new MemcachedPhpBagOStuff( [ 'keyspace' => 'test', 'servers' => [] ] );
 	}
 
-	/**
-	 * @covers MemcachedBagOStuff::makeKey
-	 */
 	public function testKeyNormalization() {
 		$this->assertEquals(
 			'test:vanilla',
@@ -70,7 +68,6 @@ class MemcachedBagOStuffTest extends \MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider validKeyProvider
-	 * @covers MemcachedBagOStuff::validateKeyEncoding
 	 */
 	public function testValidateKeyEncoding( $key ) {
 		$this->assertSame( $key, $this->cache->validateKeyEncoding( $key ) );
@@ -87,7 +84,6 @@ class MemcachedBagOStuffTest extends \MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider invalidKeyProvider
-	 * @covers MemcachedBagOStuff::validateKeyEncoding
 	 */
 	public function testValidateKeyEncodingThrowsException( $key ) {
 		$this->expectException( Exception::class );
