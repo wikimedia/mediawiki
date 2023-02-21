@@ -1,18 +1,32 @@
-( function () {
+QUnit.module( 'mediawiki.inspect', function () {
 
-	QUnit.module( 'mediawiki.inspect' );
+	// These test cases use eval() to define their fixture so that their code
+	// is transferred as a string instead of native JS, and thus not subject
+	// to minification. This makes their inspected size constant, regardless of:
+	// * whether debug=1 or debug=2 is used (or not at all)
+	// * whether the code happpens to be near the end of a 1000-char chunk
+	//   in the minifier and thus get an extra line break byte in the middle.
+	// * future changes to the minifier that might slightly increase or decrease
+	//   the minified size.
+	//
+	// Bypassing this does not deminish the value of the test as we want to test
+	// how a given output is measured by mw.inspect. ResourceLoader has its own
+	// integration in PHPUnit for how a function is bundled and minified.
+
+	/* eslint-disable no-eval */
+
+	var exampleFn = eval( "( function () { 'example'; }) " );
 
 	QUnit.test( '.getModuleSize() - scripts', function ( assert ) {
 		mw.loader.implement(
 			'test.inspect.script',
-			function () { 'example'; }
+			exampleFn
 		);
 
 		return mw.loader.using( 'test.inspect.script' ).then( function () {
 			assert.strictEqual(
 				mw.inspect.getModuleSize( 'test.inspect.script' ),
-				// name, script function
-				43,
+				47,
 				'test.inspect.script'
 			);
 		} );
@@ -21,15 +35,14 @@
 	QUnit.test( '.getModuleSize() - scripts, styles', function ( assert ) {
 		mw.loader.implement(
 			'test.inspect.both',
-			function () { 'example'; },
+			exampleFn,
 			{ css: [ '.example {}' ] }
 		);
 
 		return mw.loader.using( 'test.inspect.both' ).then( function () {
 			assert.strictEqual(
 				mw.inspect.getModuleSize( 'test.inspect.both' ),
-				// name, script function, styles object
-				64,
+				68,
 				'test.inspect.both'
 			);
 		} );
@@ -38,14 +51,6 @@
 	QUnit.test( '.getModuleSize() - packageFiles, styles', function ( assert ) {
 		mw.loader.implement(
 			'test.inspect.packageFiles',
-			// HACK: Define this with eval as otherwise the file closures below would get
-			// minified. That is undesirable for two reasons. 1) It means the perceived
-			// size of the functions via Function#toString will vary between debug mode
-			// and production mode, making the test fail under one of them, and 2) when
-			// something is minified, there are occasionally line breaks inserted after
-			// every few thousand bytes, which means the test result changes over time
-			// based on the code above.
-			// eslint-disable-next-line no-eval
 			eval( "({\
 	main: 'init.js',\
 	files: {\
@@ -80,7 +85,7 @@
 	QUnit.test( '.getModuleSize() - scripts, messages', function ( assert ) {
 		mw.loader.implement(
 			'test.inspect.scriptmsg',
-			function () { 'example'; },
+			exampleFn,
 			{},
 			{ example: 'Hello world.' }
 		);
@@ -88,8 +93,7 @@
 		return mw.loader.using( 'test.inspect.scriptmsg' ).then( function () {
 			assert.strictEqual(
 				mw.inspect.getModuleSize( 'test.inspect.scriptmsg' ),
-				// name, script function, empty styles object, messages object
-				74,
+				78,
 				'test.inspect.scriptmsg'
 			);
 		} );
@@ -98,7 +102,7 @@
 	QUnit.test( '.getModuleSize() - scripts, styles, messages, templates', function ( assert ) {
 		mw.loader.implement(
 			'test.inspect.all',
-			function () { 'example'; },
+			exampleFn,
 			{ css: [ '.example {}' ] },
 			{ example: 'Hello world.' },
 			{ 'example.html': '<p>Hello world.<p>' }
@@ -107,10 +111,9 @@
 		return mw.loader.using( 'test.inspect.all' ).then( function () {
 			assert.strictEqual(
 				mw.inspect.getModuleSize( 'test.inspect.all' ),
-				// name, script function, styles object, messages object, templates object
-				126,
+				130,
 				'test.inspect.all'
 			);
 		} );
 	} );
-}() );
+} );
