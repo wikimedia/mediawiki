@@ -148,6 +148,8 @@
 .mw-ui-icon-element {
 	border-radius: @border-radius-base;
 	padding: @icon-padding-md;
+	// Override line-height applied by `.mw-ui-button`.
+	line-height: 0;
 	transition: background-color @transition-duration-base;
 
 	&.mw-ui-button {
