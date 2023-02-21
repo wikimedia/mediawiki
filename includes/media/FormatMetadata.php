@@ -26,6 +26,7 @@
  */
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\Html\Html;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\TimestampException;

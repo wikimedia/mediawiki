@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Html\Html;
+
 /**
  * Class for generating HTML <select> or <datalist> elements.
  */

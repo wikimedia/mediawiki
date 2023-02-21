@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\Html\Html;
+
 /**
  * Enables HTMLFormField elements to be build with a button.
  *

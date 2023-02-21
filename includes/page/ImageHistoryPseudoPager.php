@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Timestamp\TimestampException;
 

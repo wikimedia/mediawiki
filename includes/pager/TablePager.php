@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 
 /**

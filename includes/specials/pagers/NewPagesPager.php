@@ -22,6 +22,7 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Html\FormOptions;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use Wikimedia\Rdbms\ILoadBalancer;
 

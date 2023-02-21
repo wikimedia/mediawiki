@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki;
+namespace MediaWiki\Html;
 
 use Wikimedia\Assert\Assert;
 use Wikimedia\RemexHtml\HTMLData;
@@ -75,3 +75,5 @@ class HtmlHelper {
 	}
 
 }
+
+class_alias( HtmlHelper::class, 'MediaWiki\\HtmlHelper' );

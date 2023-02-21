@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Hook;
 
-use FormOptions;
+use MediaWiki\Html\FormOptions;
 use NewPagesPager;
 
 /**

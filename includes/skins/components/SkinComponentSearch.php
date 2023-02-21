@@ -3,7 +3,7 @@
 namespace MediaWiki\Skin;
 
 use Config;
-use Html;
+use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use Message;

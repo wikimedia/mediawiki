@@ -24,9 +24,9 @@
 
 namespace MediaWiki\Feed;
 
+use MediaWiki\Html\TemplateParser;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use TemplateParser;
 use Title;
 
 /**

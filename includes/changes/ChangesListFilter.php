@@ -21,6 +21,8 @@
  * @author Matthew Flaschen
  */
 
+use MediaWiki\Html\FormOptions;
+
 /**
  * Represents a filter (used on ChangesListSpecialPage and descendants)
  *

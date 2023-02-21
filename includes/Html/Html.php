@@ -23,9 +23,12 @@
  * @file
  */
 
+namespace MediaWiki\Html;
+
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\ContentSecurityPolicy;
+use MWException;
 
 /**
  * This class is a collection of static functions that serve two purposes:
@@ -112,8 +115,8 @@ class Html {
 	 * @return array Modified attributes array
 	 */
 	public static function buttonAttributes( array $attrs, array $modifiers = [] ) {
-		$useMediaWikiUIEverywhere = MediaWikiServices::getInstance()
-			->getMainConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
+		$useMediaWikiUIEverywhere =
+			MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::UseMediaWikiUIEverywhere );
 		if ( $useMediaWikiUIEverywhere ) {
 			if ( isset( $attrs['class'] ) ) {
 				if ( is_array( $attrs['class'] ) ) {
@@ -169,7 +172,8 @@ class Html {
 	 * @return string Raw HTML
 	 */
 	public static function linkButton( $text, array $attrs, array $modifiers = [] ) {
-		return self::element( 'a',
+		return self::element(
+			'a',
 			self::buttonAttributes( $attrs, $modifiers ),
 			$text
 		);
@@ -235,12 +239,16 @@ class Html {
 	 * @return string
 	 */
 	public static function element( $element, $attribs = [], $contents = '' ) {
-		return self::rawElement( $element, $attribs, strtr( $contents ?? '', [
-			// There's no point in escaping quotes, >, etc. in the contents of
-			// elements.
-			'&' => '&amp;',
-			'<' => '&lt;'
-		] ) );
+		return self::rawElement(
+			$element,
+			$attribs,
+			strtr( $contents ?? '', [
+				// There's no point in escaping quotes, >, etc. in the contents of
+				// elements.
+				'&' => '&amp;',
+				'<' => '&lt;',
+			] )
+		);
 	}
 
 	/**
@@ -695,7 +703,7 @@ class Html {
 			'search' => true,
 			'email' => true,
 			'password' => true,
-			'number' => true
+			'number' => true,
 		];
 		if ( isset( $textInputAttributes[$type] ) ) {
 			$attribs = self::getTextInputAttributes( $attribs );
@@ -703,7 +711,7 @@ class Html {
 		$buttonAttributes = [
 			'button' => true,
 			'reset' => true,
-			'submit' => true
+			'submit' => true,
 		];
 		if ( isset( $buttonAttributes[$type] ) ) {
 			$attribs = self::buttonAttributes( $attribs );
@@ -835,7 +843,7 @@ class Html {
 	 */
 	public static function label( $label, $id, array $attribs = [] ) {
 		$attribs += [
-			'for' => $id
+			'for' => $id,
 		];
 		return self::element( 'label', $attribs, $label );
 	}
@@ -941,7 +949,8 @@ class Html {
 	 * - name: [optional], default: 'namespace'.
 	 * @return string HTML code to select a namespace.
 	 */
-	public static function namespaceSelector( array $params = [],
+	public static function namespaceSelector(
+		array $params = [],
 		array $selectAttribs = []
 	) {
 		ksort( $selectAttribs );
@@ -969,11 +978,13 @@ class Html {
 		$optionsHtml = [];
 		foreach ( $options as $nsId => $nsName ) {
 			$optionsHtml[] = self::element(
-				'option', [
+				'option',
+				[
 					'disabled' => in_array( $nsId, $params['disable'] ),
 					'value' => $nsId,
 					'selected' => $nsId === $params['selected'],
-				], $nsName
+				],
+				$nsName
 			);
 		}
 
@@ -1104,3 +1115,5 @@ class Html {
 		return implode( ", ", $candidates );
 	}
 }
+
+class_alias( Html::class, 'Html' );

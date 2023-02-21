@@ -21,7 +21,6 @@
 namespace MediaWiki\Preferences;
 
 use Config;
-use Html;
 use HTMLForm;
 use HTMLFormField;
 use IContextSource;
@@ -34,6 +33,7 @@ use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;

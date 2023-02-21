@@ -20,12 +20,12 @@
  */
 namespace MediaWiki\Linker;
 
-use Html;
 use HtmlArmor;
 use LinkCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Html\Html;
 use MediaWiki\Page\PageReference;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use Sanitizer;

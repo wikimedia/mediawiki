@@ -21,6 +21,7 @@
  * @author Matthew Flaschen
  */
 
+use MediaWiki\Html\FormOptions;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

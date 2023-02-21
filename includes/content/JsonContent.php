@@ -8,6 +8,8 @@
  * @author Kunal Mehta <legoktm@gmail.com>
  */
 
+use MediaWiki\Html\Html;
+
 /**
  * JSON text content that can be viewed and edit directly by users.
  *

@@ -17,6 +17,8 @@
  *
  * @file
  */
+
+use MediaWiki\Html\Html;
 use Wikimedia\Timestamp\TimestampException;
 
 /**

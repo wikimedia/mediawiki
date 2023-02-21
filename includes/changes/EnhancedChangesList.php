@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Html\Html;
+use MediaWiki\Html\TemplateParser;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Revision\RevisionRecord;
 

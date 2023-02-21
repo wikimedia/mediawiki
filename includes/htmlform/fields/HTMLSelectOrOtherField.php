@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Html\Html;
+
 /**
  * Select dropdown field, with an additional "other" textbox.
  *

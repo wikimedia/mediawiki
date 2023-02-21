@@ -18,6 +18,9 @@
  * @file
  */
 
+use MediaWiki\Html\Html;
+use MediaWiki\Html\TemplateParser;
+
 /**
  * Generic template for use with Mustache templates.
  * @since 1.35

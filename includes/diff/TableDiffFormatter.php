@@ -24,6 +24,8 @@
  * @ingroup DifferenceEngine
  */
 
+use MediaWiki\Html\Html;
+
 /**
  * MediaWiki default table style diff formatter
  * @todo document

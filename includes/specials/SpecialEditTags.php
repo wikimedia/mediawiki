@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\CommentStore\CommentStore;
+use MediaWiki\Html\Html;
 use MediaWiki\Permissions\PermissionManager;
 
 /**

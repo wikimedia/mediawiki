@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Navigation;
 
-use Html;
+use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Page\PageReference;
 use Message;

@@ -26,9 +26,9 @@ namespace MediaWiki\EditPage;
 
 use Content;
 use ContentHandler;
-use Html;
 use IBufferingStatsdDataFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MWUnknownContentModelException;
 use OutputPage;
