@@ -40,11 +40,11 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserTimeCorrection;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Bcp47Code\Bcp47Code;
 use Wikimedia\DebugInfo\DebugInfoTrait;
-use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
  * Base class for language-specific code.
@@ -2102,63 +2102,24 @@ class Language implements Bcp47Code {
 			);
 		}
 
-		$data = explode( '|', $tz, 3 );
+		$timeCorrection = new UserTimeCorrection( (string)$tz, null, $localTZoffset );
 
-		if ( $data[0] == 'ZoneInfo' ) {
-			try {
-				$userTZ = new DateTimeZone( $data[2] );
-				$date = new DateTime( $ts, new DateTimeZone( 'UTC' ) );
-				$date->setTimezone( $userTZ );
-				return $date->format( 'YmdHis' );
-			} catch ( TimeoutException $e ) {
-				throw $e;
-			} catch ( Exception $e ) {
-				// Unrecognized timezone, default to 'Offset' with the stored offset.
-				$data[0] = 'Offset';
-			}
+		$tzObj = $timeCorrection->getTimeZone();
+		if ( $tzObj ) {
+			$date = new DateTime( $ts, new DateTimeZone( 'UTC' ) );
+			$date->setTimezone( $tzObj );
+			return $date->format( 'YmdHis' );
 		}
-
-		if ( $data[0] == 'System' || $tz == '' ) {
-			# Global offset in minutes.
-			$minDiff = $localTZoffset;
-		} elseif ( $data[0] == 'Offset' ) {
-			$minDiff = intval( $data[1] );
-		} else {
-			$data = explode( ':', $tz );
-			if ( count( $data ) == 2 ) {
-				$data[0] = intval( $data[0] );
-				$data[1] = intval( $data[1] );
-				$minDiff = abs( $data[0] ) * 60 + $data[1];
-				if ( $data[0] < 0 ) {
-					$minDiff = -$minDiff;
-				}
-			} else {
-				$minDiff = intval( $data[0] ) * 60;
-			}
-		}
+		$minDiff = $timeCorrection->getTimeOffset();
 
 		# No difference ? Return time unchanged
-		if ( $minDiff == 0 ) {
+		if ( $minDiff === 0 ) {
 			return $ts;
 		}
 
-		// E_STRICT system time bitching
-		AtEase::suppressWarnings();
-		# Generate an adjusted date; take advantage of the fact that mktime
-		# will normalize out-of-range values so we don't have to split $minDiff
-		# into hours and minutes.
-		$t = mktime( (
-			(int)substr( $ts, 8, 2 ) ), # Hours
-			(int)substr( $ts, 10, 2 ) + $minDiff, # Minutes
-			(int)substr( $ts, 12, 2 ), # Seconds
-			(int)substr( $ts, 4, 2 ), # Month
-			(int)substr( $ts, 6, 2 ), # Day
-			(int)substr( $ts, 0, 4 ) ); # Year
-
-		$date = date( 'YmdHis', $t );
-		AtEase::restoreWarnings();
-
-		return $date;
+		$date = new DateTime( $ts );
+		$date->modify( "+{$minDiff} minutes" );
+		return $date->format( 'YmdHis' );
 	}
 
 	/**

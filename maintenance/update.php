@@ -243,8 +243,6 @@ class UpdateMediaWiki extends Maintenance {
 	}
 
 	/**
-	 * @throws FatalError
-	 * @throws MWException
 	 * @suppress PhanPluginDuplicateConditionalNullCoalescing
 	 */
 	public function validateParamsAndArgs() {

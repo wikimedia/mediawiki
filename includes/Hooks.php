@@ -64,13 +64,12 @@ class Hooks {
 	 * @since 1.21
 	 * @deprecated since 1.35. Instead of using Hooks::register() and Hooks::clear(),
 	 * use HookContainer::scopedRegister() instead to register a temporary hook
-	 * @throws MWException If not in testing mode.
 	 * @codeCoverageIgnore
 	 */
 	public static function clear( $name ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
-			throw new MWException( 'Cannot reset hooks in operation.' );
+			throw new BadMethodCallException( 'Cannot reset hooks in operation.' );
 		}
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		$hookContainer->clear( $name );

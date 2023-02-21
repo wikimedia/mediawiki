@@ -185,7 +185,7 @@ class MediaWiki {
 	 * - special pages
 	 * - normal pages
 	 *
-	 * @throws MWException|PermissionsError|BadTitleError|HttpError
+	 * @throws PermissionsError|BadTitleError|HttpError
 	 * @return void
 	 */
 	private function performRequest() {
@@ -331,7 +331,7 @@ class MediaWiki {
 				} elseif ( is_string( $article ) ) {
 					$output->redirect( $article );
 				} else {
-					throw new MWException( "Shouldn't happen: MediaWiki::initializeArticle()"
+					throw new UnexpectedValueException( "Shouldn't happen: MediaWiki::initializeArticle()"
 						. " returned neither an object nor a URL" );
 				}
 			}
