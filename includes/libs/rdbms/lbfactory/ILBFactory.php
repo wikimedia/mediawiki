@@ -43,7 +43,7 @@ use InvalidArgumentException;
  * @ingroup Database
  * @since 1.28
  */
-interface ILBFactory {
+interface ILBFactory extends IConnectionProvider {
 	/** Idiom for "no special shutdown flags" */
 	public const SHUTDOWN_NORMAL = 0;
 	/** Do not save "session consistency" DB replication positions */
@@ -369,30 +369,6 @@ interface ILBFactory {
 	 * @param callable|null $callback Use null to unset a callback
 	 */
 	public function setWaitForReplicationListener( $name, callable $callback = null );
-
-	/**
-	 * Get a token asserting that no transaction writes are active on tracked load balancers
-	 *
-	 * @param string $fname Caller name (e.g. __METHOD__)
-	 * @return mixed A value to pass to commitAndWaitForReplication()
-	 */
-	public function getEmptyTransactionTicket( $fname );
-
-	/**
-	 * Call commitPrimaryChanges() and waitForReplication() if $ticket indicates it is safe
-	 *
-	 * The ticket is used to check that the caller owns the transaction round or can act on
-	 * behalf of the caller that owns the transaction round.
-	 *
-	 * @see commitPrimaryChanges()
-	 * @see waitForReplication()
-	 *
-	 * @param string $fname Caller name (e.g. __METHOD__)
-	 * @param mixed $ticket Result of getEmptyTransactionTicket()
-	 * @param array $opts Options to waitForReplication()
-	 * @return bool True if the wait was successful, false on timeout
-	 */
-	public function commitAndWaitForReplication( $fname, $ticket, array $opts = [] );
 
 	/**
 	 * Get the UNIX timestamp when the client last touched the DB, if they did so recently
