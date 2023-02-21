@@ -173,7 +173,7 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		return $result;
 	}
 
-	public function makeKeyInternal( $keyspace, $components ) {
+	protected function makeKeyInternal( $keyspace, $components ) {
 		return $this->genericKeyFromComponents( $keyspace, ...$components );
 	}
 

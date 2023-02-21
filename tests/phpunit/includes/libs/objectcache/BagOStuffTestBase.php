@@ -54,13 +54,13 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 	 * @covers MediumSpecificBagOStuff::makeKeyInternal
 	 */
 	public function testMakeKey() {
-		$cache = new HashBagOStuff();
+		$cache = new HashBagOStuff( [ 'keyspace' => 'local_prefix' ] );
 
 		$localKey = $cache->makeKey( 'first', 'second', 'third' );
 		$globalKey = $cache->makeGlobalKey( 'first', 'second', 'third' );
 
 		$this->assertSame(
-			'local:first:second:third',
+			'local_prefix:first:second:third',
 			$localKey,
 			'Local key interpolates parameters'
 		);
@@ -78,13 +78,13 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->assertNotEquals(
-			$cache->makeKeyInternal( 'prefix', [ 'a', 'bc:', 'de' ] ),
-			$cache->makeKeyInternal( 'prefix', [ 'a', 'bc', ':de' ] )
+			$cache->makeKey( 'a', 'bc:', 'de' ),
+			$cache->makeKey( 'a', 'bc', ':de' )
 		);
 
 		$keyEmptyCollection = $cache->makeKey( '', 'second', 'third' );
 		$this->assertSame(
-			'local::second:third',
+			'local_prefix::second:third',
 			$keyEmptyCollection,
 			'Local key interpolates empty parameters'
 		);

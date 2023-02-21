@@ -283,7 +283,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 		);
 	}
 
-	public function makeKeyInternal( $keyspace, $components ) {
+	protected function makeKeyInternal( $keyspace, $components ) {
 		return $this->genericKeyFromComponents( $keyspace, ...$components );
 	}
 

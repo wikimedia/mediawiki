@@ -1116,7 +1116,14 @@ class RevisionStore
 		[ $dbType, ] = DBAccessObjectUtils::getDBOptions( $flags );
 
 		$rc = RecentChange::newFromConds(
-			[ 'rc_this_oldid' => $rev->getId( $this->wikiId ) ],
+			[
+				'rc_this_oldid' => $rev->getId( $this->wikiId ),
+				// rc_this_oldid does not have to be unique,
+				// in particular, it is shared with categorization
+				// changes. Prefer the original change because callers
+				// often expect a change for patrolling.
+				'rc_type' => [ RC_EDIT, RC_NEW, RC_LOG ],
+			],
 			__METHOD__,
 			$dbType
 		);

@@ -114,7 +114,7 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 		return true;
 	}
 
-	public function makeKeyInternal( $keyspace, $components ) {
+	protected function makeKeyInternal( $keyspace, $components ) {
 		// WinCache keys have a maximum length of 150 characters. From that,
 		// subtract the number of characters we need for the keyspace and for
 		// the separator character needed for each argument. To handle some
