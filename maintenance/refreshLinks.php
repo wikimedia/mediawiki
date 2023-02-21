@@ -35,6 +35,9 @@ class RefreshLinks extends Maintenance {
 	/** @var int|false */
 	protected $namespace = false;
 
+	/** @var string|false */
+	protected $beforeTimestamp = false;
+
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Refresh link tables' );
@@ -48,6 +51,8 @@ class RefreshLinks extends Maintenance {
 		$this->addOption( 'namespace', 'Only fix pages in this namespace', false, true );
 		$this->addOption( 'category', 'Only fix pages in this category', false, true );
 		$this->addOption( 'tracking-category', 'Only fix pages in this tracking category', false, true );
+		$this->addOption( 'before-timestamp', 'Only fix pages that were last updated before this timestamp',
+			false, true );
 		$this->addArg( 'start', 'Page_id to start from, default 1', false );
 		$this->setBatchSize( 100 );
 	}
@@ -67,6 +72,7 @@ class RefreshLinks extends Maintenance {
 		} else {
 			$this->namespace = (int)$ns;
 		}
+		$this->beforeTimestamp = $this->getOption( 'before-timestamp', false );
 
 		if ( $this->hasOption( 'category' ) ) {
 			$category = $this->getOption( 'category' );
@@ -167,7 +173,7 @@ class RefreshLinks extends Maintenance {
 				if ( $redirectsOnly ) {
 					$this->fixRedirect( $row->page_id );
 				} else {
-					self::fixLinksFromArticle( $row->page_id, $this->namespace );
+					self::fixLinksFromArticle( $row->page_id, $this->namespace, $this->beforeTimestamp );
 				}
 			}
 		} else {
@@ -196,7 +202,7 @@ class RefreshLinks extends Maintenance {
 						$this->output( "$id\n" );
 						$this->waitForReplication();
 					}
-					self::fixLinksFromArticle( $id, $this->namespace );
+					self::fixLinksFromArticle( $id, $this->namespace, $this->beforeTimestamp );
 				}
 			}
 		}
@@ -229,6 +235,10 @@ class RefreshLinks extends Maintenance {
 			&& !$page->getTitle()->inNamespace( $this->namespace )
 		) {
 			return;
+		} elseif ( $this->beforeTimestamp !== false
+			&& $page->getLinksTimestamp() >= $this->beforeTimestamp
+		) {
+			return;
 		}
 
 		$rt = null;
@@ -256,8 +266,9 @@ class RefreshLinks extends Maintenance {
 	 * Run LinksUpdate for all links on a given page_id
 	 * @param int $id The page_id
 	 * @param int|bool $ns Only fix links if it is in this namespace
+	 * @param string|false $beforeTimestamp Only fix links if it was last updated before this timestamp
 	 */
-	public static function fixLinksFromArticle( $id, $ns = false ) {
+	public static function fixLinksFromArticle( $id, $ns = false, $beforeTimestamp = false ) {
 		$services = MediaWikiServices::getInstance();
 		$page = $services->getWikiPageFactory()->newFromID( $id );
 
@@ -266,7 +277,12 @@ class RefreshLinks extends Maintenance {
 		if ( $page === null ) {
 			return;
 		} elseif ( $ns !== false
-			&& !$page->getTitle()->inNamespace( $ns ) ) {
+			&& !$page->getTitle()->inNamespace( $ns )
+		) {
+			return;
+		} elseif ( $beforeTimestamp !== false
+			&& $page->getLinksTimestamp() >= $beforeTimestamp
+		) {
 			return;
 		}
 
@@ -466,7 +482,7 @@ class RefreshLinks extends Maintenance {
 				}
 				$lastId = $row->page_id;
 				$timestamp = $row->cl_timestamp;
-				self::fixLinksFromArticle( $row->page_id );
+				self::fixLinksFromArticle( $row->page_id, false, $this->beforeTimestamp );
 			}
 
 		} while ( $res->numRows() == $this->getBatchSize() );

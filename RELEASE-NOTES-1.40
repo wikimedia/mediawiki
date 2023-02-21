@@ -275,6 +275,9 @@ because of Phabricator reports.
 * RevDelList::reloadFromMaster(), deprecated since 1.37, has been removed.
 * ExternalStoreDB::getMaster(), deprecated since 1.37, has been removed.
 * DeletePage::deletionWasScheduled(), deprecated since 1.38, has been removed.
+* The SearchResultProvideThumbnailHook (which was unstable) and now no longer
+  used, has been removed. Use SearchResultProvideThumbnailHook in the search
+  namespace: MediaWiki\Search\Hook\SearchResultProvideThumbnailHook.
 * Command::cgroup(), deprecated since 1.36, has been removed.
 * When running tests, the serialize_precision INI setting is now set to -1
   (current PHP default) instead of 17. Extension tests may need to be adjusted
