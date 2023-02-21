@@ -6,7 +6,7 @@ PHP 8.2 workboard: https://phabricator.wikimedia.org/tag/php_8.2_support/
 
 == MediaWiki 1.39.2 ==
 
-THIS IS NOT A RELEASE YET
+This is a maintenance release of the MediaWiki 1.39 branch.
 
 === Changes since MediaWiki 1.39.1 ===
 * Localisation updates.
@@ -15,11 +15,11 @@ THIS IS NOT A RELEASE YET
 * (T297031, T326039) PostgresUpdater: Move setDefault ahead of
   changeNullableField.
 * (T321319) Produce HTML for invalid JSON.
-* (T215466, T326071) MigrateActors: Write to revsion table (Follow-up 24115a8).
+* (T215466, T326071) MigrateActors: Write to revision table (Follow-up 24115a8).
 * (T223027) ReservedUsernames config: Add reserved names from maintenance
   scripts.
 * (T325000, T324896, T307631) Updated OOUI from v0.44.3 to v0.44.5.
-* Remove /images .htaccess rules that are no longer relevent.
+* Remove /images .htaccess rules that are no longer relevant.
 * Disable php in .htaccess of images directory as a hardening measure.
 * (T322583) Include missing message parameter in message.
 * LocalFileTest: use encodeBlob/decodeBlob for img_metadata.
@@ -53,6 +53,8 @@ THIS IS NOT A RELEASE YET
 * (T329198) ParamValidator: Improve paramvalidator-help-multi-max message.
 * (T329415) Clear the statsd data buffer regardless of StatsdServer config.
 * (T292348) WikiImporter: do not fail if upload entry in dump lacks 'text' tag.
+* (T330049) UnregisteredLocalFile: Don't call MimeAnalyzer if no path.
+* (T324894 TempFSFile: Use a WeakMap for reference tracking if available.
 * (T295637) Add no to fallback chain of nb and nn.
 
 == MediaWiki 1.39.1 ==
