@@ -105,7 +105,6 @@ class TableCleanup extends Maintenance {
 
 	/**
 	 * @param array $params
-	 * @throws MWException
 	 */
 	public function runTable( $params ) {
 		$dbr = $this->getDB( DB_REPLICA );
@@ -113,7 +112,7 @@ class TableCleanup extends Maintenance {
 		if ( array_diff( array_keys( $params ),
 			[ 'table', 'conds', 'index', 'callback' ] )
 		) {
-			throw new MWException( __METHOD__ . ': Missing parameter ' . implode( ', ', $params ) );
+			$this->fatalError( __METHOD__ . ': Missing parameter ' . implode( ', ', $params ) );
 		}
 
 		$table = $params['table'];
