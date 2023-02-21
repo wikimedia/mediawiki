@@ -10,7 +10,7 @@ use Wikimedia\IPUtils;
  *
  * Besides the parameters recognized by HTMLUserTextField, additional recognized
  * parameters are:
- *  default - (optional) Array of usernames to use as preset data
+ *  default - (optional) String, newline-separated list of usernames to use as preset data
  *  placeholder - (optional) Custom placeholder message for input
  *
  * The result is the array of usernames
