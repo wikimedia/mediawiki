@@ -611,9 +611,12 @@
 	"nstab-mainpage": "Ogbá Ogbolo",
 	"skin-action-protect": "Dída",
 	"skin-action-delete": "Dukwó",
-	"blockedtext-made-by": "Éne kí gbóna nyé chí",
-	"blockedtext-reason-comment": "Oyì ku ma dú chí <em></em>",
+	"blockedtext-made-by": "Éne kí gbóna nyé chí $1",
+	"blockedtext-reason-comment": "oji ewn ku ma gbona chí <em>$</em>",
 	"blockedtext-start-time": "Ekó kí é gbóna achabé chí: $1",
 	"blockedtext-expiration-time": "Ekó kí é gbóna a gbojì: $1",
-	"blockedtext-intended-blockee": "Éné kú ma téné gbóna ñwu chí:$1"
+	"blockedtext-intended-blockee": "Éné kú ma téné gbóna ñwu chí:$1",
+	"blockedtext-contact-blocker-admin": "É neké ka nwí $1 bakí ene ómuné [[{{MediaWiki:Grouppage-sysop}}|administrator]] tódú mé kóla ofe ewn ku ma gbóna yé",
+	"blockedtext-block-ip": "IP address wé abajoí chí $1",
+	"blockedtext-include-details-queries": "Kí yó jó amenwu ku ma kó ta té yí fu kó té amenwu ké téné kó í"
 }
