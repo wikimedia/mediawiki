@@ -130,59 +130,6 @@ interface IReadableDatabase extends ISQLPlatform, DbQuoter, IDatabaseFlags {
 	public function close( $fname = __METHOD__ );
 
 	/**
-	 * Run an SQL query statement and return the result
-	 *
-	 * If a connection loss is detected, then an attempt to reconnect will be made.
-	 * For queries that involve no larger transactions or locks, they will be re-issued
-	 * for convenience, provided the connection was re-established.
-	 *
-	 * In new code, the query wrappers select(), insert(), update(), delete(),
-	 * etc. should be used where possible, since they give much better DBMS
-	 * independence and automatically quote or validate user input in a variety
-	 * of contexts. This function is generally only useful for queries which are
-	 * explicitly DBMS-dependent and are unsupported by the query wrappers, such
-	 * as CREATE TABLE.
-	 *
-	 * However, the query wrappers themselves should call this function.
-	 *
-	 * Callers should avoid the use of statements like BEGIN, COMMIT, and ROLLBACK.
-	 * Methods like startAtomic(), endAtomic(), and cancelAtomic() can be used instead.
-	 *
-	 * @param string $sql Single-statement SQL query
-	 * @param string $fname Caller name; used for profiling/SHOW PROCESSLIST comments
-	 * @param int $flags Bit field of IDatabase::QUERY_* constants.
-	 * @return bool|IResultWrapper True for a successful write query, IResultWrapper object
-	 *     for a successful read query, or false on failure if QUERY_SILENCE_ERRORS is set.
-	 * @throws DBQueryError If the query is issued, fails, and QUERY_SILENCE_ERRORS is not set.
-	 * @throws DBExpectedError If the query is not, and cannot, be issued yet (non-DBQueryError)
-	 * @throws DBError If the query is inherently not allowed (non-DBExpectedError)
-	 */
-	public function query( $sql, $fname = __METHOD__, $flags = 0 );
-
-	/**
-	 * Run a batch of SQL query statements and return the results
-	 *
-	 * If any statement results in an error, subsequent statements will not be attempted.
-	 *
-	 * Callers should avoid the use of statements like BEGIN, COMMIT, and ROLLBACK.
-	 * Methods like startAtomic(), endAtomic(), and cancelAtomic() can be used instead.
-	 *
-	 * @see IDatabase::query()
-	 *
-	 * @param string[] $sqls Map of (statement ID => SQL statement)
-	 * @param string $fname Name of the calling function
-	 * @param int $flags Bit field of IDatabase::QUERY_* constants
-	 * @param string|null $summarySql Virtual SQL for profiling (e.g. "UPSERT INTO TABLE 'x'")
-	 * @return array<string,QueryStatus> Ordered map of (statement ID => QueryStatus)
-	 * @throws DBQueryError If a query is issued, fails, and QUERY_SILENCE_ERRORS is not set.
-	 * @throws DBExpectedError If a query is not, and cannot, be issued yet (non-DBQueryError)
-	 * @since 1.39
-	 */
-	public function queryMulti(
-		array $sqls, string $fname = __METHOD__, int $flags = 0, ?string $summarySql = null
-	);
-
-	/**
 	 * Create an empty SelectQueryBuilder which can be used to run queries
 	 * against this connection.
 	 *
