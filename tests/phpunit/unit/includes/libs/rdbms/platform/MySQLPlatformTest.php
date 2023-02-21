@@ -21,6 +21,9 @@
 use MediaWiki\Tests\Unit\Libs\Rdbms\AddQuoterMock;
 use Wikimedia\Rdbms\Platform\MySQLPlatform;
 
+/**
+ * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform
+ */
 class MySQLPlatformTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
@@ -35,16 +38,12 @@ class MySQLPlatformTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideDiapers
-	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform::addIdentifierQuotes
 	 */
 	public function testAddIdentifierQuotes( $expected, $in ) {
 		$quoted = $this->platform->addIdentifierQuotes( $in );
 		$this->assertEquals( $expected, $quoted );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Platform\MySQLPlatform::addIdentifierQuotes
-	 */
 	public function testAddIdentifierQuotesNull() {
 		// Ignore PHP 8.1+ warning about null to str_replace()
 		$quoted = @$this->platform->addIdentifierQuotes( null );

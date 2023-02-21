@@ -20,6 +20,12 @@ use Wikimedia\Rdbms\TransactionManager;
 use Wikimedia\RequestTimeout\CriticalSectionScope;
 use Wikimedia\TestingAccessWrapper;
 
+/**
+ * @dataProvider provideAddQuotes
+ * @covers Wikimedia\Rdbms\Database
+ * @covers Wikimedia\Rdbms\Database\DatabaseFlags
+ * @covers Wikimedia\Rdbms\Platform\SQLPlatform
+ */
 class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
@@ -43,7 +49,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideAddQuotes
-	 * @covers Wikimedia\Rdbms\Database::addQuotes
 	 */
 	public function testAddQuotes( $input, $expected ) {
 		$this->assertEquals( $expected, $this->db->addQuotes( $input ) );
@@ -102,7 +107,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideTableName
-	 * @covers Wikimedia\Rdbms\Database::tableName
 	 */
 	public function testTableName( $expected, $table, $format, array $alias = null ) {
 		if ( $alias ) {
@@ -152,7 +156,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideTableNamesWithIndexClauseOrJOIN
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::tableNamesWithIndexClauseOrJOIN
 	 */
 	public function testTableNamesWithIndexClauseOrJOIN( $tables, $join_conds, $expect ) {
 		$clause = TestingAccessWrapper::newFromObject( ( new SQLPlatformTestHelper( new AddQuoterMock() ) ) )
@@ -160,10 +163,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $expect, $clause );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::onTransactionCommitOrIdle
-	 * @covers Wikimedia\Rdbms\Database::runOnTransactionIdleCallbacks
-	 */
 	public function testTransactionIdle() {
 		$db = $this->db;
 
@@ -201,10 +200,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertFalse( $db->getFlag( DBO_TRX ), 'DBO_TRX restored to default' );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::onTransactionCommitOrIdle
-	 * @covers Wikimedia\Rdbms\Database::runOnTransactionIdleCallbacks
-	 */
 	public function testTransactionIdle_TRX() {
 		$db = $this->getMockDB( [ 'isOpen', 'ping', 'getDBname' ] );
 		$db->method( 'isOpen' )->willReturn( true );
@@ -265,10 +260,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$lbFactory->flushPrimarySessions( __METHOD__ );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::onTransactionPreCommitOrIdle
-	 * @covers Wikimedia\Rdbms\Database::runOnTransactionPreCommitCallbacks
-	 */
 	public function testTransactionPreCommitOrIdle() {
 		$db = $this->getMockDB( [ 'isOpen' ] );
 		$db->method( 'isOpen' )->willReturn( true );
@@ -298,10 +289,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertTrue( $called, 'Called when transaction is committed' );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::onTransactionPreCommitOrIdle
-	 * @covers Wikimedia\Rdbms\Database::runOnTransactionPreCommitCallbacks
-	 */
 	public function testTransactionPreCommitOrIdle_TRX() {
 		$db = $this->getMockDB( [ 'isOpen', 'ping', 'getDBname' ] );
 		$db->method( 'isOpen' )->willReturn( true );
@@ -349,10 +336,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$lbFactory->flushPrimarySessions( __METHOD__ );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::onTransactionResolution
-	 * @covers Wikimedia\Rdbms\Database::runOnTransactionIdleCallbacks
-	 */
 	public function testTransactionResolution() {
 		$db = $this->db;
 
@@ -379,9 +362,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertTrue( $called, 'Callback reached' );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::setTransactionListener
-	 */
 	public function testTransactionListener() {
 		$db = $this->db;
 
@@ -472,9 +452,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		return $db;
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::flushSnapshot
-	 */
 	public function testFlushSnapshot() {
 		$db = $this->getMockDB( [ 'isOpen' ] );
 		$db->method( 'isOpen' )->willReturn( true );
@@ -491,12 +468,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertFalse( (bool)$db->trxLevel(), "Transaction cleared." );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::getScopedLockAndFlush
-	 * @covers Wikimedia\Rdbms\Database::lock
-	 * @covers Wikimedia\Rdbms\Database::unlock
-	 * @covers Wikimedia\Rdbms\Database::lockIsFree
-	 */
 	public function testGetScopedLock() {
 		$db = $this->getMockDB( [ 'isOpen', 'getDBname' ] );
 		$db->method( 'isOpen' )->willReturn( true );
@@ -570,11 +541,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->rollback( __METHOD__ );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::getFlag
-	 * @covers Wikimedia\Rdbms\Database::setFlag
-	 * @covers Wikimedia\Rdbms\Database::restoreFlags
-	 */
 	public function testFlagSetting() {
 		$db = $this->db;
 		$origTrx = $db->getFlag( DBO_TRX );
@@ -619,7 +585,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\Database\DatabaseFlags::setFlag
 	 * @dataProvider provideImmutableDBOFlags
 	 * @param int $flag
 	 */
@@ -631,7 +596,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\Database\DatabaseFlags::clearFlag
 	 * @dataProvider provideImmutableDBOFlags
 	 * @param int $flag
 	 */
@@ -642,10 +606,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$flagsHolder->clearFlag( $flag );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::tablePrefix
-	 * @covers Wikimedia\Rdbms\Database::dbSchema
-	 */
 	public function testSchemaAndPrefixMutators() {
 		$ud = DatabaseDomain::newUnspecified();
 
@@ -691,10 +651,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( $oldSchema, $this->db->dbSchema(), 'Schema restored' );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::tablePrefix
-	 * @covers Wikimedia\Rdbms\Database::dbSchema
-	 */
 	public function testSchemaWithNoDB() {
 		$ud = DatabaseDomain::newUnspecified();
 
@@ -705,9 +661,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->db->dbSchema( 'xxx' );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::selectDomain
-	 */
 	public function testSelectDomain() {
 		$oldDomain = $this->db->getDomainID();
 		$oldDatabase = $this->db->getDBname();
@@ -737,10 +690,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $oldDomain, $this->db->getDomainID() );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::getLBInfo
-	 * @covers Wikimedia\Rdbms\Database::setLBInfo
-	 */
 	public function testGetSetLBInfo() {
 		$db = $this->getMockDB();
 
@@ -765,10 +714,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertEquals( [ 'King' => 'James' ], $db->getLBInfo() );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::executeQuery()
-	 * @covers \Wikimedia\Rdbms\Database::assertIsWritablePrimary()
-	 */
 	public function testShouldRejectPersistentWriteQueryOnReplicaDatabaseConnection() {
 		$this->expectException( DBReadOnlyRoleError::class );
 		$this->expectDeprecationMessage( 'Server is configured as a read-only replica database.' );
@@ -781,10 +726,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$dbr->query( "INSERT INTO test_table (a_column) VALUES ('foo');", __METHOD__ );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::executeQuery()
-	 * @covers \Wikimedia\Rdbms\Database::assertIsWritablePrimary()
-	 */
 	public function testShouldAcceptTemporaryTableOperationsOnReplicaDatabaseConnection() {
 		$dbr = new DatabaseTestHelper(
 			__CLASS__ . '::' . $this->getName(),
@@ -805,10 +746,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertInstanceOf( IResultWrapper::class, $resModify );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::executeQuery()
-	 * @covers \Wikimedia\Rdbms\Database::assertIsWritablePrimary()
-	 */
 	public function testShouldRejectPseudoPermanentTemporaryTableOperationsOnReplicaDatabaseConnection() {
 		$this->expectException( DBReadOnlyRoleError::class );
 		$this->expectDeprecationMessage( 'Server is configured as a read-only replica database.' );
@@ -825,10 +762,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		);
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::executeQuery()
-	 * @covers \Wikimedia\Rdbms\Database::assertIsWritablePrimary()
-	 */
 	public function testShouldAcceptWriteQueryOnPrimaryDatabaseConnection() {
 		$dbr = new DatabaseTestHelper(
 			__CLASS__ . '::' . $this->getName(),
@@ -840,10 +773,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertInstanceOf( IResultWrapper::class, $res );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::executeQuery()
-	 * @covers \Wikimedia\Rdbms\Database::assertIsWritablePrimary()
-	 */
 	public function testShouldRejectWriteQueryOnPrimaryDatabaseConnectionWhenReplicaQueryRoleFlagIsSet() {
 		$this->expectException( DBReadOnlyRoleError::class );
 		$this->expectDeprecationMessage( 'Cannot write; target role is DB_REPLICA' );
@@ -860,10 +789,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		);
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::commenceCriticalSection()
-	 * @covers \Wikimedia\Rdbms\Database::completeCriticalSection()
-	 */
 	public function testCriticalSectionErrorSelect() {
 		$this->expectException( DBTransactionStateError::class );
 
@@ -877,10 +802,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->query( "SELECT 1", __METHOD__ );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::commenceCriticalSection()
-	 * @covers \Wikimedia\Rdbms\Database::completeCriticalSection()
-	 */
 	public function testCriticalSectionErrorRollback() {
 		$db = TestingAccessWrapper::newFromObject( $this->db );
 		try {

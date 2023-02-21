@@ -12,6 +12,10 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * Test the parts of the Database abstract class that deal
  * with creating SQL text.
+ *
+ * @covers Wikimedia\Rdbms\Database
+ * @covers Wikimedia\Rdbms\Subquery
+ * @covers Wikimedia\Rdbms\Platform\SQLPlatform
  */
 class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
@@ -44,7 +48,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideQueryMulti
-	 * @covers Wikimedia\Rdbms\Database::queryMulti
 	 */
 	public function testQueryMulti( array $sqls, string $summarySql, array $resTriples ) {
 		foreach ( $resTriples as [ $res, $errno, $error ] ) {
@@ -76,16 +79,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideSelect
-	 * @covers Wikimedia\Rdbms\Database::select
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::selectSQLText
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::tableNamesWithIndexClauseOrJOIN
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::useIndexClause
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::ignoreIndexClause
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::makeSelectOptions
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::makeOrderBy
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::makeGroupByWithHaving
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::selectFieldsOrOptionsAggregate
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::selectOptionsIncludeLocking
 	 */
 	public function testSelect( $sql, $sqlText ) {
 		$this->database->select(
@@ -301,7 +294,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideLockForUpdate
-	 * @covers Wikimedia\Rdbms\Database::lockForUpdate
 	 */
 	public function testLockForUpdate( $sql, $sqlText ) {
 		$this->database->startAtomic( __METHOD__ );
@@ -352,7 +344,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\Subquery
 	 * @dataProvider provideSelectRowCount
 	 * @param array $sql
 	 * @param string $sqlText
@@ -448,10 +439,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideUpdate
-	 * @covers Wikimedia\Rdbms\Database::update
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::makeUpdateOptions
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::makeUpdateOptionsArray
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::assertConditionIsNotEmpty
 	 */
 	public function testUpdate( $sql, $sqlText ) {
 		$this->hideDeprecated( 'Wikimedia\Rdbms\Platform\SQLPlatform::updateSqlText' );
@@ -545,10 +532,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideUpdateEmptyCondition
-	 * @covers Wikimedia\Rdbms\Database::update
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::makeUpdateOptions
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::makeUpdateOptionsArray
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::assertConditionIsNotEmpty
 	 */
 	public function testUpdateEmptyCondition( $sql ) {
 		$this->expectDeprecation();
@@ -589,8 +572,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideDelete
-	 * @covers Wikimedia\Rdbms\Database::delete
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::assertConditionIsNotEmpty
 	 */
 	public function testDelete( $sql, $sqlText ) {
 		$this->database->delete(
@@ -631,8 +612,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideDeleteEmptyCondition
-	 * @covers Wikimedia\Rdbms\Database::delete
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::assertConditionIsNotEmpty
 	 */
 	public function testDeleteEmptyCondition( $sql ) {
 		try {
@@ -672,7 +651,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideUpsert
-	 * @covers Wikimedia\Rdbms\Database::upsert
 	 */
 	public function testUpsert( $sql, $sqlText ) {
 		$this->database->setNextQueryAffectedRowCounts( [ 0 ] );
@@ -775,7 +753,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideDeleteJoin
-	 * @covers Wikimedia\Rdbms\Database::deleteJoin
 	 */
 	public function testDeleteJoin( $sql, $sqlText ) {
 		$this->database->deleteJoin(
@@ -822,7 +799,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideInsert
-	 * @covers Wikimedia\Rdbms\Database::insert
 	 */
 	public function testInsert( $sql, $sqlText ) {
 		$this->database->insert(
@@ -875,8 +851,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideInsertSelect
-	 * @covers Wikimedia\Rdbms\Database::insertSelect
-	 * @covers Wikimedia\Rdbms\Database::doInsertSelectNative
 	 */
 	public function testInsertSelect( $sql, $sqlTextNative, $sqlSelect, $sqlInsert ) {
 		$this->database->insertSelect(
@@ -986,10 +960,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		];
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::insertSelect
-	 * @covers Wikimedia\Rdbms\Database::doInsertSelectNative
-	 */
 	public function testInsertSelectBatching() {
 		$dbWeb = new DatabaseTestHelper( __CLASS__, [ 'cliMode' => false ] );
 		$rows = [];
@@ -1016,7 +986,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideReplace
-	 * @covers Wikimedia\Rdbms\Database::replace
 	 */
 	public function testReplace( $sql, $sqlText ) {
 		$this->database->replace(
@@ -1104,7 +1073,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideConditional
-	 * @covers Wikimedia\Rdbms\Database::conditional
 	 */
 	public function testConditional( $sql, $sqlText ) {
 		$this->assertEquals( $this->database->conditional(
@@ -1145,7 +1113,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideBuildConcat
-	 * @covers Wikimedia\Rdbms\Database::buildConcat
 	 */
 	public function testBuildConcat( $stringList, $sqlText ) {
 		$this->assertEquals( trim( $this->database->buildConcat(
@@ -1168,7 +1135,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideUnionQueries
-	 * @covers Wikimedia\Rdbms\Database::unionQueries
 	 */
 	public function testUnionQueries( $sql, $sqlText ) {
 		$this->assertEquals( trim( $this->database->unionQueries(
@@ -1203,38 +1169,24 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		];
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::commit
-	 * @covers Wikimedia\Rdbms\Database::doCommit
-	 */
 	public function testTransactionCommit() {
 		$this->database->begin( __METHOD__ );
 		$this->database->commit( __METHOD__ );
 		$this->assertLastSql( 'BEGIN; COMMIT' );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::rollback
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::rollbackSqlText
-	 */
 	public function testTransactionRollback() {
 		$this->database->begin( __METHOD__ );
 		$this->database->rollback( __METHOD__ );
 		$this->assertLastSql( 'BEGIN; ROLLBACK' );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::dropTable
-	 */
 	public function testDropTable() {
 		$this->database->setExistingTables( [ 'table' ] );
 		$this->database->dropTable( 'table', __METHOD__ );
 		$this->assertLastSql( 'DROP TABLE table CASCADE' );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::dropTable
-	 */
 	public function testDropNonExistingTable() {
 		$this->assertFalse(
 			$this->database->dropTable( 'non_existing', __METHOD__ )
@@ -1243,7 +1195,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideMakeList
-	 * @covers Wikimedia\Rdbms\Database::makeList
 	 */
 	public function testMakeList( $list, $mode, $sqlText ) {
 		$this->assertEquals( trim( $this->database->makeList(
@@ -1323,7 +1274,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideFactorConds
-	 * @covers Wikimedia\Rdbms\Database::factorConds
 	 */
 	public function testFactorConds( $input, $expected ) {
 		if ( $expected === 'invalid' ) {
@@ -1395,9 +1345,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		];
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::getTempTableWrites
-	 */
 	public function testSessionTempTables() {
 		$temp1 = $this->database->tableName( 'tmp_table_1' );
 		$temp2 = $this->database->tableName( 'tmp_table_2' );
@@ -1444,7 +1391,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\Database::buildSubstring
 	 * @dataProvider provideBuildSubstring
 	 */
 	public function testBuildSubstring( $input, $start, $length, $expected ) {
@@ -1462,8 +1408,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\Database::buildSubstring
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::assertBuildSubstringParams
 	 * @dataProvider provideBuildSubstring_invalidParams
 	 */
 	public function testBuildSubstring_invalidParams( $start, $length ) {
@@ -1471,23 +1415,11 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->buildSubstring( 'foo', $start, $length );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::buildIntegerCast
-	 */
 	public function testBuildIntegerCast() {
 		$output = $this->database->buildIntegerCast( 'fieldName' );
 		$this->assertSame( 'CAST( fieldName AS INTEGER )', $output );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::savepointSqlText
-	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::releaseSavepointSqlText
-	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::rollbackToSavepointSqlText
-	 * @covers \Wikimedia\Rdbms\Database::startAtomic
-	 * @covers \Wikimedia\Rdbms\Database::endAtomic
-	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
-	 * @covers \Wikimedia\Rdbms\Database::doAtomicSection
-	 */
 	public function testAtomicSections() {
 		$this->database->startAtomic( __METHOD__ );
 		$this->database->endAtomic( __METHOD__ );
@@ -1706,15 +1638,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		] ) );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::savepointSqlText
-	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::releaseSavepointSqlText
-	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::rollbackToSavepointSqlText
-	 * @covers \Wikimedia\Rdbms\Database::startAtomic
-	 * @covers \Wikimedia\Rdbms\Database::endAtomic
-	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
-	 * @covers \Wikimedia\Rdbms\Database::doAtomicSection
-	 */
 	public function testAtomicSectionsRecovery() {
 		$this->database->begin( __METHOD__ );
 		try {
@@ -1760,15 +1683,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertLastSql( 'BEGIN; ROLLBACK' );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::savepointSqlText
-	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::releaseSavepointSqlText
-	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::rollbackToSavepointSqlText
-	 * @covers \Wikimedia\Rdbms\Database::startAtomic
-	 * @covers \Wikimedia\Rdbms\Database::endAtomic
-	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
-	 * @covers \Wikimedia\Rdbms\Database::doAtomicSection
-	 */
 	public function testAtomicSectionsCallbackCancellation() {
 		$fname = __METHOD__;
 		$callback1Called = null;
@@ -1942,15 +1856,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 1, $callback4Called );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::savepointSqlText
-	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::releaseSavepointSqlText
-	 * @covers \Wikimedia\Rdbms\Platform\SQLPlatform::rollbackToSavepointSqlText
-	 * @covers \Wikimedia\Rdbms\Database::startAtomic
-	 * @covers \Wikimedia\Rdbms\Database::endAtomic
-	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
-	 * @covers \Wikimedia\Rdbms\Database::doAtomicSection
-	 */
 	public function testAtomicSectionsTrxRound() {
 		$this->database->setFlag( IDatabase::DBO_TRX );
 		$this->database->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
@@ -1969,8 +1874,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideAtomicSectionMethodsForErrors
-	 * @covers \Wikimedia\Rdbms\Database::endAtomic
-	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
 	 */
 	public function testNoAtomicSection( $method ) {
 		try {
@@ -1986,8 +1889,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideAtomicSectionMethodsForErrors
-	 * @covers \Wikimedia\Rdbms\Database::endAtomic
-	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
 	 */
 	public function testInvalidAtomicSectionEnded( $method ) {
 		$this->database->startAtomic( __METHOD__ . 'X' );
@@ -2003,9 +1904,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		}
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::cancelAtomic
-	 */
 	public function testUncancellableAtomicSection() {
 		$this->database->startAtomic( __METHOD__ );
 		try {
@@ -2020,9 +1918,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		}
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::onAtomicSectionCancel
-	 */
 	public function testNoAtomicSectionForCallback() {
 		try {
 			$this->database->onAtomicSectionCancel( static function () {
@@ -2036,9 +1931,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		}
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::assertQueryIsCurrentlyAllowed
-	 */
 	public function testTransactionErrorState1() {
 		$wrapper = TestingAccessWrapper::newFromObject( $this->database );
 
@@ -2048,9 +1940,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::query
-	 */
 	public function testTransactionErrorState2() {
 		$wrapper = TestingAccessWrapper::newFromObject( $this->database );
 
@@ -2093,9 +1982,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::query
-	 */
 	public function testImplicitTransactionRollback() {
 		$doError = function () {
 			$this->database->forceNextResult( false, 666, 'Evilness' );
@@ -2147,9 +2033,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertLastSql( 'BEGIN; DELETE FROM x WHERE field = 1; DELETE FROM error WHERE 1; ROLLBACK' );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::query
-	 */
 	public function testTransactionStatementRollbackIgnoring() {
 		$wrapper = TestingAccessWrapper::newFromObject( $this->database );
 		$warning = [];
@@ -2215,9 +2098,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertLastSql( 'BEGIN; DELETE FROM error WHERE 1; DELETE FROM x WHERE field = 1; COMMIT' );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::close
-	 */
 	public function testPrematureClose1() {
 		$fname = __METHOD__;
 		$this->database->begin( __METHOD__ );
@@ -2235,9 +2115,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::close
-	 */
 	public function testPrematureClose2() {
 		$fname = __METHOD__;
 		$this->database->startAtomic( __METHOD__ );
@@ -2255,9 +2132,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::close
-	 */
 	public function testPrematureClose3() {
 		$this->database->setFlag( IDatabase::DBO_TRX );
 		$this->database->delete( 'x', [ 'field' => 3 ], __METHOD__ );
@@ -2269,9 +2143,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
-	/**
-	 * @covers \Wikimedia\Rdbms\Database::close
-	 */
 	public function testPrematureClose4() {
 		$this->database->setFlag( IDatabase::DBO_TRX );
 		$this->database->query( 'SELECT 1', __METHOD__ );
@@ -2284,9 +2155,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 0, $this->database->trxLevel() );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\Database::selectFieldValues()
-	 */
 	public function testSelectFieldValues() {
 		$this->database->forceNextResult( [
 			(object)[ 'value' => 'row1' ],

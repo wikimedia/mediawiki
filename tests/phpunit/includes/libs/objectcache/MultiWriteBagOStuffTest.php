@@ -4,6 +4,8 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
 use Wikimedia\TestingAccessWrapper;
 
 /**
+ * @covers MultiWriteBagOStuff
+ * @group BagOStuff
  * @group Database
  */
 class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
@@ -26,9 +28,6 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	/**
-	 * @covers MultiWriteBagOStuff::set
-	 */
 	public function testSet() {
 		$key = 'key';
 		$value = 'value';
@@ -40,9 +39,6 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $value, $this->cache2->get( $key ), 'Written to tier 2' );
 	}
 
-	/**
-	 * @covers MultiWriteBagOStuff::add
-	 */
 	public function testAdd() {
 		$key = 'key';
 		$value = 'value';
@@ -55,9 +51,6 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $value, $this->cache2->get( $key ), 'Written to tier 2' );
 	}
 
-	/**
-	 * @covers MultiWriteBagOStuff
-	 */
 	public function testSyncMergeAsync() {
 		$key = 'keyA';
 		$value = 'value';
@@ -81,9 +74,6 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $value, $this->cache2->get( $key ), 'Written to tier 2' );
 	}
 
-	/**
-	 * @covers MultiWriteBagOStuff
-	 */
 	public function testSyncMergeSync() {
 		// Like setUp() but without 'async'
 		$cache1 = new HashBagOStuff();
@@ -110,9 +100,6 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		$dbw->commit();
 	}
 
-	/**
-	 * @covers MultiWriteBagOStuff::set
-	 */
 	public function testSetDelayed() {
 		$key = 'key';
 		$value = (object)[ 'v' => 'saved value' ];
@@ -137,9 +124,6 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expectValue, $this->cache2->get( $key ), 'Written to tier 2' );
 	}
 
-	/**
-	 * @covers MultiWriteBagOStuff::makeKey
-	 */
 	public function testMakeKey() {
 		$cache1 = $this->getMockBuilder( HashBagOStuff::class )
 			->onlyMethods( [ 'makeKey' ] )->getMock();
@@ -157,9 +141,6 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'generic:a:b', $cache->makeKey( 'a', 'b' ) );
 	}
 
-	/**
-	 * @covers MultiWriteBagOStuff::makeGlobalKey
-	 */
 	public function testMakeGlobalKey() {
 		$cache1 = $this->getMockBuilder( HashBagOStuff::class )
 			->onlyMethods( [ 'makeGlobalKey' ] )->getMock();
@@ -174,9 +155,6 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'global:a:b', $cache->makeGlobalKey( 'a', 'b' ) );
 	}
 
-	/**
-	 * @covers MultiWriteBagOStuff::add
-	 */
 	public function testDuplicateStoreAdd() {
 		$bag = new HashBagOStuff();
 		$cache = new MultiWriteBagOStuff( [
@@ -186,9 +164,6 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $cache->add( 'key', 1, 30 ) );
 	}
 
-	/**
-	 * @covers MultiWriteBagOStuff::incr
-	 */
 	public function testIncr() {
 		$key = $this->cache->makeKey( 'key' );
 
@@ -201,9 +176,6 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 8, $value, 'Value after incrementing' );
 	}
 
-	/**
-	 * @covers MultiWriteBagOStuff::decr
-	 */
 	public function testDecr() {
 		$key = $this->cache->makeKey( 'key' );
 
@@ -216,9 +188,6 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 9, $value, 'Value after decrementing' );
 	}
 
-	/**
-	 * @covers MultiWriteBagOStuff::incrWithInit
-	 */
 	public function testIncrWithInit() {
 		$key = $this->cache->makeKey( 'key' );
 		$val = $this->cache->incrWithInit( $key, 0, 1, 3 );
@@ -232,11 +201,6 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 5, $val, "Correct init value" );
 	}
 
-	/**
-	 * @covers MultiWriteBagOStuff::watchErrors()
-	 * @covers MultiWriteBagOStuff::getLastError()
-	 * @covers MultiWriteBagOStuff::setLastError()
-	 */
 	public function testErrorHandling() {
 		$t1Cache = $this->createPartialMock( HashBagOStuff::class, [ 'set' ] );
 		$t1CacheWrapper = TestingAccessWrapper::newFromObject( $t1Cache );
