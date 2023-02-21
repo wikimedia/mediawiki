@@ -51,7 +51,8 @@ class Context implements MessageLocalizer {
 	public const DEBUG_OFF = 0;
 	/** @internal For use in ResourceLoader classes. */
 	public const DEBUG_LEGACY = 1;
-	private const DEBUG_MAIN = 2;
+	/** @internal For use in SpecialJavaScriptTest. */
+	public const DEBUG_MAIN = 2;
 
 	/** @var ResourceLoader */
 	protected $resourceLoader;
