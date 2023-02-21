@@ -37,6 +37,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @group medium
  * @covers \Wikimedia\Rdbms\LoadBalancer
+ * @covers \Wikimedia\Rdbms\ServerInfoHolder
  */
 class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	private function makeServerConfig( $flags = DBO_DEFAULT ) {
