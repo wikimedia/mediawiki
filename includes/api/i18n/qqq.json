@@ -20,7 +20,8 @@
 			"Tacsipacsi",
 			"Umherirrender",
 			"Verdy p",
-			"Zoranzoki21"
+			"Zoranzoki21",
+			"Orlodrim"
 		]
 	},
 	"apihelp-main-summary": "{{doc-apihelp-summary|main}}",
@@ -161,8 +162,8 @@
 	"apihelp-edit-param-minor": "{{doc-apihelp-param|edit|minor}}\n{{Identical|Minor edit}}",
 	"apihelp-edit-param-notminor": "{{doc-apihelp-param|edit|notminor}}",
 	"apihelp-edit-param-bot": "{{doc-apihelp-param|edit|bot}}",
-	"apihelp-edit-param-baserevid": "{{doc-apihelp-param|edit|baserevid}}",
-	"apihelp-edit-param-basetimestamp": "{{doc-apihelp-param|edit|basetimestamp}}",
+	"apihelp-edit-param-baserevid": "{{doc-apihelp-param|edit|baserevid}}\n\nThe expression ''self-conflict'' means a conflict with a previous edit done by the same user as the one calling the API.",
+	"apihelp-edit-param-basetimestamp": "{{doc-apihelp-param|edit|basetimestamp}}\n\nThe expression ''self-conflict'' means a conflict with a previous edit done by the same user as the one calling the API.",
 	"apihelp-edit-param-starttimestamp": "{{doc-apihelp-param|edit|starttimestamp}}",
 	"apihelp-edit-param-recreate": "{{doc-apihelp-param|edit|recreate}}",
 	"apihelp-edit-param-createonly": "{{doc-apihelp-param|edit|createonly}}",
