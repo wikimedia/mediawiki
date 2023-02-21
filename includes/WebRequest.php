@@ -54,13 +54,13 @@ class WebRequest {
 	/**
 	 * The parameters from $_GET. The parameters from the path router are
 	 * added by interpolateTitle() during Setup.php.
-	 * @var string[]
+	 * @var (string|string[])[]
 	 */
 	protected $queryAndPathParams;
 
 	/**
 	 * The parameters from $_GET only.
-	 * @var string[]
+	 * @var (string|string[])[]
 	 */
 	protected $queryParams;
 
@@ -727,7 +727,7 @@ class WebRequest {
 	 * No transformation is performed on the values.
 	 *
 	 * @codeCoverageIgnore
-	 * @return string[]
+	 * @return (string|string[])[] Might contain arrays in case there was a `&param[]=…` parameter
 	 */
 	public function getQueryValues() {
 		return $this->queryAndPathParams;
@@ -740,7 +740,7 @@ class WebRequest {
 	 * values.
 	 *
 	 * @since 1.34
-	 * @return string[]
+	 * @return (string|string[])[] Might contain arrays in case there was a `&param[]=…` parameter
 	 */
 	public function getQueryValuesOnly() {
 		return $this->queryParams;
@@ -752,7 +752,7 @@ class WebRequest {
 	 *
 	 * @since 1.32
 	 * @codeCoverageIgnore
-	 * @return string[]
+	 * @return (string|string[])[] Might contain arrays in case there was a `&param[]=…` parameter
 	 */
 	public function getPostValues() {
 		return $_POST;

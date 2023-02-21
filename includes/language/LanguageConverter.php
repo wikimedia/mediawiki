@@ -43,7 +43,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	/**
 	 * languages supporting variants
 	 * @since 1.20
-	 * @var array
+	 * @var string[]
 	 */
 	public static $languagesWithVariants = [
 		'ban',
@@ -66,7 +66,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * static default variant of languages supporting variants
 	 * for use with DefaultOptionsLookup.php
 	 * @since 1.40
-	 * @var string[]
+	 * @var array<string,string>
 	 */
 	public static $languagesWithStaticDefaultVariant = [
 		'ban' => 'ban',
@@ -85,24 +85,25 @@ abstract class LanguageConverter implements ILanguageConverter {
 		'zh' => 'zh',
 	];
 
+	/** @var bool */
 	private $mTablesLoaded = false;
-
-	/**
-	 * @var ReplacementArray[]|bool[]
-	 */
+	/** @var ReplacementArray[]|bool[] */
 	protected $mTables = [];
-
-	/**
-	 * @var Language|StubUserLang
-	 */
+	/** @var Language|StubUserLang */
 	private $mLangObj;
-
+	/** @var bool */
 	private $mUcfirst = false;
+	/** @var string|false */
 	private $mConvRuleTitle = false;
+	/** @var string|null */
 	private $mURLVariant;
+	/** @var string|null */
 	private $mUserVariant;
+	/** @var string|null */
 	private $mHeaderVariant;
+	/** @var int */
 	private $mMaxDepth = 10;
+	/** @var string|null */
 	private $mVarSeparatorPattern;
 
 	private const CACHE_VERSION_KEY = 'VERSION 7';
@@ -384,7 +385,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * which does a strict test.
 	 *
 	 * @param string|null $variant The variant to validate
-	 * @return mixed Returns an equivalent valid variant code if possible,
+	 * @return string|null Returns an equivalent valid variant code if possible,
 	 *   null otherwise
 	 */
 	public function validateVariant( $variant = null ) {
@@ -413,7 +414,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	/**
 	 * Get the variant specified in the URL
 	 *
-	 * @return mixed Variant if one found, null otherwise
+	 * @return string|null Variant if one found, null otherwise
 	 */
 	public function getURLVariant() {
 		global $wgRequest;
@@ -437,13 +438,13 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * Determine if the user has a variant set.
 	 *
 	 * @param User $user
-	 * @return mixed Variant if one found, null otherwise
+	 * @return string|null Variant if one found, null otherwise
 	 */
 	protected function getUserVariant( User $user ) {
 		// This should only be called within the class after the user is known to be
 		// safe to load and logged in, but check just in case.
 		if ( !$user->isSafeToLoad() ) {
-			return false;
+			return null;
 		}
 
 		if ( !$this->mUserVariant ) {
@@ -474,7 +475,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	/**
 	 * Determine the language variant from the Accept-Language header.
 	 *
-	 * @return mixed Variant if one found, null otherwise
+	 * @return string|null Variant if one found, null otherwise
 	 */
 	protected function getHeaderVariant() {
 		global $wgRequest;
