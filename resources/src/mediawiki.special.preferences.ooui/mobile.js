@@ -19,7 +19,7 @@
 					fieldset.scrollIntoView( { behavior: 'smooth' } );
 				} );
 			}
-		}, 0 ); /* 0 milliseconds is ASAP */
+		} );
 		if ( nav.switchingNoHash ) {
 			return;
 		}
