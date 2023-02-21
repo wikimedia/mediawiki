@@ -109,9 +109,16 @@ class HTMLTagMultiselectField extends HTMLTextField {
 		// Make the field auto-infusable when it's used inside a legacy HTMLForm rather than OOUIHTMLForm
 		$params['infusable'] = true;
 		$params['classes'] = [ 'mw-htmlform-autoinfuse' ];
+
+		return $this->getInputWidget( $params );
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	protected function getInputWidget( $params ) {
 		$widget = new TagMultiselectWidget( $params );
 		$widget->setAttributes( [ 'data-mw-modules' => implode( ',', $this->getOOUIModules() ) ] );
-
 		return $widget;
 	}
 
