@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\DAO\WikiAwareEntityTrait;
+use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;

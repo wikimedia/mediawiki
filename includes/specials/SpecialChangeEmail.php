@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Html\Html;
 use MediaWiki\Logger\LoggerFactory;
 
 /**

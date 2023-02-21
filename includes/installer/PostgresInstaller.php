@@ -21,6 +21,7 @@
  * @ingroup Installer
  */
 
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabasePostgres;

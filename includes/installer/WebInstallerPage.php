@@ -21,6 +21,8 @@
  * @ingroup Installer
  */
 
+use MediaWiki\Html\Html;
+
 /**
  * Abstract class to define pages for the web installer.
  *

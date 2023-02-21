@@ -6,7 +6,7 @@ use Action;
 use Article;
 use Config;
 use CreditsAction;
-use Html;
+use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Title;

@@ -22,6 +22,8 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Html\FormOptions;
+use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentityLookup;

@@ -1,8 +1,15 @@
 <?php
 
+namespace MediaWiki\Html;
+
+use BagOStuff;
+use FileContentsHasher;
 use LightnCandy\LightnCandy;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use ObjectCache;
+use RuntimeException;
+use UnexpectedValueException;
 
 /**
  * Handles compiling Mustache templates into PHP rendering functions
@@ -55,7 +62,7 @@ class TemplateParser {
 	 * @param BagOStuff|null $cache Read-write cache
 	 */
 	public function __construct( $templateDir = null, ?BagOStuff $cache = null ) {
-		$this->templateDir = $templateDir ?: __DIR__ . '/templates';
+		$this->templateDir = $templateDir ?: __DIR__ . '/../templates';
 		$this->cache = $cache ?: ObjectCache::getLocalServerInstance( CACHE_ANYTHING );
 
 		// Do not add more flags here without discussion.
@@ -85,9 +92,7 @@ class TemplateParser {
 		// Prevent path traversal. Based on LanguageNameUtils::isValidCode().
 		// This is for paranoia. The $templateName should never come from
 		// untrusted input.
-		if (
-			strcspn( $templateName, ":/\\\000&<>'\"%" ) !== strlen( $templateName )
-		) {
+		if ( strcspn( $templateName, ":/\\\000&<>'\"%" ) !== strlen( $templateName ) ) {
 			throw new UnexpectedValueException( "Malformed \$templateName: $templateName" );
 		}
 
@@ -202,7 +207,7 @@ class TemplateParser {
 	 *
 	 * @param string $templateName The name of the template
 	 * @return array An associative array containing the PHP code and metadata about its compilation
-	 * @throws Exception Thrown by LightnCandy if it could not compile the Mustache code
+	 * @throws \Exception Thrown by LightnCandy if it could not compile the Mustache code
 	 * @throws RuntimeException If LightnCandy could not compile the Mustache code but did not throw
 	 *  an exception. This exception is indicative of a bug in LightnCandy
 	 * @suppress PhanTypeMismatchArgument
@@ -291,3 +296,5 @@ class TemplateParser {
 		return $template( $args, $scopes );
 	}
 }
+
+class_alias( TemplateParser::class, 'TemplateParser' );

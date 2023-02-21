@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 

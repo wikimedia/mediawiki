@@ -23,6 +23,9 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Html\FormOptions;
+use MediaWiki\Html\Html;
+use MediaWiki\Html\ListToggle;
 use MediaWiki\MainConfigNames;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserIdentityLookup;

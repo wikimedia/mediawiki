@@ -20,6 +20,7 @@
 
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 

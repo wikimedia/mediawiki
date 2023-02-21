@@ -23,6 +23,7 @@
  * @copyright Copyright © 2005, Ævar Arnfjörð Bjarmason
  */
 
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 
 /**

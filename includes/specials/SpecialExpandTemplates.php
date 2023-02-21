@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\UserOptionsLookup;

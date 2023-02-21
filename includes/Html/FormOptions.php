@@ -26,6 +26,12 @@
  * @author Antoine Musso
  */
 
+namespace MediaWiki\Html;
+
+use ArrayAccess;
+use MWException;
+use WebRequest;
+
 /**
  * Helper class to keep track of options when mixing links and form elements.
  *
@@ -426,3 +432,5 @@ class FormOptions implements ArrayAccess {
 
 	// endregion -- end of ArrayAccess functions
 }
+
+class_alias( FormOptions::class, 'FormOptions' );

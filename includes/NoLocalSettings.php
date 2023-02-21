@@ -21,6 +21,8 @@
  */
 
 # T32219 : can not use pathinfo() on URLs since slashes do not match
+use MediaWiki\Html\TemplateParser;
+
 $matches = [];
 $path = '/';
 foreach ( array_filter( explode( '/', $_SERVER['PHP_SELF'] ) ) as $part ) {

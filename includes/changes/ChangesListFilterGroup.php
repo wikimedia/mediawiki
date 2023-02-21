@@ -26,6 +26,7 @@
 // What to call it.  FilterStructure?  That would also let me make
 // setUnidirectionalConflict protected.
 
+use MediaWiki\Html\FormOptions;
 use Wikimedia\Rdbms\IDatabase;
 
 /**

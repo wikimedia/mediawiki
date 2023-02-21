@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Search\SearchWidgets;
 
-use Html;
 use ILanguageConverter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Html\Html;
 use MediaWiki\Widget\SearchInputWidget;
 use NamespaceInfo;
 use SearchEngineConfig;

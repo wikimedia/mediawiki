@@ -22,6 +22,7 @@
  * @ingroup Upload
  */
 
+use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;

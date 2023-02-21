@@ -25,6 +25,7 @@
 
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;

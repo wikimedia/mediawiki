@@ -19,6 +19,7 @@
  * @ingroup Installer
  */
 
+use MediaWiki\Html\Html;
 use Wikimedia\IPUtils;
 
 class WebInstallerOptions extends WebInstallerPage {

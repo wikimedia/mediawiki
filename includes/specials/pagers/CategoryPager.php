@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 use Wikimedia\Rdbms\ILoadBalancer;
 

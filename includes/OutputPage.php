@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

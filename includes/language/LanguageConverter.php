@@ -22,6 +22,7 @@
  * @author PhiLiP <philip.npc@gmail.com>
  */
 
+use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;

@@ -21,6 +21,7 @@
  * @file
  */
 
+use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 
 /**

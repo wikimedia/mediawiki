@@ -20,6 +20,10 @@
  * @file
  */
 
+namespace MediaWiki\Html;
+
+use OutputPage;
+
 /**
  * Class for generating clickable toggle links for a list of checkboxes.
  *
@@ -58,12 +62,15 @@ class ListToggle {
 			$this->checkboxLink( 'invert' ),
 		];
 
-		return Html::rawElement( 'div',
+		return Html::rawElement(
+			'div',
 			[
-				'class' => 'mw-checkbox-toggle-controls'
+				'class' => 'mw-checkbox-toggle-controls',
 			],
 			$this->output->msg( 'checkbox-select' )
 				->rawParams( $this->output->getLanguage()->commaList( $links ) )->escaped()
 		);
 	}
 }
+
+class_alias( ListToggle::class, 'ListToggle' );

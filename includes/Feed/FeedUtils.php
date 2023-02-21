@@ -24,8 +24,8 @@
 namespace MediaWiki\Feed;
 
 use DerivativeContext;
-use Html;
 use LogFormatter;
+use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;

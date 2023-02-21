@@ -21,7 +21,8 @@
  */
 
 use MediaWiki\ExtensionInfo;
-use MediaWiki\HtmlHelper;
+use MediaWiki\Html\Html;
+use MediaWiki\Html\HtmlHelper;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

@@ -26,6 +26,7 @@
  * @ingroup Testing
  */
 
+use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;

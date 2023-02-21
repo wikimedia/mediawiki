@@ -19,6 +19,8 @@
  * @ingroup Pager
  */
 
+use MediaWiki\Html\FormOptions;
+use MediaWiki\Html\Html;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\Linker;

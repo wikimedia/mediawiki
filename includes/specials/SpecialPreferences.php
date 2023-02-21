@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\User\UserOptionsManager;

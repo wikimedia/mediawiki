@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinksMigration;
 use Wikimedia\Rdbms\IDatabase;

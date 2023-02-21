@@ -20,7 +20,7 @@
 
 namespace MediaWiki\ResourceLoader;
 
-use Html;
+use MediaWiki\Html\Html;
 use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 

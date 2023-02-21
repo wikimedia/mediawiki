@@ -20,9 +20,9 @@
 
 namespace MediaWiki\EditPage;
 
-use Html;
 use IContextSource;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
