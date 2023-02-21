@@ -64,8 +64,6 @@ class BacklinkCache {
 	 *    > 'batches' : [ $start, $end ]
 	 *
 	 * @see BacklinkCache::partitionResult()
-	 *
-	 * Cleared with BacklinkCache::clear()
 	 * @var array[]
 	 */
 	protected $partitionCache = [];
@@ -75,7 +73,7 @@ class BacklinkCache {
 	 * This is raw data that will be partitioned in $partitionCache
 	 *
 	 * Initialized with BacklinkCache::queryLinks()
-	 * Cleared with BacklinkCache::clear()
+	 *
 	 * @var IResultWrapper[]
 	 */
 	protected $fullResultCache = [];
@@ -134,36 +132,6 @@ class BacklinkCache {
 	 */
 	public function getPage(): PageReference {
 		return $this->page;
-	}
-
-	/**
-	 * Clear process cache and persistent cache
-	 * @internal For use with tests only
-	 */
-	public function clear() {
-		$keys = [];
-		foreach ( $this->partitionCache as $table => $unused ) {
-			$keys[] = $this->wanCache->makeKey(
-				'numbacklinks',
-				CacheKeyHelper::getKeyForPage( $this->page ),
-				$table
-			);
-		}
-		foreach ( $this->fullResultCache as $table => $partitionsByBatchSize ) {
-			foreach ( $partitionsByBatchSize as $batchSize => $unused ) {
-				$keys[] = $this->wanCache->makeKey(
-					'backlinks',
-					CacheKeyHelper::getKeyForPage( $this->page ),
-					$table,
-					$batchSize
-				);
-			}
-		}
-		foreach ( $keys as $key ) {
-			$this->wanCache->delete( $key, 0 );
-		}
-		$this->partitionCache = [];
-		$this->fullResultCache = [];
 	}
 
 	/**

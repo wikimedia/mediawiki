@@ -16,8 +16,8 @@ class RefreshLinksPartitionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provider_backlinks
-	 * @covers BacklinkJobUtils::partitionBacklinkJob
+	 * @dataProvider provideBacklinks
+	 * @covers BacklinkJobUtils
 	 */
 	public function testRefreshLinks( $ns, $dbKey, $pages ) {
 		$title = Title::makeTitle( $ns, $dbKey );
@@ -35,7 +35,6 @@ class RefreshLinksPartitionTest extends MediaWikiIntegrationTestCase {
 
 		$backlinkCache = $this->getServiceContainer()->getBacklinkCacheFactory()
 			->getBacklinkCache( $title );
-		$backlinkCache->clear();
 		$this->assertEquals(
 			20,
 			$backlinkCache->getNumLinks( 'pagelinks' ),
@@ -108,7 +107,7 @@ class RefreshLinksPartitionTest extends MediaWikiIntegrationTestCase {
 			'Last leaf job has root params' );
 	}
 
-	public static function provider_backlinks() {
+	public static function provideBacklinks() {
 		$pages = [];
 		for ( $i = 0; $i < 20; ++$i ) {
 			$pages[] = [ 0, "Page-$i" ];
