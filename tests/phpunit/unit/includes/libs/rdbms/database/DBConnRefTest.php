@@ -145,9 +145,6 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		new DBConnRef( $lb, 17, DB_REPLICA ); // bad constructor argument
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\DBConnRef::getDomainId
-	 */
 	public function testGetDomainID() {
 		$lb = $this->createMock( ILoadBalancer::class );
 
@@ -160,9 +157,6 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 'dummy', $ref->getDomainID() );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\DBConnRef::select
-	 */
 	public function testSelect() {
 		// select should get passed through normally
 		$ref = $this->getDBConnRef();
@@ -178,9 +172,6 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		$this->assertIsString( $ref->__toString() );
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\DBConnRef::close
-	 */
 	public function testClose() {
 		$lb = $this->getLoadBalancerMock();
 		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ], DB_PRIMARY );
@@ -188,9 +179,6 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		$ref->close();
 	}
 
-	/**
-	 * @covers Wikimedia\Rdbms\DBConnRef::getReferenceRole
-	 */
 	public function testGetReferenceRole() {
 		$lb = $this->getLoadBalancerMock();
 		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ], DB_REPLICA );
@@ -207,7 +195,6 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\DBConnRef::getReferenceRole
 	 * @dataProvider provideRoleExceptions
 	 */
 	public function testRoleExceptions( $method, $args ) {

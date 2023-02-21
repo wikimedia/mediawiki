@@ -6,6 +6,7 @@ use Wikimedia\Rdbms\LikeMatch;
 
 /**
  * @covers Wikimedia\Rdbms\Platform\SQLPlatform
+ * @covers Wikimedia\Rdbms\Database
  */
 class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 
@@ -21,7 +22,6 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideGreatest
-	 * @covers Wikimedia\Rdbms\Database::buildGreatest
 	 */
 	public function testBuildGreatest( $fields, $values, $sqlText ) {
 		$this->assertEquals(
@@ -57,7 +57,6 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideLeast
-	 * @covers Wikimedia\Rdbms\Database::buildLeast
 	 */
 	public function testBuildLeast( $fields, $values, $sqlText ) {
 		$this->assertEquals(
@@ -93,7 +92,6 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideBuildComparison
-	 * @covers Wikimedia\Rdbms\Database::buildComparison
 	 */
 	public function testBuildComparison( string $op, array $conds, string $sqlText ) {
 		$this->assertEquals(
@@ -156,8 +154,6 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideBuildLike
-	 * @covers Wikimedia\Rdbms\Database::buildLike
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::escapeLikeInternal
 	 */
 	public function testBuildLike( $array, $sqlText ) {
 		$this->assertEquals( trim( $this->platform->buildLike(
@@ -200,7 +196,6 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @dataProvider provideUnionConditionPermutations
-	 * @covers Wikimedia\Rdbms\Database::unionConditionPermutations
 	 */
 	public function testUnionConditionPermutations( $params, $expect ) {
 		if ( isset( $params['unionSupportsOrderAndLimit'] ) ) {
@@ -367,7 +362,6 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @covers Wikimedia\Rdbms\Platform\SQLPlatform::isWriteQuery
 	 * @param string $query
 	 * @param bool $res
 	 * @dataProvider provideIsWriteQuery
@@ -377,7 +371,6 @@ class SQLPlatformTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Provider for testIsWriteQuery
 	 * @return array
 	 */
 	public function provideIsWriteQuery(): array {
