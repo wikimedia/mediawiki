@@ -720,6 +720,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				++$tocLength;
 				$this->tocData->addSection( new SectionMetadata(
 					1,
+					// This is supposed to be the heading level, e.g. 2 for a <h2> tag,
+					// but this page uses <legend> tags for the headings, so use a fake value
 					99,
 					htmlspecialchars( $nsText ),
 					$this->getLanguage()->formatNum( $tocLength ),
