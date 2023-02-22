@@ -30,6 +30,7 @@ declare( strict_types=1 );
 
 namespace Wikimedia\Metrics;
 
+use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use TypeError;
 use UDPTransport;
@@ -46,9 +47,6 @@ class MetricsFactory {
 	/** @var string[] */
 	private const SUPPORTED_OUTPUT_FORMATS = [ 'statsd', 'dogstatsd', 'null' ];
 
-	/** @var string */
-	private const NAME_DELIMITER = '.';
-
 	/** @var array */
 	private const DEFAULT_METRIC_CONFIG = [
 		// 'name' => required,
@@ -59,8 +57,8 @@ class MetricsFactory {
 		'format' => 'statsd',
 	];
 
-	/** @var array<CounterMetric|GaugeMetric|TimingMetric> */
-	private $cache = [];
+	/** @var MetricsCache */
+	private $cache;
 
 	/** @var string|null */
 	private $target;
@@ -81,11 +79,14 @@ class MetricsFactory {
 	 *   - prefix (string): The prefix applied to all metrics.  This could be the service name.
 	 *   - target (string): The URI of the statsd/statsd-exporter server.
 	 *   - format (string): The output format. See: MetricsFactory::SUPPORTED_OUTPUT_FORMATS
+	 *   - component: (string) The MediaWiki component this MetricsFactory instance is for.
+	 * @param MetricsCache $cache
 	 * @param LoggerInterface $logger
 	 * @throws UndefinedPrefixException
 	 * @throws UnsupportedFormatException
 	 */
-	public function __construct( array $config, LoggerInterface $logger ) {
+	public function __construct( array $config, MetricsCache $cache, LoggerInterface $logger ) {
+		$this->cache = $cache;
 		$this->logger = $logger;
 		$this->target = $config['target'] ?? null;
 		$this->format = $config['format'] ?? 'null';
@@ -116,19 +117,22 @@ class MetricsFactory {
 	 */
 	public function getCounter( array $config = [] ) {
 		$config = $this->getValidConfig( $config );
-		$name = self::getFormattedName( $config['name'], $config['component'] );
+		$name = self::normalizeString( $config['name'] );
+		$component = self::normalizeString( $config['component'] );
 		try {
-			$metric = $this->getCachedMetric( $name, CounterMetric::class );
-		} catch ( TypeError $ex ) {
-			return new NullMetric();
+			MetricUtils::validateMetricName( $name );
+			$metric = $this->cache->get( $component, $name, CounterMetric::class );
+		} catch ( TypeError | InvalidArgumentException | InvalidConfigurationException $ex ) {
+			trigger_error( $ex->getMessage(), E_USER_WARNING );
+			// Give the caller something that will absorb further calls.
+			return new NullMetric;
 		}
-
-		if ( $metric ) {
-			$metric->validateLabels( $config['labels'] );
-			return $metric;
+		if ( $metric === null ) {
+			$metric = new CounterMetric( $config, new MetricUtils() );
+			$this->cache->set( $component, $name, $metric );
 		}
-		$this->cache[$name] = new CounterMetric( $config, new MetricUtils() );
-		return $this->cache[$name];
+		$metric->validateLabels( $config['labels'] );
+		return $metric;
 	}
 
 	/**
@@ -144,19 +148,22 @@ class MetricsFactory {
 	 */
 	public function getGauge( array $config = [] ) {
 		$config = $this->getValidConfig( $config );
-		$name = self::getFormattedName( $config['name'], $config['component'] );
+		$name = self::normalizeString( $config['name'] );
+		$component = self::normalizeString( $config['component'] );
 		try {
-			$metric = $this->getCachedMetric( $name, GaugeMetric::class );
-		} catch ( TypeError $ex ) {
-			return new NullMetric();
+			MetricUtils::validateMetricName( $name );
+			$metric = $this->cache->get( $component, $name, GaugeMetric::class );
+		} catch ( TypeError | InvalidArgumentException | InvalidConfigurationException $ex ) {
+			// Log the condition and give the caller something that will absorb calls.
+			trigger_error( $ex->getMessage(), E_USER_WARNING );
+			return new NullMetric;
 		}
-
-		if ( $metric ) {
-			$metric->validateLabels( $config['labels'] );
-			return $metric;
+		if ( $metric === null ) {
+			$metric = new GaugeMetric( $config, new MetricUtils() );
+			$this->cache->set( $component, $name, $metric );
 		}
-		$this->cache[$name] = new GaugeMetric( $config, new MetricUtils() );
-		return $this->cache[$name];
+		$metric->validateLabels( $config['labels'] );
+		return $metric;
 	}
 
 	/**
@@ -173,18 +180,22 @@ class MetricsFactory {
 	 */
 	public function getTiming( array $config = [] ) {
 		$config = $this->getValidConfig( $config );
-		$name = self::getFormattedName( $config['name'], $config['component'] );
+		$name = self::normalizeString( $config['name'] );
+		$component = self::normalizeString( $config['component'] );
 		try {
-			$metric = $this->getCachedMetric( $name, TimingMetric::class );
-		} catch ( TypeError $ex ) {
-			return new NullMetric();
+			MetricUtils::validateMetricName( $name );
+			$metric = $this->cache->get( $component, $name, TimingMetric::class );
+		} catch ( TypeError | InvalidArgumentException | InvalidConfigurationException $ex ) {
+			// Log the condition and give the caller something that will absorb calls.
+			trigger_error( $ex->getMessage(), E_USER_WARNING );
+			return new NullMetric;
 		}
-		if ( $metric ) {
-			$metric->validateLabels( $config['labels'] );
-			return $metric;
+		if ( $metric === null ) {
+			$metric = new TimingMetric( $config, new MetricUtils() );
+			$this->cache->set( $component, $name, $metric );
 		}
-		$this->cache[$name] = new TimingMetric( $config, new MetricUtils() );
-		return $this->cache[$name];
+		$metric->validateLabels( $config['labels'] );
+		return $metric;
 	}
 
 	/**
@@ -194,51 +205,22 @@ class MetricsFactory {
 		if ( $this->format !== 'null' && $this->target ) {
 			$this->send( UDPTransport::newFromString( $this->target ) );
 		}
-		$this->cache = [];
+		$this->cache->clear();
 	}
 
 	/**
 	 * Get all rendered samples from cache
 	 *
-	 * @param array $cache
 	 * @return string[] Flattened list
 	 */
-	private function getRenderedSamples( array $cache ): array {
+	private function getRenderedSamples(): array {
 		$renderedSamples = [];
-		foreach ( $cache as $metric ) {
+		foreach ( $this->cache->getAllMetrics() as $metric ) {
 			foreach ( $metric->render() as $rendered ) {
 				$renderedSamples[] = $rendered;
 			}
 		}
 		return $renderedSamples;
-	}
-
-	/**
-	 * Searches the cache for an instance of the requested metric.  Returns null if not found.
-	 *
-	 * If the requested metric type does not match the metric found in cache, log the error
-	 * and return a NullMetric instance.  This is so that exceptions aren't thrown if metric
-	 * names are reused as different types.
-	 *
-	 * @param string $name
-	 * @param string $requested_type
-	 * @return CounterMetric|GaugeMetric|TimingMetric|null
-	 * @throws TypeError
-	 */
-	private function getCachedMetric( string $name, string $requested_type ) {
-		if ( !array_key_exists( $name, $this->cache ) ) {
-			return null;
-		}
-
-		$metric = $this->cache[$name];
-		if ( get_class( $metric ) !== $requested_type ) {
-			$msg = 'Metric name collision detected: \'' . $name . '\' defined as type \'' . get_class( $metric )
-				. '\' but a \'' . $requested_type . '\' was requested.';
-			$this->logger->error( $msg );
-			throw new TypeError( $msg );
-		}
-
-		return $metric;
 	}
 
 	/**
@@ -249,7 +231,7 @@ class MetricsFactory {
 	 */
 	protected function send( UDPTransport $transport ): void {
 		$payload = '';
-		$renderedSamples = $this->getRenderedSamples( $this->cache );
+		$renderedSamples = $this->getRenderedSamples();
 		foreach ( $renderedSamples as $sample ) {
 			if ( strlen( $payload ) + strlen( $sample ) + 1 < UDPTransport::MAX_PAYLOAD_SIZE ) {
 				$payload .= $sample . "\n";
@@ -263,23 +245,6 @@ class MetricsFactory {
 		if ( strlen( $payload ) > 0 ) {
 			$transport->emit( $payload );
 		}
-	}
-
-	/**
-	 * Get the metric formatted name.
-	 *
-	 * Takes the provided name and constructs a more specific name by combining
-	 * the service, component, and name options.
-	 *
-	 * @param string $name
-	 * @param string $component
-	 * @return string
-	 */
-	private function getFormattedName( string $name, string $component ): string {
-		return implode(
-			self::NAME_DELIMITER,
-			[ $this->prefix, $component, self::normalizeString( $name ) ]
-		);
 	}
 
 	/**
