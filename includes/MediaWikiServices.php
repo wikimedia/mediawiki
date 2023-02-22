@@ -191,6 +191,7 @@ use WatchedItemQueryService;
 use WatchedItemStoreInterface;
 use WikiImporterFactory;
 use Wikimedia\Message\IMessageFormatterFactory;
+use Wikimedia\Metrics\MetricsCache;
 use Wikimedia\Metrics\MetricsFactory;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\ObjectFactory\ObjectFactory;
@@ -1389,6 +1390,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getMessageFormatterFactory(): IMessageFormatterFactory {
 		return $this->getService( 'MessageFormatterFactory' );
+	}
+
+	/**
+	 * @since 1.41
+	 * @return MetricsCache
+	 */
+	public function getMetricsCache(): MetricsCache {
+		return $this->getService( 'MetricsCache' );
 	}
 
 	/**

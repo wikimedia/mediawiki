@@ -13,6 +13,7 @@ use Wikimedia\Metrics\Metrics\CounterMetric;
 use Wikimedia\Metrics\Metrics\GaugeMetric;
 use Wikimedia\Metrics\Metrics\NullMetric;
 use Wikimedia\Metrics\Metrics\TimingMetric;
+use Wikimedia\Metrics\MetricsCache;
 use Wikimedia\Metrics\MetricsFactory;
 use Wikimedia\TestingAccessWrapper;
 
@@ -23,7 +24,7 @@ use Wikimedia\TestingAccessWrapper;
 class MetricsFactoryTest extends TestCase {
 
 	public function testGetCounter() {
-		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new NullLogger );
+		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new MetricsCache, new NullLogger );
 		$this->assertInstanceOf( CounterMetric::class, $m->getCounter( [
 			'name' => 'test',
 			'component' => 'testComponent'
@@ -31,7 +32,7 @@ class MetricsFactoryTest extends TestCase {
 	}
 
 	public function testGetGauge() {
-		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new NullLogger );
+		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new MetricsCache, new NullLogger );
 		$this->assertInstanceOf( GaugeMetric::class, $m->getGauge( [
 			'name' => 'test',
 			'component' => 'testComponent'
@@ -39,7 +40,7 @@ class MetricsFactoryTest extends TestCase {
 	}
 
 	public function testGetTiming() {
-		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new NullLogger );
+		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new MetricsCache, new NullLogger );
 		$this->assertInstanceOf( TimingMetric::class, $m->getTiming( [
 			'name' => 'test',
 			'component' => 'testComponent'
@@ -48,34 +49,34 @@ class MetricsFactoryTest extends TestCase {
 
 	public function testUnsupportedOutputFormat() {
 		$this->expectException( UnsupportedFormatException::class );
-		new MetricsFactory( [ 'prefix' => 'mediawiki', 'format' => 'asdf' ], new NullLogger );
+		new MetricsFactory( [ 'prefix' => 'mediawiki', 'format' => 'asdf' ], new MetricsCache, new NullLogger );
 	}
 
 	public function testMissingPrefix() {
 		$this->expectException( UndefinedPrefixException::class );
-		new MetricsFactory( [ 'format' => 'asdf' ], new NullLogger );
+		new MetricsFactory( [ 'format' => 'asdf' ], new MetricsCache, new NullLogger );
 	}
 
 	public function testUnsetNameConfig() {
-		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new NullLogger );
+		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new MetricsCache, new NullLogger );
 		$this->expectException( InvalidConfigurationException::class );
 		$m->getCounter( [ 'component' => 'a' ] );
 	}
 
 	public function testUnsetExtensionConfig() {
-		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new NullLogger );
+		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new MetricsCache, new NullLogger );
 		$this->expectException( InvalidConfigurationException::class );
 		$m->getCounter( [ 'name' => 'a' ] );
 	}
 
 	public function testBlankNameConfig() {
-		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new NullLogger );
+		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new MetricsCache, new NullLogger );
 		$this->expectException( InvalidConfigurationException::class );
 		$m->getCounter( [ 'name' => '' ] );
 	}
 
 	public function testGetMetricWithLabelMismatch() {
-		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new NullLogger );
+		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new MetricsCache, new NullLogger );
 		$m->getCounter( [ 'name' => 'test_metric', 'component' => 'test', 'labels' => [ 'a' ] ] );
 		$this->expectException( InvalidLabelsException::class );
 		$m->getCounter( [ 'name' => 'test_metric', 'component' => 'test', 'labels' => [ 'a', 'b' ] ] );
@@ -96,11 +97,11 @@ class MetricsFactoryTest extends TestCase {
 	}
 
 	public function testGetNullMetricOnNameCollision() {
-		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new NullLogger );
+		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new MetricsCache, new NullLogger );
 		// define metric as counter 'test'
 		$m->getCounter( [ 'name' => 'test', 'component' => 'testComponent' ] );
 		// redefine metric as timing 'test'
-		$metric = $m->getTiming( [ 'name' => 'test', 'component' => 'testComponent' ] );
+		$metric = @$m->getTiming( [ 'name' => 'test', 'component' => 'testComponent' ] );
 		// gauge response must be null metric
 		$this->assertInstanceOf( NullMetric::class, $metric );
 		// NullMetric should not throw for any method call
@@ -111,7 +112,7 @@ class MetricsFactoryTest extends TestCase {
 		$m = new MetricsFactory( [
 			'prefix' => 'mediawiki',
 			'format' => 'dogstatsd',
-		], new NullLogger );
+		], new MetricsCache, new NullLogger );
 
 		$metric = $m->getCounter( [ 'name' => 'bar', 'component' => 'test' ] );
 		$metric->increment();
