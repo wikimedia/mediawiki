@@ -998,7 +998,7 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * This function tries to find it. See e.g. LanguageZh.php
 	 * The input parameters may be modified upon return
 	 *
-	 * @param string &$link The name of the link
+	 * @param string &$link The name of the link, note the value returned is NOT the DB key.
 	 * @param Title &$nt The title object of the link
 	 * @param bool $ignoreOtherCond To disable other conditions when
 	 *   we need to transclude a template or update a category's link
