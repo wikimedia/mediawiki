@@ -43,8 +43,6 @@ use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
-use MergeHistory;
-use MovePage;
 use NamespaceInfo;
 use Psr\Log\LoggerInterface;
 use ReadOnlyMode;

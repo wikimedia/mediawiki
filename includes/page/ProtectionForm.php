@@ -23,6 +23,15 @@
  * @file
  */
 
+namespace MediaWiki\Page;
+
+use Article;
+use ErrorPageError;
+use HTMLForm;
+use IContextSource;
+use Language;
+use LogEventsList;
+use LogPage;
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Html\Html;
@@ -32,6 +41,12 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Watchlist\WatchlistManager;
+use OutputPage;
+use Title;
+use TitleFormatter;
+use WebRequest;
+use Xml;
+use XmlSelect;
 
 /**
  * Handles the page protection UI and backend
@@ -647,3 +662,5 @@ class ProtectionForm {
 		$this->hookRunner->onProtectionForm__showLogExtract( $this->mArticle, $this->mOut );
 	}
 }
+
+class_alias( ProtectionForm::class, 'ProtectionForm' );

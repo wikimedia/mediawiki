@@ -18,6 +18,15 @@
  * @file
  */
 
+namespace MediaWiki\Page;
+
+use AtomicSectionUpdate;
+use ChangeTags;
+use ContentHandler;
+use DeferredUpdates;
+use File;
+use LogFormatter;
+use ManualLogEntry;
 use MediaWiki\Collation\CollationFactory;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Config\ServiceOptions;
@@ -26,21 +35,27 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Page\MovePageFactory;
-use MediaWiki\Page\PageIdentity;
-use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\RestrictionStore;
-use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MWException;
+use NamespaceInfo;
+use RepoGroup;
+use RequestContext;
+use Status;
+use StringUtils;
+use Title;
+use WatchedItemStoreInterface;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use WikiPage;
+use WikitextContent;
 
 /**
  * Handles the backend logic of moving a page from one title
@@ -680,7 +695,7 @@ class MovePage {
 			return $moveAttemptResult;
 		} else {
 			$nullRevision = $moveAttemptResult->getValue()['nullRevision'];
-			'@phan-var RevisionRecord $nullRevision';
+			'@phan-var \MediaWiki\Revision\RevisionRecord $nullRevision';
 		}
 
 		$redirid = $this->oldTitle->getArticleID();
@@ -828,7 +843,11 @@ class MovePage {
 	 *     'redirectRevision' => The initial revision of the redirect if it was created (RevisionRecord|null)
 	 *   ]
 	 */
-	private function moveToInternal( UserIdentity $user, &$nt, $reason = '', $createRedirect = true,
+	private function moveToInternal(
+		UserIdentity $user,
+		&$nt,
+		$reason = '',
+		$createRedirect = true,
 		array $changeTags = []
 	): Status {
 		if ( $nt->getArticleID( Title::READ_LATEST ) ) {
@@ -1010,3 +1029,5 @@ class MovePage {
 		] );
 	}
 }
+
+class_alias( MovePage::class, 'MovePage' );

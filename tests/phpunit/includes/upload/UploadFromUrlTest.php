@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use Mediawiki\Page\File\FileDeleteForm;
 use Wikimedia\TestingAccessWrapper;
 
 /**

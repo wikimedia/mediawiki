@@ -1,11 +1,11 @@
 <?php
 
-use MediaWiki\BadFileLookup;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Page\File\BadFileLookup;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 
 /**
- * @coversDefaultClass MediaWiki\BadFileLookup
+ * @coversDefaultClass \MediaWiki\Page\File\BadFileLookup
  */
 class BadFileLookupTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;

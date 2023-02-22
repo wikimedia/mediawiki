@@ -20,7 +20,7 @@
  * @file
  */
 
-use MediaWiki\BadFileLookup;
+use MediaWiki\Page\File\BadFileLookup;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**

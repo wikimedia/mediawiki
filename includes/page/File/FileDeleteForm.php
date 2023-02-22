@@ -22,9 +22,17 @@
  * @ingroup Media
  */
 
+namespace Mediawiki\Page\File;
+
+use Hooks;
+use LocalFile;
+use ManualLogEntry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\DeletePage;
 use MediaWiki\User\UserIdentity;
+use MWException;
+use Status;
+use Title;
 
 /**
  * File deletion user interface
@@ -47,8 +55,15 @@ class FileDeleteForm {
 	 *   scheduled deletion.
 	 * @throws MWException
 	 */
-	public static function doDelete( Title $title, LocalFile $file, ?string $oldimage, $reason,
-		$suppress, UserIdentity $user, $tags = [], bool $deleteTalk = false
+	public static function doDelete(
+		Title $title,
+		LocalFile $file,
+		?string $oldimage,
+		$reason,
+		$suppress,
+		UserIdentity $user,
+		$tags = [],
+		bool $deleteTalk = false
 	): Status {
 		if ( $oldimage ) {
 			$page = null;
@@ -79,7 +94,7 @@ class FileDeleteForm {
 			);
 			$services = MediaWikiServices::getInstance();
 			$page = $services->getWikiPageFactory()->newFromTitle( $title );
-			'@phan-var WikiFilePage $page';
+			'@phan-var \WikiFilePage $page';
 			$deleter = $services->getUserFactory()->newFromUserIdentity( $user );
 			$deletePage = $services->getDeletePageFactory()->newDeletePage( $page, $deleter );
 			if ( $deleteTalk ) {
@@ -158,3 +173,5 @@ class FileDeleteForm {
 			&& strpos( $oldimage, '\\' ) === false;
 	}
 }
+
+class_alias( FileDeleteForm::class, 'FileDeleteForm' );

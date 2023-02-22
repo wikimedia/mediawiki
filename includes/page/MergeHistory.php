@@ -21,13 +21,17 @@
  * @file
  */
 
+namespace MediaWiki\Page;
+
+use Content;
+use InvalidArgumentException;
+use ManualLogEntry;
+use MediaWiki;
 use MediaWiki\CommentStore\CommentStoreComment;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Page\PageIdentity;
-use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -35,6 +39,11 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserIdentity;
+use Message;
+use MWTimestamp;
+use Status;
+use TitleFormatter;
+use WatchedItemStoreInterface;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Timestamp\TimestampException;
@@ -158,7 +167,9 @@ class MergeHistory {
 	 * @return int
 	 */
 	public function getRevisionCount() {
-		$count = $this->dbw->selectRowCount( 'revision', '1',
+		$count = $this->dbw->selectRowCount(
+			'revision',
+			'1',
 			[ 'rev_page' => $this->source->getId(), $this->getTimeWhere() ],
 			__METHOD__,
 			[ 'LIMIT' => self::REVISION_LIMIT + 1 ]
@@ -595,3 +606,5 @@ class MergeHistory {
 		}
 	}
 }
+
+class_alias( MergeHistory::class, 'MergeHistory' );
