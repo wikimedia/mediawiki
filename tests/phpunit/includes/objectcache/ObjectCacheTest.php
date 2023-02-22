@@ -62,12 +62,11 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNewAnythingNoAccel() {
-		$this->setMainCache( CACHE_ACCEL );
-
+		// Mock APC not being installed (T160519, T147161)
 		$this->setCacheConfig( [
-			// Mock APC not being installed (T160519, T147161)
 			CACHE_ACCEL => [ 'class' => EmptyBagOStuff::class ]
 		] );
+		$this->setMainCache( CACHE_ACCEL );
 
 		$this->assertInstanceOf(
 			SqlBagOStuff::class,
@@ -77,12 +76,11 @@ class ObjectCacheTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNewAnythingNoAccelNoDb() {
-		$this->setMainCache( CACHE_ACCEL );
-
 		$this->setCacheConfig( [
 			// Mock APC not being installed (T160519, T147161)
 			CACHE_ACCEL => [ 'class' => EmptyBagOStuff::class ]
 		] );
+		$this->setMainCache( CACHE_ACCEL );
 
 		$this->getServiceContainer()->disableStorage();
 
