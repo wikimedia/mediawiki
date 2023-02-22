@@ -4055,9 +4055,9 @@ wgAllowDisplayTitle=true
 wgRestrictDisplayTitle=false
 !! wikitext
 {{DISPLAYTITLE:''{{PAGENAME}}''}}
-!! html/php
+!! metadata
 <i>Parser test</i>
-
+!! html/php
 !! html/parsoid
 <meta property="mw:PageProp/displaytitle" content="Parser test" about="#mwt3" typeof="mw:ExpandedAttrs" data-parsoid='{"src":"{{DISPLAYTITLE:&#39;&#39;{{PAGENAME}}&#39;&#39;}}"}' data-mw='{"attribs":[[{"txt":"content"},{"html":"DISPLAYTITLE:&lt;i data-parsoid=&#39;{\"dsr\":[15,31,2,2]}&#39;>&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[]],\"dsr\":[17,29,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"PAGENAME\",\"function\":\"pagename\"},\"params\":{},\"i\":0}}]}&#39;>Parser test&lt;/span>&lt;/i>"}]]}'/>
 !! end
@@ -4074,9 +4074,9 @@ showtitle
 !! config
 wgAllowDisplayTitle=true
 wgRestrictDisplayTitle=false
-!! html/php
+!! metadata
 Foo
-
+!! html/php
 !! html/parsoid
 <meta property="mw:PageProp/displaytitle" content="Foo" about="#mwt1" typeof="mw:ExpandedAttrs" data-mw='{"attribs":[[{"txt":"content"},{"html":"&lt;span about=\"#mwt1\" typeof=\"mw:Transclusion\" data-parsoid=&#39;{\"pi\":[[{\"k\":\"1\"}]],\"dsr\":[2,23,null,null]}&#39; data-mw=&#39;{\"parts\":[{\"template\":{\"target\":{\"wt\":\"1x\",\"href\":\"./Template:1x\"},\"params\":{\"1\":{\"wt\":\"DISPLAYTITLE\"}},\"i\":0}}]}&#39;>DISPLAYTITLE&lt;/span>:Foo"}]]}'/>
 !! end
@@ -7876,12 +7876,13 @@ __NOTOC__
 ==Section 0==
 {{sections}}
 ==Section 4==
+!! metadata
+flags=
 !! html/php
 <h2><span class="mw-headline" id="Section_0">Section 0</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Section 0">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h3><span class="mw-headline" id="Section_1">Section 1</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-1" title="Edit section: Section 1">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 <h2><span class="mw-headline" id="Section_2">Section 2</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Template:Sections&amp;action=edit&amp;section=T-2" title="Edit section: Section 2">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h2><span class="mw-headline" id="Section_4">Section 4</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Section 4">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-flags=
 !! end
 
 !! test
@@ -7889,8 +7890,9 @@ T307691: show-toc flag: no sections
 !! options
 showflags
 !! wikitext
-!! html/php
+!! metadata
 flags=
+!! html
 !! end
 
 # You can't force a TOC if there aren't any sections
@@ -7900,8 +7902,11 @@ T307691: show-toc flag: no sections, but __FORCETOC__
 showflags
 !! wikitext
 __FORCETOC__
-!! html/php
+!! metadata
 flags=
+!! html/php
+!! html/parsoid
+<meta property="mw:PageProp/forcetoc"/>
 !! end
 
 # Placing a manual __TOC__ doesn't do anything if there aren't any sections
@@ -7911,8 +7916,11 @@ T307691: show-toc flag: no sections, but __TOC__
 showflags
 !! wikitext
 __TOC__
-!! html/php
+!! metadata
 flags=
+!! html/php
+!! html/parsoid
+<meta property="mw:PageProp/toc"/>
 !! end
 
 !! test
@@ -7921,8 +7929,11 @@ T307691: show-toc flag: no sections, and __NOTOC__
 showflags
 !! wikitext
 __NOTOC__
-!! html/php
+!! metadata
 flags=
+!! html/php
+!! html/parsoid
+<meta property="mw:PageProp/notoc"/>
 !! end
 
 !! test
@@ -7931,9 +7942,12 @@ T307691: show-toc flag: not "enough" sections
 showflags
 !! wikitext
 == One ==
+!! metadata
+flags=
 !! html/php
 <h2><span class="mw-headline" id="One">One</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: One">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-flags=
+!! html/parsoid
+<h2 id="One">One</h2>
 !! end
 
 !! test
@@ -7943,6 +7957,8 @@ showflags
 !! wikitext
 __FORCETOC__
 == One ==
+!! metadata
+flags=show-toc
 !! html/php
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
@@ -7951,7 +7967,9 @@ __FORCETOC__
 </div>
 
 <h2><span class="mw-headline" id="One">One</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: One">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-flags=show-toc
+!! html/parsoid
+<meta property="mw:PageProp/forcetoc"/>
+<h2 id="One">One</h2>
 !! end
 
 !! test
@@ -7961,6 +7979,8 @@ showflags
 !! wikitext
 == One ==
 __TOC__
+!! metadata
+flags=show-toc
 !! html/php
 <h2><span class="mw-headline" id="One">One</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: One">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
@@ -7968,7 +7988,9 @@ __TOC__
 <li class="toclevel-1 tocsection-1"><a href="#One"><span class="tocnumber">1</span> <span class="toctext">One</span></a></li>
 </ul>
 </div>
-flags=show-toc
+!! html/parsoid
+<h2 id="One">One</h2>
+<meta property="mw:PageProp/toc"/>
 !! end
 
 !! test
@@ -7978,9 +8000,13 @@ showflags
 !! wikitext
 __NOTOC__
 == One ==
+!! metadata
+flags=
 !! html/php
 <h2><span class="mw-headline" id="One">One</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: One">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
-flags=
+!! html/parsoid
+<meta property="mw:PageProp/notoc"/>
+<h2 id="One">One</h2>
 !! end
 
 !! test
@@ -7992,6 +8018,8 @@ showflags
 === Two ===
 == Three ==
 === Four ===
+!! metadata
+flags=show-toc
 !! html/php
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
@@ -8012,7 +8040,11 @@ showflags
 <h3><span class="mw-headline" id="Two">Two</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Two">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 <h2><span class="mw-headline" id="Three">Three</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Three">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h3><span class="mw-headline" id="Four">Four</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Four">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
-flags=show-toc
+!! html/parsoid
+<h2 id="One">One</h2>
+<h3 id="Two">Two</h3>
+<h2 id="Three">Three</h2>
+<h3 id="Four">Four</h3>
 !! end
 
 !! test
@@ -8025,6 +8057,8 @@ __FORCETOC__
 === Two ===
 == Three ==
 === Four ===
+!! metadata
+flags=show-toc
 !! html/php
 <div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
 <ul>
@@ -8045,7 +8079,12 @@ __FORCETOC__
 <h3><span class="mw-headline" id="Two">Two</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Two">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 <h2><span class="mw-headline" id="Three">Three</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Three">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h3><span class="mw-headline" id="Four">Four</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Four">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
-flags=show-toc
+!! html/parsoid
+<meta property="mw:PageProp/forcetoc"/>
+<h2 id="One">One</h2>
+<h3 id="Two">Two</h3>
+<h2 id="Three">Three</h2>
+<h3 id="Four">Four</h3>
 !! end
 
 !! test
@@ -8058,12 +8097,19 @@ __NOTOC__
 === Two ===
 == Three ==
 === Four ===
+!! metadata
+flags=
 !! html/php
 <h2><span class="mw-headline" id="One">One</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: One">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h3><span class="mw-headline" id="Two">Two</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Two">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 <h2><span class="mw-headline" id="Three">Three</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Three">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
 <h3><span class="mw-headline" id="Four">Four</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Four">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
-flags=
+!! html/parsoid
+<meta property="mw:PageProp/notoc"/>
+<h2 id="One">One</h2>
+<h3 id="Two">Two</h3>
+<h2 id="Three">Three</h2>
+<h3 id="Four">Four</h3>
 !! end
 
 !! test
@@ -11789,10 +11835,14 @@ showflags
 !! wikitext
 __NEWSECTIONLINK__
 __FORCETOC__
+!! metadata
+flags=mw-NewSection
 !! html/php
 <p><br />
 </p>
-flags=mw-NewSection
+!! html/parsoid
+<meta property="mw:PageProp/newsectionlink"/>
+<meta property="mw:PageProp/forcetoc"/>
 !! end
 
 !! test
@@ -13146,8 +13196,9 @@ wgAllowDisplayTitle=true
 wgRestrictDisplayTitle=false
 !! wikitext
 this is not the title
-!! html/php
+!! metadata
 <span class="mw-page-title-main">Parser test</span>
+!! html
 <p>this is not the title
 </p>
 !! end
@@ -13163,8 +13214,9 @@ wgRestrictDisplayTitle=false
 !! wikitext
 this is not the title
 {{DISPLAYTITLE:whatever}}
-!! html/php
+!! metadata
 whatever
+!! html
 <p>this is not the title
 </p>
 !! end
@@ -13180,8 +13232,9 @@ wgRestrictDisplayTitle=true
 !! wikitext
 this is not the title
 {{DISPLAYTITLE:whatever}}
-!! html/php
+!! metadata
 <span class="mw-page-title-main">Screen</span>
+!! html
 <p>this is not the title
 </p>
 !! end
@@ -13197,8 +13250,9 @@ wgRestrictDisplayTitle=true
 !! wikitext
 this is not the title
 {{DISPLAYTITLE:screen}}
-!! html/php
+!! metadata
 screen
+!! html
 <p>this is not the title
 </p>
 !! end
@@ -13213,8 +13267,9 @@ wgAllowDisplayTitle=false
 !! wikitext
 this is not the title
 {{DISPLAYTITLE:screen}}
-!! html/php
+!! metadata
 <span class="mw-page-title-main">Screen</span>
+!! html/php
 <p>this is not the title
 <a href="/index.php?title=Template:DISPLAYTITLE:screen&amp;action=edit&amp;redlink=1" class="new" title="Template:DISPLAYTITLE:screen (page does not exist)">Template:DISPLAYTITLE:screen</a>
 </p>
@@ -13229,8 +13284,9 @@ title=[[Screen]]
 wgAllowDisplayTitle=false
 !! wikitext
 this is not the title
-!! html/php
+!! metadata
 <span class="mw-page-title-main">Screen</span>
+!! html
 <p>this is not the title
 </p>
 !! end
@@ -13246,8 +13302,9 @@ wgRestrictDisplayTitle=true
 !! wikitext
 this is not the title
 {{DISPLAYTITLE:<span style="display: none;">s</span>creen}}
-!! html/php
+!! metadata
 <span style="/* attempt to bypass $wgRestrictDisplayTitle */">s</span>creen
+!! html/php
 <p>this is not the title
 </p>
 !! end
@@ -13263,8 +13320,9 @@ wgRestrictDisplayTitle=true
 !! wikitext
 this is not the title
 {{DISPLAYTITLE:<span style="color: red;">s</span>creen}}
-!! html/php
+!! metadata
 <span style="color: red;">s</span>creen
+!! html/php
 <p>this is not the title
 </p>
 !! end
@@ -13280,8 +13338,9 @@ wgRestrictDisplayTitle=true
 !! wikitext
 this is not the title
 {{DISPLAYTITLE:art&copy}}
-!! html/php
+!! metadata
 art&amp;copy
+!! html
 <p>this is not the title
 </p>
 !! end
@@ -13297,8 +13356,9 @@ wgRestrictDisplayTitle=true
 !! wikitext
 this is not the title
 {{DISPLAYTITLE:art&amp;copy}}
-!! html/php
+!! metadata
 art&amp;copy
+!! html/php
 <p>this is not the title
 </p>
 !! end
@@ -13313,8 +13373,9 @@ wgAllowDisplayTitle=true
 wgRestrictDisplayTitle=true
 !! wikitext
 this is not the title
-!! html/php
+!! metadata
 <span class="mw-page-title-main">Art&amp;copy</span>
+!! html
 <p>this is not the title
 </p>
 !! end
@@ -13339,9 +13400,10 @@ showindicators
 !! wikitext
 <indicator name="empty" />
 <indicator name="name"></indicator>
-!! html/php
+!! metadata
 empty=
 name=
+!! html
 <p><br />
 </p>
 !! end
@@ -13349,6 +13411,7 @@ name=
 !! test
 Page status indicators: Torture test
 !! options
+nohtml
 showindicators
 !! config
 wgParserEnableLegacyMediaDOM=false
@@ -13368,7 +13431,7 @@ wgParserEnableLegacyMediaDOM=false
 <indicator name="10">Two
 
 paragraphs</indicator>
-!! html/php
+!! metadata
 01=hello world
 02=<a href="/wiki/Main_Page" title="Main Page">Main Page</a>
 03=<span typeof="mw:File"><span><img src="http://example.com/images/thumb/3/3a/Foobar.jpg/25px-Foobar.jpg" decoding="async" width="25" height="3" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/38px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/50px-Foobar.jpg 2x" /></span></span>
@@ -13386,12 +13449,7 @@ paragraphs</indicator>
 10=<p>Two
 </p><p>paragraphs
 </p>
-<p><br />
-</p><p><br />
-</p><p><br />
-</p><p><br />
-</p><p><br />
-</p>
+!! html
 !! end
 
 !! test
@@ -17902,9 +17960,9 @@ parsoid=wt2html,html2html
 showindicators
 !! wikitext
 <indicator name="1&2&amp;3&amp;amp;4&amp;amp;amp;5">Indicator</indicator>
-!! html/php
+!! metadata
 1&2&3&amp;4&amp;amp;5=Indicator
-
+!! html/php
 !! html/parsoid
 <p><link typeof="mw:Extension/indicator" about="#mwt3" data-mw='{"name":"indicator","attrs":{"name":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"body":{"extsrc":"Indicator"}}' /></p>
 !! end
@@ -17916,9 +17974,9 @@ Decoding of HTML entities in indicator names for IDs (unambiguous) (T104196)
 showindicators
 !! wikitext
 <indicator name="1&2&3&amp;amp;4&amp;amp;amp;5">Indicator</indicator>
-!! html/php
+!! metadata
 1&2&3&amp;4&amp;amp;5=Indicator
-
+!! html/php
 !! html/parsoid
 <p><link typeof="mw:Extension/indicator" about="#mwt3" data-mw='{"name":"indicator","attrs":{"name":"1&amp;2&amp;3&amp;amp;4&amp;amp;amp;5"},"body":{"extsrc":"Indicator"}}' /></p>
 !! end

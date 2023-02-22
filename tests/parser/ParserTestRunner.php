@@ -986,13 +986,17 @@ class ParserTestRunner {
 				return "Test doesn't match filter";
 			}
 			// Skip parsoid-only tests if running in a legacy test mode
-			if ( $test->legacyHtml === null ) {
+			if (
+				$test->legacyHtml === null &&
+				self::getLegacyMetadataSection( $test ) === null
+			) {
 				// A Parsoid-only test should have one of the following sections
 				if (
 					isset( $test->sections['html/parsoid'] ) ||
 					isset( $test->sections['html/parsoid+integrated'] ) ||
 					isset( $test->sections['html/parsoid+standalone'] ) ||
-					isset( $test->sections['wikitext/edited'] )
+					isset( $test->sections['wikitext/edited'] ) ||
+					self::getParsoidMetadataSection( $test ) !== null
 				) {
 					if ( $mode->isLegacy() ) {
 						// Not an error, just skip this test if we're in
@@ -1000,12 +1004,37 @@ class ParserTestRunner {
 						return "Parsoid-only test";
 					}
 				} else {
-					// This test lacks both a legacy html section and also
-					// any parsoid-specific html or wikitext/edited section.
-					$test->error( "Test lacks html section", $test->testName );
+					// This test lacks both a legacy html or metadata
+					// section and also any parsoid-specific html or
+					// metadata section or wikitext/edited section.
+					$test->error( "Test lacks html or metadata section", $test->testName );
 				}
 			}
 			return null;
+	}
+
+	public static function getLegacyMetadataSection( ParserTest $test ) {
+		return // specific results for legacy parser
+			$test->sections['metadata/php'] ??
+			// specific results for legacy parser and parsoid integrated mode
+			$test->sections['metadata/integrated'] ??
+			// generic for all parsers (even standalone)
+			$test->sections['metadata'] ??
+			// missing (== use legacy combined output format)
+			null;
+	}
+
+	public static function getParsoidMetadataSection( ParserTest $test ) {
+		return // specific results for parsoid integrated mode
+			$test->sections['metadata/parsoid+integrated'] ??
+			// specific results for parsoid
+			$test->sections['metadata/parsoid'] ??
+			// specific results for legacy parser and parsoid integrated mode
+			$test->sections['metadata/integrated'] ??
+			// generic for all parsers (even standalone)
+			$test->sections['metadata'] ??
+			// missing (== use legacy combined output format)
+			null;
 	}
 
 	/**
@@ -1359,14 +1388,19 @@ class ParserTestRunner {
 				$out = preg_replace( '/\s+$/', '', $out );
 			}
 		}
+
+		$metadataExpected = self::getLegacyMetadataSection( $test );
+		$metadataActual = null;
 		if ( $output ) {
-			$this->addParserOutputInfo( $out, $output, $opts, $title );
+			$this->addParserOutputInfo(
+				$out, $output, $opts, $title,
+				$metadataExpected, $metadataActual
+			);
 		}
 
 		ScopedCallback::consume( $teardownGuard );
 
-		$expected = $test->legacyHtml;
-		'@phan-var string $expected'; // assert that this is not null
+		$expected = $test->legacyHtml ?? '';
 		if ( count( $this->normalizationFunctions ) ) {
 			$expected = ParserTestResultNormalizer::normalize(
 				$expected, $this->normalizationFunctions );
@@ -1374,56 +1408,59 @@ class ParserTestRunner {
 		}
 
 		$testResult = new ParserTestResult( $test, $mode, $expected, $out );
+		if ( $testResult->isSuccess() && $metadataExpected !== null ) {
+			$testResult = new ParserTestResult( $test, $mode, $metadataExpected, $metadataActual ?? '' );
+		}
 		return $testResult;
 	}
 
 	/**
 	 * Add information from the parser output to the result string
 	 *
-	 * @param string &$out
-	 * @param ParserOutput $output
-	 * @param array $opts
+	 * @param string &$out The "actual" parser output
+	 * @param ParserOutput $output The "actual" parser metadata
+	 * @param array $opts Test options
 	 * @param Title $title
+	 * @param ?string $metadataExpected The contents of the !!metadata section,
+	 *   or null if it is missing
+	 * @param ?string &$metadataActual The "actual" metadata output
 	 */
-	private function addParserOutputInfo( &$out, ParserOutput $output, array $opts, Title $title ) {
+	private function addParserOutputInfo(
+		&$out, ParserOutput $output, array $opts, Title $title,
+		?string $metadataExpected, ?string &$metadataActual
+	) {
+		$before = [];
+		$after = [];
+		// The "before" entries may contain HTML.
 		if ( isset( $opts['showtitle'] ) ) {
 			if ( $output->getTitleText() ) {
 				$titleText = $output->getTitleText();
 			} else {
 				$titleText = $title->getPrefixedText();
 			}
-
-			$out = "$titleText\n$out";
+			$before[] = $titleText;
 		}
 
 		if ( isset( $opts['showindicators'] ) ) {
-			$indicators = '';
 			foreach ( $output->getIndicators() as $id => $content ) {
-				$indicators .= "$id=$content\n";
+				$before[] = "$id=$content";
 			}
-			$out = $indicators . $out;
 		}
 
 		if ( isset( $opts['ill'] ) ) {
-			if ( $out !== '' ) {
-				$out .= "\n";
-			}
-			$out .= implode( ' ', $output->getLanguageLinks() );
-		} elseif ( isset( $opts['cat'] ) ) {
+			$after[] = implode( ' ', $output->getLanguageLinks() );
+		}
+
+		if ( isset( $opts['cat'] ) ) {
 			foreach ( $output->getCategories() as $name => $sortkey ) {
-				if ( $out !== '' ) {
-					$out .= "\n";
-				}
-				$out .= "cat=$name sort=$sortkey";
+				$after[] = "cat=$name sort=$sortkey";
 			}
 		}
 
 		if ( isset( $opts['extension'] ) ) {
 			foreach ( explode( ',', $opts['extension'] ) as $ext ) {
-				if ( $out !== '' ) {
-					$out .= "\n";
-				}
-				$out .= "extension[$ext]=" .
+				$after[] = "extension[$ext]=" .
+					// XXX should use JsonCodec
 					json_encode(
 						$output->getExtensionData( $ext ),
 						JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT
@@ -1433,10 +1470,7 @@ class ParserTestRunner {
 
 		if ( isset( $opts['property'] ) ) {
 			foreach ( explode( ',', $opts['property'] ) as $prop ) {
-				if ( $out !== '' ) {
-					$out .= "\n";
-				}
-				$out .= "property[$prop]=" .
+				$after[] = "property[$prop]=" .
 					( $output->getPageProperty( $prop ) ?? '' );
 			}
 		}
@@ -1456,10 +1490,7 @@ class ParserTestRunner {
 				}
 			}
 			sort( $actualFlags );
-			if ( $out !== '' ) {
-				$out .= "\n";
-			}
-			$out .= "flags=" . implode( ', ', $actualFlags );
+			$after[] = "flags=" . implode( ', ', $actualFlags );
 			# In 1.21 we deprecated the use of arbitrary keys for
 			# ParserOutput::setFlag() by extensions; if we find anyone
 			# still doing that complain about it.
@@ -1475,14 +1506,24 @@ class ParserTestRunner {
 			// FIXME: We probably want to update this to a different format
 			$sections = $output->getTOCData() !== null ?
 					  $output->getTOCData()->getSections() : [];
-			$toc = [];
 			foreach ( $sections as $s ) {
-				$toc[] = json_encode( $s->toLegacy() );
+				$after[] = json_encode( $s->toLegacy() );
 			}
-			if ( $out !== '' ) {
-				$out .= "\n";
+		}
+		if ( $metadataExpected === null ) {
+			// legacy format, add $before and $after to $out
+			if ( $before ) {
+				$before = implode( "\n", $before );
+				$out = "$before\n$out";
 			}
-			$out .= implode( "\n", $toc );
+			if ( $after ) {
+				if ( $out && !str_ends_with( $out, "\n" ) ) {
+					$out .= "\n";
+				}
+				$out .= implode( "\n", $after );
+			}
+		} else {
+			$metadataActual = implode( "\n", array_merge( $before, $after ) );
 		}
 	}
 

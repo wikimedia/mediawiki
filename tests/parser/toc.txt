@@ -36,7 +36,7 @@ parsoid={
 ====h2.2.1====
 ====h2.2.2====
 ==h3==
-!! html
+!! metadata
 {"toclevel":1,"level":"2","line":"h1","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"h1","linkAnchor":"h1"}
 {"toclevel":2,"level":"3","line":"h1.1","number":"1.1","index":"2","fromtitle":"Parser_test","byteoffset":7,"anchor":"h1.1","linkAnchor":"h1.1"}
 {"toclevel":1,"level":"2","line":"h2","number":"2","index":"3","fromtitle":"Parser_test","byteoffset":18,"anchor":"h2","linkAnchor":"h2"}
@@ -63,7 +63,7 @@ parsoid={
 <h3>c</h3>
 ===d===
 <h2>e</h2>
-!! html
+!! metadata
 {"toclevel":1,"level":"2","line":"a","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"a","linkAnchor":"a"}
 {"toclevel":1,"level":"2","line":"b","number":"2","index":"","fromtitle":false,"byteoffset":null,"anchor":"b","linkAnchor":"b"}
 {"toclevel":2,"level":"3","line":"c","number":"2.1","index":"","fromtitle":false,"byteoffset":null,"anchor":"c","linkAnchor":"c"}
@@ -84,7 +84,7 @@ parsoid={
 ==a==
 ==a==
 ==b==
-!! html
+!! metadata
 {"toclevel":1,"level":"2","line":"a","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"a","linkAnchor":"a"}
 {"toclevel":1,"level":"2","line":"a","number":"2","index":"2","fromtitle":"Parser_test","byteoffset":6,"anchor":"a_2","linkAnchor":"a_2"}
 {"toclevel":1,"level":"2","line":"b","number":"3","index":"3","fromtitle":"Parser_test","byteoffset":12,"anchor":"b","linkAnchor":"b"}
@@ -102,7 +102,7 @@ parsoid={
 !! wikitext
 ==a==
 {{Test}}
-!! html
+!! metadata
 {"toclevel":1,"level":"2","line":"a","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"a","linkAnchor":"a"}
 {"toclevel":1,"level":"2","line":"th2","number":"2","index":"T-1","fromtitle":"Template:Test","byteoffset":null,"anchor":"th2","linkAnchor":"th2"}
 {"toclevel":2,"level":"3","line":"th2.1","number":"2.1","index":"T-2","fromtitle":"Template:Test","byteoffset":null,"anchor":"th2.1","linkAnchor":"th2.1"}
@@ -120,7 +120,7 @@ parsoid={
 !! wikitext
 ==<span>x</span>==
 ==<strike>y</strike>==
-!! html
+!! metadata
 {"toclevel":1,"level":"2","line":"<span>x<\/span>","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"x","linkAnchor":"x"}
 {"toclevel":1,"level":"2","line":"<strike>y<\/strike>","number":"2","index":"2","fromtitle":"Parser_test","byteoffset":19,"anchor":"y","linkAnchor":"y"}
 !! end
@@ -137,7 +137,7 @@ parsoid={
 !! wikitext
 ==<div>b</div>==
 ==<font>c</font>==
-!! html
+!! metadata
 {"toclevel":1,"level":"2","line":"b","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"b","linkAnchor":"b"}
 {"toclevel":1,"level":"2","line":"c","number":"2","index":"2","fromtitle":"Parser_test","byteoffset":17,"anchor":"c","linkAnchor":"c"}
 !! end
@@ -155,7 +155,7 @@ parsoid={
 ==<span dir='ltr' title='x'>a</span>==
 ==<span dir='rtl' title='x'>b</span>==
 ==<i dir='rtl' title='ha'>c</i>==
-!! html
+!! metadata
 {"toclevel":1,"level":"2","line":"<span dir=\"ltr\">a<\/span>","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"a","linkAnchor":"a"}
 {"toclevel":1,"level":"2","line":"<span dir=\"rtl\">b<\/span>","number":"2","index":"2","fromtitle":"Parser_test","byteoffset":39,"anchor":"b","linkAnchor":"b"}
 {"toclevel":1,"level":"2","line":"<i>c<\/i>","number":"3","index":"3","fromtitle":"Parser_test","byteoffset":78,"anchor":"c","linkAnchor":"c"}
@@ -174,10 +174,10 @@ parsoid={
 !! wikitext
 ==<span><div></div></span>x==
 ==<span dir='ltr'><i dir='ltr'></i></span>y==
-!! html/php
+!! metadata/php
 {"toclevel":1,"level":"2","line":"x","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"x","linkAnchor":"x"}
 {"toclevel":1,"level":"2","line":"<span dir=\"ltr\"><i><\/i><\/span>y","number":"2","index":"2","fromtitle":"Parser_test","byteoffset":30,"anchor":"y","linkAnchor":"y"}
-!! html/parsoid
+!! metadata/parsoid
 {"toclevel":1,"level":"2","line":"x","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"x","linkAnchor":"x"}
 {"toclevel":1,"level":"2","line":"y","number":"2","index":"2","fromtitle":"Parser_test","byteoffset":30,"anchor":"y","linkAnchor":"y"}
 !! end
@@ -195,7 +195,7 @@ parsoid={
 ==[[Cat]]==
 ==[[Dog]]s==
 ==[[Cat|I love my ''cat'']]==
-!! html
+!! metadata
 {"toclevel":1,"level":"2","line":"Cat","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"Cat","linkAnchor":"Cat"}
 {"toclevel":1,"level":"2","line":"Dogs","number":"2","index":"2","fromtitle":"Parser_test","byteoffset":12,"anchor":"Dogs","linkAnchor":"Dogs"}
 {"toclevel":1,"level":"2","line":"I love my <i>cat<\/i>","number":"3","index":"3","fromtitle":"Parser_test","byteoffset":25,"anchor":"I_love_my_cat","linkAnchor":"I_love_my_cat"}
@@ -218,7 +218,7 @@ wgFragmentMode=[ "html5", "legacy" ]
 !! wikitext
 ===a=
 =''x''=
-!! html
+!! metadata
 {"toclevel":1,"level":"1","line":"==a","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"==a","linkAnchor":"==a"}
 {"toclevel":1,"level":"1","line":"<i>x<\/i>","number":"2","index":"2","fromtitle":"Parser_test","byteoffset":6,"anchor":"x","linkAnchor":"x"}
 !! end
@@ -258,13 +258,13 @@ parsoid={
 {{1x|1=
 ==b==
 }}
-!! html/php
+!! metadata/php
 {"toclevel":1,"level":"2","line":"a","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"a","linkAnchor":"a"}
 {"toclevel":1,"level":"2","line":"b","number":"2","index":"","fromtitle":false,"byteoffset":null,"anchor":"b","linkAnchor":"b"}
-!! html/parsoid
+!! metadata/parsoid
 {"toclevel":1,"level":"2","line":"a","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"a","linkAnchor":"a"}
 {"toclevel":1,"level":"2","line":"b","number":"2","index":"T-2","fromtitle":"Template:1x","byteoffset":null,"anchor":"b","linkAnchor":"b"}
-!! html/parsoid+integrated
+!! metadata/parsoid+integrated
 {"toclevel":1,"level":"2","line":"a","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"a","linkAnchor":"a"}
 {"toclevel":1,"level":"2","line":"b","number":"2","index":"T-1","fromtitle":"Template:1x","byteoffset":null,"anchor":"b","linkAnchor":"b"}
 !! end
@@ -292,9 +292,9 @@ parsoid={
 }
 !! wikitext
 ==c<ref>d</ref>==
-!! html+disabled
+!! metadata+disabled
 {"toclevel":1,"level":"2","line":"c<sup>&#91;1&#93;<\/sup>","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"c[1]","linkAnchor":"c[1]"}
-!! html/parsoid
+!! metadata/parsoid
 {"toclevel":1,"level":"2","line":"c<sup><span>[1]<\/span><\/sup>","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"c[1]","linkAnchor":"c[1]"}
 !! end
 
@@ -314,8 +314,8 @@ parsoid={
 }
 !! wikitext
 ==c<tag>d</tag>==
-!! html
+!! metadata/php
 {"toclevel":1,"level":"2","line":"c\n'd'\narray (\n)","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"c_'d'_array_(_)","linkAnchor":"c_'d'_array_(_)"}
-!! html/parsoid
+!! metadata/parsoid
 {"toclevel":1,"level":"2","line":"c'd'\narray (\n)","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"c'd'_array_(_)","linkAnchor":"c'd'_array_(_)"}
 !! end
