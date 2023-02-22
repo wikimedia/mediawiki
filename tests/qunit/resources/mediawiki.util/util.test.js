@@ -852,4 +852,25 @@
 		} );
 
 	} );
+
+	QUnit.test( 'isTemporaryUser', function ( assert ) {
+		var usernames = [
+			[ '*$1', 'Test', false, true, 'prefix mismatch' ],
+			[ '*$1', '*Some user', true, true, 'prefix match' ],
+			[ '$1*', 'Some user*', true, true, 'suffix only match' ],
+			[ '$1*', 'Some user', false, true, 'suffix only mismatch' ],
+			[ '*$1*', '*Unregistered 123*', true, true, 'prefix and suffix match' ],
+			[ '*$1*', 'Unregistered 123*', false, true, 'prefix and suffix mismatch' ],
+			[ '*$1*', '**', true, true, 'prefix and suffix zero length match' ],
+			[ '*$1*', '*', false, true, 'prefix and suffix overlapping' ],
+			[ '*$1*', '*', false, false, 'Auto create temporary user disabled' ]
+		];
+		usernames.forEach( function ( username ) {
+			mw.util.setOptionsForTest( {
+				AutoCreateTempUser: { enabled: username[ 3 ], matchPattern: username[ 0 ] }
+			} );
+
+			assert.strictEqual( util.isTemporaryUser( username[ 1 ] ), username[ 2 ], username[ 4 ] );
+		} );
+	} );
 }() );

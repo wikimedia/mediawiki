@@ -1009,6 +1009,39 @@ util = {
 			ip = ip.toLowerCase();
 		}
 		return ip;
+	},
+
+	/**
+	 * This functionality has been adapted from MediaWiki\User\TempUser\Pattern::isMatch()
+	 *
+	 * Checks if the pattern matches the given username
+	 *
+	 * @param {string} username
+	 * @return {boolean}
+	 */
+	isTemporaryUser: function ( username ) {
+		var autoCreateUserMatchPattern = config.AutoCreateTempUser.matchPattern;
+		var position = autoCreateUserMatchPattern.indexOf( '$1' );
+
+		if ( !config.AutoCreateTempUser.enabled ) {
+			return false;
+		}
+		// '$1' was not found in autoCreateUserMatchPattern
+		if ( position === -1 ) {
+			return false;
+		}
+		var prefix = autoCreateUserMatchPattern.slice( 0, position );
+		var suffix = autoCreateUserMatchPattern.slice( position + '$1'.length );
+
+		var match = true;
+		if ( prefix !== '' ) {
+			match = ( username.indexOf( prefix ) === 0 );
+		}
+		if ( match && suffix !== '' ) {
+			match = ( username.indexOf( suffix, username.length - suffix.length ) !== -1 ) &&
+				( username.length >= prefix.length + suffix.length );
+		}
+		return match;
 	}
 };
 
