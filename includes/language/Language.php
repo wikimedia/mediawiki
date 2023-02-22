@@ -421,10 +421,11 @@ class Language implements Bcp47Code {
 	}
 
 	/**
-	 * @deprecated since 1.34, use MediaWikiServices
+	 * @deprecated since 1.34, use MediaWikiServices. Hard-deprecated since 1.40.
 	 * @return LocalisationCache
 	 */
 	public static function getLocalisationCache() {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getLocalisationCache();
 	}
 
@@ -4455,20 +4456,21 @@ class Language implements Bcp47Code {
 	 * WARNING: this may take a long time. If you just need all message *keys*
 	 * but need the *contents* of only a few messages, consider using getMessageKeysFor().
 	 *
-	 * @deprecated since 1.35, use LocalisationCache directly
+	 * @deprecated since 1.35, use LocalisationCache directly. Hard-deprecated since 1.40.
 	 *
 	 * @param string $code
 	 *
 	 * @return array
 	 */
 	public static function getMessagesFor( $code ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return self::getLocalisationCache()->getItem( $code, 'messages' );
 	}
 
 	/**
 	 * Get a message for a given language
 	 *
-	 * @deprecated since 1.35, use LocalisationCache directly
+	 * @deprecated since 1.35, use LocalisationCache directly. Hard-deprecated since 1.40.
 	 *
 	 * @param string $key
 	 * @param string $code
@@ -4476,6 +4478,7 @@ class Language implements Bcp47Code {
 	 * @return string
 	 */
 	public static function getMessageFor( $key, $code ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return self::getLocalisationCache()->getSubitem( $code, 'messages', $key );
 	}
 
@@ -4483,13 +4486,14 @@ class Language implements Bcp47Code {
 	 * Get all message keys for a given language. This is a faster alternative to
 	 * array_keys( Language::getMessagesFor( $code ) )
 	 *
-	 * @deprecated since 1.35, use LocalisationCache directly
+	 * @deprecated since 1.35, use LocalisationCache directly. Hard-deprecated since 1.40.
 	 *
 	 * @since 1.19
 	 * @param string $code Language code
 	 * @return string[] Array of message keys (strings)
 	 */
 	public static function getMessageKeysFor( $code ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return self::getLocalisationCache()->getSubitemList( $code, 'messages' );
 	}
 
