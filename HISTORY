@@ -2,7 +2,60 @@ Change notes from older releases. For current info, see RELEASE-NOTES-1.40.
 
 = MediaWiki 1.39 =
 
-+== MediaWiki 1.39.1 ==
+== MediaWiki 1.39.2 ==
+
+This is a maintenance release of the MediaWiki 1.39 branch.
+
+=== Changes since MediaWiki 1.39.1 ===
+* Localisation updates.
+* (T325872) ChangeTags: Remove table name from condition.
+* (T324895) MWCallbackStream: Add explicit $stream property.
+* (T297031, T326039) PostgresUpdater: Move setDefault ahead of
+  changeNullableField.
+* (T321319) Produce HTML for invalid JSON.
+* (T215466, T326071) MigrateActors: Write to revision table (Follow-up 24115a8).
+* (T223027) ReservedUsernames config: Add reserved names from maintenance
+  scripts.
+* (T325000, T324896, T307631) Updated OOUI from v0.44.3 to v0.44.5.
+* Remove /images .htaccess rules that are no longer relevant.
+* Disable php in .htaccess of images directory as a hardening measure.
+* (T322583) Include missing message parameter in message.
+* LocalFileTest: use encodeBlob/decodeBlob for img_metadata.
+* DatabaseSqlite: fix null blobs.
+* rdbms: avoid pg_escape_bytea() call-style deprecation notices.
+* (T322278) Improve LocalisationCache post-merge validation check.
+* (T324408, T326367) Updated wikimedia/remex-html from 3.0.2 to 3.0.3.
+* (T322278) Fix the remaining Phan failures on PHP 8.1.
+* (T322278, T326367) Respond to some messages from Phan on PHP 8.1.
+* Fix phan error when Excimer is enabled.
+* (T326021) Add matrix: to $wgUrlProtocols.
+* (T314099) stream wrapper: Declare $context class property.
+* (T314099) libs\jsminplus: Declare JSNode::$expression.
+* (T314096) composer.json: Updated composer/spdx-licenses from 1.5.6 to 1.5.7.
+* (T326472) Upgrading cssjanus/cssjanus (v2.1.0 => v2.1.1).
+* (T308536) rdbms: Remove deprecation mark for $wgSharedDB.
+* (T215466, T326071) installer: Split drop action out of the SQL patch for actor
+  migration.
+* (T322603) SqliteMaintenance.php: Fix fatally broken instanceof check.
+* (T326377) rdbms: Use DBConnRef in SelectQueryBuilder.
+* api/en.json: api-help-datatype-expiry add missing 'may'.
+* (T317329) OutputPage: Fix undefined ['host'] in ImagePreconnect code.
+* (T328222) Pass empty string to strlen() if schema is null for
+  PostgresDatabase.
+* (T289926) SpecialRevisionDelete: Set default of '' for wpReason.
+* (T155582, T328503) Fix XML dumps for content types with non-string
+  getNativeData().
+* (T326886) PoolCounterRedis: Fix wrong cast, locks weren't being released.
+* (T314099) revisiondelete: Replace dynamic property Status::$itemStatuses
+* (T327821) skin: Restore default 'value' attribute in makeSearchButton().
+* (T329198) ParamValidator: Improve paramvalidator-help-multi-max message.
+* (T329415) Clear the statsd data buffer regardless of StatsdServer config.
+* (T292348) WikiImporter: do not fail if upload entry in dump lacks 'text' tag.
+* (T330049) UnregisteredLocalFile: Don't call MimeAnalyzer if no path.
+* (T324894 TempFSFile: Use a WeakMap for reference tracking if available.
+* (T295637) Add no to fallback chain of nb and nn.
+
+== MediaWiki 1.39.1 ==
 
 This is a security and maintenance release of the MediaWiki 1.39 branch.
 
@@ -46,6 +99,14 @@ This is a security and maintenance release of the MediaWiki 1.39 branch.
 * PagerNavigationBuilder: Document that nulls in setLinkQuery() etc. are
   allowed.
 * (T322335) ApiQueryRevisionsBase: Fix 'rvdiffto' parameter handling on PHP 8.0.
+* (T314096) TestFileEditor: Fix string interpolation.
+* (T289926) api: Fix minor PHP 8.1 incompatibility in ApiOptions.
+* (T322803) SpecialBotPasswords: Don't pass null to trim().
+* (T289926) Fix incomplete ITextFormatter mocks.
+* Language: Handle ronna and quetta.
+* (T72510) rdbms: make SqlitePlatform::tableName() apply double quotes.
+* (T323373) Parser: Fix extractSections() behavior for PHP >= 8.0.
+* .gitattributes: Ship docker-compose.yml to the tarball.
 
 == MediaWiki 1.39.0-rc.1 ==
 
@@ -175,9 +236,10 @@ For notes on 1.38.x and older releases, see HISTORY.
 
 ==== Changed external libraries ====
 * Updated jQuery from v3.6.0 to v3.6.1.
-* Updated OOUI from v0.43.2 to v0.44.3.
+* Updated OOUI from v0.43.2 to v0.44.5.
 * Updated composer/semver from 3.2.6 to 3.3.2.
-* Updated pear/mail (v1.4.1 => v1.5.0).
+* Updated cssjanus/cssjanus fromv2.1.0 to v2.1.1.
+* Updated pear/mail from v1.4.1 to v1.5.0.
 * Updated symfony/polyfill-php73 from 1.25.0 to 1.26.0.
 * Updated symfony/polyfill-php80 from 1.25.0 to 1.26.0.
 * Updated symfony/yaml from 5.4.3 to 5.4.10.
@@ -186,6 +248,7 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Updated wikimedia/ip-set from 3.0.0 to 3.1.0.
 * Updated wikimedia/minify from 2.2.6 to 2.3.0.
 * Updated wikimedia/php-session-serializer from 2.0.0 to 2.0.1.
+* Updated wikimedia/remex-html from 3.0.2 to 3.0.3.
 * Updated wikimedia/running-stat from 1.2.1 to 2.1.0.
 * Updated wikimedia/scoped-callback from 3.0.0 to 4.0.0.
 * Updated wikimedia/services from 2.0.1 to 3.0.0.
@@ -193,7 +256,7 @@ For notes on 1.38.x and older releases, see HISTORY.
 * Updated wikimedia/xmp-reader from 0.8.1 to 0.8.6.
 
 ===== Changed development-only external libraries =====
-* Updated composer/spdx-licenses from 1.5.5 to 1.5.6.
+* Updated composer/spdx-licenses from 1.5.5 to 1.5.7.
 * Updated doctrine/dbal for PHP < 7.3 from 2.13.6 to 2.13.9.
 * Updated doctrine/dbal for PHP >= 7.3 from 3.1.5 to 3.4.2.
 
@@ -239,6 +302,7 @@ because of Phabricator reports.
   ones are retained as aliases for backwards compatibility.
 * (T117845) Started the renaming of the language codes for Serbian from sr-ec
   and sr-el to sr-cyrl and sr-latn.
+* (T295637) Add no to fallback chain of nb and nn.
 
 === Breaking changes in 1.39 ===
 * Basic non-JavaScript (Grade C) support has been dropped for Internet Explorer
@@ -639,7 +703,6 @@ because of Phabricator reports.
   enough to not need a helper class. See the methods of ActorMigration for more
   specific information on replacements. ActorMigrationBase remains usable for
   migrations in extension tables.
-* …
 
 === Other changes in 1.39 ===
 * Dynamic default values are now applied before extension registration callbacks
@@ -695,7 +758,6 @@ going to run a public MediaWiki, so you can be notified of security fixes.
 
 == IRC help ==
 There's usually someone online in #mediawiki on irc.libera.chat.
-
 
 = MediaWiki 1.38 =
 
