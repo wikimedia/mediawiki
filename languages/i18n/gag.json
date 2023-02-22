@@ -11,7 +11,8 @@
 			"Reedy",
 			"Stephanecbisson",
 			"아라",
-			"Amire80"
+			"Amire80",
+			"TayfunEt."
 		]
 	},
 	"tog-underline": "Baalantıların altını çiz",
@@ -685,5 +686,6 @@
 	"version": "Versiya",
 	"specialpages": "Maasus sayfalar",
 	"deletepage": "Sayfayı sil",
+	"searchsuggest-search": "{{SITENAME}} içindä ara",
 	"skin-action-protect": "Korunmak altına al"
 }
