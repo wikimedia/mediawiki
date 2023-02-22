@@ -3516,8 +3516,9 @@ class OutputPage extends ContextSource {
 			$vars['wgPageParseReport'] = $this->limitReportJSData;
 		}
 		if ( $vars ) {
+			$rlContext = $this->getRlClientContext();
 			$chunks[] = ResourceLoader::makeInlineScript(
-				ResourceLoader::makeConfigSetScript( $vars ),
+				'mw.config.set(' . $rlContext->encodeJson( $vars ) . ');',
 				$this->CSP->getNonce()
 			);
 		}

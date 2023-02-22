@@ -891,23 +891,25 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *
 	 * @note This will cause any existing service instances to be reset.
 	 *
-	 * @param string|BagOStuff $cache
-	 *
+	 * @param string|int|BagOStuff $cache
 	 * @return string|int The new value of the MainCacheType setting.
 	 */
 	protected function setMainCache( $cache ) {
 		if ( $cache instanceof BagOStuff ) {
-			// ObjectCache::$instances is reset after each test by resetNonGlobalServices().
-			ObjectCache::$instances[ 'UTCache' ] = $cache;
-			$cache = 'UTCache';
+			$cacheId = 'UTCache';
+			ObjectCache::$instances[ $cacheId ] = $cache;
+		} else {
+			$cacheId = $cache;
+			$cache = ObjectCache::getInstance( $cacheId );
 		}
 
-		if ( !is_string( $cache ) && !is_int( $cache ) ) {
-			throw new InvalidArgumentException( 'Bad type of $cache parameter: ' . get_debug_type( $cache ) );
+		if ( !is_string( $cacheId ) && !is_int( $cacheId ) ) {
+			throw new InvalidArgumentException( 'Bad type of $cache parameter: ' . get_debug_type( $cacheId ) );
 		}
 
-		$this->overrideConfigValue( MainConfigNames::MainCacheType, $cache );
-		return $cache;
+		$this->overrideConfigValue( MainConfigNames::MainCacheType, $cacheId );
+		$this->setService( '_LocalClusterCache', $cache );
+		return $cacheId;
 	}
 
 	/**
