@@ -158,6 +158,7 @@ because of Phabricator reports.
 * (T323971) Added language support for Khakas (kjh).
 * (T326526) Added language support for Igala (igl).
 * (T329476) Added language support for Kusaal (kus).
+* (T330266) Added language support for Southern Dagaare (dga).
 * (T295637) Add no to fallback chain of nb and nn.
 
 === Breaking changes in 1.40 ===

@@ -133,6 +133,7 @@ class Names {
 		'de-at' => 'Österreichisches Deutsch', # Austrian German
 		'de-ch' => 'Schweizer Hochdeutsch', # Swiss Standard German
 		'de-formal' => 'Deutsch (Sie-Form)', # German - formal address ("Sie")
+		'dga' => 'Dagaare', # Southern Dagaare
 		'din' => 'Thuɔŋjäŋ', # Dinka
 		'diq' => 'Zazaki', # Zazaki
 		'dsb' => 'dolnoserbski', # Lower Sorbian
