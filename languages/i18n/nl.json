@@ -3771,7 +3771,7 @@
 	"search-match-redirect-label": "Exact zoekresultaat meteen openen",
 	"search-match-redirect-help": "Selecteer dit om meteen naar een pagina te gaan wanneer die paginatitel overeenkomt met de zoekopdracht",
 	"search-thumbnail-extra-namespaces-label": "Miniaturen tonen in Speciaal:Zoeken op desktop",
-	"search-thumbnail-extra-namespaces-message": "Toont miniaturen voor de resultaten uit de {{PLURAL:$2|naamruimte|naamruimten}} $1 op de pagina Speciaal:Zoeken",
+	"search-thumbnail-extra-namespaces-message": "Toont miniaturen voor de resultaten uit de {{PLURAL:$2|naamruimte|naamruimten}} $1 op de pagina {{#special:search}}",
 	"searchlimit-label": "Aantal weer te geven zoekresultaten op elke pagina:",
 	"searchlimit-help": "Maximale aantal: $1",
 	"api-clientside-error-noconnect": "Kon geen verbinding met de server maken. Controleer of u een werkende internetverbinding heeft en probeer het opnieuw.",

@@ -4,6 +4,7 @@
 			"Robby",
 			"Seb35",
 			"Soued031",
+			"Volvox",
 			"아라"
 		]
 	},
@@ -111,7 +112,7 @@
 	"config-admin-name-blank": "Gitt e Benotzernumm fir den Administrateur an.",
 	"config-admin-name-invalid": "De spezifizéierte Benotzernumm \"<nowiki>$1</nowiki>\" ass net valabel.\nSpezifizéiert en anere Benotzernumm.",
 	"config-admin-password-blank": "Gitt e Passwuert fir den Adminstateur-Kont an.",
-	"config-admin-password-mismatch": "Déi zwee Passwierder Déi Dir aginn hutt stëmmen net iwwereneen.",
+	"config-admin-password-mismatch": "Déi zwee Passwierder, déi Dir aginn hutt, stëmmen net iwwereneen.",
 	"config-admin-email": "E-Mail-Adress:",
 	"config-admin-error-user": "Interne Feeler beim Uleeë vun engem Administrateur mam Numm \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Interne Feeler beim Setze vum Passwuert fir den Admin \"<nowiki>$1</nowiki>\": <pre>$2</pre>",

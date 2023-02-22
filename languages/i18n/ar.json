@@ -1542,7 +1542,7 @@
 	"recentchanges-label-plusminus": "حجم الصفحة تغير بهذا العدد من البايتات",
 	"recentchanges-legend-heading": "<strong>شرح:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (طالع كذلك [[Special:NewPages|قائمة الصفحات الجديدة]])",
-	"recentchanges-legend-watchlistexpiry": "صفحة مراقبة بشكل مؤقت",
+	"recentchanges-legend-watchlistexpiry": "صفحة مراقبة مؤقتاً",
 	"recentchanges-submit": "أظهر",
 	"rcfilters-tag-remove": "أزل '$1'",
 	"rcfilters-legend-heading": "<strong>قائمة الاختصارات:</strong>",

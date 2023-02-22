@@ -3850,7 +3850,7 @@
 	"search-match-redirect-label": "Pri iskanju pojdi na natančno ujemanje",
 	"search-match-redirect-help": "Označite, če želite iti na stran, ko se naslov strani ujema s tem, kar ste iskali",
 	"search-thumbnail-extra-namespaces-label": "Prikaži sličice v Posebno:Iskanje na namizju",
-	"search-thumbnail-extra-namespaces-message": "Prikaže sličice za {{PLURAL:$2|imenski prostor|imenska prostora|imenske prostore}} $1 na strani Posebno:Iskanje.",
+	"search-thumbnail-extra-namespaces-message": "Prikaže sličice za {{PLURAL:$2|imenski prostor|imenska prostora|imenske prostore}} $1 na strani {{#special:search}}.",
 	"searchlimit-label": "Število iskalnih zadetkov, ki bodo prikazani na vsaki strani:",
 	"searchlimit-help": "Največje število: $1",
 	"api-clientside-error-noconnect": "Ni se bilo mogoče povezati s strežnikom. Zagotovite, da imate delujočo internetno povezavo, in poskusite znova.",
