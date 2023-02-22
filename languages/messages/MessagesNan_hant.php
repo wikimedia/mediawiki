@@ -10,7 +10,7 @@
  * @author Winston Sung
  */
 
-$fallback = 'nan, nan-latn-pehoeji, nan-latn-tailo, cdo, zh-hant, zh, zh-hans';
+$fallback = 'nan, nan-latn-pehoeji, nan-latn-tailo, cdo-hant, zh-hant, zh, zh-hans';
 
 $namespaceNames = [
 	NS_MEDIA            => '媒體',

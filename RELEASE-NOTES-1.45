@@ -124,6 +124,8 @@ because of Phabricator reports.
   backwards compatibility. "ks-deva" may be removed in a future release.
 * (T395223) Added language support for Yucatec Maya (yua).
 * (T397435) Added language support for Dolgan (dlg).
+* Update language fallback chains for Minnan (nan/nan-*) by changing to only
+  fallback to Mindong - Traditional Han script (cdo-hant).
 * …
 
 === Breaking changes in 1.45 ===

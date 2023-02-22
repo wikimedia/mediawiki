@@ -10,7 +10,7 @@
  * @author Winston Sung
  */
 
-$fallback = 'nan-latn, nan-latn-tailo, nan, nan-hant, cdo, zh-hant, zh, zh-hans';
+$fallback = 'nan-latn, nan-latn-tailo, nan, nan-hant, cdo-hant, zh-hant, zh, zh-hans';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Mûi-thé',
