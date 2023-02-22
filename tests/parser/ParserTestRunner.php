@@ -1630,23 +1630,55 @@ class ParserTestRunner {
 			"All tests include a wikitext section"
 		);
 
-		if ( $html === null && !$mode->isCachingMode() ) {
+		if ( $html === null && !$mode->isCachingMode() && !isset( $test->options['nohtml'] ) ) {
 			// Nothing to test, but if mode is 'cache' we're executing this
 			// in order to set cachedBODYstr (say, for a wt2wt test)
+			// If the 'nohtml' option is set, we're executing this in order
+			// to test metadata.
 			return false;
 		}
 
+		$metadata = new ParserOutput( 'parsoid' );
 		$origOut = $parsoid->wikitext2html( $pageConfig, [
 			'body_only' => true,
 			'wrapSections' => $test->options['parsoid']['wrapSections'] ?? false,
-		] );
+		], $headers, $metadata );
+
+		if ( isset( $test->options['nohtml'] ) ) {
+			// Suppress HTML (presumably because we want to test the metadata)
+			$origOut = '';
+		}
+
+		$metadataExpected = self::getParsoidMetadataSection( $test );
+		$metadataActual = null;
+		$this->addParserOutputInfo(
+			$origOut, $metadata, $test->options,
+			Title::newFromText( $pageConfig->getTitle() ),
+			$metadataExpected, $metadataActual
+		);
+
 		$test->cachedBODYstr = $origOut;
 
-		return $this->processResults(
+		$testResult = $this->processResults(
+			$test, $mode,
 			// Passing 'null' for expected output here asks normalizeHTML
 			// to look it up for us, based on parsoid-only & standalone status
-			$test, $mode, null, $origOut, [ $test, "normalizeHTML" ]
+			isset( $test->options['nohtml'] ) ? '' : null,
+			$origOut, [ $test, "normalizeHTML" ]
 		);
+		if ( $metadataExpected !== null && !$mode->isCachingMode() ) {
+			$nullNormalizer = static function ( $actual, $expected, $ignore ) {
+				return [ $actual, $expected ];
+			};
+			$metadataResult = $this->processResults(
+				$test, new ParserTestMode( 'metadata' ), $metadataExpected, $metadataActual ?? '', $nullNormalizer
+			);
+			if ( $testResult === false || $testResult->isSuccess() ) {
+				// Ensure both results have to be successful
+				$testResult = $metadataResult;
+			}
+		}
+		return $testResult;
 	}
 
 	/**
@@ -2004,9 +2036,7 @@ class ParserTestRunner {
 		if ( isset( $opts['styletag'] ) || isset( $opts['pst'] ) ||
 			isset( $opts['msg'] ) || isset( $opts['section'] ) ||
 			isset( $opts['replace'] ) || isset( $opts['comment'] ) ||
-			isset( $opts['preload'] ) || isset( $opts['showtitle'] ) ||
-			isset( $opts['showindicators'] ) || isset( $opts['ill'] ) ||
-			isset( $opts['cat'] ) || isset( $opts['showflags'] )
+			isset( $opts['preload'] )
 		) {
 			return false;
 		}
