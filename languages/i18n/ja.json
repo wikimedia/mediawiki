@@ -793,7 +793,7 @@
 	"userpage-userdoesnotexist": "「$1」という利用者アカウントはこのウィキで登録されていません。\nこのページの作成/編集が適切かご確認ください。",
 	"userpage-userdoesnotexist-view": "利用者アカウント「$1」はこのウィキで登録されていません。",
 	"blocked-notice-logextract": "この{{GENDER:$1|利用者}}は現在ブロックされています。\n参考のために最新のブロック記録項目を以下に示します:",
-	"clearyourcache": "<strong>注意:</strong> 保存後、変更を確認するにはブラウザーのキャッシュを消去する必要がある場合があります。\n* <strong>Firefox / Safari:</strong> <em>Shift</em> を押しながら <em>再読み込み</em> をクリックするか、<em>Ctrl-F5</em> または <em>Ctrl-R</em> を押してください (Mac では <em>&#x2318;-R</em>)\n* <strong>Google Chrome:</strong> <em>Ctrl-Shift-R</em> を押してください (Mac では <em>&#x2318;-Shift-R</em>)\n* <strong>Internet Explore/Edger:</strong> <em>Ctrl</em> を押しながら <em>最新の情報に更新</em> をクリックするか、<em>Ctrl-F5</em> を押してください\n* <strong>Opera:</strong> <em>Ctrl-F5</em>を押してください",
+	"clearyourcache": "<strong>注意:</strong> 保存後、変更を確認するにはブラウザーのキャッシュを消去する必要がある場合があります。\n* <strong>Firefox / Safari:</strong> <em>Shift</em> を押しながら <em>再読み込み</em> をクリックするか、<em>Ctrl-F5</em> または <em>Ctrl-R</em> を押してください (Mac では <em>&#x2318;-R</em>)\n* <strong>Google Chrome:</strong> <em>Ctrl-Shift-R</em> を押してください (Mac では <em>&#x2318;-Shift-R</em>)\n* <strong>Internet Explorer / Microsoft Edge:</strong> <em>Ctrl</em> を押しながら <em>最新の情報に更新</em> をクリックするか、<em>Ctrl-F5</em> を押してください\n* <strong>Opera:</strong> <em>Ctrl-F5</em>を押してください",
 	"usercssyoucanpreview": "<strong>ヒント:</strong>「{{int:showpreview}}」ボタンを使うと、保存前に新しいCSSを試験できます。",
 	"userjsonyoucanpreview": "<strong>ヒント:</strong>「{{int:showpreview}}」ボタンを使うと、保存前に新しいJSONを試験できます。",
 	"userjsyoucanpreview": "<strong>ヒント:</strong>「{{int:showpreview}}」ボタンを使うと、保存前に新しいJavaScriptを試験できます。",
