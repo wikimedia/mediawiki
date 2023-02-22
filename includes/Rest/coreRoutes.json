@@ -150,7 +150,7 @@
 		"path": "/v1/page/{title}/links/media",
 		"class": "MediaWiki\\Rest\\Handler\\MediaLinksHandler",
 		"services": [
-			"DBLoadBalancer",
+			"DBLoadBalancerFactory",
 			"RepoGroup",
 			"PageStore"
 		]
