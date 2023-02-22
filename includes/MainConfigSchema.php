@@ -4196,7 +4196,7 @@ class MainConfigSchema {
 	/**
 	 * Localisation cache configuration.
 	 *
-	 * Used by Language::getLocalisationCache() to decide how to construct the
+	 * Used by service wiring to decide how to construct the
 	 * LocalisationCache instance. Associative array with keys:
 	 *
 	 * class:       The class to use for constructing the LocalisationCache object.
