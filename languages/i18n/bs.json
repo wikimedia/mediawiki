@@ -739,6 +739,7 @@
 	"editpage-invalidcontentmodel-text": "Model sadržaja \"$1\" nije podržan.",
 	"editpage-notsupportedcontentformat-title": "Format sadržaja nije podržan",
 	"editpage-notsupportedcontentformat-text": "Format sadržaja $1 nije podržan za model sadržaja $2.",
+	"slot-name-main": "Glavno",
 	"content-model-wikitext": "wikitekst",
 	"content-model-text": "obični tekst",
 	"content-model-javascript": "JavaScript",

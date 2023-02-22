@@ -9,7 +9,8 @@
 			"Rachmat.Wahidi",
 			"Rachmat04",
 			"WongKentir",
-			"Veracious"
+			"Veracious",
+			"Rex"
 		]
 	},
 	"apihelp-main-param-action": "Tindakan manakah yang akan dilakukan.",
@@ -50,7 +51,7 @@
 	"apihelp-edit-summary": "Buat dan sunting halaman.",
 	"apihelp-edit-param-title": "Judul halaman untuk dibuat. Tidak dapat digunakan bersama dengan <var>$1pageid</var>.",
 	"apihelp-edit-param-pageid": "ID halaman dari halaman yang akan disunting. Tidak dapat digunakan bersama dengan <var>$1title</var>.",
-	"apihelp-edit-param-section": "Nomor bagian. <kbd>0</kbd> untuk bagian atas, <kbd>baru</kbd> untuk bagian baru.",
+	"apihelp-edit-param-section": "Pengenal bagian. <kbd>0</kbd> untuk bagian atas, <kbd>baru</kbd> untuk bagian baru. Seringkali berupa bilangan bulat positif, tetapi bisa juga non-numerik.",
 	"apihelp-edit-param-sectiontitle": "Judul untuk bagian baru.",
 	"apihelp-edit-param-text": "Isi halaman.",
 	"apihelp-edit-param-summary": "Ringkasan suntingan. Juga tajuk bagian ketika $1section=new dan $1sectiontitle tidak diatur.",
