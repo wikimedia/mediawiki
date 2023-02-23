@@ -22,6 +22,7 @@ namespace MediaWiki\Languages;
 
 use BagOStuff;
 use HashBagOStuff;
+use LanguageCode;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -183,6 +184,9 @@ class LanguageNameUtils {
 	 * @return array Language code => language name (sorted by key)
 	 */
 	public function getLanguageNames( $inLanguage = self::AUTONYMS, $include = self::DEFINED ) {
+		if ( $inLanguage !== self::AUTONYMS ) {
+			$inLanguage = LanguageCode::replaceDeprecatedCodes( LanguageCode::bcp47ToInternal( $inLanguage ) );
+		}
 		$cacheKey = $inLanguage === self::AUTONYMS ? 'null' : $inLanguage;
 		$cacheKey .= ":$include";
 		if ( !$this->languageNameCache ) {
@@ -274,7 +278,7 @@ class LanguageNameUtils {
 	 * @return string Language name or empty
 	 */
 	public function getLanguageName( $code, $inLanguage = self::AUTONYMS, $include = self::ALL ) {
-		$code = strtolower( $code );
+		$code = LanguageCode::replaceDeprecatedCodes( LanguageCode::bcp47ToInternal( $code ) );
 		$array = $this->getLanguageNames( $inLanguage, $include );
 		return $array[$code] ?? '';
 	}

@@ -179,8 +179,6 @@ trait LanguageNameUtilsTestTrait {
 			'Pig Latin' => [ 'Igpay Atinlay', 'en-x-piglatin', AUTONYMS, ALL ],
 			'qqq doesn\'t have a name' => [ '', 'qqq', AUTONYMS, ALL ],
 			'An MW legacy tag is recognized' => [ 'žemaitėška', 'bat-smg' ],
-			// @todo Is the next test's result desired?
-			'An MW legacy tag is not supported' => [ '', 'bat-smg', AUTONYMS, SUPPORTED ],
 			'An internal standard name, for which a legacy tag is used externally, is supported' =>
 				[ 'žemaitėška', 'sgs', AUTONYMS, SUPPORTED ],
 		];
@@ -247,7 +245,7 @@ trait LanguageNameUtilsTestTrait {
 			'Invalid inLanguage defaults to English' => [ 'German', 'de', '&' ],
 			'If inLanguage not provided, default to autonym' => [ 'Deutsch', 'de' ],
 			'Hooks ignored for explicitly-requested autonym' => [ 'français', 'fr', 'fr' ],
-			'Hooks don\'t make a language supported' => [ '', 'bat-smg', 'en', SUPPORTED ],
+			'Hooks don\'t make a language supported' => [ '', 'es-419', 'en', SUPPORTED ],
 			'Hooks don\'t make a language defined' => [ '', 'sqsqsqsq', 'en', DEFINED ],
 			'Hooks do make a language name returned with ALL' => [ '!!?!', 'sqsqsqsq', 'en', ALL ],
 		];
