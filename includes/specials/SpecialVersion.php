@@ -652,12 +652,12 @@ class SpecialVersion extends SpecialPage {
 
 		$out = Html::element(
 			'h2',
-			[ 'id' => 'mw-version-libraries' ],
+			[ 'id' => 'mw-version-libraries-client' ],
 			$this->msg( 'version-libraries-client' )->text()
 		);
 		$out .= Html::openElement(
 			'table',
-			[ 'class' => 'wikitable plainlinks', 'id' => 'sv-libraries' ]
+			[ 'class' => 'wikitable plainlinks', 'id' => 'sv-libraries-client' ]
 		);
 		$out .= Html::openElement( 'tr' )
 			. Html::element( 'th', [], $this->msg( 'version-libraries-library' )->text() )
