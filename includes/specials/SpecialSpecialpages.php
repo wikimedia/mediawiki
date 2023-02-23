@@ -92,8 +92,46 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 	private function outputPageList( $groups ) {
 		$out = $this->getOutput();
 
+		// Legend
 		$includesRestrictedPages = false;
 		$includesCachedPages = false;
+		foreach ( $groups as $group => $sortedPages ) {
+			foreach ( $sortedPages as $desc => [ $title, $restricted, $cached ] ) {
+				if ( $cached ) {
+					$includesCachedPages = true;
+				}
+				if ( $restricted ) {
+					$includesRestrictedPages = true;
+				}
+			}
+		}
+
+		$notes = [];
+		if ( $includesRestrictedPages ) {
+			$restricedMsg = $this->msg( 'specialpages-note-restricted' );
+			if ( !$restricedMsg->isDisabled() ) {
+				$notes[] = $restricedMsg->parse();
+			}
+		}
+		if ( $includesCachedPages ) {
+			$cachedMsg = $this->msg( 'specialpages-note-cached' );
+			if ( !$cachedMsg->isDisabled() ) {
+				$notes[] = $cachedMsg->parse();
+			}
+		}
+		if ( $notes !== [] ) {
+			$legendHeading = $this->msg( 'specialpages-note-top' )->parse();
+
+			$legend = Html::rawElement(
+				'div',
+				[ 'class' => [ 'mw-changeslist-legend', 'mw-collapsible', 'mw-specialpages-notes' ] ],
+				$legendHeading .
+					Html::rawElement( 'div', [ 'class' => 'mw-collapsible-content' ], implode( "\n", $notes ) )
+			);
+
+			$out->addHTML( $legend );
+			$out->addModuleStyles( 'mediawiki.special.changeslist.legend' );
+		}
 
 		// Format table of contents
 		$tocData = new TOCData();
@@ -144,11 +182,9 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 			foreach ( $sortedPages as $desc => [ $title, $restricted, $cached ] ) {
 				$pageClasses = [];
 				if ( $cached ) {
-					$includesCachedPages = true;
 					$pageClasses[] = 'mw-specialpagecached';
 				}
 				if ( $restricted ) {
-					$includesRestrictedPages = true;
 					$pageClasses[] = 'mw-specialpagerestricted';
 				}
 
@@ -162,30 +198,6 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 			$out->addHTML(
 				Html::closeElement( 'ul' ) .
 				Html::closeElement( 'div' )
-			);
-		}
-
-		// add legend
-		$notes = [];
-		if ( $includesRestrictedPages ) {
-			$restricedMsg = $this->msg( 'specialpages-note-restricted' );
-			if ( !$restricedMsg->isDisabled() ) {
-				$notes[] = $restricedMsg->plain();
-			}
-		}
-		if ( $includesCachedPages ) {
-			$cachedMsg = $this->msg( 'specialpages-note-cached' );
-			if ( !$cachedMsg->isDisabled() ) {
-				$notes[] = $cachedMsg->plain();
-			}
-		}
-		if ( $notes !== [] ) {
-			$out->wrapWikiMsg(
-				"<h2 class=\"mw-specialpages-note-top\">$1</h2>", 'specialpages-note-top'
-			);
-			$out->wrapWikiTextAsInterface(
-				'mw-specialpages-notes',
-				implode( "\n", $notes )
 			);
 		}
 	}
