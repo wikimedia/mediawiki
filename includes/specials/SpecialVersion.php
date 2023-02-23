@@ -25,6 +25,7 @@
 
 use MediaWiki\ExtensionInfo;
 use MediaWiki\Html\Html;
+use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Utils\UrlUtils;
@@ -190,9 +191,11 @@ class SpecialVersion extends SpecialPage {
 
 			default:
 				$out->addModuleStyles( 'mediawiki.special' );
+				$out->addHTML(
+					$this->getMediaWikiCredits() .
+					$this->softwareInformation()
+				);
 				$out->addWikiTextAsInterface(
-					self::getMediaWikiCredits() .
-					self::softwareInformation() .
 					$this->getEntryPointInfo()
 				);
 				$out->addHTML(
@@ -211,45 +214,44 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Returns wiki text showing the license information.
+	 * Returns HTML showing the license information.
 	 *
-	 * @return string
+	 * @return string HTML
 	 */
-	private static function getMediaWikiCredits() {
-		$ret = Xml::element(
+	private function getMediaWikiCredits() {
+		$ret = Html::element(
 			'h2',
 			[ 'id' => 'mw-version-license' ],
-			wfMessage( 'version-license' )->text()
+			$this->msg( 'version-license' )->text()
 		);
 
-		// This text is always left-to-right.
-		$ret .= '<div class="plainlinks">';
-		$ret .= "__NOTOC__
-		" . self::getCopyrightAndAuthorList() . "\n
-		" . '<div class="mw-version-license-info">' .
-		wfMessage( 'version-license-info' )->text() .
-		'</div>';
-		$ret .= '</div>';
+		$ret .= Html::rawElement( 'div', [ 'class' => 'plainlinks' ],
+			$this->msg( new RawMessage( self::getCopyrightAndAuthorList() ) )->parseAsBlock() .
+			Html::rawElement( 'div', [ 'class' => 'mw-version-license-info' ],
+				$this->msg( 'version-license-info' )->parseAsBlock()
+			)
+		);
 
-		return str_replace( "\t\t", '', $ret ) . "\n";
+		return $ret;
 	}
 
 	/**
 	 * Get the "MediaWiki is copyright 2001-20xx by lots of cool folks" text
 	 *
-	 * @return string
+	 * @internal For use by WebInstallerWelcome
+	 * @return string Wikitext
 	 */
 	public static function getCopyrightAndAuthorList() {
 		if ( defined( 'MEDIAWIKI_INSTALL' ) ) {
 			$othersLink = '[https://www.mediawiki.org/wiki/Special:Version/Credits ' .
-				wfMessage( 'version-poweredby-others' )->text() . ']';
+				wfMessage( 'version-poweredby-others' )->plain() . ']';
 		} else {
 			$othersLink = '[[Special:Version/Credits|' .
-				wfMessage( 'version-poweredby-others' )->text() . ']]';
+				wfMessage( 'version-poweredby-others' )->plain() . ']]';
 		}
 
 		$translatorsLink = '[https://translatewiki.net/wiki/Translating:MediaWiki/Credits ' .
-			wfMessage( 'version-poweredby-translators' )->text() . ']';
+			wfMessage( 'version-poweredby-translators' )->plain() . ']';
 
 		$authorList = [
 			'Magnus Manske', 'Brion Vibber', 'Lee Daniel Crocker',
@@ -267,7 +269,7 @@ class SpecialVersion extends SpecialPage {
 		];
 
 		return wfMessage( 'version-poweredby-credits', MWTimestamp::getLocalInstance()->format( 'Y' ),
-			Message::listParam( $authorList ) )->text();
+			Message::listParam( $authorList ) )->plain();
 	}
 
 	/**
@@ -297,28 +299,32 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Returns HTML showing the third party software versions (apache, php, mysql).
 	 *
-	 * @return string Wikitext table
+	 * @return string HTML
 	 */
-	private static function softwareInformation() {
-		$out = Xml::element(
-				'h2',
-				[ 'id' => 'mw-version-software' ],
-				wfMessage( 'version-software' )->text()
-			) .
-			Xml::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-software' ] ) .
-			"<tr>
-				<th>" . wfMessage( 'version-software-product' )->text() . "</th>
-				<th>" . wfMessage( 'version-software-version' )->text() . "</th>
-			</tr>\n";
+	private function softwareInformation() {
+		$out = Html::element(
+			'h2',
+			[ 'id' => 'mw-version-software' ],
+			$this->msg( 'version-software' )->text()
+		);
+
+		$out .= Html::openElement( 'table', [ 'class' => 'wikitable plainlinks', 'id' => 'sv-software' ] );
+
+		$out .= Html::rawElement( 'tr', [],
+			Html::element( 'th', [], $this->msg( 'version-software-product' )->text() ) .
+			Html::element( 'th', [], $this->msg( 'version-software-version' )->text() )
+		);
 
 		foreach ( self::getSoftwareInformation() as $name => $version ) {
-			$out .= "<tr>
-					<td>" . $name . "</td>
-					<td dir=\"ltr\">" . $version . "</td>
-				</tr>\n";
+			$out .= Html::rawElement( 'tr', [],
+				Html::rawElement( 'td', [], $this->msg( new RawMessage( $name ) )->parse() ) .
+				Html::rawElement( 'td', [ 'dir' => 'ltr' ], $this->msg( new RawMessage( $version ) )->parse() )
+			);
 		}
 
-		return $out . Xml::closeElement( 'table' );
+		$out .= Html::closeElement( 'table' );
+
+		return $out;
 	}
 
 	/**
