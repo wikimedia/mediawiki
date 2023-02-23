@@ -26,12 +26,7 @@
 .mw-email-authenticated .oo-ui-labelWidget { }
 */
 
-// Mobile footer buttons
-.mw-prefs-buttons {
-	padding: 16px 0;
-}
-
-// Non-dialog styling for mobile footer buttons
+// Non-dialog styling for footer buttons
 #preferences {
 	// Support Edge: The `position: sticky` rule above causes the buttons to
 	// disappear in RTL languages on Microsoft Edge. This magically fixes the issue. See T220706.
@@ -42,7 +37,7 @@
 	 * Use `position: sticky` on supported browsers, degrades gracefully in
 	 * all others, therefore no `@supports` feature query to reduce code complexity.
 	 */
-	> .mw-prefs-buttons {
+	.mw-htmlform-submit-buttons {
 		.position-sticky();
 		bottom: 0;
 		margin: -1px -16px 0 -16px;
@@ -52,11 +47,6 @@
 		// Add top box shadow on top only to emphasize content is scrollable underneath `sticky`.
 		box-shadow: 0 -4px 4px -4px rgba( 0, 0, 0, 0.25 );
 	}
-}
-
-/* This is needed because add extra buttons in a weird way */
-.mw-prefs-buttons .mw-htmlform-submit-buttons {
-	margin: 0;
 }
 
 /*
@@ -319,8 +309,10 @@ with params ?useskin=vector&useformat=mobile
 	color: #72777d;
 }
 
-.oo-ui-window-foot > .mw-prefs-buttons {
-	padding-left: 16px;
+// Dialog styling for footer buttons
+.oo-ui-window-foot .mw-htmlform-submit-buttons {
+	margin: 0;
+	padding: 16px;
 }
 
 .oo-ui-window-body .oo-ui-fieldLayout-messages {
