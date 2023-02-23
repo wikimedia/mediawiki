@@ -4217,7 +4217,7 @@ class Parser {
 		$frame = $this->getPreprocessor()->newFrame();
 		$root = $this->preprocessToDom( $origText );
 		$node = $root->getFirstChild();
-		$byteOffset = 0;
+		$cpOffset = 0;
 		$refers = [];
 
 		$headlines = $numMatches !== false ? $matches[3] : [];
@@ -4368,7 +4368,7 @@ class Parser {
 						break;
 					}
 				}
-				$byteOffset += mb_strlen(
+				$cpOffset += mb_strlen(
 					$this->mStripState->unstripBoth(
 						$frame->expand( $node, PPFrame::RECOVER_ORIG )
 					)
@@ -4376,7 +4376,7 @@ class Parser {
 				$node = $node->getNextSibling();
 			}
 			$sectionMetadata->line = $tocline;
-			$sectionMetadata->byteOffset = ( $noOffset ? null : $byteOffset );
+			$sectionMetadata->codepointOffset = ( $noOffset ? null : $cpOffset );
 			$sectionMetadata->anchor = $anchor;
 			$sectionMetadata->linkAnchor = $linkAnchor;
 
