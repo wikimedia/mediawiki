@@ -67,7 +67,7 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$query = [
 			'lang' => 'qqx',
 			'skin' => 'fallback',
-			'debug' => RL\Context::DEBUG_MAIN,
+			'debug' => (string)ResourceLoader::inDebugMode(),
 			'target' => 'test',
 		];
 		$embedContext = new RL\Context( $rl, new FauxRequest( $query ) );
@@ -173,7 +173,9 @@ JAVASCRIPT
 			->params( 'https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing' )
 			->parseAsBlock();
 
-		$scriptUrl = $this->getPageTitle( 'qunit/export' )->getFullURL();
+		$scriptUrl = $this->getPageTitle( 'qunit/export' )->getFullURL( [
+			'debug' => (string)ResourceLoader::inDebugMode(),
+		] );
 		$script = Html::linkedScript( $scriptUrl );
 
 		header( 'Content-Type: text/html; charset=utf-8' );
