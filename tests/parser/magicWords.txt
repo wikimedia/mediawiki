@@ -720,7 +720,6 @@ showflags
 !! wikitext
 {{REVISIONTIMESTAMP:This page does not exist}}
 !! html/php
-
 flags=
 !! html/parsoid+integrated
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONTIMESTAMP:This page does not exist","function":"revisiontimestamp"},"params":{},"i":0}}]}'></span>
@@ -751,7 +750,6 @@ showflags
 !! wikitext
 {{REVISIONUSER}}
 !! html/php
-
 flags=vary-user
 !! html/parsoid+integrated
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONUSER","function":"revisionuser"},"params":{},"i":0}}]}'></span>
@@ -766,7 +764,6 @@ showflags
 !! wikitext
 {{REVISIONUSER:{{PAGENAME}}}}
 !! html/php
-
 flags=vary-user
 !! html/parsoid+integrated
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONUSER:{{PAGENAME}}","function":"revisionuser"},"params":{},"i":0}}]}'></span>
@@ -780,7 +777,6 @@ showflags
 !! wikitext
 {{REVISIONUSER:This page does not exist}}
 !! html/php
-
 flags=
 !! html/parsoid+integrated
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONUSER:This page does not exist","function":"revisionuser"},"params":{},"i":0}}]}'></span>
@@ -794,7 +790,6 @@ showflags
 !! wikitext
 {{REVISIONUSER}}
 !! html/php
-
 flags=vary-user
 !! html/parsoid+integrated
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONUSER","function":"revisionuser"},"params":{},"i":0}}]}'></span>
@@ -824,7 +819,6 @@ showflags
 !! wikitext
 {{REVISIONID:{{PAGENAME}}}}
 !! html/php
-
 flags=vary-revision-id
 !! html/parsoid+integrated
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONID:{{PAGENAME}}","function":"revisionid"},"params":{},"i":0}}]}'></span>
