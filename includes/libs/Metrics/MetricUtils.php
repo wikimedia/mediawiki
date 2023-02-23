@@ -47,9 +47,6 @@ class MetricUtils {
 	protected $component;
 
 	/** @var string */
-	protected $format;
-
-	/** @var string */
 	protected $name;
 
 	/** @var float */
@@ -71,14 +68,12 @@ class MetricUtils {
 	 *   - component: (string) The component generating the metric
 	 *   - labels: (array) List of metric dimensional instantiations for filters and aggregations
 	 *   - sampleRate: (float) Optional sampling rate to apply
-	 *   - format: (string) The expected output format -- one of MetricsFactory::SUPPORTED_OUTPUT_FORMATS
 	 */
 	public function validateConfig( $config ) {
 		$this->prefix = $config['prefix'];
 		$this->component = $config['component'];
 		$this->name = $config['name'];
 		$this->sampleRate = $config['sampleRate'];
-		$this->format = $config['format'];
 		if ( !preg_match( self::RE_VALID_NAME_AND_LABEL_NAME, $this->name ) ) {
 			throw new InvalidConfigurationException( "Invalid metric name: '" . $this->name . "'" );
 		}
@@ -104,28 +99,6 @@ class MetricUtils {
 	 */
 	public function addSample( Sample $sample ) {
 		$this->samples[] = $sample;
-	}
-
-	/**
-	 * @return string[]
-	 */
-	public function render(): array {
-		$output = [];
-		switch ( $this->format ) {
-			case OutputFormats::DOGSTATSD:
-				foreach ( $this->getFilteredSamples() as $sample ) {
-					$output[] = $this->renderDogStatsD( $sample );
-				}
-				break;
-			case OutputFormats::STATSD:
-				foreach ( $this->getFilteredSamples() as $sample ) {
-					$output[] = $this->renderStatsD( $sample );
-				}
-				break;
-			default:  // "null"
-				break;
-		}
-		return $output;
 	}
 
 	/**
@@ -178,58 +151,40 @@ class MetricUtils {
 	}
 
 	/**
-	 * Get set of samples filtered according to configured sampleRate.
+	 * Normalize strings to a metrics-compatible format.
+	 *
+	 * Replace any other non-alphanumeric characters with underscores.
+	 * Eliminate repeated underscores.
+	 * Trim leading or trailing underscores.
+	 *
+	 * @param string $entity
+	 * @return string
+	 */
+	public static function normalizeString( string $entity ): string {
+		$entity = preg_replace( '/[^a-z0-9]/i', '_', $entity );
+		$entity = preg_replace( '/_+/', '_', $entity );
+		return trim( $entity, '_' );
+	}
+
+	/**
+	 * Returns a subset of samples based on configured sample rate.
+	 *
+	 * @param float $sampleRate
+	 * @param array $samples
 	 * @return array
 	 */
-	private function getFilteredSamples() {
-		if ( $this->sampleRate === 1.0 ) {
-			return $this->samples;
+	public static function getFilteredSamples( float $sampleRate, array $samples ): array {
+		if ( $sampleRate === 1.0 ) {
+			return $samples;
 		}
 		$output = [];
 		$randMax = mt_getrandmax();
-		foreach ( $this->samples as $sample ) {
-			if ( mt_rand() / $randMax < $this->sampleRate ) {
+		foreach ( $samples as $sample ) {
+			if ( mt_rand() / $randMax < $sampleRate ) {
 				$output[] = $sample;
 			}
 		}
 		return $output;
-	}
-
-	/**
-	 * Renders metrics in StatsD format
-	 * @param Sample $sample
-	 * @return string
-	 */
-	private function renderStatsD( Sample $sample ): string {
-		$stat = implode( '.',
-			array_merge( [ $this->prefix, $this->component, $this->name ], $sample->getLabelValues() )
-		);
-		$value = ':' . $sample->getValue();
-		$type = '|' . $this->typeIndicator;
-		$sampleRate = $this->sampleRate !== 1.0 ? '|@' . $this->sampleRate : '';
-
-		return $stat . $value . $type . $sampleRate;
-	}
-
-	/**
-	 * Renders metrics in DogStatsD format
-	 * https://docs.datadoghq.com/developers/dogstatsd/datagram_shell/?tab=metrics
-	 *
-	 * @param Sample $sample
-	 * @return string
-	 */
-	private function renderDogStatsD( Sample $sample ): string {
-		$stat = implode( '.', [ $this->prefix, $this->component, $this->name ] );
-		$sampleLabels = $sample->getLabelValues();
-		$labels = [];
-		foreach ( $this->labels as $i => $label ) {
-			$labels[] = $label . ':' . $sampleLabels[$i];
-		}
-		$value = ':' . $sample->getValue();
-		$type = '|' . $this->typeIndicator;
-		$sampleRate = $this->sampleRate !== 1.0 ? '|@' . $this->sampleRate : '';
-		$tags = $labels === [] ? '' : '|#' . implode( ',', $labels );
-		return $stat . $value . $type . $sampleRate . $tags;
 	}
 
 }

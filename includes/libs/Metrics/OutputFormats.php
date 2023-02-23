@@ -27,6 +27,10 @@ declare( strict_types=1 );
 namespace Wikimedia\Metrics;
 
 use Wikimedia\Metrics\Exceptions\UnsupportedFormatException;
+use Wikimedia\Metrics\Formatters\DogStatsdFormatter;
+use Wikimedia\Metrics\Formatters\FormatterInterface;
+use Wikimedia\Metrics\Formatters\NullFormatter;
+use Wikimedia\Metrics\Formatters\StatsdFormatter;
 
 class OutputFormats {
 
@@ -54,5 +58,27 @@ class OutputFormats {
 			"Format '" . $format . "' not supported. Expected one of "
 			. json_encode( array_keys( self::SUPPORTED_FORMATS ) )
 		);
+	}
+
+	/**
+	 * Returns an instance of the requested formatter.
+	 *
+	 * @param int $format
+	 * @return FormatterInterface
+	 */
+	public static function getNewFormatter( int $format ): FormatterInterface {
+		switch ( $format ) {
+			case self::DOGSTATSD:
+				return new DogStatsdFormatter();
+			case self::STATSD:
+				return new StatsdFormatter();
+			case self::NULL:
+				return new NullFormatter();
+			default:
+				throw new UnsupportedFormatException(
+					"Format '" . $format . "' not supported. Expected one of "
+					. json_encode( array_keys( self::SUPPORTED_FORMATS ) )
+				);
+		}
 	}
 }

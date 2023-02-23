@@ -193,25 +193,10 @@ class MetricsFactory {
 	 * Send all buffered metrics to the target and destroy the cache.
 	 */
 	public function flush(): void {
-		if ( $this->format > OutputFormats::NULL && $this->target ) {
+		if ( $this->target ) {
 			$this->send( UDPTransport::newFromString( $this->target ) );
 		}
 		$this->cache->clear();
-	}
-
-	/**
-	 * Get all rendered samples from cache
-	 *
-	 * @return string[] Flattened list
-	 */
-	private function getRenderedSamples(): array {
-		$renderedSamples = [];
-		foreach ( $this->cache->getAllMetrics() as $metric ) {
-			foreach ( $metric->render() as $rendered ) {
-				$renderedSamples[] = $rendered;
-			}
-		}
-		return $renderedSamples;
 	}
 
 	/**
@@ -221,20 +206,10 @@ class MetricsFactory {
 	 * @param UDPTransport $transport
 	 */
 	protected function send( UDPTransport $transport ): void {
-		$payload = '';
-		$renderedSamples = $this->getRenderedSamples();
-		foreach ( $renderedSamples as $sample ) {
-			if ( strlen( $payload ) + strlen( $sample ) + 1 < UDPTransport::MAX_PAYLOAD_SIZE ) {
-				$payload .= $sample . "\n";
-			} else {
-				// Send this payload and make a new one
-				$transport->emit( $payload );
-				$payload = '';
-			}
-		}
-		// Send what is left in the payload
-		if ( strlen( $payload ) > 0 ) {
-			$transport->emit( $payload );
+		if ( $this->format > OutputFormats::NULL ) {
+			$renderer = new MetricsRenderer( $this->cache );
+			$emitter = new MetricsUDPEmitter( $renderer->withFormat( $this->format )->withPrefix( $this->prefix ) );
+			$emitter->withTransport( $transport )->send();
 		}
 	}
 

@@ -1,11 +1,9 @@
 <?php
+
 /**
- * UnsupportedFormatException
+ * Null Formatter Implementation
  *
- * Raised when a metrics format is defined in the LocalSettings
- * configuration, but is not supported.
- *
- * See: OutputFormats::SUPPORTED_OUTPUT_FORMATS and $wgMetricsFormat
+ * For passing to unconfigurable Renderers.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,12 +22,16 @@
  *
  * @license GPL-2.0-or-later
  * @author Cole White
- * @since 1.38
+ * @since 1.41
  */
 
-namespace Wikimedia\Metrics\Exceptions;
+declare( strict_types=1 );
 
-use InvalidArgumentException;
+namespace Wikimedia\Metrics\Formatters;
 
-class UnsupportedFormatException extends InvalidArgumentException {
+class NullFormatter implements FormatterInterface {
+	/** @inheritDoc */
+	public function getFormattedSamples( string $prefix, $metric ): array {
+		return [];
+	}
 }
