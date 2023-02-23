@@ -121,7 +121,7 @@ abstract class LinksTable {
 		$batchSize
 	) {
 		$this->lbFactory = $lbFactory;
-		$this->db = $this->lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
+		$this->db = $this->lbFactory->getPrimaryDatabase();
 		$this->sourcePage = $sourcePage;
 		$this->batchSize = $batchSize;
 		$this->linkTargetLookup = $linkTargetLookup;
