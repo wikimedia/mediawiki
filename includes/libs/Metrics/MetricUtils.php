@@ -112,12 +112,12 @@ class MetricUtils {
 	public function render(): array {
 		$output = [];
 		switch ( $this->format ) {
-			case 'dogstatsd':
+			case OutputFormats::DOGSTATSD:
 				foreach ( $this->getFilteredSamples() as $sample ) {
 					$output[] = $this->renderDogStatsD( $sample );
 				}
 				break;
-			case 'statsd':
+			case OutputFormats::STATSD:
 				foreach ( $this->getFilteredSamples() as $sample ) {
 					$output[] = $this->renderStatsD( $sample );
 				}
