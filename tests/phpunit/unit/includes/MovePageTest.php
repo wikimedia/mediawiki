@@ -3,13 +3,13 @@
 namespace MediaWiki\Tests\Unit;
 
 use MediaWiki\EditPage\SpamChecker;
+use MediaWiki\Page\MovePage;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWikiUnitTestCase;
 use MockTitleTrait;
-use MovePage;
 
 /**
  * @coversDefaultClass MovePage

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Page\MergeHistory;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**

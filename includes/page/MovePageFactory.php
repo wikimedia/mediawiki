@@ -20,7 +20,6 @@
 
 namespace MediaWiki\Page;
 
-use MovePage;
 use Title;
 
 /**
