@@ -1,12 +1,5 @@
 <?php
 /**
- * MetricUtils Implementation
- *
- * Functionality common to all metric types provided as a dependency to
- * be injected into the instance.
- *
- * Handles caching, label validation, and rendering.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,10 +14,7 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @license GPL-2.0-or-later
- * @author Cole White
- * @since 1.38
+ * @file
  */
 
 declare( strict_types=1 );
@@ -35,135 +25,33 @@ use InvalidArgumentException;
 use Wikimedia\Metrics\Exceptions\InvalidConfigurationException;
 use Wikimedia\Metrics\Exceptions\InvalidLabelsException;
 
+/**
+ *
+ * MetricUtils Implementation
+ *
+ * Functionality common to all metric types.
+ *
+ * @author Cole White
+ * @since 1.38
+ */
 class MetricUtils {
 
 	/** @var string */
-	private const RE_VALID_NAME_AND_LABEL_NAME = '/^[a-zA-Z_][a-zA-Z0-9_]*$/';
-
-	/** @var string */
-	protected $prefix;
-
-	/** @var string */
-	protected $component;
-
-	/** @var string */
-	protected $name;
+	public const RE_VALID_NAME_AND_LABEL_NAME = "/^[a-zA-Z_][a-zA-Z0-9_]*$/";
 
 	/** @var float */
-	protected $sampleRate;
-
-	/** @var string[] */
-	protected $labels;
-
-	/** @var Sample[] */
-	protected $samples = [];
-
-	/** @var string */
-	protected $typeIndicator;
+	public const DEFAULT_SAMPLE_RATE = 1.0;
 
 	/**
-	 * @param array $config associative array:
-	 *   - prefix: (string) The prefix prepended to the start of the metric name.
-	 *   - name: (string) The metric name
-	 *   - component: (string) The component generating the metric
-	 *   - labels: (array) List of metric dimensional instantiations for filters and aggregations
-	 *   - sampleRate: (float) Optional sampling rate to apply
-	 */
-	public function validateConfig( $config ) {
-		$this->prefix = $config['prefix'];
-		$this->component = $config['component'];
-		$this->name = $config['name'];
-		$this->sampleRate = $config['sampleRate'];
-		if ( !preg_match( self::RE_VALID_NAME_AND_LABEL_NAME, $this->name ) ) {
-			throw new InvalidConfigurationException( "Invalid metric name: '" . $this->name . "'" );
-		}
-		$this->labels = $config['labels'];
-		foreach ( $this->labels as $label ) {
-			if ( !preg_match( self::RE_VALID_NAME_AND_LABEL_NAME, $label ) ) {
-				throw new InvalidConfigurationException( "Invalid label name: '" . $label . "'" );
-			}
-		}
-	}
-
-	/**
-	 * Sets the StatsD protocol type indicator
-	 * @param string $typeIndicator
-	 */
-	public function setTypeIndicator( string $typeIndicator ) {
-		$this->typeIndicator = $typeIndicator;
-	}
-
-	/**
-	 * Adds a sample to cache
-	 * @param Sample $sample
-	 */
-	public function addSample( Sample $sample ) {
-		$this->samples[] = $sample;
-	}
-
-	/**
-	 * @param array $labels
-	 * @throws InvalidLabelsException
-	 */
-	public function validateLabels( array $labels ): void {
-		if ( count( $this->labels ) !== count( $labels ) ) {
-			throw new InvalidLabelsException(
-				'Not enough or too many labels provided to metric instance.'
-				. 'Configured: ' . json_encode( $this->labels ) . ' Provided: ' . json_encode( $labels )
-			);
-		}
-	}
-
-	/**
-	 * Determines if provided string is a valid name.
+	 * Validates the new sample rate.  Throws InvalidArgumentException if provided an invalid rate.
 	 *
-	 * @param string $name
+	 * @param float $newSampleRate
 	 * @throws InvalidArgumentException
-	 * @throws InvalidConfigurationException
 	 */
-	public static function validateMetricName( string $name ): void {
-		if ( $name === '' ) {
-			throw new InvalidArgumentException( 'Metric name cannot be empty' );
+	public static function validateNewSampleRate( float $newSampleRate ): void {
+		if ( $newSampleRate < 0.0 || $newSampleRate > 1.0 ) {
+			throw new InvalidArgumentException( "Sample rate can only be between 0.0 and 1.0. Got: " . $newSampleRate );
 		}
-		if ( !preg_match( self::RE_VALID_NAME_AND_LABEL_NAME, $name ) ) {
-			throw new InvalidConfigurationException( "Invalid metric name: $name" );
-		}
-	}
-
-	public function getComponent(): string {
-		return $this->component;
-	}
-
-	public function getLabelKeys(): array {
-		return $this->labels;
-	}
-
-	public function getName(): string {
-		return $this->name;
-	}
-
-	public function getSamples(): array {
-		return $this->samples;
-	}
-
-	public function getSampleRate(): float {
-		return $this->sampleRate;
-	}
-
-	/**
-	 * Normalize strings to a metrics-compatible format.
-	 *
-	 * Replace any other non-alphanumeric characters with underscores.
-	 * Eliminate repeated underscores.
-	 * Trim leading or trailing underscores.
-	 *
-	 * @param string $entity
-	 * @return string
-	 */
-	public static function normalizeString( string $entity ): string {
-		$entity = preg_replace( '/[^a-z0-9]/i', '_', $entity );
-		$entity = preg_replace( '/_+/', '_', $entity );
-		return trim( $entity, '_' );
 	}
 
 	/**
@@ -187,4 +75,103 @@ class MetricUtils {
 		return $output;
 	}
 
+	public static function validateLabels( array $labelKeys, array $labelValues ): void {
+		if ( count( $labelKeys ) !== count( $labelValues ) ) {
+			throw new InvalidLabelsException(
+				'Not enough or too many labels provided to metric instance.'
+				. 'Configured: ' . json_encode( $labelKeys ) . ' Provided: ' . json_encode( $labelValues )
+			);
+		}
+	}
+
+	/**
+	 * Determines if provided string is a valid name.
+	 *
+	 * @param string $name
+	 * @return void
+	 * @throws InvalidArgumentException
+	 * @throws InvalidConfigurationException
+	 */
+	public static function validateMetricName( string $name ) {
+		if ( $name === "" ) {
+			throw new InvalidArgumentException( "Metrics: Metric name cannot be empty." );
+		}
+		if ( !preg_match( self::RE_VALID_NAME_AND_LABEL_NAME, $name ) ) {
+			throw new InvalidConfigurationException( "Invalid metric name: '" . $name . "'" );
+		}
+	}
+
+	/**
+	 * Determines if provided string is a valid label key.
+	 *
+	 * @param string $key
+	 * @return void
+	 * @throws InvalidArgumentException
+	 * @throws InvalidConfigurationException
+	 */
+	public static function validateLabelKey( string $key ) {
+		if ( $key === "" ) {
+			throw new InvalidArgumentException( "Metrics: Label key cannot be empty." );
+		}
+		if ( !preg_match( self::RE_VALID_NAME_AND_LABEL_NAME, $key ) ) {
+			throw new InvalidConfigurationException( "Invalid label key: '" . $key . "'" );
+		}
+	}
+
+	public static function validateLabelValue( string $value ) {
+		if ( $value === "" ) {
+			throw new InvalidArgumentException( "Metrics: Label value cannot be empty." );
+		}
+	}
+
+	/**
+	 * Merges two associative arrays of labels.  Prioritizes leftmost labels.
+	 *
+	 * @param array $leftLabels
+	 * @param array $rightLabels
+	 * @return array
+	 */
+	public static function mergeLabels( array $leftLabels, array $rightLabels ): array {
+		$output = [];
+		foreach ( $leftLabels as $key => $value ) {
+			$output[$key] = $value;
+		}
+		foreach ( $rightLabels as $key => $value ) {
+			if ( array_key_exists( $key, $output ) ) {
+				continue;
+			}
+			$output[$key] = $value;
+		}
+		return $output;
+	}
+
+	/**
+	 * Normalize an array of strings.
+	 *
+	 * @param string[] $entities
+	 * @return string[]
+	 */
+	public static function normalizeArray( array $entities ): array {
+		$normalizedEntities = [];
+		foreach ( $entities as $entity ) {
+			$normalizedEntities[] = self::normalizeString( $entity );
+		}
+		return $normalizedEntities;
+	}
+
+	/**
+	 * Normalize strings to a metrics-compatible format.
+	 *
+	 * Replace any other non-alphanumeric characters with underscores.
+	 * Eliminate repeated underscores.
+	 * Trim leading or trailing underscores.
+	 *
+	 * @param string $entity
+	 * @return string
+	 */
+	public static function normalizeString( string $entity ): string {
+		$entity = preg_replace( "/[^a-z0-9]/i", "_", $entity );
+		$entity = preg_replace( "/_+/", "_", $entity );
+		return trim( $entity, "_" );
+	}
 }

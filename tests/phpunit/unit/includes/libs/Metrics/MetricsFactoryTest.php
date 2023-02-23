@@ -6,7 +6,6 @@ use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use UDPTransport;
 use Wikimedia\Metrics\Exceptions\InvalidConfigurationException;
-use Wikimedia\Metrics\Exceptions\InvalidLabelsException;
 use Wikimedia\Metrics\Exceptions\UndefinedPrefixException;
 use Wikimedia\Metrics\Exceptions\UnsupportedFormatException;
 use Wikimedia\Metrics\Metrics\CounterMetric;
@@ -15,6 +14,7 @@ use Wikimedia\Metrics\Metrics\NullMetric;
 use Wikimedia\Metrics\Metrics\TimingMetric;
 use Wikimedia\Metrics\MetricsCache;
 use Wikimedia\Metrics\MetricsFactory;
+use Wikimedia\Metrics\MetricUtils;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -78,21 +78,21 @@ class MetricsFactoryTest extends TestCase {
 	public function testGetMetricWithLabelMismatch() {
 		$m = new MetricsFactory( [ 'prefix' => 'mediawiki' ], new MetricsCache, new NullLogger );
 		$m->getCounter( [ 'name' => 'test_metric', 'component' => 'test', 'labels' => [ 'a' ] ] );
-		$this->expectException( InvalidLabelsException::class );
-		$m->getCounter( [ 'name' => 'test_metric', 'component' => 'test', 'labels' => [ 'a', 'b' ] ] );
+		$metric = $m->getCounter( [ 'name' => 'test_metric', 'component' => 'test', 'labels' => [ 'a', 'b' ] ] );
+		$this->assertInstanceOf( NullMetric::class, $metric );
 	}
 
 	public function testNormalizeString() {
 		$this->assertEquals(
 			'new_metric_and_things',
-			MetricsFactory::normalizeString( 'new metric  @#&^and *-&-*things-*&-*!@#&^%#$' )
+			MetricUtils::normalizeString( 'new metric  @#&^and *-&-*things-*&-*!@#&^%#$' )
 		);
 	}
 
 	public function testNormalizeArray() {
 		$this->assertEquals(
 			[ 'new_test_metric', 'another_new_test_metric' ],
-			MetricsFactory::normalizeArray( [ 'new.test|metric', 'another$new-test_metric' ] )
+			MetricUtils::normalizeArray( [ 'new.test|metric', 'another$new-test_metric' ] )
 		);
 	}
 
