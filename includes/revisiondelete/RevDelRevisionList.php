@@ -210,7 +210,7 @@ class RevDelRevisionList extends RevDelList {
 
 	public function getCurrent() {
 		if ( $this->currentRevId === null ) {
-			$dbw = $this->lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
+			$dbw = $this->lbFactory->getPrimaryDatabase();
 			$this->currentRevId = $dbw->selectField(
 				'page',
 				'page_latest',
