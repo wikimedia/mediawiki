@@ -44,9 +44,6 @@ use Wikimedia\Metrics\Metrics\TimingMetric;
 
 class MetricsFactory {
 
-	/** @var string[] */
-	private const SUPPORTED_OUTPUT_FORMATS = [ 'statsd', 'dogstatsd', 'null' ];
-
 	/** @var array */
 	private const DEFAULT_METRIC_CONFIG = [
 		// 'name' => required,
@@ -63,7 +60,7 @@ class MetricsFactory {
 	/** @var string|null */
 	private $target;
 
-	/** @var string */
+	/** @var int */
 	private $format;
 
 	/** @var string */
@@ -89,18 +86,12 @@ class MetricsFactory {
 		$this->cache = $cache;
 		$this->logger = $logger;
 		$this->target = $config['target'] ?? null;
-		$this->format = $config['format'] ?? 'null';
 		$this->prefix = $config['prefix'] ?? '';
 		if ( $this->prefix === '' ) {
 			throw new UndefinedPrefixException( '\'prefix\' option is required and cannot be empty.' );
 		}
 		$this->prefix = self::normalizeString( $config['prefix'] );
-		if ( !in_array( $this->format, self::SUPPORTED_OUTPUT_FORMATS ) ) {
-			throw new UnsupportedFormatException(
-				'Format "' . $this->format . '" not supported. Expected one of '
-				. json_encode( self::SUPPORTED_OUTPUT_FORMATS )
-			);
-		}
+		$this->format = OutputFormats::getFormatFromString( $config['format'] ?? 'null' );
 	}
 
 	/**
@@ -202,25 +193,10 @@ class MetricsFactory {
 	 * Send all buffered metrics to the target and destroy the cache.
 	 */
 	public function flush(): void {
-		if ( $this->format !== 'null' && $this->target ) {
+		if ( $this->target ) {
 			$this->send( UDPTransport::newFromString( $this->target ) );
 		}
 		$this->cache->clear();
-	}
-
-	/**
-	 * Get all rendered samples from cache
-	 *
-	 * @return string[] Flattened list
-	 */
-	private function getRenderedSamples(): array {
-		$renderedSamples = [];
-		foreach ( $this->cache->getAllMetrics() as $metric ) {
-			foreach ( $metric->render() as $rendered ) {
-				$renderedSamples[] = $rendered;
-			}
-		}
-		return $renderedSamples;
 	}
 
 	/**
@@ -230,20 +206,10 @@ class MetricsFactory {
 	 * @param UDPTransport $transport
 	 */
 	protected function send( UDPTransport $transport ): void {
-		$payload = '';
-		$renderedSamples = $this->getRenderedSamples();
-		foreach ( $renderedSamples as $sample ) {
-			if ( strlen( $payload ) + strlen( $sample ) + 1 < UDPTransport::MAX_PAYLOAD_SIZE ) {
-				$payload .= $sample . "\n";
-			} else {
-				// Send this payload and make a new one
-				$transport->emit( $payload );
-				$payload = '';
-			}
-		}
-		// Send what is left in the payload
-		if ( strlen( $payload ) > 0 ) {
-			$transport->emit( $payload );
+		if ( $this->format > OutputFormats::NULL ) {
+			$renderer = new MetricsRenderer( $this->cache );
+			$emitter = new MetricsUDPEmitter( $renderer->withFormat( $this->format )->withPrefix( $this->prefix ) );
+			$emitter->withTransport( $transport )->send();
 		}
 	}
 
