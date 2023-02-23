@@ -20,6 +20,7 @@
 
 namespace MediaWiki\ResourceLoader;
 
+use Composer\Spdx\SpdxLicenses;
 use Exception;
 use MediaWiki\MediaWikiServices;
 use PharData;
@@ -138,16 +139,30 @@ class ForeignResourceManager {
 
 		foreach ( $modules as $moduleName => $info ) {
 			$this->verbose( "\n### {$moduleName}\n\n" );
-			$destDir = "{$this->libDir}/$moduleName";
 
 			if ( $this->action === 'update' ) {
 				$this->output( "... updating '{$moduleName}'\n" );
-				$this->verbose( "... emptying directory for $moduleName\n" );
-				wfRecursiveRemoveDir( $destDir );
 			} elseif ( $this->action === 'verify' ) {
 				$this->output( "... verifying '{$moduleName}'\n" );
 			} else {
 				$this->output( "... checking '{$moduleName}'\n" );
+			}
+
+			// Do checks on yaml content (such as license existence, validity and type keys)
+			// before doing any potentially destructive actions (potentially deleting directories,
+			// depending on action.
+
+			if ( !isset( $info['type'] ) ) {
+				throw new Exception( "Module '$moduleName' must have a 'type' key." );
+			}
+
+			$this->validateLicense( $moduleName, $info );
+
+			$destDir = "{$this->libDir}/$moduleName";
+
+			if ( $this->action === 'update' ) {
+				$this->verbose( "... emptying directory for $moduleName\n" );
+				wfRecursiveRemoveDir( $destDir );
 			}
 
 			$this->verbose( "... preparing {$this->tmpParentDir}\n" );
@@ -156,9 +171,6 @@ class ForeignResourceManager {
 				throw new Exception( "Unable to create {$this->tmpParentDir}" );
 			}
 
-			if ( !isset( $info['type'] ) ) {
-				throw new Exception( "Module '$moduleName' must have a 'type' key." );
-			}
 			switch ( $info['type'] ) {
 				case 'tar':
 					$this->handleTypeTar( $moduleName, $destDir, $info );
@@ -414,6 +426,24 @@ class ForeignResourceManager {
 			}
 		}
 	}
+
+	/**
+	 * @param string $moduleName
+	 * @param array $info
+	 */
+	private function validateLicense( $moduleName, $info ) {
+		if ( !isset( $info['license'] ) || !is_string( $info['license'] ) ) {
+			throw new Exception( "Module '$moduleName' needs a valid SPDX license; no license is currently present" );
+		}
+		$licenses = new SpdxLicenses();
+		if ( !$licenses->validate( $info['license'] ) ) {
+			$this->error(
+				"Module '$moduleName' has an invalid SPDX license identifier '{$info['license']}', "
+				. 'see <https://spdx.org/licenses/>'
+			);
+		}
+	}
 }
+
 /** @deprecated since 1.40 */
 class_alias( ForeignResourceManager::class, 'ForeignResourceManager' );

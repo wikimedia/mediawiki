@@ -3,7 +3,7 @@
 # The top-level keys in this file correspond with directories under resources/lib/.
 # These in turn are registered as module bundles in Resources.php.
 #
-# ## How to install an foreign resource
+# ## How to install a foreign resource
 #
 # 1. Add or update the url(s) for the upstream module to this YAML file.
 #
@@ -33,7 +33,7 @@
 #
 # - `file`: For a plain file.
 # - `multi-file`: For multiple plain files.
-# - `tar`: For a tarball archive (may be compressed).
+# - `tar`: For a tarball archive (file may be compressed).
 #
 # ### The "file" type
 #
