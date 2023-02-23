@@ -412,6 +412,10 @@ because of Phabricator reports.
   Parser::replaceTableOfContentsMarker() function.
 * Skins can now choose which Codex theme should be loaded by setting the
   SkinCodexThemes attribute in their skin.json file.
+* The parser test framework has been updated, and the 'pst', 'ill', 'cat'
+  and 'showflags' options have slight differences in their output.  These
+  options are not much used outside core, but third parties may need to
+  update parser tests.
 * …
 
 == Compatibility ==

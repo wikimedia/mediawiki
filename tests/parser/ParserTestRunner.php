@@ -1333,6 +1333,7 @@ class ParserTestRunner {
 		if ( isset( $opts['pst'] ) ) {
 			$out = $parser->preSaveTransform( $wikitext, $title, $options->getUserIdentity(), $options );
 			$output = $parser->getOutput();
+			$this->addParserOutputInfo( $out, $output, $opts, $title );
 		} elseif ( isset( $opts['msg'] ) ) {
 			$out = $parser->transformMsg( $wikitext, $options, $title );
 		} elseif ( isset( $opts['section'] ) ) {
@@ -1363,29 +1364,11 @@ class ParserTestRunner {
 					'unwrap' => !isset( $opts['wrap'] ),
 				] );
 				$out = preg_replace( '/\s+$/', '', $out );
+				if ( isset( $opts['nohtml'] ) ) {
+					$out = '';
+				}
 
 				$this->addParserOutputInfo( $out, $output, $opts, $title );
-			}
-		}
-
-		if ( isset( $output ) && isset( $opts['showflags'] ) ) {
-			$actualFlags = [];
-			foreach ( ParserOutputFlags::cases() as $name ) {
-				if ( $output->getOutputFlag( $name ) ) {
-					$actualFlags[] = $name;
-				}
-			}
-			sort( $actualFlags );
-			$out .= "\nflags=" . implode( ', ', $actualFlags );
-			# In 1.21 we deprecated the use of arbitrary keys for
-			# ParserOutput::setFlag() by extensions; if we find anyone
-			# still doing that complain about it.
-			$oldFlags = array_diff_key(
-				TestingAccessWrapper::newFromObject( $output )->mFlags,
-				array_fill_keys( ParserOutputFlags::cases(), true )
-			);
-			if ( $oldFlags ) {
-				wfDeprecated( 'Arbitrary flags in ParserOutput', '1.39' );
 			}
 		}
 
@@ -1431,9 +1414,11 @@ class ParserTestRunner {
 		}
 
 		if ( isset( $opts['ill'] ) ) {
-			$out = implode( ' ', $output->getLanguageLinks() );
+			if ( $out !== '' ) {
+				$out .= "\n";
+			}
+			$out .= implode( ' ', $output->getLanguageLinks() );
 		} elseif ( isset( $opts['cat'] ) ) {
-			$out = '';
 			foreach ( $output->getCategories() as $name => $sortkey ) {
 				if ( $out !== '' ) {
 					$out .= "\n";
@@ -1462,6 +1447,29 @@ class ParserTestRunner {
 				}
 				$out .= "property[$prop]=" .
 					( $output->getPageProperty( $prop ) ?? '' );
+			}
+		}
+		if ( isset( $opts['showflags'] ) ) {
+			$actualFlags = [];
+			foreach ( ParserOutputFlags::cases() as $name ) {
+				if ( $output->getOutputFlag( $name ) ) {
+					$actualFlags[] = $name;
+				}
+			}
+			sort( $actualFlags );
+			if ( $out !== '' ) {
+				$out .= "\n";
+			}
+			$out .= "flags=" . implode( ', ', $actualFlags );
+			# In 1.21 we deprecated the use of arbitrary keys for
+			# ParserOutput::setFlag() by extensions; if we find anyone
+			# still doing that complain about it.
+			$oldFlags = array_diff_key(
+				TestingAccessWrapper::newFromObject( $output )->mFlags,
+				array_fill_keys( ParserOutputFlags::cases(), true )
+			);
+			if ( $oldFlags ) {
+				wfDeprecated( 'Arbitrary flags in ParserOutput', '1.39' );
 			}
 		}
 	}
