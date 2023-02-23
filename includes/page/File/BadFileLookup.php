@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki;
+namespace MediaWiki\Page\File;
 
 use BagOStuff;
 use MalformedTitleException;
@@ -139,3 +139,5 @@ class BadFileLookup {
 		return $ret;
 	}
 }
+
+class_alias( BadFileLookup::class, 'MediaWiki\\BadFileLookup' );

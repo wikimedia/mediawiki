@@ -21,8 +21,6 @@
 
 namespace MediaWiki\Page;
 
-use MergeHistory;
-
 /**
  * Service for mergehistory actions.
  *

@@ -3,6 +3,7 @@
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
+use MediaWiki\Page\File\BadFileLookup;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\MagicWord;
@@ -56,7 +57,7 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( MediaWiki\Linker\LinkRendererFactory::class ),
 			$this->createMock( NamespaceInfo::class ),
 			new Psr\Log\NullLogger(),
-			$this->createMock( MediaWiki\BadFileLookup::class ),
+			$this->createMock( BadFileLookup::class ),
 			$this->createMock( MediaWiki\Languages\LanguageConverterFactory::class ),
 			$this->createMock( MediaWiki\HookContainer\HookContainer::class ),
 			$this->createMock( MediaWiki\Tidy\TidyDriverBase::class ),
