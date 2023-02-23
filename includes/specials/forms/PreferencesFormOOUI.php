@@ -67,6 +67,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	 */
 	public function setPrivateInfoEditable( $editable ) {
 		$this->privateInfoEditable = $editable;
+		$this->suppressDefaultSubmit( !$this->privateInfoEditable && !$this->optionsEditable );
 	}
 
 	/**
@@ -81,6 +82,7 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 	 */
 	public function setOptionsEditable( $optionsEditable ) {
 		$this->optionsEditable = $optionsEditable;
+		$this->suppressDefaultSubmit( !$this->privateInfoEditable && !$this->optionsEditable );
 	}
 
 	/**
@@ -101,23 +103,6 @@ class PreferencesFormOOUI extends OOUIHTMLForm {
 		$html = Xml::tags( 'div', [ 'id' => 'preferences' ], $html );
 
 		return parent::wrapForm( $html );
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getButtons() {
-		if ( !$this->areOptionsEditable() && !$this->isPrivateInfoEditable() ) {
-			return '';
-		}
-
-		$html = parent::getButtons();
-
-		if ( $this->areOptionsEditable() ) {
-			$html = Xml::tags( 'div', [ 'class' => 'mw-prefs-buttons' ], $html );
-		}
-
-		return $html;
 	}
 
 	/**

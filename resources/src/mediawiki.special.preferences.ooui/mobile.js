@@ -88,7 +88,7 @@
 	function initDialogs() {
 		// Query the document once, then query that returned element afterwards.
 		var preferencesForm = document.getElementById( 'mw-prefs-form' );
-		var prefButtons = preferencesForm.querySelector( 'div.mw-prefs-buttons' );
+		var prefButtons = preferencesForm.querySelector( '.mw-htmlform-submit-buttons' );
 		var sections = preferencesForm.querySelectorAll( '.mw-mobile-prefsection' );
 		// Move the form buttons (such as save) into the dialog after opening.
 		windowManager.on( 'opening', function ( win, opened ) {
