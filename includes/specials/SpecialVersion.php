@@ -28,6 +28,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Utils\UrlUtils;
+use Symfony\Component\Yaml\Yaml;
 
 /**
  * Give information about the version of MediaWiki, PHP, the DB and extensions
@@ -198,6 +199,7 @@ class SpecialVersion extends SpecialPage {
 					$this->getSkinCredits( $credits ) .
 					$this->getExtensionCredits( $credits ) .
 					$this->getExternalLibraries( $credits ) .
+					$this->getClientSideLibraries() .
 					$this->getParserTags() .
 					$this->getParserFunctionHooks()
 				);
@@ -630,6 +632,60 @@ class SpecialVersion extends SpecialPage {
 				. Html::element( 'td', [ 'dir' => 'auto' ], $this->listToText( $info['licenses'] ) )
 				. Html::element( 'td', [ 'lang' => 'en', 'dir' => 'ltr' ], $info['description'] )
 				. Html::rawElement( 'td', [], $authors )
+				. Html::closeElement( 'tr' );
+		}
+		$out .= Html::closeElement( 'table' );
+
+		return $out;
+	}
+
+	/**
+	 * Generate an HTML table for client-side libraries that are installed
+	 *
+	 * @return string HTML output
+	 */
+	private function getClientSideLibraries() {
+		global $IP;
+		$registryFile = "{$IP}/resources/lib/foreign-resources.yaml";
+		$modules = Yaml::parseFile( $registryFile );
+		ksort( $modules );
+
+		$out = Html::element(
+			'h2',
+			[ 'id' => 'mw-version-libraries' ],
+			$this->msg( 'version-libraries-client' )->text()
+		);
+		$out .= Html::openElement(
+			'table',
+			[ 'class' => 'wikitable plainlinks', 'id' => 'sv-libraries' ]
+		);
+		$out .= Html::openElement( 'tr' )
+			. Html::element( 'th', [], $this->msg( 'version-libraries-library' )->text() )
+			. Html::element( 'th', [], $this->msg( 'version-libraries-version' )->text() )
+			. Html::element( 'th', [], $this->msg( 'version-libraries-license' )->text() )
+			. Html::closeElement( 'tr' );
+
+		foreach ( $modules as $name => $info ) {
+			// We can safely assume that the libraries' names and descriptions
+			// are written in English and aren't going to be translated,
+			// so set appropriate lang and dir attributes
+			$out .= Html::openElement( 'tr', [
+				// Add an anchor so docs can link easily to the version of
+				// this specific library
+				'id' => Sanitizer::escapeIdForAttribute(
+					"mw-version-library-$name"
+				) ] )
+				. Html::rawElement(
+					'td',
+					[],
+					Linker::makeExternalLink(
+						$info['homepage'], $name,
+						true, '',
+						[ 'class' => 'mw-version-library-name' ]
+					)
+				)
+				. Html::element( 'td', [ 'dir' => 'auto' ], $info['version'] )
+				. Html::element( 'td', [ 'dir' => 'auto' ], $info['license'] )
 				. Html::closeElement( 'tr' );
 		}
 		$out .= Html::closeElement( 'table' );

@@ -3761,6 +3761,7 @@
 	"version-entrypoints-api-php": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:api.php api.php]",
 	"version-entrypoints-rest-php": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:rest.php rest.php]",
 	"version-libraries": "Installed libraries",
+	"version-libraries-client": "Installed client-side libraries",
 	"version-libraries-library": "Library",
 	"version-libraries-version": "Version",
 	"version-libraries-license": "License",
