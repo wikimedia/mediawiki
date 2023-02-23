@@ -22,6 +22,9 @@
  */
 
 use MediaWiki\Html\Html;
+use MediaWiki\Parser\ParserOutputFlags;
+use Wikimedia\Parsoid\Core\SectionMetadata;
+use Wikimedia\Parsoid\Core\TOCData;
 
 /**
  * A special page that lists special pages
@@ -92,18 +95,47 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 		$includesRestrictedPages = false;
 		$includesCachedPages = false;
 
+		// Format table of contents
+		$tocData = new TOCData();
+		$tocLength = 0;
+		foreach ( $groups as $group => $sortedPages ) {
+			if ( !str_contains( $group, '/' ) ) {
+				++$tocLength;
+				$tocData->addSection( new SectionMetadata(
+					1,
+					2,
+					$this->msg( "specialpages-group-$group" )->escaped(),
+					$this->getLanguage()->formatNum( $tocLength ),
+					(string)$tocLength,
+					null,
+					null,
+					"mw-specialpagesgroup-$group",
+					"mw-specialpagesgroup-$group"
+				) );
+			}
+		}
+
+		$pout = new ParserOutput;
+		$pout->setTOCData( $tocData );
+		$pout->setOutputFlag( ParserOutputFlags::SHOW_TOC );
+		$pout->setText( Parser::TOC_PLACEHOLDER );
+		$out->addParserOutput( $pout );
+
+		// Format contents
 		foreach ( $groups as $group => $sortedPages ) {
 			if ( str_contains( $group, '/' ) ) {
 				[ $group, $subGroup ] = explode( '/', $group, 2 );
-				$out->wrapWikiMsg(
-					"<h3 class=\"mw-specialpagessubgroup\">$1</h3>\n",
-					"specialpages-group-$group-$subGroup"
-				);
+				$out->addHTML( Html::element(
+					'h3',
+					[ 'class' => "mw-specialpagessubgroup" ],
+					$this->msg( "specialpages-group-$group-$subGroup" )->text()
+				) . "\n" );
 			} else {
-				$out->wrapWikiMsg(
-					"<h2 class=\"mw-specialpagesgroup\" id=\"mw-specialpagesgroup-$group\">$1</h2>\n",
-					"specialpages-group-$group"
-				);
+				$out->addHTML( Html::element(
+					'h2',
+					[ 'class' => "mw-specialpagesgroup", 'id' => "mw-specialpagesgroup-$group" ],
+					$this->msg( "specialpages-group-$group" )->text()
+				) . "\n" );
 			}
 			$out->addHTML(
 				Html::openElement( 'div', [ 'class' => 'mw-specialpages-list' ] )
