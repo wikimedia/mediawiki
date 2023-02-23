@@ -3925,7 +3925,7 @@
 	"search-match-redirect-label": "搜索时，跳转到完全匹配的项目",
 	"search-match-redirect-help": "当搜索关键词与页面标题匹配时提供跳转选项",
 	"search-thumbnail-extra-namespaces-label": "在桌面版的“Special:搜索”中显示缩略图",
-	"search-thumbnail-extra-namespaces-message": "在“Special:搜索”页面显示$1{{PLURAL:$2|命名空间}}结果的缩略图",
+	"search-thumbnail-extra-namespaces-message": "在“{{#special:search}}”页面显示$1{{PLURAL:$2|命名空间}}结果的缩略图",
 	"searchlimit-label": "搜索结果每页显示的数量：",
 	"searchlimit-help": "最大值：$1",
 	"api-clientside-error-noconnect": "无法连接到服务器。请确保您正常连接到互联网，并重试。",

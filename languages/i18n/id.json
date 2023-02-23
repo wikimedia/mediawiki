@@ -3105,7 +3105,7 @@
 	"creditspage": "Penghargaan halaman",
 	"nocredits": "Tidak ada informasi penghargaan yang tersedia untuk halaman ini.",
 	"spamprotectiontitle": "Filter pencegah spam",
-	"spamprotectiontext": "Teks yang ingin Anda terbitkan telah diblokir oleh penyaring spam.\nHal ini mungkin disebabkan oleh pranala ke situs luar yang telah dilarang.",
+	"spamprotectiontext": "Teks yang ingin Anda terbitkan telah diblokir oleh penyaring spam.\nHal ini mungkin disebabkan oleh pranala ke situs luar yang telah dilarang.\n\nApabila Anda percaya bahwa hal ini adalah suatu kesalahan (situs Anda bukan spam), silakan ajukan permohonan di [[Pembicaraan MediaWiki:Spam-whitelist]] untuk situs tersebut. (Ikuti petunjuk yang tertera di halaman tersebut).",
 	"spamprotectionmatch": "Teks berikut ini memancing filter spam kami: $1",
 	"spambot_username": "Pembersihan span MediaWiki",
 	"spam_reverting": "Membatalkan ke versi terakhir yang tak memiliki pranala ke $1",
