@@ -3,6 +3,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MainConfigNames;
+use MediaWiki\WikiMap\WikiMap;
 
 /**
  * @covers MediaWiki\Interwiki\ClassicInterwikiLookup

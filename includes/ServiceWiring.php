@@ -193,6 +193,7 @@ use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
 use MediaWiki\Utils\UrlUtils;
 use MediaWiki\Watchlist\WatchlistManager;
+use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\DependencyStore\SqlModuleDependencyStore;
 use Wikimedia\Message\IMessageFormatterFactory;

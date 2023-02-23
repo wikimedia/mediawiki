@@ -22,6 +22,7 @@ namespace MediaWiki\Logger;
 
 use DateTimeZone;
 use Error;
+use MediaWiki\WikiMap\WikiMap;
 use MWDebug;
 use MWExceptionHandler;
 use Psr\Log\AbstractLogger;
@@ -29,7 +30,6 @@ use Psr\Log\LogLevel;
 use RuntimeException;
 use Throwable;
 use UDPTransport;
-use WikiMap;
 use Wikimedia\AtEase\AtEase;
 
 /**

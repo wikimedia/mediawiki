@@ -14,6 +14,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\WikiMap\WikiMap;
 use NamespaceInfo;
 use Parser;
 use RepoGroup;
@@ -296,7 +297,7 @@ class CommentParser {
 	) {
 		if ( $wikiId !== null && $wikiId !== false && !$target->isExternal() ) {
 			return Linker::makeExternalLink(
-				\WikiMap::getForeignURL(
+				WikiMap::getForeignURL(
 					$wikiId,
 					$target->getNamespace() === 0
 						? $target->getDBkey()
@@ -464,7 +465,7 @@ class CommentParser {
 		if ( $wikiId !== null && $wikiId !== false && !$target->isExternal() ) {
 			// Handle links from a foreign wiki ID
 			return Linker::makeExternalLink(
-				\WikiMap::getForeignURL(
+				WikiMap::getForeignURL(
 					$wikiId,
 					$target->getNamespace() === 0
 						? $target->getDBkey()

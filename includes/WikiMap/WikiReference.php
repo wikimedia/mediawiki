@@ -20,6 +20,8 @@
  * @file
  */
 
+namespace MediaWiki\WikiMap;
+
 /**
  * Reference to a locally-hosted wiki
  */
@@ -118,7 +120,8 @@ class WikiReference {
 	 * @return string URL
 	 */
 	public function getFullUrl( $page, $fragmentId = null ) {
-		return $this->mServer .
-			$this->getLocalUrl( $page, $fragmentId );
+		return $this->mServer . $this->getLocalUrl( $page, $fragmentId );
 	}
 }
+
+class_alias( WikiReference::class, 'WikiReference' );

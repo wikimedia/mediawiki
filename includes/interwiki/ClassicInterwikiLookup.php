@@ -27,8 +27,8 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
+use MediaWiki\WikiMap\WikiMap;
 use WANObjectCache;
-use WikiMap;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**

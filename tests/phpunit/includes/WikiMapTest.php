@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\WikiMap\WikiMap;
+use MediaWiki\WikiMap\WikiReference;
 use Wikimedia\Rdbms\DatabaseDomain;
 
 /**

@@ -20,7 +20,7 @@
 
 namespace MediaWiki\Logger\Monolog;
 
-use WikiMap;
+use MediaWiki\WikiMap\WikiMap;
 
 /**
  * Annotate log records with request-global metadata, such as the hostname,
