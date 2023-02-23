@@ -20,7 +20,6 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\IDatabase;
@@ -849,7 +848,10 @@ class JobQueueDB extends JobQueue {
 			}
 
 			try {
-				$this->conn = Database::factory( $this->server['type'], $this->server );
+				$this->conn = MediaWikiServices::getInstance()->getDatabaseFactory()->create(
+					$this->server['type'],
+					$this->server
+				);
 			} catch ( DBError $e ) {
 				$this->conn = $e;
 				throw $e;

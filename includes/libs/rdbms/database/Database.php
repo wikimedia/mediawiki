@@ -350,19 +350,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @since 1.18
 	 */
 	final public static function factory( $type, $params = [], $connect = self::NEW_CONNECTED ) {
+		wfDeprecated( __METHOD__, '1.39' );
 		return ( new DatabaseFactory() )->create( $type, $params, $connect );
-	}
-
-	/**
-	 * @param string $dbType A possible DB type (sqlite, mysql, postgres,...)
-	 * @param string|null $driver Optional name of a specific DB client driver
-	 * @return array Map of (Database::ATTR_* constant => value) for all such constants
-	 * @throws DBUnexpectedError
-	 * @deprecated since 1.39, use DatabaseFactory::attributesFromType instead
-	 * @since 1.31
-	 */
-	final public static function attributesFromType( $dbType, $driver = null ) {
-		return ( new DatabaseFactory() )->attributesFromType( $dbType, $driver );
 	}
 
 	/**

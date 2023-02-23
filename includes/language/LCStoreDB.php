@@ -18,7 +18,7 @@
  * @file
  */
 
-use Wikimedia\Rdbms\Database;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
@@ -134,7 +134,8 @@ class LCStoreDB implements LCStore {
 	private function getWriteConnection() {
 		if ( !$this->dbw ) {
 			if ( $this->server ) {
-				$this->dbw = Database::factory( $this->server['type'], $this->server );
+				$dbFactory = MediaWikiServices::getInstance()->getDatabaseFactory();
+				$this->dbw = $dbFactory->create( $this->server['type'], $this->server );
 				if ( !$this->dbw ) {
 					throw new MWException( __CLASS__ . ': failed to obtain a DB connection' );
 				}
