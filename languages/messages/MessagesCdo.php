@@ -5,7 +5,7 @@
  * @ingroup Languages
  */
 
-$fallback = 'nan, zh-hant, zh, zh-hans';
+$fallback = 'nan-hant, zh-hant, zh, zh-hans';
 
 $namespaceNames = [
 	NS_MEDIA            => '媒體',
