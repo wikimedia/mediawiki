@@ -30,10 +30,12 @@
 		this.store = store;
 
 		// Purge expired items once per page session
-		var storage = this;
-		setTimeout( function () {
-			storage.clearExpired();
-		}, 2000 );
+		if ( !window.QUnit ) {
+			var storage = this;
+			setTimeout( function () {
+				storage.clearExpired();
+			}, 2000 );
+		}
 	}
 
 	/**
