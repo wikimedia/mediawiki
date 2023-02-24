@@ -385,6 +385,8 @@ because of Phabricator reports.
   entry point should be used instead.
 * MWHttpRequest::factory, deprecated in 1.34, now emits deprecation warnings.
 * Job::factory is deprecated, use JobFactory::newJob instead.
+* Http::request(), ::get(), ::post(), ::userAgent() and ::isValidURI(),
+  deprecated in 1.34, now emit deprecation warnings.
 * Title.js's confusingly-named getName() and getNameText() methods, for using
   media files' pages, have been renamed to getFileNameWithoutExtension() and
   getFileNameTextWithoutExtension() respectively. The old names are deprecated.
