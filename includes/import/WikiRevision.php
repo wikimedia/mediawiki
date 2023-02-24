@@ -151,10 +151,9 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	public $fileSrc = '';
 
 	/**
-	 * @since 1.17
-	 * @var string|false
+	 * @var string|null
 	 */
-	public $sha1base36 = false;
+	private $sha1base36;
 
 	/**
 	 * @since 1.34
@@ -342,7 +341,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @param string $sha1base36
 	 */
 	public function setSha1Base36( $sha1base36 ) {
-		$this->sha1base36 = $sha1base36;
+		$this->sha1base36 = $sha1base36 ?: null;
 	}
 
 	/**
@@ -560,10 +559,7 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 	 * @return string|false
 	 */
 	public function getSha1Base36() {
-		if ( $this->sha1base36 ) {
-			return $this->sha1base36;
-		}
-		return false;
+		return $this->sha1base36 ?? false;
 	}
 
 	/**

@@ -285,6 +285,7 @@ because of Phabricator reports.
   (current PHP default) instead of 17. Extension tests may need to be adjusted
   accordingly; string representations of floating-point numbers in serialized
   or JSON-encoded data may change.
+* WikiRevision::$sha1base36 is now private.
 * IcuCollation::getUnicodeVersionForICU() was removed without deprecation.
 * LinkFilter::supportsIDN() was removed without deprecation.
 * The ability to pass null for the errorData parameter of HttpException and

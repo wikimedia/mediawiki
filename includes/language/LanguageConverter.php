@@ -331,25 +331,26 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return string The preferred language code
 	 */
 	public function getPreferredVariant() {
-		$defaultLanguageVariant = MediaWikiServices::getInstance()->getMainConfig()->get(
-			MainConfigNames::DefaultLanguageVariant );
-
 		$req = $this->getURLVariant();
 
 		Hooks::runner()->onGetLangPreferredVariant( $req );
 
-		$user = RequestContext::getMain()->getUser();
-		// NOTE: For some calls there may not be a context user or session that is safe
-		// to use, see (T235360)
-		// Use case: During autocreation, UserNameUtils::isUsable is called which uses interface
-		// messages for reserved usernames.
-		if ( $user->isSafeToLoad() && $user->isRegistered() && !$req ) {
-			$req = $this->getUserVariant( $user );
-		} elseif ( !$req ) {
-			$req = $this->getHeaderVariant();
+		if ( !$req ) {
+			$user = RequestContext::getMain()->getUser();
+			// NOTE: For some calls there may not be a context user or session that is safe
+			// to use, see (T235360)
+			// Use case: During autocreation, UserNameUtils::isUsable is called which uses interface
+			// messages for reserved usernames.
+			if ( $user->isSafeToLoad() && $user->isRegistered() ) {
+				$req = $this->getUserVariant( $user );
+			} else {
+				$req = $this->getHeaderVariant();
+			}
 		}
 
-		if ( $defaultLanguageVariant && !$req ) {
+		$defaultLanguageVariant = MediaWikiServices::getInstance()->getMainConfig()
+			->get( MainConfigNames::DefaultLanguageVariant );
+		if ( !$req && $defaultLanguageVariant ) {
 			$req = $this->validateVariant( $defaultLanguageVariant );
 		}
 
