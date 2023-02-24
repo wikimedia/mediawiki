@@ -520,7 +520,7 @@ class SkinTemplate extends Skin {
 				$personal_urls['createaccount'] = $createaccount_url;
 			}
 
-			if ( $authManager->canAuthenticateNow() && !$this->isTempUser ) {
+			if ( $authManager->canAuthenticateNow() ) {
 				// TODO: easy way to get anon authority
 				$key = $groupPermissionsLookup->groupHasPermission( '*', 'read' )
 					? 'login'
