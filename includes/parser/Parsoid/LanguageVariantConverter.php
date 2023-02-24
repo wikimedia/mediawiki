@@ -134,6 +134,9 @@ class LanguageVariantConverter {
 
 			$baseLanguage = $this->languageFactory->getParentLanguage( $targetVariantCode );
 			$languageConverter = $this->languageConverterFactory->getLanguageConverter( $baseLanguage );
+			if ( !$languageConverter->hasVariant( $targetVariantCode ) ) {
+				return $pageBundle;
+			}
 
 			$convertedHtml = $languageConverter->convertTo( $pageBundle->html, $targetVariantCode );
 
