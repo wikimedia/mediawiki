@@ -596,7 +596,7 @@
 	"missingcommentheader": "'''Paalala:''' Hindi ka nagbigay ng isang paksa/paulo para sa punang ito.\nKapag pinindot mo uli ang \"$1\", masasagip ang pagbabago mo na wala nito.",
 	"summary-preview": "Paunang tingin sa buod:",
 	"blockedtitle": "Hinarang ang tagagamit",
-	"blockedtext": "<strong>Hinarangan ang tagagamit na ito o ang IP address mo.</strong>\n\nGinawa ni $1 ang pagharang.\nAng dahilan ay <em>$2</em>.\n\n* Simula ng pagharang: $8\n* Nakaharang hanggang: $6\n* Intensiyon ng pagharang: $7\n\nMaaari mong kontakin si $1 o iba pang [[{{MediaWiki:Grouppage-sysop}}|admin]] para pag-usapan ang pagharang.\nMaaari mong gamitin ang tampok na \"{{int:emailuser}}\" kung may valid na email address kang nilagay  sa [[Special:Preferences|pagsasaayos]] at hindi ka pa hinaharangang gamitin iyon.\nAng IP address mo ngayon ay $3, at ang ID ng pagharang ay #$5.\nPakilagay ang lahat ng mga detalye sa taas sa mga query na gagawin mo.",
+	"blockedtext": "<strong>Hinarangan ang tagagamit na ito o ang IP address mo.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nPwedeng mong gamitin ang tampok na \"{{int:emailuser}}\" kung may valid na email address kang nilagay  sa [[Special:Preferences|pagsasaayos]] at hindi ka pa hinaharangang magamit yon.\nAng IP address mo ngayon ay $3, at ang ID ng pagharang ay #$5.\nPakilagay ang lahat ng mga detalye sa taas sa mga query na gagawin mo.",
 	"autoblockedtext": "Kusang hinadlangan/hinarang ang direksiyong IP mo dahil ginamit ito ng ibang tagagamit, na hinadlangan/hinarang ni $1.\nAng ibinigay na dahilan ay:\n\n:''$2''\n\n* Simula ng pagharang: $8\n* Katapusan ng pagharang: $6\n* Ang hinadlangang ay si: $7\n\nMaaari kang makipagugnayan kay $1 o sa isa sa iba pang [[{{MediaWiki:Grouppage-sysop}}|mga tagapangasiwa]] para pagusapan ang paghadlang/pagharang.\n\nPakitandaang hindi mo maaaring gamitin ang kasangkapang-katangiang \"padalhan ng e-liham ang tagagamit na ito\" maliban na lamang kung mayroon kang nakatalang tanggap na direksiyong e-liham sa iyong [[Special:Preferences|mga kagustuhan]] at hindi ka hinadlangan sa paggamit nito.\n\nAng kasalukuyan mong direksiyong IP ay $3, at ang ID ng pagharang ay #$5.\nPakisama ang lahat ng mga detalyeng nasa itaas sa anumang pagtatanong na gagawin mo.",
 	"blockednoreason": "walang binigay na dahilan",
 	"whitelistedittext": "Kailangan mong $1 para makapagbago ng mga pahina.",
@@ -615,7 +615,7 @@
 	"noarticletext-nopermission": "Wala pang laman ang pahinang ito.\nPwede mong [[Special:Search/{{PAGENAME}}|hanapin ito]] sa ibang pahina, o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} maghanap sa mga kaugnay na log]</span>, pero pinagbabawalan kang gawin ang pahinang ito.",
 	"missing-revision": "Hindi umiiral ang rebisyong #$1 ng pahinang napangalanang \"{{FULLPAGENAME}}\".\n\nKaraniwang itong dulot ng pagsunod sa isang wala na sa panahong kawing ng kasaysayan na papunta sa isang pahinang nabura na.\nMatatagpuan ang mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].",
 	"userpage-userdoesnotexist": "Hindi nakatala ang account ng tagagamit na \"<nowiki>$1</nowiki>\".\nPakisuri kung ibig mong likhain/baguhin ang pahinang ito.",
-	"userpage-userdoesnotexist-view": "Hindi nakarehistro ang account na \"$1\".",
+	"userpage-userdoesnotexist-view": "Hindi nakarehistro ang account na \"$1\" sa wiki na ito.",
 	"blocked-notice-logextract": "Kasalukuyang hinarang si {{GENDER:$1|user}}.\nAng pinakahuling entrada sa talaan  ng pagharang ay ibinigay sa baba para sa inyong pagsasangguni:",
 	"clearyourcache": "<strong>Paalala:</strong> Matapos ilathala, baka kakailanganin mong i-bypass ang cache ng iyong browser para makita ang mga pagbabago.\n* <strong>Sa Firefox / Safari:</strong> Pindutin ang <em>Shift</em> habang pinipindot ang <em>Reload</em>, o pindutin ang <em>Ctrl-F5</em> o <em>Ctrl-R</em> (<em>⌘-R</em> sa Mac)\n* <strong>Sa Google Chrome:</strong> Pindutin ang <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> sa Mac)\n* <strong>Sa Internet Explorer / Edge:</strong> Pindutin <em>Ctrl</em> habang pinipindot ang <em>Refresh</em>, o pindutin ang <em>Ctrl-F5</em>\n* <strong>Sa Opera:</strong> Pindutin ang <em>Ctrl-F5</em>.",
 	"usercssyoucanpreview": "'''Balato:''' Gamitin ang pindutang \"{{int:showpreview}}\" upang masubok ang bago mong CSS bago sagipin.",
@@ -2708,5 +2708,13 @@
 	"skin-action-protect": "Isanggalang",
 	"skin-action-undelete": "Alisin ang pagbubura",
 	"skin-action-delete": "Burahin",
-	"skin-action-move": "Ilipat"
+	"skin-action-move": "Ilipat",
+	"blockedtext-made-by": "Ginawa ni $1 ang pagharang.",
+	"blockedtext-reason-comment": "Ang dahilan na binigay ay <em>$1</em>",
+	"blockedtext-start-time": "Simula ng pagharang: $1",
+	"blockedtext-expiration-time": "Pagtatapos ng pagharang: $1",
+	"blockedtext-intended-blockee": "Tinatarget na harangin: $1",
+	"blockedtext-contact-blocker-admin": "Pwede mong makontak si $1 o ng iba pang [[{{MediaWiki:Grouppage-sysop}}|admin]] para pag-usapan ang pagharang.",
+	"blockedtext-block-ip": "Ang kasalukuyang IP address mo ay $1",
+	"blockedtext-include-details-queries": "Pakisama ang lahat ng mga detalye sa taas sa kahit anong mga katanungan na gagawin mo."
 }
