@@ -107,6 +107,7 @@ class CoreMagicVariables {
 			case 'subjectpagename':
 			case 'subjectpagenamee':
 			case 'pageid':
+			case 'revisionuser':
 			case 'revisionday':
 			case 'revisionday2':
 			case 'revisionmonth':
@@ -169,14 +170,6 @@ class CoreMagicVariables {
 					}
 					return (string)$value;
 				}
-			case 'revisionuser':
-				// Inform the edit saving system that getting the canonical output after
-				// revision insertion requires a parse that used the actual user ID
-				self::setOutputFlag( $parser, $logger, ParserOutputFlags::VARY_USER, '{{REVISIONUSER}} used' );
-				// Note that getRevisionUser() can return null; we need to
-				// be sure to cast this to (an empty) string, since 'null'
-				// means "magic variable not handled here".
-				return (string)$parser->getRevisionUser();
 			case 'revisionsize':
 				return (string)$parser->getRevisionSize();
 			case 'currentdayname':
