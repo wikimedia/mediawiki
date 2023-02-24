@@ -150,4 +150,11 @@ require_once "$IP/includes/Setup.php";
 // stays in tact. Needs to happen after including Setup.php, which calls MWExceptionHandler::installHandle().
 restore_error_handler();
 
+// Check that composer dependencies are up-to-date
+if ( !getenv( 'MW_SKIP_EXTERNAL_DEPENDENCIES' ) ) {
+	$composerLockUpToDate = new CheckComposerLockUpToDate();
+	$composerLockUpToDate->loadParamsAndArgs( 'phpunit', [ 'quiet' => true ] );
+	$composerLockUpToDate->execute();
+}
+
 $wrapper->execute();
