@@ -196,8 +196,6 @@ use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\DependencyStore\SqlModuleDependencyStore;
 use Wikimedia\Message\IMessageFormatterFactory;
-use Wikimedia\Metrics\MetricsCache;
-use Wikimedia\Metrics\MetricsFactory;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Parsoid\Config\Api\DataAccess as ApiDataAccess;
 use Wikimedia\Parsoid\Config\Api\SiteConfig as ApiSiteConfig;
@@ -208,6 +206,8 @@ use Wikimedia\Rdbms\DatabaseFactory;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\RequestTimeout;
 use Wikimedia\Services\RecursiveServiceDependencyException;
+use Wikimedia\Stats\StatsCache;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
 use Wikimedia\WRStats\BagOStuffStatsStore;
 use Wikimedia\WRStats\WRStatsFactory;
@@ -1102,25 +1102,6 @@ return [
 		return new MessageFormatterFactory();
 	},
 
-	'MetricsCache' => static function ( MediaWikiServices $services ): MetricsCache {
-		return new MetricsCache();
-	},
-
-	'MetricsFactory' => static function ( MediaWikiServices $services ): MetricsFactory {
-		$config = $services->getMainConfig();
-		$format = \Wikimedia\Metrics\OutputFormats::getFormatFromString(
-			$config->get( MainConfigNames::MetricsFormat ) ?? 'null'
-		);
-		$cache = $services->getService( 'MetricsCache' );
-		$emitter = \Wikimedia\Metrics\OutputFormats::getNewEmitter(
-			$config->get( MainConfigNames::MetricsPrefix ) ?? 'MediaWiki',
-			$cache,
-			\Wikimedia\Metrics\OutputFormats::getNewFormatter( $format ),
-			$config->get( MainConfigNames::MetricsTarget )
-		);
-		return new MetricsFactory( $cache, $emitter, LoggerFactory::getInstance( 'Metrics' ) );
-	},
-
 	'MimeAnalyzer' => static function ( MediaWikiServices $services ): MimeAnalyzer {
 		$logger = LoggerFactory::getInstance( 'Mime' );
 		$mainConfig = $services->getMainConfig();
@@ -1952,10 +1933,29 @@ return [
 		);
 	},
 
+	'StatsCache' => static function ( MediaWikiServices $services ): StatsCache {
+		return new StatsCache();
+	},
+
 	'StatsdDataFactory' => static function ( MediaWikiServices $services ): IBufferingStatsdDataFactory {
 		return new BufferingStatsdDataFactory(
 			rtrim( $services->getMainConfig()->get( MainConfigNames::StatsdMetricPrefix ), '.' )
 		);
+	},
+
+	'StatsFactory' => static function ( MediaWikiServices $services ): StatsFactory {
+		$config = $services->getMainConfig();
+		$format = \Wikimedia\Stats\OutputFormats::getFormatFromString(
+			$config->get( MainConfigNames::StatsFormat ) ?? 'null'
+		);
+		$cache = $services->getService( 'StatsCache' );
+		$emitter = \Wikimedia\Stats\OutputFormats::getNewEmitter(
+			$config->get( MainConfigNames::StatsPrefix ) ?? 'MediaWiki',
+			$cache,
+			\Wikimedia\Stats\OutputFormats::getNewFormatter( $format ),
+			$config->get( MainConfigNames::StatsTarget )
+		);
+		return new StatsFactory( $cache, $emitter, LoggerFactory::getInstance( 'Stats' ) );
 	},
 
 	'TalkPageNotificationManager' => static function (
