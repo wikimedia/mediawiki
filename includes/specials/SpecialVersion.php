@@ -28,8 +28,11 @@ use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Utils\UrlUtils;
 use Symfony\Component\Yaml\Yaml;
+use Wikimedia\Parsoid\Core\SectionMetadata;
+use Wikimedia\Parsoid\Core\TOCData;
 
 /**
  * Give information about the version of MediaWiki, PHP, the DB and extensions
@@ -52,6 +55,12 @@ class SpecialVersion extends SpecialPage {
 	 * @var string[]|false Lazy initialized key/value with message content
 	 */
 	protected static $extensionTypes = false;
+
+	/** @var TOCData */
+	protected $tocData;
+
+	/** @var int */
+	protected $tocLength;
 
 	/** @var Parser */
 	private $parser;
@@ -191,26 +200,71 @@ class SpecialVersion extends SpecialPage {
 
 			default:
 				$out->addModuleStyles( 'mediawiki.special' );
-				$out->addHTML(
-					$this->getMediaWikiCredits() .
-					$this->softwareInformation()
-				);
-				$out->addWikiTextAsInterface(
-					$this->getEntryPointInfo()
-				);
-				$out->addHTML(
-					$this->getSkinCredits( $credits ) .
-					$this->getExtensionCredits( $credits ) .
-					$this->getExternalLibraries( $credits ) .
-					$this->getClientSideLibraries() .
-					$this->getParserTags() .
-					$this->getParserFunctionHooks()
-				);
-				$out->addWikiTextAsInterface( $this->getHooks() );
-				$out->addHTML( $this->IPInfo() );
+
+				$out->addHTML( $this->getMediaWikiCredits() );
+
+				$this->tocData = new TOCData();
+				$this->tocLength = 0;
+
+				// Build the page contents (this also fills in TOCData)
+				$sections = [
+					[ 'html', $this->softwareInformation() ],
+					[ 'wikitext', $this->getEntryPointInfo() ],
+					[ 'html', $this->getSkinCredits( $credits ) ],
+					[ 'html', $this->getExtensionCredits( $credits ) ],
+					[ 'html', $this->getExternalLibraries( $credits ) ],
+					[ 'html', $this->getClientSideLibraries() ],
+					[ 'html', $this->getParserTags() ],
+					[ 'html', $this->getParserFunctionHooks() ],
+					[ 'wikitext', $this->getHooks() ],
+					[ 'html', $this->IPInfo() ],
+				];
+
+				// Insert TOC first
+				$pout = new ParserOutput;
+				$pout->setTOCData( $this->tocData );
+				$pout->setOutputFlag( ParserOutputFlags::SHOW_TOC );
+				$pout->setText( Parser::TOC_PLACEHOLDER );
+				$out->addParserOutputText( $pout );
+
+				// Insert contents
+				foreach ( $sections as [ $mode, $content ] ) {
+					if ( $mode === 'wikitext' ) {
+						$out->addWikiTextAsInterface( $content );
+					} elseif ( $mode === 'html' ) {
+						// Yeah Phan, I get it, mixing HTML and wikitext like this is not a good practice
+						// @phan-suppress-next-line SecurityCheck-XSS
+						$out->addHTML( $content );
+					}
+				}
+
+				// Set TOC metadata at the end, because otherwise the addWikiTextAsInterface() calls override it
+				$out->addParserOutputMetadata( $pout );
 
 				break;
 		}
+	}
+
+	/**
+	 * Add a section to the table of contents. This doesn't add the heading to the actual page.
+	 * Assumes that there are only level 2 headings and that the IDs don't use non-ASCII characters.
+	 *
+	 * @param string $labelMsg
+	 * @param string $id
+	 */
+	private function addTocSection( $labelMsg, $id ) {
+		$this->tocLength++;
+		$this->tocData->addSection( new SectionMetadata(
+			1,
+			2,
+			$this->msg( $labelMsg )->escaped(),
+			$this->getLanguage()->formatNum( $this->tocLength ),
+			(string)$this->tocLength,
+			null,
+			null,
+			$id,
+			$id
+		) );
 	}
 
 	/**
@@ -219,6 +273,8 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML
 	 */
 	private function getMediaWikiCredits() {
+		// No TOC entry for this heading, we treat it like the lede section
+
 		$ret = Html::element(
 			'h2',
 			[ 'id' => 'mw-version-license' ],
@@ -302,6 +358,8 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML
 	 */
 	private function softwareInformation() {
+		$this->addTocSection( 'version-software', 'mw-version-software' );
+
 		$out = Html::element(
 			'h2',
 			[ 'id' => 'mw-version-software' ],
@@ -479,6 +537,8 @@ class SpecialVersion extends SpecialPage {
 
 		$extensionTypes = self::getExtensionTypes();
 
+		$this->addTocSection( 'version-extensions', 'mw-version-ext' );
+
 		$out = Xml::element(
 				'h2',
 				[ 'id' => 'mw-version-ext' ],
@@ -525,6 +585,8 @@ class SpecialVersion extends SpecialPage {
 		if ( !isset( $credits['skin'] ) || !$credits['skin'] ) {
 			return '';
 		}
+
+		$this->addTocSection( 'version-skins', 'mw-version-skin' );
 
 		$out = Html::element(
 				'h2',
@@ -583,6 +645,8 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		ksort( $dependencies );
+
+		$this->addTocSection( 'version-libraries', 'mw-version-libraries' );
 
 		$out = Html::element(
 			'h2',
@@ -656,6 +720,8 @@ class SpecialVersion extends SpecialPage {
 		$modules = Yaml::parseFile( $registryFile );
 		ksort( $modules );
 
+		$this->addTocSection( 'version-libraries-client', 'mw-version-libraries-client' );
+
 		$out = Html::element(
 			'h2',
 			[ 'id' => 'mw-version-libraries-client' ],
@@ -710,6 +776,8 @@ class SpecialVersion extends SpecialPage {
 			return '';
 		}
 
+		$this->addTocSection( 'version-parser-extensiontags', 'mw-version-parser-extensiontags' );
+
 		$out = Html::rawElement(
 			'h2',
 			[ 'id' => 'mw-version-parser-extensiontags' ],
@@ -750,6 +818,8 @@ class SpecialVersion extends SpecialPage {
 		if ( !$funcHooks ) {
 			return '';
 		}
+
+		$this->addTocSection( 'version-parser-function-hooks', 'mw-version-parser-function-hooks' );
 
 		$out = Html::rawElement(
 			'h2',
@@ -1246,6 +1316,9 @@ class SpecialVersion extends SpecialPage {
 			'dir' => $language->getDir(),
 			'lang' => $language->getHtmlCode()
 		];
+
+		$this->addTocSection( 'version-entrypoints', 'mw-version-entrypoints' );
+
 		$out = Html::element(
 				'h2',
 				[ 'id' => 'mw-version-entrypoints' ],
