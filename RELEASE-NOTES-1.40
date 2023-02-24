@@ -106,6 +106,10 @@ For notes on 1.39.x and older releases, see HISTORY.
   page or action parameter set, e.g. [[Special:Contributions/JohnDoe]].
 * The MediaWiki-Docker development environment is now configured to
   run on PHP 8.1 by default, up from PHP 7.4 now that that's EOL.
+* The PHPUnit entrypoints (tests/phpunit/phpunit.php and vendor/bin/phpunit)
+  check if composer dependencies are up-to-date, using
+  CheckComposerLockUpToDate. To disable this check, use
+  MW_SKIP_EXTERNAL_DEPENDENCIES=1 environment flag when running PHPUnit.
 * Added 'SpecialCreateAccountBenefits' hook, to customize the signup page
   content about the benefits of registering an account.
 * (T321412) Added new 'PageUndeleteComplete' hook which provides more thorough
