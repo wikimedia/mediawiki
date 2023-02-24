@@ -1385,7 +1385,29 @@ class CoreParserFunctions {
 				return '';
 			}
 		}
-		// fetch revision from cache/database and return the value
+		// Fetch revision from cache/database and return the value.
+		// Inform the edit saving system that getting the canonical output
+		// after revision insertion requires a parse that used that exact
+		// revision ID.
+		if ( $t->equals( $parser->getTitle() ) && $title === null ) {
+			// special handling for no-arg case: use speculative rev id
+			// for current page.
+			$parser->getOutput()->setOutputFlag( ParserOutputFlags::VARY_REVISION_ID );
+			$id = $parser->getRevisionId();
+			if ( $id === 0 ) {
+				$rev = $parser->getRevisionRecordObject();
+				if ( $rev ) {
+					$id = $rev->getId();
+				}
+			}
+			if ( !$id ) {
+				$id = $parser->getOptions()->getSpeculativeRevId();
+				if ( $id ) {
+					$parser->getOutput()->setSpeculativeRevIdUsed( $id );
+				}
+			}
+			return (string)$id;
+		}
 		$rev = self::getCachedRevisionObject( $parser, $t, ParserOutputFlags::VARY_REVISION_ID );
 		return $rev ? $rev->getId() : '';
 	}
@@ -1397,9 +1419,13 @@ class CoreParserFunctions {
 		int $len,
 		int $mtts
 	): string {
-		// Note that {{REVISIONTIMESTAMP}} works differently from
-		// {{REVISIONTIMESTAMP:{{PAGENAME}}}} even though $title is the same!
-		if ( $title->equals( $parser->getTitle() ) ) {
+		// If fetching the revision timestamp of the current page, substitute the
+		// speculative timestamp to be used when this revision is saved.  This
+		// avoids having to invalidate the cache immediately by assuming the "last
+		// saved revision" will in fact be this one.
+		// Don't do this for interface messages (eg, edit notices) however; in that
+		// case fall through and use the actual timestamp of the last saved revision.
+		if ( $title->equals( $parser->getTitle() ) && !$parser->getOptions()->getInterfaceMessage() ) {
 			// Get the timezone-adjusted timestamp to be used for this revision
 			$resNow = substr( $parser->getRevisionTimestamp(), $start, $len );
 			// Possibly set vary-revision if there is not yet an associated revision

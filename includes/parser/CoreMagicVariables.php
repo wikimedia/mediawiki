@@ -22,7 +22,6 @@
  */
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
-use MediaWiki\Parser\ParserOutputFlags;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -40,7 +39,6 @@ class CoreMagicVariables {
 	 * @param string $id The name of the variable, and equivalently, the magic
 	 *   word ID which was used to match the variable
 	 * @param ConvertibleTimestamp $ts Timestamp to use when expanding magic variable
-	 * @param NamespaceInfo $nsInfo The NamespaceInfo to use when expanding
 	 * @param ServiceOptions $svcOptions Service options for the parser
 	 * @param LoggerInterface $logger
 	 * @return string|null The expanded value, or null to indicate the given
@@ -52,7 +50,6 @@ class CoreMagicVariables {
 		string $id,
 		// Context passed over from the parser
 		ConvertibleTimestamp $ts,
-		NamespaceInfo $nsInfo,
 		ServiceOptions $svcOptions,
 		LoggerInterface $logger
 	): ?string {
@@ -107,6 +104,7 @@ class CoreMagicVariables {
 			case 'subjectpagename':
 			case 'subjectpagenamee':
 			case 'pageid':
+			case 'revisionid':
 			case 'revisionuser':
 			case 'revisionday':
 			case 'revisionday2':
@@ -132,44 +130,6 @@ class CoreMagicVariables {
 				# parser function by passing `null` to indicate a missing
 				# argument (which then defaults to the current page title).
 				return CoreParserFunctions::$id( $parser, null );
-			case 'revisionid':
-				$namespace = $title->getNamespace();
-				if (
-					$svcOptions->get( MainConfigNames::MiserMode ) &&
-					!$parser->getOptions()->getInterfaceMessage() &&
-					// @TODO: disallow this variable on all namespaces
-					$nsInfo->isSubject( $namespace )
-				) {
-					// Use a stub result instead of the actual revision ID in order to avoid
-					// double parses on page save but still allow preview detection (T137900)
-					if ( $parser->getRevisionId() || $parser->getOptions()->getSpeculativeRevId() ) {
-						return '-';
-					} else {
-						self::setOutputFlag(
-							$parser,
-							$logger,
-							ParserOutputFlags::VARY_REVISION_EXISTS,
-							'{{REVISIONID}} used'
-						);
-						return '';
-					}
-				} else {
-					// Inform the edit saving system that getting the canonical output after
-					// revision insertion requires a parse that used that exact revision ID
-					self::setOutputFlag( $parser, $logger, ParserOutputFlags::VARY_REVISION_ID, '{{REVISIONID}} used' );
-					$value = $parser->getRevisionId();
-					if ( $value === 0 ) {
-						$rev = $parser->getRevisionRecordObject();
-						$value = $rev ? $rev->getId() : $value;
-					}
-					if ( !$value ) {
-						$value = $parser->getOptions()->getSpeculativeRevId();
-						if ( $value ) {
-							$parser->getOutput()->setSpeculativeRevIdUsed( $value );
-						}
-					}
-					return (string)$value;
-				}
 			case 'revisionsize':
 				return (string)$parser->getRevisionSize();
 			case 'currentdayname':
@@ -256,27 +216,5 @@ class CoreMagicVariables {
 		$localtimezone = $svcOptions->get( MainConfigNames::Localtimezone );
 		$ts->setTimezone( $localtimezone );
 		return $ts;
-	}
-
-	/**
-	 * Helper method borrowed from Parser.php: sets the flag on the output
-	 * but also does some debug logging.
-	 * @param Parser $parser
-	 * @param LoggerInterface $logger
-	 * @param string $flag
-	 * @param string $reason
-	 */
-	private static function setOutputFlag(
-		Parser $parser,
-		LoggerInterface $logger,
-		string $flag,
-		string $reason
-	): void {
-		$parser->getOutput()->setOutputFlag( $flag );
-		$name = $parser->getTitle()->getPrefixedText();
-		// This code was moved from Parser::setOutputFlag and used __METHOD__
-		// originally; we've hard-coded that output here so that our refactor
-		// doesn't change the messages in the logs.
-		$logger->debug( "Parser::setOutputFlag: set $flag flag on '$name'; $reason" );
 	}
 }
