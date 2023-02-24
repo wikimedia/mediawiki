@@ -418,16 +418,15 @@ class Category {
 				# The category row already exists, so do a plain UPDATE instead
 				# of INSERT...ON DUPLICATE KEY UPDATE to avoid creating a gap
 				# in the cat_id sequence. The row may or may not be "affected".
-				$dbw->update(
-					'category',
-					[
+				$dbw->newUpdateQueryBuilder()
+					->update( 'category' )
+					->set( [
 						'cat_pages' => $result->pages,
 						'cat_subcats' => $result->subcats,
 						'cat_files' => $result->files
-					],
-					[ 'cat_title' => $this->mName ],
-					__METHOD__
-				);
+					] )
+					->where( [ 'cat_title' => $this->mName ] )
+					->caller( __METHOD__ )->execute();
 			} else {
 				# The category is empty and has no description page, delete it
 				$dbw->delete(

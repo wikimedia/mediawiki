@@ -2889,6 +2889,7 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Rdbms\\TransactionIdentifier' => __DIR__ . '/includes/libs/rdbms/database/utils/TransactionIdentifier.php',
 	'Wikimedia\\Rdbms\\TransactionManager' => __DIR__ . '/includes/libs/rdbms/database/TransactionManager.php',
 	'Wikimedia\\Rdbms\\TransactionProfiler' => __DIR__ . '/includes/libs/rdbms/TransactionProfiler.php',
+	'Wikimedia\\Rdbms\\UpdateQueryBuilder' => __DIR__ . '/includes/libs/rdbms/querybuilder/UpdateQueryBuilder.php',
 	'Wikimedia\\Reflection\\GhostFieldAccessTrait' => __DIR__ . '/includes/libs/GhostFieldAccessTrait.php',
 	'Wikimedia\\StaticArrayWriter' => __DIR__ . '/includes/libs/StaticArrayWriter.php',
 	'Wikimedia\\UUID\\GlobalIdGenerator' => __DIR__ . '/includes/libs/uuid/GlobalIdGenerator.php',
