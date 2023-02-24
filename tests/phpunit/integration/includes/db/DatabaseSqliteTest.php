@@ -312,8 +312,8 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\DatabaseSqlite::getAttributes()
 	 */
 	public function testsAttributes() {
-		$attributes = Database::attributesFromType( 'sqlite' );
-		$this->assertTrue( $attributes[Database::ATTR_DB_LEVEL_LOCKING] );
+		$dbFactory = $this->getServiceContainer()->getDatabaseFactory();
+		$this->assertTrue( $dbFactory->attributesFromType( 'sqlite' )[Database::ATTR_DB_LEVEL_LOCKING] );
 	}
 
 	/**

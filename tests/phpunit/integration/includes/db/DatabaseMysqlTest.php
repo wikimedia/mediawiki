@@ -314,8 +314,9 @@ class DatabaseMysqlTest extends \MediaWikiIntegrationTestCase {
 	 */
 	private function newConnection() {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$dbFactory = MediaWikiServices::getInstance()->getDatabaseFactory();
 		/** @var DatabaseMysqlBase $conn */
-		$conn = Database::factory(
+		$conn = $dbFactory->create(
 			'mysql',
 			array_merge(
 				$lb->getServerInfo( 0 ),
