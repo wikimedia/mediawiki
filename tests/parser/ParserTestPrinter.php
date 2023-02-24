@@ -85,14 +85,18 @@ class ParserTestPrinter extends TestRecorder {
 		}
 	}
 
+	/**
+	 * @param string $desc Test description
+	 */
 	private function showTesting( string $desc ) {
-		print "Running test $desc... ";
+		self::print( "Running test $desc... " );
 	}
 
 	/**
 	 * Show "Reading tests from ..."
 	 *
 	 * @param string $path
+	 * @param-taint $path none
 	 */
 	public function startSuite( string $path ) {
 		print $this->term->color( 1 ) .
@@ -126,6 +130,17 @@ class ParserTestPrinter extends TestRecorder {
 	}
 
 	/**
+	 * Helper function to ensure the phan SecurityCheckPlugin does not register
+	 * false "XSS" positives on parser test output, as this is a CLI tool.
+	 *
+	 * @param string $str Output string
+	 * @param-taint $str none
+	 */
+	private static function print( string $str ) {
+		print $str;
+	}
+
+	/**
 	 * Print a failure message and provide some explanatory output
 	 * about what went wrong if so configured.
 	 *
@@ -144,16 +159,14 @@ class ParserTestPrinter extends TestRecorder {
 			print "{$testResult->test->filename}:{$testResult->test->lineNumStart}\n";
 
 			if ( $this->showOutput ) {
-				print "--- Expected ---\n{$testResult->expected}\n";
-				// @phan-suppress-next-line SecurityCheck-XSS This is a CLI tool
-				print "--- Actual ---\n{$testResult->actual}\n";
+				self::print( "--- Expected ---\n{$testResult->expected}\n" );
+				self::print( "--- Actual ---\n{$testResult->actual}\n" );
 			}
 
 			if ( $this->showDiffs ) {
-				// @phan-suppress-next-line SecurityCheck-XSS This is a CLI tool
-				print $this->quickDiff( $testResult->expected, $testResult->actual );
+				self::print( $this->quickDiff( $testResult->expected, $testResult->actual ) );
 				if ( !$this->wellFormed( $testResult->actual ) ) {
-					print "XML error: $this->xmlError\n";
+					self::print( "XML error: $this->xmlError\n" );
 				}
 			}
 		}
@@ -320,11 +333,16 @@ class ParserTestPrinter extends TestRecorder {
 		}
 	}
 
+	/**
+	 * @param int $success Number of passed tests
+	 * @param int $total Number of total tests
+	 * @return bool True if and only if all tests passed
+	 */
 	private function reportPercentage( $success, $total ) {
 		$ratio = wfPercent( 100 * $success / $total );
-		print $this->term->color( '1' ) . "Passed $success of $total tests ($ratio)";
+		self::print( $this->term->color( '1' ) . "Passed $success of $total tests ($ratio)" );
 		if ( $this->skipped ) {
-			print ", skipped {$this->skipped}";
+			self::print( ", skipped {$this->skipped}" );
 		}
 		print "... ";
 
@@ -332,7 +350,7 @@ class ParserTestPrinter extends TestRecorder {
 			print $this->term->color( '32' ) . "ALL TESTS PASSED!";
 		} else {
 			$failed = $total - $success;
-			print $this->term->color( '31' ) . "$failed tests failed!";
+			self::print( $this->term->color( '31' ) . "$failed tests failed!" );
 		}
 
 		print $this->term->reset() . "\n";
