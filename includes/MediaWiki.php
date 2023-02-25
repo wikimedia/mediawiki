@@ -1125,8 +1125,8 @@ class MediaWiki {
 			$this->config
 		);
 
-		// Send metrics gathered by MetricsFactory
-		$services->getMetricsFactory()->flush();
+		// Send metrics gathered by StatsFactory
+		$services->getStatsFactory()->flush();
 
 		// Commit and close up!
 		$lbFactory->commitPrimaryChanges( __METHOD__ );

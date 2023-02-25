@@ -9612,42 +9612,42 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Metrics output target URI e.g. udp://127.0.0.1:8125
+	 * Stats output target URI e.g. udp://127.0.0.1:8125
 	 *
 	 * If null, metrics will not be sent.
-	 * Note: this only affects metrics instantiated by the MetricsFactory service
+	 * Note: this only affects metrics instantiated by the StatsFactory service
 	 *
 	 * @since 1.38
 	 */
-	public const MetricsTarget = [
+	public const StatsTarget = [
 		'default' => null,
 		'type' => '?string',
 	];
 
 	/**
-	 * Metrics output format
+	 * Stats output format
 	 *
 	 * If null, metrics will not be rendered nor sent.
-	 * Note: this only affects metrics instantiated by the MetricsFactory service
+	 * Note: this only affects metrics instantiated by the StatsFactory service
 	 *
-	 * @see \Wikimedia\Metrics\MetricsFactory::SUPPORTED_OUTPUT_FORMATS
-	 * @since 1.38
+	 * @see \Wikimedia\Stats\OutputFormats::SUPPORTED_FORMATS
+	 * @since 1.41
 	 */
-	public const MetricsFormat = [
+	public const StatsFormat = [
 		'default' => null,
 		'type' => '?string',
 	];
 
 	/**
-	 * Metrics service name prefix
+	 * Stats service name prefix
 	 *
 	 * Required.  Must not be zero-length.
 	 * Defaults to: 'mediawiki'
-	 * Note: this only affects metrics instantiated by the MetricsFactory service
+	 * Note: this only affects metrics instantiated by the StatsFactory service
 	 *
-	 * @since 1.38
+	 * @since 1.41
 	 */
-	public const MetricsPrefix = [
+	public const StatsPrefix = [
 		'default' => 'mediawiki',
 		'type' => 'string',
 	];
