@@ -131,7 +131,8 @@ class SpecialEditTags extends UnlistedSpecialPage {
 
 		$this->isAllowed = $this->permissionManager->userHasRight( $user, 'changetags' );
 
-		$this->reason = $request->getVal( 'wpReason' );
+		$this->reason = $request->getVal( 'wpReason', '' );
+
 		// We need a target page!
 		if ( $this->targetObj === null ) {
 			$output->addWikiMsg( 'undelete-header' );
