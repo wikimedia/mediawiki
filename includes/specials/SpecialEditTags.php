@@ -127,7 +127,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$this->ids
 		);
 
-		$this->reason = $request->getVal( 'wpReason' );
+		$this->reason = $request->getVal( 'wpReason', '' );
 		// We need a target page!
 		if ( $this->targetObj === null ) {
 			$output->addWikiMsg( 'undelete-header' );
