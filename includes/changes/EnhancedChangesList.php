@@ -581,7 +581,7 @@ class EnhancedChangesList extends ChangesList {
 					$title,
 					new HtmlArmor( $this->message['enhancedrc-history'] ),
 					[ 'class' => 'mw-changeslist-history' ],
-					[ 'action' => 'history' ] + $queryParams
+					$queryParams + [ 'action' => 'history' ]
 				)
 			);
 		}
