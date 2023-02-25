@@ -17,7 +17,7 @@ use MediaWiki\Widget\UsersMultiselectWidget;
  */
 class HTMLUsersMultiselectField extends HTMLUserTextField {
 	public function loadDataFromRequest( $request ) {
-		$value = $request->getText( $this->mName, $this->getDefault() );
+		$value = $request->getText( $this->mName, $this->getDefault() ?? '' );
 
 		$usersArray = explode( "\n", $value );
 		// Remove empty lines

@@ -34,7 +34,7 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 	}
 
 	public function loadDataFromRequest( $request ) {
-		$value = $request->getText( $this->mName, $this->getDefault() );
+		$value = $request->getText( $this->mName, $this->getDefault() ?? '' );
 
 		$titlesArray = explode( "\n", $value );
 		// Remove empty lines
