@@ -1851,9 +1851,9 @@ return [
 			'StatsdMetricPrefix' => 'MediaWiki',
 			'StatsdSamplingRates' => [
 			],
-			'MetricsTarget' => null,
-			'MetricsFormat' => null,
-			'MetricsPrefix' => 'mediawiki',
+			'StatsTarget' => null,
+			'StatsFormat' => null,
+			'StatsPrefix' => 'mediawiki',
 			'PageInfoTransclusionLimit' => 50,
 			'EnableJavaScriptTest' => false,
 			'CachePrefix' => false,
@@ -2785,15 +2785,15 @@ return [
 			'MWLoggerDefaultSpi' => 'object',
 			'Profiler' => 'object',
 			'StatsdSamplingRates' => 'object',
-			'MetricsTarget' => [
+			'StatsTarget' => [
 				0 => 'string',
 				1 => 'null',
 			],
-			'MetricsFormat' => [
+			'StatsFormat' => [
 				0 => 'string',
 				1 => 'null',
 			],
-			'MetricsPrefix' => 'string',
+			'StatsPrefix' => 'string',
 			'OpenSearchTemplates' => 'object',
 			'NamespacesToBeSearchedDefault' => 'object',
 			'SitemapNamespaces' => [

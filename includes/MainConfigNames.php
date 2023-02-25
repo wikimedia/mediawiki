@@ -3296,22 +3296,22 @@ class MainConfigNames {
 	public const StatsdSamplingRates = 'StatsdSamplingRates';
 
 	/**
-	 * Name constant for the MetricsTarget setting, for use with Config::get()
-	 * @see MainConfigSchema::MetricsTarget
+	 * Name constant for the StatsTarget setting, for use with Config::get()
+	 * @see MainConfigSchema::StatsTarget
 	 */
-	public const MetricsTarget = 'MetricsTarget';
+	public const StatsTarget = 'StatsTarget';
 
 	/**
-	 * Name constant for the MetricsFormat setting, for use with Config::get()
-	 * @see MainConfigSchema::MetricsFormat
+	 * Name constant for the StatsFormat setting, for use with Config::get()
+	 * @see MainConfigSchema::StatsFormat
 	 */
-	public const MetricsFormat = 'MetricsFormat';
+	public const StatsFormat = 'StatsFormat';
 
 	/**
-	 * Name constant for the MetricsPrefix setting, for use with Config::get()
-	 * @see MainConfigSchema::MetricsPrefix
+	 * Name constant for the StatsPrefix setting, for use with Config::get()
+	 * @see MainConfigSchema::StatsPrefix
 	 */
-	public const MetricsPrefix = 'MetricsPrefix';
+	public const StatsPrefix = 'StatsPrefix';
 
 	/**
 	 * Name constant for the PageInfoTransclusionLimit setting, for use with Config::get()

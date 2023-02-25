@@ -3280,22 +3280,22 @@ $wgStatsdMetricPrefix = null;
 $wgStatsdSamplingRates = null;
 
 /**
- * Config variable stub for the MetricsTarget setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::MetricsTarget
+ * Config variable stub for the StatsTarget setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::StatsTarget
  */
-$wgMetricsTarget = null;
+$wgStatsTarget = null;
 
 /**
- * Config variable stub for the MetricsFormat setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::MetricsFormat
+ * Config variable stub for the StatsFormat setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::StatsFormat
  */
-$wgMetricsFormat = null;
+$wgStatsFormat = null;
 
 /**
- * Config variable stub for the MetricsPrefix setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::MetricsPrefix
+ * Config variable stub for the StatsPrefix setting, for use by phpdoc and IDEs.
+ * @see MediaWiki\MainConfigSchema::StatsPrefix
  */
-$wgMetricsPrefix = null;
+$wgStatsPrefix = null;
 
 /**
  * Config variable stub for the PageInfoTransclusionLimit setting, for use by phpdoc and IDEs.

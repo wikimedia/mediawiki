@@ -192,8 +192,6 @@ use WatchedItemQueryService;
 use WatchedItemStoreInterface;
 use WikiImporterFactory;
 use Wikimedia\Message\IMessageFormatterFactory;
-use Wikimedia\Metrics\MetricsCache;
-use Wikimedia\Metrics\MetricsFactory;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\ObjectFactory\ObjectFactory;
 use Wikimedia\Parsoid\Config\DataAccess;
@@ -207,6 +205,8 @@ use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\Services\NoSuchServiceException;
 use Wikimedia\Services\SalvageableService;
 use Wikimedia\Services\ServiceContainer;
+use Wikimedia\Stats\StatsCache;
+use Wikimedia\Stats\StatsFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
 use Wikimedia\WRStats\WRStatsFactory;
 
@@ -1394,22 +1394,6 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * @since 1.41
-	 * @return MetricsCache
-	 */
-	public function getMetricsCache(): MetricsCache {
-		return $this->getService( 'MetricsCache' );
-	}
-
-	/**
-	 * @since 1.38
-	 * @return MetricsFactory
-	 */
-	public function getMetricsFactory(): MetricsFactory {
-		return $this->getService( 'MetricsFactory' );
-	}
-
-	/**
 	 * @since 1.28
 	 * @return MimeAnalyzer
 	 */
@@ -1884,11 +1868,27 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
+	 * @since 1.41
+	 * @return StatsCache
+	 */
+	public function getStatsCache(): StatsCache {
+		return $this->getService( 'StatsCache' );
+	}
+
+	/**
 	 * @since 1.27
 	 * @return IBufferingStatsdDataFactory
 	 */
 	public function getStatsdDataFactory(): IBufferingStatsdDataFactory {
 		return $this->getService( 'StatsdDataFactory' );
+	}
+
+	/**
+	 * @since 1.41
+	 * @return StatsFactory
+	 */
+	public function getStatsFactory(): StatsFactory {
+		return $this->getService( 'StatsFactory' );
 	}
 
 	/**
