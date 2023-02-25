@@ -242,6 +242,7 @@ because of Phabricator reports.
   undocumented.
 * IDatabase::ping()'s $rtt parameter was removed without deprecation.
 * IDatabase::setBigSelects(), unused, was removed without deprecation.
+* IDatabase::attributesFromType(), unused, was removed without deprecation.
 * IMaintainableDatabase::deadlockLoop() was removed without deprecation.
 * DatabasePostgres::remappedTableName(), deprecated since 1.37, has been
   removed.

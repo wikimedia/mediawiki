@@ -188,8 +188,9 @@ class DatabasePostgresTest extends MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\DatabasePostgres::getAttributes
 	 */
 	public function testAttributes() {
+		$dbFactory = $this->getServiceContainer()->getDatabaseFactory();
 		$this->assertTrue(
-			Database::attributesFromType( 'postgres' )[Database::ATTR_SCHEMAS_AS_TABLE_GROUPS]
+			$dbFactory->attributesFromType( 'postgres' )[Database::ATTR_SCHEMAS_AS_TABLE_GROUPS]
 		);
 	}
 }
