@@ -1108,15 +1108,17 @@ return [
 
 	'MetricsFactory' => static function ( MediaWikiServices $services ): MetricsFactory {
 		$config = $services->getMainConfig();
-		return new MetricsFactory(
-			[
-				'target' => $config->get( MainConfigNames::MetricsTarget ),
-				'format' => $config->get( MainConfigNames::MetricsFormat ),
-				'prefix' => $config->get( MainConfigNames::MetricsPrefix ),
-			],
-			$services->getService( 'MetricsCache' ),
-			LoggerFactory::getInstance( 'Metrics' )
+		$format = \Wikimedia\Metrics\OutputFormats::getFormatFromString(
+			$config->get( MainConfigNames::MetricsFormat ) ?? 'null'
 		);
+		$cache = $services->getService( 'MetricsCache' );
+		$emitter = \Wikimedia\Metrics\OutputFormats::getNewEmitter(
+			$config->get( MainConfigNames::MetricsPrefix ) ?? 'MediaWiki',
+			$cache,
+			\Wikimedia\Metrics\OutputFormats::getNewFormatter( $format ),
+			$config->get( MainConfigNames::MetricsTarget )
+		);
+		return new MetricsFactory( $cache, $emitter, LoggerFactory::getInstance( 'Metrics' ) );
 	},
 
 	'MimeAnalyzer' => static function ( MediaWikiServices $services ): MimeAnalyzer {

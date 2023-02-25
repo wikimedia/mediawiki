@@ -1,12 +1,5 @@
 <?php
 /**
- * UndefinedPrefixException
- *
- * This exception is raised when a prefix is not defined or is empty in
- * the LocalSettings configuration.
- *
- * See: $wgMetricsPrefix
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,15 +14,20 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @license GPL-2.0-or-later
- * @author Cole White
- * @since 1.38
+ * @file
  */
 
-namespace Wikimedia\Metrics\Exceptions;
+namespace Wikimedia\Metrics\Emitters;
 
-use InvalidArgumentException;
-
-class UndefinedPrefixException extends InvalidArgumentException {
+/**
+ * Metrics Null Emitter Implementation
+ *
+ * Emitter for null-formatted metrics.
+ *
+ * @author Cole White
+ * @since 1.41
+ */
+class NullEmitter implements EmitterInterface {
+	public function send(): void {
+	}
 }

@@ -1,7 +1,5 @@
 <?php
 /**
- * Metrics Format helpers
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -16,22 +14,28 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
- *
- * @license GPL-2.0-or-later
- * @author Cole White
- * @since 1.41
+ * @file
  */
 
 declare( strict_types=1 );
 
 namespace Wikimedia\Metrics;
 
+use Wikimedia\Metrics\Emitters\EmitterInterface;
+use Wikimedia\Metrics\Emitters\NullEmitter;
+use Wikimedia\Metrics\Emitters\UDPEmitter;
 use Wikimedia\Metrics\Exceptions\UnsupportedFormatException;
 use Wikimedia\Metrics\Formatters\DogStatsdFormatter;
 use Wikimedia\Metrics\Formatters\FormatterInterface;
 use Wikimedia\Metrics\Formatters\NullFormatter;
 use Wikimedia\Metrics\Formatters\StatsdFormatter;
 
+/**
+ * Metrics Format and Output Helpers
+ *
+ * @author Cole White
+ * @since 1.41
+ */
 class OutputFormats {
 
 	public const NULL = 1;
@@ -75,9 +79,34 @@ class OutputFormats {
 			case self::NULL:
 				return new NullFormatter();
 			default:
+				throw new UnsupportedFormatException( 'Unsupported metrics format.  Got format: ' . $format );
+		}
+	}
+
+	/**
+	 * Returns an emitter instance appropriate the formatter instance.
+	 *
+	 * @param string $prefix
+	 * @param MetricsCache $cache
+	 * @param FormatterInterface $formatter
+	 * @param string|null $target
+	 * @return EmitterInterface
+	 */
+	public static function getNewEmitter(
+		string $prefix,
+		MetricsCache $cache,
+		FormatterInterface $formatter,
+		string $target = null
+	): EmitterInterface {
+		switch ( get_class( $formatter ) ) {
+			case StatsdFormatter::class:
+			case DogStatsdFormatter::class:
+				return new UDPEmitter( $prefix, $cache, $formatter, $target );
+			case NullFormatter::class:
+				return new NullEmitter;
+			default:
 				throw new UnsupportedFormatException(
-					"Format '" . $format . "' not supported. Expected one of "
-					. json_encode( array_keys( self::SUPPORTED_FORMATS ) )
+					'Unsupported metrics format.  Got format: ' . get_class( $formatter )
 				);
 		}
 	}
