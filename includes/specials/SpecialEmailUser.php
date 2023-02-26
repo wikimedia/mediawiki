@@ -301,7 +301,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 		// Check the ping limiter without incrementing it - we'll check it
 		// again later and increment it on a successful send
-		if ( $user->pingLimiter( 'emailuser', 0 ) ) {
+		if ( $user->pingLimiter( 'sendemail', 0 ) ) {
 			wfDebug( "Ping limiter triggered." );
 
 			return 'actionthrottledtext';
@@ -424,7 +424,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		}
 
 		// Check and increment the rate limits
-		if ( $sender->pingLimiter( 'emailuser' ) ) {
+		if ( $sender->pingLimiter( 'sendemail' ) ) {
 			throw new ThrottledError();
 		}
 

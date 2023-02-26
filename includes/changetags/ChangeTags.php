@@ -815,7 +815,7 @@ class ChangeTags {
 
 		// basic rate limiting
 		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
-		if ( $user->pingLimiter( 'changetag' ) ) {
+		if ( $user->pingLimiter( 'changetags' ) ) {
 			return Status::newFatal( 'actionthrottledtext' );
 		}
 
