@@ -580,11 +580,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$fields = [];
 
 		$type = 'radio';
-		$options = [
-			$this->msg( 'revdelete-radio-same' )->text() => -1,
-			$this->msg( 'revdelete-radio-unset' )->text() => 0,
-			$this->msg( 'revdelete-radio-set' )->text() => 1
-		];
 
 		$list = $this->getList();
 
@@ -593,29 +588,40 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$list->reset();
 
 			$type = 'check';
-			$options = null;
 		}
 
 		foreach ( $this->checks as $item ) {
 			// Messages: revdelete-hide-text, revdelete-hide-image, revdelete-hide-name,
 			// revdelete-hide-comment, revdelete-hide-user, revdelete-hide-restricted
-			[ $message, $name, $field ] = $item;
+			[ $message, $name, $bitField ] = $item;
 
-			$label = $this->msg( $message )->escaped();
-
-			if ( $field == RevisionRecord::DELETED_RESTRICTED ) {
-				$label = "<b>$label</b>";
-			}
-
-			$fields[] = [
+			$field = [
 				'type' => $type,
-				'label-raw' => $label,
+				'label-raw' => $this->msg( $message )->escaped(),
 				'id' => $name,
 				'flatlist' => true,
 				'name' => $name,
-				'options' => $options,
-				'default' => $list->length() == 1 ? $list->current()->getBits() & $field : null
+				'default' => $list->length() == 1 ? $list->current()->getBits() & $bitField : null
 			];
+
+			if ( $bitField == RevisionRecord::DELETED_RESTRICTED ) {
+				$field['label-raw'] = "<b>" . $field['label-raw'] . "</b>";
+				if ( $type === 'radio' ) {
+					$field['options'] = [
+						$this->msg( 'revdelete-radio-same' )->text() => -1,
+						$this->msg( 'revdelete-radio-unset-suppress' )->text() => 0,
+						$this->msg( 'revdelete-radio-set-suppress' )->text() => 1
+					];
+				}
+			} elseif ( $type === 'radio' ) {
+				$field['options'] = [
+					$this->msg( 'revdelete-radio-same' )->text() => -1,
+					$this->msg( 'revdelete-radio-unset' )->text() => 0,
+					$this->msg( 'revdelete-radio-set' )->text() => 1
+				];
+			}
+
+			$fields[] = $field;
 		}
 
 		return $fields;
