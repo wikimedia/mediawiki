@@ -371,7 +371,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				__METHOD__ . ' should only be called when able to clear synchronously'
 			);
 		}
+		// Messages used: watchlistedit-clear-done, watchlistedit-raw-done
 		$this->successMessage = $this->msg( 'watchlistedit-' . $messageFor . '-done' )->parse();
+		// Messages used: watchlistedit-clear-removed, watchlistedit-raw-removed
 		$this->successMessage .= ' ' . $this->msg( 'watchlistedit-' . $messageFor . '-removed' )
 				->numParams( count( $current ) )->parse();
 		$this->getUser()->invalidateCache();
