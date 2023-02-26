@@ -30,7 +30,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 class ChangeTags {
@@ -546,7 +546,7 @@ class ChangeTags {
 	 * Return all the tags associated with the given recent change ID,
 	 * revision ID, and/or log entry ID, along with any data stored with the tag.
 	 *
-	 * @param IDatabase $db the database to query
+	 * @param IReadableDatabase $db the database to query
 	 * @param int|null $rc_id
 	 * @param int|null $rev_id
 	 * @param int|null $log_id
@@ -554,7 +554,7 @@ class ChangeTags {
 	 * @since 1.36
 	 */
 	public static function getTagsWithData(
-		IDatabase $db, $rc_id = null, $rev_id = null, $log_id = null
+		IReadableDatabase $db, $rc_id = null, $rev_id = null, $log_id = null
 	) {
 		if ( !$rc_id && !$rev_id && !$log_id ) {
 			throw new BadMethodCallException( 'At least one of: RCID, revision ID, and log ID MUST be ' .
@@ -589,13 +589,13 @@ class ChangeTags {
 	 * Return all the tags associated with the given recent change ID,
 	 * revision ID, and/or log entry ID.
 	 *
-	 * @param IDatabase $db the database to query
+	 * @param IReadableDatabase $db the database to query
 	 * @param int|null $rc_id
 	 * @param int|null $rev_id
 	 * @param int|null $log_id
 	 * @return string[]
 	 */
-	public static function getTags( IDatabase $db, $rc_id = null, $rev_id = null, $log_id = null ) {
+	public static function getTags( IReadableDatabase $db, $rc_id = null, $rev_id = null, $log_id = null ) {
 		return array_keys( self::getTagsWithData( $db, $rc_id, $rev_id, $log_id ) );
 	}
 
