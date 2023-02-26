@@ -128,13 +128,7 @@ class Throttler implements LoggerAwareInterface {
 				continue;
 			}
 
-			$throttleKey = $this->cache->makeGlobalKey(
-				'throttler',
-				$this->type,
-				$index,
-				$ipKey ?? '',
-				$userKey ?? ''
-			);
+			$throttleKey = $this->getThrottleKey( $this->type, $index, $ipKey, $userKey );
 			$throttleCount = $this->cache->get( $throttleKey );
 			if ( $throttleCount && $throttleCount >= $count ) {
 				// Throttle limited reached
@@ -172,9 +166,27 @@ class Throttler implements LoggerAwareInterface {
 		$userKey = $username ? md5( $username ) : null;
 		foreach ( $this->conditions as $index => $specificThrottle ) {
 			$ipKey = isset( $specificThrottle['allIPs'] ) ? null : $ip;
-			$throttleKey = $this->cache->makeGlobalKey( 'throttler', $this->type, $index, $ipKey, $userKey );
+			$throttleKey = $this->getThrottleKey( $this->type, $index, $ipKey, $userKey );
 			$this->cache->delete( $throttleKey );
 		}
+	}
+
+	/**
+	 * Construct a cache key for the throttle counter
+	 * @param string $type
+	 * @param int $index
+	 * @param string|null $ipKey
+	 * @param string|null $userKey
+	 * @return string
+	 */
+	private function getThrottleKey( string $type, int $index, ?string $ipKey, ?string $userKey ): string {
+		return $this->cache->makeGlobalKey(
+			'throttler',
+			$type,
+			$index,
+			$ipKey ?? '',
+			$userKey ?? ''
+		);
 	}
 
 	/**
