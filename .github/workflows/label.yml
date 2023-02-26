@@ -1,0 +1,56 @@
+name: "Pull Request Labeler"
+on:
+- pull_request_target
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+#    if: ${{ github.actor == 'dependabot[bot]' }}
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: 'REL1_39'
+
+    - run: |
+        submodule=$(echo $(echo ${GITHUB_HEAD_REF} | cut -d'/' -f4,5 ) | cut -d'-' -f1 )
+        git submodule update --init $submodule
+        git pull https://github.com/${GITHUB_REPOSITORY} ${GITHUB_HEAD_REF}
+        list=$(git -c color.diff=false diff --submodule=diff $submodule | sed -n -e s/^diff\ --git\ a\\///p)
+        pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+
+        codechangeFiles="(extensions|skins)\/.*\/(.*\.php|.*\.js|.*\.css|.*\.less|.*\.scss|.*\.vue|.*\.lua|.*\.mustache|.*\.d\.ts|extension(\-(repo|client))?\.json|skin\.json)$"
+        schemaFiles="(extensions|skins)\/.*\/.*\.sql$"
+
+        buildFiles="(extensions|skins)\/.*\/(\.github\/.*|\.phan\/.*|tests\/.*|composer(\.json|\.lock)|package(\-lock)?\.json|yarn\.lock|\.phpcs\.xml|\.stylelintrc\.json|\.eslintrc\.json|\.prettierrc|\.stylelintignore|\.eslintignore|\.prettierignore|tsconfig\.json|\.nvmrc|\.svgo\.config\.js|Gruntfile\.js|bundlesize\.config\.json|jsdoc\.json|tsconfig\.json)$"
+        i18nFiles="(extensions|skins)\/.*\/i18n\/.*\.json$"
+
+        labels=()
+        for file in $list; do
+          if [ $(echo $file | cut -d'/' -f1 ) != b ]; then
+            if [[ $file =~ $codechangeFiles ]] && [[ ! $file =~ $buildFiles ]] && [[ ! $labels[*] =~ "codechange" ]]; then
+              labels+=("codechange")
+            fi
+
+            if [[ $file =~ $schemaFiles ]] && [[ ! $labels[*] =~ "schema-change" ]]; then
+              labels+=("schema-change")
+            fi
+
+            if [[ $file =~ $buildFiles ]] && [[ ! $labels[*] =~ "build" ]]; then
+              labels+=("build")
+            fi
+
+            if [[ $file =~ $i18nFiles ]] && [[ ! $labels[*] =~ "i18n" ]]; then
+              labels+=("i18n")
+            fi
+          fi
+        done
+
+        labels=($(echo "${labels[@]}" | tr ' ' '\n' | sort -u | tr '\n' ' '))
+        for label in ${labels[*]}; do
+          curl \
+          -X POST \
+          -H "Accept: application/vnd.github.v3+json" \
+          -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+          https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/$pull_number/labels \
+          -d '{"labels":["'$label'"]}'
+        done

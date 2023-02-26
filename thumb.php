@@ -188,6 +188,15 @@ function wfStreamThumb( array $params ) {
 		return;
 	}
 
+	$sourceFile = $localRepo->getZonePath( 'public' ) . '/' .
+		$localRepo->getHashPath( $fileName ) . '/' . $fileName;
+
+	// Check if the source file to be thumbnailed actually exists in the repo
+	if ( !$localRepo->fileExists( $sourceFile ) ) {
+		wfThumbErrorText( 404, "The source file '$fileName' does not exist." );
+		return;
+	}
+
 	// Do rendering parameters extraction from thumbnail name.
 	if ( isset( $params['thumbName'] ) ) {
 		$params = wfExtractThumbParams( $img, $params );

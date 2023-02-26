@@ -173,7 +173,9 @@
 	"extra": {
 		"merge-plugin": {
 			"include": [
-				"composer.local.json"
+				"composer.local.json",
+				"extensions/Wikibase/composer.json",
+				"extensions/WikibaseEdtf/composer.json"
 			],
 			"merge-dev": false
 		}
