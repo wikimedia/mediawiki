@@ -510,12 +510,22 @@ class EnhancedChangesList extends ChangesList {
 		$sinceLast = 0;
 		$unvisitedOldid = null;
 		$currentRevision = 0;
+		$previousRevision = 0;
+		$allCategorization = true;
 		/** @var RCCacheEntry $rcObj */
 		foreach ( $block as $rcObj ) {
+			// Fields of categorization entries refer to the changed page
+			// rather than the category for which we are building the log text.
+			if ( $rcObj->mAttribs['rc_type'] == RC_CATEGORIZE ) {
+				continue;
+			}
+
+			$allCategorization = false;
+			$previousRevision = $rcObj->mAttribs['rc_last_oldid'];
 			// Same logic as below inside main foreach
 			if ( $rcObj->watched ) {
 				$sinceLast++;
-				$unvisitedOldid = $rcObj->mAttribs['rc_last_oldid'];
+				$unvisitedOldid = $previousRevision;
 			}
 			if ( !$currentRevision ) {
 				$currentRevision = $rcObj->mAttribs['rc_this_oldid'];
@@ -525,13 +535,10 @@ class EnhancedChangesList extends ChangesList {
 		// Total change link
 		$links = [];
 		$title = $block[0]->getTitle();
-		$last = end( $block );
 		if ( !$allLogs ) {
-			if (
-				$isnew ||
-				$rcObj->mAttribs['rc_type'] == RC_CATEGORIZE ||
-				!ChangesList::userCan( $rcObj, RevisionRecord::DELETED_TEXT, $this->getAuthority() )
-			) {
+			// TODO: Disable the link if the user cannot see it (rc_deleted).
+			// Beware of possibly interspersed categorization entries.
+			if ( $isnew || $allCategorization ) {
 				$links['total-changes'] = Html::rawElement( 'span', [], $nchanges[$n] );
 			} else {
 				$links['total-changes'] = Html::rawElement( 'span', [],
@@ -541,14 +548,14 @@ class EnhancedChangesList extends ChangesList {
 						[ 'class' => 'mw-changeslist-groupdiff' ],
 						$queryParams + [
 							'diff' => $currentRevision,
-							'oldid' => $last->mAttribs['rc_last_oldid'],
+							'oldid' => $previousRevision,
 						]
 					)
 				);
 			}
 
 			if (
-				$rcObj->mAttribs['rc_type'] != RC_CATEGORIZE &&
+				!$allCategorization &&
 				$sinceLast > 0 &&
 				$sinceLast < $n
 			) {
@@ -571,7 +578,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		// History
-		if ( $allLogs || $rcObj->mAttribs['rc_type'] == RC_CATEGORIZE ) {
+		if ( $allLogs || $allCategorization ) {
 			// don't show history link for logs
 		} elseif ( $namehidden || !$title->exists() ) {
 			$links['history'] = Html::rawElement( 'span', [], $this->message['enhancedrc-history'] );
