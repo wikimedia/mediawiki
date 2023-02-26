@@ -186,13 +186,16 @@ class RCCacheEntryFactory {
 	 * @return string
 	 */
 	private function buildCurLink( RecentChange $cacheEntry, $showDiffLinks ) {
-		$queryParams = $this->buildCurQueryParams( $cacheEntry );
 		$curMessage = $this->getMessage( 'cur' );
 		$logTypes = [ RC_LOG ];
+		if ( $cacheEntry->mAttribs['rc_this_oldid'] == $cacheEntry->getAttribute( 'page_latest' ) ) {
+			$showDiffLinks = false;
+		}
 
 		if ( !$showDiffLinks || in_array( $cacheEntry->mAttribs['rc_type'], $logTypes ) ) {
 			$curLink = $curMessage;
 		} else {
+			$queryParams = $this->buildCurQueryParams( $cacheEntry );
 			$curUrl = htmlspecialchars( $cacheEntry->getTitle()->getLinkURL( $queryParams ) );
 			$curLink = "<a class=\"mw-changeslist-diff-cur\" href=\"$curUrl\">$curMessage</a>";
 		}
