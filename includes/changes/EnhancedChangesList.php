@@ -411,7 +411,7 @@ class EnhancedChangesList extends ChangesList {
 		$data['timestampLink'] = $link;
 
 		$currentAndLastLinks = '';
-		if ( !$type == RC_LOG || $type == RC_NEW ) {
+		if ( $type == RC_EDIT || $type == RC_NEW ) {
 			$currentAndLastLinks .= ' ' . $this->msg( 'parentheses' )->rawParams(
 					$rcObj->curlink .
 					$this->message['pipe-separator'] .
