@@ -3,11 +3,11 @@
  */
 ( function () {
 	var colonSeparator = mw.msg( 'colon-separator' ),
-		$wpRevDeleteReasonList = $( '#wpRevDeleteReasonList' ),
-		$wpReason = $( '#wpReason' ),
+		wpRevDeleteReasonList = OO.ui.infuse( '#wpRevDeleteReasonList' ),
+		$wpReason = $( '#wpReason input' ),
 		filterFunction = function ( input ) {
 			// Should be built the same as in SpecialRevisionDelete::submit()
-			var comment = $wpRevDeleteReasonList.val();
+			var comment = wpRevDeleteReasonList.getValue();
 			if ( comment === 'other' ) {
 				comment = input;
 			} else if ( input !== '' ) {
