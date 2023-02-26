@@ -3,59 +3,70 @@
  *
  * @file
  * @ingroup Languages
+ *
+ * @author Takhirgeran Umar
  */
 
 $fallback = 'ru';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Медиа',
-	NS_SPECIAL          => 'Белхан',
-	NS_TALK             => 'Дийцаре',
+	NS_SPECIAL          => 'ГӀирс',
+	NS_TALK             => 'Дийцар',
 	NS_USER             => 'Декъашхо',
-	NS_USER_TALK        => 'Декъашхочун_дийцаре',
-	NS_PROJECT_TALK     => '{{GRAMMAR:genitive|$1}}_дийцаре',
+	NS_USER_TALK        => 'Декъашхочун_дийцар',
+	NS_PROJECT_TALK     => '{{GRAMMAR:genitive|$1}}_дийцар',
 	NS_FILE             => 'Файл',
-	NS_FILE_TALK        => 'Файлан_дийцаре',
+	NS_FILE_TALK        => 'Файл_йийцар',
 	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'MediaWiki_дийцаре',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_йийцар',
 	NS_TEMPLATE         => 'Кеп',
-	NS_TEMPLATE_TALK    => 'Кепан_дийцаре',
+	NS_TEMPLATE_TALK    => 'Кеп_йийцар',
 	NS_HELP             => 'ГӀо',
-	NS_HELP_TALK        => 'ГӀо_дийцаре',
+	NS_HELP_TALK        => 'ГӀо_дийцар',
 	NS_CATEGORY         => 'Категори',
-	NS_CATEGORY_TALK    => 'Категорин_дийцаре',
+	NS_CATEGORY_TALK    => 'Категори_йийцар',
 ];
 
 $namespaceAliases = [
 	'Медйа'            => NS_MEDIA,
+	'Белхан'           => NS_SPECIAL,
 	'Башхо'            => NS_SPECIAL,
 	'Дийца'            => NS_TALK,
+	'Дийцаре'          => NS_TALK,
 	'Юзер'             => NS_USER,
 	'Юзери_дийца'      => NS_USER_TALK,
+	'Декъашхочун_дийцаре' => NS_USER_TALK,
 	'Дийцаре_декъашхо' => NS_USER_TALK,
 	'Декъашхон_дийцаре' => NS_USER_TALK,
 	'$1_Дийца'         => NS_PROJECT_TALK,
 	'Дийцаре_{{GRAMMAR:genitive|$1}}' => NS_PROJECT_TALK,
+	'{{GRAMMAR:genitive|$1}}_дийцаре' => NS_PROJECT_TALK,
 	'Сурт'             => NS_FILE,
 	'Сурти_дийца'      => NS_FILE_TALK,
 	'Хlум'             => NS_FILE,
 	'Хlуман_дийцаре'   => NS_FILE_TALK,
 	'Дийцаре_хlуман'   => NS_FILE_TALK,
+	'Файлан_дийцаре'   => NS_FILE_TALK,
 	'МедйаВики'        => NS_MEDIAWIKI,
 	'МедйаВики_дийца'  => NS_MEDIAWIKI_TALK,
 	'MediaWiki_Дийцаре' => NS_MEDIAWIKI_TALK,
+	'MediaWiki_дийцаре' => NS_MEDIAWIKI_TALK,
 	'Дакъан'           => NS_TEMPLATE,
 	'Дакъан_дийца'     => NS_TEMPLATE_TALK,
+	'Кепан_дийцаре'    => NS_TEMPLATE_TALK,
 	'Куцкеп'           => NS_TEMPLATE,
 	'Куцкеп_дийцаре'   => NS_TEMPLATE_TALK,
 	'ГІо'              => NS_HELP,
 	'ГІодан_дийца'     => NS_HELP_TALK,
+	'ГӀо_дийцаре'      => NS_HELP_TALK,
 	'Гlо'              => NS_HELP,
 	'Гlон_дийцаре'     => NS_HELP_TALK,
 	'Тоба'             => NS_CATEGORY,
 	'Тобан_дийца'      => NS_CATEGORY_TALK,
 	'Кадегар'          => NS_CATEGORY,
 	'Кадегар_дийцаре'  => NS_CATEGORY_TALK,
+	'Категорин_дийцаре' => NS_CATEGORY_TALK,
 ];
 
 // Remove Russian aliases
