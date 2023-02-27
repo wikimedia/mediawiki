@@ -19,7 +19,7 @@
 	"config-session-error": "Feeler beim Starte vun der Sessioun: $1",
 	"config-no-session": "D'Donnéeë vun ärer Sessioun si verluergaangen!\nKuckt Är php.ini no a vergewëssert Iech datt <code>session.save_path</code>  op adequate REpertoire agestallt ass.",
 	"config-your-language": "Är Sprooch",
-	"config-your-language-help": "Sicht déi Sprooch eraus déi Dir wärend der Installatioun benotze wëllt",
+	"config-your-language-help": "Sicht déi Sprooch eraus, déi Dir wärend der Installatioun benotze wëllt.",
 	"config-wiki-language": "Sprooch vun der Wiki:",
 	"config-wiki-language-help": "Sicht d'Sprooch eraus an där d'Wiki haaptsächlech geschriwwe gëtt.",
 	"config-back": "← Zréck",

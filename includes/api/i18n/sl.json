@@ -91,6 +91,7 @@
 	"apihelp-query-param-list": "Kateri seznami naj se pridobijo.",
 	"apihelp-query+alldeletedrevisions-param-namespace": "Navedi samo strani v tem imenskem prostoru.",
 	"apihelp-query+allimages-param-sort": "Lastnost za razvrščanje.",
+	"apihelp-query+allimages-param-user": "Vrne samo datoteke, kjer je zadnjo različico naložil ta uporabnik. Lahko se uporablja samo z $1 sort=timestamp. Ni ga mogoče uporabiti skupaj s filtrirnimi roboti $1.",
 	"apihelp-query+alllinks-summary": "Našteje vse povezave, ki kažejo v dani imenski prostor.",
 	"apihelp-query+alllinks-paramvalue-prop-ids": "Doda ID povezujoče strani (tega ni mogoče uporabiti z <var>$1unique</var>).",
 	"apihelp-query+allmessages-summary": "Vrne sporočila s tega mesta.",
