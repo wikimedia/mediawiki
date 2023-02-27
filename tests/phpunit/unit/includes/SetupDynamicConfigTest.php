@@ -184,6 +184,7 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 				$ret = max( '20030516000000', gmdate( 'YmdHis', @filemtime( MW_CONFIG_FILE ) ) );
 				return $ret;
 			},
+			'RateLimits' => MainConfigSchema::getDefaultValue( 'RateLimits' ),
 		];
 
 		foreach (
@@ -929,6 +930,26 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 		yield 'Disable $wgPHPSessionHandling' => [
 			[ 'PHPSessionHandling' => 'disable' ],
 			[ 'PHPSessionHandling' => 'disable' ],
+		];
+
+		// use old deprecated rate limit names
+		$rateLimits = [
+				'emailuser' => [
+					'newbie' => [ 1, 86400 ],
+				],
+				'changetag' => [
+					'ip' => [ 1, 60 ],
+					'newbie' => [ 2, 60 ],
+				],
+			];
+
+		yield 'renamed $wgRateLimits' => [
+			[ 'RateLimits' => $rateLimits + $expectedDefault['RateLimits'] ],
+			static function ( self $testObj, array $vars ) use ( $expectedDefault, $rateLimits ): array {
+				$testObj->assertSame( $rateLimits['emailuser'], $vars['RateLimits']['sendemail'], 'emailuser' );
+				$testObj->assertSame( $rateLimits['changetag'], $vars['RateLimits']['changetags'], 'changetag' );
+				return [];
+			}
 		];
 		// XXX No obvious way to test MW_NO_SESSION, because constants can't be undefined
 	}
