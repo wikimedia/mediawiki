@@ -2,6 +2,7 @@
 
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\WikiMap\WikiMap;
 
 /**
  * @coversDefaultClass FileBackendGroup

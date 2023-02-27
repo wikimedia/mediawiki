@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Shell\Shell;
+use MediaWiki\WikiMap\WikiMap;
 
 /**
  * Configuration holder, particularly for multi-wiki sites.

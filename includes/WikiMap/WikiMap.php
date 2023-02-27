@@ -20,8 +20,11 @@
  * @file
  */
 
+namespace MediaWiki\WikiMap;
+
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
+use MediaWikiSite;
 use Wikimedia\Rdbms\DatabaseDomain;
 
 /**
@@ -319,3 +322,5 @@ class WikiMap {
 		return ( self::getCurrentWikiId() === $wikiId );
 	}
 }
+
+class_alias( WikiMap::class, 'WikiMap' );
