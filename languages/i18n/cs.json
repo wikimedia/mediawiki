@@ -3765,7 +3765,7 @@
 	"search-match-redirect-label": "Při hledání přesměrovávat na přesné výsledky",
 	"search-match-redirect-help": "Zaškrtněte, pokud chcete přesměrovat na stránku, jejíž název odpovídá hledanému řetězci",
 	"search-thumbnail-extra-namespaces-label": "Zobrazit náhledy na Speciální:Hledání v desktopové verzi",
-	"search-thumbnail-extra-namespaces-message": "Zobraz náhledy ze {{PLURAL:$2|jmenného prostoru|jmenných prostorů}} $1 na stránce Speciální:Hledání",
+	"search-thumbnail-extra-namespaces-message": "Zobrazit náhledy ze {{PLURAL:$2|jmenného prostoru|jmenných prostorů}} $1 na stránce {{#special:search}}",
 	"searchlimit-label": "Počet výsledků hledání na stránku:",
 	"searchlimit-help": "Maximální počet: $1",
 	"api-clientside-error-noconnect": "Nepodařilo se připojit k serveru. Ujistěte se, že máte funkční připojení k internetu a zkuste to znovu.",

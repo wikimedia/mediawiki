@@ -3441,6 +3441,7 @@
 	"version-entrypoints-header-entrypoint": "נקודת כניסה",
 	"version-entrypoints-header-url": "כתובת",
 	"version-libraries": "ספריות מותקנות",
+	"version-libraries-client": "ספריות מותקנות בצד הלקוח",
 	"version-libraries-library": "ספריה",
 	"version-libraries-version": "גרסה",
 	"version-libraries-license": "רישיון",

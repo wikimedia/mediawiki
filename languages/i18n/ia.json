@@ -3312,6 +3312,7 @@
 	"version-entrypoints-articlepath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgArticlePath Percurso al articulo]",
 	"version-entrypoints-scriptpath": "[https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgScriptPath Percurso al script]",
 	"version-libraries": "Bibliothecas installate",
+	"version-libraries-client": "Bibliothecas installate al latere cliente",
 	"version-libraries-library": "Bibliotheca",
 	"version-libraries-version": "Version",
 	"version-libraries-license": "Licentia",
