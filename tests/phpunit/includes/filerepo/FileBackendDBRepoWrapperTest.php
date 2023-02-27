@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\WikiMap\WikiMap;
+
 class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
 	protected $backendName = 'foo-backend';
 	protected $repoName = 'pureTestRepo';

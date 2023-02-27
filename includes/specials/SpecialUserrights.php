@@ -32,6 +32,7 @@ use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\WikiMap\WikiMap;
 
 /**
  * Special page to allow managing user group membership

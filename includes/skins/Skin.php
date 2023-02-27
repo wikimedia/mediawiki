@@ -36,6 +36,7 @@ use MediaWiki\Skin\SkinComponentRegistry;
 use MediaWiki\Skin\SkinComponentRegistryContext;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\WrappedStringList;
 
 /**

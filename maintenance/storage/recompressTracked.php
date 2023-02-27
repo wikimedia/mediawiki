@@ -26,6 +26,7 @@ use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Storage\SqlBlobStore;
+use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\AtEase\AtEase;
 
 $optionsWithArgs = RecompressTracked::getOptionsWithArgs();

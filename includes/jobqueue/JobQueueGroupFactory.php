@@ -25,8 +25,8 @@ use IBufferingStatsdDataFactory;
 use JobQueueGroup;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
+use MediaWiki\WikiMap\WikiMap;
 use WANObjectCache;
-use WikiMap;
 use Wikimedia\UUID\GlobalIdGenerator;
 
 /**

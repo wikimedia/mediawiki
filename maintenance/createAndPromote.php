@@ -26,6 +26,7 @@
 require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\WikiMap\WikiMap;
 
 /**
  * Maintenance script to create an account and grant it rights.
