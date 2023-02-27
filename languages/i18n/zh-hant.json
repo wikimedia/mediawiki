@@ -131,7 +131,8 @@
 			"Diskdance",
 			"LuciferianThomas",
 			"Willy1018",
-			"捍粵者"
+			"捍粵者",
+			"阿南之人"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -268,7 +269,7 @@
 	"noindex-category": "未列索引的頁面",
 	"broken-file-category": "含無效檔案連結的頁面",
 	"categoryviewer-pagedlinks": "（$1）（$2）",
-	"category-header-numerals": "$1–$2",
+	"category-header-numerals": "$1-$2",
 	"about": "關於",
 	"article": "內容頁面",
 	"newwindow": "（在新視窗開啟）",
