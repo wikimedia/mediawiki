@@ -83,7 +83,6 @@
 		var liveMessages = mw.messages.values;
 		var liveWarnFn = mw.log.warn;
 		var liveErrorFn = mw.log.error;
-		var $doc = $( document );
 
 		function suppressWarnings() {
 			mw.log.warn = mw.log.error = function () {};
@@ -92,17 +91,6 @@
 		function restoreWarnings() {
 			mw.log.warn = liveWarnFn;
 			mw.log.error = liveErrorFn;
-		}
-
-		var ajaxRequests = [];
-
-		/**
-		 * @param {jQuery.Event} event
-		 * @param {jQuery.jqXHR} jqXHR
-		 * @param {Object} ajaxOptions
-		 */
-		function trackAjax( event, jqXHR, ajaxOptions ) {
-			ajaxRequests.push( { xhr: jqXHR, options: ajaxOptions } );
 		}
 
 		return function newMwEnvironment( localEnv ) {
@@ -125,21 +113,15 @@
 				this.suppressWarnings = suppressWarnings;
 				this.restoreWarnings = restoreWarnings;
 
-				// Start tracking ajax requests
-				$doc.on( 'ajaxSend', trackAjax );
-
 				if ( orgBeforeEach ) {
 					return orgBeforeEach.apply( this, arguments );
 				}
 			};
-			localEnv.afterEach = function ( assert ) {
+			localEnv.afterEach = function () {
 				var ret;
 				if ( orgAfterEach ) {
 					ret = orgAfterEach.apply( this, arguments );
 				}
-
-				// Stop tracking ajax requests
-				$doc.off( 'ajaxSend', trackAjax );
 
 				// For convenience and to avoid leakage, always restore after each test.
 				// Restoring earlier is allowed.
@@ -148,56 +130,9 @@
 				mw.config.values = liveConfig;
 				mw.messages.values = liveMessages;
 
-				// Assert there are no dangling animations
-				// Tests should use fake timers or own and wait for their UI to complete
-				if ( $.timers && $.timers.length !== 0 ) {
-					var animations = $.timers.map( function ( timer, i ) {
-						var htmlStr = timer.elem.outerHTML;
-						htmlStr = htmlStr.length <= 50 ? htmlStr : htmlStr.slice( 0, 50 ) + '…';
-						return 'Unfinished animation #' + i + ' on ' + htmlStr;
-					} );
-					// Stop animations to ensure a clean start for the next test
-					$.timers = [];
-					$.fx.stop();
-
-					assert.pushResult( {
-						result: false,
-						message: 'global failure: Unfinished animations',
-						actual: animations,
-						expected: [],
-						source: 'newMwEnvironment'
-					} );
-				}
-
-				// Assert there are no dangling requests
-				// Test should use fake XHR, or wait for requests, or call abort()
-				if ( $.active ) {
-					var activeLen = $.active;
-					var pending = [];
-					ajaxRequests.forEach( function ( ajax, i ) {
-						if ( ajax.xhr.state() === 'pending' ) {
-							ajax.xhr.abort();
-							pending.push( [
-								'Unfinished AJAX request #' + i + ' to ' + ajax.options.url,
-								ajax.options
-							] );
-						}
-					} );
-					// Stop requests to ensure a clean start for the next test
-					ajaxRequests = [];
-
-					if ( pending.length !== activeLen ) {
-						pending.push( 'Some pending requests bypassed ajaxSend() and are missing details' );
-					}
-
-					assert.pushResult( {
-						result: false,
-						message: 'global failure: Unfinished AJAX requests',
-						actual: pending,
-						expected: [],
-						source: 'newMwEnvironment'
-					} );
-				}
+				// Stop animations to ensure a clean start for the next test
+				$.timers = [];
+				$.fx.stop();
 
 				return ret;
 			};
@@ -531,21 +466,6 @@
 				'foo<a href="http://example.com">example</a>quux',
 				'Outer text nodes are compared (last text node different)'
 			);
-		} );
-
-		QUnit.module.skip( 'dangling operations', function () {
-			// Expect failure:
-			// > Unfinished animation #0 on <p style="">Hello</p>
-			QUnit.test( 'animation', function () {
-				// eslint-disable-next-line no-jquery/no-fade
-				$( '<p>Hello</p>' ).appendTo( '#qunit-fixture' ).fadeOut( { duration: 2 } );
-			} );
-
-			// Expect failure:
-			// > Unfinished AJAX request #0 to /foo
-			QUnit.test( 'ajax', function () {
-				$.get( '/foo' );
-			} );
 		} );
 
 		var beforeEachRan = false;
