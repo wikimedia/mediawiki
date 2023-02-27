@@ -22,6 +22,7 @@ use MediaWiki\MainConfigNames;
 use Wikimedia\Purtle\RdfWriter;
 use Wikimedia\Purtle\TurtleRdfWriter;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -381,9 +382,9 @@ SPARQL;
 	/**
 	 * Add timestamp limits to iterator
 	 * @param BatchRowIterator $it Iterator
-	 * @param IDatabase $dbr
+	 * @param IReadableDatabase $dbr
 	 */
-	private function addTimestampConditions( BatchRowIterator $it, IDatabase $dbr ) {
+	private function addTimestampConditions( BatchRowIterator $it, IReadableDatabase $dbr ) {
 		$it->addConditions( [
 			'rc_timestamp >= ' . $dbr->addQuotes( $dbr->timestamp( $this->startTS ) ),
 			'rc_timestamp < ' . $dbr->addQuotes( $dbr->timestamp( $this->endTS ) ),
