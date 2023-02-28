@@ -34,75 +34,119 @@ use MediaWiki\Logger\ConsoleSpi;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
-$optionsWithArgs = [ 'd' ];
-$optionsWithoutArgs = [ 'ignore-errors' ];
+require_once __DIR__ . '/Maintenance.php';
 
-require_once __DIR__ . "/CommandLineInc.php";
+/**
+ * Maintenance script providing an interactive console for evaluating php commands
+ * in the context of an initialized MediaWiki instance.
+ *
+ * @ingroup Maintenance
+ */
+// phpcs:disable MediaWiki.Files.ClassMatchesFilename.NotMatch
+class MWEval extends Maintenance {
+	public function __construct() {
+		parent::__construct();
+		$this->addDescription(
+			'Maintenance script providing an interactive console for evaluating php' .
+			'commands in the context of an initialized MediaWiki instance.'
+		);
 
-if ( isset( $options['d'] ) ) {
-	$d = $options['d'];
-	if ( $d > 0 ) {
-		LoggerFactory::registerProvider( new ConsoleSpi );
-		// Some services hold Logger instances in object properties
-		MediaWikiServices::resetGlobalInstance();
+		$this->addOption(
+			'd',
+			'Enable (some) debug output',
+			false,
+			true
+		);
+
+		$this->addOption(
+			'ignore-errors',
+			'Ignore (some) errors'
+		);
 	}
-	if ( $d > 1 ) {
-		wfGetDB( DB_PRIMARY )->setFlag( DBO_DEBUG );
-		wfGetDB( DB_REPLICA )->setFlag( DBO_DEBUG );
+
+	public function canExecuteWithoutLocalSettings(): bool {
+		return true;
 	}
-}
 
-$__ignoreErrors = isset( $options['ignore-errors'] );
-
-$__useReadline = function_exists( 'readline_add_history' )
-	&& Maintenance::posix_isatty( 0 /*STDIN*/ );
-
-if ( $__useReadline ) {
-	$__historyFile = isset( $_ENV['HOME'] ) ?
-		"{$_ENV['HOME']}/.mweval_history" : "$IP/maintenance/.mweval_history";
-	readline_read_history( $__historyFile );
-}
-
-Hooks::runner()->onMaintenanceShellStart();
-
-$__e = null; // PHP exception
-while ( ( $__line = Maintenance::readconsole() ) !== false ) {
-	if ( !$__ignoreErrors && $__e && !preg_match( '/^(exit|die);?$/', $__line ) ) {
-		// Internal state may be corrupted or fatals may occur later due
-		// to some object not being set. Don't drop out of eval in case
-		// lines were being pasted in (which would then get dumped to the shell).
-		// Instead, just absorb the remaining commands. Let "exit" through per DWIM.
-		echo "Exception was thrown before; please restart eval.php\n";
-		continue;
-	}
-	if ( $__useReadline ) {
-		readline_add_history( $__line );
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal
-		readline_write_history( $__historyFile );
-	}
-	try {
-		// @phan-suppress-next-line SecurityCheck-RCE
-		$__val = eval( $__line . ";" );
-	} catch ( Exception $__e ) {
-		fwrite( STDERR, "Caught exception " . get_class( $__e ) .
-			": {$__e->getMessage()}\n" . $__e->getTraceAsString() . "\n" );
-		continue;
-	} catch ( Throwable $__e ) {
-		if ( $__ignoreErrors ) {
-			fwrite( STDERR, "Caught " . get_class( $__e ) .
-				": {$__e->getMessage()}\n" . $__e->getTraceAsString() . "\n" );
-			continue;
-		} else {
-			throw $__e;
+	public function execute() {
+		if ( $this->hasOption( 'd' ) ) {
+			$d = $this->getOption( 'd' );
+			if ( $d > 0 ) {
+				LoggerFactory::registerProvider( new ConsoleSpi );
+				// Some services hold Logger instances in object properties
+				MediaWikiServices::resetGlobalInstance();
+			}
+			if ( $d > 1 ) {
+				wfGetDB( DB_PRIMARY )->setFlag( DBO_DEBUG );
+				wfGetDB( DB_REPLICA )->setFlag( DBO_DEBUG );
+			}
 		}
-	}
-	if ( $__val === null ) {
+
+		// pull all globals into local scope
+		foreach ( $GLOBALS as $name => $unused ) {
+			// phpcs:disable MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix
+			// phpcs:disable MediaWiki.VariableAnalysis.UnusedGlobalVariables.UnusedGlobal$name
+			global $$name;
+		}
+
+		$__ignoreErrors = $this->hasOption( 'ignore-errors' );
+
+		$__useReadline = function_exists( 'readline_add_history' )
+			&& Maintenance::posix_isatty( 0 /*STDIN*/ );
+
+		if ( $__useReadline ) {
+			$__historyFile = isset( $_ENV['HOME'] ) ?
+				"{$_ENV['HOME']}/.mweval_history" : ( MW_INSTALL_PATH . "/maintenance/.mweval_history" );
+			readline_read_history( $__historyFile );
+		} else {
+			$__historyFile = null;
+		}
+
+		Hooks::runner()->onMaintenanceShellStart();
+
+		$__e = null; // PHP exception
+		while ( ( $__line = Maintenance::readconsole() ) !== false ) {
+			if ( !$__ignoreErrors && $__e && !preg_match( '/^(exit|die);?$/', $__line ) ) {
+				// Internal state may be corrupted or fatals may occur later due
+				// to some object not being set. Don't drop out of eval in case
+				// lines were being pasted in (which would then get dumped to the shell).
+				// Instead, just absorb the remaining commands. Let "exit" through per DWIM.
+				echo "Exception was thrown before; please restart eval.php\n";
+				continue;
+			}
+			if ( $__useReadline ) {
+				readline_add_history( $__line );
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullableInternal
+				readline_write_history( $__historyFile );
+			}
+			try {
+				// @phan-suppress-next-line SecurityCheck-RCE
+				$__val = eval( $__line . ";" );
+			} catch ( Exception $__e ) {
+				fwrite( STDERR, "Caught exception " . get_class( $__e ) .
+					": {$__e->getMessage()}\n" . $__e->getTraceAsString() . "\n" );
+				continue;
+			} catch ( Throwable $__e ) {
+				if ( $__ignoreErrors ) {
+					fwrite( STDERR, "Caught " . get_class( $__e ) .
+						": {$__e->getMessage()}\n" . $__e->getTraceAsString() . "\n" );
+					continue;
+				} else {
+					throw $__e;
+				}
+			}
+			if ( $__val === null ) {
+				echo "\n";
+			} elseif ( is_string( $__val ) || is_numeric( $__val ) ) {
+				echo "$__val\n";
+			} else {
+				var_dump( $__val );
+			}
+		}
+
 		echo "\n";
-	} elseif ( is_string( $__val ) || is_numeric( $__val ) ) {
-		echo "$__val\n";
-	} else {
-		var_dump( $__val );
 	}
 }
 
-print "\n";
+$maintClass = MWEval::class;
+require_once RUN_MAINTENANCE_IF_MAIN;
