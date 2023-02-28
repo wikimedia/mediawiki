@@ -1233,5 +1233,8 @@
 	"skin-action-protect": "Zazychrëjë",
 	"skin-action-undelete": "Doprowadzë nazôd",
 	"skin-action-delete": "Rëmôj",
-	"skin-action-move": "Przeniesë"
+	"skin-action-move": "Przeniesë",
+	"log-name-renameuser": "Zmianë pòzwów brëkòwnika",
+	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|zmienił|zmienia}} miono brëkòwnika $4 ({{PLURAL:$6|$6 edicëjô|$6 edicëje|$6 edicëjów}}) na {{GENDER:$7|$5}}",
+	"logentry-renameuser-renameuser-legacier": "$1 zmienił(a) pòzwã brëkòwnika $4 na $5"
 }

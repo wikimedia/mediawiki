@@ -809,5 +809,17 @@
 	"nstab-mainpage": "главьна страница",
 	"skin-action-protect": "ꙁабранѥниѥ",
 	"skin-action-delete": "поничьжєниѥ",
-	"skin-action-move": "прѣимєнованиѥ"
+	"skin-action-move": "прѣимєнованиѥ",
+	"renameuser": "прѣимєноуи польꙃєватєл҄ь",
+	"renameuserold": "нꙑнѣщьнѥѥ имѧ :",
+	"renameusernew": "ново имѧ :",
+	"renameuserreason": "какъ съмꙑслъ :",
+	"renameusermove": "нарьци тако польꙃєватєлꙗ страницѫ · бєсѣдѫ и ихъ подъстраницѧ",
+	"renameusersubmit": "єи",
+	"renameusererrordoesnotexist": "польꙃєватєлꙗ ⁖ <nowiki>$1</nowiki> ⁖ нѣстъ",
+	"renameusererrorexists": "{{GENDER:$1|польꙃєватєл҄ь|польꙃєватєлица}} ⁖ <nowiki>$1</nowiki> ⁖ ѥстъ ю",
+	"renameusererrorinvalid": "имѧ ⁖ <nowiki>$1</nowiki> ⁖ нѣстъ годѣ",
+	"log-name-renameuser": "польꙃєватєлъ прѣимєнованиꙗ їсторїꙗ",
+	"log-description-renameuser": "сѥ ѥстъ їсторїꙗ польꙃєватєльскъ имєнъ иꙁмѣнѥниꙗ",
+	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|нарєчє}} польꙃєватєл҄ь ⁖ $4 ⁖ ({{PLURAL:$6|$6 мѣна|$6 мѣноу|$6 мѣнъ}}) имєньмь ⁖ {{GENDER:$7|$5}} ⁖"
 }

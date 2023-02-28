@@ -160,6 +160,7 @@ $specialPageAliases = [
 	'Randomredirect'            => [ 'Zofällije_Ömleitung' ],
 	'Recentchanges'             => [ 'Neuste_Änderunge', 'Änderunge' ],
 	'Recentchangeslinked'       => [ 'Änderungen_an_verlinkte_Sigge' ],
+	'Renameuser'                => [ 'Metmaacher_ömnänne', 'Medmaacher_ömnänne', 'Metmaacher_ömnenne', 'Medmaacher_ömnenne', 'Metmaacher_ömdäufe', 'Medmaacher_ömdäufe' ],
 	'Revisiondelete'            => [ 'Version_fottschmieße' ],
 	'Search'                    => [ 'Sök', 'Söök', 'Söke', 'Sööke' ],
 	'Shortpages'                => [ 'Koote_Atikelle' ],

@@ -1851,5 +1851,10 @@
 	"skin-action-protect": "Apsergietė",
 	"skin-action-undelete": "Atkortė",
 	"skin-action-delete": "Trintė",
-	"skin-action-move": "Parvadintė"
+	"skin-action-move": "Parvadintė",
+	"renameuserold": "Esams nauduotuojė vards:",
+	"renameusernew": "Naus nauduotuojė vards:",
+	"renameuserwarnings": "Pertarėmā:",
+	"renameusersuccess": "Nauduotuos \"<nowiki>$1</nowiki>\" bova parvadėnts i \"<nowiki>$2</nowiki>\".",
+	"log-name-renameuser": "Nauduotuoju pervadėnėma sārašos"
 }

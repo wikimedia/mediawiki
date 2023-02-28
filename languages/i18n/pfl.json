@@ -1019,5 +1019,6 @@
 	"skin-action-protect": "schidze",
 	"skin-action-undelete": "Zriggbringe",
 	"skin-action-delete": "Lesche",
-	"skin-action-move": "Vaschiewe"
+	"skin-action-move": "Vaschiewe",
+	"renameusersubmit": "Benutzer umbenenne"
 }

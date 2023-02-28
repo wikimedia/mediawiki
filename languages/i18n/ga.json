@@ -1428,5 +1428,10 @@
 	"skin-action-protect": "Glasáil",
 	"skin-action-undelete": "Díscrios",
 	"skin-action-delete": "Scrios",
-	"skin-action-move": "Athainmnigh"
+	"skin-action-move": "Athainmnigh",
+	"renameuser": "Athainmnigh úsáideoir",
+	"renameuserold": "Ainm reatha úsáideora:",
+	"renameusernew": "Ainm nua úsáideora:",
+	"renameusersuccess": "Athainmníodh úsáideoir \"<nowiki>$1</nowiki>\" mar \"<nowiki>$2</nowiki>\"",
+	"renameuser-page-exists": "Tá leathanach \"$1\" ann chean féin; ní féidir ábhar a scríobh thairis go huathoibríoch."
 }

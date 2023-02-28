@@ -3822,5 +3822,17 @@
 	"blockedtext-intended-blockee": "Uténte blocòuː $1",
 	"blockedtext-contact-blocker-admin": "Ti ti peu contatâ $1 ò 'n âtro [[{{MediaWiki:Grouppage-sysop}}|aministratô]] pe discùtte do blòcco.",
 	"blockedtext-block-ip": "O tò indirìsso IP atoâle o l'é $1",
-	"blockedtext-include-details-queries": "Pe piâxéi, inclùddi tùtti i detàggi de d'âto inte ògni domànda de spiegaçioìn."
+	"blockedtext-include-details-queries": "Pe piâxéi, inclùddi tùtti i detàggi de d'âto inte ògni domànda de spiegaçioìn.",
+	"renameuserold": "Nómme uténte atoâle:",
+	"renameusermove": "Rinomina ànche a pàgina uténte, a pàgina de discusción e-e relatîve sóttapàgine",
+	"renameusererrordoesnotexist": "L'utente \"<nowiki>$1</nowiki>\" o no l'existe.",
+	"renameusererrorexists": "{{GENDER:$1|L'utente}} \"<nowiki>$1</nowiki>\" o l'existe za.",
+	"renameusererrorinvalid": "O nómme uténte \"<nowiki>$1</nowiki>\" o no l'é vàlido!",
+	"renameusersuccess": "L'utente \"<nowiki>$1</nowiki>\" {{GENDER:$2|o l'è stæto rinominou|a l'è stæta rinominâ}} in \"<nowiki>$2</nowiki>\"",
+	"renameuser-page-exists": "A paggina $1 a gh'è za e a no pœu êse soviascrita aotomaticamente.",
+	"renameuser-page-unmoved": "A pàgina $1 a no peu êse mesciâ inte $2.",
+	"log-name-renameuser": "Utenti rinominæ",
+	"log-description-renameuser": "Chì de sotta gh'è a lista di cangiamenti a-i nommi utente.",
+	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|o l'ha rinominou}} l'utente $4 (con {{PLURAL:$6|$6 contribuçion|$6 contribuçioin}}) in {{GENDER:$7|$5}}",
+	"renameuser-move-log": "Pàgina mesciâ outomaticaménte inte a rinomina {{GENDER:$2|de l'uténte}} \"[[User:$1|$1]]\" a \"[[User:$2|$2]]\""
 }

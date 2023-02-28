@@ -872,5 +872,16 @@
 	"skin-action-protect": "Garantir",
 	"skin-action-undelete": "N'poin défacher",
 	"skin-action-delete": "Défacer",
-	"skin-action-move": "Canger ch'nom"
+	"skin-action-move": "Canger ch'nom",
+	"renameuser": "Canger ch'nom d'uzeu",
+	"renameusernew": "Nouvieu nom dechl uzeu",
+	"renameuserreason": "Motif dech canjemint d'nom",
+	"renameuserwarnings": "Afute ! :",
+	"renameuserconfirm": "Oui, érlonmer echl uzeu",
+	"renameusererrorinvalid": "Ech nom  \"<nowiki>$1</nowiki>\" est non-val.",
+	"renameusersuccess": "Echl uzeu \"<nowiki>$1</nowiki>\" o té érlonmé \"<nowiki>$2</nowiki>\".",
+	"renameuser-page-moved": "L'pache $1 o té déplachée dsus $2.",
+	"renameuser-page-unmoved": "L'pache $1 ale n'put poin éte déplachée su $2.",
+	"log-name-renameuser": "Jornal d'chés canjemints éd chés noms d'uzeus",
+	"right-renameuser": "Érlonmer chés uzeus"
 }

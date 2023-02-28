@@ -228,6 +228,7 @@ $specialPageAliases = [
 	'Recentchangeslinked'       => [ 'Zmiany_w_linkowanych', 'Zmiany_w_linkujących' ],
 	'Redirect'                  => [ 'Przekieruj' ],
 	'RemoveCredentials'         => [ 'Usuwanie_poświadczeń', 'Usuń_poświadczenia' ],
+	'Renameuser'                => [ 'Zmiana_nazwy_użytkownika' ],
 	'ResetTokens'               => [ 'Resetuj_tokeny' ],
 	'Revisiondelete'            => [ 'Usuń_wersję' ],
 	'RunJobs'                   => [ 'Uruchom_zadania' ],

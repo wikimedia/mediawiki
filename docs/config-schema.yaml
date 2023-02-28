@@ -4915,7 +4915,7 @@ config-schema:
             bot: { bot: true, autoconfirmed: true, editsemiprotected: true, nominornewtalk: true, autopatrol: true, suppressredirect: true, apihighlimits: true, writeapi: true }
             sysop: { block: true, createaccount: true, delete: true, bigdelete: true, deletedhistory: true, deletedtext: true, undelete: true, editinterface: true, editsitejson: true, edituserjson: true, import: true, importupload: true, move: true, move-subpages: true, move-rootuserpages: true, move-categorypages: true, patrol: true, autopatrol: true, protect: true, editprotected: true, rollback: true, upload: true, reupload: true, reupload-shared: true, unwatchedpages: true, autoconfirmed: true, editsemiprotected: true, ipblock-exempt: true, blockemail: true, markbotedits: true, apihighlimits: true, browsearchive: true, noratelimit: true, movefile: true, unblockself: true, suppressredirect: true, mergehistory: true, managechangetags: true, deletechangetags: true }
             interface-admin: { editinterface: true, editsitecss: true, editsitejson: true, editsitejs: true, editusercss: true, edituserjson: true, edituserjs: true }
-            bureaucrat: { userrights: true, noratelimit: true }
+            bureaucrat: { userrights: true, noratelimit: true, renameuser: true }
             suppress: { hideuser: true, suppressrevision: true, viewsuppressed: true, suppressionlog: true, deleterevision: true, deletelogentry: true }
         description: |-
             Permission keys given to users in each group.
@@ -6913,6 +6913,7 @@ config-schema:
             'null': NullJob
             userEditCountInit: UserEditCountInitJob
             parsoidCachePrewarm: { class: ParsoidCachePrewarmJob, services: [ParsoidOutputAccess, PageStore, RevisionLookup], needsPage: false }
+            renameUser: RenameUserJob
         type: object
         description: |-
             Maps jobs to their handlers; extensions
@@ -7079,6 +7080,7 @@ config-schema:
             - tag
             - managetags
             - contentmodel
+            - renameuser
         type: array
         description: |-
             The logging system has two levels: an event type, which describes the
@@ -7190,6 +7192,7 @@ config-schema:
             protect/move_prot: ProtectLogFormatter
             protect/protect: ProtectLogFormatter
             protect/unprotect: ProtectLogFormatter
+            renameuser/renameuser: RenameuserLogFormatter
             rights/autopromote: RightsLogFormatter
             rights/rights: RightsLogFormatter
             suppress/block: BlockLogFormatter

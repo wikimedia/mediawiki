@@ -170,6 +170,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ 'СкорешниПромени' ],
 	'Recentchangeslinked'       => [ 'ПоврзаниПромени' ],
 	'Redirect'                  => [ 'Пренасочување' ],
+	'Renameuser'                => [ 'ПреименувајКорисник' ],
 	'ResetTokens'               => [ 'ВратиОдновоЗнаци' ],
 	'Revisiondelete'            => [ 'БришењеПреработка' ],
 	'RunJobs'                   => [ 'ПуштиЗадачи' ],

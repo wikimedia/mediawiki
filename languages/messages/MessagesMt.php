@@ -107,6 +107,7 @@ $specialPageAliases = [
 	'Randomredirect'            => [ 'RiindirizzKwalunkwe' ],
 	'Recentchanges'             => [ 'TibdilRiċenti' ],
 	'Recentchangeslinked'       => [ 'TibdilRelatat' ],
+	'Renameuser'                => [ 'BiddelIsemUtent' ],
 	'Revisiondelete'            => [ 'ĦassarReviżjoni' ],
 	'Search'                    => [ 'Fittex' ],
 	'Shortpages'                => [ 'PaġniQosra' ],

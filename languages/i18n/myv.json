@@ -1743,5 +1743,10 @@
 	"skin-action-protect": "Аравтомс ванстомас",
 	"skin-action-undelete": "Вельмевтемс нардазенть",
 	"skin-action-delete": "Нардамс",
-	"skin-action-move": "Печтевтемс"
+	"skin-action-move": "Печтевтемс",
+	"renameusernew": "Од лемесь:",
+	"renameuserreserve": "Озавтомс ташто совицянь лементь саймес, тевс илязо нолдаво седе тов",
+	"renameuserconfirm": "Истя, макст совицянтень од лем",
+	"renameusersubmit": "Максомс",
+	"renameusererrordoesnotexist": "\"<nowiki>$1</nowiki>\" совицясь арась."
 }

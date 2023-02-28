@@ -1774,5 +1774,7 @@
 	"skin-action-protect": "Protecter",
 	"skin-action-undelete": "Restituer",
 	"skin-action-delete": "Deleter",
-	"skin-action-move": "Mover"
+	"skin-action-move": "Mover",
+	"renameuserreason": "Rason:",
+	"log-name-renameuser": "Diarium de renomination de usator"
 }

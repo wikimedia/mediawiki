@@ -1689,5 +1689,22 @@
 	"skin-action-protect": "Protegere",
 	"skin-action-undelete": "Restituere",
 	"skin-action-delete": "Delere",
-	"skin-action-move": "Movere"
+	"skin-action-move": "Movere",
+	"renameuser": "Usorem renominare",
+	"renameuserold": "Praesente nomen usoris:",
+	"renameusernew": "Novum nomen usoris:",
+	"renameuserreason": "Causa:",
+	"renameusermove": "Movere paginas usoris et disputationis (et subpaginae) in nomen novum",
+	"renameusersubmit": "Renominare",
+	"renameusererrordoesnotexist": "Usor \"<nowiki>$1</nowiki>\" non existit",
+	"renameusererrorexists": "Usor \"<nowiki>$1</nowiki>\" iam existit",
+	"renameusererrorinvalid": "Nomen usoris \"<nowiki>$1</nowiki>\" irritum est",
+	"renameusersuccess": "Usor \"<nowiki>$1</nowiki>\" renominatus est in \"<nowiki>$2</nowiki>\"",
+	"renameuser-page-exists": "Pagina $1 iam existit et non potest automatice deleri.",
+	"renameuser-page-moved": "Pagina $1 mota est ad $2.",
+	"renameuser-page-unmoved": "Pagina $1 ad $2 moveri non potuit.",
+	"log-name-renameuser": "Index renominationum usorum",
+	"renameuser-move-log": "movit paginam automatice in renominando usorem \"[[User:$1|$1]]\" in \"[[User:$2|$2]]\"",
+	"right-renameuser": "Usores renominare",
+	"renameuser-renamed-notice": "Hic usor renominatus est.\nCommodule notatio renominationum usoris subter datur."
 }

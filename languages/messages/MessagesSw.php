@@ -94,6 +94,7 @@ $specialPageAliases = [
 	'Protectedtitles'           => [ 'JinaLililolindwa' ],
 	'Randompage'                => [ 'UkurasawaBahati' ],
 	'Recentchanges'             => [ 'MabadalikoyaKaribuni' ],
+	'Renameuser'                => [ 'BadilishajinalaMtumiaji' ],
 	'Search'                    => [ 'Tafuta' ],
 	'Shortpages'                => [ 'KurasaFupi' ],
 	'Specialpages'              => [ 'KurasaMaalum' ],

@@ -135,6 +135,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ 'Thay_đổi_gần_đây' ],
 	'Recentchangeslinked'       => [ 'Thay_đổi_liên_quan' ],
 	'Redirect'                  => [ 'Đổi_hướng' ],
+	'Renameuser'                => [ 'Đổi_tên_thành_viên', 'Đổi_tên_người_dùng' ],
 	'ResetTokens'               => [ 'Đặt_lại_dấu_hiệu' ],
 	'Revisiondelete'            => [ 'Xóa_phiên_bản', 'Xoá_phiên_bản' ],
 	'RunJobs'                   => [ 'Chạy_việc' ],

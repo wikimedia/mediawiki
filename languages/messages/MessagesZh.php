@@ -153,6 +153,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ '最近更改', '近期變動' ],
 	'Recentchangeslinked'       => [ '链出更改', '鏈出更改', '連出更改' ],
 	'Redirect'                  => [ '重定向', '重新導向' ],
+	'Renameuser'                => [ '重命名用户', '重新命名用户', '重新命名用戶', '重新命名使用者' ],
 	'ResetTokens'               => [ '重置密钥', '重設金鑰' ],
 	'Revisiondelete'            => [ '版本删除' ],
 	'Search'                    => [ '搜索', '搜尋' ],

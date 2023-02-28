@@ -13,6 +13,7 @@
 			"Gorgich",
 			"Goshaproject",
 			"Hetman",
+			"Jarash",
 			"Jim-by",
 			"Kaganer",
 			"Kareyac",
@@ -4051,5 +4052,14 @@
 	"blockedtext-contact-blocker-admin": "Вы можаце звярнуцца да $1 або да іншага [[{{MediaWiki:Grouppage-sysop}}|адміністратара]], каб абмеркаваць блакаванне.",
 	"blockedtext-block-ip": "Ваш цяперашні IP-адрас — $1",
 	"blockedtext-block-id": "Ідэнтыфікатар блакавання #$1.",
-	"blockedtext-include-details-queries": "Уключайце ўсе пададзеныя вышэй звесткі ва ўсе вашы запыты."
+	"blockedtext-include-details-queries": "Уключайце ўсе пададзеныя вышэй звесткі ва ўсе вашы запыты.",
+	"renameuser": "Перайменаваць удзельніка",
+	"renameuser-linkoncontribs": "перайменаваць {{GENDER:$1|удзельніка|удзельніцу}}",
+	"renameuserconfirm": "Так, перайменаваць удзельніка",
+	"log-name-renameuser": "Журнал перайменавання ўдзельнікаў",
+	"log-description-renameuser": "Гэта журнал ажыццяўлёных перайменаванняў зарэгістраваных удзельнікаў.",
+	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|перайменаваў удзельніка|перайменавала ўдзельніка}} $4 ({{PLURAL:$6|$6 праўка|$6 праўкі|$6 правак}}) у {{GENDER:$7|$5}}",
+	"logentry-renameuser-renameuser-legacier": "$1 перайменаваў удзельніка $4 у {{GENDER:$7|$5}}",
+	"action-renameuser": "перайменаваць удзельнікаў",
+	"right-renameuser": "Перайменаванне ўдзельнікаў"
 }

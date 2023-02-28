@@ -1468,5 +1468,20 @@
 	"expand_templates_ok": "Jaraýdı",
 	"expand_templates_remove_comments": "Mändemelerin alastatıp?",
 	"expand_templates_generate_xml": "XML öñdetw butaqtarın körset",
-	"expand_templates_preview": "Qarap şığw"
+	"expand_templates_preview": "Qarap şığw",
+	"renameuser": "Qatıswşını qaýta ataw",
+	"renameuserold": "Ağımdağı qatıswşı atı:",
+	"renameusernew": "Jaña qatıswşı atı:",
+	"renameuserreason": "Qaýta ataw sebebi:",
+	"renameusermove": "Qatıswşınıñ jeke jäne talqılaw betterin (jäne de olardıñ tömengi betterin) jaña atawğa jıljıtw",
+	"renameusersubmit": "Jiberw",
+	"renameusererrordoesnotexist": "«<nowiki>$1</nowiki>» degen qatıswşı joq",
+	"renameusererrorexists": "«<nowiki>$1</nowiki>» degen qatıswşı bar tüge",
+	"renameusererrorinvalid": "«<nowiki>$1</nowiki>» qatıswşı atı jaramsız",
+	"renameusersuccess": "«<nowiki>$1</nowiki>» degen qatıswşı atı «<nowiki>$2</nowiki>» degenge awıstırıldı",
+	"renameuser-page-exists": "$1 degen bet bar tüge, jäne özdik türde onıñ üstine eşteñe jazılmaýdı.",
+	"renameuser-page-moved": "$1 degen bet $2 degen betke jıljıtıldı.",
+	"renameuser-page-unmoved": "$1 degen bet $2 degen betke jıljıtılmadı.",
+	"log-name-renameuser": "Qatıswşını qaýta ataw jwrnalı",
+	"renameuser-move-log": "«[[User:$1|$1]]» degen qatıswşı atın «[[User:$2|$2]]» degenge awısqanda bet özdik türde jıljıtıldı"
 }

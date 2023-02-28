@@ -2414,5 +2414,6 @@
 	"skin-action-protect": "تحفظيو",
 	"skin-action-undelete": "اڻ‌ڊاهيو",
 	"skin-action-delete": "ڊاھيو",
-	"skin-action-move": "چوريو"
+	"skin-action-move": "چوريو",
+	"renameuser-page-moved": "صفحي $1 کي $2 ڏانھن چوريو ويو آھي."
 }

@@ -102,6 +102,7 @@ $specialPageAliases = [
 	'Randomredirect'            => [ 'Цебе_ккараб_цоги_бакІалде_руссинаби' ],
 	'Recentchanges'             => [ 'ЦІиял_хиса-басиял' ],
 	'Recentchangeslinked'       => [ 'Хурхинарурал_хиса-басиял' ],
+	'Renameuser'                => [ 'Переименовать_участника' ],
 	'Revisiondelete'            => [ 'Хиса-баси_нахъе_бацІцІи' ],
 	'Search'                    => [ 'Хъирщи' ],
 	'Shortpages'                => [ 'Къокъал_гьумерал' ],

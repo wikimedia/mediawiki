@@ -1864,5 +1864,6 @@
 	"skin-action-protect": "Φυλάττειν",
 	"skin-action-undelete": "Ἀποκαθιστάναι",
 	"skin-action-delete": "Σβεννύναι",
-	"skin-action-move": "Κινεῖν"
+	"skin-action-move": "Κινεῖν",
+	"renameusersubmit": "Ὑποβάλλειν"
 }

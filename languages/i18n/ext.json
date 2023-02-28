@@ -1510,5 +1510,6 @@
 	"skin-action-protect": "Protegel",
 	"skin-action-undelete": "Esborral",
 	"skin-action-delete": "Esborral",
-	"skin-action-move": "Mual"
+	"skin-action-move": "Mual",
+	"renameuser-page-moved": "S'á movíu la página $1 a $2."
 }

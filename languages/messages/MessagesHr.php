@@ -94,6 +94,7 @@ $specialPageAliases = [
 	'Randomredirect'            => [ 'Slučajno_preusmjeravanje' ],
 	'Recentchanges'             => [ 'Nedavne_promjene' ],
 	'Recentchangeslinked'       => [ 'Povezane_promjene' ],
+	'Renameuser'                => [ 'Preimenuj_suradnika' ],
 	'Revisiondelete'            => [ 'Brisanje_izmjene' ],
 	'Search'                    => [ 'Traži' ],
 	'Shortpages'                => [ 'Kratke_stranice' ],

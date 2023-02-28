@@ -118,6 +118,7 @@ $specialPageAliases = [
 	'Randomredirect'            => [ 'RedirectCasuale' ],
 	'Recentchanges'             => [ 'UltimeModifiche' ],
 	'Recentchangeslinked'       => [ 'ModificheCorrelate' ],
+	'Renameuser'                => [ 'RinominaUtente' ],
 	'Revisiondelete'            => [ 'CancellaRevisione' ],
 	'Search'                    => [ 'Arriscedi', 'Cerca', 'Trova' ],
 	'Shortpages'                => [ 'PaginePiùCorte' ],

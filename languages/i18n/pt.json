@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"555",
 			"Albertoleoncio",
 			"Alchimista",
 			"Andresilvazito",
@@ -88,8 +89,7 @@
 			"Yves Marques Junqueira",
 			"Önni",
 			"לערי ריינהארט",
-			"아라",
-			555
+			"아라"
 		]
 	},
 	"tog-underline": "Sublinhar hiperligações:",
@@ -4114,5 +4114,35 @@
 	"blockedtext-contact-blocker-admin": "Pode contactar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir o bloqueio.",
 	"blockedtext-block-ip": "O seu endereço IP neste momento é $1",
 	"blockedtext-block-id": "Identificação do bloqueio nº $1.",
-	"blockedtext-include-details-queries": "Inclua todos os detalhes acima em quaisquer contactos relacionados com este bloqueio, por favor."
+	"blockedtext-include-details-queries": "Inclua todos os detalhes acima em quaisquer contactos relacionados com este bloqueio, por favor.",
+	"renameuser": "Alterar o nome do utilizador",
+	"renameuser-linkoncontribs": "alterar o nome {{GENDER:$1|do utilizador|da utilizadora}}",
+	"renameuser-linkoncontribs-text": "Alterar o nome {{GENDER:$1|deste utilizador|desta utilizadora}}",
+	"renameuserold": "Nome de utilizador atual:",
+	"renameusernew": "Novo nome de utilizador:",
+	"renameuserreason": "Motivo:",
+	"renameusermove": "Mover as páginas e subpáginas de utilizador e as respetivas discussões para o novo nome",
+	"renameusersuppress": "Não criar redirecionamentos para o novo nome",
+	"renameuserreserve": "Impedir novos usos do antigo nome de utilizador",
+	"renameuserwarnings": "Alertas:",
+	"renameuserconfirm": "Sim, alterar o nome do utilizador",
+	"renameusersubmit": "Enviar",
+	"renameusererrordoesnotexist": "O utilizador \"<nowiki>$1</nowiki>\" não existe.",
+	"renameusererrorexists": "{{GENDER:$1|O utilizador|A utilizadora}} \"<nowiki>$1</nowiki>\" já existe.",
+	"renameusererrorinvalid": "O nome de utilizador \"<nowiki>$1</nowiki>\" é inválido.",
+	"renameuser-error-request": "Houve um problema ao receber este pedido.\nVolte atrás e tente de novo, por favor.",
+	"renameuser-error-same-user": "Não é possível alterar o nome de um utilizador para o nome anterior.",
+	"renameusersuccess": "O nome {{GENDER:$2|do utilizador|da utilizadora|do(a) utilizador(a)}} \"<nowiki>$1</nowiki>\" foi alterado para \"<nowiki>$2</nowiki>\".",
+	"renameuser-page-exists": "Já existe a página $1. Não é possível sobrescrever automaticamente.",
+	"renameuser-page-moved": "A página $1 foi movida para $2.",
+	"renameuser-page-unmoved": "Não foi possível mover a página $1 para $2.",
+	"renameuser-warning-currentblock": "Este utilizador está [$1 atualmente bloqueado].",
+	"log-name-renameuser": "Registo de alteração do nome de utilizadores",
+	"log-description-renameuser": "Este é um registo de alterações efetuadas a nomes de utilizadores.",
+	"logentry-renameuser-renameuser": "$1 alterou o nome {{GENDER:$2|do utilizador|da utilizadora}} $4 (com {{PLURAL:$6|$6 edição|$6 edições}}) para {{GENDER:$7|$5}}",
+	"logentry-renameuser-renameuser-legacier": "$1 alterou o nome {{GENDER:$7|do utilizador|da utilizadora}} $4 para $5",
+	"renameuser-move-log": "Página movida automaticamente ao alterar o nome {{GENDER:$2|do utilizador|da utilizadora}} \"[[User:$1|$1]]\" para \"[[User:$2|$2]]\"",
+	"action-renameuser": "alterar nomes de utilizadores",
+	"right-renameuser": "Alterar nomes de utilizadores",
+	"renameuser-renamed-notice": "Este nome de utilizador foi alterado.\nÉ apresentado abaixo o registo de alteração do nome de utilizadores."
 }

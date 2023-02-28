@@ -1409,11 +1409,25 @@ class Article implements Page {
 				$user = false;
 			}
 
-			if ( !( $user && $user->isRegistered() ) && !$ip ) { # User does not exist
+			if ( !( $user && $user->isRegistered() ) && !$ip ) {
+				// User does not exist
 				$outputPage->addHTML( Html::warningBox(
 					$context->msg( 'userpage-userdoesnotexist-view', wfEscapeWikiText( $rootPart ) )->parse(),
 					'mw-userpage-userdoesnotexist'
 				) );
+
+				// Show renameuser log extract
+				LogEventsList::showLogExtract(
+					$outputPage,
+					'renameuser',
+					Title::makeTitleSafe( NS_USER, $rootPart ),
+					'',
+					[
+						'lim' => 10,
+						'showIfEmpty' => false,
+						'msgKey' => [ 'renameuser-renamed-notice', $title->getBaseText() ]
+					]
+				);
 			} elseif (
 				$block !== null &&
 				$block->getType() != DatabaseBlock::TYPE_AUTO &&

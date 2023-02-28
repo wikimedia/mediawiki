@@ -1326,5 +1326,17 @@
 	"skin-action-move": "Seeʹrd",
 	"newpages-showhide-bots": "$1 boottid",
 	"newpages-showhide-patrolled": "$1 taʹrǩǩuum muttsid",
-	"newpages-showhide-registered": "$1 rekisterõsttum õõʹnnʼjid"
+	"newpages-showhide-registered": "$1 rekisterõsttum õõʹnnʼjid",
+	"renameuser-linkoncontribs": "uuʹd {{GENDER:$1|ooʹnnʼja}} ođđ nõõm",
+	"renameuser-linkoncontribs-text": "Uuʹd tän {{GENDER:$1|ooʹnnʼja}} ođđ nõõm",
+	"renameuserold": "Ânnʼjõž õõʹnninõmm:",
+	"renameusernew": "Ođđ õõʹnninõmm:",
+	"renameuserreason": "Mäinn:",
+	"renameuserwarnings": "Vaartõõzz:",
+	"renameusersubmit": "Uuʹd õõʹnnʼja ođđ nõõm",
+	"renameusererrorinvalid": "Õõʹnninõmm \"<nowiki>$1</nowiki>\" ij ââʹnet.",
+	"renameuser-error-same-user": "Ton jiõk vuäǯǯ ooʹnnʼja uʹvdded seämma nõõm, kååʹtt suʹst juʹn lij.",
+	"renameuser-page-unmoved": "Seeid $1 serddmõš nõʹmme $2 ij oʹnnstam.",
+	"action-renameuser": "õõʹnnʼja ođđ nõõm uʹvdded",
+	"right-renameuser": "Oõʹnnʼja ođđ nõõm uʹvdded"
 }

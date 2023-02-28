@@ -95,6 +95,7 @@ $specialPageAliases = [
 	'Randomredirect'            => [ 'Redirecció_aleatòria' ],
 	'Recentchanges'             => [ 'Canvis_recents' ],
 	'Recentchangeslinked'       => [ 'Seguiment' ],
+	'Renameuser'                => [ 'Reanomena_usuari' ],
 	'Revisiondelete'            => [ 'Esborra_versió' ],
 	'Search'                    => [ 'Cerca' ],
 	'Shortpages'                => [ 'Pàgines_curtes' ],

@@ -411,6 +411,7 @@ $specialPageAliases = [
 	'Recentchangeslinked'       => [ 'أحدث_التغييرات_الموصولة', 'تغييرات_مرتبطة' ],
 	'Redirect'                  => [ 'تحويل' ],
 	'RemoveCredentials'         => [ 'إزالة_الاعتمادات' ],
+	'Renameuser'                => [ 'إعادة_تسمية_مستخدم' ],
 	'ResetTokens'               => [ 'إعادة_ضبط_المفاتيح' ],
 	'Revisiondelete'            => [ 'حذف_مراجعة', 'حذف_نسخة' ],
 	'RunJobs'                   => [ 'تشغيل_الوظائف' ],

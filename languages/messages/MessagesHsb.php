@@ -113,6 +113,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ 'Aktualne_změny' ],
 	'Recentchangeslinked'       => [ 'Změny_zwjazanych_stronow' ],
 	'Redirect'                  => [ 'Dalesposrědkowanje' ],
+	'Renameuser'                => [ 'Wužiwarja_přemjenować' ],
 	'Revisiondelete'            => [ 'Wušmórnjenje_wersijow' ],
 	'Search'                    => [ 'Pytać' ],
 	'Shortpages'                => [ 'Najkrótše_strony' ],

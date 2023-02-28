@@ -183,6 +183,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ 'Mudanças_recentes' ],
 	'Recentchangeslinked'       => [ 'Alterações_relacionadas', 'Novidades_relacionadas', 'Mudanças_relacionadas' ],
 	'Redirect'                  => [ 'Redirecionar', 'Redireccionar' ],
+	'Renameuser'                => [ 'Alterar_nome_de_utilizador' ],
 	'ResetTokens'               => [ 'Reiniciar_tokens', 'Reiniciar_os_tokens' ],
 	'Revisiondelete'            => [ 'Eliminar_edição', 'Eliminar_revisão', 'Apagar_edição', 'Apagar_revisão' ],
 	'Search'                    => [ 'Pesquisar', 'Busca', 'Buscar', 'Procurar', 'Pesquisa' ],

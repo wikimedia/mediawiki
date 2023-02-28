@@ -2195,5 +2195,22 @@
 	"skin-action-protect": "Friða",
 	"skin-action-undelete": "Endurstovna",
 	"skin-action-delete": "Strika",
-	"skin-action-move": "Flyt"
+	"skin-action-move": "Flyt",
+	"renameuser": "Umdoyp brúkara",
+	"renameuser-linkoncontribs": "umdoyp brúkara",
+	"renameuser-linkoncontribs-text": "Umdoyp henda brúkara",
+	"renameuserold": "Rætta brúkaranavn:",
+	"renameusernew": "Nýtt brúkaranavn:",
+	"renameuserreason": "Orsøk:",
+	"renameuserwarnings": "Ávaringar:",
+	"renameuserconfirm": "Ja, gev hesum brúkara nýtt navn",
+	"renameusersubmit": "Send inn",
+	"renameusererrordoesnotexist": "Brúkarin \"<nowiki>$1</nowiki>\" er ikki til.",
+	"renameusererrorexists": "Brúkarin \"<nowiki>$1</nowiki>\" er long til.",
+	"renameusererrorinvalid": "Brúkaranavnið \"<nowiki>$1</nowiki>\" er ógyldugt.",
+	"renameuser-error-request": "Har var ein trupulleiki við at móttaka fyrispurningin.\nVinarliga far aftur og royn enn einaferð.",
+	"renameuser-page-moved": "Síðan $1 er blivin flutt til $2.",
+	"renameuser-page-unmoved": "Síðan $1 kundi ikki verða flutt til $2.",
+	"right-renameuser": "Umdoyp brúkarar",
+	"renameuser-renamed-notice": "Hesin brúkari hevur fingið nýtt navn.\nLoggurin fyri navnabroytingina er givin niðanfyri fyri keldu ávísing."
 }
