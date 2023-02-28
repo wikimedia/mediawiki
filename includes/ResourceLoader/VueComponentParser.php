@@ -90,7 +90,7 @@ class VueComponentParser {
 		$template = $this->getTemplateHtml( $html, $options['minifyTemplate'] ?? false );
 
 		return [
-			'script' => trim( $nodes['script']->nodeValue ),
+			'script' => trim( $nodes['script']->nodeValue ?? '' ),
 			'template' => $template,
 			'style' => $styleData ? $styleData['style'] : null,
 			'styleLang' => $styleData ? $styleData['lang'] : null
@@ -159,7 +159,7 @@ class VueComponentParser {
 	 * @throws Exception If an invalid language is used, or if the 'scoped' attribute is set.
 	 */
 	private function getStyleAndLang( DOMElement $styleNode ): array {
-		$style = trim( $styleNode->nodeValue );
+		$style = trim( $styleNode->nodeValue ?? '' );
 		$styleLang = $styleNode->hasAttribute( 'lang' ) ?
 			$styleNode->getAttribute( 'lang' ) : 'css';
 		if ( $styleLang !== 'css' && $styleLang !== 'less' ) {

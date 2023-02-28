@@ -61,7 +61,6 @@ class AbstractSecondaryAuthenticationProviderTest extends \MediaWikiUnitTestCase
 		$reqs = [];
 		for ( $i = 0; $i < 3; $i++ ) {
 			$reqs[$i] = $this->createMock( AuthenticationRequest::class );
-			$reqs[$i]->done = false;
 		}
 
 		$provider = $this->getMockBuilder( AbstractSecondaryAuthenticationProvider::class )
@@ -76,14 +75,12 @@ class AbstractSecondaryAuthenticationProviderTest extends \MediaWikiUnitTestCase
 		$provider->expects( $this->exactly( 3 ) )->method( 'providerChangeAuthenticationData' )
 			->willReturnCallback( function ( $req ) {
 				$this->assertSame( 'UTSysop', $req->username );
-				$this->assertFalse( $req->done );
-				$req->done = true;
 			} );
 
 		$provider->providerRevokeAccessForUser( 'UTSysop' );
 
 		foreach ( $reqs as $i => $req ) {
-			$this->assertTrue( $req->done, "#$i" );
+			$this->assertNotNull( $req->username, "#$i" );
 		}
 	}
 }

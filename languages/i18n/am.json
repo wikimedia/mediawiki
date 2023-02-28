@@ -19,7 +19,8 @@
 			"Stephanecbisson",
 			"Teferra",
 			"Yeniesil",
-			"아라"
+			"아라",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "በመያያዣ ስር አስምር",
@@ -1156,7 +1157,7 @@
 	"deletepage-submit": "ገጹ ይጥፋ",
 	"confirm": "ማረጋገጫ",
 	"excontent": "ይዞታ፦ «$1» አለ።",
-	"excontentauthor": "ይዞታ '$1' አለ (የጻፈበትም '$2' ብቻ ነበር)",
+	"excontentauthor": "ይዞታ '$1' አለ (የጻፈበትም '[[Special:Contributions/$2|$2]]' ብቻ ነበር)",
 	"exbeforeblank": "ባዶ፤ ከተደመሰሰ በፊት ይዞታው «$1» አለ።",
 	"delete-confirm": "«$1» ለማጥፋት",
 	"delete-legend": "ለማጥፋት",

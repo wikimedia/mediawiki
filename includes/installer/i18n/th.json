@@ -264,6 +264,8 @@
 	"config-install-user-grant-failed": "การกำหนดสิทธิผู้ใช้ \"$1\" ล้มเหลว: $2",
 	"config-install-user-missing": "ผู้ใช้ \"$1\" ที่ระบุไม่มีอยู่",
 	"config-install-user-missing-create": "ผู้ใช้ \"$1\" ที่ระบุไม่มีอยู่\nกรุณาคลิกกล่อง \"สร้างบัญชี\" ด้านล่างถ้าคุณต้องการสร้างขึ้น",
+	"config-install-logo-blank": "ป้อน URL โลโก้ที่ถูกต้อง",
+	"config-install-restore-services": "กำลังเรียกคืนบริการ MediaWiki",
 	"config-install-tables": "กำลังสร้างตาราง ขั้นตอนแรก",
 	"config-install-tables-exist": "<strong>คำเตือน:</strong> ตารางมีเดียวิกิดูเหมือนว่ามีอยู่แล้ว\nข้ามการสร้างไป",
 	"config-install-tables-failed": "<strong>ความผิดพลาด:</strong> การสร้างตารางล้มเหลวด้วยความผิดพลาดต่อไปนี้: $1",
@@ -278,7 +280,10 @@
 	"config-install-updates": "ป้องกันไม่ให้เรียกใช้การปรับปรุงที่ไม่จำเป็น",
 	"config-install-updates-failed": "<strong>ข้อผิดพลาด:</strong> การแทรกคีย์ปรับปรุงลงในตารางล้มเหลวโดยมีข้อผิดพลาดต่อไปนี้: $1",
 	"config-install-sysop": "สร้างบัญชีผู้ใช้ที่เป็นผู้ดูแลระบบ",
+	"config-install-subscribe-fail": "ไม่สามารถสมัครรับ [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ mediawiki-announce] ได้: $1",
 	"config-install-subscribe-notpossible": "ไม่ได้ติดตั้ง cURL และไม่สามารถใช้ <code>allow_url_fopen</code> ได้",
+	"config-install-subscribe-alreadypending": "คำขอสมัครรับ mediawiki-announce ของคุณถูกส่งไปแล้ว โปรดตอบกลับอีเมลยืนยันที่ถูกส่งไปก่อนหน้านี้",
+	"config-install-subscribe-possiblefail": "คำขอสมัครรับ mediawiki-announce ของคุณอาจยังไม่ถูกส่งไป หากคุณไม่ได้รับอีเมลยืนยันภายในไม่กี่นาที ให้ไปที่ [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ lists.wikimedia.org] เพื่อลองส่งคำขอของคุณอีกครั้ง",
 	"config-install-mainpage": "กำลังสร้างหน้าหลักด้วยเนื้อหาเริ่มต้น",
 	"config-install-mainpage-exists": "มีหน้าหลักอยู่แล้ว กำลังข้าม",
 	"config-install-extension-tables": "กำลังสร้างตารางสำหรับส่วนขยายที่เปิดใช้งาน",
@@ -298,5 +303,5 @@
 	"config-extension-not-found": "ไม่พบไฟล์ลงทะเบียนสำหรับส่วนขยาย \"$1\"",
 	"config-extension-dependency": "พบข้อผิดพลาดการขึ้นต่อกันขณะติดตั้งส่วนขยาย \"$1\": $2",
 	"mainpagetext": "<strong>ติดตั้งมีเดียวิกิแล้ว</strong>",
-	"mainpagedocfooter": "ศึกษา[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents คู่มือการใช้งาน] สำหรับเริ่มต้นใช้งานซอฟต์แวร์วิกิ\n\n== เริ่มต้น ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings รายการการปรับแต่งระบบ] (ภาษาอังกฤษ)\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ คำถามที่ถามบ่อยใน MediaWiki] (ภาษาอังกฤษ)\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ เมลลิงลิสต์ของ MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources แปล MediaWiki เป็นภาษาท้องถิ่นของคุณ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam เรียนรู้วิธีต่อสู้กับสแปมบนวิกิของคุณ]"
+	"mainpagedocfooter": "ศึกษา[https://www.mediawiki.org/wiki/Special:MyLanguage/Help:Contents คู่มือการใช้งาน] สำหรับเริ่มต้นใช้งานซอฟต์แวร์วิกิ\n\n== เริ่มต้น ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings รายการการปรับแต่งระบบ] (ภาษาอังกฤษ)\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ คำถามที่ถามบ่อยใน MediaWiki] (ภาษาอังกฤษ)\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-announce.lists.wikimedia.org/ รายชื่อผู้รับจดหมายของ MediaWiki]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation#Translation_resources แปล MediaWiki เป็นภาษาท้องถิ่นของคุณ]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Combating_spam เรียนรู้วิธีต่อสู้กับสแปมบนวิกิของคุณ]"
 }

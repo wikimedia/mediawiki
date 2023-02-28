@@ -1161,12 +1161,12 @@ class MediaWiki {
 				$statsdClient = new SamplingStatsdClient( $statsdSender, true, false );
 				$statsdClient->setSamplingRates( $config->get( MainConfigNames::StatsdSamplingRates ) );
 				$statsdClient->send( $stats->getData() );
-
-				$stats->clearData(); // empty buffer for the next round
 			} catch ( Exception $e ) {
 				MWExceptionHandler::logException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
 			}
 		}
+		// empty buffer for the next round
+		$stats->clearData();
 	}
 
 	/**

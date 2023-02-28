@@ -20,7 +20,8 @@
 			"Seb35",
 			"Sumbukompor",
 			"WongKentir",
-			"아라"
+			"아라",
+			"Agam Riyandana"
 		]
 	},
 	"config-desc": "Pemasang MediaWiki",
@@ -232,7 +233,7 @@
 	"config-personalization-settings": "Personalisasi",
 	"config-logo-preview-main": "Halaman utama",
 	"config-logo-icon": "Logo (ikon):",
-	"config-logo-icon-help": "Ikon logo Anda harus berbentuk persegi dan berukuran lebih besar dari 50px atau merupakan SVG.",
+	"config-logo-icon-help": "Ikon logo Anda harus berbentuk persegi dan idealnya lebih dari 50 piksel atau SVG.",
 	"config-instantcommons": "Aktifkan Instant Commons",
 	"config-instantcommons-help": "[https://www.mediawiki.org/wiki/Special:MyLanguage/InstantCommons Instant Commons] adalah fitur yang memungkinkan wiki untuk menggunakan gambar, suara, dan media lain dari [https://commons.wikimedia.org/ Wikimedia Commons].\nUntuk melakukannya, MediaWiki memerlukan akses ke Internet.\n\nUntuk informasi lebih lanjut tentang fitur ini, termasuk petunjuk tentang cara untuk mengatur untuk wiki selain Wikimedia Commons, baca [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:$wgForeignFileRepos manual].",
 	"config-cc-error": "Pemilih lisensi Creative Commons tidak memberikan hasil.\nMasukkan nama lisensi secara manual.",

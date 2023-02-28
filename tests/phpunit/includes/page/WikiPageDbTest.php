@@ -668,11 +668,9 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			)
 			->getMock();
 
-		$dataUpdate = new MWCallableUpdate( 'time' );
-		$dataUpdate->_name = "$name data update";
+		$dataUpdate = new MWCallableUpdate( 'time', "$name data update" );
 
-		$deletionUpdate = new MWCallableUpdate( 'time' );
-		$deletionUpdate->_name = "$name deletion update";
+		$deletionUpdate = new MWCallableUpdate( 'time', "$name deletion update" );
 
 		$handler->method( 'getSecondaryDataUpdates' )->willReturn( [ $dataUpdate ] );
 		$handler->method( 'getDeletionUpdates' )->willReturn( [ $deletionUpdate ] );
@@ -728,7 +726,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertNotEmpty( $dataUpdates );
 
 		$updateNames = array_map( static function ( $du ) {
-			return $du->_name ?? get_class( $du );
+			return $du instanceof MWCallableUpdate ? $du->getOrigin() : get_class( $du );
 		}, $dataUpdates );
 
 		$this->assertContains( LinksDeletionUpdate::class, $updateNames );

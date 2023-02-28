@@ -29,7 +29,8 @@
 			"Vajotwo",
 			"Vlad5250",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Sotołinea i lingambi:",
@@ -1797,7 +1798,7 @@
 	"deletepage-submit": "Scanceƚa pàgina",
 	"confirm": "Conferma",
 	"excontent": "El contegnuo el jera: '$1'",
-	"excontentauthor": "el contenuto l'era: '$1' (e l'unico contribudor l'era '$2')",
+	"excontentauthor": "el contenuto l'era: '$1' (e l'unico contribudor l'era '[[Special:Contributions/$2|$2]]')",
 	"exbeforeblank": "El contegnuo prima del svodamento el jera: \"$1\"",
 	"delete-confirm": "Scancela \"$1\"",
 	"delete-legend": "Scancela",

@@ -357,7 +357,7 @@ class Image {
 		// Reattach all direct children of the `<svg>` root node to the `<g>` wrapper
 		while ( $root->firstChild ) {
 			$node = $root->firstChild;
-			// @phan-suppress-next-line PhanUndeclaredProperty False positive
+			'@phan-var \DOMElement $node'; /** @var \DOMElement $node */
 			if ( !$titleNode && $node->nodeType === XML_ELEMENT_NODE && $node->tagName === 'title' ) {
 				// Remember the first encountered `<title>` node
 				$titleNode = $node;

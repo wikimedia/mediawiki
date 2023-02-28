@@ -184,7 +184,7 @@ class ForkController {
 		for ( $i = 0; $i < $numProcs; $i++ ) {
 			// Do the fork
 			$pid = pcntl_fork();
-			if ( $pid === -1 || $pid === false ) {
+			if ( $pid === -1 ) {
 				echo "Error creating child processes\n";
 				exit( 1 );
 			}

@@ -32,7 +32,8 @@
 			"Z423x5c6",
 			"和平至上",
 			"星海",
-			"捍粵者"
+			"捍粵者",
+			"Lakejason0"
 		]
 	},
 	"tog-underline": "底線標示連結：",
@@ -183,6 +184,7 @@
 	"publishchanges": "發佈變更",
 	"publishpage-start": "發佈頁面…",
 	"publishchanges-start": "發佈變更…",
+	"missingsummary": "<strong>提醒：</strong>您未填寫編輯摘要。\n若您再點選「$1」一次，將略過摘要直接發布您的編輯。",
 	"blocked-notice-logextract": "此用戶目前已封鎖，以下是最近的封鎖紀錄：",
 	"editing": "正在編輯 $1",
 	"template-protected": "（受保護）",
@@ -210,7 +212,7 @@
 	"userrights-user-editname": "請輸入用戶名稱：",
 	"editinguser": "變更{{GENDER:$1|用戶}}<strong>[[User:$1|$1]]</strong>$2的用戶組",
 	"saveusergroups": "儲存{{GENDER:$1|用戶}}組",
-	"userrights-groups-help": "您可以更改{{GENDER:$1|此用戶}}所屬的群組：\n* 已勾選的核選方塊代表該用戶屬於該群組。\n* 未勾選的核選方塊代表該用戶不屬於該群組。\n* 有 * 號標示代表一旦加入該群組後便不能移除，反之亦然。\n* 有 # 號標示代表您只能延後此群組成員的期限，您無法將其提前。",
+	"userrights-groups-help": "您可以更改{{GENDER:$1|此用戶}}所屬的用戶組：\n* 已勾選的核選方塊代表該用戶屬於該用戶組。\n* 未勾選的核選方塊代表該用戶不屬於該用戶組。\n* 有 * 號標示代表一旦加入該用戶組後便不能移除，反之亦然。\n* 有 # 號標示代表您只能延後此用戶組成員的期限，您無法將其提前。",
 	"userrights-expiry-options": "一日:1 day,一星期:1 week,一個月:1 month,三個月:3 months,六個月:6 months,一年:1 year",
 	"group-user": "用戶",
 	"group-autoconfirmed": "自動確認用戶",
@@ -226,6 +228,8 @@
 	"right-reupload-own": "覆蓋自己上載的現有檔案",
 	"right-viewmyprivateinfo": "編輯自己的私隱數據（如：電子郵件位址及真實姓名）",
 	"right-editmyprivateinfo": "編輯自己的私隱數據（如：電子郵件位址及真實姓名）",
+	"newuserlogpage": "用戶建立日誌",
+	"rightslog": "用戶權限日誌",
 	"action-block": "封鎖此用戶的編輯權限",
 	"recentchanges": "最近修改",
 	"recentchanges-label-newpage": "此編輯建立了新頁面",

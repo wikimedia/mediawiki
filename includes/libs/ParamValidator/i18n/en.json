@@ -46,7 +46,7 @@
 	"paramvalidator-help-default-empty": "Default: (empty)",
 	"paramvalidator-help-deprecated": "This parameter is deprecated.",
 	"paramvalidator-help-multi-separate": "Separate values with \"|\", or prefix the list with U+001F and separate with U+001F.",
-	"paramvalidator-help-multi-max": "Maximum number of values is {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} for clients allowed higher limits).",
+	"paramvalidator-help-multi-max": "Maximum number of values is {{PLURAL:$1|$1}} ({{PLURAL:$2|$2}} for clients that are allowed higher limits).",
 	"paramvalidator-help-multi-max-simple": "Maximum number of values is {{PLURAL:$1|$1}}.",
 	"paramvalidator-help-multi-all": "To specify all values, use <kbd>$1</kbd>.",
 	"paramvalidator-help-required": "This parameter is required.",

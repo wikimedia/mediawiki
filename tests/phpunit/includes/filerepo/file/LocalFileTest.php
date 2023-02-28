@@ -609,7 +609,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				'img_size' => 10816824,
 				'img_width' => 1000,
 				'img_height' => 1800,
-				'img_metadata' => $meta,
+				'img_metadata' => $dbw->encodeBlob( $meta ),
 				'img_bits' => 16,
 				'img_media_type' => 'BITMAP',
 				'img_major_mime' => 'image',
@@ -922,7 +922,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				'img_size' => 1,
 				'img_width' => 1,
 				'img_height' => 1,
-				'img_metadata' => $input,
+				'img_metadata' => $dbw->encodeBlob( $input ),
 				'img_bits' => 0,
 				'img_media_type' => 'OFFICE',
 				'img_major_mime' => 'application',
@@ -954,8 +954,8 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$file->load();
 		$file->maybeUpgradeRow();
 
-		$metadata = $dbw->selectField( 'image', 'img_metadata',
-			[ 'img_name' => 'Test.pdf' ], __METHOD__ );
+		$metadata = $dbw->decodeBlob( $dbw->selectField( 'image', 'img_metadata',
+			[ 'img_name' => 'Test.pdf' ], __METHOD__ ) );
 		$this->assertStringMatchesFormat( $expected, $metadata );
 	}
 
@@ -992,7 +992,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 				'img_size' => 1,
 				'img_width' => 1,
 				'img_height' => 1,
-				'img_metadata' => 'a:1:{s:8:"metadata";a:1:{s:15:"_MW_PNG_VERSION";i:0;}}',
+				'img_metadata' => $dbw->encodeBlob( 'a:1:{s:8:"metadata";a:1:{s:15:"_MW_PNG_VERSION";i:0;}}' ),
 				'img_bits' => 0,
 				'img_media_type' => 'OFFICE',
 				'img_major_mime' => 'image',
@@ -1008,8 +1008,8 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$file = new LocalFile( $title, $repo );
 		$file->load();
 		$file->maybeUpgradeRow();
-		$metadata = $dbw->selectField( 'image', 'img_metadata',
-			[ 'img_name' => 'Png-native-test.png' ] );
+		$metadata = $dbw->decodeBlob( $dbw->selectField( 'image', 'img_metadata',
+			[ 'img_name' => 'Png-native-test.png' ] ) );
 		// Just confirm that it looks like JSON with real metadata
 		$this->assertStringStartsWith( '{"data":{"frameCount":0,', $metadata );
 

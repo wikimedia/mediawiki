@@ -1,5 +1,4 @@
--- T161671, T184615, T215466: Drop old revision user, comment, and content fields, and
--- add the replacement actor and comment_id fields.
+-- T161671, T184615, T215466: Drop old revision user, comment, and content fields.
 
 BEGIN;
 

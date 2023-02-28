@@ -33,7 +33,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
 		return [
 			// 1.35 but it must come first
-			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
+			[ 'addField', 'revision', 'rev_actor', 'patch-revision-rev_actor.sql' ],
 
 			// 1.31
 			[ 'addField', 'image', 'img_description_id', 'patch-image-img_description_id.sql' ],
@@ -122,6 +122,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'page', 'page_restrictions', 'patch-page_restrictions-null.sql' ],
 			[ 'renameIndex', 'ipblocks', 'ipb_address', 'ipb_address_unique', false,
 				'patch-ipblocks-rename-ipb_address.sql' ],
+			[ 'dropField', 'revision', 'rev_text_id', 'patch-revision-actor-comment-MCR.sql' ],
 			[ 'dropField', 'archive', 'ar_text_id', 'patch-archive-MCR.sql' ],
 			[ 'doLanguageLinksLengthSync' ],
 			[ 'doFixIpbAddressUniqueIndex' ],

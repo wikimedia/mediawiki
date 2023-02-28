@@ -4,6 +4,10 @@
  * @covers Jpeg2000Handler
  */
 class Jpeg2000HandlerTest extends MediaWikiIntegrationTestCase {
+
+	/** @var string */
+	private $tempFileName;
+
 	protected function setUp(): void {
 		parent::setUp();
 		// Allocated file for testing

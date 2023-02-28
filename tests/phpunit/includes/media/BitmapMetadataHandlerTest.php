@@ -7,6 +7,9 @@ use MediaWiki\MainConfigNames;
  */
 class BitmapMetadataHandlerTest extends MediaWikiIntegrationTestCase {
 
+	/** @var string */
+	private $filePath;
+
 	protected function setUp(): void {
 		parent::setUp();
 

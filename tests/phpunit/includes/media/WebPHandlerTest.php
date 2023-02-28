@@ -4,6 +4,10 @@
  * @covers WebPHandler
  */
 class WebPHandlerTest extends MediaWikiIntegrationTestCase {
+
+	/** @var string */
+	private $tempFileName;
+
 	protected function setUp(): void {
 		parent::setUp();
 		// Allocated file for testing

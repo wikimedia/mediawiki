@@ -13,7 +13,8 @@
 			"Vlad5250",
 			"Warszk",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Max34"
 		]
 	},
 	"tog-underline": "Pòdsztrëchiwùjë lënczi:",
@@ -421,7 +422,7 @@
 	"userpage-userdoesnotexist-view": "Miono brëkòwnika \"$1\" nie jes zaregistrowóné.",
 	"clearyourcache": "<strong>Bôczë:</strong> Pò zapisanim, mòże bãdzesz mùszôł òminąc pamiãc przezérnika bë òbaczëc zmianë.\n<strong>Firefox / Safari:</strong> Przëtrzëmôj <em>Shift</em> òbczas klëkaniô na <em>Zladëjë znowa</em>, abò wcësni <em>Ctrl-F5</em> abò <em>Ctrl-R</em> (<em>⌘-R</em> na kòmpùtrach Mac)\n* <strong>Google Chrome:</strong> Wcësni <em>Ctrl-Shift-R</em> (<em>⌘-Shift-R</em> na kòmpùtrach Mac) * <strong>Internet Explorer:</strong> Przëtrzëmôj <em>Ctrl</em>, równoczasno klëkając <em>Òdswiérzë</em>, abò wcësni knąpë <em>Ctrl+F5</em> * <strong>Opera:</strong> Biéj doo <em>Menu → Nastôwë</em> (<em>Opera → Preferencëje</em> w Mac), a dali <em>Priwatnota ë bezpiék → Wëczëszczë pòdôwczi przezéraniô → Wëczëszczë pòdrãczną pamiãc</em>.",
 	"updated": "(Zaktualnioné)",
-	"previewnote": "<strong>To je blós pòdzérk.</strong>\n Artikel jesz nie je zapisóny!",
+	"previewnote": "<strong>To je blós pòdzérk.</strong>\nArtikel jesz nie je zapisóny!",
 	"continue-editing": "Biéj do pòla edicëje.",
 	"editing": "Edicëjô $1",
 	"creating": "Ùsôdzanié $1",

@@ -3,7 +3,8 @@
 		"authors": [
 			"PonkoSasuke",
 			"Robin van der Vliet",
-			"Romaine"
+			"Romaine",
+			"McDutchie"
 		]
 	},
 	"paramvalidator-badexpiry": "Ongeldige waarde \"$2\" voor vervaldatumparameter \"$1\".",
@@ -12,6 +13,7 @@
 	"paramvalidator-help-default": "Standaard: $1",
 	"paramvalidator-help-default-empty": "Standaard: (leeg)",
 	"paramvalidator-help-deprecated": "Deze parameter is verouderd.",
+	"paramvalidator-help-multi-max": "Maximumaantal waarden is {{PLURAL:$1|$1}} (of {{PLURAL:$2|$2}} voor cliënten waaraan hogere limieten zijn toegestaan).",
 	"paramvalidator-help-required": "Deze parameter is vereist.",
 	"paramvalidator-help-type-expiry": "Type: {{PLURAL:$1|1=vervaldatum|2=vervaldatalijst}}.\n\nKan relatief zijn (b.v. <kbd>5 maanden</kbd> of <kbd>2 weken</kbd>) of absoluut (e.g. <kbd>2014-09-18T12:34:56Z</kbd>). Is er geen vervaldatum, gebruik $2."
 }

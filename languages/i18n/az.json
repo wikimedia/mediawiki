@@ -40,7 +40,8 @@
 			"Zpizza",
 			"Şeyx Şamil",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			"Patriot Kor"
 		]
 	},
 	"tog-underline": "Keçidlərin altını xətlə:",
@@ -1833,7 +1834,7 @@
 	"deletepage-deletetalk": "Əlaqəli müzakirə səhifəsini də sil",
 	"deletepage-submit": "Səhifəni sil",
 	"confirm": "Təsdiq et",
-	"excontent": "Köhnə məzmun: '$1'",
+	"excontent": "Köhnə məzmun:",
 	"excontentauthor": "məzmun: \"$1\", səhifədə yeganə redaktə edən: \"[[Special:Contributions/$2|$2]]\" ([[User talk:$2|müzakirə]])",
 	"exbeforeblank": "Silinmədən əvvəlki məzmun: '$1'",
 	"delete-confirm": "\"$1\" səhifəsini sil",
@@ -2492,7 +2493,7 @@
 	"autoredircomment": "[[$1]] səhifəsinə istiqamətləndirilir",
 	"autosumm-removed-redirect": "[[$1]] yönləndirməsi silindi",
 	"autosumm-changed-redirect-target": "[[$1]] yönləndirməsini [[$2]] olaraq dəyişdi",
-	"autosumm-new": "Səhifə \"$1\" məzmunu ilə yaradıldı",
+	"autosumm-new": "Yeni səhifə yaradıldı",
 	"autosumm-newblank": "Boş səhifə yaradıldı",
 	"size-bytes": "$1 bayt",
 	"watchlistedit-normal-title": "İzlədiyim səhifələri redaktə et",

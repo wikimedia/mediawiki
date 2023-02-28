@@ -5,6 +5,9 @@
  */
 class GIFMetadataExtractorTest extends \MediaWikiUnitTestCase {
 
+	/** @var string */
+	private $mediaPath;
+
 	protected function setUp(): void {
 		parent::setUp();
 

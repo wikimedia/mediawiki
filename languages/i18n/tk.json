@@ -2581,6 +2581,7 @@
 	"markedaspatrollederror-noautopatrol": "Öz üýtgeşmeleriňizi patrullyk edilen diýip bellemekligiňize rugsat berilmeýär.",
 	"patrol-log-page": "Patrullyk gündeligi",
 	"patrol-log-header": "Bu patrullyk edilen wersiýalaryň gündeligidir.",
+	"confirm-markpatrolled-button": "OK",
 	"deletedrevision": "$1 köne wersiýasy öçürildi.",
 	"filedeleteerror-short": "Faýl öçürmek säwligi: $1",
 	"filedeleteerror-long": "Faýl öçürilýän mahaly säwlikler ýüze çykdy:\n\n$1",

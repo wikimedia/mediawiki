@@ -10,7 +10,8 @@
 			"Stephanecbisson",
 			"TayfunEt.",
 			"Urhixidur",
-			"아라"
+			"아라",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Bağlantılarnıñ tübüni sızuv:",
@@ -719,6 +720,8 @@
 	"prefs-dateformat": "Tarih formatı",
 	"prefs-timeoffset": "Zaman farqı",
 	"prefs-advancedediting": "İlâve sazlamalar",
+	"prefs-discussion": "Muzakere saifeleri",
+	"prefs-preview": "Baqıp çıquv",
 	"prefs-advancedrc": "İlâve sazlamalar",
 	"prefs-advancedrendering": "İlâve sazlamalar",
 	"prefs-advancedsearchoptions": "İlâve sazlamalar",
@@ -738,6 +741,7 @@
 	"userrights-expiry-othertime": "Farqlı zaman",
 	"group": "Gruppa:",
 	"group-user": "Qullanıcılar",
+	"group-named": "Qaydlı qullanıcılar",
 	"group-autoconfirmed": "Avtomatik tasdıqlanğan qullanıcılar",
 	"group-bot": "Botlar",
 	"group-sysop": "İdareciler",
@@ -808,6 +812,7 @@
 	"rcfilters-search-placeholder-mobile": "Süzgüçler",
 	"rcfilters-empty-filter": "Faal süzgüç yoq. Deñiştirmelerniñ episi kösterile.",
 	"rcfilters-filterlist-title": "Süzgüçler",
+	"rcfilters-filterlist-whatsthis": "Mınavlar qanday işley?",
 	"rcfilters-highlightmenu-title": "Bir tüs seç",
 	"rcfilters-filterlist-noresults": "Süzgüç tapılmadı",
 	"rcfilters-filter-editsbyself-label": "Siziñ deñiştirgenleriñiz",
@@ -1177,7 +1182,7 @@
 	"deletepage-submit": "Saifeni yoq et",
 	"confirm": "Tasdıqla",
 	"excontent": "eski metin: '$1'",
-	"excontentauthor": "eski metin: '$1' ('$2' isse qoşqan tek bir qullanıcı)",
+	"excontentauthor": "eski metin: '$1' ('[[Special:Contributions/$2|$2]]' isse qoşqan tek bir qullanıcı)",
 	"exbeforeblank": "Yoq etilmegen evelki metin: '$1'",
 	"delete-confirm": "\"$1\" saifesini yoq etmektesiñiz",
 	"delete-legend": "Yoq etüv",

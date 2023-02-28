@@ -208,7 +208,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		$result = $this->client->set( $routeKey, $value, $this->fixExpiry( $exptime ) );
 		ScopedCallback::consume( $noReplyScope );
 
-		return ( $result === false && $this->client->getResultCode() === Memcached::RES_NOTSTORED )
+		return ( !$result && $this->client->getResultCode() === Memcached::RES_NOTSTORED )
 			// "Not stored" is always used as the mcrouter response with AllAsyncRoute
 			? true
 			: $this->checkResult( $key, $result );
@@ -235,7 +235,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		$result = $this->client->delete( $routeKey );
 		ScopedCallback::consume( $noReplyScope );
 
-		return ( $result === false && $this->client->getResultCode() === Memcached::RES_NOTFOUND )
+		return ( !$result && $this->client->getResultCode() === Memcached::RES_NOTFOUND )
 			// "Not found" is counted as success in our interface
 			? true
 			: $this->checkResult( $key, $result );
@@ -384,7 +384,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		// The PECL implementation uses multi-key "get"/"gets"; no need to pipeline.
 		// T257003: avoid Memcached::GET_EXTENDED; no tokens are needed and that requires "gets"
 		// https://github.com/libmemcached/libmemcached/blob/eda2becbec24363f56115fa5d16d38a2d1f54775/libmemcached/get.cc#L272
-		$resByRouteKey = $this->client->getMulti( $routeKeys ) ?: [];
+		$resByRouteKey = $this->client->getMulti( $routeKeys );
 
 		if ( is_array( $resByRouteKey ) ) {
 			$res = [];
@@ -395,7 +395,8 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 			$res = false;
 		}
 
-		return $this->checkResult( false, $res );
+		$res = $this->checkResult( false, $res );
+		return $res !== false ? $res : [];
 	}
 
 	protected function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {

@@ -84,7 +84,7 @@ class OrderedStreamingForkController extends ForkController {
 			$sockets = stream_socket_pair( STREAM_PF_UNIX, STREAM_SOCK_STREAM, STREAM_IPPROTO_IP );
 			// Do the fork
 			$pid = pcntl_fork();
-			if ( $pid === -1 || $pid === false ) {
+			if ( $pid === -1 ) {
 				echo "Error creating child processes\n";
 				exit( 1 );
 			}

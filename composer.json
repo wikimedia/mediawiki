@@ -22,7 +22,7 @@
 	"prefer-stable": true,
 	"require": {
 		"composer/semver": "3.3.2",
-		"cssjanus/cssjanus": "2.1.0",
+		"cssjanus/cssjanus": "2.1.1",
 		"ext-calendar": "*",
 		"ext-ctype": "*",
 		"ext-dom": "*",
@@ -38,7 +38,7 @@
 		"justinrainbow/json-schema": "5.2.11",
 		"liuggio/statsd-php-client": "1.0.18",
 		"monolog/monolog": "2.2.0",
-		"oojs/oojs-ui": "0.44.4",
+		"oojs/oojs-ui": "0.44.5",
 		"pear/mail": "1.5.0",
 		"pear/mail_mime": "1.10.11",
 		"pear/net_smtp": "1.10.0",
@@ -66,7 +66,7 @@
 		"wikimedia/php-session-serializer": "2.0.1",
 		"wikimedia/purtle": "1.0.8",
 		"wikimedia/relpath": "3.0.0",
-		"wikimedia/remex-html": "3.0.2",
+		"wikimedia/remex-html": "3.0.3",
 		"wikimedia/request-timeout": "1.2.0",
 		"wikimedia/running-stat": "2.1.0",
 		"wikimedia/scoped-callback": "4.0.0",
@@ -80,7 +80,7 @@
 		"zordius/lightncandy": "1.2.6"
 	},
 	"require-dev": {
-		"composer/spdx-licenses": "1.5.6",
+		"composer/spdx-licenses": "1.5.7",
 		"doctrine/dbal": "3.4.2",
 		"doctrine/sql-formatter": "1.1.1",
 		"ext-simplexml": "*",

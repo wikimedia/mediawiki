@@ -241,6 +241,8 @@
 	"config-logo-icon-help": "Uw logopictogram moet vierkant zijn en bij voorkeur groter dan 50px of een SVG zijn.",
 	"config-logo-wordmark": "Woordmerk (optioneel):",
 	"config-logo-wordmark-help": "De naam van uw site. Als deze niet opgegeven is wordt normaliter op tekst teruggevallen. Dit zou idealiter een SVG met een hoogte van 30 pixels of minder moeten zijn.",
+	"config-logo-tagline": "Slogan (optioneel):",
+	"config-logo-tagline-help": "De slogan van uw site. Gebruik dit alleen als u hierboven een woordmerk hebt gedefinieerd. Wanneer u niets invult, valt dit meestal terug op tekst. De gecombineerde hoogte van de slogan en het woordmerk mag in het algemeen niet groter zijn dan 50px.",
 	"config-logo-sidebar": "Navigatie-balklogo (optioneel):",
 	"config-logo-filedrop": "Sleep hier een afbeelding naar toe",
 	"config-logo-sidebar-help": "Sommige MediaWiki-skins bevatten een logo met een hoogte van 160 pixels als onderdeel van de navigatie-balk. Indien niet gedefinieerd, is dit hetzelfde als het hierboven gedefinieerde pictogram. U kunt er voor kiezen om een een speciale afbeelding hiervoor te gebruiken die woordmerk en pictogram combineert.",

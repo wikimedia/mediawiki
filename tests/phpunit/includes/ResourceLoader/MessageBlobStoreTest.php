@@ -21,6 +21,12 @@ class MessageBlobStoreTest extends \PHPUnit\Framework\TestCase {
 
 	private const NAME = 'test.blobstore';
 
+	/** @var WANObjectCache */
+	private $wanCache;
+
+	/** @var float */
+	private $clock;
+
 	protected function setUp(): void {
 		parent::setUp();
 		// MediaWiki's test wrapper sets $wgMainWANCache to CACHE_NONE.

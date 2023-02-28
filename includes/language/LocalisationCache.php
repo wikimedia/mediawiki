@@ -988,6 +988,11 @@ class LocalisationCache {
 			}
 		}
 
+		if ( !isset( $allData['rtl'] ) ) {
+			throw new MWException( __METHOD__ . ': Localisation data failed validation check! ' .
+				'Check that your languages/messages/MessagesEn.php file is intact.' );
+		}
+
 		# Add cache dependencies for any referenced globals
 		$deps['wgExtensionMessagesFiles'] = new GlobalDependency( 'wgExtensionMessagesFiles' );
 		// The 'MessagesDirs' config setting is used in LocalisationCache::getMessagesDirs().
@@ -1028,12 +1033,6 @@ class LocalisationCache {
 		# Run hooks
 		$unused = true; // Used to be $purgeBlobs, removed in 1.34
 		$this->hookRunner->onLocalisationCacheRecache( $this, $code, $allData, $unused );
-
-		// @phan-suppress-next-line PhanTypePossiblyInvalidDimOffset False positive
-		if ( $allData['namespaceNames'] === null ) {
-			throw new MWException( __METHOD__ . ': Localisation data failed validation check! ' .
-				'Check that your languages/messages/MessagesEn.php file is intact.' );
-		}
 
 		# Set the preload key
 		$allData['preload'] = $this->buildPreload( $allData );

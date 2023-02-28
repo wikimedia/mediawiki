@@ -2028,7 +2028,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 */
 	protected function getTimeZoneList( Language $language ) {
 		$identifiers = DateTimeZone::listIdentifiers();
-		// @phan-suppress-next-line PhanTypeComparisonFromArray See phan issue #3162
+		'@phan-var array|false $identifiers'; // See phan issue #3162
 		if ( $identifiers === false ) {
 			return [];
 		}

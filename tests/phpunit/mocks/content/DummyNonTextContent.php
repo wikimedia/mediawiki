@@ -2,6 +2,8 @@
 
 class DummyNonTextContent extends AbstractContent {
 
+	private $data;
+
 	public function __construct( $data ) {
 		parent::__construct( "testing-nontext" );
 

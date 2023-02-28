@@ -58,18 +58,15 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				$ret = $this->getMockBuilder( TypeDef::class )
 					->setConstructorArgs( [ $callbacks ] )
 					->getMockForAbstractClass();
-				$ret->spec = $spec;
 				return $ret;
 			} );
 		$validator = new ParamValidator( $callbacks, $factory );
 
 		$def = $validator->getTypeDef( 'boolean' );
 		$this->assertInstanceOf( TypeDef::class, $def );
-		$this->assertSame( ParamValidator::$STANDARD_TYPES['boolean'], $def->spec );
 
 		$def = $validator->getTypeDef( [] );
 		$this->assertInstanceOf( TypeDef::class, $def );
-		$this->assertSame( ParamValidator::$STANDARD_TYPES['enum'], $def->spec );
 
 		$def = $validator->getTypeDef( 'missing' );
 		$this->assertNull( $def );

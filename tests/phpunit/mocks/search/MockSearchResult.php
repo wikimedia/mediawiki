@@ -3,6 +3,7 @@
 class MockSearchResult extends RevisionSearchResult {
 	private $isMissingRevision = false;
 	private $isBrokenTitle = false;
+	private $interwikiPrefix = '';
 
 	public function isMissingRevision() {
 		return $this->isMissingRevision;

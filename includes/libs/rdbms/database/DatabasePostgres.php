@@ -89,11 +89,11 @@ class DatabasePostgres extends Database {
 		$connectVars = [
 			// A database must be specified in order to connect to Postgres. If $dbName is not
 			// specified, then use the standard "postgres" database that should exist by default.
-			'dbname' => strlen( $db ) ? $db : 'postgres',
+			'dbname' => ( $db !== null && $db !== '' ) ? $db : 'postgres',
 			'user' => $user,
 			'password' => $password
 		];
-		if ( strlen( $server ) ) {
+		if ( $server !== null && $server !== '' ) {
 			$connectVars['host'] = $server;
 		}
 		if ( $this->port > 0 ) {
@@ -812,7 +812,7 @@ __INDEXATTR__;
 	 *
 	 * @since 1.19
 	 *
-	 * @param string $desiredSchema
+	 * @param string|null $desiredSchema
 	 */
 	public function determineCoreSchema( $desiredSchema ) {
 		if ( $this->trxLevel() ) {
@@ -1013,11 +1013,11 @@ SQL;
 
 	/**
 	 * Query whether a given schema exists. Returns true if it does, false if it doesn't.
-	 * @param string $schema
+	 * @param string|null $schema
 	 * @return bool
 	 */
 	public function schemaExists( $schema ) {
-		if ( !strlen( $schema ) ) {
+		if ( !strlen( $schema ?? '' ) ) {
 			return false; // short-circuit
 		}
 
@@ -1057,7 +1057,9 @@ SQL;
 	}
 
 	public function encodeBlob( $b ) {
-		return new PostgresBlob( pg_escape_bytea( $b ) );
+		$conn = $this->getBindingHandle();
+
+		return new PostgresBlob( pg_escape_bytea( $conn, $b ) );
 	}
 
 	public function decodeBlob( $b ) {

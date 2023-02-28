@@ -48,7 +48,9 @@
 			"Ryo567",
 			"Tiberius1701",
 			"Whovian Biologist",
-			"YoViajo"
+			"YoViajo",
+			"McDutchie",
+			"JDíaz32"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentación]]\n* [[mw:Special:MyLanguage/API:Etiquette|Normas de uso y etiqueta]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Lista de correo]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce Anuncios API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Errores y peticiones]\n</div>\n<strong>Estado:</strong> La API de MediaWiki es una interfaz madura y estable que se mejora y prueba activamente. Aunque tratamos de evitarlo, es posible que ocasionalmente debamos hacer cambios importantes. Suscríbete a la [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ lista de correo mediawiki-api-announce] para recibir avisos de actualizaciones.\n\n<strong>Solicitudes erróneas:</strong> Cuando se envían solicitudes erróneas a la API, se enviará un encabezado HTTP con la clave «MediaWiki-API-Error» y, luego, el valor del encabezado y el código de error devuelto se establecerán en el mismo valor. Para obtener más información, consulta [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errores y advertencias]].\n\n<p class=\"mw-apisandbox-link\"><strong>Pruebas:</strong> Para facilitar la comprobación de las solicitudes de API, consulta [[Special:ApiSandbox]].</p>",
@@ -650,8 +652,8 @@
 	"apihelp-query+blocks-paramvalue-prop-timestamp": "Añade la fecha y hora de cuando se aplicó el bloque.",
 	"apihelp-query+blocks-paramvalue-prop-expiry": "Añade la marca de tiempo correspondiente a la expiración del bloqueo.",
 	"apihelp-query+blocks-paramvalue-prop-reason": "Añade la razón dada para el bloqueo.",
-	"apihelp-query+blocks-paramvalue-prop-range": "Añade la gama de direcciones de IP afectó por el bloque.",
-	"apihelp-query+blocks-paramvalue-prop-flags": "Etiquetas la prohibición con (autoblock, anononly, etc.).",
+	"apihelp-query+blocks-paramvalue-prop-range": "Agrega el intervalo de direcciones IP afectadas por el bloqueo.",
+	"apihelp-query+blocks-paramvalue-prop-flags": "Etiqueta la prohibición con (autoblock, anononly, etc.).",
 	"apihelp-query+blocks-param-show": "Muestra solamente los elementos que cumplen estos criterios.\nPor ejemplo, para mostrar solamente los bloqueos indefinidos a direcciones IP, introduce <kbd>$1show=ip|!temp</kbd>.",
 	"apihelp-query+blocks-example-simple": "Listar bloques.",
 	"apihelp-query+blocks-example-users": "Muestra los bloqueos de los usuarios <kbd>Alice</kbd> y <kbd>Bob</kbd>.",

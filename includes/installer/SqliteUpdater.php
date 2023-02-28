@@ -33,7 +33,7 @@ class SqliteUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
 		return [
 			// 1.35 but must come first
-			[ 'addField', 'revision', 'rev_actor', 'patch-revision-actor-comment-MCR.sql' ],
+			[ 'addField', 'revision', 'rev_actor', 'patch-revision-rev_actor.sql' ],
 
 			// 1.31
 			[ 'addField', 'image', 'img_description_id', 'patch-image-img_description_id.sql' ],
@@ -54,7 +54,6 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'addField', 'recentchanges', 'rc_actor', 'patch-recentchanges-rc_actor.sql' ],
 			[ 'addField', 'logging', 'log_actor', 'patch-logging-log_actor.sql' ],
 			[ 'migrateActors' ],
-			[ 'modifyField', 'revision', 'rev_text_id', 'patch-rev_text_id-default.sql' ],
 			[ 'modifyTable', 'site_stats', 'patch-site_stats-modify.sql' ],
 			[ 'populateArchiveRevId' ],
 			[ 'addIndex', 'recentchanges', 'rc_namespace_title_timestamp',
@@ -116,6 +115,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'page', 'page_restrictions', 'patch-page_restrictions-null.sql' ],
 			[ 'renameIndex', 'ipblocks', 'ipb_address', 'ipb_address_unique', false,
 				'patch-ipblocks-rename-ipb_address.sql' ],
+			[ 'dropField', 'revision', 'rev_text_id', 'patch-revision-actor-comment-MCR.sql' ],
 			[ 'dropField', 'archive', 'ar_text_id', 'patch-archive-MCR.sql' ],
 			[ 'doFixIpbAddressUniqueIndex' ],
 			[ 'modifyField', 'actor', 'actor_name', 'patch-actor-actor_name-varbinary.sql' ],

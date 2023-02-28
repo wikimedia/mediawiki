@@ -303,7 +303,8 @@ class DBConnRef implements IMaintainableDatabase {
 	}
 
 	public function newSelectQueryBuilder(): SelectQueryBuilder {
-		return $this->__call( __FUNCTION__, func_get_args() );
+		// Use $this not $this->conn so that the domain is preserved (T326377)
+		return new SelectQueryBuilder( $this );
 	}
 
 	public function selectField(

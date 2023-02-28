@@ -24,6 +24,7 @@ use LogicException;
 use MediaWiki\Logger\LegacyLogger;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Logger;
+use Socket;
 use UnexpectedValueException;
 
 /**
@@ -62,7 +63,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 
 	/**
 	 * Log sink
-	 * @var resource|null
+	 * @var Socket|resource|null
 	 */
 	protected $sink;
 
@@ -142,7 +143,6 @@ class LegacyHandler extends AbstractProcessingHandler {
 				$domain = AF_INET;
 			}
 
-			// @phan-suppress-next-line PhanTypeMismatchProperty False positive caused by PHP 8.0 resource transition
 			$this->sink = socket_create( $domain, SOCK_DGRAM, SOL_UDP );
 
 		} else {
@@ -216,7 +216,6 @@ class LegacyHandler extends AbstractProcessingHandler {
 			}
 
 			socket_sendto(
-				// @phan-suppress-next-line PhanTypeMismatchArgumentInternal False positive caused by PHP 8.0 transition
 				$this->sink,
 				$text,
 				strlen( $text ),
@@ -233,9 +232,7 @@ class LegacyHandler extends AbstractProcessingHandler {
 	public function close(): void {
 		if ( $this->sink ) {
 			if ( $this->useUdp() ) {
-				// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 				socket_close( $this->sink );
-
 			} else {
 				fclose( $this->sink );
 			}

@@ -1151,10 +1151,6 @@ class MainConfigNames {
 	/**
 	 * Name constant for the SharedDB setting, for use with Config::get()
 	 * @see MainConfigSchema::SharedDB
-	 * @deprecated since 1.21 In new code, use the $wiki parameter to LBFactory::getMainLB()
-	 *    to access remote databases. Using LBFactory::getMainLB() allows the shared
-	 *    database to reside on separate servers to the wiki's own database, with
-	 *    suitable configuration of $wgLBFactoryConf
 	 */
 	public const SharedDB = 'SharedDB';
 

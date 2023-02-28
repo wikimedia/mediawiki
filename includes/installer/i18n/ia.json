@@ -303,7 +303,7 @@
 	"config-install-db-success": "Le installation del base de datos ha succedite",
 	"config-download-localsettings": "Discargar <code>LocalSettings.php</code>",
 	"config-help": "adjuta",
-	"config-help-tooltip": "clicca pro displicar",
+	"config-help-tooltip": "clicca pro expander",
 	"config-nofile": "Le file \"$1\" non poteva esser trovate. Ha illo essite delite?",
 	"config-extension-link": "Sapeva tu que tu wiki supporta [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Extensions extensiones]?\n\nTu pote explorar le [https://www.mediawiki.org/wiki/Special:MyLanguage/Category:Extensions_by_category extensiones per categoria].",
 	"config-skins-screenshots": "$1 (capturas de schermo: $2)",

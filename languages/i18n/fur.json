@@ -16,7 +16,8 @@
 			"Urhixidur",
 			"לערי ריינהארט",
 			"아라",
-			"S4b1nuz E.656"
+			"S4b1nuz E.656",
+			"1233qwer1234qwer4"
 		]
 	},
 	"tog-underline": "Sotlinee leams",
@@ -925,7 +926,7 @@
 	"deletepage-submit": "Elimine pagjine",
 	"confirm": "Conferme",
 	"excontent": "il contignût al jere: '$1'",
-	"excontentauthor": "il contignût al jere: '$1' (e al veve contribuît dome '$2')",
+	"excontentauthor": "il contignût al jere: '$1' (e al veve contribuît dome '[[Special:Contributions/$2|$2]]')",
 	"exbeforeblank": "il contignût prime di disvuedâ al jere: '$1'",
 	"delete-confirm": "Elimine \"$1\"",
 	"delete-legend": "Elimine",

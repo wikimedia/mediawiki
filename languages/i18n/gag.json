@@ -11,7 +11,8 @@
 			"Meisam",
 			"Reedy",
 			"Stephanecbisson",
-			"아라"
+			"아라",
+			"TayfunEt."
 		]
 	},
 	"tog-underline": "Baalantıların altını çiz",
@@ -674,5 +675,6 @@
 	"version": "Versiya",
 	"specialpages": "Maasus sayfalar",
 	"deletepage": "Sayfayı sil",
+	"searchsuggest-search": "{{SITENAME}} içindä ara",
 	"skin-action-protect": "Korunmak altına al"
 }

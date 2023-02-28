@@ -27,7 +27,9 @@
 			"Winston Sung",
 			"Нұрлан Рахымжанов",
 			"СеніңШешең",
-			"아라"
+			"아라",
+			"Ajiniyaz Nurniyazov",
+			"Nurlan"
 		]
 	},
 	"tog-underline": "Сілтеме астын сызу:",
@@ -2825,7 +2827,7 @@
 	"pageinfo-authors": "Барлық белгілі авторлар саны",
 	"pageinfo-recent-edits": "Жуықтағы өңдеме саны (соңғы $1де)",
 	"pageinfo-recent-authors": "Жуықтағы белгілі авторлар саны",
-	"pageinfo-magic-words": "Сиқырлы {{PLURAL:$1|сөз|сөздер}} ($1)",
+	"pageinfo-magic-words": "Tılsımlı {{PLURAL:$1|sóz|sózler}} ($1)",
 	"pageinfo-hidden-categories": "Жасырылған {{PLURAL:$1|санат|санаттар}} ($1)",
 	"pageinfo-templates": "Кіріктірілген {{PLURAL:$1|үлгі|үлгілер}} ($1)",
 	"pageinfo-transclusions": "Kіріктірілген {{PLURAL:$1|бет|беттер}} ($1)",

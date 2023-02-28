@@ -823,7 +823,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		] ) );
 		asort( $hours );
 
-		$select = new XmlSelect( 'days', 'days', (float)( $selectedHours / 24 ) );
+		$select = new XmlSelect( 'days', 'days', $selectedHours / 24 );
 
 		foreach ( $hours as $value ) {
 			if ( $value < 24 ) {
