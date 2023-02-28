@@ -21,7 +21,9 @@
 			"Stanglavine",
 			"TheEduGobi",
 			"Warley Felipe C.",
-			"YuriNikolai"
+			"YuriNikolai",
+			"Re demz",
+			"Robertpontes"
 		]
 	},
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentação]]\n* [[mw:Special:MyLanguage/API:Etiquette|Etiqueta & diretrizes de uso]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api.lists.wikimedia.org/ Lista de discussão]\n* [https://lists.wikimedia.org/postorius/lists/mediawiki-api-announce.lists.wikimedia.org/ Anúncios da API]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Erros e pedidos]\n</div>\n<strong>Estado:</strong> A API do MediaWiki é uma interface madura e estável que é ativamente suportada e aprimorada. Por mais que tentemos evitar, ocasionalmente talvez precisemos fazer mudanças estruturais; inscreva-se na [https://lists.wikimedia.org/hyperkitty/list/mediawiki-api-announce@lists.wikimedia.org/ lista de discussão mediawiki-api-announce] para ser informado acerca das atualizações.\n\n<strong>Pedidos incorretos:</strong> Quando são enviados pedidos incorretos à API, será devolvido um cabeçalho HTTP com a chave \"MediaWiki-API-Error\" e depois tanto o valor desse cabeçalho como o código de erro devolvido serão definidos com o mesmo valor. Para mais informação, consulte [[mw:Special:MyLanguage/API:Errors_and_warnings|API:Erros e avisos]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testes:</strong> Para testar facilmente pedidos à API, visite [[Special:ApiSandbox|Testes da API]].</p>",
@@ -502,7 +504,7 @@
 	"apihelp-query+allimages-param-maxsize": "Limite as imagens com, no máximo, esses bytes.",
 	"apihelp-query+allimages-param-sha1": "SHA1 de imagem. Substitui $1sha1base36.",
 	"apihelp-query+allimages-param-sha1base36": "SHA1 de imagem na base 36 (usado em MediaWiki).",
-	"apihelp-query+allimages-param-user": "Retorna apenas os arquivos enviados por este usuário. Só pode ser usado com $1sort=timestamp. Não pode ser usado em conjunto com $1filterbots.",
+	"apihelp-query+allimages-param-user": "Retorna apenas os arquivos, dos quais a última versão foi enviada por este usuário. Só pode ser usado com $1sort=timestamp. Não pode ser usado em conjunto com $1filterbots.",
 	"apihelp-query+allimages-param-filterbots": "Como filtrar arquivos enviados por bots. Só pode ser usado com $1sort=timestamp. Não pode ser usado em conjunto com $1user.",
 	"apihelp-query+allimages-param-mime": "Quais tipos MIME pesquisar, por exemplo: <kbd>image/jpeg</kbd>.",
 	"apihelp-query+allimages-param-limit": "Quantas imagens retornar.",

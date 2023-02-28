@@ -259,7 +259,7 @@
 	"cur": "dza ɔwɔ do",
 	"next": "dza ɔtɔ do",
 	"last": "dza abɛsen",
-	"histlegend": "Nsorsoree mfae: Hyɛ nsesa ahorow yɛdze bɔtoto ho no hɔn nyidze no nsew na bɔ  enter anaa baten no a ase no.<br />\nLegend: <strong>({{int: sesei}})</strong> = nsorsoree a ɔwɔ nsesa a odzi ewiei koraa ho, <strong>({{int:ewienyim}})</strong> = nsorsoree a ɔwɔ nsesa a odzi ewiei dze no enyim no ho, <strong>{{int:nsesakumaaakyerɛwdze}}</strong> = nsesa kumaa.",
+	"histlegend": "Nsorsoree mfae: Hyɛ nsesa ahorow yɛdze bɔtoto ho no hɔn nyidze no nsew na bɔ  enter anaa baten no a ase no.<br />\nLegend: <strong>({{int:cur}})</strong> = nsorsoree a ɔwɔ nsesa a odzi ewiei koraa ho, <strong>({{int:last}})</strong> = nsorsoree a ɔwɔ nsesa a odzi ewiei dze no enyim no ho, <strong>{{int:minoreditletter\n}}</strong> = nsesa kumaa.",
 	"history-fieldset-title": "Sɔn nsesamu no do",
 	"histfirst": "dadaw koraa",
 	"histlast": "fofor koraa",
