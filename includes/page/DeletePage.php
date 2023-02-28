@@ -39,7 +39,6 @@ use StatusValue;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\RequestTimeout\TimeoutException;
 use WikiPage;
@@ -70,8 +69,6 @@ class DeletePage {
 	private $revisionStore;
 	/** @var LBFactory */
 	private $lbFactory;
-	/** @var ILoadBalancer */
-	private $loadBalancer;
 	/** @var JobQueueGroup */
 	private $jobQueueGroup;
 	/** @var CommentStore */
@@ -172,7 +169,6 @@ class DeletePage {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->revisionStore = $revisionStore;
 		$this->lbFactory = $lbFactory;
-		$this->loadBalancer = $this->lbFactory->getMainLB();
 		$this->jobQueueGroup = $jobQueueGroup;
 		$this->commentStore = $commentStore;
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -401,7 +397,7 @@ class DeletePage {
 			return false;
 		}
 
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$dbr = $this->lbFactory->getReplicaDatabase();
 		$revCount = $this->revisionStore->countRevisionsByPageId( $dbr, $this->page->getId() );
 		if ( $this->associatedTalk ) {
 			$revCount += $this->revisionStore->countRevisionsByPageId( $dbr, $this->associatedTalk->getId() );
@@ -423,7 +419,7 @@ class DeletePage {
 	 * @return bool True if deletion would be batched, false otherwise
 	 */
 	public function isBatchedDelete( int $safetyMargin = 0 ): bool {
-		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$dbr = $this->lbFactory->getReplicaDatabase();
 		$revCount = $this->revisionStore->countRevisionsByPageId( $dbr, $this->page->getId() );
 		$revCount += $safetyMargin;
 
@@ -538,7 +534,7 @@ class DeletePage {
 		$title = $page->getTitle();
 		$status = Status::newGood();
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->lbFactory->getPrimaryDatabase();
 		$dbw->startAtomic( __METHOD__ );
 
 		$page->loadPageData( WikiPage::READ_LATEST );
@@ -718,7 +714,7 @@ class DeletePage {
 		$namespace = $page->getTitle()->getNamespace();
 		$dbKey = $page->getTitle()->getDBkey();
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
+		$dbw = $this->lbFactory->getPrimaryDatabase();
 
 		$revQuery = $this->revisionStore->getQueryInfo();
 		$bitfield = false;
