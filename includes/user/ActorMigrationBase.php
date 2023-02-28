@@ -26,6 +26,7 @@ use InvalidArgumentException;
 use ReflectionClass;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * This abstract base class helps migrate core and extension code to use the
@@ -418,7 +419,7 @@ class ActorMigrationBase {
 	/**
 	 * Get WHERE condition for the actor
 	 *
-	 * @param IDatabase $db Database to use for quoting and list-making
+	 * @param IReadableDatabase $db Database to use for quoting and list-making
 	 * @param string $key A key such as "rev_user" identifying the actor
 	 *  field being fetched.
 	 * @param UserIdentity|UserIdentity[]|null|false $users Users to test for.
@@ -439,7 +440,7 @@ class ActorMigrationBase {
 	 *  All tables and joins are aliased, so `+` is safe to use.
 	 * @phan-return array{tables:string[],conds:string,orconds:array[],joins:array}
 	 */
-	public function getWhere( IDatabase $db, $key, $users, $useId = true ) {
+	public function getWhere( IReadableDatabase $db, $key, $users, $useId = true ) {
 		$this->checkDeprecation( $key );
 
 		$tables = [];

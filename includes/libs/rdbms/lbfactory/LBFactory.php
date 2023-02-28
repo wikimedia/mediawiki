@@ -592,7 +592,7 @@ abstract class LBFactory implements ILBFactory {
 		return $this->getMainLB( $domain )->getConnection( DB_PRIMARY, [], $domain );
 	}
 
-	public function getReplicaDatabase( $domain = false, $group = null ): IDatabase {
+	public function getReplicaDatabase( $domain = false, $group = null ): IReadableDatabase {
 		if ( $group === null ) {
 			$groups = [];
 		} else {
