@@ -5,6 +5,7 @@ namespace MediaWiki\User;
 use InvalidArgumentException;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * This is not intended to be a long-term part of MediaWiki; it will be
@@ -120,7 +121,7 @@ class ActorMigration extends ActorMigrationBase {
 	 *   Use `MediaWikiServices::getInstance()->getActorNormalization()
 	 *   ->findActorId( $user, $db )` to get the actor ID for a given user.
 	 */
-	public function getWhere( IDatabase $db, $key, $users, $useId = true ) {
+	public function getWhere( IReadableDatabase $db, $key, $users, $useId = true ) {
 		return parent::getWhere( $db, $key, $users, $useId );
 	}
 

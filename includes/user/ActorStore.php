@@ -33,6 +33,7 @@ use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 /**
  * Service for interacting with the actor table.
@@ -291,11 +292,11 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * Find the actor_id of the given $user.
 	 *
 	 * @param UserIdentity $user
-	 * @param IDatabase $db The database connection to operate on.
+	 * @param IReadableDatabase $db The database connection to operate on.
 	 *        The database must correspond to ActorStore's wiki ID.
 	 * @return int|null
 	 */
-	public function findActorId( UserIdentity $user, IDatabase $db ): ?int {
+	public function findActorId( UserIdentity $user, IReadableDatabase $db ): ?int {
 		// TODO: we want to assert this user belongs to the correct wiki,
 		// but User objects are always local and we used to use them
 		// on a non-local DB connection. We need to first deprecate this
@@ -344,14 +345,14 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * Find actor_id of the given $user using the passed $db connection.
 	 *
 	 * @param string $name
-	 * @param IDatabase $db The database connection to operate on.
+	 * @param IReadableDatabase $db The database connection to operate on.
 	 *        The database must correspond to ActorStore's wiki ID.
 	 * @param array $queryOptions
 	 * @return int|null
 	 */
 	private function findActorIdInternal(
 		string $name,
-		IDatabase $db,
+		IReadableDatabase $db,
 		array $queryOptions = []
 	): ?int {
 		// Note: UserIdentity::getActorId will be deprecated and removed,
