@@ -1330,11 +1330,11 @@ class ParserTestRunner {
 		}
 
 		$wikitext = $test->wikitext;
+		$output = null;
 		'@phan-var string $wikitext'; // assert that this is not null
 		if ( isset( $opts['pst'] ) ) {
 			$out = $parser->preSaveTransform( $wikitext, $title, $options->getUserIdentity(), $options );
 			$output = $parser->getOutput();
-			$this->addParserOutputInfo( $out, $output, $opts, $title );
 		} elseif ( isset( $opts['msg'] ) ) {
 			$out = $parser->transformMsg( $wikitext, $options, $title );
 		} elseif ( isset( $opts['section'] ) ) {
@@ -1350,27 +1350,18 @@ class ParserTestRunner {
 			$out = $parser->getPreloadText( $wikitext, $title, $options );
 		} else {
 			$output = $parser->parse( $wikitext, $title, $options, true, true, $revId );
-			if ( isset( $opts['showtocdata'] ) ) {
-				// FIXME: We probably want to update this to a different format
-				$sections = $output->getTOCData() !== null ?
-						  $output->getTOCData()->getSections() : [];
-				$out = [];
-				foreach ( $sections as $s ) {
-					$out[] = json_encode( $s->toLegacy() );
-				}
-				$out = implode( "\n", $out );
+			if ( isset( $opts['nohtml'] ) ) {
+				$out = '';
 			} else {
 				$out = $output->getText( [
 					'allowTOC' => !isset( $opts['notoc'] ),
 					'unwrap' => !isset( $opts['wrap'] ),
 				] );
 				$out = preg_replace( '/\s+$/', '', $out );
-				if ( isset( $opts['nohtml'] ) ) {
-					$out = '';
-				}
-
-				$this->addParserOutputInfo( $out, $output, $opts, $title );
 			}
+		}
+		if ( $output ) {
+			$this->addParserOutputInfo( $out, $output, $opts, $title );
 		}
 
 		ScopedCallback::consume( $teardownGuard );
@@ -1480,6 +1471,19 @@ class ParserTestRunner {
 			if ( $oldFlags ) {
 				wfDeprecated( 'Arbitrary flags in ParserOutput', '1.39' );
 			}
+		}
+		if ( isset( $opts['showtocdata'] ) ) {
+			// FIXME: We probably want to update this to a different format
+			$sections = $output->getTOCData() !== null ?
+					  $output->getTOCData()->getSections() : [];
+			$toc = [];
+			foreach ( $sections as $s ) {
+				$toc[] = json_encode( $s->toLegacy() );
+			}
+			if ( $out !== '' ) {
+				$out .= "\n";
+			}
+			$out .= implode( "\n", $toc );
 		}
 	}
 
