@@ -24,6 +24,7 @@ use ResourceLoaderTestCase;
 use Title;
 use TitleValue;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\TestingAccessWrapper;
 use WikitextContent;
 
@@ -474,7 +475,7 @@ class WikiModuleTest extends ResourceLoaderTestCase {
 class TestResourceLoaderWikiModule extends WikiModule {
 	public static $returnFetchTitleInfo = null;
 
-	protected static function fetchTitleInfo( IDatabase $db, array $pages, $fname = null ) {
+	protected static function fetchTitleInfo( IReadableDatabase $db, array $pages, $fname = null ) {
 		$ret = self::$returnFetchTitleInfo;
 		self::$returnFetchTitleInfo = null;
 		return $ret;
