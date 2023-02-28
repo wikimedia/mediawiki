@@ -939,6 +939,7 @@
 	"search-category": "(श्रेणी $1)",
 	"search-file-match": "(भेटिएका फाइल सामाग्री)",
 	"search-suggest": "के तपाईंले \"$1\" खोज्नुभयोको त थिएन?",
+	"search-rewritten": "$1को लागि परिणामहरू देखाउँदै। $2को लागि कुनै परिणाम फेला परेन।",
 	"search-interwiki-resultset-link": "सबै परिणामहरू हेर्नुहोस्",
 	"search-interwiki-more": "(अझै)",
 	"search-interwiki-more-results": "धेरै परिणामहरू",
