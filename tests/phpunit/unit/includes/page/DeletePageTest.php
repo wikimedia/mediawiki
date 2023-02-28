@@ -30,7 +30,6 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Title;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
 use WikiPage;
@@ -93,10 +92,8 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		$db = $this->createMock( IDatabase::class );
 		$db->method( 'select' )->willReturn( $this->createMock( IResultWrapper::class ) );
 		$db->method( 'selectRowCount' )->willReturn( 42 );
-		$lb = $this->createMock( ILoadBalancer::class );
-		$lb->method( 'getConnectionRef' )->willReturn( $db );
 		$lbFactory = $this->createMock( LBFactory::class );
-		$lbFactory->method( 'getMainLB' )->willReturn( $lb );
+		$lbFactory->method( 'getPrimaryDatabase' )->willReturn( $db );
 
 		$ret = new DeletePage(
 			$this->createHookContainer(),

@@ -73,6 +73,7 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBConnRef;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IReadableDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -2355,10 +2356,10 @@ class RevisionStore
 	 * Throws an exception if the given database connection does not belong to the wiki this
 	 * RevisionStore is bound to.
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @throws MWException
 	 */
-	private function checkDatabaseDomain( IDatabase $db ) {
+	private function checkDatabaseDomain( IReadableDatabase $db ) {
 		$dbDomain = $db->getDomainID();
 		$storeDomain = $this->loadBalancer->resolveDomainID( $this->wikiId );
 		if ( $dbDomain === $storeDomain ) {
@@ -2827,11 +2828,11 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaced Revision::countByPageId
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param int $id Page id
 	 * @return int
 	 */
-	public function countRevisionsByPageId( IDatabase $db, $id ) {
+	public function countRevisionsByPageId( IReadableDatabase $db, $id ) {
 		$this->checkDatabaseDomain( $db );
 
 		$row = $db->selectRow( 'revision',
