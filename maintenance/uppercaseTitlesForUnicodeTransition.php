@@ -25,6 +25,8 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\WikiMap\WikiMap;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -202,12 +204,12 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 
 	/**
 	 * Get batched LIKE conditions from the charmap
-	 * @param IDatabase $db Database handle
+	 * @param ISQLPlatform $db Database handle
 	 * @param string $field Field name
 	 * @param int $batchSize Size of the batches
 	 * @return array
 	 */
-	private function getLikeBatches( IDatabase $db, $field, $batchSize = 100 ) {
+	private function getLikeBatches( ISQLPlatform $db, $field, $batchSize = 100 ) {
 		$ret = [];
 		$likes = [];
 		foreach ( $this->charmap as $from => $to ) {
@@ -272,12 +274,12 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 
 	/**
 	 * Check if a ns+title is a registered user's page
-	 * @param IDatabase $db Database handle
+	 * @param IReadableDatabase $db Database handle
 	 * @param int $ns
 	 * @param string $title
 	 * @return bool
 	 */
-	private function isUserPage( IDatabase $db, $ns, $title ) {
+	private function isUserPage( IReadableDatabase $db, $ns, $title ) {
 		if ( $ns !== NS_USER && $ns !== NS_USER_TALK ) {
 			return false;
 		}
@@ -297,12 +299,12 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 
 	/**
 	 * Munge a target title, if necessary
-	 * @param IDatabase $db Database handle
+	 * @param IReadableDatabase $db Database handle
 	 * @param Title $oldTitle
 	 * @param Title &$newTitle
 	 * @return bool If $newTitle is (now) ok
 	 */
-	private function mungeTitle( IDatabase $db, Title $oldTitle, Title &$newTitle ) {
+	private function mungeTitle( IReadableDatabase $db, Title $oldTitle, Title &$newTitle ) {
 		$nt = $newTitle->getPrefixedText();
 
 		$munge = false;
@@ -473,12 +475,12 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 	 * Note the caller will still rename it before deleting it, so the archive
 	 * and logging rows wind up in a sensible place.
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param Title $oldTitle
 	 * @param Title $newTitle
 	 * @return string|null Deletion reason, or null if it shouldn't be deleted
 	 */
-	private function shouldDelete( IDatabase $db, Title $oldTitle, Title $newTitle ) {
+	private function shouldDelete( IReadableDatabase $db, Title $oldTitle, Title $newTitle ) {
 		$oldRow = $db->selectRow(
 			[ 'page', 'redirect' ],
 			[ 'ns' => 'rd_namespace', 'title' => 'rd_title' ],
@@ -661,9 +663,9 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 
 	/**
 	 * List users needing renaming
-	 * @param IDatabase $db Database handle
+	 * @param IReadableDatabase $db Database handle
 	 */
-	private function processUsers( IDatabase $db ) {
+	private function processUsers( IReadableDatabase $db ) {
 		$userlistFile = $this->getOption( 'userlist' );
 		if ( $userlistFile === null ) {
 			$this->output( "Not generating user list, --userlist was not specified.\n" );

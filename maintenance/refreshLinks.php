@@ -20,7 +20,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
-use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -406,13 +406,13 @@ class RefreshLinks extends Maintenance {
 	 * By specifying a null $start or $end, it is also possible to create
 	 * half-bounded or unbounded intervals using this function.
 	 *
-	 * @param IDatabase $db
+	 * @param IReadableDatabase $db
 	 * @param string $var Field name
 	 * @param mixed $start First value to include or null
 	 * @param mixed $end Last value to include or null
 	 * @return string
 	 */
-	private static function intervalCond( IDatabase $db, $var, $start, $end ) {
+	private static function intervalCond( IReadableDatabase $db, $var, $start, $end ) {
 		if ( $start === null && $end === null ) {
 			return "$var IS NOT NULL";
 		} elseif ( $end === null ) {
