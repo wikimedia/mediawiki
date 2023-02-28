@@ -107,7 +107,7 @@ class SkinModule extends LessVarFileModule {
 	 *     Default interface styling for indicators.
 	 *
 	 * "interface-message-box":
-	 *     Styles for message boxes.
+	 *     Styles for message boxes. Can be used by skins that do not load Codex styles on page load.
 	 *
 	 * "interface-site-notice":
 	 *     Default interface styling for site notices.
