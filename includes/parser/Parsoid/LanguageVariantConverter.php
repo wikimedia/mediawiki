@@ -134,17 +134,18 @@ class LanguageVariantConverter {
 
 			$baseLanguage = $this->languageFactory->getParentLanguage( $targetVariantCode );
 			$languageConverter = $this->languageConverterFactory->getLanguageConverter( $baseLanguage );
-			if ( !$languageConverter->hasVariant( $targetVariantCode ) ) {
-				return $pageBundle;
+			if ( $languageConverter->hasVariant( $targetVariantCode ) ) {
+				$convertedHtml = $languageConverter->convertTo( $pageBundle->html, $targetVariantCode );
+			} else {
+				// No conversion possible - pass through original HTML.
+				$convertedHtml = $pageBundle->html;
 			}
-
-			$convertedHtml = $languageConverter->convertTo( $pageBundle->html, $targetVariantCode );
 
 			// Add a note so that we can identify what was used to perform the variant conversion
 			$msg = "<!-- Variant conversion performed using the core LanguageConverter -->";
 			$convertedHtml = $msg . $convertedHtml;
 
-			// Hack: Pass the HTML to parsoid for variant conversion in order to add metadata that is
+			// HACK: Pass the HTML to Parsoid for variant conversion in order to add metadata that is
 			// missing when we use the core LanguageConverter directly.
 
 			// Replace the original page bundle, so Parsoid gets the converted HTML as input.
