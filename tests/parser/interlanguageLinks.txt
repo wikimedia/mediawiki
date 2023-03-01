@@ -235,11 +235,12 @@ ill
 [[es:]]
 
 [[ko:]]
+!! metadata
+es:
 !! html/php
 <p><br />
 <a href="/wiki/Ko:" title="Ko:">ko:</a>
 </p>
-es:
 !! html/parsoid
 <link rel="mw:PageProp/Language" href="http://es.wikipedia.org/wiki/"/>
 

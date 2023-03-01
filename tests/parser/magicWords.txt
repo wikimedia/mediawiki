@@ -625,10 +625,11 @@ parsoid={ "modes": ["wt2html","wt2wt"] }
 showflags
 !! wikitext
 {{REVISIONID}}
+!! metadata/integrated
+flags=vary-revision-id
 !! html/php
 <p>1337
 </p>
-flags=vary-revision-id
 !! html/parsoid+integrated
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONID","function":"revisionid"},"params":{},"i":0}}]}'>1337</span></p>
 !! end
@@ -640,10 +641,11 @@ parsoid={ "modes": ["wt2html","wt2wt"] }
 showflags
 !! wikitext
 {{REVISIONID}}
+!! metadata/integrated
+flags=vary-revision-id
 !! html/php
 <p>1337
 </p>
-flags=vary-revision-id
 !! html/parsoid+integrated
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONID","function":"revisionid"},"params":{},"i":0}}]}'>1337</span></p>
 !! end
@@ -656,10 +658,11 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 showflags
 !! wikitext
 {{REVISIONTIMESTAMP}}
+!! metadata/integrated
+flags=
 !! html/php
 <p>19700101000203
 </p>
-flags=
 !! html/parsoid+integrated
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONTIMESTAMP","function":"revisiontimestamp"},"params":{},"i":0}}]}'>19700101000203</span></p>
 !! end
@@ -672,10 +675,11 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 showflags
 !! wikitext
 {{REVISIONTIMESTAMP:{{PAGENAME}}}}
+!! metadata/integrated
+flags=
 !! html/php
 <p>19700101000203
 </p>
-flags=
 !! html/parsoid+integrated
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONTIMESTAMP:{{PAGENAME}}","function":"revisiontimestamp"},"params":{},"i":0}}]}'>19700101000203</span></p>
 !! end
@@ -688,10 +692,11 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 showflags
 !! wikitext
 {{REVISIONTIMESTAMP}}
+!! metadata/integrated
+flags=vary-revision-timestamp
 !! html/php
 <p>19700101000203
 </p>
-flags=vary-revision-timestamp
 !! html/parsoid+integrated
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONTIMESTAMP","function":"revisiontimestamp"},"params":{},"i":0}}]}'>19700101000203</span></p>
 !! end
@@ -704,10 +709,11 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 showflags
 !! wikitext
 {{REVISIONTIMESTAMP:{{PAGENAME}}}}
+!! metadata/integrated
+flags=vary-revision-timestamp
 !! html/php
 <p>19700101000203
 </p>
-flags=vary-revision-timestamp
 !! html/parsoid+integrated
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONTIMESTAMP:{{PAGENAME}}","function":"revisiontimestamp"},"params":{},"i":0}}]}'>19700101000203</span></p>
 !! end
@@ -719,8 +725,9 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 showflags
 !! wikitext
 {{REVISIONTIMESTAMP:This page does not exist}}
-!! html/php
+!! metadata/integrated
 flags=
+!! html/php
 !! html/parsoid+integrated
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONTIMESTAMP:This page does not exist","function":"revisiontimestamp"},"params":{},"i":0}}]}'></span>
 !! end
@@ -733,10 +740,11 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 showflags
 !! wikitext
 {{REVISIONUSER}}
+!! metadata/integrated
+flags=vary-user
 !! html/php
 <p>127.0.0.1
 </p>
-flags=vary-user
 !! html/parsoid+integrated
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONUSER","function":"revisionuser"},"params":{},"i":0}}]}'>127.0.0.1</span></p>
 !! end
@@ -749,8 +757,9 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 showflags
 !! wikitext
 {{REVISIONUSER}}
-!! html/php
+!! metadata/integrated
 flags=vary-user
+!! html/php
 !! html/parsoid+integrated
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONUSER","function":"revisionuser"},"params":{},"i":0}}]}'></span>
 !! end
@@ -763,8 +772,9 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 showflags
 !! wikitext
 {{REVISIONUSER:{{PAGENAME}}}}
-!! html/php
+!! metadata/integrated
 flags=vary-user
+!! html/php
 !! html/parsoid+integrated
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONUSER:{{PAGENAME}}","function":"revisionuser"},"params":{},"i":0}}]}'></span>
 !! end
@@ -776,8 +786,9 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 showflags
 !! wikitext
 {{REVISIONUSER:This page does not exist}}
-!! html/php
+!! metadata/integrated
 flags=
+!! html/php
 !! html/parsoid+integrated
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONUSER:This page does not exist","function":"revisionuser"},"params":{},"i":0}}]}'></span>
 !! end
@@ -789,8 +800,9 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 showflags
 !! wikitext
 {{REVISIONUSER}}
-!! html/php
+!! metadata/integrated
 flags=vary-user
+!! html/php
 !! html/parsoid+integrated
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONUSER","function":"revisionuser"},"params":{},"i":0}}]}'></span>
 !! end
@@ -803,10 +815,11 @@ parsoid={ "modes": ["wt2html","wt2wt"] }
 showflags
 !! wikitext
 {{REVISIONID:{{PAGENAME}}}}
+!! metadata/integrated
+flags=vary-revision-id
 !! html/php
 <p>1337
 </p>
-flags=vary-revision-id
 !! html/parsoid+integrated
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONID:{{PAGENAME}}","function":"revisionid"},"params":{},"i":0}}]}'>1337</span></p>
 !! end
@@ -818,8 +831,9 @@ parsoid={ "modes": ["wt2html","wt2wt"] }
 showflags
 !! wikitext
 {{REVISIONID:{{PAGENAME}}}}
-!! html/php
+!! metadata/integrated
 flags=vary-revision-id
+!! html/php
 !! html/parsoid+integrated
 <span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONID:{{PAGENAME}}","function":"revisionid"},"params":{},"i":0}}]}'></span>
 !! end
@@ -832,10 +846,11 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 showflags
 !! wikitext
 {{REVISIONDAY}}
+!! metadata/integrated
+flags=
 !! html/php
 <p>1
 </p>
-flags=
 !! html/parsoid+integrated
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONDAY","function":"revisionday"},"params":{},"i":0}}]}'>1</span></p>
 !! end
@@ -848,10 +863,11 @@ parsoid={ "modes": ["wt2html","wt2wt"] }
 showflags
 !! wikitext
 {{REVISIONDAY:{{PAGENAME}}}}
+!! metadata/integrated
+flags=
 !! html/php
 <p>1
 </p>
-flags=
 !! html/parsoid+integrated
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONDAY:{{PAGENAME}}","function":"revisionday"},"params":{},"i":0}}]}'>1</span></p>
 !! end
@@ -864,10 +880,11 @@ parsoid={ "modes": ["wt2html","wt2wt"], "normalizePhp": true }
 showflags
 !! wikitext
 {{REVISIONMONTH}}
+!! metadata/integrated
+flags=
 !! html/php
 <p>01
 </p>
-flags=
 !! html/parsoid+integrated
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONMONTH","function":"revisionmonth"},"params":{},"i":0}}]}'>01</span></p>
 !! end
@@ -880,10 +897,11 @@ parsoid={ "modes": ["wt2html","wt2wt"] }
 showflags
 !! wikitext
 {{REVISIONMONTH:{{PAGENAME}}}}
+!! metadata/integrated
+flags=
 !! html/php
 <p>01
 </p>
-flags=
 !! html/parsoid+integrated
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONMONTH:{{PAGENAME}}","function":"revisionmonth"},"params":{},"i":0}}]}'>01</span></p>
 !! end
@@ -896,10 +914,11 @@ parsoid={ "modes": ["wt2html","wt2wt"] }
 showflags
 !! wikitext
 {{REVISIONYEAR:{{PAGENAME}}}}
+!! metadata/integrated
+flags=
 !! html/php
 <p>1970
 </p>
-flags=
 !! html/parsoid+integrated
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"REVISIONYEAR:{{PAGENAME}}","function":"revisionyear"},"params":{},"i":0}}]}'>1970</span></p>
 !! end
@@ -912,10 +931,11 @@ parsoid={ "modes": ["wt2html","wt2wt"] }
 showflags
 !! wikitext
 {{PAGESIZE:{{PAGENAME}}}}
+!! metadata/integrated
+flags=vary-revision-sha1
 !! html/php
 <p>25
 </p>
-flags=vary-revision-sha1
 !! html/parsoid+integrated
 <p><span about="#mwt1" typeof="mw:Transclusion" data-mw='{"parts":[{"template":{"target":{"wt":"PAGESIZE:{{PAGENAME}}","function":"pagesize"},"params":{},"i":0}}]}'>25</span></p>
 !! end
