@@ -488,7 +488,7 @@
 	"apihelp-query+allimages-param-maxsize": "Limitar al imagines con al plus iste numero de bytes.",
 	"apihelp-query+allimages-param-sha1": "Hash SHA1 del imagine. Supplanta $1sha1base36.",
 	"apihelp-query+allimages-param-sha1base36": "Hash SHA1 del imagine in base 36 (usate in MediaWiki).",
-	"apihelp-query+allimages-param-user": "Restituer solmente files incargate per iste usator. Pote solmente esser usate con $1sort=timestamp. Non pote esser usate insimul con $1filterbots.",
+	"apihelp-query+allimages-param-user": "Restituer solmente files del quales le ultime version ha essite incargate per iste usator. Pote solmente esser usate con $1sort=timestamp. Non pote esser usate insimul con $1filterbots.",
 	"apihelp-query+allimages-param-filterbots": "Como filtrar le files incargate per bots. Pote solmente esser usate con $1sort=timestamp. Non pote esser usate insimul con $1user.",
 	"apihelp-query+allimages-param-mime": "Qual typos MIME cercar, p.ex. <kbd>image/jpeg</kbd>.",
 	"apihelp-query+allimages-param-limit": "Quante imagines restituer in total.",

@@ -337,6 +337,7 @@
 	"missingarticle-rev": "(ಆವೃತ್ತಿ#: $1)",
 	"missingarticle-diff": "(ವ್ಯತ್ಯಾಸ: $1, $2)",
 	"readonly_lag": "ಅಡಿಯಲ್ಲಿರುವ ಡೇಟಾಬೇಸ್ ಸರ್ವರ್‍ಗಳು ಮೂಲ ಸರ್ವರ್ ಒಂದಿಗೆ ಸಮಾನತೆಗೆ ಬರುವವರೆಗೂ ಡೇಟಾಬೇಸ್ ಅನ್ನು ಯಾಂತ್ರಿಕವಾಗಿ ಮುಚ್ಚಲಾಗಿದೆ",
+	"nonwrite-api-promise-error": "'Promise\n-Non-Write-API-Action' HTTP ಹೆಡರ್ ಅನ್ನು ಕಳುಹಿಸಲಾಗಿದೆ ಆದರೆ ವಿನಂತಿಯು API ವಿನಂತಿಯಾಗಿರಲಿಲ್ಲ.",
 	"timeouterror": "ಸರ್ವರ್ ಸಮಯ ಮೀರಿದೆ",
 	"timeouterror-text": "ಗರಿಷ್ಠ ವಿನಂತಿಯ ಸಮಯ $1 {{PLURAL:$1| ಸೆಕೆಂಡ್‌|ಸೆಕೆಂಡ್‌ಗಳು}} ಮೀರಿದೆ.",
 	"internalerror": "ಆಂತರಿಕ ದೋಷ",
