@@ -21,6 +21,7 @@
  * @file
  */
 
+use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\MainConfigNames;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;

@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\ExternalLinks\LinkFilter;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 

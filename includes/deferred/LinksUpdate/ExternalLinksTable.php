@@ -3,8 +3,8 @@
 namespace MediaWiki\Deferred\LinksUpdate;
 
 use Config;
-use LinkFilter;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\MainConfigNames;
 use ParserOutput;
 
