@@ -80,12 +80,6 @@ class SiteStats {
 			$row = self::doLoadFromDB( $lb->getConnectionRef( DB_PRIMARY ) );
 		}
 
-		if ( !self::isRowSensible( $row ) ) {
-			wfDebug( __METHOD__ . ": site_stats persistently nonsensical o_O" );
-			// Always return a row-like object
-			$row = self::salvageIncorrectRow( $row );
-		}
-
 		return $row;
 	}
 
@@ -238,7 +232,7 @@ class SiteStats {
 
 	/**
 	 * @param IDatabase $db
-	 * @return stdClass
+	 * @return stdClass|false
 	 */
 	private static function doLoadFromDB( IDatabase $db ) {
 		$fields = self::selectFields();
@@ -247,6 +241,9 @@ class SiteStats {
 			->from( 'site_stats' )
 			->caller( __METHOD__ )
 			->fetchResultSet();
+		if ( !$rows->numRows() ) {
+			return false;
+		}
 		$finalRow = new stdClass();
 		foreach ( $rows as $row ) {
 			foreach ( $fields as $field ) {
@@ -265,7 +262,7 @@ class SiteStats {
 	 *
 	 * Checks only fields which are filled by SiteStatsInit::refresh.
 	 *
-	 * @param bool|stdClass $row
+	 * @param stdClass|false $row
 	 * @return bool
 	 */
 	private static function isRowSensible( $row ) {
@@ -289,22 +286,6 @@ class SiteStats {
 		}
 
 		return true;
-	}
-
-	/**
-	 * @param stdClass|bool $row
-	 * @return stdClass
-	 */
-	private static function salvageIncorrectRow( $row ) {
-		$map = $row ? (array)$row : [];
-		// Fill in any missing values with zero
-		$map += array_fill_keys( self::selectFields(), 0 );
-		// Convert negative values to zero
-		foreach ( $map as $field => $value ) {
-			$map[$field] = max( 0, $value );
-		}
-
-		return (object)$row;
 	}
 
 	/**
