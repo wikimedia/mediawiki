@@ -100,7 +100,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$params[] = $this->createMock( SkinFactory::class );
 		$params[] = $this->createMock( UserGroupManager::class );
 		$params[] = $this->createMock( SignatureValidatorFactory::class );
-		$params[] = $this->createMock( Config::class );
+		$params[] = new HashConfig();
 		$oldMwServices = MediaWikiServices::forceGlobalInstance(
 			$this->createNoOpMock( MediaWikiServices::class )
 		);

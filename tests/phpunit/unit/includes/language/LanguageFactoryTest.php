@@ -2,7 +2,7 @@
 
 namespace MediaWiki\Tests\Languages;
 
-use Config;
+use HashConfig;
 use LocalisationCache;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
@@ -38,7 +38,7 @@ class LanguageFactoryTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( LanguageFallback::class ),
 			$this->createNoOpMock( LanguageConverterFactory::class ),
 			$this->createNoOpMock( HookContainer::class ),
-			$this->createNoOpMock( Config::class )
+			new HashConfig()
 		);
 		return $factory;
 	}
