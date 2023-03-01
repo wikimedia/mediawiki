@@ -176,8 +176,6 @@ class EnhancedChangesList extends ChangesList {
 		# Collate list of users
 		$usercounts = [];
 		$userlinks = [];
-		# Other properties
-		$curId = 0;
 		# Some catalyst variables...
 		$namehidden = true;
 		$allLogs = true;
@@ -213,11 +211,6 @@ class EnhancedChangesList extends ChangesList {
 			if ( $rcObj->mAttribs['rc_type'] != RC_LOG ) {
 				$allLogs = false;
 			}
-			# Get the latest entry with a page_id and oldid
-			# since logs may not have these.
-			if ( !$curId && $rcObj->mAttribs['rc_cur_id'] ) {
-				$curId = $rcObj->mAttribs['rc_cur_id'];
-			}
 
 			$usercounts[$username]++;
 		}
@@ -248,13 +241,11 @@ class EnhancedChangesList extends ChangesList {
 				$block[0], $block[0]->unpatrolled, $block[0]->watched );
 		}
 
-		$queryParams = [ 'curid' => $curId ];
-
 		# Sub-entries
 		$lines = [];
 		$filterClasses = [];
 		foreach ( $block as $i => $rcObj ) {
-			$line = $this->getLineData( $block, $rcObj, $queryParams );
+			$line = $this->getLineData( $block, $rcObj );
 			if ( !$line ) {
 				// completely ignore this RC entry if we don't want to render it
 				unset( $block[$i] );
@@ -299,7 +290,7 @@ class EnhancedChangesList extends ChangesList {
 			return '';
 		}
 
-		$logText = $this->getLogText( $block, $queryParams, $allLogs,
+		$logText = $this->getLogText( $block, [], $allLogs,
 			$collectedRcFlags['newpage'], $namehidden
 		);
 
@@ -385,12 +376,6 @@ class EnhancedChangesList extends ChangesList {
 			'bot' => $rcObj->mAttribs['rc_bot'],
 		];
 
-		$params = $queryParams;
-
-		if ( $rcObj->mAttribs['rc_this_oldid'] != 0 ) {
-			$params['oldid'] = $rcObj->mAttribs['rc_this_oldid'];
-		}
-
 		# Log timestamp
 		if ( $type == RC_LOG ) {
 			$link = htmlspecialchars( $rcObj->timestamp );
@@ -398,11 +383,19 @@ class EnhancedChangesList extends ChangesList {
 		} elseif ( !ChangesList::userCan( $rcObj, RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
 			$link = Html::element( 'span', [ 'class' => 'history-deleted' ], $rcObj->timestamp );
 		} else {
+			$params = [];
+			$params['curid'] = $rcObj->mAttribs['rc_cur_id'];
+			if ( $rcObj->mAttribs['rc_this_oldid'] != 0 ) {
+				$params['oldid'] = $rcObj->mAttribs['rc_this_oldid'];
+			}
+			// FIXME: The link has incorrect "title=" when rc_type = RC_CATEGORIZE.
+			// rc_cur_id refers to the page that was categorized
+			// whereas RecentChange::getTitle refers to the category.
 			$link = $this->linkRenderer->makeKnownLink(
 				$rcObj->getTitle(),
 				$rcObj->timestamp,
 				[],
-				$params
+				$params + $queryParams
 			);
 			if ( static::isDeleted( $rcObj, RevisionRecord::DELETED_TEXT ) ) {
 				$link = '<span class="history-deleted">' . $link . '</span> ';
@@ -511,6 +504,7 @@ class EnhancedChangesList extends ChangesList {
 		$unvisitedOldid = null;
 		$currentRevision = 0;
 		$previousRevision = 0;
+		$curId = 0;
 		$allCategorization = true;
 		/** @var RCCacheEntry $rcObj */
 		foreach ( $block as $rcObj ) {
@@ -530,6 +524,9 @@ class EnhancedChangesList extends ChangesList {
 			if ( !$currentRevision ) {
 				$currentRevision = $rcObj->mAttribs['rc_this_oldid'];
 			}
+			if ( !$curId ) {
+				$curId = $rcObj->mAttribs['rc_cur_id'];
+			}
 		}
 
 		// Total change link
@@ -547,6 +544,7 @@ class EnhancedChangesList extends ChangesList {
 						new HtmlArmor( $nchanges[$n] ),
 						[ 'class' => 'mw-changeslist-groupdiff' ],
 						$queryParams + [
+							'curid' => $curId,
 							'diff' => $currentRevision,
 							'oldid' => $previousRevision,
 						]
@@ -569,6 +567,7 @@ class EnhancedChangesList extends ChangesList {
 						new HtmlArmor( $sinceLastVisitMsg[$sinceLast] ),
 						[ 'class' => 'mw-changeslist-groupdiff' ],
 						$queryParams + [
+							'curid' => $curId,
 							'diff' => $currentRevision,
 							'oldid' => $unvisitedOldid,
 						]
@@ -588,7 +587,10 @@ class EnhancedChangesList extends ChangesList {
 					$title,
 					new HtmlArmor( $this->message['enhancedrc-history'] ),
 					[ 'class' => 'mw-changeslist-history' ],
-					$queryParams + [ 'action' => 'history' ]
+					[
+						'curid' => $curId,
+						'action' => 'history',
+					] + $queryParams
 				)
 			);
 		}
