@@ -4,7 +4,8 @@
 			"Robby",
 			"Seb35",
 			"Soued031",
-			"아라"
+			"아라",
+			"Volvox"
 		]
 	},
 	"config-desc": "Den Installatiounsprogramm vu MediaWiki",
@@ -111,7 +112,7 @@
 	"config-admin-name-blank": "Gitt e Benotzernumm fir den Administrateur an.",
 	"config-admin-name-invalid": "De spezifizéierte Benotzernumm \"<nowiki>$1</nowiki>\" ass net valabel.\nSpezifizéiert en anere Benotzernumm.",
 	"config-admin-password-blank": "Gitt e Passwuert fir den Adminstateur-Kont an.",
-	"config-admin-password-mismatch": "Déi zwee Passwierder Déi Dir aginn hutt stëmmen net iwwereneen.",
+	"config-admin-password-mismatch": "Déi zwee Passwierder, déi Dir aginn hutt, stëmmen net iwwereneen.",
 	"config-admin-email": "E-Mail-Adress:",
 	"config-admin-error-user": "Interne Feeler beim Uleeë vun engem Administrateur mam Numm \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Interne Feeler beim Setze vum Passwuert fir den Admin \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
@@ -167,7 +168,7 @@
 	"config-install-user-alreadyexists": "De Benotzer \"$1\" gëtt et schonn!",
 	"config-install-user-create-failed": "D'Opmaache vum Benotzer \"$1\" huet net funktionéiert: $2",
 	"config-install-user-grant-failed": "D'Bäisetze vu Rechter fir de Benotzer \"$1\" huet net funktionéiert: $2",
-	"config-install-user-missing": "De Benotzer \"$1\" deen ugi gouf gëtt et net.",
+	"config-install-user-missing": "De Benotzer \"$1\", deen ugi gouf, gëtt et net.",
 	"config-install-user-missing-create": "De spezifizéierte Benotzer \"$1\" gëtt et net.\nKlickt d'Checkbox \"Benotzerkont uleeën\" wann Dir dee Benotzer uleeë wëllt.",
 	"config-install-tables": "Tabelle ginn ugeluecht, éischte Schrëtt",
 	"config-install-interwiki": "Standard Interwiki-Tabell gëtt ausgefëllt",

@@ -4,7 +4,8 @@
 			"Robby",
 			"Macofe",
 			"Les Meloures",
-			"Soued031"
+			"Soued031",
+			"Volvox"
 		]
 	},
 	"apihelp-main-param-assertuser": "Iwwerpréifen ob den aktuelle Benotzer de Benotzer mat deem Numm ass.",
@@ -43,7 +44,7 @@
 	"apihelp-feedcontributions-param-year": "Vum Joer (a virdrun).",
 	"apihelp-feedcontributions-param-month": "Vum Mount (a virdrun).",
 	"apihelp-feedcontributions-param-deletedonly": "Nëmme geläscht Kontributioune weisen.",
-	"apihelp-feedcontributions-param-toponly": "Nëmmen Ännerunge weisen déi déi lescht Versioun sinn.",
+	"apihelp-feedcontributions-param-toponly": "Nëmmen Ännerunge weisen, déi déi lescht Versioun sinn.",
 	"apihelp-feedcontributions-param-hideminor": "Kleng Ännerunge verstoppen.",
 	"apihelp-feedrecentchanges-param-days": "Deeg, op déi d'Resultater limitéiert gi sollen",
 	"apihelp-feedrecentchanges-param-hideminor": "Kleng Ännerunge verstoppen.",

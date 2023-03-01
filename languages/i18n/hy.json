@@ -1073,6 +1073,7 @@
 	"rcfilters-filter-lastrevision-label": "Ընթացիկ տարբերակ",
 	"rcfilters-filter-previousrevision-label": "Ոչ վերջին տարբերակ",
 	"rcfilters-view-tags": "Պիտակված խմբագրումներ",
+	"rcfilters-view-return-to-default-tooltip": "Վերադառնալ զտիչների հիմնական ընտրացանկ",
 	"rcfilters-liveupdates-button": "Կենդանի թարմացումներ",
 	"rcfilters-watchlist-edit-watchlist-button": "Խմբագրել հսկացանկը",
 	"rcfilters-allcontents-label": "Բոլոր անվանատարածքներ",
