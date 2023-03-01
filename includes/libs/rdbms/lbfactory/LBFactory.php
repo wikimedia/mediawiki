@@ -119,11 +119,6 @@ abstract class LBFactory implements ILBFactory {
 	 */
 	private $configCallback = null;
 
-	/**
-	 * @var array
-	 */
-	private $currentConfig;
-
 	public function __construct( array $conf ) {
 		$this->configure( $conf );
 
@@ -182,8 +177,6 @@ abstract class LBFactory implements ILBFactory {
 
 		static $nextTicket;
 		$this->ticket = $nextTicket = ( is_int( $nextTicket ) ? $nextTicket++ : mt_rand() );
-
-		$this->currentConfig = $conf;
 	}
 
 	public function destroy() {
