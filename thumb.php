@@ -28,6 +28,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Profiler\ProfilingContext;
 use MediaWiki\Title\Title;
 use Wikimedia\AtEase\AtEase;
 
@@ -43,6 +44,8 @@ wfThumbMain();
 
 function wfThumbMain() {
 	global $wgTrivialMimeDetection, $wgRequest;
+
+	ProfilingContext::singleton()->init( MW_ENTRY_POINT, 'stream' );
 
 	// Don't use fancy MIME detection, just check the file extension for jpg/gif/png
 	$wgTrivialMimeDetection = true;
