@@ -250,6 +250,7 @@
 	"apihelp-query+alldeletedrevisions-example-ns-main": "Toon de eerse 50 verwijderde versies in de hoofdnaamruimte.",
 	"apihelp-query+allfileusages-paramvalue-prop-title": "Voegt de titel van het bestand toe.",
 	"apihelp-query+allfileusages-param-limit": "Hoeveel items er in totaal moeten worden getoond.",
+	"apihelp-query+allimages-param-user": "Alleen bestanden teruggeven waarvan de laatste versie door deze gebruiker is geüpload. Kan alleen worden gebruikt met $1sort=timestamp. Kan niet samen met $1filterbots worden gebruikt.",
 	"apihelp-query+allimages-example-recent": "Toon een lijst van recentelijk geüploade bestanden, vergelijkbaar met [[Special:NewFiles]].",
 	"apihelp-query+alllinks-param-namespace": "De door te lopen naamruimte.",
 	"apihelp-query+alllinks-param-limit": "Hoeveel items er in totaal moeten worden getoond.",
