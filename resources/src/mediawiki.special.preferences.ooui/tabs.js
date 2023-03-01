@@ -160,8 +160,7 @@
 							item.$highlight.addClass( 'mw-prefs-search-highlight' );
 							item.$field.addClass( 'mw-prefs-search-matched' );
 							item.$wrapper.addClass( 'mw-prefs-search-matched' );
-							item.$tabPanel.addClass( 'mw-prefs-search-matched' )
-								.attr( 'data-section-label', OO.ui.infuse( item.$tabPanel ).label );
+							item.$tabPanel.addClass( 'mw-prefs-search-matched' );
 						} );
 						hasResults = true;
 					}
