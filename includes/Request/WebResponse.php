@@ -20,8 +20,13 @@
  * @file
  */
 
+namespace MediaWiki\Request;
+
+use Hooks;
+use HttpStatus;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use RuntimeException;
 
 /**
  * Allow programs to request this object from WebRequest::response()
@@ -271,3 +276,5 @@ class WebResponse {
 		return (bool)self::$setCookies;
 	}
 }
+
+class_alias( WebResponse::class, 'WebResponse' );

@@ -27,6 +27,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Request\DerivativeRequest;
+use MediaWiki\Request\WebResponse;
 use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\LoggerInterface;
 use Wikimedia\AtEase\AtEase;

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\FauxResponse;
 
 /**
  * @covers SpecialPageData
