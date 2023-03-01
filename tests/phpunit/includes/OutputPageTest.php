@@ -254,6 +254,108 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	public static function provideCanonicalUrlAndAlternateUrlData() {
+		# $messsage, $action, $urlVariant, $canonicalUrl, $altUrlLangCode, $present, $nonpresent
+		return [
+			[
+				'Non-specified variant with view action - '
+					. 'We currently use MediaWiki internal codes as the primary URL parameter',
+				null,
+				null,
+				'http://example.org/index.php/My_test_page',
+				'zh-tw',
+				'http://example.org/index.php?title=My_test_page&variant=zh-tw',
+				'http://example.org/index.php?title=My_test_page&variant=zh-hant-tw',
+			],
+			[
+				'Specified zh-tw variant with view action - '
+					. 'Canonical URL and alternate URL should be the same; '
+					. 'Alternate URL should be kept even when it is the current page view language',
+				null,
+				'zh-tw',
+				'http://example.org/index.php?title=My_test_page&variant=zh-tw',
+				'zh-tw',
+				'http://example.org/index.php?title=My_test_page&variant=zh-tw',
+				'http://example.org/index.php?title=My_test_page&variant=zh-hant-tw',
+			],
+			[
+				'Non-specified variant with history action - '
+					. 'There should be no alternate URLs for language variants'
+					. 'There should be no alternate URLs for language variants',
+				'history',
+				null,
+				'http://example.org/index.php?title=My_test_page&action=history',
+				'zh-tw',
+				null,
+				'http://example.org/index.php?title=My_test_page&action=history&variant=zh-tw',
+			],
+			[
+				'Specified zh-tw variant with history action - '
+					. 'There should be no alternate URLs for language variants',
+				'history',
+				'zh-tw',
+				'http://example.org/index.php?title=My_test_page&action=history',
+				'zh-tw',
+				null,
+				'http://example.org/index.php?title=My_test_page&action=history&variant=zh-tw',
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideCanonicalUrlAndAlternateUrlData
+	 * @covers OutputPage::getHeadLinksArray
+	 */
+	public function testCanonicalUrlAndAlternateUrls(
+		$messsage, $action, $urlVariant, $canonicalUrl, $altUrlLangCode, $present, $nonpresent
+	) {
+		$req = new FauxRequest( [
+			'title' => 'My_test_page',
+			'action' => $action,
+			'variant' => $urlVariant,
+		] );
+		$this->setMwGlobals( [
+			'wgServer' => 'http://example.org',
+			'wgCanonicalServer' => 'http://example.org',
+			'wgLanguageCode' => 'zh',
+			'wgRequest' => $req, # LanguageConverter is using global state...
+		] );
+		$op = $this->newInstance( [ MainConfigNames::EnableCanonicalServerLink => true ], $req );
+		$bcp47 = LanguageCode::bcp47( $altUrlLangCode );
+		$bcp47Lowercase = strtolower( $bcp47 );
+		$headLinks = $op->getHeadLinksArray();
+
+		$this->assertSame(
+			Html::element( 'link', [ 'rel' => 'canonical', 'href' => $canonicalUrl ] ),
+			$headLinks['link-canonical'],
+			$messsage
+		);
+
+		if ( isset( $present ) ) {
+			$this->assertSame(
+				Html::element(
+					'link',
+					[
+						'rel' => 'alternate',
+						'hreflang' => $bcp47,
+						'href' => $present,
+					]
+				),
+				$headLinks['link-alternate-language-' . $bcp47Lowercase],
+				$messsage
+			);
+		}
+
+		$this->assertNotContains(
+			Html::element(
+				'link',
+				[ 'rel' => 'alternate', 'hreflang' => $bcp47, 'href' => $nonpresent, ]
+			),
+			$headLinks,
+			$messsage
+		);
+	}
+
 	/**
 	 * @covers OutputPage::setCopyrightUrl
 	 * @covers OutputPage::getHeadLinksArray
