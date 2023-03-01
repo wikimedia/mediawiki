@@ -171,5 +171,12 @@
 				$noResults.detach();
 			}
 		} );
+
+		// Handle the initial value in case the user started typing before this JS code loaded,
+		// or the browser restored the value for a closed tab
+		if ( search.getValue() ) {
+			search.emit( 'change', search.getValue() );
+		}
+
 	} );
 }() );
