@@ -68,5 +68,108 @@
 		nav.onLoad( setSection, 'mw-prefsection-personal' );
 
 		nav.restorePrevSection( setSection, onSubmit );
+
+		// Search index
+		var index, texts;
+		function buildIndex() {
+			index = {};
+			var $fields = tabs.contentPanel.$element.find( '[class^=mw-htmlform-field-]:not( #mw-prefsection-betafeatures .mw-htmlform-field-HTMLInfoField )' );
+			$fields.each( function () {
+				var $field = $( this );
+				var $wrapper = $field.closest( '.mw-prefs-fieldset-wrapper' );
+				var $tabPanel = $field.closest( '.oo-ui-tabPanelLayout' );
+				$field.find( '.oo-ui-labelElement-label, .oo-ui-textInputWidget .oo-ui-inputWidget-input, p' ).each( function () {
+
+					function addToIndex( $label, $highlight ) {
+						var text = $label.val() || $label[ 0 ].innerText.toLowerCase().trim().replace( /\s+/, ' ' );
+						if ( text ) {
+							index[ text ] = index[ text ] || [];
+							index[ text ].push( {
+								$highlight: $highlight || $label,
+								$field: $field,
+								$wrapper: $wrapper,
+								$tabPanel: $tabPanel
+							} );
+						}
+					}
+
+					addToIndex( $( this ) );
+
+					// Check if there we are in an infusable dropdown and collect other options
+					var $dropdown = $( this ).closest( '.oo-ui-dropdownInputWidget[data-ooui],.mw-widget-selectWithInputWidget[data-ooui]' );
+					if ( $dropdown.length ) {
+						var dropdown = OO.ui.infuse( $dropdown[ 0 ] );
+						var dropdownWidget = ( dropdown.dropdowninput || dropdown ).dropdownWidget;
+						if ( dropdownWidget ) {
+							dropdownWidget.getMenu().getItems().forEach( function ( option ) {
+								// Highlight the dropdown handle and the matched label, for when the dropdown is opened
+								addToIndex( option.$label, dropdownWidget.$handle );
+								addToIndex( option.$label, option.$label );
+							} );
+						}
+					}
+				} );
+			} );
+			texts = Object.keys( index );
+		}
+
+		function infuseAllPanels() {
+			tabs.stackLayout.items.forEach( function ( tabPanel ) {
+				var wasVisible = tabPanel.isVisible();
+				// Force panel to be visible while infusing
+				tabPanel.toggle( true );
+
+				enhancePanel( tabPanel );
+
+				// Restore visibility
+				tabPanel.toggle( wasVisible );
+			} );
+		}
+
+		var search = OO.ui.infuse( $( '.mw-prefs-search' ) );
+		search.$input.on( 'focus', function () {
+			if ( !index ) {
+				// Lazy-build index on first focus
+				// Infuse all widgets as we may end up showing a large subset of them
+				infuseAllPanels();
+				buildIndex();
+			}
+		} );
+		var $noResults = $( '<div>' ).addClass( 'mw-prefs-noresults' ).text( mw.msg( 'searchprefs-noresults' ) );
+		search.on( 'change', function ( val ) {
+			if ( !index ) {
+				// In case 'focus' hasn't fired yet
+				infuseAllPanels();
+				buildIndex();
+			}
+			var isSearching = !!val;
+			tabs.$element.toggleClass( 'mw-prefs-tabs-searching', isSearching );
+			tabs.tabSelectWidget.toggle( !isSearching );
+			$( '.mw-prefs-search-matched' ).removeClass( 'mw-prefs-search-matched' );
+			$( '.mw-prefs-search-highlight' ).removeClass( 'mw-prefs-search-highlight' );
+			if ( isSearching ) {
+				var hasResults = false;
+				val = val.toLowerCase();
+				texts.forEach( function ( text ) {
+					// TODO: Could use Intl.Collator.prototype.compare like OO.ui.mixin.LabelElement.static.highlightQuery
+					// but might be too slow.
+					if ( text.indexOf( val ) !== -1 ) {
+						index[ text ].forEach( function ( item ) {
+							item.$highlight.addClass( 'mw-prefs-search-highlight' );
+							item.$field.addClass( 'mw-prefs-search-matched' );
+							item.$wrapper.addClass( 'mw-prefs-search-matched' );
+							item.$tabPanel.addClass( 'mw-prefs-search-matched' )
+								.attr( 'data-section-label', OO.ui.infuse( item.$tabPanel ).label );
+						} );
+						hasResults = true;
+					}
+				} );
+				if ( !hasResults ) {
+					tabs.$element.append( $noResults );
+				} else {
+					$noResults.detach();
+				}
+			}
+		} );
 	} );
 }() );

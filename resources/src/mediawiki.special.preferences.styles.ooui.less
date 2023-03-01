@@ -70,6 +70,89 @@
 			padding-bottom: 0;
 		}
 	}
+
+	&.mw-prefs-tabs-searching {
+		// Prevent "Save" bar getting too close to results
+		min-height: 30em;
+
+		/* Tab panels */
+		.oo-ui-tabPanelLayout:not( .mw-prefs-search-matched ),
+		/* Fields */
+		[ class^='mw-htmlform-field-' ]:not( .mw-prefs-search-matched ),
+		/* Wrappers */
+		.mw-prefs-fieldset-wrapper:not( .mw-prefs-search-matched ) {
+			display: none;
+		}
+
+		.oo-ui-tabPanelLayout.mw-prefs-search-matched {
+			// stylelint-disable-next-line declaration-no-important
+			display: block !important;
+		}
+
+		.oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout {
+			padding: 0;
+			margin: 0;
+		}
+
+		.mw-prefs-search-matched {
+			margin: 0 20px 10px 20px;
+			padding: 0;
+
+			&[ data-section-label ]:before {
+				content: attr( data-section-label );
+				display: block;
+				font-weight: bold;
+				font-size: 1.14285714em;
+				background: #eaecf0;
+				padding: 5px 10px;
+				margin: 0 0 10px 0;
+			}
+		}
+	}
+}
+
+// Highlight could be in an overlay
+.mw-prefs-search-highlight {
+	background: #eaf3ff !important; /* stylelint-disable-line declaration-no-important */
+	outline: 3px solid #eaf3ff !important; /* stylelint-disable-line declaration-no-important */
+	border-radius: 2px !important; /* stylelint-disable-line declaration-no-important */
+}
+
+.mw-prefs-noresults {
+	margin: 20px;
+	font-style: italic;
+}
+
+/* TODO: Support mobile */
+.skin-minerva .mw-prefs-search { /* stylelint-disable-line selector-class-pattern */
+	display: none;
+}
+
+.mw-prefs-search.oo-ui-textInputWidget {
+	margin: 8px 0;
+}
+
+@media all and ( min-width: @width-breakpoint-tablet ) {
+	.mw-prefs-search.oo-ui-textInputWidget {
+		width: 20em;
+	}
+
+	.mw-special-Preferences .mw-specialpage-summary {
+		margin-right: 21em;
+
+		& + .mw-prefs-search.oo-ui-textInputWidget {
+			float: right;
+			margin: -36px 0 8px 0;
+		}
+	}
+}
+
+@media all and ( max-width: ( @width-breakpoint-tablet - 1 ) ) {
+	.mw-prefs-search.oo-ui-textInputWidget {
+		position: sticky;
+		top: 0;
+		z-index: 1;
+	}
 }
 
 .mw-prefs-tabs-wrapper.oo-ui-panelLayout-framed,
