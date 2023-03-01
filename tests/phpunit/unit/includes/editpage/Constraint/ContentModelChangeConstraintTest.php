@@ -22,6 +22,7 @@ use MediaWiki\EditPage\Constraint\ContentModelChangeConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\Title\Title;
 
 /**
  * Tests the ContentModelChangeConstraint

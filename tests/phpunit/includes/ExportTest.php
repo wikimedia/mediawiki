@@ -3,6 +3,7 @@
 use MediaWiki\Content\Renderer\ContentParseParams;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Title\Title;
 
 /**
  * Test class for Export methods.

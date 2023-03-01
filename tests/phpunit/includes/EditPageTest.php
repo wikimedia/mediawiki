@@ -6,6 +6,7 @@ use MediaWiki\MainConfigSchema;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\TestingAccessWrapper;
 

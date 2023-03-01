@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
+use MediaWiki\Title\Title;
 use stdClass;
-use Title;
 use XmlDumpWriter;
 
 /**

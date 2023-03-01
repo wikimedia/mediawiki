@@ -22,6 +22,8 @@
 
 namespace MediaWiki\Block\Restriction;
 
+use MediaWiki\Title\Title;
+
 interface Restriction {
 
 	/**
@@ -86,10 +88,10 @@ interface Restriction {
 	 * Determine if a restriction matches a given title.
 	 *
 	 * @since 1.33
-	 * @param \Title $title
+	 * @param Title $title
 	 * @return bool
 	 */
-	public function matches( \Title $title );
+	public function matches( Title $title );
 
 	/**
 	 * Determine if a restriction equals another restriction.

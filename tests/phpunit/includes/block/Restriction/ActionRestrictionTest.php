@@ -3,7 +3,7 @@
 namespace MediaWiki\Tests\Block\Restriction;
 
 use MediaWiki\Block\Restriction\ActionRestriction;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * @group Blocking

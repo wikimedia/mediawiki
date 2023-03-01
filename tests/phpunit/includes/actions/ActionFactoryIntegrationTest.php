@@ -2,6 +2,7 @@
 
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 
 /**
  * Test that runs against all core actions to make sure that

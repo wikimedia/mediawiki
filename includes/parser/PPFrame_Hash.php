@@ -19,6 +19,8 @@
  * @ingroup Parser
  */
 
+use MediaWiki\Title\Title;
+
 /**
  * An expansion frame, used as a context to expand the result of preprocessToObj()
  * @ingroup Parser

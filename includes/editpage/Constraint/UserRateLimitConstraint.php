@@ -20,8 +20,8 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
+use MediaWiki\Title\Title;
 use StatusValue;
-use Title;
 use User;
 
 /**

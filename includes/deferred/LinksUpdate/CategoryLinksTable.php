@@ -7,10 +7,10 @@ use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Title\Title;
 use NamespaceInfo;
 use ParserOutput;
 use PurgeJobUtils;
-use Title;
 
 /**
  * categorylinks

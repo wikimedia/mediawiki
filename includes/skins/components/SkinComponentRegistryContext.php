@@ -22,10 +22,10 @@ use Config;
 use IContextSource;
 use Language;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\Title\Title;
 use MessageLocalizer;
 use OutputPage;
 use Skin;
-use Title;
 use User;
 use WikiPage;
 

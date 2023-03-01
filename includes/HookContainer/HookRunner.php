@@ -16,13 +16,13 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Session\Session;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Parser;
 use ParserOptions;
 use Skin;
 use SpecialPage;
 use StatusValue;
-use Title;
 
 /**
  * This class provides an implementation of the core hook interfaces,

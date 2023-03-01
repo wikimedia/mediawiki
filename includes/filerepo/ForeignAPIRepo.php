@@ -23,6 +23,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Title\Title;
 
 /**
  * A foreign repository for a remote MediaWiki accessible through api.php requests.

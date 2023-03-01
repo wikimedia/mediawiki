@@ -27,7 +27,7 @@ namespace MediaWiki\Feed;
 use MediaWiki\Html\TemplateParser;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * Class to support the outputting of syndication feeds in Atom and RSS format.

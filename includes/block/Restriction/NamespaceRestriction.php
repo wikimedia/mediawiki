@@ -22,6 +22,8 @@
 
 namespace MediaWiki\Block\Restriction;
 
+use MediaWiki\Title\Title;
+
 class NamespaceRestriction extends AbstractRestriction {
 
 	/**
@@ -37,7 +39,7 @@ class NamespaceRestriction extends AbstractRestriction {
 	/**
 	 * @inheritDoc
 	 */
-	public function matches( \Title $title ) {
+	public function matches( Title $title ) {
 		return $this->getValue() === $title->getNamespace();
 	}
 

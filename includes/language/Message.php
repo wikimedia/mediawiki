@@ -27,6 +27,7 @@ use MediaWiki\Message\UserGroupMembershipParam;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\StubObject\StubUserLang;
+use MediaWiki\Title\Title;
 use Wikimedia\Assert\Assert;
 
 /**

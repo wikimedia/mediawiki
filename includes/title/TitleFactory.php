@@ -27,7 +27,6 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MessageLocalizer;
-use Title;
 
 /**
  * Creates Title objects.

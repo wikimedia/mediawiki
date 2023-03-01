@@ -26,6 +26,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**

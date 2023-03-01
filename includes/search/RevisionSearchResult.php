@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Title\Title;
+
 /**
  * SearchResult class based on the revision information.
  * This class is suited for search engines that do not store a specialized version of the searched

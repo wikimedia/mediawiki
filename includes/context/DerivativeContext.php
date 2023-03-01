@@ -20,6 +20,7 @@
  */
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Title\Title;
 
 /**
  * An IContextSource implementation which will inherit context from another source

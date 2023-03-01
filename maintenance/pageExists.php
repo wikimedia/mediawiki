@@ -21,6 +21,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\Title\Title;
+
 /**
  * @ingroup Maintenance
  */

@@ -26,10 +26,10 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Title\Title;
 use NamespaceInfo;
 use ParserOutput;
 use Psr\Log\LoggerInterface;
-use Title;
 use TitleParser;
 
 /**

@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Title\Title;
+
 /**
  * Redirect from Special:PermanentLink/### to index.php?oldid=###.
  *

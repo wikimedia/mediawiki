@@ -3,6 +3,7 @@
 declare( strict_types = 1 );
 
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Title\Title;
 
 /**
  * @covers LinkHolderArray

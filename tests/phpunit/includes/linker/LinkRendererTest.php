@@ -6,6 +6,7 @@ use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Title\Title;
 
 /**
  * @covers MediaWiki\Linker\LinkRenderer

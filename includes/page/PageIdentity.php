@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Page;
 
+use MediaWiki\Title\Title;
 use RuntimeException;
 use Wikimedia\Assert\PreconditionException;
 

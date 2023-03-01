@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Storage\PageEditStash;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;

@@ -14,9 +14,9 @@ use MediaWiki\Rest\BasicAccess\CompoundAuthorizer;
 use MediaWiki\Rest\BasicAccess\MWBasicAuthorizer;
 use MediaWiki\Rest\Reporter\MWErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
+use MediaWiki\Title\Title;
 use MWExceptionRenderer;
 use RequestContext;
-use Title;
 use Wikimedia\Message\ITextFormatter;
 
 class EntryPoint {

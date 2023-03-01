@@ -1962,6 +1962,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Tidy\\RemexDriver' => __DIR__ . '/includes/tidy/RemexDriver.php',
 	'MediaWiki\\Tidy\\RemexMungerData' => __DIR__ . '/includes/tidy/RemexMungerData.php',
 	'MediaWiki\\Tidy\\TidyDriverBase' => __DIR__ . '/includes/tidy/TidyDriverBase.php',
+	'MediaWiki\\Title\\Title' => __DIR__ . '/includes/title/Title.php',
 	'MediaWiki\\Title\\TitleArray' => __DIR__ . '/includes/title/TitleArray.php',
 	'MediaWiki\\Title\\TitleArrayFromResult' => __DIR__ . '/includes/title/TitleArrayFromResult.php',
 	'MediaWiki\\Title\\TitleFactory' => __DIR__ . '/includes/title/TitleFactory.php',

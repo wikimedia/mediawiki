@@ -4,7 +4,7 @@ namespace MediaWiki\Tests\Revision;
 
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\SlotRoleHandler;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * @covers \MediaWiki\Revision\SlotRoleHandler

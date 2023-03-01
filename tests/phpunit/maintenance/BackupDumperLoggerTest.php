@@ -6,7 +6,7 @@ use DumpBackup;
 use Exception;
 use ManualLogEntry;
 use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Title\Title;
 use User;
 use WikiExporter;
 

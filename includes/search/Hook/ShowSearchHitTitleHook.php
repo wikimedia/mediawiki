@@ -3,9 +3,9 @@
 namespace MediaWiki\Search\Hook;
 
 use HtmlArmor;
+use MediaWiki\Title\Title;
 use SearchResult;
 use SpecialSearch;
-use Title;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

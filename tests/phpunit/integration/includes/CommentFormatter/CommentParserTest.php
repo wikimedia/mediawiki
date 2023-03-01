@@ -8,8 +8,8 @@ use MediaWiki\CommentFormatter\CommentParser;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\Title\Title;
 use SiteConfiguration;
-use Title;
 
 /**
  * @group Database

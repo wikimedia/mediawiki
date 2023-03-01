@@ -20,8 +20,8 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
+use MediaWiki\Title\Title;
 use StatusValue;
-use Title;
 
 /**
  * Don't save a new page if it's blank or if it's a MediaWiki:

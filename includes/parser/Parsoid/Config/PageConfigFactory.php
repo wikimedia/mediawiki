@@ -26,9 +26,9 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use ParserOptions;
-use Title;
 use Wikimedia\Parsoid\Config\Api\PageConfig as ApiPageConfig;
 use WikitextContent;
 

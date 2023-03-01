@@ -158,6 +158,7 @@ $cfg['ignore_undeclared_variables_in_global_scope'] = true;
 // remove them from here as well, so phan complains when something tries to use them.
 $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'IP' => 'string',
+	'wgTitle' => 'MediaWiki\Title\Title',
 	'wgGalleryOptions' => 'array',
 	'wgDummyLanguageCodes' => 'string[]',
 	'wgNamespaceProtection' => 'array<int,string|string[]>',

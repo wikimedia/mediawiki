@@ -21,6 +21,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArray;
 
 /**

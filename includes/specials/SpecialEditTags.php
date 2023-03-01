@@ -22,6 +22,7 @@
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Html\Html;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Title\Title;
 
 /**
  * Special page for adding and removing change tags to individual revisions.

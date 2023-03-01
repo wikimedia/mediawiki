@@ -20,6 +20,7 @@
 
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Session\CsrfTokenSet;
+use MediaWiki\Title\Title;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**

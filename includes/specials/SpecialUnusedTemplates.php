@@ -25,6 +25,7 @@
  */
 
 use MediaWiki\Linker\LinksMigration;
+use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**

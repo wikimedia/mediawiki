@@ -22,6 +22,24 @@
  * @file
  */
 
+namespace MediaWiki\Title;
+
+use AtomicSectionUpdate;
+use AutoCommitUpdate;
+use BacklinkCache;
+use ContentHandler;
+use DBAccessObjectUtils;
+use DeferredUpdates;
+use DeprecationHelper;
+use Hooks;
+use HTMLCacheUpdateJob;
+use IDBAccessObject;
+use ILanguageConverter;
+use InvalidArgumentException;
+use Language;
+use LinkCache;
+use MalformedTitleException;
+use MapCacheLRU;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\Interwiki\InterwikiLookup;
@@ -37,10 +55,21 @@ use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Request\PathRouter;
 use MediaWiki\ResourceLoader\WikiModule;
 use MediaWiki\StubObject\StubUserLang;
-use MediaWiki\Title\TitleArray;
+use MediaWikiTitleCodec;
+use Message;
+use MessageLocalizer;
+use MWException;
+use MWTimestamp;
+use RuntimeException;
+use Sanitizer;
+use SpecialPage;
+use stdClass;
+use TitleFormatter;
+use TitleValue;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\IDatabase;
+use WikiPage;
 
 /**
  * Represents a title within MediaWiki.
@@ -2544,7 +2573,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		}
 
 		$ret = $restrictionStore->getCascadeProtectionSources( $this );
-		$ret[0] = array_map( 'Title::castFromPageIdentity', $ret[0] );
+		$ret[0] = array_map( '\MediaWiki\Title\Title::castFromPageIdentity', $ret[0] );
 		return $ret;
 	}
 
@@ -4291,3 +4320,5 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 }
+
+class_alias( Title::class, 'Title' );

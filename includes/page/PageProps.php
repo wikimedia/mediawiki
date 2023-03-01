@@ -24,8 +24,8 @@ namespace MediaWiki\Page;
 
 use MapCacheLRU;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArray;
-use Title;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**

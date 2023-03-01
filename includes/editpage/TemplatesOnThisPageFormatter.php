@@ -27,7 +27,7 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\RestrictionStore;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * Handles formatting for the "templates used on this page"

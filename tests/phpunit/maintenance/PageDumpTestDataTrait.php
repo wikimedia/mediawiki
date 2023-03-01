@@ -6,10 +6,10 @@ use Exception;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
 use MWException;
 use RequestContext;
 use RevisionDeleter;
-use Title;
 use Wikimedia\Rdbms\IDatabase;
 use WikitextContent;
 

@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use MediaWiki\User\ActorMigration;
 
 require_once __DIR__ . '/Maintenance.php';

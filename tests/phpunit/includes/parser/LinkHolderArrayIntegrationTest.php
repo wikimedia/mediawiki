@@ -3,6 +3,7 @@
 declare( strict_types = 1 );
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Title\Title;
 
 /**
  * @covers LinkHolderArray

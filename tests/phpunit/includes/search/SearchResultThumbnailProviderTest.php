@@ -2,6 +2,7 @@
 
 use MediaWiki\Search\SearchResultThumbnailProvider;
 use MediaWiki\Tests\Rest\Handler\MediaTestTrait;
+use MediaWiki\Title\Title;
 
 class SearchResultThumbnailProviderTest extends MediaWikiIntegrationTestCase {
 	use MediaTestTrait;

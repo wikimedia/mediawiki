@@ -3,7 +3,7 @@
 namespace MediaWiki\Hook;
 
 use EmailNotification;
-use Title;
+use MediaWiki\Title\Title;
 use User;
 
 /**

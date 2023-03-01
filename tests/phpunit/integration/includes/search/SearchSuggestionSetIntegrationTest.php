@@ -19,6 +19,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\Title\Title;
+
 class SearchSuggestionSetIntegrationTest extends MediaWikiIntegrationTestCase {
 	/** @return iterable */
 	public function provideTitles(): iterable {

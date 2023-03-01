@@ -21,9 +21,9 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\EditPage\SpamChecker;
+use MediaWiki\Title\Title;
 use Psr\Log\LoggerInterface;
 use StatusValue;
-use Title;
 
 /**
  * Verify summary and text do not match spam regexes
