@@ -161,7 +161,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 	}
 
 	protected function getSentRequest() {
-		$sentResponse = $this->getMockBuilder( \FauxResponse::class )
+		$sentResponse = $this->getMockBuilder( \MediaWiki\Request\FauxResponse::class )
 			->onlyMethods( [ 'headersSent', 'setCookie', 'header' ] )
 			->getMock();
 		$sentResponse->method( 'headersSent' )

@@ -2,6 +2,7 @@
 
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\FauxResponse;
 
 /**
  * @author Addshore

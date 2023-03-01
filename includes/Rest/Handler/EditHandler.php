@@ -6,6 +6,7 @@ use Config;
 use IApiMessage;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\WebResponse;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
@@ -14,7 +15,6 @@ use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use TitleFormatter;
 use TitleParser;
-use WebResponse;
 use Wikimedia\Message\MessageValue;
 
 /**

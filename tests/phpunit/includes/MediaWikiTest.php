@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Request\WebResponse;
 use Wikimedia\TestingAccessWrapper;
 
 class MediaWikiTest extends MediaWikiIntegrationTestCase {

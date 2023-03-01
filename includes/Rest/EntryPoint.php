@@ -9,6 +9,7 @@ use MediaWiki;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\WebResponse;
 use MediaWiki\Rest\BasicAccess\CompoundAuthorizer;
 use MediaWiki\Rest\BasicAccess\MWBasicAuthorizer;
 use MediaWiki\Rest\Reporter\MWErrorReporter;
@@ -16,7 +17,6 @@ use MediaWiki\Rest\Validator\Validator;
 use MWExceptionRenderer;
 use RequestContext;
 use Title;
-use WebResponse;
 use Wikimedia\Message\ITextFormatter;
 
 class EntryPoint {
