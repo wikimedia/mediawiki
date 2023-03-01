@@ -21,9 +21,14 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\RenameUser\RenameuserSQL;
+use MediaWiki\User\UserFactory;
 
 class RenameUser extends Maintenance {
+	/** @var UserFactory */
+	private $userFactory;
+
 	public function __construct() {
 		parent::__construct();
 
@@ -34,23 +39,26 @@ class RenameUser extends Maintenance {
 		$this->addOption( 'reason', 'Reason of the rename', false, true );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
+	private function initServices() {
+		$services = MediaWikiServices::getInstance();
+		$this->userFactory = $services->getUserFactory();
+	}
+
 	public function execute() {
-		$user = User::newFromName( $this->getOption( 'oldname' ) );
+		$this->initServices();
+		$user = $this->userFactory->newFromName( $this->getOption( 'oldname' ) );
 		if ( $user->getId() === 0 ) {
 			$this->fatalError( 'The user does not exist' );
 		}
 
-		if ( User::newFromName( $this->getOption( 'newname' ) )->getId() > 0 ) {
+		if ( $this->userFactory->newFromName( $this->getOption( 'newname' ) )->getId() > 0 ) {
 			$this->fatalError( 'New username must be free' );
 		}
 
 		if ( $this->getOption( 'performer' ) === null ) {
 			$performer = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
 		} else {
-			$performer = User::newFromName( $this->getOption( 'performer' ) );
+			$performer = $this->userFactory->newFromName( $this->getOption( 'performer' ) );
 		}
 
 		if ( !( $performer instanceof User ) || $performer->getId() === 0 ) {
