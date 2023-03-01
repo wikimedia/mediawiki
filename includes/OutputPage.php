@@ -3942,11 +3942,8 @@ class OutputPage extends ContextSource {
 		return $tags;
 	}
 
-	/** Canonical URL and alternate URLs */
-
 	/**
-	 * Get head links relating to the canonical URL
-	 * Note: There should only be one canonical URL.
+	 * Canonical URL and alternate URLs
 	 *
 	 * isCanonicalUrlAction affects all requests where "setArticleRelated" is true.
 	 * This is typically all requests that show content (query title, curid, oldid, diff),
@@ -3956,7 +3953,11 @@ class OutputPage extends ContextSource {
 	 *  content itself, so they may not be canonicalized to the view page url.
 	 * TODO: this logic should be owned by Action subclasses.
 	 * See T67402
-	 *
+	 */
+
+	/**
+	 * Get head links relating to the canonical URL
+	 * Note: There should only be one canonical URL.
 	 * @param Config $config
 	 * @return array
 	 */
@@ -3968,12 +3969,21 @@ class OutputPage extends ContextSource {
 			$query = [];
 			$action = $this->getContext()->getActionName();
 			$isCanonicalUrlAction = in_array( $action, [ 'history', 'info' ] );
+			$services = MediaWikiServices::getInstance();
+			$languageConverterFactory = $services->getLanguageConverterFactory();
+			$isLangConversionDisabled = $languageConverterFactory->isConversionDisabled();
+			$pageLang = $this->getTitle()->getPageLanguage();
+			$pageLanguageConverter = $languageConverterFactory->getLanguageConverter( $pageLang );
+			$urlVariant = $pageLanguageConverter->getURLVariant();
 
 			if ( $canonicalUrl !== false ) {
 				$canonicalUrl = wfExpandUrl( $canonicalUrl, PROTO_CANONICAL );
 			} elseif ( $this->isArticleRelated() ) {
 				if ( $isCanonicalUrlAction ) {
 					$query['action'] = $action;
+				} elseif ( !$isLangConversionDisabled && $urlVariant ) {
+					# T54429, T108443: Making canonical URL language-variant-aware.
+					$query['variant'] = $urlVariant;
 				}
 				$canonicalUrl = $this->getTitle()->getCanonicalURL( $query );
 			} else {
@@ -4003,6 +4013,8 @@ class OutputPage extends ContextSource {
 	private function getHeadLinksAlternateURLsArray() {
 		$tags = [];
 		$languageUrls = [];
+		$action = $this->getContext()->getActionName();
+		$isCanonicalUrlAction = in_array( $action, [ 'history', 'info' ] );
 		$services = MediaWikiServices::getInstance();
 		$languageConverterFactory = $services->getLanguageConverterFactory();
 		$isLangConversionDisabled = $languageConverterFactory->isConversionDisabled();
@@ -4010,7 +4022,12 @@ class OutputPage extends ContextSource {
 		$pageLanguageConverter = $languageConverterFactory->getLanguageConverter( $pageLang );
 
 		# Language variants
-		if ( !$isLangConversionDisabled || $pageLanguageConverter->hasVariants() ) {
+		if (
+			$this->isArticleRelated() &&
+			!$isCanonicalUrlAction &&
+			$pageLanguageConverter->hasVariants() &&
+			!$isLangConversionDisabled
+		) {
 			$variants = $pageLanguageConverter->getVariants();
 			foreach ( $variants as $variant ) {
 				$bcp47 = LanguageCode::bcp47( $variant );
