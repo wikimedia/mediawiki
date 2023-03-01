@@ -126,7 +126,7 @@
 			} );
 		}
 
-		var search = OO.ui.infuse( $( '.mw-prefs-search' ) );
+		var search = OO.ui.infuse( $( '.mw-prefs-search' ) ).fieldWidget;
 		search.$input.on( 'focus', function () {
 			if ( !index ) {
 				// Lazy-build index on first focus

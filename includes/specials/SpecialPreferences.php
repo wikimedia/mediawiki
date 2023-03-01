@@ -118,11 +118,17 @@ class SpecialPreferences extends SpecialPage {
 		}
 		$out->addJsConfigVars( 'wgPreferencesTabs', $prefTabs );
 
-		$out->addHTML( new \OOUI\SearchInputWidget( [
-			'placeholder' => $this->msg( 'searchprefs' )->text(),
-			'classes' => [ 'mw-prefs-search' ],
-			'infusable' => true
-		] ) );
+		$out->addHTML( new \OOUI\FieldLayout(
+			new \OOUI\SearchInputWidget( [
+				'placeholder' => $this->msg( 'searchprefs' )->text(),
+			] ),
+			[
+				'classes' => [ 'mw-prefs-search' ],
+				'label' => $this->msg( 'searchprefs' )->text(),
+				'invisibleLabel' => true,
+				'infusable' => true,
+			]
+		) );
 		$htmlForm->show();
 	}
 
