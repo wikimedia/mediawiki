@@ -26,6 +26,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Request\WebResponse;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Message;
@@ -33,7 +34,6 @@ use MWCryptHash;
 use Psr\Log\LoggerInterface;
 use User;
 use WebRequest;
-use WebResponse;
 use Wikimedia\IPSet;
 use Wikimedia\IPUtils;
 

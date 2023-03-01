@@ -2,11 +2,11 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use MediaWiki\Request\WebResponse;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\Validator\JsonBodyValidator;
-use WebResponse;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 

@@ -26,8 +26,10 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Request\FauxResponse;
 use MediaWiki\Request\PathRouter;
 use MediaWiki\Request\WebRequestUpload;
+use MediaWiki\Request\WebResponse;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionManager;

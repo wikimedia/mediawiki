@@ -21,6 +21,9 @@
  * @file
  */
 
+namespace MediaWiki\Request;
+
+use Config;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 
@@ -184,3 +187,5 @@ class FauxResponse extends WebResponse {
 	}
 
 }
+
+class_alias( FauxResponse::class, 'FauxResponse' );

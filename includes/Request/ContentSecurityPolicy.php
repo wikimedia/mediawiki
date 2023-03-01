@@ -34,7 +34,6 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use UnexpectedValueException;
-use WebResponse;
 
 class ContentSecurityPolicy {
 	public const REPORT_ONLY_MODE = 1;
