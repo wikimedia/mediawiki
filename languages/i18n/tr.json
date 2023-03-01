@@ -987,7 +987,7 @@
 	"revdelete-hide-comment": "Değişiklik özeti",
 	"revdelete-hide-user": "Editörün kullanıcı adı/IP adresi",
 	"revdelete-hide-restricted": "Verileri hizmetlilerle birlikte diğerlerinden de sakla",
-	"revdelete-radio-same": "(değiştirme)",
+	"revdelete-radio-same": "Değiştirme",
 	"revdelete-radio-set": "Gizli",
 	"revdelete-radio-unset": "Görünür",
 	"revdelete-suppress": "Verileri hem diğerlerinden hem de hizmetlilerden gizle",

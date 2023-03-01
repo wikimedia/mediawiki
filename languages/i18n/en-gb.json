@@ -77,7 +77,6 @@
 	"title-invalid-talk-namespace": "The requested page title refers to a talk page that can not exist.",
 	"botpasswords-no-central-id": "To use bot passwords, you must be logged in to a centralised account.",
 	"botpasswords-label-resetpassword": "Reset password",
-	"revdelete-radio-same": "Do not change",
 	"search-invalid-sort-order": "Sort order of $1 is unrecognised, default sorting will be applied. Valid sort orders are: $2",
 	"search-unknown-profile": "Search profile of $1 is unrecognised, default search profile will be applied.",
 	"linterror-tidy-font-bug": "Font tag tries to change link colour",

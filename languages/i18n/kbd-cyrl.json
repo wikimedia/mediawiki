@@ -647,6 +647,7 @@
 	"searchprofile-advanced": "Убгъуа(уэ)",
 	"searchprofile-articles-tooltip": "Лъыхъуэн $1-м",
 	"search-result-size": "$1 ({{PLURAL:$2|псалъэ $2|псалъэхэр $2|псалъэхэр $2}})",
+	"search-result-category-size": "{{PLURAL:$1|вхождение|вхождения|вхождений}} ($2 {{PLURAL:$2|подкатегория|подкатегории|подкатегорий}}, $3 {{PLURAL:$3|файл|файла|файлов}})",
 	"search-redirect": "‎(къызыхэкӀыр $1)",
 	"search-section": "‎(Ӏыхьэ \"$1\")",
 	"search-file-match": "(файлым илъхэм тохуэ)",
@@ -1002,5 +1003,13 @@
 	"skin-action-protect": "Хъумэн",
 	"skin-action-undelete": "ЗыфӀэгъэувэжын",
 	"skin-action-delete": "Ихын",
-	"skin-action-move": "ЦӀэр хъуэжын"
+	"skin-action-move": "ЦӀэр хъуэжын",
+	"blockedtext-made-by": "Тезубыдар админинстраторырщ $1.",
+	"blockedtext-reason-comment": "Ар къызыхэкӀар мыращ: <em>$1</em>.",
+	"blockedtext-start-time": "Гъэбыдэныгъэр щыщӀидзар: $1",
+	"blockedtext-expiration-time": "Гъэбыдэныгъэр щиухыр: $1",
+	"blockedtext-intended-blockee": "Теубыдыныгъэм и щхьэусыгъуэр: $1",
+	"blockedtext-contact-blocker-admin": "Зыхуэптх хъунур  $1 е нэгъуэщӀ[[{{MediaWiki:Grouppage-sysop}}|администраторхэм]], теубыдыгъэм теухуауэ.",
+	"blockedtext-block-ip": "Уи иджырей IP-адресыр - $1",
+	"blockedtext-include-details-queries": "КхъыӀэ мыхэр псори  укъыщытхуэтхэкӀэ уи тхыгъэм хэтхэ."
 }
