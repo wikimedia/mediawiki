@@ -31,9 +31,9 @@ use MediaWiki\Page\PageReference;
 use MediaWiki\Page\ProperPageIdentity;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Assert\Assert;
-use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
+use Wikimedia\Rdbms\Platform\ISQLPlatform;
 
 /**
  * Class representing a list of titles
@@ -363,7 +363,7 @@ class LinkBatch {
 	 * Construct a WHERE clause which will match all the given titles.
 	 *
 	 * @param string $prefix The appropriate table's field name prefix ('page', 'pl', etc)
-	 * @param IDatabase $db DB object to use
+	 * @param ISQLPlatform $db DB object to use
 	 * @return string|false String with SQL where clause fragment, or false if no items.
 	 */
 	public function constructSet( $prefix, $db ) {
