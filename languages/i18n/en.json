@@ -1111,6 +1111,8 @@
 	"prefs-email": "Email options",
 	"prefs-rendering": "Appearance",
 	"prefs-searchmisc": "General",
+	"searchprefs": "Search preferences",
+	"searchprefs-noresults": "No results",
 	"saveprefs": "Save",
 	"restoreprefs": "Restore all default settings",
 	"prefs-editing": "Editing",
