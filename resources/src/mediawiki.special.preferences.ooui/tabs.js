@@ -76,7 +76,7 @@
 			var $fields = tabs.contentPanel.$element.find( '[class^=mw-htmlform-field-]:not( #mw-prefsection-betafeatures .mw-htmlform-field-HTMLInfoField )' );
 			$fields.each( function () {
 				var $field = $( this );
-				var $wrapper = $field.closest( '.mw-prefs-fieldset-wrapper' );
+				var $wrapper = $field.parents( '.mw-prefs-fieldset-wrapper' );
 				var $tabPanel = $field.closest( '.oo-ui-tabPanelLayout' );
 				$field.find( '.oo-ui-labelElement-label, .oo-ui-textInputWidget .oo-ui-inputWidget-input, p' ).each( function () {
 
