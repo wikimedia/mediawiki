@@ -135,6 +135,79 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers OutputPage::setCanonicalUrl
+	 * @covers OutputPage::getCanonicalUrl
+	 * @covers OutputPage::getHeadLinksArray
+	 */
+	public function testSetCanonicalUrl() {
+		$op = $this->newInstance();
+		$op->setCanonicalUrl( 'http://example.comm' );
+		$op->setCanonicalUrl( 'http://example.com' );
+
+		$this->assertSame( 'http://example.com', $op->getCanonicalUrl() );
+
+		$headLinks = $op->getHeadLinksArray();
+
+		$this->assertContains( Html::element( 'link', [
+			'rel' => 'canonical', 'href' => 'http://example.com'
+		] ), $headLinks );
+
+		$this->assertNotContains( Html::element( 'link', [
+			'rel' => 'canonical', 'href' => 'http://example.comm'
+		] ), $headLinks );
+	}
+
+	public static function provideGetHeadLinksArray() {
+		return [
+			[
+				[
+					'EnableCanonicalServerLink' => true,
+				],
+				wfExpandUrl( '/wiki/Hello', PROTO_CANONICAL ),
+				true,
+				'/wiki/Hello'
+			],
+			[
+				[
+					'EnableCanonicalServerLink' => true,
+				],
+				wfExpandUrl( '/index.php/My_test_page', PROTO_CANONICAL ),
+				true,
+				null
+			],
+			[
+				[
+					'EnableCanonicalServerLink' => true,
+				],
+				'https://www.mediawiki.org/wiki/Manual:FauxRequest.php',
+				false,
+				null
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetHeadLinksArray
+	 * @covers OutputPage::getHeadLinksArray
+	 */
+	public function testGetHeadLinksArray( $config, $canonicalUrl, $isArticleRelated, $canonicalUrlToSet = null ) {
+		$request = new FauxRequest();
+		$request->setRequestURL( 'https://www.mediawiki.org/wiki/Manual:FauxRequest.php' );
+		$op = $this->newInstance( $config, $request );
+		if ( $canonicalUrlToSet ) {
+			$op->setCanonicalUrl( $canonicalUrlToSet );
+		}
+		$op->setArticleRelated( $isArticleRelated );
+		$headLinks = $op->getHeadLinksArray();
+		$this->assertSame(
+			Html::element( 'link',
+				[ 'rel' => 'canonical', 'href' => $canonicalUrl ]
+			),
+			$headLinks['link-canonical']
+		);
+	}
+
+	/**
 	 * Test the generation of hreflang Tags when site language has variants
 	 *
 	 * @covers OutputPage::getHeadLinksArray
@@ -146,11 +219,38 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$op = $this->newInstance();
+		$headLinks = $op->getHeadLinksArray();
 
+		# T123901, T305540, T108443: Don't use language variant link for mixed-variant variant
+		#  (the language code with converter / the main code)
 		$this->assertSame(
 			Html::element( 'link', [ 'rel' => 'alternate', 'hreflang' => 'zh',
-				'href' => 'http://example.org/index.php?title=My_test_page&variant=zh' ] ),
-			$op->getHeadLinksArray()['variant-zh']
+				'href' => 'http://example.org/index.php/My_test_page' ] ),
+			$headLinks['link-alternate-language-zh']
+		);
+
+		# Make sure alternate URLs use BCP 47 codes in hreflang
+		$this->assertSame(
+			Html::element( 'link', [ 'rel' => 'alternate', 'hreflang' => 'zh-Hant-TW',
+				'href' => 'http://example.org/index.php?title=My_test_page&variant=zh-tw' ] ),
+			$headLinks['link-alternate-language-zh-hant-tw']
+		);
+
+		# Make sure $wgVariantArticlePath work
+		# We currently use MediaWiki internal language code as the primary variant URL parameter
+		$this->setMwGlobals( [
+			'wgServer' => 'http://example.org',
+			'wgLanguageCode' => 'zh',
+			'wgVariantArticlePath' => '/$2/$1',
+		] );
+
+		$op = $this->newInstance();
+		$headLinks = $op->getHeadLinksArray();
+
+		$this->assertSame(
+			Html::element( 'link', [ 'rel' => 'alternate', 'hreflang' => 'zh-Hant-TW',
+				'href' => 'http://example.org/zh-tw/My_test_page' ] ),
+			$headLinks['link-alternate-language-zh-hant-tw']
 		);
 	}
 
@@ -283,29 +383,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		foreach ( $links as $link ) {
 			$this->assertContains( Html::element( 'link', $link ), $result );
 		}
-	}
-
-	/**
-	 * @covers OutputPage::setCanonicalUrl
-	 * @covers OutputPage::getCanonicalUrl
-	 * @covers OutputPage::getHeadLinksArray
-	 */
-	public function testSetCanonicalUrl() {
-		$op = $this->newInstance();
-		$op->setCanonicalUrl( 'http://example.comm' );
-		$op->setCanonicalUrl( 'http://example.com' );
-
-		$this->assertSame( 'http://example.com', $op->getCanonicalUrl() );
-
-		$headLinks = $op->getHeadLinksArray();
-
-		$this->assertContains( Html::element( 'link', [
-			'rel' => 'canonical', 'href' => 'http://example.com'
-		] ), $headLinks );
-
-		$this->assertNotContains( Html::element( 'link', [
-			'rel' => 'canonical', 'href' => 'http://example.comm'
-		] ), $headLinks );
 	}
 
 	/**
