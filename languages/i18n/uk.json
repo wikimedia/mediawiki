@@ -4265,6 +4265,8 @@
 	"newpages-showhide-patrolled": "$1 перевірені редагування",
 	"newpages-showhide-redirect": "$1 перенаправлення",
 	"newpages-showhide-registered": "$1 зареєстрованих користувачів",
+	"blockedtext-made-by": "Блокування зроблено $1.",
+	"blockedtext-reason-comment": "Причиною вказано <em>$1</em>",
 	"blockedtext-start-time": "Початок блокування: $1",
 	"blockedtext-expiration-time": "Закінчення блокування: $1",
 	"blockedtext-expiration-longest-block": "Закінчення найдовшого блокування: $1",

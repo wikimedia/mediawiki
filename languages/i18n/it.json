@@ -1013,6 +1013,8 @@
 	"revdelete-radio-same": "Non modificare",
 	"revdelete-radio-set": "Nascondi",
 	"revdelete-radio-unset": "Mostra",
+	"revdelete-radio-set-suppress": "Sopprimi",
+	"revdelete-radio-unset-suppress": "Annulla soppressione",
 	"revdelete-suppress": "Nascondi le informazioni anche agli amministratori",
 	"revdelete-unsuppress": "Rimuovi le limitazioni sulle versioni ripristinate",
 	"revdelete-log": "Motivo:",
