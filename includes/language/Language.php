@@ -711,14 +711,15 @@ class Language implements Bcp47Code {
 				}
 			}
 
+			$langConverter = $this->getConverterInternal();
 			# Also add converted namespace names as aliases, to avoid confusion.
 			$convertedNames = [];
-			foreach ( $this->getConverter()->getVariants() as $variant ) {
+			foreach ( $langConverter->getVariants() as $variant ) {
 				if ( $variant === $this->mCode ) {
 					continue;
 				}
 				foreach ( $this->getNamespaces() as $ns => $_ ) {
-					$convertedNames[$this->getConverter()->convertNamespace( $ns, $variant )] = $ns;
+					$convertedNames[$langConverter->convertNamespace( $ns, $variant )] = $ns;
 				}
 			}
 
@@ -4102,18 +4103,19 @@ class Language implements Bcp47Code {
 	 *
 	 * @since 1.19
 	 * @deprecated since 1.35 Use MediaWikiServices::getInstance()->getLanguageConverterFactory()
-	 *     ->getLanguageConverter( $language ) instead
+	 *     ->getLanguageConverter( $language ) instead. Hard-deprecated since 1.40.
 	 *
 	 * @return ILanguageConverter
 	 */
 	public function getConverter(): ILanguageConverter {
-		return $this->converterFactory->getLanguageConverter( $this );
+		wfDeprecated( __METHOD__, '1.35' );
+		return $this->getConverterInternal();
 	}
 
 	/**
 	 * convert text to a variant
 	 *
-	 * @deprecated since 1.35 use LanguageConverter::autoConvert
+	 * @deprecated since 1.35 use LanguageConverter::autoConvert. Hard-deprecated since 1.40.
 	 *
 	 * @param string $text text to convert
 	 * @param string|false $variant variant to convert to, or false to use the user's preferred
@@ -4121,19 +4123,21 @@ class Language implements Bcp47Code {
 	 * @return string the converted string
 	 */
 	public function autoConvert( $text, $variant = false ) {
-		return $this->getConverter()->autoConvert( $text, $variant );
+		wfDeprecated( __METHOD__, '1.35' );
+		return $this->getConverterInternal()->autoConvert( $text, $variant );
 	}
 
 	/**
 	 * convert text to all supported variants
 	 *
-	 * @deprecated since 1.35 use LanguageConverter::autoConvertToAllVariants
+	 * @deprecated since 1.35 use LanguageConverter::autoConvertToAllVariants. Hard-deprecated since 1.40.
 	 *
 	 * @param string $text
 	 * @return array
 	 */
 	public function autoConvertToAllVariants( $text ) {
-		return $this->getConverter()->autoConvertToAllVariants( $text );
+		wfDeprecated( __METHOD__, '1.35' );
+		return $this->getConverterInternal()->autoConvertToAllVariants( $text );
 	}
 
 	/**
@@ -4145,19 +4149,20 @@ class Language implements Bcp47Code {
 	 *  escaped the input. Never feed this method user controlled text that
 	 *  is not properly escaped!
 	 *
-	 * @deprecated since 1.35 use LanguageConverter::convert
+	 * @deprecated since 1.35 use LanguageConverter::convert. Hard-deprecated since 1.40.
 	 *
 	 * @param string $text Content that has been already escaped for use in HTML
 	 * @return string HTML
 	 */
 	public function convert( $text ) {
-		return $this->getConverter()->convert( $text );
+		wfDeprecated( __METHOD__, '1.35' );
+		return $this->getConverterInternal()->convert( $text );
 	}
 
 	/**
 	 * Convert a namespace index to a string in the preferred variant
 	 *
-	 * @deprecated since 1.35 use LanguageConverter::convertNamespace instead
+	 * @deprecated since 1.35 use LanguageConverter::convertNamespace instead. Hard-deprecated since 1.40.
 	 *
 	 * @param int $ns namespace index (https://www.mediawiki.org/wiki/Manual:Namespace)
 	 * @param string|null $variant variant to convert to, or null to use the user's preferred
@@ -4165,17 +4170,19 @@ class Language implements Bcp47Code {
 	 * @return string a string representation of the namespace
 	 */
 	public function convertNamespace( $ns, $variant = null ) {
-		return $this->getConverter()->convertNamespace( $ns, $variant );
+		wfDeprecated( __METHOD__, '1.35' );
+		return $this->getConverterInternal()->convertNamespace( $ns, $variant );
 	}
 
 	/**
 	 * Check if this is a language with variants
 	 *
-	 * @deprecated since 1.35 use LanguageConverter::hasVariants instead
+	 * @deprecated since 1.35 use LanguageConverter::hasVariants instead. Hard-deprecated since 1.40.
 	 *
 	 * @return bool
 	 */
 	public function hasVariants() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return count( $this->getVariants() ) > 1;
 	}
 
@@ -4185,85 +4192,93 @@ class Language implements Bcp47Code {
 	 * Compare to LanguageConverter::validateVariant() which does a more
 	 * lenient check and attempts to coerce the given code to a valid one.
 	 *
-	 * @deprecated since 1.35 use LanguageConverter::hasVariant instead
+	 * @deprecated since 1.35 use LanguageConverter::hasVariant instead. Hard-deprecated since 1.40.
 	 *
 	 * @since 1.19
 	 * @param string $variant
 	 * @return bool
 	 */
 	public function hasVariant( $variant ) {
-		return $this->getConverter()->hasVariant( $variant );
+		wfDeprecated( __METHOD__, '1.35' );
+		return $this->getConverterInternal()->hasVariant( $variant );
 	}
 
 	/**
 	 * Perform output conversion on a string, and encode for safe HTML output.
 	 *
-	 * @deprecated since 1.35 use LanguageConverter::convertHtml instead
+	 * @deprecated since 1.35 use LanguageConverter::convertHtml instead. Hard-deprecated since 1.40.
 	 *
 	 * @param string $text Text to be converted
 	 * @return string
 	 * @todo this should get integrated somewhere sensible
 	 */
 	public function convertHtml( $text ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return htmlspecialchars( $this->convert( $text ) );
 	}
 
 	/**
-	 * @deprecated since 1.35 use LanguageConverter::convertCategoryKey instead
+	 * @deprecated since 1.35 use LanguageConverter::convertCategoryKey instead. Hard-deprecated since 1.40.
 	 *
 	 * @param string $key
 	 * @return string
 	 */
 	public function convertCategoryKey( $key ) {
-		return $this->getConverter()->convertCategoryKey( $key );
+		wfDeprecated( __METHOD__, '1.35' );
+		return $this->getConverterInternal()->convertCategoryKey( $key );
 	}
 
 	/**
 	 * Get the list of variants supported by this language
 	 * see sample implementation in LanguageZh.php
 	 *
-	 * @deprecated since 1.35  use LanguageConverter::getVariants instead
+	 * @deprecated since 1.35  use LanguageConverter::getVariants instead. Hard-deprecated since 1.40.
 	 *
 	 * @return string[] An array of language codes
 	 */
 	public function getVariants() {
-		return $this->getConverter()->getVariants();
+		wfDeprecated( __METHOD__, '1.35' );
+		return $this->getConverterInternal()->getVariants();
 	}
 
 	/**
-	 * @deprecated since 1.35 use LanguageConverter::getPreferredVariant instead
+	 * @deprecated since 1.35 use LanguageConverter::getPreferredVariant instead. Hard-deprecated since 1.40.
 	 * @return string
 	 */
 	public function getPreferredVariant() {
-		return $this->getConverter()->getPreferredVariant();
+		wfDeprecated( __METHOD__, '1.35' );
+		return $this->getConverterInternal()->getPreferredVariant();
 	}
 
 	/**
-	 * @deprecated since 1.35 use LanguageConverter::getDefaultVariant instead
+	 * @deprecated since 1.35 use LanguageConverter::getDefaultVariant instead. Hard-deprecated since 1.40.
 	 * @return string
 	 */
 	public function getDefaultVariant() {
-		return $this->getConverter()->getDefaultVariant();
+		wfDeprecated( __METHOD__, '1.35' );
+		return $this->getConverterInternal()->getDefaultVariant();
 	}
 
 	/**
-	 * @deprecated since 1.35 use LanguageConverter::getURLVariant instead
+	 * @deprecated since 1.35 use LanguageConverter::getURLVariant instead. Hard-deprecated since 1.40.
 	 * @return string
 	 */
 	public function getURLVariant() {
-		return $this->getConverter()->getURLVariant();
+		wfDeprecated( __METHOD__, '1.35' );
+		return $this->getConverterInternal()->getURLVariant();
 	}
 
 	/**
 	 * returns language specific options used by User::getPageRenderHash()
 	 * for example, the preferred language variant
 	 *
-	 * @deprecated since 1.35 use LanguageConverter::getExtraHashOptions instead
+	 * @deprecated since 1.35 use LanguageConverter::getExtraHashOptions instead. Hard-deprecated since 1.40.
 	 *
 	 * @return string
 	 */
 	public function getExtraHashOptions() {
-		return $this->getConverter()->getExtraHashOptions();
+		wfDeprecated( __METHOD__, '1.35' );
+		return $this->getConverterInternal()->getExtraHashOptions();
 	}
 
 	/**
@@ -4753,12 +4768,13 @@ class Language implements Bcp47Code {
 	/**
 	 * Get the conversion rule title, if any.
 	 *
-	 * @deprecated since 1.35 use LanguageConverter::getConvRuleTitle instead
+	 * @deprecated since 1.35 use LanguageConverter::getConvRuleTitle instead. Hard-deprecated since 1.40.
 	 *
 	 * @return string|false
 	 */
 	public function getConvRuleTitle() {
-		return $this->getConverter()->getConvRuleTitle();
+		wfDeprecated( __METHOD__, '1.35' );
+		return $this->getConverterInternal()->getConvRuleTitle();
 	}
 
 	/**
@@ -4847,6 +4863,16 @@ class Language implements Bcp47Code {
 		$index = $this->getPluralRuleIndexNumber( $number );
 		$pluralRuleTypes = $this->getPluralRuleTypes();
 		return $pluralRuleTypes[$index] ?? 'other';
+	}
+
+	/**
+	 * Return the LanguageConverter for this language,
+	 * convenience function for use in the language classes only
+	 *
+	 * @return ILanguageConverter
+	 */
+	protected function getConverterInternal() {
+		return $this->converterFactory->getLanguageConverter( $this );
 	}
 
 	/**
