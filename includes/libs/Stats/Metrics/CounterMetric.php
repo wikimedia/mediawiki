@@ -25,7 +25,6 @@ use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Stats\Exceptions\IllegalOperationException;
 use Wikimedia\Stats\Sample;
-use Wikimedia\Stats\StatsUtils;
 
 /**
  * Counter Metric Implementation
@@ -61,11 +60,10 @@ class CounterMetric implements MetricInterface {
 	/**
 	 * Increments metric by one.
 	 *
-	 * @param string[] $labels
 	 * @return void
 	 */
-	public function increment( array $labels = [] ): void {
-		$this->incrementBy( 1, $labels );
+	public function increment(): void {
+		$this->incrementBy( 1 );
 	}
 
 	/**
@@ -76,10 +74,6 @@ class CounterMetric implements MetricInterface {
 	 * @return void
 	 */
 	public function incrementBy( int $value, array $labels = [] ): void {
-		StatsUtils::validateLabels( $this->baseMetric->getLabelKeys(), $labels );
-		foreach ( $this->baseMetric->getLabelKeys() as $i => $labelKey ) {
-			$this->baseMetric->addLabel( $labelKey, $labels[$i] );
-		}
 		$this->baseMetric->addSample( new Sample( $this->baseMetric->getLabelValues(), $value ) );
 	}
 
@@ -113,7 +107,8 @@ class CounterMetric implements MetricInterface {
 		try {
 			$this->baseMetric->setSampleRate( $sampleRate );
 		} catch ( IllegalOperationException | InvalidArgumentException $ex ) {
-			$this->logger->error( $ex->getMessage() );
+			// Log the condition and give the caller something that will absorb calls.
+			trigger_error( $ex->getMessage(), E_USER_WARNING );
 			return new NullMetric;
 		}
 		return $this;
@@ -125,18 +120,12 @@ class CounterMetric implements MetricInterface {
 	}
 
 	/** @inheritDoc */
-	public function withLabelKey( string $key ): CounterMetric {
-		$this->baseMetric->addLabelKey( $key );
-		return $this;
-	}
-
-	/** @inheritDoc */
 	public function withLabel( string $key, string $value ) {
 		try {
 			$this->baseMetric->addLabel( $key, $value );
-			$this->baseMetric->clearLabels(); // Support legacy behavior for now
 		} catch ( IllegalOperationException | InvalidArgumentException $ex ) {
-			$this->logger->error( $ex->getMessage() );
+			// Log the condition and give the caller something that will absorb calls.
+			trigger_error( $ex->getMessage(), E_USER_WARNING );
 			return new NullMetric;
 		}
 		return $this;

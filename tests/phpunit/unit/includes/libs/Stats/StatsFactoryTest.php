@@ -6,7 +6,6 @@ use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\Stats\Emitters\NullEmitter;
-use Wikimedia\Stats\Exceptions\InvalidConfigurationException;
 use Wikimedia\Stats\Exceptions\UnsupportedFormatException;
 use Wikimedia\Stats\Metrics\CounterMetric;
 use Wikimedia\Stats\Metrics\GaugeMetric;
@@ -24,27 +23,18 @@ use Wikimedia\Stats\StatsUtils;
 class StatsFactoryTest extends TestCase {
 
 	public function testGetCounter() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
-		$this->assertInstanceOf( CounterMetric::class, $m->getCounter( [
-			'name' => 'test',
-			'component' => 'testComponent'
-		] ) );
+		$m = new StatsFactory( 'testExtension', new StatsCache, new NullEmitter, new NullLogger );
+		$this->assertInstanceOf( CounterMetric::class, $m->getCounter( 'test' ) );
 	}
 
 	public function testGetGauge() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
-		$this->assertInstanceOf( GaugeMetric::class, $m->getGauge( [
-			'name' => 'test',
-			'component' => 'testComponent'
-		] ) );
+		$m = new StatsFactory( 'testExtension', new StatsCache, new NullEmitter, new NullLogger );
+		$this->assertInstanceOf( GaugeMetric::class, $m->getGauge( 'test' ) );
 	}
 
 	public function testGetTiming() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
-		$this->assertInstanceOf( TimingMetric::class, $m->getTiming( [
-			'name' => 'test',
-			'component' => 'testComponent'
-		] ) );
+		$m = new StatsFactory( 'testExtension', new StatsCache, new NullEmitter, new NullLogger );
+		$this->assertInstanceOf( TimingMetric::class, $m->getTiming( 'test' ) );
 	}
 
 	public function testUnsupportedOutputFormat() {
@@ -58,28 +48,14 @@ class StatsFactoryTest extends TestCase {
 	}
 
 	public function testUnsetNameConfig() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
-		$this->expectException( InvalidConfigurationException::class );
-		$m->getCounter( [ 'component' => 'a' ] );
+		$m = new StatsFactory( 'test', new StatsCache, new NullEmitter, new NullLogger );
+		$this->expectException( InvalidArgumentException::class );
+		$m->getCounter( '' );
 	}
 
-	public function testUnsetExtensionConfig() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
-		$this->expectException( InvalidConfigurationException::class );
-		$m->getCounter( [ 'name' => 'a' ] );
-	}
-
-	public function testBlankNameConfig() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
-		$this->expectException( InvalidConfigurationException::class );
-		$m->getCounter( [ 'name' => '' ] );
-	}
-
-	public function testGetMetricWithLabelMismatch() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
-		$m->getCounter( [ 'name' => 'test_metric', 'component' => 'test', 'labels' => [ 'a' ] ] );
-		$metric = $m->getCounter( [ 'name' => 'test_metric', 'component' => 'test', 'labels' => [ 'a', 'b' ] ] );
-		$this->assertInstanceOf( NullMetric::class, $metric );
+	public function testUnsetComponentConfig() {
+		$this->expectException( InvalidArgumentException::class );
+		new StatsFactory( '', new StatsCache, new NullEmitter, new NullLogger );
 	}
 
 	public function testNormalizeString() {
@@ -96,12 +72,21 @@ class StatsFactoryTest extends TestCase {
 		);
 	}
 
+	public function testGetNullMetricWithLabelMismatch() {
+		$m = new StatsFactory( 'test', new StatsCache, new NullEmitter, new NullLogger );
+		// initialize a counter and add a sample
+		$m->getCounter( 'test_metric' )->withLabel( 'a', 'a' )->increment();
+		// get the same counter and attempt to add a different label key
+		$metric = @$m->getCounter( 'test_metric' )->withLabel( 'b', 'b' );
+		$this->assertInstanceOf( NullMetric::class, $metric );
+	}
+
 	public function testGetNullMetricOnNameCollision() {
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
+		$m = new StatsFactory( 'testComponent', new StatsCache, new NullEmitter, new NullLogger );
 		// define metric as counter 'test'
-		$m->getCounter( [ 'name' => 'test', 'component' => 'testComponent' ] );
+		$m->getCounter( 'test' );
 		// redefine metric as timing 'test'
-		$metric = @$m->getTiming( [ 'name' => 'test', 'component' => 'testComponent' ] );
+		$metric = @$m->getTiming( 'test' );
 		// gauge response must be null metric
 		$this->assertInstanceOf( NullMetric::class, $metric );
 		// NullMetric should not throw for any method call

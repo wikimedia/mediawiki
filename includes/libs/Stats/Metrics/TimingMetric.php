@@ -62,14 +62,9 @@ class TimingMetric implements MetricInterface {
 	 * Records a previously calculated observation.
 	 *
 	 * @param float $value
-	 * @param string[] $labels
 	 * @return void
 	 */
-	public function observe( float $value, array $labels = [] ): void {
-		$this->baseMetric->clearLabels();
-		foreach ( $this->baseMetric->getLabelKeys() as $i => $labelKey ) {
-			$this->baseMetric->addLabel( $labelKey, $labels[$i] );
-		}
+	public function observe( float $value ): void {
 		$this->baseMetric->addSample( new Sample( $this->baseMetric->getLabelValues(), $value ) );
 	}
 
@@ -103,7 +98,8 @@ class TimingMetric implements MetricInterface {
 		try {
 			$this->baseMetric->setSampleRate( $sampleRate );
 		} catch ( IllegalOperationException | InvalidArgumentException $ex ) {
-			$this->logger->error( $ex->getMessage() );
+			// Log the condition and give the caller something that will absorb calls.
+			trigger_error( $ex->getMessage(), E_USER_WARNING );
 			return new NullMetric;
 		}
 		return $this;
@@ -115,18 +111,12 @@ class TimingMetric implements MetricInterface {
 	}
 
 	/** @inheritDoc */
-	public function withLabelKey( string $key ): TimingMetric {
-		$this->baseMetric->addLabelKey( $key );
-		return $this;
-	}
-
-	/** @inheritDoc */
 	public function withLabel( string $key, string $value ) {
 		try {
 			$this->baseMetric->addLabel( $key, $value );
-			$this->baseMetric->clearLabels(); // Support legacy behavior for now
 		} catch ( IllegalOperationException | InvalidArgumentException $ex ) {
-			$this->logger->error( $ex->getMessage() );
+			// Log the condition and give the caller something that will absorb calls.
+			trigger_error( $ex->getMessage(), E_USER_WARNING );
 			return new NullMetric;
 		}
 		return $this;

@@ -23,7 +23,6 @@ namespace Wikimedia\Stats;
 
 use InvalidArgumentException;
 use Wikimedia\Stats\Exceptions\InvalidConfigurationException;
-use Wikimedia\Stats\Exceptions\InvalidLabelsException;
 
 /**
  *
@@ -73,15 +72,6 @@ class StatsUtils {
 			}
 		}
 		return $output;
-	}
-
-	public static function validateLabels( array $labelKeys, array $labelValues ): void {
-		if ( count( $labelKeys ) !== count( $labelValues ) ) {
-			throw new InvalidLabelsException(
-				'Not enough or too many labels provided to metric instance.'
-				. 'Configured: ' . json_encode( $labelKeys ) . ' Provided: ' . json_encode( $labelValues )
-			);
-		}
 	}
 
 	/**

@@ -5,7 +5,6 @@ namespace Wikimedia\Tests\Stats;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use Wikimedia\Stats\Emitters\NullEmitter;
-use Wikimedia\Stats\Exceptions\InvalidLabelsException;
 use Wikimedia\Stats\OutputFormats;
 use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
@@ -27,39 +26,31 @@ class MetricTest extends TestCase {
 	public const TESTS = [
 		'basic' => [
 			'config' => [
-				'name' => 'test.unit',
-				'component' => 'testComponent',
-				'labels' => [],
+				'name' => 'test.unit'
 			],
 			'value' => 2,
 			'labels' => []
 		],
 		'invalidLabel' => [
 			'config' => [
-				'name' => 'test.unit',
-				'component' => 'testComponent',
-				'labels' => [ 'x' ]
+				'name' => 'test.unit'
 			],
 			'value' => 2,
-			'labels' => [ ': labelOne ' ]
+			'labels' => [ ': x' => 'labelOne' ]
 		],
 		'oneLabel' => [
 			'config' => [
-				'name' => 'test.unit',
-				'component' => 'testComponent',
-				'labels' => [ 'x' ]
+				'name' => 'test.unit'
 			],
 			'value' => 2,
-			'labels' => [ 'labelOne' ]
+			'labels' => [ 'x' => 'labelOne' ]
 		],
 		'multiLabel' => [
 			'config' => [
-				'name' => 'test.unit',
-				'component' => 'testComponent',
-				'labels' => [ 'x', 'y' ]
+				'name' => 'test.unit'
 			],
 			'value' => 2,
-			'labels' => [ 'labelOne', 'labelTwo' ]
+			'labels' => [ 'x' => 'labelOne', 'y' => 'labelTwo' ]
 		]
 	];
 
@@ -94,16 +85,7 @@ class MetricTest extends TestCase {
 			'mediawiki.testComponent.test_unit:2|ms|#x:labelOne,y:labelTwo' ],
 	];
 
-	public function testValidateLabels() {
-		$this->expectException( InvalidLabelsException::class );
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
-		$counter = $m->getCounter( [
-			'name' => 'test',
-			'component' => 'testComponent',
-			'labels' => [ 'a', 'b' ]
-		] );
-		$counter->increment( [ 'a' ] );
-	}
+	private $cache;
 
 	public function handleTest( $test, $type, $format ) {
 		$config = self::TESTS[$test];
@@ -112,19 +94,28 @@ class MetricTest extends TestCase {
 		$this->cache->clear();
 		$formatter = OutputFormats::getNewFormatter( OutputFormats::getFormatFromString( $format ) );
 		$emitter = OutputFormats::getNewEmitter( 'mediawiki', $this->cache, $formatter );
-		$statsFactory = new StatsFactory( $this->cache, $emitter, new NullLogger );
+		$statsFactory = new StatsFactory( 'testComponent', $this->cache, $emitter, new NullLogger );
 		switch ( $type ) {
 			case 'counter':
-				$metric = $statsFactory->getCounter( $config['config'] );
-				$metric->incrementBy( $config['value'], $config['labels'] );
+				$metric = $statsFactory->getCounter( $config['config']['name'] );
+				foreach ( $config['labels'] as $key => $value ) {
+					$metric->withLabel( $key, $value );
+				}
+				$metric->incrementBy( $config['value'] );
 				break;
 			case 'gauge':
-				$metric = $statsFactory->getGauge( self::TESTS[$test]['config'] );
-				$metric->set( $config['value'], $config['labels'] );
+				$metric = $statsFactory->getGauge( $config['config']['name'] );
+				foreach ( $config['labels'] as $key => $value ) {
+					$metric->withLabel( $key, $value );
+				}
+				$metric->set( $config['value'] );
 				break;
 			case 'timing':
-				$metric = $statsFactory->getTiming( self::TESTS[$test]['config'] );
-				$metric->observe( $config['value'], $config['labels'] );
+				$metric = $statsFactory->getTiming( $config['config']['name'] );
+				foreach ( $config['labels'] as $key => $value ) {
+					$metric->withLabel( $key, $value );
+				}
+				$metric->observe( $config['value'] );
 				break;
 			case 'default':
 				break;
@@ -153,30 +144,12 @@ class MetricTest extends TestCase {
 
 	public function testSampledMetrics() {
 		$rounds = 10;
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
-		$ten_percent_metrics = $m->getCounter(
-			[
-				'name' => 'test.sampled.ten',
-				'component' => 'counter',
-				'sampleRate' => 0.1
-			]
-		);
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
-		$all_metrics = $m->getCounter(
-			[
-				'name' => 'test.sampled.hundred',
-				'component' => 'counter',
-				'sampleRate' => 1.0
-			]
-		);
-		$m = new StatsFactory( new StatsCache, new NullEmitter, new NullLogger );
-		$zero_metrics = $m->getCounter(
-			[
-				'name' => 'test.sampled.zero',
-				'component' => 'counter',
-				'sampleRate' => 0.0
-			]
-		);
+		$m = new StatsFactory( 'counter', new StatsCache, new NullEmitter, new NullLogger );
+		$ten_percent_metrics = $m->getCounter( 'test.sampled.ten' )->withSampleRate( 0.1 );
+		$m = new StatsFactory( 'counter', new StatsCache, new NullEmitter, new NullLogger );
+		$all_metrics = $m->getCounter( 'test.sampled.hundred' )->withSampleRate( 1.0 );
+		$m = new StatsFactory( 'counter', new StatsCache, new NullEmitter, new NullLogger );
+		$zero_metrics = $m->getCounter( 'test.sampled.zero' )->withSampleRate( 0.0 );
 		for ( $i = 0; $i < $rounds; $i++ ) {
 			$ten_percent_metrics->increment();
 			$all_metrics->increment();

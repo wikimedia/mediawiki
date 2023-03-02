@@ -85,14 +85,6 @@ interface BaseMetricInterface {
 	public function addLabel( string $key, string $value ): void;
 
 	/**
-	 * Registers a label key
-	 *
-	 * @param string $key
-	 * @return void
-	 */
-	public function addLabelKey( string $key ): void;
-
-	/**
 	 * Returns array of label keys.
 	 *
 	 * @return string[]

@@ -1884,7 +1884,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * @since 1.41
+	 * @internal
 	 * @return StatsFactory
 	 */
 	public function getStatsFactory(): StatsFactory {

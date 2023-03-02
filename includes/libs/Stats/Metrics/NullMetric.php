@@ -39,10 +39,10 @@ class NullMetric {
 	 *
 	 * @param $method_name string
 	 * @param $args array
-	 * @return null
+	 * @return NullMetric
 	 */
-	public function __call( string $method_name, array $args ) {
-		return null;
+	public function __call( string $method_name, array $args ): NullMetric {
+		return $this;
 	}
 
 }
