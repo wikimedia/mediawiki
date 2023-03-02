@@ -1237,7 +1237,7 @@ abstract class UploadBase {
 	 * @return bool
 	 */
 	public static function checkFileExtension( $ext, $list ) {
-		return in_array( strtolower( $ext ), $list, true );
+		return in_array( strtolower( $ext ?? '' ), $list, true );
 	}
 
 	/**
