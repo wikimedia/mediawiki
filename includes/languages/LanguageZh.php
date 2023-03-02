@@ -58,7 +58,7 @@ class LanguageZh extends LanguageZh_hans {
 		// better to use zh-hans for search, since conversion from
 		// Traditional to Simplified is less ambiguous than the
 		// other way around
-		$s = $this->getConverter()->autoConvert( $string, $autoVariant );
+		$s = $this->getConverterInternal()->autoConvert( $string, $autoVariant );
 		// LanguageZh_hans::normalizeForSearch
 		$s = parent::normalizeForSearch( $s );
 		return $s;
@@ -71,7 +71,7 @@ class LanguageZh extends LanguageZh_hans {
 	public function convertForSearchResult( $termsArray ) {
 		$terms = implode( '|', $termsArray );
 		$terms = self::convertDoubleWidth( $terms );
-		$terms = implode( '|', $this->getConverter()->autoConvertToAllVariants( $terms ) );
+		$terms = implode( '|', $this->getConverterInternal()->autoConvertToAllVariants( $terms ) );
 		$ret = array_unique( explode( '|', $terms ) );
 		return $ret;
 	}

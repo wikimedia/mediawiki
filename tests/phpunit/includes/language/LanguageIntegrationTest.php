@@ -1843,6 +1843,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @covers Language::hasVariant
 	 */
 	public function testHasVariant() {
+		$this->hideDeprecated( 'Language::hasVariant' );
 		// See LanguageSrTest::testHasVariant() for additional tests
 		$en = Language::factory( 'en' );
 		$this->assertTrue( $en->hasVariant( 'en' ), 'base is always a variant' );
