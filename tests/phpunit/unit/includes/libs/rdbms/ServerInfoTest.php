@@ -1,11 +1,11 @@
 <?php
 
-use Wikimedia\Rdbms\ServerInfoHolder;
+use Wikimedia\Rdbms\ServerInfo;
 
 /**
- * @covers \Wikimedia\Rdbms\ServerInfoHolder
+ * @covers \Wikimedia\Rdbms\ServerInfo
  */
-class ServerInfoHolderTest extends \PHPUnit\Framework\TestCase {
+class ServerInfoTest extends \PHPUnit\Framework\TestCase {
 
 	use MediaWikiCoversValidator;
 
@@ -127,8 +127,8 @@ class ServerInfoHolderTest extends \PHPUnit\Framework\TestCase {
 		];
 	}
 
-	private function createInfoHolderFromArray( $servers ): ServerInfoHolder {
-		$holder = new ServerInfoHolder();
+	private function createInfoHolderFromArray( $servers ): ServerInfo {
+		$holder = new ServerInfo();
 		foreach ( $holder->normalizeServerMaps( $servers ) as $i => $server ) {
 			$holder->addServer( $i, $server );
 		}
