@@ -1597,6 +1597,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$translateNumerals, $langCode, $number, $noSeparators, $expected
 	) {
 		$this->hideDeprecated( 'Language::formatNum with a non-numeric string' );
+		$this->hideDeprecated( 'Language::factory' );
 		$this->overrideConfigValue( MainConfigNames::TranslateNumerals, $translateNumerals );
 		$lang = Language::factory( $langCode );
 		if ( $noSeparators ) {
@@ -1675,6 +1676,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @dataProvider parseFormattedNumberProvider
 	 */
 	public function testParseFormattedNumber( $langCode, $number ) {
+		$this->hideDeprecated( 'Language::factory' );
 		$lang = Language::factory( $langCode );
 
 		$localisedNum = $lang->formatNum( $number );
@@ -1770,6 +1772,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @covers Language::getParentLanguage
 	 */
 	public function testGetParentLanguage( $code, $expected, $comment ) {
+		$this->hideDeprecated( 'Language::factory' );
+		$this->hideDeprecated( 'Language::getParentLanguage' );
 		$lang = Language::factory( $code );
 		if ( $expected === null ) {
 			$this->assertNull( $lang->getParentLanguage(), $comment );
@@ -1800,6 +1804,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @covers LocalisationCache
 	 */
 	public function testGetNamespaceAliasesReal() {
+		$this->hideDeprecated( 'Language::factory' );
 		$language = Language::factory( 'zh' );
 		$aliases = $language->getNamespaceAliases();
 		$this->assertSame( NS_FILE, $aliases['文件'] );
@@ -1844,6 +1849,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 */
 	public function testHasVariant() {
 		$this->hideDeprecated( 'Language::hasVariant' );
+		$this->hideDeprecated( 'Language::factory' );
 		// See LanguageSrTest::testHasVariant() for additional tests
 		$en = Language::factory( 'en' );
 		$this->assertTrue( $en->hasVariant( 'en' ), 'base is always a variant' );
@@ -1857,6 +1863,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @covers Language::equals
 	 */
 	public function testEquals() {
+		$this->hideDeprecated( 'Language::factory' );
 		$en1 = Language::factory( 'en' );
 		$en2 = Language::factory( 'en' );
 		$en3 = $this->newLanguage();
