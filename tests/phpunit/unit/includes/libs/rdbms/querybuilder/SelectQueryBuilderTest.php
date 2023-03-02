@@ -623,4 +623,15 @@ class SelectQueryBuilderTest extends PHPUnit\Framework\TestCase {
 		);
 		$this->assertSQL( "SELECT f FROM t JOIN u ON ((tt=uu)) WHERE a = 'b' LIMIT 1" );
 	}
+
+	public function testAcquireRowLocks() {
+		$this->sqb
+			->table( 't' )
+			->conds( [ 'a' => 'b' ] )
+			->forUpdate()
+			->caller( __METHOD__ )
+			->acquireRowLocks();
+		$this->assertEquals( 'SELECT 1 FROM t WHERE a = \'b\'   FOR UPDATE',
+			$this->db->getLastSqls() );
+	}
 }

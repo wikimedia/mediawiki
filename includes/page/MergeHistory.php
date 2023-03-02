@@ -343,11 +343,12 @@ class MergeHistory {
 			return $status->fatal( 'mergehistory-fail-no-change' );
 		}
 
-		$haveRevisions = $this->dbw->lockForUpdate(
-			'revision',
-			[ 'rev_page' => $this->source->getId() ],
-			__METHOD__
-		);
+		$haveRevisions = $this->dbw->newSelectQueryBuilder()
+			->from( 'revision' )
+			->where( [ 'rev_page' => $this->source->getId() ] )
+			->forUpdate()
+			->caller( __METHOD__ )
+			->fetchRowCount();
 
 		$legacySource = $this->titleFactory->castFromPageIdentity( $this->source );
 		$legacyDest = $this->titleFactory->castFromPageIdentity( $this->dest );
