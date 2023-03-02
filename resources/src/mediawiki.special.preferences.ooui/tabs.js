@@ -147,8 +147,8 @@
 			tabs.tabSelectWidget.toggle( !isSearching );
 			$( '.mw-prefs-search-matched' ).removeClass( 'mw-prefs-search-matched' );
 			$( '.mw-prefs-search-highlight' ).removeClass( 'mw-prefs-search-highlight' );
+			var hasResults = false;
 			if ( isSearching ) {
-				var hasResults = false;
 				val = val.toLowerCase();
 				texts.forEach( function ( text ) {
 					// TODO: Could use Intl.Collator.prototype.compare like OO.ui.mixin.LabelElement.static.highlightQuery
@@ -164,11 +164,11 @@
 						hasResults = true;
 					}
 				} );
-				if ( !hasResults ) {
-					tabs.$element.append( $noResults );
-				} else {
-					$noResults.detach();
-				}
+			}
+			if ( isSearching && !hasResults ) {
+				tabs.$element.append( $noResults );
+			} else {
+				$noResults.detach();
 			}
 		} );
 	} );
