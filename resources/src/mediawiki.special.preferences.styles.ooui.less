@@ -87,6 +87,18 @@
 		.oo-ui-tabPanelLayout.mw-prefs-search-matched {
 			// stylelint-disable-next-line declaration-no-important
 			display: block !important;
+
+			> fieldset > legend {
+				background: #eaecf0;
+				padding: 5px 10px;
+				margin: 0 0 10px 0;
+				max-width: none;
+
+				> .oo-ui-labelElement-label {
+					display: inline;
+					margin: 0;
+				}
+			}
 		}
 
 		.oo-ui-indexLayout-stackLayout > .oo-ui-panelLayout {
@@ -97,16 +109,6 @@
 		.mw-prefs-search-matched {
 			margin: 0 20px 10px 20px;
 			padding: 0;
-
-			&[ data-section-label ]:before {
-				content: attr( data-section-label );
-				display: block;
-				font-weight: bold;
-				font-size: 1.14285714em;
-				background: #eaecf0;
-				padding: 5px 10px;
-				margin: 0 0 10px 0;
-			}
 		}
 	}
 }
@@ -209,8 +211,9 @@
 			// Panels don't need borders as the IndexLayout is inside a framed wrapper.
 			border: 0;
 
-			// Hide section legend, only used in nojs mode
-			> fieldset > legend {
+			// Hide duplicate section legend (we have tabs instead),
+			// except in search mode, where we hide the tabs
+			&:not( .mw-prefs-search-matched ) > fieldset > legend {
 				display: none;
 			}
 		}
@@ -232,7 +235,7 @@
 }
 
 // Highlight section header when linking to a section, e.g. Special:Preferences#mw-prefsection-editing-preview.
-.oo-ui-fieldsetLayout:target > .oo-ui-fieldsetLayout-header > .oo-ui-labelElement-label {
+.mw-prefs-tabs:not( .mw-prefs-tabs-searching ) .oo-ui-fieldsetLayout:target > .oo-ui-fieldsetLayout-header > .oo-ui-labelElement-label {
 	width: 100%;
 	background-color: #eaf3ff;
 	outline: 4px solid #eaf3ff;
