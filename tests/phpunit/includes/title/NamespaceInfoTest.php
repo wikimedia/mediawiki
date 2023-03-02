@@ -9,6 +9,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Title\Title;
 use Wikimedia\ScopedCallback;
 
 class NamespaceInfoTest extends MediaWikiIntegrationTestCase {

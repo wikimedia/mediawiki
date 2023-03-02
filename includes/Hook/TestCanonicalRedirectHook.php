@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
+use MediaWiki\Title\Title;
 use OutputPage;
-use Title;
 use WebRequest;
 
 /**

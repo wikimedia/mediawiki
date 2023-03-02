@@ -3,6 +3,7 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Search\TitleMatcher;
+use MediaWiki\Title\Title;
 
 /**
  * @covers \MediaWiki\Search\TitleMatcher

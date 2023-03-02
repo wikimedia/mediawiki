@@ -28,6 +28,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\MagicWord;
+use MediaWiki\Title\Title;
 
 /**
  * Content object for wiki text pages.

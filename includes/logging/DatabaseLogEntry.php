@@ -25,6 +25,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\IDatabase;

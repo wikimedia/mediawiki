@@ -6,10 +6,10 @@ use ContentHandler;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWikiUnitTestCase;
 use MockTitleTrait;
-use Title;
 
 /**
  * @covers \MediaWiki\Revision\MainSlotRoleHandler

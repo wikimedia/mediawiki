@@ -35,6 +35,7 @@
  */
 
 use MediaWiki\Logger\LegacyLogger;
+use MediaWiki\Title\Title;
 
 // So extensions (and other code) can check whether they're running in API mode
 define( 'MW_API', true );

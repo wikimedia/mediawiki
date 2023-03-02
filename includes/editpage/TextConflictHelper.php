@@ -30,9 +30,9 @@ use IBufferingStatsdDataFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Html\Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use MWUnknownContentModelException;
 use OutputPage;
-use Title;
 use User;
 
 /**

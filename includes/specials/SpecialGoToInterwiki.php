@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Title\Title;
+
 /**
  * Landing page for non-local interwiki links.
  *

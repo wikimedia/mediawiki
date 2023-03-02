@@ -5,8 +5,8 @@ namespace MediaWiki\Tests\Rest\Handler;
 use MediaWiki\Rest\Handler\MediaFileHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
+use MediaWiki\Title\Title;
 use RequestContext;
-use Title;
 use Wikimedia\Message\MessageValue;
 
 /**

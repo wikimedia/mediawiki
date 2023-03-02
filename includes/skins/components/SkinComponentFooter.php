@@ -9,7 +9,7 @@ use CreditsAction;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Title\Title;
 
 class SkinComponentFooter implements SkinComponent {
 	/** @var SkinComponentRegistryContext */

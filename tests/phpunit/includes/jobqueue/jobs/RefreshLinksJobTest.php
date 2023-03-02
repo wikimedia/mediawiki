@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Page\PageAssertionException;
+use MediaWiki\Title\Title;
 
 /**
  * @covers RefreshLinksJob

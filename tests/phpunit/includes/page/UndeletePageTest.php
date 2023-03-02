@@ -2,6 +2,7 @@
 
 use MediaWiki\Page\UndeletePage;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
 

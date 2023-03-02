@@ -3,7 +3,7 @@
 namespace MediaWiki\Deferred\LinksUpdate;
 
 use MediaWiki\Page\PageReferenceValue;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * An abstract base class for tables that link to local titles.

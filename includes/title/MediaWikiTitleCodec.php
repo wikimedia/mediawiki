@@ -23,6 +23,7 @@
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Title\Title;
 use Wikimedia\IPUtils;
 
 /**

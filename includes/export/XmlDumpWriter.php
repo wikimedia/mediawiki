@@ -33,6 +33,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\Storage\SqlBlobStore;
+use MediaWiki\Title\Title;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 

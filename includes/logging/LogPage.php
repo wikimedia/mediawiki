@@ -26,6 +26,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\StubObject\StubUserLang;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 
 /**

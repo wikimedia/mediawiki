@@ -20,10 +20,10 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
 use StatusValue;
-use Title;
 
 /**
  * Verify simple anti spam measure of an extra hidden text field

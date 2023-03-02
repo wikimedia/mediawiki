@@ -35,6 +35,7 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\StubObject\StubGlobalUser;
+use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use Psr\Log\NullLogger;
 use Wikimedia\Assert\Assert;

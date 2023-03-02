@@ -10,11 +10,11 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserNameUtils;
 use RepoGroup;
 use SearchNearMatchResultSet;
 use SpecialPage;
-use Title;
 
 /**
  * Service implementation of near match title search.

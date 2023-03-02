@@ -4,6 +4,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
 use PHPUnit\Framework\AssertionFailedError;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\LoadBalancer;

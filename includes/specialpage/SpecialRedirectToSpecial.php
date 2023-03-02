@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Title\Title;
+
 /**
  * @stable to extend
  *

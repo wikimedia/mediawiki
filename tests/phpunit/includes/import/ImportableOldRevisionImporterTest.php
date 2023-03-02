@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
 use Psr\Log\NullLogger;
 
 /**

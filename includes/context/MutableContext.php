@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Title\Title;
 
 /**
  * Request-dependent objects containers.

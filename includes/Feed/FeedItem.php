@@ -26,7 +26,7 @@ namespace MediaWiki\Feed;
 use LanguageCode;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * @defgroup Feed Feed

@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Page\DeletePage;
+use MediaWiki\Title\Title;
 
 /**
  * Class JobRunnerTest

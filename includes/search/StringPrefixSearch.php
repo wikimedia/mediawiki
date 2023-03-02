@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Title\Title;
+
 /**
  * Performs prefix search, returning strings
  * @deprecated Since 1.27, Use SearchEngine::prefixSearchSubpages or SearchEngine::completionSearch

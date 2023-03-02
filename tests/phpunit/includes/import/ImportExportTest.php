@@ -2,6 +2,7 @@
 
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Tests\Maintenance\DumpAsserter;
+use MediaWiki\Title\Title;
 
 /**
  * Import/export round trip test.

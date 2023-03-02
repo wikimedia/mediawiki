@@ -22,6 +22,7 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserRigorOptions;
 use SpecialPage;
@@ -445,7 +446,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 
 		$this->getHookRunner()->onUser__mailPasswordInternal( $creatingUser, $ip, $user );
 
-		$mainPageUrl = \Title::newMainPage()->getCanonicalURL();
+		$mainPageUrl = Title::newMainPage()->getCanonicalURL();
 		$userLanguage = $this->userOptionsLookup->getOption( $user, 'language' );
 		$subjectMessage = wfMessage( 'createaccount-title' )->inLanguage( $userLanguage );
 		$bodyMessage = wfMessage( 'createaccount-text', $ip, $user->getName(), $password,
@@ -482,7 +483,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		$emailMessage = wfMessage( $callerIsAnon ? 'passwordreset-emailtext-ip'
 			: 'passwordreset-emailtext-user' )->inLanguage( $userLanguage );
 		$body = $emailMessage->params( $callerName, $passwordMessage->text(), 1,
-			'<' . \Title::newMainPage()->getCanonicalURL() . '>',
+			'<' . Title::newMainPage()->getCanonicalURL() . '>',
 			round( $this->newPasswordExpiry / 86400 ) )->text();
 
 		if ( $this->allowRequiringEmail && !$this->userOptionsLookup

@@ -24,6 +24,7 @@
 
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Title\Title;
 
 /**
  * This class formats block log entries.

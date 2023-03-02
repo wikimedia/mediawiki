@@ -4,9 +4,9 @@ namespace MediaWiki\Deferred\LinksUpdate;
 
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Title\Title;
 use ParserOutput;
 use PurgeJobUtils;
-use Title;
 
 /**
  * imagelinks

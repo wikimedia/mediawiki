@@ -36,12 +36,12 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MWException;
 use ParserOutput;
 use RefreshLinksJob;
 use RuntimeException;
-use Title;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
 

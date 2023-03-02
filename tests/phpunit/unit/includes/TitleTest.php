@@ -25,9 +25,9 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
-use Title;
 use TitleValue;
 
 /**
@@ -174,7 +174,7 @@ class TitleTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideNewFromTitleValue
 	 */
 	public function testNewFromTitleValue( TitleValue $value ) {
-		$this->hideDeprecated( 'Title::newFromTitleValue' );
+		$this->hideDeprecated( 'MediaWiki\Title\Title::newFromTitleValue' );
 		$title = Title::newFromTitleValue( $value );
 
 		$dbkey = str_replace( ' ', '_', $value->getText() );

@@ -3,8 +3,8 @@
 namespace MediaWiki\Page\Hook;
 
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Title\Title;
 use OutputPage;
-use Title;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

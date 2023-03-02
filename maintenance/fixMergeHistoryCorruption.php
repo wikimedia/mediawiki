@@ -21,6 +21,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\Title\Title;
+
 /**
  * Maintenance script that clears rows of pages corrupted by MergeHistory, those
  * pages 'exist' but have no visible revision.

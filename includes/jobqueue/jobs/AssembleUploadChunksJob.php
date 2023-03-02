@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Request\WebRequestUpload;
+use MediaWiki\Title\Title;
 use Wikimedia\ScopedCallback;
 
 /**

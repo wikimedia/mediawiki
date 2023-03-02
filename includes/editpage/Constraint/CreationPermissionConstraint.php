@@ -21,8 +21,8 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Title\Title;
 use StatusValue;
-use Title;
 
 /**
  * Verify be able to create the page in question if it is a new page

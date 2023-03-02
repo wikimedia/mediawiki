@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\Html\Html;
+use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**

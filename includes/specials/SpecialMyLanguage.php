@@ -25,6 +25,7 @@
 
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Page\RedirectLookup;
+use MediaWiki\Title\Title;
 
 /**
  * Unlisted special page just to redirect the user to the translated version of

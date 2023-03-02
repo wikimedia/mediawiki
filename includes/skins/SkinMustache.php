@@ -20,6 +20,7 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\Html\TemplateParser;
+use MediaWiki\Title\Title;
 
 /**
  * Generic template for use with Mustache templates.

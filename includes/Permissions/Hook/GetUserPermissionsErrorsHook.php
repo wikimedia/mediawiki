@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Permissions\Hook;
 
+use MediaWiki\Title\Title;
 use MessageSpecifier;
-use Title;
 use User;
 
 /**

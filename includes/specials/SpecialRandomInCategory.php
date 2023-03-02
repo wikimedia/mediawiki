@@ -22,6 +22,7 @@
  * @author Brian Wolff
  */
 
+use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**

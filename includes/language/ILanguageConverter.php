@@ -19,6 +19,7 @@
  */
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Title\Title;
 
 /**
  * The shared interface for all language converters.

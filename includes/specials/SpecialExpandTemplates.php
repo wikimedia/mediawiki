@@ -24,6 +24,7 @@
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Tidy\TidyDriverBase;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
 
 /**

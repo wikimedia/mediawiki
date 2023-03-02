@@ -27,6 +27,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Title\Title;
 
 /**
  * Object handling generic submission, CSRF protection, layout and

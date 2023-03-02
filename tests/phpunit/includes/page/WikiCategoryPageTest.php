@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Page\PageProps;
+use MediaWiki\Title\Title;
 
 class WikiCategoryPageTest extends MediaWikiLangTestCase {
 

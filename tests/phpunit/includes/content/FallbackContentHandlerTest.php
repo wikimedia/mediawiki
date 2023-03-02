@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Title\Title;
 
 /**
  * See also unit tests at \MediaWiki\Tests\Unit\FallbackContentHandlerTest

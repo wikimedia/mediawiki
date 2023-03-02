@@ -30,6 +30,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use Wikimedia\UUID\GlobalIdGenerator;
 

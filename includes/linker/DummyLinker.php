@@ -5,8 +5,8 @@ namespace MediaWiki\Linker;
 use IContextSource;
 use Language;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Title\Title;
 use Parser;
-use Title;
 use User;
 
 /**

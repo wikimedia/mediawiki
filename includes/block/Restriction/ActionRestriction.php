@@ -22,6 +22,8 @@
 
 namespace MediaWiki\Block\Restriction;
 
+use MediaWiki\Title\Title;
+
 /**
  * Restriction for partial blocks of actions.
  *
@@ -42,7 +44,7 @@ class ActionRestriction extends AbstractRestriction {
 	/**
 	 * @inheritDoc
 	 */
-	public function matches( \Title $title ) {
+	public function matches( Title $title ) {
 		// Action blocks don't apply to particular titles. For example,
 		// if a block only blocked uploading, the target would still be
 		// allowed to edit any page.

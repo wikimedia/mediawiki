@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Title\Title;
+
 /**
  * Send an email notification.
  *

@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Title\Title;
+
 /**
  * Superclass for any RedirectSpecialPage which redirects the user
  * to a particular article (as opposed to user contributions, logs, etc.).

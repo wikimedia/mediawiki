@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\Title\Title;
 
 /**
  * @covers ExternalUserNames

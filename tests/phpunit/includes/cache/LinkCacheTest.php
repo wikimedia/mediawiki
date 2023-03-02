@@ -2,6 +2,7 @@
 
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Title\Title;
 
 /**
  * @group Database

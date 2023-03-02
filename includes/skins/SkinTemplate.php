@@ -27,6 +27,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Specials\Contribute\ContributeFactory;
+use MediaWiki\Title\Title;
 
 /**
  * Base class for QuickTemplate-based skins.

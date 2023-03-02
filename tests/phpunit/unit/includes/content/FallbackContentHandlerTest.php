@@ -6,8 +6,8 @@ use FallbackContent;
 use FallbackContentHandler;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRenderingProvider;
+use MediaWiki\Title\Title;
 use MediaWikiUnitTestCase;
-use Title;
 
 /**
  * Split from \FallbackContentHandlerTest integration tests
