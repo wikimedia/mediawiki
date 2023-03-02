@@ -1014,7 +1014,6 @@ class SpecialPageFactory {
 				'TitleFactory',
 				'UserFactory',
 				'UserNamePrefixSearch',
-				'UserNameUtils'
 			]
 		],
 		'Revisiondelete' => [
