@@ -382,6 +382,7 @@ $specialPageAliases = [
 	'Mute'                      => [ 'كتم' ],
 	'Mycontributions'           => [ 'مساهماتي' ],
 	'MyLanguage'                => [ 'لغتي' ],
+	'Mylog'                     => [ 'سجلي' ],
 	'Mypage'                    => [ 'صفحتي' ],
 	'Mytalk'                    => [ 'نقاشي' ],
 	'Myuploads'                 => [ 'مرفوعاتي', 'ملفاتي' ],
