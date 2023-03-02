@@ -3,7 +3,8 @@ PageUpdater
 
 This document provides an overview of the usage of PageUpdater and DerivedPageDataUpdater.
 
-## `PageUpdater`
+## PageUpdater
+
 `PageUpdater` is the canonical way to create page revisions, that is, to perform edits.
 
 `PageUpdater` is a stateful, handle-like object that allows new revisions to be created on a given wiki page using the `saveRevision()` method. `PageUpdater` provides setters for defining the new revision's content as well as meta-data such as change tags. `saveRevision()` stores the new revision's primary content and metadata, and triggers the necessary updates to derived secondary data and cached artifacts e.g. in the `ParserCache` and the CDN layer, using a `DerivedPageDataUpdater`.
@@ -66,7 +67,8 @@ $newRev = $updater->saveRevision( $comment, EDIT_UPDATE );
 
 In both cases, all secondary updates will be triggered automatically.
 
-# `DerivedPageDataUpdater`
+## DerivedPageDataUpdater
+
 `DerivedPageDataUpdater` is a stateful, handle-like object that caches derived data representing a revision, and can trigger updates of cached copies of that data, e.g. in the links tables, `page_props`, the `ParserCache`, and the CDN layer.
 
 `DerivedPageDataUpdater` is used by `PageUpdater` when creating new revisions, but can also be used independently when performing meta data updates during undeletion, import, or when puring a page. It's a stepping stone on the way to a more complete refactoring of WikiPage.
