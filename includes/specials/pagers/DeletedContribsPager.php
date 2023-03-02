@@ -28,6 +28,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;

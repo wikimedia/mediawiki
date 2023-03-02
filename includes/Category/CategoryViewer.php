@@ -38,8 +38,8 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Title\Title;
 use MWException;
-use Title;
 use TitleValue;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 

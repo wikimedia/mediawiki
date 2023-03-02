@@ -32,6 +32,8 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
+use MediaWiki\Title\Title;
+
 /**
  * Maintenance script that generates a plaintext link dump.
  *

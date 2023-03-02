@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Category\CategoryViewer;
+use MediaWiki\Title\Title;
 
 /**
  * Special handling for category description pages.

@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 
 /**

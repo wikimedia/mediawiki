@@ -28,6 +28,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Storage\NameTableAccessException;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IReadableDatabase;

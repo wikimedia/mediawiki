@@ -21,6 +21,7 @@
 
 use MediaWiki\CommentStore\CommentStore;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Title\Title;
 
 /**
  * Item class for a logging table row

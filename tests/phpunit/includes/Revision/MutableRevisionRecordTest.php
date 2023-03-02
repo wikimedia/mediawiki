@@ -6,9 +6,9 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use MockTitleTrait;
-use Title;
 use TitleValue;
 use Wikimedia\Assert\PreconditionException;
 

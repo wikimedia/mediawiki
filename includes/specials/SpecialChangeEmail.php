@@ -24,6 +24,7 @@
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Html\Html;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Title\Title;
 
 /**
  * Let users change their email address.

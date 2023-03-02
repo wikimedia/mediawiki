@@ -22,6 +22,7 @@
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Title\Title;
 
 /**
  * @covers TitleValue

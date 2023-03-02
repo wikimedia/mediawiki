@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use Mediawiki\Page\File\FileDeleteForm;
+use MediaWiki\Title\Title;
 
 /**
  * Abstract class to support upload tests

@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\Title\Title;
+
 /**
  * Represents an object that can convert page titles on a foreign wiki
  * (ForeignTitle objects) into page titles on the local wiki (Title objects).

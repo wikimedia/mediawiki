@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Title\Title;
 
 /**
  * Class to both describe a background job and handle jobs.

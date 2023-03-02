@@ -31,8 +31,8 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\LegacyArticleIdAccess;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use Title;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**

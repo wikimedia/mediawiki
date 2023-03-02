@@ -30,6 +30,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\StubObject\StubGlobalUser;
+use MediaWiki\Title\Title;
 
 require_once __DIR__ . '/Maintenance.php';
 

@@ -14,6 +14,7 @@ use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Session\Session;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\TestingAccessWrapper;

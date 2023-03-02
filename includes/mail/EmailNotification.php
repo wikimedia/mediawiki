@@ -28,6 +28,7 @@ use MediaWiki\Mail\UserEmailContact;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 
 /**

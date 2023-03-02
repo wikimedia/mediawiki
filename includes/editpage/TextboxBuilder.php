@@ -26,9 +26,9 @@ namespace MediaWiki\EditPage;
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Sanitizer;
-use Title;
 
 /**
  * Helps EditPage build textboxes

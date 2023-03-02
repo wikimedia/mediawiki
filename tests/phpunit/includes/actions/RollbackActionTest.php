@@ -6,10 +6,10 @@ use Article;
 use DerivativeContext;
 use ErrorPageError;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use RequestContext;
 use RollbackAction;
-use Title;
 use User;
 use WebRequest;
 

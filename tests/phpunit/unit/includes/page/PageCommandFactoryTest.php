@@ -16,9 +16,9 @@ use MediaWiki\Page\RollbackPage;
 use MediaWiki\Page\UndeletePage;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\MockServiceDependenciesTrait;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWikiUnitTestCase;
-use Title;
 use WikiPage;
 
 /**

@@ -26,6 +26,7 @@ use MediaWiki\Html\FormOptions;
 use MediaWiki\Linker\LinksMigration;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Navigation\PagerNavigationBuilder;
+use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;

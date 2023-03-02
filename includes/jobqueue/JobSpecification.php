@@ -22,6 +22,7 @@
 
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Title\Title;
 
 /**
  * Job queue task description base code

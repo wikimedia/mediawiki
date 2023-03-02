@@ -33,6 +33,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArray;
 use MediaWiki\Title\TitleArrayFromResult;
 use Wikimedia\Rdbms\Database;

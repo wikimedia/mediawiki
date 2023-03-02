@@ -27,6 +27,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
 
 /**
  * Represents a revision, log entry or upload during the import process.

@@ -20,8 +20,8 @@
 
 namespace MediaWiki\Navigation;
 
+use MediaWiki\Title\Title;
 use MessageLocalizer;
-use Title;
 
 /**
  * Helper class for generating prev/next links for paging.

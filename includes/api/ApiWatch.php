@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Title\Title;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;

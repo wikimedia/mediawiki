@@ -26,11 +26,11 @@ namespace MediaWiki\Category;
 use DeferredUpdates;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArray;
 use MWException;
 use ReadOnlyMode;
 use stdClass;
-use Title;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**

@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Site\MediaWikiPageNameNormalizer;
+use MediaWiki\Title\Title;
 
 /**
  * Class representing a MediaWiki site.

@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
+use MediaWiki\Title\Title;
 use SpecialTrackingCategories;
-use Title;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**

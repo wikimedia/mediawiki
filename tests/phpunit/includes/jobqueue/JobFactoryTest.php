@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\JobQueue\JobFactory;
+use MediaWiki\Title\Title;
 
 /**
  * @author Addshore

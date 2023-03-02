@@ -21,6 +21,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 
 /**
  * Format a notification as a human-readable string using IRC colour codes.

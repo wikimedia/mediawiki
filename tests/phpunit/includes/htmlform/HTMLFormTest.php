@@ -2,6 +2,7 @@
 
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Title\Title;
 
 /**
  * @covers HTMLForm

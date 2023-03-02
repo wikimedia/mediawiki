@@ -22,6 +22,8 @@
 
 namespace MediaWiki\Block\Restriction;
 
+use MediaWiki\Title\Title;
+
 class PageRestriction extends AbstractRestriction {
 
 	/**
@@ -35,14 +37,14 @@ class PageRestriction extends AbstractRestriction {
 	public const TYPE_ID = 1;
 
 	/**
-	 * @var \Title|false|null
+	 * @var Title|false|null
 	 */
 	protected $title;
 
 	/**
 	 * @inheritDoc
 	 */
-	public function matches( \Title $title ) {
+	public function matches( Title $title ) {
 		if ( !$this->getTitle() ) {
 			return false;
 		}
@@ -52,10 +54,10 @@ class PageRestriction extends AbstractRestriction {
 
 	/**
 	 * @since 1.33
-	 * @param \Title $title
+	 * @param Title $title
 	 * @return self
 	 */
-	public function setTitle( \Title $title ) {
+	public function setTitle( Title $title ) {
 		$this->title = $title;
 
 		return $this;
@@ -63,12 +65,12 @@ class PageRestriction extends AbstractRestriction {
 
 	/**
 	 * @since 1.33
-	 * @return \Title|false
+	 * @return Title|false
 	 */
 	public function getTitle() {
 		// If the title does not exist, set to false to prevent multiple database
 		// queries.
-		$this->title ??= \Title::newFromID( $this->value ) ?? false;
+		$this->title ??= Title::newFromID( $this->value ) ?? false;
 
 		return $this->title;
 	}
@@ -87,7 +89,7 @@ class PageRestriction extends AbstractRestriction {
 			// Clone the row so it is not mutated.
 			$row = clone $row;
 			$row->page_id = $row->ir_value;
-			$title = \Title::newFromRow( $row );
+			$title = Title::newFromRow( $row );
 			$restriction->setTitle( $title );
 		}
 
@@ -97,12 +99,12 @@ class PageRestriction extends AbstractRestriction {
 	/**
 	 * @internal
 	 * @since 1.36
-	 * @param string|\Title $title
+	 * @param string|Title $title
 	 * @return self
 	 */
 	public static function newFromTitle( $title ) {
 		if ( is_string( $title ) ) {
-			$title = \Title::newFromText( $title );
+			$title = Title::newFromText( $title );
 		}
 
 		$restriction = new self( 0, $title->getArticleID() );

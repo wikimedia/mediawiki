@@ -2,6 +2,7 @@
 
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Storage\DerivedPageDataUpdater;
+use MediaWiki\Title\Title;
 use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
 

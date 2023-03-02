@@ -5,6 +5,7 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Title\Title;
 
 /**
  * Integration tests for the various edit constraints, ensuring

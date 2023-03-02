@@ -6,10 +6,10 @@ use ContentHandler;
 use Exception;
 use FetchText;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use MWException;
 use PHPUnit\Framework\ExpectationFailedException;
-use Title;
 use WikiPage;
 
 /**

@@ -12,12 +12,12 @@ use MediaWiki\Html\Html;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
 use MediaWiki\Search\SearchResultThumbnailProvider;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsManager;
 use RepoGroup;
 use SearchResult;
 use SpecialSearch;
 use ThumbnailImage;
-use Title;
 
 /**
  * Renders a 'full' multi-line search result with metadata.

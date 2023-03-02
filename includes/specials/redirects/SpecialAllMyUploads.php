@@ -24,6 +24,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Title\Title;
+
 /**
  * Special page pointing to current user's uploaded files (including old versions).
  *

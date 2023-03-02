@@ -31,6 +31,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\StubObject\StubGlobalUser;
+use MediaWiki\Title\Title;
 use Wikimedia\ScopedCallback;
 
 /**

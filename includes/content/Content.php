@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Parser\MagicWord;
+use MediaWiki\Title\Title;
 
 /**
  * Base interface for representing page content.

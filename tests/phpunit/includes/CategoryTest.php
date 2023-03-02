@@ -2,6 +2,7 @@
 
 use MediaWiki\Category\Category;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Title\Title;
 
 /**
  * @group Database

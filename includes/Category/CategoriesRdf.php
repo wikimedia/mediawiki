@@ -19,7 +19,7 @@
 
 namespace MediaWiki\Category;
 
-use Title;
+use MediaWiki\Title\Title;
 use Wikimedia\Purtle\RdfWriter;
 
 /**

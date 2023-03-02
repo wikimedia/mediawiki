@@ -5,10 +5,10 @@ namespace MediaWiki\Navigation;
 use MediaWiki\Html\Html;
 use MediaWiki\Language\RawMessage;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Title\Title;
 use Message;
 use MessageLocalizer;
 use RuntimeException;
-use Title;
 
 /**
  * Build the navigation for a pager, with links to prev/next page, links to change limits, and

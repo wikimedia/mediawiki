@@ -3,8 +3,8 @@
 namespace MediaWiki\Api\Hook;
 
 use ApiBase;
+use MediaWiki\Title\Title;
 use ParserOptions;
-use Title;
 use Wikimedia\ScopedCallback;
 
 /**

@@ -3,7 +3,7 @@
 namespace MediaWiki\Hook;
 
 use Article;
-use Title;
+use MediaWiki\Title\Title;
 use WebRequest;
 
 /**

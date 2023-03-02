@@ -7,6 +7,7 @@ use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Html\Html;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\Title\Title;
 
 /**
  * Special change to change credentials (such as the password).

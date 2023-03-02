@@ -25,6 +25,8 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\Title\Title;
+
 /**
  * Content object for CSS pages.
  *

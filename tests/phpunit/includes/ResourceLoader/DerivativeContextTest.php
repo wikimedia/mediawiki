@@ -6,10 +6,10 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\ResourceLoader\Context;
 use MediaWiki\ResourceLoader\DerivativeContext;
 use MediaWiki\ResourceLoader\ResourceLoader;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWikiIntegrationTestCase;
 use ResourceLoaderTestCase;
-use Title;
 use User;
 
 /**

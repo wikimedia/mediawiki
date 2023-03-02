@@ -83,6 +83,7 @@ use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\PageUpdater;
+use MediaWiki\Title\Title;
 use MediaWiki\User\TempUser\TempUserCreator;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
@@ -113,7 +114,6 @@ use Status;
 use stdClass;
 use TextContent;
 use ThrottledError;
-use Title;
 use User;
 use UserBlockedError;
 use WatchAction;
@@ -4995,7 +4995,7 @@ class EditPage implements IEditObject {
 			# Is this page under cascading protection from some source pages?
 			$cascadeSources = $this->restrictionStore->getCascadeProtectionSources( $this->mTitle )[0];
 			/** @var Title[] $cascadeSources */
-			$cascadeSources = array_map( 'Title::castFromPageIdentity', $cascadeSources );
+			$cascadeSources = array_map( '\MediaWiki\Title\Title::castFromPageIdentity', $cascadeSources );
 			$noticeContent = "\n$1\n";
 			$cascadeSourcesCount = count( $cascadeSources );
 			if ( $cascadeSourcesCount > 0 ) {

@@ -19,6 +19,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\Title\Title;
+
 /**
  * A set of search suggestions.
  * The set is always ordered by score, with the best match first.

@@ -24,6 +24,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStoreRecord;
+use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\LBFactory;
 
 /**

@@ -6,6 +6,7 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\MagicWordFactory;
+use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\UUID\GlobalIdGenerator;

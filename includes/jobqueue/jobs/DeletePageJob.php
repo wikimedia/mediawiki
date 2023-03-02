@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\DeletePage;
+use MediaWiki\Title\Title;
 
 /**
  * @newable

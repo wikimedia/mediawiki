@@ -37,6 +37,7 @@ require_once __DIR__ . '/Maintenance.php';
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\StubObject\StubGlobalUser;
+use MediaWiki\Title\Title;
 
 class ImportImages extends Maintenance {
 

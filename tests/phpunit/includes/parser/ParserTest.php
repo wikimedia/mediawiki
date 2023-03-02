@@ -9,6 +9,7 @@ use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Parser\MagicWord;
 use MediaWiki\Parser\MagicWordFactory;
 use MediaWiki\Preferences\SignatureValidatorFactory;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Utils\UrlUtils;
 

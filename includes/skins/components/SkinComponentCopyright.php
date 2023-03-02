@@ -7,8 +7,8 @@ use HtmlArmor;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use MessageLocalizer;
-use Title;
 use User;
 
 class SkinComponentCopyright implements SkinComponent {

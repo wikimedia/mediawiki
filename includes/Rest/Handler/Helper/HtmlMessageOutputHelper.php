@@ -22,9 +22,9 @@ namespace MediaWiki\Rest\Handler\Helper;
 use LanguageCode;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Rest\ResponseInterface;
+use MediaWiki\Title\Title;
 use Message;
 use ParserOutput;
-use Title;
 use Wikimedia\Parsoid\Utils\ContentUtils;
 use Wikimedia\Parsoid\Utils\DOMUtils;
 

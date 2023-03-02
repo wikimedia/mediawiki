@@ -38,6 +38,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\StubObject\StubUserLang;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserOptionsLookup;
 
 /**

@@ -46,6 +46,7 @@ use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Storage\PageUpdateStatus;
 use MediaWiki\Storage\PreparedUpdate;
 use MediaWiki\Storage\RevisionSlotsUpdate;
+use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleArray;
 use MediaWiki\User\ActorMigration;
 use MediaWiki\User\UserIdentity;

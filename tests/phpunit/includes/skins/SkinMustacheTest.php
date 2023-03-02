@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\ContentSecurityPolicy;
+use MediaWiki\Title\Title;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**

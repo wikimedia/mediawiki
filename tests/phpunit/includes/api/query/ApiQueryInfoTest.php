@@ -2,6 +2,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Title\Title;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**

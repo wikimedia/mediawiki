@@ -9,10 +9,10 @@ use Language;
 use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Request\FauxRequest;
+use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use OutputPage;
 use RequestContext;
-use Title;
 use User;
 use WikiPage;
 

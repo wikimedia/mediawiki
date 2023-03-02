@@ -28,6 +28,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use Wikimedia\AtEase\AtEase;
 
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );

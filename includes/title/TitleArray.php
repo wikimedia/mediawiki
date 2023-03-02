@@ -27,7 +27,6 @@
 namespace MediaWiki\Title;
 
 use Iterator;
-use Title;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**

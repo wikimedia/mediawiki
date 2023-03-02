@@ -24,6 +24,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
 
 $optionsWithArgs = [ 'start', 'limit', 'type' ];
 require __DIR__ . '/../CommandLineInc.php';

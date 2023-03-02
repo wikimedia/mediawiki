@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Title\Title;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 

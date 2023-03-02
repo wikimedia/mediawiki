@@ -41,6 +41,7 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRenderingProvider;
 use MediaWiki\Search\ParserOutputSearchDataExtractor;
 use MediaWiki\StubObject\StubObject;
+use MediaWiki\Title\Title;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ScopedCallback;
 

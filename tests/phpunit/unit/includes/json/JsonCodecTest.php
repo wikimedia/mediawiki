@@ -7,9 +7,9 @@ use InvalidArgumentException;
 use JsonSerializable;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Json\JsonConstants;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
-use Title;
 use Wikimedia\Assert\PreconditionException;
 
 /**

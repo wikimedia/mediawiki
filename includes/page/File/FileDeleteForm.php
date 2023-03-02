@@ -29,10 +29,10 @@ use LocalFile;
 use ManualLogEntry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\DeletePage;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MWException;
 use Status;
-use Title;
 
 /**
  * File deletion user interface

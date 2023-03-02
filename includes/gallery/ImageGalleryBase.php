@@ -23,6 +23,7 @@
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\StubObject\StubUserLang;
+use MediaWiki\Title\Title;
 
 /**
  * Image gallery

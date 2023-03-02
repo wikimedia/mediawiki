@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Settings\SettingsBuilder;
+use MediaWiki\Title\Title;
 use Wikimedia\Parsoid\ParserTests\Test as ParserTest;
 use Wikimedia\ScopedCallback;
 

@@ -42,6 +42,7 @@ use MediaWiki\ResourceLoader\UserModule;
 use MediaWiki\ResourceLoader\UserOptionsModule;
 use MediaWiki\ResourceLoader\UserStylesModule;
 use MediaWiki\ResourceLoader\WikiModule;
+use MediaWiki\Title\Title;
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	die( 'Not an entry point.' );

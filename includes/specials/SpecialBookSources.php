@@ -24,6 +24,7 @@
 use MediaWiki\Html\Html;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Title\Title;
 
 /**
  * Special page outputs information on sourcing a book with a particular ISBN

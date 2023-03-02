@@ -5,6 +5,7 @@ use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\Title\Title;
 
 /**
  * Tests for action=revisiondelete

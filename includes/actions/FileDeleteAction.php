@@ -30,9 +30,9 @@ use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use Mediawiki\Page\File\FileDeleteForm;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Title\Title;
 use OldLocalFile;
 use PermissionsError;
-use Title;
 
 /**
  * Handle file deletion

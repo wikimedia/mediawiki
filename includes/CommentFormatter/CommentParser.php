@@ -14,12 +14,12 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\Linker;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Title\Title;
 use MediaWiki\WikiMap\WikiMap;
 use NamespaceInfo;
 use Parser;
 use RepoGroup;
 use StringUtils;
-use Title;
 use TitleParser;
 use TitleValue;
 

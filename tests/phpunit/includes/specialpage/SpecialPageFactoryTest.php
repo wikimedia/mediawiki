@@ -5,6 +5,7 @@ use MediaWiki\MainConfigSchema;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\Title\Title;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 

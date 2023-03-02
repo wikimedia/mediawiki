@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Title\Title;
 
 class ContentTransformerTest extends MediaWikiIntegrationTestCase {
 

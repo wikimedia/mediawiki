@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Deferred\LinksUpdate\LinksDeletionUpdate;
+use MediaWiki\Title\Title;
 
 /**
  * @group ContentHandler

@@ -10,6 +10,7 @@ use MediaWiki\Permissions\RateLimiter;
 use MediaWiki\Permissions\RateLimitSubject;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\TestingAccessWrapper;

@@ -22,6 +22,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Title\Title;
+
 /**
  * Redirect from Special:Diff/### to index.php?diff=### and
  * from Special:Diff/###/### to index.php?oldid=###&diff=###.

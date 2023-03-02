@@ -20,6 +20,7 @@
 
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Session\CsrfTokenSetProvider;
+use MediaWiki\Title\Title;
 
 /**
  * Interface for objects which can provide a MediaWiki context on request

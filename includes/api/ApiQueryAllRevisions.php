@@ -29,6 +29,7 @@ use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\Title\Title;
 use MediaWiki\User\ActorMigration;
 use Wikimedia\ParamValidator\ParamValidator;
 

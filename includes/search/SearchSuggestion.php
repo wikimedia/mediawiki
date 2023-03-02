@@ -19,6 +19,8 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+use MediaWiki\Title\Title;
+
 /**
  * A search suggestion
  */

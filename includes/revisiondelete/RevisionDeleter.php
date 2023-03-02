@@ -24,6 +24,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Title\Title;
 
 /**
  * General controller for RevDel, used by both SpecialRevisiondelete and

@@ -22,8 +22,8 @@
 
 namespace MediaWiki\Block;
 
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use Title;
 
 /**
  * Multiple Block class.

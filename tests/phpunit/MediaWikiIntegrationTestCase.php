@@ -14,6 +14,7 @@ use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\PageUpdateStatus;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestResult;

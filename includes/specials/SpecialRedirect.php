@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserFactory;
 
 /**

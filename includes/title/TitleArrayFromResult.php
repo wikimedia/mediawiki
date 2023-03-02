@@ -27,7 +27,6 @@
 namespace MediaWiki\Title;
 
 use Countable;
-use Title;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**

@@ -34,6 +34,7 @@ use MediaWiki\Skin\SkinComponentListItem;
 use MediaWiki\Skin\SkinComponentMenu;
 use MediaWiki\Skin\SkinComponentRegistry;
 use MediaWiki\Skin\SkinComponentRegistryContext;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\WikiMap\WikiMap;

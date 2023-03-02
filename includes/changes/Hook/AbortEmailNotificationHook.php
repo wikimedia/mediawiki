@@ -2,8 +2,8 @@
 
 namespace MediaWiki\Hook;
 
+use MediaWiki\Title\Title;
 use RecentChange;
-use Title;
 use User;
 
 /**

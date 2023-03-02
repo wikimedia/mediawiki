@@ -2,10 +2,10 @@
 
 namespace MediaWiki\Hook;
 
+use MediaWiki\Title\Title;
 use ParserCache;
 use ParserOptions;
 use ParserOutput;
-use Title;
 
 /**
  * This is a hook handler interface, see docs/Hooks.md.

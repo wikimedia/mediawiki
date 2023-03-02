@@ -2,6 +2,7 @@
 
 use MediaWiki\MainConfigNames;
 use MediaWiki\Request\WebResponse;
+use MediaWiki\Title\Title;
 use Wikimedia\TestingAccessWrapper;
 
 class MediaWikiTest extends MediaWikiIntegrationTestCase {
