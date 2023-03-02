@@ -78,7 +78,9 @@
 				var $field = $( this );
 				var $wrapper = $field.parents( '.mw-prefs-fieldset-wrapper' );
 				var $tabPanel = $field.closest( '.oo-ui-tabPanelLayout' );
-				$field.find( '.oo-ui-labelElement-label, .oo-ui-textInputWidget .oo-ui-inputWidget-input, p' ).each( function () {
+				$field.find( '.oo-ui-labelElement-label, .oo-ui-textInputWidget .oo-ui-inputWidget-input, p' ).add(
+					$wrapper.find( '> .oo-ui-fieldsetLayout > .oo-ui-fieldsetLayout-header .oo-ui-labelElement-label' )
+				).each( function () {
 
 					function addToIndex( $label, $highlight ) {
 						var text = $label.val() || $label[ 0 ].innerText.toLowerCase().trim().replace( /\s+/, ' ' );
