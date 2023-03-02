@@ -147,13 +147,6 @@ if ( defined( 'MW_USE_CONFIG_SCHEMA_CLASS' ) ) {
 	// generate other representations of the config schema. This is slow, so it
 	// should not be used for serving web traffic.
 	$wgSettings->load( new ReflectionSchemaSource( MainConfigSchema::class ) );
-} elseif ( getenv( 'MW_USE_LEGACY_DEFAULT_SETTINGS' ) || defined( 'MW_USE_LEGACY_DEFAULT_SETTINGS' ) ) {
-	// Load the old DefaultSettings.php file. Should be removed in 1.39. See T300129.
-	require_once MW_INSTALL_PATH . '/includes/DefaultSettings.php';
-
-	// This is temporary until we no longer need this mode.
-	// TODO: delete config-merge-strategies.php when this code is removed.
-	$wgSettings->load( new PhpSettingsSource( MW_INSTALL_PATH . '/includes/config-merge-strategies.php' ) );
 } else {
 	$wgSettings->load( new PhpSettingsSource( MW_INSTALL_PATH . '/includes/config-schema.php' ) );
 }

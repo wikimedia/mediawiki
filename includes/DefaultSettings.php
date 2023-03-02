@@ -4,7 +4,8 @@
  *
  * Default settings are now defined in the MainConfigSchema class.
  *
- * To get default values for configuration variables, use the ConfigSchema service object.
+ * To get default values for configuration variables, use MainConfigSchema::listDefaultValues()
+ * or MainConfigSchema::getDefaultValue().
  *
  * @file
  * @deprecated since 1.39
@@ -15,7 +16,7 @@ use MediaWiki\MainConfigSchema;
 if ( function_exists( 'wfDeprecatedMsg' ) ) {
 	wfDeprecatedMsg(
 		'DefaultSettings.php is deprecated and will be removed. '
-		. 'Use the ConfigSchema service object instead.',
+		. 'Use MainConfigSchema::listDefaultValues() or MainConfigSchema::getDefaultValue() instead.',
 		'1.39'
 	);
 }

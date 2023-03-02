@@ -76,7 +76,7 @@
 			var $fields = tabs.contentPanel.$element.find( '[class^=mw-htmlform-field-]:not( #mw-prefsection-betafeatures .mw-htmlform-field-HTMLInfoField )' );
 			$fields.each( function () {
 				var $field = $( this );
-				var $wrapper = $field.closest( '.mw-prefs-fieldset-wrapper' );
+				var $wrapper = $field.parents( '.mw-prefs-fieldset-wrapper' );
 				var $tabPanel = $field.closest( '.oo-ui-tabPanelLayout' );
 				$field.find( '.oo-ui-labelElement-label, .oo-ui-textInputWidget .oo-ui-inputWidget-input, p' ).each( function () {
 
@@ -126,7 +126,7 @@
 			} );
 		}
 
-		var search = OO.ui.infuse( $( '.mw-prefs-search' ) );
+		var search = OO.ui.infuse( $( '.mw-prefs-search' ) ).fieldWidget;
 		search.$input.on( 'focus', function () {
 			if ( !index ) {
 				// Lazy-build index on first focus
@@ -147,8 +147,8 @@
 			tabs.tabSelectWidget.toggle( !isSearching );
 			$( '.mw-prefs-search-matched' ).removeClass( 'mw-prefs-search-matched' );
 			$( '.mw-prefs-search-highlight' ).removeClass( 'mw-prefs-search-highlight' );
+			var hasResults = false;
 			if ( isSearching ) {
-				var hasResults = false;
 				val = val.toLowerCase();
 				texts.forEach( function ( text ) {
 					// TODO: Could use Intl.Collator.prototype.compare like OO.ui.mixin.LabelElement.static.highlightQuery
@@ -164,12 +164,19 @@
 						hasResults = true;
 					}
 				} );
-				if ( !hasResults ) {
-					tabs.$element.append( $noResults );
-				} else {
-					$noResults.detach();
-				}
+			}
+			if ( isSearching && !hasResults ) {
+				tabs.$element.append( $noResults );
+			} else {
+				$noResults.detach();
 			}
 		} );
+
+		// Handle the initial value in case the user started typing before this JS code loaded,
+		// or the browser restored the value for a closed tab
+		if ( search.getValue() ) {
+			search.emit( 'change', search.getValue() );
+		}
+
 	} );
 }() );
