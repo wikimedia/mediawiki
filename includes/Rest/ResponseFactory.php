@@ -15,7 +15,6 @@ use Wikimedia\Message\MessageValue;
  * Generates standardized response objects.
  */
 class ResponseFactory {
-	private const CT_PLAIN = 'text/plain; charset=utf-8';
 	private const CT_HTML = 'text/html; charset=utf-8';
 	private const CT_JSON = 'application/json';
 
