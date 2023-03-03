@@ -901,7 +901,7 @@
 	"revdelete-hide-comment": "Descrierea modificării",
 	"revdelete-hide-user": "Numele de utilizator sau adresa IP",
 	"revdelete-hide-restricted": "Ascunde informațiile față de administratori și față de alți utilizatori",
-	"revdelete-radio-same": "(nu schimba)",
+	"revdelete-radio-same": "Nu schimba",
 	"revdelete-radio-set": "Ascuns",
 	"revdelete-radio-unset": "Vizibil",
 	"revdelete-suppress": "Ascunde versiunile și față de administratori",

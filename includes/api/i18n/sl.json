@@ -121,6 +121,7 @@
 	"apihelp-query+deletedrevs-param-namespace": "Navedi samo strani v tem imenskem prostoru.",
 	"apihelp-query+disabled-summary": "Ta poizvedbeni modul je bil onemogočen.",
 	"apihelp-query+filerepoinfo-param-prop": "Katere lastnosti shrambe naj se pridobijo (razpoložljive lastnosti se lahko razlikujejo v drugih vikijih razlikujejo).",
+	"apihelp-query+filerepoinfo-paramvalue-prop-url": "URL-pot javnega območja.",
 	"apihelp-query+fileusage-param-prop": "Katere lastnosti naj se pridobijo:",
 	"apihelp-query+fileusage-paramvalue-prop-pageid": "ID vsake strani.",
 	"apihelp-query+fileusage-paramvalue-prop-title": "Naslov vsake strani.",

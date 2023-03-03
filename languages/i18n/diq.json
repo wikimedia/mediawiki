@@ -888,6 +888,8 @@
 	"revdelete-radio-same": "(mevurne)",
 	"revdelete-radio-set": "Nımıte",
 	"revdelete-radio-unset": "Aseno",
+	"revdelete-radio-set-suppress": "Bıdewesne",
+	"revdelete-radio-unset-suppress": "Medewesne",
 	"revdelete-suppress": "Hem ê binan ra hem zi serkaran ra malumatan bınım",
 	"revdelete-unsuppress": "reizyonê ke tepiya anciye serbest ker",
 	"revdelete-log": "Sebeb:",
