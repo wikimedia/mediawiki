@@ -1,103 +1,104 @@
-== MediaWiki Maintenance ==
+MediaWiki's maintenance scripts are PHP scripts that perform maintenance tasks,
+and are designed to be run from the command line.
 
-The .sql scripts in this directory are not intended to be run standalone,
-although this is appropriate in some cases, e.g. manual creation of blank tables
-prior to an import.
+See also: https://www.mediawiki.org/wiki/Manual:Maintenance_scripts
 
-Most of the PHP scripts need to be run from the command line. Prior to doing so,
-ensure that the LocalSettings.php file in the directory above points to the
-proper installation.
+== Running Maintenance Scripts ==
 
-Certain scripts will require elevated access to the database. In order to
-provide this, first create a MySQL user with "all" permissions on the wiki
-database, and then set $wgDBadminuser and $wgDBadminpassword in your
-LocalSettings.php
+Maintenance scripts are generally executed using the maintenance runner, calling
+''php maintenance/run.php'' followed by the script's name. On most systems, the
+shorthand ''maintenance/run'' can also be used. For instance, to run the script
+that displays the MediaWiki version, use ''maintenance/run version''.
 
-=== Brief explanation of files ===
+Maintenance scripts can be called by their simple name, class name, or path.
 
-A lot of the files in this directory are PHP scripts used to perform various
-maintenance tasks on the wiki database, e.g. rebuilding link tables, updating
-the search indices, etc. The files in the "archives" directory are used to
-upgrade the database schema when updating the software. Some schema definitions
-for alternative (as yet unsupported) database management systems are stored
-here too.
+The simple name corresponds to a file in the maintenance directory:
+* ''maintenance/run version'' runs the file ''maintenance/version.php''.
 
-The "storage" directory contains scripts and resources useful for working with
-external storage clusters, and are not likely to be particularly useful to the
-vast majority of installations. This directory does contain the compressOld
-scripts, however, which can be useful for compacting old data.
+For the class name:
+* ''maintenance/run Version'' runs the Version class (using auto-loading from
+''./maintenance/version.php'').
 
-=== Maintenance scripts ===
+For the path:
+* ''maintenance/run ./maintenance/version.php'' runs the file
+''./maintenance/version.php''.
 
-As noted above, these should be run from the command line. Not all scripts are
-listed, as some are Wikimedia-specific, and some are not applicable to most
-installations.
+Note that relative file paths must start with "./". Using this form allows for
+the use of tab-completion.
 
-	changePassword.php
-	Reset the password of a specified user
+Maintenance scripts defined by extensions may also be called by giving their
+full class name or full relative path, such as:
+* ''maintenance/run ./extension/AbuseFilter/maintenance/SearchFilters.php''
+* ''maintenance/run MediaWiki.Extension.AbuseFilter.Maintenance.SearchFilters''
 
-	cleanupSpam.php
-	Mass-revert insertion of linkspam
+Note how the dot (".") can be used as a namespace separator instead of the
+backslash ("\").
 
-	createAndPromote.php
-	Create a user with administrator (and optionally, bureaucrat) permissions
+If the extension follows the MediaWiki coding conventions for the location and
+namespacing of maintenance scripts, they can be invoked using the name of the
+extension, followed by a colon (":") and the name of the script file or class:
+* ''maintenance/run AbuseFilter:SearchFilters''
 
-	deleteOldRevisions.php
-	Erase old revisions of pages from the database
+For more details on using the script runner, call ''maintenance/run --help''.
 
-	dumpBackup.php
-	Backup dump script
+For about an individual script, call ''maintenance/run <script> --help ''.
 
-	edit.php
-	Edit a page to change its content
+=== Running Maintenance Scripts before MW 1.40 ===
 
-	findHooks.php
-	Find hooks that aren't documented in docs/hooks.txt
+The maintenance runner described above was introduced in MediaWiki 1.40. In
+MediaWiki version 1.39 and earlier, maintenance scripts had to be run as
+standalone PHP scripts, by passing the path the the script to the php interpreter.
+For instance:
 
-	importDump.php
-	XML dump importer
+* ''php maintenance/version.php''
 
-	importImages.php
-	Import images into the wiki
+This is still possible for most scripts in 1.40, but it will show a deprecation
+warning.
 
-	moveBatch.php
-	Move a batch of pages
+== Creating Maintenance Scripts ==
 
-	namespaceDupes.php
-	Check articles name to see if they conflict with new/existing namespaces
+To create a maintenance script, add a PHP file to the maintenance directory that
+contains a class that extends the ''Maintenance'' base class and implement
+the ''execute()'' method. At the end of the file, add a return statement that
+returns the name of the class.
 
-	nukePage.php
-	Wipe a page and all revisions from the database
+For example, if your class is called ''Frobnify'', place it in a file called
+''maintenance/Frobnify.php'' and at the end of the file, put the following
+statement:
+<pre>
+return Frobnify::class;
+</pre>
 
-	reassignEdits.php
-	Reassign edits from one user to another
+You can now run your script by calling ''maintenance/run Frobnify''.
 
-	rebuildImages.php
-	Update image metadata records
+With this, it will however not be possible to run Frobnify.php as a PHP command
+line script. ''php maintenance/Frobnify.php'' will fail with an error.
 
-	rebuildmessages.php
-	Update the MediaWiki namespace after changing site language
+=== Supporting direct execution of maintenance scripts ===
+Since MediaWiki version 1.40, invoking maintenance scripts directly is now
+deprecated, and will show a warning even for scripts that support it.
 
-	rebuildtextindex.php
-	Rebuild the fulltext search indices
+If you need to support direct invocation for your script, this can be
+achieved as follows:
 
-	refreshLinks.php
-	Rebuild the link tables
+At the top of the script file, place the statement:
+<pre>
+require_once __DIR__ . '/Maintenance.php';
+</pre>.
 
-	removeUnusedAccounts.php
-	Remove user accounts which have made no edits
+For maintenance scripts defined in extensions, this is slightly more complex:
+<pre>
+require_once getenv( 'MW_INSTALL_PATH' ) !== false
+	? getenv( 'MW_INSTALL_PATH' ) . '/maintenance/Maintenance.php'
+	: __DIR__ . '/../../../maintenance/Maintenance.php';
+</pre>
 
-	runJobs.php
-	Immediately complete all jobs in the job queue
+Then, at the bottom of the file, replace the return statement with the
+following lines:
+<pre>
+$maintClass = Frobnify::class;
+require_once RUN_MAINTENANCE_IF_MAIN;
+</pre>
 
-	undelete.php
-	Undelete all revisions of a page
-
-	update.php
-	Check and upgrade the database schema to the current version
-
-	updateRestrictions.php
-	Update pages restriction to the new schema
-
-	userOptions.php
-	Change user options
+This will allow your script to be executed directly on the PHP command line.
+Note however that it will show a warning.
