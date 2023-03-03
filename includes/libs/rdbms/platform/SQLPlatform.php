@@ -1755,6 +1755,12 @@ class SQLPlatform implements ISQLPlatform {
 		) {
 			return false;
 		}
+
+		$this->logger->warning( __METHOD__ . ' fallback to regex', [
+			'exception' => new RuntimeException(),
+			'db_log_category' => 'sql',
+		] );
+
 		// Treat SELECT queries without FOR UPDATE queries as non-writes. This matches
 		// how MySQL enforces read_only (FOR SHARE and LOCK IN SHADE MODE are allowed).
 		// Handle (SELECT ...) UNION (SELECT ...) queries in a similar fashion.

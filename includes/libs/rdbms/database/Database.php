@@ -786,7 +786,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @param IResultWrapper|bool $ret
-	 * @param array[] $changes List of change n-tuples with from getTempWrites()
+	 * @param array[] $changes List of change n-tuples with from getTempTableWrites()
 	 */
 	protected function registerTempWrites( $ret, array $changes ) {
 		if ( $ret === false ) {
