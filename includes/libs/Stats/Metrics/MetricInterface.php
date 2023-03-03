@@ -79,6 +79,14 @@ interface MetricInterface {
 	public function withLabel( string $key, string $value );
 
 	/**
+	 * Copies metric operation to StatsD at provided namespace.
+	 *
+	 * @param string $statsdNamespace
+	 * @return CounterMetric|GaugeMetric|TimingMetric|NullMetric
+	 */
+	public function copyToStatsdAt( string $statsdNamespace );
+
+	/**
 	 * Returns metric with cleared labels.
 	 *
 	 * @return CounterMetric|GaugeMetric|TimingMetric|NullMetric

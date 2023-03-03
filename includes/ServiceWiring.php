@@ -1957,7 +1957,8 @@ return [
 			\Wikimedia\Stats\OutputFormats::getNewFormatter( $format ),
 			$config->get( MainConfigNames::StatsTarget )
 		);
-		return new StatsFactory( 'core', $cache, $emitter, LoggerFactory::getInstance( 'Stats' ) );
+		$factory = new StatsFactory( 'core', $cache, $emitter, LoggerFactory::getInstance( 'Stats' ) );
+		return $factory->withStatsdDataFactory( $services->getStatsdDataFactory() );
 	},
 
 	'TalkPageNotificationManager' => static function (

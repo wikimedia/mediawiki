@@ -21,6 +21,7 @@ declare( strict_types=1 );
 
 namespace Wikimedia\Stats;
 
+use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use TypeError;
@@ -62,6 +63,9 @@ class StatsFactory {
 
 	/** @var LoggerInterface */
 	private LoggerInterface $logger;
+
+	/** @var IBufferingStatsdDataFactory|null */
+	private ?IBufferingStatsdDataFactory $statsdDataFactory = null;
 
 	/**
 	 * StatsFactory builds, configures, and caches Metrics.
@@ -110,6 +114,11 @@ class StatsFactory {
 		StatsUtils::validateLabelKey( $key );
 		$this->staticLabelKeys[] = $key;
 		$this->staticLabelValues[] = StatsUtils::normalizeString( $value );
+		return $this;
+	}
+
+	public function withStatsdDataFactory( IBufferingStatsdDataFactory $statsdDataFactory ): StatsFactory {
+		$this->statsdDataFactory = $statsdDataFactory;
 		return $this;
 	}
 
@@ -179,7 +188,9 @@ class StatsFactory {
 		if ( $metric === null ) {
 			$baseMetric = new BaseMetric( $this->component, $name );
 			$metric = new $className(
-				$baseMetric->withStaticLabels( $this->staticLabelKeys, $this->staticLabelValues ),
+				$baseMetric
+					->withStatsdDataFactory( $this->statsdDataFactory )
+					->withStaticLabels( $this->staticLabelKeys, $this->staticLabelValues ),
 				$this->logger
 			);
 			$this->cache->set( $this->component, $name, $metric );

@@ -21,6 +21,7 @@ declare( strict_types=1 );
 
 namespace Wikimedia\Stats\Metrics;
 
+use IBufferingStatsdDataFactory;
 use Wikimedia\Stats\Exceptions\IllegalOperationException;
 use Wikimedia\Stats\Sample;
 use Wikimedia\Stats\StatsUtils;
@@ -60,6 +61,9 @@ class BaseMetric implements BaseMetricInterface {
 
 	/** @var Sample[] */
 	private array $samples = [];
+
+	/** @var IBufferingStatsdDataFactory|null */
+	private ?IBufferingStatsdDataFactory $statsdDataFactory = null;
 
 	/** @inheritDoc */
 	public function __construct( string $component, string $name ) {
@@ -111,6 +115,17 @@ class BaseMetric implements BaseMetricInterface {
 		StatsUtils::validateLabelKey( $key );
 		$this->addLabelKey( $key );
 		$this->workingLabels[$key] = StatsUtils::normalizeString( $value );
+	}
+
+	/** @inheritDoc */
+	public function getStatsdDataFactory() {
+		return $this->statsdDataFactory;
+	}
+
+	/** @inheritDoc */
+	public function withStatsdDataFactory( $statsdDataFactory ): BaseMetric {
+		$this->statsdDataFactory = $statsdDataFactory;
+		return $this;
 	}
 
 	/**
