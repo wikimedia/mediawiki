@@ -76,6 +76,15 @@ interface BaseMetricInterface {
 	public function getName(): string;
 
 	/**
+	 * Configures the metric with static labels.
+	 *
+	 * @param string[] $labelKeys
+	 * @param string[] $labelValues
+	 * @return BaseMetricInterface
+	 */
+	public function withStaticLabels( array $labelKeys, array $labelValues ): BaseMetricInterface;
+
+	/**
 	 * Add a label with key => value
 	 *
 	 * @param string $key
