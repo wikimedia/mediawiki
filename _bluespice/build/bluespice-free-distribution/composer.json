@@ -13,7 +13,7 @@
 		"mediawiki/flexiskin": "dev-REL1_35",
 		"mediawiki/hit-counters": "dev-REL1_35",
 		"mediawiki/image-map-edit": "dev-REL1_35",
-		"mediawiki/lingo": "~3.0",
+		"mediawiki/lingo": "~3.1",
 		"mediawiki/loops": "dev-REL1_35",
 		"mediawiki/rss": "dev-REL1_35",
 		"mediawiki/template-styles": "dev-REL1_35",
