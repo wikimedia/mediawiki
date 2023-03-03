@@ -131,7 +131,8 @@ class ImportImages extends Maintenance {
 		$services = MediaWikiServices::getInstance();
 		$permissionManager = $services->getPermissionManager();
 
-		$found = $processed = 0;
+		$found = 0;
+		$processed = 0;
 		$statistics = [
 			'ignored' => 0,
 			'added' => 0,
