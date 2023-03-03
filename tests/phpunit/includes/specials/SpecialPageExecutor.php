@@ -13,7 +13,7 @@ class SpecialPageExecutor {
 
 	/**
 	 * @param SpecialPage $page The special page to execute
-	 * @param string $subPage The subpage parameter to call the page with
+	 * @param string|null $subPage The subpage parameter to call the page with
 	 * @param WebRequest|null $request Web request that may contain URL parameters, etc
 	 * @param Language|string|null $language The language which should be used in the context;
 	 * if not specified, the pseudo-code 'qqx' is used
@@ -104,7 +104,7 @@ class SpecialPageExecutor {
 
 	/**
 	 * @param SpecialPage $page
-	 * @param string $subPage
+	 * @param string|null $subPage
 	 * @param bool $fullHtml
 	 *
 	 * @throws Exception
