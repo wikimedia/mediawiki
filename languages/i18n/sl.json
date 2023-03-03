@@ -1066,6 +1066,8 @@
 	"prefs-email": "Možnosti e-pošte",
 	"prefs-rendering": "Videz",
 	"prefs-searchmisc": "Splošno",
+	"searchprefs": "Nastavitve iskanja",
+	"searchprefs-noresults": "Ni zadetkov",
 	"saveprefs": "Shrani",
 	"restoreprefs": "Obnovi vse privzete nastavitve",
 	"prefs-editing": "Urejanje",

@@ -1055,6 +1055,8 @@
 	"prefs-email": "Optiones de e-mail",
 	"prefs-rendering": "Apparentia",
 	"prefs-searchmisc": "General",
+	"searchprefs": "Cercar preferentias",
+	"searchprefs-noresults": "Nulle resultato",
 	"saveprefs": "Confirmar",
 	"restoreprefs": "Restaurar tote le parametros predefinite",
 	"prefs-editing": "Modification",

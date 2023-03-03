@@ -1241,6 +1241,8 @@
 	"prefs-email": "Options des courriels",
 	"prefs-rendering": "Apparence",
 	"prefs-searchmisc": "Général",
+	"searchprefs": "Préférences de recherche",
+	"searchprefs-noresults": "Aucun résultat",
 	"saveprefs": "Enregistrer les préférences",
 	"restoreprefs": "Restaurer tous les paramètres par défaut",
 	"prefs-editing": "Modification",

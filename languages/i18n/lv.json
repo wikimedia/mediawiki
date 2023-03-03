@@ -786,7 +786,7 @@
 	"revdelete-hide-comment": "Kopsavilkums",
 	"revdelete-hide-user": "Autora lietotājvārds/IP adrese",
 	"revdelete-hide-restricted": "Paslēpt datus arī no administratoriem",
-	"revdelete-radio-same": "(nemainīt)",
+	"revdelete-radio-same": "Nemainīt",
 	"revdelete-radio-set": "Slēpts",
 	"revdelete-radio-unset": "Redzams",
 	"revdelete-suppress": "Paslēpt datus arī no administratoriem",
