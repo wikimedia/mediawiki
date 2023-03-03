@@ -20,8 +20,13 @@
  * @file
  */
 
+namespace MediaWiki\ExternalLinks;
+
+use Content;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
+use StringUtils;
+use TextContent;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\LikeMatch;
 
@@ -414,3 +419,5 @@ class LinkFilter {
 		return $arr;
 	}
 }
+
+class_alias( LinkFilter::class, 'LinkFilter' );

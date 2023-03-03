@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\ExternalLinks\LinkFilter;
 use MediaWiki\MainConfigNames;
 use Wikimedia\Rdbms\LikeMatch;
 

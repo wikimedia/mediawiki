@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\ExternalLinks\LinkFilter;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
