@@ -276,6 +276,7 @@ because of Phabricator reports.
   - LinksUpdateAfterInsert, deprecated in 1.38
   - ParserSectionCreate, deprecated in 1.35
   - ResourceLoaderTestModules, deprecated in 1.33
+  - SpecialMuteSubmit, deprecated in 1.35
   - UserLoadFromDatabase, deprecated in 1.37
   - UserSetCookies, deprecated in 1.27
 * RemexDriver::__construct() now only accepts a ServiceOptions instance as
