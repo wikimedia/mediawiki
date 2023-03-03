@@ -52,10 +52,36 @@ class TimingMetric implements MetricInterface {
 	/** @var LoggerInterface */
 	private LoggerInterface $logger;
 
+	/** @var float|null */
+	private ?float $startTime = null;
+
 	/** @inheritDoc */
 	public function __construct( $baseMetric, $logger ) {
 		$this->baseMetric = $baseMetric;
 		$this->logger = $logger;
+	}
+
+	/**
+	 * Starts a timer.
+	 *
+	 * @return void
+	 */
+	public function start(): void {
+		$this->startTime = microtime( true );
+	}
+
+	/**
+	 * Stops a running timer.
+	 *
+	 * @return void
+	 */
+	public function stop(): void {
+		if ( $this->startTime === null ) {
+			trigger_error( "Stats: stop() called before start() for metric '{$this->getName()}'", E_USER_WARNING );
+			return;
+		}
+		$this->observe( ( microtime( true ) - $this->startTime ) * 1000 );
+		$this->startTime = null;
 	}
 
 	/**
