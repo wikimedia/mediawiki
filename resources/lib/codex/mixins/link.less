@@ -1,0 +1,123 @@
+// Link Styles
+//
+// Per ADR 04, Codex Links are implemented as a re-usable LESS mixin rather
+// than a Vue.js component. Users who wish to apply the Codex Link styles to
+// elements on a page should call the mixin inside of the relevant selector in
+// their own stylesheets. Variants (underlined links, red links) can be accessed
+// by adding the appropriate modifier class (.is-underlined and .is-red-link,
+// respectively).
+//
+// Code that needs to customize these modifier classes or otherwise customize the
+// selectors used for these modifiers can use the following sub-mixins:
+// - cdx-mixin-link-base(): base link styles
+// - cdx-mixin-link-underlined(): underlined link (-base must also be applied)
+// - cdx-mixin-link-red(): red link (-base must also be applied)
+//
+// Example usage:
+//
+// .my-link-class {
+//     .cdx-mixin-link-base();
+//
+//     &.custom-underlined-class {
+//         .cdx-mixin-link-underlined();
+//     }
+//
+//     &.custom-red-link-class {
+//         .cdx-mixin-link-red();
+//     }
+// }
+//
+// Link styles can be used inside of other Vue components, or anywhere that LESS
+// is available; JS is not required.
+
+@import ( reference ) '@wikimedia/codex-design-tokens/theme-wikimedia-ui.less';
+
+// TODO: Replace with design tokens when available.
+@font-size-browser: 16;
+@font-size-base: 14 / @font-size-browser;
+@min-size-icon-small: 14px;
+@size-icon-small: unit( ( 14 / @font-size-browser / @font-size-base ), em );
+
+.cdx-mixin-link-base() {
+	color: @color-progressive;
+	border-radius: @border-radius-base;
+	text-decoration: @text-decoration-none;
+
+	&:visited {
+		color: @color-visited;
+
+		&:hover {
+			color: @color-visited;
+		}
+	}
+
+	&:hover {
+		color: @color-progressive--hover;
+		text-decoration: @text-decoration-underline;
+	}
+
+	&:active {
+		color: @color-progressive--active;
+		text-decoration: @text-decoration-underline;
+	}
+
+	&:focus {
+		outline: @border-style-base @border-width-thick @color-progressive--focus;
+	}
+
+	.cdx-icon:last-child {
+		// Note, `@min-size-icon-small` & `@size-icon-small` are an approximation in our current
+		// 16/14 base font theme environment.
+		// TODO: Revisit with Codex themes and with token icon sizes.
+		min-width: @min-size-icon-small;
+		min-height: @min-size-icon-small;
+		width: @size-icon-small;
+		height: @size-icon-small;
+		padding-left: @spacing-25;
+		vertical-align: middle;
+	}
+}
+
+.cdx-mixin-link-underlined() {
+	text-decoration: @text-decoration-underline;
+}
+
+.cdx-mixin-link-red() {
+	color: @color-destructive;
+
+	&:visited {
+		color: @color-link-red--visited;
+
+		&:hover {
+			color: @color-link-red--visited;
+		}
+	}
+
+	&:hover {
+		color: @color-destructive--hover;
+		text-decoration: @text-decoration-underline;
+	}
+
+	&:active {
+		color: @color-destructive--active;
+		text-decoration: @text-decoration-underline;
+	}
+
+	&:focus {
+		outline-color: @color-progressive--focus;
+	}
+}
+
+.cdx-mixin-link() {
+	.cdx-mixin-link-base();
+
+	// stylelint-disable-next-line selector-class-pattern
+	&.is-underlined {
+		.cdx-mixin-link-underlined();
+	}
+
+	// stylelint-disable-next-line selector-class-pattern
+	&.is-red-link {
+		.cdx-mixin-link-red();
+	}
+}
