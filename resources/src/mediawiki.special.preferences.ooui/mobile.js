@@ -10,8 +10,12 @@
 	var setSection = function ( sectionName, fieldset ) {
 		// strip possible prefixes from the section to normalize it
 		var section = sectionName.replace( 'mw-prefsection-', '' ).replace( 'mw-mobile-prefs-', '' );
+		var win = windowManager.getCurrentWindow();
+		if ( win && win.constructor.static.name !== 'mw-mobile-prefs-' + section ) {
+			windowManager.closeWindow( win );
+		}
 		// Work in the window isn't necessarily done when 'then` fires
-		windowManager.openWindow( 'mw-mobile-prefs-' + section ).opening.then( function () {
+		windowManager.openWindow( 'mw-mobile-prefs-' + section ).opened.then( function () {
 			// Scroll to a fieldset if provided.
 			if ( fieldset ) {
 				// setTimout is ie11-compatible and queues up tasks for async exec

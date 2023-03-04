@@ -84,7 +84,7 @@
 		 * @param {string} defaultSection The name of a section to load by default
 		 */
 		onLoad: function ( setSection, defaultSection ) {
-			$( window ).on( 'hashchange', this.onHashChange( setSection, defaultSection )
+			$( window ).on( 'hashchange', this.onHashChange.bind( this, setSection, defaultSection )
 			).trigger( 'hashchange' );
 		},
 
