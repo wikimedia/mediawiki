@@ -5993,15 +5993,15 @@ class Parser {
 			$this
 		);
 
-		if ( $rev === false ) {
+		if ( !$rev ) {
 			// The revision record callback returns `false` (not null) to
 			// indicate that the revision is missing.  (See for example
 			// Parser::statelessFetchRevisionRecord(), the default callback.)
 			// This API expects `null` instead. (T251952)
-			$rev = null;
+			return null;
 		}
 
-		if ( $this->mRevisionId === null && $rev && $rev->getId() ) {
+		if ( $this->mRevisionId === null && $rev->getId() ) {
 			// We are in preview mode (mRevisionId is null), and the current revision callback
 			// returned an existing revision. Ignore it and return null, it's probably the page's
 			// current revision, which is not what we want here. Note that we do want to call the
@@ -6013,7 +6013,7 @@ class Parser {
 		// If the parse is for a new revision, then the callback should have
 		// already been set to force the object and should match mRevisionId.
 		// If not, try to fetch by mRevisionId instead.
-		if ( $this->mRevisionId && $rev && $rev->getId() != $this->mRevisionId ) {
+		if ( $this->mRevisionId && $rev->getId() != $this->mRevisionId ) {
 			$rev = MediaWikiServices::getInstance()
 				->getRevisionLookup()
 				->getRevisionById( $this->mRevisionId );
