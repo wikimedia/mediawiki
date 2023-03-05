@@ -160,7 +160,8 @@ class MWExceptionRenderer {
 			RequestContext::getMain()->getTitle() &&
 			!defined( 'MEDIAWIKI_INSTALL' ) &&
 			// Don't send a skinned HTTP 500 page to API clients.
-			!defined( 'MW_API' )
+			!defined( 'MW_API' ) &&
+			!defined( 'MW_REST_API' )
 		);
 	}
 
