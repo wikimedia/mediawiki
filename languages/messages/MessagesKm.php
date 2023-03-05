@@ -153,6 +153,7 @@ $specialPageAliases = [
 	'Randomredirect'            => [ 'ការបញ្ជូនបន្តដោយចៃដន្យ' ],
 	'Recentchanges'             => [ 'បំលាស់ប្ដូរថ្មីៗ' ],
 	'Recentchangeslinked'       => [ 'បំលាស់ប្ដូរទាក់ទិន' ],
+	'Renameuser'                => [ 'ប្ដូរឈ្មោះអ្នកប្រើប្រាស់' ],
 	'Revisiondelete'            => [ 'កំណែបានលុបចោល' ],
 	'Search'                    => [ 'ស្វែងរក' ],
 	'Shortpages'                => [ 'ទំព័រខ្លីៗ' ],

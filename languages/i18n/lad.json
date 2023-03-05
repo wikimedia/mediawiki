@@ -1145,5 +1145,8 @@
 	"skin-action-protect": "Guadrar",
 	"skin-action-undelete": "Traer atrás",
 	"skin-action-delete": "Efassar",
-	"skin-action-move": "Taşirear"
+	"skin-action-move": "Taşirear",
+	"renameusernew": "Nombre de kullaneador muevo:",
+	"renameuserreason": "Razon:",
+	"renameuserwarnings": "Avisos:"
 }

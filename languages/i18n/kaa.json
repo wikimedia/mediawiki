@@ -1773,5 +1773,7 @@
 	"blockedtext-intended-blockee": "Nıshandaǵı bloklanıwshı: $1",
 	"blockedtext-contact-blocker-admin": "Bloklawdı talqılaw ushın $1 yamasa basqa [[{{MediaWiki:Grouppage-sysop}}|administrator]]ǵa xabarlasıwǵa boladı.",
 	"blockedtext-block-ip": "Siziń házirgi IP adresińiz $1",
-	"blockedtext-include-details-queries": "Joqarıda kórsetilgen barlıq maǵlıwmatlardı ózińiz jaratqan qálegen sorawnamaǵa kirgizińiz."
+	"blockedtext-include-details-queries": "Joqarıda kórsetilgen barlıq maǵlıwmatlardı ózińiz jaratqan qálegen sorawnamaǵa kirgizińiz.",
+	"log-name-renameuser": "Paydalanıwshı atın ózgertiw jurnalı",
+	"logentry-renameuser-renameuser-legacier": "$1 paydalanıwshı atın $4 degennen $5 degenge ózgertti"
 }

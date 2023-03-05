@@ -1258,6 +1258,7 @@ return [
 				'bureaucrat' => [
 					'userrights' => true,
 					'noratelimit' => true,
+					'renameuser' => true,
 				],
 				'suppress' => [
 					'hideuser' => true,
@@ -2066,6 +2067,7 @@ return [
 					],
 					'needsPage' => false,
 				],
+				'renameUser' => 'RenameUserJob',
 			],
 			'JobTypesExcludedFromDefaultQueue' => [
 				0 => 'AssembleUploadChunks',
@@ -2113,6 +2115,7 @@ return [
 				11 => 'tag',
 				12 => 'managetags',
 				13 => 'contentmodel',
+				14 => 'renameuser',
 			],
 			'LogRestrictions' => [
 				'suppress' => 'suppressionlog',
@@ -2177,6 +2180,7 @@ return [
 				'protect/move_prot' => 'ProtectLogFormatter',
 				'protect/protect' => 'ProtectLogFormatter',
 				'protect/unprotect' => 'ProtectLogFormatter',
+				'renameuser/renameuser' => 'RenameuserLogFormatter',
 				'rights/autopromote' => 'RightsLogFormatter',
 				'rights/rights' => 'RightsLogFormatter',
 				'suppress/block' => 'BlockLogFormatter',

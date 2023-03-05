@@ -212,6 +212,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ '最近更改' ],
 	'Recentchangeslinked'       => [ '最近链出更改', '相关更改' ],
 	'Redirect'                  => [ '重定向' ],
+	'Renameuser'                => [ '重命名用户' ],
 	'ResetTokens'               => [ '重置权标' ],
 	'Revisiondelete'            => [ '删除修订', '恢复修订' ],
 	'RunJobs'                   => [ '运行工作' ],

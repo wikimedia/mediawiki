@@ -1790,5 +1790,9 @@
 	"skin-action-undelete": "Maaccât",
 	"skin-action-delete": "Siho",
 	"skin-action-move": "Sirde",
-	"newpages-showhide-bots": "$1 bottijd"
+	"newpages-showhide-bots": "$1 bottijd",
+	"renameuserreason": "Suijâ:",
+	"renameuserwarnings": "Váruttâsah:",
+	"log-name-renameuser": "Kevtteenoomâi molsom loki",
+	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|uđđâsistnomâttij}} kevttee $4 ({{PLURAL:$6|$6 hammim|$6 hammiimid}}) noomáin {{GENDER:$7|$5}}"
 }

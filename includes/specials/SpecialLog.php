@@ -195,6 +195,7 @@ class SpecialLog extends SpecialPage {
 			'block',
 			'newusers',
 			'rights',
+			'renameuser',
 		];
 
 		( $runner ?? Hooks::runner() )->onGetLogTypesOnUser( $types );

@@ -170,6 +170,7 @@ $specialPageAliases = [
 	'Recentchangeslinked'       => [ '링크최근바뀜' ],
 	'Redirect'                  => [ '넘겨주기' ],
 	'RemoveCredentials'         => [ '자격증명삭제', '자격증명제거' ],
+	'Renameuser'                => [ '이름바꾸기', '사용자이름바꾸기', '계정이름바꾸기' ],
 	'ResetTokens'               => [ '토큰재설정' ],
 	'Revisiondelete'            => [ '특정판삭제' ],
 	'RunJobs'                   => [ '작업실행' ],

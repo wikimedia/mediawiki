@@ -1248,5 +1248,10 @@
 	"skin-action-protect": "Pó-hō͘",
 	"skin-action-undelete": "chhú-siau thâi tiàu",
 	"skin-action-delete": "Thâi",
-	"skin-action-move": "Sóa khì"
+	"skin-action-move": "Sóa khì",
+	"renameuser": "Kái iōng-chiá ê miâ",
+	"renameuser-page-moved": "$1 í-keng sóa khì tī $2.",
+	"log-name-renameuser": "Iōng-chiá têng-hō-miâ kì-lio̍k",
+	"logentry-renameuser-renameuser": "$1 kā iōng-chiá $4 ({{PLURAL:$6|$6 pái pian-chi̍p|$6 pái pian-chi̍p}}) {{GENDER:$2|kái-miâ}} pìⁿ {{GENDER:$7|$5}}",
+	"logentry-renameuser-renameuser-legacier": "$1 kā iōng-chiá $4 ê hō-miâ kái chò {{GENDER:$7|$5}}"
 }

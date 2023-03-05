@@ -1324,5 +1324,9 @@
 	"blockedtext-start-time": "Il bloc al tache: $1",
 	"blockedtext-expiration-time": "Il bloc al finis: $1",
 	"blockedtext-block-ip": "La tô direzion IP atuâl e je $1",
-	"blockedtext-include-details-queries": "Par plasê copie ce che al è scrit ca parsore in ogni tô eventutâl richieste."
+	"blockedtext-include-details-queries": "Par plasê copie ce che al è scrit ca parsore in ogni tô eventutâl richieste.",
+	"renameuser": "Cambie non par un utent",
+	"renameuserold": "Non utent atuâl:",
+	"renameusernew": "Gnûf non utent:",
+	"renameuserwarnings": "Avîs:"
 }

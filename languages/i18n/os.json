@@ -1651,5 +1651,11 @@
 	"skin-action-protect": "Сæхгæнын",
 	"skin-action-undelete": "Рацаразын",
 	"skin-action-delete": "Схафын",
-	"skin-action-move": "Ном ивын"
+	"skin-action-move": "Ном ивын",
+	"renameuser": "Архайæджы ном баив",
+	"renameuserold": "Ныры ном:",
+	"renameusernew": "Ног ном:",
+	"renameuserreason": "Ном ивыны аххос:",
+	"renameusersubmit": "Афтæ уæд",
+	"log-name-renameuser": "Архайджыты нæмттæ ивыны лог"
 }

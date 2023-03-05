@@ -133,6 +133,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ '最近の更新', '最近更新したページ' ],
 	'Recentchangeslinked'       => [ '関連ページの更新状況', 'リンク先の更新状況' ],
 	'Redirect'                  => [ '転送', 'リダイレクト' ],
+	'Renameuser'                => [ '利用者名変更', '利用者名の変更' ],
 	'ResetTokens'               => [ 'トークンの再設定' ],
 	'Revisiondelete'            => [ '版指定削除', '特定版削除' ],
 	'Search'                    => [ '検索' ],

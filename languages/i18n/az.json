@@ -2823,5 +2823,21 @@
 	"skin-action-protect": "Mühafizə et",
 	"skin-action-undelete": "Bərpa et",
 	"skin-action-delete": "Sil",
-	"skin-action-move": "Adını dəyiş"
+	"skin-action-move": "Adını dəyiş",
+	"renameuser": "İstifadəçi adını dəyişdir",
+	"renameuser-linkoncontribs": "{{GENDER:$1|istifadəçinin}} adını dəyiş",
+	"renameuser-linkoncontribs-text": "Bu {{GENDER:$1|istifadəçinin}} adını dəyiş",
+	"renameuserold": "Hal-hazırki istifadəçi adı:",
+	"renameusernew": "Yeni istifadəçi adı:",
+	"renameuserwarnings": "Xəbərdarlıqlar:",
+	"renameuserconfirm": "Bəli, istifadəçinin adını dəyiş",
+	"renameusersubmit": "Təsdiqlə",
+	"renameusererrordoesnotexist": "\"<nowiki>$1</nowiki>\" istifadəçi adı mövcud deyil.",
+	"renameusererrorexists": "\"<nowiki>$1</nowiki>\" {{GENDER:$1|istifadəçi}} adı artıq mövcuddur.",
+	"renameusererrorinvalid": "\"<nowiki>$1</nowiki>\" istifadəçi adı yolverilməzdir.",
+	"renameusersuccess": "\"<nowiki>$1</nowiki>\" adlı {{GENDER:$2|istifadəçinin}} adı \"<nowiki>$2</nowiki>\" olaraq dəyişdirildi.",
+	"renameuser-page-moved": "$1 $2 səhifəsinə köçürülüb.",
+	"renameuser-page-unmoved": "$1 $2 səhifəsinə köçürülə bilinmir.",
+	"log-name-renameuser": "İstifadəçi adı dəyişiklikləri jurnalı",
+	"right-renameuser": "İstifadəçilərin adını dəyiş"
 }

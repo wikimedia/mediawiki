@@ -1212,5 +1212,7 @@
 	"skin-action-protect": "保護",
 	"skin-action-undelete": "取消刪除",
 	"skin-action-delete": "刪掉咯",
-	"skin-action-move": "移動"
+	"skin-action-move": "移動",
+	"log-name-renameuser": "Ê̤ṳng-hô gāi-miàng gì nĭk-cé",
+	"logentry-renameuser-renameuser": "$1 ciŏng ê̤ṳng-hô $4 (ī biĕng-cĭk {{PLURAL:$6|$6 huòi}}) gì miàng-cê gāi có̤ {{GENDER:$7|$5}}"
 }

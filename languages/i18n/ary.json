@@ -2018,5 +2018,7 @@
 	"skin-action-protect": "حمي",
 	"skin-action-undelete": "لغي الحدف",
 	"skin-action-delete": "محي",
-	"skin-action-move": "حوّل"
+	"skin-action-move": "حوّل",
+	"log-name-renameuser": "كناش تبدال سميت لخدايمي",
+	"logentry-renameuser-renameuser": "{{GENDER:$2|بدل|بدلات}} $1 سميت $4 ({{PLURAL:$6|تبديل واحد|جوج تبديلات|$6 تبديل}}) ل {{GENDER:$7|$5}}"
 }

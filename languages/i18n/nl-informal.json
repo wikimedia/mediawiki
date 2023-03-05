@@ -326,5 +326,6 @@
 	"userlogout-temp": "Weet je zeker dat je je wilt afmelden? Je zult je niet opnieuw bij dit tijdelijke account kunnen aanmelden.",
 	"blockedtext-contact-blocker-admin": "Je kunt contact opnemen met $1 of een andere [[{{MediaWiki:Grouppage-sysop}}|beheerder]] om de blokkade te bespreken.",
 	"blockedtext-block-ip": "Je huidige IP-adres is $1",
-	"blockedtext-include-details-queries": "Vermeld alle bovenstaande gegevens als je ergens op deze blokkade reageert."
+	"blockedtext-include-details-queries": "Vermeld alle bovenstaande gegevens als je ergens op deze blokkade reageert.",
+	"renameuser-error-same-user": "Je kunt geen gebruiker hernoemen naar dezelfde naam."
 }

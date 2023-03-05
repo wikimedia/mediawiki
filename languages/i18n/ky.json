@@ -1363,5 +1363,17 @@
 	"skin-action-protect": "Коргоо",
 	"skin-action-undelete": "Калыбына келтирүү",
 	"skin-action-delete": "Өчүрүү",
-	"skin-action-move": "Аталышын өзгөртүү"
+	"skin-action-move": "Аталышын өзгөртүү",
+	"renameuser": "Колдонуучунун атын өзгөрт",
+	"renameuser-linkoncontribs": "колдонуучунун атын өзгөрт",
+	"renameuser-linkoncontribs-text": "Колдонуучунун атын өзгөрт",
+	"renameuserold": "Азыркы аты:",
+	"renameusernew": "Жаңы аты",
+	"renameuserreason": "Атты өзгөртүүнүн себеби:",
+	"renameusermove": "Колдонуучу жана анын талкуу баракчаларын (ички баракчалары менен чогуу) жаңы атка өткөз",
+	"renameusersuppress": "Жаңы атка багыттама койбо",
+	"renameuserreserve": "Колдонуучунун эски атын кийин колдонуу үчүн ээлеп кой",
+	"renameuserwarnings": "Эскертүүлөр:",
+	"renameuserconfirm": "Ооба, колдонуучунун атын өзгөрт",
+	"renameusersubmit": "Аткар"
 }

@@ -2594,5 +2594,11 @@
 	"skin-action-protect": "Àbò",
 	"skin-action-undelete": "Ìmúkúrò ìparẹ́",
 	"skin-action-delete": "Ìparẹ́",
-	"skin-action-move": "Ìyípòdà"
+	"skin-action-move": "Ìyípòdà",
+	"renameuserold": "Orúkọ oníṣe ìsinsìnyí:",
+	"renameusernew": "Orúkọ oníṣe tuntun:",
+	"renameuserwarnings": "Àwọn ìkìlọ̀:",
+	"renameusersubmit": "Fúnsílẹ̀",
+	"renameusererrordoesnotexist": "Oníṣe \"<nowiki>$1</nowiki>\" kò sí.",
+	"renameusererrorexists": "Oníṣe \"<nowiki>$1</nowiki>\" tilẹ̀ wà tẹ́lẹ̀."
 }

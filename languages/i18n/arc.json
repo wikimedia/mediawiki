@@ -1303,5 +1303,20 @@
 	"skin-action-protect": "ܛܪ",
 	"skin-action-undelete": "ܠܐ ܫܘܦ",
 	"skin-action-delete": "ܫܘܦ",
-	"skin-action-move": "ܫܢܝ"
+	"skin-action-move": "ܫܢܝ",
+	"renameuser": "ܬܢܝ ܫܘܡܗܐ ܕܡܦܠܚܢܐ",
+	"renameuser-linkoncontribs": "ܬܢܝ ܫܘܡܗܐ ܕܡܦܠܚܢܐ",
+	"renameuser-linkoncontribs-text": "ܬܢܝ ܫܘܡܗܐ ܕܗܢܐ ܡܦܠܚܢܐ",
+	"renameuserold": "ܫܡܐ ܕܡܦܠܚܢܐ ܥܬܝܩܐ:",
+	"renameusernew": "ܫܡܐ ܕܡܦܠܚܢܐ ܚܕܬܐ:",
+	"renameuserreason": "ܥܠܬܐ:",
+	"renameuserwarnings": "ܙܘܗܪ̈ܐ:",
+	"renameuserconfirm": "ܐܝܢ، ܫܚܠܦ ܫܡܐ ܕܡܦܠܚܢܐ",
+	"renameusersubmit": "ܫܕܪ",
+	"log-name-renameuser": "ܣܓܠܐ ܕܬܘܢܝ ܫܘܡܗܐ ܕܡܦܠܚܢ̈ܐ",
+	"logentry-renameuser-renameuser": "$1 ܬܢܝ ܫܘܡܗܐ ܕ{{GENDER:$2|ܡܦܠܚܢܐ|ܡܦܠܚܢܬܐ}} $4 ({{PLURAL:$6|$6 ܫܘܚܠܦܐ|$6 ܫܘܚܠܦ̈ܐ}}) ܠ $5",
+	"logentry-renameuser-renameuser-legacier": "$1 ܬܢܝ ܫܘܡܗܐ ܕ $4 ܠ $5",
+	"renameuser-move-log": "ܝܬܐܝܬ ܫܢܐ ܦܐܬܐ ܟܕ ܬܢܝ ܫܘܡܗܐ ܕܡܦܠܚܢܐ \"[[User:$1|$1]]\" ܠ \"[[User:$2|$2]]\"",
+	"action-renameuser": "ܬܢܝ ܫܘܡܗܐ ܕܡܦܠܚܢܐ",
+	"right-renameuser": "ܬܢܝ ܫܘܡܗܐ ܕܡܦܠܚܢܐ"
 }

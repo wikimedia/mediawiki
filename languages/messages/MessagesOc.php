@@ -117,6 +117,7 @@ $specialPageAliases = [
 	'Randomredirect'            => [ 'Redireccion_a_l\'azard', 'Redirect_a_l\'azard' ],
 	'Recentchanges'             => [ 'Darrièrs_cambiaments', 'DarrièrsCambiaments', 'Darrièras_Modificacions' ],
 	'Recentchangeslinked'       => [ 'Seguit_dels_ligams' ],
+	'Renameuser'                => [ 'TornarNomenarUtilizaire', 'Tornar_nomenar_Utilizaire' ],
 	'Revisiondelete'            => [ 'Versions_suprimidas' ],
 	'Search'                    => [ 'Recèrca', 'Recercar', 'Cercar' ],
 	'Shortpages'                => [ 'Articles_brèus' ],

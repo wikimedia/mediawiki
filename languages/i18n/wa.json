@@ -1718,5 +1718,21 @@
 	"skin-action-protect": "Protedjî",
 	"skin-action-undelete": "Rapexhî",
 	"skin-action-delete": "Disfacer",
-	"skin-action-move": "Displaecî"
+	"skin-action-move": "Displaecî",
+	"renameuser": "Rilomer èn uzeu",
+	"renameuserold": "No d' elodjaedje pol moumint:",
+	"renameusernew": "Novea no d' elodjaedje:",
+	"renameuserreason": "Råjhon pol rilomaedje:",
+	"renameusermove": "Displaecî les pådjes d' uzeu et d' copene (eyet leus dzo-pådjes) viè l' novea no",
+	"renameuserwarnings": "Adviertixhmints:",
+	"renameusersubmit": "Evoye",
+	"renameusererrordoesnotexist": "L' uzeu «<nowiki>$1</nowiki>» n' egzistêye nén",
+	"renameusererrorexists": "L' uzeu «<nowiki>$1</nowiki>» egzistêye dedja",
+	"renameusererrorinvalid": "Li no d' elodjaedje «<nowiki>$1</nowiki>» n' est nén on no valide",
+	"renameusersuccess": "L' uzeu «<nowiki>$1</nowiki>» a stî rlomé a «<nowiki>$2</nowiki>»",
+	"renameuser-page-exists": "Li pådje $1 egzistêye dedja et n' pout nén esse otomaticmint spotcheye.",
+	"renameuser-page-moved": "Li pådje $1 a stî displaeceye viè $2.",
+	"renameuser-page-unmoved": "Li pådje $1 èn pout nén esse displaeceye viè $2.",
+	"log-name-renameuser": "Djournå des candjmints d' no d' uzeus",
+	"renameuser-move-log": "Pådje displaeceye otomaticmint tot rlomant l' uzeu «[[User:$1|$1]]» viè «[[User:$2|$2]]»"
 }

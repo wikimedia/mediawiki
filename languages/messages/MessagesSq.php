@@ -103,6 +103,7 @@ $specialPageAliases = [
 	'Protectedtitles'           => [ 'TitujTëMbrojtur', 'TitujteMbrojtur' ],
 	'Randompage'                => [ 'ArtikullIRastësishëm', 'Rastësishme', 'FaqeRastësishme' ],
 	'Recentchanges'             => [ 'NdryshimeSëFundmi' ],
+	'Renameuser'                => [ 'RiemërtoPërdorues' ],
 	'Search'                    => [ 'Kërko', 'Kërkim' ],
 	'Shortpages'                => [ 'FaqeTëShkurtra', 'FasheteShkurta' ],
 	'Specialpages'              => [ 'FaqetSpeciale' ],

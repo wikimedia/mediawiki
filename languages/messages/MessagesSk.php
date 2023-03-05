@@ -113,6 +113,7 @@ $specialPageAliases = [
 	'Recentchangeslinked'       => [ 'SúvisiacePoslednéÚpravy' ],
 	'Redirect'                  => [ 'Presmerovanie' ],
 	'RemoveCredentials'         => [ 'OdstráneniePrihlasovacíchÚdajov' ],
+	'Renameuser'                => [ 'PremenovaťPoužívateľa' ],
 	'ResetTokens'               => [ 'ObnovaKľúčov' ],
 	'Revisiondelete'            => [ 'ZmazaťRevíziu' ],
 	'Search'                    => [ 'Hľadanie' ],

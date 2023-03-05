@@ -3083,5 +3083,21 @@
 	"blockedtext-contact-blocker-admin": "Tu vari sazināties ar $1 vai kādu citu [[{{MediaWiki:Grouppage-sysop}}|administratoru]], lai apspriestu bloķēšanu.",
 	"blockedtext-block-ip": "Tava IP adrese ir $1",
 	"blockedtext-block-id": "Bloķēšanas gadījuma ID #$1.",
-	"blockedtext-include-details-queries": "Lūdzu, iekļauj šo informāciju visos turpmākajos pieprasījumos."
+	"blockedtext-include-details-queries": "Lūdzu, iekļauj šo informāciju visos turpmākajos pieprasījumos.",
+	"renameuser": "Pārsaukt lietotāju",
+	"renameuser-linkoncontribs": "pārsaukt {{GENDER:$1|dalībnieku|dalībnieci}}",
+	"renameuser-linkoncontribs-text": "Pārsaukt šo {{GENDER:$1|dalībnieku|dalībnieci}}",
+	"renameuserold": "Pašreizējais lietotājvārds:",
+	"renameusernew": "Jaunais lietotāja vārds:",
+	"renameuserreason": "Iemesls:",
+	"renameuserreserve": "Bloķēt veco lietotājvārdu no turpmākas izmantošanas",
+	"renameuserwarnings": "Brīdinājumi:",
+	"renameuserconfirm": "Jā, pārdēvēt lietotāju",
+	"renameusersubmit": "Iesniegt",
+	"renameusererrorexists": "Lietotājs \"<nowiki>$1</nowiki>\" jau ir.",
+	"renameusersuccess": "Lietotājs \"<nowiki>$1</nowiki>\" pārdēvēts par \"<nowiki>$2</nowiki>\".",
+	"log-name-renameuser": "Dalībnieku pārdēvēšanas reģistrs",
+	"log-description-renameuser": "Lietotājvārdu maiņas reģistrs",
+	"action-renameuser": "pārsaukt lietotājus",
+	"right-renameuser": "Pārsaukt dalībniekus"
 }

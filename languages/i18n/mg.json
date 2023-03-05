@@ -3028,5 +3028,17 @@
 	"skin-action-protect": "Hiaro",
 	"skin-action-undelete": "Avereno",
 	"skin-action-delete": "Fafana",
-	"skin-action-move": "Hanolo anarana"
+	"skin-action-move": "Hanolo anarana",
+	"renameuser": "Hanova ny anaran'ny mpikambana",
+	"renameuser-linkoncontribs": "Manova ny anaran'ny mpikambana",
+	"renameuser-linkoncontribs-text": "Hanova ny anaran'ity mpikambana ity",
+	"renameuserold": "Anaram-pikambana ankehitriny :",
+	"renameusernew": "Anaram-pikambana vaovao :",
+	"renameuserreason": "Antony :",
+	"renameusermove": "Afindrany pejim-pikambana any amin'ny anarana vaovao",
+	"renameuserwarnings": "Fampitandremana :",
+	"renameuserconfirm": "Eny, soloy anarana ilay mpikambana",
+	"renameusersubmit": "Alefa",
+	"log-name-renameuser": "Laogim-panovana anaram-pikambana",
+	"right-renameuser": "Manova ny anaran'ny mpikambana"
 }

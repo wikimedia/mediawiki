@@ -66,6 +66,8 @@ use RecentChangesUpdateJob;
 use RedisPubSubFeedEngine;
 use ReflectionClass;
 use RefreshLinksJob;
+use RenameUserJob;
+use RenameuserLogFormatter;
 use ReplicatedBagOStuff;
 use RevertedTagUpdateJob;
 use RightsLogFormatter;
@@ -7834,6 +7836,7 @@ class MainConfigSchema {
 			'bureaucrat' => [
 					'userrights' => true,
 					'noratelimit' => true,
+					'renameuser' => true,
 				],
 			'suppress' => [
 					'hideuser' => true,
@@ -11122,6 +11125,7 @@ class MainConfigSchema {
 				// tell the JobFactory not to include the $page parameter in the constructor call
 				'needsPage' => false
 			],
+			'renameUser' => RenameUserJob::class,
 		],
 		'type' => 'map',
 	];
@@ -11361,6 +11365,7 @@ class MainConfigSchema {
 			'tag',
 			'managetags',
 			'contentmodel',
+			'renameuser',
 		],
 		'type' => 'list',
 	];
@@ -11503,6 +11508,7 @@ class MainConfigSchema {
 			'protect/move_prot' => ProtectLogFormatter::class,
 			'protect/protect' => ProtectLogFormatter::class,
 			'protect/unprotect' => ProtectLogFormatter::class,
+			'renameuser/renameuser' => RenameuserLogFormatter::class,
 			'rights/autopromote' => RightsLogFormatter::class,
 			'rights/rights' => RightsLogFormatter::class,
 			'suppress/block' => BlockLogFormatter::class,

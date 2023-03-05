@@ -2368,5 +2368,6 @@
 	"skin-action-protect": "Պաշտպանել",
 	"skin-action-undelete": "Վերականգնել",
 	"skin-action-delete": "Ջնջել",
-	"skin-action-move": "Տեղափոխել այս էջը"
+	"skin-action-move": "Տեղափոխել այս էջը",
+	"renameuser-linkoncontribs-text": "Վերանվանել այս {{GENDER:$1|մասնակցին}}"
 }

@@ -143,6 +143,7 @@ $specialPageAliases = [
 	'Randomredirect'            => [ 'Цахууш_нисделла_дIасахьажор' ],
 	'Recentchanges'             => [ 'Керла_нисдарш' ],
 	'Recentchangeslinked'       => [ 'Кхуьнца_долу_нисдарш' ],
+	'Renameuser'                => [ 'Декъашхочун_цӀе_хийца' ],
 	'Revisiondelete'            => [ 'Нисдар_дӀадаккхар' ],
 	'Search'                    => [ 'Лахар' ],
 	'Shortpages'                => [ 'Боца_яззамаш' ],

@@ -127,6 +127,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ 'VurnayışêPeyêni' ],
 	'Recentchangeslinked'       => [ 'GıreyêVurnayışêPeyênan' ],
 	'Redirect'                  => [ 'Serberdış' ],
+	'Renameuser'                => [ 'NamedayışéKarberi' ],
 	'ResetTokens'               => [ 'SimgeyanPeyserberze' ],
 	'Revisiondelete'            => [ 'ÇımraviyarnayışiBestere' ],
 	'RunJobs'                   => [ 'KariBıgurene' ],

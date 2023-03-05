@@ -347,5 +347,12 @@
 	"api-error-publishfailed": "內部錯誤：伺服器發佈暫存檔案失敗。",
 	"duration-days": "$1日",
 	"nstab-mainpage": "首頁",
-	"newpages-showhide-bots": "$1機械人"
+	"newpages-showhide-bots": "$1機械人",
+	"renameuser": "重新命名用戶",
+	"renameuser-linkoncontribs": "重新命名用戶",
+	"renameuserold": "目前的用戶名稱：",
+	"log-name-renameuser": "用戶名變更日誌",
+	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|重新命名}}用戶 $4 (已編輯 {{PLURAL:$6|$6 次}}) 為 $5",
+	"action-renameuser": "重新命名用戶",
+	"right-renameuser": "重新命名用戶"
 }

@@ -106,6 +106,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ 'KemmoùDiwezhañ' ],
 	'Recentchangeslinked'       => [ 'KemmoùKar' ],
 	'Redirect'                  => [ 'Adkas' ],
+	'Renameuser' => [ 'AdenevelImplijer' ],
 	'Revisiondelete'            => [ 'StummoùDiverket' ],
 	'Search'                    => [ 'Klask' ],
 	'Shortpages'                => [ 'PajennoùBerr' ],

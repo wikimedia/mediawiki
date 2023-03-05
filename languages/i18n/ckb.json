@@ -3018,5 +3018,11 @@
 	"blockedtext-intended-blockee": "بەربەستکراو: $1",
 	"blockedtext-contact-blocker-admin": "بۆ وتووێژ سەبارەت بە بەربەستکردنەکە دەتوانیت پەیوەندی بە $1 بکەی یان یەکێکی دیکە لە [[{{MediaWiki:Grouppage-sysop}}|بەڕێوبەران]].",
 	"blockedtext-block-ip": "ناونیشانی ئایپی ئێستات: $1",
-	"blockedtext-include-details-queries": "تکایە لە هەر داواکارییەک هەموو وردەکارییەکانی سەرەوە بنووسە."
+	"blockedtext-include-details-queries": "تکایە لە هەر داواکارییەک هەموو وردەکارییەکانی سەرەوە بنووسە.",
+	"newpages-showhide-registered": "بەکارھێنەرە تۆمارکراوەکان $1",
+	"renameuserold": "ناوی بەکارھێنەری ئێستا:",
+	"renameusersubmit": "ناردن",
+	"log-name-renameuser": "لۆگی گۆڕینی ناوی بەکارھێنەر",
+	"logentry-renameuser-renameuser": "$1 ناوی بەکارھێنەر $4ی ({{PLURAL:$6|$6 دەستکاری}}) {{GENDER:$2|گۆڕی}} بۆ $5",
+	"right-renameuser": "گۆڕینی ناوی بەکارھێنەران"
 }

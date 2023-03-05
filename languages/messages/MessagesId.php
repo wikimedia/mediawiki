@@ -260,6 +260,7 @@ $specialPageAliases = [
 	'Randomredirect'            => [ 'Pengalihan_sembarang', 'PengalihanSembarang' ],
 	'Recentchanges'             => [ 'Perubahan_terbaru', 'PerubahanTerbaru', 'RC', 'PT' ],
 	'Recentchangeslinked'       => [ 'Perubahan_terkait', 'PerubahanTerkait' ],
+	'Renameuser'                => [ 'Ganti_nama_pengguna', 'GantiNamaPengguna' ],
 	'Revisiondelete'            => [ 'Hapus_revisi', 'HapusRevisi' ],
 	'Search'                    => [ 'Pencarian', 'Cari' ],
 	'Shortpages'                => [ 'Halaman_pendek', 'HalamanPendek' ],

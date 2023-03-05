@@ -690,5 +690,6 @@
 	"nstab-mainpage": "Pàgina maestra",
 	"skin-action-protect": "Pruteghje",
 	"skin-action-delete": "Supprimà",
-	"skin-action-move": "Cullucà"
+	"skin-action-move": "Cullucà",
+	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|renamed}} user $4 ({{PLURAL:$6|$6 edit|$6 edits}}) to {{GENDER:$7|$5}}"
 }

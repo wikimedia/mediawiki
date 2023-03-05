@@ -287,6 +287,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ 'Leste_wiezigingen' ],
 	'Recentchangeslinked'       => [ 'Leste_wiezigingen_ekoppeld' ],
 	'Redirect'                  => [ 'Deurverwiezen' ],
+	'Renameuser'                => [ 'Gebruker_herneumen' ],
 	'Revisiondelete'            => [ 'Versie_vortdoon' ],
 	'Search'                    => [ 'Zeuken' ],
 	'Shortpages'                => [ 'Korte_artikels' ],

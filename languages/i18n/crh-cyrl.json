@@ -1427,5 +1427,8 @@
 	"skin-action-protect": "Къорчала",
 	"skin-action-undelete": "Янъыдан ярат",
 	"skin-action-delete": "Ёкъ эт",
-	"skin-action-move": "Адыны денъиштир"
+	"skin-action-move": "Адыны денъиштир",
+	"renameuser-page-moved": "$1 саифесининъ ады $2 деп денъиштирильди.",
+	"renameuser-page-unmoved": "$1 саифесининъ ады $2 оларакъ денъиштирилип оламай.",
+	"log-name-renameuser": "Къулланыджы ады денъишиклиги журналы"
 }

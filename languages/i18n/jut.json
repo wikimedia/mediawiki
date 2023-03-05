@@ -887,5 +887,22 @@
 	"nstab-mainpage": "Forsiid",
 	"skin-view-edit-local": "Redigiir lokal beskriiwels",
 	"skin-action-protect": "Beskøtt",
-	"skin-action-move": "Flytt"
+	"skin-action-move": "Flytt",
+	"renameuser": "Omdøb bruge",
+	"renameuserold": "Nuwærenje brugenaun:",
+	"renameusernew": "Ny brugenaun:",
+	"renameuserreason": "Før hvat dett'er dun:",
+	"renameusermove": "Flytt bruge- å diskusjonsside (å dæes unjeside) te ny naun",
+	"renameusersubmit": "Omdøb",
+	"renameusererrordoesnotexist": "Brugari \"<nowiki>$1</nowiki>\" finjs ett.",
+	"renameusererrorexists": "Brugari \"<nowiki>$1</nowiki>\" finjs ållried.",
+	"renameusererrorinvalid": "Brugenaune \"<nowiki>$1</nowiki>\" ä udjylji.",
+	"renameuser-error-request": "Dä war e problem mä å modta forspöyrgsle.\nGo wenlist tebag å forsyeg idjen.",
+	"renameuser-error-same-user": "Du kan ett omdøb i bruge te sam naune som förr.",
+	"renameusersuccess": "Brugari \"<nowiki>$1</nowiki>\" ä bløwen omdøbtj te \"<nowiki>$2</nowiki>\".",
+	"renameuser-page-exists": "Siden $1 eksistiire ållried å kan ett automatisk öweskriiws.",
+	"renameuser-page-moved": "Siden $1 ä flytten te $2.",
+	"renameuser-page-unmoved": "Siden $1 ku ett flytts te $2.",
+	"log-name-renameuser": "Brugeomdøbnengslogg",
+	"renameuser-move-log": "Siid automatisk flytten we omdøbneng å bruge \"[[User:$1|$1]]\" te \"[[User:$2|$2]]\""
 }

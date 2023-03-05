@@ -130,6 +130,7 @@ $specialPageAliases = [
 	'Recentchangeslinked'       => [ 'Související_změny', 'Souvisejici_zmeny' ],
 	'Redirect'                  => [ 'Přesměrování', 'Přesměrovat' ],
 	'RemoveCredentials'         => [ 'Odstranění_přihlašovacích_údajů' ],
+	'Renameuser'                => [ 'Přejmenovat_uživatele' ],
 	'ResetTokens'               => [ 'Reinicializace_klíčů' ],
 	'Revisiondelete'            => [ 'Smazat_revizi' ],
 	'Search'                    => [ 'Hledání', 'Hledani' ],

@@ -1660,5 +1660,8 @@
 	"skin-action-protect": "Qorçala",
 	"skin-action-undelete": "Yañıdan yarat",
 	"skin-action-delete": "Yoq et",
-	"skin-action-move": "Adını deñiştir"
+	"skin-action-move": "Adını deñiştir",
+	"renameuser-page-moved": "$1 saifesiniñ adı $2 dep deñiştirildi.",
+	"renameuser-page-unmoved": "$1 saifesiniñ adı $2 olaraq deñiştirilip olamay.",
+	"log-name-renameuser": "Qullanıcı adı deñişikligi jurnalı"
 }
