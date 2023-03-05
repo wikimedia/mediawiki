@@ -1,7 +1,5 @@
 <?php
 /**
- * User interface for page editing.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -126,16 +124,18 @@ use WikiPage;
 use Xml;
 
 /**
- * The edit page/HTML interface (split from Article)
- * The actual database and text munging is still in Article,
- * but it should get easier to call those from alternate
- * interfaces.
+ * The HTML user interface for page editing.
+ *
+ * This was originally split from the Article class, with some database and text
+ * munging logic still partly there.
  *
  * EditPage cares about two distinct titles:
- * $this->mContextTitle is the page that forms submit to, links point to,
- * redirects go to, etc. $this->mTitle (as well as $mArticle) is the
- * page in the database that is actually being edited. These are
- * usually the same, but they are now allowed to be different.
+ * - $this->mContextTitle is the page that forms submit to, links point to,
+ *   redirects go to, etc.
+ * - $this->mTitle (as well as $mArticle) is the page in the database that is
+ *   actually being edited.
+ *
+ * These are usually the same, but they are now allowed to be different.
  *
  * Surgeon General's Warning: prolonged exposure to this class is known to cause
  * headaches, which may be fatal.
