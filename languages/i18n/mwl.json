@@ -1220,5 +1220,6 @@
 	"nstab-mainpage": "Páigina percipal",
 	"skin-action-protect": "Porteger",
 	"skin-action-delete": "Botar fuora",
-	"skin-action-move": "Arrastrar"
+	"skin-action-move": "Arrastrar",
+	"renameuser-page-moved": "La páigina $1 fui arrastrada pa $2."
 }

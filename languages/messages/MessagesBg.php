@@ -92,6 +92,7 @@ $specialPageAliases = [
 	'Randomredirect'            => [ 'Случайно_пренасочване' ],
 	'Recentchanges'             => [ 'Последни_промени' ],
 	'Recentchangeslinked'       => [ 'Свързани_промени' ],
+	'Renameuser'                => [ 'Преименуване' ],
 	'Revisiondelete'            => [ 'Изтриване_на_версии' ],
 	'Search'                    => [ 'Търсене' ],
 	'Shortpages'                => [ 'Кратки_страници' ],

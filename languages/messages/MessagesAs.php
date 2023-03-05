@@ -111,6 +111,7 @@ $specialPageAliases = [
 	'Randomredirect'            => [ 'আকস্মিক_পুনৰ্নিৰ্দেশনা' ],
 	'Recentchanges'             => [ 'শেহতীয়া_সালসলনি' ],
 	'Recentchangeslinked'       => [ 'সম্পৰ্কিত_সালসলনিসমূহ' ],
+	'Renameuser'                => [ 'সদস্য_পুনৰ্নামকৰণ' ],
 	'Revisiondelete'            => [ 'সংস্কৰণ_বিলোপ' ],
 	'Search'                    => [ 'সন্ধান' ],
 	'Shortpages'                => [ 'চমু_পৃষ্ঠা' ],

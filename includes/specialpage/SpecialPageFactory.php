@@ -1004,6 +1004,18 @@ class SpecialPageFactory {
 				'UserFactory',
 			]
 		],
+		'Renameuser' => [
+			'class' => \SpecialRenameuser::class,
+			'services' => [
+				'ContentLanguage',
+				'MovePageFactory',
+				'PermissionManager',
+				'TitleFactory',
+				'UserFactory',
+				'UserNamePrefixSearch',
+				'UserNameUtils'
+			]
+		],
 		'Revisiondelete' => [
 			'class' => \SpecialRevisionDelete::class,
 			'services' => [

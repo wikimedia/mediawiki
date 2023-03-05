@@ -853,5 +853,10 @@
 	"expand_templates_output": "Phetho",
 	"skin-action-protect": "Lota",
 	"skin-action-delete": "Phumula",
-	"skin-action-move": "Huduša"
+	"skin-action-move": "Huduša",
+	"renameuser": "Fetola leina la mošomiši",
+	"renameuserold": "Leina la bjale la mošomiši:",
+	"renameusernew": "Leina le lempsha la mošomiši:",
+	"renameuserreason": "Lebaka:",
+	"renameuser-page-moved": "Letlakala $1 le hudušitšwe go $2"
 }

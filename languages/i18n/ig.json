@@ -1360,5 +1360,9 @@
 	"skin-action-protect": "Chekwaa",
 	"skin-action-undelete": "Á gbàkashikwà",
 	"skin-action-delete": "Hichaa",
-	"skin-action-move": "Wepụ"
+	"skin-action-move": "Wepụ",
+	"renameuserwarnings": "Ngéntị:",
+	"renameusersubmit": "Zibànye",
+	"renameuser-page-moved": "Ihü $1 a páfùrù gá $2.",
+	"renameuser-page-unmoved": "Ihü $1 énweghịkị páfù gá $2."
 }

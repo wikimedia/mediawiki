@@ -178,6 +178,7 @@ $specialPageAliases = [
 	'Recentchangeslinked'       => [ 'Povezane_izmene', 'SrodneIzmene' ],
 	'Redirect'                  => [ 'Preusmerenje' ],
 	'RemoveCredentials'         => [ 'Ukloni_akreditive', 'UkloniAkreditive' ],
+	'Renameuser'                => [ 'PreimenujKorisnika', 'Preimenuj_korisnika' ],
 	'ResetTokens'               => [ 'Resetuj_tokene', 'ResetujŽetone' ],
 	'Revisiondelete'            => [ 'Brisanje_izmene', 'BrisanjeIzmene', 'UklanjanjeIzmene' ],
 	'RunJobs'                   => [ 'Izvrši_poslove', 'IzvršiPoslove' ],

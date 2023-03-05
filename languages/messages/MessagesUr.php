@@ -156,6 +156,7 @@ $specialPageAliases = [
 	'Recentchangeslinked'       => [ 'متعلقہ_حالیہ_تبدیلیاں', 'متعلقہ_تبدیلیاں' ],
 	'Redirect'                  => [ 'رجوع_مکرر' ],
 	'RemoveCredentials'         => [ 'حذف_حساس_معلومات' ],
+	'Renameuser'                => [ 'تبدیلی_نام' ],
 	'ResetTokens'               => [ 'ٹوکنوں_کی_ترتیب_نو' ],
 	'Revisiondelete'            => [ 'حذف_نسخہ', 'حذف_نظر_ثانی', 'حذف_اعادہ' ],
 	'RunJobs'                   => [ 'تعمیل_امور' ],

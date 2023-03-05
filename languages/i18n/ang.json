@@ -1170,5 +1170,8 @@
 	"skin-action-protect": "Beorg",
 	"skin-action-undelete": "Scieppan tramet eft",
 	"skin-action-delete": "Forleos",
-	"skin-action-move": "Wegan"
+	"skin-action-move": "Wegan",
+	"renameuser": "Ednemnan brūcend",
+	"renameuser-linkoncontribs": "Ednemne {{GENDER:$1|brucend|brucestran}}",
+	"renameusersubmit": "Forþsendan"
 }

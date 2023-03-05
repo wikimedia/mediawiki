@@ -101,6 +101,7 @@ $specialPageAliases = [
 	'Randomredirect'            => [ 'RedireksyonOaza' ],
 	'Recentchanges'             => [ 'ChanjmanResan' ],
 	'Recentchangeslinked'       => [ 'LyenChanjmanResan', 'ChanjmanAk' ],
+	'Renameuser'                => [ 'RenonmenItilizatè' ],
 	'Revisiondelete'            => [ 'RevizyonSiprime' ],
 	'Search'                    => [ 'Chache', 'Fouye' ],
 	'Shortpages'                => [ 'PajKout' ],

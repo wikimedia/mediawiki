@@ -1033,5 +1033,8 @@
 	"nstab-mainpage": "Тӗпел",
 	"skin-action-protect": "хӳтĕле",
 	"skin-action-delete": "Кăларса пăрах",
-	"skin-action-move": "Ятне улăштар"
+	"skin-action-move": "Ятне улăштар",
+	"renameuserconfirm": "Çапла, хутшăнакан ятне улăштармалла",
+	"renameuser-page-moved": "$1 страницăн ятне $2 çине улăштарнă.",
+	"log-name-renameuser": "Хутшăнакансен ятне улăштарнин логĕ"
 }

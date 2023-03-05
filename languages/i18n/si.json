@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"1100100",
 			"1233qwer1234qwer4",
 			"Asiri wiki",
 			"Budhajeewa",
@@ -40,8 +41,7 @@
 			"ශ්වෙත",
 			"සුරනිමල",
 			"හරිත",
-			"아라",
-			1100100
+			"아라"
 		]
 	},
 	"tog-underline": "සබැඳි යටීර කිරීම:",
@@ -2780,5 +2780,32 @@
 	"skin-action-protect": "ආරක්‍ෂණය",
 	"skin-action-undelete": "මකාදැමීම අවලංගු කරන්න",
 	"skin-action-delete": "මකන්න",
-	"skin-action-move": "ගෙනයන්න"
+	"skin-action-move": "ගෙනයන්න",
+	"renameuser": "පරිශීලකයා යළි-නම්කරන්න",
+	"renameuser-linkoncontribs": "පරිශීලකයා යළි-නම්කරන්න",
+	"renameuser-linkoncontribs-text": "මෙම පරිශීලකයා ප්‍රති-නම් කරන්න",
+	"renameuserold": "වත්මන් පරිශීලක නාමය:",
+	"renameusernew": "නව පරිශීලක නාමය:",
+	"renameuserreason": "හේතුව:",
+	"renameusermove": "පරිශීලක හා සාකච්ඡා පිටු   (හා  ඒවායේ උපපිටු) නව නම වෙතට ගෙන යන්න",
+	"renameusersuppress": "යළි යොමුවන් නම නාමයේ සැකසීමෙන් වළකින්න.",
+	"renameuserreserve": "පැරණි පරිශීලක නම අනාගත භාවිතයෙන් වාරණය කරන්න",
+	"renameuserwarnings": "අවවාදයන්:",
+	"renameuserconfirm": "ඔව්, පරිශීලකයා යළි-නම්කරන්න",
+	"renameusersubmit": "යොමන්න",
+	"renameusererrordoesnotexist": "\"<nowiki>$1</nowiki>\" පරිශීලකයා නොපවතී.",
+	"renameusererrorexists": "\"<nowiki>$1</nowiki>\" පරිශීලකයා දැනටමත් පවතියි.",
+	"renameusererrorinvalid": "\"<nowiki>$1</nowiki>\" පරිශීලක නාමය අනීතිකයි.",
+	"renameuser-error-request": "ඉල්ලීම ලැබීමේ දෝෂයක් හට ගැනිනි.\nකරුණාකර ආපසු ගොස් නැවත උත්සාහ කරන්න.",
+	"renameuser-error-same-user": "ඔබට පරිශීලකයෙක් පෙර තිබූ නමටම ප්‍රතිනම්කළ නොහැක.",
+	"renameusersuccess": "\"<nowiki>$1</nowiki>\" පරිශීලකයා \"<nowiki>$2</nowiki>\" වෙත ප්‍රතිනම් කෙරිනි.",
+	"renameuser-page-exists": "$1 පිටුව දැනටමත් පවතින අතර, එය ස්වයංක්‍රීයව අධිලිවීමකට භාජනය කල නොහැක.",
+	"renameuser-page-moved": " $1 පිටුව $2 වෙත ගෙනයන ලදි.",
+	"renameuser-page-unmoved": " $1 පිටුව  $2 වෙත ගෙනයා නොහැක.",
+	"log-name-renameuser": "පරිශීලක ප්‍රතිනම්කෙරුම් ලොගය",
+	"log-description-renameuser": "මෙය පරිශීලක නාම වෙනස්වීම් පිළිබඳ ලඝු-සටහනකි.",
+	"renameuser-move-log": "පරිශීලක \"[[User:$1|$1]]\", \"[[User:$2|$2]]\" වෙත ප්‍රතිනම්කරන අතරතුර පිටුව ස්‍වයංක්‍රීයව ගෙනයන ලදී",
+	"action-renameuser": "පරිශීලකයන් ප්‍රතිනම් කරන්න",
+	"right-renameuser": "පරිශීලකයන් ප්‍රතිනම් කරන්න",
+	"renameuser-renamed-notice": "මෙම පරිශීලකයා ප්‍රතිනම්කර ඇත.\nප්‍රතිනම්කෙරුම් ලඝු-සටහන පහත දක්වා ඇත."
 }

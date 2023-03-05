@@ -3167,5 +3167,22 @@
 	"skin-action-protect": "Protektar",
 	"skin-action-undelete": "Rekuperar",
 	"skin-action-delete": "Efacar",
-	"skin-action-move": "Movar"
+	"skin-action-move": "Movar",
+	"renameuser": "Rinomar uzero",
+	"renameuserold": "Aktuala uzantonomo:",
+	"renameusernew": "Nova uzantonomo:",
+	"renameuserreason": "Motivo:",
+	"renameuserwarnings": "Averti:",
+	"renameuserconfirm": "Yes, rinomez l'uzanto",
+	"renameusersubmit": "Sendez",
+	"renameusererrordoesnotexist": "L'uzanto \"<nowiki>$1</nowiki>\" ne existas.",
+	"renameusererrorexists": "La {{GENDER:$1|uzero}} \"<nowiki>$1</nowiki>\" ja existas.",
+	"renameusererrorinvalid": "L'uzantonomo \"<nowiki>$1</nowiki>\" esas ne-valida.",
+	"renameuser-error-same-user": "Vu ne povas renomar uzero ad la sama nomo.",
+	"renameusersuccess": "La {{GENDER:$2|uzero}} \"<nowiki>$1</nowiki>\" rinomesis kom \"<nowiki>$2</nowiki>\".",
+	"renameuser-page-moved": "La pagino $1 movesis a $2.",
+	"renameuser-page-unmoved": "On ne povis movar la pagino $1 a $2.",
+	"log-name-renameuser": "Registro di uzero-rinomizuri",
+	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|rinomizis}} uzero $4 ({{PLURAL:$6|$6 redakto|$6 redakti}}) kom {{GENDER:$7|$5}}",
+	"right-renameuser": "Rinomar uzanti"
 }

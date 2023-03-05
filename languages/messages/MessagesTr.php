@@ -162,6 +162,7 @@ $specialPageAliases = [
 	'Randomredirect'            => [ 'RastgeleYönlendirme' ],
 	'Recentchanges'             => [ 'SonDeğişiklikler' ],
 	'Recentchangeslinked'       => [ 'İlgiliDeğişiklikler' ],
+	'Renameuser'                => [ 'KullanıcıAdınıDeğiştir', 'KullanıcıİsminiDeğiştir' ],
 	'Revisiondelete'            => [ 'RevizyonSil' ],
 	'Search'                    => [ 'Ara', 'Arama' ],
 	'Shortpages'                => [ 'KısaSayfalar' ],

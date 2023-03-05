@@ -1956,5 +1956,11 @@
 	"skin-action-protect": "Kaita",
 	"skin-action-undelete": "Pördutada",
 	"skin-action-delete": "Čuta poiš",
-	"skin-action-move": "Udesnimitada"
+	"skin-action-move": "Udesnimitada",
+	"renameuser": "Udesnimitada kävutajad",
+	"renameuserold": "Nügüdläine kävutajannimi:",
+	"renameusernew": "Uz' kävutajan nimi:",
+	"renameuserreason": "Udesnimitandan sü:",
+	"renameusersubmit": "Tehta",
+	"right-renameuser": "Udesnimitada kävutajid"
 }

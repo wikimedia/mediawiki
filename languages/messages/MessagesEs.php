@@ -128,6 +128,7 @@ $specialPageAliases = [
 	'Recentchangeslinked'       => [ 'CambiosEnEnlazadas', 'Cambios_en_enlazadas' ],
 	'Redirect'                  => [ 'Redirigir' ],
 	'RemoveCredentials'         => [ 'Eliminar_credenciales' ],
+	'Renameuser'                => [ 'RenombrarUsuario', 'Renombrar_usuario', 'Cambiar_el_nombre_de_usuario' ],
 	'ResetTokens'               => [ 'ReestablecerClaves' ],
 	'Revisiondelete'            => [ 'BorrarRevisión', 'Borrar_revisión' ],
 	'Search'                    => [ 'Buscar' ],

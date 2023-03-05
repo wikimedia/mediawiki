@@ -1433,5 +1433,11 @@
 	"skin-action-protect": "Лораде",
 	"skin-action-undelete": "Хьаметтаоттаде",
 	"skin-action-delete": "ДӀаяккха",
-	"skin-action-move": "ЦӀи хувца"
+	"skin-action-move": "ЦӀи хувца",
+	"renameuserconfirm": "ХӀаъ, дӀахувца доакъашхочун цӀи",
+	"renameuser-page-moved": "$1 яхача оагIонах «$2» аьнна керда цIи тиллай.",
+	"log-name-renameuser": "Доакъашхой цӀераш хувцара тептар",
+	"log-description-renameuser": "Укх тептара тӀа гу регистраци яь болча доакъашхой цӀераш хувцар.",
+	"logentry-renameuser-renameuser": "$1 яхачо {{GENDER:$7|$5}} яха цӀи тиллай ({{GENDER:$2|цӀи хийцай}}) $4 яхача доакъашхочун ({{PLURAL:$6|$6 тоадар}})",
+	"logentry-renameuser-renameuser-legacier": "$1 яхача доакъашхочо $4 {{GENDER:$7|яхачун}} цӀи хийцай укхох → $5"
 }

@@ -13,6 +13,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ProperPageIdentity;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\RenameUser\RenameuserSQL;
 use MediaWiki\ResourceLoader as RL;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Session\Session;
@@ -483,6 +484,11 @@ class HookRunner implements
 	\MediaWiki\Permissions\Hook\UserIsEveryoneAllowedHook,
 	\MediaWiki\Preferences\Hook\GetPreferencesHook,
 	\MediaWiki\Preferences\Hook\PreferencesFormPreSaveHook,
+	\MediaWiki\RenameUser\Hook\RenameUserAbortHook,
+	\MediaWiki\RenameUser\Hook\RenameUserCompleteHook,
+	\MediaWiki\RenameUser\Hook\RenameUserPreRenameHook,
+	\MediaWiki\RenameUser\Hook\RenameUserSQLHook,
+	\MediaWiki\RenameUser\Hook\RenameUserWarningHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderGetConfigVarsHook,
 	\MediaWiki\ResourceLoader\Hook\ResourceLoaderJqueryMsgModuleMagicWordsHook,
 	\MediaWiki\Rest\Hook\SearchResultProvideDescriptionHook,
@@ -3152,6 +3158,45 @@ class HookRunner implements
 		return $this->container->run(
 			'RejectParserCacheValue',
 			[ $parserOutput, $wikiPage, $parserOptions ]
+		);
+	}
+
+	public function onRenameUserAbort( int $uid, string $old, string $new ) {
+		return $this->container->run(
+			'RenameUserAbort',
+			[ $uid, $old, $new ]
+		);
+	}
+
+	public function onRenameUserComplete( int $uid, string $old, string $new ): void {
+		$this->container->run(
+			'RenameUserComplete',
+			[ $uid, $old, $new ],
+			[ 'abortable' => false ]
+		);
+	}
+
+	public function onRenameUserPreRename( int $uid, string $old, string $new ): void {
+		$this->container->run(
+			'RenameUserPreRename',
+			[ $uid, $old, $new ],
+			[ 'abortable' => false ]
+		);
+	}
+
+	public function onRenameUserSQL( RenameuserSQL $renameUserSql ): void {
+		$this->container->run(
+			'RenameUserSQL',
+			[ $renameUserSql ],
+			[ 'abortable' => false ]
+		);
+	}
+
+	public function onRenameUserWarning( string $oldUsername, string $newUsername, array &$warnings ): void {
+		$this->container->run(
+			'RenameUserWarning',
+			[ $oldUsername, $newUsername, &$warnings ],
+			[ 'abortable' => false ]
 		);
 	}
 

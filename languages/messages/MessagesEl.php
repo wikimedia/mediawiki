@@ -125,6 +125,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ 'ΠρόσφατεςΑλλαγές' ],
 	'Recentchangeslinked'       => [ 'ΣυνδεδεμένεςΠρόσφατεςΑλλαγές', 'ΣχετικέςΑλλαγές' ],
 	'Redirect'                  => [ 'Ανακατεύθυνση' ],
+	'Renameuser'                => [ 'ΜετονομασίαΧρήστη' ],
 	'Revisiondelete'            => [ 'ΔιαγραφήΈκδοσης' ],
 	'Search'                    => [ 'Αναζήτηση' ],
 	'Shortpages'                => [ 'ΜικρέςΣελίδες' ],

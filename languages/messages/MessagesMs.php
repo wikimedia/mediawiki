@@ -180,6 +180,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ 'Perubahan_terkini' ],
 	'Recentchangeslinked'       => [ 'Perubahan_berkaitan' ],
 	'Redirect'                  => [ 'Lencong' ],
+	'Renameuser'                => [ 'Tukar_nama_pengguna' ],
 	'Revisiondelete'            => [ 'Hapus_semakan' ],
 	'Search'                    => [ 'Cari', 'Gelintar' ],
 	'Shortpages'                => [ 'Laman_pendek' ],

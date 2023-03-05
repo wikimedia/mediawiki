@@ -101,6 +101,7 @@ $specialPageAliases = [
 	'Randomredirect'            => [ 'Nasumično_preusmjerenje', 'NasumičnoPreusmjerenje', 'SlučajnoPreusmjerenje', 'SlucajnoPreusmjerenje' ],
 	'Recentchanges'             => [ 'Nedavne_izmjene', 'NedavneIzmjene' ],
 	'Recentchangeslinked'       => [ 'Srodne_izmjene', 'SrodneIzmjene', 'PovezaneNedavneIzmjene' ],
+	'Renameuser'                => [ 'PreimenovanjeKorisnika' ],
 	'Revisiondelete'            => [ 'Brisanje_izmjene', 'BrisanjeIzmjene', 'VratiBrisanje' ],
 	'Search'                    => [ 'Pretraga' ],
 	'Shortpages'                => [ 'Kratke_stranice', 'KratkeStranice' ],

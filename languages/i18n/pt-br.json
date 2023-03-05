@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"!Silent",
+			"555",
 			"Albertoleoncio",
 			"Alcali",
 			"Alchimista",
@@ -141,8 +142,7 @@
 			"YuriNikolai",
 			"Yves Marques Junqueira",
 			"לערי ריינהארט",
-			"아라",
-			555
+			"아라"
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -4225,5 +4225,35 @@
 	"blockedtext-contact-blocker-admin": "Pode contatar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir o bloqueio.",
 	"blockedtext-block-ip": "O seu endereço IP atual é $1",
 	"blockedtext-block-id": "ID do bloqueio nº $1.",
-	"blockedtext-include-details-queries": "Inclua todos os detalhes acima em quaisquer contatos relacionados com este bloqueio, por favor."
+	"blockedtext-include-details-queries": "Inclua todos os detalhes acima em quaisquer contatos relacionados com este bloqueio, por favor.",
+	"renameuser": "Renomear usuário",
+	"renameuser-linkoncontribs": "alterar o nome {{GENDER:$1|do usuário|da usuária}}",
+	"renameuser-linkoncontribs-text": "Alterar o nome {{GENDER:$1|deste usuário|desta usuária}}",
+	"renameuserold": "Nome de usuário atual:",
+	"renameusernew": "Novo nome de usuário:",
+	"renameuserreason": "Motivo:",
+	"renameusermove": "Mover as páginas de usuário, páginas de discussão de usuário (e suas subpáginas) para o novo nome",
+	"renameusersuppress": "Não criar redirecionamentos para o novo nome",
+	"renameuserreserve": "Impedir novos usos do antigo nome de usuário",
+	"renameuserwarnings": "Alertas:",
+	"renameuserconfirm": "Sim, renomeie o usuário",
+	"renameusersubmit": "Enviar",
+	"renameusererrordoesnotexist": "O usuário \"<nowiki>$1</nowiki>\" não existe.",
+	"renameusererrorexists": "{{GENDER:$1|O usuário|A usuária|O(a) usuário(a)}} \"<nowiki>$1</nowiki>\" já existe.",
+	"renameusererrorinvalid": "O nome de usuário \"<nowiki>$1</nowiki>\" é inválido.",
+	"renameuser-error-request": "Houve um problema ao receber este pedido.\nPor favor, retorne e tente novamente.",
+	"renameuser-error-same-user": "Não é possível renomear um usuário para o nome anterior.",
+	"renameusersuccess": "{{GENDER:$2|O usuário|A usuária|O(a) usuário(a)}} \"<nowiki>$1</nowiki>\" foi renomeado para \"<nowiki>$2</nowiki>\".",
+	"renameuser-page-exists": "A página $1 já existe e não pode ser substituída automaticamente.",
+	"renameuser-page-moved": "A página $1 foi movida para $2.",
+	"renameuser-page-unmoved": "A página $1 não pode ser movida para $2.",
+	"renameuser-warning-currentblock": "Este usuário está [$1 atualmente bloqueado].",
+	"log-name-renameuser": "Registro de renomeações de usuários",
+	"log-description-renameuser": "Este é um registro de alterações de nomes de usuários.",
+	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|renomeou}} $4 (com $6 ediç{{PLURAL:$6|ão|ões}}) para {{GENDER:$7|$5}}",
+	"logentry-renameuser-renameuser-legacier": "$1 renomeou $4 para {{GENDER:$7|$5}}",
+	"renameuser-move-log": "Páginas movidas automaticamente ao renomear {{GENDER:$2|o usuário|a usuária}} \"[[User:$1|$1]]\" para \"[[User:$2|$2]]\"",
+	"action-renameuser": "renomear usuários",
+	"right-renameuser": "Renomear usuários",
+	"renameuser-renamed-notice": "Este usuário foi renomeado.\nO registro de renomeação é fornecido abaixo, para referência."
 }

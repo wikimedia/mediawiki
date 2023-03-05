@@ -782,5 +782,14 @@
 	"deletepage": "Tāmateʻi peesi",
 	"purge": "fakamaʻa",
 	"rightsnone": "(hala)",
-	"expandtemplates": "Fakalahiange ʻa e ngaahi sīpinga"
+	"expandtemplates": "Fakalahiange ʻa e ngaahi sīpinga",
+	"renameuser": "Liliu hingoa ʻo e ʻetita",
+	"renameuserold": "Lolotonga hingoa ʻetita:",
+	"renameusernew": "Hingoa foʻou ʻo e ʻetita:",
+	"renameusersubmit": "Fai ā liliuhingoa",
+	"renameusererrordoesnotexist": "Ko e ʻetita \"<nowiki>$1</nowiki>\" ʻoku ʻikai toka tuʻu ia",
+	"renameusererrorexists": "Ko e ʻetita \"<nowiki>$1</nowiki>\" ʻoku toka tuʻu ia",
+	"renameusererrorinvalid": "ʻOku taʻeʻaonga ʻa e hingoa fakaʻetita ko \"<nowiki>$1</nowiki>\"",
+	"renameusersuccess": "Ko e ʻetita \"<nowiki>$1</nowiki>\" kuo liliuhingoa ia kia \"<nowiki>$2</nowiki>\"",
+	"log-name-renameuser": "Tohinoa ʻo e liliu he hingoa ʻo e ʻetita"
 }

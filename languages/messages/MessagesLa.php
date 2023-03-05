@@ -128,6 +128,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ 'Nuper_mutata', 'Mutationes_recentes' ],
 	'Recentchangeslinked'       => [ 'Nuper_mutata_annexorum' ],
 	'Redirect'                  => [ 'Redirectio' ],
+	'Renameuser'                => [ 'Usorem_renominare' ],
 	'Revisiondelete'            => [ 'Emendationem_delere' ],
 	'Search'                    => [ 'Quaerere' ],
 	'Shortpages'                => [ 'Paginae_breves' ],

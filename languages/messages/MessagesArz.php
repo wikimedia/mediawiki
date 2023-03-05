@@ -136,6 +136,7 @@ $specialPageAliases = [
 	'Recentchangeslinked'       => [ 'اجدد_التغييرات_اللى_معمول_ليها_لينك', 'تغييرات_مرتبطه' ],
 	'Redirect'                  => [ 'تحويل' ],
 	'RemoveCredentials'         => [ 'مسح_الكريدينشيال' ],
+	'Renameuser'                => [ 'سمّى_تانى_يوزر' ],
 	'ResetTokens'               => [ 'ضبط_المفاتيح' ],
 	'Revisiondelete'            => [ 'مسح_نسخه' ],
 	'RunJobs'                   => [ 'تشغيل_الوظايف' ],

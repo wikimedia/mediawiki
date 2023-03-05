@@ -132,6 +132,7 @@ $specialPageAliases = [
 	'Recentchangeslinked'       => [ 'تغییرات_مرتبط' ],
 	'Redirect'                  => [ 'تغییرمسیر' ],
 	'RemoveCredentials'         => [ 'حذف_اعتبارنامه‌ها' ],
+	'Renameuser'                => [ 'تغییر_نام_کاربر' ],
 	'ResetTokens'               => [ 'بازنشانی_نشانه‌ها' ],
 	'Revisiondelete'            => [ 'حذف_نسخه' ],
 	'RunJobs'                   => [ 'اجرای_کارها' ],

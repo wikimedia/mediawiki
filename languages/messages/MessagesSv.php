@@ -164,6 +164,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ 'Senaste_ändringar' ],
 	'Recentchangeslinked'       => [ 'Senaste_relaterade_ändringar' ],
 	'Redirect'                  => [ 'Omdirigering' ],
+	'Renameuser'                => [ 'Användarnamnbyte' ],
 	'ResetTokens'               => [ 'Återställ_nycklar' ],
 	'Revisiondelete'            => [ 'Radera_version' ],
 	'Search'                    => [ 'Sök' ],

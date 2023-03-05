@@ -1658,5 +1658,8 @@
 	"skin-action-protect": "Schützen",
 	"skin-action-undelete": "Wiederherstella",
 	"skin-action-delete": "Läscha",
-	"skin-action-move": "Verschieba"
+	"skin-action-move": "Verschieba",
+	"renameuserold": "Bisheriger Benutzernoame:",
+	"renameusernew": "Neuer Benutzernoame:",
+	"renameuserreason": "Grund:"
 }

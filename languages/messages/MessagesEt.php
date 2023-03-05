@@ -105,6 +105,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ 'Viimased_muudatused' ],
 	'Recentchangeslinked'       => [ 'Seotud_muudatused' ],
 	'Redirect'                  => [ 'Ümbersuunamine' ],
+	'Renameuser'                => [ 'Kasutaja_ümbernimetamine' ],
 	'ResetTokens'               => [ 'Lubade_lähtestamine' ],
 	'Revisiondelete'            => [ 'Muudatuse_kustutamine', 'Kustuta_muudatus' ],
 	'Search'                    => [ 'Otsimine', 'Otsi' ],

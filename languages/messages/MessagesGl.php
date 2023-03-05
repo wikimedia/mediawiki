@@ -121,6 +121,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ 'Cambios_recentes' ],
 	'Recentchangeslinked'       => [ 'Cambios_relacionados' ],
 	'Redirect'                  => [ 'Redirección' ],
+	'Renameuser'                => [ 'Renomear_o_usuario', 'Renomear_usuario', 'Renomear_a_usuaria', 'Renomear_usuaria' ],
 	'ResetTokens'               => [ 'Restablecer_os_pases' ],
 	'Revisiondelete'            => [ 'Revisións_borradas' ],
 	'Search'                    => [ 'Procurar', 'Buscar' ],

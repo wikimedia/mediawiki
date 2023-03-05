@@ -664,5 +664,18 @@
 	"skin-action-protect": "Proteje",
 	"skin-action-undelete": "restaurar pájina ne'e",
 	"skin-action-delete": "halakon pájina ne'e",
-	"skin-action-move": "book pájina ne'e"
+	"skin-action-move": "book pájina ne'e",
+	"renameuser": "Fó naran foun ba uza-na'in sira",
+	"renameuser-linkoncontribs-text": "Naran foun ba {{GENDER:$1|uza nain}}",
+	"renameuserold": "Naran uza-na'in atuál:",
+	"renameusernew": "Naran uza-na'in foun:",
+	"renameuserreason": "Motivu:",
+	"renameusermove": "Book pájina uza-na'in no diskusaun (no sub-pájina) ba naran foun",
+	"renameuserconfirm": "Sin, fó naran foun",
+	"renameusersubmit": "Fó naran foun",
+	"renameusererrordoesnotexist": "Uza-na'in \"<nowiki>$1</nowiki>\" la iha.",
+	"renameuser-page-moved": "Book tiha pájina $1 ba $2.",
+	"renameuser-page-unmoved": "La bele book pájina $1 ba $2.",
+	"logentry-renameuser-renameuser-legacier": "$1 muda naran uza-na'in \"$4\" nian. Naran foun: \"$5\"",
+	"right-renameuser": "Fó naran foun ba uza-na'in sira"
 }

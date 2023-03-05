@@ -3184,5 +3184,18 @@
 	"skin-action-protect": "सुरक्षित करी",
 	"skin-action-undelete": "आपस लाउ",
 	"skin-action-delete": "मेटाबी",
-	"skin-action-move": "स्थानान्तरण करी"
+	"skin-action-move": "स्थानान्तरण करी",
+	"renameuser": "प्रयोगकर्तानाम परिवर्तन",
+	"renameuser-linkoncontribs": "प्रयोगकर्तानाम परिवर्तन",
+	"renameuser-linkoncontribs-text": "ई प्रयोगकर्ता नाम परिवर्तन करी",
+	"renameuserold": "वर्तमान प्रयोगकर्तानाम:",
+	"renameusernew": "नव प्रयोगकर्तानाम:",
+	"renameuserreason": "कारण:",
+	"renameusermove": "प्रयोगकर्ता पृष्ठ आ वार्ता पृष्ठ (आर ओकर उपपृष्ठ) नव नाम पर स्थानान्तरित करी",
+	"renameusersuppress": "नव नाम पर अनुप्रेषित नै करी",
+	"renameuserreserve": "पुरान प्रयोगकर्तानाम भविष्यमे प्रयोगसँ अवरोधित करी",
+	"renameuserwarnings": "चेतावनी:",
+	"renameuserconfirm": "हँ, प्रयोगकर्तानाम परिवर्तन करी",
+	"renameusersubmit": "सौपू",
+	"log-name-renameuser": "प्रयोगकर्तानाम परिवर्तन लौग"
 }

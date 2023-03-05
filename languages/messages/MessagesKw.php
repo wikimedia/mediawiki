@@ -125,6 +125,7 @@ $specialPageAliases = [
 	'Randomredirect'            => [ 'DaskedyansDreJons' ],
 	'Recentchanges'             => [ 'Chanjyow_a-dhiwedhes' ],
 	'Recentchangeslinked'       => [ 'ChanjyowKelmys' ],
+	'Renameuser'                => [ 'DashenwelDevnydhyer' ],
 	'Revisiondelete'            => [ 'DileaAmendyans' ],
 	'Search'                    => [ 'Hwilas' ],
 	'Shortpages'                => [ 'FolennowBerr' ],

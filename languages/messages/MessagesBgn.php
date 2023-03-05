@@ -117,6 +117,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ 'آخیرئین_تغیران' ],
 	'Recentchangeslinked'       => [ 'مربوتین_تغیران' ],
 	'Redirect'                  => [ 'تغیرمسیر' ],
+	'Renameuser' => [ 'کارمرزوکی_نامی_ٹگلینتین' ],
 	'ResetTokens'               => [ 'نشانگ_ئانی_پدا_نادینتین' ],
 	'Revisiondelete'            => [ 'نخسه_ئی_پاک_کورتین' ],
 	'RunJobs'                   => [ 'کارێ_کورتین' ],

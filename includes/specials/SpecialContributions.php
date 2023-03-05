@@ -641,6 +641,16 @@ class SpecialContributions extends IncludableSpecialPage {
 			);
 		}
 
+		# Add a link to rename the user
+		if ( $id && $permissionManager->userHasRight( $sp->getUser(), 'renameuser' ) ) {
+			$tools['renameuser'] = $sp->getLinkRenderer()->makeKnownLink(
+				SpecialPage::getTitleFor( 'Renameuser' ),
+				$sp->msg( 'renameuser-linkoncontribs', $userpage->getText() )->text(),
+				[ 'title' => $sp->msg( 'renameuser-linkoncontribs-text', $userpage->getText() )->parse() ],
+				[ 'oldusername' => $userpage->getText() ]
+			);
+		}
+
 		$hookRunner->onContributionsToolLinks( $id, $userpage, $tools, $sp );
 
 		return $tools;
