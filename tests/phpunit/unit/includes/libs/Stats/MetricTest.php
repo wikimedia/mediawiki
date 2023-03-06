@@ -159,4 +159,11 @@ class MetricTest extends TestCase {
 		$this->assertCount( $rounds,  $all_metrics->getSamples() );
 		$this->assertCount( 0, $zero_metrics->getSamples() );
 	}
+
+	public function testTimerNotStarted() {
+		$m = new StatsFactory( 'test', new StatsCache, new NullEmitter, new NullLogger );
+		$this->expectWarning();
+		$this->expectWarningMessage( 'Stats: stop() called before start() for metric \'test\'' );
+		$m->getTiming( 'test' )->stop();
+	}
 }
