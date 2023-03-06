@@ -94,6 +94,9 @@ For notes on 1.39.x and older releases, see HISTORY.
   maintenance/run.php.
 * Added 'SpecialCreateAccountBenefits' hook, to customize the signup page
   content about the benefits of registering an account.
+* (T321412) Added new 'PageUndeleteComplete' hook which provides more thorough
+  information about a page post restoration than the 'PageUndelete' hook passes.
+  This provides similar functionality to the 'PageDeleteComplete' hook.
 * …
 
 === External library changes in 1.40 ===
@@ -411,6 +414,7 @@ because of Phabricator reports.
   it is deprecated to not include the "parent" field as one of the parameters.
 * The MWException class is deprecated. Use native exceptions, either directly
   or as base classes.
+* ArticleUndelete hook is deprecated. Use PageUndeleteComplete hook instead.
 * …
 
 === Other changes in 1.40 ===
