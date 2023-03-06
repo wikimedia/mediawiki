@@ -22,10 +22,7 @@ namespace Wikimedia\Stats\Exceptions;
 use RuntimeException;
 
 /**
- * IllegalOperationException
- *
- * This exception is raised when StatsFactory or Metric gets an associative
- * array as configuration that it cannot use to properly instantiate a Metric.
+ * Thrown when an unresolvable configuration condition has been requested.
  *
  * @author Cole White
  * @since 1.41

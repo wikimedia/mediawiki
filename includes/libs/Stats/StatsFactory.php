@@ -25,6 +25,7 @@ use InvalidArgumentException;
 use Psr\Log\LoggerInterface;
 use TypeError;
 use Wikimedia\Stats\Emitters\EmitterInterface;
+use Wikimedia\Stats\Exceptions\IllegalOperationException;
 use Wikimedia\Stats\Exceptions\InvalidConfigurationException;
 use Wikimedia\Stats\Metrics\BaseMetric;
 use Wikimedia\Stats\Metrics\CounterMetric;
@@ -46,6 +47,12 @@ class StatsFactory {
 
 	/** @var string */
 	private string $component;
+
+	/** @var string[] */
+	private array $staticLabelKeys = [];
+
+	/** @var string[] */
+	private array $staticLabelValues = [];
 
 	/** @var StatsCache */
 	private StatsCache $cache;
@@ -86,6 +93,24 @@ class StatsFactory {
 		if ( $this->component == '' ) {
 			throw new InvalidArgumentException( 'Stats: component cannot be empty.' );
 		}
+	}
+
+	/**
+	 * Adds a label key-value pair to all metrics created by this StatsFactory instance.
+	 *
+	 * @param string $key
+	 * @param string $value
+	 * @return $this
+	 */
+	public function withStaticLabel( string $key, string $value ): StatsFactory {
+		if ( count( $this->cache->getAllMetrics() ) > 0 ) {
+			throw new IllegalOperationException( 'Stats: cannot set static labels when metrics are in the cache.' );
+		}
+		$key = StatsUtils::normalizeString( $key );
+		StatsUtils::validateLabelKey( $key );
+		$this->staticLabelKeys[] = $key;
+		$this->staticLabelValues[] = StatsUtils::normalizeString( $value );
+		return $this;
 	}
 
 	/**
@@ -153,7 +178,10 @@ class StatsFactory {
 		}
 		if ( $metric === null ) {
 			$baseMetric = new BaseMetric( $this->component, $name );
-			$metric = new $className( $baseMetric, $this->logger );
+			$metric = new $className(
+				$baseMetric->withStaticLabels( $this->staticLabelKeys, $this->staticLabelValues ),
+				$this->logger
+			);
 			$this->cache->set( $this->component, $name, $metric );
 		}
 		return $metric->fresh();
