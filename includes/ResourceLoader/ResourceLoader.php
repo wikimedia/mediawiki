@@ -1321,18 +1321,6 @@ MESSAGE;
 	}
 
 	/**
-	 * Returns JS code which, when called, will register a given list of messages.
-	 *
-	 * @param mixed $messages Associative array mapping message key to value.
-	 * @return string JavaScript code
-	 */
-	public static function makeMessageSetScript( $messages ) {
-		return 'mw.messages.set('
-			. self::encodeJsonForScript( (object)$messages )
-			. ');';
-	}
-
-	/**
 	 * Combines an associative array mapping media type to CSS into a
 	 * single stylesheet with "@media" blocks.
 	 *
