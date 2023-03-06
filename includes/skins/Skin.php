@@ -2330,11 +2330,6 @@ abstract class Skin extends ContextSource {
 			// ignored.
 			'bodyOnly' => false,
 			'menus' => [
-				// Modern keys
-				'user-interface-preferences',
-				'user-page',
-				'user-menu',
-				'notifications',
 				// Legacy keys that are enabled by default for backwards compatibility
 				'namespaces',
 				'views',
@@ -2342,6 +2337,10 @@ abstract class Skin extends ContextSource {
 				'variants',
 				// Opt-in menus
 				// * 'associated-pages'
+				// * 'notifications'
+				// * 'user-interface-preferences',
+				// * 'user-page',
+				// * 'user-menu',
 			]
 		];
 	}
