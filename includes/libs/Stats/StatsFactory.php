@@ -70,33 +70,31 @@ class StatsFactory {
 	/**
 	 * StatsFactory builds, configures, and caches Metrics.
 	 *
-	 * @param string $component
 	 * @param StatsCache $cache
 	 * @param EmitterInterface $emitter
 	 * @param LoggerInterface $logger
+	 * @param string $component
 	 */
 	public function __construct(
-		string $component,
 		StatsCache $cache,
 		EmitterInterface $emitter,
-		LoggerInterface $logger
+		LoggerInterface $logger,
+		string $component = ''
 	) {
 		$this->component = StatsUtils::normalizeString( $component );
 		$this->cache = $cache;
 		$this->emitter = $emitter;
 		$this->logger = $logger;
-		$this->validateInstanceConfig();
 	}
 
 	/**
-	 * Throw exception on invalid instance configuration.
+	 * Returns a new StatsFactory instance prefixed by component.
 	 *
-	 * @return void
+	 * @param string $component
+	 * @return StatsFactory
 	 */
-	private function validateInstanceConfig(): void {
-		if ( $this->component == '' ) {
-			throw new InvalidArgumentException( 'Stats: component cannot be empty.' );
-		}
+	public function withComponent( string $component ): StatsFactory {
+		return new StatsFactory( $this->cache, $this->emitter, $this->logger, $component );
 	}
 
 	/**
@@ -106,7 +104,10 @@ class StatsFactory {
 	 * @param string $value
 	 * @return $this
 	 */
-	public function withStaticLabel( string $key, string $value ): StatsFactory {
+	public function addStaticLabel( string $key, string $value ): StatsFactory {
+		if ( !$this->component ) {
+			throw new IllegalOperationException( 'Stats: cannot set static labels with undefined component.' );
+		}
 		if ( count( $this->cache->getAllMetrics() ) > 0 ) {
 			throw new IllegalOperationException( 'Stats: cannot set static labels when metrics are in the cache.' );
 		}

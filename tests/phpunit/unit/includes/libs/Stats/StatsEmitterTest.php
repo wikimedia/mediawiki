@@ -11,9 +11,9 @@ use Wikimedia\Stats\StatsCache;
 use Wikimedia\Stats\StatsFactory;
 
 /**
- * @covers \Wikimedia\Stats\MetricsUDPEmitter
- * @covers \Wikimedia\Stats\MetricsCache
- * @covers \Wikimedia\Stats\Formatters\DogStatsD
+ * @covers \Wikimedia\Stats\Emitters\UDPEmitter
+ * @covers \Wikimedia\Stats\StatsCache
+ * @covers \Wikimedia\Stats\Formatters\DogStatsdFormatter
  * @covers \Wikimedia\Stats\OutputFormats
  * @covers \Wikimedia\Stats\MetricsRenderer
  */
@@ -43,7 +43,7 @@ class StatsEmitterTest extends TestCase {
 		$emitter = $emitter->withTransport( $transport );
 
 		// initialize metrics factory
-		$m = new StatsFactory( 'test', $cache, $emitter, new NullLogger );
+		$m = new StatsFactory( $cache, $emitter, new NullLogger, 'test' );
 
 		// inject statsd factory
 		$m->withStatsdDataFactory( $statsd );

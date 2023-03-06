@@ -60,7 +60,7 @@ interface MetricInterface {
 	 * @param float $sampleRate
 	 * @return CounterMetric|GaugeMetric|TimingMetric|NullMetric
 	 */
-	public function withSampleRate( float $sampleRate );
+	public function setSampleRate( float $sampleRate );
 
 	/**
 	 * Returns the list of defined label keys.
@@ -76,7 +76,7 @@ interface MetricInterface {
 	 * @param string $value
 	 * @return CounterMetric|GaugeMetric|TimingMetric|NullMetric
 	 */
-	public function withLabel( string $key, string $value );
+	public function setLabel( string $key, string $value );
 
 	/**
 	 * Copies metric operation to StatsD at provided namespace.
