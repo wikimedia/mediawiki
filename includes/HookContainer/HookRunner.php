@@ -349,7 +349,6 @@ class HookRunner implements
 	\MediaWiki\Hook\SpecialLogAddLogSearchRelationsHook,
 	\MediaWiki\Hook\SpecialMovepageAfterMoveHook,
 	\MediaWiki\Hook\SpecialMuteModifyFormFieldsHook,
-	\MediaWiki\Hook\SpecialMuteSubmitHook,
 	\MediaWiki\Hook\SpecialNewpagesConditionsHook,
 	\MediaWiki\Hook\SpecialNewPagesFiltersHook,
 	\MediaWiki\Hook\SpecialRandomGetRandomTitleHook,
@@ -3700,13 +3699,6 @@ class HookRunner implements
 		return $this->container->run(
 			'SpecialMuteModifyFormFields',
 			[ $target, $user, &$fields ]
-		);
-	}
-
-	public function onSpecialMuteSubmit( $data ) {
-		return $this->container->run(
-			'SpecialMuteSubmit',
-			[ $data ]
 		);
 	}
 

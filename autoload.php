@@ -1353,7 +1353,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\SpecialLogAddLogSearchRelationsHook' => __DIR__ . '/includes/specials/Hook/SpecialLogAddLogSearchRelationsHook.php',
 	'MediaWiki\\Hook\\SpecialMovepageAfterMoveHook' => __DIR__ . '/includes/specials/Hook/SpecialMovepageAfterMoveHook.php',
 	'MediaWiki\\Hook\\SpecialMuteModifyFormFieldsHook' => __DIR__ . '/includes/specials/Hook/SpecialMuteModifyFormFieldsHook.php',
-	'MediaWiki\\Hook\\SpecialMuteSubmitHook' => __DIR__ . '/includes/specials/Hook/SpecialMuteSubmitHook.php',
 	'MediaWiki\\Hook\\SpecialNewPagesFiltersHook' => __DIR__ . '/includes/specials/Hook/SpecialNewPagesFiltersHook.php',
 	'MediaWiki\\Hook\\SpecialNewpagesConditionsHook' => __DIR__ . '/includes/specials/Hook/SpecialNewpagesConditionsHook.php',
 	'MediaWiki\\Hook\\SpecialRandomGetRandomTitleHook' => __DIR__ . '/includes/specials/Hook/SpecialRandomGetRandomTitleHook.php',
