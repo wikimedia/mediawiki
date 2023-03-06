@@ -294,12 +294,16 @@ with params ?useskin=vector&useformat=mobile
 }
 
 .mw-mobile-prefsection {
-	cursor: pointer;
 	padding-top: 0.3125em;
 	border-bottom: 0.0625em solid @colorGray12;
 
-	&:hover {
-		background-color: @colorGray15;
+	// Style section headers as buttons when JS is enabled
+	.client-js & {
+		cursor: pointer;
+
+		&:hover {
+			background-color: @colorGray15;
+		}
 	}
 
 	&:last-child {
