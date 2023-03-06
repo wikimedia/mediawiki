@@ -2298,6 +2298,7 @@ $wgAutoloadLocalClasses = [
 	'RenameRestrictions' => __DIR__ . '/maintenance/renameRestrictions.php',
 	'RenameUser' => __DIR__ . '/maintenance/renameUser.php',
 	'RenameUserJob' => __DIR__ . '/includes/jobqueue/jobs/RenameUserJob.php',
+	'RenameUsersMatchingPattern' => __DIR__ . '/maintenance/renameUsersMatchingPattern.php',
 	'RenameuserLogFormatter' => __DIR__ . '/includes/logging/RenameuserLogFormatter.php',
 	'RenderAction' => __DIR__ . '/includes/actions/RenderAction.php',
 	'ReplacementArray' => __DIR__ . '/includes/libs/ReplacementArray.php',
