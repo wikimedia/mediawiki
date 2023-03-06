@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"555",
 			"Albertoleoncio",
 			"Alchimista",
 			"Andresilvazito",
@@ -89,7 +88,8 @@
 			"Yves Marques Junqueira",
 			"Önni",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			555
 		]
 	},
 	"tog-underline": "Sublinhar hiperligações:",
