@@ -21,6 +21,8 @@ declare( strict_types=1 );
 
 namespace Wikimedia\Stats\Formatters;
 
+use Wikimedia\Stats\Metrics\MetricInterface;
+
 /**
  * StatsD Wire Format Implementation
  *
@@ -29,7 +31,7 @@ namespace Wikimedia\Stats\Formatters;
  */
 class StatsdFormatter implements FormatterInterface {
 	/** @inheritDoc */
-	public function getFormattedSamples( string $prefix, $metric ): array {
+	public function getFormattedSamples( string $prefix, MetricInterface $metric ): array {
 		$output = [];
 		foreach ( $metric->getSamples() as $sample ) {
 
