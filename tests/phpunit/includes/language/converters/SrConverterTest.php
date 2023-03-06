@@ -113,6 +113,10 @@ class SrConverterTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( 'а I б II в III г IV шђжчћ',
 			$this->convertToCyrillic( 'a I b II v III g IV šđžčć' )
 		);
+		// Same, but put the roman numerals at the start/end of the string
+		$this->assertEquals( 'XX а I б II в III г IV шђжчћ XX',
+			$this->convertToCyrillic( 'XX a I b II v III g IV šđžčć XX' )
+		);
 	}
 
 	/**
@@ -134,6 +138,14 @@ class SrConverterTest extends MediaWikiIntegrationTestCase {
 		// This text has some Cyrillic, but is recognized as Latin, so it should not be converted
 		$this->assertEquals( 'абцдšđžčć',
 			$this->convertToLatin( 'абцдšđžčć' )
+		);
+		// Roman numerals are not converted (inverse of ToCyrillic test)
+		$this->assertEquals( 'a I b II v III g IV šđžčć',
+			$this->convertToLatin( 'а I б II в III г IV шђжчћ' )
+		);
+		// Same, but put the roman numerals at the start/end of the string
+		$this->assertEquals( 'XX a I b II v III g IV šđžčć XX',
+			$this->convertToLatin( 'XX а I б II в III г IV шђжчћ XX' )
 		);
 	}
 
