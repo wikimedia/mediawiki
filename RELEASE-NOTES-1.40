@@ -176,6 +176,8 @@ because of Phabricator reports.
     It had no known usages. Different than SkinTemplate::getFooterLinks.
   - The internal public method Skin::getSiteFooterLinks() was removed.
     It had no known usages.
+* The 'oojs-router' module has been removed without deprecation in favour
+  of the 'mediawiki.router' wrapper module.
 * BagOStuff::makeKeyInternal(), deprecated for public use in 1.36, is now a
   protected method of MediumSpecificBagOStuff.
 * WANObjectCache::reap() and WANObjectCache::reapCheckKey(), deprecated since

@@ -2842,16 +2842,8 @@ return [
 
 	'mediawiki.router' => [
 		'scripts' => [
-			'resources/src/mediawiki.router/index.js',
-		],
-		'dependencies' => [
-			'oojs-router',
-		],
-	],
-
-	'oojs-router' => [
-		'scripts' => [
 			'resources/lib/oojs-router/oojs-router.js',
+			'resources/src/mediawiki.router/index.js',
 		],
 		'dependencies' => [
 			'oojs',
