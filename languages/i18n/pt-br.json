@@ -2,7 +2,6 @@
 	"@metadata": {
 		"authors": [
 			"!Silent",
-			"555",
 			"Albertoleoncio",
 			"Alcali",
 			"Alchimista",
@@ -142,7 +141,8 @@
 			"YuriNikolai",
 			"Yves Marques Junqueira",
 			"לערי ריינהארט",
-			"아라"
+			"아라",
+			555
 		]
 	},
 	"tog-underline": "Sublinhar links:",
@@ -1182,6 +1182,8 @@
 	"prefs-email": "Opções de email",
 	"prefs-rendering": "Aparência",
 	"prefs-searchmisc": "Geral",
+	"searchprefs": "Procurar preferências",
+	"searchprefs-noresults": "Sem resultados",
 	"saveprefs": "Salvar",
 	"restoreprefs": "Restaurar todas as configurações padrão",
 	"prefs-editing": "Opções de edição",

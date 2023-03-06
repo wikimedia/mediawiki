@@ -3996,5 +3996,6 @@
 	"newpages-showhide-bots": "$1 i bot",
 	"newpages-showhide-patrolled": "$1 le modifeghe controllade",
 	"newpages-showhide-redirect": "redirezzion $1",
-	"newpages-showhide-registered": "$1 i utent registrad"
+	"newpages-showhide-registered": "$1 i utent registrad",
+	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|a l'ha rinominad}} l'utent $4 ({{PLURAL:$6|$6 modifega|$6 modifeghe}}) come $5"
 }

@@ -4163,7 +4163,6 @@
 	"blockedtext-block-ip": "نشانی آی‌پی کنونی شما $1 است",
 	"blockedtext-block-id": "مسدود کردن شناسه #$1.",
 	"blockedtext-include-details-queries": "در صورت طرح هرگونه پرسش، لطفاً تمامی جزئیات فوق را در پرسش خود ذکر کنید.",
-	"blockedtext-block-id": "مسدود کردن شناسه #$1.",
 	"renameuser": "تغییر نام کاربر",
 	"renameuser-linkoncontribs": "تغییر نام {{GENDER:$1|کاربر}}",
 	"renameuser-linkoncontribs-text": "تغییر نام این {{GENDER:$1|کاربر}}",
