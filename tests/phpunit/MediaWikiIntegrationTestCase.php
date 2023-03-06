@@ -19,11 +19,9 @@ use MediaWiki\SiteStats\SiteStatsInit;
 use MediaWiki\Storage\PageUpdateStatus;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentityValue;
-use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestResult;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use SebastianBergmann\Comparator\ComparisonFailure;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
@@ -2316,46 +2314,22 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Assert that the key-based intersection of the two arrays matches the expected subset
+	 * Assert that an associative array contains the subset of an expected array.
 	 *
-	 * Order does not matter. Strict type and object identity will be checked.
+	 * The internal key order does not matter.
+	 * Values are compared with strict equality.
 	 *
-	 * @param array $expectedSubset
-	 * @param array $actualSuperset
-	 * @param string $description
 	 * @since 1.35
+	 * @param array $expected
+	 * @param array $actual
+	 * @param string $message
 	 */
 	protected function assertArraySubmapSame(
-		array $expectedSubset,
-		array $actualSuperset,
-		$description = ''
+		array $expected,
+		array $actual,
+		$message = ''
 	) {
-		$patched = array_replace_recursive( $actualSuperset, $expectedSubset );
-
-		ksort( $patched );
-		ksort( $actualSuperset );
-		$result = ( $actualSuperset === $patched );
-
-		if ( !$result ) {
-			$comparisonFailure = new ComparisonFailure(
-				$patched,
-				$actualSuperset,
-				var_export( $patched, true ),
-				var_export( $actualSuperset, true )
-			);
-
-			$failureDescription = 'Failed asserting that array contains the expected submap.';
-			if ( $description != '' ) {
-				$failureDescription = $description . "\n" . $failureDescription;
-			}
-
-			throw new ExpectationFailedException(
-				$failureDescription,
-				$comparisonFailure
-			);
-		} else {
-			$this->assertTrue( true, $description );
-		}
+		$this->assertArrayContains( $expected, $actual, $message );
 	}
 
 	/**
