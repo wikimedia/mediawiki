@@ -44,5 +44,28 @@ class ParsoidRenderIdTest extends MediaWikiUnitTestCase {
 		yield [ '"1/abc/stash"', new ParsoidRenderID( 1, 'abc' ) ];
 		yield [ '"1/abc"', new ParsoidRenderID( 1, 'abc' ) ];
 		yield [ '"1/abc/stash/stash"', new ParsoidRenderID( 1, 'abc' ) ];
+		yield [ 'W/"1/abc"', new ParsoidRenderID( 1, 'abc' ) ];
+	}
+
+	/**
+	 * @dataProvider provideBadETags
+	 *
+	 * @param string $eTag
+	 *
+	 * @covers \MediaWiki\Parser\Parsoid\ParsoidRenderID::newFromETag
+	 */
+	public function testNewFromBadETag( $eTag ) {
+		// make sure it doesn't explode
+		$this->assertNull( ParsoidRenderID::newFromETag( $eTag ) );
+	}
+
+	public function provideBadETags() {
+		yield [ '' ];
+		yield [ '0' ];
+		yield [ '""' ];
+		yield [ '"/"' ];
+		yield [ '"x/y"' ];
+		yield [ '"1/foo"XXX' ];
+		yield [ 'XXX"1/foo"' ];
 	}
 }
