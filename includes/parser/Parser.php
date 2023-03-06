@@ -4500,7 +4500,11 @@ class Parser {
 		foreach ( $tocData->getSections() as $s ) {
 			// Localize heading
 			if ( $converter ) {
-				$s->line = $converter->convert( $s->line );
+				// T331316: don't use 'convert' or 'convertTo' as these reset
+				// the language converter state.
+				$s->line = $converter->convertTo(
+					$s->line, $converter->getPreferredVariant(), false
+				);
 			}
 			// Localize numbering
 			$dot = '.';
