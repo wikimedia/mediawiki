@@ -8,8 +8,9 @@ use MediaWiki\Title\Title;
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "ArticleUndelete" to register handlers implementing this interface.
  *
- * @stable to implement
  * @ingroup Hooks
+ * @deprecated since 1.40, use PageUndeleteComplete instead. New hook follows consistent naming style and exposes
+ * variable similar to its counterpart PageDeleteComplete.
  */
 interface ArticleUndeleteHook {
 	/**

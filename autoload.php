@@ -1548,6 +1548,7 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Page\\Hook\\PageDeleteCompleteHook' => __DIR__ . '/includes/page/Hook/PageDeleteCompleteHook.php',
 	'MediaWiki\\Page\\Hook\\PageDeleteHook' => __DIR__ . '/includes/page/Hook/PageDeleteHook.php',
 	'MediaWiki\\Page\\Hook\\PageDeletionDataUpdatesHook' => __DIR__ . '/includes/page/Hook/PageDeletionDataUpdatesHook.php',
+	'MediaWiki\\Page\\Hook\\PageUndeleteCompleteHook' => __DIR__ . '/includes/page/Hook/PageUndeleteCompleteHook.php',
 	'MediaWiki\\Page\\Hook\\PageUndeleteHook' => __DIR__ . '/includes/page/Hook/PageUndeleteHook.php',
 	'MediaWiki\\Page\\Hook\\PageViewUpdatesHook' => __DIR__ . '/includes/page/Hook/PageViewUpdatesHook.php',
 	'MediaWiki\\Page\\Hook\\RevisionFromEditCompleteHook' => __DIR__ . '/includes/page/Hook/RevisionFromEditCompleteHook.php',

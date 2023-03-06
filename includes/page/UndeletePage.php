@@ -319,17 +319,23 @@ class UndeletePage {
 		}
 
 		$textRestored = 0;
+		$pageCreated = false;
+		$restoredRevision = null;
+		$restoredPageIds = [];
 		if ( $restoreText ) {
 			$this->revisionStatus = $this->undeleteRevisions( $this->page, $this->timestamps, $comment );
 			if ( !$this->revisionStatus->isOK() ) {
 				return $this->revisionStatus;
 			}
 
-			$textRestored = $this->revisionStatus->getValue();
+			[ $textRestored, $pageCreated, $restoredRevision, $restoredPageIds ] = $this->revisionStatus->getValue();
 			$resStatus->merge( $this->revisionStatus );
 		}
 
 		$talkRestored = 0;
+		$talkCreated = false;
+		$restoredTalkRevision = null;
+		$restoredTalkPageIds = [];
 		if ( $this->associatedTalk ) {
 			$talkStatus = $this->canProbablyUndeleteAssociatedTalk();
 			// if undeletion of the page fails we don't want to undelete the talk page
@@ -338,7 +344,7 @@ class UndeletePage {
 				if ( !$talkStatus->isOK() ) {
 					return $talkStatus;
 				}
-				$talkRestored = $talkStatus->getValue();
+				[ $talkRestored, $talkCreated, $restoredTalkRevision, $restoredTalkPageIds ] = $talkStatus->getValue();
 
 			} else {
 				// Add errors as warnings since the talk page is secondary to the main action
@@ -359,13 +365,36 @@ class UndeletePage {
 		}
 
 		if ( $textRestored || $filesRestored ) {
-			$this->addLogEntry( $this->page, $comment, $textRestored, $filesRestored );
+			$logEntry = $this->addLogEntry( $this->page, $comment, $textRestored, $filesRestored );
+
+			$this->hookRunner->onPageUndeleteComplete(
+				$this->page,
+				$this->performer,
+				$comment,
+				$restoredRevision,
+				$logEntry,
+				$textRestored,
+				$pageCreated,
+				$restoredPageIds
+			);
 		}
+
 		if ( $talkRestored ) {
 			$talkRestoredComment = $this->contLangMsgTextFormatter->format(
 				MessageValue::new( 'undelete-talk-summary-prefix' )->plaintextParams( $comment )
 			);
-			$this->addLogEntry( $this->associatedTalk, $talkRestoredComment, $talkRestored, 0 );
+			$logEntry = $this->addLogEntry( $this->associatedTalk, $talkRestoredComment, $talkRestored, 0 );
+
+			$this->hookRunner->onPageUndeleteComplete(
+				$this->associatedTalk,
+				$this->performer,
+				$talkRestoredComment,
+				$restoredTalkRevision,
+				$logEntry,
+				$talkRestored,
+				$talkCreated,
+				$restoredTalkPageIds
+			);
 		}
 
 		return $resStatus;
@@ -404,13 +433,15 @@ class UndeletePage {
 	 * @param string $comment
 	 * @param int $textRestored
 	 * @param int $filesRestored
+	 *
+	 * @return ManualLogEntry
 	 */
 	private function addLogEntry(
 		ProperPageIdentity $page,
 		string $comment,
 		int $textRestored,
 		int $filesRestored
-	): void {
+	): ManualLogEntry {
 		$logEntry = new ManualLogEntry( 'delete', 'restore' );
 		$logEntry->setPerformer( $this->performer->getUser() );
 		$logEntry->setTarget( $page );
@@ -425,6 +456,8 @@ class UndeletePage {
 
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
+
+		return $logEntry;
 	}
 
 	/**
@@ -472,7 +505,9 @@ class UndeletePage {
 		if ( !$rev_count ) {
 			$this->logger->debug( __METHOD__ . ": no revisions to restore" );
 
-			$status = Status::newGood( 0 );
+			// Status value is count of revisions, whether the page has been created,
+			// last revision undeleted and all undeleted pages
+			$status = Status::newGood( [ 0, false, null, [] ] );
 			$status->error( "undelete-no-results" );
 			$dbw->endAtomic( __METHOD__ );
 
@@ -547,7 +582,9 @@ class UndeletePage {
 			if ( $previousTimestamp === false ) {
 				$this->logger->debug( __METHOD__ . ": existing page refers to a page_latest that does not exist" );
 
-				$status = Status::newGood( 0 );
+				// Status value is count of revisions, whether the page has been created,
+				// last revision undeleted and all undeleted pages
+				$status = Status::newGood( [ 0, false, null, [] ] );
 				$status->error( 'undeleterevision-missing' );
 				$dbw->cancelAtomic( __METHOD__ );
 
@@ -598,7 +635,9 @@ class UndeletePage {
 			$oldWhere,
 			__METHOD__ );
 
-		$status = Status::newGood( $restoredRevCount );
+		// Status value is count of revisions, whether the page has been created,
+		// last revision undeleted and all undeleted pages
+		$status = Status::newGood( [ $restoredRevCount, $created, $revision, $restoredPages ] );
 
 		// Was anything restored at all?
 		if ( $restoredRevCount ) {
