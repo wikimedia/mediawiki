@@ -151,8 +151,13 @@ abstract class Skin extends ContextSource {
 				$this->msg( 'mainpage-title' ) :
 				$this->msg( 'mainpage-title-loggedin', $user->getName() );
 
-			// Treat as config and get from content language
-			$titleMsg->inContentLanguage()->setInterfaceMessageFlag( true );
+			// T298715, T331095: Treat as config and get from page view language
+			$forceUIMsgAsContentMsg = $this->getConfig()
+				->get( MainConfigNames::ForceUIMsgAsContentMsg );
+			if ( !in_array( $titleMsg->getKey(), (array)$forceUIMsgAsContentMsg ) ) {
+				$titleMsg->inLanguage( $title->getPageViewLanguage() );
+			}
+			$titleMsg->setInterfaceMessageFlag( true );
 			$blankedHeading = $titleMsg->isBlank();
 			if ( !$titleMsg->isDisabled() ) {
 				$htmlTitle = $titleMsg->parse();
