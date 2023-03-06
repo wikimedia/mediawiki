@@ -79,14 +79,6 @@ interface MetricInterface {
 	public function withLabel( string $key, string $value );
 
 	/**
-	 * Adds a label key.
-	 *
-	 * @param string $key
-	 * @return CounterMetric|GaugeMetric|TimingMetric|NullMetric
-	 */
-	public function withLabelKey( string $key );
-
-	/**
 	 * Returns metric with cleared labels.
 	 *
 	 * @return CounterMetric|GaugeMetric|TimingMetric|NullMetric

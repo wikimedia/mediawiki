@@ -41,7 +41,7 @@ use Wikimedia\Stats\StatsUtils;
 class BaseMetric implements BaseMetricInterface {
 
 	/** @var float */
-	private $sampleRate = StatsUtils::DEFAULT_SAMPLE_RATE;
+	private float $sampleRate = StatsUtils::DEFAULT_SAMPLE_RATE;
 
 	/** @var string */
 	private string $name;
@@ -106,8 +106,13 @@ class BaseMetric implements BaseMetricInterface {
 		$this->workingLabels[$key] = StatsUtils::normalizeString( $value );
 	}
 
-	/** @inheritDoc */
-	public function addLabelKey( string $key ): void {
+	/**
+	 * Registers a label key
+	 *
+	 * @param string $key
+	 * @return void
+	 */
+	private function addLabelKey( string $key ): void {
 		if ( in_array( $key, $this->labelKeys, true ) ) {
 			return;  // key already exists
 		}

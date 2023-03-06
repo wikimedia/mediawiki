@@ -38,18 +38,18 @@ class StatsEmitterTest extends TestCase {
 		$emitter = $emitter->withTransport( $transport );
 
 		// initialize metrics factory
-		$m = new StatsFactory( $cache, $emitter, new NullLogger );
+		$m = new StatsFactory( 'test', $cache, $emitter, new NullLogger );
 
-		$m->getCounter( [ 'name' => 'bar', 'component' => 'test' ] )->increment();
+		$m->getCounter( 'bar' )->increment();
 
 		// fetch same metric from cache and use it
-		$metric = $m->getCounter( [ 'name' => 'bar', 'component' => 'test' ] );
+		$metric = $m->getCounter( 'bar' );
 		$metric->increment();
-		$metric = $m->getTiming( [ 'name' => 'foo', 'component' => 'test' ] );
+		$metric = $m->getTiming( 'foo' );
 		$metric->observe( 3.14 );
 
 		// name collision: gauge should not appear in output nor throw exception
-		$metric = @$m->getGauge( [ 'name' => 'bar', 'component' => 'test' ] );
+		$metric = @$m->getGauge( 'bar' );
 		$metric->set( 42 );
 
 		// send metrics

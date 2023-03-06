@@ -2892,7 +2892,6 @@ $wgAutoloadLocalClasses = [
 	'Wikimedia\\Stats\\Emitters\\UDPEmitter' => __DIR__ . '/includes/libs/Stats/Emitters/UDPEmitter.php',
 	'Wikimedia\\Stats\\Exceptions\\IllegalOperationException' => __DIR__ . '/includes/libs/Stats/Exceptions/IllegalOperationException.php',
 	'Wikimedia\\Stats\\Exceptions\\InvalidConfigurationException' => __DIR__ . '/includes/libs/Stats/Exceptions/InvalidConfigurationException.php',
-	'Wikimedia\\Stats\\Exceptions\\InvalidLabelsException' => __DIR__ . '/includes/libs/Stats/Exceptions/InvalidLabelsException.php',
 	'Wikimedia\\Stats\\Exceptions\\UnsupportedFormatException' => __DIR__ . '/includes/libs/Stats/Exceptions/UnsupportedFormatException.php',
 	'Wikimedia\\Stats\\Formatters\\DogStatsdFormatter' => __DIR__ . '/includes/libs/Stats/Formatters/DogStatsdFormatter.php',
 	'Wikimedia\\Stats\\Formatters\\FormatterInterface' => __DIR__ . '/includes/libs/Stats/Formatters/FormatterInterface.php',
