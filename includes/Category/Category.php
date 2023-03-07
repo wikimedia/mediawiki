@@ -385,7 +385,12 @@ class Category {
 
 		// Lock the `category` row before locking `categorylinks` rows to try
 		// to avoid deadlocks with LinksDeletionUpdate (T195397)
-		$dbw->lockForUpdate( 'category', [ 'cat_title' => $this->mName ], __METHOD__ );
+		$dbw->newSelectQueryBuilder()
+			->from( 'category' )
+			->where( [ 'cat_title' => $this->mName ] )
+			->caller( __METHOD__ )
+			->forUpdate()
+			->acquireRowLocks();
 
 		// Lock all the `categorylinks` records and gaps for this category;
 		// this is a separate query due to postgres limitations
@@ -395,7 +400,8 @@ class Category {
 			->join( 'page', null, 'page_id = cl_from' )
 			->where( [ 'cl_to' => $this->mName ] )
 			->lockInShareMode()
-			->caller( __METHOD__ )->fetchRowCount();
+			->caller( __METHOD__ )
+			->acquireRowLocks();
 
 		// Get the aggregate `categorylinks` row counts for this category
 		$catCond = $dbw->conditional( [ 'page_namespace' => NS_CATEGORY ], '1', 'NULL' );

@@ -417,6 +417,8 @@ because of Phabricator reports.
   it is deprecated to not include the "parent" field as one of the parameters.
 * The MWException class is deprecated. Use native exceptions, either directly
   or as base classes.
+* SelectQueryBuilder::lockForUpdate() is deprecated. Use ::forUpdate() with
+  ::fetchRowCount() or ::acquireRowLocks() instead.
 * ArticleUndelete hook is deprecated. Use PageUndeleteComplete hook instead.
 * …
 

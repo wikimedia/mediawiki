@@ -32,6 +32,7 @@ use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 use WikiPage;
 
 /**
@@ -92,6 +93,8 @@ class DeletePageTest extends MediaWikiUnitTestCase {
 		$db = $this->createMock( IDatabase::class );
 		$db->method( 'select' )->willReturn( $this->createMock( IResultWrapper::class ) );
 		$db->method( 'selectRowCount' )->willReturn( 42 );
+		$db->method( 'newSelectQueryBuilder' )->willReturn( new SelectQueryBuilder( $db ) );
+
 		$lbFactory = $this->createMock( LBFactory::class );
 		$lbFactory->method( 'getPrimaryDatabase' )->willReturn( $db );
 

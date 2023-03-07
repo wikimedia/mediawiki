@@ -736,16 +736,18 @@ class DeletePage {
 		// Note array_intersect() preserves keys from the first arg, and we're
 		// assuming $revQuery has `revision` primary and isn't using subtables
 		// for anything we care about.
-		$dbw->lockForUpdate(
-			array_intersect(
-				$revQuery['tables'],
-				[ 'revision', 'revision_comment_temp' ]
-			),
-			[ 'rev_page' => $id ],
-			__METHOD__,
-			[],
-			$revQuery['joins']
+		$lockQuery = $revQuery;
+		$lockQuery['tables'] = array_intersect(
+			$revQuery['tables'],
+			[ 'revision', 'revision_comment_temp' ]
 		);
+		unset( $lockQuery['fields'] );
+		$dbw->newSelectQueryBuilder()
+			->queryInfo( $lockQuery )
+			->where( [ 'rev_page' => $id ] )
+			->forUpdate()
+			->caller( __METHOD__ )
+			->acquireRowLocks();
 
 		$deleteBatchSize = $this->options->get( MainConfigNames::DeleteRevisionsBatchSize );
 		// Get as many of the page revisions as we are allowed to.  The +1 lets us recognize the
