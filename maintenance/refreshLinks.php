@@ -43,6 +43,7 @@ class RefreshLinks extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Refresh link tables' );
+		$this->addOption( 'verbose', 'Output information about link refresh progress', false, false, 'v' );
 		$this->addOption( 'dfn-only', 'Delete links from nonexistent articles only' );
 		$this->addOption( 'new-only', 'Only affect articles with just a single edit' );
 		$this->addOption( 'redirects-only', 'Only fix redirects, not all links' );
@@ -84,6 +85,11 @@ class RefreshLinks extends Maintenance {
 			}
 			$this->refreshCategory( $title );
 		} elseif ( $this->hasOption( 'tracking-category' ) ) {
+			$category = $this->getOption( 'tracking-category' );
+			$title = Title::makeTitleSafe( NS_CATEGORY, $category );
+			if ( !$title ) {
+				$this->fatalError( "'$category' is an invalid category name!\n" );
+			}
 			$this->refreshTrackingCategory( $this->getOption( 'tracking-category' ) );
 		} elseif ( !$this->hasOption( 'dfn-only' ) ) {
 			$new = $this->hasOption( 'new-only' );
@@ -477,6 +483,10 @@ class RefreshLinks extends Maintenance {
 				]
 			);
 
+			if ( $this->hasOption( 'verbose' ) ) {
+				$this->output( "Refreshing links for {$res->numRows()} pages\n" );
+			}
+
 			foreach ( $res as $row ) {
 				if ( !( ++$i % self::REPORTING_INTERVAL ) ) {
 					$this->output( "$i\n" );
@@ -484,6 +494,9 @@ class RefreshLinks extends Maintenance {
 				}
 				$lastId = $row->page_id;
 				$timestamp = $row->cl_timestamp;
+				if ( $this->hasOption( 'verbose' ) ) {
+					$this->output( "Refreshing links for page ID {$row->page_id}\n" );
+				}
 				self::fixLinksFromArticle( $row->page_id, false, $this->beforeTimestamp );
 			}
 
