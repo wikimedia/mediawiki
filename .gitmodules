@@ -1598,3 +1598,8 @@
 	url = https://github.com/marohh/mediawikiRemoveRedlinks
 	branch = master
 	ignore = dirty
+[submodule "skins/Splash"]
+	path = skins/Splash
+	url = https://github.com/wikimedia/mediawiki-skins-Splash
+	branch = REL1_39
+	ignore = dirty
