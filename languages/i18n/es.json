@@ -204,6 +204,7 @@
 			"Technorum",
 			"TehFrog",
 			"The Evil IP address",
+			"The Pro Gamer",
 			"TheBITLINK",
 			"Theklan",
 			"Themasterriot",
@@ -891,7 +892,7 @@
 	"missing-revision-content": "No se pudo cargar el contenido de la revisión #$1 de la página denominada «$2».",
 	"userpage-userdoesnotexist": "El usuario \"$1\" no está registrado en esta wiki. Asegúrate de que realmente quieres crear o editar esta página.",
 	"userpage-userdoesnotexist-view": "El usuario \"$1\" no está registrado en esta wiki.",
-	"blocked-notice-logextract": "{{GENDER:$1|Este usuario|Esta usuaria|Esta cuenta}} se encuentra actualmente bloquead{{GENDER:$1|o|a|a}}.\nA continuación se muestra la última entrada del registro de bloqueos para más información:",
+	"blocked-notice-logextract": "{{GENDER:$1|Este usuario|Esta usuaria|Esta cuenta}} es actualmente bloqueado. {{GENDER:$1|o|a|a}}.\nA continuación se muestra la última entrada del registro de bloqueos para más información:",
 	"clearyourcache": "<strong>Nota:</strong> Despues de publicar, quizás necesite actualizar la caché de su navegador para ver los cambios.\n* <strong>Firefox/Safari:</strong> Mantenga presionada la tecla <em>Shift</em> mientras pulsa el botón <em>Actualizar</em>, o presiona <em>Ctrl+F5</em> o <em>Ctrl+R</em> (<em>⌘+R</em> en Mac)\n* <strong>Google Chrome:</strong> presione <em>Ctrl+Shift+R</em> (<em>⌘+Mayús+R</em> en Mac)\n* <strong>Internet Explorer/Edge:</strong> mantenga presionada <em>Ctrl</em> mientras pulsa <em>Actualizar</em>, o presione <em>Ctrl+F5</em>\n* <strong>Opera:</strong> Presiona <em>Ctrl+F5</em>.",
 	"usercssyoucanpreview": "<strong>Consejo:</strong> usa el botón «{{int:showpreview}}» para probar su código CSS nuevo antes de guardarlo.",
 	"userjsonyoucanpreview": "<strong>Consejo:</strong> usa el botón «{{int:showpreview}}» para probar el código JSON nuevo antes de guardarlo.",
@@ -1276,6 +1277,8 @@
 	"prefs-email": "Opciones de correo electrónico",
 	"prefs-rendering": "Apariencia",
 	"prefs-searchmisc": "General",
+	"searchprefs": "Buscar en tus preferencias",
+	"searchprefs-noresults": "No hay resultados",
 	"saveprefs": "Guardar",
 	"restoreprefs": "Restaurar la configuración predeterminada",
 	"prefs-editing": "Edición",
@@ -4295,6 +4298,7 @@
 	"renameuser-page-exists": "La página $1 ya existe y no puede ser reemplazada automáticamente.",
 	"renameuser-page-moved": "La página $1 ha sido trasladada a $2.",
 	"renameuser-page-unmoved": "La página $1 no pudo ser trasladada a $2.",
+	"renameuser-warning-currentblock": "Este usuario está [$1 actualmente bloqueado].",
 	"log-name-renameuser": "Registro de cambios de nombre de usuario",
 	"log-description-renameuser": "Este es un registro de cambios en los nombres de usuario.",
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|renombró}} {{GENDER:$7|al usuario|a la usuaria}} $4 ({{PLURAL:$6|$6 edición|$6 ediciones}}) como $5",
@@ -4302,5 +4306,5 @@
 	"renameuser-move-log": "Página trasladada automáticamente al cambiar el nombre {{GENDER:$2|del usuario|de la usuaria}} de «[[User:$1|$1]]» a «[[User:$2|$2]]»",
 	"action-renameuser": "cambiar nombres de usuarios",
 	"right-renameuser": "Cambiar nombres de usuarios",
-	"renameuser-renamed-notice": "Se cambió el nombre de {{GENDER:$1|este usuario|esta usuaria}}.\nEl registro de cambios de nombre de usuario se provee debajo para mayor referencia."
+	"renameuser-renamed-notice": "Se ha cambiado el nombre de {GENDER=$1}.\nEl registro de cambio de nombre se proporciona a continuación como referencia."
 }
