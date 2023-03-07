@@ -332,7 +332,7 @@
 	"sort-rowspan-error": "Trang này có chứa bảng với thuộc tính rowspan để nối một số hàng lại với nhau. Bạn có thể sửa nó bằng cách sửa đổi trang.",
 	"nstab-main": "Trang",
 	"nstab-user": "{{GENDER:$1|Trang thành viên}}",
-	"nstab-media": "Trang tư liệu",
+	"nstab-media": "Trang phương tiện",
 	"nstab-special": "Trang đặc biệt",
 	"nstab-project": "Trang dự án",
 	"nstab-image": "Tập tin",

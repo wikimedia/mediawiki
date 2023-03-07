@@ -4339,6 +4339,7 @@
 	"renameuser-page-exists": "$1 が既に存在するため、自動での上書きはできませんでした。",
 	"renameuser-page-moved": "$1 を $2 に移動しました。",
 	"renameuser-page-unmoved": "$1 を $2 に移動できませんでした。",
+	"renameuser-warning-currentblock": "この利用者は[$1 ブロックされています]。",
 	"log-name-renameuser": "利用者名変更記録",
 	"log-description-renameuser": "これは、利用者名変更の記録です。",
 	"logentry-renameuser-renameuser": "$1 が $4 ({{PLURAL:$6|$6 編集}}) の利用者名を {{GENDER:$7|$5}} に{{GENDER:$2|変更しました}}",
