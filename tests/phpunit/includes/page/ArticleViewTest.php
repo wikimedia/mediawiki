@@ -265,13 +265,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	public function testViewOfOldRevisionFromCache() {
 		$this->overrideConfigValues( [
 			MainConfigNames::OldRevisionParserCacheExpireTime => 100500,
-			MainConfigNames::MainWANCache => 'main',
-			MainConfigNames::WANObjectCaches => [
-				'main' => [
-					'class' => WANObjectCache::class,
-					'cacheId' => 'hash',
-				],
-			],
+			MainConfigNames::MainCacheType => CACHE_HASH,
 		] );
 
 		$revisions = [];

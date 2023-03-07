@@ -100,7 +100,9 @@ class LBFactoryMulti extends LBFactory {
 	 * @param array $conf Additional parameters include:
 	 *   - hostsByName: map of (server name => IP address). [optional]
 	 *   - sectionsByDB: map of (database => main section). The database name "DEFAULT" is
-	 *      interpreted as a catch-all for all databases not otherwise mentioned. [optional]
+	 *      interpreted as a catch-all for all databases not otherwise mentioned. If no section
+	 *      name is specified for "DEFAULT", then the catch-all section is assumed to be named
+	 *      "DEFAULT". [optional]
 	 *   - sectionLoads: map of (main section => server name => load ratio); the first host
 	 *      listed in each section is the primary DB server for that section. [optional]
 	 *   - groupLoadsBySection: map of (main section => group => server name => group load ratio).
@@ -133,6 +135,7 @@ class LBFactoryMulti extends LBFactory {
 
 		$this->hostsByServerName = $conf['hostsByName'] ?? [];
 		$this->sectionsByDB = $conf['sectionsByDB'];
+		$this->sectionsByDB += [ self::CLUSTER_MAIN_DEFAULT => self::CLUSTER_MAIN_DEFAULT ];
 		$this->groupLoadsBySection = $conf['groupLoadsBySection'] ?? [];
 		foreach ( ( $conf['sectionLoads'] ?? [] ) as $section => $loadsByServerName ) {
 			$this->groupLoadsBySection[$section][ILoadBalancer::GROUP_GENERIC] = $loadsByServerName;
@@ -338,7 +341,9 @@ class LBFactoryMulti extends LBFactory {
 	 * @return string Main section name
 	 */
 	private function getSectionFromDatabase( $database ) {
-		return $this->sectionsByDB[$database] ?? self::CLUSTER_MAIN_DEFAULT;
+		return $this->sectionsByDB[$database]
+			?? $this->sectionsByDB[self::CLUSTER_MAIN_DEFAULT]
+			?? self::CLUSTER_MAIN_DEFAULT;
 	}
 
 	public function reconfigure( array $conf ): void {

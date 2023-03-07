@@ -28,7 +28,7 @@ class TestSetup {
 	 * of a Maintenance subclass which then gets called via MW_SETUP_CALLBACK in Setup.php.
 	 */
 	public static function applyInitialConfig() {
-		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgMainWANCache, $wgSessionCacheType;
+		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgSessionCacheType;
 		global $wgMainStash, $wgChronologyProtectorStash;
 		global $wgObjectCaches;
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
@@ -53,7 +53,6 @@ class TestSetup {
 		// See also MediaWikiIntegrationTestCase::run() which mocks CACHE_DB and APC.
 
 		// Disabled per default in MainConfigSchema, override local settings
-		$wgMainWANCache =
 		$wgMainCacheType = CACHE_NONE;
 		// Uses CACHE_ANYTHING per default in MainConfigSchema, use hash instead of db
 		$wgMessageCacheType =

@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\MainConfigNames;
-use MediaWiki\MainConfigSchema;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
@@ -137,17 +136,8 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 	}
 
 	public function testReplaceCache() {
-		// We need a WAN cache for this.
 		$this->overrideConfigValues( [
-			MainConfigNames::MainWANCache => CACHE_HASH,
-			MainConfigNames::WANObjectCaches =>
-				MainConfigSchema::getDefaultValue( MainConfigNames::WANObjectCaches ) + [
-				'hash' => [
-					'class'    => WANObjectCache::class,
-					'cacheId'  => CACHE_HASH,
-					'channels' => []
-				]
-			]
+			MainConfigNames::MainCacheType => CACHE_HASH,
 		] );
 
 		$messageCache = $this->getServiceContainer()->getMessageCache();

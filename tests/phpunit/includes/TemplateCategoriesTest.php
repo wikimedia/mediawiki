@@ -7,6 +7,13 @@ use MediaWiki\Title\Title;
  */
 class TemplateCategoriesTest extends MediaWikiIntegrationTestCase {
 
+	protected function setUp(): void {
+		parent::setUp();
+
+		// Don't let PageStore hit WANObjectCache process cache for revision metadata
+		$this->setMainCache( CACHE_NONE );
+	}
+
 	/**
 	 * @covers Title::getParentCategories
 	 */
