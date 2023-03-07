@@ -1358,12 +1358,10 @@ MESSAGE;
 	 * Wrapper around json_encode that avoids needless escapes,
 	 * and pretty-prints in debug mode.
 	 *
-	 * @internal For use within ResourceLoader classes only
-	 * @since 1.32
 	 * @param mixed $data
 	 * @return string|false JSON string, false on error
 	 */
-	public static function encodeJsonForScript( $data ) {
+	private static function encodeJsonForScript( $data ) {
 		// Keep output as small as possible by disabling needless escape modes
 		// that PHP uses by default.
 		// However, while most module scripts are only served on HTTP responses
