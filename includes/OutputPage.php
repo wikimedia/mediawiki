@@ -1691,7 +1691,7 @@ class OutputPage extends ContextSource {
 	 * Link target can be overridden by a local message containing a wikilink:
 	 * the message key is: lowercase action or special page name + '-helppage'.
 	 * @param string $to Target MediaWiki.org page title or encoded URL.
-	 * @param bool $overrideBaseUrl Whether $url is a full URL, to avoid MW.o.
+	 * @param bool $overrideBaseUrl Whether $url is a full URL, to avoid MediaWiki.org.
 	 * @since 1.25
 	 */
 	public function addHelpLink( $to, $overrideBaseUrl = false ) {
