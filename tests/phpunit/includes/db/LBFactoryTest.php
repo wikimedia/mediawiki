@@ -77,6 +77,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals(
 			$dbr::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'replica shows as replica' );
 
+		$this->assertSame( 'DEFAULT', $lb->getClusterName() );
 		$this->assertSame( 'my_test_wiki', $factory->resolveDomainID( 'my_test_wiki' ) );
 		$this->assertSame( $factory->getLocalDomainID(), $factory->resolveDomainID( false ) );
 
@@ -115,6 +116,8 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
 	public function testLBFactoryMultiConns() {
 		$factory = $this->newLBFactoryMultiLBs();
+
+		$this->assertSame( 's3', $factory->getMainLB()->getClusterName() );
 
 		$dbw = $factory->getMainLB()->getConnection( DB_PRIMARY );
 		$this->assertEquals(
@@ -202,13 +205,14 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		return new LBFactoryMulti( [
 			'sectionsByDB' => [
 				's1wiki' => 's1',
+				'DEFAULT' => 's3'
 			],
 			'sectionLoads' => [
 				's1' => [
 					'test-db3' => 0,
 					'test-db4' => 100,
 				],
-				'DEFAULT' => [
+				's3' => [
 					'test-db1' => 0,
 					'test-db2' => 100,
 				]
