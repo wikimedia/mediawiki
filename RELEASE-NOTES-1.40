@@ -351,6 +351,8 @@ because of Phabricator reports.
   and the old name is now deprecated.
 * WikiPage::factory(), ::newFromID() and ::newFromRow, deprecated in 1.36, now
   emit deprecation warnings.
+* Manually constructing a LinkBatch object, deprecated in 1.35, now emits
+  deprecation warnings. Use LinkBatchFactory instead.
 * Calling MediaWikiSite::getFileUrl() without a $path argument is deprecated.
   If you need the "generic" full file path, with $1 not replaced by anything,
   call $site->getPath( MediaWikiSite::PATH_FILE ) directly.

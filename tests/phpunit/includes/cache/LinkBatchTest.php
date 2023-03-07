@@ -21,6 +21,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 	 * @covers LinkBatch::isEmpty()
 	 */
 	public function testConstructEmpty() {
+		$this->filterDeprecated( '/LinkBatch::__construct without providing all services is deprecated/' );
 		$batch = new LinkBatch();
 
 		$this->assertTrue( $batch->isEmpty() );
@@ -33,6 +34,7 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 	 * @covers LinkBatch::isEmpty()
 	 */
 	public function testConstruct() {
+		$this->filterDeprecated( '/LinkBatch::__construct without providing all services is deprecated/' );
 		$batch = new LinkBatch( [
 			new TitleValue( NS_MAIN, 'Foo' ),
 			new TitleValue( NS_TALK, 'Bar' ),
