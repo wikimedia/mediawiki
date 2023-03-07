@@ -1290,14 +1290,6 @@ config-schema:
     VerifyMimeType:
         default: true
         description: 'Determines if the MIME type of uploaded files should be checked'
-    VerifyMimeTypeIE:
-        default: true
-        description: |-
-            Determines whether extra checks for IE type detection should be applied.
-            This is a conservative check for exactly what IE 6 or so checked for,
-            and shouldn't trigger on for instance JPEG files containing links in EXIF
-            metadata.
-            @since 1.34
     MimeTypeFile:
         default: internal
         description: |-

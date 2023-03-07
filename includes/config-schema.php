@@ -250,7 +250,6 @@ return [
 			],
 			'AntivirusRequired' => true,
 			'VerifyMimeType' => true,
-			'VerifyMimeTypeIE' => true,
 			'MimeTypeFile' => 'internal',
 			'MimeInfoFile' => 'internal',
 			'MimeDetectorCommand' => null,

@@ -2164,19 +2164,6 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Determines whether extra checks for IE type detection should be applied.
-	 *
-	 * This is a conservative check for exactly what IE 6 or so checked for,
-	 * and shouldn't trigger on for instance JPEG files containing links in EXIF
-	 * metadata.
-	 *
-	 * @since 1.34
-	 */
-	public const VerifyMimeTypeIE = [
-		'default' => true,
-	];
-
-	/**
 	 * Sets the MIME type definition file to use by includes/libs/mime/MimeAnalyzer.php.
 	 *
 	 * When this is set to the path of a mime.types file, MediaWiki will use this

@@ -58,9 +58,6 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	/** @var array Map of file extensions types to MIME types (as a space separated list) */
 	public $mExtToMime = []; // legacy name; field accessed by hooks
 
-	/** @var IEContentAnalyzer */
-	protected $IEAnalyzer;
-
 	/** @var string Extra MIME types, set for example by media handling extensions */
 	private $extraTypes = '';
 	/** @var string Extra MIME info, set for example by media handling extensions */
@@ -1074,29 +1071,5 @@ class MimeAnalyzer implements LoggerAwareInterface {
 	 */
 	public function getMediaTypes(): array {
 		return array_keys( $this->mediaTypes );
-	}
-
-	/**
-	 * Get the MIME types that various versions of Internet Explorer would
-	 * detect from a chunk of the content.
-	 *
-	 * @param string $fileName The file name (unused at present)
-	 * @param string $chunk The first 256 bytes of the file
-	 * @param string $proposed The MIME type proposed by the server
-	 * @return string[]
-	 */
-	public function getIEMimeTypes( string $fileName, string $chunk, string $proposed ): array {
-		$ca = $this->getIEContentAnalyzer();
-		return $ca->getRealMimesFromData( $fileName, $chunk, $proposed );
-	}
-
-	/**
-	 * Get a cached instance of IEContentAnalyzer
-	 *
-	 * @return IEContentAnalyzer
-	 */
-	protected function getIEContentAnalyzer(): IEContentAnalyzer {
-		$this->IEAnalyzer ??= new IEContentAnalyzer;
-		return $this->IEAnalyzer;
 	}
 }

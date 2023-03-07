@@ -450,31 +450,12 @@ abstract class UploadBase {
 	 */
 	protected function verifyMimeType( $mime ) {
 		$verifyMimeType = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::VerifyMimeType );
-		$verifyMimeTypeIE = MediaWikiServices::getInstance()->getMainConfig()->get( MainConfigNames::VerifyMimeTypeIE );
 		if ( $verifyMimeType ) {
 			wfDebug( "mime: <$mime> extension: <{$this->mFinalExtension}>" );
 			$mimeTypeExclusions = MediaWikiServices::getInstance()->getMainConfig()
 				->get( MainConfigNames::MimeTypeExclusions );
 			if ( self::checkFileExtension( $mime, $mimeTypeExclusions ) ) {
 				return [ 'filetype-badmime', $mime ];
-			}
-
-			if ( $verifyMimeTypeIE ) {
-				# Check what Internet Explorer would detect
-				$fp = fopen( $this->mTempPath, 'rb' );
-				if ( $fp ) {
-					$chunk = fread( $fp, 256 );
-					fclose( $fp );
-
-					$magic = MediaWikiServices::getInstance()->getMimeAnalyzer();
-					$extMime = $magic->getMimeTypeFromExtensionOrNull( (string)$this->mFinalExtension ) ?? '';
-					$ieTypes = $magic->getIEMimeTypes( $this->mTempPath, $chunk, $extMime );
-					foreach ( $ieTypes as $ieType ) {
-						if ( self::checkFileExtension( $ieType, $mimeTypeExclusions ) ) {
-							return [ 'filetype-bad-ie-mime', $ieType ];
-						}
-					}
-				}
 			}
 		}
 

@@ -27,6 +27,13 @@ For notes on 1.39.x and older releases, see HISTORY.
   to 'Pbkdf2PasswordUsingHashExtension'. In particular, this would be necessary
   if existing PBKDF2 password hashes were computed using a hash algorithm other
   than "sha512" or "sha256" (the current and prior defaults).
+* You should configure your webserver to return the http header
+  'X-Content-Type-Options: nosniff' for the /images directory. This will
+  instruct browsers to not apply content sniffing when accessng the files.
+  MediaWiki before 1.40 shipped with a content sniffer which disallowed
+  potentially dangerous files at upload time, but this protection has now been
+  removed in favor of this 'X-Content-Type-Options: nosniff' header and the
+  installer will return a warning when it is not in place.
 * …
 
 ==== New configuration ====
@@ -53,6 +60,7 @@ For notes on 1.39.x and older releases, see HISTORY.
   extensions can place their parser test files in `tests/parser` instead.
 * (T231412) $wgAutoloadAttemptLowercase, which was deprecated in 1.35,
   no longer has any effect.
+* (T309787) $wgVerifyMimeTypeIE was removed.
 * Support for MW_USE_LEGACY_DEFAULT_SETTINGS has been removed, setting this
   constant will not have any effect. Use of MW_USE_LEGACY_DEFAULT_SETTINGS
   had been deprecated since 1.39.
@@ -309,6 +317,7 @@ because of Phabricator reports.
   been moved to LinkFilter with the same name.
 * .box-sizing() Less mixin, deprecated since 1.37, has been removed.
   Use CSS box-sizing now.
+* MimeAnalyzer::getIEMimeTypes() and IEContentAnalyzer were removed.
 * …
 
 === Deprecations in 1.40 ===

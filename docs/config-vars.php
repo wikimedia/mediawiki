@@ -719,12 +719,6 @@ $wgAntivirusRequired = null;
 $wgVerifyMimeType = null;
 
 /**
- * Config variable stub for the VerifyMimeTypeIE setting, for use by phpdoc and IDEs.
- * @see MediaWiki\MainConfigSchema::VerifyMimeTypeIE
- */
-$wgVerifyMimeTypeIE = null;
-
-/**
  * Config variable stub for the MimeTypeFile setting, for use by phpdoc and IDEs.
  * @see MediaWiki\MainConfigSchema::MimeTypeFile
  */
