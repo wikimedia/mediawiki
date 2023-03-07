@@ -1539,6 +1539,7 @@ class MediaWikiServices extends ServiceContainer {
 	/**
 	 * @return DataAccess
 	 * @since 1.39
+	 * @internal
 	 */
 	public function getParsoidDataAccess(): DataAccess {
 		return $this->getService( 'ParsoidDataAccess' );
@@ -1565,6 +1566,7 @@ class MediaWikiServices extends ServiceContainer {
 	/**
 	 * @return PageConfigFactory
 	 * @since 1.39
+	 * @internal
 	 */
 	public function getParsoidPageConfigFactory(): PageConfigFactory {
 		return $this->getService( 'ParsoidPageConfigFactory' );
@@ -1573,6 +1575,7 @@ class MediaWikiServices extends ServiceContainer {
 	/**
 	 * @return SiteConfig
 	 * @since 1.39
+	 * @internal
 	 */
 	public function getParsoidSiteConfig(): SiteConfig {
 		return $this->getService( 'ParsoidSiteConfig' );

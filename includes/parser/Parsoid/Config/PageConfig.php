@@ -32,9 +32,10 @@ use Wikimedia\Parsoid\Config\PageContent as IPageContent;
 /**
  * Page-level configuration interface for Parsoid
  *
- * @todo We should probably deprecate ParserOptions somehow, using a version of
- *  this directly instead.
+ * This is effectively "Parsoid's view of ParserOptions".
+ *
  * @since 1.39
+ * @internal
  */
 class PageConfig extends IPageConfig {
 
@@ -149,6 +150,7 @@ class PageConfig extends IPageConfig {
 	}
 
 	/**
+	 * @internal Used by DataAccess; not part of Parsoid's interface.
 	 * @return ParserOptions
 	 */
 	public function getParserOptions(): ParserOptions {
