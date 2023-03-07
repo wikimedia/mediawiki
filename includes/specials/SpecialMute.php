@@ -124,9 +124,6 @@ class SpecialMute extends FormSpecialPage {
 			$hookData[$userOption]['after'] = (bool)$value;
 		}
 
-		// NOTE: this hook is temporary
-		$this->getHookRunner()->onSpecialMuteSubmit( $hookData );
-
 		return true;
 	}
 

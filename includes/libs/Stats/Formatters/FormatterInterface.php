@@ -19,10 +19,7 @@
 
 namespace Wikimedia\Stats\Formatters;
 
-use Wikimedia\Stats\Metrics\CounterMetric;
-use Wikimedia\Stats\Metrics\GaugeMetric;
-use Wikimedia\Stats\Metrics\NullMetric;
-use Wikimedia\Stats\Metrics\TimingMetric;
+use Wikimedia\Stats\Metrics\MetricInterface;
 
 /**
  * Metrics Formatter Interface
@@ -35,8 +32,8 @@ interface FormatterInterface {
 	 * Renders metric to line format.
 	 *
 	 * @param string $prefix
-	 * @param CounterMetric|GaugeMetric|TimingMetric|NullMetric $metric
+	 * @param MetricInterface $metric
 	 * @return string[]
 	 */
-	public function getFormattedSamples( string $prefix, $metric ): array;
+	public function getFormattedSamples( string $prefix, MetricInterface $metric ): array;
 }

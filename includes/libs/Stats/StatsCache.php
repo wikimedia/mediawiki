@@ -23,10 +23,8 @@ declare( strict_types=1 );
 namespace Wikimedia\Stats;
 
 use TypeError;
-use Wikimedia\Stats\Metrics\CounterMetric;
-use Wikimedia\Stats\Metrics\GaugeMetric;
+use Wikimedia\Stats\Metrics\MetricInterface;
 use Wikimedia\Stats\Metrics\NullMetric;
-use Wikimedia\Stats\Metrics\TimingMetric;
 
 /**
  * Singleton cache for Metric instances.
@@ -40,7 +38,7 @@ class StatsCache {
 	/** @var string */
 	public const DELIMITER = '.';
 
-	/** @var array */
+	/** @var MetricInterface[] */
 	private array $cache = [];
 
 	/**
@@ -49,7 +47,7 @@ class StatsCache {
 	 * @param string $component
 	 * @param string $name
 	 * @param string $expectedClass
-	 * @return mixed
+	 * @return MetricInterface|null
 	 * @throws TypeError If cached value is for a different metric type.
 	 */
 	public function get( string $component, string $name, string $expectedClass ) {
@@ -67,7 +65,7 @@ class StatsCache {
 	 *
 	 * @param string $component
 	 * @param string $name
-	 * @param CounterMetric|GaugeMetric|TimingMetric|NullMetric $metric
+	 * @param MetricInterface|NullMetric $metric
 	 */
 	public function set( string $component, string $name, $metric ): void {
 		$this->cache[self::cacheKey( $component, $name )] = $metric;
@@ -76,7 +74,7 @@ class StatsCache {
 	/**
 	 * Get all metrics from cache.
 	 *
-	 * @return array
+	 * @return MetricInterface[]
 	 */
 	public function getAllMetrics(): array {
 		return $this->cache;

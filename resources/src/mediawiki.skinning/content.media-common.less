@@ -192,6 +192,16 @@ figure[ typeof~='mw:File/Frame' ] {
 	}
 }
 
+// Remove bogus padding from framed images without captions
+figure[ typeof~='mw:File/Frame' ] > figcaption:empty {
+	padding-bottom: 0;
+}
+
+// However, it's still necessary for thumbs because the magnifying icon is present
+figure[ typeof~='mw:File/Thumb' ] > figcaption:empty {
+	padding-bottom: 3px;
+}
+
 /**
  * Inline media items
  */
