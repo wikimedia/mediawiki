@@ -14,15 +14,6 @@ if ( $wgLogos !== false && isset( $wgLogos['1x'] ) ) {
 	$wgLogo = $wgLogos['1x'];
 }
 
-if ( $wgMainWANCache === false ) {
-	// Create a WAN cache from $wgMainCacheType
-	$wgMainWANCache = 'mediawiki-main-default';
-	$wgWANObjectCaches[$wgMainWANCache] = [
-		'class'    => WANObjectCache::class,
-		'cacheId'  => $wgMainCacheType,
-	];
-}
-
 // Back-compat
 if ( isset( $wgFileBlacklist ) ) {
 	$wgProhibitedFileExtensions = array_merge( $wgProhibitedFileExtensions, $wgFileBlacklist );

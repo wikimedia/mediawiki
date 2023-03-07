@@ -81,7 +81,6 @@ use UploadLogFormatter;
 use UserEditCountInitJob;
 use UserGroupExpiryJob;
 use UserOptionsUpdateJob;
-use WANObjectCache;
 use WatchlistExpiryJob;
 use WebRequest;
 use WikitextContentHandler;
@@ -3735,6 +3734,12 @@ class MainConfigSchema {
 	 * - (other):          A string may be used which identifies a cache
 	 *                     configuration in $wgObjectCaches.
 	 *
+	 * For a multi-datacenter setup, the underlying service should be configured
+	 * to broadcast operations by WANObjectCache using Mcrouter or Dynomite.
+	 * See @ref wanobjectcache-deployment "Deploying WANObjectCache".
+	 * To configure the `broadcastRoutingPrefix` WANObjectCache parameter,
+	 * use $wgWANObjectCache.
+	 *
 	 * @see $wgMessageCacheType, $wgParserCacheType
 	 */
 	public const MainCacheType = [
@@ -3918,65 +3923,14 @@ class MainConfigSchema {
 	];
 
 	/**
-	 * Main Wide-Area-Network cache type.
+	 * Extra parameters to the WANObjectCache constructor.
 	 *
-	 * By default, this will wrap $wgMainCacheType (which is disabled, since the basic
-	 * stock default of CACHE_DB is not fast enough to make it worthwhile).
-	 *
-	 * For single server or single datacenter setup, setting $wgMainCacheType
-	 * is enough.
-	 *
-	 * For a multiple datacenter setup, WANObjectCache should be configured to
-	 * broadcast some if its operations using Mcrouter or Dynomite.
 	 * See @ref wanobjectcache-deployment "Deploying WANObjectCache".
 	 *
-	 * The options are:
-	 *   - false:            Configure the cache using $wgMainCacheType, without using
-	 *                       a relayer (only matters if there are multiple datacenters)
-	 *   - CACHE_NONE:       Do not cache
-	 *   - (other):          A string may be used which identifies a cache
-	 *                       configuration in $wgWANObjectCaches
-	 *
-	 * @since 1.26
+	 * @since 1.40
 	 */
-	public const MainWANCache = [
-		'default' => false,
-		'type' => 'integer|string|false',
-	];
-
-	/**
-	 * Advanced WAN object cache configuration.
-	 *
-	 * The format is an associative array where the key is an identifier
-	 * that may be referenced by $wgMainWANCache, and the value is an array of options:
-	 *
-	 *  - class:   (Required) The class to use (must be WANObjectCache or a subclass).
-	 *  - cacheId: (Required) A cache identifier from $wgObjectCaches.
-	 *  - secret:  (Optional) Stable secret for hashing long strings in key components.
-	 *             Default: $wgSecretKey.
-	 *
-	 * Any other options are treated as constructor parameters to WANObjectCache,
-	 * except for 'cache', 'logger', 'stats' and 'asyncHandler' which are
-	 * unconditionally set by MediaWiki core's ServiceWiring.
-	 *
-	 * **Example:**
-	 *
-	 * ```
-	 * $wgWANObjectCaches['memcached-php'] => [
-	 *   'class' => WANObjectCache::class,
-	 *   'cacheId' => 'memcached-php',
-	 * ];
-	 * ```
-	 *
-	 * @since 1.26
-	 */
-	public const WANObjectCaches = [
-		'default' => [
-			CACHE_NONE => [
-				'class' => WANObjectCache::class,
-				'cacheId' => CACHE_NONE,
-			]
-		],
+	public const WANObjectCache = [
+		'default' => [],
 		'type' => 'map',
 	];
 

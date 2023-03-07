@@ -117,18 +117,6 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			'SharedPrefix' => '',
 			'SharedSchema' => null,
 			'MetaNamespace' => 'MediaWiki',
-			'MainWANCache' => 'mediawiki-main-default',
-			'WANObjectCaches' => [
-				// XXX Is this duplication really intentional? Isn't the first entry unused?
-				0 => [
-					'class' => WANObjectCache::class,
-					'cacheId' => 0,
-				],
-				'mediawiki-main-default' => [
-					'class' => WANObjectCache::class,
-					'cacheId' => 0,
-				],
-			],
 			'EnableUserEmailMuteList' => false,
 			'EnableUserEmailBlacklist' => false,
 			'NamespaceProtection' => [ NS_MEDIAWIKI => 'editinterface' ],
@@ -269,31 +257,6 @@ class SetupDynamicConfigTest extends MediaWikiUnitTestCase {
 			[
 				'Sitename' => 'my site',
 				'MetaNamespace' => 'my_site',
-			],
-		];
-		yield '$wgMainCacheType set' => [
-			[ 'MainCacheType' => 7 ],
-			[
-				'MainCacheType' => 7,
-				'WANObjectCaches' => [
-					0 => [
-						'class' => WANObjectCache::class,
-						'cacheId' => 0,
-					],
-					'mediawiki-main-default' => [
-						'class' => WANObjectCache::class,
-						'cacheId' => 7,
-					],
-				],
-			],
-		];
-		yield '$wgMainWANCache set' => [
-			[ 'MainWANCache' => 'my-cache' ],
-			[
-				'MainWANCache' => 'my-cache',
-				// XXX Is this intentional? Customizing MainWANCache without adding it to
-				// WANObjectCaches seems like it will break everything?
-				'WANObjectCaches' => [ [ 'class' => WANObjectCache::class, 'cacheId' => 0 ] ],
 			],
 		];
 		yield '$wgProhibitedFileExtensions set' => [

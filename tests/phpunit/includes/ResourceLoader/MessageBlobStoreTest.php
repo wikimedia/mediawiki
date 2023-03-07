@@ -29,8 +29,6 @@ class MessageBlobStoreTest extends \PHPUnit\Framework\TestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		// MediaWiki's test wrapper sets $wgMainWANCache to CACHE_NONE.
-		// Use HashBagOStuff here so that we can observe caching.
 		$this->wanCache = new WANObjectCache( [
 			'cache' => new HashBagOStuff()
 		] );

@@ -515,12 +515,7 @@ return [
 					'reportDupes' => false,
 				],
 			],
-			'MainWANCache' => false,
-			'WANObjectCaches' => [
-				0 => [
-					'class' => 'WANObjectCache',
-					'cacheId' => 0,
-				],
+			'WANObjectCache' => [
 			],
 			'MainStash' => 'db-replicated',
 			'ParsoidCacheConfig' => [
@@ -2622,12 +2617,7 @@ return [
 			],
 			'MultiShardSiteStats' => 'boolean',
 			'ObjectCaches' => 'object',
-			'MainWANCache' => [
-				0 => 'integer',
-				1 => 'string',
-				2 => 'boolean',
-			],
-			'WANObjectCaches' => 'object',
+			'WANObjectCache' => 'object',
 			'ParsoidCacheConfig' => 'object',
 			'ChronologyProtectorStash' => [
 				0 => 'string',
