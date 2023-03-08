@@ -40,7 +40,6 @@ use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
-use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\IPUtils;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 
@@ -110,11 +109,6 @@ class Article implements Page {
 	private $revisionStore;
 
 	/**
-	 * @var WatchlistManager
-	 */
-	private $watchlistManager;
-
-	/**
 	 * @var UserNameUtils
 	 */
 	private $userNameUtils;
@@ -152,7 +146,6 @@ class Article implements Page {
 		$services = MediaWikiServices::getInstance();
 		$this->linkRenderer = $services->getLinkRenderer();
 		$this->revisionStore = $services->getRevisionStore();
-		$this->watchlistManager = $services->getWatchlistManager();
 		$this->userNameUtils = $services->getUserNameUtils();
 		$this->userOptionsLookup = $services->getUserOptionsLookup();
 		$this->commentFormatter = $services->getCommentFormatter();
@@ -175,7 +168,7 @@ class Article implements Page {
 	 */
 	public static function newFromID( $id ) {
 		$t = Title::newFromID( $id );
-		return $t == null ? null : new static( $t );
+		return $t === null ? null : new static( $t );
 	}
 
 	/**
@@ -185,7 +178,7 @@ class Article implements Page {
 	 * @param IContextSource $context
 	 * @return Article
 	 */
-	public static function newFromTitle( $title, IContextSource $context ) {
+	public static function newFromTitle( $title, IContextSource $context ): self {
 		if ( $title->getNamespace() === NS_MEDIA ) {
 			// XXX: This should not be here, but where should it go?
 			$title = Title::makeTitle( NS_FILE, $title->getDBkey() );
@@ -312,7 +305,7 @@ class Article implements Page {
 				if ( $this->mRevisionRecord !== null ) {
 					$revPageId = $this->mRevisionRecord->getPageId();
 					// Revision title doesn't match the page title given?
-					if ( $this->mPage->getId() != $revPageId ) {
+					if ( $this->mPage->getId() !== $revPageId ) {
 						$this->mPage = $this->wikiPageFactory->newFromID( $revPageId );
 					}
 				}
@@ -713,11 +706,6 @@ class Article implements Page {
 		# Run the parse, protected by a pool counter
 		wfDebug( __METHOD__ . ": doing uncached parse" );
 
-		if ( !$rev ) {
-			// No revision, abort! Shouldn't happen.
-			return false;
-		}
-
 		$opt = 0;
 
 		// we already checked the cache in case 2, don't check again.
@@ -826,13 +814,13 @@ class Article implements Page {
 	}
 
 	/**
-	 * @param RevisionRecord|null $rev
+	 * @param RevisionRecord $rev
 	 * @param Status $renderStatus
 	 * @param OutputPage $outputPage
 	 * @param array $textOptions
 	 */
 	private function doOutputFromRenderStatus(
-		?RevisionRecord $rev,
+		RevisionRecord $rev,
 		Status $renderStatus,
 		OutputPage $outputPage,
 		array $textOptions
@@ -908,7 +896,7 @@ class Article implements Page {
 		$diff = $request->getVal( 'diff' );
 		$rcid = $request->getInt( 'rcid' );
 		$purge = $request->getRawVal( 'action' ) === 'purge';
-		$unhide = $request->getInt( 'unhide' ) == 1;
+		$unhide = $request->getInt( 'unhide' ) === 1;
 		$oldid = $this->getOldID();
 
 		$rev = $this->fetchRevisionRecord();
@@ -1032,7 +1020,7 @@ class Article implements Page {
 				self::formatRobotPolicy( $namespaceRobotPolicies[$ns] )
 			);
 		}
-		if ( $title->canUseNoindex() && is_object( $pOutput ) && $pOutput->getIndexPolicy() ) {
+		if ( $title->canUseNoindex() && $pOutput && $pOutput->getIndexPolicy() ) {
 			# __INDEX__ and __NOINDEX__ magic words, if allowed. Incorporates
 			# a final check that we have really got the parser output.
 			$policy = array_merge(
@@ -1396,7 +1384,7 @@ class Article implements Page {
 		if ( $title->getNamespace() === NS_USER
 			|| $title->getNamespace() === NS_USER_TALK
 		) {
-			$rootPart = explode( '/', $title->getText() )[0];
+			$rootPart = $title->getRootText();
 			$user = User::newFromName( $rootPart, false /* allow IP users */ );
 			$ip = $this->userNameUtils->isIP( $rootPart );
 			$block = DatabaseBlock::newFromTarget( $user, $user );
@@ -1593,7 +1581,7 @@ class Article implements Page {
 
 			return false;
 		// If the user needs to confirm that they want to see it...
-		} elseif ( $this->getContext()->getRequest()->getInt( 'unhide' ) != 1 ) {
+		} elseif ( $this->getContext()->getRequest()->getInt( 'unhide' ) !== 1 ) {
 			# Give explanation and add a link to view the revision...
 			$oldid = intval( $this->getOldID() );
 			$link = $this->getTitle()->getFullURL( "oldid={$oldid}&unhide=1" );
@@ -1637,7 +1625,7 @@ class Article implements Page {
 		}
 
 		$context = $this->getContext();
-		$unhide = $context->getRequest()->getInt( 'unhide' ) == 1;
+		$unhide = $context->getRequest()->getInt( 'unhide' ) === 1;
 
 		# Cascade unhide param in links for easy deletion browsing
 		$extraParams = [];
@@ -1649,6 +1637,9 @@ class Article implements Page {
 			$revisionRecord = $this->mRevisionRecord;
 		} else {
 			$revisionRecord = $this->revisionStore->getRevisionById( $oldid );
+		}
+		if ( !$revisionRecord ) {
+			throw new LogicException( 'There should be a revision record at this point.' );
 		}
 
 		$timestamp = $revisionRecord->getTimestamp();
@@ -1662,7 +1653,6 @@ class Article implements Page {
 		$tdtime = $language->userTime( $timestamp, $user );
 
 		# Show user links if allowed to see them. If hidden, then show them only if requested...
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revisionRecord known to exists
 		$userlinks = Linker::revUserTools( $revisionRecord, !$unhide );
 
 		$infomsg = $current && !$context->msg( 'revision-info-current' )->isDisabled()
@@ -1686,7 +1676,6 @@ class Article implements Page {
 					$revisionUser ? $revisionUser->getName() : ''
 				)
 				->rawParams( $this->commentFormatter->formatRevision(
-					// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revisionRecord known to exists
 					$revisionRecord,
 					$user,
 					true,
@@ -1714,7 +1703,6 @@ class Article implements Page {
 					'oldid' => $oldid
 				] + $extraParams
 			);
-		// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revisionRecord known to exists
 		$prevExist = (bool)$this->revisionStore->getPreviousRevision( $revisionRecord );
 		$prevlink = $prevExist
 			? $this->linkRenderer->makeKnownLink(
@@ -1763,7 +1751,6 @@ class Article implements Page {
 
 		$cdel = Linker::getRevDeleteLink(
 			$context->getAuthority(),
-			// @phan-suppress-next-line PhanTypeMismatchArgumentNullable revisionRecord known to exists
 			$revisionRecord,
 			$this->getTitle()
 		);
@@ -1796,13 +1783,7 @@ class Article implements Page {
 	 * @param bool $forceKnown Should the image be shown as a bluelink regardless of existence?
 	 * @return string Containing HTML with redirect link
 	 */
-	public static function getRedirectHeaderHtml( Language $lang, $target, $forceKnown = false ) {
-		if ( is_array( $target ) ) {
-			// Up until 1.39, $target was allowed to be an array.
-			wfDeprecatedMsg( 'The $target parameter can no longer be an array', '1.39' );
-			$target = reset( $target ); // There really can only be one element (T296430)
-		}
-
+	public static function getRedirectHeaderHtml( Language $lang, Title $target, $forceKnown = false ) {
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
 		$html = '<ul class="redirectText">';
@@ -1880,70 +1861,6 @@ class Article implements Page {
 	 */
 	public function unprotect() {
 		$this->protect();
-	}
-
-	/**
-	 * Perform a deletion and output success or failure messages.
-	 *
-	 * @deprecated since 1.37, hard deprecated since 1.38. Use WikiPage::doDeleteArticleReal if you only need to
-	 * delete the article. If you also need things to happen with OutputPage, you may want to check the hooks in
-	 * DeleteAction instead.
-	 *
-	 * @param string $reason
-	 * @param bool $suppress
-	 * @param bool $immediate false allows deleting over time via the job queue
-	 * @throws FatalError
-	 * @throws MWException
-	 */
-	public function doDelete( $reason, $suppress = false, $immediate = false ) {
-		wfDeprecated( __METHOD__, '1.37' );
-		$error = '';
-		$context = $this->getContext();
-		$outputPage = $context->getOutput();
-		$user = $context->getUser();
-		$status = $this->mPage->doDeleteArticleReal(
-			$reason, $user, $suppress, null, $error,
-			null, [], 'delete', $immediate
-		);
-
-		if ( $status->isOK() ) {
-			$deleted = $this->getTitle()->getPrefixedText();
-
-			$outputPage->setPageTitle( $context->msg( 'actioncomplete' ) );
-			$outputPage->setRobotPolicy( 'noindex,nofollow' );
-
-			if ( $status->isGood() ) {
-				$loglink = '[[Special:Log/delete|' . $context->msg( 'deletionlog' )->text() . ']]';
-				$outputPage->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
-				$this->getHookRunner()->onArticleDeleteAfterSuccess( $this->getTitle(), $outputPage );
-			} else {
-				$outputPage->addWikiMsg( 'delete-scheduled', wfEscapeWikiText( $deleted ) );
-			}
-
-			$outputPage->returnToMain( false );
-		} else {
-			$outputPage->setPageTitle(
-				$context->msg( 'cannotdelete-title',
-					$this->getTitle()->getPrefixedText() )
-			);
-
-			if ( $error == '' ) {
-				$outputPage->wrapWikiTextAsInterface(
-					'error mw-error-cannotdelete',
-					$status->getWikiText( false, false, $context->getLanguage() )
-				);
-				$deleteLogPage = new LogPage( 'delete' );
-				$outputPage->addHTML( Xml::element( 'h2', null, $deleteLogPage->getName()->text() ) );
-
-				LogEventsList::showLogExtract(
-					$outputPage,
-					'delete',
-					$this->getTitle()
-				);
-			} else {
-				$outputPage->addHTML( $error );
-			}
-		}
 	}
 
 	/* Caching functions */
@@ -2051,7 +1968,7 @@ class Article implements Page {
 	 * @return IContextSource
 	 * @since 1.18
 	 */
-	public function getContext() {
+	public function getContext(): IContextSource {
 		if ( $this->mContext instanceof IContextSource ) {
 			return $this->mContext;
 		} else {

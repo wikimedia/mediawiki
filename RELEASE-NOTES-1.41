@@ -72,6 +72,9 @@ because of Phabricator reports.
 * (T332118) Namespace translations for Angika (anp) were added
 
 === Breaking changes in 1.41 ===
+* Article::doDelete(), deprecated since 1.37, has been removed.
+* Article::getRedirectHeaderHtml() no longer accepts an array as $target.
+  Passing an array was deprecated in 1.39.
 * …
 
 === Deprecations in 1.41 ===
