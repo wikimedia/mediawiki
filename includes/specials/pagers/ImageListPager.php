@@ -35,35 +35,29 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class ImageListPager extends TablePager {
 
+	/** @var string[]|null */
 	protected $mFieldNames = null;
-
-	// Subclasses should override buildQueryConds instead of using $mQueryConds variable.
-	protected $mQueryConds = [];
-
-	protected $mUserName = null;
-
 	/**
-	 * The relevant user
-	 *
-	 * @var User|null
+	 * @deprecated Subclasses should override {@see buildQueryConds} instead
+	 * @var array
 	 */
+	protected $mQueryConds = [];
+	/** @var string|null */
+	protected $mUserName = null;
+	/** @var User|null The relevant user */
 	protected $mUser = null;
-
+	/** @var bool */
 	protected $mIncluding = false;
-
+	/** @var bool */
 	protected $mShowAll = false;
-
+	/** @var string */
 	protected $mTableName = 'image';
-
 	/** @var CommentStore */
 	private $commentStore;
-
 	/** @var LocalRepo */
 	private $localRepo;
-
 	/** @var UserCache */
 	private $userCache;
-
 	/** @var CommentFormatter */
 	private $commentFormatter;
 
@@ -108,7 +102,6 @@ class ImageListPager extends TablePager {
 
 		$this->mIncluding = $including;
 		$this->mShowAll = $showAll;
-		$dbr = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 
 		if ( $userName !== null && $userName !== '' ) {
 			$nt = Title::makeTitleSafe( NS_USER, $userName );
@@ -126,17 +119,15 @@ class ImageListPager extends TablePager {
 			}
 		}
 
-		if ( !$including ) {
-			if ( $this->getRequest()->getText( 'sort', 'img_date' ) == 'img_date' ) {
-				$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
-			} else {
-				$this->mDefaultDirection = IndexPager::DIR_ASCENDING;
-			}
-		} else {
+		if ( $including ||
+			$this->getRequest()->getText( 'sort', 'img_date' ) === 'img_date'
+		) {
 			$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
+		} else {
+			$this->mDefaultDirection = IndexPager::DIR_ASCENDING;
 		}
 		// Set database before parent constructor to avoid setting it there with wfGetDB
-		$this->mDb = $dbr;
+		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 
 		parent::__construct( $context, $linkRenderer );
 		$this->commentStore = $commentStore;
@@ -207,11 +198,10 @@ class ImageListPager extends TablePager {
 			// img_description down here, in order so that its still after the username field.
 			$this->mFieldNames['img_description'] = $this->msg( 'listfiles_description' )->text();
 
-			if ( !$this->getConfig()->get( MainConfigNames::MiserMode ) && !$this->mShowAll ) {
-				$this->mFieldNames['count'] = $this->msg( 'listfiles_count' )->text();
-			}
 			if ( $this->mShowAll ) {
 				$this->mFieldNames['top'] = $this->msg( 'listfiles-latestversion' )->text();
+			} elseif ( !$this->getConfig()->get( MainConfigNames::MiserMode ) ) {
+				$this->mFieldNames['count'] = $this->msg( 'listfiles_count' )->text();
 			}
 		}
 
@@ -229,14 +219,14 @@ class ImageListPager extends TablePager {
 		 * In particular that means we cannot sort by timestamp when not filtering
 		 * by user and including old images in the results. Which is sad. (T279982)
 		 */
-		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) && $this->mUserName !== null ) {
-			// If we're sorting by user, the index only supports sorting by time.
-			return $field === 'img_timestamp';
-		} elseif ( $this->getConfig()->get( MainConfigNames::MiserMode )
-			&& $this->mShowAll /* && mUserName === null */
-		) {
-			// no oi_timestamp index, so only alphabetical sorting in this case.
-			return $field === 'img_name';
+		if ( $this->getConfig()->get( MainConfigNames::MiserMode ) ) {
+			if ( $this->mUserName !== null ) {
+				// If we're sorting by user, the index only supports sorting by time.
+				return $field === 'img_timestamp';
+			} elseif ( $this->mShowAll ) {
+				// no oi_timestamp index, so only alphabetical sorting in this case.
+				return $field === 'img_name';
+			}
 		}
 
 		return isset( self::INDEX_FIELDS[$field] );
@@ -246,9 +236,7 @@ class ImageListPager extends TablePager {
 		// Hacky Hacky Hacky - I want to get query info
 		// for two different tables, without reimplementing
 		// the pager class.
-		$qi = $this->getQueryInfoReal( $this->mTableName );
-
-		return $qi;
+		return $this->getQueryInfoReal( $this->mTableName );
 	}
 
 	/**
@@ -286,8 +274,6 @@ class ImageListPager extends TablePager {
 			$join_conds['actor'] = [ 'JOIN', 'actor_id=img_actor' ];
 		}
 
-		$options = [];
-
 		# Description field
 		$commentQuery = $this->commentStore->getJoin( $prefix . '_description' );
 		$tables += $commentQuery['tables'];
@@ -314,7 +300,7 @@ class ImageListPager extends TablePager {
 			'tables' => $tables,
 			'fields' => $fields,
 			'conds' => $this->buildQueryConds( $table ),
-			'options' => $options,
+			'options' => [],
 			'join_conds' => $join_conds
 		];
 	}
@@ -415,8 +401,10 @@ class ImageListPager extends TablePager {
 	}
 
 	public function getDefaultSort() {
-		if ( $this->mShowAll && $this->getConfig()->get( MainConfigNames::MiserMode ) &&
-		$this->mUserName === null ) {
+		if ( $this->mShowAll &&
+			$this->getConfig()->get( MainConfigNames::MiserMode ) &&
+			$this->mUserName === null
+		) {
 			// Unfortunately no index on oi_timestamp.
 			return 'img_name';
 		} else {
@@ -471,7 +459,7 @@ class ImageListPager extends TablePager {
 				// Weird files can maybe exist? T24227
 				$filePage = Title::makeTitleSafe( NS_FILE, $value );
 				if ( $filePage ) {
-					$link = $linkRenderer->makeKnownLink(
+					$html = $linkRenderer->makeKnownLink(
 						$filePage,
 						$filePage->getText()
 					);
@@ -480,7 +468,7 @@ class ImageListPager extends TablePager {
 						[ 'href' => $this->localRepo->newFile( $filePage )->getUrl() ],
 						$imgfile
 					);
-					$download = $this->msg( 'parentheses' )->rawParams( $download )->escaped();
+					$html .= ' ' . $this->msg( 'parentheses' )->rawParams( $download )->escaped();
 
 					// Add delete links if allowed
 					// From https://github.com/Wikia/app/pull/3859
@@ -490,12 +478,10 @@ class ImageListPager extends TablePager {
 						$delete = $linkRenderer->makeKnownLink(
 							$filePage, $deleteMsg, [], [ 'action' => 'delete' ]
 						);
-						$delete = $this->msg( 'parentheses' )->rawParams( $delete )->escaped();
-
-						return "$link $download $delete";
+						$html .= ' ' . $this->msg( 'parentheses' )->rawParams( $delete )->escaped();
 					}
 
-					return "$link $download";
+					return $html;
 				} else {
 					return htmlspecialchars( $value );
 				}
