@@ -98,9 +98,8 @@ class GIFHandler extends BitmapHandler {
 		$metadata = $image->getMetadataArray();
 		if ( isset( $metadata['frameCount'] ) && $metadata['frameCount'] > 0 ) {
 			return $image->getWidth() * $image->getHeight() * $metadata['frameCount'];
-		} else {
-			return $image->getWidth() * $image->getHeight();
 		}
+		return $image->getWidth() * $image->getHeight();
 	}
 
 	/**
@@ -146,7 +145,7 @@ class GIFHandler extends BitmapHandler {
 		}
 
 		if ( !isset( $data['metadata']['_MW_GIF_VERSION'] )
-			|| $data['metadata']['_MW_GIF_VERSION'] != GIFMetadataExtractor::VERSION
+			|| $data['metadata']['_MW_GIF_VERSION'] !== GIFMetadataExtractor::VERSION
 		) {
 			wfDebug( __METHOD__ . " old but compatible GIF metadata" );
 
@@ -203,8 +202,7 @@ class GIFHandler extends BitmapHandler {
 
 		if ( !$metadata || !isset( $metadata['duration'] ) || !$metadata['duration'] ) {
 			return 0.0;
-		} else {
-			return (float)$metadata['duration'];
 		}
+		return (float)$metadata['duration'];
 	}
 }

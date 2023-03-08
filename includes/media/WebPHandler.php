@@ -105,7 +105,7 @@ class WebPHandler extends BitmapHandler {
 			return false;
 		}
 
-		if ( $info['fourCC'] != 'WEBP' ) {
+		if ( $info['fourCC'] !== 'WEBP' ) {
 			wfDebugLog( 'WebP', __METHOD__ . ': FourCC was not WEBP: ' .
 				bin2hex( $info['fourCC'] ) );
 			return false;
@@ -168,7 +168,7 @@ class WebPHandler extends BitmapHandler {
 		// Bytes 8-10 are the frame tag
 		// Bytes 11-13 are 0x9D 0x01 0x2A called the sync code
 		$syncCode = substr( $header, 11, 3 );
-		if ( $syncCode != "\x9D\x01\x2A" ) {
+		if ( $syncCode !== "\x9D\x01\x2A" ) {
 			wfDebugLog( 'WebP', __METHOD__ . ': Invalid sync code: ' .
 				bin2hex( $syncCode ) );
 			return [];
@@ -192,7 +192,7 @@ class WebPHandler extends BitmapHandler {
 		// Bytes 0-3 are 'VP8L'
 		// Bytes 4-7 are chunk stream size
 		// Byte 8 is 0x2F called the signature
-		if ( $header[8] != "\x2F" ) {
+		if ( $header[8] !== "\x2F" ) {
 			wfDebugLog( 'WebP', __METHOD__ . ': Invalid signature: ' .
 				bin2hex( $header[8] ) );
 			return [];
@@ -225,8 +225,8 @@ class WebPHandler extends BitmapHandler {
 
 		return [
 			'compression' => 'unknown',
-			'animated' => ( $flags[1] & self::VP8X_ANIM ) == self::VP8X_ANIM,
-			'transparency' => ( $flags[1] & self::VP8X_ALPHA ) == self::VP8X_ALPHA,
+			'animated' => ( $flags[1] & self::VP8X_ANIM ) === self::VP8X_ANIM,
+			'transparency' => ( $flags[1] & self::VP8X_ALPHA ) === self::VP8X_ALPHA,
 			'width' => ( $width[1] & 0xFFFFFF ) + 1,
 			'height' => ( $height[1] & 0xFFFFFF ) + 1
 		];
@@ -245,7 +245,7 @@ class WebPHandler extends BitmapHandler {
 	 * @return bool False if we are unable to render this image
 	 */
 	public function canRender( $file ) {
-		if ( self::isAnimatedImage( $file ) ) {
+		if ( $this->isAnimatedImage( $file ) ) {
 			return false;
 		}
 		return true;

@@ -74,10 +74,9 @@ class BitmapHandler extends TransformationalImageHandler {
 	public function makeParamString( $params ) {
 		$res = parent::makeParamString( $params );
 		if ( isset( $params['interlace'] ) && $params['interlace'] ) {
-			return "interlaced-{$res}";
-		} else {
-			return $res;
+			return "interlaced-$res";
 		}
+		return $res;
 	}
 
 	/**
@@ -101,9 +100,8 @@ class BitmapHandler extends TransformationalImageHandler {
 	public function validateParam( $name, $value ) {
 		if ( $name === 'interlace' ) {
 			return $value === false || $value === true;
-		} else {
-			return parent::validateParam( $name, $value );
 		}
+		return parent::validateParam( $name, $value );
 	}
 
 	/**
@@ -172,7 +170,7 @@ class BitmapHandler extends TransformationalImageHandler {
 		$decoderHint = [];
 		$subsampling = [];
 
-		if ( $params['mimeType'] == 'image/jpeg' ) {
+		if ( $params['mimeType'] === 'image/jpeg' ) {
 			$qualityVal = isset( $params['quality'] ) ? (string)$params['quality'] : null;
 			$quality = [ '-quality', $qualityVal ?: (string)$jpegQuality ]; // 80% by default
 			if ( $params['interlace'] ) {
@@ -193,14 +191,14 @@ class BitmapHandler extends TransformationalImageHandler {
 				$factors = $this->imageMagickSubsampling( $jpegPixelFormat );
 				$subsampling = [ '-sampling-factor', implode( ',', $factors ) ];
 			}
-		} elseif ( $params['mimeType'] == 'image/png' ) {
+		} elseif ( $params['mimeType'] === 'image/png' ) {
 			$quality = [ '-quality', '95' ]; // zlib 9, adaptive filtering
 			if ( $params['interlace'] ) {
 				$animation_post = [ '-interlace', 'PNG' ];
 			}
-		} elseif ( $params['mimeType'] == 'image/webp' ) {
+		} elseif ( $params['mimeType'] === 'image/webp' ) {
 			$quality = [ '-quality', '95' ]; // zlib 9, adaptive filtering
-		} elseif ( $params['mimeType'] == 'image/gif' ) {
+		} elseif ( $params['mimeType'] === 'image/gif' ) {
 			if ( $this->getImageArea( $image ) > $maxAnimatedGifArea ) {
 				// Extract initial frame only; we're so big it'll
 				// be a total drag. :P
@@ -219,7 +217,7 @@ class BitmapHandler extends TransformationalImageHandler {
 				$animation_post[] = '-interlace';
 				$animation_post[] = 'GIF';
 			}
-		} elseif ( $params['mimeType'] == 'image/x-xcf' ) {
+		} elseif ( $params['mimeType'] === 'image/x-xcf' ) {
 			// Before merging layers, we need to set the background
 			// to be transparent to preserve alpha, as -layers merge
 			// merges all layers on to a canvas filled with the
@@ -235,7 +233,7 @@ class BitmapHandler extends TransformationalImageHandler {
 
 		// Use one thread only, to avoid deadlock bugs on OOM
 		$env = [ 'OMP_NUM_THREADS' => 1 ];
-		if ( strval( $imageMagickTempDir ) !== '' ) {
+		if ( (string)$imageMagickTempDir !== '' ) {
 			$env['MAGICK_TMPDIR'] = $imageMagickTempDir;
 		}
 
@@ -300,7 +298,7 @@ class BitmapHandler extends TransformationalImageHandler {
 			$im = new Imagick();
 			$im->readImage( $params['srcPath'] );
 
-			if ( $params['mimeType'] == 'image/jpeg' ) {
+			if ( $params['mimeType'] === 'image/jpeg' ) {
 				// Sharpening, see T8193
 				if ( ( $params['physicalWidth'] + $params['physicalHeight'] )
 					/ ( $params['srcWidth'] + $params['srcHeight'] )
@@ -319,12 +317,12 @@ class BitmapHandler extends TransformationalImageHandler {
 					$factors = $this->imageMagickSubsampling( $jpegPixelFormat );
 					$im->setSamplingFactors( $factors );
 				}
-			} elseif ( $params['mimeType'] == 'image/png' ) {
+			} elseif ( $params['mimeType'] === 'image/png' ) {
 				$im->setCompressionQuality( 95 );
 				if ( $params['interlace'] ) {
 					$im->setInterlaceScheme( Imagick::INTERLACE_PNG );
 				}
-			} elseif ( $params['mimeType'] == 'image/gif' ) {
+			} elseif ( $params['mimeType'] === 'image/gif' ) {
 				if ( $this->getImageArea( $image ) > $maxAnimatedGifArea ) {
 					// Extract initial frame only; we're so big it'll
 					// be a total drag. :P
@@ -487,7 +485,7 @@ class BitmapHandler extends TransformationalImageHandler {
 		imagecolortransparent( $dst_image, $background );
 		imagealphablending( $dst_image, false );
 
-		if ( $colorStyle == 'palette' ) {
+		if ( $colorStyle === 'palette' ) {
 			// Don't resample for paletted GIF images.
 			// It may just uglify them, and completely breaks transparency.
 			imagecopyresized( $dst_image, $src_image,
@@ -501,7 +499,7 @@ class BitmapHandler extends TransformationalImageHandler {
 				imagesx( $src_image ), imagesy( $src_image ) );
 		}
 
-		if ( $rotation % 360 != 0 && $rotation % 90 == 0 ) {
+		if ( $rotation % 360 !== 0 && $rotation % 90 === 0 ) {
 			$rot_image = imagerotate( $dst_image, $rotation, 0 );
 			imagedestroy( $dst_image );
 			$dst_image = $rot_image;
