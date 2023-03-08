@@ -2983,7 +2983,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			$uploadDir = "$baseDir/images";
 			$uploadPath = "$basePath/images";
 		}
-		$this->overrideConfigValue( 'IP', $baseDir );
 		$conf = new HashConfig( [
 			MainConfigNames::ResourceBasePath => $basePath,
 			MainConfigNames::UploadDirectory => $uploadDir,
