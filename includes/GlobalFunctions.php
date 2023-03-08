@@ -975,6 +975,7 @@ function wfHostname() {
  * If $wgShowHostnames is true, the script will also set 'wgHostname' to the
  * hostname of the server handling the request.
  *
+ * @deprecated since 1.40
  * @param string|null $nonce Value from OutputPage->getCSP()->getNonce()
  * @return string|WrappedString HTML
  */
