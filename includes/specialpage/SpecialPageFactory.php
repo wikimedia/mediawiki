@@ -383,6 +383,7 @@ class SpecialPageFactory {
 				'BlockUtils',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
+				'WatchlistManager',
 			]
 		],
 		'BlockList' => [

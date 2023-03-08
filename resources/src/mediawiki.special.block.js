@@ -45,7 +45,6 @@
 			var blocktarget = blockTargetWidget.getValue().trim(),
 				isEmpty = blocktarget === '',
 				isIp = mw.util.isIPAddress( blocktarget, true ),
-				isIpRange = isIp && blocktarget.match( /\/\d+$/ ),
 				isNonEmptyIp = isIp && !isEmpty,
 				expiryValue = expiryWidget.getValue(),
 				// infinityValues are the values the BlockUser class accepts as infinity (sf. wfIsInfinity)
@@ -62,9 +61,7 @@
 				hideUserWidget.setDisabled( isNonEmptyIp || !isIndefinite || !isSitewide );
 			}
 
-			if ( watchUserWidget ) {
-				watchUserWidget.setDisabled( isIpRange && !isEmpty );
-			}
+			updateWatchOption();
 
 			pageRestrictionsWidget.setDisabled( isSitewide );
 			namespaceRestrictionsWidget.setDisabled( isSitewide );
@@ -90,6 +87,28 @@
 			if ( partialActionsRestrictionsWidget ) {
 				partialActionsRestrictionsWidget.setDisabled( isSitewide );
 			}
+		}
+
+		function updateWatchOption() {
+			var blocktarget = blockTargetWidget.getValue().trim(),
+				isEmpty = blocktarget === '',
+				isIp = mw.util.isIPAddress( blocktarget, true ),
+				isIpRange = isIp && blocktarget.match( /\/\d+$/ ),
+				isAutoBlock = blocktarget.match( /^#\d+$/ );
+
+			if ( watchUserWidget ) {
+				watchUserWidget.setDisabled( ( isAutoBlock || isIpRange ) && !isEmpty );
+			}
+		}
+
+		watchUserWidget = infuseIfExists( $( '#mw-input-wpWatch' ) );
+		if ( mw.config.get( 'wgCanonicalSpecialPageName' ) === 'Unblock' ) {
+			blockTargetWidget = infuseIfExists( $( '#mw-input-wpTarget' ) );
+			if ( blockTargetWidget ) {
+				blockTargetWidget.on( 'change', updateWatchOption );
+				updateWatchOption();
+			}
+			return;
 		}
 
 		// This code is also loaded on the "block succeeded" page where there is no form,
@@ -119,7 +138,6 @@
 			namespaceRestrictionsWidget.on( 'change', updateBlockOptions );
 
 			// Present for certain rights
-			watchUserWidget = infuseIfExists( $( '#mw-input-wpWatch' ) );
 			hideUserWidget = infuseIfExists( $( '#mw-input-wpHideUser' ) );
 
 			// Present for certain global configs
