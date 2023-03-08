@@ -4179,7 +4179,7 @@
 	"log-name-renameuser": "יומן שינויי שמות משתמש",
 	"log-description-renameuser": "זהו יומן השינויים בשמות המשתמשים.",
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|שינה|שינתה}} את שם המשתמש $4 &rlm;({{PLURAL:$6|עריכה אחת|$6 עריכות}}) לשם {{GENDER:$7|$5}}&rlm;",
-	"logentry-renameuser-renameuser-legacier": "$1 {{GENDER:$2|שינה|שינתה}} את שם המשתמש $4 ל{{GRAMMAR:תחילית|$5}}",
+	"logentry-renameuser-renameuser-legacier": "$1 {{GENDER:$2|שינה|שינתה}} את שם המשתמש $4 לשם {{GENDER:$7|$5}}",
 	"renameuser-move-log": "העברה אוטומטית בעקבות שינוי שם המשתמש \"[[User:$1|$1]]\" ל־\"[[User:$2|$2]]\"",
 	"action-renameuser": "לשנות שמות משתמשים",
 	"right-renameuser": "שינוי שמות משתמשים",
