@@ -43,6 +43,14 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		ResourceLoader::clearCache();
+
+		$this->overrideConfigValues( [
+			MainConfigNames::ScriptPath => '/mw',
+			MainConfigNames::Script => '/mw/index.php',
+			MainConfigNames::ArticlePath => '/wikipage/$1',
+			MainConfigNames::Server => 'http://example.org',
+			MainConfigNames::CanonicalServer => 'https://www.example.org',
+		] );
 	}
 
 	protected function tearDown(): void {
@@ -164,15 +172,15 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				[
 					'EnableCanonicalServerLink' => true,
 				],
-				wfExpandUrl( '/wiki/Hello', PROTO_CANONICAL ),
+				'https://www.example.org/xyzzy/Hello',
 				true,
-				'/wiki/Hello'
+				'/xyzzy/Hello'
 			],
 			[
 				[
 					'EnableCanonicalServerLink' => true,
 				],
-				wfExpandUrl( '/index.php/My_test_page', PROTO_CANONICAL ),
+				'https://www.example.org/wikipage/My_test_page',
 				true,
 				null
 			],
@@ -214,10 +222,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @covers OutputPage::getHeadLinksArray
 	 */
 	public function testGetLanguageVariantUrl() {
-		$this->setMwGlobals( [
-			'wgServer' => 'http://example.org',
-			'wgLanguageCode' => 'zh',
-		] );
+		$this->overrideConfigValue( 'LanguageCode', 'zh' );
 
 		$op = $this->newInstance();
 		$headLinks = $op->getHeadLinksArray();
@@ -226,23 +231,22 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		#  (the language code with converter / the main code)
 		$this->assertSame(
 			Html::element( 'link', [ 'rel' => 'alternate', 'hreflang' => 'zh',
-				'href' => 'http://example.org/index.php/My_test_page' ] ),
+				'href' => 'http://example.org/wikipage/My_test_page' ] ),
 			$headLinks['link-alternate-language-zh']
 		);
 
 		# Make sure alternate URLs use BCP 47 codes in hreflang
 		$this->assertSame(
 			Html::element( 'link', [ 'rel' => 'alternate', 'hreflang' => 'zh-Hant-TW',
-				'href' => 'http://example.org/index.php?title=My_test_page&variant=zh-tw' ] ),
+				'href' => 'http://example.org/mw/index.php?title=My_test_page&variant=zh-tw' ] ),
 			$headLinks['link-alternate-language-zh-hant-tw']
 		);
 
 		# Make sure $wgVariantArticlePath work
 		# We currently use MediaWiki internal language code as the primary variant URL parameter
-		$this->setMwGlobals( [
-			'wgServer' => 'http://example.org',
-			'wgLanguageCode' => 'zh',
-			'wgVariantArticlePath' => '/$2/$1',
+		$this->overrideConfigValues( [
+			'LanguageCode' => 'zh',
+			'VariantArticlePath' => '/$2/$1',
 		] );
 
 		$op = $this->newInstance();
@@ -263,10 +267,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 					. 'We currently use MediaWiki internal codes as the primary URL parameter',
 				null,
 				null,
-				'http://example.org/index.php/My_test_page',
+				'https://www.example.org/wikipage/My_test_page',
 				'zh-tw',
-				'http://example.org/index.php?title=My_test_page&variant=zh-tw',
-				'http://example.org/index.php?title=My_test_page&variant=zh-hant-tw',
+				'http://example.org/mw/index.php?title=My_test_page&variant=zh-tw',
+				'http://example.org/mw/index.php?title=My_test_page&variant=zh-hant-tw',
 			],
 			[
 				'Specified zh-tw variant with view action - '
@@ -274,10 +278,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 					. 'Alternate URL should be kept even when it is the current page view language',
 				null,
 				'zh-tw',
-				'http://example.org/index.php?title=My_test_page&variant=zh-tw',
+				'https://www.example.org/mw/index.php?title=My_test_page&variant=zh-tw',
 				'zh-tw',
-				'http://example.org/index.php?title=My_test_page&variant=zh-tw',
-				'http://example.org/index.php?title=My_test_page&variant=zh-hant-tw',
+				'http://example.org/mw/index.php?title=My_test_page&variant=zh-tw',
+				'http://example.org/mw/index.php?title=My_test_page&variant=zh-hant-tw',
 			],
 			[
 				'Non-specified variant with history action - '
@@ -285,20 +289,20 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 					. 'There should be no alternate URLs for language variants',
 				'history',
 				null,
-				'http://example.org/index.php?title=My_test_page&action=history',
+				'https://www.example.org/mw/index.php?title=My_test_page&action=history',
 				'zh-tw',
 				null,
-				'http://example.org/index.php?title=My_test_page&action=history&variant=zh-tw',
+				'https://www.example.org/mw/index.php?title=My_test_page&action=history&variant=zh-tw',
 			],
 			[
 				'Specified zh-tw variant with history action - '
 					. 'There should be no alternate URLs for language variants',
 				'history',
 				'zh-tw',
-				'http://example.org/index.php?title=My_test_page&action=history',
+				'https://www.example.org/mw/index.php?title=My_test_page&action=history',
 				'zh-tw',
 				null,
-				'http://example.org/index.php?title=My_test_page&action=history&variant=zh-tw',
+				'https://www.example.org/mw/index.php?title=My_test_page&action=history&variant=zh-tw',
 			],
 		];
 	}
@@ -315,11 +319,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'action' => $action,
 			'variant' => $urlVariant,
 		] );
-		$this->setMwGlobals( [
-			'wgServer' => 'http://example.org',
-			'wgCanonicalServer' => 'http://example.org',
-			'wgLanguageCode' => 'zh',
-			'wgRequest' => $req, # LanguageConverter is using global state...
+		$this->overrideConfigValues( [
+			'LanguageCode' => 'zh',
+			'Request' => $req, # LanguageConverter is using global state...
 		] );
 		$op = $this->newInstance( [ MainConfigNames::EnableCanonicalServerLink => true ], $req );
 		$bcp47 = LanguageCode::bcp47( $altUrlLangCode );
@@ -2981,7 +2983,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			$uploadDir = "$baseDir/images";
 			$uploadPath = "$basePath/images";
 		}
-		$this->setMwGlobals( 'IP', $baseDir );
+		$this->overrideConfigValue( 'IP', $baseDir );
 		$conf = new HashConfig( [
 			MainConfigNames::ResourceBasePath => $basePath,
 			MainConfigNames::UploadDirectory => $uploadDir,
@@ -3028,12 +3030,12 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				'baseDir' => $baseDir, 'basePath' => '/w',
-				'https://example.org/w/test.jpg'
+				'https://www.example.org/w/test.jpg'
 			],
 			// Unrelated path with domain component. Ignored.
 			[
 				'baseDir' => $baseDir, 'basePath' => '/w',
-				'https://example.org/files/test.jpg'
+				'https://www.example.org/files/test.jpg'
 			],
 			[
 				'baseDir' => $baseDir, 'basePath' => '/w',
@@ -3042,7 +3044,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			// Unrelated path with domain, and empty base path (root mw install). Ignored.
 			[
 				'baseDir' => $baseDir, 'basePath' => '',
-				'https://example.org/files/test.jpg'
+				'https://www.example.org/files/test.jpg'
 			],
 			[
 				'baseDir' => $baseDir, 'basePath' => '',
@@ -3557,7 +3559,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				'RightsUrl' => false,
 				'UniversalEditButton' => false,
 			] ),
-			$context->getConfig()
+			$this->getServiceContainer()->getMainConfig(),
 		] ) );
 
 		if ( $option !== 'notitle' ) {
