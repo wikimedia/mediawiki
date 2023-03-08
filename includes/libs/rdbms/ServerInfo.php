@@ -6,11 +6,12 @@ use InvalidArgumentException;
 use UnexpectedValueException;
 
 /**
- * Holds dbs information
+ * Information about an individual database host
+ *
  * @internal
  * @ingroup Database
  */
-class ServerInfoHolder {
+class ServerInfo {
 	/**
 	 * Default 'maxLag' when unspecified
 	 * @internal Only for use within LoadBalancer/LoadMonitor

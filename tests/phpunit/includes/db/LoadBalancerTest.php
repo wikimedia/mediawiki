@@ -1,8 +1,5 @@
 <?php
-
 /**
- * Holds tests for LoadBalancer MediaWiki class.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -37,7 +34,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @group medium
  * @covers \Wikimedia\Rdbms\LoadBalancer
- * @covers \Wikimedia\Rdbms\ServerInfoHolder
+ * @covers \Wikimedia\Rdbms\ServerInfo
  */
 class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	private function makeServerConfig( $flags = DBO_DEFAULT ) {
