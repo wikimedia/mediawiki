@@ -44,6 +44,7 @@ use Wikimedia\Parsoid\Core\ContentMetadataCollector;
  * Implement Parsoid's abstract class for data access.
  *
  * @since 1.39
+ * @internal
  */
 class DataAccess extends IDataAccess {
 

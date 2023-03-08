@@ -36,6 +36,7 @@ use WikitextContent;
  * Helper class used by MediaWiki to create Parsoid PageConfig objects.
  *
  * @since 1.39
+ * @internal
  */
 class PageConfigFactory extends \Wikimedia\Parsoid\Config\PageConfigFactory {
 
