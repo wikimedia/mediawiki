@@ -61,6 +61,7 @@ use Wikimedia\Parsoid\Utils\Utils;
  * This includes both global configuration and wiki-level configuration.
  *
  * @since 1.39
+ * @internal
  */
 class SiteConfig extends ISiteConfig {
 
