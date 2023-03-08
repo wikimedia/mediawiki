@@ -78,16 +78,18 @@
 @opacity-medium: 0.67;
 @opacity-low: 0.33;
 @opacity-transparent: 0;
-// Warning: the following token is deprecated (Legacy opacity for icon states in non-Codex products.)
+// Legacy opacity for icon states in CSS-only component and non-Codex products.
 @opacity-icon-base: 1;
-// Warning: the following token is deprecated (Legacy opacity for icon states in non-Codex products.)
+// Legacy opacity for icon states in CSS-only component and non-Codex products.
 @opacity-icon-base--hover: 0.8; // = `#333` on `background-color: #fff`.
-// Warning: the following token is deprecated (Legacy opacity for icon states in non-Codex products.)
+// Legacy opacity for icon states in CSS-only component and non-Codex products.
 @opacity-icon-base--selected: 1;
-// Warning: the following token is deprecated (Legacy opacity for icon states in non-Codex products.)
+// Legacy opacity for icon states in CSS-only component and in non-Codex products.
+@opacity-icon-base--disabled: 0.55; // = `#737373` on `background-color: #fff`, still within WCAG level AA.
+// Legacy opacity for icon states in CSS-only component and non-Codex products.
 @opacity-icon-accessory: 0.67; // = `#555` on `background-color: `#fff`.
-// Warning: the following token is deprecated (Legacy opacity for icon states in non-Codex products. Has only been used for icons despite the name.)
-@opacity-base--disabled: 0.55; // = `#737373` on `background-color: #fff`, still within WCAG level AA.
+// Deprecated since v1.40, use `@opacity-icon-base--disabled` instead.
+@opacity-base--disabled: @opacity-icon-base--disabled;
 
 // == Box Model properties ==
 // Border Styles
