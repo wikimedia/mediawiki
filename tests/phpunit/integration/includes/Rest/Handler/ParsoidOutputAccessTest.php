@@ -6,6 +6,7 @@ use MediaWiki\Json\JsonCodec;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
 use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Parser\Parsoid\PageBundleParserOutputConverter;
 use MediaWiki\Parser\Parsoid\ParsoidOutputAccess;
 use MediaWiki\Rest\HttpException;
@@ -15,6 +16,7 @@ use MediaWiki\Revision\SlotRecord;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
 use Wikimedia\Parsoid\Config\PageConfig;
+use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\PageBundle;
 use Wikimedia\Parsoid\Parsoid;
 
@@ -35,8 +37,13 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 	private function newMockParsoid( $expectedCalls = 1 ) {
 		$parsoid = $this->createNoOpMock( Parsoid::class, [ 'wikitext2html' ] );
 		$parsoid->expects( $this->exactly( $expectedCalls ) )->method( 'wikitext2html' )->willReturnCallback(
-			static function ( PageConfig $pageConfig ) {
+			static function ( PageConfig $pageConfig, $options, &$headers, ?ContentMetadataCollector $metadata = null ) {
 				$wikitext = $pageConfig->getRevisionContent()->getContent( SlotRecord::MAIN );
+				if ( $metadata !== null ) {
+					$metadata->setExtensionData( 'my-key', 'my-data' );
+					$metadata->setPageProperty( 'forcetoc', '' );
+					$metadata->setOutputFlag( ParserOutputFlags::NO_GALLERY );
+				}
 
 				return new PageBundle(
 					self::MOCKED_HTML . ' of ' . $wikitext,
@@ -208,6 +215,9 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotEmpty( $pageBundle->parsoid );
 		$this->assertNotEmpty( $pageBundle->headers );
 		$this->assertNotEmpty( $pageBundle->version );
+
+		// Check that the metadata set by our mock parsoid is preserved
+		$this->checkMetadata( $output );
 	}
 
 	/**
@@ -226,18 +236,22 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$status = $access->getParserOutput( $page, $parserOptions );
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
+		$this->checkMetadata( $status );
 
 		// Get the ParserOutput from cache
 		$status = $access->getCachedParserOutput( $page, $parserOptions );
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
+		$this->checkMetadata( $status );
 
 		// Get the ParserOutput from cache, without supplying a PageRecord
 		$status = $access->getCachedParserOutput( $page->getTitle(), $parserOptions );
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
+		$this->checkMetadata( $status );
 
 		// Get the ParserOutput again, this should not trigger a new parse.
 		$status = $access->getParserOutput( $page, $parserOptions );
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
+		$this->checkMetadata( $status );
 	}
 
 	/**
@@ -255,6 +269,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$status = $access->getParserOutput( $page, $parserOptions );
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
+		$this->checkMetadata( $status );
 
 		// Get the ParserOutput again, this should trigger a new parse
 		// since we're forcing it to.
@@ -265,6 +280,7 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 			ParsoidOutputAccess::OPT_FORCE_PARSE
 		);
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
+		$this->checkMetadata( $status );
 	}
 
 	/**
@@ -316,11 +332,13 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 			ParsoidOutputAccess::OPT_NO_UPDATE_CACHE
 		);
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
+		$this->checkMetadata( $status );
 
 		// Get the ParserOutput again, this should trigger a new parse
 		// since we suppressed caching above.
 		$status = $access->getParserOutput( $page, $parserOptions );
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
+		$this->checkMetadata( $status );
 	}
 
 	/**
@@ -383,9 +401,11 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$access = $this->getParsoidOutputAccessWithCache( $expectedCalls, $parsoidCacheConfig );
 		$status = $access->getParserOutput( $page, $parserOptions );
 		$this->assertContainsHtml( self::MOCKED_HTML, $status );
+		$this->checkMetadata( $status );
 
 		$status = $access->getParserOutput( $page, $parserOptions );
 		$this->assertContainsHtml( self::MOCKED_HTML, $status );
+		$this->checkMetadata( $status );
 	}
 
 	public function testOldRevisionIsCached() {
@@ -405,14 +425,17 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		// Get the ParserOutput from cache, using revision object
 		$status = $access->getCachedParserOutput( $page, $parserOptions, $rev );
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
+		$this->checkMetadata( $status );
 
 		// Get the ParserOutput from cache, using revision ID
 		$status = $access->getCachedParserOutput( $page->getTitle(), $parserOptions, $rev->getId() );
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
+		$this->checkMetadata( $status );
 
 		// Get the ParserOutput again, this should not trigger a new parse.
 		$status = $access->getParserOutput( $page, $parserOptions, $rev );
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status );
+		$this->checkMetadata( $status );
 	}
 
 	public function testGetParserOutputWithOldRevision() {
@@ -427,13 +450,16 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 
 		$status2 = $access->getParserOutput( $page, $parserOptions );
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of Second revision', $status2 );
+		$this->checkMetadata( $status2 );
 
 		$status1 = $access->getParserOutput( $page, $parserOptions, $rev1 );
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status1 );
+		$this->checkMetadata( $status1 );
 
 		// Again, using just the revision ID
 		$status1 = $access->getParserOutput( $page, $parserOptions, $rev1->getId() );
 		$this->assertContainsHtml( self::MOCKED_HTML . ' of ' . self::WIKITEXT, $status1 );
+		$this->checkMetadata( $status1 );
 
 		// check that getParsoidRenderID() doesn't throw
 		$output1 = $status1->getValue();
@@ -484,6 +510,15 @@ class ParsoidOutputAccessTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotEmpty( $parserOutput->getExtensionData( 'parsoid-render-id' ) );
 		$this->assertNotEmpty( $parserOutput->getCacheRevisionId() );
 		$this->assertNotEmpty( $parserOutput->getCacheTime() );
+	}
+
+	private function checkMetadata( $output ) {
+		$parserOutput = $output instanceof StatusValue ? $output->getValue() : $output;
+
+		// Check the metadata added by ::newMockParsoid() is preserved
+		$this->assertSame( 'my-data', $parserOutput->getExtensionData( 'my-key' ) );
+		$this->assertSame( '', $parserOutput->getPageProperty( 'forcetoc' ) );
+		$this->assertSame( true, $parserOutput->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
 	}
 
 	/**

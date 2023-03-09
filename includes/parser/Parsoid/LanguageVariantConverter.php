@@ -188,7 +188,7 @@ class LanguageVariantConverter {
 		$pageBundle = PageBundleParserOutputConverter::pageBundleFromParserOutput( $parserOutput );
 		$modifiedPageBundle = $this->convertPageBundleVariant( $pageBundle, $targetVariantCode, $sourceVariantCode );
 
-		return PageBundleParserOutputConverter::parserOutputFromPageBundle( $modifiedPageBundle );
+		return PageBundleParserOutputConverter::parserOutputFromPageBundle( $modifiedPageBundle, $parserOutput );
 	}
 
 	/**

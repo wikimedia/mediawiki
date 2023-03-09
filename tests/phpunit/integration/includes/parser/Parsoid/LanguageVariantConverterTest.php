@@ -217,8 +217,14 @@ class LanguageVariantConverterTest extends MediaWikiIntegrationTestCase {
 			$languageVariantConverter->setPageLanguageOverride( $contentLanguage );
 		}
 
+		// Set some misc metadata in $parserOutput so we can verify it was
+		// preserved.
+		$parserOutput->setExtensionData( 'my-key', 'my-data' );
+
 		$modifiedParserOutput = $languageVariantConverter
 			->convertParserOutputVariant( $parserOutput, $target, $source );
+
+		$this->assertSame( 'my-data', $modifiedParserOutput->getExtensionData( 'my-key' ) );
 
 		$html = $modifiedParserOutput->getRawText();
 		$this->assertStringContainsString( $expected, $html );
