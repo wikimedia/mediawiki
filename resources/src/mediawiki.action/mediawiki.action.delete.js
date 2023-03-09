@@ -19,6 +19,10 @@
 				return comment;
 			};
 
-		reason.$input.codePointLimit( mw.config.get( 'wgCommentCodePointLimit' ), filterFunction );
+		mw.widgets.visibleCodePointLimit( reason, mw.config.get( 'wgCommentCodePointLimit' ), filterFunction );
+		// Keep the remaining counter in sync when reason list changed
+		reasonList.on( 'change', function () {
+			reason.emit( 'change' );
+		} );
 	} );
 }() );
