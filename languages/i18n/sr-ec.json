@@ -3766,7 +3766,7 @@
 	"rightsnone": "(нема)",
 	"rightslogentry-temporary-group": "$1 (привремено, до $2)",
 	"feedback-cancel": "Откажи",
-	"feedback-close": "Готово",
+	"feedback-close": "Урађено",
 	"feedback-external-bug-report-button": "Архивирај технички задатак",
 	"feedback-dialog-title": "Слање повратних информација",
 	"feedback-dialog-intro": "Можете да користите једноставни образац испод да бисте послали повратне информације. Ваш коментар ће бити додат на страницу „$1” уз ваше корисничко име.",
