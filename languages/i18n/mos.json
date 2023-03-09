@@ -12,6 +12,7 @@
 			"Soumaya"
 		]
 	},
+	"tog-underline": "Dẽeg tẽngre tõke:",
 	"underline-always": "Daar fãa",
 	"underline-never": "Abada",
 	"sunday": "Rimaasa",
@@ -236,10 +237,10 @@
 	"showpreview": "Wilgi gese-rẽenem",
 	"showdiff": "Wilgi tekre",
 	"anoneditwarning": "<strong>Saglga:</strong> Fo pa kẽ. Fo IP aderse nan vẽenega mi fo sãn maane tekre. Fo sãn <strong>[$1 kẽ]</strong> bii <strong>[$2 naane kõnte]</strong>, fo tekra bilga ni fo tʋʋmʋ-tʋʋmde yɩɩre, n pʋge ni sõngre a taaba.",
-	"blockedtext": "<strong>Fo tʋʋmtʋmda yʋʋre bii fo IP aderse gida mɩ.</strong>\n\nNina sĩ gida yaa $1.\nGidba bʋʋm la <em>$2</em>.\n\n*Gɩdba sɩngre: $8\n*Gɩdba saabo: $6\n*Niya sîn be ti o be gɩde nina: $7\n\nFo na tõoge n boolé $1 bɩɩ nina [[{{MediaWiki:Grouppage-sysop}}|administrator]] n sõso gɩdba yelle.\nFo tõe tʋma ni \"{{int:emailuser}}\" toor zalle san yi ti email aderse songo be fo \n[[Special:Preferences|preferences]] ti o be pa gɩde fo ni atʋʋma.\nFo IP aderse fo si tara Masâ ya $3 ti gɩdba ID yaa #$5.\nMaan sûgri pãasé glsgo kânga fãa ni sokdse ning fo maane fâa pʋge.",
+	"blockedtext": "<strong>Fo tʋʋmtʋmda yʋʋre bii fo IP aderse gida mɩ.</strong>\n\n{{int:blockedtext-made-by|$1}}\n{{int:blockedtext-reason-comment|$2}}.\n\n*{{int:blockedtext-start-time|$8}}\n*{{int:blockedtext-expiration-time|$6}}\n*{{int:blockedtext-intended-blockee|$7}}\n\n{{int:blockedtext-contact-blocker-admin|$1}}\nFo tõe tʋma ni \"{{int:emailuser}}\" toor zalle san yi ti email aderse songo be fo \n[[Special:Preferences|preferences]] ti o be pa gɩde fo ni atʋʋma.\n{{int:blockedtext-block-ip|$3}} ti gɩdba ID yaa #$5.\n{{int:blockedtext-include-details-queries}}",
 	"loginreqlink": "kẽ",
 	"newarticletext": "Fo pʋga tõkre ni neng m pa be yɛ.\nN naane nenga, sɩnge wẽre botse pʋga tẽngre (gese ni [$1 songe nenga] ni kibaya).\nFo sãn be ka ni tudgri, ri-y fo vɛɛsda <strong>back</strong> biiga.",
-	"anontalkpagetext": "----\n<em>Sõs kada nenga ya ni ned ning n nan pa naane kõnte ye, bɩɩ n nan pa tʋm ni wã.<em>\nTogm ti tond tʋm ni IP aderse sõsga n diki m bãng ba.\nWoto IP aderse wã toe dika mi n pʋɩ ni tʋmdba wʋsgo.\nFo san ya tʋmtʋmda ni ning kada la fo tags ti woto goama tesda ni fo, M bõs [[Bande: NaaneKõnte|N naane kõnte]] bɩɩ [[Special:UserLogin|log in]] n tilg taore yɛla diki kẽng tʋʋma ni tʋmtʋmdba.",
+	"anontalkpagetext": "----\n<em>Sõs kada nenga ya ni ned ning n nan pa naane kõnte ye, bɩɩ n nan pa tʋm ni wã.<em>\nTogm ti tond tʋm ni IP aderse sõsga n diki m bãng ba.\nWoto IP aderse wã toe dika mi n pʋɩ ni tʋmdba wʋsgo.\nFo san ya tʋmtʋmda ni ning kada la fo tags ti woto goama tesda ni fo, M bõs [[Bande: NaaneKõnte|N naane kõnte]] bɩɩ [[Special:UserLogin|kẽ]] n tilg taore yɛla diki kẽng tʋʋma ni tʋmtʋmdba.",
 	"noarticletext": "Marsã gʋlsgo pa be ni meng kada.\nFo tõe [[Special:Search/{{PAGENAME}}|bao neng kada gom-zugu]] nense a taaba, bii <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} bao kẽesgo n kĩi ne taaba]</span>, la fo pa tara sore n naane neng kada.\nbii [{{fullurl:{{FULLPAGENAME}}|action=edit}} naane nenga kada]</span>.",
 	"noarticletext-nopermission": "Marsã gʋlsgo pa be ni meng kada.\nFo tõe [[Special:Search/{{PAGENAME}}|bao meng kada gom-zugu]] nense a taaba, bii <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>, la fo pa tara sore n naane neng kada.",
 	"userpage-userdoesnotexist-view": "Tʋʋm-tʋʋmde acount \"$1\" pa gʋlse.",
@@ -286,7 +287,7 @@
 	"editundo": "yidgi",
 	"diff-empty": "(Welgre pa be)",
 	"diff-multi-sameuser": "({{PLURAL:$1|lebg-n-gɛsga sũka yɛ|$1lebg-n-gɛsga sũka}} ni tʋʋm- toom da pa vẽnege)",
-	"diff-multi-otherusers": "({{PLURAL:$1|One intermediate revision|$1 intermediate revisions}} tɩ {{PLURAL:$2|one other user|$2 users}} not shown)",
+	"diff-multi-otherusers": "({{PLURAL:$1|Lebg-n-gɛsga sũka yɛ|$1 lebg-n-gɛsga sũka}} tɩ {{PLURAL:$2|tʋʋm-tʋʋmde yɛ|$2 tʋʋm-tʋʋmde}} pa vẽnege)",
 	"searchresults": "Vɛɛse paanga",
 	"searchresults-title": "Vɛɛse paanga tɩ \"$1\"",
 	"prevn": "sen looge {{PLURAL:$1|$1}}",
@@ -574,5 +575,13 @@
 	"pagelang-submit": "Bing",
 	"log-action-filter-all": "Fãa",
 	"nstab-mainpage": "Sorɔgu",
-	"skin-action-delete": "Yẽese"
+	"skin-action-delete": "Yẽese",
+	"blockedtext-made-by": "Nina sĩ gida yaa $1.",
+	"blockedtext-reason-comment": "Gidba bʋʋm la <em>$1</em>.",
+	"blockedtext-start-time": "Gɩdba sɩngre: $1",
+	"blockedtext-expiration-time": "Gɩdba saabo: $1",
+	"blockedtext-intended-blockee": "Niya sîn be ti o be gɩde nina: $1",
+	"blockedtext-contact-blocker-admin": "Fo na tõoge n boolé $1 bɩɩ nina [[{{MediaWiki:Grouppage-sysop}}|administrator]] n sõso gɩdba yelle.",
+	"blockedtext-block-ip": "Fo IP aderse fo si tara masâ ya $1",
+	"blockedtext-include-details-queries": "Maan sûgri pãasé glsgo kânga fãa ni sokdse ning fo maane fâa pʋge."
 }
