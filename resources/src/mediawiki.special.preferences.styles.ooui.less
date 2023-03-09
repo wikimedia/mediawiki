@@ -294,17 +294,21 @@ with params ?useskin=vector&useformat=mobile
 }
 
 .mw-mobile-prefsection {
-	cursor: pointer;
 	padding-top: 0.3125em;
 	border-bottom: 0.0625em solid @colorGray12;
-}
 
-.mw-mobile-prefsection:hover {
-	background-color: @colorGray15;
-}
+	// Style section headers as buttons when JS is enabled
+	.client-js & {
+		cursor: pointer;
 
-.mw-mobile-prefsection:last-child {
-	border-bottom: none; // stylelint-disable-line declaration-property-value-disallowed-list
+		&:hover {
+			background-color: @colorGray15;
+		}
+	}
+
+	&:last-child {
+		border-bottom: none; // stylelint-disable-line declaration-property-value-disallowed-list
+	}
 }
 
 .oo-ui-iconWidget.mw-prefs-icon {
@@ -347,52 +351,56 @@ with params ?useskin=vector&useformat=mobile
 }
 
 .oo-ui-window-body.mw-mobile-pref-dialog-body {
-	padding-bottom: 66px;
-}
+	> div.oo-ui-widget-enabled > div {
+		padding: 16px;
+	}
 
-.oo-ui-window-body.mw-mobile-pref-dialog-body > div.oo-ui-widget-enabled > div {
-	padding: 16px;
-}
+	/* T317110: sub-section title  */
+	.mw-prefs-fieldset-wrapper {
+		.oo-ui-fieldsetLayout-header {
+			border-bottom: 1px #000 solid;
+			max-width: 100%;
 
-.oo-ui-window-body.mw-mobile-pref-dialog-body > div.oo-ui-widget-enabled > div:last-child {
-	margin-bottom: 16px;
-}
+			.oo-ui-labelElement-label {
+				font-size: 1em;
+				font-weight: bold;
+				line-height: 1.25em;
+				margin-bottom: 12px;
+			}
+		}
 
-/* T317110: sub-section title  */
-.oo-ui-window-body.mw-mobile-pref-dialog-body > div.oo-ui-widget-enabled > div.mw-prefs-fieldset-wrapper > fieldset.oo-ui-fieldsetLayout.oo-ui-labelElement > legend.oo-ui-fieldsetLayout-header {
-	border-bottom: 1px #000 solid;
-	max-width: 100%;
-}
+		/* T317110: sub-section and sub-sub-section titles  */
+		.mw-prefs-fieldset-wrapper .oo-ui-fieldsetLayout-header {
+			border-bottom: 0;
+		}
+	}
 
-/* T317110: sub-section and sub-sub-section titles  */
-.oo-ui-window-body.mw-mobile-pref-dialog-body div.oo-ui-widget-enabled > div.mw-prefs-fieldset-wrapper > fieldset.oo-ui-fieldsetLayout.oo-ui-labelElement > legend.oo-ui-fieldsetLayout-header > span.oo-ui-labelElement-label {
-	font-size: 1em;
-	font-weight: bold;
-	line-height: 1.25em;
-	margin-bottom: 12px;
-}
+	/* T317110: preference separation  */
+	[ class^='mw-htmlform-field' ] {
+		padding: 12px 0;
+		margin: 0;
+		border-bottom: 1px #eaecf0 solid;
 
-/* T317110: preference separation  */
-.oo-ui-window-body.mw-mobile-pref-dialog-body div.oo-ui-widget-enabled > div.mw-prefs-fieldset-wrapper > fieldset.oo-ui-fieldsetLayout > div.oo-ui-fieldsetLayout-group > div.oo-ui-widget-enabled > div > div {
-	padding: 12px 0;
-	margin: 0;
-	border-bottom: 1px #eaecf0 solid;
-}
+		&:last-child {
+			border-bottom: 0;
+		}
+	}
 
-/* T317110: preference label  */
-.oo-ui-window-body.mw-mobile-pref-dialog-body .oo-ui-labelElement-label {
-	line-height: 1.25em;
-}
+	/* T317110: preference label  */
+	.oo-ui-labelElement-label {
+		line-height: 1.25em;
+	}
 
-/* T317110: help text  */
-.oo-ui-window-body.mw-mobile-pref-dialog-body div.oo-ui-fieldLayout-body label.oo-ui-inline-help.oo-ui-labelElement-label.oo-ui-labelElement.oo-ui-labelWidget {
-	font-size: 0.875em;
-	line-height: 1.25em;
-}
+	/* T317110: help text  */
+	.oo-ui-inline-help {
+		font-size: 0.875em;
+		line-height: 1.25em;
+	}
 
-/* T317110: non-interactive text */
-.oo-ui-window-body.mw-mobile-pref-dialog-body .oo-ui-labelElement-label.oo-ui-labelElement.oo-ui-labelWidget {
-	color: #72777d;
+	/* T317110: non-interactive text */
+	.mw-htmlform-field-HTMLInfoField {
+		color: #72777d;
+	}
 }
 
 // Dialog styling for footer buttons
