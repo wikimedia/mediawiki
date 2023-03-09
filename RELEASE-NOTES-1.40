@@ -181,6 +181,9 @@ because of Phabricator reports.
 * (T326526) Added language support for Igala (igl).
 * (T329476) Added language support for Kusaal (kus).
 * (T330266) Added language support for Southern Dagaare (dga).
+* (T331596) Added language support for Obolo (ann).
+* (T331597) Added language support for Nogai (nog).
+* (T331599) Added language support for Wolaytta (wal).
 * (T295637) Add no to fallback chain of nb and nn.
 
 === Breaking changes in 1.40 ===

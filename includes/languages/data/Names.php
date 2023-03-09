@@ -57,6 +57,7 @@ class Names {
 		'ami' => 'Pangcah', # Amis
 		'an' => 'aragonés', # Aragonese
 		'ang' => 'Ænglisc', # Old English, T25283
+		'ann' => 'Obolo', # Obolo
 		'anp' => 'अंगिका', # Angika
 		'ar' => 'العربية', # Arabic
 		'arc' => 'ܐܪܡܝܐ', # Aramaic
@@ -351,6 +352,7 @@ class Names {
 		'nn' => 'norsk nynorsk', # Norwegian (Nynorsk)
 		'no' => 'norsk', # Norwegian macro language (falls back to nb).
 		'nod' => 'ᨣᩤᩴᨾᩮᩬᩥᨦ', # Northern Thai
+		'nog' => 'ногайша', # Nogai
 		'nov' => 'Novial', # Novial
 		'nqo' => 'ߒߞߏ', # N'Ko
 		'nrm' => 'Nouormand', # Norman (invalid code; 'nrf' in ISO 639 since 2014)
@@ -515,6 +517,7 @@ class Names {
 		'vot' => 'Vaďďa', # Vod/Votian
 		'vro' => 'võro', # Võro
 		'wa' => 'walon', # Walloon
+		'wal' => 'wolaytta', # Wolaytta
 		'war' => 'Winaray', # Waray-Waray
 		'wls' => 'Fakaʻuvea', # Wallisian
 		'wo' => 'Wolof', # Wolof
