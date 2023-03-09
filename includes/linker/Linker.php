@@ -1143,11 +1143,14 @@ class Linker {
 			}
 			$classes .= ' mw-anonuserlink'; // Separate link class for anons (T45179)
 		} else {
-			$page = TitleValue::tryNew( NS_USER, strtr( $userName, ' ', '_' ) );
+			$services = MediaWikiServices::getInstance();
 			if (
-				MediaWikiServices::getInstance()->getTempUserConfig()->isReservedName( $userName )
+				$services->getTempUserConfig()->isReservedName( $userName )
 			) {
 				$classes .= ' mw-tempuserlink';
+				$page = SpecialPage::getTitleFor( 'Contributions', $userName );
+			} else {
+				$page = TitleValue::tryNew( NS_USER, strtr( $userName, ' ', '_' ) );
 			}
 		}
 
