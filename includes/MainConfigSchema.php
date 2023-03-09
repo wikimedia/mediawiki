@@ -11066,7 +11066,13 @@ class MainConfigSchema {
 				// tell the JobFactory not to include the $page parameter in the constructor call
 				'needsPage' => false
 			],
-			'renameUser' => RenameUserJob::class,
+			'renameUser' => [
+				'class' => RenameUserJob::class,
+				'services' => [
+					'MainConfig',
+					'DBLoadBalancerFactory'
+				]
+			],
 		],
 		'type' => 'map',
 	];
