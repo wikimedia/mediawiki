@@ -51,9 +51,8 @@ class JpegHandler extends ExifBitmapHandler {
 	public function validateParam( $name, $value ) {
 		if ( $name === 'quality' ) {
 			return self::validateQuality( $value );
-		} else {
-			return parent::validateParam( $name, $value );
 		}
+		return parent::validateParam( $name, $value );
 	}
 
 	/** Validate and normalize quality value to be between 1 and 100 (inclusive).
@@ -168,9 +167,8 @@ class JpegHandler extends ExifBitmapHandler {
 			}
 
 			return false;
-		} else {
-			return parent::rotate( $file, $params );
 		}
+		return parent::rotate( $file, $params );
 	}
 
 	public function supportsBucketing() {

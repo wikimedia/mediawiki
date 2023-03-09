@@ -867,9 +867,8 @@ abstract class MediaHandler {
 		$roundedUp = ceil( $idealWidth );
 		if ( round( $roundedUp * $boxHeight / $boxWidth ) > $maxHeight ) {
 			return (int)floor( $idealWidth );
-		} else {
-			return $roundedUp;
 		}
+		return $roundedUp;
 	}
 
 	/**
@@ -1065,7 +1064,7 @@ abstract class MediaHandler {
 	}
 
 	/**
-	 * If its an audio file, return the length of the file. Otherwise 0.
+	 * If it's an audio file, return the length of the file. Otherwise 0.
 	 *
 	 * File::getLength() existed for a long time, but was calling a method
 	 * that only existed in some subclasses of this class (The TMH ones).
@@ -1162,7 +1161,7 @@ abstract class MediaHandler {
 
 			foreach ( $pageList as $page ) {
 				if ( $page > $lastPage + 1 ) {
-					if ( $firstPage != $lastPage ) {
+					if ( $firstPage !== $lastPage ) {
 						$ranges[] = "$firstPage-$lastPage";
 					} else {
 						$ranges[] = "$firstPage";

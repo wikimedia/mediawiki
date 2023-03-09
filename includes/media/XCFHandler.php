@@ -160,9 +160,9 @@ class XCFHandler extends BitmapHandler {
 		if ( !$file->getMetadataArray() ) {
 			// Old metadata when we just put an empty string in there
 			return self::METADATA_BAD;
-		} else {
-			return self::METADATA_GOOD;
 		}
+
+		return self::METADATA_GOOD;
 	}
 
 	/**

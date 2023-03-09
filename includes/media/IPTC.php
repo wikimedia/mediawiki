@@ -263,7 +263,7 @@ class IPTC {
 					// unlike other tags, this is a 2-byte binary number.
 					// technically this is required if there is iptc data
 					// but in practise it isn't always there.
-					if ( strlen( $val[0] ) == 2 ) {
+					if ( strlen( $val[0] ) === 2 ) {
 						// if is just to be paranoid.
 						$versionValue = ord( substr( $val[0], 0, 1 ) ) * 256;
 						$versionValue += ord( substr( $val[0], 1, 1 ) );
@@ -382,8 +382,8 @@ class IPTC {
 			return null;
 		}
 
-		$tz = ( intval( substr( $time, 7, 2 ) ) * 60 * 60 )
-			+ ( intval( substr( $time, 9, 2 ) ) * 60 );
+		$tz = ( (int)substr( $time, 7, 2 ) * 60 * 60 )
+			+ ( (int)substr( $time, 9, 2 ) * 60 );
 
 		if ( substr( $time, 6, 1 ) === '-' ) {
 			$tz = -$tz;
@@ -398,9 +398,8 @@ class IPTC {
 		if ( $dateOnly ) {
 			// return the date only
 			return substr( $finalTimestamp, 0, 10 );
-		} else {
-			return $finalTimestamp;
 		}
+		return $finalTimestamp;
 	}
 
 	/**
@@ -445,9 +444,8 @@ class IPTC {
 			UtfNormal\Validator::quickIsNFCVerify( $data ); // make $data valid utf-8
 			if ( $data === $oldData ) {
 				return $data; // if validation didn't change $data
-			} else {
-				return self::convIPTCHelper( $oldData, 'Windows-1252' );
 			}
+			return self::convIPTCHelper( $oldData, 'Windows-1252' );
 		}
 
 		return trim( $data );
