@@ -328,10 +328,6 @@ class HtmlInputTransformHelper {
 			$key = $original['renderid'];
 			if ( preg_match( '!^(W/)?".*"$!', $key ) ) {
 				$originalRendering = ParsoidRenderID::newFromETag( $key );
-
-				if ( !$originalRendering ) {
-					throw new HttpException( "Bad ETag: $key", 400 );
-				}
 			} else {
 				$originalRendering = ParsoidRenderID::newFromKey( $key );
 			}
