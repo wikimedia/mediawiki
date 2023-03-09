@@ -170,10 +170,12 @@ interface ILanguageConverter {
 	 * @param string $text Text to be converted, already html escaped
 	 * @param-taint $text exec_html
 	 * @param string $variant The target variant code
+	 * @param bool $clearState Whether to clear the converter title before
+	 *   conversion (defaults to true)
 	 * @return string Converted text
 	 * @return-taint escaped
 	 */
-	public function convertTo( $text, $variant );
+	public function convertTo( $text, $variant, bool $clearState = true );
 
 	/**
 	 * If a language supports multiple variants, it is possible that

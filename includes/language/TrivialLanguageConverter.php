@@ -76,7 +76,7 @@ class TrivialLanguageConverter implements ILanguageConverter {
 		return $t;
 	}
 
-	public function convertTo( $text, $variant ) {
+	public function convertTo( $text, $variant, bool $clearState = true ) {
 		return $text;
 	}
 

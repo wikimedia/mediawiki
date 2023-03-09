@@ -884,16 +884,20 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @param string $text Text to be converted, already html escaped
 	 * @param-taint $text exec_html
 	 * @param string $variant The target variant code
+	 * @param bool $clearState Whether to clear the converter title before
+	 *   conversion (defaults to true)
 	 * @return string Converted text
 	 * @return-taint escaped
 	 */
-	public function convertTo( $text, $variant ) {
+	public function convertTo( $text, $variant, bool $clearState = true ) {
 		$languageConverterFactory = MediaWikiServices::getInstance()->getLanguageConverterFactory();
 		if ( $languageConverterFactory->isConversionDisabled() ) {
 			return $text;
 		}
 		// Reset converter state for a new converter run.
-		$this->mConvRuleTitle = false;
+		if ( $clearState ) {
+			$this->mConvRuleTitle = false;
+		}
 		return $this->recursiveConvertTopLevel( $text, $variant );
 	}
 
