@@ -22,7 +22,7 @@
  * @ingroup Media
  */
 
-namespace Mediawiki\Page\File;
+namespace MediaWiki\Page\File;
 
 use Hooks;
 use LocalFile;
