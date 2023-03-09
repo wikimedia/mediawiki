@@ -190,12 +190,6 @@ class LinkHolderArray {
 
 		foreach ( $this->internals as $ns => $entries ) {
 			foreach ( $entries as [ 'title' => $title, 'pdbk' => $pdbk ] ) {
-				# Skip invalid entries.
-				# Result will be ugly, but prevents crash.
-				if ( $title === null ) {
-					continue;
-				}
-
 				/** @var Title $title */
 				# Check if it's a static known link, e.g. interwiki
 				if ( $title->isAlwaysKnown() ) {
