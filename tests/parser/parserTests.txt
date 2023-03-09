@@ -7626,6 +7626,52 @@ __NOCONTENTCONVERT__
 <h3><span class="mw-headline" id="Another_headline">Another headline</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=4" title="Edit section: Another headline">edit</a><span class="mw-editsection-bracket">]</span></span></h3>
 !! end
 
+# The -{T}- below checks for regressions in T26072: the contents of
+# the displaytitle should not be double-converted.  That is, we want
+# the title to end up as 'Bar' not 'Ball' (aka converted by the -{H}-
+# rule immediately preceding it).
+!! test
+Section headings with TOC, language conversion rules, and displaytitle
+(T306862, T331316, T26072)
+!! config
+wgUsePigLatinVariant=true
+wgRestrictDisplayTitle=false
+!! options
+language=en variant=en-x-piglatin
+showtitle
+showtocdata
+!! wikitext
+<!--
+-->-{H|Foo=>en:Boo;Foo=>en-x-piglatin:Bob;}-<!--
+-->-{H|Bar=>en:Bat;Bar=>en-x-piglatin:Ball;}-<!--
+-->-{T|en:Foo;en-x-piglatin:Bar;}-<!--
+-->
+Introduction.
+-{A|en:Do; en-x-piglatin:Re;}-
+== Foo ==
+Foo Do
+== Bar ==
+Bar Re
+== -{Foo Bar}- ==
+!! metadata
+Bar
+{"toclevel":1,"level":"2","line":"Bob","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":192,"anchor":"Foo","linkAnchor":"Foo"}
+{"toclevel":1,"level":"2","line":"Ball","number":"2","index":"2","fromtitle":"Parser_test","byteoffset":209,"anchor":"Bar","linkAnchor":"Bar"}
+{"toclevel":1,"level":"2","line":"Foo Bar","number":"3","index":"3","fromtitle":"Parser_test","byteoffset":226,"anchor":"-.7BFoo_Bar.7D-","linkAnchor":"-.7BFoo_Bar.7D-"}
+!! html
+<p>
+Introductionway.
+Re
+</p>
+<h2><span class="mw-headline" id="Foo">Bob</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=1" title="Edit section: Bob">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Bob Re
+</p>
+<h2><span class="mw-headline" id="Bar">Ball</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=2" title="Edit section: Ball">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+<p>Ball Eray
+</p>
+<h2><span class="mw-headline" id="-.7BFoo_Bar.7D-">Foo Bar</span><span class="mw-editsection"><span class="mw-editsection-bracket">[</span><a href="/index.php?title=Parser_test&amp;action=edit&amp;section=3" title="Edit section: Foo Bar">edit</a><span class="mw-editsection-bracket">]</span></span></h2>
+!! end
+
 !! test
 TOC anchors don't collide
 !! wikitext
