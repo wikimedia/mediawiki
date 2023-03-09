@@ -87,7 +87,10 @@
 // Legacy opacity for icon states in CSS-only component and in non-Codex products.
 @opacity-icon-base--disabled: 0.55; // = `#737373` on `background-color: #fff`, still within WCAG level AA.
 // Legacy opacity for icon states in CSS-only component and non-Codex products.
-@opacity-icon-accessory: 0.67; // = `#555` on `background-color: `#fff`.
+@opacity-icon-subtle: 0.67; // = `#555` on `background-color: `#fff`.
+
+// Deprecated since v1.40, use `@opacity-icon-subtle` instead.
+@opacity-icon-accessory: @opacity-icon-subtle;
 // Deprecated since v1.40, use `@opacity-icon-base--disabled` instead.
 @opacity-base--disabled: @opacity-icon-base--disabled;
 
