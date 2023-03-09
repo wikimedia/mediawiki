@@ -102,13 +102,13 @@ class JpegMetadataExtractor {
 				$com = $oldCom = trim( self::jpegExtractMarker( $fh ) );
 				UtfNormal\Validator::quickIsNFCVerify( $com );
 				// turns $com to valid utf-8.
-				// thus if no change, its utf-8, otherwise its something else.
+				// thus if no change, it's utf-8, otherwise it's something else.
 				if ( $com !== $oldCom ) {
 					AtEase::suppressWarnings();
 					$com = $oldCom = iconv( 'windows-1252', 'UTF-8//IGNORE', $oldCom );
 					AtEase::restoreWarnings();
 				}
-				// Try it again, if its still not a valid string, then probably
+				// Try it again, if it's still not a valid string, then probably
 				// binary junk or some really weird encoding, so don't extract.
 				UtfNormal\Validator::quickIsNFCVerify( $com );
 				if ( $com === $oldCom ) {
@@ -235,7 +235,7 @@ class JpegMetadataExtractor {
 		while ( $offset + 12 <= $appLen ) {
 			$valid = true;
 			if ( substr( $app13, $offset, 4 ) !== '8BIM' ) {
-				// its supposed to be 8BIM
+				// it's supposed to be 8BIM
 				// but apparently sometimes isn't esp. in
 				// really old jpg's
 				$valid = false;
@@ -254,7 +254,7 @@ class JpegMetadataExtractor {
 
 			$lenName = ord( substr( $app13, $offset, 1 ) ) + 1;
 			// we never use the name so skip it. +1 for length byte
-			if ( $lenName % 2 == 1 ) {
+			if ( $lenName % 2 === 1 ) {
 				$lenName++;
 			} // pad to even.
 			$offset += $lenName;
@@ -290,7 +290,7 @@ class JpegMetadataExtractor {
 
 			// if odd, add 1 to length to account for
 			// null pad byte.
-			if ( $lenData['len'] % 2 == 1 ) {
+			if ( $lenData['len'] % 2 === 1 ) {
 				$lenData['len']++;
 			}
 			$offset += $lenData['len'];
@@ -298,10 +298,11 @@ class JpegMetadataExtractor {
 
 		if ( !$realHash || !$recordedHash ) {
 			return 'iptc-no-hash';
-		} elseif ( $realHash === $recordedHash ) {
-			return 'iptc-good-hash';
-		} else { /*$realHash !== $recordedHash */
-			return 'iptc-bad-hash';
 		}
+		if ( $realHash === $recordedHash ) {
+			return 'iptc-good-hash';
+		}
+		/* if $realHash !== $recordedHash */
+		return 'iptc-bad-hash';
 	}
 }

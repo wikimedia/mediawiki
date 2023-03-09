@@ -96,11 +96,7 @@ class PNGHandler extends BitmapHandler {
 	 */
 	public function isAnimatedImage( $image ) {
 		$metadata = $image->getMetadataArray();
-		if ( isset( $metadata['frameCount'] ) && $metadata['frameCount'] > 1 ) {
-			return true;
-		}
-
-		return false;
+		return isset( $metadata['frameCount'] ) && $metadata['frameCount'] > 1;
 	}
 
 	/**
@@ -130,7 +126,7 @@ class PNGHandler extends BitmapHandler {
 		}
 
 		if ( !isset( $data['metadata']['_MW_PNG_VERSION'] )
-			|| $data['metadata']['_MW_PNG_VERSION'] != PNGMetadataExtractor::VERSION
+			|| $data['metadata']['_MW_PNG_VERSION'] !== PNGMetadataExtractor::VERSION
 		) {
 			wfDebug( __METHOD__ . " old but compatible png metadata" );
 
@@ -187,9 +183,9 @@ class PNGHandler extends BitmapHandler {
 
 		if ( !$metadata || !isset( $metadata['duration'] ) || !$metadata['duration'] ) {
 			return 0.0;
-		} else {
-			return (float)$metadata['duration'];
 		}
+
+		return (float)$metadata['duration'];
 	}
 
 	// PNGs should be easy to support, but it will need some sharpening applied

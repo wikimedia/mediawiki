@@ -29,7 +29,6 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Html\Html;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Timestamp\TimestampException;
 
 /**
  * Format Image metadata values into a human readable form.
@@ -86,7 +85,7 @@ class FormatMetadata extends ContextSource {
 	 * @return array
 	 */
 	public static function getFormattedData( $tags, $context = false ) {
-		$obj = new FormatMetadata;
+		$obj = new self;
 		if ( $context ) {
 			$obj->setContext( $context );
 		}
@@ -141,7 +140,7 @@ class FormatMetadata extends ContextSource {
 			}
 
 			// This is done differently as the tag is an array.
-			if ( $tag == 'GPSTimeStamp' && count( $vals ) === 3 ) {
+			if ( $tag === 'GPSTimeStamp' && count( $vals ) === 3 ) {
 				// hour min sec array
 
 				$h = explode( '/', $vals[0], 2 );
@@ -165,16 +164,10 @@ class FormatMetadata extends ContextSource {
 					. ':' . str_pad( (string)( (int)$m[0] / (int)$m[1] ), 2, '0', STR_PAD_LEFT )
 					. ':' . str_pad( (string)( (int)$s[0] / (int)$s[1] ), 2, '0', STR_PAD_LEFT );
 
-				try {
-					$time = wfTimestamp( TS_MW, '1971:01:01 ' . $vals );
-					// the 1971:01:01 is just a placeholder, and not shown to user.
-					if ( $time && intval( $time ) > 0 ) {
-						$vals = $this->getLanguage()->time( $time );
-					}
-				} catch ( TimestampException $e ) {
-					// This shouldn't happen, but we've seen bad formats
-					// such as 4-digit seconds in the wild.
-					// leave $vals as-is
+				$time = wfTimestamp( TS_MW, '1971:01:01 ' . $vals );
+				// the 1971:01:01 is just a placeholder, and not shown to user.
+				if ( $time && (int)$time > 0 ) {
+					$vals = $this->getLanguage()->time( $time );
 				}
 				continue;
 			}
@@ -351,16 +344,17 @@ class FormatMetadata extends ContextSource {
 					case 'DateTimeMetadata':
 					case 'FirstPhotoDate':
 					case 'LastPhotoDate':
-						if ( $val == '0000:00:00 00:00:00' || $val == '    :  :     :  :  ' ) {
+						if ( $val === '0000:00:00 00:00:00' || $val === '    :  :     :  :  ' ) {
 							$val = $this->msg( 'exif-unknowndate' )->text();
 							break;
-						} elseif ( preg_match(
+						}
+						if ( preg_match(
 							'/^(?:\d{4}):(?:\d\d):(?:\d\d) (?:\d\d):(?:\d\d):(?:\d\d)$/D',
 							$val
 						) ) {
 							// Full date.
 							$time = wfTimestamp( TS_MW, $val );
-							if ( $time && intval( $time ) > 0 ) {
+							if ( $time && (int)$time > 0 ) {
 								$val = $this->getLanguage()->timeanddate( $time );
 								break;
 							}
@@ -369,7 +363,7 @@ class FormatMetadata extends ContextSource {
 							// since timeanddate doesn't include seconds anyways,
 							// but second still available in api
 							$time = wfTimestamp( TS_MW, $val . ':00' );
-							if ( $time && intval( $time ) > 0 ) {
+							if ( $time && (int)$time > 0 ) {
 								$val = $this->getLanguage()->timeanddate( $time );
 								break;
 							}
@@ -379,7 +373,7 @@ class FormatMetadata extends ContextSource {
 								. substr( $val, 5, 2 )
 								. substr( $val, 8, 2 )
 								. '000000' );
-							if ( $time && intval( $time ) > 0 ) {
+							if ( $time && (int)$time > 0 ) {
 								$val = $this->getLanguage()->date( $time );
 								break;
 							}
@@ -477,7 +471,7 @@ class FormatMetadata extends ContextSource {
 						# We do not need to handle unknown values since all are used.
 						foreach ( $flashDecode as $subTag => $subValue ) {
 							# We do not need any message for zeroed values.
-							if ( $subTag != 'fired' && $subValue == 0 ) {
+							if ( $subTag !== 'fired' && $subValue === 0 ) {
 								continue;
 							}
 							$fullTag = $tag . '-' . $subTag;
@@ -837,10 +831,10 @@ class FormatMetadata extends ContextSource {
 							$this->formatFraction( $val ), $this->formatNum( $val ) )->text();
 						break;
 					case 'ISOSpeedRatings':
-						// If its = 65535 that means its at the
+						// If it's 65535 that means it's at the
 						// limit of the size of Exif::short and
 						// is really higher.
-						if ( $val == '65535' ) {
+						if ( $val === '65535' ) {
 							$val = $this->exifMsg( $tag, 'overflow' );
 						} else {
 							$val = $this->formatNum( $val );
@@ -920,11 +914,11 @@ class FormatMetadata extends ContextSource {
 						// 1-8 with 1 being highest, 5 normal
 						// 0 is reserved, and 9 is 'user-defined'.
 						$urgency = '';
-						if ( $val == 0 || $val == 9 ) {
+						if ( $val === 0 || $val === 9 ) {
 							$urgency = 'other';
 						} elseif ( $val < 5 && $val > 1 ) {
 							$urgency = 'high';
-						} elseif ( $val == 5 ) {
+						} elseif ( $val === 5 ) {
 							$urgency = 'normal';
 						} elseif ( $val <= 8 && $val > 5 ) {
 							$urgency = 'low';
@@ -1069,7 +1063,7 @@ class FormatMetadata extends ContextSource {
 						}
 						break;
 					case 'Rating':
-						if ( $val == '-1' ) {
+						if ( $val === '-1' ) {
 							$val = $this->exifMsg( $tag, 'rejected' );
 						} else {
 							$val = $this->formatNum( $val );
@@ -1124,95 +1118,95 @@ class FormatMetadata extends ContextSource {
 
 		if ( count( $vals ) === 1 && $type !== 'lang' && isset( $vals[0] ) ) {
 			return $vals[0];
-		} elseif ( count( $vals ) === 0 ) {
+		}
+		if ( count( $vals ) === 0 ) {
 			wfDebug( __METHOD__ . " metadata array with 0 elements!" );
 
 			return ""; // paranoia. This should never happen
-		} else {
-			// Check if $vals contains nested arrays
-			$containsNestedArrays = in_array( true, array_map( 'is_array', $vals ), true );
-			if ( $containsNestedArrays ) {
-				wfLogWarning( __METHOD__ . ': Invalid $vals, contains nested arrays: ' . json_encode( $vals ) );
-			}
+		}
+		// Check if $vals contains nested arrays
+		$containsNestedArrays = in_array( true, array_map( 'is_array', $vals ), true );
+		if ( $containsNestedArrays ) {
+			wfLogWarning( __METHOD__ . ': Invalid $vals, contains nested arrays: ' . json_encode( $vals ) );
+		}
 
-			/* @todo FIXME: This should hide some of the list entries if there are
-			 * say more than four. Especially if a field is translated into 20
-			 * languages, we don't want to show them all by default
-			 */
-			switch ( $type ) {
-				case 'lang':
-					// Display default, followed by ContentLanguage,
-					// followed by the rest in no particular order.
+		/* @todo FIXME: This should hide some of the list entries if there are
+		 * say more than four. Especially if a field is translated into 20
+		 * languages, we don't want to show them all by default
+		 */
+		switch ( $type ) {
+			case 'lang':
+				// Display default, followed by ContentLanguage,
+				// followed by the rest in no particular order.
 
-					// Todo: hide some items if really long list.
+				// Todo: hide some items if really long list.
 
-					$content = '';
+				$content = '';
 
-					$priorityLanguages = $this->getPriorityLanguages();
-					$defaultItem = false;
-					$defaultLang = false;
+				$priorityLanguages = $this->getPriorityLanguages();
+				$defaultItem = false;
+				$defaultLang = false;
 
-					// If default is set, save it for later,
-					// as we don't know if it's equal to one of the lang codes.
-					// (In xmp you specify the language for a default property by having
-					// both a default prop, and one in the language that are identical)
-					if ( isset( $vals['x-default'] ) ) {
-						$defaultItem = $vals['x-default'];
-						unset( $vals['x-default'] );
-					}
-					foreach ( $priorityLanguages as $pLang ) {
-						if ( isset( $vals[$pLang] ) ) {
-							$isDefault = false;
-							if ( $vals[$pLang] === $defaultItem ) {
-								$defaultItem = false;
-								$isDefault = true;
-							}
-							$content .= $this->langItem( $vals[$pLang], $pLang, $isDefault, $noHtml );
-
-							unset( $vals[$pLang] );
-
-							if ( $this->singleLang ) {
-								return Html::rawElement( 'span', [ 'lang' => $pLang ], $vals[$pLang] );
-							}
+				// If default is set, save it for later,
+				// as we don't know if it's equal to one of the lang codes.
+				// (In xmp you specify the language for a default property by having
+				// both a default prop, and one in the language that are identical)
+				if ( isset( $vals['x-default'] ) ) {
+					$defaultItem = $vals['x-default'];
+					unset( $vals['x-default'] );
+				}
+				foreach ( $priorityLanguages as $pLang ) {
+					if ( isset( $vals[$pLang] ) ) {
+						$isDefault = false;
+						if ( $vals[$pLang] === $defaultItem ) {
+							$defaultItem = false;
+							$isDefault = true;
 						}
-					}
+						$content .= $this->langItem( $vals[$pLang], $pLang, $isDefault, $noHtml );
 
-					// Now do the rest.
-					foreach ( $vals as $lang => $item ) {
-						if ( $item === $defaultItem ) {
-							$defaultLang = $lang;
-							continue;
-						}
-						$content .= $this->langItem( $item, $lang, false, $noHtml );
+						unset( $vals[$pLang] );
+
 						if ( $this->singleLang ) {
-							return Html::rawElement( 'span', [ 'lang' => $lang ], $item );
+							return Html::rawElement( 'span', [ 'lang' => $pLang ], $vals[$pLang] );
 						}
 					}
-					if ( $defaultItem !== false ) {
-						$content = $this->langItem( $defaultItem, $defaultLang, true, $noHtml ) . $content;
-						if ( $this->singleLang ) {
-							return $defaultItem;
-						}
-					}
-					if ( $noHtml ) {
-						return $content;
-					}
+				}
 
-					return '<ul class="metadata-langlist">' . $content . '</ul>';
-				case 'ol':
-					if ( $noHtml ) {
-						return "\n#" . implode( "\n#", $vals );
+				// Now do the rest.
+				foreach ( $vals as $lang => $item ) {
+					if ( $item === $defaultItem ) {
+						$defaultLang = $lang;
+						continue;
 					}
-
-					return "<ol><li>" . implode( "</li>\n<li>", $vals ) . '</li></ol>';
-				case 'ul':
-				default:
-					if ( $noHtml ) {
-						return "\n*" . implode( "\n*", $vals );
+					$content .= $this->langItem( $item, $lang, false, $noHtml );
+					if ( $this->singleLang ) {
+						return Html::rawElement( 'span', [ 'lang' => $lang ], $item );
 					}
+				}
+				if ( $defaultItem !== false ) {
+					$content = $this->langItem( $defaultItem, $defaultLang, true, $noHtml ) . $content;
+					if ( $this->singleLang ) {
+						return $defaultItem;
+					}
+				}
+				if ( $noHtml ) {
+					return $content;
+				}
 
-					return "<ul><li>" . implode( "</li>\n<li>", $vals ) . '</li></ul>';
-			}
+				return '<ul class="metadata-langlist">' . $content . '</ul>';
+			case 'ol':
+				if ( $noHtml ) {
+					return "\n#" . implode( "\n#", $vals );
+				}
+
+				return "<ol><li>" . implode( "</li>\n<li>", $vals ) . '</li></ol>';
+			case 'ul':
+			default:
+				if ( $noHtml ) {
+					return "\n*" . implode( "\n*", $vals );
+				}
+
+				return "<ul><li>" . implode( "</li>\n<li>", $vals ) . '</li></ul>';
 		}
 	}
 
@@ -1342,7 +1336,7 @@ class FormatMetadata extends ContextSource {
 		}
 		$num ??= '';
 		if ( preg_match( '/^(-?\d+)\/(\d+)$/', $num, $m ) ) {
-			if ( $m[2] != 0 ) {
+			if ( $m[2] !== 0 ) {
 				$newNum = (int)$m[1] / (int)$m[2];
 				if ( $round !== false ) {
 					$newNum = round( $newNum, $round );
@@ -1373,10 +1367,10 @@ class FormatMetadata extends ContextSource {
 	private function formatFraction( $num ) {
 		$m = [];
 		if ( preg_match( '/^(-?\d+)\/(\d+)$/', $num, $m ) ) {
-			$numerator = intval( $m[1] );
-			$denominator = intval( $m[2] );
+			$numerator = (int)$m[1];
+			$denominator = (int)$m[2];
 			$gcd = $this->gcd( abs( $numerator ), $denominator );
-			if ( $gcd != 0 ) {
+			if ( $gcd !== 0 ) {
 				// 0 shouldn't happen! ;)
 				return $this->formatNum( $numerator / $gcd ) . '/' . $this->formatNum( $denominator / $gcd );
 			}
@@ -1570,89 +1564,89 @@ class FormatMetadata extends ContextSource {
 			}
 
 			return $this->flattenArrayReal( $vals );
-		} else {
-			// We have a real ContactInfo field.
-			// Its unclear if all these fields have to be
-			// set, so assume they do not.
-			$url = $tel = $street = $city = $country = '';
-			$email = $postal = $region = '';
+		}
 
-			// Also note, some of the class names this uses
-			// are similar to those used by hCard. This is
-			// mostly because they're sensible names. This
-			// does not (and does not attempt to) output
-			// stuff in the hCard microformat. However it
-			// might output in the adr microformat.
+		// We have a real ContactInfo field.
+		// Its unclear if all these fields have to be
+		// set, so assume they do not.
+		$url = $tel = $street = $city = $country = '';
+		$email = $postal = $region = '';
 
-			if ( isset( $vals['CiAdrExtadr'] ) ) {
-				// Todo: This can potentially be multi-line.
-				// Need to check how that works in XMP.
-				$street = '<span class="extended-address">'
-					. $this->literal(
-						$vals['CiAdrExtadr'] )
-					. '</span>';
-			}
-			if ( isset( $vals['CiAdrCity'] ) ) {
-				$city = '<span class="locality">'
-					. $this->literal( $vals['CiAdrCity'] )
-					. '</span>';
-			}
-			if ( isset( $vals['CiAdrCtry'] ) ) {
-				$country = '<span class="country-name">'
-					. $this->literal( $vals['CiAdrCtry'] )
-					. '</span>';
-			}
-			if ( isset( $vals['CiEmailWork'] ) ) {
-				$emails = [];
-				// Have to split multiple emails at commas/new lines.
-				$splitEmails = explode( "\n", $vals['CiEmailWork'] );
-				foreach ( $splitEmails as $e1 ) {
-					// Also split on comma
-					foreach ( explode( ',', $e1 ) as $e2 ) {
-						$finalEmail = trim( $e2 );
-						if ( $finalEmail == ',' || $finalEmail == '' ) {
-							continue;
-						}
-						if ( strpos( $finalEmail, '<' ) !== false ) {
-							// Don't do fancy formatting to
-							// "My name" <foo@bar.com> style stuff
-							$emails[] = $this->literal( $finalEmail );
-						} else {
-							$emails[] = '[mailto:'
-								. $finalEmail
-								. ' <span class="email">'
-								. $this->literal( $finalEmail )
-								. '</span>]';
-						}
+		// Also note, some of the class names this uses
+		// are similar to those used by hCard. This is
+		// mostly because they're sensible names. This
+		// does not (and does not attempt to) output
+		// stuff in the hCard microformat. However it
+		// might output in the adr microformat.
+
+		if ( isset( $vals['CiAdrExtadr'] ) ) {
+			// Todo: This can potentially be multi-line.
+			// Need to check how that works in XMP.
+			$street = '<span class="extended-address">'
+				. $this->literal(
+					$vals['CiAdrExtadr'] )
+				. '</span>';
+		}
+		if ( isset( $vals['CiAdrCity'] ) ) {
+			$city = '<span class="locality">'
+				. $this->literal( $vals['CiAdrCity'] )
+				. '</span>';
+		}
+		if ( isset( $vals['CiAdrCtry'] ) ) {
+			$country = '<span class="country-name">'
+				. $this->literal( $vals['CiAdrCtry'] )
+				. '</span>';
+		}
+		if ( isset( $vals['CiEmailWork'] ) ) {
+			$emails = [];
+			// Have to split multiple emails at commas/new lines.
+			$splitEmails = explode( "\n", $vals['CiEmailWork'] );
+			foreach ( $splitEmails as $e1 ) {
+				// Also split on comma
+				foreach ( explode( ',', $e1 ) as $e2 ) {
+					$finalEmail = trim( $e2 );
+					if ( $finalEmail === ',' || $finalEmail === '' ) {
+						continue;
+					}
+					if ( strpos( $finalEmail, '<' ) !== false ) {
+						// Don't do fancy formatting to
+						// "My name" <foo@bar.com> style stuff
+						$emails[] = $this->literal( $finalEmail );
+					} else {
+						$emails[] = '[mailto:'
+							. $finalEmail
+							. ' <span class="email">'
+							. $this->literal( $finalEmail )
+							. '</span>]';
 					}
 				}
-				$email = implode( ', ', $emails );
 			}
-			if ( isset( $vals['CiTelWork'] ) ) {
-				$tel = '<span class="tel">'
-					. $this->literal( $vals['CiTelWork'] )
-					. '</span>';
-			}
-			if ( isset( $vals['CiAdrPcode'] ) ) {
-				$postal = '<span class="postal-code">'
-					. $this->literal( $vals['CiAdrPcode'] )
-					. '</span>';
-			}
-			if ( isset( $vals['CiAdrRegion'] ) ) {
-				// Note this is province/state.
-				$region = '<span class="region">'
-					. $this->literal( $vals['CiAdrRegion'] )
-					. '</span>';
-			}
-			if ( isset( $vals['CiUrlWork'] ) ) {
-				$url = '<span class="url">'
-					. $this->literal( $vals['CiUrlWork'] )
-					. '</span>';
-			}
-
-			return $this->msg( 'exif-contact-value', $email, $url,
-				$street, $city, $region, $postal, $country, $tel )->text();
+			$email = implode( ', ', $emails );
 		}
+		if ( isset( $vals['CiTelWork'] ) ) {
+			$tel = '<span class="tel">'
+				. $this->literal( $vals['CiTelWork'] )
+				. '</span>';
+		}
+		if ( isset( $vals['CiAdrPcode'] ) ) {
+			$postal = '<span class="postal-code">'
+				. $this->literal( $vals['CiAdrPcode'] )
+				. '</span>';
+		}
+		if ( isset( $vals['CiAdrRegion'] ) ) {
+			// Note this is province/state.
+			$region = '<span class="region">'
+				. $this->literal( $vals['CiAdrRegion'] )
+				. '</span>';
+		}
+		if ( isset( $vals['CiUrlWork'] ) ) {
+			$url = '<span class="url">'
+				. $this->literal( $vals['CiUrlWork'] )
+				. '</span>';
+		}
+
+		return $this->msg( 'exif-contact-value', $email, $url,
+			$street, $city, $region, $postal, $country, $tel )->text();
 	}
 
 	/**
@@ -1814,7 +1808,7 @@ class FormatMetadata extends ContextSource {
 		if (
 			!is_array( $value )
 			|| !isset( $value['_type'] )
-			|| $value['_type'] != 'lang'
+			|| $value['_type'] !== 'lang'
 		) {
 			return $value; // do nothing if not a multilang array
 		}
@@ -1854,20 +1848,21 @@ class FormatMetadata extends ContextSource {
 	protected function resolveMultivalueValue( $value ) {
 		if ( !is_array( $value ) ) {
 			return $value;
-		} elseif ( isset( $value['_type'] ) && $value['_type'] === 'lang' ) {
+		}
+		if ( isset( $value['_type'] ) && $value['_type'] === 'lang' ) {
 			// if this is a multilang array, process fields separately
 			$newValue = [];
 			foreach ( $value as $k => $v ) {
 				$newValue[$k] = $this->resolveMultivalueValue( $v );
 			}
 			return $newValue;
-		} else { // _type is 'ul' or 'ol' or missing in which case it defaults to 'ul'
-			$v = reset( $value );
-			if ( key( $value ) === '_type' ) {
-				$v = next( $value );
-			}
-			return $v;
 		}
+		// _type is 'ul' or 'ol' or missing in which case it defaults to 'ul'
+		$v = reset( $value );
+		if ( key( $value ) === '_type' ) {
+			$v = next( $value );
+		}
+		return $v;
 	}
 
 	/**
@@ -1937,6 +1932,7 @@ class FormatMetadata extends ContextSource {
 				$this->sanitizeArrayForAPI( $value );
 			}
 		}
+		unset( $value );
 
 		// Handle API metadata keys (particularly "_type")
 		$keys = array_filter( array_keys( $arr ), [ ApiResult::class, 'isMetadataKey' ] );

@@ -84,9 +84,8 @@ abstract class ImageHandler extends MediaHandler {
 		$m = false;
 		if ( preg_match( '/^(\d+)px$/', $str, $m ) ) {
 			return [ 'width' => $m[1] ];
-		} else {
-			return false;
 		}
+		return false;
 	}
 
 	/**
@@ -113,7 +112,7 @@ abstract class ImageHandler extends MediaHandler {
 		if ( !isset( $params['page'] ) ) {
 			$params['page'] = 1;
 		} else {
-			$params['page'] = intval( $params['page'] );
+			$params['page'] = (int)$params['page'];
 			if ( $params['page'] > $image->pageCount() ) {
 				$params['page'] = $image->pageCount();
 			}
@@ -126,7 +125,7 @@ abstract class ImageHandler extends MediaHandler {
 		$srcWidth = $image->getWidth( $params['page'] );
 		$srcHeight = $image->getHeight( $params['page'] );
 
-		if ( isset( $params['height'] ) && $params['height'] != -1 ) {
+		if ( isset( $params['height'] ) && $params['height'] !== -1 ) {
 			# Height & width were both set
 			if ( $params['width'] * $srcHeight > $params['height'] * $srcWidth ) {
 				# Height is the relative smaller dimension, so scale width accordingly
@@ -157,7 +156,7 @@ abstract class ImageHandler extends MediaHandler {
 			$params['physicalWidth'] );
 
 		# Set the height if it was not validated in the if block higher up
-		if ( !isset( $params['height'] ) || $params['height'] == -1 ) {
+		if ( !isset( $params['height'] ) || $params['height'] === -1 ) {
 			$params['height'] = $params['physicalHeight'];
 		}
 
@@ -180,7 +179,7 @@ abstract class ImageHandler extends MediaHandler {
 	 * @return bool False to indicate that an error should be returned to the user.
 	 */
 	private function validateThumbParams( &$width, &$height, $srcWidth, $srcHeight ) {
-		$width = intval( $width );
+		$width = (int)$width;
 
 		if ( $width <= 0 ) {
 			wfDebug( __METHOD__ . ": Invalid destination width: $width" );
@@ -307,10 +306,9 @@ abstract class ImageHandler extends MediaHandler {
 		if ( $pages > 1 ) {
 			return wfMessage( 'widthheightpage' )
 				->numParams( $file->getWidth(), $file->getHeight(), $pages )->text();
-		} else {
-			return wfMessage( 'widthheight' )
-				->numParams( $file->getWidth(), $file->getHeight() )->text();
 		}
+		return wfMessage( 'widthheight' )
+			->numParams( $file->getWidth(), $file->getHeight() )->text();
 	}
 
 	/**

@@ -87,7 +87,9 @@ class PNGMetadataExtractor {
 
 		if ( !$filename ) {
 			throw new Exception( __METHOD__ . ": No file name specified" );
-		} elseif ( !file_exists( $filename ) || is_dir( $filename ) ) {
+		}
+
+		if ( !file_exists( $filename ) || is_dir( $filename ) ) {
 			throw new Exception( __METHOD__ . ": File $filename does not exist" );
 		}
 
@@ -99,7 +101,7 @@ class PNGMetadataExtractor {
 
 		// Check for the PNG header
 		$buf = self::read( $fh, 8 );
-		if ( $buf != self::$pngSig ) {
+		if ( $buf !== self::$pngSig ) {
 			throw new Exception( __METHOD__ . ": Not a valid PNG file; header: $buf" );
 		}
 
@@ -126,7 +128,7 @@ class PNGMetadataExtractor {
 				continue;
 			}
 
-			if ( $chunk_type == "IHDR" ) {
+			if ( $chunk_type === "IHDR" ) {
 				$width = unpack( 'N', substr( $buf, 0, 4 ) )[1];
 				$height = unpack( 'N', substr( $buf, 4, 4 ) )[1];
 				$bitDepth = ord( substr( $buf, 8, 1 ) );
@@ -152,7 +154,7 @@ class PNGMetadataExtractor {
 						$colorType = 'unknown';
 						break;
 				}
-			} elseif ( $chunk_type == "acTL" ) {
+			} elseif ( $chunk_type === "acTL" ) {
 				if ( $chunk_size < 4 ) {
 					wfDebug( __METHOD__ . ": acTL chunk too small" );
 					continue;
@@ -161,7 +163,7 @@ class PNGMetadataExtractor {
 				$actl = unpack( "Nframes/Nplays", $buf );
 				$frameCount = $actl['frames'];
 				$loopCount = $actl['plays'];
-			} elseif ( $chunk_type == "fcTL" ) {
+			} elseif ( $chunk_type === "fcTL" ) {
 				$buf = substr( $buf, 20 );
 				if ( strlen( $buf ) < 4 ) {
 					wfDebug( __METHOD__ . ": fcTL chunk too small" );
@@ -175,7 +177,7 @@ class PNGMetadataExtractor {
 				if ( $fctldur['delay_num'] ) {
 					$duration += $fctldur['delay_num'] / $fctldur['delay_den'];
 				}
-			} elseif ( $chunk_type == "iTXt" ) {
+			} elseif ( $chunk_type === "iTXt" ) {
 				// Extracts iTXt chunks, uncompressing if necessary.
 				$items = [];
 				if ( preg_match(
@@ -201,7 +203,7 @@ class PNGMetadataExtractor {
 					}
 
 					// if compressed
-					if ( $items[2] == "\x01" ) {
+					if ( $items[2] === "\x01" ) {
 						if ( function_exists( 'gzuncompress' ) && $items[4] === "\x00" ) {
 							AtEase::suppressWarnings();
 							$items[5] = gzuncompress( $items[5] );
@@ -225,7 +227,7 @@ class PNGMetadataExtractor {
 					// Error reading iTXt chunk
 					wfDebug( __METHOD__ . ": Invalid iTXt chunk" );
 				}
-			} elseif ( $chunk_type == 'tEXt' ) {
+			} elseif ( $chunk_type === 'tEXt' ) {
 				// In case there is no \x00 which will make explode fail.
 				if ( strpos( $buf, "\x00" ) === false ) {
 					wfDebug( __METHOD__ . ": Invalid tEXt chunk: no null byte" );
@@ -256,7 +258,7 @@ class PNGMetadataExtractor {
 				$finalKeyword = self::$textChunks[$keyword];
 				$text[$finalKeyword]['x-default'] = $content;
 				$text[$finalKeyword]['_type'] = 'lang';
-			} elseif ( $chunk_type == 'zTXt' ) {
+			} elseif ( $chunk_type === 'zTXt' ) {
 				if ( function_exists( 'gzuncompress' ) ) {
 					// In case there is no \x00 which will make explode fail.
 					if ( strpos( $buf, "\x00" ) === false ) {
@@ -308,7 +310,7 @@ class PNGMetadataExtractor {
 				} else {
 					wfDebug( __METHOD__ . " Cannot decompress zTXt chunk due to lack of zlib. Skipping." );
 				}
-			} elseif ( $chunk_type == 'tIME' ) {
+			} elseif ( $chunk_type === 'tIME' ) {
 				// last mod timestamp.
 				if ( $chunk_size !== 7 ) {
 					wfDebug( __METHOD__ . ": tIME wrong size" );
@@ -326,7 +328,7 @@ class PNGMetadataExtractor {
 				if ( $exifTime ) {
 					$text['DateTime'] = $exifTime;
 				}
-			} elseif ( $chunk_type == 'pHYs' ) {
+			} elseif ( $chunk_type === 'pHYs' ) {
 				// how big pixels are (dots per meter).
 				if ( $chunk_size !== 9 ) {
 					wfDebug( __METHOD__ . ": pHYs wrong size" );
@@ -334,7 +336,7 @@ class PNGMetadataExtractor {
 				}
 
 				$dim = unpack( "Nwidth/Nheight/Cunit", $buf );
-				if ( $dim['unit'] == 1 ) {
+				if ( $dim['unit'] === 1 ) {
 					// Need to check for negative because php
 					// doesn't deal with super-large unsigned 32-bit ints well
 					if ( $dim['width'] > 0 && $dim['height'] > 0 ) {
@@ -348,7 +350,7 @@ class PNGMetadataExtractor {
 						// 3 = dots per cm (from Exif).
 					}
 				}
-			} elseif ( $chunk_type == "IEND" ) {
+			} elseif ( $chunk_type === "IEND" ) {
 				break;
 			}
 		}

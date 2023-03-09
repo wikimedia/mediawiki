@@ -668,12 +668,11 @@ class Exif {
 		// using !== as $res could potentially be 0
 		if ( $res !== false ) {
 			$this->mFilteredExifData[$prop] = $res;
-			unset( $this->mFilteredExifData[$prop . 'Ref'] );
 		} else {
 			// if invalid
 			unset( $this->mFilteredExifData[$prop] );
-			unset( $this->mFilteredExifData[$prop . 'Ref'] );
 		}
+		unset( $this->mFilteredExifData[$prop . 'Ref'] );
 	}
 
 	/** #@- */
@@ -880,7 +879,7 @@ class Exif {
 		$count = 1;
 		if ( is_array( $val ) ) {
 			$count = count( $val );
-			if ( $ecount != $count ) {
+			if ( $ecount !== $count ) {
 				$this->debug( $val, __FUNCTION__, "Expected $ecount elements for $tag but got $count" );
 				return false;
 			}
