@@ -28,7 +28,7 @@ use IContextSource;
 use LocalFile;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
-use Mediawiki\Page\File\FileDeleteForm;
+use MediaWiki\Page\File\FileDeleteForm;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Title\Title;
 use OldLocalFile;
