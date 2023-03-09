@@ -65,6 +65,8 @@ class EnConverter extends LanguageConverter {
 	/**
 	 * Translates text into Pig Latin. This allows developers to test the language variants
 	 * functionality and user interface without having to switch wiki language away from default.
+	 * This method also processes custom conversion rules to allow testing
+	 * of these parts of language converter as well.
 	 *
 	 * @param string $text
 	 * @param string $toVariant
@@ -74,7 +76,55 @@ class EnConverter extends LanguageConverter {
 		if ( $toVariant !== 'en-x-piglatin' ) {
 			return $text;
 		}
+		// Apply any custom rules.  (Primarily for testing.)
+		$this->loadTables();
+		$customRules = $this->mTables[$toVariant];
 
+		if ( !$customRules->getArray() ) {
+			return self::pigLatin( $text );
+		}
+
+		// Split on the matches from custom rules, so that we only apply
+		// the Pig Latin transformation on output which is not from a
+		// custom rule; this avoids double-conversion.
+		// (See SrConverter for similar split-and-process code.)
+		$re = '(' .
+			implode(
+				'|',
+				array_map(
+					'preg_quote',
+					// "Original" texts from the ReplacementArray rules
+					array_keys( $customRules->getArray() )
+				)
+			 ) . ')';
+
+		$matches = preg_split( $re, $text, -1, PREG_SPLIT_OFFSET_CAPTURE );
+		$m = array_shift( $matches );
+
+		// Apply Pig Latin transformation to initial "non-matching" section.
+		$ret = self::pigLatin( $m[0] );
+		$mstart = (int)$m[1] + strlen( $m[0] );
+		foreach ( $matches as $m ) {
+			// Use the ReplacementArray rules to transform any matching sections
+			$ret .= $customRules->replace(
+				substr( $text, $mstart, (int)$m[1] - $mstart )
+			);
+			// And Pig Latin transformation on the non-matching sections.
+			$ret .= self::pigLatin( $m[0] );
+			$mstart = (int)$m[1] + strlen( $m[0] );
+		}
+		// $mstart will always equal strlen($text) here.
+
+		return $ret;
+	}
+
+	/**
+	 * Translates words into Pig Latin.
+	 *
+	 * @param string $text
+	 * @return string
+	 */
+	private static function pigLatin( string $text ): string {
 		// Only process words composed of standard English alphabet, leave the rest unchanged.
 		// This skips some English words like 'naïve' or 'résumé', but we can live with that.
 		// Ignore single letters and words which aren't lowercase or uppercase-first.
