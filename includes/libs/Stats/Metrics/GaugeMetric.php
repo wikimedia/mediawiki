@@ -45,6 +45,9 @@ class GaugeMetric implements MetricInterface {
 	 */
 	private const TYPE_INDICATOR = "g";
 
+	/** @var string|null */
+	private ?string $statsdNamespace = null;
+
 	/** @var BaseMetricInterface */
 	private BaseMetricInterface $baseMetric;
 
@@ -64,6 +67,10 @@ class GaugeMetric implements MetricInterface {
 	 * @return void
 	 */
 	public function set( float $value ): void {
+		if ( $this->statsdNamespace !== null ) {
+			$this->baseMetric->getStatsdDataFactory()->updateCount( $this->statsdNamespace, $value );
+			$this->statsdNamespace = null;
+		}
 		$this->baseMetric->addSample( new Sample( $this->baseMetric->getLabelValues(), $value ) );
 	}
 
@@ -117,6 +124,14 @@ class GaugeMetric implements MetricInterface {
 			// Log the condition and give the caller something that will absorb calls.
 			trigger_error( $ex->getMessage(), E_USER_WARNING );
 			return new NullMetric;
+		}
+		return $this;
+	}
+
+	/** @inheritDoc */
+	public function copyToStatsdAt( string $statsdNamespace ) {
+		if ( $this->baseMetric->getStatsdDataFactory() !== null ) {
+			$this->statsdNamespace = $statsdNamespace;
 		}
 		return $this;
 	}
