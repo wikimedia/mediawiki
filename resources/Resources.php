@@ -1242,7 +1242,7 @@ return [
 		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.delete.js',
 		'dependencies' => [
 			'oojs-ui-core',
-			'jquery.lengthLimit',
+			'mediawiki.widgets.visibleLengthLimit',
 		],
 		'messages' => [
 			// @todo Load this message in content language
