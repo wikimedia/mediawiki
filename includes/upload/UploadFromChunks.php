@@ -356,8 +356,8 @@ class UploadFromChunks extends UploadFromFile {
 					$error = [ 'unknown', 'no error recorded' ];
 				}
 			}
-			throw new UploadChunkFileException( "Error storing file in '$chunkPath': " .
-				implode( '; ', $error ) );
+			throw new UploadChunkFileException( "Error storing file in '{chunkPath}': " .
+				implode( '; ', $error ), [ 'chunkPath' => $chunkPath ] );
 		}
 
 		return $storeStatus;
