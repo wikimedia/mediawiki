@@ -2309,6 +2309,79 @@ describe( '/transform/ endpoint', function () {
 		} );
 	} );
 
+	describe( 'ETags', function () {
+		it( '/transform/ should use ETag from If-Match header', async () => {
+			const { statusCode: status1, headers: headers1, text: text1 } = await client.req
+				.get( `rest.php/v1/revision/${revid}/html` )
+				.query( { stash: 'yes' } );
+
+			assert.deepEqual( status1, 200, text1 );
+			assert.ok( headers1.etag, 'ETag header' );
+
+			// The request above should have stashed a rendering associated with the ETag it
+			// returned. Pass the ETag in the If-Match header.
+			const { statusCode: status2, text: text2 } = await client.req
+				.post( endpointPrefix + `/transform/html/to/wikitext/${page}/${revid}` )
+				.set( 'If-Match', headers1.etag )
+				.send( {
+					html: text1
+				} );
+
+			assert.deepEqual( status2, 200, text2 );
+
+			// pageContent is brittle against round trip conversion, we only get it back correctly
+			// because the HTML is unmodified, and selser kicks in.
+			assert.deepEqual( text2, pageContent );
+		} );
+
+		it( '/transform/ should use ETag from body', async () => {
+			const { statusCode: status1, headers: headers1, text: text1 } = await client.req
+				.get( `rest.php/v1/revision/${revid}/html` )
+				.query( { stash: 'yes' } );
+
+			assert.deepEqual( status1, 200, text1 );
+			assert.ok( headers1.etag, 'ETag header' );
+
+			// The request above should have stashed a rendering associated with the ETag it
+			// returned. Submit it in the request body.
+			// Don't put the revision ID into the path, to test that the one from the ETag is used.
+			const { statusCode: status2, text: text2 } = await client.req
+				.post( endpointPrefix + `/transform/html/to/wikitext/${page}` )
+				.send( {
+					html: text1,
+					original: { etag: headers1.etag }
+				} );
+
+			assert.deepEqual( status2, 200, text2 );
+
+			// pageContent is brittle against round trip conversion, we only get it back correctly
+			// because the HTML is unmodified, and selser kicks in.
+			assert.deepEqual( text2, pageContent );
+		} );
+
+		it( '/transform/ should refuse non-matching ETags in header', async () => {
+			const { status, text } = await client.req
+				.post( endpointPrefix + `/transform/html/to/wikitext/${page}/${revid}` )
+				.set( 'If-Match', '"1337/deadbeef"' )
+				.send( {
+					html: '<p>hello</p>'
+				} );
+
+			assert.deepEqual( status, 412, text );
+		} );
+
+		it( '/transform/ should refuse non-matching ETags in the body', async () => {
+			const { status, text } = await client.req
+				.post( endpointPrefix + `/transform/html/to/wikitext/${page}` )
+				.send( {
+					html: '<p>hello</p>',
+					original: { etag: '"1337/deadbeef"' }
+				} );
+
+			assert.deepEqual( status, 412, text );
+		} );
+	} );
+
 	describe( 'stashing with If-Match header', function () {
 
 		// TODO: The /transform/html endpoint should handle the If-Match header
