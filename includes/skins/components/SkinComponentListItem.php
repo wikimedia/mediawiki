@@ -106,7 +106,11 @@ class SkinComponentListItem implements SkinComponent {
 	 *   if there is no link. eg: If you specify 'link-fallback' => 'span' than
 	 *   any non-link will output a "<span>" instead of just text.
 	 *
-	 * @return array
+	 * @return array List item data:
+	 * - tag: String HTML tag name for the list item
+	 * - attrs: Array of attributes for the list item
+	 * - html: String HTML for the list item
+	 * - array-links: Array of link template data
 	 * @since 1.35
 	 */
 	private function makeListItem(
@@ -119,9 +123,11 @@ class SkinComponentListItem implements SkinComponent {
 		// the HTML output (normally removed in SkinTemplate::buildContentActionUrls())
 		unset( $item['redundant'] );
 
-		if ( isset( $item['links'] ) ) {
+		$linksArray = [];
+		if ( isset( $this->item['links'] ) ) {
 			$links = [];
-			foreach ( $item['links'] as $link ) {
+			/* @var array $link */
+			foreach ( $this->item['links'] as $link ) {
 				// Note: links will have identical label unless 'msg' is set on $link
 				$linkComponent = new SkinComponentLink(
 					$key,
@@ -129,7 +135,12 @@ class SkinComponentListItem implements SkinComponent {
 					$this->getMessageLocalizer(),
 					$options + $linkOptions
 				);
-				$links[] = $linkComponent->getTemplateData()[ 'html' ];
+				$linkTemplateData = $linkComponent->getTemplateData();
+				$links[] = $linkTemplateData['html'];
+				unset( $linkTemplateData['html'] );
+				if ( !empty( $linkTemplateData ) ) {
+					$linksArray[] = $linkTemplateData;
+				}
 			}
 			$html = implode( ' ', $links );
 		} else {
@@ -158,7 +169,12 @@ class SkinComponentListItem implements SkinComponent {
 			);
 			$data = $linkComponent->getTemplateData();
 
-			$html = $data[ 'html' ];
+			$html = $data['html'];
+			unset( $data['html'] );
+			// in the case of some links e.g. footer these may be HTML only so make sure not to add an empty object.
+			if ( !empty( $data ) ) {
+				$linksArray[] = $data;
+			}
 		}
 
 		$attrs = [];
@@ -176,16 +192,31 @@ class SkinComponentListItem implements SkinComponent {
 		if ( isset( $item['itemtitle'] ) ) {
 			$attrs['title'] = $item['itemtitle'];
 		}
+		$tag = $this->options['tag'] ?? 'li';
+		// Making sure we always have strings as class values
+		$classes = is_array( $attrs['class'] ) ?
+			implode( ' ', $attrs['class'] ) :
+			$attrs['class'] ?? null;
 		return [
 			'tag' => $options['tag'] ?? 'li',
 			'attrs' => $attrs,
-			'html' => $html
+			'html' => $html,
+			'class' => $classes,
+			'array-links' => count( $linksArray ) > 0 ? $linksArray : null
 		];
 	}
 
 	/**
 	 * @inheritDoc
 	 * @suppress SecurityCheck-DoubleEscaped
+	 *
+	 * @return array List item template data:
+	 * - html-item: Full HTML for the list item with the content inside
+	 * - name: Name/Key of the list item
+	 * - html: String HTML for the list item content
+	 * - id: ID of the list item
+	 * - class: Classes for the list item
+	 * - array-links: Array of link template data
 	 */
 	public function getTemplateData(): array {
 		$item = $this->makeListItem( $this->key, $this->item, $this->options, $this->defaultLinkOptions );
@@ -194,7 +225,9 @@ class SkinComponentListItem implements SkinComponent {
 			'html-item' => Html::rawElement( $item['tag'], $item['attrs'], $html ),
 			'name' => $this->key,
 			'html' => $html,
-			'id' => $this->item[ 'id' ] ?? null,
+			'id' => $this->item['id'] ?? null,
+			'class' => $item['class'],
+			'array-links' => $item['array-links']
 		];
 	}
 }
