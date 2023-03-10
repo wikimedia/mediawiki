@@ -1007,13 +1007,13 @@ class SpecialPageFactory {
 		'Renameuser' => [
 			'class' => \SpecialRenameuser::class,
 			'services' => [
+				'DBLoadBalancer',
 				'ContentLanguage',
 				'MovePageFactory',
 				'PermissionManager',
 				'TitleFactory',
 				'UserFactory',
 				'UserNamePrefixSearch',
-				'UserNameUtils'
 			]
 		],
 		'Revisiondelete' => [
