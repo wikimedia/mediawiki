@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Session;
 
-use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LogLevel;
@@ -32,14 +31,6 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			'ExtendedLoginCookieExpiration' => 200,
 			'ForceHTTPS' => false,
 		] );
-	}
-
-	/**
-	 * @return HookContainer
-	 */
-	private function getHookContainer() {
-		// Need a real HookContainer for testPersistSession() which modifies $wgHooks
-		return $this->getServiceContainer()->getHookContainer();
 	}
 
 	/**
@@ -414,7 +405,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		] );
 		$config = $this->getConfig();
 		$config->set( 'ForceHTTPS', $forceHTTPS );
-		$hookContainer = $this->getHookContainer();
+		$hookContainer = $this->createHookContainer();
 		$this->initProvider( $provider, new TestLogger(), $config, SessionManager::singleton(), $hookContainer );
 
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
@@ -514,7 +505,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$config = $this->getConfig();
 		$config->set( 'CookieSecure', $secure );
 		$config->set( 'ForceHTTPS', $forceHTTPS );
-		$hookContainer = $this->getHookContainer();
+		$hookContainer = $this->createHookContainer();
 		$this->initProvider( $provider, new TestLogger(), $config, SessionManager::singleton(), $hookContainer );
 
 		$sessionId = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
@@ -619,7 +610,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			'cookieOptions' => [ 'prefix' => 'x' ],
 		] );
 		$this->initProvider(
-			$provider, null, $this->getConfig(), SessionManager::singleton(), $this->getHookContainer()
+			$provider, null, $this->getConfig(), SessionManager::singleton(), $this->createHookContainer()
 		);
 
 		$request = new \MediaWiki\Request\FauxRequest();
@@ -641,7 +632,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		] );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 		$this->initProvider(
-			$provider, null, $this->getConfig(), SessionManager::singleton(), $this->getHookContainer()
+			$provider, null, $this->getConfig(), SessionManager::singleton(), $this->createHookContainer()
 		);
 
 		$t1 = time();
@@ -673,7 +664,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			'cookieOptions' => [ 'prefix' => 'x' ],
 		] );
 		$this->initProvider(
-			$provider, null, $this->getConfig(), SessionManager::singleton(), $this->getHookContainer()
+			$provider, null, $this->getConfig(), SessionManager::singleton(), $this->createHookContainer()
 		);
 		$provider = TestingAccessWrapper::newFromObject( $provider );
 
@@ -690,7 +681,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 	public function testGetRememberUserDuration() {
 		$config = $this->getConfig();
 		$provider = new CookieSessionProvider( [ 'priority' => 10 ] );
-		$this->initProvider( $provider, null, $config, SessionManager::singleton(), $this->getHookContainer() );
+		$this->initProvider( $provider, null, $config, SessionManager::singleton(), $this->createHookContainer() );
 
 		$this->assertSame( 200, $provider->getRememberUserDuration() );
 
@@ -709,7 +700,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			'priority' => 10
 		] );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
-		$this->initProvider( $provider, null, $config, SessionManager::singleton(), $this->getHookContainer() );
+		$this->initProvider( $provider, null, $config, SessionManager::singleton(), $this->createHookContainer() );
 
 		// First cookie is an extended cookie, remember me true
 		$this->assertSame( 200, $providerPriv->getLoginCookieExpiration( 'Token', true ) );

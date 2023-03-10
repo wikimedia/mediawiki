@@ -18,8 +18,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	use DummyServicesTrait;
 	use LanguageNameUtilsTestTrait;
 
-	/** @var array Copy of $wgHooks from before we unset LanguageGetTranslatedLanguageNames */
-	private $origHooks;
+	/** @var array Copy of the handlers for LanguageGetTranslatedLanguageNames */
+	private $origHandlers;
 
 	private function newLanguage( $class = Language::class, $code = 'en' ) {
 		// Needed to support the setMwGlobals calls for the various tests, but this should
@@ -39,16 +39,14 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	}
 
 	protected function setUp(): void {
-		global $wgHooks;
-
 		parent::setUp();
 
 		// Don't allow installed hooks to run, except if a test restores them via origHooks (needed
 		// for testIsKnownLanguageTag_cldr)
-		$this->origHooks = $wgHooks;
-		$newHooks = $wgHooks;
-		unset( $newHooks['LanguageGetTranslatedLanguageNames'] );
-		$this->overrideConfigValue( MainConfigNames::Hooks, $newHooks );
+		$this->origHandlers = $this->getServiceContainer()->getHookContainer()
+			->getLegacyHandlers( 'LanguageGetTranslatedLanguageNames' );
+
+		$this->clearHook( 'LanguageGetTranslatedLanguageNames' );
 		$this->overrideConfigValue( MainConfigNames::UsePigLatinVariant, true );
 	}
 
@@ -1981,8 +1979,11 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 				. 'The CLDR extension is probably not installed.' );
 		}
 
-		// We need to restore the extension's hook that we removed.
-		$this->overrideConfigValue( MainConfigNames::Hooks, $this->origHooks );
+		// We need to restore extension's hook handlers.
+		foreach ( $this->origHandlers as $handler ) {
+			$this->setTemporaryHook( 'LanguageGetTranslatedLanguageNames', $handler );
+		}
+		$this->overrideConfigValue( MainConfigNames::Hooks, $this->origHandlers );
 
 		$this->hideDeprecated( 'Language::isKnownLanguageTag' );
 
