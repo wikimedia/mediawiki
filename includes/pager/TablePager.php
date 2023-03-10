@@ -394,6 +394,7 @@ abstract class TablePager extends IndexPager {
 	 * Get \<input type="hidden"\> elements for use in a method="get" form.
 	 * Resubmits all defined elements of the query string, except for a
 	 * exclusion list, passed in the $noResubmit parameter.
+	 * Also array values are discarded for security reasons (per WebRequest::getVal)
 	 *
 	 * @param array $noResubmit Parameters from the request query which should not be resubmitted
 	 * @return string HTML fragment
@@ -406,6 +407,10 @@ abstract class TablePager extends IndexPager {
 		}
 		$s = '';
 		foreach ( $query as $name => $value ) {
+			if ( is_array( $value ) ) {
+				// Per WebRequest::getVal: Array values are discarded for security reasons.
+				continue;
+			}
 			$s .= Html::hidden( $name, $value ) . "\n";
 		}
 		return $s;
