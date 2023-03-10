@@ -163,28 +163,4 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 
 		return $newValue;
 	}
-
-	public function incr( $key, $value = 1, $flags = 0 ) {
-		return $this->doIncr( $key, $value );
-	}
-
-	private function doIncr( $key, $value = 1 ) {
-		// optimize with FIFO lock
-		if ( !wincache_lock( $key ) ) {
-			return false;
-		}
-
-		$n = $this->doGet( $key );
-		if ( $this->isInteger( $n ) ) {
-			$n = max( $n + (int)$value, 0 );
-			$oldTTL = wincache_ucache_info( false, $key )["ucache_entries"][1]["ttl_seconds"];
-			$this->doSet( $key, $n, $oldTTL );
-		} else {
-			$n = false;
-		}
-
-		wincache_unlock( $key );
-
-		return $n;
-	}
 }
