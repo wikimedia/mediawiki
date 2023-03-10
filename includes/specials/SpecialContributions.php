@@ -514,9 +514,8 @@ class SpecialContributions extends IncludableSpecialPage {
 			}
 		}
 
-		$unused = null; // T330138
 		return Html::rawElement( 'div', [ 'class' => 'mw-contributions-user-tools' ],
-			$this->msg( 'contributions-subtitle' )->rawParams( $user, $unused )->params( $userObj->getName() )
+			$this->msg( 'contributions-subtitle' )->rawParams( $user )->params( $userObj->getName() )
 			. ' ' . $links
 		);
 	}
