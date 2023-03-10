@@ -2242,7 +2242,7 @@ return [
 			'colon-separator',
 		],
 		'dependencies' => [
-			'jquery.lengthLimit',
+			'mediawiki.widgets.visibleLengthLimit',
 			'oojs-ui-core',
 		],
 	],
