@@ -1505,11 +1505,9 @@ class ParserTestRunner {
 			}
 		}
 		if ( isset( $opts['showtocdata'] ) ) {
-			// FIXME: We probably want to update this to a different format
-			$sections = $output->getTOCData() !== null ?
-					  $output->getTOCData()->getSections() : [];
-			foreach ( $sections as $s ) {
-				$after[] = json_encode( $s->toLegacy() );
+			$tocData = $output->getTOCData();
+			if ( $tocData !== null ) {
+				$after[] = $tocData->prettyPrint();
 			}
 		}
 		if ( $metadataExpected === null ) {
