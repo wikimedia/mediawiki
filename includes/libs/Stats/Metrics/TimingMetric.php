@@ -46,6 +46,9 @@ class TimingMetric implements MetricInterface {
 	 */
 	private const TYPE_INDICATOR = "ms";
 
+	/** @var string|null */
+	private ?string $statsdNamespace = null;
+
 	/** @var BaseMetricInterface */
 	private BaseMetricInterface $baseMetric;
 
@@ -91,6 +94,10 @@ class TimingMetric implements MetricInterface {
 	 * @return void
 	 */
 	public function observe( float $value ): void {
+		if ( $this->statsdNamespace !== null ) {
+			$this->baseMetric->getStatsdDataFactory()->timing( $this->statsdNamespace, $value );
+			$this->statsdNamespace = null;
+		}
 		$this->baseMetric->addSample( new Sample( $this->baseMetric->getLabelValues(), $value ) );
 	}
 
@@ -144,6 +151,14 @@ class TimingMetric implements MetricInterface {
 			// Log the condition and give the caller something that will absorb calls.
 			trigger_error( $ex->getMessage(), E_USER_WARNING );
 			return new NullMetric;
+		}
+		return $this;
+	}
+
+	/** @inheritDoc */
+	public function copyToStatsdAt( string $statsdNamespace ) {
+		if ( $this->baseMetric->getStatsdDataFactory() !== null ) {
+			$this->statsdNamespace = $statsdNamespace;
 		}
 		return $this;
 	}

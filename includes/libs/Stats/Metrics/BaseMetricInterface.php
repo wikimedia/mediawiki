@@ -21,6 +21,7 @@ declare( strict_types=1 );
 
 namespace Wikimedia\Stats\Metrics;
 
+use IBufferingStatsdDataFactory;
 use Wikimedia\Stats\Sample;
 
 /**
@@ -120,4 +121,17 @@ interface BaseMetricInterface {
 	 * @return void
 	 */
 	public function clearLabels(): void;
+
+	/**
+	 * Gets StatsD Data Factory instance or null.
+	 */
+	public function getStatsdDataFactory();
+
+	/**
+	 * StatsD Data Factory instance to copy metrics to.
+	 *
+	 * @param IBufferingStatsdDataFactory $statsdDataFactory
+	 * @return BaseMetricInterface
+	 */
+	public function withStatsdDataFactory( IBufferingStatsdDataFactory $statsdDataFactory );
 }

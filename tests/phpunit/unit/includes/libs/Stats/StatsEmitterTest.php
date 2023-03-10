@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Tests\Stats;
 
+use IBufferingStatsdDataFactory;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\NullLogger;
 use UDPTransport;
@@ -19,6 +20,10 @@ use Wikimedia\Stats\StatsFactory;
 class StatsEmitterTest extends TestCase {
 
 	public function testSend() {
+		// set up a mock statsd data factory
+		$statsd = $this->createMock( IBufferingStatsdDataFactory::class );
+		$statsd->expects( $this->exactly( 1 ) )->method( "updateCount" );
+
 		// initialize cache
 		$cache = new StatsCache();
 
@@ -40,7 +45,11 @@ class StatsEmitterTest extends TestCase {
 		// initialize metrics factory
 		$m = new StatsFactory( 'test', $cache, $emitter, new NullLogger );
 
-		$m->getCounter( 'bar' )->increment();
+		// inject statsd factory
+		$m->withStatsdDataFactory( $statsd );
+
+		// populate metric with statsd copy
+		$m->getCounter( 'bar' )->copyToStatsdAt( 'test.metric' )->increment();
 
 		// fetch same metric from cache and use it
 		$metric = $m->getCounter( 'bar' );
