@@ -327,6 +327,8 @@ because of Phabricator reports.
 * .box-sizing() Less mixin, deprecated since 1.37, has been removed.
   Use CSS box-sizing now.
 * MimeAnalyzer::getIEMimeTypes() and IEContentAnalyzer were removed.
+* Language::commafy and mw.language.commafy, deprecated since 1.36, has been
+  removed.
 * …
 
 === Deprecations in 1.40 ===
