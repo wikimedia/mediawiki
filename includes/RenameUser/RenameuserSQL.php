@@ -2,15 +2,20 @@
 
 namespace MediaWiki\RenameUser;
 
-use Job;
+use JobQueueGroup;
 use ManualLogEntry;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
-use MediaWiki\Title\Title;
+use MediaWiki\Title\TitleFactory;
+use MediaWiki\User\UserFactory;
+use Psr\Log\LoggerInterface;
 use RenameUserJob;
 use SpecialLog;
 use User;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Class which performs the actual renaming of users
@@ -80,12 +85,6 @@ class RenameuserSQL {
 	 */
 	private $debugPrefix = '';
 
-	/**
-	 * Users with more than this number of edits will have their rename operation
-	 * deferred via the job queue.
-	 */
-	private const CONTRIB_JOB = 500;
-
 	// B/C constants for tablesJob field
 	public const NAME_COL = 0;
 	public const UID_COL  = 1;
@@ -93,6 +92,24 @@ class RenameuserSQL {
 
 	/** @var HookRunner */
 	private $hookRunner;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var UserFactory */
+	private $userFactory;
+
+	/** @var JobQueueGroup */
+	private $jobQueueGroup;
+
+	/** @var TitleFactory */
+	private $titleFactory;
+
+	/** @var LoggerInterface */
+	private $logger;
+
+	/** @var int */
+	private $updateRowsPerJob;
 
 	/**
 	 * Constructor
@@ -107,7 +124,14 @@ class RenameuserSQL {
 	 *    'checkIfUserExists' - bool, whether to update the user table
 	 */
 	public function __construct( $old, $new, $uid, User $renamer, $options = [] ) {
-		$this->hookRunner = new HookRunner( MediaWikiServices::getInstance()->getHookContainer() );
+		$services = MediaWikiServices::getInstance();
+		$this->hookRunner = new HookRunner( $services->getHookContainer() );
+		$this->loadBalancer = $services->getDBLoadBalancer();
+		$this->userFactory = $services->getUserFactory();
+		$this->jobQueueGroup = $services->getJobQueueGroup();
+		$this->titleFactory = $services->getTitleFactory();
+		$this->updateRowsPerJob = $services->getMainConfig()->get( MainConfigNames::UpdateRowsPerJob );
+		$this->logger = LoggerFactory::getInstance( 'Renameuser' );
 
 		$this->old = $old;
 		$this->new = $new;
@@ -137,7 +161,7 @@ class RenameuserSQL {
 		if ( $this->debugPrefix ) {
 			$msg = "{$this->debugPrefix}: $msg";
 		}
-		wfDebugLog( 'Renameuser', $msg );
+		$this->logger->debug( $msg );
 	}
 
 	/**
@@ -145,18 +169,16 @@ class RenameuserSQL {
 	 * @return bool
 	 */
 	public function rename() {
-		global $wgUpdateRowsPerJob;
-
 		// Grab the user's edit count first, used in log entry
-		$contribs = User::newFromId( $this->uid )->getEditCount();
+		$contribs = $this->userFactory->newFromId( $this->uid )->getEditCount();
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->loadBalancer->getConnection( DB_PRIMARY );
 		$atomicId = $dbw->startAtomic( __METHOD__, $dbw::ATOMIC_CANCELABLE );
 
 		$this->hookRunner->onRenameUserPreRename( $this->uid, $this->old, $this->new );
 
 		// Make sure the user exists if needed
-		if ( $this->checkIfUserExists && !self::lockUserAndGetId( $this->old ) ) {
+		if ( $this->checkIfUserExists && !$this->lockUserAndGetId( $this->old ) ) {
 			$this->debug( "User {$this->old} does not exist, bailing out" );
 			$dbw->cancelAtomic( __METHOD__, $atomicId );
 
@@ -179,7 +201,7 @@ class RenameuserSQL {
 
 		// Reset token to break login with central auth systems.
 		// Again, avoids user being logged in with old name.
-		$user = User::newFromId( $this->uid );
+		$user = $this->userFactory->newFromId( $this->uid );
 
 		$user->load( User::READ_LATEST );
 		SessionManager::singleton()->invalidateSessionsForUser( $user );
@@ -196,8 +218,8 @@ class RenameuserSQL {
 		// Update this users block/rights log. Ideally, the logs would be historical,
 		// but it is really annoying when users have "clean" block logs by virtue of
 		// being renamed, which makes admin tasks more of a pain...
-		$oldTitle = Title::makeTitle( NS_USER, $this->old );
-		$newTitle = Title::makeTitle( NS_USER, $this->new );
+		$oldTitle = $this->titleFactory->makeTitle( NS_USER, $this->old );
+		$newTitle = $this->titleFactory->makeTitle( NS_USER, $this->new );
 		$this->debug( "Updating logging table for {$this->old} to {$this->new}" );
 
 		// Exclude user renames per T200731
@@ -285,8 +307,8 @@ class RenameuserSQL {
 				# Update row counter
 				$jobParams['count']++;
 				# Once a job has $wgUpdateRowsPerJob rows, add it to the queue
-				if ( $jobParams['count'] >= $wgUpdateRowsPerJob ) {
-					$jobs[] = Job::factory( 'renameUser', $oldTitle, $jobParams );
+				if ( $jobParams['count'] >= $this->updateRowsPerJob ) {
+					$jobs[] = new RenameUserJob( $oldTitle, $jobParams );
 					$jobParams['minTimestamp'] = '0';
 					$jobParams['maxTimestamp'] = '0';
 					$jobParams['count'] = 0;
@@ -294,7 +316,7 @@ class RenameuserSQL {
 			}
 			# If there are any job rows left, add it to the queue as one job
 			if ( $jobParams['count'] > 0 ) {
-				$jobs[] = Job::factory( 'renameUser', $oldTitle, $jobParams );
+				$jobs[] = new RenameUserJob( $oldTitle, $jobParams );
 			}
 		}
 
@@ -319,7 +341,7 @@ class RenameuserSQL {
 		// jobs will see that the transaction was not committed and will cancel themselves.
 		$count = count( $jobs );
 		if ( $count > 0 ) {
-			MediaWikiServices::getInstance()->getJobQueueGroupFactory()->makeJobQueueGroup()->push( $jobs );
+			$this->jobQueueGroup->push( $jobs );
 			$this->debug( "Queued $count jobs for {$this->old} to {$this->new}" );
 		}
 
@@ -331,7 +353,7 @@ class RenameuserSQL {
 			function () use ( $dbw, $logEntry, $logid, $fname ) {
 				$dbw->startAtomic( $fname );
 				// Clear caches and inform authentication plugins
-				$user = User::newFromId( $this->uid );
+				$user = $this->userFactory->newFromId( $this->uid );
 				$user->load( User::READ_LATEST );
 				// Trigger the UserSaveSettings hook
 				$user->saveSettings();
@@ -352,8 +374,8 @@ class RenameuserSQL {
 	 * @param string $name Current wiki local user name
 	 * @return int Returns 0 if no row was found
 	 */
-	private static function lockUserAndGetId( $name ) {
-		return (int)wfGetDB( DB_PRIMARY )->selectField(
+	private function lockUserAndGetId( $name ) {
+		return (int)$this->loadBalancer->getConnection( DB_PRIMARY )->selectField(
 			'user',
 			'user_id',
 			[ 'user_name' => $name ],
