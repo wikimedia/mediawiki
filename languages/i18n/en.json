@@ -4541,7 +4541,7 @@
 	"log-name-renameuser": "User rename log",
 	"log-description-renameuser": "This is a log of changes to usernames.",
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|renamed}} user $4 ({{PLURAL:$6|$6 edit|$6 edits}}) to {{GENDER:$7|$5}}",
-	"logentry-renameuser-renameuser-legacier": "$1 renamed user $4 to {{GENDER:$7|$5}}",
+	"logentry-renameuser-renameuser-legacier": "$1 {{GENDER:$2|renamed}} user $4 to {{GENDER:$7|$5}}",
 	"logentry-renameuser-renameuser-legaciest": "$1",
 	"renameuser-move-log": "Automatically moved page while renaming the {{GENDER:$2|user}} \"[[User:$1|$1]]\" to \"[[User:$2|$2]]\"",
 	"action-renameuser": "rename users",
