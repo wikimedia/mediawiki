@@ -451,9 +451,6 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( 667, $this->cache->incr( $key ) );
 		$this->assertEquals( 667, $this->cache->get( $key ) );
 
-		$this->assertEquals( 664, $this->cache->decr( $key, 3 ) );
-		$this->assertEquals( 664, $this->cache->get( $key ) );
-
 		$this->assertTrue( $this->cache->delete( $key ) );
 		$this->assertFalse( $this->cache->get( $key ) );
 	}

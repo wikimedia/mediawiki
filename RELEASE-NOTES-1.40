@@ -329,6 +329,7 @@ because of Phabricator reports.
 * MimeAnalyzer::getIEMimeTypes() and IEContentAnalyzer were removed.
 * Language::commafy and mw.language.commafy, deprecated since 1.36, has been
   removed.
+* BagOStuff::decr(), deprecated since 1.28, has been removed.
 * …
 
 === Deprecations in 1.40 ===

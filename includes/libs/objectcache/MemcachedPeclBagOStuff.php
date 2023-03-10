@@ -267,17 +267,6 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		return $this->checkResult( $key, $result );
 	}
 
-	public function decr( $key, $value = 1, $flags = 0 ) {
-		$this->debug( "decr($key)" );
-
-		$routeKey = $this->validateKeyAndPrependRoute( $key );
-		$noReplyScope = $this->noReplyScope( $flags );
-		$result = $this->client->decrement( $routeKey, $value );
-		ScopedCallback::consume( $noReplyScope );
-
-		return $this->checkResult( $key, $result );
-	}
-
 	protected function doIncrWithInitAsync( $key, $exptime, $step, $init ) {
 		$this->debug( "incrWithInit($key)" );
 		$routeKey = $this->validateKeyAndPrependRoute( $key );

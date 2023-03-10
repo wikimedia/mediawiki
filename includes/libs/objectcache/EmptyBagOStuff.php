@@ -55,10 +55,6 @@ class EmptyBagOStuff extends MediumSpecificBagOStuff {
 		return false;
 	}
 
-	public function decr( $key, $value = 1, $flags = 0 ) {
-		return false;
-	}
-
 	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
 		// faster
 		return $init;

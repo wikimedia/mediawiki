@@ -448,17 +448,6 @@ abstract class BagOStuff implements
 	abstract public function incr( $key, $value = 1, $flags = 0 );
 
 	/**
-	 * Decrease stored value of $key by $value while preserving its TTL
-	 *
-	 * @param string $key
-	 * @param int $value Value to subtract from $key (default: 1) [optional]
-	 * @param int $flags Bit field of class WRITE_* constants [optional]
-	 * @return int|bool New value or false on failure
-	 * @deprecated Since 1.38
-	 */
-	abstract public function decr( $key, $value = 1, $flags = 0 );
-
-	/**
 	 * Increase the value of the given key (no TTL change) if it exists or create it otherwise
 	 *
 	 * This will create the key with the value $init and TTL $exptime instead if not present.
