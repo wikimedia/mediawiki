@@ -123,10 +123,6 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		return $this->doIncr( $key, $value );
 	}
 
-	public function decr( $key, $value = 1, $flags = 0 ) {
-		return $this->doIncr( $key, -$value );
-	}
-
 	private function doIncr( $key, $value = 1 ) {
 		$n = $this->doGet( $key );
 		if ( $this->isInteger( $n ) ) {

@@ -285,10 +285,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $this->doIncr( $key, $value, $flags );
 	}
 
-	public function decr( $key, $value = 1, $flags = 0 ) {
-		return $this->doIncr( $key, -$value, $flags );
-	}
-
 	private function doIncr( $key, $value = 1, $flags = 0 ) {
 		$mtime = $this->newLockingWriteSectionModificationTimestamp( $key, $scope );
 		if ( $mtime === null ) {

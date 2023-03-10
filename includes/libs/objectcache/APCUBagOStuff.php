@@ -120,26 +120,6 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		return $result;
 	}
 
-	public function decr( $key, $value = 1, $flags = 0 ) {
-		$result = false;
-		$value = (int)$value;
-
-		// https://github.com/krakjoe/apcu/issues/166
-		for ( $i = 0; $i < self::$CAS_MAX_ATTEMPTS; ++$i ) {
-			$oldCount = apcu_fetch( $key . self::KEY_SUFFIX );
-			if ( !is_int( $oldCount ) ) {
-				break;
-			}
-			$count = $oldCount - $value;
-			if ( apcu_cas( $key . self::KEY_SUFFIX, $oldCount, $count ) ) {
-				$result = $count;
-				break;
-			}
-		}
-
-		return $result;
-	}
-
 	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
 		// Use apcu 5.1.12 $ttl argument if apcu_inc() will initialize to $init:
 		// https://www.php.net/manual/en/function.apcu-inc.php
