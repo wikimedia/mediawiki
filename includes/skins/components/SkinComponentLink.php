@@ -114,12 +114,19 @@ class SkinComponentLink implements SkinComponent {
 	 *   if there is no link. eg: If you specify 'link-fallback' => 'span' than
 	 *   any non-link will output a "<span>" instead of just text.
 	 *
-	 * @return string
+	 * @return array Associated array with the following keys:
+	 * - html: HTML string
+	 * - array-attributes: HTML attributes as array of objects:
+	 * 		- key: Attribute name ex: 'href', 'class', 'id', ...
+	 * 		- value: Attribute value
+	 * - text: Text of the link
 	 */
 	private function makeLink( $key, $item, $options = [] ) {
 		$html = $item['html'] ?? null;
 		if ( $html ) {
-			return $html;
+			return [
+				'html' => $html
+			];
 		}
 		$text = $item['text'] ?? $this->msg( $item['msg'] ?? $key )->text();
 
@@ -149,6 +156,8 @@ class SkinComponentLink implements SkinComponent {
 			}
 		}
 
+		$attrs = [];
+		$linkHtmlAttributes = [];
 		if ( $isLink ) {
 			$attrs = $item;
 			foreach ( [ 'single-id', 'text', 'msg', 'tooltiponly', 'context', 'primary',
@@ -161,13 +170,24 @@ class SkinComponentLink implements SkinComponent {
 
 			if ( isset( $attrs['data'] ) ) {
 				foreach ( $attrs['data'] as $key => $value ) {
+					if ( $value === null ) {
+						continue;
+					}
 					$attrs[ 'data-' . $key ] = $value;
 				}
 				unset( $attrs[ 'data' ] );
 			}
 			$this->applyLinkTitleAttribs( $item, true, $attrs );
+			$class = $attrs['class'] ?? [];
 			if ( isset( $options['link-class'] ) ) {
-				$attrs['class'] = $this->addClassToClassList( $attrs['class'] ?? [], $options['link-class'] );
+				$class = $this->addClassToClassList( $class, $options['link-class'] );
+			}
+			$attrs['class'] = is_array( $class ) ? implode( ' ', $class ) : $class;
+			foreach ( $attrs as $key => $value ) {
+				if ( $value === null ) {
+					continue;
+				}
+				$linkHtmlAttributes[] = [ 'key' => $key, 'value' => $value ];
 			}
 
 			if ( isset( $item['link-html'] ) ) {
@@ -178,8 +198,11 @@ class SkinComponentLink implements SkinComponent {
 				? 'a'
 				: $options['link-fallback'], $attrs, $html );
 		}
-
-		return $html;
+		return [
+			'html' => $html,
+			'array-attributes' => count( $linkHtmlAttributes ) > 0 ? $linkHtmlAttributes : null,
+			'text' => trim( $text )
+		];
 	}
 
 	/**
@@ -240,8 +263,6 @@ class SkinComponentLink implements SkinComponent {
 	 * @inheritDoc
 	 */
 	public function getTemplateData(): array {
-		return [
-			'html' => $this->makeLink( $this->key, $this->item, $this->options )
-		];
+		return $this->makeLink( $this->key, $this->item, $this->options );
 	}
 }
