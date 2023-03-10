@@ -51,6 +51,7 @@
  */
 
 // phpcs:disable MediaWiki.Usage.DeprecatedGlobalVariables
+use MediaWiki\HookContainer\FauxGlobalHookArray;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MainConfigSchema;
@@ -319,6 +320,17 @@ if ( $wgServer === false ) {
 		'https://www.mediawiki.org/wiki/Manual:$wgServer</a>.'
 	);
 }
+
+// Set up a fake $wgHooks array.
+// XXX: It would be nice if we could still get the originally configured hook handlers
+//      using the MainConfigNames::Hooks setting, but it's not really needed,
+//      since we need the HookContainer to be initialized first anyway.
+
+global $wgHooks;
+$wgHooks = new FauxGlobalHookArray(
+	MediaWikiServices::getInstance()->getHookContainer(),
+	$wgHooks
+);
 
 // Non-trivial expansion of: $wgCanonicalServer, $wgServerName.
 // These require calling global functions.

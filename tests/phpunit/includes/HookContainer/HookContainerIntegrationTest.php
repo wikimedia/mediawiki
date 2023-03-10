@@ -11,7 +11,6 @@ namespace MediaWiki\HookContainer {
 		 * @covers \MediaWiki\HookContainer\HookContainer::run
 		 */
 		public function testHookRunsWhenExtensionRegistered() {
-			$hookContainer = $this->getServiceContainer()->getHookContainer();
 			$extensionRegistry = ExtensionRegistry::getInstance();
 			$numHandlersExecuted = 0;
 			$handlers = [ 'FooHook' => [ [
@@ -22,6 +21,9 @@ namespace MediaWiki\HookContainer {
 			];
 			$reset = $extensionRegistry->setAttributeForTest( 'Hooks', $handlers );
 			$this->assertSame( 0, $numHandlersExecuted );
+
+			$this->resetServices();
+			$hookContainer = $this->getServiceContainer()->getHookContainer();
 			$hookContainer->run( 'FooHook', [ &$numHandlersExecuted ] );
 			$this->assertSame( 1, $numHandlersExecuted );
 			ScopedCallback::consume( $reset );
@@ -65,15 +67,7 @@ namespace MediaWiki\HookContainer {
 		 * @covers \MediaWiki\HookContainer\HookContainer::scopedRegister
 		 */
 		public function testHookRunsWithMultipleMixedHandlerTypes() {
-			$hookContainer = $this->getServiceContainer()->getHookContainer();
-			$numHandlersExecuted = 0;
-			$reset = $hookContainer->scopedRegister( 'FooHook', static function ( &$numHandlersRun ) {
-				$numHandlersRun++;
-			}, false );
-			$reset2 = $hookContainer->scopedRegister( 'FooHook', static function ( &$numHandlersRun ) {
-				$numHandlersRun++;
-			}, false );
-			$handlerThree = [
+			$handlerExt = [
 				'FooHook' => [
 					[ 'handler' => [
 						'class' => 'FooExtension\\FooExtensionHooks',
@@ -82,12 +76,25 @@ namespace MediaWiki\HookContainer {
 					]
 				]
 			];
-			$reset3 = ExtensionRegistry::getInstance()->setAttributeForTest( 'Hooks', $handlerThree );
+			$resetExt = ExtensionRegistry::getInstance()->setAttributeForTest( 'Hooks', $handlerExt );
+
+			$this->resetServices();
+			$hookContainer = $this->getServiceContainer()->getHookContainer();
+
+			$numHandlersExecuted = 0;
+			$reset = $hookContainer->scopedRegister( 'FooHook', static function ( &$numHandlersRun ) {
+				$numHandlersRun++;
+			}, false );
+			$reset2 = $hookContainer->scopedRegister( 'FooHook', static function ( &$numHandlersRun ) {
+				$numHandlersRun++;
+			}, false );
+
 			$hookContainer->run( 'FooHook', [ &$numHandlersExecuted ] );
 			$this->assertEquals( 3, $numHandlersExecuted );
+
 			ScopedCallback::consume( $reset );
 			ScopedCallback::consume( $reset2 );
-			ScopedCallback::consume( $reset3 );
+			ScopedCallback::consume( $resetExt );
 		}
 
 		/**
@@ -103,8 +110,11 @@ namespace MediaWiki\HookContainer {
 				'extensionPath' => '/path/to/extension.json'
 			];
 			$hooks = [ 'Mash' => [ $handler ] ];
-			$hookContainer = $this->getServiceContainer()->getHookContainer();
 			$reset = ExtensionRegistry::getInstance()->setAttributeForTest( 'Hooks', $hooks );
+
+			$this->resetServices();
+			$hookContainer = $this->getServiceContainer()->getHookContainer();
+
 			$arg = 0;
 			$ret = $hookContainer->run( 'Mash', [ &$arg ] );
 			$this->assertTrue( $ret );
@@ -124,8 +134,11 @@ namespace MediaWiki\HookContainer {
 				'extensionPath' => '/path/to/extension.json'
 			];
 			$hooks = [ 'Mash' => [ $handler ] ];
-			$hookContainer = $this->getServiceContainer()->getHookContainer();
 			$reset = ExtensionRegistry::getInstance()->setAttributeForTest( 'Hooks', $hooks );
+
+			$this->resetServices();
+			$hookContainer = $this->getServiceContainer()->getHookContainer();
+
 			$this->expectException( \UnexpectedValueException::class );
 			$arg = 0;
 			$hookContainer->run( 'Mash', [ &$arg ], [ 'noServices' => true ] );

@@ -336,6 +336,12 @@ because of Phabricator reports.
     It now emits deprecation warnings.
   - The protected Skin::lastModified is deprecated, and marked for @internal use
     and now emits deprecation warnings.
+* Manipulating $wgHooks after initialization is deprecated.
+  HookContainer::register() or HookContainer::scopedRegister() should be
+  used instead. During initialization, SettingsBuilder::registerHookHandlers
+  can be used. For backwards compatibility, $wgHooks is replaced by a fake
+  array that calls methods on HookContainer. $wgHooks can still be used as a
+  configuration variable, only dynamic manipulation is deprecated.
 * ParserOutput::{get,set}ExternalLinkTarget() and
   ParserOutput::{get,set}MaxTemplateDepth() have been deprecated and marked
   for @internal use only.

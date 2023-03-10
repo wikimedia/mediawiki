@@ -90,7 +90,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame(
 			[ $a ],
-			Hooks::getHandlers( 'MediaWikiHooksTest001' ),
+			array_values( Hooks::getHandlers( 'MediaWikiHooksTest001' ) ),
 			'Hook registered by $wgHooks'
 		);
 		$reset = $hookContainer->scopedRegister( 'MediaWikiHooksTest001', $b );
@@ -106,7 +106,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 		$hookContainer->register( 'MediaWikiHooksTest001', $b );
 		$this->assertSame(
 			[ $b ],
-			Hooks::getHandlers( 'MediaWikiHooksTest001' ),
+			array_values( Hooks::getHandlers( 'MediaWikiHooksTest001' ) ),
 			'Hook registered by Hook::register'
 		);
 	}
@@ -228,7 +228,9 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 		$hookContainer = $this->getServiceContainer()->getHookContainer();
 		$hookContainer->register( 'MediaWikiHooksTest001', 'NothingClass::someStatic' );
 		$this->expectDeprecation();
-		Hooks::run( 'MediaWikiHooksTest001', [], '1.31' );
+
+		$a = $b = 0;
+		Hooks::run( 'MediaWikiHooksTest001', [ $a, $b ], '1.31' );
 	}
 
 	/**
@@ -278,7 +280,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers Hooks::run
 	 */
-	public function testFatalError() {
+	public function testBadHookFunction() {
 		$hookContainer = $this->getServiceContainer()->getHookContainer();
 		$hookContainer->register( 'MediaWikiHooksTest001', static function () {
 			return 'test';
