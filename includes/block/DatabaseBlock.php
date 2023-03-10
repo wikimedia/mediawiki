@@ -732,8 +732,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @inheritDoc
 	 */
 	public function getId( $wikiId = self::LOCAL ): ?int {
-		// TODO: Enable deprecation warnings once cross-wiki accesses have been removed, see T274817
-		// $this->deprecateInvalidCrossWiki( $wikiId, '1.38' );
+		$this->deprecateInvalidCrossWiki( $wikiId, '1.38' );
 		return $this->mId;
 	}
 

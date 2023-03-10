@@ -384,6 +384,8 @@ because of Phabricator reports.
   Parser::getTargetLanguage() instead.
 * MagicWordArray::getVariableRegex(), deprecated in 1.36, now emits deprecation
   warnings.
+* AbstractBlock::getId() now emits deprecation warnings in case of cross-wiki
+  access. This use was deprecated in 1.38.
 * CommentStore::getStore, deprecated in 1.31, now emits deprecation warnings.
 * BacklinkCache::get(), ::getLinks() and ::getCascadeProtectedLinks(),
   deprecated in 1.37, now emit deprecation warnings.
