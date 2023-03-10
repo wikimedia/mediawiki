@@ -1216,7 +1216,11 @@ MESSAGE;
 			}
 		} elseif ( $states ) {
 			$this->errors[] = 'Problematic modules: '
-				. $context->encodeJson( $states );
+				// Don't issue a server-side warning for client errors. (T331641)
+				// Modules with invalid encoded names can't be registered, but can be requested
+				// by forming a bad URL.
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				. @$context->encodeJson( $states );
 		}
 
 		return $out;
