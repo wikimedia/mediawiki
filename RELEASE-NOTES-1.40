@@ -347,6 +347,8 @@ because of Phabricator reports.
 * ParserOptions::{get,set}ExternalLinkTarget() and
   ParserOptions::{get,set}MaxTemplateDepth() have been deprecated and marked
   for @internal use only.
+* ParserOutput::getCategories() has been deprecated; use ::getCategoryNames()
+  and ::getCategorySortKey() instead.
 * TransactionProfiler::setSilenced() is deprecated.
   Use TransactionProfiler::silenceForScope() instead.
 * The following methods in the Title class, deprecated since 1.37, emits

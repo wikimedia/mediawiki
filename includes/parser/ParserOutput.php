@@ -712,8 +712,28 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return array_map( 'strval', array_keys( $this->mCategories ) );
 	}
 
+	/**
+	 * @deprecated since 1.40; use ::getCategoryNames() and
+	 * ::getCategorySortKey()instead. This function will be
+	 * made @internal in a future release.
+	 */
 	public function &getCategories() {
 		return $this->mCategories;
+	}
+
+	/**
+	 * Return the sort key for a given category name, or `null` if the
+	 * category is not present in this ParserOutput.
+	 * @param string $name The category name
+	 * @return ?string The sort key for the category, or `null` if the
+	 *  category is not present in this ParserOutput
+	 * @since 1.40
+	 */
+	public function getCategorySortKey( string $name ): ?string {
+		// This API avoids exposing the fact that numeric string category
+		// names are going to be converted to 'int' when used as array
+		// keys for the `mCategories` field.
+		return $this->mCategories[$name] ?? null;
 	}
 
 	/**
