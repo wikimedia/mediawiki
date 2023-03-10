@@ -1096,6 +1096,8 @@
 	"prefs-email": "Nastavení e-mailu",
 	"prefs-rendering": "Vzhled",
 	"prefs-searchmisc": "Obecné",
+	"searchprefs": "Hledat v nastaveních",
+	"searchprefs-noresults": "Žádné výsledky",
 	"saveprefs": "Uložit nastavení",
 	"restoreprefs": "Obnovit všechna výchozí nastavení",
 	"prefs-editing": "Editace",

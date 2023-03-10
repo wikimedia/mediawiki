@@ -2787,6 +2787,7 @@
 	"months": "{{PLURAL:$1|$1 monato|$1 monati}}",
 	"years": "{{PLURAL:$1|$1 yaro|$1 yari}}",
 	"ago": "$1 ante nun",
+	"just-now": "jus nun",
 	"hours-ago": "$1 {{PLURAL:$1|horo|hori}} ante nun",
 	"minutes-ago": "$1 {{PLURAL:$1|minuto|minuti}} ante nun",
 	"seconds-ago": "$1 {{PLURAL:$1|sekundo|sekundi}} ante nun",
