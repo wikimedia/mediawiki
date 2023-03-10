@@ -281,46 +281,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $result;
 	}
 
-	public function incr( $key, $value = 1, $flags = 0 ) {
-		return $this->doIncr( $key, $value, $flags );
-	}
-
-	public function decr( $key, $value = 1, $flags = 0 ) {
-		return $this->doIncr( $key, -$value, $flags );
-	}
-
-	private function doIncr( $key, $value = 1, $flags = 0 ) {
-		$mtime = $this->newLockingWriteSectionModificationTimestamp( $key, $scope );
-		if ( $mtime === null ) {
-			// Timeout or I/O error during lock acquisition
-			return false;
-		}
-
-		$data = $this->fetchBlobs( [ $key ] )[$key];
-		if ( $data ) {
-			$serialValue = $data[self::BLOB_VALUE];
-			if ( $this->isInteger( $serialValue ) ) {
-				$newValue = max( (int)$serialValue + (int)$value, 0 );
-				$result = $this->modifyBlobs(
-					[ $this, 'modifyTableSpecificBlobsForSet' ],
-					$mtime,
-					// Preserve the old expiry timestamp
-					[ $key => [ $newValue, $data[self::BLOB_EXPIRY] ] ]
-				) ? $newValue : false;
-			} else {
-				$result = false;
-				$this->logger->warning( __METHOD__ . ": $key is a non-integer" );
-			}
-		} else {
-			$result = false;
-			$this->logger->debug( __METHOD__ . ": $key does not exists" );
-		}
-
-		$this->updateOpStats( $value >= 0 ? self::METRIC_OP_INCR : self::METRIC_OP_DECR, [ $key ] );
-
-		return $result;
-	}
-
 	protected function doGetMulti( array $keys, $flags = 0 ) {
 		$result = [];
 		$valueSizeByKey = [];

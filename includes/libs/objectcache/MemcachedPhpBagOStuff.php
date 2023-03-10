@@ -122,32 +122,6 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		return $res;
 	}
 
-	public function incr( $key, $value = 1, $flags = 0 ) {
-		$routeKey = $this->validateKeyAndPrependRoute( $key );
-		$n = $this->client->incr( $routeKey, $value );
-
-		$res = ( $n !== false && $n !== null ) ? $n : false;
-
-		if ( $this->client->_last_cmd_status !== self::ERR_NONE ) {
-			$this->setLastError( $this->client->_last_cmd_status );
-		}
-
-		return $res;
-	}
-
-	public function decr( $key, $value = 1, $flags = 0 ) {
-		$routeKey = $this->validateKeyAndPrependRoute( $key );
-		$n = $this->client->decr( $routeKey, $value );
-
-		$res = ( $n !== false && $n !== null ) ? $n : false;
-
-		if ( $this->client->_last_cmd_status !== self::ERR_NONE ) {
-			$this->setLastError( $this->client->_last_cmd_status );
-		}
-
-		return $res;
-	}
-
 	protected function doIncrWithInitAsync( $key, $exptime, $step, $init ) {
 		$routeKey = $this->validateKeyAndPrependRoute( $key );
 		$watchPoint = $this->watchErrors();

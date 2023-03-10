@@ -214,10 +214,6 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $ok, "Expiry set for all keys" );
 		$this->assertSame( 1, $this->cache->get( $key1 ), "Key still live" );
 
-		$this->assertEquals( 2, $this->cache->incr( $key1 ) );
-		$this->assertEquals( 3, $this->cache->incr( $key2 ) );
-		$this->assertEquals( 4, $this->cache->incr( $key3 ) );
-
 		// cleanup
 		$this->cache->deleteMulti( [ $key1, $key2, $key3, $key4 ] );
 	}
@@ -273,15 +269,6 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 		$now += 11;
 
 		$this->assertFalse( $cache->get( $key ), "Value expired" );
-	}
-
-	public function testIncr() {
-		$key = $this->cache->makeKey( $this->testKey() );
-		$this->cache->add( $key, 0, 5 );
-		$this->cache->incr( $key );
-		$expectedValue = 1;
-		$actualValue = $this->cache->get( $key );
-		$this->assertEquals( $expectedValue, $actualValue, 'Value should be 1 after incrementing' );
 	}
 
 	public function testIncrWithInit() {
@@ -448,11 +435,8 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 		$this->cache->set( $key, 666, 10, BagOStuff::WRITE_ALLOW_SEGMENTS );
 
 		$this->assertEquals( 666, $this->cache->get( $key ) );
-		$this->assertEquals( 667, $this->cache->incr( $key ) );
+		$this->assertEquals( 667, $this->cache->incrWithInit( $key, 10 ) );
 		$this->assertEquals( 667, $this->cache->get( $key ) );
-
-		$this->assertEquals( 664, $this->cache->decr( $key, 3 ) );
-		$this->assertEquals( 664, $this->cache->get( $key ) );
 
 		$this->assertTrue( $this->cache->delete( $key ) );
 		$this->assertFalse( $this->cache->get( $key ) );

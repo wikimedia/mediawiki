@@ -261,7 +261,7 @@ parsoid={
 !! metadata/php
 {"toclevel":1,"level":"2","line":"a","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"a","linkAnchor":"a"}
 {"toclevel":1,"level":"2","line":"b","number":"2","index":"","fromtitle":false,"byteoffset":null,"anchor":"b","linkAnchor":"b"}
-!! metadata/parsoid
+!! metadata/parsoid+standalone
 {"toclevel":1,"level":"2","line":"a","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"a","linkAnchor":"a"}
 {"toclevel":1,"level":"2","line":"b","number":"2","index":"T-2","fromtitle":"Template:1x","byteoffset":null,"anchor":"b","linkAnchor":"b"}
 !! metadata/parsoid+integrated
@@ -318,4 +318,86 @@ parsoid={
 {"toclevel":1,"level":"2","line":"c\n'd'\narray (\n)","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"c_'d'_array_(_)","linkAnchor":"c_'d'_array_(_)"}
 !! metadata/parsoid
 {"toclevel":1,"level":"2","line":"c'd'\narray (\n)","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"c'd'_array_(_)","linkAnchor":"c'd'_array_(_)"}
+!! end
+
+# This is confusing when using the legacy 'byteoffset' name in the
+# JSON (T319141)
+!! test
+Offsets in toc metadata should be unicode codepoints, not bytes or UCS-2
+!! config
+wgFragmentMode=[ "html5", "legacy" ]
+!! options
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+showtocdata
+nohtml
+!! wikitext
+==One 💩==
+==Two 💩==
+==Three 💩==
+!! metadata
+{"toclevel":1,"level":"2","line":"One \ud83d\udca9","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":0,"anchor":"One_\ud83d\udca9","linkAnchor":"One_\ud83d\udca9"}
+{"toclevel":1,"level":"2","line":"Two \ud83d\udca9","number":"2","index":"2","fromtitle":"Parser_test","byteoffset":10,"anchor":"Two_\ud83d\udca9","linkAnchor":"Two_\ud83d\udca9"}
+{"toclevel":1,"level":"2","line":"Three \ud83d\udca9","number":"3","index":"3","fromtitle":"Parser_test","byteoffset":20,"anchor":"Three_\ud83d\udca9","linkAnchor":"Three_\ud83d\udca9"}
+!! end
+
+!! test
+Handle multi-part content transclusion blocks
+!! options
+nohtml
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! wikitext
+<div>
+{{1x|1=
+==foo==
+</div>
+}}
+==bar==
+!! metadata
+{"toclevel":1,"level":"2","line":"foo","number":"1","index":"","fromtitle":false,"byteoffset":null,"anchor":"foo","linkAnchor":"foo"}
+{"toclevel":1,"level":"2","line":"bar","number":"2","index":"2","fromtitle":"Parser_test","byteoffset":32,"anchor":"bar","linkAnchor":"bar"}
+!! end
+
+# Parsoid's parser function implementation used for standalone testing
+# is incomplete and only used in parser tests.
+# So, use HTML h-tags instead of wikitext h-tags in the parser function
+# to let us run this test in both standalone and integrated modes.
+!! test
+Handle parser functions generating sections
+!! options
+nohtml
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! wikitext
+{{#if:1|<h2>foo</h2>|unused}}
+==bar==
+!! metadata
+{"toclevel":1,"level":"2","line":"foo","number":"1","index":"","fromtitle":false,"byteoffset":null,"anchor":"foo","linkAnchor":"foo"}
+{"toclevel":1,"level":"2","line":"bar","number":"2","index":"1","fromtitle":"Parser_test","byteoffset":30,"anchor":"bar","linkAnchor":"bar"}
+!! end
+
+!! test
+Handle top-level template args generating sections
+!! options
+nohtml
+showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
+!! wikitext
+{{{foo|
+==tplarg==
+|abcd}}}
+!! metadata
+{"toclevel":1,"level":"2","line":"tplarg","number":"1","index":"","fromtitle":false,"byteoffset":null,"anchor":"tplarg","linkAnchor":"tplarg"}
 !! end

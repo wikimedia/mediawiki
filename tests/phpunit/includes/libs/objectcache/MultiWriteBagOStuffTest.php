@@ -164,30 +164,6 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $cache->add( 'key', 1, 30 ) );
 	}
 
-	public function testIncr() {
-		$key = $this->cache->makeKey( 'key' );
-
-		$this->cache->add( $key, 7, 30 );
-
-		$value = $this->cache->incr( $key );
-		$this->assertSame( 8, $value, 'Value after incrementing' );
-
-		$value = $this->cache->get( $key );
-		$this->assertSame( 8, $value, 'Value after incrementing' );
-	}
-
-	public function testDecr() {
-		$key = $this->cache->makeKey( 'key' );
-
-		$this->cache->add( $key, 10, 30 );
-
-		$value = $this->cache->decr( $key );
-		$this->assertSame( 9, $value, 'Value after decrementing' );
-
-		$value = $this->cache->get( $key );
-		$this->assertSame( 9, $value, 'Value after decrementing' );
-	}
-
 	public function testIncrWithInit() {
 		$key = $this->cache->makeKey( 'key' );
 		$val = $this->cache->incrWithInit( $key, 0, 1, 3 );
