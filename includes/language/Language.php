@@ -326,11 +326,12 @@ class Language implements Bcp47Code {
 	 * If the language code comes from user input, check ::isValidCode()
 	 * before calling this method.
 	 *
-	 * @deprecated since 1.35, use LanguageFactory
+	 * @deprecated since 1.35, use LanguageFactory. Hard-deprecated since 1.40.
 	 * @param string $code
 	 * @return Language
 	 */
 	public static function factory( $code ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $code );
 	}
 
@@ -4284,11 +4285,12 @@ class Language implements Bcp47Code {
 	 * Get the "parent" language which has a converter to convert a "compatible" language
 	 * (in another variant) to this language (eg. zh for zh-cn, but not en for en-gb).
 	 *
-	 * @deprecated since 1.35, use LanguageFactory::getParentLanguage
+	 * @deprecated since 1.35, use LanguageFactory::getParentLanguage. Hard-deprecated since 1.40.
 	 * @return Language|null
 	 * @since 1.22
 	 */
 	public function getParentLanguage() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()->getLanguageFactory()
 			->getParentLanguage( $this );
 	}
