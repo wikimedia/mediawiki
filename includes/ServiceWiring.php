@@ -103,6 +103,7 @@ use MediaWiki\Linker\LinkTargetLookup;
 use MediaWiki\Linker\LinkTargetStore;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Mail\Emailer;
+use MediaWiki\Mail\EmailUser;
 use MediaWiki\Mail\IEmailer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\MediaWikiServices;
@@ -643,6 +644,18 @@ return [
 
 	'Emailer' => static function ( MediaWikiServices $services ): IEmailer {
 		return new Emailer();
+	},
+
+	'EmailUser' => static function ( MediaWikiServices $services ): EmailUser {
+		return new EmailUser(
+			new ServiceOptions( EmailUser::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getHookContainer(),
+			$services->getUserOptionsLookup(),
+			$services->getCentralIdLookup(),
+			$services->getPermissionManager(),
+			$services->getUserFactory(),
+			$services->getEmailer()
+		);
 	},
 
 	'EventRelayerGroup' => static function ( MediaWikiServices $services ): EventRelayerGroup {

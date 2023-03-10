@@ -866,7 +866,7 @@ class Message implements MessageSpecifier, Serializable {
 	 *
 	 * @return Message $this
 	 */
-	public function inContentLanguage() {
+	public function inContentLanguage(): self {
 		$forceUIMsgAsContentMsg = MediaWikiServices::getInstance()->getMainConfig()->get(
 			MainConfigNames::ForceUIMsgAsContentMsg );
 		if ( in_array( $this->key, (array)$forceUIMsgAsContentMsg ) ) {
