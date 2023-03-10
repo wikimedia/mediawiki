@@ -706,7 +706,10 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * @since 1.38
 	 */
 	public function getCategoryNames(): array {
-		return array_keys( $this->mCategories );
+		# Note that numeric category names get converted to 'int' when
+		# stored as array keys; stringify the keys to ensure they
+		# return to original string form so as not to confuse callers.
+		return array_map( 'strval', array_keys( $this->mCategories ) );
 	}
 
 	public function &getCategories() {
@@ -2289,7 +2292,9 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		}
 		// @todo: Accumulators should also be handled uniformly
 		foreach ( $this->mCategories as $cat => $key ) {
-			$metadata->addCategory( $cat, $key );
+			// Numeric category strings are going to come out of the
+			// `mCategories` array as ints; cast back to string.
+			$metadata->addCategory( (string)$cat, $key );
 		}
 		$metadata->addModules( $this->mModules );
 		$metadata->addModuleStyles( $this->mModuleStyles );

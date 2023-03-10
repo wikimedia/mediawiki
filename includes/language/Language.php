@@ -3370,27 +3370,6 @@ class Language implements Bcp47Code {
 	}
 
 	/**
-	 * Adds commas to a given number.  NumberFormatting class is used
-	 * when available for correct implementation as per tr35
-	 * specification of unicode.
-	 *
-	 * @since 1.19
-	 * @deprecated in 1.36 use formatNum
-	 * @param string|null $number Expected to be a numeric string without (thousand) group
-	 *  separators. Decimal separator, if present, must be a dot. Any non-string will be cast to
-	 *  string.
-	 * @return string
-	 */
-	public function commafy( $number ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		// Validate the input argument.
-		if ( $number === null || $number === '' ) {
-			return '';
-		}
-		return $this->formatNumInternal( $number, true, false );
-	}
-
-	/**
 	 * @return string
 	 */
 	public function digitGroupingPattern() {

@@ -281,9 +281,10 @@ class CategoryMembershipChangeJob extends Job {
 				->getRevisionParserOutput();
 		}
 
-		// array keys will cast numeric category names to ints
-		// so we need to cast them back to strings to avoid breaking things!
-		return array_map( 'strval', array_keys( $output->getCategories() ) );
+		// array keys will cast numeric category names to ints;
+		// ::getCategoryNames() is careful to cast them back to strings
+		// to avoid breaking things!
+		return $output->getCategoryNames();
 	}
 
 	public function getDeduplicationInfo() {

@@ -327,6 +327,8 @@ because of Phabricator reports.
 * .box-sizing() Less mixin, deprecated since 1.37, has been removed.
   Use CSS box-sizing now.
 * MimeAnalyzer::getIEMimeTypes() and IEContentAnalyzer were removed.
+* Language::commafy and mw.language.commafy, deprecated since 1.36, has been
+  removed.
 * …
 
 === Deprecations in 1.40 ===
@@ -342,8 +344,8 @@ because of Phabricator reports.
   can be used. For backwards compatibility, $wgHooks is replaced by a fake
   array that calls methods on HookContainer. $wgHooks can still be used as a
   configuration variable, only dynamic manipulation is deprecated.
-* ParserOutput::{get,set}ExternalLinkTarget() and
-  ParserOutput::{get,set}MaxTemplateDepth() have been deprecated and marked
+* ParserOptions::{get,set}ExternalLinkTarget() and
+  ParserOptions::{get,set}MaxTemplateDepth() have been deprecated and marked
   for @internal use only.
 * TransactionProfiler::setSilenced() is deprecated.
   Use TransactionProfiler::silenceForScope() instead.
