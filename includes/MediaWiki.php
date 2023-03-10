@@ -607,14 +607,17 @@ class MediaWiki {
 	private function schedulePostSendJobs() {
 		$jobRunRate = $this->config->get( MainConfigNames::JobRunRate );
 		if (
-			// Recursion guard
-			$this->getTitle()->isSpecial( 'RunJobs' ) ||
-			// Short circuit if there is nothing to do
+			// Post-send job running disabled
 			$jobRunRate <= 0 ||
+			// Recursion guard for $wgRunJobsAsync
+			$this->getTitle()->isSpecial( 'RunJobs' ) ||
+			// Jobs cannot run due to site read-only mode
 			MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ||
-			// Avoid blocking the client on stock apache; see doPostOutputShutdown()
+			// HTTP response body and Content-Length headers likely to not match,
+			// causing post-send updates to block the client when using mod_php
 			$this->context->getRequest()->getMethod() === 'HEAD' ||
-			$this->context->getRequest()->getHeader( 'If-Modified-Since' )
+			$this->context->getRequest()->getHeader( 'If-Modified-Since' ) ||
+			$this->context->getRequest()->getHeader( 'If-None-Match' )
 		) {
 			return;
 		}
@@ -931,10 +934,10 @@ class MediaWiki {
 		// a) the transaction is not rolled back after success output was already sent
 		// b) error output is not jumbled together with success output in the response
 		$this->doPreOutputCommit();
-		// If needed, push a deferred update to run jobs after the output is send
+		// If needed, push a deferred update to run jobs after the output is sent
 		$this->schedulePostSendJobs();
-		// Ask OutputPage/Skin to render the page output
-		// If no exceptions occurred then send the output since it is safe now
+		// Ask OutputPage/Skin to stage the output (HTTP response body and headers).
+		// Flush the output to the client unless an exception occurred.
 		$this->outputResponsePayload( $output->output( true ) );
 	}
 
