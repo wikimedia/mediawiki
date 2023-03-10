@@ -819,6 +819,8 @@
 	"prefs-email": "Էլ-հասցեի ընտրանքներ",
 	"prefs-rendering": "Արտաքին տեսք",
 	"prefs-searchmisc": "Ընդհանուր",
+	"searchprefs": "Որոնման նախապատվություններ",
+	"searchprefs-noresults": "Գտնված չէ",
 	"saveprefs": "Հիշել",
 	"restoreprefs": "Վերականգնել սկզբնական կարգավորումները (բոլոր ներդիրներում)",
 	"prefs-editing": "Խմբագրում",
