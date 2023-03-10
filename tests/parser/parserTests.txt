@@ -7640,6 +7640,10 @@ wgRestrictDisplayTitle=false
 language=en variant=en-x-piglatin
 showtitle
 showtocdata
+parsoid={
+	"modes": [ "wt2html" ],
+	"wrapSections": true
+}
 !! wikitext
 <!--
 -->-{H|Foo=>en:Boo;Foo=>en-x-piglatin:Bob;}-<!--
@@ -7655,10 +7659,11 @@ Bar Re
 == -{Foo Bar}- ==
 !! metadata
 Bar
-{"toclevel":1,"level":"2","line":"Bob","number":"1","index":"1","fromtitle":"Parser_test","byteoffset":192,"anchor":"Foo","linkAnchor":"Foo"}
-{"toclevel":1,"level":"2","line":"Ball","number":"2","index":"2","fromtitle":"Parser_test","byteoffset":209,"anchor":"Bar","linkAnchor":"Bar"}
-{"toclevel":1,"level":"2","line":"Foo Bar","number":"3","index":"3","fromtitle":"Parser_test","byteoffset":226,"anchor":"-.7BFoo_Bar.7D-","linkAnchor":"-.7BFoo_Bar.7D-"}
-!! html
+Sections:
+ h2 index:1 toclevel:1 number:1 title:Parser_test off:192 anchor/linkAnchor:Foo line:Bob
+ h2 index:2 toclevel:1 number:2 title:Parser_test off:209 anchor/linkAnchor:Bar line:Ball
+ h2 index:3 toclevel:1 number:3 title:Parser_test off:226 anchor/linkAnchor:-.7BFoo_Bar.7D- line:Foo Bar
+!! html/php
 <p>
 Introductionway.
 Re
