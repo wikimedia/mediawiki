@@ -3506,6 +3506,10 @@ class OutputPage extends ContextSource {
 	 * @return string|WrappedStringList HTML
 	 */
 	public function getBottomScripts( $extraHtml = '' ) {
+		// Keep the hook appendage separate to preserve WrappedString objects.
+		// This enables BaseTemplate::getTrail() to merge them where possible.
+		$this->getHookRunner()->onSkinAfterBottomScripts( $this->getSkin(), $extraHtml );
+
 		$chunks = [];
 		$chunks[] = $this->getRlClient()->getBodyHtml();
 
@@ -3516,17 +3520,21 @@ class OutputPage extends ContextSource {
 		if ( $this->limitReportJSData ) {
 			$vars['wgPageParseReport'] = $this->limitReportJSData;
 		}
-		if ( $vars ) {
-			$rlContext = $this->getRlClientContext();
-			$chunks[] = ResourceLoader::makeInlineScript(
-				'mw.config.set(' . $rlContext->encodeJson( $vars ) . ');',
-				$this->CSP->getNonce()
-			);
+
+		if ( $this->getConfig()->get( MainConfigNames::ShowHostnames ) ) {
+			$vars['wgHostname'] = wfHostname();
 		}
 
-		// Keep the hook appendage separate to preserve WrappedString objects.
-		// This enables BaseTemplate::getTrail() to merge them where possible.
-		$this->getHookRunner()->onSkinAfterBottomScripts( $this->getSkin(), $extraHtml );
+		$elapsed = $this->getRequest()->getElapsedTime();
+		// seconds to milliseconds
+		$vars['wgBackendResponseTime'] = round( $elapsed * 1000 );
+
+		$rlContext = $this->getRlClientContext();
+		$chunks[] = ResourceLoader::makeInlineScript(
+			'mw.config.set(' . $rlContext->encodeJson( $vars ) . ');',
+			$this->CSP->getNonce()
+		);
+
 		$chunks = [ self::combineWrappedStrings( $chunks ) ];
 		if ( $extraHtml !== '' ) {
 			$chunks[] = $extraHtml;
@@ -4607,7 +4615,6 @@ class OutputPage extends ContextSource {
 		$tail = [
 			MWDebug::getDebugHTML( $skin ),
 			$this->getBottomScripts( $extraHtml ),
-			wfReportTime( $this->getCSP()->getNonce() ),
 			MWDebug::getHTMLDebugLog(),
 			Html::closeElement( 'body' ),
 			Html::closeElement( 'html' ),

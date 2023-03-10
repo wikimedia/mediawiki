@@ -457,6 +457,7 @@ because of Phabricator reports.
 * SelectQueryBuilder::lockForUpdate() is deprecated. Use ::forUpdate() with
   ::fetchRowCount() or ::acquireRowLocks() instead.
 * ArticleUndelete hook is deprecated. Use PageUndeleteComplete hook instead.
+* The global function wfReportTime() is now deprecated.
 * …
 
 === Other changes in 1.40 ===
