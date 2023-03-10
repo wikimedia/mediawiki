@@ -28,24 +28,6 @@
 		assert.strictEqual( mw.language.getData( 'en-US', 'testkey' ), 'testvalue', 'Case insensitive test for mw.language' );
 	} );
 
-	QUnit.test( 'mw.language.commafy test', function ( assert ) {
-		mw.language.setData( 'en', 'digitGroupingPattern', null );
-		mw.language.setData( 'en', 'digitTransformTable', null );
-		mw.language.setData( 'en', 'separatorTransformTable', null );
-
-		mw.config.set( 'wgUserLanguage', 'en' );
-		// Number grouping patterns are as per http://cldr.unicode.org/translation/number-patterns
-		assert.strictEqual( mw.language.commafy( 1234.567, '###0.#####' ), '1234.567', 'Pattern with no digit grouping separator defined' );
-		assert.strictEqual( mw.language.commafy( 123456789.567, '###0.#####' ), '123456789.567', 'Pattern with no digit grouping separator defined, bigger decimal part' );
-		assert.strictEqual( mw.language.commafy( 0.567, '###0.#####' ), '0.567', 'Decimal part 0' );
-		assert.strictEqual( mw.language.commafy( '.567', '###0.#####' ), '0.567', 'Decimal part missing. replace with zero' );
-		assert.strictEqual( mw.language.commafy( 1234, '##,#0.#####' ), '12,34', 'Pattern with no fractional part' );
-		assert.strictEqual( mw.language.commafy( -1234.567, '###0.#####' ), '-1234.567', 'Negative number' );
-		assert.strictEqual( mw.language.commafy( -1234.567, '#,###.00' ), '-1,234.56', 'Fractional part bigger than pattern.' );
-		assert.strictEqual( mw.language.commafy( 123456789.567, '###,##0.00' ), '123,456,789.56', 'Decimal part as group of 3' );
-		assert.strictEqual( mw.language.commafy( 123456789.567, '###,###,#0.00' ), '1,234,567,89.56', 'Decimal part as group of 3 and last one 2' );
-	} );
-
 	QUnit.test( 'mw.language.convertNumber', function ( assert ) {
 		mw.language.setData( 'en', 'digitGroupingPattern', null );
 		mw.language.setData( 'en', 'digitTransformTable', null );
