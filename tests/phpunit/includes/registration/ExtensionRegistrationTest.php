@@ -20,14 +20,19 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 	private $autoloaderState;
 
 	protected function setUp(): void {
+		global $wgHooks;
+
 		parent::setUp();
+
+		// For the purpose of this test, make $wgHooks behave like a real global config array.
+		// The FauxGlobalHooksArray will be restored by the testing framework automatically.
+		$wgHooks = [];
 
 		$this->autoloaderState = AutoLoader::getState();
 
 		// Make sure to restore globals
 		$this->stashMwGlobals( [
 			'wgAutoloadClasses',
-			'wgHooks',
 			'wgNamespaceProtection',
 			'wgNamespaceModels',
 			'wgAvailableRights',
@@ -140,7 +145,6 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideExportAttributesToGlobals
 	 */
 	public function testExportGlobals( $desc, $before, $manifest, $expected ) {
-		$this->stashMwGlobals( array_keys( $expected ) );
 		$this->setMwGlobals( $before );
 
 		$file = $this->makeManifestFile( $manifest );
@@ -511,69 +515,6 @@ class ExtensionRegistrationTest extends MediaWikiIntegrationTestCase {
 					'secondaryauth' => [ 'default' => 'DefaultSecondaryAuth' ],
 				],
 			]
-		];
-
-		yield [
-			'No global already set, $wgHooks',
-			[
-				'wgHooks' => [],
-			],
-			[
-				'Hooks' => [ 'AnEvent' => 'FooBarClass::onAnEvent' ]
-			],
-			[
-				'wgHooks' => [
-					'AnEvent' => [
-						'FooBarClass::onAnEvent'
-					],
-				],
-			],
-		];
-
-		yield [
-			'Global already set, $wgHooks',
-			[
-				'wgHooks' => [
-					'AnEvent' => [
-						'FooBarClass::onAnEvent'
-					],
-					'BooEvent' => [
-						'FooBarClass::onBooEvent',
-					],
-				],
-			],
-			[
-				'Hooks' => [ 'AnEvent' => 'BazBarClass::onAnEvent' ]
-			],
-			[
-				'wgHooks' => [
-					'AnEvent' => [
-						'FooBarClass::onAnEvent',
-						'BazBarClass::onAnEvent',
-					],
-					'BooEvent' => [
-						'FooBarClass::onBooEvent',
-					],
-				],
-			],
-		];
-
-		yield [
-			'Entries from HookHandlers should not go into $wgHooks',
-			[
-				'wgHooks' => [],
-			],
-			[
-				'Hooks' => [ 'AnEvent' => 'main' ],
-				'HookHandlers' => [
-					'main' => [
-						'class' => 'FooBarClass',
-					]
-				],
-			],
-			[
-				'wgHooks' => [],
-			],
 		];
 
 		yield [

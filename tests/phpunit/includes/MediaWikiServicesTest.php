@@ -24,6 +24,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 		$testConfig = new HashConfig();
 		$testConfig->set( 'ServiceWiringFiles', $globalConfig->get( 'ServiceWiringFiles' ) );
 		$testConfig->set( 'ConfigRegistry', $globalConfig->get( 'ConfigRegistry' ) );
+		$testConfig->set( 'Hooks', [] );
 
 		return $testConfig;
 	}

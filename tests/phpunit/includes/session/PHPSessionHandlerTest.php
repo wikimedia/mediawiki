@@ -284,18 +284,17 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		unset( $session );
 		session_id( $id );
 		session_start();
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'SessionCheckInfo' => [ static function ( &$reason ) {
+		$this->setTemporaryHook(
+			'SessionCheckInfo',
+			static function ( &$reason ) {
 				$reason = 'Testing';
 				return false;
-			} ],
-		] );
+			}
+		);
 		$this->assertNull( $manager->getSessionById( $id, true ) );
 		session_write_close();
 
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'SessionCheckInfo' => [],
-		] );
+		$this->clearHook( 'SessionCheckInfo' );
 		$this->assertNotNull( $manager->getSessionById( $id, true ) );
 	}
 

@@ -367,7 +367,7 @@ class HookContainer implements SalvageableService {
 	 * Attach an event handler to a given hook.
 	 *
 	 * @param string $hook Name of hook
-	 * @param callable|string|array $callback handler object to attach
+	 * @param mixed $callback handler object to attach
 	 */
 	public function register( string $hook, $callback ) {
 		$deprecatedHooks = $this->registry->getDeprecatedHooks();
@@ -375,10 +375,11 @@ class HookContainer implements SalvageableService {
 		if ( $deprecated ) {
 			$info = $deprecatedHooks->getDeprecationInfo( $hook );
 			if ( empty( $info['silent'] ) ) {
-				$deprecatedVersion = $info['deprecatedVersion'] ?? false;
-				$component = $info['component'] ?? false;
+				$handler = $this->normalizeHandler( $callback, $hook );
 				wfDeprecated(
-					"$hook hook", $deprecatedVersion, $component
+					"$hook hook (used in " . $handler['functionName'] . ")",
+					$info['deprecatedVersion'] ?? false,
+					$info['component'] ?? false
 				);
 			}
 		}

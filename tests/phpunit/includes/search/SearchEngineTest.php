@@ -352,11 +352,13 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 	public function testAugmentorSearch() {
 		// T303046
 		$this->markTestSkippedIfDbType( 'sqlite' );
+
+		$this->search->setHookContainer(
+			$this->createHookContainer( [ 'SearchResultsAugment' => [ [ $this, 'addAugmentors' ] ] ] )
+		);
+
 		$this->search->setNamespaces( [ 0, 1, 4 ] );
 		$resultSet = $this->search->searchText( 'smithee' );
-		// Not using mock since PHPUnit mocks do not work properly with references in params
-		$this->mergeMwGlobalArrayValue( 'wgHooks',
-			[ 'SearchResultsAugment' => [ [ $this, 'addAugmentors' ] ] ] );
 		$this->search->augmentSearchResults( $resultSet );
 		foreach ( $resultSet as $result ) {
 			$id = $result->getTitle()->getArticleID();

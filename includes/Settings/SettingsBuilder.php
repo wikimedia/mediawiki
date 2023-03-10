@@ -7,6 +7,7 @@ use Config;
 use ExtensionRegistry;
 use HashConfig;
 use MediaWiki\Config\IterableConfig;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Settings\Cache\CacheableSource;
 use MediaWiki\Settings\Cache\CachedSource;
@@ -705,6 +706,22 @@ class SettingsBuilder {
 		// TODO: Make hook handlers a separate structure in settings files,
 		//       like they are in extension.json.
 		return $this->loadArrayInternal( [ 'config' => [ 'Hooks' => $handlers ] ], __METHOD__ );
+	}
+
+	/**
+	 * Register a hook handler.
+	 *
+	 * @param string $hook
+	 * @param mixed $handler
+	 *
+	 * @return $this
+	 * @see HookContainer::register()
+	 */
+	public function registerHookHandler( string $hook, $handler ): self {
+		// NOTE: Rely on the merge strategy for the Hooks setting.
+		// TODO: Make hook handlers a separate structure in settings files,
+		//       like they are in extension.json.
+		return $this->loadArray( [ 'config' => [ 'Hooks' => [ $hook => [ $handler ] ] ] ] );
 	}
 
 	/**
