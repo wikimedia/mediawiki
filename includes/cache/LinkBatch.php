@@ -97,7 +97,7 @@ class LinkBatch {
 	 * @param ILoadBalancer|null $loadBalancer
 	 * @param LinksMigration|null $linksMigration
 	 * @param LoggerInterface|null $logger
-	 * @deprecated since 1.35 Use newLinkBatch of the LinkBatchFactory service instead
+	 * @deprecated since 1.35 Use newLinkBatch of the LinkBatchFactory service instead, Hard-deprecated in 1.40
 	 */
 	public function __construct(
 		iterable $arr = [],
@@ -109,6 +109,13 @@ class LinkBatch {
 		?LinksMigration $linksMigration = null,
 		?LoggerInterface $logger = null
 	) {
+		if ( !$linkCache ) {
+			wfDeprecatedMsg(
+				__METHOD__ . ' without providing all services is deprecated',
+				'1.35'
+			);
+		}
+
 		$getServices = static function () {
 			// BC hack. Use a closure so this can be unit-tested.
 			return MediaWikiServices::getInstance();

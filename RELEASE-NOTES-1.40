@@ -347,6 +347,8 @@ because of Phabricator reports.
 * ParserOptions::{get,set}ExternalLinkTarget() and
   ParserOptions::{get,set}MaxTemplateDepth() have been deprecated and marked
   for @internal use only.
+* ParserOutput::getCategories() has been deprecated; use ::getCategoryNames()
+  and ::getCategorySortKey() instead.
 * TransactionProfiler::setSilenced() is deprecated.
   Use TransactionProfiler::silenceForScope() instead.
 * The following methods in the Title class, deprecated since 1.37, emits
@@ -368,6 +370,8 @@ because of Phabricator reports.
   and the old name is now deprecated.
 * WikiPage::factory(), ::newFromID() and ::newFromRow, deprecated in 1.36, now
   emit deprecation warnings.
+* Manually constructing a LinkBatch object, deprecated in 1.35, now emits
+  deprecation warnings. Use LinkBatchFactory instead.
 * Calling MediaWikiSite::getFileUrl() without a $path argument is deprecated.
   If you need the "generic" full file path, with $1 not replaced by anything,
   call $site->getPath( MediaWikiSite::PATH_FILE ) directly.
@@ -428,6 +432,8 @@ because of Phabricator reports.
   ::getVariants(), ::hasVariants(), ::hasVariant(), ::getDefaultVariant(),
   ::getURLVariant(), ::getExtraHashOptions(), ::getConvRuleTitle(),
   deprecated in 1.35, now emit deprecation warnings.
+* Language::factory() and ::getParentLanguage(), deprecated in 1.35, now emit
+  deprecation warnings.
 * Executing maintenance scripts directly is deprecated. The maintenance/run.php
   entry point should be used instead.
 * MWHttpRequest::factory, deprecated in 1.34, now emits deprecation warnings.
