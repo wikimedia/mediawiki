@@ -252,22 +252,6 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 		return $res;
 	}
 
-	public function incr( $key, $value = 1, $flags = 0 ) {
-		return $this->doIncr( $key, $value );
-	}
-
-	private function doIncr( $key, $value = 1 ) {
-		// NOTE: This is non-atomic
-		$n = $this->get( $key, self::READ_LATEST );
-		// key exists?
-		if ( $this->isInteger( $n ) ) {
-			$n = max( $n + (int)$value, 0 );
-			return $this->set( $key, $n ) ? $n : false;
-		}
-
-		return false;
-	}
-
 	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
 		// NOTE: This is non-atomic
 		$curValue = $this->doGet( $key );

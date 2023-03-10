@@ -268,18 +268,6 @@ class CachedBagOStuff extends BagOStuff {
 		);
 	}
 
-	public function incr( $key, $value = 1, $flags = 0 ) {
-		$this->procCache->delete( $key );
-
-		return $this->store->proxyCall(
-			__FUNCTION__,
-			self::ARG0_KEY,
-			self::RES_NONKEY,
-			func_get_args(),
-			$this
-		);
-	}
-
 	public function incrWithInit( $key, $exptime, $step = 1, $init = null, $flags = 0 ) {
 		$this->procCache->delete( $key );
 
