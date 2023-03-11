@@ -45,11 +45,11 @@ class ZipDirectoryReaderTest extends MediaWikiIntegrationTestCase {
 
 	public function testSimple() {
 		$this->readZipAssertSuccess( 'class.zip', 'Simple ZIP' );
-		$this->assertEquals( $this->entries, [ [
+		$this->assertEquals( [ [
 			'name' => 'Class.class',
 			'mtime' => '20010115000000',
 			'size' => 1,
-		] ] );
+		] ], $this->entries );
 	}
 
 	public function testBadCentralEntrySignature() {

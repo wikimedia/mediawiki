@@ -16,6 +16,7 @@
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle" />
 		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage" />
+		<exclude name="MediaWiki.Usage.ForbiddenFunctions.eval" />
 		<exclude name="MediaWiki.Usage.ForbiddenFunctions.passthru" />
 		<exclude name="MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />

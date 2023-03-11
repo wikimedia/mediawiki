@@ -40,7 +40,7 @@ class SpecialRedirectTest extends MediaWikiIntegrationTestCase {
 
 		$status = $page->$method();
 		$this->assertSame(
-			$status->isGood(), $expectedStatus === 'good',
+			$expectedStatus === 'good', $status->isGood(),
 			$method . ' does not return expected status "' . $expectedStatus . '"'
 		);
 	}

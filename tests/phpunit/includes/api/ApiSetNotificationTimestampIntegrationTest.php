@@ -49,9 +49,9 @@ class ApiSetNotificationTimestampIntegrationTest extends ApiTestCase {
 
 		$watchedItemStore = $this->getServiceContainer()->getWatchedItemStore();
 		$this->assertEquals(
+			[ [ 'UTPage' => '20160101020202', 'UTPageNotWatched' => false, ] ],
 			$watchedItemStore->getNotificationTimestampsBatch(
-				$user, [ $pageWatched->getTitle(), $pageNotWatched->getTitle() ] ),
-			[ [ 'UTPage' => '20160101020202', 'UTPageNotWatched' => false, ] ]
+				$user, [ $pageWatched->getTitle(), $pageNotWatched->getTitle() ] )
 		);
 	}
 

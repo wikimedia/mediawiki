@@ -157,7 +157,7 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 		$command->unsafeParams( 'ThisIsStderr', '1>&2' );
 		$command->execute();
 		$this->assertCount( 1, $logger->getBuffer() );
-		$this->assertSame( trim( $logger->getBuffer()[0][2]['error'] ), 'ThisIsStderr' );
+		$this->assertSame( 'ThisIsStderr', trim( $logger->getBuffer()[0][2]['error'] ) );
 	}
 
 	public function testInput() {

@@ -118,7 +118,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		$this->assertInstanceOf( PageRestriction::class, $pageRestriction );
 		$this->assertEquals( $block->getId(), $pageRestriction->getBlockId() );
 		$this->assertEquals( $page->getId(), $pageRestriction->getValue() );
-		$this->assertEquals( $pageRestriction->getType(), PageRestriction::TYPE );
+		$this->assertEquals( PageRestriction::TYPE, $pageRestriction->getType() );
 		$this->assertEquals( $pageRestriction->getTitle()->getText(), $title );
 	}
 
@@ -140,7 +140,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 		$this->assertInstanceOf( NamespaceRestriction::class, $namespaceRestriction );
 		$this->assertEquals( $block->getId(), $namespaceRestriction->getBlockId() );
 		$this->assertSame( NS_USER, $namespaceRestriction->getValue() );
-		$this->assertEquals( $namespaceRestriction->getType(), NamespaceRestriction::TYPE );
+		$this->assertEquals( NamespaceRestriction::TYPE, $namespaceRestriction->getType() );
 	}
 
 	/**

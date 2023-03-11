@@ -75,8 +75,8 @@ class ContextTest extends \PHPUnit\Framework\TestCase {
 
 		// Request parameters
 		$this->assertEquals(
-			$ctx->getModules(),
-			[ 'foo', 'foo.quux', 'foo.baz', 'foo.bar', 'baz.quux' ]
+			[ 'foo', 'foo.quux', 'foo.baz', 'foo.bar', 'baz.quux' ],
+			$ctx->getModules()
 		);
 		$this->assertSame( 0, $ctx->getDebug() );
 		$this->assertEquals( 'zh', $ctx->getLanguage() );

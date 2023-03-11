@@ -1195,9 +1195,9 @@ EOF
 	public function testCSPSources() {
 		$po = new ParserOutput;
 
-		$this->assertEquals( $po->getExtraCSPScriptSrcs(), [], 'empty Script' );
-		$this->assertEquals( $po->getExtraCSPStyleSrcs(), [], 'empty Style' );
-		$this->assertEquals( $po->getExtraCSPDefaultSrcs(), [], 'empty Default' );
+		$this->assertEquals( [], $po->getExtraCSPScriptSrcs(), 'empty Script' );
+		$this->assertEquals( [], $po->getExtraCSPStyleSrcs(), 'empty Style' );
+		$this->assertEquals( [], $po->getExtraCSPDefaultSrcs(), 'empty Default' );
 
 		$po->addExtraCSPScriptSrc( 'foo.com' );
 		$po->addExtraCSPScriptSrc( 'bar.com' );
@@ -1205,9 +1205,9 @@ EOF
 		$po->addExtraCSPStyleSrc( 'fred.com' );
 		$po->addExtraCSPStyleSrc( 'xyzzy.com' );
 
-		$this->assertEquals( $po->getExtraCSPScriptSrcs(), [ 'foo.com', 'bar.com' ], 'Script' );
-		$this->assertEquals( $po->getExtraCSPDefaultSrcs(), [ 'baz.com' ], 'Default' );
-		$this->assertEquals( $po->getExtraCSPStyleSrcs(), [ 'fred.com', 'xyzzy.com' ], 'Style' );
+		$this->assertEquals( [ 'foo.com', 'bar.com' ], $po->getExtraCSPScriptSrcs(), 'Script' );
+		$this->assertEquals( [ 'baz.com' ], $po->getExtraCSPDefaultSrcs(), 'Default' );
+		$this->assertEquals( [ 'fred.com', 'xyzzy.com' ], $po->getExtraCSPStyleSrcs(), 'Style' );
 	}
 
 	/**

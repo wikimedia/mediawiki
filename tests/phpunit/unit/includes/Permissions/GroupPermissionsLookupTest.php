@@ -129,12 +129,12 @@ class GroupPermissionsLookupTest extends MediaWikiUnitTestCase {
 	public function testGetGrantedPermissions() {
 		$lookup = $this->createGroupPermissionsLookup();
 		$this->assertSame(
-			$lookup->getGrantedPermissions( 'unittesters' ),
-			[ 'test', 'runtest', 'nukeworld' ]
+			[ 'test', 'runtest', 'nukeworld' ],
+			$lookup->getGrantedPermissions( 'unittesters' )
 		);
 		$this->assertSame(
-			$lookup->getGrantedPermissions( 'inheritedtesters' ),
-			[ 'test', 'runtest', 'nukeworld' ]
+			[ 'test', 'runtest', 'nukeworld' ],
+			$lookup->getGrantedPermissions( 'inheritedtesters' )
 		);
 	}
 
@@ -144,12 +144,12 @@ class GroupPermissionsLookupTest extends MediaWikiUnitTestCase {
 	public function testGetRevokedPermissions() {
 		$lookup = $this->createGroupPermissionsLookup();
 		$this->assertSame(
-			$lookup->getRevokedPermissions( 'unittesters' ),
-			[ 'nukeworld' ]
+			[ 'nukeworld' ],
+			$lookup->getRevokedPermissions( 'unittesters' )
 		);
 		$this->assertSame(
-			$lookup->getRevokedPermissions( 'inheritedtesters' ),
-			[ 'nukeworld' ]
+			[ 'nukeworld' ],
+			$lookup->getRevokedPermissions( 'inheritedtesters' )
 		);
 	}
 }
