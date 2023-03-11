@@ -146,7 +146,7 @@ For notes on 1.39.x and older releases, see HISTORY.
 * Updated psr/container from 1.1.1 to 1.1.2.
 * Updated symfony/polyfill-php80 from 1.26.0 to 1.27.0.
 * Updated symfony/yaml from 5.4.10 to 5.4.17.
-* Updated wikimedia/less.php from 3.1.0 to 3.2.1.
+* Updated wikimedia/less.php from 3.1.0 to 4.0.0.
 * Updated wikimedia/object-factory from 4.0.0 to 5.0.1.
 * Updated wikimedia/parsoid from 0.16.0 to 0.17.0.
 * Updated wikimedia/remex-html from 3.0.2 to 3.0.3.
