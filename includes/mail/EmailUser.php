@@ -36,7 +36,7 @@ use MessageLocalizer;
 use MessageSpecifier;
 use RuntimeException;
 use SpecialPage;
-use Status;
+use StatusValue;
 use ThrottledError;
 use UnexpectedValueException;
 use User;
@@ -112,27 +112,24 @@ class EmailUser {
 	 * @param User $sender User sending the email
 	 * @return User|string User object on success or a string on error
 	 */
-	public function getTarget( $target, User $sender ) {
-		if ( $target == '' ) {
+	public function getTarget( string $target, User $sender ) {
+		$nu = $this->userFactory->newFromName( $target );
+		if ( !$nu instanceof User ) {
 			return 'notarget';
 		}
-
-		$nu = $this->userFactory->newFromName( $target );
 		$error = $this->validateTarget( $nu, $sender );
-
-		// @phan-suppress-next-line PhanTypeMismatchReturnNullable $nu can't be null if $error is empty
 		return $error ?: $nu;
 	}
 
 	/**
 	 * Validate target User
 	 *
-	 * @param User|null $target Target user
+	 * @param User $target Target user
 	 * @param User $sender User sending the email
 	 * @return string Error message or empty string if valid.
 	 */
-	public function validateTarget( $target, User $sender ) {
-		if ( !$target instanceof User || !$target->getId() ) {
+	public function validateTarget( User $target, User $sender ): string {
+		if ( !$target->getId() ) {
 			return 'notarget';
 		}
 
@@ -193,7 +190,7 @@ class EmailUser {
 	 * @return null|string|array Null on success, string on error, or array on
 	 *  hook error
 	 */
-	public function getPermissionsError( User $user, $editToken ) {
+	public function getPermissionsError( User $user, string $editToken ) {
 		if (
 			!$this->options->get( MainConfigNames::EnableEmail ) ||
 			!$this->options->get( MainConfigNames::EnableUserEmail )
@@ -240,20 +237,20 @@ class EmailUser {
 	 * @param bool $CCMe
 	 * @param User $sender
 	 * @param MessageLocalizer $messageLocalizer
-	 * @return Status|false
+	 * @return StatusValue
 	 */
 	public function submit(
-		$targetName,
-		$subject,
-		$text,
-		$CCMe,
+		string $targetName,
+		string $subject,
+		string $text,
+		bool $CCMe,
 		User $sender,
 		MessageLocalizer $messageLocalizer
-	) {
+	): StatusValue {
 		$target = $this->getTarget( $targetName, $sender );
 		if ( !$target instanceof User ) {
 			// Messages used here: notargettext, noemailtext, nowikiemailtext
-			return Status::newFatal( $target . 'text' );
+			return StatusValue::newFatal( $target . 'text' );
 		}
 
 		$toAddress = MailAddress::newFromUser( $target );
@@ -281,23 +278,24 @@ class EmailUser {
 		}
 
 		$error = false;
+		// FIXME Replace this hook with a new one that returns errors in a SINGLE format.
 		if ( !$this->hookRunner->onEmailUser( $toAddress, $fromAddress, $subject, $text, $error ) ) {
-			if ( $error instanceof Status ) {
+			if ( $error instanceof StatusValue ) {
 				return $error;
 			} elseif ( $error === false || $error === '' || $error === [] ) {
 				// Possibly to tell HTMLForm to pretend there was no submission?
-				return false;
+				return StatusValue::newFatal( 'hookaborted' );
 			} elseif ( $error === true ) {
 				// Hook sent the mail itself and indicates success?
-				return Status::newGood();
+				return StatusValue::newGood();
 			} elseif ( is_array( $error ) ) {
-				$status = Status::newGood();
+				$status = StatusValue::newGood();
 				foreach ( $error as $e ) {
 					$status->fatal( $e );
 				}
 				return $status;
 			} elseif ( $error instanceof MessageSpecifier ) {
-				return Status::newFatal( $error );
+				return StatusValue::newFatal( $error );
 			} else {
 				// Setting $error to something else was deprecated in 1.29 and
 				// removed in 1.36, and so an exception is now thrown
@@ -308,6 +306,60 @@ class EmailUser {
 			}
 		}
 
+		[ $mailFrom, $replyTo ] = $this->getFromAndReplyTo( $fromAddress, $messageLocalizer );
+
+		$status = $this->emailer->send(
+			$toAddress,
+			$mailFrom,
+			$subject,
+			$text,
+			null,
+			[ 'replyTo' => $replyTo ]
+		);
+
+		if ( !$status->isGood() ) {
+			return $status;
+		}
+
+		// if the user requested a copy of this mail, do this now,
+		// unless they are emailing themselves, in which case one
+		// copy of the message is sufficient.
+		if ( $CCMe && !$toAddress->equals( $fromAddress ) ) {
+			$ccTo = $fromAddress;
+			$ccFrom = $fromAddress;
+			$ccSubject = $messageLocalizer->msg( 'emailccsubject' )->plaintextParams(
+				$target->getName(),
+				$subject
+			)->text();
+			$ccText = $text;
+
+			$this->hookRunner->onEmailUserCC( $ccTo, $ccFrom, $ccSubject, $ccText );
+
+			[ $mailFrom, $replyTo ] = $this->getFromAndReplyTo( $ccFrom, $messageLocalizer );
+
+			$ccStatus = $this->emailer->send(
+				$ccTo,
+				$mailFrom,
+				$ccSubject,
+				$ccText,
+				null,
+				[ 'replyTo' => $replyTo ]
+			);
+			$status->merge( $ccStatus );
+		}
+
+		$this->hookRunner->onEmailUserComplete( $toAddress, $fromAddress, $subject, $text );
+
+		return $status;
+	}
+
+	/**
+	 * @param MailAddress $fromAddress
+	 * @param MessageLocalizer $messageLocalizer
+	 * @return array
+	 * @phan-return array{0:MailAddress,1:?MailAddress}
+	 */
+	private function getFromAndReplyTo( MailAddress $fromAddress, MessageLocalizer $messageLocalizer ): array {
 		if ( $this->options->get( MainConfigNames::UserEmailUseReplyTo ) ) {
 			/**
 			 * Put the generic wiki autogenerated address in the From:
@@ -341,59 +393,7 @@ class EmailUser {
 			$mailFrom = $fromAddress;
 			$replyTo = null;
 		}
-
-		$status = Status::wrap( $this->emailer->send(
-			$toAddress,
-			$mailFrom,
-			$subject,
-			$text,
-			null,
-			[ 'replyTo' => $replyTo ]
-		) );
-
-		if ( !$status->isGood() ) {
-			return $status;
-		}
-
-		// if the user requested a copy of this mail, do this now,
-		// unless they are emailing themselves, in which case one
-		// copy of the message is sufficient.
-		if ( $CCMe && $toAddress != $fromAddress ) {
-			$ccTo = $fromAddress;
-			$ccFrom = $fromAddress;
-			$ccSubject = $messageLocalizer->msg( 'emailccsubject' )->plaintextParams(
-				$target->getName(),
-				$subject
-			)->text();
-			$ccText = $text;
-
-			$this->hookRunner->onEmailUserCC( $ccTo, $ccFrom, $ccSubject, $ccText );
-
-			if ( $this->options->get( MainConfigNames::UserEmailUseReplyTo ) ) {
-				$mailFrom = new MailAddress(
-					$this->options->get( MainConfigNames::PasswordSender ),
-					$messageLocalizer->msg( 'emailsender' )->inContentLanguage()->text()
-				);
-				$replyTo = $ccFrom;
-			} else {
-				$mailFrom = $ccFrom;
-				$replyTo = null;
-			}
-
-			$ccStatus = $this->emailer->send(
-				$ccTo,
-				$mailFrom,
-				$ccSubject,
-				$ccText,
-				null,
-				[ 'replyTo' => $replyTo ]
-			);
-			$status->merge( $ccStatus );
-		}
-
-		$this->hookRunner->onEmailUserComplete( $toAddress, $fromAddress, $subject, $text );
-
-		return $status;
+		return [ $mailFrom, $replyTo ];
 	}
 
 	/**
