@@ -34,10 +34,10 @@ class DerivativeContextTest extends MediaWikiIntegrationTestCase {
 
 	public function testChangeModules() {
 		$derived = new DerivativeContext( self::makeContext() );
-		$this->assertSame( $derived->getModules(), [ 'test.default' ], 'inherit from parent' );
+		$this->assertSame( [ 'test.default' ], $derived->getModules(), 'inherit from parent' );
 
 		$derived->setModules( [ 'test.override' ] );
-		$this->assertSame( $derived->getModules(), [ 'test.override' ] );
+		$this->assertSame( [ 'test.override' ], $derived->getModules() );
 	}
 
 	public function testChangeLanguageAndDirection() {

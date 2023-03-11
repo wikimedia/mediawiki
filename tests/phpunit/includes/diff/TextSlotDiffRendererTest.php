@@ -12,7 +12,7 @@ class TextSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 		$key = $slotDiffRenderer->getExtraCacheKeys();
 		$slotDiffRenderer->setEngine( TextSlotDiffRenderer::ENGINE_WIKIDIFF2_INLINE );
 		$inlineKey = $slotDiffRenderer->getExtraCacheKeys();
-		$this->assertSame( $key, [] );
+		$this->assertSame( [], $key );
 		$this->assertSame( $inlineKey, [ phpversion( 'wikidiff2' ), 'inline' ] );
 	}
 

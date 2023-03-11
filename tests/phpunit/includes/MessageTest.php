@@ -836,20 +836,20 @@ class MessageTest extends MediaWikiLangTestCase {
 	 */
 	public function testQqxPlaceholders() {
 		$this->assertSame(
-			wfMessage( 'test' )->inLanguage( 'qqx' )->text(),
-			'(test)'
+			'(test)',
+			wfMessage( 'test' )->inLanguage( 'qqx' )->text()
 		);
 		$this->assertSame(
-			wfMessage( 'test' )->params( 'a', 'b' )->inLanguage( 'qqx' )->text(),
-			'(test: a, b)'
+			'(test: a, b)',
+			wfMessage( 'test' )->params( 'a', 'b' )->inLanguage( 'qqx' )->text()
 		);
 		$this->assertSame(
-			wfMessageFallback( 'test', 'other-test' )->inLanguage( 'qqx' )->text(),
-			'(test / other-test)'
+			'(test / other-test)',
+			wfMessageFallback( 'test', 'other-test' )->inLanguage( 'qqx' )->text()
 		);
 		$this->assertSame(
-			wfMessageFallback( 'test', 'other-test' )->params( 'a', 'b' )->inLanguage( 'qqx' )->text(),
-			'(test / other-test: a, b)'
+			'(test / other-test: a, b)',
+			wfMessageFallback( 'test', 'other-test' )->params( 'a', 'b' )->inLanguage( 'qqx' )->text()
 		);
 	}
 

@@ -54,7 +54,7 @@ class CdnCacheUpdateTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals( $expected, $update->getUrls() );
 
-		$this->assertEquals( DeferredUpdates::pendingUpdatesCount(), 0, 'PRESEND update run' );
+		$this->assertSame( 0, DeferredUpdates::pendingUpdatesCount(), 'PRESEND update run' );
 	}
 
 	/**

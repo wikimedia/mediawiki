@@ -228,7 +228,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	public function testBot() {
 		$user = $this->getTestUser( 'bot' )->getUser();
 
-		$this->assertSame( $user->getGroups(), [ 'bot' ] );
+		$this->assertSame( [ 'bot' ], $user->getGroups() );
 		$this->assertArrayHasKey( 'bot', $user->getGroupMemberships() );
 		$this->assertTrue( $user->isBot() );
 

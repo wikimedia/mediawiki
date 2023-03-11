@@ -88,7 +88,7 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 		$blockUtils = $this->getUtils();
 		[ $target, $type ] = $blockUtils->parseBlockTarget( $ip );
 		$this->assertTrue( $userIdentity->equals( $target ) );
-		$this->assertSame( $type, AbstractBlock::TYPE_IP );
+		$this->assertSame( AbstractBlock::TYPE_IP, $type );
 
 		// - valid IP range
 		$ipRange = '127.111.113.151/24';
