@@ -588,7 +588,7 @@ class DeleteAction extends FormlessAction {
 
 	protected function prepareOutputForForm(): void {
 		$outputPage = $this->getOutput();
-		$outputPage->addModules( 'mediawiki.action.delete' );
+		$outputPage->addModules( 'mediawiki.misc-authed-ooui' );
 		$outputPage->addModuleStyles( 'mediawiki.action.styles' );
 		$outputPage->enableOOUI();
 	}

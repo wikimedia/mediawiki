@@ -1,5 +1,5 @@
 /*!
- * Javascript for action=delete and Special:RevisionDelete at domready
+ * Javascript for action=delete at domready
  */
 ( function () {
 	$( function () {
