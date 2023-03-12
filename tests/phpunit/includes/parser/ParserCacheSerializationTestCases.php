@@ -7,6 +7,7 @@ use JsonSerializable;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
+use MWDebug;
 use MWTimestamp;
 use ParserOutput;
 use Wikimedia\Tests\SerializationTestUtils;
@@ -170,6 +171,7 @@ abstract class ParserCacheSerializationTestCases {
 	 * @return array[]
 	 */
 	public static function getParserOutputTestCases() {
+		MWDebug::filterDeprecationForTest( '/Use of ParserOutput::setTOCHTML/' );
 		$parserOutputWithCacheTimeProps = new ParserOutput( 'CacheTime' );
 		$parserOutputWithCacheTimeProps->setCacheTime( self::CACHE_TIME );
 		$parserOutputWithCacheTimeProps->updateCacheExpiry( 10 );
