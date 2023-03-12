@@ -732,31 +732,31 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	public static function newMainPage( MessageLocalizer $localizer = null ) {
 		static $recursionGuard = false;
-		if ( $recursionGuard ) {
-			// Somehow parsing the message contents has fallen back to the
-			// main page (bare local interwiki), so use the hardcoded
-			// fallback (T297571).
-			return self::newFromText( 'Main Page' );
-		}
-		if ( $localizer ) {
-			$msg = $localizer->msg( 'mainpage' );
-		} else {
-			$msg = wfMessage( 'mainpage' );
-		}
 
-		$recursionGuard = true;
-		$title = self::newFromText( $msg->inContentLanguage()->text() );
-		$recursionGuard = false;
+		$title = null;
+
+		if ( !$recursionGuard ) {
+			$msg = $localizer ? $localizer->msg( 'mainpage' ) : wfMessage( 'mainpage' );
+
+			$recursionGuard = true;
+			$title = self::newFromText( $msg->inContentLanguage()->text() );
+			$recursionGuard = false;
+		}
 
 		// Every page renders at least one link to the Main Page (e.g. sidebar).
-		// If the localised value is invalid, don't produce fatal errors that
-		// would make the wiki inaccessible (and hard to fix the invalid message).
-		// Gracefully fallback...
-		if ( !$title ) {
-			$title = self::newFromText( 'Main Page' );
-		}
+		// Don't produce fatal errors that would make the wiki inaccessible, and hard to fix the
+		// invalid message.
+		//
+		// Fallback scenarios:
+		// * Recursion guard
+		//   If the message contains a bare local interwiki (T297571), then
+		//   Title::newFromText via MediaWikiTitleCodec::splitTitleString can get back here.
+		// * Invalid title
+		//   If the 'mainpage' message contains something that is invalid,  Title::newFromText
+		//   will return null.
+
 		// @phan-suppress-next-line PhanTypeMismatchReturnNullable Fallback is always valid
-		return $title;
+		return $title ?? self::newFromText( 'Main Page' );
 	}
 
 	/**
