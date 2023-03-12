@@ -298,6 +298,7 @@ $magicWords = [
 	'img_right'                 => [ '1', 'prawo', 'right' ],
 	'img_thumbnail'             => [ '1', 'mały', 'thumb', 'thumbnail' ],
 	'img_top'                   => [ '1', 'góra', 'top' ],
+	'img_upright'               => [ '1', 'skala', 'skala=$1', 'skala $1', 'skaluj', 'skaluj=$1', 'skaluj $1', 'upright', 'upright=$1', 'upright $1' ],
 	'index'                     => [ '1', '__INDEKSUJ__', '__INDEX__' ],
 	'language'                  => [ '0', '#JĘZYK:', '#LANGUAGE:' ],
 	'lc'                        => [ '0', 'MAŁE:', 'LC:' ],
