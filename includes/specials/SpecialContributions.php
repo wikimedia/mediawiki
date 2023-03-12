@@ -667,7 +667,6 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->getOutput()->addModules( [
 			'mediawiki.special.contributions',
 		] );
-		$this->getOutput()->addModuleStyles( 'mediawiki.widgets.DateInputWidget.styles' );
 		$this->getOutput()->enableOOUI();
 		$fields = [];
 
