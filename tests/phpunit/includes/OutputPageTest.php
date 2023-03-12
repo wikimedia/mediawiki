@@ -3195,11 +3195,17 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op = $this->newInstance();
 		$this->assertFalse( $op->isTOCEnabled() );
 
-		$pOut1 = $this->createParserOutputStub( 'getTOCHTML', false );
+		$pOut1 = $this->createParserOutputStub( [
+			'getTOCHTML' => '',
+			'hasTOCHTML' => false,
+		] );
 		$op->addParserOutputMetadata( $pOut1 );
 		$this->assertFalse( $op->isTOCEnabled() );
 
-		$pOut2 = $this->createParserOutputStub( 'getTOCHTML', true );
+		$pOut2 = $this->createParserOutputStub( [
+			'getTOCHTML' => 'stuff',
+			'hasTOCHTML' => true,
+		] );
 		$op->addParserOutput( $pOut2 );
 		$this->assertTrue( $op->isTOCEnabled() );
 

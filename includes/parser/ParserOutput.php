@@ -861,8 +861,22 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 		return '';
 	}
 
+	/**
+	 * @deprecated since 1.40; use ::getTOCData() instead
+	 */
 	public function getTOCHTML() {
+		wfDeprecated( __METHOD__, '1.40' );
 		return $this->mTOCHTML;
+	}
+
+	/**
+	 * @return bool
+	 * @internal Only for the temporary use of
+	 *   OutputPage::addParserOutputMetadata; will be removed with
+	 *   ::{get,set}TOCHTML().
+	 */
+	public function hasTOCHTML() {
+		return (bool)$this->mTOCHTML;
 	}
 
 	/**
@@ -976,6 +990,7 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 	 * via on-demand TOC generation).
 	 */
 	public function setTOCHTML( $tochtml ) {
+		wfDeprecated( __METHOD__, '1.40' );
 		return wfSetVar( $this->mTOCHTML, $tochtml );
 	}
 

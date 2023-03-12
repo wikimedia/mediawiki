@@ -26,6 +26,9 @@ class ParserOutputTest extends MediaWikiLangTestCase {
 			MainConfigNames::ParserCacheExpireTime,
 			ParserCacheSerializationTestCases::FAKE_CACHE_EXPIRY
 		);
+		// Serialization tests still use these methods.
+		$this->hideDeprecated( 'ParserOutput::setTOCHTML' );
+		$this->hideDeprecated( 'ParserOutput::getTOCHTML' );
 	}
 
 	/**
