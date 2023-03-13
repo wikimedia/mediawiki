@@ -2,10 +2,9 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MainConfigNames;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\ILBFactory;
 
 /**
  * Custom job to perform updates on tables in busier environments
@@ -16,7 +15,6 @@ use Wikimedia\Rdbms\ILoadBalancer;
  *   - oldname   : The old user name
  *   - newname   : The new user name
  *   - count     : The expected number of rows to update in this batch
- *   - logId     : The ID of the logging table row expected to exist if the rename was committed
  *
  * Additionally, one of the following groups of parameters must be set:
  * a) The timestamp based rename parameters:
@@ -36,24 +34,27 @@ class RenameUserJob extends Job {
 	/** @var int */
 	private $updateRowsPerQuery;
 
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var ILBFactory */
+	private $lbFactory;
 
 	/** @var LoggerInterface */
 	private $logger;
 
-	public function __construct( Title $title, $params = [] ) {
+	public function __construct(
+		Title $title,
+		$params,
+		Config $config,
+		ILBFactory $lbFactory
+	) {
 		parent::__construct( 'renameUser', $title, $params );
 
-		$services = MediaWikiServices::getInstance();
-		$config = $services->getMainConfig();
 		$this->updateRowsPerQuery = $config->get( MainConfigNames::UpdateRowsPerQuery );
-		$this->loadBalancer = $services->getDBLoadBalancer();
+		$this->lbFactory = $lbFactory;
 		$this->logger = LoggerFactory::getInstance( 'Renameuser' );
 	}
 
 	public function run() {
-		$dbw = $this->loadBalancer->getMaintenanceConnectionRef( DB_PRIMARY );
+		$dbw = $this->lbFactory->getMainLB()->getMaintenanceConnectionRef( DB_PRIMARY );
 		$table = $this->params['table'];
 		$column = $this->params['column'];
 
@@ -107,8 +108,6 @@ class RenameUserJob extends Job {
 			throw new InvalidArgumentException( 'Expected ID batch or time range' );
 		}
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-
 		# Actually update the rows for this job...
 		if ( $uniqueKey !== null ) {
 			# Select the rows to update by PRIMARY KEY
@@ -116,7 +115,7 @@ class RenameUserJob extends Job {
 			# Update these rows by PRIMARY KEY to avoid replica lag
 			foreach ( array_chunk( $ids, $this->updateRowsPerQuery ) as $batch ) {
 				$dbw->commit( __METHOD__, 'flush' );
-				$lbFactory->waitForReplication();
+				$this->lbFactory->waitForReplication();
 
 				$dbw->update( $table,
 					[ $column => $newname ],

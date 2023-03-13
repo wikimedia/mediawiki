@@ -8,15 +8,15 @@ use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
-use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
  * Special page that allows authorised users to rename
  * user accounts
  */
 class SpecialRenameuser extends SpecialPage {
-	/** @var ILoadBalancer */
-	private $loadBalancer;
+	/** @var IConnectionProvider */
+	private $dbConns;
 
 	/** @var Language */
 	private $contentLanguage;
@@ -37,7 +37,7 @@ class SpecialRenameuser extends SpecialPage {
 	private $userNamePrefixSearch;
 
 	/**
-	 * @param ILoadBalancer $loadBalancer
+	 * @param IConnectionProvider $dbConns
 	 * @param Language $contentLanguage
 	 * @param MovePageFactory $movePageFactory
 	 * @param PermissionManager $permissionManager
@@ -46,7 +46,7 @@ class SpecialRenameuser extends SpecialPage {
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer,
+		IConnectionProvider $dbConns,
 		Language $contentLanguage,
 		MovePageFactory $movePageFactory,
 		PermissionManager $permissionManager,
@@ -56,7 +56,7 @@ class SpecialRenameuser extends SpecialPage {
 	) {
 		parent::__construct( 'Renameuser', 'renameuser' );
 
-		$this->loadBalancer = $loadBalancer;
+		$this->dbConns = $dbConns;
 		$this->contentLanguage = $contentLanguage;
 		$this->movePageFactory = $movePageFactory;
 		$this->permissionManager = $permissionManager;
@@ -169,7 +169,7 @@ class SpecialRenameuser extends SpecialPage {
 		// Until r19631 it was possible to rename a user to a name with first character as lowercase
 		if ( $oldName !== $this->contentLanguage->ucfirst( $oldName ) ) {
 			// old username was entered as lowercase -> check for existence in table 'user'
-			$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+			$dbr = $this->dbConns->getReplicaDatabase();
 			$uid = $dbr->newSelectQueryBuilder()
 				->select( 'user_id' )
 				->from( 'user' )

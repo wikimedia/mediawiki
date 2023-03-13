@@ -1007,7 +1007,7 @@ class SpecialPageFactory {
 		'Renameuser' => [
 			'class' => \SpecialRenameuser::class,
 			'services' => [
-				'DBLoadBalancer',
+				'DBLoadBalancerFactory',
 				'ContentLanguage',
 				'MovePageFactory',
 				'PermissionManager',

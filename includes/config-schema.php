@@ -2061,7 +2061,13 @@ return [
 					],
 					'needsPage' => false,
 				],
-				'renameUser' => 'RenameUserJob',
+				'renameUser' => [
+					'class' => 'RenameUserJob',
+					'services' => [
+						0 => 'MainConfig',
+						1 => 'DBLoadBalancerFactory',
+					],
+				],
 			],
 			'JobTypesExcludedFromDefaultQueue' => [
 				0 => 'AssembleUploadChunks',
