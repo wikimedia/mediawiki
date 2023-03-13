@@ -293,12 +293,15 @@ class ParsoidOutputAccess {
 
 		try {
 			$startTime = microtime( true );
+			$parserOutput = new ParserOutput();
 			$pageBundle = $this->parsoid->wikitext2html(
 				$pageConfig,
-				$parsoidOptions + $defaultOptions
+				$parsoidOptions + $defaultOptions,
+				$headers,
+				$parserOutput
 			);
 
-			$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle );
+			$parserOutput = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $parserOutput );
 			$time = microtime( true ) - $startTime;
 			if ( $time > 3 ) {
 				LoggerFactory::getInstance( 'slow-parsoid' )
