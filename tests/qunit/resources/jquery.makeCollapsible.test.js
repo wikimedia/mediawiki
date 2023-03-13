@@ -418,4 +418,48 @@
 			assert.assertFalse( $collapsible2.find( '> .mw-collapsible-toggle' ).hasClass( 'mw-collapsible-toggle-collapsed' ) );
 		} ).find( '> .mw-collapsible-toggle a' ).trigger( 'click' );
 	} );
+
+	QUnit.test( 'placeholder element for toggle', function ( assert ) {
+		var $collapsibleOuter = $( $.parseHTML(
+			'<div id="outer" class="mw-collapsible">' +
+				'<div class="custom-wrapper">' +
+					'<div class="mw-collapsible-toggle-placeholder"></div>' +
+				'</div>' +
+				'<div class="mw-collapsible-content">' +
+					'<div id="inner" class="mw-collapsible">' +
+						'<div class="custom-wrapper">' +
+							'<div class="mw-collapsible-toggle-placeholder"></div>' +
+						'</div>' +
+						'<div class="mw-collapsible-content">' +
+							loremIpsum +
+						'</div>' +
+					'</div>' +
+				'</div>' +
+			'</div>'
+		) );
+		var $collapsibleInner = $collapsibleOuter.find( '#inner' );
+		$collapsibleOuter.appendTo( '#qunit-fixture' );
+		// make both elements collapsible at once, instead of using prepareCollapsible(),
+		// to better match mediawiki.page.ready and test that makeCollapsible() still keeps the collapsible separate
+		$( '#qunit-fixture' ).find( '.mw-collapsible' ).makeCollapsible();
+
+		assert.strictEqual( $collapsibleOuter.find( '.mw-collapsible-toggle' ).length, 2, 'two toggles' );
+		var $toggleOuter = $collapsibleOuter.find( '.mw-collapsible-toggle' ).first();
+		var $toggleInner = $collapsibleInner.find( '.mw-collapsible-toggle' );
+		// eslint-disable-next-line no-jquery/no-class-state
+		assert.assertTrue( $toggleOuter.parent().hasClass( 'custom-wrapper' ), 'toggle inside custom wrapper' );
+		// eslint-disable-next-line no-jquery/no-class-state
+		assert.assertTrue( $toggleInner.parent().hasClass( 'custom-wrapper' ), 'toggle inside custom wrapper' );
+		$collapsibleInner.on( 'afterCollapse.mw-collapsible', function () {
+			// eslint-disable-next-line no-jquery/no-class-state
+			assert.assertTrue( $collapsibleInner.hasClass( 'mw-collapsed' ), 'after collapsing: inner is collapsed' );
+			// eslint-disable-next-line no-jquery/no-class-state
+			assert.assertFalse( $collapsibleOuter.hasClass( 'mw-collapsed' ), 'after collapsing: outer is not collapsed' );
+			// eslint-disable-next-line no-jquery/no-class-state
+			assert.assertTrue( $toggleInner.hasClass( 'mw-collapsible-toggle-collapsed' ) );
+			// eslint-disable-next-line no-jquery/no-class-state
+			assert.assertFalse( $toggleOuter.hasClass( 'mw-collapsible-toggle-collapsed' ) );
+		} );
+		$toggleInner.find( 'a' ).trigger( 'click' );
+	} );
 }() );
