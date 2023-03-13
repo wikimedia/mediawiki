@@ -802,7 +802,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $priorTime, $touched );
 	}
 
-	public function testReconfigure() {
+	public function testReconfigureWithOneReplica() {
 		$primaryConfig = $this->getPrimaryServerConfig();
 		$fakeReplica = [ 'load' => 100, 'serverName' => 'replica' ] + $primaryConfig;
 
@@ -846,7 +846,71 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $ref->isOpen() );
 		$this->assertSame( IDatabase::ROLE_STREAMING_MASTER, $ref->getTopologyRole() );
 
-		// The old connection should have been called by DBConnRef.
+		// The old connection should have been closed by DBConnRef.
+		$this->assertFalse( $con->isOpen() );
+	}
+
+	public function testReconfigureWithThreeReplicas() {
+		$primaryConfig = $this->getPrimaryServerConfig();
+		$replica1Config = [ 'serverName' => 'db2', 'load' => 0 ] + $primaryConfig;
+		$replica2Config = [ 'serverName' => 'db3', 'load' => 1 ] + $primaryConfig;
+		$replica3Config = [ 'serverName' => 'db4', 'load' => 1 ] + $primaryConfig;
+
+		$conf = [ 'servers' => [
+			$primaryConfig,
+			$replica1Config,
+			$replica2Config,
+			$replica3Config
+		] ];
+
+		// Configure an LBFactory with two replicas
+		$factory = new LBFactorySimple( $conf );
+		$lb = $factory->getMainLB();
+		$this->assertSame( 4, $lb->getServerCount() );
+		$this->assertSame( 'db1', $lb->getServerName( 0 ) );
+		$this->assertSame( 'db2', $lb->getServerName( 1 ) );
+		$this->assertSame( 'db3', $lb->getServerName( 2 ) );
+		$this->assertSame( 'db4', $lb->getServerName( 3 ) );
+
+		$con = $lb->getConnectionInternal( DB_REPLICA );
+		$ref = $lb->getConnection( DB_REPLICA );
+
+		// Call reconfigure with the same config, should have no effect
+		$factory->reconfigure( $conf );
+		$this->assertSame( 4, $lb->getServerCount() );
+		$this->assertSame( 'db1', $lb->getServerName( 0 ) );
+		$this->assertSame( 'db2', $lb->getServerName( 1 ) );
+		$this->assertSame( 'db3', $lb->getServerName( 2 ) );
+		$this->assertSame( 'db4', $lb->getServerName( 3 ) );
+		$this->assertTrue( $con->isOpen() );
+		$this->assertTrue( $ref->isOpen() );
+
+		// Call reconfigure with empty config, should have no effect
+		$factory->reconfigure( [] );
+		$this->assertSame( 4, $lb->getServerCount() );
+		$this->assertSame( 'db1', $lb->getServerName( 0 ) );
+		$this->assertSame( 'db2', $lb->getServerName( 1 ) );
+		$this->assertSame( 'db3', $lb->getServerName( 2 ) );
+		$this->assertSame( 'db4', $lb->getServerName( 3 ) );
+		$this->assertTrue( $con->isOpen() );
+		$this->assertTrue( $ref->isOpen() );
+
+		// Reconfigure the LBFactory to only have a two servers (server indexes shifted).
+		$conf['servers'] = [ $primaryConfig, $replica2Config, $replica3Config ];
+		$factory->reconfigure( $conf );
+		// The LoadBalancer should have been reconfigured automatically.
+		$this->assertSame( 3, $lb->getServerCount() );
+		$this->assertSame( 'db1', $lb->getServerName( 0 ) );
+		$this->assertSame( false, $lb->getServerInfo( 1 ) );
+		$this->assertSame( 'db3', $lb->getServerName( 2 ) );
+		$this->assertSame( 'db4', $lb->getServerName( 3 ) );
+		// Reconfiguring should not close connections immediately.
+		$this->assertTrue( $con->isOpen() );
+		// Connection refs should detect the config change, close the old connection,
+		// and get a new connection.
+		$this->assertTrue( $ref->isOpen() );
+		$this->assertSame( IDatabase::ROLE_STREAMING_REPLICA, $ref->getTopologyRole() );
+		// The old connection should have been closed by DBConnRef.
 		$this->assertFalse( $con->isOpen() );
 	}
 
