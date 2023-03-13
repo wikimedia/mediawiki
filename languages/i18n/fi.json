@@ -85,7 +85,8 @@
 			"Moottori",
 			"Korjaus1",
 			"Huusmik",
-			"Valtlai"
+			"Valtlai",
+			"Lliehu"
 		]
 	},
 	"tog-underline": "Linkkien alleviivaus:",
@@ -1828,7 +1829,7 @@
 	"backend-fail-alreadyexists": "Tiedosto $1 on jo olemassa.",
 	"backend-fail-store": "Tiedostoa $1 ei voitu tallentaa polkuun $2.",
 	"backend-fail-copy": "Tiedostoa ei voitu kopioida kohteesta $1 kohteeseen $2.",
-	"backend-fail-move": "Tiedostoa ei voitu siirtää kohteesta $1 kohteeseen $2.",
+	"backend-fail-move": "Tiedostoa \"$1\" ei voitu siirtää kohteeseen \"$2\".",
 	"backend-fail-opentemp": "Väliaikaista tiedostoa ei voitu avata.",
 	"backend-fail-writetemp": "Väliaikaiseen tiedostoon ei voitu kirjoittaa.",
 	"backend-fail-closetemp": "Väliaikaista tiedostoa ei voitu sulkea.",

@@ -762,7 +762,7 @@
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",
 	"content-json-empty-object": "Objecto vacue",
-	"content-json-empty-array": "Array vacue",
+	"content-json-empty-array": "Matrice vacue",
 	"unsupported-content-model": "<strong>Attention:</strong> Le modello de contento $1 non es supportate sur iste wiki.",
 	"unsupported-content-diff": "Non es possibile monstrar differentias pro contento del modello $1.",
 	"unsupported-content-diff2": "Non es possibile monstrar differentias inter contento del modellos $1 e $2 sur iste wiki.",

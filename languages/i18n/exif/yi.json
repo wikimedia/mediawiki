@@ -4,7 +4,8 @@
 			"Chaim Shel",
 			"Har-wradim",
 			"Yidel",
-			"פוילישער"
+			"פוילישער",
+			"Pacha Tchernof"
 		]
 	},
 	"exif-imagewidth": "ברייט",
@@ -131,7 +132,7 @@
 	"exif-locationdestcode": "קאד פֿון געוויזענער לאקאציע",
 	"exif-contact": "קאנטאקט אינפארמאציע",
 	"exif-writer": "שרײַבער",
-	"exif-languagecode": "שפראַך",
+	"exif-languagecode": "שפּראַך",
 	"exif-iimversion": "IIM ווערסיע",
 	"exif-iimcategory": "קאַטעגאָריע",
 	"exif-iimsupplementalcategory": "אונטער־קאטעגאריעס",
@@ -193,7 +194,7 @@
 	"exif-meteringmode-1": "דורכשניט",
 	"exif-meteringmode-5": "מוסטער",
 	"exif-meteringmode-6": "טיילווײַז",
-	"exif-meteringmode-255": "אנדער",
+	"exif-meteringmode-255": "אַנדער",
 	"exif-lightsource-0": "אומבאַוויסט",
 	"exif-lightsource-1": "טאָגליכט",
 	"exif-lightsource-2": "פֿלוארעסצירנד",

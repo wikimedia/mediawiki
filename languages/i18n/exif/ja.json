@@ -12,7 +12,9 @@
 			"Suisui",
 			"Whym",
 			"Yusuke1109",
-			"ネイ"
+			"ネイ",
+			"Marine-Blue",
+			"UsagiNeko"
 		]
 	},
 	"exif-imagewidth": "画像の幅",
@@ -85,7 +87,7 @@
 	"exif-sensingmethod": "センサー方式",
 	"exif-filesource": "ファイルソース",
 	"exif-scenetype": "シーンタイプ",
-	"exif-customrendered": "個別画像処理",
+	"exif-customrendered": "カスタム画像処理",
 	"exif-exposuremode": "露出モード",
 	"exif-whitebalance": "ホワイトバランス",
 	"exif-digitalzoomratio": "デジタルズーム倍率",
@@ -302,8 +304,8 @@
 	"exif-sensingmethod-8": "色順次リニアセンサー",
 	"exif-filesource-3": "デジタルスチルカメラ",
 	"exif-scenetype-1": "直接撮影された画像",
-	"exif-customrendered-0": "通常処理",
-	"exif-customrendered-1": "特殊処理",
+	"exif-customrendered-0": "標準処理",
+	"exif-customrendered-1": "カスタム処理",
 	"exif-customrendered-2": "HDR（オリジナルが保存されていない）",
 	"exif-customrendered-3": "HDR（オリジナルが保存されている）",
 	"exif-customrendered-4": "オリジナル（HDR用）",

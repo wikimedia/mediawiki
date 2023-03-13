@@ -62,7 +62,8 @@
 			"1233qwer1234qwer4",
 			"Mmarci72",
 			"NB",
-			"Eukarióta"
+			"Eukarióta",
+			"FoBe"
 		]
 	},
 	"tog-underline": "Hivatkozások aláhúzása:",
@@ -218,7 +219,7 @@
 	"returnto": "Vissza a(z) $1 laphoz.",
 	"tagline": "Innen: {{SITENAME}}",
 	"help": "Segítség",
-	"help-mediawiki": "Segítség a MediaWiki-hez",
+	"help-mediawiki": "Segítség a MediaWikihez",
 	"search": "Keresés",
 	"search-ignored-headings": " #<!-- ezen a soron ne változtass --> <pre>\n# Az itt megadott szakaszokat figyelmen kívül hagyja a kereső.\n# Ha megváltoztatod ezt a listát, csak a változtatás után indexelt lapokra lesz hatása.\n# Ha újra akarsz indexelni egy adott oldalt, egy üres szerkesztéssel (megnyit-elment) megteheted.\n# Szintaxis:\n#   * A # jeltől a sor végéig tartó rész megjegyzés, a szoftver figyelmen kívül hagyja\n#   * Minden nem üres sor egy olyan szakasz címe, amit nem akarjuk, hogy indexeljen a kereső. (Csak a pontos egyezés számít, kisbetű/nagybetűt is beleértve.)\nForrások\nJegyzetek\nHivatkozások\nKülső hivatkozások\nLásd még\n #</pre> <!-- ezen a soron ne változtass -->",
 	"searchbutton": "Keresés",
@@ -985,8 +986,8 @@
 	"showhideselectedversions": "Kiválasztott változatok láthatóságának beállítása",
 	"editundo": "visszavonás",
 	"diff-empty": "(Nincs különbség)",
-	"diff-multi-sameuser": "({{PLURAL:$1|Egy közbenső módosítást|$1 közbenső módosítást}} ugyanattól a szerkesztőtől nem mutattunk)",
-	"diff-multi-otherusers": "({{PLURAL:$1|Egy közbenső módosítás|$1 közbenső módosítást}}, amit {{PLURAL:$2|egy másik szerkesztő végzett|$2 másik szerkesztő végzett}}, nem mutattunk)",
+	"diff-multi-sameuser": "({{PLURAL:$1|Egy közbenső módosítás|$1 közbenső módosítás}} ugyanattól a szerkesztőtől nincs mutatva)",
+	"diff-multi-otherusers": "({{PLURAL:$1|Egy közbenső módosítás|$1 közbenső módosítás}}, amit {{PLURAL:$2|egy másik szerkesztő végzett|$2 másik szerkesztő végzett}}, nincs mutatva)",
 	"diff-multi-manyusers": "({{PLURAL:$1|Egy közbeeső változat|$1 közbeeső változat}} nincs mutatva, amit $2 szerkesztő módosított)",
 	"diff-paragraph-moved-tonew": "A szakaszt áthelyezték. Kattints ide az új helyére való ugráshoz.",
 	"diff-paragraph-moved-toold": "A szakaszt áthelyezték. Kattints ide a régi helyére való ugráshoz.",
@@ -1550,7 +1551,7 @@
 	"rcfilters-filtergroup-watchlistactivity": "Figyelőlista aktivitás",
 	"rcfilters-filter-watchlistactivity-unseen-label": "Még nem látott változtatások",
 	"rcfilters-filter-watchlistactivity-unseen-description": "A figyelőlistádon szereplő lapokon az utolsó látogatásod után történt változtatások.",
-	"rcfilters-filter-watchlistactivity-seen-label": "Változtatások megtekintése",
+	"rcfilters-filter-watchlistactivity-seen-label": "Látott változtatások",
 	"rcfilters-filter-watchlistactivity-seen-description": "A lapokon az utolsó látogatásod után történt változtatások.",
 	"rcfilters-filtergroup-changetype": "Változtatás típusa",
 	"rcfilters-filter-pageedits-label": "Lapszerkesztések",

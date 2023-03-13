@@ -1,8 +1,10 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Brettchenweber"
+		]
 	},
-	"paramvalidator-badbool": "Ungültiger Wert „$2“ für den booleschen Parameter „$1“. Übergib $3 für true, oder $5 für false.",
+	"paramvalidator-badbool": "Ungültiger Wert „$2“ für den booleschen Parameter „$1“. Übergib $3 für true oder $5 für false.",
 	"paramvalidator-badexpiry": "Ungültiger Wert „$2“ für den Ablauf-Parameter „$1“.",
 	"paramvalidator-badexpiry-duration": "Der gegebene Wert „$2“ für den Parameter <var>$1<var> überschreitet das Maximum von „$3“.",
 	"paramvalidator-badexpiry-duration-max": "Der gegebene Wert „$2“ für den Parameter <var>$1<var> überschreitet das Maximum von „$3“. Verwende wird stattdessen das Maximum.",
@@ -23,7 +25,7 @@
 	"paramvalidator-badvalue-enumnotmulti": "Nicht erkannter Wert für den Parameter „$1“: $2.",
 	"paramvalidator-deprecated-value": "Der Wert „$2“für den Parameter „$1“ ist veraltet.",
 	"paramvalidator-emptystring": "der leere String",
-	"paramvalidator-maxbytes": "Der Wert für den Parameter „“$1„“ kann nicht länger als $3 {{PLURAL:$3|Byte|Bytes}} sein (war $4).",
+	"paramvalidator-maxbytes": "Der Wert für den Parameter „$1“ kann nicht länger als $3 {{PLURAL:$3|Byte|Bytes}} sein (war $4).",
 	"paramvalidator-maxchars": "The value for parameter \"$1\" cannot be longer than $3 {{PLURAL:$3|Zeichen}} (war $4).",
 	"paramvalidator-missingparam": "Der Parameter „$1“ muss gesetzt werden.",
 	"paramvalidator-notmulti": "Der Parameter „$1“ akzeptiert nur einen einzigen Wert. U+001F-Mehrwerttrennung darf nur für mehrwertige Parameter verwendet werden.",
@@ -44,17 +46,17 @@
 	"paramvalidator-help-required": "Dieser Parameter ist erforderlich.",
 	"paramvalidator-help-type-boolean": "Typ: {{PLURAL:$1|1=Boolean|2=Liste Boolean-Werte}}",
 	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=Muss leer sein|Kann leer sein oder $1}}",
-	"paramvalidator-help-type-enum": "{{PLURAL:$1|1=Einer der folgenden Werte|2=Werte (getrennt durchh U+007C (Pipe) oder Prefix der Liste mit U+001F nd getrennt durch U+001F)}}: $2",
+	"paramvalidator-help-type-enum": "{{PLURAL:$1|1=Einer der folgenden Werte|2=Werte (getrennt durchh U+007C (Pipe) oder Präfix der Liste mit U+001F und getrennt durch U+001F)}}: $2",
 	"paramvalidator-help-type-expiry": "Typ: {{PLURAL:$1|1=Ablaufzeit|2=Liste von Ablaufzeiten}}.\n\nKann relativ (z.B. <kbd>5 months</kbd> oder <kbd>2 weeks</kbd>) oder absolut (z.B. <kbd>2014-09-18T12:34:56Z</kbd>) sein. Für keine Ablaufzeit verwende $2.",
 	"paramvalidator-help-type-float": "Type {{PLURAL:$1|1=Gleitkommazahl|2=Liste von Gleitkommazahlen}}",
 	"paramvalidator-help-type-integer": "Typ: {{PLURAL:$1|1=Ganzzahl|2=Liste von Ganzzahlen}}",
 	"paramvalidator-help-type-limit": "Typ: integer oder „max“",
 	"paramvalidator-help-type-number-max": "{{PLURAL:$1|1=Der Wert darf|2=Die Werte dürfen}} nicht größer sein als $3.",
-	"paramvalidator-help-type-number-minmax": "{{PLURAL:$1|1=Der Wert muss|2=Die Werte müssen}} zwischen $2 und $3 sein.",
+	"paramvalidator-help-type-number-minmax": "{{PLURAL:$1|1=Der Wert muss|2=Die Werte müssen}} zwischen $2 und $3 liegen.",
 	"paramvalidator-help-type-number-min": "{{PLURAL:$1|1=Der Wert darf|2=Die Werte dürfen}} nicht kleiner sein als $2.",
 	"paramvalidator-help-type-presenceboolean": "Typ: boolean",
 	"paramvalidator-help-type-string-maxbytes": "Kann nicht länger sein als {{PLURAL:$1|ein Byte|$1 Bytes}}.",
 	"paramvalidator-help-type-string-maxchars": "Kann nicht länger sein als {{PLURAL:$1|ein|$1}} Zeichen.",
 	"paramvalidator-help-type-timestamp": "Typ: {{PLURAL:$1|1=Zeitstempel|2=Liste von Zeitstempeln}}",
-	"paramvalidator-help-type-upload": "Muss als Dateiupload mithilfe eines multipart/form-data-Formular bereitgestellt werden."
+	"paramvalidator-help-type-upload": "Muss als Dateiupload mithilfe eines multipart/form-data-Formulars bereitgestellt werden."
 }
