@@ -145,6 +145,9 @@ class MovePage {
 	/** @var RestrictionStore */
 	private $restrictionStore;
 
+	/** @var int */
+	private $maximumMovedPages;
+
 	/**
 	 * @internal For use by PageCommandFactory
 	 */
@@ -214,6 +217,17 @@ class MovePage {
 		$this->collationFactory = $collationFactory;
 		$this->pageUpdaterFactory = $pageUpdaterFactory;
 		$this->restrictionStore = $restrictionStore;
+
+		$this->maximumMovedPages = $this->options->get( MainConfigNames::MaximumMovedPages );
+	}
+
+	/**
+	 * Override $wgMaximumMovedPages.
+	 *
+	 * @param int $max The maximum number of subpages to move, or -1 for no limit
+	 */
+	public function setMaximumMovedPages( $max ) {
+		$this->maximumMovedPages = $max;
 	}
 
 	/**
@@ -609,15 +623,15 @@ class MovePage {
 		// Return a status for the overall result. Its value will be an array with per-title
 		// status for each subpage. Merge any errors from the per-title statuses into the
 		// top-level status without resetting the overall result.
-		$maximumMovedPages = $this->options->get( MainConfigNames::MaximumMovedPages );
+		$max = $this->maximumMovedPages;
 		$topStatus = Status::newGood();
 		$perTitleStatus = [];
-		$subpages = $this->oldTitle->getSubpages( $maximumMovedPages + 1 );
+		$subpages = $this->oldTitle->getSubpages( $max >= 0 ? $max + 1 : -1 );
 		$count = 0;
 		foreach ( $subpages as $oldSubpage ) {
 			$count++;
-			if ( $count > $maximumMovedPages ) {
-				$status = Status::newFatal( 'movepage-max-pages', $maximumMovedPages );
+			if ( $max >= 0 && $count > $max ) {
+				$status = Status::newFatal( 'movepage-max-pages', $max );
 				$perTitleStatus[$oldSubpage->getPrefixedText()] = $status;
 				$topStatus->merge( $status );
 				$topStatus->setOK( true );
