@@ -1238,17 +1238,6 @@ return [
 
 	/* MediaWiki Action */
 
-	'mediawiki.action.delete' => [
-		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.delete.js',
-		'dependencies' => [
-			'oojs-ui-core',
-			'mediawiki.widgets.visibleLengthLimit',
-		],
-		'messages' => [
-			// @todo Load this message in content language
-			'colon-separator',
-		],
-	],
 	'mediawiki.action.edit' => [
 		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.action.edit",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.action.edit",
@@ -2068,6 +2057,7 @@ return [
 		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.misc-authed-ooui",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.misc-authed-ooui",
 		'scripts' => [
+			'action.delete.js',
 			'special.changecredentials.js',
 			'special.import.js',
 			'special.movePage.js',
@@ -2078,9 +2068,13 @@ return [
 		'dependencies' => [
 			'mediawiki.api', // special.changecredentials.js
 			'mediawiki.htmlform.ooui', // special.changecredentials.js
-			'mediawiki.widgets.visibleLengthLimit', // special.movePage.js, special.undelete.js
+			'mediawiki.widgets.visibleLengthLimit', // special.movePage.js, special.undelete.js, action.delete.js
 			'mediawiki.widgets', // special.movePage.js, special.undelete.js, special.import.js
 			'oojs-ui-core', // special.pageLanguage.js
+		],
+		'messages' => [
+			// @todo Load this message in content language
+			'colon-separator', // action.delete.js
 		],
 	],
 	// This bundles various small (under 2 KB?) JavaScript files that:
