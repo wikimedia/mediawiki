@@ -1717,6 +1717,53 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $wikitext, $actual );
 	}
 
+	/**
+	 * @dataProvider provideRoundTripNoSelser
+	 * @dataProvider provideRoundTripNeedingSelser
+	 */
+	public function testRoundTripWithStashing( $wikitext ) {
+		$handler = $this->newParsoidHandler();
+
+		$attribs = self::DEFAULT_ATTRIBS;
+		$attribs['opts']['from'] = ParsoidFormatHelper::FORMAT_WIKITEXT;
+		$attribs['opts']['format'] = ParsoidFormatHelper::FORMAT_HTML;
+		$attribs['opts']['stash'] = true;
+
+		$page = $this->getExistingTestPage();
+		$revid = $page->getLatest();
+
+		$pageConfig = $handler->tryToCreatePageConfig( $attribs, $wikitext );
+		$response = $handler->wt2html( $pageConfig, $attribs, $wikitext );
+
+		$etag = $response->getHeaderLine( 'etag' );
+		$this->assertNotEmpty( $etag, 'ETag' );
+
+		$body = $response->getBody();
+		$body->rewind();
+		$html = $body->getContents();
+
+		// Got HTML, now convert back
+		$attribs = self::DEFAULT_ATTRIBS;
+		$attribs['oldid'] = $revid;
+		$attribs['opts']['revid'] = $revid;
+		$attribs['opts']['from'] = ParsoidFormatHelper::FORMAT_PAGEBUNDLE;
+		$attribs['opts']['format'] = ParsoidFormatHelper::FORMAT_WIKITEXT;
+		$attribs['opts']['original']['etag'] = $etag;
+		$attribs['opts']['original']['wikitext'] = $wikitext;
+
+		$pageConfig = $handler->tryToCreatePageConfig( $attribs, $wikitext, true );
+		$response = $handler->html2wt( $pageConfig, $attribs, $html );
+		$body = $response->getBody();
+		$body->rewind();
+		$actual = $body->getContents();
+
+		// apply some normalization before comparing
+		$actual = trim( $actual );
+		$wikitext = trim( $wikitext );
+
+		$this->assertSame( $wikitext, $actual );
+	}
+
 	public function provideLanguageConversion() {
 		$profileVersion = Parsoid::AVAILABLE_VERSIONS[0];
 		$htmlProfileUri = 'https://www.mediawiki.org/wiki/Specs/HTML/' . $profileVersion;
