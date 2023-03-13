@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Parser\Parsoid;
 
+use MediaWiki\Parser\ParserOutputFlags;
 use MediaWikiUnitTestCase;
 use ParserOutput;
 use Wikimedia\Parsoid\Core\PageBundle;
@@ -22,6 +23,33 @@ class PageBundleParserOutputConverterTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $pageBundle->headers['content-language'], $extensionData['headers']['content-language'] );
 		$this->assertSame( $pageBundle->version, $extensionData['version'] );
 		$this->assertSame( $pageBundle->contentmodel, $extensionData['contentmodel'] );
+	}
+
+	/** @dataProvider provideParserOutputFromPageBundle */
+	public function testParserOutputFromPageBundleShouldPreserveMetadata( PageBundle $pageBundle ) {
+		// Create a ParserOutput with some metadata properties already set.
+		$output = new ParserOutput();
+		$output->setExtensionData( 'test-key', 'test-data' );
+		$output->setOutputFlag( ParserOutputFlags::NO_GALLERY );
+		$output->setPageProperty( 'forcetoc', '' );
+
+		// This should preserve the metadata.
+		$output = PageBundleParserOutputConverter::parserOutputFromPageBundle( $pageBundle, $output );
+		$this->assertSame( $pageBundle->html, $output->getRawText() );
+
+		// Check the page bundle data
+		$extensionData = $output->getExtensionData( PageBundleParserOutputConverter::PARSOID_PAGE_BUNDLE_KEY );
+		$this->assertSame( $pageBundle->mw, $extensionData['mw'] );
+		$this->assertSame( $pageBundle->parsoid, $extensionData['parsoid'] );
+		$this->assertSame( $pageBundle->headers, $extensionData['headers'] );
+		$this->assertSame( $pageBundle->headers['content-language'], $extensionData['headers']['content-language'] );
+		$this->assertSame( $pageBundle->version, $extensionData['version'] );
+		$this->assertSame( $pageBundle->contentmodel, $extensionData['contentmodel'] );
+
+		// Check our additional metadata properties
+		$this->assertSame( 'test-data', $output->getExtensionData( 'test-key' ) );
+		$this->assertSame( true, $output->getOutputFlag( ParserOutputFlags::NO_GALLERY ) );
+		$this->assertSame( '', $output->getPageProperty( 'forcetoc' ) );
 	}
 
 	public function provideParserOutputFromPageBundle() {
