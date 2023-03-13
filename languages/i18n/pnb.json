@@ -513,7 +513,7 @@
 	"noarticletext": "ایس ویلے ایس صفحے تے کج نہیں لکھیا ہویا۔ تسیں [[Special:Search/{{PAGENAME}}|ایس صفحے دے ناں نوں دوجے صفحیاں تے کھوج سکدے او]] یا فیر [{{fullurl:{{FULLPAGENAME}}|action=edit}} ایس صفحے بݨا] سکدے او۔",
 	"noarticletext-nopermission": "ایس ویلے ایس صفحے تے کوئی لکھت نئیں۔ \nتسیں [[Special:Search/{{PAGENAME}}|search for this page title]] دوسریاں صفحیاں تے،\nیا <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} search the related logs]</span>۔",
 	"userpage-userdoesnotexist": "ورتن کھاتہ \"$1\" رجسٹر نئیں ہویا۔\nمہربانی کرکے دسو جے تسیں ای ھفا بنانا/بدلنا چاندے او۔",
-	"userpage-userdoesnotexist-view": "''$1'' کھاتا رجسٹرڈ نئیں اے۔",
+	"userpage-userdoesnotexist-view": "کھاتہ ”$1“ نہیں لںھیا۔",
 	"blocked-notice-logextract": "اے ورتن آلے تے روک اے۔\nروکن دی وجہ اے دسی گئی اے:",
 	"clearyourcache": "'''نوٹ:''' بچان مگروں توانوں اپنے براؤزر دے کاشے توں بار جانا پوے گا تبدیلیاں ویکھن لئی۔\n*'''Firefox / Safari:'''  ''Shift'' پھڑی رکھو ریلوڈ تے کلکنگ کردیاں ہویاں''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' میک تے)\n* '''گوکل کروم:''' دباؤ ''Ctrl-Shift-R'' (''Command-Shift-R'' میک تے)\n'''Internet Explorer:''' hold ''Ctrl'' کلک کردیاں ''Refresh'', یا دباؤ ''Ctrl-F5''\n'''Konqueror:'''کلک ریلوڈ یا ''F5'' دباؤ۔\n'''Opera:''' کاشے نوں صاف کرو ''آوزار → تانگاں''",
 	"usercssyoucanpreview": "'''ٹوٹکہ:''' ورتو بٹن اپنی نویں  \"{{int:showpreview}}\"  CSS بچان توں پہلے.",

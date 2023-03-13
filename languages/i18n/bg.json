@@ -4038,7 +4038,7 @@
 	"log-name-renameuser": "Дневник на преименуванията",
 	"log-description-renameuser": "Това е дневник на промените в потребителските имена.",
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|преименува}} потребител $4 ({{PLURAL:$6|$6 редакция|$6 редакции}}) на {{GENDER:$7|$5}}",
-	"logentry-renameuser-renameuser-legacier": "$1 преименува потребител $4 на {{GENDER:$7|$5}}",
+	"logentry-renameuser-renameuser-legacier": "$1 {{GENDER:$2|преименува}} потребител $4 на {{GENDER:$7|$5}}",
 	"renameuser-move-log": "Автоматично преместена страница при преименуването на {{GENDER:$2|потребител}} \"[[User:$1|$1]]\" като \"[[User:$2|$2]]\"",
 	"action-renameuser": "преименуване на потребител",
 	"right-renameuser": "Преименуване на потребители",

@@ -3573,7 +3573,7 @@
 	"log-name-renameuser": "Logbuch vun den Ännerunge vum Benotzernumm",
 	"log-description-renameuser": "Dëst ass d'Logbuch vun den Ännerunge vun de Benotzernimm.",
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|huet}} de Benotzer $4 ({{PLURAL:$6|$6 Ännerung|$6 Ännerungen}}) op {{GENDER:$7|$5}} ëmbenannt",
-	"logentry-renameuser-renameuser-legacier": "£1 huet de Benotzer $4 op {{GENDER:$7|$5}} ëmbenannt",
+	"logentry-renameuser-renameuser-legacier": "$1 huet de Benotzer $4 op {{GENDER:$7|$5}} {{GENDER:$2|ëmbenannt}}",
 	"renameuser-move-log": "Duerch d'Réckele vum  {{GENDER:$1|Benotzer}} \"[[User:$1|$1]]\" op \"[[User:$2|$2]]\" goufen déi follgend Säiten automatesch matgeréckelt:",
 	"action-renameuser": "Benotzer ëmbenennen",
 	"right-renameuser": "Erlaabt et Benotzer ëmzebenennen",

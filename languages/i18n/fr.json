@@ -4435,7 +4435,7 @@
 	"log-name-renameuser": "Journal des changements de noms d’utilisateurs",
 	"log-description-renameuser": "Voici l’historique des modifications des noms d’utilisateur.",
 	"logentry-renameuser-renameuser": "$1{{GENDER:$2|}} a renommé l’utilisat{{GENDER:$7|eur|rice}} $4 ($6 modification{{PLURAL:$6||s}}) en $5",
-	"logentry-renameuser-renameuser-legacier": "$1 a renommé l’utilisat{{GENDER:$7|eur|rice}} $4 en $5",
+	"logentry-renameuser-renameuser-legacier": "$1{{GENDER:$2|}} a renommé l’utilisat{{GENDER:$7|eur|rice}} $4 en $5",
 	"renameuser-move-log": "Page déplacée automatiquement lorsque l’utilisat{{GENDER:$2|eur|rice}} « [[User:$1|$1]] » est devenu{{GENDER:$2||e}} « [[User:$2|$2]] »",
 	"action-renameuser": "renommer les utilisateurs",
 	"right-renameuser": "Renommer les utilisateurs",

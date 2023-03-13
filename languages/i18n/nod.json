@@ -524,5 +524,10 @@
 	"skin-view-create-local": "ᨲᩮᩬᩥ᩵ᨾᨣᩤᩴᨧᩣᨡᩱᨩᩪᨴᩦ᩵",
 	"nstab-mainpage": "ᩉ᩠ᨶ᩶ᩣᨣᩮᩢ᩶ᩣ",
 	"skin-action-delete": "ᩃᩫ᩠ᨷ",
-	"skin-action-move": "ᨸᩖ᩠᩵ᨿᩁᨩᩨ᩵"
+	"skin-action-move": "ᨸᩖ᩠᩵ᨿᩁᨩᩨ᩵",
+	"blockedtext-made-by": "$1ᨯᩱ᩶ᨠᩮ᩠ᨯᩥᩢᨠ᩠ᨶᩢ᩶",
+	"blockedtext-reason-comment": "ᨿᩬ᩶ᩁᩉᩮ᩠ᨲᩩᩅ᩵ᩤ<em>$1</em>",
+	"blockedtext-start-time": "ᩁᩮ᩠ᨾᩥ᩵ᨠᩮ᩠ᨯᩥᩢᨠ᩠ᨶᩢ᩶$1",
+	"blockedtext-expiration-time": "ᨿ᩠ᨦᩢ᩶ᨠᩮ᩠ᨯᩥᩢᨠ᩠ᨶᩢ᩶$1",
+	"blockedtext-block-ip": "ᩃᩮ᩠ᨡ​ᩋᩱᨽᩦ​ᨡᩬᨦ​ᨴ᩵ᩣ᩠ᨶ​ᨤᩨ​ $1"
 }
