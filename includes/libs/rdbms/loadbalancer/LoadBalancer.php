@@ -1358,6 +1358,9 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	/**
 	 * Apply updated configuration.
 	 *
+	 * This only unregisters servers that were removed in the new configuration.
+	 * It does not register new servers nor update the group load weights.
+	 *
 	 * This invalidates any open connections. However, existing connections may continue to be
 	 * used while they are in an active transaction. In that case, the old connection will be
 	 * discarded on the first operation after the transaction is complete. The next operation
@@ -1373,28 +1376,51 @@ class LoadBalancer implements ILoadBalancerForOwner {
 	 * @return void
 	 */
 	public function reconfigure( array $params ) {
-		$anyServerDepooled = $this->serverInfo->reconfigureServers( $params['servers'] );
-		if ( !$anyServerDepooled ) {
-			return;
-		}
-		// NOTE: We could close all connection here, but some may be in the middle of
-		//       a transaction. So instead, we leave it to DBConnRef to close the
-		//       connection when it detects that the modcount has changed and no
-		//       transaction is open.
-		$this->logger->info( 'Reconfiguring dbs!' );
-		$this->readIndexByGroup = [];
-		$this->conns = self::newTrackedConnectionsArray();
-		$this->groupLoads = [ self::GROUP_GENERIC => [] ];
-		foreach ( $params['servers'] as $j => $serverNew ) {
-			foreach ( ( $serverNew['groupLoads'] ?? [] ) as $group => $ratio ) {
-				$this->groupLoads[ $group ][ $j ] = $ratio;
+		$anyServerDepooled = false;
+
+		$paramServers = $params['servers'];
+		$newIndexByServerIndex = $this->serverInfo->reconfigureServers( $paramServers );
+		foreach ( $newIndexByServerIndex as $i => $ni ) {
+			if ( $ni !== null ) {
+				// Server still exists in the new config
+				$newWeightByGroup = $paramServers[$ni]['groupLoads'] ?? [];
+				$newWeightByGroup[ILoadBalancer::GROUP_GENERIC] = $paramServers[$ni]['load'];
+				// Check if the server was removed from any load groups
+				foreach ( $this->groupLoads as $group => $weightByIndex ) {
+					if ( isset( $weightByIndex[$i] ) && !isset( $newWeightByGroup[$group] ) ) {
+						// Server no longer in this load group in the new config
+						$anyServerDepooled = true;
+						unset( $this->groupLoads[$group][$i] );
+					}
+				}
+			} else {
+				// Server no longer exists in the new config
+				$anyServerDepooled = true;
+				// Note that if the primary server is depooled and a replica server promoted
+				// to new primary, then DB_PRIMARY handles will fail with server index errors
+				foreach ( $this->groupLoads as $group => $loads ) {
+					unset( $this->groupLoads[$group][$i] );
+				}
 			}
-			$this->groupLoads[ self::GROUP_GENERIC ][ $j ] = $serverNew['load'];
 		}
-		// Bump modification counter to invalidate the connections held by DBConnRef
-		// instances. This will cause the next call to a method on the DBConnRef
-		// to get a new connection from getConnectionInternal()
-		$this->modcount++;
+
+		if ( $anyServerDepooled ) {
+			// NOTE: We could close all connection here, but some may be in the middle of
+			//       a transaction. So instead, we leave it to DBConnRef to close the
+			//       connection when it detects that the modcount has changed and no
+			//       transaction is open.
+			$this->logger->info( 'Reconfiguring dbs!' );
+			// Unpin DB_REPLICA connection groups from server indexes
+			$this->readIndexByGroup = [];
+			// We could close all connection here, but some may be in the middle of a
+			// transaction. So instead, we leave it to DBConnRef to close the connection
+			// when it detects that the modcount has changed and no transaction is open.
+			$this->conns = self::newTrackedConnectionsArray();
+			// Bump modification counter to invalidate the connections held by DBConnRef
+			// instances. This will cause the next call to a method on the DBConnRef
+			// to get a new connection from getConnectionInternal()
+			$this->modcount++;
+		}
 	}
 
 	public function disable( $fname = __METHOD__ ) {

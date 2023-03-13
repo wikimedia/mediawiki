@@ -110,28 +110,30 @@ class ServerInfo {
 	}
 
 	public function reconfigureServers( $paramServers ) {
-		if ( count( $paramServers ) == $this->getServerCount() ) {
-			return false;
-		}
-		$newServers = [];
-		foreach ( $paramServers as $i => $server ) {
-			$newServers[] = $this->getServerNameFromConfig( $server );
-		}
+		$newIndexBySrvName = [];
+		$this->normalizeServerMaps( $paramServers, $newIndexBySrvName );
 
-		$closeConnections = false;
+		// Map of (existing server index => corresponding index in new config or null)
+		$newIndexByServerIndex = [];
+		// Remove servers that no longer exist in the new config and preserve those that
+		// still exist, even if they switched replication roles (e.g. primary/secondary).
+		// Note that if the primary server is depooled and a replica server is promoted
+		// to primary, then DB_PRIMARY handles will fail with server index errors. Note
+		// that if the primary server swaps roles with a replica server, then write queries
+		// to DB_PRIMARY handles will fail with read-only errors.
 		foreach ( $this->servers as $i => $server ) {
-			if ( !in_array( $this->getServerNameFromConfig( $server ), $newServers ) ) {
-				// db depooled, remove it from list of servers
+			$srvName = $this->getServerName( $i );
+			// Since pooling or depooling of servers causes the remaining servers to be
+			// assigned different indexes, find the corresponding index by server name.
+			// Also, note that the primary can be reconfigured as a replica (moved from
+			// the writer index) and vice versa (moved to the writer index).
+			$newIndex = $newIndexByServerIndex[$i] = $newIndexBySrvName[$srvName] ?? null;
+			if ( $newIndex === null ) {
 				unset( $this->servers[$i] );
-				$closeConnections = true;
 			}
 		}
-		return $closeConnections;
-	}
 
-	public function getServerNameFromConfig( $config ) {
-		$name = $config['serverName'] ?? ( $config['host'] ?? '' );
-		return ( $name !== '' ) ? $name : 'localhost';
+		return $newIndexByServerIndex;
 	}
 
 	public function normalizeServerMaps( array $servers, array &$indexBySrvName = null ) {
