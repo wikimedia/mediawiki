@@ -4171,7 +4171,7 @@
 	"log-name-renameuser": "Logboek gebruikersnaamwijzigingen",
 	"log-description-renameuser": "Hieronder staat een lijst van wijzigingen aan gebruikersnamen.",
 	"logentry-renameuser-renameuser": "$1 heeft gebruiker $4 ($6 {{PLURAL:$6|bewerking|bewerkingen}}) {{GENDER:$2|hernoemd}} naar {{GENDER:$7|$5}}",
-	"logentry-renameuser-renameuser-legacier": "$1 heeft de gebruiker $4 hernoemd naar {{GENDER:$7|$5}}",
+	"logentry-renameuser-renameuser-legacier": "$1 heeft de gebruiker $4 {{GENDER:$2|hernoemd}} naar {{GENDER:$7|$5}}",
 	"renameuser-move-log": "Automatisch hernoemd bij het hernoemen van {{GENDER:$2|gebruiker}} \"[[User:$1|$1]]\" naar \"[[User:$2|$2]]\"",
 	"action-renameuser": "gebruikers te hernoemen",
 	"right-renameuser": "Gebruikers hernoemen",

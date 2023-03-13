@@ -4049,7 +4049,7 @@
 	"log-name-renameuser": "Registro de renominationes de usatores",
 	"log-description-renameuser": "Isto es un registro de cambiamentos de nomines de usator.",
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|renominava}} le usator $4 ({{PLURAL:$6|$6 modification|$6 modificationes}}) a {{GENDER:$7|$5}}",
-	"logentry-renameuser-renameuser-legacier": "$1 renominava le usator $4 a {{GENDER:$7|$5}}",
+	"logentry-renameuser-renameuser-legacier": "$1 ha {{GENDER:$2|renominate}} le usator $4 a {{GENDER:$7|$5}}",
 	"renameuser-move-log": "Le pagina ha essite automaticamente renominate con le renomination del {{GENDER:$2|usator}} \"[[User:$1|$1]]\" a \"[[User:$2|$2]]\"",
 	"action-renameuser": "renominar usatores",
 	"right-renameuser": "Renominar usatores",

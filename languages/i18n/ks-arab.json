@@ -859,7 +859,7 @@
 	"move": "پکناوُن",
 	"movethispage": "یِہ صَفہٕ پکنٲیو",
 	"pager-newer-n": "{{PLURAL:$1|نوو ۱|نوو $1}}",
-	"pager-older-n": "{{PLURAL:$1|پرون ۱|پرون $1}}",
+	"pager-older-n": "{{PLURAL:$1|پرٛون 1|پرٛٲنؠ $1}}",
 	"apihelp-no-such-module": "ماڈیوٗل \"$1\" چھُ نہٕ نۄن۔",
 	"apisandbox-submit": "دَرخاست دِیِو",
 	"apisandbox-reset": "واضَح",

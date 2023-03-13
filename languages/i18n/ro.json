@@ -3664,7 +3664,7 @@
 	"feedback-thanks-title": "Mulțumim!",
 	"feedback-useragent": "Agent utilizator:",
 	"searchsuggest-search": "Căutare în {{SITENAME}}",
-	"searchsuggest-containing": "Căutați pagini care conțin",
+	"searchsuggest-containing": "Căutați după pagini care conțin",
 	"search-match-redirect-label": "Redirecționează la potrivile exacte în timpul căutării",
 	"search-match-redirect-help": "Selectați pentru a fi redirecționat către o pagină atunci când titlul acesteia se potrivește cu ceea ce ați căutat",
 	"search-thumbnail-extra-namespaces-label": "Afișează imagini în miniatură la Special:Căutare",

@@ -4167,7 +4167,7 @@
 	"log-name-renameuser": "Дневник преименовања корисника",
 	"log-description-renameuser": "Испод је списак преименованих корисника.",
 	"logentry-renameuser-renameuser": "$1 {{GENDER:$2|преименовао|преименовала}} је {{GENDER:$7|корисника|корисницу}} $4 (са {{PLURAL:$6|$6 изменом|$6 измене|$6 измена}}) у $5",
-	"logentry-renameuser-renameuser-legacier": "$1 преименовао је {{GENDER:$7|корисника|корисницу}} $4 у $5",
+	"logentry-renameuser-renameuser-legacier": "$1 {{GENDER:$2|преименовао|преименовала}} је {{GENDER:$7|корисника|корисницу}} $4 у $5",
 	"renameuser-move-log": "Аутоматско премештање странице због преименовања {{GENDER:$2|корисника|кориснице}} [[User:$1|$1]] у [[User:$2|$2]]",
 	"action-renameuser": "преименујете кориснике",
 	"right-renameuser": "преименовање корисника",

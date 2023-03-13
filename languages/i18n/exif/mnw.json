@@ -3,7 +3,8 @@
 		"authors": [
 			"Aue Nai",
 			"Htawmonzel",
-			"Ranger-Mon"
+			"Ranger-Mon",
+			"咽頭べさ"
 		]
 	},
 	"exif-imagewidth": "အနာံ",
@@ -65,6 +66,7 @@
 	"exif-dc-date": "ပလီု(တအ်)",
 	"exif-dc-publisher": "ညးတြးပတိတ်",
 	"exif-dc-rights": "အခေါၚ်အရာဂမၠိုၚ်",
+	"exif-rating-rejected": "ပါဲတးထောံ",
 	"exif-iimcategory-edu": "ပရေင်ပညာ",
 	"exif-iimcategory-evn": "ပွဳပွူသဘာဝ",
 	"exif-iimcategory-hth": "ပရေင်ထတ်ယုက်",
