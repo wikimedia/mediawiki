@@ -66,7 +66,9 @@ $( function () {
 		var scale = window.outerWidth / window.innerWidth;
 		// This adjustment is limited to tablet devices. It must be a non-zero value to work.
 		// (these values correspond to @width-breakpoint-tablet and @width-breakpoint-desktop
-		if ( window.innerWidth >= 720 && window.innerWidth <= 1000 && content.indexOf( 'initial-scale' ) === -1 ) {
+		if ( window.innerWidth >= 720 && window.innerWidth <= 1000 &&
+			content && content.indexOf( 'initial-scale' ) === -1
+		) {
 			// Note: If the value is 1 the font-size adjust feature will not work on iPad
 			$viewport.attr( 'content', 'width=1000,initial-scale=' + scale );
 		}
