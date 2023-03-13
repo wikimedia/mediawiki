@@ -1701,6 +1701,11 @@ class ParsoidHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$pageConfig = $handler->tryToCreatePageConfig( $attribs, $wikitext );
 		$response = $handler->wt2html( $pageConfig, $attribs, $wikitext );
+
+		// NOTE: Make sure there is no ETag if no stashing was requested (T331629)
+		$etag = $response->getHeaderLine( 'etag' );
+		$this->assertSame( '', $etag, 'ETag' );
+
 		$body = $response->getBody();
 		$body->rewind();
 		$pbJson = $body->getContents();
