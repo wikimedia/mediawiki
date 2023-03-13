@@ -254,7 +254,22 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			$emailUser->overrideOptionsFromConfig( $config );
 		}
 		try {
-			return $emailUser->getPermissionsError( $user, (string)$editToken );
+			$status = $emailUser->getPermissionsError( $user, (string)$editToken );
+			if ( $status->isGood() ) {
+				return null;
+			}
+			foreach ( $status->getErrors() as $err ) {
+				if ( strpos( $err['message'], 'blockedtext' ) !== false ) {
+					// BC for block messages
+					return "blockedemailuser";
+				}
+			}
+			$error = $status->getErrors()[0];
+			if ( $status->getValue() !== null ) {
+				// BC for hook errors intended to be used with ErrorPageError
+				return [ $status->getValue(), $error['message'], $error['params'] ];
+			}
+			return $error['message'];
 		} finally {
 			if ( $config ) {
 				$emailUser->restoreOriginalOptions();
