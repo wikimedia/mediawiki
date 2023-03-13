@@ -57,6 +57,7 @@ use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Utils\UrlUtils;
 use Psr\Log\LoggerInterface;
+use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\IPUtils;
 use Wikimedia\Parsoid\Core\SectionMetadata;
 use Wikimedia\Parsoid\Core\TOCData;
@@ -1705,17 +1706,6 @@ class Parser {
 			# is the <nowiki> mark.
 			$converter = $this->getTargetLanguageConverter();
 			$text = $converter->convert( $text );
-			// Record information necessary for language conversion of TOC.
-			$this->mOutput->setExtensionData(
-				// T303329: this should migrate out of extension data
-				'core:target-lang',
-				$this->getTargetLanguage()->getCode()
-			);
-			$this->mOutput->setExtensionData(
-				// T303329: this should migrate out of extension data
-				'core:target-lang-variant',
-				$this->getTargetLanguageConverter()->getPreferredVariant()
-			);
 			// TOC will be converted below.
 		}
 		// Indicate that the ToC doesn't need additional language conversion
@@ -1730,6 +1720,13 @@ class Parser {
 			$this->getTargetLanguage(),
 			$converter // null if conversion is to be suppressed.
 		);
+		if ( $converter ) {
+			$this->mOutput->setLanguage( new Bcp47CodeValue(
+				LanguageCode::bcp47( $converter->getPreferredVariant() )
+			) );
+		} else {
+			$this->mOutput->setLanguage( $this->getTargetLanguage() );
+		}
 
 		$text = $this->mStripState->unstripNoWiki( $text );
 

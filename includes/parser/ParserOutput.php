@@ -13,6 +13,8 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Parser\ParserOutputFlags;
 use MediaWiki\Title\Title;
+use Wikimedia\Bcp47Code\Bcp47Code;
+use Wikimedia\Bcp47Code\Bcp47CodeValue;
 use Wikimedia\Parsoid\Core\ContentMetadataCollector;
 use Wikimedia\Parsoid\Core\ContentMetadataCollectorCompat;
 use Wikimedia\Parsoid\Core\TOCData;
@@ -1431,6 +1433,55 @@ class ParserOutput extends CacheTime implements ContentMetadataCollector {
 			return false;
 		}
 		return $t;
+	}
+
+	/**
+	 * Get the primary language code of the output.
+	 *
+	 * This gives the primary language of the output, including
+	 * any variant used, as a MediaWiki-internal language code.  This can
+	 * be converted to a standard IETF language tag complying with BCP 47
+	 * by passing it to the LanguageCode::bcp47() method.
+	 *
+	 * Note that this may differ from the wiki's primary language (because
+	 * page language can differ from primary language) and can differ from
+	 * the page language as well (because the parser uses the user language
+	 * when processing interface messages).  It will also differ from the
+	 * Parser's target language when language conversion has been performed;
+	 * in that case it will be equal to
+	 * Parser::getTargetLanguageConverter()->getPreferredVariant(); use
+	 * LanguageFactory::getParentLanguage() on that code if you need the
+	 * base language.  (Note that ::getPreferredVariant() depends on the
+	 * request URL and the User language as well.)
+	 *
+	 * Finally, note that the actual HTML included in this ParserOutput
+	 * may actually represent content in multiple languages.  It is
+	 * expected that the HTML will use internal `lang` attributes (with
+	 * BCP-47 values) to switch from the primary language reported by
+	 * this method.
+	 *
+	 * @return ?Bcp47Code The primary language for this output, as a
+	 *   MediaWiki-internal language code, or `null` if a language
+	 *   was not set.
+	 * @since 1.40
+	 */
+	public function getLanguage(): ?Bcp47Code {
+		// This information is temporarily stored in extension data (T303329)
+		$code = $this->getExtensionData( 'core:target-lang-variant' );
+		return $code === null ? null : new Bcp47CodeValue( $code );
+	}
+
+	/**
+	 * Set the primary language of the output.
+	 *
+	 * See the discussion and caveats in ::getLanguage().
+	 *
+	 * @param Bcp47Code $lang The primary language for this output, including
+	 *   any variant specification.
+	 * @since 1.40
+	 */
+	public function setLanguage( Bcp47Code $lang ): void {
+		$this->setExtensionData( 'core:target-lang-variant', $lang->toBcp47Code() );
 	}
 
 	/**
