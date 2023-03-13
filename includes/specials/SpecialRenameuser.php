@@ -4,6 +4,7 @@ use MediaWiki\Html\Html;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\RenameUser\RenameuserSQL;
+use MediaWiki\Title\Title;
 use MediaWiki\Title\TitleFactory;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
@@ -182,6 +183,12 @@ class SpecialRenameuser extends SpecialPage {
 					// We are on a standard uppercase wiki, use normal
 					$uid = $oldUser->idForName();
 					$oldTitle = $this->titleFactory->makeTitleSafe( NS_USER, $oldUser->getName() );
+					if ( !$oldTitle ) {
+						$out->addHTML( Html::errorBox(
+							$out->msg( 'renameusererrorinvalid' )->params( $oldName )->parse()
+						) );
+						return;
+					}
 					$oldName = $oldTitle->getText();
 				}
 			}
@@ -390,78 +397,63 @@ class SpecialRenameuser extends SpecialPage {
 		);
 	}
 
-	private function movePages( $oldTitle, $newTitle, $suppressRedirect ) {
-		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
-
-		$pages = $dbr->newSelectQueryBuilder()
-			->select( [ 'page_namespace', 'page_title' ] )
-			->from( 'page' )
-			->where( [
-				'page_namespace' => [ NS_USER, NS_USER_TALK ],
-				$dbr->makeList( [
-					'page_title ' . $dbr->buildLike( $oldTitle->getDBkey() . '/', $dbr->anyString() ),
-					'page_title = ' . $dbr->addQuotes( $oldTitle->getDBkey() ),
-				], LIST_OR ),
-			] )
-			->caller( __METHOD__ )
-			->fetchResultSet();
+	private function movePages( Title $oldTitle, Title $newTitle, $suppressRedirect ) {
+		$performer = $this->getUser();
+		$logReason = $this->msg(
+			'renameuser-move-log', $oldTitle->getText(), $newTitle->getText()
+		)->inContentLanguage()->text();
+		$movePage = $this->movePageFactory->newMovePage( $oldTitle, $newTitle );
 
 		$output = '';
+		if ( $oldTitle->exists() ) {
+			$status = $movePage->moveIfAllowed( $performer, $logReason, !$suppressRedirect );
+			$output .= $this->getMoveStatusHtml( $status, $oldTitle, $newTitle );
+		}
+
+		$oldLength = strlen( $oldTitle->getText() );
+		$batchStatus = $movePage->moveSubpagesIfAllowed( $performer, $logReason, !$suppressRedirect );
+		foreach ( $batchStatus->getValue() as $titleText => $status ) {
+			$oldSubpageTitle = Title::newFromText( $titleText );
+			$newSubpageTitle = $newTitle->getSubpage(
+				substr( $oldSubpageTitle->getText(), $oldLength + 1 ) );
+			$output .= $this->getMoveStatusHtml( $status, $oldSubpageTitle, $newSubpageTitle );
+		}
+
+		if ( $output !== '' ) {
+			$this->getOutput()->addHTML( Html::rawElement( 'ul', [], $output ) );
+		}
+	}
+
+	private function getMoveStatusHtml( Status $status, Title $oldTitle, Title $newTitle ) {
 		$linkRenderer = $this->getLinkRenderer();
-		foreach ( $pages as $row ) {
-			$oldPage = $this->titleFactory->makeTitle( $row->page_namespace, $row->page_title );
+		if ( $status->hasMessage( 'articleexists' ) || $status->hasMessage( 'redirectexists' ) ) {
+			$link = $linkRenderer->makeKnownLink( $newTitle );
+			return Html::rawElement(
+				'li',
+				[ 'class' => 'mw-renameuser-pe' ],
+				$this->msg( 'renameuser-page-exists' )->rawParams( $link )->escaped()
+			);
+		} else {
+			if ( $status->isOK() ) {
+				// oldPage is not known in case of redirect suppression
+				$oldLink = $linkRenderer->makeLink( $oldTitle, null, [], [ 'redirect' => 'no' ] );
 
-			$newPageTitle = preg_replace( '!^[^/]+!', $newTitle->getDBkey(), $row->page_title );
-			$newPage = $this->titleFactory->makeTitleSafe( $row->page_namespace, $newPageTitle );
+				// newPage is always known because the move was successful
+				$newLink = $linkRenderer->makeKnownLink( $newTitle );
 
-			if ( !$newPage ) {
-				throw new Exception(
-					"Encountered an invalid page title $newPageTitle in namespace $row->page_namespace"
-				);
-			}
-
-			$movePage = $this->movePageFactory->newMovePage( $oldPage, $newPage );
-			$validMoveStatus = $movePage->isValidMove();
-
-			// Do not autodelete or anything, title must not exist
-			if ( $newPage->exists() && !$validMoveStatus->isOK() ) {
-				$link = $linkRenderer->makeKnownLink( $newPage );
-				$output .= Html::rawElement(
+				return Html::rawElement(
 					'li',
-					[ 'class' => 'mw-renameuser-pe' ],
-					$this->msg( 'renameuser-page-exists' )->rawParams( $link )->escaped()
+					[ 'class' => 'mw-renameuser-pm' ],
+					$this->msg( 'renameuser-page-moved' )->rawParams( $oldLink, $newLink )->escaped()
 				);
 			} else {
-				$logReason = $this->msg(
-					'renameuser-move-log', $oldTitle->getText(), $newTitle->getText()
-				)->inContentLanguage()->text();
-
-				$moveStatus = $movePage->move( $this->getUser(), $logReason, !$suppressRedirect );
-
-				if ( $moveStatus->isOK() ) {
-					// oldPage is not known in case of redirect suppression
-					$oldLink = $linkRenderer->makeLink( $oldPage, null, [], [ 'redirect' => 'no' ] );
-
-					// newPage is always known because the move was successful
-					$newLink = $linkRenderer->makeKnownLink( $newPage );
-
-					$output .= Html::rawElement(
-						'li',
-						[ 'class' => 'mw-renameuser-pm' ],
-						$this->msg( 'renameuser-page-moved' )->rawParams( $oldLink, $newLink )->escaped()
-					);
-				} else {
-					$oldLink = $linkRenderer->makeKnownLink( $oldPage );
-					$newLink = $linkRenderer->makeLink( $newPage );
-					$output .= Html::rawElement(
-						'li', [ 'class' => 'mw-renameuser-pu' ],
-						$this->msg( 'renameuser-page-unmoved' )->rawParams( $oldLink, $newLink )->escaped()
-					);
-				}
+				$oldLink = $linkRenderer->makeKnownLink( $oldTitle );
+				$newLink = $linkRenderer->makeLink( $newTitle );
+				return Html::rawElement(
+					'li', [ 'class' => 'mw-renameuser-pu' ],
+					$this->msg( 'renameuser-page-unmoved' )->rawParams( $oldLink, $newLink )->escaped()
+				);
 			}
-		}
-		if ( $output ) {
-			$this->getOutput()->addHTML( Html::rawElement( 'ul', [], $output ) );
 		}
 	}
 
