@@ -229,16 +229,8 @@ abstract class ParsoidHandler extends Handler {
 			'pagelanguage' => $request->getHeaderLine( 'Content-Language' ) ?: null,
 		];
 
-		// If the use-stash parameter is set, loop it through.
-		$opts['use-stash'] = $request->getQueryParams()['use-stash'] ?? false;
-
-		// If we get an ETag in the If-Match header, attempt to use it for loading
-		// stashed original content.
-		$stashKey = $request->getHeaderLine( 'If-Match' );
-		if ( $stashKey !== '' ) {
-			// use-stash is recognized as a query parameter by HtmlInputHelper
-			$opts['use-stash'] = $stashKey;
-		}
+		// For use in getHtmlOutputRendererHelper
+		$opts['stash'] = $request->getQueryParams()['stash'] ?? false;
 
 		if ( $request->getMethod() === 'POST' ) {
 			if ( isset( $opts['original']['revid'] ) ) {
@@ -325,6 +317,10 @@ abstract class ParsoidHandler extends Handler {
 
 		if ( $source !== null ) {
 			$helper->setContentSource( $source, $model );
+		}
+
+		if ( isset( $attribs['opts']['stash'] ) ) {
+			$helper->setStashingEnabled( $attribs['opts']['stash'] );
 		}
 
 		if ( isset( $attribs['envOptions']['outputContentVersion'] ) ) {
@@ -797,6 +793,7 @@ abstract class ParsoidHandler extends Handler {
 		$opts = $attribs['opts'];
 		$format = $opts['format'];
 		$oldid = $attribs['oldid'];
+		$stash = $opts['stash'] ?? false;
 
 		if ( $format === ParsoidFormatHelper::FORMAT_LINT ) {
 			$lints = $this->wtLint( $pageConfig, $attribs, $wikitext );
@@ -885,10 +882,12 @@ abstract class ParsoidHandler extends Handler {
 
 			$helper->putHeaders( $response, true );
 
-			// XXX: Since we don't enable stashing, the ETag is not really useful.
-			$eTag = $helper->getETag();
-			if ( $eTag ) {
-				$response->setHeader( 'ETag', $eTag );
+			// Emit an ETag only if stashing is enabled. It's not reliably useful otherwise.
+			if ( $stash ) {
+				$eTag = $helper->getETag();
+				if ( $eTag ) {
+					$response->setHeader( 'ETag', $eTag );
+				}
 			}
 		}
 
